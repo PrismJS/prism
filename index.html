@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<script>
+	window.console && console.log('foo');
+</script>
+<meta charset="utf-8" />
+<title>Prism</title>
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="prism.css" data-noprefix />
+<script src="../prefixfree/prefixfree.min.js"></script>
+
+</head>
+<body>
+
+<header><div class="wrapper">
+	<div class="intro">
+		<h1><img src="logo.svg" alt="Prism" /></h1>
+	
+		<p>
+			Prism is a new elegant, robust and lightweight syntax highlighter, built with modern web standards in mind.
+		 	It’s a spin-off project from the popular code playground <a href="http://dabblet.com">Dabblet</a> and is extensively tested there daily by thousands of users.
+		</p>
+	</div>
+	 
+	<p class="download">
+		<a href="" class="full-script">Download Prism</a>
+		or <a href="#download">customize your download</a> to include only the languages you need and the compression level you prefer.
+	</p>
+	
+	<ul id="features">
+		<li>
+			<strong>Incredibly lightweight</strong>
+			Less than 1KB minified &amp; gzipped (core)
+		</li>
+		<li>
+			<strong>Blazing Fast</strong>
+			Supports parallelism with Web Workers, if available.
+		</li>
+		<li>
+			<strong>Extensible</strong>
+			Very easy to define new languages
+		</li>
+		<li>
+			<strong>Themeable</strong>
+			All styling is done through CSS, with sensible class names
+		</li>
+	</ul>
+	
+	
+</div></header>
+
+<section id="limitations">
+	<h1>Limitations</h1>
+	<ul>
+		<li>Any pre-existing HTML in the code will be stripped off</li>
+		<li>Does not support IE8 and below. If a website expects its users to understand code, chances are they’re using a modern browser.</li>
+		<li>No line numbers</li>
+	</ul>
+</section>
+
+<section id="examples">
+	<h1>Examples</h1>
+	<p>The Prism source, highlighted with Prism (don’t you just love how meta this is?):</p>
+	<iframe src="prism.js"></iframe>
+	
+	<p>This page’s CSS code, highlighted with Prism:</p>
+	<iframe src="style.css"></iframe>
+	
+	<p>And this page’s innerHTML, highlighted with Prism:</p>
+	<pre id="innerHTML" class="prism"><code class="language-html"></code></pre>
+</section>
+
+<section id="how-to-use">
+	<h1>How to use</h1>
+	
+	<p>You will need to include the <code>prism.css</code> and <code>prism.js</code> files you downloaded in your page. Include the CSS file by putting this code on your <code>&lt;head></code> element:
+	<pre class="prism"><code class="language-html">&lt;link href="prism.css" rel="stylesheet" /></code></pre>
+	
+	<p>To include the JavaScript file add this code somewhere in your HTML document, preferably at the bottom, right before the closing <code>&lt;/body></code> tag:
+	<pre class="prism"><code class="language-html">&lt;script src="prism.js">&lt;/script></code></pre>
+	
+	<p>Then, you need to add two CSS classes to any element you want to be automatically processed by Prism: <code>prism</code> and <code>language-xxxx</code> where <code>xxxx</code> is the language of the code. For example:
+	<pre class="prism"><code class="language-html">&lt;code class="prism language-css">* { margin: 0; }&lt;/code></code></pre>
+	
+	<p>If you are following the recommended way of presenting code blocks and using a <code>&lt;pre></code> with a <code>&lt;code></code> inside it, it’s recommended that you apply the <code>.prism</code> class to the <code>&lt;pre></code>.
+	The class name <code>language-xxxx</code> is actually the W3C recommended way to <a href="http://www.w3.org/TR/html5/the-code-element.html#the-code-element">declare code languages</a>.</p>
+	
+	<p>The <code>prism</code> class is not required if you plan to manually call <code>Prism.highlight()</code> on the element and neither is the <code>language-xxxx</code> class if you plan to manually call <code>Prism.tokenize()</code>. 
+	To learn how these methods work, refer to the <a href="#api">API Documentation</a> section. However, the <code>.prism</code> class will add some nice styling to the code block.
+</p>
+</section>
+
+<section id="language-definitions">
+	<h1>Language definitions</h1>
+	
+	<p>Every language is defined as a set of tokens, which are expressed as regular expressions. For example, this is the language definition for JavaScript:</p>
+	<iframe src="components/prism-javascript.js"></iframe>
+ 	<p>Each token cannot contain other tokens, so their order is significant. Although per the ECMAScript specification, objects are not required to have a specific ordering of their properties, in practice they do in every modern browser.</p>
+ 	<p>In some cases, it’s easier to define a language when certain tokens can only be nested inside other tokens. This is allowed by using an object as the token value, instead of a regular expression. This object has a <code>pattern</code> property,
+ 	which contains the regular expression that describes the entire token and an <code>inside</code> property that contains the tokens that can be nested inside that token. For example, the tokens for HTML are defined in that way:</p>
+ 	<iframe src="components/prism-html.js"></iframe>
+</section>
+
+<section id="api">
+	<h1>API documentation</h1>
+	
+	<section>
+		<h1><code>Prism.highlightAll(useWorkers, callback)</code></h1>
+		<p>This is the most high-level function in Prism’s API. It fetches all the elements that have the <code>prism</code> class 
+		and then calls <code>Prism.highlight()</code> on each one of them.</p>
+	
+		<h2>Parameters</h2>
+		<dl>
+			<dt>useWorkers</dt>
+			<dd>Whether to use Web Workers to improve performance and avoid blocking the UI when highlighting very large chunks of code. False by default.</dd>
+			<dt>callback</dt>
+			<dd>An optional callback to be invoked after the highlighting is done. Mostly useful when <code>useWorkers</code> is true, since in that case, the highlighting is done asynchronously.</dd>
+		</dl>
+	</section>
+	
+	<section>
+		<h1><code>Prism.highlight(element, useWorkers, callback)</code></h1>
+		<p>Highlights the code inside a single element. The <code>prism</code> class is not required when invoking this method directly.</p>
+		
+		<h2>Parameters</h2>
+		<dl>
+			<dt>element</dt>
+			<dd>The element containing the code. It must have a class of <code>language-xxx</code> to be processed, where <code>xxxx</code> is a valid language.</dd>
+			<dt>useWorkers</dt>
+			<dt>callback</dt>
+			<dd>Same as <code>Prism.highlightAll()</code></dd>
+		</dl>
+	</section>
+	
+	<section>
+		<h1><code>Prism.tokenize(text, tokens)</code></h1>
+		<p>This is the heart of Prism, and the most low-level function you can use. It accepts a string of text as input and the tokens to use, and returns a string with the HTML produced. When the language definition includes nested tokens, the function is called recursively on each of these tokens.</p>
+		
+		<h2>Parameters</h2>
+		<dl>
+			<dt>text</dt>
+			<dd>A string with the code to be highlighted.</dd>
+			<dt>tokens</dt>
+			<dd>An object containing the tokens to use. Usually a language definition like <code>Prism.languages.html</code></dd>
+		</dl>
+	</section>
+</section>
+
+<section id="download">
+	<h1>Download</h1>
+</section>
+
+<section id="credits">
+	<h1>Credits</h1>
+	<ul>
+		<li>To <a href="https://twitter.com/zdfs">Zachary Forrest</a> for <a href="https://twitter.com/zdfs/statuses/217834980871639041">coming up with the name “Prism”</a></li>
+		<li>To <a href="http://stellarr.deviantart.com/">stellarr</a> for the <a href="http://stellarr.deviantart.com/art/Spectra-Wallpaper-Pack-97785901?q=gallery%3Astellarr%2F185512&qo=2">spectrum background</a> used on this page</li>
+		<li>To <a href="https://twitter.com/thecodezombie">Jason Hobbs</a> for <a href="https://twitter.com/thecodezombie/status/217663703825399809">encouraging me</a> to release this script as standalone</li>
+	</ul>
+</section>
+
+<footer><div class="wrapper">
+	<p>Handcrafted with love, by Lea Verou</p>
+</div></footer>
+
+<script src="prism.js" data-automatic></script>
+<script src="utopia.js"></script>
+<script src="code.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+/**
+ * prism.js default theme for JavaScript, CSS and HTML
+ * Based on dabblet (http://dabblet.com)
+ * @author Lea Verou
+ */
+
+.prism {
+	-webkit-tab-size: 4;
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;	
+}
+
+pre.prism {
+	padding: 1em;
+	overflow: auto;
+	background: #f5f2f0;
+	text-shadow: 0 1px white;
+}
+
+.comment {
+	color: slategray;
+}
+
+.punctuation {
+	color: #999;
+}
+
+.property,
+.tag,
+.boolean,
+.number {
+	color: #905;
+}
+
+.selector,
+.attr-name,
+.string {
+	color: #690;
+}
+
+.operator {
+	color: hsl(30, 30%, 50%);
+}
+
+.atrule,
+.attr-value,
+.keyword {
+	color: #07a;
+}
+
+
+.regex {
+	color: #e90;
+}
+
+.important,
+.keyword {
+	font-weight: bold;
+}

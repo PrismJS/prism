@@ -1,0 +1,196 @@
+@import url(http://fonts.googleapis.com/css?family=Questrial);
+
+/*
+ Shared styles
+ */
+h1,
+#features li strong {
+	font: italic 100% Baskerville, Palatino Linotype, Georgia, serif;
+}
+
+header > .wrapper,
+footer > .wrapper {
+	padding: 30px 0;
+}
+
+header:after,
+footer:before {
+	content: '';
+	display: block;
+	height: 10px;
+	background-size: 20px 20px;
+	background-repeat: repeat-x;
+}
+
+
+/*
+ Styles
+ */
+
+* {
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+}
+
+body {
+	font: 100%/1.5 Questrial, sans-serif;
+	tab-size: 4;
+	hyphens: auto;
+}
+
+a {
+	color: inherit;
+}
+
+h1 {
+	font-size: 300%;
+}
+
+	section section h1 {
+		font-size: 150%;
+	}
+
+p {
+	margin: 1em 0;
+}
+
+h1, h2 {
+	margin: 1em 0 .3em;
+}
+
+dd {
+	margin-left: 5em;
+}
+
+code, pre {
+	font-family: Consolas, Monaco, 'Andale Mono', 'Lucida Console', monospace;
+}
+
+	body > pre:only-child {
+		padding: 1em;
+		min-height: 100%;
+		box-sizing: border-box;
+	}
+
+.wrapper,
+body > section {
+	display: block;
+	max-width: 900px;
+	margin: auto;
+}
+
+header {
+	background: black url(img/spectrum.png) repeat-x top;
+	background-size: cover;
+	color: white;
+	text-shadow: 0 -1px 2px black;
+}
+
+header:after {
+	background-image: linear-gradient(45deg, white 50%, transparent 50%),
+		linear-gradient(-45deg, transparent 50%, white 50%);
+}
+
+	header .intro {
+		overflow: hidden;
+	}
+	
+	header .intro > h1 {
+		float: left;
+		margin: 0;
+	}
+
+		header .intro img {
+			width: 150px;
+			margin-right: 30px;
+		}
+	
+	header .intro p {
+		margin: 0;
+		font: 150%/1.4 Questrial;
+		font-size: 150%;
+	}
+	
+	header p:after {
+		content: '';
+		display: block;
+		clear: both;
+	}
+	
+	#features {
+		margin-top: 2em;
+		font-size: 80%;
+	}
+	
+		#features li {
+			display: block;
+			margin: 2em 0;
+			list-style: none;
+			width: 30em;
+		}
+		
+			#features li:before {
+				content: '✓';
+				float: left;
+				margin-right: .2em;
+				color: #60910f;
+				font-size: 400%;
+				line-height: 1;
+			}
+		
+				#features li strong {
+					display: block;
+					font-size: 180%;
+				}	
+					
+	header .download {
+		float: right;
+		max-width: 26em;
+		margin-top: 9em;
+		text-align: center;
+		font-size: 100%;
+		hyphens: manual;
+	}
+	
+		header .download .full-script {
+			display: block;
+			padding: .2em 0 .1em;
+			margin-bottom: .4em;
+			border: 1px solid rgba(0,0,0,0.5);
+			border-radius: 10px;
+			background: #39a1cf;
+			box-shadow: 0 2px 10px black,
+			   inset 0 1px hsla(0,0%,100%,.3),
+			   inset 0 .4em hsla(0,0%,100%,.2),
+			   inset 0 10px 20px hsla(0,0%,100%,.25),
+			   inset 0 -15px 30px rgba(0,0,0,0.3);
+			font-size: 250%;
+			line-height: 1.5;
+			text-transform: uppercase;
+			text-decoration: none;
+		}
+
+iframe, #innerHTML {
+	width: 100%;
+	height: 30em;
+	border: 1px solid rgba(0,0,0,.2);
+	overflow: auto;
+}
+
+#api section h1 {
+	font-style: normal;
+}
+
+footer {
+	margin-top: 2em;
+	background: black url(img/spectrum.png) repeat-x bottom;
+	background-size: cover;
+	color: white;
+	text-shadow: 0 -1px 2px black;
+}
+
+footer:before {
+	background-image: linear-gradient(45deg, transparent 75%, white 75%),
+		linear-gradient(-45deg, white 25%, transparent 25%);
+}
