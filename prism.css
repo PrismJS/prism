@@ -5,6 +5,11 @@
  */
 
 .prism {
+	color: black;
+	direction: ltr;
+	text-align: left;
+	word-spacing: normal;
+	
 	-webkit-tab-size: 4;
 	-moz-tab-size: 4;
 	-o-tab-size: 4;
