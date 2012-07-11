@@ -73,6 +73,10 @@ var _ = self.Prism = {
 		}
 								
 		for (var token in tokens) {
+			if(!tokens.hasOwnProperty(token)) {
+				continue;
+			}
+			
 			var pattern = tokens[token], 
 				inside = pattern.inside;
 			
