@@ -17,7 +17,7 @@ var _ = self.Prism = {
 				continue;
 			}
 			
-			_.highlight(element, useWorkers, callback);
+			_.highlight(element, useWorkers === true, callback);
 		}
 	},
 		
@@ -33,7 +33,7 @@ var _ = self.Prism = {
 			return;
 		}
 		
-		var text = code.textContent
+		var text = (code.textContent || code.innerText)
 					.replace(/&/g, '&amp;')
 					.replace(/</g, '&lt;')
 					.replace(/>/g, '&gt;')
@@ -158,9 +158,12 @@ script = script[script.length - 1];
 if (script) {
 	_.filename = script.src;
 	
-	document.addEventListener('DOMContentLoaded', function() {
-		_.highlightAll();
-	});
+	if(document.addEventListener) {
+		document.addEventListener('DOMContentLoaded', _.highlightAll);
+	}
+	else if (window.attachEvent) {
+		attachEvent('onload', _.highlightAll);
+	}
 }
 
 })();

@@ -46,7 +46,7 @@ pre.prism {
 }
 
 .operator {
-	color: hsl(30, 30%, 50%);
+	color: #a67f59;
 }
 
 .atrule,
