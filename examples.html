@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8" />
+<title>Prism</title>
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="prism.css" data-noprefix />
+<script src="../prefixfree/prefixfree.min.js"></script>
+
+</head>
+<body>
+
+<header><div class="wrapper">
+	<div class="intro">
+		<h1><img src="logo.svg" alt="Prism" /></h1>
+	
+		<p>
+			Prism is a new elegant, robust and lightweight syntax highlighter, built with modern web standards in mind.
+		 	It’s a spin-off project from the popular code playground <a href="http://dabblet.com">Dabblet</a> and is extensively tested there daily by thousands of users.
+		</p>
+	</div>	
+	
+	<h2>Examples</h2>
+	<p>The examples in this page serve a dual purpose: They act as unit tests, making it easy to spot bugs, and at the same time demonstrate what Prism can do, on simple and on edge cases.</p>
+</div></header>
+
+<section>
+	<h1>HTML</h1>
+	
+	<h2>Empty tag</h2>
+	<pre class="prism"><code class="language-html">&lt;p>&lt;/p></code></pre>
+	
+	<h2>Name-attribute pair</h2>
+	<pre class="prism"><code class="language-html">&lt;p class="prism">&lt;/p></code></pre>
+	
+	<h2>Name-attribute pair without quotes</h2>
+	<pre class="prism"><code class="language-html">&lt;p class=prism>&lt;/p></code></pre>
+	
+	<h2>Attribute without value</h2>
+	<pre class="prism"><code class="language-html">&lt;p data-foo>&lt;/p></code></pre>
+</pre>
+</section>
+
+<section>
+	<h1>CSS</h1>
+	
+	<h2>Empty rule</h2>
+	<pre class="prism"><code class="language-css">*{}</code></pre>
+	<pre class="prism"><code class="language-css">* {}</code></pre>
+	<pre class="prism"><code class="language-css">p {}</code></pre>
+	
+	<h2>Simple rule</h2>
+	<pre class="prism"><code class="language-css">p { color: red; }</code></pre>
+</pre>
+</section>
+
+<section>
+	<h1>JavaScript</h1>
+	
+	<h2>Variable assignment</h2>
+	<pre class="prism"><code class="language-javascript">var foo = "bar", baz = 5;</code></pre>
+	
+	<h2>Operators</h2>
+	<pre class="prism"><code class="language-javascript">(1 + 2 * 3)/4 >= 3 &amp;&amp; 4 &lt; 5 || 6 > 7</code></pre>
+</pre>
+</section>
+
+<footer><div class="wrapper">
+	<p>Handcrafted with love, by Lea Verou</p>
+</div></footer>
+
+<script src="prism.js"></script>
+
+</body>
+</html>
