@@ -23,7 +23,8 @@ pre.prism {
 	text-shadow: 0 1px white;
 }
 
-.comment {
+.comment,
+.line-comment {
 	color: slategray;
 }
 
@@ -59,7 +60,6 @@ pre.prism {
 	color: #e90;
 }
 
-.important,
-.keyword {
+.important {
 	font-weight: bold;
 }
