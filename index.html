@@ -97,6 +97,7 @@
 	
 	<p>Every language is defined as a set of tokens, which are expressed as regular expressions. For example, this is the language definition for JavaScript:</p>
 	<iframe src="components/prism-javascript.js"></iframe>
+	
  	<p>Each token cannot contain other tokens, so their order is significant. Although per the ECMAScript specification, objects are not required to have a specific ordering of their properties, in practice they do in every modern browser.</p>
  	<p>In some cases, it’s easier to define a language when certain tokens can only be nested inside other tokens. This is allowed by using an object as the token value, instead of a regular expression. This object has a <code>pattern</code> property,
  	which contains the regular expression that describes the entire token and an <code>inside</code> property that contains the tokens that can be nested inside that token. For example, the tokens for HTML are defined in that way:</p>
