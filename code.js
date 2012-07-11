@@ -21,21 +21,26 @@ $$('iframe').forEach(function(iframe) {
 			iframe.style.height = height + 'px';
 		}
 		
-		$u.element.create('link', {
+		var link = {
+			tag: 'link',
 			properties: {
-				href: pathPrefix + 'style.css',
 				rel: 'stylesheet'
 			},
 			inside: $('head', doc)
-		});
+		}
 		
-		$u.element.create('link', {
-			properties: {
-				href: pathPrefix + 'prism.css',
-				rel: 'stylesheet'
-			},
-			inside: $('head', doc)
-		});
+		link.properties.href = 'style.css';
+		$u.element.create(link);
+		
+		link.properties.href = 'prism.css';
+		$u.element.create(link);
+		
+		link.properties.href = pathPrefix + 'style.css';
+		$u.element.create(link);
+		
+		link.properties.href = pathPrefix + 'prism.css';
+		$u.element.create(link);
+		
 		
 		Prism.highlight(pre);
 	})();
