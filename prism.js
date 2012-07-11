@@ -146,20 +146,21 @@ if (!self.document) {
 		self.postMessage(_.tokenize(code, _.languages[lang]));
 		self.close();
 	}, false);
+	
+	return;
 }
-else {
-	// Should we automatically highlight?
-	var script = document.getElementsByTagName('script');
+
+// Get current script and highlight
+var script = document.getElementsByTagName('script');
+
+script = script[script.length - 1];
+
+if (script) {
+	_.filename = script.src;
 	
-	script = script[script.length - 1];
-	
-	if (script) {
-		_.filename = script.src;
-		
-		document.addEventListener('DOMContentLoaded', function() {
-			_.highlightAll();
-		});
-	}
+	document.addEventListener('DOMContentLoaded', function() {
+		_.highlightAll();
+	});
 }
 
 })();
@@ -171,7 +172,7 @@ else {
 Prism.languages.css = {
 	'comment': /\/\*[\w\W]*?\*\//g,
 	'atrule': /@[\w-]+?(\s+.+)?(?=\s*{|\s*;)/gi,
-	'selector': /[^\{\}\s][^\{\}]+(?=\s*\{)/g,
+	'selector': /[^\{\}\s][^\{\}]*(?=\s*\{)/g,
 	'property': /(\b|\B)[a-z-]+(?=\s*:)/ig,
 	'important': /\B!important\b/gi,
 	'ignore': /&(lt|gt|amp);/gi,
@@ -190,7 +191,7 @@ Prism.languages.javascript = {
 	'keyword': /\b(var|let|if|else|while|do|for|return|in|instanceof|function|new|with|typeof|try|catch|finally|null|break|continue)\b/g,
 	'boolean': /\b(true|false)\b/g,
 	'number': /\b-?(0x)?\d*\.?\d+\b/g,
-	'operator': /[-+]{1,2}|!|=?&lt;|=?&gt;|={1,2}|(&amp;){1,2}|\|?\||\?|:/g,
+	'operator': /[-+]{1,2}|!|=?&lt;|=?&gt;|={1,2}|(&amp;){1,2}|\|?\||\?|:|\*|\//g,
 	'ignore': /&(lt|gt|amp);/gi,
 	'punctuation': /[{}[\];(),.]/g
 };
