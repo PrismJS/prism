@@ -64,13 +64,16 @@
 <section id="examples">
 	<h1>Examples</h1>
 	<p>The Prism source, highlighted with Prism (don’t you just love how meta this is?):</p>
-	<iframe src="prism.js"></iframe>
+	<pre data-src="prism.js"></pre>
 	
 	<p>This page’s CSS code, highlighted with Prism:</p>
-	<iframe src="style.css"></iframe>
+	<pre data-src="style.css"></pre>
 	
-	<p>And this page’s innerHTML, highlighted with Prism:</p>
-	<pre id="innerHTML" class="prism"><code class="language-markup"></code></pre>
+	<p>This page’s HTML, highlighted with Prism:</p>
+	<pre data-src="index.html"></pre>
+	
+	<p>This page’s logo (SVG), highlighted with Prism:</p>
+	<pre data-src="logo.svg"></pre>
 </section>
 
 <section id="how-to-use">
@@ -97,12 +100,12 @@
 	<h1>Language definitions</h1>
 	
 	<p>Every language is defined as a set of tokens, which are expressed as regular expressions. For example, this is the language definition for JavaScript:</p>
-	<iframe src="components/prism-javascript.js"></iframe>
+	<pre data-src="components/prism-javascript.js"></pre>
 	
  	<p>Each token cannot contain other tokens, so their order is significant. Although per the ECMAScript specification, objects are not required to have a specific ordering of their properties, in practice they do in every modern browser.</p>
  	<p>In some cases, it’s easier to define a language when certain tokens can only be nested inside other tokens. This is allowed by using an object as the token value, instead of a regular expression. This object has a <code>pattern</code> property,
  	which contains the regular expression that describes the entire token and an <code>inside</code> property that contains the tokens that can be nested inside that token. For example, the tokens for HTML are defined in that way:</p>
- 	<iframe src="components/prism-html.js"></iframe>
+ 	<pre data-src="components/prism-markup.js"></pre>
 </section>
 
 <section id="api">

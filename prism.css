@@ -24,7 +24,9 @@ pre.prism {
 }
 
 .comment,
-.line-comment {
+.line-comment,
+.prolog,
+.doctype {
 	color: slategray;
 }
 

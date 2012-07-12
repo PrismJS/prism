@@ -1,5 +1,7 @@
 Prism.languages.markup = {
 	'comment': /&lt;!--[\w\W]*?--(>|&gt;)/g,
+	'prolog': /&lt;\?.+?\?(>|&gt;)/,
+	'doctype': /&lt;!DOCTYPE.+?(>|&gt;)/,
 	'script': null,
 	'style': null,
 	'tag': {
@@ -13,7 +15,7 @@ Prism.languages.markup = {
 				}
 			},
 			'attr-value': {
-				pattern: /=(('|").*?(\2)|[^\s>]+)/gi,
+				pattern: /=(('|")[\w\W]*?(\2)|[^\s>]+)/gi,
 				inside: {
 					'punctuation': /=/g
 				}

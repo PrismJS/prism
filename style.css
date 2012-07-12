@@ -1,8 +1,8 @@
-@import url(http://fonts.googleapis.com/css?family=Questrial);
+@import url(http://fonts.googleapis.com/css?family=Questrial);*/
 
 /*
  Shared styles
- */
+ 
 h1,
 #features li strong {
 	font: italic 100% Baskerville, Palatino Linotype, Georgia, serif;
@@ -66,6 +66,10 @@ dd {
 code, pre {
 	font-family: Consolas, Monaco, 'Andale Mono', 'Lucida Console', monospace;
 	hyphens: none;
+}
+
+pre {
+	max-height: 30em;
 }
 
 	body > pre:only-child {
