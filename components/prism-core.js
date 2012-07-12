@@ -145,7 +145,28 @@ var _ = self.Prism = {
 	},
 	
 	wrap: function(token, content) {
-		return '<span class="token ' + token + (token === 'comment'? '" spellcheck="true' : '') + '">' + content + '</span>' 
+		var tag = 'span',
+		    classes = ['token', token],
+		    attributes = {};
+		
+		if (token === 'comment') {
+			attributes['spellcheck'] = 'true';
+		}
+		
+		// Example plugin - Will be removed
+		if (token === 'entity') {
+			attributes['title'] = content.replace(/&amp;/, '&');
+		}
+		
+		// TODO Add hook here
+		
+		var attributesSerialized = '';
+		
+		for (var name in attributes) {
+			attributesSerialized += name + '="' + (attributes[name] || '') + '"';
+		}
+		
+		return '<' + tag + ' class="' + classes.join(' ') + '" ' + attributesSerialized + '>' + content + '</' + tag + '>';
 	}
 };
 
