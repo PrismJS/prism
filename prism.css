@@ -28,8 +28,7 @@ pre.prism {
 	color: slategray;
 }
 
-.punctuation,
-.namespace {
+.punctuation {
 	color: #999;
 }
 
@@ -40,11 +39,19 @@ pre.prism {
 	color: #905;
 }
 
+	.tag > .namespace {
+		color: #b37298; /* 70% of .tag on .prism’s background */
+	}
+
 .selector,
 .attr-name,
 .string {
 	color: #690;
 }
+
+	.attr-name > .namespace {
+		color: #ab6; /* 70% of .attr-name on .prism’s background */
+	}
 
 .operator {
 	color: #a67f59;
