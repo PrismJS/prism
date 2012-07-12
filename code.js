@@ -42,7 +42,7 @@ $$('iframe').forEach(function(iframe) {
 		$u.element.create(link);
 		
 		
-		Prism.highlight(pre,true);
+		Prism.highlight(pre);
 	})();
 });
 

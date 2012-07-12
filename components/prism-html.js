@@ -5,15 +5,27 @@ Prism.languages.html = {
 	'tag': {
 		pattern: /(&lt;|<)\/?[\w\W]+?(>|&gt;)/gi,
 		inside: {
-			'attr-value': {
-				pattern: /[\w:-]+=(('|").*?(\2)|[^\s>]+(?=\/?>|\/?&gt;|\s))/gi,
+			'tag': {
+				pattern: /^(&lt;|<)\/?[\w:-]+/i,
 				inside: {
-					'attr-name': /^[\w:-]+(?==)/gi,
+					'punctuation': /^(&lt;|<)\/?/,
+					'namespace': /^[\w-]+?:/
+				}
+			},
+			'attr-value': {
+				pattern: /=(('|").*?(\2)|[^\s>]+)/gi,
+				inside: {
 					'punctuation': /=/g
 				}
 			},
-			'attr-name': /\s[\w:-]+(?=\s|>|&gt;)/gi,
-			'punctuation': /&lt;\/?|\/?&gt;|<\/?|\/?>/g
+			'punctuation': /\/?&gt;|\/?>/g,
+			'attr-name': {
+				pattern: /[\w:-]+/g,
+				inside: {
+					'namespace': /^[\w-]+?:/
+				}
+			}
+			
 		}
 	},
 	'entity': /&amp;#?[\da-z]{1,8};/gi

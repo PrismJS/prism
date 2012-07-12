@@ -28,7 +28,8 @@ pre.prism {
 	color: slategray;
 }
 
-.punctuation {
+.punctuation,
+.namespace {
 	color: #999;
 }
 

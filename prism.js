@@ -21,24 +21,28 @@ var _ = self.Prism = {
 		}
 	},
 		
-	highlight: function(code, useWorkers, callback) {
-		if(!code) {
+	highlight: function(element, useWorkers, callback) {
+		if(!element) {
 			return;
 		}
 		
-		var language = (code.className.match(/language-(\w+)/i) || [])[1],
+		var language = (element.className.match(/language-(\w+)/i) || [])[1],
 		    tokens = _.languages[language];
 
 		if (!tokens) {
 			return;
 		}
 		
-		var text = (code.textContent || code.innerText)
-					.replace(/&/g, '&amp;')
-					.replace(/</g, '&lt;')
-					.replace(/>/g, '&gt;')
-					.replace(/\u00a0/g, ' ');
+		var code = element.textContent || element.innerText;
 		
+		if(!code) {
+			return;
+		}
+		
+		
+		code = code.replace(/&/g, '&amp;').replace(/</g, '&lt;')
+		           .replace(/>/g, '&gt;').replace(/\u00a0/g, ' ');
+		//console.time(code.slice(0,50));
 		if (useWorkers && self.Worker) {
 			if(self.worker) {
 				self.worker.terminate();
@@ -47,16 +51,17 @@ var _ = self.Prism = {
 			var worker = new Worker(_.filename);	
 			
 			worker.onmessage = function(evt) {
-				code.innerHTML = evt.data;
-				callback && callback.call(code);
+				element.innerHTML = evt.data;
+				callback && callback.call(element);
 			};
 			
-			worker.postMessage(language + '|' + text);
+			worker.postMessage(language + '|' + code);
 		}
 		else {
-			code.innerHTML = _.tokenize(text, tokens);
-			callback && callback.call(code);
+			element.innerHTML = _.tokenize(code, tokens);
+			callback && callback.call(element);
 		}
+		//console.timeEnd(code.slice(0,50));
 	},
 	
 	tokenize: function(text, tokens) {
@@ -72,8 +77,8 @@ var _ = self.Prism = {
 			delete tokens.rest;
 		}
 								
-		for (var token in tokens) {
-			if(!tokens.hasOwnProperty(token)) {
+		tokenloop: for (var token in tokens) {
+			if(!tokens.hasOwnProperty(token) || !tokens[token]) {
 				continue;
 			}
 			
@@ -82,9 +87,16 @@ var _ = self.Prism = {
 			
 			pattern = pattern.pattern || pattern;
 			
+			if(token == 'tagg') console.log(strarr.join('|'));
+			
 			for (var i=0; i<strarr.length; i++) {
 				
 				var str = strarr[i];
+				
+				if (strarr.length > text.length) {
+					// Something went terribly wrong, ABORT, ABORT!
+					break tokenloop;
+				}
 				
 				if (str.token) {
 					continue;
@@ -95,20 +107,14 @@ var _ = self.Prism = {
 				var match = pattern.exec(str);
 				
 				if (match) {
-					var to = pattern.lastIndex,
-						match = match[0],
-						len = match.length,
-						from = to - len,
-						before = str.slice(0, from),
-						after = str.slice(to); 
-					
-					
-					strarr.splice(i, 1);
-					
-					if(before) {
-						strarr.splice(i++, 0, before);
-					}
-					
+
+					var from = match.index - 1,
+					    match = match[0],
+					    len = match.length,
+					    to = from + len,
+						before = str.slice(0, from + 1),
+						after = str.slice(to + 1); 
+
 					var wrapped = new String(
 							_.wrap(
 								token,
@@ -118,11 +124,19 @@ var _ = self.Prism = {
 
 					wrapped.token = true;
 					
-					strarr.splice(i, 0, wrapped);
+					var args = [i, 1];
 					
-					if(after) {
-						strarr.splice(i+1, 0, after);
+					if (before) {
+						args.push(before);
 					}
+					
+					args.push(wrapped);
+					
+					if (after) {
+						args.push(after);
+					}
+					
+					Array.prototype.splice.apply(strarr, args);
 				}
 			}
 		}
@@ -210,15 +224,27 @@ Prism.languages.html = {
 	'tag': {
 		pattern: /(&lt;|<)\/?[\w\W]+?(>|&gt;)/gi,
 		inside: {
-			'attr-value': {
-				pattern: /[\w:-]+=(('|").*?(\2)|[^\s>]+(?=\/?>|\/?&gt;|\s))/gi,
+			'tag': {
+				pattern: /^(&lt;|<)\/?[\w:-]+/i,
 				inside: {
-					'attr-name': /^[\w:-]+(?==)/gi,
+					'punctuation': /^(&lt;|<)\/?/,
+					'namespace': /^[\w-]+?:/
+				}
+			},
+			'attr-value': {
+				pattern: /=(('|").*?(\2)|[^\s>]+)/gi,
+				inside: {
 					'punctuation': /=/g
 				}
 			},
-			'attr-name': /\s[\w:-]+(?=\s|>|&gt;)/gi,
-			'punctuation': /&lt;\/?|\/?&gt;|<\/?|\/?>/g
+			'punctuation': /\/?&gt;|\/?>/g,
+			'attr-name': {
+				pattern: /[\w:-]+/g,
+				inside: {
+					'namespace': /^[\w-]+?:/
+				}
+			}
+			
 		}
 	},
 	'entity': /&amp;#?[\da-z]{1,8};/gi
