@@ -70,20 +70,20 @@
 	<iframe src="style.css"></iframe>
 	
 	<p>And this page’s innerHTML, highlighted with Prism:</p>
-	<pre id="innerHTML" class="prism"><code class="language-html"></code></pre>
+	<pre id="innerHTML" class="prism"><code class="language-markup"></code></pre>
 </section>
 
 <section id="how-to-use">
 	<h1>How to use</h1>
 	
 	<p>You will need to include the <code>prism.css</code> and <code>prism.js</code> files you downloaded in your page. Include the CSS file by putting this code on your <code>&lt;head></code> element:
-	<pre class="prism"><code class="language-html">&lt;link href="prism.css" rel="stylesheet" /></code></pre>
+	<pre class="prism"><code class="language-markup">&lt;link href="prism.css" rel="stylesheet" /></code></pre>
 	
 	<p>To include the JavaScript file add this code somewhere in your HTML document, preferably at the bottom, right before the closing <code>&lt;/body></code> tag:
-	<pre class="prism"><code class="language-html">&lt;script src="prism.js">&lt;/script></code></pre>
+	<pre class="prism"><code class="language-markup">&lt;script src="prism.js">&lt;/script></code></pre>
 	
 	<p>Then, you need to add two CSS classes to any element you want to be automatically processed by Prism: <code>prism</code> and <code>language-xxxx</code> where <code>xxxx</code> is the language of the code. For example:
-	<pre class="prism"><code class="language-html">&lt;code class="prism language-css">* { margin: 0; }&lt;/code></code></pre>
+	<pre class="prism"><code class="language-markup">&lt;code class="prism language-css">* { margin: 0; }&lt;/code></code></pre>
 	
 	<p>If you are following the recommended way of presenting code blocks and using a <code>&lt;pre></code> with a <code>&lt;code></code> inside it, it’s recommended that you apply the <code>.prism</code> class to the <code>&lt;pre></code>.
 	The class name <code>language-xxxx</code> is actually the W3C recommended way to <a href="http://www.w3.org/TR/html5/the-code-element.html#the-code-element">declare code languages</a>.</p>

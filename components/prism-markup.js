@@ -1,4 +1,4 @@
-Prism.languages.html = {
+Prism.languages.markup = {
 	'comment': /&lt;!--[\w\W]*?--(>|&gt;)/g,
 	'script': null,
 	'style': null,
@@ -32,33 +32,33 @@ Prism.languages.html = {
 };
 
 if (Prism.languages.javascript) {
-	Prism.languages.html.script = {
+	Prism.languages.markup.script = {
 		pattern: /(&lt;|<)script[\w\W]*?(>|&gt;)[\w\W]*?(&lt;|<)\/script(>|&gt;)/ig,
 		inside: {
 			'tag': {
 				pattern: /(&lt;|<)script[\w\W]*?(>|&gt;)|(&lt;|<)\/script(>|&gt;)/ig,
-				inside: Prism.languages.html.tag.inside
+				inside: Prism.languages.markup.tag.inside
 			},
 			rest: Prism.languages.javascript
 		}
 	};
 }
 else {
-	delete Prism.languages.html.script;
+	delete Prism.languages.markup.script;
 }
 
 if (Prism.languages.css) {
-	Prism.languages.html.style = {
+	Prism.languages.markup.style = {
 		pattern: /(&lt;|<)style[\w\W]*?(>|&gt;)[\w\W]*?(&lt;|<)\/style(>|&gt;)/ig,
 		inside: {
 			'tag': {
 				pattern: /(&lt;|<)style[\w\W]*?(>|&gt;)|(&lt;|<)\/style(>|&gt;)/ig,
-				inside: Prism.languages.html.tag.inside
+				inside: Prism.languages.markup.tag.inside
 			},
 			rest: Prism.languages.css
 		}
 	};
 }
 else {
-	delete Prism.languages.html.style;
+	delete Prism.languages.markup.style;
 }
