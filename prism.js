@@ -223,8 +223,9 @@ Prism.languages.markup = {
 	'doctype': /&lt;!DOCTYPE.+?(>|&gt;)/,
 	'script': null,
 	'style': null,
+	'cdata': /&lt;!\[CDATA\[[\w\W]+]]&gt;/i,
 	'tag': {
-		pattern: /(&lt;|<)\/?[\w\W]+?(>|&gt;)/gi,
+		pattern: /(&lt;|<)\/?[\w:-]+\s*[\w\W]*?(>|&gt;)/gi,
 		inside: {
 			'tag': {
 				pattern: /^(&lt;|<)\/?[\w:-]+/i,

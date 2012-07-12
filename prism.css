@@ -26,7 +26,8 @@ pre.prism {
 .comment,
 .line-comment,
 .prolog,
-.doctype {
+.doctype,
+.cdata {
 	color: slategray;
 }
 
