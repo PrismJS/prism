@@ -8,5 +8,6 @@ Prism.languages.javascript = {
 	'number': /\b-?(0x)?\d*\.?\d+\b/g,
 	'operator': /[-+]{1,2}|!|=?&lt;|=?&gt;|={1,2}|(&amp;){1,2}|\|?\||\?|:|\*|\//g,
 	'ignore': /&(lt|gt|amp);/gi,
-	'punctuation': /[{}[\];(),.]/g
+	'punctuation': /[{}[\];(),.]/g,
+	'tab': /\t/g
 };

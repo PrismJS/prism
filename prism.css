@@ -79,3 +79,8 @@ pre.prism {
 .important {
 	font-weight: bold;
 }
+
+.tab:not(:empty)::before {
+	content: '▸';
+	color: hsl(24, 20%, 87%);
+}
