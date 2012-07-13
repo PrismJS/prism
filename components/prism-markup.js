@@ -65,3 +65,11 @@ if (Prism.languages.css) {
 else {
 	delete Prism.languages.markup.style;
 }
+
+// Plugin to make entity title show the real entity
+Prism.hooks.add('wrap', function(env) {
+
+	if (env.token === 'entity') {
+		env.attributes['title'] = env.content.replace(/&amp;/, '&');
+	}
+});

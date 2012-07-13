@@ -145,28 +145,52 @@ var _ = self.Prism = {
 	},
 	
 	wrap: function(token, content) {
-		var tag = 'span',
-		    classes = ['token', token],
-		    attributes = {};
+		var env = {
+			token: token,
+			content: content
+		};
+		
+		env.tag = 'span';
+		env.classes = ['token', token];
+		env.attributes = {};
 		
 		if (token === 'comment') {
-			attributes['spellcheck'] = 'true';
+			env.attributes['spellcheck'] = 'true';
 		}
 		
-		// Example plugin - Will be removed
-		if (token === 'entity') {
-			attributes['title'] = content.replace(/&amp;/, '&');
-		}
-		
-		// TODO Add hook here
+		_.hooks.run('wrap', env);
 		
 		var attributesSerialized = '';
 		
-		for (var name in attributes) {
-			attributesSerialized += name + '="' + (attributes[name] || '') + '"';
+		for (var name in env.attributes) {
+			attributesSerialized += name + '="' + (env.attributes[name] || '') + '"';
 		}
 		
-		return '<' + tag + ' class="' + classes.join(' ') + '" ' + attributesSerialized + '>' + content + '</' + tag + '>';
+		return '<' + env.tag + ' class="' + env.classes.join(' ') + '" ' + attributesSerialized + '>' + env.content + '</' + env.tag + '>';
+	},
+	
+	hooks: {
+		all: {},
+		
+		add: function (name, callback) {
+			var hooks = _.hooks.all;
+			
+			hooks[name] = hooks[name] || [];
+			
+			hooks[name].push(callback);
+		},
+		
+		run: function (name, env) {
+			var callbacks = _.hooks.all[name];
+			
+			if (!callbacks || !callbacks.length) {
+				return;
+			}
+			
+			for (var i=0, callback; callback = callbacks[i++];) {
+				callback(env);
+			}
+		}
 	}
 };
 
@@ -305,3 +329,11 @@ if (Prism.languages.css) {
 else {
 	delete Prism.languages.markup.style;
 }
+
+// Plugin to make entity title show the real entity
+Prism.hooks.add('wrap', function(env) {
+
+	if (env.token === 'entity') {
+		env.attributes['title'] = env.content.replace(/&amp;/, '&');
+	}
+});
