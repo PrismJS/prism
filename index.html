@@ -33,18 +33,18 @@
 	<ul id="features">
 		<li>
 			<strong>Incredibly lightweight</strong>
-			Less than 1KB minified &amp; gzipped (core)
+			Only 1KB minified &amp; gzipped (core)
 		</li>
 		<li>
-			<strong>Blazing Fast</strong>
+			<strong>Blazing fast</strong>
 			Supports parallelism with Web Workers, if available.
 		</li>
 		<li>
-			<strong>Extensible</strong>
-			Very easy to define new languages
+			<strong>Very extensible</strong>
+			Plugin architecture, very easy to define new languages
 		</li>
 		<li>
-			<strong>Themeable</strong>
+			<strong>Easily themeable</strong>
 			All styling is done through CSS, with sensible class names
 		</li>
 	</ul>
@@ -52,12 +52,22 @@
 	
 </div></header>
 
+<section id="features-full">
+	<h1>Full list of features</h1>
+	<ul>
+		<li><strong>Only 1KB</strong> minified &amp; gzipped (core). Each language definition adds roughly 300-500 bytes.</li>
+		<li>Supports <strong>parallelism with Web Workers</strong>, if available. Disabled by default.</li>
+		<li>Very easy to extend without modifying the code, due to Prism’s <a href="#plugins">plugin architecture</a>. Multiple hooks are scattered throughout the source.</li>
+		<li>Very easy to <a href="#language-definitions">define new languages</a>. Only thing you need is a good understanding of regular expressions</li>
+		<li>All styling is done through CSS, with sensible class names rather than ugly namespaced abbreviated nonsense.</li>
+		<li>Wide browser support: IE8+, Firefox, Chrome, Safari, Opera, most Mobile browsers</li>
+	</ul>
+</section>
+
 <section id="limitations">
 	<h1>Limitations</h1>
 	<ul>
 		<li>Any pre-existing HTML in the code will be stripped off</li>
-		<li>Does not support IE7 and below. If a website expects its users to understand code, chances are they’re using a modern browser.</li>
-		<li>No line numbers</li>
 	</ul>
 </section>
 
@@ -76,22 +86,24 @@
 	<pre data-src="logo.svg"></pre>
 </section>
 
-<section id="how-to-use">
-	<h1>How to use</h1>
+<section id="basic-usage">
+	<h1>Basic usage</h1>
 	
-	<p>You will need to include the <code>prism.css</code> and <code>prism.js</code> files you downloaded in your page. Include the CSS file by putting this code on your <code>&lt;head></code> element:
+	<p>You will need to include the <code>prism.css</code> and <code>prism.js</code> files you downloaded in your page. Include the CSS file by putting this code on your <code class="prism language-markup">&lt;head></code> element:
 	<pre class="prism"><code class="language-markup">&lt;link href="prism.css" rel="stylesheet" /></code></pre>
 	
-	<p>To include the JavaScript file add this code somewhere in your HTML document, preferably at the bottom, right before the closing <code>&lt;/body></code> tag:
+	<p>To include the JavaScript file add this code somewhere in your HTML document, preferably at the bottom, right before the closing <code class="prism language-markup">&lt;/body></code> tag:
 	<pre class="prism"><code class="language-markup">&lt;script src="prism.js">&lt;/script></code></pre>
 	
-	<p>Then, you need to add two CSS classes to any element you want to be automatically processed by Prism: <code>prism</code> and <code>language-xxxx</code> where <code>xxxx</code> is the language of the code. For example:
+	<p>Then, you need to add two CSS classes to any element you want to be automatically processed by Prism: <code>prism</code> and <code>language-xxxx</code> where <code>xxxx</code> is the language of the code.
+	The class name <code>language-xxxx</code> is actually the W3C recommended way to <a href="http://www.w3.org/TR/html5/the-code-element.html#the-code-element">declare code languages</a>.
+	For example:
 	<pre class="prism"><code class="language-markup">&lt;code class="prism language-css">* { margin: 0; }&lt;/code></code></pre>
 	
-	<p>If you are following the recommended way of presenting code blocks and using a <code>&lt;pre></code> with a <code>&lt;code></code> inside it, it’s recommended that you apply the <code>.prism</code> class to the <code>&lt;pre></code>.
-	The class name <code>language-xxxx</code> is actually the W3C recommended way to <a href="http://www.w3.org/TR/html5/the-code-element.html#the-code-element">declare code languages</a>.</p>
+	<p>If you are following the recommended way of presenting code blocks and using a <code>&lt;pre></code> with a <code>&lt;code></code> inside it, you will get better visual results by applying the <code class="prism language-css">.prism</code> class to the <code class="prism language-markup">&lt;pre></code>, like so:</p>
+	<pre class="prism"><code class="language-markup">&lt;pre class="prism">&lt;code class="language-css">* { margin: 0; }&lt;/code>&lt;pre></code></pre>
 	
-	<p>The <code>prism</code> class is not required if you plan to manually call <code>Prism.highlight()</code> on the element and neither is the <code>language-xxxx</code> class if you plan to manually call <code>Prism.tokenize()</code>. 
+	<p>The <code>prism</code> class is not required if you plan to manually call <code class="prism language-javascript">Prism.highlight()</code> on the element and neither is the <code>language-xxxx</code> class if you plan to manually call <code class="prism language-javascript">Prism.tokenize()</code>. 
 	To learn how these methods work, refer to the <a href="#api">API Documentation</a> section. However, the <code>.prism</code> class will add some nice styling to the code block.
 </p>
 </section>
@@ -106,6 +118,8 @@
  	<p>In some cases, it’s easier to define a language when certain tokens can only be nested inside other tokens. This is allowed by using an object as the token value, instead of a regular expression. This object has a <code>pattern</code> property,
  	which contains the regular expression that describes the entire token and an <code>inside</code> property that contains the tokens that can be nested inside that token. For example, the tokens for HTML are defined in that way:</p>
  	<pre data-src="components/prism-markup.js"></pre>
+ 	
+ 	<p>Nested definitions can help you get around JavaScript’s lack of lookbehind assertions and usually result in simpler regular expressions. However, keep in mind that they’re slower and if coded poorly, can even result in infinite recursion.</p>
 </section>
 
 <section id="api">
@@ -153,6 +167,20 @@
 	</section>
 </section>
 
+<section id="plugins">
+	<h1>Writing plugins</h1>
+	
+	<p>Prism’s plugin architecture is fairly simple. To add a callback, you use <code class="prism language-javascript">Prism.hooks.add(hookname, callback)</code>. 
+	<code>hookname</code> is a string with the hook id, that uniquely identifies the hook your code should run at.
+	<code>callback</code> is a function that accepts one parameter: an object with various variables that can be modified, since objects in JavaScript are passed by reference.
+	For example, here’s a plugin that enchances HTML/XML entities to include a tooltip that shows the actual character:
+	<pre class="prism"><code class="language-javascript">Prism.hooks.add('wrap', function(env) {
+	if (env.token === 'entity') {
+		env.attributes['title'] = env.content.replace(/&amp;amp;/, '&amp;');
+	}
+});</code></pre>
+</section>
+
 <section id="download">
 	<h1>Download</h1>
 </section>
@@ -160,6 +188,7 @@
 <section id="credits">
 	<h1>Credits</h1>
 	<ul>
+		<li>To <a href="http://twitter.com/kizmarh">Roman Komarov</a> for his contributions, feedback and testing.</li>
 		<li>To <a href="https://twitter.com/zdfs">Zachary Forrest</a> for <a href="https://twitter.com/zdfs/statuses/217834980871639041">coming up with the name “Prism”</a></li>
 		<li>To <a href="http://stellarr.deviantart.com/">stellarr</a> for the <a href="http://stellarr.deviantart.com/art/Spectra-Wallpaper-Pack-97785901?q=gallery%3Astellarr%2F185512&qo=2">spectrum background</a> used on this page</li>
 		<li>To <a href="https://twitter.com/thecodezombie">Jason Hobbs</a> for <a href="https://twitter.com/thecodezombie/status/217663703825399809">encouraging me</a> to release this script as standalone</li>
