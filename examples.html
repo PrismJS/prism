@@ -112,6 +112,10 @@ ol {}</code></pre>
 	}
 }</code></pre>
 
+	<h2>Regexes</h2>
+	<pre class="prism"><code class="language-javascript">/([^/])\/(\\?.|\[.+?])+?\/[gim]{0,3}/g</code></pre>
+	<pre class="prism"><code class="language-javascript">/\/\*[\w\W]*?\*\//g</code></pre>
+
 	<h2>Single line comments &amp; regexes</h2>
 	<pre class="prism"><code class="language-javascript">// http://lea.verou.me
 var comment = /\/\*[\w\W]*?\*\//g;</code></pre>
@@ -119,6 +123,9 @@ var comment = /\/\*[\w\W]*?\*\//g;</code></pre>
 	<h2>Link in comment</h2>
 	<pre class="prism"><code class="language-javascript">// http://lea.verou.me
 /* http://lea.verou.me */</code></pre>
+
+	<h2>Strings with slashes</h2>
+	<pre class="prism"><code class="language-javascript">env.content + '&lt;/' + env.tag + '>'</code></pre>
 </section>
 
 <footer><div class="wrapper">

@@ -17,7 +17,7 @@ var _ = self.Prism = {
 		var elements = document.querySelectorAll('pre.prism, pre.prism > code, code.prism');
 
 		for (var i=0, element; element = elements[i++];) {
-			if(/pre/i.test(element.nodeName) && element.children.length > 0) {
+			if (/pre/i.test(element.nodeName) && element.children.length > 0) {
 				continue;
 			}
 			
@@ -98,7 +98,7 @@ var _ = self.Prism = {
 			
 			var pattern = tokens[token], 
 				inside = pattern.inside,
-				lookbehind = pattern.lookbehind || 0;
+				lookbehind = !!pattern.lookbehind || 0;
 			
 			pattern = pattern.pattern || pattern;
 			
@@ -120,7 +120,11 @@ var _ = self.Prism = {
 				var match = pattern.exec(str);
 				
 				if (match) {
-					var from = match.index - 1 + lookbehind;
+					if(lookbehind) {
+						lookbehind = match[1].length;
+					}
+
+					var from = match.index - 1 + lookbehind,
 					    match = match[0].slice(lookbehind),
 					    len = match.length,
 					    to = from + len,
