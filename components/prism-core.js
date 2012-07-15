@@ -7,6 +7,10 @@
 (function(){
 
 var _ = self.Prism = {
+	tokens: {
+		url: /[a-z]{3,4}s?:\/\/\S+/g
+	},
+	
 	languages: {},
 		
 	highlightAll: function(useWorkers, callback) {
@@ -43,6 +47,16 @@ var _ = self.Prism = {
 		code = code.replace(/&/g, '&amp;').replace(/</g, '&lt;')
 		           .replace(/>/g, '&gt;').replace(/\u00a0/g, ' ');
 		//console.time(code.slice(0,50));
+		
+		var env = {
+			element: element,
+			language: language,
+			tokens: tokens,
+			code: code
+		};
+		
+		_.hooks.run('highlight', env);
+		
 		if (useWorkers && self.Worker) {
 			if(self.worker) {
 				self.worker.terminate();
@@ -51,14 +65,14 @@ var _ = self.Prism = {
 			var worker = new Worker(_.filename);	
 			
 			worker.onmessage = function(evt) {
-				element.innerHTML = evt.data;
-				callback && callback.call(element);
+				env.element.innerHTML = evt.data;
+				callback && callback.call(env.element);
 			};
 			
-			worker.postMessage(language + '|' + code);
+			worker.postMessage(env.language + '|' + env.code);
 		}
 		else {
-			element.innerHTML = _.tokenize(code, tokens);
+			env.element.innerHTML = _.tokenize(env.code, env.tokens);
 			callback && callback.call(element);
 		}
 		//console.timeEnd(code.slice(0,50));
@@ -83,13 +97,12 @@ var _ = self.Prism = {
 			}
 			
 			var pattern = tokens[token], 
-				inside = pattern.inside;
+				inside = pattern.inside,
+				lookbehind = pattern.lookbehind || 0;
 			
 			pattern = pattern.pattern || pattern;
 			
-			if(token == 'tagg') console.log(strarr.join('|'));
-			
-			for (var i=0; i<strarr.length; i++) {
+			for (var i=0; i<strarr.length; i++) { // Don’t cache length as it changes during the loop
 				
 				var str = strarr[i];
 				
@@ -107,9 +120,8 @@ var _ = self.Prism = {
 				var match = pattern.exec(str);
 				
 				if (match) {
-
-					var from = match.index - 1,
-					    match = match[0],
+					var from = match.index - 1 + lookbehind;
+					    match = match[0].slice(lookbehind),
 					    len = match.length,
 					    to = from + len,
 						before = str.slice(0, from + 1),
