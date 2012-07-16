@@ -6,6 +6,9 @@
 
 (function(){
 
+// Private helper vars
+var langRegex = /lang(?:uage)?-(\w+)/i
+
 var _ = self.Prism = {
 	tokens: {
 		url: /[a-z]{3,4}s?:\/\/\S+/g
@@ -30,7 +33,10 @@ var _ = self.Prism = {
 			return;
 		}
 		
-		var language = (element.className.match(/language-(\w+)/i) || [])[1],
+		var language = (
+				element.className.match(langRegex) 
+				|| element.parentNode.className.match(langRegex)
+				|| [])[1],
 		    tokens = _.languages[language];
 
 		if (!tokens) {

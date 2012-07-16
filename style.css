@@ -4,7 +4,7 @@
  Shared styles
  */
  
-h1,
+section h1,
 #features li strong {
 	font: italic 100% Baskerville, Palatino Linotype, Georgia, serif;
 }
@@ -44,7 +44,7 @@ a {
 	color: inherit;
 }
 
-h1 {
+section h1 {
 	font-size: 300%;
 }
 
@@ -56,7 +56,8 @@ p {
 	margin: 1em 0;
 }
 
-h1, h2 {
+section h1,
+h2 {
 	margin: 1em 0 .3em;
 }
 
@@ -103,20 +104,24 @@ header:after {
 		overflow: hidden;
 	}
 	
-	header .intro > h1,
-	html.simple header h1 {
+	header h1 {
 		float: left;
-		margin: 0;
+		margin-right: 30px;
+		color: #eda725;
+		text-align: center;
+		font-size: 140%;
+		text-transform: uppercase;
+		letter-spacing: .25em;
 	}
 	
 	header h1 + h2 {
 		margin-top: 0;
 	}
 
-		header .intro img,
-		html.simple header img {
+		header img {
+			display: block;
 			width: 150px;
-			margin-right: 30px;
+			margin-bottom: .3em;
 		}
 	
 	header .intro p {

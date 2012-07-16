@@ -13,7 +13,7 @@
 <body>
 
 <header><div class="wrapper">
-	<h1><img src="../../logo.svg" alt="Prism" /></h1>
+	<h1><img src="../../logo.svg" alt="Prism" /> plugins</h1>
 
 	<h2>Line highlight plugin</h2>
 	<p>Highlights specific lines and/or line ranges.</p>
@@ -22,8 +22,12 @@
 <section>
 	<h1>How to use</h1>
 	
-	<p>To use this plugin, your code samples need to use a <code>&lt;pre></code> element, with the <code>prism</code> class.
-	The <code>&lt;pre></code> element may include <code>&lt;code></code> elements as children, but it’s not a requirement.</p>
+	<p>To use this plugin, your code samples need to use a <code>&lt;pre></code> element, with the <code>prism</code> class and it should include
+	one or more <code>&lt;code></code> element(s) as children. For example:</p>
+	<pre class="prism lang-markup"><code>&lt;pre class="prism language-javascript">&lt;code>console.log("this plugin is awesome!");&lt;/code>&lt;/pre></code></pre>
+	<p>This is also valid:
+	<pre class="prism language-markup"><code>&lt;pre class="prism">&lt;code class="language-javascript">console.log("this plugin is awesome!");&lt;/code>&lt;/pre></code></pre>
+	
 	<p>You specify the lines to be highlighted through the <code>data-line</code> attribute on the <code>&lt;pre></code> element, in the following simple format:</p>
 	<ul>
 		<li>A single number refers to the line with that number</li>
