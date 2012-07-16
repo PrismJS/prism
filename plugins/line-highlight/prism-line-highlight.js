@@ -37,7 +37,7 @@ Prism.hooks.add('after-highlight', function(env) {
 		line.style.height = (end - start + 1) * lineHeight + 'px';
 		line.style.top = (start - offset - 1) * lineHeight + 'px';
 		
-		pre.appendChild(line);
+		pre.insertBefore(line, pre.firstChild);
 	}
 });
 
