@@ -84,6 +84,8 @@
 	
 	<p>This page’s logo (SVG), highlighted with Prism:</p>
 	<pre data-src="logo.svg"></pre>
+	
+	<p>If you’re still not sold, you can <a href="examples.html">view more examples</a>.</p>
 </section>
 
 <section id="basic-usage">
@@ -130,13 +132,15 @@
 		<pre data-src="components/prism-markup.js"></pre></dd>
 		
 		<dt>lookbehind</dt>
-		<dd>This option mitigates JavaScript’s lack of lookbehind. When set to <code class="prism language-javascript">true</code>, the first capturing group in the regex <code>pattern</code> is discarded when matching this token, so it effectively behaves exactly as if it was lookbehind.</dd>
+		<dd>This option mitigates JavaScript’s lack of lookbehind. When set to <code class="prism language-javascript">true</code>, 
+		the first capturing group in the regex <code>pattern</code> is discarded when matching this token, so it effectively behaves 
+		as if it was lookbehind.</dd>
+		
+		<dt>rest</dt>
+		<dd>Accepts an object literal with tokens and appends them to the end of the current object literal. Useful for referring to tokens defined elsewhere. For an example where <code>rest</code> is useful, check the Markup definitions above.</dd>
 	</dl>
 	
- 	<p>Unless explicitly allowed through the <code>inside</code> attribute, each token cannot contain other tokens, so their order is significant. Although per the ECMAScript specification, objects are not required to have a specific ordering of their properties, in practice they do in every modern browser.</p>
- 	
- 	
- 	<p>Nested definitions can help you get around JavaScript’s lack of lookbehind assertions and usually result in simpler regular expressions. However, keep in mind that they’re slower and if coded poorly, can even result in infinite recursion.</p>
+ 	<p>Unless explicitly allowed through the <code>inside</code> property, each token cannot contain other tokens, so their order is significant. Although per the ECMAScript specification, objects are not required to have a specific ordering of their properties, in practice they do in every modern browser.</p>
 </section>
 
 <section id="api">
@@ -185,6 +189,16 @@
 </section>
 
 <section id="plugins">
+	<h1>Plugins</h1>
+	<p>Plugins are additional scripts (and CSS code) that extends Prism’s functionality. Many of the following plugins are official, but are released as plugins to keep the Prism Core small for those who don’t need the extra functionality.</p>
+	<ul>
+		<li><a href="plugins/line-highlight/">Line highlight: Highlight specific lines and line ranges</a></li>
+	</ul>
+	
+	<p>Did you write a plugin for Prism that you want added to this list? Send a pull request!</p>
+</section>
+
+<section id="writing-plugins">
 	<h1>Writing plugins</h1>
 	
 	<p>Prism’s plugin architecture is fairly simple. To add a callback, you use <code class="prism language-javascript">Prism.hooks.add(hookname, callback)</code>. 

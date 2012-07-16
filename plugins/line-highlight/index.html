@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" class="simple">
+<head>
+
+<meta charset="utf-8" />
+<title>Prism</title>
+<link rel="stylesheet" href="../../style.css" />
+<link rel="stylesheet" href="../../prism.css" data-noprefix />
+<link rel="stylesheet" href="prism-line-highlight.css" data-noprefix />
+<script src="../../../prefixfree/prefixfree.min.js"></script>
+
+</head>
+<body>
+
+<header><div class="wrapper">
+	<h1><img src="../../logo.svg" alt="Prism" /></h1>
+
+	<h2>Line highlight plugin</h2>
+	<p>Highlights specific lines and/or line ranges.</p>
+</div></header>
+
+<section>
+	<h1>How to use</h1>
+	
+	<p>To use this plugin, your code samples need to use a <code>&lt;pre></code> element, with the <code>prism</code> class.
+	The <code>&lt;pre></code> element may include <code>&lt;code></code> elements as children, but it’s not a requirement.</p>
+	<p>You specify the lines to be highlighted through the <code>data-line</code> attribute on the <code>&lt;pre></code> element, in the following simple format:</p>
+	<ul>
+		<li>A single number refers to the line with that number</li>
+		<li>Ranges are denoted by two numbers, separated with a hyphen (-)</li>
+		<li>Multiple line numbers or ranges are separated by commas.</li>
+		<li>Whitespace is allowed anywhere and will be stripped off.</li>
+	</ul>
+	
+	<p>Examples:</p>
+	<dl>
+		<dt>5</dt>
+		<dd>The 5th line</dd>
+		
+		<dt>1-5</dt>
+		<dd>Lines 1 through 5</dd>
+		
+		<dt>1,4</dt>
+		<dd>Line 1 and line 4</dd>
+		
+		<dt>1-2, 5, 9-20</dt>
+		<dd>Lines 1 through 2, line 5, lines 9 through 20</dd>
+	</dl>
+	
+	<p>In case you want the line numbering to be offset by a certain number (for example, you want the 1st line to be number 41 instead of 1, which is an offset of 40), you can additionally use the <code>data-line-offset</code> attribute.
+</section>
+
+<section>
+	<h1>Examples</h1>
+	
+	<h2>Line 2</h2>
+	<pre class="prism" data-line="2"><code class="language-css">*
+{
+	color: red;
+}</code></pre>
+	
+	<h2>Lines 1-2</h2>
+	<pre class="prism" data-line="1-2"><code class="language-css">*
+{
+	color: red;
+}</code></pre>
+	
+	<h2>Line 1 and lines 3-4</h2>
+	<pre class="prism" data-line="1,3-4"><code class="language-css">*
+{
+	color: red;
+}</code></pre>
+	
+	<h2>Line 1 and line 4</h2>
+	<pre class="prism" data-line="1,4"><code class="language-css">*
+{
+	color: red;
+}</code></pre>
+
+	<h2>Line 42, start from line 41</h2>
+	<pre class="prism" data-line="42" data-line-offset="40"><code class="language-css">*
+{
+	color: red;
+}</code></pre>
+</section>
+
+<footer><div class="wrapper">
+	<p>Handcrafted with love, by Lea Verou</p>
+</div></footer>
+
+<script src="../../prism.js"></script>
+<script src="prism-line-highlight.js"></script>
+
+</body>
+</html>

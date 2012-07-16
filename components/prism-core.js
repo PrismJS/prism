@@ -43,7 +43,6 @@ var _ = self.Prism = {
 			return;
 		}
 		
-		
 		code = code.replace(/&/g, '&amp;').replace(/</g, '&lt;')
 		           .replace(/>/g, '&gt;').replace(/\u00a0/g, ' ');
 		//console.time(code.slice(0,50));
@@ -55,7 +54,7 @@ var _ = self.Prism = {
 			code: code
 		};
 		
-		_.hooks.run('highlight', env);
+		_.hooks.run('before-highlight', env);
 		
 		if (useWorkers && self.Worker) {
 			if(self.worker) {
@@ -65,15 +64,23 @@ var _ = self.Prism = {
 			var worker = new Worker(_.filename);	
 			
 			worker.onmessage = function(evt) {
-				env.element.innerHTML = evt.data;
+				env.highlightedCode = evt.data;
+				env.element.innerHTML = env.highlightedCode;
+				
 				callback && callback.call(env.element);
+				
+				_.hooks.run('after-highlight', env);
 			};
 			
 			worker.postMessage(env.language + '|' + env.code);
 		}
 		else {
-			env.element.innerHTML = _.tokenize(env.code, env.tokens);
+			env.highlightedCode = _.tokenize(env.code, env.tokens)
+			env.element.innerHTML = env.highlightedCode;
+			
 			callback && callback.call(element);
+			
+			_.hooks.run('after-highlight', env);
 		}
 		//console.timeEnd(code.slice(0,50));
 	},

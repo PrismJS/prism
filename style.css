@@ -98,16 +98,23 @@ header:after {
 		linear-gradient(-45deg, transparent 50%, white 50%);
 }
 
-	header .intro {
+	header .intro,
+	html.simple header {
 		overflow: hidden;
 	}
 	
-	header .intro > h1 {
+	header .intro > h1,
+	html.simple header h1 {
 		float: left;
 		margin: 0;
 	}
+	
+	header h1 + h2 {
+		margin-top: 0;
+	}
 
-		header .intro img {
+		header .intro img,
+		html.simple header img {
 			width: 150px;
 			margin-right: 30px;
 		}
