@@ -19,7 +19,8 @@ function highlightLines(pre, lines, classes) {
 	    offset = +pre.getAttribute('data-line-offset') || 0;
 	    
 	var cs = getComputedStyle(pre),
-	    lineHeight = parseFloat(cs.lineHeight);
+	    lineHeight = parseFloat(cs.lineHeight),
+	    firstChild = pre.firstChild;
 
 	for (var i=0, range; range = ranges[i++];) {
 		range = range.split('-');
@@ -39,7 +40,7 @@ function highlightLines(pre, lines, classes) {
 		line.style.height = (end - start + 1) * lineHeight + 'px';
 		line.style.top = (start - offset - 1) * lineHeight + 'px';
 		
-		pre.insertBefore(line, pre.firstChild);
+		pre.insertBefore(line, firstChild);
 	}
 }
 
