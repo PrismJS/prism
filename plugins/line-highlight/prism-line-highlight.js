@@ -64,6 +64,10 @@ function applyHash() {
 	if(!pre) {
 		return;
 	}
+	
+	if(!pre.hasAttribute('data-line')) {
+		pre.setAttribute('data-line', '');
+	}
 
 	highlightLines(pre, range, 'temporary ');
 
