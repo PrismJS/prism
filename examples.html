@@ -11,19 +11,12 @@
 </head>
 <body>
 
-<header><div class="wrapper">
-	<div class="intro">
-		<h1><img src="logo.svg" alt="Prism" /></h1>
-	
-		<p>
-			Prism is a new elegant, robust and lightweight syntax highlighter, built with modern web standards in mind.
-		 	It’s a spin-off project from the popular code playground <a href="http://dabblet.com">Dabblet</a> and is extensively tested there daily by thousands of users.
-		</p>
-	</div>	
+<header>
+	<div class="intro" data-src="templates/header-main.html" data-type="text/html"></div>
 	
 	<h2>Examples</h2>
 	<p>The examples in this page serve a dual purpose: They act as unit tests, making it easy to spot bugs, and at the same time demonstrate what Prism can do, on simple and on edge cases.</p>
-</div></header>
+</header>
 
 <section>
 	<h1>Markup</h1>
@@ -128,11 +121,11 @@ var comment = /\/\*[\w\W]*?\*\//g;</code></pre>
 	<pre class="prism"><code class="language-javascript">env.content + '&lt;/' + env.tag + '>'</code></pre>
 </section>
 
-<footer><div class="wrapper">
-	<p>Handcrafted with love, by Lea Verou</p>
-</div></footer>
+<footer data-src="templates/footer.html" data-type="text/html"></footer>
 
 <script src="prism.js"></script>
+<script src="utopia.js"></script>
+<script src="code.js"></script>
 
 </body>
 </html>

@@ -9,21 +9,6 @@ section h1,
 	font: italic 100% Baskerville, Palatino Linotype, Georgia, serif;
 }
 
-header > .wrapper,
-footer > .wrapper {
-	padding: 30px 0;
-}
-
-header:after,
-footer:before {
-	content: '';
-	display: block;
-	height: 10px;
-	background-size: 20px 20px;
-	background-repeat: repeat-x;
-}
-
-
 /*
  Styles
  */
@@ -80,23 +65,27 @@ pre {
 		box-sizing: border-box;
 	}
 
-.wrapper,
+header,
 body > section {
 	display: block;
 	max-width: 900px;
 	margin: auto;
 }
 
-header {
-	background: black url(img/spectrum.png) repeat-x top;
-	background-size: cover;
+header, footer {
+	padding: 30px calc(50% - 450px);
+	background-size: 20px 20px, 20px 20px, cover;
+	background-repeat: repeat-x;
+	background-position: bottom, bottom, top;
 	color: white;
 	text-shadow: 0 -1px 2px black;
 }
 
-header:after {
+header {
 	background-image: linear-gradient(45deg, white 50%, transparent 50%),
-		linear-gradient(-45deg, transparent 50%, white 50%);
+	                  linear-gradient(-45deg, transparent 50%, white 50%),
+	                  url(img/spectrum.png);
+	
 }
 
 	header .intro,
@@ -189,26 +178,16 @@ header:after {
 			text-decoration: none;
 		}
 
-iframe, #innerHTML {
-	width: 100%;
-	height: 30em;
-	border: 1px solid rgba(0,0,0,.2);
-	overflow: auto;
-}
-
-#api section h1 {
-	font-style: normal;
-}
-
 footer {
 	margin-top: 2em;
-	background: black url(img/spectrum.png) repeat-x bottom;
-	background-size: cover;
+	background-image: linear-gradient(45deg, transparent 50%, white 50%),
+	                  linear-gradient(-45deg, white 50%, transparent 50%),
+	                  url(img/spectrum.png);
+	background-position: top, top, bottom;
 	color: white;
 	text-shadow: 0 -1px 2px black;
 }
 
-footer:before {
-	background-image: linear-gradient(45deg, transparent 75%, white 75%),
-		linear-gradient(-45deg, white 25%, transparent 25%);
+#api section h1 {
+	font-style: normal;
 }

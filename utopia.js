@@ -325,7 +325,7 @@ var _ = window.Utopia = {
 				evt.custom = true;
 		
 				if(properties) {
-					_.merge(evt, properties);
+					_.attach(evt, properties);
 				}
 		
 				target.dispatchEvent(evt);
