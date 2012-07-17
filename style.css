@@ -73,6 +73,7 @@ body > section {
 }
 
 header, footer {
+	padding: 30px -webkit-calc(50% - 450px); /* Workaround for bug */
 	padding: 30px calc(50% - 450px);
 	background-size: 20px 20px, 20px 20px, cover;
 	background-repeat: repeat-x;
