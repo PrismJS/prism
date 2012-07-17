@@ -3,17 +3,18 @@
 <head>
 
 <meta charset="utf-8" />
-<title>Prism</title>
-<link rel="stylesheet" href="../../style.css" />
-<link rel="stylesheet" href="../../prism.css" data-noprefix />
-<link rel="stylesheet" href="prism-line-highlight.css" data-noprefix />
-<script src="../../../prefixfree/prefixfree.min.js"></script>
+<title>Line highlight ▲ Prism plugins</title>
+<base href="../.." />
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="prism.css" data-noprefix />
+<link rel="stylesheet" href="plugins/line-highlight/prism-line-highlight.css" data-noprefix />
+<script src="../prefixfree/prefixfree.min.js"></script>
 
 </head>
 <body>
 
 <header>
-	<h1><img src="../../logo.svg" alt="Prism" /> plugins</h1>
+	<h1><img src="logo.svg" alt="Prism" /> plugins</h1>
 
 	<h2>Line highlight plugin</h2>
 	<p>Highlights specific lines and/or line ranges.</p>
@@ -58,40 +59,24 @@
 	<h1>Examples</h1>
 	
 	<h2>Line 2</h2>
-	<pre class="prism" data-line="2"><code class="language-css">*
-{
-	color: red;
-}</code></pre>
+	<pre data-line="2" data-src="plugins/line-highlight/prism-line-highlight.js" id="play"></pre>
 	
-	<h2>Lines 1-2</h2>
-	<pre class="prism" data-line="1-2"><code class="language-css">*
-{
-	color: red;
-}</code></pre>
+	<h2>Lines 15-25</h2>
+	<pre data-line="15-25" data-src="plugins/line-highlight/prism-line-highlight.js"></pre>
 	
-	<h2>Line 1 and lines 3-4</h2>
-	<pre class="prism" data-line="1,3-4"><code class="language-css">*
-{
-	color: red;
-}</code></pre>
+	<h2>Line 1 and lines 3-4 and line 42</h2>
+	<pre data-line="1,3-4,42" data-src="plugins/line-highlight/prism-line-highlight.js"></pre>
 	
-	<h2>Line 1 and line 4</h2>
-	<pre class="prism" data-line="1,4"><code class="language-css">*
-{
-	color: red;
-}</code></pre>
-
-	<h2>Line 42, start from line 41</h2>
-	<pre class="prism" data-line="42" data-line-offset="40"><code class="language-css">*
-{
-	color: red;
-}</code></pre>
+	<h2>Line 43, starting from line 41</h2>
+	<pre data-line="43" data-line-offset="40" data-src="plugins/line-highlight/prism-line-highlight.js"></pre>
 </section>
 
 <footer data-src="templates/footer.html" data-type="text/html"></footer>
 
-<script src="../../prism.js"></script>
-<script src="prism-line-highlight.js"></script>
+<script src="prism.js"></script>
+<script src="utopia.js"></script>
+<script src="code.js"></script>
+<script src="plugins/line-highlight/prism-line-highlight.js"></script>
 
 </body>
 </html>

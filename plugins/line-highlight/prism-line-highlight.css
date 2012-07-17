@@ -3,6 +3,10 @@ pre.prism[data-line] {
 	padding: 1em 0 1em 3em;
 }
 
+pre.prism[data-line] > code {
+	position: relative;
+}
+
 .line-highlight {
 	position: absolute;
 	left: 0;

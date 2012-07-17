@@ -29,7 +29,16 @@ document.body.addEventListener('contentreceived', function(evt) {
 		'svg': 'markup'
 	}[(evt.src.match(/\.(\w+)$/) || [,''])[1]];
 	
-	pre.className = 'prism language-' + language;
+	pre.className = 'prism';
 	
-	Prism.highlight(pre, true);
+	var code = document.createElement('code');
+	
+	code.className = 'lang-' + language;
+	
+	code.textContent = pre.textContent;
+	pre.textContent = '';
+	
+	pre.appendChild(code);
+	
+	Prism.highlight(code, true);
 });
