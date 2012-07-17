@@ -5,7 +5,8 @@
  */
  
 section h1,
-#features li strong {
+#features li strong,
+header h2 {
 	font: italic 100% Baskerville, Palatino Linotype, Georgia, serif;
 }
 
@@ -113,6 +114,10 @@ header {
 			width: 150px;
 			margin-bottom: .3em;
 		}
+		
+	header h2 {
+		font-size: 300%;
+	}
 	
 	header .intro p {
 		margin: 0;
