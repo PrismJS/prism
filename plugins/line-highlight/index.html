@@ -53,6 +53,10 @@
 	</dl>
 	
 	<p>In case you want the line numbering to be offset by a certain number (for example, you want the 1st line to be number 41 instead of 1, which is an offset of 40), you can additionally use the <code>data-line-offset</code> attribute.
+	
+	<p>You can also link to specific lines on any code snippet, by using the following as a url hash: <code>#{element-id}.{lines}</code> where 
+	<code>{element-id}</code> is the id of the <code>&lt;pre></code> element and <code>{lines}</code> is one or more lines or line ranges that follow the format
+	outlined above. For example, if there is an element with <code>id="play"</code> on the page, you can link to lines 5-6 by linking to <a href="#play.5-6">#play.5-6</a></p>
 </section>
 
 <section>
