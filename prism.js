@@ -1,3 +1,9 @@
+
+
+/*********************************************** 
+     Begin prism-core.js 
+***********************************************/ 
+
 /**
  * Prism: Lightweight, robust, elegant syntax highlighting
  * MIT license http://www.opensource.org/licenses/mit-license.php/
