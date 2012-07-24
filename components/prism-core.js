@@ -36,7 +36,7 @@ var _ = self.Prism = {
 		var language = (
 				element.className.match(langRegex) 
 				|| element.parentNode.className.match(langRegex)
-				|| [])[1],
+				|| [,_.defaultLanguage])[1],
 		    grammar = _.languages[language];
 
 		if (!grammar) {
@@ -260,11 +260,15 @@ script = script[script.length - 1];
 if (script) {
 	_.filename = script.src;
 	
-	if(document.addEventListener) {
-		document.addEventListener('DOMContentLoaded', _.highlightAll);
-	}
-	else if (window.attachEvent) {
-		attachEvent('onload', _.highlightAll);
+	_.defaultLanguage = script.getAttribute('data-default-language') || null;
+	
+	if (!script.hasAttribute('data-manual')) {
+		if(document.addEventListener) {
+			document.addEventListener('DOMContentLoaded', _.highlightAll);
+		}
+		else if (window.attachEvent) {
+			attachEvent('onload', _.highlightAll);
+		}
 	}
 }
 
