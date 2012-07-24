@@ -287,6 +287,7 @@ if (script) {
 Prism.languages.css = {
 	'comment': /\/\*[\w\W]*?\*\//g,
 	'atrule': /@[\w-]+?(\s+.+)?(?=\s*{|\s*;)/gi,
+	'url': /url\((?:'|")?(.+?)(?:'|")?\)/gi,
 	'selector': /[^\{\}\s][^\{\}]*(?=\s*\{)/g,
 	'property': /(\b|\B)[a-z-]+(?=\s*:)/ig,
 	'important': /\B!important\b/gi,
