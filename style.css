@@ -99,7 +99,7 @@ header, footer {
 
 header {
 	background-image: linear-gradient(45deg, white 50%, transparent 50%),
-	                  linear-gradient(-45deg, transparent 50%, white 50%),
+	                  linear-gradient(135deg, transparent 50%, white 50%),
 	                  url(img/spectrum.png);
 }
 
@@ -218,7 +218,7 @@ header {
 footer {
 	margin-top: 2em;
 	background-image: linear-gradient(45deg, transparent 50%, white 50%),
-	                  linear-gradient(-45deg, white 50%, transparent 50%),
+	                  linear-gradient(135deg, white 50%, transparent 50%),
 	                  url(img/spectrum.png);
 	background-position: top, top, bottom;
 	color: white;
