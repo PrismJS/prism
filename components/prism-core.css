@@ -80,11 +80,15 @@ code.prism {
 }
 
 
-.regex,
-.important {
+.regex {
 	color: #e90;
 }
 
 .important {
 	font-weight: bold;
+}
+
+.tab:not(:empty)::before {
+	content: '▸';
+	color: hsl(24, 20%, 87%);
 }

@@ -1,5 +1,10 @@
 @import url(http://fonts.googleapis.com/css?family=Questrial);
 
+@font-face {
+	src: url(http://lea.verou.me/logo.otf);
+	font-family: 'LeaVerou';
+}
+
 /*
  Shared styles
  */
@@ -37,6 +42,10 @@ section h1 {
 	section section h1 {
 		font-size: 150%;
 	}
+	
+	section h1 code {
+		font-style: normal;
+	}
 
 p {
 	margin: 1em 0;
@@ -49,6 +58,10 @@ h2 {
 
 dd {
 	margin-left: 5em;
+}
+
+strong {
+	font-weight: bold;
 }
 
 code, pre {
@@ -74,6 +87,7 @@ body > section {
 }
 
 header, footer {
+	position: relative;
 	padding: 30px -webkit-calc(50% - 450px); /* Workaround for bug */
 	padding: 30px calc(50% - 450px);
 	background-size: 20px 20px, 20px 20px, cover;
@@ -87,7 +101,6 @@ header {
 	background-image: linear-gradient(45deg, white 50%, transparent 50%),
 	                  linear-gradient(-45deg, transparent 50%, white 50%),
 	                  url(img/spectrum.png);
-	
 }
 
 	header .intro,
@@ -105,9 +118,14 @@ header {
 		letter-spacing: .25em;
 	}
 	
-	header h1 + h2 {
-		margin-top: 0;
+	header h2 {
+		margin-top: .5em;
+		color: #7fab14;
 	}
+	
+		header h1 a {
+			text-decoration: none;
+		}
 
 		header img {
 			display: block;
@@ -134,20 +152,26 @@ header {
 	#features {
 		margin-top: 2em;
 		font-size: 80%;
+		overflow: hidden;
 	}
 	
 		#features li {
-			display: block;
-			margin: 2em 0;
+			margin: 0 0 2em;
 			list-style: none;
 			width: 30em;
+			display: inline-block;
+			float: left;
+		}
+		
+		#features li:nth-child(even) {
+			float: right;
 		}
 		
 			#features li:before {
 				content: '✓';
 				float: left;
 				margin-right: .2em;
-				color: #60910f;
+				color: #7fab14;
 				font-size: 400%;
 				line-height: 1;
 			}
@@ -157,32 +181,39 @@ header {
 					font-size: 180%;
 				}	
 					
-	header .download {
-		float: right;
-		max-width: 26em;
-		margin-top: 9em;
+	.download-button {
+		display: block;
+		padding: .2em .8em .1em;
+		border: 1px solid rgba(0,0,0,0.5);
+		border-radius: 10px;
+		background: #39a1cf;
+		box-shadow: 0 2px 10px black,
+		   inset 0 1px hsla(0,0%,100%,.3),
+		   inset 0 .4em hsla(0,0%,100%,.2),
+		   inset 0 10px 20px hsla(0,0%,100%,.25),
+		   inset 0 -15px 30px rgba(0,0,0,0.3);
+		color: white;
+		text-shadow: 0 -1px 2px black;
 		text-align: center;
-		font-size: 100%;
+		font-size: 250%;
+		line-height: 1.5;
+		text-transform: uppercase;
+		text-decoration: none;
 		hyphens: manual;
 	}
 	
-		header .download .full-script {
-			display: block;
-			padding: .2em 0 .1em;
-			margin-bottom: .4em;
-			border: 1px solid rgba(0,0,0,0.5);
-			border-radius: 10px;
-			background: #39a1cf;
-			box-shadow: 0 2px 10px black,
-			   inset 0 1px hsla(0,0%,100%,.3),
-			   inset 0 .4em hsla(0,0%,100%,.2),
-			   inset 0 10px 20px hsla(0,0%,100%,.25),
-			   inset 0 -15px 30px rgba(0,0,0,0.3);
-			font-size: 250%;
-			line-height: 1.5;
-			text-transform: uppercase;
-			text-decoration: none;
-		}
+	.download-button:hover {
+		background-color: #7fab14;
+	}
+	
+	.download-button:active {
+		box-shadow: inset 0 2px 8px rgba(0,0,0,.8);
+	}
+	
+	header .download-button {
+		float: right;
+		margin: 0 0 .5em .5em;
+	}
 
 footer {
 	margin-top: 2em;
@@ -194,6 +225,37 @@ footer {
 	text-shadow: 0 -1px 2px black;
 }
 
-#api section h1 {
-	font-style: normal;
+	footer p {
+		font-size: 150%;
+	}
+
+	footer ul {
+		column-count: 3;
+	}
+
+#toc {
+	position: fixed;
+	left: 3em;
+	font-size: 75%;
+	opacity: .3;
+}
+
+#toc:hover {
+	opacity: 1;
+}
+
+@media (max-width: 1200px) {
+	#toc {
+		 display: none;
+	}
+}
+
+	#toc h1 {
+		font-size: 200%;
+	}
+	
+#logo:before {
+	content: '☠';
+	float: right;
+	font: 100px/1.6 LeaVerou;
 }

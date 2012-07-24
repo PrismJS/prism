@@ -17,16 +17,11 @@
 
 <header>
 	<div class="intro" data-src="templates/header-main.html" data-type="text/html"></div>
-	 
-	<p class="download">
-		<a href="" class="full-script">Download Prism</a>
-		or <a href="#download">customize your download</a> to include only the languages you need and the compression level you prefer.
-	</p>
 	
 	<ul id="features">
 		<li>
 			<strong>Incredibly lightweight</strong>
-			Only 1KB minified &amp; gzipped (core)
+			Only 1.5KB minified &amp; gzipped (core)
 		</li>
 		<li>
 			<strong>Blazing fast</strong>
@@ -47,12 +42,14 @@
 <section id="features-full">
 	<h1>Full list of features</h1>
 	<ul>
-		<li><strong>Only 1KB</strong> minified &amp; gzipped (core). Each language definition adds roughly 300-500 bytes.</li>
+		<li><strong>Only 1.5KB</strong> minified &amp; gzipped (core). Each language definition adds roughly 300-500 bytes.</li>
 		<li>Supports <strong>parallelism with Web Workers</strong>, if available. Disabled by default.</li>
 		<li>Very easy to extend without modifying the code, due to Prism’s <a href="#plugins">plugin architecture</a>. Multiple hooks are scattered throughout the source.</li>
 		<li>Very easy to <a href="#language-definitions">define new languages</a>. Only thing you need is a good understanding of regular expressions</li>
 		<li>All styling is done through CSS, with sensible class names rather than ugly namespaced abbreviated nonsense.</li>
 		<li>Wide browser support: IE8+, Firefox, Chrome, Safari, Opera, most Mobile browsers</li>
+		<li>Highlight specific lines and/or line ranges (requires <a href="plugins/line-highlight/">plugin</a>)</li>
+		<li>Show invisible characters like tabs, line breaks etc (requires <a href="plugins/show-invisibles/">plugin</a>)</li>
 	</ul>
 </section>
 
@@ -60,6 +57,7 @@
 	<h1>Limitations</h1>
 	<ul>
 		<li>Any pre-existing HTML in the code will be stripped off</li>
+		<li>Regex-based so it *will* fail on certain edge cases.</li>
 	</ul>
 </section>
 
@@ -94,90 +92,12 @@
 	For example:
 	<pre class="prism"><code class="language-markup">&lt;code class="prism language-css">* { margin: 0; }&lt;/code></code></pre>
 	
-	<p>If you are following the recommended way of presenting code blocks and using a <code>&lt;pre></code> with a <code>&lt;code></code> inside it, you will get better visual results by applying the <code class="prism language-css">.prism</code> class to the <code class="prism language-markup">&lt;pre></code>, like so:</p>
+	<p>If you are following the recommended way of presenting code blocks and using a <code class="prism language-markup">&lt;pre></code> with a <code class="prism language-markup">&lt;code></code> inside it, you will get better visual results by applying the <code class="prism language-css">.prism</code> class to the <code class="prism language-markup">&lt;pre></code>, like so:</p>
 	<pre class="prism"><code class="language-markup">&lt;pre class="prism">&lt;code class="language-css">* { margin: 0; }&lt;/code>&lt;pre></code></pre>
 	
-	<p>The <code>prism</code> class is not required if you plan to manually call <code class="prism language-javascript">Prism.highlight()</code> on the element and neither is the <code>language-xxxx</code> class if you plan to manually call <code class="prism language-javascript">Prism.tokenize()</code>. 
-	To learn how these methods work, refer to the <a href="#api">API Documentation</a> section. However, the <code>.prism</code> class will add some nice styling to the code block.
+	<p>The <code>prism</code> class is not required if you plan to manually call <code class="prism language-javascript">Prism.highlightElement()</code> on the element and neither is the <code>language-xxxx</code> class if you plan to manually call <code class="prism language-javascript">Prism.highlight()</code>. 
+	To learn how these methods work, refer to the <a href="extending.html#api">API Documentation</a> section. However, the <code>.prism</code> class will add some nice styling to the code block.
 </p>
-</section>
-
-<section id="language-definitions">
-	<h1>Language definitions</h1>
-	
-	<p>Every language is defined as a set of tokens, which are expressed as regular expressions. For example, this is the language definition for CSS:</p>
-	<pre data-src="components/prism-css.js"></pre>
-	
-	<p>A regular expression literal is the simplest way to express a token. An alternative way, with more options, is by using an object literal. With that notation, the regular expression describing the token would be the <code>pattern</code> attribute:</p>
-	<pre class="prism"><code class="language-javascript">...
-'tokenname': {
-	pattern: /regex/
-}
-...</code></pre>
-	<p>So far the functionality is exactly the same between the short and extended notations. However, the extended notation allows for additional options:</p>
-	
-	<dl>
-		<dt>inside</dt>
-		<dd>This property accepts another object literal, with tokens that are allowed to be nested in this token. 
-		This makes it easier to define certain languages. However, keep in mind that they’re slower and if coded poorly, can even result in infinite recursion.
-		For an example of nested tokens, check out the Markup language definition:
-		<pre data-src="components/prism-markup.js"></pre></dd>
-		
-		<dt>lookbehind</dt>
-		<dd>This option mitigates JavaScript’s lack of lookbehind. When set to <code class="prism language-javascript">true</code>, 
-		the first capturing group in the regex <code>pattern</code> is discarded when matching this token, so it effectively behaves 
-		as if it was lookbehind.</dd>
-		
-		<dt>rest</dt>
-		<dd>Accepts an object literal with tokens and appends them to the end of the current object literal. Useful for referring to tokens defined elsewhere. For an example where <code>rest</code> is useful, check the Markup definitions above.</dd>
-	</dl>
-	
- 	<p>Unless explicitly allowed through the <code>inside</code> property, each token cannot contain other tokens, so their order is significant. Although per the ECMAScript specification, objects are not required to have a specific ordering of their properties, in practice they do in every modern browser.</p>
-</section>
-
-<section id="api">
-	<h1>API documentation</h1>
-	
-	<section>
-		<h1><code>Prism.highlightAll(useWorkers, callback)</code></h1>
-		<p>This is the most high-level function in Prism’s API. It fetches all the elements that have the <code>prism</code> class 
-		and then calls <code>Prism.highlight()</code> on each one of them.</p>
-	
-		<h2>Parameters</h2>
-		<dl>
-			<dt>useWorkers</dt>
-			<dd>Whether to use Web Workers to improve performance and avoid blocking the UI when highlighting very large chunks of code. False by default.</dd>
-			<dt>callback</dt>
-			<dd>An optional callback to be invoked after the highlighting is done. Mostly useful when <code>useWorkers</code> is true, since in that case, the highlighting is done asynchronously.</dd>
-		</dl>
-	</section>
-	
-	<section>
-		<h1><code>Prism.highlight(element, useWorkers, callback)</code></h1>
-		<p>Highlights the code inside a single element. The <code>prism</code> class is not required when invoking this method directly.</p>
-		
-		<h2>Parameters</h2>
-		<dl>
-			<dt>element</dt>
-			<dd>The element containing the code. It must have a class of <code>language-xxx</code> to be processed, where <code>xxxx</code> is a valid language.</dd>
-			<dt>useWorkers</dt>
-			<dt>callback</dt>
-			<dd>Same as <code>Prism.highlightAll()</code></dd>
-		</dl>
-	</section>
-	
-	<section>
-		<h1><code>Prism.tokenize(text, tokens)</code></h1>
-		<p>This is the heart of Prism, and the most low-level function you can use. It accepts a string of text as input and the tokens to use, and returns a string with the HTML produced. When the language definition includes nested tokens, the function is called recursively on each of these tokens.</p>
-		
-		<h2>Parameters</h2>
-		<dl>
-			<dt>text</dt>
-			<dd>A string with the code to be highlighted.</dd>
-			<dt>tokens</dt>
-			<dd>An object containing the tokens to use. Usually a language definition like <code>Prism.languages.html</code></dd>
-		</dl>
-	</section>
 </section>
 
 <section id="plugins">
@@ -185,27 +105,10 @@
 	<p>Plugins are additional scripts (and CSS code) that extends Prism’s functionality. Many of the following plugins are official, but are released as plugins to keep the Prism Core small for those who don’t need the extra functionality.</p>
 	<ul>
 		<li><a href="plugins/line-highlight/">Line highlight: Highlight specific lines and line ranges</a></li>
+		<li><a href="plugins/show-invisibles/">Show invisibles: Show tabs and line breaks</a></li>
 	</ul>
 	
-	<p>Did you write a plugin for Prism that you want added to this list? Send a pull request!</p>
-</section>
-
-<section id="writing-plugins">
-	<h1>Writing plugins</h1>
-	
-	<p>Prism’s plugin architecture is fairly simple. To add a callback, you use <code class="prism language-javascript">Prism.hooks.add(hookname, callback)</code>. 
-	<code>hookname</code> is a string with the hook id, that uniquely identifies the hook your code should run at.
-	<code>callback</code> is a function that accepts one parameter: an object with various variables that can be modified, since objects in JavaScript are passed by reference.
-	For example, here’s a plugin that enchances HTML/XML entities to include a tooltip that shows the actual character:
-	<pre class="prism"><code class="language-javascript">Prism.hooks.add('wrap', function(env) {
-	if (env.token === 'entity') {
-		env.attributes['title'] = env.content.replace(/&amp;amp;/, '&amp;');
-	}
-});</code></pre>
-</section>
-
-<section id="download">
-	<h1>Download</h1>
+	<p>It’s very easy to <a href="extending.html#writing-plugins">write your own Prism plugins</a>. Did you write a plugin for Prism that you want added to this list? <a href="https://github.com/LeaVerou/prism" target="_blank">Send a pull request</a>!</p>
 </section>
 
 <section id="credits">
@@ -223,6 +126,7 @@
 <script src="prism.js"></script>
 <script src="utopia.js"></script>
 <script src="code.js"></script>
+<script src="download.js"></script>
 
 </body>
 </html>

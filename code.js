@@ -40,5 +40,41 @@ document.body.addEventListener('contentreceived', function(evt) {
 	
 	pre.appendChild(code);
 	
-	Prism.highlight(code, true);
+	Prism.highlightElement(code);
 });
+
+/**
+ * Table of contents
+ */
+(function(){
+var toc = document.createElement('ol');
+
+$$('body > section > h1').forEach(function(heading) {
+	var section = heading.parentNode;
+
+	$u.element.create('li', {
+		contents: {
+			tag: 'a',
+			properties: {
+				href: '#' + (heading.id || section.id)
+			},
+			contents: heading.textContent
+		},
+		inside: toc
+	});
+});
+
+if(toc.children.length > 0) {
+	$u.element.create('section', {
+		properties: {
+			id: 'toc'
+		},
+		contents: [{
+			tag: 'h1',
+			contents: 'On this page'
+		}, toc],
+		before: $('body > section')
+	});
+}
+
+})();

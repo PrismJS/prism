@@ -13,15 +13,15 @@
 (function(){
 
 // Private helper vars
-var langRegex = /lang(?:uage)?-(\w+)/i
+var langRegex = /lang(?:uage)?-(\w+)/i;
 
 var _ = self.Prism = {
-	tokens: {
+	grammar: {
 		url: /[a-z]{3,4}s?:\/\/\S+/g
 	},
 	
 	languages: {},
-		
+
 	highlightAll: function(useWorkers, callback) {
 		var elements = document.querySelectorAll('pre.prism, pre.prism > code, code.prism');
 
@@ -30,11 +30,11 @@ var _ = self.Prism = {
 				continue;
 			}
 			
-			_.highlight(element, useWorkers === true, callback);
+			_.highlightElement(element, useWorkers === true, callback);
 		}
 	},
 		
-	highlight: function(element, useWorkers, callback) {
+	highlightElement: function(element, useWorkers, callback) {
 		if(!element) {
 			return;
 		}
@@ -43,9 +43,9 @@ var _ = self.Prism = {
 				element.className.match(langRegex) 
 				|| element.parentNode.className.match(langRegex)
 				|| [])[1],
-		    tokens = _.languages[language];
+		    grammar = _.languages[language];
 
-		if (!tokens) {
+		if (!grammar) {
 			return;
 		}
 		
@@ -62,60 +62,65 @@ var _ = self.Prism = {
 		var env = {
 			element: element,
 			language: language,
-			tokens: tokens,
+			grammar: grammar,
 			code: code
 		};
 		
 		_.hooks.run('before-highlight', env);
 		
 		if (useWorkers && self.Worker) {
-			if(self.worker) {
-				self.worker.terminate();
-			}	
-
 			var worker = new Worker(_.filename);	
 			
 			worker.onmessage = function(evt) {
-				env.highlightedCode = evt.data;
+				env.highlightedCode = Token.stringify(JSON.parse(evt.data));
 				env.element.innerHTML = env.highlightedCode;
 				
 				callback && callback.call(env.element);
-				
+				//console.timeEnd(code.slice(0,50));
 				_.hooks.run('after-highlight', env);
 			};
 			
-			worker.postMessage(env.language + '|' + env.code);
+			worker.postMessage(JSON.stringify({
+				language: env.language,
+				code: env.code
+			}));
 		}
 		else {
-			env.highlightedCode = _.tokenize(env.code, env.tokens)
+			env.highlightedCode = _.highlight(env.code, env.grammar)
 			env.element.innerHTML = env.highlightedCode;
 			
 			callback && callback.call(element);
 			
 			_.hooks.run('after-highlight', env);
+			//console.timeEnd(code.slice(0,50));
 		}
-		//console.timeEnd(code.slice(0,50));
 	},
 	
-	tokenize: function(text, tokens) {
+	highlight: function (text, grammar) {
+		return Token.stringify(_.tokenize(text, grammar));
+	},
+	
+	tokenize: function(text, grammar) {
+		var Token = _.Token;
+		
 		var strarr = [text];
 		
-		var rest = tokens.rest;
+		var rest = grammar.rest;
 		
 		if (rest) {
 			for (var token in rest) {
-				tokens[token] = rest[token];
+				grammar[token] = rest[token];
 			}
 			
-			delete tokens.rest;
+			delete grammar.rest;
 		}
 								
-		tokenloop: for (var token in tokens) {
-			if(!tokens.hasOwnProperty(token) || !tokens[token]) {
+		tokenloop: for (var token in grammar) {
+			if(!grammar.hasOwnProperty(token) || !grammar[token]) {
 				continue;
 			}
 			
-			var pattern = tokens[token], 
+			var pattern = grammar[token], 
 				inside = pattern.inside,
 				lookbehind = !!pattern.lookbehind || 0;
 			
@@ -130,7 +135,7 @@ var _ = self.Prism = {
 					break tokenloop;
 				}
 				
-				if (str.token) {
+				if (str instanceof Token) {
 					continue;
 				}
 				
@@ -150,20 +155,13 @@ var _ = self.Prism = {
 						before = str.slice(0, from + 1),
 						after = str.slice(to + 1); 
 
-					var wrapped = new String(
-							_.wrap(
-								token,
-								inside? _.tokenize(match, inside) : match
-							)
-						);
-
-					wrapped.token = true;
-					
 					var args = [i, 1];
 					
 					if (before) {
 						args.push(before);
 					}
+					
+					var wrapped = new Token(token, inside? _.tokenize(match, inside) : match);
 					
 					args.push(wrapped);
 					
@@ -176,34 +174,9 @@ var _ = self.Prism = {
 			}
 		}
 
-		return strarr.join('');
+		return strarr;
 	},
-	
-	wrap: function(token, content) {
-		var env = {
-			token: token,
-			content: content
-		};
 		
-		env.tag = 'span';
-		env.classes = ['token', token];
-		env.attributes = {};
-		
-		if (token === 'comment') {
-			env.attributes['spellcheck'] = 'true';
-		}
-		
-		_.hooks.run('wrap', env);
-		
-		var attributesSerialized = '';
-		
-		for (var name in env.attributes) {
-			attributesSerialized += name + '="' + (env.attributes[name] || '') + '"';
-		}
-		
-		return '<' + env.tag + ' class="' + env.classes.join(' ') + '" ' + attributesSerialized + '>' + env.content + '</' + env.tag + '>';
-	},
-	
 	hooks: {
 		all: {},
 		
@@ -229,15 +202,56 @@ var _ = self.Prism = {
 	}
 };
 
+var Token = _.Token = function(type, content) {
+	this.type = type;
+	this.content = content;
+};
+
+Token.stringify = function(o) {
+	if (typeof o == 'string') {
+		return o;
+	}
+	
+	if (Object.prototype.toString.call(o) == '[object Array]') {
+		for (var i=0; i<o.length; i++) {
+			o[i] = Token.stringify(o[i]);
+		}
+		
+		return o.join('');
+	}
+	
+	var env = {
+		type: o.type,
+		content: Token.stringify(o.content),
+		tag: 'span',
+		classes: ['token', o.type],
+		attributes: {}
+	};
+	
+	if (env.type == 'comment') {
+		env.attributes['spellcheck'] = 'true';
+	}
+	
+	_.hooks.run('wrap', env);
+	
+	var attributes = '';
+	
+	for (var name in env.attributes) {
+		attributes += name + '="' + (env.attributes[name] || '') + '"';
+	}
+	
+	return '<' + env.tag + ' class="' + env.classes.join(' ') + '" ' + attributes + '>' + env.content + '</' + env.tag + '>';
+	
+};
+
 if (!self.document) {
 	// In worker
 	self.addEventListener('message', function(evt) {
-		var message = evt.data,
-			i = message.indexOf('|'),
-			lang = message.slice(0,i),
-			code = message.slice(i+1);
+		var message = JSON.parse(evt.data),
+		    lang = message.language;
+		    code = message.code;
 		
-		self.postMessage(_.tokenize(code, _.languages[lang]));
+		self.postMessage(JSON.stringify(_.tokenize(code, _.languages[lang])));
 		self.close();
 	}, false);
 	
@@ -293,8 +307,7 @@ Prism.languages.javascript = {
 	'number': /\b-?(0x)?\d*\.?\d+\b/g,
 	'operator': /[-+]{1,2}|!|=?&lt;|=?&gt;|={1,2}|(&amp;){1,2}|\|?\||\?|\*|\//g,
 	'ignore': /&(lt|gt|amp);/gi,
-	'punctuation': /[{}[\];(),.:]/g,
-	'tab': /\t/g
+	'punctuation': /[{}[\];(),.:]/g
 };
 
 /*********************************************** 
