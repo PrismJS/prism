@@ -78,3 +78,26 @@ if(toc.children.length > 0) {
 }
 
 })();
+
+// calc()
+(function(){
+
+	if (PrefixFree.functions.indexOf('calc') == -1) {
+		var style = document.createElement('_').style;
+		style.width = 'calc(1px + 1%)'
+		
+		if(!style.width) {
+			// calc not supported
+			var header = $('header'),
+			    footer = $('footer');
+			    
+			function calculatePadding() {
+				header.style.padding =
+				footer.style.padding = '30px ' + (innerWidth/2 - 450) + 'px';
+			}
+			
+			addEventListener('resize', calculatePadding);
+			calculatePadding();
+		}
+	}
+})();
