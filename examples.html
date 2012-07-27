@@ -30,17 +30,22 @@
 	<h2>pre.language-css > code.language-*</h2>
 	<pre class="language-css"><code class="language-*">p { color: red; }</code></pre>
 	
-	<h2>.lang-css</h2>
+	<h2>code.lang-css</h2>
 	<code class="lang-css">p { color: red; }</code>
+	
+	<h2>pre.lang-css > code</h2>
 	<pre class="lang-css"><code>p { color: red; }</code></pre>
 	
-	<h2>pre > code (No language, should inherit .language-markup)</h2>
+	<h2>pre > code</h2>
+	<p>No language, should inherit .language-markup</p>
 	<pre><code>&lt;p>hi!&lt;/p></code></pre>
 	
-	<h2>code.language-* (No language, should inherit .language-markup)</h2>
+	<h2>code.language-*</h2>
+	<p>No language, should inherit .language-markup</p>
 	<code class="language-*">&lt;p>hi!&lt;/p></code>
 	
-	<h2>code.language-none (Should not be highlighted)</h2>
+	<h2>code.language-none</h2>
+	<p>Should not be highlighted.</p>
 	<code class="language-none">&lt;p>hi!&lt;/p></code>
 </section>
 
