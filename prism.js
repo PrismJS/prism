@@ -16,10 +16,6 @@
 var lang = /\blang(?:uage)?-(?!\*)(\w+)\b/i;
 
 var _ = self.Prism = {
-	grammar: {
-		url: /[a-z]{3,4}s?:\/\/\S+/g
-	},
-	
 	languages: {},
 
 	highlightAll: function(async, callback) {
