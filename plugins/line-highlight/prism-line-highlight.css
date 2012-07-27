@@ -1,9 +1,9 @@
-pre.prism[data-line] {
+pre[data-line] {
 	position: relative;
 	padding: 1em 0 1em 3em;
 }
 
-pre.prism[data-line] > code {
+pre[data-line] > code {
 	position: relative;
 }
 
