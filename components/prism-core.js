@@ -50,7 +50,7 @@ var _ = self.Prism = {
 		// Set language on the element, if not present
 		element.className = element.className.replace(lang, '') + ' language-' + language;
 		
-		var code = element.textContent || element.innerText;
+		var code = element.textContent.trim();
 		
 		if(!code) {
 			return;
@@ -267,13 +267,8 @@ script = script[script.length - 1];
 if (script) {
 	_.filename = script.src;
 	
-	if (!script.hasAttribute('data-manual')) {
-		if(document.addEventListener) {
-			document.addEventListener('DOMContentLoaded', _.highlightAll);
-		}
-		else if (window.attachEvent) {
-			attachEvent('onload', _.highlightAll);
-		}
+	if (document.addEventListener && !script.hasAttribute('data-manual')) {
+		document.addEventListener('DOMContentLoaded', _.highlightAll);
 	}
 }
 

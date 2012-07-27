@@ -33,14 +33,10 @@ pre[class*="language-"] {
 }
 
 /* Inline code */
-code[class*="language-"] {
+:not(pre) > code[class*="language-"] {
 	padding: .1em;
 	border-radius: .3em;
 }
-
-	pre > code[class*="language-"] {
-		padding: 0;
-	}
 
 .token.comment,
 .token.line-comment,
