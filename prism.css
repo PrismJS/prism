@@ -63,7 +63,7 @@ pre[class*="language-"] {
 
 .token.selector,
 .token.attr-name,
-.token.string {
+.language-javascript .token.string {
 	color: #690;
 }
 
@@ -71,7 +71,10 @@ pre[class*="language-"] {
 		color: #ab6; /* 70% of .attr-name on .prism’s background */
 	}
 
-.token.operator {
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string {
 	color: #a67f59;
 	background: hsla(0,0%,100%,.5);
 }
@@ -90,4 +93,8 @@ pre[class*="language-"] {
 
 .token.important {
 	font-weight: bold;
+}
+
+.token.entity {
+	cursor: help;
 }
