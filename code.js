@@ -47,16 +47,39 @@ document.body.addEventListener('contentreceived', function(evt) {
 (function(){
 var toc = document.createElement('ol');
 
-$$('body > section > h1').forEach(function(heading) {
-	var section = heading.parentNode;
+$$('body > section > h1').forEach(function(h1) {
+	var section = h1.parentNode,
+	    text = h1.textContent,
+	    id = h1.id || section.id;
+	
+	// Assign id if one does not exist
+	if (!id) {
+		id = text.toLowerCase()
+		         .replace(/\s+/g, '-')
+		         .replace(/[^\w-]/g, '');
+		section.id = id;
+	}
+	
+	// Linkify heading text
+	if (h1.children.length === 0) {
+		h1.innerHTML = '';
+		
+		$u.element.create('a', {
+			properties: {
+				href: '#' + id
+			},
+			contents: text,
+			inside: h1
+		});
+	}
 
 	$u.element.create('li', {
 		contents: {
 			tag: 'a',
 			properties: {
-				href: '#' + (heading.id || section.id)
+				href: '#' + (h1.id || section.id)
 			},
-			contents: heading.textContent
+			contents: text
 		},
 		inside: toc
 	});

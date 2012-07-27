@@ -46,6 +46,25 @@ section h1 {
 	section h1 code {
 		font-style: normal;
 	}
+	
+	section h1 > a {
+		text-decoration: none;
+	}
+	
+	section h1 > a:before {
+		content: '§';
+		position: absolute;
+		padding: 0 .2em;
+		margin-left: -1em;
+		border-radius: .2em;
+		color: silver;
+		text-shadow: 0 1px white;
+	}
+	
+	section h1 > a:hover:before {
+		color: black;
+		background: #e8d225;
+	}
 
 p {
 	margin: 1em 0;
