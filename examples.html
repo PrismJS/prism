@@ -163,6 +163,10 @@ var comment = /\/\*[\w\W]*?\*\//g;</code></pre>
 
 	<h2>Strings with slashes</h2>
 	<pre><code>env.content + '&lt;/' + env.tag + '>'</code></pre>
+	<pre><code>var foo = "/" + "/";</code></pre>
+	
+	<h2>Regex inside single line comment</h2>
+	<pre><code>// hey, /this doesn’t fail!/ :D</code></pre>
 </section>
 
 <section id="failures" class="language-javascript">
@@ -173,14 +177,8 @@ var comment = /\/\*[\w\W]*?\*\//g;</code></pre>
 	If a failure is listed here, it doesn’t mean it will never be fixed. This is more of a “known bugs” list, just with a certain type of bug.
 	</p>
 	
-	<h2>Two strings with slashes on the same line</h2>
-	<pre><code>var foo = "/" + "/";</code></pre>
-	
 	<h2>Comment-like strings</h2>
 	<pre><code>"foo /* bar */ baz"; "foo // bar";</code></pre>
-	
-	<h2>Regex inside single line comment</h2>
-	<pre><code>// hey, /this fails/ :(</code></pre>
 </section>
 
 <footer data-src="templates/footer.html" data-type="text/html"></footer>
