@@ -7,7 +7,7 @@
 (function(){
 
 // Private helper vars
-var langRegex = /lang(?:uage)?-(\w+)/i;
+var lang = /\blang(?:uage)?-(?!\*)(\w+)\b/i;
 
 var _ = self.Prism = {
 	grammar: {
@@ -16,32 +16,39 @@ var _ = self.Prism = {
 	
 	languages: {},
 
-	highlightAll: function(useWorkers, callback) {
-		var elements = document.querySelectorAll('pre.prism, pre.prism > code, code.prism');
+	highlightAll: function(async, callback) {
+		var elements = document.querySelectorAll('code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code');
 
 		for (var i=0, element; element = elements[i++];) {
-			if (/pre/i.test(element.nodeName) && element.children.length > 0) {
-				continue;
-			}
-			
-			_.highlightElement(element, useWorkers === true, callback);
+			_.highlightElement(element, async === true, callback);
 		}
 	},
 		
-	highlightElement: function(element, useWorkers, callback) {
-		if(!element) {
-			return;
+	highlightElement: function(element, async, callback) {
+		// Find language
+		var language, grammar, parent = element;
+		
+		while (parent && !lang.test(parent.className)) {
+			parent = parent.parentNode;
 		}
 		
-		var language = (
-				element.className.match(langRegex) 
-				|| element.parentNode.className.match(langRegex)
-				|| [,_.defaultLanguage])[1],
-		    grammar = _.languages[language];
+		if (parent) {
+			language = (parent.className.match(lang) || [])[1];
+			grammar = _.languages[language];
+		}
 
 		if (!grammar) {
 			return;
 		}
+		
+		parent = element.parentNode;
+		
+		if (/pre/i.test(parent.nodeName) && !lang.test(parent.className)) {
+			parent.className += ' language-*';
+		}
+		
+		// Set language on the element, if not present
+		element.className = element.className.replace(lang, '') + ' language-' + language;
 		
 		var code = element.textContent || element.innerText;
 		
@@ -62,7 +69,7 @@ var _ = self.Prism = {
 		
 		_.hooks.run('before-highlight', env);
 		
-		if (useWorkers && self.Worker) {
+		if (async && self.Worker) {
 			var worker = new Worker(_.filename);	
 			
 			worker.onmessage = function(evt) {
@@ -259,8 +266,6 @@ script = script[script.length - 1];
 
 if (script) {
 	_.filename = script.src;
-	
-	_.defaultLanguage = script.getAttribute('data-default-language') || null;
 	
 	if (!script.hasAttribute('data-manual')) {
 		if(document.addEventListener) {

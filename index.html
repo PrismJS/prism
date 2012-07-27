@@ -45,7 +45,7 @@
 		<li><strong>Only 1.5KB</strong> minified &amp; gzipped (core). Each language definition adds roughly 300-500 bytes.</li>
 		<li>Supports <strong>parallelism with Web Workers</strong>, if available. Disabled by default.</li>
 		<li>Very easy to extend without modifying the code, due to Prism’s <a href="#plugins">plugin architecture</a>. Multiple hooks are scattered throughout the source.</li>
-		<li>Very easy to <a href="#language-definitions">define new languages</a>. Only thing you need is a good understanding of regular expressions</li>
+		<li>Very easy to <a href="extending.html#language-definitions">define new languages</a>. Only thing you need is a good understanding of regular expressions</li>
 		<li>All styling is done through CSS, with sensible class names rather than ugly namespaced abbreviated nonsense.</li>
 		<li>Wide browser support: IE8+, Firefox, Chrome, Safari, Opera, most Mobile browsers</li>
 		<li>Highlight specific lines and/or line ranges (requires <a href="plugins/line-highlight/">plugin</a>)</li>
@@ -78,29 +78,36 @@
 	<p>If you’re still not sold, you can <a href="examples.html">view more examples</a>.</p>
 </section>
 
-<section id="basic-usage">
+<section id="basic-usage" class="language-markup">
 	<h1>Basic usage</h1>
 	
-	<p>You will need to include the <code>prism.css</code> and <code>prism.js</code> files you downloaded in your page. Include the CSS file by putting this code on your <code class="prism">&lt;head></code> element:
-	<pre class="prism"><code>&lt;link href="prism.css" rel="stylesheet" /></code></pre>
+	<p>You will need to include the <code>prism.css</code> and <code>prism.js</code> files you downloaded in your page. Example:
+	<pre><code>&lt;!DOCTYPE html>
+&lt;html>
+&lt;head>
+	...
+	</code><code class="highlight">&lt;link href="prism.css" rel="stylesheet" /></code><code>
+&lt;/head>
+&lt;body>
+	...
+	</code><code class="highlight">&lt;script src="prism.js">&lt;/script></code><code>
+&lt;/body>
+&lt;/html></code></pre>
 	
-	<p>To include the JavaScript file add this code somewhere in your HTML document, preferably at the bottom, right before the closing <code class="prism">&lt;/body></code> tag:
-	<pre class="prism"><code>&lt;script src="prism.js">&lt;/script></code></pre>
+	<p>Prism does its best to encourage good authoring practices. Therefore, it only works with <code>&lt;code></code> elements, since marking up code without a <code>&lt;code></code> element is semantically invalid. 
+	<a href="http://www.w3.org/TR/html5/the-code-element.html#the-code-element">According to the HTML5 spec</a>, the recommended way to define a code language is a <code>language-xxxx</code> class, which is what Prism uses.
+	To make things easier however, Prism assumes that this language definition is inherited. Therefore, if multiple <code>&lt;code></code> elements have the same language, you can add the <code>language-xxxx</code> class on one of their common ancestors.
+	This way, you can also define a document-wide default language, by adding a <code>language-xxxx</code> class on the <code>&lt;body></code> or <code>&lt;html></code> element.
 	
-	<p>Then, you need to add two CSS classes to any element you want to be automatically processed by Prism: <code>prism</code> and <code>language-xxxx</code> where <code>xxxx</code> is the language of the code.
-	The class name <code>language-xxxx</code> is actually the W3C recommended way to <a href="http://www.w3.org/TR/html5/the-code-element.html#the-code-element">declare code languages</a>.
-	For example:
-	<pre class="prism"><code>&lt;code class="prism language-css">* { margin: 0; }&lt;/code></code></pre>
+	<p>If you want to opt-out of highlighting for a <code>&lt;code></code> element that is a descendant of an element with a declared code language, you can add the class <code>language-none</code> to it (or any non-existing language, really).</p>
 	
-	<p>If you are following the recommended way of presenting code blocks and using a <code class="prism">&lt;pre></code> with a <code class="prism">&lt;code></code> inside it, you will get better visual results by applying the <code class="prism language-css">.prism</code> class to the <code class="prism">&lt;pre></code>, like so:</p>
-	<pre class="prism"><code>&lt;pre class="prism">&lt;code class="language-css">* { margin: 0; }&lt;/code>&lt;pre></code></pre>
+	<p>The <a href="http://www.w3.org/TR/html5/the-pre-element.html#the-pre-element">recommended way to mark up a code block</a> (both for semantics and for Prism) is a <code>&lt;pre></code> inside a <code>&lt;code></code> element, like so:</p>
+	<pre><code>&lt;pre>&lt;code class="language-css">p { color: red }&lt;/code>&lt;/pre></code></pre>
+	<p>If you use that pattern, the <code>&lt;pre></code> will automatically get the <code>language-xxxx</code> class (if it doesn’t already have it) and will be styled as a code block.</p>
 	
-	<p>The <code>prism</code> class is not required if you plan to manually call <code class="prism language-javascript">Prism.highlightElement()</code> on the element and neither is the <code>language-xxxx</code> class if you plan to manually call <code class="prism language-javascript">Prism.highlight()</code>. 
-	To learn how these methods work, refer to the <a href="extending.html#api">API Documentation</a> section. However, the <code>.prism</code> class will add some nice styling to the code block.</p>
-	
-	<p>If you want to prevent elements with the class <code>prism</code> to be automatically highlighted, you can use the attribute <code>data-manual</code> on the <code class="prism">&lt;script></code> element you used for prism.
-	You can also set a default language by using the attribute <code>data-default-language</code> on the same element. Example of both being used:</p>
-	<pre class="prism"><code>&lt;script src="prism.js" data-default-language="css" data-manual>&lt;/script></code></pre>
+	<p>If you want to prevent any elements from being automatically highlighted, you can use the attribute <code>data-manual</code> on the <code>&lt;script></code> element you used for prism.
+	Example:</p>
+	<pre><code>&lt;script src="prism.js" data-manual>&lt;/script></code></pre>
 </p>
 </section>
 

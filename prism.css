@@ -4,7 +4,8 @@
  * @author Lea Verou
  */
 
-.prism {
+code[class*="language-"],
+pre[class*="language-"] {
 	background: #f5f2f0;
 	color: black;
 	text-shadow: 0 1px white;
@@ -24,67 +25,73 @@
 	hyphens: none;
 }
 
-pre.prism {
+/* Code blocks */
+pre[class*="language-"] {
 	padding: 1em;
 	margin: .5em 0;
 	overflow: auto;	
 }
 
-code.prism {
+/* Inline code */
+code[class*="language-"] {
 	padding: .1em;
 	border-radius: .3em;
 }
 
-.comment,
-.line-comment,
-.prolog,
-.doctype,
-.cdata {
+	pre > code[class*="language-"] {
+		padding: 0;
+	}
+
+.token.comment,
+.token.line-comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
 	color: slategray;
 }
 
-.punctuation {
+.token.punctuation {
 	color: #999;
 }
 
-.property,
-.tag,
-.boolean,
-.number {
+.token.property,
+.token.tag,
+.token.boolean,
+.token.number {
 	color: #905;
 }
 
-	.tag > .namespace {
+	.tag > .token.namespace {
 		color: #b37298; /* 70% of .tag on .prism’s background */
 	}
 
-.selector,
-.attr-name,
-.string {
+.token.selector,
+.token.attr-name,
+.token.string {
 	color: #690;
 }
 
-	.attr-name > .namespace {
+	.attr-name > .token.namespace {
 		color: #ab6; /* 70% of .attr-name on .prism’s background */
 	}
 
-.operator {
+.token.operator {
 	color: #a67f59;
 	background: hsla(0,0%,100%,.5);
 }
 
-.atrule,
-.attr-value,
-.keyword {
+.token.atrule,
+.token.attr-value,
+.token.keyword {
 	color: #07a;
 }
 
 
-.regex,
-.important {
+.token.regex,
+.token.important {
 	color: #e90;
 }
 
-.important {
+.token.important {
 	font-weight: bold;
 }

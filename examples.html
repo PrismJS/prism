@@ -18,6 +18,32 @@
 	<p>The examples in this page serve a dual purpose: They act as unit tests, making it easy to spot bugs, and at the same time demonstrate what Prism can do, on simple and on edge cases.</p>
 </header>
 
+<section class="language-markup">
+	<h1>Different markup</h1>
+	
+	<h2>code.language-css</h2>
+	<code class="language-css">p { color: red; }</code>
+	
+	<h2>pre.language-css > code</h2>
+	<pre class="language-css"><code>p { color: red; }</code></pre>
+	
+	<h2>pre.language-css > code.language-*</h2>
+	<pre class="language-css"><code class="language-*">p { color: red; }</code></pre>
+	
+	<h2>.lang-css</h2>
+	<code class="lang-css">p { color: red; }</code>
+	<pre class="lang-css"><code>p { color: red; }</code></pre>
+	
+	<h2>pre > code (No language, should inherit .language-markup)</h2>
+	<pre><code>&lt;p>hi!&lt;/p></code></pre>
+	
+	<h2>code.language-* (No language, should inherit .language-markup)</h2>
+	<code class="language-*">&lt;p>hi!&lt;/p></code>
+	
+	<h2>code.language-none (Should not be highlighted)</h2>
+	<code class="language-none">&lt;p>hi!&lt;/p></code>
+</section>
+
 <section>
 	<h1>Markup</h1>
 	

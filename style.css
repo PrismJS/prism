@@ -73,11 +73,10 @@ pre {
 	max-height: 30em;
 }
 
-	body > pre:only-child {
-		padding: 1em;
-		min-height: 100%;
-		box-sizing: border-box;
-	}
+pre > code.highlight {
+	background: white;
+	box-shadow: 0 0 .8em .4em white;
+}
 
 header,
 body > section {

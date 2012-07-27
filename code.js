@@ -29,8 +29,6 @@ document.body.addEventListener('contentreceived', function(evt) {
 		'svg': 'markup'
 	}[(evt.src.match(/\.(\w+)$/) || [,''])[1]];
 	
-	pre.className = 'prism';
-	
 	var code = document.createElement('code');
 	
 	code.className = 'lang-' + language;
