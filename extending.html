@@ -101,40 +101,44 @@
 		env.attributes['title'] = env.content.replace(/&amp;amp;/, '&amp;');
 	}
 });</code></pre>
+	<p>Of course, to understand which hooks to use you would have to read Prism’s source. Imagine where you would add your code and then find the appropriate hook.
+	If there is no hook you can use, you may <a href="">request one to be added</a>, detailing why you need it there.
 </section>
 
 <section id="api">
 	<h1>API documentation</h1>
 	
-	<section>
+	<section id="highlight-all">
 		<h1><code>Prism.highlightAll(async, callback)</code></h1>
-		<p>This is the most high-level function in Prism’s API. It fetches all the elements that have the <code>prism</code> class 
+		<p>This is the most high-level function in Prism’s API. It fetches all the elements that have a <code>.language-xxxx</code> class 
 		and then calls <code>Prism.highlightElement()</code> on each one of them.</p>
 	
 		<h2>Parameters</h2>
 		<dl>
 			<dt>async</dt>
-			<dd>Whether to use Web Workers to improve performance and avoid blocking the UI when highlighting very large chunks of code. False by default.</dd>
+			<dd>Whether to use Web Workers to improve performance and avoid blocking the UI when highlighting very large chunks of code. False by default (<a href="faq.html#why-is-asynchronous-highlighting-disabled-by-default">why?</a>).</dd>
+			
 			<dt>callback</dt>
 			<dd>An optional callback to be invoked after the highlighting is done. Mostly useful when <code>async</code> is true, since in that case, the highlighting is done asynchronously.</dd>
 		</dl>
 	</section>
 	
-	<section>
+	<section id="highlight-element">
 		<h1><code>Prism.highlightElement(element, async, callback)</code></h1>
-		<p>Highlights the code inside a single element. The <code>prism</code> class is not required when invoking this method directly.</p>
+		<p>Highlights the code inside a single element.</p>
 		
 		<h2>Parameters</h2>
 		<dl>
 			<dt>element</dt>
-			<dd>The element containing the code. It must have a class of <code>language-xxx</code> to be processed, where <code>xxxx</code> is a valid language.</dd>
+			<dd>The element containing the code. It must have a class of <code>language-xxxx</code> to be processed, where <code>xxxx</code> is a valid language identifier.</dd>
+
 			<dt>async</dt>
 			<dt>callback</dt>
-			<dd>Same as in <code>Prism.highlightAll()</code></dd>
+			<dd>Same as in <a href="#highlight-all"><code>Prism.highlightAll()</code></a></dd>
 		</dl>
 	</section>
 	
-	<section>
+	<section id="highlight">
 		<h1><code>Prism.highlight(text, grammar)</code></h1>
 		<p>Low-level function, only use if you know what you’re doing.
 		It accepts a string of text as input and the language definitions to use, and returns a string with the HTML produced.</p>
@@ -151,7 +155,7 @@
 		<p>The highlighted HTML</p>
 	</section>
 	
-	<section>
+	<section id="tokenize">
 		<h1><code>Prism.tokenize(text, grammar)</code></h1>
 		<p>This is the heart of Prism, and the most low-level function you can use. It accepts a string of text as input and the language definitions to use, and returns an array with the tokenized code.
 		When the language definition includes nested tokens, the function is called recursively on each of these tokens. This method could be useful in other contexts as well, as a very crude parser.</p>
@@ -165,7 +169,7 @@
 		</dl>
 		
 		<h2>Returns</h2>
-		<p>An array of strings, tokens (class Prism.Token) and other arrays.</p>
+		<p>An array of strings, tokens (class <code>Prism.Token</code>) and other arrays.</p>
 	</section>
 </section>
 

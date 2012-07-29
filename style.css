@@ -75,8 +75,17 @@ h2 {
 	margin: 1em 0 .3em;
 }
 
+dt {
+	margin: 1em 0 0 0;
+	font-size: 130%;
+}
+
+	dt:after {
+		content: ':';
+	}
+
 dd {
-	margin-left: 5em;
+	margin-left: 2em;
 }
 
 strong {
@@ -118,6 +127,7 @@ header, footer {
 
 header {
 	overflow: hidden;
+	background-image: url(img/spectrum.png);
 	background-image: linear-gradient(45deg, white 50%, transparent 50%),
 	                  linear-gradient(135deg, transparent 50%, white 50%),
 	                  url(img/spectrum.png);
@@ -195,7 +205,7 @@ header {
 		
 				#features li strong {
 					display: block;
-					font-size: 180%;
+					font-size: 200%;
 				}	
 					
 	.download-button {

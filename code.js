@@ -169,7 +169,7 @@ var p = $u.element.create('p', {
 	properties: {
 		id: 'theme'
 	},
-	contents: 'Theme',
+	contents: 'Theme:',
 	before: 'header #features'
 });
 var themes = components.themes;
