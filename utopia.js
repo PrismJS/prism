@@ -174,18 +174,24 @@ var _ = window.Utopia = {
 			
 			// Place the element in the DOM (inside, before or after an existing element)
 			// This could be a selector
-			if(options.inside) {
-				$(options.inside).appendChild(element);
-			}
-			else if(options.before) {
+			if(options.before) {
 				var before = $(options.before);
 				
-				before.parentNode.insertBefore(element, before)
+				if (before && before.parentNode) {
+					before.parentNode.insertBefore(element, before);
+				}
 			}
-			else if(options.after) {
+			
+			if (options.after && element.parentNode === null) {
 				var after = $(options.after);
 				
-				after.parentNode.insertBefore(element, after.nextSibling)
+				if (after && after.parentNode) {
+					after.parentNode.insertBefore(element, after.nextSibling)
+				}
+			}
+			
+			if (options.inside && element.parentNode === null) {
+				$(options.inside).appendChild(element);
 			}
 			
 			return element;
