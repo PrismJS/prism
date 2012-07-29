@@ -121,6 +121,7 @@ header, footer {
 	background-size: 20px 20px, 20px 20px, cover;
 	background-repeat: repeat-x;
 	background-position: bottom, bottom, top;
+	background-attachment: scroll, scroll, fixed;
 	color: white;
 	text-shadow: 0 -1px 2px black;
 }
@@ -173,23 +174,23 @@ header {
 	}
 	
 	#features {
-		width: 62em;
+		width: 66em;
 		margin-top: 2em;
 		font-size: 80%;
 	}
 	
 		#features li {
-			margin: 0 2em 2em 0;
+			margin: 0 4em 2em 0;
 			list-style: none;
 			display: inline-block;
-			width: 28em;
+			width: 27em;
 			vertical-align: top;
 		}
 		
 			#features li:before {
 				content: '✓';
 				float: left;
-				margin-right: .2em;
+				margin-left: -.8em;
 				color: #7fab14;
 				font-size: 400%;
 				line-height: 1;
@@ -197,7 +198,8 @@ header {
 		
 				#features li strong {
 					display: block;
-					font-size: 200%;
+					margin-bottom: .1em;
+					font-size: 230%;
 				}	
 					
 	.download-button {
@@ -235,13 +237,25 @@ header {
 	}
 	
 	#theme {
+		position: relative;
+		z-index: 1;
 		float: right;
 		margin-right: -4em;
 		text-align: center;
 		text-transform: uppercase;
+		letter-spacing: .2em;
 	}
 	
+		#theme > p {
+			position: absolute;
+			left: 100%;
+			transform: translateX(50%) rotate(90deg) ;
+			transform-origin: top left;
+			font-size: 130%;
+		}
+	
 		#theme > label {
+			position: relative;
 			display: block;
 			width: 7em;
 			line-height: 1em;
@@ -250,11 +264,23 @@ header {
 			background: hsla(0,0%,100%,.5);
 			cursor: pointer;
 			font-size: 110%;
-			letter-spacing: .2em;
 		}
 		
+		#theme > label:before {
+			content: '';
+			position: absolute;
+			top: 0; right: 0; bottom: 0; left: 0;
+			z-index: -1;
+			border-radius: inherit;
+			background: url(img/spectrum.png) fixed;
+		}
+				
 		#theme > label:nth-of-type(n+2) {
-			margin-top: -2em;
+			margin-top: -2.5em;
+		}
+		
+		#theme > input:not(:checked) + label:hover {
+			background: hsla(77, 80%, 60%, .5);
 		}
 		
 		#theme > input {

@@ -139,9 +139,11 @@ var components = {
 	themes: {
 		meta: {
 			path: '{id}.css',
+			link: 'index.html?theme={id}',
 			option: 'default'
 		},
 		'prism': 'Default',
+		'prism-dark': 'Dark',
 		'prism-funky': 'Funky'
 	},
 	languages: {
@@ -169,29 +171,31 @@ var p = $u.element.create('p', {
 	properties: {
 		id: 'theme'
 	},
-	contents: 'Theme:',
+	contents: {
+		tag: 'p',
+		contents: 'Theme:'
+	},
 	after: '.intro'
 });
+
 var themes = components.themes;
-var current = (location.search.match(/theme=([\w-]+)/) || [,'prism'])[1];
+var current = (location.search.match(/theme=([\w-]+)/) || [])[1];
 
 if (!(current in themes)) {
-	current = 'prism';
+	current = undefined;
 }
 
-if (current == 'prism') {
+if (current === undefined) {
 	var stored = localStorage.getItem('theme');
 	
-	if (stored in themes) {
-		current = stored;
-	}
+	current = stored in themes? current = stored : 'prism';
 }
 
 function setTheme(id) {
-	$('link[href="prism.css"]').href = themes.meta.path.replace(/\{id}/g, id);
-	localStorage.setItem('theme', id);
+	var link = $$('link[href^="prism"]')[0];
 	
-	history.pushState(null, '', location.pathname + (id !== 'prism'? '?theme=' + id : '') + location.hash);
+	link.href = themes.meta.path.replace(/\{id}/g, id);
+	localStorage.setItem('theme', id);
 }
 
 for (var id in themes) {
