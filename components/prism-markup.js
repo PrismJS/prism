@@ -1,15 +1,15 @@
 Prism.languages.markup = {
-	'comment': /&lt;!--[\w\W]*?--(>|&gt;)/g,
-	'prolog': /&lt;\?.+?\?(>|&gt;)/,
-	'doctype': /&lt;!DOCTYPE.+?(>|&gt;)/,
-	'cdata': /&lt;!\[CDATA\[[\w\W]+]]&gt;/i,
+	'comment': /&lt;!--[\w\W]*?--(&gt;|&gt;)/g,
+	'prolog': /&lt;\?.+?\?&gt;/,
+	'doctype': /&lt;!DOCTYPE.+?&gt;/,
+	'cdata': /&lt;!\[CDATA\[[\w\W]+?]]&gt;/i,
 	'tag': {
-		pattern: /(&lt;|<)\/?[\w:-]+\s*[\w\W]*?(>|&gt;)/gi,
+		pattern: /&lt;\/?[\w:-]+\s*[\w\W]*?&gt;/gi,
 		inside: {
 			'tag': {
-				pattern: /^(&lt;|<)\/?[\w:-]+/i,
+				pattern: /^&lt;\/?[\w:-]+/i,
 				inside: {
-					'punctuation': /^(&lt;|<)\/?/,
+					'punctuation': /^&lt;\/?/,
 					'namespace': /^[\w-]+?:/
 				}
 			},
@@ -19,7 +19,7 @@ Prism.languages.markup = {
 					'punctuation': /=/g
 				}
 			},
-			'punctuation': /\/?&gt;|\/?>/g,
+			'punctuation': /\/?&gt;/g,
 			'attr-name': {
 				pattern: /[\w:-]+/g,
 				inside: {
