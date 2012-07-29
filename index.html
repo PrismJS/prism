@@ -9,7 +9,7 @@
 <meta charset="utf-8" />
 <title>Prism</title>
 <link rel="stylesheet" href="style.css" />
-<link rel="stylesheet" href="prism.css" data-noprefix />
+<link rel="stylesheet" href="prism-funky.css" data-noprefix id="prism-css" />
 <script src="../prefixfree/prefixfree.min.js"></script>
 
 </head>
@@ -20,8 +20,16 @@
 	
 	<ul id="features">
 		<li>
+			<strong>Dead simple</strong>
+			Include prism.css and prism.js, use proper HTML5 code tags (<code>code.language-xxxx</code>), done!
+		</li>
+		<li>
+			<strong>Intuitive</strong>
+			Language classes are inherited so you can only define the language once for multiple code snippets.
+		</li>
+		<li>
 			<strong>Incredibly lightweight</strong>
-			Only 1.5KB minified &amp; gzipped (core)
+			The core is 1.5KB minified &amp; gzipped. Languages add 0.3-0.5KB each, themes are around 1KB.
 		</li>
 		<li>
 			<strong>Blazing fast</strong>
@@ -33,37 +41,15 @@
 		</li>
 		<li>
 			<strong>Easily themeable</strong>
-			All styling is done through CSS, with sensible class names
+			All styling is done through CSS, with sensible class names like <code>.comment</code>, <code>.string</code>, <code>.property</code> etc
 		</li>
 	</ul>
 	
 </header>
 
-<section id="features-full">
-	<h1>Full list of features</h1>
-	<ul>
-		<li><strong>Only 1.5KB</strong> minified &amp; gzipped (core). Each language definition adds roughly 300-500 bytes.</li>
-		<li>Supports <strong>parallelism with Web Workers</strong>, if available. Disabled by default.</li>
-		<li>Very easy to extend without modifying the code, due to Prism’s <a href="#plugins">plugin architecture</a>. Multiple hooks are scattered throughout the source.</li>
-		<li>Very easy to <a href="extending.html#language-definitions">define new languages</a>. Only thing you need is a good understanding of regular expressions</li>
-		<li>All styling is done through CSS, with sensible class names rather than ugly namespaced abbreviated nonsense.</li>
-		<li>Wide browser support: IE9+, Firefox, Chrome, Safari, Opera, most Mobile browsers</li>
-		<li>Highlight specific lines and/or line ranges (requires <a href="plugins/line-highlight/">plugin</a>)</li>
-		<li>Show invisible characters like tabs, line breaks etc (requires <a href="plugins/show-invisibles/">plugin</a>)</li>
-	</ul>
-</section>
-
-<section id="limitations">
-	<h1>Limitations</h1>
-	<ul>
-		<li>Any pre-existing HTML in the code will be stripped off</li>
-		<li>Regex-based so it *will* fail on certain edge cases.</li>
-		<li>No IE 6-8 support. If someone can read code, they are probably in the 85% of the population with a modern browser.</li>
-	</ul>
-</section>
-
 <section id="examples">
 	<h1>Examples</h1>
+	
 	<p>The Prism source, highlighted with Prism (don’t you just love how meta this is?):</p>
 	<pre data-src="prism.js"></pre>
 	
@@ -77,6 +63,29 @@
 	<pre data-src="logo.svg"></pre>
 	
 	<p>If you’re still not sold, you can <a href="examples.html">view more examples</a>.</p>
+</section>
+
+<section id="features-full">
+	<h1>Full list of features</h1>
+	<ul>
+		<li><strong>Only 1.5KB</strong> minified &amp; gzipped (core). Each language definition adds roughly 300-500 bytes.</li>
+		<li>Supports <strong>parallelism with Web Workers</strong>, if available. Disabled by default (<a href="faq.html#why-is-asynchronous-highlighting-disabled-by-default">why?</a>).</li>
+		<li>Very easy to extend without modifying the code, due to Prism’s <a href="#plugins">plugin architecture</a>. Multiple hooks are scattered throughout the source.</li>
+		<li>Very easy to <a href="extending.html#language-definitions">define new languages</a>. Only thing you need is a good understanding of regular expressions</li>
+		<li>All styling is done through CSS, with <a href="faq.html#how-do-i-know-which-tokens-i-can-style-for">sensible class names</a> rather than ugly namespaced abbreviated nonsense.</li>
+		<li>Wide browser support: IE9+, Firefox, Chrome, Safari, Opera, most Mobile browsers</li>
+		<li>Highlight specific lines and/or line ranges (requires <a href="plugins/line-highlight/">plugin</a>)</li>
+		<li>Show invisible characters like tabs, line breaks etc (requires <a href="plugins/show-invisibles/">plugin</a>)</li>
+	</ul>
+</section>
+
+<section id="limitations">
+	<h1>Limitations</h1>
+	<ul>
+		<li>Any pre-existing HTML in the code will be stripped off. <a href="faq.html#if-pre-existing-html-is-stripped-off-how-can-i-highlight">There are ways around it though</a>.</li>
+		<li>Regex-based so it *will* fail on certain edge cases.</li>
+		<li>No IE 6-8 support. If someone can read code, they are probably in the 85% of the population with a modern browser.</li>
+	</ul>
 </section>
 
 <section id="basic-usage" class="language-markup">
@@ -138,7 +147,6 @@
 <script src="prism.js" data-default-language="markup"></script>
 <script src="utopia.js"></script>
 <script src="code.js"></script>
-<script src="download.js"></script>
 
 </body>
 </html>

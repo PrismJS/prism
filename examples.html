@@ -92,8 +92,29 @@ And i'm not</code></pre>
 	
 	<h2>Entities</h2>
 	<pre><code>&amp;amp; &amp;#x2665; &amp;#160; &amp;#x152;</code></pre>
-
-</pre>
+	
+	<h2>Embedded JS and CSS</h2>
+	<pre><code>&lt;!DOCTYPE html>
+&lt;html lang="en">
+&lt;head>
+	&lt;meta charset="utf-8" />
+	&lt;title>I can haz embedded CSS and JS&lt;/title>
+	&lt;style>
+		@media print {
+			p { color: red !important; }
+		}
+	&lt;/style>
+&lt;/head>
+&lt;body>
+	&lt;h1>I can haz embedded CSS and JS&lt;/h1>
+	&lt;script>
+	if (true) {
+		console.log('foo');
+	}
+	&lt;/script>
+	
+&lt;/body>
+&lt;/html></code></pre>
 </section>
 
 <section class="language-css">
@@ -177,8 +198,11 @@ var comment = /\/\*[\w\W]*?\*\//g;</code></pre>
 	If a failure is listed here, it doesn’t mean it will never be fixed. This is more of a “known bugs” list, just with a certain type of bug.
 	</p>
 	
-	<h2>Comment-like strings</h2>
+	<h2>Comment-like substrings</h2>
 	<pre><code>"foo /* bar */ baz"; "foo // bar";</code></pre>
+	
+	<h2>Strings inside regexes</h2>
+	<pre><code>/"foo"/;</code></pre>
 </section>
 
 <footer data-src="templates/footer.html" data-type="text/html"></footer>
