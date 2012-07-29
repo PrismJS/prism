@@ -10,7 +10,7 @@ var form = $('form');
 var minified = true;
 
 forId(function (category) {
-	this.section = $u.element.create('section', {
+	this.meta.section = $u.element.create('section', {
 		className: 'options',
 		contents: {
 			tag: 'h1',
@@ -20,19 +20,20 @@ forId(function (category) {
 	});
 }, function (id, category, info) {
 	var checked = false, disabled = false;
+	var option = this[id].option || this.meta.option;
 	
-	switch (this.option) {		
+	switch (option) {		
 		case 'mandatory': disabled = true; // fallthrough
 		case 'default': checked = true;
 	}
 	
 	var all = this;
 
-	var filepath = this.path.replace(/\{id}/g, id);
+	var filepath = this.meta.path.replace(/\{id}/g, id);
 	
 	var info = this[id] = {
 		title: this[id].title || this[id],
-		hasCSS: this[id].hasCSS !== undefined? this[id].hasCSS : this.hasCSS,
+		hasCSS: this[id].hasCSS !== undefined? this[id].hasCSS : this.meta.hasCSS,
 		enabled: checked,
 		files: {
 			minified: {
@@ -57,7 +58,7 @@ forId(function (category) {
 		info.files.minified.paths.push(cssFile);
 		info.files.dev.paths.push(cssFile);
 	}
-	console.log(this.link);
+
 	$u.element.create('label', {
 		attributes: {
 			'data-id': id
@@ -79,10 +80,10 @@ forId(function (category) {
 					}
 				}
 			},
-			this.link? {
+			this.meta.link? {
 				tag: 'a',
 				properties: {
-					href: this.link.replace(/\{id}/g, id)
+					href: this.meta.link.replace(/\{id}/g, id)
 				},
 				contents: info.title
 			} : info.title,
@@ -92,7 +93,7 @@ forId(function (category) {
 				className: 'filesize'
 			}
 		],
-		inside: this.section
+		inside: this.meta.section
 	});
 });
 
@@ -115,7 +116,7 @@ function forId(categoryCallback, callback) {
 		categoryCallback && categoryCallback.call(all, category);
 		
 		for (var id in all) {
-			if(['path', 'hasCSS', 'option', 'section', 'link'].indexOf(id) > -1) {
+			if(id === 'meta') {
 				continue;
 			}
 			
