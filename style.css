@@ -90,6 +90,7 @@ code, pre {
 
 pre {
 	max-height: 30em;
+	overflow: auto;
 }
 
 pre > code.highlight {
@@ -116,6 +117,7 @@ header, footer {
 }
 
 header {
+	overflow: hidden;
 	background-image: linear-gradient(45deg, white 50%, transparent 50%),
 	                  linear-gradient(135deg, transparent 50%, white 50%),
 	                  url(img/spectrum.png);
@@ -168,21 +170,18 @@ header {
 	}
 	
 	#features {
+		float: left;
+		width: 62em;
 		margin-top: 2em;
 		font-size: 80%;
-		overflow: hidden;
 	}
 	
 		#features li {
-			margin: 0 0 2em;
+			margin: 0 2em 2em 0;
 			list-style: none;
-			width: 30em;
 			display: inline-block;
-			float: left;
-		}
-		
-		#features li:nth-child(even) {
-			float: right;
+			width: 28em;
+			vertical-align: top;
 		}
 		
 			#features li:before {
@@ -232,6 +231,38 @@ header {
 		float: right;
 		margin: 0 0 .5em .5em;
 	}
+	
+	#theme {
+		float: right;
+		margin-right: -4em;
+		text-align: center;
+		text-transform: uppercase;
+	}
+	
+		#theme > label {
+			display: block;
+			width: 7em;
+			line-height: 1em;
+			padding: 3em 0;
+			border-radius: 50%;
+			background: hsla(0,0%,100%,.5);
+			cursor: pointer;
+			font-size: 110%;
+			letter-spacing: .2em;
+		}
+		
+		#theme > label:nth-of-type(n+2) {
+			margin-top: -2em;
+		}
+		
+		#theme > input {
+			position: absolute;
+			clip: rect(0,0,0,0);
+		}
+		
+		#theme > input:checked + label {
+			background: #7fab14;
+		}
 
 footer {
 	margin-top: 2em;

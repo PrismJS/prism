@@ -54,9 +54,14 @@ $$('body > section > h1').forEach(function(h1) {
 	
 	// Assign id if one does not exist
 	if (!id) {
-		id = text.toLowerCase()
-		         .replace(/\s+/g, '-')
-		         .replace(/[^\w-]/g, '');
+		id = text.toLowerCase();
+		
+		// Replace spaces with hyphens, only keep first 10 words
+		id = id.split(/\s+/g, 10).join('-');
+		
+		// Remove non-word characters
+		id = id.replace(/[^\w-]/g, '');
+		
 		section.id = id;
 	}
 	
@@ -121,4 +126,102 @@ if(toc.children.length > 0) {
 			calculatePadding();
 		}
 	}
+})();
+
+var components = {
+	core: {
+		meta: {
+			path: 'components/prism-core.js',
+			option: 'mandatory'
+		},
+		'core': 'Core'
+	},
+	themes: {
+		meta: {
+			path: '{id}.css',
+			option: 'default'
+		},
+		'prism': 'Default',
+		'prism-funky': 'Funky'
+	},
+	languages: {
+		meta: {
+			path: 'components/prism-{id}',
+			option: 'default'
+		},
+		'markup': 'Markup',
+		'css': 'CSS',
+		'javascript': 'JavaScript'
+	},
+	plugins: {
+		meta: {
+			path: 'plugins/{id}/prism-{id}',
+			link: 'plugins/{id}/',
+			hasCSS: true
+		},
+		'line-highlight': 'Line Highlight',
+		'show-invisibles': 'Show Invisibles'
+	}
+};
+
+(function() {
+var p = $u.element.create('p', {
+	properties: {
+		id: 'theme'
+	},
+	contents: 'Theme',
+	before: 'header #features'
+});
+var themes = components.themes;
+var current = (location.search.match(/theme=([\w-]+)/) || [,'prism'])[1];
+
+if (!(current in themes)) {
+	current = 'prism';
+}
+
+if (current == 'prism') {
+	var stored = localStorage.getItem('theme');
+	
+	if (stored in themes) {
+		current = stored;
+	}
+}
+
+function setTheme(id) {
+	$('#prism-css').href = themes.meta.path.replace(/\{id}/g, id);
+	localStorage.setItem('theme', id);
+	
+	history.pushState(null, '', location.pathname + (id !== 'prism'? '?theme=' + id : '') + location.hash);
+}
+
+for (var id in themes) {
+
+	if (id === 'meta') {
+		continue;
+	}
+	
+	$u.element.create('input', {
+		properties: {
+			type: 'radio',
+			name: "theme",
+			id: 'theme=' + id,
+			checked: current === id,
+			value: id,
+			onclick: function () {
+				setTheme(this.value);
+			}
+		},
+		inside: p
+	});
+	
+	$u.element.create('label', {
+		properties: {
+			htmlFor: 'theme=' + id
+		},
+		contents: themes[id],
+		inside: p
+	});
+}
+
+setTheme(current);
 })();

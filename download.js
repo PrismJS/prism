@@ -5,27 +5,6 @@
 
 (function() {
 
-var components = {
-	core: {
-		path: 'components/prism-core',
-		option: 'mandatory',
-		hasCSS: 'prism.css',
-		'core': 'Core'
-	},
-	languages: {
-		path: 'components/prism-{id}',
-		option: 'default',
-		'markup': 'Markup',
-		'css': 'CSS',
-		'javascript': 'JavaScript'
-	},
-	plugins: {
-		path: 'plugins/{id}/prism-{id}',
-		hasCSS: true,
-		'line-highlight': 'Line Highlight'
-	}
-};
-
 var cache = {};
 var form = $('form');
 var minified = true;
@@ -48,7 +27,37 @@ forId(function (category) {
 	}
 	
 	var all = this;
+
+	var filepath = this.path.replace(/\{id}/g, id);
 	
+	var info = this[id] = {
+		title: this[id].title || this[id],
+		hasCSS: this[id].hasCSS !== undefined? this[id].hasCSS : this.hasCSS,
+		enabled: checked,
+		files: {
+			minified: {
+				paths: [],
+				size: 0
+			},
+			dev: {
+				paths: [],
+				size: 0
+			}
+		}
+	};
+	
+	if (!/\.css$/.test(filepath)) {
+		info.files.minified.paths.push(filepath.replace(/(\.js)?$/, '.min.js'));
+		info.files.dev.paths.push(filepath.replace(/(\.js)?$/, '.js'));
+	}
+	
+	if ((this[id].hasCSS && !/\.js$/.test(filepath)) || /\.css$/.test(filepath)) {
+		var cssFile = filepath.replace(/(\.css)?$/, '.css');
+		
+		info.files.minified.paths.push(cssFile);
+		info.files.dev.paths.push(cssFile);
+	}
+	console.log(this.link);
 	$u.element.create('label', {
 		attributes: {
 			'data-id': id
@@ -70,7 +79,14 @@ forId(function (category) {
 					}
 				}
 			},
-			(this[id] || filename) + ' ',
+			this.link? {
+				tag: 'a',
+				properties: {
+					href: this.link.replace(/\{id}/g, id)
+				},
+				contents: info.title
+			} : info.title,
+			' ',
 			{
 				tag: 'strong',
 				className: 'filesize'
@@ -78,30 +94,6 @@ forId(function (category) {
 		],
 		inside: this.section
 	});
-
-	var filepath = this.path.replace(/\{id}/g, id);
-	
-	this[id] = {
-		title: this[id],
-		enabled: checked,
-		files: {
-			minified: {
-				paths: [filepath + '.min.js'],
-				size: 0
-			},
-			dev: {
-				paths: [filepath + '.js'],
-				size: 0
-			}
-		}
-	};
-	
-	if (this.hasCSS) {
-		var cssFile = typeof this.hasCSS === 'string'? this.hasCSS : filepath + '.css';
-		
-		this[id].files.minified.paths.push(cssFile);
-		this[id].files.dev.paths.push(cssFile);
-	}
 });
 
 form.elements.compression[0].onclick = 
@@ -123,7 +115,7 @@ function forId(categoryCallback, callback) {
 		categoryCallback && categoryCallback.call(all, category);
 		
 		for (var id in all) {
-			if(['path', 'hasCSS', 'option', 'section'].indexOf(id) > -1) {
+			if(['path', 'hasCSS', 'option', 'section', 'link'].indexOf(id) > -1) {
 				continue;
 			}
 			
@@ -211,7 +203,8 @@ function generateCode(){
 		}
 	});
 	
-	var jsCode = $('#download-js code'), cssCode = $('#download-css code');
+	var jsCode = $('#download-js code'),
+	    cssCode = $('#download-css code');
 	
 	jsCode.textContent = js;
 	Prism.highlightElement(jsCode, true);
