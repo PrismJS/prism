@@ -16,7 +16,33 @@
 var lang = /\blang(?:uage)?-(?!\*)(\w+)\b/i;
 
 var _ = self.Prism = {
-	languages: {},
+	languages: {
+		insertBefore: function (inside, before, insert, root) {
+			root = root || _.languages;
+			var grammar = root[inside];
+			var ret = {};
+				
+			for (var token in grammar) {
+			
+				if (grammar.hasOwnProperty(token)) {
+					
+					if (token == before) {
+					
+						for (var newToken in insert) {
+						
+							if (insert.hasOwnProperty(newToken)) {
+								ret[newToken] = insert[newToken];
+							}
+						}
+					}
+					
+					ret[token] = grammar[token];
+				}
+			}
+			
+			return root[inside] = ret;
+		}
+	},
 
 	highlightAll: function(async, callback) {
 		var elements = document.querySelectorAll('code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code');
@@ -325,8 +351,6 @@ Prism.languages.markup = {
 	'comment': /&lt;!--[\w\W]*?--(>|&gt;)/g,
 	'prolog': /&lt;\?.+?\?(>|&gt;)/,
 	'doctype': /&lt;!DOCTYPE.+?(>|&gt;)/,
-	'script': null,
-	'style': null,
 	'cdata': /&lt;!\[CDATA\[[\w\W]+]]&gt;/i,
 	'tag': {
 		pattern: /(&lt;|<)\/?[\w:-]+\s*[\w\W]*?(>|&gt;)/gi,
@@ -358,35 +382,33 @@ Prism.languages.markup = {
 };
 
 if (Prism.languages.javascript) {
-	Prism.languages.markup.script = {
-		pattern: /(&lt;|<)script[\w\W]*?(>|&gt;)[\w\W]*?(&lt;|<)\/script(>|&gt;)/ig,
-		inside: {
-			'tag': {
-				pattern: /(&lt;|<)script[\w\W]*?(>|&gt;)|(&lt;|<)\/script(>|&gt;)/ig,
-				inside: Prism.languages.markup.tag.inside
-			},
-			rest: Prism.languages.javascript
+	Prism.languages.insertBefore('markup', 'cdata', {
+		'script': {
+			pattern: /(&lt;|<)script[\w\W]*?(>|&gt;)[\w\W]*?(&lt;|<)\/script(>|&gt;)/ig,
+			inside: {
+				'tag': {
+					pattern: /(&lt;|<)script[\w\W]*?(>|&gt;)|(&lt;|<)\/script(>|&gt;)/ig,
+					inside: Prism.languages.markup.tag.inside
+				},
+				rest: Prism.languages.javascript
+			}
 		}
-	};
-}
-else {
-	delete Prism.languages.markup.script;
+	});
 }
 
 if (Prism.languages.css) {
-	Prism.languages.markup.style = {
-		pattern: /(&lt;|<)style[\w\W]*?(>|&gt;)[\w\W]*?(&lt;|<)\/style(>|&gt;)/ig,
-		inside: {
-			'tag': {
-				pattern: /(&lt;|<)style[\w\W]*?(>|&gt;)|(&lt;|<)\/style(>|&gt;)/ig,
-				inside: Prism.languages.markup.tag.inside
-			},
-			rest: Prism.languages.css
+	Prism.languages.insertBefore('markup', 'cdata', {
+		'style': {
+			pattern: /(&lt;|<)style[\w\W]*?(>|&gt;)[\w\W]*?(&lt;|<)\/style(>|&gt;)/ig,
+			inside: {
+				'tag': {
+					pattern: /(&lt;|<)style[\w\W]*?(>|&gt;)|(&lt;|<)\/style(>|&gt;)/ig,
+					inside: Prism.languages.markup.tag.inside
+				},
+				rest: Prism.languages.css
+			}
 		}
-	};
-}
-else {
-	delete Prism.languages.markup.style;
+	});
 }
 
 // Plugin to make entity title show the real entity, idea by Roman Komarov

@@ -9,7 +9,7 @@
 <script src="../prefixfree/prefixfree.min.js"></script>
 
 </head>
-<body>
+<body class="language-javascript">
 
 <header>
 	<div class="intro" data-src="templates/header-main.html" data-type="text/html"></div>
@@ -25,7 +25,7 @@
 	<pre data-src="components/prism-css.js"></pre>
 	
 	<p>A regular expression literal is the simplest way to express a token. An alternative way, with more options, is by using an object literal. With that notation, the regular expression describing the token would be the <code>pattern</code> attribute:</p>
-	<pre class="prism"><code class="language-javascript">...
+	<pre><code class="language-javascript">...
 'tokenname': {
 	pattern: /regex/
 }
@@ -40,25 +40,63 @@
 		<pre data-src="components/prism-markup.js"></pre></dd>
 		
 		<dt>lookbehind</dt>
-		<dd>This option mitigates JavaScript’s lack of lookbehind. When set to <code class="prism language-javascript">true</code>, 
+		<dd>This option mitigates JavaScript’s lack of lookbehind. When set to <code>true</code>, 
 		the first capturing group in the regex <code>pattern</code> is discarded when matching this token, so it effectively behaves 
-		as if it was lookbehind.</dd>
+		as if it was lookbehind. For an example of this, check out the JavaScript language definition, in particular the regex and line-comment tokens:
+		<pre data-src="components/prism-javascript.js"></pre></dd>
 		
 		<dt>rest</dt>
 		<dd>Accepts an object literal with tokens and appends them to the end of the current object literal. Useful for referring to tokens defined elsewhere. For an example where <code>rest</code> is useful, check the Markup definitions above.</dd>
 	</dl>
 	
  	<p>Unless explicitly allowed through the <code>inside</code> property, each token cannot contain other tokens, so their order is significant. Although per the ECMAScript specification, objects are not required to have a specific ordering of their properties, in practice they do in every modern browser.</p>
+ 	
+ 	<section>
+	 	<h1><code>Prism.languages.insertBefore(inside, before, insert<span class="optional" title="Default value: Prism.languages">, root</span>)</code></h1>
+ 	
+	 	<p>This is a helper method to ease modifying existing languages. For example, the CSS language definition not only defines CSS highlighting for CSS documents,
+	 	but also needs to define highlighting for CSS embedded in HTML through <code class="language-markup">&lt;style></code> elements. To do this, it needs to modify
+	 	<code>Prism.languages.markup</code> and add the appropriate tokens. However, <code>Prism.languages.markup</code>
+	 	is a regular JavaScript object literal, so if you do this:</p>
+	 	
+	 	<pre><code >Prism.languages.markup.style = {
+ 	/* tokens */
+ };</code></pre>
+	 	
+	 	<p>then the <code>style</code> token will be added (and processed) at the end. <code>Prism.languages.insertBefore</code> allows you to insert
+	 	tokens <em>before</em> existing tokens. For the CSS example above, you would use it like this:</p>
+	 	
+	 	<pre><code>Prism.languages.insertBefore('markup', 'cdata', {
+	'style': {
+		/* tokens */
+	}
+});</code></pre>
+		
+		<h2>Parameters</h2>
+		<dl>
+			<dt>inside</dt>
+			<dd>The property of <code>root</code> that contains the object to be modified.</dd>
+			
+			<dt>before</dt>
+			<dd>Key to insert before (String)</dd>
+			
+			<dt>insert</dt>
+			<dd>An object containing the key-value pairs to be inserted</dd>
+			
+			<dt>root</dt>
+			<dd>The root object, i.e. the object that contains the object that will be modified. Optional, default value is <code>Prism.languages</code>.</dd>
+		</dl>
+	</section>
 </section>
 
 <section id="writing-plugins">
 	<h1>Writing plugins</h1>
 	
-	<p>Prism’s plugin architecture is fairly simple. To add a callback, you use <code class="prism language-javascript">Prism.hooks.add(hookname, callback)</code>. 
+	<p>Prism’s plugin architecture is fairly simple. To add a callback, you use <code class="language-javascript">Prism.hooks.add(hookname, callback)</code>. 
 	<code>hookname</code> is a string with the hook id, that uniquely identifies the hook your code should run at.
 	<code>callback</code> is a function that accepts one parameter: an object with various variables that can be modified, since objects in JavaScript are passed by reference.
-	For example, here’s a plugin that enchances HTML/XML entities to include a tooltip that shows the actual character:
-	<pre class="prism"><code class="language-javascript">Prism.hooks.add('wrap', function(env) {
+	For example, here’s a plugin from the Markup language definition that adds a tooltip to entity tokens which shows the actual character encoded:
+	<pre><code class="language-javascript">Prism.hooks.add('wrap', function(env) {
 	if (env.token === 'entity') {
 		env.attributes['title'] = env.content.replace(/&amp;amp;/, '&amp;');
 	}

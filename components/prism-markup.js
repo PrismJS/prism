@@ -2,8 +2,6 @@ Prism.languages.markup = {
 	'comment': /&lt;!--[\w\W]*?--(>|&gt;)/g,
 	'prolog': /&lt;\?.+?\?(>|&gt;)/,
 	'doctype': /&lt;!DOCTYPE.+?(>|&gt;)/,
-	'script': null,
-	'style': null,
 	'cdata': /&lt;!\[CDATA\[[\w\W]+]]&gt;/i,
 	'tag': {
 		pattern: /(&lt;|<)\/?[\w:-]+\s*[\w\W]*?(>|&gt;)/gi,
@@ -35,35 +33,33 @@ Prism.languages.markup = {
 };
 
 if (Prism.languages.javascript) {
-	Prism.languages.markup.script = {
-		pattern: /(&lt;|<)script[\w\W]*?(>|&gt;)[\w\W]*?(&lt;|<)\/script(>|&gt;)/ig,
-		inside: {
-			'tag': {
-				pattern: /(&lt;|<)script[\w\W]*?(>|&gt;)|(&lt;|<)\/script(>|&gt;)/ig,
-				inside: Prism.languages.markup.tag.inside
-			},
-			rest: Prism.languages.javascript
+	Prism.languages.insertBefore('markup', 'cdata', {
+		'script': {
+			pattern: /(&lt;|<)script[\w\W]*?(>|&gt;)[\w\W]*?(&lt;|<)\/script(>|&gt;)/ig,
+			inside: {
+				'tag': {
+					pattern: /(&lt;|<)script[\w\W]*?(>|&gt;)|(&lt;|<)\/script(>|&gt;)/ig,
+					inside: Prism.languages.markup.tag.inside
+				},
+				rest: Prism.languages.javascript
+			}
 		}
-	};
-}
-else {
-	delete Prism.languages.markup.script;
+	});
 }
 
 if (Prism.languages.css) {
-	Prism.languages.markup.style = {
-		pattern: /(&lt;|<)style[\w\W]*?(>|&gt;)[\w\W]*?(&lt;|<)\/style(>|&gt;)/ig,
-		inside: {
-			'tag': {
-				pattern: /(&lt;|<)style[\w\W]*?(>|&gt;)|(&lt;|<)\/style(>|&gt;)/ig,
-				inside: Prism.languages.markup.tag.inside
-			},
-			rest: Prism.languages.css
+	Prism.languages.insertBefore('markup', 'cdata', {
+		'style': {
+			pattern: /(&lt;|<)style[\w\W]*?(>|&gt;)[\w\W]*?(&lt;|<)\/style(>|&gt;)/ig,
+			inside: {
+				'tag': {
+					pattern: /(&lt;|<)style[\w\W]*?(>|&gt;)|(&lt;|<)\/style(>|&gt;)/ig,
+					inside: Prism.languages.markup.tag.inside
+				},
+				rest: Prism.languages.css
+			}
 		}
-	};
-}
-else {
-	delete Prism.languages.markup.style;
+	});
 }
 
 // Plugin to make entity title show the real entity, idea by Roman Komarov

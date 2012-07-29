@@ -10,7 +10,33 @@
 var lang = /\blang(?:uage)?-(?!\*)(\w+)\b/i;
 
 var _ = self.Prism = {
-	languages: {},
+	languages: {
+		insertBefore: function (inside, before, insert, root) {
+			root = root || _.languages;
+			var grammar = root[inside];
+			var ret = {};
+				
+			for (var token in grammar) {
+			
+				if (grammar.hasOwnProperty(token)) {
+					
+					if (token == before) {
+					
+						for (var newToken in insert) {
+						
+							if (insert.hasOwnProperty(newToken)) {
+								ret[newToken] = insert[newToken];
+							}
+						}
+					}
+					
+					ret[token] = grammar[token];
+				}
+			}
+			
+			return root[inside] = ret;
+		}
+	},
 
 	highlightAll: function(async, callback) {
 		var elements = document.querySelectorAll('code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code');
