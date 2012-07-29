@@ -170,7 +170,7 @@ var p = $u.element.create('p', {
 		id: 'theme'
 	},
 	contents: 'Theme:',
-	before: 'header #features'
+	after: '.intro'
 });
 var themes = components.themes;
 var current = (location.search.match(/theme=([\w-]+)/) || [,'prism'])[1];
@@ -188,7 +188,7 @@ if (current == 'prism') {
 }
 
 function setTheme(id) {
-	$('#prism-css').href = themes.meta.path.replace(/\{id}/g, id);
+	$('link[href="prism.css"]').href = themes.meta.path.replace(/\{id}/g, id);
 	localStorage.setItem('theme', id);
 	
 	history.pushState(null, '', location.pathname + (id !== 'prism'? '?theme=' + id : '') + location.hash);
