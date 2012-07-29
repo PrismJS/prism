@@ -305,45 +305,6 @@ if (script) {
 })();
 
 /*********************************************** 
-     Begin prism-css.js 
-***********************************************/ 
-
-Prism.languages.css = {
-	'comment': /\/\*[\w\W]*?\*\//g,
-	'atrule': /@[\w-]+?(\s+.+)?(?=\s*{|\s*;)/gi,
-	'url': /url\((["']?).*?\1\)/gi,
-	'selector': /[^\{\}\s][^\{\}]*(?=\s*\{)/g,
-	'property': /(\b|\B)[a-z-]+(?=\s*:)/ig,
-	'string': /("|')(\\?.)*?\1/g,
-	'important': /\B!important\b/gi,
-	'ignore': /&(lt|gt|amp);/gi,
-	'punctuation': /[\{\};:]/g
-};
-
-/*********************************************** 
-     Begin prism-javascript.js 
-***********************************************/ 
-
-Prism.languages.javascript = {
-	'comment': /\/\*[\w\W]*?\*\//g,
-	'line-comment': {
-		pattern: /(^|[^\\])\/\/.*?(\r?\n|$)/g,
-		lookbehind: true
-	},
-	'string': /("|')(\\?.)*?\1/g,
-	'regex': {
-		pattern: /(^|[^/])\/(?!\/)(\[.+?]|\\.|[^/\r\n])+\/[gim]{0,3}/g,
-		lookbehind: true
-	},
-	'keyword': /\b(var|let|if|else|while|do|for|return|in|instanceof|function|new|with|typeof|try|catch|finally|null|break|continue)\b/g,
-	'boolean': /\b(true|false)\b/g,
-	'number': /\b-?(0x)?\d*\.?\d+\b/g,
-	'operator': /[-+]{1,2}|!|=?&lt;|=?&gt;|={1,2}|(&amp;){1,2}|\|?\||\?|\*|\//g,
-	'ignore': /&(lt|gt|amp);/gi,
-	'punctuation': /[{}[\];(),.:]/g
-};
-
-/*********************************************** 
      Begin prism-markup.js 
 ***********************************************/ 
 
@@ -381,23 +342,32 @@ Prism.languages.markup = {
 	'entity': /&amp;#?[\da-z]{1,8};/gi
 };
 
-if (Prism.languages.javascript) {
-	Prism.languages.insertBefore('markup', 'cdata', {
-		'script': {
-			pattern: /(&lt;|<)script[\w\W]*?(>|&gt;)[\w\W]*?(&lt;|<)\/script(>|&gt;)/ig,
-			inside: {
-				'tag': {
-					pattern: /(&lt;|<)script[\w\W]*?(>|&gt;)|(&lt;|<)\/script(>|&gt;)/ig,
-					inside: Prism.languages.markup.tag.inside
-				},
-				rest: Prism.languages.javascript
-			}
-		}
-	});
-}
+// Plugin to make entity title show the real entity, idea by Roman Komarov
+Prism.hooks.add('wrap', function(env) {
 
-if (Prism.languages.css) {
-	Prism.languages.insertBefore('markup', 'cdata', {
+	if (env.type === 'entity') {
+		env.attributes['title'] = env.content.replace(/&amp;/, '&');
+	}
+});
+
+/*********************************************** 
+     Begin prism-css.js 
+***********************************************/ 
+
+Prism.languages.css = {
+	'comment': /\/\*[\w\W]*?\*\//g,
+	'atrule': /@[\w-]+?(\s+.+)?(?=\s*{|\s*;)/gi,
+	'url': /url\((["']?).*?\1\)/gi,
+	'selector': /[^\{\}\s][^\{\}]*(?=\s*\{)/g,
+	'property': /(\b|\B)[a-z-]+(?=\s*:)/ig,
+	'string': /("|')(\\?.)*?\1/g,
+	'important': /\B!important\b/gi,
+	'ignore': /&(lt|gt|amp);/gi,
+	'punctuation': /[\{\};:]/g
+};
+
+if (Prism.languages.markup) {
+	Prism.languages.insertBefore('markup', 'tag', {
 		'style': {
 			pattern: /(&lt;|<)style[\w\W]*?(>|&gt;)[\w\W]*?(&lt;|<)\/style(>|&gt;)/ig,
 			inside: {
@@ -411,10 +381,40 @@ if (Prism.languages.css) {
 	});
 }
 
-// Plugin to make entity title show the real entity, idea by Roman Komarov
-Prism.hooks.add('wrap', function(env) {
+/*********************************************** 
+     Begin prism-javascript.js 
+***********************************************/ 
 
-	if (env.type === 'entity') {
-		env.attributes['title'] = env.content.replace(/&amp;/, '&');
-	}
-});
+Prism.languages.javascript = {
+	'comment': /\/\*[\w\W]*?\*\//g,
+	'line-comment': {
+		pattern: /(^|[^\\])\/\/.*?(\r?\n|$)/g,
+		lookbehind: true
+	},
+	'string': /("|')(\\?.)*?\1/g,
+	'regex': {
+		pattern: /(^|[^/])\/(?!\/)(\[.+?]|\\.|[^/\r\n])+\/[gim]{0,3}/g,
+		lookbehind: true
+	},
+	'keyword': /\b(var|let|if|else|while|do|for|return|in|instanceof|function|new|with|typeof|try|catch|finally|null|break|continue)\b/g,
+	'boolean': /\b(true|false)\b/g,
+	'number': /\b-?(0x)?\d*\.?\d+\b/g,
+	'operator': /[-+]{1,2}|!|=?&lt;|=?&gt;|={1,2}|(&amp;){1,2}|\|?\||\?|\*|\//g,
+	'ignore': /&(lt|gt|amp);/gi,
+	'punctuation': /[{}[\];(),.:]/g
+};
+
+if (Prism.languages.markup) {
+	Prism.languages.insertBefore('markup', 'tag', {
+		'script': {
+			pattern: /(&lt;|<)script[\w\W]*?(>|&gt;)[\w\W]*?(&lt;|<)\/script(>|&gt;)/ig,
+			inside: {
+				'tag': {
+					pattern: /(&lt;|<)script[\w\W]*?(>|&gt;)|(&lt;|<)\/script(>|&gt;)/ig,
+					inside: Prism.languages.markup.tag.inside
+				},
+				rest: Prism.languages.javascript
+			}
+		}
+	});
+}

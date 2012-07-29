@@ -32,36 +32,6 @@ Prism.languages.markup = {
 	'entity': /&amp;#?[\da-z]{1,8};/gi
 };
 
-if (Prism.languages.javascript) {
-	Prism.languages.insertBefore('markup', 'cdata', {
-		'script': {
-			pattern: /(&lt;|<)script[\w\W]*?(>|&gt;)[\w\W]*?(&lt;|<)\/script(>|&gt;)/ig,
-			inside: {
-				'tag': {
-					pattern: /(&lt;|<)script[\w\W]*?(>|&gt;)|(&lt;|<)\/script(>|&gt;)/ig,
-					inside: Prism.languages.markup.tag.inside
-				},
-				rest: Prism.languages.javascript
-			}
-		}
-	});
-}
-
-if (Prism.languages.css) {
-	Prism.languages.insertBefore('markup', 'cdata', {
-		'style': {
-			pattern: /(&lt;|<)style[\w\W]*?(>|&gt;)[\w\W]*?(&lt;|<)\/style(>|&gt;)/ig,
-			inside: {
-				'tag': {
-					pattern: /(&lt;|<)style[\w\W]*?(>|&gt;)|(&lt;|<)\/style(>|&gt;)/ig,
-					inside: Prism.languages.markup.tag.inside
-				},
-				rest: Prism.languages.css
-			}
-		}
-	});
-}
-
 // Plugin to make entity title show the real entity, idea by Roman Komarov
 Prism.hooks.add('wrap', function(env) {
 
