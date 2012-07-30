@@ -103,8 +103,8 @@ pre {
 }
 
 pre > code.highlight {
-	background: white;
-	box-shadow: 0 0 .8em .4em white;
+	outline: .4em solid red;
+	outline-offset: .4em;
 }
 
 header,

@@ -74,6 +74,8 @@
 		<li>Very easy to <a href="extending.html#language-definitions">define new languages</a>. Only thing you need is a good understanding of regular expressions</li>
 		<li>All styling is done through CSS, with <a href="faq.html#how-do-i-know-which-tokens-i-can-style-for">sensible class names</a> rather than ugly namespaced abbreviated nonsense.</li>
 		<li>Wide browser support: IE9+, Firefox, Chrome, Safari, Opera, most Mobile browsers</li>
+		<li>Highlights embedded languages (e.g. CSS inside HTML, JavaScript inside HTML)</li>
+		<li>Highlights inline code, not just code blocks</li>
 		<li>Highlight specific lines and/or line ranges (requires <a href="plugins/line-highlight/">plugin</a>)</li>
 		<li>Show invisible characters like tabs, line breaks etc (requires <a href="plugins/show-invisibles/">plugin</a>)</li>
 	</ul>
@@ -95,13 +97,13 @@
 	<pre><code>&lt;!DOCTYPE html>
 &lt;html>
 &lt;head>
-	...
-	</code><code class="highlight">&lt;link href="prism.css" rel="stylesheet" /></code><code>
-&lt;/head>
+	...</code>
+	<code class="highlight">&lt;link href="prism.css" rel="stylesheet" /></code>
+<code>&lt;/head>
 &lt;body>
-	...
-	</code><code class="highlight">&lt;script src="prism.js">&lt;/script></code><code>
-&lt;/body>
+	...</code>
+	<code class="highlight">&lt;script src="prism.js">&lt;/script></code>
+<code>&lt;/body>
 &lt;/html></code></pre>
 	
 	<p>Prism does its best to encourage good authoring practices. Therefore, it only works with <code>&lt;code></code> elements, since marking up code without a <code>&lt;code></code> element is semantically invalid. 
