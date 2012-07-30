@@ -71,16 +71,17 @@ for (var category in components) {
 			contents: [
 				{
 					tag: 'input',
-					attributes: {
-						'data-id': id
-					},
 					properties: {
-						type: 'checkbox',
+						type: all.meta.exclusive? 'radio' : 'checkbox',
+						name: 'download-' + category,
+						value: id,
 						checked: checked,
 						disabled: disabled,
 						onclick: (function(id, category, all){
 							return function () {
-								all[id].enabled = this.checked;
+								$$('input[name="' + this.name + '"]').forEach(function(input) {
+									all[input.value].enabled = input.checked;
+								});
 								
 								update(category, id);
 							};

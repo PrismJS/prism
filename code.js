@@ -140,9 +140,12 @@ var components = {
 		meta: {
 			path: '{id}.css',
 			link: 'index.html?theme={id}',
+			exclusive: true
+		},
+		'prism': {
+			title: 'Default',
 			option: 'default'
 		},
-		'prism': 'Default',
 		'prism-dark': 'Dark',
 		'prism-funky': 'Funky'
 	},
@@ -222,7 +225,7 @@ for (var id in themes) {
 		properties: {
 			htmlFor: 'theme=' + id
 		},
-		contents: themes[id],
+		contents: themes[id].title || themes[id],
 		inside: p
 	});
 }
