@@ -28,7 +28,7 @@
 			Language classes are inherited so you can only define the language once for multiple code snippets.
 		</li>
 		<li>
-			<strong>Incredibly lightweight</strong>
+			<strong>Light as a feather</strong>
 			The core is 1.5KB minified &amp; gzipped. Languages add 0.3-0.5KB each, themes are around 1KB.
 		</li>
 		<li>
@@ -36,8 +36,9 @@
 			Supports parallelism with Web Workers, if available.
 		</li>
 		<li>
-			<strong>Very extensible</strong>
-			Its plugin architecture makes it easy to add new features. Very easy to define new languages.
+			<strong>Extensible</strong>
+			Define new languages or extend existing ones.
+			Add new features thanks to Prism’s plugin architecture. 
 		</li>
 		<li>
 			<strong>Easy styling</strong>
@@ -126,11 +127,9 @@
 <section id="plugins">
 	<h1>Plugins</h1>
 	<p>Plugins are additional scripts (and CSS code) that extend Prism’s functionality. Many of the following plugins are official, but are released as plugins to keep the Prism Core small for those who don’t need the extra functionality.</p>
-	<ul>
-		<li><a href="plugins/line-highlight/">Line highlight: Highlight specific lines and line ranges</a></li>
-		<li><a href="plugins/show-invisibles/">Show invisibles: Show tabs and line breaks</a></li>
-	</ul>
+	<ul></ul>
 	
+	<p>No assembly required to use them. Just select them in the <a href="download.html">download</a> page.</p>
 	<p>It’s very easy to <a href="extending.html#writing-plugins">write your own Prism plugins</a>. Did you write a plugin for Prism that you want added to this list? <a href="https://github.com/LeaVerou/prism" target="_blank">Send a pull request</a>!</p>
 </section>
 
@@ -149,6 +148,30 @@
 <script src="prism.js" data-default-language="markup"></script>
 <script src="utopia.js"></script>
 <script src="code.js"></script>
+<script>
+(function(){
+var ul = $('#plugins ul');
+
+for (var id in components.plugins) {
+	if (id == 'meta') {
+		continue;
+	}
+	
+	var plugin = components.plugins[id];
+	
+	$u.element.create('li', {
+		contents: {
+			tag: 'a',
+			prop: {
+				href: components.plugins.meta.path.replace(/\{id}/g, id)
+			},
+			contents: plugin.title || plugin
+		},
+		inside: ul
+	});	
+}
+})();
+</script>
 
 </body>
 </html>

@@ -1,4 +1,5 @@
 @import url(http://fonts.googleapis.com/css?family=Questrial);
+@import url(http://fonts.googleapis.com/css?family=Arvo);
 
 @font-face {
 	src: url(http://lea.verou.me/logo.otf);
@@ -11,8 +12,9 @@
  
 section h1,
 #features li strong,
-header h2 {
-	font: italic 100% Baskerville, Palatino Linotype, Georgia, serif;
+header h2,
+footer p {
+	font: 100% Rockwell, Arvo, serif;
 }
 
 /*
@@ -36,7 +38,7 @@ a {
 }
 
 section h1 {
-	font-size: 300%;
+	font-size: 250%;
 }
 
 	section section h1 {
@@ -180,11 +182,15 @@ header {
 	}
 	
 		#features li {
-			margin: 0 4em 2em 0;
+			margin: 0 0 2em 0;
 			list-style: none;
 			display: inline-block;
 			width: 27em;
 			vertical-align: top;
+		}
+		
+		#features li:nth-child(odd) {
+			margin-right: 5em;
 		}
 		
 			#features li:before {
@@ -199,37 +205,8 @@ header {
 				#features li strong {
 					display: block;
 					margin-bottom: .1em;
-					font-size: 230%;
+					font-size: 200%;
 				}	
-					
-	.download-button {
-		display: block;
-		padding: .2em .8em .1em;
-		border: 1px solid rgba(0,0,0,0.5);
-		border-radius: 10px;
-		background: #39a1cf;
-		box-shadow: 0 2px 10px black,
-		   inset 0 1px hsla(0,0%,100%,.3),
-		   inset 0 .4em hsla(0,0%,100%,.2),
-		   inset 0 10px 20px hsla(0,0%,100%,.25),
-		   inset 0 -15px 30px rgba(0,0,0,0.3);
-		color: white;
-		text-shadow: 0 -1px 2px black;
-		text-align: center;
-		font-size: 250%;
-		line-height: 1.5;
-		text-transform: uppercase;
-		text-decoration: none;
-		hyphens: manual;
-	}
-	
-	.download-button:hover {
-		background-color: #7fab14;
-	}
-	
-	.download-button:active {
-		box-shadow: inset 0 2px 8px rgba(0,0,0,.8);
-	}
 	
 	header .download-button {
 		float: right;
@@ -240,7 +217,7 @@ header {
 		position: relative;
 		z-index: 1;
 		float: right;
-		margin-right: -4em;
+		margin-right: -1em;
 		text-align: center;
 		text-transform: uppercase;
 		letter-spacing: .2em;
@@ -309,6 +286,35 @@ footer {
 	footer ul {
 		column-count: 3;
 	}
+
+.download-button {
+	display: block;
+	padding: .2em .8em .1em;
+	border: 1px solid rgba(0,0,0,0.5);
+	border-radius: 10px;
+	background: #39a1cf;
+	box-shadow: 0 2px 10px black,
+	   inset 0 1px hsla(0,0%,100%,.3),
+	   inset 0 .4em hsla(0,0%,100%,.2),
+	   inset 0 10px 20px hsla(0,0%,100%,.25),
+	   inset 0 -15px 30px rgba(0,0,0,0.3);
+	color: white;
+	text-shadow: 0 -1px 2px black;
+	text-align: center;
+	font-size: 250%;
+	line-height: 1.5;
+	text-transform: uppercase;
+	text-decoration: none;
+	hyphens: manual;
+}
+
+.download-button:hover {
+	background-color: #7fab14;
+}
+
+.download-button:active {
+	box-shadow: inset 0 2px 8px rgba(0,0,0,.8);
+}
 
 #toc {
 	position: fixed;
