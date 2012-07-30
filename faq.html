@@ -48,9 +48,12 @@
 	
 	<p>Web Workers are good for preventing syntax highlighting of really large code blocks from blocking the main UI thread.
 	In most cases, you will want to highlight reasonably sized chunks of code, and this will not be needed.
-	Furthermore, using Web Workers is actually <strong>slower</strong> than synchronously highlighting, it just appears faster 
-	in some cases because it doesn’t block the main thread.
-	Also, Web Workers cannot interact with the DOM and most other APIs (e.g. the console), so they are notoriously hard to debug.</p>
+	Furthermore, using Web Workers is actually <strong>slower</strong> than synchronously highlighting, due to the overhead of creating and terminating
+	the Worker. It just appears faster in these cases because it doesn’t block the main thread.
+	In addition, since Web Workers operate on files instead of objects, plugins that hook on core parts of Prism (e.g. modify language definitions) 
+	will not work unless included in the same file (using the builder in the <a href="download.html">Download</a> page will protect you from this pitfall).
+	Lastly, Web Workers cannot interact with the DOM and most other APIs (e.g. the console), so they are notoriously hard to debug.
+	</p>
 </section>
 
 <section>
