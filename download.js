@@ -167,21 +167,58 @@ function prettySize(size) {
 	return Math.round(100 * size / 1024)/100 + 'KB';
 }
 
-function update(category, id){
-	var distro = components[category][id].files[minified? 'minified' : 'dev'];
-	
-	$('label[data-id="' + id + '"] .filesize').textContent = prettySize(distro.size);
-	
+function update(updatedCategory, updatedId){
 	// Update total size
-	var totalSize = 0;
+	var total = {js: 0, css: 0}, updated = {js: 0, css: 0};
 	
-	forId(function (id, category, info) {
-		if(info.enabled) {
-			totalSize += info.files[minified? 'minified' : 'dev'].size;
+	for (var category in components) {
+		var all = components[category];
+		
+		for (var id in all) {
+			var info = all[id];
+			
+			if (info.enabled || id == updatedId) {
+				var distro = info.files[minified? 'minified' : 'dev'];
+				
+				distro.paths.forEach(function(path) {
+					if (cache[path]) {
+						var type = path.match(/\.(\w+)$/)[1],
+						    size = cache[path].size || 0;
+						    
+						if (info.enabled) {
+							total[type] += size;
+						}
+						
+						if (id == updatedId) {
+							updated[type] += size;
+						}
+					}
+				});
+			}
 		}
+	}
+	
+	total.all = total.js + total.css;
+	updated.all = updated.js + updated.css;
+	
+	$u.element.prop($('label[data-id="' + updatedId + '"] .filesize'), {
+		textContent: prettySize(updated.all),
+		title: (updated.js? Math.round(100 * updated.js / updated.all) + '% JavaScript' : '') + 
+				(updated.js && updated.css? ' + ' : '') +
+				(updated.css? Math.round(100 * updated.css / updated.all) + '% CSS' : '')
 	});
 	
-	$('#filesize').textContent = prettySize(totalSize);
+	$('#filesize').textContent = prettySize(total.all);
+	
+	$u.element.prop($('#percent-js'), {
+		textContent: Math.round(100 * total.js / total.all) + '%',
+		title: prettySize(total.js)
+	});
+	
+	$u.element.prop($('#percent-css'), {
+		textContent: Math.round(100 * total.css / total.all) + '%',
+		title: prettySize(total.css)
+	});
 	
 	generateCode();
 }
