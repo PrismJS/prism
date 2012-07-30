@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" class="simple">
+<head>
+
+<meta charset="utf-8" />
+<title>Show Invisibles ▲ Prism plugins</title>
+<base href="../.." />
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="prism.css" data-noprefix />
+<link rel="stylesheet" href="plugins/autolinker/prism-autolinker.css" data-noprefix />
+<script src="../prefixfree/prefixfree.min.js"></script>
+
+</head>
+<body>
+
+<header>
+	<div class="intro" data-src="templates/header-plugins.html" data-type="text/html"></div>
+
+	<h2>Autolinker</h2>
+	<p>Converts URLs and emails in code to clickable links</p>
+</header>
+
+<section>
+	<h1>Examples</h1>
+	
+	<pre><code class="language-javascript">/**
+ * Prism: Lightweight, robust, elegant syntax highlighting
+ * MIT license http://www.opensource.org/licenses/mit-license.php/
+ * @author Lea Verou http://lea.verou.me 
+ * Reach Lea at fake@email.com (no, not really)
+ */
+var foo = 5;
+// And a single line comment http://google.com</code></pre>
+ 	
+ 	<pre><code class="language-css">@font-face {
+	src: url(http://lea.verou.me/logo.otf);
+	font-family: 'LeaVerou';
+}</code></pre>
+</section>
+
+<footer data-src="templates/footer.html" data-type="text/html"></footer>
+
+<script src="prism.js"></script>
+<script src="plugins/autolinker/prism-autolinker.js"></script>
+<script src="utopia.js"></script>
+<script src="code.js"></script>
+
+
+</body>
+</html>
