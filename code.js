@@ -165,7 +165,8 @@ var components = {
 			hasCSS: true
 		},
 		'line-highlight': 'Line Highlight',
-		'show-invisibles': 'Show Invisibles'
+		'show-invisibles': 'Show Invisibles',
+		'autolinker': 'Autolinker'
 	}
 };
 
