@@ -1,9 +1,6 @@
 (function(){
 
-if(!window.Prism
- || !window.addEventListener 
- || !window.getComputedStyle
- || !document.querySelectorAll) {
+if(!window.Prism) {
 	return;
 }
 
@@ -11,16 +8,13 @@ function $$(expr, con) {
 	return Array.prototype.slice.call((con || document).querySelectorAll(expr));
 }
 
-var CRLF = crlf = /\r?\n|\r/g,
-    preTag = /pre/i;
+var CRLF = crlf = /\r?\n|\r/g;
     
 function highlightLines(pre, lines, classes) {
 	var ranges = lines.replace(/\s+/g, '').split(','),
 	    offset = +pre.getAttribute('data-line-offset') || 0;
-	    
-	var cs = getComputedStyle(pre),
-	    lineHeight = parseFloat(cs.lineHeight),
-	    firstChild = pre.firstChild;
+	
+	var lineHeight = parseFloat(getComputedStyle(pre).lineHeight);
 
 	for (var i=0, range; range = ranges[i++];) {
 		range = range.split('-');
@@ -30,6 +24,7 @@ function highlightLines(pre, lines, classes) {
 		
 		var line = document.createElement('div');
 		
+		line.textContent = Array(end - start + 2).join(' \r\n');
 		line.className = (classes || '') + ' line-highlight';
 		line.setAttribute('data-start', start);
 		
@@ -37,10 +32,9 @@ function highlightLines(pre, lines, classes) {
 			line.setAttribute('data-end', end);
 		}
 	
-		line.style.height = (end - start + 1) * lineHeight + 'px';
 		line.style.top = (start - offset - 1) * lineHeight + 'px';
 		
-		pre.insertBefore(line, firstChild);
+		(pre.querySelector('code') || pre).appendChild(line);
 	}
 }
 
@@ -54,18 +48,18 @@ function applyHash() {
 	
 	var range = (hash.match(/\.([\d,-]+)$/) || [,''])[1];
 	
-	if(!range || document.getElementById(hash)) {
+	if (!range || document.getElementById(hash)) {
 		return;
 	}
 	
 	var id = hash.slice(0, hash.lastIndexOf('.')),
 	    pre = document.getElementById(id);
 	    
-	if(!pre) {
+	if (!pre) {
 		return;
 	}
 	
-	if(!pre.hasAttribute('data-line')) {
+	if (!pre.hasAttribute('data-line')) {
 		pre.setAttribute('data-line', '');
 	}
 
@@ -77,16 +71,14 @@ function applyHash() {
 var fakeTimer = 0; // Hack to limit the number of times applyHash() runs
 
 Prism.hooks.add('after-highlight', function(env) {
-	clearTimeout(fakeTimer);
+	var pre = env.element.parentNode;
+	var lines = pre && pre.getAttribute('data-line');
 	
-	var pre = preTag.test(env.element.nodeName)? env.element
-	        : preTag.test(env.element.parentNode.nodeName)? env.element.parentNode
-	        : null,
-	    lines = pre.getAttribute('data-line');
-	
-	if (!pre || !lines) {
+	if (!pre || !lines || !/pre/i.test(pre.nodeName)) {
 		return;
 	}
+	
+	clearTimeout(fakeTimer);
 	
 	$$('.line-highlight', pre).forEach(function (line) {
 		line.parentNode.removeChild(line);
