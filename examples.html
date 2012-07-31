@@ -188,6 +188,12 @@ var comment = /\/\*[\w\W]*?\*\//g;</code></pre>
 	
 	<h2>Regex inside single line comment</h2>
 	<pre><code>// hey, /this doesn’t fail!/ :D</code></pre>
+	
+	<h2>Two or more division operators on the same line</h2>
+	<pre><code>var foo = 5 / 6 / 7;</code></pre>
+	
+	<h2>A division operator on the same line as a regex, preceding it</h2>
+	<pre><code>var foo = 1/2, bar = /a/g;</code></pre>
 </section>
 
 <section id="failures" class="language-javascript">
@@ -201,11 +207,8 @@ var comment = /\/\*[\w\W]*?\*\//g;</code></pre>
 	<h2>Comment-like substrings</h2>
 	<pre><code>"foo /* bar */ baz"; "foo // bar";</code></pre>
 	
-	<h2>Strings inside regexes</h2>
+	<h2>Two quotes of the same type (i.e. single or double) inside a regex</h2>
 	<pre><code>/"foo"/;</code></pre>
-	
-	<h2>Two or more division operators on the same line</h2>
-	<pre><code>5 / 6 / 7</code></pre>
 </section>
 
 <footer data-src="templates/footer.html" data-type="text/html"></footer>
