@@ -74,14 +74,13 @@ var _ = self.Prism = {
 		}
 		
 		// Set language on the element, if not present
-		element.className = element.className.replace(lang, '') + ' language-' + language;
+		element.className = element.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language;
 		
 		// Set language on the parent, for styling
 		parent = element.parentNode;
 		
 		if (/pre/i.test(parent.nodeName)) {
-			var parentLanguage = (parent.className.match(lang) || [,''])[1];
-			parent.className = parent.className.replace(lang, '') + ' language-' + parentLanguage; 
+			parent.className = parent.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language; 
 		}
 		
 		var code = element.textContent.trim();
