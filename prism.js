@@ -401,12 +401,12 @@ if (Prism.languages.markup) {
 }
 
 if (Prism.languages.markup) {
-	Prism.languages.insertBefore('markup', 'tag', {
+	Prism.languages.insertBefore('markup', 'prolog', {
 		'php': {
-			pattern: /(&lt;\?php|<\?php)[\w\W]*?(\?>|\?&gt;)/ig,
+			pattern: /(&lt;\?php|<\?php)[\w\W]*?(\?>|\?&gt;)/g,
 			inside: {
 				'php': {
-					pattern: /(&lt;\?php|<\?php)[\w\W]*?(\?>|\?&gt;)/ig,
+					pattern: /(&lt;\?php|<\?php)[\w\W]*?(\?>|\?&gt;)/g,
 					inside: Prism.languages.php
 				},
 				rest: Prism.languages.markup.tag
