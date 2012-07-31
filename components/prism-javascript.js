@@ -1,7 +1,6 @@
 Prism.languages.javascript = {
-	'comment': /\/\*[\w\W]*?\*\//g,
-	'line-comment': {
-		pattern: /(^|[^\\])\/\/.*?(\r?\n|$)/g,
+	'comment': {
+		pattern: /(^|[^\\])(\/\*[\w\W]*?\*\/|\/\/.*?(\r?\n|$))/g,
 		lookbehind: true
 	},
 	'string': /("|')(\\?.)*?\1/g,

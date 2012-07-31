@@ -49,7 +49,6 @@ pre[class*="language-"] {
 }
 
 .token.comment,
-.token.line-comment,
 .token.prolog,
 .token.doctype,
 .token.cdata {
