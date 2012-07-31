@@ -144,6 +144,29 @@ And i'm not</code></pre>
 	    }
 	</code></pre>
 
+	<h2>HTML Block With Embeded PHP</h2>
+	<pre class="language-markup"><code>
+		&lt;!-- element with overflow applied --&gt;
+		&lt;div class="scroll"&gt;
+			&lt;!-- the element that will be scrolled during the effect --&gt;
+			&lt;div class="scrollContainer"&gt;
+
+				&lt;?php 
+
+					$the_query = new WP_Query('featured=yes&amp;post_type=work');
+					while ($the_query-&gt;have_posts()) : $the_query-&gt;the_post();
+
+					if(!$this->ID &amp;&amp; 1!=1)
+						continue;
+				?&gt;
+					&lt;div class="panel"&gt;
+						&lt;?php the_title() ?&gt;
+					&lt;/div&gt;
+				&lt;?php endwhile; ?&gt; &lt;!-- End panel --&gt;
+			&lt;/div&gt;&lt;!-- .scrollContainer --&gt;
+		&lt;/div&gt;&lt;!-- .scroll --&gt;
+	</code></pre>
+
 	
 
 </section>
