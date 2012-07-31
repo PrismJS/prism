@@ -156,7 +156,7 @@ And i'm not</code></pre>
 					$the_query = new WP_Query('featured=yes&amp;post_type=work');
 					while ($the_query-&gt;have_posts()) : $the_query-&gt;the_post();
 
-					if(!$this->ID &amp;&amp; 1!=1)
+					if(!$this->ID || !$this->$var &amp;&amp; $something['something'])
 						continue;
 				?&gt;
 					&lt;div class="panel"&gt;

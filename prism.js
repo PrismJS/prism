@@ -369,7 +369,7 @@ Prism.languages.php = {
 		lookbehind: true
 	},
 	'deliminator': /(\?>|\?&gt;|&lt;\?php|<\?php)/ig,
-	'variable': /(\$\w+)((-(\>|&gt;)\w+(?!\())|(\[\w\]))?\b/ig,
+	'variable': /(\$\w+)((-(\>|&gt;)[$\w]+(?!\()))?\b/ig,
 	'string': /("|')(\\?.)*?\1/g,
 	'regex': {
 		pattern: /(^|[^/])\/(?!\/)(\[.+?]|\\.|[^/\r\n])+\/[gim]{0,3}(?=\s*($|[\r\n,.;})]))/g,
