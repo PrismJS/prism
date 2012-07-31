@@ -12,7 +12,6 @@ pre[class*="language-"] {
 	white-space: pre;
 	word-spacing: normal;
 	
-	-webkit-tab-size: 4;
 	-moz-tab-size: 4;
 	-o-tab-size: 4;
 	tab-size: 4;
