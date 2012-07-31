@@ -41,6 +41,16 @@ var _ = self.Prism = {
 			}
 			
 			return root[inside] = ret;
+		},
+		
+		DFS: function(o, callback) {
+			for (var i in o) {
+				callback.call(o, i, o[i]);
+				
+				if (Object.prototype.toString.call(o) === '[object Object]') {
+					_.languages.DFS(o[i], callback);
+				}
+			}
 		}
 	},
 
@@ -207,7 +217,7 @@ var _ = self.Prism = {
 
 		return strarr;
 	},
-		
+	
 	hooks: {
 		all: {},
 		
