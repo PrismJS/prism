@@ -81,13 +81,19 @@ pre[class*="language-"] {
 
 .token.atrule,
 .token.attr-value,
-.token.keyword {
+.token.keyword,
+.token.function,
+.token.constant  {
 	color: #07a;
 }
 
+.token.deliminator {
+	font-weight:bold;
+}
 
 .token.regex,
-.token.important {
+.token.important,
+.token.variable {
 	color: #e90;
 }
 
@@ -97,4 +103,12 @@ pre[class*="language-"] {
 
 .token.entity {
 	cursor: help;
+}
+
+.token.variable {
+	color: #e90;
+}
+
+.token.deliminator {
+	font-weight:bold;
 }
