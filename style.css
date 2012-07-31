@@ -120,19 +120,25 @@ header, footer {
 	position: relative;
 	padding: 30px -webkit-calc(50% - 450px); /* Workaround for bug */
 	padding: 30px calc(50% - 450px);
-	background-size: 20px 20px, 20px 20px, cover;
-	background-repeat: repeat-x;
-	background-position: bottom, bottom, top;
-	background-attachment: scroll, scroll, fixed;
 	color: white;
 	text-shadow: 0 -1px 2px black;
+	background: url(img/spectrum.png) fixed;
+}
+
+header:before,
+footer:before {
+	content: '';
+	position: absolute;
+	bottom: 0; left: 0; right: 0;
+	height: 20px;
+	background-size: 20px 40px;
+	background-repeat: repeat-x;
+	background-image: linear-gradient(45deg, transparent 34%, white 34%, white 66%, transparent 66%),
+	                  linear-gradient(135deg, transparent 34%, white 34%, white 66%, transparent 66%);
 }
 
 header {
-	background-image: url(img/spectrum.png);
-	background-image: linear-gradient(45deg, white 50%, transparent 50%),
-	                  linear-gradient(135deg, transparent 50%, white 50%),
-	                  url(img/spectrum.png);
+	
 }
 
 	header .intro,
@@ -271,13 +277,16 @@ header {
 
 footer {
 	margin-top: 2em;
-	background-image: linear-gradient(45deg, transparent 50%, white 50%),
-	                  linear-gradient(135deg, white 50%, transparent 50%),
-	                  url(img/spectrum.png);
-	background-position: top, top, bottom;
+	background-position: bottom;
 	color: white;
 	text-shadow: 0 -1px 2px black;
 }
+
+	footer:before {
+		bottom: auto;
+		top: 0;
+		background-position: bottom;
+	}
 
 	footer p {
 		font-size: 150%;
