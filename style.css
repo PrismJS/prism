@@ -168,7 +168,9 @@ header {
 		header img {
 			display: block;
 			width: 150px;
+			height: 128px;
 			margin-bottom: .3em;
+			border: 0;
 		}
 		
 	header h2 {
