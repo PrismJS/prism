@@ -1,3 +1,51 @@
+var components = {
+	core: {
+		meta: {
+			path: 'components/prism-core.js',
+			option: 'mandatory'
+		},
+		'core': 'Core'
+	},
+	themes: {
+		meta: {
+			path: '{id}.css',
+			link: 'index.html?theme={id}',
+			exclusive: true
+		},
+		'prism': {
+			title: 'Default',
+			option: 'default'
+		},
+		'prism-dark': 'Dark',
+		'prism-funky': 'Funky'
+	},
+	languages: {
+		meta: {
+			path: 'components/prism-{id}',
+			option: 'default'
+		},
+		'markup': 'Markup',
+		'css': 'CSS',
+		'javascript': 'JavaScript'
+	},
+	plugins: {
+		meta: {
+			path: 'plugins/{id}/prism-{id}',
+			link: 'plugins/{id}/',
+			hasCSS: true
+		},
+		'line-highlight': 'Line Highlight',
+		'show-invisibles': 'Show Invisibles',
+		'autolinker': 'Autolinker'
+	}
+};
+
+(function(){
+
+if(!document.body.addEventListener) {
+	return;
+}
+
 $$('[data-src]').forEach(function(element) {
 	var src = element.getAttribute('data-src'),
 	    html = element.getAttribute('data-type') === 'text/html',
@@ -6,11 +54,14 @@ $$('[data-src]').forEach(function(element) {
 	$u.xhr({
 		url: src,
 		callback: function(xhr) {
-			element[contentProperty] = xhr.responseText;
+			try {
+				element[contentProperty] = xhr.responseText;
 			
-			$u.event.fire(element, 'contentreceived', {
-				src: src
-			});
+				$u.event.fire(element, 'contentreceived', {
+					src: src
+				});
+			}
+			catch (e) {}
 		}
 	});
 });
@@ -40,6 +91,8 @@ document.body.addEventListener('contentreceived', function(evt) {
 	
 	Prism.highlightElement(code);
 });
+
+})();
 
 /**
  * Table of contents
@@ -90,7 +143,7 @@ $$('body > section > h1').forEach(function(h1) {
 	});
 });
 
-if(toc.children.length > 0) {
+if (toc.children.length > 0) {
 	$u.element.create('section', {
 		properties: {
 			id: 'toc'
@@ -107,7 +160,8 @@ if(toc.children.length > 0) {
 
 // calc()
 (function(){
-
+	if(!window.PrefixFree) return;
+	
 	if (PrefixFree.functions.indexOf('calc') == -1) {
 		var style = document.createElement('_').style;
 		style.width = 'calc(1px + 1%)'
@@ -127,48 +181,6 @@ if(toc.children.length > 0) {
 		}
 	}
 })();
-
-var components = {
-	core: {
-		meta: {
-			path: 'components/prism-core.js',
-			option: 'mandatory'
-		},
-		'core': 'Core'
-	},
-	themes: {
-		meta: {
-			path: '{id}.css',
-			link: 'index.html?theme={id}',
-			exclusive: true
-		},
-		'prism': {
-			title: 'Default',
-			option: 'default'
-		},
-		'prism-dark': 'Dark',
-		'prism-funky': 'Funky'
-	},
-	languages: {
-		meta: {
-			path: 'components/prism-{id}',
-			option: 'default'
-		},
-		'markup': 'Markup',
-		'css': 'CSS',
-		'javascript': 'JavaScript'
-	},
-	plugins: {
-		meta: {
-			path: 'plugins/{id}/prism-{id}',
-			link: 'plugins/{id}/',
-			hasCSS: true
-		},
-		'line-highlight': 'Line Highlight',
-		'show-invisibles': 'Show Invisibles',
-		'autolinker': 'Autolinker'
-	}
-};
 
 (function() {
 var p = $u.element.create('p', {

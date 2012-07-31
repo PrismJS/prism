@@ -10,7 +10,28 @@ function $(expr, con) {
 }
 
 function $$(expr, con) {
-	return Array.prototype.slice.call((con || document).querySelectorAll(expr));
+	var elements = (con || document).querySelectorAll(expr);
+	
+	try {
+		return Array.prototype.slice.call(elements);
+	}
+	catch(e) {
+		var arr = Array(elements.length);
+	    
+	    for (var i = elements.length; i-- > 0;) {
+			arr[i] = elements[i];
+		}
+		
+		return arr;
+	}
+}
+
+if (!Array.prototype.forEach) {
+	Array.prototype.forEach = function(fn, scope) {
+		for (var i = 0, len = this.length; i < len; ++i) {
+			fn.call(scope || this, this[i], i, this);
+		}
+	}
 }
 
 // Make each ID a global variable
@@ -324,7 +345,7 @@ var _ = window.Utopia = {
 					_.event.fire(element, type, properties);
 				});
 			}
-			else {
+			else if (document.createEvent) {
 				var evt = document.createEvent("HTMLEvents");
 		
 				evt.initEvent(type, true, true );

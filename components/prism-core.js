@@ -82,7 +82,7 @@ var _ = self.Prism = {
 		if (/pre/i.test(parent.nodeName)) {
 			parent.className = parent.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language; 
 		}
-		
+
 		var code = element.textContent.trim();
 		
 		if(!code) {
