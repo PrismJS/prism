@@ -8,7 +8,9 @@
 <link rel="stylesheet" href="prism.css" data-noprefix />
 <style>
 #toc {
+	display: block;
 	position: static;
+	max-width: 900px;
 	font-size: 100%;
 	opacity: 1;
 }
@@ -39,6 +41,7 @@
 	However, in most web applications and websites a small error margin is usually acceptable and a rare highlighting failure is not the end of the world.
 	A syntax highlighter based on regular expressions might only be accurate 99% of the time (the actual percentage is just a guess),
 	but in exchange for the small error margin, it offers some very important benefits:
+	
 	<ul>
 		<li>Smaller filesize. Proper parsers are very big.</li>
 		<li>Extensibility. Authors can define new languages simply by knowing how to code regular expressions. 
@@ -47,7 +50,9 @@
 	</ul>
 	
 	<p>For this reason, most syntax highlighters on the web and on desktop, are powered by regular expressions. This includes the internal syntax
-	highlighters used by popular native applications like Espresso and Sublime Text, at this time of writing.</p>
+	highlighters used by popular native applications like Espresso and Sublime Text, at the time of writing.
+	Of course, not every regex-powered syntax highlighter is created equal. The number and type of failures can be vastly different, depending on
+	the exact algorithm used. <a href="examples.html#failures">Prism’s known failures are documented in the Examples section</a>.</p>
 </section>
 
 <section>

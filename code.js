@@ -233,3 +233,30 @@ for (var id in themes) {
 
 setTheme(current);
 })();
+
+(function(){
+
+function listPlugins(ul) {
+	for (var id in components.plugins) {
+		if (id == 'meta') {
+			continue;
+		}
+		
+		var plugin = components.plugins[id];
+		
+		$u.element.create('li', {
+			contents: {
+				tag: 'a',
+				prop: {
+					href: 'plugins/' + id
+				},
+				contents: plugin.title || plugin
+			},
+			inside: ul
+		});	
+	}
+}
+
+$$('.plugin-list').forEach(listPlugins);
+
+})();

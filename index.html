@@ -70,6 +70,12 @@
 	<h1>Full list of features</h1>
 	<ul>
 		<li><strong>Only 1.5KB</strong> minified &amp; gzipped (core). Each language definition adds roughly 300-500 bytes.</li>
+		<li>Encourages good author practices. Other highlighters encourage or even force you to use elements that are semantically wrong, 
+			like <code>&lt;pre></code> (on its own) or <code>&lt;script></code>. 
+			Prism forces you to use the correct element for marking up code: <code>&lt;code></code>. 
+			On its own for inline code, or inside a &lt;pre> for blocks of code.
+			In addition, the language is defined through the way recommended in the HTML5 draft: through a language-xxxx class.</li>
+		<li>The language definition is inherited. This means that if multiple code snippets have the same language, you can just define it once, in one of their common ancestors.</li>
 		<li>Supports <strong>parallelism with Web Workers</strong>, if available. Disabled by default (<a href="faq.html#why-is-asynchronous-highlighting-disabled-by-default">why?</a>).</li>
 		<li>Very easy to extend without modifying the code, due to Prism’s <a href="#plugins">plugin architecture</a>. Multiple hooks are scattered throughout the source.</li>
 		<li>Very easy to <a href="extending.html#language-definitions">define new languages</a>. Only thing you need is a good understanding of regular expressions</li>
@@ -114,7 +120,8 @@
 	
 	<p>If you want to opt-out of highlighting for a <code>&lt;code></code> element that is a descendant of an element with a declared code language, you can add the class <code>language-none</code> to it (or any non-existing language, really).</p>
 	
-	<p>The <a href="http://www.w3.org/TR/html5/the-pre-element.html#the-pre-element">recommended way to mark up a code block</a> (both for semantics and for Prism) is a <code>&lt;pre></code> inside a <code>&lt;code></code> element, like so:</p>
+	<p>The <a href="http://www.w3.org/TR/html5/the-pre-element.html#the-pre-element">recommended way to mark up a code block</a> 
+	(both for semantics and for Prism) is a <code>&lt;pre></code> element with a <code>&lt;code></code> element inside, like so:</p>
 	<pre><code>&lt;pre>&lt;code class="language-css">p { color: red }&lt;/code>&lt;/pre></code></pre>
 	<p>If you use that pattern, the <code>&lt;pre></code> will automatically get the <code>language-xxxx</code> class (if it doesn’t already have it) and will be styled as a code block.</p>
 	
@@ -127,7 +134,7 @@
 <section id="plugins">
 	<h1>Plugins</h1>
 	<p>Plugins are additional scripts (and CSS code) that extend Prism’s functionality. Many of the following plugins are official, but are released as plugins to keep the Prism Core small for those who don’t need the extra functionality.</p>
-	<ul></ul>
+	<ul class="plugin-list"></ul>
 	
 	<p>No assembly required to use them. Just select them in the <a href="download.html">download</a> page.</p>
 	<p>It’s very easy to <a href="extending.html#writing-plugins">write your own Prism plugins</a>. Did you write a plugin for Prism that you want added to this list? <a href="https://github.com/LeaVerou/prism" target="_blank">Send a pull request</a>!</p>
@@ -148,30 +155,6 @@
 <script src="prism.js" data-default-language="markup"></script>
 <script src="utopia.js"></script>
 <script src="code.js"></script>
-<script>
-(function(){
-var ul = $('#plugins ul');
-
-for (var id in components.plugins) {
-	if (id == 'meta') {
-		continue;
-	}
-	
-	var plugin = components.plugins[id];
-	
-	$u.element.create('li', {
-		contents: {
-			tag: 'a',
-			prop: {
-				href: components.plugins.meta.path.replace(/\{id}/g, id)
-			},
-			contents: plugin.title || plugin
-		},
-		inside: ul
-	});	
-}
-})();
-</script>
 
 </body>
 </html>

@@ -65,7 +65,7 @@ section h1 {
 	
 	section h1 > a:hover:before {
 		color: black;
-		background: #e8d225;
+		background: #f1ad26;
 	}
 
 p {
@@ -143,7 +143,7 @@ header {
 	header h1 {
 		float: left;
 		margin-right: 30px;
-		color: #eda725;
+		color: #7fab14;
 		text-align: center;
 		font-size: 140%;
 		text-transform: uppercase;
@@ -152,7 +152,7 @@ header {
 	
 	header h2 {
 		margin-top: .5em;
-		color: #7fab14;
+		color: #f1ad26;
 	}
 	
 		header h1 a {
@@ -318,13 +318,10 @@ footer {
 
 #toc {
 	position: fixed;
-	left: 3em;
-	font-size: 75%;
+	left: 1%;
+	max-width: calc(48% - 450px);
+	font-size: 80%;
 	opacity: .3;
-}
-
-#toc:hover {
-	opacity: 1;
 }
 
 @media (max-width: 1200px) {
@@ -333,8 +330,16 @@ footer {
 	}
 }
 
+#toc:hover {
+	opacity: 1;
+}
+
 	#toc h1 {
-		font-size: 200%;
+		font-size: 180%;
+	}
+	
+	#toc li {
+		list-style: none;
 	}
 	
 #logo:before {
