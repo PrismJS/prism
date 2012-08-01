@@ -81,17 +81,21 @@ code[class*="language-"] {
 
 .token.atrule,
 .token.attr-value,
-.token.keyword {
+.token.keyword,
+.token.function,
+.token.constant {
 	color: deeppink;
 }
 
 
 .token.regex,
-.token.important {
+.token.important,
+.token.variable {
 	color: orange;
 }
 
-.token.important {
+.token.important,
+.token.deliminator  {
 	font-weight: bold;
 }
 
