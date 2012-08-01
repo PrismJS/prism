@@ -156,8 +156,12 @@ And i'm not</code></pre>
 					$the_query = new WP_Query('featured=yes&amp;post_type=work');
 					while ($the_query-&gt;have_posts()) : $the_query-&gt;the_post();
 
-					if(!$this->ID || !$this->$var &amp;&amp; $something['something'])
+					if(!$this->ID || MY_CONSTANT || !$this->$var &amp;&amp; $something['something'])
 						continue;
+					echo &lt;&lt;&lt;someText
+						This block has a lot of text in it. Wooo.
+						including 
+					someText;
 				?&gt;
 					&lt;div class="panel"&gt;
 						&lt;?php the_title() ?&gt;
