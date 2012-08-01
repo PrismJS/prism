@@ -218,6 +218,26 @@ var comment = /\/\*[\w\W]*?\*\//g;</code></pre>
 	<pre><code>var foo = /"foo"/;</code></pre>
 </section>
 
+<section>
+	<h1>Generic Highlights</h1>
+	
+	<h2></h2>
+	<pre><code>
+	
+		template&lt;typename T>
+		void Swap(T &amp; a, T &amp; b) //"&amp;" passes parameters by reference
+		{
+		   T temp = b;
+		   b = a;
+		   a = temp;
+		}
+		 
+		string hello = "world!", world = "Hello, ";
+		Swap( world, hello );
+		cout &lt;&lt; hello &lt;&lt; world &lt;&lt; endl; //Output is "Hello, world!"
+</code></pre>
+</section>
+
 <footer data-src="templates/footer.html" data-type="text/html"></footer>
 
 <script src="prism.js"></script>
