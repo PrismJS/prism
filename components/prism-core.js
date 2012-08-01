@@ -282,7 +282,7 @@ if (!self.document) {
 	// In worker
 	self.addEventListener('message', function(evt) {
 		var message = JSON.parse(evt.data),
-		    lang = message.language;
+		    lang = message.language,
 		    code = message.code;
 		
 		self.postMessage(JSON.stringify(_.tokenize(code, _.languages[lang])));
