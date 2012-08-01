@@ -11,11 +11,11 @@ pre[class*="language-"] {
 	text-align: left;
 	white-space: pre;
 	word-spacing: normal;
-	
+
 	-moz-tab-size: 4;
 	-o-tab-size: 4;
 	tab-size: 4;
-	
+
 	-webkit-hyphens: none;
 	-moz-hyphens: none;
 	-ms-hyphens: none;
@@ -60,6 +60,8 @@ code[class*="language-"] {
 }
 
 .token.property,
+.token.const,
+.token.symbol,
 .token.tag,
 .token.boolean,
 .token.number {
@@ -67,12 +69,14 @@ code[class*="language-"] {
 }
 
 .token.selector,
+.token.builtin,
 .token.attr-name,
 .token.string {
 	color: yellow;
 }
 
 .token.operator,
+.token.inst-var,
 .token.entity,
 .token.url,
 .language-css .token.string {
