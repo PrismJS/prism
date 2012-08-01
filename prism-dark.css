@@ -85,17 +85,21 @@ pre[class*="language-"] {
 
 .token.atrule,
 .token.attr-value,
-.token.keyword {
+.token.keyword,
+.token.function,
+.token.constant  {
 	color: hsl(350, 40%, 70%);
 }
 
 
 .token.regex,
-.token.important {
+.token.important,
+.token.variable  {
 	color: #e90;
 }
 
-.token.important {
+.token.important,
+.token.deliminator {
 	font-weight: bold;
 }
 

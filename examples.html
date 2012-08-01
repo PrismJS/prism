@@ -123,6 +123,57 @@ And i'm not</code></pre>
 &lt;/html></code></pre>
 </section>
 
+<section class="language-php">
+	<h1>PHP</h1>
+	
+	<h2>Block with Embedded HTML</h2>
+	<pre><code>
+
+	/**
+		Sample Block Comment. 
+		Author: Aaron Harun
+		URL: http://aaron.md, http://aahacreative.com
+	**/
+	    if(__FILE__){
+		$explicitive = ($happyandyouknowit == false) ? '. :(' : '! =D';
+		// Stick in some HTML. 
+		?&gt;
+			&ltstrong>Say: &lt;/strong>
+		&lt;?php
+		echo 'Hello ' . "world" . addslashes($explicitive);
+	    }
+	</code></pre>
+
+	<h2>HTML Block With Embeded PHP</h2>
+	<pre class="language-markup"><code>
+		&lt;!-- element with overflow applied --&gt;
+		&lt;div class="scroll"&gt;
+			&lt;!-- the element that will be scrolled during the effect --&gt;
+			&lt;div class="scrollContainer"&gt;
+
+				&lt;?php 
+
+					$the_query = new WP_Query('featured=yes&amp;post_type=work');
+					while ($the_query-&gt;have_posts()) : $the_query-&gt;the_post();
+
+					if(!$this->ID || MY_CONSTANT || !$this->$var &amp;&amp; $something['something'])
+						continue;
+					echo &lt;&lt;&lt;someText
+						This block has a lot of text in it. Wooo.
+						including 
+					someText;
+				?&gt;
+					&lt;div class="panel"&gt;
+						&lt;?php the_title() ?&gt;
+					&lt;/div&gt;
+				&lt;?php endwhile; ?&gt; &lt;!-- End panel --&gt;
+			&lt;/div&gt;&lt;!-- .scrollContainer --&gt;
+		&lt;/div&gt;&lt;!-- .scroll --&gt;
+	</code></pre>
+
+	
+
+</section>
 <section class="language-css">
 	<h1>CSS</h1>
 	
