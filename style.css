@@ -179,7 +179,7 @@ header {
 	
 	header .intro p {
 		margin: 0;
-		font: 150%/1.4 Questrial;
+		font: 150%/1.4 Questrial, sans-serif;
 		font-size: 150%;
 	}
 	
