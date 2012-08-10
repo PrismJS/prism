@@ -406,7 +406,7 @@ Prism.languages.javascript = {
 	},
 	'keyword': /\b(var|let|if|else|while|do|for|return|in|instanceof|function|new|with|typeof|try|catch|finally|null|break|continue)\b/g,
 	'boolean': /\b(true|false)\b/g,
-	'number': /-?(Infinity|(0[xX][0-9a-fA-F]+)|(\d*\.?\d+([eE]\+?\d+)?))|NaN/g,
+	'number': /\b(-?(Infinity|(0[xX][0-9a-fA-F]+)|(\d*\.?\d+([eE]\+?\d+)?))|NaN)\b/g,
 	'operator': /[-+]{1,2}|!|=?&lt;|=?&gt;|={1,2}|(&amp;){1,2}|\|?\||\?|\*|\/|%|~|\^|:/g,
 	'ignore': /&(lt|gt|amp);/gi,
 	'punctuation': /[{}[\];(),.:]/g
