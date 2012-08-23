@@ -74,7 +74,8 @@ pre[class*="language-"] {
 .token.selector,
 .token.attr-name,
 .token.string,
-.token.builtin {
+.token.builtin,
+.token.special {
 	color: hsl(75, 70%, 60%);
 }
 
@@ -83,23 +84,28 @@ pre[class*="language-"] {
 .token.url,
 .language-css .token.string,
 .style .token.string,
-.token.inst-var {
+.token.inst-var,
+.token.define,
+.token.variable {
 	color: hsl(40, 90%, 60%);
 }
 
 .token.atrule,
 .token.attr-value,
-.token.keyword {
+.token.keyword,
+.token.function,
+.token.macro {
 	color: hsl(350, 40%, 70%);
 }
 
-
 .token.regex,
-.token.important {
+.token.important,
+.token.exception {
 	color: #e90;
 }
 
-.token.important {
+.token.important,
+.token.function {
 	font-weight: bold;
 }
 

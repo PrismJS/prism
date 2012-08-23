@@ -71,7 +71,8 @@ code[class*="language-"] {
 .token.selector,
 .token.attr-name,
 .token.string,
-.token.builtin {
+.token.builtin,
+.token.special {
 	color: yellow;
 }
 
@@ -79,23 +80,28 @@ code[class*="language-"] {
 .token.entity,
 .token.url,
 .language-css .token.string,
-.token.inst-var {
+.token.inst-var,
+.token.define,
+.token.variable {
 	color: yellowgreen;
 }
 
 .token.atrule,
 .token.attr-value,
-.token.keyword {
+.token.keyword,
+.token.function,
+.token.macro {
 	color: deeppink;
 }
 
-
 .token.regex,
-.token.important {
+.token.important,
+.token.exception {
 	color: orange;
 }
 
-.token.important {
+.token.important,
+.token.function {
 	font-weight: bold;
 }
 
