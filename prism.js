@@ -13,7 +13,11 @@
 (function(){
 
 // Private helper vars
-var lang = /\blang(?:uage)?-(?!\*)(\w+)\b/i;
+var lang = /\blang(?:uage)?-(?!\*)(\w+)\b/i,
+	isNode = typeof module !== 'undefined' && module.exports,
+	isBrowser = !!(typeof window !== 'undefined' && navigator && document),
+	isWebWorker = !isBrowser && typeof importScripts !== 'undefined',
+	supportsWebWorker = isBrowser && !!window.Worker;
 
 var _ = self.Prism = {
 	languages: {
