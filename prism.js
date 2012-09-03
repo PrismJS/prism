@@ -112,7 +112,7 @@ var Prism = this.Prism = {
 		
 		Prism.hooks.run('before-highlight', env);
 		
-		if (async && self.Worker) {
+		if (async && supportsWebWorker) {
 			var worker = new Worker(Prism.filename);    
 			
 			worker.onmessage = function(evt) {
