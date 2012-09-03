@@ -1,0 +1,22 @@
+{
+  "name": "prism",
+  "version": "0.0.1",
+  "description": "Prism is a lightweight, extensible syntax highlighter",
+  "main": "prism.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/LeaVerou/prism.git"
+  },
+  "keywords": [
+    "syntax",
+    "code",
+    "content",
+    "format",
+    "highlighter"
+  ],
+  "author": "Lea Verou",
+  "license": "MIT"
+}
