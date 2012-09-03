@@ -288,7 +288,7 @@ Token.stringify = function(o) {
 	
 };
 
-if (!self.document) {
+if (isWebWorker) {
 	// In worker
 	self.addEventListener('message', function(evt) {
 		var message = JSON.parse(evt.data),
@@ -300,19 +300,21 @@ if (!self.document) {
 	}, false);
 	
 	return;
-}
+} else if (isBrowser) {
+	// Get current script and highlight
+	var script = document.getElementsByTagName('script');
 
-// Get current script and highlight
-var script = document.getElementsByTagName('script');
+	script = script[script.length - 1];
 
-script = script[script.length - 1];
-
-if (script) {
-	
-	if (document.addEventListener && !script.hasAttribute('data-manual')) {
+	if (script) {
 		Prism.filename = script.src;
+		
+		if (document.addEventListener && !script.hasAttribute('data-manual')) {
 			document.addEventListener('DOMContentLoaded', Prism.highlightAll);
+		}
 	}
+} else if (isNode) {
+	module.exports = Prism;
 }
 
 })();
