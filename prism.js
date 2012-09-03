@@ -19,7 +19,7 @@ var lang = /\blang(?:uage)?-(?!\*)(\w+)\b/i,
 	isWebWorker = !isBrowser && typeof importScripts !== 'undefined',
 	supportsWebWorker = isBrowser && !!window.Worker;
 
-var _ = self.Prism = {
+var _ = this.Prism = {
 	languages: {
 		insertBefore: function (inside, before, insert, root) {
 			root = root || _.languages;
