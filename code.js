@@ -56,6 +56,14 @@ $$('[data-src]').forEach(function(element) {
 		callback: function(xhr) {
 			try {
 				element[contentProperty] = xhr.responseText;
+				
+				// Run JS
+				
+				$$('script', element).forEach(function (script) {
+					var after = script.nextSibling, parent = script.parentNode;
+					parent.removeChild(script);
+					document.head.appendChild(script);
+				});
 			
 				$u.event.fire(element, 'contentreceived', {
 					src: src
