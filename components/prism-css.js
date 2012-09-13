@@ -1,6 +1,6 @@
 Prism.languages.css = {
 	'comment': /\/\*[\w\W]*?\*\//g,
-	'atrule': /@[\w-]+?(\s+.+)?(?=\s*{|\s*;)/gi,
+	'atrule': /@[\w-]+?(\s+[^;{]+)?(?=\s*{|\s*;)/gi,
 	'url': /url\((["']?).*?\1\)/gi,
 	'selector': /[^\{\}\s][^\{\}]*(?=\s*\{)/g,
 	'property': /(\b|\B)[a-z-]+(?=\s*:)/ig,

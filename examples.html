@@ -203,6 +203,98 @@ var comment = /\/\*[\w\W]*?\*\//g;</code></pre>
 	<pre><code>var foo = /a/, bar = 3/4;</code></pre>
 </section>
 
+<section class="language-java">
+	<h1>Java</h1>
+	
+	<h2>Java Language Keywords</h2>
+	<pre><code>
+abstract continue for        new       switch
+assert   default  goto       package   synchronized
+boolean  do       if         private   this
+break    double   implements protected throw
+byte     else     import     public    throws
+case     enum     instanceof return    transient
+catch    extends  int        short     try
+char     final    interface  static    void
+class    finally  long       strictfp  volatile
+const    float    native     super     while
+
+	</code></pre>
+	
+	<h2>Operators</h2>
+	<pre><code>// postfix
+expr++ expr--
+// unary
+++expr --expr +expr -expr ~ !
+// multiplicative
+* / %
+// additive
++ -
+// shift
+<< >> >>>
+// relational
+< > <= >= instanceof
+// equality
+== !=
+// bitwise AND
+&
+// bitwise exclusive OR
+^
+// bitwise inclusive OR
+|
+// logical AND
+&&
+// logical OR
+||
+// ternary
+? :
+// assignment
+= += -= *= /= %= &= ^= |= <<= >>= >>>=
+	</code></pre>
+	
+	<h2>Simple class example</h2>
+	
+	<pre><code>package com.prismjs;
+
+import java.io.*;
+
+@SuppressWarnings("unchecked")
+public class PrismJS {
+
+	public static Integer test = 0;
+
+	/**
+	 * Javadoc style comment
+	 * 
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// Let's create some variables
+		int numArgs = args.length;
+		Integer a = 0x1;
+		String test = "" + "Hello" + " \"World\"!";
+		double dvalue = 1.23;
+		int optest = 0;
+		optest += 321 - 45 * 1247 / 425 % 123;
+		
+		/*
+		 * Multiline comment
+		 */
+		for (int i = 0; i < numArgs; i++) {
+			// Simple line comment
+			System.out.println("Arg value= " + args[i]);
+		}
+
+		do {
+			System.out.println("Do while ok!");
+		} while (false);
+	}
+}
+
+	</code></pre>
+	<p>As you can notice String keyword is not highlighted because it's not a Java language keyword (cf. <a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html">Java Language Keywords</a>). The main reason is that String is not a primitive type such as <em>int</em> but a class type like <em>Integer</em>.</p>
+</section>
+
 <section id="failures" class="language-javascript">
 	<h1>Known failures (JavaScript)</h1>
 	<p>There are certain edge cases where Prism will fail.
