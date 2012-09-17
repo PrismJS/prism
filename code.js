@@ -28,7 +28,7 @@ var components = {
 		'css': 'CSS',
 		'javascript': 'JavaScript',
 		'java' : 'Java',
-		'python' : 'Python',
+		'python' : 'Python'
 	},
 	plugins: {
 		meta: {
