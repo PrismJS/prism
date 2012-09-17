@@ -28,6 +28,7 @@ var components = {
 		'css': 'CSS',
 		'javascript': 'JavaScript',
 		'java' : 'Java',
+		'python' : 'Python',
 	},
 	plugins: {
 		meta: {
