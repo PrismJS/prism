@@ -1,15 +1,15 @@
 (function(){
 
-if (!window.Prism) {
+if (typeof Prism === 'undefined') {
 	return;
 }
 
 var url = /\b([a-z]{3,7}:\/\/|tel:)[\w-+%~/.]+/,
-    email = /\b\S+@[\w.]+[a-z]{2}/,
-    linkMd = /\[([^\]]+)]\(([^)]+)\)/,
-    
+	email = /\b\S+@[\w.]+[a-z]{2}/,
+	linkMd = /\[([^\]]+)]\(([^)]+)\)/,
+
 	// Tokens that may contain URLs and emails
-    candidates = ['comment', 'url', 'attr-value', 'string'];
+	candidates = ['comment', 'url', 'attr-value', 'string'];
 
 for (var language in Prism.languages) {
 	var tokens = Prism.languages[language];

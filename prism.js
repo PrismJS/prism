@@ -13,12 +13,16 @@
 (function(){
 
 // Private helper vars
-var lang = /\blang(?:uage)?-(?!\*)(\w+)\b/i;
+var lang = /\blang(?:uage)?-(?!\*)(\w+)\b/i,
+	isNode = typeof module !== 'undefined' && module.exports,
+	isBrowser = !!(typeof window !== 'undefined' && navigator && document),
+	isWebWorker = !isBrowser && typeof importScripts !== 'undefined',
+	supportsWebWorker = isBrowser && !!window.Worker;
 
-var _ = self.Prism = {
+var Prism = this.Prism = {
 	languages: {
 		insertBefore: function (inside, before, insert, root) {
-			root = root || _.languages;
+			root = root || Prism.languages;
 			var grammar = root[inside];
 			var ret = {};
 				
@@ -48,7 +52,7 @@ var _ = self.Prism = {
 				callback.call(o, i, o[i]);
 				
 				if (Object.prototype.toString.call(o) === '[object Object]') {
-					_.languages.DFS(o[i], callback);
+					Prism.languages.DFS(o[i], callback);
 				}
 			}
 		}
@@ -58,7 +62,7 @@ var _ = self.Prism = {
 		var elements = document.querySelectorAll('code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code');
 
 		for (var i=0, element; element = elements[i++];) {
-			_.highlightElement(element, async === true, callback);
+			Prism.highlightElement(element, async === true, callback);
 		}
 	},
 		
@@ -72,7 +76,7 @@ var _ = self.Prism = {
 		
 		if (parent) {
 			language = (parent.className.match(lang) || [,''])[1];
-			grammar = _.languages[language];
+			grammar = Prism.languages[language];
 		}
 
 		if (!grammar) {
@@ -106,10 +110,10 @@ var _ = self.Prism = {
 			code: code
 		};
 		
-		_.hooks.run('before-highlight', env);
+		Prism.hooks.run('before-highlight', env);
 		
-		if (async && self.Worker) {
-			var worker = new Worker(_.filename);	
+		if (async && supportsWebWorker) {
+			var worker = new Worker(Prism.filename);    
 			
 			worker.onmessage = function(evt) {
 				env.highlightedCode = Token.stringify(JSON.parse(evt.data));
@@ -117,7 +121,7 @@ var _ = self.Prism = {
 				
 				callback && callback.call(env.element);
 				//console.timeEnd(code.slice(0,50));
-				_.hooks.run('after-highlight', env);
+				Prism.hooks.run('after-highlight', env);
 			};
 			
 			worker.postMessage(JSON.stringify({
@@ -126,22 +130,22 @@ var _ = self.Prism = {
 			}));
 		}
 		else {
-			env.highlightedCode = _.highlight(env.code, env.grammar)
+			env.highlightedCode = Prism.highlight(env.code, env.grammar)
 			env.element.innerHTML = env.highlightedCode;
 			
 			callback && callback.call(element);
 			
-			_.hooks.run('after-highlight', env);
+			Prism.hooks.run('after-highlight', env);
 			//console.timeEnd(code.slice(0,50));
 		}
 	},
 	
 	highlight: function (text, grammar) {
-		return Token.stringify(_.tokenize(text, grammar));
+		return Token.stringify(Prism.tokenize(text, grammar));
 	},
 	
 	tokenize: function(text, grammar) {
-		var Token = _.Token;
+		var Token = Prism.Token;
 		
 		var strarr = [text];
 		
@@ -201,7 +205,7 @@ var _ = self.Prism = {
 						args.push(before);
 					}
 					
-					var wrapped = new Token(token, inside? _.tokenize(match, inside) : match);
+					var wrapped = new Token(token, inside? Prism.tokenize(match, inside) : match);
 					
 					args.push(wrapped);
 					
@@ -221,7 +225,7 @@ var _ = self.Prism = {
 		all: {},
 		
 		add: function (name, callback) {
-			var hooks = _.hooks.all;
+			var hooks = Prism.hooks.all;
 			
 			hooks[name] = hooks[name] || [];
 			
@@ -229,7 +233,7 @@ var _ = self.Prism = {
 		},
 		
 		run: function (name, env) {
-			var callbacks = _.hooks.all[name];
+			var callbacks = Prism.hooks.all[name];
 			
 			if (!callbacks || !callbacks.length) {
 				return;
@@ -242,7 +246,7 @@ var _ = self.Prism = {
 	}
 };
 
-var Token = _.Token = function(type, content) {
+var Token = Prism.Token = function(type, content) {
 	this.type = type;
 	this.content = content;
 };
@@ -272,7 +276,7 @@ Token.stringify = function(o) {
 		env.attributes['spellcheck'] = 'true';
 	}
 	
-	_.hooks.run('wrap', env);
+	Prism.hooks.run('wrap', env);
 	
 	var attributes = '';
 	
@@ -284,31 +288,33 @@ Token.stringify = function(o) {
 	
 };
 
-if (!self.document) {
+if (isWebWorker) {
 	// In worker
 	self.addEventListener('message', function(evt) {
 		var message = JSON.parse(evt.data),
 		    lang = message.language,
 		    code = message.code;
 		
-		self.postMessage(JSON.stringify(_.tokenize(code, _.languages[lang])));
+		self.postMessage(JSON.stringify(Prism.tokenize(code, Prism.languages[lang])));
 		self.close();
 	}, false);
 	
 	return;
-}
+} else if (isBrowser) {
+	// Get current script and highlight
+	var script = document.getElementsByTagName('script');
 
-// Get current script and highlight
-var script = document.getElementsByTagName('script');
+	script = script[script.length - 1];
 
-script = script[script.length - 1];
-
-if (script) {
-	_.filename = script.src;
-	
-	if (document.addEventListener && !script.hasAttribute('data-manual')) {
-		document.addEventListener('DOMContentLoaded', _.highlightAll);
+	if (script) {
+		Prism.filename = script.src;
+		
+		if (document.addEventListener && !script.hasAttribute('data-manual')) {
+			document.addEventListener('DOMContentLoaded', Prism.highlightAll);
+		}
 	}
+} else if (isNode) {
+	module.exports = Prism;
 }
 
 })();
