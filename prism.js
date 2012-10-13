@@ -13,7 +13,8 @@
 (function(){
 
 // Private helper vars
-var lang = /\blang(?:uage)?-(?!\*)(\w+)\b/i;
+var lang = /\blang(?:uage)?-(?!\*)(\w+)\b/i,
+	self = (typeof window !== 'undefined') ? window.self : global;
 
 var _ = self.Prism = {
 	languages: {
@@ -283,6 +284,11 @@ Token.stringify = function(o) {
 	return '<' + env.tag + ' class="' + env.classes.join(' ') + '" ' + attributes + '>' + env.content + '</' + env.tag + '>';
 	
 };
+
+if (typeof module !== 'undefined' && module.exports) {
+	module.exports = _;
+	return;
+}
 
 if (!self.document) {
 	// In worker
