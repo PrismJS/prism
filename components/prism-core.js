@@ -7,7 +7,8 @@
 (function(){
 
 // Private helper vars
-var lang = /\blang(?:uage)?-(?!\*)(\w+)\b/i;
+var lang = /\blang(?:uage)?-(?!\*)(\w+)\b/i,
+	self = (typeof window !== 'undefined') ? window.self : global;
 
 var _ = self.Prism = {
 	languages: {
@@ -278,7 +279,20 @@ Token.stringify = function(o) {
 	
 };
 
-if (!self.document) {
+if (self.document) {
+	// Get current script and highlight
+	var script = document.getElementsByTagName('script');
+
+	script = script[script.length - 1];
+
+	if (script) {
+		_.filename = script.src;
+
+		if (document.addEventListener && !script.hasAttribute('data-manual')) {
+			document.addEventListener('DOMContentLoaded', _.highlightAll);
+		}
+	}
+} else if (self.importScripts) {
 	// In worker
 	self.addEventListener('message', function(evt) {
 		var message = JSON.parse(evt.data),
@@ -288,21 +302,8 @@ if (!self.document) {
 		self.postMessage(JSON.stringify(_.tokenize(code, _.languages[lang])));
 		self.close();
 	}, false);
-	
-	return;
-}
-
-// Get current script and highlight
-var script = document.getElementsByTagName('script');
-
-script = script[script.length - 1];
-
-if (script) {
-	_.filename = script.src;
-	
-	if (document.addEventListener && !script.hasAttribute('data-manual')) {
-		document.addEventListener('DOMContentLoaded', _.highlightAll);
-	}
+} else if (typeof module !== 'undefined' && module.exports) {
+	module.exports = _;
 }
 
 })();
