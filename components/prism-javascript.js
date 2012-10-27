@@ -23,7 +23,7 @@ if (Prism.languages.markup) {
 			inside: [
 				[ 'tag', {
 					pattern: /(&lt;|<)script[\w\W]*?(>|&gt;)|(&lt;|<)\/script(>|&gt;)/ig,
-					inside: Prism.languages.markup.tag.inside
+					inside: Prism.languages.getRule('markup', 'tag').inside
 				} ],
 			].concat(Prism.languages.javascript)
 		} ]

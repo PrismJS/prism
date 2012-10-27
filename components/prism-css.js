@@ -17,7 +17,7 @@ if (Prism.languages.markup) {
 			inside: [
 				[ 'tag', {
 					pattern: /(&lt;|<)style[\w\W]*?(>|&gt;)|(&lt;|<)\/style(>|&gt;)/ig,
-					inside: Prism.languages.markup.tag.inside
+					inside: Prism.languages.getRule('markup', 'tag').inside
 				} ]
 			].concat(Prism.languages.css)
 		} ]

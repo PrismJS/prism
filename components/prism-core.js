@@ -11,30 +11,28 @@ var lang = /\blang(?:uage)?-(?!\*)(\w+)\b/i;
 
 var _ = self.Prism = {
 	languages: {
+
 		insertBefore: function (inside, before, insert, root) {
 			root = root || _.languages;
 			var grammar = root[inside];
-			var ret = {};
-				
-			for (var token in grammar) {
-			
-				if (grammar.hasOwnProperty(token)) {
-					
-					if (token == before) {
-					
-						for (var newToken in insert) {
-						
-							if (insert.hasOwnProperty(newToken)) {
-								ret[newToken] = insert[newToken];
-							}
-						}
-					}
-					
-					ret[token] = grammar[token];
+
+			for (var i=0, len=grammar.length; i<len; i++) {
+				if (grammar[i][0] === before) {
+					root[inside].splice(i, 0, insert);
+					break;
 				}
 			}
-			
-			return root[inside] = ret;
+			return root[inside];
+		},
+
+		getRule: function (inside, name, root) {
+			root = root || _.languages;
+			var grammar = root[inside];
+			for (var i=0, len=grammar.length, pattern; i<len; i++) {
+				if (grammar[i][0] === name) {
+					return grammar[i][1];
+				}
+			}
 		},
 		
 		DFS: function(o, callback) {
@@ -139,30 +137,19 @@ var _ = self.Prism = {
 		
 		var strarr = [text];
 		
-		var rest = grammar.rest;
-		
-		if (rest) {
-			for (var token in rest) {
-				grammar[token] = rest[token];
+		tokenloop: for (var i=0, len=grammar.length; i<len; i++) {
+			if (!grammar[i]) {
+					continue;
 			}
-			
-			delete grammar.rest;
-		}
-								
-		tokenloop: for (var token in grammar) {
-			if(!grammar.hasOwnProperty(token) || !grammar[token]) {
-				continue;
-			}
-			
-			var pattern = grammar[token], 
+			var token = grammar[i][0],
+				pattern = grammar[i][1],
 				inside = pattern.inside,
 				lookbehind = !!pattern.lookbehind || 0;
 			
 			pattern = pattern.pattern || pattern;
 			
-			for (var i=0; i<strarr.length; i++) { // Don’t cache length as it changes during the loop
-				
-				var str = strarr[i];
+			for (var j=0; j<strarr.length; j++) { // Don’t cache length as it changes during the loop
+				var str = strarr[j];
 				
 				if (strarr.length > text.length) {
 					// Something went terribly wrong, ABORT, ABORT!
@@ -189,7 +176,7 @@ var _ = self.Prism = {
 						before = str.slice(0, from + 1),
 						after = str.slice(to + 1); 
 
-					var args = [i, 1];
+					var args = [j, 1];
 					
 					if (before) {
 						args.push(before);
