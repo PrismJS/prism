@@ -295,6 +295,91 @@ public class PrismJS {
 	<p>As you can notice String keyword is not highlighted because it's not a Java language keyword (cf. <a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html">Java Language Keywords</a>). The main reason is that String is not a primitive type such as <em>int</em> but a class type like <em>Integer</em>.</p>
 </section>
 
+<section class="language-sass">
+	<h1>Sass (&amp; Scss)</h2>
+
+	<h2>Comments</h2>
+	<pre><code>// This is a simple one line comment</code></pre>
+
+	<h2>Variables</h2>
+	<pre><code>$var: value;
+$bool: true;
+$nullValue: null;
+	</code></pre>
+
+	<h2>Directives</h2>
+	<pre><code>@import "compass";
+
+.class {
+	@extend %placeholder;
+}
+
+@debug $var;
+
+@warn "This is a Warning in the console";</code></pre>
+
+	<h2>Keywords</h2>
+	<pre><code>&.parentSelector {}
+
+@mixin super-mixin() {
+	@include great-mixin();
+}
+
+@function fn() {
+	@return value;
+}
+	</code></pre>
+
+	<h2>URLs Functions (Compass Style)</h2>
+	<pre><code>selector {
+	background: image-url('stuff.png');
+}
+
+@font-face {
+	src: font-url('font.woff');
+}
+	</code></pre>
+
+	<h2>Statements</h2>
+	<pre><code>$var: value !default;
+
+selector {
+	@extend %stuff !optional;
+}
+	</code></pre>
+
+	<h2>Controls</h2>
+	<pre><code>@if(true) {
+	// ...
+}
+@else if {
+	// ...
+}
+@else {
+	// ...
+}
+
+@for $i from 1 through 3 { {
+	// ...
+}
+
+@each $animal in puma, sea-slug, egret, salamander {
+	// ...
+}
+
+$i: 2;
+@while $i > 0 {
+  //...
+  $i: $i - 1;
+}
+</code></pre>
+
+	<p>
+		This Sass/Scss syntax can be used just for CSS. It add some stuffs directly related to CSS like highlight of some functions (like gradients, cube-bezier), keywords & more (unit, operator, selector, hexa color, angle, time, font family).
+		Highlight renders better with an appropriate theme (to customize specific classes).
+	</p>
+</section>
+
 <section id="failures" class="language-javascript">
 	<h1>Known failures (JavaScript)</h1>
 	<p>There are certain edge cases where Prism will fail.
