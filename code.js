@@ -28,6 +28,7 @@ var components = {
 		'css': 'CSS',
 		'javascript': 'JavaScript',
 		'java' : 'Java',
+		'sass' : 'Sass (and Scss)',
 	},
 	plugins: {
 		meta: {
