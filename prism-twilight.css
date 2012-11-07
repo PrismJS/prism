@@ -1,0 +1,152 @@
+/**
+ * prism.js Twilight theme
+ * Based (more or less) on the Twilight theme originally of Textmate fame.
+ * @author Remy Bach
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+	color: white;
+	direction: ltr;
+	font-family: Consolas, Monaco, 'Andale Mono', monospace;
+	text-align: left;
+	text-shadow: 0 -.1em .2em black;
+	white-space: pre;
+	word-spacing: normal;
+	
+	-moz-tab-size: 4;
+	-o-tab-size: 4;
+	tab-size: 4;
+	
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+pre[class*="language-"],
+:not(pre) > code[class*="language-"] {
+	background:hsl(0,0%,22%);
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+	border-radius: .5em;
+	border: .3em solid hsl(0,0%,33%);
+	box-shadow: 1px 1px .5em black inset;
+	margin: .5em 0;
+	overflow: auto;	
+	padding: 1em;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+	border-radius: .3em;
+	border: .13em solid hsl(0,0%,33%);
+	box-shadow: 1px 1px .3em -.1em black inset;
+	padding: .15em .2em .05em;
+}
+
+.token.comment,
+.token.prolog,
+.token.doctype,
+.token.cdata {
+	color: hsl(0,0%,47%);
+}
+
+.token.punctuation {
+	opacity: .7;
+}
+
+.namespace {
+	opacity: .7;
+}
+
+.token.tag,
+.token.boolean,
+.token.number {
+	color: hsl(15, 60%, 61%);
+}
+
+.token.keyword,
+.token.property,
+.token.selector {
+	color:hsl(53, 89%, 79%);
+}
+.token.attr-name,
+.token.string,
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+	color:hsl(76, 21%, 52%);
+}
+
+.token.atrule,
+.token.attr-value {
+	color: hsl(32, 33%, 50%);
+}
+
+
+.token.regex,
+.token.important {
+	color: hsl(42, 75%, 65%);
+}
+
+.token.important {
+	font-weight: bold;
+}
+
+.token.entity {
+	cursor: help;
+}
+pre[data-line] {
+	padding: 1em 0 1em 3em;
+	position: relative;
+}
+
+/* Make the tokens sit above the line highlight so the colours don't look faded. */
+.token {
+	position:relative;
+	z-index:1;
+}
+.line-highlight {
+	background: -moz-linear-gradient(left, hsl(0, 0%, 33%,.1) 70%, hsl(0, 0%, 33%,0));
+	background: -o-linear-gradient(left, hsl(0, 0%, 33%,.1) 70%, hsl(0, 0%, 33%,0));
+	background: -webkit-linear-gradient(left, hsl(0, 0%, 33%,.1) 70%, hsl(0, 0%, 33%,0));
+	background: hsla(0, 0%, 33%, 0.25);
+	background: linear-gradient(left, hsl(0, 0%, 33%,.1) 70%, hsl(0, 0%, 33%,0));
+	border-bottom:1px dashed hsl(0, 0%, 33%);
+	border-top:1px dashed hsl(0, 0%, 33%);
+	left: 0;
+	line-height: inherit;
+	margin-top: 0.75em; /* Same as .prism’s padding-top */
+	padding: inherit 0;
+	pointer-events: none;
+	position: absolute;
+	right: 0;
+	white-space: pre;
+	z-index:0;
+}
+.line-highlight:before,
+.line-highlight[data-end]:after {
+	background-color: hsl(215, 15%, 59%);
+	border-radius: 999px;
+	box-shadow: 0 1px white;
+	color: hsl(24, 20%, 95%);
+	content: attr(data-start);
+	font: bold 65%/1.5 sans-serif;
+	left: .6em;
+	min-width: 1em;
+	padding: 0 .5em;
+	position: absolute;
+	text-align: center;
+	text-shadow: none;
+	top: .4em;
+	vertical-align: .3em;
+}
+.line-highlight[data-end]:after {
+	bottom: .4em;
+	content: attr(data-end);
+	top: auto;
+}
