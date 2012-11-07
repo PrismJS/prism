@@ -105,6 +105,16 @@ pre[data-line] {
 	position: relative;
 }
 
+/* Markup */
+.language-markup .token.tag,
+.language-markup .token.attr-name,
+.language-markup .token.punctuation  {
+	color: hsl(38, 50%, 61%);
+}
+.language-markup .token.attr-value {
+	color: hsl(76, 21%, 52%);
+}
+
 /* Make the tokens sit above the line highlight so the colours don't look faded. */
 .token {
 	position:relative;
