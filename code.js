@@ -21,12 +21,20 @@ var components = {
 	},
 	languages: {
 		meta: {
-			path: 'components/prism-{id}',
+			path: 'components/prism-{id}'
+		},
+		'markup': {
+			title: 'Markup',
 			option: 'default'
 		},
-		'markup': 'Markup',
-		'css': 'CSS',
-		'javascript': 'JavaScript',
+		'css': {
+			title: 'CSS',
+			option: 'default'
+		},
+		'javascript': {
+			title: 'JavaScript',
+			option: 'default'
+		},
 		'java' : 'Java',
 	},
 	plugins: {

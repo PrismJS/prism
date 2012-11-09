@@ -236,7 +236,7 @@ function generateCode(){
 					if (cache[path]) {
 						var type = path.match(/\.(\w+)$/)[1];
 						
-						code[type] += cache[path].contents + '\n';
+						code[type] += cache[path].contents + (type === 'js'? ';' : '') + '\n';
 					}
 				});
 			}
