@@ -31,11 +31,19 @@ var components = {
 			title: 'CSS',
 			option: 'default'
 		},
-		'javascript': {
-			title: 'JavaScript',
+		'clike': {
+			title: 'C-like',
 			option: 'default'
 		},
-		'java' : 'Java',
+		'javascript': {
+			title: 'JavaScript',
+			option: 'default',
+			require: 'clike'
+		},
+		'java' : {
+			title: 'Java',
+			require: 'clike'
+		}
 	},
 	plugins: {
 		meta: {
