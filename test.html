@@ -86,7 +86,7 @@ for (var id in languages) {
 		continue;
 	}
 	
-	var name = languages[id];
+	var name = languages[id].title || languages[id];
 	
 	$u.element.create('label', {
 		contents: [
