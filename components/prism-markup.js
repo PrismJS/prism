@@ -4,7 +4,7 @@ Prism.languages.markup = {
 	'doctype': /&lt;!DOCTYPE.+?&gt;/,
 	'cdata': /&lt;!\[CDATA\[[\w\W]+?]]&gt;/i,
 	'tag': {
-		pattern: /&lt;\/?[\w:-]+\s*(?:\s+[\w:-]+(?:=(?:("|')(\\?[\w\W])*?\1|\w+))?\s*)*&gt;/gi,
+		pattern: /&lt;\/?[\w:-]+\s*(?:\s+[\w:-]+(?:=(?:("|')(\\?[\w\W])*?\1|\w+))?\s*)*\/?&gt;/gi,
 		inside: {
 			'tag': {
 				pattern: /^&lt;\/?[\w:-]+/i,
