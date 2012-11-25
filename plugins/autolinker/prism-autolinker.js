@@ -1,6 +1,6 @@
 (function(){
 
-if (!window.Prism) {
+if (!self.Prism) {
 	return;
 }
 
