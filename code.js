@@ -21,14 +21,29 @@ var components = {
 	},
 	languages: {
 		meta: {
-			path: 'components/prism-{id}',
+			path: 'components/prism-{id}'
+		},
+		'markup': {
+			title: 'Markup',
 			option: 'default'
 		},
-		'markup': 'Markup',
-		'css': 'CSS',
-		'javascript': 'JavaScript',
-		'java' : 'Java',
-		'sass' : 'Sass (and Scss)',
+		'css': {
+			title: 'CSS',
+			option: 'default'
+		},
+		'clike': {
+			title: 'C-like',
+			option: 'default'
+		},
+		'javascript': {
+			title: 'JavaScript',
+			option: 'default',
+			require: 'clike'
+		},
+		'java' : {
+			title: 'Java',
+			require: 'clike'
+		}
 	},
 	plugins: {
 		meta: {
@@ -58,6 +73,14 @@ $$('[data-src]').forEach(function(element) {
 		callback: function(xhr) {
 			try {
 				element[contentProperty] = xhr.responseText;
+				
+				// Run JS
+				
+				$$('script', element).forEach(function (script) {
+					var after = script.nextSibling, parent = script.parentNode;
+					parent.removeChild(script);
+					document.head.appendChild(script);
+				});
 			
 				$u.event.fire(element, 'contentreceived', {
 					src: src

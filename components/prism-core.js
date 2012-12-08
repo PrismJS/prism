@@ -10,7 +10,47 @@
 var lang = /\blang(?:uage)?-(?!\*)(\w+)\b/i;
 
 var _ = self.Prism = {
+	util: {
+		type: function (o) { 
+			return Object.prototype.toString.call(o).match(/\[object (\w+)\]/)[1];
+		},
+		
+		// Deep clone a language definition (e.g. to extend it)
+		clone: function (o) {
+			var type = _.util.type(o);
+
+			switch (type) {
+				case 'Object':
+					var clone = {};
+					
+					for (var key in o) {
+						if (o.hasOwnProperty(key)) {
+							clone[key] = _.util.clone(o[key]);
+						}
+					}
+					
+					return clone;
+					
+				case 'Array':
+					return o.slice();
+			}
+			
+			return o;
+		}
+	},
+	
 	languages: {
+		extend: function (id, redef) {
+			var lang = _.util.clone(_.languages[id]);
+			
+			for (var key in redef) {
+				lang[key] = redef[key];
+			}
+			
+			return lang;
+		},
+		
+		// Insert a token before another token in a language literal
 		insertBefore: function (inside, before, insert, root) {
 			root = root || _.languages;
 			var grammar = root[inside];
@@ -37,11 +77,12 @@ var _ = self.Prism = {
 			return root[inside] = ret;
 		},
 		
+		// Traverse a language definition with Depth First Search
 		DFS: function(o, callback) {
 			for (var i in o) {
 				callback.call(o, i, o[i]);
 				
-				if (Object.prototype.toString.call(o) === '[object Object]') {
+				if (_.util.type(o) === 'Object') {
 					_.languages.DFS(o[i], callback);
 				}
 			}
@@ -83,7 +124,7 @@ var _ = self.Prism = {
 			parent.className = parent.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language; 
 		}
 
-		var code = element.textContent.trim();
+		var code = element.textContent;
 		
 		if(!code) {
 			return;

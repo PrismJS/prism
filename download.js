@@ -9,6 +9,8 @@ var cache = {};
 var form = $('form');
 var minified = true;
 
+var dependencies = {};
+
 for (var category in components) {
 	var all = components[category];
 	
@@ -40,6 +42,7 @@ for (var category in components) {
 			title: all[id].title || all[id],
 			hasCSS: all[id].hasCSS !== undefined? all[id].hasCSS : all.meta.hasCSS,
 			enabled: checked,
+			require: all[id].require,
 			files: {
 				minified: {
 					paths: [],
@@ -51,6 +54,10 @@ for (var category in components) {
 				}
 			}
 		};
+		
+		if (info.require) {
+			dependencies[info.require] = (dependencies[info.require] || []).concat(id);
+		}
 		
 		if (!/\.css$/.test(filepath)) {
 			info.files.minified.paths.push(filepath.replace(/(\.js)?$/, '.min.js'));
@@ -82,6 +89,22 @@ for (var category in components) {
 								$$('input[name="' + this.name + '"]').forEach(function(input) {
 									all[input.value].enabled = input.checked;
 								});
+
+								if (all[id].require && this.checked) {
+									var input = $('label[data-id="' + all[id].require + '"] > input');
+									input.checked = true;
+									
+									input.onclick();
+								}
+
+								if (dependencies[id] && !this.checked) { // It’s required by others
+									dependencies[id].forEach(function(dependent) {
+										var input = $('label[data-id="' + dependent + '"] > input');
+										input.checked = false;
+
+										input.onclick();
+									});
+								}
 								
 								update(category, id);
 							};
@@ -236,7 +259,7 @@ function generateCode(){
 					if (cache[path]) {
 						var type = path.match(/\.(\w+)$/)[1];
 						
-						code[type] += cache[path].contents + '\n';
+						code[type] += cache[path].contents + (type === 'js'? ';' : '') + '\n';
 					}
 				});
 			}

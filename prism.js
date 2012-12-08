@@ -1,8 +1,8 @@
 
 
-/*********************************************** 
-     Begin prism-core.js 
-***********************************************/ 
+/* **********************************************
+     Begin prism-core.js
+********************************************** */
 
 /**
  * Prism: Lightweight, robust, elegant syntax highlighting
@@ -16,7 +16,47 @@
 var lang = /\blang(?:uage)?-(?!\*)(\w+)\b/i;
 
 var _ = self.Prism = {
+	util: {
+		type: function (o) { 
+			return Object.prototype.toString.call(o).match(/\[object (\w+)\]/)[1];
+		},
+		
+		// Deep clone a language definition (e.g. to extend it)
+		clone: function (o) {
+			var type = _.util.type(o);
+
+			switch (type) {
+				case 'Object':
+					var clone = {};
+					
+					for (var key in o) {
+						if (o.hasOwnProperty(key)) {
+							clone[key] = _.util.clone(o[key]);
+						}
+					}
+					
+					return clone;
+					
+				case 'Array':
+					return o.slice();
+			}
+			
+			return o;
+		}
+	},
+	
 	languages: {
+		extend: function (id, redef) {
+			var lang = _.util.clone(_.languages[id]);
+			
+			for (var key in redef) {
+				lang[key] = redef[key];
+			}
+			
+			return lang;
+		},
+		
+		// Insert a token before another token in a language literal
 		insertBefore: function (inside, before, insert, root) {
 			root = root || _.languages;
 			var grammar = root[inside];
@@ -43,11 +83,12 @@ var _ = self.Prism = {
 			return root[inside] = ret;
 		},
 		
+		// Traverse a language definition with Depth First Search
 		DFS: function(o, callback) {
 			for (var i in o) {
 				callback.call(o, i, o[i]);
 				
-				if (Object.prototype.toString.call(o) === '[object Object]') {
+				if (_.util.type(o) === 'Object') {
 					_.languages.DFS(o[i], callback);
 				}
 			}
@@ -89,7 +130,7 @@ var _ = self.Prism = {
 			parent.className = parent.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language; 
 		}
 
-		var code = element.textContent.trim();
+		var code = element.textContent;
 		
 		if(!code) {
 			return;
@@ -313,9 +354,9 @@ if (script) {
 
 })();
 
-/*********************************************** 
-     Begin prism-markup.js 
-***********************************************/ 
+/* **********************************************
+     Begin prism-markup.js
+********************************************** */
 
 Prism.languages.markup = {
 	'comment': /&lt;!--[\w\W]*?--(&gt;|&gt;)/g,
@@ -323,7 +364,7 @@ Prism.languages.markup = {
 	'doctype': /&lt;!DOCTYPE.+?&gt;/,
 	'cdata': /&lt;!\[CDATA\[[\w\W]+?]]&gt;/i,
 	'tag': {
-		pattern: /&lt;\/?[\w:-]+\s*[\w\W]*?&gt;/gi,
+		pattern: /&lt;\/?[\w:-]+\s*(?:\s+[\w:-]+(?:=(?:("|')(\\?[\w\W])*?\1|\w+))?\s*)*\/?&gt;/gi,
 		inside: {
 			'tag': {
 				pattern: /^&lt;\/?[\w:-]+/i,
@@ -333,9 +374,9 @@ Prism.languages.markup = {
 				}
 			},
 			'attr-value': {
-				pattern: /=(('|")[\w\W]*?(\2)|[^\s>]+)/gi,
+				pattern: /=(?:('|")[\w\W]*?(\1)|[^\s>]+)/gi,
 				inside: {
-					'punctuation': /=/g
+					'punctuation': /=|&gt;|"/g
 				}
 			},
 			'punctuation': /\/?&gt;/g,
@@ -359,13 +400,13 @@ Prism.hooks.add('wrap', function(env) {
 	}
 });
 
-/*********************************************** 
-     Begin prism-css.js 
-***********************************************/ 
+/* **********************************************
+     Begin prism-css.js
+********************************************** */
 
 Prism.languages.css = {
 	'comment': /\/\*[\w\W]*?\*\//g,
-	'atrule': /@[\w-]+?(\s+.+)?(?=\s*{|\s*;)/gi,
+	'atrule': /@[\w-]+?(\s+[^;{]+)?(?=\s*{|\s*;)/gi,
 	'url': /url\((["']?).*?\1\)/gi,
 	'selector': /[^\{\}\s][^\{\}]*(?=\s*\{)/g,
 	'property': /(\b|\B)[a-z-]+(?=\s*:)/ig,
@@ -390,27 +431,39 @@ if (Prism.languages.markup) {
 	});
 }
 
-/*********************************************** 
-     Begin prism-javascript.js 
-***********************************************/ 
+/* **********************************************
+     Begin prism-clike.js
+********************************************** */
 
-Prism.languages.javascript = {
+Prism.languages.clike = {
 	'comment': {
 		pattern: /(^|[^\\])(\/\*[\w\W]*?\*\/|\/\/.*?(\r?\n|$))/g,
 		lookbehind: true
 	},
 	'string': /("|')(\\?.)*?\1/g,
-	'regex': {
-		pattern: /(^|[^/])\/(?!\/)(\[.+?]|\\.|[^/\r\n])+\/[gim]{0,3}(?=\s*($|[\r\n,.;})]))/g,
-		lookbehind: true
-	},
-	'keyword': /\b(var|let|if|else|while|do|for|return|in|instanceof|function|new|with|typeof|try|catch|finally|null|break|continue)\b/g,
+	'keyword': /\b(if|else|while|do|for|return|in|instanceof|function|new|try|catch|finally|null|break|continue)\b/g,
 	'boolean': /\b(true|false)\b/g,
-	'number': /\b(-?(Infinity|(0[xX][0-9a-fA-F]+)|(\d*\.?\d+([eE]\+?\d+)?))|NaN)\b/g,
-	'operator': /[-+]{1,2}|!|=?&lt;|=?&gt;|={1,2}|(&amp;){1,2}|\|?\||\?|\*|\/|%|~|\^|:/g,
+	'number': /\b-?(0x)?\d*\.?[\da-f]+\b/g,
+	'operator': /[-+]{1,2}|!|=?&lt;|=?&gt;|={1,2}|(&amp;){1,2}|\|?\||\?|\*|\//g,
 	'ignore': /&(lt|gt|amp);/gi,
 	'punctuation': /[{}[\];(),.:]/g
 };
+
+/* **********************************************
+     Begin prism-javascript.js
+********************************************** */
+
+Prism.languages.javascript = Prism.languages.extend('clike', {
+	'keyword': /\b(var|let|if|else|while|do|for|return|in|instanceof|function|new|with|typeof|try|catch|finally|null|break|continue)\b/g,
+	'number': /\b(-?(0x)?\d*\.?[\da-f]+|NaN|-?Infinity)\b/g,
+});
+
+Prism.languages.insertBefore('javascript', 'keyword', {
+	'regex': {
+		pattern: /(^|[^/])\/(?!\/)(\[.+?]|\\.|[^/\r\n])+\/[gim]{0,3}(?=\s*($|[\r\n,.;})]))/g,
+		lookbehind: true
+	}
+});
 
 if (Prism.languages.markup) {
 	Prism.languages.insertBefore('markup', 'tag', {
@@ -427,20 +480,15 @@ if (Prism.languages.markup) {
 	});
 }
 
-/*********************************************** 
-     Begin prism-java.js 
-***********************************************/ 
+/* **********************************************
+     Begin prism-java.js
+********************************************** */
 
-Prism.languages.java = {
-	'comment': {
-		pattern: /(^|[^\\])(\/\*[\w\W]*?\*\/|\/\/.*?(\r?\n|$))/g,
-		lookbehind: true
-	},
-	'string': /("|')(\\?.)*?\1/g,
+Prism.languages.java = Prism.languages.extend('clike', {
 	'keyword': /\b(abstract|continue|for|new|switch|assert|default|goto|package|synchronized|boolean|do|if|private|this|break|double|implements|protected|throw|byte|else|import|public|throws|case|enum|instanceof|return|transient|catch|extends|int|short|try|char|final|interface|static|void|class|finally|long|strictfp|volatile|const|float|native|super|while)\b/g,
-	'boolean': /\b(true|false)\b/g,
-	'number': /\b-?(0x)?\d*\.?\d+\b/g,
-	'operator': /[-+]{1,2}|!|=?&lt;|=?&gt;|={1,2}|(&amp;){1,2}|\|?\||\?|\*|\/|%|\^|(&lt;){2}|($gt;){2,3}|:|~/g,
-	'ignore': /&(lt|gt|amp);/gi,
-	'punctuation': /[{}[\];(),.:]/g,
-};
+	'number': /\b0b[01]+\b|\b0x[\da-f]*\.?[\da-fp\-]+\b|\b\d*\.?\d+[e]?[\d]*[df]\b|\W\d*\.?\d+\b/gi,
+	'operator': {
+		pattern: /([^\.]|^)([-+]{1,2}|!|=?&lt;|=?&gt;|={1,2}|(&amp;){1,2}|\|?\||\?|\*|\/|%|\^|(&lt;){2}|($gt;){2,3}|:|~)/g,
+		lookbehind: true
+	}
+});
