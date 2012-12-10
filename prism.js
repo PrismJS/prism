@@ -521,9 +521,12 @@ Prism.languages.insertBefore('scss', 'atrule', {
 	'keyword': /@(if|else if|else|for|each|while|import|extend|debug|warn|mixin|include|function|return)|(?=@for\s+\$[-_\w]+\s)+from/i
 });
 
+Prism.languages.insertBefore('scss', 'property', {
+	'variable': /\$[-_\w]+/i
+});
+
 Prism.languages.insertBefore('scss', 'ignore', {
 	'placeholder': /%[-_\w]+/i,
-	'variable': /\$[-_\w]+/i,
 	'statement': /\B!(default|optional)\b/gi,
 	'boolean': /\b(true|false)\b/g,
 	'null': /\b(null)\b/g,
