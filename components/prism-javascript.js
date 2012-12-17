@@ -1,6 +1,6 @@
 Prism.languages.javascript = Prism.languages.extend('clike', {
 	'keyword': /\b(var|let|if|else|while|do|for|return|in|instanceof|function|new|with|typeof|try|catch|finally|null|break|continue)\b/g,
-	'number': /\b(-?(0x)?\d*\.?[\da-f]+|NaN|-?Infinity)\b/g,
+	'number': /\b-?(0x[\dA-Fa-f]+|\d*\.?\d+([Ee]-?\d+)?|NaN|-?Infinity)\b/g
 });
 
 Prism.languages.insertBefore('javascript', 'keyword', {
