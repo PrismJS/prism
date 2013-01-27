@@ -288,11 +288,7 @@ Token.stringify = function(o) {
 	}
 	
 	if (Object.prototype.toString.call(o) == '[object Array]') {
-		for (var i=0; i<o.length; i++) {
-			o[i] = Token.stringify(o[i]);
-		}
-		
-		return o.join('');
+		return o.map(Token.stringify).join('');
 	}
 	
 	var env = {
