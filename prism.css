@@ -24,6 +24,13 @@ pre[class*="language-"] {
 	hyphens: none;
 }
 
+@media print {
+	code[class*="language-"],
+	pre[class*="language-"] {
+		text-shadow: none;
+	}
+}
+
 /* Code blocks */
 pre[class*="language-"] {
 	padding: 1em;
