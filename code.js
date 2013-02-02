@@ -49,7 +49,7 @@ var components = {
 			require: 'javascript'
 		}
 		'python': {
-			title: 'Python',
+			title: 'Python'
 		}
 	},
 	plugins: {
