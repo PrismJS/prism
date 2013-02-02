@@ -48,6 +48,9 @@ var components = {
 			title: 'CoffeeScript',
 			require: 'javascript'
 		}
+		'python': {
+			title: 'Python',
+		}
 	},
 	plugins: {
 		meta: {
