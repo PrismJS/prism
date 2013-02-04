@@ -303,6 +303,8 @@ public class PrismJS {
 	<p>As you can notice String keyword is not highlighted because it's not a Java language keyword (cf. <a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html">Java Language Keywords</a>). The main reason is that String is not a primitive type such as <em>int</em> but a class type like <em>Integer</em>.</p>
 </section>
 
+
+
 <section class="language-coffeescript">
 	<h1>Coffeescript</h1>
 
@@ -366,140 +368,6 @@ code = {
 	<pre><code>
 class CoffeeScript extends Prism.Javascript
 	</code></pre>
-</section>
-
-<section class="language-scss">
-	<h1>Sass (Scss)</h2>
-
-	<h2>Comments</h2>
-	<pre><code>// This is a simple one line comment</code></pre>
-
-	<h2>Variables</h2>
-	<pre><code>$var: value;
-$bool: true;
-$nullValue: null;
-$interpolation: -vendor-#{$var};</code></pre>
-
-	<h2>Nesting</h2>
-	<pre><code>sel {
-	ector {
-		#chi,
-		ld .ren { } inline {} * {}
-	}
-	
-	&.parentSelector {
-		nested & test #{$inter}pol {}
-	}
-}</code></pre>
-
-	<h2>Directives</h2>
-	<pre><code>@import "compass";
-
-.class {
-	@extend %placeholder;
-}
-
-@debug $var;
-
-@warn "This is a Warning in the console";</code></pre>
-
-	<h2>Keywords</h2>
-	<pre><code>@mixin super-mixin() {
-	@include great-mixin();
-}
-
-@function fn() {
-	@return value;
-}
-	</code></pre>
-
-	<h2>URLs Functions (Compass Style)</h2>
-	<pre><code>selector {
-	background: image-url('stuff.png');
-}
-
-@font-face {
-	src: font-url('font.woff');
-}</code></pre>
-
-	<h2>Statements</h2>
-	<pre><code>$var: value !default;
-
-selector {
-	@extend %stuff !optional;
-}</code></pre>
-
-	<h2>Controls</h2>
-	<pre><code>@if(true) {
-	// ...
-}
-@else if {
-	// ...
-}
-@else {
-	// ...
-}
-
-@for $i from 1 through 3 {
-	// ...
-}
-
-@each $animal in puma, sea-slug, egret, salamander {
-	// ...
-}
-
-$i: 2;
-@while $i > 0 {
-  //...
-  $i: $i - 1; // note the operator
-  $i: 3 * 2 + $i % 5;
-}</code></pre>
-
-	<h2>Scss full example</h2>
-	<pre><code>@import "compass";
-	
-@mixin mixin($param) {
-	@if($param==true) {
-		selector-#{$test}-stuff,
-		sel2 {
-			property: -moz-#{$param};
-			aze: rty;
-			
-			child {
-				test: $param * 3;
-				a: bcd;
-				color: #f45f55;
-			}
-		}
-	}
-	@else {
-		property: $param + #aaa;
-		test: stupid;
-	}
-}
-
-$i: 2;
-@while $i > 0 {
-	sel#{$i}: $i * 2
-}
-
-selector {
-	@media (min-width: 800px) {
-		stuff: $thing;
-	}
-}</code></pre>
-
-	<p>
-		This Scss syntax can be used just for CSS too since regular CSS is valid Scss too.
-		Highlight renders better with an appropriate theme (to customize specific tokens).
-	</p>
-	<h2>Known issues</h2>
-	<ul>
-		<li>&amp; keyword and interpolated variables are not highlighted in selectors.</li>
-		<li>Some control directives parameters are parsed as selectors.</li>
-		<li>Does not work very well with indented Sass syntax. That's why it's just called "scss".</li>
-	</ul>
-	<p>If you are good with regex, maybe you can help to improve this.</p>
 </section>
 
 <section id="failures" class="language-javascript">
