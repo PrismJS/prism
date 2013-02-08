@@ -47,9 +47,12 @@ var components = {
 		'coffeescript': {
 			title: 'CoffeeScript',
 			require: 'javascript'
-		}
+		},
 		'python': {
 			title: 'Python'
+		},
+		'sql': {
+			title: 'SQL'
 		}
 	},
 	plugins: {
