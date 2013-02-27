@@ -7,7 +7,6 @@
   },
   "version": "0.0.1",
   "main": "./prism.js",
-  "main": "module.js",
   "dependencies": { },
   "repository": {
     "type": "git",
