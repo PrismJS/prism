@@ -1,0 +1,17 @@
+{
+  "name": "prismjs",
+  "description": "Lightweight, robust, elegant syntax highlighting. A spin-off project from Dabblet.",
+  "author": {
+    "name": "Lea Verou",
+    "email": ""
+  },
+  "version": "0.0.1",
+  "main": "./prism.js",
+  "main": "module.js",
+  "dependencies": { },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/LeaVerou/prism.git"
+  },
+  "license": "MIT"
+}
