@@ -51,6 +51,10 @@ var components = {
 		'scss': {
 			title: 'Sass (Scss)',
 			require: 'css'
+		},
+		'bash' : {
+			title: 'Bash',
+			require: 'clike'
 		}
 	},
 	plugins: {
