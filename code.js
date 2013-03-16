@@ -55,6 +55,14 @@ var components = {
 		'bash' : {
 			title: 'Bash',
 			require: 'clike'
+		},
+		'c': {
+			title: 'C',
+			require: 'clike'
+		},
+		'cpp': {
+			title: 'C++',
+			require: 'c'
 		}
 	},
 	plugins: {
