@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8" />
+<link rel="shortcut icon" href="favicon.png" />
+<title>Autolinker ? Prism plugins</title>
+<base href="../.." />
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="prism.css" data-noprefix />
+<link rel="stylesheet" href="plugins/linenums/prism-linenums.css" data-noprefix />
+<script src="prefixfree.min.js"></script>
+
+<script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
+<script src="http://www.google-analytics.com/ga.js" async></script>
+</head>
+<body>
+
+<header>
+	<div class="intro" data-src="templates/header-plugins.html" data-type="text/html"></div>
+	<h2>Linenums</h2>
+	<p>Adds line numbers to highlighted code blocks.</p>
+</header>
+
+<section>
+	<p>Important! - The show-invisibles plugin is required for this plugin work properly.<p>
+	<h1>How to use</h1>
+	<p>Just add the attr data-linenums="1" to the pre element that wraps the code block.</p>
+	<pre data-linenums="1"><code class="language-markup">&lt;pre data-linenums="1"&gt;
+	&lt;code class="language-markup"&gt;
+		[YOUR CODE]
+	&lt;/code&gt;
+&lt;/pre&gt;</code></pre>
+	<h2>Change the starting line number</h2>
+	<p>Add the attr data-linenums-start="n" to the pre element that wraps the code block.</p>
+	<pre data-linenums="1" data-linenums-start="98"><code class="language-markup">&lt;pre data-linenums="1" data-linenums-start="98"&gt;
+	&lt;code class="language-markup"&gt;
+		[YOUR CODE]
+	&lt;/code&gt;
+&lt;/pre&gt;</code></pre>
+</section>
+
+<section>
+	<h1>Examples</h1>
+	
+	<h2>JavaScript</h2>
+	<pre data-linenums="1"><code class="language-javascript">/**
+ * Prism: Lightweight, robust, elegant syntax highlighting
+ * MIT license http://www.opensource.org/licenses/mit-license.php/
+ * @author Lea Verou http://lea.verou.me 
+ * Reach Lea at fake@email.com (no, not really)
+ * And this is [a Markdown link](http://prismjs.com). Sweet, huh?
+ */
+var foo = 5;
+// And a single line comment http://google.com</code></pre>
+ 	
+ 	<h2>CSS</h2>
+ 	<pre data-linenums="1" ><code class="language-css">@font-face {
+	src: url(http://lea.verou.me/logo.otf);
+	font-family: 'LeaVerou';
+}</code></pre>
+	
+	<h2>HTML</h2>
+	<pre data-linenums="1" data-linenums-start="3"><code class="language-markup">&lt;!-- Links in HTML, woo!
+Lea Verou http://lea.verou.me or, with Markdown, [Lea Verou](http://lea.verou.me) -->
+&lt;img src="http://prismjs.com/img/spectrum.png" alt="In attributes too!" />
+&lt;p>Autolinking in raw text: http://prismjs.com&lt;/p></code></pre>
+</section>
+
+<section>
+	<h1>Notes</h1>
+	<p>Line numbers are not copied when selecting and copying code.</p>
+</section>
+
+<footer data-src="templates/footer.html" data-type="text/html"></footer>
+
+<script src="prism.js"></script>
+<script src="plugins/linenums/prism-linenums.js"></script>
+<script src="plugins/show-invisibles/prism-show-invisibles.js"></script>
+<script src="utopia.js"></script>
+<script src="code.js"></script>
+
+
+</body>
+</html>

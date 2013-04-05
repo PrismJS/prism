@@ -1,0 +1,20 @@
+pre[class*="language-"] {
+	position: relative;
+	padding-left: 70px;
+	padding-bottom: 20px;
+}
+.linenumWrap {
+	padding: 1em;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+	.linenumWrap .linenum {
+		border-right: 3px solid #6CE26C;
+		padding-right: 8px;
+		margin-right: 10px;
+		color: #999 !important;
+		-moz-user-select: none;
+		-webkit-user-select: none;
+		user-select: none;
+	}
