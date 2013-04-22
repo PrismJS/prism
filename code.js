@@ -51,6 +51,12 @@ var components = {
 		'scss': {
 			title: 'Sass (Scss)',
 			require: 'css'
+		},
+		'python': {
+			title: 'Python'
+		},
+		'sql': {
+			title: 'SQL'
 		}
 	},
 	plugins: {
