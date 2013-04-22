@@ -48,11 +48,17 @@ var components = {
 			title: 'CoffeeScript',
 			require: 'javascript'
 		},
+<<<<<<< HEAD
 		'python': {
 			title: 'Python'
 		},
 		'sql': {
 			title: 'SQL'
+=======
+		'scss': {
+			title: 'Sass (Scss)',
+			require: 'css'
+>>>>>>> origin/gh-pages
 		}
 	},
 	plugins: {
