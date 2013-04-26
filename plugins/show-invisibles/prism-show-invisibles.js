@@ -1,8 +1,5 @@
 (function(){
 
-if(!window.Prism) {
-	return;
-}
 
 for (var language in Prism.languages) {
 	var tokens = Prism.languages[language];
