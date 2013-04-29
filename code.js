@@ -52,6 +52,18 @@ var components = {
 			title: 'Sass (Scss)',
 			require: 'css'
 		},
+		'bash' : {
+			title: 'Bash',
+			require: 'clike'
+		},
+		'c': {
+			title: 'C',
+			require: 'clike'
+		},
+		'cpp': {
+			title: 'C++',
+			require: 'c'
+		},
 		'python': {
 			title: 'Python'
 		},
