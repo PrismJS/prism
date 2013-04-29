@@ -63,6 +63,12 @@ var components = {
 		'cpp': {
 			title: 'C++',
 			require: 'c'
+		},
+		'python': {
+			title: 'Python'
+		},
+		'sql': {
+			title: 'SQL'
 		}
 	},
 	plugins: {
