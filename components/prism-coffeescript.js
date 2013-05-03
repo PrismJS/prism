@@ -13,10 +13,5 @@ Prism.languages.insertBefore('coffeescript', 'keyword', {
     }
   },
 
-  'class-name': {
-    pattern: /(class\s+)[a-z-]+[\.a-z]*\s/gi,
-    lookbehind: true
-  },
-
   'attr-name': /[_?a-z-|A-Z-]+(\s*:)| @[_?$?a-z-|A-Z-]+(\s*)| /g
 });
