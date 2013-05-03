@@ -431,12 +431,12 @@ if (Prism.languages.markup) {
 
 Prism.languages.clike = {
 	'comment': {
-		pattern: /(^|[^\\])(\/\*[\w\W]*?\*\/|[^:]\/\/.*?(\r?\n|$))/g,
+		pattern: /(^|[^\\])(\/\*[\w\W]*?\*\/|\/\/.*?(\r?\n|$))/g,
 		lookbehind: true
 	},
 	'string': /("|')(\\?.)*?\1/g,
 	'class-name': {
-		pattern: /(class|interface|extends|implements|trait|instanceof|new) [a-z0-9_\.]+/ig,
+		pattern: /(class|interface|extends|implements|trait|instanceof|new) [a-z0-9_\.\\]+/ig,
 		lookbehind: true
 	},
 	'keyword': /\b(if|else|while|do|for|return|in|instanceof|function|new|try|catch|finally|null|break|continue)\b/g,
@@ -530,28 +530,16 @@ Prism.languages.insertBefore('java', 'keyword', {
 
 Prism.languages.php = Prism.languages.extend('clike', {
 	'keyword': /\b(and|or|xor|array|as|break|case|cfunction|class|const|continue|declare|default|die|do|else|elseif|enddeclare|endfor|endforeach|endif|endswitch|endwhile|extends|for|foreach|function|include|include_once|global|if|new|return|static|switch|use|require|require_once|var|while|abstract|interface|public|implements|extends|private|protected|parent|static|throw|null|echo|print|trait|namespace|use|final|yield|goto)\b/ig,
-	'constant': /\b([A-Z0-9_]+)\b/g
+	'constant': /[A-Z0-9_]{2,}/g
 });
 
 Prism.languages.insertBefore('php', 'keyword', {
 	'deliminator': /(\?>|\?&gt;|&lt;\?php|<\?php)/ig,
 	'variable': /(\$\w+)\b/ig,
-	'function': {
-		pattern: /[a-z0-9_]+\(/ig,
-		inside: {
-			punctuation: /\(/
-		}
-	},
 	'class': {
 		pattern: /[a-z0-9_]+::/ig,
 		inside: {
 			operator: /::/
-		}
-	},
-	'property': {
-		pattern: /-&gt;[a-z0-9_]+/ig,
-		inside: {
-			operator: /-&gt;/
 		}
 	},
 	'package': {
@@ -559,6 +547,21 @@ Prism.languages.insertBefore('php', 'keyword', {
 		lookbehind: true,
 		inside: {
 			punctuation: /\\/
+		}
+	}
+});
+
+Prism.languages.insertBefore('php', 'punctuation', {
+	'function': {
+		pattern: /[a-z0-9_]+\(/ig,
+		inside: {
+			punctuation: /\(/
+		}
+	},
+	'property': {
+		pattern: /-&gt;[a-z0-9_]+/ig,
+		inside: {
+			operator: /-&gt;/
 		}
 	}
 });
