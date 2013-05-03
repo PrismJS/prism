@@ -11,11 +11,11 @@ pre[class*="language-"] {
 	text-align: left;
 	white-space: pre;
 	word-spacing: normal;
-	
+
 	-moz-tab-size: 4;
 	-o-tab-size: 4;
 	tab-size: 4;
-	
+
 	-webkit-hyphens: none;
 	-moz-hyphens: none;
 	-ms-hyphens: none;
@@ -87,7 +87,8 @@ code[class*="language-"] {
 
 
 .token.regex,
-.token.important {
+.token.important,
+.token.annotation {
 	color: orange;
 }
 

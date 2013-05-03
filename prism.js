@@ -511,5 +511,6 @@ Prism.languages.java = Prism.languages.extend('clike', {
 	'operator': {
 		pattern: /([^\.]|^)([-+]{1,2}|!|=?&lt;|=?&gt;|={1,2}|(&amp;){1,2}|\|?\||\?|\*|\/|%|\^|(&lt;){2}|($gt;){2,3}|:|~)/g,
 		lookbehind: true
-	}
+	},
+	'annotation': /@[a-z0-9]+/ig
 });
