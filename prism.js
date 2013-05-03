@@ -514,6 +514,16 @@ Prism.languages.java = Prism.languages.extend('clike', {
 	'annotation': /@[a-z0-9]+/ig
 });
 
+Prism.languages.insertBefore('java', 'keyword', {
+	'package': {
+		pattern: /(\\|package |import )[a-z0-9_\.\*]+/ig,
+		lookbehind: true,
+		inside: {
+			punctuation: /\./
+		}
+	}
+});
+
 /* **********************************************
      Begin prism-php.js
 ********************************************** */
