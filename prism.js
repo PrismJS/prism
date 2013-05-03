@@ -389,7 +389,6 @@ Prism.languages.markup = {
 
 // Plugin to make entity title show the real entity, idea by Roman Komarov
 Prism.hooks.add('wrap', function(env) {
-
 	if (env.type === 'entity') {
 		env.attributes['title'] = env.content.replace(/&amp;/, '&');
 	}
@@ -437,7 +436,7 @@ Prism.languages.clike = {
 	},
 	'string': /("|')(\\?.)*?\1/g,
 	'class-name': {
-		pattern: /(class|interface|extends|implements|trait|instanceof) [a-z0-9_\.]+/ig,
+		pattern: /(class|interface|extends|implements|trait|instanceof|new) [a-z0-9_\.]+/ig,
 		lookbehind: true
 	},
 	'keyword': /\b(if|else|while|do|for|return|in|instanceof|function|new|try|catch|finally|null|break|continue)\b/g,
@@ -514,3 +513,58 @@ Prism.languages.java = Prism.languages.extend('clike', {
 	},
 	'annotation': /@[a-z0-9]+/ig
 });
+
+/* **********************************************
+     Begin prism-php.js
+********************************************** */
+
+Prism.languages.php = Prism.languages.extend('clike', {
+	'keyword': /\b(and|or|xor|array|as|break|case|cfunction|class|const|continue|declare|default|die|do|else|elseif|enddeclare|endfor|endforeach|endif|endswitch|endwhile|extends|for|foreach|function|include|include_once|global|if|new|return|static|switch|use|require|require_once|var|while|abstract|interface|public|implements|extends|private|protected|parent|static|throw|null|echo|print|trait|namespace|use|final|yield|goto)\b/ig,
+	'constant': /\b([A-Z0-9_]+)\b/g
+});
+
+Prism.languages.insertBefore('php', 'keyword', {
+	'deliminator': /(\?>|\?&gt;|&lt;\?php|<\?php)/ig,
+	'variable': /(\$\w+)\b/ig,
+	'function': {
+		pattern: /[a-z0-9_]+\(/ig,
+		inside: {
+			punctuation: /\(/
+		}
+	},
+	'class': {
+		pattern: /[a-z0-9_]+::/ig,
+		inside: {
+			operator: /::/
+		}
+	},
+	'property': {
+		pattern: /-&gt;[a-z0-9_]+/ig,
+		inside: {
+			operator: /-&gt;/
+		}
+	},
+	'package': {
+		pattern: /(\\|namespace |use )[a-z0-9_\\]+/ig,
+		lookbehind: true,
+		inside: {
+			punctuation: /\\/
+		}
+	}
+});
+
+if (Prism.languages.markup) {
+	Prism.languages.insertBefore('php', 'comment', {
+		'markup': {
+			pattern: /(\?>|\?&gt;)[\w\W]*?(?=(&lt;\?php|<\?php))/ig,
+			lookbehind : true,
+			inside: {
+				'markup': {
+					pattern: /&lt;\/?[\w:-]+\s*[\w\W]*?&gt;/gi,
+					inside: Prism.languages.markup.tag.inside
+				},
+				rest: Prism.languages.php
+			}
+		}
+	});
+}

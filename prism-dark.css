@@ -99,7 +99,8 @@ pre[class*="language-"] {
 
 .token.regex,
 .token.important,
-.token.annotation {
+.token.annotation,
+.token.constant {
 	color: #e90;
 }
 

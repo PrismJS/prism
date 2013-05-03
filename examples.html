@@ -372,6 +372,46 @@ class CoffeeScript extends Prism.Javascript
 	</code></pre>
 </section>
 
+
+<section class="language-php">
+	<h1>PHP</h1>
+
+	<pre><code>&lt;?php
+namespace Prism;
+
+use Some\Child\Class;
+
+class Prism extends AbstractClass implements InterfaceCass {
+	const CONSTANT = 12345;
+	public $foo = true;
+	public static $bar = array('foo' => 'bar');
+
+	final public __construct(array $arg1, $arg2 = false) {
+		$this->foo = $arg2;
+
+		$int = 123456;
+		$string = 'Prism.js is the best!';
+		$bool = true;
+		$array = array('foo');
+		$shortArray = ['bar'];
+		$null = null;
+		$closure = function($var) use ($int) {
+			return $int * 2;
+		};
+	}
+
+	public function doSomething() {
+		$var = StaticClass::methodCall();
+
+		for ($i = 0; $i <= 10; $i++) {
+			$var = str_replace($i, rand(), $var);
+		}
+
+		return $var;
+	}
+}</code></pre>
+</section>
+
 <section id="failures" class="language-javascript">
 	<h1>Known failures (JavaScript)</h1>
 	<p>There are certain edge cases where Prism will fail.

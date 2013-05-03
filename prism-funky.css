@@ -62,7 +62,8 @@ code[class*="language-"] {
 .token.property,
 .token.tag,
 .token.boolean,
-.token.number {
+.token.number,
+.token.function {
 	color: #0cf;
 }
 
@@ -88,7 +89,8 @@ code[class*="language-"] {
 
 .token.regex,
 .token.important,
-.token.annotation {
+.token.annotation,
+.token.constant {
 	color: orange;
 }
 
