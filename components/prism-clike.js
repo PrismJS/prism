@@ -1,9 +1,13 @@
 Prism.languages.clike = {
 	'comment': {
-		pattern: /(^|[^\\])(\/\*[\w\W]*?\*\/|[^:]\/\/.*?(\r?\n|$))/g,
+		pattern: /(^|[^\\])(\/\*[\w\W]*?\*\/|\/\/.*?(\r?\n|$))/g,
 		lookbehind: true
 	},
 	'string': /("|')(\\?.)*?\1/g,
+	'class-name': {
+		pattern: /(class|interface|extends|implements|trait|instanceof|new)\s+[a-z0-9_\.\\]+/ig,
+		lookbehind: true
+	},
 	'keyword': /\b(if|else|while|do|for|return|in|instanceof|function|new|try|catch|finally|null|break|continue)\b/g,
 	'boolean': /\b(true|false)\b/g,
 	'number': /\b-?(0x)?\d*\.?[\da-f]+\b/g,

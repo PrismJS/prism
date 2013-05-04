@@ -389,7 +389,6 @@ Prism.languages.markup = {
 
 // Plugin to make entity title show the real entity, idea by Roman Komarov
 Prism.hooks.add('wrap', function(env) {
-
 	if (env.type === 'entity') {
 		env.attributes['title'] = env.content.replace(/&amp;/, '&');
 	}
@@ -403,10 +402,18 @@ Prism.languages.css = {
 	'comment': /\/\*[\w\W]*?\*\//g,
 	'atrule': /@[\w-]+?(\s+[^;{]+)?(?=\s*{|\s*;)/gi,
 	'url': /url\((["']?).*?\1\)/gi,
-	'selector': /[^\{\}\s][^\{\}]*(?=\s*\{)/g,
-	'property': /(\b|\B)[a-z-]+(?=\s*:)/ig,
+	'selector': {
+		pattern: /[^\{\}\s][^\{\}]*(?=\s*\{)/g,
+		inside: {
+			'pseudo': /:[-a-z0-9]+/g
+		}
+	},
 	'string': /("|')(\\?.)*?\1/g,
+	'property': /(\b|\B)[a-z-]+(?=\s*:)/ig,
 	'important': /\B!important\b/gi,
+	'hexcode': /#[0-9a-f]{3,6}/gi,
+	'number': /[0-9%\.]+/g,
+	'function': /(attr|calc|cross-fade|cycle|element|hsl|hsla|image|lang|linear-gradient|matrix|matrix3d|perspective|radial-gradient|repeating-linear-gradient|repeating-radial-gradient|rgb|rgba|rotate|rotatex|rotatey|rotatez|rotate3d|scale|scalex|scaley|scalez|scale3d|skew|skewx|skewy|steps|translate|translatex|translatey|translatez|translate3d|url|var)/ig,
 	'ignore': /&(lt|gt|amp);/gi,
 	'punctuation': /[\{\};:]/g
 };
@@ -436,6 +443,10 @@ Prism.languages.clike = {
 		lookbehind: true
 	},
 	'string': /("|')(\\?.)*?\1/g,
+	'class-name': {
+		pattern: /(class|interface|extends|implements|trait|instanceof|new)\s+[a-z0-9_\.\\]+/ig,
+		lookbehind: true
+	},
 	'keyword': /\b(if|else|while|do|for|return|in|instanceof|function|new|try|catch|finally|null|break|continue)\b/g,
 	'boolean': /\b(true|false)\b/g,
 	'number': /\b-?(0x)?\d*\.?[\da-f]+\b/g,
@@ -450,7 +461,7 @@ Prism.languages.clike = {
 
 Prism.languages.javascript = Prism.languages.extend('clike', {
 	'keyword': /\b(var|let|if|else|while|do|for|return|in|instanceof|function|new|with|typeof|try|catch|finally|null|break|continue)\b/g,
-	'number': /\b(-?(0x)?\d*\.?[\da-f]+|NaN|-?Infinity)\b/g,
+	'number': /\b(-?(0x)?\d*\.?[\da-f]+|NaN|-?Infinity)\b/g
 });
 
 Prism.languages.insertBefore('javascript', 'keyword', {
@@ -480,24 +491,101 @@ if (Prism.languages.markup) {
 ********************************************** */
 
 Prism.languages.coffeescript = Prism.languages.extend('javascript', {
-  'block-comment': /([#]{3}\s*\r?\n(.*\s*\r*\n*)\s*?\r?\n[#]{3})/g,
-  'comment': /(\s|^)([#]{1}[^#^\r^\n]{2,}?(\r?\n|$))/g,
-  'keyword': /\b(this|window|delete|class|extends|namespace|extend|ar|let|if|else|while|do|for|each|of|return|in|instanceof|new|with|typeof|try|catch|finally|null|undefined|break|continue)\b/g,
+	'block-comment': /([#]{3}\s*\r?\n(.*\s*\r*\n*)\s*?\r?\n[#]{3})/g,
+	'comment': /(\s|^)([#]{1}[^#^\r^\n]{2,}?(\r?\n|$))/g,
+	'keyword': /\b(this|window|delete|class|extends|namespace|extend|ar|let|if|else|while|do|for|each|of|return|in|instanceof|new|with|typeof|try|catch|finally|null|undefined|break|continue)\b/g,
 });
 
 Prism.languages.insertBefore('coffeescript', 'keyword', {
-  'function': {
-    pattern: /[a-z|A-z]+\s*[:|=]\s*(\([.|a-z\s|,|:|{|}|\"|\'|=]*\))?\s*-&gt;/gi,
-    inside: {
-      'function-name': /[_?a-z-|A-Z-]+(\s*[:|=])| @[_?$?a-z-|A-Z-]+(\s*)| /g,
-      'operator': /[-+]{1,2}|!|=?&lt;|=?&gt;|={1,2}|(&amp;){1,2}|\|?\||\?|\*|\//g
-    }
-  },
+	'function': {
+		pattern: /[a-z|A-z]+\s*[:|=]\s*(\([.|a-z\s|,|:|{|}|\"|\'|=]*\))?\s*-&gt;/gi,
+		inside: {
+			'function-name': /[_?a-z-|A-Z-]+(\s*[:|=])| @[_?$?a-z-|A-Z-]+(\s*)| /g,
+			'operator': /[-+]{1,2}|!|=?&lt;|=?&gt;|={1,2}|(&amp;){1,2}|\|?\||\?|\*|\//g
+		}
+	},
 
-  'class-name': {
-    pattern: /(class\s+)[a-z-]+[\.a-z]*\s/gi,
-    lookbehind: true
-  },
-
-  'attr-name': /[_?a-z-|A-Z-]+(\s*:)| @[_?$?a-z-|A-Z-]+(\s*)| /g
+	'attr-name': /[_?a-z-|A-Z-]+(\s*:)| @[_?$?a-z-|A-Z-]+(\s*)| /g
 });
+
+/* **********************************************
+     Begin prism-java.js
+********************************************** */
+
+Prism.languages.java = Prism.languages.extend('clike', {
+	'keyword': /\b(abstract|continue|for|new|switch|assert|default|goto|package|synchronized|boolean|do|if|private|this|break|double|implements|protected|throw|byte|else|import|public|throws|case|enum|instanceof|return|transient|catch|extends|int|short|try|char|final|interface|static|void|class|finally|long|strictfp|volatile|const|float|native|super|while)\b/g,
+	'number': /\b0b[01]+\b|\b0x[\da-f]*\.?[\da-fp\-]+\b|\b\d*\.?\d+[e]?[\d]*[df]\b|\W\d*\.?\d+\b/gi,
+	'operator': {
+		pattern: /([^\.]|^)([-+]{1,2}|!|=?&lt;|=?&gt;|={1,2}|(&amp;){1,2}|\|?\||\?|\*|\/|%|\^|(&lt;){2}|($gt;){2,3}|:|~)/g,
+		lookbehind: true
+	},
+	'annotation': /@[a-z0-9]+/ig
+});
+
+Prism.languages.insertBefore('java', 'keyword', {
+	'package': {
+		pattern: /((?:package|import)\s+)[a-z0-9_\.\*]+/ig,
+		lookbehind: true,
+		inside: {
+			punctuation: /\./
+		}
+	}
+});
+
+/* **********************************************
+     Begin prism-php.js
+********************************************** */
+
+Prism.languages.php = Prism.languages.extend('clike', {
+	'keyword': /\b(and|or|xor|array|as|break|case|cfunction|class|const|continue|declare|default|die|do|else|elseif|enddeclare|endfor|endforeach|endif|endswitch|endwhile|extends|for|foreach|function|include|include_once|global|if|new|return|static|switch|use|require|require_once|var|while|abstract|interface|public|implements|extends|private|protected|parent|static|throw|null|echo|print|trait|namespace|use|final|yield|goto)\b/ig,
+	'constant': /[A-Z0-9_]{2,}/g
+});
+
+Prism.languages.insertBefore('php', 'keyword', {
+	'deliminator': /(\?>|\?&gt;|&lt;\?php|<\?php)/ig,
+	'variable': /(\$\w+)\b/ig,
+	'class': {
+		pattern: /[a-z0-9_\\]+::/ig,
+		inside: {
+			operator: /::/
+		}
+	},
+	'package': {
+		pattern: /(\\|namespace\s+|use\s+)[a-z0-9_\\]+/ig,
+		lookbehind: true,
+		inside: {
+			punctuation: /\\/
+		}
+	}
+});
+
+Prism.languages.insertBefore('php', 'punctuation', {
+	'function': {
+		pattern: /[a-z0-9_]+\(/ig,
+		inside: {
+			punctuation: /\(/
+		}
+	},
+	'property': {
+		pattern: /-&gt;[a-z0-9_]+/ig,
+		inside: {
+			operator: /-&gt;/
+		}
+	}
+});
+
+if (Prism.languages.markup) {
+	Prism.languages.insertBefore('php', 'comment', {
+		'markup': {
+			pattern: /(\?>|\?&gt;)[\w\W]*?(?=(&lt;\?php|<\?php))/ig,
+			lookbehind : true,
+			inside: {
+				'markup': {
+					pattern: /&lt;\/?[\w:-]+\s*[\w\W]*?&gt;/gi,
+					inside: Prism.languages.markup.tag.inside
+				},
+				rest: Prism.languages.php
+			}
+		}
+	});
+}

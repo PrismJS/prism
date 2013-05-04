@@ -92,7 +92,8 @@ pre[class*="language-"] {
 
 .token.operator,
 .token.entity,
-.token.url
+.token.url,
+.token.annotation
 {
   color: #67cdcc;
 }

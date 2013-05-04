@@ -156,6 +156,21 @@ ol {}</code></pre>
 
 	<h2>URL</h2>
 	<pre><code>content: url(foo.png);</code></pre>
+
+	<h2>Full Example</h2>
+	<pre><code>@media all {
+	div {
+		display: block;
+		*display: inline;
+		width: 100%;
+		height: 25px;
+		color: #000;
+	}
+
+	div:after {
+		content: attr(title);
+	}
+}</code></pre>
 </pre>
 </section>
 
@@ -219,13 +234,15 @@ var comment = /\/\*[\w\W]*?\*\//g;</code></pre>
 abstract continue for        new       switch
 assert   default  goto       package   synchronized
 boolean  do       if         private   this
-break    double   implements protected throw
+break    double   while      protected throw
 byte     else     import     public    throws
-case     enum     instanceof return    transient
+case     enum     return     transient super
 catch    extends  int        short     try
 char     final    interface  static    void
 class    finally  long       strictfp  volatile
-const    float    native     super     while
+const    float    native
+implements
+instanceof
 
 	</code></pre>
 
@@ -368,6 +385,46 @@ code = {
 	<pre><code>
 class CoffeeScript extends Prism.Javascript
 	</code></pre>
+</section>
+
+
+<section class="language-php">
+	<h1>PHP</h1>
+
+	<pre><code>&lt;?php
+namespace Prism;
+
+use Some\Child\Class;
+
+class Prism extends AbstractClass implements InterfaceCass {
+	const CONSTANT = 12345;
+	public $foo = true;
+	public static $bar = array('foo' => 'bar');
+
+	final public __construct(array $arg1, $arg2 = false) {
+		$this->foo = $arg2;
+
+		$int = 123456;
+		$string = 'Prism.js is the best!';
+		$bool = true;
+		$array = array('foo');
+		$shortArray = ['bar'];
+		$null = null;
+		$closure = function($var) use ($int) {
+			return $int * 2;
+		};
+	}
+
+	public function doSomething() {
+		$var = StaticClass::methodCall();
+
+		for ($i = 0; $i <= 10; $i++) {
+			$var = str_replace($i, rand(), $var);
+		}
+
+		return $var;
+	}
+}</code></pre>
 </section>
 
 <section id="failures" class="language-javascript">
