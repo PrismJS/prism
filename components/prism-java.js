@@ -10,7 +10,7 @@ Prism.languages.java = Prism.languages.extend('clike', {
 
 Prism.languages.insertBefore('java', 'keyword', {
 	'package': {
-		pattern: /(\\|package |import )[a-z0-9_\.\*]+/ig,
+		pattern: /((?:package|import)\s+)[a-z0-9_\.\*]+/ig,
 		lookbehind: true,
 		inside: {
 			punctuation: /\./

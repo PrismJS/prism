@@ -405,14 +405,14 @@ Prism.languages.css = {
 	'selector': {
 		pattern: /[^\{\}\s][^\{\}]*(?=\s*\{)/g,
 		inside: {
-			'pseudo': /:\w+/g
+			'pseudo': /:[-a-z0-9]+/g
 		}
 	},
 	'string': /("|')(\\?.)*?\1/g,
 	'property': /(\b|\B)[a-z-]+(?=\s*:)/ig,
 	'important': /\B!important\b/gi,
 	'hexcode': /#[0-9a-f]{3,6}/gi,
-	'number': /\d+/g,
+	'number': /[0-9%\.]+/g,
 	'function': /(attr|calc|cross-fade|cycle|element|hsl|hsla|image|lang|linear-gradient|matrix|matrix3d|perspective|radial-gradient|repeating-linear-gradient|repeating-radial-gradient|rgb|rgba|rotate|rotatex|rotatey|rotatez|rotate3d|scale|scalex|scaley|scalez|scale3d|skew|skewx|skewy|steps|translate|translatex|translatey|translatez|translate3d|url|var)/ig,
 	'ignore': /&(lt|gt|amp);/gi,
 	'punctuation': /[\{\};:]/g
@@ -444,7 +444,7 @@ Prism.languages.clike = {
 	},
 	'string': /("|')(\\?.)*?\1/g,
 	'class-name': {
-		pattern: /(class|interface|extends|implements|trait|instanceof|new) [a-z0-9_\.\\]+/ig,
+		pattern: /(class|interface|extends|implements|trait|instanceof|new)\s+[a-z0-9_\.\\]+/ig,
 		lookbehind: true
 	},
 	'keyword': /\b(if|else|while|do|for|return|in|instanceof|function|new|try|catch|finally|null|break|continue)\b/g,
@@ -524,7 +524,7 @@ Prism.languages.java = Prism.languages.extend('clike', {
 
 Prism.languages.insertBefore('java', 'keyword', {
 	'package': {
-		pattern: /(\\|package |import )[a-z0-9_\.\*]+/ig,
+		pattern: /((?:package|import)\s+)[a-z0-9_\.\*]+/ig,
 		lookbehind: true,
 		inside: {
 			punctuation: /\./
@@ -545,13 +545,13 @@ Prism.languages.insertBefore('php', 'keyword', {
 	'deliminator': /(\?>|\?&gt;|&lt;\?php|<\?php)/ig,
 	'variable': /(\$\w+)\b/ig,
 	'class': {
-		pattern: /[a-z0-9_]+::/ig,
+		pattern: /[a-z0-9_\\]+::/ig,
 		inside: {
 			operator: /::/
 		}
 	},
 	'package': {
-		pattern: /(\\|namespace |use )[a-z0-9_\\]+/ig,
+		pattern: /(\\|namespace\s+|use\s+)[a-z0-9_\\]+/ig,
 		lookbehind: true,
 		inside: {
 			punctuation: /\\/

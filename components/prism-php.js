@@ -20,13 +20,13 @@ Prism.languages.insertBefore('php', 'keyword', {
 	'deliminator': /(\?>|\?&gt;|&lt;\?php|<\?php)/ig,
 	'variable': /(\$\w+)\b/ig,
 	'class': {
-		pattern: /[a-z0-9_]+::/ig,
+		pattern: /[a-z0-9_\\]+::/ig,
 		inside: {
 			operator: /::/
 		}
 	},
 	'package': {
-		pattern: /(\\|namespace |use )[a-z0-9_\\]+/ig,
+		pattern: /(\\|namespace\s+|use\s+)[a-z0-9_\\]+/ig,
 		lookbehind: true,
 		inside: {
 			punctuation: /\\/
