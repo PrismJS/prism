@@ -147,7 +147,7 @@ var _ = self.Prism = {
 			var worker = new Worker(_.filename);	
 			
 			worker.onmessage = function(evt) {
-				env.highlightedCode = Token.stringify(JSON.parse(evt.data));
+				env.highlightedCode = Token.stringify(JSON.parse(evt.data), language);
 				env.element.innerHTML = env.highlightedCode;
 				
 				callback && callback.call(env.element);
@@ -161,7 +161,7 @@ var _ = self.Prism = {
 			}));
 		}
 		else {
-			env.highlightedCode = _.highlight(env.code, env.grammar)
+			env.highlightedCode = _.highlight(env.code, env.grammar, env.language)
 			env.element.innerHTML = env.highlightedCode;
 			
 			callback && callback.call(element);
@@ -171,11 +171,11 @@ var _ = self.Prism = {
 		}
 	},
 	
-	highlight: function (text, grammar) {
-		return Token.stringify(_.tokenize(text, grammar));
+	highlight: function (text, grammar, language) {
+		return Token.stringify(_.tokenize(text, grammar), language);
 	},
 	
-	tokenize: function(text, grammar) {
+	tokenize: function(text, grammar, language) {
 		var Token = _.Token;
 		
 		var strarr = [text];
@@ -282,21 +282,24 @@ var Token = _.Token = function(type, content) {
 	this.content = content;
 };
 
-Token.stringify = function(o) {
+Token.stringify = function(o, language) {
 	if (typeof o == 'string') {
 		return o;
 	}
 	
 	if (Object.prototype.toString.call(o) == '[object Array]') {
-		return o.map(Token.stringify).join('');
+		return o.map(function(element) {
+			return Token.stringify(element, language);
+		}).join('');
 	}
 	
 	var env = {
 		type: o.type,
-		content: Token.stringify(o.content),
+		content: Token.stringify(o.content, language),
 		tag: 'span',
 		classes: ['token', o.type],
-		attributes: {}
+		attributes: {},
+		language: language
 	};
 	
 	if (env.type == 'comment') {
