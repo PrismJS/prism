@@ -1,6 +1,6 @@
 Prism.languages.clike = {
 	'comment': {
-		pattern: /(^|[^\\])(\/\*[\w\W]*?\*\/|[^:]\/\/.*?(\r?\n|$))/g,
+		pattern: /(^|[^\\])(\/\*[\w\W]*?\*\/|[^:]?\/\/.*?(\r?\n|$))/g,
 		lookbehind: true
 	},
 	'string': /("|')(\\?.)*?\1/g,
