@@ -282,24 +282,25 @@ var Token = _.Token = function(type, content) {
 	this.content = content;
 };
 
-Token.stringify = function(o, language) {
+Token.stringify = function(o, language, parent) {
 	if (typeof o == 'string') {
 		return o;
 	}
-	
+
 	if (Object.prototype.toString.call(o) == '[object Array]') {
 		return o.map(function(element) {
-			return Token.stringify(element, language);
+			return Token.stringify(element, language, o);
 		}).join('');
 	}
 	
 	var env = {
 		type: o.type,
-		content: Token.stringify(o.content, language),
+		content: Token.stringify(o.content, language, parent),
 		tag: 'span',
 		classes: ['token', o.type],
 		attributes: {},
-		language: language
+		language: language,
+		parent: parent
 	};
 	
 	if (env.type == 'comment') {
