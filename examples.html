@@ -156,6 +156,21 @@ ol {}</code></pre>
 
 	<h2>URL</h2>
 	<pre><code>content: url(foo.png);</code></pre>
+
+	<h2>Full Example</h2>
+	<pre><code>@media all {
+	div {
+		display: block;
+		*display: inline;
+		width: 100%;
+		height: 25px;
+		color: #000;
+	}
+
+	div:after {
+		content: attr(title);
+	}
+}</code></pre>
 </pre>
 </section>
 
