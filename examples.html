@@ -311,7 +311,7 @@ namespace Prism;
 
 use Some\Child\Class;
 
-class Prism extends AbstractClass implements InterfaceCass {
+class Prism extends AbstractClass implements Interface_Class {
 	const CONSTANT = 12345;
 	public $foo = true;
 	public static $bar = array('foo' => 'bar');
@@ -330,8 +330,13 @@ class Prism extends AbstractClass implements InterfaceCass {
 		};
 	}
 
+	public function under_score() {
+		self::doSomething();
+		static::_other_method();
+	}
+
 	public function doSomething() {
-		$var = StaticClass::methodCall();
+		$var = Static\Class::methodCall();
 
 		for ($i = 0; $i <= 10; $i++) {
 			$var = str_replace($i, rand(), $var);
