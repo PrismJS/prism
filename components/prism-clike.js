@@ -6,10 +6,19 @@ Prism.languages.clike = {
 	'string': /("|')(\\?.)*?\1/g,
 	'class-name': {
 		pattern: /((?:class|interface|extends|implements|trait|instanceof|new)\s+)[a-z0-9_\.\\]+/ig,
-		lookbehind: true
+		lookbehind: true,
+		inside: {
+			punctuation: /\.|\\/
+		}
 	},
 	'keyword': /\b(if|else|while|do|for|return|in|instanceof|function|new|try|catch|finally|null|break|continue)\b/g,
 	'boolean': /\b(true|false)\b/g,
+	'function': {
+		pattern: /[a-z0-9_]+\(/ig,
+		inside: {
+			punctuation: /\(/
+		}
+	},
 	'number': /\b-?(0x)?\d*\.?[\da-f]+\b/g,
 	'operator': /[-+]{1,2}|!|=?&lt;|=?&gt;|={1,2}|(&amp;){1,2}|\|?\||\?|\*|\//g,
 	'ignore': /&(lt|gt|amp);/gi,

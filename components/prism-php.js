@@ -37,12 +37,6 @@ Prism.languages.insertBefore('php', 'keyword', {
 });
 
 Prism.languages.insertBefore('php', 'operator', {
-	'function': {
-		pattern: /[a-z0-9_]+\(/ig,
-		inside: {
-			punctuation: /\(/
-		}
-	},
 	'property': {
 		pattern: /(-&gt;)[a-z0-9_]+/ig,
 		lookbehind: true
