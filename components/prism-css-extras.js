@@ -3,8 +3,7 @@ Prism.languages.css.selector = {
 	inside: {
 		'pseudo': /::?[-a-z0-9]+/ig,
 		'selector-class': /\.[-a-z0-9]+/ig,
-		'selector-id': /#[-a-z0-9]+/ig,
-		'selector-tag': /[a-z0-9]+/ig
+		'selector-id': /#[-a-z0-9]+/ig
 	}
 };
 
