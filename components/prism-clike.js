@@ -8,7 +8,7 @@ Prism.languages.clike = {
 		pattern: /((?:class|interface|extends|implements|trait|instanceof|new)\s+)[a-z0-9_\.\\]+/ig,
 		lookbehind: true,
 		inside: {
-			punctuation: /\.|\\/
+			punctuation: /(\.|\\)/
 		}
 	},
 	'keyword': /\b(if|else|while|do|for|return|in|instanceof|function|new|try|catch|finally|null|break|continue)\b/g,
