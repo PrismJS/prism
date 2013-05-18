@@ -20,7 +20,7 @@ Prism.languages.clike = {
 		}
 	},
 	'number': /\b-?(0x)?\d*\.?[\da-f]+\b/g,
-	'operator': /[-+]{1,2}|!|=?&lt;|=?&gt;|={1,2}|(&amp;){1,2}|\|?\||\?|\*|\//g,
+	'operator': /[-+]{1,2}|!|=?&lt;|=?&gt;|={1,2}|(&amp;){1,2}|\|?\||\?|\*|\/|\~|\^|\%/g,
 	'ignore': /&(lt|gt|amp);/gi,
 	'punctuation': /[{}[\];(),.:]/g
 };
