@@ -79,7 +79,8 @@ var components = {
 		},
 		'line-highlight': 'Line Highlight',
 		'show-invisibles': 'Show Invisibles',
-		'autolinker': 'Autolinker'
+		'autolinker': 'Autolinker',
+		'wpd': 'WebPlatform Docs'
 	}
 };
 
