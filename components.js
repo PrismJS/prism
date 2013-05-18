@@ -18,7 +18,7 @@ var components = {
 		},
 		'prism-dark': 'Dark',
 		'prism-funky': 'Funky',
-		'okaidia': 'Okaidia'
+		'prism-okaidia': 'Okaidia'
 	},
 	languages: {
 		meta: {
