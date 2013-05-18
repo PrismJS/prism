@@ -74,6 +74,10 @@ var components = {
 		},
 		'sql': {
 			title: 'SQL'
+		},
+		'groovy': {
+			title: 'Groovy',
+			require: 'clike'
 		}
 	},
 	plugins: {
