@@ -12,7 +12,7 @@
  */
 
 Prism.languages.php = Prism.languages.extend('clike', {
-	'keyword': /(and|or|xor|array|as|break|case|cfunction|class|const|continue|declare|default|die|do|else|elseif|enddeclare|endfor|endforeach|endif|endswitch|endwhile|extends|for|foreach|function|include|include_once|global|if|new|return|static|switch|use|require|require_once|var|while|abstract|interface|public|implements|extends|private|protected|parent|static|throw|null|echo|print|trait|namespace|use|final|yield|goto)/ig,
+	'keyword': /\b(and|or|xor|array|as|break|case|cfunction|class|const|continue|declare|default|die|do|else|elseif|enddeclare|endfor|endforeach|endif|endswitch|endwhile|extends|for|foreach|function|include|include_once|global|if|new|return|static|switch|use|require|require_once|var|while|abstract|interface|public|implements|extends|private|protected|parent|static|throw|null|echo|print|trait|namespace|use|final|yield|goto)\b/ig,
 	'constant': /[A-Z0-9_]{2,}/g
 });
 
@@ -21,7 +21,7 @@ Prism.languages.insertBefore('php', 'keyword', {
 	'this': /\$this/,
 	'variable': /(\$\w+)\b/ig,
 	'scope': {
-		pattern: /[a-z0-9_\\]+::/ig,
+		pattern: /\b[a-z0-9_\\]+::/ig,
 		inside: {
 			keyword: /(static|self|parent)/,
 			punctuation: /(::|\\)/
