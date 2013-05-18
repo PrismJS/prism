@@ -185,9 +185,10 @@ var _ = window.Utopia = {
 				element = document.createElement(options.tag);
 			}
 			
-			if(options.className) {
+			if (options.className || options.id) {
 				options.properties = options.properties || {};
 				options.properties.className = options.className;
+				options.properties.id = options.id;
 			}
 			
 			// Set properties, attributes and contents

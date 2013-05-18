@@ -20,6 +20,17 @@ var components = {
 		'prism-funky': 'Funky',
 		'prism-okaidia': 'Okaidia'
 	},
+	plugins: {
+		meta: {
+			path: 'plugins/{id}/prism-{id}',
+			link: 'plugins/{id}/',
+			hasCSS: true
+		},
+		'line-highlight': 'Line Highlight',
+		'show-invisibles': 'Show Invisibles',
+		'autolinker': 'Autolinker',
+		'wpd': 'WebPlatform Docs'
+	},
 	languages: {
 		meta: {
 			path: 'components/prism-{id}'
@@ -79,16 +90,5 @@ var components = {
 			title: 'Groovy',
 			require: 'clike'
 		}
-	},
-	plugins: {
-		meta: {
-			path: 'plugins/{id}/prism-{id}',
-			link: 'plugins/{id}/',
-			hasCSS: true
-		},
-		'line-highlight': 'Line Highlight',
-		'show-invisibles': 'Show Invisibles',
-		'autolinker': 'Autolinker',
-		'wpd': 'WebPlatform Docs'
 	}
 };

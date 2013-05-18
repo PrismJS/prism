@@ -2,7 +2,6 @@
  * Manage downloads
  */
 
-
 (function() {
 
 var cache = {};
@@ -16,6 +15,7 @@ for (var category in components) {
 	
 	all.meta.section = $u.element.create('section', {
 		className: 'options',
+		id: 'category-' + category,
 		contents: {
 			tag: 'h1',
 			contents: category.charAt(0).toUpperCase() + category.slice(1)
