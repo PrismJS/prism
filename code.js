@@ -44,6 +44,10 @@ var components = {
 			title: 'Java',
 			require: 'clike'
 		},
+		'php' : {
+			title: 'PHP',
+			require: 'clike'
+		},
 		'coffeescript': {
 			title: 'CoffeeScript',
 			require: 'javascript'
