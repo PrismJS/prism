@@ -8,27 +8,28 @@
  * 		- Smarter constant and function matching
  *
  * Adds the following new token classes:
- * 		constant, deliminator, variable, function, scope, package, this
+ * 		constant, deliminator, variable, function, scope, package, this, global
  */
 
 Prism.languages.php = Prism.languages.extend('clike', {
 	'keyword': /\b(and|or|xor|array|as|break|case|cfunction|class|const|continue|declare|default|die|do|else|elseif|enddeclare|endfor|endforeach|endif|endswitch|endwhile|extends|for|foreach|function|include|include_once|global|if|new|return|static|switch|use|require|require_once|var|while|abstract|interface|public|implements|extends|private|protected|parent|static|throw|null|echo|print|trait|namespace|use|final|yield|goto)\b/ig,
-	'constant': /[A-Z0-9_]{2,}/g
+	'constant': /\b[A-Z0-9_]{2,}\b/g
 });
 
 Prism.languages.insertBefore('php', 'keyword', {
 	'deliminator': /(\?>|\?&gt;|&lt;\?php|<\?php)/ig,
-	'this': /\$this/,
+	'this': /\$this/g,
+	'global': /\$_?(GLOBALS|SERVER|GET|POST|FILES|REQUEST|SESSION|ENV|COOKIE|HTTP_RAW_POST_DATA|argc|argv|php_errormsg|http_response_header)/g,
 	'variable': /(\$\w+)\b/ig,
 	'scope': {
-		pattern: /\b[a-z0-9_\\]+::/ig,
+		pattern: /\b[\w\\]+::/g,
 		inside: {
 			keyword: /(static|self|parent)/,
 			punctuation: /(::|\\)/
 		}
 	},
 	'package': {
-		pattern: /(\\|namespace\s+|use\s+)[a-z0-9_\\]+/ig,
+		pattern: /(\\|namespace\s+|use\s+)[\w\\]+/g,
 		lookbehind: true,
 		inside: {
 			punctuation: /\\/
@@ -38,7 +39,7 @@ Prism.languages.insertBefore('php', 'keyword', {
 
 Prism.languages.insertBefore('php', 'operator', {
 	'property': {
-		pattern: /(-&gt;)[a-z0-9_]+/ig,
+		pattern: /(-&gt;)[\w]+/g,
 		lookbehind: true
 	}
 });
@@ -46,15 +47,13 @@ Prism.languages.insertBefore('php', 'operator', {
 if (Prism.languages.markup) {
 	Prism.languages.insertBefore('php', 'comment', {
 		'markup': {
-			pattern: /(\?>|\?&gt;)[\w\W]*?(?=(&lt;\?php|<\?php))/ig,
-			lookbehind : true,
-			inside: {
-				'markup': {
-					pattern: /&lt;\/?[\w:-]+\s*[\w\W]*?&gt;/gi,
-					inside: Prism.languages.markup.tag.inside
-				},
-				rest: Prism.languages.php
-			}
+			pattern: Prism.languages.markup.tag.pattern,
+			inside: Prism.util.merge({
+				php: {
+					pattern: /(&lt;|<)\?php[\w\W]*?\?(>|&gt;)/ig,
+					inside: Prism.languages.php
+				}
+			}, Prism.languages.markup.tag.inside)
 		}
 	});
 }
