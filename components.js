@@ -29,7 +29,8 @@ var components = {
 		'line-highlight': 'Line Highlight',
 		'show-invisibles': 'Show Invisibles',
 		'autolinker': 'Autolinker',
-		'wpd': 'WebPlatform Docs'
+		'wpd': 'WebPlatform Docs',
+		'file-highlight': 'File Highlight'
 	},
 	languages: {
 		meta: {
