@@ -2,9 +2,9 @@ Prism.languages.css.selector = {
 	pattern: /[^\{\}\s][^\{\}]*(?=\s*\{)/g,
 	inside: {
 		'pseudo-element': /::?(after|before|first-letter|first-line|selection)/g,
-		'pseudo-class': /:[-\w]+(\(.*\))?/g,
-		'selector-class': /\.[-:\.\w]+/g,
-		'selector-id': /#[-:\.\w]+/g
+		'pseudo-class': /:[-\w]+(?:\(.*\))?/g,
+		'class': /\.[-:\.\w]+/g,
+		'id': /#[-:\.\w]+/g
 	}
 };
 
