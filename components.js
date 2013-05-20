@@ -27,6 +27,7 @@ var components = {
 			hasCSS: true
 		},
 		'line-highlight': 'Line Highlight',
+		'line-numbers': 'Line Numbers',
 		'show-invisibles': 'Show Invisibles',
 		'autolinker': 'Autolinker',
 		'wpd': 'WebPlatform Docs',
