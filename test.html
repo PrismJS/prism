@@ -11,6 +11,7 @@
 #theme {
 	margin-right: -9em;
 }
+
 textarea {
 	width: 100%;
 	height: 10em;
@@ -26,13 +27,22 @@ textarea {
 	word-wrap: normal;
 }
 
-#language label {
-	display: inline-block;
-	padding: .5em;
+#language {
+	column-count: 4;
 }
 
+	#language label {
+		display: block;
+		padding: .2em;
+	}
+
 	#language input {
-		margin-right: .3em;
+		margin-right: 1em;
+	}
+	
+	#language strong {
+		display: block;
+		column-span: all;
 	}
 
 </style>
@@ -56,14 +66,8 @@ textarea {
 			<textarea>&lt;p class="hey">Type some code here&lt;/p></textarea>
 		</p>
 		
-		<p id="language">Language:
-		</p>
-		
-		<p>
-			<label>
-				<input type="checkbox" name="async" value="1" />
-				Asynchronously
-			</label>
+		<p id="language">
+			<strong>Language:</strong>
 		</p>
 		
 		<p>Result:</p>
@@ -75,6 +79,7 @@ textarea {
 
 <script src="prism.js"></script>
 <script src="utopia.js"></script>
+<script src="components.js"></script>
 <script src="code.js"></script>
 <script>
 (function() {
@@ -86,7 +91,7 @@ for (var id in languages) {
 		continue;
 	}
 	
-	var name = languages[id];
+	var name = languages[id].title || languages[id];
 	
 	$u.element.create('label', {
 		contents: [
@@ -97,8 +102,15 @@ for (var id in languages) {
 					name: 'language',
 					value: id,
 					onclick: function () {
-						code.className = 'language-' + this.value;
-						Prism.highlightElement(code, form.elements.async.checked);
+						var lang = this.value;
+						code.className = 'language-' + lang;
+						code.textContent = code.textContent;
+						
+						if (!Prism.languages[lang]) {
+							$u.script('components/prism-' + lang + '.js');
+						}
+						
+						Prism.highlightElement(code);
 					}
 				}
 			}, name
@@ -112,9 +124,10 @@ radios[0].checked = true;
 radios[0].onclick();
 
 var textarea = $('textarea', form);
+
 (textarea.oninput = function() {
 	code.textContent = this.value || '';
-	Prism.highlightElement(code, form.elements.async.checked);
+	Prism.highlightElement(code);
 }).call(textarea);
 
 })();

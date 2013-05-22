@@ -10,7 +10,47 @@
 var lang = /\blang(?:uage)?-(?!\*)(\w+)\b/i;
 
 var _ = self.Prism = {
+	util: {
+		type: function (o) { 
+			return Object.prototype.toString.call(o).match(/\[object (\w+)\]/)[1];
+		},
+		
+		// Deep clone a language definition (e.g. to extend it)
+		clone: function (o) {
+			var type = _.util.type(o);
+
+			switch (type) {
+				case 'Object':
+					var clone = {};
+					
+					for (var key in o) {
+						if (o.hasOwnProperty(key)) {
+							clone[key] = _.util.clone(o[key]);
+						}
+					}
+					
+					return clone;
+					
+				case 'Array':
+					return o.slice();
+			}
+			
+			return o;
+		}
+	},
+	
 	languages: {
+		extend: function (id, redef) {
+			var lang = _.util.clone(_.languages[id]);
+			
+			for (var key in redef) {
+				lang[key] = redef[key];
+			}
+			
+			return lang;
+		},
+		
+		// Insert a token before another token in a language literal
 		insertBefore: function (inside, before, insert, root) {
 			root = root || _.languages;
 			var grammar = root[inside];
@@ -37,11 +77,12 @@ var _ = self.Prism = {
 			return root[inside] = ret;
 		},
 		
+		// Traverse a language definition with Depth First Search
 		DFS: function(o, callback) {
 			for (var i in o) {
 				callback.call(o, i, o[i]);
 				
-				if (Object.prototype.toString.call(o) === '[object Object]') {
+				if (_.util.type(o) === 'Object') {
 					_.languages.DFS(o[i], callback);
 				}
 			}
@@ -83,7 +124,7 @@ var _ = self.Prism = {
 			parent.className = parent.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language; 
 		}
 
-		var code = element.textContent.trim();
+		var code = element.textContent;
 		
 		if(!code) {
 			return;
@@ -106,7 +147,7 @@ var _ = self.Prism = {
 			var worker = new Worker(_.filename);	
 			
 			worker.onmessage = function(evt) {
-				env.highlightedCode = Token.stringify(JSON.parse(evt.data));
+				env.highlightedCode = Token.stringify(JSON.parse(evt.data), language);
 				env.element.innerHTML = env.highlightedCode;
 				
 				callback && callback.call(env.element);
@@ -120,7 +161,7 @@ var _ = self.Prism = {
 			}));
 		}
 		else {
-			env.highlightedCode = _.highlight(env.code, env.grammar)
+			env.highlightedCode = _.highlight(env.code, env.grammar, env.language)
 			env.element.innerHTML = env.highlightedCode;
 			
 			callback && callback.call(element);
@@ -130,11 +171,11 @@ var _ = self.Prism = {
 		}
 	},
 	
-	highlight: function (text, grammar) {
-		return Token.stringify(_.tokenize(text, grammar));
+	highlight: function (text, grammar, language) {
+		return Token.stringify(_.tokenize(text, grammar), language);
 	},
 	
-	tokenize: function(text, grammar) {
+	tokenize: function(text, grammar, language) {
 		var Token = _.Token;
 		
 		var strarr = [text];
@@ -241,25 +282,25 @@ var Token = _.Token = function(type, content) {
 	this.content = content;
 };
 
-Token.stringify = function(o) {
+Token.stringify = function(o, language, parent) {
 	if (typeof o == 'string') {
 		return o;
 	}
-	
+
 	if (Object.prototype.toString.call(o) == '[object Array]') {
-		for (var i=0; i<o.length; i++) {
-			o[i] = Token.stringify(o[i]);
-		}
-		
-		return o.join('');
+		return o.map(function(element) {
+			return Token.stringify(element, language, o);
+		}).join('');
 	}
 	
 	var env = {
 		type: o.type,
-		content: Token.stringify(o.content),
+		content: Token.stringify(o.content, language, parent),
 		tag: 'span',
 		classes: ['token', o.type],
-		attributes: {}
+		attributes: {},
+		language: language,
+		parent: parent
 	};
 	
 	if (env.type == 'comment') {
