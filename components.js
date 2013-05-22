@@ -18,7 +18,8 @@ var components = {
 		},
 		'prism-dark': 'Dark',
 		'prism-funky': 'Funky',
-		'prism-okaidia': 'Okaidia'
+		'prism-okaidia': 'Okaidia',
+		'prism-twilight': 'Twilight'
 	},
 	plugins: {
 		meta: {
