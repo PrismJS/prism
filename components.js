@@ -45,6 +45,10 @@ var components = {
 			title: 'CSS',
 			option: 'default'
 		},
+		'css-extras': {
+			title: 'CSS Extras',
+			require: 'css'
+		},
 		'clike': {
 			title: 'C-like',
 			option: 'default'
