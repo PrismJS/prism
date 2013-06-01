@@ -95,6 +95,9 @@ var components = {
 		'groovy': {
 			title: 'Groovy',
 			require: 'clike'
+		},
+		'http': {
+			title: 'HTTP',
 		}
 	}
 };

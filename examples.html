@@ -413,6 +413,54 @@ class CoffeeScript extends Prism.Javascript
 	</code></pre>
 </section>
 
+<section class="language-http">
+	<h1>HTTP</h1>
+
+	<h2>Request Examples</h2>
+	<p>A simple HTTP GET request:</p>
+	<pre><code>GET https://example.tld/v1/:serviceName/users.json?sort=:sortMethod HTTP/1.1</code></pre>
+	<p>Here is an HTTP POST with a body:</p>
+	<pre><code>POST https://example.tld/v1/:serviceName/users.json HTTP/1.1
+Content-Type: application/json
+
+{
+	"names": ["test1", "test2"],
+	"version": 1.0
+}
+</code></pre>
+
+	<h2>Response Examples</h2>
+	<p>JSON response body:</p>
+	<pre><code>HTTP/1.1 200 OK
+Content-Type: application/json
+X-Response-Time: 6ms
+
+{
+	"users": [
+		{
+			"name": "John",
+			"points": 24
+		},
+		{
+			"name": "Lea",
+			"points": 15
+		}
+	]
+}
+</code></pre>
+	<p>XML response body:</p>
+	<pre><code>HTTP/1.1 200 OK
+Content-Type: application/xml
+X-Response-Time: 10ms
+
+&lt;root&gt;
+	&lt;status code="0"&gt;
+		Successful
+	&lt;/status&gt;
+&lt;/root&gt;
+</code></pre>
+</section>
+
 <section id="failures" class="language-javascript">
 	<h1>Known failures (JavaScript)</h1>
 	<p>There are certain edge cases where Prism will fail.
