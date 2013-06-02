@@ -154,6 +154,9 @@ var _ = self.Prism = {
 
 			worker.onmessage = function(evt) {
 				env.highlightedCode = Token.stringify(JSON.parse(evt.data), language);
+
+				_.hooks.run('before-insert', env);
+
 				env.element.innerHTML = env.highlightedCode;
 
 				callback && callback.call(env.element);
@@ -168,6 +171,9 @@ var _ = self.Prism = {
 		}
 		else {
 			env.highlightedCode = _.highlight(env.code, env.grammar, env.language)
+
+			_.hooks.run('before-insert', env);
+
 			env.element.innerHTML = env.highlightedCode;
 
 			callback && callback.call(element);
