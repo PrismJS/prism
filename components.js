@@ -28,6 +28,7 @@ var components = {
 			hasCSS: true
 		},
 		'line-highlight': 'Line Highlight',
+		'line-numbers': 'Line Numbers',
 		'show-invisibles': 'Show Invisibles',
 		'autolinker': 'Autolinker',
 		'wpd': 'WebPlatform Docs',
@@ -44,6 +45,10 @@ var components = {
 		'css': {
 			title: 'CSS',
 			option: 'default'
+		},
+		'css-extras': {
+			title: 'CSS Extras',
+			require: 'css'
 		},
 		'clike': {
 			title: 'C-like',
