@@ -203,7 +203,8 @@ var _ = self.Prism = {
 			
 			var pattern = grammar[token], 
 				inside = pattern.inside,
-				lookbehind = !!pattern.lookbehind || 0;
+				lookbehind = !!pattern.lookbehind,
+				lookbehindLength = 0;
 			
 			pattern = pattern.pattern || pattern;
 			
@@ -226,11 +227,11 @@ var _ = self.Prism = {
 				
 				if (match) {
 					if(lookbehind) {
-						lookbehind = match[1].length;
+						lookbehindLength = match[1].length;
 					}
 
-					var from = match.index - 1 + lookbehind,
-					    match = match[0].slice(lookbehind),
+					var from = match.index - 1 + lookbehindLength,
+					    match = match[0].slice(lookbehindLength),
 					    len = match.length,
 					    to = from + len,
 						before = str.slice(0, from + 1),
