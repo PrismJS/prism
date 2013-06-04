@@ -43,17 +43,3 @@ Prism.languages.insertBefore('php', 'operator', {
 		lookbehind: true
 	}
 });
-
-if (Prism.languages.markup) {
-	Prism.languages.insertBefore('php', 'comment', {
-		'markup': {
-			pattern: Prism.languages.markup.tag.pattern,
-			inside: Prism.util.merge({
-				php: {
-					pattern: /(&lt;|<)\?php[\w\W]*?\?(>|&gt;)/ig,
-					inside: Prism.languages.php
-				}
-			}, Prism.languages.markup.tag.inside)
-		}
-	});
-}
