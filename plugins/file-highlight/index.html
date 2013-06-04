@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8" />
+<link rel="shortcut icon" href="favicon.png" />
+<title>File Highlight ▲ Prism plugins</title>
+<base href="../.." />
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="prism.css" data-noprefix />
+<script src="prefixfree.min.js"></script>
+
+<script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
+<script src="http://www.google-analytics.com/ga.js" async></script>
+</head>
+<body>
+
+<header>
+	<div class="intro" data-src="templates/header-plugins.html" data-type="text/html"></div>
+
+	<h2>File Highlight</h2>
+	<p>Fetch external files and highlight them with Prism. Used on the Prism website itself.</p>
+</header>
+
+<section class="language-markup">
+	<h1>How to use</h1>
+	
+	<p>Use the <code>data-src</code> attribute on empty <code>&lt;pre></code> elements, like so:</p>
+	
+	<pre><code>&lt;pre data-src="myfile.js">&lt;/pre></code></pre>
+	
+	<p>You don’t need to specify the language, it’s automatically determined by the file extension.
+	If, however, the language cannot be determined from the file extension or the file extension is incorrect, you may specify a language as well (with the usual class name way).</p>
+	
+	<p>Please note that the files are fetched with XMLHttpRequest. This means that if the file is on a different origin, fetching it will fail, unless CORS is enabled on that website.</p>
+</section>
+
+<section>
+	<h1>Examples</h1>
+	
+	<p>The plugin’s JS code:</p>
+	<pre data-src="plugins/file-highlight/prism-file-highlight.js"></pre>
+	
+	<p>This page:</p>
+	<pre data-src="plugins/file-highlight/index.html"></pre>
+	
+	<p>File that doesn’t exist:</p>
+	<pre data-src="foobar.js"></pre>
+	
+	<p>For more examples, browse around the Prism website. Most large code samples are actually files fetched with this plugin.</p>
+</section>
+
+<footer data-src="templates/footer.html" data-type="text/html"></footer>
+
+<script src="prism.js"></script>
+<script src="plugins/file-highlight/prism-file-highlight.js"></script>
+<script src="utopia.js"></script>
+<script src="components.js"></script>
+<script src="code.js"></script>
+
+
+</body>
+</html>

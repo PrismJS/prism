@@ -18,7 +18,8 @@ var components = {
 		},
 		'prism-dark': 'Dark',
 		'prism-funky': 'Funky',
-		'prism-okaidia': 'Okaidia'
+		'prism-okaidia': 'Okaidia',
+		'prism-twilight': 'Twilight'
 	},
 	plugins: {
 		meta: {
@@ -27,9 +28,11 @@ var components = {
 			hasCSS: true
 		},
 		'line-highlight': 'Line Highlight',
+		'line-numbers': 'Line Numbers',
 		'show-invisibles': 'Show Invisibles',
 		'autolinker': 'Autolinker',
-		'wpd': 'WebPlatform Docs'
+		'wpd': 'WebPlatform Docs',
+		'file-highlight': 'File Highlight'
 	},
 	languages: {
 		meta: {
@@ -42,6 +45,10 @@ var components = {
 		'css': {
 			title: 'CSS',
 			option: 'default'
+		},
+		'css-extras': {
+			title: 'CSS Extras',
+			require: 'css'
 		},
 		'clike': {
 			title: 'C-like',
