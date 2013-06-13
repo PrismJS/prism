@@ -25,7 +25,9 @@ var components = {
 		meta: {
 			path: 'plugins/{id}/prism-{id}',
 			link: 'plugins/{id}/',
-			hasCSS: true
+			hasCSS: true,
+			hasJS: true,
+			hasMinJS: true
 		},
 		'line-highlight': 'Line Highlight',
 		'line-numbers': 'Line Numbers',
