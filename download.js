@@ -60,8 +60,13 @@ for (var category in components) {
 		}
 		
 		if (!/\.css$/.test(filepath)) {
-			info.files.minified.paths.push(filepath.replace(/(\.js)?$/, '.min.js'));
-			info.files.dev.paths.push(filepath.replace(/(\.js)?$/, '.js'));
+			if (all[id].hasJS) {
+				info.files.dev.paths.push(filepath.replace(/(\.js)?$/, '.js'));
+			}
+
+			if (all[id].hasMinJS) {
+				info.files.minified.paths.push(filepath.replace(/(\.js)?$/, '.min.js'));
+			}
 		}
 		
 		if ((all[id].hasCSS && !/\.js$/.test(filepath)) || /\.css$/.test(filepath)) {
