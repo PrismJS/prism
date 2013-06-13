@@ -32,7 +32,10 @@ var components = {
 		'show-invisibles': 'Show Invisibles',
 		'autolinker': 'Autolinker',
 		'wpd': 'WebPlatform Docs',
-		'file-highlight': 'File Highlight'
+		'file-highlight': {
+			title: 'File Highlight',
+			hasCSS: false
+		}
 	},
 	languages: {
 		meta: {
