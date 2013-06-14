@@ -130,8 +130,7 @@ var _ = self.Prism = {
 			return;
 		}
 		
-		code = code.replace(/&/g, '&amp;').replace(/</g, '&lt;')
-		           .replace(/>/g, '&gt;').replace(/\u00a0/g, ' ');
+		code = code.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/\u00a0/g, ' ');
 		//console.time(code.slice(0,50));
 		
 		var env = {
