@@ -41,6 +41,7 @@ for (var category in components) {
 		var info = all[id] = {
 			title: all[id].title || all[id],
 			noCSS: all[id].noCSS || true,
+			noJS: all[id].noJS,
 			enabled: checked,
 			require: all[id].require,
 			files: {
@@ -58,8 +59,8 @@ for (var category in components) {
 		if (info.require) {
 			dependencies[info.require] = (dependencies[info.require] || []).concat(id);
 		}
-		
-		if (!/\.css$/.test(filepath)) {
+
+		if (!all[id].noJS && !/\.css$/.test(filepath)) {
 			info.files.minified.paths.push(filepath.replace(/(\.js)?$/, '.min.js'));
 			info.files.dev.paths.push(filepath.replace(/(\.js)?$/, '.js'));
 		}
