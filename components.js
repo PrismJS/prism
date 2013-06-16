@@ -24,8 +24,7 @@ var components = {
 	plugins: {
 		meta: {
 			path: 'plugins/{id}/prism-{id}',
-			link: 'plugins/{id}/',
-			hasCSS: true
+			link: 'plugins/{id}/'
 		},
 		'line-highlight': 'Line Highlight',
 		'line-numbers': 'Line Numbers',
@@ -34,7 +33,7 @@ var components = {
 		'wpd': 'WebPlatform Docs',
 		'file-highlight': {
 			title: 'File Highlight',
-			hasCSS: false
+			noCSS: true
 		}
 	},
 	languages: {
