@@ -309,6 +309,197 @@ public class PrismJS {
 	<p>As you can notice String keyword is not highlighted because it's not a Java language keyword (cf. <a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html">Java Language Keywords</a>). The main reason is that String is not a primitive type such as <em>int</em> but a class type like <em>Integer</em>.</p>
 </section>
 
+<section class="language-golang">
+	<h1>Go</h1>
+
+	<h2>Keywords</h2>
+	<pre><code>break        default      func         interface    select
+case         defer        go           map          struct
+chan         else         goto         package      switch
+const        fallthrough  if           range        type
+continue     for          import       return       var</code></pre>
+
+	<h2>Predeclared identifiers</h2>
+	<pre><code>// Types:
+bool byte complex64 complex128 error float32 float64
+int int8 int16 int32 int64 rune string
+uint uint8 uint16 uint32 uint64 uintptr
+
+// Constants:
+true false iota
+
+// Zero value:
+nil
+
+// Built-in Functions:
+append cap close complex copy delete imag len
+make new panic print println real recover</code></pre>
+
+	<h2>Operators and Delimeters</h2>
+	<pre><code>+    &     +=    &=     &&    ==    !=    (    )
+-    |     -=    |=     ||    <     <=    [    ]
+*    ^     *=    ^=     <-    >     >=    {    }
+/    <<    /=    <<=    ++    =     :=    ,    ;
+%    >>    %=    >>=    --    !     ...   .    :
+     &^          &^=</code></pre>
+
+	<h2>Numeric Literals</h2>
+	<pre><code>// Integer Literals
+42
+0600
+0xBadFace
+170141183460469231731687303715884105727
+
+// Floating-point literals
+0.
+72.40
+072.40  // == 72.40
+2.71828
+1.e+0
+6.67428e-11
+1E6
+.25
+.12345E+5
+
+// Imaginary Literals
+0i
+011i  // == 11i
+0.i
+2.71828i
+1.e+0i
+6.67428e-11i
+1E6i
+.25i
+.12345E+5i</code></pre>
+
+	<h2>String and Character Literals</h2>
+	<pre><code>// Rune literals
+'a'
+'ä'
+'本'
+'\t'
+'\000'
+'\007'
+'\377'
+'\x07'
+'\xff'
+'\u12e4'
+'\U00101234'
+'aa'         // illegal: too many characters
+'\xa'        // illegal: too few hexadecimal digits
+'\0'         // illegal: too few octal digits
+'\uDFFF'     // illegal: surrogate half
+'\U00110000' // illegal: invalid Unicode code point
+
+// String literals
+`abc`  // same as "abc"
+`\n
+\n`    // same as "\\n\n\\n"
+"\n"
+""
+"Hello, world!\n"
+"日本語"
+"\u65e5本\U00008a9e"
+"\xff\u00FF"
+"\uD800"       // illegal: surrogate half
+"\U00110000"   // illegal: invalid Unicode code point
+	</code></pre>
+
+	<h2>Simple code examples</h2>
+
+	<pre><code>/*
+ Example 1
+ */
+
+package main
+
+import "fmt"
+
+// Send the sequence 2, 3, 4, … to channel 'ch'.
+func generate(ch chan<- int) {
+	for i := 2; ; i++ {
+		ch <- i  // Send 'i' to channel 'ch'.
+	}
+}
+
+// Copy the values from channel 'src' to channel 'dst',
+// removing those divisible by 'prime'.
+func filter(src <-chan int, dst chan<- int, prime int) {
+	for i := range src {  // Loop over values received from 'src'.
+		if i%prime != 0 {
+			dst <- i  // Send 'i' to channel 'dst'.
+		}
+	}
+}
+
+// The prime sieve: Daisy-chain filter processes together.
+func sieve() {
+	ch := make(chan int)  // Create a new channel.
+	go generate(ch)       // Start generate() as a subprocess.
+	for {
+		prime := <-ch
+		fmt.Print(prime, "\n")
+		ch1 := make(chan int)
+		go filter(ch, ch1, prime)
+		ch = ch1
+	}
+}
+
+func main() {
+	sieve()
+}
+
+/*
+ Example 2
+ */
+
+func Sum(a *[3]float64) (sum float64) {
+    for _, v := range *a {
+        sum += v
+    }
+    return
+}
+
+array := [...]float64{7.0, 8.5, 9.1}
+x := Sum(&array)  // Note the explicit address-of operator
+
+
+/*
+ Example 3
+ */
+
+type Sequence []int
+
+// Methods required by sort.Interface.
+func (s Sequence) Len() int {
+    return len(s)
+}
+func (s Sequence) Less(i, j int) bool {
+    return s[i] < s[j]
+}
+func (s Sequence) Swap(i, j int) {
+    s[i], s[j] = s[j], s[i]
+}
+
+// Method for printing - sorts the elements before printing.
+func (s Sequence) String() string {
+    sort.Sort(s)
+    str := "["
+    for i, elem := range s {
+        if i > 0 {
+            str += " "
+        }
+        str += fmt.Sprint(elem)
+    }
+    return str + "]"
+}
+	</code></pre>
+
+	<p>Syntax and code examples from the
+	<a href="http://golang.org/ref/spec">language spec</a> and
+	<a href="http://golang.org/doc/effective_go.html">effective go</a>.</p>
+</section>
+
 <section class="language-php">
 	<h1>PHP</h1>
 
@@ -485,6 +676,7 @@ X-Response-Time: 10ms
 <footer data-src="templates/footer.html" data-type="text/html"></footer>
 
 <script src="prism.js"></script>
+<script src="components/prism-golang.js"></script>
 <script src="utopia.js"></script>
 <script src="components.js"></script>
 <script src="code.js"></script>
