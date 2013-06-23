@@ -101,6 +101,10 @@ var components = {
 		},
 		'http': {
 			title: 'HTTP',
-		}
+		},
+		'golang': {
+			title: 'Go',
+			require: 'clike'
+		},
 	}
 };
