@@ -40,8 +40,8 @@ for (var category in components) {
 		
 		var info = all[id] = {
 			title: all[id].title || all[id],
-			noCSS: all[id].noCSS || true,
-			noJS: all[id].noJS,
+			noCSS: all[id].noCSS || all.meta.noCSS,
+			noJS: all[id].noJS || all.meta.noJS,
 			enabled: checked,
 			require: all[id].require,
 			files: {

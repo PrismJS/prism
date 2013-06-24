@@ -38,7 +38,8 @@ var components = {
 	},
 	languages: {
 		meta: {
-			path: 'components/prism-{id}'
+			path: 'components/prism-{id}',
+			noCSS: true
 		},
 		'markup': {
 			title: 'Markup',
