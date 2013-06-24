@@ -506,7 +506,7 @@ if (Prism.languages.markup) {
 
 (function(){
 
-if (!window.Prism || !document.querySelector) {
+if (typeof document === 'undefined' || !window.Prism || !document.querySelector) {
 	return;
 }
 
