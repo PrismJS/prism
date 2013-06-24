@@ -138,7 +138,6 @@ var _ = self.Prism = {
 
 		code = code.replace(/&/g, '&amp;').replace(/</g, '&lt;')
 		           .replace(/>/g, '&gt;').replace(/\u00a0/g, ' ');
-		//console.time(code.slice(0,50));
 
 		var env = {
 			element: element,
@@ -160,7 +159,6 @@ var _ = self.Prism = {
 				env.element.innerHTML = env.highlightedCode;
 
 				callback && callback.call(env.element);
-				//console.timeEnd(code.slice(0,50));
 				_.hooks.run('after-highlight', env);
 			};
 
@@ -179,7 +177,6 @@ var _ = self.Prism = {
 			callback && callback.call(element);
 
 			_.hooks.run('after-highlight', env);
-			//console.timeEnd(code.slice(0,50));
 		}
 	},
 
