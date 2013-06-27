@@ -1,6 +1,6 @@
 (function(){
 
-if (!window.Prism || !document.querySelector) {
+if (!self.Prism || !self.document || !document.querySelector) {
 	return;
 }
 
