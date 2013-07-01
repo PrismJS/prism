@@ -536,7 +536,6 @@ Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(f
 	xhr.open('GET', src, true);
 
 	xhr.onreadystatechange = function() {
-		console.log(xhr.readyState, xhr.status, src);
 		if (xhr.readyState == 4) {
 			
 			if (xhr.status < 400 && xhr.responseText) {
