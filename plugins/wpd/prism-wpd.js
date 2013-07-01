@@ -5,12 +5,7 @@ if (!self.Prism) {
 }
 
 if (Prism.languages.css) {
-	Prism.languages.css.atrule = {
-		pattern: Prism.languages.css.atrule,
-		inside: {
-			'atrule-id': /^@[\w-]+/
-		}
-	};
+	Prism.languages.css.atrule.inside['atrule-id'] = /^@[\w-]+/;
 	
 	Prism.languages.css.selector = {
 		pattern: Prism.languages.css.selector,
