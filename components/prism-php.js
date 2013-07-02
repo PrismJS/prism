@@ -17,7 +17,7 @@ Prism.languages.php = Prism.languages.extend('clike', {
 });
 
 Prism.languages.insertBefore('php', 'keyword', {
-	'deliminator': /(\?>|\?&gt;|&lt;\?php|<\?php)/ig,
+	'deliminator': /(\?>|\?&gt;|&lt;\?php|<\?php|&lt;\?|<\?)/ig,
 	'this': /\$this/g,
 	'global': /\$_?(GLOBALS|SERVER|GET|POST|FILES|REQUEST|SESSION|ENV|COOKIE|HTTP_RAW_POST_DATA|argc|argv|php_errormsg|http_response_header)/g,
 	'variable': /(\$\w+)\b/ig,
@@ -43,3 +43,48 @@ Prism.languages.insertBefore('php', 'operator', {
 		lookbehind: true
 	}
 });
+
+if (Prism.languages.markup) {
+
+	// Tokenize all inline PHP blocks that are wrapped in <?php ?>
+	// This allows for easy PHP + markup highlighting
+	Prism.hooks.add('before-highlight', function(env) {
+		if (env.language !== 'php') {
+			return;
+		}
+
+		env.tokenStack = [];
+
+		env.code = env.code.replace(/(?:&lt;\?php|&lt;\?|<\?php|<\?)[\w\W]*?(?:\?&gt;|\?>)/ig, function(match) {
+			env.tokenStack.push(match);
+
+			return '{{{PHP' + env.tokenStack.length + '}}}';
+		});
+	});
+
+	// Re-insert the tokens after highlighting
+	Prism.hooks.add('after-highlight', function(env) {
+		if (env.language !== 'php') {
+			return;
+		}
+
+		for (var i = 0, t; t = env.tokenStack[i]; i++) {
+			env.highlightedCode = env.highlightedCode.replace('{{{PHP' + (i + 1) + '}}}', Prism.highlight(t, env.grammar, 'php'));
+		}
+
+		env.element.innerHTML = env.highlightedCode;
+	});
+
+	// Wrap tokens in classes that are missing them
+	Prism.hooks.add('wrap', function(env) {
+		if (env.language === 'php' && env.type === 'markup') {
+			env.content = env.content.replace(/(\{\{\{PHP[0-9]+\}\}\})/, "<span class=\"token php\">$1</span>");
+		}
+	});
+
+	// Add the rules before all others
+	Prism.languages.insertBefore('php', 'comment', {
+		'markup': Prism.languages.markup.tag,
+		'php': /\{\{\{PHP[0-9]+\}\}\}/
+	});
+}

@@ -147,7 +147,7 @@ ol {}</code></pre>
 
 	<h2>@ rule</h2>
 	<pre><code>@media screen and (min-width: 100px) {}</code></pre>
-	
+
 	<h2>LESS variable</h2>
 	<pre><code>@main-color: red;
 .foo {
@@ -312,8 +312,7 @@ public class PrismJS {
 <section class="language-php">
 	<h1>PHP</h1>
 
-	<pre><code>&lt;?php
-namespace Prism;
+	<pre><code>namespace Prism;
 
 use Some\Child\Class;
 
@@ -352,6 +351,22 @@ class Prism extends AbstractClass implements Interface_Class {
 		return $var;
 	}
 }</code></pre>
+
+	<h2>HTML then PHP</h2>
+	<pre><code>&lt;a href="&lt;?php echo $url; ?&gt;"&gt;Link&lt;/a&gt;</code></pre>
+
+	<h2>PHP then HTML (with short tags)</h2>
+	<pre><code>&lt;? if ($var) { ?&gt;&lt;a href="#"&gt;Link&lt;/a&gt;&lt;? } ?&gt;</code></pre>
+
+	<h2>PHP &amp; HTML</h2>
+	<pre><code>&lt;?php foreach (fetchData() as $key =&gt; $value) { ?>
+	&lt;li&gt;
+		&lt;? if ($value) { ?&gt;
+			&lt;span class="class-name"&gt;&lt;?php echo $value; ?&gt;&lt;/span&gt;
+		&lt;? } ?&gt;
+	&lt;/li&gt;
+&lt;?php } ?&gt;</code></pre>
+
 </section>
 
 <section class="language-coffeescript">
@@ -488,6 +503,7 @@ X-Response-Time: 10ms
 <script src="utopia.js"></script>
 <script src="components.js"></script>
 <script src="code.js"></script>
+<script src="components/prism-php.js"></script>
 
 </body>
 </html>
