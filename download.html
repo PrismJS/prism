@@ -48,6 +48,7 @@ form > p:first-of-type > label {
 
 section.options {
 	width: 33.3%;
+	width: calc(100% / 3);
 	float: left;
 }
 
@@ -61,6 +62,18 @@ section.options#category-languages {
 
 	section.options#category-languages > h1 {
 		margin-top: 0;
+		column-span: all;
+	}
+
+section.options#category-themes {
+	width: 66.6%;
+	width: calc(100% * 2/3);
+	column-count: 2;
+	overflow: visible;
+	float: none;
+}
+
+	section.options#category-themes > h1 {
 		column-span: all;
 	}
 

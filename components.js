@@ -21,22 +21,10 @@ var components = {
 		'prism-okaidia': 'Okaidia',
 		'prism-twilight': 'Twilight'
 	},
-	plugins: {
-		meta: {
-			path: 'plugins/{id}/prism-{id}',
-			link: 'plugins/{id}/',
-			hasCSS: true
-		},
-		'line-highlight': 'Line Highlight',
-		'line-numbers': 'Line Numbers',
-		'show-invisibles': 'Show Invisibles',
-		'autolinker': 'Autolinker',
-		'wpd': 'WebPlatform Docs',
-		'file-highlight': 'File Highlight'
-	},
 	languages: {
 		meta: {
-			path: 'components/prism-{id}'
+			path: 'components/prism-{id}',
+			noCSS: true
 		},
 		'markup': {
 			title: 'Markup',
@@ -96,6 +84,24 @@ var components = {
 		'groovy': {
 			title: 'Groovy',
 			require: 'clike'
+		},
+		'http': {
+			title: 'HTTP',
+		}
+	},
+	plugins: {
+		meta: {
+			path: 'plugins/{id}/prism-{id}',
+			link: 'plugins/{id}/'
+		},
+		'line-highlight': 'Line Highlight',
+		'line-numbers': 'Line Numbers',
+		'show-invisibles': 'Show Invisibles',
+		'autolinker': 'Autolinker',
+		'wpd': 'WebPlatform Docs',
+		'file-highlight': {
+			title: 'File Highlight',
+			noCSS: true
 		}
 	}
 };

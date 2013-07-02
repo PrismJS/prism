@@ -13,15 +13,25 @@ pre[class*="language-"] {
 	text-align: left;
 	white-space: pre;
 	word-spacing: normal;
-	
+
 	-moz-tab-size: 4;
 	-o-tab-size: 4;
 	tab-size: 4;
-	
+
 	-webkit-hyphens: none;
 	-moz-hyphens: none;
 	-ms-hyphens: none;
 	hyphens: none;
+}
+
+::-moz-selection {
+	text-shadow: none;
+	background: #b3d4fc;
+}
+
+::selection {
+	text-shadow: none;
+	background: #b3d4fc;
 }
 
 @media print {
@@ -35,7 +45,7 @@ pre[class*="language-"] {
 pre[class*="language-"] {
 	padding: 1em;
 	margin: .5em 0;
-	overflow: auto;	
+	overflow: auto;
 }
 
 :not(pre) > code[class*="language-"],
