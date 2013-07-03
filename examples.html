@@ -147,7 +147,7 @@ ol {}</code></pre>
 
 	<h2>@ rule</h2>
 	<pre><code>@media screen and (min-width: 100px) {}</code></pre>
-	
+
 	<h2>LESS variable</h2>
 	<pre><code>@main-color: red;
 .foo {
@@ -307,51 +307,6 @@ public class PrismJS {
 
 	</code></pre>
 	<p>As you can notice String keyword is not highlighted because it's not a Java language keyword (cf. <a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html">Java Language Keywords</a>). The main reason is that String is not a primitive type such as <em>int</em> but a class type like <em>Integer</em>.</p>
-</section>
-
-<section class="language-php">
-	<h1>PHP</h1>
-
-	<pre><code>&lt;?php
-namespace Prism;
-
-use Some\Child\Class;
-
-class Prism extends AbstractClass implements Interface_Class {
-	const CONSTANT = 12345;
-	public $foo = true;
-	public static $bar = array('foo' =&gt; 'bar');
-
-	final public __construct(array $arg1, $arg2 = false) {
-		$this->foo = $arg2;
-		$this->bar = new Child\Class();
-
-		$int = 123456;
-		$string = 'Prism.js is the best!';
-		$bool = true;
-		$array = array('foo');
-		$shortArray = ['bar'];
-		$null = null;
-		$closure = function($var) use ($int) {
-			return $int * 2;
-		};
-	}
-
-	public function under_score() {
-		self::doSomething();
-		static::_other_method();
-	}
-
-	public function doSomething() {
-		$var = Static\Class::methodCall();
-
-		for ($i = 0; $i &lt;= 10; $i++) {
-			$var = str_replace($i, rand(), $var);
-		}
-
-		return $var;
-	}
-}</code></pre>
 </section>
 
 <section class="language-coffeescript">
