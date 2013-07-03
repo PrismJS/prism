@@ -28,6 +28,7 @@ Prism.languages.insertBefore('php', 'keyword', {
 	}
 });
 
+// Must be defined after the function pattern
 Prism.languages.insertBefore('php', 'operator', {
 	'property': {
 		pattern: /(->)[\w]+/g,
@@ -35,6 +36,7 @@ Prism.languages.insertBefore('php', 'operator', {
 	}
 });
 
+// Add HTML support of the markup language exists
 if (Prism.languages.markup) {
 
 	// Tokenize all inline PHP blocks that are wrapped in <?php ?>
