@@ -19,7 +19,7 @@ Prism.languages.php = Prism.languages.extend('clike', {
 Prism.languages.insertBefore('php', 'keyword', {
 	'deliminator': /(\?>|\?&gt;|&lt;\?php|<\?php|&lt;\?|<\?)/ig,
 	'this': /\$this/g,
-	'global': /\$_?(GLOBALS|SERVER|GET|POST|FILES|REQUEST|SESSION|ENV|COOKIE|HTTP_RAW_POST_DATA|argc|argv|php_errormsg|http_response_header)/g,
+	//'global': /\$_?(GLOBALS|SERVER|GET|POST|FILES|REQUEST|SESSION|ENV|COOKIE|HTTP_RAW_POST_DATA|argc|argv|php_errormsg|http_response_header)/g,
 	'variable': /(\$\w+)\b/ig,
 	'scope': {
 		pattern: /\b[\w\\]+::/g,
