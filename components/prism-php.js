@@ -8,7 +8,7 @@
  * 		- Smarter constant and function matching
  *
  * Adds the following new token classes:
- * 		constant, deliminator, variable, function, scope, package, this, global
+ * 		constant, delimiter, variable, function, package
  */
 
 Prism.languages.php = Prism.languages.extend('clike', {
