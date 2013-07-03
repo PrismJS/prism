@@ -78,13 +78,13 @@ if (Prism.languages.markup) {
 	// Wrap tokens in classes that are missing them
 	Prism.hooks.add('wrap', function(env) {
 		if (env.language === 'php' && env.type === 'markup') {
-			env.content = env.content.replace(/(\{\{\{PHP[0-9]+\}\}\})/, "<span class=\"token php\">$1</span>");
+			env.content = env.content.replace(/(\{\{\{PHP[0-9]+\}\}\})/g, "<span class=\"token php\">$1</span>");
 		}
 	});
 
 	// Add the rules before all others
 	Prism.languages.insertBefore('php', 'comment', {
 		'markup': Prism.languages.markup.tag,
-		'php': /\{\{\{PHP[0-9]+\}\}\}/
+		'php': /\{\{\{PHP[0-9]+\}\}\}/g
 	});
 }
