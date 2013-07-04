@@ -55,6 +55,10 @@ var components = {
 			title: 'PHP',
 			require: 'clike'
 		},
+		'php-extras' : {
+			title: 'PHP Extras',
+			require: 'php'
+		},
 		'coffeescript': {
 			title: 'CoffeeScript',
 			require: 'javascript'
@@ -86,7 +90,7 @@ var components = {
 			require: 'clike'
 		},
 		'http': {
-			title: 'HTTP',
+			title: 'HTTP'
 		}
 	},
 	plugins: {
