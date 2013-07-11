@@ -3,9 +3,12 @@
  * Based on https://github.com/tshedor/workshop-wp-theme (Example: http://workshop.kansan.com/category/sessions/basics or http://workshop.timshedor.com/category/sessions/basics);
  * @author Tim  Shedor
  */
-
+html, body {
+	height:100%;
+}
 code[class*="language-"],
 pre[class*="language-"] {
+  height:100%;
   color: black;
   font-family: Consolas, Monaco, 'Andale Mono', monospace;
   direction: ltr;
@@ -21,6 +24,9 @@ pre[class*="language-"] {
   -moz-hyphens: none;
   -ms-hyphens: none;
   hyphens: none;
+  float: left;
+  width: 100%;
+  clear: both;
 }
 
 /* Code blocks */
@@ -32,11 +38,16 @@ pre[class*="language-"] {
   -moz-box-shadow: -1px 0px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf;
   box-shadow: -1px 0px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf;
   border-left: 10px solid #358ccb;
-  overflow:auto;
-  display:table;
-  width:100%;
+  overflow: visible;
+  max-height:30em;
 }
 
+code[class*="language-"] {
+  max-height: 29em;
+  overflow:scroll;
+}
+
+/* margin-bottom to accomodate the shadows */
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
   background: #fdfdfd;
