@@ -3,12 +3,8 @@
  * Based on https://github.com/tshedor/workshop-wp-theme (Example: http://workshop.kansan.com/category/sessions/basics or http://workshop.timshedor.com/category/sessions/basics);
  * @author Tim  Shedor
  */
-html, body {
-	height:100%;
-}
 code[class*="language-"],
 pre[class*="language-"] {
-  height:100%;
   color: black;
   font-family: Consolas, Monaco, 'Andale Mono', monospace;
   direction: ltr;
@@ -24,9 +20,8 @@ pre[class*="language-"] {
   -moz-hyphens: none;
   -ms-hyphens: none;
   hyphens: none;
-  float: left;
-  width: 100%;
-  clear: both;
+  display: block;
+  overflow: auto;
 }
 
 /* Code blocks */
@@ -34,32 +29,28 @@ pre[class*="language-"] {
   position:relative;
   padding: 1em;
   margin: .5em 0;
-  -webkit-box-shadow: -1px 0px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf;
-  -moz-box-shadow: -1px 0px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf;
-  box-shadow: -1px 0px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf;
+  -webkit-box-shadow: 0px 14px 29px -21px gray;
+  -moz-box-shadow: 0px 14px 29px -21px gray;
+  box-shadow: 0px 14px 29px -21px gray;
   border-left: 10px solid #358ccb;
-  overflow: visible;
-  max-height:30em;
+  display: block;
+  background-color: #fdfdfd;
+  background-image: linear-gradient(transparent 50%, rgba(69, 142, 209, 0.04) 50%);
+  background-size: 48px 48px;
+  background-origin:content-box;
+  display: block;
 }
 
-code[class*="language-"] {
-  max-height: 29em;
-  overflow:scroll;
-}
-
-/* margin-bottom to accomodate the shadows */
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
-  background: #fdfdfd;
+  background-color:#fdfdfd;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  margin-bottom: 20px;
 }
 
 /* Inline code */
 :not(pre) > code[class*="language-"] {
-  position:relative;
   padding: .2em;
   -webkit-border-radius: 0.3em;
   -moz-border-radius: 0.3em;
@@ -68,38 +59,6 @@ pre[class*="language-"] {
   border-radius: 0.3em;
   color: #c92c2c;
   border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-pre[class*="language-"]:before,
-pre[class*="language-"]:after {
-  content: '';
-  z-index: -2;
-  position: absolute;
-  bottom: 12px;
-  left: 5px;
-  width: 40%;
-  height: 20%;
-  -webkit-box-shadow: 0px 13px 8px #979797;
-  -moz-box-shadow: 0px 13px 8px #979797;
-  box-shadow: 0px 13px 8px #979797;
-  -webkit-transform: rotate(-2deg);
-  -moz-transform: rotate(-2deg);
-  -ms-transform: rotate(-2deg);
-  -o-transform: rotate(-2deg);
-  transform: rotate(-2deg);
-}
-
-:not(pre) > code[class*="language-"]:after,
-pre[class*="language-"]:after {
-  right: 10px;
-  left: auto;
-  -webkit-transform: rotate(2deg);
-  -moz-transform: rotate(2deg);
-  -ms-transform: rotate(2deg);
-  -o-transform: rotate(2deg);
-  transform: rotate(2deg);
-  visibility: visible!important;
-  height: 20%!important;
 }
 
 .token.comment,
