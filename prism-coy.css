@@ -3,6 +3,7 @@
  * Based on https://github.com/tshedor/workshop-wp-theme (Example: http://workshop.kansan.com/category/sessions/basics or http://workshop.timshedor.com/category/sessions/basics);
  * @author Tim  Shedor
  */
+
 code[class*="language-"],
 pre[class*="language-"] {
   color: black;
@@ -20,8 +21,6 @@ pre[class*="language-"] {
   -moz-hyphens: none;
   -ms-hyphens: none;
   hyphens: none;
-  display: block;
-  overflow: auto;
 }
 
 /* Code blocks */
@@ -29,28 +28,41 @@ pre[class*="language-"] {
   position:relative;
   padding: 1em;
   margin: .5em 0;
-  -webkit-box-shadow: 0px 14px 29px -21px gray;
-  -moz-box-shadow: 0px 14px 29px -21px gray;
-  box-shadow: 0px 14px 29px -21px gray;
+  -webkit-box-shadow: -1px 0px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf;
+  -moz-box-shadow: -1px 0px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf;
+  box-shadow: -1px 0px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf;
   border-left: 10px solid #358ccb;
-  display: block;
   background-color: #fdfdfd;
+  background-image: -webkit-linear-gradient(transparent 50%, rgba(69, 142, 209, 0.04) 50%);
+  background-image: -moz-linear-gradient(transparent 50%, rgba(69, 142, 209, 0.04) 50%);
+  background-image: -ms-linear-gradient(transparent 50%, rgba(69, 142, 209, 0.04) 50%);
+  background-image: -o-linear-gradient(transparent 50%, rgba(69, 142, 209, 0.04) 50%);
   background-image: linear-gradient(transparent 50%, rgba(69, 142, 209, 0.04) 50%);
-  background-size: 48px 48px;
+  background-size: 3em 3em;
   background-origin:content-box;
-  display: block;
+  overflow:visible;
+  max-height:30em;
 }
 
+code[class*="language"] {
+  max-height:29em;
+  display:block;
+  overflow:scroll;
+}
+
+/* Margin bottom to accomodate shadow */
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
   background-color:#fdfdfd;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  margin-bottom: 1em;
 }
 
 /* Inline code */
 :not(pre) > code[class*="language-"] {
+  position:relative;
   padding: .2em;
   -webkit-border-radius: 0.3em;
   -moz-border-radius: 0.3em;
@@ -59,6 +71,37 @@ pre[class*="language-"] {
   border-radius: 0.3em;
   color: #c92c2c;
   border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+pre[class*="language-"]:before,
+pre[class*="language-"]:after {
+  content: '';
+  z-index: -2;
+  display:block;
+  position: absolute;
+  bottom: 0.75em;
+  left: 0.18em;
+  width: 40%;
+  height: 20%;
+  -webkit-box-shadow: 0px 13px 8px #979797;
+  -moz-box-shadow: 0px 13px 8px #979797;
+  box-shadow: 0px 13px 8px #979797;
+  -webkit-transform: rotate(-2deg);
+  -moz-transform: rotate(-2deg);
+  -ms-transform: rotate(-2deg);
+  -o-transform: rotate(-2deg);
+  transform: rotate(-2deg);
+}
+
+:not(pre) > code[class*="language-"]:after,
+pre[class*="language-"]:after {
+  right: 0.75em;
+  left: auto;
+  -webkit-transform: rotate(2deg);
+  -moz-transform: rotate(2deg);
+  -ms-transform: rotate(2deg);
+  -o-transform: rotate(2deg);
+  transform: rotate(2deg);
 }
 
 .token.comment,
@@ -136,14 +179,8 @@ pre[class*="language-"] {
 }
 
 /* Plugin styles */
-
 .token.tab:not(:empty):before,
 .token.cr:before,
 .token.lf:before {
   color: #e0d7d1;
-}
-
-pre[data-line] {
-  position: relative;
-  padding: 1em 0 1em 3em;
 }
