@@ -77,7 +77,10 @@ if (Prism.languages.markup) {
 
 	// Add the rules before all others
 	Prism.languages.insertBefore('php', 'comment', {
-		'markup': Prism.languages.markup.tag,
+		'markup': {
+			pattern: /(&lt;|<)[^?]\/?(.*?)(>|&gt;)/g,
+			inside: Prism.languages.markup
+		},
 		'php': /\{\{\{PHP[0-9]+\}\}\}/g
 	});
 }
