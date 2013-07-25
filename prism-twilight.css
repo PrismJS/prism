@@ -114,7 +114,7 @@ pre[data-line] {
 .language-markup .token.tag,
 .language-markup .token.attr-name,
 .language-markup .token.punctuation  {
-	color: hsl(33, 33%, 52%); /* #AC885B */
+	color: hsl(33, 33%, 52%); /* #AC885B */
 }
 
 /* Text Selection colour */
@@ -131,11 +131,11 @@ pre[data-line] {
 	z-index:1;
 }
 .line-highlight {
-	background: -moz-linear-gradient(left, hsl(0, 0%, 33%,.1) 70%, hsl(0, 0%, 33%,0)); /* #545454 */
-	background: -o-linear-gradient(left, hsl(0, 0%, 33%,.1) 70%, hsl(0, 0%, 33%,0)); /* #545454 */
-	background: -webkit-linear-gradient(left, hsl(0, 0%, 33%,.1) 70%, hsl(0, 0%, 33%,0)); /* #545454 */
+	background: -moz-linear-gradient(left, hsla(0, 0%, 33%,.1) 70%, hsla(0, 0%, 33%,0)); /* #545454 */
+	background: -o-linear-gradient(left, hsla(0, 0%, 33%,.1) 70%, hsla(0, 0%, 33%,0)); /* #545454 */
+	background: -webkit-linear-gradient(left, hsla(0, 0%, 33%,.1) 70%, hsla(0, 0%, 33%,0)); /* #545454 */
 	background: hsla(0, 0%, 33%, 0.25); /* #545454 */
-	background: linear-gradient(left, hsl(0, 0%, 33%,.1) 70%, hsl(0, 0%, 33%,0)); /* #545454 */
+	background: linear-gradient(left, hsla(0, 0%, 33%,.1) 70%, hsla(0, 0%, 33%,0)); /* #545454 */
 	border-bottom:1px dashed hsl(0, 0%, 33%); /* #545454 */
 	border-top:1px dashed hsl(0, 0%, 33%); /* #545454 */
 	left: 0;
