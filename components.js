@@ -19,7 +19,8 @@ var components = {
 		'prism-dark': 'Dark',
 		'prism-funky': 'Funky',
 		'prism-okaidia': 'Okaidia',
-		'prism-twilight': 'Twilight'
+		'prism-twilight': 'Twilight',
+		'prism-coy': 'Coy'
 	},
 	languages: {
 		meta: {
