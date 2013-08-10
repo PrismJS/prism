@@ -17,7 +17,8 @@ var components = {
 			option: 'default'
 		},
 		'prism-dark': 'Dark',
-		'prism-funky': 'Funky'
+		'prism-funky': 'Funky',
+		'prism-coy': 'Coy'
 	},
 	languages: {
 		meta: {
