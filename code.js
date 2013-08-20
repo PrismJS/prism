@@ -1,96 +1,10 @@
-var components = {
-	core: {
-		meta: {
-			path: 'components/prism-core.js',
-			option: 'mandatory'
-		},
-		'core': 'Core'
-	},
-	themes: {
-		meta: {
-			path: '{id}.css',
-			link: 'index.html?theme={id}',
-			exclusive: true
-		},
-		'prism': {
-			title: 'Default',
-			option: 'default'
-		},
-		'prism-dark': 'Dark',
-		'prism-funky': 'Funky',
-		'prism-coy': 'Coy'
-	},
-	languages: {
-		meta: {
-			path: 'components/prism-{id}'
-		},
-		'markup': {
-			title: 'Markup',
-			option: 'default'
-		},
-		'css': {
-			title: 'CSS',
-			option: 'default'
-		},
-		'clike': {
-			title: 'C-like',
-			option: 'default'
-		},
-		'javascript': {
-			title: 'JavaScript',
-			option: 'default',
-			require: 'clike'
-		},
-		'java' : {
-			title: 'Java',
-			require: 'clike'
-		},
-		'coffeescript': {
-			title: 'CoffeeScript',
-			require: 'javascript'
-		},
-		'scss': {
-			title: 'Sass (Scss)',
-			require: 'css'
-		},
-		'bash' : {
-			title: 'Bash',
-			require: 'clike'
-		},
-		'c': {
-			title: 'C',
-			require: 'clike'
-		},
-		'cpp': {
-			title: 'C++',
-			require: 'c'
-		},
-		'python': {
-			title: 'Python'
-		},
-		'sql': {
-			title: 'SQL'
-		}
-	},
-	plugins: {
-		meta: {
-			path: 'plugins/{id}/prism-{id}',
-			link: 'plugins/{id}/',
-			hasCSS: true
-		},
-		'line-highlight': 'Line Highlight',
-		'show-invisibles': 'Show Invisibles',
-		'autolinker': 'Autolinker'
-	}
-};
-
 (function(){
 
 if(!document.body.addEventListener) {
 	return;
 }
 
-$$('[data-src]').forEach(function(element) {
+$$('[data-src][data-type="text/html"]').forEach(function(element) {
 	var src = element.getAttribute('data-src'),
 	    html = element.getAttribute('data-type') === 'text/html',
 	    contentProperty = html? 'innerHTML' : 'textContent';
@@ -108,40 +22,10 @@ $$('[data-src]').forEach(function(element) {
 					parent.removeChild(script);
 					document.head.appendChild(script);
 				});
-
-				$u.event.fire(element, 'contentreceived', {
-					src: src
-				});
 			}
 			catch (e) {}
 		}
 	});
-});
-
-document.body.addEventListener('contentreceived', function(evt) {
-	var pre = evt.target;
-
-	if(!/pre/i.test(pre.nodeName)) {
-		return;
-	}
-
-	var language = {
-		'js': 'javascript',
-		'css': 'css',
-		'html': 'markup',
-		'svg': 'markup'
-	}[(evt.src.match(/\.(\w+)$/) || [,''])[1]];
-
-	var code = document.createElement('code');
-
-	code.className = 'lang-' + language;
-
-	code.textContent = pre.textContent;
-	pre.textContent = '';
-
-	pre.appendChild(code);
-
-	Prism.highlightElement(code);
 });
 
 })();
