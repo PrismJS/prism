@@ -8,6 +8,11 @@ function $$(expr, con) {
 	return Array.prototype.slice.call((con || document).querySelectorAll(expr));
 }
 
+function hasClass(element, className) {
+  className = " " + className + " ";
+  return (" " + element.className + " ").replace(/[\n\t]/g, " ").indexOf(className) > -1
+}
+
 var CRLF = crlf = /\r?\n|\r/g;
     
 function highlightLines(pre, lines, classes) {
@@ -26,15 +31,25 @@ function highlightLines(pre, lines, classes) {
 		
 		line.textContent = Array(end - start + 2).join(' \r\n');
 		line.className = (classes || '') + ' line-highlight';
-		line.setAttribute('data-start', start);
-		
-		if(end > start) {
-			line.setAttribute('data-end', end);
-		}
-	
+
+    //if the line-numbers plugin is enabled, then there is no reason for this plugin to display the line numbers
+    if(!hasClass(pre, 'line-numbers')) {
+      line.setAttribute('data-start', start);
+
+      if(end > start) {
+        line.setAttribute('data-end', end);
+      }
+    }
+
 		line.style.top = (start - offset - 1) * lineHeight + 'px';
-		
-		(pre.querySelector('code') || pre).appendChild(line);
+
+    //allow this to play nicely with the line-numbers plugin
+    if(hasClass(pre, 'line-numbers')) {
+      //need to attack to pre as when line-numbers is enabled, the code tag is relatively which screws up the positioning
+      pre.appendChild(line);
+    } else {
+      (pre.querySelector('code') || pre).appendChild(line);
+    }
 	}
 }
 
