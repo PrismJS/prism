@@ -79,13 +79,16 @@ pre[class*="language-"] {
 .token.property,
 .token.tag,
 .token.boolean,
-.token.number {
+.token.number,
+.token.constant,
+.token.symbol {
 	color: #905;
 }
 
 .token.selector,
 .token.attr-name,
-.token.string {
+.token.string,
+.token.builtin {
 	color: #690;
 }
 
@@ -93,7 +96,8 @@ pre[class*="language-"] {
 .token.entity,
 .token.url,
 .language-css .token.string,
-.style .token.string {
+.style .token.string,
+.token.variable {
 	color: #a67f59;
 	background: hsla(0,0%,100%,.5);
 }
