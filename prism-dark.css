@@ -13,11 +13,11 @@ pre[class*="language-"] {
 	text-align: left;
 	white-space: pre;
 	word-spacing: normal;
-	
+
 	-moz-tab-size: 4;
 	-o-tab-size: 4;
 	tab-size: 4;
-	
+
 	-webkit-hyphens: none;
 	-moz-hyphens: none;
 	-ms-hyphens: none;
@@ -40,7 +40,7 @@ pre[class*="language-"],
 pre[class*="language-"] {
 	padding: 1em;
 	margin: .5em 0;
-	overflow: auto;	
+	overflow: auto;
 	border: .3em solid hsl(30,20%,40%);
 	border-radius: .5em;
 	box-shadow: 1px 1px .5em black inset;
@@ -72,13 +72,16 @@ pre[class*="language-"] {
 .token.property,
 .token.tag,
 .token.boolean,
-.token.number {
+.token.number,
+.token.constant,
+.token.symbol {
 	color: hsl(350, 40%, 70%);
 }
 
 .token.selector,
 .token.attr-name,
-.token.string {
+.token.string,
+.token.builtin {
 	color: hsl(75, 70%, 60%);
 }
 
@@ -86,7 +89,8 @@ pre[class*="language-"] {
 .token.entity,
 .token.url,
 .language-css .token.string,
-.style .token.string {
+.style .token.string,
+.token.variable {
 	color: hsl(40, 90%, 60%);
 }
 
