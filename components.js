@@ -92,6 +92,10 @@ var components = {
 		},
 		'http': {
 			title: 'HTTP'
+		},
+		'ruby': {
+			title: 'Ruby',
+			require: 'clike'
 		}
 	},
 	plugins: {
