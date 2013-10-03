@@ -37,11 +37,18 @@ pre[class*="language-"] {
 	overflow: auto;
 	padding: 1em;
 }
-pre[class*="language-"]::selection { /* Safari */
-	background:hsl(200, 4%, 16%); /* #282A2B */
+
+/* Text Selection colour */
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+	text-shadow: none;
+	background: hsla(0,0%,93%,0.15); /* #EDEDED */
 }
-pre[class*="language-"]::selection { /* Firefox */
-	background:hsl(200, 4%, 16%); /* #282A2B */
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+	text-shadow: none;
+	background: hsla(0,0%,93%,0.15); /* #EDEDED */
 }
 
 /* Inline code */
@@ -119,14 +126,6 @@ pre[data-line] {
 .language-markup .token.attr-name,
 .language-markup .token.punctuation  {
 	color: hsl(33, 33%, 52%); /* #AC885B */
-}
-
-/* Text Selection colour */
-::selection {
-	background: hsla(0,0%,93%,0.15); /* #EDEDED */
-}
-::-moz-selection {
-	background: hsla(0,0%,93%,0.15); /* #EDEDED */
 }
 
 /* Make the tokens sit above the line highlight so the colours don't look faded. */
