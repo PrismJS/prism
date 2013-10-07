@@ -144,7 +144,7 @@ if (current === undefined) {
 }
 
 function setTheme(id) {
-	var link = $$('link[href^="prism"]')[0];
+	var link = $$('link[href^="themes/prism"]')[0];
 
 	link.href = themes.meta.path.replace(/\{id}/g, id);
 	localStorage.setItem('theme', id);

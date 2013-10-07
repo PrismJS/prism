@@ -8,7 +8,7 @@ var components = {
 	},
 	themes: {
 		meta: {
-			path: '{id}.css',
+			path: 'themes/{id}.css',
 			link: 'index.html?theme={id}',
 			exclusive: true
 		},
