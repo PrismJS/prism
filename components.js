@@ -96,6 +96,13 @@ var components = {
 		'ruby': {
 			title: 'Ruby',
 			require: 'clike'
+		},
+		'gherkin': {
+			title: 'Gherkin'
+		},
+		'csharp': {
+			title: 'C#',
+			require: 'clike'
 		}
 	},
 	plugins: {
