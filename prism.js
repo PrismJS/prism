@@ -4,13 +4,15 @@
      Begin prism-core.js
 ********************************************** */
 
+var self = (typeof window !== 'undefined') ? window : {};
+
 /**
  * Prism: Lightweight, robust, elegant syntax highlighting
  * MIT license http://www.opensource.org/licenses/mit-license.php/
  * @author Lea Verou http://lea.verou.me
  */
 
-(function(){
+var Prism = (function(){
 
 // Private helper vars
 var lang = /\blang(?:uage)?-(?!\*)(\w+)\b/i;
@@ -329,7 +331,11 @@ Token.stringify = function(o, language, parent) {
 };
 
 if (!self.document) {
-	// In worker
+	if (!self.addEventListener) {
+		// in Node.js
+		return self.Prism;
+	}
+ 	// In worker
 	self.addEventListener('message', function(evt) {
 		var message = JSON.parse(evt.data),
 		    lang = message.language,
@@ -339,7 +345,7 @@ if (!self.document) {
 		self.close();
 	}, false);
 	
-	return;
+	return self.Prism;
 }
 
 // Get current script and highlight
@@ -355,7 +361,13 @@ if (script) {
 	}
 }
 
+return self.Prism;
+
 })();
+
+if (typeof module !== 'undefined' && module.exports) {
+	module.exports = Prism;
+}
 
 /* **********************************************
      Begin prism-markup.js
