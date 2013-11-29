@@ -17,5 +17,6 @@ Prism depends on community contributions to expand and cover a wider array of us
 - Please try to err towards more smaller PRs rather than few huge PRs. If a PR includes changes I want to merge and changes I don't, handling it becomes difficult.
 - My time is very limited these days, so it might take a long time to review longer PRs (short ones are usually merged very quickly), especially those modifying the Prism Core. This doesn't mean your PR is rejected.
 - If you contribute a new language definition, you will be responsible for handling bug reports about that language definition. Soon I plan to add usernames of project owners for themes, plugins and language definitions so this becomes more clear to users.
+- If you add a new language definition, theme or plugin, you need to add it to `components.js` as well, so that it becomes available to the download build page.
 
 Thank you so much for contributing!!
