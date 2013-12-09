@@ -103,6 +103,10 @@ var components = {
 		'csharp': {
 			title: 'C#',
 			require: 'clike'
+		},
+		'go': {
+			title: 'Go',
+			require: 'clike'
 		}
 	},
 	plugins: {
