@@ -1,40 +1,24 @@
-pre.line-numbers {
-	position: relative;
-	padding-left: 3.8em;
+/* for line numbers */
+code[class*="language-"] {
 	counter-reset: linenumber;
 }
-
-pre.line-numbers > code {
-	position: relative;
+span.line{
+	display: inline-block;
+	width: 100%;
+	counter-increment: linenumber;
 }
-
-.line-numbers .line-numbers-rows {
-	position: absolute;
-	pointer-events: none;
-	top: 0;
+span.line:nth-child(odd){
+	background: #f0f0f0;
+}
+span.line::before{
+	content: counter(linenumber);
 	font-size: 100%;
-	left: -3.8em;
-	width: 3em; /* works for line-numbers below 1000 lines */
-	letter-spacing: -1px;
-	border-right: 1px solid #999;
-
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-
+	width: 2em;
+	display: inline-block;
+	font-weight: normal;
+	color: black;
+	border-right: 1px solid black;
+	margin-right: 5px;
+	padding-right: 5px;
+	text-align: right;
 }
-
-	.line-numbers-rows > span {
-		pointer-events: none;
-		display: block;
-		counter-increment: linenumber;
-	}
-
-		.line-numbers-rows > span:before {
-			content: counter(linenumber);
-			color: #999;
-			display: block;
-			padding-right: 0.8em;
-			text-align: right;
-		}
