@@ -1,5 +1,5 @@
 /* for line numbers */
-code[class*="language-"] {
+[class*="language-"] {
 	counter-reset: linenumber;
 }
 span.line{
