@@ -1,24 +1,8 @@
-Prism.hooks.add('after-highlight', function (env) {
-	// works only for <code> wrapped inside <pre data-line-numbers> (not inline)
-	var pre = env.element.parentNode;
-	if (!pre || !/pre/i.test(pre.nodeName) || pre.className.indexOf('line-numbers') === -1) {
-		return;
-	}
-
-	var linesNum = (1 + env.code.split('\n').length);
-	var lineNumbersWrapper;
-
-	lines = new Array(linesNum);
-	lines = lines.join('<span></span>');
-
-	lineNumbersWrapper = document.createElement('span');
-	lineNumbersWrapper.className = 'line-numbers-rows';
-	lineNumbersWrapper.innerHTML = lines;
-
-	if (pre.hasAttribute('data-start')) {
-		pre.style.counterReset = 'linenumber ' + (parseInt(pre.getAttribute('data-start'), 10) - 1);
-	}
-
-	env.element.appendChild(lineNumbersWrapper);
-
+Prism.hooks.add('before-insert', function(env){
+	var el = env.element;
+	if (!(el.hasAttribute('data-linenumber'))) return;
+	var startNumber = parseInt(el.getAttribute('data-linenumber'))||0;
+	el.style.counterReset = getComputedStyle(el).counterReset.replace(/\d+/, startNumber-1);
+	var line = '<span class=line >', endline = '</span>';
+	env.highlightedCode = line + env.highlightedCode.split('\n').join(endline+'\n'+line) + endline;
 });
