@@ -12,6 +12,7 @@ pre[class*="language-"] {
 	text-shadow: 0 -.1em .2em black;
 	white-space: pre;
 	word-spacing: normal;
+	word-break: normal;
 
 	-moz-tab-size: 4;
 	-o-tab-size: 4;

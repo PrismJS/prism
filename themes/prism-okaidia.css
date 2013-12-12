@@ -13,6 +13,7 @@ pre[class*="language-"] {
 	text-align: left;
 	white-space: pre;
 	word-spacing: normal;
+	word-break: normal;
 
 	-moz-tab-size: 4;
 	-o-tab-size: 4;
