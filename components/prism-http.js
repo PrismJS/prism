@@ -1,9 +1,9 @@
 Prism.languages.http = {
     'request-line': {
-        pattern: /^(POST|GET|PUT|DELETE|OPTIONS)\b\shttps?:\/\/\S+\sHTTP\/[0-9.]+/g,
+        pattern: /^(POST|GET|PUT|DELETE|OPTIONS|PATCH|TRACE|CONNECT)\b\shttps?:\/\/\S+\sHTTP\/[0-9.]+/g,
         inside: {
             // HTTP Verb
-            property: /^\b(POST|GET|PUT|DELETE|OPTIONS)\b/g,
+            property: /^\b(POST|GET|PUT|DELETE|OPTIONS|PATCH|TRACE|CONNECT)\b/g,
             // Path or query argument
             'attr-name': /:\w+/g
         }
