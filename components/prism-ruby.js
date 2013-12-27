@@ -16,6 +16,6 @@ Prism.languages.insertBefore('ruby', 'keyword', {
 		pattern: /(^|[^/])\/(?!\/)(\[.+?]|\\.|[^/\r\n])+\/[gim]{0,3}(?=\s*($|[\r\n,.;})]))/g,
 		lookbehind: true
 	},
-	'variable': /[@$&]+\b[a-zA-Z_][a-zA-Z_0-9]*[?!]?\b/g,
+	'variable': /[@$]+\b[a-zA-Z_][a-zA-Z_0-9]*[?!]?\b/g,
 	'symbol': /:\b[a-zA-Z_][a-zA-Z_0-9]*[?!]?\b/g
 });
