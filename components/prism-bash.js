@@ -11,7 +11,7 @@ Prism.languages.bash = Prism.languages.extend('clike', {
 			'property': /\$([a-zA-Z0-9_#\?\-\*!@]+|\{[^\}]+\})/g
 		}
 	},
-	'keyword': /\b(if|then|else|elif|fi|for|break|continue|while|in|case|function|select|do|done|until|echo|exit|return|set|declare)\b/g
+	'keyword': /(^\$)|\b(if|then|else|elif|fi|for|break|continue|while|in|case|function|select|do|done|until|echo|exit|return|set|declare)\b/g
 });
 
 Prism.languages.insertBefore('bash', 'keyword', {
