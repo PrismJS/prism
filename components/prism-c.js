@@ -4,6 +4,11 @@ Prism.languages.c = Prism.languages.extend('clike', {
 });
 
 Prism.languages.insertBefore('c', 'keyword', {
-	//property class reused for macro statements
-	'property': /#\s*[a-zA-Z]+/g
+    //property class reused for macro statements
+    'property': {
+        pattern:/#[a-zA-Z]+\ .*/g,
+        inside: {
+            property: /&lt;[a-zA-Z.]+>/g
+        }   
+    }   
 });
