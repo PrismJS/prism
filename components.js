@@ -107,6 +107,9 @@ var components = {
 		'go': {
 			title: 'Go',
 			require: 'clike'
+		},
+		'latex': {
+			title: 'LaTeX'
 		}
 	},
 	plugins: {
