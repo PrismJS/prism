@@ -28,7 +28,7 @@ Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(f
 
 	/* Detect GitHub */
 	var githuburl = /https:\/\/github.com\//i.test(src);
-	if(githuburl){
+	if (githuburl) {
 		var match = src.match( /https:\/\/github.com\/([^\/]+)\/([^\/]+)\/([^\/]+)\/([^\/]+)\/([\s\S]+)/);
 		var username = match[1];
 		var repository = match[2];
@@ -39,7 +39,7 @@ Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(f
 	xhr.open('GET', src, true);
 
 	/* If GitHub link, set Accept to raw */
-	if(githuburl){
+	if (githuburl) {
 		xhr.setRequestHeader('Accept', 'application/vnd.github.v3.raw');
 	}
 
