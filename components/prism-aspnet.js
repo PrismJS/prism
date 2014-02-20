@@ -1,24 +1,23 @@
 Prism.languages.aspnet = Prism.languages.extend('markup', {
-	'asp tag': {
+	'page-directive tag': {
 		pattern: /(<|&lt;)%\s*@.*%>/gi,
 		inside: {
-			'page-directive': /&lt;%\s*@\s*(?:Assembly|Control|Implements|Import|Master|MasterType|OutputCache|Page|PreviousPageType|Reference|Register)?|%>/ig,
+			'tag page-directive': /&lt;%\s*@\s*(?:Assembly|Control|Implements|Import|Master|MasterType|OutputCache|Page|PreviousPageType|Reference|Register)?|%>/ig,
 			rest: Prism.languages.markup.tag.inside
 		}
 	},
-	'asp directive': {
+	'directive tag': {
 		pattern: /(<|&lt;)%.*%>/gi,
 		inside: {
-			'directive-tag': /(<|&lt;)%\s*?[$=%#:]{0,2}|%>/gi,
-			
-			
+			'directive tag': /(<|&lt;)%\s*?[$=%#:]{0,2}|%>/gi,
 			rest: Prism.languages.csharp
 		}
 	}
 });
+
 /* match inline code inside of attribute value */
 Prism.languages.insertBefore('inside', 'punctuation', {
-	'asp directive': Prism.languages.aspnet.directive
+	'directive tag': Prism.languages.aspnet['directive tag']
 }, Prism.languages.aspnet.tag.inside["attr-value"]);
 
 Prism.languages.insertBefore('aspnet', 'comment', {
@@ -28,11 +27,11 @@ Prism.languages.insertBefore('aspnet', 'comment', {
 /* runat="server" contains csharp, not javascript */
 Prism.languages.insertBefore('aspnet', Prism.languages.javascript ? 'script' : 'tag', {
 	'asp script': {
-		pattern: /(&lt;|<)script(?=.*runat=['"]server['"])[\w\W]*?(>|&gt;)[\w\W]*?(&lt;|<)\/script(>|&gt;)/ig,
+		pattern: /(&lt;|<)script(?=.*runat=['"]?server['"]?)[\w\W]*?(>|&gt;)[\w\W]*?(&lt;|<)\/script(>|&gt;)/ig,
 		inside: {
-			'tag': {
-				pattern: /(&lt;|<)script[\w\W]*?(>|&gt;)|(&lt;|<)\/script(>|&gt;)/ig,
-				inside: Prism.languages.markup.tag.inside
+			tag: {
+				pattern: /&lt;\/?script\s*(?:\s+[\w:-]+(?:=(?:("|')(\\?[\w\W])*?\1|\w+))?\s*)*\/?>/gi,
+				inside: Prism.languages.aspnet.tag.inside
 			},
 			rest: Prism.languages.csharp
 		}
@@ -43,5 +42,5 @@ Prism.languages.insertBefore('aspnet', Prism.languages.javascript ? 'script' : '
 Prism.languages.aspnet.style.inside.tag.pattern = /&lt;\/?style\s*(?:\s+[\w:-]+(?:=(?:("|')(\\?[\w\W])*?\1|\w+))?\s*)*\/?>/gi;
 Prism.languages.aspnet.style.inside.tag.inside = Prism.languages.aspnet.tag.inside;
 
-Prism.languages.aspnet.script.inside.tag.pattern = /&lt;\/?script\s*(?:\s+[\w:-]+(?:=(?:("|')(\\?[\w\W])*?\1|\w+))?\s*)*\/?>/gi;
+Prism.languages.aspnet.script.inside.tag.pattern = Prism.languages.aspnet['asp script'].inside.tag.pattern
 Prism.languages.aspnet.script.inside.tag.inside = Prism.languages.aspnet.tag.inside;
