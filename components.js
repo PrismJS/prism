@@ -107,6 +107,10 @@ var components = {
 		'go': {
 			title: 'Go',
 			require: 'clike'
+		},
+		'aspnet': {
+			title: 'ASP.NET (C#)',
+			require: 'markup'
 		}
 	},
 	plugins: {
