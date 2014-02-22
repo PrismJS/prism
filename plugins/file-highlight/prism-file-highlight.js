@@ -7,7 +7,9 @@ if (!self.Prism || !self.document || !document.querySelector) {
 var Extensions = {
 	'js': 'javascript',
 	'html': 'markup',
-	'svg': 'markup'
+	'svg': 'markup',
+	'xml': 'markup',
+	'py': 'python'
 };
 
 Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function(pre) {
