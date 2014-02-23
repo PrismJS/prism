@@ -4,7 +4,7 @@ if (!self.Prism) {
 	return;
 }
 
-var url = /\b([a-z]{3,7}:\/\/|tel:)[\w-+%~/.:]+/,
+var url = /\b([a-z]{3,7}:\/\/|tel:)[\w-+%~/.:#=?&amp;]+/,
     email = /\b\S+@[\w.]+[a-z]{2}/,
     linkMd = /\[([^\]]+)]\(([^)]+)\)/,
     
@@ -27,8 +27,13 @@ for (var language in Prism.languages) {
 			if (type == 'comment') {
 				def.inside['md-link'] = linkMd;
 			}
+			if (type == 'attr-value') {
+				Prism.languages.insertBefore('inside', 'punctuation', { 'url-link': url }, def);
+			}
+			else {
+				def.inside['url-link'] = url;
+			}
 			
-			def.inside['url-link'] = url;
 			def.inside['email-link'] = email;
 		}
 	});
@@ -43,7 +48,7 @@ Prism.hooks.add('wrap', function(env) {
 		
 		var href = env.content;
 		
-		if (env.type == 'email-link') {
+		if (env.type == 'email-link' && href.indexOf('mailto:') != 0) {
 			href = 'mailto:' + href;
 		}
 		else if (env.type == 'md-link') {
