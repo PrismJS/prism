@@ -122,6 +122,7 @@ var components = {
 		'file-highlight': {
 			title: 'File Highlight',
 			noCSS: true
-		}
+		},
+		'show-language': 'Show Language'
 	}
 };
