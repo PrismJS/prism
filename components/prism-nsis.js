@@ -1,4 +1,9 @@
-Prism.languages.nsis = {
+/**
+ * Original by Jan T. Sott (http://github.com/idleberg)
+ *
+ * Includes all commands and plug-ins shipped with NSIS 3.0a2
+ */
+ Prism.languages.nsis = {
 	'comment': {
 		pattern: /(^|[^\\])(\/\*[\w\W]*?\*\/|(^|[^:])(#|;).*?(\r?\n|$))/g,
 		lookbehind: true
