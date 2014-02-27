@@ -241,9 +241,17 @@ function update(updatedCategory, updatedId){
 		title: prettySize(total.css)
 	});
 	
-	generateCode();
+	delayedGenerateCode();
 }
 
+var timerId = 0;
+// "debounce" multiple rapid requests to generate and highlight code
+function delayedGenerateCode(){
+	if ( timerId !== 0 ) {
+		clearTimeout(timerId);
+	}
+	timerId = setTimeout(generateCode, 500);
+}
 function generateCode(){
 	var code = {js: '', css: ''};
 	
