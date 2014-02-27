@@ -367,7 +367,7 @@ Prism.languages.markup = {
 	'doctype': /&lt;!DOCTYPE.+?>/,
 	'cdata': /&lt;!\[CDATA\[[\w\W]*?]]>/i,
 	'tag': {
-		pattern: /&lt;\/?[\w:-]+\s*(?:\s+[\w:-]+(?:=(?:("|')(\\?[\w\W])*?\1|\w+))?\s*)*\/?>/gi,
+		pattern: /&lt;\/?[\w:-]+\s*(?:\s+[\w:-]+(?:=(?:("|')(\\?[\w\W])*?\1|[^\s'">=]+))?\s*)*\/?>/gi,
 		inside: {
 			'tag': {
 				pattern: /^&lt;\/?[\w:-]+/i,
@@ -402,6 +402,7 @@ Prism.hooks.add('wrap', function(env) {
 		env.attributes['title'] = env.content.replace(/&amp;/, '&');
 	}
 });
+
 
 /* **********************************************
      Begin prism-css.js
@@ -450,13 +451,13 @@ Prism.languages.clike = {
 	},
 	'string': /("|')(\\?.)*?\1/g,
 	'class-name': {
-		pattern: /((?:class|interface|extends|implements|trait|instanceof|new)\s+)[a-z0-9_\.\\]+/ig,
+		pattern: /((?:(?:class|interface|extends|implements|trait|instanceof|new)\s+)|(?:catch\s+\())[a-z0-9_\.\\]+/ig,
 		lookbehind: true,
 		inside: {
 			punctuation: /(\.|\\)/
 		}
 	},
-	'keyword': /\b(if|else|while|do|for|return|in|instanceof|function|new|try|catch|finally|null|break|continue)\b/g,
+	'keyword': /\b(if|else|while|do|for|return|in|instanceof|function|new|try|throw|catch|finally|null|break|continue)\b/g,
 	'boolean': /\b(true|false)\b/g,
 	'function': {
 		pattern: /[a-z0-9_]+\(/ig,
@@ -465,17 +466,18 @@ Prism.languages.clike = {
 		}
 	},
 	'number': /\b-?(0x[\dA-Fa-f]+|\d*\.?\d+([Ee]-?\d+)?)\b/g,
-	'operator': /[-+]{1,2}|!|=?&lt;|=?&gt;|={1,2}|(&amp;){1,2}|\|?\||\?|\*|\/|\~|\^|\%/g,
+	'operator': /[-+]{1,2}|!|&lt;=?|>=?|={1,3}|(&amp;){1,2}|\|?\||\?|\*|\/|\~|\^|\%/g,
 	'ignore': /&(lt|gt|amp);/gi,
 	'punctuation': /[{}[\];(),.:]/g
 };
+
 
 /* **********************************************
      Begin prism-javascript.js
 ********************************************** */
 
 Prism.languages.javascript = Prism.languages.extend('clike', {
-	'keyword': /\b(var|let|if|else|while|do|for|return|in|instanceof|function|new|with|typeof|try|catch|finally|null|break|continue)\b/g,
+	'keyword': /\b(var|let|if|else|while|do|for|return|in|instanceof|function|get|set|new|with|typeof|try|throw|catch|finally|null|break|continue)\b/g,
 	'number': /\b-?(0x[\dA-Fa-f]+|\d*\.?\d+([Ee]-?\d+)?|NaN|-?Infinity)\b/g
 });
 
@@ -500,6 +502,7 @@ if (Prism.languages.markup) {
 		}
 	});
 }
+
 
 /* **********************************************
      Begin prism-file-highlight.js
