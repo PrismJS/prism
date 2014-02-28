@@ -11,23 +11,23 @@ var minified = true;
 var dependencies = {};
 
 var qstr = window.location.search.match(/(?:languages|plugins)=[-|\w]+|themes=[-\w]+/g);
-if ( qstr ) {
+if (qstr) {
 	qstr.forEach(function(str) {
 		var kv = str.split('=', 2),
 			category = kv[0],
 			ids = kv[1].split('|');
 		if (category !== 'meta' && category !== 'core' && components[category]) {
-			for ( var id in components[category]) {
-				if ( components[category][id].option ) {
+			for (var id in components[category]) {
+				if (components[category][id].option) {
 					delete components[category][id].option;
 				}
 			};
 			ids.forEach(function(id) {
 				if (id !== 'meta') {
-					if ( components[category][id] ) {
+					if (components[category][id]) {
 						var requireId = id;
 						while (requireId && components[category][requireId] && components[category][requireId].option !== 'default') {
-							if ( typeof components[category][requireId] === 'string' ) {
+							if (typeof components[category][requireId] === 'string') {
 								components[category][requireId] = { title: components[category][requireId] }
 							}
 							components[category][requireId].option = 'default';
