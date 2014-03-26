@@ -315,7 +315,7 @@ function generateCode(){
 		codeElement.textContent = redownloadUrl + "\n" + code[type];
 		Prism.highlightElement(codeElement, true);
 		
-		$('#download-' + type + ' .download-button').href = 'data:application/octet-stream;charset=utf-8,' + encodeURIComponent(code[type]);
+		$('#download-' + type + ' .download-button').href = 'data:application/octet-stream;charset=utf-8,' + encodeURIComponent(redownloadUrl + "\n" + code[type]);
 	}
 }
 
