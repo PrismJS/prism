@@ -71,7 +71,7 @@ $$('body > section > h1').forEach(function(h1) {
 		contents: {
 			tag: 'a',
 			properties: {
-				href: '#' + (h1.id || section.id)
+				href: window.location.pathname + '#' + (h1.id || section.id)
 			},
 			contents: text
 		},
