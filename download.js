@@ -44,6 +44,7 @@ for (var category in components) {
 			noJS: all[id].noJS || all.meta.noJS,
 			enabled: checked,
 			require: all[id].require,
+			owner: all[id].owner,
 			files: {
 				minified: {
 					paths: [],
@@ -120,7 +121,15 @@ for (var category in components) {
 					},
 					contents: info.title
 				} : info.title,
-				' ',
+				all[id].owner? {
+					tag: 'a',
+					properties: {
+						href: 'http://github.com/' + all[id].owner,
+						className: 'owner',
+						target: '_blank'
+					},
+					contents: all[id].owner
+				} : ' ',
 				{
 					tag: 'strong',
 					className: 'filesize'

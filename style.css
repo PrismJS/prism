@@ -380,3 +380,12 @@ footer {
 			left: 50%;
 			transform: translate(-50%, -50%);
 		}
+		
+label a.owner {
+	margin: 0 .5em;
+}
+
+label a.owner:not(:hover) {
+	text-decoration: none;
+	color: #aaa;
+}
