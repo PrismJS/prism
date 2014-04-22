@@ -18,9 +18,18 @@ var components = {
 		},
 		'prism-dark': 'Dark',
 		'prism-funky': 'Funky',
-		'prism-okaidia': 'Okaidia',
-		'prism-twilight': 'Twilight',
-		'prism-coy': 'Coy'
+		'prism-okaidia': {
+			title: 'Okaidia',
+			owner: 'ocodia'
+		},
+		'prism-twilight': {
+			title: 'Twilight',
+			owner: 'remybach'
+		},
+		'prism-coy': {
+			title: 'Coy',
+			owner: 'tshedor'
+		}
 	},
 	languages: {
 		meta: {
@@ -37,7 +46,8 @@ var components = {
 		},
 		'css-extras': {
 			title: 'CSS Extras',
-			require: 'css'
+			require: 'css',
+			owner: 'milesj'
 		},
 		'clike': {
 			title: 'C-like',
@@ -50,67 +60,88 @@ var components = {
 		},
 		'java' : {
 			title: 'Java',
-			require: 'clike'
+			require: 'clike',
+			owner: 'sherblot',
 		},
 		'php' : {
 			title: 'PHP',
-			require: 'clike'
+			require: 'clike',
+			owner: 'milesj'
 		},
 		'php-extras' : {
 			title: 'PHP Extras',
-			require: 'php'
+			require: 'php',
+			owner: 'milesj'
 		},
 		'coffeescript': {
 			title: 'CoffeeScript',
-			require: 'javascript'
+			require: 'javascript',
+			owner: 'R-osey'
 		},
 		'scss': {
 			title: 'Sass (Scss)',
-			require: 'css'
+			require: 'css',
+			owner: 'MoOx'
 		},
 		'bash' : {
 			title: 'Bash',
-			require: 'clike'
+			require: 'clike',
+			owner: 'zeitgeist87'
 		},
 		'c': {
 			title: 'C',
-			require: 'clike'
+			require: 'clike',
+			owner: 'zeitgeist87'
 		},
 		'cpp': {
 			title: 'C++',
-			require: 'c'
+			require: 'c',
+			owner: 'zeitgeist87'
 		},
 		'python': {
-			title: 'Python'
+			title: 'Python',
+			owner: 'multipetros'
 		},
 		'sql': {
-			title: 'SQL'
+			title: 'SQL',
+			owner: 'multipetros'
 		},
 		'groovy': {
 			title: 'Groovy',
-			require: 'clike'
+			require: 'clike',
+			owner: 'robfletcher'
 		},
 		'http': {
-			title: 'HTTP'
+			title: 'HTTP',
+			owner: 'danielgtaylor'
 		},
 		'ruby': {
 			title: 'Ruby',
-			require: 'clike'
+			require: 'clike',
+			owner: 'samflores'
 		},
 		'gherkin': {
-			title: 'Gherkin'
+			title: 'Gherkin',
+			owner: 'mvalipour'
 		},
 		'csharp': {
 			title: 'C#',
-			require: 'clike'
+			require: 'clike',
+			owner: 'mvalipour'
 		},
 		'go': {
 			title: 'Go',
-			require: 'clike'
+			require: 'clike',
+			owner: 'arnehormann'
+		},
+		'nsis': {
+			title: 'NSIS',
+			owner: 'idleberg'
 		},
 		'aspnet': {
 			title: 'ASP.NET (C#)',
-			require: 'markup'
+			require: 'markup',
+			owner: 'nauzilus'
 		}
 	},
 	plugins: {
@@ -119,7 +150,10 @@ var components = {
 			link: 'plugins/{id}/'
 		},
 		'line-highlight': 'Line Highlight',
-		'line-numbers': 'Line Numbers',
+		'line-numbers': {
+			title: 'Line Numbers',
+			owner: 'kuba-kubula'
+		},
 		'show-invisibles': 'Show Invisibles',
 		'autolinker': 'Autolinker',
 		'wpd': 'WebPlatform Docs',

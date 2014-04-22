@@ -7,13 +7,22 @@ if (!self.Prism) {
 if (Prism.languages.css) {
 	Prism.languages.css.atrule.inside['atrule-id'] = /^@[\w-]+/;
 	
-	Prism.languages.css.selector = {
-		pattern: Prism.languages.css.selector,
-		inside: {
-			'pseudo-class': /:[\w-]+/,
-			'pseudo-element': /::[\w-]+/
-		}
-	};
+	// check whether the selector is an advanced pattern before extending it
+	if (Prism.languages.css.selector.pattern)
+	{
+		Prism.languages.css.selector.inside['pseudo-class'] = /:[\w-]+/;
+		Prism.languages.css.selector.inside['pseudo-element'] = /::[\w-]+/;
+	}
+	else
+	{
+		Prism.languages.css.selector = {
+			pattern: Prism.languages.css.selector,
+			inside: {
+				'pseudo-class': /:[\w-]+/,
+				'pseudo-element': /::[\w-]+/
+			}
+		};
+	}
 }
 
 if (Prism.languages.markup) {

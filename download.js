@@ -10,6 +10,36 @@ var minified = true;
 
 var dependencies = {};
 
+var qstr = window.location.search.match(/(?:languages|plugins)=[-+\w]+|themes=[-\w]+/g);
+if (qstr) {
+	qstr.forEach(function(str) {
+		var kv = str.split('=', 2),
+			category = kv[0],
+			ids = kv[1].split('+');
+		if (category !== 'meta' && category !== 'core' && components[category]) {
+			for (var id in components[category]) {
+				if (components[category][id].option) {
+					delete components[category][id].option;
+				}
+			};
+			ids.forEach(function(id) {
+				if (id !== 'meta') {
+					if (components[category][id]) {
+						var requireId = id;
+						while (requireId && components[category][requireId] && components[category][requireId].option !== 'default') {
+							if (typeof components[category][requireId] === 'string') {
+								components[category][requireId] = { title: components[category][requireId] }
+							}
+							components[category][requireId].option = 'default';
+							requireId = components[category][requireId].require;
+						}
+					}
+				}
+			});
+		}
+	});
+}
+
 for (var category in components) {
 	var all = components[category];
 	
@@ -44,6 +74,7 @@ for (var category in components) {
 			noJS: all[id].noJS || all.meta.noJS,
 			enabled: checked,
 			require: all[id].require,
+			owner: all[id].owner,
 			files: {
 				minified: {
 					paths: [],
@@ -120,7 +151,15 @@ for (var category in components) {
 					},
 					contents: info.title
 				} : info.title,
-				' ',
+				all[id].owner? {
+					tag: 'a',
+					properties: {
+						href: 'http://github.com/' + all[id].owner,
+						className: 'owner',
+						target: '_blank'
+					},
+					contents: all[id].owner
+				} : ' ',
 				{
 					tag: 'strong',
 					className: 'filesize'
@@ -241,11 +280,20 @@ function update(updatedCategory, updatedId){
 		title: prettySize(total.css)
 	});
 	
-	generateCode();
+	delayedGenerateCode();
 }
 
+var timerId = 0;
+// "debounce" multiple rapid requests to generate and highlight code
+function delayedGenerateCode(){
+	if ( timerId !== 0 ) {
+		clearTimeout(timerId);
+	}
+	timerId = setTimeout(generateCode, 500);
+}
 function generateCode(){
 	var code = {js: '', css: ''};
+	var redownload = {};
 	
 	for (var category in components) {
 		var all = components[category];
@@ -256,7 +304,11 @@ function generateCode(){
 			}
 			
 			var info = all[id];
-			if (info.enabled) {
+			if (info.enabled) {						
+				if (category !== 'core') {
+					redownload[category] = redownload[category]  || [];
+					redownload[category].push(id);
+				}
 				info.files[minified? 'minified' : 'dev'].paths.forEach(function (path) {
 					if (cache[path]) {
 						var type = path.match(/\.(\w+)$/)[1];
@@ -268,13 +320,19 @@ function generateCode(){
 		}
 	}
 	
+	var redownloadUrl = window.location.href.split("?")[0] + "?";
+	for (var category in redownload) {
+		redownloadUrl += category + "=" + redownload[category].join('+') + "&";
+	}
+	redownloadUrl = "/* " + redownloadUrl.replace(/&$/,"") + " */";
+
 	for (var type in code) {
 		var codeElement = $('#download-' + type + ' code');
 		
-		codeElement.textContent = code[type];
+		codeElement.textContent = redownloadUrl + "\n" + code[type];
 		Prism.highlightElement(codeElement, true);
 		
-		$('#download-' + type + ' .download-button').href = 'data:application/octet-stream;charset=utf-8,' + encodeURIComponent(code[type]);
+		$('#download-' + type + ' .download-button').href = 'data:application/octet-stream;charset=utf-8,' + encodeURIComponent(redownloadUrl + "\n" + code[type]);
 	}
 }
 
