@@ -1,5 +1,5 @@
 {
-  "name": "prism-js",
+  "name": "prismjs",
   "version": "0.0.1",
   "description": "Lightweight, robust, elegant syntax highlighting. A spin-off project from Dabblet.",
   "main": "prism.js",
