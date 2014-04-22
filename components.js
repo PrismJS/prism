@@ -123,6 +123,9 @@ var components = {
 			title: 'File Highlight',
 			noCSS: true
 		},
-		'show-language': 'Show Language'
+		'show-language': {
+			title: 'Show Language',
+			owner: 'nauzilus'
+		}
 	}
 };
