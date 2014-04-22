@@ -10,12 +10,12 @@ var minified = true;
 
 var dependencies = {};
 
-var qstr = window.location.search.match(/(?:languages|plugins)=[-|\w]+|themes=[-\w]+/g);
+var qstr = window.location.search.match(/(?:languages|plugins)=[-+\w]+|themes=[-\w]+/g);
 if (qstr) {
 	qstr.forEach(function(str) {
 		var kv = str.split('=', 2),
 			category = kv[0],
-			ids = kv[1].split('|');
+			ids = kv[1].split('+');
 		if (category !== 'meta' && category !== 'core' && components[category]) {
 			for (var id in components[category]) {
 				if (components[category][id].option) {
@@ -305,7 +305,7 @@ function generateCode(){
 	
 	var redownloadUrl = window.location.href.split("?")[0] + "?";
 	for (var category in redownload) {
-		redownloadUrl += category + "=" + redownload[category].join('|') + "&";
+		redownloadUrl += category + "=" + redownload[category].join('+') + "&";
 	}
 	redownloadUrl = "/* " + redownloadUrl.replace(/&$/,"") + " */";
 
