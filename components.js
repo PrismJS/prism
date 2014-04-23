@@ -137,6 +137,11 @@ var components = {
 		'nsis': {
 			title: 'NSIS',
 			owner: 'idleberg'
+		},
+		'aspnet': {
+			title: 'ASP.NET (C#)',
+			require: 'markup',
+			owner: 'nauzilus'
 		}
 	},
 	plugins: {
