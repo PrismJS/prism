@@ -160,6 +160,11 @@ var components = {
 		'file-highlight': {
 			title: 'File Highlight',
 			noCSS: true
+		},
+		'jsonp-highlight': {
+			title: 'JSONP Highlight',
+			noCSS: true,
+			owner: 'nauzilus'
 		}
 	}
 };
