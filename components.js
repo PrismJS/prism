@@ -160,6 +160,10 @@ var components = {
 		'file-highlight': {
 			title: 'File Highlight',
 			noCSS: true
+		},
+		'show-language': {
+			title: 'Show Language',
+			owner: 'nauzilus'
 		}
 	}
 };
