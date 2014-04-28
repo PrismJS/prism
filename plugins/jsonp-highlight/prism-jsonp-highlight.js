@@ -10,7 +10,7 @@
 				}
 				else if ( typeof(rsp.data.content) === "string" ) {
 					return typeof(atob) === "function"
-						? atob(rsp.data.content)
+						? atob(rsp.data.content.replace(/\s/g, ''))
 						: "Your browser cannot decode base64";
 				}
 				else {
