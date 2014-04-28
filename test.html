@@ -84,7 +84,8 @@ textarea {
 <script>
 (function() {
 var form = $('form'), code = $('code', form),
-    languages = components.languages;
+    languages = components.languages,
+    highlightCode = function() { Prism.highlightElement(code); };
 
 for (var id in languages) {
 	if (id == 'meta') {
@@ -107,10 +108,11 @@ for (var id in languages) {
 						code.textContent = code.textContent;
 						
 						if (!Prism.languages[lang]) {
-							$u.script('components/prism-' + lang + '.js');
+							$u.script('components/prism-' + lang + '.js', highlightCode);
 						}
-						
-						Prism.highlightElement(code);
+						else {
+							highlightCode();
+						}
 					}
 				}
 			}, name
@@ -127,7 +129,7 @@ var textarea = $('textarea', form);
 
 (textarea.oninput = function() {
 	code.textContent = this.value || '';
-	Prism.highlightElement(code);
+	highlightCode();
 }).call(textarea);
 
 })();
