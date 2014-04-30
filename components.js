@@ -161,6 +161,10 @@ var components = {
 			title: 'File Highlight',
 			noCSS: true
 		},
+		'show-language': {
+			title: 'Show Language',
+			owner: 'nauzilus'
+		},
 		'jsonp-highlight': {
 			title: 'JSONP Highlight',
 			noCSS: true,
