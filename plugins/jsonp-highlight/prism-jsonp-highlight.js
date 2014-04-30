@@ -54,7 +54,7 @@
 
 		var timeout = setTimeout(function() {
 			// we could clean up window[cb], but if the request finally succeeds, keeping it around is a good thing
-			if ( code.textContext === loadstr )
+			if ( code.textContent === loadstr )
 				code.textContent = "Timeout loading '" + src + "'";
 		}, 5000);
 		
