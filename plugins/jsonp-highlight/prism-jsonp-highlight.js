@@ -80,6 +80,6 @@
 
 		var script = document.createElement("script");
 		script.src=uri.href;
-		document.head.appendChild(script);
+		document.head.appendChild(script).parentNode.removeChild(script);
 	});
 })();
