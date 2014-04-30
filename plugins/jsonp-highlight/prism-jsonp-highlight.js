@@ -58,7 +58,11 @@
 				code.textContent = "Timeout loading '" + src + "'";
 		}, 5000);
 		
+		var script = document.createElement("script");
+		script.src=uri.href;
+
 		window[cb] = function(rsp) {
+			document.head.removeChild(script);
 			clearTimeout(timeout);
 			delete window[cb];
 
@@ -78,8 +82,6 @@
 			data && Prism.highlightElement(code);
 		};
 
-		var script = document.createElement("script");
-		script.src=uri.href;
-		document.head.appendChild(script).parentNode.removeChild(script);
+		document.head.appendChild(script);
 	});
 })();
