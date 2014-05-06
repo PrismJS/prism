@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8" />
+<link rel="shortcut icon" href="favicon.png" />
+<title>JSONP Highlight ▲ Prism plugins</title>
+<base href="../.." />
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="themes/prism.css" data-noprefix />
+<script src="prefixfree.min.js"></script>
+
+<script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
+<script src="http://www.google-analytics.com/ga.js" async></script>
+</head>
+<body>
+
+<header>
+	<div class="intro" data-src="templates/header-plugins.html" data-type="text/html"></div>
+
+	<h2>JSONP Highlight</h2>
+	<p>Fetch content with JSONP and highlight some interesting content (e.g. GitHub or Bitbucket API).</p>
+</header>
+
+<section class="language-markup">
+	<h1>How to use</h1>
+	
+	<p>Use the <code>data-jsonp</code> attribute on <code>&lt;pre></code> elements, like so:</p>
+	
+	<pre><code>&lt;pre class="language-javascript" data-jsonp="https://api.github.com/repos/leaverou/prism/contents/prism.js">&lt;/pre></code></pre>
+	
+	<p>Don't specifiy the <code>callback</code> query parameter in the URL; this will be added automatically. If the API expects a different callback parameter name however, use the <code>data-callback</code> parameter to specify the name:</p>
+	
+	<pre><code>&lt;pre class="&hellip;" data-jsonp="&hellip;" data-callback="somethingelse">&lt;/pre></code></pre>
+
+	<p>The next trick is of course actually injecting something worth highlighting, which means processing the response to extract the interesting data.</p>
+	
+	<p>The following JSONP APIs are automatically detected and parsed:</p>
+
+	<ul>
+		<li><a href="https://developer.github.com/v3/repos/contents/#get-contents">GitHub</a></li>
+		<li><a href="https://confluence.atlassian.com/display/BITBUCKET/src+Resources#srcResources-GETrawcontentofanindividualfile">Bitbucket</a></li>
+	</ul>
+
+	<p>If you need to do your own parsing, you can supply the <code>data-adapter</code> parameter on the <code>&lt;pre></code> element. This must be the name of a global function you have defined which will accept a single parameter (the JSONP response) and returns a string of the content to highlight.</p>
+
+	<p>For example, to simply stringify the JSONP response, you could do the following:</p>
+
+	<pre><code>&lt;!-- perhaps this is in a script file somewhere -->
+&lt;script>function dump_json(rsp) { return JSON.stringify(rsp,null,2); }&lt;/script>
+
+&lt;pre class="language-javascript" data-jsonp="&hellip;" data-adapter="dump_json">&lt;/pre></code></pre>
+
+	<p>Finally, unlike like the <a href="/plugins/file-highlight/index.html">File Highlight</a> plugin, you <em>do</em> need to supply the appropriate <code>class</code> with the language to highlight. This could have been auto-detected, but since you're not actually linking to a file it's not always possible (see below in the example using GitHub status). Furthermore, if you're linking to files with a <code>.xaml</code> extension for example, this plugin then needs to somehow map that to highlight as <code>markup</code>, which just means more bloat. You know what you're trying to highlight, just say so :)</p>
+</section>
+
+<section>
+	<h1>Examples</h1>
+	
+	<p>The plugin’s JS code (from GitHub):</p>
+	<pre class="lang-javascript" data-jsonp="https://api.github.com/repos/nauzilus/prism/contents/plugins/jsonp-highlight/prism-jsonp-highlight.js?ref=plugin-jsonp"></pre>
+
+	<p>Bitbucket API:</p>
+	<pre class="lang-css" data-jsonp="https://bitbucket.org/!api/1.0/repositories/nauzilus/stylish/src/master/whirlpool/style.css"></pre>
+	
+	<p>Custom adapter (JSON.stringify showing GitHub <a href="https://status.github.com/api/status.json">status</a>):</p>
+	<pre class="lang-javascript" data-jsonp="https://status.github.com/api/status.json" data-adapter="jsonstringify"></pre>
+</section>
+
+<section>
+	<h1>Examples Holisticware</h1>
+	
+	<p>Bitbucket API:</p>
+	<pre class="lang-javascript" data-jsonp="https://bitbucket.org/!api/1.0/repositories/moljac/samples.servicelayer-servicefacade-remoteapi/src/master/HolisticWare.WebApp.MVC4RazorWebAPISignalR-1x/Global.asax.cs"></pre>
+
+	<p>The plugin’s JS code (from GitHub):</p>
+	<pre class="lang-css" data-jsonp="https://api.github.com/repos/moljac/MonoMobile.Dialog/contents/HolisticWareMobile.DialogExtensions.Android/Properties/AssemblyInfo.cs"></pre>
+	
+	<p>Custom adapter (JSON.stringify showing GitHub <a href="https://status.github.com/api/status.json">status</a>):</p>
+	<pre class="lang-javascript" data-jsonp="https://status.github.com/api/status.json" data-adapter="jsonstringify"></pre>
+</section>
+
+<footer data-src="templates/footer.html" data-type="text/html"></footer>
+
+<script>function jsonstringify(x) { return JSON.stringify(x,null,2); }</script>
+<script src="prism.js"></script>
+<script src="plugins/jsonp-highlight/base64.max.js"></script>
+<script src="plugins/jsonp-highlight/prism-jsonp-highlight.js"></script>
+<script src="utopia.js"></script>
+<script src="components.js"></script>
+<script src="code.js"></script>
+
+
+</body>
+</html>
