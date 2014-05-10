@@ -120,6 +120,10 @@ var components = {
 			require: 'clike',
 			owner: 'samflores'
 		},
+		'rip': {
+			title: 'Rip',
+			owner: 'ravinggenius'
+		},
 		'gherkin': {
 			title: 'Gherkin',
 			owner: 'mvalipour'
