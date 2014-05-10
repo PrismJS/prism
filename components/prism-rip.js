@@ -1,6 +1,8 @@
 Prism.languages.rip = {
 	'comment': /#[^\r\n]*(\r?\n|$)/g,
 
+	'keyword': /(?:=>|->)|\b(?:class|if|else|switch|case|return|exit|try|catch|finally|raise)\b/g,
+
 	'builtin': /\b(@|System)\b/g,
 
 	'boolean': /\b(true|false)\b/g,
