@@ -13,6 +13,8 @@ Prism.languages.rip = {
 
 	'number': /[+-]?(?:(?:\d+\.\d+)|(?:\d+))/g,
 
+	'character': /\B`[^\s\`\'",.:;#\/\\()<>\[\]{}]\b/g,
+
 	'regex': {
 		pattern: /(^|[^/])\/(?!\/)(\[.+?]|\\.|[^/\r\n])+\/(?=\s*($|[\r\n,.;})]))/g,
 		lookbehind: true
