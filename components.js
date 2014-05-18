@@ -142,6 +142,11 @@ var components = {
 			title: 'ASP.NET (C#)',
 			require: 'markup',
 			owner: 'nauzilus'
+		},
+		'scala': {
+			title: 'Scala',
+			require: 'java',
+			owner: 'jozic'
 		}
 	},
 	plugins: {
