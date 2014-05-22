@@ -351,9 +351,7 @@ if (script) {
 	_.filename = script.src;
 	
 	if (document.addEventListener && !script.hasAttribute('data-manual')) {
-		document.addEventListener('DOMContentLoaded', function() {
-			_.highlightAll(script.hasAttribute('data-prism-async'))
-		});
+		document.addEventListener('DOMContentLoaded', _.highlightAll);
 	}
 }
 
