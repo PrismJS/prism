@@ -13,6 +13,26 @@ var lang = /\blang(?:uage)?-(?!\*)(\w+)\b/i;
 
 var _ = self.Prism = {
 	util: {
+		encode: function (tokenText) {
+			var reply = tokenText.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/\u00a0/g, ' ');
+			console.log('encoding', tokenText, reply);
+			return reply;
+		},
+
+		encodeAll: function (tokens) {
+			var type = _.util.type(tokens);
+
+			if (type === 'String') {
+				return _.util.encode(tokens);
+			} else if (tokens instanceof Token) {
+				return new Token(tokens.type, _.util.encodeAll(tokens.content));
+			} else if (type === 'Array') {
+				return tokens.map(_.util.encodeAll);
+			}
+
+			return tokens;
+		},
+
 		type: function (o) {
 			return Object.prototype.toString.call(o).match(/\[object (\w+)\]/)[1];
 		},
@@ -132,8 +152,6 @@ var _ = self.Prism = {
 			return;
 		}
 
-		code = code.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/\u00a0/g, ' ');
-
 		var env = {
 			element: element,
 			language: language,
@@ -176,7 +194,8 @@ var _ = self.Prism = {
 	},
 
 	highlight: function (text, grammar, language) {
-		return Token.stringify(_.tokenize(text, grammar), language);
+		var tokens = _.tokenize(text, grammar);
+		return Token.stringify(_.util.encodeAll(tokens), language);
 	},
 
 	tokenize: function(text, grammar, language) {
