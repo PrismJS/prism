@@ -26,7 +26,7 @@ Prism.languages.markup = {
 					'namespace': /^[\w-]+?:/
 				}
 			}
-			
+
 		}
 	},
 	'entity': /&amp;#?[\da-z]{1,8};/gi
