@@ -19,22 +19,14 @@ var lang = /\blang(?:uage)?-(?!\*)(\w+)\b/i;
 
 var _ = self.Prism = {
 	util: {
-		encode: function (tokenText) {
-			return tokenText.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/\u00a0/g, ' ');
-		},
-
-		encodeAll: function (tokens) {
-			var type = _.util.type(tokens);
-
-			if (type === 'String') {
-				return _.util.encode(tokens);
-			} else if (tokens instanceof Token) {
-				return new Token(tokens.type, _.util.encodeAll(tokens.content));
-			} else if (type === 'Array') {
-				return tokens.map(_.util.encodeAll);
+		encode: function (tokens) {
+			if (tokens instanceof Token) {
+				return new Token(tokens.type, _.util.encode(tokens.content));
+			} else if (_.util.type(tokens) === 'Array') {
+				return tokens.map(_.util.encode);
+			} else {
+				return tokens.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/\u00a0/g, ' ');
 			}
-
-			return tokens;
 		},
 
 		type: function (o) {
@@ -199,7 +191,7 @@ var _ = self.Prism = {
 
 	highlight: function (text, grammar, language) {
 		var tokens = _.tokenize(text, grammar);
-		return Token.stringify(_.util.encodeAll(tokens), language);
+		return Token.stringify(_.util.encode(tokens), language);
 	},
 
 	tokenize: function(text, grammar, language) {
