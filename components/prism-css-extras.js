@@ -11,11 +11,5 @@ Prism.languages.css.selector = {
 Prism.languages.insertBefore('css', 'ignore', {
 	'hexcode': /#[\da-f]{3,6}/gi,
 	'entity': /\\[\da-f]{1,8}/gi,
-	'number': /[\d%\.]+/g,
-	'function': {
-		pattern: /[-a-z0-9]+\(/ig,
-		inside: {
-			punctuation: /\(/
-		}
-	}
+	'number': /[\d%\.]+/g
 });

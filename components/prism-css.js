@@ -12,7 +12,13 @@ Prism.languages.css = {
 	'string': /("|')(\\?.)*?\1/g,
 	'important': /\B!important\b/gi,
 	'ignore': /&(lt|gt|amp);/gi,
-	'punctuation': /[\{\};:]/g
+	'punctuation': /[\{\};:]/g,
+	'function': {
+		pattern: /[-a-z0-9]+\(/ig,
+		inside: {
+			punctuation: /\(/
+		}
+	}
 };
 
 if (Prism.languages.markup) {
