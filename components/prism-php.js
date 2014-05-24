@@ -4,7 +4,7 @@
  *
  * Supports the following:
  * 		- Extends clike syntax
- * 		- Support for PHP 5.3 and 5.4 (namespaces, traits, etc)
+ * 		- Support for PHP 5.3+ (namespaces, traits, generators, etc)
  * 		- Smarter constant and function matching
  *
  * Adds the following new token classes:
@@ -17,11 +17,11 @@ Prism.languages.php = Prism.languages.extend('clike', {
 	'comment': {
 		pattern: /(^|[^\\])(\/\*[\w\W]*?\*\/|(^|[^:])(\/\/|#).*?(\r?\n|$))/g,
 		lookbehind: true
-	},
+	}
 });
 
 Prism.languages.insertBefore('php', 'keyword', {
-	'delimiter': /(\?>|&lt;\?php|&lt;\?)/ig,
+	'delimiter': /(\?>|<\?php|<\?)/ig,
 	'variable': /(\$\w+)\b/ig,
 	'package': {
 		pattern: /(\\|namespace\s+|use\s+)[\w\\]+/g,
@@ -52,7 +52,7 @@ if (Prism.languages.markup) {
 
 		env.tokenStack = [];
 
-		env.code = env.code.replace(/(?:&lt;\?php|&lt;\?|<\?php|<\?)[\w\W]*?(?:\?&gt;|\?>)/ig, function(match) {
+		env.code = env.code.replace(/(?:<\?php|<\?)[\w\W]*?(?:\?>)/ig, function(match) {
 			env.tokenStack.push(match);
 
 			return '{{{PHP' + env.tokenStack.length + '}}}';
@@ -82,7 +82,7 @@ if (Prism.languages.markup) {
 	// Add the rules before all others
 	Prism.languages.insertBefore('php', 'comment', {
 		'markup': {
-			pattern: /(&lt;|<)[^?]\/?(.*?)(>|&gt;)/g,
+			pattern: /<[^?]\/?(.*?)>/g,
 			inside: Prism.languages.markup
 		},
 		'php': /\{\{\{PHP[0-9]+\}\}\}/g
