@@ -20,9 +20,7 @@ var lang = /\blang(?:uage)?-(?!\*)(\w+)\b/i;
 var _ = self.Prism = {
 	util: {
 		encode: function (tokenText) {
-			var reply = tokenText.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/\u00a0/g, ' ');
-			console.log('encoding', tokenText, reply);
-			return reply;
+			return tokenText.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/\u00a0/g, ' ');
 		},
 
 		encodeAll: function (tokens) {
