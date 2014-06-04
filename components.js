@@ -151,6 +151,11 @@ var components = {
 			title: 'Scala',
 			require: 'java',
 			owner: 'jozic'
+		},
+		'swift': {
+			title: 'Swift',
+			require: 'clike',
+			owner: 'chrischares'
 		}
 	},
 	plugins: {
