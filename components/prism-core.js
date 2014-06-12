@@ -1,4 +1,15 @@
-var self = (typeof window !== 'undefined') ? window : {};
+// This has to handle multiple cases:
+// 1) We're in a web worker. self will be defined. window may be defined
+//    if there is a window-for-webworker polyfill.
+// 2) We're in a main browser window. window will be defined. self may or may
+//    not be depending on compliance/polyfilling.
+// 3) We're in nodejs. Neither self nor window are guaranteed to be defined, but
+//    both might be polyfilled.
+//
+// Use self as the global of choice.
+if (typeof self === 'undefined') {
+        self = (typeof window !== 'undefined') ? window : {};
+}
 
 /**
  * Prism: Lightweight, robust, elegant syntax highlighting
