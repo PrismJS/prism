@@ -1,183 +1,183 @@
 var components = {
-	core: {
-		meta: {
-			path: 'components/prism-core.js',
-			option: 'mandatory'
+	"core": {
+		"meta": {
+			"path": "components/prism-core.js",
+			"option": "mandatory"
 		},
-		'core': 'Core'
+		"core": "Core"
 	},
-	themes: {
-		meta: {
-			path: 'themes/{id}.css',
-			link: 'index.html?theme={id}',
-			exclusive: true
+	"themes": {
+		"meta": {
+			"path": "themes/{id}.css",
+			"link": "index.html?theme={id}",
+			"exclusive": true
 		},
-		'prism': {
-			title: 'Default',
-			option: 'default'
+		"prism": {
+			"title": "Default",
+			"option": "default"
 		},
-		'prism-dark': 'Dark',
-		'prism-funky': 'Funky',
-		'prism-okaidia': {
-			title: 'Okaidia',
-			owner: 'ocodia'
+		"prism-dark": "Dark",
+		"prism-funky": "Funky",
+		"prism-okaidia": {
+			"title": "Okaidia",
+			"owner": "ocodia"
 		},
-		'prism-twilight': {
-			title: 'Twilight',
-			owner: 'remybach'
+		"prism-twilight": {
+			"title": "Twilight",
+			"owner": "remybach"
 		},
-		'prism-coy': {
-			title: 'Coy',
-			owner: 'tshedor'
+		"prism-coy": {
+			"title": "Coy",
+			"owner": "tshedor"
 		}
 	},
-	languages: {
-		meta: {
-			path: 'components/prism-{id}',
-			noCSS: true
+	"languages": {
+		"meta": {
+			"path": "components/prism-{id}",
+			"noCSS": true
 		},
-		'markup': {
-			title: 'Markup',
-			option: 'default'
+		"markup": {
+			"title": "Markup",
+			"option": "default"
 		},
-		'css': {
-			title: 'CSS',
-			option: 'default'
+		"css": {
+			"title": "CSS",
+			"option": "default"
 		},
-		'css-extras': {
-			title: 'CSS Extras',
-			require: 'css',
-			owner: 'milesj'
+		"css-extras": {
+			"title": "CSS Extras",
+			"require": "css",
+			"owner": "milesj"
 		},
-		'clike': {
-			title: 'C-like',
-			option: 'default'
+		"clike": {
+			"title": "C-like",
+			"option": "default"
 		},
-		'javascript': {
-			title: 'JavaScript',
-			option: 'default',
-			require: 'clike'
+		"javascript": {
+			"title": "JavaScript",
+			"option": "default",
+			"require": "clike"
 		},
-		'java' : {
-			title: 'Java',
-			require: 'clike',
-			owner: 'sherblot',
+		"java" : {
+			"title": "Java",
+			"require": "clike",
+			"owner": "sherblot"
 		},
-		'php' : {
-			title: 'PHP',
-			require: 'clike',
-			owner: 'milesj'
+		"php" : {
+			"title": "PHP",
+			"require": "clike",
+			"owner": "milesj"
 		},
-		'php-extras' : {
-			title: 'PHP Extras',
-			require: 'php',
-			owner: 'milesj'
+		"php-extras" : {
+			"title": "PHP Extras",
+			"require": "php",
+			"owner": "milesj"
 		},
-		'coffeescript': {
-			title: 'CoffeeScript',
-			require: 'javascript',
-			owner: 'R-osey'
+		"coffeescript": {
+			"title": "CoffeeScript",
+			"require": "javascript",
+			"owner": "R-osey"
 		},
-		'scss': {
-			title: 'Sass (Scss)',
-			require: 'css',
-			owner: 'MoOx'
+		"scss": {
+			"title": "Sass (Scss)",
+			"require": "css",
+			"owner": "MoOx"
 		},
-		'bash' : {
-			title: 'Bash',
-			require: 'clike',
-			owner: 'zeitgeist87'
+		"bash" : {
+			"title": "Bash",
+			"require": "clike",
+			"owner": "zeitgeist87"
 		},
-		'c': {
-			title: 'C',
-			require: 'clike',
-			owner: 'zeitgeist87'
+		"c": {
+			"title": "C",
+			"require": "clike",
+			"owner": "zeitgeist87"
 		},
-		'cpp': {
-			title: 'C++',
-			require: 'c',
-			owner: 'zeitgeist87'
+		"cpp": {
+			"title": "C++",
+			"require": "c",
+			"owner": "zeitgeist87"
 		},
-		'python': {
-			title: 'Python',
-			owner: 'multipetros'
+		"python": {
+			"title": "Python",
+			"owner": "multipetros"
 		},
-		'sql': {
-			title: 'SQL',
-			owner: 'multipetros'
+		"sql": {
+			"title": "SQL",
+			"owner": "multipetros"
 		},
-		'groovy': {
-			title: 'Groovy',
-			require: 'clike',
-			owner: 'robfletcher'
+		"groovy": {
+			"title": "Groovy",
+			"require": "clike",
+			"owner": "robfletcher"
 		},
-		'http': {
-			title: 'HTTP',
-			owner: 'danielgtaylor'
+		"http": {
+			"title": "HTTP",
+			"owner": "danielgtaylor"
 		},
-		'ruby': {
-			title: 'Ruby',
-			require: 'clike',
-			owner: 'samflores'
+		"ruby": {
+			"title": "Ruby",
+			"require": "clike",
+			"owner": "samflores"
 		},
-		'rip': {
-			title: 'Rip',
-			owner: 'ravinggenius'
+		"rip": {
+			"title": "Rip",
+			"owner": "ravinggenius"
 		},
-		'gherkin': {
-			title: 'Gherkin',
-			owner: 'mvalipour'
+		"gherkin": {
+			"title": "Gherkin",
+			"owner": "mvalipour"
 		},
-		'csharp': {
-			title: 'C#',
-			require: 'clike',
-			owner: 'mvalipour'
+		"csharp": {
+			"title": "C#",
+			"require": "clike",
+			"owner": "mvalipour"
 		},
-		'go': {
-			title: 'Go',
-			require: 'clike',
-			owner: 'arnehormann'
+		"go": {
+			"title": "Go",
+			"require": "clike",
+			"owner": "arnehormann"
 		},
-		'nsis': {
-			title: 'NSIS',
-			owner: 'idleberg'
+		"nsis": {
+			"title": "NSIS",
+			"owner": "idleberg"
 		},
-		'aspnet': {
-			title: 'ASP.NET (C#)',
-			require: 'markup',
-			owner: 'nauzilus'
+		"aspnet": {
+			"title": "ASP.NET (C#)",
+			"require": "markup",
+			"owner": "nauzilus"
 		},
-		'scala': {
-			title: 'Scala',
-			require: 'java',
-			owner: 'jozic'
+		"scala": {
+			"title": "Scala",
+			"require": "java",
+			"owner": "jozic"
 		},
-		'swift': {
-			title: 'Swift',
-			require: 'clike',
-			owner: 'chrischares'
+		"swift": {
+			"title": "Swift",
+			"require": "clike",
+			"owner": "chrischares"
 		}
 	},
-	plugins: {
-		meta: {
-			path: 'plugins/{id}/prism-{id}',
-			link: 'plugins/{id}/'
+	"plugins": {
+		"meta": {
+			"path": "plugins/{id}/prism-{id}",
+			"link": "plugins/{id}/"
 		},
-		'line-highlight': 'Line Highlight',
-		'line-numbers': {
-			title: 'Line Numbers',
-			owner: 'kuba-kubula'
+		"line-highlight": "Line Highlight",
+		"line-numbers": {
+			"title": "Line Numbers",
+			"owner": "kuba-kubula"
 		},
-		'show-invisibles': 'Show Invisibles',
-		'autolinker': 'Autolinker',
-		'wpd': 'WebPlatform Docs',
-		'file-highlight': {
-			title: 'File Highlight',
-			noCSS: true
+		"show-invisibles": "Show Invisibles",
+		"autolinker": "Autolinker",
+		"wpd": "WebPlatform Docs",
+		"file-highlight": {
+			"title": "File Highlight",
+			"noCSS": true
 		},
-		'show-language': {
-			title: 'Show Language',
-			owner: 'nauzilus'
+		"show-language": {
+			"title": "Show Language",
+			"owner": "nauzilus"
 		}
 	}
 };
