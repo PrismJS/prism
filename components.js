@@ -156,6 +156,11 @@ var components = {
 			"title": "Swift",
 			"require": "clike",
 			"owner": "chrischares"
+		},
+		"objectivec": {
+			"title": "Objective-C",
+			"require": "c",
+			"owner": "uranusjr"
 		}
 	},
 	"plugins": {
