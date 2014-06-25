@@ -157,7 +157,7 @@ var components = {
 			"require": "clike",
 			"owner": "chrischares"
 		},
-		"objc": {
+		"objectivec": {
 			"title": "Objective-C",
 			"require": "c",
 			"owner": "uranusjr"
