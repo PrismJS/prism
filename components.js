@@ -161,6 +161,10 @@ var components = {
 			"title": "Objective-C",
 			"require": "c",
 			"owner": "uranusjr"
+		},
+		"autohotkey": {
+			"title": "AutoHotkey",
+			"owner": "aviaryan"
 		}
 	},
 	"plugins": {
