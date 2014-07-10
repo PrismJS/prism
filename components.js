@@ -165,6 +165,10 @@ var components = {
 		"autohotkey": {
 			"title": "AutoHotkey",
 			"owner": "aviaryan"
+		},
+		"ini": {
+			"title": "Ini",
+			"owner": "aviaryan"
 		}
 	},
 	"plugins": {
