@@ -152,6 +152,10 @@ var components = {
 			"require": "java",
 			"owner": "jozic"
 		},
+		"haskell": {
+			"title": "Haskell"
+			"owner": "bholst"
+		},
 		"swift": {
 			"title": "Swift",
 			"require": "clike",
