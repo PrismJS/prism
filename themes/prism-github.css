@@ -66,38 +66,38 @@ pre[class*="language-"] {
 	opacity: .7;
 }
 
-/** 
-not highlighted -
-punctuation,operator,attr-name
-**/
-
-.token.string {
+.token.string, .token.attr-value {
 	color: #e3118f;
+}
+.token.punctuation, .token.operator {
+	color: #393A34; /** no highlight **/
 }
 
 .token.entity,
 .token.url,
-.language-css .token.string,
-.style .token.string,
 .token.symbol,
 .token.number,
 .token.boolean,
 .token.variable,
 .token.constant,
 .token.property,
-.token.regex,
-.token.tag {
+.token.regex {
 	color: #36acaa;
 }
 
 .token.atrule,
-.token.attr-value,
-.token.keyword {
+.token.keyword,
+.token.attr-name,
+.language-autohotkey .token.selector {
 	color: #00a4db;
 }
 
-.token.selector, .token.function {
+.token.function, .language-autohotkey .token.tag {
 	color: #9a050f;
+}
+
+.token.tag, .token.selector, .language-autohotkey .token.keyword {
+	color: #00009f;
 }
 
 .token.important, .token.function {
