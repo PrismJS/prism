@@ -13,6 +13,7 @@ pre[class*="language-"] {
 	word-spacing: normal;
 	word-break: normal;
 	font-size: 0.95em;
+	line-height: 1.2em;
 
 	-moz-tab-size: 4;
 	-o-tab-size: 4;
@@ -67,7 +68,7 @@ pre[class*="language-"] {
 }
 
 .token.string, .token.attr-value {
-	color: #e3118f;
+	color: #e3116c;
 }
 .token.punctuation, .token.operator {
 	color: #393A34; /** no highlight **/
