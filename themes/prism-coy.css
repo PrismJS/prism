@@ -27,7 +27,6 @@ pre[class*="language-"] {
 /* Code blocks */
 pre[class*="language-"] {
   position:relative;
-  padding-left: 1em;
   margin: .5em 0;
   -webkit-box-shadow: -1px 0px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf;
   -moz-box-shadow: -1px 0px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf;
@@ -46,7 +45,7 @@ pre[class*="language-"] {
 
 code[class*="language"] {
   max-height: 30em;
-  padding-right: 1em;
+  padding: 0 1em;
   display:block;
   overflow: auto;
 }
