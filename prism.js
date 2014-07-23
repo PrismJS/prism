@@ -4,7 +4,13 @@
      Begin prism-core.js
 ********************************************** */
 
-var self = (typeof window !== 'undefined') ? window : {};
+var self = (typeof window !== 'undefined')
+	? window   // if in browser
+	: (
+		(typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope)
+		? self // if in worker
+		: {}   // if in node js
+	);
 
 /**
  * Prism: Lightweight, robust, elegant syntax highlighting
