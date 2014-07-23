@@ -4,7 +4,7 @@
      Begin prism-core.js
 ********************************************** */
 
-var self = (typeof window !== 'undefined')
+self = (typeof window !== 'undefined')
 	? window   // if in browser
 	: (
 		(typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope)
@@ -554,26 +554,26 @@ Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(f
 	var src = pre.getAttribute('data-src');
 	var extension = (src.match(/\.(\w+)$/) || [,''])[1];
 	var language = Extensions[extension] || extension;
-	
+
 	var code = document.createElement('code');
 	code.className = 'language-' + language;
-	
+
 	pre.textContent = '';
-	
+
 	code.textContent = 'Loading…';
-	
+
 	pre.appendChild(code);
-	
+
 	var xhr = new XMLHttpRequest();
-	
+
 	xhr.open('GET', src, true);
 
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4) {
-			
+
 			if (xhr.status < 400 && xhr.responseText) {
 				code.textContent = xhr.responseText;
-			
+
 				Prism.highlightElement(code);
 			}
 			else if (xhr.status >= 400) {
@@ -584,7 +584,7 @@ Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(f
 			}
 		}
 	};
-	
+
 	xhr.send(null);
 });
 
