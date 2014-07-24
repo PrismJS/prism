@@ -40,6 +40,11 @@ var components = {
 			"title": "Markup",
 			"option": "default"
 		},
+		"twig": {
+			"title": "Twig",
+			"require": "markup",
+			"owner": "brandonkelly"
+		},
 		"css": {
 			"title": "CSS",
 			"option": "default"
