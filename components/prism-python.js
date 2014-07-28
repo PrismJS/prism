@@ -3,7 +3,7 @@ Prism.languages.python= {
 		pattern: /(^|[^\\])#.*?(\r?\n|$)/g,
 		lookbehind: true
 	},
-	'string' : /("|')(\\?.)*?\1/g,
+	'string': /"""[\s\S]+?"""|("|')(\\?.)*?\1/g,
 	'keyword' : /\b(as|assert|break|class|continue|def|del|elif|else|except|exec|finally|for|from|global|if|import|in|is|lambda|pass|print|raise|return|try|while|with|yield)\b/g,
 	'boolean' : /\b(True|False)\b/g,
 	'number' : /\b-?(0x)?\d*\.?[\da-f]+\b/g,
