@@ -27,7 +27,6 @@ pre[class*="language-"] {
 /* Code blocks */
 pre[class*="language-"] {
   position:relative;
-  padding: 1em;
   margin: .5em 0;
   -webkit-box-shadow: -1px 0px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf;
   -moz-box-shadow: -1px 0px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf;
@@ -41,14 +40,16 @@ pre[class*="language-"] {
   background-image: linear-gradient(transparent 50%, rgba(69, 142, 209, 0.04) 50%);
   background-size: 3em 3em;
   background-origin:content-box;
-  overflow:visible;
-  max-height:30em;
+  overflow: visible;
+  max-height: 30em;
 }
 
 code[class*="language"] {
-  max-height:29em;
+  max-height: inherit;
+  height: 100%;
+  padding: 0 1em;
   display:block;
-  overflow:scroll;
+  overflow: auto;
 }
 
 /* Margin bottom to accomodate shadow */
@@ -188,4 +189,18 @@ pre[class*="language-"]:after {
 .token.cr:before,
 .token.lf:before {
   color: #e0d7d1;
+}
+
+
+/* Plugin styles: Line Numbers */
+pre[class*="language-"].line-numbers {
+    padding-left: 0;
+}
+
+pre[class*="language-"].line-numbers code {
+    padding-left: 3.8em;
+}
+
+pre[class*="language-"].line-numbers .line-numbers-rows {
+    left: 0;
 }
