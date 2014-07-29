@@ -44,3 +44,5 @@ gulp.task('watch', function() {
 	gulp.watch(paths.components, ['components', 'build']);
 	gulp.watch(paths.plugins, ['plugins', 'build']);
 });
+
+gulp.task('default', ['components', 'plugins', 'build']);
