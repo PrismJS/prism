@@ -422,6 +422,29 @@ X-Response-Time: 10ms
 </code></pre>
 </section>
 
+<section class="language-apl">
+	<h1>APL</h1>
+
+	<h2>Variable assignment</h2>
+	<pre><code>a←1 2 3</code></pre>
+
+	<h2>Literals</h2>
+	<pre><code>1e6 2j3 3.14 'a' 'abc' ⍬</code></pre>
+
+	<h2>Comments</h2>
+	<pre><code>#!/usr/bin/env runapl</code></pre>
+	<pre><code>a←1 2 3 ⍝ this is a comment</code></pre>
+
+	<h2>Primitive functions</h2>
+	<pre><code>a+b×c⍴⍳10</code></pre>
+
+	<h2>Operators</h2>
+	<pre><code>+/ f⍣2</code></pre>
+
+	<h2>Dfns</h2>
+	<pre><code>{0=⍴⍴⍺:'hello' ⋄ ∇¨⍵}</code></pre>
+</section>
+
 <section id="failures" class="language-javascript">
 	<h1>Known failures (JavaScript)</h1>
 	<p>There are certain edge cases where Prism will fail.

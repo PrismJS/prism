@@ -132,16 +132,23 @@ pre[class*="language-"]:after {
 .token.attr-name,
 .token.string,
 .token.function,
-.token.builtin {
+.token.builtin,
+.token.dfn {
   color: #2f9c0a;
 }
 
 .token.operator,
+.token.monadic-operator,
 .token.entity,
 .token.url,
 .token.variable {
   color: #a67f59;
   background: rgba(255, 255, 255, 0.5);
+}
+
+.token.dyadic-operator,
+.token.assignment {
+        color:#F55;
 }
 
 .token.atrule,
@@ -172,6 +179,13 @@ pre[class*="language-"]:after {
 .namespace {
   opacity: .7;
 }
+
+.token.function,
+.token.systemfunction,
+.token.statement{
+        color: #00F;
+}
+
 
 @media screen and (max-width:767px){
   pre[class*="language-"]:before,

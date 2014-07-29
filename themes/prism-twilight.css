@@ -92,19 +92,26 @@ code[class*="language-"]::selection, code[class*="language-"] ::selection {
 .token.selector,
 .token.constant,
 .token.symbol,
-.token.builtin {
+.token.builtin,
+.token.dfn {
 	color:hsl(53, 89%, 79%); /* #F9EE98 */
 }
 .token.attr-name,
 .token.attr-value,
 .token.string,
 .token.operator,
+.token.monadic-operator,
 .token.entity,
 .token.url,
 .language-css .token.string,
 .style .token.string,
 .token.variable {
 	color:hsl(76, 21%, 52%); /* #8F9D6A */
+}
+
+.token.dyadic-operator,
+.token.assignment {
+        color:#F55;
 }
 
 .token.atrule {
@@ -123,6 +130,13 @@ code[class*="language-"]::selection, code[class*="language-"] ::selection {
 .token.entity {
 	cursor: help;
 }
+
+.token.function,
+.token.systemfunction,
+.token.statement{
+        color: #55F;
+}
+
 pre[data-line] {
 	padding: 1em 0 1em 3em;
 	position: relative;
