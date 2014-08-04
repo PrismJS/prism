@@ -174,7 +174,12 @@ var components = {
 		"ini": {
 			"title": "Ini",
 			"owner": "aviaryan"
+		},
+		"apl": {
+			"title": "APL",
+			"owner": "ngn"
 		}
+
 	},
 	"plugins": {
 		"meta": {

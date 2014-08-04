@@ -72,16 +72,23 @@ code[class*="language-"] {
 .token.selector,
 .token.attr-name,
 .token.string,
-.token.builtin {
+.token.builtin,
+.token.dfn {
 	color: yellow;
 }
 
 .token.operator,
+.token.monadic-operator,
 .token.entity,
 .token.url,
 .language-css .token.string,
 .toke.variable {
 	color: yellowgreen;
+}
+
+.token.dyadic-operator,
+.token.assignment {
+        color:#F55;
 }
 
 .token.atrule,
@@ -103,3 +110,10 @@ code[class*="language-"] {
 .token.entity {
 	cursor: help;
 }
+
+.token.function,
+.token.systemfunction,
+.token.statement{
+        color: #0AF;
+}
+

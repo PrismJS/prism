@@ -82,17 +82,24 @@ pre[class*="language-"] {
 .token.selector,
 .token.attr-name,
 .token.string,
-.token.builtin {
+.token.builtin,
+.token.dfn {
 	color: hsl(75, 70%, 60%);
 }
 
 .token.operator,
+.token.monadic-operator,
 .token.entity,
 .token.url,
 .language-css .token.string,
 .style .token.string,
 .token.variable {
 	color: hsl(40, 90%, 60%);
+}
+
+.token.dyadic-operator,
+.token.assignment {
+        color:#F55;
 }
 
 .token.atrule,
@@ -114,3 +121,10 @@ pre[class*="language-"] {
 .token.entity {
 	cursor: help;
 }
+
+.token.function,
+.token.systemfunction,
+.token.statement {
+        color: #0AF;
+}
+
