@@ -174,6 +174,10 @@ var components = {
 		"ini": {
 			"title": "Ini",
 			"owner": "aviaryan"
+		},
+		"latex": {
+			"title": "LaTeX",
+			"owner": "japborst"
 		}
 	},
 	"plugins": {
