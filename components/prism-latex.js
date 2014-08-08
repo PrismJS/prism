@@ -1,6 +1,6 @@
 Prism.languages.latex = {
-	'comment': /%[\w\W]*/g,
+	'comment': /%.*?(\r?\n|$)$/m,
 	'string': /(\$)(\\?.)*?\1/g,
-	'punctuation': /[\{\}]/g,
-	'selector': /[\\][a-zA-Z;,:\.]*/g
+	'punctuation': /[{}]/g,
+	'selector': /\\[a-z;,:\.]*/i
 }
