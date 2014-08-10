@@ -261,7 +261,7 @@ var _ = self.Prism = {
 						args.push(before);
 					}
 
-					var wrapped = new Token(token, inside? _.tokenize(match, inside) : match);
+					var wrapped = new Token(token.split('#')[0], inside? _.tokenize(match, inside) : match);
 
 					args.push(wrapped);
 
