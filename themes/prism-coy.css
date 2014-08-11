@@ -39,8 +39,9 @@ pre[class*="language-"] {
   background-image: -o-linear-gradient(transparent 50%, rgba(69, 142, 209, 0.04) 50%);
   background-image: linear-gradient(transparent 50%, rgba(69, 142, 209, 0.04) 50%);
   background-size: 3em 3em;
+  background-attachment:local;
   background-origin:content-box;
-  overflow: visible;
+  overflow: auto;
   max-height: 30em;
 }
 
@@ -49,7 +50,6 @@ code[class*="language"] {
   height: 100%;
   padding: 0 1em;
   display:block;
-  overflow: auto;
 }
 
 /* Margin bottom to accomodate shadow */
