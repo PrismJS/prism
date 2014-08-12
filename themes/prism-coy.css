@@ -130,6 +130,7 @@ pre[class*="language-"]:after {
 .token.selector,
 .token.attr-name,
 .token.string,
+.token.char,
 .token.function,
 .token.builtin {
   color: #2f9c0a;

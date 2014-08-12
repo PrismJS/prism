@@ -72,6 +72,7 @@ code[class*="language-"] {
 .token.selector,
 .token.attr-name,
 .token.string,
+.token.char,
 .token.builtin {
 	color: yellow;
 }

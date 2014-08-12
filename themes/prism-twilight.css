@@ -98,6 +98,7 @@ code[class*="language-"]::selection, code[class*="language-"] ::selection {
 .token.attr-name,
 .token.attr-value,
 .token.string,
+.token.char,
 .token.operator,
 .token.entity,
 .token.url,
