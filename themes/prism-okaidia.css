@@ -7,7 +7,7 @@
 code[class*="language-"],
 pre[class*="language-"] {
 	color: #f8f8f2;
-	text-shadow: 0 1px rgba(0,0,0,0.3);
+	text-shadow: 0 1px rgba(0, 0, 0, 0.3);
 	font-family: Consolas, Monaco, 'Andale Mono', monospace;
 	direction: ltr;
 	text-align: left;
@@ -68,7 +68,7 @@ pre[class*="language-"] {
 }
 
 .token.boolean,
-.token.number{
+.token.number {
 	color: #ae81ff;
 }
 
@@ -78,7 +78,6 @@ pre[class*="language-"] {
 .token.builtin {
 	color: #a6e22e;
 }
-
 
 .token.operator,
 .token.entity,
@@ -90,14 +89,12 @@ pre[class*="language-"] {
 }
 
 .token.atrule,
-.token.attr-value
-{
+.token.attr-value {
 	color: #e6db74;
 }
 
-
-.token.keyword{
-color: #66d9ef;
+.token.keyword {
+	color: #66d9ef;
 }
 
 .token.regex,
