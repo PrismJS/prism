@@ -26,6 +26,5 @@ Prism.languages.haskell= {
 	'hvariable': /\b([A-Z][_a-zA-Z0-9']*\.)*[_a-z][_a-zA-Z0-9']*\b/g,
 	'constant': /\b([A-Z][_a-zA-Z0-9']*\.)*[A-Z][_a-zA-Z0-9']*\b/g,
 	'number' : /\b-?\d*(\.?\d+)\b/g,
-	'ignore' : /&(lt|gt|amp);/gi,
 	'punctuation' : /[{}[\];(),.:]/g
 };
