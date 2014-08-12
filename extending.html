@@ -48,6 +48,10 @@
 		as if it was lookbehind. For an example of this, check out the JavaScript language definition, in particular the regex and comment tokens:
 		<pre data-src="components/prism-javascript.js"></pre></dd>
 		
+		<dt>lookahead</dt>
+		<dd>This option works exactly like lookbehind from the other side. When set to <code>true</code>, 
+		the last capturing group in the regex <code>pattern</code> is discarded when matching this token.</dd>
+
 		<dt>rest</dt>
 		<dd>Accepts an object literal with tokens and appends them to the end of the current object literal. Useful for referring to tokens defined elsewhere. For an example where <code>rest</code> is useful, check the Markup definitions above.</dd>
 	</dl>
