@@ -21,7 +21,7 @@ var _ = self.Prism = {
 	util: {
 		encode: function (tokens) {
 			if (tokens instanceof Token) {
-				return new Token(tokens.type, _.util.encode(tokens.content));
+				return new Token(tokens.type, _.util.encode(tokens.content), tokens.alias);
 			} else if (_.util.type(tokens) === 'Array') {
 				return tokens.map(_.util.encode);
 			} else {
@@ -221,7 +221,8 @@ var _ = self.Prism = {
 				var pattern = patterns[j],
 					inside = pattern.inside,
 					lookbehind = !!pattern.lookbehind,
-					lookbehindLength = 0;
+					lookbehindLength = 0,
+					alias = pattern.alias;
 
 				pattern = pattern.pattern || pattern;
 
@@ -260,7 +261,7 @@ var _ = self.Prism = {
 							args.push(before);
 						}
 
-						var wrapped = new Token(token, inside? _.tokenize(match, inside) : match);
+						var wrapped = new Token(token, inside? _.tokenize(match, inside) : match, alias);
 
 						args.push(wrapped);
 
@@ -302,9 +303,10 @@ var _ = self.Prism = {
 	}
 };
 
-var Token = _.Token = function(type, content) {
+var Token = _.Token = function(type, content, alias) {
 	this.type = type;
 	this.content = content;
+	this.alias = alias;
 };
 
 Token.stringify = function(o, language, parent) {
@@ -330,6 +332,11 @@ Token.stringify = function(o, language, parent) {
 
 	if (env.type == 'comment') {
 		env.attributes['spellcheck'] = 'true';
+	}
+
+	if (o.alias) {
+		var aliases = _.util.type(o.alias) === 'Array' ? o.alias : [o.alias];
+		Array.prototype.push.apply(env.classes, aliases);
 	}
 
 	_.hooks.run('wrap', env);
