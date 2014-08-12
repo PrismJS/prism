@@ -221,7 +221,9 @@ var _ = self.Prism = {
 				var pattern = patterns[j],
 					inside = pattern.inside,
 					lookbehind = !!pattern.lookbehind,
-					lookbehindLength = 0;
+					lookbehindLength = 0,
+					lookahead = !!pattern.lookahead,
+					lookaheadLength;
 
 				pattern = pattern.pattern || pattern;
 
@@ -247,12 +249,20 @@ var _ = self.Prism = {
 							lookbehindLength = match[1].length;
 						}
 
+						if (lookahead) {
+							lookaheadLength = match[match.length - 1].length;
+							// slice(start, undefined) returns the whole string
+							lookaheadLength = (lookaheadLength > 0) ? -lookaheadLength : undefined;
+						}
+
 						var from = match.index - 1 + lookbehindLength,
-							match = match[0].slice(lookbehindLength),
+							match = match[0].slice(lookbehindLength, lookaheadLength),
 							len = match.length,
 							to = from + len,
 							before = str.slice(0, from + 1),
 							after = str.slice(to + 1);
+
+						lookaheadLength = undefined;
 
 						var args = [i, 1];
 
