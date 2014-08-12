@@ -477,10 +477,16 @@ if (Prism.languages.markup) {
 ********************************************** */
 
 Prism.languages.clike = {
-	'comment': {
-		pattern: /(^|[^\\])(\/\*[\w\W]*?\*\/|(^|[^:])\/\/.*?(\r?\n|$))/g,
-		lookbehind: true
-	},
+	'comment': [
+		{
+			pattern: /(^|[^\\])\/\*[\w\W]*?\*\//g,
+			lookbehind: true
+		},
+		{
+			pattern: /(^|[^\\:])\/\/.*?(\r?\n|$)/g,
+			lookbehind: true
+		}
+	],
 	'string': /("|')(\\?.)*?\1/g,
 	'class-name': {
 		pattern: /((?:(?:class|interface|extends|implements|trait|instanceof|new)\s+)|(?:catch\s+\())[a-z0-9_\.\\]+/ig,
