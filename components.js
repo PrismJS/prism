@@ -158,7 +158,7 @@ var components = {
 			"owner": "jozic"
 		},
 		"haskell": {
-			"title": "Haskell"
+			"title": "Haskell",
 			"owner": "bholst"
 		},
 		"swift": {
