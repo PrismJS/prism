@@ -83,6 +83,7 @@ pre[class*="language-"] {
 .token.selector,
 .token.attr-name,
 .token.string,
+.token.char,
 .token.builtin {
 	color: hsl(75, 70%, 60%);
 }

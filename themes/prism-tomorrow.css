@@ -88,6 +88,7 @@ pre[class*="language-"] {
 }
 
 .token.string,
+.token.char,
 .token.attr-value,
 .token.regex,
 .token.variable {
