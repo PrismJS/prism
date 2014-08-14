@@ -54,6 +54,15 @@ var _ = self.Prism = {
 			}
 
 			return o;
+		},
+
+		indexOf: function(a,o) {
+			if (a.indexOf) return a.indexOf(o);
+
+			for (var i = 0, j = this.length; i < j; i++) {
+					if (a[i] === o) { return i; }
+			}
+			return -1;
 		}
 	},
 
