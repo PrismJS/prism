@@ -15,7 +15,7 @@ for (var language in Prism.languages) {
 	var tokens = Prism.languages[language];
 	
 	Prism.languages.DFS(tokens, function (type, def) {
-		if (candidates.indexOf(type) > -1) {
+		if (Prism.util.indexOf(candidates,type) > -1) {
 			if (!def.pattern) {
 				def = this[type] = {
 					pattern: def
