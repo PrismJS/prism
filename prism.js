@@ -1,10 +1,15 @@
 
-
 /* **********************************************
      Begin prism-core.js
 ********************************************** */
 
-var self = (typeof window !== 'undefined') ? window : {};
+self = (typeof window !== 'undefined')
+	? window   // if in browser
+	: (
+		(typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope)
+		? self // if in worker
+		: {}   // if in node js
+	);
 
 /**
  * Prism: Lightweight, robust, elegant syntax highlighting
@@ -214,57 +219,62 @@ var _ = self.Prism = {
 				continue;
 			}
 
-			var pattern = grammar[token],
-				inside = pattern.inside,
-				lookbehind = !!pattern.lookbehind,
-				lookbehindLength = 0;
+			var patterns = grammar[token];
+			patterns = (_.util.type(patterns) === "Array") ? patterns : [patterns];
 
-			pattern = pattern.pattern || pattern;
+			for (var j = 0; j < patterns.length; ++j) {
+				var pattern = patterns[j],
+					inside = pattern.inside,
+					lookbehind = !!pattern.lookbehind,
+					lookbehindLength = 0;
 
-			for (var i=0; i<strarr.length; i++) { // Don’t cache length as it changes during the loop
+				pattern = pattern.pattern || pattern;
 
-				var str = strarr[i];
+				for (var i=0; i<strarr.length; i++) { // Don’t cache length as it changes during the loop
 
-				if (strarr.length > text.length) {
-					// Something went terribly wrong, ABORT, ABORT!
-					break tokenloop;
-				}
+					var str = strarr[i];
 
-				if (str instanceof Token) {
-					continue;
-				}
-
-				pattern.lastIndex = 0;
-
-				var match = pattern.exec(str);
-
-				if (match) {
-					if(lookbehind) {
-						lookbehindLength = match[1].length;
+					if (strarr.length > text.length) {
+						// Something went terribly wrong, ABORT, ABORT!
+						break tokenloop;
 					}
 
-					var from = match.index - 1 + lookbehindLength,
-					    match = match[0].slice(lookbehindLength),
-					    len = match.length,
-					    to = from + len,
-						before = str.slice(0, from + 1),
-						after = str.slice(to + 1);
-
-					var args = [i, 1];
-
-					if (before) {
-						args.push(before);
+					if (str instanceof Token) {
+						continue;
 					}
 
-					var wrapped = new Token(token, inside? _.tokenize(match, inside) : match);
+					pattern.lastIndex = 0;
 
-					args.push(wrapped);
+					var match = pattern.exec(str);
 
-					if (after) {
-						args.push(after);
+					if (match) {
+						if(lookbehind) {
+							lookbehindLength = match[1].length;
+						}
+
+						var from = match.index - 1 + lookbehindLength,
+							match = match[0].slice(lookbehindLength),
+							len = match.length,
+							to = from + len,
+							before = str.slice(0, from + 1),
+							after = str.slice(to + 1);
+
+						var args = [i, 1];
+
+						if (before) {
+							args.push(before);
+						}
+
+						var wrapped = new Token(token, inside? _.tokenize(match, inside) : match);
+
+						args.push(wrapped);
+
+						if (after) {
+							args.push(after);
+						}
+
+						Array.prototype.splice.apply(strarr, args);
 					}
-
-					Array.prototype.splice.apply(strarr, args);
 				}
 			}
 		}
@@ -467,10 +477,16 @@ if (Prism.languages.markup) {
 ********************************************** */
 
 Prism.languages.clike = {
-	'comment': {
-		pattern: /(^|[^\\])(\/\*[\w\W]*?\*\/|(^|[^:])\/\/.*?(\r?\n|$))/g,
-		lookbehind: true
-	},
+	'comment': [
+		{
+			pattern: /(^|[^\\])\/\*[\w\W]*?\*\//g,
+			lookbehind: true
+		},
+		{
+			pattern: /(^|[^\\:])\/\/.*?(\r?\n|$)/g,
+			lookbehind: true
+		}
+	],
 	'string': /("|')(\\?.)*?\1/g,
 	'class-name': {
 		pattern: /((?:(?:class|interface|extends|implements|trait|instanceof|new)\s+)|(?:catch\s+\())[a-z0-9_\.\\]+/ig,
@@ -548,26 +564,26 @@ Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(f
 	var src = pre.getAttribute('data-src');
 	var extension = (src.match(/\.(\w+)$/) || [,''])[1];
 	var language = Extensions[extension] || extension;
-
+	
 	var code = document.createElement('code');
 	code.className = 'language-' + language;
-
+	
 	pre.textContent = '';
-
+	
 	code.textContent = 'Loading…';
-
+	
 	pre.appendChild(code);
-
+	
 	var xhr = new XMLHttpRequest();
-
+	
 	xhr.open('GET', src, true);
 
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4) {
-
+			
 			if (xhr.status < 400 && xhr.responseText) {
 				code.textContent = xhr.responseText;
-
+			
 				Prism.highlightElement(code);
 			}
 			else if (xhr.status >= 400) {
@@ -578,7 +594,7 @@ Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(f
 			}
 		}
 	};
-
+	
 	xhr.send(null);
 });
 
