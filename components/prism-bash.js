@@ -1,24 +1,64 @@
-Prism.languages.bash = Prism.languages.extend('clike', {
-	'comment': {
-		pattern: /(^|[^"{\\])(#.*?(\r?\n|$))/g,
+Prism.languages.bash = {
+	'shebang': {
+		pattern: /^#!.*\n/g,
+		alias: 'important'
+	},
+	'caseenv': {
+		pattern: /(\bcase\b.*?in\b\s*)[\w\W]+?(?=esac)/gi,
+		inside: {
+			'selector': {
+				pattern: /(^\s*)[^)\n]+\)/gm,
+				lookbehind: true
+			}
+		},
 		lookbehind: true
 	},
-	'string': {
-		//allow multiline string
-		pattern: /("|')(\\?[\s\S])*?\1/g,
+	'comment': {
+		pattern: /(^\s*|[^${])#.*$/gm,
+		lookbehind: true
+	},
+	// allow multiline string
+	'string': [
+		{
+			pattern: /"(?:\\?[\s\S])*?"/g,
+			inside: {}
+		},
+		// single quote strings cannot have variables inside
+		/'(?:\\?[\s\S])*?'/g
+	],
+	'variable': {
+		pattern: /(^\s*(?:export\s*)?)[a-z_]+(?=\=)/gim,
+		lookbehind: true
+	},
+	'variable-usage': [
+		{
+			pattern: /\$(?:[a-z0-9_#\?\-\*!@]+|\{[^}]+\})/gi,
+			alias: 'property'
+		},
+		{
+			pattern: /\$(?=\()/g,
+			alias: 'property'
+		}
+	],
+	'arithenv': {
+		pattern: /(\(\()[\w\W]+(?=\)\))/g,
+		lookbehind: true,
 		inside: {
-			//'property' class reused for bash variables
-			'property': /\$([a-zA-Z0-9_#\?\-\*!@]+|\{[^\}]+\})/g
+			'operator': /\*|\/|[-+]{1,2}|!=?|<=?|>=?|==?|&{1,2}|\|?\|/g,
+			'variable-usage': {
+				pattern: /[a-z_]+/gi,
+				alias: 'property'
+			}
 		}
 	},
-	'keyword': /\b(if|then|else|elif|fi|for|break|continue|while|in|case|function|select|do|done|until|echo|exit|return|set|declare)\b/g
-});
+	'keyword': /\b(if|then|else|elif|export|eval|esac|exec|getopts|hash|pwd|test|umask|unset|trap|times|alias|bind|builtin|printf|read|ulimit|unalias|local|let|type|typeset|shift|fi|for|break|continue|while|in|case|function|select|do|done|until|echo|exit|return|set|declare|cd|rm|mkdir|cat|sleep|ls|clear|kill|killall)\b/g,
+	'boolean': /\b(true|false)\b/g,
+	'function': /[a-z0-9_]+(?=\()/ig,
+	'number': /\b-?(?:0x[\dA-Fa-f]+|\d*\.?\d+(?:[Ee]-?\d+)?)\b/g,
+	'operator': /!=?|<=?|>=?|==?|&{1,2}|\|?\|/g,
+	'punctuation': /[{}[\];(),.:`]/g
+};
 
-Prism.languages.insertBefore('bash', 'keyword', {
-	//'property' class reused for bash variables
-	'property': /\$([a-zA-Z0-9_#\?\-\*!@]+|\{[^}]+\})/g
-});
-Prism.languages.insertBefore('bash', 'comment', {
-	//shebang must be before comment, 'important' class from css reused
-	'important': /(^#!\s*\/bin\/bash)|(^#!\s*\/bin\/sh)/g
-});
+Prism.languages.bash.caseenv.inside.rest = Prism.languages.bash;
+Prism.languages.bash.arithenv.inside.number = Prism.languages.bash.number;
+Prism.languages.bash.string[0].inside['variable-usage'] = Prism.languages.bash['variable-usage'][0];
