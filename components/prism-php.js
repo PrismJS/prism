@@ -52,11 +52,18 @@ if (Prism.languages.markup) {
 
 		env.tokenStack = [];
 
+		env.backupCode = env.code;
 		env.code = env.code.replace(/(?:<\?php|<\?)[\w\W]*?(?:\?>)/ig, function(match) {
 			env.tokenStack.push(match);
 
 			return '{{{PHP' + env.tokenStack.length + '}}}';
 		});
+	});
+
+	// Restore env.code for other plugins (e.g. line-numbers)
+	Prism.hooks.add('before-insert', function(env) {
+		env.code = env.backupCode;
+		delete env.backupCode;
 	});
 
 	// Re-insert the tokens after highlighting
