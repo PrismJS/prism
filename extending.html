@@ -50,6 +50,14 @@
 		
 		<dt>rest</dt>
 		<dd>Accepts an object literal with tokens and appends them to the end of the current object literal. Useful for referring to tokens defined elsewhere. For an example where <code>rest</code> is useful, check the Markup definitions above.</dd>
+
+		<dt>checkMatch</dt>
+		<dd>Sometimes regular expressions are not powerful enough, because they cannot use state variables and they are generally not as powerfull
+		as a full fleged parser. This property attemts to mitigate that fact by allowing the definition of a Javascript callback function,
+		which can be used to check the match and by returning <code>true</code> or <code>false</code> accept or reject it. The function can use <code>this</code>
+		to store its state and it receives the current <code>match</code> and the <code>lastIndex</code>, where its state applies, as a parameter.
+		The usage can be seen in the following example:
+		<pre data-src="components/prism-clike.js"></pre></dd>
 	</dl>
 	
  	<p>Unless explicitly allowed through the <code>inside</code> property, each token cannot contain other tokens, so their order is significant. Although per the ECMAScript specification, objects are not required to have a specific ordering of their properties, in practice they do in every modern browser.</p>

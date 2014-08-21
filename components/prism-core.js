@@ -220,6 +220,8 @@ var _ = self.Prism = {
 			for (var j = 0; j < patterns.length; ++j) {
 				var pattern = patterns[j],
 					inside = pattern.inside,
+					check = pattern.checkMatch,
+					checkState = {},
 					lookbehind = !!pattern.lookbehind,
 					lookbehindLength = 0;
 
@@ -240,7 +242,16 @@ var _ = self.Prism = {
 
 					pattern.lastIndex = 0;
 
-					var match = pattern.exec(str);
+					var match = pattern.exec(str),
+						lastIndex = 0;
+					while(match && check) {
+						if (check.call(checkState, match, lastIndex))
+							break;
+
+						lastIndex = match.index;
+						pattern.lastIndex = lastIndex + 1;
+						match = pattern.exec(str);
+					}
 
 					if (match) {
 						if(lookbehind) {
