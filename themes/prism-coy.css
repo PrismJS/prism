@@ -126,7 +126,8 @@ pre[class*="language-"]:after {
 .token.function-name,
 .token.constant,
 .token.symbol,
-.token.directive-inline {
+.token.directive-inline,
+.token.directive-block {
 	color: #c92c2c;
 }
 
