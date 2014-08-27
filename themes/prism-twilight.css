@@ -88,9 +88,7 @@ code[class*="language-"]::selection, code[class*="language-"] ::selection {
 
 .token.tag,
 .token.boolean,
-.token.number,
-.token.directive-inline,
-.token.directive-block {
+.token.number {
 	color: hsl(14, 58%, 55%); /* #CF6A4C */
 }
 
@@ -112,9 +110,7 @@ code[class*="language-"]::selection, code[class*="language-"] ::selection {
 .token.url,
 .language-css .token.string,
 .style .token.string,
-.token.variable,
-.token.directive-block-parameter,
-.token.directive-flags {
+.token.variable {
 	color: hsl(76, 21%, 52%); /* #8F9D6A */
 }
 

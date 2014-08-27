@@ -63,9 +63,7 @@ pre[class*="language-"] {
 .token.property,
 .token.tag,
 .token.constant,
-.token.symbol,
-.token.directive-inline,
-.token.directive-block {
+.token.symbol {
 	color: #f92672;
 }
 
@@ -92,9 +90,7 @@ pre[class*="language-"] {
 }
 
 .token.atrule,
-.token.attr-value,
-.token.directive-block-parameter,
-.token.directive-flags {
+.token.attr-value {
 	color: #e6db74;
 }
 

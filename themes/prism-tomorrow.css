@@ -58,9 +58,7 @@ pre[class*="language-"] {
 
 .token.tag,
 .token.attr-name,
-.token.namespace,
-.token.directive-inline,
-.token.directive-block {
+.token.namespace {
 	color: #e2777a;
 }
 
@@ -93,9 +91,7 @@ pre[class*="language-"] {
 .token.char,
 .token.attr-value,
 .token.regex,
-.token.variable,
-.token.directive-block-parameter,
-.token.directive-flags {
+.token.variable {
 	color: #7ec699;
 }
 

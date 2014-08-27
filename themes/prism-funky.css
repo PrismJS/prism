@@ -66,9 +66,7 @@ code[class*="language-"] {
 .token.boolean,
 .token.number,
 .token.constant,
-.token.symbol,
-.token.directive-inline,
-.token.directive-block {
+.token.symbol {
 	color: #0cf;
 }
 
@@ -90,9 +88,7 @@ code[class*="language-"] {
 
 .token.atrule,
 .token.attr-value,
-.token.keyword,
-.token.directive-block-parameter,
-.token.directive-flags {
+.token.keyword {
 	color: deeppink;
 }
 

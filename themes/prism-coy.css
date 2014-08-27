@@ -125,9 +125,7 @@ pre[class*="language-"]:after {
 .token.number,
 .token.function-name,
 .token.constant,
-.token.symbol,
-.token.directive-inline,
-.token.directive-block {
+.token.symbol {
 	color: #c92c2c;
 }
 
@@ -151,9 +149,7 @@ pre[class*="language-"]:after {
 .token.atrule,
 .token.attr-value,
 .token.keyword,
-.token.class-name,
-.token.directive-block-parameter,
-.token.directive-flags {
+.token.class-name {
 	color: #1990b8;
 }
 
