@@ -206,3 +206,10 @@ pre[class*="language-"].line-numbers code {
 pre[class*="language-"].line-numbers .line-numbers-rows {
 	left: 0;
 }
+
+.token.deleted {
+	color: red;
+}
+.token.inserted {
+	color: green;
+}

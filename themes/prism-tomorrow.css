@@ -108,3 +108,10 @@ pre[class*="language-"] {
 .token.entity {
 	cursor: help;
 }
+
+.token.deleted {
+	color: red;
+}
+.token.inserted {
+	color: green;
+}
