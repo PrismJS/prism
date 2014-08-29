@@ -186,7 +186,11 @@ var components = {
 		"apacheconf": {
 			"title": "Apache Configuration",
 			"owner": "GuiTeK"
-		}
+		},
+    "git": {
+      "title": "Git",
+      "owner": "lgiraudel"
+    }
 	},
 	"plugins": {
 		"meta": {
