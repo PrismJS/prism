@@ -182,6 +182,10 @@ var components = {
 		"latex": {
 			"title": "LaTeX",
 			"owner": "japborst"
+		},
+		"apache-conf": {
+			"title": "Apache Configuration",
+			"owner": "GuiTeK"
 		}
 	},
 	"plugins": {
