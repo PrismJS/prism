@@ -183,7 +183,7 @@ var components = {
 			"title": "LaTeX",
 			"owner": "japborst"
 		},
-		"apache-conf": {
+		"apacheconf": {
 			"title": "Apache Configuration",
 			"owner": "GuiTeK"
 		}
