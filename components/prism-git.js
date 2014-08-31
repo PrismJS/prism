@@ -51,8 +51,8 @@ Prism.languages.git = {
 	/*
 	 * Regexp to match the changed lines in a git diff output. Check the example above.
 	 */
-	'deleted': /^-[^-\n]+$/m,
-	'inserted': /^\+[^+\n]+$/m,
+	'deleted': /^-(?!-).+$/m,
+	'inserted': /^\+(?!\+).+$/m,
 
 	/*
 	 * Match a "commit [SHA1]" line in a git log output.
