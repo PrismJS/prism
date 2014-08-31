@@ -84,7 +84,8 @@ pre[class*="language-"] {
 .token.attr-name,
 .token.string,
 .token.char,
-.token.builtin {
+.token.builtin,
+.token.inserted {
 	color: hsl(75, 70%, 60%);
 }
 
@@ -118,7 +119,4 @@ pre[class*="language-"] {
 
 .token.deleted {
 	color: red;
-}
-.token.inserted {
-	color: lime;
 }

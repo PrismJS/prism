@@ -125,7 +125,8 @@ pre[class*="language-"]:after {
 .token.number,
 .token.function-name,
 .token.constant,
-.token.symbol {
+.token.symbol,
+.token.deleted {
 	color: #c92c2c;
 }
 
@@ -134,7 +135,8 @@ pre[class*="language-"]:after {
 .token.string,
 .token.char,
 .token.function,
-.token.builtin {
+.token.builtin,
+.token.inserted {
 	color: #2f9c0a;
 }
 
@@ -205,11 +207,4 @@ pre[class*="language-"].line-numbers code {
 
 pre[class*="language-"].line-numbers .line-numbers-rows {
 	left: 0;
-}
-
-.token.deleted {
-	color: red;
-}
-.token.inserted {
-	color: green;
 }
