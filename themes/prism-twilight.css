@@ -88,7 +88,8 @@ code[class*="language-"]::selection, code[class*="language-"] ::selection {
 
 .token.tag,
 .token.boolean,
-.token.number {
+.token.number,
+.token.deleted {
 	color: hsl(14, 58%, 55%); /* #CF6A4C */
 }
 
@@ -110,7 +111,8 @@ code[class*="language-"]::selection, code[class*="language-"] ::selection {
 .token.url,
 .language-css .token.string,
 .style .token.string,
-.token.variable {
+.token.variable,
+.token.inserted {
 	color: hsl(76, 21%, 52%); /* #8F9D6A */
 }
 
@@ -141,13 +143,6 @@ pre[data-line] {
 .language-markup .token.attr-name,
 .language-markup .token.punctuation {
 	color: hsl(33, 33%, 52%); /* #AC885B */
-}
-
-.token.deleted {
-	color: red;
-}
-.token.inserted {
-	color: green;
 }
 
 /* Make the tokens sit above the line highlight so the colours don't look faded. */

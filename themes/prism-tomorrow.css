@@ -58,7 +58,8 @@ pre[class*="language-"] {
 
 .token.tag,
 .token.attr-name,
-.token.namespace {
+.token.namespace,
+.token.deleted {
 	color: #e2777a;
 }
 
@@ -109,9 +110,6 @@ pre[class*="language-"] {
 	cursor: help;
 }
 
-.token.deleted {
-	color: red;
-}
 .token.inserted {
 	color: green;
 }

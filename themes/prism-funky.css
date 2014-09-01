@@ -82,7 +82,8 @@ code[class*="language-"] {
 .token.entity,
 .token.url,
 .language-css .token.string,
-.toke.variable {
+.toke.variable,
+.token.inserted {
 	color: yellowgreen;
 }
 
@@ -107,7 +108,4 @@ code[class*="language-"] {
 
 .token.deleted {
 	color: red;
-}
-.token.inserted {
-	color: green;
 }
