@@ -1,8 +1,9 @@
-var gulp   = require('gulp'),
-	rename = require('gulp-rename'),
-	uglify = require('gulp-uglify'),
-	header = require('gulp-header'),
-	concat = require('gulp-concat'),
+var gulp    = require('gulp'),
+	rename  = require('gulp-rename'),
+	uglify  = require('gulp-uglify'),
+	header  = require('gulp-header'),
+	concat  = require('gulp-concat'),
+	jasmine = require('gulp-jasmine'),
 
 	paths  = {
 		components: ['components/**/*.js', '!components/**/*.min.js'],
@@ -14,7 +15,8 @@ var gulp   = require('gulp'),
 			'components/prism-javascript.js',
 			'plugins/file-highlight/prism-file-highlight.js'
 		],
-		plugins: ['plugins/**/*.js', '!plugins/**/*.min.js']
+		plugins: ['plugins/**/*.js', '!plugins/**/*.min.js'],
+		tests: ['prism.js', 'components/**/*.js', '!components/**/*.min.js', 'spec/**/*.js']
 	};
 
 gulp.task('components', function() {
@@ -43,6 +45,12 @@ gulp.task('plugins', function() {
 gulp.task('watch', function() {
 	gulp.watch(paths.components, ['components', 'build']);
 	gulp.watch(paths.plugins, ['plugins', 'build']);
+	gulp.watch(paths.tests, ['test']);
+});
+
+gulp.task('test', function() {
+	return gulp.src('spec/**/*.js')
+		.pipe(jasmine({verbose: false, includeStackTrace: false}));
 });
 
 gulp.task('default', ['components', 'plugins', 'build']);
