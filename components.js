@@ -194,7 +194,11 @@ var components = {
 	        "scheme" : {
 		        "title": "Scheme",
 		        "owner" : "bacchus123"
-	        }
+	        },
+		"nasm": {
+			"title": "nasm",
+			"owner": "rbmj"
+		}
 	},
 	"plugins": {
 		"meta": {
