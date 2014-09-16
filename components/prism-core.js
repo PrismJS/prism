@@ -377,7 +377,7 @@ script = script[script.length - 1];
 if (script) {
 	_.filename = script.src;
 
-	if (document.addEventListener && !script.hasAttribute('data-manual')) {
+	if (document.addEventListener && !script.hasAttribute('data-manual') && !window.PRISM_JS_MANUAL) {
 		document.addEventListener('DOMContentLoaded', _.highlightAll);
 	}
 }
