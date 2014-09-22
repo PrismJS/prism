@@ -29,3 +29,5 @@ if (Prism.languages.markup) {
 		}
 	});
 }
+
+Prism.languages.css3 = Prism.languages.css;
