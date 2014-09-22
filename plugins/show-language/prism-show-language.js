@@ -5,8 +5,6 @@ if (!self.Prism) {
 }
 
 var Languages = {
-    'coffee': 'CoffeeScript',
-    'coffeescript': 'CoffeeScript',
 	'csharp': 'C#',
 	'cpp': 'C++'
 };
