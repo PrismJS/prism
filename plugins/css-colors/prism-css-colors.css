@@ -1,0 +1,74 @@
+.token.color {
+  position: relative;
+}
+.token.color > i, .token.color > i:before, .token.color > i:after {
+  position: absolute;
+  pointer-events: none;
+}
+.token.color > i, .token.color > i:before {
+  display: block;
+}
+.token.color > i, .token.color > i:after {
+  left: 50%;
+}
+.token.color > i {
+  top: -48px;
+  width: 32px;
+  height: 32px;
+  margin-left: -16px;
+  border: 1px solid #EEE;
+  background-color: #FFF;
+  background-image: linear-gradient(45deg, #000000 25%, transparent 25%, transparent 75%, #000000 75%, #000000), linear-gradient(45deg, #000000 25%, transparent 25%, transparent 75%, #000000 75%, #000000);
+  background-size: 10px 10px;
+  background-position: 0 0, 5px 5px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 0 0 5px rgba(153, 153, 153, 0.75);
+  -moz-box-shadow: 0 0 0 5px rgba(153, 153, 153, 0.75);
+  -ms-box-shadow: 0 0 0 5px rgba(153, 153, 153, 0.75);
+  -o-box-shadow: 0 0 0 5px rgba(153, 153, 153, 0.75);
+  box-shadow: 0 0 0 5px rgba(153, 153, 153, 0.75);
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity)";
+  filter: alpha(opacity=0);
+  -khtml-opacity: 0;
+  -moz-opacity: 0;
+  opacity: 0;
+  -webkit-transition: opacity .25s;
+  -moz-transition: opacity .25s;
+  -o-transition: opacity .25s;
+  transition: opacity .25s;
+}
+.token.color > i:before, .token.color > i:after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+}
+.token.color > i:before {
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+}
+.token.color > i:after {
+  top: 100%;
+  width: 0;
+  height: 0;
+  margin: 6px 0 0 -7px;
+  border: 7px solid transparent;
+  border-color: rgba(153, 153, 153, 0);
+  border-top-color: rgba(153, 153, 153, 0.75);
+}
+.token.color:hover i {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=$opacity)";
+  filter: alpha(opacity=1);
+  -khtml-opacity: 1;
+  -moz-opacity: 1;
+  opacity: 1;
+  -webkit-transition-delay: .5s;
+  -moz-transition-delay: .5s;
+  -o-transition-delay: .5s;
+  transition-delay: .5s;
+}
