@@ -97,7 +97,3 @@ if (Prism.languages.markup) {
 		'php': /\{\{\{PHP[0-9]+\}\}\}/g
 	});
 }
-
-Prism.languages.php4 = Prism.languages.php;
-Prism.languages.php5 = Prism.languages.php;
-Prism.languages.php6 = Prism.languages.php;

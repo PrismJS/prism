@@ -41,4 +41,3 @@ Prism.hooks.add('wrap', function(env) {
 });
 
 Prism.languages.html = Prism.languages.markup;
-Prism.languages.html5 = Prism.languages.html;

@@ -1,3 +1,8 @@
+Prism.languages.html5 = Prism.languages.html;
+Prism.languages.php4 = Prism.languages.php;
+Prism.languages.php5 = Prism.languages.php;
+Prism.languages.php6 = Prism.languages.php;
+
 (function(){
 
 if (!self.Prism) {
@@ -5,6 +10,8 @@ if (!self.Prism) {
 }
 
 var Languages = {
+    'coffee': 'CoffeeScript',
+    'coffeescript': 'CoffeeScript',
 	'csharp': 'C#',
 	'cpp': 'C++'
 };
