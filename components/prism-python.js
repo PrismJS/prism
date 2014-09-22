@@ -11,5 +11,3 @@ Prism.languages.python= {
 	'ignore' : /&(lt|gt|amp);/gi,
 	'punctuation' : /[{}[\];(),.:]/g
 };
-
-Prism.languages.py = Prism.languages.python;
