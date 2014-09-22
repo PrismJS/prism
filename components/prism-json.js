@@ -6,5 +6,3 @@ Prism.languages.json = {
     'boolean': /\b(true|false)\b/gi,
     'null': /\bnull\b/gi,
 };
-
-Prism.languages.jsonp = Prism.languages.json;
