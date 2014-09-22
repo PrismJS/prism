@@ -10,8 +10,11 @@ Prism.languages.css.selector = {
 	}
 };
 
-Prism.languages.insertBefore('css', 'ignore', {
-	'hexcode': /#[\da-f]{3,6}/gi,
-	'entity': /\\[\da-f]{1,8}/gi,
-	'number': /[\d%\.]+/g
+Prism.languages.insertBefore('css', 'important', {
+    'value': {
+        pattern: /[^!]\b[^:;]+?(?=(?:)?\s*;)/ig,
+        inside: {
+            'important': /\B!important\b/gi
+        }
+    }
 });
