@@ -1,9 +1,3 @@
-Prism.languages.css3 = Prism.languages.css;
-Prism.languages.html5 = Prism.languages.html;
-Prism.languages.php4 = Prism.languages.php;
-Prism.languages.php5 = Prism.languages.php;
-Prism.languages.php6 = Prism.languages.php;
-
 (function(){
 
 if (!self.Prism) {
