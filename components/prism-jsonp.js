@@ -5,5 +5,5 @@ Prism.languages.jsonp = Prism.languages.extend('json',{
 			punctuation: /\(/
 		}
 	},
-    'punctuation': /[{}[\]);:,]/g,
+    'punctuation': /[{}[\]);,]/g,
 });
