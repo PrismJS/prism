@@ -17,4 +17,4 @@ Prism.languages.insertBefore('coffeescript', 'keyword', {
 	'attr-name': /[_?a-z-|A-Z-]+(\s*:)| @[_?$?a-z-|A-Z-]+(\s*)| /g
 });
 
-Prism.languages.cofee = Prism.languages.coffeescript;
+Prism.languages.coffee = Prism.languages.coffeescript;
