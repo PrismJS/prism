@@ -18,3 +18,5 @@ Prism.languages.insertBefore('css', 'important', {
         }
     }
 });
+
+delete Prism.languages.css.important;
