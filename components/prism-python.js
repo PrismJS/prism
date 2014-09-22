@@ -12,3 +12,4 @@ Prism.languages.python= {
 	'punctuation' : /[{}[\];(),.:]/g
 };
 
+Prism.languages.py = Prism.languages.python;
