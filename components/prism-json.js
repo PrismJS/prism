@@ -14,4 +14,4 @@ Prism.languages.json = {
     'null': /\bnull\b/gi,
 };
 
-Prism.languages.jsonp;
+Prism.languages.jsonp = Prism.languages.json;
