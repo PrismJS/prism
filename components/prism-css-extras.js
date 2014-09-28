@@ -7,14 +7,3 @@ Prism.languages.css.selector = {
 		'id': /#[-:\.\w]+/g
 	}
 };
-
-Prism.languages.insertBefore('css', 'important', {
-    'value': {
-        pattern: /[^!]\b[^:;]+?(?=(?:)?\s*;)/ig,
-        inside: {
-            'important': /\B!important\b/gi
-        }
-    }
-});
-
-delete Prism.languages.css.important;
