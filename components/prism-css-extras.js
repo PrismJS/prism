@@ -5,7 +5,7 @@ Prism.languages.css.selector = {
 		'pseudo-class': /:[-\w]+(?:\(.*\))?/g,
 		'class': /\.[-:\.\w]+/g,
 		'id': /#[-:\.\w]+/g,
-        'punctuation': /[,\[\]=~\|\^\$\*]/g,
+		'punctuation': /[,\[\]=~\|\^\$\*]/g,
 		'string': /("|')(\\?.)*?\1/g
 	}
 };
