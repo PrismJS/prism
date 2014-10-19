@@ -13,7 +13,7 @@ Prism.languages.scheme = {
 	pattern : /(["])(?:(?=(\\?))\2.)*?\1|'[^('|\s)]+/ //thanks http://stackoverflow.com/questions/171480/regex-grabbing-values-between-quotation-marks
     },
     'number' :{
-	pattern : /[-+]?[0-9]*\.?[0-9]+((\s*)[-+]{1}(\s*)[0-9]*\.?[0-9]+i)?/
+	pattern : /(\s|\))[-+]?[0-9]*\.?[0-9]+((\s*)[-+]{1}(\s*)[0-9]*\.?[0-9]+i)?/
     },
     'operator' : {
 	pattern : /(\*|\+|\-|\%|\/|<=|=>|>=|<|=|>)/
