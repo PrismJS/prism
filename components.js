@@ -190,7 +190,11 @@ var components = {
 		"git": {
 			"title": "Git",
 			"owner": "lgiraudel"
-		}
+		},
+	        "scheme" : {
+		        "title": "Scheme",
+		        "owner" : "bacchus123"
+	        }
 	},
 	"plugins": {
 		"meta": {
