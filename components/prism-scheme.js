@@ -9,15 +9,9 @@ Prism.languages.scheme = {
 	pattern :  /([(])(cons|car|cdr|null\?|pair\?|boolean\?|eof-object\?|char\?|procedure\?|number\?|port\?|string\?|vector\?|symbol\?|bytevector\?|list|call-with-current-continuation|call\/cc|append|abs|apply|eval)\b/,
 	lookbehind : true
     },
-    'string' : {
-	pattern : /(["])(?:(?=(\\?))\2.)*?\1|'[^('|\s)]+/ //thanks http://stackoverflow.com/questions/171480/regex-grabbing-values-between-quotation-marks
-    },
-    'number' :{
-	pattern : /(\s|\))[-+]?[0-9]*\.?[0-9]+((\s*)[-+]{1}(\s*)[0-9]*\.?[0-9]+i)?/
-    },
-    'operator' : {
-	pattern : /(\*|\+|\-|\%|\/|<=|=>|>=|<|=|>)/
-    },
+    'string' :  /(["])(?:(?=(\\?))\2.)*?\1|'[^('|\s)]+/, //thanks http://stackoverflow.com/questions/171480/regex-grabbing-values-between-quotation-marks
+    'number' : /(\s|\))[-+]?[0-9]*\.?[0-9]+((\s*)[-+]{1}(\s*)[0-9]*\.?[0-9]+i)?/,
+    'operator': /(\*|\+|\-|\%|\/|<=|=>|>=|<|=|>)/,
     'function' : {
 	pattern : /([(])[^(\s|\))]*\s/,
 	lookbehind : true
