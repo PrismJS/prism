@@ -12,7 +12,7 @@ Prism.languages.http = {
         pattern: /^HTTP\/1.[01] [0-9]+.*/g,
         inside: {
             // Status, e.g. 200 OK
-            property: /[0-9]+[A-Z\s-]+$/g
+            property: /[0-9]+[A-Z\s-]+$/ig
         }
     },
     // HTTP header name
