@@ -1,4 +1,5 @@
 
+
 /* **********************************************
      Begin prism-core.js
 ********************************************** */
@@ -73,7 +74,15 @@ var _ = self.Prism = {
 			return lang;
 		},
 
-		// Insert a token before another token in a language literal
+		/**
+		 * Insert a token before another token in a language literal
+		 * As this needs to recreate the object (we cannot actually insert before keys in object literals),
+		 * we cannot just provide an object, we need anobject and a key.
+		 * @param inside The key (or language id) of the parent
+		 * @param before The key to insert before
+		 * @param insert Object with the key/value pairs to insert
+		 * @param root The object that contains `inside`. If equal to Prism.languages, it can be omitted.
+		 */
 		insertBefore: function (inside, before, insert, root) {
 			root = root || _.languages;
 			var grammar = root[inside];
@@ -481,6 +490,23 @@ if (Prism.languages.markup) {
 			}
 		}
 	});
+	
+	Prism.languages.insertBefore('inside', 'attr-value', {
+		'style-attr': {
+			pattern: /\s*style=("|').+?\1/ig,
+			inside: {
+				'attr-name': {
+					pattern: /^\s*style/ig,
+					inside: Prism.languages.markup.tag.inside
+				},
+				'punctuation': /^\s*=\s*['"]|['"]\s*$/,
+				'attr-value': {
+					pattern: /.+/gi,
+					inside: Prism.languages.css
+				}
+			}
+		}
+	}, Prism.languages.markup.tag);
 }
 
 /* **********************************************
@@ -568,7 +594,8 @@ var Extensions = {
 	'html': 'markup',
 	'svg': 'markup',
 	'xml': 'markup',
-	'py': 'python'
+	'py': 'python',
+	'rb': 'ruby'
 };
 
 Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function(pre) {
