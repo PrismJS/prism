@@ -25,9 +25,9 @@ if (Prism.languages.markup) {
 					inside: Prism.languages.markup.tag.inside
 				},
 				rest: Prism.languages.css
-			}
-		},
-		alias: 'language-css'
+			},
+			alias: 'language-css'
+		}
 	});
 	
 	Prism.languages.insertBefore('inside', 'attr-value', {
@@ -42,9 +42,9 @@ if (Prism.languages.markup) {
 				'attr-value': {
 					pattern: /.+/gi,
 					inside: Prism.languages.css
-				}
-			},
-			alias: 'language-css'
+				},
+				alias: 'language-css'
+			}
 		}
 	}, Prism.languages.markup.tag);
 }

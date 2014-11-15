@@ -20,8 +20,8 @@ if (Prism.languages.markup) {
 					inside: Prism.languages.markup.tag.inside
 				},
 				rest: Prism.languages.javascript
-			}
-		},
-		alias: 'language-javascript'
+			},
+			alias: 'language-javascript'
+		}
 	});
 }
