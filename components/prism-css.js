@@ -28,4 +28,21 @@ if (Prism.languages.markup) {
 			}
 		}
 	});
+	
+	Prism.languages.insertBefore('inside', 'attr-value', {
+		'style-attr': {
+			pattern: /\s*style=("|').+?\1/ig,
+			inside: {
+				'attr-name': {
+					pattern: /^\s*style/ig,
+					inside: Prism.languages.markup.tag.inside
+				},
+				'punctuation': /^\s*=\s*['"]|['"]\s*$/,
+				'attr-value': {
+					pattern: /.+/gi,
+					inside: Prism.languages.css
+				}
+			}
+		}
+	}, Prism.languages.markup.tag);
 }
