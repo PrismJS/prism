@@ -524,9 +524,9 @@ if (Prism.languages.markup) {
 				'attr-value': {
 					pattern: /.+/gi,
 					inside: Prism.languages.css
-				},
-				alias: 'language-css'
-			}
+				}
+			},
+			alias: 'language-css'
 		}
 	}, Prism.languages.markup.tag);
 }
