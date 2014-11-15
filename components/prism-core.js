@@ -99,6 +99,13 @@ var _ = self.Prism = {
 					ret[token] = grammar[token];
 				}
 			}
+			
+			// Update references in other language definitions
+			_.languages.DFS(_.languages, function(key, value) {
+				if (value === root[inside] && key != inside) {
+					this[key] = ret;
+				}
+			});
 
 			return root[inside] = ret;
 		},
@@ -111,7 +118,8 @@ var _ = self.Prism = {
 
 					if (_.util.type(o[i]) === 'Object') {
 						_.languages.DFS(o[i], callback);
-					} else if (_.util.type(o[i]) === 'Array') {
+					}
+					else if (_.util.type(o[i]) === 'Array') {
 						_.languages.DFS(o[i], callback, i);
 					}
 				}
