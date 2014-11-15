@@ -21,6 +21,7 @@ if (Prism.languages.markup) {
 				},
 				rest: Prism.languages.javascript
 			}
-		}
+		},
+		alias: 'language-javascript'
 	});
 }
