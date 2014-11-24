@@ -84,7 +84,8 @@ pre[class*="language-"] {
 .token.important,
 .token.atrule,
 .token.keyword,
-.token.builtin {
+.token.builtin,
+.token.coord {
 	color: #cc99cd;
 }
 

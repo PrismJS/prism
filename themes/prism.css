@@ -108,7 +108,8 @@ pre[class*="language-"] {
 
 .token.atrule,
 .token.attr-value,
-.token.keyword {
+.token.keyword,
+.token.coord {
 	color: #07a;
 }
 
@@ -129,3 +130,4 @@ pre[class*="language-"] {
 .token.entity {
 	cursor: help;
 }
+

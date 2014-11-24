@@ -98,7 +98,8 @@ code[class*="language-"]::selection, code[class*="language-"] ::selection {
 .token.selector,
 .token.constant,
 .token.symbol,
-.token.builtin {
+.token.builtin,
+.token.coord {
 	color: hsl(53, 89%, 79%); /* #F9EE98 */
 }
 

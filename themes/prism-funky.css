@@ -89,7 +89,8 @@ code[class*="language-"] {
 
 .token.atrule,
 .token.attr-value,
-.token.keyword {
+.token.keyword,
+.token.coord {
 	color: deeppink;
 }
 

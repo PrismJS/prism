@@ -100,7 +100,8 @@ pre[class*="language-"] {
 
 .token.atrule,
 .token.attr-value,
-.token.keyword {
+.token.keyword,
+.token.coord {
 	color: hsl(350, 40%, 70%);
 }
 
