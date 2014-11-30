@@ -2,9 +2,12 @@
   "name": "prismjs",
   "version": "0.0.1",
   "description": "Lightweight, robust, elegant syntax highlighting. A spin-off project from Dabblet.",
-  "main": "prism.js",
+  "main": "lib/prism.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "atma tools/atma-config.js run build",
+    "release": "atma tools/atma-config.js run release",
+    "watch": "atma tools/atma-config.js run watch"
   },
   "repository": {
     "type": "git",
@@ -22,6 +25,8 @@
     "gulp-concat": "^2.3.4",
     "gulp-header": "^1.0.5",
     "gulp-rename": "^1.2.0",
-    "gulp-uglify": "^0.3.1"
+    "gulp-uglify": "^0.3.1",
+    "uglify-js": "^2.4.15",
+    "atma": "^0.10.26"
   }
 }
