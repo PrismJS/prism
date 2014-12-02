@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "main": [
       "prism.js",
-      "prism.css"
+      "themes/prism.css"
   ],
   "homepage": "http://prismjs.com",
   "authors": "Lea Verou",
