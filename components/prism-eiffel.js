@@ -16,7 +16,7 @@ Prism.languages.eiffel = {
 	'number': [
 		// Decimal
 		{
-			pattern: /(\s)(?:\d(?:_*\d)*\.|(?:(?:\d(?:_*\d)*)?\.(?:\d(?:_*\d)*)?(?:[eE][+-]?)?)?\d(?:_*\d)*)(?=\s)/g,
+			pattern: /(\b|\s)(?:\d(?:_*\d)*\.|(?:(?:\d(?:_*\d)*)?\.(?:\d(?:_*\d)*)?(?:[eE][+-]?)?)?\d(?:_*\d)*)(?=\b|\s)/g,
 			lookbehind: true
 		},
 		// hexa | octal | bin
