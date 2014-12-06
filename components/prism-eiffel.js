@@ -14,13 +14,10 @@ Prism.languages.eiffel = {
 	'keyword': /\b(?:across|agent|alias|all|and|attached|as|assign|attribute|check|class|convert|create|Current|debug|deferred|detachable|do|else|elseif|end|ensure|expanded|export|external|feature|from|frozen|if|implies|inherit|inspect|invariant|like|local|loop|not|note|obsolete|old|once|or|Precursor|redefine|rename|require|rescue|Result|retry|select|separate|some|then|undefine|until|variant|Void|when|xor)\b/gi,
 	'boolean': /\b(?:True|False)\b/gi,
 	'number': [
-		// Decimal
-		{
-			pattern: /(\b|\s)(?:\d(?:_*\d)*\.|(?:(?:\d(?:_*\d)*)?\.(?:\d(?:_*\d)*)?(?:[eE][+-]?)?)?\d(?:_*\d)*)(?=\b|\s)/g,
-			lookbehind: true
-		},
 		// hexa | octal | bin
-		/\b0(?:[xX][\da-fA-F](?:_*[\da-fA-F])*|[cC][0-7](?:_*[0-7])*|[bB][01](?:_*[01])*)\b/g
+		/\b0(?:[xX][\da-fA-F](?:_*[\da-fA-F])*|[cC][0-7](?:_*[0-7])*|[bB][01](?:_*[01])*)\b/g,
+		// Decimal
+		/(?:\d(?:_*\d)*)?\.(?:(?:\d(?:_*\d)*)?[eE][+-]?)?\d(?:_*\d)*|\d(?:_*\d)*\.?/,
 	],
 	'punctuation': /:=|<<|>>|\(\||\|\)|->|\.(?=\w)|[{}[\];(),:?]/g,
 	'operator': /\\\\|\|\.\.\||\.\.|\/[~\/]?|[><\/]=?|[-+*^=~]/g
