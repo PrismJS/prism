@@ -191,16 +191,20 @@ var components = {
 			"title": "Git",
 			"owner": "lgiraudel"
 		},
-	        "scheme" : {
-		        "title": "Scheme",
-		        "owner" : "bacchus123"
-	        },
+		"scheme" : {
+			"title": "Scheme",
+			"owner" : "bacchus123"
+		},
 		"nasm": {
 			"title": "nasm",
 			"owner": "rbmj"
 		},
 		"perl": {
 			"title": "Perl",
+			"owner": "Golmote"
+		},
+		"handlebars": {
+			"title": "Handlebars",
 			"owner": "Golmote"
 		}
 	},
