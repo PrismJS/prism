@@ -198,6 +198,10 @@ var components = {
 		"nasm": {
 			"title": "nasm",
 			"owner": "rbmj"
+		},
+		"handlebars": {
+			"title": "Handlebars",
+			"owner": "Golmote"
 		}
 	},
 	"plugins": {
