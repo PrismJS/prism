@@ -234,12 +234,183 @@ var _ = self.Prism = {
 		return Token.stringify(_.util.encode(tokens), language);
 	},
 
+	compileParser: function (chars) {
+		var res = [],
+		    vars = {},		/* start characters */
+		    slVars = [],	/* single line characters */
+		    endVars = {},	/* end characters */
+		    escChars = {};
+
+		if (chars.length === 0)
+			return null;
+
+		// read input array
+		for (var i = 0; i < chars.length; ++i) {
+			var el = chars[i],
+			    start, end,		/* start, end characters */
+			    multiline = true,
+			    escape = 92;	/* \ backslash */
+
+			el = typeof el === 'string' ? { start: el } : el;
+
+			if (!el.start)
+				return null;
+
+			// expand input object
+			if (typeof el.multiline !== 'undefined') {
+				multiline = !!el.multiline;
+			}
+			if (typeof el.escape === 'string' && el.escape.length > 0) {
+				escape = el.escape.charCodeAt(0);
+				escChars[escape] = true;
+			} else if (el.escape === false){
+				escape = false;
+			} else {
+				escChars[92] = true;
+			}
+
+			start = el.start.charCodeAt(0);
+			end = el.end ? el.end.charCodeAt(0) : start;
+
+			// populate temporary objects
+			vars[start] = { end: end, escape: escape };
+			if (!multiline) {
+				slVars.push(start);
+			}
+
+			if (start != end) {
+				endVars[end] = start;
+			}
+		}
+
+		// declare all the necessary variables
+		for (var start in vars) {
+			res.push('var in', start, '=', '!!this.in', start, ';');
+		}
+
+		// start for loop and switch statement
+		res.push('var i=lastIndex||0,str=match.input,len=match',
+			 '.index,last=this.last||0,c=last;for(;i<len;++i)',
+			 '{last=c;c=str.charCodeAt(i);switch(c){');
+
+		// add case statements for start characters
+		for (var start in vars) {
+			res.push('case ', start, ':', 'in', start, '=');
+			for (var start2 in vars) {
+				if (start != start2) {
+					res.push('!in', start2, '&&');
+					continue;
+				}
+
+				res.push('(');
+				var sv = vars[start];
+				if (start == sv.end) {
+					res.push('!in', start)
+					if (sv.escape !== false) {
+						res.push('||', 'last === ', sv.escape);
+					}
+				} else {
+					res.push('true');
+				}
+				res.push(')','&&');
+			}
+
+			res.pop();
+			res.push(';break;');
+		}
+
+		// add case statements for end characters only
+		// relevant if start != end
+		for (var end in endVars) {
+			var start = endVars[end],
+			    esc = vars[start].escape;
+
+			res.push('case ', end, ':', 'in', start, '=');
+			if (esc !== false) {
+				res.push('in', start, '&& last===', esc,';');
+			} else {
+				res.push('false;');
+			}
+
+			res.push('break;');
+		}
+
+		// set single line environments to false if \n is encounterd
+		if (slVars.length > 0) {
+			res.push('case 10: ');
+			for (var i = 0; i < slVars.length; ++i) {
+				res.push('in', slVars[i], '=false;');
+			}
+			res.push('break;');
+		}
+		
+		for (var escape in escChars) {
+			res.push('case ', escape, ':');
+		}
+		if (Object.keys(escChars).length) {
+			res.push('c=0;break;');
+		}
+
+		res.push('}};');
+
+		// store values in status object
+		for (var start in vars) {
+			res.push('this.in', start, '=', 'in', start, ';');
+		}
+
+		res.push('this.last=last;');
+
+		// calculate return value
+		res.push('return ');
+		for (var start in vars) {
+			res.push('!in', start, '&&');
+		}
+		res.pop();
+		res.push(';');
+
+		return new Function("match", "lastIndex", res.join(''));
+	},
+
+	generateParser: function(grammar) {
+		var chars = [],
+		    check = grammar.__nestingCheck;
+
+		if (check)
+			return check;
+
+		/* collect all the start and end chars in the grammar */
+		for (var token in grammar) {
+			if(!grammar.hasOwnProperty(token) || !grammar[token]) {
+				continue;
+			}
+
+			var patterns = grammar[token];
+			patterns = (_.util.type(patterns) === "Array") ? patterns : [patterns];
+
+			for (var j = 0; j < patterns.length; ++j) {
+				var pattern = patterns[j],
+				    nesting = pattern.nesting;
+
+				if (nesting) {
+					var nesting = _.util.type(nesting) === 'Array' ? nesting : [nesting];
+					Array.prototype.push.apply(chars, nesting);
+				}
+			}
+		}
+
+		if (chars.length > 0) {
+			check = _.compileParser(chars);
+			Object.defineProperty(grammar, '__nestingCheck',
+					      { enumerable: false, value: check });
+		}
+
+		return check;
+	},
+
 	tokenize: function(text, grammar, language) {
-		var Token = _.Token;
-
-		var strarr = [text];
-
-		var rest = grammar.rest;
+		var Token = _.Token,
+		    strarr = [text],
+		    rest = grammar.rest;
 
 		if (rest) {
 			for (var token in rest) {
@@ -248,6 +419,8 @@ var _ = self.Prism = {
 
 			delete grammar.rest;
 		}
+
+		var check = _.generateParser(grammar);
 
 		tokenloop: for (var token in grammar) {
 			if(!grammar.hasOwnProperty(token) || !grammar[token]) {
@@ -262,7 +435,8 @@ var _ = self.Prism = {
 					inside = pattern.inside,
 					lookbehind = !!pattern.lookbehind,
 					lookbehindLength = 0,
-					alias = pattern.alias;
+					alias = pattern.alias,
+					checkState = {};
 
 				pattern = pattern.pattern || pattern;
 
@@ -281,7 +455,18 @@ var _ = self.Prism = {
 
 					pattern.lastIndex = 0;
 
-					var match = pattern.exec(str);
+					var match = pattern.exec(str),
+					    lastIndex = 0;
+
+					while(match && check) {
+						if (check.call(checkState, match, lastIndex)) {
+							break;
+						}
+
+						lastIndex = match.index;
+						pattern.lastIndex = lastIndex + 1;
+						match = pattern.exec(str);
+					}
 
 					if (match) {
 						if(lookbehind) {
@@ -538,17 +723,11 @@ if (Prism.languages.markup) {
 ********************************************** */
 
 Prism.languages.clike = {
-	'comment': [
-		{
-			pattern: /(^|[^\\])\/\*[\w\W]*?\*\//g,
-			lookbehind: true
-		},
-		{
-			pattern: /(^|[^\\:])\/\/.*?(\r?\n|$)/g,
-			lookbehind: true
-		}
-	],
-	'string': /("|')(\\?.)*?\1/g,
+	'comment': /\/\*[\w\W]*?\*\/|\/\/.*/g,
+	'string': {
+		pattern: /("|')(\\?.)*?\1/g,
+		nesting: ['"', '\'']
+	},
 	'class-name': {
 		pattern: /((?:(?:class|interface|extends|implements|trait|instanceof|new)\s+)|(?:catch\s+\())[a-z0-9_\.\\]+/ig,
 		lookbehind: true,
@@ -584,7 +763,8 @@ Prism.languages.javascript = Prism.languages.extend('clike', {
 Prism.languages.insertBefore('javascript', 'keyword', {
 	'regex': {
 		pattern: /(^|[^/])\/(?!\/)(\[.+?]|\\.|[^/\r\n])+\/[gim]{0,3}(?=\s*($|[\r\n,.;})]))/g,
-		lookbehind: true
+		lookbehind: true,
+		nesting: { start: '/', multiline: false }
 	}
 });
 
