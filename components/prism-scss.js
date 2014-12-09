@@ -34,3 +34,5 @@ Prism.languages.insertBefore('scss', 'ignore', {
 	'null': /\b(null)\b/g,
 	'operator': /\s+([-+]{1,2}|={1,2}|!=|\|?\||\?|\*|\/|\%)\s+/g
 });
+
+Prism.languages.sass = Prism.languages.scss;

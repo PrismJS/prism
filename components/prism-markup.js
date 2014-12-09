@@ -39,3 +39,18 @@ Prism.hooks.add('wrap', function(env) {
 		env.attributes['title'] = env.content.replace(/&amp;/, '&');
 	}
 });
+
+Prism.languages.xml = Prism.languages.markup;
+Prism.languages.atom = Prism.languages.xml;
+Prism.languages.epub = Prism.languages.xml;
+Prism.languages.html = Prism.languages.xml;
+Prism.languages.mathml = Prism.languages.xml;
+Prism.languages.musicxml = Prism.languages.xml;
+Prism.languages.rss = Prism.languages.xml;
+Prism.languages.soap = Prism.languages.xml;
+Prism.languages.svg = Prism.languages.xml;
+Prism.languages.webfeed = Prism.languages.xml;
+Prism.languages.xform = Prism.languages.xml;
+Prism.languages.xhtml = Prism.languages.xml;
+Prism.languages.xpath = Prism.languages.xml;
+Prism.languages.xquery = Prism.languages.xml;
