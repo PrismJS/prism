@@ -7,9 +7,12 @@ Prism.languages.handlebars = {
 				lookbehind: true
 			},
 			'delimiter': {
-				pattern: /\{\{\{?|\}\}\}?/ig,
+				pattern: /^\{\{\{?|\}\}\}?$/ig,
 				alias: 'punctuation'
 			},
+			'string': /(["'])(\\?.)+?\1/g,
+			'number': /\b-?(0x[\dA-Fa-f]+|\d*\.?\d+([Ee]-?\d+)?)\b/g,
+			'boolean': /\b(true|false)\b/g,
 			'block': {
 				pattern: /^(\s*~?\s*)[#\/]\w+/ig,
 				lookbehind: true,
@@ -22,7 +25,6 @@ Prism.languages.handlebars = {
 					variable: /[\w\W]+/g
 				}
 			},
-			'string': /(["'])(\\?.)+?\1/g,
 			'punctuation': /[!"#%&'()*+,.\/;<=>@\[\\\]^`{|}~]/g,
 			'variable': /[^!"#%&'()*+,.\/;<=>@\[\\\]^`{|}~]+/g
 		}
