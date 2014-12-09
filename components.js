@@ -198,6 +198,10 @@ var components = {
 		"nasm": {
 			"title": "nasm",
 			"owner": "rbmj"
+		},
+		"perl": {
+			"title": "Perl",
+			"owner": "Golmote"
 		}
 	},
 	"plugins": {
