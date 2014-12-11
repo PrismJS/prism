@@ -32,7 +32,8 @@ Prism.languages.markdown = Prism.languages.extend('markup', {
 		{
 			// # title 1
 			// ###### title 6
-			pattern: /#+.+/,
+			pattern: /((?:^|\n)\s*)#+.+/,
+			lookbehind: true,
 			alias: 'important'
 		}
 	],
