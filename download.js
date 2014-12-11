@@ -26,8 +26,8 @@ var qstr = window.location.search.match(/(?:languages|plugins)=[-+\w]+|themes=[-
 if (qstr) {
 	qstr.forEach(function(str) {
 		var kv = str.split('=', 2),
-			category = kv[0],
-			ids = kv[1].split('+');
+		    category = kv[0],
+		    ids = kv[1].split('+');
 		if (category !== 'meta' && category !== 'core' && components[category]) {
 			for (var id in components[category]) {
 				if (components[category][id].option) {
@@ -379,7 +379,7 @@ function generateCode(){
 
 function buildCode(promises) {
 	var i = 0,
-		l = promises.length;
+	    l = promises.length;
 	var code = {js: '', css: ''};
 	var f = function(resolve) {
 		if(i < l) {
