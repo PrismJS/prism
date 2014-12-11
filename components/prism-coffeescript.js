@@ -3,7 +3,7 @@ Prism.languages.coffeescript = Prism.languages.extend('javascript', {
 		/([#]{3}\s*\r?\n(.*\s*\r*\n*)\s*?\r?\n[#]{3})/g,
 		/(\s|^)([#]{1}[^#^\r^\n]{2,}?(\r?\n|$))/g
 	],
-	'keyword': /\b(this|window|delete|class|extends|namespace|extend|ar|let|if|else|while|do|for|each|of|return|in|instanceof|new|with|typeof|try|catch|finally|null|undefined|break|continue)\b/g
+	'keyword': /\b(and|break|by|catch|class|continue|debugger|delete|do|each|else|extend|extends|false|finally|for|if|in|instanceof|is|isnt|let|loop|namespace|new|no|not|null|of|off|on|or|own|return|super|switch|then|this|throw|true|try|typeof|undefined|unless|until|when|while|window|with|yes|yield)\b/g
 });
 
 Prism.languages.insertBefore('coffeescript', 'keyword', {
