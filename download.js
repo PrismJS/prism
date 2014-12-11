@@ -10,6 +10,18 @@ var minified = true;
 
 var dependencies = {};
 
+var treeURL = 'https://api.github.com/repos/LeaVerou/prism/git/trees/gh-pages?recursive=1';
+var treePromise = new Promise(function(resolve) {
+	$u.xhr({
+		url: treeURL,
+		callback: function(xhr) {
+			if (xhr.status < 400) {
+				resolve(JSON.parse(xhr.responseText).tree);
+			}
+		}
+	});
+});
+
 var qstr = window.location.search.match(/(?:languages|plugins)=[-+\w]+|themes=[-\w]+/g);
 if (qstr) {
 	qstr.forEach(function(str) {
@@ -174,10 +186,20 @@ form.elements.compression[0].onclick =
 form.elements.compression[1].onclick = function() {
 	minified = !!+this.value;
 	
-	fetchFiles();
+	getFilesSizes();
 }
 
-function fetchFiles() {
+function getFileSize(filepath) {
+	return treePromise.then(function(tree) {
+		for(var i=0, l=tree.length; i<l; i++) {
+			if(tree[i].path === filepath) {
+				return tree[i].size;
+			}
+		}
+	});
+}
+
+function getFilesSizes() {
 	for (var category in components) {
 		var all = components[category];
 		
@@ -192,26 +214,18 @@ function fetchFiles() {
 			files.forEach(function (filepath) {
 				var file = cache[filepath] = cache[filepath] || {};
 				
-				if (!file.contents) {
-	
-					(function(category, id, file, filepath, distro){
-	
-					$u.xhr({
-						url: filepath,
-						callback: function(xhr) {
-							if (xhr.status < 400) {
-								
-								file.contents = xhr.responseText;
-								
-								file.size = +xhr.getResponseHeader('Content-Length') || file.contents.length;
-	
-								distro.size += file.size;
-								
-								update(category, id);
-							}
+				if(!file.size) {
+
+					(function(category, id) {
+					getFileSize(filepath).then(function(size) {
+						if(size) {
+							file.size = size;
+							distro.size += file.size;
+
+							update(category, id);
 						}
 					});
-					})(category, id, file, filepath, distro);
+					}(category, id));
 				}
 				else {
 					update(category, id);
@@ -221,7 +235,20 @@ function fetchFiles() {
 	}
 }
 
-fetchFiles();
+getFilesSizes();
+
+function getFileContents(filepath) {
+	return new Promise(function(resolve) {
+		$u.xhr({
+			url: filepath,
+			callback: function(xhr) {
+				if (xhr.status < 400) {
+					resolve(xhr.responseText);
+				}
+			}
+		});
+	});
+}
 
 function prettySize(size) {
 	return Math.round(100 * size / 1024)/100 + 'KB';
@@ -242,10 +269,17 @@ function update(updatedCategory, updatedId){
 				
 				distro.paths.forEach(function(path) {
 					if (cache[path]) {
+						var file = cache[path];
+
 						var type = path.match(/\.(\w+)$/)[1],
-						    size = cache[path].size || 0;
+						    size = file.size || 0;
 						    
 						if (info.enabled) {
+
+							if (!file.contentsPromise) {
+								file.contentsPromise = getFileContents(path);
+							}
+
 							total[type] += size;
 						}
 						
@@ -291,8 +325,9 @@ function delayedGenerateCode(){
 	}
 	timerId = setTimeout(generateCode, 500);
 }
+
 function generateCode(){
-	var code = {js: '', css: ''};
+	var promises = [];
 	var redownload = {};
 	
 	for (var category in components) {
@@ -313,27 +348,53 @@ function generateCode(){
 					if (cache[path]) {
 						var type = path.match(/\.(\w+)$/)[1];
 						
-						code[type] += cache[path].contents + (type === 'js'? ';' : '') + '\n';
+						promises.push({
+							contentsPromise: cache[path].contentsPromise,
+							type: type
+						});
 					}
 				});
 			}
 		}
 	}
-	
-	var redownloadUrl = window.location.href.split("?")[0] + "?";
-	for (var category in redownload) {
-		redownloadUrl += category + "=" + redownload[category].join('+') + "&";
-	}
-	redownloadUrl = "/* " + redownloadUrl.replace(/&$/,"") + " */";
 
-	for (var type in code) {
-		var codeElement = $('#download-' + type + ' code');
-		
-		codeElement.textContent = redownloadUrl + "\n" + code[type];
-		Prism.highlightElement(codeElement, true);
-		
-		$('#download-' + type + ' .download-button').href = 'data:application/octet-stream;charset=utf-8,' + encodeURIComponent(redownloadUrl + "\n" + code[type]);
-	}
+	buildCode(promises).then(function(code) {
+	
+		var redownloadUrl = window.location.href.split("?")[0] + "?";
+		for (var category in redownload) {
+			redownloadUrl += category + "=" + redownload[category].join('+') + "&";
+		}
+		redownloadUrl = "/* " + redownloadUrl.replace(/&$/,"") + " */";
+
+		for (var type in code) {
+			var codeElement = $('#download-' + type + ' code');
+			
+			codeElement.textContent = redownloadUrl + "\n" + code[type];
+			Prism.highlightElement(codeElement, true);
+			
+			$('#download-' + type + ' .download-button').href = 'data:application/octet-stream;charset=utf-8,' + encodeURIComponent(redownloadUrl + "\n" + code[type]);
+		}
+	});
+}
+
+function buildCode(promises) {
+	var i = 0,
+		l = promises.length;
+	var code = {js: '', css: ''};
+	var f = function(resolve) {
+		if(i < l) {
+			var p = promises[i];
+			p.contentsPromise.then(function(contents) {
+				code[p.type] += contents + (p.type === 'js'? ';' : '') + '\n';
+				i++;
+				f(resolve);
+			});
+		} else {
+			resolve(code);
+		}
+	};
+
+	return new Promise(f);
 }
 
 })();
