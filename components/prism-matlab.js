@@ -1,11 +1,9 @@
 Prism.languages.matlab = {
-	/*
-		We put string before comment, because of printf() patterns
-		that cause many highlighting issues.
-		Having two single quotes inside a comment is probably
-		less common.
-	*/
-	'string': /'(?:''|[^'\n])*'/g,
+	// We put string before comment, because of printf() patterns that contain "%"
+	'string': {
+		pattern: /(^|\W)'(?:''|[^'\n])*'/g,
+		lookbehind: true
+	},
 	'comment': [
 		/%.+/g,
 		/%\{[\s\S]*?\}%/
