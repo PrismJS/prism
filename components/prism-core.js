@@ -242,35 +242,63 @@ var _ = self.Prism = {
 			delete grammar.rest;
 		}
 
-		tokenloop: for (var token in grammar) {
+		// Build groups of token based on competition
+		var competitions = [],
+		    competitionsMap = {};
+		for(var token in grammar) {
 			if(!grammar.hasOwnProperty(token) || !grammar[token]) {
 				continue;
 			}
-
 			var patterns = grammar[token];
 			patterns = (_.util.type(patterns) === "Array") ? patterns : [patterns];
-
 			for (var j = 0; j < patterns.length; ++j) {
 				var pattern = patterns[j],
-					inside = pattern.inside,
-					lookbehind = !!pattern.lookbehind,
-					lookbehindLength = 0,
-					alias = pattern.alias;
+				    competition = pattern.competition,
+				    competitor = {
+				    	pattern: pattern,
+				    	token: token
+				    };
 
-				pattern = pattern.pattern || pattern;
-
-				for (var i=0; i<strarr.length; i++) { // Don’t cache length as it changes during the loop
-
-					var str = strarr[i];
-
-					if (strarr.length > text.length) {
-						// Something went terribly wrong, ABORT, ABORT!
-						break tokenloop;
+				if(competition) {
+					if(competitionsMap[competition]) {
+						competitionsMap[competition].push(competitor);
+					} else {
+						competitions.push(competitionsMap[competition] = [competitor]);
 					}
+				} else {
+					competitions.push([competitor]);
+				}
+			}
+		}
 
-					if (str instanceof Token) {
-						continue;
-					}
+		tokenloop: for (var k = 0; k < competitions.length; ++k) {
+
+			var competitors = competitions[k];
+
+			for (var i=0; i<strarr.length; i++) { // Don’t cache length as it changes during the loop
+
+				var str = strarr[i];
+
+				if (strarr.length > text.length) {
+					// Something went terribly wrong, ABORT, ABORT!
+					break tokenloop;
+				}
+
+				if (str instanceof Token) {
+					continue;
+				}
+
+				var bestMatch = null;
+				for (var j = 0; j < competitors.length; ++j) {
+					var pattern = competitors[j].pattern,
+					    token = competitors[j].token,
+					    inside = pattern.inside,
+					    lookbehind = !!pattern.lookbehind,
+					    lookbehindLength = 0,
+					    alias = pattern.alias;
+
+					pattern = pattern.pattern || pattern;
+
 
 					pattern.lastIndex = 0;
 
@@ -282,28 +310,44 @@ var _ = self.Prism = {
 						}
 
 						var from = match.index - 1 + lookbehindLength,
-							match = match[0].slice(lookbehindLength),
-							len = match.length,
-							to = from + len,
-							before = str.slice(0, from + 1),
-							after = str.slice(to + 1);
+						    match = match[0].slice(lookbehindLength),
+						    len = match.length,
+						    to = from + len;
 
-						var args = [i, 1];
-
-						if (before) {
-							args.push(before);
+						// The best match is the one that matched the closest
+						// from the start of the string.
+						if(!bestMatch || from < bestMatch.from) {
+							bestMatch = {
+								from: from,
+								match: match,
+								len: len,
+								to: to,
+								before: str.slice(0, from + 1),
+								after: str.slice(to + 1),
+								inside: inside,
+								alias: alias,
+								token: token
+							};
 						}
-
-						var wrapped = new Token(token, inside? _.tokenize(match, inside) : match, alias);
-
-						args.push(wrapped);
-
-						if (after) {
-							args.push(after);
-						}
-
-						Array.prototype.splice.apply(strarr, args);
 					}
+				}
+
+				if(bestMatch) {
+					var args = [i, 1];
+
+					if (bestMatch.before) {
+						args.push(bestMatch.before);
+					}
+
+					var wrapped = new Token(bestMatch.token, bestMatch.inside? _.tokenize(bestMatch.match, bestMatch.inside) : bestMatch.match, bestMatch.alias);
+
+					args.push(wrapped);
+
+					if (bestMatch.after) {
+						args.push(bestMatch.after);
+					}
+
+					Array.prototype.splice.apply(strarr, args);
 				}
 			}
 		}
