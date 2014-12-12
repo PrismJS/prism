@@ -5,8 +5,8 @@ Prism.languages.matlab = {
 		lookbehind: true
 	},
 	'comment': [
-		/%.+/g,
-		/%\{[\s\S]*?\}%/
+		/%\{[\s\S]*?\}%/g,
+		/%.+/g
 	],
 	// FIXME We could handle imaginary numbers as a whole
 	'number': /\b-?(?:\d*\.?\d+(?:[eE][+-]?\d+)?(?:[ij])?|[ij])\b/g,
