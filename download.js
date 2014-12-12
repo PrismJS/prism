@@ -238,12 +238,14 @@ function getFilesSizes() {
 getFilesSizes();
 
 function getFileContents(filepath) {
-	return new Promise(function(resolve) {
+	return new Promise(function(resolve, reject) {
 		$u.xhr({
 			url: filepath,
 			callback: function(xhr) {
 				if (xhr.status < 400) {
 					resolve(xhr.responseText);
+				} else {
+					reject();
 				}
 			}
 		});
@@ -350,6 +352,7 @@ function generateCode(){
 						
 						promises.push({
 							contentsPromise: cache[path].contentsPromise,
+							path: path,
 							type: type
 						});
 					}
@@ -386,6 +389,11 @@ function buildCode(promises) {
 			var p = promises[i];
 			p.contentsPromise.then(function(contents) {
 				code[p.type] += contents + (p.type === 'js'? ';' : '') + '\n';
+				i++;
+				f(resolve);
+			});
+			p.contentsPromise['catch'](function() {
+				code[p.type] += '/* Error downloading file '+p.path+' */' + '\n';
 				i++;
 				f(resolve);
 			});
