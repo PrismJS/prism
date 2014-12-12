@@ -206,6 +206,10 @@ var components = {
 		"handlebars": {
 			"title": "Handlebars",
 			"owner": "Golmote"
+		},
+		"matlab": {
+			"title": "MATLAB",
+			"owner": "Golmote"
 		}
 	},
 	"plugins": {
