@@ -8,6 +8,7 @@
 <base href="../.." />
 <link rel="stylesheet" href="style.css" />
 <link rel="stylesheet" href="themes/prism.css" data-noprefix />
+<link rel="stylesheet" href="plugins/line-numbers/prism-line-numbers.css" data-noprefix />
 <script src="prefixfree.min.js"></script>
 
 <script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
@@ -31,8 +32,11 @@
 	
 	<p>You don’t need to specify the language, it’s automatically determined by the file extension.
 	If, however, the language cannot be determined from the file extension or the file extension is incorrect, you may specify a language as well (with the usual class name way).</p>
+
+	<p>Optional: You can specify the <code>data-start</code> and/or <code>data-end</code> (Number) attributes on the <code>&lt;pre&gt;</code> element.  It will trim the file to the specified lines before highlighting.</p>
 	
 	<p>Please note that the files are fetched with XMLHttpRequest. This means that if the file is on a different origin, fetching it will fail, unless CORS is enabled on that website.</p>
+
 </section>
 
 <section>
@@ -41,18 +45,21 @@
 	<p>The plugin’s JS code:</p>
 	<pre data-src="plugins/file-highlight/prism-file-highlight.js"></pre>
 	
-	<p>This page:</p>
-	<pre data-src="plugins/file-highlight/index.html"></pre>
+	<p>This section of this page's HTML:</p>
+	<p>Please note the <code>data-start</code> and <code>data-end</code> attributes
+		(and use of the <a href="plugins/line-numbers">line numbers plugin</a>)</p>
+	<pre class="line-numbers" data-start="48" data-end="51" data-src="plugins/file-highlight/index.html"></pre>
 	
 	<p>File that doesn’t exist:</p>
 	<pre data-src="foobar.js"></pre>
-	
+
 	<p>For more examples, browse around the Prism website. Most large code samples are actually files fetched with this plugin.</p>
 </section>
 
 <footer data-src="templates/footer.html" data-type="text/html"></footer>
 
 <script src="prism.js"></script>
+<script src="plugins/line-numbers/prism-line-numbers.js"></script>
 <script src="plugins/file-highlight/prism-file-highlight.js"></script>
 <script src="utopia.js"></script>
 <script src="components.js"></script>
