@@ -151,7 +151,8 @@ pre[class*="language-"]:after {
 .token.atrule,
 .token.attr-value,
 .token.keyword,
-.token.class-name {
+.token.class-name,
+.token.coord {
 	color: #1990b8;
 }
 
