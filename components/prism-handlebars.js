@@ -1,10 +1,10 @@
 (function(Prism) {
 
-	Prism.languages.handlebars = Prism.languages.extend('markup', {});
-
-	var grammar = {
+	var handlebars_pattern = /\{\{\{[\w\W]+?\}\}\}|\{\{[\w\W]+?\}\}/g;
+	
+	Prism.languages.handlebars = Prism.languages.extend('markup', {
 		'handlebars': {
-			pattern: /\{\{\{[\w\W]+?\}\}\}|\{\{[\w\W]+?\}\}/g,
+			pattern: handlebars_pattern,
 			inside: {
 				'comment': {
 					pattern: /(\{\{)![\w\W]*(?=\}\})/g,
@@ -33,7 +33,7 @@
 				'variable': /[^!"#%&'()*+,.\/;<=>@\[\\\]^`{|}~]+/g
 			}
 		}
-	};
+	});
 
 	// Tokenize all inline Handlebars expressions that are wrapped in {{ }} or {{{ }}}
 	// This allows for easy Handlebars + markup highlighting
@@ -45,7 +45,7 @@
 		env.tokenStack = [];
 
 		env.backupCode = env.code;
-		env.code = env.code.replace(/\{\{\{[\w\W]+?\}\}\}|\{\{[\w\W]+?\}\}/ig, function(match) {
+		env.code = env.code.replace(handlebars_pattern, function(match) {
 			env.tokenStack.push(match);
 
 			return '___HANDLEBARS' + env.tokenStack.length + '___';
@@ -68,7 +68,7 @@
 		}
 
 		for (var i = 0, t; t = env.tokenStack[i]; i++) {
-			env.highlightedCode = env.highlightedCode.replace('___HANDLEBARS' + (i + 1) + '___', Prism.highlight(t, grammar, 'handlebars'));
+			env.highlightedCode = env.highlightedCode.replace('___HANDLEBARS' + (i + 1) + '___', Prism.highlight(t, env.grammar, 'handlebars'));
 		}
 
 		env.element.innerHTML = env.highlightedCode;
