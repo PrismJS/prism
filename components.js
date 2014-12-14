@@ -205,6 +205,7 @@ var components = {
 		},
 		"handlebars": {
 			"title": "Handlebars",
+			"require": "markup",
 			"owner": "Golmote"
 		}
 	},
