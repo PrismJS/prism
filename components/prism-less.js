@@ -22,7 +22,6 @@ Prism.languages.less = Prism.languages.extend('css', {
 	},
 	// selectors and mixins are considered the same
 	'selector': {
-		//pattern: /(?:@\{[\w-]+\}|[^{};\s@])(?:@\{[\w-]+\}|[^{};@])*?(?:\([^)]*\))?(?=\s*\{)/g,
 		pattern: /(?:@\{[\w-]+\}|[^{};\s@])(?:@\{[\w-]+\}|\([^{}]*\)|[^{};@])*?(?=\s*\{)/g,
 		inside: {
 			// mixin parameters
@@ -42,7 +41,7 @@ Prism.languages.insertBefore('less', 'punctuation', {
 
 Prism.languages.insertBefore('less', 'property', {
 	'variable': [
-		// declaration
+		// Variable declaration (the colon must be consumed!)
 		{
 			pattern: /@[\w-]+\s*:/,
 			inside: {
@@ -50,12 +49,9 @@ Prism.languages.insertBefore('less', 'property', {
 			}
 		},
 
-		// usage
+		// Variable usage
 		/@@?[\w-]+/
-	]
-});
-
-Prism.languages.insertBefore('less', 'property', {
+	],
 	'mixin-usage': {
 		pattern: /([{;]\s*)[.#](?!\d)[\w-]+.*?(?=[(;])/,
 		lookbehind: true,
