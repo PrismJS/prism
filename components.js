@@ -206,6 +206,11 @@ var components = {
 		"handlebars": {
 			"title": "Handlebars",
 			"owner": "Golmote"
+		},
+		"polymer": {
+			"title": "Polymer",
+			"require": "markup",
+			"owner": "Golmote"
 		}
 	},
 	"plugins": {
