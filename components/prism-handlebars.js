@@ -6,10 +6,6 @@
 		'handlebars': {
 			pattern: handlebars_pattern,
 			inside: {
-				'comment': {
-					pattern: /(\{\{)![\w\W]*(?=\}\})/g,
-					lookbehind: true
-				},
 				'delimiter': {
 					pattern: /^\{\{\{?|\}\}\}?$/ig,
 					alias: 'punctuation'
@@ -32,6 +28,15 @@
 				'punctuation': /[!"#%&'()*+,.\/;<=>@\[\\\]^`{|}~]/g,
 				'variable': /[^!"#%&'()*+,.\/;<=>@\[\\\]^`{|}~]+/g
 			}
+		}
+	});
+
+	// Comments are inserted at top so that they can
+	// surround markup
+	Prism.languages.insertBefore('handlebars', 'tag', {
+		'handlebars-comment': {
+			pattern: /\{\{![\w\W]*\}\}/g,
+			alias: ['handlebars','comment']
 		}
 	});
 
