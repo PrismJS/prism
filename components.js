@@ -209,6 +209,7 @@ var components = {
 		},
 		"markdown": {
 			"title": "Markdown",
+			"require": "markup",
 			"owner": "Golmote"
 		}
 	},
