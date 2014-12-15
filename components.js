@@ -209,6 +209,7 @@ var components = {
 		},
 		"less": {
 			"title": "Less",
+			"require": "css",
 			"owner": "Golmote"
 		}
 	},
