@@ -209,6 +209,7 @@ var components = {
 		},
 		"actionscript": {
 			"title": "ActionScript",
+			"require": "javascript",
 			"owner": "Golmote"
 		}
 	},
