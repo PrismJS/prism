@@ -2,8 +2,6 @@
     Add support for nested block comments...
 */
 
-// Identifiers are (?!\d)[A-Za-z0-9_]+ or |.+|
-
 Prism.languages.applescript = {
     'comment': [
         /\(\*[\w\W]*?\*\)/,
