@@ -206,6 +206,10 @@ var components = {
 		"handlebars": {
 			"title": "Handlebars",
 			"owner": "Golmote"
+		},
+		"applescript": {
+			"title": "AppleScript",
+			"owner": "Golmote"
 		}
 	},
 	"plugins": {
