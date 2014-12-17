@@ -206,6 +206,10 @@ var components = {
 		"handlebars": {
 			"title": "Handlebars",
 			"owner": "Golmote"
+		},
+		"jade": {
+			"title": "Jade",
+			"owner": "Golmote"
 		}
 	},
 	"plugins": {
