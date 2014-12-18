@@ -169,7 +169,7 @@
 		{filter:'plates',language:'plates'},
 		{filter:'sass',language:'scss'},
 		{filter:'stylus',language:'stylus'},
-		{filter:'swift',language:'swift'}
+		{filter:'swig',language:'swig'}
 
 	];
 	var all_filters = {};
