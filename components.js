@@ -206,6 +206,11 @@ var components = {
 		"handlebars": {
 			"title": "Handlebars",
 			"owner": "Golmote"
+		},
+		"haml": {
+			"title": "Haml",
+			"require": "ruby",
+			"owner": "Golmote"
 		}
 	},
 	"plugins": {
