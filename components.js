@@ -209,6 +209,7 @@ var components = {
 		},
 		"jade": {
 			"title": "Jade",
+			"require": "javascript",
 			"owner": "Golmote"
 		}
 	},
