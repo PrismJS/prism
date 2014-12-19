@@ -206,6 +206,10 @@ var components = {
 		"handlebars": {
 			"title": "Handlebars",
 			"owner": "Golmote"
+		},
+		"fortran": {
+			"title": "Fortran",
+			"owner": "Golmote"
 		}
 	},
 	"plugins": {
