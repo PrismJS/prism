@@ -206,6 +206,10 @@ var components = {
 		"handlebars": {
 			"title": "Handlebars",
 			"owner": "Golmote"
+		},
+		"erlang": {
+			"title": "Erlang",
+			"owner": "Golmote"
 		}
 	},
 	"plugins": {
