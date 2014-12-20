@@ -207,6 +207,19 @@ var components = {
 			"title": "Handlebars",
 			"owner": "Golmote"
 		},
+		"matlab": {
+			"title": "MATLAB",
+			"owner": "Golmote"
+		},
+		"less": {
+			"title": "Less",
+			"require": "css",
+			"owner": "Golmote"
+		},
+		"r": {
+			"title": "R",
+			"owner": "Golmote"
+		},
 		"lolcode": {
 			"title": "LOLCODE",
 			"owner": "Golmote"
