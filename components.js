@@ -245,6 +245,10 @@ var components = {
 		"pascal": {
 			"title": "Pascal",
 			"owner": "Golmote"
+		},
+		"applescript": {
+			"title": "AppleScript",
+			"owner": "Golmote"
 		}
 	},
 	"plugins": {
