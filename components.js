@@ -231,6 +231,11 @@ var components = {
 		"erlang": {
 			"title": "Erlang",
 			"owner": "Golmote"
+		},
+		"haml": {
+			"title": "Haml",
+			"require": "ruby",
+			"owner": "Golmote"
 		}
 	},
 	"plugins": {
