@@ -210,6 +210,11 @@ var components = {
 		"matlab": {
 			"title": "MATLAB",
 			"owner": "Golmote"
+		},
+		"dart": {
+			"title": "Dart",
+			"require": "clike",
+			"owner": "Golmote"
 		}
 	},
 	"plugins": {
