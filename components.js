@@ -236,6 +236,11 @@ var components = {
 			"title": "Haml",
 			"require": "ruby",
 			"owner": "Golmote"
+		},
+		"jade": {
+			"title": "Jade",
+			"require": "javascript",
+			"owner": "Golmote"
 		}
 	},
 	"plugins": {
