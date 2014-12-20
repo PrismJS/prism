@@ -207,6 +207,45 @@ var components = {
 			"title": "Handlebars",
 			"owner": "Golmote"
 		},
+		"matlab": {
+			"title": "MATLAB",
+			"owner": "Golmote"
+		},
+		"less": {
+			"title": "Less",
+			"require": "css",
+			"owner": "Golmote"
+		},
+		"r": {
+			"title": "R",
+			"owner": "Golmote"
+		},
+		"lolcode": {
+			"title": "LOLCODE",
+			"owner": "Golmote"
+		},
+		"fortran": {
+			"title": "Fortran",
+			"owner": "Golmote"
+		},
+		"erlang": {
+			"title": "Erlang",
+			"owner": "Golmote"
+		},
+		"haml": {
+			"title": "Haml",
+			"require": "ruby",
+			"owner": "Golmote"
+		},
+		"jade": {
+			"title": "Jade",
+			"require": "javascript",
+			"owner": "Golmote"
+		},
+		"pascal": {
+			"title": "Pascal",
+			"owner": "Golmote"
+		},
 		"actionscript": {
 			"title": "ActionScript",
 			"require": "javascript",
