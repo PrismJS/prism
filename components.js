@@ -253,6 +253,11 @@ var components = {
 		"rust": {
 			"title": "Rust",
 			"owner": "Golmote"
+		},
+		"dart": {
+			"title": "Dart",
+			"require": "clike",
+			"owner": "Golmote"
 		}
 	},
 	"plugins": {
