@@ -87,6 +87,10 @@ section.download {
 	padding: .3em;
 }
 
+	#download .error {
+		color: #B61500;
+		display: none;
+	}
 	#download pre {
 		height: 20em;
 		word-wrap: break-word;
@@ -133,6 +137,7 @@ section.download {
 		<p><strong>Note:</strong> The filesizes displayed refer to non-gizipped files and include any CSS code required. The CSS code is not minified.</p>
 		
 		<section id="download">
+			<div class="error"></div>
 			<section id="download-js" class="download">
 				<pre><code class="language-javascript"></code></pre>
 				<a href="#" class="download-button" download="prism.js" target="_blank">Download JS</a>
