@@ -223,6 +223,10 @@ var components = {
 		"lolcode": {
 			"title": "LOLCODE",
 			"owner": "Golmote"
+		},
+		"fortran": {
+			"title": "Fortran",
+			"owner": "Golmote"
 		}
 	},
 	"plugins": {
