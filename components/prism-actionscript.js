@@ -16,11 +16,13 @@ Prism.languages.actionscript = Prism.languages.extend('javascript',  {
 });
 Prism.languages.actionscript['class-name'].alias = 'function';
 
-Prism.languages.insertBefore('actionscript', 'operator', {
-	'xml': {
-		pattern: /(^|[^.])<[\s\S]*>(?=\s*($|[\r\n,.;\]})<]))/,
-		inside: {
-			rest: Prism.languages.markup
+if (Prism.languages.markup) {
+	Prism.languages.insertBefore('actionscript', 'operator', {
+		'xml': {
+			pattern: /(^|[^.])<[\s\S]*>(?=\s*($|[\r\n,.;\]})<]))/,
+			inside: {
+				rest: Prism.languages.markup
+			}
 		}
-	}
-});
+	});
+}
