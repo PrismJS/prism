@@ -140,7 +140,7 @@
 	var all_filters = {};
 	for (var i = 0, l = filters.length; i < l; i++) {
 		var filter = filters[i];
-		filter = 'filter' in filter ? filter : {filter: filter, language: filter};
+		filter = typeof filter === 'string' ? {filter: filter, language: filter} : filter;
 		if (Prism.languages[filter.language]) {
 			all_filters['filter-' + filter.filter] = {
 				pattern: RegExp(filter_pattern.replace('{{filter_name}}', filter.filter)),
