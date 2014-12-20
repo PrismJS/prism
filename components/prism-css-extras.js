@@ -7,9 +7,3 @@ Prism.languages.css.selector = {
 		'id': /#[-:\.\w]+/g
 	}
 };
-
-Prism.languages.insertBefore('css', 'ignore', {
-	'hexcode': /#[\da-f]{3,6}/gi,
-	'entity': /\\[\da-f]{1,8}/gi,
-	'number': /[\d%\.]+/g
-});
