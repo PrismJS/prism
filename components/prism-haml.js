@@ -127,22 +127,23 @@
 
 	// Non exhaustive list of available filters and associated languages
 	var filters = [
-		{filter:'css',language:'css'},
+		'css',
 		{filter:'coffee',language:'coffeescript'},
-		{filter:'erb',language:'erb'},
-		{filter:'javascript',language:'javascript'},
-		{filter:'less',language:'less'},
-		{filter:'markdown',language:'markdown'},
-		{filter:'ruby',language:'ruby'},
-		{filter:'scss',language:'scss'},
-		{filter:'textile',language:'textile'}
+		'erb',
+		'javascript',
+		'less',
+		'markdown',
+		'ruby',
+		'scss',
+		'textile'
 	];
 	var all_filters = {};
-	for(var i=0,l=filters.length;i<l;i++) {
+	for (var i = 0, l = filters.length; i < l; i++) {
 		var filter = filters[i];
-		if(Prism.languages[filter.language]) {
+		filter = 'filter' in filter ? filter : {filter: filter, language: filter};
+		if (Prism.languages[filter.language]) {
 			all_filters['filter-' + filter.filter] = {
-				pattern: new RegExp(filter_pattern.replace('{{filter_name}}', filter.filter)),
+				pattern: RegExp(filter_pattern.replace('{{filter_name}}', filter.filter)),
 				lookbehind: true,
 				inside: {
 					'filter-name': {
@@ -155,6 +156,6 @@
 		}
 	}
 
-	Prism.languages.insertBefore('haml','filter',all_filters);
+	Prism.languages.insertBefore('haml', 'filter', all_filters);
 
 }(Prism));
