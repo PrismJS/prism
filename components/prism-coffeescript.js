@@ -1,18 +1,83 @@
+(function(Prism) {
+
+// Ignore comments starting with { to privilege string interpolation highlighting
+var comment = /#(?!\{).+/g,
+    interpolation = {
+    	pattern: /#\{[^}]+\}/g,
+    	alias: 'variable'
+    };
+
 Prism.languages.coffeescript = Prism.languages.extend('javascript', {
-	'comment': [
-		/([#]{3}\s*\r?\n(.*\s*\r*\n*)\s*?\r?\n[#]{3})/g,
-		/(\s|^)([#]{1}[^#^\r^\n]{2,}?(\r?\n|$))/g
+	'comment': comment,
+	'string': [
+
+		// Strings are multiline
+		/'(?:\\?[\s\S])*?'/g,
+
+		{
+			// Strings are multiline
+			pattern: /"(?:\\?[\s\S])*?"/g,
+			inside: {
+				'interpolation': interpolation
+			}
+		}
 	],
-	'keyword': /\b(this|window|delete|class|extends|namespace|extend|ar|let|if|else|while|do|for|each|of|return|in|instanceof|new|with|typeof|try|catch|finally|null|undefined|break|continue)\b/g
+	'keyword': /\b(and|break|by|catch|class|continue|debugger|delete|do|each|else|extend|extends|false|finally|for|if|in|instanceof|is|isnt|let|loop|namespace|new|no|not|null|of|off|on|or|own|return|super|switch|then|this|throw|true|try|typeof|undefined|unless|until|when|while|window|with|yes|yield)\b/g,
+	'class-member': {
+		pattern: /@(?!\d)\w+/,
+		alias: 'variable'
+	}
+});
+
+Prism.languages.insertBefore('coffeescript', 'comment', {
+	'multiline-comment': {
+		pattern: /###[\s\S]+?###/g,
+		alias: 'comment'
+	},
+
+	// Block regexp can contain comments and interpolation
+	'block-regex': {
+		pattern: /\/{3}[\s\S]*?\/{3}/,
+		alias: 'regex',
+		inside: {
+			'comment': comment,
+			'interpolation': interpolation
+		}
+	}
+});
+
+Prism.languages.insertBefore('coffeescript', 'string', {
+	'inline-javascript': {
+		pattern: /`(?:\\?[\s\S])*?`/g,
+		inside: {
+			'delimiter': {
+				pattern: /^`|`$/g,
+				alias: 'punctuation'
+			},
+			rest: Prism.languages.javascript
+		}
+	},
+
+	// Block strings
+	'multiline-string': [
+		{
+			pattern: /'''[\s\S]*?'''/,
+			alias: 'string'
+		},
+		{
+			pattern: /"""[\s\S]*?"""/,
+			alias: 'string',
+			inside: {
+				interpolation: interpolation
+			}
+		}
+	]
+
 });
 
 Prism.languages.insertBefore('coffeescript', 'keyword', {
-	'function': {
-		pattern: /[a-z|A-z]+\s*[:|=]\s*(\([.|a-z\s|,|:|{|}|\"|\'|=]*\))?\s*-&gt;/gi,
-		inside: {
-			'function-name': /[_?a-z-|A-Z-]+(\s*[:|=])| @[_?$?a-z-|A-Z-]+(\s*)| /g,
-			'operator': /[-+]{1,2}|!|=?&lt;|=?&gt;|={1,2}|(&amp;){1,2}|\|?\||\?|\*|\//g
-		}
-	},
-	'attr-name': /[_?a-z-|A-Z-]+(\s*:)| @[_?$?a-z-|A-Z-]+(\s*)| /g
+	// Object property
+	'property': /(?!\d)\w+(?=\s*:(?!:))/g
 });
+
+}(Prism));
