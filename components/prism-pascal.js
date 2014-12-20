@@ -2,7 +2,6 @@
 
 /* TODO
 	Support inline asm ?
-	Use accurate unsigned integer regexp for control string (#...)
 */
 
 Prism.languages.pascal = {
@@ -11,7 +10,6 @@ Prism.languages.pascal = {
 		/\{.+?\}/,
 		/\/\/.*/
 	],
-	// The unsigned integer after the # is quite inaccurate...
 	'string': [
 		/(?:'(?:''|[^'\n])*'|#[&$%]?[a-f\d]+)+/i,
 		// Char
@@ -40,12 +38,8 @@ Prism.languages.pascal = {
 		}
 	],
 	'number': [
-		// Hexadecimal
-		/[+-]?\$[a-f\d]+/i,
-		// Octal
-		/[+-]?&[0-7]+/,
-		// Binary
-		/[+-]?%[01]+/,
+		// Hexadecimal, octal and binary
+		/[+-]?[&$%][a-f\d]+/i,
 		// Decimal
 		/([+-]|\b)\d+(?:\.\d+)?(?:e[+-]?\d+)?/i
 	],
