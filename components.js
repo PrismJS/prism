@@ -249,6 +249,10 @@ var components = {
 		"applescript": {
 			"title": "AppleScript",
 			"owner": "Golmote"
+		},
+		"rust": {
+			"title": "Rust",
+			"owner": "Golmote"
 		}
 	},
 	"plugins": {
