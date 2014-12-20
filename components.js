@@ -227,6 +227,10 @@ var components = {
 		"fortran": {
 			"title": "Fortran",
 			"owner": "Golmote"
+		},
+		"erlang": {
+			"title": "Erlang",
+			"owner": "Golmote"
 		}
 	},
 	"plugins": {
