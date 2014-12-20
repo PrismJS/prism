@@ -159,25 +159,26 @@
 	var filters = [
 		{filter:'atpl',language:'twig'},
 		{filter:'coffee',language:'coffeescript'},
-		{filter:'ejs',language:'ejs'},
-		{filter:'handlebars',language:'handlebars'},
-		{filter:'hogan',language:'hogan'},
-		{filter:'less',language:'less'},
-		{filter:'livescript',language:'livescript'},
-		{filter:'markdown',language:'markdown'},
-		{filter:'mustache',language:'mustache'},
-		{filter:'plates',language:'plates'},
+		'ejs',
+		'handlebars',
+		'hogan',
+		'less',
+		'livescript',
+		'markdown',
+		'mustache',
+		'plates',
 		{filter:'sass',language:'scss'},
-		{filter:'stylus',language:'stylus'},
-		{filter:'swig',language:'swig'}
+		'stylus',
+		'swig'
 
 	];
 	var all_filters = {};
-	for(var i=0,l=filters.length;i<l;i++) {
+	for (var i = 0, l = filters.length; i < l; i++) {
 		var filter = filters[i];
-		if(Prism.languages[filter.language]) {
+		filter = typeof filter === 'string' ? {filter: filter, language: filter} : filter;
+		if (Prism.languages[filter.language]) {
 			all_filters['filter-' + filter.filter] = {
-				pattern: new RegExp(filter_pattern.replace('{{filter_name}}', filter.filter)),
+				pattern: RegExp(filter_pattern.replace('{{filter_name}}', filter.filter)),
 				lookbehind: true,
 				inside: {
 					'filter-name': {
@@ -190,6 +191,6 @@
 		}
 	}
 
-	Prism.languages.insertBefore('jade','filter',all_filters);
+	Prism.languages.insertBefore('jade', 'filter', all_filters);
 
 }(Prism));
