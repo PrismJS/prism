@@ -219,6 +219,10 @@ var components = {
 		"r": {
 			"title": "R",
 			"owner": "Golmote"
+		},
+		"lolcode": {
+			"title": "LOLCODE",
+			"owner": "Golmote"
 		}
 	},
 	"plugins": {
