@@ -246,6 +246,19 @@ var components = {
 			"title": "Pascal",
 			"owner": "Golmote"
 		},
+		"applescript": {
+			"title": "AppleScript",
+			"owner": "Golmote"
+		},
+		"rust": {
+			"title": "Rust",
+			"owner": "Golmote"
+		},
+		"dart": {
+			"title": "Dart",
+			"require": "clike",
+			"owner": "Golmote"
+		},
 		"actionscript": {
 			"title": "ActionScript",
 			"require": "javascript",
