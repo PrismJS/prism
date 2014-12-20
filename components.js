@@ -215,6 +215,10 @@ var components = {
 			"title": "Less",
 			"require": "css",
 			"owner": "Golmote"
+		},
+		"r": {
+			"title": "R",
+			"owner": "Golmote"
 		}
 	},
 	"plugins": {
