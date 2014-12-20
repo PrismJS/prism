@@ -241,6 +241,10 @@ var components = {
 			"title": "Jade",
 			"require": "javascript",
 			"owner": "Golmote"
+		},
+		"pascal": {
+			"title": "Pascal",
+			"owner": "Golmote"
 		}
 	},
 	"plugins": {
