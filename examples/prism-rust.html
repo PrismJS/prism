@@ -41,16 +41,14 @@ vec![1i, 2, 3];
 </code></pre>
 
 <h2>Attributes</h2>
-<pre><code>
-#![warn(unstable)]
+<pre><code>#![warn(unstable)]
 #[test]
 fn a_test() {
 	// ...
 }</code></pre>
 
 <h2>Closure parameters and bitwise OR</h2>
-<pre><code>
-let x = a | b;
+<pre><code>let x = a | b;
 let y = c || d;
 let add_one = |x: int| -> int { 1i + x };
 let printer = || { println!("x is: {}", x); };
