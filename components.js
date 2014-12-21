@@ -34,7 +34,8 @@ var components = {
 	"languages": {
 		"meta": {
 			"path": "components/prism-{id}",
-			"noCSS": true
+			"noCSS": true,
+			"examplesPath": "examples/prism-{id}"
 		},
 		"markup": {
 			"title": "Markup",
