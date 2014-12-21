@@ -7,6 +7,23 @@
 <title>Examples ▲ Prism</title>
 <link rel="stylesheet" href="style.css" />
 <link rel="stylesheet" href="themes/prism.css" data-noprefix />
+<style>
+#languages {
+	column-count: 3
+}
+	#languages > h1 {
+		margin-top: 0;
+		column-span: all;
+	}
+	#languages label {
+		display: block;
+		padding: .2em;
+	}
+	#languages input {
+		margin-right: .7em;
+	}
+
+</style>
 <script src="prefixfree.min.js"></script>
 
 <script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
@@ -54,6 +71,12 @@
 	<p>Should not be highlighted.</p>
 	<code class="language-none">&lt;p>hi!&lt;/p></code>
 </section>
+
+<section>
+	<h1>Per language examples</h1>
+	<div id="languages"></div>
+</section>
+<section id="examples"></section>
 
 <section class="language-markup">
 	<h1>Markup</h1>
@@ -440,12 +463,11 @@ X-Response-Time: 10ms
 <footer data-src="templates/footer.html" data-type="text/html"></footer>
 
 <script src="prism.js"></script>
-<script src="components/prism-java.js"></script>
-<script src="components/prism-http.js"></script>
-<script src="components/prism-coffeescript.js"></script>
 <script src="utopia.js"></script>
 <script src="components.js"></script>
 <script src="code.js"></script>
+<script src="vendor/promise.js"></script>
+<script src="examples.js"></script>
 
 </body>
 </html>
