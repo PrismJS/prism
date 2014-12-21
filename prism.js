@@ -145,6 +145,67 @@ var _ = self.Prism = {
 		}
 	},
 
+	optimizeGrammar: function(grammar) {
+		if (!grammar || grammar._competition) {
+			return;
+		}
+
+		var competition = [];
+
+		for (var token in grammar) {
+			if (!grammar.hasOwnProperty(token) || !grammar[token]) {
+				continue;
+			}
+
+			var patterns = grammar[token],
+			    strings = [], rest = [],
+			    regex = {mi: [], i: [], m: [], '': []};
+
+			if (_.util.type(patterns) !== 'Array' || !patterns.length) {
+				if (patterns.competition) {
+					patterns._token = token;
+					competition.push(patterns);
+				}
+				continue;
+			}
+
+			for (var i = 0; i < patterns.length; ++i) {
+				var pattern = patterns[i],
+					type = _.util.type(pattern);
+
+				if (patterns.competition) {
+					patterns._token = token;
+					competition.push(pattern);
+				}
+
+				if (type === 'String') {
+					strings.push(pattern.replace(/[\-\[\]\/{}()*+?.\\^$|]/g, "\\$&"));
+				} else if (type === 'RegExp' && !/\\\d/.test(pattern.source)) {
+					var mods = (pattern.multiline ? 'm' : '') + (pattern.ignoreCase ? 'i' : '');
+					regex[mods].push(pattern.source);
+				} else {
+					rest.push(pattern);
+				}
+			}
+
+			if (strings.length) {
+				var slot = regex['m'].length > regex[''].length ? 'm' : '';
+				regex[slot].push('\\b(?:' + strings.join('|') + ')\\b');
+			}
+			patterns = [];
+			for (var mods in regex) {
+				if (regex[mods].length) {
+					patterns.push(RegExp('(?:' + regex[mods].join('|') + ')', mods));
+				}
+			}
+			patterns = patterns.concat(rest);
+			grammar[token] = patterns.length == 1 ? patterns[0] : patterns;
+		}
+
+		// Add a property that is not enumerable, to avoid checking this grammar again
+		Object.defineProperty(grammar, '_competition', {value: competition});
+	},
+
 	highlightAll: function(async, callback) {
 		var elements = document.querySelectorAll('code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code');
 
@@ -164,6 +225,7 @@ var _ = self.Prism = {
 		if (parent) {
 			language = (parent.className.match(lang) || [,''])[1];
 			grammar = _.languages[language];
+			_.optimizeGrammar(grammar);
 		}
 
 		if (!grammar) {
@@ -242,6 +304,8 @@ var _ = self.Prism = {
 		var rest = grammar.rest;
 
 		if (rest) {
+			_.optimizeGrammar(rest);
+
 			for (var token in rest) {
 				grammar[token] = rest[token];
 			}
@@ -255,62 +319,64 @@ var _ = self.Prism = {
 			}
 
 			var patterns = grammar[token];
-			patterns = (_.util.type(patterns) === "Array") ? patterns : [patterns];
 
-			for (var j = 0; j < patterns.length; ++j) {
-				var pattern = patterns[j],
-					inside = pattern.inside,
-					lookbehind = !!pattern.lookbehind,
-					lookbehindLength = 0,
-					alias = pattern.alias;
+			patterns = (_.util.type(patterns) === "Array") ? patterns : patterns.competition ? grammar._competition : [patterns];
 
-				pattern = pattern.pattern || pattern;
+			for (var i = 0; i < strarr.length; i++) { // Don’t cache length as it changes during the loop
+				var str = strarr[i];
 
-				for (var i=0; i<strarr.length; i++) { // Don’t cache length as it changes during the loop
+				if (strarr.length > text.length) {
+					// Something went terribly wrong, ABORT, ABORT!
+					break tokenloop;
+				}
 
-					var str = strarr[i];
+				if (str instanceof Token) {
+					continue;
+				}
 
-					if (strarr.length > text.length) {
-						// Something went terribly wrong, ABORT, ABORT!
-						break tokenloop;
-					}
+				var competition = [];
 
-					if (str instanceof Token) {
-						continue;
-					}
+				for (var j = 0; j < patterns.length; ++j) {
+					var pattern = patterns[j].pattern || patterns[j];
 
 					pattern.lastIndex = 0;
-
 					var match = pattern.exec(str);
-
 					if (match) {
-						if(lookbehind) {
-							lookbehindLength = match[1].length;
-						}
-
-						var from = match.index - 1 + lookbehindLength,
-							match = match[0].slice(lookbehindLength),
-							len = match.length,
-							to = from + len,
-							before = str.slice(0, from + 1),
-							after = str.slice(to + 1);
-
-						var args = [i, 1];
-
-						if (before) {
-							args.push(before);
-						}
-
-						var wrapped = new Token(token, inside? _.tokenize(match, inside) : match, alias);
-
-						args.push(wrapped);
-
-						if (after) {
-							args.push(after);
-						}
-
-						Array.prototype.splice.apply(strarr, args);
+						match._pattern = patterns[j];
+						competition.push(match);
 					}
+				}
+
+				if (competition.length) {
+					competition.sort(function(a, b){return (a.index-b.index) ? a.index-b.index : a.length-b.length});
+
+					var match = competition[0],
+					    pattern = match._pattern,
+					    inside = pattern.inside,
+					    lookbehind = !!pattern.lookbehind,
+					    lookbehindLength = lookbehind ? match[1].length : 0,
+					    alias = pattern.alias,
+					    from = match.index - 1 + lookbehindLength,
+					    match = match[0].slice(lookbehindLength),
+					    len = match.length,
+					    to = from + len,
+					    before = str.slice(0, from + 1),
+					    after = str.slice(to + 1),
+					    args = [i, 1];
+
+					if (before) {
+						args.push(before);
+					}
+
+					var wrapped = new Token(pattern._token || token, inside? _.tokenize(match, inside) : match, alias);
+
+					args.push(wrapped);
+
+					if (after) {
+						args.push(after);
+					}
+
+					Array.prototype.splice.apply(strarr, args);
 				}
 			}
 		}
