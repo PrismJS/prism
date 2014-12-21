@@ -58,6 +58,10 @@ var components = {
 			"title": "C-like",
 			"option": "default"
 		},
+		"eiffel": {
+			"title": "Eiffel",
+			"option": "default"
+		},
 		"javascript": {
 			"title": "JavaScript",
 			"option": "default",
