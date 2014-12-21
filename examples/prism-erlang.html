@@ -1,4 +1,4 @@
-<h1>Dart</h1>
+<h1>Erlang</h1>
 <p>To use this language, use the class "language-erlang".</p>
 
 <h2>Comments</h2>
@@ -27,7 +27,8 @@ io:format("I am ~p~n", [self()]).
 <h2>Variables</h2>
 <pre><code>P = {adam,24,{july,29}}.
 M1 = #{name=>adam,age=>24,date=>{july,29}}.
-M2 = maps:update(age,25,M1).</code></pre>
+M2 = maps:update(age,25,M1).
+io:format("{~p,~p}: ~p~n", [?MODULE,?LINE,X]).</code></pre>
 
 <h2>Operators</h2>
 <pre><code>1==1.0.
