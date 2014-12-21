@@ -60,7 +60,7 @@ var components = {
 		},
 		"eiffel": {
 			"title": "Eiffel",
-			"option": "default"
+			"owner": "Conaclos"
 		},
 		"javascript": {
 			"title": "JavaScript",
