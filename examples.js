@@ -6,8 +6,7 @@
 
 var examples = {};
 
-// TODO change treeURL before commit !
-var treeURL = 'https://api.github.com/repos/Golmote/prism/git/trees/prism-examples?recursive=1';
+var treeURL = 'https://api.github.com/repos/LeaVerou/prism/git/trees/gh-pages?recursive=1';
 var treePromise = new Promise(function (resolve) {
 	$u.xhr({
 		url: treeURL,
