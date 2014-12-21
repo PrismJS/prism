@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="themes/prism.css" data-noprefix />
 <style>
 #languages {
-	column-count: 3
+	column-count: 4;
 }
 	#languages > h1 {
 		margin-top: 0;
@@ -19,8 +19,20 @@
 		display: block;
 		padding: .2em;
 	}
+	#languages .unavailable {
+		color: #aaa;
+	}
 	#languages input {
 		margin-right: .7em;
+	}
+
+#examples > section {
+	display: block;
+	margin: auto;
+	max-width: 900px;
+}
+	#examples h3 {
+		margin: 1em 0 0.3em;
 	}
 
 </style>
@@ -76,7 +88,7 @@
 	<h1>Per language examples</h1>
 	<div id="languages"></div>
 </section>
-<section id="examples"></section>
+<div id="examples"></div>
 
 <section class="language-markup">
 	<h1>Markup</h1>

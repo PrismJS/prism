@@ -1,0 +1,51 @@
+<h2>JavaScript</h2>
+<p>To use this language, use the class "language-javascript".</p>
+
+<h3>Variable assignment</h3>
+<pre><code>var foo = "bar", baz = 5;</code></pre>
+
+<h3>Operators</h3>
+<pre><code>(1 + 2 * 3)/4 >= 3 &amp;&amp; 4 &lt; 5 || 6 > 7</code></pre>
+
+<h3>Indented code</h3>
+<pre><code>if (true) {
+	while (true) {
+	doSomething();
+	}
+	}</code></pre>
+
+<h3>Regex with slashes</h3>
+<pre><code>var foo = /([^/])\/(\\?.|\[.+?])+?\/[gim]{0,3}/g;</code></pre>
+
+<h3>Regex that ends with double slash</h3>
+<pre><code>var bar = /\/\*[\w\W]*?\*\//g;</code></pre>
+
+<h3>Single line comments &amp; regexes</h3>
+<pre><code>// http://lea.verou.me
+	var comment = /\/\*[\w\W]*?\*\//g;</code></pre>
+
+<h3>Link in comment</h3>
+<pre><code>// http://lea.verou.me
+	/* http://lea.verou.me */</code></pre>
+
+<h3>Nested strings</h3>
+<pre><code>var foo = "foo", bar = "He \"said\" 'hi'!"</code></pre>
+
+<h3>Strings inside comments</h3>
+<pre><code>// "foo"</code></pre>
+<pre><code>/* "foo" */</code></pre>
+
+<h3>Strings with slashes</h3>
+<pre><code>env.content + '&lt;/' + env.tag + '>'</code></pre>
+<pre><code>var foo = "/" + "/";</code></pre>
+<pre><code>var foo = "http://prismjs.com"; // Strings are strings and comments are comments ;)</code></pre>
+
+<h3>Regex inside single line comment</h3>
+<pre><code>// hey, /this doesn’t fail!/ :D</code></pre>
+
+<h3>Two or more division operators on the same line</h3>
+<pre><code>var foo = 5 / 6 / 7;</code></pre>
+
+<h3>A division operator on the same line as a regex</h3>
+<pre><code>var foo = 1/2, bar = /a/g;</code></pre>
+<pre><code>var foo = /a/, bar = 3/4;</code></pre>
