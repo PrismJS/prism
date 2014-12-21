@@ -35,26 +35,23 @@ AuthUserFile /.htpasswd
 AuthGroupFile /dev/null
 Require valid-user
 
-
 ## ALLOW FROM IP OR VALID PASSWORD
 Require valid-user
 Allow from 192.168.1.23
 Satisfy Any
 
-
 ## PROTECT FILES
+Order Allow,Deny
+Deny from all
 
-  Order Allow,Deny
-  Deny from all
+## REQUIRE SUBDOMAIN
+RewriteCond %{HTTP_HOST} !^$
+RewriteCond %{HTTP_HOST} !^subdomain\.domain\.tld$ [NC]
+RewriteRule ^/(.*)$ http://subdomain.domain.tld/$1 [L,R=301]
 
+ErrorDocument 403 http://www.example.com/logo.gif
+ErrorDocument 403 /images/you_bad_hotlinker.gif
 
-
-## PREVENT HOTLINKING
-SetEnvIfNoCase Referer "^http://subdomain.domain.tld/" good
-SetEnvIfNoCase Referer "^$" good
-
-   Order Deny,Allow
-   Deny from all
-   Allow from env=good
-   ErrorDocument 403 http://www.google.com/intl/en_ALL/images/logo.gif
-   ErrorDocument 403 /images/you_bad_hotlinker.gif</code></pre>
+## REDIRECT UPLOADS
+RewriteCond %{REQUEST_METHOD} ^(PUT|POST)$ [NC]
+RewriteRule ^(.*)$ /cgi-bin/form-upload-processor.cgi?p=$1 [L,QSA]</code></pre>
