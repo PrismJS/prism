@@ -26,12 +26,12 @@ SET @`quoted-variable` = 3;</code></pre>
 <h2>Operators</h2>
 <pre><code>SELECT 1 && 1;
 SELECT 1 OR NULL;
-SELECT 5 & ~1;
+SELECT 5 & 2*3;
 SELECT 2 BETWEEN 1 AND 3;</code></pre>
 
 <h2>Functions and keywords</h2>
-<pre><code>SELECT COUNT(*) AS cpt,
-FROM `table`
+<pre><code>SELECT COUNT(*) AS cpt, MAX(t.pos) AS max_pos
+FROM `my_table`
 LEFT JOIN `other_table` AS t
 WHERE `somecol` IS NOT NULL
 ORDER BY t.other_col DESC</code></pre>
