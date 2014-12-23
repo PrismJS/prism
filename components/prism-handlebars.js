@@ -1,42 +1,48 @@
-Prism.languages.handlebars = {
-	'expression': {
-		pattern: /\{\{\{[\w\W]+?\}\}\}|\{\{[\w\W]+?\}\}/g,
-		inside: {
-			'comment': {
-				pattern: /(\{\{)![\w\W]*(?=\}\})/g,
-				lookbehind: true
-			},
-			'delimiter': {
-				pattern: /^\{\{\{?|\}\}\}?$/ig,
-				alias: 'punctuation'
-			},
-			'string': /(["'])(\\?.)+?\1/g,
-			'number': /\b-?(0x[\dA-Fa-f]+|\d*\.?\d+([Ee]-?\d+)?)\b/g,
-			'boolean': /\b(true|false)\b/g,
-			'block': {
-				pattern: /^(\s*~?\s*)[#\/]\w+/ig,
-				lookbehind: true,
-				alias: 'keyword'
-			},
-			'brackets': {
-				pattern: /\[[^\]]+\]/,
-				inside: {
-					punctuation: /\[|\]/g,
-					variable: /[\w\W]+/g
-				}
-			},
-			'punctuation': /[!"#%&'()*+,.\/;<=>@\[\\\]^`{|}~]/g,
-			'variable': /[^!"#%&'()*+,.\/;<=>@\[\\\]^`{|}~]+/g
-		}
-	}
-};
+(function(Prism) {
 
-if (Prism.languages.markup) {
+	var handlebars_pattern = /\{\{\{[\w\W]+?\}\}\}|\{\{[\w\W]+?\}\}/g;
+	
+	Prism.languages.handlebars = Prism.languages.extend('markup', {
+		'handlebars': {
+			pattern: handlebars_pattern,
+			inside: {
+				'delimiter': {
+					pattern: /^\{\{\{?|\}\}\}?$/ig,
+					alias: 'punctuation'
+				},
+				'string': /(["'])(\\?.)+?\1/g,
+				'number': /\b-?(0x[\dA-Fa-f]+|\d*\.?\d+([Ee]-?\d+)?)\b/g,
+				'boolean': /\b(true|false)\b/g,
+				'block': {
+					pattern: /^(\s*~?\s*)[#\/]\w+/ig,
+					lookbehind: true,
+					alias: 'keyword'
+				},
+				'brackets': {
+					pattern: /\[[^\]]+\]/,
+					inside: {
+						punctuation: /\[|\]/g,
+						variable: /[\w\W]+/g
+					}
+				},
+				'punctuation': /[!"#%&'()*+,.\/;<=>@\[\\\]^`{|}~]/g,
+				'variable': /[^!"#%&'()*+,.\/;<=>@\[\\\]^`{|}~]+/g
+			}
+		}
+	});
+
+	// Comments are inserted at top so that they can
+	// surround markup
+	Prism.languages.insertBefore('handlebars', 'tag', {
+		'handlebars-comment': {
+			pattern: /\{\{![\w\W]*\}\}/g,
+			alias: ['handlebars','comment']
+		}
+	});
 
 	// Tokenize all inline Handlebars expressions that are wrapped in {{ }} or {{{ }}}
 	// This allows for easy Handlebars + markup highlighting
 	Prism.hooks.add('before-highlight', function(env) {
-		console.log(env.language);
 		if (env.language !== 'handlebars') {
 			return;
 		}
@@ -44,8 +50,7 @@ if (Prism.languages.markup) {
 		env.tokenStack = [];
 
 		env.backupCode = env.code;
-		env.code = env.code.replace(/\{\{\{[\w\W]+?\}\}\}|\{\{[\w\W]+?\}\}/ig, function(match) {
-			console.log(match);
+		env.code = env.code.replace(handlebars_pattern, function(match) {
 			env.tokenStack.push(match);
 
 			return '___HANDLEBARS' + env.tokenStack.length + '___';
@@ -61,6 +66,7 @@ if (Prism.languages.markup) {
 	});
 
 	// Re-insert the tokens after highlighting
+	// and highlight them with defined grammar
 	Prism.hooks.add('after-highlight', function(env) {
 		if (env.language !== 'handlebars') {
 			return;
@@ -73,20 +79,4 @@ if (Prism.languages.markup) {
 		env.element.innerHTML = env.highlightedCode;
 	});
 
-	// Wrap tokens in classes that are missing them
-	Prism.hooks.add('wrap', function(env) {
-		if (env.language === 'handlebars' && env.type === 'markup') {
-			env.content = env.content.replace(/(___HANDLEBARS[0-9]+___)/g, "<span class=\"token handlebars\">$1</span>");
-		}
-	});
-
-	// Add the rules before all others
-	Prism.languages.insertBefore('handlebars', 'expression', {
-		'markup': {
-			pattern: /<[^?]\/?(.*?)>/g,
-			inside: Prism.languages.markup
-		},
-		'handlebars': /___HANDLEBARS[0-9]+___/g
-	});
-}
-
+}(Prism));
