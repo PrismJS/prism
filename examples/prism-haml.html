@@ -31,8 +31,8 @@ but this is not
 </code></pre>
 
 <h2>Markup</h2>
-<pre><code>%p
-  &lt;div id="blah">Blah!&lt;/div></code></pre>
+<pre><code>%div
+  &lt;p id="blah">Blah!&lt;/p></code></pre>
 
 <h2>Inline Ruby</h2>
 <pre><code>= ['hi', 'there', 'reader!'].join " "
@@ -77,6 +77,6 @@ but this is not
 <p>Filters require the desired language to be loaded.
 On this page, check CoffeeScript <strong>before</strong> checking Haml should make
 the example below work properly.</p>
-<pre><code>script
+<pre><code>%script
   :coffee
     console.log 'This is coffee script'</code></pre>
