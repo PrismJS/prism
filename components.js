@@ -264,6 +264,10 @@ var components = {
 			"title": "Dart",
 			"require": "clike",
 			"owner": "Golmote"
+		},
+		"powershell": {
+			"title": "PowerShell",
+			"owner": "nauzilus"
 		}
 	},
 	"plugins": {
