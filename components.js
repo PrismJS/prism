@@ -268,6 +268,10 @@ var components = {
 		"powershell": {
 			"title": "PowerShell",
 			"owner": "nauzilus"
+		},
+		"qore": {
+			"title": "Qore",
+			"owner": "temnroegg"
 		}
 	},
 	"plugins": {
