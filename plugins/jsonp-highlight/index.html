@@ -42,14 +42,33 @@
 		<li><a href="https://confluence.atlassian.com/display/BITBUCKET/src+Resources#srcResources-GETrawcontentofanindividualfile">Bitbucket</a></li>
 	</ul>
 
-	<p>If you need to do your own parsing, you can supply the <code>data-adapter</code> parameter on the <code>&lt;pre></code> element. This must be the name of a global function you have defined which will accept a single parameter (the JSONP response) and returns a string of the content to highlight.</p>
+	<p>If you need to do your own parsing, you can hook your your own data adapters in two ways:</p>
+	<ol>
+		<li>Supply the <code>data-adapter</code> parameter on the <code>&lt;pre></code> element. This must be the name of a globally defined function, and highlighting will use only this adapter to parse the response.
+		<li>Register your adapter function by calling <code>Prism.plugins.jsonphighlight.registerAdapter(function(rsp) { &hellip; })</code>. It will be added to the list of inbuilt adapters and used if no other registered adapater (e.g. GitHub/Bitbucket) can parse the response.
+	</ol>
+	
+	<p>In either case, the function must accept a single parameter (the JSONP response) and returns a string of the content to highlight. If your adapter cannot parse the response, you must return <code>null</code>.</p>
 
 	<p>For example, to simply stringify the JSONP response, you could do the following:</p>
 
 	<pre><code>&lt;!-- perhaps this is in a script file somewhere -->
-&lt;script>function dump_json(rsp) { return JSON.stringify(rsp,null,2); }&lt;/script>
+&lt;script>
+	function dump_json(rsp) {
+		return "using dump_json: " + JSON.stringify(rsp,null,2);
+	}
+	// &hellip; include prism.js &hellip;
+	Prism.plugins.jsonphighlight.registerAdapter(function(rsp) {
+		return "using registerAdapter: " + JSON.stringify(rsp,null,2);
+	})
+&lt;/script>
 
-&lt;pre class="language-javascript" data-jsonp="&hellip;" data-adapter="dump_json">&lt;/pre></code></pre>
+&lt;!-- using the data-adapter attribute -->
+&lt;pre class="language-javascript" data-jsonp="&hellip;" data-adapter="dump_json">&lt;/pre>
+
+&lt;!-- using whatever data adapters are available -->
+&lt;pre class="language-javascript" data-jsonp="&hellip;">&lt;/pre>
+</code></pre>
 
 	<p>Finally, unlike like the <a href="/plugins/file-highlight/index.html">File Highlight</a> plugin, you <em>do</em> need to supply the appropriate <code>class</code> with the language to highlight. This could have been auto-detected, but since you're not actually linking to a file it's not always possible (see below in the example using GitHub status). Furthermore, if you're linking to files with a <code>.xaml</code> extension for example, this plugin then needs to somehow map that to highlight as <code>markup</code>, which just means more bloat. You know what you're trying to highlight, just say so :)</p>
 </section>
@@ -64,14 +83,18 @@
 	<pre class="lang-css" data-jsonp="https://bitbucket.org/!api/1.0/repositories/nauzilus/stylish/src/master/whirlpool/style.css"></pre>
  	
  	<p>Custom adapter (JSON.stringify showing GitHub <a href="https://status.github.com/api/status.json">status</a>):</p>
-	<pre class="lang-javascript" data-jsonp="https://status.github.com/api/status.json" data-adapter="jsonstringify"></pre>
+	<pre class="lang-javascript" data-jsonp="https://status.github.com/api/status.json" data-adapter="dump_json"></pre>
+
+	<p>Registered adapter (as above, but without explicitly declaring the <code>data-adapter</code> attribute):</p>
+	<pre class="lang-javascript" data-jsonp="https://status.github.com/api/status.json"></pre>
 </section>
 
 <footer data-src="templates/footer.html" data-type="text/html"></footer>
 
-<script>function jsonstringify(x) { return JSON.stringify(x,null,2); }</script>
+<script>function dump_json(x) { return "using dump_json: " + JSON.stringify(x,null,2); }</script>
 <script src="prism.js"></script>
-<script src="plugins/jsonp-highlight/prism-jsonp-highlight.min.js"></script>
+<script src="plugins/jsonp-highlight/prism-jsonp-highlight.js"></script>
+<script>Prism.plugins.jsonphighlight.registerAdapter(function (x) { return "using registerAdapter: " + JSON.stringify(x,null,2); })</script>
 <script src="utopia.js"></script>
 <script src="components.js"></script>
 <script src="code.js"></script>
