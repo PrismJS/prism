@@ -30,9 +30,9 @@
 		registerAdapter: registerAdapter,
 		removeAdapter: removeAdapter
 	};
-	registerAdapter(function github(rsp) {
+	registerAdapter(function github(rsp, el) {
 		if ( rsp && rsp.meta && rsp.data ) {
-			if ( rsp.meta.status && Number(rsp.meta.status >= 400) ) {
+			if ( rsp.meta.status && rsp.meta.status >= 400 ) {
 				return "Error: " + ( rsp.data.message || rsp.meta.status );
 			}
 			else if ( typeof(rsp.data.content) === "string" ) {
@@ -40,13 +40,38 @@
 					? atob(rsp.data.content.replace(/\s/g, ''))
 					: "Your browser cannot decode base64";
 			}
+		}
+		return null;
+	});
+	registerAdapter(function gist(rsp, el) {
+		if ( rsp && rsp.meta && rsp.data && rsp.data.files ) {
+			if ( rsp.meta.status && rsp.meta.status >= 400 ) {
+				return "Error: " + ( rsp.data.message || rsp.meta.status );
+			}
 			else {
-				return "No data";
+				var filename = el.getAttribute('data-filename');
+				if (filename == null) {
+					// Maybe in the future we can somehow render all files
+					// But the standard <script> include for gists does that nicely already,
+					// so that might be getting beyond the scope of this plugin
+					for (var key in rsp.data.files) {
+						if (rsp.data.files.hasOwnProperty(key)) {
+							filename = key;
+							break;
+						}
+					}
+				}
+				if (rsp.data.files[filename] !== undefined) {
+					return rsp.data.files[filename].content;
+				}
+				else {
+					return "Error: unknown or missing gist file " + filename;
+				}
 			}
 		}
 		return null;
 	});
-	registerAdapter(function bitbucket(rsp) {
+	registerAdapter(function bitbucket(rsp, el) {
 		return rsp && rsp.node && typeof(rsp.data) === "string"
 			? rsp.data
 			: null;
@@ -95,11 +120,11 @@
 			var data = "";
 			
 			if ( adapter ) {
-				data = adapter(rsp);
+				data = adapter(rsp, pre);
 			}
 			else {
 				for ( var p in adapters ) {
-					data = adapters[p](rsp);
+					data = adapters[p](rsp, pre);
 					if ( data !== null ) break;
 				}
 			}
