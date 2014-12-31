@@ -1,13 +1,15 @@
 // NOTES - follows first-first highlight method, block is locked after highlight, different from SyntaxHl
 Prism.languages.autohotkey= {
-	'comment': /(;[^\n]*|^\s*\/\*[\s\S]*\s*\*\/)/gm,
+	'comment': {
+		pattern: /(^[^";\n]*("[^"\n]*?"[^"\n]*?)*)(;.*$|^\s*\/\*[\s\S]*\n\*\/)/gm,
+		lookbehind: true
+	},
 	'string': /"(([^"\n\r]|"")*)"/gm,
 	'function': /[^\(\); \t\,\n\+\*\-\=\?>:\\\/<\&%\[\]]+?(?=\()/gm,  //function - don't use .*\) in the end bcoz string locks it
 	'tag': /^[ \t]*[^\s:]+?(?=:[^:])/gm,  //labels
 	'variable': /\%\w+\%/g,
 	'number': /\b-?(0x[\dA-Fa-f]+|\d*\.?\d+([Ee]-?\d+)?)\b/g,
-	'operator': /[-+]{1,2}|!|<=?|>=?|={1,3}|&{1,2}|\|?\||\?|\*|\/|\~|\^|\%/g,
-	'ignore': /&(lt|gt|amp);/gi,
+	'operator': /[\+\-\*\\\/:=\?\&\|<>]/g,
 	'punctuation': /[\{}[\]\(\):]/g,
 	'boolean': /\b(true|false)\b/g,
 

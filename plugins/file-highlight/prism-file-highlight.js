@@ -9,7 +9,8 @@ var Extensions = {
 	'html': 'markup',
 	'svg': 'markup',
 	'xml': 'markup',
-	'py': 'python'
+	'py': 'python',
+	'rb': 'ruby'
 };
 
 Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function(pre) {

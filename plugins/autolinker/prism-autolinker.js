@@ -14,10 +14,10 @@ var url = /\b([a-z]{3,7}:\/\/|tel:)[\w-+%~/.:#=?&amp;]+/,
 for (var language in Prism.languages) {
 	var tokens = Prism.languages[language];
 	
-	Prism.languages.DFS(tokens, function (type, def) {
-		if (candidates.indexOf(type) > -1) {
+	Prism.languages.DFS(tokens, function (key, def, type) {
+		if (candidates.indexOf(type) > -1 && Prism.util.type(def) !== 'Array') {
 			if (!def.pattern) {
-				def = this[type] = {
+				def = this[key] = {
 					pattern: def
 				};
 			}

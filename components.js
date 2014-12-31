@@ -34,7 +34,8 @@ var components = {
 	"languages": {
 		"meta": {
 			"path": "components/prism-{id}",
-			"noCSS": true
+			"noCSS": true,
+			"examplesPath": "examples/prism-{id}"
 		},
 		"markup": {
 			"title": "Markup",
@@ -58,22 +59,26 @@ var components = {
 			"title": "C-like",
 			"option": "default"
 		},
+		"eiffel": {
+			"title": "Eiffel",
+			"owner": "Conaclos"
+		},
 		"javascript": {
 			"title": "JavaScript",
 			"option": "default",
 			"require": "clike"
 		},
-		"java" : {
+		"java": {
 			"title": "Java",
 			"require": "clike",
 			"owner": "sherblot"
 		},
-		"php" : {
+		"php": {
 			"title": "PHP",
 			"require": "clike",
 			"owner": "milesj"
 		},
-		"php-extras" : {
+		"php-extras": {
 			"title": "PHP Extras",
 			"require": "php",
 			"owner": "milesj"
@@ -88,7 +93,7 @@ var components = {
 			"require": "css",
 			"owner": "MoOx"
 		},
-		"bash" : {
+		"bash": {
 			"title": "Bash",
 			"require": "clike",
 			"owner": "zeitgeist87"
@@ -157,6 +162,10 @@ var components = {
 			"require": "java",
 			"owner": "jozic"
 		},
+		"haskell": {
+			"title": "Haskell",
+			"owner": "bholst"
+		},
 		"swift": {
 			"title": "Swift",
 			"require": "clike",
@@ -174,6 +183,87 @@ var components = {
 		"ini": {
 			"title": "Ini",
 			"owner": "aviaryan"
+		},
+		"latex": {
+			"title": "LaTeX",
+			"owner": "japborst"
+		},
+		"apacheconf": {
+			"title": "Apache Configuration",
+			"owner": "GuiTeK"
+		},
+		"git": {
+			"title": "Git",
+			"owner": "lgiraudel"
+		},
+		"scheme" : {
+			"title": "Scheme",
+			"owner" : "bacchus123"
+		},
+		"nasm": {
+			"title": "nasm",
+			"owner": "rbmj"
+		},
+		"perl": {
+			"title": "Perl",
+			"owner": "Golmote"
+		},
+		"handlebars": {
+			"title": "Handlebars",
+			"require": "markup",
+			"owner": "Golmote"
+		},
+		"matlab": {
+			"title": "MATLAB",
+			"owner": "Golmote"
+		},
+		"less": {
+			"title": "Less",
+			"require": "css",
+			"owner": "Golmote"
+		},
+		"r": {
+			"title": "R",
+			"owner": "Golmote"
+		},
+		"lolcode": {
+			"title": "LOLCODE",
+			"owner": "Golmote"
+		},
+		"fortran": {
+			"title": "Fortran",
+			"owner": "Golmote"
+		},
+		"erlang": {
+			"title": "Erlang",
+			"owner": "Golmote"
+		},
+		"haml": {
+			"title": "Haml",
+			"require": "ruby",
+			"owner": "Golmote"
+		},
+		"jade": {
+			"title": "Jade",
+			"require": "javascript",
+			"owner": "Golmote"
+		},
+		"pascal": {
+			"title": "Pascal",
+			"owner": "Golmote"
+		},
+		"applescript": {
+			"title": "AppleScript",
+			"owner": "Golmote"
+		},
+		"rust": {
+			"title": "Rust",
+			"owner": "Golmote"
+		},
+		"dart": {
+			"title": "Dart",
+			"require": "clike",
+			"owner": "Golmote"
 		}
 	},
 	"plugins": {

@@ -1,1 +1,3 @@
 hide-*.js
+node_modules
+.idea/

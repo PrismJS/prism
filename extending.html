@@ -50,10 +50,29 @@
 		
 		<dt>rest</dt>
 		<dd>Accepts an object literal with tokens and appends them to the end of the current object literal. Useful for referring to tokens defined elsewhere. For an example where <code>rest</code> is useful, check the Markup definitions above.</dd>
+
+		<dt>alias</dt>
+		<dd>This option can be used to define one or more aliases for the matched token. The result will be, that
+		the styles of the token and its aliases are combined. This can be useful, to combine the styling of a well known
+		token, which is already supported by most of the themes,  with a semantically correct token name. The option
+		can be set to a string literal or an array of string literals. In the following example the token
+		name <code>latex-equation</code> is not supported by any theme, but it will be highlighted the same as a string.
+		<pre><code class="language-javascript">{
+	'latex-equation': {
+		pattern: /\$(\\?.)*?\$/g,
+		alias: 'string'
+	}
+}</code></pre></dd>
 	</dl>
 	
  	<p>Unless explicitly allowed through the <code>inside</code> property, each token cannot contain other tokens, so their order is significant. Although per the ECMAScript specification, objects are not required to have a specific ordering of their properties, in practice they do in every modern browser.</p>
  	
+	<p>In most languages there are multiple different ways of declaring the same constructs (e.g. comments, strings, ...) and sometimes it is difficult or unpractical to match all of them with one single regular expression. To add multiple regular expressions for one token name an array can be used:</p>
+
+	<pre><code class="language-javascript">...
+'tokenname': [ /regex0/, /regex1/, { pattern: /regex2/ } ]
+...</code></pre>
+
  	<section>
 	 	<h1><code>Prism.languages.insertBefore(inside, before, insert<span class="optional" title="Default value: Prism.languages">, root</span>)</code></h1>
  	
