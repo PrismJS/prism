@@ -473,7 +473,6 @@ if (typeof module !== 'undefined' && module.exports) {
 }
 
 
-
 /* **********************************************
      Begin prism-markup.js
 ********************************************** */
@@ -584,14 +583,19 @@ Prism.languages.clike = {
 	'comment': [
 		{
 			pattern: /(^|[^\\])\/\*[\w\W]*?\*\//g,
-			lookbehind: true
+			lookbehind: true,
+			competition: 'enclosing'
 		},
 		{
 			pattern: /(^|[^\\:])\/\/.*?(\r?\n|$)/g,
-			lookbehind: true
+			lookbehind: true,
+			competition: 'enclosing'
 		}
 	],
-	'string': /("|')(\\?.)*?\1/g,
+	'string': {
+		pattern: /("|')(\\?.)*?\1/g,
+		competition: 'enclosing'
+	},
 	'class-name': {
 		pattern: /((?:(?:class|interface|extends|implements|trait|instanceof|new)\s+)|(?:catch\s+\())[a-z0-9_\.\\]+/ig,
 		lookbehind: true,
@@ -627,7 +631,8 @@ Prism.languages.javascript = Prism.languages.extend('clike', {
 Prism.languages.insertBefore('javascript', 'keyword', {
 	'regex': {
 		pattern: /(^|[^/])\/(?!\/)(\[.+?]|\\.|[^/\r\n])+\/[gim]{0,3}(?=\s*($|[\r\n,.;})]))/g,
-		lookbehind: true
+		lookbehind: true,
+		competition: 'enclosing'
 	}
 });
 
