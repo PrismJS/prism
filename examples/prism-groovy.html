@@ -22,9 +22,10 @@ string'''
 $/.*"(.*)".*/(.*)/$</code></pre>
 
 <h2>Interpolation inside GStrings and regex</h2>
-<pre><code>"The answer is ${42}"
+<pre><code>"The answer is ${21*2}"
 "The $foxtype ${foxcolor.join()} fox"
-'No interpolation here : ${42}'</code></pre>
+/foo${21*2}baz/
+'No interpolation here : ${21*2}'</code></pre>
 
 <h2>Full example</h2>
 <pre><code>/*
@@ -91,5 +92,5 @@ println "KB available=${kbAvail}"</code></pre>
 <h3>Comment-like substrings</h3>
 <pre><code>"foo /* bar */ baz"; "foo // bar";</code></pre>
 
-<h3>Slashy string containing escaped slash</h3>
+<h3>Slashy strings containing (escaped) slashes</h3>
 <pre><code>/foo\/bar/</code></pre>
