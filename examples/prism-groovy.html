@@ -1,0 +1,95 @@
+<h1>Groovy</h1>
+<p>To use this language, use the class "language-groovy".</p>
+
+<h2>Comments</h2>
+<pre><code>// Single line comment
+/* Multi-line
+comment */</code></pre>
+
+<h2>Strings</h2>
+<pre><code>"foo 'bar' baz"
+'foo "bar" baz'
+"""Multi-line
+string"""
+'''Multi-line
+string'''
+"String /containing/ slashes"
+</code></pre>
+
+<h2>Slashy strings (regex)</h2>
+<pre><code>/.*foo.*/
+/regex"containing quotes"/
+$/.*"(.*)".*/(.*)/$</code></pre>
+
+<h2>Interpolation inside GStrings and regex</h2>
+<pre><code>"The answer is ${42}"
+"The $foxtype ${foxcolor.join()} fox"
+'No interpolation here : ${42}'</code></pre>
+
+<h2>Full example</h2>
+<pre><code>/*
+    The input string to parse is from...
+    <...the rest of the header comment from above...>
+*/
+boolean debugging = true
+
+if (debugging) {
+    // Test data
+    dfkOutput = '''
+Filesystem           1K-blocks      Used Available Use% Mounted on
+/dev/sda1              4185956   1206996   2762888  31% /
+/dev/sda11            30679784  28324040    772140  98% /extra
+fas3050c-1-2.b:/vol/canis
+                      10485760   6599936   3885824  63% /nfs/data_d2/dog_data
+fas6070-1-1.b:/vol/felis
+                     314572800  54889600 259683200  18% /nfs/DATA-1/cat_data
+'''
+} else {
+    // Real data
+    dfkOutput = 'df -k'.execute().text
+}
+
+long kbAvail = 0
+
+regex =  '''(?ix)      # enable case-insensitive matches, extended patterns
+            (\\d+)     # 1: The disk space we want
+            \\s+       # some whitespace
+            \\d+%      # a number followed by??%
+            \\s+       # some more whitespace
+            (/nfs/data.*)  # 2: partition name'''
+
+pattern = ~regex
+matcher = pattern.matcher(dfkOutput)
+
+if (debugging) {
+    println """matcher pattern:
+/---------------------------------\\
+${matcher.pattern()}
+\\---------------------------------/"""
+
+    println "match count=${matcher.getCount()}"
+}
+
+for (i=0; i < matcher.getCount(); i++) {
+    if (debugging) {
+        println "    text matched in matcher[${i}]: '" + matcher[i][0] + "'"
+        println "        free space in  (group 1): '" + matcher[i][1] + "'"
+        println "        partition name (group 2): '" + matcher[i][2] + "'"
+    }
+    kbAvail += matcher[i][1].toLong()
+}
+
+println "KB available=${kbAvail}"</code></pre>
+
+<h2>Known failures</h2>
+<p>There are certain edge cases where Prism will fail.
+	There are always such cases in every regex-based syntax highlighter.
+	However, Prism dares to be open and honest about them.
+	If a failure is listed here, it doesn’t mean it will never be fixed. This is more of a “known bugs” list, just with a certain type of bug.
+</p>
+
+<h3>Comment-like substrings</h3>
+<pre><code>"foo /* bar */ baz"; "foo // bar";</code></pre>
+
+<h3>Slashy string containing escaped slash</h3>
+<pre><code>/foo\/bar/</code></pre>
