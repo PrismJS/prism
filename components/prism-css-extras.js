@@ -8,7 +8,7 @@ Prism.languages.css.selector = {
 	}
 };
 
-Prism.languages.insertBefore('css', 'ignore', {
+Prism.languages.insertBefore('css', 'function', {
 	'hexcode': /#[\da-f]{3,6}/gi,
 	'entity': /\\[\da-f]{1,8}/gi,
 	'number': /[\d%\.]+/g
