@@ -141,7 +141,7 @@ var _ = self.Prism = {
 	},
 
 	optimizeGrammar: function(grammar) {
-		if (!grammar || grammar._competition) {
+		if (!grammar || grammar._optimized) {
 			return;
 		}
 
@@ -160,6 +160,7 @@ var _ = self.Prism = {
 				if (patterns.competition) {
 					patterns._token = token;
 					competition.push(patterns);
+					grammar[token] = null;
 				}
 				continue;
 			}
@@ -168,16 +169,14 @@ var _ = self.Prism = {
 				var pattern = patterns[i],
 					type = _.util.type(pattern);
 
-				if (patterns.competition) {
-					patterns._token = token;
-					competition.push(pattern);
-				}
-
 				if (type === 'String') {
 					strings.push(pattern.replace(/[\-\[\]\/{}()*+?.\\^$|]/g, "\\$&"));
 				} else if (type === 'RegExp' && !/\\\d/.test(pattern.source)) {
 					var mods = (pattern.multiline ? 'm' : '') + (pattern.ignoreCase ? 'i' : '');
 					regex[mods].push(pattern.source);
+				} else if (pattern.competition) {
+					pattern._token = token;
+					competition.push(pattern);
 				} else {
 					rest.push(pattern);
 				}
@@ -193,12 +192,21 @@ var _ = self.Prism = {
 					patterns.push(RegExp('(?:' + regex[mods].join('|') + ')', mods));
 				}
 			}
-			patterns = patterns.concat(rest);
-			grammar[token] = patterns.length == 1 ? patterns[0] : patterns;
+
+			Array.prototype.push.apply(patterns, rest);
+			grammar[token] = !patterns.length ? null : patterns.length == 1 ? patterns[0] : patterns;
 		}
 
+		if (competition.length) {
+			var pattern = grammar[competition[0]._token];
+			if (pattern) {
+				Array.prototype.push.apply(pattern, competition);
+			} else {
+				grammar[competition[0]._token] = competition;
+			}
+		}
 		// Add a property that is not enumerable, to avoid checking this grammar again
-		Object.defineProperty(grammar, '_competition', {value: competition});
+		Object.defineProperty(grammar, '_optimized', {value: true});
 	},
 
 	highlightAll: function(async, callback) {
@@ -220,7 +228,6 @@ var _ = self.Prism = {
 		if (parent) {
 			language = (parent.className.match(lang) || [,''])[1];
 			grammar = _.languages[language];
-			_.optimizeGrammar(grammar);
 		}
 
 		if (!grammar) {
@@ -292,12 +299,11 @@ var _ = self.Prism = {
 	},
 
 	tokenize: function(text, grammar, language) {
-		var Token = _.Token;
+		var Token = _.Token,
+		    strarr = [text],
+		    rest = grammar.rest;
 
-		var strarr = [text];
-
-		var rest = grammar.rest;
-
+		_.optimizeGrammar(grammar);
 		if (rest) {
 			_.optimizeGrammar(rest);
 
@@ -315,7 +321,7 @@ var _ = self.Prism = {
 
 			var patterns = grammar[token];
 
-			patterns = (_.util.type(patterns) === "Array") ? patterns : patterns.competition ? grammar._competition : [patterns];
+			patterns = (_.util.type(patterns) === "Array") ? patterns : [patterns];
 
 			for (var i = 0; i < strarr.length; i++) { // Don’t cache length as it changes during the loop
 				var str = strarr[i];
@@ -363,8 +369,7 @@ var _ = self.Prism = {
 						args.push(before);
 					}
 
-					var wrapped = new Token(pattern._token || token, inside? _.tokenize(match, inside) : match, alias);
-
+					var wrapped = new Token(pattern._token || token, inside ? _.tokenize(match, inside) : match, alias);
 					args.push(wrapped);
 
 					if (after) {
