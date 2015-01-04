@@ -35,7 +35,7 @@
 	// surround markup
 	Prism.languages.insertBefore('handlebars', 'tag', {
 		'handlebars-comment': {
-			pattern: /\{\{![\w\W]*\}\}/g,
+			pattern: /\{\{![\w\W]*?\}\}/g,
 			alias: ['handlebars','comment']
 		}
 	});
