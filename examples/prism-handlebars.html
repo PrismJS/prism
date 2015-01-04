@@ -2,12 +2,13 @@
 <p>To use this language, use the class "language-handlebars".</p>
 
 <h2>Comments</h2>
-<pre><code>{{! This is a comment with &lt;p>some markup&lt;/p> in it }}</code></pre>
+<pre><code>{{! This is a comment with &lt;p>some markup&lt;/p> in it }}
+{{! This is a comment }} {{ this_is_not }}</code></pre>
 
 <h2>Variables</h2>
 <pre><code>&lt;p>{{ text }}&lt;/p>
 &lt;h1>{{article.title}}&lt;/h1>
-{{{ triple_slash_is_supported }}}
+{{{ triple_stash_is_supported }}}
 {{articles.[10].[#comments]}}</code></pre>
 
 <h2>Strings, numbers and booleans</h2>
