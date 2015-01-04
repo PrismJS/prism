@@ -354,33 +354,36 @@ var _ = self.Prism = {
 					pattern.lastIndex = 0;
 					var match = pattern.exec(str);
 					if (match) {
-						match._pattern = patterns[j];
-						competition.push(match);
+						var lookbehind = !!patterns[j].lookbehind,
+						    lookbehindLength = lookbehind ? match[1].length : 0,
+						    from = match.index + lookbehindLength,
+						    len = match[0].length - lookbehindLength;
+
+						competition.push({
+							match: match,
+							pattern: patterns[j],
+							from: from,
+							to: from + len
+						});
 					}
 				}
 
 				if (competition.length) {
-					competition.sort(function(a, b){return (a.index-b.index) ? a.index-b.index : a.length-b.length});
+					competition.sort(function(a, b){return (a.from-b.from) ? a.from-b.from : a.len-b.len});
 
 					var match = competition[0],
-					    pattern = match._pattern,
+					    pattern = match.pattern,
 					    inside = pattern.inside,
-					    lookbehind = !!pattern.lookbehind,
-					    lookbehindLength = lookbehind ? match[1].length : 0,
-					    alias = pattern.alias,
-					    from = match.index - 1 + lookbehindLength,
-					    match = match[0].slice(lookbehindLength),
-					    len = match.length,
-					    to = from + len,
-					    before = str.slice(0, from + 1),
-					    after = str.slice(to + 1),
+					    before = str.slice(0, match.from),
+					    after = str.slice(match.to),
+					    match = str.slice(match.from, match.to),
 					    args = [i, 1];
 
 					if (before) {
 						args.push(before);
 					}
 
-					var wrapped = new Token(pattern._token || token, inside ? _.tokenize(match, inside) : match, alias);
+					var wrapped = new Token(pattern._token || token, inside ? _.tokenize(match, inside) : match, pattern.alias);
 					args.push(wrapped);
 
 					if (after) {
