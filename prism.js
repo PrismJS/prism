@@ -142,20 +142,25 @@ var _ = self.Prism = {
 					}
 				}
 			}
+			delete o._optimized;
 		}
 	},
 
 	optimizeGrammar: function(grammar) {
 		if (!grammar || grammar._optimized) {
-			return;
+			return grammar._optimized;
 		}
 
-		var competition = [];
+		var competition = [],
+		    oldGrammar = grammar;
+		grammar = {}
 
-		for (var token in grammar) {
-			if (!grammar.hasOwnProperty(token) || !grammar[token]) {
+		for (var token in oldGrammar) {
+			if (!oldGrammar.hasOwnProperty(token) || !oldGrammar[token]) {
 				continue;
 			}
+
+			grammar[token] = oldGrammar[token];
 
 			var patterns = grammar[token],
 			    strings = [], rest = [],
@@ -166,6 +171,7 @@ var _ = self.Prism = {
 					patterns._token = token;
 					competition.push(patterns);
 					grammar[token] = null;
+					grammar._competition = competition;
 				}
 				continue;
 			}
@@ -182,6 +188,7 @@ var _ = self.Prism = {
 				} else if (pattern.competition) {
 					pattern._token = token;
 					competition.push(pattern);
+					grammar._competition = competition;
 				} else {
 					rest.push(pattern);
 				}
@@ -202,16 +209,10 @@ var _ = self.Prism = {
 			grammar[token] = !patterns.length ? null : patterns.length == 1 ? patterns[0] : patterns;
 		}
 
-		if (competition.length) {
-			var pattern = grammar[competition[0]._token];
-			if (pattern) {
-				Array.prototype.push.apply(pattern, competition);
-			} else {
-				grammar[competition[0]._token] = competition;
-			}
-		}
+		grammar._competition = competition.length ? competition : null;
 		// Add a property that is not enumerable, to avoid checking this grammar again
-		Object.defineProperty(grammar, '_optimized', {value: true});
+		Object.defineProperty(oldGrammar, '_optimized', {configurable: true, value: grammar});
+		return grammar;
 	},
 
 	highlightAll: function(async, callback) {
@@ -308,15 +309,20 @@ var _ = self.Prism = {
 		    strarr = [text],
 		    rest = grammar.rest;
 
-		_.optimizeGrammar(grammar);
+		delete grammar.rest;
+
+		grammar = _.optimizeGrammar(grammar);
+
 		if (rest) {
-			_.optimizeGrammar(rest);
+			rest = _.optimizeGrammar(rest);
 
 			for (var token in rest) {
-				grammar[token] = rest[token];
+				if (token == '_competition' && grammar[token]) {
+					Array.prototype.push.apply(grammar[token], rest[token]);
+				} else {
+					grammar[token] = rest[token];
+				}
 			}
-
-			delete grammar.rest;
 		}
 
 		tokenloop: for (var token in grammar) {
@@ -612,14 +618,19 @@ Prism.languages.clike = {
 	'comment': [
 		{
 			pattern: /(^|[^\\])\/\*[\w\W]*?\*\//g,
-			lookbehind: true
+			lookbehind: true,
+			competition: true
 		},
 		{
 			pattern: /(^|[^\\:])\/\/.*?(\r?\n|$)/g,
-			lookbehind: true
+			lookbehind: true,
+			competition: true
 		}
 	],
-	'string': /("|')(\\?.)*?\1/g,
+	'string': {
+		pattern: /("|')(\\?.)*?\1/g,
+		competition: true
+	},
 	'class-name': {
 		pattern: /((?:(?:class|interface|extends|implements|trait|instanceof|new)\s+)|(?:catch\s+\())[a-z0-9_\.\\]+/ig,
 		lookbehind: true,
@@ -655,7 +666,8 @@ Prism.languages.javascript = Prism.languages.extend('clike', {
 Prism.languages.insertBefore('javascript', 'keyword', {
 	'regex': {
 		pattern: /(^|[^/])\/(?!\/)(\[.+?]|\\.|[^/\r\n])+\/[gim]{0,3}(?=\s*($|[\r\n,.;})]))/g,
-		lookbehind: true
+		lookbehind: true,
+		competition: true
 	}
 });
 
