@@ -201,7 +201,7 @@ var components = {
 			"owner" : "bacchus123"
 		},
 		"nasm": {
-			"title": "nasm",
+			"title": "NASM",
 			"owner": "rbmj"
 		},
 		"perl": {
