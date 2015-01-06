@@ -34,7 +34,8 @@ var components = {
 	"languages": {
 		"meta": {
 			"path": "components/prism-{id}",
-			"noCSS": true
+			"noCSS": true,
+			"examplesPath": "examples/prism-{id}"
 		},
 		"markup": {
 			"title": "Markup",
@@ -57,6 +58,10 @@ var components = {
 		"clike": {
 			"title": "C-like",
 			"option": "default"
+		},
+		"eiffel": {
+			"title": "Eiffel",
+			"owner": "Conaclos"
 		},
 		"javascript": {
 			"title": "JavaScript",
@@ -196,7 +201,7 @@ var components = {
 			"owner" : "bacchus123"
 		},
 		"nasm": {
-			"title": "nasm",
+			"title": "NASM",
 			"owner": "rbmj"
 		},
 		"perl": {
@@ -205,6 +210,7 @@ var components = {
 		},
 		"handlebars": {
 			"title": "Handlebars",
+			"require": "markup",
 			"owner": "Golmote"
 		},
 		"matlab": {
@@ -257,6 +263,14 @@ var components = {
 		"dart": {
 			"title": "Dart",
 			"require": "clike",
+			"owner": "Golmote"
+		},
+		"powershell": {
+			"title": "PowerShell",
+			"owner": "nauzilus"
+		},
+		"smarty": {
+			"title": "Smarty",
 			"owner": "Golmote"
 		},
 		"actionscript": {
