@@ -33,7 +33,7 @@ if (qstr) {
 				if (components[category][id].option) {
 					delete components[category][id].option;
 				}
-			};
+			}
 			ids.forEach(function(id) {
 				if (id !== 'meta') {
 					if (components[category][id]) {
@@ -187,7 +187,7 @@ form.elements.compression[1].onclick = function() {
 	minified = !!+this.value;
 	
 	getFilesSizes();
-}
+};
 
 function getFileSize(filepath) {
 	return treePromise.then(function(tree) {
@@ -242,7 +242,7 @@ function getFileContents(filepath) {
 		$u.xhr({
 			url: filepath,
 			callback: function(xhr) {
-				if (xhr.status < 400) {
+				if (xhr.status < 400 && xhr.responseText) {
 					resolve(xhr.responseText);
 				} else {
 					reject();
@@ -361,7 +361,19 @@ function generateCode(){
 		}
 	}
 
-	buildCode(promises).then(function(code) {
+	// Hide error message if visible
+	var error = $('#download .error');
+	error.style.display = '';
+
+	buildCode(promises).then(function(res) {
+		var code = res.code;
+		var errors = res.errors;
+
+		if(errors.length) {
+			error.style.display = 'block';
+			error.innerHTML = '';
+			$u.element.contents(error, errors);
+		}
 	
 		var redownloadUrl = window.location.href.split("?")[0] + "?";
 		for (var category in redownload) {
@@ -384,6 +396,8 @@ function buildCode(promises) {
 	var i = 0,
 	    l = promises.length;
 	var code = {js: '', css: ''};
+	var errors = [];
+
 	var f = function(resolve) {
 		if(i < l) {
 			var p = promises[i];
@@ -393,12 +407,17 @@ function buildCode(promises) {
 				f(resolve);
 			});
 			p.contentsPromise['catch'](function() {
-				code[p.type] += '/* Error downloading file '+p.path+' */' + '\n';
+				errors.push($u.element.create({
+					tag: 'p',
+					prop: {
+						textContent: 'An error occurred while fetching the file "' + p.path + '".'
+					}
+				}));
 				i++;
 				f(resolve);
 			});
 		} else {
-			resolve(code);
+			resolve({code: code, errors: errors});
 		}
 	};
 

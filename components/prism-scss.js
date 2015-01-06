@@ -27,7 +27,7 @@ Prism.languages.insertBefore('scss', 'property', {
 	'variable': /((\$[-_\w]+)|(#\{\$[-_\w]+\}))/i
 });
 
-Prism.languages.insertBefore('scss', 'ignore', {
+Prism.languages.insertBefore('scss', 'function', {
 	'placeholder': /%[-_\w]+/i,
 	'statement': /\B!(default|optional)\b/gi,
 	'boolean': /\b(true|false)\b/g,

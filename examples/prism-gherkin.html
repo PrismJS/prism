@@ -1,0 +1,31 @@
+<h1>Gherkin</h1>
+<p>To use this language, use the class "language-gherkin".</p>
+
+<h2>Comments</h2>
+<pre><code>// Single line comment
+/* Multi-line
+comment */</code></pre>
+
+<h2>Strings</h2>
+<pre><code>"foo \"bar\" baz"
+'foo \'bar\' baz'</code></pre>
+
+<h2>Keywords</h2>
+<pre><code>Feature: Some terse yet descriptive text of what is desired
+  In order to realize a named business value
+  As an explicit system actor
+  I want to gain some beneficial outcome which furthers the goal
+
+  Additional text...
+
+  Scenario: Some determinable business situation
+    Given some precondition
+    And some other precondition
+    When some action by the actor
+    And some other action
+    And yet another action
+    Then some testable outcome is achieved
+    And something else we can check happens too
+
+  Scenario: A different situation
+    ...</code></pre>
