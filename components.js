@@ -268,6 +268,10 @@ var components = {
 		"powershell": {
 			"title": "PowerShell",
 			"owner": "nauzilus"
+		},
+		"smarty": {
+			"title": "Smarty",
+			"owner": "Golmote"
 		}
 	},
 	"plugins": {
