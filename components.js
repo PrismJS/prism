@@ -271,6 +271,7 @@ var components = {
 		},
 		"smarty": {
 			"title": "Smarty",
+			"require": "markup",
 			"owner": "Golmote"
 		},
 		"actionscript": {
