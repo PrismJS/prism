@@ -28,59 +28,62 @@ $/.*"(.*)".*/(.*)/$</code></pre>
 'No interpolation here : ${21*2}'</code></pre>
 
 <h2>Full example</h2>
-<pre><code>/*
-    The input string to parse is from...
-    <...the rest of the header comment from above...>
-*/
-boolean debugging = true
+<pre><code>#!/usr/bin/env groovy
+package model
 
-if (debugging) {
-    // Test data
-    dfkOutput = '''
-Filesystem           1K-blocks      Used Available Use% Mounted on
-/dev/sda1              4185956   1206996   2762888  31% /
-/dev/sda11            30679784  28324040    772140  98% /extra
-fas3050c-1-2.b:/vol/canis
-                      10485760   6599936   3885824  63% /nfs/data_d2/dog_data
-fas6070-1-1.b:/vol/felis
-                     314572800  54889600 259683200  18% /nfs/DATA-1/cat_data
-'''
-} else {
-    // Real data
-    dfkOutput = 'df -k'.execute().text
+import groovy.transform.CompileStatic
+import java.util.List as MyList
+
+trait Distributable {
+    void distribute(String version) {}
 }
 
-long kbAvail = 0
+@CompileStatic
+class Distribution implements Distributable {
+    double number = 1234.234 / 567
+    def otherNumber = 3 / 4
+    boolean archivable = condition ?: true
+    def ternary = a ? b : c
+    String name = "Guillaume"
+    Closure description = null
+    List&lt;DownloadPackage> packages = []
+    String regex = ~/.*foo.*/
+    String multi = '''
+        multi line string
+    ''' + """
+        now with double quotes and ${gstring}
+    """ + $/
+        even with dollar slashy strings
+    /$
 
-regex =  '''(?ix)      # enable case-insensitive matches, extended patterns
-            (\\d+)     # 1: The disk space we want
-            \\s+       # some whitespace
-            \\d+%      # a number followed by??%
-            \\s+       # some more whitespace
-            (/nfs/data.*)  # 2: partition name'''
+    /**
+     * description method
+     * @param cl the closure
+     */
+    void description(Closure cl) { this.description = cl }
 
-pattern = ~regex
-matcher = pattern.matcher(dfkOutput)
+    void version(String name, Closure versionSpec) {
+        def closure = { println "hi" } as Runnable
 
-if (debugging) {
-    println """matcher pattern:
-/---------------------------------\\
-${matcher.pattern()}
-\\---------------------------------/"""
+        MyList ml = [1, 2, [a: 1, b:2,c :3]]
+        for (ch in "name") {}
 
-    println "match count=${matcher.getCount()}"
-}
+        // single line comment
+        DownloadPackage pkg = new DownloadPackage(version: name)
 
-for (i=0; i < matcher.getCount(); i++) {
-    if (debugging) {
-        println "    text matched in matcher[${i}]: '" + matcher[i][0] + "'"
-        println "        free space in  (group 1): '" + matcher[i][1] + "'"
-        println "        partition name (group 2): '" + matcher[i][2] + "'"
+        check that: true
+
+        label:
+        def clone = versionSpec.rehydrate(pkg, pkg, pkg)
+        /*
+            now clone() in a multiline comment
+        */
+        clone()
+        packages.add(pkg)
+
+        assert 4 / 2 == 2
     }
-    kbAvail += matcher[i][1].toLong()
-}
-
-println "KB available=${kbAvail}"</code></pre>
+}</code></pre>
 
 <h2>Known failures</h2>
 <p>There are certain edge cases where Prism will fail.
@@ -92,5 +95,5 @@ println "KB available=${kbAvail}"</code></pre>
 <h3>Comment-like substrings</h3>
 <pre><code>"foo /* bar */ baz"; "foo // bar";</code></pre>
 
-<h3>Slashy strings containing (escaped) slashes</h3>
-<pre><code>/foo\/bar/</code></pre>
+<h3>Two divisions on the same line</h3>
+<pre><code>2 / 3 / 4</code></pre>
