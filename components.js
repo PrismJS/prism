@@ -272,6 +272,11 @@ var components = {
 		"smarty": {
 			"title": "Smarty",
 			"owner": "Golmote"
+		},
+		"actionscript": {
+			"title": "ActionScript",
+			"require": "javascript",
+			"owner": "Golmote"
 		}
 	},
 	"plugins": {
