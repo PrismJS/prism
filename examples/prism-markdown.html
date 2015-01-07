@@ -55,6 +55,22 @@ is not allowed__
 > And a [link](http://example.com)
 </code></pre>
 
+<h2>Code</h2>
+<pre><code>Inline code between backticks `some_code()`
+
+    some_code(); /* Indented
+    with four spaces */
+
+	some_code(); /* Indented
+	with a tab */
+</code></pre>
+
+<h2>Raw HTML</h2>
+<pre><code>> This is a quotation
+> Containing &lt;strong>raw HTML&lt;/strong>
+
+&lt;p>*Italic text inside HTML tag*&lt;/p></code></pre>
+
 <h2>Known failures</h2>
 <p>There are certain edge cases where Prism will fail.
 	There are always such cases in every regex-based syntax highlighter.
@@ -62,7 +78,7 @@ is not allowed__
 	If a failure is listed here, it doesn’t mean it will never be fixed. This is more of a “known bugs” list, just with a certain type of bug.
 </p>
 
-<h3>Nested elements</h3>
+<h3>Nested elements are not supported</h3>
 <pre><code>_ **bold** inside italic _
 
 __ *italic* inside bold __
@@ -70,3 +86,9 @@ __ *italic* inside bold __
 __ [Bold link?](http://example.com) __
 
 [Link in *italic*](http://example.com)</code></pre>
+
+<h3>HTML inside code blocks is not highlighted as code</h3>
+<pre><code>Some `&lt;html>`
+
+    Block of &lt;strong>HTML&lt;/strong>
+    which is &lt;em>not&lt;/em> highlighted as code.</code></pre>
