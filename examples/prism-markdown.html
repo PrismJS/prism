@@ -79,15 +79,14 @@ is not allowed__
 </p>
 
 <h3>Nesting of elements is not fully supported</h3>
-<pre><code>_ **bold** inside italic does not work _
+<pre><code>_ **bold** inside italic DOESN'T work _
+__ but *italic* inside bold DOES work __
 
-__ *italic* inside bold does work __
+[Link partially *italic* DOESN'T work](http://example.com)
+_ [But link inside italic DOES work](http://example.com) _
 
-_ [Italic link does work](http://example.com) _
-__ [Bold link does work](http://example.com) __
-
-[Link partially *italic* does not work](http://example.com)
-[Link partially **bold** does not work](http://example.com)</code></pre>
+[Link partially **bold** DOESN'T work](http://example.com)
+__ [But link inside bold DOES work](http://example.com) __</code></pre>
 
 <h3>Markdown-like HTML attribute</h3>
 <pre><code>&lt;p class="_test_">&lt;/p></code></pre>
