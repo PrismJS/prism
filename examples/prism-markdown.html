@@ -56,7 +56,7 @@ is not allowed__
 </code></pre>
 
 <h2>Code</h2>
-<pre><code>Inline code between backticks `some_code()`
+<pre><code>Inline code between backticks `&lt;p>Paragraph&lt;/p>`
 
     some_code(); /* Indented
     with four spaces */
@@ -78,17 +78,16 @@ is not allowed__
 	If a failure is listed here, it doesn’t mean it will never be fixed. This is more of a “known bugs” list, just with a certain type of bug.
 </p>
 
-<h3>Nested elements are not supported</h3>
-<pre><code>_ **bold** inside italic _
+<h3>Nesting of elements is not fully supported</h3>
+<pre><code>_ **bold** inside italic does not work _
 
-__ *italic* inside bold __
+__ *italic* inside bold does work __
 
-__ [Bold link?](http://example.com) __
+_ [Italic link does work](http://example.com) _
+__ [Bold link does work](http://example.com) __
 
-[Link in *italic*](http://example.com)</code></pre>
+[Link partially *italic* does not work](http://example.com)
+[Link partially **bold** does not work](http://example.com)</code></pre>
 
-<h3>HTML inside code blocks is not highlighted as code</h3>
-<pre><code>Some `&lt;html>`
-
-    Block of &lt;strong>HTML&lt;/strong>
-    which is &lt;em>not&lt;/em> highlighted as code.</code></pre>
+<h3>Markdown-like HTML attribute</h3>
+<pre><code>&lt;p class="_test_">&lt;/p></code></pre>

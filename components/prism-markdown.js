@@ -1,4 +1,5 @@
-Prism.languages.markdown = Prism.languages.extend('markup', {
+Prism.languages.markdown = Prism.languages.extend('markup', {});
+Prism.languages.insertBefore('markdown', 'prolog', {
 	'blockquote': {
 		// > ...
 		pattern: /(^|\n)>(?:[\t ]*>)*/,
@@ -77,6 +78,28 @@ Prism.languages.markdown = Prism.languages.extend('markup', {
 		},
 		alias: 'url'
 	},
+	'bold': {
+		// **strong**
+		// __strong__
+
+		// Allow only one line break
+		pattern: /(^|[^\\])(\*\*|__)(?:\n(?!\n)|.)+?\2/,
+		lookbehind: true,
+		inside: {
+			'punctuation': /^\*\*|^__|\*\*\s*$|__\s*$/
+		}
+	},
+	'italic': {
+		// *em*
+		// _em_
+
+		// Allow only one line break
+		pattern: /(^|[^\\])(?:\*(?:\n(?!\n)|.)+?\*|_(?:\n(?!\n)|.)+?_)/,
+		lookbehind: true,
+		inside: {
+			'punctuation': /^[*_]|[*_]$/
+		}
+	},
 	'url': {
 		// [example](http://example.com "Optional title")
 		// [example] [id]
@@ -90,31 +113,10 @@ Prism.languages.markdown = Prism.languages.extend('markup', {
 				pattern: /"(?:[^"]|\\")*"(?=\)$)/
 			}
 		}
-	},
-	'bold': [
-		{
-			// **strong**
-			// __strong__
-
-			// Allow only one line break
-			pattern: /(^|[^\\])(\*\*|__)(?:\n(?!\n)|.)+?\2/,
-			lookbehind: true,
-			inside: {
-				'punctuation': /^\*\*|^__|\*\*\s*$|__\s*$/
-			}
-		}
-	],
-	'italic': [
-		{
-			// *em*
-			// _em_
-
-			// Allow only one line break
-			pattern: /(^|[^\\])(?:\*(?:\n(?!\n)|.)+?\*|_(?:\n(?!\n)|.)+?_)/,
-			lookbehind: true,
-			inside: {
-				'punctuation': /^[*_]|[*_]$/
-			}
-		}
-	]
+	}
 });
+
+Prism.languages.markdown['bold'].inside['url'] = Prism.languages.markdown['url'];
+Prism.languages.markdown['italic'].inside['url'] = Prism.languages.markdown['url'];
+Prism.languages.markdown['bold'].inside['italic'] = Prism.languages.markdown['italic'];
+Prism.languages.markdown['italic'].inside['bold'] = Prism.languages.markdown['bold'];
