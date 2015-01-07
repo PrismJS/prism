@@ -3,7 +3,7 @@ Prism.languages.markdown = Prism.languages.extend('markup', {
 		// > ...
 		pattern: /(^|\n)>(?:[\t ]*>)*/,
 		lookbehind: true,
-		alias: 'operator'
+		alias: 'punctuation'
 	},
 	'code': [
 		{
@@ -27,14 +27,20 @@ Prism.languages.markdown = Prism.languages.extend('markup', {
 			// title 2
 			// -------
 			pattern: /\w+.*\n(?:==+|--+)/,
-			alias: 'important'
+			alias: 'important',
+			inside: {
+				punctuation: /==+$|--+$/
+			}
 		},
 		{
 			// # title 1
 			// ###### title 6
 			pattern: /((?:^|\n)\s*)#+.+/,
 			lookbehind: true,
-			alias: 'important'
+			alias: 'important',
+			inside: {
+				punctuation: /^#+|#+$/
+			}
 		}
 	],
 	'hr': {
@@ -42,7 +48,8 @@ Prism.languages.markdown = Prism.languages.extend('markup', {
 		// ---
 		// * * *
 		// -----------
-		pattern: /([*-])([\t ]*\1){2,}/,
+		pattern: /((?:^|\n)\s*)([*-])([\t ]*\2){2,}(?=\s*(?:\n|$))/,
+		lookbehind: true,
 		alias: 'punctuation'
 	},
 	'list': {
@@ -50,55 +57,64 @@ Prism.languages.markdown = Prism.languages.extend('markup', {
 		// + item
 		// - item
 		// 1. item
-		pattern: /(?:[*+-]|\d+\.)(?=[\t ].)/,
-		alias: 'operator'
+		pattern: /((?:^|\n)\s*)(?:[*+-]|\d+\.)(?=[\t ].)/,
+		lookbehind: true,
+		alias: 'punctuation'
 	},
-	'link-reference': {
+	'url-reference': {
 		// [id]: http://example.com "Optional title"
 		// [id]: http://example.com 'Optional title'
 		// [id]: http://example.com (Optional title)
 		// [id]: <http://example.com> "Optional title"
 		pattern: /!?\[[^\]]+\]:[\t ]+(?:\S+|<(?:[^>]|\\>)+>)(?:[\t ]+(?:"(?:[^"]|\\")*"|'(?:[^']|\\')*'|\((?:[^)]|\\\))*\)))?/,
-		alias: 'symbol namespace'
-	},
-	'link': [
-		{
-			// [example](http://example.com "Optional title")
-			pattern: /!?\[[^\]]+\]\([^\s)]+(?:[\t ]+"(?:[^"]|\\")*")?\)/,
-			alias: 'symbol'
+		inside: {
+			'variable': {
+				pattern: /^(!?\[)[^\]]+/,
+				lookbehind: true
+			},
+			'string': /(?:"(?:[^"]|\\")*"|'(?:[^']|\\')*'|\((?:[^)]|\\\))*\))$/,
+			'punctuation': /[[\]\(\)<>:]/
 		},
-		{
-			// [example] [id]
-			pattern: /!?\[[^\]]+\] ?\[[^\]\n]*\]/,
-			alias: 'symbol'
+		alias: 'url'
+	},
+	'url': {
+		// [example](http://example.com "Optional title")
+		// [example] [id]
+		pattern: /!?\[[^\]]+\](?:\([^\s)]+(?:[\t ]+"(?:[^"]|\\")*")?\)| ?\[[^\]\n]*\])/,
+		inside: {
+			'variable': {
+				pattern: /(!?\[)[^\]]+(?=\]$)/,
+				lookbehind: true
+			},
+			'string': {
+				pattern: /"(?:[^"]|\\")*"(?=\)$)/
+			}
 		}
-	],
-	'strong': [
+	},
+	'bold': [
 		{
 			// **strong**
 			// __strong__
-			pattern: /(^|[^\\])\*\*[\s\S]+?\*\*/,
+
+			// Allow only one line break
+			pattern: /(^|[^\\])(\*\*|__)(?:\n(?!\n)|.)+?\2/,
 			lookbehind: true,
-			alias: 'string'
-		},
-		{
-			pattern: /(^|[^\\])__[\s\S]+?__/,
-			lookbehind: true,
-			alias: 'string'
+			inside: {
+				'punctuation': /^\*\*|^__|\*\*\s*$|__\s*$/
+			}
 		}
 	],
-	'em': [
+	'italic': [
 		{
 			// *em*
-			pattern: /(^|[^\\])\*[^*\t ][^*]*\*/,
-			lookbehind: true,
-			alias: 'string'
-		},
-		{
 			// _em_
-			pattern: /(^|[^\\])_[^_]+_/,
+
+			// Allow only one line break
+			pattern: /(^|[^\\])(?:\*(?:\n(?!\n)|.)+?\*|_(?:\n(?!\n)|.)+?_)/,
 			lookbehind: true,
-			alias: 'string'
+			inside: {
+				'punctuation': /^[*_]|[*_]$/
+			}
 		}
 	]
 });
