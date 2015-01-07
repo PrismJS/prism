@@ -1,4 +1,8 @@
 Prism.languages.fortran = {
+	'quoted-number': {
+		pattern: /[BOZ](['"])[A-F0-9]+\1/i,
+		alias: 'number'
+	},
 	'string': {
 		pattern: /(?:\w+_)?(['"])(?:\1\1|&\n(?:\s*!.+\n)?|(?!\1).)*(?:\1|&)/,
 		inside: {
@@ -7,11 +11,7 @@ Prism.languages.fortran = {
 	},
 	'comment': /!.*/,
 	'boolean': /\.(?:TRUE|FALSE)\.(?:_\w+)?/i,
-	'number': [
-		/[BO](['"])\d+\1/i,
-		/Z(['"])[A-F0-9]+\1/i,
-		/(?:\b|[+-])(?:\d+(?:\.\d*)?|\.\d+)(?:[ED][+-]?\d+)?(?:_\w+)?/i
-	],
+	'number': /(?:\b|[+-])(?:\d+(?:\.\d*)?|\.\d+)(?:[ED][+-]?\d+)?(?:_\w+)?/i,
 	'keyword': [
 		// Types
 		/\b(?:INTEGER|REAL|DOUBLE ?PRECISION|COMPLEX|CHARACTER|LOGICAL)\b/i,
