@@ -278,6 +278,11 @@ var components = {
 			"title": "ActionScript",
 			"require": "javascript",
 			"owner": "Golmote"
+		},
+		"markdown": {
+			"title": "Markdown",
+			"require": "markup",
+			"owner": "Golmote"
 		}
 	},
 	"plugins": {
