@@ -57,7 +57,7 @@
 					/\bis\s+(?:not\s+)?(?:div|even|odd)(?:\s+by)?\b/,
 					/\b(?:eq|neq?|gt|lt|gt?e|lt?e|not|mod|or|and)\b/g
 				],
-				'keyword': /\b(?:false|off|on|no|true|yes)\b/g,
+				'keyword': /\b(?:false|off|on|no|true|yes)\b/g
 			}
 		}
 	});
