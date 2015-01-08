@@ -186,6 +186,8 @@ var _ = self.Prism = {
 			return;
 		}
 
+		code = code.replace(/^\n/,'');
+
 		var env = {
 			element: element,
 			language: language,
