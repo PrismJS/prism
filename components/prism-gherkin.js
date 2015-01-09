@@ -9,5 +9,5 @@ Prism.languages.gherkin = {
 	},
 	'string': /("|')(\\?.)*?\1/g,
 	'atrule': /\b(And|Given|When|Then|In order to|As an|I want to|As a)\b/g,
-	'keyword': /\b(Scenario Outline|Scenario|Feature|Background|Story)\b/g,
+	'keyword': /\b(Scenario Outline|Scenario|Feature|Background|Story)\b/g
 };
