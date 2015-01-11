@@ -113,9 +113,9 @@ var components = {
 			"owner": "multipetros"
 		},
 		"julia": {
-            "title": "julia",
-            "owner": "cdagnino"
-        },
+		"title": "julia",
+			"owner": "cdagnino"
+		},
 		"sql": {
 			"title": "SQL",
 			"owner": "multipetros"
