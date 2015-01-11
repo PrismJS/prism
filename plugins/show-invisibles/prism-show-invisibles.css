@@ -5,13 +5,16 @@
 }
 
 .token.tab:not(:empty):before {
-	content: '▸';
+    content: '\21E5';
 }
 
 .token.cr:before {
-	content: '␍';
+    content: '\240D';
 }
 
+.token.crlf:before {
+    content: '\240D\240A';
+}
 .token.lf:before {
-	content: '␊';
+    content: '\240A';
 }
