@@ -186,7 +186,7 @@ var _ = self.Prism = {
 			return;
 		}
 
-		code = code.replace(/^(?:\r\n|\r|\n)/,'');
+		code = code.replace(/^(?:\r?\n|\r)/,'');
 
 		var env = {
 			element: element,
