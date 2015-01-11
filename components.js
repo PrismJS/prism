@@ -34,7 +34,8 @@ var components = {
 	"languages": {
 		"meta": {
 			"path": "components/prism-{id}",
-			"noCSS": true
+			"noCSS": true,
+			"examplesPath": "examples/prism-{id}"
 		},
 		"markup": {
 			"title": "Markup",
@@ -57,6 +58,10 @@ var components = {
 		"clike": {
 			"title": "C-like",
 			"option": "default"
+		},
+		"eiffel": {
+			"title": "Eiffel",
+			"owner": "Conaclos"
 		},
 		"javascript": {
 			"title": "JavaScript",
@@ -196,7 +201,7 @@ var components = {
 			"owner" : "bacchus123"
 		},
 		"nasm": {
-			"title": "nasm",
+			"title": "NASM",
 			"owner": "rbmj"
 		},
 		"perl": {
@@ -205,6 +210,78 @@ var components = {
 		},
 		"handlebars": {
 			"title": "Handlebars",
+			"require": "markup",
+			"owner": "Golmote"
+		},
+		"matlab": {
+			"title": "MATLAB",
+			"owner": "Golmote"
+		},
+		"less": {
+			"title": "Less",
+			"require": "css",
+			"owner": "Golmote"
+		},
+		"r": {
+			"title": "R",
+			"owner": "Golmote"
+		},
+		"lolcode": {
+			"title": "LOLCODE",
+			"owner": "Golmote"
+		},
+		"fortran": {
+			"title": "Fortran",
+			"owner": "Golmote"
+		},
+		"erlang": {
+			"title": "Erlang",
+			"owner": "Golmote"
+		},
+		"haml": {
+			"title": "Haml",
+			"require": "ruby",
+			"owner": "Golmote"
+		},
+		"jade": {
+			"title": "Jade",
+			"require": "javascript",
+			"owner": "Golmote"
+		},
+		"pascal": {
+			"title": "Pascal",
+			"owner": "Golmote"
+		},
+		"applescript": {
+			"title": "AppleScript",
+			"owner": "Golmote"
+		},
+		"rust": {
+			"title": "Rust",
+			"owner": "Golmote"
+		},
+		"dart": {
+			"title": "Dart",
+			"require": "clike",
+			"owner": "Golmote"
+		},
+		"powershell": {
+			"title": "PowerShell",
+			"owner": "nauzilus"
+		},
+		"smarty": {
+			"title": "Smarty",
+			"require": "markup",
+			"owner": "Golmote"
+		},
+		"actionscript": {
+			"title": "ActionScript",
+			"require": "javascript",
+			"owner": "Golmote"
+		},
+		"markdown": {
+			"title": "Markdown",
+			"require": "markup",
 			"owner": "Golmote"
 		}
 	},

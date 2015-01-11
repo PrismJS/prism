@@ -1,11 +1,11 @@
 Prism.languages.ini= {
 	'comment': /^\s*;.*$/gm,
 	'important': /\[.*?\]/gm,
-	'constant': /^\s*[^\s\=]+?(?=[ \t]*\=)/gm,
+	'constant': /^\s*[^\s=]+?(?=[ \t]*=)/gm,
 	'attr-value': {
-		pattern: /\=.*/gm, 
+		pattern: /=.*/gm,
 		inside: {
-			'punctuation': /^[\=]/g
+			'punctuation': /^[=]/g
 		}
 	}
 };
