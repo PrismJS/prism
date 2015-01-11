@@ -181,6 +181,8 @@ var _ = self.Prism = {
 			return;
 		}
 
+		code = code.replace(/^(?:\r\n|\r|\n)/,'');
+
 		var env = {
 			element: element,
 			language: language,
@@ -210,7 +212,7 @@ var _ = self.Prism = {
 			}));
 		}
 		else {
-			env.highlightedCode = _.highlight(env.code, env.grammar, env.language)
+			env.highlightedCode = _.highlight(env.code, env.grammar, env.language);
 
 			_.hooks.run('before-insert', env);
 

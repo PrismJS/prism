@@ -186,6 +186,8 @@ var _ = self.Prism = {
 			return;
 		}
 
+		code = code.replace(/^(?:\r\n|\r|\n)/,'');
+
 		var env = {
 			element: element,
 			language: language,
@@ -215,7 +217,7 @@ var _ = self.Prism = {
 			}));
 		}
 		else {
-			env.highlightedCode = _.highlight(env.code, env.grammar, env.language)
+			env.highlightedCode = _.highlight(env.code, env.grammar, env.language);
 
 			_.hooks.run('before-insert', env);
 
@@ -464,7 +466,7 @@ Prism.languages.markup = {
 
 		}
 	},
-	'entity': /\&#?[\da-z]{1,8};/gi
+	'entity': /&#?[\da-z]{1,8};/gi
 };
 
 // Plugin to make entity title show the real entity, idea by Roman Komarov
@@ -483,7 +485,7 @@ Prism.hooks.add('wrap', function(env) {
 Prism.languages.css = {
 	'comment': /\/\*[\w\W]*?\*\//g,
 	'atrule': {
-		pattern: /@[\w-]+?.*?(;|(?=\s*{))/gi,
+		pattern: /@[\w-]+?.*?(;|(?=\s*\{))/gi,
 		inside: {
 			'punctuation': /[;:]/g
 		}
@@ -563,7 +565,7 @@ Prism.languages.clike = {
 		}
 	},
 	'number': /\b-?(0x[\dA-Fa-f]+|\d*\.?\d+([Ee]-?\d+)?)\b/g,
-	'operator': /[-+]{1,2}|!|<=?|>=?|={1,3}|&{1,2}|\|?\||\?|\*|\/|\~|\^|\%/g,
+	'operator': /[-+]{1,2}|!|<=?|>=?|={1,3}|&{1,2}|\|?\||\?|\*|\/|~|\^|%/g,
 	'ignore': /&(lt|gt|amp);/gi,
 	'punctuation': /[{}[\];(),.:]/g
 };

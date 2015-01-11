@@ -29,7 +29,7 @@ Prism.languages.markup = {
 
 		}
 	},
-	'entity': /\&#?[\da-z]{1,8};/gi
+	'entity': /&#?[\da-z]{1,8};/gi
 };
 
 // Plugin to make entity title show the real entity, idea by Roman Komarov
