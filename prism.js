@@ -493,7 +493,7 @@ Prism.languages.css = {
 	'url': /url\((["']?).*?\1\)/gi,
 	'selector': /[^\{\}\s][^\{\};]*(?=\s*\{)/g,
 	'property': /(\b|\B)[\w-]+(?=\s*:)/ig,
-	'string': /("|')(\\?.)*?\1/g,
+	'string': /("|')(\\\n|\\?.)*?\1/g,
 	'important': /\B!important\b/gi,
 	'punctuation': /[\{\};:]/g,
 	'function': /[-a-z0-9]+(?=\()/ig
