@@ -1,4 +1,4 @@
-self = (typeof window !== 'undefined')
+var self = (typeof window !== 'undefined')
 	? window   // if in browser
 	: (
 		(typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope)
