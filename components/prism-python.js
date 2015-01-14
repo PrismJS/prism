@@ -7,8 +7,7 @@ Prism.languages.python= {
 	'keyword' : /\b(as|assert|break|class|continue|def|del|elif|else|except|exec|finally|for|from|global|if|import|in|is|lambda|pass|print|raise|return|try|while|with|yield)\b/g,
 	'boolean' : /\b(True|False)\b/g,
 	'number' : /\b-?(0[box])?(?:[\da-f]+\.?\d*|\.\d+)(?:e[+-]?\d+)?j?\b/gi,
-	'operator' : /[-+]{1,2}|=?&lt;|=?&gt;|!|={1,2}|(&){1,2}|(&amp;){1,2}|\|?\||\?|\*|\/|~|\^|%|\b(or|and|not)\b/g,
-	'ignore' : /&(lt|gt|amp);/gi,
+	'operator' : /[-+]{1,2}|=?<|=?>|!|={1,2}|&{1,2}|\|?\||\?|\*|\/|~|\^|%|\b(or|and|not)\b/g,
 	'punctuation' : /[{}[\];(),.:]/g
 };
 
