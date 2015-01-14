@@ -21,7 +21,7 @@ Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(f
 	var language = Extensions[extension] || extension;
 	
 	var code = document.createElement('code');
-	code.className = 'language-' + language;
+	code.className = pre.className || 'language-' + language;
 	
 	pre.textContent = '';
 	
