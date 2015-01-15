@@ -112,6 +112,10 @@ var components = {
 			"title": "Python",
 			"owner": "multipetros"
 		},
+		"julia": {
+			"title": "julia",
+			"owner": "cdagnino"
+		},
 		"sql": {
 			"title": "SQL",
 			"owner": "multipetros"
