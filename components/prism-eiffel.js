@@ -1,11 +1,11 @@
 Prism.languages.eiffel = {
 	'string': [
+		// Single-line string
+		/"(?:%\s+%|%"|.)*?"/,
 		// Aligned-verbatim-strings
 		/"([^[]*)\[[\s\S]+?\]\1"/,
 		// Non-aligned-verbatim-strings
-		/"([^{]*)\{[\s\S]+?\}\1"/,
-		// Single-line string
-		/"(?:%\s+%|%"|.)*?"/
+		/"([^{]*)\{[\s\S]+?\}\1"/
 	],
 	// (comments including quoted strings not supported)
 	'comment': /--.*/,
