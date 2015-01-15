@@ -34,7 +34,8 @@ var components = {
 	"languages": {
 		"meta": {
 			"path": "components/prism-{id}",
-			"noCSS": true
+			"noCSS": true,
+			"examplesPath": "examples/prism-{id}"
 		},
 		"markup": {
 			"title": "Markup",
@@ -57,6 +58,10 @@ var components = {
 		"clike": {
 			"title": "C-like",
 			"option": "default"
+		},
+		"eiffel": {
+			"title": "Eiffel",
+			"owner": "Conaclos"
 		},
 		"javascript": {
 			"title": "JavaScript",
@@ -106,6 +111,10 @@ var components = {
 		"python": {
 			"title": "Python",
 			"owner": "multipetros"
+		},
+		"julia": {
+			"title": "julia",
+			"owner": "cdagnino"
 		},
 		"sql": {
 			"title": "SQL",
@@ -196,7 +205,7 @@ var components = {
 			"owner" : "bacchus123"
 		},
 		"nasm": {
-			"title": "nasm",
+			"title": "NASM",
 			"owner": "rbmj"
 		},
 		"perl": {
@@ -205,6 +214,7 @@ var components = {
 		},
 		"handlebars": {
 			"title": "Handlebars",
+			"require": "markup",
 			"owner": "Golmote"
 		},
 		"matlab": {
@@ -257,6 +267,25 @@ var components = {
 		"dart": {
 			"title": "Dart",
 			"require": "clike",
+			"owner": "Golmote"
+		},
+		"powershell": {
+			"title": "PowerShell",
+			"owner": "nauzilus"
+		},
+		"smarty": {
+			"title": "Smarty",
+			"require": "markup",
+			"owner": "Golmote"
+		},
+		"actionscript": {
+			"title": "ActionScript",
+			"require": "javascript",
+			"owner": "Golmote"
+		},
+		"markdown": {
+			"title": "Markdown",
+			"require": "markup",
 			"owner": "Golmote"
 		},
 		"polymer": {

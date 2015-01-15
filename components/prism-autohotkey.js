@@ -5,11 +5,11 @@ Prism.languages.autohotkey= {
 		lookbehind: true
 	},
 	'string': /"(([^"\n\r]|"")*)"/gm,
-	'function': /[^\(\); \t\,\n\+\*\-\=\?>:\\\/<\&%\[\]]+?(?=\()/gm,  //function - don't use .*\) in the end bcoz string locks it
+	'function': /[^\(\); \t,\n\+\*\-=\?>:\\\/<&%\[\]]+?(?=\()/gm,  //function - don't use .*\) in the end bcoz string locks it
 	'tag': /^[ \t]*[^\s:]+?(?=:[^:])/gm,  //labels
-	'variable': /\%\w+\%/g,
+	'variable': /%\w+%/g,
 	'number': /\b-?(0x[\dA-Fa-f]+|\d*\.?\d+([Ee]-?\d+)?)\b/g,
-	'operator': /[\+\-\*\\\/:=\?\&\|<>]/g,
+	'operator': /[\+\-\*\\\/:=\?&\|<>]/g,
 	'punctuation': /[\{}[\]\(\):]/g,
 	'boolean': /\b(true|false)\b/g,
 

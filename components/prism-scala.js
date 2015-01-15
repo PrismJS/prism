@@ -5,4 +5,5 @@ Prism.languages.scala = Prism.languages.extend('java', {
 	'symbol': /'([^\d\s]\w*)/g,
 	'string': /(""")[\W\w]*?\1|("|\/)[\W\w]*?\2|('.')/g
 });
-delete Prism.languages.scala['class-name','function'];
+delete Prism.languages.scala['class-name'];
+delete Prism.languages.scala['function'];

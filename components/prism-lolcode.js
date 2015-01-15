@@ -6,10 +6,10 @@ Prism.languages.lolcode = {
 	'string': {
 		pattern: /"(?::.|[^"])*"/,
 		inside: {
-			'variable': /:\{[^}+]\}/,
+			'variable': /:\{[^}]+\}/,
 			'symbol': [
 				/:\([a-f\d]+\)/i,
-				/:\[[^\]]\]/,
+				/:\[[^\]]+\]/,
 				/:[)>o":]/
 			]
 		}

@@ -125,8 +125,12 @@ code[class*="language-"]::selection, code[class*="language-"] ::selection {
 	color: hsl(42, 75%, 65%); /* #E9C062 */
 }
 
-.token.important {
+.token.important,
+.token.bold {
 	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
 }
 
 .token.entity {
