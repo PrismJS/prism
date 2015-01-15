@@ -16,7 +16,7 @@
 				},
 				'string': /(["'])(\\?.)+?\1/g,
 				'number': /\b-?\d*\.?\d+\b/g,
-				'keywords': /\b(in|as)\b/,
+				'keyword': /\b(in|as)\b/,
 				'function': [
 					/(?!\d)\w+(?=\()/g,
 					{
