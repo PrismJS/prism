@@ -33,6 +33,11 @@ var _ = self.Prism = {
 			return Object.prototype.toString.call(o).match(/\[object (\w+)\]/)[1];
 		},
 
+		addLanguageClass: function (e, language) {
+			var classes = e.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language;
+			return classes.trim();
+		},
+
 		// Deep clone a language definition (e.g. to extend it)
 		clone: function (o) {
 			var type = _.util.type(o);
@@ -80,19 +85,19 @@ var _ = self.Prism = {
 		insertBefore: function (inside, before, insert, root) {
 			root = root || _.languages;
 			var grammar = root[inside];
-			
+
 			if (arguments.length == 2) {
 				insert = arguments[1];
-				
+
 				for (var newToken in insert) {
 					if (insert.hasOwnProperty(newToken)) {
 						grammar[newToken] = insert[newToken];
 					}
 				}
-				
+
 				return grammar;
 			}
-			
+
 			var ret = {};
 
 			for (var token in grammar) {
@@ -112,7 +117,7 @@ var _ = self.Prism = {
 					ret[token] = grammar[token];
 				}
 			}
-			
+
 			// Update references in other language definitions
 			_.languages.DFS(_.languages, function(key, value) {
 				if (value === root[inside] && key != inside) {
@@ -166,13 +171,13 @@ var _ = self.Prism = {
 		}
 
 		// Set language on the element, if not present
-		element.className = element.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language;
+		element.className = _.util.addLanguageClass(element, language);
 
 		// Set language on the parent, for styling
 		parent = element.parentNode;
 
 		if (/pre/i.test(parent.nodeName)) {
-			parent.className = parent.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language;
+			parent.className = _.util.addLanguageClass(element, language);
 		}
 
 		var code = element.textContent;
