@@ -13,9 +13,9 @@ Prism.languages.insertBefore('inside', 'attr-value',{
 		inside: {
 			'function' : Prism.languages.javascript.function,
 			'punctuation': /[={}[\];(),.:]/,
-			'keyword':  Prism.languages.javascript.keyword,
+			'keyword':  Prism.languages.javascript.keyword
 		},
-		'alias': 'javascript'
+		'alias': 'language-javascript'
 	}
 }, Prism.languages.jsx.tag);
 
