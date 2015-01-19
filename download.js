@@ -79,13 +79,13 @@ for (var category in components) {
 		}
 		
 		var filepath = all.meta.path.replace(/\{id}/g, id);
-		
+
 		var info = all[id] = {
 			title: all[id].title || all[id],
 			noCSS: all[id].noCSS || all.meta.noCSS,
 			noJS: all[id].noJS || all.meta.noJS,
 			enabled: checked,
-			require: all[id].require,
+			require: $u.type(all[id].require) === 'string' ? [all[id].require] : all[id].require,
 			owner: all[id].owner,
 			files: {
 				minified: {
@@ -100,7 +100,9 @@ for (var category in components) {
 		};
 		
 		if (info.require) {
-			dependencies[info.require] = (dependencies[info.require] || []).concat(id);
+			info.require.forEach(function (v) {
+				dependencies[v] = (dependencies[v] || []).concat(id);
+			});
 		}
 
 		if (!all[id].noJS && !/\.css$/.test(filepath)) {
@@ -136,10 +138,12 @@ for (var category in components) {
 								});
 
 								if (all[id].require && this.checked) {
-									var input = $('label[data-id="' + all[id].require + '"] > input');
-									input.checked = true;
-									
-									input.onclick();
+									all[id].require.forEach(function(v) {
+										var input = $('label[data-id="' + v + '"] > input');
+										input.checked = true;
+
+										input.onclick();
+									});
 								}
 
 								if (dependencies[id] && !this.checked) { // It’s required by others
