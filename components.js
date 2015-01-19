@@ -287,6 +287,11 @@ var components = {
 			"title": "Markdown",
 			"require": "markup",
 			"owner": "Golmote"
+		},
+		"jsx":{
+			"title": "React JSX",
+			"require": ["markup", "javascript"],
+			"owner": "vkbansal"
 		}
 	},
 	"plugins": {

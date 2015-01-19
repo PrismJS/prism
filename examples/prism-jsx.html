@@ -1,0 +1,34 @@
+<h1>React JSX</h1>
+<p>To use this language, use the class "language-jsx".</p>
+
+<h2>Full example</h2>
+<pre><code>var ExampleApplication = React.createClass({
+    render: function() {
+      var elapsed = Math.round(this.props.elapsed  / 100);
+      var seconds = elapsed / 10 + (elapsed % 10 ? '' : '.0' );
+      var message =
+        'React has been successfully running for ' + seconds + ' seconds.';
+
+      return &lt;p>{message}&lt;/p>;
+    }
+  });
+  var start = new Date().getTime();
+  setInterval(function() {
+    React.render(
+      &lt;ExampleApplication elapsed={new Date().getTime() - start} />,
+      document.getElementById('container')
+    );
+  }, 50);</code></pre>
+
+<h2>Known failures</h2>
+<p>There are certain edge cases where Prism will fail.
+	There are always such cases in every regex-based syntax highlighter.
+	However, Prism dares to be open and honest about them.
+	If a failure is listed here, it doesn’t mean it will never be fixed. This is more of a “known bugs” list, just with a certain type of bug.
+</p>
+
+<h3>Comment-like substrings</h3>
+<pre><code>"foo /* bar */ baz"; "foo // bar";</code></pre>
+
+<h3>Two quotes of the same type (i.e. both single or both double) inside a regex</h3>
+<pre><code>foo = /"foo"/;</code></pre>
