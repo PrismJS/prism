@@ -292,6 +292,11 @@ var components = {
 			"title": "React JSX",
 			"require": ["markup", "javascript"],
 			"owner": "vkbansal"
+		},
+		"typescript":{
+			"title": "TypeScript",
+			"require": "javascript",
+			"owner": "vkbansal"
 		}
 	},
 	"plugins": {
