@@ -6,7 +6,7 @@ Prism.languages.css = {
 			'punctuation': /[;:]/g
 		}
 	},
-	'url': /url\((["']?).*?\1\)/gi,
+	'url': /url\((["']?)(\\\n|\\?.)*?\1\)/gi,
 	'selector': /[^\{\}\s][^\{\};]*(?=\s*\{)/g,
 	'property': /(\b|\B)[\w-]+(?=\s*:)/ig,
 	'string': /("|')(\\\n|\\?.)*?\1/g,
