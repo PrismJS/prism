@@ -8,8 +8,8 @@ Prism.languages.css = {
 	},
 	'url': /url\((?:(["'])(\\\n|\\?.)*?\1|.*?)\)/gi,
 	'selector': /[^\{\}\s][^\{\};]*(?=\s*\{)/g,
-	'property': /(\b|\B)[\w-]+(?=\s*:)/ig,
 	'string': /("|')(\\\n|\\?.)*?\1/g,
+	'property': /(\b|\B)[\w-]+(?=\s*:)/ig,
 	'important': /\B!important\b/gi,
 	'punctuation': /[\{\};:]/g,
 	'function': /[-a-z0-9]+(?=\()/ig
