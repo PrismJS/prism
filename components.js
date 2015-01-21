@@ -319,6 +319,10 @@ var components = {
 		"show-language": {
 			"title": "Show Language",
 			"owner": "nauzilus"
+		},
+		"highlight-keywords": {
+			"title": "Highlight Keywords",
+			"owner": "vkbansal"
 		}
 	}
 };
