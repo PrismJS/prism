@@ -8,9 +8,15 @@
 <base href="../.." />
 <link rel="stylesheet" href="style.css" />
 <link rel="stylesheet" href="themes/prism.css" data-noprefix />
-<link rel="stylesheet" href="plugins/highlight-keywords/prism-highlight-keywords.css" data-noprefix />
 <script src="prefixfree.min.js"></script>
-
+<style>
+	/*
+	 * Custom keyword styles
+	 */
+	.token.keyword.keyword-return, .token.keyword.keyword-if{
+		color: #f92672;
+	}
+</style>
 <script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
 <script src="http://www.google-analytics.com/ga.js" async></script>
 </head>
@@ -19,18 +25,15 @@
 <header>
 	<div class="intro" data-src="templates/header-plugins.html" data-type="text/html"></div>
 
-	<h2>Show Language</h2>
-	<p>Allows fine-grained control over highlighting keywords.</p>
+	<h2>Highlight Keywords</h2>
+	<p>This plugins adds special CSS classes for each keyword matched in the code. For example, the keyword <code>if</code> will have the class <code>keyword-if</code>. You can have fine grained control over the appearance of each keyword by providing your own stylesheet.</p>
 </header>
 
 <section>
 	<h1>Examples</h1>
-	
+
 	<h2>JavaScript</h2>
 	<pre data-src="plugins/highlight-keywords/prism-highlight-keywords.js"></pre>
-
-	<h2>CSS</h2>
-	<pre data-src="plugins/highlight-keywords/prism-highlight-keywords.css"></pre>
 
 	<h2>HTML (Markup)</h2>
 	<pre data-src="plugins/highlight-keywords/index.html"></pre>
