@@ -4,11 +4,13 @@
 <h2>Comments</h2>
 <pre><code>// Single line comment
 /* Multi-line
-comment */</code></pre>
+comment */
+# Shell-like comment</code></pre>
 
 <h2>Strings</h2>
 <pre><code>'foo \'bar\' baz'
-"foo \"bar\" baz"</code></pre>
+"foo \"bar\" baz"
+"a string # containing an hash"</code></pre>
 
 <h2>Variables</h2>
 <pre><code>$some_var = 5;
@@ -60,6 +62,10 @@ function gen_one_to_three() {
 
 <h3>Comment-like substrings</h3>
 <pre><code>"foo /* bar */ baz"; "foo // bar";</code></pre>
+
+<h3>Shell-like comments containing two quotes of the same type</h3>
+<pre><code># Shell-like comment "with quotes" inside
+# Shell-like comment 'with quotes' inside</code></pre>
 
 <h3>A less-than sign and a greater-than sign on the same line</h3>
 <pre><code>if($a < $b && $b > $c) {}</code></pre>
