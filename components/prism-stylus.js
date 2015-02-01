@@ -14,7 +14,7 @@ Prism.languages.stylus = {
 	'number': /\d+\.?\d*%?/g,
 	'selector': [
 		{
-			pattern: /::?after|before|first-letter|first-line|selection/g,
+			pattern: /::?(after|before|first-letter|first-line|selection)/g,
 			alias: 'pseudo-element'
 		},{
 			pattern: /:(?:active|checked|disabled|empty|enabled|first-child|first-of-type|focus|hover|in-range|invalid|lang|last-child|last-of-type|link|not|nth-child|nth-last-child|nth-last-of-type|nth-of-type|only-of-type|only-child|optional|out-of-range|read-only|read-write|required|root|target|valid|visited)(?:\(.*\))?/g,
@@ -24,11 +24,11 @@ Prism.languages.stylus = {
 			inside: {
 				"attr-name":
 				{
-					pattern: /(\[)([\w-]+)(?=\s*[~$^|=]{0,2})/g,
+					pattern: /(\[)([\w-]+)(?=\s*[*~$^|=]{0,2})/g,
 					lookbehind: true
 				},
 				"punctuation": /\[|\]/g,
-				"operator": /[=$~|^]/g,
+				"operator": /[*~$^|=]/g,
 				"attr-value": {
 					pattern: /\S+/
 				},
