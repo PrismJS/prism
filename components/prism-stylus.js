@@ -20,7 +20,7 @@ Prism.languages.stylus = {
 			pattern: /:(?:active|checked|disabled|empty|enabled|first-child|first-of-type|focus|hover|in-range|invalid|lang|last-child|last-of-type|link|not|nth-child|nth-last-child|nth-last-of-type|nth-of-type|only-of-type|only-child|optional|out-of-range|read-only|read-write|required|root|target|valid|visited)(?:\(.*\))?/g,
 			alias:'pseudo-class'
 		},{
-			pattern: /\[[\w-]+?\s*[*~|$^]?(?:=\s*\S+)?\]/g,
+			pattern: /\[[\w-]+?\s*[*~$^|=]?(?:=\s*\S+)?\]/g,
 			inside: {
 				"attr-name":
 				{
