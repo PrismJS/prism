@@ -297,6 +297,10 @@ var components = {
 			"title": "TypeScript",
 			"require": "javascript",
 			"owner": "vkbansal"
+		},
+		"stylus" : {
+			"title": "Stylus",
+			"owner": "vkbansal"
 		}
 	},
 	"plugins": {
