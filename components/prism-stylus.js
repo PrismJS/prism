@@ -3,7 +3,7 @@ Prism.languages.stylus = {
 		pattern: /(^|[^\\])(\/\*[\w\W]*?\*\/|\/\/.*?(\r?\n|$))/g,
 		lookbehind: true
 	},
-	'keyword': /(px|r?em|ex|ch|vw|vh|vmin|vmax)\b|\b(is|defined|not|isnt|and|or|unless|for|in)\b/g,
+	'keyword': /(px|r?em|ex|ch|vw|vh|vmin|vmax|deg|grad|rad|turn|m?s|k?Hz|dpi|dppx|dpcm)\b|\b(is|defined|not|isnt|and|or|unless|for|in)\b/g,
 	'atrule': /@[\w-]+(?=\s+\S+)/gi,
 	'url': /url\((["']?).*?\1\)/gi,
 	'variable': /^\s*([\w-]+)(?=\s*[+-\\]?=)/gm,
