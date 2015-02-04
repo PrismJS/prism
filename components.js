@@ -322,7 +322,8 @@ var components = {
 		},
 		"highlight-keywords": {
 			"title": "Highlight Keywords",
-			"owner": "vkbansal"
+			"owner": "vkbansal",
+			"noCSS": true
 		}
 	}
 };
