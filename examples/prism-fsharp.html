@@ -13,6 +13,46 @@ comment *)</code></pre>
 """Alternate "verbatim" strings"""
 </code></pre>
 
+<h2>Numbers</h2>
+<pre><code>
+//8 bit Int
+86y
+0b00000101y
+//Unsigned 8 bit Int
+86uy
+0b00000101uy
+//16 bit Int
+86s
+//Unsigned 16 bit Int
+86us
+//Int
+86
+86l
+//Unsigned Int
+86u
+86ul
+//unativeint
+0x00002D3Fun
+//Long
+86L
+//Unsigned Long
+86UL
+//Float
+4.14F
+4.14f
+//Double
+4.14
+2.3E+32
+2.3e+32
+2.3e32
+0x0000000000000000LF
+//BigInt
+9999999999999999999999999999I
+//Decimal
+0.7833M
+0.7833m
+</code></pre>
+
 <h2>Full example</h2>
 <pre><code>// The declaration creates a constructor that takes two values, name and age. 
 type Person(name:string, age:int) =
@@ -52,4 +92,4 @@ type Person(name:string, age:int) =
 </p>
 
 <h3>Comment-like substrings</h3>
-<pre><code>"foo /* bar */ baz"; "foo // bar";</code></pre>
+<pre><code>"foo (* bar *) baz"; "foo // bar";</code></pre>
