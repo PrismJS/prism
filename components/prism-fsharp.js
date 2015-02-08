@@ -14,16 +14,16 @@ Prism.languages.fsharp = Prism.languages.extend('clike', {
 	'preprocessor': /^\s*#.*/gm,
 	'number': [
 		{
-			pattern: /\b-?(0x[\da-fA-F]*.(un|LF)?)\b/g
+			pattern: /\b-?0x[\da-fA-F]+(un|lf|LF)?\b/g
 		},
 		{
-			pattern: /\b-?(0b[01]*(y|uy)?)\b/g
+			pattern: /\b-?0b[01]+(y|uy)?\b/g
 		},
 		{
-			pattern: /\b-?(\d*\.(\d*)?([fFmM]|[Ee](\+|-)?\d*)?)\b/g
+			pattern: /\b-?(\d+\.|\d*\.?\d+)([fFmM]|[eE][+-]?\d+)?\b/g
 		},
 		{
-			pattern: /\b-?(\d+.([uy]|[us]|[ul]|[UL]|I)?)\b/g
+			pattern: /\b-?\d+(y|uy|s|us|l|u|ul|L|UL|I)?\b/g
 		}
 	]
 });
