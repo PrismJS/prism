@@ -297,6 +297,11 @@ var components = {
 			"title": "TypeScript",
 			"require": "javascript",
 			"owner": "vkbansal"
+		},
+		"fsharp": {
+			"title": "F#",
+			"require": "clike",
+			"owner": "simonreynolds7"
 		}
 	},
 	"plugins": {
