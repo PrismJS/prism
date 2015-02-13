@@ -303,10 +303,10 @@ var components = {
 			"require": "clike",
 			"owner": "simonreynolds7"
 		},
-        "stylus" : {
-            "title": "Stylus",
-            "owner": "vkbansal"
-        }
+		"stylus" : {
+			"title": "Stylus",
+			"owner": "vkbansal"
+		}
 	},
 	"plugins": {
 		"meta": {
