@@ -298,10 +298,15 @@ var components = {
 			"require": "javascript",
 			"owner": "vkbansal"
 		},
-		"stylus" : {
-			"title": "Stylus",
-			"owner": "vkbansal"
-		}
+		"fsharp": {
+			"title": "F#",
+			"require": "clike",
+			"owner": "simonreynolds7"
+		},
+        "stylus" : {
+            "title": "Stylus",
+            "owner": "vkbansal"
+        }
 	},
 	"plugins": {
 		"meta": {
@@ -326,7 +331,8 @@ var components = {
 		},
 		"highlight-keywords": {
 			"title": "Highlight Keywords",
-			"owner": "vkbansal"
+			"owner": "vkbansal",
+			"noCSS": true
 		}
 	}
 };
