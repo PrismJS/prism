@@ -30,8 +30,8 @@ var components = {
 			"title": "Coy",
 			"owner": "tshedor"
 		},
-		"prism-github": {
-			"title": "GitHub",
+		"prism-ghcolors": {
+			"title": "GHColors",
 			"owner": "aviaryan"
 		}
 	},
