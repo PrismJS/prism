@@ -16,7 +16,7 @@ Prism.languages.insertBefore('c', 'string', {
 			// highlight the path of the include statement as a string
 			'string': {
 				pattern: /(#\s*include\s*)(<.+?>|("|')(\\?.)+?\3)/g,
-				lookbehind: true,
+				lookbehind: true
 			}
 		}
 	}

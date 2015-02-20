@@ -20,7 +20,7 @@
 
 <header>
 	<div class="intro" data-src="templates/header-main.html" data-type="text/html"></div>
-	
+
 	<ul id="features">
 		<li>
 			<strong>Dead simple</strong>
@@ -41,49 +41,49 @@
 		<li>
 			<strong>Extensible</strong>
 			Define new languages or extend existing ones.
-			Add new features thanks to Prism’s plugin architecture. 
+			Add new features thanks to Prism’s plugin architecture.
 		</li>
 		<li>
 			<strong>Easy styling</strong>
 			All styling is done through CSS, with sensible class names like <code>.comment</code>, <code>.string</code>, <code>.property</code> etc
 		</li>
 	</ul>
-	
+
 </header>
 
 <section id="used-by">
 	<h1>Used By</h1>
-	
+
 	<p>Prism is used on several websites, small and large. Some of them are:</p>
-	
+
 	<div class="used-by-logos">
 		<a href="http://smashingmagazine.com" target="_blank"><img src="img/logo-smashing.png" alt="Smashing Magazine" /></a>
 		<a href="http://webplatform.org" target="_blank"><img src="img/logo-wpd.png" alt="WebPlatform.org" /></a>
 		<a href="http://alistapart.com" target="_blank"><img src="img/logo-ala.png" alt="A List Apart" /></a>
-		
+
 		<a href="https://developer.mozilla.org/" target="_blank"><img src="img/logo-mdn.png" alt="Mozilla Developer Network (MDN)" /></a>
 		<a href="http://css-tricks.com" target="_blank"><img src="img/logo-css-tricks.png" alt="CSS-Tricks" /></a>
 		<a href="http://typeplate.com" target="_blank"><img src="img/logo-typeplate.png" alt="Typeplate" /></a>
 	</div>
-	
+
 	<p>It’s also used on <a href="https://brendaneich.com/2012/10/harmony-of-dreams-come-true/" target="_blank">the personal blog of Brendan Eich</a>, creator of JavaScript itself!</p>
 </section>
 
 <section id="examples">
 	<h1>Examples</h1>
-	
+
 	<p>The Prism source, highlighted with Prism (don’t you just love how meta this is?):</p>
 	<pre data-src="prism.js"></pre>
-	
+
 	<p>This page’s CSS code, highlighted with Prism:</p>
 	<pre data-src="style.css"></pre>
-	
+
 	<p>This page’s HTML, highlighted with Prism:</p>
 	<pre data-src="index.html"></pre>
-	
+
 	<p>This page’s logo (SVG), highlighted with Prism:</p>
 	<pre data-src="logo.svg"></pre>
-	
+
 	<p>If you’re still not sold, you can <a href="examples.html">view more examples</a> or <a href="test.html">try it out for yourself</a>.</p>
 </section>
 
@@ -91,9 +91,9 @@
 	<h1>Full list of features</h1>
 	<ul>
 		<li><strong>Only 2KB</strong> minified &amp; gzipped (core). Each language definition adds roughly 300-500 bytes.</li>
-		<li>Encourages good author practices. Other highlighters encourage or even force you to use elements that are semantically wrong, 
-			like <code>&lt;pre></code> (on its own) or <code>&lt;script></code>. 
-			Prism forces you to use the correct element for marking up code: <code>&lt;code></code>. 
+		<li>Encourages good author practices. Other highlighters encourage or even force you to use elements that are semantically wrong,
+			like <code>&lt;pre></code> (on its own) or <code>&lt;script></code>.
+			Prism forces you to use the correct element for marking up code: <code>&lt;code></code>.
 			On its own for inline code, or inside a &lt;pre> for blocks of code.
 			In addition, the language is defined through the way recommended in the HTML5 draft: through a language-xxxx class.</li>
 		<li>The language definition is inherited. This means that if multiple code snippets have the same language, you can just define it once, in one of their common ancestors.</li>
@@ -123,7 +123,7 @@
 
 <section id="basic-usage" class="language-markup">
 	<h1>Basic usage</h1>
-	
+
 	<p>You will need to include the <code>prism.css</code> and <code>prism.js</code> files you downloaded in your page. Example:
 	<pre><code>&lt;!DOCTYPE html>
 &lt;html>
@@ -136,19 +136,19 @@
 	<code class="highlight">&lt;script src="prism.js">&lt;/script></code>
 <code>&lt;/body>
 &lt;/html></code></pre>
-	
-	<p>Prism does its best to encourage good authoring practices. Therefore, it only works with <code>&lt;code></code> elements, since marking up code without a <code>&lt;code></code> element is semantically invalid. 
+
+	<p>Prism does its best to encourage good authoring practices. Therefore, it only works with <code>&lt;code></code> elements, since marking up code without a <code>&lt;code></code> element is semantically invalid.
 	<a href="http://www.w3.org/TR/html5/text-level-semantics.html#the-code-element">According to the HTML5 spec</a>, the recommended way to define a code language is a <code>language-xxxx</code> class, which is what Prism uses.
 	To make things easier however, Prism assumes that this language definition is inherited. Therefore, if multiple <code>&lt;code></code> elements have the same language, you can add the <code>language-xxxx</code> class on one of their common ancestors.
 	This way, you can also define a document-wide default language, by adding a <code>language-xxxx</code> class on the <code>&lt;body></code> or <code>&lt;html></code> element.
-	
+
 	<p>If you want to opt-out of highlighting for a <code>&lt;code></code> element that is a descendant of an element with a declared code language, you can add the class <code>language-none</code> to it (or any non-existing language, really).</p>
-	
-	<p>The <a href="http://www.w3.org/TR/html5/grouping-content.html#the-pre-element">recommended way to mark up a code block</a> 
+
+	<p>The <a href="http://www.w3.org/TR/html5/grouping-content.html#the-pre-element">recommended way to mark up a code block</a>
 	(both for semantics and for Prism) is a <code>&lt;pre></code> element with a <code>&lt;code></code> element inside, like so:</p>
 	<pre><code>&lt;pre>&lt;code class="language-css">p { color: red }&lt;/code>&lt;/pre></code></pre>
 	<p>If you use that pattern, the <code>&lt;pre></code> will automatically get the <code>language-xxxx</code> class (if it doesn’t already have it) and will be styled as a code block.</p>
-	
+
 	<p>If you want to prevent any elements from being automatically highlighted, you can use the attribute <code>data-manual</code> on the <code>&lt;script></code> element you used for prism and use the <a href="extending.html#api">API</a>.
 	Example:</p>
 	<pre><code>&lt;script src="prism.js" data-manual>&lt;/script></code></pre>
@@ -159,19 +159,27 @@
 	<h1>Plugins</h1>
 	<p>Plugins are additional scripts (and CSS code) that extend Prism’s functionality. Many of the following plugins are official, but are released as plugins to keep the Prism Core small for those who don’t need the extra functionality.</p>
 	<ul class="plugin-list"></ul>
-	
+
 	<p>No assembly required to use them. Just select them in the <a href="download.html">download</a> page.</p>
 	<p>It’s very easy to <a href="extending.html#writing-plugins">write your own Prism plugins</a>. Did you write a plugin for Prism that you want added to this list? <a href="https://github.com/LeaVerou/prism" target="_blank">Send a pull request</a>!</p>
 </section>
 
+<section id="languages">
+	<h1>Third-party language definitions</h1>
+
+	<ul>
+		<li><a href="https://github.com/SassDoc/prism-scss-sassdoc">SassDoc Sass/Scss comments</a></li>
+	</ul>
+</section>
+
 <section id="tutorials">
 	<h1>Third-party tutorials</h1>
-	
+
 	<p>Several tutorials have been written by members of the community to help you integrate Prism into multiple different website types and configurations:</p>
-	
+
 	<ul>
 		<li><a href="http://crambler.com/how-to-implement-prism-js-syntax-highlighting-into-your-wordpress-site/">How To Implement Prism.js Syntax Highlighting Into Your WordPress Site</a></li>
-		<li><a href="http://www.kevinlorenz.com/blog/prism_js">Syntax highlighting with Prism.js</a></li>
+		<li><a href="http://www.kevinlorenz.com/home/prism_js">Syntax highlighting with Prism.js</a></li>
 		<li><a href="http://wp.tutsplus.com/tutorials/plugins/adding-a-syntax-highlighter-shortcode-using-prism-js/">Adding a Syntax Highlighter Shortcode Using Prism.js | WPTuts+</a></li>
 		<li><a href="http://www.stramaxon.com/2012/07/prism-syntax-highlighter-for-blogger.html">Implement PrismJs Syntax Highlighting to your Blogger/BlogSpot</a></li>
 		<li><a href="http://www.allblogtools.com/tricks-and-hacks/beautify-source-codes-in-your-posts-with-prism-syntax-highlighter-for-blogger/">Beautify Source Codes In Your Posts With Prism Syntax Highlighter For Blogger</a></li>
@@ -183,15 +191,16 @@
 		<li><a href="http://byverdu.es/2013/06/tutorial-sobre-prism-js-inserta-ejemplos-de-codigo-en-web-wordpress-y-blogger/">[Spanish] Tutorial sobre Prism.js Como utilizarlo en Web, Wordpress y Blogger</a></li>
 		<li><a href="http://japborst.net/posts/pretty-code-samples">Pretty code samples</a></li>
 	</ul>
-	
+
 	<p>Please note that the tutorials listed here are not verified to contain correct information. Read at your risk and always check the official documentation here if something doesn’t work :)</p>
-	
+
 	<p>Have you written a tutorial about Prism that’s not already included here? Send a pull request!</p>
 </section>
 
 <section id="credits">
 	<h1>Credits</h1>
 	<ul>
+		<li>Special thanks to <a href="https://github.com/Golmote">Golmote</a> and <a href="https://github.com/apfelbox">Jannik Zschiesche</a> for their contributions and for being <strong>amazing maintainers</strong>. Prism would not have been able to keep up without their help.</li>
 		<li>To <a href="http://twitter.com/kizmarh">Roman Komarov</a> for his contributions, feedback and testing.</li>
 		<li>To <a href="https://twitter.com/zdfs">Zachary Forrest</a> for <a href="https://twitter.com/zdfs/statuses/217834980871639041">coming up with the name “Prism”</a></li>
 		<li>To <a href="http://stellarr.deviantart.com/">stellarr</a> for the <a href="http://stellarr.deviantart.com/art/Spectra-Wallpaper-Pack-97785901?q=gallery%3Astellarr%2F185512&qo=2">spectrum background</a> used on this page</li>

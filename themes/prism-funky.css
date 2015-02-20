@@ -12,6 +12,7 @@ pre[class*="language-"] {
 	white-space: pre;
 	word-spacing: normal;
 	word-break: normal;
+	line-height: 1.5;
 
 	-moz-tab-size: 4;
 	-o-tab-size: 4;
@@ -72,6 +73,7 @@ code[class*="language-"] {
 .token.selector,
 .token.attr-name,
 .token.string,
+.token.char,
 .token.builtin {
 	color: yellow;
 }
@@ -80,7 +82,8 @@ code[class*="language-"] {
 .token.entity,
 .token.url,
 .language-css .token.string,
-.toke.variable {
+.toke.variable,
+.token.inserted {
 	color: yellowgreen;
 }
 
@@ -90,16 +93,23 @@ code[class*="language-"] {
 	color: deeppink;
 }
 
-
 .token.regex,
 .token.important {
 	color: orange;
 }
 
-.token.important {
+.token.important,
+.token.bold {
 	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
 }
 
 .token.entity {
 	cursor: help;
+}
+
+.token.deleted {
+	color: red;
 }

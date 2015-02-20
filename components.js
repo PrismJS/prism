@@ -34,11 +34,17 @@ var components = {
 	"languages": {
 		"meta": {
 			"path": "components/prism-{id}",
-			"noCSS": true
+			"noCSS": true,
+			"examplesPath": "examples/prism-{id}"
 		},
 		"markup": {
 			"title": "Markup",
 			"option": "default"
+		},
+		"twig": {
+			"title": "Twig",
+			"require": "markup",
+			"owner": "brandonkelly"
 		},
 		"css": {
 			"title": "CSS",
@@ -53,22 +59,26 @@ var components = {
 			"title": "C-like",
 			"option": "default"
 		},
+		"eiffel": {
+			"title": "Eiffel",
+			"owner": "Conaclos"
+		},
 		"javascript": {
 			"title": "JavaScript",
 			"option": "default",
 			"require": "clike"
 		},
-		"java" : {
+		"java": {
 			"title": "Java",
 			"require": "clike",
 			"owner": "sherblot"
 		},
-		"php" : {
+		"php": {
 			"title": "PHP",
 			"require": "clike",
 			"owner": "milesj"
 		},
-		"php-extras" : {
+		"php-extras": {
 			"title": "PHP Extras",
 			"require": "php",
 			"owner": "milesj"
@@ -83,7 +93,7 @@ var components = {
 			"require": "css",
 			"owner": "MoOx"
 		},
-		"bash" : {
+		"bash": {
 			"title": "Bash",
 			"require": "clike",
 			"owner": "zeitgeist87"
@@ -101,6 +111,10 @@ var components = {
 		"python": {
 			"title": "Python",
 			"owner": "multipetros"
+		},
+		"julia": {
+			"title": "julia",
+			"owner": "cdagnino"
 		},
 		"sql": {
 			"title": "SQL",
@@ -152,6 +166,10 @@ var components = {
 			"require": "java",
 			"owner": "jozic"
 		},
+		"haskell": {
+			"title": "Haskell",
+			"owner": "bholst"
+		},
 		"swift": {
 			"title": "Swift",
 			"require": "clike",
@@ -169,6 +187,121 @@ var components = {
 		"ini": {
 			"title": "Ini",
 			"owner": "aviaryan"
+		},
+		"latex": {
+			"title": "LaTeX",
+			"owner": "japborst"
+		},
+		"apacheconf": {
+			"title": "Apache Configuration",
+			"owner": "GuiTeK"
+		},
+		"git": {
+			"title": "Git",
+			"owner": "lgiraudel"
+		},
+		"scheme" : {
+			"title": "Scheme",
+			"owner" : "bacchus123"
+		},
+		"nasm": {
+			"title": "NASM",
+			"owner": "rbmj"
+		},
+		"perl": {
+			"title": "Perl",
+			"owner": "Golmote"
+		},
+		"handlebars": {
+			"title": "Handlebars",
+			"require": "markup",
+			"owner": "Golmote"
+		},
+		"matlab": {
+			"title": "MATLAB",
+			"owner": "Golmote"
+		},
+		"less": {
+			"title": "Less",
+			"require": "css",
+			"owner": "Golmote"
+		},
+		"r": {
+			"title": "R",
+			"owner": "Golmote"
+		},
+		"lolcode": {
+			"title": "LOLCODE",
+			"owner": "Golmote"
+		},
+		"fortran": {
+			"title": "Fortran",
+			"owner": "Golmote"
+		},
+		"erlang": {
+			"title": "Erlang",
+			"owner": "Golmote"
+		},
+		"haml": {
+			"title": "Haml",
+			"require": "ruby",
+			"owner": "Golmote"
+		},
+		"jade": {
+			"title": "Jade",
+			"require": "javascript",
+			"owner": "Golmote"
+		},
+		"pascal": {
+			"title": "Pascal",
+			"owner": "Golmote"
+		},
+		"applescript": {
+			"title": "AppleScript",
+			"owner": "Golmote"
+		},
+		"rust": {
+			"title": "Rust",
+			"owner": "Golmote"
+		},
+		"dart": {
+			"title": "Dart",
+			"require": "clike",
+			"owner": "Golmote"
+		},
+		"powershell": {
+			"title": "PowerShell",
+			"owner": "nauzilus"
+		},
+		"smarty": {
+			"title": "Smarty",
+			"require": "markup",
+			"owner": "Golmote"
+		},
+		"actionscript": {
+			"title": "ActionScript",
+			"require": "javascript",
+			"owner": "Golmote"
+		},
+		"markdown": {
+			"title": "Markdown",
+			"require": "markup",
+			"owner": "Golmote"
+		},
+		"jsx":{
+			"title": "React JSX",
+			"require": ["markup", "javascript"],
+			"owner": "vkbansal"
+		},
+		"typescript":{
+			"title": "TypeScript",
+			"require": "javascript",
+			"owner": "vkbansal"
+		},
+		"fsharp": {
+			"title": "F#",
+			"require": "clike",
+			"owner": "simonreynolds7"
 		}
 	},
 	"plugins": {
@@ -191,6 +324,11 @@ var components = {
 		"show-language": {
 			"title": "Show Language",
 			"owner": "nauzilus"
+		},
+		"highlight-keywords": {
+			"title": "Highlight Keywords",
+			"owner": "vkbansal",
+			"noCSS": true
 		}
 	}
 };

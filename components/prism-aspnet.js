@@ -44,6 +44,6 @@ if ( Prism.languages.aspnet.style ) {
 	Prism.languages.aspnet.style.inside.tag.inside = Prism.languages.aspnet.tag.inside;
 }
 if ( Prism.languages.aspnet.script ) {
-	Prism.languages.aspnet.script.inside.tag.pattern = Prism.languages.aspnet['asp script'].inside.tag.pattern
+	Prism.languages.aspnet.script.inside.tag.pattern = Prism.languages.aspnet['asp script'].inside.tag.pattern;
 	Prism.languages.aspnet.script.inside.tag.inside = Prism.languages.aspnet.tag.inside;
 }

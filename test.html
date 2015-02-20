@@ -39,7 +39,7 @@ textarea {
 	#language input {
 		margin-right: 1em;
 	}
-	
+
 	#language strong {
 		display: block;
 		column-span: all;
@@ -55,7 +55,7 @@ textarea {
 
 <header>
 	<div class="intro" data-src="templates/header-main.html" data-type="text/html"></div>
-	
+
 	<h2>Test drive</h2>
 	<p>Take Prism for a spin!</p>
 </header>
@@ -65,11 +65,11 @@ textarea {
 		<p>
 			<textarea>&lt;p class="hey">Type some code here&lt;/p></textarea>
 		</p>
-		
+
 		<p id="language">
 			<strong>Language:</strong>
 		</p>
-		
+
 		<p>Result:</p>
 		<pre><code></code></pre>
 	</form>
@@ -81,6 +81,8 @@ textarea {
 <script src="utopia.js"></script>
 <script src="components.js"></script>
 <script src="code.js"></script>
+<script src="vendor/promise.js"></script>
+
 <script>
 (function() {
 var form = $('form'), code = $('code', form),
@@ -91,9 +93,9 @@ for (var id in languages) {
 	if (id == 'meta') {
 		continue;
 	}
-	
+
 	var name = languages[id].title || languages[id];
-	
+
 	$u.element.create('label', {
 		contents: [
 			{
@@ -106,13 +108,11 @@ for (var id in languages) {
 						var lang = this.value;
 						code.className = 'language-' + lang;
 						code.textContent = code.textContent;
-						
-						if (!Prism.languages[lang]) {
-							$u.script('components/prism-' + lang + '.js', highlightCode);
-						}
-						else {
-							highlightCode();
-						}
+
+						// loadLanguage() returns a promise, so we use highlightCode()
+						// as resolve callback. The promise will be immediately
+						// resolved if there is nothing to load.
+						loadLanguage(lang).then(highlightCode);
 					}
 				}
 			}, name
@@ -120,6 +120,60 @@ for (var id in languages) {
 		inside: '#language'
 	});
 }
+
+
+/**
+ * Loads a language, including all dependencies
+ *
+ * @param {string} lang the language to load
+ * @type {Promise} the promise which resolves as soon as everything is loaded
+ */
+function loadLanguage (lang)
+{
+	// at first we need to fetch all dependencies for the main language
+	// Note: we need to do this, even if the main language already is loaded (just to be sure..)
+	//
+	// We load an array of all dependencies and call recursively this function on each entry
+	//
+	// dependencies is now an (possibly empty) array of loading-promises
+	var dependencies = getDependenciesOfLanguage(lang).map(loadLanguage);
+
+	// We create a promise, which will resolve, as soon as all dependencies are loaded.
+	// They need to be fully loaded because the main language may extend them.
+	return Promise.all(dependencies)
+		.then(function () {
+
+			// If the main language itself isn't already loaded, load it now
+			// and return the newly created promise (we chain the promises).
+			// If the language is already loaded, just do nothing - the next .then()
+			// will immediately be called
+			if (!Prism.languages[lang]) {
+				return new Promise(function (resolve) {
+					$u.script('components/prism-' + lang + '.js', resolve);
+				});
+			}
+		});
+}
+
+
+/**
+ * Returns all dependencies (as identifiers) of a specific language
+ *
+ * @param {string} lang
+ * @returns {Array.<string>} the list of dependencies. Empty if the language has none.
+ */
+function getDependenciesOfLanguage (lang)
+{
+	if (!components.languages[lang] || !components.languages[lang].require)
+	{
+		return [];
+	}
+
+	return ($u.type(components.languages[lang].require) === "array")
+		? components.languages[lang].require
+		: [components.languages[lang].require];
+}
+
 
 var radios = $$('input[name=language]');
 radios[0].checked = true;
