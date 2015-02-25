@@ -32,7 +32,7 @@ if (Prism.languages.markup) {
 	
 	Prism.languages.insertBefore('inside', 'attr-value', {
 		'style-attr': {
-			pattern: /\s*style=("|').+?\1/ig,
+			pattern: /\s*style=("|').*?\1/ig,
 			inside: {
 				'attr-name': {
 					pattern: /^\s*style/ig,
