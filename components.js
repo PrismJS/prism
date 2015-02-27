@@ -302,6 +302,10 @@ var components = {
 			"title": "F#",
 			"require": "clike",
 			"owner": "simonreynolds7"
+		},
+		"sas": {
+			"title": "SAS",
+			"owner": "Golmote"
 		}
 	},
 	"plugins": {
