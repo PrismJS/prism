@@ -354,7 +354,7 @@ Token.stringify = function(o, language, parent) {
 		return o;
 	}
 
-	if (Object.prototype.toString.call(o) == '[object Array]') {
+	if (_.util.type(o) === 'Array') {
 		return o.map(function(element) {
 			return Token.stringify(element, language, o);
 		}).join('');
@@ -516,7 +516,7 @@ if (Prism.languages.markup) {
 	
 	Prism.languages.insertBefore('inside', 'attr-value', {
 		'style-attr': {
-			pattern: /\s*style=("|').+?\1/ig,
+			pattern: /\s*style=("|').*?\1/ig,
 			inside: {
 				'attr-name': {
 					pattern: /^\s*style/ig,
