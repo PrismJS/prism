@@ -29,6 +29,10 @@ var components = {
 		"prism-coy": {
 			"title": "Coy",
 			"owner": "tshedor"
+		},
+		"prism-ghcolors": {
+			"title": "GHColors",
+			"owner": "aviaryan"
 		}
 	},
 	"languages": {
