@@ -19,6 +19,15 @@ Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(f
 	var src = pre.getAttribute('data-src');
 	var extension = (src.match(/\.(\w+)$/) || [,''])[1];
 	var language = Extensions[extension] || extension;
+
+	var start = 0, end;
+	if (pre.hasAttribute('data-start')) {
+		start = (parseInt(pre.getAttribute('data-start'), 10) - 1);
+		start = Math.max(start, 0);
+	}
+	if (pre.hasAttribute('data-end')) {
+		end = parseInt(pre.getAttribute('data-end'), 10);
+	}
 	
 	var code = document.createElement('code');
 	code.className = 'language-' + language;
@@ -37,7 +46,11 @@ Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(f
 		if (xhr.readyState == 4) {
 			
 			if (xhr.status < 400 && xhr.responseText) {
-				code.textContent = xhr.responseText;
+				if (start || end) {
+					code.textContent = xhr.responseText.split('\n').slice(start, end).join('\n');
+				} else {
+					code.textContent = xhr.responseText;
+				}
 			
 				Prism.highlightElement(code);
 			}
