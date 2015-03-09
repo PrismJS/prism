@@ -303,6 +303,10 @@ var components = {
 			"require": "clike",
 			"owner": "simonreynolds7"
 		},
+		"sas": {
+			"title": "SAS",
+			"owner": "Golmote"
+		},
 		"textile": {
 			"title": "Textile",
 			"require": "markup",
