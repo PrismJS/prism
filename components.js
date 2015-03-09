@@ -302,6 +302,11 @@ var components = {
 			"title": "F#",
 			"require": "clike",
 			"owner": "simonreynolds7"
+		},
+		"textile": {
+			"title": "Textile",
+			"require": "markup",
+			"owner": "Golmote"
 		}
 	},
 	"plugins": {
