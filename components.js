@@ -306,6 +306,11 @@ var components = {
 		"sas": {
 			"title": "SAS",
 			"owner": "Golmote"
+		},
+		"wiki": {
+			"title": "Wiki markup",
+			"require": "markup",
+			"owner": "Golmote"
 		}
 	},
 	"plugins": {
