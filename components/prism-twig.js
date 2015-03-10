@@ -1,7 +1,7 @@
 Prism.languages.twig = {
-	'comment': /\{#[\s\S]*?#\}/g,
+	'comment': /\{#[\s\S]*?#\}/,
 	'tag': {
-		pattern: /(\{\{[\s\S]*?\}\}|\{%[\s\S]*?%\})/g,
+		pattern: /(\{\{[\s\S]*?\}\}|\{%[\s\S]*?%\})/,
 		inside: {
 			'ld': {
 				pattern: /^(\{\{\-?|\{%\-?\s*\w+)/,
@@ -17,24 +17,24 @@ Prism.languages.twig = {
 				}
 			},
 			'string': {
-				pattern: /("|')(\\?.)*?\1/g,
+				pattern: /("|')(\\?.)*?\1/,
 				inside: {
-					'punctuation': /^('|")|('|")$/g
+					'punctuation': /^('|")|('|")$/
 				}
 			},
-			'keyword': /\b(if)\b/g,
-			'boolean': /\b(true|false|null)\b/g,
-			'number': /\b-?(0x[\dA-Fa-f]+|\d*\.?\d+([Ee]-?\d+)?)\b/g,
-			'operator': /==|=|!=|<|>|>=|<=|\+|\-|~|\*|\/|\/\/|%|\*\*|\|/g,
+			'keyword': /\b(if)\b/,
+			'boolean': /\b(true|false|null)\b/,
+			'number': /\b-?(0x[\dA-Fa-f]+|\d*\.?\d+([Ee]-?\d+)?)\b/,
+			'operator': /==|=|!=|<|>|>=|<=|\+|\-|~|\*|\/|\/\/|%|\*\*|\|/,
 			'space-operator': {
-				pattern: /(\s)(\b(not|b\-and|b\-xor|b\-or|and|or|in|matches|starts with|ends with|is)\b|\?|:|\?:)(?=\s)/g,
+				pattern: /(\s)(\b(not|b\-and|b\-xor|b\-or|and|or|in|matches|starts with|ends with|is)\b|\?|:|\?:)(?=\s)/,
 				lookbehind: true,
 				inside: {
 					'operator': /.*/
 				}
 			},
-			'property': /\b[a-zA-Z_][a-zA-Z0-9_]*\b/g,
-			'punctuation': /\(|\)|\[\]|\[|\]|\{|\}|:|\.|,/g
+			'property': /\b[a-zA-Z_][a-zA-Z0-9_]*\b/,
+			'punctuation': /\(|\)|\[\]|\[|\]|\{|\}|:|\.|,/
 		}
 	},
 

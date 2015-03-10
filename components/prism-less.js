@@ -8,29 +8,29 @@
 
 Prism.languages.less = Prism.languages.extend('css', {
 	'comment': [
-		/\/\*[\w\W]*?\*\//g,
+		/\/\*[\w\W]*?\*\//,
 		{
-			pattern: /(^|[^\\])\/\/.+/g,
+			pattern: /(^|[^\\])\/\/.+/,
 			lookbehind: true
 		}
 	],
 	'atrule': {
-		pattern: /@[\w-]+?(?:\([^{}]+\)|[^(){};])*?(?=\s*\{)/gi,
+		pattern: /@[\w-]+?(?:\([^{}]+\)|[^(){};])*?(?=\s*\{)/i,
 		inside: {
-			'punctuation': /[:()]/g
+			'punctuation': /[:()]/
 		}
 	},
 	// selectors and mixins are considered the same
 	'selector': {
-		pattern: /(?:@\{[\w-]+\}|[^{};\s@])(?:@\{[\w-]+\}|\([^{}]*\)|[^{};@])*?(?=\s*\{)/g,
+		pattern: /(?:@\{[\w-]+\}|[^{};\s@])(?:@\{[\w-]+\}|\([^{}]*\)|[^{};@])*?(?=\s*\{)/,
 		inside: {
 			// mixin parameters
 			'variable': /@+[\w-]+/
 		}
 	},
 
-	'property': /(\b|\B)(?:@\{[\w-]+\}|[\w-])+(?:\+_?)?(?=\s*:)/ig,
-	'punctuation': /[{}();:,]/g,
+	'property': /(\b|\B)(?:@\{[\w-]+\}|[\w-])+(?:\+_?)?(?=\s*:)/i,
+	'punctuation': /[{}();:,]/,
 	'operator': /[+\-*\/]/
 });
 

@@ -1,9 +1,9 @@
 (function(Prism) {
 
 // Ignore comments starting with { to privilege string interpolation highlighting
-var comment = /#(?!\{).+/g,
+var comment = /#(?!\{).+/,
     interpolation = {
-    	pattern: /#\{[^}]+\}/g,
+    	pattern: /#\{[^}]+\}/,
     	alias: 'variable'
     };
 
@@ -12,17 +12,17 @@ Prism.languages.coffeescript = Prism.languages.extend('javascript', {
 	'string': [
 
 		// Strings are multiline
-		/'(?:\\?[\s\S])*?'/g,
+		/'(?:\\?[\s\S])*?'/,
 
 		{
 			// Strings are multiline
-			pattern: /"(?:\\?[\s\S])*?"/g,
+			pattern: /"(?:\\?[\s\S])*?"/,
 			inside: {
 				'interpolation': interpolation
 			}
 		}
 	],
-	'keyword': /\b(and|break|by|catch|class|continue|debugger|delete|do|each|else|extend|extends|false|finally|for|if|in|instanceof|is|isnt|let|loop|namespace|new|no|not|null|of|off|on|or|own|return|super|switch|then|this|throw|true|try|typeof|undefined|unless|until|when|while|window|with|yes|yield)\b/g,
+	'keyword': /\b(and|break|by|catch|class|continue|debugger|delete|do|each|else|extend|extends|false|finally|for|if|in|instanceof|is|isnt|let|loop|namespace|new|no|not|null|of|off|on|or|own|return|super|switch|then|this|throw|true|try|typeof|undefined|unless|until|when|while|window|with|yes|yield)\b/,
 	'class-member': {
 		pattern: /@(?!\d)\w+/,
 		alias: 'variable'
@@ -31,7 +31,7 @@ Prism.languages.coffeescript = Prism.languages.extend('javascript', {
 
 Prism.languages.insertBefore('coffeescript', 'comment', {
 	'multiline-comment': {
-		pattern: /###[\s\S]+?###/g,
+		pattern: /###[\s\S]+?###/,
 		alias: 'comment'
 	},
 
@@ -48,10 +48,10 @@ Prism.languages.insertBefore('coffeescript', 'comment', {
 
 Prism.languages.insertBefore('coffeescript', 'string', {
 	'inline-javascript': {
-		pattern: /`(?:\\?[\s\S])*?`/g,
+		pattern: /`(?:\\?[\s\S])*?`/,
 		inside: {
 			'delimiter': {
-				pattern: /^`|`$/g,
+				pattern: /^`|`$/,
 				alias: 'punctuation'
 			},
 			rest: Prism.languages.javascript
@@ -77,7 +77,7 @@ Prism.languages.insertBefore('coffeescript', 'string', {
 
 Prism.languages.insertBefore('coffeescript', 'keyword', {
 	// Object property
-	'property': /(?!\d)\w+(?=\s*:(?!:))/g
+	'property': /(?!\d)\w+(?=\s*:(?!:))/
 });
 
 }(Prism));
