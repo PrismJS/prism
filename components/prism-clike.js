@@ -5,7 +5,7 @@ Prism.languages.clike = {
 			lookbehind: true
 		},
 		{
-			pattern: /(^|[^\\:])\/\/.*?(\r?\n|$)/g,
+			pattern: /(^|[^\\:])\/\/.+/g,
 			lookbehind: true
 		}
 	],
