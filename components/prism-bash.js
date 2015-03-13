@@ -11,6 +11,11 @@ Prism.languages.bash = Prism.languages.extend('clike', {
 			'property': /\$([a-zA-Z0-9_#\?\-\*!@]+|\{[^\}]+\})/
 		}
 	},
+	// Redefined to prevent highlighting of numbers in filenames
+	'number': {
+		pattern: /([^\w\.])-?(0x[\dA-Fa-f]+|\d*\.?\d+([Ee]-?\d+)?)\b/,
+		lookbehind: true
+	},
 	'keyword': /\b(if|then|else|elif|fi|for|break|continue|while|in|case|function|select|do|done|until|echo|exit|return|set|declare)\b/
 });
 
