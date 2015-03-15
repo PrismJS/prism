@@ -306,6 +306,10 @@ var components = {
 		"sas": {
 			"title": "SAS",
 			"owner": "Golmote"
+		},
+		"rest": {
+			"title": "reST (reStructuredText)",
+			"owner": "Golmote"
 		}
 	},
 	"plugins": {
