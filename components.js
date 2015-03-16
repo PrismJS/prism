@@ -140,7 +140,7 @@ var components = {
 		},
 		"gherkin": {
 			"title": "Gherkin",
-			"owner": "mvalipour"
+			"owner": "hason"
 		},
 		"csharp": {
 			"title": "C#",
@@ -305,6 +305,10 @@ var components = {
 		},
 		"sas": {
 			"title": "SAS",
+			"owner": "Golmote"
+		},
+		"rest": {
+			"title": "reST (reStructuredText)",
 			"owner": "Golmote"
 		},
 		"stylus" : {
