@@ -140,7 +140,7 @@ var components = {
 		},
 		"gherkin": {
 			"title": "Gherkin",
-			"owner": "mvalipour"
+			"owner": "hason"
 		},
 		"csharp": {
 			"title": "C#",
