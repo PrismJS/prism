@@ -13,7 +13,7 @@ Prism.languages.git = {
 	/*
 	 * a string (double and simple quote)
 	 */
-	'string': /("|')(\\?.)*?\1/gm,
+	'string': /("|')(\\?.)*?\1/m,
 
 	/*
 	 * a git command. It starts with a random prompt finishing by a $, then "git" then some other parameters
