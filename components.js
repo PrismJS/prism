@@ -310,6 +310,10 @@ var components = {
 		"rest": {
 			"title": "reST (reStructuredText)",
 			"owner": "Golmote"
+		},
+		"stylus" : {
+			"title": "Stylus",
+			"owner": "vkbansal"
 		}
 	},
 	"plugins": {
