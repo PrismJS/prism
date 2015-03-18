@@ -208,6 +208,10 @@ var components = {
 			"title": "NASM",
 			"owner": "rbmj"
 		},
+		"yml": {
+			"title": "Yaml",
+			"owner": "marcaube"
+		},
 		"perl": {
 			"title": "Perl",
 			"owner": "Golmote"
