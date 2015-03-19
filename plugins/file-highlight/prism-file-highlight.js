@@ -30,8 +30,23 @@ Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(f
 	pre.appendChild(code);
 	
 	var xhr = new XMLHttpRequest();
-	
+
+	/* Detect GitHub */
+	var githuburl = /https:\/\/github.com\//i.test(src);
+	if (githuburl) {
+		var match = src.match( /https:\/\/github.com\/([^\/]+)\/([^\/]+)\/([^\/]+)\/([^\/]+)\/([\s\S]+)/);
+		var username = match[1];
+		var repository = match[2];
+		var fullpath = match[5];
+		src = 'https://api.github.com/repos/' + username + '/' + repository + '/contents/' + fullpath;
+	}
+
 	xhr.open('GET', src, true);
+
+	/* If GitHub link, set Accept to raw */
+	if (githuburl) {
+		xhr.setRequestHeader('Accept', 'application/vnd.github.v3.raw');
+	}
 
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4) {
