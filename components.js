@@ -319,6 +319,10 @@ var components = {
 			"title": "Wiki markup",
 			"require": "markup",
 			"owner": "Golmote"
+		},
+		"brainfuck": {
+			"title": "Brainfuck",
+			"owner": "Golmote"
 		}
 	},
 	"plugins": {
