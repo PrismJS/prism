@@ -1,0 +1,44 @@
+<h1>Sass (Scss)</h1>
+<p>To use this language, use the class "language-scss".</p>
+
+<h2>Comments</h2>
+<pre><code>// Single line comment
+/* Multi-line
+comment */</code></pre>
+
+<h2>At-rules</h2>
+<pre><code>@import "foo.scss";
+@media (min-width: 600px) {}
+.seriousError {
+    @extend .error;
+}
+@for $i from 1 through 3 {}
+</code></pre>
+
+<h2>Compass URLs</h2>
+<pre><code>@font-face {
+	font-family: "opensans";
+	src: font-url("opensans.ttf");
+}</code></pre>
+
+<h2>Variables</h2>
+<pre><code>$width: 5em;
+#main {
+    width: $width;
+}</code></pre>
+
+<h2>Interpolations are highlighted in property names</h2>
+<pre><code>p.#{$name} {
+    #{$attr}-color: blue;
+}
+</code></pre>
+
+<h2>Known failures</h2>
+<p>There are certain edge cases where Prism will fail.
+    There are always such cases in every regex-based syntax highlighter.
+    However, Prism dares to be open and honest about them.
+    If a failure is listed here, it doesn’t mean it will never be fixed. This is more of a “known bugs” list, just with a certain type of bug.
+</p>
+
+<h3>Media queries are not highlighted properly when not starting with a parenthesis.</h3>
+<pre><code>@media screen {}</code></pre>

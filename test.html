@@ -169,7 +169,7 @@ function getDependenciesOfLanguage (lang)
 		return [];
 	}
 
-	return ($u.type(components.languages[lang].require) === "Array")
+	return ($u.type(components.languages[lang].require) === "array")
 		? components.languages[lang].require
 		: [components.languages[lang].require];
 }

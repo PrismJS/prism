@@ -1,27 +1,27 @@
 Prism.languages.css = {
-	'comment': /\/\*[\w\W]*?\*\//g,
+	'comment': /\/\*[\w\W]*?\*\//,
 	'atrule': {
-		pattern: /@[\w-]+?.*?(;|(?=\s*{))/gi,
+		pattern: /@[\w-]+?.*?(;|(?=\s*\{))/i,
 		inside: {
-			'punctuation': /[;:]/g
+			'punctuation': /[;:]/
 		}
 	},
-	'url': /url\((["']?).*?\1\)/gi,
-	'selector': /[^\{\}\s][^\{\};]*(?=\s*\{)/g,
-	'property': /(\b|\B)[\w-]+(?=\s*:)/ig,
-	'string': /("|')(\\?.)*?\1/g,
-	'important': /\B!important\b/gi,
-	'punctuation': /[\{\};:]/g,
-	'function': /[-a-z0-9]+(?=\()/ig
+	'url': /url\((?:(["'])(\\\n|\\?.)*?\1|.*?)\)/i,
+	'selector': /[^\{\}\s][^\{\};]*(?=\s*\{)/,
+	'string': /("|')(\\\n|\\?.)*?\1/,
+	'property': /(\b|\B)[\w-]+(?=\s*:)/i,
+	'important': /\B!important\b/i,
+	'punctuation': /[\{\};:]/,
+	'function': /[-a-z0-9]+(?=\()/i
 };
 
 if (Prism.languages.markup) {
 	Prism.languages.insertBefore('markup', 'tag', {
 		'style': {
-			pattern: /<style[\w\W]*?>[\w\W]*?<\/style>/ig,
+			pattern: /<style[\w\W]*?>[\w\W]*?<\/style>/i,
 			inside: {
 				'tag': {
-					pattern: /<style[\w\W]*?>|<\/style>/ig,
+					pattern: /<style[\w\W]*?>|<\/style>/i,
 					inside: Prism.languages.markup.tag.inside
 				},
 				rest: Prism.languages.css
@@ -32,15 +32,15 @@ if (Prism.languages.markup) {
 	
 	Prism.languages.insertBefore('inside', 'attr-value', {
 		'style-attr': {
-			pattern: /\s*style=("|').+?\1/ig,
+			pattern: /\s*style=("|').*?\1/i,
 			inside: {
 				'attr-name': {
-					pattern: /^\s*style/ig,
+					pattern: /^\s*style/i,
 					inside: Prism.languages.markup.tag.inside
 				},
 				'punctuation': /^\s*=\s*['"]|['"]\s*$/,
 				'attr-value': {
-					pattern: /.+/gi,
+					pattern: /.+/i,
 					inside: Prism.languages.css
 				}
 			},

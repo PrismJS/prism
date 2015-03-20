@@ -112,6 +112,10 @@ var components = {
 			"title": "Python",
 			"owner": "multipetros"
 		},
+		"julia": {
+			"title": "julia",
+			"owner": "cdagnino"
+		},
 		"sql": {
 			"title": "SQL",
 			"owner": "multipetros"
@@ -136,7 +140,7 @@ var components = {
 		},
 		"gherkin": {
 			"title": "Gherkin",
-			"owner": "mvalipour"
+			"owner": "hason"
 		},
 		"csharp": {
 			"title": "C#",
@@ -201,7 +205,7 @@ var components = {
 			"owner" : "bacchus123"
 		},
 		"nasm": {
-			"title": "nasm",
+			"title": "NASM",
 			"owner": "rbmj"
 		},
 		"perl": {
@@ -268,6 +272,48 @@ var components = {
 		"powershell": {
 			"title": "PowerShell",
 			"owner": "nauzilus"
+		},
+		"smarty": {
+			"title": "Smarty",
+			"require": "markup",
+			"owner": "Golmote"
+		},
+		"actionscript": {
+			"title": "ActionScript",
+			"require": "javascript",
+			"owner": "Golmote"
+		},
+		"markdown": {
+			"title": "Markdown",
+			"require": "markup",
+			"owner": "Golmote"
+		},
+		"jsx":{
+			"title": "React JSX",
+			"require": ["markup", "javascript"],
+			"owner": "vkbansal"
+		},
+		"typescript":{
+			"title": "TypeScript",
+			"require": "javascript",
+			"owner": "vkbansal"
+		},
+		"fsharp": {
+			"title": "F#",
+			"require": "clike",
+			"owner": "simonreynolds7"
+		},
+		"sas": {
+			"title": "SAS",
+			"owner": "Golmote"
+		},
+		"rest": {
+			"title": "reST (reStructuredText)",
+			"owner": "Golmote"
+		},
+		"stylus" : {
+			"title": "Stylus",
+			"owner": "vkbansal"
 		}
 	},
 	"plugins": {
@@ -295,6 +341,11 @@ var components = {
 			"title": "JSONP Highlight",
 			"noCSS": true,
 			"owner": "nauzilus"
+		},
+		"highlight-keywords": {
+			"title": "Highlight Keywords",
+			"owner": "vkbansal",
+			"noCSS": true
 		}
 	}
 };

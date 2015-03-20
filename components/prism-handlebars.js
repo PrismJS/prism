@@ -7,26 +7,26 @@
 			pattern: handlebars_pattern,
 			inside: {
 				'delimiter': {
-					pattern: /^\{\{\{?|\}\}\}?$/ig,
+					pattern: /^\{\{\{?|\}\}\}?$/i,
 					alias: 'punctuation'
 				},
-				'string': /(["'])(\\?.)+?\1/g,
-				'number': /\b-?(0x[\dA-Fa-f]+|\d*\.?\d+([Ee]-?\d+)?)\b/g,
-				'boolean': /\b(true|false)\b/g,
+				'string': /(["'])(\\?.)+?\1/,
+				'number': /\b-?(0x[\dA-Fa-f]+|\d*\.?\d+([Ee]-?\d+)?)\b/,
+				'boolean': /\b(true|false)\b/,
 				'block': {
-					pattern: /^(\s*~?\s*)[#\/]\w+/ig,
+					pattern: /^(\s*~?\s*)[#\/]\w+/i,
 					lookbehind: true,
 					alias: 'keyword'
 				},
 				'brackets': {
 					pattern: /\[[^\]]+\]/,
 					inside: {
-						punctuation: /\[|\]/g,
-						variable: /[\w\W]+/g
+						punctuation: /\[|\]/,
+						variable: /[\w\W]+/
 					}
 				},
-				'punctuation': /[!"#%&'()*+,.\/;<=>@\[\\\]^`{|}~]/g,
-				'variable': /[^!"#%&'()*+,.\/;<=>@\[\\\]^`{|}~]+/g
+				'punctuation': /[!"#%&'()*+,.\/;<=>@\[\\\]^`{|}~]/,
+				'variable': /[^!"#%&'()*+,.\/;<=>@\[\\\]^`{|}~]+/
 			}
 		}
 	});
@@ -35,7 +35,7 @@
 	// surround markup
 	Prism.languages.insertBefore('handlebars', 'tag', {
 		'handlebars-comment': {
-			pattern: /\{\{![\w\W]*\}\}/g,
+			pattern: /\{\{![\w\W]*?\}\}/,
 			alias: ['handlebars','comment']
 		}
 	});

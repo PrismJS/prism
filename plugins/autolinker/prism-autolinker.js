@@ -4,7 +4,7 @@ if (!self.Prism) {
 	return;
 }
 
-var url = /\b([a-z]{3,7}:\/\/|tel:)[\w-+%~/.:#=?&amp;]+/,
+var url = /\b([a-z]{3,7}:\/\/|tel:)[\w\-+%~/.:#=?&amp;]+/,
     email = /\b\S+@[\w.]+[a-z]{2}/,
     linkMd = /\[([^\]]+)]\(([^)]+)\)/,
     
