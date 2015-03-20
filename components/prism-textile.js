@@ -35,7 +35,8 @@
 					inside: {
 						'modifier': {
 							pattern: RegExp('(^[a-z]\\w*)(?:' + modifierRegex + '|[<>=()])*(?=\\.)'),
-							lookbehind: true
+							lookbehind: true,
+							inside: Prism.util.clone(modifierTokens)
 						},
 						'tag': /^[a-z]\w*/,
 						'punctuation': /\.$/
@@ -50,7 +51,8 @@
 					inside: {
 						'modifier': {
 							pattern: RegExp('(^[*#]+)' + modifierRegex),
-							lookbehind: true
+							lookbehind: true,
+							inside: Prism.util.clone(modifierTokens)
 						},
 						'punctuation': /^[*#]+/
 					}
@@ -67,7 +69,8 @@
 							// Modifiers for rows after the first one are
 							// preceded by a pipe and a line feed
 							pattern: RegExp('(^|\\|(?:\\r?\\n|\\r)?)(?:' + modifierRegex + '|[<>=()^~_]|[\\\\/]\\d+)+(?=\\.)'),
-							lookbehind: true
+							lookbehind: true,
+							inside: Prism.util.clone(modifierTokens)
 						},
 						'punctuation': /\||^\./
 					}
@@ -124,7 +127,8 @@
 
 						'modifier': {
 							pattern: RegExp('(^\\*\\*|__|\\?\\?|[*_%@+\\-^~])' + modifierRegex),
-							lookbehind: true
+							lookbehind: true,
+							inside: Prism.util.clone(modifierTokens)
 						},
 						'punctuation': /[*_%?@+\-^~]/
 					}
@@ -157,7 +161,8 @@
 						},
 						'modifier': {
 							pattern: RegExp('(^")' + modifierRegex),
-							lookbehind: true
+							lookbehind: true,
+							inside: Prism.util.clone(modifierTokens)
 						},
 						'url': {
 							pattern: /(:).+/,
@@ -179,7 +184,8 @@
 						},
 						'modifier': {
 							pattern: RegExp('(^!)(?:' + modifierRegex + '|[<>=()])*'),
-							lookbehind: true
+							lookbehind: true,
+							inside: Prism.util.clone(modifierTokens)
 						},
 						'url': {
 							pattern: /(:).+/,
@@ -222,62 +228,28 @@
 		}
 	});
 
-	// Modifiers highlighting
-	Prism.languages.textile['phrase'].inside['block'].inside['modifier'].inside = Prism.util.clone(modifierTokens);
-	Prism.languages.textile['phrase'].inside['list'].inside['modifier'].inside = Prism.util.clone(modifierTokens);
-	Prism.languages.textile['phrase'].inside['table'].inside['modifier'].inside = Prism.util.clone(modifierTokens);
-	Prism.languages.textile['phrase'].inside['inline'].inside['modifier'].inside = Prism.util.clone(modifierTokens);
-	Prism.languages.textile['phrase'].inside['link'].inside['modifier'].inside = Prism.util.clone(modifierTokens);
-	Prism.languages.textile['phrase'].inside['image'].inside['modifier'].inside = Prism.util.clone(modifierTokens);
+	var nestedPatterns = {
+		'inline': Prism.languages.textile['phrase'].inside['inline'],
+		'link': Prism.languages.textile['phrase'].inside['link'],
+		'image': Prism.languages.textile['phrase'].inside['image'],
+		'footnote': Prism.languages.textile['phrase'].inside['footnote'],
+		'acronym': Prism.languages.textile['phrase'].inside['acronym'],
+		'mark': Prism.languages.textile['phrase'].inside['mark']
+	};
 
 	// Allow some nesting
-	Prism.languages.textile['phrase'].inside['inline'].inside['bold'].inside = {
-		'inline': Prism.util.clone(Prism.languages.textile['phrase'].inside['inline']),
-		'link': Prism.util.clone(Prism.languages.textile['phrase'].inside['link']),
-		'image': Prism.util.clone(Prism.languages.textile['phrase'].inside['image']),
-		'footnote': Prism.util.clone(Prism.languages.textile['phrase'].inside['footnote']),
-		'acronym': Prism.util.clone(Prism.languages.textile['phrase'].inside['acronym']),
-		'mark': Prism.util.clone(Prism.languages.textile['phrase'].inside['mark'])
-	};
-	Prism.languages.textile['phrase'].inside['inline'].inside['italic'].inside = {
-		'inline': Prism.util.clone(Prism.languages.textile['phrase'].inside['inline']),
-		'link': Prism.util.clone(Prism.languages.textile['phrase'].inside['link']),
-		'image': Prism.util.clone(Prism.languages.textile['phrase'].inside['image']),
-		'footnote': Prism.util.clone(Prism.languages.textile['phrase'].inside['footnote']),
-		'acronym': Prism.util.clone(Prism.languages.textile['phrase'].inside['acronym']),
-		'mark': Prism.util.clone(Prism.languages.textile['phrase'].inside['mark'])
-	};
-	Prism.languages.textile['phrase'].inside['inline'].inside['inserted'].inside = {
-		'inline': Prism.util.clone(Prism.languages.textile['phrase'].inside['inline']),
-		'link': Prism.util.clone(Prism.languages.textile['phrase'].inside['link']),
-		'image': Prism.util.clone(Prism.languages.textile['phrase'].inside['image']),
-		'footnote': Prism.util.clone(Prism.languages.textile['phrase'].inside['footnote']),
-		'acronym': Prism.util.clone(Prism.languages.textile['phrase'].inside['acronym']),
-		'mark': Prism.util.clone(Prism.languages.textile['phrase'].inside['mark'])
-	};
-	Prism.languages.textile['phrase'].inside['inline'].inside['deleted'].inside = {
-		'inline': Prism.util.clone(Prism.languages.textile['phrase'].inside['inline']),
-		'link': Prism.util.clone(Prism.languages.textile['phrase'].inside['link']),
-		'image': Prism.util.clone(Prism.languages.textile['phrase'].inside['image']),
-		'footnote': Prism.util.clone(Prism.languages.textile['phrase'].inside['footnote']),
-		'acronym': Prism.util.clone(Prism.languages.textile['phrase'].inside['acronym']),
-		'mark': Prism.util.clone(Prism.languages.textile['phrase'].inside['mark'])
-	};
-	Prism.languages.textile['phrase'].inside['inline'].inside['span'].inside = {
-		'inline': Prism.util.clone(Prism.languages.textile['phrase'].inside['inline']),
-		'link': Prism.util.clone(Prism.languages.textile['phrase'].inside['link']),
-		'image': Prism.util.clone(Prism.languages.textile['phrase'].inside['image']),
-		'footnote': Prism.util.clone(Prism.languages.textile['phrase'].inside['footnote']),
-		'acronym': Prism.util.clone(Prism.languages.textile['phrase'].inside['acronym']),
-		'mark': Prism.util.clone(Prism.languages.textile['phrase'].inside['mark'])
-	};
+	Prism.languages.textile['phrase'].inside['inline'].inside['bold'].inside = Prism.util.clone(nestedPatterns);
+	Prism.languages.textile['phrase'].inside['inline'].inside['italic'].inside = Prism.util.clone(nestedPatterns);
+	Prism.languages.textile['phrase'].inside['inline'].inside['inserted'].inside = Prism.util.clone(nestedPatterns);
+	Prism.languages.textile['phrase'].inside['inline'].inside['deleted'].inside = Prism.util.clone(nestedPatterns);
+	Prism.languages.textile['phrase'].inside['inline'].inside['span'].inside = Prism.util.clone(nestedPatterns);
 
 	// Allow some styles inside table cells
-	Prism.languages.textile['phrase'].inside['table'].inside['inline'] = Prism.util.clone(Prism.languages.textile['phrase'].inside['inline']);
-	Prism.languages.textile['phrase'].inside['table'].inside['link'] = Prism.util.clone(Prism.languages.textile['phrase'].inside['link']);
-	Prism.languages.textile['phrase'].inside['table'].inside['image'] = Prism.util.clone(Prism.languages.textile['phrase'].inside['image']);
-	Prism.languages.textile['phrase'].inside['table'].inside['footnote'] = Prism.util.clone(Prism.languages.textile['phrase'].inside['footnote']);
-	Prism.languages.textile['phrase'].inside['table'].inside['acronym'] = Prism.util.clone(Prism.languages.textile['phrase'].inside['acronym']);
-	Prism.languages.textile['phrase'].inside['table'].inside['mark'] = Prism.util.clone(Prism.languages.textile['phrase'].inside['mark']);
+	Prism.languages.textile['phrase'].inside['table'].inside['inline'] = Prism.util.clone(nestedPatterns['inline']);
+	Prism.languages.textile['phrase'].inside['table'].inside['link'] = Prism.util.clone(nestedPatterns['link']);
+	Prism.languages.textile['phrase'].inside['table'].inside['image'] = Prism.util.clone(nestedPatterns['image']);
+	Prism.languages.textile['phrase'].inside['table'].inside['footnote'] = Prism.util.clone(nestedPatterns['footnote']);
+	Prism.languages.textile['phrase'].inside['table'].inside['acronym'] = Prism.util.clone(nestedPatterns['acronym']);
+	Prism.languages.textile['phrase'].inside['table'].inside['mark'] = Prism.util.clone(nestedPatterns['mark']);
 
 }(Prism));
