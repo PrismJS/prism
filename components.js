@@ -314,6 +314,11 @@ var components = {
 		"stylus" : {
 			"title": "Stylus",
 			"owner": "vkbansal"
+		},
+		"wiki": {
+			"title": "Wiki markup",
+			"require": "markup",
+			"owner": "Golmote"
 		}
 	},
 	"plugins": {
