@@ -312,6 +312,11 @@ var components = {
 			"require": "clike",
 			"owner": "chrischares"
 		},
+		"textile": {
+			"title": "Textile",
+			"require": "markup",
+			"owner": "Golmote"
+		},
 		"twig": {
 			"title": "Twig",
 			"require": "markup",
