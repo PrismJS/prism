@@ -320,6 +320,10 @@ var components = {
 			"require": "markup",
 			"owner": "Golmote"
 		},
+		"smalltalk": {
+			"title": "Smalltalk",
+			"owner": "Golmote"
+		},
 		"textile": {
 			"title": "Textile",
 			"require": "markup",
