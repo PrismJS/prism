@@ -224,6 +224,10 @@ var components = {
 			"title": "Pascal",
 			"owner": "Golmote"
 		},
+		"perl": {
+			"title": "Perl",
+			"owner": "Golmote"
+		},
 		"php": {
 			"title": "PHP",
 			"require": "clike",
@@ -233,10 +237,6 @@ var components = {
 			"title": "PHP Extras",
 			"require": "php",
 			"owner": "milesj"
-		},
-		"perl": {
-			"title": "Perl",
-			"owner": "Golmote"
 		},
 		"powershell": {
 			"title": "PowerShell",
