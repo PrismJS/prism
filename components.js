@@ -319,6 +319,10 @@ var components = {
 			"title": "Wiki markup",
 			"require": "markup",
 			"owner": "Golmote"
+		},
+		"smalltalk": {
+			"title": "Smalltalk",
+			"owner": "Golmote"
 		}
 	},
 	"plugins": {
