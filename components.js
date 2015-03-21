@@ -140,7 +140,7 @@ var components = {
 		},
 		"gherkin": {
 			"title": "Gherkin",
-			"owner": "mvalipour"
+			"owner": "hason"
 		},
 		"csharp": {
 			"title": "C#",
@@ -288,6 +288,42 @@ var components = {
 			"require": "markup",
 			"owner": "Golmote"
 		},
+		"jsx":{
+			"title": "React JSX",
+			"require": ["markup", "javascript"],
+			"owner": "vkbansal"
+		},
+		"typescript":{
+			"title": "TypeScript",
+			"require": "javascript",
+			"owner": "vkbansal"
+		},
+		"fsharp": {
+			"title": "F#",
+			"require": "clike",
+			"owner": "simonreynolds7"
+		},
+		"sas": {
+			"title": "SAS",
+			"owner": "Golmote"
+		},
+		"rest": {
+			"title": "reST (reStructuredText)",
+			"owner": "Golmote"
+		},
+		"stylus" : {
+			"title": "Stylus",
+			"owner": "vkbansal"
+		},
+		"wiki": {
+			"title": "Wiki markup",
+			"require": "markup",
+			"owner": "Golmote"
+		},
+		"smalltalk": {
+			"title": "Smalltalk",
+			"owner": "Golmote"
+		},
 		"polymer": {
 			"title": "Polymer",
 			"require": "markup",
@@ -314,6 +350,11 @@ var components = {
 		"show-language": {
 			"title": "Show Language",
 			"owner": "nauzilus"
+		},
+		"highlight-keywords": {
+			"title": "Highlight Keywords",
+			"owner": "vkbansal",
+			"noCSS": true
 		}
 	}
 };

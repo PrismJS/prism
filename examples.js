@@ -6,7 +6,7 @@
 
 var examples = {};
 
-var treeURL = 'https://api.github.com/repos/LeaVerou/prism/git/trees/gh-pages?recursive=1';
+var treeURL = 'https://api.github.com/repos/PrismJS/prism/git/trees/gh-pages?recursive=1';
 var treePromise = new Promise(function (resolve) {
 	$u.xhr({
 		url: treeURL,
@@ -173,7 +173,7 @@ function getDependenciesOfLanguage (lang)
 		return [];
 	}
 
-	return ($u.type(components.languages[lang].require) === "Array")
+	return ($u.type(components.languages[lang].require) === "array")
 		? components.languages[lang].require
 		: [components.languages[lang].require];
 }
