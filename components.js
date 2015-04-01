@@ -35,7 +35,8 @@ var components = {
 		"meta": {
 			"path": "components/prism-{id}",
 			"noCSS": true,
-			"examplesPath": "examples/prism-{id}"
+			"examplesPath": "examples/prism-{id}",
+			"addCheckAll": true
 		},
 		"markup": {
 			"title": "Markup",
