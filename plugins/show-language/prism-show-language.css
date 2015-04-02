@@ -2,7 +2,7 @@ pre[class*='language-'] {
 	position: relative;
 }
 pre[class*='language-'] > code[data-language] {
-	overflow: scroll;
+	overflow: auto;
 	max-height: 28em;
 	display: block;
 }
