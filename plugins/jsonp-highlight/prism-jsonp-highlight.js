@@ -81,6 +81,8 @@
 	loadstr = "Loading…";
 
 	Array.prototype.slice.call(document.querySelectorAll("pre[data-jsonp]")).forEach(function(pre) {
+		pre.textContent = "";
+
 		var code = document.createElement("code");
 		code.textContent = loadstr;
 		pre.appendChild(code);
