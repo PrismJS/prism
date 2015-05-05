@@ -181,6 +181,11 @@ var components = {
 			"require": "clike",
 			"owner": "sherblot"
 		},
+		"json": {
+			"title": "JSON",
+			"option": "default",
+            "owner": "CupOfTea696"
+		},
 		"julia": {
 			"title": "Julia",
 			"owner": "cdagnino"
