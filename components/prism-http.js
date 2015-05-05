@@ -1,22 +1,22 @@
 Prism.languages.http = {
     'request-line': {
-        pattern: /^(POST|GET|PUT|DELETE|OPTIONS|PATCH|TRACE|CONNECT)\b\shttps?:\/\/\S+\sHTTP\/[0-9.]+/g,
+        pattern: /^(POST|GET|PUT|DELETE|OPTIONS|PATCH|TRACE|CONNECT)\b\shttps?:\/\/\S+\sHTTP\/[0-9.]+/,
         inside: {
             // HTTP Verb
-            property: /^\b(POST|GET|PUT|DELETE|OPTIONS|PATCH|TRACE|CONNECT)\b/g,
+            property: /^\b(POST|GET|PUT|DELETE|OPTIONS|PATCH|TRACE|CONNECT)\b/,
             // Path or query argument
-            'attr-name': /:\w+/g
+            'attr-name': /:\w+/
         }
     },
     'response-status': {
-        pattern: /^HTTP\/1.[01] [0-9]+.*/g,
+        pattern: /^HTTP\/1.[01] [0-9]+.*/,
         inside: {
             // Status, e.g. 200 OK
-            property: /[0-9]+[A-Z\s-]+$/g
+            property: /[0-9]+[A-Z\s-]+$/i
         }
     },
     // HTTP header name
-    keyword: /^[\w-]+:(?=.+)/gm
+    keyword: /^[\w-]+:(?=.+)/m
 };
 
 // Create a mapping of Content-Type headers to language definitions
@@ -33,7 +33,7 @@ for (var contentType in httpLanguages) {
     if (httpLanguages[contentType]) {
         var options = {};
         options[contentType] = {
-            pattern: new RegExp('(content-type:\\s*' + contentType + '[\\w\\W]*?)\\n\\n[\\w\\W]*', 'gi'),
+            pattern: new RegExp('(content-type:\\s*' + contentType + '[\\w\\W]*?)\\n\\n[\\w\\W]*', 'i'),
             lookbehind: true,
             inside: {
                 rest: httpLanguages[contentType]

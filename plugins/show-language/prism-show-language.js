@@ -9,8 +9,12 @@ var Languages = {
 	'cpp': 'C++'
 };
 Prism.hooks.add('before-highlight', function(env) {
+	var pre = env.element.parentNode;
+	if (!pre || !/pre/i.test(pre.nodeName)) {
+		return;
+	}
 	var language = Languages[env.language] || env.language;
-	env.element.setAttribute('data-language', language);
+	pre.setAttribute('data-language', language);
 });
 
 })();

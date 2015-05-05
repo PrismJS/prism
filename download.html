@@ -65,6 +65,12 @@ section.options#category-languages {
 		column-span: all;
 	}
 
+	section.options#category-languages label[data-id="javascript"] {
+		border-bottom: 1px solid #aaa;
+		padding-bottom: 1em;
+		margin-bottom: 1em;
+	}
+
 section.options#category-themes {
 	width: 66.6%;
 	width: calc(100% * 2/3);
@@ -87,6 +93,10 @@ section.download {
 	padding: .3em;
 }
 
+	#download .error {
+		color: #B61500;
+		display: none;
+	}
 	#download pre {
 		height: 20em;
 		word-wrap: break-word;
@@ -133,6 +143,7 @@ section.download {
 		<p><strong>Note:</strong> The filesizes displayed refer to non-gizipped files and include any CSS code required. The CSS code is not minified.</p>
 		
 		<section id="download">
+			<div class="error"></div>
 			<section id="download-js" class="download">
 				<pre><code class="language-javascript"></code></pre>
 				<a href="#" class="download-button" download="prism.js" target="_blank">Download JS</a>
@@ -154,6 +165,7 @@ section.download {
 <script src="utopia.js"></script>
 <script src="components.js"></script>
 <script src="code.js"></script>
+<script src="vendor/promise.js"></script>
 <script src="download.js"></script>
 
 </body>

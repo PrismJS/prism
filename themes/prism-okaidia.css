@@ -92,7 +92,8 @@ pre[class*="language-"] {
 }
 
 .token.atrule,
-.token.attr-value {
+.token.attr-value,
+.token.function {
 	color: #e6db74;
 }
 
@@ -105,8 +106,12 @@ pre[class*="language-"] {
 	color: #fd971f;
 }
 
-.token.important {
+.token.important,
+.token.bold {
 	font-weight: bold;
+}
+.token.italic {
+	font-style: italic;
 }
 
 .token.entity {

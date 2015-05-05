@@ -50,7 +50,7 @@ var _ = self.Prism = {
 					return clone;
 
 				case 'Array':
-					return o.slice();
+					return o.map(function(v) { return _.util.clone(v); });
 			}
 
 			return o;
@@ -68,10 +68,31 @@ var _ = self.Prism = {
 			return lang;
 		},
 
-		// Insert a token before another token in a language literal
+		/**
+		 * Insert a token before another token in a language literal
+		 * As this needs to recreate the object (we cannot actually insert before keys in object literals),
+		 * we cannot just provide an object, we need anobject and a key.
+		 * @param inside The key (or language id) of the parent
+		 * @param before The key to insert before. If not provided, the function appends instead.
+		 * @param insert Object with the key/value pairs to insert
+		 * @param root The object that contains `inside`. If equal to Prism.languages, it can be omitted.
+		 */
 		insertBefore: function (inside, before, insert, root) {
 			root = root || _.languages;
 			var grammar = root[inside];
+			
+			if (arguments.length == 2) {
+				insert = arguments[1];
+				
+				for (var newToken in insert) {
+					if (insert.hasOwnProperty(newToken)) {
+						grammar[newToken] = insert[newToken];
+					}
+				}
+				
+				return grammar;
+			}
+			
 			var ret = {};
 
 			for (var token in grammar) {
@@ -91,17 +112,29 @@ var _ = self.Prism = {
 					ret[token] = grammar[token];
 				}
 			}
+			
+			// Update references in other language definitions
+			_.languages.DFS(_.languages, function(key, value) {
+				if (value === root[inside] && key != inside) {
+					this[key] = ret;
+				}
+			});
 
 			return root[inside] = ret;
 		},
 
 		// Traverse a language definition with Depth First Search
-		DFS: function(o, callback) {
+		DFS: function(o, callback, type) {
 			for (var i in o) {
-				callback.call(o, i, o[i]);
+				if (o.hasOwnProperty(i)) {
+					callback.call(o, i, o[i], type || i);
 
-				if (_.util.type(o) === 'Object') {
-					_.languages.DFS(o[i], callback);
+					if (_.util.type(o[i]) === 'Object') {
+						_.languages.DFS(o[i], callback);
+					}
+					else if (_.util.type(o[i]) === 'Array') {
+						_.languages.DFS(o[i], callback, i);
+					}
 				}
 			}
 		}
@@ -148,6 +181,8 @@ var _ = self.Prism = {
 			return;
 		}
 
+		code = code.replace(/^(?:\r?\n|\r)/,'');
+
 		var env = {
 			element: element,
 			language: language,
@@ -177,7 +212,7 @@ var _ = self.Prism = {
 			}));
 		}
 		else {
-			env.highlightedCode = _.highlight(env.code, env.grammar, env.language)
+			env.highlightedCode = _.highlight(env.code, env.grammar, env.language);
 
 			_.hooks.run('before-insert', env);
 
@@ -314,7 +349,7 @@ Token.stringify = function(o, language, parent) {
 		return o;
 	}
 
-	if (Object.prototype.toString.call(o) == '[object Array]') {
+	if (_.util.type(o) === 'Array') {
 		return o.map(function(element) {
 			return Token.stringify(element, language, o);
 		}).join('');
