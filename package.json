@@ -18,10 +18,14 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "devDependencies": {
+    "del": "^1.1.1",
     "gulp": "^3.8.6",
     "gulp-concat": "^2.3.4",
     "gulp-header": "^1.0.5",
     "gulp-rename": "^1.2.0",
-    "gulp-uglify": "^0.3.1"
+    "gulp-uglify": "^0.3.1",
+    "highland": "^2.5.0",
+    "vinyl": "^0.4.6",
+    "yargs": "^3.9.0"
   }
 }
