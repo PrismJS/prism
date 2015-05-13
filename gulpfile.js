@@ -71,7 +71,7 @@ function readme(themeName) {
 
 function packagejson(themeName) {
 	return JSON.stringify({
-		name: 'prism-' + themeName + '-theme',
+		name: 'prismjs-' + themeName + '-theme',
 		version: version,
 	  description: 'A CSS theme for PrismJS',
 		repository: {
