@@ -25,6 +25,7 @@
     "gulp-rename": "^1.2.0",
     "gulp-uglify": "^0.3.1",
     "highland": "^2.5.0",
+    "npm": "^2.9.1",
     "vinyl": "^0.4.6",
     "yargs": "^3.9.0"
   }

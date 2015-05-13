@@ -9,6 +9,7 @@ var gulp   = require('gulp'),
 	File = require('vinyl'),
 	del = require('del'),
 	yargs = require('yargs'),
+	npm = require('npm'),
 
   runningPackagingTask = yargs.argv._.indexOf('createPackages') > -1,
   version = yargs.argv.version,
@@ -145,4 +146,23 @@ if (runningPackagingTask && !version) {
 }
 
 gulp.task('createPackages', ['copy-css', 'copy-files', 'update-version']);
+
+gulp.task('publishPackages', function(done) {
+	var packages = fs.readdirSync('dist')
+		.map(function(packageName) {
+			return path.join('dist', packageName);
+		})
+		.concat('.');
+
+	npm.load({}, function() {
+		function next() {
+			if (packages.length > 0) {
+				npm.commands.publish([packages.pop()], next);
+			} else {
+				done();
+			}
+		}
+		next();
+	});
+});
 
