@@ -73,7 +73,7 @@ function packagejson(themeName) {
 	return JSON.stringify({
 		name: 'prismjs-' + themeName + '-theme',
 		version: version,
-	  description: 'A CSS theme for PrismJS',
+		description: 'A CSS theme for PrismJS',
 		repository: {
 			type: 'git',
 			url: 'https://github.com/PrismJS/prism.git'
