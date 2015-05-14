@@ -114,8 +114,8 @@ var components = {
 			"require": "clike",
 			"owner": "Golmote"
 		},
-		"dockerfile": {
-			"title": "Dockerfile",
+		"docker": {
+			"title": "Docker",
 			"owner": "JustinBeckwith"
 		},
 		"eiffel": {
