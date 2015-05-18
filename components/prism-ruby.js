@@ -19,3 +19,17 @@ Prism.languages.insertBefore('ruby', 'keyword', {
 	'variable': /[@$]+\b[a-zA-Z_][a-zA-Z_0-9]*[?!]?\b/,
 	'symbol': /:\b[a-zA-Z_][a-zA-Z_0-9]*[?!]?\b/
 });
+
+Prism.languages.insertBefore('ruby', 'comment', {
+        'interpolation': {
+        	pattern: /#\{[^}]+\}/,
+        	inside: {
+        		'delimiter': {
+        			pattern: /^#\{|\}$/,
+        			alias: 'punctuation
+        		}
+        	},
+        	rest: Prism.languages.ruby
+        }
+});
+
