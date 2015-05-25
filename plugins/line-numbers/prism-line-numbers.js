@@ -2,31 +2,14 @@
 
 	/**
 	 * Class name which is used to flag this code field has break-word css attr
-	 *
 	 * @type {String}
 	 */
 	var BREAK_WORD_CLASS = 'line-numbers-break-word';
 
 	/**
-	 * Returns style declaration for element
-	 *
-	 * @param  {Node} el
-	 * @return {Object}
+	 * Resizes line numbers spans according to height of line of code
+	 * @param  {Element} element <code> element
 	 */
-	var getStyle = function(el){
-		if (!el){
-			return {};
-		}
-		if (el.currentStyle){
-		  return el.currentStyle;
-		}
-	 	else if (document.defaultView && document.defaultView.getComputedStyle){
-	 		return document.defaultView.getComputedStyle(el, '');
-	 	} else {
-		  return el.style;
-	 	}
-	};
-
 	var _resizeElement = function(element){
 		var lineNumbersWrapper = element.querySelector('.line-numbers-rows');
 		var lineNumberSizer = element.querySelector('.line-numbers-sizer');
