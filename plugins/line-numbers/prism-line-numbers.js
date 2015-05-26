@@ -18,12 +18,12 @@
 		lineNumberSizer.style.display = 'block';
 
 		codeLines.forEach(function(line, lineNumber){
-			lineNumberSizer.innerText = line || '\n';
+			lineNumberSizer.textContent = line || '\n';
 			var lineSize = lineNumberSizer.getBoundingClientRect().height;
 			lineNumbersWrapper.children[lineNumber].style.height = lineSize + 'px';
 		});
 
-		lineNumberSizer.innerText = '';
+		lineNumberSizer.textContent = '';
 		lineNumberSizer.style.display = 'none';
 	};
 
