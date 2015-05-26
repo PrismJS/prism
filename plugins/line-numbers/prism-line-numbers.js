@@ -14,17 +14,12 @@
 		var lineNumbersWrapper = element.querySelector('.line-numbers-rows');
 		var lineNumberSizer = element.querySelector('.line-numbers-sizer');
 		var codeLines = element.textContent.split('\n');
-		var lineHeight;
 
 		lineNumberSizer.style.display = 'block';
 
-		// parse line height in such way because of problems with zoom & line height css attr
-		lineNumberSizer.innerText = '\n';
-		lineHeight = lineNumberSizer.getBoundingClientRect().height;
-
 		codeLines.forEach(function(line, lineNumber){
-			lineNumberSizer.innerText = line;
-			var lineSize = lineNumberSizer.getBoundingClientRect().height || lineHeight;
+			lineNumberSizer.innerText = line || '\n';
+			var lineSize = lineNumberSizer.getBoundingClientRect().height;
 			lineNumbersWrapper.children[lineNumber].style.height = lineSize + 'px';
 		});
 
