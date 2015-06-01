@@ -1,7 +1,7 @@
 (function(Prism) {
 
 	var handlebars_pattern = /\{\{\{[\w\W]+?\}\}\}|\{\{[\w\W]+?\}\}/g;
-	
+
 	Prism.languages.handlebars = Prism.languages.extend('markup', {
 		'handlebars': {
 			pattern: handlebars_pattern,
@@ -14,7 +14,7 @@
 				'number': /\b-?(0x[\dA-Fa-f]+|\d*\.?\d+([Ee]-?\d+)?)\b/,
 				'boolean': /\b(true|false)\b/,
 				'block': {
-					pattern: /^(\s*~?\s*)[#\/]\w+/i,
+					pattern: /^(\s*~?\s*)[#\/]\S+/i,
 					lookbehind: true,
 					alias: 'keyword'
 				},
