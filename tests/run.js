@@ -20,7 +20,7 @@ for (var language in testSuite)
 				function (filePath) {
 					var fileName = path.basename(filePath);
 
-					it("Should pass test case '" + fileName + "'",
+					it("– should pass test case '" + fileName + "'",
 						function () {
 							TestCase.runTestCase(language, filePath);
 						}
