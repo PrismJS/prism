@@ -4,6 +4,8 @@
   "main": [
       "prism.js",
       "themes/prism.css"
+      "lib/prism.js",
+      "themes/prism.css"
   ],
   "homepage": "http://prismjs.com",
   "authors": "Lea Verou",
