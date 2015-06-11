@@ -4,13 +4,10 @@ pre.line-numbers {
 	counter-reset: linenumber;
 }
 
-pre.line-numbers-break-word > code {
-	white-space: pre-wrap;
-	display: inline-block;
-}
-
 pre.line-numbers > code {
 	position: relative;
+    display: inline-block;
+    white-space: inherit;
 }
 
 .line-numbers .line-numbers-rows {

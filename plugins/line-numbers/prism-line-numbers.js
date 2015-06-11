@@ -1,34 +1,59 @@
 (function(){
 
 	/**
-	 * Class name which is used to flag this code field has break-word css attr
+	 * Class name for <pre> which is activating the plugin
 	 * @type {String}
 	 */
-	var BREAK_WORD_CLASS = 'line-numbers-break-word';
+	var PLUGIN_CLASS = 'line-numbers';
 
 	/**
 	 * Resizes line numbers spans according to height of line of code
-	 * @param  {Element} element <code> element
+	 * @param  {Element} element <pre> element
 	 */
 	var _resizeElement = function(element){
-		var lineNumbersWrapper = element.querySelector('.line-numbers-rows');
-		var lineNumberSizer = element.querySelector('.line-numbers-sizer');
-		var codeLines = element.textContent.split('\n');
+    var codeStyles = getStyles(element);
+    var whiteSpace = codeStyles['white-space'];
 
-		lineNumberSizer.style.display = 'block';
+    if (whiteSpace === 'pre-wrap' || whiteSpace === 'pre-line'){
+      var codeElement = element.querySelector('code');
+      var lineNumbersWrapper = element.querySelector('.line-numbers-rows');
+      var lineNumberSizer = element.querySelector('.line-numbers-sizer');
+      var codeLines = element.textContent.split('\n');
 
-		codeLines.forEach(function(line, lineNumber){
-			lineNumberSizer.textContent = line || '\n';
-			var lineSize = lineNumberSizer.getBoundingClientRect().height;
-			lineNumbersWrapper.children[lineNumber].style.height = lineSize + 'px';
-		});
+      if (!lineNumberSizer){
+        lineNumberSizer = document.createElement('span');
+        lineNumberSizer.className = 'line-numbers-sizer';
 
-		lineNumberSizer.textContent = '';
-		lineNumberSizer.style.display = 'none';
+        codeElement.appendChild(lineNumberSizer);
+      }
+
+      lineNumberSizer.style.display = 'block';
+
+      codeLines.forEach(function(line, lineNumber){
+        lineNumberSizer.textContent = line || '\n';
+        var lineSize = lineNumberSizer.getBoundingClientRect().height;
+        lineNumbersWrapper.children[lineNumber].style.height = lineSize + 'px';
+      });
+
+      lineNumberSizer.textContent = '';
+      lineNumberSizer.style.display = 'none';
+    }
 	};
 
+  /**
+   * Returns style declarations for the element
+   * @param {Element} element
+   */
+  var getStyles = function(element){
+    if (!element){
+      return null;
+    }
+
+    return window.getComputedStyle ? getComputedStyle(element) : (element.currentStyle || null);
+  };
+
 	window.addEventListener('resize', function(){
-		Array.prototype.forEach.call(document.querySelectorAll('pre.' + BREAK_WORD_CLASS), _resizeElement);
+		Array.prototype.forEach.call(document.querySelectorAll('pre.' + PLUGIN_CLASS), _resizeElement);
 	});
 
 	Prism.hooks.add('after-highlight', function (env) {
@@ -67,14 +92,7 @@
 
 		env.element.appendChild(lineNumbersWrapper);
 
-		if (pre.classList.contains(BREAK_WORD_CLASS)){
-			var lineHeightSizer = document.createElement('span');
-			lineHeightSizer.className = 'line-numbers-sizer';
-
-			env.element.appendChild(lineHeightSizer);
-			_resizeElement(env.element);
-		}
-
+    _resizeElement(pre);
 	});
 
 })();
