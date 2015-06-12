@@ -1,6 +1,5 @@
 {
   "name": "prism",
-  "version": "0.0.1",
   "main": [
       "prism.js",
       "themes/prism.css"
