@@ -1,9 +1,38 @@
 "use strict";
 
 var fs = require("fs");
-var expect = require("chai").expect;
+var assert = require("chai").assert;
 var PrismLoader = require("./prism-loader");
 
+/**
+ * Handles parsing of a test case file.
+ *
+ *
+ * A test case file consists of at least two parts, separated by a line of dashes.
+ * This separation line must start at the beginning of the line and consist of at least three dashes.
+ *
+ * The test case file can either consist of two parts:
+ *
+ *     {source code}
+ *     ----
+ *     {expected token stream}
+ *
+ *
+ * or of three parts:
+ *
+ *     {source code}
+ *     ----
+ *     {expected token stream}
+ *     ----
+ *     {text comment explaining the test case}
+ *
+ * If the file contains more than three parts, the remaining parts are just ignored.
+ * If the file however does not contain at least two parts (so no expected token stream),
+ * the test case will later be marked as failed.
+ *
+ *
+ * @type {{runTestCase: Function, transformCompiledTokenStream: Function, parseTestCaseFile: Function}}
+ */
 module.exports = {
 
 	/**
@@ -23,7 +52,7 @@ module.exports = {
 		var compiledTokenStream = Prism.tokenize(testCase.testSource, Prism.languages[language]);
 		var simplifiedTokenStream = this.transformCompiledTokenStream(compiledTokenStream);
 
-		expect(simplifiedTokenStream).to.eql(testCase.expectedTokenStream);
+		assert.deepEqual(simplifiedTokenStream, testCase.expectedTokenStream, testCase.comment);
 	},
 
 
@@ -53,19 +82,29 @@ module.exports = {
 	 *
 	 * @private
 	 * @param {string} filePath
-	 * @returns {{testSource: string, expectedTokenStream: *}|null}
+	 * @returns {{testSource: string, expectedTokenStream: Array.<Array.<string>>, comment:string?}|null}
 	 */
 	parseTestCaseFile: function (filePath) {
 		var testCaseSource = fs.readFileSync(filePath, "utf8");
-		var testCase = testCaseSource.split(/^----*\w*$/m);
+		var testCaseParts = testCaseSource.split(/^----*\w*$/m);
 
-		if (2 === testCase.length) {
-			return {
-				testSource: testCase[0].trim(),
-				expectedTokenStream: JSON.parse(testCase[1])
-			};
+		// No expected token stream found
+		if (2 > testCaseParts.length) {
+			return null;
 		}
 
-		return null;
+		var testCase = {
+			testSource: testCaseParts[0].trim(),
+			expectedTokenStream: JSON.parse(testCaseParts[1]),
+			comment: null
+		};
+
+		// if there are three parts, the third one is the comment
+		// explaining the test case
+		if (testCaseParts[2]) {
+			testCase.comment = testCaseParts[2].trim();
+		}
+
+		return testCase;
 	}
 };
