@@ -36,6 +36,7 @@ module.exports = {
 	 * @private
 	 * @param {string} language
 	 * @param {{loadedLanguages: string[], Prism: Prism}} context
+	 * @returns {{loadedLanguages: string[], Prism: Prism}}
 	 */
 	loadLanguage: function (language, context) {
 		if (!languagesCatalog[language])
