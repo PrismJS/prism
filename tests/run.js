@@ -18,7 +18,7 @@ for (var language in testSuite)
 		describe("Testing language '" + language + "'", function() {
 			testFiles.forEach(
 				function (filePath) {
-					var fileName = path.basename(filePath);
+					var fileName = path.basename(filePath, path.extname(filePath));
 
 					it("– should pass test case '" + fileName + "'",
 						function () {

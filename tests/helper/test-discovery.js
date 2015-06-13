@@ -52,7 +52,9 @@ module.exports = {
 	getAllFiles: function (src) {
 		return fs.readdirSync(src).filter(
 			function (fileName) {
-				return fs.statSync(path.join(src, fileName)).isFile();
+				// only find files that have the ".test" extension
+				return ".test" === path.extname(fileName) &&
+					fs.statSync(path.join(src, fileName)).isFile();
 			}
 		).map(
 			function (fileName) {
