@@ -276,6 +276,10 @@ var components = {
 			"title": "SAS",
 			"owner": "Golmote"
 		},
+		"sass": {
+			"title": "Sass (Sass)",
+			"owner": "Golmote"
+		},
 		"scss": {
 			"title": "Sass (Scss)",
 			"require": "css",
