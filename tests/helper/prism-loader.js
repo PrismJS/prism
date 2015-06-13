@@ -11,12 +11,21 @@ module.exports = {
 	/**
 	 * Creates a new Prism instance with the given language loaded
 	 *
-	 * @param {string} language
+	 * @param {string|string[]} languages
 	 * @returns {Prism}
 	 */
-	createInstance: function (language) {
-		var Prism = this.createEmptyPrism();
-		return this.loadLanguage(language, Prism);
+	createInstance: function (languages) {
+		var context = {
+			loadedLanguages: [],
+			Prism: this.createEmptyPrism()
+		};
+		languages = Array.isArray(languages) ? languages : [languages];
+
+		for (var i = 0, l = languages.length; i < l; i++) {
+			context = this.loadLanguage(languages[i], context);
+		}
+
+		return context.Prism;
 	},
 
 
@@ -26,26 +35,31 @@ module.exports = {
 	 *
 	 * @private
 	 * @param {string} language
-	 * @param {Prism} Prism
-	 * @returns {Prism}
+	 * @param {{loadedLanguages: string[], Prism: Prism}} context
 	 */
-	loadLanguage: function (language, Prism) {
+	loadLanguage: function (language, context) {
 		if (!languagesCatalog[language])
 		{
 			throw new Error("Language '" + language + "' not found.");
 		}
 
+		// the given language was already loaded
+		if (-1 < context.loadedLanguages.indexOf(language)) {
+			return context;
+		}
+
 		// if the language has a dependency -> load it first
 		if (languagesCatalog[language].require)
 		{
-			Prism = this.loadLanguage(languagesCatalog[language].require, Prism);
+			context = this.loadLanguage(languagesCatalog[language].require, context);
 		}
 
 		// load the language itself
 		var languageSource = this.loadFileSource(language);
-		var context = this.runFileWithContext(languageSource, {Prism: Prism});
+		context.Prism = this.runFileWithContext(languageSource, {Prism: context.Prism}).Prism;
+		context.loadedLanguages.push(language);
 
-		return context.Prism;
+		return context;
 	},
 
 
@@ -88,7 +102,7 @@ module.exports = {
 	 *
 	 * @private
 	 * @param {string} fileSource
-	 * @param {*}context
+	 * @param {*} [context]
 	 *
 	 * @returns {*}
 	 */

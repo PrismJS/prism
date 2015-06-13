@@ -38,18 +38,30 @@ module.exports = {
 	/**
 	 * Runs the given test case file and asserts the result
 	 *
-	 * @param {string} language
+	 * The passed language identifier can either be a language like "css" or a composed language
+	 * identifier like "css+markup". Composed identifiers can be used for testing language inclusion.
+	 *
+	 * When testing language inclusion, the first given language is the main language which will be passed
+	 * to Prism for highlighting ("css+markup" will result in a call to Prism to highlight with the "css" grammar).
+	 * But it will be ensured, that the additional passed languages will be loaded too.
+	 *
+	 * The languages will be loaded in the order they were provided.
+	 *
+	 * @param {string} languageIdentifier
 	 * @param {string} filePath
 	 */
-	runTestCase: function (language, filePath) {
+	runTestCase: function (languageIdentifier, filePath) {
 		var testCase = this.parseTestCaseFile(filePath);
+		var languages = languageIdentifier.split("+");
 
 		if (null === testCase) {
 			throw new Error("Test case file has invalid format, please read the docs.");
 		}
 
-		var Prism = PrismLoader.createInstance(language);
-		var compiledTokenStream = Prism.tokenize(testCase.testSource, Prism.languages[language]);
+		var Prism = PrismLoader.createInstance(languages);
+		// the first language is the main language to highlight
+		var mainLanguageGrammar = Prism.languages[languages[0]];
+		var compiledTokenStream = Prism.tokenize(testCase.testSource, mainLanguageGrammar);
 		var simplifiedTokenStream = this.transformCompiledTokenStream(compiledTokenStream);
 
 		assert.deepEqual(simplifiedTokenStream, testCase.expectedTokenStream, testCase.comment);
