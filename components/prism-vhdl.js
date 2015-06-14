@@ -2,7 +2,7 @@ Prism.languages.vhdl = {
 	'comment': /--.+/,
 	// support for all logic vectors
 	'vhdl-vectors': {
-		'pattern': /(\b[oxb]"[\da-f_]+"|"[01uxzwlh-]+")/i,
+		'pattern': /\b[oxb]"[\da-f_]+"|"[01uxzwlh-]+"/i,
 		'alias': 'number'
 	},
 	'string': /"(\\\n|\\?.)*?"/,
@@ -18,7 +18,7 @@ Prism.languages.vhdl = {
 		}
 	},
 	// decimal, based, physical, and exponential numbers supported
-	'number': /'[01uxzwlh-]'|\b\d+[_.]*(#[\da-f_.]+#)?([e][-+]?\d+)?/i,
+	'number': /'[01uxzwlh-]'|\b\d+[_.]*(#[\da-f_.]+#)?(e[-+]?\d+)?/i,
 	'operator': /<=?|>=?|:=|[-+*/&=]|\b(abs|not|mod|rem|sll|srl|sla|sra|rol|ror|and|or|nand|xnor|xor|nor)\b/i,
 	'punctuation': /[{}[\];(),.:]/
 };
