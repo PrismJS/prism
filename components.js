@@ -326,6 +326,10 @@ var components = {
 			"require": "javascript",
 			"owner": "vkbansal"
 		},
+		"vhdl": {
+			"title": "VHDL",
+			"owner": "a-rey"
+		},
 		"wiki": {
 			"title": "Wiki markup",
 			"require": "markup",
