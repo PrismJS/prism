@@ -1,35 +1,35 @@
 Prism.languages.markup = {
-	'comment': /<!--[\w\W]*?-->/g,
+	'comment': /<!--[\w\W]*?-->/,
 	'prolog': /<\?.+?\?>/,
 	'doctype': /<!DOCTYPE.+?>/,
 	'cdata': /<!\[CDATA\[[\w\W]*?]]>/i,
 	'tag': {
-		pattern: /<\/?[\w:-]+\s*(?:\s+[\w:-]+(?:=(?:("|')(\\?[\w\W])*?\1|[^\s'">=]+))?\s*)*\/?>/gi,
+		pattern: /<\/?[^\s>\/]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\\1|\\?(?!\1)[\w\W])*\1|[^\s'">=]+))?)*\s*\/?>/i,
 		inside: {
 			'tag': {
-				pattern: /^<\/?[\w:-]+/i,
+				pattern: /^<\/?[^\s>\/]+/i,
 				inside: {
 					'punctuation': /^<\/?/,
-					'namespace': /^[\w-]+?:/
+					'namespace': /^[^\s>\/:]+:/
 				}
 			},
 			'attr-value': {
-				pattern: /=(?:('|")[\w\W]*?(\1)|[^\s>]+)/gi,
+				pattern: /=(?:('|")[\w\W]*?(\1)|[^\s>]+)/i,
 				inside: {
-					'punctuation': /=|>|"/g
+					'punctuation': /=|>|"/
 				}
 			},
-			'punctuation': /\/?>/g,
+			'punctuation': /\/?>/,
 			'attr-name': {
-				pattern: /[\w:-]+/g,
+				pattern: /[^\s>\/]+/,
 				inside: {
-					'namespace': /^[\w-]+?:/
+					'namespace': /^[^\s>\/:]+:/
 				}
 			}
 
 		}
 	},
-	'entity': /&#?[\da-z]{1,8};/gi
+	'entity': /&#?[\da-z]{1,8};/i
 };
 
 // Plugin to make entity title show the real entity, idea by Roman Komarov

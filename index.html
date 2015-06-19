@@ -152,7 +152,11 @@
 	<p>If you want to prevent any elements from being automatically highlighted, you can use the attribute <code>data-manual</code> on the <code>&lt;script></code> element you used for prism and use the <a href="extending.html#api">API</a>.
 	Example:</p>
 	<pre><code>&lt;script src="prism.js" data-manual>&lt;/script></code></pre>
-</p>
+</section>
+
+<section id="languages-list" class="language-markup">
+	<h1>Supported languages</h1>
+	<p>This is the list of all languages currently supported by Prism, with their corresponding alias, to use in place of <code>xxxx</code> in the <code>language-xxxx</code> class:</p>
 </section>
 
 <section id="plugins">
@@ -214,6 +218,37 @@
 <script src="utopia.js"></script>
 <script src="components.js"></script>
 <script src="code.js"></script>
+<script>
+(function() {
+	var languageItems = [];
+	var languages = components.languages;
+	for (var id in languages) {
+		if (id == 'meta') {
+			continue;
+		}
+		var name = languages[id].title || languages[id];
+
+		languageItems.push({
+			tag: 'li',
+			attributes: {
+				'data-id': id
+			},
+			contents: [
+				name,
+				' - ',
+				{
+					tag: 'code',
+					contents: id
+				}
+			]
+		});
+	}
+	$u.element.create('ul', {
+		contents: languageItems,
+		inside: '#languages-list'
+	});
+}());
+</script>
 
 </body>
 </html>

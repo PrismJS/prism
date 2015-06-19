@@ -36,6 +36,12 @@ textarea {
 		padding: .2em;
 	}
 
+	#language label[data-id="javascript"] {
+		border-bottom: 1px solid #aaa;
+		padding-bottom: 1em;
+		margin-bottom: 1em;
+	}
+
 	#language input {
 		margin-right: 1em;
 	}
@@ -66,12 +72,12 @@ textarea {
 			<textarea>&lt;p class="hey">Type some code here&lt;/p></textarea>
 		</p>
 
+		<p>Result:</p>
+		<pre><code></code></pre>
+
 		<p id="language">
 			<strong>Language:</strong>
 		</p>
-
-		<p>Result:</p>
-		<pre><code></code></pre>
 	</form>
 </section>
 
@@ -97,6 +103,9 @@ for (var id in languages) {
 	var name = languages[id].title || languages[id];
 
 	$u.element.create('label', {
+		attributes: {
+			'data-id': id
+		},
 		contents: [
 			{
 				tag: 'input',

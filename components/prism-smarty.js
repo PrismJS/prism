@@ -15,20 +15,20 @@
 			pattern: smarty_pattern,
 			inside: {
 				'delimiter': {
-					pattern: /^\{|\}$/ig,
+					pattern: /^\{|\}$/i,
 					alias: 'punctuation'
 				},
-				'string': /(["'])(\\?.)*?\1/g,
-				'number': /\b-?(0x[\dA-Fa-f]+|\d*\.?\d+([Ee]-?\d+)?)\b/g,
+				'string': /(["'])(\\?.)*?\1/,
+				'number': /\b-?(0x[\dA-Fa-f]+|\d*\.?\d+([Ee]-?\d+)?)\b/,
 				'variable': [
-					/\$(?!\d)\w+/g,
-					/#(?!\d)\w+#/g,
+					/\$(?!\d)\w+/,
+					/#(?!\d)\w+#/,
 					{
-						pattern: /(\.|->)(?!\d)\w+/g,
+						pattern: /(\.|->)(?!\d)\w+/,
 						lookbehind: true
 					},
 					{
-						pattern: /(\[)(?!\d)\w+(?=\])/g,
+						pattern: /(\[)(?!\d)\w+(?=\])/,
 						lookbehind: true
 					}
 				],
@@ -37,27 +37,27 @@
 						pattern: /(\|\s*)@?(?!\d)\w+/,
 						lookbehind: true
 					},
-					/^\/?(?!\d)\w+/g,
-					/(?!\d)\w+(?=\()/g
+					/^\/?(?!\d)\w+/,
+					/(?!\d)\w+(?=\()/
 				],
 				'attr-name': {
 					// Value is made optional because it may have already been tokenized
-					pattern: /\w+\s*=\s*(?:(?!\d)\w+)?/g,
+					pattern: /\w+\s*=\s*(?:(?!\d)\w+)?/,
 					inside: {
 						"variable": {
-							pattern: /(=\s*)(?!\d)\w+/g,
+							pattern: /(=\s*)(?!\d)\w+/,
 							lookbehind: true
 						},
-						"punctuation": /=/g
+						"punctuation": /=/
 					}
 				},
-				'punctuation': /[\[\]().,=\|:`]|\->/g,
+				'punctuation': /[\[\]().,=\|:`]|\->/,
 				'operator': [
-					/[+\-*\/%]|===?|[!<>]=?|&&|\|\|/g,
+					/[+\-*\/%]|===?|[!<>]=?|&&|\|\|/,
 					/\bis\s+(?:not\s+)?(?:div|even|odd)(?:\s+by)?\b/,
-					/\b(?:eq|neq?|gt|lt|gt?e|lt?e|not|mod|or|and)\b/g
+					/\b(?:eq|neq?|gt|lt|gt?e|lt?e|not|mod|or|and)\b/
 				],
-				'keyword': /\b(?:false|off|on|no|true|yes)\b/g
+				'keyword': /\b(?:false|off|on|no|true|yes)\b/
 			}
 		}
 	});
@@ -66,7 +66,7 @@
 	// surround markup
 	Prism.languages.insertBefore('smarty', 'tag', {
 		'smarty-comment': {
-			pattern: /\{\*[\w\W]*?\*\}/g,
+			pattern: /\{\*[\w\W]*?\*\}/,
 			alias: ['smarty','comment']
 		}
 	});
