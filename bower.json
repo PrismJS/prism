@@ -8,6 +8,10 @@
   "authors": "Lea Verou",
   "description": "Lightweight, robust, elegant syntax highlighting. A spin-off project from Dabblet.",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PrismJS/prism.git"
+  }
   "ignore": [
     "**/.*",
     "img",
