@@ -588,7 +588,7 @@ Prism.languages.insertBefore('javascript', 'keyword', {
 	}
 });
 
-Prism.languages.insertBefore('javascript', 'string', {
+Prism.languages.insertBefore('javascript', 'class-name', {
 	'template-string': {
 		pattern: /`(?:\\`|\\?[^`])*`/,
 		inside: {
