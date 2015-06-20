@@ -51,7 +51,14 @@
 				}
 			};
 
-			xhr.send(null);
+			try
+			{
+				xhr.send(null);
+			}
+			catch(e)
+			{
+				// Swallow exception since it's reported to the user above
+			}
 		});
 
 	};
