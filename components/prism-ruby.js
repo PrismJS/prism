@@ -21,7 +21,7 @@ Prism.languages.insertBefore('ruby', 'keyword', {
 });
 
 Prism.languages.ruby.string = {
-	pattern: /("|')(\\\n|\\?.)*?\1/,
+	pattern: /("|')(#\{[^}]+\}|\\\n|\\?.)*?\1/,
 	inside: {
 		'interpolation': {
 			pattern: /#\{[^}]+\}/,
