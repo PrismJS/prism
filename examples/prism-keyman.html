@@ -10,7 +10,16 @@
 U+0041 d65 x41   c these are all the letter A
 </code></pre>
 
+<h2>Prefixes and Virtual Keys</h2>
+
+<pre><code>
+c Match RAlt+E on desktops, Ctrl+Alt+E on web because L/R Alt not consistently supported in browsers.
+$KeymanOnly: + [RALT K_E] > "€"
+$KeymanWeb: + [CTRL ALT K_E] > "€"
+</code></pre>
+
 <h2>Example Code</h2>
+
 <pre><code>c =====================Begin Identity Section===================================================
 c 
 c Mnemonic input method for Amharic script on US-QWERTY
