@@ -29,7 +29,11 @@ var components = {
 		"prism-coy": {
 			"title": "Coy",
 			"owner": "tshedor"
-		}
+		},
+        "prism-darcula": {
+            "title": "Darcula",
+            "owner": "service-paradis"
+        }
 	},
 	"languages": {
 		"meta": {
