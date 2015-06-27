@@ -10,5 +10,5 @@ Prism.languages.keyman = {
 	],
 	'number': /\b(U\+[\dA-F]+|d\d+|x[\da-f]+|\d+)\b/i, // U+####, x###, d### characters and numbers
 	'operator': /[+>\\,()]/,
-	'tag': /\$(keyman|kmfl|silkey|keymanweb|keymanonly):/i   // prefixes
+	'tag': /\$(keyman|kmfl|weaver|keymanweb|keymanonly):/i   // prefixes
 };
