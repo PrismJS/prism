@@ -8,7 +8,7 @@ Prism.languages.keyman = {
 		/&(baselayout|bitmap|capsononly|capsalwaysoff|shiftfreescaps|copyright|ethnologuecode|hotkey|includecodes|keyboardversion|kmw_embedcss|kmw_embdjs|kmw_helpfile|kmw_helptext|kmw_rtl|language|layer|layoutfile|message|mnemoniclayout|name|oldcharposmatching|platform|targets|version|visualkeyboard|windowslanguages)\b/i,
 		/\b(bitmap|bitmaps|caps on only|caps always off|shift frees caps|copyright|hotkey|language|layout|message|name|version)\b/i
 	],
-	'number': /\b(U\+[\dA-F]+|d\d+|x[\da-f]+|[0-7]+)\b/i, // U+####, x###, d### characters and numbers
+	'number': /\b(U\+[\dA-F]+|d\d+|x[\da-f]+|\d+)\b/i, // U+####, x###, d### characters and numbers
 	'operator': /[+>\\,()]/,
 	'tag': /\$(keyman|kmfl|silkey|keymanweb|keymanonly):/i   // prefixes
 };
