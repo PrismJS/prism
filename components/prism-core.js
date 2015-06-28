@@ -161,10 +161,6 @@ var _ = self.Prism = {
 			grammar = _.languages[language];
 		}
 
-		if (!grammar) {
-			return;
-		}
-
 		// Set language on the element, if not present
 		element.className = element.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language;
 
@@ -173,6 +169,10 @@ var _ = self.Prism = {
 
 		if (/pre/i.test(parent.nodeName)) {
 			parent.className = parent.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language;
+		}
+
+		if (!grammar) {
+			return;
 		}
 
 		var code = element.textContent;

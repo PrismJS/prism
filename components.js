@@ -41,37 +41,196 @@ var components = {
 			"title": "Markup",
 			"option": "default"
 		},
-		"twig": {
-			"title": "Twig",
-			"require": "markup",
-			"owner": "brandonkelly"
-		},
 		"css": {
 			"title": "CSS",
 			"option": "default"
 		},
-		"css-extras": {
-			"title": "CSS Extras",
-			"require": "css",
-			"owner": "milesj"
-		},
 		"clike": {
 			"title": "C-like",
 			"option": "default"
-		},
-		"eiffel": {
-			"title": "Eiffel",
-			"owner": "Conaclos"
 		},
 		"javascript": {
 			"title": "JavaScript",
 			"option": "default",
 			"require": "clike"
 		},
+
+		// ---
+
+		"actionscript": {
+			"title": "ActionScript",
+			"require": "javascript",
+			"owner": "Golmote"
+		},
+		"apacheconf": {
+			"title": "Apache Configuration",
+			"owner": "GuiTeK"
+		},
+		"applescript": {
+			"title": "AppleScript",
+			"owner": "Golmote"
+		},
+		"aspnet": {
+			"title": "ASP.NET (C#)",
+			"require": "markup",
+			"owner": "nauzilus"
+		},
+		"autohotkey": {
+			"title": "AutoHotkey",
+			"owner": "aviaryan"
+		},
+		"bash": {
+			"title": "Bash",
+			"require": "clike",
+			"owner": "zeitgeist87"
+		},
+		"brainfuck": {
+			"title": "Brainfuck",
+			"owner": "Golmote"
+		},
+		"c": {
+			"title": "C",
+			"require": "clike",
+			"owner": "zeitgeist87"
+		},
+		"csharp": {
+			"title": "C#",
+			"require": "clike",
+			"owner": "mvalipour"
+		},
+		"cpp": {
+			"title": "C++",
+			"require": "c",
+			"owner": "zeitgeist87"
+		},
+		"coffeescript": {
+			"title": "CoffeeScript",
+			"require": "javascript",
+			"owner": "R-osey"
+		},
+		"css-extras": {
+			"title": "CSS Extras",
+			"require": "css",
+			"owner": "milesj"
+		},
+		"dart": {
+			"title": "Dart",
+			"require": "clike",
+			"owner": "Golmote"
+		},
+		"eiffel": {
+			"title": "Eiffel",
+			"owner": "Conaclos"
+		},
+		"erlang": {
+			"title": "Erlang",
+			"owner": "Golmote"
+		},
+		"fsharp": {
+			"title": "F#",
+			"require": "clike",
+			"owner": "simonreynolds7"
+		},
+		"fortran": {
+			"title": "Fortran",
+			"owner": "Golmote"
+		},
+		"gherkin": {
+			"title": "Gherkin",
+			"owner": "hason"
+		},
+		"git": {
+			"title": "Git",
+			"owner": "lgiraudel"
+		},
+		"go": {
+			"title": "Go",
+			"require": "clike",
+			"owner": "arnehormann"
+		},
+		"groovy": {
+			"title": "Groovy",
+			"require": "clike",
+			"owner": "robfletcher"
+		},
+		"haml": {
+			"title": "Haml",
+			"require": "ruby",
+			"owner": "Golmote"
+		},
+		"handlebars": {
+			"title": "Handlebars",
+			"require": "markup",
+			"owner": "Golmote"
+		},
+		"haskell": {
+			"title": "Haskell",
+			"owner": "bholst"
+		},
+		"http": {
+			"title": "HTTP",
+			"owner": "danielgtaylor"
+		},
+		"ini": {
+			"title": "Ini",
+			"owner": "aviaryan"
+		},
+		"jade": {
+			"title": "Jade",
+			"require": "javascript",
+			"owner": "Golmote"
+		},
 		"java": {
 			"title": "Java",
 			"require": "clike",
 			"owner": "sherblot"
+		},
+		"julia": {
+			"title": "Julia",
+			"owner": "cdagnino"
+		},
+		"latex": {
+			"title": "LaTeX",
+			"owner": "japborst"
+		},
+		"less": {
+			"title": "Less",
+			"require": "css",
+			"owner": "Golmote"
+		},
+		"lolcode": {
+			"title": "LOLCODE",
+			"owner": "Golmote"
+		},
+		"markdown": {
+			"title": "Markdown",
+			"require": "markup",
+			"owner": "Golmote"
+		},
+		"matlab": {
+			"title": "MATLAB",
+			"owner": "Golmote"
+		},
+		"nasm": {
+			"title": "NASM",
+			"owner": "rbmj"
+		},
+		"nsis": {
+			"title": "NSIS",
+			"owner": "idleberg"
+		},
+		"objectivec": {
+			"title": "Objective-C",
+			"require": "c",
+			"owner": "uranusjr"
+		},
+		"pascal": {
+			"title": "Pascal",
+			"owner": "Golmote"
+		},
+		"perl": {
+			"title": "Perl",
+			"owner": "Golmote"
 		},
 		"php": {
 			"title": "PHP",
@@ -83,209 +242,16 @@ var components = {
 			"require": "php",
 			"owner": "milesj"
 		},
-		"coffeescript": {
-			"title": "CoffeeScript",
-			"require": "javascript",
-			"owner": "R-osey"
-		},
-		"scss": {
-			"title": "Sass (Scss)",
-			"require": "css",
-			"owner": "MoOx"
-		},
-		"bash": {
-			"title": "Bash",
-			"require": "clike",
-			"owner": "zeitgeist87"
-		},
-		"c": {
-			"title": "C",
-			"require": "clike",
-			"owner": "zeitgeist87"
-		},
-		"cpp": {
-			"title": "C++",
-			"require": "c",
-			"owner": "zeitgeist87"
+		"powershell": {
+			"title": "PowerShell",
+			"owner": "nauzilus"
 		},
 		"python": {
 			"title": "Python",
 			"owner": "multipetros"
 		},
-		"julia": {
-			"title": "julia",
-			"owner": "cdagnino"
-		},
-		"sql": {
-			"title": "SQL",
-			"owner": "multipetros"
-		},
-		"groovy": {
-			"title": "Groovy",
-			"require": "clike",
-			"owner": "robfletcher"
-		},
-		"http": {
-			"title": "HTTP",
-			"owner": "danielgtaylor"
-		},
-		"ruby": {
-			"title": "Ruby",
-			"require": "clike",
-			"owner": "samflores"
-		},
-		"rip": {
-			"title": "Rip",
-			"owner": "ravinggenius"
-		},
-		"gherkin": {
-			"title": "Gherkin",
-			"owner": "hason"
-		},
-		"csharp": {
-			"title": "C#",
-			"require": "clike",
-			"owner": "mvalipour"
-		},
-		"go": {
-			"title": "Go",
-			"require": "clike",
-			"owner": "arnehormann"
-		},
-		"nsis": {
-			"title": "NSIS",
-			"owner": "idleberg"
-		},
-		"aspnet": {
-			"title": "ASP.NET (C#)",
-			"require": "markup",
-			"owner": "nauzilus"
-		},
-		"scala": {
-			"title": "Scala",
-			"require": "java",
-			"owner": "jozic"
-		},
-		"haskell": {
-			"title": "Haskell",
-			"owner": "bholst"
-		},
-		"swift": {
-			"title": "Swift",
-			"require": "clike",
-			"owner": "chrischares"
-		},
-		"objectivec": {
-			"title": "Objective-C",
-			"require": "c",
-			"owner": "uranusjr"
-		},
-		"autohotkey": {
-			"title": "AutoHotkey",
-			"owner": "aviaryan"
-		},
-		"ini": {
-			"title": "Ini",
-			"owner": "aviaryan"
-		},
-		"latex": {
-			"title": "LaTeX",
-			"owner": "japborst"
-		},
-		"apacheconf": {
-			"title": "Apache Configuration",
-			"owner": "GuiTeK"
-		},
-		"git": {
-			"title": "Git",
-			"owner": "lgiraudel"
-		},
-		"scheme" : {
-			"title": "Scheme",
-			"owner" : "bacchus123"
-		},
-		"nasm": {
-			"title": "NASM",
-			"owner": "rbmj"
-		},
-		"perl": {
-			"title": "Perl",
-			"owner": "Golmote"
-		},
-		"handlebars": {
-			"title": "Handlebars",
-			"require": "markup",
-			"owner": "Golmote"
-		},
-		"matlab": {
-			"title": "MATLAB",
-			"owner": "Golmote"
-		},
-		"less": {
-			"title": "Less",
-			"require": "css",
-			"owner": "Golmote"
-		},
 		"r": {
 			"title": "R",
-			"owner": "Golmote"
-		},
-		"lolcode": {
-			"title": "LOLCODE",
-			"owner": "Golmote"
-		},
-		"fortran": {
-			"title": "Fortran",
-			"owner": "Golmote"
-		},
-		"erlang": {
-			"title": "Erlang",
-			"owner": "Golmote"
-		},
-		"haml": {
-			"title": "Haml",
-			"require": "ruby",
-			"owner": "Golmote"
-		},
-		"jade": {
-			"title": "Jade",
-			"require": "javascript",
-			"owner": "Golmote"
-		},
-		"pascal": {
-			"title": "Pascal",
-			"owner": "Golmote"
-		},
-		"applescript": {
-			"title": "AppleScript",
-			"owner": "Golmote"
-		},
-		"rust": {
-			"title": "Rust",
-			"owner": "Golmote"
-		},
-		"dart": {
-			"title": "Dart",
-			"require": "clike",
-			"owner": "Golmote"
-		},
-		"powershell": {
-			"title": "PowerShell",
-			"owner": "nauzilus"
-		},
-		"smarty": {
-			"title": "Smarty",
-			"require": "markup",
-			"owner": "Golmote"
-		},
-		"actionscript": {
-			"title": "ActionScript",
-			"require": "javascript",
-			"owner": "Golmote"
-		},
-		"markdown": {
-			"title": "Markdown",
-			"require": "markup",
 			"owner": "Golmote"
 		},
 		"jsx":{
@@ -293,36 +259,89 @@ var components = {
 			"require": ["markup", "javascript"],
 			"owner": "vkbansal"
 		},
-		"typescript":{
-			"title": "TypeScript",
-			"require": "javascript",
-			"owner": "vkbansal"
+		"rest": {
+			"title": "reST (reStructuredText)",
+			"owner": "Golmote"
 		},
-		"fsharp": {
-			"title": "F#",
+		"rip": {
+			"title": "Rip",
+			"owner": "ravinggenius"
+		},
+		"ruby": {
+			"title": "Ruby",
 			"require": "clike",
-			"owner": "simonreynolds7"
+			"owner": "samflores"
+		},
+		"rust": {
+			"title": "Rust",
+			"owner": "Golmote"
 		},
 		"sas": {
 			"title": "SAS",
 			"owner": "Golmote"
 		},
-		"rest": {
-			"title": "reST (reStructuredText)",
+		"sass": {
+			"title": "Sass (Sass)",
 			"owner": "Golmote"
+		},
+		"scss": {
+			"title": "Sass (Scss)",
+			"require": "css",
+			"owner": "MoOx"
+		},
+		"scala": {
+			"title": "Scala",
+			"require": "java",
+			"owner": "jozic"
+		},
+		"scheme" : {
+			"title": "Scheme",
+			"owner" : "bacchus123"
+		},
+		"smalltalk": {
+			"title": "Smalltalk",
+			"owner": "Golmote"
+		},
+		"smarty": {
+			"title": "Smarty",
+			"require": "markup",
+			"owner": "Golmote"
+		},
+		"sql": {
+			"title": "SQL",
+			"owner": "multipetros"
 		},
 		"stylus" : {
 			"title": "Stylus",
 			"owner": "vkbansal"
+		},
+		"swift": {
+			"title": "Swift",
+			"require": "clike",
+			"owner": "chrischares"
+		},
+		"twig": {
+			"title": "Twig",
+			"require": "markup",
+			"owner": "brandonkelly"
+		},
+		"typescript":{
+			"title": "TypeScript",
+			"require": "javascript",
+			"owner": "vkbansal"
+		},
+		"vhdl": {
+			"title": "VHDL",
+			"owner": "a-rey"
 		},
 		"wiki": {
 			"title": "Wiki markup",
 			"require": "markup",
 			"owner": "Golmote"
 		},
-		"brainfuck": {
-			"title": "Brainfuck",
-			"owner": "Golmote"
+		"yaml": {
+			"title": "YAML",
+			"owner": "hason"
 		}
 	},
 	"plugins": {
