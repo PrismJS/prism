@@ -198,6 +198,10 @@ var components = {
 			"title": "LOLCODE",
 			"owner": "Golmote"
 		},
+		"makefile": {
+			"title": "Makefile",
+			"owner": "Golmote"
+		},
 		"markdown": {
 			"title": "Markdown",
 			"require": "markup",
