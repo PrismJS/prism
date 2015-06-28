@@ -189,6 +189,10 @@ var components = {
 			"title": "Julia",
 			"owner": "cdagnino"
 		},
+		"keyman": {
+			"title": "Keyman",
+			"owner": "mcdurdin"
+		},
 		"latex": {
 			"title": "LaTeX",
 			"owner": "japborst"
