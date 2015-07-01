@@ -84,6 +84,10 @@ var components = {
 			"require": "clike",
 			"owner": "zeitgeist87"
 		},
+		"brainfuck": {
+			"title": "Brainfuck",
+			"owner": "Golmote"
+		},
 		"c": {
 			"title": "C",
 			"require": "clike",
@@ -200,6 +204,10 @@ var components = {
 		},
 		"lolcode": {
 			"title": "LOLCODE",
+			"owner": "Golmote"
+		},
+		"makefile": {
+			"title": "Makefile",
 			"owner": "Golmote"
 		},
 		"markdown": {
