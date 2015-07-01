@@ -143,6 +143,11 @@ var components = {
 			"title": "Git",
 			"owner": "lgiraudel"
 		},
+		"glsl": {
+			"title": "GLSL",
+			"require": "clike",
+			"owner": "Golmote"
+		},
 		"go": {
 			"title": "Go",
 			"require": "clike",
