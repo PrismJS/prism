@@ -219,6 +219,10 @@ var components = {
 			"title": "MATLAB",
 			"owner": "Golmote"
 		},
+		"monkey": {
+			"title": "Monkey",
+			"owner": "Golmote"
+		},
 		"nasm": {
 			"title": "NASM",
 			"owner": "rbmj"
