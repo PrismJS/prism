@@ -258,6 +258,10 @@ var components = {
 			"title": "Python",
 			"owner": "multipetros"
 		},
+		"q": {
+			"title": "Q",
+			"owner": "Golmote"
+		},
 		"r": {
 			"title": "R",
 			"owner": "Golmote"
