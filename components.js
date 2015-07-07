@@ -254,6 +254,10 @@ var components = {
 			"title": "PowerShell",
 			"owner": "nauzilus"
 		},
+		"prolog": {
+			"title": "Prolog",
+			"owner": "Golmote"
+		},
 		"python": {
 			"title": "Python",
 			"owner": "multipetros"
