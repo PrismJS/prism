@@ -8,7 +8,7 @@ Prism.languages.css = {
 		}
 	},
 	'url': /url\((?:(["'])(\\[\w\W]|(?!\1)[^\\\r\n])*\1|.*?)\)/i,
-	'selector': /[^\{\}\s][^\{\};]*(?=\s*\{)/,
+	'selector': /[^\{\}\s][^\{\};]*?(?=\s*\{)/,
 	'string': /("|')(\\[\w\W]|(?!\1)[^\\\r\n])*\1/,
 	'property': /(\b|\B)[\w-]+(?=\s*:)/i,
 	'important': /\B!important\b/i,
