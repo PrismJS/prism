@@ -495,8 +495,8 @@ Prism.languages.css = {
 	'string': /("|')(\\\n|\\?.)*?\1/,
 	'property': /(\b|\B)[\w-]+(?=\s*:)/i,
 	'important': /\B!important\b/i,
-	'punctuation': /[\{\};:]/,
-	'function': /[-a-z0-9]+(?=\()/i
+	'function': /[-a-z0-9]+(?=\()/i,
+	'punctuation': /[(){};:]/
 };
 
 if (Prism.languages.markup) {
