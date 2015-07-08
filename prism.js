@@ -487,7 +487,8 @@ Prism.languages.css = {
 	'atrule': {
 		pattern: /@[\w-]+?.*?(;|(?=\s*\{))/i,
 		inside: {
-			'punctuation': /[;:]/
+			'rule': /@[\w-]+/
+			// See rest below
 		}
 	},
 	'url': /url\((?:(["'])(\\\n|\\?.)*?\1|.*?)\)/i,
@@ -498,6 +499,8 @@ Prism.languages.css = {
 	'function': /[-a-z0-9]+(?=\()/i,
 	'punctuation': /[(){};:]/
 };
+
+Prism.languages.css['atrule'].inside.rest = Prism.util.clone(Prism.languages.css);
 
 if (Prism.languages.markup) {
 	Prism.languages.insertBefore('markup', 'tag', {

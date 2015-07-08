@@ -6,7 +6,8 @@ Prism.languages.scss = Prism.languages.extend('css', {
 	'atrule': {
 		pattern: /@[\w-]+(?:\([^()]+\)|[^(])*?(?=\s+(\{|;))/i,
 		inside: {
-			// See rest at the end of the file
+			'rule': /@[\w-]+/
+			// See rest below
 		}
 	},
 	// url, compassified
