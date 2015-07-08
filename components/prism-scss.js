@@ -3,13 +3,10 @@ Prism.languages.scss = Prism.languages.extend('css', {
 		pattern: /(^|[^\\])(\/\*[\w\W]*?\*\/|\/\/.*?(\r?\n|$))/,
 		lookbehind: true
 	},
-	// aturle is just the @***, not the entire rule (to highlight var & stuffs)
-	// + add ability to highlight number & unit for media queries
 	'atrule': {
 		pattern: /@[\w-]+(?:\([^()]+\)|[^(])*?(?=\s+(\{|;))/i,
 		inside: {
-			'property': Prism.languages.css.property,
-			'punctuation': /[():]/
+			// See rest at the end of the file
 		}
 	},
 	// url, compassified
@@ -40,3 +37,5 @@ Prism.languages.insertBefore('scss', 'function', {
 	'null': /\b(null)\b/,
 	'operator': /\s+([-+]{1,2}|={1,2}|!=|\|?\||\?|\*|\/|%)\s+/
 });
+
+Prism.languages.scss['atrule'].inside.rest = Prism.util.clone(Prism.languages.scss);
