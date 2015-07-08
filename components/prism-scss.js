@@ -5,7 +5,7 @@ Prism.languages.scss = Prism.languages.extend('css', {
 	},
 	// aturle is just the @***, not the entire rule (to highlight var & stuffs)
 	// + add ability to highlight number & unit for media queries
-	'atrule': /@[\w-]+(?=\s+(\(|\{|;))/i,
+	'atrule': /@[\w-]+.*?(?=\s+(\(|\{|;))/i,
 	// url, compassified
 	'url': /([-a-z]+-)*url(?=\()/i,
 	// CSS selector regex is not appropriate for Sass
