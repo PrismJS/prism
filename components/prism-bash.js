@@ -1,4 +1,4 @@
-Prism.languages.bash = Prism.languages.extend('clike', {
+Prism.languages.bash = Prism.languages.extend('clike', { //this language definition reuses all definitions from clike syntax file
 	'comment': {
 		pattern: /(^|[^"{\\])(#.*?(\r?\n|$))/,
 		lookbehind: true
@@ -13,6 +13,7 @@ Prism.languages.bash = Prism.languages.extend('clike', {
 	},
 	// Redefined to prevent highlighting of numbers in filenames
 	'number': {
+		// [anyword][hexmarker][lettersforhex or digit(s)][base e][+ or - sign][digit(s)]
 		pattern: /([^\w\.])-?(0x[\dA-Fa-f]+|\d*\.?\d+([Ee]-?\d+)?)\b/,
 		lookbehind: true
 	},
