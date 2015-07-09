@@ -50,6 +50,24 @@ var foo = "http://prismjs.com"; // Strings are strings and comments are comments
 <pre><code>var foo = 1/2, bar = /a/g;
 var foo = /a/, bar = 3/4;</code></pre>
 
+<h2>ES6 features</h2>
+<pre><code>// Regex "y" and "u" flags
+/[a-zA-Z]+/gimyu
+
+// for..of loops
+for(let x of y) { }
+
+// Modules: import
+import { foo as bar } from "file.js"
+
+// Template strings
+`Only on ${y} one line`
+`This template string ${x} is on
+
+multiple lines.`
+`40 + 2 = ${ 40 + 2 }`
+`The squares of the first 3 natural integers are ${[for (x of [1,2,3]) x*x].join(', ')}`</code></pre>
+
 <h2>Known failures</h2>
 <p>There are certain edge cases where Prism will fail.
 	There are always such cases in every regex-based syntax highlighter.
@@ -62,3 +80,13 @@ var foo = /a/, bar = 3/4;</code></pre>
 
 <h3>Two quotes of the same type (i.e. both single or both double) inside a regex</h3>
 <pre><code>foo = /"foo"/;</code></pre>
+
+<h3>Two quotes of the same type (i.e. both single or both double) inside string interpolation</h3>
+<pre><code>foo = `${"foo"}`;</code></pre>
+
+<h3>String interpolation containing a closing brace</h3>
+<pre><code>`${ {foo:'bar'}.foo }`
+`${ '}' }`</code></pre>
+
+<h3>String interpolation containing an unescaped back-tick</h3>
+<pre><code>`${ '`' }`</code></pre>

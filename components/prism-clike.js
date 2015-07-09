@@ -5,11 +5,11 @@ Prism.languages.clike = {
 			lookbehind: true
 		},
 		{
-			pattern: /(^|[^\\:])\/\/.+/,
+			pattern: /(^|[^\\:])\/\/.*/,
 			lookbehind: true
 		}
 	],
-	'string': /("|')(\\\n|\\?.)*?\1/,
+	'string': /("|')(\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,
 	'class-name': {
 		pattern: /((?:(?:class|interface|extends|implements|trait|instanceof|new)\s+)|(?:catch\s+\())[a-z0-9_\.\\]+/i,
 		lookbehind: true,

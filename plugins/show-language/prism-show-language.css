@@ -1,12 +1,7 @@
 pre[class*='language-'] {
 	position: relative;
 }
-pre[class*='language-'] > code[data-language] {
-	overflow: scroll;
-	max-height: 28em;
-	display: block;
-}
-pre[class*='language-'] > code[data-language]::before {
+pre[class*='language-'][data-language]::before {
 	content: attr(data-language);
 	color: black;
 	background-color: #CFCFCF;

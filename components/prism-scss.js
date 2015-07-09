@@ -3,9 +3,13 @@ Prism.languages.scss = Prism.languages.extend('css', {
 		pattern: /(^|[^\\])(\/\*[\w\W]*?\*\/|\/\/.*?(\r?\n|$))/,
 		lookbehind: true
 	},
-	// aturle is just the @***, not the entire rule (to highlight var & stuffs)
-	// + add ability to highlight number & unit for media queries
-	'atrule': /@[\w-]+(?=\s+(\(|\{|;))/i,
+	'atrule': {
+		pattern: /@[\w-]+(?:\([^()]+\)|[^(])*?(?=\s+(\{|;))/i,
+		inside: {
+			'rule': /@[\w-]+/
+			// See rest below
+		}
+	},
 	// url, compassified
 	'url': /([-a-z]+-)*url(?=\()/i,
 	// CSS selector regex is not appropriate for Sass
@@ -34,3 +38,5 @@ Prism.languages.insertBefore('scss', 'function', {
 	'null': /\b(null)\b/,
 	'operator': /\s+([-+]{1,2}|={1,2}|!=|\|?\||\?|\*|\/|%)\s+/
 });
+
+Prism.languages.scss['atrule'].inside.rest = Prism.util.clone(Prism.languages.scss);

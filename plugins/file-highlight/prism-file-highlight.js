@@ -18,8 +18,21 @@
 
 		Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function(pre) {
 			var src = pre.getAttribute('data-src');
-			var extension = (src.match(/\.(\w+)$/) || [,''])[1];
-			var language = Extensions[extension] || extension;
+
+			var language, parent = pre;
+			var lang = /\blang(?:uage)?-(?!\*)(\w+)\b/i;
+			while (parent && !lang.test(parent.className)) {
+				parent = parent.parentNode;
+			}
+
+			if (parent) {
+				language = (pre.className.match(lang) || [,''])[1];
+			}
+
+			if (!language) {
+				var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+				language = Extensions[extension] || extension;
+			}
 
 			var code = document.createElement('code');
 			code.className = 'language-' + language;
