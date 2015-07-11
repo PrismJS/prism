@@ -1,10 +1,7 @@
-/* TODO
-	Add support for nested block comments...
-*/
-
 Prism.languages.applescript = {
 	'comment': [
-		/\(\*[\w\W]*?\*\)/,
+		// Allow one level of nesting
+		/\(\*(?:\(\*[\w\W]*?\*\)|[\w\W])*?\*\)/,
 		/--.+/,
 		/#.+/
 	],
