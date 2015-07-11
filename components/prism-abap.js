@@ -24,11 +24,11 @@ Prism.languages.abap = {
 	adjacent to operands. 
 	*/
 	'operator' : {
-		pattern: /(\s)(\+|-|\*{1,2}|\/|<|>|<=|>=|=|\?=|<>)(?=\s)/,
+		pattern: /(\s)(\+|-|\*\*?|\/|<|>|<=|>=|=|\?=|<>)(?=\s)/,
 		lookbehind: true
 	},
 	'string_operator' : {
-		pattern: /(\s)(&{1,2})(?=\s)/,
+		pattern: /(\s)&&?(?=\s)/,
 		lookbehind: true,
 		/* The official editor highlights */
 		alias: "keyword"
