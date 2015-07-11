@@ -6,7 +6,7 @@ Prism.languages.autohotkey= {
 	},
 	'string': /"(([^"\n\r]|"")*)"/m,
 	'function': /[^\(\); \t,\n\+\*\-=\?>:\\\/<&%\[\]]+?(?=\()/m,  //function - don't use .*\) in the end bcoz string locks it
-	'tag': /^[ \t]*[^\s:]+?(?=:[^:])/m,  //labels
+	'tag': /^[ \t]*[^\s:]+?(?=:(?:[^:]|$))/m,  //labels
 	'variable': /%\w+%/,
 	'number': /\b-?(0x[\dA-Fa-f]+|\d*\.?\d+([Ee]-?\d+)?)\b/,
 	'operator': /[\+\-\*\\\/:=\?&\|<>]/,
