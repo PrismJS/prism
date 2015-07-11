@@ -19,12 +19,7 @@ Prism.languages.clike = {
 	},
 	'keyword': /\b(if|else|while|do|for|return|in|instanceof|function|new|try|throw|catch|finally|null|break|continue)\b/,
 	'boolean': /\b(true|false)\b/,
-	'function': {
-		pattern: /[a-z0-9_]+\(/i,
-		inside: {
-			punctuation: /\(/
-		}
-	},
+	'function': /[a-z0-9_]+(?=\()/i,
 	'number': /\b-?(0x[\dA-Fa-f]+|\d*\.?\d+([Ee]-?\d+)?)\b/,
 	'operator': /[-+]{1,2}|!|<=?|>=?|={1,3}|&{1,2}|\|?\||\?|\*|\/|~|\^|%/,
 	'punctuation': /[{}[\];(),.:]/
