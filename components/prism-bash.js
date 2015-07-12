@@ -1,6 +1,6 @@
 Prism.languages.bash = Prism.languages.extend('clike', {
 	'comment': {
-		pattern: /(^|[^"{\\])(#.*?(\r?\n|$))/,
+		pattern: /(^|[^"{\\])#.*/,
 		lookbehind: true
 	},
 	'string': {
