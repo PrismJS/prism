@@ -4,12 +4,12 @@ Prism.languages.c = Prism.languages.extend('clike', {
 });
 
 Prism.languages.insertBefore('c', 'string', {
-	// property class reused for macro statements
-	'property': {
+	'macro': {
 		// allow for multiline macro definitions
 		// spaces after the # character compile fine with gcc
-		pattern: /((^|\n)\s*)#\s*[a-z]+([^\n\\]|\\.|\\\r*\n)*/i,
+		pattern: /(^\s*)#\s*[a-z]+([^\r\n\\]|\\.|\\(?:\r\n?|\n))*/im,
 		lookbehind: true,
+		alias: 'property',
 		inside: {
 			// highlight the path of the include statement as a string
 			'string': {
