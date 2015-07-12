@@ -328,10 +328,6 @@ var components = {
 			"require": "clike",
 			"owner": "chrischares"
 		},
-		"system_verilog": {
-			"title": "System Verilog",
-			"owner": "a-rey"
-		},
 		"twig": {
 			"title": "Twig",
 			"require": "markup",
@@ -341,6 +337,10 @@ var components = {
 			"title": "TypeScript",
 			"require": "javascript",
 			"owner": "vkbansal"
+		},
+		"verilog": {
+			"title": "Verilog & System Verilog",
+			"owner": "a-rey"
 		},
 		"vhdl": {
 			"title": "VHDL",
