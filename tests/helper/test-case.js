@@ -55,7 +55,7 @@ module.exports = {
 		var languages = languageIdentifier.split("+");
 
 		if (null === testCase) {
-			throw new Error("Test case file has invalid format, please read the docs.");
+			throw new Error("Test case file has invalid format (or the provided token stream is invalid JSON), please read the docs.");
 		}
 
 		var Prism = PrismLoader.createInstance(languages);
@@ -72,20 +72,41 @@ module.exports = {
 	 * Simplifies the token stream to ease the matching with the expected token stream
 	 *
 	 * @param {string} tokenStream
-	 * @returns {Array.<string[]>}
+	 * @returns {Array.<string[]|Array>}
 	 */
 	transformCompiledTokenStream: function (tokenStream) {
+		// First filter all top-level non-objects as non-objects are not-identified tokens
+		//
+		// we don't want to filter them in the lower levels as we want to support nested content-structures
 		return tokenStream.filter(
 			function (token) {
-				// only support objects
 				return (typeof token === "object");
 			}
-		).map(
-			function (entry)
-			{
-				return [entry.type, entry.content];
-			}
-		);
+		).map(this.transformCompiledRecursivelyTokenStream.bind(this));
+	},
+
+
+	/**
+	 * Walks the token stream and recursively simplifies it
+	 *
+	 * @private
+	 * @param {Array|{type: string, content: *}|string} token
+	 * @returns {Array|string}
+	 */
+	transformCompiledRecursivelyTokenStream: function (token)
+	{
+		if (Array.isArray(token))
+		{
+			return token.map(this.transformCompiledRecursivelyTokenStream.bind(this));
+		}
+		else if (typeof token === "object")
+		{
+			return [token.type, this.transformCompiledRecursivelyTokenStream(token.content)];
+		}
+		else
+		{
+			return token;
+		}
 	},
 
 
