@@ -121,23 +121,25 @@ module.exports = {
 		var testCaseSource = fs.readFileSync(filePath, "utf8");
 		var testCaseParts = testCaseSource.split(/^----*\w*$/m);
 
-		// No expected token stream found
-		if (2 > testCaseParts.length) {
+		try {
+			var testCase = {
+				testSource: testCaseParts[0].trim(),
+				expectedTokenStream: JSON.parse(testCaseParts[1]),
+				comment: null
+			};
+
+			// if there are three parts, the third one is the comment
+			// explaining the test case
+			if (testCaseParts[2]) {
+				testCase.comment = testCaseParts[2].trim();
+			}
+
+			return testCase;
+		}
+		catch (e)
+		{
+			// the JSON can't be parsed (e.g. it could be empty)
 			return null;
 		}
-
-		var testCase = {
-			testSource: testCaseParts[0].trim(),
-			expectedTokenStream: JSON.parse(testCaseParts[1]),
-			comment: null
-		};
-
-		// if there are three parts, the third one is the comment
-		// explaining the test case
-		if (testCaseParts[2]) {
-			testCase.comment = testCaseParts[2].trim();
-		}
-
-		return testCase;
 	}
 };
