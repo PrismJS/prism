@@ -3,6 +3,7 @@
 var fs = require("fs");
 var assert = require("chai").assert;
 var PrismLoader = require("./prism-loader");
+var TokenStreamTransformer = require("./token-stream-transformer");
 
 /**
  * Handles parsing of a test case file.
@@ -62,52 +63,11 @@ module.exports = {
 		// the first language is the main language to highlight
 		var mainLanguageGrammar = Prism.languages[languages[0]];
 		var compiledTokenStream = Prism.tokenize(testCase.testSource, mainLanguageGrammar);
-		var simplifiedTokenStream = this.transformCompiledTokenStream(compiledTokenStream);
+		var simplifiedTokenStream = TokenStreamTransformer.simplify(compiledTokenStream);
 
 		assert.deepEqual(simplifiedTokenStream, testCase.expectedTokenStream, testCase.comment);
 	},
 
-
-	/**
-	 * Simplifies the token stream to ease the matching with the expected token stream
-	 *
-	 * @param {string} tokenStream
-	 * @returns {Array.<string[]|Array>}
-	 */
-	transformCompiledTokenStream: function (tokenStream) {
-		// First filter all top-level non-objects as non-objects are not-identified tokens
-		//
-		// we don't want to filter them in the lower levels as we want to support nested content-structures
-		return tokenStream.filter(
-			function (token) {
-				return (typeof token === "object");
-			}
-		).map(this.transformCompiledRecursivelyTokenStream.bind(this));
-	},
-
-
-	/**
-	 * Walks the token stream and recursively simplifies it
-	 *
-	 * @private
-	 * @param {Array|{type: string, content: *}|string} token
-	 * @returns {Array|string}
-	 */
-	transformCompiledRecursivelyTokenStream: function (token)
-	{
-		if (Array.isArray(token))
-		{
-			return token.map(this.transformCompiledRecursivelyTokenStream.bind(this));
-		}
-		else if (typeof token === "object")
-		{
-			return [token.type, this.transformCompiledRecursivelyTokenStream(token.content)];
-		}
-		else
-		{
-			return token;
-		}
-	},
 
 
 	/**
