@@ -86,6 +86,23 @@ describe("The token stream transformer",
 				assert.deepEqual(TokenStreamTransformer.simplify(tokenStream), expectedSimplified);
 			}
 		);
+
+
+		it("should ignore all properties in tokens except value and content",
+			function ()
+			{
+
+				var tokenStream = [
+					{type: "type", content: "content", alias: "alias"}
+				];
+
+				var expectedSimplified = [
+					["type", "content"]
+				];
+
+				assert.deepEqual(TokenStreamTransformer.simplify(tokenStream), expectedSimplified);
+			}
+		);
 	}
 );
 
