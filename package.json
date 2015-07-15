@@ -4,7 +4,7 @@
   "description": "Lightweight, robust, elegant syntax highlighting. A spin-off project from Dabblet.",
   "main": "prism.js",
   "scripts": {
-    "test": "mocha tests/run.js"
+    "test": "mocha tests/testrunner-tests.js && mocha tests/run.js"
   },
   "repository": {
     "type": "git",
