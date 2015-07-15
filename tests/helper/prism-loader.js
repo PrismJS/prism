@@ -1,7 +1,7 @@
 "use strict";
 
 var fs = require("fs");
-var vm = require('vm');
+var vm = require("vm");
 var components = require("./components");
 var languagesCatalog = components.languages;
 
