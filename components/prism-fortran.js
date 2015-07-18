@@ -4,9 +4,12 @@ Prism.languages.fortran = {
 		alias: 'number'
 	},
 	'string': {
-		pattern: /(?:\w+_)?(['"])(?:\1\1|&\n(?:\s*!.+\n)?|(?!\1).)*(?:\1|&)/,
+		pattern: /(?:\w+_)?(['"])(?:\1\1|&(?:\r\n?|\n)(?:\s*!.+(?:\r\n?|\n))?|(?!\1).)*(?:\1|&)/,
 		inside: {
-			'comment': /!.*/
+			'comment': {
+				pattern: /(&(?:\r\n?|\n)\s*)!.*/,
+				lookbehind: true
+			}
 		}
 	},
 	'comment': /!.*/,
