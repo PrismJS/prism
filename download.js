@@ -52,6 +52,7 @@ if (qstr) {
 	});
 }
 
+var themedCssFiles = {};
 for (var category in components) {
 	var all = components[category];
 	
@@ -83,6 +84,7 @@ for (var category in components) {
 		var info = all[id] = {
 			title: all[id].title || all[id],
 			noCSS: all[id].noCSS || all.meta.noCSS,
+			themedCSS: all[id].themedCSS || all.meta.themedCSS,
 			noJS: all[id].noJS || all.meta.noJS,
 			enabled: checked,
 			require: $u.type(all[id].require) === 'string' ? [all[id].require] : all[id].require,
@@ -116,6 +118,26 @@ for (var category in components) {
 			
 			info.files.minified.paths.push(cssFile);
 			info.files.dev.paths.push(cssFile);
+		}
+
+
+		if (all[id].themedCSS) {
+			var template = filepath.replace(/(\.css)?$/, "-{theme}.css");
+
+			info.files.minified.paths.push(template);
+			info.files.dev.paths.push(template);
+
+			themedCssFiles[category] = themedCssFiles[category] || {};
+			themedCssFiles[category][id] = {
+				"minified": {
+					"template": template,
+					"index": info.files.minified.paths.length - 1
+				},
+				"dev": {
+					"template": template,
+					"index": info.files.dev.paths.length - 1
+				}
+			};
 		}
 	
 		$u.element.create('label', {
@@ -203,6 +225,23 @@ function getFileSize(filepath) {
 	});
 }
 
+function updateFileSize(filepath, category, id) {
+	var file = cache[filepath] = cache[filepath] || {};
+	
+	if(!file.size) {
+		getFileSize(filepath).then(function(size) {
+			if(size) {
+				file.size = size;
+
+				update(category, id);
+			}
+		});
+	}
+	else {
+		update(category, id);
+	}
+}
+
 function getFilesSizes() {
 	for (var category in components) {
 		var all = components[category];
@@ -211,34 +250,32 @@ function getFilesSizes() {
 			if(id === 'meta') {
 				continue;
 			}
-			
-			var distro = all[id].files[minified? 'minified' : 'dev'],
-			    files = distro.paths;
-				
-			files.forEach(function (filepath) {
-				var file = cache[filepath] = cache[filepath] || {};
-				
-				if(!file.size) {
 
-					(function(category, id) {
-					getFileSize(filepath).then(function(size) {
-						if(size) {
-							file.size = size;
-							distro.size += file.size;
-
-							update(category, id);
-						}
-					});
-					}(category, id));
-				}
-				else {
-					update(category, id);
-				}
+			all[id].files[minified? 'minified' : 'dev'].paths.forEach(function(filepath) {
+				updateFileSize(filepath, category, id)
 			});
 		}
 	}
 }
 
+function updateThemedFiles() {
+	var theme = (Object.keys(components.themes).filter(function(name) {
+		return components.themes[name].enabled;
+	})[0] || '').replace(/^prism-?/,'') || 'default';
+
+	for (var category in themedCssFiles) {
+		for (var id in themedCssFiles[category]) {
+			for (var type in themedCssFiles[category][id]) {
+				var def = themedCssFiles[category][id][type];
+				var path = def.template.replace(/\{theme}/, theme);
+				components[category][id].files[type].paths[def.index] = path;
+				updateFileSize(path, category, id);
+			}
+		}
+	}
+}
+
+updateThemedFiles();
 getFilesSizes();
 
 function getFileContents(filepath) {
@@ -264,6 +301,8 @@ function update(updatedCategory, updatedId){
 	// Update total size
 	var total = {js: 0, css: 0}, updated = {js: 0, css: 0};
 	
+	updateThemedFiles();
+
 	for (var category in components) {
 		var all = components[category];
 		

@@ -1,0 +1,47 @@
+(function(){
+
+if(!window.Prism) {
+	return;
+}
+
+var renderableLanguages = {
+	markup: true
+};
+
+function hasClass(element, className) {
+  className = " " + className + " ";
+  return (" " + element.className + " ").replace(/[\n\t]/g, " ").indexOf(className) > -1
+}
+
+function addClass(element, className) {
+	if (!hasClass(element, className))
+	{
+		element.className += " " + className;
+	}
+}
+
+function nextElementSibling(element) {
+	do
+	{
+		element = element.nextSibling;
+	} while (element && element.nodeType != 1);
+	return element;
+}
+
+Prism.hooks.add("after-highlight", function(env){
+	var pre = env.element.parentElement;
+	
+	var shouldRenderMarkup = pre.tagName === "PRE" && renderableLanguages[env.language] && !hasClass(pre, "render-markup-off");
+	
+	if (shouldRenderMarkup) {
+		var render = nextElementSibling(pre);
+		if (!(render && hasClass(render, "prism-markup-render"))) {
+			addClass(pre, "markup-rendered");
+			render = document.createElement("div");
+			addClass(render, "prism-markup-render");
+			pre.parentElement.insertBefore(render, pre.nextSibling);
+		}
+		render.innerHTML = env.code;
+	}
+})
+})();

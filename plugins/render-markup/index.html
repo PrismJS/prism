@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8" />
+<link rel="shortcut icon" href="favicon.png" />
+<title>Render Markup ▲ Prism plugins</title>
+<base href="../.." />
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="themes/prism.css" data-noprefix />
+<link rel="stylesheet" href="plugins/render-markup/prism-render-markup.css" data-noprefix />
+<link rel="stylesheet" href="plugins/render-markup/prism-render-markup.css" data-noprefix id="plugin-theme-css" />
+<script src="prefixfree.min.js"></script>
+
+<script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
+<script src="http://www.google-analytics.com/ga.js" async></script>
+</head>
+<body>
+
+<header>
+	<div class="intro" data-src="templates/header-plugins.html" data-type="text/html"></div>
+
+	<h2>Render Markup</h2>
+	<p>Displays HTML represenation of Prism highlighted markup (HTML).</p>
+</header>
+
+<section>
+	<h1>Examples</h1>
+	
+	<pre class="lang-markup"><code>&lt;h2&gt;Some Heading&lt;h2&gt;
+&lt;hr&gt;
+&lt;h3&gt;Another Heading&lt;/h3&gt;
+&lt;hr&gt;
+&lt;ul&gt;
+	&lt;li&gt; Foo&lt;/li&gt;
+	&lt;li&gt; Bar&lt;/li&gt;
+	&lt;li&gt; Baz&lt;/li&gt;
+&lt;ul&gt;
+&lt;hr&gt;</code></pre>
+</section>
+
+<footer data-src="templates/footer.html" data-type="text/html"></footer>
+
+<script src="prism.js"></script>
+<script src="plugins/render-markup/prism-render-markup.js"></script>
+<script src="utopia.js"></script>
+<script src="components.js"></script>
+<script src="code.js"></script>
+<script>
+	(function() {
+		var setPluginThemeCss = function(value) {
+			document.getElementById("plugin-theme-css").href = "plugins/render-markup/prism-render-markup" + (value || "").replace("prism", "") + ".css";
+		}
+		document.getElementById("theme").addEventListener("click", function(e) {
+			if (e.target.name === "theme") {
+				setPluginThemeCss(e.target.value);
+			}
+		});
+		setPluginThemeCss(localStorage["theme"]);
+	})()
+</script>
+
+</body>
+</html>

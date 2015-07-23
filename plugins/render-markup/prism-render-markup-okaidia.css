@@ -1,0 +1,13 @@
+pre[class*="language-"].markup-rendered {
+	border-radius: .3em .3em 0 0;
+	border-bottom: 0;
+}
+.prism-markup-render {
+	background: hsl(70, 8%, 80%);
+	border-top: 1px solid hsl(70, 8%, 30%);
+	padding: 1em;
+	margin: .5em 0;
+	overflow: auto;
+	border-radius: 0 0 0.3em 0.3em;
+	margin-top: -.5em;
+}
