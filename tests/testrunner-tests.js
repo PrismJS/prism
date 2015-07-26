@@ -4,11 +4,9 @@ var assert = require("chai").assert;
 var TokenStreamTransformer = require("./helper/token-stream-transformer");
 
 describe("The token stream transformer",
-	function ()
-	{
+	function () {
 		it("should handle all kinds of simple transformations",
-			function ()
-			{
+			function () {
 				var tokens = [
 					{type: "type", content: "content"},
 					"string"
@@ -25,14 +23,19 @@ describe("The token stream transformer",
 
 
 		it("should handle nested structures",
-			function ()
-			{
+			function () {
 				var tokens = [
-					{type: "type", content: [
-						{type: "insideType", content: [
-							{type: "insideInsideType", content: "content"}
-						]}
-					]}
+					{
+						type: "type",
+						content: [
+							{
+								type: "insideType", content:
+								[
+									{type: "insideInsideType", content: "content"}
+								]
+							}
+						]
+					}
 				];
 
 				var expected = [
@@ -49,8 +52,7 @@ describe("The token stream transformer",
 
 
 		it("should strip empty tokens",
-			function ()
-			{
+			function () {
 				var tokenStream = [
 					"",
 					"\r\n",
@@ -66,14 +68,16 @@ describe("The token stream transformer",
 
 
 		it("should strip empty token tree branches",
-			function ()
-			{
+			function () {
 				var tokenStream = [
-					{type: "type", content: [
-						["", ""],
-						"",
-						{type: "nested", content: [""]}
-					]},
+					{
+						type: "type",
+						content: [
+							["", ""],
+							"",
+							{type: "nested", content: [""]}
+						]
+					},
 					[[[[[[[""]]]]]]]
 				];
 
@@ -89,8 +93,7 @@ describe("The token stream transformer",
 
 
 		it("should ignore all properties in tokens except value and content",
-			function ()
-			{
+			function () {
 
 				var tokenStream = [
 					{type: "type", content: "content", alias: "alias"}

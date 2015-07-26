@@ -69,7 +69,6 @@ module.exports = {
 	},
 
 
-
 	/**
 	 * Parses the test case from the given test case file
 	 *
@@ -96,8 +95,7 @@ module.exports = {
 
 			return testCase;
 		}
-		catch (e)
-		{
+		catch (e) {
 			// the JSON can't be parsed (e.g. it could be empty)
 			return null;
 		}

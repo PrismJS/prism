@@ -8,14 +8,13 @@ var path = require("path");
 var testSuite = TestDiscovery.loadAllTests(__dirname + "/languages");
 
 // define tests for all tests in all languages in the test suite
-for (var language in testSuite)
-{
+for (var language in testSuite) {
 	if (!testSuite.hasOwnProperty(language)) {
 		continue;
 	}
 
 	(function (language, testFiles) {
-		describe("Testing language '" + language + "'", function() {
+		describe("Testing language '" + language + "'", function () {
 			testFiles.forEach(
 				function (filePath) {
 					var fileName = path.basename(filePath, path.extname(filePath));

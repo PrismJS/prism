@@ -39,8 +39,7 @@ module.exports = {
 	 * @returns {{loadedLanguages: string[], Prism: Prism}}
 	 */
 	loadLanguage: function (language, context) {
-		if (!languagesCatalog[language])
-		{
+		if (!languagesCatalog[language]) {
 			throw new Error("Language '" + language + "' not found.");
 		}
 
@@ -50,8 +49,7 @@ module.exports = {
 		}
 
 		// if the language has a dependency -> load it first
-		if (languagesCatalog[language].require)
-		{
+		if (languagesCatalog[language].require) {
 			context = this.loadLanguage(languagesCatalog[language].require, context);
 		}
 

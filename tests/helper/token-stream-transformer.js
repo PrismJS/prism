@@ -14,22 +14,18 @@ module.exports = {
 	 * @returns {Array.<string[]|Array>}
 	 */
 	simplify: function (tokenStream) {
-		if (Array.isArray(tokenStream))
-		{
+		if (Array.isArray(tokenStream)) {
 			return tokenStream
 				.map(this.simplify.bind(this))
-				.filter(function(value)
-				{
+				.filter(function (value) {
 					return !(Array.isArray(value) && !value.length) && !(typeof value === "string" && !value.trim().length);
 				}
 			);
 		}
-		else if (typeof tokenStream === "object")
-		{
+		else if (typeof tokenStream === "object") {
 			return [tokenStream.type, this.simplify(tokenStream.content)];
 		}
-		else
-		{
+		else {
 			return tokenStream;
 		}
 	}
