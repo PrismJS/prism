@@ -1,4 +1,4 @@
-self = (typeof window !== 'undefined')
+var _self = (typeof window !== 'undefined')
 	? window   // if in browser
 	: (
 		(typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope)
@@ -17,7 +17,7 @@ var Prism = (function(){
 // Private helper vars
 var lang = /\blang(?:uage)?-(?!\*)(\w+)\b/i;
 
-var _ = self.Prism = {
+var _ = _self.Prism = {
 	util: {
 		encode: function (tokens) {
 			if (tokens instanceof Token) {
@@ -50,7 +50,8 @@ var _ = self.Prism = {
 					return clone;
 
 				case 'Array':
-					return o.map(function(v) { return _.util.clone(v); });
+					// Check for existence for IE8
+					return o.map && o.map(function(v) { return _.util.clone(v); });
 			}
 
 			return o;
@@ -161,10 +162,6 @@ var _ = self.Prism = {
 			grammar = _.languages[language];
 		}
 
-		if (!grammar) {
-			return;
-		}
-
 		// Set language on the element, if not present
 		element.className = element.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language;
 
@@ -173,6 +170,10 @@ var _ = self.Prism = {
 
 		if (/pre/i.test(parent.nodeName)) {
 			parent.className = parent.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language;
+		}
+
+		if (!grammar) {
+			return;
 		}
 
 		var code = element.textContent;
@@ -192,7 +193,7 @@ var _ = self.Prism = {
 
 		_.hooks.run('before-highlight', env);
 
-		if (async && self.Worker) {
+		if (async && _self.Worker) {
 			var worker = new Worker(_.filename);
 
 			worker.onmessage = function(evt) {
@@ -386,22 +387,22 @@ Token.stringify = function(o, language, parent) {
 
 };
 
-if (!self.document) {
-	if (!self.addEventListener) {
+if (!_self.document) {
+	if (!_self.addEventListener) {
 		// in Node.js
-		return self.Prism;
+		return _self.Prism;
 	}
  	// In worker
-	self.addEventListener('message', function(evt) {
+	_self.addEventListener('message', function(evt) {
 		var message = JSON.parse(evt.data),
 		    lang = message.language,
 		    code = message.code;
 
-		self.postMessage(JSON.stringify(_.util.encode(_.tokenize(code, _.languages[lang]))));
-		self.close();
+		_self.postMessage(JSON.stringify(_.util.encode(_.tokenize(code, _.languages[lang]))));
+		_self.close();
 	}, false);
 
-	return self.Prism;
+	return _self.Prism;
 }
 
 // Get current script and highlight
@@ -417,7 +418,7 @@ if (script) {
 	}
 }
 
-return self.Prism;
+return _self.Prism;
 
 })();
 

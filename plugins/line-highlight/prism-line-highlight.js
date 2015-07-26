@@ -29,7 +29,7 @@ function highlightLines(pre, lines, classes) {
 		
 		var line = document.createElement('div');
 		
-		line.textContent = Array(end - start + 2).join(' \r\n');
+		line.textContent = Array(end - start + 2).join(' \n');
 		line.className = (classes || '') + ' line-highlight';
 
     //if the line-numbers plugin is enabled, then there is no reason for this plugin to display the line numbers
