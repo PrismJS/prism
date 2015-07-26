@@ -53,19 +53,61 @@ module.exports = {
 	 */
 	runTestCase: function (languageIdentifier, filePath) {
 		var testCase = this.parseTestCaseFile(filePath);
-		var languages = languageIdentifier.split("+");
+		var usedLanguages = this.parseLanguageNames(languageIdentifier);
 
 		if (null === testCase) {
 			throw new Error("Test case file has invalid format (or the provided token stream is invalid JSON), please read the docs.");
 		}
 
-		var Prism = PrismLoader.createInstance(languages);
+		var Prism = PrismLoader.createInstance(usedLanguages.languages);
 		// the first language is the main language to highlight
-		var mainLanguageGrammar = Prism.languages[languages[0]];
+		var mainLanguageGrammar = Prism.languages[usedLanguages.mainLanguage];
 		var compiledTokenStream = Prism.tokenize(testCase.testSource, mainLanguageGrammar);
 		var simplifiedTokenStream = TokenStreamTransformer.simplify(compiledTokenStream);
 
 		assert.deepEqual(simplifiedTokenStream, testCase.expectedTokenStream, testCase.comment);
+	},
+
+
+	/**
+	 * Parses the language names and finds the main language.
+	 *
+	 * It is either the first language or the language followed by a exclamation mark “!”.
+	 * There should only be one language with an exclamation mark.
+	 *
+	 * @param {string} languageIdentifier
+	 *
+	 * @returns {{languages: string[], mainLanguage: string}}
+	 */
+	parseLanguageNames: function (languageIdentifier) {
+		var languages = languageIdentifier.split("+");
+		var mainLanguage = null;
+
+		languages = languages.map(
+			function (language) {
+				var pos = language.indexOf("!");
+
+				if (-1 < pos) {
+					if (mainLanguage) {
+						throw "There are multiple main languages defined.";
+					}
+
+					mainLanguage = language.replace("!", "");
+					return mainLanguage;
+				}
+
+				return language;
+			}
+		);
+
+		if (!mainLanguage) {
+			mainLanguage = languages[0];
+		}
+
+		return {
+			languages: languages,
+			mainLanguage: mainLanguage
+		};
 	},
 
 

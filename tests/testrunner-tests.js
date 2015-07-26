@@ -2,7 +2,10 @@
 
 var assert = require("chai").assert;
 var TokenStreamTransformer = require("./helper/token-stream-transformer");
+var TestCase = require("./helper/test-case");
 
+
+//region Token Stream Transformer
 describe("The token stream transformer",
 	function () {
 		it("should handle all kinds of simple transformations",
@@ -108,4 +111,56 @@ describe("The token stream transformer",
 		);
 	}
 );
+//endregion
 
+
+//region Language name parsing
+describe("The language name parsing",
+	function () {
+		it("should use the first language as the main language if no language is specified",
+			function () {
+				assert.deepEqual(
+					TestCase.parseLanguageNames("a"),
+					{
+						languages: ["a"],
+						mainLanguage: "a"
+					}
+				);
+
+				assert.deepEqual(
+					TestCase.parseLanguageNames("a+b+c"),
+					{
+						languages: ["a", "b", "c"],
+						mainLanguage: "a"
+					}
+				);
+			}
+		);
+
+
+		it("should use the specified language as main language",
+			function () {
+				assert.deepEqual(
+					TestCase.parseLanguageNames("a+b!+c"),
+					{
+						languages: ["a", "b", "c"],
+						mainLanguage: "b"
+					}
+				);
+			}
+		);
+
+
+		it("should throw an error if there are multiple main languages",
+			function () {
+				assert.throw(
+					function () {
+						TestCase.parseLanguageNames("a+b!+c!");
+					},
+					"There are multiple main languages defined."
+				);
+			}
+		);
+	}
+);
+//endregion
