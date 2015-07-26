@@ -4,6 +4,7 @@ var a = 5;
 
 [
 	["keyword", "var"],
+	" a ",
 	["operator", "="],
 	["number", "5"],
 	["punctuation", ";"]
