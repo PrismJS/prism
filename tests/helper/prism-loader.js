@@ -107,8 +107,7 @@ module.exports = {
 	 */
 	runFileWithContext: function (fileSource, context) {
 		context = context || {};
-		vm.createContext(context);
-		vm.runInContext(fileSource, context);
+		vm.runInNewContext(fileSource, context);
 		return context;
 	}
 };
