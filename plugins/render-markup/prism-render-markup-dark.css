@@ -1,4 +1,4 @@
-pre[class*="language-"].markup-rendered {
+pre[class*="language-"].prism-markup-rendered {
 	border-radius: .5em .5em 0 0;
 	border-bottom: 0;
 }

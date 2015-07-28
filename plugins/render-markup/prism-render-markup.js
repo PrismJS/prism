@@ -28,15 +28,20 @@ function nextElementSibling(element) {
 	return element;
 }
 
+var scripts = document.getElementsByTagName("script");
+var renderByDefault = scripts[scripts.length - 1].getAttribute("data-render-markup") !== "off";
+
 Prism.hooks.add("after-highlight", function(env){
 	var pre = env.element.parentElement;
-	
-	var shouldRenderMarkup = pre.tagName === "PRE" && renderableLanguages[env.language] && !hasClass(pre, "render-markup-off");
-	
-	if (shouldRenderMarkup) {
+
+	var renderable = pre.tagName === "PRE" && renderableLanguages[env.language];
+	var renderFlag = pre.getAttribute("data-render-markup") || "";
+	var shouldRenderMarkup = (renderByDefault && renderFlag !== "off") || renderFlag === "on";
+
+	if (renderable && shouldRenderMarkup) {
 		var render = nextElementSibling(pre);
 		if (!(render && hasClass(render, "prism-markup-render"))) {
-			addClass(pre, "markup-rendered");
+			addClass(pre, "prism-markup-rendered");
 			render = document.createElement("div");
 			addClass(render, "prism-markup-render");
 			pre.parentElement.insertBefore(render, pre.nextSibling);
