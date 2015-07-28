@@ -129,14 +129,8 @@ for (var category in components) {
 
 			themedCssFiles[category] = themedCssFiles[category] || {};
 			themedCssFiles[category][id] = {
-				"minified": {
-					"template": template,
-					"index": info.files.minified.paths.length - 1
-				},
-				"dev": {
-					"template": template,
-					"index": info.files.dev.paths.length - 1
-				}
+				"minified": info.files.minified.paths,
+				"dev": info.files.dev.paths
 			};
 		}
 	
@@ -177,6 +171,9 @@ for (var category in components) {
 									});
 								}
 								
+								if (category === "themes") {
+									updateThemedCss();
+								}
 								update(category, id);
 							};
 						})(id, category, all)
@@ -258,7 +255,7 @@ function getFilesSizes() {
 	}
 }
 
-function updateThemedFiles() {
+function updateThemedCss() {
 	var theme = (Object.keys(components.themes).filter(function(name) {
 		return components.themes[name].enabled;
 	})[0] || '').replace(/^prism-?/,'') || 'default';
@@ -266,16 +263,20 @@ function updateThemedFiles() {
 	for (var category in themedCssFiles) {
 		for (var id in themedCssFiles[category]) {
 			for (var type in themedCssFiles[category][id]) {
-				var def = themedCssFiles[category][id][type];
-				var path = def.template.replace(/\{theme}/, theme);
-				components[category][id].files[type].paths[def.index] = path;
-				updateFileSize(path, category, id);
+				var paths = themedCssFiles[category][id][type].map(function(template){
+					var path = template.replace(/\{theme}/, theme);
+					updateFileSize(path, category, id);
+					
+					return path;
+				});
+
+				components[category][id].files[type].paths = paths;
 			}
 		}
 	}
 }
 
-updateThemedFiles();
+updateThemedCss();
 getFilesSizes();
 
 function getFileContents(filepath) {
@@ -301,8 +302,6 @@ function update(updatedCategory, updatedId){
 	// Update total size
 	var total = {js: 0, css: 0}, updated = {js: 0, css: 0};
 	
-	updateThemedFiles();
-
 	for (var category in components) {
 		var all = components[category];
 		
