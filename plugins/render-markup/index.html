@@ -27,10 +27,13 @@
 <section>
 	<h1>How to use</h1>
 	<p>You don't need to do anything; Prism highlighted codes blocks with <code class="language-markup">language-markup</code> class will have the HTML rendered beneath the highlighted markup.</p>
-	<p>If you wish for a particular code block have its markup rendered, use <code class="language-markup">data-render-markup="off"</code>:</p>
-	<pre class="language-markup" data-render-markup="off"><code>&lt;pre class="language-markup" data-render-markup="off"&gt;</code></pre>
-	<p>You can also specify the attribute on the <code class="language-markup">&lt;script&gt;</code> tag that imports this module (or <code>prism.js</code> if bundled) to set rendering markup to default off, and then you can specify <code class="language-markup">data-render-markup="on"</code> for just those code blocks you wish to render.</p>
 	<p>This plugin is only applicable for the markup grammer (most likely when highlighting HTML). Prism doesn't distinguish between XML and HTML, so while this plugin will insert XML into your page it's probably not going to be overly useful (although see the SVG example below where you may want this).</p>
+	<h2>Disabling Render Markup per code block</h2>
+	<p>If you wish to disable this plugin for a specific code block, specify <code class="language-markup">data-render-markup="off"</code> on the <code class="language-markup">&lt;pre&gt;</code>:</p>
+	<pre class="language-markup" data-render-markup="off"><code>&lt;pre class="language-markup" data-render-markup="off"&gt;</code></pre>
+	<h2>Disabling Render Markup globally</h2>
+	<p>If you wish to disable this plugin globally by default, specify <code class="language-markup">data-render-markup="off"</code> on the <code class="language-markup">&lt;script&gt;</code> that included Prism to your page. You can then specify <code class="language-markup">data-render-markup="on"</code> for just the <code class="language-markup">&lt;pre&gt;</code> tags of those code blocks you wish to enable this plugin.</p>
+	<h2>Styling</h2>
 	<p>To assist with custom styling, the rendered markup is wrapped in a <code class="language-markup">&lt;div&gt;</code> with a <code class="language-markup">prism-markup-render</code> class, and the highlighted code block will have a <code class="language-markup">prism-markup-rendered</code> class (note: render vs render<strong>ed</strong>).</p>
 </section>
 
