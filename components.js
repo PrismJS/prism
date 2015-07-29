@@ -381,7 +381,6 @@ var components = {
 		"render-markup": {
 			"title": "Render Markup",
 			"owner": "nauzilus",
-			"noCSS": true,
 			"themedCSS": true
 		}
 	}

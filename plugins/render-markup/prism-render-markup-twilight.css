@@ -8,5 +8,4 @@ pre[class*="language-"].prism-markup-rendered {
 	border-radius: 0 0 .5em .5em;
 	border: .3em solid hsl(0, 0%, 33%);
 	border-top:0;
-	padding: 1em;
 }
