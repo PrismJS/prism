@@ -177,10 +177,6 @@ var _ = _self.Prism = {
 			parent.className = parent.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language;
 		}
 
-		if (!grammar) {
-			return;
-		}
-
 		var code = element.textContent;
 
 		if(!code) {
@@ -195,6 +191,11 @@ var _ = _self.Prism = {
 			grammar: grammar,
 			code: code
 		};
+
+		if (!grammar) {
+			_.hooks.run('complete', env);
+			return;
+		}
 
 		_.hooks.run('before-highlight', env);
 
@@ -228,6 +229,9 @@ var _ = _self.Prism = {
 
 			_.hooks.run('after-highlight', env);
 		}
+
+		_.hooks.run('complete', env);
+
 	},
 
 	highlight: function (text, grammar, language) {
