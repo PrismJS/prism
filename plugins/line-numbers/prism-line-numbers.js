@@ -1,4 +1,4 @@
-Prism.hooks.add('after-highlight', function (env) {
+Prism.hooks.add('complete', function (env) {
 	// works only for <code> wrapped inside <pre> (not inline)
 	var pre = env.element.parentNode;
 	var clsReg = /\s*\bline-numbers\b\s*/;
