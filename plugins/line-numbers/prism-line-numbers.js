@@ -10,6 +10,11 @@ Prism.hooks.add('complete', function (env) {
 		return;
 	}
 
+	if ( env.element.querySelector(".line-numbers-rows") ) {
+		// Abort if line numbers already exists
+		return;
+	}
+
 	if (clsReg.test(env.element.className)) {
 		// Remove the class "line-numbers" from the <code>
 		env.element.className = env.element.className.replace(clsReg, '');
