@@ -267,6 +267,10 @@ var components = {
 			"require": ["markup", "javascript"],
 			"owner": "vkbansal"
 		},
+		"renpy": {
+			"title": "Ren'py",
+			"owner": "HyuchiaDiego"
+		},
 		"rest": {
 			"title": "reST (reStructuredText)",
 			"owner": "Golmote"
