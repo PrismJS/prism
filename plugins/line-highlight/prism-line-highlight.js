@@ -85,7 +85,7 @@ function applyHash() {
 
 var fakeTimer = 0; // Hack to limit the number of times applyHash() runs
 
-Prism.hooks.add('after-highlight', function(env) {
+Prism.hooks.add('complete', function(env) {
 	var pre = env.element.parentNode;
 	var lines = pre && pre.getAttribute('data-line');
 	
