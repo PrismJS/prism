@@ -72,11 +72,13 @@
 			return;
 		}
 
+		var code = env.element.innerHTML || env.highlightedCode;
+
 		for (var i = 0, t; t = env.tokenStack[i]; i++) {
-			env.highlightedCode = env.highlightedCode.replace('___HANDLEBARS' + (i + 1) + '___', Prism.highlight(t, env.grammar, 'handlebars'));
+			code = code.replace('___HANDLEBARS' + (i + 1) + '___', Prism.highlight(t, env.grammar, 'handlebars'));
 		}
 
-		env.element.innerHTML = env.highlightedCode;
+		env.element.innerHTML = code;
 	});
 
 }(Prism));
