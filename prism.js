@@ -179,12 +179,6 @@ var _ = _self.Prism = {
 
 		var code = element.textContent;
 
-		if(!code) {
-			return;
-		}
-
-		code = code.replace(/^(?:\r?\n|\r)/,'');
-
 		var env = {
 			element: element,
 			language: language,
@@ -192,7 +186,11 @@ var _ = _self.Prism = {
 			code: code
 		};
 
-		if (!grammar) {
+		if(code) {
+			env.code = code.replace(/^(?:\r?\n|\r)/, '');
+		}
+
+		if (!code || !grammar) {
 			_.hooks.run('complete', env);
 			return;
 		}
@@ -211,6 +209,7 @@ var _ = _self.Prism = {
 
 				callback && callback.call(env.element);
 				_.hooks.run('after-highlight', env);
+				_.hooks.run('complete', env);
 			};
 
 			worker.postMessage(JSON.stringify({
@@ -228,10 +227,8 @@ var _ = _self.Prism = {
 			callback && callback.call(element);
 
 			_.hooks.run('after-highlight', env);
+			_.hooks.run('complete', env);
 		}
-
-		_.hooks.run('complete', env);
-
 	},
 
 	highlight: function (text, grammar, language) {
