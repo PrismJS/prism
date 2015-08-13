@@ -1,4 +1,4 @@
-Prism.hooks.add('after-highlight', function (env) {
+Prism.hooks.add('complete', function (env) {
 	// works only for <code> wrapped inside <pre> (not inline)
 	var pre = env.element.parentNode;
 	var clsReg = /\s*\bline-numbers\b\s*/;
@@ -7,6 +7,11 @@ Prism.hooks.add('after-highlight', function (env) {
 		// Abort only if nor the <pre> nor the <code> have the class
 		(!clsReg.test(pre.className) && !clsReg.test(env.element.className))
 	) {
+		return;
+	}
+
+	if ( env.element.querySelector(".line-numbers-rows") ) {
+		// Abort if line numbers already exists
 		return;
 	}
 
