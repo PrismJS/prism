@@ -19,7 +19,7 @@ function highlightLines(pre, lines, classes) {
 	var ranges = lines.replace(/\s+/g, '').split(','),
 	    offset = +pre.getAttribute('data-line-offset') || 0;
 	
-	var lineHeight = parseFloat(getComputedStyle(pre).lineHeight);
+	var lineHeight = parseInt(getComputedStyle(pre).lineHeight);
 
 	for (var i=0, range; range = ranges[i++];) {
 		range = range.split('-');
