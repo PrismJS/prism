@@ -1,4 +1,8 @@
 Prism.hooks.add('complete', function (env) {
+	if (!env.code) {
+		return;
+	}
+
 	// works only for <code> wrapped inside <pre> (not inline)
 	var pre = env.element.parentNode;
 	var clsReg = /\s*\bline-numbers\b\s*/;
