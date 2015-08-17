@@ -29,7 +29,7 @@ var components = {
 		"prism-coy": {
 			"title": "Coy",
 			"owner": "tshedor"
-		}
+		},
 		"prism-atom-dark": {
 			"title": "Atom Dark",
 			"owner": "gibsjose"
