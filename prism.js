@@ -186,10 +186,6 @@ var _ = _self.Prism = {
 			code: code
 		};
 
-		if(code) {
-			env.code = code.replace(/^(?:\r?\n|\r)/, '');
-		}
-
 		if (!code || !grammar) {
 			_.hooks.run('complete', env);
 			return;

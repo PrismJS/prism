@@ -52,7 +52,8 @@ section.options {
 	float: left;
 }
 
-section.options#category-languages {
+section.options#category-languages,
+section.options#category-plugins {
 	width: 100%;
 	float: none;
 	column-count: 3;
@@ -60,7 +61,12 @@ section.options#category-languages {
 	overflow: visible;
 }
 
-	section.options#category-languages > h1 {
+	section.options#category-languages label,
+	section.options#category-plugins label {
+		break-inside: avoid;
+	}
+	section.options#category-languages > h1,
+	section.options#category-plugins > h1 {
 		margin-top: 0;
 		column-span: all;
 	}
