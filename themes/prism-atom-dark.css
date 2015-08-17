@@ -69,6 +69,12 @@ pre[class*="language-"] {
     color: #96CBFE;
 }
 
+.token.class-name {
+	color: #FFFFB6;
+	text-decoration: underline;
+}
+
+.token.boolean,
 .token.constant {
     color: #99CC99;
 }
@@ -78,7 +84,6 @@ pre[class*="language-"] {
 	color: #f92672;
 }
 
-.token.boolean,
 .token.number {
 	color: #FF73FD;
 }
