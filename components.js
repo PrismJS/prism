@@ -377,6 +377,11 @@ var components = {
 			"title": "Highlight Keywords",
 			"owner": "vkbansal",
 			"noCSS": true
+		},
+		"remove-initial-line-feed": {
+			"title": "Remove initial line feed",
+			"owner": "Golmote",
+			"noCSS": true
 		}
 	}
 };
