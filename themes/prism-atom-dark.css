@@ -60,10 +60,7 @@ pre[class*="language-"] {
 	opacity: .7;
 }
 
-.token.property {
-    color: #EDEDED;
-}
-
+.token.property,
 .token.keyword,
 .token.tag {
     color: #96CBFE;
