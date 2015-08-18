@@ -13,13 +13,34 @@ function hasClass(element, className) {
   return (" " + element.className + " ").replace(/[\n\t]/g, " ").indexOf(className) > -1
 }
 
-var CRLF = crlf = /\r?\n|\r/g;
-    
+// Some browsers round the line-height, others don't.
+// We need to test for it to position the elements properly.
+var isLineHeightRounded = (function() {
+	var res;
+	return function() {
+		if(typeof res === 'undefined') {
+			var d = document.createElement('div');
+			d.style.fontSize = '13px';
+			d.style.lineHeight = '1.5';
+			d.style.padding = 0;
+			d.style.border = 0;
+			d.innerHTML = '&nbsp;<br />&nbsp;';
+			document.body.appendChild(d);
+			// Browsers that round the line-height should have offsetHeight === 38
+			// The others should have 39.
+			res = d.offsetHeight === 38;
+			document.body.removeChild(d);
+		}
+		return res;
+	}
+}());
+
 function highlightLines(pre, lines, classes) {
 	var ranges = lines.replace(/\s+/g, '').split(','),
 	    offset = +pre.getAttribute('data-line-offset') || 0;
-	
-	var lineHeight = parseInt(getComputedStyle(pre).lineHeight);
+
+	var parseMethod = isLineHeightRounded() ? parseInt : parseFloat;
+	var lineHeight = parseMethod(getComputedStyle(pre).lineHeight);
 
 	for (var i=0, range; range = ranges[i++];) {
 		range = range.split('-');
