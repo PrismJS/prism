@@ -117,7 +117,7 @@ describe("The token stream transformer",
 //region Language name parsing
 describe("The language name parsing",
 	function () {
-		it("should use the first language as the main language if no language is specified",
+		it("should use the last language as the main language if no language is specified",
 			function () {
 				assert.deepEqual(
 					TestCase.parseLanguageNames("a"),
@@ -131,7 +131,7 @@ describe("The language name parsing",
 					TestCase.parseLanguageNames("a+b+c"),
 					{
 						languages: ["a", "b", "c"],
-						mainLanguage: "a"
+						mainLanguage: "c"
 					}
 				);
 			}

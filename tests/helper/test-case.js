@@ -101,7 +101,7 @@ module.exports = {
 		);
 
 		if (!mainLanguage) {
-			mainLanguage = languages[0];
+			mainLanguage = languages[languages.length-1];
 		}
 
 		return {
