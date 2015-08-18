@@ -54,6 +54,9 @@ var components = {
 			"option": "default",
 			"require": "clike"
 		},
+
+
+
 		"actionscript": {
 			"title": "ActionScript",
 			"require": "javascript",

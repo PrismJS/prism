@@ -24,6 +24,7 @@
     "gulp-header": "^1.0.5",
     "gulp-rename": "^1.2.0",
     "gulp-uglify": "^0.3.1",
+    "gulp-replace": "^0.5.4",
     "mocha": "^2.2.5"
   }
 }
