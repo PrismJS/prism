@@ -1,5 +1,6 @@
 (function() {
 	if ( !self.Prism || !self.document || !document.querySelectorAll ) return;
+
 	var adapters = [];
 	function registerAdapter(adapter) {
 		if (typeof adapter === "function" && !getAdapter(adapter)) {
@@ -28,7 +29,8 @@
 
 	Prism.plugins.jsonphighlight = {
 		registerAdapter: registerAdapter,
-		removeAdapter: removeAdapter
+		removeAdapter: removeAdapter,
+		highlight: highlight
 	};
 	registerAdapter(function github(rsp, el) {
 		if ( rsp && rsp.meta && rsp.data ) {
@@ -80,66 +82,70 @@
 	jsonpcb=0,
 	loadstr = "Loading…";
 
-	Array.prototype.slice.call(document.querySelectorAll("pre[data-jsonp]")).forEach(function(pre) {
-		pre.textContent = "";
+	function highlight() {
+		Array.prototype.slice.call(document.querySelectorAll("pre[data-jsonp]")).forEach(function(pre) {
+			pre.textContent = "";
 
-		var code = document.createElement("code");
-		code.textContent = loadstr;
-		pre.appendChild(code);
+			var code = document.createElement("code");
+			code.textContent = loadstr;
+			pre.appendChild(code);
 
-		var adapterfn = pre.getAttribute("data-adapter");
-		var adapter = null;
-		if ( adapterfn ) {
-			if ( typeof(window[adapterfn]) === "function" ) {
-				adapter = window[adapterfn];
-			}
-			else {
-				code.textContent = "JSONP adapter function '" + adapterfn + "' doesn't exist";
-				return;
-			}
-		}
-
-		var cb = "prismjsonp" + ( jsonpcb++ );
-		
-		var uri = document.createElement("a");
-		var src = uri.href = pre.getAttribute("data-jsonp");
-		uri.href += ( uri.search ? "&" : "?" ) + ( pre.getAttribute("data-callback") || "callback" ) + "=" + cb;
-
-		var timeout = setTimeout(function() {
-			// we could clean up window[cb], but if the request finally succeeds, keeping it around is a good thing
-			if ( code.textContent === loadstr )
-				code.textContent = "Timeout loading '" + src + "'";
-		}, 5000);
-		
-		var script = document.createElement("script");
-		script.src=uri.href;
-
-		window[cb] = function(rsp) {
-			document.head.removeChild(script);
-			clearTimeout(timeout);
-			delete window[cb];
-
-			var data = "";
-			
-			if ( adapter ) {
-				data = adapter(rsp, pre);
-			}
-			else {
-				for ( var p in adapters ) {
-					data = adapters[p](rsp, pre);
-					if ( data !== null ) break;
+			var adapterfn = pre.getAttribute("data-adapter");
+			var adapter = null;
+			if ( adapterfn ) {
+				if ( typeof(window[adapterfn]) === "function" ) {
+					adapter = window[adapterfn];
+				}
+				else {
+					code.textContent = "JSONP adapter function '" + adapterfn + "' doesn't exist";
+					return;
 				}
 			}
 
-			if (data === null) {
-				code.textContent = "Cannot parse response (perhaps you need an adapter function?)";
-			}
-			else {
-				code.textContent = data;
-				Prism.highlightElement(code);
-			}
-		};
+			var cb = "prismjsonp" + ( jsonpcb++ );
+			
+			var uri = document.createElement("a");
+			var src = uri.href = pre.getAttribute("data-jsonp");
+			uri.href += ( uri.search ? "&" : "?" ) + ( pre.getAttribute("data-callback") || "callback" ) + "=" + cb;
 
-		document.head.appendChild(script);
-	});
+			var timeout = setTimeout(function() {
+				// we could clean up window[cb], but if the request finally succeeds, keeping it around is a good thing
+				if ( code.textContent === loadstr )
+					code.textContent = "Timeout loading '" + src + "'";
+			}, 5000);
+			
+			var script = document.createElement("script");
+			script.src=uri.href;
+
+			window[cb] = function(rsp) {
+				document.head.removeChild(script);
+				clearTimeout(timeout);
+				delete window[cb];
+
+				var data = "";
+				
+				if ( adapter ) {
+					data = adapter(rsp, pre);
+				}
+				else {
+					for ( var p in adapters ) {
+						data = adapters[p](rsp, pre);
+						if ( data !== null ) break;
+					}
+				}
+
+				if (data === null) {
+					code.textContent = "Cannot parse response (perhaps you need an adapter function?)";
+				}
+				else {
+					code.textContent = data;
+					Prism.highlightElement(code);
+				}
+			};
+
+			document.head.appendChild(script);
+		});
+	};
+
+	highlight();
 })();
