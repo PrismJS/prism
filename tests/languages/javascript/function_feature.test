@@ -1,0 +1,20 @@
+foo()
+foo_bar()
+f42()
+_()
+$()
+
+----------------------------------------------------
+
+[
+	["function", "foo"], ["punctuation", "("], ["punctuation", ")"],
+	["function", "foo_bar"], ["punctuation", "("], ["punctuation", ")"],
+	["function", "f42"], ["punctuation", "("], ["punctuation", ")"],
+	["function", "_"], ["punctuation", "("], ["punctuation", ")"],
+	["function", "$"], ["punctuation", "("], ["punctuation", ")"]
+]
+
+----------------------------------------------------
+
+Checks for functions.
+Also checks that function starting with a number are not highlighted.

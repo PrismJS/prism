@@ -56,14 +56,20 @@ section.options#category-core {
 	float: left;
 }
 
-section.options#category-languages {
+section.options#category-languages,
+section.options#category-plugins {
 	width: 100%;
 	column-count: 3;
 	padding-top: 2em;
 	overflow: visible;
 }
 
-	section.options#category-languages > h1 {
+	section.options#category-languages label,
+	section.options#category-plugins label {
+		break-inside: avoid;
+	}
+	section.options#category-languages > h1,
+	section.options#category-plugins > h1 {
 		margin-top: 0;
 	}
 
