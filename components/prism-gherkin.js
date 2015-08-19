@@ -8,7 +8,7 @@ Prism.languages.gherkin = {
 		lookbehind: true
 	},
 	'tag': {
-		pattern: /((^|\n)[ \t]*)@.*/,
+		pattern: /((^|\n)[ \t]*)@\S*/,
 		lookbehind: true
 	},
 	'feature': {
