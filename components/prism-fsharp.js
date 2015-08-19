@@ -14,7 +14,7 @@ Prism.languages.fsharp = Prism.languages.extend('clike', {
 	'number': [
 		/\b-?0x[\da-fA-F]+(un|lf|LF)?\b/,
 		/\b-?0b[01]+(y|uy)?\b/,
-		/\b-?(\d+\.|\d*\.?\d+)([fFmM]|[eE][+-]?\d+)?\b/,
+		/\b-?(\d*\.?\d+|\d+\.)([fFmM]|[eE][+-]?\d+)?\b/,
 		/\b-?\d+(y|uy|s|us|l|u|ul|L|UL|I)?\b/
 	]
 });
