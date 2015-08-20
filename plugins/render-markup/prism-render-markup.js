@@ -33,13 +33,14 @@ var renderByDefault = scripts[scripts.length - 1].getAttribute("data-render-mark
 
 Prism.hooks.add("after-highlight", function(env){
 	var pre = env.element.parentElement;
+	if (!pre) return;
 
 	var renderable = pre.tagName === "PRE" && renderableLanguages[env.language];
 	var renderFlag = pre.getAttribute("data-render-markup") || "";
 	var shouldRenderMarkup = (renderByDefault && renderFlag !== "off") || renderFlag === "on";
+	var render = nextElementSibling(pre);
 
 	if (renderable && shouldRenderMarkup) {
-		var render = nextElementSibling(pre);
 		if (!(render && hasClass(render, "prism-markup-render"))) {
 			addClass(pre, "prism-markup-rendered");
 			render = document.createElement("div");
@@ -47,6 +48,9 @@ Prism.hooks.add("after-highlight", function(env){
 			pre.parentElement.insertBefore(render, pre.nextSibling);
 		}
 		render.innerHTML = env.code;
+	}
+	else if (render) {
+		render.remove();
 	}
 })
 })();
