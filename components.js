@@ -55,7 +55,7 @@ var components = {
 			"require": "clike"
 		},
 
-		// ---
+
 
 		"actionscript": {
 			"title": "ActionScript",
@@ -83,6 +83,10 @@ var components = {
 			"title": "Bash",
 			"require": "clike",
 			"owner": "zeitgeist87"
+		},
+		"brainfuck": {
+			"title": "Brainfuck",
+			"owner": "Golmote"
 		},
 		"c": {
 			"title": "C",
@@ -185,6 +189,10 @@ var components = {
 			"title": "Julia",
 			"owner": "cdagnino"
 		},
+		"keyman": {
+			"title": "Keyman",
+			"owner": "mcdurdin"
+		},
 		"latex": {
 			"title": "LaTeX",
 			"owner": "japborst"
@@ -196,6 +204,10 @@ var components = {
 		},
 		"lolcode": {
 			"title": "LOLCODE",
+			"owner": "Golmote"
+		},
+		"makefile": {
+			"title": "Makefile",
 			"owner": "Golmote"
 		},
 		"markdown": {
@@ -276,6 +288,10 @@ var components = {
 			"title": "SAS",
 			"owner": "Golmote"
 		},
+		"sass": {
+			"title": "Sass (Sass)",
+			"owner": "Golmote"
+		},
 		"scss": {
 			"title": "Sass (Scss)",
 			"require": "css",
@@ -322,6 +338,10 @@ var components = {
 			"require": "javascript",
 			"owner": "vkbansal"
 		},
+		"vhdl": {
+			"title": "VHDL",
+			"owner": "a-rey"
+		},
 		"wiki": {
 			"title": "Wiki markup",
 			"require": "markup",
@@ -361,6 +381,11 @@ var components = {
 		"highlight-keywords": {
 			"title": "Highlight Keywords",
 			"owner": "vkbansal",
+			"noCSS": true
+		},
+		"remove-initial-line-feed": {
+			"title": "Remove initial line feed",
+			"owner": "Golmote",
 			"noCSS": true
 		}
 	}
