@@ -111,12 +111,12 @@
 			}
 		},
 		'punctuation': {
-			pattern: /((?:^|\r?\n|\r)[\t ]*)[~=\-&!]/,
+			pattern: /((?:^|\r?\n|\r)[\t ]*)[~=\-&!]+/,
 			lookbehind: true
 		}
 	};
 
-	var filter_pattern = '((?:^|\\r?\\n|\\r)([\\t ]*)):{{filter_name}}(\\n(?:\\2[\\t ]+.+|\\s*?(?=\\n)))+';
+	var filter_pattern = '((?:^|\\r?\\n|\\r)([\\t ]*)):{{filter_name}}((?:\\r?\\n|\\r)(?:\\2[\\t ]+.+|\\s*?(?=\\r?\\n|\\r)))+';
 
 	// Non exhaustive list of available filters and associated languages
 	var filters = [
