@@ -40,7 +40,8 @@ Prism.languages.twig = {
 
 	// The rest can be parsed as HTML
 	'other': {
-		pattern: /[\s\S]*/,
+		// We want non-blank matches
+		pattern: /\S(?:[\s\S]*\S)?/,
 		inside: Prism.languages.markup
 	}
 };
