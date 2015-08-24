@@ -1,0 +1,18 @@
+:stylus
+  font-size = 14px
+
+----------------------------------------------------
+
+[
+	["filter-stylus", [
+		["filter-name", ":stylus"],
+		["variable", "\r\n  font-size"],
+		["operator", "="],
+		["number", "14"],
+		["keyword", "px"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for stylus filter in Jade.
