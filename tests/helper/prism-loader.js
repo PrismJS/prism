@@ -19,15 +19,33 @@ module.exports = {
 			loadedLanguages: [],
 			Prism: this.createEmptyPrism()
 		};
-		languages = Array.isArray(languages) ? languages : [languages];
 
-		for (var i = 0, l = languages.length; i < l; i++) {
-			context = this.loadLanguage(languages[i], context);
-		}
+		context = this.loadLanguages(languages, context);
 
 		return context.Prism;
 	},
 
+	/**
+	 * Loads the given languages and appends the config to the given Prism object
+	 *
+	 * @private
+	 * @param {string|string[]} languages
+	 * @param {{loadedLanguages: string[], Prism: Prism}} context
+	 * @returns {{loadedLanguages: string[], Prism: Prism}}
+	 */
+	loadLanguages: function (languages, context) {
+		if (typeof languages === 'string') {
+			languages = [languages];
+		}
+
+		var self = this;
+
+		languages.forEach(function (language) {
+			context = self.loadLanguage(language, context);
+		});
+
+		return context;
+	},
 
 	/**
 	 * Loads the given language (including recursively loading the dependencies) and
@@ -50,7 +68,7 @@ module.exports = {
 
 		// if the language has a dependency -> load it first
 		if (languagesCatalog[language].require) {
-			context = this.loadLanguage(languagesCatalog[language].require, context);
+			context = this.loadLanguages(languagesCatalog[language].require, context);
 		}
 
 		// load the language itself
