@@ -28,7 +28,8 @@ Prism.hooks.add('complete', function (env) {
 		pre.className += ' line-numbers';
 	}
 
-	var linesNum = env.code.match(/\n(?!$)/g).length + 1;
+	var match = env.code.match(/\n(?!$)/g);
+	var linesNum = match ? match.length + 1 : 1;
 	var lineNumbersWrapper;
 
 	var lines = new Array(linesNum + 1);
