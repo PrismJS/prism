@@ -1,0 +1,15 @@
+#if foo
+#else
+#endif
+
+----------------------------------------------------
+
+[
+	["preprocessor", "#if foo"],
+	["preprocessor", "#else"],
+	["preprocessor", "#endif"]
+]
+
+----------------------------------------------------
+
+Checks for preprocessor directives.
