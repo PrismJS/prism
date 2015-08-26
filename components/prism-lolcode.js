@@ -43,12 +43,12 @@ Prism.languages.lolcode = {
 		lookbehind: true
 	},
 	'variable': {
-		pattern: /(^|\s)(?:IT)(?=\s|,|$)/,
+		pattern: /(^|\s)IT(?=\s|,|$)/,
 		lookbehind: true
 	},
 	'operator': {
 		pattern: /(^|\s)(?:NOT|BOTH SAEM|DIFFRINT|(?:SUM|DIFF|PRODUKT|QUOSHUNT|MOD|BIGGR|SMALLR|BOTH|EITHER|WON|ALL|ANY) OF)(?=\s|,|$)/,
 		lookbehind: true
 	},
-	'punctuation': /\.{3}|\u2026|,|!/
+	'punctuation': /\.{3}|…|,|!/
 };
