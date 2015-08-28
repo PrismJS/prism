@@ -1,9 +1,4 @@
-[System.String]::Empty;
-[Foo.Bar+Baz]::Abc;
-[int] 42;
-$foo $bar_baz $var4u $1
-$true $True $false $true_as $falsey
--eq -ne -gt -ge -lt -le -shl -shr -not -band -and -bxor -bor -or
+! -eq -ne -gt -ge -lt -le -shl -shr -not -band -and -bxor -bor -or
 -Like -Match -Contains -In -NotLike -NotMatch -NotContains -NotIn -Replace -Join
 -is -isNot -as
 -= += *= /= %= - + * / % -- ++
@@ -11,21 +6,7 @@ $true $True $false $true_as $falsey
 ----------------------------------------------------
 
 [
-	["namespace", "[System.String]"],"::Empty",["punctuation", ";"],
-	["namespace", "[Foo.Bar+Baz]"],"::Abc",["punctuation", ";"],
-	["namespace", "[int]"]," 42",["punctuation", ";"],
-	
-	["variable", "$foo"],
-	["variable", "$bar_baz"],
-	["variable", "$var4u"],
-	["variable", "$1"],
-	
-	["boolean", "$true"],
-	["boolean", "$True"],
-	["boolean", "$false"],
-	["variable", "$true_as"],
-	["variable", "$falsey"],
-	
+	["operator", "!"], 
 	["operator", "-eq"], 
 	["operator", "-ne"], 
 	["operator", "-gt"], 
@@ -71,4 +52,4 @@ $true $True $false $true_as $falsey
 ]
 ----------------------------------------------------
 
-Testing namespaces, operators, variables and Booleans
+Testing operators.
