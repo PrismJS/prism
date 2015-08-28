@@ -13,13 +13,13 @@ Prism.languages.powershell = {
 		{
 			pattern: /"(`?[\w\W])*?"/m,
 			inside: {
-				'powershell': {
+				'function': {
 					pattern: /[^`]\$\(.*?\)/,
 					inside: {}
 				}
 			}
 		},
-		/'('?[\w\W])*?'/m
+		/'([\w\W])*?'/m
 	],
 	// Matches name spaces as well as casts, attribute decorators. Force starting with letter to avoid matching array indices
 	'namespace': /\[[a-z][\w\W]*?\]/i,
@@ -35,7 +35,7 @@ Prism.languages.powershell = {
 		/\b(ac|cat|chdir|clc|cli|clp|clv|compare|copy|cp|cpi|cpp|cvpa|dbp|del|diff|dir|ebp|echo|epal|epcsv|epsn|erase|fc|fl|ft|fw|gal|gbp|gc|gci|gcs|gdr|gi|gl|gm|gp|gps|group|gsv|gu|gv|gwmi|iex|ii|ipal|ipcsv|ipsn|irm|iwmi|iwr|kill|lp|ls|measure|mi|mount|move|mp|mv|nal|ndr|ni|nv|ogv|popd|ps|pushd|pwd|rbp|rd|rdr|ren|ri|rm|rmdir|rni|rnp|rp|rv|rvpa|rwmi|sal|saps|sasv|sbp|sc|select|set|shcm|si|sl|sleep|sls|sort|sp|spps|spsv|start|sv|swmi|tee|trcm|type|write)\b/i
 	],
 	'operator': {
-		pattern: /(\W)(!|-(eq|ne|gt|ge|lt|le|sh[lr]|b?(and|x?or)|(Not)?(Like|Match|Contains|In)|Replace|Join|is(Not)?|as)|[-+*/%]=?)\s*\b/i,
+		pattern: /(\W)(!|-(eq|ne|gt|ge|lt|le|sh[lr]|not|b?(and|x?or)|(Not)?(Like|Match|Contains|In)|Replace|Join|is(Not)?|as)\b|[-+*\/%]=?)/i,
 		lookbehind: true
 	},
 	'punctuation': /[|{}[\];(),.]/
@@ -43,4 +43,4 @@ Prism.languages.powershell = {
 // Variable interpolation inside strings
 Prism.languages.powershell.string[0].inside.boolean = Prism.languages.powershell.boolean;
 Prism.languages.powershell.string[0].inside.variable = Prism.languages.powershell.variable;
-Prism.languages.powershell.string[0].inside.powershell.inside = Prism.util.clone(Prism.languages.powershell);
+Prism.languages.powershell.string[0].inside.function.inside = Prism.util.clone(Prism.languages.powershell);

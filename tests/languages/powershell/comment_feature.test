@@ -1,0 +1,20 @@
+# single comment
+# comment with $variable
+<# multi
+	line
+	comment
+#>
+not a `# comment
+
+----------------------------------------------------
+
+[
+	["comment", "# single comment\r\n"],
+	["comment", "# comment with $variable\r\n"],
+	["comment", "<# multi\r\n\tline\r\n\tcomment\r\n#>"],
+	"\r\nnot a `# comment"
+]
+
+----------------------------------------------------
+
+Testing comments

@@ -1,0 +1,37 @@
+"a simple string"
+"has $interpolated variables"
+"has $($nesting -and 'interpolation')"
+"string `"with`" escaping"
+'non-interpolated $string'
+'also ''with'' escaping'
+
+----------------------------------------------------
+
+[
+	["string", ["\"a simple string\""]],
+	["string", [
+		"\"has ",["variable", "$interpolated"]," variables\""]
+	],
+	["string", [
+		"\"has",
+		[
+			"function",
+			[
+				" $",
+				["punctuation", "("],
+				["variable", "$nesting"],
+				["operator", "-and"],
+				["string", "'interpolation'"],
+				["punctuation", ")"]
+			]
+		],
+		"\""]
+	],
+	["string", ["\"string `\"with`\" escaping\""]],
+	["string", "'non-interpolated $string'"],
+	["string", "'also '"],["string", "'with'"],["string", "' escaping'"]
+]
+
+----------------------------------------------------
+
+Testing strings
