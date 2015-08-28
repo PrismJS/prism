@@ -74,6 +74,7 @@ pre[class*="language-"] {
 	border-radius: 0.3em;
 	color: #c92c2c;
 	border: 1px solid rgba(0, 0, 0, 0.1);
+	display: inline;
 }
 
 pre[class*="language-"]:before,
