@@ -1,0 +1,74 @@
+[System.String]::Empty;
+[Foo.Bar+Baz]::Abc;
+[int] 42;
+$foo $bar_baz $var4u $1
+$true $True $false $true_as $falsey
+-eq -ne -gt -ge -lt -le -shl -shr -not -band -and -bxor -bor -or
+-Like -Match -Contains -In -NotLike -NotMatch -NotContains -NotIn -Replace -Join
+-is -isNot -as
+-= += *= /= %= - + * / % -- ++
+
+----------------------------------------------------
+
+[
+	["namespace", "[System.String]"],"::Empty",["punctuation", ";"],
+	["namespace", "[Foo.Bar+Baz]"],"::Abc",["punctuation", ";"],
+	["namespace", "[int]"]," 42",["punctuation", ";"],
+	
+	["variable", "$foo"],
+	["variable", "$bar_baz"],
+	["variable", "$var4u"],
+	["variable", "$1"],
+	
+	["boolean", "$true"],
+	["boolean", "$True"],
+	["boolean", "$false"],
+	["variable", "$true_as"],
+	["variable", "$falsey"],
+	
+	["operator", "-eq"], 
+	["operator", "-ne"], 
+	["operator", "-gt"], 
+	["operator", "-ge"], 
+	["operator", "-lt"], 
+	["operator", "-le"], 
+	["operator", "-shl"], 
+	["operator", "-shr"], 
+	["operator", "-not"], 
+	["operator", "-band"], 
+	["operator", "-and"], 
+	["operator", "-bxor"], 
+	["operator", "-bor"], 
+	["operator", "-or"], 
+	
+	["operator", "-Like"], 
+	["operator", "-Match"], 
+	["operator", "-Contains"], 
+	["operator", "-In"], 
+	["operator", "-NotLike"], 
+	["operator", "-NotMatch"], 
+	["operator", "-NotContains"], 
+	["operator", "-NotIn"], 
+	["operator", "-Replace"], 
+	["operator", "-Join"], 
+	["operator", "-is"], 
+	["operator", "-isNot"], 
+	["operator", "-as"], 
+	
+	["operator", "-="],
+	["operator", "+="],
+	["operator", "*="],
+	["operator", "/="],
+	["operator", "%="],
+	["operator", "-"],
+	["operator", "+"],
+	["operator", "*"],
+	["operator", "/"],
+	["operator", "%"],
+	["operator", "--"],
+	["operator", "++"]
+
+]
+----------------------------------------------------
+
+Testing namespaces, operators, variables and Booleans
