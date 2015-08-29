@@ -1,0 +1,44 @@
+''
+""
+'foo'
+"foo"
+'foo\
+bar'
+"foo\
+bar"
+
+'foo #{42} bar'
+"foo #{ 42 } bar"
+
+----------------------------------------------------
+
+[
+	["string", ["''"]],
+	["string", ["\"\""]],
+	["string", ["'foo'"]],
+	["string", ["\"foo\""]],
+	["string", ["'foo\\\r\nbar'"]],
+	["string", ["\"foo\\\r\nbar\""]],
+	["string", [
+		"'foo ",
+		["interpolation", [
+			["delimiter", "#{"],
+			["number", "42"],
+			["delimiter", "}"]
+		]],
+		" bar'"
+	]],
+	["string", [
+        "\"foo ",
+        ["interpolation", [
+            ["delimiter", "#{"],
+            ["number", "42"],
+            ["delimiter", "}"]
+        ]],
+        " bar\""
+    ]]
+]
+
+----------------------------------------------------
+
+Checks for strings and string interpolation.
