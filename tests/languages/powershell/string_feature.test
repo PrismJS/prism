@@ -4,6 +4,9 @@
 "string `"with`" escaping"
 'non-interpolated $string'
 'also ''with'' escaping'
+'''twas also escaped'
+an empty '' string
+'can''t'
 
 ----------------------------------------------------
 
@@ -29,7 +32,10 @@
 	],
 	["string", ["\"string `\"with`\" escaping\""]],
 	["string", "'non-interpolated $string'"],
-	["string", "'also '"],["string", "'with'"],["string", "' escaping'"]
+	["string", "'also ''with'' escaping'"],
+	["string", "'''twas also escaped'"],
+	"\r\nan empty ",["string", "''"], " string\r\n",
+	["string", "'can''t'"]
 ]
 
 ----------------------------------------------------

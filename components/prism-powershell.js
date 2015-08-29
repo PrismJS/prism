@@ -5,21 +5,22 @@ Prism.languages.powershell = {
 			lookbehind: true
 		},
 		{
-			pattern: /(^|[^`])#.*?(\r?\n|$)/,
+			pattern: /(^|[^`])#.+/,
 			lookbehind: true
 		}
 	],
 	'string': [
 		{
-			pattern: /"(`?[\w\W])*?"/m,
+			pattern: /"(`?[\w\W])*?"/,
 			inside: {
 				'function': {
 					pattern: /[^`]\$\(.*?\)/,
+					// Populated at end of file
 					inside: {}
 				}
 			}
 		},
-		/'([\w\W])*?'/m
+		/'([^']|'')*'/
 	],
 	// Matches name spaces as well as casts, attribute decorators. Force starting with letter to avoid matching array indices
 	'namespace': /\[[a-z][\w\W]*?\]/i,
@@ -35,12 +36,13 @@ Prism.languages.powershell = {
 	// per http://technet.microsoft.com/en-us/library/hh847744.aspx
 	'keyword': /\b(Begin|Break|Catch|Class|Continue|Data|Define|Do|DynamicParam|Else|ElseIf|End|Exit|Filter|Finally|For|ForEach|From|Function|If|InlineScript|Parallel|Param|Process|Return|Sequence|Switch|Throw|Trap|Try|Until|Using|Var|While|Workflow)\b/i,
 	'operator': {
-		pattern: /(\W?)(!|-(eq|ne|gt|ge|lt|le|sh[lr]|not|b?(and|x?or)|(Not)?(Like|Match|Contains|In)|Replace|Join|is(Not)?|as)\b|[-+]{2}|[-+*\/%]=?)/i,
+		pattern: /(\W?)(!|-(eq|ne|gt|ge|lt|le|sh[lr]|not|b?(and|x?or)|(Not)?(Like|Match|Contains|In)|Replace|Join|is(Not)?|as)\b|-[-=]?|\+[+=]?|[*\/%]=?)/i,
 		lookbehind: true
 	},
 	'punctuation': /[|{}[\];(),.]/
 };
-// Variable interpolation inside strings
+
+// Variable interpolation inside strings, and nested expressions
 Prism.languages.powershell.string[0].inside.boolean = Prism.languages.powershell.boolean;
 Prism.languages.powershell.string[0].inside.variable = Prism.languages.powershell.variable;
 Prism.languages.powershell.string[0].inside.function.inside = Prism.util.clone(Prism.languages.powershell);

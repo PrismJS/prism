@@ -4,15 +4,16 @@
 	line
 	comment
 #>
-not a `# comment
+not a `# comment # is a comment
 
 ----------------------------------------------------
 
 [
-	["comment", "# single comment\r\n"],
-	["comment", "# comment with $variable\r\n"],
+	["comment", "# single comment"],
+	["comment", "# comment with $variable"],
 	["comment", "<# multi\r\n\tline\r\n\tcomment\r\n#>"],
-	"\r\nnot a `# comment"
+	"\r\nnot a `# comment ",
+	["comment", "# is a comment"]
 ]
 
 ----------------------------------------------------
