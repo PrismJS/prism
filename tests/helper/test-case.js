@@ -120,7 +120,7 @@ module.exports = {
 	 */
 	parseTestCaseFile: function (filePath) {
 		var testCaseSource = fs.readFileSync(filePath, "utf8");
-		var testCaseParts = testCaseSource.split(/^-{4,}\w*$/m);
+		var testCaseParts = testCaseSource.split(/^-{10,}\w*$/m);
 
 		try {
 			var testCase = {
