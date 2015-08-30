@@ -14,7 +14,7 @@
 [
 	["filter-scss", [
 		["filter-name", ":scss"],
-		["selector", ["\r\n\t#main "]],
+		["selector", ["#main "]],
 		["punctuation", "{"],
 		["property", "width"],
 		["punctuation", ":"],
@@ -25,7 +25,7 @@
 	["punctuation", "~"],
 	["filter-scss", [
 		["filter-name", ":scss"],
-		["selector", ["\r\n\t  #main "]],
+		["selector", ["#main "]],
 		["punctuation", "{"],
 		["property", "width"],
 		["punctuation", ":"],
