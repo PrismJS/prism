@@ -290,6 +290,7 @@ var components = {
 		},
 		"sass": {
 			"title": "Sass (Sass)",
+			"require": "css",
 			"owner": "Golmote"
 		},
 		"scss": {
