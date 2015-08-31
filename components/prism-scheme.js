@@ -1,6 +1,6 @@
 Prism.languages.scheme = {
 	'comment' : /;.*/,
-	'string' :  /"(?:[^"\\\r\n]|\\.)*?"|'[^'\s]+/, //thanks http://stackoverflow.com/questions/171480/regex-grabbing-values-between-quotation-marks
+	'string' :  /"(?:[^"\\\r\n]|\\.)*?"|'[^('\s]*/,
 	'keyword' : {
 		pattern : /(\()(?:define(?:-syntax|-library|-values)?|(?:case-)?lambda|let(?:\*|rec)?(?:-values)?|else|if|cond|begin|delay(?:-force)?|parameterize|guard|set!|(?:quasi-)?quote|syntax-rules)/,
 		lookbehind : true
