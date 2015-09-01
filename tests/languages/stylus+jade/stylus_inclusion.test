@@ -6,10 +6,12 @@
 [
 	["filter-stylus", [
 		["filter-name", ":stylus"],
-		["variable", "\r\n  font-size"],
-		["operator", "="],
-		["number", "14"],
-		["keyword", "px"]
+		["variable-declaration", [
+			["variable", "font-size"],
+			["operator", "="],
+			["number", "14"],
+			"px"
+		]]
 	]]
 ]
 
