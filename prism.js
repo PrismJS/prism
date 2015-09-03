@@ -484,6 +484,11 @@ Prism.hooks.add('wrap', function(env) {
 	}
 });
 
+Prism.languages.xml = Prism.languages.markup;
+Prism.languages.html = Prism.languages.markup;
+Prism.languages.mathml = Prism.languages.markup;
+Prism.languages.svg = Prism.languages.markup;
+
 
 /* **********************************************
      Begin prism-css.js
@@ -628,6 +633,7 @@ if (Prism.languages.markup) {
 	});
 }
 
+Prism.languages.js = Prism.languages.javascript;
 
 /* **********************************************
      Begin prism-file-highlight.js
