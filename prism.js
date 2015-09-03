@@ -428,6 +428,11 @@ if (typeof module !== 'undefined' && module.exports) {
 	module.exports = Prism;
 }
 
+// hack for components to work correctly in node.js
+if (typeof global !== 'undefined') {
+	global.Prism = Prism;
+}
+
 
 /* **********************************************
      Begin prism-markup.js
@@ -624,7 +629,7 @@ if (Prism.languages.markup) {
 ********************************************** */
 
 (function () {
-	if (!self.Prism || !self.document || !document.querySelector) {
+	if (typeof self === 'undefined' || !self.Prism || !self.document || !document.querySelector) {
 		return;
 	}
 
