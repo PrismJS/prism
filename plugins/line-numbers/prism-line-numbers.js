@@ -1,3 +1,9 @@
+(function() {
+
+if (typeof self === 'undefined' || !self.Prism || !self.document) {
+	return;
+}
+
 Prism.hooks.add('complete', function (env) {
 	if (!env.code) {
 		return;
@@ -8,13 +14,13 @@ Prism.hooks.add('complete', function (env) {
 	var clsReg = /\s*\bline-numbers\b\s*/;
 	if (
 		!pre || !/pre/i.test(pre.nodeName) ||
-		// Abort only if nor the <pre> nor the <code> have the class
+			// Abort only if nor the <pre> nor the <code> have the class
 		(!clsReg.test(pre.className) && !clsReg.test(env.element.className))
 	) {
 		return;
 	}
 
-	if ( env.element.querySelector(".line-numbers-rows") ) {
+	if (env.element.querySelector(".line-numbers-rows")) {
 		// Abort if line numbers already exists
 		return;
 	}
@@ -46,3 +52,5 @@ Prism.hooks.add('complete', function (env) {
 	env.element.appendChild(lineNumbersWrapper);
 
 });
+
+}());
