@@ -67,6 +67,10 @@ var components = {
 			"title": "Apache Configuration",
 			"owner": "GuiTeK"
 		},
+		"apl": {
+			"title": "APL",
+			"owner": "ngn"
+		},
 		"applescript": {
 			"title": "AppleScript",
 			"owner": "Golmote"
