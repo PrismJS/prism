@@ -35,7 +35,8 @@ var components = {
 		"meta": {
 			"path": "components/prism-{id}",
 			"noCSS": true,
-			"examplesPath": "examples/prism-{id}"
+			"examplesPath": "examples/prism-{id}",
+			"addCheckAll": true
 		},
 		"markup": {
 			"title": "Markup",
@@ -55,7 +56,7 @@ var components = {
 			"require": "clike"
 		},
 
-		// ---
+
 
 		"actionscript": {
 			"title": "ActionScript",
@@ -65,6 +66,10 @@ var components = {
 		"apacheconf": {
 			"title": "Apache Configuration",
 			"owner": "GuiTeK"
+		},
+		"apl": {
+			"title": "APL",
+			"owner": "ngn"
 		},
 		"applescript": {
 			"title": "AppleScript",
@@ -294,6 +299,7 @@ var components = {
 		},
 		"sass": {
 			"title": "Sass (Sass)",
+			"require": "css",
 			"owner": "Golmote"
 		},
 		"scss": {
@@ -377,9 +383,19 @@ var components = {
 			"title": "Show Language",
 			"owner": "nauzilus"
 		},
+		"jsonp-highlight": {
+			"title": "JSONP Highlight",
+			"noCSS": true,
+			"owner": "nauzilus"
+		},
 		"highlight-keywords": {
 			"title": "Highlight Keywords",
 			"owner": "vkbansal",
+			"noCSS": true
+		},
+		"remove-initial-line-feed": {
+			"title": "Remove initial line feed",
+			"owner": "Golmote",
 			"noCSS": true
 		}
 	}
