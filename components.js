@@ -375,6 +375,11 @@ var components = {
 			"title": "Show Language",
 			"owner": "nauzilus"
 		},
+		"jsonp-highlight": {
+			"title": "JSONP Highlight",
+			"noCSS": true,
+			"owner": "nauzilus"
+		},
 		"highlight-keywords": {
 			"title": "Highlight Keywords",
 			"owner": "vkbansal",
