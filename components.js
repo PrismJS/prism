@@ -338,6 +338,10 @@ var components = {
 			"require": "clike",
 			"owner": "chrischares"
 		},
+		"tcl": {
+			"title": "Tcl",
+			"owner": "PeterChaplin"
+		},
 		"twig": {
 			"title": "Twig",
 			"require": "markup",
