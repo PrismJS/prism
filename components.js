@@ -127,6 +127,10 @@ var components = {
 			"title": "Eiffel",
 			"owner": "Conaclos"
 		},
+		"elixir": {
+			"title": "elixir",
+			"owner": "Golmote"
+		},
 		"erlang": {
 			"title": "Erlang",
 			"owner": "Golmote"
