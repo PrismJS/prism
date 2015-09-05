@@ -448,7 +448,7 @@ function buildCode(promises) {
 		if(i < l) {
 			var p = promises[i];
 			p.contentsPromise.then(function(contents) {
-				code[p.type] += contents + (p.type === 'js'? ';' : '') + '\n';
+				code[p.type] += contents + (p.type === 'js' && !/;\s*$/.test(contents) ? ';' : '') + '\n';
 				i++;
 				f(resolve);
 			});
