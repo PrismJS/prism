@@ -1,8 +1,4 @@
 Prism.languages.elixir = {
-	'heredoc': {
-		pattern: /(?:~[csw])?("""|''')[\s\S]*?\1/i,
-		alias: 'string'
-	},
 	// Negative look-ahead is needed for string interpolation
 	'comment': /#(?!\{).*/,
 	// ~r"""foo""", ~r'''foo''', ~r/foo/, ~r|foo|, ~r"foo", ~r'foo', ~r(foo), ~r[foo], ~r{foo}, ~r<foo>
@@ -10,7 +6,13 @@ Prism.languages.elixir = {
 	'string': [
 		{
 			// ~s"""foo""", ~s'''foo''', ~s/foo/, ~s|foo|, ~s"foo", ~s'foo', ~s(foo), ~s[foo], ~s{foo}, ~s<foo>
-			pattern: /~[cCsSwW](?:([\/|"'])(?:\\.|(?!\1)[^\\])+\1|\((?:\\\)|[^)])+\)|\[(?:\\\]|[^\]])+\]|\{(?:\\\}|[^}])+\}|<(?:\\>|[^>])+>)[csa]?/,
+			pattern: /~[cCsSwW](?:("""|'''|[\/|"'])(?:\\.|(?!\1)[^\\])+\1|\((?:\\\)|[^)])+\)|\[(?:\\\]|[^\]])+\]|\{(?:\\\}|#\{[^}]+\}|[^}])+\}|<(?:\\>|[^>])+>)[csa]?/,
+			inside: {
+				// See interpolation below
+			}
+		},
+		{
+			pattern: /("""|''')[\s\S]*?\1/,
 			inside: {
 				// See interpolation below
 			}
@@ -33,7 +35,7 @@ Prism.languages.elixir = {
 	'attr-name': /\w+:(?!:)/,
 	'capture': {
 		// Look-behind prevents bad highlighting of the && operator
-		pattern: /(^|[^&])&(?:[^&\s\d()][^()]*|(?=\())/,
+		pattern: /(^|[^&])&(?:[^&\s\d()][^\s()]*|(?=\())/,
 		lookbehind: true,
 		alias: 'function'
 	},
@@ -48,10 +50,10 @@ Prism.languages.elixir = {
 		alias: 'variable'
 	},
 	'number': /\b(?:0[box][a-f\d_]+|\d[\d_]*)(?:\.[\d_]+)?(?:e[+-]?[\d_]+)?\b/i,
-	'keyword': /\b(?:after|alias|and|case|catch|cond|def|defcallback|defexception|defimpl|defmodule|defp|defprotocol|defstruct|do|else|end|fn|for|if|import|not|or|require|rescue|try|unless|use|when)\b/,
+	'keyword': /\b(?:after|alias|and|case|catch|cond|def(?:callback|exception|impl|module|p|protocol|struct)?|do|else|end|fn|for|if|import|not|or|require|rescue|try|unless|use|when)\b/,
 	'boolean': /\b(?:true|false|nil)\b/,
 	'operator': [
-		/\bin\b|\|>|\\\\|::|\.\.\.?|\+\+|--|&&|\|\||<>|[!=]==?|[<>]=|->|=>|<-|=~|\B!|[+\-*\/=|^&]/,
+		/\bin\b|&&?|\|[|>]?|\\\\|::|\.\.\.?|\+\+?|-[->]?|<[-=>]|>=|!==?|\B!|=(?:==?|[>~])?|[*\/^]/,
 		{
 			// We don't want to match <<
 			pattern: /([^<])<(?!<)/,
