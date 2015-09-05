@@ -35,7 +35,8 @@ var components = {
 		"meta": {
 			"path": "components/prism-{id}",
 			"noCSS": true,
-			"examplesPath": "examples/prism-{id}"
+			"examplesPath": "examples/prism-{id}",
+			"addCheckAll": true
 		},
 		"markup": {
 			"title": "Markup",
@@ -65,6 +66,10 @@ var components = {
 		"apacheconf": {
 			"title": "Apache Configuration",
 			"owner": "GuiTeK"
+		},
+		"apl": {
+			"title": "APL",
+			"owner": "ngn"
 		},
 		"applescript": {
 			"title": "AppleScript",
@@ -121,6 +126,10 @@ var components = {
 		"eiffel": {
 			"title": "Eiffel",
 			"owner": "Conaclos"
+		},
+		"elixir": {
+			"title": "Elixir",
+			"owner": "Golmote"
 		},
 		"erlang": {
 			"title": "Erlang",
@@ -329,6 +338,10 @@ var components = {
 			"require": "clike",
 			"owner": "chrischares"
 		},
+		"tcl": {
+			"title": "Tcl",
+			"owner": "PeterChaplin"
+		},
 		"twig": {
 			"title": "Twig",
 			"require": "markup",
@@ -372,6 +385,11 @@ var components = {
 		},
 		"show-language": {
 			"title": "Show Language",
+			"owner": "nauzilus"
+		},
+		"jsonp-highlight": {
+			"title": "JSONP Highlight",
+			"noCSS": true,
 			"owner": "nauzilus"
 		},
 		"highlight-keywords": {

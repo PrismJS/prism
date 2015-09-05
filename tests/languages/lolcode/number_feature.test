@@ -1,13 +1,13 @@
-\begin
-\usepackage
+42
+3.14159
 
 ----------------------------------------------------
 
 [
-	["selector", "\\begin"],
-	["selector", "\\usepackage"]
+	["number", "42"],
+	["number", "3.14159"]
 ]
 
 ----------------------------------------------------
 
-Checks for selectors.
+Checks for numbers.

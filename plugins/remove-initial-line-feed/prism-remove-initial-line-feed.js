@@ -1,4 +1,10 @@
-Prism.hooks.add('before-highlight', function(env) {
+(function() {
+
+if (typeof self === 'undefined' || !self.Prism || !self.document) {
+	return;
+}
+
+Prism.hooks.add('before-highlight', function (env) {
 	if (env.code) {
 		var pre = env.element.parentNode;
 		var clsReg = /\s*\bkeep-initial-line-feed\b\s*/;
@@ -11,3 +17,5 @@ Prism.hooks.add('before-highlight', function(env) {
 		}
 	}
 });
+
+}());
