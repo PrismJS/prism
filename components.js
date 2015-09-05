@@ -128,7 +128,7 @@ var components = {
 			"owner": "Conaclos"
 		},
 		"elixir": {
-			"title": "elixir",
+			"title": "Elixir",
 			"owner": "Golmote"
 		},
 		"erlang": {
