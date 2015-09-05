@@ -123,6 +123,10 @@ var components = {
 			"require": "clike",
 			"owner": "Golmote"
 		},
+		"docker": {
+			"title": "Docker",
+			"owner": "JustinBeckwith"
+		},
 		"eiffel": {
 			"title": "Eiffel",
 			"owner": "Conaclos"
