@@ -2,7 +2,7 @@ Prism.languages.aspnet = Prism.languages.extend('markup', {
 	'page-directive tag': {
 		pattern: /<%\s*@.*%>/i,
 		inside: {
-			'page-directive tag': /<%\s*@\s*(?:Assembly|Control|Implements|Import|Master|MasterType|OutputCache|Page|PreviousPageType|Reference|Register)?|%>/i,
+			'page-directive tag': /<%\s*@\s*(?:Assembly|Control|Implements|Import|Master(?:Type)?|OutputCache|Page|PreviousPageType|Reference|Register)?|%>/i,
 			rest: Prism.languages.markup.tag.inside
 		}
 	},
@@ -14,6 +14,8 @@ Prism.languages.aspnet = Prism.languages.extend('markup', {
 		}
 	}
 });
+// Regexp copied from prism-markup, with a negative look-ahead added
+Prism.languages.aspnet.tag.pattern = /<(?!%)\/?[^\s>\/]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\\1|\\?(?!\1)[\w\W])*\1|[^\s'">=]+))?)*\s*\/?>/i;
 
 // match directives of attribute value foo="<% Bar %>"
 Prism.languages.insertBefore('inside', 'punctuation', {

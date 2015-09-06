@@ -1,0 +1,32 @@
+""
+''
+"foo"
+'foo'
+"foo
+bar"
+'foo
+bar'
+"$@"
+"${foo}"
+
+----------------------------------------------------
+
+[
+	["string", ["\"\""]],
+	["string", ["''"]],
+	["string", ["\"foo\""]],
+	["string", ["'foo'"]],
+	["string", ["\"foo\r\nbar\""]],
+	["string", ["'foo\r\nbar'"]],
+	["string", [
+		"\"", ["property", "$@"], "\""
+	]],
+	["string", [
+		"\"", ["property", "${foo}"], "\""
+	]]
+]
+
+----------------------------------------------------
+
+Checks for single-quoted and double-quoted strings.
+Also checks for variables in strings.
