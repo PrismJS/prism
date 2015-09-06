@@ -118,6 +118,11 @@ var components = {
 			"require": "css",
 			"owner": "milesj"
 		},
+		"d": {
+			"title": "D",
+			"require": "clike",
+			"owner": "Golmote"
+		},
 		"dart": {
 			"title": "Dart",
 			"require": "clike",
