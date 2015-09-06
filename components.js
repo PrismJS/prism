@@ -194,6 +194,10 @@ var components = {
 			"title": "HTTP",
 			"owner": "danielgtaylor"
 		},
+		"inform7": {
+			"title": "Inform 7",
+			"owner": "Golmote"
+		},
 		"ini": {
 			"title": "Ini",
 			"owner": "aviaryan"
