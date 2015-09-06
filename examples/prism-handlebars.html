@@ -26,8 +26,12 @@
 {{/with}}
 &lt;div class="{{#if test}}foo{{else}}bar{{/if}}">&lt;/div>
 {{#list array}}
-  {{@index}}. {{title}}
-{{/list}}</code></pre>
+	{{@index}}. {{title}}
+{{/list}}
+{{#block-with-hyphens args=yep}}
+	This should probably work...
+{{/block-with-hyphens}}
+</code></pre>
 
 <h2>Known failures</h2>
 <p>There are certain edge cases where Prism will fail.

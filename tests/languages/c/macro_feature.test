@@ -1,0 +1,19 @@
+# include <stdio.h>
+  #define PG_locked 0
+#foo \
+bar
+
+----------------------------------------------------
+
+[
+	["macro", [
+		"# include ",
+		["string", "<stdio.h>"]
+	]],
+	["macro", ["#define PG_locked 0"]],
+	["macro", ["#foo \\\r\nbar"]]
+]
+
+----------------------------------------------------
+
+Checks for macros, multi-line macros and paths inside include statements.

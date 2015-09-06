@@ -35,7 +35,8 @@ var components = {
 		"meta": {
 			"path": "components/prism-{id}",
 			"noCSS": true,
-			"examplesPath": "examples/prism-{id}"
+			"examplesPath": "examples/prism-{id}",
+			"addCheckAll": true
 		},
 		"markup": {
 			"title": "Markup",
@@ -55,7 +56,7 @@ var components = {
 			"require": "clike"
 		},
 
-		// ---
+
 
 		"actionscript": {
 			"title": "ActionScript",
@@ -65,6 +66,10 @@ var components = {
 		"apacheconf": {
 			"title": "Apache Configuration",
 			"owner": "GuiTeK"
+		},
+		"apl": {
+			"title": "APL",
+			"owner": "ngn"
 		},
 		"applescript": {
 			"title": "AppleScript",
@@ -83,6 +88,10 @@ var components = {
 			"title": "Bash",
 			"require": "clike",
 			"owner": "zeitgeist87"
+		},
+		"brainfuck": {
+			"title": "Brainfuck",
+			"owner": "Golmote"
 		},
 		"c": {
 			"title": "C",
@@ -114,9 +123,17 @@ var components = {
 			"require": "clike",
 			"owner": "Golmote"
 		},
+		"docker": {
+			"title": "Docker",
+			"owner": "JustinBeckwith"
+		},
 		"eiffel": {
 			"title": "Eiffel",
 			"owner": "Conaclos"
+		},
+		"elixir": {
+			"title": "Elixir",
+			"owner": "Golmote"
 		},
 		"erlang": {
 			"title": "Erlang",
@@ -185,6 +202,10 @@ var components = {
 			"title": "Julia",
 			"owner": "cdagnino"
 		},
+		"keyman": {
+			"title": "Keyman",
+			"owner": "mcdurdin"
+		},
 		"latex": {
 			"title": "LaTeX",
 			"owner": "japborst"
@@ -196,6 +217,10 @@ var components = {
 		},
 		"lolcode": {
 			"title": "LOLCODE",
+			"owner": "Golmote"
+		},
+		"makefile": {
+			"title": "Makefile",
 			"owner": "Golmote"
 		},
 		"markdown": {
@@ -246,6 +271,11 @@ var components = {
 			"title": "Python",
 			"owner": "multipetros"
 		},
+		"qore": {
+			"title": "Qore",
+			"require": ["clike"],
+			"owner": "temnroegg"
+		},
 		"r": {
 			"title": "R",
 			"owner": "Golmote"
@@ -274,6 +304,11 @@ var components = {
 		},
 		"sas": {
 			"title": "SAS",
+			"owner": "Golmote"
+		},
+		"sass": {
+			"title": "Sass (Sass)",
+			"require": "css",
 			"owner": "Golmote"
 		},
 		"scss": {
@@ -312,6 +347,10 @@ var components = {
 			"require": "clike",
 			"owner": "chrischares"
 		},
+		"tcl": {
+			"title": "Tcl",
+			"owner": "PeterChaplin"
+		},
 		"textile": {
 			"title": "Textile",
 			"require": "markup",
@@ -326,6 +365,10 @@ var components = {
 			"title": "TypeScript",
 			"require": "javascript",
 			"owner": "vkbansal"
+		},
+		"vhdl": {
+			"title": "VHDL",
+			"owner": "a-rey"
 		},
 		"wiki": {
 			"title": "Wiki markup",
@@ -358,9 +401,19 @@ var components = {
 			"title": "Show Language",
 			"owner": "nauzilus"
 		},
+		"jsonp-highlight": {
+			"title": "JSONP Highlight",
+			"noCSS": true,
+			"owner": "nauzilus"
+		},
 		"highlight-keywords": {
 			"title": "Highlight Keywords",
 			"owner": "vkbansal",
+			"noCSS": true
+		},
+		"remove-initial-line-feed": {
+			"title": "Remove initial line feed",
+			"owner": "Golmote",
 			"noCSS": true
 		}
 	}
