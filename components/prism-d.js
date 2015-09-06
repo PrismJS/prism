@@ -1,12 +1,9 @@
 Prism.languages.d = Prism.languages.extend('clike', {
 	'string': [
 		// r"", x""
-		/[rx]"(\\.|[^\\"])*"[cwd]?/,
+		/\b[rx]"(\\.|[^\\"])*"[cwd]?/,
 		// q"[]", q"()", q"<>", q"{}"
-		/\bq"\[[\s\S]*?\]"/,
-		/\bq"\([\s\S]*?\)"/,
-		/\bq"<[\s\S]*?>"/,
-		/\bq"\{[\s\S]*?\}"/,
+		/\bq"(?:\[[\s\S]*?\]|\([\s\S]*?\)|<[\s\S]*?>|\{[\s\S]*?\})"/,
 		// q"IDENT
 		// ...
 		// IDENT"
@@ -14,9 +11,9 @@ Prism.languages.d = Prism.languages.extend('clike', {
 		// q"//", q"||", etc.
 		/\bq"(.)[\s\S]*?\1"/,
 		// Characters
-		/'\\'|\\?[^']+'/,
+		/'(?:\\'|\\?[^']+)'/,
 
-		/(["`])(\\.|(?!\1)[^\\])*\1[cwd]?/,
+		/(["`])(\\.|(?!\1)[^\\])*\1[cwd]?/
 	],
 
 	'number': [
@@ -30,8 +27,8 @@ Prism.languages.d = Prism.languages.extend('clike', {
 	],
 
 	// In order: $, keywords and special tokens, globally defined symbols
-	'keyword': /\$|\b(?:abstract|alias|align|asm|assert|auto|body|bool|break|byte|case|cast|catch|cdouble|cent|cfloat|char|class|const|continue|creal|dchar|debug|default|delegate|delete|deprecated|do|double|else|enum|export|extern|false|final|finally|float|for|foreach|foreach_reverse|function|goto|idouble|if|ifloat|immutable|import|in|inout|int|interface|invariant|ireal|is|lazy|long|macro|mixin|module|new|nothrow|null|out|override|package|pragma|private|protected|public|pure|real|ref|return|scope|shared|short|static|struct|super|switch|synchronized|template|this|throw|true|try|typedef|typeid|typeof|ubyte|ucent|uint|ulong|union|unittest|ushort|version|void|volatile|wchar|while|with|__(?:(?:FILE|MODULE|LINE|FUNCTION|PRETTY_FUNCTION|DATE|EOF|TIME|TIMESTAMP|VENDOR|VERSION)__|gshared|traits|vector|parameters)|string|wstring|dstring|size_t|ptrdiff_t)\b/,
-	'operator': /\|\||&&|\+\+|--|\.?\.\.|=>|(?:!|\b)i[ns]\b|(?:<<|>>>?|\^\^|!?<>|![<>]|[+\-*\/%&|^~=!<>])=?/
+	'keyword': /\$|\b(?:abstract|alias|align|asm|assert|auto|body|bool|break|byte|case|cast|catch|cdouble|cent|cfloat|char|class|const|continue|creal|dchar|debug|default|delegate|delete|deprecated|do|double|else|enum|export|extern|false|final|finally|float|for|foreach|foreach_reverse|function|goto|idouble|if|ifloat|immutable|import|inout|int|interface|invariant|ireal|lazy|long|macro|mixin|module|new|nothrow|null|out|override|package|pragma|private|protected|public|pure|real|ref|return|scope|shared|short|static|struct|super|switch|synchronized|template|this|throw|true|try|typedef|typeid|typeof|ubyte|ucent|uint|ulong|union|unittest|ushort|version|void|volatile|wchar|while|with|__(?:(?:FILE|MODULE|LINE|FUNCTION|PRETTY_FUNCTION|DATE|EOF|TIME|TIMESTAMP|VENDOR|VERSION)__|gshared|traits|vector|parameters)|string|wstring|dstring|size_t|ptrdiff_t)\b/,
+	'operator': /\|[|=]?|&[&=]?|\+[+=]?|-[-=]?|\.?\.\.|=[>=]?|!(?:i[ns]\b|<>?=?|>=?|=)?|\bi[ns]\b|(?:<[<>]?|>>?>?|\^\^|[*\/%^~])=?/
 });
 
 
