@@ -3,7 +3,7 @@ Prism.languages.smalltalk = {
 	'string': /'(?:''|[^'])+'/,
 	'symbol': /#[\da-z]+|#(?:-|([+\/\\*~<>=@%|&?!])\1?)|#(?=\()/i,
 	'block-arguments': {
-		pattern: /(\[\s*)(?=:)[^\[|]+?\|/,
+		pattern: /(\[\s*):[^\[|]*?\|/,
 		lookbehind: true,
 		inside: {
 			'variable': /:[\da-z]+/i,
@@ -26,6 +26,6 @@ Prism.languages.smalltalk = {
 		/\d+r-?[\dA-Z]+(?:\.[\dA-Z]+)?(?:e-?\d+)?/,
 		/(?:\B-|\b)\d+(?:\.\d+)?(?:e-?\d+)?/
 	],
-	'operator': /[:=~<>]=|~~|\/\/|\\\\|>>|[!^=<>+\-*\/&|,@]/,
+	'operator': /[<=]=?|:=|~[~=]|\/\/?|\\\\|>[>=]?|[!^+\-*&|,@]/,
 	'punctuation': /[.;:?\[\](){}]/
 };

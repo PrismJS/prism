@@ -3,17 +3,20 @@ Prism.languages.css = {
 	'atrule': {
 		pattern: /@[\w-]+?.*?(;|(?=\s*\{))/i,
 		inside: {
-			'punctuation': /[;:]/
+			'rule': /@[\w-]+/
+			// See rest below
 		}
 	},
-	'url': /url\((?:(["'])(\\\n|\\?.)*?\1|.*?)\)/i,
-	'selector': /[^\{\}\s][^\{\};]*(?=\s*\{)/,
-	'string': /("|')(\\\n|\\?.)*?\1/,
+	'url': /url\((?:(["'])(\\(?:\r\n|[\w\W])|(?!\1)[^\\\r\n])*\1|.*?)\)/i,
+	'selector': /[^\{\}\s][^\{\};]*?(?=\s*\{)/,
+	'string': /("|')(\\(?:\r\n|[\w\W])|(?!\1)[^\\\r\n])*\1/,
 	'property': /(\b|\B)[\w-]+(?=\s*:)/i,
 	'important': /\B!important\b/i,
-	'punctuation': /[\{\};:]/,
-	'function': /[-a-z0-9]+(?=\()/i
+	'function': /[-a-z0-9]+(?=\()/i,
+	'punctuation': /[(){};:]/
 };
+
+Prism.languages.css['atrule'].inside.rest = Prism.util.clone(Prism.languages.css);
 
 if (Prism.languages.markup) {
 	Prism.languages.insertBefore('markup', 'tag', {
