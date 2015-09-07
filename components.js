@@ -89,6 +89,10 @@ var components = {
 			"require": "clike",
 			"owner": "zeitgeist87"
 		},
+		"basic": {
+			"title": "BASIC",
+			"owner": "Golmote"
+		},
 		"brainfuck": {
 			"title": "Brainfuck",
 			"owner": "Golmote"
