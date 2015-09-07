@@ -1,61 +1,102 @@
-Prism.languages.stylus = {
-	'comment': {
-		pattern: /(^|[^\\])(\/\*[\w\W]*?\*\/|\/\/.*?(\r?\n|$))/g,
-		lookbehind: true
-	},
-	'keyword': /(px|r?em|ex|ch|vw|vh|vmin|vmax|deg|grad|rad|turn|m?s|k?Hz|dpi|dppx|dpcm)\b|\b(is|defined|not|isnt|and|or|unless|for|in)\b/g,
-	'atrule': /@[\w-]+(?=\s+\S+)/gi,
-	'url': /url\((["']?).*?\1\)/gi,
-	'variable': /^\s*([\w-]+)(?=\s*[+-\\]?=)/gm,
-	'string': /("|')(\\\n|\\?.)*?\1/g,
-	'important': /\B!important\b/gi,
-	'hexcode': /#[\da-f]{3,6}/gi,
-	'entity': /\\[\da-f]{1,8}/gi,
-	'number': /\d+\.?\d*%?/g,
-	'selector': [
-		{
-			pattern: /::?(after|before|first-letter|first-line|selection)/g,
-			alias: 'pseudo-element'
-		},{
-			pattern: /:(?:active|checked|disabled|empty|enabled|first-child|first-of-type|focus|hover|in-range|invalid|lang|last-child|last-of-type|link|not|nth-child|nth-last-child|nth-last-of-type|nth-of-type|only-of-type|only-child|optional|out-of-range|read-only|read-write|required|root|target|valid|visited)(?:\(.*\))?/g,
-			alias:'pseudo-class'
-		},{
-			pattern: /\[[\w-]+?\s*[*~$^|=]?(?:=\s*\S+)?\]/g,
-			inside: {
-				"attr-name":
-				{
-					pattern: /(\[)([\w-]+)(?=\s*[*~$^|=]{0,2})/g,
-					lookbehind: true
-				},
-				"punctuation": /\[|\]/g,
-				"operator": /[*~$^|=]/g,
-				"attr-value": {
-					pattern: /\S+/
-				},
-			},
-			alias: 'attr'
-		},
-		{
-			pattern: /\.[a-z-]+/i,
-			alias: 'class'
-		},
-		{
-			pattern: /#[a-z-]+/i,
-			alias: 'id'
-		},
-		{
-			pattern: /\b(html|head|title|base|link|meta|style|script|noscript|template|body|section|nav|article|aside|h[1-6]|header|footer|address|main|p|hr|pre|blockquote|ol|ul|li|dl|dt|dd|figure|figcaption|div|a|em|strong|small|s|cite|q|dfn|abbr|data|time|code|var|samp|kbd|sub|sup|i|b|u|mark|ruby|rt|rp|bdi|dbo|span|br|wbr|ins|del|image|iframe|embed|object|param|video|audio|source|track|canvas|map|area|sv|math|table|caption|colgroup|col|tbody|thead|tfoot|tr|td|th|form|fieldset|legeng|label|input|button|select|datalist|optgroup|option|textarea|keygen|output|progress|meter|details|summary|menuitem|menu)\b/g,
-			alias: 'tag'
-		},
-	],
-	'property': [
-		/^\s*([a-z-]+)(?=\s+[\w\W]+|\s*:)(?!\s*\{|\r?\n)/mig,
-		{
-			pattern: /(\(\s*)([a-z-]+)(?=\s*:)/ig,
+(function (Prism) {
+	var inside = {
+		'url': /url\((["']?).*?\1\)/i,
+		'string': /("|')(?:[^\\\r\n]|\\(?:\r\n|[\s\S]))*?\1/,
+		'interpolation': null, // See below
+		'func': null, // See below
+		'important': /\B!(?:important|optional)\b/i,
+		'keyword': {
+			pattern: /(^|\s+)(?:(?:if|else|for|return|unless)(?=\s+|$)|@[\w-]+)/,
 			lookbehind: true
+		},
+		'hexcode': /#[\da-f]{3,6}/i,
+		'number': /\b\d+(?:\.\d+)?%?/,
+		'boolean': /\b(?:true|false)\b/,
+		'operator': [
+			// We want non-word chars around "-" because it is
+			// accepted in property names.
+			/~|[+!\/%<>?=]=?|[-:]=|\*[*=]?|\.+|&&|\|\||\B-\B|\b(?:and|in|is(?: a| defined| not|nt)?|not|or)\b/
+		],
+		'punctuation': /[{}()\[\];:,]/
+	};
+
+	inside['interpolation'] = {
+		pattern: /\{[^\r\n}:]+\}/,
+		alias: 'variable',
+		inside: Prism.util.clone(inside)
+	};
+	inside['func'] = {
+		pattern: /[\w-]+\([^)]*\).*/,
+		inside: {
+			'function': /^[^(]+/,
+			rest: Prism.util.clone(inside)
 		}
-	],
-	'function': /[-a-z0-9]+(?=\()/ig,
-	'punctuation': /[\{\};:]/g,
-	'operator': /[-+]{1,2}|!|<=?|>=?|={1,3}|&{1,2}|\|?\||\?|\*|\/|~|\^|%/g
-}
+	};
+
+	Prism.languages.stylus = {
+		'comment': {
+			pattern: /(^|[^\\])(\/\*[\w\W]*?\*\/|\/\/.*)/,
+			lookbehind: true
+		},
+		'atrule-declaration': {
+			pattern: /(^\s*)@.+/m,
+			lookbehind: true,
+			inside: {
+				'atrule': /^@[\w-]+/,
+				rest: inside
+			}
+		},
+		'variable-declaration': {
+			pattern: /(^[ \t]*)[\w$-]+\s*.?=[ \t]*(?:(?:\{[^}]*\}|.+)|$)/m,
+			lookbehind: true,
+			inside: {
+				'variable': /^\S+/,
+				rest: inside
+			}
+		},
+
+		'statement': {
+			pattern: /(^[ \t]*)(?:if|else|for|return|unless)[ \t]+.+/m,
+			lookbehind: true,
+			inside: {
+				keyword: /^\S+/,
+				rest: inside
+			}
+		},
+
+		// A property/value pair cannot end with a comma or a brace
+		// It cannot have indented content unless it ended with a semicolon
+		'property-declaration': {
+			pattern: /((?:^|\{)([ \t]*))(?:[\w-]|\{[^}\r\n]+\})+(?:\s*:\s*|[ \t]+)[^{\r\n]*(?:;|[^{\r\n,](?=$)(?!(\r?\n|\r)(?:\{|\2[ \t]+)))/m,
+			lookbehind: true,
+			inside: {
+				'property': {
+					pattern: /^[^\s:]+/,
+					inside: {
+						'interpolation': inside.interpolation
+					}
+				},
+				rest: inside
+			}
+		},
+
+
+
+		// A selector can contain parentheses only as part of a pseudo-element
+		// It can span multiple lines.
+		// It must end with a comma or an accolade or have indented content.
+		'selector': {
+			pattern: /(^[ \t]*)(?:(?=\S)(?:[^{}\r\n:()]|::?[\w-]+(?:\([^)\r\n]*\))?|\{[^}\r\n]+\})+)(?:(?:\r?\n|\r)(?:\1(?:(?=\S)(?:[^{}\r\n:()]|::?[\w-]+(?:\([^)\r\n]*\))?|\{[^}\r\n]+\})+)))*(?:,$|\{|(?=(?:\r?\n|\r)(?:\{|\1[ \t]+)))/m,
+			lookbehind: true,
+			inside: {
+				'interpolation': inside.interpolation,
+				'punctuation': /[{},]/
+			}
+		},
+
+		'func': inside.func,
+		'string': inside.string,
+		'interpolation': inside.interpolation,
+		'punctuation': /[{}()\[\];:.]/
+	};
+}(Prism));
