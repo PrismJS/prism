@@ -4,9 +4,12 @@ Prism.languages.fortran = {
 		alias: 'number'
 	},
 	'string': {
-		pattern: /(?:\w+_)?(['"])(?:\1\1|&\n(?:\s*!.+\n)?|(?!\1).)*(?:\1|&)/,
+		pattern: /(?:\w+_)?(['"])(?:\1\1|&(?:\r\n?|\n)(?:\s*!.+(?:\r\n?|\n))?|(?!\1).)*(?:\1|&)/,
 		inside: {
-			'comment': /!.*/
+			'comment': {
+				pattern: /(&(?:\r\n?|\n)\s*)!.*/,
+				lookbehind: true
+			}
 		}
 	},
 	'comment': /!.*/,
@@ -15,10 +18,10 @@ Prism.languages.fortran = {
 	'keyword': [
 		// Types
 		/\b(?:INTEGER|REAL|DOUBLE ?PRECISION|COMPLEX|CHARACTER|LOGICAL)\b/i,
+		// END statements
+		/\b(?:END ?)?(?:BLOCK ?DATA|DO|FILE|FORALL|FUNCTION|IF|INTERFACE|MODULE(?! PROCEDURE)|PROGRAM|SELECT|SUBROUTINE|TYPE|WHERE)\b/i,
 		// Statements
 		/\b(?:ALLOCATABLE|ALLOCATE|BACKSPACE|CALL|CASE|CLOSE|COMMON|CONTAINS|CONTINUE|CYCLE|DATA|DEALLOCATE|DIMENSION|DO|END|EQUIVALENCE|EXIT|EXTERNAL|FORMAT|GO ?TO|IMPLICIT(?: NONE)?|INQUIRE|INTENT|INTRINSIC|MODULE PROCEDURE|NAMELIST|NULLIFY|OPEN|OPTIONAL|PARAMETER|POINTER|PRINT|PRIVATE|PUBLIC|READ|RETURN|REWIND|SAVE|SELECT|STOP|TARGET|WHILE|WRITE)\b/i,
-		// END statements
-		/\b(?:END ?)?(?:BLOCK ?DATA|DO|FILE|FORALL|FUNCTION|IF|INTERFACE|MODULE|PROGRAM|SELECT|SUBROUTINE|TYPE|WHERE)\b/i,
 		// Others
 		/\b(?:ASSIGNMENT|DEFAULT|ELEMENTAL|ELSE|ELSEWHERE|ELSEIF|ENTRY|IN|INCLUDE|INOUT|KIND|NULL|ONLY|OPERATOR|OUT|PURE|RECURSIVE|RESULT|SEQUENCE|STAT|THEN|USE)\b/i
 	],

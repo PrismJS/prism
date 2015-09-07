@@ -15,7 +15,7 @@ Prism.languages.php = Prism.languages.extend('clike', {
 	'keyword': /\b(and|or|xor|array|as|break|case|cfunction|class|const|continue|declare|default|die|do|else|elseif|enddeclare|endfor|endforeach|endif|endswitch|endwhile|extends|for|foreach|function|include|include_once|global|if|new|return|static|switch|use|require|require_once|var|while|abstract|interface|public|implements|private|protected|parent|throw|null|echo|print|trait|namespace|final|yield|goto|instanceof|finally|try|catch)\b/i,
 	'constant': /\b[A-Z0-9_]{2,}\b/,
 	'comment': {
-		pattern: /(^|[^\\])(\/\*[\w\W]*?\*\/|(^|[^:])(\/\/).*?(\r?\n|$))/,
+		pattern: /(^|[^\\])(?:\/\*[\w\W]*?\*\/|\/\/.*)/,
 		lookbehind: true
 	}
 });
@@ -24,15 +24,15 @@ Prism.languages.php = Prism.languages.extend('clike', {
 // common than strings containing hashes...
 Prism.languages.insertBefore('php', 'class-name', {
 	'shell-comment': {
-		pattern: /(^|[^\\])#.*?(\r?\n|$)/,
+		pattern: /(^|[^\\])#.*/,
 		lookbehind: true,
 		alias: 'comment'
 	}
 });
 
 Prism.languages.insertBefore('php', 'keyword', {
-	'delimiter': /(\?>|<\?php|<\?)/i,
-	'variable': /(\$\w+)\b/i,
+	'delimiter': /\?>|<\?(?:php)?/i,
+	'variable': /\$\w+\b/i,
 	'package': {
 		pattern: /(\\|namespace\s+|use\s+)[\w\\]+/,
 		lookbehind: true,
