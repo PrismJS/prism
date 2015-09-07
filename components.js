@@ -258,6 +258,10 @@ var components = {
 			"title": "Mizar",
 			"owner": "Golmote"
 		},
+		"monkey": {
+			"title": "Monkey",
+			"owner": "Golmote"
+		},
 		"nasm": {
 			"title": "NASM",
 			"owner": "rbmj"
