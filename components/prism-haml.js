@@ -10,29 +10,22 @@
 	Prism.languages.haml = {
 		// Multiline stuff should appear before the rest
 
-		'multiline-comment': [
-			{
-				pattern: /((?:^|\n)([\t ]*))\/.*(\n\2[\t ]+.+)*/,
-				lookbehind: true,
-				alias: 'comment'
-			},
-			{
-				pattern: /((?:^|\n)([\t ]*))-#.*(\n\2[\t ]+.+)*/,
-				lookbehind: true,
-				alias: 'comment'
-			}
-		],
+		'multiline-comment': {
+			pattern: /((?:^|\r?\n|\r)([\t ]*))(?:\/|-#).*((?:\r?\n|\r)\2[\t ]+.+)*/,
+			lookbehind: true,
+			alias: 'comment'
+		},
 
 		'multiline-code': [
 			{
-				pattern: /((?:^|\n)([\t ]*)(?:[~-]|[&!]?=)).*,[\t ]*(\n\2[\t ]+.*,[\t ]*)*(\n\2[\t ]+.+)/,
+				pattern: /((?:^|\r?\n|\r)([\t ]*)(?:[~-]|[&!]?=)).*,[\t ]*((?:\r?\n|\r)\2[\t ]+.*,[\t ]*)*((?:\r?\n|\r)\2[\t ]+.+)/,
 				lookbehind: true,
 				inside: {
 					rest: Prism.languages.ruby
 				}
 			},
 			{
-				pattern: /((?:^|\n)([\t ]*)(?:[~-]|[&!]?=)).*\|[\t ]*(\n\2[\t ]+.*\|[\t ]*)*/,
+				pattern: /((?:^|\r?\n|\r)([\t ]*)(?:[~-]|[&!]?=)).*\|[\t ]*((?:\r?\n|\r)\2[\t ]+.*\|[\t ]*)*/,
 				lookbehind: true,
 				inside: {
 					rest: Prism.languages.ruby
@@ -42,7 +35,7 @@
 
 		// See at the end of the file for known filters
 		'filter': {
-			pattern: /((?:^|\n)([\t ]*)):[\w-]+(\n(?:\2[\t ]+.+|\s*?(?=\n)))+/,
+			pattern: /((?:^|\r?\n|\r)([\t ]*)):[\w-]+((?:\r?\n|\r)(?:\2[\t ]+.+|\s*?(?=\r?\n|\r)))+/,
 			lookbehind: true,
 			inside: {
 				'filter-name': {
@@ -53,19 +46,19 @@
 		},
 
 		'markup': {
-			pattern: /((?:^|\n)[\t ]*)<.+/,
+			pattern: /((?:^|\r?\n|\r)[\t ]*)<.+/,
 			lookbehind: true,
 			inside: {
 				rest: Prism.languages.markup
 			}
 		},
 		'doctype': {
-			pattern: /((?:^|\n)[\t ]*)!!!(?: .+)?/,
+			pattern: /((?:^|\r?\n|\r)[\t ]*)!!!(?: .+)?/,
 			lookbehind: true
 		},
 		'tag': {
 			// Allows for one nested group of braces
-			pattern: /((?:^|\n)[\t ]*)[%.#][\w\-#.]*[\w\-](?:\([^)]+\)|\{(?:\{[^}]+\}|[^}])+\}|\[[^\]]+\])*[\/<>]*/,
+			pattern: /((?:^|\r?\n|\r)[\t ]*)[%.#][\w\-#.]*[\w\-](?:\([^)]+\)|\{(?:\{[^}]+\}|[^}])+\}|\[[^\]]+\])*[\/<>]*/,
 			lookbehind: true,
 			inside: {
 				'attributes': [
@@ -100,7 +93,7 @@
 			}
 		},
 		'code': {
-			pattern: /((?:^|\n)[\t ]*(?:[~-]|[&!]?=)).+/,
+			pattern: /((?:^|\r?\n|\r)[\t ]*(?:[~-]|[&!]?=)).+/,
 			lookbehind: true,
 			inside: {
 				rest: Prism.languages.ruby
@@ -118,12 +111,12 @@
 			}
 		},
 		'punctuation': {
-			pattern: /((?:^|\n)[\t ]*)[~=\-&!]/,
+			pattern: /((?:^|\r?\n|\r)[\t ]*)[~=\-&!]+/,
 			lookbehind: true
 		}
 	};
 
-	var filter_pattern = '((?:^|\\n)([\\t ]*)):{{filter_name}}(\\n(?:\\2[\\t ]+.+|\\s*?(?=\\n)))+';
+	var filter_pattern = '((?:^|\\r?\\n|\\r)([\\t ]*)):{{filter_name}}((?:\\r?\\n|\\r)(?:\\2[\\t ]+.+|\\s*?(?=\\r?\\n|\\r)))+';
 
 	// Non exhaustive list of available filters and associated languages
 	var filters = [

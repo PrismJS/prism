@@ -1,0 +1,15 @@
+-Here's my tetx file
++Here's my text file
++And this is the second line
+
+----------------------------------------------------
+
+[
+	["deleted", "-Here's my tetx file"],
+	["inserted", "+Here's my text file"],
+	["inserted", "+And this is the second line"]
+]
+
+----------------------------------------------------
+
+Checks for inserted and deleted lines in git diff output.
