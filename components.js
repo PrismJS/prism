@@ -266,6 +266,10 @@ var components = {
 			"title": "NASM",
 			"owner": "rbmj"
 		},
+		"nim": {
+			"title": "Nim",
+			"owner": "Golmote"
+		},
 		"nsis": {
 			"title": "NSIS",
 			"owner": "idleberg"
