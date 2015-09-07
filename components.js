@@ -250,6 +250,10 @@ var components = {
 			"title": "MEL",
 			"owner": "Golmote"
 		},
+		"mizar": {
+			"title": "Mizar",
+			"owner": "Golmote"
+		},
 		"nasm": {
 			"title": "NASM",
 			"owner": "rbmj"
