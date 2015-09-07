@@ -1,0 +1,41 @@
+foo: bar
+	color: $color !important
+-moz-border-radius: 10px
+
+	:color #{$color}
+:font-size 0.5em + 3em
+
+----------------------------------------------------
+
+[
+	["property-line", [
+		["property", "foo"],
+		["punctuation", ":"],
+		" bar"
+	]],
+	["property-line", [
+		["property", "color"],
+		["punctuation", ":"],
+		["variable", "$color"],
+		["important", "!important"]
+	]],
+	["property-line", [
+		["property", "-moz-border-radius"],
+		["punctuation", ":"],
+		" 10px"
+	]],
+	["property-line", [
+		["punctuation", ":"],
+		["property", "color"],
+		["variable", "#{$color}"]
+	]],
+	["property-line", [
+		["punctuation", ":"],
+		["property", "font-size"],
+		" 0.5em ", ["operator", "+"], " 3em"
+	]]
+]
+
+----------------------------------------------------
+
+Checks for properties.
