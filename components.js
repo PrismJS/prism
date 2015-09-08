@@ -206,6 +206,10 @@ var components = {
 			"title": "Ini",
 			"owner": "aviaryan"
 		},
+		"j": {
+			"title": "J",
+			"owner": "Golmote"
+		},
 		"jade": {
 			"title": "Jade",
 			"require": "javascript",
