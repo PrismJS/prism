@@ -1,6 +1,6 @@
 (function (Prism) {
 	Prism.languages.pure = {
-		'foreign-lang': {
+		'inline-lang': {
 			pattern: /%<[\s\S]+?%>/,
 			inside: {
 				'lang': {
@@ -37,21 +37,22 @@
 			pattern: /\b__[a-z]+__\b/i,
 			alias: 'builtin'
 		},
+		// Any combination of operator chars can be an operator
 		'operator': /(?=\b_|[^_])[!"#$%&'*+,\-.\/:<=>?@\\^_`|~\u00a1-\u00bf\u00d7-\u00f7\u20d0-\u2bff]+|\b(?:and|div|mod|not|or)\b/,
 		// FIXME: How can we prevent | and , to be highlighted as operator when they are used alone?
 		'punctuation': /[(){}\[\];,|]/
 	};
 
-	var foreignLanguages = [
+	var inlineLanguages = [
 		'c',
 		{ lang: 'c++', alias: 'cpp' },
 		'fortran',
 		'ats',
 		'dsp'
 	];
-	var foreignLanguageRe = '%< *-\\*- *{lang}\\d* *-\\*-[\\s\\S]+?%>';
+	var inlineLanguageRe = '%< *-\\*- *{lang}\\d* *-\\*-[\\s\\S]+?%>';
 
-	foreignLanguages.forEach(function (lang) {
+	inlineLanguages.forEach(function (lang) {
 		var alias = lang;
 		if (typeof lang !== 'string') {
 			alias = lang.alias;
@@ -59,18 +60,18 @@
 		}
 		if (Prism.languages[alias]) {
 			var o = {};
-			o['foreign-lang-' + alias] = {
-				pattern: RegExp(foreignLanguageRe.replace('{lang}', lang.replace(/[.+*?\/\\(){}\[\]]/g,'\\$1')), 'i'),
-				inside: Prism.util.clone(Prism.languages.pure['foreign-lang'].inside)
+			o['inline-lang-' + alias] = {
+				pattern: RegExp(inlineLanguageRe.replace('{lang}', lang.replace(/([.+*?\/\\(){}\[\]])/g,'\\$1')), 'i'),
+				inside: Prism.util.clone(Prism.languages.pure['inline-lang'].inside)
 			};
-			o['foreign-lang-' + alias].inside.rest = Prism.util.clone(Prism.languages[alias]);
-			Prism.languages.insertBefore('pure', 'foreign-lang', o);
+			o['inline-lang-' + alias].inside.rest = Prism.util.clone(Prism.languages[alias]);
+			Prism.languages.insertBefore('pure', 'inline-lang', o);
 		}
 	});
 
-	// C is the default foreign language
+	// C is the default inline language
 	if (Prism.languages.c) {
-		Prism.languages.pure['foreign-lang'].inside.rest = Prism.util.clone(Prism.languages.c);
+		Prism.languages.pure['inline-lang'].inside.rest = Prism.util.clone(Prism.languages.c);
 	}
 
 }(Prism));
