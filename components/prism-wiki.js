@@ -12,18 +12,19 @@ Prism.languages.wiki = Prism.languages.extend('markup', {
 		}
 	},
 	'emphasis': {
-		pattern: /('{2,4}).+?\1/,
+		// TODO Multi-line
+		pattern: /('{2,5}).+?\1/,
 		inside: {
 			'bold italic': {
-				pattern: /('''').+?(?=\1)/,
+				pattern: /(''''').+?(?=\1)/,
 				lookbehind: true
 			},
 			'bold': {
-				pattern: /(''').+?(?=\1)/,
+				pattern: /(''')[^'](?:.*?[^'])?(?=\1)/,
 				lookbehind: true
 			},
 			'italic': {
-				pattern: /('').+?(?=\1)/,
+				pattern: /('')[^'](?:.*?[^'])?(?=\1)/,
 				lookbehind: true
 			},
 			'punctuation': /^''+|''+$/
@@ -34,13 +35,13 @@ Prism.languages.wiki = Prism.languages.extend('markup', {
 		alias: 'punctuation'
 	},
 	'url': [
-		/ISBN +(?:97[89][ -]?)?(?:\d[ -]?){9}[\dx]\b/i,
-		/(?:RFC|PMID) +\d+/,
-		/\[\[.+?\]\]/,
-		/\[.+?\]/
+		/ISBN +(?:97[89][ -]?)?(?:\d[ -]?){9}[\dx]\b|(?:RFC|PMID) +\d+/i,
+		/\[\[.+?\]\]|\[.+?\]/
 	],
 	'variable': [
 		/__[A-Z]+__/,
+		// FIXME Nested structures should be handled
+		// {{formatnum:{{#expr:{{{3}}}}}}}
 		/\{{3}.+?\}{3}/,
 		/\{\{.+?}}/
 	],
