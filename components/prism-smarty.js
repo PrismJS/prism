@@ -18,8 +18,8 @@
 					pattern: /^\{|\}$/i,
 					alias: 'punctuation'
 				},
-				'string': /(["'])(\\?.)*?\1/,
-				'number': /\b-?(0x[\dA-Fa-f]+|\d*\.?\d+([Ee]-?\d+)?)\b/,
+				'string': /(["'])(?:\\?.)*?\1/,
+				'number': /\b-?(?:0x[\dA-Fa-f]+|\d*\.?\d+(?:[Ee][-+]?\d+)?)\b/,
 				'variable': [
 					/\$(?!\d)\w+/,
 					/#(?!\d)\w+#/,
@@ -48,12 +48,14 @@
 							pattern: /(=\s*)(?!\d)\w+/,
 							lookbehind: true
 						},
-						"punctuation": /=/
+						"operator": /=/
 					}
 				},
-				'punctuation': /[\[\]().,=\|:`]|\->/,
+				'punctuation': [
+					/[\[\]().,:`]|\->/
+				],
 				'operator': [
-					/[+\-*\/%]|===?|[!<>]=?|&&|\|\|/,
+					/[+\-*\/%]|==?=?|[!<>]=?|&&|\|\|?/,
 					/\bis\s+(?:not\s+)?(?:div|even|odd)(?:\s+by)?\b/,
 					/\b(?:eq|neq?|gt|lt|gt?e|lt?e|not|mod|or|and)\b/
 				],
