@@ -309,6 +309,10 @@ var components = {
 			"title": "Python",
 			"owner": "multipetros"
 		},
+		"q": {
+			"title": "Q",
+			"owner": "Golmote"
+		},
 		"qore": {
 			"title": "Qore",
 			"require": ["clike"],
