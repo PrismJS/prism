@@ -44,10 +44,11 @@ pre[class*="language-"] {
 	background-origin: content-box;
 	overflow: visible;
 	max-height: 30em;
+	padding: 0;
 }
 
 code[class*="language"] {
-	max-height: 28.5em;
+	max-height: inherit;
 	height: 100%;
 	padding: 0 1em;
 	display: block;
