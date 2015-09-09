@@ -309,6 +309,11 @@ var components = {
 			"title": "PowerShell",
 			"owner": "nauzilus"
 		},
+		"processing": {
+			"title": "Processing",
+			"require": "clike",
+			"owner": "Golmote"
+		},
 		"pure": {
 			"title": "Pure",
 			"owner": "Golmote"
