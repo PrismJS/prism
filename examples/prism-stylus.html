@@ -29,7 +29,7 @@ a.button:after
 body
 	font: 12px Helvetica, Arial, sans-serif
 
-a.link > button#test, input[type=button], a:after()
+a.link > button#test, input[type=button], a:after
 	-webkit-border-radius: 5px
 	-moz-border-radius: 5px
 	border-radius: 5px
@@ -81,9 +81,5 @@ sum(1 2 3 4)
 	If a failure is listed here, it doesn’t mean it will never be fixed. This is more of a “known bugs” list, just with a certain type of bug.
 </p>
 
-<h3>Incorrect highlighting when tags like literals are used inside a string</h3>
-<pre><code>add(a, b)
-	if a is a 'unit' and b is a 'unit'
-		a + b
-	else
-		(error 'a and b must be units!')</code></pre>
+<h3>Comment-like substrings</h3>
+<pre><code>"foo // bar";</code></pre>
