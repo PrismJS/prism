@@ -283,6 +283,10 @@ var components = {
 			"require": "c",
 			"owner": "uranusjr"
 		},
+		"ocaml": {
+			"title": "OCaml",
+			"owner": "Golmote"
+		},
 		"pascal": {
 			"title": "Pascal",
 			"owner": "Golmote"
