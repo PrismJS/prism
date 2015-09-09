@@ -314,6 +314,10 @@ var components = {
 			"require": "clike",
 			"owner": "Golmote"
 		},
+		"prolog": {
+			"title": "Prolog",
+			"owner": "Golmote"
+		},
 		"pure": {
 			"title": "Pure",
 			"owner": "Golmote"
