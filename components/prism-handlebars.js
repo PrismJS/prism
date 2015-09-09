@@ -10,11 +10,11 @@
 					pattern: /^\{\{\{?|\}\}\}?$/i,
 					alias: 'punctuation'
 				},
-				'string': /(["'])(\\?.)+?\1/,
-				'number': /\b-?(0x[\dA-Fa-f]+|\d*\.?\d+([Ee]-?\d+)?)\b/,
+				'string': /(["'])(\\?.)*?\1/,
+				'number': /\b-?(0x[\dA-Fa-f]+|\d*\.?\d+([Ee][+-]?\d+)?)\b/,
 				'boolean': /\b(true|false)\b/,
 				'block': {
-					pattern: /^(\s*~?\s*)[#\/]\S+/i,
+					pattern: /^(\s*~?\s*)[#\/]\S+?(?=\s*~?\s*$|\s)/i,
 					lookbehind: true,
 					alias: 'keyword'
 				},
@@ -26,7 +26,7 @@
 					}
 				},
 				'punctuation': /[!"#%&'()*+,.\/;<=>@\[\\\]^`{|}~]/,
-				'variable': /[^!"#%&'()*+,.\/;<=>@\[\\\]^`{|}~]+/
+				'variable': /[^!"#%&'()*+,.\/;<=>@\[\\\]^`{|}~\s]+/
 			}
 		}
 	});

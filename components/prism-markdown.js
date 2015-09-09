@@ -2,15 +2,13 @@ Prism.languages.markdown = Prism.languages.extend('markup', {});
 Prism.languages.insertBefore('markdown', 'prolog', {
 	'blockquote': {
 		// > ...
-		pattern: /(^|\n)>(?:[\t ]*>)*/,
-		lookbehind: true,
+		pattern: /^>(?:[\t ]*>)*/m,
 		alias: 'punctuation'
 	},
 	'code': [
 		{
 			// Prefixed by 4 spaces or 1 tab
-			pattern: /(^|\n)(?: {4}|\t).+/,
-			lookbehind: true,
+			pattern: /^(?: {4}|\t).+/m,
 			alias: 'keyword'
 		},
 		{
@@ -27,7 +25,7 @@ Prism.languages.insertBefore('markdown', 'prolog', {
 
 			// title 2
 			// -------
-			pattern: /\w+.*\n(?:==+|--+)/,
+			pattern: /\w+.*(?:\r?\n|\r)(?:==+|--+)/,
 			alias: 'important',
 			inside: {
 				punctuation: /==+$|--+$/
@@ -36,7 +34,7 @@ Prism.languages.insertBefore('markdown', 'prolog', {
 		{
 			// # title 1
 			// ###### title 6
-			pattern: /((?:^|\n)\s*)#+.+/,
+			pattern: /(^\s*)#+.+/m,
 			lookbehind: true,
 			alias: 'important',
 			inside: {
@@ -49,7 +47,7 @@ Prism.languages.insertBefore('markdown', 'prolog', {
 		// ---
 		// * * *
 		// -----------
-		pattern: /((?:^|\n)\s*)([*-])([\t ]*\2){2,}(?=\s*(?:\n|$))/,
+		pattern: /(^\s*)([*-])([\t ]*\2){2,}(?=\s*$)/m,
 		lookbehind: true,
 		alias: 'punctuation'
 	},
@@ -58,7 +56,7 @@ Prism.languages.insertBefore('markdown', 'prolog', {
 		// + item
 		// - item
 		// 1. item
-		pattern: /((?:^|\n)\s*)(?:[*+-]|\d+\.)(?=[\t ].)/,
+		pattern: /(^\s*)(?:[*+-]|\d+\.)(?=[\t ].)/m,
 		lookbehind: true,
 		alias: 'punctuation'
 	},
@@ -67,14 +65,14 @@ Prism.languages.insertBefore('markdown', 'prolog', {
 		// [id]: http://example.com 'Optional title'
 		// [id]: http://example.com (Optional title)
 		// [id]: <http://example.com> "Optional title"
-		pattern: /!?\[[^\]]+\]:[\t ]+(?:\S+|<(?:[^>]|\\>)+>)(?:[\t ]+(?:"(?:[^"]|\\")*"|'(?:[^']|\\')*'|\((?:[^)]|\\\))*\)))?/,
+		pattern: /!?\[[^\]]+\]:[\t ]+(?:\S+|<(?:\\.|[^>\\])+>)(?:[\t ]+(?:"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\((?:\\.|[^)\\])*\)))?/,
 		inside: {
 			'variable': {
 				pattern: /^(!?\[)[^\]]+/,
 				lookbehind: true
 			},
-			'string': /(?:"(?:[^"]|\\")*"|'(?:[^']|\\')*'|\((?:[^)]|\\\))*\))$/,
-			'punctuation': /[[\]\(\)<>:]/
+			'string': /(?:"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\((?:\\.|[^)\\])*\))$/,
+			'punctuation': /^[\[\]!:]|[<>]/
 		},
 		alias: 'url'
 	},
@@ -83,10 +81,10 @@ Prism.languages.insertBefore('markdown', 'prolog', {
 		// __strong__
 
 		// Allow only one line break
-		pattern: /(^|[^\\])(\*\*|__)(?:\n(?!\n)|.)+?\2/,
+		pattern: /(^|[^\\])(\*\*|__)(?:(?:\r?\n|\r)(?!\r?\n|\r)|.)+?\2/,
 		lookbehind: true,
 		inside: {
-			'punctuation': /^\*\*|^__|\*\*\s*$|__\s*$/
+			'punctuation': /^\*\*|^__|\*\*$|__$/
 		}
 	},
 	'italic': {
@@ -94,7 +92,7 @@ Prism.languages.insertBefore('markdown', 'prolog', {
 		// _em_
 
 		// Allow only one line break
-		pattern: /(^|[^\\])(?:\*(?:\n(?!\n)|.)+?\*|_(?:\n(?!\n)|.)+?_)/,
+		pattern: /(^|[^\\])([*_])(?:(?:\r?\n|\r)(?!\r?\n|\r)|.)+?\2/,
 		lookbehind: true,
 		inside: {
 			'punctuation': /^[*_]|[*_]$/
@@ -103,14 +101,14 @@ Prism.languages.insertBefore('markdown', 'prolog', {
 	'url': {
 		// [example](http://example.com "Optional title")
 		// [example] [id]
-		pattern: /!?\[[^\]]+\](?:\([^\s)]+(?:[\t ]+"(?:[^"]|\\")*")?\)| ?\[[^\]\n]*\])/,
+		pattern: /!?\[[^\]]+\](?:\([^\s)]+(?:[\t ]+"(?:\\.|[^"\\])*")?\)| ?\[[^\]\n]*\])/,
 		inside: {
 			'variable': {
 				pattern: /(!?\[)[^\]]+(?=\]$)/,
 				lookbehind: true
 			},
 			'string': {
-				pattern: /"(?:[^"]|\\")*"(?=\)$)/
+				pattern: /"(?:\\.|[^"\\])*"(?=\)$)/
 			}
 		}
 	}

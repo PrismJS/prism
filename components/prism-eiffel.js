@@ -1,11 +1,11 @@
 Prism.languages.eiffel = {
 	'string': [
-		// Single-line string
-		/"(?:%\s+%|%"|.)*?"/,
 		// Aligned-verbatim-strings
 		/"([^[]*)\[[\s\S]+?\]\1"/,
 		// Non-aligned-verbatim-strings
-		/"([^{]*)\{[\s\S]+?\}\1"/
+		/"([^{]*)\{[\s\S]+?\}\1"/,
+		// Single-line string
+		/"(?:%\s+%|%"|.)*?"/
 	],
 	// (comments including quoted strings not supported)
 	'comment': /--.*/,
@@ -20,5 +20,5 @@ Prism.languages.eiffel = {
 		/(?:\d(?:_*\d)*)?\.(?:(?:\d(?:_*\d)*)?[eE][+-]?)?\d(?:_*\d)*|\d(?:_*\d)*\.?/
 	],
 	'punctuation': /:=|<<|>>|\(\||\|\)|->|\.(?=\w)|[{}[\];(),:?]/,
-	'operator': /\\\\|\|\.\.\||\.\.|\/[~\/]?|[><\/]=?|[-+*^=~]/
+	'operator': /\\\\|\|\.\.\||\.\.|\/[~\/=]?|[><]=?|[-+*^=~]/
 };
