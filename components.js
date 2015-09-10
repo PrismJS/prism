@@ -474,6 +474,11 @@ var components = {
 			"title": "Remove initial line feed",
 			"owner": "Golmote",
 			"noCSS": true
+		},
+		"autoloader": {
+			"title": "Autoloader",
+			"owner": "Golmote",
+			"noCSS": true
 		}
 	}
 };
