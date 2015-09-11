@@ -58,6 +58,10 @@ var components = {
 
 
 
+		"abap": {
+			"title": "ABAP",
+			"owner": "dellagustin"
+		},
 		"actionscript": {
 			"title": "ActionScript",
 			"require": "javascript",
