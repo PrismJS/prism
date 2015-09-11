@@ -19,7 +19,7 @@
 	 * @param {function=} success
 	 * @param {function=} error
 	 */
-	var script = function(src, success, error) {
+	var script = function (src, success, error) {
 		var s = document.createElement('script');
 		s.src = src;
 		s.async = true;
@@ -35,11 +35,11 @@
 	};
 
 	/**
-	 *
+	 * Returns the path to a grammar, using the language_path and use_minified config keys.
 	 * @param {string} lang
 	 * @returns {string}
 	 */
-	var getLanguagePath = function(lang) {
+	var getLanguagePath = function (lang) {
 		return config.languages_path +
 			'prism-' + lang
 			+ (config.use_minified ? '.min' : '') + '.js'
@@ -51,26 +51,26 @@
 	 * @param {string} lang
 	 * @param {HTMLElement} elt
 	 */
-	var registerElement = function(lang, elt) {
+	var registerElement = function (lang, elt) {
 		var data = lang_data[lang];
-		if(!data) {
+		if (!data) {
 			data = lang_data[lang] = {};
 		}
 
 		// Look for additional dependencies defined on the <code> or <pre> tags
 		var deps = elt.getAttribute('data-dependencies');
-		if(!deps && elt.parentNode && elt.parentNode.tagName.toLowerCase() === 'pre') {
+		if (!deps && elt.parentNode && elt.parentNode.tagName.toLowerCase() === 'pre') {
 			deps = elt.parentNode.getAttribute('data-dependencies');
 		}
 
-		if(deps) {
+		if (deps) {
 			deps = deps.split(/\s*,\s*/g);
 		} else {
 			deps = [];
 		}
 
-		loadLanguages(deps, function() {
-			loadLanguage(lang, function() {
+		loadLanguages(deps, function () {
+			loadLanguage(lang, function () {
 				Prism.highlightElement(elt);
 			});
 		});
@@ -82,21 +82,21 @@
 	 * @param {function=} success
 	 * @param {function=} error
 	 */
-	var loadLanguages = function(langs, success, error) {
-		if(typeof langs === 'string') {
+	var loadLanguages = function (langs, success, error) {
+		if (typeof langs === 'string') {
 			langs = [langs];
 		}
 		var i = 0;
 		var l = langs.length;
-		var f = function() {
-			if(i<l) {
-				loadLanguage(langs[i], function() {
+		var f = function () {
+			if (i < l) {
+				loadLanguage(langs[i], function () {
 					i++;
 					f();
-				}, function() {
+				}, function () {
 					error && error(langs[i]);
 				});
-			} else if(i === l) {
+			} else if (i === l) {
 				success && success(langs);
 			}
 		};
@@ -109,37 +109,37 @@
 	 * @param {function=} success
 	 * @param {function=} error
 	 */
-	var loadLanguage = function(lang, success, error) {
-		var load = function() {
+	var loadLanguage = function (lang, success, error) {
+		var load = function () {
 			var force = false;
 			// Do we want to force reload the grammar?
-			if(lang.indexOf('!') > 0) {
+			if (lang.indexOf('!') >= 0) {
 				force = true;
 				lang = lang.replace('!', '');
 			}
 
 			var data = lang_data[lang];
-			if(!data) {
+			if (!data) {
 				data = lang_data[lang] = {};
 			}
-			if(success) {
+			if (success) {
 				if (!data.success_callbacks) {
 					data.success_callbacks = [];
 				}
 				data.success_callbacks.push(success);
 			}
-			if(error) {
+			if (error) {
 				if (!data.error_callbacks) {
 					data.error_callbacks = [];
 				}
 				data.error_callbacks.push(error);
 			}
 
-			if(!force && Prism.languages[lang]) {
+			if (!force && Prism.languages[lang]) {
 				languageSuccess(lang);
-			} else if(!force && data.error) {
+			} else if (!force && data.error) {
 				languageError(lang);
-			} else if(force || !data.loading) {
+			} else if (force || !data.loading) {
 				data.loading = true;
 				var src = getLanguagePath(lang);
 				script(src, function () {
@@ -165,9 +165,9 @@
 	 * Runs all success callbacks for this language.
 	 * @param {string} lang
 	 */
-	var languageSuccess = function(lang) {
-		if(lang_data[lang] && lang_data[lang].success_callbacks && lang_data[lang].success_callbacks.length) {
-			lang_data[lang].success_callbacks.forEach(function(f) {
+	var languageSuccess = function (lang) {
+		if (lang_data[lang] && lang_data[lang].success_callbacks && lang_data[lang].success_callbacks.length) {
+			lang_data[lang].success_callbacks.forEach(function (f) {
 				f(lang);
 			});
 		}
@@ -177,16 +177,16 @@
 	 * Runs all error callbacks for this language.
 	 * @param {string} lang
 	 */
-	var languageError = function(lang) {
-		if(lang_data[lang] && lang_data[lang].error_callbacks && lang_data[lang].error_callbacks.length) {
-			lang_data[lang].error_callbacks.forEach(function(f) {
+	var languageError = function (lang) {
+		if (lang_data[lang] && lang_data[lang].error_callbacks && lang_data[lang].error_callbacks.length) {
+			lang_data[lang].error_callbacks.forEach(function (f) {
 				f(lang);
 			});
 		}
 	};
 
-	Prism.hooks.add('complete', function(env) {
-		if(env.element && env.language && !env.grammar) {
+	Prism.hooks.add('complete', function (env) {
+		if (env.element && env.language && !env.grammar) {
 			registerElement(env.language, env.element);
 		}
 	});
