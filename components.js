@@ -336,7 +336,7 @@ var components = {
 		},
 		"qore": {
 			"title": "Qore",
-			"require": ["clike"],
+			"require": "clike",
 			"owner": "temnroegg"
 		},
 		"r": {
