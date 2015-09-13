@@ -478,6 +478,15 @@ var components = {
 			"title": "Remove initial line feed",
 			"owner": "Golmote",
 			"noCSS": true
+		},
+		"previewer-base": {
+			"title": "Previewer Base",
+			"owner": "Golmote"
+		},
+		"previewer-color": {
+			"title": "Previewer Color",
+			"require": "previewer-base",
+			"owner": "Golmote"
 		}
 	}
 };
