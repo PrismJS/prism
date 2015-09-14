@@ -480,11 +480,11 @@ var components = {
 			"noCSS": true
 		},
 		"previewer-base": {
-			"title": "Previewer Base",
+			"title": "Previewer: Base",
 			"owner": "Golmote"
 		},
 		"previewer-color": {
-			"title": "Previewer Color",
+			"title": "Previewer: Color",
 			"require": "previewer-base",
 			"owner": "Golmote"
 		}
