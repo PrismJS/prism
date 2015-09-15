@@ -136,6 +136,10 @@ var components = {
 			"require": "clike",
 			"owner": "Golmote"
 		},
+		"diff": {
+			"title": "Diff",
+			"owner": "uranusjr"
+		},
 		"docker": {
 			"title": "Docker",
 			"owner": "JustinBeckwith"
