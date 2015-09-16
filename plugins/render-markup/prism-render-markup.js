@@ -42,11 +42,11 @@ Prism.hooks.add("after-highlight", function(env){
 
 	if (renderable && shouldRenderMarkup) {
 		if (!(render && hasClass(render, "prism-markup-render"))) {
-			addClass(pre, "prism-markup-rendered");
 			render = document.createElement("div");
 			addClass(render, "prism-markup-render");
 			pre.parentElement.insertBefore(render, pre.nextSibling);
 		}
+		addClass(pre, "prism-markup-rendered");
 		render.innerHTML = env.code;
 	}
 	else if (render) {
