@@ -1,50 +1,60 @@
 Prism.languages.scss = Prism.languages.extend('css', {
 	'comment': {
-		pattern: /(^|[^\\])(\/\*[\w\W]*?\*\/|\/\/.*?(\r?\n|$))/,
+		pattern: /(^|[^\\])(?:\/\*[\w\W]*?\*\/|\/\/.*)/,
 		lookbehind: true
 	},
 	'atrule': {
-		pattern: /@[\w-]+(?:\([^()]+\)|[^(])*?(?=\s+(\{|;))/i,
+		pattern: /@[\w-]+(?:\([^()]+\)|[^(])*?(?=\s+[{;])/,
 		inside: {
 			'rule': /@[\w-]+/
 			// See rest below
 		}
 	},
 	// url, compassified
-	'url': /([-a-z]+-)*url(?=\()/i,
+	'url': /(?:[-a-z]+-)*url(?=\()/i,
 	// CSS selector regex is not appropriate for Sass
 	// since there can be lot more things (var, @ directive, nesting..)
 	// a selector must start at the end of a property or after a brace (end of other rules or nesting)
-	// it can contain some caracters that aren't used for defining rules or end of selector, & (parent selector), or interpolated variable
+	// it can contain some characters that aren't used for defining rules or end of selector, & (parent selector), or interpolated variable
 	// the end of a selector is found when there is no rules in it ( {} or {\s}) or if there is a property (because an interpolated var
 	// can "pass" as a selector- e.g: proper#{$erty})
-	// this one was ard to do, so please be careful if you edit this one :)
+	// this one was hard to do, so please be careful if you edit this one :)
 	'selector': {
-		pattern: /([^@;\{\}\(\)]?([^@;\{\}\(\)]|&|#\{\$[-_\w]+\})+)(?=\s*\{(\}|\s|[^\}]+(:|\{)[^\}]+))/m,
+		// Initial look-ahead is used to prevent matching of blank selectors
+		pattern: /(?=\S)[^@;\{\}\(\)]?([^@;\{\}\(\)]|&|#\{\$[-_\w]+\})+(?=\s*\{(\}|\s|[^\}]+(:|\{)[^\}]+))/m,
 		inside: {
-			'placeholder': /%[-_\w]+/i
+			'placeholder': /%[-_\w]+/
 		}
 	}
 });
 
 Prism.languages.insertBefore('scss', 'atrule', {
-	'keyword': /@(if|else if|else|for|each|while|import|extend|debug|warn|mixin|include|function|return|content)|(?=@for\s+\$[-_\w]+\s)+from/i
+	'keyword': [
+		/@(?:if|else(?: if)?|for|each|while|import|extend|debug|warn|mixin|include|function|return|content)/i,
+		{
+			pattern: /( +)(?:from|through)(?= )/,
+			lookbehind: true
+		}
+	]
 });
 
 Prism.languages.insertBefore('scss', 'property', {
 	// var and interpolated vars
-	'variable': /((\$[-_\w]+)|(#\{\$[-_\w]+\}))/i
+	'variable': /\$[-_\w]+|#\{\$[-_\w]+\}/
 });
 
 Prism.languages.insertBefore('scss', 'function', {
 	'placeholder': {
-		pattern: /%[-_\w]+/i,
+		pattern: /%[-_\w]+/,
 		alias: 'selector'
 	},
-	'statement': /\B!(default|optional)\b/i,
-	'boolean': /\b(true|false)\b/,
-	'null': /\b(null)\b/,
-	'operator': /\s+([-+]{1,2}|={1,2}|!=|\|?\||\?|\*|\/|%)\s+/
+	'statement': /\B!(?:default|optional)\b/i,
+	'boolean': /\b(?:true|false)\b/,
+	'null': /\bnull\b/,
+	'operator': {
+		pattern: /(\s)(?:[-+*\/%]|[=!]=|<=?|>=?|and|or|not)(?=\s)/,
+		lookbehind: true
+	}
 });
 
 Prism.languages.scss['atrule'].inside.rest = Prism.util.clone(Prism.languages.scss);

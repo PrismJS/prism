@@ -47,14 +47,14 @@
 		<p>If you want to test language injection, you typically need to load two or more languages where one language is the “main” language that is being tested, with all other languages being injected into it.</p>
 		<p>You need to define multiple languages by separating them using a <code>+</code> sign: <code>markup+php</code>.</p>
 		<p>The languages are loaded in order, so first markup (+ dependencies) is loaded, then php (+ dependencies). The test loader ensures that no language is loaded more than once (for example if two languages have the same dependencies).</p>
-		<p>By default the first language is the main language: <code>markup+php</code> will have <code>markup</code> as main language. This is equal to putting your code in the following code block:</p>
+		<p>By default the last language is the main language: <code>php+markup</code> will have <code>markup</code> as main language. This is equal to putting your code in the following code block:</p>
 		<pre><code class="language-markup">...
 &lt;pre>&lt;code class="language-markup">
 	&lt;!-- your code here -->
 &lt;/code>&lt;pre>
 ...</code></pre>
 
-		<p>If you need to load the languages in a given order, but you don't want to use the first language as main language, you can mark the main language with an exclamation mark: <code>markup+php!</code>. This will use <code>php</code> as main language. (You can only define one main language. The test runner will fail all tests in directories with more than one main language.)</p>
+		<p>If you need to load the languages in a given order, but you don't want to use the first language as main language, you can mark the main language with an exclamation mark: <code>php!+markup</code>. This will use <code>php</code> as main language. (You can only define one main language. The test runner will fail all tests in directories with more than one main language.)</p>
 
 		<p><em>Note: by loading multiple languages you can do integration tests (ensure that loading two or more languages together won't break anything).</em></p>
 	</section>
@@ -66,7 +66,7 @@
 		<ul>
 			<li><code>issue{issueid}</code>: reference a github issue id (example: <code>issue588.test</code>).</li>
 			<li><code>{featurename}_feature</code>: group all tests to one feature in one file (example: <code>string_interpolation_feature.test</code>).</li>
-			<li><code>{language}_inclusion</code>: test inclusion of one language into the other (example: <code>markup/php_inclusion.test</code> will test php inclusion into markup).</li>
+			<li><code>{language}_inclusion</code>: test inclusion of one language into the other (example: <code>markup!+css/css_inclusion.test</code> will test CSS inclusion into markup).</li>
 		</ul>
 		<p>You can use all conventions as a prefix, so <code>string_interpolation_feature_inline.test</code> is possible. <strong>But please take a minute or two to think of a proper name of your test case file. You are writing code not only for the computers, but also for your fellow developers.</strong></p>
 	</section>
@@ -79,7 +79,7 @@
 ----
 ... the simplified token stream you expect ...</code></pre>
 
-		<p>Your file is built up of two or three sections, separated by three or more dashes <code>-</code>, starting at the begin of the line:</p>
+		<p>Your file is built up of two or three sections, separated by ten or more dashes <code>-</code>, starting at the begin of the line:</p>
 		<ol>
 			<li>Your language snippet. The code you want to compile using Prism. (<strong>required</strong>)</li>
 			<li>The simplified token stream you expect. Needs to be valid JSON. (<strong>required</strong>)</li>

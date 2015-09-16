@@ -1,0 +1,15 @@
+#define DEBUG
+#if DEBUG
+#endif
+
+----------------------------------------------------
+
+[
+	["preprocessor", "#define DEBUG"],
+	["preprocessor", "#if DEBUG"],
+	["preprocessor", "#endif"]
+]
+
+----------------------------------------------------
+
+Checks for preprocessor directives.
