@@ -97,6 +97,11 @@ var components = {
 			"title": "BASIC",
 			"owner": "Golmote"
 		},
+		"bison": {
+			"title": "Bison",
+			"require": "c",
+			"owner": "Golmote"
+		},
 		"brainfuck": {
 			"title": "Brainfuck",
 			"owner": "Golmote"
