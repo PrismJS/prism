@@ -13,6 +13,7 @@ pre[class*="language-"] {
 	white-space: pre;
 	word-spacing: normal;
 	word-break: normal;
+	word-wrap: normal;
 	line-height: 1.5;
 
 	-moz-tab-size: 4;
@@ -43,6 +44,7 @@ pre[class*="language-"] {
 	background-origin: content-box;
 	overflow: visible;
 	max-height: 30em;
+	padding: 0;
 }
 
 code[class*="language"] {
@@ -74,6 +76,7 @@ pre[class*="language-"] {
 	border-radius: 0.3em;
 	color: #c92c2c;
 	border: 1px solid rgba(0, 0, 0, 0.1);
+	display: inline;
 }
 
 pre[class*="language-"]:before,
