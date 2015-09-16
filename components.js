@@ -438,6 +438,10 @@ var components = {
 			"require": "javascript",
 			"owner": "vkbansal"
 		},
+		"verilog": {
+			"title": "Verilog & System Verilog",
+			"owner": "a-rey"
+		},
 		"vhdl": {
 			"title": "VHDL",
 			"owner": "a-rey"
