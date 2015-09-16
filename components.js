@@ -439,7 +439,7 @@ var components = {
 			"owner": "vkbansal"
 		},
 		"verilog": {
-			"title": "Verilog & System Verilog",
+			"title": "Verilog",
 			"owner": "a-rey"
 		},
 		"vhdl": {
