@@ -377,6 +377,11 @@ var components = {
 			"title": "Highlight Keywords",
 			"owner": "vkbansal",
 			"noCSS": true
+		},
+		"keep-markup": {
+			"title": "Keep Markup",
+			"owner": "Golmote",
+			"noCSS": true
 		}
 	}
 };
