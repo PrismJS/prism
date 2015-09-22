@@ -58,6 +58,10 @@ var components = {
 
 
 
+		"abap": {
+			"title": "ABAP",
+			"owner": "dellagustin"
+		},
 		"actionscript": {
 			"title": "ActionScript",
 			"require": "javascript",
@@ -91,6 +95,11 @@ var components = {
 		},
 		"basic": {
 			"title": "BASIC",
+			"owner": "Golmote"
+		},
+		"bison": {
+			"title": "Bison",
+			"require": "c",
 			"owner": "Golmote"
 		},
 		"brainfuck": {
@@ -131,6 +140,10 @@ var components = {
 			"title": "Dart",
 			"require": "clike",
 			"owner": "Golmote"
+		},
+		"diff": {
+			"title": "Diff",
+			"owner": "uranusjr"
 		},
 		"docker": {
 			"title": "Docker",
@@ -332,7 +345,7 @@ var components = {
 		},
 		"qore": {
 			"title": "Qore",
-			"require": ["clike"],
+			"require": "clike",
 			"owner": "temnroegg"
 		},
 		"r": {
@@ -425,6 +438,10 @@ var components = {
 			"require": "javascript",
 			"owner": "vkbansal"
 		},
+		"verilog": {
+			"title": "Verilog",
+			"owner": "a-rey"
+		},
 		"vhdl": {
 			"title": "VHDL",
 			"owner": "a-rey"
@@ -474,6 +491,15 @@ var components = {
 			"title": "Remove initial line feed",
 			"owner": "Golmote",
 			"noCSS": true
+		},
+		"previewer-base": {
+			"title": "Previewer: Base",
+			"owner": "Golmote"
+		},
+		"previewer-color": {
+			"title": "Previewer: Color",
+			"require": "previewer-base",
+			"owner": "Golmote"
 		},
 		"autoloader": {
 			"title": "Autoloader",
