@@ -21,7 +21,13 @@
 
 
 	var variable = /((\$[-_\w]+)|(#\{\$[-_\w]+\}))/i;
-	var operator = /[-+*\/%]|[=!]=|<=?|>=?|\b(?:and|or|not)\b/;
+	var operator = [
+		/[+*\/%]|[=!]=|<=?|>=?|\b(?:and|or|not)\b/,
+		{
+			pattern: /(\s+)-(?=\s)/,
+			lookbehind: true
+		}
+	];
 
 	Prism.languages.insertBefore('sass', 'property', {
 		// We want to consume the whole line

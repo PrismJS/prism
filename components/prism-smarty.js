@@ -117,7 +117,8 @@
 		}
 
 		for (var i = 0, t; t = env.tokenStack[i]; i++) {
-			env.highlightedCode = env.highlightedCode.replace('___SMARTY' + (i + 1) + '___', Prism.highlight(t, env.grammar, 'smarty'));
+			// The replace prevents $$, $&, $`, $', $n, $nn from being interpreted as special patterns
+			env.highlightedCode = env.highlightedCode.replace('___SMARTY' + (i + 1) + '___', Prism.highlight(t, env.grammar, 'smarty').replace(/\$/g, '$$$$'));
 		}
 
 		env.element.innerHTML = env.highlightedCode;

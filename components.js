@@ -501,6 +501,11 @@ var components = {
 			"require": "previewer-base",
 			"owner": "Golmote"
 		},
+		"autoloader": {
+			"title": "Autoloader",
+			"owner": "Golmote",
+			"noCSS": true
+		},
 		"keep-markup": {
 			"title": "Keep Markup",
 			"owner": "Golmote",

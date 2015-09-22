@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8" />
+<link rel="shortcut icon" href="favicon.png" />
+<title>Autoloader ▲ Prism plugins</title>
+<base href="../.." />
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="themes/prism.css" data-noprefix />
+<script src="prefixfree.min.js"></script>
+
+<script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
+<script src="http://www.google-analytics.com/ga.js" async></script>
+</head>
+<body>
+
+<header>
+	<div class="intro" data-src="templates/header-plugins.html" data-type="text/html"></div>
+
+	<h2>Autoloader</h2>
+	<p>Automatically loads the needed languages to highlight the code blocks.</p>
+</header>
+
+<section class="language-javascript">
+	<h1>How to use</h1>
+
+	<p>
+		The default usage does not require anything to be done. The plugin will automatically handle missing grammars and load them for you.
+		However, a couple of options are available through the configuration object <code>Prism.plugins.autoloader</code>.
+	</p>
+
+	<h2>Specifying the grammars path</h2>
+
+	<p>
+		By default, the plugin will look for the missing grammars in the <code>components</code> folder.
+		If your files are in a different location, you can specify it using the <code>languages_path</code> option:
+	</p>
+
+	<pre><code>Prism.plugins.autoloader.languages_path = 'path/to/grammars/';</code></pre>
+
+	<h2>Using development versions</h2>
+
+	<p>
+		By default, the plugin uses the minified versions of the grammars.
+		If you wish to use the development versions instead, you can set the <code>use_minified</code> option to false:
+	</p>
+
+	<pre><code>Prism.plugins.autoloader.use_minified = false;</code></pre>
+
+	<h2>Specifying additional dependencies</h2>
+
+	<p>
+		All default dependencies are already included in the plugin.
+		However, there are some cases where you might want to load an additional dependency for a specific code block.
+		To do so, just add a <code>data-dependencies</code> attribute on you <code>&lt;code></code> or <code>&lt;pre></code> tags,
+		containing a list of comma-separated language aliases.
+	</p>
+
+	<pre><code class="language-markup">&lt;pre>&lt;code class="language-jade" data-dependencies="less">
+:less
+	foo {
+		color: @red;
+	}
+&lt;/code>&lt;pre></code></pre>
+
+	<h2>Force to reload a grammar</h2>
+
+	<p>
+		The plugin usually don't reload a grammar if it already exists.
+		In some very specific cases, you might however want to do so.
+		If you add an exclamation mark after an alias in the <code>data-dependencies</code> attribute,
+		this language will be reloaded.
+	</p>
+
+	<pre><code class="language-markup">&lt;pre class="language-markup" data-dependencies="markup,css!">&lt;code></code></pre>
+
+</section>
+
+<section>
+	<h1>Examples</h1>
+
+	<p>Note that no languages are loaded on this page by default.</p>
+
+	<p>Basic usage with some Perl code:</p>
+	<pre><code class="language-perl">my ($class, $filename) = @_;</code></pre>
+
+	<p>The Less filter used in Jade:</p>
+	<pre><code class="language-jade" data-dependencies="less">:less
+	foo {
+		color: @red;
+	}</code></pre>
+
+</section>
+
+<footer data-src="templates/footer.html" data-type="text/html"></footer>
+
+<script src="components/prism-core.js"></script>
+<script src="plugins/autoloader/prism-autoloader.js"></script>
+<script src="utopia.js"></script>
+<script src="components.js"></script>
+<script src="code.js"></script>
+
+
+</body>
+</html>
