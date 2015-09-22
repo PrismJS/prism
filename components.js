@@ -500,6 +500,11 @@ var components = {
 			"title": "Previewer: Color",
 			"require": "previewer-base",
 			"owner": "Golmote"
+		},
+		"autoloader": {
+			"title": "Autoloader",
+			"owner": "Golmote",
+			"noCSS": true
 		}
 	}
 };

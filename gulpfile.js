@@ -18,7 +18,8 @@ var gulp   = require('gulp'),
 			'plugins/file-highlight/prism-file-highlight.js'
 		],
 		plugins: ['plugins/**/*.js', '!plugins/**/*.min.js'],
-		showLanguagePlugin: 'plugins/show-language/prism-show-language.js'
+		showLanguagePlugin: 'plugins/show-language/prism-show-language.js',
+		autoloaderPlugin: 'plugins/autoloader/prism-autoloader.js'
 	};
 
 gulp.task('components', function() {
@@ -37,7 +38,7 @@ gulp.task('build', function() {
 		.pipe(gulp.dest('./'));
 });
 
-gulp.task('plugins', ['show-language-plugin'], function() {
+gulp.task('plugins', ['languages-plugins'], function() {
 	return gulp.src(paths.plugins)
 		.pipe(uglify())
 		.pipe(rename({ suffix: '.min' }))
@@ -49,7 +50,7 @@ gulp.task('watch', function() {
 	gulp.watch(paths.plugins, ['plugins', 'build']);
 });
 
-gulp.task('show-language-plugin', function (cb) {
+gulp.task('languages-plugins', function (cb) {
 	fs.readFile(paths.componentsFile, {
 		encoding: 'utf-8'
 	}, function (err, data) {
@@ -59,6 +60,7 @@ gulp.task('show-language-plugin', function (cb) {
 				data = JSON.parse(data);
 
 				var languagesMap = {};
+				var dependenciesMap = {};
 				for (var p in data.languages) {
 					if (p !== 'meta') {
 						var title = data.languages[p].displayTitle || data.languages[p].title;
@@ -66,18 +68,41 @@ gulp.task('show-language-plugin', function (cb) {
 						if (title !== ucfirst) {
 							languagesMap[p] = title;
 						}
+
+						if(data.languages[p].require) {
+							dependenciesMap[p] = data.languages[p].require;
+						}
 					}
 				}
 
-				var jsonLanguages = JSON.stringify(languagesMap);
-				var stream = gulp.src(paths.showLanguagePlugin)
-					.pipe(replace(
-						/\/\*languages_placeholder\[\*\/[\s\S]*?\/\*\]\*\//,
-						'/*languages_placeholder[*/' + jsonLanguages + '/*]*/'
-					))
-					.pipe(gulp.dest(paths.showLanguagePlugin.substring(0, paths.showLanguagePlugin.lastIndexOf('/'))));
-				stream.on('error', cb);
-				stream.on('end', cb);
+				var jsonLanguagesMap = JSON.stringify(languagesMap);
+				var jsonDependenciesMap = JSON.stringify(dependenciesMap);
+
+				var tasks = [
+					{plugin: paths.showLanguagePlugin, map: jsonLanguagesMap},
+					{plugin: paths.autoloaderPlugin, map: jsonDependenciesMap}
+				];
+
+				var cpt = 0;
+				var l = tasks.length;
+				var done = function() {
+					cpt++;
+					if(cpt === l) {
+						cb && cb();
+					}
+				};
+
+				tasks.forEach(function(task) {
+					var stream = gulp.src(task.plugin)
+						.pipe(replace(
+							/\/\*languages_placeholder\[\*\/[\s\S]*?\/\*\]\*\//,
+							'/*languages_placeholder[*/' + task.map + '/*]*/'
+						))
+						.pipe(gulp.dest(task.plugin.substring(0, task.plugin.lastIndexOf('/'))));
+
+					stream.on('error', done);
+					stream.on('end', done);
+				});
 
 			} catch (e) {
 				cb(e);
