@@ -3,8 +3,8 @@ Prism.languages.elixir = {
 	// Negative look-behind is needed to avoid highlighting markdown headers in
 	// multi-line doc strings
 	'comment': {
-			pattern: /([^#])#(?![{#]).*/,
-			lookbehind: true
+		pattern: /(^|[^#])#(?![{#]).*/m,
+		lookbehind: true
 	},
 	// ~r"""foo""", ~r'''foo''', ~r/foo/, ~r|foo|, ~r"foo", ~r'foo', ~r(foo), ~r[foo], ~r{foo}, ~r<foo>
 	'regex': /~[rR](?:("""|'''|[\/|"'])(?:\\.|(?!\1)[^\\])+\1|\((?:\\\)|[^)])+\)|\[(?:\\\]|[^\]])+\]|\{(?:\\\}|[^}])+\}|<(?:\\>|[^>])+>)[uismxfr]*/,
