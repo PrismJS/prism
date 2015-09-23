@@ -1,19 +1,11 @@
 <h1>Nginx</h1>
 <p>To use this language, use the class "language-nginx".</p>
 
-<h2>Single-line comments</h2>
+<h2>Comments</h2>
 <pre><code># This is a comment</code></pre>
 
-<h2>Strings</h2>
-<pre><code>"foo \"bar\" baz"
-'foo \'bar\' baz'</code></pre>
-
-<h2>Regular expressions</h2>
-<pre><code>/foo?[ ]*bar/</code></pre>
-
 <h2>Variables</h2>
-<pre><code>
-fastcgi_param  SERVER_NAME  $server_name;</code></pre>
+<pre><code>fastcgi_param SERVER_NAME $server_name;</code></pre>
 
 <h2>Server Block</h2>
 <pre><code>
@@ -34,6 +26,3 @@ server { # simple reverse-proxy
     proxy_pass      http://127.0.0.1:8080;
   }
 }</code></pre>
-
-<h2>Known failures</h2>
-<p>N/A</p>

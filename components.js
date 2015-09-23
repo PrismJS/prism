@@ -287,6 +287,11 @@ var components = {
 			"title": "NASM",
 			"owner": "rbmj"
 		},
+		"nginx": {
+			"title": "nginx",
+			"owner": "westonganger",
+			"require": "clike"
+		},
 		"nim": {
 			"title": "Nim",
 			"owner": "Golmote"
