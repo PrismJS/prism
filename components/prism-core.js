@@ -193,7 +193,7 @@ var _ = _self.Prism = {
 			var worker = new Worker(_.filename);
 
 			worker.onmessage = function(evt) {
-				env.highlightedCode = Token.stringify(JSON.parse(evt.data), language);
+				env.highlightedCode = evt.data;
 
 				_.hooks.run('before-insert', env);
 
@@ -398,7 +398,7 @@ if (!_self.document) {
 		    code = message.code,
 			immediateClose = message.immediateClose;
 
-		_self.postMessage(JSON.stringify(_.util.encode(_.tokenize(code, _.languages[lang]))));
+		_self.postMessage(_.highlight(code, _.languages[lang], lang));
 		if (immediateClose) {
 			_self.close();
 		}
