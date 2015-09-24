@@ -401,7 +401,7 @@ if (!_self.document) {
 		var message = JSON.parse(evt.data),
 		    lang = message.language,
 		    code = message.code,
-			immediateClose = message.immediateClose;
+		    immediateClose = message.immediateClose;
 
 		_self.postMessage(_.highlight(code, _.languages[lang], lang));
 		if (immediateClose) {
