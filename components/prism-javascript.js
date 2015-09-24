@@ -8,7 +8,8 @@ Prism.languages.javascript = Prism.languages.extend('clike', {
 Prism.languages.insertBefore('javascript', 'keyword', {
 	'regex': {
 		pattern: /(^|[^/])\/(?!\/)(\[.+?]|\\.|[^/\\\r\n])+\/[gimyu]{0,5}(?=\s*($|[\r\n,.;})]))/,
-		lookbehind: true
+		lookbehind: true,
+		greedy: true
 	}
 });
 

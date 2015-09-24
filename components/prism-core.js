@@ -274,6 +274,7 @@ var _ = _self.Prism = {
 				var pattern = patterns[j],
 					inside = pattern.inside,
 					lookbehind = !!pattern.lookbehind,
+					greedy = !!pattern.greedy,
 					lookbehindLength = 0,
 					alias = pattern.alias;
 
@@ -294,7 +295,38 @@ var _ = _self.Prism = {
 
 					pattern.lastIndex = 0;
 
-					var match = pattern.exec(str);
+					var match = pattern.exec(str),
+					    delNum = 1;
+
+					if (!match && greedy && i != strarr.length - 1) {
+						var nextToken = strarr[i + 1].matchedStr || strarr[i + 1],
+						    combStr = str + nextToken;
+
+						if (i < strarr.length - 2) {
+							combStr += strarr[i + 2].matchedStr || strarr[i + 2];
+						}
+
+						pattern.lastIndex = 0;
+						match = pattern.exec(combStr);
+						if (!match) {
+							continue;
+						}
+
+						var from = match.index + (lookbehind ? match[1].length : 0);
+						if (from >= str.length) {
+							continue;
+						}
+						var to = match.index + match[0].length,
+						    len = str.length + nextToken.length;
+
+						delNum = 3;
+
+						if (to <= len) {
+							delNum = 2;
+							combStr = combStr.slice(0, len);
+						}
+						str = combStr;
+					}
 
 					if (match) {
 						if(lookbehind) {
@@ -308,13 +340,13 @@ var _ = _self.Prism = {
 							before = str.slice(0, from + 1),
 							after = str.slice(to + 1);
 
-						var args = [i, 1];
+						var args = [i, delNum];
 
 						if (before) {
 							args.push(before);
 						}
 
-						var wrapped = new Token(token, inside? _.tokenize(match, inside) : match, alias);
+						var wrapped = new Token(token, inside? _.tokenize(match, inside) : match, alias, match);
 
 						args.push(wrapped);
 
@@ -356,10 +388,11 @@ var _ = _self.Prism = {
 	}
 };
 
-var Token = _.Token = function(type, content, alias) {
+var Token = _.Token = function(type, content, alias, matchedStr) {
 	this.type = type;
 	this.content = content;
 	this.alias = alias;
+	this.matchedStr = matchedStr || null;
 };
 
 Token.stringify = function(o, language, parent) {
