@@ -455,6 +455,10 @@ var components = {
 			"title": "VHDL",
 			"owner": "a-rey"
 		},
+		"vim": {
+			"title": "vim",
+			"owner": "westonganger"
+		},
 		"wiki": {
 			"title": "Wiki markup",
 			"require": "markup",
