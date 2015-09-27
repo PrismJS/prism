@@ -130,6 +130,11 @@ var components = {
 			"require": "javascript",
 			"owner": "R-osey"
 		},
+		"crystal": {
+			"title": "Crystal",
+			"require": "ruby",
+			"owner": "MakeNowJust"
+		},
 		"css-extras": {
 			"title": "CSS Extras",
 			"require": "css",
