@@ -45,13 +45,14 @@
 	 * @param {string[]|string=} supportedLanguages Aliases of the languages this previewer must be enabled for. Defaults to "*", all languages.
 	 * @constructor
 	 */
-	var Previewer = function (type, updater, supportedLanguages) {
+	var Previewer = function (type, updater, supportedLanguages, initializer) {
 		this._elt = null;
 		this._type = type;
 		this._clsRegexp = RegExp('(?:^|\\s)' + type + '(?=$|\\s)');
 		this._token = null;
 		this.updater = updater;
 		this._mouseout = this.mouseout.bind(this);
+		this.initializer = initializer;
 
 		var self = this;
 
@@ -84,6 +85,9 @@
 		this._elt = document.createElement('div');
 		this._elt.className = 'prism-previewer prism-previewer-' + this._type;
 		document.body.appendChild(this._elt);
+		if(this.initializer) {
+			this.initializer();
+		}
 	};
 
 	/**

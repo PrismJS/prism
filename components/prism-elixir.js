@@ -1,6 +1,11 @@
 Prism.languages.elixir = {
 	// Negative look-ahead is needed for string interpolation
-	'comment': /#(?!\{).*/,
+	// Negative look-behind is needed to avoid highlighting markdown headers in
+	// multi-line doc strings
+	'comment': {
+		pattern: /(^|[^#])#(?![{#]).*/m,
+		lookbehind: true
+	},
 	// ~r"""foo""", ~r'''foo''', ~r/foo/, ~r|foo|, ~r"foo", ~r'foo', ~r(foo), ~r[foo], ~r{foo}, ~r<foo>
 	'regex': /~[rR](?:("""|'''|[\/|"'])(?:\\.|(?!\1)[^\\])+\1|\((?:\\\)|[^)])+\)|\[(?:\\\]|[^\]])+\]|\{(?:\\\}|[^}])+\}|<(?:\\>|[^>])+>)[uismxfr]*/,
 	'string': [
@@ -82,3 +87,4 @@ Prism.languages.elixir.string.forEach(function(o) {
 		}
 	};
 });
+

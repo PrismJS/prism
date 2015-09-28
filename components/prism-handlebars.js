@@ -73,7 +73,8 @@
 		}
 
 		for (var i = 0, t; t = env.tokenStack[i]; i++) {
-			env.highlightedCode = env.highlightedCode.replace('___HANDLEBARS' + (i + 1) + '___', Prism.highlight(t, env.grammar, 'handlebars'));
+			// The replace prevents $$, $&, $`, $', $n, $nn from being interpreted as special patterns
+			env.highlightedCode = env.highlightedCode.replace('___HANDLEBARS' + (i + 1) + '___', Prism.highlight(t, env.grammar, 'handlebars').replace(/\$/g, '$$$$'));
 		}
 
 		env.element.innerHTML = env.highlightedCode;

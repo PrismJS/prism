@@ -84,6 +84,10 @@ var components = {
 			"require": "markup",
 			"owner": "nauzilus"
 		},
+		"autoit": {
+			"title": "AutoIt",
+			"owner": "Golmote"
+		},
 		"autohotkey": {
 			"title": "AutoHotkey",
 			"owner": "aviaryan"
@@ -129,6 +133,11 @@ var components = {
 			"title": "CoffeeScript",
 			"require": "javascript",
 			"owner": "R-osey"
+		},
+		"crystal": {
+			"title": "Crystal",
+			"require": "ruby",
+			"owner": "MakeNowJust"
 		},
 		"css-extras": {
 			"title": "CSS Extras",
@@ -286,6 +295,11 @@ var components = {
 		"nasm": {
 			"title": "NASM",
 			"owner": "rbmj"
+		},
+		"nginx": {
+			"title": "nginx",
+			"owner": "westonganger",
+			"require": "clike"
 		},
 		"nim": {
 			"title": "Nim",
@@ -450,6 +464,10 @@ var components = {
 			"title": "VHDL",
 			"owner": "a-rey"
 		},
+		"vim": {
+			"title": "vim",
+			"owner": "westonganger"
+		},
 		"wiki": {
 			"title": "Wiki markup",
 			"require": "markup",
@@ -504,6 +522,16 @@ var components = {
 			"title": "Previewer: Color",
 			"require": "previewer-base",
 			"owner": "Golmote"
+		},
+		"autoloader": {
+			"title": "Autoloader",
+			"owner": "Golmote",
+			"noCSS": true
+		},
+		"keep-markup": {
+			"title": "Keep Markup",
+			"owner": "Golmote",
+			"noCSS": true
 		}
 	}
 };
