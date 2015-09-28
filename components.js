@@ -519,6 +519,11 @@ var components = {
 			"require": "previewer-base",
 			"owner": "Golmote"
 		},
+		"previewer-easing": {
+			"title": "Previewer: Easing",
+			"require": "previewer-base",
+			"owner": "Golmote"
+		},
 		"autoloader": {
 			"title": "Autoloader",
 			"owner": "Golmote",
