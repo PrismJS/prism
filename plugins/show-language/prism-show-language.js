@@ -13,6 +13,18 @@ Prism.hooks.add('before-highlight', function(env) {
 	}
 	var language = Languages[env.language] || (env.language.substring(0, 1).toUpperCase() + env.language.substring(1));
 	pre.setAttribute('data-language', language);
+
+	var div = document.createElement('div');
+	var div2 = document.createElement('div');
+
+	div2.className = 'prism-show-language-label';
+	div2.setAttribute('data-language', language);
+	div2.innerHTML = language;
+
+	div.className = 'prism-show-language';
+	div.appendChild(div2);
+
+	pre.parentNode.insertBefore(div, pre);
 });
 
 })();
