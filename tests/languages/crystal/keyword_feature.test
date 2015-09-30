@@ -8,7 +8,7 @@ lib macro module next of out pointerof
 private protected rescue
 .responds_to?
 return require self sizeof struct super
-then type typeof undef union unless until when
+then type typeof union unless until when
 while with yield __DIR__ __FILE__ __LINE__
 
 ----------------------------------------------------
@@ -24,7 +24,7 @@ while with yield __DIR__ __FILE__ __LINE__
 	["keyword", "private"], ["keyword", "protected"], ["keyword", "rescue"],
 	["punctuation", "."], ["keyword", "responds_to?"],
 	["keyword", "return"], ["keyword", "require"], ["keyword", "self"], ["keyword", "sizeof"], ["keyword", "struct"], ["keyword", "super"],
-	["keyword", "then"], ["keyword", "type"], ["keyword", "typeof"], ["keyword", "undef"], ["keyword", "union"], ["keyword", "unless"], ["keyword", "until"], ["keyword", "when"],
+	["keyword", "then"], ["keyword", "type"], ["keyword", "typeof"], ["keyword", "union"], ["keyword", "unless"], ["keyword", "until"], ["keyword", "when"],
 	["keyword", "while"], ["keyword", "with"], ["keyword", "yield"], ["keyword", "__DIR__"], ["keyword", "__FILE__"], ["keyword", "__LINE__"]
 ]
 
