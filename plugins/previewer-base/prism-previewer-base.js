@@ -95,11 +95,15 @@
 	 * @param token
 	 */
 	Previewer.prototype.check = function (token) {
-		if (tokenRegexp.test(token.className) && this._clsRegexp.test(token.className)) {
-			if (token !== this._token) {
-				this._token = token;
-				this.show();
+		do {
+			if (tokenRegexp.test(token.className) && this._clsRegexp.test(token.className)) {
+				break;
 			}
+		} while(token = token.parentNode);
+
+		if (token && token !== this._token) {
+			this._token = token;
+			this.show();
 		}
 	};
 
