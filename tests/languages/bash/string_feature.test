@@ -19,10 +19,10 @@ bar'
 	["string", ["\"foo\r\nbar\""]],
 	["string", ["'foo\r\nbar'"]],
 	["string", [
-		"\"", ["property", "$@"], "\""
+		"\"", ["variable", "$@"], "\""
 	]],
 	["string", [
-		"\"", ["property", "${foo}"], "\""
+		"\"", ["variable", "${foo}"], "\""
 	]]
 ]
 
