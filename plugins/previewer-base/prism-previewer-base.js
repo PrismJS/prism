@@ -73,6 +73,7 @@
 				Previewer.byLanguages[lang].push(self);
 			}
 		});
+		Previewer.byType[type] = this;
 	};
 
 	/**
@@ -161,6 +162,12 @@
 	 * @type {{}}
 	 */
 	Previewer.byLanguages = {};
+
+	/**
+	 * Map of all registered previewers by type
+	 * @type {{}}
+	 */
+	Previewer.byType = {};
 
 	/**
 	 * Initializes the mouseover event on the code block.

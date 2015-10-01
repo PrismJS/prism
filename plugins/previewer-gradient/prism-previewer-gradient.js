@@ -26,12 +26,51 @@
 			},
 			{
 				lang: 'stylus',
-				before: 'hexcode',
+				before: 'func',
 				inside: 'rest',
 				root: Prism.languages.stylus && Prism.languages.stylus['variable-declaration'].inside
 			}
 		]
 	};
+
+	Prism.hooks.add('before-highlight', function (env) {
+		if (env.language && languages[env.language] && !languages[env.language].initialized) {
+			var lang = languages[env.language];
+			if (Prism.util.type(lang) !== 'Array') {
+				lang = [lang];
+			}
+			lang.forEach(function(lang) {
+				var before, inside, root, skip;
+				if (lang === true) {
+					// Insert before color previewer if it exists
+					before = Prism.plugins.Previewer && Prism.plugins.Previewer.byType['color'] ? 'color' : 'important';
+					inside = env.language;
+					lang = env.language;
+				} else {
+					before = lang.before || 'important';
+					inside = lang.inside || lang.lang;
+					root = lang.root || Prism.languages;
+					skip = lang.skip;
+					lang = env.language;
+				}
+
+				if (!skip && Prism.languages[lang]) {
+					Prism.languages.insertBefore(inside, before, {
+						'gradient': {
+							pattern: /(?:\b|\B-[a-z]{1,10}-)(?:repeating-)?(?:linear|radial)-gradient\((?:(?:rgb|hsl)a?\(.+?\)|[^\)])+\)/gi,
+							inside: {
+								'function': /[\w-]+(?=\()/,
+								'punctuation': /[(),]/
+							}
+						}
+					}, root);
+					env.grammar = Prism.languages[lang];
+
+					languages[env.language] = {initialized: true};
+				}
+			});
+		}
+	});
 
 	// Stores already processed gradients so that we don't
 	// make the conversion every time the previewer is shown
@@ -154,43 +193,7 @@
 		return cache[gradient] = func + '(' + values.join(',') + ')';
 	};
 
-	Prism.hooks.add('before-highlight', function (env) {
-		if (env.language && languages[env.language] && !languages[env.language].initialized) {
-			var lang = languages[env.language];
-			if (Prism.util.type(lang) !== 'Array') {
-				lang = [lang];
-			}
-			lang.forEach(function(lang) {
-				var before, inside, root, skip;
-				if (lang === true) {
-					before = 'important';
-					inside = env.language;
-					lang = env.language;
-				} else {
-					before = lang.before || 'important';
-					inside = lang.inside || lang.lang;
-					root = lang.root || Prism.languages;
-					skip = lang.skip;
-					lang = env.language;
-				}
 
-				if (!skip && Prism.languages[lang]) {
-					Prism.languages.insertBefore(inside, before, {
-						'gradient': {
-							pattern: /(?:\b|\B-[a-z]{1,10}-)(?:repeating-)?(?:linear|radial)-gradient\((?:(?:rgb|hsl)a?\(.+?\)|[^\)])+\)/gi,
-							inside: {
-								'function': /[\w-]+(?=\()/,
-								'punctuation': /[(),]/
-							}
-						}
-					}, root);
-					env.grammar = Prism.languages[lang];
-
-					languages[env.language] = {initialized: true};
-				}
-			});
-		}
-	});
 
 	if (Prism.plugins.Previewer) {
 		new Prism.plugins.Previewer('gradient', function(value) {
