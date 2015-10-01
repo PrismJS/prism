@@ -8,11 +8,20 @@
 			pattern: /(^|[^"{\\])#.*/,
 			lookbehind: true
 		},
-		'string': {
-			//allow multiline string
-			pattern: /("|')(\\?[\s\S])*?\1/,
-			inside: bashVars
-		},
+		'string': [
+			{
+				pattern: /"(?:\\?[\s\S])*?"/g,
+				inside: bashVars
+			},
+			// Single quote strings cannot have variables inside
+			/'(?:\\?[\s\S])*?'/g,
+			// Support for Here-Dokuments https://en.wikipedia.org/wiki/Here_document
+			{
+				pattern: /(<<\s*)(\w+?)\s*\r?\n(?:[\s\S])*?\r?\n\2/g,
+				lookbehind: true,
+				inside: bashVars
+			}
+		],
 		// Redefined to prevent highlighting of numbers in filenames
 		'number': {
 			pattern: /([^\w\.])-?(0x[\dA-Fa-f]+|\d*\.?\d+([Ee]-?\d+)?)\b/,
