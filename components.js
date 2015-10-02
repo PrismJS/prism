@@ -94,7 +94,6 @@ var components = {
 		},
 		"bash": {
 			"title": "Bash",
-			"require": "clike",
 			"owner": "zeitgeist87"
 		},
 		"basic": {
