@@ -8,22 +8,36 @@ bar"
 bar'
 "$@"
 "${foo}"
+<< STRING_END
+foo
+bar
+STRING_END
+<<   EOF
+foo $@
+bar
+EOF
 
 ----------------------------------------------------
 
 [
 	["string", ["\"\""]],
-	["string", ["''"]],
+	["string", "''"],
 	["string", ["\"foo\""]],
-	["string", ["'foo'"]],
+	["string", "'foo'"],
 	["string", ["\"foo\r\nbar\""]],
-	["string", ["'foo\r\nbar'"]],
+	["string", "'foo\r\nbar'"],
 	["string", [
-		"\"", ["property", "$@"], "\""
+		"\"", ["variable", "$@"], "\""
 	]],
 	["string", [
-		"\"", ["property", "${foo}"], "\""
-	]]
+		"\"", ["variable", "${foo}"], "\""
+	]],
+	["operator", "<"],
+	["operator", "<"],
+	["string", ["STRING_END\r\nfoo\r\nbar\r\nSTRING_END"]],
+	["operator", "<"],
+	["operator", "<"],
+	["string", ["EOF\r\nfoo ", ["variable", "$@"], "\r\nbar\r\nEOF"]]
 ]
 
 ----------------------------------------------------
