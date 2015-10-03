@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta charset="utf-8" />
+	<link rel="shortcut icon" href="favicon.png" />
+	<title>Previewer: Time ▲ Prism plugins</title>
+	<base href="../.." />
+	<link rel="stylesheet" href="style.css" />
+	<link rel="stylesheet" href="themes/prism.css" data-noprefix />
+	<link rel="stylesheet" href="plugins/previewer-base/prism-previewer-base.css" data-noprefix />
+	<link rel="stylesheet" href="plugins/previewer-time/prism-previewer-time.css" data-noprefix />
+	<script src="prefixfree.min.js"></script>
+
+	<script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
+	<script src="http://www.google-analytics.com/ga.js" async></script>
+</head>
+<body>
+
+<header>
+	<div class="intro" data-src="templates/header-plugins.html" data-type="text/html"></div>
+
+	<h2>Previewer: Time</h2>
+	<p>Previewer for CSS times.</p>
+</header>
+
+<section class="language-markup">
+	<h1>How to use</h1>
+
+	<p>You don't need to do anything. With this plugin loaded, a previewer will appear on hovering the time values in code blocks.</p>
+	<p>This plugin is compatible with CSS, Less, Sass, Scss and Stylus.</p>
+</section>
+
+<section>
+	<h1>Examples</h1>
+
+	<h2>CSS</h2>
+	<pre class="language-css"><code>div {
+	transition: all linear 3s;
+}</code></pre>
+
+	<h2>Less</h2>
+	<pre class="language-less"><code>@time: 1s;
+#header a {
+	transition: all linear 2s;
+}</code></pre>
+
+	<h2>Sass</h2>
+	<pre class="language-sass"><code>$time: 3s
+@mixin foobar
+	transition: all linear 800ms
+.foo
+	transition: all linear 0.8s
+</code></pre>
+
+	<h2>Scss</h2>
+	<pre class="language-scss"><code>$time: 1s;
+.foo {
+	transition: all linear 10s
+}</code></pre>
+
+	<h2>Stylus</h2>
+	<pre class="language-stylus"><code>time = 3s
+.foo
+	transition: all linear 0.5s
+</code></pre>
+
+</section>
+
+<footer data-src="templates/footer.html" data-type="text/html"></footer>
+
+<script src="prism.js"></script>
+<script src="components/prism-less.js"></script>
+<script src="components/prism-sass.js"></script>
+<script src="components/prism-scss.js"></script>
+<script src="components/prism-stylus.js"></script>
+<script src="plugins/previewer-base/prism-previewer-base.js"></script>
+<script src="plugins/previewer-time/prism-previewer-time.js"></script>
+<script src="utopia.js"></script>
+<script src="components.js"></script>
+<script src="code.js"></script>
+
+
+</body>
+</html>

@@ -524,6 +524,11 @@ var components = {
 			"require": "previewer-base",
 			"owner": "Golmote"
 		},
+		"previewer-time": {
+			"title": "Previewer: Time",
+			"require": "previewer-base",
+			"owner": "Golmote"
+		},
 		"autoloader": {
 			"title": "Autoloader",
 			"owner": "Golmote",
