@@ -1,6 +1,6 @@
 # Prism Changelog
 
-## Unreleased
+## 1.1.0 (2015-10-04)
 
 ### New components
 
