@@ -10,12 +10,20 @@
 	var languages = {
 		'css': true,
 		'less': true,
-		'sass': {
-			lang: 'sass',
-			before: 'punctuation',
-			inside: 'inside',
-			root: Prism.languages.sass && Prism.languages.sass['property-line']
-		},
+		'sass': [
+			{
+				lang: 'sass',
+				before: 'punctuation',
+				inside: 'inside',
+				root: Prism.languages.sass && Prism.languages.sass['variable-line']
+			},
+			{
+				lang: 'sass',
+				before: 'punctuation',
+				inside: 'inside',
+				root: Prism.languages.sass && Prism.languages.sass['property-line']
+			}
+		],
 		'scss': true,
 		'stylus': [
 			{

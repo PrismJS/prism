@@ -45,7 +45,8 @@
 }</code></pre>
 
 	<h2>Less</h2>
-	<pre class="language-less"><code>#header a {
+	<pre class="language-less"><code>@gradient: linear-gradient(135deg,  #9dd53a 0%,#a1d54f 50%,#80c217 51%,#7cbc0a 100%);
+#header a {
 	background: -moz-linear-gradient(-45deg,  #9dd53a 0%, #a1d54f 50%, #80c217 51%, #7cbc0a 100%); /* FF3.6+ */
 	background: -webkit-linear-gradient(-45deg,  #9dd53a 0%,#a1d54f 50%,#80c217 51%,#7cbc0a 100%); /* Chrome10+,Safari5.1+ */
 	background: -o-linear-gradient(-45deg,  #9dd53a 0%,#a1d54f 50%,#80c217 51%,#7cbc0a 100%); /* Opera 11.10+ */
@@ -54,19 +55,22 @@
 }</code></pre>
 
 	<h2>Sass</h2>
-	<pre class="language-sass"><code>@mixin foobar
+	<pre class="language-sass"><code>$gradient: linear-gradient(135deg,  #9dd53a 0%,#a1d54f 50%,#80c217 51%,#7cbc0a 100%)
+@mixin foobar
 	background: -moz-radial-gradient(center, ellipse cover,  #f2f6f8 0%, #d8e1e7 50%, #b5c6d0 51%, #e0eff9 100%)
 	background: radial-gradient(ellipse at center,  #f2f6f8 0%,#d8e1e7 50%,#b5c6d0 51%,#e0eff9 100%)
 </code></pre>
 
 	<h2>Scss</h2>
-	<pre class="language-scss"><code>$attr: background;
+	<pre class="language-scss"><code>$gradient: linear-gradient(135deg,  #9dd53a 0%,#a1d54f 50%,#80c217 51%,#7cbc0a 100%);
+$attr: background;
 .foo {
     #{$attr}-image: repeating-linear-gradient(10deg, rgba(255,0,0,0), rgba(255,0,0,1) 10px, rgba(255,0,0,0) 20px);
 }</code></pre>
 
 	<h2>Stylus</h2>
-	<pre class="language-stylus"><code>.foo
+	<pre class="language-stylus"><code>gradient = linear-gradient(135deg,  #9dd53a 0%,#a1d54f 50%,#80c217 51%,#7cbc0a 100%)
+.foo
 	background-image: repeating-radial-gradient(circle, rgba(255,0,0,0), rgba(255,0,0,1) 10px, rgba(255,0,0,0) 20px)
 </code></pre>
 
