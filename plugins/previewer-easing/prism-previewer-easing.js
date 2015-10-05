@@ -10,11 +10,19 @@
 	var languages = {
 		'css': true,
 		'less': true,
-		'sass': {
-			lang: 'sass',
-			inside: 'inside',
-			root: Prism.languages.sass && Prism.languages.sass['property-line']
-		},
+		'sass': [
+			{
+				lang: 'sass',
+				inside: 'inside',
+				before: 'punctuation',
+				root: Prism.languages.sass && Prism.languages.sass['variable-line']
+			},
+			{
+				lang: 'sass',
+				inside: 'inside',
+				root: Prism.languages.sass && Prism.languages.sass['property-line']
+			}
+		],
 		'scss': true,
 		'stylus': [
 			{
@@ -100,8 +108,8 @@
 					'</marker>' +
 				'</defs>' +
 				'<path d="M0,100 C20,50, 40,30, 100,0" />' +
-				'<line x1="0" y1="100" x2="20" y2="50" marker-start="url(' + location.href + '#prism-previewer-easing-marker)" marker-end="url(#prism-previewer-easing-marker)" />' +
-				'<line x1="100" y1="0" x2="40" y2="30" marker-start="url(' + location.href + '#prism-previewer-easing-marker)" marker-end="url(#prism-previewer-easing-marker)" />' +
+				'<line x1="0" y1="100" x2="20" y2="50" marker-start="url(' + location.href + '#prism-previewer-easing-marker)" marker-end="url(' + location.href + '#prism-previewer-easing-marker)" />' +
+				'<line x1="100" y1="0" x2="40" y2="30" marker-start="url(' + location.href + '#prism-previewer-easing-marker)" marker-end="url(' + location.href + '#prism-previewer-easing-marker)" />' +
 			'</svg>';
 		});
 	}

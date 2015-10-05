@@ -40,23 +40,27 @@
 }</code></pre>
 
 	<h2>Less</h2>
-	<pre class="language-less"><code>#header a {
+	<pre class="language-less"><code>@easing: cubic-bezier(0.1,0.3,1,.4);
+#header a {
 	transition-timing-function: ease;
 }</code></pre>
 
 	<h2>Sass</h2>
-	<pre class="language-sass"><code>.foo
+	<pre class="language-sass"><code>$easing: ease-out
+.foo
 	transition: color 0.3s ease-in-out
 </code></pre>
 
 	<h2>Scss</h2>
-	<pre class="language-scss"><code>$attr: background;
+	<pre class="language-scss"><code>$easing: linear;
+$attr: background;
 .foo {
     transition: #{$attr}-color 0.3s cubic-bezier(0.9,0.1,.2,.4);
 }</code></pre>
 
 	<h2>Stylus</h2>
-	<pre class="language-stylus"><code>.foo
+	<pre class="language-stylus"><code>easing = ease-in
+.foo
 	transition: color 0.3s ease-out
 </code></pre>
 
