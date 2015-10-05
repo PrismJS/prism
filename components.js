@@ -523,6 +523,11 @@ var components = {
 			"require": "previewer-base",
 			"owner": "Golmote"
 		},
+		"previewer-angle": {
+			"title": "Previewer: Angle",
+			"require": "previewer-base",
+			"owner": "Golmote"
+		},
 		"autoloader": {
 			"title": "Autoloader",
 			"owner": "Golmote",

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta charset="utf-8" />
+	<link rel="shortcut icon" href="favicon.png" />
+	<title>Previewer: Angle ▲ Prism plugins</title>
+	<base href="../.." />
+	<link rel="stylesheet" href="style.css" />
+	<link rel="stylesheet" href="themes/prism.css" data-noprefix />
+	<link rel="stylesheet" href="plugins/previewer-base/prism-previewer-base.css" data-noprefix />
+	<link rel="stylesheet" href="plugins/previewer-angle/prism-previewer-angle.css" data-noprefix />
+	<script src="prefixfree.min.js"></script>
+
+	<script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
+	<script src="http://www.google-analytics.com/ga.js" async></script>
+</head>
+<body>
+
+<header>
+	<div class="intro" data-src="templates/header-plugins.html" data-type="text/html"></div>
+
+	<h2>Previewer: Angle</h2>
+	<p>Previewer for CSS angles.</p>
+</header>
+
+<section class="language-markup">
+	<h1>How to use</h1>
+
+	<p>You don't need to do anything. With this plugin loaded, a previewer will appear on hovering the angle values in code blocks.</p>
+	<p>This plugin is compatible with CSS, Less, Sass, Scss and Stylus.</p>
+</section>
+
+<section>
+	<h1>Examples</h1>
+
+	<h2>CSS</h2>
+	<pre class="language-css"><code>div {
+	transform: rotate(10deg);
+}</code></pre>
+
+	<h2>Less</h2>
+	<pre class="language-less"><code>@angle: 3rad;
+#header a {
+	transform: rotate(.4turn)
+}</code></pre>
+
+	<h2>Sass</h2>
+	<pre class="language-sass"><code>$angle: 380grad
+@mixin foobar
+	transform: rotate(-120deg)
+.foo
+	transform: rotate(18rad)
+</code></pre>
+
+	<h2>Scss</h2>
+	<pre class="language-scss"><code>$angle: 1.8turn;
+.foo {
+	transform: rotate(-3rad)
+}</code></pre>
+
+	<h2>Stylus</h2>
+	<pre class="language-stylus"><code>angle = 357deg
+.foo
+	transform: rotate(100grad)
+</code></pre>
+
+</section>
+
+<footer data-src="templates/footer.html" data-type="text/html"></footer>
+
+<script src="prism.js"></script>
+<script src="components/prism-less.js"></script>
+<script src="components/prism-sass.js"></script>
+<script src="components/prism-scss.js"></script>
+<script src="components/prism-stylus.js"></script>
+<script src="plugins/previewer-base/prism-previewer-base.js"></script>
+<script src="plugins/previewer-angle/prism-previewer-angle.js"></script>
+<script src="utopia.js"></script>
+<script src="components.js"></script>
+<script src="code.js"></script>
+
+
+</body>
+</html>
