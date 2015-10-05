@@ -16,11 +16,19 @@
 			inside: 'inside',
 			root: Prism.languages.markup && Prism.languages.markup['tag'].inside['attr-value']
 		},
-		'sass': {
-			lang: 'sass',
-			inside: 'inside',
-			root: Prism.languages.sass && Prism.languages.sass['property-line']
-		},
+		'sass': [
+			{
+				lang: 'sass',
+				before: 'punctuation',
+				inside: 'inside',
+				root: Prism.languages.sass && Prism.languages.sass['variable-line']
+			},
+			{
+				lang: 'sass',
+				inside: 'inside',
+				root: Prism.languages.sass && Prism.languages.sass['property-line']
+			}
+		],
 		'scss': true,
 		'stylus': [
 			{
