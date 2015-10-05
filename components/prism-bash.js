@@ -12,16 +12,14 @@
 			lookbehind: true
 		},
 		'string': [
+			//Support for Here-Documents https://en.wikipedia.org/wiki/Here_document
 			{
-				pattern: /"(?:\\?[\s\S])*?"/g,
+				pattern: /((?:^|[^<])<<\s*)(?:"|')?(\w+?)(?:"|')?\s*\r?\n(?:[\s\S])*?\r?\n\2/g,
+				lookbehind: true,
 				inside: bashVars
 			},
-			// Single quote strings cannot have variables inside
-			/'(?:\\?[\s\S])*?'/g,
-			// Support for Here-Documents https://en.wikipedia.org/wiki/Here_document
 			{
-				pattern: /(<<\s*)(\w+?)\s*\r?\n(?:[\s\S])*?\r?\n\2/g,
-				lookbehind: true,
+				pattern: /("|')(?:\\?[\s\S])*?\1/g,
 				inside: bashVars
 			}
 		],
