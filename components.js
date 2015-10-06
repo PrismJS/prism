@@ -304,6 +304,10 @@ var components = {
 			"title": "Nim",
 			"owner": "Golmote"
 		},
+		"nix": {
+			"title": "Nix",
+			"owner": "Golmote"
+		},
 		"nsis": {
 			"title": "NSIS",
 			"owner": "idleberg"
