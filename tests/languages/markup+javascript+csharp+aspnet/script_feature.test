@@ -4,48 +4,49 @@
 ----------------------------------------------------
 
 [
-	["asp script", [
+	["tag", [
 		["tag", [
-			["tag", [
-				["punctuation", "<"],
-				"script"
-			]],
-			["attr-name", [
-				"runat"
-			]],
-			["attr-value", [
-				["punctuation", "="],
-				["punctuation", "\""],
-				"server",
-				["punctuation", "\""]
-			]],
-			["punctuation", ">"]
+			["punctuation", "<"],
+			"script"
 		]],
-		["preprocessor", "#foo"],
+		["attr-name", [
+			"runat"
+		]],
+		["attr-value", [
+			["punctuation", "="],
+			["punctuation", "\""],
+			"server",
+			["punctuation", "\""]
+		]],
+		["punctuation", ">"]
+	]],
+	["asp script", [
+		["preprocessor", "#foo"]
+	]],
+	["tag", [
 		["tag", [
-			["tag", [
-				["punctuation", "</"],
-				"script"
-			]],
-			["punctuation", ">"]
-		]]
+			["punctuation", "</"],
+			"script"
+		]],
+		["punctuation", ">"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"script"
+		]],
+		["punctuation", ">"]
 	]],
 	["script", [
+		["regex", "/foo/"]
+	]],
+	["tag", [
 		["tag", [
-			["tag", [
-				["punctuation", "<"],
-				"script"
-			]],
-			["punctuation", ">"]
+			["punctuation", "</"],
+			"script"
 		]],
-		["regex", "/foo/"],
-		["tag", [
-			["tag", [
-				["punctuation", "</"],
-				"script"
-			]],
-			["punctuation", ">"]
-		]]
+		["punctuation", ">"]
 	]]
 ]
 

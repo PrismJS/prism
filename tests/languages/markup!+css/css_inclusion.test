@@ -9,37 +9,37 @@ foo {
 ----------------------------------------------------
 
 [
-	["style", [
+	["tag", [
 		["tag", [
-			["tag", [
-				["punctuation", "<"],
-				"style"
-			]],
-			["attr-name", [
-				"type"
-			]],
-			["attr-value", [
-				["punctuation", "="],
-				["punctuation", "\""],
-				"text/css",
-				["punctuation", "\""]
-			]],
-			["punctuation", ">"]
+			["punctuation", "<"],
+			"style"
 		]],
+		["attr-name", [
+			"type"
+		]],
+		["attr-value", [
+			["punctuation", "="],
+			["punctuation", "\""],
+			"text/css",
+			["punctuation", "\""]
+		]],
+		["punctuation", ">"]
+	]],
+	["style", [
 		["selector", "foo"],
 		["punctuation", "{"],
 		["property", "bar"],
 		["punctuation", ":"],
 		" baz",
 		["punctuation", ";"],
-		["punctuation", "}"],
+		["punctuation", "}"]
+	]],
+	["tag", [
 		["tag", [
-			["tag", [
-				["punctuation", "</"],
-				"style"
-			]],
-			["punctuation", ">"]
-		]]
+			["punctuation", "</"],
+			"style"
+		]],
+		["punctuation", ">"]
 	]],
 
 	["tag", [

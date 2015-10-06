@@ -6,51 +6,53 @@
 ----------------------------------------------------
 
 [
-	["script", [
+
+	["tag", [
 		["tag", [
-			["tag", [
-				["punctuation", "<"],
-				"script"
-			]],
-			["attr-name", [
-				"type"
-			]],
-			["attr-value", [
-				["punctuation", "="],
-				["punctuation", "\""],
-				"text/javascript",
-                ["punctuation", "\""]
-			]],
-			["punctuation", ">"]
+			["punctuation", "<"],
+			"script"
 		]],
-		["function", "foo"],
-		["punctuation", "("],
-		["punctuation", ")"],
-		["tag", [
-			["tag", [
-				["punctuation", "</"],
-				"script"
-			]],
-			["punctuation", ">"]
-		]]
+		["attr-name", [
+			"type"
+		]],
+		["attr-value", [
+			["punctuation", "="],
+			["punctuation", "\""],
+			"text/javascript",
+			["punctuation", "\""]
+		]],
+		["punctuation", ">"]
 	]],
 	["script", [
+		["function", "foo"],
+		["punctuation", "("],
+		["punctuation", ")"]
+	]],
+	["tag", [
 		["tag", [
-			["tag", [
-				["punctuation", "<"],
-				"script"
-			]],
-			["punctuation", ">"]
+			["punctuation", "</"],
+			"script"
 		]],
-		["string", "\"foo bar\""],
+		["punctuation", ">"]
+	]],
+
+	["tag", [
 		["tag", [
-            ["tag", [
-                ["punctuation", "</"],
-                "script"
-            ]],
-            ["punctuation", ">"]
-        ]]
-    ]]
+			["punctuation", "<"],
+			"script"
+		]],
+		["punctuation", ">"]
+	]],
+	["script", [
+		["string", "\"foo bar\""]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"script"
+		]],
+		["punctuation", ">"]
+	]]
 ]
 
 ----------------------------------------------------
