@@ -100,6 +100,10 @@ var components = {
 			"title": "BASIC",
 			"owner": "Golmote"
 		},
+		"batch": {
+			"title": "Batch",
+			"owner": "Golmote"
+		},
 		"bison": {
 			"title": "Bison",
 			"require": "c",
