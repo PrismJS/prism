@@ -25,6 +25,26 @@ module.exports = {
 		return testSuite;
 	},
 
+	/**
+	 * Loads the list of available tests that match the given languages
+	 *
+	 * @param {string} rootDir
+	 * @param {string|string[]} languages
+	 * @returns {Object.<string, string[]>}
+	 */
+	loadSomeTests: function (rootDir, languages) {
+		var testSuite = {};
+		var self = this;
+
+		this.getSomeDirectories(rootDir, languages).forEach(
+			function (language) {
+				testSuite[language] = self.getAllFiles(path.join(rootDir, language));
+			}
+		);
+
+		return testSuite;
+	},
+
 
 	/**
 	 * Returns a list of all (sub)directories (just the directory names, not full paths)
@@ -39,6 +59,38 @@ module.exports = {
 				return fs.statSync(path.join(src, file)).isDirectory();
 			}
 		);
+	},
+
+	/**
+	 * Returns a list of all (sub)directories (just the directory names, not full paths)
+	 * in the given src directory, matching the given languages
+	 *
+	 * @param {string} src
+	 * @param {string|string[]} languages
+	 * @returns {Array.<string>}
+	 */
+	getSomeDirectories: function (src, languages) {
+		var self = this;
+		return fs.readdirSync(src).filter(
+			function (file) {
+				return fs.statSync(path.join(src, file)).isDirectory() && self.directoryMatches(file, languages);
+			}
+		);
+	},
+
+	/**
+	 * Returns whether a directory matches one of the given languages.
+	 * @param {string} directory
+	 * @param {string|string[]} languages
+	 */
+	directoryMatches: function (directory, languages) {
+		if (!Array.isArray(languages)) {
+			languages = [languages];
+		}
+		var dirLanguages = directory.split(/!?\+!?/);
+		return dirLanguages.some(function (lang) {
+			return languages.indexOf(lang) >= 0;
+		});
 	},
 
 
