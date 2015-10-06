@@ -44,17 +44,13 @@ EOF
 	["string", [
 		"\"", ["variable", "${foo}"], "\""
 	]],
-	["operator", "<"],
-	["operator", "<"],
+	["operator", "<<"],
 	["string", ["STRING_END\r\nfoo\r\nbar\r\nSTRING_END"]],
-	["operator", "<"],
-	["operator", "<"],
+	["operator", "<<"],
 	["string", ["EOF\r\nfoo ", ["variable", "$@"], "\r\nbar\r\nEOF"]],
-	["operator", "<"],
-	["operator", "<"],
+	["operator", "<<"],
 	["string", ["'EOF'\r\n'single quoted string'\r\n\"double quoted string\"\r\nEOF"]],
-	["operator", "<"],
-	["operator", "<"],
+	["operator", "<<"],
 	["string", ["\"EOF\"\r\nfoo\r\nbar\r\nEOF"]]
 ]
 
