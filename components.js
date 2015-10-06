@@ -522,6 +522,11 @@ var components = {
 			"require": "previewer-base",
 			"owner": "Golmote"
 		},
+		"previewer-gradient": {
+			"title": "Previewer: Gradient",
+			"require": "previewer-base",
+			"owner": "Golmote"
+		},
 		"previewer-easing": {
 			"title": "Previewer: Easing",
 			"require": "previewer-base",

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta charset="utf-8" />
+	<link rel="shortcut icon" href="favicon.png" />
+	<title>Previewer: Gradient ▲ Prism plugins</title>
+	<base href="../.." />
+	<link rel="stylesheet" href="style.css" />
+	<link rel="stylesheet" href="themes/prism.css" data-noprefix />
+	<link rel="stylesheet" href="plugins/previewer-base/prism-previewer-base.css" data-noprefix />
+	<link rel="stylesheet" href="plugins/previewer-gradient/prism-previewer-gradient.css" data-noprefix />
+	<script src="prefixfree.min.js"></script>
+
+	<script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
+	<script src="http://www.google-analytics.com/ga.js" async></script>
+</head>
+<body>
+
+<header>
+	<div class="intro" data-src="templates/header-plugins.html" data-type="text/html"></div>
+
+	<h2>Previewer: Gradient</h2>
+	<p>Previewer for CSS gradients.</p>
+</header>
+
+<section class="language-markup">
+	<h1>How to use</h1>
+
+	<p>You don't need to do anything. With this plugin loaded, a previewer will appear on hovering the gradient values in code blocks.</p>
+	<p>Vendor-prefixed gradients are converted to W3C-valid ones, except the old Webkit syntax (<code class="language-css">-webkit-gradient(linear, ...)</code> and <code class="language-css">-webkit-gradient(radial, ...)</code>) is not supported.</p>
+	<p>This plugin is compatible with CSS, Less, Sass, Scss and Stylus.</p>
+</section>
+
+<section>
+	<h1>Examples</h1>
+
+	<h2>CSS</h2>
+	<pre class="language-css"><code>div {
+	background: -moz-linear-gradient(left,  #cb60b3 0%, #c146a1 50%, #a80077 51%, #db36a4 100%); /* FF3.6+ */
+	background: -webkit-linear-gradient(left,  #cb60b3 0%,#c146a1 50%,#a80077 51%,#db36a4 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(left,  #cb60b3 0%,#c146a1 50%,#a80077 51%,#db36a4 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(left,  #cb60b3 0%,#c146a1 50%,#a80077 51%,#db36a4 100%); /* IE10+ */
+	background: linear-gradient(to right,  #cb60b3 0%,#c146a1 50%,#a80077 51%,#db36a4 100%); /* W3C */
+}</code></pre>
+
+	<h2>Less</h2>
+	<pre class="language-less"><code>@gradient: linear-gradient(135deg,  #9dd53a 0%,#a1d54f 50%,#80c217 51%,#7cbc0a 100%);
+#header a {
+	background: -moz-linear-gradient(-45deg,  #9dd53a 0%, #a1d54f 50%, #80c217 51%, #7cbc0a 100%); /* FF3.6+ */
+	background: -webkit-linear-gradient(-45deg,  #9dd53a 0%,#a1d54f 50%,#80c217 51%,#7cbc0a 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(-45deg,  #9dd53a 0%,#a1d54f 50%,#80c217 51%,#7cbc0a 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(-45deg,  #9dd53a 0%,#a1d54f 50%,#80c217 51%,#7cbc0a 100%); /* IE10+ */
+	background: linear-gradient(135deg,  #9dd53a 0%,#a1d54f 50%,#80c217 51%,#7cbc0a 100%); /* W3C */
+}</code></pre>
+
+	<h2>Sass</h2>
+	<pre class="language-sass"><code>$gradient: linear-gradient(135deg,  #9dd53a 0%,#a1d54f 50%,#80c217 51%,#7cbc0a 100%)
+@mixin foobar
+	background: -moz-radial-gradient(center, ellipse cover,  #f2f6f8 0%, #d8e1e7 50%, #b5c6d0 51%, #e0eff9 100%)
+	background: radial-gradient(ellipse at center,  #f2f6f8 0%,#d8e1e7 50%,#b5c6d0 51%,#e0eff9 100%)
+</code></pre>
+
+	<h2>Scss</h2>
+	<pre class="language-scss"><code>$gradient: linear-gradient(135deg,  #9dd53a 0%,#a1d54f 50%,#80c217 51%,#7cbc0a 100%);
+$attr: background;
+.foo {
+    #{$attr}-image: repeating-linear-gradient(10deg, rgba(255,0,0,0), rgba(255,0,0,1) 10px, rgba(255,0,0,0) 20px);
+}</code></pre>
+
+	<h2>Stylus</h2>
+	<pre class="language-stylus"><code>gradient = linear-gradient(135deg,  #9dd53a 0%,#a1d54f 50%,#80c217 51%,#7cbc0a 100%)
+.foo
+	background-image: repeating-radial-gradient(circle, rgba(255,0,0,0), rgba(255,0,0,1) 10px, rgba(255,0,0,0) 20px)
+</code></pre>
+
+</section>
+
+<footer data-src="templates/footer.html" data-type="text/html"></footer>
+
+<script src="prism.js"></script>
+<script src="components/prism-less.js"></script>
+<script src="components/prism-sass.js"></script>
+<script src="components/prism-scss.js"></script>
+<script src="components/prism-stylus.js"></script>
+<script src="plugins/previewer-base/prism-previewer-base.js"></script>
+<script src="plugins/previewer-gradient/prism-previewer-gradient.js"></script>
+<script src="utopia.js"></script>
+<script src="components.js"></script>
+<script src="code.js"></script>
+
+
+</body>
+</html>
