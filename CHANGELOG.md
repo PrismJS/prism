@@ -1,5 +1,29 @@
 # Prism Changelog
 
+## Unreleased
+
+### New components
+
+* __Batch__ ([#781](https://github.com/PrismJS/prism/issues/781)) [[`eab5b06`](https://github.com/PrismJS/prism/commit/eab5b06)]
+
+### Updated components
+
+* __Bash__:
+	* Fix regression in strings ([#792](https://github.com/PrismJS/prism/issues/792)) [[`bd275c2`](https://github.com/PrismJS/prism/commit/bd275c2)]
+	* Substantially reduce wrongly highlighted stuff ([#793](https://github.com/PrismJS/prism/issues/793)) [[`ac6fe2e`](https://github.com/PrismJS/prism/commit/ac6fe2e)]
+
+### New plugins
+
+* __Previewer: Gradient__ ([#783](https://github.com/PrismJS/prism/issues/783)) [[`9a63483`](https://github.com/PrismJS/prism/commit/9a63483)]
+
+### Updated plugins
+
+* __Previewer: Color__
+	* Add support for Sass variables [[`3a1fb04`](https://github.com/PrismJS/prism/commit/3a1fb04)]
+
+* __Previewer: Easing__
+	* Add support for Sass variables [[`7c7ab4e`](https://github.com/PrismJS/prism/commit/7c7ab4e)]
+
 ## 1.1.0 (2015-10-04)
 
 ### New components
