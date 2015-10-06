@@ -19,6 +19,13 @@
 					punctuation: /\(\(?|\)\)?|,|;/
 				}
 			},
+			// Command Substitution
+			{
+				pattern: /\$\([^)]+\)|`[^`]+`/,
+				inside: {
+					variable: /^\$\(|^`|\)$|`$/
+				}
+			},
 			/\$(?:[a-z0-9_#\?\*!@]+|\{[^}]+\})/i
 		],
 	};
@@ -61,4 +68,11 @@
 		'operator': /&&?|\|\|?|==?|!=?|<<<?|>>|<=?|>=?|=~/,
 		'punctuation': /\$?\(\(?|\)\)?|\.\.|[{}[\];]/
 	};
+
+	var inside = insideString.variable[1].inside;
+	inside['function'] = Prism.languages.bash['function'];
+	inside.keyword = Prism.languages.bash.keyword;
+	inside.boolean = Prism.languages.bash.boolean;
+	inside.operator = Prism.languages.bash.operator;
+	inside.punctuation = Prism.languages.bash.punctuation;
 })(Prism);
