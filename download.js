@@ -374,6 +374,35 @@ function delayedGenerateCode(){
 	timerId = setTimeout(generateCode, 500);
 }
 
+function getSortedComponentsByRequirements(components){
+	var sorted = [];
+	for (var component in components) {
+		sorted.push(component);
+	}
+	var i = 0;
+	while (i < sorted.length) {
+		var id = sorted[i];
+		var indexOfRequirement = i;
+		var notNow = false;
+		for (var requirement in components[id].require) {
+			indexOfRequirement = sorted.indexOf(components[id].require[requirement]);
+			if (indexOfRequirement > i) {
+				notNow = true;
+				break;
+			}
+		}
+		if (notNow) {
+			tmp = sorted[i];
+			sorted[i] = sorted[indexOfRequirement];
+			sorted[indexOfRequirement] = tmp;
+		}
+		else {
+			i++;
+		}
+	}
+	return sorted;
+}
+
 function generateCode(){
 	var promises = [];
 	var redownload = {};
@@ -381,7 +410,12 @@ function generateCode(){
 	for (var category in components) {
 		var all = components[category];
 		
-		for (var id in all) {
+		// In case if one component requires other, required component should go first.
+		var sorted = getSortedComponentsByRequirements(all);
+
+		for (var i = 0; i < sorted.length; i++) {
+			var id = sorted[i];
+
 			if(id === 'meta') {
 				continue;
 			}
