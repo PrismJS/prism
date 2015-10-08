@@ -22,6 +22,18 @@ var Prism = (function(){
 // Private helper vars
 var lang = /\blang(?:uage)?-(?!\*)(\w+)\b/i;
 
+// Stores callbacks to be run once a language is registered
+var loadCallbacks = {};
+// Runs the callbacks
+var runLoadCallbacks = function (id) {
+	if (loadCallbacks[id]) {
+		for (var i = 0, l = loadCallbacks[id].length; i < l; i++) {
+			loadCallbacks[id][i](_.languages[id]);
+		}
+		delete loadCallbacks[id];
+	}
+};
+
 var _ = _self.Prism = {
 	util: {
 		encode: function (tokens) {
@@ -64,6 +76,62 @@ var _ = _self.Prism = {
 	},
 
 	languages: {
+		/**
+		 * Registers a new language as being added.
+		 * The callback function will only be executed when all
+		 * dependencies are registered.
+		 *
+		 * @param {string} lang Id of the language
+		 * @param {string|string[]} extend One or several dependencies
+		 * @param {function} cb The callback function
+		 */
+		add: function (lang, extend, cb) {
+			if(arguments.length === 2) {
+				cb = extend;
+				extend = null;
+			}
+			var registerNewLang = function (f) {
+				_.languages[lang] = {};
+				f();
+				runLoadCallbacks(lang);
+			};
+			if (extend) {
+				_.languages.whenLoaded(extend, function () {
+					registerNewLang(cb);
+				});
+			} else {
+				registerNewLang(cb);
+			}
+		},
+
+		/**
+		 * Runs the callback once one or several languages
+		 * have been registered.
+		 * @param {string|string[]} id One or several languages
+		 * @param {function} cb The callback to run once the languages are registered
+		 */
+		whenLoaded: function (id, cb) {
+			if (_.util.type(id) === 'Array') {
+				var loaded = 0;
+				for(var i = 0, l = id.length; i < l; i++) {
+					this.whenLoaded(id[i], function () {
+						loaded++;
+						if (loaded === l) {
+							cb();
+						}
+					});
+				}
+			} else {
+				if (_.languages[id]) {
+					cb(_.languages[id]);
+				} else {
+					if (!loadCallbacks[id]) {
+						loadCallbacks[id] = [];
+					}
+					loadCallbacks[id].push(cb);
+				}
+			}
+		},
 		extend: function (id, redef) {
 			var lang = _.util.clone(_.languages[id]);
 
@@ -118,7 +186,7 @@ var _ = _self.Prism = {
 					ret[token] = grammar[token];
 				}
 			}
-			
+
 			// Update references in other language definitions
 			_.languages.DFS(_.languages, function(key, value) {
 				if (value === root[inside] && key != inside) {
@@ -443,53 +511,55 @@ if (typeof global !== 'undefined') {
      Begin prism-markup.js
 ********************************************** */
 
-Prism.languages.markup = {
-	'comment': /<!--[\w\W]*?-->/,
-	'prolog': /<\?[\w\W]+?\?>/,
-	'doctype': /<!DOCTYPE[\w\W]+?>/,
-	'cdata': /<!\[CDATA\[[\w\W]*?]]>/i,
-	'tag': {
-		pattern: /<\/?[^\s>\/=.]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\\1|\\?(?!\1)[\w\W])*\1|[^\s'">=]+))?)*\s*\/?>/i,
-		inside: {
-			'tag': {
-				pattern: /^<\/?[^\s>\/]+/i,
-				inside: {
-					'punctuation': /^<\/?/,
-					'namespace': /^[^\s>\/:]+:/
+Prism.languages.add('markup', function () {
+	Prism.languages.markup = {
+		'comment': /<!--[\w\W]*?-->/,
+		'prolog': /<\?[\w\W]+?\?>/,
+		'doctype': /<!DOCTYPE[\w\W]+?>/,
+		'cdata': /<!\[CDATA\[[\w\W]*?]]>/i,
+		'tag': {
+			pattern: /<\/?[^\s>\/=.]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\\1|\\?(?!\1)[\w\W])*\1|[^\s'">=]+))?)*\s*\/?>/i,
+			inside: {
+				'tag': {
+					pattern: /^<\/?[^\s>\/]+/i,
+					inside: {
+						'punctuation': /^<\/?/,
+						'namespace': /^[^\s>\/:]+:/
+					}
+				},
+				'attr-value': {
+					pattern: /=(?:('|")[\w\W]*?(\1)|[^\s>]+)/i,
+					inside: {
+						'punctuation': /[=>"']/
+					}
+				},
+				'punctuation': /\/?>/,
+				'attr-name': {
+					pattern: /[^\s>\/]+/,
+					inside: {
+						'namespace': /^[^\s>\/:]+:/
+					}
 				}
-			},
-			'attr-value': {
-				pattern: /=(?:('|")[\w\W]*?(\1)|[^\s>]+)/i,
-				inside: {
-					'punctuation': /[=>"']/
-				}
-			},
-			'punctuation': /\/?>/,
-			'attr-name': {
-				pattern: /[^\s>\/]+/,
-				inside: {
-					'namespace': /^[^\s>\/:]+:/
-				}
+
 			}
+		},
+		'entity': /&#?[\da-z]{1,8};/i
+	};
 
+	// Plugin to make entity title show the real entity, idea by Roman Komarov
+	Prism.hooks.add('wrap', function (env) {
+
+		if (env.type === 'entity') {
+			env.attributes['title'] = env.content.replace(/&amp;/, '&');
 		}
-	},
-	'entity': /&#?[\da-z]{1,8};/i
-};
+	});
 
-// Plugin to make entity title show the real entity, idea by Roman Komarov
-Prism.hooks.add('wrap', function(env) {
+	Prism.languages.xml = Prism.languages.markup;
+	Prism.languages.html = Prism.languages.markup;
+	Prism.languages.mathml = Prism.languages.markup;
+	Prism.languages.svg = Prism.languages.markup;
 
-	if (env.type === 'entity') {
-		env.attributes['title'] = env.content.replace(/&amp;/, '&');
-	}
 });
-
-Prism.languages.xml = Prism.languages.markup;
-Prism.languages.html = Prism.languages.markup;
-Prism.languages.mathml = Prism.languages.markup;
-Prism.languages.svg = Prism.languages.markup;
-
 
 /* **********************************************
      Begin prism-css.js
@@ -580,51 +650,54 @@ Prism.languages.clike = {
      Begin prism-javascript.js
 ********************************************** */
 
-Prism.languages.javascript = Prism.languages.extend('clike', {
-	'keyword': /\b(as|async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|false|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|true|try|typeof|var|void|while|with|yield)\b/,
-	'number': /\b-?(0x[\dA-Fa-f]+|0b[01]+|0o[0-7]+|\d*\.?\d+([Ee][+-]?\d+)?|NaN|Infinity)\b/,
-	// Allow for all non-ASCII characters (See http://stackoverflow.com/a/2008444)
-	'function': /[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*(?=\()/i
-});
+Prism.languages.add('javascript', 'clike', function () {
+	Prism.languages.javascript = Prism.languages.extend('clike', {
+		'keyword': /\b(as|async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|false|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|true|try|typeof|var|void|while|with|yield)\b/,
+		'number': /\b-?(0x[\dA-Fa-f]+|0b[01]+|0o[0-7]+|\d*\.?\d+([Ee][+-]?\d+)?|NaN|Infinity)\b/,
+		// Allow for all non-ASCII characters (See http://stackoverflow.com/a/2008444)
+		'function': /[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*(?=\()/i
+	});
 
-Prism.languages.insertBefore('javascript', 'keyword', {
-	'regex': {
-		pattern: /(^|[^/])\/(?!\/)(\[.+?]|\\.|[^/\\\r\n])+\/[gimyu]{0,5}(?=\s*($|[\r\n,.;})]))/,
-		lookbehind: true
-	}
-});
-
-Prism.languages.insertBefore('javascript', 'class-name', {
-	'template-string': {
-		pattern: /`(?:\\`|\\?[^`])*`/,
-		inside: {
-			'interpolation': {
-				pattern: /\$\{[^}]+\}/,
-				inside: {
-					'interpolation-punctuation': {
-						pattern: /^\$\{|\}$/,
-						alias: 'punctuation'
-					},
-					rest: Prism.languages.javascript
-				}
-			},
-			'string': /[\s\S]+/
-		}
-	}
-});
-
-if (Prism.languages.markup) {
-	Prism.languages.insertBefore('markup', 'tag', {
-		'script': {
-			pattern: /(<script[\w\W]*?>)[\w\W]*?(?=<\/script>)/i,
-			lookbehind: true,
-			inside: Prism.languages.javascript,
-			alias: 'language-javascript'
+	Prism.languages.insertBefore('javascript', 'keyword', {
+		'regex': {
+			pattern: /(^|[^/])\/(?!\/)(\[.+?]|\\.|[^/\\\r\n])+\/[gimyu]{0,5}(?=\s*($|[\r\n,.;})]))/,
+			lookbehind: true
 		}
 	});
-}
 
-Prism.languages.js = Prism.languages.javascript;
+	Prism.languages.insertBefore('javascript', 'class-name', {
+		'template-string': {
+			pattern: /`(?:\\`|\\?[^`])*`/,
+			inside: {
+				'interpolation': {
+					pattern: /\$\{[^}]+\}/,
+					inside: {
+						'interpolation-punctuation': {
+							pattern: /^\$\{|\}$/,
+							alias: 'punctuation'
+						},
+						rest: Prism.languages.javascript
+					}
+				},
+				'string': /[\s\S]+/
+			}
+		}
+	});
+
+	Prism.languages.whenLoaded('markup', function () {
+		Prism.languages.insertBefore('markup', 'tag', {
+			'script': {
+				pattern: /(<script[\w\W]*?>)[\w\W]*?(?=<\/script>)/i,
+				lookbehind: true,
+				inside: Prism.languages.javascript,
+				alias: 'language-javascript'
+			}
+		});
+	});
+
+	Prism.languages.js = Prism.languages.javascript;
+});
+
 
 /* **********************************************
      Begin prism-file-highlight.js

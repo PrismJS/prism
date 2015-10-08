@@ -17,6 +17,18 @@ var Prism = (function(){
 // Private helper vars
 var lang = /\blang(?:uage)?-(?!\*)(\w+)\b/i;
 
+// Stores callbacks to be run once a language is registered
+var loadCallbacks = {};
+// Runs the callbacks
+var runLoadCallbacks = function (id) {
+	if (loadCallbacks[id]) {
+		for (var i = 0, l = loadCallbacks[id].length; i < l; i++) {
+			loadCallbacks[id][i](_.languages[id]);
+		}
+		delete loadCallbacks[id];
+	}
+};
+
 var _ = _self.Prism = {
 	util: {
 		encode: function (tokens) {
@@ -59,6 +71,62 @@ var _ = _self.Prism = {
 	},
 
 	languages: {
+		/**
+		 * Registers a new language as being added.
+		 * The callback function will only be executed when all
+		 * dependencies are registered.
+		 *
+		 * @param {string} lang Id of the language
+		 * @param {string|string[]} extend One or several dependencies
+		 * @param {function} cb The callback function
+		 */
+		add: function (lang, extend, cb) {
+			if(arguments.length === 2) {
+				cb = extend;
+				extend = null;
+			}
+			var registerNewLang = function (f) {
+				_.languages[lang] = {};
+				f();
+				runLoadCallbacks(lang);
+			};
+			if (extend) {
+				_.languages.whenLoaded(extend, function () {
+					registerNewLang(cb);
+				});
+			} else {
+				registerNewLang(cb);
+			}
+		},
+
+		/**
+		 * Runs the callback once one or several languages
+		 * have been registered.
+		 * @param {string|string[]} id One or several languages
+		 * @param {function} cb The callback to run once the languages are registered
+		 */
+		whenLoaded: function (id, cb) {
+			if (_.util.type(id) === 'Array') {
+				var loaded = 0;
+				for(var i = 0, l = id.length; i < l; i++) {
+					this.whenLoaded(id[i], function () {
+						loaded++;
+						if (loaded === l) {
+							cb();
+						}
+					});
+				}
+			} else {
+				if (_.languages[id]) {
+					cb(_.languages[id]);
+				} else {
+					if (!loadCallbacks[id]) {
+						loadCallbacks[id] = [];
+					}
+					loadCallbacks[id].push(cb);
+				}
+			}
+		},
 		extend: function (id, redef) {
 			var lang = _.util.clone(_.languages[id]);
 
@@ -113,7 +181,7 @@ var _ = _self.Prism = {
 					ret[token] = grammar[token];
 				}
 			}
-			
+
 			// Update references in other language definitions
 			_.languages.DFS(_.languages, function(key, value) {
 				if (value === root[inside] && key != inside) {
