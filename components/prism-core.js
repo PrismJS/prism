@@ -17,18 +17,6 @@ var Prism = (function(){
 // Private helper vars
 var lang = /\blang(?:uage)?-(?!\*)(\w+)\b/i;
 
-// Stores callbacks to be run once a language is registered
-var loadCallbacks = {};
-// Runs the callbacks
-var runLoadCallbacks = function (id) {
-	if (loadCallbacks[id]) {
-		for (var i = 0, l = loadCallbacks[id].length; i < l; i++) {
-			loadCallbacks[id][i](_.languages[id]);
-		}
-		delete loadCallbacks[id];
-	}
-};
-
 var _ = _self.Prism = {
 	util: {
 		encode: function (tokens) {
@@ -88,7 +76,7 @@ var _ = _self.Prism = {
 			var registerNewLang = function (f) {
 				_.languages[lang] = {};
 				f();
-				runLoadCallbacks(lang);
+				_.hooks.run('new-language', lang);
 			};
 			if (extend) {
 				_.languages.whenLoaded(extend, function () {
@@ -120,10 +108,13 @@ var _ = _self.Prism = {
 				if (_.languages[id]) {
 					cb(_.languages[id]);
 				} else {
-					if (!loadCallbacks[id]) {
-						loadCallbacks[id] = [];
-					}
-					loadCallbacks[id].push(cb);
+					var langCb = function (langId) {
+						if (id === langId) {
+							cb(_.languages[id]);
+							_.hooks.remove('new-language', langCb);
+						}
+					};
+					_.hooks.add('new-language', langCb);
 				}
 			}
 		},
@@ -392,6 +383,14 @@ var _ = _self.Prism = {
 			hooks[name].push(callback);
 		},
 
+		remove: function (name, callback) {
+			var hooks = _.hooks.all,
+				index;
+			if (hooks[name] && (index = hooks[name].indexOf(callback)) >= 0) {
+				hooks[name].splice(index, 1, false);
+			}
+		},
+
 		run: function (name, env) {
 			var callbacks = _.hooks.all[name];
 
@@ -400,8 +399,13 @@ var _ = _self.Prism = {
 			}
 
 			for (var i=0, callback; callback = callbacks[i++];) {
-				callback(env);
+				typeof callback === 'function' && callback(env);
 			}
+
+			// Filter the callbacks to discard those that were removed in remove()
+			_.hooks.all[name] = _.hooks.all[name].filter(function(cb) {
+				return typeof cb === 'function';
+			});
 		}
 	}
 };
