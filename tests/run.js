@@ -21,6 +21,8 @@ for (var language in testSuite) {
 
 	(function (language, testFiles) {
 		describe("Testing language '" + language + "'", function () {
+			this.timeout(10000);
+
 			testFiles.forEach(
 				function (filePath) {
 					var fileName = path.basename(filePath, path.extname(filePath));
