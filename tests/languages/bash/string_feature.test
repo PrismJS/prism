@@ -6,6 +6,8 @@
 bar"
 'foo
 bar'
+"'foo'"
+'"bar"'
 "$@"
 "${foo}"
 << STRING_END
@@ -16,28 +18,40 @@ STRING_END
 foo $@
 bar
 EOF
+<< 'EOF'
+'single quoted string'
+"double quoted string"
+EOF
+<< "EOF"
+foo
+bar
+EOF
 
 ----------------------------------------------------
 
 [
 	["string", ["\"\""]],
-	["string", "''"],
+	["string", ["''"]],
 	["string", ["\"foo\""]],
-	["string", "'foo'"],
+	["string", ["'foo'"]],
 	["string", ["\"foo\r\nbar\""]],
-	["string", "'foo\r\nbar'"],
+	["string", ["'foo\r\nbar'"]],
+	["string", ["\"'foo'\""]],
+	["string", ["'\"bar\"'"]],
 	["string", [
 		"\"", ["variable", "$@"], "\""
 	]],
 	["string", [
 		"\"", ["variable", "${foo}"], "\""
 	]],
-	["operator", "<"],
-	["operator", "<"],
+	["operator", "<<"],
 	["string", ["STRING_END\r\nfoo\r\nbar\r\nSTRING_END"]],
-	["operator", "<"],
-	["operator", "<"],
-	["string", ["EOF\r\nfoo ", ["variable", "$@"], "\r\nbar\r\nEOF"]]
+	["operator", "<<"],
+	["string", ["EOF\r\nfoo ", ["variable", "$@"], "\r\nbar\r\nEOF"]],
+	["operator", "<<"],
+	["string", ["'EOF'\r\n'single quoted string'\r\n\"double quoted string\"\r\nEOF"]],
+	["operator", "<<"],
+	["string", ["\"EOF\"\r\nfoo\r\nbar\r\nEOF"]]
 ]
 
 ----------------------------------------------------

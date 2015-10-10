@@ -19,5 +19,15 @@ Prism.languages.fsharp = Prism.languages.extend('clike', {
 	]
 });
 Prism.languages.insertBefore('fsharp', 'keyword', {
-	'preprocessor': /^[^\r\n\S]*#.*/m
+	'preprocessor': {
+		pattern: /^[^\r\n\S]*#.*/m,
+		alias: 'property',
+		inside: {
+			'directive': {
+				pattern: /(\s*#)\b(else|endif|if|light|line|nowarn)\b/,
+				lookbehind: true,
+				alias: 'keyword'
+			}
+		}
+	}
 });

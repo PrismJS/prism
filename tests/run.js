@@ -3,9 +3,15 @@
 var TestDiscovery = require("./helper/test-discovery");
 var TestCase = require("./helper/test-case");
 var path = require("path");
+var argv = require("yargs").argv;
 
-// load complete test suite
-var testSuite = TestDiscovery.loadAllTests(__dirname + "/languages");
+var testSuite;
+if (argv.language) {
+	testSuite = TestDiscovery.loadSomeTests(__dirname + "/languages", argv.language);
+} else {
+	// load complete test suite
+	testSuite = TestDiscovery.loadAllTests(__dirname + "/languages");
+}
 
 // define tests for all tests in all languages in the test suite
 for (var language in testSuite) {
@@ -15,6 +21,8 @@ for (var language in testSuite) {
 
 	(function (language, testFiles) {
 		describe("Testing language '" + language + "'", function () {
+			this.timeout(10000);
+
 			testFiles.forEach(
 				function (filePath) {
 					var fileName = path.basename(filePath, path.extname(filePath));

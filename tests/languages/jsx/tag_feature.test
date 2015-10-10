@@ -35,7 +35,7 @@ var myElement = <MyComponent someProperty={true} />;
 		["script", [
 			 ["punctuation", "="],
 			 ["punctuation", "{"],
-			 ["keyword", "true"],
+			 ["boolean", "true"],
 			 ["punctuation", "}"]
 		]],
 		["punctuation", "/>"]

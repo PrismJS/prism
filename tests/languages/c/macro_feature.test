@@ -1,17 +1,41 @@
 # include <stdio.h>
   #define PG_locked 0
-#foo \
-bar
+
+#elif
+#else
+#endif
+#error
+#ifdef
+#ifndef
+#if
+#import
+#include
+#line
+#pragma
+#undef
+#using
 
 ----------------------------------------------------
 
 [
 	["macro", [
-		"# include ",
+		"# ", ["directive", "include"],
 		["string", "<stdio.h>"]
 	]],
-	["macro", ["#define PG_locked 0"]],
-	["macro", ["#foo \\\r\nbar"]]
+	["macro", ["#", ["directive", "define"], " PG_locked 0"]],
+	["macro", ["#", ["directive", "elif"]]],
+	["macro", ["#", ["directive", "else"]]],
+    ["macro", ["#", ["directive", "endif"]]],
+    ["macro", ["#", ["directive", "error"]]],
+    ["macro", ["#", ["directive", "ifdef"]]],
+    ["macro", ["#", ["directive", "ifndef"]]],
+    ["macro", ["#", ["directive", "if"]]],
+    ["macro", ["#", ["directive", "import"]]],
+    ["macro", ["#", ["directive", "include"]]],
+    ["macro", ["#", ["directive", "line"]]],
+    ["macro", ["#", ["directive", "pragma"]]],
+    ["macro", ["#", ["directive", "undef"]]],
+    ["macro", ["#", ["directive", "using"]]]
 ]
 
 ----------------------------------------------------

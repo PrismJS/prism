@@ -21,7 +21,7 @@ exp:
 	["bison", [
 		["c", [
 			["delimiter", "%{"],
-			["macro", ["#include ", ["string", "<stdio.h>"]]],
+			["macro", ["#", ["directive", "include"], ["string", "<stdio.h>"]]],
 			["delimiter", "%}"]
 		]],
 		["keyword", "%code"],

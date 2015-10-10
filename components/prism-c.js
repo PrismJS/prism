@@ -16,9 +16,17 @@ Prism.languages.insertBefore('c', 'string', {
 			'string': {
 				pattern: /(#\s*include\s*)(<.+?>|("|')(\\?.)+?\3)/,
 				lookbehind: true
+			},
+			// highlight macro directives as keywords
+			'directive': {
+				pattern: /(#\s*)\b(define|elif|else|endif|error|ifdef|ifndef|if|import|include|line|pragma|undef|using)\b/,
+				lookbehind: true,
+				alias: 'keyword'
 			}
 		}
-	}
+	},
+	// highlight predefined macros as constants
+	'constant': /\b(__FILE__|__LINE__|__DATE__|__TIME__|__TIMESTAMP__|__func__|EOF|NULL|stdin|stdout|stderr)\b/
 });
 
 delete Prism.languages.c['class-name'];

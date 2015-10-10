@@ -10,6 +10,15 @@ Prism.languages.csharp = Prism.languages.extend('clike', {
 Prism.languages.insertBefore('csharp', 'keyword', {
 	'preprocessor': {
 		pattern: /(^\s*)#.*/m,
-		lookbehind: true
+		lookbehind: true,
+		alias: 'property',
+		inside: {
+			// highlight preprocessor directives as keywords
+			'directive': {
+				pattern: /(\s*#)\b(define|elif|else|endif|endregion|error|if|line|pragma|region|undef|warning)\b/,
+				lookbehind: true,
+				alias: 'keyword'
+			}
+		}
 	}
 });
