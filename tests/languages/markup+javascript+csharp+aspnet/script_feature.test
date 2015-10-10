@@ -1,4 +1,4 @@
-<script runat="server">#foo</script>
+<script runat="server">#pragma</script>
 <script>/foo/</script>
 
 ----------------------------------------------------
@@ -21,7 +21,7 @@
 		["punctuation", ">"]
 	]],
 	["asp script", [
-		["preprocessor", "#foo"]
+		["preprocessor", ["#", ["directive", "pragma"]]]
 	]],
 	["tag", [
 		["tag", [

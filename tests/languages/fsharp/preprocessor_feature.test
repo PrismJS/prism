@@ -2,12 +2,19 @@
 #else
 #endif
 
+#light
+#line
+#nowarn
+
 ----------------------------------------------------
 
 [
-	["preprocessor", "#if foo"],
-	["preprocessor", "#else"],
-	["preprocessor", "#endif"]
+	["preprocessor", ["#", ["directive", "if"], " foo"]],
+	["preprocessor", ["#", ["directive", "else"]]],
+	["preprocessor", ["#", ["directive", "endif"]]],
+	["preprocessor", ["#", ["directive", "light"]]],
+	["preprocessor", ["#", ["directive", "line"]]],
+	["preprocessor", ["#", ["directive", "nowarn"]]]
 ]
 
 ----------------------------------------------------
