@@ -79,6 +79,10 @@ var components = {
 			"title": "AppleScript",
 			"owner": "Golmote"
 		},
+		"asciidoc": {
+			"title": "AsciiDoc",
+			"owner": "Golmote"
+		},
 		"aspnet": {
 			"title": "ASP.NET (C#)",
 			"require": "markup",
