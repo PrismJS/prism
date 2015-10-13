@@ -125,6 +125,8 @@ Prism.hooks.add('complete', function(env) {
 	fakeTimer = setTimeout(applyHash, 1);
 });
 
-addEventListener('hashchange', applyHash);
+if(window.addEventListener) {
+	window.addEventListener('hashchange', applyHash);
+}
 
 })();
