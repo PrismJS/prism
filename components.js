@@ -317,6 +317,11 @@ var components = {
 			"title": "OCaml",
 			"owner": "Golmote"
 		},
+		"parser": {
+			"title": "Parser",
+			"require": "markup",
+			"owner": "Golmote"
+		},
 		"pascal": {
 			"title": "Pascal",
 			"owner": "Golmote"
