@@ -79,6 +79,10 @@ var components = {
 			"title": "AppleScript",
 			"owner": "Golmote"
 		},
+		"asciidoc": {
+			"title": "AsciiDoc",
+			"owner": "Golmote"
+		},
 		"aspnet": {
 			"title": "ASP.NET (C#)",
 			"require": "markup",
@@ -302,6 +306,10 @@ var components = {
 		},
 		"nim": {
 			"title": "Nim",
+			"owner": "Golmote"
+		},
+		"nix": {
+			"title": "Nix",
 			"owner": "Golmote"
 		},
 		"nsis": {
@@ -533,6 +541,16 @@ var components = {
 		},
 		"previewer-easing": {
 			"title": "Previewer: Easing",
+			"require": "previewer-base",
+			"owner": "Golmote"
+		},
+		"previewer-time": {
+			"title": "Previewer: Time",
+			"require": "previewer-base",
+			"owner": "Golmote"
+		},
+		"previewer-angle": {
+			"title": "Previewer: Angle",
 			"require": "previewer-base",
 			"owner": "Golmote"
 		},
