@@ -394,6 +394,10 @@ var components = {
 			"title": "Rip",
 			"owner": "ravinggenius"
 		},
+		"roboconf": {
+			"title": "Roboconf",
+			"owner": "Golmote"
+		},
 		"ruby": {
 			"title": "Ruby",
 			"require": "clike",
