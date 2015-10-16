@@ -325,6 +325,10 @@ var components = {
 			"title": "OCaml",
 			"owner": "Golmote"
 		},
+		"parigp": {
+			"title": "PARI/GP",
+			"owner": "Golmote"
+		},
 		"pascal": {
 			"title": "Pascal",
 			"owner": "Golmote"
