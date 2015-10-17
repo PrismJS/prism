@@ -227,6 +227,10 @@ var components = {
 			"title": "HTTP",
 			"owner": "danielgtaylor"
 		},
+		"icon": {
+			"title": "Icon",
+			"owner": "Golmote"
+		},
 		"inform7": {
 			"title": "Inform 7",
 			"owner": "Golmote"
