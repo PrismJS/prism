@@ -274,6 +274,10 @@ var components = {
 			"title": "LOLCODE",
 			"owner": "Golmote"
 		},
+		"lua": {
+			"title": "Lua",
+			"owner": "Golmote"
+		},
 		"makefile": {
 			"title": "Makefile",
 			"owner": "Golmote"
