@@ -79,6 +79,10 @@ var components = {
 			"title": "AppleScript",
 			"owner": "Golmote"
 		},
+		"asciidoc": {
+			"title": "AsciiDoc",
+			"owner": "Golmote"
+		},
 		"aspnet": {
 			"title": "ASP.NET (C#)",
 			"require": "markup",
@@ -223,6 +227,10 @@ var components = {
 			"title": "HTTP",
 			"owner": "danielgtaylor"
 		},
+		"icon": {
+			"title": "Icon",
+			"owner": "Golmote"
+		},
 		"inform7": {
 			"title": "Inform 7",
 			"owner": "Golmote"
@@ -266,6 +274,10 @@ var components = {
 			"title": "LOLCODE",
 			"owner": "Golmote"
 		},
+		"lua": {
+			"title": "Lua",
+			"owner": "Golmote"
+		},
 		"makefile": {
 			"title": "Makefile",
 			"owner": "Golmote"
@@ -304,6 +316,10 @@ var components = {
 			"title": "Nim",
 			"owner": "Golmote"
 		},
+		"nix": {
+			"title": "Nix",
+			"owner": "Golmote"
+		},
 		"nsis": {
 			"title": "NSIS",
 			"owner": "idleberg"
@@ -319,6 +335,10 @@ var components = {
 		},
 		"oz": {
 			"title": "Oz",
+			"owner": "Golmote"
+		},
+		"parigp": {
+			"title": "PARI/GP",
 			"owner": "Golmote"
 		},
 		"pascal": {
