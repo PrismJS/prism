@@ -360,6 +360,10 @@ var components = {
 			"title": "Prolog",
 			"owner": "Golmote"
 		},
+		"puppet": {
+			"title": "Puppet",
+			"owner": "Golmote"
+		},
 		"pure": {
 			"title": "Pure",
 			"owner": "Golmote"
