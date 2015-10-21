@@ -4,7 +4,7 @@ Prism.languages.csharp = Prism.languages.extend('clike', {
 		/@("|')(\1\1|\\\1|\\?(?!\1)[\s\S])*\1/,
 		/("|')(\\?.)*?\1/
 	],
-	'number': /\b-?(0x[\da-f]+|\d*\.?\d+)\b/i
+	'number': /\b-?(0x[\da-f]+|\d*\.?\d+f?)\b/i
 });
 
 Prism.languages.insertBefore('csharp', 'keyword', {

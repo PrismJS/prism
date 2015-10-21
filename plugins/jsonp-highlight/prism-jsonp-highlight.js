@@ -1,5 +1,5 @@
 (function() {
-	if ( !self.Prism || !self.document || !document.querySelectorAll ) return;
+	if ( !self.Prism || !self.document || !document.querySelectorAll || ![].filter) return;
 
 	var adapters = [];
 	function registerAdapter(adapter) {
