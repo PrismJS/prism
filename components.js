@@ -223,6 +223,11 @@ var components = {
 			"title": "Haskell",
 			"owner": "bholst"
 		},
+		"haxe": {
+			"title": "Haxe",
+			"require": "clike",
+			"owner": "Golmote"
+		},
 		"http": {
 			"title": "HTTP",
 			"owner": "danielgtaylor"
