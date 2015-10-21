@@ -341,6 +341,11 @@ var components = {
 			"title": "PARI/GP",
 			"owner": "Golmote"
 		},
+		"parser": {
+			"title": "Parser",
+			"require": "markup",
+			"owner": "Golmote"
+		},
 		"pascal": {
 			"title": "Pascal",
 			"owner": "Golmote"
