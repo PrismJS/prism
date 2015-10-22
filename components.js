@@ -266,6 +266,11 @@ var components = {
 			"title": "Keyman",
 			"owner": "mcdurdin"
 		},
+		"kotlin": {
+			"title": "Kotlin",
+			"require": "clike",
+			"owner": "Golmote"
+		},
 		"latex": {
 			"title": "LaTeX",
 			"owner": "japborst"
