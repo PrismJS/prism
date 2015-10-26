@@ -1,9 +1,3 @@
-"""foobar"""
-"""fo"o
-bar"""
-'''foobar'''
-'''fo'o
-bar'''
 ""
 "fo\"obar"
 ''
@@ -12,10 +6,6 @@ bar'''
 ----------------------------------------------------
 
 [
-	["string", "\"\"\"foobar\"\"\""],
-	["string", "\"\"\"fo\"o\r\nbar\"\"\""],
-	["string", "'''foobar'''"],
-	["string", "'''fo'o\r\nbar'''"],
 	["string", "\"\""],
 	["string", "\"fo\\\"obar\""],
 	["string", "''"],

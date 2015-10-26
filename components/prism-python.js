@@ -1,9 +1,13 @@
 Prism.languages.python= {
+	'triple-quoted-string': {
+		pattern: /"""[\s\S]+?"""|'''[\s\S]+?'''/,
+		alias: 'string'
+	},
 	'comment': {
 		pattern: /(^|[^\\])#.*/,
 		lookbehind: true
 	},
-	'string': /"""[\s\S]+?"""|'''[\s\S]+?'''|("|')(?:\\?.)*?\1/,
+	'string': /("|')(?:\\?.)*?\1/,
 	'function' : {
 		pattern: /((?:^|\s)def[ \t]+)[a-zA-Z_][a-zA-Z0-9_]*(?=\()/g,
 		lookbehind: true
