@@ -117,13 +117,13 @@ gulp.task('languages-plugins', function (cb) {
 gulp.task('changelog', function (cb) {
 	return gulp.src(paths.changelog)
 		.pipe(replace(
-			/\(#(\d+)\)/g,
-			'([#$1](https://github.com/PrismJS/prism/issues/$1))'
+			/#(\d+)(?![\d\]])/g,
+			'[#$1](https://github.com/PrismJS/prism/issues/$1)'
 		))
 		.pipe(replace(
 			/\[[\da-f]+(?:, *[\da-f]+)*\]/g,
 			function (match) {
-				return match.replace(/([\da-f]+)/g, '[`$1`](https://github.com/PrismJS/prism/commit/$1)');
+				return match.replace(/([\da-f]{7})[\da-f]*/g, '[`$1`](https://github.com/PrismJS/prism/commit/$1)');
 			}
 		))
 		.pipe(gulp.dest('.'));
