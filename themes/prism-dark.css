@@ -55,6 +55,7 @@ pre[class*="language-"] {
 	border-radius: .3em;
 	border: .13em solid hsl(30, 20%, 40%);
 	box-shadow: 1px 1px .3em -.1em black inset;
+	white-space: normal;
 }
 
 .token.comment,
