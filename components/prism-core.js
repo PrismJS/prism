@@ -183,6 +183,7 @@ var _ = _self.Prism = {
 		};
 
 		if (!code || !grammar) {
+			_.hooks.run('wont-highlight', env);
 			_.hooks.run('complete', env);
 			return;
 		}
