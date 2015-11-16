@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta charset="utf-8" />
+	<link rel="shortcut icon" href="favicon.png" />
+	<title>Whitespace trimmer ▲ Prism plugins</title>
+	<base href="../.." />
+	<link rel="stylesheet" href="style.css" />
+	<link rel="stylesheet" href="themes/prism.css" data-noprefix />
+	<link rel="stylesheet" href="plugins/show-invisibles/prism-show-invisibles.css" data-noprefix />
+	<script src="prefixfree.min.js"></script>
+
+	<script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
+	<script src="http://www.google-analytics.com/ga.js" async></script>
+</head>
+<body>
+
+<header>
+	<div class="intro" data-src="templates/header-plugins.html" data-type="text/html"></div>
+
+	<h2>Whitespace trimmer</h2>
+	<p>Removes initial and tailing blank lines, end-of-line whitespace, and consistent indents.</p>
+</header>
+
+<section class="language-markup">
+	<h1>How to use</h1>
+
+	<p>Obviously, this is supposed to work only for code blocks (<code>&lt;pre>&lt;code></code>) and not for inline code.</p>
+	<p>With this plugin included, all periphery whitespace will be removed by default.</p>
+	<p>To bypass this behaviour for a particular <code>&lt;code></code> block, you may add one or more of the following classes to it or any ancestor:</p>
+	<dl>
+		<dt>dont-trim</dt>
+		<dd>Disables whitespace trimming entirely.</dd>
+		<dt>dont-trim-start</dt>
+		<dd>Preserve initial blank lines.</dd>
+		<dt>dont-trim-end</dt>
+		<dd>Preserve trailing blank lines.</dd>
+		<dt>dont-trim-trailing</dt>
+		<dd>Preserve whitespace at the end of each line.</dd>
+		<dt>dont-trim-indent</dt>
+		<dd>Preserve overall indentation.</dd>
+	</dl>
+	<p>Alternately, you can set global preferences in code by modifying <code class="language-javascript">Prism.plugins.trim</code>.</p>
+</section>
+
+<section class="language-markup">
+	<h1>Examples</h1>
+	<p>Without this plugin, your code blocks might end up looking like this</p>
+	<pre class="dont-trim _trim-example"><code>   
+
+		&lt;p>Hello, world!&lt;/p>  
+		&lt;ol> 	 
+		    &lt;li>one&lt;/li>
+			&lt;li>two&lt;/li>
+		&lt;/ol>	
+
+	</code></pre>
+	<p>With this plugin enabled, here's what you'll get instead!</p>
+	<p class="_trim-placeholder">
+		You'd see an example here if you
+		had Javascript turned on…
+	</p>
+</section>
+
+<footer data-src="templates/footer.html" data-type="text/html"></footer>
+
+<script src="utopia.js"></script>
+<script>
+(function() {
+	// clone the example so we don't need to keep the two
+	// code blocks in sync by hand
+	var example = $("._trim-example");
+	var placeholder = $("._trim-placeholder");
+	var trimmed = example.cloneNode(true);
+	trimmed.removeAttribute("class");
+	placeholder.parentNode.replaceChild(trimmed, placeholder);
+})();
+</script>
+<script src="prism.js"></script>
+<script src="plugins/show-invisibles/prism-show-invisibles.js"></script>
+<script src="plugins/trim/prism-trim.js"></script>
+<script src="components.js"></script>
+<script src="code.js"></script>
+
+
+</body>
+</html>
