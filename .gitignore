@@ -2,3 +2,6 @@ hide-*.js
 node_modules
 .idea/
 .DS_Store
+codeNotShown.min.js
+errorExample.min.js
+example.min.js
