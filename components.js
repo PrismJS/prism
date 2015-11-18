@@ -598,6 +598,10 @@ var components = {
 			"title": "Keep Markup",
 			"owner": "Golmote",
 			"noCSS": true
+		},
+		"eval": {
+			"title": "eval",
+			"owner": "jandockx"
 		}
 	}
 };
