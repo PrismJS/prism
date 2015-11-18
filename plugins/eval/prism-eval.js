@@ -46,7 +46,7 @@
 		actualElement.appendChild(line);
 	}
 
-	var noOutput = (function(str, label) {
+	var noOutput = (function (str, label) {
 		// NOP
 	}).bind(Prism.eval);
 
@@ -149,7 +149,7 @@
 
 	Prism.hooks.add("complete", function (env) {
 		/* This is called twice for elements handled by File HighLight, once when it is discovered by Prism itself,
-			 and once when it is loaded by the plugin. This goes for all "hooks". */
+		 and once when it is loaded by the plugin. This goes for all "hooks". */
 
 
 		// works only for <code> wrapped inside <pre> (not inline), with a truthy "data-eval" attribute
