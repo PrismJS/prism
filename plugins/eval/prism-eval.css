@@ -1,0 +1,137 @@
+.prism-eval-output {
+	position: relative;
+	box-sizing: border-box;
+	margin-bottom: 1em;
+	margin-right: 0;
+	background-color: #ffdd00;
+	white-space: normal;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	max-height: inherit;
+	height: 100%;
+	direction: ltr;
+	text-align: left;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	color: #c92c2c;
+	tab-size: 4;
+}
+
+div.prism-eval-output {
+	padding: .2em;
+	border-left: 10px solid #0c1e2e;
+	display: block;
+	overflow: visible;
+	max-height: 30em;
+	padding: 0;
+	box-shadow: -1px 0px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf;
+}
+
+div.prism-eval-output:before, div.prism-eval-output:after {
+	content: "";
+	z-index: -2;
+	display: block;
+	position: absolute;
+	bottom: 0.75em;
+	width: 40%;
+	height: 20%;
+	box-shadow: 0px 13px 8px #979797;
+}
+
+div.prism-eval-output:before {
+	left: 0.18em;
+	right: auto;
+	transform: rotate(-2deg);
+}
+
+div.prism-eval-output:after {
+	right: 0.75em;
+	left: auto;
+	transform: rotate(2deg);
+}
+
+span.prism-eval-output {
+	margin-left: 0.5em;
+	padding: .2em;
+	border-radius: .3em;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	display: inline;
+	min-width: 30px;
+}
+
+.prism-eval-log,
+.prism-eval-info,
+.prism-eval-warn,
+.prism-eval-error,
+.prism-eval-result {
+	position: relative;
+}
+
+div .prism-eval-log,
+div .prism-eval-info,
+div .prism-eval-warn,
+div .prism-eval-error,
+.prism-eval-result {
+	display: block;
+	margin-left: 16px;
+}
+
+span .prism-eval-log:before,
+span .prism-eval-info:before,
+span .prism-eval-warn:before,
+span .prism-eval-error:before,
+span .prism-eval-result:before,
+span .prism-eval-log:after,
+span .prism-eval-info:after,
+span .prism-eval-warn:after,
+span .prism-eval-result:after,
+span .prism-eval-error:after,
+span .prism-eval-log,
+span .prism-eval-info,
+span .prism-eval-warn,
+span .prism-eval-error,
+span .prism-eval-result {
+	display: inline;
+}
+
+span .prism-eval-log:before,
+span .prism-eval-info:before,
+span .prism-eval-warn:before,
+span .prism-eval-error:before,
+span .prism-eval-result:before,
+span .prism-eval-log:after,
+span .prism-eval-info:after,
+span .prism-eval-warn:after,
+span .prism-eval-error:after,
+span .prism-eval-result:after {
+	content: "—";
+	margin-left: 0.2em;
+	margin-right: 0.2em;
+}
+
+span .prism-eval-log,
+span .prism-eval-info,
+span .prism-eval-warn,
+span .prism-eval-error,
+span .prism-eval-result {
+	margin-left: 0.3em;
+	margin-right: 0.3em;
+}
+
+.prism-eval-info {
+	color: blue;
+}
+
+.prism-eval-warn {
+	background-color: #fefadf;
+}
+
+.prism-eval-error {
+	color: red;
+	background-color: #feebeb;
+}
+
+.prism-eval-result {
+	color: black;
+	font-weight: bolder;
+}

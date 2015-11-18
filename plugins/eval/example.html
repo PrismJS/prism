@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Prism Eval Example</title>
+  <link href="../prism/prism.css" rel="stylesheet"/>
+  <link href="prism-eval.css" rel="stylesheet"/>
+</head>
+<body>
+
+
+<h1>Evaluation on the next tick</h1>
+
+<p>This plugin makes it possible to evaluate JavaScript that is highligthed. The code is evaluated on the next tick,
+after Prism has finished rendering the block. Output is shown.</p>
+
+<pre><code class="language-javascript" data-eval="true">
+Prism.eval.test.codeExecuted("first example");
+5 + 6;
+</code></pre>
+
+
+
+
+
+<h1>No Evaluation</h1>
+
+<p>Nothing happens when the language is not JavaScript:</p>
+
+<pre data-eval="true"><code class="language-css">
+code[class*="language"] {
+  max-height: inherit;
+  height: 100%;
+  padding: 0 1em;
+  display: block;
+  overflow: auto;
+}
+</code></pre>
+
+<p>An empty <code class="language-html">&lt;code&gt;</code> block is evaluated, but does nothing, as it obviously
+  contains no code.
+  It is logged as <code>info</code> (see console).</p>
+
+<pre data-eval="true"><code class="language-javascript"></code></pre>
+
+<p>An blank <code class="language-html">&lt;code&gt;</code> block is evaluated, but does nothing, as it
+  obviously contains no code. No code is valid code.</p>
+
+<pre data-eval="true"><code class="language-javascript">
+
+</code></pre>
+
+
+
+
+
+<h1>Evaluation when requested</h1>
+
+<p>When we find a <code class="language-html">&lt;code&gt;</code> block for JavaScript, to be interpreted by
+  Prism, with a truthy <code>data-eval</code>
+  attribute, on the <code class="language-html">&lt;code&gt;</code> or its parent element, the code
+  inside the block is evaluated.</p>
+
+
+
+<h2>Requested</h2>
+
+<p><code class="language-html">data-eval</code> can be set on the <code>&lt;code&gt;</code> element:</p>
+
+<pre><code class="language-javascript" data-eval="true">
+Prism.eval.test.codeExecuted("data-eval set on code");
+</code></pre>
+
+<p><code class="language-html">data-eval</code> can be set on the parent element:</p>
+
+<pre data-eval="true"><code class="language-javascript">
+Prism.eval.test.codeExecuted("data-eval set on parent of code");
+</code></pre>
+
+<p>It also works on in-line <code class="language-html">&lt;code&gt;</code>-blocks:
+  <code class="language-javascript" data-eval="true">Prism.eval.test.codeExecuted("in-line");</code>.</p>
+
+
+
+<h2>Not Requested</h2>
+
+<p>Without a <code class="language-html">data-eval</code> attribute, there is no evaluation:</p>
+
+<pre><code class="language-javascript">
+Prism.eval.test.codeShouldNotBeExecuted("data-eval not set");
+</code></pre>
+
+<p>When the <code class="language-html">data-eval</code> attribute is <em>falsy</em>, there is no evaluation. The empty
+  string is <em>falsy</em>:</p>
+
+<pre data-eval=""><code class="language-javascript">
+Prism.eval.test.codeShouldNotBeExecuted("data-eval empty string");
+</code></pre>
+
+
+
+<h2>Any String is <em>thruthy</em></h2>
+
+<p><code class="language-javascript">false</code> as an HTML attribute value is just a string, and thus <em>thruthy
+</em>:</p>
+
+<pre data-eval="false"><code class="language-javascript">
+Prism.eval.test.codeExecuted("data-eval false");
+</code></pre>
+
+<p><code class="language-javascript">0</code> as an HTML attribute value is just a string, and thus <em>thruthy</em>:
+</p>
+
+<pre data-eval="0"><code class="language-javascript">
+Prism.eval.test.codeExecuted("data-eval 0");
+</code></pre>
+
+<p>Remember: the string with one space is not an empty string.</p>
+
+<pre data-eval=" "><code class="language-javascript">
+Prism.eval.test.codeExecuted("data-eval one space");
+</code></pre>
+
+
+
+<h2>Precedence</h2>
+
+<p>When <code class="language-html">data-eval</code> is defined on both the
+  <code class="language-html">&lt;code&gt;</code>-tag and its parent,
+  the <em>thruthy</em> version gets precedence:</p>
+
+<pre data-eval="true"><code class="language-javascript" data-eval="">
+Prism.eval.test.codeExecuted("data-eval true, empty");
+</code></pre>
+
+<pre data-eval=""><code class="language-javascript" data-eval="true">
+Prism.eval.test.codeExecuted("data-eval empty, true");
+</code></pre>
+
+<p>Only when both occurences are <em>falsy</em>, there is no evaluation:</p>
+
+<pre data-eval=""><code class="language-javascript" data-eval="">
+Prism.eval.test.codeShouldNotBeExecuted("data-eval twice empty");
+</code></pre>
+
+
+
+
+<h1>Output</h1>
+
+<p>The plugin makes it possible to show output in the page in a separate element. To do this, call
+  <code class="language-javascript">Prism.eval.log(str)</code>,
+  <code class="language-javascript">Prism.eval.info(str)</code>,
+  <code class="language-javascript">Prism.eval.warn(str)</code>, or
+  <code class="language-javascript">Prism.eval.error(str)</code>.
+  In all cases, the CSS class <code class="language-html">prism-eval-output</code> is added
+  to the output element or elements, and the CSS class
+  <code class="language-html">prism-eval-log</code>,
+  <code class="language-html">prism-eval-info</code>,
+  <code class="language-html">prism-eval-warn</code>, or
+  <code class="language-html">prism-eval-error</code> is used for the child elements, respectively.</p>
+
+<p>By default, a <code class="language-html">&lt;div&gt;</code> element is added after the
+  <code class="language-html">&lt;pre&gt;</code> block that shows all output from the element.
+  Different output calls result in separate <code class="language-html">&lt;div&gt;</code> children
+  in the output tag. The result is shown if it is not <code class="language-javascript">undefined</code>.</p>
+
+<pre><code class="language-javascript" data-eval="true">
+Prism.eval.log("example block log");
+Prism.eval.info("example block info");
+Prism.eval.warn("example block warn");
+Prism.eval.error("example block error");
+Prism.eval.test.codeExecuted("block output");
+"a result to show";
+</code></pre>
+
+<p>(Note that the <code class="language-javascript">Prism.eval.logLevel</code>
+  is only used for internal reporting, and has nothing to do with output.)</p>
+
+<p>For an inline fragment, by default, a <code class="language-html">&lt;span&gt;</code> element is added after the
+  <code class="language-html">&lt;code&gt;</code> block that shows all output from the element.
+  Different output calls result in separate <code class="language-html">&lt;span&gt;</code> children
+  in the output tag: <code class="language-javascript" data-eval="true">Prism.eval.log("example inline log");
+  Prism.eval.info("example inline info");
+  Prism.eval.warn("example inline warn");
+  Prism.eval.error("example inline error");
+  Prism.eval.test.codeExecuted("inline output");</code>.</p>
+
+<p>You can easily show the result of a JavaScript expression:
+  <code class="language-javascript" data-eval="true">Object.keys(Prism.eval).join(", ")</code>.</p>
+
+<p>If the <code class="language-html">&lt;code&gt;</code> block, or its parent, have an
+  <code class="language-html">data-output</code> attribute, and an element is found in the page with
+  that <code class="language-html">id</code> in the page, that is used instead. The following output:</p>
+
+<div id="exampleDataOutput1"></div>
+
+<p>is generated by this code:
+  <code class="language-javascript" data-eval="true" data-output="exampleDataOutput1">
+  Prism.eval.info("example data-output 1 info");
+  Prism.eval.test.codeExecuted("data-output 1");</code>.
+  Note further that inline code generated block output here. It can also generate inline output:
+  <span id="exampleDataOutput2"></span> is the output of:</p>
+
+<pre><code class="language-javascript" data-eval="true" data-output="exampleDataOutput2">
+Prism.eval.info("example data-output 2 info");
+Prism.eval.test.codeExecuted("data-output 2");
+</code></pre>
+
+<p>If no element is found in the page with the <code class="language-html">id</code> specified in
+  <code class="language-html">data-output</code> attribute, the created output element will
+  get that <code class="language-html">id</code>.</p>
+
+<pre><code class="language-javascript" data-eval="true" data-output="exampleDataOutput3">
+Prism.eval.info("example data-output 3 info");
+Prism.eval.test.codeExecuted("data-output 3");
+</code></pre>
+
+<p>If the <code class="language-html">data-output</code> attribute has value
+  <code class="language-html">&quot;none&quot;</code>, the code is executed, but there is no output:
+  <code class="language-javascript" data-eval="true" data-output="none">
+  Prism.eval.info("example data-output 4 info");
+  Prism.eval.test.codeExecuted("data-output 4");</code>. You see? No output here.</p>
+
+<p>If the output methods are called with a second parameter, a <em>label</em>, that second parameter is appended to
+  the <code class="language-html">id</code> to which the output will be added, separated with a dash
+  (<code class="language-html">DATA_OUTPUT_ID-EXTRA_LABEL</code>). This only works if
+  such an element exists in the page. If no such element is found, the output is added to the default
+  element instead.</p>
+
+<pre><code class="language-javascript" data-eval="true" data-output="exampleDataOutput5">
+Prism.eval.info("example data-output 5 info alpha", "alpha label");
+Prism.eval.info("example data-output 5 info 2", 2);
+Prism.eval.info("example data-output 5 info with a non-existing label", "label doesn't exist");
+Prism.eval.test.codeExecuted("data-output 5");
+</code></pre>
+
+<div id="exampleDataOutput5-alpha label"></div>
+
+<div id="exampleDataOutput5-2"></div>
+
+<div id="exampleDataOutput5-not used"></div>
+
+
+
+
+
+<h1>Errors</h1>
+
+<p>Any uncaught exception results in an error message.</p>
+
+<pre><code class="language-javascript" data-eval="true">
+Prism.eval.test.codeExecuted("will throw an error (in html)");
+this.isNotJs();
+Prism.eval.test.codeShouldNotBeExecuted("will not be reached (in html)");
+</code></pre>
+
+<p>It doesn't make sense to show a stack trace: since this is text that is evaluated, you
+  will only see the plugin's call of <code class="language-javascript">eval()</code>.</p>
+
+
+
+
+
+<h1>Evaluation of code with File Highlight</h1>
+
+<h2>data-eval=&quot;true&quot;</h2>
+
+<p>Evaluation also works with code included with the Prism File Highlight plugin.
+  The plugin first adds the text <q>Loading…</q>. Execution would fail
+  on that, as it is not JavaScript. Therefor, if the code to be executed is exactly
+  <code class="language-javascript">"Loading…"</code>, this plugin will not evaluate
+  the code. The code will be evaluated once it is loaded.</p>
+
+<pre data-src="example.js" data-eval="true"></pre>
+
+<p>The labeled output is not shown, because there is no output element with the label as
+  <code class="language-html">id</code> in this page, and no
+  <code class="language-html">data-output</code> was specified on the
+  <code class="language-html">pre</code> above. A warning for this is shown in the console.</p>
+
+<p>Errors in included code are caught too:</p>
+
+<pre data-src="errorExample.js" data-eval="true"></pre>
+
+<h2>data-eval=&quot;script&quot;</h2>
+
+<p>If the value of <code class="language-html">data-eval</code> attribute is set to,
+  <code class="language-html">&quot;script&quot;</code>,
+  the code is not evaluated using <code class="language-javascript">eval()</code>,
+  but a <code class="language-html">&lt;script&gt;</code> tag to load
+  and evaluate is added to the <code class="language-html">&lt;head&gt;</code>.</p>
+
+<pre data-src="example.js" data-eval="script"></pre>
+
+<p>The output of code loaded as script is always displayed in an element with
+  <code class="language-html">id=&quot;prism-eval-output&quot;</code>.
+  We cannot diversify here. You have to add such element yourself. It will not be created (this plugin
+  doesn't know where you want it if there are more scripts to execute). As a consequence, the output
+  of the next included code is shown in the same output element below.</p>
+
+<div id="prism-eval-output"></div>
+
+<p>Labeled output also works for scripts, by appending the label to
+  <code class="language-html">prism-eval-output</code>, like so:
+  <code class="language-html">id=&quot;prism-eval-output-LABEL&quot;</code>.
+  This output comes from the script above:</p>
+
+<div id="prism-eval-output-labeled"></div>
+
+<p>Now, errors are not caught. You are on your own. See your console for the error. The result of the script
+  (<code class="language-javascript">5 + 6</code>) cannot be shown.</p>
+
+<pre data-src="errorExample.js" data-eval="script"></pre>
+
+<p>The following output is created by a script that is included in a
+  <code class="language-html">&lt;script&gt;</code>-tag, but not shown by Prism.
+  That works also.</p>
+
+<div id="prism-eval-output-notShownByPrism"></div>
+
+
+
+
+
+<h1>Logging of plugin behavior</h1>
+
+<p>The logging level of the plugin behavior can be set by setting
+  <code class="language-javascript">Prism.eval.logLevel</code> to
+  <code class="language-javascript">"debug"</code>,
+  <code class="language-javascript">"info"</code>,
+  <code class="language-javascript">"warn"</code>, or
+  <code class="language-javascript">"error"</code>.
+  The default value is <code class="language-javascript">"warn"</code>.</p>
+<p>In this page,
+  <code class="language-javascript" data-eval="true" data-output="logLevel">Prism.eval.logLevel</code>
+  is <span id="logLevel"></span>.
+</p>
+
+
+
+
+<script src="../prism/prism.uncompressed.js"></script>
+<script src="prism-eval.js"></script>
+<script>
+  Prism.eval.logLevel = "info";
+</script>
+<script src="codeNotShown.js"></script>
+<script>
+  Prism.eval.test = {
+    executed: [],
+    shouldNotBeExecuted: [],
+    codeExecuted: function (label) {
+      this.executed.push(label);
+      Prism.eval.log(label);
+    },
+    codeShouldNotBeExecuted: function (label) {
+      this.shouldNotBeExecuted.push(label);
+      Prism.eval.error(label);
+    }
+  };
+
+  setTimeout(
+      function() {
+        var expectedExecuted = 21;
+        console.log("executed: " + Prism.eval.test.executed.join("; "));
+        if (Prism.eval.test.executed.length !== expectedExecuted) {
+          console.error("executed " + Prism.eval.test.executed.length + ", but expected " + expectedExecuted);
+        }
+        if (Prism.eval.test.shouldNotBeExecuted.length !== 0) {
+          console.error("should not be executed " + Prism.eval.test.shouldNotBeExecuted.length + ", but expected 0");
+          console.log("should not be executed: " + Prism.eval.test.shouldNotBeExecuted);
+        }
+      },
+      1000
+  );
+</script>
+</body>
+</html>
