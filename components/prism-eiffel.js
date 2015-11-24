@@ -11,7 +11,7 @@ Prism.languages.eiffel = {
 	'comment': /--.*/,
 	// normal char | special char | char code
 	'char': /'(?:%'|.)+?'/,
-	'keyword': /\b(?:across|agent|alias|all|and|attached|as|assign|attribute|check|class|convert|create|Current|debug|deferred|detachable|do|else|elseif|end|ensure|expanded|export|external|feature|from|frozen|if|implies|inherit|inspect|invariant|like|local|loop|not|note|obsolete|old|once|or|Precursor|redefine|rename|require|rescue|Result|retry|select|separate|some|then|undefine|until|variant|Void|when|xor)\b/i,
+	'keyword': /\b(?:across|agent|alias|all|and|attached|as|assign|attribute|check|class|convert|create|Current|debug|deferred|detachable|do|else|elseif|end|ensure|expanded|export|external|feature|from|frozen|if|implies|inherit|inspect|invariant|like|local|loop|not|note|obsolete|old|once|or|Precursor|redefine|rename|require|rescue|Result|retry|select|separate|some|then|undefine|until|variant|Void|when|xor|BOOLEAN|CHARACTER|CHARACTER_8|CHARACTER_32|INTEGER|INTEGER_8|INTEGER_16|INTEGER_32|INTEGER_64|NATURAL|NATURAL_8|NATURAL_16|NATURAL_32|NATURAL_64|REAL|REAL_32|REAL_64)\b/i,
 	'boolean': /\b(?:True|False)\b/i,
 	'number': [
 		// hexa | octal | bin
