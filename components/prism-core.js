@@ -59,6 +59,65 @@ var _ = _self.Prism = {
 	},
 
 	languages: {
+		/**
+		 * Registers a new language as being added.
+		 * The callback function will only be executed when all
+		 * dependencies are registered.
+		 *
+		 * @param {string} lang Id of the language
+		 * @param {string|string[]} extend One or several dependencies
+		 * @param {function} cb The callback function
+		 */
+		add: function (lang, extend, cb) {
+			if(arguments.length === 2) {
+				cb = extend;
+				extend = null;
+			}
+			var registerNewLang = function (f) {
+				_.languages[lang] = {};
+				f();
+				_.hooks.run('new-language', lang);
+			};
+			if (extend) {
+				_.languages.whenLoaded(extend, function () {
+					registerNewLang(cb);
+				});
+			} else {
+				registerNewLang(cb);
+			}
+		},
+
+		/**
+		 * Runs the callback once one or several languages
+		 * have been registered.
+		 * @param {string|string[]} id One or several languages
+		 * @param {function} cb The callback to run once the languages are registered
+		 */
+		whenLoaded: function (id, cb) {
+			if (_.util.type(id) === 'Array') {
+				var loaded = 0;
+				for(var i = 0, l = id.length; i < l; i++) {
+					this.whenLoaded(id[i], function () {
+						loaded++;
+						if (loaded === l) {
+							cb();
+						}
+					});
+				}
+			} else {
+				if (_.languages[id]) {
+					cb(_.languages[id]);
+				} else {
+					var langCb = function (langId) {
+						if (id === langId) {
+							cb(_.languages[id]);
+							_.hooks.remove('new-language', langCb);
+						}
+					};
+					_.hooks.add('new-language', langCb);
+				}
+			}
+		},
 		extend: function (id, redef) {
 			var lang = _.util.clone(_.languages[id]);
 
@@ -113,7 +172,7 @@ var _ = _self.Prism = {
 					ret[token] = grammar[token];
 				}
 			}
-			
+
 			// Update references in other language definitions
 			_.languages.DFS(_.languages, function(key, value) {
 				if (value === root[inside] && key != inside) {
@@ -327,6 +386,14 @@ var _ = _self.Prism = {
 			hooks[name].push(callback);
 		},
 
+		remove: function (name, callback) {
+			var hooks = _.hooks.all,
+				index;
+			if (hooks[name] && (index = hooks[name].indexOf(callback)) >= 0) {
+				hooks[name].splice(index, 1, false);
+			}
+		},
+
 		run: function (name, env) {
 			var callbacks = _.hooks.all[name];
 
@@ -335,8 +402,13 @@ var _ = _self.Prism = {
 			}
 
 			for (var i=0, callback; callback = callbacks[i++];) {
-				callback(env);
+				typeof callback === 'function' && callback(env);
 			}
+
+			// Filter the callbacks to discard those that were removed in remove()
+			_.hooks.all[name] = _.hooks.all[name].filter(function(cb) {
+				return typeof cb === 'function';
+			});
 		}
 	}
 };
