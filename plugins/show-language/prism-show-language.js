@@ -12,7 +12,6 @@ Prism.hooks.add('before-highlight', function(env) {
 		return;
 	}
 	var language = Languages[env.language] || (env.language.substring(0, 1).toUpperCase() + env.language.substring(1));
-	pre.setAttribute('data-language', language);
 
 	/* check if the divs already exist */
 	var sib = pre.previousSibling;
@@ -21,23 +20,19 @@ Prism.hooks.add('before-highlight', function(env) {
 		sib.firstChild &&
 		/\s*\bprism-show-language-label\b\s*/.test(sib.firstChild.className)) {
 		div2 = sib.firstChild;
-		if (div2.getAttribute('data-language') !== language) {
-			div2.setAttribute('data-language', language);
-			div2.innerHTML = language;
-		}
 	} else {
 		div = document.createElement('div');
 		div2 = document.createElement('div');
 
 		div2.className = 'prism-show-language-label';
-		div2.setAttribute('data-language', language);
-		div2.innerHTML = language;
 
 		div.className = 'prism-show-language';
 		div.appendChild(div2);
 
 		pre.parentNode.insertBefore(div, pre);
 	}
+	
+	div2.innerHTML = language;
 });
 
 })();
