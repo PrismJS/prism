@@ -706,6 +706,10 @@ Prism.languages.js = Prism.languages.javascript;
 
 	};
 
-	self.Prism.fileHighlight();
+	if (document.addEventListener) {
+		document.addEventListener('DOMContentLoaded', self.Prism.fileHighlight);
+	} else {
+		self.Prism.fileHighlight();
+	}
 
 })();
