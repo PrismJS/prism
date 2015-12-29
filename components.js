@@ -184,7 +184,7 @@ var components = {
 		"json": {
 			"title": "JSON",
 			"option": "default",
-            "owner": "CupOfTea696"
+			"owner": "CupOfTea696"
 		},
 		"julia": {
 			"title": "Julia",
