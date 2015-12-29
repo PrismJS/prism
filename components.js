@@ -598,6 +598,10 @@ var components = {
 			"title": "Keep Markup",
 			"owner": "Golmote",
 			"noCSS": true
+		},
+		"command-line": {
+			"title": "Command Line",
+			"owner": "chriswells0"
 		}
 	}
 };
