@@ -63,7 +63,10 @@ Prism.hooks.add('complete', function (env) {
 
 		if (!isNaN(outputStart) && !isNaN(outputEnd)) {
 			for (var j = outputStart; j <= outputEnd && j <= prompt.children.length; j++) {
-				prompt.children[j - 1].className = 'output';
+				var node = prompt.children[j - 1];
+				node.removeAttribute('data-user');
+				node.removeAttribute('data-host');
+				node.removeAttribute('data-prompt');
 			}
 		}
 	}
