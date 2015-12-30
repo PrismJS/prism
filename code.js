@@ -60,7 +60,7 @@ $$('body > section > h1').forEach(function(h1) {
 
 		$u.element.create('a', {
 			properties: {
-				href: '#' + id
+				href: window.location.pathname + '#' + id
 			},
 			contents: text,
 			inside: h1
