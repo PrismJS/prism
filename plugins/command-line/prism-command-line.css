@@ -15,9 +15,13 @@
 
 .command-line-prompt > span:before {
 	color: #999;
-	content: "[" attr(data-user) "@" attr(data-host) "] $";
+	content: ' ';
 	display: block;
 	padding-right: 0.8em;
+}
+
+.command-line-prompt > span[data-user]:before {
+	content: "[" attr(data-user) "@" attr(data-host) "] $";
 }
 
 .command-line-prompt > span[data-user="root"]:before {
@@ -26,8 +30,4 @@
 
 .command-line-prompt > span[data-prompt]:before {
 	content: attr(data-prompt);
-}
-
-.command-line-prompt > span.output:before {
-	content: ' ';
 }
