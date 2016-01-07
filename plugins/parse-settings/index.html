@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta charset="utf-8" />
+	<link rel="shortcut icon" href="favicon.png" />
+	<title>Parse Settings ▲ Prism plugins</title>
+	<base href="../.." />
+	<link rel="stylesheet" href="style.css" />
+	<link rel="stylesheet" href="themes/prism.css" data-noprefix />
+	<script src="prefixfree.min.js"></script>
+
+	<script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
+	<script src="http://www.google-analytics.com/ga.js" async></script>
+</head>
+<body>
+
+<header>
+	<div class="intro" data-src="templates/header-plugins.html" data-type="text/html"></div>
+
+	<h2>Parse Settings</h2>
+	<p>Automatically parses settings for other plugins</p>
+</header>
+
+<section class="language-markup">
+	<h1>How to use</h1>
+
+	<p>This plugin is not intended to be used on its own.
+	It is a support plugin for other plugins and only included as a dependency.</p>
+
+	<p>All ancestors of the current element are automatically scanned for
+	<code>data-*</code>-attributes and classes. These attributes and classes are then
+	parsed into key-value pairs and inserted into the <code>env.settings</code>
+	object. An element can inherit the <code>data-*</code>-attributes from its ancestors.</p>
+
+	<p>To avoid accidental matches the element containing the attributes has to be marked for
+	use by Prism. The mark can either be the boolean attribute <code>data-prism</code> or
+	a Prism language class (<code>&lt;pre class="language-javascript"></code>).</p>
+
+	<p>The following conventions are used to parse the settings:</p>
+
+	<ul class="language-javascript">
+		<li>A normal class name <code>{ 'class-name': true }</code></li>
+		<li>A class name starting with "no-" <code>{ 'class-name': false }</code></li>
+		<li>An attribute without a value or the string "true" <code>{ 'attr-name': true }</code></li>
+		<li>An attribute with the string "false" <code>{ 'attr-name': false }</code></li>
+		<li>An attribute with any other value <code>{ 'attr-name': 'value' }</code></li>
+	</ul>
+
+</section>
+
+<section class="language-markup">
+	<h1>Example</h1>
+
+	<pre data-src="plugins/parse-settings/demo.html"></pre>
+</section>
+
+<footer data-src="templates/footer.html" data-type="text/html"></footer>
+
+<script src="prism.js"></script>
+<script src="plugins/parse-settings/prism-parse-settings.js"></script>
+<script src="utopia.js"></script>
+<script src="components.js"></script>
+<script src="code.js"></script>
+
+
+</body>
+</html>

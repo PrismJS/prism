@@ -625,6 +625,11 @@ var components = {
 			"owner": "zeitgeist87",
 			"after": "unescaped-markup",
 			"noCSS": true
+		},
+		"parse-settings": {
+			"title": "Parse Settings",
+			"owner": "zeitgeist87",
+			"noCSS": true
 		}
 	}
 };
