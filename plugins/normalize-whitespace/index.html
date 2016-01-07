@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta charset="utf-8" />
+	<link rel="shortcut icon" href="favicon.png" />
+	<title>Normalize Whitespace ▲ Prism plugins</title>
+	<base href="../.." />
+	<link rel="stylesheet" href="style.css" />
+	<link rel="stylesheet" href="themes/prism.css" data-noprefix />
+	<script src="prefixfree.min.js"></script>
+
+	<script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
+	<script src="http://www.google-analytics.com/ga.js" async></script>
+</head>
+<body>
+
+<header>
+	<div class="intro" data-src="templates/header-plugins.html" data-type="text/html"></div>
+
+	<h2>Normalize Whitespace</h2>
+	<p>Supports multiple operations to normalize whitespace in code blocks.</p>
+</header>
+
+<section class="language-markup">
+	<h1>How to use</h1>
+
+	<p>Obviously, this is supposed to work only for code blocks (<code>&lt;pre>&lt;code></code>) and not for inline code.</p>
+	<p>By default the plugin trims all leading and trailing whitespace of every code block.
+	It also removes extra indents and trailing whitespace on every line.</p>
+
+	<p>The plugin uses the <a href="plugins/parse-settings/">Parse Settings</a> plugin to get its settings.
+	The default settings can be overridden with the <code class="language-javascript">setDefaults()</code> method
+	like so:</p>
+
+	<pre class="language-javascript"><code>
+Prism.plugins.NormalizeWhitespace.setDefaults({
+	'remove-trailing': true,
+	'remove-indent': true,
+	'left-trim': true,
+	'right-trim': true,
+	/*'indent': 2,
+	'remove-initial-line-feed': false,
+	'tabs-to-spaces': 4,
+	'spaces-to-tabs': 4*/
+});
+</code></pre>
+
+	<p>It is also possible to change the default settings with <code>data-*</code>-attributes.</p>
+
+	<pre><code>&lt;code data-left-trim="false">...&lt;/code></code></pre>
+
+	<p>The class <code>no-whitespace-normalization</code> or the corresponding
+	data-attribute can be used to disable the normalization for a particular
+	code block.</p>
+
+	<pre><code>&lt;code class="no-whitespace-normalization"
+	data-whitespace-normalization="false">
+...
+&lt;/code></code></pre>
+</section>
+
+<section class="language-markup">
+	<h1>Examples</h1>
+
+	<p>The following example shows some of the possible ways of configuring this plugin:</p>
+
+	<pre data-src="plugins/normalize-whitespace/demo.html"></pre>
+
+	<p>The result looks like this:</p>
+
+<pre class="language-javascript">
+
+	<code>
+
+
+		var example = {
+			foo: true,
+
+			bar: false
+		};
+
+
+	</code>
+
+</pre>
+
+</section>
+
+<footer data-src="templates/footer.html" data-type="text/html"></footer>
+
+<script src="prism.js"></script>
+<script src="plugins/parse-settings/prism-parse-settings.js"></script>
+<script src="plugins/normalize-whitespace/prism-normalize-whitespace.js"></script>
+<script src="utopia.js"></script>
+<script src="components.js"></script>
+<script src="code.js"></script>
+
+
+</body>
+</html>

@@ -607,6 +607,11 @@ var components = {
 		"command-line": {
 			"title": "Command Line",
 			"owner": "chriswells0"
+		},
+		"normalize-whitespace": {
+			"title": "Normalize Whitespace",
+			"owner": "zeitgeist87",
+			"noCSS": true
 		}
 	}
 };
