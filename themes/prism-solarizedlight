@@ -119,8 +119,10 @@ pre[class*="language-"] {
 	cursor: help;
 }
 
-pre>code.highlight {
-	outline: 0.4em solid #dc322f;
-	outline-offset: .4em
+::selection {
+	background: #CAD6D9;
+}
+::-moz-selection {
+	background: #CAD6D9;
 }
 
