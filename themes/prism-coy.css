@@ -43,8 +43,13 @@ pre[class*="language-"] {
 	background-size: 3em 3em;
 	background-origin: content-box;
 	overflow: visible;
-	max-height: 30em;
 	padding: 0;
+}
+
+@media screen {
+	pre[class*="language-"] {
+		max-height: 30em;
+	}
 }
 
 code[class*="language"] {
