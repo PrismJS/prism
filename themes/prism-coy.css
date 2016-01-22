@@ -52,6 +52,10 @@ pre[class*="language-"] {
 	}
 }
 
+pre[class*="language-"] > code {
+	background: none;
+}
+
 code[class*="language"] {
 	max-height: inherit;
 	height: 100%;

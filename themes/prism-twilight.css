@@ -51,6 +51,10 @@ pre[class*="language-"]::selection {
 	background: hsl(200, 4%, 16%); /* #282A2B */
 }
 
+pre[class*="language-"] > code {
+	background: none;
+}
+
 /* Text Selection colour */
 pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
 code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {

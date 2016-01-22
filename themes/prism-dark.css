@@ -49,6 +49,10 @@ pre[class*="language-"] {
 	box-shadow: 1px 1px .5em black inset;
 }
 
+pre[class*="language-"] > code {
+	background: none;
+}
+
 /* Inline code */
 :not(pre) > code[class*="language-"] {
 	padding: .15em .2em .05em;

@@ -35,6 +35,10 @@ pre[class*="language-"] {
 	border-radius: 0.3em;
 }
 
+pre[class*="language-"] > code {
+	background: none;
+}
+
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
 	background: #272822;
