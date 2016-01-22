@@ -6,6 +6,7 @@
 code[class*="language-"],
 pre[class*="language-"] {
 	color: white;
+	background: none;
 	direction: ltr;
 	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
 	text-align: left;
@@ -49,10 +50,6 @@ pre[class*="language-"]::selection {
 pre[class*="language-"]::selection {
 	/* Firefox */
 	background: hsl(200, 4%, 16%); /* #282A2B */
-}
-
-pre[class*="language-"] > code {
-	background: none;
 }
 
 /* Text Selection colour */

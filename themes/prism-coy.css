@@ -7,6 +7,7 @@
 code[class*="language-"],
 pre[class*="language-"] {
 	color: black;
+	background: none;
 	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
 	direction: ltr;
 	text-align: left;
@@ -50,10 +51,6 @@ pre[class*="language-"] {
 	pre[class*="language-"] {
 		max-height: 30em;
 	}
-}
-
-pre[class*="language-"] > code {
-	background: none;
 }
 
 code[class*="language"] {

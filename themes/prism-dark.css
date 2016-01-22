@@ -7,6 +7,7 @@
 code[class*="language-"],
 pre[class*="language-"] {
 	color: white;
+	background: none;
 	text-shadow: 0 -.1em .2em black;
 	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
 	direction: ltr;
@@ -47,10 +48,6 @@ pre[class*="language-"] {
 	border: .3em solid hsl(30, 20%, 40%);
 	border-radius: .5em;
 	box-shadow: 1px 1px .5em black inset;
-}
-
-pre[class*="language-"] > code {
-	background: none;
 }
 
 /* Inline code */
