@@ -42,13 +42,13 @@ pre[class*="language-"] {
 	padding: 1em;
 }
 
-pre[class*="language-"]::selection {
-	/* Safari */
+pre[class*="language-"]::-moz-selection {
+	/* Firefox */
 	background: hsl(200, 4%, 16%); /* #282A2B */
 }
 
 pre[class*="language-"]::selection {
-	/* Firefox */
+	/* Safari */
 	background: hsl(200, 4%, 16%); /* #282A2B */
 }
 
