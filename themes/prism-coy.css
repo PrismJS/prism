@@ -47,12 +47,6 @@ pre[class*="language-"] {
 	padding: 0;
 }
 
-@media screen {
-	pre[class*="language-"] {
-		max-height: 30em;
-	}
-}
-
 code[class*="language"] {
 	max-height: inherit;
 	height: 100%;
@@ -96,6 +90,7 @@ pre[class*="language-"]:after {
 	left: 0.18em;
 	width: 40%;
 	height: 20%;
+	max-height: 13em;
 	-webkit-box-shadow: 0px 13px 8px #979797;
 	-moz-box-shadow: 0px 13px 8px #979797;
 	box-shadow: 0px 13px 8px #979797;
