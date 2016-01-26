@@ -146,7 +146,12 @@ var _ = _self.Prism = {
 	plugins: {},
 	
 	highlightAll: function(async, callback) {
-		var elements = document.querySelectorAll('code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code');
+		var selector = _.tags.map(function(tag) {
+			return 'tag[class*="language-"], [class*="language-"] tag, tag[class*="lang-"], [class*="lang-"] tag'
+						.replace(/tag/g, tag);
+		}).join(", ");
+
+		var elements = document.querySelectorAll(selector);
 
 		for (var i=0, element; element = elements[i++];) {
 			_.highlightElement(element, async === true, callback);
@@ -415,6 +420,8 @@ var script = document.currentScript || [].slice.call(document.getElementsByTagNa
 
 if (script) {
 	_.filename = script.src;
+	_.tags = (script.getAttribute('data-tags') || 'code').split(/\s+/g)
+				.filter(function(tag) {return !!tag;});
 
 	if (document.addEventListener && !script.hasAttribute('data-manual')) {
 		document.addEventListener('DOMContentLoaded', _.highlightAll);
