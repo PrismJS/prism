@@ -146,7 +146,7 @@ var _ = _self.Prism = {
 	plugins: {},
 	
 	highlightAll: function(async, callback) {
-		var elements = document.querySelectorAll('code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code');
+		var elements = document.querySelectorAll(_.selector || 'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code');
 
 		for (var i=0, element; element = elements[i++];) {
 			_.highlightElement(element, async === true, callback);
@@ -417,6 +417,7 @@ script = script[script.length - 1];
 
 if (script) {
 	_.filename = script.src;
+	_.selector = script.getAttribute('data-selector');
 
 	if (document.addEventListener && !script.hasAttribute('data-manual')) {
 		document.addEventListener('DOMContentLoaded', _.highlightAll);
