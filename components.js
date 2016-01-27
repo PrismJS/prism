@@ -29,6 +29,10 @@ var components = {
 		"prism-coy": {
 			"title": "Coy",
 			"owner": "tshedor"
+		},
+		"prism-solarizedlight": {
+			"title": "Solarized Light",
+			"owner": "hectormatos2011 "
 		}
 	},
 	"languages": {
