@@ -7,27 +7,58 @@
  Twitter Handle: https://twitter.com/allonsykraken)
 */
 
+/*
+SOLARIZED HEX
+--------- -------
+base03    #002b36
+base02    #073642
+base01    #586e75
+base00    #657b83
+base0     #839496
+base1     #93a1a1
+base2     #eee8d5
+base3     #fdf6e3
+yellow    #b58900
+orange    #cb4b16
+red       #dc322f
+magenta   #d33682
+violet    #6c71c4
+blue      #268bd2
+cyan      #2aa198
+green     #859900
+*/
+
 code[class*="language-"],
 pre[class*="language-"] {
-	color: #2176c7;
-	font-family: Consolas, Monaco, 'Andale Mono', monospace;
+	color: #657b83; /* base00 */
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
 	direction: ltr;
 	text-align: left;
 	white-space: pre;
 	word-spacing: normal;
 	word-break: normal;
 	word-wrap: normal;
-	
+
 	line-height: 1.5;
-	
+
 	-moz-tab-size: 4;
 	-o-tab-size: 4;
 	tab-size: 4;
-	
+
 	-webkit-hyphens: none;
 	-moz-hyphens: none;
 	-ms-hyphens: none;
 	hyphens: none;
+}
+
+pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
+code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
+	background: #073642; /* base02 */
+}
+
+pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
+code[class*="language-"]::selection, code[class*="language-"] ::selection {
+	background: #073642; /* base02 */
 }
 
 /* Code blocks */
@@ -40,7 +71,7 @@ pre[class*="language-"] {
 
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
-	background: #eee8d5;
+	background-color: #fdf6e3; /* base3 */
 }
 
 /* Inline code */
@@ -53,11 +84,11 @@ pre[class*="language-"] {
 .token.prolog,
 .token.doctype,
 .token.cdata {
-	color: #475b62;
+	color: #93a1a1; /* base1 */
 }
 
 .token.punctuation {
-	color: #586e75;
+	color: #586e75; /* base01 */
 }
 
 .namespace {
@@ -66,45 +97,43 @@ pre[class*="language-"] {
 
 .token.property,
 .token.tag,
+.token.boolean,
+.token.number,
 .token.constant,
 .token.symbol,
 .token.deleted {
-	color: #2176c7;
+	color: #268bd2; /* blue */
 }
 
-.token.boolean {
-	color: #2176c7;
-}
-
-.token.number,
 .token.selector,
 .token.attr-name,
 .token.string,
 .token.char,
 .token.builtin,
-.token.inserted {
-	color: #259286;
-}
-
-.token.operator,
-.token.entity,
 .token.url,
-.language-css .token.string,
-.style .token.string,
-.token.variable {
-	color: #5662b5;
+.token.inserted {
+	color: #2aa198; /* cyan */
 }
 
-.token.keyword,
+.token.entity {
+	color: #657b83; /* base00 */
+	background: #eee8d5; /* base2 */
+}
+
 .token.atrule,
-.token.attr-value {
-	color: #738a05;
+.token.attr-value,
+.token.keyword {
+	color: #859900; /* green */
 }
 
-.token.function,
+.token.function {
+	color: #b58900; /* yellow */
+}
+
 .token.regex,
-.token.important {
-	color: #708284;
+.token.important,
+.token.variable {
+	color: #cb4b16; /* orange */
 }
 
 .token.important,
@@ -118,11 +147,3 @@ pre[class*="language-"] {
 .token.entity {
 	cursor: help;
 }
-
-::selection {
-	background: #CAD6D9;
-}
-::-moz-selection {
-	background: #CAD6D9;
-}
-
