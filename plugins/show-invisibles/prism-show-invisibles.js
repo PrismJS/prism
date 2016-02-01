@@ -14,5 +14,6 @@ Prism.hooks.add('before-highlight', function(env) {
 	tokens.crlf = /\r\n/g;
 	tokens.lf = /\n/g;
 	tokens.cr = /\r/g;
+	tokens.space = / /g;
 });
 })();
