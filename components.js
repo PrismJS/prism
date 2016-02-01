@@ -32,7 +32,7 @@ var components = {
 		},
 		"prism-solarizedlight": {
 			"title": "Solarized Light",
-			"owner": "hectormatos2011 "
+			"owner": "hectormatos2011"
 		}
 	},
 	"languages": {
