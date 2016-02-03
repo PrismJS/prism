@@ -1,6 +1,6 @@
 # Prism Changelog
 
-## Unreleased
+## 1.4.0 (2016-02-03)
 
 ### New components
 
