@@ -1,5 +1,11 @@
 # Prism Changelog
 
+## 1.4.1 (2016-02-03)
+
+### Other changes
+
+* Fix DFS bug in Prism core [[`b86c727`](https://github.com/PrismJS/prism/commit/b86c727)]
+
 ## 1.4.0 (2016-02-03)
 
 ### New components
