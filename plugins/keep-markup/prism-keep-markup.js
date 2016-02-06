@@ -23,7 +23,7 @@
 				} else if(child.nodeType === 3) { // text
 					if(!firstWhiteSpaces) {
 						// We need to ignore the first white spaces in the code block
-						child.data = child.data.replace(/^(?:\r?\n|\r)/, '');
+						child.data = child.data.replace(/^(?:\r\n|\r)/, '');
 						firstWhiteSpaces = true;
 					}
 					pos += child.data.length;
