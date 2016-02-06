@@ -22,6 +22,15 @@ function toCamelCase(value) {
 	});
 }
 
+function tabLen(str) {
+	var res = 0;
+	for (var i = 0; i < str.length; ++i) {
+		if (str.charCodeAt(i) == '\t'.charCodeAt(0))
+			res += 3;
+	}
+	return str.length + res;
+}
+
 NormalizeWhitespace.prototype = {
 	setDefaults: function (defaults) {
 		this.defaults = assign(this.defaults, defaults);
@@ -79,6 +88,29 @@ NormalizeWhitespace.prototype = {
 	},
 	indent: function (input, tabs) {
 		return input.replace(/^[^\S\n\r]*(?=\S)/gm, new Array(++tabs).join('\t') + '$&');
+	},
+	breakLines: function (input, characters) {
+		characters = (characters === true) ? 80 : characters|0 || 80;
+
+		var lines = input.split('\n');
+		for (var i = 0; i < lines.length; ++i) {
+			if (tabLen(lines[i]) <= characters)
+				continue;
+
+			var line = lines[i].split(/(\s+)/g),
+			    len = 0;
+
+			for (var j = 0; j < line.length; ++j) {
+				var tl = tabLen(line[j]);
+				len += tl;
+				if (len > characters) {
+					line[j] = '\n' + line[j];
+					len = tl;
+				}
+			}
+			lines[i] = line.join('');
+		}
+		return lines.join('\n');
 	}
 };
 
@@ -87,7 +119,8 @@ Prism.plugins.NormalizeWhitespace = new NormalizeWhitespace({
 	'remove-indent': true,
 	'left-trim': true,
 	'right-trim': true,
-	/*'indent': 2,
+	/*'break-lines': 80,
+	'indent': 2,
 	'remove-initial-line-feed': false,
 	'tabs-to-spaces': 4,
 	'spaces-to-tabs': 4*/
