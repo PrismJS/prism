@@ -135,7 +135,8 @@ Prism.hooks.add('before-highlight', function (env) {
 	var children = pre.childNodes,
 	    before = '',
 	    after = '',
-	    codeFound = false;
+	    codeFound = false,
+	    Normalizer = Prism.plugins.NormalizeWhitespace;
 
 	// Move surrounding whitespace from the <pre> tag into the <code> tag
 	for (var i = 0; i < children.length; ++i) {
@@ -154,9 +155,16 @@ Prism.hooks.add('before-highlight', function (env) {
 			--i;
 		}
 	}
-	env.code = before + env.code + after;
 
-	env.code = Prism.plugins.NormalizeWhitespace.normalize(env.code, env.settings);
+	if (!env.element.children.length) {
+		env.code = before + env.code + after;
+		env.code = Normalizer.normalize(env.code, env.settings);
+	} else {
+		// Preserve markup for keep-markup plugin
+		var html = before + env.element.innerHTML + after;
+		env.element.innerHTML = Normalizer.normalize(html, env.settings);
+		env.code = env.element.textContent;
+	}
 });
 
 }());
