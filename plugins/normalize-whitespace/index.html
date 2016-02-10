@@ -8,6 +8,19 @@
 	<base href="../.." />
 	<link rel="stylesheet" href="style.css" />
 	<link rel="stylesheet" href="themes/prism.css" data-noprefix />
+	<style type="text/css">
+		code[class*="language-"] mark,
+		pre[class*="language-"] mark {
+			display: inline-block;
+			color: inherit;
+			background: none;
+			border: 1px solid #000;
+			box-shadow: 0 0 2px #fff;
+			padding: 1px;
+			background: rgba(0,0,0,0.2);
+		}
+	</style>
+
 	<script src="prefixfree.min.js"></script>
 
 	<script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
@@ -39,7 +52,8 @@ Prism.plugins.NormalizeWhitespace.setDefaults({
 	'remove-indent': true,
 	'left-trim': true,
 	'right-trim': true,
-	/*'indent': 2,
+	/*'break-lines': 80,
+	'indent': 2,
 	'remove-initial-line-feed': false,
 	'tabs-to-spaces': 4,
 	'spaces-to-tabs': 4*/
@@ -85,6 +99,24 @@ Prism.plugins.NormalizeWhitespace.setDefaults({
 
 </pre>
 
+	<p>It is also compatible with the <a href="plugins/keep-markup/">keep-markup</a> plugin if you load it after this plugin.</p>
+
+	<pre>
+
+	<code class="language-css">
+
+
+	@media <mark>screen</mark> {
+		div {
+			<mark>text</mark>-decoration: <mark><mark>under</mark>line</mark>;
+			back<mark>ground: url</mark>('foo.png');
+		}
+	}</code>
+
+
+</pre>
+
+
 </section>
 
 <footer data-src="templates/footer.html" data-type="text/html"></footer>
@@ -92,6 +124,7 @@ Prism.plugins.NormalizeWhitespace.setDefaults({
 <script src="prism.js"></script>
 <script src="plugins/parse-settings/prism-parse-settings.js"></script>
 <script src="plugins/normalize-whitespace/prism-normalize-whitespace.js"></script>
+<script src="plugins/keep-markup/prism-keep-markup.js"></script>
 <script src="utopia.js"></script>
 <script src="components.js"></script>
 <script src="code.js"></script>
