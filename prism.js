@@ -162,6 +162,9 @@ var _ = _self.Prism = {
 		var elements = document.querySelectorAll('code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code');
 
 		for (var i=0, element; element = elements[i++];) {
+			if(element.matches('[contenteditable=true] *')) {
+				continue;
+			}
 			_.highlightElement(element, async === true, callback);
 		}
 	},
