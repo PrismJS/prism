@@ -1,9 +1,9 @@
-<body data-prism data-remove-trailing="true">
-<section id="main" class="language-javascript" data-right-trim="true">
+<body>
+<section id="main" class="language-javascript">
 
 <pre>
 
-	<code data-left-trim="true">
+	<code>
 
 
 		var example = {
@@ -20,10 +20,12 @@
 </section>
 <script src="plugins/normalize-whitespace/prism-normalize-whitespace.js"></script>
 <script type="text/javascript">
+// Optional
 Prism.plugins.NormalizeWhitespace.setDefaults({
-	'remove-trailing': false,
-	'left-trim': false,
-	'right-trim': false
+	'remove-trailing': true,
+	'remove-indent': true,
+	'left-trim': true,
+	'right-trim': true,
 });
 </script>
 </body>

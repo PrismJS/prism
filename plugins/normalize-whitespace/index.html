@@ -42,8 +42,7 @@
 	<p>By default the plugin trims all leading and trailing whitespace of every code block.
 	It also removes extra indents and trailing whitespace on every line.</p>
 
-	<p>The plugin uses the <a href="plugins/parse-settings/">Parse Settings</a> plugin to get its settings.
-	The default settings can be overridden with the <code class="language-javascript">setDefaults()</code> method
+	<p>The default settings can be overridden with the <code class="language-javascript">setDefaults()</code> method
 	like so:</p>
 
 	<pre class="language-javascript"><code>
@@ -60,24 +59,35 @@ Prism.plugins.NormalizeWhitespace.setDefaults({
 });
 </code></pre>
 
-	<p>It is also possible to change the default settings with <code>data-*</code>-attributes.</p>
+	<p>The following settings are available:</p>
 
-	<pre><code>&lt;code data-left-trim="false">...&lt;/code></code></pre>
-
-	<p>The class <code>no-whitespace-normalization</code> or the corresponding
-	data-attribute can be used to disable the normalization for a particular
-	code block.</p>
-
-	<pre><code>&lt;code class="no-whitespace-normalization"
-	data-whitespace-normalization="false">
-...
-&lt;/code></code></pre>
+	<dl>
+		<dt>remove-trailing</dt>
+		<dd>Removes trailing whitespace on all lines.</dd>
+		<dt>remove-indent</dt>
+		<dd>If the whole code block is indented too much it removes the extra indent.</dd>
+		<dt>left-trim</dt>
+		<dd>Removes all whitespace from the top of the code block.</dd>
+		<dt>right-trim</dt>
+		<dd>Removes all whitespace from the bottom of the code block.</dd>
+		<dt>break-lines</dt>
+		<dd>Simple way of breaking long lines at a certain length (default is 80 characters).</dd>
+		<dt>indent</dt>
+		<dd>Adds a certain number of tabs to every line.</dd>
+		<dt>remove-initial-line-feed</dt>
+		<dd>Less aggressive version of left-trim.
+		It only removes a single line feed from the top of the code block.</dd>
+		<dt>tabs-to-spaces</dt>
+		<dd>Converts all tabs to a certain number of spaces (default is 4 spaces).</dd>
+		<dt>spaces-to-tabs</dt>
+		<dd>Converts a certain number of spaces to a tab (default is 4 spaces).</dd>
+	</dl>
 </section>
 
 <section class="language-markup">
 	<h1>Examples</h1>
 
-	<p>The following example shows some of the possible ways of configuring this plugin:</p>
+	<p>The following example demonstrates the use of this plugin:</p>
 
 	<pre data-src="plugins/normalize-whitespace/demo.html"></pre>
 
@@ -99,7 +109,7 @@ Prism.plugins.NormalizeWhitespace.setDefaults({
 
 </pre>
 
-	<p>It is also compatible with the <a href="plugins/keep-markup/">keep-markup</a> plugin if you load it after this plugin.</p>
+	<p>It is also compatible with the <a href="plugins/keep-markup/">keep-markup</a> plugin:</p>
 
 	<pre>
 
@@ -122,13 +132,11 @@ Prism.plugins.NormalizeWhitespace.setDefaults({
 <footer data-src="templates/footer.html" data-type="text/html"></footer>
 
 <script src="prism.js"></script>
-<script src="plugins/parse-settings/prism-parse-settings.js"></script>
 <script src="plugins/normalize-whitespace/prism-normalize-whitespace.js"></script>
 <script src="plugins/keep-markup/prism-keep-markup.js"></script>
 <script src="utopia.js"></script>
 <script src="components.js"></script>
 <script src="code.js"></script>
-
 
 </body>
 </html>

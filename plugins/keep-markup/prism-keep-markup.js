@@ -4,7 +4,13 @@
 		return;
 	}
 
+	Prism.plugins.KeepMarkup = true;
+
 	Prism.hooks.add('before-highlight', function (env) {
+		if (!env.element.children.length) {
+			return;
+		}
+
 		var pos = 0;
 		var data = [];
 		var f = function (elt, baseNode) {

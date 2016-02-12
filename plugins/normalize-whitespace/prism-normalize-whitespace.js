@@ -156,7 +156,7 @@ Prism.hooks.add('before-highlight', function (env) {
 		}
 	}
 
-	if (!env.element.children.length) {
+	if (!env.element.children.length || !Prism.plugins.KeepMarkup) {
 		env.code = before + env.code + after;
 		env.code = Normalizer.normalize(env.code, env.settings);
 	} else {
@@ -166,5 +166,8 @@ Prism.hooks.add('before-highlight', function (env) {
 		env.code = env.element.textContent;
 	}
 });
+// Make sure our callback runs first
+var hooks = Prism.hooks.all['before-highlight'];
+hooks.unshift(hooks.pop());
 
 }());
