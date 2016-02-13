@@ -1,0 +1,20 @@
+pre.code-toolbar {
+	position: relative; }
+pre.code-toolbar > .toolbar {
+	position: absolute;
+	top: .3em;
+	right: .2em; }
+pre.code-toolbar > .toolbar .toolbar-item {
+	display: inline-block; }
+pre.code-toolbar > .toolbar a {
+	cursor: pointer; }
+pre.code-toolbar > .toolbar a, pre.code-toolbar > .toolbar span {
+	color: #bbb;
+	font-size: .8em;
+	padding: 0 .5em;
+	background: #f5f2f0;
+	background: rgba(224, 224, 224, 0.2);
+	border-radius: .5em; }
+pre.code-toolbar > .toolbar a:hover, pre.code-toolbar > .toolbar a:focus, pre.code-toolbar > .toolbar span:hover, pre.code-toolbar > .toolbar span:focus {
+	color: inherit;
+	text-decoration: none; }
