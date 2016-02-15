@@ -20,7 +20,7 @@
 			var code = document.createElement("code");
 			var pre = document.createElement("pre");
 
-		    pre.className = code.className = env.element.className;
+			pre.className = code.className = env.element.className;
 
 			env.code = env.code.replace(/&lt;\/script(>|&gt;)/gi, "</scri" + "pt>");
 			code.textContent = env.code;
