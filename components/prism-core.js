@@ -89,19 +89,19 @@ var _ = _self.Prism = {
 		insertBefore: function (inside, before, insert, root) {
 			root = root || _.languages;
 			var grammar = root[inside];
-			
+
 			if (arguments.length == 2) {
 				insert = arguments[1];
-				
+
 				for (var newToken in insert) {
 					if (insert.hasOwnProperty(newToken)) {
 						grammar[newToken] = insert[newToken];
 					}
 				}
-				
+
 				return grammar;
 			}
-			
+
 			var ret = {};
 
 			for (var token in grammar) {
@@ -121,7 +121,7 @@ var _ = _self.Prism = {
 					ret[token] = grammar[token];
 				}
 			}
-			
+
 			// Update references in other language definitions
 			_.languages.DFS(_.languages, function(key, value) {
 				if (value === root[inside] && key != inside) {
@@ -152,7 +152,7 @@ var _ = _self.Prism = {
 		}
 	},
 	plugins: {},
-	
+
 	highlightAll: function(async, callback) {
 		var env = {
 			callback: callback,
@@ -160,8 +160,8 @@ var _ = _self.Prism = {
 		};
 
 		_.hooks.run("before-highlightall", env);
-		
-		var elements = document.querySelectorAll(env.selector);
+
+		var elements = env.elements || document.querySelectorAll(env.selector);
 
 		for (var i=0, element; element = elements[i++];) {
 			_.highlightElement(element, async === true, env.callback);
