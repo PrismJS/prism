@@ -6,7 +6,7 @@
 
 	Prism.plugins.UnescapedMarkup = true;
 
-	Prism.hooks.add('before-highlightall', function (env) { console.log(env);
+	Prism.hooks.add('before-highlightall', function (env) {
 		env.selector += ", .lang-markup script[type='text/plain'], .language-markup script[type='text/plain']" +
 		                ", script[type='text/plain'].lang-markup, script[type='text/plain'].language-markup";
 	});
@@ -21,6 +21,8 @@
 			var pre = document.createElement("pre");
 
 		    pre.className = code.className = env.element.className;
+
+			env.code = env.code.replace(/&lt;\/script(>|&gt;)/gi, "</scri" + "pt>");
 			code.textContent = env.code;
 
 		    pre.appendChild(code);
