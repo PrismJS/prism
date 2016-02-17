@@ -44,6 +44,7 @@ var components = {
 		},
 		"markup": {
 			"title": "Markup",
+			"aliasTitles": { "html": "HTML", "xml": "XML", "svg": "SVG", "mathml": "MathML" },
 			"option": "default"
 		},
 		"css": {
