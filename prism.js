@@ -303,7 +303,10 @@ var _ = _self.Prism = {
 					var match = pattern.exec(str),
 					    delNum = 1;
 
+					// Greedy patterns can override/remove up to two previously
+					// matched tokens
 					if (!match && greedy && i != strarr.length - 1) {
+						// Reconstruct the original text using the next two tokens
 						var nextToken = strarr[i + 1].matchedStr || strarr[i + 1],
 						    combStr = str + nextToken;
 
@@ -311,6 +314,7 @@ var _ = _self.Prism = {
 							combStr += strarr[i + 2].matchedStr || strarr[i + 2];
 						}
 
+						// Try the pattern again on the reconstructed text
 						pattern.lastIndex = 0;
 						match = pattern.exec(combStr);
 						if (!match) {
@@ -318,12 +322,16 @@ var _ = _self.Prism = {
 						}
 
 						var from = match.index + (lookbehind ? match[1].length : 0);
+						// To be a valid candidate, the new match has to start
+						// inside of str
 						if (from >= str.length) {
 							continue;
 						}
 						var to = match.index + match[0].length,
 						    len = str.length + nextToken.length;
 
+						// Number of tokens to delete and replace with the new
+						// match
 						delNum = 3;
 
 						if (to <= len) {
@@ -397,6 +405,7 @@ var Token = _.Token = function(type, content, alias, matchedStr) {
 	this.type = type;
 	this.content = content;
 	this.alias = alias;
+	// Copy of the full string this token was created from
 	this.matchedStr = matchedStr || null;
 };
 
