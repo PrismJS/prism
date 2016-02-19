@@ -298,8 +298,7 @@ var _ = _self.Prism = {
 					var match = pattern.exec(str),
 					    delNum = 1;
 
-					// Greedy patterns can override/remove up to two previously
-					// matched tokens
+					// Greedy patterns can override/remove up to two previously matched tokens
 					if (!match && greedy && i != strarr.length - 1) {
 						// Reconstruct the original text using the next two tokens
 						var nextToken = strarr[i + 1].matchedStr || strarr[i + 1],
@@ -317,16 +316,14 @@ var _ = _self.Prism = {
 						}
 
 						var from = match.index + (lookbehind ? match[1].length : 0);
-						// To be a valid candidate, the new match has to start
-						// inside of str
+						// To be a valid candidate, the new match has to start inside of str
 						if (from >= str.length) {
 							continue;
 						}
 						var to = match.index + match[0].length,
 						    len = str.length + nextToken.length;
 
-						// Number of tokens to delete and replace with the new
-						// match
+						// Number of tokens to delete and replace with the new match
 						delNum = 3;
 
 						if (to <= len) {
@@ -336,34 +333,35 @@ var _ = _self.Prism = {
 						str = combStr;
 					}
 
-					if (match) {
-						if(lookbehind) {
-							lookbehindLength = match[1].length;
-						}
-
-						var from = match.index - 1 + lookbehindLength,
-							match = match[0].slice(lookbehindLength),
-							len = match.length,
-							to = from + len,
-							before = str.slice(0, from + 1),
-							after = str.slice(to + 1);
-
-						var args = [i, delNum];
-
-						if (before) {
-							args.push(before);
-						}
-
-						var wrapped = new Token(token, inside? _.tokenize(match, inside) : match, alias, match);
-
-						args.push(wrapped);
-
-						if (after) {
-							args.push(after);
-						}
-
-						Array.prototype.splice.apply(strarr, args);
+					if (!match) {
+						continue;
 					}
+
+					if(lookbehind) {
+						lookbehindLength = match[1].length;
+					}
+
+					var from = match.index + lookbehindLength,
+					    match = match[0].slice(lookbehindLength),
+					    to = from + match.length,
+					    before = str.slice(0, from),
+					    after = str.slice(to);
+
+					var args = [i, delNum];
+
+					if (before) {
+						args.push(before);
+					}
+
+					var wrapped = new Token(token, inside? _.tokenize(match, inside) : match, alias, match);
+
+					args.push(wrapped);
+
+					if (after) {
+						args.push(after);
+					}
+
+					Array.prototype.splice.apply(strarr, args);
 				}
 			}
 		}
