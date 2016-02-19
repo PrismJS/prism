@@ -37,6 +37,10 @@ Prism.hooks.add('wrap', function(env) {
 			if (delimiter === '$') {
 				pattern = /([^\$])(\$(\{.*?\}|[\w\.]+))/;
 			}
+
+			// To prevent double HTML-ecoding we have to decode env.content first
+			env.content = env.content.replace(/&amp;/g, '&').replace(/&lt;/g, '<');
+
 			env.content = Prism.highlight(env.content, {
 				'expression': {
 					pattern: pattern,
