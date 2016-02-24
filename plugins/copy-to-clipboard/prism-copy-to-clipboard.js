@@ -23,7 +23,7 @@
 
 	Prism.plugins.toolbar.registerButton(function (env) {
 		var linkCopy = document.createElement('a');
-		linkCopy.innerHTML = 'Copy';
+		linkCopy.textContent = 'Copy';
 
 		var clip = new Clipboard(linkCopy, {
 			'text': function () {
@@ -32,12 +32,12 @@
 		});
 
 		clip.on('success', function() {
-			linkCopy.innerHTML = 'Copied!';
+			linkCopy.textContent = 'Copied!';
 
 			resetText();
 		});
 		clip.on('error', function () {
-			linkCopy.innerHTML = 'Press Ctrl+C to copy';
+			linkCopy.textContent = 'Press Ctrl+C to copy';
 
 			resetText();
 		});
@@ -46,7 +46,7 @@
 
 		function resetText() {
 			setTimeout(function () {
-				linkCopy.innerHTML = 'Copy';
+				linkCopy.textContent = 'Copy';
 			}, 5000);
 		}
 	});

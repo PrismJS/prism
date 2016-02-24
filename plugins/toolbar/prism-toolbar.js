@@ -30,7 +30,7 @@
 					element = document.createElement('span');
 				}
 
-				element.innerHTML = opts.text;
+				element.textContent = opts.text;
 
 				return element;
 			};
