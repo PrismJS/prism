@@ -10,9 +10,32 @@
 	/**
 	 * Register a button callback with the toolbar.
 	 *
-	 * @param {Function} callback
+	 * @param {Object|Function} opts
 	 */
-	Prism.plugins.toolbar.registerButton = function (callback) {
+	Prism.plugins.toolbar.registerButton = function (opts) {
+		var callback;
+
+		if (typeof opts === 'function') {
+			callback = opts;
+		} else {
+			callback = function (env) {
+				var element;
+
+				if (typeof opts.onClick === 'function') {
+					element = document.createElement('a');
+					element.addEventListener('click', function () {
+						opts.onClick(env);
+					});
+				} else {
+					element = document.createElement('span');
+				}
+
+				element.innerHTML = opts.text;
+
+				return element;
+			};
+		}
+
 		callbacks.push(callback);
 	};
 

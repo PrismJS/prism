@@ -25,17 +25,45 @@
 
 <section>
 	<h1>How to use</h1>
-	<p>In your plugin, register a callback with the toolbar plugin and return either a <code>span</code> or <code>a</code> element.</p>
+	<p>The Toolbar plugin allows for two methods to register your button, using the <code>Prism.plugins.toolbar.registerButton</code> function.</p>
+
+	<p>The simplest method is to pass in an object with a <code>text</code> property string and an optional
+		<code>onClick</code> function, which when provided, will be called when the button is click.</p>
+
+	<pre><code class="language-javascript">Prism.plugins.toolbar.registerButton({
+	text: 'Hello World!', // required
+	onClick: function (env) { // optional
+		alert('This code snippet is written in ' + env.language + '.');
+	}
+});</code></pre>
+
+	<p>See how the above code registers the <code>Hello World!</code> button? You can use this in your plugins to register your own buttons with the toolbar.</p>
+
+	<p>If you need more control, you can provide a callback to <code>registerButton</code> that returns either a <code>span</code> or <code>a</code> element.</p>
 
 	<pre><code class="language-javascript">Prism.plugins.toolbar.registerButton(function() {
-	console.log('hi!');
-	var button = document.createElement('span');
-	button.innerHTML = 'Hello world!';
+	var button = document.createElement('a');
+	button.innerHTML = 'Select Code';
+
+	button.addEventListener('click', function () {
+		// Source: http://stackoverflow.com/a/11128179/2757940
+		if (document.body.createTextRange) { // ms
+			var range = document.body.createTextRange();
+			range.moveToElementText(env.element);
+			range.select();
+		} else if (window.getSelection) { // moz, opera, webkit
+			var selection = window.getSelection();
+			var range = document.createRange();
+			range.selectNodeContents(env.element);
+			selection.removeAllRanges();
+			selection.addRange(range);
+		}
+	});
 
 	return button;
 });</code></pre>
 
-	<p>See how the above code registers the <code>Hello World!</code> button? You can use this in your plugins to register your own buttons with the toolbar.</p>
+	<p>The above function creates the Select Code button you see, and when you click it, the code gets highlighted.</p>
 </section>
 
 <footer data-src="templates/footer.html" data-type="text/html"></footer>
@@ -45,15 +73,37 @@
 <script src="utopia.js"></script>
 <script src="components.js"></script>
 <script>
-	Prism.plugins.toolbar.registerButton(function() {
-		var button = document.createElement('span');
-		button.innerHTML = 'Hello world!';
+	Prism.plugins.toolbar.registerButton({
+		text: 'Hello World!', // required
+		onClick: function (env) { // optional
+			alert('This code snippet is written in ' + env.language + '.');
+		}
+	});
+</script>
+<script>
+	Prism.plugins.toolbar.registerButton(function(env) {
+		var button = document.createElement('a');
+		button.innerHTML = 'Select Code';
+
+		button.addEventListener('click', function () {
+			// Source: http://stackoverflow.com/a/11128179/2757940
+			if (document.body.createTextRange) { // ms
+				var range = document.body.createTextRange();
+				range.moveToElementText(env.element);
+				range.select();
+			} else if (window.getSelection) { // moz, opera, webkit
+				var selection = window.getSelection();
+				var range = document.createRange();
+				range.selectNodeContents(env.element);
+				selection.removeAllRanges();
+				selection.addRange(range);
+			}
+		});
 
 		return button;
 	});
 </script>
 <script src="code.js"></script>
-
 
 </body>
 </html>
