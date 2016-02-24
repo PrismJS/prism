@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta charset="utf-8" />
+	<link rel="shortcut icon" href="favicon.png" />
+	<title>Copy to Clipboard ▲ Prism plugins</title>
+	<base href="../.." />
+	<link rel="stylesheet" href="style.css" />
+	<link rel="stylesheet" href="themes/prism.css" data-noprefix />
+	<link rel="stylesheet" href="plugins/toolbar/prism-toolbar.css" data-noprefix />
+	<script src="prefixfree.min.js"></script>
+
+	<script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
+	<script src="http://www.google-analytics.com/ga.js" async></script>
+</head>
+<body class="language-markup">
+
+<header>
+	<div class="intro" data-src="templates/header-plugins.html" data-type="text/html"></div>
+
+	<h2>Copy to Clipboard</h2>
+	<p>Add a button that copies the code block to the clipboard when clicked.</p>
+</header>
+
+<section>
+	<h1>How to use</h1>
+	<p>In addition to including the plugin file with your PrismJS build, ensure <a href="https://clipboardjs.com/">Clipboard.js</a> is loaded before the plugin.</p>
+
+	<p>The simplest way to include Clipboard.js is to use any of the
+		<a href="https://github.com/zenorocha/clipboard.js/wiki/CDN-Providers">recommended CDNs</a>. If you're using Browserify, Clipboard.js will be loaded auotmatically
+		if it's included in your <code>package.json</code>.</p>
+
+	<pre><code class="language-javascript">(function(){
+	if (typeof self === 'undefined' || !self.Prism || !self.document) {
+		return;
+	}
+
+	if (!Prism.plugins.toolbar) {
+		console.warn('Copy to Clipboard plugin loaded before Toolbar plugin.');
+
+		return;
+	}
+
+	var Clipboard = window.Clipboard || undefined;
+
+	if (!Clipboard && typeof require === 'function') {
+		Clipboard = require('clipboard');
+	}
+
+	if (!Clipboard) {
+		console.warn('Clipboard.js not loaded.');
+
+		return;
+	}
+
+	Prism.plugins.toolbar.registerButton(function (env) {
+		var linkCopy = document.createElement('a');
+		linkCopy.innerHTML = 'Copy';
+
+		var clip = new Clipboard(linkCopy, {
+			'text': function () {
+				return env.code;
+			}
+		});
+
+		clip.on('success', function() {
+			linkCopy.innerHTML = 'Copied!';
+
+			resetText();
+		});
+		clip.on('error', function () {
+			linkCopy.innerHTML = 'Press Ctrl+C to copy';
+
+			resetText();
+		});
+
+		return linkCopy;
+
+		function resetText() {
+			setTimeout(function () {
+				linkCopy.innerHTML = 'Copy';
+			}, 5000);
+		}
+	});
+})();</code></pre>
+</section>
+
+<footer data-src="templates/footer.html" data-type="text/html"></footer>
+
+<script src="https://cdn.jsdelivr.net/clipboard.js/1.5.5/clipboard.min.js"></script>
+<script src="prism.js"></script>
+<script src="plugins/toolbar/prism-toolbar.js"></script>
+<script src="plugins/copy-to-clipboard/prism-copy-to-clipboard.js"></script>
+<script src="utopia.js"></script>
+<script src="components.js"></script>
+<script src="code.js"></script>
+
+</body>
+</html>
