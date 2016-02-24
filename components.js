@@ -610,6 +610,16 @@ var components = {
 		"command-line": {
 			"title": "Command Line",
 			"owner": "chriswells0"
+		},
+		"toolbar": {
+			"title": "Toolbar",
+			"owner": "mAAdhaTTah"
+		},
+		"copy-to-clipboard": {
+			"title": "Copy to Clipboard Button",
+			"owner": "mAAdhaTTah",
+			"require": "toolbar",
+			"noCSS": true
 		}
 	}
 };
