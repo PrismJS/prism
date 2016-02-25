@@ -1,5 +1,16 @@
 # Prism Changelog
 
+## Unreleased
+
+### Updated components
+
+* __Keep Markup__:
+	* Fix Keep Markup plugin incorrect highlighting ([#880](https://github.com/PrismJS/prism/pull/880)) [[`24841ef`](https://github.com/PrismJS/prism/commit/24841ef)]
+
+### New plugins
+
+* __Normalize Whitespace__ ([#847](https://github.com/PrismJS/prism/pull/847)) [[`e86ec01`](https://github.com/PrismJS/prism/commit/e86ec01)]
+
 ## 1.4.1 (2016-02-03)
 
 ### Other changes

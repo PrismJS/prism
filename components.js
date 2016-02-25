@@ -44,6 +44,7 @@ var components = {
 		},
 		"markup": {
 			"title": "Markup",
+			"aliasTitles": { "html": "HTML", "xml": "XML", "svg": "SVG", "mathml": "MathML" },
 			"option": "default"
 		},
 		"css": {
@@ -610,6 +611,11 @@ var components = {
 		"command-line": {
 			"title": "Command Line",
 			"owner": "chriswells0"
+		},
+		"normalize-whitespace": {
+			"title": "Normalize Whitespace",
+			"owner": "zeitgeist87",
+			"noCSS": true
 		},
 		"toolbar": {
 			"title": "Toolbar",

@@ -6,6 +6,8 @@
 bar"
 'foo\
 bar'
+"foo /* comment */ bar"
+'foo // bar'
 
 ----------------------------------------------------
 
@@ -15,7 +17,9 @@ bar'
 	["string", "\"f\\\"oo\""],
 	["string", "'b\\'ar'"],
 	["string", "\"foo\\\r\nbar\""],
-	["string", "'foo\\\r\nbar'"]
+	["string", "'foo\\\r\nbar'"],
+	["string", "\"foo /* comment */ bar\""],
+	["string", "'foo // bar'"]
 ]
 
 ----------------------------------------------------
