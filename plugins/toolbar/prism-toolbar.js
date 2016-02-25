@@ -24,7 +24,7 @@
 				if (typeof opts.onClick === 'function') {
 					element = document.createElement('a');
 					element.addEventListener('click', function () {
-						opts.onClick(env);
+						opts.onClick.call(this, env);
 					});
 				} else {
 					element = document.createElement('span');
