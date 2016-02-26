@@ -166,8 +166,5 @@ Prism.hooks.add('before-highlight', function (env) {
 		env.code = env.element.textContent;
 	}
 });
-// Make sure our callback runs first
-var hooks = Prism.hooks.all['before-highlight'];
-hooks.unshift(hooks.pop());
 
 }());
