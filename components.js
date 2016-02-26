@@ -612,11 +612,11 @@ var components = {
 			"title": "Command Line",
 			"owner": "chriswells0"
 		},
+		"unescaped-markup": "Unescaped Markup",
 		"normalize-whitespace": {
 			"title": "Normalize Whitespace",
 			"owner": "zeitgeist87",
 			"noCSS": true
-		},
-		"unescaped-markup": "Unescaped Markup",
+		}
 	}
 };
