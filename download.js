@@ -117,6 +117,7 @@ for (var category in components) {
 			noJS: all[id].noJS || all.meta.noJS,
 			enabled: checked,
 			require: $u.type(all[id].require) === 'string' ? [all[id].require] : all[id].require,
+			after: $u.type(all[id].after) === 'string' ? [all[id].after] : all[id].after,
 			owner: all[id].owner,
 			files: {
 				minified: {
@@ -374,18 +375,21 @@ function delayedGenerateCode(){
 	timerId = setTimeout(generateCode, 500);
 }
 
-function getSortedComponentsByRequirements(components){
-	var sorted = [];
-	for (var component in components) {
-		sorted.push(component);
+function getSortedComponents(components, requireName, sorted) {
+	if (!sorted) {
+		sorted = [];
+		for (var component in components) {
+			sorted.push(component);
+		}
 	}
+
 	var i = 0;
 	while (i < sorted.length) {
 		var id = sorted[i];
 		var indexOfRequirement = i;
 		var notNow = false;
-		for (var requirement in components[id].require) {
-			indexOfRequirement = sorted.indexOf(components[id].require[requirement]);
+		for (var requirement in components[id][requireName]) {
+			indexOfRequirement = sorted.indexOf(components[id][requireName][requirement]);
 			if (indexOfRequirement > i) {
 				notNow = true;
 				break;
@@ -401,6 +405,11 @@ function getSortedComponentsByRequirements(components){
 		}
 	}
 	return sorted;
+}
+
+function getSortedComponentsByRequirements(components){
+	var sorted = getSortedComponents(components, "after");
+	return getSortedComponents(components, "require", sorted);
 }
 
 function generateCode(){

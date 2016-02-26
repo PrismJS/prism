@@ -606,6 +606,7 @@ var components = {
 		"keep-markup": {
 			"title": "Keep Markup",
 			"owner": "Golmote",
+			"after": "normalize-whitespace",
 			"noCSS": true
 		},
 		"command-line": {
@@ -616,6 +617,7 @@ var components = {
 		"normalize-whitespace": {
 			"title": "Normalize Whitespace",
 			"owner": "zeitgeist87",
+			"after": "unescaped-markup",
 			"noCSS": true
 		}
 	}
