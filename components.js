@@ -616,6 +616,7 @@ var components = {
 			"title": "Normalize Whitespace",
 			"owner": "zeitgeist87",
 			"noCSS": true
-		}
+		},
+		"unescaped-markup": "Unescaped Markup",
 	}
 };
