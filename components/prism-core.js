@@ -327,6 +327,9 @@ var _ = _self.Prism = {
 						delNum = 3;
 
 						if (to <= len) {
+							if (strarr[i + 1].greedy) {
+								continue;
+							}
 							delNum = 2;
 							combStr = combStr.slice(0, len);
 						}
@@ -353,7 +356,7 @@ var _ = _self.Prism = {
 						args.push(before);
 					}
 
-					var wrapped = new Token(token, inside? _.tokenize(match, inside) : match, alias, match);
+					var wrapped = new Token(token, inside? _.tokenize(match, inside) : match, alias, match, greedy);
 
 					args.push(wrapped);
 
@@ -394,12 +397,13 @@ var _ = _self.Prism = {
 	}
 };
 
-var Token = _.Token = function(type, content, alias, matchedStr) {
+var Token = _.Token = function(type, content, alias, matchedStr, greedy) {
 	this.type = type;
 	this.content = content;
 	this.alias = alias;
 	// Copy of the full string this token was created from
 	this.matchedStr = matchedStr || null;
+	this.greedy = !!greedy;
 };
 
 Token.stringify = function(o, language, parent) {

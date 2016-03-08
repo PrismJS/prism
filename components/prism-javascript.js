@@ -16,6 +16,7 @@ Prism.languages.insertBefore('javascript', 'keyword', {
 Prism.languages.insertBefore('javascript', 'class-name', {
 	'template-string': {
 		pattern: /`(?:\\\\|\\?[^\\])*?`/,
+		greedy: true,
 		inside: {
 			'interpolation': {
 				pattern: /\$\{[^}]+\}/,
