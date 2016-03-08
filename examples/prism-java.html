@@ -25,7 +25,9 @@ comment */</code></pre>
 <pre><code>import java.util.Scanner;
 
 public class Life {
-    public static void show(boolean[][] grid){
+
+    @Override @Bind("One")
+    public void show(boolean[][] grid){
         String s = "";
         for(boolean[] row : grid){
             for(boolean val : row)

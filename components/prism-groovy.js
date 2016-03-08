@@ -22,6 +22,7 @@ Prism.languages.insertBefore('groovy', 'punctuation', {
 
 Prism.languages.insertBefore('groovy', 'function', {
 	'annotation': {
+		alias: 'punctuation',
 		pattern: /(^|[^.])@\w+/,
 		lookbehind: true
 	}
