@@ -29,7 +29,8 @@
 
 	<p>The simplest way to include Clipboard.js is to use any of the
 		<a href="https://github.com/zenorocha/clipboard.js/wiki/CDN-Providers">recommended CDNs</a>. If you're using Browserify, Clipboard.js will be loaded auotmatically
-		if it's included in your <code>package.json</code>.</p>
+		if it's included in your <code>package.json</code>.
+		If you don't load Clipboard.js yourself, the plugin will load it from a CDN for you.</p>
 
 	<pre><code class="language-javascript">(function(){
 	if (typeof self === 'undefined' || !self.Prism || !self.document) {
@@ -88,7 +89,6 @@
 
 <footer data-src="templates/footer.html" data-type="text/html"></footer>
 
-<script src="https://cdn.jsdelivr.net/clipboard.js/1.5.5/clipboard.min.js"></script>
 <script src="prism.js"></script>
 <script src="plugins/toolbar/prism-toolbar.js"></script>
 <script src="plugins/copy-to-clipboard/prism-copy-to-clipboard.js"></script>
