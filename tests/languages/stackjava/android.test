@@ -1,0 +1,49 @@
+java.lang.Exception: com.android.camera.async.ResourceUnavailableException: android.hardware.camera2.CameraAccessException: Operation timed out in camera service
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.camera.module.video2.Video2OpenedCamcorderDevice$3.onFailure(Video2OpenedCamcorderDevice.java:307)
+  at com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run(ZygoteInit.java:726)
+	at com.waze.OfflineNativeManager.<init>(OfflineNativeManager.java:100)
+	at android.app.ActivityThread.-wrap14(ActivityThread.java)
+	at com.android.ex.camera2.portability.CameraAgent$CameraOpenCallbackForward$3.run(CameraAgent.java:134)
+	at com.android.camera.CaptureModule$17.onFailure(CaptureModule.java:1391)
+Caused by: com.android.camera.async.ResourceUnavailableException: android.hardware.camera2.CameraAccessException: Operation timed out in camera service
+	at $Proxy1.waitUntilIdle(Unknown Source)
+	... 6 more
+----------------------------------------------------
+
+[
+  ["class-name", "java.lang.Exception"], ["punctuation", ":"],
+      ["class-name", "com.android.camera.async.ResourceUnavailableException"], ["punctuation", ":"],
+      ["class-name", "android.hardware.camera2.CameraAccessException"], ["punctuation", ":"],
+      " Operation timed out in camera service",
+  ["keyword", "\n\tat "], ["function", "java.lang.reflect.Method.invoke"],
+      ["punctuation", "("], ["file", "Native Method"], ["punctuation", ")"],
+  ["keyword", "\n\tat "], ["function", "com.android.camera.module.video2.Video2OpenedCamcorderDevice$3.onFailure"],
+      ["punctuation", "("], ["file", "Video2OpenedCamcorderDevice.java"],
+      ["punctuation", ":"], ["lineno", "307"], ["punctuation", ")"],
+  ["keyword", "\n  at "], ["function", "com.android.internal.os.ZygoteInit$MethodAndArgsCaller.run"],
+      ["punctuation", "("], ["file", "ZygoteInit.java"],
+      ["punctuation", ":"], ["lineno", "726"], ["punctuation", ")"],
+  ["keyword", "\n\tat "], ["function", "com.waze.OfflineNativeManager.<init>"],
+      ["punctuation", "("], ["file", "OfflineNativeManager.java"],
+      ["punctuation", ":"], ["lineno", "100"], ["punctuation", ")"],
+  ["keyword", "\n\tat "], ["function", "android.app.ActivityThread.-wrap14"],
+      ["punctuation", "("], ["file", "ActivityThread.java"], ["punctuation", ")"],
+  ["keyword", "\n\tat "], ["function", "com.android.ex.camera2.portability.CameraAgent$CameraOpenCallbackForward$3.run"],
+      ["punctuation", "("], ["file", "CameraAgent.java"],
+      ["punctuation", ":"], ["lineno", "134"], ["punctuation", ")"],
+  ["keyword", "\n\tat "], ["function", "com.android.camera.CaptureModule$17.onFailure"],
+      ["punctuation", "("], ["file", "CaptureModule.java"],
+      ["punctuation", ":"], ["lineno", "1391"], ["punctuation", ")"],
+  ["keyword", "\nCaused by"], ["punctuation", ":"],
+      ["class-name", "com.android.camera.async.ResourceUnavailableException"], ["punctuation", ":"],
+      ["class-name", "android.hardware.camera2.CameraAccessException"],
+      ["punctuation", ":"], " Operation timed out in camera service",
+  ["keyword", "\n\tat "], ["function", "$Proxy1.waitUntilIdle"],
+      ["punctuation", "("], ["file", "Unknown Source"], ["punctuation", ")"],
+  ["keyword", "\n\t... "], ["missing-frame-count", "6"], ["keyword", " more"]
+]
+
+----------------------------------------------------
+
+Checks Android Java Stack Trace.

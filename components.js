@@ -482,6 +482,10 @@ var components = {
 			"title": "SQL",
 			"owner": "multipetros"
 		},
+		"stackjava": {
+			"title": "Java Stack Trace",
+			"owner": "wesalvaro"
+		},
 		"stylus" : {
 			"title": "Stylus",
 			"owner": "vkbansal"
