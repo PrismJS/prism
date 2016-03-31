@@ -122,6 +122,10 @@ var components = {
 			"title": "Brainfuck",
 			"owner": "Golmote"
 		},
+		"bro": {
+			"title": "Bro",
+			"owner": "wayward710"
+		},
 		"c": {
 			"title": "C",
 			"require": "clike",
