@@ -85,7 +85,7 @@ function fileExists(filepath) {
 				return true;
 			}
 		}
-		return true;
+		return false;
 	});
 }
 
