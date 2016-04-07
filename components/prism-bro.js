@@ -22,11 +22,10 @@ Prism.languages.bro = {
 	},
 
 	'variable':	{
-				pattern: /(?:global|local) [a-zA-Z0-9_]+/i,
-				inside: {
-					keyword: /(?:global|local)/
-				}
-
+		pattern: /(?:global|local) [a-zA-Z0-9_]+/i,
+		inside: {
+			keyword: /(?:global|local)/
+		}
 	},
 
 	'number': /\b-?(?:0x[\da-f]+|\d*\.?\d+(?:e[+-]?\d+)?)\b/i,
@@ -37,8 +36,7 @@ Prism.languages.bro = {
 	'builtin': 
 	    /(@(load(-(sigs|plugin))?|unload|prefixes|ifn?def|else|(end)?if|DIR|FILENAME))|(&?(redef|priority|log|optional|default|add_func|delete_func|expire_func|read_expire|write_expire|create_expire|synchronized|persistent|rotate_interval|rotate_size|encrypt|raw_output|mergeable|group|error_handler|type_column))/,           
 
-	'constant': 
-	{
+	'constant': {
 		pattern: /const [a-zA-Z0-9_]+/i,
 		inside: {
 			keyword: /const/
