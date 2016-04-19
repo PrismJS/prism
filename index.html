@@ -153,6 +153,21 @@
 	<p>If you want to prevent any elements from being automatically highlighted, you can use the attribute <code>data-manual</code> on the <code>&lt;script></code> element you used for prism and use the <a href="extending.html#api">API</a>.
 	Example:</p>
 	<pre><code>&lt;script src="prism.js" data-manual>&lt;/script></code></pre>
+
+    <p>If you want to use Prism on the server or through the command line, Prism can be used with Node.js as well.
+    This might be useful if you're trying to generate static HTML pages with highlighted code for environments that don't support browser-side JS, like <a href="https://www.ampproject.org/">AMP pages</a>.</p>
+
+    <p>You can install Prism for Node.js by running:</p>
+    <pre><code>$ npm install prismjs</code></pre>
+
+    <p>Example:</p>
+    <pre><code class="language-js">var Prism = require('prismjs');
+
+// The code snippet you want to highlight, as a string
+var code = "var data = 1;";
+
+// Returns a highlighted HTML string
+var html = Prism.highlight(code, Prism.languages.javascript);</code></pre>
 </section>
 
 <section id="languages-list" class="language-markup">
