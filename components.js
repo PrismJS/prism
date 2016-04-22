@@ -607,6 +607,11 @@ var components = {
 			"owner": "Golmote",
 			"noCSS": true
 		},
+		"trim": {
+			"title": "Whitespace trimmer",
+			"owner": "telic",
+			"noCSS": true
+		},
 		"keep-markup": {
 			"title": "Keep Markup",
 			"owner": "Golmote",
