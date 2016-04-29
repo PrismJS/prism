@@ -60,9 +60,6 @@ var components = {
 			"option": "default",
 			"require": "clike"
 		},
-
-
-
 		"abap": {
 			"title": "ABAP",
 			"owner": "dellagustin"
@@ -399,6 +396,10 @@ var components = {
 		"prolog": {
 			"title": "Prolog",
 			"owner": "Golmote"
+		},
+		"protobuf": {
+			"title": "Protocol Buffers",
+			"owner": "just-boris"
 		},
 		"puppet": {
 			"title": "Puppet",

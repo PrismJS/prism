@@ -1,4 +1,4 @@
-Prism.languages.proto = Prism.languages.extend('clike', {
+Prism.languages.protobuf = Prism.languages.extend('clike', {
     keyword: /\b(package|import|message|enum)\b/,
     builtin: /\b(required|repeated|optional|reserved)\b/,
     primitive: {
