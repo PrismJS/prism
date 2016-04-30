@@ -8,7 +8,10 @@ Prism.languages.bro = {
 		}
 	},
 
-	'string': /(["'])(\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,
+	'string': {
+		pattern: /(["'])(\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,
+		greedy: true
+	},
 
 	'boolean': /\b(T|F)\b/,
 
@@ -36,7 +39,7 @@ Prism.languages.bro = {
 		}
 	},
 
-	'keyword': 
+	'keyword':
 		/\b(break|next|continue|alarm|using|of|add|delete|export|print|return|schedule|when|timeout|addr|any|bool|count|double|enum|file|int|interval|pattern|opaque|port|record|set|string|subnet|table|time|vector|for|if|else|in|module|function)\b/,
 
 	'operator': /--?|\+\+?|!=?=?|<=?|>=?|==?=?|&&|\|\|?|\?|\*|\/|~|\^|%/,
