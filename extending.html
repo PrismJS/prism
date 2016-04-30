@@ -63,6 +63,19 @@
 		alias: 'string'
 	}
 }</code></pre></dd>
+
+		<dt>greedy</dt>
+		<dd>This is a boolean attribute. It is intended to solve a common problem with
+		patterns that match long strings like comments, regex or string literals. For example,
+		comments are parsed first, but if the string <code class="language-javascript">/* foo */</code>
+		appears inside a string, you would not want it to be highlighted as a comment.
+		The greedy-property allows a pattern to ignore previous matches of other patterns, and
+		overwrite them when necessary. Use this flag with restraint, as it incurs a small performance overhead.
+		The following example demonstrates its usage:
+		<pre><code class="language-javascript">'string': {
+	pattern: /(["'])(\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,
+	greedy: true
+}</code></pre>
 	</dl>
 
 	<p>Unless explicitly allowed through the <code>inside</code> property, each token cannot contain other tokens, so their order is significant. Although per the ECMAScript specification, objects are not required to have a specific ordering of their properties, in practice they do in every modern browser.</p>
