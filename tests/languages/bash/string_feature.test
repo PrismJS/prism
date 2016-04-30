@@ -26,6 +26,10 @@ EOF
 foo
 bar
 EOF
+<< STRING_END
+# comment
+STRING_END
+"  # comment  "
 
 ----------------------------------------------------
 
@@ -51,7 +55,10 @@ EOF
 	["operator", "<<"],
 	["string", ["'EOF'\r\n'single quoted string'\r\n\"double quoted string\"\r\nEOF"]],
 	["operator", "<<"],
-	["string", ["\"EOF\"\r\nfoo\r\nbar\r\nEOF"]]
+	["string", ["\"EOF\"\r\nfoo\r\nbar\r\nEOF"]],
+	["operator", "<<"],
+	["string", ["STRING_END\r\n# comment\r\nSTRING_END"]],
+	["string", ["\"  # comment  \""]]
 ]
 
 ----------------------------------------------------

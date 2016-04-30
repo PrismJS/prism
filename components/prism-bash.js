@@ -44,10 +44,12 @@
 			{
 				pattern: /((?:^|[^<])<<\s*)(?:"|')?(\w+?)(?:"|')?\s*\r?\n(?:[\s\S])*?\r?\n\2/g,
 				lookbehind: true,
+				greedy: true,
 				inside: insideString
 			},
 			{
 				pattern: /(["'])(?:\\\\|\\?[^\\])*?\1/g,
+				greedy: true,
 				inside: insideString
 			}
 		],
