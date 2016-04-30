@@ -399,6 +399,7 @@ var components = {
 		},
 		"protobuf": {
 			"title": "Protocol Buffers",
+			"require": "clike",
 			"owner": "just-boris"
 		},
 		"puppet": {
