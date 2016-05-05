@@ -69,6 +69,25 @@ var components = {
 			"require": "javascript",
 			"owner": "Golmote"
 		},
+		"ada83": {
+			"title": "Ada83",
+			"owner": "laguest"
+		},
+		"ada95": {
+			"title": "Ada95",
+			"require": "ada83",
+			"owner": "laguest"
+		},
+		"ada2005": {
+			"title": "Ada2005",
+			"require": "ada95",
+			"owner": "laguest"
+		},
+		"ada2012": {
+			"title": "Ada2012",
+			"require": "ada2005",
+			"owner": "laguest"
+		},
 		"apacheconf": {
 			"title": "Apache Configuration",
 			"owner": "GuiTeK"
