@@ -114,6 +114,10 @@ pre[class*="language-"] {
 	color: #07a;
 }
 
+.token.attribute {
+	color: #005980;
+}
+
 .token.function {
 	color: #DD4A68;
 }
