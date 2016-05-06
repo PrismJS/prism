@@ -1,0 +1,4 @@
+myClassMap = {
+	tokenName: newClassName
+	// ...
+}

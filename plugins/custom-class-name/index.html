@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8" />
+<link rel="shortcut icon" href="favicon.png" />
+<title>Custom Class Name ▲ Prism plugins</title>
+<base href="../.." />
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="themes/prism.css" data-noprefix />
+<script src="prefixfree.min.js"></script>
+<style>
+	/*
+	 * alias default style to new defined style
+	 */
+	.my-special-keyword {
+		color: #07a;
+	}
+	.my-string {
+		color: #690;
+	}
+</style>
+<script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
+<script src="http://www.google-analytics.com/ga.js" async></script>
+</head>
+<body class="language-javascript">
+
+<header>
+	<div class="intro" data-src="templates/header-plugins.html" data-type="text/html"></div>
+
+	<h2>Custom Class Name</h2>
+	<p>This plugin allows you to replace Prism default class names (like <code>.comment</code>, <code>.string</code>, <code>.property</code>, etc) with your defined ones (like <code>.editor__comment</code> (BEM style) or <code>._7sh3a</code> (CSS Modules hashed class)).</p>  
+</header>
+
+<section>
+	<h1>How to use</h1>
+	
+	<p>You define new class names in a simple key-value object and pass it to <code>Prism.plugins.customClassName.use(yourObject)</code>.
+
+	<p>Each key of the object is the name of the token (eg: <code>comment</code>) which you want to replace its classes. The value is the class name to replace (eg: <code>my-special-comment</code>).</p>
+
+	<pre data-src="plugins/custom-class-name/example-0-format.js"></pre>
+
+	<p>Please note that this function should be called <strong>after</strong> Prism and the plugin. For example:</p>
+
+	<pre class="language-markup" data-src="plugins/custom-class-name/example-0-order.html"></pre>
+
+</section>
+
+<section>
+	<h1>Example</h1>
+
+	<p>For example, let highlight the following source code:</p>
+	<pre data-src="plugins/custom-class-name/example-1-input.js"></pre>
+
+	<p>Using the following class map object:</p>
+	<pre data-src="plugins/custom-class-name/example-1-class-map.js"></pre>
+
+	<p>Then the result html should be:</p>
+	<pre data-src="plugins/custom-class-name/example-1-output.html" class="language-markup"></pre>
+
+	<p>You can see that the class names of the keyword (<code>var</code>) and string (<code>'bar'</code>) was changed. However, the class names of operator (<code>=</code>) and punctuation (<code>;</code>) was not changed because you didn't define their custom class names.
+
+	<p>You can also inspect-element the input source code above to see how it works.</p>
+</section>
+
+<section>
+	<h1>Usage with CSS Modules</h1>
+
+	<p>The initial purpose of this plugin is to use with CSS Modules. It works perfectly with the class map object returned by CSS Modules. For example:</p>
+	<pre data-src="plugins/custom-class-name/example-2.js"></pre>
+</section>
+
+<section>
+	<h1>Todo</h1>
+	<ul>
+		<li>Allow value to be an array of string (eg: <code>{keyword: ['foo', 'bar']}</code>)</li>
+		<li>Allow value to be a string with space delimiter(<code>{keyword: 'foo bar'}</code>)</li>
+		<li>Option to keep the default class name (eg: <code>&lt;span class="token keyword custom-class">var&lt;/span></code>)</li>
+		<li>Allow to custom tokens per language, using nested object (Instruction: <a href="https://github.com/PrismJS/prism/issues/947">Issue #947</a>)</li>
+	</ul>
+</section>
+
+<footer data-src="templates/footer.html" data-type="text/html"></footer>
+
+<script src="prism.js"></script>
+<script src="plugins/custom-class-name/prism-custom-class-name.js"></script>
+<script>
+	(function() {
+		var myClassMap = {
+			keyword: 'my-special-keyword',
+			string: 'my-string'
+		};
+		Prism.plugins.customClassName.use(myClassMap);
+	})();
+</script>
+<script src="utopia.js"></script>
+<script src="components.js"></script>
+<script src="code.js"></script>
+
+</body>
+</html>
