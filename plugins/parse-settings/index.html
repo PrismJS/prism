@@ -30,21 +30,28 @@
 
 	<p>All ancestors of the current element are automatically scanned for
 	<code>data-*</code>-attributes and classes. These attributes and classes are then
-	parsed into key-value pairs and inserted into the <code>env.settings</code>
-	object. An element can inherit the <code>data-*</code>-attributes from its ancestors.</p>
+	parsed into key-value pairs. An element can inherit the <code>data-*</code>-attributes from its ancestors.</p>
 
-	<p>To avoid accidental matches the element containing the attributes has to be marked for
-	use by Prism. The mark can either be the boolean attribute <code>data-prism</code> or
-	a Prism language class (<code>&lt;pre class="language-javascript"></code>).</p>
+	<p>The plugin author has to declare the settings the plugin uses. The syntax should be self-explanatory
+	and is demonstrated with the following example:</p>
+
+	<pre class="language-javascript"><code>Prism.plugins.ParseSettings.declare({
+	'line-numbers':   { type: 'bool' },
+	'user':           { type: 'string', 'default': 'user' },
+	'host':           { type: 'string', 'default': 'localhost' },
+	'spaces-to-tabs': { type: 'int', 'default': 4 },
+	'left-trim':      { type: 'bool', 'default': true }
+});
+	</code></pre>
 
 	<p>The following conventions are used to parse the settings:</p>
 
 	<ul class="language-javascript">
 		<li>A normal class name <code>{ 'class-name': true }</code></li>
 		<li>A class name starting with "no-" <code>{ 'class-name': false }</code></li>
-		<li>An attribute without a value or the string "true" <code>{ 'attr-name': true }</code></li>
-		<li>An attribute with the string "false" <code>{ 'attr-name': false }</code></li>
-		<li>An attribute with any other value <code>{ 'attr-name': 'value' }</code></li>
+		<li>A boolean setting with the string "true" <code>{ 'attr-name': true }</code></li>
+		<li>A boolean setting with the string "false" <code>{ 'attr-name': false }</code></li>
+		<li>Integers and floats are converted into their respective types <code>{ 'attr-name': 4.4 }</code></li>
 	</ul>
 
 </section>

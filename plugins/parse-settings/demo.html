@@ -1,19 +1,36 @@
-<!-- The data-prism attribute marks this tag for inclusion -->
-<div data-prism data-left-trim data-right-trim="true">
-<!-- data-prism is not necessary because of the language-* class -->
-<div class="language-javascript no-setting1 setting2" data-left-trim="false">
+<html>
+<head><base href="../../.." /></head>
+<body data-line-numbers="true" data-spaces-to-tabs="8">
+	<div>
+		<div class="no-line-numbers">
 
-<!-- data-prism is not necessary for <pre> and <code> tags -->
-<pre data-option1="something"><code>
-// This would be the parsed settings object for this element
-{
-	'left-trim': false,
-	'right-trim': true,
-	'setting1': false,
-	'setting2': true,
-	'option1': 'something'
-}
-</code></pre>
+			<pre class="language-javascript line-numbers left-trim"><code>
+			// Example code
+			</code></pre>
 
-</div>
-</div>
+		</div>
+	</div>
+	<script src="prism.js"></script>
+	<script src="plugins/parse-settings/prism-parse-settings.js"></script>
+	<script>
+	// my new Prism plugin
+	(function() {
+
+	var specs = {
+		'line-numbers':   { type: 'bool' },
+		'user':           { type: 'string', 'default': 'user' },
+		'host':           { type: 'string', 'default': 'localhost' },
+		'spaces-to-tabs': { type: 'int', 'default': 4 },
+		'left-trim':      { type: 'bool', 'default': true }
+	};
+
+	Prism.plugins.ParseSettings.declare(specs);
+
+	Prism.hooks.add('before-highlight', function (env) {
+		console.log(env.getSettings(specs));
+	});
+
+	}());
+	</script>
+</body>
+</html>
