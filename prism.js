@@ -484,7 +484,7 @@ if (script) {
 
 	if (document.addEventListener && !script.hasAttribute('data-manual')) {
 		if(document.readyState !== "loading") {
-			setTimeout(_.highlightAll, 0);
+			requestAnimationFrame(_.highlightAll, 0);
 		}
 		else {
 			document.addEventListener('DOMContentLoaded', _.highlightAll);
