@@ -210,6 +210,10 @@ var components = {
 			"require": "clike",
 			"owner": "arnehormann"
 		},
+		"graphql": {
+			"title": "GraphQL",
+			"owner": "Golmote"
+		},
 		"groovy": {
 			"title": "Groovy",
 			"require": "clike",
