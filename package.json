@@ -19,12 +19,13 @@
   "readmeFilename": "README.md",
   "devDependencies": {
     "chai": "^2.3.0",
+    "graceful-fs": "^4.1.4",
     "gulp": "^3.8.6",
     "gulp-concat": "^2.3.4",
     "gulp-header": "^1.0.5",
     "gulp-rename": "^1.2.0",
-    "gulp-uglify": "^0.3.1",
     "gulp-replace": "^0.5.4",
+    "gulp-uglify": "^0.3.1",
     "mocha": "^2.2.5",
     "yargs": "^3.26.0"
   },
@@ -39,5 +40,8 @@
       "themes/*.css",
       "prism.js"
     ]
+  },
+  "dependencies": {
+    "graceful-fs": "^4.1.4"
   }
 }
