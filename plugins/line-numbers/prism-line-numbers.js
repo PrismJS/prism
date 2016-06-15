@@ -47,7 +47,10 @@ Prism.hooks.add('complete', function (env) {
 
 	if (pre.hasAttribute('data-start')) {
 		pre.style.counterReset = 'linenumber ' + (parseInt(pre.getAttribute('data-start'), 10) - 1);
+	} else {
+		pre.style.counterReset = 'linenumber';
 	}
+	pre.style.paddingLeft = "3.8em";
 
 	env.element.appendChild(lineNumbersWrapper);
 
