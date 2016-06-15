@@ -5,7 +5,7 @@ Prism.languages.powershell = {
 			lookbehind: true
 		},
 		{
-			pattern: /(^|[^`])#.+/,
+			pattern: /(^|[^`])#.*/,
 			lookbehind: true
 		}
 	],
