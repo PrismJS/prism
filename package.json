@@ -19,7 +19,6 @@
   "readmeFilename": "README.md",
   "devDependencies": {
     "chai": "^2.3.0",
-    "graceful-fs": "^4.1.4",
     "gulp": "^3.8.6",
     "gulp-concat": "^2.3.4",
     "gulp-header": "^1.0.5",
@@ -40,8 +39,5 @@
       "themes/*.css",
       "prism.js"
     ]
-  },
-  "dependencies": {
-    "graceful-fs": "^4.1.4"
   }
 }
