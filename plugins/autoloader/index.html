@@ -26,8 +26,14 @@
 	<h1>How to use</h1>
 
 	<p>
-		The default usage does not require anything to be done. The plugin will automatically handle missing grammars and load them for you.
-		However, a couple of options are available through the configuration object <code>Prism.plugins.autoloader</code>.
+		The plugin will automatically handle missing grammars and load them for you.
+	</p>
+	<p>
+		The easiest way to download the grammars is to clone the repo and take the <code>components</code> folder from there.
+		You can then download Prism core and any plugins from the <a href="download.html">Download</a> page, without checking any languages (or just check the languages you want to load by default, e.g. if you're using a language a lot, then you probably want to save the extra HTTP request).
+	</p>
+	<p>
+		A couple of additional options are available through the configuration object <code>Prism.plugins.autoloader</code>.
 	</p>
 
 	<h2>Specifying the grammars path</h2>
@@ -67,7 +73,7 @@
 	<h2>Force to reload a grammar</h2>
 
 	<p>
-		The plugin usually don't reload a grammar if it already exists.
+		The plugin usually doesn't reload a grammar if it already exists.
 		In some very specific cases, you might however want to do so.
 		If you add an exclamation mark after an alias in the <code>data-dependencies</code> attribute,
 		this language will be reloaded.
