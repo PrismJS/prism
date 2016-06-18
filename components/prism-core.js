@@ -282,7 +282,8 @@ var _ = _self.Prism = {
 
 				if (greedy && !pattern.pattern.global) {
 					// Without the global flag, lastIndex won't work
-					pattern.pattern = RegExp(pattern.pattern.source, pattern.pattern.flags + "g");
+					var flags = pattern.pattern.toString().match(/[imuy]*$/)[0];
+					pattern.pattern = RegExp(pattern.pattern.source, flags + "g");
 				}
 
 				pattern = pattern.pattern || pattern;
