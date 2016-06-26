@@ -294,6 +294,10 @@ var components = {
 			"require": "css",
 			"owner": "Golmote"
 		},
+		"livescript": {
+			"title": "LiveScript",
+			"owner": "Golmote"
+		},
 		"lolcode": {
 			"title": "LOLCODE",
 			"owner": "Golmote"
