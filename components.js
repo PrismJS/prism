@@ -405,6 +405,10 @@ var components = {
 			"title": "Prolog",
 			"owner": "Golmote"
 		},
+		"properties": {
+			"title": ".properties",
+			"owner": "Golmote"
+		},
 		"protobuf": {
 			"title": "Protocol Buffers",
 			"require": "clike",
