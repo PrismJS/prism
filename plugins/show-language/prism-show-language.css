@@ -18,8 +18,6 @@ div.prism-show-language > div.prism-show-language-label {
 	padding: 0 0.5em;
 	text-shadow: none;
 	z-index: 1;
-	-webkit-box-shadow: none;
-	-moz-box-shadow: none;
 	box-shadow: none;
 	-webkit-transform: none;
 	-moz-transform: none;

@@ -30,15 +30,9 @@ pre[class*="language-"] {
 pre[class*="language-"] {
 	position: relative;
 	margin: .5em 0;
-	-webkit-box-shadow: -1px 0px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf;
-	-moz-box-shadow: -1px 0px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf;
 	box-shadow: -1px 0px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf;
 	border-left: 10px solid #358ccb;
 	background-color: #fdfdfd;
-	background-image: -webkit-linear-gradient(transparent 50%, rgba(69, 142, 209, 0.04) 50%);
-	background-image: -moz-linear-gradient(transparent 50%, rgba(69, 142, 209, 0.04) 50%);
-	background-image: -ms-linear-gradient(transparent 50%, rgba(69, 142, 209, 0.04) 50%);
-	background-image: -o-linear-gradient(transparent 50%, rgba(69, 142, 209, 0.04) 50%);
 	background-image: linear-gradient(transparent 50%, rgba(69, 142, 209, 0.04) 50%);
 	background-size: 3em 3em;
 	background-origin: content-box;
@@ -68,10 +62,6 @@ pre[class*="language-"] {
 :not(pre) > code[class*="language-"] {
 	position: relative;
 	padding: .2em;
-	-webkit-border-radius: 0.3em;
-	-moz-border-radius: 0.3em;
-	-ms-border-radius: 0.3em;
-	-o-border-radius: 0.3em;
 	border-radius: 0.3em;
 	color: #c92c2c;
 	border: 1px solid rgba(0, 0, 0, 0.1);
@@ -90,8 +80,6 @@ pre[class*="language-"]:after {
 	width: 40%;
 	height: 20%;
 	max-height: 13em;
-	-webkit-box-shadow: 0px 13px 8px #979797;
-	-moz-box-shadow: 0px 13px 8px #979797;
 	box-shadow: 0px 13px 8px #979797;
 	-webkit-transform: rotate(-2deg);
 	-moz-transform: rotate(-2deg);
@@ -193,8 +181,6 @@ pre[class*="language-"]:after {
 	pre[class*="language-"]:before,
 	pre[class*="language-"]:after {
 		bottom: 14px;
-		-webkit-box-shadow: none;
-		-moz-box-shadow: none;
 		box-shadow: none;
 	}
 
