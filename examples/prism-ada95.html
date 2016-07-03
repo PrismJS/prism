@@ -1,0 +1,26 @@
+<h1>Ada95</h1>
+<p>To use this language, use the class "language-ada95".</p>
+
+<h2>Strings</h2>
+<pre><code>"foo """bar""" baz"
+"Multi-line strings are appended with a " &
+"ampersand symbole."</code></pre>
+
+<h2>Full example</h2>
+<pre><code>with Ada.Text_IO; Use Ada.Text_IO;
+
+--  Comments look like this.
+procedure Test is
+   procedure Bah;
+   pragma Import (C, "Bah", "bah");
+
+   type Things is range 1 .. 10;
+begin
+   Put_Line ("Hello");   --  Comments look like this.
+
+   Bah;  -- Call C function.
+
+   for Index in Things'Range loop
+      null;
+   end loop;
+end Test;</code></pre>
