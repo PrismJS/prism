@@ -4,18 +4,6 @@ if (typeof self === 'undefined' || !self.Prism || !self.document) {
 	return;
 }
 
-var assign = Object.assign || function (obj1, obj2) {
-	for (var name in obj2) {
-		if (obj2.hasOwnProperty(name))
-			obj1[name] = obj2[name];
-	}
-	return obj1;
-}
-
-function NormalizeWhitespace(defaults) {
-	this.defaults = assign({}, defaults);
-}
-
 function toCamelCase(value) {
 	return value.replace(/-(\w)/g, function(match, firstChar) {
 		return firstChar.toUpperCase();
@@ -31,17 +19,14 @@ function tabLen(str) {
 	return str.length + res;
 }
 
-NormalizeWhitespace.prototype = {
-	setDefaults: function (defaults) {
-		this.defaults = assign(this.defaults, defaults);
-	},
-	normalize: function (input, settings) {
-		settings = assign(this.defaults, settings);
+function NormalizeWhitespace() {
+}
 
+NormalizeWhitespace.prototype = {
+	normalize: function (input, settings) {
 		for (var name in settings) {
 			var methodName = toCamelCase(name);
-			if (name !== "normalize" && methodName !== 'setDefaults' &&
-					settings[name] && this[methodName]) {
+			if (settings[name] && this[methodName]) {
 				input = this[methodName].call(this, input, settings[name]);
 			}
 		}
@@ -59,11 +44,9 @@ NormalizeWhitespace.prototype = {
 		return input.replace(/\s+$/, '');
 	},
 	tabsToSpaces: function (input, spaces) {
-		spaces = spaces|0 || 4;
 		return input.replace(/\t/g, new Array(++spaces).join(' '));
 	},
 	spacesToTabs: function (input, spaces) {
-		spaces = spaces|0 || 4;
 		return input.replace(new RegExp(' {' + spaces + '}', 'g'), '\t');
 	},
 	removeTrailing: function (input) {
@@ -90,8 +73,6 @@ NormalizeWhitespace.prototype = {
 		return input.replace(/^[^\S\n\r]*(?=\S)/gm, new Array(++tabs).join('\t') + '$&');
 	},
 	breakLines: function (input, characters) {
-		characters = (characters === true) ? 80 : characters|0 || 80;
-
 		var lines = input.split('\n');
 		for (var i = 0; i < lines.length; ++i) {
 			if (tabLen(lines[i]) <= characters)
@@ -114,24 +95,25 @@ NormalizeWhitespace.prototype = {
 	}
 };
 
-Prism.plugins.NormalizeWhitespace = new NormalizeWhitespace({
-	'remove-trailing': true,
-	'remove-indent': true,
-	'left-trim': true,
-	'right-trim': true,
-	/*'break-lines': 80,
-	'indent': 2,
-	'remove-initial-line-feed': false,
-	'tabs-to-spaces': 4,
-	'spaces-to-tabs': 4*/
-});
+Prism.plugins.NormalizeWhitespace = new NormalizeWhitespace();
 
 Prism.hooks.add('before-highlight', function (env) {
+	var settings = Prism.util.getSettings(env.element, {
+		'remove-trailing': { type: 'bool', 'default': true },
+		'remove-indent': { type: 'bool', 'default': true },
+		'left-trim': { type: 'bool', 'default': true },
+		'right-trim': { type: 'bool', 'default': true },
+		'break-lines': { type: 'int' },
+		'indent':  { type: 'int' },
+		'remove-initial-line-feed': { type: 'bool' },
+		'tabs-to-spaces': { type: 'int' },
+		'spaces-to-tabs': { type: 'int' },
+		'whitespace-normalization': { type: 'bool', 'default': true },
+	});
+
 	var pre = env.element.parentNode;
-	var clsReg = /\bno-whitespace-normalization\b/;
 	if (!env.code || !pre || pre.nodeName.toLowerCase() !== 'pre' ||
-			(env.settings && env.settings['whitespace-normalization'] === false) ||
-			clsReg.test(pre.className) || clsReg.test(env.element.className))
+			!settings['whitespace-normalization'])
 		return;
 
 	var children = pre.childNodes,
@@ -160,11 +142,11 @@ Prism.hooks.add('before-highlight', function (env) {
 
 	if (!env.element.children.length || !Prism.plugins.KeepMarkup) {
 		env.code = before + env.code + after;
-		env.code = Normalizer.normalize(env.code, env.settings);
+		env.code = Normalizer.normalize(env.code, settings);
 	} else {
 		// Preserve markup for keep-markup plugin
 		var html = before + env.element.innerHTML + after;
-		env.element.innerHTML = Normalizer.normalize(html, env.settings);
+		env.element.innerHTML = Normalizer.normalize(html, settings);
 		env.code = env.element.textContent;
 	}
 });

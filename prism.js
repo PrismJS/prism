@@ -46,6 +46,46 @@ var _ = _self.Prism = {
 			return obj['__id'];
 		},
 
+		getSettings: function (element, specs) {
+			function getter(name, spec, value) {
+				return function() {
+					if (value !== undefined)
+						return value;
+
+					var pat = spec.type == 'bool' ? RegExp("(no-)?" + name) : null,
+					    el = element;
+					while (el && el.getAttribute) {
+						var match = pat && pat.exec(el.className);
+						if (match)
+							return value = !match[1];
+
+						var attr = el.getAttribute('data-' + name);
+						if (attr !== null) {
+							switch(spec.type) {
+							case 'bool':
+								return value = !(attr === 'false');
+							case 'int':
+								return value = attr|0;
+							case 'float':
+								return value = parseFloat(attr);
+							}
+							return value = attr;
+						}
+						el = el.parentNode;
+					}
+
+					return value = spec['default'];
+				};
+			}
+
+			var settings = {};
+			for (var n in specs) {
+				Object.defineProperty(settings, n, { get: getter(n, specs[n]), enumerable: true });
+			}
+
+			return settings;
+		},
+
 		// Deep clone a language definition (e.g. to extend it)
 		clone: function (o) {
 			var type = _.util.type(o);

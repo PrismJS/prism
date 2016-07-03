@@ -45,22 +45,15 @@
 	<p>The plugin can be disabled for a particular code block by adding the class <code>no-whitespace-normalization</code> to
 	either the <code>&lt;pre></code> or <code>&lt;code></code> tag.</p>
 
-	<p>The default settings can be overridden with the <code class="language-javascript">setDefaults()</code> method
+	<p>The default settings can be overridden with `data-` attributes on any parent element
 	like so:</p>
 
-	<pre class="language-javascript"><code>
-Prism.plugins.NormalizeWhitespace.setDefaults({
-	'remove-trailing': true,
-	'remove-indent': true,
-	'left-trim': true,
-	'right-trim': true,
-	/*'break-lines': 80,
-	'indent': 2,
-	'remove-initial-line-feed': false,
-	'tabs-to-spaces': 4,
-	'spaces-to-tabs': 4*/
-});
-</code></pre>
+	<pre><code>
+&lt;pre data-remove-indent="true">
+&lt;code data-indent="2">
+&lt;!-- code --&gt;
+&lt;/code>&lt;/pre>
+	</code></pre>
 
 	<p>The following settings are available:</p>
 
@@ -117,6 +110,7 @@ Prism.plugins.NormalizeWhitespace.setDefaults({
 	<pre>
 
 	<code class="language-css">
+
 
 
 	@media <mark>screen</mark> {
