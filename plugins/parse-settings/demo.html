@@ -1,0 +1,36 @@
+<html>
+<head><base href="../../.." /></head>
+<body data-line-numbers="true" data-spaces-to-tabs="8">
+	<div>
+		<div class="no-line-numbers">
+
+			<pre class="language-javascript line-numbers left-trim"><code>
+			// Example code
+			</code></pre>
+
+		</div>
+	</div>
+	<script src="prism.js"></script>
+	<script src="plugins/parse-settings/prism-parse-settings.js"></script>
+	<script>
+	// my new Prism plugin
+	(function() {
+
+	var specs = {
+		'line-numbers':   { type: 'bool' },
+		'user':           { type: 'string', 'default': 'user' },
+		'host':           { type: 'string', 'default': 'localhost' },
+		'spaces-to-tabs': { type: 'int', 'default': 4 },
+		'left-trim':      { type: 'bool', 'default': true }
+	};
+
+	Prism.plugins.ParseSettings.declare(specs);
+
+	Prism.hooks.add('before-highlight', function (env) {
+		console.log(env.getSettings(specs));
+	});
+
+	}());
+	</script>
+</body>
+</html>
