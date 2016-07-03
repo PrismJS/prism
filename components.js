@@ -69,6 +69,10 @@ var components = {
 			"require": "javascript",
 			"owner": "Golmote"
 		},
+		"ada": {
+			"title": "Ada",
+			"owner": "Lucretia"
+		},
 		"apacheconf": {
 			"title": "Apache Configuration",
 			"owner": "GuiTeK"
