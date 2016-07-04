@@ -19,7 +19,7 @@
 		cursor: pointer;
 	}
 	.download-grammars.loading:after {
-		content: ' [... Generating]';
+		content: ' [Generating... ' attr(data-progress) '%]';
 	}
 </style>
 <script src="prefixfree.min.js"></script>
@@ -129,12 +129,13 @@
 <script src="vendor/jszip.min.js"></script>
 <script src="vendor/FileSaver.min.js"></script>
 <script>
-	function getZip(files) {
+	function getZip(files, elt) {
 		return new Promise(function (resolve, reject) {
 			var zip = new JSZip();
 			var l = files.length;
 			var i = 0;
 			var process = function () {
+				elt.setAttribute('data-progress', Math.round(i / l * 100));
 				if (i < l) {
 					addFile(zip, files[i][0], files[i][1]).then(function () {
 						i++;
@@ -147,11 +148,13 @@
 			process();
 		});
 	}
+
 	function addFile(zip, filename, filepath) {
 		return getFileContents(filepath).then(function (contents) {
 			zip.file(filename, contents);
 		});
 	}
+
 	function getFileContents(filepath) {
 		return new Promise(function (resolve, reject) {
 			$u.xhr({
@@ -170,7 +173,11 @@
 
 	$('.download-grammars').addEventListener('click', function () {
 		var btn = this;
+		if (btn.classList.contains('loading')) {
+			return;
+		}
 		btn.classList.add('loading');
+		btn.setAttribute('data-progress', 0);
 
 		var files = [];
 		for (var id in components.languages) {
@@ -183,7 +190,7 @@
 			files.push([basename + '.min.js', basepath + '.min.js']);
 		}
 
-		getZip(files).then(function (zip) {
+		getZip(files, btn).then(function (zip) {
 			btn.classList.remove('loading');
 			return zip.generateAsync({type: 'blob'});
 		}).then(function (blob) {
