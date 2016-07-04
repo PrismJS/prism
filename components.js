@@ -550,6 +550,11 @@ var components = {
 			"require": "markup",
 			"owner": "Golmote"
 		},
+		"xojo": {
+			"title": "Xojo (REALbasic)",
+			"require": "basic",
+			"owner": "Golmote"
+		},
 		"yaml": {
 			"title": "YAML",
 			"owner": "hason"
