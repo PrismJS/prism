@@ -552,7 +552,6 @@ var components = {
 		},
 		"xojo": {
 			"title": "Xojo (REALbasic)",
-			"require": "basic",
 			"owner": "Golmote"
 		},
 		"yaml": {
