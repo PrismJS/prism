@@ -48,7 +48,10 @@ Prism.languages.insertBefore('scss', 'function', {
 		pattern: /%[-_\w]+/,
 		alias: 'selector'
 	},
-	'statement': /\B!(?:default|optional)\b/i,
+	'statement': {
+		pattern: /\B!(?:default|optional)\b/i,
+		alias: 'keyword'
+	},
 	'boolean': /\b(?:true|false)\b/,
 	'null': /\bnull\b/,
 	'operator': {
