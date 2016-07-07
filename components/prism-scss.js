@@ -23,6 +23,10 @@ Prism.languages.scss = Prism.languages.extend('css', {
 		// Initial look-ahead is used to prevent matching of blank selectors
 		pattern: /(?=\S)[^@;\{\}\(\)]?([^@;\{\}\(\)]|&|#\{\$[-_\w]+\})+(?=\s*\{(\}|\s|[^\}]+(:|\{)[^\}]+))/m,
 		inside: {
+			'parent': {
+				pattern: /&/,
+				alias: 'important'
+			},
 			'placeholder': /%[-_\w]+/,
 			'variable': /\$[-_\w]+|#\{\$[-_\w]+\}/
 		}
