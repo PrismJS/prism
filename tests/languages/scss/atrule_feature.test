@@ -6,7 +6,7 @@
 	["atrule", [
 		["rule", "@media"],
 		["punctuation", "("],
-		["property", "min-width"],
+		["property", ["min-width"]],
 		["punctuation", ":"],
 		" 600px",
 		["punctuation", ")"]
