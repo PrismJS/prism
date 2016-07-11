@@ -37,7 +37,7 @@
 	};
 
 	// Tokens that may contain URLs
-	var candidates = ['comment', 'url', 'attr-value', 'string'];
+	var candidates = ['url', 'attr-value', 'string'];
 
 	Prism.plugins.dataURIHighlight = {
 		processGrammar: function (grammar) {
