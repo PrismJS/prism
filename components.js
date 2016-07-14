@@ -645,6 +645,11 @@ var components = {
 			"owner": "zeitgeist87",
 			"after": "unescaped-markup",
 			"noCSS": true
+		},
+		"data-uri-highlight": {
+			"title": "Data-URI Highlight",
+			"owner": "Golmote",
+			"noCSS": true
 		}
 	}
 };
