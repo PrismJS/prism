@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8" />
+<link rel="shortcut icon" href="favicon.png" />
+<title>Toolbar ▲ Prism plugins</title>
+<base href="../.." />
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="prism.css" data-noprefix />
+<link rel="stylesheet" href="plugins/toolbar/prism-toolbar.css" data-noprefix />
+<script src="prefixfree.min.js"></script>
+
+<script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
+<script src="http://www.google-analytics.com/ga.js" async></script>
+</head>
+<body class="language-markup">
+
+<header>
+  <div class="intro" data-src="templates/header-plugins.html" data-type="text/html"></div>
+
+  <h2>Toolbar</h2>
+  <p>Attach a toolbar for users to easily view and copy the raw code.</p>
+</header>
+
+<section>
+  <h1>How to use</h1>
+  <p>Add a class of <strong>code-toolbar</strong> to the <code>&lt;pre></code> code block and the plugin will do the rest.</p>
+  <pre><code>&lt;pre class="code-toolbar"> &hellip; &lt;/pre></code></pre>
+  <p><em><strong>Optional:</strong></em> You can customize the success message when a user copies the code to the clipboard by adding a <strong>data-copy-success</strong> attribute to the <code>&lt;pre></code> tag. If set to a blank string, it will disable the success notification.</p>
+  <p>This plugin utilizes <a href="http://zeroclipboard.github.io/ZeroClipboard/">ZeroClipboard</a> to copy code to the user's clipboard. Should you choose to not include ZeroClipboard, the "Copy to clipboard" link will be removed from the toolbar.</p>
+</section>
+
+<section>
+  <h1>Examples</h1>
+  <p>Below are some examples of the toolbar being added, with the code being from the plugin asset files.</p>
+
+  <h2>JavaScript</h2>
+  <pre class="code-toolbar" data-src="plugins/toolbar/prism-toolbar.js"></pre>
+
+  <h2>CSS</h2>
+  <p>Note how the copy success message has changed via custom text in the <code>data-copy-success</code> attribute.</p>
+  <pre class="code-toolbar" data-src="plugins/toolbar/prism-toolbar.css" data-copy-success="Success!"></pre>
+
+  <h2>HTML</h2>
+  <p>Note how the copy success message no longer displays via a blank <code>data-copy-success</code> attribute.</p>
+  <pre class="code-toolbar" data-src="plugins/toolbar/index.html" data-copy-success=""></pre>
+</section>
+
+<footer data-src="templates/footer.html" data-type="text/html"></footer>
+
+<script src="prism.js"></script>
+<script src="plugins/toolbar/prism-toolbar.js"></script>
+<script src="plugins/toolbar/ZeroClipboard.min.js"></script>
+<script src="utopia.js"></script>
+<script src="components.js"></script>
+<script src="code.js"></script>
+
+
+</body>
+</html>
