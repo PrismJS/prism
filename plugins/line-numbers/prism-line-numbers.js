@@ -27,7 +27,7 @@ Prism.hooks.add('complete', function (env) {
 
 	if (clsReg.test(env.element.className)) {
 		// Remove the class "line-numbers" from the <code>
-		env.element.className = env.element.className.replace(clsReg, '');
+		env.element.className = env.element.className.replace(clsReg, ' ');
 	}
 	if (!clsReg.test(pre.className)) {
 		// Add the class "line-numbers" to the <pre>
