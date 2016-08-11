@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8" />
+<link rel="shortcut icon" href="favicon.png" />
+<title>Show Filename ▲ Prism plugins</title>
+<base href="../.." />
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="themes/prism.css" data-noprefix />
+<link rel="stylesheet" href="plugins/show-filename/prism-show-filename.css" data-noprefix />
+<script src="prefixfree.min.js"></script>
+
+<script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
+<script src="http://www.google-analytics.com/ga.js" async></script>
+</head>
+<body>
+
+<header>
+	<div class="intro" data-src="templates/header-plugins.html" data-type="text/html"></div>
+
+	<h2>Show Filename</h2>
+	<p>Display the filename from <code class="language-markup">data-filename</code> and <code class="language-markup">data-src</code> attributes.</p>
+</header>
+
+<section>
+	<h1>Examples</h1>
+
+	<h2>JavaScript</h2>
+	<pre data-filename="prism-show-language.js" data-src="plugins/show-language/prism-show-language.js"></pre>
+
+	<h2>CSS</h2>
+	<pre data-src="plugins/show-language/prism-show-language.css"></pre>
+
+	<h2>HTML (Markup)</h2>
+	<pre data-src="plugins/show-language/index.html"></pre>
+
+	<h2>SVG</h2>
+	<p>The <code class="language-markup">data-filename</code> attribute can be used both in <code class="language-markup">pre</code> and <code class="language-markup">code</code> tags.</p>
+	<pre>
+		<code class="language-css" data-filename="prism-show-filename.css">
+			div.prism-show-filename {
+				position: relative;
+			}
+		</code>
+	</pre>
+</section>
+
+<footer data-src="templates/footer.html" data-type="text/html"></footer>
+
+<script src="prism.js"></script>
+<script src="plugins/show-filename/prism-show-filename.js"></script>
+<script src="plugins/normalize-whitespace/prism-normalize-whitespace.js"></script>
+<script src="utopia.js"></script>
+<script src="components.js"></script>
+<script src="code.js"></script>
+
+
+</body>
+</html>
