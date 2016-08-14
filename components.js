@@ -69,6 +69,10 @@ var components = {
 			"require": "javascript",
 			"owner": "Golmote"
 		},
+		"ada": {
+			"title": "Ada",
+			"owner": "Lucretia"
+		},
 		"apacheconf": {
 			"title": "Apache Configuration",
 			"owner": "GuiTeK"
@@ -210,6 +214,10 @@ var components = {
 			"require": "clike",
 			"owner": "arnehormann"
 		},
+		"graphql": {
+			"title": "GraphQL",
+			"owner": "Golmote"
+		},
 		"groovy": {
 			"title": "Groovy",
 			"require": "clike",
@@ -288,6 +296,10 @@ var components = {
 		"less": {
 			"title": "Less",
 			"require": "css",
+			"owner": "Golmote"
+		},
+		"livescript": {
+			"title": "LiveScript",
 			"owner": "Golmote"
 		},
 		"lolcode": {
@@ -395,6 +407,10 @@ var components = {
 		},
 		"prolog": {
 			"title": "Prolog",
+			"owner": "Golmote"
+		},
+		"properties": {
+			"title": ".properties",
 			"owner": "Golmote"
 		},
 		"protobuf": {
@@ -534,6 +550,10 @@ var components = {
 			"require": "markup",
 			"owner": "Golmote"
 		},
+		"xojo": {
+			"title": "Xojo (REALbasic)",
+			"owner": "Golmote"
+		},
 		"yaml": {
 			"title": "YAML",
 			"owner": "hason"
@@ -628,6 +648,11 @@ var components = {
 			"title": "Normalize Whitespace",
 			"owner": "zeitgeist87",
 			"after": "unescaped-markup",
+			"noCSS": true
+		},
+		"data-uri-highlight": {
+			"title": "Data-URI Highlight",
+			"owner": "Golmote",
 			"noCSS": true
 		}
 	}

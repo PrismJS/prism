@@ -14,36 +14,42 @@ var url = /\b([a-z]{3,7}:\/\/|tel:)[\w\-+%~/.:#=?&amp;]+/,
 	// Tokens that may contain URLs and emails
     candidates = ['comment', 'url', 'attr-value', 'string'];
 
-Prism.hooks.add('before-highlight', function(env) {
-	// Abort if grammar has already been processed
-	if (!env.grammar || env.grammar['url-link']) {
-		return;
-	}
-	Prism.languages.DFS(env.grammar, function (key, def, type) {
-		if (candidates.indexOf(type) > -1 && Prism.util.type(def) !== 'Array') {
-			if (!def.pattern) {
-				def = this[key] = {
-					pattern: def
-				};
-			}
-
-			def.inside = def.inside || {};
-
-			if (type == 'comment') {
-				def.inside['md-link'] = linkMd;
-			}
-			if (type == 'attr-value') {
-				Prism.languages.insertBefore('inside', 'punctuation', { 'url-link': url }, def);
-			}
-			else {
-				def.inside['url-link'] = url;
-			}
-
-			def.inside['email-link'] = email;
+Prism.plugins.autolinker = {
+	processGrammar: function (grammar) {
+		// Abort if grammar has already been processed
+		if (!grammar || grammar['url-link']) {
+			return;
 		}
-	});
-	env.grammar['url-link'] = url;
-	env.grammar['email-link'] = email;
+		Prism.languages.DFS(grammar, function (key, def, type) {
+			if (candidates.indexOf(type) > -1 && Prism.util.type(def) !== 'Array') {
+				if (!def.pattern) {
+					def = this[key] = {
+						pattern: def
+					};
+				}
+
+				def.inside = def.inside || {};
+
+				if (type == 'comment') {
+					def.inside['md-link'] = linkMd;
+				}
+				if (type == 'attr-value') {
+					Prism.languages.insertBefore('inside', 'punctuation', { 'url-link': url }, def);
+				}
+				else {
+					def.inside['url-link'] = url;
+				}
+
+				def.inside['email-link'] = email;
+			}
+		});
+		grammar['url-link'] = url;
+		grammar['email-link'] = email;
+	}
+};
+
+Prism.hooks.add('before-highlight', function(env) {
+	Prism.plugins.autolinker.processGrammar(env.grammar);
 });
 
 Prism.hooks.add('wrap', function(env) {

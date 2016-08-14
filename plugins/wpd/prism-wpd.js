@@ -8,8 +8,6 @@ if (
 }
 
 if (Prism.languages.css) {
-	Prism.languages.css.atrule.inside['atrule-id'] = /^@[\w-]+/;
-	
 	// check whether the selector is an advanced pattern before extending it
 	if (Prism.languages.css.selector.pattern)
 	{
@@ -57,60 +55,65 @@ var language;
 Prism.hooks.add('wrap', function(env) {
 	if ((env.type == 'tag-id'
 		|| (env.type == 'property' && env.content.indexOf('-') != 0)
-		|| (env.type == 'atrule-id'&& env.content.indexOf('@-') != 0)
+		|| (env.type == 'rule'&& env.content.indexOf('@-') != 0)
 		|| (env.type == 'pseudo-class'&& env.content.indexOf(':-') != 0) 
 		|| (env.type == 'pseudo-element'&& env.content.indexOf('::-') != 0) 
-	    || (env.type == 'attr-name' && env.content.indexOf('data-') != 0)
-	    ) && env.content.indexOf('<') === -1
+        || (env.type == 'attr-name' && env.content.indexOf('data-') != 0)
+		) && env.content.indexOf('<') === -1
 	) {
-		var searchURL = 'w/index.php?fulltext&search=';
+		if (env.language == 'css'
+			|| env.language == 'scss'
+			|| env.language == 'markup'
+		) {
+			var searchURL = 'w/index.php?fulltext&search=';
 
-		env.tag = 'a';
-		
-		var href = 'http://docs.webplatform.org/';
-		
-		if (env.language == 'css' || env.language == 'scss') {
-			href += 'wiki/css/';
-			
-			if (env.type == 'property') {
-				href += 'properties/';
+			env.tag = 'a';
+
+			var href = 'http://docs.webplatform.org/';
+
+			if (env.language == 'css' || env.language == 'scss') {
+				href += 'wiki/css/';
+
+				if (env.type == 'property') {
+					href += 'properties/';
+				}
+				else if (env.type == 'rule') {
+					href += 'atrules/';
+				}
+				else if (env.type == 'pseudo-class') {
+					href += 'selectors/pseudo-classes/';
+				}
+				else if (env.type == 'pseudo-element') {
+					href += 'selectors/pseudo-elements/';
+				}
 			}
-			else if (env.type == 'atrule-id') {
-				href += 'atrules/';
+			else if (env.language == 'markup') {
+				if (env.type == 'tag-id') {
+					// Check language
+					language = getLanguage(env.content) || language;
+
+					if (language) {
+						href += 'wiki/' + language + '/elements/';
+					}
+					else {
+						href += searchURL;
+					}
+				}
+				else if (env.type == 'attr-name') {
+					if (language) {
+						href += 'wiki/' + language + '/attributes/';
+					}
+					else {
+						href += searchURL;
+					}
+				}
 			}
-			else if (env.type == 'pseudo-class') {
-				href += 'selectors/pseudo-classes/';
-			}
-			else if (env.type == 'pseudo-element') {
-				href += 'selectors/pseudo-elements/';
-			}
+
+			href += env.content;
+
+			env.attributes.href = href;
+			env.attributes.target = '_blank';
 		}
-		else if (env.language == 'markup') {
-			if (env.type == 'tag-id') {
-				// Check language
-				language = getLanguage(env.content) || language;
-				
-				if (language) {
-					href += 'wiki/' + language + '/elements/';
-				}
-				else {
-					href += searchURL;
-				}
-			}
-			else if (env.type == 'attr-name') {
-				if (language) {
-					href += 'wiki/' + language + '/attributes/';
-				}
-				else {
-					href += searchURL;
-				}
-			}
-		}
-		
-		href += env.content;
-		
-		env.attributes.href = href;
-		env.attributes.target = '_blank';
 	}
 });
 
