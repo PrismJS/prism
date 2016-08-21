@@ -1,0 +1,43 @@
++ ++ +=
+- -- -=
+! !=
+< =< > => >= -> <<
+= ==
+&&
+? * / % ; : | @
+
+----------------------------------------------------
+
+[
+	["operator", "+"],
+	["operator", "++"],
+	["operator", "+="],
+	["operator", "-"],
+	["operator", "--"],
+	["operator", "-="],
+	["operator", "!"],
+	["operator", "!="],
+	["operator", "<" ], 
+	["operator", "=<" ], 
+	["operator", ">" ],
+	["operator", "=>" ],
+	["operator", ">=" ],
+	["operator", "->" ],
+	["operator", "<<" ],
+	["operator", "=" ], 
+	["operator", "==" ],
+	["operator", "&&" ],
+	[ "operator", "?" ],
+	[ "operator", "*" ],
+	[ "operator", "/" ], 
+	[ "operator", "%" ],
+	[ "symbol", ";" ],
+	[ "symbol", ":" ],
+	[ "symbol", "|" ],
+	[ "symbol", "@" ]
+
+]
+
+----------------------------------------------------
+
+Checks for all operators and symbols.

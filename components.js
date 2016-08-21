@@ -273,7 +273,7 @@ var components = {
 			"owner": "sherblot"
 		},
 		"jolie": {
-			"title": "jolie",
+			"title": "Jolie",
 			"require": "clike",
 			"owner": "thesave"
 		},
