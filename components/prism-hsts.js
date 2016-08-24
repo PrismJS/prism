@@ -6,7 +6,7 @@
 
 Prism.languages.hsts = {
 	'directive':  {
-             pattern: /(max-age=|includeSubDomains|preload)/,
+             pattern: /\b(?:max-age=|includeSubDomains|preload)/,
              alias: 'keyword'
         },
 	'safe': {
