@@ -6,7 +6,7 @@
 
 Prism.languages.hpkp = {
 	'directive':  {
-             pattern: /\b(?:max-age=|includeSubDomains( |;)|preload( |;)|strict( |;)|report-uri=|report-to |pin-sha256=)/,
+             pattern: /\b(?:(?:includeSubDomains|preload|strict)(?: |;)|(?:max-age|report-uri|pin-sha256)=|report-to )/,
              alias: 'keyword'
         },
 	'safe': {
