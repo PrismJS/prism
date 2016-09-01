@@ -49,11 +49,20 @@
 
 		env.tokenStack = [];
 
+		env.backupCode = env.code;
 		env.code = env.code.replace(handlebars_pattern, function(match) {
 			env.tokenStack.push(match);
 
 			return '___HANDLEBARS' + env.tokenStack.length + '___';
 		});
+	});
+
+	// Restore env.code for other plugins (e.g. line-numbers)
+	Prism.hooks.add('before-insert', function(env) {
+		if (env.language === 'handlebars') {
+			env.code = env.backupCode;
+			delete env.backupCode;
+		}
 	});
 
 	// Re-insert the tokens after highlighting

@@ -4,7 +4,7 @@ if (typeof self === 'undefined' || !self.Prism || !self.document) {
 	return;
 }
 
-Prism.hooks.add('before-highlight', function (env) {
+Prism.hooks.add('before-sanity-check', function (env) {
 	if (env.code) {
 		var pre = env.element.parentNode;
 		var clsReg = /\s*\bkeep-initial-line-feed\b\s*/;
