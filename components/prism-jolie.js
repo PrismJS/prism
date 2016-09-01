@@ -1,10 +1,10 @@
 Prism.languages.jolie = Prism.languages.extend('clike', {
 	'keyword': /\b(?:include|define|is_defined|undef|main|init|outputPort|inputPort|Location|Protocol|Interfaces|RequestResponse|OneWay|type|interface|extender|throws|cset|csets|forward|Aggregates|Redirects|embedded|courier|extender|execution|sequential|concurrent|single|scope|install|throw|comp|cH|default|global|linkIn|linkOut|synchronized|this|new|for|if|else|while|in|Jolie|Java|Javascript|nullProcess|spawn|constants|with|provide|until|exit|foreach|instanceof|over|service)\b/g,
 	'builtin': /\b(?:undefined|string|int|void|long|Byte|bool|double|float|char|any)\b/,
-	'number': /\b(?:\b\d*\.?\d*(e[+-]?\d*)?[l]?)\b/i,
-	'operator': /->|<<|=<|=>|[!+->=]?=|<|>|!|&&|\|\||\?|\*|\/|%|--?|\+\+?|\^/g,
-	'symbol': /[|;@?:]/,
-	'punctuation': /[{}[\]().]/,
+	'number': /\b(?:\d*\.?\d+(e[+-]?\d+)?l?)\b/i,
+	'operator': /->|<<|=<|=>|[!+->=]?=|[:<>!?*\/%^]|&&|\|\||--?|\+\+?/g,
+	'symbol': /[|;@]/,
+	'punctuation': /[{}[\].]/,
 	'string': /(""")[\W\w]*?\1|("|\/)[\W\w]*?\2|('.')/g
 });
 
@@ -14,30 +14,30 @@ delete Prism.languages.jolie['function'];
 Prism.languages.insertBefore( 'jolie', 'keyword', {
 	'function':
 	{
-		pattern: /(?:(?:\b(outputPort|@|inputPort|in|service|courier)\b))[A-Za-z0-9_]+/g,
+		pattern: /(?:(\b(outputPort|inputPort|in|service|courier)\b|@)\s*)\w+/,
 		lookbehind: true
 	},
 	'aggregates': {
-		pattern: /(?:(?:(\bAggregates\b[\n\r\s]*:[\n\r\s]*)))([A-Za-z0-9_]+[\n\r\s]*(with[\n\r\s]*[A-Za-z0-9_]+)?,[\n\r\s]*)*[A-Za-z0-9_]+([\n\r\s]*with[\n\r\s]*[A-Za-z0-9_]+)?/,
+		pattern: /(\bAggregates\s*:\s*)(?:\w+(\s+with\s+\w+)?\s*,\s*)*\w+(?:\s+with\s+\w+)?/,
 		lookbehind: true,
 		inside: {
 			'withExtension': {
-				pattern: /\bwith\b[\n\r\s]+[A-Za-z0-9_]+/,
+				pattern: /\bwith\s+\w+/,
 				inside: {
 					'keyword' : /\bwith\b/
 				}
 			},
 			'function': {
-				pattern: /[A-Za-z0-9_]+/
+				pattern: /\w+/
 			}
 		}
 	},
 	'redirects': {
-		pattern: /(?:(?:(\bRedirects\b[\n\r\s]*:[\n\r\s]*)))([A-Za-z0-9_]+[\n\r\s]*=>[\n\r\s]*[A-Za-z0-9_]+[\n\r\s]*,[\n\r\s]*)*[A-Za-z0-9_]+[\n\r\s]*=>[\n\r\s]*[A-Za-z0-9_]+/,
+		pattern: /(Redirects\s*:\s*)(?:\w+\s*=>\s*\w+\s*,\s*)*(?:\w+\s*=>\s*\w+)/,
 		lookbehind: true,
 		inside: {
 			'function': {
-				pattern: /[A-Za-z0-9_]+/g
+				pattern: /\w+/g
 			},
 			'operator': {
 				pattern: /=>/g

@@ -32,7 +32,7 @@
 	[ "operator", "/" ], 
 	[ "operator", "%" ],
 	[ "symbol", ";" ],
-	[ "symbol", ":" ],
+	[ "operator", ":" ],
 	[ "symbol", "|" ],
 	[ "symbol", "@" ]
 
