@@ -8,6 +8,8 @@
 
 	var lang_data = {};
 
+	var ignored_language = 'none';
+
 	var config = Prism.plugins.autoloader = {
 		languages_path: 'components/',
 		use_minified: true
@@ -187,7 +189,9 @@
 
 	Prism.hooks.add('complete', function (env) {
 		if (env.element && env.language && !env.grammar) {
-			registerElement(env.language, env.element);
+			if (env.language !== ignored_language) {
+				registerElement(env.language, env.element);
+			}
 		}
 	});
 
