@@ -20,10 +20,10 @@ println @ Console( "none" )()
  [ "redirects",
   [
    [ "function", "First" ],
-   [ "operator", "=>" ],
+   [ "symbol", "=>" ],
    [ "function", "Second" ], ", ",
    [ "function", "Third" ],
-   [ "operator", "=>" ],
+   [ "symbol", "=>" ],
    [ "function", "Fourth" ]
   ]
  ],
@@ -31,10 +31,10 @@ println @ Console( "none" )()
  [ "operator", ":" ],
  [ "string", "\"logger.ol\"" ],
  [ "keyword", "in" ],
- [ "function", " LoggerService" ], 
+ [ "function", "LoggerService" ], 
  "\nlog", [ "symbol", "@" ], [ "function", "LoggerService" ],	
  		"( ", [ "keyword", "new" ], " )()", [ "symbol", ";" ], 
- "\nprintln ", [ "symbol", "@" ], [ "function", " Console" ], 
+ "\nprintln ", [ "symbol", "@" ], [ "function", "Console" ], 
  		"( ", [ "string", "\"none\"" ], " )()"
 ]
 

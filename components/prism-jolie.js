@@ -1,11 +1,11 @@
 Prism.languages.jolie = Prism.languages.extend('clike', {
 	'keyword': /\b(?:include|define|is_defined|undef|main|init|outputPort|inputPort|Location|Protocol|Interfaces|RequestResponse|OneWay|type|interface|extender|throws|cset|csets|forward|Aggregates|Redirects|embedded|courier|extender|execution|sequential|concurrent|single|scope|install|throw|comp|cH|default|global|linkIn|linkOut|synchronized|this|new|for|if|else|while|in|Jolie|Java|Javascript|nullProcess|spawn|constants|with|provide|until|exit|foreach|instanceof|over|service)\b/g,
 	'builtin': /\b(?:undefined|string|int|void|long|Byte|bool|double|float|char|any)\b/,
-	'number': /\b(?:\d*\.?\d+(e[+-]?\d+)?l?)\b/i,
-	'operator': /->|<<|=<|=>|[!+->=]?=|[:<>!?*\/%^]|&&|\|\||--?|\+\+?/g,
+	'number': /\b\d*\.?\d+(?:e[+-]?\d+)?l?\b/i,
+	'operator': /->|<<|[!+-<>=*]?=|[:<>!?*\/%^]|&&|\|\||--?|\+\+?/g,
 	'symbol': /[|;@]/,
 	'punctuation': /[{}[\].]/,
-	'string': /(""")[\W\w]*?\1|("|\/)[\W\w]*?\2|('.')/g
+	'string': /(""")[\W\w]*?\1|("|\/)[\W\w]*?\2/g
 });
 
 delete Prism.languages.jolie['class-name'];
@@ -14,11 +14,11 @@ delete Prism.languages.jolie['function'];
 Prism.languages.insertBefore( 'jolie', 'keyword', {
 	'function':
 	{
-		pattern: /(?:(\b(outputPort|inputPort|in|service|courier)\b|@)\s*)\w+/,
+		pattern: /((?:\b(?:outputPort|inputPort|in|service|courier)\b|@)\s*)\w+/,
 		lookbehind: true
 	},
 	'aggregates': {
-		pattern: /(\bAggregates\s*:\s*)(?:\w+(\s+with\s+\w+)?\s*,\s*)*\w+(?:\s+with\s+\w+)?/,
+		pattern: /(\bAggregates\s*:\s*)(?:\w+(?:\s+with\s+\w+)?\s*,\s*)*\w+(?:\s+with\s+\w+)?/,
 		lookbehind: true,
 		inside: {
 			'withExtension': {
@@ -33,13 +33,13 @@ Prism.languages.insertBefore( 'jolie', 'keyword', {
 		}
 	},
 	'redirects': {
-		pattern: /(Redirects\s*:\s*)(?:\w+\s*=>\s*\w+\s*,\s*)*(?:\w+\s*=>\s*\w+)/,
+		pattern: /(\bRedirects\s*:\s*)(?:\w+\s*=>\s*\w+\s*,\s*)*(?:\w+\s*=>\s*\w+)/,
 		lookbehind: true,
 		inside: {
 			'function': {
 				pattern: /\w+/g
 			},
-			'operator': {
+			'symbol': {
 				pattern: /=>/g
 			}
 		}
