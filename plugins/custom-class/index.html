@@ -24,11 +24,11 @@
 <section>
 	<h1>Motivation</h1>
 
-	<p>Prism default classes are sensible but fixed and too generic. This plugin provide some ways to customize those classes to suite your needs. Example usages:</p>
+	<p>Prism default classes are sensible but fixed and too generic. This plugin provide some ways to customize those classes to suit your needs. Example usages:</p>
 
 	<ul>
 		<li>
-			 You want to add namespace for all of them (like <code>.prism--comment</code>) to avoid conflict with your existed classes.
+			 You want to add namespace for all of them (like <code>.prism--comment</code>) to avoid conflict with your existing classes.
 		</li>
 		<li>
 			You use a naming convention (like <a href="https://en.bem.info/method">BEM</a>). You want to write classes like <code>.editor__comment</code>.
@@ -54,7 +54,7 @@
 	comment: 'comment_93jsa'
 })</code></pre>
 
-	<p>Object's keys are the tokens you want to replace (eg: <code>comment</code>), with its value is the classes you want to use (eg: <code>my-comment</code>). Tokens which are not specified will stay the same.</p>
+	<p>Object's keys are the tokens you want to replace (eg: <code>comment</code>), with their values being the classes you want to use (eg: <code>my-comment</code>). Tokens which are not specified will stay the same.</p>
 
 	<h1>Notes</h1>
 
@@ -80,7 +80,7 @@
 
 		<h2>CSS Modules Usage:</h2>
 
-		<p>The initial purpose of this plugin is to use with CSS Modules. It works perfectly with the class map object returned by CSS Modules. For example:</p>
+		<p>The initial purpose of this plugin is to be used with CSS Modules. It works perfectly with the class map object returned by CSS Modules. For example:</p>
 
 		<pre class="language-js"><code>import Prism from 'prismjs';
 import classMap from 'styles/editor-class-map.css';
