@@ -572,6 +572,10 @@ var components = {
 		"show-invisibles": "Show Invisibles",
 		"autolinker": "Autolinker",
 		"wpd": "WebPlatform Docs",
+		"custom-class": {
+			"title": "Custom Class",
+			"owner": "dvkndn"
+		},
 		"file-highlight": {
 			"title": "File Highlight",
 			"noCSS": true
