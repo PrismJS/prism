@@ -12,10 +12,10 @@ p, div {}
 	["selector", ["a "]], ["punctuation", "{"], ["punctuation", "}"],
 	["selector", ["p, div "]], ["punctuation", "{"], ["punctuation", "}"],
 	["selector", ["#foobar .foo "]], ["punctuation", "{"], ["punctuation", "}"],
-	["selector", ["&:hover "]], ["punctuation", "{"], ["punctuation", "}"],
-	["selector", ["&-sidebar "]], ["punctuation", "{"], ["punctuation", "}"],
+	["selector", [["parent", "&"], ":hover "]], ["punctuation", "{"], ["punctuation", "}"],
+	["selector", [["parent", "&"], "-sidebar "]], ["punctuation", "{"], ["punctuation", "}"],
 	["selector", ["#context a", ["placeholder", "%extreme"]]], ["punctuation", "{"], ["punctuation", "}"],
-	["selector", ["#{$selector}:before "]], ["punctuation", "{"], ["punctuation", "}"]
+	["selector", [["variable", "#{$selector}"], ":before "]], ["punctuation", "{"], ["punctuation", "}"]
 ]
 
 ----------------------------------------------------

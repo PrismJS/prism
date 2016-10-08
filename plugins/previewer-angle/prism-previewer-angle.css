@@ -1,6 +1,4 @@
 .prism-previewer-angle:before {
-	-webkit-border-radius: 50%;
-	-moz-border-radius: 50%;
 	border-radius: 50%;
 	background: #fff;
 }

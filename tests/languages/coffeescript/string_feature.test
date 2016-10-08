@@ -17,6 +17,14 @@ bar'''
 """foo
 bar"""
 """foo #{interpolation} bar"""
+"foo # comment bar"
+'foo # bar'
+"""foo
+#comment
+bar"""
+'''foo
+#comment
+bar'''
 
 ----------------------------------------------------
 
@@ -43,7 +51,11 @@ bar"""
 		"\"\"\"foo ",
 		["interpolation", "#{interpolation}"],
 		" bar\"\"\""
-	]]
+	]],
+	["string", ["\"foo # comment bar\""]],
+	["string", "'foo # bar'"],
+	["multiline-string", ["\"\"\"foo\r\n#comment\r\nbar\"\"\""]],
+	["multiline-string", "'''foo\r\n#comment\r\nbar'''"]
 ]
 
 ----------------------------------------------------

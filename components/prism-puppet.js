@@ -41,7 +41,7 @@
 		},
 		'regex': {
 			// Must be prefixed with the keyword "node" or a non-word char
-			pattern: /((?:\bnode\s+|[^\s\w\\]\s*))\/(?:[^\/\\]|\\[\s\S])+\/(?:[imx]+\b|\B)/,
+			pattern: /((?:\bnode\s+|[~=\(\[\{,]\s*|[=+]>\s*|^\s*))\/(?:[^\/\\]|\\[\s\S])+\/(?:[imx]+\b|\B)/,
 			lookbehind: true,
 			inside: {
 				// Extended regexes must have the x flag. They can contain single-line comments.

@@ -19,6 +19,14 @@ bar'''
 $/fo$/$o/$
 $/foo
 bar/$
+"foo /* comment */ bar"
+'foo // bar'
+'''foo
+/* comment */
+bar'''
+"""foo
+// comment
+bar"""
 
 ----------------------------------------------------
 
@@ -39,7 +47,11 @@ bar/$
 	["string", "/fo\\/o/"],
 
 	["string", "$/fo$/$o/$"],
-	["string", "$/foo\r\nbar/$"]
+	["string", "$/foo\r\nbar/$"],
+	["string", "\"foo /* comment */ bar\""],
+	["string", "'foo // bar'"],
+	["string", "'''foo\r\n/* comment */\r\nbar'''"],
+	["string", "\"\"\"foo\r\n// comment\r\nbar\"\"\""]
 ]
 
 ----------------------------------------------------

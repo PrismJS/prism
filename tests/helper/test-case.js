@@ -72,7 +72,7 @@ module.exports = {
 	/**
 	 * Parses the language names and finds the main language.
 	 *
-	 * It is either the first language or the language followed by a exclamation mark “!”.
+	 * It is either the last language or the language followed by a exclamation mark “!”.
 	 * There should only be one language with an exclamation mark.
 	 *
 	 * @param {string} languageIdentifier
@@ -140,6 +140,38 @@ module.exports = {
 		catch (e) {
 			// the JSON can't be parsed (e.g. it could be empty)
 			return null;
+		}
+	},
+
+	/**
+	 * Runs the given pieces of codes and asserts their result.
+	 *
+	 * Code is provided as the key and expected result as the value.
+	 *
+	 * @param {string} languageIdentifier
+	 * @param {object} codes
+	 */
+	runTestsWithHooks: function (languageIdentifier, codes) {
+		var usedLanguages = this.parseLanguageNames(languageIdentifier);
+		var Prism = PrismLoader.createInstance(usedLanguages.languages);
+		// the first language is the main language to highlight
+
+		for (var code in codes) {
+			if (codes.hasOwnProperty(code)) {
+				var env = {
+					element: {},
+					language: usedLanguages.mainLanguage,
+					grammar: Prism.languages[usedLanguages.mainLanguage],
+					code: code
+				};
+				Prism.hooks.run('before-highlight', env);
+				env.highlightedCode = Prism.highlight(env.code, Prism.languages[usedLanguages.mainLanguage], usedLanguages.mainLanguage);
+				Prism.hooks.run('before-insert', env);
+				env.element.innerHTML = env.highlightedCode;
+				Prism.hooks.run('after-highlight', env);
+				Prism.hooks.run('complete', env);
+				assert.equal(env.highlightedCode, codes[code]);
+			}
 		}
 	}
 };

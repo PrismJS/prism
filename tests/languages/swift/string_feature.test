@@ -4,6 +4,11 @@
 bar"
 "foo \(42)"
 "foo \(f("bar"))"
+"foo /* comment */ bar"
+'foo // bar'
+"foo\
+/* comment */\
+bar"
 
 ----------------------------------------------------
 
@@ -31,7 +36,10 @@ bar"
 			["delimiter", ")"]
 		]],
 		"\""
-	]]
+	]],
+	["string", ["\"foo /* comment */ bar\""]],
+	["string", ["'foo // bar'"]],
+	["string", ["\"foo\\\r\n/* comment */\\\r\nbar\""]]
 ]
 
 ----------------------------------------------------

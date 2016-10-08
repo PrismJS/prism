@@ -5,7 +5,7 @@ input proc run then
 
 [
 	["keyword", "data"], ["keyword", "else"], ["keyword", "format"], ["keyword", "if"],
-	["keyword", "input"], ["keyword", "proc"], ["keyword", "run"], ["keyword", "then"]
+	["keyword", "input"], ["keyword", "proc run"], ["keyword", "then"]
 ]
 
 ----------------------------------------------------

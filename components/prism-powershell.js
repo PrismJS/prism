@@ -5,13 +5,14 @@ Prism.languages.powershell = {
 			lookbehind: true
 		},
 		{
-			pattern: /(^|[^`])#.+/,
+			pattern: /(^|[^`])#.*/,
 			lookbehind: true
 		}
 	],
 	'string': [
 		{
 			pattern: /"(`?[\w\W])*?"/,
+			greedy: true,
 			inside: {
 				'function': {
 					pattern: /[^`]\$\(.*?\)/,
@@ -20,7 +21,10 @@ Prism.languages.powershell = {
 				}
 			}
 		},
-		/'([^']|'')*'/
+		{
+			pattern: /'([^']|'')*'/,
+			greedy: true
+		}
 	],
 	// Matches name spaces as well as casts, attribute decorators. Force starting with letter to avoid matching array indices
 	'namespace': /\[[a-z][\w\W]*?\]/i,

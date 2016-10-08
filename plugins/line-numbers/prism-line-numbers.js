@@ -42,6 +42,7 @@ Prism.hooks.add('complete', function (env) {
 	lines = lines.join('<span></span>');
 
 	lineNumbersWrapper = document.createElement('span');
+	lineNumbersWrapper.setAttribute('aria-hidden', 'true');
 	lineNumbersWrapper.className = 'line-numbers-rows';
 	lineNumbersWrapper.innerHTML = lines;
 

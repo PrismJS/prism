@@ -49,7 +49,7 @@ for (var language in testSuite) {
 				                // over and over again.
 				                setTimeout(function() {
 					                if (o.error) {
-						                throw o.error;
+						                throw new Error(o.error);
 					                } else if (o.success) {
 						                done();
 					                }

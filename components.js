@@ -60,9 +60,6 @@ var components = {
 			"option": "default",
 			"require": "clike"
 		},
-
-
-
 		"abap": {
 			"title": "ABAP",
 			"owner": "dellagustin"
@@ -71,6 +68,10 @@ var components = {
 			"title": "ActionScript",
 			"require": "javascript",
 			"owner": "Golmote"
+		},
+		"ada": {
+			"title": "Ada",
+			"owner": "Lucretia"
 		},
 		"apacheconf": {
 			"title": "Apache Configuration",
@@ -121,6 +122,10 @@ var components = {
 		"brainfuck": {
 			"title": "Brainfuck",
 			"owner": "Golmote"
+		},
+		"bro": {
+			"title": "Bro",
+			"owner": "wayward710"
 		},
 		"c": {
 			"title": "C",
@@ -209,6 +214,10 @@ var components = {
 			"require": "clike",
 			"owner": "arnehormann"
 		},
+		"graphql": {
+			"title": "GraphQL",
+			"owner": "Golmote"
+		},
 		"groovy": {
 			"title": "Groovy",
 			"require": "clike",
@@ -287,6 +296,10 @@ var components = {
 		"less": {
 			"title": "Less",
 			"require": "css",
+			"owner": "Golmote"
+		},
+		"livescript": {
+			"title": "LiveScript",
 			"owner": "Golmote"
 		},
 		"lolcode": {
@@ -395,6 +408,15 @@ var components = {
 		"prolog": {
 			"title": "Prolog",
 			"owner": "Golmote"
+		},
+		"properties": {
+			"title": ".properties",
+			"owner": "Golmote"
+		},
+		"protobuf": {
+			"title": "Protocol Buffers",
+			"require": "clike",
+			"owner": "just-boris"
 		},
 		"puppet": {
 			"title": "Puppet",
@@ -528,6 +550,10 @@ var components = {
 			"require": "markup",
 			"owner": "Golmote"
 		},
+		"xojo": {
+			"title": "Xojo (REALbasic)",
+			"owner": "Golmote"
+		},
 		"yaml": {
 			"title": "YAML",
 			"owner": "hason"
@@ -546,6 +572,10 @@ var components = {
 		"show-invisibles": "Show Invisibles",
 		"autolinker": "Autolinker",
 		"wpd": "WebPlatform Docs",
+		"custom-class": {
+			"title": "Custom Class",
+			"owner": "dvkndn"
+		},
 		"file-highlight": {
 			"title": "File Highlight",
 			"noCSS": true
@@ -608,15 +638,23 @@ var components = {
 		"keep-markup": {
 			"title": "Keep Markup",
 			"owner": "Golmote",
+			"after": "normalize-whitespace",
 			"noCSS": true
 		},
 		"command-line": {
 			"title": "Command Line",
 			"owner": "chriswells0"
 		},
+		"unescaped-markup": "Unescaped Markup",
 		"normalize-whitespace": {
 			"title": "Normalize Whitespace",
 			"owner": "zeitgeist87",
+			"after": "unescaped-markup",
+			"noCSS": true
+		},
+		"data-uri-highlight": {
+			"title": "Data-URI Highlight",
+			"owner": "Golmote",
 			"noCSS": true
 		},
 		"toolbar": {

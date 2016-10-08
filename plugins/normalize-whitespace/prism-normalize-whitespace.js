@@ -126,10 +126,12 @@ Prism.plugins.NormalizeWhitespace = new NormalizeWhitespace({
 	'spaces-to-tabs': 4*/
 });
 
-Prism.hooks.add('before-highlight', function (env) {
+Prism.hooks.add('before-sanity-check', function (env) {
 	var pre = env.element.parentNode;
+	var clsReg = /\bno-whitespace-normalization\b/;
 	if (!env.code || !pre || pre.nodeName.toLowerCase() !== 'pre' ||
-			(env.settings && env.settings['whitespace-normalization'] === false))
+			(env.settings && env.settings['whitespace-normalization'] === false) ||
+			clsReg.test(pre.className) || clsReg.test(env.element.className))
 		return;
 
 	var children = pre.childNodes,
@@ -166,8 +168,5 @@ Prism.hooks.add('before-highlight', function (env) {
 		env.code = env.element.textContent;
 	}
 });
-// Make sure our callback runs first
-var hooks = Prism.hooks.all['before-highlight'];
-hooks.unshift(hooks.pop());
 
 }());

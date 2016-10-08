@@ -7,6 +7,8 @@
 '''twas also escaped'
 an empty '' string
 'can''t'
+"a simple #comment string"
+"has $interpolated <# variables #>"
 
 ----------------------------------------------------
 
@@ -35,7 +37,11 @@ an empty '' string
 	["string", "'also ''with'' escaping'"],
 	["string", "'''twas also escaped'"],
 	"\r\nan empty ",["string", "''"], " string\r\n",
-	["string", "'can''t'"]
+	["string", "'can''t'"],
+	["string", ["\"a simple #comment string\""]],
+	["string", [
+		"\"has ",["variable", "$interpolated"]," <# variables #>\""]
+	]
 ]
 
 ----------------------------------------------------

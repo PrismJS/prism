@@ -177,7 +177,7 @@ var _ = _self.Prism = {
 		}
 
 		if (parent) {
-			language = (parent.className.match(lang) || [,''])[1];
+			language = (parent.className.match(lang) || [,''])[1].toLowerCase();
 			grammar = _.languages[language];
 		}
 
@@ -200,7 +200,9 @@ var _ = _self.Prism = {
 			code: code
 		};
 
-		if (!code || !grammar) {
+		_.hooks.run('before-sanity-check', env);
+
+		if (!env.code || !env.grammar) {
 			_.hooks.run('complete', env);
 			return;
 		}
@@ -278,9 +280,16 @@ var _ = _self.Prism = {
 					lookbehindLength = 0,
 					alias = pattern.alias;
 
+				if (greedy && !pattern.pattern.global) {
+					// Without the global flag, lastIndex won't work
+					var flags = pattern.pattern.toString().match(/[imuy]*$/)[0];
+					pattern.pattern = RegExp(pattern.pattern.source, flags + "g");
+				}
+
 				pattern = pattern.pattern || pattern;
 
-				for (var i=0; i<strarr.length; i++) { // Don’t cache length as it changes during the loop
+				// Don’t cache length as it changes during the loop
+				for (var i=0, pos = 0; i<strarr.length; pos += (strarr[i].matchedStr || strarr[i]).length, ++i) {
 
 					var str = strarr[i];
 
@@ -300,37 +309,38 @@ var _ = _self.Prism = {
 
 					// Greedy patterns can override/remove up to two previously matched tokens
 					if (!match && greedy && i != strarr.length - 1) {
-						// Reconstruct the original text using the next two tokens
-						var nextToken = strarr[i + 1].matchedStr || strarr[i + 1],
-						    combStr = str + nextToken;
-
-						if (i < strarr.length - 2) {
-							combStr += strarr[i + 2].matchedStr || strarr[i + 2];
-						}
-
-						// Try the pattern again on the reconstructed text
-						pattern.lastIndex = 0;
-						match = pattern.exec(combStr);
+						pattern.lastIndex = pos;
+						match = pattern.exec(text);
 						if (!match) {
-							continue;
+							break;
 						}
 
-						var from = match.index + (lookbehind ? match[1].length : 0);
-						// To be a valid candidate, the new match has to start inside of str
-						if (from >= str.length) {
+						var from = match.index + (lookbehind ? match[1].length : 0),
+						    to = match.index + match[0].length,
+						    k = i,
+						    p = pos;
+
+						for (var len = strarr.length; k < len && p < to; ++k) {
+							p += (strarr[k].matchedStr || strarr[k]).length;
+							// Move the index i to the element in strarr that is closest to from
+							if (from >= p) {
+								++i;
+								pos = p;
+							}
+						}
+
+						/*
+						 * If strarr[i] is a Token, then the match starts inside another Token, which is invalid
+						 * If strarr[k - 1] is greedy we are in conflict with another greedy pattern
+						 */
+						if (strarr[i] instanceof Token || strarr[k - 1].greedy) {
 							continue;
 						}
-						var to = match.index + match[0].length,
-						    len = str.length + nextToken.length;
 
 						// Number of tokens to delete and replace with the new match
-						delNum = 3;
-
-						if (to <= len) {
-							delNum = 2;
-							combStr = combStr.slice(0, len);
-						}
-						str = combStr;
+						delNum = k - i;
+						str = text.slice(pos, p);
+						match.index -= pos;
 					}
 
 					if (!match) {
@@ -353,7 +363,7 @@ var _ = _self.Prism = {
 						args.push(before);
 					}
 
-					var wrapped = new Token(token, inside? _.tokenize(match, inside) : match, alias, match);
+					var wrapped = new Token(token, inside? _.tokenize(match, inside) : match, alias, match, greedy);
 
 					args.push(wrapped);
 
@@ -394,12 +404,13 @@ var _ = _self.Prism = {
 	}
 };
 
-var Token = _.Token = function(type, content, alias, matchedStr) {
+var Token = _.Token = function(type, content, alias, matchedStr, greedy) {
 	this.type = type;
 	this.content = content;
 	this.alias = alias;
 	// Copy of the full string this token was created from
 	this.matchedStr = matchedStr || null;
+	this.greedy = !!greedy;
 };
 
 Token.stringify = function(o, language, parent) {
@@ -440,7 +451,7 @@ Token.stringify = function(o, language, parent) {
 		attributes += (attributes ? ' ' : '') + name + '="' + (env.attributes[name] || '') + '"';
 	}
 
-	return '<' + env.tag + ' class="' + env.classes.join(' ') + '" ' + attributes + '>' + env.content + '</' + env.tag + '>';
+	return '<' + env.tag + ' class="' + env.classes.join(' ') + '"' + (attributes ? ' ' + attributes : '') + '>' + env.content + '</' + env.tag + '>';
 
 };
 
@@ -472,7 +483,16 @@ if (script) {
 	_.filename = script.src;
 
 	if (document.addEventListener && !script.hasAttribute('data-manual')) {
-		document.addEventListener('DOMContentLoaded', _.highlightAll);
+		if(document.readyState !== "loading") {
+			if (window.requestAnimationFrame) {
+				window.requestAnimationFrame(_.highlightAll);
+			} else {
+				window.setTimeout(_.highlightAll, 16);
+			}
+		}
+		else {
+			document.addEventListener('DOMContentLoaded', _.highlightAll);
+		}
 	}
 }
 

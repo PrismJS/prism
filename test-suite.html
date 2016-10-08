@@ -61,7 +61,7 @@
 &lt;/code>&lt;pre>
 ...</code></pre>
 
-		<p>If you need to load the languages in a given order, but you don't want to use the first language as main language, you can mark the main language with an exclamation mark: <code>php!+markup</code>. This will use <code>php</code> as main language. (You can only define one main language. The test runner will fail all tests in directories with more than one main language.)</p>
+		<p>If you need to load the languages in a given order, but you don't want to use the last language as main language, you can mark the main language with an exclamation mark: <code>php!+markup</code>. This will use <code>php</code> as main language. (You can only define one main language. The test runner will fail all tests in directories with more than one main language.)</p>
 
 		<p><em>Note: by loading multiple languages you can do integration tests (ensure that loading two or more languages together won't break anything).</em></p>
 	</section>
@@ -124,15 +124,27 @@ This is a comment explaining this test case.</code></pre>
 	</section>
 </section>
 
+<section id="writing-specific-tests">
+	<h1>Writing specific tests</h1>
+
+	<p>Sometimes, using the token stream tests is not powerful enough. By creating a test file with the file extension <code>.js</code> instead of <code>.test</code>, you can make Prism highlight arbitrary pieces of code and check their HTML results.</p>
+	<p>The language is determined by the folder containing the test file lies, as explained in the previous section.</p>
+	<p>The structure of your test file will look like this, for example:</p>
+	<pre><code>module.exports = {
+	'&amp;#x278a;': '&lt;span class="token entity" title="&amp;#x278a;">&amp;amp;#x278a;&lt;/span>',
+	'&amp;#182;': '&lt;span class="token entity" title="&amp;#182;">&amp;amp;#182;&lt;/span>',
+};</code></pre>
+	<p>The keys are the codes which will be highlighted by Prism. The values are the expected results, as HTML.</p>
+</section>
 
 <section id="test-runner-tests">
-	<h2>Test runner tests</h2>
+	<h1>Test runner tests</h1>
 	<p>The test runner itself is tested in a separate test case. You can find all “test core” related tests in <code>tests/testrunner-tests.js</code>.</p>
 	<p>You shouldn't need to touch this file ever, except you modify the test runner code.</p>
 </section>
 
 <section id="internal-structure">
-	<h2>Internal structure</h2>
+	<h1>Internal structure</h1>
 	<p>The global test flow is at follows:</p>
 	<ol>
 		<li>Run all internal tests (test the test runner).</li>

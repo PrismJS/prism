@@ -8,6 +8,11 @@
 
 """fo"o
 bar"""
+"""fo"o
+// comment
+bar"""
+"foo /* comment */ bar"
+'foo // bar'
 
 ----------------------------------------------------
 
@@ -18,7 +23,10 @@ bar"""
 	["string", "'\\t'"],
 	["string", "\"\""],
 	["string", "\"fo\\\"obar\""],
-	["string", "\"\"\"fo\"o\r\nbar\"\"\""]
+	["string", "\"\"\"fo\"o\r\nbar\"\"\""],
+	["string", "\"\"\"fo\"o\r\n// comment\r\nbar\"\"\""],
+	["string", "\"foo /* comment */ bar\""],
+	["string", "'foo // bar'"]
 ]
 
 ----------------------------------------------------

@@ -8,7 +8,7 @@ Prism.languages.apl = {
 		alias: 'function'
 	},
 	'constant': /[⍬⌾#⎕⍞]/,
-	'function': /[-+×÷⌈⌊∣|⍳?*⍟○!⌹<≤=>≥≠≡≢∊⍷∪∩~∨∧⍱⍲⍴,⍪⌽⊖⍉↑↓⊂⊃⌷⍋⍒⊤⊥⍕⍎⊣⊢⍁⍂≈⍯↗¤→]/,
+	'function': /[-+×÷⌈⌊∣|⍳⍸?*⍟○!⌹<≤=>≥≠≡≢∊⍷∪∩~∨∧⍱⍲⍴,⍪⌽⊖⍉↑↓⊂⊃⌷⍋⍒⊤⊥⍕⍎⊣⊢⍁⍂≈⍯↗¤→]/,
 	'monadic-operator': {
 		pattern: /[\\\/⌿⍀¨⍨⌶&∥]/,
 		alias: 'operator'

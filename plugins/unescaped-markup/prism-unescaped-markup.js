@@ -11,7 +11,7 @@
 		                ", script[type='text/plain'].lang-markup, script[type='text/plain'].language-markup";
 	});
 
-	Prism.hooks.add('before-highlight', function (env) {
+	Prism.hooks.add('before-sanity-check', function (env) {
 		if (env.language != "markup") {
 			return;
 		}
@@ -25,10 +25,16 @@
 			env.code = env.code.replace(/&lt;\/script(>|&gt;)/gi, "</scri" + "pt>");
 			code.textContent = env.code;
 
-		    pre.appendChild(code);
-		    env.element.parentNode.replaceChild(pre, env.element);
+			pre.appendChild(code);
+			env.element.parentNode.replaceChild(pre, env.element);
 			env.element = code;
 			return;
+		}
+
+		var pre = env.element.parentNode;
+		if (!env.code && pre && pre.nodeName.toLowerCase() == 'pre' &&
+				env.element.childNodes.length && env.element.childNodes[0].nodeName == "#comment") {
+			env.element.textContent = env.code = env.element.childNodes[0].textContent;
 		}
 	});
 }());
