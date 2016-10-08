@@ -25,10 +25,18 @@
 
 <section>
 	<h1>How to use</h1>
-	<p>The Toolbar plugin allows for two methods to register your button, using the <code>Prism.plugins.toolbar.registerButton</code> function.</p>
+	<p>The Toolbar plugin allows for several methods to register your button, using the <code>Prism.plugins.toolbar.registerButton</code> function.</p>
 
-	<p>The simplest method is to pass in an object with a <code>text</code> property string and an optional
-		<code>onClick</code> function, which when provided, will be called when the button is click.</p>
+	<p>The simplest method is through the HTML API. Add a <code>data-label</code> attribute to the <code>pre</code> element, and the Toolbar
+		plugin will read the value of that attribute and append a label to the code snippet.</p>
+
+	<pre><code class="language-markup" data-label="Hello World!">&lt;pre data-src=&quot;plugins/show-language/prism-show-language.js&quot; data-label=&quot;Hello World!&quot;&gt;&lt;/pre&gt;</code></pre>
+
+	<p>For more flexibility, the Toolbar exposes a JavaScript function that can be used to register new buttons or labels to the Toolbar,
+		<code>Prism.plugins.toolbar.registerButton</code>.</p>
+
+	<p>The function can accept an object with a <code>text</code> property string and an optional
+		<code>onClick</code> function, which when provided, will be called when the button is clicked.</p>
 
 	<pre><code class="language-javascript">Prism.plugins.toolbar.registerButton({
 	text: 'Hello World!', // required
@@ -39,7 +47,7 @@
 
 	<p>See how the above code registers the <code>Hello World!</code> button? You can use this in your plugins to register your own buttons with the toolbar.</p>
 
-	<p>If you need more control, you can provide a callback to <code>registerButton</code> that returns either a <code>span</code> or <code>a</code> element.</p>
+	<p>If you need more control, you can provide a function to <code>registerButton</code> that returns either a <code>span</code> or <code>a</code> element.</p>
 
 	<pre><code class="language-javascript">Prism.plugins.toolbar.registerButton(function() {
 	var button = document.createElement('a');

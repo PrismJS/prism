@@ -12,7 +12,7 @@
 	 *
 	 * @param {Object|Function} opts
 	 */
-	Prism.plugins.toolbar.registerButton = function (opts) {
+	var registerButton = Prism.plugins.toolbar.registerButton = function (opts) {
 		var callback;
 
 		if (typeof opts === 'function') {
@@ -74,6 +74,24 @@
 		// Add our toolbar to the <pre> tag
 		pre.appendChild(toolbar);
 	};
+
+	registerButton(function(env) {
+		var pre = env.element.parentNode;
+		if (!pre || !/pre/i.test(pre.nodeName)) {
+			return;
+		}
+
+		if (!pre.hasAttribute('data-label')) {
+			return;
+		}
+
+		var text = pre.getAttribute('data-label');
+
+		var element = document.createElement('span');
+		element.textContent = text;
+
+		return element;
+	});
 
 	/**
 	 * Register the toolbar with Prism.
