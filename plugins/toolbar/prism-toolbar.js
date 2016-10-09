@@ -22,10 +22,14 @@
 				var element;
 
 				if (typeof opts.onClick === 'function') {
-					element = document.createElement('a');
+					element = document.createElement('button');
+					element.type = 'button';
 					element.addEventListener('click', function () {
 						opts.onClick.call(this, env);
 					});
+				} else if (typeof opts.url === 'string') {
+					element = document.createElement('a');
+					element.href = opts.url;
 				} else {
 					element = document.createElement('span');
 				}

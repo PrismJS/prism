@@ -30,13 +30,14 @@
 	<p>The simplest method is through the HTML API. Add a <code>data-label</code> attribute to the <code>pre</code> element, and the Toolbar
 		plugin will read the value of that attribute and append a label to the code snippet.</p>
 
-	<pre><code class="language-markup" data-label="Hello World!">&lt;pre data-src=&quot;plugins/show-language/prism-show-language.js&quot; data-label=&quot;Hello World!&quot;&gt;&lt;/pre&gt;</code></pre>
+	<pre><code class="language-markup" data-label="Hello World!">&lt;pre data-src=&quot;plugins/toolbar/prism-toolbar.js&quot; data-label=&quot;Hello World!&quot;&gt;&lt;/pre&gt;</code></pre>
 
 	<p>For more flexibility, the Toolbar exposes a JavaScript function that can be used to register new buttons or labels to the Toolbar,
 		<code>Prism.plugins.toolbar.registerButton</code>.</p>
 
 	<p>The function can accept an object with a <code>text</code> property string and an optional
-		<code>onClick</code> function, which when provided, will be called when the button is clicked.</p>
+		<code>onClick</code> function or <code>url</code> string. The <code>onClick</code> function will be called when the button is clicked, while the
+		<code>url</code> property will be set to the anchor tag's <code>href</code>.</p>
 
 	<pre><code class="language-javascript">Prism.plugins.toolbar.registerButton({
 	text: 'Hello World!', // required
@@ -47,7 +48,8 @@
 
 	<p>See how the above code registers the <code>Hello World!</code> button? You can use this in your plugins to register your own buttons with the toolbar.</p>
 
-	<p>If you need more control, you can provide a function to <code>registerButton</code> that returns either a <code>span</code> or <code>a</code> element.</p>
+	<p>If you need more control, you can provide a function to <code>registerButton</code> that returns either a <code>span</code>, <code>a</code>, or
+		<code>button</code> element.</p>
 
 	<pre><code class="language-javascript">Prism.plugins.toolbar.registerButton(function() {
 	var button = document.createElement('a');
