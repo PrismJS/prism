@@ -1,0 +1,13 @@
+$(myLicenseData)
+${LANG_ENGLISH}
+
+----------------------------------------------------
+
+[
+	["constant", "$(myLicenseData)"],
+	["constant", "${LANG_ENGLISH}"]
+]
+
+----------------------------------------------------
+
+Checks for constants.
