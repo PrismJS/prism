@@ -4,7 +4,7 @@ Prism.languages.jolie = Prism.languages.extend('clike', {
 	'number': /\b\d*\.?\d+(?:e[+-]?\d+)?l?\b/i,
 	'operator': /->|<<|[!+-<>=*]?=|[:<>!?*\/%^]|&&|\|\||--?|\+\+?/g,
 	'symbol': /[|;@]/,
-	'punctuation': /\./,
+	'punctuation': /[,.]/,
 	'string': {
 		pattern: /(["'])(\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,
 		greedy: true
@@ -32,6 +32,9 @@ Prism.languages.insertBefore( 'jolie', 'keyword', {
 			},
 			'function': {
 				pattern: /\w+/
+			},
+			'punctuation': {
+				pattern: /,/
 			}
 		}
 	},
@@ -39,6 +42,9 @@ Prism.languages.insertBefore( 'jolie', 'keyword', {
 		pattern: /(\bRedirects\s*:\s*)(?:\w+\s*=>\s*\w+\s*,\s*)*(?:\w+\s*=>\s*\w+)/,
 		lookbehind: true,
 		inside: {
+			'punctuation': {
+				pattern: /,/
+			},
 			'function': {
 				pattern: /\w+/g
 			},

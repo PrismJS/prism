@@ -8,7 +8,7 @@ println @ Console( "none" )()
  [ "keyword", "Aggregates" ],
  [ "operator", ":" ],
  [ "aggregates", [
-	[ "function", "First" ], ", ",
+	[ "function", "First" ], [ "punctuation", ","],
  	[ "function", "Second" ],
  	[ "withExtension", [
 		[ "keyword", "with" ], " Third" ]
@@ -21,7 +21,7 @@ println @ Console( "none" )()
   [
    [ "function", "First" ],
    [ "symbol", "=>" ],
-   [ "function", "Second" ], ", ",
+   [ "function", "Second" ], [ "punctuation", ","],
    [ "function", "Third" ],
    [ "symbol", "=>" ],
    [ "function", "Fourth" ]

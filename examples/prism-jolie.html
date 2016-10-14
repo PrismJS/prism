@@ -22,14 +22,14 @@ comment */</code></pre>
 <pre><code>include "console.iol"
 
 type HubType: void {
-    .sid: undefined
-    .nodes[1,*] : NodeType
+  .sid: undefined
+  .nodes[1,*] : NodeType
 }
 
 type NodeType: void {
-    .sid: string
-    .node: string
-    .load?: int
+  .sid: string
+  .node: string
+  .load?: int
 }
 
 type NetType: HubType | NodeType
@@ -40,7 +40,7 @@ interface NetInterface {
 }
 
 type LogType: void {
-    .message: string
+  .message: string
 }
 
 interface LoggerInterface {
@@ -65,40 +65,40 @@ interface extender AuthInterfaceExtender {
 
 service SubService 
 {
-    Interfaces: NetInterface
-    
-    main
-    {
-        println@Console( "I do nothing" )()
-    }
+  Interfaces: NetInterface
+
+  main
+  {
+     println@Console( "I do nothing" )()
+  }
 }
 
 inputPort ExtLogger {
-    Location: "socket://localhost:9000"
-    Protocol: sodep
-    Interfaces: LoggerInterface
-    Aggregates: LoggerService with AuthInterfaceExtender
+  Location: "socket://localhost:9000"
+  Protocol: sodep
+  Interfaces: LoggerInterface
+  Aggregates: LoggerService with AuthInterfaceExtender
 }
 
 courier ExtLogger {
-    [interface LoggerInterface( request )] {
-        if ( key == "secret" ){
-            forward ( request )
-        }
+  [interface LoggerInterface( request )] {
+    if ( key == "secret" ){
+      forward ( request )
     }
+  }
 }
 
 inputPort In {
-    Location: "socket://localhost:8000"
-    Protocol: http {
-        .debug = true;
-        .debug.showContent = true
-    }
-    Interfaces: NetInterface
-    Aggregates: SubService, 
-                LoggerService
-    Redirects: A => SubService, 
-               B => SubService
+  Location: "socket://localhost:8000"
+  Protocol: http {
+    .debug = true;
+    .debug.showContent = true
+  }
+  Interfaces: NetInterface
+  Aggregates: SubService, 
+              LoggerService
+  Redirects: A => SubService, 
+             B => SubService
 }
 
 cset {
@@ -108,59 +108,58 @@ cset {
 execution{ concurrent }
 
 define netmodule {
-    if( request.load == 0 || request.load < 1 && 
-            request.load <= 2 || request.load >= 3 && 
-            request.load > 4    || request.load%4 == 2
-    ) {
-        scope( scopeName )
-        {   
-            // inline comment
-            install( MyFault => println@Console( "Something \"Went\" Wrong" + ' but it\'s ok' )() );
-            /*
-            * Multi-line
-            * Comment
-            */
-            install( this => cH; println@Console( "Something went wrong: " + ^load )() );
-            install( default => comp( scopeName ); println@Console( "Something went wrong" )() );
-                load -> request.( "load" );
-                { ++load | load++ | --load | load-- };
-                throw( MyFault )
-        }
-    } else {
-    foreach ( node -> request.nodes ) {
-        with( node ){
-            while( .load != 100 ) {
-                    .load++
-                }   
-            }
-        }
+  if( request.load == 0 || request.load < 1 && 
+      request.load <= 2 || request.load >= 3 && 
+      request.load > 4  || request.load%4 == 2
+  ) {
+    scope( scopeName ) {   
+      // inline comment
+      install( MyFault => println@Console( "Something \"Went\" Wrong" + ' but it\'s ok' )() );
+      /*
+      * Multi-line
+      * Comment
+      */
+      install( this => cH; println@Console( "Something went wrong: " + ^load )() );
+      install( default => comp( scopeName ); println@Console( "Something went wrong" )() );
+      load -> request.( "load" );
+      { ++load | load++ | --load | load-- };
+      throw( MyFault )
     }
+  } else {
+    foreach ( node -> request.nodes ) {
+      with( node ){
+        while( .load != 100 ) {
+          .load++
+        }   
+      }
+    } 
+  }
 }
 
 main
 {
-    start( sid );
-    synchronized( unneededSync ){
-        csets.sid = sid;
-        undef( sid )
-    };
-    provide
-        [ addElement( request ) ]{
-            if( request instanceof NodeType ) {
-                netmodule
-            }
-        }
-        [ removeElement() ]
-        [ showElements()( response ){
-            /*
-            * assemble response
-            */
-            nullProcess
-        }]{
-            // log the request
-            log@LoggerService( new )();
-            log @ LoggerService( new )()
+  start( sid );
+  synchronized( unneededSync ){
+    csets.sid = sid;
+    undef( sid )
+  };
+  provide
+    [ addElement( request ) ]{
+      if( request instanceof NodeType ) {
+        netmodule
+      }
     }
-    until
-        [ quit() ]{ exit }
+    [ removeElement() ]
+    [ showElements()( response ){
+       /*
+       * assemble response
+       */
+       nullProcess
+     }]{
+       // log the request
+       log@LoggerService( new )();
+       log @ LoggerService( new )()
+     }
+  until
+   [ quit() ]{ exit }
 }</code></pre>
