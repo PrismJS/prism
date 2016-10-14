@@ -65,7 +65,17 @@ module.exports = {
 		var compiledTokenStream = Prism.tokenize(testCase.testSource, mainLanguageGrammar);
 		var simplifiedTokenStream = TokenStreamTransformer.simplify(compiledTokenStream);
 
-		assert.deepEqual(simplifiedTokenStream, testCase.expectedTokenStream, testCase.comment);
+		var tzd = JSON.stringify( simplifiedTokenStream ); var exp = JSON.stringify( testCase.expectedTokenStream );
+	  var i = 0;var j = 0;var diff = "";
+    while ( j < tzd.length ){ if (exp[i] != tzd[j] || i == exp.length) diff += tzd[j]; else i++; j++; }
+
+		// var message = "\nToken Stream: \n" + JSON.stringify( simplifiedTokenStream, null, " " ) + 
+		var message = "\nToken Stream: \n" + tzd + 
+									"\n-----------------------------------------\n" +
+									"Expected Token Stream: \n" + exp + 
+									"\n-----------------------------------------\n" + diff;
+
+		var result = assert.deepEqual(simplifiedTokenStream, testCase.expectedTokenStream, testCase.comment + message);
 	},
 
 

@@ -5,7 +5,10 @@ Prism.languages.jolie = Prism.languages.extend('clike', {
 	'operator': /->|<<|[!+-<>=*]?=|[:<>!?*\/%^]|&&|\|\||--?|\+\+?/g,
 	'symbol': /[|;@]/,
 	'punctuation': /[{}[\].]/,
-	'string': /(""")[\W\w]*?\1|("|\/)[\W\w]*?\2/g
+	'string': {
+		pattern: /(["'])(\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,
+		greedy: true
+	},
 });
 
 delete Prism.languages.jolie['class-name'];

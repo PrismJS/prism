@@ -1,13 +1,13 @@
-$INTERNET_CACHE
-$LANGUAGE
+true
+false
 
 ----------------------------------------------------
 
 [
-    ["variable", "$INTERNET_CACHE"],
-    ["variable", "$LANGUAGE"]
+	["boolean", "true"],
+	["boolean", "false"]
 ]
 
 ----------------------------------------------------
 
-Checks for variables.
+Checks for booleans.

@@ -1,13 +1,11 @@
-$INTERNET_CACHE
-$LANGUAGE
+null
 
 ----------------------------------------------------
 
 [
-    ["variable", "$INTERNET_CACHE"],
-    ["variable", "$LANGUAGE"]
+	["null", "null"]
 ]
 
 ----------------------------------------------------
 
-Checks for variables.
+Checks for null.
