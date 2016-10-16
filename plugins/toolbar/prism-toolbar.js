@@ -4,15 +4,18 @@
 	}
 
 	var callbacks = [];
+	var map = {};
+	var noop = function() {};
 
 	Prism.plugins.toolbar = {};
 
 	/**
 	 * Register a button callback with the toolbar.
 	 *
+	 * @param {string} key
 	 * @param {Object|Function} opts
 	 */
-	var registerButton = Prism.plugins.toolbar.registerButton = function (opts) {
+	var registerButton = Prism.plugins.toolbar.registerButton = function (key, opts) {
 		var callback;
 
 		if (typeof opts === 'function') {
@@ -40,7 +43,7 @@
 			};
 		}
 
-		callbacks.push(callback);
+		callbacks.push(map[key] = callback);
 	};
 
 	/**
@@ -61,6 +64,12 @@
 		var toolbar = document.createElement('div');
 		toolbar.classList.add('toolbar');
 
+		if (document.body.hasAttribute('data-toolbar-order')) {
+			callbacks = document.body.getAttribute('data-toolbar-order').split(',').map(function(key) {
+				return map[key] || noop;
+			});
+		}
+
 		callbacks.forEach(function(callback) {
 			var element = callback(env);
 
@@ -79,7 +88,7 @@
 		pre.appendChild(toolbar);
 	};
 
-	registerButton(function(env) {
+	registerButton('label', function(env) {
 		var pre = env.element.parentNode;
 		if (!pre || !/pre/i.test(pre.nodeName)) {
 			return;
