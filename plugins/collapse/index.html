@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8" />
+<link rel="shortcut icon" href="favicon.png" />
+<title>Collapse ▲ Prism plugins</title>
+<base href="../.." />
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="themes/prism.css" data-noprefix />
+<link rel="stylesheet" href="plugins/collapse/prism-collapse.css" data-noprefix />
+<script src="prefixfree.min.js"></script>
+
+<script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
+<script src="http://www.google-analytics.com/ga.js" async></script>
+</head>
+<body>
+
+<header>
+    <div class="intro" data-src="templates/header-plugins.html" data-type="text/html"></div>
+
+    <h2>Collapse</h2>
+    <p>Collapse specific line ranges.</p>
+</header>
+
+<section class="language-markup">
+    <h1>How to use</h1>
+
+    <p>
+        Obviously, this is supposed to work only for code blocks (<code>&lt;pre>&lt;code></code>) and not for inline
+        code.
+    </p>
+    <p>
+        You specify the lines to be highlighted through the <code>data-collapse-open</code> attribute for an open
+        collapse or the <code>data-collapse-closed</code> attribute for an closed collapse on the <code>&lt;pre></code>
+        element, in the following simple format:
+    </p>
+    <ul>
+        <li>Ranges are denoted by two numbers, separated with a hyphen (-)</li>
+        <li>Multiple line numbers or ranges are separated by commas.</li>
+        <li>Whitespace is allowed anywhere and will be stripped off.</li>
+    </ul>
+
+    <p>Examples:</p>
+    <dl>
+        <dt>1-5</dt>
+		<dd>Lines 1 through 5</dd>
+
+        <dt>1-2, 9-20</dt>
+		<dd>Lines 1 through 2, lines 9 through 20</dd>
+    </dl>
+</section>
+
+<section>
+    <h1>Examples</h1>
+
+    <h2>Lines 15-25</h2>
+	<pre data-collapse-open="15-25" data-src="plugins/collapse/prism-collapse.js"></pre>
+</section>
+
+<footer data-src="templates/footer.html" data-type="text/html"></footer>
+
+<script src="prism.js"></script>
+<script src="plugins/collapse/prism-collapse.js"></script>
+<script src="utopia.js"></script>
+<script src="components.js"></script>
+<script src="code.js"></script>
+
+</body>
+</html>
