@@ -30,7 +30,15 @@
 	<p>The simplest method is through the HTML API. Add a <code>data-label</code> attribute to the <code>pre</code> element, and the Toolbar
 		plugin will read the value of that attribute and append a label to the code snippet.</p>
 
-	<pre><code class="language-markup" data-label="Hello World!">&lt;pre data-src=&quot;plugins/toolbar/prism-toolbar.js&quot; data-label=&quot;Hello World!&quot;&gt;&lt;/pre&gt;</code></pre>
+	<pre data-label="Hello World!"><code class="language-markup">&lt;pre data-src=&quot;plugins/toolbar/prism-toolbar.js&quot; data-label=&quot;Hello World!&quot;&gt;&lt;/pre&gt;</code></pre>
+
+	<p>If you want to provide arbitrary HTML to the label, create a <code>template</code> element with the HTML you want in the label, and provide the
+		<code>template</code> element's <code>id</code> to <code>data-label</code>. The Toolbar plugin will use the template's content for the button.
+		You can also use to declare your event handlers inline:</p>
+
+	<pre data-label="my-label-button"><code class="language-markup">&lt;pre data-src=&quot;plugins/toolbar/prism-toolbar.js&quot; data-label=&quot;my-label-button&quot;&gt;&lt;/pre&gt;</code></pre>
+
+	<pre><code>&lt;template id=&quot;my-label-button&quot;&gt;&lt;button onclick=&quot;console.log('This is an inline-handler');&quot;&gt;My button&lt;/button&gt;&lt;/template&gt;</code></pre>
 
 	<p>For more flexibility, the Toolbar exposes a JavaScript function that can be used to register new buttons or labels to the Toolbar,
 		<code>Prism.plugins.toolbar.registerButton</code>.</p>
@@ -83,6 +91,7 @@
 </section>
 
 <footer data-src="templates/footer.html" data-type="text/html"></footer>
+<template id="my-label-button"><button onclick="console.log('This is an inline-handler');">My button</button></template>
 
 <script src="prism.js"></script>
 <script src="plugins/toolbar/prism-toolbar.js"></script>

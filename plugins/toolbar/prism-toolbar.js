@@ -98,18 +98,25 @@
 			return;
 		}
 
+		var element, template;
 		var text = pre.getAttribute('data-label');
+		try {
+			// Any normal text will blow up this selector.
+			template = document.querySelector('template#' + text);
+		} catch (e) {}
 
-		var element;
-
-		if (pre.hasAttribute('data-url')) {
-			element = document.createElement('a');
-			element.href = pre.getAttribute('data-url');
+		if (template) {
+			element = template.content;
 		} else {
-			element = document.createElement('span');
-		}
+			if (pre.hasAttribute('data-url')) {
+				element = document.createElement('a');
+				element.href = pre.getAttribute('data-url');
+			} else {
+				element = document.createElement('span');
+			}
 
-		element.textContent = text;
+			element.innerHTML = text;
+		}
 
 		return element;
 	});
