@@ -1,0 +1,20 @@
+.prism-collapse {
+    position: relative;
+}
+.prism-collapse-closed > div {
+    display: none;
+}
+.prism-collapse > .prism-collapse-arrow {
+    position: absolute;
+    left: -0.5em;
+    text-decoration: none;
+}
+.prism-collapse > .prism-collapse-arrow:hover {
+    cursor: pointer;
+}
+.prism-collapse > .prism-collapse-arrow-down {
+    top: -1em;
+}
+.prism-collapse > .prism-collapse-arrow-up {
+    bottom: -1em;
+}
