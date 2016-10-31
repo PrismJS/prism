@@ -1,6 +1,6 @@
 Prism.languages.ini= {
 	'comment': /^[ \t]*;.*$/m,
-	'important': /\[.*?\]/,
+	'selector': /^\s*\[.*?\]/m,
 	'constant': /^[ \t]*[^\s=]+?(?=[ \t]*=)/m,
 	'attr-value': {
 		pattern: /=.*/,
