@@ -1,9 +1,6 @@
 .prism-collapse {
     position: relative;
 }
-.prism-collapse-closed > div {
-    display: none;
-}
 .prism-collapse > .prism-collapse-arrow {
     position: absolute;
     left: -0.5em;
@@ -20,4 +17,10 @@
 }
 .prism-collapse > .prism-collapse-arrow-up {
     bottom: -1em;
+}
+.prism-collapse-closed > div {
+    display: none;
+}
+.prism-collapse-closed > .prism-collapse-arrow {
+    transform: rotate(270deg);
 }
