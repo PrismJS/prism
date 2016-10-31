@@ -15,7 +15,7 @@ function getCollapseFunction(container) {
 	};
 };
 
-function createCollapse(newLinesNodes, element, lines, closed) {
+function createCollapse(newLinesNodes, lines, closed) {
     var ranges = lines.replace(/\s+/g, '').split(',');
 	for (var i = 0; i < ranges.length; i++) {
 		var range = ranges[i].split('-');
@@ -28,14 +28,15 @@ function createCollapse(newLinesNodes, element, lines, closed) {
 		}
 		var divCollapseNode = document.createElement('div');
 		divCollapseContainer.appendChild(divCollapseNode);
-		element.insertBefore(divCollapseContainer, newLinesNodes[start].nextSibling);
+		var parent = newLinesNodes[start].nextSibling.parentNode;
+		parent.insertBefore(divCollapseContainer, newLinesNodes[start].nextSibling);
 		var currentNode = divCollapseContainer.nextSibling;
 		while (currentNode !== newLinesNodes[end]) {
 			movingNode = currentNode;
 			currentNode = currentNode.nextSibling;
 			divCollapseNode.appendChild(movingNode);
 		}
-		element.removeChild(newLinesNodes[end]);
+		parent.removeChild(newLinesNodes[end]);
 
 		var collapseFunction = getCollapseFunction(divCollapseContainer);
 
@@ -92,10 +93,10 @@ Prism.hooks.add('complete', function(env) {
 	var element = env.element;
 	var newLinesNodes = splitAndReturnNewLineElements(element);
 	if (collapseOpenLines) {
-    	createCollapse(newLinesNodes, element, collapseOpenLines);
+    	createCollapse(newLinesNodes, collapseOpenLines);
 	}
 	if (collapseClosedLines) {
-	    createCollapse(newLinesNodes, element, collapseClosedLines, true);
+	    createCollapse(newLinesNodes, collapseClosedLines, true);
 	}
 });
 
