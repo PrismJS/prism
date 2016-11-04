@@ -21,12 +21,13 @@ function createCollapse(newLinesNodes, lines, closed) {
 		var range = ranges[i].split('-');
 		var start = range[0];
 		var end = range[1] - 1;
-		var divCollapseContainer = document.createElement('div');
+		var divCollapseContainer = document.createElement('span');
 		divCollapseContainer.className = "prism-collapse";
 		if (closed) {
 			divCollapseContainer.className = "prism-collapse prism-collapse-closed";
 		}
-		var divCollapseNode = document.createElement('div');
+		var divCollapseNode = document.createElement('span');
+		divCollapseNode.className = "prism-collapse-node";
 		divCollapseContainer.appendChild(divCollapseNode);
 		var parent = newLinesNodes[start].nextSibling.parentNode;
 		parent.insertBefore(divCollapseContainer, newLinesNodes[start].nextSibling);
@@ -36,7 +37,7 @@ function createCollapse(newLinesNodes, lines, closed) {
 			currentNode = currentNode.nextSibling;
 			divCollapseNode.appendChild(movingNode);
 		}
-		parent.removeChild(newLinesNodes[end]);
+		divCollapseNode.appendChild(newLinesNodes[end]);
 
 		var collapseFunction = getCollapseFunction(divCollapseContainer);
 
