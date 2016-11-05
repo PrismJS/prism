@@ -1,13 +1,11 @@
+$INTERNET_CACHE
 $LANGUAGE
-$(myLicenseData)
-${LANG_ENGLISH}
 
 ----------------------------------------------------
 
 [
-	["variable", "$LANGUAGE"],
-	["variable", "$(myLicenseData)"],
-	["variable", "${LANG_ENGLISH}"]
+    ["variable", "$INTERNET_CACHE"],
+    ["variable", "$LANGUAGE"]
 ]
 
 ----------------------------------------------------
