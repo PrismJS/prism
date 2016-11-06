@@ -58,6 +58,11 @@
 			return;
 		}
 
+		// Autoloader rehighlights, so only do this once.
+		if (pre.classList.contains('code-toolbar')) {
+			return;
+		}
+
 		pre.classList.add('code-toolbar');
 
 		// Setup the toolbar
