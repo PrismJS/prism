@@ -4,11 +4,11 @@
 
 <meta charset="utf-8" />
 <link rel="shortcut icon" href="favicon.png" />
-<title>Collapse ▲ Prism plugins</title>
+<title>Code Folding ▲ Prism plugins</title>
 <base href="../.." />
 <link rel="stylesheet" href="style.css" />
 <link rel="stylesheet" href="themes/prism.css" data-noprefix />
-<link rel="stylesheet" href="plugins/collapse/prism-collapse.css" data-noprefix />
+<link rel="stylesheet" href="plugins/code-folding/prism-code-folding.css" data-noprefix />
 <script src="prefixfree.min.js"></script>
 
 <script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
@@ -19,8 +19,8 @@
 <header>
     <div class="intro" data-src="templates/header-plugins.html" data-type="text/html"></div>
 
-    <h2>Collapse</h2>
-    <p>Collapse specific line ranges.</p>
+    <h2>Code Folding</h2>
+    <p>Code Folding specific line ranges.</p>
 </header>
 
 <section class="language-markup">
@@ -31,8 +31,8 @@
         code.
     </p>
     <p>
-        You specify the lines to be highlighted through the <code>data-collapse-open</code> attribute for an open
-        collapse or the <code>data-collapse-closed</code> attribute for an closed collapse on the <code>&lt;pre></code>
+        You specify the lines to be highlighted through the <code>data-folding-open</code> attribute for an open
+        folding or the <code>data-folding-closed</code> attribute for an closed folding on the <code>&lt;pre></code>
         element, in the following simple format:
     </p>
     <ul>
@@ -55,16 +55,16 @@
     <h1>Examples</h1>
 
     <h2>Lines 1-104, 7-16 open and 3-5, 18-56, 58-84, 86-102 closed</h2>
-	<pre data-collapse-open="1-104,7-16" data-collapse-closed="3-5,18-56,58-84,86-102" data-src="plugins/collapse/prism-collapse.js"></pre>
+	<pre data-folding-open="1-104,7-16" data-folding-closed="3-5,18-56,58-84,86-102" data-src="plugins/code-folding/prism-code-folding.js"></pre>
 
     <h2>Lines 1-3, 4-10, 11-14, 15-17, 18-20, 21-23 open</h2>
-    <pre data-collapse-open="1-3,4-10,11-14,15-17,18-20,21-23" data-src="plugins/collapse/prism-collapse.css"></pre>
+    <pre data-folding-open="1-3,4-10,11-14,15-17,18-20,21-23" data-src="plugins/code-folding/prism-code-folding.css"></pre>
 </section>
 
 <footer data-src="templates/footer.html" data-type="text/html"></footer>
 
 <script src="prism.js"></script>
-<script src="plugins/collapse/prism-collapse.js"></script>
+<script src="plugins/code-folding/prism-code-folding.js"></script>
 <script src="utopia.js"></script>
 <script src="components.js"></script>
 <script src="code.js"></script>

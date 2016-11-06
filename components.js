@@ -655,8 +655,8 @@ var components = {
 			"owner": "Golmote",
 			"noCSS": true
 		},
-		"collapse": {
-			"title": "Collapse",
+		"code-folding": {
+			"title": "Code Folding",
 			"owner": "GordonLesti"
 		}
 	}

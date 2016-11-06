@@ -4,54 +4,54 @@ if (typeof self === 'undefined' || !self.Prism || !self.document || !document.qu
 	return;
 }
 
-function getCollapseFunction(container) {
+function getFoldingeFunction(container) {
 	return function() {
-		if (container.className === "prism-collapse prism-collapse-closed") {
-			container.className = "prism-collapse";
+		if (container.className === "prism-folding prism-folding-closed") {
+			container.className = "prism-folding";
 			return false;
 		}
-		container.className = "prism-collapse prism-collapse-closed";
+		container.className = "prism-folding prism-folding-closed";
 		return false;
 	};
 };
 
-function createCollapse(newLinesNodes, lines, closed) {
+function createFoldings(newLinesNodes, lines, closed) {
     var ranges = lines.replace(/\s+/g, '').split(',');
 	for (var i = 0; i < ranges.length; i++) {
 		var range = ranges[i].split('-');
 		var start = range[0];
 		var end = range[1] - 1;
-		var divCollapseContainer = document.createElement('span');
-		divCollapseContainer.className = "prism-collapse";
+		var divFoldingContainer = document.createElement('span');
+		divFoldingContainer.className = "prism-folding";
 		if (closed) {
-			divCollapseContainer.className = "prism-collapse prism-collapse-closed";
+			divFoldingContainer.className = "prism-folding prism-folding-closed";
 		}
-		var divCollapseNode = document.createElement('span');
-		divCollapseNode.className = "prism-collapse-node";
-		divCollapseContainer.appendChild(divCollapseNode);
+		var divFoldingNode = document.createElement('span');
+		divFoldingNode.className = "prism-folding-node";
+		divFoldingContainer.appendChild(divFoldingNode);
 		var parent = newLinesNodes[start].nextSibling.parentNode;
-		parent.insertBefore(divCollapseContainer, newLinesNodes[start].nextSibling);
-		var currentNode = divCollapseContainer.nextSibling;
+		parent.insertBefore(divFoldingContainer, newLinesNodes[start].nextSibling);
+		var currentNode = divFoldingContainer.nextSibling;
 		while (currentNode !== newLinesNodes[end]) {
 			movingNode = currentNode;
 			currentNode = currentNode.nextSibling;
-			divCollapseNode.appendChild(movingNode);
+			divFoldingNode.appendChild(movingNode);
 		}
-		divCollapseNode.appendChild(newLinesNodes[end]);
+		divFoldingNode.appendChild(newLinesNodes[end]);
 
-		var collapseFunction = getCollapseFunction(divCollapseContainer);
+		var foldingFunction = getFoldingeFunction(divFoldingContainer);
 
 		var arrowDown = document.createElement("span");
 		arrowDown.appendChild(document.createTextNode("\u25BD"));
-		arrowDown.className = "prism-collapse-arrow prism-collapse-arrow-down";
-		divCollapseContainer.appendChild(arrowDown);
-		arrowDown.addEventListener('click', collapseFunction);
+		arrowDown.className = "prism-folding-arrow prism-folding-arrow-down";
+		divFoldingContainer.appendChild(arrowDown);
+		arrowDown.addEventListener('click', foldingFunction);
 
 		var arrowUp = document.createElement("span");
 		arrowUp.appendChild(document.createTextNode("\u25B3"));
-		arrowUp.className = "prism-collapse-arrow prism-collapse-arrow-up";
-		divCollapseContainer.appendChild(arrowUp);
-		arrowUp.addEventListener('click', collapseFunction);
+		arrowUp.className = "prism-folding-arrow prism-folding-arrow-up";
+		divFoldingContainer.appendChild(arrowUp);
+		arrowUp.addEventListener('click', foldingFunction);
 	}
 }
 
@@ -85,19 +85,19 @@ function splitAndReturnNewLineElements(element) {
 
 Prism.hooks.add('complete', function(env) {
     var pre = env.element.parentNode;
-    var collapseOpenLines = pre && pre.getAttribute('data-collapse-open');
-    var collapseClosedLines = pre && pre.getAttribute('data-collapse-closed');
+    var foldingOpenLines = pre && pre.getAttribute('data-folding-open');
+    var foldingClosedLines = pre && pre.getAttribute('data-folding-closed');
 
-    if (!pre || !(collapseOpenLines || collapseClosedLines) || !/pre/i.test(pre.nodeName)) {
+    if (!pre || !(foldingOpenLines || foldingClosedLines) || !/pre/i.test(pre.nodeName)) {
         return;
     }
 	var element = env.element;
 	var newLinesNodes = splitAndReturnNewLineElements(element);
-	if (collapseOpenLines) {
-    	createCollapse(newLinesNodes, collapseOpenLines);
+	if (foldingOpenLines) {
+    	createFoldings(newLinesNodes, foldingOpenLines);
 	}
-	if (collapseClosedLines) {
-	    createCollapse(newLinesNodes, collapseClosedLines, true);
+	if (foldingClosedLines) {
+	    createFoldings(newLinesNodes, foldingClosedLines, true);
 	}
 });
 
