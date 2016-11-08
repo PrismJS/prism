@@ -49,7 +49,7 @@ Prism.hooks.add('wrap', function(env) {
 			}
 
 			// To prevent double HTML-encoding we have to decode env.content first
-			env.content = env.content.replace(/&amp;/g, '&').replace(/&lt;/g, '<');
+			env.content = env.content.replace(/&lt;/g, '<').replace(/&amp;/g, '&');
 
 			env.content = Prism.highlight(env.content, {
 				'expression': {
