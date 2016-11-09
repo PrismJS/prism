@@ -120,7 +120,7 @@
 				element = document.createElement('span');
 			}
 
-			element.innerHTML = text;
+			element.textContent = text;
 		}
 
 		return element;
