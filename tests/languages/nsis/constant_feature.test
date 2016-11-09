@@ -1,5 +1,5 @@
 $(myLicenseData)
-$(^CLICK)
+$(^Name)
 ${LANG_ENGLISH}
 ${AtLeastWin8.1}
 ${nsArray_Copy}
@@ -10,7 +10,7 @@ ${^EXAMPLE}
 
 [
     ["constant", "$(myLicenseData)"],
-    ["constant", "$(^CLICK)"],
+    ["constant", "$(^Name)"],
     ["constant", "${LANG_ENGLISH}"],
     ["constant", "${AtLeastWin8.1}"],
     ["constant", "${nsArray_Copy}"],
