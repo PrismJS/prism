@@ -1,0 +1,23 @@
+.prism-folding {
+    position: relative;
+}
+.prism-folding > .prism-folding-arrow {
+    position: absolute;
+    left: -0.5em;
+    text-decoration: none;
+    opacity: 0.5;
+    line-height: 1em;
+}
+.prism-folding > .prism-folding-arrow:hover {
+    cursor: pointer;
+    opacity: 1;
+}
+.prism-folding > .prism-folding-arrow-down {
+    top: -1em;
+}
+.prism-folding-closed > .prism-folding-node {
+    display: none;
+}
+.prism-folding-closed > .prism-folding-arrow {
+    transform: rotate(270deg);
+}

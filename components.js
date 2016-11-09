@@ -654,6 +654,10 @@ var components = {
 			"title": "Data-URI Highlight",
 			"owner": "Golmote",
 			"noCSS": true
+		},
+		"code-folding": {
+			"title": "Code Folding",
+			"owner": "GordonLesti"
 		}
 	}
 };
