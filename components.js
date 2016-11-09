@@ -587,7 +587,9 @@ var components = {
 		},
 		"show-language": {
 			"title": "Show Language",
-			"owner": "nauzilus"
+			"owner": "nauzilus",
+			"noCSS": true,
+			"require": "toolbar"
 		},
 		"jsonp-highlight": {
 			"title": "JSONP Highlight",
@@ -658,6 +660,16 @@ var components = {
 		"data-uri-highlight": {
 			"title": "Data-URI Highlight",
 			"owner": "Golmote",
+			"noCSS": true
+		},
+		"toolbar": {
+			"title": "Toolbar",
+			"owner": "mAAdhaTTah"
+		},
+		"copy-to-clipboard": {
+			"title": "Copy to Clipboard Button",
+			"owner": "mAAdhaTTah",
+			"require": "toolbar",
 			"noCSS": true
 		}
 	}
