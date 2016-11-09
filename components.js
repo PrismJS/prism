@@ -272,6 +272,11 @@ var components = {
 			"require": "clike",
 			"owner": "sherblot"
 		},
+		"jolie": {
+			"title": "Jolie",
+			"require": "clike",
+			"owner": "thesave"
+		},
 		"json": {
 			"title": "JSON",
 			"owner": "CupOfTea696"
