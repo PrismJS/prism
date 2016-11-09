@@ -451,7 +451,7 @@ Token.stringify = function(o, language, parent) {
 	_.hooks.run('wrap', env);
 
 	var attributes = Object.keys(env.attributes).map(function(name) {
-		return name + '="' + (env.attributes[name] || '') + '"';
+		return name + '="' + (env.attributes[name] || '').replace(/"/g, '&quot;') + '"';
 	}).join(' ');
 
 	return '<' + env.tag + ' class="' + env.classes.join(' ') + '"' + (attributes ? ' ' + attributes : '') + '>' + env.content + '</' + env.tag + '>';
