@@ -7,6 +7,7 @@ bar'
 "foo\
 bar"
 
+"foo #bar"
 "foo #{ 42 } bar"
 
 %!foo #{ 42 }!
@@ -44,6 +45,7 @@ bar"
 	["string", ["\"foo\""]],
 	["string", ["'foo\\\r\nbar'"]],
 	["string", ["\"foo\\\r\nbar\""]],
+	["string", ["\"foo #bar\""]],
 	["string", [
         "\"foo ",
         ["interpolation", [
