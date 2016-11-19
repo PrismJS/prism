@@ -453,6 +453,11 @@ var components = {
 			"require": ["markup", "javascript"],
 			"owner": "vkbansal"
 		},
+		"reason": {
+			"title": "Reason",
+			"require": "clike",
+			"owner": "Golmote"
+		},
 		"rest": {
 			"title": "reST (reStructuredText)",
 			"owner": "Golmote"
