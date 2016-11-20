@@ -20,7 +20,7 @@ Prism.plugins.toolbar.registerButton('show-language', function(env) {
 	var language = pre.getAttribute('data-language') || Languages[env.language] || (env.language.substring(0, 1).toUpperCase() + env.language.substring(1));
 
 	var element = document.createElement('span');
-	element.innerHTML = language;
+	element.textContent = language;
 
 	return element;
 });
