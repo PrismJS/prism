@@ -65,14 +65,24 @@ module.exports = {
 		var compiledTokenStream = Prism.tokenize(testCase.testSource, mainLanguageGrammar);
 		var simplifiedTokenStream = TokenStreamTransformer.simplify(compiledTokenStream);
 
-		assert.deepEqual(simplifiedTokenStream, testCase.expectedTokenStream, testCase.comment);
+		var tzd = JSON.stringify( simplifiedTokenStream ); var exp = JSON.stringify( testCase.expectedTokenStream );
+	  var i = 0;var j = 0;var diff = "";
+    while ( j < tzd.length ){ if (exp[i] != tzd[j] || i == exp.length) diff += tzd[j]; else i++; j++; }
+
+		// var message = "\nToken Stream: \n" + JSON.stringify( simplifiedTokenStream, null, " " ) + 
+		var message = "\nToken Stream: \n" + tzd + 
+									"\n-----------------------------------------\n" +
+									"Expected Token Stream: \n" + exp + 
+									"\n-----------------------------------------\n" + diff;
+
+		var result = assert.deepEqual(simplifiedTokenStream, testCase.expectedTokenStream, testCase.comment + message);
 	},
 
 
 	/**
 	 * Parses the language names and finds the main language.
 	 *
-	 * It is either the first language or the language followed by a exclamation mark “!”.
+	 * It is either the last language or the language followed by a exclamation mark “!”.
 	 * There should only be one language with an exclamation mark.
 	 *
 	 * @param {string} languageIdentifier
@@ -140,6 +150,38 @@ module.exports = {
 		catch (e) {
 			// the JSON can't be parsed (e.g. it could be empty)
 			return null;
+		}
+	},
+
+	/**
+	 * Runs the given pieces of codes and asserts their result.
+	 *
+	 * Code is provided as the key and expected result as the value.
+	 *
+	 * @param {string} languageIdentifier
+	 * @param {object} codes
+	 */
+	runTestsWithHooks: function (languageIdentifier, codes) {
+		var usedLanguages = this.parseLanguageNames(languageIdentifier);
+		var Prism = PrismLoader.createInstance(usedLanguages.languages);
+		// the first language is the main language to highlight
+
+		for (var code in codes) {
+			if (codes.hasOwnProperty(code)) {
+				var env = {
+					element: {},
+					language: usedLanguages.mainLanguage,
+					grammar: Prism.languages[usedLanguages.mainLanguage],
+					code: code
+				};
+				Prism.hooks.run('before-highlight', env);
+				env.highlightedCode = Prism.highlight(env.code, Prism.languages[usedLanguages.mainLanguage], usedLanguages.mainLanguage);
+				Prism.hooks.run('before-insert', env);
+				env.element.innerHTML = env.highlightedCode;
+				Prism.hooks.run('after-highlight', env);
+				Prism.hooks.run('complete', env);
+				assert.equal(env.highlightedCode, codes[code]);
+			}
 		}
 	}
 };

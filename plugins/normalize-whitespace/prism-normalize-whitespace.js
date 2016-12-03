@@ -126,7 +126,7 @@ Prism.plugins.NormalizeWhitespace = new NormalizeWhitespace({
 	'spaces-to-tabs': 4*/
 });
 
-Prism.hooks.add('before-highlight', function (env) {
+Prism.hooks.add('before-sanity-check', function (env) {
 	var pre = env.element.parentNode;
 	var clsReg = /\bno-whitespace-normalization\b/;
 	if (!env.code || !pre || pre.nodeName.toLowerCase() !== 'pre' ||

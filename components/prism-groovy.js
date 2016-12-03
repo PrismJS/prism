@@ -8,7 +8,7 @@ Prism.languages.groovy = Prism.languages.extend('clike', {
 		{
 			pattern: /("|'|\/)(?:\\?.)*?\1/,
 			greedy: true
-		},
+		}
 	],
 	'number': /\b(?:0b[01_]+|0x[\da-f_]+(?:\.[\da-f_p\-]+)?|[\d_]+(?:\.[\d_]+)?(?:e[+-]?[\d]+)?)[glidf]?\b/i,
 	'operator': {
@@ -48,8 +48,8 @@ Prism.hooks.add('wrap', function(env) {
 				pattern = /([^\$])(\$(\{.*?\}|[\w\.]+))/;
 			}
 
-			// To prevent double HTML-ecoding we have to decode env.content first
-			env.content = env.content.replace(/&amp;/g, '&').replace(/&lt;/g, '<');
+			// To prevent double HTML-encoding we have to decode env.content first
+			env.content = env.content.replace(/&lt;/g, '<').replace(/&amp;/g, '&');
 
 			env.content = Prism.highlight(env.content, {
 				'expression': {

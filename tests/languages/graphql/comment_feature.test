@@ -1,13 +1,13 @@
-[owner]
-[foobar]
+#
+# foobar
 
 ----------------------------------------------------
 
 [
-	["important", "[owner]"],
-	["important", "[foobar]"]
+	["comment", "#"],
+	["comment", "# foobar"]
 ]
 
 ----------------------------------------------------
 
-Checks for section titles.
+Checks for comments.

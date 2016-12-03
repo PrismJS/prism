@@ -51,26 +51,27 @@ function highlightLines(pre, lines, classes) {
 		var line = document.createElement('div');
 		
 		line.textContent = Array(end - start + 2).join(' \n');
+		line.setAttribute('aria-hidden', 'true');
 		line.className = (classes || '') + ' line-highlight';
 
-    //if the line-numbers plugin is enabled, then there is no reason for this plugin to display the line numbers
-    if(!hasClass(pre, 'line-numbers')) {
-      line.setAttribute('data-start', start);
+		//if the line-numbers plugin is enabled, then there is no reason for this plugin to display the line numbers
+		if(!hasClass(pre, 'line-numbers')) {
+			line.setAttribute('data-start', start);
 
-      if(end > start) {
-        line.setAttribute('data-end', end);
-      }
-    }
+			if(end > start) {
+				line.setAttribute('data-end', end);
+			}
+		}
 
 		line.style.top = (start - offset - 1) * lineHeight + 'px';
 
-    //allow this to play nicely with the line-numbers plugin
-    if(hasClass(pre, 'line-numbers')) {
-      //need to attack to pre as when line-numbers is enabled, the code tag is relatively which screws up the positioning
-      pre.appendChild(line);
-    } else {
-      (pre.querySelector('code') || pre).appendChild(line);
-    }
+		//allow this to play nicely with the line-numbers plugin
+		if(hasClass(pre, 'line-numbers')) {
+			//need to attack to pre as when line-numbers is enabled, the code tag is relatively which screws up the positioning
+			pre.appendChild(line);
+		} else {
+			(pre.querySelector('code') || pre).appendChild(line);
+		}
 	}
 }
 
@@ -90,7 +91,7 @@ function applyHash() {
 	
 	var id = hash.slice(0, hash.lastIndexOf('.')),
 	    pre = document.getElementById(id);
-	    
+
 	if (!pre) {
 		return;
 	}

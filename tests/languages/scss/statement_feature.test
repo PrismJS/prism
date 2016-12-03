@@ -4,7 +4,7 @@ $foo: "bar" !default;
 ----------------------------------------------------
 
 [
-	["variable", "$foo"],
+	["property", [["variable", "$foo"]]],
 	["punctuation", ":"],
 	["string", "\"bar\""],
 	["statement", "!default"],
