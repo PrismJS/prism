@@ -34,6 +34,10 @@ var components = {
 			"title": "Solarized Light",
 			"owner": "hectormatos2011 "
 		}
+		"prism-atom-dark": {
+			"title": "Atom Dark",
+			"owner": "gibsjose"
+		}
 	},
 	"languages": {
 		"meta": {
