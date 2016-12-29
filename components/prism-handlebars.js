@@ -10,11 +10,11 @@
 					pattern: /^\{\{\{?|\}\}\}?$/i,
 					alias: 'punctuation'
 				},
-				'string': /(["'])(\\?.)+?\1/,
-				'number': /\b-?(0x[\dA-Fa-f]+|\d*\.?\d+([Ee]-?\d+)?)\b/,
+				'string': /(["'])(\\?.)*?\1/,
+				'number': /\b-?(0x[\dA-Fa-f]+|\d*\.?\d+([Ee][+-]?\d+)?)\b/,
 				'boolean': /\b(true|false)\b/,
 				'block': {
-					pattern: /^(\s*~?\s*)[#\/]\S+/i,
+					pattern: /^(\s*~?\s*)[#\/]\S+?(?=\s*~?\s*$|\s)/i,
 					lookbehind: true,
 					alias: 'keyword'
 				},
@@ -26,7 +26,7 @@
 					}
 				},
 				'punctuation': /[!"#%&'()*+,.\/;<=>@\[\\\]^`{|}~]/,
-				'variable': /[^!"#%&'()*+,.\/;<=>@\[\\\]^`{|}~]+/
+				'variable': /[^!"#%&'()*+,.\/;<=>@\[\\\]^`{|}~\s]+/
 			}
 		}
 	});
@@ -73,7 +73,8 @@
 		}
 
 		for (var i = 0, t; t = env.tokenStack[i]; i++) {
-			env.highlightedCode = env.highlightedCode.replace('___HANDLEBARS' + (i + 1) + '___', Prism.highlight(t, env.grammar, 'handlebars'));
+			// The replace prevents $$, $&, $`, $', $n, $nn from being interpreted as special patterns
+			env.highlightedCode = env.highlightedCode.replace('___HANDLEBARS' + (i + 1) + '___', Prism.highlight(t, env.grammar, 'handlebars').replace(/\$/g, '$$$$'));
 		}
 
 		env.element.innerHTML = env.highlightedCode;

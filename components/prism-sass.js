@@ -1,7 +1,10 @@
 (function(Prism) {
 	Prism.languages.sass = Prism.languages.extend('css', {
 		// Sass comments don't need to be closed, only indented
-		'comment': /^([ \t]*)\/[\/*].*(?:(?:\r?\n|\r)\1[ \t]+.+)*/m
+		'comment': {
+			pattern: /^([ \t]*)\/[\/*].*(?:(?:\r?\n|\r)\1[ \t]+.+)*/m,
+			lookbehind: true
+		}
 	});
 
 	Prism.languages.insertBefore('sass', 'atrule', {
@@ -10,7 +13,7 @@
 			// Includes support for = and + shortcuts
 			pattern: /^(?:[ \t]*)[@+=].+/m,
 			inside: {
-				'atrule': /^(?:[ \t]*)(?:@[\w-]+|[+=])/m
+				'atrule': /(?:@[\w-]+|[+=])/m
 			}
 		}
 	});
@@ -18,13 +21,18 @@
 
 
 	var variable = /((\$[-_\w]+)|(#\{\$[-_\w]+\}))/i;
-	var operator = /[-+]{1,2}|==?|!=|\|?\||\?|\*|\/|%/;
+	var operator = [
+		/[+*\/%]|[=!]=|<=?|>=?|\b(?:and|or|not)\b/,
+		{
+			pattern: /(\s+)-(?=\s)/,
+			lookbehind: true
+		}
+	];
 
 	Prism.languages.insertBefore('sass', 'property', {
 		// We want to consume the whole line
 		'variable-line': {
-			pattern: /(^|(?:\r?\n|\r))[ \t]*\$.+/,
-			lookbehind: true,
+			pattern: /^[ \t]*\$.+/m,
 			inside: {
 				'punctuation': /:/,
 				'variable': variable,
@@ -33,8 +41,7 @@
 		},
 		// We want to consume the whole line
 		'property-line': {
-			pattern: /(^|(?:\r?\n|\r))[ \t]*(?:[^:\s]+[ ]*:.*|:[^:\s]+.*)/i,
-			lookbehind: true,
+			pattern: /^[ \t]*(?:[^:\s]+ *:.*|:[^:\s]+.*)/m,
 			inside: {
 				'property': [
 					/[^:\s]+(?=\s*:)/,
@@ -58,7 +65,7 @@
 	delete Prism.languages.sass.selector;
 	Prism.languages.insertBefore('sass', 'punctuation', {
 		'selector': {
-			pattern: /([ \t]*).+(?:,(?:\r?\n|\r)\1[ \t]+.+)*/,
+			pattern: /([ \t]*)\S(?:,?[^,\r\n]+)*(?:,(?:\r?\n|\r)\1[ \t]+\S(?:,?[^,\r\n]+)*)*/,
 			lookbehind: true
 		}
 	});

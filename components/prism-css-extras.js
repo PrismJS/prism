@@ -4,7 +4,8 @@ Prism.languages.css.selector = {
 		'pseudo-element': /:(?:after|before|first-letter|first-line|selection)|::[-\w]+/,
 		'pseudo-class': /:[-\w]+(?:\(.*\))?/,
 		'class': /\.[-:\.\w]+/,
-		'id': /#[-:\.\w]+/
+		'id': /#[-:\.\w]+/,
+		'attribute': /\[[^\]]+\]/
 	}
 };
 

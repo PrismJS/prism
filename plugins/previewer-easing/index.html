@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta charset="utf-8" />
+	<link rel="shortcut icon" href="favicon.png" />
+	<title>Previewer: Easing ▲ Prism plugins</title>
+	<base href="../.." />
+	<link rel="stylesheet" href="style.css" />
+	<link rel="stylesheet" href="themes/prism.css" data-noprefix />
+	<link rel="stylesheet" href="plugins/previewer-base/prism-previewer-base.css" data-noprefix />
+	<link rel="stylesheet" href="plugins/previewer-easing/prism-previewer-easing.css" data-noprefix />
+	<script src="prefixfree.min.js"></script>
+
+	<script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
+	<script src="http://www.google-analytics.com/ga.js" async></script>
+</head>
+<body>
+
+<header>
+	<div class="intro" data-src="templates/header-plugins.html" data-type="text/html"></div>
+
+	<h2>Previewer: Easing</h2>
+	<p>Previewer for CSS easing functions.</p>
+</header>
+
+<section class="language-markup">
+	<h1>How to use</h1>
+
+	<p>You don't need to do anything. With this plugin loaded, a previewer will appear on hovering the easing values in code blocks.</p>
+	<p>This plugin is compatible with CSS, Less, Sass, Scss and Stylus.</p>
+</section>
+
+<section>
+	<h1>Examples</h1>
+
+	<h2>CSS</h2>
+	<pre class="language-css"><code>div {
+	transition: color 0.3s linear;
+}</code></pre>
+
+	<h2>Less</h2>
+	<pre class="language-less"><code>@easing: cubic-bezier(0.1,0.3,1,.4);
+#header a {
+	transition-timing-function: ease;
+}</code></pre>
+
+	<h2>Sass</h2>
+	<pre class="language-sass"><code>$easing: ease-out
+.foo
+	transition: color 0.3s ease-in-out
+</code></pre>
+
+	<h2>Scss</h2>
+	<pre class="language-scss"><code>$easing: linear;
+$attr: background;
+.foo {
+    transition: #{$attr}-color 0.3s cubic-bezier(0.9,0.1,.2,.4);
+}</code></pre>
+
+	<h2>Stylus</h2>
+	<pre class="language-stylus"><code>easing = ease-in
+.foo
+	transition: color 0.3s ease-out
+</code></pre>
+
+</section>
+
+<footer data-src="templates/footer.html" data-type="text/html"></footer>
+
+<script src="prism.js"></script>
+<script src="components/prism-less.js"></script>
+<script src="components/prism-sass.js"></script>
+<script src="components/prism-scss.js"></script>
+<script src="components/prism-stylus.js"></script>
+<script src="plugins/previewer-base/prism-previewer-base.js"></script>
+<script src="plugins/previewer-easing/prism-previewer-easing.js"></script>
+<script src="utopia.js"></script>
+<script src="components.js"></script>
+<script src="code.js"></script>
+
+
+</body>
+</html>

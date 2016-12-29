@@ -1,10 +1,10 @@
 Prism.languages.markup = {
 	'comment': /<!--[\w\W]*?-->/,
 	'prolog': /<\?[\w\W]+?\?>/,
-	'doctype': /<!DOCTYPE[\w\W]+?>/,
+	'doctype': /<!DOCTYPE[\w\W]+?>/i,
 	'cdata': /<!\[CDATA\[[\w\W]*?]]>/i,
 	'tag': {
-		pattern: /<\/?[^\s>\/]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\\1|\\?(?!\1)[\w\W])*\1|[^\s'">=]+))?)*\s*\/?>/i,
+		pattern: /<\/?(?!\d)[^\s>\/=$<]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\\1|\\?(?!\1)[\w\W])*\1|[^\s'">=]+))?)*\s*\/?>/i,
 		inside: {
 			'tag': {
 				pattern: /^<\/?[^\s>\/]+/i,
@@ -39,3 +39,8 @@ Prism.hooks.add('wrap', function(env) {
 		env.attributes['title'] = env.content.replace(/&amp;/, '&');
 	}
 });
+
+Prism.languages.xml = Prism.languages.markup;
+Prism.languages.html = Prism.languages.markup;
+Prism.languages.mathml = Prism.languages.markup;
+Prism.languages.svg = Prism.languages.markup;

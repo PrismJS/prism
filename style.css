@@ -372,6 +372,11 @@ footer {
 		border: 5px solid white;
 		position: relative;
 	}
+		.used-by-logos > .uswds {
+			background: url('img/screen-us-web-design-standards.png') no-repeat 0 0;
+			background-size: cover;
+			text-indent: -999em;
+		}
 		.used-by-logos > a > img {
 			max-height: 100%;
 			max-width: 100%;

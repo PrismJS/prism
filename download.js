@@ -64,6 +64,37 @@ for (var category in components) {
 		},
 		inside: '#components'
 	});
+
+	if (all.meta.addCheckAll) {
+		$u.element.create('label', {
+			attributes: {
+				'data-id': 'check-all-' + category
+			},
+			contents: [
+				{
+					tag: 'input',
+					properties: {
+						type: 'checkbox',
+						name: 'check-all-' + category,
+						value: '',
+						checked: false,
+						onclick: (function(category, all){
+							return function () {
+								var checkAll = this;
+								$$('input[name="download-' + category + '"]').forEach(function(input) {
+									all[input.value].enabled = input.checked = checkAll.checked;
+								});
+
+								update(category);
+							};
+						})(category, all)
+					}
+				},
+				'Select/unselect all'
+			],
+			inside: all.meta.section
+		});
+	}
 	
 	for (var id in all) {
 		if(id === 'meta') {
@@ -86,6 +117,7 @@ for (var category in components) {
 			noJS: all[id].noJS || all.meta.noJS,
 			enabled: checked,
 			require: $u.type(all[id].require) === 'string' ? [all[id].require] : all[id].require,
+			after: $u.type(all[id].after) === 'string' ? [all[id].after] : all[id].after,
 			owner: all[id].owner,
 			files: {
 				minified: {
@@ -266,10 +298,11 @@ function update(updatedCategory, updatedId){
 	
 	for (var category in components) {
 		var all = components[category];
-		
+		var allChecked = true;
+
 		for (var id in all) {
 			var info = all[id];
-			
+
 			if (info.enabled || id == updatedId) {
 				var distro = info.files[minified? 'minified' : 'dev'];
 				
@@ -295,18 +328,28 @@ function update(updatedCategory, updatedId){
 					}
 				});
 			}
+			if (id !== 'meta' && !info.enabled) {
+				allChecked = false;
+			}
+		}
+
+		if (all.meta.addCheckAll) {
+			$('input[name="check-all-' + category + '"]').checked = allChecked;
 		}
 	}
 	
 	total.all = total.js + total.css;
-	updated.all = updated.js + updated.css;
-	
-	$u.element.prop($('label[data-id="' + updatedId + '"] .filesize'), {
-		textContent: prettySize(updated.all),
-		title: (updated.js? Math.round(100 * updated.js / updated.all) + '% JavaScript' : '') + 
-				(updated.js && updated.css? ' + ' : '') +
-				(updated.css? Math.round(100 * updated.css / updated.all) + '% CSS' : '')
-	});
+
+	if (updatedId) {
+		updated.all = updated.js + updated.css;
+
+		$u.element.prop($('label[data-id="' + updatedId + '"] .filesize'), {
+			textContent: prettySize(updated.all),
+			title: (updated.js ? Math.round(100 * updated.js / updated.all) + '% JavaScript' : '') +
+				(updated.js && updated.css ? ' + ' : '') +
+				(updated.css ? Math.round(100 * updated.css / updated.all) + '% CSS' : '')
+		});
+	}
 	
 	$('#filesize').textContent = prettySize(total.all);
 	
@@ -332,6 +375,43 @@ function delayedGenerateCode(){
 	timerId = setTimeout(generateCode, 500);
 }
 
+function getSortedComponents(components, requireName, sorted) {
+	if (!sorted) {
+		sorted = [];
+		for (var component in components) {
+			sorted.push(component);
+		}
+	}
+
+	var i = 0;
+	while (i < sorted.length) {
+		var id = sorted[i];
+		var indexOfRequirement = i;
+		var notNow = false;
+		for (var requirement in components[id][requireName]) {
+			indexOfRequirement = sorted.indexOf(components[id][requireName][requirement]);
+			if (indexOfRequirement > i) {
+				notNow = true;
+				break;
+			}
+		}
+		if (notNow) {
+			tmp = sorted[i];
+			sorted[i] = sorted[indexOfRequirement];
+			sorted[indexOfRequirement] = tmp;
+		}
+		else {
+			i++;
+		}
+	}
+	return sorted;
+}
+
+function getSortedComponentsByRequirements(components){
+	var sorted = getSortedComponents(components, "after");
+	return getSortedComponents(components, "require", sorted);
+}
+
 function generateCode(){
 	var promises = [];
 	var redownload = {};
@@ -339,7 +419,12 @@ function generateCode(){
 	for (var category in components) {
 		var all = components[category];
 		
-		for (var id in all) {
+		// In case if one component requires other, required component should go first.
+		var sorted = getSortedComponentsByRequirements(all);
+
+		for (var i = 0; i < sorted.length; i++) {
+			var id = sorted[i];
+
 			if(id === 'meta') {
 				continue;
 			}
@@ -406,7 +491,7 @@ function buildCode(promises) {
 		if(i < l) {
 			var p = promises[i];
 			p.contentsPromise.then(function(contents) {
-				code[p.type] += contents + (p.type === 'js'? ';' : '') + '\n';
+				code[p.type] += contents + (p.type === 'js' && !/;\s*$/.test(contents) ? ';' : '') + '\n';
 				i++;
 				f(resolve);
 			});

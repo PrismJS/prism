@@ -1,16 +1,19 @@
 (function(){
 
-if(!window.Prism) {
+if (
+	typeof self !== 'undefined' && !self.Prism ||
+	typeof global !== 'undefined' && !global.Prism
+) {
 	return;
 }
 
-for (var language in Prism.languages) {
-	var tokens = Prism.languages[language];
-	
-    tokens.tab = /\t/g;
-    tokens.crlf = /\r\n/g;
-    tokens.lf = /\n/g;
-	tokens.cr = /\r/g;
-}
+Prism.hooks.add('before-highlight', function(env) {
+	var tokens = env.grammar;
 
+	tokens.tab = /\t/g;
+	tokens.crlf = /\r\n/g;
+	tokens.lf = /\n/g;
+	tokens.cr = /\r/g;
+	tokens.space = / /g;
+});
 })();

@@ -7,11 +7,11 @@
 code[class*="language-"],
 pre[class*="language-"] {
 	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-	direction: ltr;
 	text-align: left;
 	white-space: pre;
 	word-spacing: normal;
 	word-break: normal;
+	word-wrap: normal;
 	line-height: 1.5;
 
 	-moz-tab-size: 4;
@@ -44,6 +44,7 @@ code[class*="language-"] {
 	padding: .2em;
 	border-radius: .3em;
 	box-shadow: none;
+	white-space: normal;
 }
 
 .token.comment,

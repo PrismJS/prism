@@ -1,0 +1,33 @@
+<h1>Crystal</h1>
+<p>To use this language, use the class "language-crystal".</p>
+
+<h2>Number literals with underscores and postfix</h2>
+<pre><code>1_u32
+123_456.789e-10_f64</code></pre>
+
+<h2>Attributes</h2>
+<pre><code>@[AlwaysInline]
+def foo
+	1
+end</code></pre>
+
+<h2>Macro expansions</h2>
+<pre><code>{% for key, value in {foo: 100, bar: 20} %}
+	def {{ key.id }}
+		{{ value }}
+	end
+{% end %}</code></pre>
+
+<h2>Known failures</h2>
+<p>There are certain edge cases where Prism will fail.
+	There are always such cases in every regex-based syntax highlighter.
+	However, Prism dares to be open and honest about them.
+	If a failure is listed here, it doesn’t mean it will never be fixed. This is more of a “known bugs” list, just with a certain type of bug.
+</p>
+
+<h3>Attriubte-like substrings</h3>
+<pre><code>" @[AlwaysInline] "</code></pre>
+
+<h3>Macro expansions in strings</h3>
+<pre><code>" {{ foo }} "
+" {% bar %} "</code></pre>

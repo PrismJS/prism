@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta charset="utf-8" />
+	<link rel="shortcut icon" href="favicon.png" />
+	<title>Previewer: Base ▲ Prism plugins</title>
+	<base href="../.." />
+	<link rel="stylesheet" href="style.css" />
+	<link rel="stylesheet" href="themes/prism.css" data-noprefix />
+	<link rel="stylesheet" href="plugins/previewer-base/prism-previewer-base.css" data-noprefix />
+
+	<style type="text/css">
+		.prism-previewer-color {
+			background-image: linear-gradient(45deg, #bbb 25%, transparent 25%, transparent 75%, #bbb 75%, #bbb), linear-gradient(45deg, #bbb 25%, #eee 25%, #eee 75%, #bbb 75%, #bbb);
+			background-size: 10px 10px;
+			background-position: 0 0, 5px 5px;
+		}
+		.prism-previewer-color:before {
+			background-color: inherit;
+			background-clip: padding-box;
+		}
+	</style>
+
+	<script src="prefixfree.min.js"></script>
+
+	<script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
+	<script src="http://www.google-analytics.com/ga.js" async></script>
+</head>
+<body>
+
+<header>
+	<div class="intro" data-src="templates/header-plugins.html" data-type="text/html"></div>
+
+	<h2>Previewer: Base</h2>
+	<p>Provides an API to add previewers.</p>
+</header>
+
+<section class="language-javascript">
+	<h1>How to use</h1>
+
+	<p>This plugins provides a constructor that can be accessed through <code>Prism.plugins.Previewer</code>.</p>
+	<p>Once a previewer has been instanciated, an HTML element is appended to the document body.
+	This element will appear when specific tokens are hovered.</p>
+
+	<h2><code>new Prism.plugins.Previewer(type, updater, supportedLanguages)</code></h2>
+
+	<ul>
+		<li>
+			<p><code>type</code>: the token type this previewer is associated to.
+			The previewer will be shown when hovering tokens of this type.</p>
+		</li>
+		<li>
+			<p><code>updater</code>: the function that will be called each time an associated token is hovered.
+			This function takes the text content of the token as its only parameter.
+			The previewer HTML element can be accessed through the keyword <code>this</code>.
+			This function must return <code>true</code> for the previewer to be shown.</p>
+		</li>
+		<li>
+			<p><code>supportedLanguages</code>: an optional array of supported languages.
+			The previewer will be available only for those.
+			Defaults to <code>'*'</code>, which means every languages.</p>
+		</li>
+	</ul>
+
+</section>
+
+<section class="language-javascript">
+	<h1>Examples</h1>
+
+	<p>This is a simplified version of the <a href="plugins/previewer-color">color previewer plugin</a>.</p>
+
+	<h2>Implementing a previewer for hexadecimal CSS colors</h2>
+	<p>First, you need to add specific tokens to the grammar. For hexadecimal CSS colors, it might look like this:</p>
+	<pre><code>Prism.languages.insertBefore('css', 'important', {
+	'color': /\B#(?:[0-9a-f]{3}){1,2}\b/i
+});</code></pre>
+
+	<p>Then, the previewer can be instanciated. The updater function will set the background color of the previewer HTML element, based of the hovered token.</p>
+
+	<pre><code>new Prism.plugins.Previewer('color', function(value) {
+	// Reset the background color
+	this.style.backgroundColor = '';
+	// Set the background color to the value of the current hovered token
+	this.style.backgroundColor = value;
+	// Returns true if the color is valid, false otherwise
+	return !!this.style.backgroundColor;
+}, 'css');</code></pre>
+
+	<p>Now, with a bit of CSS to style the previewer, the result would be something like this:</p>
+
+	<pre class="language-css"><code>div {
+	color: #dd4a68;
+	background: #669900;
+	border: 1px solid #ee9900;
+}</code></pre>
+
+</section>
+
+<footer data-src="templates/footer.html" data-type="text/html"></footer>
+
+<script src="prism.js"></script>
+<script src="plugins/previewer-base/prism-previewer-base.js"></script>
+<script src="utopia.js"></script>
+<script src="components.js"></script>
+<script src="code.js"></script>
+
+<script>
+	Prism.languages.insertBefore('css', 'important', {
+		'color': /\B#(?:[0-9a-f]{3}){1,2}\b/i
+	});
+	new Prism.plugins.Previewer('color', function(value) {
+		// Reset the background color
+		this.style.backgroundColor = '';
+		// Set the background color to the value of the current hovered token
+		this.style.backgroundColor = value;
+		// Returns true if the color is valid, false otherwise
+		return !!this.style.backgroundColor;
+	}, 'css');
+</script>
+
+
+</body>
+</html>
