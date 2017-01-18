@@ -167,6 +167,11 @@ var components = {
 			"require": "clike",
 			"owner": "Golmote"
 		},
+		"django": {
+			"title": "Django/Jinja2",
+			"require": "markup",
+			"owner": "romanvm"
+		},
 		"diff": {
 			"title": "Diff",
 			"owner": "uranusjr"
