@@ -12,6 +12,12 @@ var _self = (typeof window !== 'undefined')
  * @author Lea Verou http://lea.verou.me
  */
 
+var manual = false;
+
+if (_self.Prism) {
+	manual = _self.Prism.manual;
+}
+
 var Prism = (function(){
 
 // Private helper vars
@@ -19,6 +25,7 @@ var lang = /\blang(?:uage)?-(\w+)\b/i;
 var uniqueId = 0;
 
 var _ = _self.Prism = {
+	manual: manual,
 	util: {
 		encode: function (tokens) {
 			if (tokens instanceof Token) {
@@ -483,7 +490,7 @@ var script = document.currentScript || [].slice.call(document.getElementsByTagNa
 if (script) {
 	_.filename = script.src;
 
-	if (document.addEventListener && !script.hasAttribute('data-manual')) {
+	if (document.addEventListener && !_.manual && !script.hasAttribute('data-manual')) {
 		if(document.readyState !== "loading") {
 			if (window.requestAnimationFrame) {
 				window.requestAnimationFrame(_.highlightAll);
