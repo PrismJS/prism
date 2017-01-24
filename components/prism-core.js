@@ -12,12 +12,6 @@ var _self = (typeof window !== 'undefined')
  * @author Lea Verou http://lea.verou.me
  */
 
-var manual = false;
-
-if (_self.Prism) {
-	manual = _self.Prism.manual;
-}
-
 var Prism = (function(){
 
 // Private helper vars
@@ -25,7 +19,7 @@ var lang = /\blang(?:uage)?-(\w+)\b/i;
 var uniqueId = 0;
 
 var _ = _self.Prism = {
-	manual: manual,
+	manual: _self.Prism && _self.Prism.manual,
 	util: {
 		encode: function (tokens) {
 			if (tokens instanceof Token) {
