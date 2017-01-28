@@ -17,7 +17,7 @@ var _django_template = {
 			'variable': /\b\w+?\b/,
 			'punctuation' : /[[\];(),.:]/
 		}
-	},
+	}
 };
 
 Prism.languages.django = Prism.languages.extend('markup', {'comment': /(?:<!--|{#)[\w\W]*?(?:#}|-->)/});
