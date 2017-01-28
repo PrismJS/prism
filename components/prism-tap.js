@@ -1,12 +1,6 @@
 Prism.languages.tap = {
-	pass: {
-		pattern: /(^|\n)(    )*ok[^#\{\n]+/,
-		greedy: true
-	},
-	fail: {
-		pattern: /(^|\n)(    )*not ok[^#\{\n]+/,
-		greedy: true
-	},
+	pass: /(^|\n)(    )*ok[^#\{\n]*/,
+	fail: /(^|\n)(    )*not ok[^#\{\n]*/,
 	pragma: /(^|\n)(    )*pragma ([+-])([a-z]+)(\n|$)/,
 	bailout: /(^|\n)(    )*bail out!(.*)(\n|$)/i,
 	version: /(^|\n)(    )*TAP version ([0-9]+)(\n|$)/i,
