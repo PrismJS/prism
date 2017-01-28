@@ -18,7 +18,7 @@ Prism.languages.tap = {
 	punctuation: /[{}]/,
 	'comment': /#.*/,
 	yamlish: {
-		pattern: /\n((    )*(  ))---\n.*?(\n\1\.\.\.)(\n|$)/,
+		pattern: /(^|\n)((    )*(  ))---\n(.*?\n)+\2\.\.\.(\n|$)/,
 		lookbehind: true,
 		inside: Prism.languages.yaml,
 		alias: 'language-yaml'
