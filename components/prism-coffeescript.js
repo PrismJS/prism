@@ -14,7 +14,7 @@ Prism.languages.coffeescript = Prism.languages.extend('javascript', {
 		// Strings are multiline
 		{
 			pattern: /'(?:\\?[^\\])*?'/,
-			greedy: true,
+			greedy: true
 		},
 
 		{

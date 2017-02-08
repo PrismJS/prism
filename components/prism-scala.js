@@ -8,7 +8,7 @@ Prism.languages.scala = Prism.languages.extend('java', {
 		{
 			pattern: /("|')(?:\\\\|\\?[^\\\r\n])*?\1/,
 			greedy: true
-		},
+		}
 	],
 	'builtin': /\b(?:String|Int|Long|Short|Byte|Boolean|Double|Float|Char|Any|AnyRef|AnyVal|Unit|Nothing)\b/,
 	'number': /\b(?:0x[\da-f]*\.?[\da-f]+|\d*\.?\d+e?\d*[dfl]?)\b/i,
