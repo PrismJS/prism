@@ -4,6 +4,7 @@
 bar"
 'foo\
 bar'
+"foo /* bar" /* and out */
 
 ----------------------------------------------------
 
@@ -11,7 +12,9 @@ bar'
 	["string", "\"f\\\"oo\""],
 	["string", "'f\\'oo'"],
 	["string", "\"foo\\\r\nbar\""],
-    ["string", "'foo\\\r\nbar'"]
+    ["string", "'foo\\\r\nbar'"],
+    ["string", "\"foo /* bar\""],
+    ["comment", "/* and out */"]
 ]
 
 ----------------------------------------------------
