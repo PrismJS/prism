@@ -1,7 +1,13 @@
 Prism.languages.dart = Prism.languages.extend('clike', {
 	'string': [
-		/r?("""|''')[\s\S]*?\1/,
-		/r?("|')(\\?.)*?\1/
+		{
+			pattern: /r?("""|''')[\s\S]*?\1/,
+			greedy: true
+		},
+		{
+			pattern: /r?("|')(\\?.)*?\1/,
+			greedy: true
+		}
 	],
 	'keyword': [
 		/\b(?:async|sync|yield)\*/,

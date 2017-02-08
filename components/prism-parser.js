@@ -36,6 +36,7 @@ Prism.languages.insertBefore('parser', 'keyword', {
 	'expression': {
 		// Allow for 3 levels of depth
 		pattern: /(^|[^^])\((?:[^()]|\((?:[^()]|\((?:[^()])*\))*\))*\)/,
+		greedy: true,
 		lookbehind: true,
 		inside: {
 			'string': {

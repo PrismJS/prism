@@ -12,12 +12,14 @@ Prism.languages.elixir = {
 		{
 			// ~s"""foo""", ~s'''foo''', ~s/foo/, ~s|foo|, ~s"foo", ~s'foo', ~s(foo), ~s[foo], ~s{foo}, ~s<foo>
 			pattern: /~[cCsSwW](?:("""|'''|[\/|"'])(?:\\.|(?!\1)[^\\])+\1|\((?:\\\)|[^)])+\)|\[(?:\\\]|[^\]])+\]|\{(?:\\\}|#\{[^}]+\}|[^}])+\}|<(?:\\>|[^>])+>)[csa]?/,
+			greedy: true,
 			inside: {
 				// See interpolation below
 			}
 		},
 		{
 			pattern: /("""|''')[\s\S]*?\1/,
+			greedy: true,
 			inside: {
 				// See interpolation below
 			}
@@ -25,6 +27,7 @@ Prism.languages.elixir = {
 		{
 			// Multi-line strings are allowed
 			pattern: /("|')(?:\\[\s\S]|(?!\1)[^\\])*\1/,
+			greedy: true,
 			inside: {
 				// See interpolation below
 			}

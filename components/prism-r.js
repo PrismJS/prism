@@ -1,6 +1,9 @@
 Prism.languages.r = {
 	'comment': /#.*/,
-	'string': /(['"])(?:\\?.)*?\1/,
+	'string': {
+		pattern: /(['"])(?:\\?.)*?\1/,
+		greedy: true
+	},
 	'percent-operator': {
 		// Includes user-defined operators
 		// and %%, %*%, %/%, %in%, %o%, %x%

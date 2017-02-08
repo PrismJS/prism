@@ -1,6 +1,9 @@
 Prism.languages.parigp = {
 	'comment': /\/\*[\s\S]*?\*\/|\\\\.*/,
-	'string': /"(?:[^"\\]|\\.)*"/,
+	'string': {
+		pattern: /"(?:[^"\\]|\\.)*"/,
+		greedy: true
+	},
 	// PARI/GP does not care about white spaces at all
 	// so let's process the keywords to build an appropriate regexp
 	// (e.g. "b *r *e *a *k", etc.)
