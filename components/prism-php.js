@@ -69,7 +69,7 @@ if (Prism.languages.markup) {
 		env.code = env.code.replace(/(?:<\?php|<\?)[\s\S]*?(?:\?>|$)/ig, function(match) {
 			env.tokenStack.push(match);
 
-			return '{{{PHP' + env.tokenStack.length + '}}}';
+			return '___PHP' + env.tokenStack.length + '___';
 		});
 
 		// Switch the grammar to markup
@@ -95,8 +95,8 @@ if (Prism.languages.markup) {
 
 		for (var i = 0, t; t = env.tokenStack[i]; i++) {
 			// The replace prevents $$, $&, $`, $', $n, $nn from being interpreted as special patterns
-			env.highlightedCode = env.highlightedCode.replace('{{{PHP' + (i + 1) + '}}}',
-					"<span class=\"token php\">" +
+			env.highlightedCode = env.highlightedCode.replace('___PHP' + (i + 1) + '___',
+					"<span class=\"token php language-php\">" +
 					Prism.highlight(t, env.grammar, 'php').replace(/\$/g, '$$$$') +
 					"</span>");
 		}
