@@ -175,7 +175,7 @@ module.exports = {
 					code: code
 				};
 				Prism.hooks.run('before-highlight', env);
-				env.highlightedCode = Prism.highlight(env.code, Prism.languages[usedLanguages.mainLanguage], usedLanguages.mainLanguage);
+				env.highlightedCode = Prism.highlight(env.code, env.grammar, env.language);
 				Prism.hooks.run('before-insert', env);
 				env.element.innerHTML = env.highlightedCode;
 				Prism.hooks.run('after-highlight', env);

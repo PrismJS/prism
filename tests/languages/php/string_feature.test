@@ -1,0 +1,13 @@
+"https://example.com"
+" /* not a comment */ "
+
+----------------------------------------------------
+
+[
+	["string", "\"https://example.com\""],
+	["string", "\" /* not a comment */ \""]
+]
+
+----------------------------------------------------
+
+Checks for strings with comments.
