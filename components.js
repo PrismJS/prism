@@ -560,6 +560,11 @@ var components = {
 			"title": "vim",
 			"owner": "westonganger"
 		},
+		"webidl": {
+			"title": "Web IDL",
+			"require": "clike",
+			"owner": "grorg"
+		},
 		"wiki": {
 			"title": "Wiki markup",
 			"require": "markup",

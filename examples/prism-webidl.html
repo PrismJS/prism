@@ -1,0 +1,37 @@
+<h1>Web IDL</h1>
+<p>To use this language, use the class "language-webidl".</p>
+
+<h2>Strings</h2>
+<pre><code>"foo \"bar\" baz"
+'foo \'bar\' baz'
+"Multi-line strings ending with a \
+are supported too."</code></pre>
+
+<h2>Booleans</h2>
+<pre><code>true;
+false;</code></pre>
+
+<h2>Full example</h2>
+<pre><code>interface Paint { };
+
+interface SolidColor : Paint {
+  attribute double red;
+  attribute double green;
+  attribute double blue;
+};
+
+interface Pattern : Paint {
+  attribute DOMString imageURL;
+};
+
+[Constructor]
+interface GraphicalWindow {
+  readonly attribute unsigned long width;
+  readonly attribute unsigned long height;
+
+  attribute Paint currentPaint;
+
+  void drawRectangle(double x, double y, double width, double height);
+
+  void drawText(double x, double y, DOMString text);
+};</code></pre>

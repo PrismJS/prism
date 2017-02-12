@@ -1,0 +1,107 @@
+any
+attribute
+boolean
+byte
+ByteString
+callback
+const
+deleter
+dictionary
+DOMString
+double
+enum
+float
+FrozenArray
+getter
+identifier
+implements
+Infinity
+inherit
+integer
+interface
+iterable
+legacycaller
+long
+maplike
+namespace
+NaN
+null
+object
+octet
+optional
+or
+other
+partial
+readonly
+required
+sequence
+serializer
+setlike
+setter
+short
+static
+string
+stringifier
+typedef
+unrestricted
+unsigned
+USVString
+void
+
+----------------------------------------------------
+
+[
+	["keyword", "any"],
+	["keyword", "attribute"],
+	["keyword", "boolean"],
+	["keyword", "byte"],
+	["keyword", "ByteString"],
+	["keyword", "callback"],
+	["keyword", "const"],
+	["keyword", "deleter"],
+	["keyword", "dictionary"],
+	["keyword", "DOMString"],
+	["keyword", "double"],
+	["keyword", "enum"],
+	["keyword", "float"],
+	["keyword", "FrozenArray"],
+	["keyword", "getter"],
+	["keyword", "identifier"],
+	["keyword", "implements"],
+	["keyword", "Infinity"],
+	["keyword", "inherit"],
+	["keyword", "integer"],
+	["keyword", "interface"],
+	["keyword", "iterable"],
+	["keyword", "legacycaller"],
+	["keyword", "long"],
+	["keyword", "maplike"],
+	["keyword", "namespace"],
+	["keyword", "NaN"],
+	["keyword", "null"],
+	["keyword", "object"],
+	["keyword", "octet"],
+	["keyword", "optional"],
+	["keyword", "or"],
+	["keyword", "other"],
+	["keyword", "partial"],
+	["keyword", "readonly"],
+	["keyword", "required"],
+	["keyword", "sequence"],
+	["keyword", "serializer"],
+	["keyword", "setlike"],
+	["keyword", "setter"],
+	["keyword", "short"],
+	["keyword", "static"],
+	["keyword", "string"],
+	["keyword", "stringifier"],
+	["keyword", "typedef"],
+	["keyword", "unrestricted"],
+	["keyword", "unsigned"],
+	["keyword", "USVString"],
+	["keyword", "void"],
+]
+
+----------------------------------------------------
+
+Checks for all keywords
