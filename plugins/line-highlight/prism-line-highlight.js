@@ -122,11 +122,16 @@ Prism.hooks.add('before-sanity-check', function(env) {
 	 * to cleanup any left-over tags, because the whitespace inside of the <div>
 	 * tags change the content of the <code> tag.
 	 */
+	var num = 0;
 	$$('.line-highlight', pre).forEach(function (line) {
+		num += line.textContent.length;
 		line.parentNode.removeChild(line);
 	});
 
-	env.code = env.element.textContent;
+	// Remove extra whitespace
+	if (num && /^( \n)+$/.test(env.code.slice(-num))) {
+		env.code = env.code.slice(0, -num);
+	}
 });
 
 Prism.hooks.add('complete', function(env) {
