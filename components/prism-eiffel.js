@@ -1,9 +1,9 @@
 Prism.languages.eiffel = {
 	'string': [
 		// Aligned-verbatim-strings
-		/"([^[]*)\[[\s\S]+?\]\1"/,
+		/"([^[]*)\[[^]+?\]\1"/,
 		// Non-aligned-verbatim-strings
-		/"([^{]*)\{[\s\S]+?\}\1"/,
+		/"([^{]*)\{[^]+?\}\1"/,
 		// Single-line string
 		/"(?:%\s+%|%"|.)*?"/
 	],

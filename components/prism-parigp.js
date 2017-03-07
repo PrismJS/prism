@@ -1,5 +1,5 @@
 Prism.languages.parigp = {
-	'comment': /\/\*[\s\S]*?\*\/|\\\\.*/,
+	'comment': /\/\*[^]*?\*\/|\\\\.*/,
 	'string': {
 		pattern: /"(?:[^"\\]|\\.)*"/,
 		greedy: true

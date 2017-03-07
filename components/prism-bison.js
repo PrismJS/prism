@@ -5,11 +5,11 @@ Prism.languages.insertBefore('bison', 'comment', {
 		// This should match all the beginning of the file
 		// including the prologue(s), the bison declarations and
 		// the grammar rules.
-		pattern: /^[\s\S]*?%%[\s\S]*?%%/,
+		pattern: /^[^]*?%%[^]*?%%/,
 		inside: {
 			'c': {
 				// Allow for one level of nested braces
-				pattern: /%\{[\s\S]*?%\}|\{(?:\{[^}]*\}|[^{}])*\}/,
+				pattern: /%\{[^]*?%\}|\{(?:\{[^}]*\}|[^{}])*\}/,
 				inside: {
 					'delimiter': {
 						pattern: /^%?\{|%?\}$/,

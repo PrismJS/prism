@@ -2,11 +2,11 @@ Prism.languages.prolog = {
 	// Syntax depends on the implementation
 	'comment': [
 		/%.+/,
-		/\/\*[\s\S]*?\*\//
+		/\/\*[^]*?\*\//
 	],
 	// Depending on the implementation, strings may allow escaped newlines and quote-escape
 	'string': {
-		pattern: /(["'])(?:\1\1|\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,
+		pattern: /(["'])(?:\1\1|\\(?:\r\n|[^])|(?!\1)[^\\\r\n])*\1/,
 		greedy: true
 	},
 	'builtin': /\b(?:fx|fy|xf[xy]?|yfx?)\b/,

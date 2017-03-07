@@ -19,7 +19,7 @@ Prism.languages.q = {
 		},
 		// From http://code.kx.com/wiki/Reference/Slash:
 		// A \ on a line by itself with no preceding matching / will comment to end of file.
-		/^\\[\t ]*(?:\r?\n|\r)[\s\S]+/m,
+		/^\\[\t ]*(?:\r?\n|\r)[^]+/m,
 
 		/^#!.+/m
 	],

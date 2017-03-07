@@ -35,13 +35,13 @@ Prism.languages.coffeescript = Prism.languages.extend('javascript', {
 
 Prism.languages.insertBefore('coffeescript', 'comment', {
 	'multiline-comment': {
-		pattern: /###[\s\S]+?###/,
+		pattern: /###[^]+?###/,
 		alias: 'comment'
 	},
 
 	// Block regexp can contain comments and interpolation
 	'block-regex': {
-		pattern: /\/{3}[\s\S]*?\/{3}/,
+		pattern: /\/{3}[^]*?\/{3}/,
 		alias: 'regex',
 		inside: {
 			'comment': comment,
@@ -52,7 +52,7 @@ Prism.languages.insertBefore('coffeescript', 'comment', {
 
 Prism.languages.insertBefore('coffeescript', 'string', {
 	'inline-javascript': {
-		pattern: /`(?:\\?[\s\S])*?`/,
+		pattern: /`(?:\\?[^])*?`/,
 		inside: {
 			'delimiter': {
 				pattern: /^`|`$/,
@@ -65,12 +65,12 @@ Prism.languages.insertBefore('coffeescript', 'string', {
 	// Block strings
 	'multiline-string': [
 		{
-			pattern: /'''[\s\S]*?'''/,
+			pattern: /'''[^]*?'''/,
 			greedy: true,
 			alias: 'string'
 		},
 		{
-			pattern: /"""[\s\S]*?"""/,
+			pattern: /"""[^]*?"""/,
 			greedy: true,
 			alias: 'string',
 			inside: {

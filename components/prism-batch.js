@@ -14,7 +14,7 @@
 		'comment': [
 			/^::.*/m,
 			{
-				pattern: /((?:^|[&(])[ \t]*)rem\b(?:[^^&)\r\n]|\^(?:\r\n|[\s\S]))*/im,
+				pattern: /((?:^|[&(])[ \t]*)rem\b(?:[^^&)\r\n]|\^(?:\r\n|[^]))*/im,
 				lookbehind: true
 			}
 		],
@@ -59,7 +59,7 @@
 			},
 			{
 				// SET command
-				pattern: /((?:^|[&(])[ \t]*)set(?: ?\/[a-z](?:[ :](?:"[^"]*"|\S+))?)* (?:[^^&)\r\n]|\^(?:\r\n|[\s\S]))*/im,
+				pattern: /((?:^|[&(])[ \t]*)set(?: ?\/[a-z](?:[ :](?:"[^"]*"|\S+))?)* (?:[^^&)\r\n]|\^(?:\r\n|[^]))*/im,
 				lookbehind: true,
 				inside: {
 					'keyword': /^set\b/i,
@@ -76,7 +76,7 @@
 			},
 			{
 				// Other commands
-				pattern: /((?:^|[&(])[ \t]*@?)\w+\b(?:[^^&)\r\n]|\^(?:\r\n|[\s\S]))*/im,
+				pattern: /((?:^|[&(])[ \t]*@?)\w+\b(?:[^^&)\r\n]|\^(?:\r\n|[^]))*/im,
 				lookbehind: true,
 				inside: {
 					'keyword': /^\w+\b/i,

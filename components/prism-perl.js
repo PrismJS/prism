@@ -2,7 +2,7 @@ Prism.languages.perl = {
 	'comment': [
 		{
 			// POD
-			pattern: /(^\s*)=\w+[\s\S]*?=cut.*/m,
+			pattern: /(^\s*)=\w+[^]*?=cut.*/m,
 			lookbehind: true
 		},
 		{
@@ -14,43 +14,43 @@ Prism.languages.perl = {
 	'string': [
 		// q/.../
 		{
-			pattern: /\b(?:q|qq|qx|qw)\s*([^a-zA-Z0-9\s\{\(\[<])(?:[^\\]|\\[\s\S])*?\1/,
+			pattern: /\b(?:q|qq|qx|qw)\s*([^a-zA-Z0-9\s\{\(\[<])(?:[^\\]|\\[^])*?\1/,
 			greedy: true
 		},
 	
 		// q a...a
 		{
-			pattern: /\b(?:q|qq|qx|qw)\s+([a-zA-Z0-9])(?:[^\\]|\\[\s\S])*?\1/,
+			pattern: /\b(?:q|qq|qx|qw)\s+([a-zA-Z0-9])(?:[^\\]|\\[^])*?\1/,
 			greedy: true
 		},
 	
 		// q(...)
 		{
-			pattern: /\b(?:q|qq|qx|qw)\s*\((?:[^()\\]|\\[\s\S])*\)/,
+			pattern: /\b(?:q|qq|qx|qw)\s*\((?:[^()\\]|\\[^])*\)/,
 			greedy: true
 		},
 	
 		// q{...}
 		{
-			pattern: /\b(?:q|qq|qx|qw)\s*\{(?:[^{}\\]|\\[\s\S])*\}/,
+			pattern: /\b(?:q|qq|qx|qw)\s*\{(?:[^{}\\]|\\[^])*\}/,
 			greedy: true
 		},
 	
 		// q[...]
 		{
-			pattern: /\b(?:q|qq|qx|qw)\s*\[(?:[^[\]\\]|\\[\s\S])*\]/,
+			pattern: /\b(?:q|qq|qx|qw)\s*\[(?:[^[\]\\]|\\[^])*\]/,
 			greedy: true
 		},
 	
 		// q<...>
 		{
-			pattern: /\b(?:q|qq|qx|qw)\s*<(?:[^<>\\]|\\[\s\S])*>/,
+			pattern: /\b(?:q|qq|qx|qw)\s*<(?:[^<>\\]|\\[^])*>/,
 			greedy: true
 		},
 
 		// "...", `...`
 		{
-			pattern: /("|`)(?:[^\\]|\\[\s\S])*?\1/,
+			pattern: /("|`)(?:[^\\]|\\[^])*?\1/,
 			greedy: true
 		},
 
@@ -64,7 +64,7 @@ Prism.languages.perl = {
 	'regex': [
 		// m/.../
 		{
-			pattern: /\b(?:m|qr)\s*([^a-zA-Z0-9\s\{\(\[<])(?:[^\\]|\\[\s\S])*?\1[msixpodualngc]*/,
+			pattern: /\b(?:m|qr)\s*([^a-zA-Z0-9\s\{\(\[<])(?:[^\\]|\\[^])*?\1[msixpodualngc]*/,
 			greedy: true
 		},
 	
@@ -76,25 +76,25 @@ Prism.languages.perl = {
 	
 		// m(...)
 		{
-			pattern: /\b(?:m|qr)\s*\((?:[^()\\]|\\[\s\S])*\)[msixpodualngc]*/,
+			pattern: /\b(?:m|qr)\s*\((?:[^()\\]|\\[^])*\)[msixpodualngc]*/,
 			greedy: true
 		},
 	
 		// m{...}
 		{
-			pattern: /\b(?:m|qr)\s*\{(?:[^{}\\]|\\[\s\S])*\}[msixpodualngc]*/,
+			pattern: /\b(?:m|qr)\s*\{(?:[^{}\\]|\\[^])*\}[msixpodualngc]*/,
 			greedy: true
 		},
 	
 		// m[...]
 		{
-			pattern: /\b(?:m|qr)\s*\[(?:[^[\]\\]|\\[\s\S])*\][msixpodualngc]*/,
+			pattern: /\b(?:m|qr)\s*\[(?:[^[\]\\]|\\[^])*\][msixpodualngc]*/,
 			greedy: true
 		},
 	
 		// m<...>
 		{
-			pattern: /\b(?:m|qr)\s*<(?:[^<>\\]|\\[\s\S])*>[msixpodualngc]*/,
+			pattern: /\b(?:m|qr)\s*<(?:[^<>\\]|\\[^])*>[msixpodualngc]*/,
 			greedy: true
 		},
 
@@ -102,42 +102,42 @@ Prism.languages.perl = {
 		// FIXME We don't handle change of separator like s(...)[...]
 		// s/.../.../
 		{
-			pattern: /(^|[^-]\b)(?:s|tr|y)\s*([^a-zA-Z0-9\s\{\(\[<])(?:[^\\]|\\[\s\S])*?\2(?:[^\\]|\\[\s\S])*?\2[msixpodualngcer]*/,
+			pattern: /(^|[^-]\b)(?:s|tr|y)\s*([^a-zA-Z0-9\s\{\(\[<])(?:[^\\]|\\[^])*?\2(?:[^\\]|\\[^])*?\2[msixpodualngcer]*/,
 			lookbehind: true,
 			greedy: true
 		},
 	
 		// s a...a...a
 		{
-			pattern: /(^|[^-]\b)(?:s|tr|y)\s+([a-zA-Z0-9])(?:[^\\]|\\[\s\S])*?\2(?:[^\\]|\\[\s\S])*?\2[msixpodualngcer]*/,
+			pattern: /(^|[^-]\b)(?:s|tr|y)\s+([a-zA-Z0-9])(?:[^\\]|\\[^])*?\2(?:[^\\]|\\[^])*?\2[msixpodualngcer]*/,
 			lookbehind: true,
 			greedy: true
 		},
 	
 		// s(...)(...)
 		{
-			pattern: /(^|[^-]\b)(?:s|tr|y)\s*\((?:[^()\\]|\\[\s\S])*\)\s*\((?:[^()\\]|\\[\s\S])*\)[msixpodualngcer]*/,
+			pattern: /(^|[^-]\b)(?:s|tr|y)\s*\((?:[^()\\]|\\[^])*\)\s*\((?:[^()\\]|\\[^])*\)[msixpodualngcer]*/,
 			lookbehind: true,
 			greedy: true
 		},
 	
 		// s{...}{...}
 		{
-			pattern: /(^|[^-]\b)(?:s|tr|y)\s*\{(?:[^{}\\]|\\[\s\S])*\}\s*\{(?:[^{}\\]|\\[\s\S])*\}[msixpodualngcer]*/,
+			pattern: /(^|[^-]\b)(?:s|tr|y)\s*\{(?:[^{}\\]|\\[^])*\}\s*\{(?:[^{}\\]|\\[^])*\}[msixpodualngcer]*/,
 			lookbehind: true,
 			greedy: true
 		},
 	
 		// s[...][...]
 		{
-			pattern: /(^|[^-]\b)(?:s|tr|y)\s*\[(?:[^[\]\\]|\\[\s\S])*\]\s*\[(?:[^[\]\\]|\\[\s\S])*\][msixpodualngcer]*/,
+			pattern: /(^|[^-]\b)(?:s|tr|y)\s*\[(?:[^[\]\\]|\\[^])*\]\s*\[(?:[^[\]\\]|\\[^])*\][msixpodualngcer]*/,
 			lookbehind: true,
 			greedy: true
 		},
 	
 		// s<...><...>
 		{
-			pattern: /(^|[^-]\b)(?:s|tr|y)\s*<(?:[^<>\\]|\\[\s\S])*>\s*<(?:[^<>\\]|\\[\s\S])*>[msixpodualngcer]*/,
+			pattern: /(^|[^-]\b)(?:s|tr|y)\s*<(?:[^<>\\]|\\[^])*>\s*<(?:[^<>\\]|\\[^])*>[msixpodualngcer]*/,
 			lookbehind: true,
 			greedy: true
 		},

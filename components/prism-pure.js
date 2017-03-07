@@ -1,7 +1,7 @@
 (function (Prism) {
 	Prism.languages.pure = {
 		'inline-lang': {
-			pattern: /%<[\s\S]+?%>/,
+			pattern: /%<[^]+?%>/,
 			inside: {
 				'lang': {
 					pattern: /(^%< *)-\*-.+?-\*-/,

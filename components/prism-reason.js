@@ -4,7 +4,7 @@ Prism.languages.reason = Prism.languages.extend('clike', {
 		lookbehind: true
 	},
 	'string': {
-		pattern: /"(\\(?:\r\n|[\s\S])|[^\\\r\n"])*"/,
+		pattern: /"(\\(?:\r\n|[^])|[^\\\r\n"])*"/,
 		greedy: true
 	},
 	// 'class-name' must be matched *after* 'constructor' defined below

@@ -1,7 +1,7 @@
 Prism.languages.oz = {
-	'comment': /\/\*[\s\S]*?\*\/|%.*/,
+	'comment': /\/\*[^]*?\*\/|%.*/,
 	'string': {
-		pattern: /"(?:[^"\\]|\\[\s\S])*"/,
+		pattern: /"(?:[^"\\]|\\[^])*"/,
 		greedy: true
 	},
 	'atom': {

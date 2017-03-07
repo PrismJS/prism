@@ -2,7 +2,7 @@ Prism.languages.matlab = {
 	// We put string before comment, because of printf() patterns that contain "%"
 	'string': /\B'(?:''|[^'\n])*'/,
 	'comment': [
-		/%\{[\s\S]*?\}%/,
+		/%\{[^]*?\}%/,
 		/%.+/
 	],
 	// FIXME We could handle imaginary numbers as a whole

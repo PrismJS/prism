@@ -4,7 +4,7 @@ Prism.languages.tcl = {
 		lookbehind: true
 	},
 	'string': {
-		pattern: /"(?:[^"\\\r\n]|\\(?:\r\n|[\s\S]))*"/,
+		pattern: /"(?:[^"\\\r\n]|\\(?:\r\n|[^]))*"/,
 		greedy: true
 	},
 	'variable': [

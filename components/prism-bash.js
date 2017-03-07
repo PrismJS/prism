@@ -42,7 +42,7 @@
 		'string': [
 			//Support for Here-Documents https://en.wikipedia.org/wiki/Here_document
 			{
-				pattern: /((?:^|[^<])<<\s*)(?:"|')?(\w+?)(?:"|')?\s*\r?\n(?:[\s\S])*?\r?\n\2/g,
+				pattern: /((?:^|[^<])<<\s*)(?:"|')?(\w+?)(?:"|')?\s*\r?\n(?:[^])*?\r?\n\2/g,
 				lookbehind: true,
 				greedy: true,
 				inside: insideString

@@ -1,6 +1,6 @@
 Prism.languages.livescript = {
 	'interpolated-string': {
-		pattern: /("""|")(?:\\[\s\S]|(?!\1)[^\\])*\1/,
+		pattern: /("""|")(?:\\[^]|(?!\1)[^\\])*\1/,
 		greedy: true,
 		inside: {
 			'variable': {
@@ -18,7 +18,7 @@ Prism.languages.livescript = {
 					// See rest below
 				}
 			},
-			'string': /[\s\S]+/
+			'string': /[^]+/
 		}
 	},
 	'comment': [
@@ -35,11 +35,11 @@ Prism.languages.livescript = {
 	],
 	'string': [
 		{
-			pattern: /('''|')(?:\\[\s\S]|(?!\1)[^\\])*\1/,
+			pattern: /('''|')(?:\\[^]|(?!\1)[^\\])*\1/,
 			greedy: true
 		},
 		{
-			pattern: /<\[[\s\S]*?\]>/,
+			pattern: /<\[[^]*?\]>/,
 			greedy: true
 		},
 		/\\[^\s,;\])}]+/

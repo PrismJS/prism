@@ -1,6 +1,6 @@
 Prism.languages.sas = {
 	'datalines': {
-		pattern: /^\s*(?:(?:data)?lines|cards);[\s\S]+?(?:\r?\n|\r);/im,
+		pattern: /^\s*(?:(?:data)?lines|cards);[^]+?(?:\r?\n|\r);/im,
 		alias: 'string',
 		inside: {
 			'keyword': {
@@ -15,7 +15,7 @@ Prism.languages.sas = {
 			pattern: /(^\s*|;\s*)\*.*;/m,
 			lookbehind: true
 		},
-		/\/\*[\s\S]+?\*\//
+		/\/\*[^]+?\*\//
 	],
 	'datetime': {
 		// '1jan2013'd, '9:25:19pm't, '18jan2003:9:27:05am'dt
@@ -23,7 +23,7 @@ Prism.languages.sas = {
 		alias: 'number'
 	},
 	'string': {
-		pattern: /(["'])(?:\1\1|(?!\1)[\s\S])*\1/,
+		pattern: /(["'])(?:\1\1|(?!\1)[^])*\1/,
 		greedy: true
 	},
 	'keyword': /\b(?:data|else|format|if|input|proc\s\w+|quit|run|then)\b/i,

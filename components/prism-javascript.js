@@ -29,7 +29,7 @@ Prism.languages.insertBefore('javascript', 'string', {
 					rest: Prism.languages.javascript
 				}
 			},
-			'string': /[\s\S]+/
+			'string': /[^]+/
 		}
 	}
 });

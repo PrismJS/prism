@@ -1,7 +1,7 @@
 Prism.languages.nix = {
-	'comment': /\/\*[\s\S]*?\*\/|#.*/,
+	'comment': /\/\*[^]*?\*\/|#.*/,
 	'string': {
-		pattern: /"(?:[^"\\]|\\[\s\S])*"|''(?:(?!'')[\s\S]|''(?:'|\\|\$\{))*''/,
+		pattern: /"(?:[^"\\]|\\[^])*"|''(?:(?!'')[^]|''(?:'|\\|\$\{))*''/,
 		greedy: true,
 		inside: {
 			'interpolation': {
