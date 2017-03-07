@@ -15,7 +15,7 @@ Prism.languages.php = Prism.languages.extend('clike', {
 	'keyword': /\b(and|or|xor|array|as|break|case|cfunction|class|const|continue|declare|default|die|do|else|elseif|enddeclare|endfor|endforeach|endif|endswitch|endwhile|extends|for|foreach|function|include|include_once|global|if|new|return|static|switch|use|require|require_once|var|while|abstract|interface|public|implements|private|protected|parent|throw|null|echo|print|trait|namespace|final|yield|goto|instanceof|finally|try|catch)\b/i,
 	'constant': /\b[A-Z0-9_]{2,}\b/,
 	'comment': {
-		pattern: /(^|[^\\])(?:\/\*[\w\W]*?\*\/|\/\/.*)/,
+		pattern: /(^|[^\\])(?:\/\*[^]*?\*\/|\/\/.*)/,
 		lookbehind: true,
 		greedy: true
 	}
@@ -64,7 +64,7 @@ if (Prism.languages.markup) {
 		env.tokenStack = [];
 
 		env.backupCode = env.code;
-		env.code = env.code.replace(/(?:<\?php|<\?)[\w\W]*?(?:\?>)/ig, function(match) {
+		env.code = env.code.replace(/(?:<\?php|<\?)[^]*?(?:\?>)/ig, function(match) {
 			env.tokenStack.push(match);
 
 			return '{{{PHP' + env.tokenStack.length + '}}}';
@@ -96,7 +96,7 @@ if (Prism.languages.markup) {
 	// Wrap tokens in classes that are missing them
 	Prism.hooks.add('wrap', function(env) {
 		if (env.language === 'php' && env.type === 'markup') {
-			env.content = env.content.replace(/(\{\{\{PHP[0-9]+\}\}\})/g, "<span class=\"token php\">$1</span>");
+			env.content = env.content.replace(/(\{\{\{PHP\d+\}\}\})/g, "<span class=\"token php\">$1</span>");
 		}
 	});
 
@@ -106,6 +106,6 @@ if (Prism.languages.markup) {
 			pattern: /<[^?]\/?(.*?)>/,
 			inside: Prism.languages.markup
 		},
-		'php': /\{\{\{PHP[0-9]+\}\}\}/
+		'php': /\{\{\{PHP\d+\}\}\}/
 	});
 }

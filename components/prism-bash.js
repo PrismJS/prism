@@ -3,11 +3,11 @@
 		variable: [
 			// Arithmetic Environment
 			{
-				pattern: /\$?\(\([\w\W]+?\)\)/,
+				pattern: /\$?\(\([^]+?\)\)/,
 				inside: {
 					// If there is a $ sign at the beginning highlight $(( and )) as variable
 					variable: [{
-							pattern: /(^\$\(\([\w\W]+)\)\)/,
+							pattern: /(^\$\(\([^]+)\)\)/,
 							lookbehind: true
 						},
 						/^\$\(\(/,

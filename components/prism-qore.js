@@ -1,6 +1,6 @@
 Prism.languages.qore = Prism.languages.extend('clike', {
 	'comment': {
-		pattern: /(^|[^\\])(?:\/\*[\w\W]*?\*\/|(?:\/\/|#).*)/,
+		pattern: /(^|[^\\])(?:\/\*[^]*?\*\/|(?:\/\/|#).*)/,
 		lookbehind: true
 	},
 	// Overridden to allow unescaped multi-line strings

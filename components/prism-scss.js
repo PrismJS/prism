@@ -1,6 +1,6 @@
 Prism.languages.scss = Prism.languages.extend('css', {
 	'comment': {
-		pattern: /(^|[^\\])(?:\/\*[\w\W]*?\*\/|\/\/.*)/,
+		pattern: /(^|[^\\])(?:\/\*[^]*?\*\/|\/\/.*)/,
 		lookbehind: true
 	},
 	'atrule': {

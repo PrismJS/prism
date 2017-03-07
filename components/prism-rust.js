@@ -8,7 +8,7 @@
 Prism.languages.rust = {
 	'comment': [
 		{
-			pattern: /(^|[^\\])\/\*[\w\W]*?\*\//,
+			pattern: /(^|[^\\])\/\*[^]*?\*\//,
 			lookbehind: true
 		},
 		{

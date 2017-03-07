@@ -1,6 +1,6 @@
 (function(Prism) {
 
-	var handlebars_pattern = /\{\{\{[\w\W]+?\}\}\}|\{\{[\w\W]+?\}\}/g;
+	var handlebars_pattern = /\{\{\{[^]+?\}\}\}|\{\{[^]+?\}\}/g;
 
 	Prism.languages.handlebars = Prism.languages.extend('markup', {
 		'handlebars': {
@@ -22,7 +22,7 @@
 					pattern: /\[[^\]]+\]/,
 					inside: {
 						punctuation: /\[|\]/,
-						variable: /[\w\W]+/
+						variable: /[^]+/
 					}
 				},
 				'punctuation': /[!"#%&'()*+,.\/;<=>@\[\\\]^`{|}~]/,
@@ -35,7 +35,7 @@
 	// surround markup
 	Prism.languages.insertBefore('handlebars', 'tag', {
 		'handlebars-comment': {
-			pattern: /\{\{![\w\W]*?\}\}/,
+			pattern: /\{\{![^]*?\}\}/,
 			alias: ['handlebars','comment']
 		}
 	});

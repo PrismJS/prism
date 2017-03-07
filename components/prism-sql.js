@@ -1,6 +1,6 @@
 Prism.languages.sql= {
 	'comment': {
-		pattern: /(^|[^\\])(?:\/\*[\w\W]*?\*\/|(?:--|\/\/|#).*)/,
+		pattern: /(^|[^\\])(?:\/\*[^]*?\*\/|(?:--|\/\/|#).*)/,
 		lookbehind: true
 	},
 	'string' : {
