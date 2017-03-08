@@ -5,7 +5,7 @@
  */
  Prism.languages.nsis = {
 	'comment': {
-		pattern: /(^|[^\\])(\/\*[^]*?\*\/|[#;].*)/,
+		pattern: /(^|[^\\])(\/\*[\s\S]*?\*\/|[#;].*)/,
 		lookbehind: true
 	},
 	'string': {

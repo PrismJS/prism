@@ -6,7 +6,7 @@ Prism.languages.jolie = Prism.languages.extend('clike', {
 	'symbol': /[|;@]/,
 	'punctuation': /[,.]/,
 	'string': {
-		pattern: /(["'])(\\(?:\r\n|[^])|(?!\1)[^\\\r\n])*\1/,
+		pattern: /(["'])(\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,
 		greedy: true
 	},
 });

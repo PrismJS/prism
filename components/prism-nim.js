@@ -3,7 +3,7 @@ Prism.languages.nim = {
 	// Double-quoted strings can be prefixed by an identifier (Generalized raw string literals)
 	// Character literals are handled specifically to prevent issues with numeric type suffixes
 	'string': {
-		pattern: /(?:(?:\b(?!\d)(?:\w|\\x[8-9a-fA-F][0-9a-fA-F])+)?(?:"""[^]*?"""(?!")|"(?:\\[^]|""|[^"\\])*")|'(?:\\(?:\d+|x[\da-fA-F]{2}|.)|[^'])')/,
+		pattern: /(?:(?:\b(?!\d)(?:\w|\\x[8-9a-fA-F][0-9a-fA-F])+)?(?:"""[\s\S]*?"""(?!")|"(?:\\[\s\S]|""|[^"\\])*")|'(?:\\(?:\d+|x[\da-fA-F]{2}|.)|[^'])')/,
 		greedy: true
 	},
 	// The negative look ahead prevents wrong highlighting of the .. operator

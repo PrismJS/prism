@@ -1,5 +1,5 @@
 Prism.languages.ocaml = {
-	'comment': /\(\*[^]*?\*\)/,
+	'comment': /\(\*[\s\S]*?\*\)/,
 	'string': [
 		{
 			pattern: /"(?:\\.|[^\\\r\n"])*"/,

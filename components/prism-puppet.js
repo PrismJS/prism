@@ -35,18 +35,18 @@
 			}
 		],
 		'multiline-comment': {
-			pattern: /(^|[^\\])\/\*[^]*?\*\//,
+			pattern: /(^|[^\\])\/\*[\s\S]*?\*\//,
 			lookbehind: true,
 			alias: 'comment'
 		},
 		'regex': {
 			// Must be prefixed with the keyword "node" or a non-word char
-			pattern: /((?:\bnode\s+|[~=\(\[\{,]\s*|[=+]>\s*|^\s*))\/(?:[^\/\\]|\\[^])+\/(?:[imx]+\b|\B)/,
+			pattern: /((?:\bnode\s+|[~=\(\[\{,]\s*|[=+]>\s*|^\s*))\/(?:[^\/\\]|\\[\s\S])+\/(?:[imx]+\b|\B)/,
 			lookbehind: true,
 			inside: {
 				// Extended regexes must have the x flag. They can contain single-line comments.
 				'extended-regex': {
-					pattern: /^\/(?:[^\/\\]|\\[^])+\/[im]*x[im]*$/,
+					pattern: /^\/(?:[^\/\\]|\\[\s\S])+\/[im]*x[im]*$/,
 					inside: {
 						'comment': /#.*/
 					}
@@ -59,10 +59,10 @@
 		},
 		'string': {
 			// Allow for one nested level of double quotes inside interpolation
-			pattern: /(["'])(?:\$\{(?:[^'"}]|(["'])(?:(?!\2)[^\\]|\\[^])*\2)+\}|(?!\1)[^\\]|\\[^])*\1/,
+			pattern: /(["'])(?:\$\{(?:[^'"}]|(["'])(?:(?!\2)[^\\]|\\[\s\S])*\2)+\}|(?!\1)[^\\]|\\[\s\S])*\1/,
 			inside: {
 				'double-quoted': {
-					pattern: /^"[^]*"$/,
+					pattern: /^"[\s\S]*"$/,
 					inside: {
 						// See interpolation below
 					}
@@ -98,7 +98,7 @@
 	var interpolation = [
 		{
 			// Allow for one nested level of braces inside interpolation
-			pattern: /(^|[^\\])\$\{(?:[^'"{}]|\{[^}]*\}|(["'])(?:(?!\2)[^\\]|\\[^])*\2)+\}/,
+			pattern: /(^|[^\\])\$\{(?:[^'"{}]|\{[^}]*\}|(["'])(?:(?!\2)[^\\]|\\[\s\S])*\2)+\}/,
 			lookbehind: true,
 			inside: {
 				'short-variable': {

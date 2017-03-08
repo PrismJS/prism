@@ -1,6 +1,6 @@
 Prism.languages.gherkin = {
 	'pystring': {
-		pattern: /("""|''')[^]+?\1/,
+		pattern: /("""|''')[\s\S]+?\1/,
 		alias: 'string'
 	},
 	'comment': {

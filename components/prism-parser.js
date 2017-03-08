@@ -40,7 +40,7 @@ Prism.languages.insertBefore('parser', 'keyword', {
 		lookbehind: true,
 		inside: {
 			'string': {
-				pattern: /(^|[^^])(["'])(?:(?!\2)[^^]|\^[^])*\2/,
+				pattern: /(^|[^^])(["'])(?:(?!\2)[^^]|\^[\s\S])*\2/,
 				lookbehind: true
 			},
 			'keyword': Prism.languages.parser.keyword,

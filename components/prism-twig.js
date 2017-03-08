@@ -1,7 +1,7 @@
 Prism.languages.twig = {
-	'comment': /\{#[^]*?#\}/,
+	'comment': /\{#[\s\S]*?#\}/,
 	'tag': {
-		pattern: /\{\{[^]*?\}\}|\{%[^]*?%\}/,
+		pattern: /\{\{[\s\S]*?\}\}|\{%[\s\S]*?%\}/,
 		inside: {
 			'ld': {
 				pattern: /^(?:\{\{\-?|\{%\-?\s*\w+)/,
@@ -40,7 +40,7 @@ Prism.languages.twig = {
 	// The rest can be parsed as HTML
 	'other': {
 		// We want non-blank matches
-		pattern: /\S(?:[^]*\S)?/,
+		pattern: /\S(?:[\s\S]*\S)?/,
 		inside: Prism.languages.markup
 	}
 };

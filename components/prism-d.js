@@ -3,13 +3,13 @@ Prism.languages.d = Prism.languages.extend('clike', {
 		// r"", x""
 		/\b[rx]"(\\.|[^\\"])*"[cwd]?/,
 		// q"[]", q"()", q"<>", q"{}"
-		/\bq"(?:\[[^]*?\]|\([^]*?\)|<[^]*?>|\{[^]*?\})"/,
+		/\bq"(?:\[[\s\S]*?\]|\([\s\S]*?\)|<[\s\S]*?>|\{[\s\S]*?\})"/,
 		// q"IDENT
 		// ...
 		// IDENT"
-		/\bq"([_a-zA-Z][_a-zA-Z\d]*)(?:\r?\n|\r)[^]*?(?:\r?\n|\r)\1"/,
+		/\bq"([_a-zA-Z][_a-zA-Z\d]*)(?:\r?\n|\r)[\s\S]*?(?:\r?\n|\r)\1"/,
 		// q"//", q"||", etc.
-		/\bq"(.)[^]*?\1"/,
+		/\bq"(.)[\s\S]*?\1"/,
 		// Characters
 		/'(?:\\'|\\?[^']+)'/,
 
@@ -38,7 +38,7 @@ Prism.languages.d.comment = [
 	// /+ +/
 	{
 		// Allow one level of nesting
-		pattern: /(^|[^\\])\/\+(?:\/\+[^]*?\+\/|[^])*?\+\//,
+		pattern: /(^|[^\\])\/\+(?:\/\+[\s\S]*?\+\/|[\s\S])*?\+\//,
 		lookbehind: true
 	}
 ].concat(Prism.languages.d.comment);

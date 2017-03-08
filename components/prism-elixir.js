@@ -18,7 +18,7 @@ Prism.languages.elixir = {
 			}
 		},
 		{
-			pattern: /("""|''')[^]*?\1/,
+			pattern: /("""|''')[\s\S]*?\1/,
 			greedy: true,
 			inside: {
 				// See interpolation below
@@ -26,7 +26,7 @@ Prism.languages.elixir = {
 		},
 		{
 			// Multi-line strings are allowed
-			pattern: /("|')(?:\\[^]|(?!\1)[^\\])*\1/,
+			pattern: /("|')(?:\\[\s\S]|(?!\1)[^\\])*\1/,
 			greedy: true,
 			inside: {
 				// See interpolation below

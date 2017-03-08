@@ -1,10 +1,10 @@
 Prism.languages.reason = Prism.languages.extend('clike', {
 	'comment': {
-		pattern: /(^|[^\\])\/\*[^]*?\*\//,
+		pattern: /(^|[^\\])\/\*[\s\S]*?\*\//,
 		lookbehind: true
 	},
 	'string': {
-		pattern: /"(\\(?:\r\n|[^])|[^\\\r\n"])*"/,
+		pattern: /"(\\(?:\r\n|[\s\S])|[^\\\r\n"])*"/,
 		greedy: true
 	},
 	// 'class-name' must be matched *after* 'constructor' defined below

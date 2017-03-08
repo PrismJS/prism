@@ -24,14 +24,14 @@
 	Prism.languages.insertBefore('ruby', 'keyword', {
 		'regex': [
 			{
-				pattern: /%r([^a-zA-Z0-9\s\{\(\[<])(?:[^\\]|\\[^])*?\1[gim]{0,3}/,
+				pattern: /%r([^a-zA-Z0-9\s\{\(\[<])(?:[^\\]|\\[\s\S])*?\1[gim]{0,3}/,
 				greedy: true,
 				inside: {
 					'interpolation': interpolation
 				}
 			},
 			{
-				pattern: /%r\((?:[^()\\]|\\[^])*\)[gim]{0,3}/,
+				pattern: /%r\((?:[^()\\]|\\[\s\S])*\)[gim]{0,3}/,
 				greedy: true,
 				inside: {
 					'interpolation': interpolation
@@ -39,21 +39,21 @@
 			},
 			{
 				// Here we need to specifically allow interpolation
-				pattern: /%r\{(?:[^#{}\\]|#(?:\{[^}]+\})?|\\[^])*\}[gim]{0,3}/,
+				pattern: /%r\{(?:[^#{}\\]|#(?:\{[^}]+\})?|\\[\s\S])*\}[gim]{0,3}/,
 				greedy: true,
 				inside: {
 					'interpolation': interpolation
 				}
 			},
 			{
-				pattern: /%r\[(?:[^\[\]\\]|\\[^])*\][gim]{0,3}/,
+				pattern: /%r\[(?:[^\[\]\\]|\\[\s\S])*\][gim]{0,3}/,
 				greedy: true,
 				inside: {
 					'interpolation': interpolation
 				}
 			},
 			{
-				pattern: /%r<(?:[^<>\\]|\\[^])*>[gim]{0,3}/,
+				pattern: /%r<(?:[^<>\\]|\\[\s\S])*>[gim]{0,3}/,
 				greedy: true,
 				inside: {
 					'interpolation': interpolation
@@ -76,14 +76,14 @@
 
 	Prism.languages.ruby.string = [
 		{
-			pattern: /%[qQiIwWxs]?([^a-zA-Z0-9\s\{\(\[<])(?:[^\\]|\\[^])*?\1/,
+			pattern: /%[qQiIwWxs]?([^a-zA-Z0-9\s\{\(\[<])(?:[^\\]|\\[\s\S])*?\1/,
 			greedy: true,
 			inside: {
 				'interpolation': interpolation
 			}
 		},
 		{
-			pattern: /%[qQiIwWxs]?\((?:[^()\\]|\\[^])*\)/,
+			pattern: /%[qQiIwWxs]?\((?:[^()\\]|\\[\s\S])*\)/,
 			greedy: true,
 			inside: {
 				'interpolation': interpolation
@@ -91,21 +91,21 @@
 		},
 		{
 			// Here we need to specifically allow interpolation
-			pattern: /%[qQiIwWxs]?\{(?:[^#{}\\]|#(?:\{[^}]+\})?|\\[^])*\}/,
+			pattern: /%[qQiIwWxs]?\{(?:[^#{}\\]|#(?:\{[^}]+\})?|\\[\s\S])*\}/,
 			greedy: true,
 			inside: {
 				'interpolation': interpolation
 			}
 		},
 		{
-			pattern: /%[qQiIwWxs]?\[(?:[^\[\]\\]|\\[^])*\]/,
+			pattern: /%[qQiIwWxs]?\[(?:[^\[\]\\]|\\[\s\S])*\]/,
 			greedy: true,
 			inside: {
 				'interpolation': interpolation
 			}
 		},
 		{
-			pattern: /%[qQiIwWxs]?<(?:[^<>\\]|\\[^])*>/,
+			pattern: /%[qQiIwWxs]?<(?:[^<>\\]|\\[\s\S])*>/,
 			greedy: true,
 			inside: {
 				'interpolation': interpolation

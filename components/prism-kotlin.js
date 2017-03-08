@@ -20,7 +20,7 @@
 
 	Prism.languages.insertBefore('kotlin', 'string', {
 		'raw-string': {
-			pattern: /(["'])\1\1[^]*?\1{3}/,
+			pattern: /(["'])\1\1[\s\S]*?\1{3}/,
 			alias: 'string'
 			// See interpolation below
 		}

@@ -1,7 +1,7 @@
 Prism.languages.monkey = {
 	'string': /"[^"\r\n]*"/,
 	'comment': [
-		/^#Rem\s+[^]*?^#End/im,
+		/^#Rem\s+[\s\S]*?^#End/im,
 		/'.+/,
 	],
 	'preprocessor': {

@@ -3,11 +3,11 @@
 		variable: [
 			// Arithmetic Environment
 			{
-				pattern: /\$?\(\([^]+?\)\)/,
+				pattern: /\$?\(\([\s\S]+?\)\)/,
 				inside: {
 					// If there is a $ sign at the beginning highlight $(( and )) as variable
 					variable: [{
-							pattern: /(^\$\(\([^]+)\)\)/,
+							pattern: /(^\$\(\([\s\S]+)\)\)/,
 							lookbehind: true
 						},
 						/^\$\(\(/,
@@ -42,7 +42,7 @@
 		'string': [
 			//Support for Here-Documents https://en.wikipedia.org/wiki/Here_document
 			{
-				pattern: /((?:^|[^<])<<\s*)(?:"|')?(\w+?)(?:"|')?\s*\r?\n(?:[^])*?\r?\n\2/g,
+				pattern: /((?:^|[^<])<<\s*)(?:"|')?(\w+?)(?:"|')?\s*\r?\n(?:[\s\S])*?\r?\n\2/g,
 				lookbehind: true,
 				greedy: true,
 				inside: insideString

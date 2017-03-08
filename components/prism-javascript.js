@@ -29,7 +29,7 @@ Prism.languages.insertBefore('javascript', 'string', {
 					rest: Prism.languages.javascript
 				}
 			},
-			'string': /[^]+/
+			'string': /[\s\S]+/
 		}
 	}
 });
@@ -37,7 +37,7 @@ Prism.languages.insertBefore('javascript', 'string', {
 if (Prism.languages.markup) {
 	Prism.languages.insertBefore('markup', 'tag', {
 		'script': {
-			pattern: /(<script[^]*?>)[^]*?(?=<\/script>)/i,
+			pattern: /(<script[\s\S]*?>)[\s\S]*?(?=<\/script>)/i,
 			lookbehind: true,
 			inside: Prism.languages.javascript,
 			alias: 'language-javascript'

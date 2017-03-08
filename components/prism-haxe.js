@@ -1,7 +1,7 @@
 Prism.languages.haxe = Prism.languages.extend('clike', {
 	// Strings can be multi-line
 	'string': {
-		pattern: /(["'])(?:(?!\1)[^\\]|\\[^])*\1/,
+		pattern: /(["'])(?:(?!\1)[^\\]|\\[\s\S])*\1/,
 		greedy: true,
 		inside: {
 			'interpolation': {

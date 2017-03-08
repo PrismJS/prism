@@ -3,9 +3,9 @@
 var javascript = Prism.util.clone(Prism.languages.javascript);
 
 Prism.languages.jsx = Prism.languages.extend('markup', javascript);
-Prism.languages.jsx.tag.pattern= /<\/?[\w\.:-]+\s*(?:\s+(?:[\w\.:-]+(?:=(?:("|')(\\?[^])*?\1|[^\s'">=]+|(\{[^]*?\})))?|\{\.{3}\w+\})\s*)*\/?>/i;
+Prism.languages.jsx.tag.pattern= /<\/?[\w\.:-]+\s*(?:\s+(?:[\w\.:-]+(?:=(?:("|')(\\?[\s\S])*?\1|[^\s'">=]+|(\{[\s\S]*?\})))?|\{\.{3}\w+\})\s*)*\/?>/i;
 
-Prism.languages.jsx.tag.inside['attr-value'].pattern = /=(?!\{)(?:('|")[^]*?(\1)|[^\s>]+)/i;
+Prism.languages.jsx.tag.inside['attr-value'].pattern = /=(?!\{)(?:('|")[\s\S]*?(\1)|[^\s>]+)/i;
 
 Prism.languages.insertBefore('inside', 'attr-name', {
 	'spread': {

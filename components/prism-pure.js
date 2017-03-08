@@ -1,7 +1,7 @@
 (function (Prism) {
 	Prism.languages.pure = {
 		'inline-lang': {
-			pattern: /%<[^]+?%>/,
+			pattern: /%<[\s\S]+?%>/,
 			inside: {
 				'lang': {
 					pattern: /(^%< *)-\*-.+?-\*-/,
@@ -16,7 +16,7 @@
 		},
 		'comment': [
 			{
-				pattern: /(^|[^\\])\/\*[^]*?\*\//,
+				pattern: /(^|[^\\])\/\*[\s\S]*?\*\//,
 				greedy: true,
 				lookbehind: true
 			},

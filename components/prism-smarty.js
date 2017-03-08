@@ -5,7 +5,7 @@
 
 (function(Prism) {
 
-	var smarty_pattern = /\{\*[^]+?\*\}|\{[^]+?\}/g;
+	var smarty_pattern = /\{\*[\s\S]+?\*\}|\{[\s\S]+?\}/g;
 	var smarty_litteral_start = '{literal}';
 	var smarty_litteral_end = '{/literal}';
 	var smarty_litteral_mode = false;
@@ -68,7 +68,7 @@
 	// surround markup
 	Prism.languages.insertBefore('smarty', 'tag', {
 		'smarty-comment': {
-			pattern: /\{\*[^]*?\*\}/,
+			pattern: /\{\*[\s\S]*?\*\}/,
 			alias: ['smarty','comment']
 		}
 	});
