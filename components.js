@@ -529,6 +529,11 @@ var components = {
 			"require": "clike",
 			"owner": "chrischares"
 		},
+		"tap": {
+			"title": "TAP",
+			"owner": "isaacs",
+			"require": "yaml"
+		},
 		"tcl": {
 			"title": "Tcl",
 			"owner": "PeterChaplin"
