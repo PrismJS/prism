@@ -2,10 +2,13 @@ language: node_js
 node_js:
 - '0.10'
 - '0.12'
-before_script:
+install:
+- npm install
 - npm install -g gulp
+before_script:
 - gulp
-script: npm test
+script:
+- npm test
 deploy:
   provider: npm
   email: lea@verou.me
