@@ -32,7 +32,7 @@ Prism.languages.insertBefore('php', 'class-name', {
 
 Prism.languages.insertBefore('php', 'keyword', {
 	'delimiter': {
-		pattern: /\?>|<\?(?:php)?/i,
+		pattern: /\?>|<\?(?:php|=)?/i,
 		alias: 'important'
 	},
 	'variable': /\$\w+\b/i,
