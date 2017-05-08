@@ -168,7 +168,6 @@ SetFileAttributes
 SetFont
 SetOutPath
 SetOverwrite
-SetPluginUnload
 SetRebootFlag
 SetRegView
 SetShellVarContext
@@ -384,7 +383,6 @@ XPStyle
 	["keyword", "SetFont"],
 	["keyword", "SetOutPath"],
 	["keyword", "SetOverwrite"],
-	["keyword", "SetPluginUnload"],
 	["keyword", "SetRebootFlag"],
 	["keyword", "SetRegView"],
 	["keyword", "SetShellVarContext"],
