@@ -38,7 +38,7 @@ Prism.languages.d.comment = [
 	// /+ +/
 	{
 		// Allow one level of nesting
-		pattern: /(^|[^\\])\/\+(?:\/\+[\w\W]*?\+\/|[\w\W])*?\+\//,
+		pattern: /(^|[^\\])\/\+(?:\/\+[\s\S]*?\+\/|[\s\S])*?\+\//,
 		lookbehind: true
 	}
 ].concat(Prism.languages.d.comment);

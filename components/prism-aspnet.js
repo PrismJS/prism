@@ -15,7 +15,7 @@ Prism.languages.aspnet = Prism.languages.extend('markup', {
 	}
 });
 // Regexp copied from prism-markup, with a negative look-ahead added
-Prism.languages.aspnet.tag.pattern = /<(?!%)\/?[^\s>\/]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\\1|\\?(?!\1)[\w\W])*\1|[^\s'">=]+))?)*\s*\/?>/i;
+Prism.languages.aspnet.tag.pattern = /<(?!%)\/?[^\s>\/]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\\1|\\?(?!\1)[\s\S])*\1|[^\s'">=]+))?)*\s*\/?>/i;
 
 // match directives of attribute value foo="<% Bar %>"
 Prism.languages.insertBefore('inside', 'punctuation', {
@@ -23,13 +23,13 @@ Prism.languages.insertBefore('inside', 'punctuation', {
 }, Prism.languages.aspnet.tag.inside["attr-value"]);
 
 Prism.languages.insertBefore('aspnet', 'comment', {
-	'asp comment': /<%--[\w\W]*?--%>/
+	'asp comment': /<%--[\s\S]*?--%>/
 });
 
 // script runat="server" contains csharp, not javascript
 Prism.languages.insertBefore('aspnet', Prism.languages.javascript ? 'script' : 'tag', {
 	'asp script': {
-		pattern: /(<script(?=.*runat=['"]?server['"]?)[\w\W]*?>)[\w\W]*?(?=<\/script>)/i,
+		pattern: /(<script(?=.*runat=['"]?server['"]?)[\s\S]*?>)[\s\S]*?(?=<\/script>)/i,
 		lookbehind: true,
 		inside: Prism.languages.csharp || {}
 	}

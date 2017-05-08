@@ -1,7 +1,7 @@
 Prism.languages.fsharp = Prism.languages.extend('clike', {
 	'comment': [
 		{
-			pattern: /(^|[^\\])\(\*[\w\W]*?\*\)/,
+			pattern: /(^|[^\\])\(\*[\s\S]*?\*\)/,
 			lookbehind: true
 		},
 		{

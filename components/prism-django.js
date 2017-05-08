@@ -3,7 +3,7 @@
 
 var _django_template = {
 	'property': {
-		pattern: /(?:{{|{%)[\w\W]*?(?:%}|}})/g,
+		pattern: /(?:{{|{%)[\s\S]*?(?:%}|}})/g,
 		greedy: true,
 		inside: {
 			'string': {
@@ -20,9 +20,9 @@ var _django_template = {
 	}
 };
 
-Prism.languages.django = Prism.languages.extend('markup', {'comment': /(?:<!--|{#)[\w\W]*?(?:#}|-->)/});
+Prism.languages.django = Prism.languages.extend('markup', {'comment': /(?:<!--|{#)[\s\S]*?(?:#}|-->)/});
 // Updated html tag pattern to allow template tags inside html tags
-Prism.languages.django.tag.pattern = /<\/?(?!\d)[^\s>\/=$<]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\\1|\\?(?!\1)[\w\W])*\1|[^>=]+))?)*\s*\/?>/i;
+Prism.languages.django.tag.pattern = /<\/?(?!\d)[^\s>\/=$<]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\\1|\\?(?!\1)[\s\S])*\1|[^>=]+))?)*\s*\/?>/i;
 Prism.languages.insertBefore('django', 'entity', _django_template);
 Prism.languages.insertBefore('inside', 'tag', _django_template, Prism.languages.django.tag);
 

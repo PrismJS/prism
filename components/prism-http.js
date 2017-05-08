@@ -9,11 +9,11 @@ Prism.languages.http = {
 		}
 	},
 	'response-status': {
-		pattern: /^HTTP\/1.[01] [0-9]+.*/m,
+		pattern: /^HTTP\/1.[01] \d+.*/m,
 		inside: {
 			// Status, e.g. 200 OK
 			property: {
-                pattern: /(^HTTP\/1.[01] )[0-9]+.*/i,
+                pattern: /(^HTTP\/1.[01] )\d+.*/i,
                 lookbehind: true
             }
 		}

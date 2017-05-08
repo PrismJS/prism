@@ -1,6 +1,6 @@
 Prism.languages.glsl = Prism.languages.extend('clike', {
 	'comment': [
-		/\/\*[\w\W]*?\*\//,
+		/\/\*[\s\S]*?\*\//,
 		/\/\/(?:\\(?:\r\n|[\s\S])|.)*/
 	],
 	'number': /\b(?:0x[\da-f]+|(?:\.\d+|\d+\.?\d*)(?:e[+-]?\d+)?)[ulf]*\b/i,

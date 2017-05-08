@@ -13,7 +13,7 @@ Prism.languages.scheme = {
 		lookbehind : true
 	},
 	'number' : {
-		pattern: /(\s|\))[-+]?[0-9]*\.?[0-9]+(?:\s*[-+]\s*[0-9]*\.?[0-9]+i)?\b/,
+		pattern: /(\s|\))[-+]?\d*\.?\d+(?:\s*[-+]\s*\d*\.?\d+i)?\b/,
 		lookbehind: true
 	},
 	'boolean' : /#[tf]/,

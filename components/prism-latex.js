@@ -11,7 +11,7 @@
 		'comment': /%.*/m,
 		// the verbatim environment prints whitespace to the document
 		'cdata':  {
-			pattern: /(\\begin\{((?:verbatim|lstlisting)\*?)\})([\w\W]*?)(?=\\end\{\2\})/,
+			pattern: /(\\begin\{((?:verbatim|lstlisting)\*?)\})([\s\S]*?)(?=\\end\{\2\})/,
 			lookbehind: true
 		},
 		/*
@@ -20,12 +20,12 @@
 		 */
 		'equation': [
 			{
-				pattern: /\$(?:\\?[\w\W])*?\$|\\\((?:\\?[\w\W])*?\\\)|\\\[(?:\\?[\w\W])*?\\\]/,
+				pattern: /\$(?:\\?[\s\S])*?\$|\\\((?:\\?[\s\S])*?\\\)|\\\[(?:\\?[\s\S])*?\\\]/,
 				inside: insideEqu,
 				alias: 'string'
 			},
 			{
-				pattern: /(\\begin\{((?:equation|math|eqnarray|align|multline|gather)\*?)\})([\w\W]*?)(?=\\end\{\2\})/,
+				pattern: /(\\begin\{((?:equation|math|eqnarray|align|multline|gather)\*?)\})([\s\S]*?)(?=\\end\{\2\})/,
 				lookbehind: true,
 				inside: insideEqu,
 				alias: 'string'

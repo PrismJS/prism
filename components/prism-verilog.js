@@ -1,5 +1,5 @@
 Prism.languages.verilog = {
-  'comment': /\/\/.*|\/\*[\w\W]*?\*\//,
+  'comment': /\/\/.*|\/\*[\s\S]*?\*\//,
   'string': {
     pattern: /"(?:\\(?:\r\n|[\s\S])|[^"\\\r\n])*"/,
     greedy: true

@@ -38,7 +38,7 @@
 
 	Prism.languages.stylus = {
 		'comment': {
-			pattern: /(^|[^\\])(\/\*[\w\W]*?\*\/|\/\/.*)/,
+			pattern: /(^|[^\\])(\/\*[\s\S]*?\*\/|\/\/.*)/,
 			lookbehind: true
 		},
 		'atrule-declaration': {

@@ -16,7 +16,7 @@
 		},
 		'comment': [
 			{
-				pattern: /(^|[^\\])\/\*[\w\W]*?\*\//,
+				pattern: /(^|[^\\])\/\*[\s\S]*?\*\//,
 				greedy: true,
 				lookbehind: true
 			},
