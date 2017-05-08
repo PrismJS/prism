@@ -15,7 +15,7 @@ if (argv.language) {
 				}
 				process.send({success: true});
 			} catch (e) {
-				process.send({error: e.message});
+				process.send({error: JSON.stringify(e)});
 			}
 		}
 	});
