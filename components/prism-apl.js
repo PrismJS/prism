@@ -17,7 +17,7 @@ Prism.languages.apl = {
 		alias: 'operator'
 	},
 	'dyadic-operator': {
-		pattern: /[.⍣⍠⍤∘⌸]/,
+		pattern: /[.⍣⍠⍤∘⌸@⌺]/,
 		alias: 'operator'
 	},
 	'assignment': {
