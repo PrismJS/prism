@@ -548,6 +548,11 @@ var components = {
 			"require": "javascript",
 			"owner": "vkbansal"
 		},
+		"vbnet": {
+			"title": "VB.Net",
+			"require": "basic",
+			"owner": "Bigsby"
+		},
 		"verilog": {
 			"title": "Verilog",
 			"owner": "a-rey"
