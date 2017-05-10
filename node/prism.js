@@ -1,0 +1,338 @@
+
+
+/*********************************************** 
+     Begin prism-core.js 
+***********************************************/ 
+
+/**
+ * Prism: Lightweight, robust, elegant syntax highlighting
+ * MIT license http://www.opensource.org/licenses/mit-license.php/
+ * @author Lea Verou http://lea.verou.me
+ */
+
+(function(){
+
+var _, Prism;
+
+_ = Prism = {
+	languages: {
+		insertBefore: function (inside, before, insert, root) {
+			root = root || _.languages;
+			var grammar = root[inside];
+			var ret = {};
+				
+			for (var token in grammar) {
+			
+				if (grammar.hasOwnProperty(token)) {
+					
+					if (token == before) {
+					
+						for (var newToken in insert) {
+						
+							if (insert.hasOwnProperty(newToken)) {
+								ret[newToken] = insert[newToken];
+							}
+						}
+					}
+					
+					ret[token] = grammar[token];
+				}
+			}
+			
+			return root[inside] = ret;
+		},
+		
+		DFS: function(o, callback) {
+			for (var i in o) {
+				callback.call(o, i, o[i]);
+				
+				if (Object.prototype.toString.call(o) === '[object Object]') {
+					_.languages.DFS(o[i], callback);
+				}
+			}
+		}
+	},
+
+	highlight: function (text, grammar) {
+		return Token.stringify(_.tokenize(text, grammar));
+	},
+	
+	tokenize: function(text, grammar) {
+		var Token = _.Token;
+		
+		var strarr = [text];
+		
+		var rest = grammar.rest;
+		
+		if (rest) {
+			for (var token in rest) {
+				grammar[token] = rest[token];
+			}
+			
+			delete grammar.rest;
+		}
+								
+		tokenloop: for (var token in grammar) {
+			if(!grammar.hasOwnProperty(token) || !grammar[token]) {
+				continue;
+			}
+			
+			var pattern = grammar[token], 
+				inside = pattern.inside,
+				lookbehind = !!pattern.lookbehind || 0;
+			
+			pattern = pattern.pattern || pattern;
+			
+			for (var i=0; i<strarr.length; i++) { // Don’t cache length as it changes during the loop
+				
+				var str = strarr[i];
+				
+				if (strarr.length > text.length) {
+					// Something went terribly wrong, ABORT, ABORT!
+					break tokenloop;
+				}
+				
+				if (str instanceof Token) {
+					continue;
+				}
+				
+				pattern.lastIndex = 0;
+				
+				var match = pattern.exec(str);
+				
+				if (match) {
+					if(lookbehind) {
+						lookbehind = match[1].length;
+					}
+
+					var from = match.index - 1 + lookbehind,
+					    match = match[0].slice(lookbehind),
+					    len = match.length,
+					    to = from + len,
+						before = str.slice(0, from + 1),
+						after = str.slice(to + 1); 
+
+					var args = [i, 1];
+					
+					if (before) {
+						args.push(before);
+					}
+					
+					var wrapped = new Token(token, inside? _.tokenize(match, inside) : match);
+					
+					args.push(wrapped);
+					
+					if (after) {
+						args.push(after);
+					}
+					
+					Array.prototype.splice.apply(strarr, args);
+				}
+			}
+		}
+
+		return strarr;
+	},
+	
+	hooks: {
+		all: {},
+		
+		add: function (name, callback) {
+			var hooks = _.hooks.all;
+			
+			hooks[name] = hooks[name] || [];
+			
+			hooks[name].push(callback);
+		},
+		
+		run: function (name, env) {
+			var callbacks = _.hooks.all[name];
+			
+			if (!callbacks || !callbacks.length) {
+				return;
+			}
+			
+			for (var i=0, callback; callback = callbacks[i++];) {
+				callback(env);
+			}
+		}
+	}
+};
+
+var Token = _.Token = function(type, content) {
+	this.type = type;
+	this.content = content;
+};
+
+Token.stringify = function(o) {
+	if (typeof o == 'string') {
+		return o;
+	}
+	
+	if (Object.prototype.toString.call(o) == '[object Array]') {
+		for (var i=0; i<o.length; i++) {
+			o[i] = Token.stringify(o[i]);
+		}
+		
+		return o.join('');
+	}
+	
+	var env = {
+		type: o.type,
+		content: Token.stringify(o.content),
+		tag: 'span',
+		classes: ['token', o.type],
+		attributes: {}
+	};
+	
+	if (env.type == 'comment') {
+		env.attributes['spellcheck'] = 'true';
+	}
+	
+	_.hooks.run('wrap', env);
+	
+	var attributes = '';
+	
+	for (var name in env.attributes) {
+		attributes += name + '="' + (env.attributes[name] || '') + '"';
+	}
+	
+	return '<' + env.tag + ' class="' + env.classes.join(' ') + '" ' + attributes + '>' + env.content + '</' + env.tag + '>';
+	
+};
+
+/*********************************************** 
+     Begin prism-markup.js 
+***********************************************/ 
+
+Prism.languages.markup = {
+	'comment': /&lt;!--[\w\W]*?--(&gt;|&gt;)/g,
+	'prolog': /&lt;\?.+?\?&gt;/,
+	'doctype': /&lt;!DOCTYPE.+?&gt;/,
+	'cdata': /&lt;!\[CDATA\[[\w\W]+?]]&gt;/i,
+	'tag': {
+		pattern: /&lt;\/?[\w:-]+\s*[\w\W]*?&gt;/gi,
+		inside: {
+			'tag': {
+				pattern: /^&lt;\/?[\w:-]+/i,
+				inside: {
+					'punctuation': /^&lt;\/?/,
+					'namespace': /^[\w-]+?:/
+				}
+			},
+			'attr-value': {
+				pattern: /=(('|")[\w\W]*?(\2)|[^\s>]+)/gi,
+				inside: {
+					'punctuation': /=/g
+				}
+			},
+			'punctuation': /\/?&gt;/g,
+			'attr-name': {
+				pattern: /[\w:-]+/g,
+				inside: {
+					'namespace': /^[\w-]+?:/
+				}
+			}
+			
+		}
+	},
+	'entity': /&amp;#?[\da-z]{1,8};/gi
+};
+
+// Plugin to make entity title show the real entity, idea by Roman Komarov
+Prism.hooks.add('wrap', function(env) {
+
+	if (env.type === 'entity') {
+		env.attributes['title'] = env.content.replace(/&amp;/, '&');
+	}
+});
+
+/*********************************************** 
+     Begin prism-css.js 
+***********************************************/ 
+
+Prism.languages.css = {
+	'comment': /\/\*[\w\W]*?\*\//g,
+	'atrule': /@[\w-]+?(\s+.+)?(?=\s*{|\s*;)/gi,
+	'url': /url\((["']?).*?\1\)/gi,
+	'selector': /[^\{\}\s][^\{\}]*(?=\s*\{)/g,
+	'property': /(\b|\B)[a-z-]+(?=\s*:)/ig,
+	'string': /("|')(\\?.)*?\1/g,
+	'important': /\B!important\b/gi,
+	'ignore': /&(lt|gt|amp);/gi,
+	'punctuation': /[\{\};:]/g
+};
+
+if (Prism.languages.markup) {
+	Prism.languages.insertBefore('markup', 'tag', {
+		'style': {
+			pattern: /(&lt;|<)style[\w\W]*?(>|&gt;)[\w\W]*?(&lt;|<)\/style(>|&gt;)/ig,
+			inside: {
+				'tag': {
+					pattern: /(&lt;|<)style[\w\W]*?(>|&gt;)|(&lt;|<)\/style(>|&gt;)/ig,
+					inside: Prism.languages.markup.tag.inside
+				},
+				rest: Prism.languages.css
+			}
+		}
+	});
+}
+
+/*********************************************** 
+     Begin prism-javascript.js 
+***********************************************/ 
+
+Prism.languages.javascript = {
+	'comment': {
+		pattern: /(^|[^\\])(\/\*[\w\W]*?\*\/|\/\/.*?(\r?\n|$))/g,
+		lookbehind: true
+	},
+	'string': /("|')(\\?.)*?\1/g,
+	'regex': {
+		pattern: /(^|[^/])\/(?!\/)(\[.+?]|\\.|[^/\r\n])+\/[gim]{0,3}(?=\s*($|[\r\n,.;})]))/g,
+		lookbehind: true
+	},
+	'keyword': /\b(var|let|if|else|while|do|for|return|in|instanceof|function|new|with|typeof|try|catch|finally|null|break|continue)\b/g,
+	'boolean': /\b(true|false)\b/g,
+	'number': /\b(-?(Infinity|(0[xX][0-9a-fA-F]+)|(\d*\.?\d+([eE]\+?\d+)?))|NaN)\b/g,
+	'operator': /[-+]{1,2}|!|=?&lt;|=?&gt;|={1,2}|(&amp;){1,2}|\|?\||\?|\*|\/|%|~|\^|:/g,
+	'ignore': /&(lt|gt|amp);/gi,
+	'punctuation': /[{}[\];(),.:]/g
+};
+
+if (Prism.languages.markup) {
+	Prism.languages.insertBefore('markup', 'tag', {
+		'script': {
+			pattern: /(&lt;|<)script[\w\W]*?(>|&gt;)[\w\W]*?(&lt;|<)\/script(>|&gt;)/ig,
+			inside: {
+				'tag': {
+					pattern: /(&lt;|<)script[\w\W]*?(>|&gt;)|(&lt;|<)\/script(>|&gt;)/ig,
+					inside: Prism.languages.markup.tag.inside
+				},
+				rest: Prism.languages.javascript
+			}
+		}
+	});
+}
+
+/*********************************************** 
+     Begin prism-java.js 
+***********************************************/ 
+
+Prism.languages.java = {
+	'comment': {
+		pattern: /(^|[^\\])(\/\*[\w\W]*?\*\/|\/\/.*?(\r?\n|$))/g,
+		lookbehind: true
+	},
+	'string': /("|')(\\?.)*?\1/g,
+	'keyword': /\b(abstract|continue|for|new|switch|assert|default|goto|package|synchronized|boolean|do|if|private|this|break|double|implements|protected|throw|byte|else|import|public|throws|case|enum|instanceof|return|transient|catch|extends|int|short|try|char|final|interface|static|void|class|finally|long|strictfp|volatile|const|float|native|super|while)\b/g,
+	'boolean': /\b(true|false)\b/g,
+	'number': /\b-?(0x)?\d*\.?\d+\b/g,
+	'operator': /[-+]{1,2}|!|=?&lt;|=?&gt;|={1,2}|(&amp;){1,2}|\|?\||\?|\*|\/|%|\^|(&lt;){2}|($gt;){2,3}|:|~/g,
+	'ignore': /&(lt|gt|amp);/gi,
+	'punctuation': /[{}[\];(),.:]/g,
+};
+
+module.exports = Prism;
+
+})();
