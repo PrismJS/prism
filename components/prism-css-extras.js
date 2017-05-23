@@ -10,7 +10,7 @@ Prism.languages.css.selector = {
 };
 
 Prism.languages.insertBefore('css', 'function', {
-	'hexcode': /#[\da-f]{3,6}/i,
+	'hexcode': /#[\da-f]{3,8}/i,
 	'entity': /\\[\da-f]{1,8}/i,
 	'number': /[\d%\.]+/
 });
