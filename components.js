@@ -622,6 +622,11 @@ var components = {
 			"owner": "Golmote",
 			"noCSS": true
 		},
+		"remove-final-line-feed": {
+			"title": "Remove final line feed",
+			"owner": "cormacmccarthy",
+			"noCSS": true
+		},
 		"previewer-base": {
 			"title": "Previewer: Base",
 			"owner": "Golmote"
