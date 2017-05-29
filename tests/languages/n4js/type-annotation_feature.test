@@ -1,0 +1,35 @@
+: any
+: boolean
+: enum
+: function
+: Function
+: int
+: null
+: number
+: object
+: Object
+: string
+: symbol
+: undefined
+
+----------------------------------------------------
+
+[
+	["type-annotation", ": any"],
+	["type-annotation", ": boolean"],
+	["type-annotation", ": enum"],
+	["type-annotation", ": function"],
+	["type-annotation", ": Function"],
+	["type-annotation", ": int"],
+	["type-annotation", ": null"],
+	["type-annotation", ": number"],
+	["type-annotation", ": object"],
+	["type-annotation", ": Object"],
+	["type-annotation", ": string"],
+	["type-annotation", ": symbol"],
+	["type-annotation", ": undefined"]
+]
+
+----------------------------------------------------
+
+Test for type annotations.

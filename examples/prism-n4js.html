@@ -1,0 +1,29 @@
+<h1>N4JS</h1>
+<p>To use this language, use the class "language-n4js".</p>
+
+<h2>Full example</h2>
+<pre><code>//Creating a simple Web User Interface in HTML
+
+import { TaskManager } from "TaskManager"
+import {Application, Response } from "express";
+import express from "express";
+import { Todo } from "model"
+
+export class WebUI {
+
+  private app: Application;
+
+  @Inject
+  private manager: TaskManager;
+
+  public start() {
+
+    this.app = express();
+
+    this.app.get('/', async (req, res) => {
+      let page = await this.renderHomePage();
+      res.send(page);
+    });
+  }
+}
+</code></pre>
