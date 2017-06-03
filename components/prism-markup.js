@@ -16,7 +16,8 @@ Prism.languages.markup = {
 			'attr-value': {
 				pattern: /=(?:('|")[\s\S]*?(\1)|[^\s>]+)/i,
 				inside: {
-					'punctuation': /[=>"']/
+					'punctuation': /[=>"']/,
+					'entity': /&#?[\da-z]{1,8};/i
 				}
 			},
 			'punctuation': /\/?>/,
