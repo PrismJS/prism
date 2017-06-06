@@ -46,3 +46,4 @@ if (Prism.languages.markup) {
 }
 
 Prism.languages.js = Prism.languages.javascript;
+Prism.languages.es6 = Prism.languages.javascript;
