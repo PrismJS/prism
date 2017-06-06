@@ -251,6 +251,16 @@ var _ = _self.Prism = {
 	},
 
 	highlight: function (text, grammar, language) {
+
+		// find language name by grammar if undefined
+		if (typeof language === 'undefined') {
+			for (var key in _.languages) {
+				if (grammar.__id === _.languages[key].__id) {
+					language = key;
+				}
+			}
+		}
+
 		var tokens = _.tokenize(text, grammar);
 		return Token.stringify(_.util.encode(tokens), language);
 	},
