@@ -622,6 +622,11 @@ var components = {
 			"owner": "Golmote",
 			"noCSS": true
 		},
+		"render-markup": {
+			"title": "Render Markup",
+			"owner": "nauzilus",
+			"themedCSS": true
+		},
 		"previewer-base": {
 			"title": "Previewer: Base",
 			"owner": "Golmote"

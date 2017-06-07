@@ -1,0 +1,8 @@
+.prism-markup-render {
+	margin: .5em 0;
+	border-left: 10px solid #358ccb;
+	background-color: #fdfdfd;	
+	-webkit-box-shadow: -1px 0px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf;
+	-moz-box-shadow: -1px 0px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf;
+	box-shadow: -1px 0px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf;
+}

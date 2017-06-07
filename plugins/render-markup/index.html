@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8" />
+<link rel="shortcut icon" href="favicon.png" />
+<title>Render Markup ▲ Prism plugins</title>
+<base href="../.." />
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="themes/prism.css" data-noprefix />
+<link rel="stylesheet" href="plugins/render-markup/prism-render-markup.css" data-noprefix />
+<link rel="stylesheet" href="plugins/render-markup/prism-render-markup.css" data-noprefix id="plugin-theme-css" />
+<script src="prefixfree.min.js"></script>
+
+<script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
+<script src="http://www.google-analytics.com/ga.js" async></script>
+</head>
+<body>
+
+<header>
+	<div class="intro" data-src="templates/header-plugins.html" data-type="text/html"></div>
+
+	<h2>Render Markup</h2>
+	<p>Render HTML markup below your the code sample.</p>
+</header>
+
+<section>
+	<h1>How to use</h1>
+	<p>You don't need to do anything; Prism highlighted codes blocks with <code class="language-markup">language-markup</code> class will have the HTML rendered beneath the highlighted markup.</p>
+	<p>This plugin is only applicable for the markup grammer (most likely when highlighting HTML). Prism doesn't distinguish between XML and HTML, so while this plugin will insert XML into your page it's probably not going to be overly useful (although see the SVG example below where you may want this).</p>
+	<h2>Disabling Render Markup per code block</h2>
+	<p>If you wish to disable this plugin for a specific code block, specify <code class="language-markup">data-render-markup="off"</code> on the <code class="language-markup">&lt;pre&gt;</code>:</p>
+	<pre class="language-markup" data-render-markup="off"><code>&lt;pre class="language-markup" data-render-markup="off"&gt;</code></pre>
+	<h2>Disabling Render Markup globally</h2>
+	<p>If you wish to disable this plugin globally by default, specify <code class="language-markup">data-render-markup="off"</code> on the <code class="language-markup">&lt;script&gt;</code> that included Prism to your page. You can then specify <code class="language-markup">data-render-markup="on"</code> for just the <code class="language-markup">&lt;pre&gt;</code> tags of those code blocks you wish to enable this plugin.</p>
+	<h2>Styling</h2>
+	<p>To assist with custom styling, the rendered markup is wrapped in a <code class="language-markup">&lt;div&gt;</code> with a <code class="language-markup">prism-markup-render</code> class, and the highlighted code block will have a <code class="language-markup">prism-markup-rendered</code> class (note: render vs render<strong>ed</strong>).</p>
+</section>
+
+<section>
+	<h1>Examples</h1>
+	
+	<h2>Basic markup</h2>
+	<pre class="language-markup"><code>&lt;section&gt;
+	&lt;h2&gt;Heading&lt;/h2&gt;
+	&lt;p&gt;&lt;a href="/download.html"&gt;Download&lt;/a&gt; &lt;em&gt;Prism&lt;/em&gt; now.&lt;/p&gt;
+	&lt;p class="foo" onclick="alert('Foo');"&gt;CSS and JavaScript works too&lt;/p&gt;
+	&lt;style&gt;
+		.foo { cursor: pointer; text-transform: uppercase; }
+	&lt;/style&gt;
+&lt;/section&gt;</code></pre>
+
+	<h2>Specify no render</h2>
+	<pre class="language-markup" data-render-markup="off"><code>&lt;section&gt;
+	No markup rendered here, because of the &lt;pre data-render-markup="off"&gt; attribute.
+&lt;/section&gt;</code></pre>
+
+	<h2>Inline code</h2>
+	<p>This is some <code class="language-markup">&lt;i&gt;inline&lt;/i&gt;</code> code, naturally with no rendering.
+
+	<h2>SVG</h2>
+	<p>This plugin will work with the <a href="plugins/file-highlight/">File Highlight</a> plugin, and <em>can</em> render non-HTML.</p>
+	<pre data-src="logo.svg"></pre>
+	<!-- a white SVG isn't overly impressive on a light background -->
+	<style>.prism-markup-render path { fill: slategray; }</style>
+</section>
+
+<footer data-src="templates/footer.html" data-type="text/html"></footer>
+
+<script src="prism.js"></script>
+<script src="plugins/render-markup/prism-render-markup.js"></script>
+<script src="utopia.js"></script>
+<script src="components.js"></script>
+<script src="code.js"></script>
+<script>
+	(function() {
+		var setPluginThemeCss = function(value) {
+			var theme = (value || "").replace(/^prism-?/,'') || 'default';
+			document.getElementById("plugin-theme-css").href = "plugins/render-markup/prism-render-markup-" + theme + ".css";
+		}
+		document.getElementById("theme").addEventListener("click", function(e) {
+			if (e.target.name === "theme") {
+				setPluginThemeCss(e.target.value);
+			}
+		});
+		setPluginThemeCss(localStorage["theme"]);
+	})()
+</script>
+
+</body>
+</html>

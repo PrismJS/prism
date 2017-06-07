@@ -1,0 +1,6 @@
+.prism-markup-render {
+	white-space: initial;
+	margin-top: -.5em;
+	border-top: 1px solid silver;
+	background: hsl(24, 20%, 90%);
+}
