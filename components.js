@@ -594,7 +594,8 @@ var components = {
 		"wpd": "WebPlatform Docs",
 		"custom-class": {
 			"title": "Custom Class",
-			"owner": "dvkndn"
+			"owner": "dvkndn",
+			"noCSS": true
 		},
 		"file-highlight": {
 			"title": "File Highlight",

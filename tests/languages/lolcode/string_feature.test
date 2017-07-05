@@ -3,6 +3,7 @@
 "fo:"o"
 "foo:)bar:>baz"
 "foo:{bar}baz"
+"foo BTW bar" BTW and out
 
 ----------------------------------------------------
 
@@ -25,7 +26,9 @@
 		"\"foo",
 		["variable", ":{bar}"],
 		"baz\""
-	]]
+	]],
+	["string", ["\"foo BTW bar\""]],
+	["comment", "BTW and out"]
 ]
 
 ----------------------------------------------------

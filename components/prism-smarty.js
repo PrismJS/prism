@@ -9,7 +9,7 @@
 	var smarty_litteral_start = '{literal}';
 	var smarty_litteral_end = '{/literal}';
 	var smarty_litteral_mode = false;
-	
+
 	Prism.languages.smarty = Prism.languages.extend('markup', {
 		'smarty': {
 			pattern: smarty_pattern,
@@ -93,9 +93,16 @@
 				if(match === smarty_litteral_start) {
 					smarty_litteral_mode = true;
 				}
-				env.tokenStack.push(match);
 
-				return '___SMARTY' + env.tokenStack.length + '___';
+				var i = env.tokenStack.length;
+				// Check for existing strings
+				while (env.backupCode.indexOf('___SMARTY' + i + '___') !== -1)
+					++i;
+
+				// Create a sparse array
+				env.tokenStack[i] = match;
+
+				return '___SMARTY' + i + '___';
 			}
 			return match;
 		});
@@ -116,9 +123,12 @@
 			return;
 		}
 
-		for (var i = 0, t; t = env.tokenStack[i]; i++) {
+		for (var i = 0, keys = Object.keys(env.tokenStack); i < keys.length; ++i) {
+			var k = keys[i];
+			var t = env.tokenStack[k];
+
 			// The replace prevents $$, $&, $`, $', $n, $nn from being interpreted as special patterns
-			env.highlightedCode = env.highlightedCode.replace('___SMARTY' + (i + 1) + '___', Prism.highlight(t, env.grammar, 'smarty').replace(/\$/g, '$$$$'));
+			env.highlightedCode = env.highlightedCode.replace('___SMARTY' + k + '___', Prism.highlight(t, env.grammar, 'smarty').replace(/\$/g, '$$$$'));
 		}
 
 		env.element.innerHTML = env.highlightedCode;
