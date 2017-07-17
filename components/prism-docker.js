@@ -7,3 +7,5 @@ Prism.languages.docker = {
 	'comment': /#.*/,
 	'punctuation': /---|\.\.\.|[:[\]{}\-,|>?]/
 };
+
+Prism.languages.dockerfile = Prism.languages.docker;
