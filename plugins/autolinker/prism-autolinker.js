@@ -71,6 +71,7 @@ Prism.hooks.add('wrap', function(env) {
 		
 		env.attributes.href = href;
 	}
+	env.content = decodeURIComponent(env.content);
 });
 
 })();
