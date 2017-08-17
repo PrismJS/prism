@@ -375,6 +375,11 @@ var components = {
 			"title": "OCaml",
 			"owner": "Golmote"
 		},
+		"opencl": {
+			"title": "OpenCL",
+			"require": "cpp",
+			"owner": "Milania1"
+		},
 		"oz": {
 			"title": "Oz",
 			"owner": "Golmote"
