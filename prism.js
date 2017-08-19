@@ -256,6 +256,12 @@ var _ = _self.Prism = {
 	},
 
 	highlight: function (text, grammar, language) {
+		// Removes empty lines at the beginning/ending
+		var lines = e.split("\n");
+		while (lines[0].trim() === "") lines = lines.splice(1);
+		while (lines[lines.length - 1].trim() === "") lines.pop();
+		text = lines.join("\n");
+
 		var tokens = _.tokenize(text, grammar);
 		return Token.stringify(_.util.encode(tokens), language);
 	},
