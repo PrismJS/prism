@@ -197,7 +197,7 @@ var _ = _self.Prism = {
 			parent.className = parent.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language;
 		}
 
-		var code = element.textContent;
+		var code = _.removeEmptyLines(element.textContent);
 
 		var env = {
 			element: element,
@@ -253,6 +253,14 @@ var _ = _self.Prism = {
 			_.hooks.run('after-highlight', env);
 			_.hooks.run('complete', env);
 		}
+	},
+
+	removeEmptyLines: function(text) {
+		// Removes empty lines at the beginning/ending
+		var lines = text.split("\n");
+		while (lines[0].trim() === "") lines = lines.splice(1);
+		while (lines[lines.length - 1].trim() === "") lines.pop();
+		return lines.join("\n");
 	},
 
 	highlight: function (text, grammar, language) {
