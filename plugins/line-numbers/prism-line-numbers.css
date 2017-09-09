@@ -6,6 +6,8 @@ pre.line-numbers {
 
 pre.line-numbers > code {
 	position: relative;
+    display: inline-block;
+    white-space: inherit;
 }
 
 .line-numbers .line-numbers-rows {
