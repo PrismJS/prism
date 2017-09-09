@@ -458,6 +458,10 @@ var components = {
 			"require": ["markup", "javascript"],
 			"owner": "vkbansal"
 		},
+		"renpy": {
+			"title": "Ren'py",
+			"owner": "HyuchiaDiego"
+        },
 		"reason": {
 			"title": "Reason",
 			"require": "clike",
