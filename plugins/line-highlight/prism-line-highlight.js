@@ -114,9 +114,9 @@ Prism.hooks.add('before-sanity-check', function(env) {
 	if (!pre || !lines || !/pre/i.test(pre.nodeName)) {
 		return;
 	}
-
+	
 	/*
-	 * Cleanup for other plugins (e.g. autoloader).
+	* Cleanup for other plugins (e.g. autoloader).
 	 *
 	 * Sometimes <code> blocks are highlighted multiple times. It is necessary
 	 * to cleanup any left-over tags, because the whitespace inside of the <div>
@@ -127,7 +127,6 @@ Prism.hooks.add('before-sanity-check', function(env) {
 		num += line.textContent.length;
 		line.parentNode.removeChild(line);
 	});
-
 	// Remove extra whitespace
 	if (num && /^( \n)+$/.test(env.code.slice(-num))) {
 		env.code = env.code.slice(0, -num);
@@ -143,14 +142,11 @@ Prism.hooks.add('complete', function(env) {
 	}
 
 	clearTimeout(fakeTimer);
-
 	highlightLines(pre, lines);
 
 	fakeTimer = setTimeout(applyHash, 1);
 });
 
-if(window.addEventListener) {
 	window.addEventListener('hashchange', applyHash);
-}
 
 })();
