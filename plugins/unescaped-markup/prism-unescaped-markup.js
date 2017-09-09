@@ -22,6 +22,14 @@
 
 			pre.className = code.className = env.element.className;
 
+			if (env.element.dataset) {
+				Object.keys(env.element.dataset).forEach(function (key) {
+					if (Object.prototype.hasOwnProperty.call(env.element.dataset, key)) {
+						pre.dataset[key] = env.element.dataset[key];
+					}
+				});
+			}
+
 			env.code = env.code.replace(/&lt;\/script(>|&gt;)/gi, "</scri" + "pt>");
 			code.textContent = env.code;
 
