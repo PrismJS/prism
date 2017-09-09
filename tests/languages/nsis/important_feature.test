@@ -22,6 +22,7 @@
 !macro
 !makensis
 !packhdr
+!pragma
 !searchparse
 !searchreplace
 !tempfile
@@ -56,6 +57,7 @@
 	["important", "!macro"],
 	["important", "!makensis"],
 	["important", "!packhdr"],
+	["important", "!pragma"],
 	["important", "!searchparse"],
 	["important", "!searchreplace"],
 	["important", "!tempfile"],
