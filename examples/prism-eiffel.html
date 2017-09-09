@@ -2,19 +2,16 @@
 <p>To use this language, use the class "language-eiffel".</p>
 
 <h2>Comments</h2>
-<pre><code>
--- A comment
+<pre><code>-- A comment
 </code></pre>
 
 <h2>Simple string and character</h2>
-<pre><code>
-"A simple string with %"double quotes%""
+<pre><code>"A simple string with %"double quotes%""
 'a'
 </code></pre>
 
 <h2>Verbatim-strings</h2>
-<pre><code>
-"[
+<pre><code>"[
   A aligned verbatim string
 ]"
 "{
@@ -23,8 +20,7 @@
 </code></pre>
 
 <h2>Numbers</h2>
-<pre><code>
-1_000
+<pre><code>1_000
 1_000.
 1_000.e+1_000
 1_000.1_000e-1_000
@@ -34,9 +30,19 @@
 0c75_22
 </code></pre>
 
+<h2>Class names</h2>
+<pre><code>deferred class
+    A [G]
+
+feature
+    items: G
+        deferred  end
+
+end
+</code></pre>
+
 <h2>Full example</h2>
-<pre><code>
-note
+<pre><code>note
   description: "Represents a person."
 
 class
@@ -66,10 +72,4 @@ feature -- Access
       -- Full name or Void if unknown.
 
 end
-</code></pre>
-
-<h2>Known failures</h2>
-<h3>Strings in comments</h3>
-<pre><code>
--- A "hacked" comment
 </code></pre>
