@@ -345,6 +345,11 @@ var components = {
 			"title": "Monkey",
 			"owner": "Golmote"
 		},
+		"n4js":{
+			"title": "N4JS",
+			"require": "javascript",
+			"owner": "bsmith-n4"
+		},
 		"nasm": {
 			"title": "NASM",
 			"owner": "rbmj"
