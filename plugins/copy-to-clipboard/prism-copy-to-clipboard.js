@@ -24,9 +24,6 @@
 
 	if (!Clipboard && typeof require === 'function') {
 		Clipboard = require('clipboard');
-		if (_nativeClipboard) {
-			window.Clipboard = _nativeClipboard;
-		}
 	}
 
 	var callbacks = [];
