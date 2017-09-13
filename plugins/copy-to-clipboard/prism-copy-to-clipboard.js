@@ -10,6 +10,17 @@
 	}
 
 	var Clipboard = window.Clipboard || undefined;
+	var _nativeClipboard;
+
+	try {
+		// Try using something ClipboardJS-specific
+		new Clipboard('').destroy();
+	} catch(e) {
+		// Existing Clipboard variable is not ClipboardJS.
+		// Store it so we can restore it later.
+		_nativeClipboard = Clipboard;
+		Clipboard = undefined;
+	}
 
 	if (!Clipboard && typeof require === 'function') {
 		Clipboard = require('clipboard');
@@ -23,6 +34,9 @@
 
 		script.onload = function() {
 			Clipboard = window.Clipboard;
+			if (_nativeClipboard) {
+				window.Clipboard = _nativeClipboard;
+			}
 
 			if (Clipboard) {
 				while (callbacks.length) {
