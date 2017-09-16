@@ -85,6 +85,11 @@ var components = {
 			"title": "AppleScript",
 			"owner": "Golmote"
 		},
+		"arduino": {
+			"title": "Arduino",
+			"require": "cpp",
+			"owner": "eisbehr-"
+		},
 		"asciidoc": {
 			"title": "AsciiDoc",
 			"owner": "Golmote"
