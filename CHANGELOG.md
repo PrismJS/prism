@@ -1,5 +1,17 @@
 # Prism Changelog
 
+## 1.8.0 (2017-09-16)
+
+### New components
+
+* __Arduino__ ([#1184](https://github.com/PrismJS/prism/issues/1184)) [[`edf2454`](https://github.com/PrismJS/prism/commit/edf2454)]
+* __OpenCL__ ([#1175](https://github.com/PrismJS/prism/issues/1175)) [[`131e8fa`](https://github.com/PrismJS/prism/commit/131e8fa)]
+
+### Updated plugins
+
+* __Autolinker__:
+	* Silently catch any error thrown by decodeURIComponent. Fixes [#1186](https://github.com/PrismJS/prism/issues/1186) [[`2e43fcf`](https://github.com/PrismJS/prism/commit/2e43fcf)] 
+
 ## 1.7.0 (2017-09-09)
 
 ### New components
