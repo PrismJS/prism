@@ -1,5 +1,11 @@
 # Prism Changelog
 
+## 1.8.1 (2017-09-16)
+
+### Other changes
+
+* Add Arduino to components.js [[`290a3c6`](https://github.com/PrismJS/prism/commit/290a3c6)]
+
 ## 1.8.0 (2017-09-16)
 
 ### New components
