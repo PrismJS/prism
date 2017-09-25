@@ -109,13 +109,37 @@
 		lineNumbersWrapper.className = 'line-numbers-rows';
 		lineNumbersWrapper.innerHTML = lines;
 
-		if (pre.hasAttribute('data-start')) {
-			pre.style.counterReset = 'linenumber ' + (parseInt(pre.getAttribute('data-start'), 10) - 1);
+		if (pre.hasAttribute('data-line-numbers-start')) {
+			pre.style.counterReset = 'linenumber ' + (parseInt(pre.getAttribute('data-line-numbers-start'), 10) - 1);
 		}
 
 		env.element.appendChild(lineNumbersWrapper);
 
 		_resizeElement(pre);
 	});
+	
+	/**
+	 * Global exports
+	 */
+	Prism.plugins.lineNumbers = {
+		/**
+		 * Get node for provided line number
+		 * @param {Element} element pre element
+		 * @param {Number} number line number
+		 * @return {Element|undefined}
+		 */
+		getLine: function (element, number) {
+			if (element.tagName !== 'PRE' || !element.classList.contains(PLUGIN_CLASS)) {
+				return;
+			}
+			
+			var lineNumberStart = element.getAttribute('data-line-numbers-start') || 0;
+			var lineNumberRows = element.querySelector('.line-numbers-rows');
+			
+			number = Math.abs(lineNumberStart) + number;
+			
+			return lineNumberRows.children[number];
+		}
+	};
 
 }());
