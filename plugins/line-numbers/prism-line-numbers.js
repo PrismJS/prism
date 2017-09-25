@@ -9,20 +9,27 @@
 	 * @type {String}
 	 */
 	var PLUGIN_CLASS = 'line-numbers';
+	
+	/**
+	 * Regular expression used for determining line breaks
+	 * @type {RegExp}
+	 */
+	var NEW_LINE_EXP = /\n(?!$)/g;
 
 	/**
 	 * Resizes line numbers spans according to height of line of code
-	 * @param  {Element} element <pre> element
+	 * @param {Element} element <pre> element
 	 */
 	var _resizeElement = function (element) {
 		var codeStyles = getStyles(element);
+		var code = element.querySelector('code');
 		var whiteSpace = codeStyles['white-space'];
 
 		if (whiteSpace === 'pre-wrap' || whiteSpace === 'pre-line') {
 			var codeElement = element.querySelector('code');
 			var lineNumbersWrapper = element.querySelector('.line-numbers-rows');
 			var lineNumberSizer = element.querySelector('.line-numbers-sizer');
-			var codeLines = element.textContent.split('\n');
+			var codeLines = code.textContent.split(NEW_LINE_EXP);
 
 			if (!lineNumberSizer) {
 				lineNumberSizer = document.createElement('span');
@@ -76,21 +83,21 @@
 			return;
 		}
 
-		if (env.element.querySelector(".line-numbers-rows")) {
+		if (env.element.querySelector('.line-numbers-rows')) {
 			// Abort if line numbers already exists
 			return;
 		}
 
 		if (clsReg.test(env.element.className)) {
-			// Remove the class "line-numbers" from the <code>
+			// Remove the class 'line-numbers' from the <code>
 			env.element.className = env.element.className.replace(clsReg, ' ');
 		}
 		if (!clsReg.test(pre.className)) {
-			// Add the class "line-numbers" to the <pre>
+			// Add the class 'line-numbers' to the <pre>
 			pre.className += ' line-numbers';
 		}
 
-		var match = env.code.match(/\n(?!$)/g);
+		var match = env.code.match(NEW_LINE_EXP);
 		var linesNum = match ? match.length + 1 : 1;
 		var lineNumbersWrapper;
 
