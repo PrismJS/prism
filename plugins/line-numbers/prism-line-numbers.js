@@ -22,14 +22,13 @@
 	 */
 	var _resizeElement = function (element) {
 		var codeStyles = getStyles(element);
-		var code = element.querySelector('code');
 		var whiteSpace = codeStyles['white-space'];
 
 		if (whiteSpace === 'pre-wrap' || whiteSpace === 'pre-line') {
 			var codeElement = element.querySelector('code');
 			var lineNumbersWrapper = element.querySelector('.line-numbers-rows');
 			var lineNumberSizer = element.querySelector('.line-numbers-sizer');
-			var codeLines = code.textContent.split(NEW_LINE_EXP);
+			var codeLines = codeElement.textContent.split(NEW_LINE_EXP);
 
 			if (!lineNumberSizer) {
 				lineNumberSizer = document.createElement('span');
@@ -109,8 +108,8 @@
 		lineNumbersWrapper.className = 'line-numbers-rows';
 		lineNumbersWrapper.innerHTML = lines;
 
-		if (pre.hasAttribute('data-line-numbers-start')) {
-			pre.style.counterReset = 'linenumber ' + (parseInt(pre.getAttribute('data-line-numbers-start'), 10) - 1);
+		if (pre.hasAttribute('data-start')) {
+			pre.style.counterReset = 'linenumber ' + (parseInt(pre.getAttribute('data-start'), 10) - 1);
 		}
 
 		env.element.appendChild(lineNumbersWrapper);
@@ -133,7 +132,7 @@
 				return;
 			}
 			
-			var lineNumberStart = element.getAttribute('data-line-numbers-start') || 0;
+			var lineNumberStart = element.getAttribute('data-start') || 0;
 			var lineNumberRows = element.querySelector('.line-numbers-rows');
 			
 			number = Math.abs(lineNumberStart) + number;

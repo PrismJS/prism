@@ -36,7 +36,7 @@ var isLineHeightRounded = (function() {
 }());
 
 function highlightLines(pre, lines, classes) {
-	lines = lines || pre.getAttribute('data-line');
+	lines = typeof lines === 'string' ? lines : pre.getAttribute('data-line');
 	
 	var ranges = lines.replace(/\s+/g, '').split(','),
 	    offset = +pre.getAttribute('data-line-offset') || 0;
