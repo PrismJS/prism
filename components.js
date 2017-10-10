@@ -273,7 +273,7 @@ var components = {
 			"owner": "Golmote"
 		},
 		"pug": {
-			"title": "pug",
+			"title": "Pug",
 			"require": "javascript",
 			"owner": "Golmote"
 		},
