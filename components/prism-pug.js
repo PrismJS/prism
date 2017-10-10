@@ -7,7 +7,7 @@
 	// - Add explicit support for plain text using |
 	// - Add support for markup embedded in plain text
 
-	Prism.languages.jade = {
+	Prism.languages.pug = {
 
 		// Multiline stuff should appear before the rest
 
@@ -193,6 +193,6 @@
 		}
 	}
 
-	Prism.languages.insertBefore('jade', 'filter', all_filters);
+	Prism.languages.insertBefore('pug', 'filter', all_filters);
 
 }(Prism));
