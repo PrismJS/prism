@@ -272,8 +272,8 @@ var components = {
 			"title": "J",
 			"owner": "Golmote"
 		},
-		"jade": {
-			"title": "Jade",
+		"pug": {
+			"title": "pug",
 			"require": "javascript",
 			"owner": "Golmote"
 		},
