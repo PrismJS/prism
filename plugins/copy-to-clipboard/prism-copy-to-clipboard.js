@@ -11,6 +11,10 @@
 
 	var Clipboard = window.Clipboard || undefined;
 
+	if (/(native code)/.test(Clipboard.toString())) {
+		Clipboard = undefined;
+	}
+
 	if (!Clipboard && typeof require === 'function') {
 		Clipboard = require('clipboard');
 	}
