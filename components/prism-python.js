@@ -12,7 +12,7 @@ Prism.languages.python= {
 		greedy: true
 	},
 	'function' : {
-		pattern: /((?:^|\s)def[ \t]+)[a-zA-Z_][a-zA-Z0-9_]*(?=\()/g,
+		pattern: /((?:^|\s)def[ \t]+)[a-zA-Z_][a-zA-Z0-9_]*(?=\s*\()/g,
 		lookbehind: true
 	},
 	'class-name': {
