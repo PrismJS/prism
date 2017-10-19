@@ -272,11 +272,6 @@ var components = {
 			"title": "J",
 			"owner": "Golmote"
 		},
-		"pug": {
-			"title": "Pug",
-			"require": "javascript",
-			"owner": "Golmote"
-		},
 		"java": {
 			"title": "Java",
 			"require": "clike",
@@ -442,6 +437,11 @@ var components = {
 			"title": "Protocol Buffers",
 			"require": "clike",
 			"owner": "just-boris"
+		},
+		"pug": {
+			"title": "Pug",
+			"require": "javascript",
+			"owner": "Golmote"
 		},
 		"puppet": {
 			"title": "Puppet",
