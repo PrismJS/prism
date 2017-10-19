@@ -1,5 +1,19 @@
 # Prism Changelog
 
+## 1.8.2 (2017-10-19)
+
+### Updated components
+* __Jade__:
+	* Jade has been renamed to __Pug__ ([#1201](https://github.com/PrismJS/prism/issues/1201)) [[`bcfef7c`](https://github.com/PrismJS/prism/commit/bcfef7c)]
+* __JavaScript__:
+	* Better highlighting of functions ([#1190](https://github.com/PrismJS/prism/issues/1190)) [[`8ee2cd3`](https://github.com/PrismJS/prism/commit/8ee2cd3)]
+
+### Update plugins
+* __Copy to clipboard__:
+	* Fix error occurring when using in Chrome 61+ ([#1206](https://github.com/PrismJS/prism/issues/1206)) [[`b41d571`](https://github.com/PrismJS/prism/commit/b41d571)]
+* __Show invisibles__:
+	* Prevent error when using with Autoloader plugin ([#1195](https://github.com/PrismJS/prism/issues/1195)) [[`ed8bdb5`](https://github.com/PrismJS/prism/commit/ed8bdb5)]
+
 ## 1.8.1 (2017-09-16)
 
 ### Other changes
