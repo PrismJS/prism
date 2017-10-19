@@ -1,5 +1,11 @@
 # Prism Changelog
 
+## 1.8.3 (2017-10-19)
+
+### Other changes
+
+* Fix inclusion tests for Pug [[`955c2ab`](https://github.com/PrismJS/prism/commit/955c2ab)]
+
 ## 1.8.2 (2017-10-19)
 
 ### Updated components
