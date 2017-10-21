@@ -1,6 +1,9 @@
 Prism.languages.json = {
 	'property': /"(?:\\.|[^\\"])*"(?=\s*:)/ig,
-	'string': /"(?!:)(?:\\.|[^\\"])*"(?!:)/g,
+	'string': {
+		pattern: /"(?:\\.|[^\\"])*"(?!:)/g,
+		greedy: true
+	},
 	'number': /\b-?(0x[\dA-Fa-f]+|\d*\.?\d+([Ee][+-]?\d+)?)\b/g,
 	'punctuation': /[{}[\]);,]/g,
 	'operator': /:/g,
