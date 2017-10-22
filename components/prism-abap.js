@@ -1,8 +1,8 @@
 Prism.languages.abap = {
 	'comment': /^\*.*/m,
-	'string' : /(`|')(\\?.)*?\1/m,
+	'string' : /(`|')(?:\\.|(?!\1)[^\\\r\n])*\1/m,
 	'string-template': {
-		pattern: /(\||\})(\\?.)*?(?=\||\{)/,
+		pattern: /([|}])(?:\\.|[^\\|{\r\n])*(?=[|{])/,
 		lookbehind: true,
 		alias: 'string'
 	},
