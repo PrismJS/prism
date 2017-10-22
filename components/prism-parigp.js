@@ -1,7 +1,7 @@
 Prism.languages.parigp = {
 	'comment': /\/\*[\s\S]*?\*\/|\\\\.*/,
 	'string': {
-		pattern: /"(?:[^"\\]|\\.)*"/,
+		pattern: /"(?:[^"\\\r\n]|\\.)*"/,
 		greedy: true
 	},
 	// PARI/GP does not care about white spaces at all
