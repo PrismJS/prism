@@ -15,7 +15,7 @@ Prism.languages.lolcode = {
 		},
 		greedy: true
 	},
-	'number': /(-|\b)\d*\.?\d+/,
+	'number': /(?:-|\b)\d*\.?\d+/,
 	'symbol': {
 		pattern: /(^|\s)(?:A )?(?:YARN|NUMBR|NUMBAR|TROOF|BUKKIT|NOOB)(?=\s|,|$)/,
 		lookbehind: true,
