@@ -6,13 +6,13 @@ Prism.languages.insertBefore('processing', 'number', {
 	// Special case: XML is a type
 	'constant': /\b(?!XML\b)[A-Z][A-Z\d_]+\b/,
 	'type': {
-		pattern: /\b(?:boolean|byte|char|color|double|float|int|XML|[A-Z][A-Za-z\d_]*)\b/,
+		pattern: /\b(?:boolean|byte|char|color|double|float|int|XML|[A-Z]\w*)\b/,
 		alias: 'variable'
 	}
 });
 
 // Spaces are allowed between function name and parenthesis
-Prism.languages.processing['function'].pattern = /[a-z0-9_]+(?=\s*\()/i;
+Prism.languages.processing['function'].pattern = /\w+(?=\s*\()/;
 
 // Class-names is not styled by default
 Prism.languages.processing['class-name'].alias = 'variable';
