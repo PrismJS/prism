@@ -15,7 +15,7 @@ Prism.languages.aspnet = Prism.languages.extend('markup', {
 	}
 });
 // Regexp copied from prism-markup, with a negative look-ahead added
-Prism.languages.aspnet.tag.pattern = /<(?!%)\/?[^\s>\/]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\\1|\\?(?!\1)[\s\S])*\1|[^\s'">=]+))?)*\s*\/?>/i;
+Prism.languages.aspnet.tag.pattern = /<(?!%)\/?[^\s>\/]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/i;
 
 // match directives of attribute value foo="<% Bar %>"
 Prism.languages.insertBefore('inside', 'punctuation', {
