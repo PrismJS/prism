@@ -25,11 +25,7 @@
 			["punctuation", "<"],
 			"a"
 		]],
-		["attr-name", ["href"]],
-		["attr-value", [
-			["punctuation", "="],
-			["punctuation", "\""]
-		]],
+		["attr-name", ["href=\""]],
 		["property", [
 			"{{ ",
 			["variable", "story"],
