@@ -1,0 +1,37 @@
+(def)
+(defmacro)
+(if)
+(do)
+(let)
+(var)
+(fn)
+
+----------------------------------------------------
+
+[
+	["punctuation", "("],
+  ["keyword", "def"],
+	["punctuation", ")"],
+	["punctuation", "("],
+  ["keyword", "defmacro"],
+	["punctuation", ")"],
+	["punctuation", "("],
+  ["keyword", "if"],
+	["punctuation", ")"],
+	["punctuation", "("],
+  ["keyword", "do"],
+	["punctuation", ")"],
+	["punctuation", "("],
+  ["keyword", "let"],
+	["punctuation", ")"],
+	["punctuation", "("],
+  ["keyword", "var"],
+	["punctuation", ")"],
+	["punctuation", "("],
+  ["keyword", "fn"],
+	["punctuation", ")"]
+]
+
+----------------------------------------------------
+
+Checks for keywords.
