@@ -152,6 +152,10 @@ var components = {
 			"require": "javascript",
 			"owner": "R-osey"
 		},
+		"clojure": {
+			"title": "Clojure",
+			"owner": "troglotit"
+		},
 		"crystal": {
 			"title": "Crystal",
 			"require": "ruby",
