@@ -5,10 +5,10 @@
 	}
 
 	/**
-	 * Class name for <pre> which is activating the plugin
+	 * Plugin name which is used as a class name for <pre> which is activating the plugin
 	 * @type {String}
 	 */
-	var PLUGIN_CLASS = 'line-numbers';
+	var PLUGIN_NAME = 'line-numbers';
 	
 	/**
 	 * Regular expression used for determining line breaks
@@ -63,7 +63,7 @@
 	};
 
 	window.addEventListener('resize', function () {
-		Array.prototype.forEach.call(document.querySelectorAll('pre.' + PLUGIN_CLASS), _resizeElement);
+		Array.prototype.forEach.call(document.querySelectorAll('pre.' + PLUGIN_NAME), _resizeElement);
 	});
 
 	Prism.hooks.add('complete', function (env) {
@@ -115,6 +115,13 @@
 		env.element.appendChild(lineNumbersWrapper);
 
 		_resizeElement(pre);
+
+		Prism.hooks.run('line-numbers', env);
+	});
+
+	Prism.hooks.add('line-numbers', function (env) {
+		env.plugins = env.plugins || {};
+		env.plugins.lineNumbers = true;
 	});
 	
 	/**
@@ -128,16 +135,24 @@
 		 * @return {Element|undefined}
 		 */
 		getLine: function (element, number) {
-			if (element.tagName !== 'PRE' || !element.classList.contains(PLUGIN_CLASS)) {
+			if (element.tagName !== 'PRE' || !element.classList.contains(PLUGIN_NAME)) {
 				return;
 			}
-			
-			var lineNumberStart = element.getAttribute('data-start') || 0;
+
 			var lineNumberRows = element.querySelector('.line-numbers-rows');
-			
-			number = Math.abs(lineNumberStart) + number;
-			
-			return lineNumberRows.children[number];
+			var lineNumberStart = parseInt(element.getAttribute('data-start'), 10) || 1;
+			var lineNumberEnd = lineNumberStart + (lineNumberRows.children.length - 1);
+
+			if (number < lineNumberStart) {
+				number = lineNumberStart;
+			}
+			if (number > lineNumberEnd) {
+				number = lineNumberEnd;
+			}
+
+			var lineIndex = number - lineNumberStart;
+
+			return lineNumberRows.children[lineIndex];
 		}
 	};
 

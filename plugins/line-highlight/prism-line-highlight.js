@@ -45,16 +45,16 @@ function highlightLines(pre, lines, classes) {
 	var lineHeight = parseMethod(getComputedStyle(pre).lineHeight);
 	var hasLineNumbers = hasClass(pre, 'line-numbers');
 
-	for (var i=0, range; range = ranges[i++];) {
-		range = range.split('-');
+	for (var i=0, currentRange; currentRange = ranges[i++];) {
+		var range = currentRange.split('-');
 
 		var start = +range[0],
 		    end = +range[1] || start;
 
-		var line = pre.querySelector('.line-highlight') || document.createElement('div');
+		var line = pre.querySelector('.line-highlight[data-range="' + currentRange + '"]') || document.createElement('div');
 
-		line.textContent = Array(end - start + 2).join(' \n');
 		line.setAttribute('aria-hidden', 'true');
+		line.setAttribute('data-range', currentRange);
 		line.className = (classes || '') + ' line-highlight';
 
 		//if the line-numbers plugin is enabled, then there is no reason for this plugin to display the line numbers
@@ -77,6 +77,8 @@ function highlightLines(pre, lines, classes) {
 			}
 			
 			line.style.top = (start - offset - 1) * lineHeight + 'px';
+
+			line.textContent = new Array(end - start + 2).join(' \n');
 		}
 
 		//allow this to play nicely with the line-numbers plugin
@@ -147,7 +149,7 @@ Prism.hooks.add('before-sanity-check', function(env) {
 	}
 });
 
-Prism.hooks.add('complete', function(env) {
+Prism.hooks.add('complete', function completeHook(env) {
 	var pre = env.element.parentNode;
 	var lines = pre && pre.getAttribute('data-line');
 
@@ -156,14 +158,24 @@ Prism.hooks.add('complete', function(env) {
 	}
 
 	clearTimeout(fakeTimer);
-	highlightLines(pre, lines);
 
-	fakeTimer = setTimeout(applyHash, 1);
+	var hasLineNumbers = Prism.plugins.lineNumbers;
+	var isLineNumbersLoaded = env.plugins && env.plugins.lineNumbers;
+
+	if (hasLineNumbers && !isLineNumbersLoaded) {
+		Prism.hooks.add('line-numbers', completeHook);
+	} else {
+		highlightLines(pre, lines);
+		fakeTimer = setTimeout(applyHash, 1);
+	}
 });
 
 	window.addEventListener('hashchange', applyHash);
 	window.addEventListener('resize', function () {
-		Array.prototype.forEach.call(document.querySelectorAll('pre[data-line]'), highlightLines);
+		var preElements = document.querySelectorAll('pre[data-line]');
+		Array.prototype.forEach.call(preElements, function (pre) {
+			highlightLines(pre);
+		});
 	});
 
 })();
