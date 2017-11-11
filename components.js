@@ -202,6 +202,11 @@ var components = {
 			"require": "clike",
 			"owner": "simonreynolds7"
 		},
+		"flow": {
+			"title": "Flow",
+			"require": "javascript",
+			"owner": "Golmote"
+		},
 		"fortran": {
 			"title": "Fortran",
 			"owner": "Golmote"
