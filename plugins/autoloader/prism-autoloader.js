@@ -10,8 +10,19 @@
 
 	var ignored_language = 'none';
 
+	var script = document.getElementsByTagName('script');
+	script = script[script.length - 1];
+	var languages_path;
+	if(script.hasAttribute('data-autoloader-path')) {
+		var path = script.getAttribute('data-autoloader-path').trim();
+		if(path != '') {
+			languages_path = path;
+		}
+	} else {
+		path = script.src.replace(/[\w\-]+\.js$/, 'components/');
+	}
 	var config = Prism.plugins.autoloader = {
-		languages_path: 'components/',
+		languages_path: path,
 		use_minified: true
 	};
 
