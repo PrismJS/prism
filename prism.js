@@ -160,6 +160,10 @@ var _ = _self.Prism = {
 	plugins: {},
 
 	highlightAll: function(async, callback) {
+		_.highlightAllUnder(document, async, callback);
+	},
+
+	highlightAllUnder: function(container, async, callback) {
 		var env = {
 			callback: callback,
 			selector: 'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'
@@ -167,7 +171,7 @@ var _ = _self.Prism = {
 
 		_.hooks.run("before-highlightall", env);
 
-		var elements = env.elements || document.querySelectorAll(env.selector);
+		var elements = env.elements || container.querySelectorAll(env.selector);
 
 		for (var i=0, element; element = elements[i++];) {
 			_.highlightElement(element, async === true, env.callback);
