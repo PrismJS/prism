@@ -46,7 +46,6 @@ pre[class*="language-"]>code {
 
 code[class*="language"] {
 	max-height: inherit;
-	height: 100%;
 	padding: 0 1em;
 	display: block;
 	overflow: auto;
