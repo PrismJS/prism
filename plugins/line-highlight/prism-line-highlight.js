@@ -162,7 +162,7 @@ Prism.hooks.add('complete', function completeHook(env) {
 	var hasLineNumbers = Prism.plugins.lineNumbers;
 	var isLineNumbersLoaded = env.plugins && env.plugins.lineNumbers;
 
-	if (hasLineNumbers && !isLineNumbersLoaded) {
+	if (hasClass(pre, 'line-numbers') && hasLineNumbers && !isLineNumbersLoaded) {
 		Prism.hooks.add('line-numbers', completeHook);
 	} else {
 		highlightLines(pre, lines);
