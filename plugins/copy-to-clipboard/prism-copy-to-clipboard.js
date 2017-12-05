@@ -11,7 +11,7 @@
 
 	var Clipboard = window.Clipboard || undefined;
 
-	if (/(native code)/.test(Clipboard.toString())) {
+	if (Clipboard && /(native code)/.test(Clipboard.toString())) {
 		Clipboard = undefined;
 	}
 
