@@ -35,7 +35,7 @@
 			}
 		};
 
-		script.src = 'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.8/clipboard.min.js';
+		script.src = 'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js';
 		head.appendChild(script);
 	}
 
