@@ -2,9 +2,6 @@ pre[data-line] {
 	position: relative;
 	padding: 1em 0 1em 3em;
 }
-pre[data-line] > code {
-	white-space: inherit;
-}
 
 .line-highlight {
 	position: absolute;
