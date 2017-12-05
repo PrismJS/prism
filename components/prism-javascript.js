@@ -45,7 +45,8 @@ if (Prism.languages.markup) {
 			pattern: /(<script[\s\S]*?>)[\s\S]*?(?=<\/script>)/i,
 			lookbehind: true,
 			inside: Prism.languages.javascript,
-			alias: 'language-javascript'
+			alias: 'language-javascript',
+			greedy: true
 		}
 	});
 }
