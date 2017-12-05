@@ -396,7 +396,7 @@ function getSortedComponents(components, requireName, sorted) {
 			}
 		}
 		if (notNow) {
-			tmp = sorted[i];
+			var tmp = sorted[i];
 			sorted[i] = sorted[indexOfRequirement];
 			sorted[indexOfRequirement] = tmp;
 		}
