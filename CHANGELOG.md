@@ -1,5 +1,35 @@
 # Prism Changelog
 
+## 1.9.0 (2017-12-06)
+
+### New components
+* __Flow__ [[`d27b70d`](https://github.com/PrismJS/prism/commit/d27b70d)]
+
+### Updated components
+* __CSS__:
+	* Unicode characters in CSS properties ([#1227](https://github.com/PrismJS/prism/issues/1227)) [[`f234ea4`](https://github.com/PrismJS/prism/commit/f234ea4)]
+* __JSX__:
+	* JSX: Improve highlighting support. Fix [#1235](https://github.com/PrismJS/prism/issues/1235) and [#1236](https://github.com/PrismJS/prism/issues/1236) [[`f41c5cd`](https://github.com/PrismJS/prism/commit/f41c5cd)]
+* __Markup__:
+	* Make CSS and JS inclusions in Markup greedy. Fix [#1240](https://github.com/PrismJS/prism/issues/1240) [[`7dc1e45`](https://github.com/PrismJS/prism/commit/7dc1e45)] 
+* __PHP__:
+	* Add support for multi-line strings. Fix [#1233](https://github.com/PrismJS/prism/issues/1233) [[`9a542a0`](https://github.com/PrismJS/prism/commit/9a542a0)] 
+
+### Updated plugins
+* __Copy to clipboard__:
+	* Fix test for native Clipboard. Fix [#1241](https://github.com/PrismJS/prism/issues/1241) [[`e7b5e82`](https://github.com/PrismJS/prism/commit/e7b5e82)]
+	* Copy to clipboard: Update to v1.7.1. Fix [#1220](https://github.com/PrismJS/prism/issues/1220) [[`a1b85e3`](https://github.com/PrismJS/prism/commit/a1b85e3), [`af50e44`](https://github.com/PrismJS/prism/commit/af50e44)]
+* __Line highlight__:
+	* Fixes to compatibility of line number and line higlight plugins ([#1194](https://github.com/PrismJS/prism/issues/1194)) [[`e63058f`](https://github.com/PrismJS/prism/commit/e63058f), [`3842a91`](https://github.com/PrismJS/prism/commit/3842a91)]
+* __Unescaped Markup__:
+	* Fix ambiguity in documentation by improving examples. Fix [#1197](https://github.com/PrismJS/prism/issues/1197) [[`924784a`](https://github.com/PrismJS/prism/commit/924784a)] 
+
+### Other changes
+* Allow any element being root instead of document. ([#1230](https://github.com/PrismJS/prism/issues/1230)) [[`69f2e2c`](https://github.com/PrismJS/prism/commit/69f2e2c), [`6e50d44`](https://github.com/PrismJS/prism/commit/6e50d44)]
+* Coy Theme: The 'height' element makes code blocks the height of the browser canvas. ([#1224](https://github.com/PrismJS/prism/issues/1224)) [[`ac219d7`](https://github.com/PrismJS/prism/commit/ac219d7)]
+* Download page: Fix implicitly declared variable [[`f986551`](https://github.com/PrismJS/prism/commit/f986551)]
+* Download page: Add version number at the beginning of the generated files. Fix [#788](https://github.com/PrismJS/prism/issues/788) [[`928790d`](https://github.com/PrismJS/prism/commit/928790d)]
+
 ## 1.8.4 (2017-11-05)
 
 ### Updated components
