@@ -1,9 +1,12 @@
-SpecialTags:
-$DomainContents$
-$PageRenderDuration$
+<h1>Xeora</h1>
+<p>To use this language, use the class "language-xeora".</p>
 
-OperatorTags:
-$SearchKey$
+<h2>Special Constants</h2>
+<pre><code>$DomainContents$
+$PageRenderDuration$</code></pre>
+
+<h2>Operators &amp; Variables</h2>
+<pre><code>$SearchKey$
 $^SearchKey$
 $~SearchKey$
 $-SearchKey$
@@ -16,12 +19,20 @@ $*SearchKey$
 
 $@SearchObject.SearchProperty$
 $@#SearchObject.SearchProperty$
-$@-SearchObject.SearchProperty$
+$@-SearchObject.SearchProperty$</code></pre>
 
-ControlTags:
+<h2>Controls</h2>
+<pre><code>$C:ControlID$
+$C:ControlID:{ <!-- Something --> }:ControlID$
+$C:ControlID:{ <!-- Something --> }:ControlID:{ <!-- Something (Alternative) --> }:ControlID$
+
+Control with Parent
 $C[Control1]:Control2$
 $C[Control2]:Control3:{ <!-- Something --> }:Control3$
 $C[Control2]:Control3:{ <!-- Something --> }:Control3:{ <!-- Something (Alternative) --> }:Control3$
+
+Control with Parent & Leveling
+$C#1[ParentControlID]:ControlID:{ <!-- Something --> }:ControlID$
 
 All Control Tags has leveling specification;
 $C:LoopControl1:{
@@ -37,15 +48,7 @@ $C:LoopControl1:{
 	}:LoopControl2$
 }:LoopControl1$
 
-$C#1[ParentControlID]:ControlID:{ <!-- Something --> }:ControlID$
-
-$T:TemplateID$
-$L:TranslationID$
-
-$C:ControlID$
-$C:ControlID:{ <!-- Something --> }:ControlID$
-$C:ControlID:{ <!-- Something --> }:ControlID:{ <!-- Something (Alternative) --> }:ControlID$
-
+XML setup on a Control in Controls.xml
 <Control id="[ControlID]">
 	<Type>[ControlType]</Type>
 
@@ -70,16 +73,23 @@ $C:ControlID:{ <!-- Something --> }:ControlID:{ <!-- Something (Alternative) -->
 	<Attributes>
 		<Attribute key="[HTMLAttributeKey]">[AttributeValue]</Attributes>
 	</Attributes>
-</Control>
+</Control></code></pre>
 
-$P:TemplateID$
+<h2>Directives</h2>
+<pre><code>$T:TemplateID$
+$L:TranslationID$
+$P:TemplateID$</code></pre>
 
-Immediate Executable Execution
-$F:AddonLib1?GlobalControls.PrintOutSums$
+<h2>Executable Functions</h2>
+<pre><code>$F:AddonLib1?GlobalControls.PrintOutSums$
 $F:AddonLib1?GlobalControls.PrintOut,~FormField$
-$F:AddonLib1?GlobalControls.SumNumbers,~FormField|=5$
+$F:AddonLib1?GlobalControls.SumNumbers,~FormField|=5$</code></pre>
 
-$S:StatementID:{ <!-- C# Code --> }:StatementID$
+<h2>Client Side Function Binding</h2>
+<pre><code>$XF:{AddonLib1?GlobalControls.SumNumbers,~FormField|=5}:XF$</code></pre>
+
+<h2>Inline Statements</h2>
+<pre><code>$S:StatementID:{ <!-- C# Code --> }:StatementID$
 $S:StatementID:{!NOCACHE <!-- C# Code --> }:StatementID$
 
 $S:Statement1:{
@@ -87,16 +97,18 @@ $S:Statement1:{
 	int intvalue2 = Integer.Parse("0" + $~FormValue$);
 
 	return intvalue1 * intvalue2;
-}:Statement1$
+}:Statement1$</code></pre>
 
-$H:RequestBlockID:{ <!-- Something --> }:RequestBlockID$
-$H:RequestBlockID:{!RENDERONREQUEST <!-- Something --> }:RequestBlockID$
+<h2>Request Blocks</h2>
+<pre><code>$H:RequestBlockID:{ <!-- Something --> }:RequestBlockID$
+$H:RequestBlockID:{!RENDERONREQUEST <!-- Something --> }:RequestBlockID$</code></pre>
 
-$XF:{AddonLib1?GlobalControls.SumNumbers,~FormField|=5}:XF$
+<h2>Cache Block</h2>
+<pre><code>$PC:{ <!-- Page Content Part --> }:PC$</code></pre>
 
-$PC:{ <!-- Page Content Part --> }:PC$
-$MB:{ <!-- Message Output Content --> }:MB$
+<h2>Message Handling Block</h2>
+<pre><code>$MB:{ <!-- Message Output Content --> }:MB$
 $MB:{
 	$#Message$
 	$#MessageType$
-}:MB$
+}:MB$</code></pre>
