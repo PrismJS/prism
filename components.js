@@ -598,6 +598,11 @@ var components = {
 			"title": "Xojo (REALbasic)",
 			"owner": "Golmote"
 		},
+		"xeora": {
+			"title": "Xeora",
+			"require": "markup",
+			"owner": "freakmaxi"
+		},
 		"yaml": {
 			"title": "YAML",
 			"owner": "hason"
