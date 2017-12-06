@@ -34,7 +34,7 @@
 					}
 				},
 				'punctuation': {
-					pattern: /[$:?.,|]/
+					pattern: /\$(?:\w:|[:?.,|])/
 				}
 			},
 			alias: 'function'
