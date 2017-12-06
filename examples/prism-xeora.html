@@ -23,57 +23,57 @@ $@-SearchObject.SearchProperty$</code></pre>
 
 <h2>Controls</h2>
 <pre><code>$C:ControlID$
-$C:ControlID:{ <!-- Something --> }:ControlID$
-$C:ControlID:{ <!-- Something --> }:ControlID:{ <!-- Something (Alternative) --> }:ControlID$
+$C:ControlID:{ &lt;!-- Something --&gt; }:ControlID$
+$C:ControlID:{ &lt;!-- Something --&gt; }:ControlID:{ &lt;!-- Something (Alternative) --&gt; }:ControlID$
 
 Control with Parent
 $C[Control1]:Control2$
-$C[Control2]:Control3:{ <!-- Something --> }:Control3$
-$C[Control2]:Control3:{ <!-- Something --> }:Control3:{ <!-- Something (Alternative) --> }:Control3$
+$C[Control2]:Control3:{ &lt;!-- Something --&gt; }:Control3$
+$C[Control2]:Control3:{ &lt;!-- Something --&gt; }:Control3:{ &lt;!-- Something (Alternative) --&gt; }:Control3$
 
 Control with Parent & Leveling
-$C#1[ParentControlID]:ControlID:{ <!-- Something --> }:ControlID$
+$C#1[ParentControlID]:ControlID:{ &lt;!-- Something --&gt; }:ControlID$
 
 All Control Tags has leveling specification;
 $C:LoopControl1:{
 	$#FirstLoopSQLField1$
 
-	$C:ControlID:{ <!-- Something --> }:ControlID$
+	$C:ControlID:{ &lt;!-- Something --&gt; }:ControlID$
 
 	$C:LoopControl2:{
 		$##FirstLoopSQLField1$
 		$#SecondLoopSQLField1$
 
-		$C#1:ControlID:{ <!-- Something --> }:ControlID$
+		$C#1:ControlID:{ &lt;!-- Something --&gt; }:ControlID$
 	}:LoopControl2$
 }:LoopControl1$
 
 XML setup on a Control in Controls.xml
-<Control id="[ControlID]">
-	<Type>[ControlType]</Type>
+&lt;Control id="[ControlID]"&gt;
+	&lt;Type&gt;[ControlType]&lt;/Type&gt;
 
-	<Bind>[ThemeID|AddonID]?[ControlClass].[FunctionName],SomeOperatorTags(seperated with |)</Bind>
+	&lt;Bind&gt;[ThemeID|AddonID]?[ControlClass].[FunctionName],SomeOperatorTags(seperated with |)&lt;/Bind&gt;
 
-	<BlockIDsToUpdate localupdate="True|False">
-		<BlockID>[BlockID]</BlockID>
-		<BlockID>[BlockID]</BlockID>
-		<BlockID>[BlockID]</BlockID>
-	</BlockIDsToUpdate>
+	&lt;BlockIDsToUpdate localupdate="True|False"&gt;
+		&lt;BlockID&gt;[BlockID]&lt;/BlockID&gt;
+		&lt;BlockID&gt;[BlockID]&lt;/BlockID&gt;
+		&lt;BlockID&gt;[BlockID]&lt;/BlockID&gt;
+	&lt;/BlockIDsToUpdate&gt;
 
-	<DefaultButtonID>[ControlID]</DefaultButtonID>
+	&lt;DefaultButtonID&gt;[ControlID]&lt;/DefaultButtonID&gt;
 
-	<Text>[TextBox, Password value or Button Text]</Text>
+	&lt;Text&gt;[TextBox, Password value or Button Text]&lt;/Text&gt;
 
-	<Content>[Textarea Content]</Content>
+	&lt;Content&gt;[Textarea Content]&lt;/Content&gt;
 
-	<Source>[Image URL]</Source>
+	&lt;Source&gt;[Image URL]&lt;/Source&gt;
 
-	<Url>[Link URL]</Url>
+	&lt;Url&gt;[Link URL]&lt;/Url&gt;
 
-	<Attributes>
-		<Attribute key="[HTMLAttributeKey]">[AttributeValue]</Attributes>
-	</Attributes>
-</Control></code></pre>
+	&lt;Attributes&gt;
+		&lt;Attribute key="[HTMLAttributeKey]"&gt;[AttributeValue]&lt;/Attributes&gt;
+	&lt;/Attributes&gt;
+&lt;/Control&gt;</code></pre>
 
 <h2>Directives</h2>
 <pre><code>$T:TemplateID$
@@ -89,8 +89,8 @@ $F:AddonLib1?GlobalControls.SumNumbers,~FormField|=5$</code></pre>
 <pre><code>$XF:{AddonLib1?GlobalControls.SumNumbers,~FormField|=5}:XF$</code></pre>
 
 <h2>Inline Statements</h2>
-<pre><code>$S:StatementID:{ <!-- C# Code --> }:StatementID$
-$S:StatementID:{!NOCACHE <!-- C# Code --> }:StatementID$
+<pre><code>$S:StatementID:{ &lt;!-- C# Code --&gt; }:StatementID$
+$S:StatementID:{!NOCACHE &lt;!-- C# Code --&gt; }:StatementID$
 
 $S:Statement1:{
 	int intvalue1 = 5;
@@ -100,14 +100,14 @@ $S:Statement1:{
 }:Statement1$</code></pre>
 
 <h2>Request Blocks</h2>
-<pre><code>$H:RequestBlockID:{ <!-- Something --> }:RequestBlockID$
-$H:RequestBlockID:{!RENDERONREQUEST <!-- Something --> }:RequestBlockID$</code></pre>
+<pre><code>$H:RequestBlockID:{ &lt;!-- Something --&gt; }:RequestBlockID$
+$H:RequestBlockID:{!RENDERONREQUEST &lt;!-- Something --&gt; }:RequestBlockID$</code></pre>
 
 <h2>Cache Block</h2>
-<pre><code>$PC:{ <!-- Page Content Part --> }:PC$</code></pre>
+<pre><code>$PC:{ &lt;!-- Page Content Part --&gt; }:PC$</code></pre>
 
 <h2>Message Handling Block</h2>
-<pre><code>$MB:{ <!-- Message Output Content --> }:MB$
+<pre><code>$MB:{ &lt;!-- Message Output Content --&gt; }:MB$
 $MB:{
 	$#Message$
 	$#MessageType$
