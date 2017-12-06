@@ -601,7 +601,7 @@ var components = {
 		"xeora": {
 			"title": "Xeora",
 			"require": "markup",
-			"owner": "xeora"
+			"owner": "freakmaxi"
 		},
 		"yaml": {
 			"title": "YAML",
