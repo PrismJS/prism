@@ -9,50 +9,50 @@
 			}
 		},
 		'variable': {
-			pattern: /\$(@?)(#+|[\-+*~=^])?[\w\.]+\$/,
+			pattern: /\$@?(?:#+|[-+*~=^])?[\w.]+\$/,
 			inside: {
 				'punctuation': {
-					pattern: /\$|\./
+					pattern: /[$.]/
 				},
 				'operator': {
-					pattern: /@|#+|\^|-|\+|\*|~|=/
+					pattern: /#+|[-+*~=^@]/
 				}
 			}
 		},
 		'function-inline': {
-			pattern: /\$F:[\.\w\-]+\?[.\w\-]+(,((\|)?([#\.^\-+*~]*([\w+][^$]*)|=([\S+][^$]*)|@[#\-]*(\w+\.)[\w+\.]+)?)*)?\$/,
+			pattern: /\$F:[-\w.]+\?[-\w.]+(?:,(?:\|?(?:[-#.^+*~]*(?:[\w+][^$]*)|=(?:[\S+][^$]*)|@[-#]*(?:\w+.)[\w+.]+)?)*)?\$/,
 			inside: {
 				'variable': {
-					pattern: /(,|\|)(@?)(#+|[\-+*~=^])?[\w\.]+/,
+					pattern: /(?:[,|])@?(?:#+|[-+*~=^])?[\w.]+/,
 					inside: {
 						'punctuation': {
-							pattern: /\.|,|\|/
+							pattern: /[,.|]/
 						},
 						'operator': {
-							pattern: /@|#+|\^|-|\+|\*|~|=/
+							pattern: /#+|[-+*~=^@]/
 						}
 					}
 				},
 				'punctuation': {
-					pattern: /\$|:|\?|\.|,|\|/
+					pattern: /[$:?.,|]/
 				}
 			},
 			alias: 'function'
 		},
 		'function-block': {
-			pattern: /\$XF:{[\.\w\-]+\?[\.\w\-]+(,((\|)?([#\.^\-+*~]*([\w+][^$]*)|=([\S+][^$]*)|@[#\-]*(\w+\.)[\w+\.]+)?)*)?}:XF\$/,
+			pattern: /\$XF:{[-\w.]+\?[-\w.]+(?:,(?:\|?(?:[-#.^+*~]*(?:[\w+][^$]*)|=(?:[\S+][^$]*)|@[-#]*(?:\w+.)[\w+.]+)?)*)?}:XF\$/,
 			inside: {
 				'punctuation': {
-					pattern: /\$|:|{|}|\?|\.|,|\|/
+					pattern: /[$:{}?.,|]/
 				}
 			},
 			alias: 'function'
 		},
 		'directive-inline': {
-			pattern: /\$\w(#\d+(\+)?)?(\[[\.\w\-]+])?:[\/\.\w\-]+\$/,
+			pattern: /\$\w(?:#\d+\+?)?(?:\[[-\w.]+])?:[-\/\w.]+\$/,
 			inside: {
 				'punctuation': {
-					pattern: /\$\w:|\$C\[|\$C#\d|\$|:|{|\[|]/,
+					pattern: /\$(?:\w:|C(?:\[|#\d))?|[:{[\]]/,
 					inside: {
 						'tag': {
 							pattern: /#\d/
@@ -63,10 +63,10 @@
 			alias: 'function'
 		},
 		'directive-block-open': {
-			pattern: /\$\w+:{|\$\w(#\d+(\+)?)?(\[[\.\w\-]+])?:[\.\w\-]+:{(![A-Z]+)?/,
+			pattern: /\$\w+:{|\$\w(?:#\d+\+?)?(?:\[[-\w.]+])?:[-\w.]+:{(![A-Z]+)?/,
 			inside: {
 				'punctuation': {
-					pattern: /\$\w:|\$C\[|\$C#\d|\$|:|{|\[|]/,
+					pattern: /\$(?:\w:|C(?:\[|#\d))?|[:{[\]]/,
 					inside: {
 						'tag': {
 							pattern: /#\d/
@@ -86,19 +86,19 @@
 			alias: 'function'
 		},
 		'directive-block-separator': {
-			pattern: /}:[\.\w\-]+:{/,
+			pattern: /}:[-\w.]+:{/,
 			inside: {
 				'punctuation': {
-					pattern: /}|:|{/
+					pattern: /[:{}]/
 				}
 			},
 			alias: 'function'
 		},
 		'directive-block-close': {
-			pattern: /}:[\.\w\-]+\$/,
+			pattern: /}:[-\w.]+\$/,
 			inside: {
 				'punctuation': {
-					pattern: /}|:|\$/
+					pattern: /[:{}$]/
 				}
 			},
 			alias: 'function'
