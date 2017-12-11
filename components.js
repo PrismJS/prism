@@ -261,6 +261,10 @@ var components = {
 			"title": "HTTP",
 			"owner": "danielgtaylor"
 		},
+		"ichigojam": {
+			"title": "IchigoJam",
+			"owner": "Cocoa Oikawa"
+		},
 		"icon": {
 			"title": "Icon",
 			"owner": "Golmote"
