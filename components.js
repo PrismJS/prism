@@ -94,6 +94,10 @@ var components = {
 			"title": "AsciiDoc",
 			"owner": "Golmote"
 		},
+		"asm6502": {
+			"title": "6502 Assembly",
+			"owner": "kzurawel"
+		},
 		"aspnet": {
 			"title": "ASP.NET (C#)",
 			"require": "markup",
