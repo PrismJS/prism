@@ -263,7 +263,7 @@ var components = {
 		},
 		"ichigojam": {
 			"title": "IchigoJam",
-			"owner": "Cocoa Oikawa"
+			"owner": "BlueCocoa"
 		},
 		"icon": {
 			"title": "Icon",
