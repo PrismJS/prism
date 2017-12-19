@@ -265,6 +265,10 @@ var components = {
 			"title": "HTTP",
 			"owner": "danielgtaylor"
 		},
+		"ichigojam": {
+			"title": "IchigoJam",
+			"owner": "BlueCocoa"
+		},
 		"icon": {
 			"title": "Icon",
 			"owner": "Golmote"
