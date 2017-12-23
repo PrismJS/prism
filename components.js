@@ -281,10 +281,10 @@ var components = {
 			"title": "Ini",
 			"owner": "aviaryan"
 		},
-        "io": {
-            "title": "Io",
-            "owner": "AlesTsurko"
-        },
+		"io": {
+		    "title": "Io",
+		    "owner": "AlesTsurko"
+		},
 		"j": {
 			"title": "J",
 			"owner": "Golmote"
