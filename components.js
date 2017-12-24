@@ -282,8 +282,8 @@ var components = {
 			"owner": "aviaryan"
 		},
 		"io": {
-		    "title": "Io",
-		    "owner": "AlesTsurko"
+			"title": "Io",
+			"owner": "AlesTsurko"
 		},
 		"j": {
 			"title": "J",
