@@ -1,17 +1,19 @@
 ""
+"regular string"
 "fo\"o"
-"foo \
-  \ bar"
-"foo -- comment \
-  \ bar"
+"""foo
+   bar"""
+"""foo -- comment
+   bar"""
 
 ----------------------------------------------------
 
 [
 	["string", "\"\""],
+  ["string", "\"regular string\""],
 	["string", "\"fo\\\"o\""],
-	["string", "\"foo \\\r\n  \\ bar\""],
-	["string", "\"foo -- comment \\\r\n  \\ bar\""]
+	["string", "\"\"\"foo\r\n   bar\"\"\""],
+	["string", "\"\"\"foo -- comment\r\n   bar\"\"\""]
 ]
 
 ----------------------------------------------------
