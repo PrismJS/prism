@@ -6,7 +6,7 @@ Prism.languages.scala = Prism.languages.extend('java', {
 			greedy: true
 		},
 		{
-			pattern: /("|')(?:\\\\|\\?[^\\\r\n])*?\1/,
+			pattern: /("|')(?:\\.|(?!\1)[^\\\r\n])*\1/,
 			greedy: true
 		}
 	],

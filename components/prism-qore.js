@@ -5,7 +5,7 @@ Prism.languages.qore = Prism.languages.extend('clike', {
 	},
 	// Overridden to allow unescaped multi-line strings
 	'string': {
-		pattern: /("|')(\\(?:\r\n|[\s\S])|(?!\1)[^\\])*\1/,
+		pattern: /("|')(\\[\s\S]|(?!\1)[^\\])*\1/,
 		greedy: true
 	},
 	'variable': /\$(?!\d)\w+\b/,
@@ -13,7 +13,7 @@ Prism.languages.qore = Prism.languages.extend('clike', {
 	'number': /\b(?:0b[01]+|0x[\da-f]*\.?[\da-fp\-]+|\d*\.?\d+e?\d*[df]|\d*\.?\d+)\b/i,
 	'boolean': /\b(?:true|false)\b/i,
 	'operator': {
-		pattern: /(^|[^\.])(?:\+[+=]?|-[-=]?|[!=](?:==?|~)?|>>?=?|<(?:=>?|<=?)?|&[&=]?|\|[|=]?|[*\/%^]=?|[~?])/,
+		pattern: /(^|[^.])(?:\+[+=]?|-[-=]?|[!=](?:==?|~)?|>>?=?|<(?:=>?|<=?)?|&[&=]?|\|[|=]?|[*\/%^]=?|[~?])/,
 		lookbehind: true
 	},
 	'function': /\$?\b(?!\d)\w+(?=\()/

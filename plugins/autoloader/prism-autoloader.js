@@ -4,14 +4,25 @@
 	}
 
 	// The dependencies map is built automatically with gulp
-	var lang_dependencies = /*languages_placeholder[*/{"javascript":"clike","actionscript":"javascript","aspnet":"markup","bison":"c","c":"clike","csharp":"clike","cpp":"c","coffeescript":"javascript","crystal":"ruby","css-extras":"css","d":"clike","dart":"clike","django":"markup","fsharp":"clike","glsl":"clike","go":"clike","groovy":"clike","haml":"ruby","handlebars":"markup","haxe":"clike","jade":"javascript","java":"clike","jolie":"clike","kotlin":"clike","less":"css","markdown":"markup","nginx":"clike","objectivec":"c","parser":"markup","php":"clike","php-extras":"php","processing":"clike","protobuf":"clike","qore":"clike","jsx":["markup","javascript"],"reason":"clike","ruby":"clike","sass":"css","scss":"css","scala":"java","smarty":"markup","swift":"clike","textile":"markup","twig":"markup","typescript":"javascript","vbnet":"basic","wiki":"markup"}/*]*/;
+	var lang_dependencies = /*languages_placeholder[*/{"javascript":"clike","actionscript":"javascript","arduino":"cpp","aspnet":"markup","bison":"c","c":"clike","csharp":"clike","cpp":"c","coffeescript":"javascript","crystal":"ruby","css-extras":"css","d":"clike","dart":"clike","django":"markup","fsharp":"clike","flow":"javascript","glsl":"clike","go":"clike","groovy":"clike","haml":"ruby","handlebars":"markup","haxe":"clike","java":"clike","jolie":"clike","kotlin":"clike","less":"css","markdown":"markup","n4js":"javascript","nginx":"clike","objectivec":"c","opencl":"cpp","parser":"markup","php":"clike","php-extras":"php","processing":"clike","protobuf":"clike","pug":"javascript","qore":"clike","jsx":["markup","javascript"],"reason":"clike","ruby":"clike","sass":"css","scss":"css","scala":"java","smarty":"markup","swift":"clike","textile":"markup","twig":"markup","typescript":"javascript","vbnet":"basic","wiki":"markup","xeora":"markup"}/*]*/;
 
 	var lang_data = {};
 
 	var ignored_language = 'none';
 
+	var script = document.getElementsByTagName('script');
+	script = script[script.length - 1];
+	var languages_path = 'components/';
+	if(script.hasAttribute('data-autoloader-path')) {
+		var path = script.getAttribute('data-autoloader-path').trim();
+		if(path.length > 0 && !/^[a-z]+:\/\//i.test(script.src)) {
+			languages_path = path.replace(/\/?$/, '/');
+		}
+	} else if (/[\w-]+\.js$/.test(script.src)) {
+		languages_path = script.src.replace(/[\w-]+\.js$/, 'components/');
+	}
 	var config = Prism.plugins.autoloader = {
-		languages_path: 'components/',
+		languages_path: languages_path,
 		use_minified: true
 	};
 

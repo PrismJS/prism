@@ -1,6 +1,6 @@
 {
   "name": "prismjs",
-  "version": "1.6.0",
+  "version": "1.9.0",
   "description": "Lightweight, robust, elegant syntax highlighting. A spin-off project from Dabblet.",
   "main": "prism.js",
   "scripts": {
@@ -18,7 +18,7 @@
   "license": "MIT",
   "readmeFilename": "README.md",
   "optionalDependencies": {
-    "clipboard": "^1.5.5"
+    "clipboard": "^1.7.1"
   },
   "devDependencies": {
     "chai": "^2.3.0",

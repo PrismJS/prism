@@ -5,7 +5,7 @@ Prism.languages.dart = Prism.languages.extend('clike', {
 			greedy: true
 		},
 		{
-			pattern: /r?("|')(\\?.)*?\1/,
+			pattern: /r?("|')(?:\\.|(?!\1)[^\\\r\n])*\1/,
 			greedy: true
 		}
 	],

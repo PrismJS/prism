@@ -5,7 +5,7 @@ Prism.languages.oz = {
 		greedy: true
 	},
 	'atom': {
-		pattern: /'(?:[^'\\]|\\.)*'/,
+		pattern: /'(?:[^'\\]|\\[\s\S])*'/,
 		greedy: true,
 		alias: 'builtin'
 	},

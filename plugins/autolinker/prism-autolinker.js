@@ -71,6 +71,11 @@ Prism.hooks.add('wrap', function(env) {
 		
 		env.attributes.href = href;
 	}
+
+	// Silently catch any error thrown by decodeURIComponent (#1186)
+	try {
+		env.content = decodeURIComponent(env.content);
+	} catch(e) {}
 });
 
 })();

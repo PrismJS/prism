@@ -396,7 +396,7 @@ function getSortedComponents(components, requireName, sorted) {
 			}
 		}
 		if (notNow) {
-			tmp = sorted[i];
+			var tmp = sorted[i];
 			sorted[i] = sorted[indexOfRequirement];
 			sorted[indexOfRequirement] = tmp;
 		}
@@ -454,7 +454,9 @@ function generateCode(){
 	var error = $('#download .error');
 	error.style.display = '';
 
-	buildCode(promises).then(function(res) {
+	Promise.all([buildCode(promises), getVersion()]).then(function(arr) {
+		var res = arr[0];
+		var version = arr[1];
 		var code = res.code;
 		var errors = res.errors;
 
@@ -468,7 +470,7 @@ function generateCode(){
 		for (var category in redownload) {
 			redownloadUrl += category + "=" + redownload[category].join('+') + "&";
 		}
-		redownloadUrl = "/* " + redownloadUrl.replace(/&$/,"") + " */";
+		redownloadUrl = "/* PrismJS " + version + "\n" + redownloadUrl.replace(/&$/,"") + " */";
 
 		for (var type in code) {
 			var codeElement = $('#download-' + type + ' code');
@@ -511,6 +513,12 @@ function buildCode(promises) {
 	};
 
 	return new Promise(f);
+}
+
+function getVersion() {
+	return getFileContents('./package.json').then(function (jsonStr) {
+		return JSON.parse(jsonStr).version;
+	});
 }
 
 })();

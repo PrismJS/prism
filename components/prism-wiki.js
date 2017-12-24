@@ -43,7 +43,7 @@ Prism.languages.wiki = Prism.languages.extend('markup', {
 		// FIXME Nested structures should be handled
 		// {{formatnum:{{#expr:{{{3}}}}}}}
 		/\{{3}.+?\}{3}/,
-		/\{\{.+?}}/
+		/\{\{.+?\}\}/
 	],
 	'symbol': [
 		/^#redirect/im,

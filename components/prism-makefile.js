@@ -1,6 +1,6 @@
 Prism.languages.makefile = {
 	'comment': {
-		pattern: /(^|[^\\])#(?:\\(?:\r\n|[\s\S])|.)*/,
+		pattern: /(^|[^\\])#(?:\\(?:\r\n|[\s\S])|[^\\\r\n])*/,
 		lookbehind: true
 	},
 	'string': {

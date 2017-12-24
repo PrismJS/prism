@@ -1,6 +1,390 @@
 # Prism Changelog
 
-## 1.6 (2016-12-03)
+## 1.9.0 (2017-12-06)
+
+### New components
+* __Flow__ [[`d27b70d`](https://github.com/PrismJS/prism/commit/d27b70d)]
+
+### Updated components
+* __CSS__:
+	* Unicode characters in CSS properties ([#1227](https://github.com/PrismJS/prism/issues/1227)) [[`f234ea4`](https://github.com/PrismJS/prism/commit/f234ea4)]
+* __JSX__:
+	* JSX: Improve highlighting support. Fix [#1235](https://github.com/PrismJS/prism/issues/1235) and [#1236](https://github.com/PrismJS/prism/issues/1236) [[`f41c5cd`](https://github.com/PrismJS/prism/commit/f41c5cd)]
+* __Markup__:
+	* Make CSS and JS inclusions in Markup greedy. Fix [#1240](https://github.com/PrismJS/prism/issues/1240) [[`7dc1e45`](https://github.com/PrismJS/prism/commit/7dc1e45)] 
+* __PHP__:
+	* Add support for multi-line strings. Fix [#1233](https://github.com/PrismJS/prism/issues/1233) [[`9a542a0`](https://github.com/PrismJS/prism/commit/9a542a0)] 
+
+### Updated plugins
+* __Copy to clipboard__:
+	* Fix test for native Clipboard. Fix [#1241](https://github.com/PrismJS/prism/issues/1241) [[`e7b5e82`](https://github.com/PrismJS/prism/commit/e7b5e82)]
+	* Copy to clipboard: Update to v1.7.1. Fix [#1220](https://github.com/PrismJS/prism/issues/1220) [[`a1b85e3`](https://github.com/PrismJS/prism/commit/a1b85e3), [`af50e44`](https://github.com/PrismJS/prism/commit/af50e44)]
+* __Line highlight__:
+	* Fixes to compatibility of line number and line higlight plugins ([#1194](https://github.com/PrismJS/prism/issues/1194)) [[`e63058f`](https://github.com/PrismJS/prism/commit/e63058f), [`3842a91`](https://github.com/PrismJS/prism/commit/3842a91)]
+* __Unescaped Markup__:
+	* Fix ambiguity in documentation by improving examples. Fix [#1197](https://github.com/PrismJS/prism/issues/1197) [[`924784a`](https://github.com/PrismJS/prism/commit/924784a)] 
+
+### Other changes
+* Allow any element being root instead of document. ([#1230](https://github.com/PrismJS/prism/issues/1230)) [[`69f2e2c`](https://github.com/PrismJS/prism/commit/69f2e2c), [`6e50d44`](https://github.com/PrismJS/prism/commit/6e50d44)]
+* Coy Theme: The 'height' element makes code blocks the height of the browser canvas. ([#1224](https://github.com/PrismJS/prism/issues/1224)) [[`ac219d7`](https://github.com/PrismJS/prism/commit/ac219d7)]
+* Download page: Fix implicitly declared variable [[`f986551`](https://github.com/PrismJS/prism/commit/f986551)]
+* Download page: Add version number at the beginning of the generated files. Fix [#788](https://github.com/PrismJS/prism/issues/788) [[`928790d`](https://github.com/PrismJS/prism/commit/928790d)]
+
+## 1.8.4 (2017-11-05)
+
+### Updated components
+
+* __ABAP__:
+	* Regexp optimisation [[`7547f83`](https://github.com/PrismJS/prism/commit/7547f83)]
+* __ActionScript__:
+	* Fix XML regex + optimise [[`75d00d7`](https://github.com/PrismJS/prism/commit/75d00d7)]
+* __Ada__:
+	* Regexp simplification [[`e881fe3`](https://github.com/PrismJS/prism/commit/e881fe3)]
+* __Apacheconf__:
+	* Regexp optimisation [[`a065e61`](https://github.com/PrismJS/prism/commit/a065e61)]
+* __APL__:
+	* Regexp simplification [[`33297c4`](https://github.com/PrismJS/prism/commit/33297c4)]
+* __AppleScript__:
+	* Regexp optimisation [[`d879f36`](https://github.com/PrismJS/prism/commit/d879f36)]
+* __Arduino__:
+	* Don't use captures if not needed [[`16b338f`](https://github.com/PrismJS/prism/commit/16b338f)]
+* __ASP.NET__:
+	* Regexp optimisation [[`438926c`](https://github.com/PrismJS/prism/commit/438926c)]
+* __AutoHotkey__:
+	* Regexp simplification + don't use captures if not needed [[`5edfd2f`](https://github.com/PrismJS/prism/commit/5edfd2f)]
+* __Bash__:
+	* Regexp optimisation and simplification [[`75b9b29`](https://github.com/PrismJS/prism/commit/75b9b29)]
+* __Bro__:
+	* Regexp simplification + don't use captures if not needed [[`d4b9003`](https://github.com/PrismJS/prism/commit/d4b9003)]
+* __C__:
+	* Regexp optimisation + don't use captures if not needed [[`f61d487`](https://github.com/PrismJS/prism/commit/f61d487)]
+* __C++__:
+	* Fix operator regexp + regexp simplification + don't use captures if not needed [[`ffeb26e`](https://github.com/PrismJS/prism/commit/ffeb26e)]
+* __C#__:
+	* Remove duplicates in keywords + regexp optimisation + don't use captures if not needed [[`d28d178`](https://github.com/PrismJS/prism/commit/d28d178)]
+* __C-like__:
+	* Regexp simplification + don't use captures if not needed [[`918e0ff`](https://github.com/PrismJS/prism/commit/918e0ff)]
+* __CoffeeScript__:
+	* Regexp optimisation + don't use captures if not needed [[`5895978`](https://github.com/PrismJS/prism/commit/5895978)]
+* __Crystal__:
+	* Remove trailing comma [[`16979a3`](https://github.com/PrismJS/prism/commit/16979a3)]
+* __CSS__:
+	* Regexp simplification + don't use captures if not needed + handle multi-line style attributes [[`43d9f36`](https://github.com/PrismJS/prism/commit/43d9f36)]
+* __CSS Extras__:
+	* Regexp simplification [[`134ed70`](https://github.com/PrismJS/prism/commit/134ed70)]
+* __D__:
+	* Regexp optimisation [[`fbe39c9`](https://github.com/PrismJS/prism/commit/fbe39c9)]
+* __Dart__:
+	* Regexp optimisation [[`f24e919`](https://github.com/PrismJS/prism/commit/f24e919)]
+* __Django__:
+	* Regexp optimisation [[`a95c51d`](https://github.com/PrismJS/prism/commit/a95c51d)]
+* __Docker__:
+	* Regexp optimisation [[`27f99ff`](https://github.com/PrismJS/prism/commit/27f99ff)]
+* __Eiffel__:
+	* Regexp optimisation [[`b7cdea2`](https://github.com/PrismJS/prism/commit/b7cdea2)]
+* __Elixir__:
+	* Regexp optimisation + uniform behavior between ~r and ~s [[`5d12e80`](https://github.com/PrismJS/prism/commit/5d12e80)]
+* __Erlang__:
+	* Regexp optimisation [[`e7b411e`](https://github.com/PrismJS/prism/commit/e7b411e)]
+* __F#__:
+	* Regexp optimisation + don't use captures if not needed [[`7753fc4`](https://github.com/PrismJS/prism/commit/7753fc4)] 
+* __Gherkin__:
+	* Regexp optimisation + don't use captures if not needed + added explanation comment on table-body regexp [[`f26197a`](https://github.com/PrismJS/prism/commit/f26197a)] 
+* __Git__:
+	* Regexp optimisation [[`b9483b9`](https://github.com/PrismJS/prism/commit/b9483b9)] 
+* __GLSL__:
+	* Regexp optimisation [[`e66d21b`](https://github.com/PrismJS/prism/commit/e66d21b)] 
+* __Go__:
+	* Regexp optimisation + don't use captures if not needed [[`88caabb`](https://github.com/PrismJS/prism/commit/88caabb)] 
+* __GraphQL__:
+	* Regexp optimisation and simplification [[`2474f06`](https://github.com/PrismJS/prism/commit/2474f06)] 
+* __Groovy__:
+	* Regexp optimisation + don't use captures if not needed [[`e74e00c`](https://github.com/PrismJS/prism/commit/e74e00c)] 
+* __Haml__:
+	* Regexp optimisation + don't use captures if not needed + fix typo in comment [[`23e3b43`](https://github.com/PrismJS/prism/commit/23e3b43)] 
+* __Handlebars__:
+	* Regexp optimisation + don't use captures if not needed [[`09dbfce`](https://github.com/PrismJS/prism/commit/09dbfce)] 
+* __Haskell__:
+	* Regexp simplification + don't use captures if not needed [[`f11390a`](https://github.com/PrismJS/prism/commit/f11390a)] 
+* __HTTP__:
+	* Regexp simplification + don't use captures if not needed [[`37ef24e`](https://github.com/PrismJS/prism/commit/37ef24e)] 
+* __Icon__:
+	* Regexp optimisation [[`9cf64a0`](https://github.com/PrismJS/prism/commit/9cf64a0)] 
+* __J__:
+	* Regexp simplification [[`de15150`](https://github.com/PrismJS/prism/commit/de15150)] 
+* __Java__:
+	* Don't use captures if not needed [[`96b35c8`](https://github.com/PrismJS/prism/commit/96b35c8)] 
+* __JavaScript__:
+	* Regexp optimisation + don't use captures if not needed [[`93d4002`](https://github.com/PrismJS/prism/commit/93d4002)] 
+* __Jolie__:
+	* Regexp optimisation + don't use captures if not needed + remove duplicates in keywords [[`a491f9e`](https://github.com/PrismJS/prism/commit/a491f9e)] 
+* __JSON__:
+	* Make strings greedy, remove negative look-ahead for ":". Fix [#1204](https://github.com/PrismJS/prism/issues/1204) [[`98acd2d`](https://github.com/PrismJS/prism/commit/98acd2d)]
+	* Regexp optimisation + don't use captures if not needed [[`8fc1b03`](https://github.com/PrismJS/prism/commit/8fc1b03)] 
+* __JSX__:
+	* Regexp optimisation + handle spread operator as a whole [[`28de4e2`](https://github.com/PrismJS/prism/commit/28de4e2)] 
+* __Julia__:
+	* Regexp optimisation and simplification [[`12684c0`](https://github.com/PrismJS/prism/commit/12684c0)] 
+* __Keyman__:
+	* Regexp optimisation + don't use captures if not needed [[`9726087`](https://github.com/PrismJS/prism/commit/9726087)] 
+* __Kotlin__:
+	* Regexp simplification [[`12ff8dc`](https://github.com/PrismJS/prism/commit/12ff8dc)] 
+* __LaTeX__:
+	* Regexp optimisation and simplification [[`aa426b0`](https://github.com/PrismJS/prism/commit/aa426b0)] 
+* __LiveScript__:
+	* Make interpolated strings greedy + fix variable and identifier regexps [[`c581049`](https://github.com/PrismJS/prism/commit/c581049)] 
+* __LOLCODE__:
+	* Don't use captures if not needed [[`52903af`](https://github.com/PrismJS/prism/commit/52903af)] 
+* __Makefile__:
+	* Regexp optimisation [[`20ae2e5`](https://github.com/PrismJS/prism/commit/20ae2e5)] 
+* __Markdown__:
+	* Don't use captures if not needed [[`f489a1e`](https://github.com/PrismJS/prism/commit/f489a1e)] 
+* __Markup__:
+	* Regexp optimisation + fix punctuation inside attr-value [[`ea380c6`](https://github.com/PrismJS/prism/commit/ea380c6)] 
+* __MATLAB__:
+	* Make strings greedy + handle line feeds better [[`4cd4f01`](https://github.com/PrismJS/prism/commit/4cd4f01)] 
+* __Monkey__:
+	* Don't use captures if not needed [[`7f47140`](https://github.com/PrismJS/prism/commit/7f47140)] 
+* __N4JS__:
+	* Don't use captures if not needed [[`2d3f9df`](https://github.com/PrismJS/prism/commit/2d3f9df)] 
+* __NASM__:
+	* Regexp optimisation and simplification + don't use captures if not needed [[`9937428`](https://github.com/PrismJS/prism/commit/9937428)] 
+* __nginx__:
+	* Remove trailing comma + remove duplicates in keywords [[`c6e7195`](https://github.com/PrismJS/prism/commit/c6e7195)] 
+* __NSIS__:
+	* Regexp optimisation + don't use captures if not needed [[`beeb107`](https://github.com/PrismJS/prism/commit/beeb107)] 
+* __Objective-C__:
+	* Don't use captures if not needed [[`9be0f88`](https://github.com/PrismJS/prism/commit/9be0f88)] 
+* __OCaml__:
+	* Regexp simplification [[`5f5f38c`](https://github.com/PrismJS/prism/commit/5f5f38c)] 
+* __OpenCL__:
+	* Don't use captures if not needed [[`5e70f1d`](https://github.com/PrismJS/prism/commit/5e70f1d)]
+* __Oz__:
+	* Fix atom regexp [[`9320e92`](https://github.com/PrismJS/prism/commit/9320e92)]
+* __PARI/GP__:
+	* Regexp optimisation [[`2c7b59b`](https://github.com/PrismJS/prism/commit/2c7b59b)]
+* __Parser__:
+	* Regexp simplification [[`569d511`](https://github.com/PrismJS/prism/commit/569d511)] 
+* __Perl__:
+	* Regexp optimisation and simplification + don't use captures if not needed [[`0fe4cf6`](https://github.com/PrismJS/prism/commit/0fe4cf6)] 
+* __PHP__:
+	* Don't use captures if not needed Golmote [[`5235f18`](https://github.com/PrismJS/prism/commit/5235f18)]
+* __PHP Extras__:
+	* Add word boundary after global keywords + don't use captures if not needed [[`9049a2a`](https://github.com/PrismJS/prism/commit/9049a2a)] 
+* __PowerShell__:
+	* Regexp optimisation + don't use captures if not needed [[`0d05957`](https://github.com/PrismJS/prism/commit/0d05957)] 
+* __Processing__:
+	* Regexp simplification [[`8110d38`](https://github.com/PrismJS/prism/commit/8110d38)] 
+* __.properties__:
+	* Regexp optimisation [[`678b621`](https://github.com/PrismJS/prism/commit/678b621)] 
+* __Protocol Buffers__:
+	* Don't use captures if not needed [[`3e256d8`](https://github.com/PrismJS/prism/commit/3e256d8)] 
+* __Pug__:
+	* Don't use captures if not needed [[`76dc925`](https://github.com/PrismJS/prism/commit/76dc925)] 
+* __Pure__:
+	* Make inline-lang greedy [[`92318b0`](https://github.com/PrismJS/prism/commit/92318b0)] 
+* __Python__:
+	* Add Python builtin function highlighting ([#1205](https://github.com/PrismJS/prism/issues/1205)) [[`2169c99`](https://github.com/PrismJS/prism/commit/2169c99)]
+	* Python: Add highlighting to functions with space between name and parentheses ([#1207](https://github.com/PrismJS/prism/issues/1207)) [[`3badd8a`](https://github.com/PrismJS/prism/commit/3badd8a)]
+	* Make triple-quoted strings greedy + regexp optimisation and simplification [[`f09f9f5`](https://github.com/PrismJS/prism/commit/f09f9f5)] 
+* __Qore__:
+	* Regexp simplification [[`69459f0`](https://github.com/PrismJS/prism/commit/69459f0)]
+* __R__:
+	* Regexp optimisation [[`06a9da4`](https://github.com/PrismJS/prism/commit/06a9da4)] 
+* __Reason__:
+	* Regexp optimisation + don't use capture if not needed [[`19d79b4`](https://github.com/PrismJS/prism/commit/19d79b4)] 
+* __Ren'py__:
+	* Make strings greedy + don't use captures if not needed [[`91d84d9`](https://github.com/PrismJS/prism/commit/91d84d9)] 
+* __reST__:
+	* Regexp simplification + don't use captures if not needed [[`1a8b3e9`](https://github.com/PrismJS/prism/commit/1a8b3e9)] 
+* __Rip__:
+	* Regexp optimisation [[`d7f0ee8`](https://github.com/PrismJS/prism/commit/d7f0ee8)] 
+* __Ruby__:
+	* Regexp optimisation and simplification + don't use captures if not needed [[`4902ed4`](https://github.com/PrismJS/prism/commit/4902ed4)] 
+* __Rust__:
+	* Regexp optimisation and simplification + don't use captures if not needed [[`cc9d874`](https://github.com/PrismJS/prism/commit/cc9d874)] 
+* __Sass__:
+	* Regexp simplification Golmote [[`165d957`](https://github.com/PrismJS/prism/commit/165d957)] 
+* __Scala__:
+	* Regexp optimisation Golmote [[`5f50c12`](https://github.com/PrismJS/prism/commit/5f50c12)] 
+* __Scheme__:
+	* Regexp optimisation [[`bd19b04`](https://github.com/PrismJS/prism/commit/bd19b04)]
+* __SCSS__:
+	* Regexp simplification [[`c60b7d4`](https://github.com/PrismJS/prism/commit/c60b7d4)] 
+* __Smalltalk__:
+	* Regexp simplification [[`41a2c76`](https://github.com/PrismJS/prism/commit/41a2c76)] 
+* __Smarty__:
+	* Regexp optimisation and simplification [[`e169be9`](https://github.com/PrismJS/prism/commit/e169be9)] 
+* __SQL__:
+	* Regexp optimisation [[`a6244a4`](https://github.com/PrismJS/prism/commit/a6244a4)] 
+* __Stylus__:
+	* Regexp optimisation [[`df9506c`](https://github.com/PrismJS/prism/commit/df9506c)] 
+* __Swift__:
+	* Don't use captures if not needed [[`a2d737a`](https://github.com/PrismJS/prism/commit/a2d737a)] 
+* __Tcl__:
+	* Regexp simplification + don't use captures if not needed [[`f0b8a33`](https://github.com/PrismJS/prism/commit/f0b8a33)] 
+* __Textile__:
+	* Regexp optimisation + don't use captures if not needed [[`08139ad`](https://github.com/PrismJS/prism/commit/08139ad)] 
+* __Twig__:
+	* Regexp optimisation and simplification + don't use captures if not needed [[`0b10fd0`](https://github.com/PrismJS/prism/commit/0b10fd0)]
+* __TypeScript__:
+	* Don't use captures if not needed [[`e296caf`](https://github.com/PrismJS/prism/commit/e296caf)] 
+* __Verilog__:
+	* Regexp simplification [[`1b24b34`](https://github.com/PrismJS/prism/commit/1b24b34)] 
+* __VHDL__:
+	* Regexp optimisation and simplification [[`7af36df`](https://github.com/PrismJS/prism/commit/7af36df)] 
+* __vim__:
+	* Remove duplicates in keywords [[`700505e`](https://github.com/PrismJS/prism/commit/700505e)] 
+* __Wiki markup__:
+	* Fix escaping consistency [[`1fd690d`](https://github.com/PrismJS/prism/commit/1fd690d)]
+* __YAML__:
+	* Regexp optimisation + don't use captures if not needed [[`1fd690d`](https://github.com/PrismJS/prism/commit/1fd690d)]
+
+### Other changes
+* Remove comments spellcheck for AMP validation ([#1106](https://github.com/PrismJS/prism/issues/1106)) [[`de996d7`](https://github.com/PrismJS/prism/commit/de996d7)]
+* Prevent error from throwing when element does not have a parentNode in highlightElement. [[`c33be19`](https://github.com/PrismJS/prism/commit/c33be19)]
+* Provide a way to load Prism from inside a Worker without listening to messages. ([#1188](https://github.com/PrismJS/prism/issues/1188)) [[`d09982d`](https://github.com/PrismJS/prism/commit/d09982d)] 
+
+## 1.8.3 (2017-10-19)
+
+### Other changes
+
+* Fix inclusion tests for Pug [[`955c2ab`](https://github.com/PrismJS/prism/commit/955c2ab)]
+
+## 1.8.2 (2017-10-19)
+
+### Updated components
+* __Jade__:
+	* Jade has been renamed to __Pug__ ([#1201](https://github.com/PrismJS/prism/issues/1201)) [[`bcfef7c`](https://github.com/PrismJS/prism/commit/bcfef7c)]
+* __JavaScript__:
+	* Better highlighting of functions ([#1190](https://github.com/PrismJS/prism/issues/1190)) [[`8ee2cd3`](https://github.com/PrismJS/prism/commit/8ee2cd3)]
+
+### Update plugins
+* __Copy to clipboard__:
+	* Fix error occurring when using in Chrome 61+ ([#1206](https://github.com/PrismJS/prism/issues/1206)) [[`b41d571`](https://github.com/PrismJS/prism/commit/b41d571)]
+* __Show invisibles__:
+	* Prevent error when using with Autoloader plugin ([#1195](https://github.com/PrismJS/prism/issues/1195)) [[`ed8bdb5`](https://github.com/PrismJS/prism/commit/ed8bdb5)]
+
+## 1.8.1 (2017-09-16)
+
+### Other changes
+
+* Add Arduino to components.js [[`290a3c6`](https://github.com/PrismJS/prism/commit/290a3c6)]
+
+## 1.8.0 (2017-09-16)
+
+### New components
+
+* __Arduino__ ([#1184](https://github.com/PrismJS/prism/issues/1184)) [[`edf2454`](https://github.com/PrismJS/prism/commit/edf2454)]
+* __OpenCL__ ([#1175](https://github.com/PrismJS/prism/issues/1175)) [[`131e8fa`](https://github.com/PrismJS/prism/commit/131e8fa)]
+
+### Updated plugins
+
+* __Autolinker__:
+	* Silently catch any error thrown by decodeURIComponent. Fixes [#1186](https://github.com/PrismJS/prism/issues/1186) [[`2e43fcf`](https://github.com/PrismJS/prism/commit/2e43fcf)] 
+
+## 1.7.0 (2017-09-09)
+
+### New components
+
+* __Django/Jinja2__ ([#1085](https://github.com/PrismJS/prism/issues/1085)) [[`345b1b2`](https://github.com/PrismJS/prism/commit/345b1b2)]
+* __N4JS__ ([#1141](https://github.com/PrismJS/prism/issues/1141)) [[`eaa8ebb`](https://github.com/PrismJS/prism/commit/eaa8ebb)]
+* __Ren'py__ ([#658](https://github.com/PrismJS/prism/issues/658)) [[`7ab4013`](https://github.com/PrismJS/prism/commit/7ab4013)]
+* __VB.Net__ ([#1122](https://github.com/PrismJS/prism/issues/1122)) [[`5400651`](https://github.com/PrismJS/prism/commit/5400651)]
+
+### Updated components
+
+* __APL__:
+	* Add left shoe underbar and right shoe underbar ([#1072](https://github.com/PrismJS/prism/issues/1072)) [[`12238c5`](https://github.com/PrismJS/prism/commit/12238c5)]
+	* Update prism-apl.js ([#1126](https://github.com/PrismJS/prism/issues/1126)) [[`a5f3cdb`](https://github.com/PrismJS/prism/commit/a5f3cdb)]
+* __C__:
+	* Add more keywords and constants for C. ([#1029](https://github.com/PrismJS/prism/issues/1029)) [[`43a388e`](https://github.com/PrismJS/prism/commit/43a388e)] 
+* __C#__:
+	* Fix wrong highlighting when three slashes appear inside string. Fix [#1091](https://github.com/PrismJS/prism/issues/1091) [[`dfb6f17`](https://github.com/PrismJS/prism/commit/dfb6f17)]
+* __C-like__:
+	* Add support for unclosed block comments. Close [#828](https://github.com/PrismJS/prism/issues/828) [[`3426ed1`](https://github.com/PrismJS/prism/commit/3426ed1)] 
+* __Crystal__:
+	* Update Crystal keywords ([#1092](https://github.com/PrismJS/prism/issues/1092)) [[`125bff1`](https://github.com/PrismJS/prism/commit/125bff1)]
+* __CSS Extras__:
+	* Support CSS #RRGGBBAA ([#1139](https://github.com/PrismJS/prism/issues/1139)) [[`07a6806`](https://github.com/PrismJS/prism/commit/07a6806)]
+* __Docker__:
+	* Add dockerfile alias for docker language ([#1164](https://github.com/PrismJS/prism/issues/1164)) [[`601c47f`](https://github.com/PrismJS/prism/commit/601c47f)]
+	* Update the list of keywords for dockerfiles ([#1180](https://github.com/PrismJS/prism/issues/1180)) [[`f0d73e0`](https://github.com/PrismJS/prism/commit/f0d73e0)]
+* __Eiffel__:
+	* Add class-name highlighting for Eiffel ([#471](https://github.com/PrismJS/prism/issues/471)) [[`cd03587`](https://github.com/PrismJS/prism/commit/cd03587)]
+* __Handlebars__:
+	* Check for possible pre-existing marker strings in Handlebars [[`7a1a404`](https://github.com/PrismJS/prism/commit/7a1a404)]
+* __JavaScript__:
+	* Properly match every operator as a whole token. Fix [#1133](https://github.com/PrismJS/prism/issues/1133) [[`9f649fb`](https://github.com/PrismJS/prism/commit/9f649fb)]
+	* Allows uppercase prefixes in JS number literals ([#1151](https://github.com/PrismJS/prism/issues/1151)) [[`d4ee904`](https://github.com/PrismJS/prism/commit/d4ee904)]
+	* Reduced backtracking in regex pattern. Fix [#1159](https://github.com/PrismJS/prism/issues/1159) [[`ac09e97`](https://github.com/PrismJS/prism/commit/ac09e97)] 
+* __JSON__:
+	* Fix property and string patterns performance. Fix [#1080](https://github.com/PrismJS/prism/issues/1080) [[`0ca1353`](https://github.com/PrismJS/prism/commit/0ca1353)]
+* __JSX__:
+	* JSX spread operator break. Fixes [#1061](https://github.com/PrismJS/prism/issues/1061) ([#1094](https://github.com/PrismJS/prism/issues/1094)) [[`561bceb`](https://github.com/PrismJS/prism/commit/561bceb)]
+	* Fix highlighting of attributes containing spaces [[`867ea42`](https://github.com/PrismJS/prism/commit/867ea42)]
+	* Improved performance for tags (when not matching) Fix [#1152](https://github.com/PrismJS/prism/issues/1152) [[`b0fe103`](https://github.com/PrismJS/prism/commit/b0fe103)]  
+* __LOLCODE__:
+	* Make strings greedy Golmote [[`1a5e7a4`](https://github.com/PrismJS/prism/commit/1a5e7a4)]
+* __Markup__:
+	* Support HTML entities in attribute values ([#1143](https://github.com/PrismJS/prism/issues/1143)) [[`1d5047d`](https://github.com/PrismJS/prism/commit/1d5047d)]
+* __NSIS__:
+	* Update patterns ([#1033](https://github.com/PrismJS/prism/issues/1033)) [[`01a59d8`](https://github.com/PrismJS/prism/commit/01a59d8)]
+	* Add support for NSIS 3.02 ([#1169](https://github.com/PrismJS/prism/issues/1169)) [[`393b5f7`](https://github.com/PrismJS/prism/commit/393b5f7)] 
+* __PHP__:
+	* Fix the PHP language ([#1100](https://github.com/PrismJS/prism/issues/1100)) [[`1453fa7`](https://github.com/PrismJS/prism/commit/1453fa7)]
+	* Check for possible pre-existing marker strings in PHP [[`36bc560`](https://github.com/PrismJS/prism/commit/36bc560)] 
+* __Ruby__:
+	* Fix slash regex performance. Fix [#1083](https://github.com/PrismJS/prism/issues/1083) [[`a708730`](https://github.com/PrismJS/prism/commit/a708730)]
+	* Add support for =begin =end comments. Manual merge of [#1121](https://github.com/PrismJS/prism/issues/1121). [[`62cdaf8`](https://github.com/PrismJS/prism/commit/62cdaf8)]
+* __Smarty__:
+	* Check for possible pre-existing marker strings in Smarty [[`5df26e2`](https://github.com/PrismJS/prism/commit/5df26e2)]
+* __TypeScript__:
+	* Update typescript keywords ([#1064](https://github.com/PrismJS/prism/issues/1064)) [[`52020a0`](https://github.com/PrismJS/prism/commit/52020a0)]
+	* Chmod -x prism-typescript component ([#1145](https://github.com/PrismJS/prism/issues/1145)) [[`afe0542`](https://github.com/PrismJS/prism/commit/afe0542)] 
+* __YAML__:
+	* Make strings greedy (partial fix for [#1075](https://github.com/PrismJS/prism/issues/1075)) [[`565a2cc`](https://github.com/PrismJS/prism/commit/565a2cc)] 
+
+### Updated plugins
+
+* __Autolinker__:
+	* Fixed an rendering issue for encoded urls ([#1173](https://github.com/PrismJS/prism/issues/1173)) [[`abc007f`](https://github.com/PrismJS/prism/commit/abc007f)] 
+* __Custom Class__:
+	* Add missing noCSS property for the Custom Class plugin [[`ba64f8d`](https://github.com/PrismJS/prism/commit/ba64f8d)]
+	* Added a default for classMap. Fixes [#1137](https://github.com/PrismJS/prism/issues/1137). ([#1157](https://github.com/PrismJS/prism/issues/1157)) [[`5400af9`](https://github.com/PrismJS/prism/commit/5400af9)]
+* __Keep Markup__:
+	* Store highlightedCode after reinserting markup. Fix [#1127](https://github.com/PrismJS/prism/issues/1127) [[`6df2ceb`](https://github.com/PrismJS/prism/commit/6df2ceb)] 
+* __Line Highlight__:
+	* Cleanup left-over line-highlight tags before other plugins run [[`79b723d`](https://github.com/PrismJS/prism/commit/79b723d)]
+	* Avoid conflict between line-highlight and other plugins [[`224fdb8`](https://github.com/PrismJS/prism/commit/224fdb8)]
+* __Line Numbers__:
+	* Support soft wrap for line numbers plugin ([#584](https://github.com/PrismJS/prism/issues/584)) [[`849f1d6`](https://github.com/PrismJS/prism/commit/849f1d6)]
+	* Plugins fixes (unescaped-markup, line-numbers) ([#1012](https://github.com/PrismJS/prism/issues/1012)) [[`3fb7cf8`](https://github.com/PrismJS/prism/commit/3fb7cf8)]
+* __Normalize Whitespace__:
+	* Add Node.js support for the normalize-whitespace plugin [[`6c7dae2`](https://github.com/PrismJS/prism/commit/6c7dae2)]
+* __Unescaped Markup__:
+	* Plugins fixes (unescaped-markup, line-numbers) ([#1012](https://github.com/PrismJS/prism/issues/1012)) [[`3fb7cf8`](https://github.com/PrismJS/prism/commit/3fb7cf8)]
+
+### Updated themes
+* __Coy__:
+	* Scroll 'Coy' background with contents ([#1163](https://github.com/PrismJS/prism/issues/1163)) [[`310990b`](https://github.com/PrismJS/prism/commit/310990b)]
+
+### Other changes
+
+* Initial implementation of manual highlighting ([#1087](https://github.com/PrismJS/prism/issues/1087)) [[`bafc4cb`](https://github.com/PrismJS/prism/commit/bafc4cb)]
+* Remove dead link in Third-party tutorials section. Fixes [#1028](https://github.com/PrismJS/prism/issues/1028) [[`dffadc6`](https://github.com/PrismJS/prism/commit/dffadc6)]
+* Most languages now use the greedy flag for better highlighting [[`7549ecc`](https://github.com/PrismJS/prism/commit/7549ecc)]
+* .npmignore: Unignore components.js ([#1108](https://github.com/PrismJS/prism/issues/1108)) [[`1f699e7`](https://github.com/PrismJS/prism/commit/1f699e7)]
+* Run before-highlight and after-highlight hooks even when no grammar is found. Fix [#1134](https://github.com/PrismJS/prism/issues/1134) [[`70cb472`](https://github.com/PrismJS/prism/commit/70cb472)]
+* Replace [\w\W] with [\s\S] and [0-9] with \d in regexes ([#1107](https://github.com/PrismJS/prism/issues/1107)) [[`8aa2cc4`](https://github.com/PrismJS/prism/commit/8aa2cc4)]
+* Fix corner cases for the greedy flag ([#1095](https://github.com/PrismJS/prism/issues/1095)) [[`6530709`](https://github.com/PrismJS/prism/commit/6530709)]
+* Add Third Party Tutorial ([#1156](https://github.com/PrismJS/prism/issues/1156)) [[`c34e57b`](https://github.com/PrismJS/prism/commit/c34e57b)]
+* Add Composer support ([#648](https://github.com/PrismJS/prism/issues/648)) [[`2989633`](https://github.com/PrismJS/prism/commit/2989633)]
+* Remove IE8 plugin ([#992](https://github.com/PrismJS/prism/issues/992)) [[`25788eb`](https://github.com/PrismJS/prism/commit/25788eb)]
+* Website: remove width and height on logo.svg, so it becomes scalable. Close [#1005](https://github.com/PrismJS/prism/issues/1005) [[`0621ff7`](https://github.com/PrismJS/prism/commit/0621ff7)]
+* Remove yarn.lock ([#1098](https://github.com/PrismJS/prism/issues/1098)) [[`11eed25`](https://github.com/PrismJS/prism/commit/11eed25)] 
+
+## 1.6.0 (2016-12-03)
 
 ### New components
 

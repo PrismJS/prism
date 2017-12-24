@@ -7,6 +7,7 @@ for from global if
 import in is lambda
 pass print raise return
 try while with yield
+nonlocal
 
 ----------------------------------------------------
 
@@ -19,7 +20,8 @@ try while with yield
 	["keyword", "for"], ["keyword", "from"], ["keyword", "global"], ["keyword", "if"],
 	["keyword", "import"], ["keyword", "in"], ["keyword", "is"], ["keyword", "lambda"],
 	["keyword", "pass"], ["keyword", "print"], ["keyword", "raise"], ["keyword", "return"],
-	["keyword", "try"], ["keyword", "while"], ["keyword", "with"], ["keyword", "yield"]
+	["keyword", "try"], ["keyword", "while"], ["keyword", "with"], ["keyword", "yield"],
+	["keyword", "nonlocal"]
 ]
 
 ----------------------------------------------------

@@ -49,9 +49,7 @@ var myElement = <MyComponent someProperty={true} />;
 		]],
 		["spread", [
 			["punctuation", "{"],
-			["punctuation", "."],
-			["punctuation", "."],
-			["punctuation", "."],
+			["punctuation", "..."],
 			["attr-value", "foo"],
 			["punctuation", "}"]
 		]],

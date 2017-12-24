@@ -1,6 +1,6 @@
 (function(Prism) {
 
-	var handlebars_pattern = /\{\{\{[\s\S]+?\}\}\}|\{\{[\s\S]+?\}\}/g;
+	var handlebars_pattern = /\{\{\{[\s\S]+?\}\}\}|\{\{[\s\S]+?\}\}/;
 
 	Prism.languages.handlebars = Prism.languages.extend('markup', {
 		'handlebars': {
@@ -10,9 +10,9 @@
 					pattern: /^\{\{\{?|\}\}\}?$/i,
 					alias: 'punctuation'
 				},
-				'string': /(["'])(\\?.)*?\1/,
-				'number': /\b-?(0x[\dA-Fa-f]+|\d*\.?\d+([Ee][+-]?\d+)?)\b/,
-				'boolean': /\b(true|false)\b/,
+				'string': /(["'])(?:\\.|(?!\1)[^\\\r\n])*\1/,
+				'number': /\b-?(?:0x[\dA-Fa-f]+|\d*\.?\d+(?:[Ee][+-]?\d+)?)\b/,
+				'boolean': /\b(?:true|false)\b/,
 				'block': {
 					pattern: /^(\s*~?\s*)[#\/]\S+?(?=\s*~?\s*$|\s)/i,
 					lookbehind: true,

@@ -4,35 +4,35 @@ Prism.languages.twig = {
 		pattern: /\{\{[\s\S]*?\}\}|\{%[\s\S]*?%\}/,
 		inside: {
 			'ld': {
-				pattern: /^(?:\{\{\-?|\{%\-?\s*\w+)/,
+				pattern: /^(?:\{\{-?|\{%-?\s*\w+)/,
 				inside: {
-					'punctuation': /^(?:\{\{|\{%)\-?/,
+					'punctuation': /^(?:\{\{|\{%)-?/,
 					'keyword': /\w+/
 				}
 			},
 			'rd': {
-				pattern: /\-?(?:%\}|\}\})$/,
+				pattern: /-?(?:%\}|\}\})$/,
 				inside: {
 					'punctuation': /.*/
 				}
 			},
 			'string': {
-				pattern: /("|')(?:\\?.)*?\1/,
+				pattern: /("|')(?:\\.|(?!\1)[^\\\r\n])*\1/,
 				inside: {
 					'punctuation': /^['"]|['"]$/
 				}
 			},
 			'keyword': /\b(?:even|if|odd)\b/,
 			'boolean': /\b(?:true|false|null)\b/,
-			'number': /\b-?(?:0x[\dA-Fa-f]+|\d*\.?\d+([Ee][-+]?\d+)?)\b/,
+			'number': /\b-?(?:0x[\dA-Fa-f]+|\d*\.?\d+(?:[Ee][-+]?\d+)?)\b/,
 			'operator': [
 				{
-					pattern: /(\s)(?:and|b\-and|b\-xor|b\-or|ends with|in|is|matches|not|or|same as|starts with)(?=\s)/,
+					pattern: /(\s)(?:and|b-and|b-xor|b-or|ends with|in|is|matches|not|or|same as|starts with)(?=\s)/,
 					lookbehind: true
 				},
 				/[=<>]=?|!=|\*\*?|\/\/?|\?:?|[-+~%|]/
 			],
-			'property': /\b[a-zA-Z_][a-zA-Z0-9_]*\b/,
+			'property': /\b[a-zA-Z_]\w*\b/,
 			'punctuation': /[()\[\]{}:.,]/
 		}
 	},

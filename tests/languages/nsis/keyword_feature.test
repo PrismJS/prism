@@ -41,6 +41,7 @@ EnumRegValue
 Exch
 Exec
 ExecShell
+ExecShellWait
 ExecWait
 ExpandEnvStrings
 File
@@ -206,6 +207,8 @@ WriteINIStr
 WriteRegBin
 WriteRegDWORD
 WriteRegExpandStr
+WriteRegMultiStr
+WriteRegNone
 WriteRegStr
 WriteUninstaller
 XPStyle
@@ -256,6 +259,7 @@ XPStyle
 	["keyword", "Exch"],
 	["keyword", "Exec"],
 	["keyword", "ExecShell"],
+	["keyword", "ExecShellWait"],
 	["keyword", "ExecWait"],
 	["keyword", "ExpandEnvStrings"],
 	["keyword", "File"],
@@ -421,6 +425,8 @@ XPStyle
 	["keyword", "WriteRegBin"],
 	["keyword", "WriteRegDWORD"],
 	["keyword", "WriteRegExpandStr"],
+	["keyword", "WriteRegMultiStr"],
+	["keyword", "WriteRegNone"],
 	["keyword", "WriteRegStr"],
 	["keyword", "WriteUninstaller"],
 	["keyword", "XPStyle"]
