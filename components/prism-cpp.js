@@ -10,3 +10,11 @@ Prism.languages.insertBefore('cpp', 'keyword', {
 		lookbehind: true
 	}
 });
+
+Prism.languages.insertBefore('cpp', 'string', {
+	'raw-string': {
+		pattern: /R"([^()\\ ]{0,16})\([\s\S]*?\)\1"/,
+		alias: 'string',
+		greedy: true
+	}
+});
