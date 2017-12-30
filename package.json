@@ -3,6 +3,7 @@
   "version": "1.9.0",
   "description": "Lightweight, robust, elegant syntax highlighting. A spin-off project from Dabblet.",
   "main": "prism.js",
+  "style": "themes/prism.css",
   "scripts": {
     "test": "mocha tests/testrunner-tests.js && mocha tests/run.js"
   },
