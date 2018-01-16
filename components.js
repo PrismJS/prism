@@ -667,33 +667,8 @@ var components = {
 			"owner": "Golmote",
 			"noCSS": true
 		},
-		"previewer-base": {
-			"title": "Previewer: Base",
-			"owner": "Golmote"
-		},
-		"previewer-color": {
-			"title": "Previewer: Color",
-			"require": "previewer-base",
-			"owner": "Golmote"
-		},
-		"previewer-gradient": {
-			"title": "Previewer: Gradient",
-			"require": "previewer-base",
-			"owner": "Golmote"
-		},
-		"previewer-easing": {
-			"title": "Previewer: Easing",
-			"require": "previewer-base",
-			"owner": "Golmote"
-		},
-		"previewer-time": {
-			"title": "Previewer: Time",
-			"require": "previewer-base",
-			"owner": "Golmote"
-		},
-		"previewer-angle": {
-			"title": "Previewer: Angle",
-			"require": "previewer-base",
+		"previewers": {
+			"title": "Previewers",
 			"owner": "Golmote"
 		},
 		"autoloader": {
