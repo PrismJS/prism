@@ -197,6 +197,10 @@ var components = {
 			"title": "Elixir",
 			"owner": "Golmote"
 		},
+		"elm": {
+			"title": "Elm",
+			"owner": "zwilias"
+		},
 		"erlang": {
 			"title": "Erlang",
 			"owner": "Golmote"
