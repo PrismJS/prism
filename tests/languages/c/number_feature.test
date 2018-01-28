@@ -5,6 +5,9 @@
 0.4e+2
 0xbabe
 0xBABE
+0b10110
+0b1
+0b0
 42f
 42F
 42u
@@ -22,6 +25,9 @@
 	["number", "0.4e+2"],
 	["number", "0xbabe"],
 	["number", "0xBABE"],
+	["number", "0b10110"],
+	["number", "0b1"],
+	["number", "0b0"],
 	["number", "42f"],
 	["number", "42F"],
 	["number", "42u"],
