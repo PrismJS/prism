@@ -161,6 +161,10 @@ var components = {
 			"require": "ruby",
 			"owner": "MakeNowJust"
 		},
+		"csp": {
+			"title": "Content-Security-Policy",
+			"owner": "ScottHelme"
+		},
 		"css-extras": {
 			"title": "CSS Extras",
 			"require": "css",
@@ -268,6 +272,14 @@ var components = {
 		"http": {
 			"title": "HTTP",
 			"owner": "danielgtaylor"
+		},
+		"hpkp": {
+			"title": "HTTP Public-Key-Pins",
+			"owner": "ScottHelme"
+		},
+		"hsts": {
+			"title": "HTTP Strict-Transport-Security",
+			"owner": "ScottHelme"
 		},
 		"ichigojam": {
 			"title": "IchigoJam",
