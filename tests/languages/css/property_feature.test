@@ -1,6 +1,7 @@
 color: red;
 background-color: blue;
 -webkit-transform: none;
+--ötökkä: 2;
 
 ----------------------------------------------------
 
@@ -12,11 +13,15 @@ background-color: blue;
 	["property", "background-color"],
 	["punctuation", ":"],
 	" blue",
-    ["punctuation", ";"],
+	["punctuation", ";"],
 	["property", "-webkit-transform"],
 	["punctuation", ":"],
 	" none",
-    ["punctuation", ";"]
+	["punctuation", ";"],
+	["property", "--ötökkä"],
+	["punctuation", ":"],
+	" 2",
+	["punctuation", ";"]
 ]
 
 ----------------------------------------------------

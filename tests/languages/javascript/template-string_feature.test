@@ -4,6 +4,7 @@ bar`
 `40+2=${40+2}`
 `${foo()}`
 "foo `a` `b` `c` `d` bar"
+"test // test" `template`
 
 ----------------------------------------------------
 
@@ -36,7 +37,11 @@ bar`
         ]],
         ["string", "`"]
     ]],
-    ["string", "\"foo `a` `b` `c` `d` bar\""]
+    ["string", "\"foo `a` `b` `c` `d` bar\""],
+    ["string", "\"test // test\""],
+    ["template-string", [
+        ["string", "`template`"]
+    ]]
 ]
 
 ----------------------------------------------------

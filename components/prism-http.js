@@ -1,19 +1,19 @@
 Prism.languages.http = {
 	'request-line': {
-		pattern: /^(POST|GET|PUT|DELETE|OPTIONS|PATCH|TRACE|CONNECT)\b\shttps?:\/\/\S+\sHTTP\/[0-9.]+/m,
+		pattern: /^(?:POST|GET|PUT|DELETE|OPTIONS|PATCH|TRACE|CONNECT)\shttps?:\/\/\S+\sHTTP\/[0-9.]+/m,
 		inside: {
 			// HTTP Verb
-			property: /^(POST|GET|PUT|DELETE|OPTIONS|PATCH|TRACE|CONNECT)\b/,
+			property: /^(?:POST|GET|PUT|DELETE|OPTIONS|PATCH|TRACE|CONNECT)\b/,
 			// Path or query argument
 			'attr-name': /:\w+/
 		}
 	},
 	'response-status': {
-		pattern: /^HTTP\/1.[01] [0-9]+.*/m,
+		pattern: /^HTTP\/1.[01] \d+.*/m,
 		inside: {
 			// Status, e.g. 200 OK
 			property: {
-                pattern: /(^HTTP\/1.[01] )[0-9]+.*/i,
+                pattern: /(^HTTP\/1.[01] )\d+.*/i,
                 lookbehind: true
             }
 		}

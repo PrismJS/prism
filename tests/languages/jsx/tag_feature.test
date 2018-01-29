@@ -1,5 +1,6 @@
 var myDivElement = <div className="foo" />;
 var myElement = <MyComponent someProperty={true} />;
+<div {...foo}>
 
 ----------------------------------------------------
 
@@ -40,7 +41,20 @@ var myElement = <MyComponent someProperty={true} />;
 		]],
 		["punctuation", "/>"]
 	]],
-	["punctuation", ";"]
+	["punctuation", ";"],
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"div"
+		]],
+		["spread", [
+			["punctuation", "{"],
+			["punctuation", "..."],
+			["attr-value", "foo"],
+			["punctuation", "}"]
+		]],
+		["punctuation", ">"]
+	]]
 ]
 
 ----------------------------------------------------

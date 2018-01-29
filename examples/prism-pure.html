@@ -116,21 +116,3 @@ extern "C" void map_destroy(exprmap *m)
   check (i1,j1) (i2,j2)
                = i1==i2 || j1==j2 || i1+j1==i2+j2 || i1-j1==i2-j2;
 end;</code></pre>
-
-<h2>Known failures</h2>
-<p>There are certain edge cases where Prism will fail.
-	There are always such cases in every regex-based syntax highlighter.
-	However, Prism dares to be open and honest about them.
-	If a failure is listed here, it doesn’t mean it will never be fixed. This is more of a “known bugs” list, just with a certain type of bug.
-</p>
-
-<h3>Commented inline code</h3>
-<pre><code>/* %<
-f()
-%> */</code></pre>
-
-<h3>Comment-like substrings</h3>
-<pre><code>"foo /* bar */ baz"; "foo // bar";</code></pre>
-
-<h3>Inline code-like substrings</h3>
-<pre><code>"foo %< f() %> bar"</code></pre>

@@ -8,9 +8,12 @@ COPY hom* /mydir/
 VOLUME /myvol
 USER daemon
 WORKDIR /a
-CMD echo "foo"
+HEALTHCHECK CMD echo "foo"
 LABEL version="1.0"
 ENTRYPOINT ["top", "-b"]
+ARG user1
+SHELL ["powershell", "-command"]
+STOPSIGNAL signal
 
 ----------------------------------------------------
 
@@ -25,11 +28,16 @@ ENTRYPOINT ["top", "-b"]
 	["keyword", "VOLUME"], " /myvol\r\n",
 	["keyword", "USER"], " daemon\r\n",
 	["keyword", "WORKDIR"], " /a\r\n",
-	["keyword", "CMD"], " echo ", ["string", "\"foo\""],
+	["keyword", "HEALTHCHECK"], ["keyword", "CMD"], " echo ", ["string", "\"foo\""],
 	["keyword", "LABEL"], " version=", ["string", "\"1.0\""],
 	["keyword", "ENTRYPOINT"],
 	["punctuation", "["], ["string", "\"top\""], ["punctuation", ","],
-	["string", "\"-b\""], ["punctuation", "]"]
+	["string", "\"-b\""], ["punctuation", "]"],
+	["keyword", "ARG"], " user1\r\n",
+    ["keyword", "SHELL"],
+    ["punctuation", "["], ["string", "\"powershell\""], ["punctuation", ","],
+    ["string", "\"-command\""], ["punctuation", "]"],
+    ["keyword", "STOPSIGNAL"], " signal"
 ]
 
 ----------------------------------------------------

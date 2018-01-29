@@ -22,7 +22,10 @@ Prism.languages.sas = {
 		pattern: /'[^']+'(?:dt?|t)\b/i,
 		alias: 'number'
 	},
-	'string': /(["'])(?:\1\1|(?!\1)[\s\S])*\1/,
+	'string': {
+		pattern: /(["'])(?:\1\1|(?!\1)[\s\S])*\1/,
+		greedy: true
+	},
 	'keyword': /\b(?:data|else|format|if|input|proc\s\w+|quit|run|then)\b/i,
 	// Decimal (1.2e23), hexadecimal (0c1x)
 	'number': /(?:\B-|\b)(?:[\da-f]+x|\d+(?:\.\d+)?(?:e[+-]?\d+)?)/i,

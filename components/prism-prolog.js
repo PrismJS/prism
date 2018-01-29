@@ -5,7 +5,10 @@ Prism.languages.prolog = {
 		/\/\*[\s\S]*?\*\//
 	],
 	// Depending on the implementation, strings may allow escaped newlines and quote-escape
-	'string': /(["'])(?:\1\1|\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,
+	'string': {
+		pattern: /(["'])(?:\1\1|\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,
+		greedy: true
+	},
 	'builtin': /\b(?:fx|fy|xf[xy]?|yfx?)\b/,
 	'variable': /\b[A-Z_]\w*/,
 	// FIXME: Should we list all null-ary predicates (not followed by a parenthesis) like halt, trace, etc.?

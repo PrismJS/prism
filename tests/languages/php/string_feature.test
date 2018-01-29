@@ -1,0 +1,19 @@
+"https://example.com"
+" /* not a comment */ "
+"multi-line
+string"
+'multi-line
+string'
+
+----------------------------------------------------
+
+[
+	["string", "\"https://example.com\""],
+	["string", "\" /* not a comment */ \""],
+	["string", "\"multi-line\r\nstring\""],
+	["string", "'multi-line\r\nstring'"]
+]
+
+----------------------------------------------------
+
+Checks for strings with comments.

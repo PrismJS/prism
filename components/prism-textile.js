@@ -82,13 +82,13 @@
 
 						// *bold*, **bold**
 						'bold': {
-							pattern: RegExp('((^\\*\\*?)(?:' + modifierRegex + ')?).+?(?=\\2)'),
+							pattern: RegExp('(^(\\*\\*?)(?:' + modifierRegex + ')?).+?(?=\\2)'),
 							lookbehind: true
 						},
 
 						// _italic_, __italic__
 						'italic': {
-							pattern: RegExp('((^__?)(?:' + modifierRegex + ')?).+?(?=\\2)'),
+							pattern: RegExp('(^(__?)(?:' + modifierRegex + ')?).+?(?=\\2)'),
 							lookbehind: true
 						},
 
@@ -217,7 +217,7 @@
 
 				// Prism(C)
 				'mark': {
-					pattern: /\b\((TM|R|C)\)/,
+					pattern: /\b\((?:TM|R|C)\)/,
 					alias: 'comment',
 					inside: {
 						'punctuation':/[()]/
@@ -237,7 +237,7 @@
 	};
 
 	// Only allow alpha-numeric HTML tags, not XML tags
-	Prism.languages.textile.tag.pattern = /<\/?(?!\d)[a-z0-9]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\\1|\\?(?!\1)[\w\W])*\1|[^\s'">=]+))?)*\s*\/?>/i;
+	Prism.languages.textile.tag.pattern = /<\/?(?!\d)[a-z0-9]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/i;
 
 	// Allow some nesting
 	Prism.languages.textile['phrase'].inside['inline'].inside['bold'].inside = nestedPatterns;

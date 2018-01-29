@@ -4,7 +4,7 @@ Prism.languages.parser = Prism.languages.extend('markup', {
 		lookbehind: true
 	},
 	'variable': {
-		pattern: /(^|[^^])\B\$(?:\w+|(?=[.\{]))(?:(?:\.|::?)\w+)*(?:\.|::?)?/,
+		pattern: /(^|[^^])\B\$(?:\w+|(?=[.{]))(?:(?:\.|::?)\w+)*(?:\.|::?)?/,
 		lookbehind: true,
 		inside: {
 			'punctuation': /\.|:+/
@@ -36,6 +36,7 @@ Prism.languages.insertBefore('parser', 'keyword', {
 	'expression': {
 		// Allow for 3 levels of depth
 		pattern: /(^|[^^])\((?:[^()]|\((?:[^()]|\((?:[^()])*\))*\))*\)/,
+		greedy: true,
 		lookbehind: true,
 		inside: {
 			'string': {

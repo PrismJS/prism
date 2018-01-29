@@ -79,15 +79,6 @@ multiple lines.`
 	If a failure is listed here, it doesn’t mean it will never be fixed. This is more of a “known bugs” list, just with a certain type of bug.
 </p>
 
-<h3>Comment-like substrings</h3>
-<pre><code>"foo /* bar */ baz"; "foo // bar";</code></pre>
-
-<h3>Two quotes of the same type (i.e. both single or both double) inside a regex</h3>
-<pre><code>foo = /"foo"/;</code></pre>
-
-<h3>Two quotes of the same type (i.e. both single or both double) inside string interpolation</h3>
-<pre><code>foo = `${"foo"}`;</code></pre>
-
 <h3>String interpolation containing a closing brace</h3>
 <pre><code>`${ {foo:'bar'}.foo }`
 `${ '}' }`</code></pre>

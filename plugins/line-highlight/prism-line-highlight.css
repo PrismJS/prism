@@ -42,3 +42,8 @@ pre[data-line] {
 		top: auto;
 		bottom: .4em;
 	}
+
+.line-numbers .line-highlight:before,
+.line-numbers .line-highlight:after {
+	content: none;
+}

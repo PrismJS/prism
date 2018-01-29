@@ -2,6 +2,7 @@ Prism.languages.haxe = Prism.languages.extend('clike', {
 	// Strings can be multi-line
 	'string': {
 		pattern: /(["'])(?:(?!\1)[^\\]|\\[\s\S])*\1/,
+		greedy: true,
 		inside: {
 			'interpolation': {
 				pattern: /(^|[^\\])\$(?:\w+|\{[^}]+\})/,
@@ -22,7 +23,8 @@ Prism.languages.haxe = Prism.languages.extend('clike', {
 });
 Prism.languages.insertBefore('haxe', 'class-name', {
 	'regex': {
-		pattern: /~\/(?:[^\/\\\r\n]|\\.)+\/[igmsu]*/
+		pattern: /~\/(?:[^\/\\\r\n]|\\.)+\/[igmsu]*/,
+		greedy: true
 	}
 });
 Prism.languages.insertBefore('haxe', 'keyword', {

@@ -29,11 +29,15 @@
 	<p>This plugin provides several methods of achieving the same thing:</p>
 
 	<ul>
-		<li>Instead of using <code>&lt;pre>&lt;code></code> elements, use <code>&lt;script type="text/plain"></code></li>
-		<li>Use a HTML-comment to escape your code
-		<pre><code>&lt;pre>&lt;code>&lt;!--
+		<li>Instead of using <code>&lt;pre>&lt;code></code> elements, use <code>&lt;script type="text/plain"></code>
+		<pre><code>&lt;script type="text/plain" class="language-markup">
 &lt;p>Example&lt;/p>
--->&lt;/pre>&lt;/code></code></pre></li>
+&lt;/script></code></pre>
+		</li>
+		<li>Use a HTML-comment to escape your code
+		<pre><code>&lt;pre class="language-markup">&lt;code>&lt;!--
+&lt;p>Example&lt;/p>
+-->&lt;/code>&lt;/pre></code></pre></li>
 	</ul>
 </section>
 

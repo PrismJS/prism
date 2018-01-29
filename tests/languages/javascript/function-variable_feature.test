@@ -1,0 +1,24 @@
+foo = function () {}
+bar = function baz () {}
+fooBar = x => x
+ಠ_ಠ = () => {}
+Ƞȡ_҇ = (ಠ, Ƞ = 2) => {}
+
+----------------------------------------------------
+
+[
+	["function-variable", "foo"], ["operator", "="], ["keyword", "function"],
+	["punctuation", "("], ["punctuation", ")"], ["punctuation", "{"], ["punctuation", "}"],
+	["function-variable", "bar"], ["operator", "="], ["keyword", "function"], ["function", "baz"],
+	["punctuation", "("], ["punctuation", ")"], ["punctuation", "{"], ["punctuation", "}"],
+	["function-variable", "fooBar"], ["operator", "="], " x ", ["operator", "=>"], " x\r\n",
+	["function-variable", "ಠ_ಠ"], ["operator", "="], ["punctuation", "("], ["punctuation", ")"],
+	["operator", "=>"], ["punctuation", "{"], ["punctuation", "}"],
+	["function-variable", "Ƞȡ_҇"], ["operator", "="],
+	["punctuation", "("], "ಠ", ["punctuation", ","], " Ƞ ", ["operator", "="], ["number", "2"], ["punctuation", ")"],
+	["operator", "=>"], ["punctuation", "{"], ["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for variables obviously containing functions.

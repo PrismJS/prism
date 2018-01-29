@@ -35,8 +35,7 @@
         ["attr-value", [
             ["punctuation", "="],
             ["punctuation", "\""],
-            "ProductDetails.aspx?productID",
-            ["punctuation", "="],
+            "ProductDetails.aspx?productID=",
             ["directive tag", [
                 ["directive tag", "<%#:"],
                 "Item",

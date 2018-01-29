@@ -1,10 +1,23 @@
 Prism.languages.livescript = {
+	'comment': [
+		{
+			pattern: /(^|[^\\])\/\*[\s\S]*?\*\//,
+			lookbehind: true
+		},
+		{
+			pattern: /(^|[^\\])#.*/,
+			lookbehind: true
+		}
+	],
 	'interpolated-string': {
-		pattern: /("""|")(?:\\[\s\S]|(?!\1)[^\\])*\1/,
+		/* Look-behind and look-ahead prevents wrong behavior of the greedy pattern
+		* forcing it to match """-quoted string when it would otherwise match "-quoted first. */
+		pattern: /(^|[^"])("""|")(?:\\[\s\S]|(?!\2)[^\\])*\2(?!")/,
+		lookbehind: true,
 		greedy: true,
 		inside: {
 			'variable': {
-				pattern: /(^|[^\\])#[a-z_](?:-?[a-z]|\d)*/m,
+				pattern: /(^|[^\\])#[a-z_](?:-?[a-z]|[\d_])*/m,
 				lookbehind: true
 			},
 			'interpolation': {
@@ -21,18 +34,6 @@ Prism.languages.livescript = {
 			'string': /[\s\S]+/
 		}
 	},
-	'comment': [
-		{
-			pattern: /(^|[^\\])\/\*[\w\W]*?\*\//,
-			lookbehind: true,
-			greedy: true
-		},
-		{
-			pattern: /(^|[^\\])#.*/,
-			lookbehind: true,
-			greedy: true
-		}
-	],
 	'string': [
 		{
 			pattern: /('''|')(?:\\[\s\S]|(?!\1)[^\\])*\1/,
@@ -80,7 +81,7 @@ Prism.languages.livescript = {
 		alias: 'variable'
 	},
 	'number': /\b(?:\d+~[\da-z]+|\d[\d_]*(?:\.\d[\d_]*)?(?:[a-z]\w*)?)/i,
-	'identifier': /[a-z_](?:-?[a-z]|\d)*/i,
+	'identifier': /[a-z_](?:-?[a-z]|[\d_])*/i,
 	'operator': [
 		// Spaced .
 		{
