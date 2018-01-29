@@ -1,0 +1,11 @@
+upgrade-insecure-requests;
+
+----------------------------------------------------
+
+[
+	["directive", "upgrade-insecure-requests;"]
+]
+
+----------------------------------------------------
+
+Checks for CSP directive followed by a source expression.
