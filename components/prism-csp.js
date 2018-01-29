@@ -15,7 +15,7 @@ Prism.languages.csp = {
              alias: 'keyword'
         },
 	'safe': {
-            pattern: /'(?:self|none|strict-dynamic|(?:nonce-|sha256-)[a-zA-Z0-9]+)'/,
+            pattern: /'(?:self|none|strict-dynamic|(?:nonce-|sha256-)[a-zA-Z0-9+=/]+)'/,
             alias: 'selector'
         },
 	'unsafe': {
