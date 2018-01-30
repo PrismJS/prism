@@ -8,4 +8,4 @@ upgrade-insecure-requests;
 
 ----------------------------------------------------
 
-Checks for CSP directive followed by a source expression.
+Checks for a "void" CSP directive followed by semicolon.
