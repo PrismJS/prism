@@ -509,7 +509,7 @@ var components = {
 		"renpy": {
 			"title": "Ren'py",
 			"owner": "HyuchiaDiego"
-        },
+		},
 		"reason": {
 			"title": "Reason",
 			"require": "clike",
