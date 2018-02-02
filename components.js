@@ -590,6 +590,10 @@ var components = {
 			"require": "markup",
 			"owner": "Golmote"
 		},
+		"tsx": {
+			"title": "React Tsx", 
+			"require": ["jsx", "typescript"]
+		},
 		"twig": {
 			"title": "Twig",
 			"require": "markup",
