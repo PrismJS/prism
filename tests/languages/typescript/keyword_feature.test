@@ -48,12 +48,6 @@ yield
 module
 declare
 constructor
-string
-Function
-any
-number
-boolean
-Array
 enum
 
 ----------------------------------------------------
@@ -109,12 +103,6 @@ enum
 	["keyword", "module"],
 	["keyword", "declare"],
 	["keyword", "constructor"],
-	["keyword", "string"],
-	["keyword", "Function"],
-	["keyword", "any"],
-	["keyword", "number"],
-	["keyword", "boolean"],
-	["keyword", "Array"],
 	["keyword", "enum"]
 ]
 
