@@ -506,6 +506,10 @@ var components = {
 			"require": ["markup", "javascript"],
 			"owner": "vkbansal"
 		},
+		"tsx": {
+			"title": "React Tsx", 
+			"require": ["jsx", "typescript"]
+		},
 		"renpy": {
 			"title": "Ren'py",
 			"owner": "HyuchiaDiego"
@@ -589,10 +593,6 @@ var components = {
 			"title": "Textile",
 			"require": "markup",
 			"owner": "Golmote"
-		},
-		"tsx": {
-			"title": "React Tsx", 
-			"require": ["jsx", "typescript"]
 		},
 		"twig": {
 			"title": "Twig",
