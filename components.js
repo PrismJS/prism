@@ -507,7 +507,7 @@ var components = {
 			"owner": "vkbansal"
 		},
 		"tsx": {
-			"title": "React Tsx", 
+			"title": "React TSX", 
 			"require": ["jsx", "typescript"]
 		},
 		"renpy": {

@@ -8,7 +8,7 @@ interface IState {
 	clicks: number;
 }
 
-export class Clicker extends React.Component<any, IState> {
+export class Clicker extends React.Component&lt;any, IState> {
 	constructor(props) {
 		super(props);
 
@@ -23,12 +23,12 @@ export class Clicker extends React.Component<any, IState> {
 
 	public render() {
 		return (
-			<div>
-				<p>You have clicked the button {this.state.clicks} time(s).</p>
-				<p>
-					<button onClick={this.clickHandler}>click me</button>
-				</p>
-			</div>
+			&lt;div>
+				&lt;p>You have clicked the button {this.state.clicks} time(s).&lt;/p>
+				&lt;p>
+					&lt;button onClick={this.clickHandler}>click me&lt;/button>
+				&lt;/p>
+			&lt;/div>
 		);
 	}
 }</code></pre>
