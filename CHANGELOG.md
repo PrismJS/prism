@@ -1,5 +1,22 @@
 # Prism Changelog
 
+## Unreleased
+
+### New components
+* __Content-Security-Policy (CSP)__ ([#1275](https://github.com/PrismJS/prism/issues/1275)) [[`b08cae5`](https://github.com/PrismJS/prism/commit/b08cae5)]
+* __HTTP Public-Key-Pins (HPKP)__ ([#1275](https://github.com/PrismJS/prism/issues/1275)) [[`b08cae5`](https://github.com/PrismJS/prism/commit/b08cae5)]
+* __HTTP String-Transport-Security (HSTS)__ ([#1275](https://github.com/PrismJS/prism/issues/1275)) [[`b08cae5`](https://github.com/PrismJS/prism/commit/b08cae5)]
+* __React TSX__ ([#1280](https://github.com/PrismJS/prism/issues/1280)) [[`fbe82b8`](https://github.com/PrismJS/prism/commit/fbe82b8)]
+
+### Updated components
+* __C++__:
+	* Add C++ platform-independent types ([#1271](https://github.com/PrismJS/prism/issues/1271)) [[`3da238f`](https://github.com/PrismJS/prism/commit/3da238f)]
+* __TypeScript__:
+	* Improve typescript with builtins ([#1277](https://github.com/PrismJS/prism/issues/1277)) [[`5de1b1f`](https://github.com/PrismJS/prism/commit/5de1b1f)]
+
+### Other changes
+* Fix passing of non-enumerable Error properties from the child test runner ([#1276](https://github.com/PrismJS/prism/issues/1276)) [[`38df653`](https://github.com/PrismJS/prism/commit/38df653)]
+
 ## 1.10.0 (2018-01-17)
 
 ### New components
