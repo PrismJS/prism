@@ -180,14 +180,14 @@ var components = {
 			"require": "clike",
 			"owner": "Golmote"
 		},
+		"diff": {
+			"title": "Diff",
+			"owner": "uranusjr"
+		},
 		"django": {
 			"title": "Django/Jinja2",
 			"require": "markup",
 			"owner": "romanvm"
-		},
-		"diff": {
-			"title": "Diff",
-			"owner": "uranusjr"
 		},
 		"docker": {
 			"title": "Docker",
