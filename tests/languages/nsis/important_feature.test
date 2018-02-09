@@ -23,6 +23,7 @@
 !macro
 !makensis
 !packhdr
+!pragma
 !searchparse
 !searchreplace
 !system
@@ -59,6 +60,7 @@
 	["important", "!macro"],
 	["important", "!makensis"],
 	["important", "!packhdr"],
+	["important", "!pragma"],
 	["important", "!searchparse"],
 	["important", "!searchreplace"],
 	["important", "!system"],

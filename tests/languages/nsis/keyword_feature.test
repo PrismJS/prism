@@ -42,6 +42,7 @@ Exch
 Exec
 ExecShell
 ExecWait
+ExecShellWait
 ExpandEnvStrings
 File
 FileBufSize
@@ -213,6 +214,8 @@ WriteINIStr
 WriteRegBin
 WriteRegDWORD
 WriteRegExpandStr
+WriteRegMultiStr
+WriteRegNone
 WriteRegStr
 WriteUninstaller
 XPStyle
@@ -264,6 +267,7 @@ XPStyle
 	["keyword", "Exec"],
 	["keyword", "ExecShell"],
 	["keyword", "ExecWait"],
+	["keyword", "ExecShellWait"],
 	["keyword", "ExpandEnvStrings"],
 	["keyword", "File"],
 	["keyword", "FileBufSize"],
@@ -435,6 +439,8 @@ XPStyle
 	["keyword", "WriteRegBin"],
 	["keyword", "WriteRegDWORD"],
 	["keyword", "WriteRegExpandStr"],
+	["keyword", "WriteRegMultiStr"],
+	["keyword", "WriteRegNone"],
 	["keyword", "WriteRegStr"],
 	["keyword", "WriteUninstaller"],
 	["keyword", "XPStyle"]
