@@ -41,7 +41,6 @@ EnumRegValue
 Exch
 Exec
 ExecShell
-ExecShellWait
 ExecWait
 ExpandEnvStrings
 File
@@ -53,10 +52,10 @@ FileRead
 FileReadByte
 FileReadUTF16LE
 FileReadWord
-FileWriteUTF16LE
 FileSeek
 FileWrite
 FileWriteByte
+FileWriteUTF16LE
 FileWriteWord
 FindClose
 FindFirst
@@ -95,10 +94,16 @@ InstProgressFlags
 InstType
 InstTypeGetText
 InstTypeSetText
+Int64Cmp
+Int64CmpU
+Int64Fmt
 IntCmp
 IntCmpU
 IntFmt
 IntOp
+IntPtrCmp
+IntPtrCmpU
+IntPtrOp
 IsWindow
 LangDLL
 LangString
@@ -169,6 +174,7 @@ SetFileAttributes
 SetFont
 SetOutPath
 SetOverwrite
+SetPluginUnload
 SetRebootFlag
 SetRegView
 SetShellVarContext
@@ -207,8 +213,6 @@ WriteINIStr
 WriteRegBin
 WriteRegDWORD
 WriteRegExpandStr
-WriteRegMultiStr
-WriteRegNone
 WriteRegStr
 WriteUninstaller
 XPStyle
@@ -259,7 +263,6 @@ XPStyle
 	["keyword", "Exch"],
 	["keyword", "Exec"],
 	["keyword", "ExecShell"],
-	["keyword", "ExecShellWait"],
 	["keyword", "ExecWait"],
 	["keyword", "ExpandEnvStrings"],
 	["keyword", "File"],
@@ -271,10 +274,10 @@ XPStyle
 	["keyword", "FileReadByte"],
 	["keyword", "FileReadUTF16LE"],
 	["keyword", "FileReadWord"],
-	["keyword", "FileWriteUTF16LE"],
 	["keyword", "FileSeek"],
 	["keyword", "FileWrite"],
 	["keyword", "FileWriteByte"],
+	["keyword", "FileWriteUTF16LE"],
 	["keyword", "FileWriteWord"],
 	["keyword", "FindClose"],
 	["keyword", "FindFirst"],
@@ -313,10 +316,16 @@ XPStyle
 	["keyword", "InstType"],
 	["keyword", "InstTypeGetText"],
 	["keyword", "InstTypeSetText"],
+	["keyword", "Int64Cmp"],
+	["keyword", "Int64CmpU"],
+	["keyword", "Int64Fmt"],
 	["keyword", "IntCmp"],
 	["keyword", "IntCmpU"],
 	["keyword", "IntFmt"],
 	["keyword", "IntOp"],
+	["keyword", "IntPtrCmp"],
+	["keyword", "IntPtrCmpU"],
+	["keyword", "IntPtrOp"],
 	["keyword", "IsWindow"],
 	["keyword", "LangDLL"],
 	["keyword", "LangString"],
@@ -387,6 +396,7 @@ XPStyle
 	["keyword", "SetFont"],
 	["keyword", "SetOutPath"],
 	["keyword", "SetOverwrite"],
+	["keyword", "SetPluginUnload"],
 	["keyword", "SetRebootFlag"],
 	["keyword", "SetRegView"],
 	["keyword", "SetShellVarContext"],
@@ -425,8 +435,6 @@ XPStyle
 	["keyword", "WriteRegBin"],
 	["keyword", "WriteRegDWORD"],
 	["keyword", "WriteRegExpandStr"],
-	["keyword", "WriteRegMultiStr"],
-	["keyword", "WriteRegNone"],
 	["keyword", "WriteRegStr"],
 	["keyword", "WriteUninstaller"],
 	["keyword", "XPStyle"]
