@@ -85,22 +85,31 @@ var components = {
 			"title": "AppleScript",
 			"owner": "Golmote"
 		},
+		"arduino": {
+			"title": "Arduino",
+			"require": "cpp",
+			"owner": "eisbehr-"
+		},
 		"asciidoc": {
 			"title": "AsciiDoc",
 			"owner": "Golmote"
+		},
+		"asm6502": {
+			"title": "6502 Assembly",
+			"owner": "kzurawel"
 		},
 		"aspnet": {
 			"title": "ASP.NET (C#)",
 			"require": "markup",
 			"owner": "nauzilus"
 		},
-		"autoit": {
-			"title": "AutoIt",
-			"owner": "Golmote"
-		},
 		"autohotkey": {
 			"title": "AutoHotkey",
 			"owner": "aviaryan"
+		},
+		"autoit": {
+			"title": "AutoIt",
+			"owner": "Golmote"
 		},
 		"bash": {
 			"title": "Bash",
@@ -152,6 +161,10 @@ var components = {
 			"require": "ruby",
 			"owner": "MakeNowJust"
 		},
+		"csp": {
+			"title": "Content-Security-Policy",
+			"owner": "ScottHelme"
+		},
 		"css-extras": {
 			"title": "CSS Extras",
 			"require": "css",
@@ -171,6 +184,11 @@ var components = {
 			"title": "Diff",
 			"owner": "uranusjr"
 		},
+		"django": {
+			"title": "Django/Jinja2",
+			"require": "markup",
+			"owner": "romanvm"
+		},
 		"docker": {
 			"title": "Docker",
 			"owner": "JustinBeckwith"
@@ -183,6 +201,10 @@ var components = {
 			"title": "Elixir",
 			"owner": "Golmote"
 		},
+		"elm": {
+			"title": "Elm",
+			"owner": "zwilias"
+		},
 		"erlang": {
 			"title": "Erlang",
 			"owner": "Golmote"
@@ -191,6 +213,11 @@ var components = {
 			"title": "F#",
 			"require": "clike",
 			"owner": "simonreynolds7"
+		},
+		"flow": {
+			"title": "Flow",
+			"require": "javascript",
+			"owner": "Golmote"
 		},
 		"fortran": {
 			"title": "Fortran",
@@ -246,6 +273,18 @@ var components = {
 			"title": "HTTP",
 			"owner": "danielgtaylor"
 		},
+		"hpkp": {
+			"title": "HTTP Public-Key-Pins",
+			"owner": "ScottHelme"
+		},
+		"hsts": {
+			"title": "HTTP Strict-Transport-Security",
+			"owner": "ScottHelme"
+		},
+		"ichigojam": {
+			"title": "IchigoJam",
+			"owner": "BlueCocoa"
+		},
 		"icon": {
 			"title": "Icon",
 			"owner": "Golmote"
@@ -258,19 +297,23 @@ var components = {
 			"title": "Ini",
 			"owner": "aviaryan"
 		},
+		"io": {
+			"title": "Io",
+			"owner": "AlesTsurko"
+		},
 		"j": {
 			"title": "J",
-			"owner": "Golmote"
-		},
-		"jade": {
-			"title": "Jade",
-			"require": "javascript",
 			"owner": "Golmote"
 		},
 		"java": {
 			"title": "Java",
 			"require": "clike",
 			"owner": "sherblot"
+		},
+		"jolie": {
+			"title": "Jolie",
+			"require": "clike",
+			"owner": "thesave"
 		},
 		"json": {
 			"title": "JSON",
@@ -335,6 +378,11 @@ var components = {
 			"title": "Monkey",
 			"owner": "Golmote"
 		},
+		"n4js":{
+			"title": "N4JS",
+			"require": "javascript",
+			"owner": "bsmith-n4"
+		},
 		"nasm": {
 			"title": "NASM",
 			"owner": "rbmj"
@@ -364,6 +412,11 @@ var components = {
 		"ocaml": {
 			"title": "OCaml",
 			"owner": "Golmote"
+		},
+		"opencl": {
+			"title": "OpenCL",
+			"require": "cpp",
+			"owner": "Milania1"
 		},
 		"oz": {
 			"title": "Oz",
@@ -418,6 +471,11 @@ var components = {
 			"require": "clike",
 			"owner": "just-boris"
 		},
+		"pug": {
+			"title": "Pug",
+			"require": "javascript",
+			"owner": "Golmote"
+		},
 		"puppet": {
 			"title": "Puppet",
 			"owner": "Golmote"
@@ -447,6 +505,19 @@ var components = {
 			"title": "React JSX",
 			"require": ["markup", "javascript"],
 			"owner": "vkbansal"
+		},
+		"tsx": {
+			"title": "React TSX", 
+			"require": ["jsx", "typescript"]
+		},
+		"renpy": {
+			"title": "Ren'py",
+			"owner": "HyuchiaDiego"
+		},
+		"reason": {
+			"title": "Reason",
+			"require": "clike",
+			"owner": "Golmote"
 		},
 		"rest": {
 			"title": "reST (reStructuredText)",
@@ -533,6 +604,11 @@ var components = {
 			"require": "javascript",
 			"owner": "vkbansal"
 		},
+		"vbnet": {
+			"title": "VB.Net",
+			"require": "basic",
+			"owner": "Bigsby"
+		},
 		"verilog": {
 			"title": "Verilog",
 			"owner": "a-rey"
@@ -549,6 +625,11 @@ var components = {
 			"title": "Wiki markup",
 			"require": "markup",
 			"owner": "Golmote"
+		},
+		"xeora": {
+			"title": "Xeora",
+			"require": "markup",
+			"owner": "freakmaxi"
 		},
 		"xojo": {
 			"title": "Xojo (REALbasic)",
@@ -574,7 +655,8 @@ var components = {
 		"wpd": "WebPlatform Docs",
 		"custom-class": {
 			"title": "Custom Class",
-			"owner": "dvkndn"
+			"owner": "dvkndn",
+			"noCSS": true
 		},
 		"file-highlight": {
 			"title": "File Highlight",
@@ -582,7 +664,9 @@ var components = {
 		},
 		"show-language": {
 			"title": "Show Language",
-			"owner": "nauzilus"
+			"owner": "nauzilus",
+			"noCSS": true,
+			"require": "toolbar"
 		},
 		"jsonp-highlight": {
 			"title": "JSONP Highlight",
@@ -599,33 +683,8 @@ var components = {
 			"owner": "Golmote",
 			"noCSS": true
 		},
-		"previewer-base": {
-			"title": "Previewer: Base",
-			"owner": "Golmote"
-		},
-		"previewer-color": {
-			"title": "Previewer: Color",
-			"require": "previewer-base",
-			"owner": "Golmote"
-		},
-		"previewer-gradient": {
-			"title": "Previewer: Gradient",
-			"require": "previewer-base",
-			"owner": "Golmote"
-		},
-		"previewer-easing": {
-			"title": "Previewer: Easing",
-			"require": "previewer-base",
-			"owner": "Golmote"
-		},
-		"previewer-time": {
-			"title": "Previewer: Time",
-			"require": "previewer-base",
-			"owner": "Golmote"
-		},
-		"previewer-angle": {
-			"title": "Previewer: Angle",
-			"require": "previewer-base",
+		"previewers": {
+			"title": "Previewers",
 			"owner": "Golmote"
 		},
 		"autoloader": {
@@ -653,6 +712,16 @@ var components = {
 		"data-uri-highlight": {
 			"title": "Data-URI Highlight",
 			"owner": "Golmote",
+			"noCSS": true
+		},
+		"toolbar": {
+			"title": "Toolbar",
+			"owner": "mAAdhaTTah"
+		},
+		"copy-to-clipboard": {
+			"title": "Copy to Clipboard Button",
+			"owner": "mAAdhaTTah",
+			"require": "toolbar",
 			"noCSS": true
 		}
 	}

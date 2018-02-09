@@ -4,6 +4,7 @@
 bar
 baz">
 <div foo:bar=42>
+<div foo="=\"=">
 
 ----------------------------------------------------
 
@@ -81,6 +82,23 @@ baz">
 		["attr-value", [
 			["punctuation", "="],
 			"42"
+		]],
+		["punctuation", ">"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"div"
+		]],
+		["attr-name", [
+			"foo"
+		]],
+		["attr-value", [
+			["punctuation", "="],
+			["punctuation", "\""],
+			"=\\\"=",
+			["punctuation", "\""]
 		]],
 		["punctuation", ">"]
 	]]

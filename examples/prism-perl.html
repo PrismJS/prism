@@ -72,19 +72,3 @@ $1, $_, %!;</code></pre>
 
   return \%conf;
 }</code></pre>
-
-<h2>Known failures</h2>
-<p>There are certain edge cases where Prism will fail.
-	There are always such cases in every regex-based syntax highlighter.
-	However, Prism dares to be open and honest about them.
-	If a failure is listed here, it doesn’t mean it will never be fixed. This is more of a “known bugs” list, just with a certain type of bug.
-</p>
-
-<h3>Comment-like substring</h3>
-<pre><code>"test # test";</code></pre>
-
-<h3>Comment symbol in regexp</h3>
-<pre><code>/test#test/;</code></pre>
-
-<h3>Two quotes of the same type (i.e. both single or both double) inside a regex</h3>
-<pre><code>/"foo"/;</code></pre>

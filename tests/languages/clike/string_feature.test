@@ -8,6 +8,7 @@ bar"
 bar'
 "foo /* comment */ bar"
 'foo // bar'
+'foo // bar' //comment
 
 ----------------------------------------------------
 
@@ -19,7 +20,9 @@ bar'
 	["string", "\"foo\\\r\nbar\""],
 	["string", "'foo\\\r\nbar'"],
 	["string", "\"foo /* comment */ bar\""],
-	["string", "'foo // bar'"]
+	["string", "'foo // bar'"],
+	["string", "'foo // bar'"],
+	["comment", "//comment"]
 ]
 
 ----------------------------------------------------

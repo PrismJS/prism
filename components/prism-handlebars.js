@@ -1,6 +1,6 @@
 (function(Prism) {
 
-	var handlebars_pattern = /\{\{\{[\w\W]+?\}\}\}|\{\{[\w\W]+?\}\}/g;
+	var handlebars_pattern = /\{\{\{[\s\S]+?\}\}\}|\{\{[\s\S]+?\}\}/;
 
 	Prism.languages.handlebars = Prism.languages.extend('markup', {
 		'handlebars': {
@@ -10,9 +10,9 @@
 					pattern: /^\{\{\{?|\}\}\}?$/i,
 					alias: 'punctuation'
 				},
-				'string': /(["'])(\\?.)*?\1/,
-				'number': /\b-?(0x[\dA-Fa-f]+|\d*\.?\d+([Ee][+-]?\d+)?)\b/,
-				'boolean': /\b(true|false)\b/,
+				'string': /(["'])(?:\\.|(?!\1)[^\\\r\n])*\1/,
+				'number': /\b-?(?:0x[\dA-Fa-f]+|\d*\.?\d+(?:[Ee][+-]?\d+)?)\b/,
+				'boolean': /\b(?:true|false)\b/,
 				'block': {
 					pattern: /^(\s*~?\s*)[#\/]\S+?(?=\s*~?\s*$|\s)/i,
 					lookbehind: true,
@@ -22,7 +22,7 @@
 					pattern: /\[[^\]]+\]/,
 					inside: {
 						punctuation: /\[|\]/,
-						variable: /[\w\W]+/
+						variable: /[\s\S]+/
 					}
 				},
 				'punctuation': /[!"#%&'()*+,.\/;<=>@\[\\\]^`{|}~]/,
@@ -35,7 +35,7 @@
 	// surround markup
 	Prism.languages.insertBefore('handlebars', 'tag', {
 		'handlebars-comment': {
-			pattern: /\{\{![\w\W]*?\}\}/,
+			pattern: /\{\{![\s\S]*?\}\}/,
 			alias: ['handlebars','comment']
 		}
 	});
@@ -51,9 +51,15 @@
 
 		env.backupCode = env.code;
 		env.code = env.code.replace(handlebars_pattern, function(match) {
-			env.tokenStack.push(match);
+			var i = env.tokenStack.length;
+			// Check for existing strings
+			while (env.backupCode.indexOf('___HANDLEBARS' + i + '___') !== -1)
+				++i;
 
-			return '___HANDLEBARS' + env.tokenStack.length + '___';
+			// Create a sparse array
+			env.tokenStack[i] = match;
+
+			return '___HANDLEBARS' + i + '___';
 		});
 	});
 
@@ -72,9 +78,12 @@
 			return;
 		}
 
-		for (var i = 0, t; t = env.tokenStack[i]; i++) {
+		for (var i = 0, keys = Object.keys(env.tokenStack); i < keys.length; ++i) {
+			var k = keys[i];
+			var t = env.tokenStack[k];
+
 			// The replace prevents $$, $&, $`, $', $n, $nn from being interpreted as special patterns
-			env.highlightedCode = env.highlightedCode.replace('___HANDLEBARS' + (i + 1) + '___', Prism.highlight(t, env.grammar, 'handlebars').replace(/\$/g, '$$$$'));
+			env.highlightedCode = env.highlightedCode.replace('___HANDLEBARS' + k + '___', Prism.highlight(t, env.grammar, 'handlebars').replace(/\$/g, '$$$$'));
 		}
 
 		env.element.innerHTML = env.highlightedCode;

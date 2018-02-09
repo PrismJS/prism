@@ -7,7 +7,9 @@ if (
 	return;
 }
 
-var options = {};
+var options = {
+	classMap: {}
+};
 Prism.plugins.customClass = {
 	map: function map(cm) {
 		options.classMap = cm;

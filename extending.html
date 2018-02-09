@@ -158,6 +158,24 @@
 		</dl>
 	</section>
 
+	<section id="highlight-all-under">
+		<h1><code>Prism.highlightAllUnder(element, async, callback)</code></h1>
+		<p>Fetches all the descendants of <code>element</code> that have a <code>.language-xxxx</code> class
+			and then calls <code>Prism.highlightElement()</code> on each one of them.</p>
+
+		<h2>Parameters</h2>
+		<dl>
+			<dt>element</dt>
+			<dd>The root element, whose descendants that have a <code>.language-xxxx</code> class will be highlighted.</dd>
+
+			<dt>async</dt>
+			<dd>Whether to use Web Workers to improve performance and avoid blocking the UI when highlighting very large chunks of code. False by default (<a href="faq.html#why-is-asynchronous-highlighting-disabled-by-default">why?</a>).</dd>
+
+			<dt>callback</dt>
+			<dd>An optional callback to be invoked after the highlighting is done. Mostly useful when <code>async</code> is true, since in that case, the highlighting is done asynchronously.</dd>
+		</dl>
+	</section>
+
 	<section id="highlight-element">
 		<h1><code>Prism.highlightElement(element, async, callback)</code></h1>
 		<p>Highlights the code inside a single element.</p>

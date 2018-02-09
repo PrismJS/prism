@@ -15,7 +15,7 @@ ${^EXAMPLE}
     ["constant", "${AtLeastWin8.1}"],
     ["constant", "${nsArray_Copy}"],
     ["constant", "${xml::CreateNode}"],
-	["constant", "${^EXAMPLE}"]
+    ["constant", "${^EXAMPLE}"]
 ]
 
 ----------------------------------------------------

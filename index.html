@@ -58,9 +58,7 @@
 
 	<div class="used-by-logos">
 		<a href="http://smashingmagazine.com" target="_blank"><img src="img/logo-smashing.png" alt="Smashing Magazine" /></a>
-		<a class="uswds" href="https://playbook.cio.gov/designstandards/" target="_blank">U.S. Web Design Standards</a>
 		<a href="http://alistapart.com" target="_blank"><img src="img/logo-ala.png" alt="A List Apart" /></a>
-
 		<a href="https://developer.mozilla.org/" target="_blank"><img src="img/logo-mdn.png" alt="Mozilla Developer Network (MDN)" /></a>
 		<a href="http://css-tricks.com" target="_blank"><img src="img/logo-css-tricks.png" alt="CSS-Tricks" /></a>
 		<a href="http://www.sitepoint.com" target="_blank"><img src="img/logo-sitepoint.png" alt="SitePoint" /></a>
@@ -88,7 +86,7 @@
 	<p>If you’re still not sold, you can <a href="examples.html">view more examples</a> or <a href="test.html">try it out for yourself</a>.</p>
 </section>
 
-<section id="features-full">
+<section id="features-full" class="language-markup">
 	<h1>Full list of features</h1>
 	<ul>
 		<li><strong>Only 2KB</strong> minified &amp; gzipped (core). Each language definition adds roughly 300-500 bytes.</li>
@@ -198,12 +196,12 @@ var html = Prism.highlight(code, Prism.languages.javascript);</code></pre>
 	<p>Several tutorials have been written by members of the community to help you integrate Prism into multiple different website types and configurations:</p>
 
 	<ul>
+		<li><a href="https://websitebeaver.com/escape-html-inside-code-or-pre-tag-to-entities-to-display-raw-code-with-prismjs">Escape HTML Inside &lt;code&gt; or &lt;pre&gt; Tag to Entities to Display Raw Code with PrismJS</a></li>
 		<li><a href="http://crambler.com/how-to-implement-prism-js-syntax-highlighting-into-your-wordpress-site/">How To Implement Prism.js Syntax Highlighting Into Your WordPress Site</a></li>
 		<li><a href="http://wp.tutsplus.com/tutorials/plugins/adding-a-syntax-highlighter-shortcode-using-prism-js/">Adding a Syntax Highlighter Shortcode Using Prism.js | WPTuts+</a></li>
 		<li><a href="http://www.stramaxon.com/2012/07/prism-syntax-highlighter-for-blogger.html">Implement PrismJs Syntax Highlighting to your Blogger/BlogSpot</a></li>
 		<li><a href="http://www.allblogtools.com/tricks-and-hacks/beautify-source-codes-in-your-posts-with-prism-syntax-highlighter-for-blogger/">Beautify Source Codes In Your Posts With Prism Syntax Highlighter For Blogger</a></li>
 		<li><a href="http://dotnordic.se/extending-and-customizing-prism-syntax-highlighter/">Extending and customizing Prism syntax highlighter</a></li>
-		<li><a href="http://davidpea.ch/articles/287">Prism JS Code Highlighter</a></li>
 		<li><a href="http://schier.co/blog/2013/01/07/how-to-re-run-prismjs-on-ajax-content.html">How To Re-Run Prism.js On AJAX Content</a></li>
 		<li><a href="http://www.semisedlak.com/article/highlight-your-code-syntax-with-prismjs/">Highlight your code syntax with Prism.js</a></li>
 		<li><a href="http://gmurphey.com/2012/08/09/jekyll-plugin-syntax-highlighting-with-prism.html">Jekyll Plugin: Syntax Highlighting With Prism</a></li>
@@ -229,7 +227,7 @@ var html = Prism.highlight(code, Prism.languages.javascript);</code></pre>
 
 <footer data-src="templates/footer.html" data-type="text/html"></footer>
 
-<script src="prism.js" data-default-language="markup"></script>
+<script src="prism.js"></script>
 <script src="utopia.js"></script>
 <script src="components.js"></script>
 <script src="code.js"></script>

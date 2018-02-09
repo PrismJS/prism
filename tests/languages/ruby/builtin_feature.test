@@ -2,7 +2,7 @@ Array Bignum Binding
 Class;
 Continuation Dir Exception
 FalseClass File Stat File
-Fixnum Fload Hash Integer
+Fixnum Float Hash Integer
 IO MatchData Method Module
 NilClass Numeric Object
 Proc Range Regexp String
@@ -16,7 +16,7 @@ Thread Time TrueClass
 	["builtin", "Class"], ["punctuation", ";"],
 	["builtin", "Continuation"], ["builtin", "Dir"], ["builtin", "Exception"],
 	["builtin", "FalseClass"], ["builtin", "File"], ["builtin", "Stat"], ["builtin", "File"],
-	["builtin", "Fixnum"], ["builtin", "Fload"], ["builtin", "Hash"], ["builtin", "Integer"],
+	["builtin", "Fixnum"], ["builtin", "Float"], ["builtin", "Hash"], ["builtin", "Integer"],
 	["builtin", "IO"], ["builtin", "MatchData"], ["builtin", "Method"], ["builtin", "Module"],
 	["builtin", "NilClass"], ["builtin", "Numeric"], ["builtin", "Object"],
 	["builtin", "Proc"], ["builtin", "Range"], ["builtin", "Regexp"], ["builtin", "String"],

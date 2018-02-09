@@ -65,7 +65,17 @@ module.exports = {
 		var compiledTokenStream = Prism.tokenize(testCase.testSource, mainLanguageGrammar);
 		var simplifiedTokenStream = TokenStreamTransformer.simplify(compiledTokenStream);
 
-		assert.deepEqual(simplifiedTokenStream, testCase.expectedTokenStream, testCase.comment);
+		var tzd = JSON.stringify( simplifiedTokenStream ); var exp = JSON.stringify( testCase.expectedTokenStream );
+	  var i = 0;var j = 0;var diff = "";
+    while ( j < tzd.length ){ if (exp[i] != tzd[j] || i == exp.length) diff += tzd[j]; else i++; j++; }
+
+		// var message = "\nToken Stream: \n" + JSON.stringify( simplifiedTokenStream, null, " " ) + 
+		var message = "\nToken Stream: \n" + tzd + 
+									"\n-----------------------------------------\n" +
+									"Expected Token Stream: \n" + exp + 
+									"\n-----------------------------------------\n" + diff;
+
+		var result = assert.deepEqual(simplifiedTokenStream, testCase.expectedTokenStream, testCase.comment + message);
 	},
 
 
@@ -165,7 +175,7 @@ module.exports = {
 					code: code
 				};
 				Prism.hooks.run('before-highlight', env);
-				env.highlightedCode = Prism.highlight(env.code, Prism.languages[usedLanguages.mainLanguage], usedLanguages.mainLanguage);
+				env.highlightedCode = Prism.highlight(env.code, env.grammar, env.language);
 				Prism.hooks.run('before-insert', env);
 				env.element.innerHTML = env.highlightedCode;
 				Prism.hooks.run('after-highlight', env);

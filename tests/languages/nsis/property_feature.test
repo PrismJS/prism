@@ -15,8 +15,10 @@ FILE_ATTRIBUTE_OFFLINE
 FILE_ATTRIBUTE_READONLY
 FILE_ATTRIBUTE_SYSTEM
 FILE_ATTRIBUTE_TEMPORARY
-HKCR HKCU HKDD HKLM
-HKPD HKU
+HKCR HKCU HKLM
+HKCR32 HKCU32 HKLM32
+HKCR64 HKCU64 HKLM64
+HKDD HKPD HKU
 HKEY_CLASSES_ROOT
 HKEY_CURRENT_CONFIG
 HKEY_CURRENT_USER
@@ -70,8 +72,10 @@ SYSTEM TEMPORARY
 	["property", "FILE_ATTRIBUTE_READONLY"],
 	["property", "FILE_ATTRIBUTE_SYSTEM"],
 	["property", "FILE_ATTRIBUTE_TEMPORARY"],
-	["property", "HKCR"], ["property", "HKCU"], ["property", "HKDD"], ["property", "HKLM"],
-	["property", "HKPD"], ["property", "HKU"],
+	["property", "HKCR"], ["property", "HKCU"], ["property", "HKLM"],
+	["property", "HKCR32"], ["property", "HKCU32"], ["property", "HKLM32"],
+	["property", "HKCR64"], ["property", "HKCU64"], ["property", "HKLM64"],
+	["property", "HKDD"], ["property", "HKPD"], ["property", "HKU"],
 	["property", "HKEY_CLASSES_ROOT"],
 	["property", "HKEY_CURRENT_CONFIG"],
 	["property", "HKEY_CURRENT_USER"],

@@ -1,7 +1,19 @@
 (function (Prism) {
 	Prism.languages.pure = {
+		'comment': [
+			{
+				pattern: /(^|[^\\])\/\*[\s\S]*?\*\//,
+				lookbehind: true
+			},
+			{
+				pattern: /(^|[^\\:])\/\/.*/,
+				lookbehind: true
+			},
+			/#!.+/
+		],
 		'inline-lang': {
 			pattern: /%<[\s\S]+?%>/,
+			greedy: true,
 			inside: {
 				'lang': {
 					pattern: /(^%< *)-\*-.+?-\*-/,
@@ -14,18 +26,10 @@
 				}
 			}
 		},
-		'comment': [
-			{
-				pattern: /(^|[^\\])\/\*[\w\W]*?\*\//,
-				lookbehind: true
-			},
-			{
-				pattern: /(^|[^\\:])\/\/.*/,
-				lookbehind: true
-			},
-			/#!.+/
-		],
-		'string': /"(?:\\.|[^"\\\r\n])*"/,
+		'string': {
+			pattern: /"(?:\\.|[^"\\\r\n])*"/,
+			greedy: true
+		},
 		'number': {
 			// The look-behind prevents wrong highlighting of the .. operator
 			pattern: /((?:\.\.)?)(?:\b(?:inf|nan)\b|\b0x[\da-f]+|(?:\b(?:0b)?\d+(?:\.\d)?|\B\.\d)\d*(?:e[+-]?\d+)?L?)/i,

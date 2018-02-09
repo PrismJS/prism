@@ -19,14 +19,3 @@ StrCmp $LANGUAGE ${LANG_ENGLISH} 0 +2</code></pre>
 <h2>Compiler commands</h2>
 <pre><code>!define VERSION "1.0.3"
 !insertmacro MyFunc ""</code></pre>
-
-<h2>Known failures</h2>
-<p>There are certain edge cases where Prism will fail.
-	There are always such cases in every regex-based syntax highlighter.
-	However, Prism dares to be open and honest about them.
-	If a failure is listed here, it doesn’t mean it will never be fixed. This is more of a “known bugs” list, just with a certain type of bug.
-</p>
-
-<h3>Comment-like substrings</h3>
-<pre><code>"foo /* bar */ baz"
-"foo ; bar";</code></pre>

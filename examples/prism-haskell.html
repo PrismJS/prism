@@ -81,13 +81,3 @@ mkPS buf start end =
    copyBytes p (pbuf `plusPtr` start) len
  where
    len = end - start</code></pre>
-
-<h2>Known failures</h2>
-<p>There are certain edge cases where Prism will fail.
-	There are always such cases in every regex-based syntax highlighter.
-	However, Prism dares to be open and honest about them.
-	If a failure is listed here, it doesn’t mean it will never be fixed. This is more of a “known bugs” list, just with a certain type of bug.
-</p>
-
-<h3>Comment-like substrings</h3>
-<pre><code>"foo {- bar -} baz"; "foo -- bar";</code></pre>

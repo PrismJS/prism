@@ -16,6 +16,8 @@ this thread_local throw try
 typedef typeid typename union
 unsigned using virtual void
 volatile wchar_t while
+int8_t int16_t int32_t int64_t
+uint8_t uint16_t uint32_t uint64_t
 
 ----------------------------------------------------
 
@@ -37,7 +39,9 @@ volatile wchar_t while
 	["keyword", "this"], ["keyword", "thread_local"], ["keyword", "throw"], ["keyword", "try"],
 	["keyword", "typedef"], ["keyword", "typeid"], ["keyword", "typename"], ["keyword", "union"],
 	["keyword", "unsigned"], ["keyword", "using"], ["keyword", "virtual"], ["keyword", "void"],
-	["keyword", "volatile"], ["keyword", "wchar_t"], ["keyword", "while"]
+	["keyword", "volatile"], ["keyword", "wchar_t"], ["keyword", "while"],
+	["keyword", "int8_t"], ["keyword", "int16_t"], ["keyword", "int32_t"], ["keyword", "int64_t"],
+	["keyword", "uint8_t"], ["keyword", "uint16_t"], ["keyword", "uint32_t"], ["keyword", "uint64_t"]
 ]
 
 ----------------------------------------------------

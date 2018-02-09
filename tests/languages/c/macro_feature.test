@@ -1,6 +1,7 @@
 # include <stdio.h>
   #define PG_locked 0
 
+#defined
 #elif
 #else
 #endif
@@ -23,6 +24,7 @@
 		["string", "<stdio.h>"]
 	]],
 	["macro", ["#", ["directive", "define"], " PG_locked 0"]],
+	["macro", ["#", ["directive", "defined"]]],
 	["macro", ["#", ["directive", "elif"]]],
 	["macro", ["#", ["directive", "else"]]],
     ["macro", ["#", ["directive", "endif"]]],
@@ -40,4 +42,4 @@
 
 ----------------------------------------------------
 
-Checks for macros, multi-line macros and paths inside include statements.
+Checks for macros and paths inside include statements.
