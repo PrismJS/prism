@@ -10,7 +10,8 @@
 !error
 !execute
 !finalize
-!getdllversionsystem
+!getdllversion
+!gettlbversion
 !ifdef
 !ifmacrodef
 !ifmacrondef
@@ -25,6 +26,7 @@
 !pragma
 !searchparse
 !searchreplace
+!system
 !tempfile
 !undef
 !verbose
@@ -45,7 +47,8 @@
 	["important", "!error"],
 	["important", "!execute"],
 	["important", "!finalize"],
-	["important", "!getdllversionsystem"],
+	["important", "!getdllversion"],
+	["important", "!gettlbversion"],
 	["important", "!ifdef"],
 	["important", "!ifmacrodef"],
 	["important", "!ifmacrondef"],
@@ -60,6 +63,7 @@
 	["important", "!pragma"],
 	["important", "!searchparse"],
 	["important", "!searchreplace"],
+	["important", "!system"],
 	["important", "!tempfile"],
 	["important", "!undef"],
 	["important", "!verbose"],
