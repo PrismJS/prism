@@ -1,7 +1,7 @@
 /**
  * Original by Jan T. Sott (http://github.com/idleberg)
  *
- * Includes all commands and plug-ins shipped with NSIS 3.02
+ * Includes all commands and plug-ins shipped with NSIS 3.03
  */
  Prism.languages.nsis = {
 	'comment': {
@@ -20,7 +20,7 @@
 	'operator': /--?|\+\+?|<=?|>=?|==?=?|&&?|\|?\||[?*\/~^%]/,
 	'punctuation': /[{}[\];(),.:]/,
 	'important': {
-		pattern: /(^\s*)!(addincludedir|addplugindir|appendfile|cd|define|delfile|echo|else|endif|error|execute|finalize|getdllversionsystem|ifdef|ifmacrodef|ifmacrondef|ifndef|if|include|insertmacro|macroend|macro|makensis|packhdr|pragma|searchparse|searchreplace|tempfile|undef|verbose|warning)\b/mi,
+		pattern: /(^\s*)!(addincludedir|addplugindir|appendfile|cd|define|delfile|echo|else|endif|error|execute|finalize|getdllversion|system|ifdef|ifmacrodef|ifmacrondef|ifndef|if|include|insertmacro|macroend|macro|makensis|packhdr|pragma|searchparse|searchreplace|tempfile|undef|verbose|warning)\b/mi,
 		lookbehind: true
 	}
 };
