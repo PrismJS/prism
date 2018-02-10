@@ -130,6 +130,8 @@ NSISdl
 OutFile
 Page
 PageCallbacks
+PEDllCharacteristics
+PESubsysVer
 Pop
 Push
 Quit
@@ -355,6 +357,8 @@ XPStyle
 	["keyword", "OutFile"],
 	["keyword", "Page"],
 	["keyword", "PageCallbacks"],
+	["keyword", "PEDllCharacteristics"],
+	["keyword", "PESubsysVer"],
 	["keyword", "Pop"],
 	["keyword", "Push"],
 	["keyword", "Quit"],
