@@ -6,6 +6,7 @@ bar"
 "foo\tbar"
 "foo\tbar"
 "`foo'"
+"FOO."
 )
 
 ----------------------------------------------------
@@ -18,6 +19,7 @@ bar"
 	["string", [ "\"foo\\tbar\"" ]],
 	["string", [ "\"foo\\tbar\"" ]],
 	["string", [ "\"", ["symbol", "`foo'"], "\"" ]],
+	["string", [ "\"", ["argument", "FOO"], ".\"" ]],
 	["punctuation", ")"]
 
 ]
