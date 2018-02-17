@@ -1,14 +1,23 @@
+(
 ""
-"foo\
+"foo
 bar"
+"\"foo\""
+"foo\tbar"
+)
 
 ----------------------------------------------------
 
 [
-	["string", ["\"\""]],
-	["string", "\"foo\\\r\nbar\""]
+	["punctuation", "("],
+	["string", [ "\"\"" ]],
+	["string", [ "\"foo\r\nbar\"" ]],
+	["string", [ "\"\\\"foo\\\"\"" ]],
+	["string", [ "\"foo\\tbar\"" ]],
+	["punctuation", ")"]
+
 ]
 
 ----------------------------------------------------
 
-Checks for all keywords.
+Checks for all string variations.
