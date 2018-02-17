@@ -197,6 +197,10 @@ var components = {
 			"title": "Eiffel",
 			"owner": "Conaclos"
 		},
+		"elisp": {
+			"title": "Elisp",
+			"owner": "JuanCaicedo"
+		},
 		"elixir": {
 			"title": "Elixir",
 			"owner": "Golmote"
