@@ -93,7 +93,7 @@ Prism.languages.elisp = (function() {
 		},
 		defun: {
 			pattern: new RegExp(
-				par + `(?:cl-)?(?:defun\\*?|defmacro)\\s+${symbol}\\s+\\([\\s\\S]*\\)`
+				par + `(?:cl-)?(?:defun\\*?|defmacro)\\s+${symbol}\\s+\\([\\s\\S]*?\\)`
 			),
 			lookbehind: true,
 			inside: {
