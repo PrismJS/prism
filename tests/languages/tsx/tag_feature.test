@@ -1,6 +1,6 @@
 var myDivElement = <div className="foo" />;
 var myElement = <MyComponent someProperty={true} />;
-<div {...foo}>
+<div {...foo}/>
 class Test extends Component {
 	render() {
 		return <p onClick={this.clickHandler}>Hello world.</p>;
@@ -58,7 +58,7 @@ class Test extends Component {
 			["attr-value", "foo"],
 			["punctuation", "}"]
 		]],
-		["punctuation", ">"]
+		["punctuation", "/>"]
 	]],
 
 	["keyword",  "class"],
@@ -87,8 +87,7 @@ class Test extends Component {
 		]],
 		["punctuation", ">"]
 	]],
-	"Hello world",
-	["punctuation", "."],
+	["plain-text", ["Hello world."]],
 	["tag", [
 		["tag", [
 			["punctuation", "</"],
