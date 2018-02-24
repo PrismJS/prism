@@ -1,3 +1,5 @@
+var textCopy = 'Copy', textCopied = 'Copied!', errorCopy = 'Press Ctrl+C to copy';
+
 (function(){
 	if (typeof self === 'undefined' || !self.Prism || !self.document) {
 		return;
@@ -41,7 +43,7 @@
 
 	Prism.plugins.toolbar.registerButton('copy-to-clipboard', function (env) {
 		var linkCopy = document.createElement('a');
-		linkCopy.textContent = 'Copy';
+		linkCopy.textContent = textCopy;
 
 		if (!Clipboard) {
 			callbacks.push(registerClipboard);
@@ -59,12 +61,12 @@
 			});
 
 			clip.on('success', function() {
-				linkCopy.textContent = 'Copied!';
+				linkCopy.textContent = textCopied;
 
 				resetText();
 			});
 			clip.on('error', function () {
-				linkCopy.textContent = 'Press Ctrl+C to copy';
+				linkCopy.textContent = errorCopy;
 
 				resetText();
 			});
@@ -72,7 +74,7 @@
 
 		function resetText() {
 			setTimeout(function () {
-				linkCopy.textContent = 'Copy';
+				linkCopy.textContent = textCopy;
 			}, 5000);
 		}
 	});
