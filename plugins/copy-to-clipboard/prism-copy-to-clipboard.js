@@ -1,6 +1,6 @@
-if(typeof textCopy == 'undefined') textCopy = 'Copy';
-if(typeof textCopied == 'undefined') textCopied = 'Copied!';
-if(typeof errorCopied == 'undefined') textCopy = 'Press Ctrl+C to copy';
+if(typeof textCopy == 'undefined') var textCopy = 'Copy';
+if(typeof textCopied == 'undefined') var textCopied = 'Copied!';
+if(typeof errorCopied == 'undefined') var errorCopied = 'Press Ctrl+C to copy';
 
 (function(){
 	if (typeof self === 'undefined' || !self.Prism || !self.document) {
@@ -68,7 +68,7 @@ if(typeof errorCopied == 'undefined') textCopy = 'Press Ctrl+C to copy';
 				resetText();
 			});
 			clip.on('error', function () {
-				linkCopy.textContent = errorCopy;
+				linkCopy.textContent = errorCopied;
 
 				resetText();
 			});
