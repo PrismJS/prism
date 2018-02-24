@@ -1,4 +1,6 @@
-var textCopy = 'Copy', textCopied = 'Copied!', errorCopy = 'Press Ctrl+C to copy';
+if(typeof textCopy == 'undefined') textCopy = 'Copy';
+if(typeof textCopied == 'undefined') textCopied = 'Copied!';
+if(typeof errorCopied == 'undefined') textCopy = 'Press Ctrl+C to copy';
 
 (function(){
 	if (typeof self === 'undefined' || !self.Prism || !self.document) {
