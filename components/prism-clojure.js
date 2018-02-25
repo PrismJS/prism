@@ -1,6 +1,6 @@
 // Copied from https://github.com/jeluard/prism-clojure
 Prism.languages.clojure = {
-	comment: /;+[^\r\n]*/,
+	comment: /;+.*/,
 	string: /(")(\\?.)*?\1/,
 	operator: /(::|[:|'])\b[a-zA-Z][a-zA-Z0-9*+!-_?]*\b/g, //used for symbols and keywords
 	keyword: {
