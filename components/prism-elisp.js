@@ -6,7 +6,7 @@ function simple_form(name) {
 }
 // booleans and numbers
 function primitive(pattern) {
-	return new RegExp('([\\s\\(\\[])' + pattern + '(?=[\\s\\)])')
+	return new RegExp('([\\s([])' + pattern + '(?=[\\s)])')
 }
 
 // Patterns in regular expressions
