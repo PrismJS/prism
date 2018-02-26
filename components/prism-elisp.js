@@ -187,3 +187,5 @@ language['defun'].inside.arguments = Prism.util.clone(arglist)
 language['defun'].inside.arguments.inside.sublist = arglist
 
 Prism.languages.elisp = language
+Prism.languages.emacs = language
+Prism.languages.lisp = language
