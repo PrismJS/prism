@@ -96,7 +96,10 @@ var language = {
 	},
 	defun: {
 		pattern: new RegExp(
-			par + `(?:cl-)?(?:defun\\*?|defmacro)\\s+${symbol}\\s+\\([\\s\\S]*?\\)`
+			par +
+				'(?:cl-)?(?:defun\\*?|defmacro)\\s+' +
+				symbol +
+				'\\s+\\([\\s\\S]*?\\)'
 		),
 		lookbehind: true,
 		inside: {
@@ -110,7 +113,7 @@ var language = {
 		},
 	},
 	lambda: {
-		pattern: new RegExp(par + `lambda\\s+\\((?:&?${symbol}\\s*)*\\)`),
+		pattern: new RegExp(par + 'lambda\\s+\\((?:&?' + symbol + '\\s*)*\\)'),
 		lookbehind: true,
 		inside: {
 			keyword: /lambda/,
