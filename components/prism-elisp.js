@@ -1,3 +1,14 @@
+// Functions to construct regular expressions
+// simple form
+// e.g. (interactive ... or (interactive)
+function simple_form(name) {
+	return new RegExp('(\\()' + name + '(?=[\\s\\)])')
+}
+// booleans and numbers
+function primitive(pattern) {
+	return new RegExp('([\\s\\(\\[])' + pattern + '(?=[\\s\\)])')
+}
+
 Prism.languages.elisp = (function() {
 	// Patterns in regular expressions
 
@@ -11,13 +22,6 @@ Prism.languages.elisp = (function() {
 	var endpar = '(?=\\))'
 	// End the pattern with look-ahead space
 	var space = '(?=\\s)'
-
-	// Functions to construct regular expressions
-	// simple form
-	// e.g. (interactive ... or (interactive)
-	var simple_form = name => new RegExp(`(\\()${name}(?=[\\s\\)])`)
-	// booleans and numbers
-	var primitive = pattern => new RegExp(`([\\s\\(\\[])${pattern}(?=[\\s\\)])`)
 
 	var language = {
 		// Three or four semicolons are considered a heading.
