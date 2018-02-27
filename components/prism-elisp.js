@@ -80,12 +80,10 @@ var language = {
 		pattern: primitive('(?:t|nil)'),
 		lookbehind: true,
 	},
-	number: [
-		{
-			pattern: primitive('[-+]?\\d+(?:\\.\\d*)?'),
-			lookbehind: true,
-		},
-	],
+	number: {
+		pattern: primitive('[-+]?\\d+(?:\\.\\d*)?'),
+		lookbehind: true,
+	},
 	defvar: {
 		pattern: new RegExp(par + 'def(?:var|const|custom|group)\\s+' + symbol),
 		lookbehind: true,
