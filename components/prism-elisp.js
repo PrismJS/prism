@@ -88,7 +88,7 @@ var language = {
 		pattern: new RegExp(par + 'def(?:var|const|custom|group)\\s+' + symbol),
 		lookbehind: true,
 		inside: {
-			keyword: /def[a-z]+/,
+			keyword: /^def[a-z]+/,
 			variable: new RegExp(symbol),
 		},
 	},
