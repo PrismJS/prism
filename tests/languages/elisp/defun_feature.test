@@ -6,6 +6,7 @@
 (defun foo (bar &key arg1) )
 (defun foo (bar &key arg1 &allow-other-keys) )
 (defun foo (&optional arg1) )
+(defun defabc ())
 
 ----------------------------------------------------
 
@@ -17,7 +18,8 @@
 	["punctuation", "("], ["defun", [ ["keyword", "defun" ], ["function", "foo"], ["punctuation", "("], ["arguments", [[ "argument", "bar" ], ["rest-vars", [["lisp-marker", "&body" ], ["argument", "arg1"], ["argument", "arg2"]]]]], ["punctuation", ")"]] ], ["punctuation", ")"],
 	["punctuation", "("], ["defun", [ ["keyword", "defun" ], ["function", "foo"], ["punctuation", "("], ["arguments", [[ "argument", "bar" ], ["keys", [["lisp-marker", "&key" ], ["argument", "arg1"]]]]], ["punctuation", ")"]] ], ["punctuation", ")"],
 	["punctuation", "("], ["defun", [ ["keyword", "defun" ], ["function", "foo"], ["punctuation", "("], ["arguments", [[ "argument", "bar" ], ["keys", [["lisp-marker", "&key" ], ["argument", "arg1"], ["lisp-marker", "&allow-other-keys"]]]]], ["punctuation", ")"]] ], ["punctuation", ")"],
-	["punctuation", "("], ["defun", [ ["keyword", "defun" ], ["function", "foo"], ["punctuation", "("], ["arguments", [["other-marker-vars", [["lisp-marker", "&optional" ], ["argument", "arg1"]]]]], ["punctuation", ")"]] ], ["punctuation", ")"]
+	["punctuation", "("], ["defun", [ ["keyword", "defun" ], ["function", "foo"], ["punctuation", "("], ["arguments", [["other-marker-vars", [["lisp-marker", "&optional" ], ["argument", "arg1"]]]]], ["punctuation", ")"]] ], ["punctuation", ")"],
+	["punctuation", "("], ["defun", [ ["keyword", "defun" ], ["function", "defabc"], ["punctuation", "("], ["arguments", []], ["punctuation", ")"]]], ["punctuation", ")"]
 ]
 
 ----------------------------------------------------

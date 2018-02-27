@@ -101,7 +101,7 @@ var language = {
 		),
 		lookbehind: true,
 		inside: {
-			keyword: /(?:cl-)?def\S+/,
+			keyword: /^(?:cl-)?def\S+/,
 			arguments: null,
 			function: {
 				pattern: new RegExp('(^\\s)' + symbol),
