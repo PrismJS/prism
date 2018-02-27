@@ -114,7 +114,7 @@ var language = {
 		pattern: new RegExp(par + 'lambda\\s+\\((?:&?' + symbol + '\\s*)*\\)'),
 		lookbehind: true,
 		inside: {
-			keyword: /lambda/,
+			keyword: /^lambda/,
 			arguments: null,
 			punctuation: /[()]/,
 		},
