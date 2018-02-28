@@ -8,6 +8,6 @@ Prism.languages.clojure = {
 		lookbehind: true
 	},
 	boolean: /\b(?:true|false|nil)\b/,
-	number: /\b-?(0x)?\d*\.?\d+\b/,
+	number: /\b[0-9A-Fa-f]+\b/,
 	punctuation: /[{}\[\](),]/
 };
