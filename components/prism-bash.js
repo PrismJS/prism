@@ -70,8 +70,6 @@
 		'operator': /&&?|\|\|?|==?|!=?|<<<?|>>|<=?|>=?|=~/,
 		'punctuation': /\$?\(\(?|\)\)?|\.\.|[{}[\];]/
 	};
-	
-	Prism.languages.shell = Prism.languages.bash;
 
 	var inside = insideString.variable[1].inside;
 	inside['function'] = Prism.languages.bash['function'];
@@ -79,4 +77,6 @@
 	inside.boolean = Prism.languages.bash.boolean;
 	inside.operator = Prism.languages.bash.operator;
 	inside.punctuation = Prism.languages.bash.punctuation;
+	
+	Prism.languages.shell = Prism.languages.bash;
 })(Prism);
