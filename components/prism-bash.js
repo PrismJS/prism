@@ -77,4 +77,6 @@
 	inside.boolean = Prism.languages.bash.boolean;
 	inside.operator = Prism.languages.bash.operator;
 	inside.punctuation = Prism.languages.bash.punctuation;
+	
+	Prism.languages.shell = Prism.languages.bash;
 })(Prism);
