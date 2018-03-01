@@ -59,7 +59,7 @@
 		}
 
 		// Autoloader rehighlights, so only do this once.
-		if (pre.classList.contains('code-toolbar')) {
+		if (pre.parentNode.classList.contains('code-toolbar')) {
 			return;
 		}
 
