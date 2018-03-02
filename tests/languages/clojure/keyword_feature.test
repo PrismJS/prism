@@ -41,38 +41,38 @@
 (==)
 (..)
 (>)
-(accessor) 
-(agent) 
-(agent-errors) 
-(aget) 
-(alength) 
-(all-ns) 
-(alter) 
-(and) 
-(append-child) 
-(apply) 
-(array-map) 
-(aset) 
+(accessor)
+(agent)
+(agent-errors)
+(aget)
+(alength)
+(all-ns)
+(alter)
+(and)
+(append-child)
+(apply)
+(array-map)
+(aset)
 (aset-boolean)
-(aset-byte) 
+(aset-byte)
 (aset-char)
-(aset-double) 
-(aset-float) 
-(aset-int) 
-(aset-long) 
-(aset-short) 
-(assert) 
-(assoc) 
-(await) 
-(await-for) 
-(bean) 
-(binding) 
-(bit-and) 
+(aset-double)
+(aset-float)
+(aset-int)
+(aset-long)
+(aset-short)
+(assert)
+(assoc)
+(await)
+(await-for)
+(bean)
+(binding)
+(bit-and)
 (bit-not)
 (branch?)
 (contains?)
-(end?) 
-(every?) 
+(end?)
+(every?)
 (false?)
 (identical?)
 (instance?)
@@ -106,13 +106,13 @@
 	["punctuation", "("], ["keyword", "defn-"],         ["punctuation", ")"],
 	["punctuation", "("], ["keyword", "defmacro"],      ["punctuation", ")"],
   ["punctuation", "("], ["keyword", "defmulti"],      ["punctuation", ")"],
-  ["punctuation", "("], ["keyword", "defmethod"],     ["punctuation", ")"], 
-  ["punctuation", "("], ["keyword", "defstruct"],     ["punctuation", ")"], 
-  ["punctuation", "("], ["keyword", "defonce"],       ["punctuation", ")"], 
-  ["punctuation", "("], ["keyword", "declare"],       ["punctuation", ")"], 
-  ["punctuation", "("], ["keyword", "definline"],     ["punctuation", ")"], 
-  ["punctuation", "("], ["keyword", "definterface"],  ["punctuation", ")"], 
-  ["punctuation", "("], ["keyword", "defprotocol"],   ["punctuation", ")"], 
+  ["punctuation", "("], ["keyword", "defmethod"],     ["punctuation", ")"],
+  ["punctuation", "("], ["keyword", "defstruct"],     ["punctuation", ")"],
+  ["punctuation", "("], ["keyword", "defonce"],       ["punctuation", ")"],
+  ["punctuation", "("], ["keyword", "declare"],       ["punctuation", ")"],
+  ["punctuation", "("], ["keyword", "definline"],     ["punctuation", ")"],
+  ["punctuation", "("], ["keyword", "definterface"],  ["punctuation", ")"],
+  ["punctuation", "("], ["keyword", "defprotocol"],   ["punctuation", ")"],
   ["punctuation", "("], ["keyword", "defrecord"],     ["punctuation", ")"],
   ["punctuation", "("], ["keyword", "deftype"],       ["punctuation", ")"],
   ["punctuation", "("], ["keyword", "defproject"],    ["punctuation", ")"],
