@@ -118,6 +118,9 @@ var components = {
 		},
 		"bash": {
 			"title": "Bash",
+			"aliasTitles": {
+				"shell": "Shell"
+			},
 			"owner": "zeitgeist87"
 		},
 		"basic": {
