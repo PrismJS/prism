@@ -22,9 +22,9 @@ var treePromise = new Promise(function(resolve) {
 	});
 });
 
-var qstr = window.location.search.match(/(?:languages|plugins)=[-+\w]+|themes=[-\w]+/g);
-if (qstr) {
-	qstr.forEach(function(str) {
+var hstr = window.location.hash.match(/(?:languages|plugins)=[-+\w]+|themes=[-\w]+/g);
+if (hstr) {
+	hstr.forEach(function(str) {
 		var kv = str.split('=', 2),
 		    category = kv[0],
 		    ids = kv[1].split('+');
@@ -50,6 +50,13 @@ if (qstr) {
 			});
 		}
 	});
+}
+
+// Stay compatible with old querystring feature
+var qstr = window.location.search.match(/(?:languages|plugins)=[-+\w]+|themes=[-\w]+/g);
+if (qstr && !hstr) {
+	window.location.hash = window.location.search.replace(/^\?/, '');
+	window.location.search = '';
 }
 
 for (var category in components) {
@@ -466,19 +473,22 @@ function generateCode(){
 			$u.element.contents(error, errors);
 		}
 	
-		var redownloadUrl = window.location.href.split("?")[0] + "?";
+		var redownloadUrl = window.location.href.split("#")[0] + "#";
 		for (var category in redownload) {
 			redownloadUrl += category + "=" + redownload[category].join('+') + "&";
 		}
-		redownloadUrl = "/* PrismJS " + version + "\n" + redownloadUrl.replace(/&$/,"") + " */";
+		redownloadUrl = redownloadUrl.replace(/&$/,"");
+		window.location.replace(redownloadUrl);
+
+		var versionComment = "/* PrismJS " + version + "\n" + redownloadUrl + " */";
 
 		for (var type in code) {
 			var codeElement = $('#download-' + type + ' code');
 			
-			codeElement.textContent = redownloadUrl + "\n" + code[type];
+			codeElement.textContent = versionComment + "\n" + code[type];
 			Prism.highlightElement(codeElement, true);
 			
-			$('#download-' + type + ' .download-button').href = 'data:application/octet-stream;charset=utf-8,' + encodeURIComponent(redownloadUrl + "\n" + code[type]);
+			$('#download-' + type + ' .download-button').href = 'data:application/octet-stream;charset=utf-8,' + encodeURIComponent(versionComment + "\n" + code[type]);
 		}
 	});
 }
