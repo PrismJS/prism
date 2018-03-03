@@ -20,9 +20,7 @@ Prism.languages.php = Prism.languages.extend('clike', {
 	}
 });
 
-// Shell-like comments are matched after strings, because they are less
-// common than strings containing hashes...
-Prism.languages.insertBefore('php', 'class-name', {
+Prism.languages.insertBefore('php', 'string', {
 	'shell-comment': {
 		pattern: /(^|[^\\])#.*/,
 		lookbehind: true,
