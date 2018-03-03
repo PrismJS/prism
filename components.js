@@ -355,7 +355,7 @@ var components = {
 			"owner": "Golmote"
 		},
 		"liquid": {
-			"title": "liquid",
+			"title": "Liquid",
 			"owner": "cinhtau"
 		},
 		"lolcode": {
