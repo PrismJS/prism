@@ -1,0 +1,14 @@
+continue for endfor
+if else elsif endif
+
+
+----------------------------------------------------
+
+[
+	["keyword", "continue"], ["keyword", "for"], ["keyword", "endfor"],
+	["keyword", "if"], ["keyword", "else"], ["keyword", "elsif"], ["keyword", "endif"]
+]
+
+----------------------------------------------------
+
+Checks for some keywords.

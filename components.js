@@ -354,6 +354,10 @@ var components = {
 			"title": "LiveScript",
 			"owner": "Golmote"
 		},
+		"liquid": {
+			"title": "liquid",
+			"owner": "cinhtau"
+		},
 		"lolcode": {
 			"title": "LOLCODE",
 			"owner": "Golmote"
