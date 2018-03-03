@@ -12,10 +12,6 @@
  */
 
 Prism.languages.php = Prism.languages.extend('clike', {
-	'string': {
-		pattern: /(["'])(?:\\[\s\S]|(?!\1)[^\\])*\1/,
-		greedy: true
-	},
 	'keyword': /\b(?:and|or|xor|array|as|break|case|cfunction|class|const|continue|declare|default|die|do|else|elseif|enddeclare|endfor|endforeach|endif|endswitch|endwhile|extends|for|foreach|function|include|include_once|global|if|new|return|static|switch|use|require|require_once|var|while|abstract|interface|public|implements|private|protected|parent|throw|null|echo|print|trait|namespace|final|yield|goto|instanceof|finally|try|catch)\b/i,
 	'constant': /\b[A-Z0-9_]{2,}\b/,
 	'comment': {
@@ -39,7 +35,7 @@ Prism.languages.insertBefore('php', 'keyword', {
 		pattern: /\?>|<\?(?:php|=)?/i,
 		alias: 'important'
 	},
-	'variable': /\$\w+\b/i,
+	'variable': /\$+(?:\w+\b|(?={))/i,
 	'package': {
 		pattern: /(\\|namespace\s+|use\s+)[\w\\]+/,
 		lookbehind: true,
@@ -56,6 +52,29 @@ Prism.languages.insertBefore('php', 'operator', {
 		lookbehind: true
 	}
 });
+
+Prism.languages.insertBefore('php', 'string', {
+	'single-quoted-string': {
+		pattern: /'(?:\\[\s\S]|[^\\'])*'/,
+		greedy: true,
+		alias: 'string'
+	},
+	'double-quoted-string': {
+		pattern: /"(?:\\[\s\S]|[^\\"])*"/,
+		greedy: true,
+		alias: 'string',
+		inside: {
+			interpolation: {
+				pattern: /{\$(?:{(?:{[^{}]+}|[^{}]+)}|[^{}])+}|(^|[^\\{])\$+(?:\w+(?:\[.+?]|->\w+)*)/,
+				lookbehind: true,
+				inside: {
+					rest: Prism.languages.php
+				}
+			}
+		}
+	}
+});
+delete Prism.languages.php['string'];
 
 // Add HTML support if the markup language exists
 if (Prism.languages.markup) {

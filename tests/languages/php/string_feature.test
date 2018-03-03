@@ -8,12 +8,12 @@ string'
 ----------------------------------------------------
 
 [
-	["string", "\"https://example.com\""],
-	["string", "\" /* not a comment */ \""],
-	["string", "\"multi-line\r\nstring\""],
-	["string", "'multi-line\r\nstring'"]
+	["double-quoted-string", ["\"https://example.com\""]],
+	["double-quoted-string", ["\" /* not a comment */ \""]],
+	["double-quoted-string", ["\"multi-line\r\nstring\""]],
+	["single-quoted-string", "'multi-line\r\nstring'"]
 ]
 
 ----------------------------------------------------
 
-Checks for strings with comments.
+Checks for strings.
