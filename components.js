@@ -95,6 +95,10 @@ var components = {
 			"require": "cpp",
 			"owner": "eisbehr-"
 		},
+		"arff": {
+			"title": "ARFF",
+			"owner": "Golmote"
+		},
 		"asciidoc": {
 			"title": "AsciiDoc",
 			"owner": "Golmote"
