@@ -1,6 +1,7 @@
-$(echo foo)
-`echo foo`
-"$(echo foo) bar"
+$(echo "foo")
+`echo "foo"`
+"$(echo "foo") bar"
+"`echo "foo"` bar"
 
 ----------------------------------------------------
 
@@ -8,13 +9,13 @@ $(echo foo)
 	["variable", [
 		["variable", "$("],
 		["keyword", "echo"], 
-		" foo",
+		["string", ["\"foo\""]],
 		["variable", ")"]
 	]],
 	["variable", [
 		["variable", "`"],
 		["keyword", "echo"], 
-		" foo",
+		["string", ["\"foo\""]],
 		["variable", "`"]
 	]],
 	["string", [
@@ -22,8 +23,18 @@ $(echo foo)
 		["variable", [
 			["variable", "$("],
 			["keyword", "echo"], 
-			" foo",
+			["string", ["\"foo\""]],
 			["variable", ")"]
+		]],
+		" bar\""
+	]],
+	["string", [
+		"\"",
+		["variable", [
+			["variable", "`"],
+			["keyword", "echo"],
+			["string", ["\"foo\""]],
+			["variable", "`"]
 		]],
 		" bar\""
 	]]

@@ -22,6 +22,7 @@
 			// Command Substitution
 			{
 				pattern: /\$\([^)]+\)|`[^`]+`/,
+				greedy: true,
 				inside: {
 					variable: /^\$\(|^`|\)$|`$/
 				}
@@ -48,7 +49,7 @@
 				inside: insideString
 			},
 			{
-				pattern: /(["'])(?:\\[\s\S]|(?!\1)[^\\])*\1/,
+				pattern: /(["'])(?:\\[\s\S]|\$\([^)]+\)|`[^`]+`|(?!\1)[^\\])*\1/,
 				greedy: true,
 				inside: insideString
 			}
@@ -72,6 +73,7 @@
 	};
 
 	var inside = insideString.variable[1].inside;
+	inside.string = Prism.languages.bash.string;
 	inside['function'] = Prism.languages.bash['function'];
 	inside.keyword = Prism.languages.bash.keyword;
 	inside.boolean = Prism.languages.bash.boolean;
