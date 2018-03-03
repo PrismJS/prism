@@ -10,7 +10,13 @@ comment */
 <h2>Strings</h2>
 <pre><code>'foo \'bar\' baz'
 "foo \"bar\" baz"
-"a string # containing an hash"</code></pre>
+"a string # containing an hash"
+$foo = &lt;&lt;&lt;FOO
+    Heredoc strings are supported too!
+FOO;
+$bar = &lt;&lt;&lt;'BAR'
+    And also Nowdoc strings
+BAR;</code></pre>
 
 <h2>Variables</h2>
 <pre><code>$some_var = 5;
@@ -55,7 +61,13 @@ function gen_one_to_three() {
 
 <h2>String interpolation</h2>
 <pre><code>$str = "This is $great!";
-$foobar = "{${$foo->bar()}}";</code></pre>
+$foobar = "Another example: {${$foo->bar()}}";
+$a = &lt;&lt;&lt;FOO
+    Hello $world!
+FOO;
+$b = &lt;&lt;&lt;"FOOBAR"
+    Interpolation inside Heredoc strings {$obj->values[3]->name}
+FOOBAR;</code></pre>
 
 <h2>Known failures</h2>
 <p>There are certain edge cases where Prism will fail.
