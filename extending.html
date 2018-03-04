@@ -151,10 +151,19 @@
 		<h2>Parameters</h2>
 		<dl>
 			<dt>async</dt>
-			<dd>Whether to use Web Workers to improve performance and avoid blocking the UI when highlighting very large chunks of code. False by default (<a href="faq.html#why-is-asynchronous-highlighting-disabled-by-default">why?</a>).</dd>
+			<dd>
+				Whether to use Web Workers to improve performance and avoid blocking the UI when highlighting very large
+				chunks of code. False by default
+				(<a href="faq.html#why-is-asynchronous-highlighting-disabled-by-default">why?</a>).<br />
+				Note: All language definitions required to highlight the code must be included in the main <code>prism.js</code>
+				file for the async highlighting to work. You can build your own bundle on the <a href="download.html">Download page</a>.
+			</dd>
 
 			<dt>callback</dt>
-			<dd>An optional callback to be invoked after the highlighting is done. Mostly useful when <code>async</code> is true, since in that case, the highlighting is done asynchronously.</dd>
+			<dd>
+				An optional callback to be invoked after the highlighting is done. Mostly useful when <code>async</code>
+				is true, since in that case, the highlighting is done asynchronously.
+			</dd>
 		</dl>
 	</section>
 
@@ -169,10 +178,10 @@
 			<dd>The root element, whose descendants that have a <code>.language-xxxx</code> class will be highlighted.</dd>
 
 			<dt>async</dt>
-			<dd>Whether to use Web Workers to improve performance and avoid blocking the UI when highlighting very large chunks of code. False by default (<a href="faq.html#why-is-asynchronous-highlighting-disabled-by-default">why?</a>).</dd>
+			<dd>Same as in <a href="#highlight-all"><code>Prism.highlightAll()</code></a></dd>
 
 			<dt>callback</dt>
-			<dd>An optional callback to be invoked after the highlighting is done. Mostly useful when <code>async</code> is true, since in that case, the highlighting is done asynchronously.</dd>
+			<dd>Same as in <a href="#highlight-all"><code>Prism.highlightAll()</code></a></dd>
 		</dl>
 	</section>
 
@@ -186,6 +195,7 @@
 			<dd>The element containing the code. It must have a class of <code>language-xxxx</code> to be processed, where <code>xxxx</code> is a valid language identifier.</dd>
 
 			<dt>async</dt>
+			<dd>Same as in <a href="#highlight-all"><code>Prism.highlightAll()</code></a></dd>
 			<dt>callback</dt>
 			<dd>Same as in <a href="#highlight-all"><code>Prism.highlightAll()</code></a></dd>
 		</dl>
