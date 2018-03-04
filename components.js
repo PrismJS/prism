@@ -350,13 +350,13 @@ var components = {
 			"require": "css",
 			"owner": "Golmote"
 		},
-		"livescript": {
-			"title": "LiveScript",
-			"owner": "Golmote"
-		},
 		"liquid": {
 			"title": "Liquid",
 			"owner": "cinhtau"
+		},
+		"livescript": {
+			"title": "LiveScript",
+			"owner": "Golmote"
 		},
 		"lolcode": {
 			"title": "LOLCODE",
