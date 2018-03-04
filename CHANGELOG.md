@@ -7,6 +7,7 @@
 * __HTTP Public-Key-Pins (HPKP)__ ([#1275](https://github.com/PrismJS/prism/issues/1275)) [[`b08cae5`](https://github.com/PrismJS/prism/commit/b08cae5)]
 * __HTTP String-Transport-Security (HSTS)__ ([#1275](https://github.com/PrismJS/prism/issues/1275)) [[`b08cae5`](https://github.com/PrismJS/prism/commit/b08cae5)]
 * __React TSX__ ([#1280](https://github.com/PrismJS/prism/issues/1280)) [[`fbe82b8`](https://github.com/PrismJS/prism/commit/fbe82b8)]
+* __Clojure__ ([#1319](https://github.com/PrismJS/prism/issues/1319)) [[`8b4d3bd`](https://github.com/PrismJS/prism/commit/8b4d3bd)]
 
 ### Updated components
 * __C++__:
