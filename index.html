@@ -93,8 +93,8 @@
 		<li>Encourages good author practices. Other highlighters encourage or even force you to use elements that are semantically wrong,
 			like <code>&lt;pre></code> (on its own) or <code>&lt;script></code>.
 			Prism forces you to use the correct element for marking up code: <code>&lt;code></code>.
-			On its own for inline code, or inside a &lt;pre> for blocks of code.
-			In addition, the language is defined through the way recommended in the HTML5 draft: through a language-xxxx class.</li>
+			On its own for inline code, or inside a <code>&lt;pre></code> for blocks of code.
+			In addition, the language is defined through the way recommended in the HTML5 draft: through a <code>language-xxxx</code> class.</li>
 		<li>The language definition is inherited. This means that if multiple code snippets have the same language, you can just define it once, in one of their common ancestors.</li>
 		<li>Supports <strong>parallelism with Web Workers</strong>, if available. Disabled by default (<a href="faq.html#why-is-asynchronous-highlighting-disabled-by-default">why?</a>).</li>
 		<li>Very easy to extend without modifying the code, due to Prism’s <a href="#plugins">plugin architecture</a>. Multiple hooks are scattered throughout the source.</li>
@@ -138,8 +138,9 @@
 
 	<p>Prism does its best to encourage good authoring practices. Therefore, it only works with <code>&lt;code></code> elements, since marking up code without a <code>&lt;code></code> element is semantically invalid.
 	<a href="https://www.w3.org/TR/html52/textlevel-semantics.html#the-code-element">According to the HTML5 spec</a>, the recommended way to define a code language is a <code>language-xxxx</code> class, which is what Prism uses.
-	To make things easier however, Prism assumes that this language definition is inherited. Therefore, if multiple <code>&lt;code></code> elements have the same language, you can add the <code>language-xxxx</code> class on one of their common ancestors.
-	This way, you can also define a document-wide default language, by adding a <code>language-xxxx</code> class on the <code>&lt;body></code> or <code>&lt;html></code> element.
+	Alternatively, Prism also supports a shorter version: <code>lang-xxxx</code>.</p>
+	<p>To make things easier however, Prism assumes that this language definition is inherited. Therefore, if multiple <code>&lt;code></code> elements have the same language, you can add the <code>language-xxxx</code> class on one of their common ancestors.
+		This way, you can also define a document-wide default language, by adding a <code>language-xxxx</code> class on the <code>&lt;body></code> or <code>&lt;html></code> element.</p>
 
 	<p>If you want to opt-out of highlighting for a <code>&lt;code></code> element that is a descendant of an element with a declared code language, you can add the class <code>language-none</code> to it (or any non-existing language, really).</p>
 
@@ -170,7 +171,8 @@ var html = Prism.highlight(code, Prism.languages.javascript);</code></pre>
 
 <section id="languages-list" class="language-markup">
 	<h1>Supported languages</h1>
-	<p>This is the list of all <span id="languages-list-count"></span> languages currently supported by Prism, with their corresponding alias, to use in place of <code>xxxx</code> in the <code>language-xxxx</code> class:</p>
+	<p>This is the list of all <span id="languages-list-count"></span> languages currently supported by Prism, with
+		their corresponding alias, to use in place of <code>xxxx</code> in the <code>language-xxxx</code> (or <code>lang-xxxx</code>) class:</p>
 </section>
 
 <section id="plugins">
