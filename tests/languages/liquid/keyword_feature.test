@@ -12,7 +12,7 @@ tablerow endtablerow
 ----------------------------------------------------
 
 [
-    ["keyword", "comment"], ["keyword", "endcomment"],
+	["keyword", "comment"], ["keyword", "endcomment"],
 	["keyword", "if"], ["keyword", "else"], ["keyword", "elsif"], ["keyword", "endif"],
 	["keyword", "unless"], ["keyword", "endunless"],
 	["keyword", "for"], ["keyword", "endfor"], ["keyword", "in"], ["keyword", "break"],
