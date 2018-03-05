@@ -36,3 +36,5 @@ Prism.languages.insertBefore('csharp', 'keyword', {
 		}
 	}
 });
+
+Prism.languages.dotnet = Prism.languages.csharp;
