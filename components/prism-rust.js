@@ -22,10 +22,18 @@ Prism.languages.rust = {
 			greedy: true
 		},
 		{
-			pattern: /b?("|')(?:\\.|(?!\1)[^\\\r\n])*\1/,
+			pattern: /b?"(?:\\.|[^\\\r\n"])*"/,
 			greedy: true
 		}
 	],
+	'lifetime-annotation': {
+		pattern: /'[^\s>']+(?!')/,
+		alias: 'symbol'
+	},
+	'char': {
+		pattern: /'(?:\\.|[^\\\r\n'])*'/,
+		alias: 'string'
+	},
 	'keyword': /\b(?:abstract|alignof|as|be|box|break|const|continue|crate|do|else|enum|extern|false|final|fn|for|if|impl|in|let|loop|match|mod|move|mut|offsetof|once|override|priv|pub|pure|ref|return|sizeof|static|self|struct|super|true|trait|type|typeof|unsafe|unsized|use|virtual|where|while|yield)\b/,
 
 	'attribute': {
@@ -56,5 +64,5 @@ Prism.languages.rust = {
 		}
 	},
 	'punctuation': /[{}[\];(),:]|\.+|->/,
-	'operator': /[-+*\/%!^=]=?|@|&[&=]?|\|[|=]?|<<?=?|>>?=?/
+	'operator': /[-+*\/%!^]=?|=[=>]?|@|&[&=]?|\|[|=]?|<<?=?|>>?=?/
 };
