@@ -1,0 +1,55 @@
+<div>do return function</div>
+<p>
+	this is not highlighted!
+	{this.props.name}
+</p>
+
+----------------------------------------------------
+
+[
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"div"
+		]],
+		["punctuation", ">"]
+	]],
+	["plain-text", ["do return function"]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"div"
+		]],
+		["punctuation", ">"]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"p"
+		]],
+		["punctuation", ">"]
+	]],
+	["plain-text", [
+		"\r\n\tthis is not highlighted!\r\n\t",
+		["script", [
+			["punctuation", "{"],
+			["keyword", "this"],
+			["punctuation", "."],
+			"props",
+			["punctuation", "."],
+			"name",
+			["punctuation", "}"]
+		]]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"p"
+		]],
+		["punctuation", ">"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for plain text between tags.
