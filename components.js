@@ -462,6 +462,11 @@ var components = {
 			"require": "php",
 			"owner": "milesj"
 		},
+		"plsql": {
+			"title": "PL/SQL",
+			"require": "sql",
+			"owner": "Golmote"
+		},
 		"powershell": {
 			"title": "PowerShell",
 			"owner": "nauzilus"
