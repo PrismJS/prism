@@ -1,5 +1,11 @@
 # Prism Changelog
 
+## 1.12.2 (2018-03-08)
+
+### Other changes
+* Test against NodeJS 4, 6, 8 and 9 ([#1329](https://github.com/PrismJS/prism/issues/1329)) [[`97b7d0a`](https://github.com/PrismJS/prism/commit/97b7d0a)]
+* Stop testing against NodeJS 0.10 and 0.12 [[`df01b1b`](https://github.com/PrismJS/prism/commit/df01b1b)]
+
 ## 1.12.1 (2018-03-08)
 
 ### Updated components
