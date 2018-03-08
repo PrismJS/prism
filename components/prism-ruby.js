@@ -69,7 +69,10 @@
 			}
 		],
 		'variable': /[@$]+[a-zA-Z_]\w*(?:[?!]|\b)/,
-		'symbol': /:[a-zA-Z_]\w*(?:[?!]|\b)/
+		'symbol': {
+			pattern: /(^|[^:]):[a-zA-Z_]\w*(?:[?!]|\b)/,
+			lookbehind: true
+		}
 	});
 
 	Prism.languages.insertBefore('ruby', 'number', {
