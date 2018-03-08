@@ -10,7 +10,7 @@ Prism.languages.csharp = Prism.languages.extend('clike', {
 			greedy: true
 		}
 	],
-	'number': /\b-?(?:0x[\da-f]+|\d*\.?\d+f?)\b/i
+	'number': /\b0x[\da-f]+\b|(?:\b\d+\.?\d*|\B\.\d+)f?/i
 });
 
 Prism.languages.insertBefore('csharp', 'keyword', {

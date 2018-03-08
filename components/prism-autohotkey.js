@@ -8,7 +8,7 @@ Prism.languages.autohotkey= {
 	'function': /[^(); \t,\n+*\-=?>:\\\/<&%\[\]]+?(?=\()/m,  //function - don't use .*\) in the end bcoz string locks it
 	'tag': /^[ \t]*[^\s:]+?(?=:(?:[^:]|$))/m,  //labels
 	'variable': /%\w+%/,
-	'number': /\b-?(?:0x[\dA-Fa-f]+|\d*\.?\d+(?:[Ee]-?\d+)?)\b/,
+	'number': /\b0x[\dA-Fa-f]+\b|(?:\b\d+\.?\d*|\B\.\d+)(?:[Ee]-?\d+)?/,
 	'operator': /\?|\/\/?=?|:=|\|[=|]?|&[=&]?|\+[=+]?|-[=-]?|\*[=*]?|<(?:<=?|>|=)?|>>?=?|[.^!=~]=?|\b(?:AND|NOT|OR)\b/,
 	'punctuation': /[{}[\]():,]/,
 	'boolean': /\b(?:true|false)\b/,
