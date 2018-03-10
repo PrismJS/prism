@@ -466,6 +466,11 @@ var components = {
 			"require": "php",
 			"owner": "milesj"
 		},
+		"polymer": {
+			"title": "Polymer",
+			"require": "markup",
+			"owner": "Golmote"
+		},
 		"powershell": {
 			"title": "PowerShell",
 			"owner": "nauzilus"
