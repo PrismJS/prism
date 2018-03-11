@@ -44,6 +44,7 @@ var components = {
 		},
 		"markup": {
 			"title": "Markup",
+			"alias": ["html", "xml", "svg", "mathml"],
 			"aliasTitles": {
 				"html": "HTML",
 				"xml": "XML",
@@ -58,12 +59,14 @@ var components = {
 		},
 		"clike": {
 			"title": "C-like",
-			"option": "default"
+			"option": "default",
+			"overrideExampleHeader": true
 		},
 		"javascript": {
 			"title": "JavaScript",
-			"option": "default",
-			"require": "clike"
+			"require": "clike",
+			"alias": "js",
+			"option": "default"
 		},
 		"abap": {
 			"title": "ABAP",
@@ -130,6 +133,7 @@ var components = {
 		},
 		"batch": {
 			"title": "Batch",
+			"alias": "shell",
 			"owner": "Golmote"
 		},
 		"bison": {
@@ -153,6 +157,7 @@ var components = {
 		"csharp": {
 			"title": "C#",
 			"require": "clike",
+			"alias": "dotnet",
 			"owner": "mvalipour"
 		},
 		"cpp": {
@@ -200,6 +205,7 @@ var components = {
 		"django": {
 			"title": "Django/Jinja2",
 			"require": "markup",
+			"alias": "jinja2",
 			"owner": "romanvm"
 		},
 		"docker": {
@@ -433,6 +439,7 @@ var components = {
 		"opencl": {
 			"title": "OpenCL",
 			"require": "cpp",
+			"overrideExampleHeader": true,
 			"owner": "Milania1"
 		},
 		"oz": {
@@ -506,7 +513,7 @@ var components = {
 			"owner": "multipetros"
 		},
 		"q": {
-			"title": "Q",
+			"title": "Q (kdb+ database)",
 			"owner": "Golmote"
 		},
 		"qore": {
@@ -619,6 +626,7 @@ var components = {
 		"typescript": {
 			"title": "TypeScript",
 			"require": "javascript",
+			"alias": "ts",
 			"owner": "vkbansal"
 		},
 		"vbnet": {
