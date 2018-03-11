@@ -19,7 +19,7 @@
 					alias: 'punctuation'
 				},
 				'string': /(["'])(?:\\.|(?!\1)[^\\\r\n])*\1/,
-				'number': /\b-?(?:0x[\dA-Fa-f]+|\d*\.?\d+(?:[Ee][-+]?\d+)?)\b/,
+				'number': /\b0x[\dA-Fa-f]+|(?:\b\d+\.?\d*|\B\.\d+)(?:[Ee][-+]?\d+)?/,
 				'variable': [
 					/\$(?!\d)\w+/,
 					/#(?!\d)\w+#/,

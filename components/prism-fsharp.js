@@ -15,10 +15,10 @@ Prism.languages.fsharp = Prism.languages.extend('clike', {
 		greedy: true
 	},
 	'number': [
-		/\b-?0x[\da-fA-F]+(?:un|lf|LF)?\b/,
-		/\b-?0b[01]+(?:y|uy)?\b/,
-		/\b-?(?:\d*\.?\d+|\d+\.)(?:[fFmM]|[eE][+-]?\d+)?\b/,
-		/\b-?\d+(?:y|uy|s|us|l|u|ul|L|UL|I)?\b/
+		/\b0x[\da-fA-F]+(?:un|lf|LF)?\b/,
+		/\b0b[01]+(?:y|uy)?\b/,
+		/(?:\b\d+\.?\d*|\B\.\d+)(?:[fm]|e[+-]?\d+)?\b/i,
+		/\b\d+(?:[IlLsy]|u[lsy]?|UL)?\b/
 	]
 });
 Prism.languages.insertBefore('fsharp', 'keyword', {

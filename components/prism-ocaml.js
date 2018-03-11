@@ -10,7 +10,7 @@ Prism.languages.ocaml = {
 			greedy: true
 		}
 	],
-	'number': /\b-?(?:0x[\da-f][\da-f_]+|(?:0[bo])?\d[\d_]*\.?[\d_]*(?:e[+-]?[\d_]+)?)/i,
+	'number': /\b(?:0x[\da-f][\da-f_]+|(?:0[bo])?\d[\d_]*\.?[\d_]*(?:e[+-]?[\d_]+)?)/i,
 	'type': {
 		pattern: /\B['`]\w*/,
 		alias: 'variable'

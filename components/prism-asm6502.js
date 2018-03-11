@@ -10,7 +10,7 @@ Prism.languages.asm6502 = {
 		alias: 'property'
 	},
 	'hexnumber': {
-		pattern: /#?\$[\da-fA-F]{2,4}/,
+		pattern: /#?\$[\da-f]{2,4}/i,
 		alias: 'string'
 	},
 	'binarynumber': {
@@ -22,7 +22,7 @@ Prism.languages.asm6502 = {
 		alias: 'string'
 	},
 	'register': {
-		pattern: /\b[xyaXYA]\b/,
+		pattern: /\b[xya]\b/i,
 		alias: 'variable'
 	}
 };
