@@ -224,6 +224,11 @@ var components = {
 			"title": "Elm",
 			"owner": "zwilias"
 		},
+		"erb": {
+			"title": "ERB",
+			"require": ["markup", "ruby"],
+			"owner": "Golmote"
+		},
 		"erlang": {
 			"title": "Erlang",
 			"owner": "Golmote"
