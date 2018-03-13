@@ -20,7 +20,7 @@
 				pattern: /^#\{|\}$/,
 				alias: 'tag'
 			},
-			rest: Prism.util.clone(Prism.languages.ruby)
+			rest: Prism.languages.ruby
 		}
 	};
 

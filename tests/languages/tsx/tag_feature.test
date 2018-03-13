@@ -39,7 +39,7 @@ class Test extends Component {
 		]],
 		["attr-name", ["someProperty"]],
 		["script", [
-			 ["punctuation", "="],
+			 ["script-punctuation", "="],
 			 ["punctuation", "{"],
 			 ["boolean", "true"],
 			 ["punctuation", "}"]
@@ -78,7 +78,7 @@ class Test extends Component {
 		]],
 		["attr-name", ["onClick"]],
 		["script", [
-			["punctuation", "="],
+			["script-punctuation", "="],
 			["punctuation", "{"],
 			["keyword", "this"],
 			["punctuation", "."],

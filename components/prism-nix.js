@@ -37,4 +37,4 @@ Prism.languages.nix = {
 	'punctuation': /[{}()[\].,:;]/
 };
 
-Prism.languages.nix.string.inside.interpolation.inside.rest = Prism.util.clone(Prism.languages.nix);
+Prism.languages.nix.string.inside.interpolation.inside.rest = Prism.languages.nix;

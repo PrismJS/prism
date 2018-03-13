@@ -17,19 +17,17 @@ Prism.languages.insertBefore('inside', 'attr-name', {
 	}
 }, Prism.languages.jsx.tag);
 
-var jsxExpression = Prism.util.clone(Prism.languages.jsx);
-
-delete jsxExpression.punctuation;
-
-jsxExpression = Prism.languages.insertBefore('jsx', 'operator', {
-  'punctuation': /=(?={)|[{}[\];(),.:]/
-}, { jsx: jsxExpression });
-
 Prism.languages.insertBefore('inside', 'attr-value',{
 	'script': {
 		// Allow for one level of nesting
 		pattern: /=(\{(?:\{[^}]*\}|[^}])+\})/i,
-		inside: jsxExpression,
+		inside: {
+			'script-punctuation': {
+				pattern: /^=(?={)/,
+				alias: 'punctuation'
+			},
+			rest: Prism.languages.jsx
+		},
 		'alias': 'language-javascript'
 	}
 }, Prism.languages.jsx.tag);

@@ -14,7 +14,7 @@ ${'$'} ${foobar()}
 			["delimiter", "${"], "bar", ["delimiter", "}"]
 		]],
 		["interpolation", [
-			["delimiter", "${"], ["string", "'$'"], ["delimiter", "}"]
+			["delimiter", "${"], ["string", ["'$'"]], ["delimiter", "}"]
 		]],
 		["interpolation", [
 			["delimiter", "${"],
@@ -30,7 +30,7 @@ ${'$'} ${foobar()}
 			["delimiter", "${"], "bar", ["delimiter", "}"]
 		]],
 		["interpolation", [
-			["delimiter", "${"], ["string", "'$'"], ["delimiter", "}"]
+			["delimiter", "${"], ["string", ["'$'"]], ["delimiter", "}"]
 		]],
 		["interpolation", [
 			["delimiter", "${"],

@@ -50,4 +50,4 @@ Prism.languages.powershell = {
 // Variable interpolation inside strings, and nested expressions
 Prism.languages.powershell.string[0].inside.boolean = Prism.languages.powershell.boolean;
 Prism.languages.powershell.string[0].inside.variable = Prism.languages.powershell.variable;
-Prism.languages.powershell.string[0].inside.function.inside = Prism.util.clone(Prism.languages.powershell);
+Prism.languages.powershell.string[0].inside.function.inside = Prism.languages.powershell;

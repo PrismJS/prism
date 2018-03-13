@@ -18,7 +18,7 @@
 		]],
 		["attr-name", ["onClick"]],
 		["script", [
-			["punctuation", "="],
+			["script-punctuation", "="],
 			["punctuation", "{"],
 			["punctuation", "("],
 			"e",
@@ -45,7 +45,7 @@
 		]],
 		["attr-name", ["data"]],
 		["script", [
-			["punctuation", "="],
+			["script-punctuation", "="],
 			["punctuation", "{"],
 			["punctuation", "["],
 			["punctuation", "{"],
@@ -80,7 +80,7 @@
 		]],
 		["attr-name", ["title"]],
 		["script", [
-			["punctuation", "="],
+			["script-punctuation", "="],
 			["punctuation", "{"],
 			["template-string", [
 				["string", "`"],
@@ -102,7 +102,7 @@
 		]],
 		["attr-name", ["title"]],
 		["script", [
-			["punctuation", "="],
+			["script-punctuation", "="],
 			["punctuation", "{"],
 			["template-string", [
 				["string", "`"],

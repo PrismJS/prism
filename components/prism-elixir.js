@@ -85,7 +85,7 @@ Prism.languages.elixir.string.forEach(function(o) {
 					pattern: /^#\{|\}$/,
 					alias: 'punctuation'
 				},
-				rest: Prism.util.clone(Prism.languages.elixir)
+				rest: Prism.languages.elixir
 			}
 		}
 	};

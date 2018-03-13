@@ -40,4 +40,4 @@ Prism.languages.mel = {
 	],
 	'punctuation': /<<|>>|[.,:;?\[\](){}]/
 };
-Prism.languages.mel['code'].inside.rest = Prism.util.clone(Prism.languages.mel);
+Prism.languages.mel['code'].inside.rest = Prism.languages.mel;
