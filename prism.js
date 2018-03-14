@@ -570,6 +570,7 @@ Prism.languages.markup = {
 	'cdata': /<!\[CDATA\[[\s\S]*?]]>/i,
 	'tag': {
 		pattern: /<\/?(?!\d)[^\s>\/=$<%]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/i,
+		greedy: true,
 		inside: {
 			'tag': {
 				pattern: /^<\/?[^\s>\/]+/i,
