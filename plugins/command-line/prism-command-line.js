@@ -39,7 +39,8 @@ Prism.hooks.add('complete', function (env) {
 	};
 
 	// Create the "rows" that will become the command-line prompts. -- cwells
-	var lines = new Array(1 + env.code.split('\n').length);
+	var content = env.code.split('\n');
+	var lines = new Array(1 + content.length);
 	var promptText = getAttribute('data-prompt', '');
 	if (promptText !== '') {
 		lines = lines.join('<span data-prompt="' + promptText + '"></span>');
@@ -53,6 +54,26 @@ Prism.hooks.add('complete', function (env) {
 	var prompt = document.createElement('span');
 	prompt.className = 'command-line-prompt';
 	prompt.innerHTML = lines;
+
+	var filterContent = pre.getAttribute('data-filter', '');
+	if (filterContent.length > 0) {
+		for (var i = 0; i < content.length; i++) {
+			var line = content[i];
+			if (line.slice(0, promptText.length) == promptText) {
+				// We have a command -- strip off the prompt from the source text and wrap in <span>
+				content[i] = '<span class="command-line-command">' + line.slice(promptText.length + 1) + 
+					'</span>';
+			}
+			else {
+				// We have output -- strip off the prompt tags for the line
+				var node = prompt.children[i];
+				node.removeAttribute('data-user');
+				node.removeAttribute('data-host');
+				node.removeAttribute('data-prompt');
+			}
+		}
+		env.element.innerHTML = content.join('\n');
+	}
 
 	// Mark the output lines so they can be styled differently (no prompt). -- cwells
 	var outputSections = pre.getAttribute('data-output') || '';
