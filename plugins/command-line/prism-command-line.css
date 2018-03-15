@@ -31,3 +31,7 @@
 .command-line-prompt > span[data-prompt]:before {
 	content: attr(data-prompt);
 }
+
+.command-line-command {
+	color: #3f3;
+}
