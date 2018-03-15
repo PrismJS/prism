@@ -112,7 +112,7 @@ var walkTokens = function (tokens) {
 };
 
 Prism.hooks.add('after-tokenize', function (env) {
-	if (env.language !== 'jsx') {
+	if (env.language !== 'jsx' && env.language !== 'tsx') {
 		return;
 	}
 	walkTokens(env.tokens);
