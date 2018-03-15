@@ -16,7 +16,7 @@
 		]],
 		["punctuation", ">"]
 	]],
-	"\r\n\tfoobar for\r\n\t",
+	["plain-text", "\r\n\tfoobar for\r\n\t"],
 	["tag", [
 		["tag", [
 			["punctuation", "<"],
@@ -24,7 +24,7 @@
 		]],
 		["punctuation", ">"]
 	]],
-	"\r\n\t\tfoobar for\r\n\t",
+	["plain-text", "\r\n\t\tfoobar for\r\n\t"],
 	["tag", [
 		["tag", [
 			["punctuation", "</"],
@@ -32,7 +32,7 @@
 		]],
 		["punctuation", ">"]
 	]],
-	"\r\n\tfoobar for ",
+	["plain-text", "\r\n\tfoobar for "],
 	["punctuation", "{"],
 	"i ",
 	["operator", "=="],
@@ -42,7 +42,7 @@
 	["punctuation", ":"],
 	["number", "0"],
 	["punctuation", "}"],
-	"}\r\n",
+	["plain-text", "}\r\n"],
 	["tag", [
 		["tag", [
 			["punctuation", "</"],

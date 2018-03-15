@@ -47,57 +47,61 @@ var walkTokens = function (tokens) {
 	var openedTags = [];
 	for (var i = 0; i < tokens.length; i++) {
 		var token = tokens[i];
+		var notTagNorBrace = false;
 
-		if (typeof token === 'string') {
-			continue;
-		}
+		if (typeof token !== 'string') {
+			if (token.type === 'tag' && token.content[0] && token.content[0].type === 'tag') {
+				// We found a tag, now find its kind
 
-		if (token.type === 'tag' && token.content[0] && token.content[0].type === 'tag') {
-			// We found a tag, now find its kind
-
-			if (token.content[0].content[0].content === '</') {
-				// Closing tag
-				if (openedTags.length > 0 && openedTags[openedTags.length - 1].tagName === stringifyToken(token.content[0].content[1])) {
-					// Pop matching opening tag
-					openedTags.pop();
-				}
-			} else {
-				if (token.content[token.content.length - 1].content === '/>') {
-					// Autoclosed tag, ignore
+				if (token.content[0].content[0].content === '</') {
+					// Closing tag
+					if (openedTags.length > 0 && openedTags[openedTags.length - 1].tagName === stringifyToken(token.content[0].content[1])) {
+						// Pop matching opening tag
+						openedTags.pop();
+					}
 				} else {
-					// Opening tag
-					openedTags.push({
-						tagName: stringifyToken(token.content[0].content[1]),
-						openedBraces: 0
-					});
+					if (token.content[token.content.length - 1].content === '/>') {
+						// Autoclosed tag, ignore
+					} else {
+						// Opening tag
+						openedTags.push({
+							tagName: stringifyToken(token.content[0].content[1]),
+							openedBraces: 0
+						});
+					}
 				}
+			} else if (openedTags.length > 0 && token.type === 'punctuation' && token.content === '{') {
+
+				// Here we might have entered a JSX context inside a tag
+				openedTags[openedTags.length - 1].openedBraces++;
+
+			} else if (openedTags.length > 0 && openedTags[openedTags.length - 1].openedBraces > 0 && token.type === 'punctuation' && token.content === '}') {
+
+				// Here we might have left a JSX context inside a tag
+				openedTags[openedTags.length - 1].openedBraces--;
+
+			} else {
+				notTagNorBrace = true
 			}
-		} else if (openedTags.length > 0 && token.type === 'punctuation' && token.content === '{') {
-
-			// Here we might have entered a JSX context inside a tag
-			openedTags[openedTags.length - 1].openedBraces++;
-
-		} else if (openedTags.length > 0 && openedTags[openedTags.length - 1].openedBraces > 0 && token.type === 'punctuation' && token.content === '}') {
-
-			// Here we might have left a JSX context inside a tag
-			openedTags[openedTags.length - 1].openedBraces--;
-
-		} else {
+		}
+		if (notTagNorBrace || typeof token === 'string') {
 			if (openedTags.length > 0 && openedTags[openedTags.length - 1].openedBraces === 0) {
 				// Here we are inside a tag, and not inside a JSX context.
 				// That's plain text: drop any tokens matched.
-				tokens[i] = stringifyToken(tokens[i]);
+				var plainText = stringifyToken(token);
 
 				// And merge text with adjacent text
-				if (i > 0 && typeof tokens[i - 1] === 'string') {
-					tokens[i - 1] += tokens[i];
-					tokens.splice(i, 1);
-					i--;
-				}
-				if (i < tokens.length - 1 && typeof tokens[i + 1] === 'string') {
-					tokens[i] += tokens[i + 1];
+				if (i < tokens.length - 1 && (typeof tokens[i + 1] === 'string' || tokens[i + 1].type === 'plain-text')) {
+					plainText += stringifyToken(tokens[i + 1]);
 					tokens.splice(i + 1, 1);
 				}
+				if (i > 0 && (typeof tokens[i - 1] === 'string' || tokens[i - 1].type === 'plain-text')) {
+					plainText = stringifyToken(tokens[i - 1]) + plainText;
+					tokens.splice(i - 1, 1);
+					i--;
+				}
+
+				tokens[i] = new Prism.Token('plain-text', plainText, null, plainText);
 			}
 		}
 

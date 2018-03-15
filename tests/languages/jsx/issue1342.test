@@ -26,7 +26,7 @@
 				]],
 				["punctuation", ">"]
 			]],
-			"2",
+			["plain-text", "2"],
 			["tag", [
 				["tag", [
 					["punctuation", "</"],
@@ -38,7 +38,7 @@
 		]],
 		["punctuation", ">"]
 	]],
-	"for of as",
+	["plain-text", "for of as"],
 	["tag", [
 		["tag", [
 			["punctuation", "</"],
