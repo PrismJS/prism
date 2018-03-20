@@ -17,7 +17,7 @@
 		]],
 		["punctuation", ">"]
 	]],
-	"link",
+	["plain-text", "link"],
 	["tag", [
 		["tag", [
 			["punctuation", "</"],
