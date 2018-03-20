@@ -15,7 +15,8 @@ Prism.languages.powershell = {
 			greedy: true,
 			inside: {
 				'function': {
-					pattern: /[^`]\$\(.*?\)/,
+					pattern: /(^|[^`])\$\(.*?\)/,
+					lookbehind: true,
 					// Populated at end of file
 					inside: {}
 				}
