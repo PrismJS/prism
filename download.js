@@ -59,6 +59,8 @@ if (qstr && !hstr) {
 	window.location.search = '';
 }
 
+var storedTheme = localStorage.getItem('theme');
+
 for (var category in components) {
 	var all = components[category];
 	
@@ -102,7 +104,7 @@ for (var category in components) {
 			inside: all.meta.section
 		});
 	}
-	
+
 	for (var id in all) {
 		if(id === 'meta') {
 			continue;
@@ -114,6 +116,9 @@ for (var category in components) {
 		switch (option) {		
 			case 'mandatory': disabled = true; // fallthrough
 			case 'default': checked = true;
+		}
+		if (category === 'themes' && storedTheme) {
+			checked = id === storedTheme;
 		}
 		
 		var filepath = all.meta.path.replace(/\{id}/g, id);
@@ -157,7 +162,7 @@ for (var category in components) {
 			info.files.dev.paths.push(cssFile);
 		}
 	
-		$u.element.create('label', {
+		var label = $u.element.create('label', {
 			attributes: {
 				'data-id': id
 			},
@@ -222,6 +227,22 @@ for (var category in components) {
 			],
 			inside: all.meta.section
 		});
+
+		// Add click events on main theme selector too.
+		(function (label) {
+			if (category === 'themes') {
+				var themeInput = $('#theme input[value="' + id + '"]');
+				var input = $('input', label);
+				if (themeInput) {
+					var themeInputOnclick = themeInput.onclick;
+					themeInput.onclick = function () {
+						input.checked = true;
+						input.onclick();
+						themeInputOnclick && themeInputOnclick.call(themeInput);
+					};
+				}
+			}
+		}(label));
 	}
 }
 
@@ -337,6 +358,15 @@ function update(updatedCategory, updatedId){
 			}
 			if (id !== 'meta' && !info.enabled) {
 				allChecked = false;
+			}
+
+			// Select main theme
+			if (category === 'themes' && id === updatedId && info.enabled) {
+				var themeInput = $('#theme input[value="' + updatedId + '"]');
+				if (themeInput) {
+					themeInput.checked = true;
+				}
+				setTheme(updatedId);
 			}
 		}
 
