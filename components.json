@@ -230,7 +230,7 @@
 		},
 		"erb": {
 			"title": "ERB",
-			"require": ["markup", "ruby"],
+			"require": ["ruby", "markup-templating"],
 			"owner": "Golmote"
 		},
 		"erlang": {
@@ -285,7 +285,7 @@
 		},
 		"handlebars": {
 			"title": "Handlebars",
-			"require": "markup",
+			"require": "markup-templating",
 			"owner": "Golmote"
 		},
 		"haskell": {
@@ -394,6 +394,11 @@
 			"require": "markup",
 			"owner": "Golmote"
 		},
+		"markup-templating": {
+			"title": "Markup templating",
+			"require": "markup",
+			"owner": "Golmote"
+		},
 		"matlab": {
 			"title": "MATLAB",
 			"owner": "Golmote"
@@ -474,7 +479,7 @@
 		},
 		"php": {
 			"title": "PHP",
-			"require": "clike",
+			"require": ["clike", "markup-templating"],
 			"owner": "milesj"
 		},
 		"php-extras": {
@@ -607,7 +612,7 @@
 		},
 		"smarty": {
 			"title": "Smarty",
-			"require": "markup",
+			"require": "markup-templating",
 			"owner": "Golmote"
 		},
 		"sql": {
