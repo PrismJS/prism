@@ -13,7 +13,17 @@ Prism.languages.csharp = Prism.languages.extend('clike', {
 	'number': /\b0x[\da-f]+\b|(?:\b\d+\.?\d*|\B\.\d+)f?/i
 });
 
-Prism.languages.insertBefore('csharp', 'keyword', {
+if (Prism.util.type(Prism.languages.csharp['class-name']) !== 'Array') {
+	Prism.languages.csharp['class-name'] = [Prism.languages.csharp['class-name']];
+}
+Prism.languages.csharp['class-name'].push({
+	pattern: /\b[A-Z]\w*(?:\.\w+)*\b(?!\()/,
+	inside: {
+		punctuation: /\./
+	}
+});
+
+Prism.languages.insertBefore('csharp', 'class-name', {
 	'generic-method': {
 		pattern: /[a-z0-9_]+\s*<[^>\r\n]+?>\s*(?=\()/i,
 		alias: 'function',

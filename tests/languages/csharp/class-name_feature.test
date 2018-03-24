@@ -1,0 +1,21 @@
+class Foo
+interface BarBaz
+Foo.Barbaz
+
+----------------------------------------------------
+
+[
+	["keyword", "class"],
+	["class-name", ["Foo"]],
+	["keyword", "interface"],
+	["class-name", ["BarBaz"]],
+	["class-name", [
+		"Foo",
+		["punctuation", "."],
+		"Barbaz"
+	]]
+]
+
+----------------------------------------------------
+
+Checks for class names.
