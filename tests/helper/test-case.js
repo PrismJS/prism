@@ -62,13 +62,16 @@ module.exports = {
 		var Prism = PrismLoader.createInstance(usedLanguages.languages);
 		// the first language is the main language to highlight
 		var mainLanguageGrammar = Prism.languages[usedLanguages.mainLanguage];
-		var compiledTokenStream = Prism.tokenize(testCase.testSource, mainLanguageGrammar);
-		Prism.hooks.run('after-tokenize', {
-			text: testCase.testSource,
+		var env = {
+			code: testCase.testSource,
 			grammar: mainLanguageGrammar,
-			language: usedLanguages.mainLanguage,
-			tokens: compiledTokenStream
-		});
+			language: usedLanguages.mainLanguage
+		};
+		Prism.hooks.run('before-tokenize', env);
+		env.tokens = Prism.tokenize(env.code, env.grammar);
+		Prism.hooks.run('after-tokenize', env);
+		var compiledTokenStream = env.tokens;
+
 		var simplifiedTokenStream = TokenStreamTransformer.simplify(compiledTokenStream);
 
 		var tzd = JSON.stringify( simplifiedTokenStream ); var exp = JSON.stringify( testCase.expectedTokenStream );

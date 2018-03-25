@@ -278,13 +278,14 @@ var _ = _self.Prism = {
 
 	highlight: function (text, grammar, language) {
 		var env = {
-			text: text,
+			code: text,
 			grammar: grammar,
 			language: language
 		};
-		env.tokens = _.tokenize(text, grammar);
+		_.hooks.run('before-tokenize', env);
+		env.tokens = _.tokenize(env.code, env.grammar);
 		_.hooks.run('after-tokenize', env);
-		return Token.stringify(_.util.encode(env.tokens), language);
+		return Token.stringify(_.util.encode(env.tokens), env.language);
 	},
 
 	matchGrammar: function (text, strarr, grammar, index, startPos, oneshot, target) {
