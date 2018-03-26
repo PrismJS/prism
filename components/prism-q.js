@@ -6,7 +6,8 @@ Prism.languages.q = {
 		{
 
 			pattern: /([\t )\]}])\/.*/,
-			lookbehind: true
+			lookbehind: true,
+			greedy: true
 		},
 		// From http://code.kx.com/wiki/Reference/Slash:
 		// A line which has / as its first character and contains at least one other non-whitespace character is a whole-line comment and is ignored entirely.
@@ -15,13 +16,19 @@ Prism.languages.q = {
 		// The / and \ must be the first char on the line, but may be followed by any amount of whitespace.
 		{
 			pattern: /(^|\r?\n|\r)\/[\t ]*(?:(?:\r?\n|\r)(?:.*(?:\r?\n|\r))*?(?:\\(?=[\t ]*(?:\r?\n|\r))|$)|\S.*)/,
-			lookbehind: true
+			lookbehind: true,
+			greedy: true
 		},
 		// From http://code.kx.com/wiki/Reference/Slash:
 		// A \ on a line by itself with no preceding matching / will comment to end of file.
-		/^\\[\t ]*(?:\r?\n|\r)[\s\S]+/m,
-
-		/^#!.+/m
+		{
+			pattern: /^\\[\t ]*(?:\r?\n|\r)[\s\S]+/m,
+			greedy: true
+		},
+		{
+			pattern: /^#!.+/m,
+			greedy: true
+		}
 	],
 	'symbol': /`(?::\S+|[\w.]*)/,
 	'datetime': {
