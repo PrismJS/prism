@@ -115,7 +115,8 @@ pre[class*="language-"] {
 }
 
 .token.function,
-.token.class-name {
+.token.class-name,
+.token.generics {
 	color: #DD4A68;
 }
 
