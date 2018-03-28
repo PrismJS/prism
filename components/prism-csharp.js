@@ -10,24 +10,53 @@ Prism.languages.csharp = Prism.languages.extend('clike', {
 			greedy: true
 		}
 	],
+	'class-name': [
+		{
+			// (Foo bar, Bar baz)
+			pattern: /\b[A-Z]\w*(?:\.\w+)*\b(?=\s+\w+)/,
+			inside: {
+				punctuation: /\./
+			}
+		},
+		{
+			// [Foo]
+			pattern: /(\[)[A-Z]\w*(?:\.\w+)*\b/,
+			lookbehind: true,
+			inside: {
+				punctuation: /\./
+			}
+		},
+		{
+			// class Foo : Bar
+			pattern: /(\b(?:class|interface)\s+[A-Z]\w*(?:\.\w+)*\s*:\s*)[A-Z]\w*(?:\.\w+)*\b/,
+			lookbehind: true,
+			inside: {
+				punctuation: /\./
+			}
+		},
+		{
+			// class Foo
+			pattern: /((?:\b(?:class|interface|new)\s+)|(?:catch\s+\())[A-Z]\w*(?:\.\w+)*\b/,
+			lookbehind: true,
+			inside: {
+				punctuation: /\./
+			}
+		}
+	],
 	'number': /\b0x[\da-f]+\b|(?:\b\d+\.?\d*|\B\.\d+)f?/i
-});
-
-if (Prism.util.type(Prism.languages.csharp['class-name']) !== 'Array') {
-	Prism.languages.csharp['class-name'] = [Prism.languages.csharp['class-name']];
-}
-Prism.languages.csharp['class-name'].push({
-	pattern: /\b[A-Z]\w*(?:\.\w+)*\b(?!\()/,
-	inside: {
-		punctuation: /\./
-	}
 });
 
 Prism.languages.insertBefore('csharp', 'class-name', {
 	'generic-method': {
-		pattern: /[a-z0-9_]+\s*<[^>\r\n]+?>\s*(?=\()/i,
-		alias: 'function',
+		pattern: /\w+\s*<[^>\r\n]+?>\s*(?=\()/,
 		inside: {
+			function: /^\w+/,
+			'class-name': {
+				pattern: /\b[A-Z]\w*(?:\.\w+)*\b/,
+				inside: {
+					punctuation: /\./
+				}
+			},
 			keyword: Prism.languages.csharp.keyword,
 			punctuation: /[<>(),.:]/
 		}
