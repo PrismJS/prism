@@ -4,7 +4,6 @@
 bar"
 "\"foo\""
 "foo\tbar"
-"foo\tbar"
 "`foo'"
 "FOO."
 )
@@ -16,7 +15,6 @@ bar"
 	["string", [ "\"\"" ]],
 	["string", [ "\"foo\r\nbar\"" ]],
 	["string", [ "\"\\\"foo\\\"\"" ]],
-	["string", [ "\"foo\\tbar\"" ]],
 	["string", [ "\"foo\\tbar\"" ]],
 	["string", [ "\"", ["symbol", "`foo'"], "\"" ]],
 	["string", [ "\"", ["argument", "FOO"], ".\"" ]],
