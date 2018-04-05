@@ -102,6 +102,8 @@ var language = {
 		lookbehind: true,
 		inside: {
 			keyword: /^(?:cl-)?def\S+/,
+			// See below, this property needs to be defined later so that it can
+			// reference the language object.
 			arguments: null,
 			function: {
 				pattern: new RegExp('(^\\s)' + symbol),
@@ -115,6 +117,8 @@ var language = {
 		lookbehind: true,
 		inside: {
 			keyword: /^lambda/,
+			// See below, this property needs to be defined later so that it can
+			// reference the language object.
 			arguments: null,
 			punctuation: /[()]/,
 		},
