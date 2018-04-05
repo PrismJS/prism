@@ -1,0 +1,1 @@
+function loadLanguages(e){e||(e=Object.keys(components.languages).filter(function(e){return"meta"!==e})),Array.isArray(e)||(e=[e]),e.forEach(function(e){components.languages[e]&&components.languages[e].require&&loadLanguages(components.languages[e].require),require("./prism-"+e)})}var components=require("../components.js");module.exports=loadLanguages;
