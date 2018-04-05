@@ -27,7 +27,7 @@ var language = {
 	// See https://www.gnu.org/software/emacs/manual/html_node/elisp/Comment-Tips.html
 	heading: {
 		pattern: /;;;.*/,
-		alias: ['comment', 'title'],
+		alias: ['comment', 'title']
 	},
 	comment: /;.*/,
 	string: {
@@ -35,20 +35,20 @@ var language = {
 		greedy: true,
 		inside: {
 			argument: /[-A-Z]+(?=[.,\s])/,
-			symbol: new RegExp('`' + symbol + "'"),
-		},
+			symbol: new RegExp('`' + symbol + "'")
+		}
 	},
 	'quoted-symbol': {
 		pattern: new RegExp("#?'" + symbol),
-		alias: ['variable', 'symbol'],
+		alias: ['variable', 'symbol']
 	},
 	'lisp-property': {
 		pattern: new RegExp(':' + symbol),
-		alias: 'property',
+		alias: 'property'
 	},
 	splice: {
 		pattern: new RegExp(',@?' + symbol),
-		alias: ['symbol', 'variable'],
+		alias: ['symbol', 'variable']
 	},
 	keyword: [
 		{
@@ -57,40 +57,40 @@ var language = {
 					'(?:(?:lexical-)?let\\*?|(?:cl-)?letf|if|when|while|unless|cons|cl-loop|and|or|not|cond|setq|error|message|null|require|provide|use-package)' +
 					space
 			),
-			lookbehind: true,
+			lookbehind: true
 		},
 		{
 			pattern: new RegExp(
 				par + '(?:for|do|collect|return|finally|append|concat|in|by)' + space
 			),
-			lookbehind: true,
+			lookbehind: true
 		},
 	],
 	declare: {
 		pattern: simple_form('declare'),
 		lookbehind: true,
-		alias: 'keyword',
+		alias: 'keyword'
 	},
 	interactive: {
 		pattern: simple_form('interactive'),
 		lookbehind: true,
-		alias: 'keyword',
+		alias: 'keyword'
 	},
 	boolean: {
 		pattern: primitive('(?:t|nil)'),
-		lookbehind: true,
+		lookbehind: true
 	},
 	number: {
 		pattern: primitive('[-+]?\\d+(?:\\.\\d*)?'),
-		lookbehind: true,
+		lookbehind: true
 	},
 	defvar: {
 		pattern: new RegExp(par + 'def(?:var|const|custom|group)\\s+' + symbol),
 		lookbehind: true,
 		inside: {
 			keyword: /^def[a-z]+/,
-			variable: new RegExp(symbol),
-		},
+			variable: new RegExp(symbol)
+		}
 	},
 	defun: {
 		pattern: new RegExp(
@@ -107,10 +107,10 @@ var language = {
 			arguments: null,
 			function: {
 				pattern: new RegExp('(^\\s)' + symbol),
-				lookbehind: true,
+				lookbehind: true
 			},
-			punctuation: /[()]/,
-		},
+			punctuation: /[()]/
+		}
 	},
 	lambda: {
 		pattern: new RegExp(par + 'lambda\\s+\\((?:&?' + symbol + '\\s*)*\\)'),
@@ -120,12 +120,12 @@ var language = {
 			// See below, this property needs to be defined later so that it can
 			// reference the language object.
 			arguments: null,
-			punctuation: /[()]/,
-		},
+			punctuation: /[()]/
+		}
 	},
 	car: {
 		pattern: new RegExp(par + symbol),
-		lookbehind: true,
+		lookbehind: true
 	},
 	punctuation: [
 		// open paren
@@ -135,9 +135,9 @@ var language = {
 		// cons
 		{
 			pattern: /(\s)\.(?=\s)/,
-			lookbehind: true,
+			lookbehind: true
 		},
-	],
+	]
 };
 
 var arg = {
@@ -145,7 +145,7 @@ var arg = {
 	rest: {
 		argument: {
 			pattern: new RegExp(symbol),
-			alias: 'variable',
+			alias: 'variable'
 		},
 		varform: {
 			pattern: new RegExp(par + symbol + '\\s+\\S[\\s\\S]*' + endpar),
@@ -155,10 +155,10 @@ var arg = {
 				boolean: language.boolean,
 				number: language.number,
 				symbol: language.symbol,
-				punctuation: /[()]/,
-			},
-		},
-	},
+				punctuation: /[()]/
+			}
+		}
+	}
 };
 
 var forms = '\\S+(?:\\s+\\S+)*';
@@ -169,22 +169,22 @@ var arglist = {
 	inside: {
 		'rest-vars': {
 			pattern: new RegExp('&(?:rest|body)\\s+' + forms),
-			inside: arg,
+			inside: arg
 		},
 		'other-marker-vars': {
 			pattern: new RegExp('&(?:optional|aux)\\s+' + forms),
-			inside: arg,
+			inside: arg
 		},
 		keys: {
 			pattern: new RegExp('&key\\s+' + forms + '(?:\\s+&allow-other-keys)?'),
-			inside: arg,
+			inside: arg
 		},
 		argument: {
 			pattern: new RegExp(symbol),
-			alias: 'variable',
+			alias: 'variable'
 		},
-		punctuation: /[()]/,
-	},
+		punctuation: /[()]/
+	}
 };
 
 language['lambda'].inside.arguments = arglist;
