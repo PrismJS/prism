@@ -115,7 +115,7 @@
 	<h1>Limitations</h1>
 	<ul>
 		<li>Any pre-existing HTML in the code will be stripped off. <a href="faq.html#if-pre-existing-html-is-stripped-off-how-can-i-highlight">There are ways around it though</a>.</li>
-		<li>Regex-based so it *will* fail on <a href="examples.html#failures">certain edge cases</a>.</li>
+		<li>Regex-based so it *will* fail on certain edge cases, which are documented in the <a href="examples.html">Examples section</a>.</li>
 		<li>No IE 6-8 support. If someone can read code, they are probably in the 85% of the population with a modern browser.</li>
 	</ul>
 </section>
@@ -166,7 +166,24 @@
 var code = "var data = 1;";
 
 // Returns a highlighted HTML string
-var html = Prism.highlight(code, Prism.languages.javascript);</code></pre>
+var html = Prism.highlight(code, Prism.languages.javascript, 'javascript');</code></pre>
+
+	<p>Requiring <code>prismjs</code> will load the default languages: <code>markup</code>, <code>css</code>,
+		<code>clike</code> and <code>javascript</code>. You can load more languages separately by requiring them
+		directly from the <code>components</code> folder. Or you can use the <code class="language-javascript">loadLanguages()</code> utility, that
+		will automatically handle any required dependencies.</p>
+	<p>Example:</p>
+
+	<pre><code class="language-js">var Prism = require('prismjs');
+var loadLanguages = require('prismjs/components/index.js');
+loadLanguages(['haml']);
+
+// The code snippet you want to highlight, as a string
+var code = "= ['hi', 'there', 'reader!'].join \" \"";
+
+// Returns a highlighted HTML string
+var html = Prism.highlight(code, Prism.languages.haml, 'haml');</code></pre>
+
 </section>
 
 <section id="languages-list" class="language-markup">
@@ -203,10 +220,8 @@ var html = Prism.highlight(code, Prism.languages.javascript);</code></pre>
 		<li><a href="http://wp.tutsplus.com/tutorials/plugins/adding-a-syntax-highlighter-shortcode-using-prism-js/">Adding a Syntax Highlighter Shortcode Using Prism.js | WPTuts+</a></li>
 		<li><a href="http://www.stramaxon.com/2012/07/prism-syntax-highlighter-for-blogger.html">Implement PrismJs Syntax Highlighting to your Blogger/BlogSpot</a></li>
 		<li><a href="http://www.allblogtools.com/tricks-and-hacks/beautify-source-codes-in-your-posts-with-prism-syntax-highlighter-for-blogger/">Beautify Source Codes In Your Posts With Prism Syntax Highlighter For Blogger</a></li>
-		<li><a href="http://dotnordic.se/extending-and-customizing-prism-syntax-highlighter/">Extending and customizing Prism syntax highlighter</a></li>
 		<li><a href="http://schier.co/blog/2013/01/07/how-to-re-run-prismjs-on-ajax-content.html">How To Re-Run Prism.js On AJAX Content</a></li>
 		<li><a href="http://www.semisedlak.com/article/highlight-your-code-syntax-with-prismjs/">Highlight your code syntax with Prism.js</a></li>
-		<li><a href="http://gmurphey.com/2012/08/09/jekyll-plugin-syntax-highlighting-with-prism.html">Jekyll Plugin: Syntax Highlighting With Prism</a></li>
 		<li><a href="http://byverdu.es/2013/06/tutorial-sobre-prism-js-inserta-ejemplos-de-codigo-en-web-wordpress-y-blogger/">[Spanish] Tutorial sobre Prism.js Como utilizarlo en Web, Wordpress y Blogger</a></li>
 		<li><a href="https://usetypo3.com/fs-code-snippet.html">A code snippet content element powered by Prism.js for TYPO3 CMS</a></li>
 	</ul>

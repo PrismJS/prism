@@ -12,7 +12,10 @@ Prism.languages.fortran = {
 			}
 		}
 	},
-	'comment': /!.*/,
+	'comment': {
+		pattern: /!.*/,
+		greedy: true
+	},
 	'boolean': /\.(?:TRUE|FALSE)\.(?:_\w+)?/i,
 	'number': /(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:[ED][+-]?\d+)?(?:_\w+)?/i,
 	'keyword': [

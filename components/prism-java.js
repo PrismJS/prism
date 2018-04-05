@@ -14,3 +14,14 @@ Prism.languages.insertBefore('java','function', {
 		lookbehind: true
 	}
 });
+
+Prism.languages.insertBefore('java', 'class-name', {
+	'generics': {
+		pattern: /<\s*\w+(?:\.\w+)?(?:\s*,\s*\w+(?:\.\w+)?)*>/i,
+		alias: 'function',
+		inside: {
+			keyword: Prism.languages.java.keyword,
+			punctuation: /[<>(),.:]/
+		}
+	}
+});

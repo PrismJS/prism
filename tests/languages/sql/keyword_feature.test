@@ -161,12 +161,14 @@ INTERVAL
 INTO
 INVOKER
 ISOLATION
+ITERATE
 JOIN
 KEY
 KEYS
 KILL
 LANGUAGE
 LAST
+LEAVE
 LEFT
 LEVEL
 LIMIT
@@ -178,6 +180,7 @@ LOCAL
 LOCK
 LONGBLOB
 LONGTEXT
+LOOP
 MATCH
 MATCHED
 MEDIUMBLOB
@@ -227,6 +230,7 @@ POINT
 POLYGON
 PRECEDING
 PRECISION
+PREPARE
 PREV
 PRIMARY
 PRINT
@@ -244,10 +248,12 @@ RECONFIGURE
 REFERENCES
 RELEASE
 RENAME
+REPEAT
 REPEATABLE
 REPLACE
 REPLICATION
 REQUIRE
+RESIGNAL
 RESTORE
 RESTRICT
 RETURN
@@ -318,6 +324,7 @@ UNCOMMITTED
 UNDEFINED
 UNION
 UNIQUE
+UNLOCK
 UNPIVOT
 UNSIGNED
 UPDATE
@@ -512,12 +519,14 @@ YEAR
 	["keyword", "INTO"],
 	["keyword", "INVOKER"],
 	["keyword", "ISOLATION"],
+	["keyword", "ITERATE"],
 	["keyword", "JOIN"],
 	["keyword", "KEY"],
 	["keyword", "KEYS"],
 	["keyword", "KILL"],
 	["keyword", "LANGUAGE"],
 	["keyword", "LAST"],
+	["keyword", "LEAVE"],
 	["keyword", "LEFT"],
 	["keyword", "LEVEL"],
 	["keyword", "LIMIT"],
@@ -529,6 +538,7 @@ YEAR
 	["keyword", "LOCK"],
 	["keyword", "LONGBLOB"],
 	["keyword", "LONGTEXT"],
+	["keyword", "LOOP"],
 	["keyword", "MATCH"],
 	["keyword", "MATCHED"],
 	["keyword", "MEDIUMBLOB"],
@@ -578,6 +588,7 @@ YEAR
 	["keyword", "POLYGON"],
 	["keyword", "PRECEDING"],
 	["keyword", "PRECISION"],
+	["keyword", "PREPARE"],
 	["keyword", "PREV"],
 	["keyword", "PRIMARY"],
 	["keyword", "PRINT"],
@@ -595,10 +606,12 @@ YEAR
 	["keyword", "REFERENCES"],
 	["keyword", "RELEASE"],
 	["keyword", "RENAME"],
+	["keyword", "REPEAT"],
 	["keyword", "REPEATABLE"],
 	["keyword", "REPLACE"],
 	["keyword", "REPLICATION"],
 	["keyword", "REQUIRE"],
+	["keyword", "RESIGNAL"],
 	["keyword", "RESTORE"],
 	["keyword", "RESTRICT"],
 	["keyword", "RETURN"],
@@ -669,6 +682,7 @@ YEAR
 	["keyword", "UNDEFINED"],
 	["keyword", "UNION"],
 	["keyword", "UNIQUE"],
+	["keyword", "UNLOCK"],
 	["keyword", "UNPIVOT"],
 	["keyword", "UNSIGNED"],
 	["keyword", "UPDATE"],

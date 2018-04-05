@@ -8,10 +8,10 @@ bar --}}
 ----------------------------------------------------
 
 [
-	["handlebars-comment", "{{! foobar}}"],
-	["handlebars-comment", "{{!-- foo bar baz --}}"],
-	["handlebars-comment", "{{! foo\r\nbar }}"],
-	["handlebars-comment", "{{!-- foo\r\nbar --}}"]
+	["handlebars", [["comment", "{{! foobar}}"]]],
+	["handlebars", [["comment", "{{!-- foo bar baz --}}"]]],
+	["handlebars", [["comment", "{{! foo\r\nbar }}"]]],
+	["handlebars", [["comment", "{{!-- foo\r\nbar --}}"]]]
 ]
 
 ----------------------------------------------------
