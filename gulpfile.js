@@ -9,7 +9,7 @@ var gulp   = require('gulp'),
 	paths  = {
 		componentsFile: 'components.json',
 		componentsFileJS: 'components.js',
-		components: ['components/**/*.js', '!components/**/*.min.js'],
+		components: ['components/**/*.js', '!components/index.js', '!components/**/*.min.js'],
 		main: [
 			'components/prism-core.js',
 			'components/prism-markup.js',
