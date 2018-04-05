@@ -129,10 +129,8 @@
 			lookbehind: true
 		},
 		punctuation: [
-			// open paren
-				/['`,]?\(/,
-			// brackets and close paren
-				/[)\[\]]/,
+			// open paren, brackets, and close paren
+			/(['`,]?\(|[)\[\]])/,
 			// cons
 			{
 				pattern: /(\s)\.(?=\s)/,
