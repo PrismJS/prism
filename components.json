@@ -375,8 +375,8 @@
 		},
 		"lisp": {
 			"title": "lisp",
-			"owner": "JuanCaicedo"
-			"alias": ["emacs", "elisp", "emacs-lisp"],
+			"owner": "JuanCaicedo",
+			"alias": ["emacs", "elisp", "emacs-lisp"]
 		},
 		"livescript": {
 			"title": "LiveScript",
