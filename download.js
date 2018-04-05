@@ -22,9 +22,9 @@ var treePromise = new Promise(function(resolve) {
 	});
 });
 
-var qstr = window.location.search.match(/(?:languages|plugins)=[-+\w]+|themes=[-\w]+/g);
-if (qstr) {
-	qstr.forEach(function(str) {
+var hstr = window.location.hash.match(/(?:languages|plugins)=[-+\w]+|themes=[-\w]+/g);
+if (hstr) {
+	hstr.forEach(function(str) {
 		var kv = str.split('=', 2),
 		    category = kv[0],
 		    ids = kv[1].split('+');
@@ -51,6 +51,15 @@ if (qstr) {
 		}
 	});
 }
+
+// Stay compatible with old querystring feature
+var qstr = window.location.search.match(/(?:languages|plugins)=[-+\w]+|themes=[-\w]+/g);
+if (qstr && !hstr) {
+	window.location.hash = window.location.search.replace(/^\?/, '');
+	window.location.search = '';
+}
+
+var storedTheme = localStorage.getItem('theme');
 
 for (var category in components) {
 	var all = components[category];
@@ -95,7 +104,7 @@ for (var category in components) {
 			inside: all.meta.section
 		});
 	}
-	
+
 	for (var id in all) {
 		if(id === 'meta') {
 			continue;
@@ -107,6 +116,9 @@ for (var category in components) {
 		switch (option) {		
 			case 'mandatory': disabled = true; // fallthrough
 			case 'default': checked = true;
+		}
+		if (category === 'themes' && storedTheme) {
+			checked = id === storedTheme;
 		}
 		
 		var filepath = all.meta.path.replace(/\{id}/g, id);
@@ -150,7 +162,7 @@ for (var category in components) {
 			info.files.dev.paths.push(cssFile);
 		}
 	
-		$u.element.create('label', {
+		var label = $u.element.create('label', {
 			attributes: {
 				'data-id': id
 			},
@@ -215,6 +227,22 @@ for (var category in components) {
 			],
 			inside: all.meta.section
 		});
+
+		// Add click events on main theme selector too.
+		(function (label) {
+			if (category === 'themes') {
+				var themeInput = $('#theme input[value="' + id + '"]');
+				var input = $('input', label);
+				if (themeInput) {
+					var themeInputOnclick = themeInput.onclick;
+					themeInput.onclick = function () {
+						input.checked = true;
+						input.onclick();
+						themeInputOnclick && themeInputOnclick.call(themeInput);
+					};
+				}
+			}
+		}(label));
 	}
 }
 
@@ -330,6 +358,15 @@ function update(updatedCategory, updatedId){
 			}
 			if (id !== 'meta' && !info.enabled) {
 				allChecked = false;
+			}
+
+			// Select main theme
+			if (category === 'themes' && id === updatedId && info.enabled) {
+				var themeInput = $('#theme input[value="' + updatedId + '"]');
+				if (themeInput) {
+					themeInput.checked = true;
+				}
+				setTheme(updatedId);
 			}
 		}
 
@@ -466,19 +503,22 @@ function generateCode(){
 			$u.element.contents(error, errors);
 		}
 	
-		var redownloadUrl = window.location.href.split("?")[0] + "?";
+		var redownloadUrl = window.location.href.split("#")[0] + "#";
 		for (var category in redownload) {
 			redownloadUrl += category + "=" + redownload[category].join('+') + "&";
 		}
-		redownloadUrl = "/* PrismJS " + version + "\n" + redownloadUrl.replace(/&$/,"") + " */";
+		redownloadUrl = redownloadUrl.replace(/&$/,"");
+		window.location.replace(redownloadUrl);
+
+		var versionComment = "/* PrismJS " + version + "\n" + redownloadUrl + " */";
 
 		for (var type in code) {
 			var codeElement = $('#download-' + type + ' code');
 			
-			codeElement.textContent = redownloadUrl + "\n" + code[type];
+			codeElement.textContent = versionComment + "\n" + code[type];
 			Prism.highlightElement(codeElement, true);
 			
-			$('#download-' + type + ' .download-button').href = 'data:application/octet-stream;charset=utf-8,' + encodeURIComponent(redownloadUrl + "\n" + code[type]);
+			$('#download-' + type + ' .download-button').href = 'data:application/octet-stream;charset=utf-8,' + encodeURIComponent(versionComment + "\n" + code[type]);
 		}
 	});
 }

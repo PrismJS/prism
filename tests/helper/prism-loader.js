@@ -2,7 +2,7 @@
 
 var fs = require("fs");
 var vm = require("vm");
-var components = require("./components");
+var components = require("../../components");
 var languagesCatalog = components.languages;
 
 

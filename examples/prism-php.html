@@ -1,6 +1,3 @@
-<h1>PHP</h1>
-<p>To use this language, use the class "language-php".</p>
-
 <h2>Comments</h2>
 <pre><code>// Single line comment
 /* Multi-line
@@ -10,7 +7,13 @@ comment */
 <h2>Strings</h2>
 <pre><code>'foo \'bar\' baz'
 "foo \"bar\" baz"
-"a string # containing an hash"</code></pre>
+"a string # containing an hash"
+$foo = &lt;&lt;&lt;FOO
+    Heredoc strings are supported too!
+FOO;
+$bar = &lt;&lt;&lt;'BAR'
+    And also Nowdoc strings
+BAR;</code></pre>
 
 <h2>Variables</h2>
 <pre><code>$some_var = 5;
@@ -53,20 +56,12 @@ function gen_one_to_three() {
 } ?>
 &lt;/div></code></pre>
 
-<h2>Known failures</h2>
-<p>There are certain edge cases where Prism will fail.
-	There are always such cases in every regex-based syntax highlighter.
-	However, Prism dares to be open and honest about them.
-	If a failure is listed here, it doesn’t mean it will never be fixed. This is more of a “known bugs” list, just with a certain type of bug.
-</p>
-
-<h3>Comment-like substrings</h3>
-<pre><code>"foo // bar";</code></pre>
-
-<h3>Shell-like comments containing two quotes of the same type</h3>
-<pre><code># Shell-like comment "with quotes" inside
-# Shell-like comment 'with quotes' inside</code></pre>
-
-<h3>A less-than sign and a greater-than sign on the same line</h3>
-<pre><code>if($a < $b && $b > $c) {}</code></pre>
-
+<h2>String interpolation</h2>
+<pre><code>$str = "This is $great!";
+$foobar = "Another example: {${$foo->bar()}}";
+$a = &lt;&lt;&lt;FOO
+    Hello $world!
+FOO;
+$b = &lt;&lt;&lt;"FOOBAR"
+    Interpolation inside Heredoc strings {$obj->values[3]->name}
+FOOBAR;</code></pre>

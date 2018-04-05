@@ -10,6 +10,7 @@ APPLY
 AS
 ASC
 AUTHORIZATION
+AUTO_INCREMENT
 BACKUP
 BDB
 BEGIN
@@ -30,9 +31,8 @@ CASCADE
 CASCADED
 CASE
 CHAIN
-CHAR VARYING
-CHARACTER SET
-CHARACTER VARYING
+CHAR
+CHARACTER
 CHARSET
 CHECK
 CHECKPOINT
@@ -61,10 +61,13 @@ CURRENT_TIME
 CURRENT_TIMESTAMP
 CURRENT_USER
 CURSOR
+CYCLE
 DATA
 DATABASE
 DATABASES
+DATE
 DATETIME
+DAY
 DBCC
 DEALLOCATE
 DEC
@@ -74,6 +77,8 @@ DEFAULT
 DEFINER
 DELAYED
 DELETE
+DELIMITER
+DELIMITERS
 DENY
 DESC
 DESCRIBE
@@ -86,22 +91,22 @@ DISTINCTROW
 DISTRIBUTED
 DO
 DOUBLE
-DOUBLE PRECISION
 DROP
 DUMMY
 DUMP
 DUMPFILE
-DUPLICATE KEY
+DUPLICATE
 ELSE
+ELSEIF
 ENABLE
-ENCLOSED BY
+ENCLOSED
 END
 ENGINE
 ENUM
 ERRLVL
 ERRORS
 ESCAPE
-ESCAPED BY
+ESCAPED
 EXCEPT
 EXEC
 EXECUTE
@@ -136,6 +141,7 @@ HANDLER
 HASH
 HAVING
 HOLDLOCK
+HOUR
 IDENTITY
 IDENTITY_INSERT
 IDENTITYCOL
@@ -151,16 +157,18 @@ INSERT
 INT
 INTEGER
 INTERSECT
+INTERVAL
 INTO
 INVOKER
-ISOLATION LEVEL
+ISOLATION
 JOIN
 KEY
 KEYS
 KILL
-LANGUAGE SQL
+LANGUAGE
 LAST
 LEFT
+LEVEL
 LIMIT
 LINENO
 LINES
@@ -177,24 +185,19 @@ MEDIUMINT
 MEDIUMTEXT
 MERGE
 MIDDLEINT
-MODIFIES SQL DATA
+MINUTE
+MODE
+MODIFIES
 MODIFY
+MONTH
 MULTILINESTRING
 MULTIPOINT
 MULTIPOLYGON
 NATIONAL
-NATIONAL CHAR VARYING
-NATIONAL CHARACTER
-NATIONAL CHARACTER VARYING
-NATIONAL VARCHAR
 NATURAL
 NCHAR
-NCHAR VARCHAR
 NEXT
 NO
-NO SQL
-NOCHECK
-NOCYCLE
 NONCLUSTERED
 NULLIF
 NUMERIC
@@ -235,14 +238,14 @@ PURGE
 QUICK
 RAISERROR
 READ
-READS SQL DATA
-READTEXT
+READS
 REAL
 RECONFIGURE
 REFERENCES
 RELEASE
 RENAME
 REPEATABLE
+REPLACE
 REPLICATION
 REQUIRE
 RESTORE
@@ -253,15 +256,16 @@ REVOKE
 RIGHT
 ROLLBACK
 ROUTINE
+ROW
 ROWCOUNT
 ROWGUIDCOL
-ROW
 ROWS
 RTREE
 RULE
 SAVE
 SAVEPOINT
 SCHEMA
+SECOND
 SELECT
 SERIAL
 SERIALIZABLE
@@ -269,7 +273,7 @@ SESSION
 SESSION_USER
 SET
 SETUSER
-SHARE MODE
+SHARE
 SHOW
 SHUTDOWN
 SIMPLE
@@ -277,8 +281,9 @@ SMALLINT
 SNAPSHOT
 SOME
 SONAME
+SQL
 START
-STARTING BY
+STARTING
 STATISTICS
 STATUS
 STRIPED
@@ -289,10 +294,11 @@ TABLESPACE
 TEMP
 TEMPORARY
 TEMPTABLE
-TERMINATED BY
+TERMINATED
 TEXT
 TEXTSIZE
 THEN
+TIME
 TIMESTAMP
 TINYBLOB
 TINYINT
@@ -313,6 +319,7 @@ UNDEFINED
 UNION
 UNIQUE
 UNPIVOT
+UNSIGNED
 UPDATE
 UPDATETEXT
 USAGE
@@ -337,6 +344,7 @@ WITHIN
 WORK
 WRITE
 WRITETEXT
+YEAR
 
 ----------------------------------------------------
 
@@ -353,6 +361,7 @@ WRITETEXT
 	["keyword", "AS"],
 	["keyword", "ASC"],
 	["keyword", "AUTHORIZATION"],
+	["keyword", "AUTO_INCREMENT"],
 	["keyword", "BACKUP"],
 	["keyword", "BDB"],
 	["keyword", "BEGIN"],
@@ -373,9 +382,8 @@ WRITETEXT
 	["keyword", "CASCADED"],
 	["keyword", "CASE"],
 	["keyword", "CHAIN"],
-	["keyword", "CHAR VARYING"],
-	["keyword", "CHARACTER SET"],
-	["keyword", "CHARACTER VARYING"],
+	["keyword", "CHAR"],
+	["keyword", "CHARACTER"],
 	["keyword", "CHARSET"],
 	["keyword", "CHECK"],
 	["keyword", "CHECKPOINT"],
@@ -404,10 +412,13 @@ WRITETEXT
 	["keyword", "CURRENT_TIMESTAMP"],
 	["keyword", "CURRENT_USER"],
 	["keyword", "CURSOR"],
+	["keyword", "CYCLE"],
 	["keyword", "DATA"],
 	["keyword", "DATABASE"],
 	["keyword", "DATABASES"],
+	["keyword", "DATE"],
 	["keyword", "DATETIME"],
+	["keyword", "DAY"],
 	["keyword", "DBCC"],
 	["keyword", "DEALLOCATE"],
 	["keyword", "DEC"],
@@ -417,6 +428,8 @@ WRITETEXT
 	["keyword", "DEFINER"],
 	["keyword", "DELAYED"],
 	["keyword", "DELETE"],
+	["keyword", "DELIMITER"],
+	["keyword", "DELIMITERS"],
 	["keyword", "DENY"],
 	["keyword", "DESC"],
 	["keyword", "DESCRIBE"],
@@ -429,22 +442,22 @@ WRITETEXT
 	["keyword", "DISTRIBUTED"],
 	["keyword", "DO"],
 	["keyword", "DOUBLE"],
-	["keyword", "DOUBLE PRECISION"],
 	["keyword", "DROP"],
 	["keyword", "DUMMY"],
 	["keyword", "DUMP"],
 	["keyword", "DUMPFILE"],
-	["keyword", "DUPLICATE KEY"],
+	["keyword", "DUPLICATE"],
 	["keyword", "ELSE"],
+	["keyword", "ELSEIF"],
 	["keyword", "ENABLE"],
-	["keyword", "ENCLOSED BY"],
+	["keyword", "ENCLOSED"],
 	["keyword", "END"],
 	["keyword", "ENGINE"],
 	["keyword", "ENUM"],
 	["keyword", "ERRLVL"],
 	["keyword", "ERRORS"],
 	["keyword", "ESCAPE"],
-	["keyword", "ESCAPED BY"],
+	["keyword", "ESCAPED"],
 	["keyword", "EXCEPT"],
 	["keyword", "EXEC"],
 	["keyword", "EXECUTE"],
@@ -479,6 +492,7 @@ WRITETEXT
 	["keyword", "HASH"],
 	["keyword", "HAVING"],
 	["keyword", "HOLDLOCK"],
+	["keyword", "HOUR"],
 	["keyword", "IDENTITY"],
 	["keyword", "IDENTITY_INSERT"],
 	["keyword", "IDENTITYCOL"],
@@ -494,16 +508,18 @@ WRITETEXT
 	["keyword", "INT"],
 	["keyword", "INTEGER"],
 	["keyword", "INTERSECT"],
+	["keyword", "INTERVAL"],
 	["keyword", "INTO"],
 	["keyword", "INVOKER"],
-	["keyword", "ISOLATION LEVEL"],
+	["keyword", "ISOLATION"],
 	["keyword", "JOIN"],
 	["keyword", "KEY"],
 	["keyword", "KEYS"],
 	["keyword", "KILL"],
-	["keyword", "LANGUAGE SQL"],
+	["keyword", "LANGUAGE"],
 	["keyword", "LAST"],
 	["keyword", "LEFT"],
+	["keyword", "LEVEL"],
 	["keyword", "LIMIT"],
 	["keyword", "LINENO"],
 	["keyword", "LINES"],
@@ -520,24 +536,19 @@ WRITETEXT
 	["keyword", "MEDIUMTEXT"],
 	["keyword", "MERGE"],
 	["keyword", "MIDDLEINT"],
-	["keyword", "MODIFIES SQL DATA"],
+	["keyword", "MINUTE"],
+	["keyword", "MODE"],
+	["keyword", "MODIFIES"],
 	["keyword", "MODIFY"],
+	["keyword", "MONTH"],
 	["keyword", "MULTILINESTRING"],
 	["keyword", "MULTIPOINT"],
 	["keyword", "MULTIPOLYGON"],
 	["keyword", "NATIONAL"],
-	["keyword", "NATIONAL CHAR VARYING"],
-	["keyword", "NATIONAL CHARACTER"],
-	["keyword", "NATIONAL CHARACTER VARYING"],
-	["keyword", "NATIONAL VARCHAR"],
 	["keyword", "NATURAL"],
 	["keyword", "NCHAR"],
-	["keyword", "NCHAR VARCHAR"],
 	["keyword", "NEXT"],
 	["keyword", "NO"],
-	["keyword", "NO SQL"],
-	["keyword", "NOCHECK"],
-	["keyword", "NOCYCLE"],
 	["keyword", "NONCLUSTERED"],
 	["keyword", "NULLIF"],
 	["keyword", "NUMERIC"],
@@ -578,14 +589,14 @@ WRITETEXT
 	["keyword", "QUICK"],
 	["keyword", "RAISERROR"],
 	["keyword", "READ"],
-	["keyword", "READS SQL DATA"],
-	["keyword", "READTEXT"],
+	["keyword", "READS"],
 	["keyword", "REAL"],
 	["keyword", "RECONFIGURE"],
 	["keyword", "REFERENCES"],
 	["keyword", "RELEASE"],
 	["keyword", "RENAME"],
 	["keyword", "REPEATABLE"],
+	["keyword", "REPLACE"],
 	["keyword", "REPLICATION"],
 	["keyword", "REQUIRE"],
 	["keyword", "RESTORE"],
@@ -596,15 +607,16 @@ WRITETEXT
 	["keyword", "RIGHT"],
 	["keyword", "ROLLBACK"],
 	["keyword", "ROUTINE"],
+	["keyword", "ROW"],
 	["keyword", "ROWCOUNT"],
 	["keyword", "ROWGUIDCOL"],
-	["keyword", "ROW"],
 	["keyword", "ROWS"],
 	["keyword", "RTREE"],
 	["keyword", "RULE"],
 	["keyword", "SAVE"],
 	["keyword", "SAVEPOINT"],
 	["keyword", "SCHEMA"],
+	["keyword", "SECOND"],
 	["keyword", "SELECT"],
 	["keyword", "SERIAL"],
 	["keyword", "SERIALIZABLE"],
@@ -612,7 +624,7 @@ WRITETEXT
 	["keyword", "SESSION_USER"],
 	["keyword", "SET"],
 	["keyword", "SETUSER"],
-	["keyword", "SHARE MODE"],
+	["keyword", "SHARE"],
 	["keyword", "SHOW"],
 	["keyword", "SHUTDOWN"],
 	["keyword", "SIMPLE"],
@@ -620,8 +632,9 @@ WRITETEXT
 	["keyword", "SNAPSHOT"],
 	["keyword", "SOME"],
 	["keyword", "SONAME"],
+	["keyword", "SQL"],
 	["keyword", "START"],
-	["keyword", "STARTING BY"],
+	["keyword", "STARTING"],
 	["keyword", "STATISTICS"],
 	["keyword", "STATUS"],
 	["keyword", "STRIPED"],
@@ -632,10 +645,11 @@ WRITETEXT
 	["keyword", "TEMP"],
 	["keyword", "TEMPORARY"],
 	["keyword", "TEMPTABLE"],
-	["keyword", "TERMINATED BY"],
+	["keyword", "TERMINATED"],
 	["keyword", "TEXT"],
 	["keyword", "TEXTSIZE"],
 	["keyword", "THEN"],
+	["keyword", "TIME"],
 	["keyword", "TIMESTAMP"],
 	["keyword", "TINYBLOB"],
 	["keyword", "TINYINT"],
@@ -656,6 +670,7 @@ WRITETEXT
 	["keyword", "UNION"],
 	["keyword", "UNIQUE"],
 	["keyword", "UNPIVOT"],
+	["keyword", "UNSIGNED"],
 	["keyword", "UPDATE"],
 	["keyword", "UPDATETEXT"],
 	["keyword", "USAGE"],
@@ -679,7 +694,8 @@ WRITETEXT
 	["keyword", "WITHIN"],
 	["keyword", "WORK"],
 	["keyword", "WRITE"],
-	["keyword", "WRITETEXT"]
+	["keyword", "WRITETEXT"],
+	["keyword", "YEAR"]
 ]
 
 ----------------------------------------------------

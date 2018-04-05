@@ -241,14 +241,17 @@ header {
 	
 		#theme > label {
 			position: relative;
-			display: block;
-			width: 7em;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 8.5em;
+			height: 8.5em;
 			line-height: 1em;
-			padding: 3em 0;
 			border-radius: 50%;
 			background: hsla(0,0%,100%,.5);
 			cursor: pointer;
-			font-size: 110%;
+			font-size: 90%;
+			padding: 0;
 		}
 		
 		#theme > label:before {
@@ -372,11 +375,6 @@ footer {
 		border: 5px solid white;
 		position: relative;
 	}
-		.used-by-logos > .uswds {
-			background: url('img/screen-us-web-design-standards.png') no-repeat 0 0;
-			background-size: cover;
-			text-indent: -999em;
-		}
 		.used-by-logos > a > img {
 			max-height: 100%;
 			max-width: 100%;

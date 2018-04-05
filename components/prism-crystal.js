@@ -8,10 +8,8 @@
 			}
 		],
 
-		number: /\b(?:0b[01_]*[01]|0o[0-7_]*[0-7]|0x[0-9a-fA-F_]*[0-9a-fA-F]|(?:\d(?:[0-9_]*\d)?)(?:\.[0-9_]*\d)?(?:[eE][+-]?[0-9_]*\d)?)(?:_(?:[uif](?:8|16|32|64))?)?\b/
+		number: /\b(?:0b[01_]*[01]|0o[0-7_]*[0-7]|0x[\da-fA-F_]*[\da-fA-F]|(?:\d(?:[\d_]*\d)?)(?:\.[\d_]*\d)?(?:[eE][+-]?[\d_]*\d)?)(?:_(?:[uif](?:8|16|32|64))?)?\b/
 	});
-
-	var rest = Prism.util.clone(Prism.languages.crystal);
 
 	Prism.languages.insertBefore('crystal', 'string', {
 		attribute: {
@@ -22,7 +20,7 @@
 					pattern: /^@\[|\]$/,
 					alias: 'tag'
 				},
-				rest: rest
+				rest: Prism.languages.crystal
 			}
 		},
 
@@ -34,7 +32,7 @@
 					pattern: /^\{\{|\}\}$/,
 					alias: 'tag'
 				},
-				rest: rest
+				rest: Prism.languages.crystal
 			}
 		},
 		{
@@ -44,7 +42,7 @@
 					pattern: /^\{%|%\}$/,
 					alias: 'tag'
 				},
-				rest: rest
+				rest: Prism.languages.crystal
 			}
 		}
 		]

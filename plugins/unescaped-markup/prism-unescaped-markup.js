@@ -12,7 +12,7 @@
 	});
 
 	Prism.hooks.add('before-sanity-check', function (env) {
-		if (env.element.matches("script[type='text/plain']")) {
+		if ((env.element.matches || env.element.msMatchesSelector).call(env.element, "script[type='text/plain']")) {
 			var code = document.createElement("code");
 			var pre = document.createElement("pre");
 

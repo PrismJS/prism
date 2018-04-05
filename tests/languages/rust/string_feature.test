@@ -1,12 +1,8 @@
 ""
 "fo\"obar"
-''
-'fo\'obar'
 
 b""
 b"fo\"obar"
-b''
-b'fo\'obar'
 
 r#""#
 r#"fo"obar"#
@@ -21,13 +17,9 @@ br###"foo#bar"###
 [
 	["string", "\"\""],
 	["string", "\"fo\\\"obar\""],
-	["string", "''"],
-	["string", "'fo\\'obar'"],
 
 	["string", "b\"\""],
 	["string", "b\"fo\\\"obar\""],
-	["string", "b''"],
-	["string", "b'fo\\'obar'"],
 
 	["string", "r#\"\"#"],
 	["string", "r#\"fo\"obar\"#"],

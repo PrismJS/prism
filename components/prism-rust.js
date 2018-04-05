@@ -22,10 +22,18 @@ Prism.languages.rust = {
 			greedy: true
 		},
 		{
-			pattern: /b?("|')(?:\\.|(?!\1)[^\\\r\n])*\1/,
+			pattern: /b?"(?:\\.|[^\\\r\n"])*"/,
 			greedy: true
 		}
 	],
+	'char': {
+		pattern: /b?'(?:\\(?:x[0-7][\da-fA-F]|u{(?:[\da-fA-F]_*){1,6}|.)|[^\\\r\n\t'])'/,
+		alias: 'string'
+	},
+	'lifetime-annotation': {
+		pattern: /'[^\s>']+/,
+		alias: 'symbol'
+	},
 	'keyword': /\b(?:abstract|alignof|as|be|box|break|const|continue|crate|do|else|enum|extern|false|final|fn|for|if|impl|in|let|loop|match|mod|move|mut|offsetof|once|override|priv|pub|pure|ref|return|sizeof|static|self|struct|super|true|trait|type|typeof|unsafe|unsized|use|virtual|where|while|yield)\b/,
 
 	'attribute': {
@@ -45,7 +53,7 @@ Prism.languages.rust = {
 	},
 
 	// Hex, oct, bin, dec numbers with visual separators and type suffix
-	'number': /\b-?(?:0x[\dA-Fa-f](?:_?[\dA-Fa-f])*|0o[0-7](?:_?[0-7])*|0b[01](?:_?[01])*|(\d(?:_?\d)*)?\.?\d(?:_?\d)*(?:[Ee][+-]?\d+)?)(?:_?(?:[iu](?:8|16|32|64)?|f32|f64))?\b/,
+	'number': /\b(?:0x[\dA-Fa-f](?:_?[\dA-Fa-f])*|0o[0-7](?:_?[0-7])*|0b[01](?:_?[01])*|(\d(?:_?\d)*)?\.?\d(?:_?\d)*(?:[Ee][+-]?\d+)?)(?:_?(?:[iu](?:8|16|32|64)?|f32|f64))?\b/,
 
 	// Closure params should not be confused with bitwise OR |
 	'closure-params': {
@@ -56,5 +64,5 @@ Prism.languages.rust = {
 		}
 	},
 	'punctuation': /[{}[\];(),:]|\.+|->/,
-	'operator': /[-+*\/%!^=]=?|@|&[&=]?|\|[|=]?|<<?=?|>>?=?/
+	'operator': /[-+*\/%!^]=?|=[=>]?|@|&[&=]?|\|[|=]?|<<?=?|>>?=?/
 };

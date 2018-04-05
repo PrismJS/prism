@@ -34,7 +34,7 @@ var myElement = <MyComponent someProperty={true} />;
 		]],
 		["attr-name", ["someProperty"]],
 		["script", [
-			 ["punctuation", "="],
+			 ["script-punctuation", "="],
 			 ["punctuation", "{"],
 			 ["boolean", "true"],
 			 ["punctuation", "}"]

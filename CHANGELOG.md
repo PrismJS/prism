@@ -1,6 +1,107 @@
 # Prism Changelog
 
-## Unreleased
+## 1.13.0 (2018-03-21)
+
+### New components
+* __ERB__ [[`e6213ac`](https://github.com/PrismJS/prism/commit/e6213ac)]
+* __PL/SQL__ ([#1338](https://github.com/PrismJS/prism/issues/1338)) [[`3599e6a`](https://github.com/PrismJS/prism/commit/3599e6a)]
+
+### Updated components
+* __JSX__:
+	* Add support for plain text inside tags ([#1357](https://github.com/PrismJS/prism/issues/1357)) [[`2b8321d`](https://github.com/PrismJS/prism/commit/2b8321d)]
+* __Markup__:
+	* Make tags greedy. Fix [#1356](https://github.com/PrismJS/prism/issues/1356) [[`af834be`](https://github.com/PrismJS/prism/commit/af834be)]
+* __Powershell__:
+	* Add lookbehind to fix function interpolation inside strings. Fix [#1361](https://github.com/PrismJS/prism/issues/1361) [[`d2c026e`](https://github.com/PrismJS/prism/commit/d2c026e)]   
+* __Rust__:
+	* Improve char pattern so that lifetime annotations are matched better. Fix [#1353](https://github.com/PrismJS/prism/issues/1353) [[`efdccbf`](https://github.com/PrismJS/prism/commit/efdccbf)] 
+
+### Updated themes
+* __Default__:
+	* Add color for class names [[`8572474`](https://github.com/PrismJS/prism/commit/8572474)] 
+* __Coy__:
+	* Inherit pre's height on code, so it does not break on Download page. [[`c6c7fd1`](https://github.com/PrismJS/prism/commit/c6c7fd1)] 
+
+### Other changes
+* Website: Auto-generate example headers [[`c3ed5b5`](https://github.com/PrismJS/prism/commit/c3ed5b5)]
+* Core: Allow cloning of circular structures. ([#1345](https://github.com/PrismJS/prism/issues/1345)) [[`f90d555`](https://github.com/PrismJS/prism/commit/f90d555)]
+* Core: Generate components.js from components.json and make it exportable to nodeJS. ([#1354](https://github.com/PrismJS/prism/issues/1354)) [[`ba60df0`](https://github.com/PrismJS/prism/commit/ba60df0)]
+* Website: Improve appearance of theme selector [[`0460cad`](https://github.com/PrismJS/prism/commit/0460cad)]
+* Website: Check stored theme by default + link both theme selectors together. Close [#1038](https://github.com/PrismJS/prism/issues/1038) [[`212dd4e`](https://github.com/PrismJS/prism/commit/212dd4e)]
+* Tests: Use the new components.js file directly [[`0e1a8b7`](https://github.com/PrismJS/prism/commit/0e1a8b7)]
+* Update .npmignore Close [#1274](https://github.com/PrismJS/prism/issues/1274) [[`a52319a`](https://github.com/PrismJS/prism/commit/a52319a)]
+* Add a loadLanguages() function for easy component loading on NodeJS ([#1359](https://github.com/PrismJS/prism/issues/1359)) [[`a5331a6`](https://github.com/PrismJS/prism/commit/a5331a6)]
+
+## 1.12.2 (2018-03-08)
+
+### Other changes
+* Test against NodeJS 4, 6, 8 and 9 ([#1329](https://github.com/PrismJS/prism/issues/1329)) [[`97b7d0a`](https://github.com/PrismJS/prism/commit/97b7d0a)]
+* Stop testing against NodeJS 0.10 and 0.12 [[`df01b1b`](https://github.com/PrismJS/prism/commit/df01b1b)]
+
+## 1.12.1 (2018-03-08)
+
+### Updated components
+* __C-like__:
+	* Revert [[`b98e5b9`](https://github.com/PrismJS/prism/commit/b98e5b9)] to fix [#1340](https://github.com/PrismJS/prism/issues/1340). Reopened [#1337](https://github.com/PrismJS/prism/issues/1337). [[`cebacdf`](https://github.com/PrismJS/prism/commit/cebacdf)]
+* __JSX__:
+	* Allow for one level of nested curly braces inside tag attribute value. Fix [#1335](https://github.com/PrismJS/prism/issues/1335) [[`05bf67d`](https://github.com/PrismJS/prism/commit/05bf67d)]
+* __Ruby__:
+	*  Ensure module syntax is not confused with symbols. Fix [#1336](https://github.com/PrismJS/prism/issues/1336) [[`31a2a69`](https://github.com/PrismJS/prism/commit/31a2a69)]
+
+## 1.12.0 (2018-03-07)
+
+### New components
+* __ARFF__ ([#1327](https://github.com/PrismJS/prism/issues/1327)) [[`0bc98ac`](https://github.com/PrismJS/prism/commit/0bc98ac)] 
+* __Clojure__ ([#1311](https://github.com/PrismJS/prism/issues/1311)) [[`8b4d3bd`](https://github.com/PrismJS/prism/commit/8b4d3bd)]
+* __Liquid__ ([#1326](https://github.com/PrismJS/prism/issues/1326)) [[`f0b2c9e`](https://github.com/PrismJS/prism/commit/f0b2c9e)]
+
+### Updated components
+* __Bash__:
+	* Add shell as an alias ([#1321](https://github.com/PrismJS/prism/issues/1321)) [[`67e16a2`](https://github.com/PrismJS/prism/commit/67e16a2)]
+	* Add support for quoted command substitution. Fix [#1287](https://github.com/PrismJS/prism/issues/1287) [[`63fc215`](https://github.com/PrismJS/prism/commit/63fc215)]
+* __C#__:
+	* Add "dotnet" alias. [[`405867c`](https://github.com/PrismJS/prism/commit/405867c)]
+* __C-like__:
+	* Change order of comment patterns and make multi-line one greedy. Fix [#1337](https://github.com/PrismJS/prism/issues/1337) [[`b98e5b9`](https://github.com/PrismJS/prism/commit/b98e5b9)]
+* __NSIS__:
+	* Add support for NSIS 3.03 ([#1288](https://github.com/PrismJS/prism/issues/1288)) [[`bd1e98b`](https://github.com/PrismJS/prism/commit/bd1e98b)]
+	* Add missing NSIS commands ([#1289](https://github.com/PrismJS/prism/issues/1289)) [[`ad2948f`](https://github.com/PrismJS/prism/commit/ad2948f)]
+* __PHP__:
+	* Add support for string interpolation inside double-quoted strings. Fix [#1146](https://github.com/PrismJS/prism/issues/1146) [[`9f1f8d6`](https://github.com/PrismJS/prism/commit/9f1f8d6)]
+	* Add support for Heredoc and Nowdoc strings [[`5d7223c`](https://github.com/PrismJS/prism/commit/5d7223c)]
+	* Fix shell-comment failure now that strings are greedy [[`ad25d22`](https://github.com/PrismJS/prism/commit/ad25d22)]
+* __PowerShell__:
+	* Add support for two levels of nested brackets inside namespace pattern. Fixes [#1317](https://github.com/PrismJS/prism/issues/1317) [[`3bc3e9c`](https://github.com/PrismJS/prism/commit/3bc3e9c)]
+* __Ruby__:
+	* Add keywords "protected", "private" and "public" [[`4593837`](https://github.com/PrismJS/prism/commit/4593837)]
+* __Rust__:
+	* Add support for lifetime-annotation and => operator. Fix [#1339](https://github.com/PrismJS/prism/issues/1339) [[`926f6f8`](https://github.com/PrismJS/prism/commit/926f6f8)] 
+* __Scheme__:
+	* Don't highlight first number of a list as a function. Fix [#1331](https://github.com/PrismJS/prism/issues/1331) [[`51bff80`](https://github.com/PrismJS/prism/commit/51bff80)]
+* __SQL__:
+	* Add missing keywords and functions, fix numbers [[`de29d4a`](https://github.com/PrismJS/prism/commit/de29d4a)]
+
+### Updated plugins
+* __Autolinker__:
+	* Allow more chars in query string and hash to match more URLs. Fix [#1142](https://github.com/PrismJS/prism/issues/1142) [[`109bd6f`](https://github.com/PrismJS/prism/commit/109bd6f)] 
+* __Copy to Clipboard__:
+	* Bump ClipboardJS to 2.0.0 and remove hack ([#1314](https://github.com/PrismJS/prism/issues/1314)) [[`e9f410e`](https://github.com/PrismJS/prism/commit/e9f410e)]
+* __Toolbar__:
+	* Prevent scrolling toolbar with content ([#1305](https://github.com/PrismJS/prism/issues/1305), [#1314](https://github.com/PrismJS/prism/issues/1314)) [[`84eeb89`](https://github.com/PrismJS/prism/commit/84eeb89)]
+* __Unescaped Markup__:
+	* Use msMatchesSelector for IE11 and below. Fix [#1302](https://github.com/PrismJS/prism/issues/1302) [[`c246c1a`](https://github.com/PrismJS/prism/commit/c246c1a)]
+* __WebPlatform Docs__:
+	* WebPlatform Docs plugin: Fix links. Fixes [#1290](https://github.com/PrismJS/prism/issues/1290) [[`7a9dbe0`](https://github.com/PrismJS/prism/commit/7a9dbe0)]
+
+### Other changes
+* Fix Autoloader's demo page [[`3dddac9`](https://github.com/PrismJS/prism/commit/3dddac9)]
+* Download page: Use hash instead of query-string for redownload URL. Fix [#1263](https://github.com/PrismJS/prism/issues/1263) [[`b03c02a`](https://github.com/PrismJS/prism/commit/b03c02a)]
+* Core: Don't thow an error if lookbehing is used without anything matching. [[`e0cd47f`](https://github.com/PrismJS/prism/commit/e0cd47f)]
+* Docs: Fix link to the `<code>` element specification in HTML5 [[`a84263f`](https://github.com/PrismJS/prism/commit/a84263f)]
+* Docs: Mention support for `lang-xxxx` class. Close [#1312](https://github.com/PrismJS/prism/issues/1312) [[`a9e76db`](https://github.com/PrismJS/prism/commit/a9e76db)]
+* Docs: Add note on `async` parameter to clarify the requirement of using a single bundled file. Closes [#1249](https://github.com/PrismJS/prism/issues/1249) [[`eba0235`](https://github.com/PrismJS/prism/commit/eba0235)]
+
+## 1.11.0 (2018-02-05)
 
 ### New components
 * __Content-Security-Policy (CSP)__ ([#1275](https://github.com/PrismJS/prism/issues/1275)) [[`b08cae5`](https://github.com/PrismJS/prism/commit/b08cae5)]

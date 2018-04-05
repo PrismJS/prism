@@ -59,11 +59,15 @@
 		}
 
 		// Autoloader rehighlights, so only do this once.
-		if (pre.classList.contains('code-toolbar')) {
+		if (pre.parentNode.classList.contains('code-toolbar')) {
 			return;
 		}
 
-		pre.classList.add('code-toolbar');
+		// Create wrapper for <pre> to prevent scrolling toolbar with content
+		var wrapper = document.createElement("div");
+		wrapper.classList.add("code-toolbar");
+		pre.parentNode.insertBefore(wrapper, pre);
+		wrapper.appendChild(pre);
 
 		// Setup the toolbar
 		var toolbar = document.createElement('div');
@@ -89,8 +93,8 @@
 			toolbar.appendChild(item);
 		});
 
-		// Add our toolbar to the <pre> tag
-		pre.appendChild(toolbar);
+		// Add our toolbar to the currently created wrapper of <pre> tag
+		wrapper.appendChild(toolbar);
 	};
 
 	registerButton('label', function(env) {

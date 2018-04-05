@@ -1,13 +1,17 @@
 $f
 $foo
 $foobar_42
+$$bar
+${$foo}
 
 ----------------------------------------------------
 
 [
 	["variable", "$f"],
 	["variable", "$foo"],
-	["variable", "$foobar_42"]
+	["variable", "$foobar_42"],
+	["variable", "$$bar"],
+	["variable", "$"], ["punctuation", "{"], ["variable", "$foo"], ["punctuation", "}"]
 ]
 
 ----------------------------------------------------

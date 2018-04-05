@@ -114,7 +114,7 @@
 					pattern: /^\$/,
 					alias: 'variable'
 				},
-				rest: Prism.util.clone(Prism.languages.puppet)
+				rest: Prism.languages.puppet
 			}
 		},
 		{

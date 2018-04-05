@@ -41,5 +41,5 @@ Prism.languages.insertBefore('haxe', 'keyword', {
 		alias: 'variable'
 	}
 });
-Prism.languages.haxe['string'].inside['interpolation'].inside.rest = Prism.util.clone(Prism.languages.haxe);
+Prism.languages.haxe['string'].inside['interpolation'].inside.rest = Prism.languages.haxe;
 delete Prism.languages.haxe['class-name'];

@@ -12,7 +12,7 @@
 						},
 						/^\$\(\(/
 					],
-					number: /\b-?(?:0x[\dA-Fa-f]+|\d*\.?\d+(?:[Ee]-?\d+)?)\b/,
+					number: /\b0x[\dA-Fa-f]+\b|(?:\b\d+\.?\d*|\B\.\d+)(?:[Ee]-?\d+)?/,
 					// Operators according to https://www.gnu.org/software/bash/manual/bashref.html#Shell-Arithmetic
 					operator: /--?|-=|\+\+?|\+=|!=?|~|\*\*?|\*=|\/=?|%=?|<<=?|>>=?|<=?|>=?|==?|&&?|&=|\^=?|\|\|?|\|=|\?|:/,
 					// If there is no $ sign at the beginning highlight (( and )) as punctuation
@@ -22,6 +22,7 @@
 			// Command Substitution
 			{
 				pattern: /\$\([^)]+\)|`[^`]+`/,
+				greedy: true,
 				inside: {
 					variable: /^\$\(|^`|\)$|`$/
 				}
@@ -48,7 +49,7 @@
 				inside: insideString
 			},
 			{
-				pattern: /(["'])(?:\\[\s\S]|(?!\1)[^\\])*\1/,
+				pattern: /(["'])(?:\\[\s\S]|\$\([^)]+\)|`[^`]+`|(?!\1)[^\\])*\1/,
 				greedy: true,
 				inside: insideString
 			}
@@ -72,9 +73,12 @@
 	};
 
 	var inside = insideString.variable[1].inside;
+	inside.string = Prism.languages.bash.string;
 	inside['function'] = Prism.languages.bash['function'];
 	inside.keyword = Prism.languages.bash.keyword;
 	inside.boolean = Prism.languages.bash.boolean;
 	inside.operator = Prism.languages.bash.operator;
 	inside.punctuation = Prism.languages.bash.punctuation;
+	
+	Prism.languages.shell = Prism.languages.bash;
 })(Prism);

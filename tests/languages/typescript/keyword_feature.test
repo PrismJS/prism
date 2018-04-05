@@ -12,7 +12,6 @@ else
 enum
 export
 extends;
-false
 finally
 for
 function
@@ -37,7 +36,6 @@ super
 switch
 this
 throw
-true
 try
 typeof
 var
@@ -67,7 +65,6 @@ enum
 	["keyword", "enum"],
 	["keyword", "export"],
 	["keyword", "extends"], ["punctuation", ";"],
-	["keyword", "false"],
 	["keyword", "finally"],
 	["keyword", "for"],
 	["keyword", "function"],
@@ -92,7 +89,6 @@ enum
 	["keyword", "switch"],
 	["keyword", "this"],
 	["keyword", "throw"],
-	["keyword", "true"],
 	["keyword", "try"],
 	["keyword", "typeof"],
 	["keyword", "var"],
