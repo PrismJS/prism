@@ -34,6 +34,13 @@ if (hstr) {
 					delete components[category][id].option;
 				}
 			}
+			if (category === 'themes' && ids.length) {
+				var themeInput = $('#theme input[value="' + ids[0] + '"]');
+				if (themeInput) {
+					themeInput.checked = true;
+				}
+				setTheme(ids[0]);
+			}
 			ids.forEach(function(id) {
 				if (id !== 'meta') {
 					if (components[category][id]) {
