@@ -195,4 +195,5 @@
 	Prism.languages.lisp = language;
 	Prism.languages.elisp = language;
 	Prism.languages.emacs = language;
+	Prism.languages['emacs-lisp'] = language;
 }(Prism));
