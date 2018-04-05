@@ -373,6 +373,11 @@
 			"title": "Liquid",
 			"owner": "cinhtau"
 		},
+		"lisp": {
+			"title": "Lisp",
+			"owner": "JuanCaicedo",
+			"alias": ["emacs", "elisp", "emacs-lisp"]
+		},
 		"livescript": {
 			"title": "LiveScript",
 			"owner": "Golmote"
