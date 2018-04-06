@@ -38,7 +38,7 @@
     "jspmPackage": true,
     "format": "global",
     "files": [
-      "components/**/*.min.js",
+      "components/**/*.js",
       "plugins/**/*",
       "themes/*.css",
       "prism.js"
