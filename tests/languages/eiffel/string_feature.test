@@ -3,10 +3,12 @@
 "foo%
 %bar"
 
+"[]"
 "[fo"o
 bar]"
 "!-[fo"o[]
 bar]!-"
+"{}"
 "{fo"o
 bar}"
 "*?{fo"o{}
@@ -19,8 +21,10 @@ bar}*?"
 	["string", "\"fo%\"o\""],
 	["string", "\"foo%\r\n%bar\""],
 
+	["string", "\"[]\""],
 	["string", "\"[fo\"o\r\nbar]\""],
 	["string", "\"!-[fo\"o[]\r\nbar]!-\""],
+	["string", "\"{}\""],
 	["string", "\"{fo\"o\r\nbar}\""],
 	["string", "\"*?{fo\"o{}\r\nbar}*?\""]
 ]
