@@ -4,7 +4,7 @@ builtin bzip2 cal cat cd
 cfdisk chgrp chmod chown chroot
 chkconfig cksum clear cmp comm
 command cp cron crontab csplit
-cut date dc dd ddrescue
+curl cut date dc dd ddrescue
 df diff diff3 dig dir dircolors
 dirname dirs dmesg du
 egrep eject enable env ethtool
@@ -54,7 +54,7 @@ xargs xdg-open yes zip
 	["function", "cfdisk"], ["function", "chgrp"], ["function", "chmod"], ["function", "chown"], ["function", "chroot"],
 	["function", "chkconfig"], ["function", "cksum"], ["function", "clear"], ["function", "cmp"], ["function", "comm"],
 	["function", "command"], ["function", "cp"], ["function", "cron"], ["function", "crontab"], ["function", "csplit"],
-	["function", "cut"], ["function", "date"], ["function", "dc"], ["function", "dd"], ["function", "ddrescue"],
+	["function", "curl"], ["function", "cut"], ["function", "date"], ["function", "dc"], ["function", "dd"], ["function", "ddrescue"],
 	["function", "df"], ["function", "diff"], ["function", "diff3"], ["function", "dig"], ["function", "dir"], ["function", "dircolors"],
 	["function", "dirname"], ["function", "dirs"], ["function", "dmesg"], ["function", "du"],
 	["function", "egrep"], ["function", "eject"], ["function", "enable"], ["function", "env"], ["function", "ethtool"],
