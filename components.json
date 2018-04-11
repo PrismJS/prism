@@ -684,6 +684,10 @@
 			"owner": "Golmote",
 			"alias": "vb"
 		},
+		"wasm": {
+			"title": "WebAssembly",
+			"owner": "Golmote"
+		},
 		"wiki": {
 			"title": "Wiki markup",
 			"require": "markup",
