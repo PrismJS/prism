@@ -3,77 +3,77 @@
 ## 1.14.0 (2018-04-11)
 
 ### New components
-* __GEDCOM__ (#1385) [6e0b20a41c4def9739196113f845e9ba77769ad8]
-* __Lisp__ (#1297) [46468f84f4d304b4c572f30b7600a637b670b821]
-* __Markup Templating__ (#1367) [5f9c078a10237699aa0a6268903ecdae10bd7f4c]
-* __Soy__ (#1387) [b4509bf55e057ad7dd92e4b78528bfd799c625b7]
-* __Velocity__ (#1378) [5a524f7e3d2fbae35593db74494de0cec1770a7b]
-* __Visual Basic__ (#1382) [c673ec29a3209d040253fb5f4ec2f498343adaea]
-* __WebAssembly__ (#1386) [c28d8c5e3710d6ce0f91bf96f87c8d0f5a35a057]
+* __GEDCOM__ ([#1385](https://github.com/PrismJS/prism/issues/1385)) [[`6e0b20a`](https://github.com/PrismJS/prism/commit/6e0b20a)]
+* __Lisp__ ([#1297](https://github.com/PrismJS/prism/issues/1297)) [[`46468f8`](https://github.com/PrismJS/prism/commit/46468f8)]
+* __Markup Templating__ ([#1367](https://github.com/PrismJS/prism/issues/1367)) [[`5f9c078`](https://github.com/PrismJS/prism/commit/5f9c078)]
+* __Soy__ ([#1387](https://github.com/PrismJS/prism/issues/1387)) [[`b4509bf`](https://github.com/PrismJS/prism/commit/b4509bf)]
+* __Velocity__ ([#1378](https://github.com/PrismJS/prism/issues/1378)) [[`5a524f7`](https://github.com/PrismJS/prism/commit/5a524f7)]
+* __Visual Basic__ ([#1382](https://github.com/PrismJS/prism/issues/1382)) [[`c673ec2`](https://github.com/PrismJS/prism/commit/c673ec2)]
+* __WebAssembly__ ([#1386](https://github.com/PrismJS/prism/issues/1386)) [[`c28d8c5`](https://github.com/PrismJS/prism/commit/c28d8c5)]
 
 ### Updated components
 * __Bash__:
-	* Add curl to the list of common functions. Close #1160 [1bfc084836254e3d06a3dffbedce258c58966312]
+	* Add curl to the list of common functions. Close [#1160](https://github.com/PrismJS/prism/issues/1160) [[`1bfc084`](https://github.com/PrismJS/prism/commit/1bfc084)]
 * __C-like__:
-	* Make single-line comments greedy. Fix #1337. Make sure #1340 stays fixed. [571f2c507a96e3e2356dcc7219690071b62412d4]
+	* Make single-line comments greedy. Fix [#1337](https://github.com/PrismJS/prism/issues/1337). Make sure [#1340](https://github.com/PrismJS/prism/issues/1340) stays fixed. [[`571f2c5`](https://github.com/PrismJS/prism/commit/571f2c5)]
 * __C#__:
-	* More generic class-name highlighting. Fix #1365 [a6837d24da56845a14b6f7f042093e735cc99966]
-	* More specific class-name highlighting. Fix #1371 [0a95f69d97c4638d9111fc96300f7e75fe81c0b0]
+	* More generic class-name highlighting. Fix [#1365](https://github.com/PrismJS/prism/issues/1365) [[`a6837d2`](https://github.com/PrismJS/prism/commit/a6837d2)]
+	* More specific class-name highlighting. Fix [#1371](https://github.com/PrismJS/prism/issues/1371) [[`0a95f69`](https://github.com/PrismJS/prism/commit/0a95f69)]
 * __Eiffel__:
-	* Fix verbatim strings. Fix #1379 [04df41b3374f96d86d773360b644b57ed87e6ef8]
+	* Fix verbatim strings. Fix [#1379](https://github.com/PrismJS/prism/issues/1379) [[`04df41b`](https://github.com/PrismJS/prism/commit/04df41b)]
 * __Elixir__
-	* Make regexps greedy, remove comment hacks. Update known failures and tests. [e93d61f304492dcdc7799aa8418a1b76aaa04e1d]
+	* Make regexps greedy, remove comment hacks. Update known failures and tests. [[`e93d61f`](https://github.com/PrismJS/prism/commit/e93d61f)]
 * __ERB__:
-	* Make highlighting work properly in NodeJS (#1367) [5f9c078a10237699aa0a6268903ecdae10bd7f4c]
+	* Make highlighting work properly in NodeJS ([#1367](https://github.com/PrismJS/prism/issues/1367)) [[`5f9c078`](https://github.com/PrismJS/prism/commit/5f9c078)]
 * __Fortran__:
-	* Make single-line comments greedy. Update known failures and tests. [c083b78c4ffc66f982f708c96ade9f3703f14efa]
+	* Make single-line comments greedy. Update known failures and tests. [[`c083b78`](https://github.com/PrismJS/prism/commit/c083b78)]
 * __Handlebars__:
-	* Make highlighting work properly in NodeJS (#1367) [5f9c078a10237699aa0a6268903ecdae10bd7f4c]
+	* Make highlighting work properly in NodeJS ([#1367](https://github.com/PrismJS/prism/issues/1367)) [[`5f9c078`](https://github.com/PrismJS/prism/commit/5f9c078)]
 * __Java__:
-	* Add support for generics. Fix #1351 [a5cf3025b99cfc2d6a757c77400dea1d7cb3606b]
+	* Add support for generics. Fix [#1351](https://github.com/PrismJS/prism/issues/1351) [[`a5cf302`](https://github.com/PrismJS/prism/commit/a5cf302)]
 * __JavaScript__:
-	* Add support for constants. Fix #1348 [9084481f3705b3792b439bd6d1b8bf98002905f4]
-	* Improve Regex matching [172d351a2a4dbd81a1a5dac7674af461d554b61d]
+	* Add support for constants. Fix [#1348](https://github.com/PrismJS/prism/issues/1348) [[`9084481`](https://github.com/PrismJS/prism/commit/9084481)]
+	* Improve Regex matching [[`172d351`](https://github.com/PrismJS/prism/commit/172d351)]
 * __JSX__:
-	* Fix highlighting of empty objects. Fix #1364 [b26bbb8383106add989efbeee11185136504d87a]
+	* Fix highlighting of empty objects. Fix [#1364](https://github.com/PrismJS/prism/issues/1364) [[`b26bbb8`](https://github.com/PrismJS/prism/commit/b26bbb8)]
 * __Monkey__:
-	* Make comments greedy. Update known failures and tests. [d7b2b43c8556814081950f14ad59d6d464f03b9a]
+	* Make comments greedy. Update known failures and tests. [[`d7b2b43`](https://github.com/PrismJS/prism/commit/d7b2b43)]
 * __PHP__:
-	* Make highlighting work properly in NodeJS (#1367) [5f9c078a10237699aa0a6268903ecdae10bd7f4c]
+	* Make highlighting work properly in NodeJS ([#1367](https://github.com/PrismJS/prism/issues/1367)) [[`5f9c078`](https://github.com/PrismJS/prism/commit/5f9c078)]
 * __Puppet__:
-	* Make heredoc, comments, regexps and strings greedy. Update known failures and tests. [0c139d1f5cf630fc3f90e851ca3ff8b0c57b0864]
+	* Make heredoc, comments, regexps and strings greedy. Update known failures and tests. [[`0c139d1`](https://github.com/PrismJS/prism/commit/0c139d1)]
 * __Q__:
-	* Make comments greedy. Update known failures and tests. [a0f50811d327b59421bf20ae3ccf62346ac60a5d]
+	* Make comments greedy. Update known failures and tests. [[`a0f5081`](https://github.com/PrismJS/prism/commit/a0f5081)]
 * __Ruby__:
-	* Make multi-line comments greedy, remove single-line comment hack. Update known failures and tests. [b0e34fbef0f27e0143c0b1f698c309e717463f2a]
+	* Make multi-line comments greedy, remove single-line comment hack. Update known failures and tests. [[`b0e34fb`](https://github.com/PrismJS/prism/commit/b0e34fb)]
 * __SQL__:
-	* Add missing keywords. Fix #1374 [238b195207223156f8d3587875b4a27b8baf00fc]
+	* Add missing keywords. Fix [#1374](https://github.com/PrismJS/prism/issues/1374) [[`238b195`](https://github.com/PrismJS/prism/commit/238b195)]
 
 ### Updated plugins
 * __Command Line__:
-	* Command Line: Allow specifying output prefix using data-filter-output attribute. (#856) [094d5463f6bab69d334231b403f440ad74a76026]
+	* Command Line: Allow specifying output prefix using data-filter-output attribute. ([#856](https://github.com/PrismJS/prism/issues/856)) [[`094d546`](https://github.com/PrismJS/prism/commit/094d546)]
 * __File Highlight__:
-	* Add option to provide a download button, when used with the Toolbar plugin. Fix #1030 [9f22952deb41300c4ab615bd5183484d9531e80e]
+	* Add option to provide a download button, when used with the Toolbar plugin. Fix [#1030](https://github.com/PrismJS/prism/issues/1030) [[`9f22952`](https://github.com/PrismJS/prism/commit/9f22952)]
 
 ### Updated themes
 * __Default__:
-	* Reach AA contrast ratio level (#1296) [8aea939a6287f0147d1d64d3f0a238b6cadbc9c6]
+	* Reach AA contrast ratio level ([#1296](https://github.com/PrismJS/prism/issues/1296)) [[`8aea939`](https://github.com/PrismJS/prism/commit/8aea939)]
 
 ### Other changes
-* Website: Remove broken third-party tutorials from homepage [0efd6e1674cef322cfb51559f3b059ca160c76f6]
-* Docs: Mention `loadLanguages()` function on homepage in the nodeJS section. Close #972, close #593 [4a14d208bc04ff4f790b71466c4299a35b169bb1]
-* Core: Greedy patterns should always be matched against the full string. Fix #1355 [294efaae75e9a7614831080c3aed484ba713f6e3]
-* Crystal: Update known failures. [e1d2d420ae1ef78d95bb2c1feba3dd4c5f3614ab]
-* D: Update known failures and tests. [13d9991536ab6fdbc570571d0617a136956a6854]
-* Markdown: Update known failures. [5b6c76dc56ae03c6044075ee238b307efff77405]
-* Matlab: Update known failures. [259b6fc5abd5eec4e528a3b24c0dc8854efdc164]
-* Website: Remove non-existent anchor to failures. Reword on homepage to make is less misleading. [8c0911acb9eba2e3d3c540678a13ae7368168872]
-* Website: Add link to Keep Markup plugin in FAQ [e8cb6d4c4dd31a73c8956ed070f75bb358687b7b]
-* Test suite: Memory leak in vm.runInNewContext() seems fixed. Revert [9a4b6fa3ec770a382eccc149b849cc1c3112aa53] to drastically improve tests execution time. [9bceece812bcfc658399a5c98799c308a9638828, 7c7602b49cfd331ce8bd2368f0a6eeb5a27765bd]
-* Gulp: Don't minify `components/index.js` [689227ba1a04151ca243c98429cc04f70ba20ac2]
-* Website: Fix theme selection on Download page, when theme is in query string or hash. [b4d3063f41505ddf7c1d6424e65cbb6ce69f300d]
-* Update JSPM config to also include unminified components. Close #995 [218f1603204b131749d8497d50b0c6b616a52e83]
-* Core: Fix support for language alias containing dash `-` [659ea3141cb3cf9cd9414d2d07fed01ef552abd5]
+* Website: Remove broken third-party tutorials from homepage [[`0efd6e1`](https://github.com/PrismJS/prism/commit/0efd6e1)]
+* Docs: Mention `loadLanguages()` function on homepage in the nodeJS section. Close [#972](https://github.com/PrismJS/prism/issues/972), close [#593](https://github.com/PrismJS/prism/issues/593) [[`4a14d20`](https://github.com/PrismJS/prism/commit/4a14d20)]
+* Core: Greedy patterns should always be matched against the full string. Fix [#1355](https://github.com/PrismJS/prism/issues/1355) [[`294efaa`](https://github.com/PrismJS/prism/commit/294efaa)]
+* Crystal: Update known failures. [[`e1d2d42`](https://github.com/PrismJS/prism/commit/e1d2d42)]
+* D: Update known failures and tests. [[`13d9991`](https://github.com/PrismJS/prism/commit/13d9991)]
+* Markdown: Update known failures. [[`5b6c76d`](https://github.com/PrismJS/prism/commit/5b6c76d)]
+* Matlab: Update known failures. [[`259b6fc`](https://github.com/PrismJS/prism/commit/259b6fc)]
+* Website: Remove non-existent anchor to failures. Reword on homepage to make is less misleading. [[`8c0911a`](https://github.com/PrismJS/prism/commit/8c0911a)]
+* Website: Add link to Keep Markup plugin in FAQ [[`e8cb6d4`](https://github.com/PrismJS/prism/commit/e8cb6d4)]
+* Test suite: Memory leak in vm.runInNewContext() seems fixed. Revert [[`9a4b6fa`](https://github.com/PrismJS/prism/commit/9a4b6fa)] to drastically improve tests execution time. [[`9bceece`](https://github.com/PrismJS/prism/commit/9bceece), [`7c7602b`](https://github.com/PrismJS/prism/commit/7c7602b)]
+* Gulp: Don't minify `components/index.js` [[`689227b`](https://github.com/PrismJS/prism/commit/689227b)]
+* Website: Fix theme selection on Download page, when theme is in query string or hash. [[`b4d3063`](https://github.com/PrismJS/prism/commit/b4d3063)]
+* Update JSPM config to also include unminified components. Close [#995](https://github.com/PrismJS/prism/issues/995) [[`218f160`](https://github.com/PrismJS/prism/commit/218f160)]
+* Core: Fix support for language alias containing dash `-` [[`659ea31`](https://github.com/PrismJS/prism/commit/659ea31)]
 
 ## 1.13.0 (2018-03-21)
 
