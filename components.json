@@ -658,6 +658,11 @@
 			"require": "basic",
 			"owner": "Bigsby"
 		},
+		"velocity": {
+			"title": "Velocity",
+			"require": "markup",
+			"owner": "Golmote"
+		},
 		"verilog": {
 			"title": "Verilog",
 			"owner": "a-rey"
