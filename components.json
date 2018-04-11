@@ -251,6 +251,10 @@
 			"title": "Fortran",
 			"owner": "Golmote"
 		},
+		"gedcom": {
+			"title": "GEDCOM",
+			"owner": "Golmote"
+		},
 		"gherkin": {
 			"title": "Gherkin",
 			"owner": "hason"
@@ -663,6 +667,11 @@
 			"require": "basic",
 			"owner": "Bigsby"
 		},
+		"velocity": {
+			"title": "Velocity",
+			"require": "markup",
+			"owner": "Golmote"
+		},
 		"verilog": {
 			"title": "Verilog",
 			"owner": "a-rey"
@@ -674,6 +683,15 @@
 		"vim": {
 			"title": "vim",
 			"owner": "westonganger"
+		},
+		"visual-basic": {
+			"title": "Visual Basic",
+			"owner": "Golmote",
+			"alias": "vb"
+		},
+		"wasm": {
+			"title": "WebAssembly",
+			"owner": "Golmote"
 		},
 		"wiki": {
 			"title": "Wiki markup",
