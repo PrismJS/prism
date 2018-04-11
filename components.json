@@ -251,6 +251,10 @@
 			"title": "Fortran",
 			"owner": "Golmote"
 		},
+		"gedcom": {
+			"title": "GEDCOM",
+			"owner": "Golmote"
+		},
 		"gherkin": {
 			"title": "Gherkin",
 			"owner": "hason"
