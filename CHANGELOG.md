@@ -1,5 +1,80 @@
 # Prism Changelog
 
+## 1.14.0 (2018-04-11)
+
+### New components
+* __GEDCOM__ (#1385) [6e0b20a41c4def9739196113f845e9ba77769ad8]
+* __Lisp__ (#1297) [46468f84f4d304b4c572f30b7600a637b670b821]
+* __Markup Templating__ (#1367) [5f9c078a10237699aa0a6268903ecdae10bd7f4c]
+* __Soy__ (#1387) [b4509bf55e057ad7dd92e4b78528bfd799c625b7]
+* __Velocity__ (#1378) [5a524f7e3d2fbae35593db74494de0cec1770a7b]
+* __Visual Basic__ (#1382) [c673ec29a3209d040253fb5f4ec2f498343adaea]
+* __WebAssembly__ (#1386) [c28d8c5e3710d6ce0f91bf96f87c8d0f5a35a057]
+
+### Updated components
+* __Bash__:
+	* Add curl to the list of common functions. Close #1160 [1bfc084836254e3d06a3dffbedce258c58966312]
+* __C-like__:
+	* Make single-line comments greedy. Fix #1337. Make sure #1340 stays fixed. [571f2c507a96e3e2356dcc7219690071b62412d4]
+* __C#__:
+	* More generic class-name highlighting. Fix #1365 [a6837d24da56845a14b6f7f042093e735cc99966]
+	* More specific class-name highlighting. Fix #1371 [0a95f69d97c4638d9111fc96300f7e75fe81c0b0]
+* __Eiffel__:
+	* Fix verbatim strings. Fix #1379 [04df41b3374f96d86d773360b644b57ed87e6ef8]
+* __Elixir__
+	* Make regexps greedy, remove comment hacks. Update known failures and tests. [e93d61f304492dcdc7799aa8418a1b76aaa04e1d]
+* __ERB__:
+	* Make highlighting work properly in NodeJS (#1367) [5f9c078a10237699aa0a6268903ecdae10bd7f4c]
+* __Fortran__:
+	* Make single-line comments greedy. Update known failures and tests. [c083b78c4ffc66f982f708c96ade9f3703f14efa]
+* __Handlebars__:
+	* Make highlighting work properly in NodeJS (#1367) [5f9c078a10237699aa0a6268903ecdae10bd7f4c]
+* __Java__:
+	* Add support for generics. Fix #1351 [a5cf3025b99cfc2d6a757c77400dea1d7cb3606b]
+* __JavaScript__:
+	* Add support for constants. Fix #1348 [9084481f3705b3792b439bd6d1b8bf98002905f4]
+	* Improve Regex matching [172d351a2a4dbd81a1a5dac7674af461d554b61d]
+* __JSX__:
+	* Fix highlighting of empty objects. Fix #1364 [b26bbb8383106add989efbeee11185136504d87a]
+* __Monkey__:
+	* Make comments greedy. Update known failures and tests. [d7b2b43c8556814081950f14ad59d6d464f03b9a]
+* __PHP__:
+	* Make highlighting work properly in NodeJS (#1367) [5f9c078a10237699aa0a6268903ecdae10bd7f4c]
+* __Puppet__:
+	* Make heredoc, comments, regexps and strings greedy. Update known failures and tests. [0c139d1f5cf630fc3f90e851ca3ff8b0c57b0864]
+* __Q__:
+	* Make comments greedy. Update known failures and tests. [a0f50811d327b59421bf20ae3ccf62346ac60a5d]
+* __Ruby__:
+	* Make multi-line comments greedy, remove single-line comment hack. Update known failures and tests. [b0e34fbef0f27e0143c0b1f698c309e717463f2a]
+* __SQL__:
+	* Add missing keywords. Fix #1374 [238b195207223156f8d3587875b4a27b8baf00fc]
+
+### Updated plugins
+* __Command Line__:
+	* Command Line: Allow specifying output prefix using data-filter-output attribute. (#856) [094d5463f6bab69d334231b403f440ad74a76026]
+* __File Highlight__:
+	* Add option to provide a download button, when used with the Toolbar plugin. Fix #1030 [9f22952deb41300c4ab615bd5183484d9531e80e]
+
+### Updated themes
+* __Default__:
+	* Reach AA contrast ratio level (#1296) [8aea939a6287f0147d1d64d3f0a238b6cadbc9c6]
+
+### Other changes
+* Website: Remove broken third-party tutorials from homepage [0efd6e1674cef322cfb51559f3b059ca160c76f6]
+* Docs: Mention `loadLanguages()` function on homepage in the nodeJS section. Close #972, close #593 [4a14d208bc04ff4f790b71466c4299a35b169bb1]
+* Core: Greedy patterns should always be matched against the full string. Fix #1355 [294efaae75e9a7614831080c3aed484ba713f6e3]
+* Crystal: Update known failures. [e1d2d420ae1ef78d95bb2c1feba3dd4c5f3614ab]
+* D: Update known failures and tests. [13d9991536ab6fdbc570571d0617a136956a6854]
+* Markdown: Update known failures. [5b6c76dc56ae03c6044075ee238b307efff77405]
+* Matlab: Update known failures. [259b6fc5abd5eec4e528a3b24c0dc8854efdc164]
+* Website: Remove non-existent anchor to failures. Reword on homepage to make is less misleading. [8c0911acb9eba2e3d3c540678a13ae7368168872]
+* Website: Add link to Keep Markup plugin in FAQ [e8cb6d4c4dd31a73c8956ed070f75bb358687b7b]
+* Test suite: Memory leak in vm.runInNewContext() seems fixed. Revert [9a4b6fa3ec770a382eccc149b849cc1c3112aa53] to drastically improve tests execution time. [9bceece812bcfc658399a5c98799c308a9638828, 7c7602b49cfd331ce8bd2368f0a6eeb5a27765bd]
+* Gulp: Don't minify `components/index.js` [689227ba1a04151ca243c98429cc04f70ba20ac2]
+* Website: Fix theme selection on Download page, when theme is in query string or hash. [b4d3063f41505ddf7c1d6424e65cbb6ce69f300d]
+* Update JSPM config to also include unminified components. Close #995 [218f1603204b131749d8497d50b0c6b616a52e83]
+* Core: Fix support for language alias containing dash `-` [659ea3141cb3cf9cd9414d2d07fed01ef552abd5]
+
 ## 1.13.0 (2018-03-21)
 
 ### New components
