@@ -675,6 +675,11 @@
 			"title": "vim",
 			"owner": "westonganger"
 		},
+		"visual-basic": {
+			"title": "Visual Basic",
+			"owner": "Golmote",
+			"alias": "vb"
+		},
 		"wiki": {
 			"title": "Wiki markup",
 			"require": "markup",
