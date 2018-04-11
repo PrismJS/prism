@@ -628,6 +628,11 @@
 			"title": "SQL",
 			"owner": "multipetros"
 		},
+		"soy": {
+			"title": "Soy (Closure Template)",
+			"require": "markup-templating",
+			"owner": "Golmote"
+		},
 		"stylus": {
 			"title": "Stylus",
 			"owner": "vkbansal"
