@@ -1,4 +1,5 @@
 abstract
+actual
 annotation
 as
 break
@@ -12,8 +13,11 @@ continue
 crossinline
 data
 do
+dynamic
 else
 enum
+expect
+external
 final
 finally
 for
@@ -22,6 +26,7 @@ get
 if
 import
 in
+infix
 init
 inline
 inner
@@ -33,6 +38,7 @@ noinline
 null
 object
 open
+operator
 out
 override
 package
@@ -44,13 +50,15 @@ return
 sealed
 set
 super
+suspend
 tailrec
 this
 throw
-to
 try
+typealias
 val
 var
+vararg
 when
 where
 while
@@ -59,6 +67,7 @@ while
 
 [
 	["keyword", "abstract"],
+	["keyword", "actual"],
 	["keyword", "annotation"],
 	["keyword", "as"],
 	["keyword", "break"],
@@ -72,8 +81,11 @@ while
 	["keyword", "crossinline"],
 	["keyword", "data"],
 	["keyword", "do"],
+	["keyword", "dynamic"],
 	["keyword", "else"],
 	["keyword", "enum"],
+	["keyword", "expect"],
+	["keyword", "external"],
 	["keyword", "final"],
 	["keyword", "finally"],
 	["keyword", "for"],
@@ -82,6 +94,7 @@ while
 	["keyword", "if"],
 	["keyword", "import"],
 	["keyword", "in"],
+	["keyword", "infix"],
 	["keyword", "init"],
 	["keyword", "inline"],
 	["keyword", "inner"],
@@ -93,6 +106,7 @@ while
 	["keyword", "null"],
 	["keyword", "object"],
 	["keyword", "open"],
+	["keyword", "operator"],
 	["keyword", "out"],
 	["keyword", "override"],
 	["keyword", "package"],
@@ -104,13 +118,15 @@ while
 	["keyword", "sealed"],
 	["keyword", "set"],
 	["keyword", "super"],
+	["keyword", "suspend"],
 	["keyword", "tailrec"],
 	["keyword", "this"],
 	["keyword", "throw"],
-	["keyword", "to"],
 	["keyword", "try"],
+	["keyword", "typealias"],
 	["keyword", "val"],
 	["keyword", "var"],
+	["keyword", "vararg"],
 	["keyword", "when"],
 	["keyword", "where"],
 	["keyword", "while"]
