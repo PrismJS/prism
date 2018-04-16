@@ -1,5 +1,5 @@
-@import url(http://fonts.googleapis.com/css?family=Questrial);
-@import url(http://fonts.googleapis.com/css?family=Arvo);
+@import url(https://fonts.googleapis.com/css?family=Questrial);
+@import url(https://fonts.googleapis.com/css?family=Arvo);
 
 @font-face {
 	src: url(http://lea.verou.me/logo.otf);
@@ -9,7 +9,7 @@
 /*
  Shared styles
  */
- 
+
 section h1,
 #features li strong,
 header h2,
@@ -44,15 +44,15 @@ section h1 {
 	section section h1 {
 		font-size: 150%;
 	}
-	
+
 	section h1 code {
 		font-style: normal;
 	}
-	
+
 	section h1 > a {
 		text-decoration: none;
 	}
-	
+
 	section h1 > a:before {
 		content: '§';
 		position: absolute;
@@ -62,7 +62,7 @@ section h1 {
 		color: silver;
 		text-shadow: 0 1px white;
 	}
-	
+
 	section h1 > a:hover:before {
 		color: black;
 		background: #f1ad26;
@@ -138,14 +138,14 @@ footer:before {
 }
 
 header {
-	
+
 }
 
 	header .intro,
 	html.simple header {
 		overflow: hidden;
 	}
-	
+
 	header h1 {
 		float: left;
 		margin-right: 30px;
@@ -155,12 +155,12 @@ header {
 		text-transform: uppercase;
 		letter-spacing: .25em;
 	}
-	
+
 	header h2 {
 		margin-top: .5em;
 		color: #f1ad26;
 	}
-	
+
 		header h1 a {
 			text-decoration: none;
 		}
@@ -172,23 +172,23 @@ header {
 			margin-bottom: .3em;
 			border: 0;
 		}
-		
+
 	header h2 {
 		font-size: 300%;
 	}
-	
+
 	header .intro p {
 		margin: 0;
 		font: 150%/1.4 Questrial, sans-serif;
 		font-size: 150%;
 	}
-	
+
 	#features {
 		width: 66em;
 		margin-top: 2em;
 		font-size: 80%;
 	}
-	
+
 		#features li {
 			margin: 0 0 2em 0;
 			list-style: none;
@@ -196,11 +196,11 @@ header {
 			width: 27em;
 			vertical-align: top;
 		}
-		
+
 		#features li:nth-child(odd) {
 			margin-right: 5em;
 		}
-		
+
 			#features li:before {
 				content: '✓';
 				float: left;
@@ -209,18 +209,18 @@ header {
 				font-size: 400%;
 				line-height: 1;
 			}
-		
+
 				#features li strong {
 					display: block;
 					margin-bottom: .1em;
 					font-size: 200%;
-				}	
-	
+				}
+
 	header .download-button {
 		float: right;
 		margin: 0 0 .5em .5em;
 	}
-	
+
 	#theme {
 		position: relative;
 		z-index: 1;
@@ -230,7 +230,7 @@ header {
 		text-transform: uppercase;
 		letter-spacing: .2em;
 	}
-	
+
 		#theme > p {
 			position: absolute;
 			left: 100%;
@@ -238,7 +238,7 @@ header {
 			transform-origin: top left;
 			font-size: 130%;
 		}
-	
+
 		#theme > label {
 			position: relative;
 			display: flex;
@@ -253,7 +253,7 @@ header {
 			font-size: 90%;
 			padding: 0;
 		}
-		
+
 		#theme > label:before {
 			content: '';
 			position: absolute;
@@ -262,20 +262,20 @@ header {
 			border-radius: inherit;
 			background: url(img/spectrum.png) fixed;
 		}
-				
+
 		#theme > label:nth-of-type(n+2) {
 			margin-top: -2.5em;
 		}
-		
+
 		#theme > input:not(:checked) + label:hover {
 			background: hsla(77, 80%, 60%, .5);
 		}
-		
+
 		#theme > input {
 			position: absolute;
 			clip: rect(0,0,0,0);
 		}
-		
+
 		#theme > input:checked + label {
 			background: #7fab14;
 		}
@@ -351,11 +351,11 @@ footer {
 	#toc h1 {
 		font-size: 180%;
 	}
-	
+
 	#toc li {
 		list-style: none;
 	}
-	
+
 #logo:before {
 	content: '☠';
 	float: right;
@@ -383,7 +383,7 @@ footer {
 			left: 50%;
 			transform: translate(-50%, -50%);
 		}
-		
+
 label a.owner {
 	margin: 0 .5em;
 }
