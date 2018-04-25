@@ -16,6 +16,7 @@ var gulp   = require('gulp'),
 			'components/prism-css.js',
 			'components/prism-clike.js',
 			'components/prism-javascript.js',
+			'components/prism-solidity.js',
 			'plugins/file-highlight/prism-file-highlight.js'
 		],
 		plugins: ['plugins/**/*.js', '!plugins/**/*.min.js'],

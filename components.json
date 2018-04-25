@@ -633,6 +633,11 @@
 			"require": "markup-templating",
 			"owner": "Golmote"
 		},
+		"solidity": {
+			"title": "Solidity (Ethereum)",
+			"require": "clike",
+			"owner": "glachaud"
+		},
 		"stylus": {
 			"title": "Stylus",
 			"owner": "vkbansal"
