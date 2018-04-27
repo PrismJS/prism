@@ -11,6 +11,7 @@ an empty '' string
 "has $interpolated <# variables #>"
 "$($expression)"
 "`$(escaped expression)"
+"$($($exp))"
 
 ----------------------------------------------------
 
@@ -56,6 +57,19 @@ an empty '' string
 	]],
 	["string", [
 		"\"`$(escaped expression)\""
+	]],
+	["string", [
+		"\"",
+		["function", [
+			"$",
+			["punctuation", "("],
+			"$",
+			["punctuation", "("],
+			["variable", "$exp"],
+			["punctuation", ")"],
+			["punctuation", ")"]
+		]],
+		"\""
 	]]
 ]
 
