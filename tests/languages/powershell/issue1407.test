@@ -40,4 +40,4 @@ While($true){
 
 ----------------------------------------------------
 
-Checks for nested expressions in strings.
+Checks for nested expressions in strings. See #1407
