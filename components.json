@@ -651,6 +651,14 @@
 			"require": "markup",
 			"owner": "Golmote"
 		},
+		"tt2": {
+			"title": "Template Toolkit",
+			"alias": ["tt"],
+			"aliasTitles": {
+				"tt": "Template Toolkit"
+			},
+			"owner": "gflohr"
+		},
 		"twig": {
 			"title": "Twig",
 			"require": "markup",
