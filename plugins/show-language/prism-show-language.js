@@ -17,8 +17,11 @@ Prism.plugins.toolbar.registerButton('show-language', function(env) {
 	if (!pre || !/pre/i.test(pre.nodeName)) {
 		return;
 	}
-	var language = pre.getAttribute('data-language') || Languages[env.language] || (env.language.substring(0, 1).toUpperCase() + env.language.substring(1));
+	var language = pre.getAttribute('data-language') || Languages[env.language] || (env.language && (env.language.substring(0, 1).toUpperCase() + env.language.substring(1)));
 
+	if(!language) {
+		return;
+	}
 	var element = document.createElement('span');
 	element.textContent = language;
 
