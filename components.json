@@ -116,7 +116,7 @@
 		},
 		"aspnet": {
 			"title": "ASP.NET (C#)",
-			"require": "markup",
+			"require": ["markup", "csharp"],
 			"owner": "nauzilus"
 		},
 		"autohotkey": {
