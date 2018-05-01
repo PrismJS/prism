@@ -59,7 +59,8 @@
 		},
 		"css": {
 			"title": "CSS",
-			"option": "default"
+			"option": "default",
+			"optionalDependencies": "markup"
 		},
 		"clike": {
 			"title": "C-like",
@@ -69,6 +70,7 @@
 		"javascript": {
 			"title": "JavaScript",
 			"require": "clike",
+			"optionalDependencies": "markup",
 			"alias": "js",
 			"option": "default"
 		},
@@ -79,6 +81,7 @@
 		"actionscript": {
 			"title": "ActionScript",
 			"require": "javascript",
+			"optionalDependencies": "markup",
 			"owner": "Golmote"
 		},
 		"ada": {
@@ -209,6 +212,10 @@
 		"django": {
 			"title": "Django/Jinja2",
 			"require": "markup",
+			"optionalDependencies": [
+				"css",
+				"javascript"
+			],
 			"alias": "jinja2",
 			"owner": "romanvm"
 		},
@@ -285,6 +292,17 @@
 		"haml": {
 			"title": "Haml",
 			"require": "ruby",
+			"optionalDependencies": [
+				"css",
+				"coffeescript",
+				"erb",
+				"javascript",
+				"less",
+				"markdown",
+				"ruby",
+				"scss",
+				"textile"
+			],
 			"owner": "Golmote"
 		},
 		"handlebars": {
@@ -303,6 +321,10 @@
 		},
 		"http": {
 			"title": "HTTP",
+			"optionalDependencies": [
+				"javascript",
+				"markup"
+			],
 			"owner": "danielgtaylor"
 		},
 		"hpkp": {
@@ -462,6 +484,10 @@
 		"opencl": {
 			"title": "OpenCL",
 			"require": "cpp",
+			"optionalDependencies": [
+				"c",
+				"cpp"
+			],
 			"overrideExampleHeader": true,
 			"owner": "Milania1"
 		},
@@ -526,6 +552,20 @@
 		"pug": {
 			"title": "Pug",
 			"require": "javascript",
+			"optionalDependencies": [
+				"coffeescript",
+				"ejs",
+				"handlebars",
+				"hogan",
+				"less",
+				"livescript",
+				"markdown",
+				"mustache",
+				"plates",
+				"scss",
+				"stylus",
+				"swig"
+			],
 			"owner": "Golmote"
 		},
 		"puppet": {
@@ -534,6 +574,13 @@
 		},
 		"pure": {
 			"title": "Pure",
+			"optionalDependencies": [
+				"c",
+				"cpp",
+				"fortran",
+				"ats",
+				"dsp"
+			],
 			"owner": "Golmote"
 		},
 		"python": {
@@ -649,6 +696,7 @@
 		"textile": {
 			"title": "Textile",
 			"require": "markup",
+			"optionalDependencies": "css",
 			"owner": "Golmote"
 		},
 		"twig": {
