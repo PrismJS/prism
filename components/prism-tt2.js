@@ -15,12 +15,12 @@
 	});
 
 	Prism.hooks.add('before-tokenize', function(env) {
-    	var tt2Pattern = /\[%[\s\S]+?%\]|^%%*?/g;
-        Prism.languages['markup-templating'].buildPlaceholders(env, 'tt2', tt2Pattern);
-    });
+		var tt2Pattern = /\[%[^]+?%\]|^%%.*/g;
+		Prism.languages['markup-templating'].buildPlaceholders(env, 'tt2', tt2Pattern);
+	});
 
-    Prism.hooks.add('after-tokenize', function(env) {
-        Prism.languages['markup-templating'].tokenizePlaceholders(env, 'tt2');
+	Prism.hooks.add('after-tokenize', function(env) {
+		Prism.languages['markup-templating'].tokenizePlaceholders(env, 'tt2');
 	});
 
 }(Prism));
