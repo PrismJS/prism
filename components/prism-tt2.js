@@ -5,7 +5,7 @@
 			pattern: /#.*/,
 			lookbehind: true
 		},
-		'punctuation': /[[\]{},]/
+		'punctuation': /[[\]{},()]/
 		//variable: /([a-z][_a-z0-9]*)(\.(\d+|\$?[a-z][_a-z0-9]*))*/i
 	});
 
