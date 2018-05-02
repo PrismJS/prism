@@ -5,9 +5,7 @@
 			pattern: /#.*/,
 			lookbehind: true
 		},
-		'punctuation': /[[\]{},()]/
-		//variable: /([a-z][_a-z0-9]*)(\.(\d+|\$?[a-z][_a-z0-9]*))*/i
-	});
+		'punctuation': /[[\]{},()]/	});
 
 	Prism.languages.insertBefore('tt2', 'number', {
 		variable: /[a-z][_a-z0-9]*(?:\.(?:\d+|\$?[a-z][_a-z0-9]*))*/i
