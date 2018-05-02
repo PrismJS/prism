@@ -1,76 +1,26 @@
 (function(Prism) {
 
-	var tt2_pattern = /\[%[\s\S]+?%\]|^%%*?/;
-
-	Prism.languages.tt2 = Prism.languages.extend('markup', {
-		'tt2': {
-			pattern: tt2_pattern,
-			inside: {
-				'comment': {
-					pattern: /(^|[^\\$])#.*/,
-					lookbehind: true
-				},
-				'delimiter': {
-					pattern: /^(?:\[%|%%)-?|-?%]$/i,
-					alias: 'punctuation'
-				},
-				'string': /(["'])(?:\\.|(?!\1)[^\\\r\n])*\1/,
-				'number': /\b0x[\dA-Fa-f]+\b|(?:\b\d+\.?\d*|\B\.\d+)(?:[Ee][+-]?\d+)?/,
-				'keyword': /\b(?:GET|CALL|SET|DEFAULT|INSERT|INCLUDE|PROCESS|WRAPPER|BLOCK|IF|UNLESS|ELSIF|ELSE|SWITCH|CASE|FOREACH|WHILE|FILTER|USE|MACRO|RAWPERL|PERL|TRY|THROW|CATCH|FINAL|NEXT|LAST|RETURN|STOP|CLEAR|META|TAGS|DEBUG)\b/,
-				'operator': /\b(?:=>|==|!=|<|<=|>|>=|&&\|\|!|and|or|not)\b/,
-				'punctuation': /[[\]{},]/,
-				'variable': /[a-zA-Z][./$a-zA-Z0-9]*/
-			}
+	Prism.languages.tt2 = Prism.languages.extend('clike', {
+		'comment': {
+			pattern: /#.*/,
+			lookbehind: true
 		}
 	});
 
-	// Tokenize all inline TT2 expressions that are wrapped in [% %]
-	// This allows for easy TT2 + markup highlighting
-	Prism.hooks.add('before-highlight', function(env) {
-		if (env.language !== 'tt2') {
-			return;
-		}
-
-		env.tokenStack = [];
-
-		env.backupCode = env.code;
-		env.code = env.code.replace(tt2_pattern, function(match) {
-			var i = env.tokenStack.length;
-			// Check for existing strings
-			while (env.backupCode.indexOf('___TT2' + i + '___') !== -1)
-				++i;
-
-			// Create a sparse array
-			env.tokenStack[i] = match;
-
-			return '___TT2' + i + '___';
-		});
-	});
-
-	// Restore env.code for other plugins (e.g. line-numbers)
-	Prism.hooks.add('before-insert', function(env) {
-		if (env.language === 'tt2') {
-			env.code = env.backupCode;
-			delete env.backupCode;
+	Prism.languages.insertBefore('tt2', 'keyword', {
+		'delimiter': {
+			pattern: /^(?:\[%|%%)-?|-?%]$/,
+			alias: 'punctuation'			
 		}
 	});
 
-	// Re-insert the tokens after highlighting
-	// and highlight them with defined grammar
-	Prism.hooks.add('after-highlight', function(env) {
-		if (env.language !== 'tt2') {
-			return;
-		}
+	Prism.hooks.add('before-tokenize', function(env) {
+    	var tt2Pattern = /\[%[\s\S]+?%\]|^%%*?/g;
+        Prism.languages['markup-templating'].buildPlaceholders(env, 'tt2', tt2Pattern);
+    });
 
-		for (var i = 0, keys = Object.keys(env.tokenStack); i < keys.length; ++i) {
-			var k = keys[i];
-			var t = env.tokenStack[k];
-
-			// The replace prevents $$, $&, $`, $', $n, $nn from being interpreted as special patterns
-			env.highlightedCode = env.highlightedCode.replace('___TT2' + k + '___', Prism.highlight(t, env.grammar, 'tt2').replace(/\$/g, '$$$$'));
-		}
-
-		env.element.innerHTML = env.highlightedCode;
+    Prism.hooks.add('after-tokenize', function(env) {
+        Prism.languages['markup-templating'].tokenizePlaceholders(env, 'tt2');
 	});
 
 }(Prism));
