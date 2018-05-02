@@ -19,7 +19,7 @@
 				'keyword': /\b(?:GET|CALL|SET|DEFAULT|INSERT|INCLUDE|PROCESS|WRAPPER|BLOCK|IF|UNLESS|ELSIF|ELSE|SWITCH|CASE|FOREACH|WHILE|FILTER|USE|MACRO|RAWPERL|PERL|TRY|THROW|CATCH|FINAL|NEXT|LAST|RETURN|STOP|CLEAR|META|TAGS|DEBUG)\b/,
 				'operator': /\b(?:=>|==|!=|<|<=|>|>=|&&\|\|!|and|or|not)\b/,
 				'punctuation': /[[\]{},]/,
-				'variable': /[a-zA-Z][\.\/\$a-zA-Z0-9]*/
+				'variable': /[a-zA-Z][./$a-zA-Z0-9]*/
 			}
 		}
 	});
@@ -74,5 +74,3 @@
 	});
 
 }(Prism));
-
-Prism.languages.tt = Prism.languages.tt2;
