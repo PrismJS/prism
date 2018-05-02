@@ -21,7 +21,7 @@
 	});
 
 	Prism.hooks.add('before-tokenize', function(env) {
-		var tt2Pattern = /\[%[^]+?%\]|^%%.*/g;
+		var tt2Pattern = /\[%[^]+?%\]/g;
 		Prism.languages['markup-templating'].buildPlaceholders(env, 'tt2', tt2Pattern);
 	});
 
