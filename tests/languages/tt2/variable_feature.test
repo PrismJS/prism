@@ -1,0 +1,26 @@
+[% 
+	foo
+	foo.bar
+	foo.2
+	foo.1.bar.2.baz.3
+	foo.$index
+%]
+----------------------------------------------------
+
+[
+	["tt2", 
+		[
+			["delimiter", "[%"],
+			["variable", "foo"],
+			["variable", "foo.bar"],
+			["variable", "foo.2"],
+			["variable", "foo.1.bar.2.baz.3"],
+			["variable", "foo.$index"],
+			["delimiter", "%]"]
+		]
+	]
+]
+
+----------------------------------------------------
+
+Checks for simple variables.
