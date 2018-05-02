@@ -1,0 +1,54 @@
+<h2>Comments</h2>
+<pre><code>[%# this entire directive is ignored no
+    matter how many lines it wraps onto
+%]
+[% # this is a comment
+   theta = 20      # so is this
+   rho   = 30      # <aol>me too!</aol>
+%]
+</code></pre>
+
+<h2>Variables</h2>
+<pre><code>[% text %]
+[% article.title %]
+[%= eat.whitespace.left %]
+[% eat.whitespace.right =%]
+[%= eat.whitespace.both =%]
+[% object.method() %]</code></pre>
+
+
+<h2>Conditionals and Loops</h2>
+<pre><code>[% IF foo = bar %]
+this
+[% ELSE %]
+that
+[% END %]
+[% FOREACH post IN q.listPosts(lingua = "de") %]
+  &lt;a href="[% post.permalink %]"&gt;[% post.title | html %]&lt;/a&gt;
+[% END %]</code></pre>
+
+<h2>Multiple Directives</h2>
+<pre><code>[% IF title;
+      INCLUDE header;
+   ELSE;
+      INCLUDE other/header  title="Some Other Title";
+   END
+%]</code></pre>
+
+<h2>Outline directives</h2>
+<pre><code>%% IF foo = bar
+this
+%% ELSE
+that
+%% END</code></pre>
+
+<h2>Operators</h2>
+<pre><code>[% FOREACH post IN q.listPosts(lingua => 'de') %]
+  [% post.title | myfilter(foo = "bar") %]
+[% END %]</code></pre>
+
+<h2>Known Limitations</h2>
+<p>Template toolkit allows changing the opening and closing delimiters
+   everywhere inside of a template with the <code>TAGS</code> directive.
+   This is <em>not</em> supported by Prism!
+</p>
