@@ -1,6 +1,6 @@
 [% # this is a comment
-   # so is this
-   # <aol>me too!</aol>
+   theta = 20      # so is this
+   rho   = 30      # <aol>me too!</aol>
 %]
 ----------------------------------------------------
 
@@ -9,7 +9,13 @@
 		[
 			["delimiter", "[%"],
 			["comment", "# this is a comment" ],
+			["variable", "theta"],
+			["operator", "="],
+			["number", "20"],
 			["comment", "# so is this" ],
+			["variable", "rho"],
+			["operator", "="],
+			["number", "30"],
 			["comment", "# <aol>me too!</aol>"],
 			["delimiter", "%]"]
 		]

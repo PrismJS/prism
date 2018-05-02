@@ -4,7 +4,8 @@
 		'comment': {
 			pattern: /#.*/,
 			lookbehind: true
-		}
+		},
+		variable: /[a-z][_./$a-z0-9]*/i
 	});
 
 	Prism.languages.insertBefore('tt2', 'keyword', {

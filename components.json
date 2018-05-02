@@ -653,7 +653,7 @@
 		},
 		"tt2": {
 			"title": "Template Toolkit 2",
-                        "require": "markup",
+                        "require": ["clike", "markup-templating"],
 			"owner": "gflohr"
 		},
 		"twig": {
