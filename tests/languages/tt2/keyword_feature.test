@@ -1,0 +1,85 @@
+[%
+GET
+CALL
+SET
+DEFAULT
+INSERT
+INCLUDE
+PROCESS
+WRAPPER
+BLOCK
+IF
+UNLESS
+ELSIF
+ELSE
+SWITCH
+CASE
+FOREACH
+WHILE
+FILTER
+USE
+MACRO
+RAWPERL
+PERL
+TRY
+THROW
+CATCH
+FINAL
+NEXT
+LAST
+RETURN
+STOP
+CLEAR
+META
+TAGS
+DEBUG
+%]
+
+----------------------------------------------------
+
+[
+	["tt2",
+		[
+			["delimiter", "[%"],
+			["keyword", "GET"],
+			["keyword", "CALL"],
+			["keyword", "SET"],
+			["keyword", "DEFAULT"],
+			["keyword", "INSERT"],
+			["keyword", "INCLUDE"],
+			["keyword", "PROCESS"],
+			["keyword", "WRAPPER"],
+			["keyword", "BLOCK"],
+			["keyword", "IF"],
+			["keyword", "UNLESS"],
+			["keyword", "ELSIF"],
+			["keyword", "ELSE"],
+			["keyword", "SWITCH"],
+			["keyword", "CASE"],
+			["keyword", "FOREACH"],
+			["keyword", "WHILE"],
+			["keyword", "FILTER"],
+			["keyword", "USE"],
+			["keyword", "MACRO"],
+			["keyword", "RAWPERL"],
+			["keyword", "PERL"],
+			["keyword", "TRY"],
+			["keyword", "THROW"],
+			["keyword", "CATCH"],
+			["keyword", "FINAL"],
+			["keyword", "NEXT"],
+			["keyword", "LAST"],
+			["keyword", "RETURN"],
+			["keyword", "STOP"],
+			["keyword", "CLEAR"],
+			["keyword", "META"],
+			["keyword", "TAGS"],
+			["keyword", "DEBUG"],
+			["delimiter", "%]"]
+		]
+	]
+]
+
+----------------------------------------------------
+
+Checks for keywords.

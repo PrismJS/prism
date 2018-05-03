@@ -48,7 +48,11 @@ that
 [% END %]</code></pre>
 
 <h2>Known Limitations</h2>
-<p>Template toolkit allows changing the opening and closing delimiters
-   everywhere inside of a template with the <code>TAGS</code> directive.
-   This is <em>not</em> supported by Prism!
-</p>
+<ul>
+   <li>Everywhere inside of a template with the <code>TAGS</code> directive.
+   This is <em>not</em> supported by Prism because it is almost exclusively
+   used for displaying TT2 source code.</li>
+   <li>In TT2, you can use keywords as identifiers where this is
+   unambiguous.  But these keywords will be highlighted as keywords, not
+   as variables here.</li>
+</ul>
