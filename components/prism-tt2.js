@@ -2,7 +2,7 @@
 
 	Prism.languages.tt2 = Prism.languages.extend('clike', {
 		comment: {
-			pattern: /#.*/,
+			pattern: /#.*|\[%#[^]*?%\]/,
 			lookbehind: true
 		},
 		keyword: /\b(?:GET|CALL|SET|DEFAULT|INSERT|INCLUDE|PROCESS|WRAPPER|BLOCK|IF|UNLESS|ELSIF|ELSE|SWITCH|CASE|FOREACH|IN|WHILE|FILTER|USE|MACRO|RAWPERL|PERL|TRY|THROW|CATCH|FINAL|NEXT|LAST|RETURN|STOP|CLEAR|META|TAGS|DEBUG|END)\b/,

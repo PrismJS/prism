@@ -1,10 +1,19 @@
+[%# this entire directive is ignored no
+    matter how many lines it wraps onto
+%]
 [% # this is a comment
    theta = 20      # so is this
    rho   = 30      # <aol>me too!</aol>
 %]
+
 ----------------------------------------------------
 
 [
+    ["tt2",
+		[
+			["comment", "[%# this entire directive is ignored no\r\n    matter how many lines it wraps onto\r\n%]" ]
+		]
+	],      
 	["tt2", 
 		[
 			["delimiter", "[%"],
