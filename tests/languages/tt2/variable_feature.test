@@ -4,6 +4,9 @@
 	foo.2
 	foo.1.bar.2.baz.3
 	foo.$index
+	foo
+		.
+			bar
 %]
 ----------------------------------------------------
 
@@ -16,6 +19,7 @@
 			["variable", "foo.2"],
 			["variable", "foo.1.bar.2.baz.3"],
 			["variable", "foo.$index"],
+			["variable", "foo\r\n\t\t.\r\n\t\t\tbar"],
 			["delimiter", "%]"]
 		]
 	]
