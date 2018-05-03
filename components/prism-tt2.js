@@ -15,7 +15,10 @@
 		operator: operatorRE,
 		// A colon is not allowed inside variables but we want to catch things
 		// like [% USE Project::Specials %]
-		variable: /[a-z][:_a-z0-9]*(?:[\011-\015\040]*\.[\011-\015\040]*(?:\d+|\$?[a-z][:_a-z0-9]*))*/i
+		variable: {
+			pattern: /[a-z][:_a-z0-9]*(?:[\011-\015\040]*\.[\011-\015\040]*(?:\d+|\$?[a-z][:_a-z0-9]*))*/i,
+			greedy: true
+		}
 	});
 
 	// FIXME! Is this repetition really necessary?

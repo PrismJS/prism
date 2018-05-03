@@ -7,6 +7,9 @@
 	foo
 		.
 			bar
+	world
+	hands
+	knots
 %]
 ----------------------------------------------------
 
@@ -20,6 +23,9 @@
 			["variable", "foo.1.bar.2.baz.3"],
 			["variable", "foo.$index"],
 			["variable", "foo\r\n\t\t.\r\n\t\t\tbar"],
+			["variable", "world"],
+			["variable", "hands"],
+			["variable", "knots"],
 			["delimiter", "%]"]
 		]
 	]
