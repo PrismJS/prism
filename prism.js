@@ -267,7 +267,7 @@ var _ = _self.Prism = {
 
 			_.hooks.run('before-insert', env);
 
-			env.element.innerHTML = env.highlightedCode;
+			env.element.innerHTML = env.element.innerHTML.replace(code, env.highlightedCode);
 
 			callback && callback.call(element);
 
