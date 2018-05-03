@@ -44,19 +44,16 @@
 			greedy: true,
 			alias: 'string',
 			inside: {
-				'variable': null // See below
+				variable: {
+					pattern: /\$(?:[a-z][_a-z0-9]*(?:\.(?:\d+|\$?[a-z][_a-z0-9]*))*)/i,
+					greedy: true
+				}
 			}
 		}
 	});
 
     // The different types of TT2 strings "replace" the C-like standard string
 	delete Prism.languages.tt2.string;
-
-    var string_interpolation = {
-		pattern: /\$(?:[a-z][_a-z0-9]*(?:\.(?:\d+|\$?[a-z][_a-z0-9]*))*)/i,
-		greedy: true
-    };
-    Prism.languages.tt2['double-quoted-string'].inside.variable = string_interpolation;
 
 	Prism.hooks.add('before-tokenize', function(env) {
 		var tt2Pattern = /\[%[^]+?%\]/g;
