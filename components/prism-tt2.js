@@ -40,7 +40,7 @@
 			alias: 'string'
 		},
 		'double-quoted-string': {
-			pattern: /"(?:\\[^]|[^\\"]+)*"/,
+			pattern: /"[^\\"]*(?:\\.[^\\"]*)*"/,
 			greedy: true,
 			alias: 'string',
 			inside: {
