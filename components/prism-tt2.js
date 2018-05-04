@@ -35,7 +35,7 @@
 
 	Prism.languages.insertBefore('tt2', 'string', {
 		'single-quoted-string': {
-			pattern: /'(?:\\[^]|[^\\']+)*'/,
+			pattern: /'[^\\']*(?:\\.[^\\']*)*'/,
 			greedy: true,
 			alias: 'string'
 		},
