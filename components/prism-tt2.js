@@ -2,7 +2,7 @@
 
 	Prism.languages.tt2 = Prism.languages.extend('clike', {
 		comment: {
-			pattern: /#.*|\[%#[^]*?%\]/,
+			pattern: /#.*|\[%#[\s\S]*?%\]/,
 			lookbehind: true
 		},
 		keyword: /\b(?:GET|CALL|SET|DEFAULT|INSERT|INCLUDE|PROCESS|WRAPPER|BLOCK|IF|UNLESS|ELSIF|ELSE|SWITCH|CASE|FOREACH|IN|WHILE|FILTER|USE|MACRO|RAWPERL|PERL|TRY|THROW|CATCH|FINAL|NEXT|LAST|RETURN|STOP|CLEAR|META|TAGS|DEBUG|END)\b/,
@@ -54,7 +54,7 @@
 	delete Prism.languages.tt2.string;
 
 	Prism.hooks.add('before-tokenize', function(env) {
-		var tt2Pattern = /\[%[^]+?%\]/g;
+		var tt2Pattern = /\[%[\s\S]+?%\]/g;
 		Prism.languages['markup-templating'].buildPlaceholders(env, 'tt2', tt2Pattern);
 	});
 
