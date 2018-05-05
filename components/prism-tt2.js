@@ -13,10 +13,8 @@
 
 	Prism.languages.insertBefore('tt2', 'number', {
 		operator: operatorRE,
-		// A colon is not allowed inside variables but we want to catch things
-		// like [% USE Project::Specials %]
 		variable: {
-			pattern: /[a-z][:_a-z0-9]*(?:[\011-\015\040]*\.[\011-\015\040]*(?:\d+|\$?[a-z][:_a-z0-9]*))*/i,
+			pattern: /[a-z]\w*(?:[\011-\015\040]*\.[\011-\015\040]*(?:\d+|\$?[a-z]\w*))*/i,
 			greedy: true
 		}
 	});

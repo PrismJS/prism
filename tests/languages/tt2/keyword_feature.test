@@ -27,7 +27,7 @@
 [% END %]
 [% FILTER html %]
 [% END %]
-[% USE Common::Sense %]
+[% USE Plugin %]
 [% END %]
 [% MACRO header INCLUDE header %]
 [% RAWPERL %]
@@ -118,7 +118,7 @@
 			 ["delimiter", "%]"]]],
 	["tt2", [["delimiter", "[%"], ["keyword", "END"], ["delimiter", "%]"]]],
 	["tt2", [["delimiter", "[%"], 
-			 ["keyword", "USE"], ["variable", "Common::Sense"],
+			 ["keyword", "USE"], ["variable", "Plugin"],
 			 ["delimiter", "%]"]]],
 	["tt2", [["delimiter", "[%"], ["keyword", "END"], ["delimiter", "%]"]]],
 	["tt2", [["delimiter", "[%"], 
