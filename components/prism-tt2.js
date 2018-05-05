@@ -10,6 +10,7 @@
 	});
 
 	delete Prism.languages.tt2['operator'];
+	delete Prism.languages.tt2['variable'];
 	Prism.languages.insertBefore('tt2', 'number', {
 		operator: /(?:=>|==|!=|<=|<|>=|>|=|&&|\|\||\||!|and|or|not)/,
 		variable: {
@@ -18,6 +19,7 @@
 		}
 	});
 
+	delete Prism.languages.tt2['delimiter'];
 	Prism.languages.insertBefore('tt2', 'keyword', {
 		'delimiter': {
 			pattern: /^(?:\[%|%%)-?|-?%]$/,
