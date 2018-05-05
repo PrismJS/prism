@@ -9,19 +9,13 @@
 		punctuation: /[[\]{},()]/
 	});
 
-	var operatorRE = /(?:=>|==|!=|<=|<|>=|>|=|&&|\|\||\||!|and|or|not)/;
-
+	delete Prism.languages.tt2['operator'];
 	Prism.languages.insertBefore('tt2', 'number', {
-		operator: operatorRE,
+		operator: /(?:=>|==|!=|<=|<|>=|>|=|&&|\|\||\||!|and|or|not)/,
 		variable: {
 			pattern: /[a-z]\w*(?:[\011-\015\040]*\.[\011-\015\040]*(?:\d+|\$?[a-z]\w*))*/i,
 			greedy: true
 		}
-	});
-
-	// FIXME! Is this repetition really necessary?
-	Prism.languages.insertBefore('tt2', 'variable', {
-		operator: operatorRE
 	});
 
 	Prism.languages.insertBefore('tt2', 'keyword', {
