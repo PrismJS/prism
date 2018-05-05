@@ -14,7 +14,7 @@
 	Prism.languages.insertBefore('tt2', 'number', {
 		operator: /(?:=>|==|!=|<=|<|>=|>|=|&&|\|\||\||!|and|or|not)/,
 		variable: {
-			pattern: /[a-z]\w*(?:[\011-\015\040]*\.[\011-\015\040]*(?:\d+|\$?[a-z]\w*))*/i,
+			pattern: /[a-z]\w*(?:\s*\.\s*(?:\d+|\$?[a-z]\w*))*/i,
 			greedy: true
 		}
 	});
@@ -29,12 +29,12 @@
 
 	Prism.languages.insertBefore('tt2', 'string', {
 		'single-quoted-string': {
-			pattern: /'[^\\']*(?:\\.[^\\']*)*'/,
+			pattern: /'[^\\']*(?:\\[\s\S][^\\']*)*'/,
 			greedy: true,
 			alias: 'string'
 		},
 		'double-quoted-string': {
-			pattern: /"[^\\"]*(?:\\.[^\\"]*)*"/,
+			pattern: /"[^\\"]*(?:\\[\s\S][^\\"]*)*"/,
 			greedy: true,
 			alias: 'string',
 			inside: {
