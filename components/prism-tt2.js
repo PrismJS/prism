@@ -12,7 +12,7 @@
 	delete Prism.languages.tt2['operator'];
 	delete Prism.languages.tt2['variable'];
 	Prism.languages.insertBefore('tt2', 'number', {
-		operator: /(?:=>|==|!=|<=|<|>=|>|=|&&|\|\||\||!|and|or|not)/,
+		operator: /=[>=]?|!=?|<=?|>=?|&&|\|\|?|\b(?:and|or|not)\b/,
 		variable: {
 			pattern: /[a-z]\w*(?:\s*\.\s*(?:\d+|\$?[a-z]\w*))*/i,
 			greedy: true
