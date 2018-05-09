@@ -9,7 +9,7 @@
 ----------------------------------------------------
 
 [
-    ["tt2",
+	["tt2",
 		[
 			["comment", "[%# this entire directive is ignored no\r\n    matter how many lines it wraps onto\r\n%]" ]
 		]
