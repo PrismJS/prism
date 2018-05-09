@@ -14,8 +14,7 @@
 	Prism.languages.insertBefore('tt2', 'number', {
 		operator: /=[>=]?|!=?|<=?|>=?|&&|\|\|?|\b(?:and|or|not)\b/,
 		variable: {
-			pattern: /[a-z]\w*(?:\s*\.\s*(?:\d+|\$?[a-z]\w*))*/i,
-			greedy: true
+			pattern: /[a-z]\w*(?:\s*\.\s*(?:\d+|\$?[a-z]\w*))*/i
 		}
 	});
 
@@ -39,8 +38,7 @@
 			alias: 'string',
 			inside: {
 				variable: {
-					pattern: /\$(?:[a-z][_a-z0-9]*(?:\.(?:\d+|\$?[a-z][_a-z0-9]*))*)/i,
-					greedy: true
+					pattern: /\$(?:[a-z]\w*(?:\.(?:\d+|\$?[a-z]\w*))*)/i
 				}
 			}
 		}
