@@ -1,21 +1,33 @@
 var components = require('../components.js');
+var peerDependentsMap = null;
 
-function getOptionallyDependents(mainLanguage) {
-	return Object.keys(components.languages).filter(function (language) {
+function getPeerDependentsMap() {
+	var peerDependentsMap = {};
+	Object.keys(components.languages).forEach(function (language) {
 		if (language === 'meta') {
 			return false;
 		}
-		if (components.languages[language].optionalDependencies) {
-			var optionalDependencies = components.languages[language].optionalDependencies;
-			if (!Array.isArray(optionalDependencies)) {
-				optionalDependencies = [optionalDependencies];
+		if (components.languages[language].peerDependencies) {
+			var peerDependencies = components.languages[language].peerDependencies;
+			if (!Array.isArray(peerDependencies)) {
+				peerDependencies = [peerDependencies];
 			}
-			if (optionalDependencies.indexOf(mainLanguage) !== -1) {
-				return true;
-			}
+			peerDependencies.forEach(function (peerDependency) {
+				if (!peerDependentsMap[peerDependency]) {
+					peerDependentsMap[peerDependency] = [];
+				}
+				peerDependentsMap[peerDependency].push(language);
+			});
 		}
-		return false;
 	});
+	return peerDependentsMap;
+}
+
+function getPeerDependents(mainLanguage) {
+	if (!peerDependentsMap) {
+		peerDependentsMap = getPeerDependentsMap();
+	}
+	return peerDependentsMap[mainLanguage] || [];
 }
 
 function loadLanguages(arr, withoutDependencies) {
@@ -34,33 +46,37 @@ function loadLanguages(arr, withoutDependencies) {
 	}
 
 	arr.forEach(function (language) {
-		if (components.languages[language]) {
-			// Load dependencies first
-			if (!withoutDependencies && components.languages[language].require) {
-				loadLanguages(components.languages[language].require);
-			}
+		if (!components.languages[language]) {
+			console.warn('Language does not exist ' + language);
+			return;
+		}
+		// Load dependencies first
+		if (!withoutDependencies && components.languages[language].require) {
+			loadLanguages(components.languages[language].require);
+		}
 
-			var pathToLanguage = './prism-' + language;
-			delete require.cache[require.resolve(pathToLanguage)];
-			delete Prism.languages[language];
-			require(pathToLanguage);
+		var pathToLanguage = './prism-' + language;
+		delete require.cache[require.resolve(pathToLanguage)];
+		delete Prism.languages[language];
+		require(pathToLanguage);
 
-			// Reload dependents
-			var dependents = getOptionallyDependents(language);
-			dependents = dependents.filter(function (dependent) {
-				// If dependent language was already loaded,
-				// we want to reload it.
-				if (Prism.languages[dependent]) {
-					delete Prism.languages[dependent];
-					return true;
-				}
-				return false;
-			});
-			if (dependents.length) {
-				loadLanguages(dependents, true);
+		// Reload dependents
+		var dependents = getPeerDependents(language).filter(function (dependent) {
+			// If dependent language was already loaded,
+			// we want to reload it.
+			if (Prism.languages[dependent]) {
+				delete Prism.languages[dependent];
+				return true;
 			}
+			return false;
+		});
+		if (dependents.length) {
+			loadLanguages(dependents, true);
 		}
 	});
 }
 
-module.exports = loadLanguages;
+module.exports = function (arr) {
+	// Don't expose withoutDependencies
+	loadLanguages(arr);
+};

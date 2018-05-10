@@ -60,7 +60,7 @@
 		"css": {
 			"title": "CSS",
 			"option": "default",
-			"optionalDependencies": "markup"
+			"peerDependencies": "markup"
 		},
 		"clike": {
 			"title": "C-like",
@@ -70,7 +70,7 @@
 		"javascript": {
 			"title": "JavaScript",
 			"require": "clike",
-			"optionalDependencies": "markup",
+			"peerDependencies": "markup",
 			"alias": "js",
 			"option": "default"
 		},
@@ -81,7 +81,7 @@
 		"actionscript": {
 			"title": "ActionScript",
 			"require": "javascript",
-			"optionalDependencies": "markup",
+			"peerDependencies": "markup",
 			"owner": "Golmote"
 		},
 		"ada": {
@@ -212,7 +212,7 @@
 		"django": {
 			"title": "Django/Jinja2",
 			"require": "markup",
-			"optionalDependencies": [
+			"peerDependencies": [
 				"css",
 				"javascript"
 			],
@@ -292,7 +292,7 @@
 		"haml": {
 			"title": "Haml",
 			"require": "ruby",
-			"optionalDependencies": [
+			"peerDependencies": [
 				"css",
 				"coffeescript",
 				"erb",
@@ -321,7 +321,7 @@
 		},
 		"http": {
 			"title": "HTTP",
-			"optionalDependencies": [
+			"peerDependencies": [
 				"javascript",
 				"markup"
 			],
@@ -484,7 +484,7 @@
 		"opencl": {
 			"title": "OpenCL",
 			"require": "cpp",
-			"optionalDependencies": [
+			"peerDependencies": [
 				"c",
 				"cpp"
 			],
@@ -552,7 +552,7 @@
 		"pug": {
 			"title": "Pug",
 			"require": "javascript",
-			"optionalDependencies": [
+			"peerDependencies": [
 				"coffeescript",
 				"ejs",
 				"handlebars",
@@ -574,7 +574,7 @@
 		},
 		"pure": {
 			"title": "Pure",
-			"optionalDependencies": [
+			"peerDependencies": [
 				"c",
 				"cpp",
 				"fortran",
@@ -696,7 +696,7 @@
 		"textile": {
 			"title": "Textile",
 			"require": "markup",
-			"optionalDependencies": "css",
+			"peerDependencies": "css",
 			"owner": "Golmote"
 		},
 		"twig": {
