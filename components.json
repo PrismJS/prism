@@ -699,6 +699,11 @@
 			"peerDependencies": "css",
 			"owner": "Golmote"
 		},
+		"tt2": {
+			"title": "Template Toolkit 2",
+			"require": ["clike", "markup-templating"],
+			"owner": "gflohr"
+		},
 		"twig": {
 			"title": "Twig",
 			"require": "markup",
