@@ -41,20 +41,26 @@ if (hstr) {
 				}
 				setTheme(ids[0]);
 			}
-			ids.forEach(function(id) {
+			var makeDefault = function (id) {
 				if (id !== 'meta') {
 					if (components[category][id]) {
-						var requireId = id;
-						while (requireId && components[category][requireId] && components[category][requireId].option !== 'default') {
-							if (typeof components[category][requireId] === 'string') {
-								components[category][requireId] = { title: components[category][requireId] }
+						if (components[category][id].option !== 'default') {
+							if (typeof components[category][id] === 'string') {
+								components[category][id] = { title: components[category][id] }
 							}
-							components[category][requireId].option = 'default';
-							requireId = components[category][requireId].require;
+							components[category][id].option = 'default';
+						}
+						if (components[category][id].require) {
+							var deps = components[category][id].require;
+							if ($u.type(deps) !== 'array') {
+								deps = [deps];
+							}
+							deps.forEach(makeDefault);
 						}
 					}
 				}
-			});
+			};
+			ids.forEach(makeDefault);
 		}
 	});
 }
