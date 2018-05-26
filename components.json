@@ -480,6 +480,10 @@
 		},
 		"pascal": {
 			"title": "Pascal",
+			"alias": "objectpascal",
+			"aliasTitles": {
+				"objectpascal": "Object Pascal"
+			},
 			"owner": "Golmote"
 		},
 		"perl": {
