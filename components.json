@@ -712,6 +712,11 @@
 			"title": "Xojo (REALbasic)",
 			"owner": "Golmote"
 		},
+		"xquery": {
+			"title": "XQuery",
+			"require": "markup",
+			"owner": "Golmote"
+		},
 		"yaml": {
 			"title": "YAML",
 			"owner": "hason"
