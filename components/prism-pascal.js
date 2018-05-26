@@ -51,3 +51,5 @@ Prism.languages.pascal = {
 	],
 	'punctuation': /\(\.|\.\)|[()\[\]:;,.]/
 };
+
+Prism.languages.objectpascal = Prism.languages.pascal;
