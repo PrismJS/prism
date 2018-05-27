@@ -1,9 +1,9 @@
 var _self = (typeof window !== 'undefined')
 	? window   // if in browser
 	: (
-		(typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope)
-		? self // if in worker
-		: {}   // if in node js
+		(typeof global !== "undefined" && {}.toString.call(global) == '[object global]')
+		? {}   // if in node js
+        	: self // if in worker;
 	);
 
 /**
