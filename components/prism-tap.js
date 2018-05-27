@@ -1,18 +1,18 @@
 Prism.languages.tap = {
-	pass: /(^|\n)(    )*ok[^#\{\n]*/,
-	fail: /(^|\n)(    )*not ok[^#\{\n]*/,
-	pragma: /(^|\n)(    )*pragma ([+-])([a-z]+)(\n|$)/,
-	bailout: /(^|\n)(    )*bail out!(.*)(\n|$)/i,
-	version: /(^|\n)(    )*TAP version ([0-9]+)(\n|$)/i,
-	plan: /(^|\n)(    )*([0-9]+)\.\.([0-9]+)( +#[^\n]*)?(\n|$)/m,
+	fail: /not ok[^#{\n\r]*/,
+	pass: /ok[^#{\n\r]*/,
+	pragma: /pragma [+-][a-z]+/,
+	bailout: /bail out!.*/i,
+	version: /TAP version \d+/i,
+	plan: /\d+\.\.\d+(?: +#.*)?/,
 	subtest: {
-		pattern: /(^|\n)(    )*# Subtest(?:: (.*))?(\n|$)/,
+		pattern: /# Subtest(?:: .*)?/,
 		greedy: true
 	},
 	punctuation: /[{}]/,
-	'comment': /#.*/,
+	directive: /#.*/,
 	yamlish: {
-		pattern: /(^|\n)((    )*(  ))---\n(.*?\n)+\2\.\.\.(\n|$)/,
+		pattern: /(^[^\S\r\n]*)---(?:\r\n?|\n)(?:.*(?:\r\n?|\n))*?[^\S\r\n]*\.\.\.$/m,
 		lookbehind: true,
 		inside: Prism.languages.yaml,
 		alias: 'language-yaml'
