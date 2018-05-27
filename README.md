@@ -18,5 +18,6 @@ Prism depends on community contributions to expand and cover a wider array of us
 - My time is very limited these days, so it might take a long time to review longer PRs (short ones are usually merged very quickly), especially those modifying the Prism Core. This doesn't mean your PR is rejected.
 - If you contribute a new language definition, you will be responsible for handling bug reports about that language definition.
 - If you add a new language definition, theme or plugin, you need to add it to `components.js` as well, so that it becomes available to the download build page.
+- to help u get started you can test your new language definition with this [pen](http://codepen.io/javatlacati/pen/zGjWZd) fork it and keep going until you have something like [this] (http://jsfiddle.net/javatlacati/nu4ywjd8/).
 
 Thank you so much for contributing!!
