@@ -153,14 +153,28 @@
 	Example:</p>
 	<pre><code>&lt;script src="prism.js" data-manual>&lt;/script></code></pre>
 
-    <p>If you want to use Prism on the server or through the command line, Prism can be used with Node.js as well.
-    This might be useful if you're trying to generate static HTML pages with highlighted code for environments that don't support browser-side JS, like <a href="https://www.ampproject.org/">AMP pages</a>.</p>
+	<h2>Usage with Webpack, Browserify, & Other Bundlers</h2>
 
-    <p>You can install Prism for Node.js by running:</p>
-    <pre><code>$ npm install prismjs</code></pre>
+	<p>If you want to use Prism with a bundler, install Prism with <code>npm</code>:</p>
 
-    <p>Example:</p>
-    <pre><code class="language-js">var Prism = require('prismjs');
+	<pre><code>$ npm install prismjs</code></pre>
+
+	<p>You can then <code class="language-js">import</code> into your bundle:</p>
+
+	<pre><code class="language-js">import Prism from 'prismjs';</code></pre>
+
+	<p>To make it easy to configure your Prism instance with only the languages and plugins you need, use the babel plugin,
+		<a href="https://github.com/mAAdhaTTah/babel-plugin-prismjs">babel-plugin-prismjs</a>. This will allow you to load
+		the minimum number of languages and plugins to satisfy your needs.
+		See that plugin's documentation for configuration details.</p>
+
+	<h2>Usage with Node</h2>
+
+	<p>If you want to use Prism on the server or through the command line, Prism can be used with Node.js as well.
+	This might be useful if you're trying to generate static HTML pages with highlighted code for environments that don't support browser-side JS, like <a href="https://www.ampproject.org/">AMP pages</a>.</p>
+
+	<p>Example:</p>
+	<pre><code class="language-js">var Prism = require('prismjs');
 
 // The code snippet you want to highlight, as a string
 var code = "var data = 1;";
@@ -169,13 +183,12 @@ var code = "var data = 1;";
 var html = Prism.highlight(code, Prism.languages.javascript, 'javascript');</code></pre>
 
 	<p>Requiring <code>prismjs</code> will load the default languages: <code>markup</code>, <code>css</code>,
-		<code>clike</code> and <code>javascript</code>. You can load more languages separately by requiring them
-		directly from the <code>components</code> folder. Or you can use the <code class="language-javascript">loadLanguages()</code> utility, that
-		will automatically handle any required dependencies.</p>
+		<code>clike</code> and <code>javascript</code>. You can load more languages with the
+		<code class="language-javascript">loadLanguages()</code> utility, which will automatically handle any required dependencies.</p>
 	<p>Example:</p>
 
 	<pre><code class="language-js">var Prism = require('prismjs');
-var loadLanguages = require('prismjs/components/index.js');
+var loadLanguages = require('prismjs/components');
 loadLanguages(['haml']);
 
 // The code snippet you want to highlight, as a string
@@ -183,6 +196,8 @@ var code = "= ['hi', 'there', 'reader!'].join \" \"";
 
 // Returns a highlighted HTML string
 var html = Prism.highlight(code, Prism.languages.haml, 'haml');</code></pre>
+
+	<p><strong>Note</strong>: Do <em>not</em> use <code class="language-javascript">loadLanguages()</code> with Webpack or another bundler, as this will cause Webpack to include all languages and plugins. Use the babel plugin described above.</p>
 
 </section>
 
