@@ -28,7 +28,7 @@ div
 		["property", [
 			"background-",
 			["interpolation", [
-				["punctuation", "{"], "foo", ["punctuation", "}"]
+				["delimiter", "{"], "foo", ["delimiter", "}"]
 			]]
 		]],
 		["punctuation", ":"],
@@ -40,7 +40,7 @@ div
 	["property-declaration", [
 		["property", [
 			["interpolation", [
-				["punctuation", "{"], "foo", ["punctuation", "}"]
+				["delimiter", "{"], "foo", ["delimiter", "}"]
 			]]
 		]],
 		" bar"

@@ -5,12 +5,18 @@
 ----------------------------------------------------
 
 [
-	["delimiter", "<?"],
-	["delimiter", "?>"],
-	["delimiter", "<?php"],
-	["delimiter", "?>"],
-	["delimiter", "<?="],
-	["delimiter", "?>"]
+	["php", [
+		["delimiter", "<?"],
+		["delimiter", "?>"]
+	]],
+	["php", [
+		["delimiter", "<?php"],
+		["delimiter", "?>"]
+	]],
+	["php", [
+		["delimiter", "<?="],
+		["delimiter", "?>"]
+	]]
 ]
 
 ----------------------------------------------------

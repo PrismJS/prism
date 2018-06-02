@@ -38,9 +38,9 @@ Prism.languages.pascal = {
 	],
 	'number': [
 		// Hexadecimal, octal and binary
-		/[+-]?(?:[&%]\d+|\$[a-f\d]+)/i,
+		/(?:[&%]\d+|\$[a-f\d]+)/i,
 		// Decimal
-		/([+-]|\b)\d+(?:\.\d+)?(?:e[+-]?\d+)?/i
+		/\b\d+(?:\.\d+)?(?:e[+-]?\d+)?/i
 	],
 	'operator': [
 		/\.\.|\*\*|:=|<[<=>]?|>[>=]?|[+\-*\/]=?|[@^=]/i,
@@ -51,3 +51,5 @@ Prism.languages.pascal = {
 	],
 	'punctuation': /\(\.|\.\)|[()\[\]:;,.]/
 };
+
+Prism.languages.objectpascal = Prism.languages.pascal;

@@ -8,6 +8,9 @@ baz'
 "foo
 $bar
 baz"
+" @(foo) "
+"foo /* bar */ baz"
+"foo #bar baz"
 
 ----------------------------------------------------
 
@@ -21,7 +24,10 @@ baz"
 		"\"foo\r\n",
 		["interpolation", ["$bar"]],
 		"\r\nbaz\""
-	]]]]
+	]]]],
+	["string", [["double-quoted", ["\" @(foo) \""]]]],
+	["string", [["double-quoted", ["\"foo /* bar */ baz\""]]]],
+	["string", [["double-quoted", ["\"foo #bar baz\""]]]]
 ]
 
 ----------------------------------------------------

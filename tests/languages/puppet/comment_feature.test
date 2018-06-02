@@ -2,13 +2,19 @@
 # Foobar
 /* Foo
 bar */
+/* @(foo) */
+# @(foo)
+# foo /* bar */ baz
 
 ----------------------------------------------------
 
 [
 	["comment", "#"],
 	["comment", "# Foobar"],
-	["multiline-comment", "/* Foo\r\nbar */"]
+	["multiline-comment", "/* Foo\r\nbar */"],
+	["multiline-comment", "/* @(foo) */"],
+	["comment", "# @(foo)"],
+	["comment", "# foo /* bar */ baz"]
 ]
 
 ----------------------------------------------------

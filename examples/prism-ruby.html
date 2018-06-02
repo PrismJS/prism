@@ -1,6 +1,3 @@
-<h1>Ruby</h1>
-<p>To use this language, use the class "language-ruby".</p>
-
 <h2>Comments</h2>
 <pre><code># This is a comment
 =begin
@@ -31,20 +28,3 @@ end</code></pre>
 
 <h2>String Interpolation</h2>
 <pre><code>"foo #{'bar'+my_variable}"</code></pre>
-
-<h2>Known failures</h2>
-<p>There are certain edge cases where Prism will fail.
-	There are always such cases in every regex-based syntax highlighter.
-	However, Prism dares to be open and honest about them.
-	If a failure is listed here, it doesn’t mean it will never be fixed. This is more of a “known bugs” list, just with a certain type of bug.
-</p>
-
-<h3>Comments that look like interpolation show as ruby code</h3>
-<pre><code>#{my_var}</code></pre>
-
-<h3>Multi-line comments are not supported</h3>
-<pre><code>=begin
-************************
-This is a comment block
-************************
-=end</code></pre>

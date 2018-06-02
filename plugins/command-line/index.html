@@ -3,7 +3,7 @@
 <head>
 
 <meta charset="utf-8" />
-<link rel="shortcut icon" href="favicon.png" />
+<link rel="icon" href="favicon.png" />
 <title>Command Line ▲ Prism plugins</title>
 <base href="../.." />
 <link rel="stylesheet" href="style.css" />
@@ -12,7 +12,7 @@
 <script src="prefixfree.min.js"></script>
 
 <script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
-<script src="http://www.google-analytics.com/ga.js" async></script>
+<script src="https://www.google-analytics.com/ga.js" async></script>
 </head>
 <body>
 
@@ -30,7 +30,7 @@
 
 	<p>Add class <strong>command-line</strong> to your <code class="language-markup">&lt;pre></code>. For a server command line, specify the user and host names using the <code class="language-markup">data-user</code> and <code class="language-markup">data-host</code> attributes. The resulting prompt displays a <strong>#</strong> for the root user and <strong>$</strong> for all other users. For any other command line, such as a Windows prompt, you may specify the entire prompt using the <code class="language-markup">data-prompt</code> attribute.</p>
 
-	<p>Optional: You may specify the lines to be presented as output (no prompt) through the <code class="language-markup">data-output</code> attribute on the <code class="language-markup">&lt;pre></code> element in the following simple format:</p>
+	<p>Optional: You may specify the lines to be presented as output (no prompt and no highlighting) through the <code class="language-markup">data-output</code> attribute on the <code class="language-markup">&lt;pre></code> element in the following simple format:</p>
 	<ul>
 		<li>A single number refers to the line with that number</li>
 		<li>Ranges are denoted by two numbers, separated with a hyphen (-)</li>
@@ -52,6 +52,8 @@
 		<dt>1-2, 5, 9-20</dt>
 		<dd>Lines 1 through 2, line 5, lines 9 through 20</dd>
 	</dl>
+
+	<p>Optional: To automatically present some lines as output, you can prefix those lines with any string and specify the prefix using the <code class="language-markup">data-filter-output</code> attribute on the <code class="language-markup">&lt;pre></code> element. For example, <code class="language-markup">data-filter-output="(out)"</code> will treat lines beginning with <code class="language-markup">(out)</code> as output and remove the prefix.</p>
 </section>
 
 <section>

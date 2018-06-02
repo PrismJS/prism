@@ -72,4 +72,4 @@ Prism.languages.insertBefore('scss', 'function', {
 	}
 });
 
-Prism.languages.scss['atrule'].inside.rest = Prism.util.clone(Prism.languages.scss);
+Prism.languages.scss['atrule'].inside.rest = Prism.languages.scss;

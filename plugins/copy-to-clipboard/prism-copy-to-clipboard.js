@@ -9,33 +9,29 @@
 		return;
 	}
 
-	var Clipboard = window.Clipboard || undefined;
+	var ClipboardJS = window.ClipboardJS || undefined;
 
-	if (Clipboard && /(native code)/.test(Clipboard.toString())) {
-		Clipboard = undefined;
-	}
-
-	if (!Clipboard && typeof require === 'function') {
-		Clipboard = require('clipboard');
+	if (!ClipboardJS && typeof require === 'function') {
+		ClipboardJS = require('clipboard');
 	}
 
 	var callbacks = [];
 
-	if (!Clipboard) {
+	if (!ClipboardJS) {
 		var script = document.createElement('script');
 		var head = document.querySelector('head');
 
 		script.onload = function() {
-			Clipboard = window.Clipboard;
+			ClipboardJS = window.ClipboardJS;
 
-			if (Clipboard) {
+			if (ClipboardJS) {
 				while (callbacks.length) {
 					callbacks.pop()();
 				}
 			}
 		};
 
-		script.src = 'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js';
+		script.src = 'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js';
 		head.appendChild(script);
 	}
 
@@ -43,7 +39,7 @@
 		var linkCopy = document.createElement('a');
 		linkCopy.textContent = 'Copy';
 
-		if (!Clipboard) {
+		if (!ClipboardJS) {
 			callbacks.push(registerClipboard);
 		} else {
 			registerClipboard();
@@ -52,7 +48,7 @@
 		return linkCopy;
 
 		function registerClipboard() {
-			var clip = new Clipboard(linkCopy, {
+			var clip = new ClipboardJS(linkCopy, {
 				'text': function () {
 					return env.code;
 				}

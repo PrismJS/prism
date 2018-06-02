@@ -9,7 +9,7 @@ var employees:XML =
 	["keyword", "var"],
 	" employees",
 	["punctuation", ":"],
-	"XML ",
+	["constant", "XML"],
 	["operator", "="],
 	["xml", [
 		["tag", [

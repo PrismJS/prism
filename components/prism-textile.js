@@ -37,7 +37,7 @@
 						'modifier': {
 							pattern: RegExp('(^[a-z]\\w*)(?:' + modifierRegex + '|[<>=()])+(?=\\.)'),
 							lookbehind: true,
-							inside: Prism.util.clone(modifierTokens)
+							inside: modifierTokens
 						},
 						'tag': /^[a-z]\w*/,
 						'punctuation': /\.$/
@@ -52,7 +52,7 @@
 						'modifier': {
 							pattern: RegExp('(^[*#]+)' + modifierRegex),
 							lookbehind: true,
-							inside: Prism.util.clone(modifierTokens)
+							inside: modifierTokens
 						},
 						'punctuation': /^[*#]+/
 					}
@@ -69,7 +69,7 @@
 							// preceded by a pipe and a line feed
 							pattern: RegExp('(^|\\|(?:\\r?\\n|\\r)?)(?:' + modifierRegex + '|[<>=()^~_]|[\\\\/]\\d+)+(?=\\.)'),
 							lookbehind: true,
-							inside: Prism.util.clone(modifierTokens)
+							inside: modifierTokens
 						},
 						'punctuation': /\||^\./
 					}
@@ -127,7 +127,7 @@
 						'modifier': {
 							pattern: RegExp('(^\\*\\*|__|\\?\\?|[*_%@+\\-^~])' + modifierRegex),
 							lookbehind: true,
-							inside: Prism.util.clone(modifierTokens)
+							inside: modifierTokens
 						},
 						'punctuation': /[*_%?@+\-^~]+/
 					}
@@ -161,7 +161,7 @@
 						'modifier': {
 							pattern: RegExp('(^")' + modifierRegex),
 							lookbehind: true,
-							inside: Prism.util.clone(modifierTokens)
+							inside: modifierTokens
 						},
 						'url': {
 							pattern: /(:).+/,
@@ -184,7 +184,7 @@
 						'modifier': {
 							pattern: RegExp('(^!)(?:' + modifierRegex + '|[<>=()])+'),
 							lookbehind: true,
-							inside: Prism.util.clone(modifierTokens)
+							inside: modifierTokens
 						},
 						'url': {
 							pattern: /(:).+/,
@@ -228,12 +228,12 @@
 	});
 
 	var nestedPatterns = {
-		'inline': Prism.util.clone(Prism.languages.textile['phrase'].inside['inline']),
-		'link': Prism.util.clone(Prism.languages.textile['phrase'].inside['link']),
-		'image': Prism.util.clone(Prism.languages.textile['phrase'].inside['image']),
-		'footnote': Prism.util.clone(Prism.languages.textile['phrase'].inside['footnote']),
-		'acronym': Prism.util.clone(Prism.languages.textile['phrase'].inside['acronym']),
-		'mark': Prism.util.clone(Prism.languages.textile['phrase'].inside['mark'])
+		'inline': Prism.languages.textile['phrase'].inside['inline'],
+		'link': Prism.languages.textile['phrase'].inside['link'],
+		'image': Prism.languages.textile['phrase'].inside['image'],
+		'footnote': Prism.languages.textile['phrase'].inside['footnote'],
+		'acronym': Prism.languages.textile['phrase'].inside['acronym'],
+		'mark': Prism.languages.textile['phrase'].inside['mark']
 	};
 
 	// Only allow alpha-numeric HTML tags, not XML tags

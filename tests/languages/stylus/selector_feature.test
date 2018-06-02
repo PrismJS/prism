@@ -34,10 +34,10 @@ color red
 	["punctuation", "}"],
 	["selector", [
 		["interpolation", [
-			["punctuation", "{"], "foo", ["punctuation", "}"]
+			["delimiter", "{"], "foo", ["delimiter", "}"]
 		]],
 		["interpolation", [
-			["punctuation", "{"], "bar", ["punctuation", "}"]
+			["delimiter", "{"], "bar", ["delimiter", "}"]
 		]],
 		":hover"
 	]],

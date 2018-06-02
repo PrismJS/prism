@@ -7,10 +7,13 @@
 (function(Prism) {
 	Prism.languages.ruby = Prism.languages.extend('clike', {
 		'comment': [
-			/#(?!\{[^\r\n]*?\}).*/,
-			/^=begin(?:\r?\n|\r)(?:.*(?:\r?\n|\r))*?=end/m
+			/#.*/,
+			{
+				pattern: /^=begin(?:\r?\n|\r)(?:.*(?:\r?\n|\r))*?=end/m,
+				greedy: true
+			}
 		],
-		'keyword': /\b(?:alias|and|BEGIN|begin|break|case|class|def|define_method|defined|do|each|else|elsif|END|end|ensure|false|for|if|in|module|new|next|nil|not|or|raise|redo|require|rescue|retry|return|self|super|then|throw|true|undef|unless|until|when|while|yield)\b/
+		'keyword': /\b(?:alias|and|BEGIN|begin|break|case|class|def|define_method|defined|do|each|else|elsif|END|end|ensure|false|for|if|in|module|new|next|nil|not|or|protected|private|public|raise|redo|require|rescue|retry|return|self|super|then|throw|true|undef|unless|until|when|while|yield)\b/
 	});
 
 	var interpolation = {
@@ -20,7 +23,7 @@
 				pattern: /^#\{|\}$/,
 				alias: 'tag'
 			},
-			rest: Prism.util.clone(Prism.languages.ruby)
+			rest: Prism.languages.ruby
 		}
 	};
 
@@ -69,7 +72,10 @@
 			}
 		],
 		'variable': /[@$]+[a-zA-Z_]\w*(?:[?!]|\b)/,
-		'symbol': /:[a-zA-Z_]\w*(?:[?!]|\b)/
+		'symbol': {
+			pattern: /(^|[^:]):[a-zA-Z_]\w*(?:[?!]|\b)/,
+			lookbehind: true
+		}
 	});
 
 	Prism.languages.insertBefore('ruby', 'number', {

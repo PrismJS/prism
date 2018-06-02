@@ -41,8 +41,8 @@ EnumRegValue
 Exch
 Exec
 ExecShell
-ExecShellWait
 ExecWait
+ExecShellWait
 ExpandEnvStrings
 File
 FileBufSize
@@ -53,10 +53,10 @@ FileRead
 FileReadByte
 FileReadUTF16LE
 FileReadWord
-FileWriteUTF16LE
 FileSeek
 FileWrite
 FileWriteByte
+FileWriteUTF16LE
 FileWriteWord
 FindClose
 FindFirst
@@ -95,10 +95,16 @@ InstProgressFlags
 InstType
 InstTypeGetText
 InstTypeSetText
+Int64Cmp
+Int64CmpU
+Int64Fmt
 IntCmp
 IntCmpU
 IntFmt
 IntOp
+IntPtrCmp
+IntPtrCmpU
+IntPtrOp
 IsWindow
 LangDLL
 LangString
@@ -124,6 +130,8 @@ NSISdl
 OutFile
 Page
 PageCallbacks
+PEDllCharacteristics
+PESubsysVer
 Pop
 Push
 Quit
@@ -169,6 +177,7 @@ SetFileAttributes
 SetFont
 SetOutPath
 SetOverwrite
+SetPluginUnload
 SetRebootFlag
 SetRegView
 SetShellVarContext
@@ -259,8 +268,8 @@ XPStyle
 	["keyword", "Exch"],
 	["keyword", "Exec"],
 	["keyword", "ExecShell"],
-	["keyword", "ExecShellWait"],
 	["keyword", "ExecWait"],
+	["keyword", "ExecShellWait"],
 	["keyword", "ExpandEnvStrings"],
 	["keyword", "File"],
 	["keyword", "FileBufSize"],
@@ -271,10 +280,10 @@ XPStyle
 	["keyword", "FileReadByte"],
 	["keyword", "FileReadUTF16LE"],
 	["keyword", "FileReadWord"],
-	["keyword", "FileWriteUTF16LE"],
 	["keyword", "FileSeek"],
 	["keyword", "FileWrite"],
 	["keyword", "FileWriteByte"],
+	["keyword", "FileWriteUTF16LE"],
 	["keyword", "FileWriteWord"],
 	["keyword", "FindClose"],
 	["keyword", "FindFirst"],
@@ -313,10 +322,16 @@ XPStyle
 	["keyword", "InstType"],
 	["keyword", "InstTypeGetText"],
 	["keyword", "InstTypeSetText"],
+	["keyword", "Int64Cmp"],
+	["keyword", "Int64CmpU"],
+	["keyword", "Int64Fmt"],
 	["keyword", "IntCmp"],
 	["keyword", "IntCmpU"],
 	["keyword", "IntFmt"],
 	["keyword", "IntOp"],
+	["keyword", "IntPtrCmp"],
+	["keyword", "IntPtrCmpU"],
+	["keyword", "IntPtrOp"],
 	["keyword", "IsWindow"],
 	["keyword", "LangDLL"],
 	["keyword", "LangString"],
@@ -342,6 +357,8 @@ XPStyle
 	["keyword", "OutFile"],
 	["keyword", "Page"],
 	["keyword", "PageCallbacks"],
+	["keyword", "PEDllCharacteristics"],
+	["keyword", "PESubsysVer"],
 	["keyword", "Pop"],
 	["keyword", "Push"],
 	["keyword", "Quit"],
@@ -387,6 +404,7 @@ XPStyle
 	["keyword", "SetFont"],
 	["keyword", "SetOutPath"],
 	["keyword", "SetOverwrite"],
+	["keyword", "SetPluginUnload"],
 	["keyword", "SetRebootFlag"],
 	["keyword", "SetRegView"],
 	["keyword", "SetShellVarContext"],

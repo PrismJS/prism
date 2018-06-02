@@ -10,7 +10,7 @@
 		]],
 		["attr-name", ["options"]],
 		["script", [
-			["punctuation", "="],
+			["script-punctuation", "="],
 			["punctuation", "{"],
 			["punctuation", "{"],
 			" track",

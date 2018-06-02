@@ -104,6 +104,42 @@ function getFileContents(filepath) {
 	});
 }
 
+function buildContentsHeader(id) {
+	var language = languages[id];
+	var header = '<h1>' + language.title + '</h1>';
+	if (language.overrideExampleHeader) {
+		return header;
+	}
+	if (language.alias) {
+		var alias = language.alias;
+		if (Prism.util.type(alias) !== 'Array') {
+			alias = [alias];
+		}
+
+		header += '<p>To use this language, use one of the following classes:</p>';
+		header += '<ul><li><code class="language-none">"language-' + id + '"</code></li>';
+		alias.forEach(function (alias) {
+			header += '<li><code class="language-none">"language-' + alias + '"</code></li>';
+		});
+		header += '</ul>';
+	} else {
+		header += '<p>To use this language, use the class <code class="language-none">"language-' + id + '"</code>.</p>';
+	}
+	if (language.require) {
+		var require = language.require;
+		if (Prism.util.type(require) !== 'Array') {
+			require = [require];
+		}
+
+		header += '<p><strong>Dependencies:</strong> The following dependencies need to be loaded before this component: ';
+		header += require.map(function (dep) {
+			return '<code class="language-none">' + dep + '</code>';
+		}).join(', ');
+		header += '.</p>';
+	}
+	return header;
+}
+
 function update(id) {
 	var language = languages[id];
 	if (language.enabled) {
@@ -111,7 +147,7 @@ function update(id) {
 			language.examplesPromise = getFileContents(language.examplesPath);
 		}
 		language.examplesPromise.then(function (contents) {
-			examples[id].innerHTML = contents;
+			examples[id].innerHTML = buildContentsHeader(id) + contents;
 
 			loadLanguage(id).then(function () {
 				var elements = examples[id].querySelectorAll('code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code');

@@ -17,7 +17,7 @@ Prism.languages.mel = {
 		greedy: true
 	},
 	'variable': /\$\w+/,
-	'number': /(?:\b|-)(?:0x[\da-fA-F]+|\d+\.?\d*)/,
+	'number': /\b0x[\da-fA-F]+\b|\b\d+\.?\d*|\B\.\d+/,
 	'flag': {
 		pattern: /-[^\d\W]\w*/,
 		alias: 'operator'
@@ -40,4 +40,4 @@ Prism.languages.mel = {
 	],
 	'punctuation': /<<|>>|[.,:;?\[\](){}]/
 };
-Prism.languages.mel['code'].inside.rest = Prism.util.clone(Prism.languages.mel);
+Prism.languages.mel['code'].inside.rest = Prism.languages.mel;

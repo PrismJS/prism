@@ -1,22 +1,22 @@
 #!/usr/bin/env q
-/ Foobar
+/ Foobar "baz"
 
 /
 Foo
-bar
+bar "baz"
 \
 
 \
 Foo
-Bar
+Bar "baz"
 
 ----------------------------------------------------
 
 [
 	["comment", "#!/usr/bin/env q"],
-	["comment", "/ Foobar"],
-	["comment", "/\r\nFoo\r\nbar\r\n\\"],
-	["comment", "\\\r\nFoo\r\nBar"]
+	["comment", "/ Foobar \"baz\""],
+	["comment", "/\r\nFoo\r\nbar \"baz\"\r\n\\"],
+	["comment", "\\\r\nFoo\r\nBar \"baz\""]
 ]
 
 ----------------------------------------------------

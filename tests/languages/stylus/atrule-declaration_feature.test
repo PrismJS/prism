@@ -16,9 +16,9 @@
 		["punctuation", "("],
 		"max-",
 		["interpolation", [
-			["punctuation", "{"],
+			["delimiter", "{"],
 			"foo",
-			["punctuation", "}"]
+			["delimiter", "}"]
 		]],
 		["punctuation", ":"],
 		" bar",

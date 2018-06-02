@@ -3,12 +3,12 @@ Prism.languages.eiffel = {
 	'string': [
 		// Aligned-verbatim-strings
 		{
-			pattern: /"([^[]*)\[[\s\S]+?\]\1"/,
+			pattern: /"([^[]*)\[[\s\S]*?\]\1"/,
 			greedy: true
 		},
 		// Non-aligned-verbatim-strings
 		{
-			pattern: /"([^{]*)\{[\s\S]+?\}\1"/,
+			pattern: /"([^{]*)\{[\s\S]*?\}\1"/,
 			greedy: true
 		},
 		// Single-line string
@@ -30,7 +30,7 @@ Prism.languages.eiffel = {
 		// hexa | octal | bin
 		/\b0[xcb][\da-f](?:_*[\da-f])*\b/i,
 		// Decimal
-		/(?:\d(?:_*\d)*)?\.(?:(?:\d(?:_*\d)*)?[eE][+-]?)?\d(?:_*\d)*|\d(?:_*\d)*\.?/
+		/(?:\d(?:_*\d)*)?\.(?:(?:\d(?:_*\d)*)?e[+-]?)?\d(?:_*\d)*|\d(?:_*\d)*\.?/i
 	],
 	'punctuation': /:=|<<|>>|\(\||\|\)|->|\.(?=\w)|[{}[\];(),:?]/,
 	'operator': /\\\\|\|\.\.\||\.\.|\/[~\/=]?|[><]=?|[-+*^=~]/

@@ -1,6 +1,3 @@
-<h1>Puppet</h1>
-<p>To use this language, use the class "language-puppet".</p>
-
 <h2>Comments</h2>
 <pre><code>#
 # Foobar
@@ -147,19 +144,6 @@ Exec <| title == 'update_migrations' |> {
 	However, Prism dares to be open and honest about them.
 	If a failure is listed here, it doesn’t mean it will never be fixed. This is more of a “known bugs” list, just with a certain type of bug.
 </p>
-
-<h3>Comments, regular expressions or substrings that look like heredoc strings</h3>
-<pre><code>/* @(foo) */
-# @(foo)
-" @(foo) "
-$foo = /@(foo)/</code></pre>
-
-<h3>Single-line comments or substrings that look like multi-line comments</h3>
-<pre><code># foo /* bar */ baz
-"foo /* bar */ baz"</code></pre>
-
-<h3>Substrings that look like single-line comment</h3>
-<pre><code>"foo #bar baz"</code></pre>
 
 <h3>More than one level of nested braces inside interpolation</h3>
 <pre><code>"Foobar ${foo({

@@ -118,6 +118,9 @@ if (toc.children.length > 0) {
 	}
 })();
 
+// setTheme is intentionally global,
+// so it can be accessed from download.js
+var setTheme;
 (function() {
 var p = $u.element.create('p', {
 	properties: {
@@ -140,15 +143,15 @@ if (!(current in themes)) {
 if (current === undefined) {
 	var stored = localStorage.getItem('theme');
 
-	current = stored in themes? current = stored : 'prism';
+	current = stored in themes? stored : 'prism';
 }
 
-function setTheme(id) {
+setTheme = function (id) {
 	var link = $$('link[href^="themes/prism"]')[0];
 
 	link.href = themes.meta.path.replace(/\{id}/g, id);
 	localStorage.setItem('theme', id);
-}
+};
 
 for (var id in themes) {
 

@@ -5,17 +5,19 @@ method<int, char>();
 
 [
 	["keyword", "void"],
-	["generic-method", [ "method",
+	["generic-method", [
+		["function", "method"],
 		["punctuation", "<"],
-		"T",
+		["class-name", ["T"]],
 		["punctuation", ","],
-		" U",
+		["class-name", ["U"]],
 		["punctuation", ">"]
 	]],
 	["punctuation", "("],
 	["punctuation", ")"],
 	["punctuation", ";"],
-	["generic-method", [ "method",
+	["generic-method", [
+		["function", "method"],
 		["punctuation", "<"],
 		["keyword", "int"],
 		["punctuation", ","],
