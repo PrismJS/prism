@@ -198,15 +198,15 @@ pre[class*="language-"]:after {
 }
 
 /* Plugin styles: Line Numbers */
-pre[class*="language-"].line-numbers {
+pre[class*="language-"].line-numbers.line-numbers {
 	padding-left: 0;
 }
 
-pre[class*="language-"].line-numbers code {
+pre[class*="language-"].line-numbers.line-numbers code {
 	padding-left: 3.8em;
 }
 
-pre[class*="language-"].line-numbers .line-numbers-rows {
+pre[class*="language-"].line-numbers.line-numbers .line-numbers-rows {
 	left: 0;
 }
 
