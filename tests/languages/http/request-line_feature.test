@@ -6,6 +6,7 @@ OPTIONS https://www.example.com HTTP/1.1
 PATCH http://example.com HTTP/1.0
 TRACE http://example.com HTTP/1.0
 CONNECT http://example.com HTTP/1.0
+GET /path/to/foo.html HTTP/1.1
 
 ----------------------------------------------------
 
@@ -43,6 +44,10 @@ CONNECT http://example.com HTTP/1.0
 	["request-line", [
 		["property", "CONNECT"],
 		" http://example.com HTTP/1.0"
+	]],
+	["request-line", [
+		["property", "GET"],
+		" /path/to/foo.html HTTP/1.1"
 	]]
 ]
 

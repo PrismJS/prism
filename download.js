@@ -41,20 +41,26 @@ if (hstr) {
 				}
 				setTheme(ids[0]);
 			}
-			ids.forEach(function(id) {
+			var makeDefault = function (id) {
 				if (id !== 'meta') {
 					if (components[category][id]) {
-						var requireId = id;
-						while (requireId && components[category][requireId] && components[category][requireId].option !== 'default') {
-							if (typeof components[category][requireId] === 'string') {
-								components[category][requireId] = { title: components[category][requireId] }
+						if (components[category][id].option !== 'default') {
+							if (typeof components[category][id] === 'string') {
+								components[category][id] = { title: components[category][id] }
 							}
-							components[category][requireId].option = 'default';
-							requireId = components[category][requireId].require;
+							components[category][id].option = 'default';
+						}
+						if (components[category][id].require) {
+							var deps = components[category][id].require;
+							if ($u.type(deps) !== 'array') {
+								deps = [deps];
+							}
+							deps.forEach(makeDefault);
 						}
 					}
 				}
-			});
+			};
+			ids.forEach(makeDefault);
 		}
 	});
 }
@@ -70,7 +76,7 @@ var storedTheme = localStorage.getItem('theme');
 
 for (var category in components) {
 	var all = components[category];
-	
+
 	all.meta.section = $u.element.create('section', {
 		className: 'options',
 		id: 'category-' + category,
@@ -116,18 +122,18 @@ for (var category in components) {
 		if(id === 'meta') {
 			continue;
 		}
-		
+
 		var checked = false, disabled = false;
 		var option = all[id].option || all.meta.option;
-		
-		switch (option) {		
+
+		switch (option) {
 			case 'mandatory': disabled = true; // fallthrough
 			case 'default': checked = true;
 		}
 		if (category === 'themes' && storedTheme) {
 			checked = id === storedTheme;
 		}
-		
+
 		var filepath = all.meta.path.replace(/\{id}/g, id);
 
 		var info = all[id] = {
@@ -149,7 +155,7 @@ for (var category in components) {
 				}
 			}
 		};
-		
+
 		if (info.require) {
 			info.require.forEach(function (v) {
 				dependencies[v] = (dependencies[v] || []).concat(id);
@@ -160,15 +166,15 @@ for (var category in components) {
 			info.files.minified.paths.push(filepath.replace(/(\.js)?$/, '.min.js'));
 			info.files.dev.paths.push(filepath.replace(/(\.js)?$/, '.js'));
 		}
-		
+
 
 		if ((!all[id].noCSS && !/\.js$/.test(filepath)) || /\.css$/.test(filepath)) {
 			var cssFile = filepath.replace(/(\.css)?$/, '.css');
-			
+
 			info.files.minified.paths.push(cssFile);
 			info.files.dev.paths.push(cssFile);
 		}
-	
+
 		var label = $u.element.create('label', {
 			attributes: {
 				'data-id': id
@@ -205,7 +211,7 @@ for (var category in components) {
 										input.onclick();
 									});
 								}
-								
+
 								update(category, id);
 							};
 						})(id, category, all)
@@ -221,7 +227,7 @@ for (var category in components) {
 				all[id].owner? {
 					tag: 'a',
 					properties: {
-						href: 'http://github.com/' + all[id].owner,
+						href: 'https://github.com/' + all[id].owner,
 						className: 'owner',
 						target: '_blank'
 					},
@@ -253,10 +259,10 @@ for (var category in components) {
 	}
 }
 
-form.elements.compression[0].onclick = 
+form.elements.compression[0].onclick =
 form.elements.compression[1].onclick = function() {
 	minified = !!+this.value;
-	
+
 	getFilesSizes();
 };
 
@@ -273,18 +279,18 @@ function getFileSize(filepath) {
 function getFilesSizes() {
 	for (var category in components) {
 		var all = components[category];
-		
+
 		for (var id in all) {
 			if(id === 'meta') {
 				continue;
 			}
-			
+
 			var distro = all[id].files[minified? 'minified' : 'dev'],
 			    files = distro.paths;
-				
+
 			files.forEach(function (filepath) {
 				var file = cache[filepath] = cache[filepath] || {};
-				
+
 				if(!file.size) {
 
 					(function(category, id) {
@@ -330,7 +336,7 @@ function prettySize(size) {
 function update(updatedCategory, updatedId){
 	// Update total size
 	var total = {js: 0, css: 0}, updated = {js: 0, css: 0};
-	
+
 	for (var category in components) {
 		var all = components[category];
 		var allChecked = true;
@@ -340,14 +346,14 @@ function update(updatedCategory, updatedId){
 
 			if (info.enabled || id == updatedId) {
 				var distro = info.files[minified? 'minified' : 'dev'];
-				
+
 				distro.paths.forEach(function(path) {
 					if (cache[path]) {
 						var file = cache[path];
 
 						var type = path.match(/\.(\w+)$/)[1],
 						    size = file.size || 0;
-						    
+
 						if (info.enabled) {
 
 							if (!file.contentsPromise) {
@@ -356,7 +362,7 @@ function update(updatedCategory, updatedId){
 
 							total[type] += size;
 						}
-						
+
 						if (id == updatedId) {
 							updated[type] += size;
 						}
@@ -381,7 +387,7 @@ function update(updatedCategory, updatedId){
 			$('input[name="check-all-' + category + '"]').checked = allChecked;
 		}
 	}
-	
+
 	total.all = total.js + total.css;
 
 	if (updatedId) {
@@ -394,19 +400,19 @@ function update(updatedCategory, updatedId){
 				(updated.css ? Math.round(100 * updated.css / updated.all) + '% CSS' : '')
 		});
 	}
-	
+
 	$('#filesize').textContent = prettySize(total.all);
-	
+
 	$u.element.prop($('#percent-js'), {
 		textContent: Math.round(100 * total.js / total.all) + '%',
 		title: prettySize(total.js)
 	});
-	
+
 	$u.element.prop($('#percent-css'), {
 		textContent: Math.round(100 * total.css / total.all) + '%',
 		title: prettySize(total.css)
 	});
-	
+
 	delayedGenerateCode();
 }
 
@@ -459,10 +465,10 @@ function getSortedComponentsByRequirements(components){
 function generateCode(){
 	var promises = [];
 	var redownload = {};
-	
+
 	for (var category in components) {
 		var all = components[category];
-		
+
 		// In case if one component requires other, required component should go first.
 		var sorted = getSortedComponentsByRequirements(all);
 
@@ -472,9 +478,9 @@ function generateCode(){
 			if(id === 'meta') {
 				continue;
 			}
-			
+
 			var info = all[id];
-			if (info.enabled) {						
+			if (info.enabled) {
 				if (category !== 'core') {
 					redownload[category] = redownload[category]  || [];
 					redownload[category].push(id);
@@ -482,7 +488,7 @@ function generateCode(){
 				info.files[minified? 'minified' : 'dev'].paths.forEach(function (path) {
 					if (cache[path]) {
 						var type = path.match(/\.(\w+)$/)[1];
-						
+
 						promises.push({
 							contentsPromise: cache[path].contentsPromise,
 							path: path,
@@ -509,7 +515,7 @@ function generateCode(){
 			error.innerHTML = '';
 			$u.element.contents(error, errors);
 		}
-	
+
 		var redownloadUrl = window.location.href.split("#")[0] + "#";
 		for (var category in redownload) {
 			redownloadUrl += category + "=" + redownload[category].join('+') + "&";
@@ -521,10 +527,10 @@ function generateCode(){
 
 		for (var type in code) {
 			var codeElement = $('#download-' + type + ' code');
-			
+
 			codeElement.textContent = versionComment + "\n" + code[type];
 			Prism.highlightElement(codeElement, true);
-			
+
 			$('#download-' + type + ' .download-button').href = 'data:application/octet-stream;charset=utf-8,' + encodeURIComponent(versionComment + "\n" + code[type]);
 		}
 	});
