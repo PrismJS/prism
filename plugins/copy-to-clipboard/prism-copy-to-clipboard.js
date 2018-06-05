@@ -1,3 +1,7 @@
+if(typeof textCopy == 'undefined') var textCopy = 'Copy';
+if(typeof textCopied == 'undefined') var textCopied = 'Copied!';
+if(typeof errorCopied == 'undefined') var errorCopied = 'Press Ctrl+C to copy';
+
 (function(){
 	if (typeof self === 'undefined' || !self.Prism || !self.document) {
 		return;
@@ -37,7 +41,7 @@
 
 	Prism.plugins.toolbar.registerButton('copy-to-clipboard', function (env) {
 		var linkCopy = document.createElement('a');
-		linkCopy.textContent = 'Copy';
+		linkCopy.textContent = textCopy;
 
 		if (!ClipboardJS) {
 			callbacks.push(registerClipboard);
@@ -55,12 +59,12 @@
 			});
 
 			clip.on('success', function() {
-				linkCopy.textContent = 'Copied!';
+				linkCopy.textContent = textCopied;
 
 				resetText();
 			});
 			clip.on('error', function () {
-				linkCopy.textContent = 'Press Ctrl+C to copy';
+				linkCopy.textContent = errorCopied;
 
 				resetText();
 			});
@@ -68,7 +72,7 @@
 
 		function resetText() {
 			setTimeout(function () {
-				linkCopy.textContent = 'Copy';
+				linkCopy.textContent = textCopy;
 			}, 5000);
 		}
 	});
