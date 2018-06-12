@@ -20,3 +20,7 @@ Prism depends on community contributions to expand and cover a wider array of us
 - If you add a new language definition, theme or plugin, you need to add it to `components.js` as well, so that it becomes available to the download build page.
 
 Thank you so much for contributing!!
+
+## Translations
+
+* [![中文说明](http://awesomes.oss-cn-beijing.aliyuncs.com/readme.png)](http://www.awesomes.cn/repo/PrismJS/prism)
