@@ -44,7 +44,7 @@ postfix
 precedence
 prefix
 private
-Protocol
+protocol
 public
 repeat
 required
@@ -126,7 +126,7 @@ __LINE__
 	["keyword", "precedence"],
 	["keyword", "prefix"],
 	["keyword", "private"],
-	["keyword", "Protocol"],
+	["keyword", "protocol"],
 	["keyword", "public"],
 	["keyword", "repeat"],
 	["keyword", "required"],
