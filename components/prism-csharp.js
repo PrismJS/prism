@@ -47,6 +47,24 @@ Prism.languages.csharp = Prism.languages.extend('clike', {
 });
 
 Prism.languages.insertBefore('csharp', 'class-name', {
+	'type-expression': {
+		// default(Foo), typeof(Foo<Bar>)
+		pattern: /(\b(?:default|typeof)\(\s*)[A-Z]\w*(?:\.\w+)*(?:<.+?>(?:\.\w+)*)?(?=\s*\))/,
+		lookbehind: true,
+		inside: {
+			keyword: Prism.languages.csharp.keyword,
+			'class-name': {
+				pattern: /\b[A-Z]\w*(?:\.\w+)*\b/,
+				inside: {
+					punctuation: /\./
+				}
+			},
+			punctuation: /[<>(),.:[\]]/
+		}
+	}
+});
+
+Prism.languages.insertBefore('csharp', 'class-name', {
 	'constructor-invocation': {
 		// new List<Foo<Bar[]>> { }
 		pattern: /(\bnew\s+)[A-Z]\w*(?:\.\w+)*(?:<.+?>(?:\.\w+)*)?\s*(?=[[({])/,
