@@ -91,7 +91,7 @@
 			lookbehind: true
 		},
 		// Highlight variable names as variables in the left-hand part
-		// of assignments (also for “+=” for arrays). 
+		// of assignments (“=” and “+=”).
 		'assign-left': {
 			pattern: /(^|[\s;|&]|<\()\w+(?=\+?=)/,
 			inside: {
@@ -116,7 +116,7 @@
 				greedy: true,
 				inside: insideString
 			},
-			// Here document with quotes around the tag
+			// Here-document with quotes around the tag
 			// → No expansion (so no “inside”).
 			{
 				pattern: /((?:^|[^<])<<-?\s*)["'](\w+?)["']\s*\r?\n(?:[\s\S])*?\r?\n\2/,
