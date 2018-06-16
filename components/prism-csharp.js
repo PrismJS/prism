@@ -69,6 +69,11 @@ Prism.languages.insertBefore('csharp', 'class-name', {
 		lookbehind: true,
 		inside: Prism.languages.csharp['type-expression'].inside
 	},
+	'return-type': {
+		// Foo<Bar> ForBar()
+		pattern: /\b[A-Z]\w*(?:\.\w+)*(?:<[^\r\n=;{]+?>(?:\.\w+)*)?(?:\[\s*(,\s*)*\])?(?=\s+(?:[A-Z]\w*\.)?(?:\w+(?:\s*<[^\r\n=;{]+?>)?\s*(?:[({]|=>)|this\s*\[))/,
+		inside: Prism.languages.csharp['type-expression'].inside
+	},
 	'generic-method': {
 		// foo<Bar>()
 		pattern: /\w+\s*<[^\r\n=;{]+?>\s*(?=\()/,
