@@ -24,3 +24,5 @@
 ----------------------------------------------------
 
 Checks for entities in strings, mainly according to echo and printf's manuals.
+Note that in some cases (“\x”, “\u”…) there's a limit to the number of
+characters that can be used afterwards to specify the bytes, etc.
