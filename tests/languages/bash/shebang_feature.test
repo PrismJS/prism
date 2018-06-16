@@ -1,9 +1,11 @@
-#!/bin/bash
+#! /usr/bin/env bash
+#/bin/bash
 
 ----------------------------------------------------
 
 [
-	["shebang", "#!/bin/bash"]
+	["shebang", "#! /usr/bin/env bash"],
+	["comment", "#/bin/bash"]
 ]
 
 ----------------------------------------------------
