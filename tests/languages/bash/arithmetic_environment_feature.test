@@ -32,24 +32,20 @@ for (( NUM=1 ; NUM<=1000 ; NUM++ ))
 		" bar\""
 	]],
 	["keyword", "for"],
-	["punctuation", "(("],
-    ["assign-left", [
-		"NUM"
-	]],
-	["operator", ["="]],
-	["number", "1"],
-	["punctuation", ";"],
-	" NUM",
-	["operator", [
-		"<"
-	]],
-	["operator", [
-		"="
-	]],
-	["number", "1000"],
-	["punctuation", ";"],
-	" NUM++ ",
-	["punctuation", "))"]
+    ["variable", [
+		["punctuation", "(("],
+		" NUM",
+		["operator", "="],
+		["number", "1"],
+		["punctuation", ";"],
+		" NUM",
+		["operator", "<="],
+		["number", "1000"],
+		["punctuation", ";"],
+		" NUM",
+		["operator", "++"],
+		["punctuation", "))"]
+	]]
 ]
 
 ----------------------------------------------------
