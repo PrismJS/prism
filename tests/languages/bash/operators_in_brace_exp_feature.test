@@ -1,0 +1,28 @@
+${x:1:2} ${x:-a} ${x:=a} ${x:?a} ${x:+a}
+${!x} ${x/a/b}
+${x#*a} ${x##*a} ${x%a*} ${x%%a*}
+${x^a} ${x^^a} ${x,a} ${x,,a}
+
+----------------------------------------------------
+
+[
+	["variable", ["${x", ["operator", ":"], "1", ["operator", ":"], "2}"]],
+	["variable", ["${x", ["operator", ":-"], "a}"]],
+	["variable", ["${x", ["operator", ":="], "a}"]],
+	["variable", ["${x", ["operator", ":?"], "a}"]],
+	["variable", ["${x", ["operator", ":+"], "a}"]],
+	["variable", ["${", ["operator", "!"], "x}"]],
+	["variable", ["${x", ["operator", "/"], "a", ["operator", "/"], "b}"]],
+	["variable", ["${x", ["operator", "#"], "*a}"]],
+	["variable", ["${x", ["operator", "##"], "*a}"]],
+	["variable", ["${x", ["operator", "%"], "a*}"]],
+	["variable", ["${x", ["operator", "%%"], "a*}"]],
+	["variable", ["${x", ["operator", "^"], "a}"]],
+	["variable", ["${x", ["operator", "^^"], "a}"]],
+	["variable", ["${x", ["operator", ","], "a}"]],
+	["variable", ["${x", ["operator", ",,"], "a}"]]
+]
+
+----------------------------------------------------
+
+Checks for operators in brace expansion.
