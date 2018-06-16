@@ -12,13 +12,6 @@ Prism.languages.csharp = Prism.languages.extend('clike', {
 	],
 	'class-name': [
 		{
-			// (Foo bar, Bar baz)
-			pattern: /\b[A-Z]\w*(?:\.\w+)*\b(?=\s+\w+)/,
-			inside: {
-				punctuation: /\./
-			}
-		},
-		{
 			// [Foo]
 			pattern: /(\[)[A-Z]\w*(?:\.\w+)*\b/,
 			lookbehind: true,
@@ -27,20 +20,25 @@ Prism.languages.csharp = Prism.languages.extend('clike', {
 			}
 		},
 		{
-			// class Foo : Bar
-			pattern: /(\b(?:class|interface)\s+[A-Z]\w*(?:\.\w+)*\s*:\s*)[A-Z]\w*(?:\.\w+)*\b/,
+			// class Foo
+			pattern: /(\b(?:class|enum|interface|struct)\s+)[A-Z]\w*(?:\.\w+)*(?:<.+?>(?:\.\w+)*)?/,
+			lookbehind: true,
+			inside: {
+				punctuation: /[<>(),.:[\]]/
+			}
+		},
+		{
+			// catch(Foo)
+			pattern: /(catch\s+\()[A-Z]\w*(?:\.\w+)*\b/,
 			lookbehind: true,
 			inside: {
 				punctuation: /\./
 			}
 		},
 		{
-			// class Foo
-			pattern: /((?:\b(?:class|interface|new)\s+)|(?:catch\s+\())[A-Z]\w*(?:\.\w+)*\b/,
-			lookbehind: true,
-			inside: {
-				punctuation: /\./
-			}
+			// where Foo
+			pattern: /(\bwhere\s+)[A-Z]\w*\b/,
+			lookbehind: true
 		}
 	],
 	'number': /\b0x[\da-f]+\b|(?:\b\d+\.?\d*|\B\.\d+)f?/i
@@ -69,16 +67,7 @@ Prism.languages.insertBefore('csharp', 'class-name', {
 		// new List<Foo<Bar[]>> { }
 		pattern: /(\bnew\s+)[A-Z]\w*(?:\.\w+)*(?:<.+?>(?:\.\w+)*)?\s*(?=[[({])/,
 		lookbehind: true,
-		inside: {
-			keyword: Prism.languages.csharp.keyword,
-			'class-name': {
-				pattern: /\b[A-Z]\w*(?:\.\w+)*\b/,
-				inside: {
-					punctuation: /\./
-				}
-			},
-			punctuation: /[<>(),.:[\]]/
-		}
+		inside: Prism.languages.csharp['type-expression'].inside
 	},
 	'generic-method': {
 		// foo<Bar>()
@@ -94,6 +83,18 @@ Prism.languages.insertBefore('csharp', 'class-name', {
 			keyword: Prism.languages.csharp.keyword,
 			punctuation: /[<>(),.:[\]]/
 		}
+	},
+	'type-list': {
+		// class Foo<F> : Bar, IList<FooBar>
+		// where F : Bar, IList<int>
+		pattern: /(\b(?:class|interface|struct|enum)\s+\w*(?:\.\w+)*(<.+?>)?(?:\.\w+)*\s*:\s*|\bwhere\s+\w+\s*:\s*)(?:\w+(?:<.+?>)?(?:\s*,)?\s*?)+(?=\s*(?:where|[{;]|=>))/,
+		lookbehind: true,
+		inside: Prism.languages.csharp['type-expression'].inside
+	},
+	'identifier-type': {
+		// (Foo bar, Bar baz, Foo[,,] bay, Foo<Bar, FooBar<Bar>> bax)
+		pattern: /\b[A-Z]\w*(?:\.\w+)*(?:<.+?>(?:\.\w+)*)?(?=(?:\s*\[\s*(?:,\s*)*\])?\s+\w+\s*[=,;:{)])/,
+		inside: Prism.languages.csharp['type-expression'].inside
 	},
 	'preprocessor': {
 		pattern: /(^\s*)#.*/m,
