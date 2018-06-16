@@ -1,0 +1,31 @@
+a |& b &> c
+a >&2
+a 2<&
+a <> b
+a &>> b
+
+----------------------------------------------------
+
+[
+	"a ",
+	["operator", ["|&"]],
+	" b ",
+	["operator", ["&>"]],
+	" c\r\na ",
+	["operator", [">"]],
+	["file-descriptor", "&2"],
+	"\r\na ",
+	["operator", [
+		["file-descriptor", "2"],
+		"<&"
+	]],
+	"\r\na ",
+	["operator", ["<>"]],
+	" b\r\na ",
+	["operator", ["&>>"]],
+	" b"
+]
+
+----------------------------------------------------
+
+Checks for input / output redirections and file descriptors.
