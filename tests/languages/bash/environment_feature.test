@@ -1,0 +1,19 @@
+$foo
+$IFS
+IFS=a
+
+----------------------------------------------------
+
+[
+	["variable", "$foo"],
+	["environment", "$IFS"],
+	["assign-left", [
+		["environment", "IFS"]
+	]],
+	["operator", ["="]],
+	"a"
+]
+
+----------------------------------------------------
+
+Checks for environment variables.
