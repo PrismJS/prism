@@ -28,6 +28,7 @@ class Works : LandAnimal {
 	["punctuation", "("],
 	["punctuation", ")"],
 	["punctuation", ";"],
+
 	"\r\ncontainer",
 	["punctuation", "."],
 	["generic-method", [
@@ -41,16 +42,20 @@ class Works : LandAnimal {
 	["punctuation", "("],
 	["punctuation", ")"],
 	["punctuation", ";"],
+
 	["keyword", "var"],
 	" container ",
 	["operator", "="],
 	["keyword", "new"],
-	["class-name", ["Container"]],
+	["constructor-invocation", [
+		["class-name", ["Container"]]
+	]],
 	["punctuation", "("],
 	"f ",
 	["operator", "="],
 	["operator", ">"],
 	["punctuation", "{"],
+
 	"\r\n    f",
 	["punctuation", "."],
 	["generic-method", [
@@ -71,12 +76,15 @@ class Works : LandAnimal {
 	["punctuation", "("],
 	["punctuation", ")"],
 	["punctuation", ";"],
+
 	["punctuation", "}"],
 	["punctuation", ")"],
 	["punctuation", ";"],
+
 	["keyword", "class"],
 	["class-name", ["LandAnimal"]],
 	["punctuation", "{"],
+
 	["keyword", "public"],
 	["keyword", "void"],
 	["function", "Move"],
@@ -89,10 +97,13 @@ class Works : LandAnimal {
 	["punctuation", ")"],
 	["punctuation", ";"],
 	["punctuation", "}"],
+
 	["keyword", "class"],
 	["class-name", ["Dog"]],
 	["punctuation", ":"],
-	["class-name", ["LandAnimal"]],
+	["type-list", [
+		["class-name", ["LandAnimal"]]
+	]],
 	["punctuation", "{"],
 	["keyword", "public"],
 	["keyword", "new"],
@@ -107,10 +118,13 @@ class Works : LandAnimal {
 	["punctuation", ")"],
 	["punctuation", ";"],
 	["punctuation", "}"],
+
 	["keyword", "class"],
 	["class-name", ["Works"]],
 	["punctuation", ":"],
-	["class-name", ["LandAnimal"]],
+	["type-list", [
+		["class-name", ["LandAnimal"]]
+	]],
 	["punctuation", "{"],
 	["keyword", "public"],
 	["keyword", "override"],
@@ -125,14 +139,17 @@ class Works : LandAnimal {
 	["punctuation", ")"],
 	["punctuation", ";"],
 	["punctuation", "}"],
+
 	["punctuation", "["],
 	["class-name", ["Required"]],
 	["punctuation", "]"],
+
 	["punctuation", "["],
 	["class-name", ["RequiredAttribute"]],
 	["punctuation", "("],
 	["punctuation", ")"],
 	["punctuation", "]"],
+
 	["punctuation", "["],
 	["class-name", ["Range"]],
 	["punctuation", "("],

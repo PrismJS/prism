@@ -1,0 +1,105 @@
+int a;
+Foo b;
+Foo<Bar> c = null;
+static Foo<(Bar, int)>[,,] d;
+void Foo(Foo a, Bar<Foo> b, Bar[, ] c, Foo<(int, int)> d);
+Bar<Foo> Abc => false;
+
+----------------------------------------------------
+
+[
+	["keyword", "int"],
+	" a",
+	["punctuation", ";"],
+
+	["identifier-type", [
+		["class-name", ["Foo"]]
+	]],
+	" b",
+	["punctuation", ";"],
+
+	["identifier-type", [
+		["class-name", ["Foo"]],
+		["punctuation", "<"],
+		["class-name", ["Bar"]],
+		["punctuation", ">"]
+	]],
+	" c ",
+	["operator", "="],
+	["keyword", "null"],
+	["punctuation", ";"],
+
+	["keyword", "static"],
+	["identifier-type", [
+		["class-name", ["Foo"]],
+		["punctuation", "<"],
+		["punctuation", "("],
+		["class-name", ["Bar"]],
+		["punctuation", ","],
+		["keyword", "int"],
+		["punctuation", ")"],
+		["punctuation", ">"],
+		["punctuation", "["],
+		["punctuation", ","],
+		["punctuation", ","],
+		["punctuation", "]"]
+	]],
+	" d",
+	["punctuation", ";"],
+
+	["keyword", "void"],
+	["function", "Foo"],
+	["punctuation", "("],
+	["identifier-type", [
+		["class-name", ["Foo"]]
+	]],
+	" a",
+	["punctuation", ","],
+	["identifier-type", [
+		["class-name", ["Bar"]],
+		["punctuation", "<"],
+		["class-name", ["Foo"]],
+		["punctuation", ">"]
+	]],
+	" b",
+	["punctuation", ","],
+	["identifier-type", [
+		["class-name", ["Bar"]],
+		["punctuation", "["],
+		["punctuation", ","],
+		["punctuation", "]"]
+	]],
+	" c",
+	["punctuation", ","],
+
+	["identifier-type", [
+		["class-name", ["Foo"]],
+		["punctuation", "<"],
+		["punctuation", "("],
+		["keyword", "int"],
+		["punctuation", ","],
+		["keyword", "int"],
+		["punctuation", ")"],
+		["punctuation", ">"]
+	]],
+	" d",
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["return-type", [
+		["class-name", ["Bar"]],
+		["punctuation", "<"],
+		["class-name", ["Foo"]],
+		["punctuation", ">"]
+	]],
+	" Abc ",
+	["operator", "="],
+	["operator", ">"],
+	["keyword", "false"],
+	["punctuation", ";"]
+]
+
+
+----------------------------------------------------
+
+Checks for class names in variables and parameters.

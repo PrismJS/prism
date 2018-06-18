@@ -1,0 +1,24 @@
+class Foo
+interface BarBaz
+struct Foo
+enum Foo
+
+----------------------------------------------------
+
+[
+	["keyword", "class"],
+	["class-name", ["Foo"]],
+
+	["keyword", "interface"],
+	["class-name", ["BarBaz"]],
+
+	["keyword", "struct"],
+	["class-name", ["Foo"]],
+
+	["keyword", "enum"],
+	["class-name", ["Foo"]]
+]
+
+----------------------------------------------------
+
+Checks for class names at the class declaration.

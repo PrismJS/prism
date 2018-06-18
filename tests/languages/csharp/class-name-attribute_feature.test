@@ -1,0 +1,34 @@
+[Foobar]
+[Foobar(Foo, Bar)]
+var a = d[Foo];
+
+----------------------------------------------------
+
+[
+	["punctuation", "["],
+	["class-name", ["Foobar"]],
+	["punctuation", "]"],
+	["punctuation", "["],
+
+	["class-name", ["Foobar"]],
+	["punctuation", "("],
+	"Foo",
+	["punctuation", ","],
+	" Bar",
+	["punctuation", ")"],
+	["punctuation", "]"],
+
+	["keyword", "var"],
+	" a ",
+	["operator", "="],
+	" d",
+	["punctuation", "["],
+	"Foo",
+	["punctuation", "]"],
+	["punctuation", ";"]
+]
+
+
+----------------------------------------------------
+
+Checks for class names of attributes.

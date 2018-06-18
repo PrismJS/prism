@@ -1,0 +1,65 @@
+default(int)
+default(Foo)
+typeof(Foo)
+default(Foo<Bar, IFoo<Bar>>)
+typeof(Foo<Bar, (Foo, Foo, int)>)
+
+----------------------------------------------------
+
+[
+	["keyword", "default"],
+	["punctuation", "("],
+	["keyword", "int"],
+	["punctuation", ")"],
+
+	["keyword", "default"],
+	["punctuation", "("],
+	["type-expression", [
+		["class-name", ["Foo"]]
+	]],
+	["punctuation", ")"],
+
+	["keyword", "typeof"],
+	["punctuation", "("],
+	["type-expression", [
+		["class-name", ["Foo"]]
+	]],
+	["punctuation", ")"],
+
+	["keyword", "default"],
+	["punctuation", "("],
+	["type-expression", [
+		["class-name", ["Foo"]],
+		["punctuation", "<"],
+		["class-name", ["Bar"]],
+		["punctuation", ","],
+		["class-name", ["IFoo"]],
+		["punctuation", "<"],
+		["class-name", ["Bar"]],
+		["punctuation", ">"],
+		["punctuation", ">"]
+	]],
+	["punctuation", ")"],
+
+	["keyword", "typeof"],
+	["punctuation", "("],
+	["type-expression", [
+		["class-name", ["Foo"]],
+		["punctuation", "<"],
+		["class-name", ["Bar"]],
+		["punctuation", ","],
+		["punctuation", "("],
+		["class-name", ["Foo"]],
+		["punctuation", ","],
+		["class-name", ["Foo"]],
+		["punctuation", ","],
+		["keyword", "int"],
+		["punctuation", ")"],
+		["punctuation", ">"]
+	]],
+	["punctuation", ")"]
+]
+
+----------------------------------------------------
+
+Checks for class names of type expressions.

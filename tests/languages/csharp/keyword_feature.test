@@ -51,6 +51,7 @@ join
 let
 lock
 long
+nameof
 namespace
 new;
 null
@@ -155,6 +156,7 @@ yield
 	["keyword", "let"],
 	["keyword", "lock"],
 	["keyword", "long"],
+	["keyword", "nameof"],
 	["keyword", "namespace"],
 	["keyword", "new"], ["punctuation", ";"],
 	["keyword", "null"],

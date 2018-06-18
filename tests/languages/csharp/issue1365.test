@@ -13,7 +13,9 @@ public class SomeClass : BaseClass {}
 	["keyword", "void"],
 	["function", "Init"],
 	["punctuation", "("],
-	["class-name", ["SomeClass"]],
+	["identifier-type", [
+		["class-name", ["SomeClass"]]
+	]],
 	" file",
 	["punctuation", ")"],
 	["punctuation", ";"],
@@ -29,7 +31,9 @@ public class SomeClass : BaseClass {}
 	["keyword", "class"],
 	["class-name", ["SomeClass"]],
 	["punctuation", ":"],
-	["class-name", ["BaseClass"]],
+	["type-list", [
+		["class-name", ["BaseClass"]]
+	]],
 	["punctuation", "{"],
 	["punctuation", "}"]
 ]

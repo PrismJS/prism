@@ -1,0 +1,57 @@
+class Foo : Bar {}
+interface BarBaz : IFoo {}
+struct Foo : Bar, IFoo {}
+class FooBar : Bar<Foo, IFoo>, IFoo {}
+
+----------------------------------------------------
+
+[
+	["keyword", "class"],
+	["class-name", ["Foo"]],
+	["punctuation", ":"],
+	["type-list", [
+		["class-name", ["Bar"]]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "interface"],
+	["class-name", ["BarBaz"]],
+	["punctuation", ":"],
+	["type-list", [
+		["class-name", ["IFoo"]]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "struct"],
+	["class-name", ["Foo"]],
+	["punctuation", ":"],
+	["type-list", [
+		["class-name", ["Bar"]],
+		["punctuation", ","],
+		["class-name", ["IFoo"]]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "class"],
+	["class-name", ["FooBar"]],
+	["punctuation", ":"],
+	["type-list", [
+		["class-name", ["Bar"]],
+		["punctuation", "<"],
+		["class-name", ["Foo"]],
+		["punctuation", ","],
+		["class-name", ["IFoo"]],
+		["punctuation", ">"],
+		["punctuation", ","],
+		["class-name", ["IFoo"]]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for class names at the list of inherited classes and interfaces.
