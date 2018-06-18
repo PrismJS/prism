@@ -13,7 +13,7 @@ Prism.languages.csharp = Prism.languages.extend('clike', {
 	'class-name': [
 		{
 			// [Foo]
-			pattern: /(\[)[A-Z]\w*(?:\.\w+)*\b/,
+			pattern: /((?:^|\W)\[)[A-Z]\w*(?:\.\w+)*\b/,
 			lookbehind: true,
 			inside: {
 				punctuation: /\./
@@ -76,7 +76,7 @@ Prism.languages.insertBefore('csharp', 'class-name', {
 	},
 	'generic-method': {
 		// foo<Bar>()
-		pattern: /\w+\s*<[^\r\n=;{]+?>\s*(?=\()/,
+		pattern: /\w+\s*<[^\r\n=;{)]+?>\s*(?=\()/,
 		inside: {
 			function: /^\w+/,
 			'class-name': {
