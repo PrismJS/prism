@@ -1,22 +1,82 @@
-foo = function () {}
-bar = function baz () {}
+foo = function ( x, y) {}
+bar = async function baz (x ) {}
 fooBar = x => x
+fooBar = (x, y) => x
 ಠ_ಠ = () => {}
-Ƞȡ_҇ = (ಠ, Ƞ = 2) => {}
+Ƞȡ_҇ = async (ಠ, Ƞ = 2) => {}
 
 ----------------------------------------------------
 
 [
-	["function-variable", "foo"], ["operator", "="], ["keyword", "function"],
-	["punctuation", "("], ["punctuation", ")"], ["punctuation", "{"], ["punctuation", "}"],
-	["function-variable", "bar"], ["operator", "="], ["keyword", "function"], ["function", "baz"],
-	["punctuation", "("], ["punctuation", ")"], ["punctuation", "{"], ["punctuation", "}"],
-	["function-variable", "fooBar"], ["operator", "="], " x ", ["operator", "=>"], " x\r\n",
-	["function-variable", "ಠ_ಠ"], ["operator", "="], ["punctuation", "("], ["punctuation", ")"],
-	["operator", "=>"], ["punctuation", "{"], ["punctuation", "}"],
-	["function-variable", "Ƞȡ_҇"], ["operator", "="],
-	["punctuation", "("], "ಠ", ["punctuation", ","], " Ƞ ", ["operator", "="], ["number", "2"], ["punctuation", ")"],
-	["operator", "=>"], ["punctuation", "{"], ["punctuation", "}"]
+	["function-variable", "foo"],
+	["operator", "="],
+	["keyword", "function"],
+	["es5-function-parameter", [
+		["punctuation", "("],
+		" x",
+		["punctuation", ","],
+		" y",
+		["punctuation", ")"]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["function-variable", "bar"],
+	["operator", "="],
+	["keyword", "async"],
+	["keyword", "function"],
+	["es5-function-parameter", [
+		["function", "baz"],
+		["punctuation", "("],
+		"x ",
+		["punctuation", ")"]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["function-variable", "fooBar"],
+	["operator", "="],
+	["es6-function-parameter", [
+		"x"
+	]],
+	["operator", "=>"], " x\r\n",
+
+	["function-variable", "fooBar"],
+	["operator", "="],
+	["es6-function-parameter", [
+		["punctuation", "("],
+		"x",
+		["punctuation", ","],
+		" y",
+		["punctuation", ")"]
+	]],
+	["operator", "=>"], " x\r\n",
+
+	["function-variable", "ಠ_ಠ"],
+	["operator", "="],
+	["es6-function-parameter", [
+		["punctuation", "("],
+		["punctuation", ")"]
+	]],
+	["operator", "=>"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["function-variable", "Ƞȡ_҇"],
+	["operator", "="],
+	["keyword", "async"],
+	["es6-function-parameter", [
+		["punctuation", "("],
+		"ಠ",
+		["punctuation", ","],
+		" Ƞ ",
+		["operator", "="],
+		["number", "2"],
+		["punctuation", ")"]
+	]],
+	["operator", "=>"],
+	["punctuation", "{"],
+	["punctuation", "}"]
 ]
 
 ----------------------------------------------------

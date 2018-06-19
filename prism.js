@@ -737,8 +737,24 @@ Prism.languages.insertBefore('javascript', 'keyword', {
 	},
 	// This must be declared before keyword because we use "function" inside the look-forward
 	'function-variable': {
-		pattern: /[_$a-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\s*=\s*(?:function\b|(?:\([^()]*\)|[_$a-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*)\s*=>))/i,
+		pattern: /[_$a-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\s*=\s*(?:async\s*)?(?:function\b|(?:\([^()]*\)|[_$a-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*)\s*=>))/i,
 		alias: 'function'
+	},
+	'es5-function-parameter': {
+		pattern: /(function\s*)(?:[_$a-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*)?\s*(\([^()]*\))/,
+		lookbehind: true,
+		inside: Prism.languages.javascript,
+		alias: 'parameter'
+	},
+	'es6-function-parameter': {
+		pattern: /(\([^()]*\)|[_$a-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*)(?=\s*=>)/,
+		inside: Prism.languages.javascript,
+		alias: 'parameter'
+	},
+	'es6-class-method-parameter': {
+		pattern: /\b(?!await|delete|export|for|if|new|return|switch|throw|typeof|while|yield)(?:[_$a-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*\s*)(\([^()]*\))(?=\s*\{)/,
+		inside: Prism.languages.javascript,
+		alias: 'parameter'
 	},
 	'constant': /\b[A-Z][A-Z\d_]*\b/
 });

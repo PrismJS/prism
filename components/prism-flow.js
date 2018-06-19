@@ -10,6 +10,8 @@
 		]
 	});
 	Prism.languages.flow['function-variable'].pattern = /[_$a-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\s*=\s*(?:function\b|(?:\([^()]*\)(?:\s*:\s*\w+)?|[_$a-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*)\s*=>))/i;
+	delete Prism.languages.flow['es5-function-parameter'];
+	delete Prism.languages.flow['es6-function-parameter'];
 
 	Prism.languages.insertBefore('flow', 'operator', {
 		'flow-punctuation': {

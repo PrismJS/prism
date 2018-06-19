@@ -66,9 +66,11 @@ class Test extends Component {
 	["keyword", "extends"],
 	["class-name", ["Component"]],
 	["punctuation", "{"],
-	["function", "render"],
-	["punctuation", "("],
-	["punctuation", ")"],
+	["es6-class-method-parameter", [
+		["function", "render"],
+		["punctuation", "("],
+		["punctuation", ")"]
+	]],
 	["punctuation", "{"],
 	["keyword","return"],
 	["tag", [

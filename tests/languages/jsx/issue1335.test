@@ -20,9 +20,11 @@
 		["script", [
 			["script-punctuation", "="],
 			["punctuation", "{"],
-			["punctuation", "("],
-			"e",
-			["punctuation", ")"],
+			["es6-function-parameter", [
+				["punctuation", "("],
+				"e",
+				["punctuation", ")"]
+			]],
 			["operator", "=>"],
 			["keyword", "this"],
 			["punctuation", "."],

@@ -1,0 +1,54 @@
+class Test {
+	foo(x, y = 0) {}
+	async bar(x, y = 0) {}
+	_ ( ) {}
+}
+
+----------------------------------------------------
+
+[
+	["keyword", "class"],
+	["class-name", ["Test"]],
+	["punctuation", "{"],
+
+	["es6-class-method-parameter", [
+		["function", "foo"],
+		["punctuation", "("],
+		"x",
+		["punctuation", ","],
+		" y ",
+		["operator", "="],
+		["number", "0"],
+		["punctuation", ")"]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "async"],
+	["es6-class-method-parameter", [
+		["function", "bar"],
+		["punctuation", "("],
+		"x",
+		["punctuation", ","],
+		" y ",
+		["operator", "="],
+		["number", "0"],
+		["punctuation", ")"]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["es6-class-method-parameter", [
+		["function", "_"],
+		["punctuation", "("],
+		["punctuation", ")"]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for class methods.
