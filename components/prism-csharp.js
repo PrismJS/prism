@@ -41,7 +41,7 @@ Prism.languages.csharp = Prism.languages.extend('clike', {
 			lookbehind: true
 		}
 	],
-	'number': /\b0x[\da-f]+\b|(?:\b\d+\.?\d*|\B\.\d+)f?/i
+	'number': /(?:\b0(?:x[\da-f_]*[\da-f]|b[01_]*[01])|\B\.\d+|\b\d+(?:_+\d+)*\.?\d*)(?:ul|[flu])?\b/i
 });
 
 Prism.languages.insertBefore('csharp', 'class-name', {
