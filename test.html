@@ -284,28 +284,33 @@ function loadLanguage (lang)
 /**
  * Loads a plugin including it css file
  *
- * @param  {string} plugin the plugin to load
+ * @param {string} pluginName the plugin to load
  * @type {Promise} the promise which resolves as soon as plugin is loaded
  */
-function loadPlugin (plugin)
+function loadPlugin (pluginName)
 {
-	if (!components.plugins[plugin]){
+	var plugin = components.plugins[pluginName];
+	if (!plugin){
 		return;
 	}
 
 	var pluginPath = components.plugins.meta.path;
 
 	return new Promise(function (resolve) {
-		pluginPath = pluginPath.replace(/{id}/g, plugin);
+		pluginPath = pluginPath.replace(/{id}/g, pluginName);
 
 		$u.script(pluginPath + '.js', function() {
 			this.setAttribute('data-type', 'plugin');
 
-			var style = document.createElement('link');
-			style.setAttribute('rel', 'stylesheet');
-			style.setAttribute('href', pluginPath + '.css')
-			style.setAttribute('data-type', 'plugin');
-			document.body.appendChild(style);
+			var hasCss = !!!plugin.noCSS;
+
+			if (hasCss) {
+				var style = document.createElement('link');
+				style.setAttribute('rel', 'stylesheet');
+				style.setAttribute('href', pluginPath + '.css')
+				style.setAttribute('data-type', 'plugin');
+				document.body.appendChild(style);
+			}
 
 			resolve();
 		});
@@ -330,22 +335,18 @@ function reloadPlugins ()
 	return new Promise(function (resolve) {
 		$u.script('prism.js', function () {
 			this.setAttribute('id', 'prism');
-
-			Promise.all(
-				selectedPlugins.map(function (plugin) {
-					return loadPlugin(plugin);
-				})
-			).then(resolve);
+			resolve();
 		});
+	}).then(function () {
+		return Promise.all(selectedPlugins.map(loadPlugin));
 	});
-
 }
 
 /**
  * Returns all dependencies (as identifiers) of a specific language
  *
  * @param {string} lang
- * @returns {Array.<string>} the list of dependencies. Empty if the language has none.
+ * @returns {Array<string>} the list of dependencies. Empty if the language has none.
  */
 function getDependenciesOfLanguage (lang)
 {
@@ -365,23 +366,12 @@ radios[0].checked = true;
 radios[0].onclick();
 
 var textarea = $('textarea', form);
-var savedCode;
-	if (savedCode = window.localStorage ? window.localStorage.getItem('test_code') : null){
-		textarea.textContent = savedCode;
-	}
-
-(textarea.onblur = function() {
-	if (window.localStorage){
-		localStorage.setItem('test_code', this.value);
-	}
-},
-textarea.oninput = function() {
+(textarea.oninput = function() {
 	code.textContent = this.value || '';
 	highlightCode();
 }).call(textarea);
 
 })();
-
 </script>
 
 </body>
