@@ -2,101 +2,180 @@ Prism.languages.perl = {
 	'comment': [
 		{
 			// POD
-			pattern: /((?:^|\n)\s*)=\w+[\s\S]*?=cut.*/,
+			pattern: /(^\s*)=\w+[\s\S]*?=cut.*/m,
 			lookbehind: true
 		},
 		{
-			pattern: /(^|[^\\$])#.*?(\r?\n|$)/,
+			pattern: /(^|[^\\$])#.*/,
 			lookbehind: true
 		}
 	],
 	// TODO Could be nice to handle Heredoc too.
 	'string': [
 		// q/.../
-		/\b(?:q|qq|qx|qw)\s*([^a-zA-Z0-9\s\{\(\[<])(\\?.)*?\s*\1/,
+		{
+			pattern: /\b(?:q|qq|qx|qw)\s*([^a-zA-Z0-9\s{(\[<])(?:(?!\1)[^\\]|\\[\s\S])*\1/,
+			greedy: true
+		},
 	
 		// q a...a
-		/\b(?:q|qq|qx|qw)\s+([a-zA-Z0-9])(\\?.)*?\s*\1/,
+		{
+			pattern: /\b(?:q|qq|qx|qw)\s+([a-zA-Z0-9])(?:(?!\1)[^\\]|\\[\s\S])*\1/,
+			greedy: true
+		},
 	
 		// q(...)
-		/\b(?:q|qq|qx|qw)\s*\(([^()]|\\.)*\s*\)/,
+		{
+			pattern: /\b(?:q|qq|qx|qw)\s*\((?:[^()\\]|\\[\s\S])*\)/,
+			greedy: true
+		},
 	
 		// q{...}
-		/\b(?:q|qq|qx|qw)\s*\{([^{}]|\\.)*\s*\}/,
+		{
+			pattern: /\b(?:q|qq|qx|qw)\s*\{(?:[^{}\\]|\\[\s\S])*\}/,
+			greedy: true
+		},
 	
 		// q[...]
-		/\b(?:q|qq|qx|qw)\s*\[([^[\]]|\\.)*\s*\]/,
+		{
+			pattern: /\b(?:q|qq|qx|qw)\s*\[(?:[^[\]\\]|\\[\s\S])*\]/,
+			greedy: true
+		},
 	
 		// q<...>
-		/\b(?:q|qq|qx|qw)\s*<([^<>]|\\.)*\s*>/,
+		{
+			pattern: /\b(?:q|qq|qx|qw)\s*<(?:[^<>\\]|\\[\s\S])*>/,
+			greedy: true
+		},
 
-		// "...", '...', `...`
-		/("|'|`)(\\?.)*?\1/
+		// "...", `...`
+		{
+			pattern: /("|`)(?:(?!\1)[^\\]|\\[\s\S])*\1/,
+			greedy: true
+		},
+
+		// '...'
+		// FIXME Multi-line single-quoted strings are not supported as they would break variables containing '
+		{
+			pattern: /'(?:[^'\\\r\n]|\\.)*'/,
+			greedy: true
+		}
 	],
 	'regex': [
 		// m/.../
-		/\b(?:m|qr)\s*([^a-zA-Z0-9\s\{\(\[<])(\\?.)*?\s*\1[msixpodualgc]*/,
+		{
+			pattern: /\b(?:m|qr)\s*([^a-zA-Z0-9\s{(\[<])(?:(?!\1)[^\\]|\\[\s\S])*\1[msixpodualngc]*/,
+			greedy: true
+		},
 	
 		// m a...a
-		/\b(?:m|qr)\s+([a-zA-Z0-9])(\\?.)*?\s*\1[msixpodualgc]*/,
+		{
+			pattern: /\b(?:m|qr)\s+([a-zA-Z0-9])(?:(?!\1)[^\\]|\\[\s\S])*\1[msixpodualngc]*/,
+			greedy: true
+		},
 	
 		// m(...)
-		/\b(?:m|qr)\s*\(([^()]|\\.)*\s*\)[msixpodualgc]*/,
+		{
+			pattern: /\b(?:m|qr)\s*\((?:[^()\\]|\\[\s\S])*\)[msixpodualngc]*/,
+			greedy: true
+		},
 	
 		// m{...}
-		/\b(?:m|qr)\s*\{([^{}]|\\.)*\s*\}[msixpodualgc]*/,
+		{
+			pattern: /\b(?:m|qr)\s*\{(?:[^{}\\]|\\[\s\S])*\}[msixpodualngc]*/,
+			greedy: true
+		},
 	
 		// m[...]
-		/\b(?:m|qr)\s*\[([^[\]]|\\.)*\s*\][msixpodualgc]*/,
+		{
+			pattern: /\b(?:m|qr)\s*\[(?:[^[\]\\]|\\[\s\S])*\][msixpodualngc]*/,
+			greedy: true
+		},
 	
 		// m<...>
-		/\b(?:m|qr)\s*<([^<>]|\\.)*\s*>[msixpodualgc]*/,
-	
+		{
+			pattern: /\b(?:m|qr)\s*<(?:[^<>\\]|\\[\s\S])*>[msixpodualngc]*/,
+			greedy: true
+		},
+
+		// The lookbehinds prevent -s from breaking
+		// FIXME We don't handle change of separator like s(...)[...]
 		// s/.../.../
-		/\b(?:s|tr|y)\s*([^a-zA-Z0-9\s\{\(\[<])(\\?.)*?\s*\1\s*((?!\1).|\\.)*\s*\1[msixpodualgcer]*/,
+		{
+			pattern: /(^|[^-]\b)(?:s|tr|y)\s*([^a-zA-Z0-9\s{(\[<])(?:(?!\2)[^\\]|\\[\s\S])*\2(?:(?!\2)[^\\]|\\[\s\S])*\2[msixpodualngcer]*/,
+			lookbehind: true,
+			greedy: true
+		},
 	
 		// s a...a...a
-		/\b(?:s|tr|y)\s+([a-zA-Z0-9])(\\?.)*?\s*\1\s*((?!\1).|\\.)*\s*\1[msixpodualgcer]*/,
+		{
+			pattern: /(^|[^-]\b)(?:s|tr|y)\s+([a-zA-Z0-9])(?:(?!\2)[^\\]|\\[\s\S])*\2(?:(?!\2)[^\\]|\\[\s\S])*\2[msixpodualngcer]*/,
+			lookbehind: true,
+			greedy: true
+		},
 	
 		// s(...)(...)
-		/\b(?:s|tr|y)\s*\(([^()]|\\.)*\s*\)\s*\(\s*([^()]|\\.)*\s*\)[msixpodualgcer]*/,
+		{
+			pattern: /(^|[^-]\b)(?:s|tr|y)\s*\((?:[^()\\]|\\[\s\S])*\)\s*\((?:[^()\\]|\\[\s\S])*\)[msixpodualngcer]*/,
+			lookbehind: true,
+			greedy: true
+		},
 	
 		// s{...}{...}
-		/\b(?:s|tr|y)\s*\{([^{}]|\\.)*\s*\}\s*\{\s*([^{}]|\\.)*\s*\}[msixpodualgcer]*/,
+		{
+			pattern: /(^|[^-]\b)(?:s|tr|y)\s*\{(?:[^{}\\]|\\[\s\S])*\}\s*\{(?:[^{}\\]|\\[\s\S])*\}[msixpodualngcer]*/,
+			lookbehind: true,
+			greedy: true
+		},
 	
 		// s[...][...]
-		/\b(?:s|tr|y)\s*\[([^[\]]|\\.)*\s*\]\s*\[\s*([^[\]]|\\.)*\s*\][msixpodualgcer]*/,
+		{
+			pattern: /(^|[^-]\b)(?:s|tr|y)\s*\[(?:[^[\]\\]|\\[\s\S])*\]\s*\[(?:[^[\]\\]|\\[\s\S])*\][msixpodualngcer]*/,
+			lookbehind: true,
+			greedy: true
+		},
 	
 		// s<...><...>
-		/\b(?:s|tr|y)\s*<([^<>]|\\.)*\s*>\s*<\s*([^<>]|\\.)*\s*>[msixpodualgcer]*/,
+		{
+			pattern: /(^|[^-]\b)(?:s|tr|y)\s*<(?:[^<>\\]|\\[\s\S])*>\s*<(?:[^<>\\]|\\[\s\S])*>[msixpodualngcer]*/,
+			lookbehind: true,
+			greedy: true
+		},
 	
 		// /.../
-		/\/(\[.+?]|\\.|[^\/\r\n])*\/[msixpodualgc]*(?=\s*($|[\r\n,.;})&|\-+*=~<>!?^]|(lt|gt|le|ge|eq|ne|cmp|not|and|or|xor|x)\b))/
+		// The look-ahead tries to prevent two divisions on
+		// the same line from being highlighted as regex.
+		// This does not support multi-line regex.
+		{
+			pattern: /\/(?:[^\/\\\r\n]|\\.)*\/[msixpodualngc]*(?=\s*(?:$|[\r\n,.;})&|\-+*~<>!?^]|(lt|gt|le|ge|eq|ne|cmp|not|and|or|xor|x)\b))/,
+			greedy: true
+		}
 	],
 
 	// FIXME Not sure about the handling of ::, ', and #
 	'variable': [
 		// ${^POSTMATCH}
-		/[&*\$@%]\{\^[A-Z]+\}/,
+		/[&*$@%]\{\^[A-Z]+\}/,
 		// $^V
-		/[&*\$@%]\^[A-Z_]/,
+		/[&*$@%]\^[A-Z_]/,
 		// ${...}
-		/[&*\$@%]#?(?=\{)/,
+		/[&*$@%]#?(?=\{)/,
 		// $foo
-		/[&*\$@%]#?((::)*'?(?!\d)[\w$]+)+(::)*/i,
+		/[&*$@%]#?(?:(?:::)*'?(?!\d)[\w$]+)+(?:::)*/i,
 		// $1
-		/[&*\$@%]\d+/,
+		/[&*$@%]\d+/,
 		// $_, @_, %!
-		/[\$@%][!"#\$%&'()*+,\-.\/:;<=>?@[\\\]^_`{|}~]/
+		// The negative lookahead prevents from breaking the %= operator
+		/(?!%=)[$@%][!"#$%&'()*+,\-.\/:;<=>?@[\\\]^_`{|}~]/
 	],
 	'filehandle': {
 		// <>, <FOO>, _
-		pattern: /<(?!=).*>|\b_\b/,
+		pattern: /<(?![<=])\S*>|\b_\b/,
 		alias: 'symbol'
 	},
 	'vstring': {
 		// v1.2, 1.2.3
-		pattern: /v\d+(\.\d+)*|\d+(\.\d+){2,}/,
+		pattern: /v\d+(?:\.\d+)*|\d+(?:\.\d+){2,}/,
 		alias: 'string'
 	},
 	'function': {
@@ -105,8 +184,8 @@ Prism.languages.perl = {
 			keyword: /sub/
 		}
 	},
-	'keyword': /\b(any|break|continue|default|delete|die|do|else|elsif|eval|for|foreach|given|goto|if|last|local|my|next|our|package|print|redo|require|say|state|sub|switch|undef|unless|until|use|when|while)\b/,
-	'number': /(\n|\b)-?(0x[\dA-Fa-f](_?[\dA-Fa-f])*|0b[01](_?[01])*|(\d(_?\d)*)?\.?\d(_?\d)*([Ee]-?\d+)?)\b/,
-	'operator': /-[rwxoRWXOezsfdlpSbctugkTBMAC]\b|[-+*=~\/|&]{1,2}|<=?|>=?|\.{1,3}|[!?\\^]|\b(lt|gt|le|ge|eq|ne|cmp|not|and|or|xor|x)\b/,
+	'keyword': /\b(?:any|break|continue|default|delete|die|do|else|elsif|eval|for|foreach|given|goto|if|last|local|my|next|our|package|print|redo|require|say|state|sub|switch|undef|unless|until|use|when|while)\b/,
+	'number': /\b(?:0x[\dA-Fa-f](?:_?[\dA-Fa-f])*|0b[01](?:_?[01])*|(?:\d(?:_?\d)*)?\.?\d(?:_?\d)*(?:[Ee][+-]?\d+)?)\b/,
+	'operator': /-[rwxoRWXOezsfdlpSbctugkTBMAC]\b|\+[+=]?|-[-=>]?|\*\*?=?|\/\/?=?|=[=~>]?|~[~=]?|\|\|?=?|&&?=?|<(?:=>?|<=?)?|>>?=?|![~=]?|[%^]=?|\.(?:=|\.\.?)?|[\\?]|\bx(?:=|\b)|\b(?:lt|gt|le|ge|eq|ne|cmp|not|and|or|xor)\b/,
 	'punctuation': /[{}[\];(),:]/
 };

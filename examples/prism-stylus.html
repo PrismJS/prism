@@ -1,6 +1,3 @@
-<h1>Stylus</h1>
-<p>To use this language, use the class "language-stylus".</p>
-
 <h2>Full Example</h2>
 <pre><code>/*!
  * Adds the given numbers together.
@@ -29,7 +26,7 @@ a.button:after
 body
 	font: 12px Helvetica, Arial, sans-serif
 
-a.link > button#test, input[type=button], a:after()
+a.link > button#test, input[type=button], a:after
 	-webkit-border-radius: 5px
 	-moz-border-radius: 5px
 	border-radius: 5px
@@ -73,17 +70,3 @@ sum(nums...)
 
 sum(1 2 3 4)
 // => 10</code></pre>
-
-<h2>Known failures</h2>
-<p>There are certain edge cases where Prism will fail.
-	There are always such cases in every regex-based syntax highlighter.
-	However, Prism dares to be open and honest about them.
-	If a failure is listed here, it doesn’t mean it will never be fixed. This is more of a “known bugs” list, just with a certain type of bug.
-</p>
-
-<h3>Incorrect highlighting when tags like literals are used inside a string</h3>
-<pre><code>add(a, b)
-	if a is a 'unit' and b is a 'unit'
-		a + b
-	else
-		(error 'a and b must be units!')</code></pre>

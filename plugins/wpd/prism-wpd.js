@@ -1,12 +1,13 @@
 (function(){
 
-if (!self.Prism) {
+if (
+	typeof self !== 'undefined' && !self.Prism ||
+	typeof global !== 'undefined' && !global.Prism
+) {
 	return;
 }
 
 if (Prism.languages.css) {
-	Prism.languages.css.atrule.inside['atrule-id'] = /^@[\w-]+/;
-	
 	// check whether the selector is an advanced pattern before extending it
 	if (Prism.languages.css.selector.pattern)
 	{
@@ -41,9 +42,9 @@ if (Prism.languages.markup) {
 			'feFuncR': 1, 'feFuncG': 1, 'feFuncB': 1, 'feFuncA': 1, 'feComposite': 1, 'feConvolveMatrix': 1, 'feDiffuseLighting': 1, 'feDisplacementMap': 1, 
 			'feFlood': 1, 'feGaussianBlur': 1, 'feImage': 1, 'feMerge': 1, 'feMergeNode': 1, 'feMorphology': 1, 'feOffset': 1, 'feSpecularLighting': 1, 
 			'feTile': 1, 'feTurbulence': 1, 'feDistantLight': 1, 'fePointLight': 1, 'feSpotLight': 1, 'linearGradient': 1, 'radialGradient': 1, 'altGlyph': 1, 
-			'textPath': 1, 'tref': 1, 'altglyph': 1, 'textpath': 1, 'tref': 1, 'altglyphdef': 1, 'altglyphitem': 1, 'clipPath': 1, 'color-profile': 1, 'cursor': 1, 
-			'font-face': 1, 'font-face-format': 1, 'font-face-name': 1, 'font-face-src': 1, 'font-face-uri': 1, 'foreignObject': 1, 'glyph': 1, 'glyphRef': 1, 
-			'hkern': 1, 'vkern': 1, 
+			'textPath': 1, 'tref': 1, 'altglyph': 1, 'textpath': 1, 'altglyphdef': 1, 'altglyphitem': 1, 'clipPath': 1, 'color-profile': 1, 'cursor': 1,
+			'font-face': 1, 'font-face-format': 1, 'font-face-name': 1, 'font-face-src': 1, 'font-face-uri': 1, 'foreignObject': 1, 'glyphRef': 1,
+			'hkern': 1, 'vkern': 1
 		},
 		MathML: {}
 	}
@@ -52,62 +53,67 @@ if (Prism.languages.markup) {
 var language;
 
 Prism.hooks.add('wrap', function(env) {
-	if ((['tag-id'].indexOf(env.type) > -1
+	if ((env.type == 'tag-id'
 		|| (env.type == 'property' && env.content.indexOf('-') != 0)
-		|| (env.type == 'atrule-id'&& env.content.indexOf('@-') != 0)
+		|| (env.type == 'rule'&& env.content.indexOf('@-') != 0)
 		|| (env.type == 'pseudo-class'&& env.content.indexOf(':-') != 0) 
 		|| (env.type == 'pseudo-element'&& env.content.indexOf('::-') != 0) 
-	    || (env.type == 'attr-name' && env.content.indexOf('data-') != 0)
-	    ) && env.content.indexOf('<') === -1
+        || (env.type == 'attr-name' && env.content.indexOf('data-') != 0)
+		) && env.content.indexOf('<') === -1
 	) {
-		var searchURL = 'w/index.php?fulltext&search=';
-		
-		env.tag = 'a';
-		
-		var href = 'http://docs.webplatform.org/';
-		
-		if (env.language == 'css') {
-			href += 'wiki/css/'
-			
-			if (env.type == 'property') {
-				href += 'properties/';
+		if (env.language == 'css'
+			|| env.language == 'scss'
+			|| env.language == 'markup'
+		) {
+			var href = 'https://webplatform.github.io/docs/';
+			var content = env.content;
+
+			if (env.language == 'css' || env.language == 'scss') {
+				href += 'css/';
+
+				if (env.type == 'property') {
+					href += 'properties/';
+				}
+				else if (env.type == 'rule') {
+					href += 'atrules/';
+					content = content.substring(1);
+				}
+				else if (env.type == 'pseudo-class') {
+					href += 'selectors/pseudo-classes/';
+					content = content.substring(1);
+				}
+				else if (env.type == 'pseudo-element') {
+					href += 'selectors/pseudo-elements/';
+					content = content.substring(2);
+				}
 			}
-			else if (env.type == 'atrule-id') {
-				href += 'atrules/';
+			else if (env.language == 'markup') {
+				if (env.type == 'tag-id') {
+					// Check language
+					language = getLanguage(env.content) || language;
+
+					if (language) {
+						href += language + '/elements/';
+					}
+					else {
+						return; // Abort
+					}
+				}
+				else if (env.type == 'attr-name') {
+					if (language) {
+						href += language + '/attributes/';
+					}
+					else {
+						return; // Abort
+					}
+				}
 			}
-			else if (env.type == 'pseudo-class') {
-				href += 'selectors/pseudo-classes/';
-			}
-			else if (env.type == 'pseudo-element') {
-				href += 'selectors/pseudo-elements/';
-			}
+
+			href += content;
+			env.tag = 'a';
+			env.attributes.href = href;
+			env.attributes.target = '_blank';
 		}
-		else if (env.language == 'markup') {
-			if (env.type == 'tag-id') {
-				// Check language
-				language = getLanguage(env.content) || language;
-				
-				if (language) {
-					href += 'wiki/' + language + '/elements/';
-				}
-				else {
-					href += searchURL;
-				}
-			}
-			else if (env.type == 'attr-name') {
-				if (language) {
-					href += 'wiki/' + language + '/attributes/';
-				}
-				else {
-					href += searchURL;
-				}
-			}
-		}
-		
-		href += env.content;
-		
-		env.attributes.href = href;
-		env.attributes.target = '_blank';
 	}
 });
 
@@ -125,7 +131,7 @@ function getLanguage(tag) {
 	}
 	
 	// Not in dictionary, perform check
-	if (Tags.HTML[tagL] !== 0) {
+	if (Tags.HTML[tagL] !== 0 && typeof document !== 'undefined') {
 		var htmlInterface = (document.createElement(tag).toString().match(/\[object HTML(.+)Element\]/) || [])[1];
 		
 		if (htmlInterface && htmlInterface != 'Unknown') {
@@ -136,7 +142,7 @@ function getLanguage(tag) {
 	
 	Tags.HTML[tagL] = 0;
 	
-	if (Tags.SVG[tag] !== 0) {
+	if (Tags.SVG[tag] !== 0 && typeof document !== 'undefined') {
 		var svgInterface = (document.createElementNS('http://www.w3.org/2000/svg', tag).toString().match(/\[object SVG(.+)Element\]/) || [])[1];
 		
 		if (svgInterface && svgInterface != 'Unknown') {

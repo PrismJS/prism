@@ -4,14 +4,24 @@
 hide-*.js
 
 CNAME
-img
-templates
+examples/
+img/
+templates/
+tests/
+vendor/
+*.tgz
 *.html
 style.css
 favicon.png
 logo.svg
+bower.json
+composer.json
 download.js
+examples.js
+gulpfile.js
 prefixfree.min.js
 utopia.js
 code.js
-components.js
+.editorconfig
+.gitattributes
+.travis.yml

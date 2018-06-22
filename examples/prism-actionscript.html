@@ -1,6 +1,3 @@
-<h1>ActionScript</h1>
-<p>To use this language, use the class "language-actionscript".</p>
-
 <h2>Comments</h2>
 <pre><code>// Single line comment
 /* Multi-line
@@ -18,6 +15,27 @@ false</code></pre>
 <h2>Classes</h2>
 <pre><code>class A {}
 class B extends A {}</code></pre>
+
+<h2>Inline XML</h2>
+<pre><code>var employees:XML =
+    &lt;employees>
+        &lt;employee ssn="123-123-1234">
+            &lt;name first="John" last="Doe"/>
+            &lt;address>
+                &lt;city>San Francisco&lt;/city>
+                &lt;state>CA&lt;/state>
+                &lt;zip>98765&lt;/zip>
+            &lt;/address>
+        &lt;/employee>
+        &lt;employee ssn="789-789-7890">
+            &lt;name first="Mary" last="Roe"/>
+            &lt;address>
+                &lt;city>Newton&lt;/city>
+                &lt;state>MA&lt;/state>
+                &lt;zip>01234&lt;/zip>
+            &lt;/address>
+        &lt;/employee>
+    &lt;/employees>;</code></pre>
 
 <h2>Full example</h2>
 <pre><code>package {

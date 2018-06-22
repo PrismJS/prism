@@ -1,12 +1,15 @@
 Prism.languages.erlang = {
 	'comment': /%.+/,
-	'string': /"(?:\\?.)*?"/,
+	'string': {
+		pattern: /"(?:\\.|[^\\"\r\n])*"/,
+		greedy: true
+	},
 	'quoted-function': {
-		pattern: /'[^']+'(?=\()/,
+		pattern: /'(?:\\.|[^\\'\r\n])+'(?=\()/,
 		alias: 'function'
 	},
 	'quoted-atom': {
-		pattern: /'[^']+'/,
+		pattern: /'(?:\\.|[^\\'\r\n])+'/,
 		alias: 'atom'
 	},
 	'boolean': /\b(?:true|false)\b/,
@@ -14,18 +17,24 @@ Prism.languages.erlang = {
 	'number': [
 		/\$\\?./,
 		/\d+#[a-z0-9]+/i,
-		/(?:\b|-)\d*\.?\d+([Ee][+-]?\d+)?\b/
+		/(?:\b\d+\.?\d*|\B\.\d+)(?:e[+-]?\d+)?/i
 	],
 	'function': /\b[a-z][\w@]*(?=\()/,
-	'variable': /(?:\b|\?)[A-Z_][\w@]*/,
+	'variable': {
+		// Look-behind is used to prevent wrong highlighting of atoms containing "@"
+		pattern: /(^|[^@])(?:\b|\?)[A-Z_][\w@]*/,
+		lookbehind: true
+	},
 	'operator': [
-		/[=\/>:]=|>=|=[:\/]=|\+\+?|--?|[=*\/!]|\b(?:bnot|div|rem|band|bor|bxor|bsl|bsr|not|and|or|xor|orelse|andalso)\b/,
+		/[=\/<>:]=|=[:\/]=|\+\+?|--?|[=*\/!]|\b(?:bnot|div|rem|band|bor|bxor|bsl|bsr|not|and|or|xor|orelse|andalso)\b/,
 		{
-			pattern: /(^|(?!<).)<(?!<)/,
+			// We don't want to match <<
+			pattern: /(^|[^<])<(?!<)/,
 			lookbehind: true
 		},
 		{
-			pattern: /(^|(?!>).)>(?!>)/,
+			// We don't want to match >>
+			pattern: /(^|[^>])>(?!>)/,
 			lookbehind: true
 		}
 	],

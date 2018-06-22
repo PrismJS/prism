@@ -1,6 +1,6 @@
 Prism.languages.wiki = Prism.languages.extend('markup', {
 	'block-comment': {
-		pattern: /(^|[^\\])\/\*[\w\W]*?\*\//,
+		pattern: /(^|[^\\])\/\*[\s\S]*?\*\//,
 		lookbehind: true,
 		alias: 'comment'
 	},
@@ -12,18 +12,19 @@ Prism.languages.wiki = Prism.languages.extend('markup', {
 		}
 	},
 	'emphasis': {
-		pattern: /('{2,4}).+?\1/,
+		// TODO Multi-line
+		pattern: /('{2,5}).+?\1/,
 		inside: {
 			'bold italic': {
-				pattern: /('''').+?(?=\1)/,
+				pattern: /(''''').+?(?=\1)/,
 				lookbehind: true
 			},
 			'bold': {
-				pattern: /(''').+?(?=\1)/,
+				pattern: /(''')[^'](?:.*?[^'])?(?=\1)/,
 				lookbehind: true
 			},
 			'italic': {
-				pattern: /('').+?(?=\1)/,
+				pattern: /('')[^'](?:.*?[^'])?(?=\1)/,
 				lookbehind: true
 			},
 			'punctuation': /^''+|''+$/
@@ -34,15 +35,15 @@ Prism.languages.wiki = Prism.languages.extend('markup', {
 		alias: 'punctuation'
 	},
 	'url': [
-		/ISBN +(?:97[89][ -]?)?(?:\d[ -]?){9}[\dx]\b/i,
-		/(?:RFC|PMID) +\d+/,
-		/\[\[.+?\]\]/,
-		/\[.+?\]/
+		/ISBN +(?:97[89][ -]?)?(?:\d[ -]?){9}[\dx]\b|(?:RFC|PMID) +\d+/i,
+		/\[\[.+?\]\]|\[.+?\]/
 	],
 	'variable': [
 		/__[A-Z]+__/,
+		// FIXME Nested structures should be handled
+		// {{formatnum:{{#expr:{{{3}}}}}}}
 		/\{{3}.+?\}{3}/,
-		/\{\{.+?}}/
+		/\{\{.+?\}\}/
 	],
 	'symbol': [
 		/^#redirect/im,
@@ -69,10 +70,10 @@ Prism.languages.wiki = Prism.languages.extend('markup', {
 Prism.languages.insertBefore('wiki', 'tag', {
 	// Prevent highlighting inside <nowiki>, <source> and <pre> tags
 	'nowiki': {
-		pattern: /<(nowiki|pre|source)\b[\w\W]*?>[\w\W]*?<\/\1>/i,
+		pattern: /<(nowiki|pre|source)\b[\s\S]*?>[\s\S]*?<\/\1>/i,
 		inside: {
 			'tag': {
-				pattern: /<(?:nowiki|pre|source)\b[\w\W]*?>|<\/(?:nowiki|pre|source)>/i,
+				pattern: /<(?:nowiki|pre|source)\b[\s\S]*?>|<\/(?:nowiki|pre|source)>/i,
 				inside: Prism.languages.markup['tag'].inside
 			}
 		}

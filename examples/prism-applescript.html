@@ -1,6 +1,3 @@
-<h1>AppleScript</h1>
-<p>To use this language, use the class "language-applescript".</p>
-
 <h2>Comments</h2>
 <pre><code>-- Single line comment
 #!/usr/bin/osascript
@@ -35,8 +32,10 @@ set circleArea to (pi * 7 * 7) as square yards
 	If a failure is listed here, it doesn’t mean it will never be fixed. This is more of a “known bugs” list, just with a certain type of bug.
 </p>
 
-<h3>Nested block comments</h3>
+<h3>Comments only support one level of nesting</h3>
 <pre><code>(* Nested block
 	(* comments
+		(* on more than
+		2 levels *)
 	are *)
 not supported *)</code></pre>
