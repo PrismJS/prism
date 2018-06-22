@@ -98,7 +98,7 @@ Prism.languages.insertBefore('csharp', 'class-name', {
 	},
 	'identifier-type': {
 		// (Foo bar, Bar baz, Foo[,,] bay, Foo<Bar, FooBar<Bar>> bax)
-		pattern: /\b[A-Z]\w*(?:\.\w+)*(?:<[^\r\n=;{]+?>(?:\.\w+)*)?(?:\s*\[\s*(?:,\s*)*\])?(?=\s+\w+\s*[=,;:{)])/,
+		pattern: /\b[A-Z]\w*(?:\.\w+)*(?:<[^\r\n=;{]+?>(?:\.\w+)*)?(?:\s*\[\s*(?:,\s*)*\])?(?=\s+\w+(?:\s*[=,;:{)]|\s+in))/,
 		inside: Prism.languages.csharp['type-expression'].inside
 	},
 	'preprocessor': {
