@@ -4,61 +4,61 @@
 
 ### New components
 
-* __Template Tookit 2__ ([#1418](https://github.com/PrismJS/prism/issues/1418)) [`e063992b`]
-* __XQuery__ ([#1411](https://github.com/PrismJS/prism/issues/1411)) [`e326cb03`]
-* __TAP__ [`8c2b71f1`]
+* __Template Tookit 2__ ([#1418](https://github.com/PrismJS/prism/issues/1418)) [[`e063992`](https://github.com/PrismJS/prism/commit/e063992)]
+* __XQuery__ ([#1411](https://github.com/PrismJS/prism/issues/1411)) [[`e326cb0`](https://github.com/PrismJS/prism/commit/e326cb0)]
+* __TAP__ ([#1430](https://github.com/PrismJS/prism/issues/1430)) [[`8c2b71f`](https://github.com/PrismJS/prism/commit/8c2b71f)]
 
 ### Updated components
 
 * __HTTP__
-	* Absolute path is a valid request uri ([#1388](https://github.com/PrismJS/prism/issues/1388)) [`f6e81cb4`]
+	* Absolute path is a valid request uri ([#1388](https://github.com/PrismJS/prism/issues/1388)) [[`f6e81cb`](https://github.com/PrismJS/prism/commit/f6e81cb)]
 * __Kotlin__
-	* Add keywords of Kotlin and modify it's number pattern. ([#1389](https://github.com/PrismJS/prism/issues/1389)) [`1bf73b0b`]
-	* Add `typealias` keyword [`a21fdee6`]
+	* Add keywords of Kotlin and modify it's number pattern. ([#1389](https://github.com/PrismJS/prism/issues/1389)) [[`1bf73b0`](https://github.com/PrismJS/prism/commit/1bf73b0)]
+	* Add `typealias` keyword ([#1437](https://github.com/PrismJS/prism/issues/1437)) [[`a21fdee`](https://github.com/PrismJS/prism/commit/a21fdee)]
 * __JavaScript
-	* Improve Regexp pattern [`5b043cf8`]
-	* Add support for one level of nesting inside template strings. Fix [#1397](https://github.com/PrismJS/prism/issues/1397) [`db2d0ebb`]
+	* Improve Regexp pattern [[`5b043cf`](https://github.com/PrismJS/prism/commit/5b043cf)]
+	* Add support for one level of nesting inside template strings. Fix [#1397](https://github.com/PrismJS/prism/issues/1397) [[`db2d0eb`](https://github.com/PrismJS/prism/commit/db2d0eb)]
 * __Elixir__
-	* Elixir: Fix attributes consuming punctuation. Fix [#1392](https://github.com/PrismJS/prism/issues/1392) [`dac0485e`]
+	* Elixir: Fix attributes consuming punctuation. Fix [#1392](https://github.com/PrismJS/prism/issues/1392) [[`dac0485`](https://github.com/PrismJS/prism/commit/dac0485)]
 * __Bash__
-	* Change reserved keyword reference ([#1396](https://github.com/PrismJS/prism/issues/1396)) [`b94f01f1`]
+	* Change reserved keyword reference ([#1396](https://github.com/PrismJS/prism/issues/1396)) [[`b94f01f`](https://github.com/PrismJS/prism/commit/b94f01f)]
 * __PowerShell__
-	* Allow for one level of nesting in expressions inside strings. Fix [#1407](https://github.com/PrismJS/prism/issues/1407) [`9272d6f4`]
+	* Allow for one level of nesting in expressions inside strings. Fix [#1407](https://github.com/PrismJS/prism/issues/1407) [[`9272d6f`](https://github.com/PrismJS/prism/commit/9272d6f)]
 * __JSX__
-	* Allow for two levels of nesting inside JSX tags. Fix [#1408](https://github.com/PrismJS/prism/issues/1408) [`f1cd7c56`]
-	* Add support for fragments short syntax. Fix [#1421](https://github.com/PrismJS/prism/issues/1421) [`38ce1213`]
+	* Allow for two levels of nesting inside JSX tags. Fix [#1408](https://github.com/PrismJS/prism/issues/1408) [[`f1cd7c5`](https://github.com/PrismJS/prism/commit/f1cd7c5)]
+	* Add support for fragments short syntax. Fix [#1421](https://github.com/PrismJS/prism/issues/1421) [[`38ce121`](https://github.com/PrismJS/prism/commit/38ce121)]
 * __Pascal__
-	* Add `objectpascal` as an alias to `pascal` ([#1426](https://github.com/PrismJS/prism/issues/1426)) [`a0bfc84d`]
+	* Add `objectpascal` as an alias to `pascal` ([#1426](https://github.com/PrismJS/prism/issues/1426)) [[`a0bfc84`](https://github.com/PrismJS/prism/commit/a0bfc84)]
 * __Swift__
-	* Fix Swift 'protocol' keyword [`081e318c`]
+	* Fix Swift 'protocol' keyword ([#1440](https://github.com/PrismJS/prism/issues/1440)) [[`081e318`](https://github.com/PrismJS/prism/commit/081e318)]
 
 ### Updated plugins
 
 * __File Highlight__
-	* Fix issue causing the Download button to show up on every code blocks. [`cd22499c`]
-	* Simplify lang regex on File Highlight plugin ([#1399](https://github.com/PrismJS/prism/issues/1399)) [`7bc9a4a1`]
+	* Fix issue causing the Download button to show up on every code blocks. [[`cd22499`](https://github.com/PrismJS/prism/commit/cd22499)]
+	* Simplify lang regex on File Highlight plugin ([#1399](https://github.com/PrismJS/prism/issues/1399)) [[`7bc9a4a`](https://github.com/PrismJS/prism/commit/7bc9a4a)]
 * __Show Language__
-	* Don't process language if block language not set [`c1118692`]
+	* Don't process language if block language not set ([#1410](https://github.com/PrismJS/prism/issues/1410)) [[`c111869`](https://github.com/PrismJS/prism/commit/c111869)]
 * __Autoloader__
-	* ASP.NET should require C# [`fa328bb1`]
+	* ASP.NET should require C# [[`fa328bb`](https://github.com/PrismJS/prism/commit/fa328bb)]
 * __Line Numbers__
-	* Make line-numbers styles more specific [`9ee4f547`]
+	* Make line-numbers styles more specific ([#1434](https://github.com/PrismJS/prism/issues/1434), [#1435](https://github.com/PrismJS/prism/issues/1435)) [[`9ee4f54`](https://github.com/PrismJS/prism/commit/9ee4f54)]
 
 ### Updated themes
 
-* Add .token.class-name to rest of themes ([#1360](https://github.com/PrismJS/prism/issues/1360)) [`f356dfe7`]
+* Add .token.class-name to rest of themes ([#1360](https://github.com/PrismJS/prism/issues/1360)) [[`f356dfe`](https://github.com/PrismJS/prism/commit/f356dfe)]
 
 ### Other changes
 
 * __Website__
 	* Site now loads over HTTPS!
-	* Use HTTPS / canonical URLs ([#1390](https://github.com/PrismJS/prism/issues/1390)) [`95146c8f`]
-	* Added Angular tutorial link - `c436a7c7`
-	* Use rel="icon" instead of rel="shortcut icon" ([#1398](https://github.com/PrismJS/prism/issues/1398)) [`d95f8fb4`]
-	* Fix Download page not handling multiple dependencies when from Redownload URL [`c2ff2482`]
-	* Update documentation for node & webpack usage [`1e99e961`]
-* Handle optional dependencies in `loadLanguages()` ([#1417](https://github.com/PrismJS/prism/issues/1417)) [`84935acd`]
-* Add Chinese translation [`f2b19644`]
+	* Use HTTPS / canonical URLs ([#1390](https://github.com/PrismJS/prism/issues/1390)) [[`95146c8`](https://github.com/PrismJS/prism/commit/95146c8)]
+	* Added Angular tutorial link [[`c436a7c`](https://github.com/PrismJS/prism/commit/c436a7c)]
+	* Use rel="icon" instead of rel="shortcut icon" ([#1398](https://github.com/PrismJS/prism/issues/1398)) [[`d95f8fb`](https://github.com/PrismJS/prism/commit/d95f8fb)]
+	* Fix Download page not handling multiple dependencies when from Redownload URL [[`c2ff248`](https://github.com/PrismJS/prism/commit/c2ff248)]
+	* Update documentation for node & webpack usage [[`1e99e96`](https://github.com/PrismJS/prism/commit/1e99e96)]
+* Handle optional dependencies in `loadLanguages()` ([#1417](https://github.com/PrismJS/prism/issues/1417)) [[`84935ac`](https://github.com/PrismJS/prism/commit/84935ac)]
+* Add Chinese translation [[`f2b1964`](https://github.com/PrismJS/prism/commit/f2b1964)]
 
 ## 1.14.0 (2018-04-11)
 
