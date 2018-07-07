@@ -6,9 +6,7 @@ foreach (Foo e in Elements)
 [
 	["keyword", "for"],
 	["punctuation", "("],
-	["identifier-type", [
-		["class-name", ["Int32"]]
-	]],
+	["class-name", ["Int32"]],
 	" i ",
 	["operator", "="],
 	["number", "0"],
@@ -22,9 +20,7 @@ foreach (Foo e in Elements)
 	["punctuation", ")"],
 	["keyword", "foreach"],
 	["punctuation", "("],
-	["identifier-type", [
-		["class-name", ["Foo"]]
-	]],
+	["class-name", ["Foo"]],
 	" e ",
 	["keyword", "in"],
 	" Elements",

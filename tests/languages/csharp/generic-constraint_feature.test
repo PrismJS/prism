@@ -45,9 +45,7 @@ class Foo<T> where T : IFoo<int> {}
 		["punctuation", ">"]
 	]],
 	["punctuation", "("],
-	["identifier-type", [
-		["class-name", ["U"]]
-	]],
+	["class-name", ["U"]],
 	" u",
 	["punctuation", ")"],
 	["keyword", "where"],

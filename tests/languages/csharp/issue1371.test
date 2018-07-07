@@ -47,9 +47,7 @@ class Works : LandAnimal {
 	" container ",
 	["operator", "="],
 	["keyword", "new"],
-	["constructor-invocation", [
-		["class-name", ["Container"]]
-	]],
+	["constructor-invocation", ["Container"]],
 	["punctuation", "("],
 	"f ",
 	["operator", "="],

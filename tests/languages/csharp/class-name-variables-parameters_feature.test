@@ -3,7 +3,7 @@ Foo b;
 Foo<Bar> c = null;
 static Foo<(Bar, int)>[,,] d;
 void Foo(Foo a, Bar<Foo> b, Bar[, ] c, Foo<(int, int)> d);
-Bar<Foo> Abc => false;
+Bar<Foo> Abc => 0;
 
 ----------------------------------------------------
 
@@ -12,16 +12,14 @@ Bar<Foo> Abc => false;
 	" a",
 	["punctuation", ";"],
 
-	["identifier-type", [
-		["class-name", ["Foo"]]
-	]],
+	["class-name", ["Foo"]],
 	" b",
 	["punctuation", ";"],
 
-	["identifier-type", [
-		["class-name", ["Foo"]],
+	["class-name", [
+		"Foo",
 		["punctuation", "<"],
-		["class-name", ["Bar"]],
+		"Bar",
 		["punctuation", ">"]
 	]],
 	" c ",
@@ -30,11 +28,11 @@ Bar<Foo> Abc => false;
 	["punctuation", ";"],
 
 	["keyword", "static"],
-	["identifier-type", [
-		["class-name", ["Foo"]],
+	["class-name", [
+		"Foo",
 		["punctuation", "<"],
 		["punctuation", "("],
-		["class-name", ["Bar"]],
+		"Bar",
 		["punctuation", ","],
 		["keyword", "int"],
 		["punctuation", ")"],
@@ -50,21 +48,19 @@ Bar<Foo> Abc => false;
 	["keyword", "void"],
 	["function", "Foo"],
 	["punctuation", "("],
-	["identifier-type", [
-		["class-name", ["Foo"]]
-	]],
+	["class-name", ["Foo"]],
 	" a",
 	["punctuation", ","],
-	["identifier-type", [
-		["class-name", ["Bar"]],
+	["class-name", [
+		"Bar",
 		["punctuation", "<"],
-		["class-name", ["Foo"]],
+		"Foo",
 		["punctuation", ">"]
 	]],
 	" b",
 	["punctuation", ","],
-	["identifier-type", [
-		["class-name", ["Bar"]],
+	["class-name", [
+		"Bar",
 		["punctuation", "["],
 		["punctuation", ","],
 		["punctuation", "]"]
@@ -72,8 +68,8 @@ Bar<Foo> Abc => false;
 	" c",
 	["punctuation", ","],
 
-	["identifier-type", [
-		["class-name", ["Foo"]],
+	["class-name", [
+		"Foo",
 		["punctuation", "<"],
 		["punctuation", "("],
 		["keyword", "int"],
@@ -87,15 +83,15 @@ Bar<Foo> Abc => false;
 	["punctuation", ";"],
 
 	["return-type", [
-		["class-name", ["Bar"]],
+		"Bar",
 		["punctuation", "<"],
-		["class-name", ["Foo"]],
+		"Foo",
 		["punctuation", ">"]
 	]],
 	" Abc ",
 	["operator", "="],
 	["operator", ">"],
-	["keyword", "false"],
+	["number", "0"],
 	["punctuation", ";"]
 ]
 

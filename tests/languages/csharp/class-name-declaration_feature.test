@@ -2,6 +2,7 @@ class Foo
 interface BarBaz
 struct Foo
 enum Foo
+class Foo<A, B>
 
 ----------------------------------------------------
 
@@ -16,7 +17,17 @@ enum Foo
 	["class-name", ["Foo"]],
 
 	["keyword", "enum"],
-	["class-name", ["Foo"]]
+	["class-name", ["Foo"]],
+
+	["keyword", "class"],
+	["class-name", [
+		"Foo",
+		["punctuation", "<"],
+		"A",
+		["punctuation", ","],
+		" B",
+		["punctuation", ">"]
+	]]
 ]
 
 ----------------------------------------------------

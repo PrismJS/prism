@@ -14,28 +14,24 @@ typeof(Foo<Bar, (Foo, Foo, int)>)
 
 	["keyword", "default"],
 	["punctuation", "("],
-	["type-expression", [
-		["class-name", ["Foo"]]
-	]],
+	["type-expression", ["Foo"]],
 	["punctuation", ")"],
 
 	["keyword", "typeof"],
 	["punctuation", "("],
-	["type-expression", [
-		["class-name", ["Foo"]]
-	]],
+	["type-expression", ["Foo"]],
 	["punctuation", ")"],
 
 	["keyword", "default"],
 	["punctuation", "("],
 	["type-expression", [
-		["class-name", ["Foo"]],
+		"Foo",
 		["punctuation", "<"],
-		["class-name", ["Bar"]],
+		"Bar",
 		["punctuation", ","],
-		["class-name", ["IFoo"]],
+		" IFoo",
 		["punctuation", "<"],
-		["class-name", ["Bar"]],
+		"Bar",
 		["punctuation", ">"],
 		["punctuation", ">"]
 	]],
@@ -44,14 +40,14 @@ typeof(Foo<Bar, (Foo, Foo, int)>)
 	["keyword", "typeof"],
 	["punctuation", "("],
 	["type-expression", [
-		["class-name", ["Foo"]],
+		"Foo",
 		["punctuation", "<"],
-		["class-name", ["Bar"]],
+		"Bar",
 		["punctuation", ","],
 		["punctuation", "("],
-		["class-name", ["Foo"]],
+		"Foo",
 		["punctuation", ","],
-		["class-name", ["Foo"]],
+		" Foo",
 		["punctuation", ","],
 		["keyword", "int"],
 		["punctuation", ")"],

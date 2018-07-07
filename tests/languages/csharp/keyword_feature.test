@@ -28,7 +28,6 @@ enum
 event
 explicit
 extern
-false
 finally
 fixed
 float
@@ -82,7 +81,6 @@ struct
 switch
 this
 throw
-true
 try
 typeof
 uint
@@ -133,7 +131,6 @@ yield
 	["keyword", "event"],
 	["keyword", "explicit"],
 	["keyword", "extern"],
-	["keyword", "false"],
 	["keyword", "finally"],
 	["keyword", "fixed"],
 	["keyword", "float"],
@@ -187,7 +184,6 @@ yield
 	["keyword", "switch"],
 	["keyword", "this"],
 	["keyword", "throw"],
-	["keyword", "true"],
 	["keyword", "try"],
 	["keyword", "typeof"],
 	["keyword", "uint"],
