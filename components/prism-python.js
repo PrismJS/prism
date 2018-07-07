@@ -4,7 +4,7 @@ Prism.languages.python = {
 		lookbehind: true
 	},
 	'triple-quoted-string': {
-		pattern: /("""|''')[\s\S]+?\1/,
+		pattern: /("""|''')[\s\S]*?\1/,
 		greedy: true,
 		alias: 'string'
 	},
