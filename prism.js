@@ -84,6 +84,85 @@ var _ = _self.Prism = {
 			}
 
 			return o;
+		},
+
+		spanOfFirstCapturingGroup: function (pattern) {
+			var s = pattern.source;
+			var length = s.length;
+
+			var start = -1;
+			var end = -1;
+
+			var depth = 0;
+			var firstCapturing = -1;
+			var charset = false;
+			for (var i = 0; i < length; i++) {
+				var c = s[i];
+
+				if (c == '\\') {
+					i++;
+					continue;
+				}
+
+				if (charset) {
+					if (c == ']')
+						charset = false;
+					continue;
+				}
+				if (c == '[') {
+					charset = true;
+					continue;
+				}
+
+				if (c == '(') {
+					depth++;
+					if (firstCapturing == -1 && i + 1 < length && s[i + 1] != '?') {
+						start = i;
+						firstCapturing = depth;
+					}
+				}
+				if (c == ')') {
+					if (firstCapturing == depth) {
+						end = i;
+						break;
+					}
+					depth--;
+				}
+			}
+
+			if (end == -1) return null;
+			return { start: start, length: end - start + 1 };
+		},
+
+		makeFirstOptional: function (pattern) {
+			var span = _.util.spanOfFirstCapturingGroup(pattern);
+
+			if (!span)
+				return pattern;
+
+			var s = pattern.source;
+
+			var pos = span.start + span.length;
+			if (s[pos] != '?') {
+				s = s.substr(0, pos) + "?" + s.substr(pos);
+			}
+
+			return new RegExp(s, pattern.toString().match(/[imuy]*$/)[0]);
+		},
+
+		execPattern: function (pattern, str, lastIndex, negativeLookbehind) {
+			pattern.lastIndex = lastIndex;
+
+			if (!negativeLookbehind)
+				return pattern.exec(str);
+
+			var match = pattern.exec(str);
+			while (match && match[1] !== undefined) {
+				lastIndex = match.index + match[1].length + 1;
+				pattern.lastIndex = lastIndex;
+				match = pattern.exec(str);
+			}
+			return match;
 		}
 	},
 
@@ -306,15 +385,22 @@ var _ = _self.Prism = {
 			for (var j = 0; j < patterns.length; ++j) {
 				var pattern = patterns[j],
 					inside = pattern.inside,
-					lookbehind = !!pattern.lookbehind,
+					lookbehindNegative = !!pattern.lookbehindNegative,
+					lookbehind = !lookbehindNegative && !!pattern.lookbehind,
 					greedy = !!pattern.greedy,
 					lookbehindLength = 0,
 					alias = pattern.alias;
 
-				if (greedy && !pattern.pattern.global) {
+				if (lookbehindNegative || (greedy && !pattern.pattern.global)) {
 					// Without the global flag, lastIndex won't work
 					var flags = pattern.pattern.toString().match(/[imuy]*$/)[0];
 					pattern.pattern = RegExp(pattern.pattern.source, flags + "g");
+				}
+
+				if (lookbehindNegative && !pattern.pattern._firstIsOptional) {
+					// the first capturing group has to be optional
+					pattern.pattern = _.util.makeFirstOptional(pattern.pattern);
+					pattern.pattern._firstIsOptional = true;
 				}
 
 				pattern = pattern.pattern || pattern;
@@ -322,7 +408,8 @@ var _ = _self.Prism = {
 				// Don’t cache length as it changes during the loop
 				for (var i = index, pos = startPos; i < strarr.length; pos += strarr[i].length, ++i) {
 
-					var str = strarr[i];
+					var str = strarr[i],
+					    delNum = 1;
 
 					if (strarr.length > text.length) {
 						// Something went terribly wrong, ABORT, ABORT!
@@ -334,8 +421,7 @@ var _ = _self.Prism = {
 					}
 
 					if (greedy && i != strarr.length - 1) {
-						pattern.lastIndex = pos;
-						var match = pattern.exec(text);
+						var match = _.util.execPattern(pattern, text, pos, lookbehindNegative);
 						if (!match) {
 							break;
 						}
@@ -364,10 +450,7 @@ var _ = _self.Prism = {
 						str = text.slice(pos, p);
 						match.index -= pos;
 					} else {
-						pattern.lastIndex = 0;
-
-						var match = pattern.exec(str),
-							delNum = 1;
+						var match = _.util.execPattern(pattern, str, 0, lookbehindNegative);
 					}
 
 					if (!match) {
