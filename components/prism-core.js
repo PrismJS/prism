@@ -142,7 +142,7 @@ var _ = _self.Prism = {
 				s = s.substr(0, pos) + "?" + s.substr(pos);
 			}
 
-			return new RegExp(s, pattern.toString().match(/[imuy]*$/)[0]);
+			return new RegExp(s, pattern.toString().match(/[imuyg]*$/)[0]);
 		},
 
 		execPattern: function (pattern, str, lastIndex, negativeLookbehind) {
