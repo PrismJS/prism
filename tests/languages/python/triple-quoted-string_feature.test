@@ -7,8 +7,11 @@ baz"""
 #bar
 baz'''
 
-Python supports empty triple quoted strings
 """""" """foo"""
+
+"#" """a
+""" """b
+"""
 
 ----------------------------------------------------
 
@@ -17,9 +20,11 @@ Python supports empty triple quoted strings
 	["triple-quoted-string", "\"\"\"fo\"o\r\n#bar\r\nbaz\"\"\""],
 	["triple-quoted-string", "'''foobar'''"],
 	["triple-quoted-string", "'''fo'o\r\n#bar\r\nbaz'''"],
-	"\r\n\r\nPython supports empty triple quoted strings\r\n",
 	["triple-quoted-string", "\"\"\"\"\"\""],
-	["triple-quoted-string", "\"\"\"foo\"\"\""]
+	["triple-quoted-string", "\"\"\"foo\"\"\""],
+	["string", "\"#\""],
+	["triple-quoted-string", "\"\"\"a\r\n\"\"\""],
+	["triple-quoted-string", "\"\"\"b\r\n\"\"\""]
 ]
 
 ----------------------------------------------------
