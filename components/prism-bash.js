@@ -159,7 +159,6 @@
 			inside: {
 				'file-descriptor': {
 					pattern: /^\d/,
-					lookbehind: true,
 					alias: 'important'
 				}
 			}
