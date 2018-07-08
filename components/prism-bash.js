@@ -155,7 +155,7 @@
 		},
 		operator: {
 			// Lots of redirections here, but not just that.
-			pattern: /\d?<>|>\||\+=|==?|!=?|=~|<<[<-]?|[&\d]?>>|\d?[<>]&?|&>|&&?|\|&|\|\|?|<=?|>=?/,
+			pattern: /\d?<>|>\||\+=|==?|!=?|=~|<<[<-]?|[&\d]?>>|\d?[<>]&?|&[>&]?|\|[&|]?|<=?|>=?/,
 			inside: {
 				'file-descriptor': {
 					pattern: /^\d/,

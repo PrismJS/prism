@@ -3,6 +3,7 @@ a >&2
 a 2<&
 a <> b
 a &>> b
+a && b || c
 
 <(yes) <(if true; then :; fi) <(echo) <(true)
 <(for x in a b; do :; done)
@@ -25,7 +26,8 @@ ${x^a} ${x^^a} ${x,a} ${x,,a}
 		["file-descriptor", "2"], "<&"
 	]],
 	"\r\na ", ["operator", ["<>"]], " b\r\na ",
-	["operator", ["&>>"]], " b\r\n\r\n",
+	["operator", ["&>>"]], " b\r\na ",
+	["operator", ["&&"]], " b ", ["operator", ["||"]], " c\r\n\r\n",
 	["operator", ["<"]], ["punctuation", "("], ["function", "yes"], ["punctuation", ")"],
 	["operator", ["<"]], ["punctuation", "("], ["keyword", "if"], ["boolean", "true"], ["punctuation", ";"],
 	["keyword", "then"], ["builtin", ":"], ["punctuation", ";"], ["keyword", "fi"], ["punctuation", ")"],
