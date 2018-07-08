@@ -4,6 +4,8 @@
 (inexact->exact 3)
 (!fact)
 (** 10)
+(exact?
+(**
 
 ----------------------------------------------------
 
@@ -13,7 +15,9 @@
 	["punctuation", "("], ["function", "exact?"], ["number", "2"], ["punctuation", ")"],
 	["punctuation", "("], ["function", "inexact->exact"], ["number", "3"], ["punctuation", ")"],
 	["punctuation", "("], ["function", "!fact"], ["punctuation", ")"],
-	["punctuation", "("], ["function", "**"], ["number", "10"], ["punctuation", ")"]
+	["punctuation", "("], ["function", "**"], ["number", "10"], ["punctuation", ")"],
+	["punctuation", "("], ["function", "exact?"],
+	["punctuation", "("], ["function", "**"]
 ]
 
 ----------------------------------------------------
