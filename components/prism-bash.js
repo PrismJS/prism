@@ -31,7 +31,7 @@
 			},
 			// [1]: Command Substitution
 			{
-				pattern: /\$\([^)]+\)|`[^`]+`/,
+				pattern: /\$\((?:\([^)]+\)|[^()])+\)|`[^`]+`/,
 				greedy: true,
 				inside: {
 					variable: /^\$\(|^`|\)$|`$/
