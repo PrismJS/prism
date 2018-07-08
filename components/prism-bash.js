@@ -73,7 +73,7 @@
 			// but not “foo {”
 			{
 				// a) and c)
-				pattern: /((?:^|\W)function\s+)\w+(?=(\s*\(\s*\))?\s*\{)/,
+				pattern: /((^|\W)function\s+)\w+(?=(\s*\(\s*\))?\s*\{)/,
 				lookbehind: true,
 				alias: 'function'
 			},
