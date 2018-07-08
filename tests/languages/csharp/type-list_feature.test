@@ -1,0 +1,61 @@
+class Foo<T> : Bar<IList<Bar>, T>, IBar<Bar, T>, IFoo where T : class, IBar<IFoo>, IFoo<Bar> {}
+
+
+----------------------------------------------------
+
+[
+	["keyword", "class"],
+	["class-name", [
+		"Foo",
+		["punctuation", "<"],
+		"T",
+		["punctuation", ">"]
+	]],
+	["punctuation", ":"],
+
+	["type-list", [
+		["class-name", ["Bar"]],
+		["punctuation", "<"],
+		["class-name", ["IList"]],
+		["punctuation", "<"],
+		["class-name", ["Bar"]],
+		["punctuation", ">"],
+		["punctuation", ","],
+		["class-name", ["T"]],
+		["punctuation", ">"],
+		["punctuation", ","],
+		["class-name", ["IBar"]],
+		["punctuation", "<"],
+		["class-name", ["Bar"]],
+		["punctuation", ","],
+		["class-name", ["T"]],
+		["punctuation", ">"],
+		["punctuation", ","],
+		["class-name", ["IFoo"]]
+	]],
+
+	["keyword", "where"],
+	["class-name", "T"],
+	["punctuation", ":"],
+
+	["type-list", [
+		["keyword", "class"],
+		["punctuation", ","],
+		["class-name", ["IBar"]],
+		["punctuation", "<"],
+		["class-name", ["IFoo"]],
+		["punctuation", ">"],
+		["punctuation", ","],
+		["class-name", ["IFoo"]],
+		["punctuation", "<"],
+		["class-name", ["Bar"]],
+		["punctuation", ">"]
+	]],
+
+	["punctuation", "{"],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for type lists of inheritance or generic constraints.

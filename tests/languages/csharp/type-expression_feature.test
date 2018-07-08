@@ -2,7 +2,6 @@ default(int)
 default(Foo)
 typeof(Foo)
 default(Foo<Bar, IFoo<Bar>>)
-typeof(Foo<Bar, (Foo, Foo, int)>)
 
 ----------------------------------------------------
 
@@ -33,24 +32,6 @@ typeof(Foo<Bar, (Foo, Foo, int)>)
 		["punctuation", "<"],
 		"Bar",
 		["punctuation", ">"],
-		["punctuation", ">"]
-	]],
-	["punctuation", ")"],
-
-	["keyword", "typeof"],
-	["punctuation", "("],
-	["type-expression", [
-		"Foo",
-		["punctuation", "<"],
-		"Bar",
-		["punctuation", ","],
-		["punctuation", "("],
-		"Foo",
-		["punctuation", ","],
-		" Foo",
-		["punctuation", ","],
-		["keyword", "int"],
-		["punctuation", ")"],
 		["punctuation", ">"]
 	]],
 	["punctuation", ")"]

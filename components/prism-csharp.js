@@ -21,12 +21,8 @@
 		],
 		'class-name': [
 			{
-				// (Foo bar, Bar baz, Foo[,,] bay, Foo<Bar, FooBar<Bar>> bax)
-				pattern: /\b[A-Z]\w*(?:\.\w+)*(?:<(?:[^>\n=;{}]+|>(?=\s*[,.>?[)]))+>)?(?:\.\w+)*(?:\[\s*(?:,\s*)*\])*(?=\s+\w+(?:\s*[=,;:{)\]]|\s+in))/,
-				inside: classNameInside
-			},
-			{
-				// [Foo]
+				// Attributes
+				// [Foo], [Foo(Bar)]
 				pattern: /((?:^|\W)\[)[A-Z]\w*(?:\.\w+)*\b/,
 				lookbehind: true,
 				inside: {
@@ -34,6 +30,7 @@
 				}
 			},
 			{
+				// Class declarations
 				// class Foo<A, B>
 				pattern: /(\b(?:class|enum|interface|struct)\s+)[A-Z]\w*(?:\s*<[^>]+>)?/,
 				lookbehind: true,
@@ -42,7 +39,9 @@
 				}
 			},
 			{
+				// Single catch exception declaration
 				// catch(Foo)
+				// (things like catch(Foo e) is covered by variable declaration)
 				pattern: /(\bcatch\s*\()[A-Z]\w*(?:\.\w+)*\b/,
 				lookbehind: true,
 				inside: {
@@ -50,44 +49,53 @@
 				}
 			},
 			{
+				// Name of the type parameter of generic constraints
 				// where Foo
 				pattern: /(\bwhere\s+)[A-Z]\w*\b/,
 				lookbehind: true
 			},
 			{
+				// Casts and checks via as and is.
 				// as Foo<A>, is Bar<B>
-				pattern: /(\b(?:is|as)\s+)[A-Z]\w*(?:\.\w+)*(?:<(?:[^>\n=;{}]+|>(?=\s*[,.>?[)]))+>)?(?:\.\w+)*(?:\[\s*(?:,\s*)*\])*/,
+				// (things like if(a is Foo b) is covered by variable declaration)
+				pattern: /(\b(?:is|as)\s+)[A-Z]\w*(?:\.\w+)*(?:<(?:[^>\n=;{}]+|>(?=\s*(?:\[\s*(?:,\s*)*\]\s*)*[,.>?)]))+?>)?(?:\.\w+)*(?:\[\s*(?:,\s*)*\])*/,
 				lookbehind: true,
+				inside: classNameInside
+			},
+			{
+				// Variable, field and parameter declaration
+				// (Foo bar, Bar baz, Foo[,,] bay, Foo<Bar, FooBar<Bar>> bax)
+				pattern: /\b[A-Z]\w*(?:\.\w+)*(?:<(?:[^>\n=;{}]+|>(?=\s*(?:\[\s*(?:,\s*)*\]\s*)*[,.>?)]))+?>)?(?:\.\w+)*(?:\[\s*(?:,\s*)*\])*(?=\s+\w+(?:\s*[=,;:{)\]]|\s+in))/,
 				inside: classNameInside
 			}
 		],
-		'number': /(?:\b0(?:x[\da-f_]*[\da-f]|b[01_]*[01])|\B\.\d+|\b\d+(?:_+\d+)*\.?\d*)(?:ul|[flu])?\b/i
+		'number': /(?:\b0(?:x[\da-f_]*[\da-f]|b[01_]*[01])|(?:\B\.\d+(?:_+\d+)*|\b\d+(?:_+\d+)*(?:\.\d+(?:_+\d+)*)?)(?:e[-+]?\d+(?:_+\d+)*)?)(?:ul|[flu])?\b/i
 	});
 
 	Prism.languages.insertBefore('csharp', 'class-name', {
 		'type-expression': {
 			// default(Foo), typeof(Foo<Bar>)
-			pattern: /(\b(?:default|typeof)\(\s*)[A-Z]\w*(?:\.\w+)*(?:<(?:[^>\n=;{}]+|>(?=\s*[,.>?[]))+>)?(?:\.\w+)*(?:\[\s*(?:,\s*)*\])*(?=\s*\))/,
-			lookbehind: true,
-			inside: classNameInside,
-			alias: 'class-name'
-		},
-		'constructor-invocation': {
-			// new List<Foo<Bar[]>> { }
-			pattern: /(\bnew\s+)[A-Z]\w*(?:\.\w+)*(?:<(?:[^>\n=;{}]+|>(?=\s*[,.>?[)]))+>)?(?:\.\w+)*(?:\[\s*(?:,\s*)*\])*(?=\s*[[({])/,
+			pattern: /(\b(?:default|typeof)\s*\(\s*)[A-Z][^()]*?(?=\s*\))/,
 			lookbehind: true,
 			inside: classNameInside,
 			alias: 'class-name'
 		},
 		'return-type': {
 			// Foo<Bar> ForBar(), Foo IFoo.Bar() => 0
-			pattern: /\b[A-Z]\w*(?:\.\w+)*(?:<[^\n=;{]+?>(?:\.\w+)*)?(?:\[\s*(,\s*)*\])?(?=\s+(?:[A-Z]\w*\.)?(?:\w+(?:\s*<[^\n=;{]+?>)?\s*(?:[({]|=>)|this\s*\[))/,
+			pattern: /\b[A-Z]\w*(?:\.\w+)*(?:<[^\n=;{]+?>(?:\.\w+)*)?(?:\[\s*(,\s*)*\])?(?=\s+(?:[A-Z]\w*\.)?(?:\w+(?:\s*<[^>]+>)?\s*(?:[({]|=>)|this\s*\[))/,
+			inside: classNameInside,
+			alias: 'class-name'
+		},
+		'constructor-invocation': {
+			// new List<Foo<Bar[]>> { }
+			pattern: /(\bnew\s+)[A-Z]\w*(?:\.\w+)*(?:<(?:[^>\n=;{}]+|>(?=\s*(?:\[\s*(?:,\s*)*\]\s*)*[,.>?)]))+?>)?(?:\.\w+)*(?:\[\s*(?:,\s*)*\])*(?=\s*[[({])/,
+			lookbehind: true,
 			inside: classNameInside,
 			alias: 'class-name'
 		},
 		'generic-method': {
 			// foo<Bar>()
-			pattern: /\w+\s*<[^\n=;{)]+?>(?=\s*\()/,
+			pattern: /\w+\s*<[^\n=;{(]+?>(?=\s*\()/,
 			inside: {
 				'function': /^\w+/,
 				'class-name': {
@@ -101,6 +109,7 @@
 			}
 		},
 		'type-list': {
+			// The list of types inherited or of generic constraints
 			// ( class Foo<F> ) : Bar, IList<FooBar>
 			// ( where F ) : Bar, IList<int>
 			pattern: /(\b(?:class|interface|struct|enum)\s+[A-Z]\w*(?:\s*<[^>]+>)?\s*:\s*|\bwhere\s+\w+\s*:\s*)(?:\w+(?:<[^\r\n=;{]+?>)?(?:\s*,)?\s*?)+(?=\s*(?:where|[{;]|=>))/,

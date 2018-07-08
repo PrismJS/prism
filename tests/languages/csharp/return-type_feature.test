@@ -1,0 +1,75 @@
+Foo Bar();
+Foo<IFoo> Bar<A>();
+Foo<IFoo>[,] Bar<A>();
+new Foo<IFoo>[,] Bar<A>();
+
+
+----------------------------------------------------
+
+[
+	["return-type", ["Foo"]],
+	["function", "Bar"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["return-type", [
+		"Foo",
+		["punctuation", "<"],
+		"IFoo",
+		["punctuation", ">"]
+	]],
+	["generic-method", [
+		["function", "Bar"],
+		["punctuation", "<"],
+		["class-name", ["A"]],
+		["punctuation", ">"]
+	]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["return-type", [
+		"Foo",
+		["punctuation", "<"],
+		"IFoo",
+		["punctuation", ">"],
+		["punctuation", "["],
+		["punctuation", ","],
+		["punctuation", "]"]
+	]],
+	["generic-method", [
+		["function", "Bar"],
+		["punctuation", "<"],
+		["class-name", ["A"]],
+		["punctuation", ">"]
+	]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "new"],
+	["return-type", [
+		"Foo",
+		["punctuation", "<"],
+		"IFoo",
+		["punctuation", ">"],
+		["punctuation", "["],
+		["punctuation", ","],
+		["punctuation", "]"]
+	]],
+	["generic-method", [
+		["function", "Bar"],
+		["punctuation", "<"],
+		["class-name", ["A"]],
+		["punctuation", ">"]
+	]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"]
+]
+
+
+----------------------------------------------------
+
+Checks for the return type.
