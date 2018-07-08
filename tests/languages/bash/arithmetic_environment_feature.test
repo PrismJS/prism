@@ -32,7 +32,7 @@ for (( NUM=1 ; NUM<=1000 ; NUM++ ))
 		" bar\""
 	]],
 	["keyword", "for"],
-    ["variable", [
+	["variable", [
 		["punctuation", "(("],
 		" NUM",
 		["operator", "="],
