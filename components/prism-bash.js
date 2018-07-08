@@ -7,8 +7,8 @@
 	var insideString = {
 		environment: {
 			pattern: new RegExp("\\$(?:" + envVarList + ")(?=\\W)"),
-            alias: 'constant'
-        },
+			alias: 'constant'
+		},
 		variable: [
 			// [0]: Arithmetic Environment
 			{
@@ -37,24 +37,24 @@
 					variable: /^\$\(|^`|\)$|`$/
 				}
 			},
-            // [2]: Brace expansion
-            {
-                pattern: /\$\{[^}]+\}/,
-                greedy: true,
-                inside: {
-                    operator: /:[-=?+]?|[!\/]|##?|%%?|\^\^?|,,?/,
-                    punctuation: /[\[\]]/,
+			// [2]: Brace expansion
+			{
+				pattern: /\$\{[^}]+\}/,
+				greedy: true,
+				inside: {
+					operator: /:[-=?+]?|[!\/]|##?|%%?|\^\^?|,,?/,
+					punctuation: /[\[\]]/,
 					environment: {
 						pattern: new RegExp("(\\{)(?:" + envVarList + ")(?=$|\\}|\\W)"),
 						lookbehind: true,
 						alias: 'constant'
 					}
-                }
-            },
+				}
+			},
 			/\$(?:\w+|[#?*!@$])/
 		],
-        // man echo / printf, + \"
-        entity: /\\([abceEfnrtv\\"]|O?[0-7]{1,3}|x[0-9a-fA-F]{1,2}|u[0-9a-fA-F]{4}|U[0-9a-fA-F]{8})/
+		// man echo / printf, + \"
+		entity: /\\([abceEfnrtv\\"]|O?[0-7]{1,3}|x[0-9a-fA-F]{1,2}|u[0-9a-fA-F]{4}|U[0-9a-fA-F]{8})/
 	};
 
 	Prism.languages.bash = {
@@ -126,10 +126,10 @@
 				inside: insideString
 			}
 		],
-        environment: {
+		environment: {
 			pattern: new RegExp("\\$?(?:" + envVarList + ")(?=$|\\W)"),
-            alias: 'constant'
-        },
+			alias: 'constant'
+		},
 		variable: insideString.variable,
 		'function': {
 			pattern: /(^|[\s;|&]|[<>]\()(?:apropos|apt|apt-get|aptitude|aspell|awk|basename|bash|bc|bg|bzip2|cal|cat|cd|cfdisk|chgrp|chmod|chown|chroot|chkconfig|cksum|clear|column|cmp|comm|cp|cron|crontab|csplit|curl|cut|date|dc|dd|ddrescue|df|diff|diff3|dig|dir|dircolors|dirname|dirs|dmesg|du|egrep|eject|env|ethtool|expand|expect|expr|fdformat|fdisk|fg|fgrep|file|find|fmt|fold|format|free|fsck|ftp|fuser|gawk|git|grep|groupadd|groupdel|groupmod|groups|gzip|head|hg|history|hostname|htop|iconv|id|ifconfig|ifdown|ifup|import|install|jobs|join|kill|killall|less|link|ln|locate|logname|look|lpc|lpr|lprint|lprintd|lprintq|lprm|ls|lsof|make|man|mkdir|mkfifo|mkisofs|mknod|more|most|mount|mtools|mtr|mv|mmv|nano|netstat|nice|nl|nohup|notify-send|npm|nslookup|open|op|passwd|paste|pathchk|ping|pkill|popd|pr|printcap|printenv|ps|pushd|pv|quota|quotacheck|quotactl|ram|rar|rcp|reboot|rename|renice|remsync|rev|rm|rmdir|rsync|screen|scp|sdiff|sed|seq|service|shellcheck|shuf|sftp|sh|shutdown|sleep|slocate|sort|split|ssh|stat|strace|su|sudo|sum|suspend|sync|tac|tail|tar|tee|time|timeout|touch|top|traceroute|tr|tsort|tty|umount|uname|unexpand|uniq|units|unrar|unshar|uptime|useradd|userdel|usermod|users|uuencode|uudecode|v|vdir|vi|vmstat|wait|watch|wc|wget|whereis|which|who|whoami|write|xargs|xdg-open|yes|zenity|zip|zsh)(?=$|[)\s;|&])/,
@@ -139,7 +139,7 @@
 			pattern: /(^|[\s;|&]|[<>]\()(?:if|then|else|elif|fi|for|while|in|case|esac|function|select|do|done|until)(?=$|[)\s;|&])/,
 			lookbehind: true
 		},
-        // https://www.gnu.org/software/bash/manual/html_node/Shell-Builtin-Commands.html
+		// https://www.gnu.org/software/bash/manual/html_node/Shell-Builtin-Commands.html
 		builtin: {
 			pattern: /(^|[\s;|&]|[<>]\()(?:\.|:|break|cd|continue|eval|exec|exit|export|getopts|hash|pwd|readonly|return|shift|test|times|trap|umask|unset|alias|bind|builtin|caller|command|declare|echo|enable|help|let|local|logout|mapfile|printf|read|readarray|source|type|typeset|ulimit|unalias|set|shopt)(?=$|[)\s;|&])/,
 			lookbehind: true
