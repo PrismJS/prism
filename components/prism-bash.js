@@ -39,10 +39,10 @@
 			},
             // [2]: Brace expansion
             {
-                pattern: /\$(?:\{[^}]+\})/i,
+                pattern: /\$\{[^}]+\}/,
                 greedy: true,
                 inside: {
-                    operator: /:[-=?+]?|[!\/]|\#\#?|%%?|\^\^?|,,?/,
+                    operator: /:[-=?+]?|[!\/]|##?|%%?|\^\^?|,,?/,
                     punctuation: /[\[\]]/,
 					environment: {
 						pattern: new RegExp("(\\{)(?:" + envVarList + ")(?=$|\\}|\\W)"),
@@ -51,7 +51,7 @@
 					}
                 }
             },
-			/\$(?:\w+|#|\?|\*|!|@|\$)/i
+			/\$(?:\w+|[#?*!@$])/
 		],
         // man echo / printf, + \"
         entity: /\\([abceEfnrtv\\"]|O?[0-7]{1,3}|x[0-9a-fA-F]{1,2}|u[0-9a-fA-F]{4}|U[0-9a-fA-F]{8})/
@@ -73,18 +73,20 @@
 			// but not “foo {”
 			{
 				// a) and c)
-				pattern: /((^|\W)function\s+)(?:\w+)(?=(\s*\(\s*\))?\s*\{)/,
-				lookbehind: true
+				pattern: /((?:^|\W)function\s+)\w+(?=(\s*\(\s*\))?\s*\{)/,
+				lookbehind: true,
+				alias: 'function'
 			},
 			{
 				// b)
-				pattern: /(^|\W)(?:\w+)(?=\s*\(\s*\)\s*\{)/,
-				lookbehind: true
+				pattern: /(^|\W)\w+(?=\s*\(\s*\)\s*\{)/,
+				lookbehind: true,
+				alias: 'function'
 			}
 		],
 		// Highlight variable names as variables in for and select beginnings.
 		'for-or-select': {
-			pattern: /((^|[\s;|&]|[<>]\()(for|select)\s+)(?:\w+)(?=\s+in\s)/,
+			pattern: /((?:^|\W)(?:for|select)\s+)\w+(?=\s+in\s)/,
 			alias: 'variable',
 			lookbehind: true
 		},
@@ -105,7 +107,7 @@
 		string: [
 			// Support for Here-documents https://en.wikipedia.org/wiki/Here_document
 			{
-				pattern: /((?:^|[^<])<<-?\s*)(\w+?)\s*\r?\n(?:[\s\S])*?\r?\n\2/,
+				pattern: /((?:^|[^<])<<-?\s*)(\w+?)\s*(?:\r?\n|\r)(?:[\s\S])*?(?:\r?\n|\r)\2/,
 				lookbehind: true,
 				greedy: true,
 				inside: insideString
@@ -113,7 +115,7 @@
 			// Here-document with quotes around the tag
 			// → No expansion (so no “inside”).
 			{
-				pattern: /((?:^|[^<])<<-?\s*)["'](\w+?)["']\s*\r?\n(?:[\s\S])*?\r?\n\2/,
+				pattern: /((?:^|[^<])<<-?\s*)(["'])(\w+?)\2\s*(?:\r?\n|\r)(?:[\s\S])*?(?:\r?\n|\r)\3/,
 				lookbehind: true,
 				greedy: true
 			},
@@ -129,26 +131,25 @@
             alias: 'constant'
         },
 		variable: insideString.variable,
-		// Originally based on http://ss64.com/bash/
 		'function': {
-			pattern: /(^|[\s;|&]|[<>]\()(?:apropos|apt|apt-get|aptitude|aspell|awk|basename|bash|bc|bg|bzip2|cal|cat|cd|cfdisk|chgrp|chmod|chown|chroot|chkconfig|cksum|clear|column|cmp|comm|cp|cron|crontab|csplit|curl|cut|date|dc|dd|ddrescue|df|diff|diff3|dig|dir|dircolors|dirname|dirs|dmesg|du|egrep|eject|env|ethtool|expand|expect|expr|fdformat|fdisk|fg|fgrep|file|find|fmt|fold|format|free|fsck|ftp|fuser|gawk|git|grep|groupadd|groupdel|groupmod|groups|gzip|head|hg|history|hostname|htop|iconv|id|ifconfig|ifdown|ifup|import|install|jobs|join|kill|killall|less|link|ln|locate|logname|look|lpc|lpr|lprint|lprintd|lprintq|lprm|ls|lsof|make|man|mkdir|mkfifo|mkisofs|mknod|more|most|mount|mtools|mtr|mv|mmv|nano|netstat|nice|nl|nohup|notify-send|npm|nslookup|open|op|passwd|paste|pathchk|ping|pkill|popd|pr|printcap|printenv|ps|pushd|pv|quota|quotacheck|quotactl|ram|rar|rcp|reboot|rename|renice|remsync|rev|rm|rmdir|rsync|screen|scp|sdiff|sed|seq|service|shellcheck|shuf|sftp|sh|shutdown|sleep|slocate|sort|split|ssh|stat|strace|su|sudo|sum|suspend|sync|tac|tail|tar|tee|time|timeout|touch|top|traceroute|tr|tsort|tty|umount|uname|unexpand|uniq|units|unrar|unshar|uptime|useradd|userdel|usermod|users|uuencode|uudecode|v|vdir|vi|vmstat|wait|watch|wc|wget|whereis|which|who|whoami|write|xargs|xdg-open|yes|zenity|zip|zsh)(?=$|[\)\s;|&])/,
+			pattern: /(^|[\s;|&]|[<>]\()(?:apropos|apt|apt-get|aptitude|aspell|awk|basename|bash|bc|bg|bzip2|cal|cat|cd|cfdisk|chgrp|chmod|chown|chroot|chkconfig|cksum|clear|column|cmp|comm|cp|cron|crontab|csplit|curl|cut|date|dc|dd|ddrescue|df|diff|diff3|dig|dir|dircolors|dirname|dirs|dmesg|du|egrep|eject|env|ethtool|expand|expect|expr|fdformat|fdisk|fg|fgrep|file|find|fmt|fold|format|free|fsck|ftp|fuser|gawk|git|grep|groupadd|groupdel|groupmod|groups|gzip|head|hg|history|hostname|htop|iconv|id|ifconfig|ifdown|ifup|import|install|jobs|join|kill|killall|less|link|ln|locate|logname|look|lpc|lpr|lprint|lprintd|lprintq|lprm|ls|lsof|make|man|mkdir|mkfifo|mkisofs|mknod|more|most|mount|mtools|mtr|mv|mmv|nano|netstat|nice|nl|nohup|notify-send|npm|nslookup|open|op|passwd|paste|pathchk|ping|pkill|popd|pr|printcap|printenv|ps|pushd|pv|quota|quotacheck|quotactl|ram|rar|rcp|reboot|rename|renice|remsync|rev|rm|rmdir|rsync|screen|scp|sdiff|sed|seq|service|shellcheck|shuf|sftp|sh|shutdown|sleep|slocate|sort|split|ssh|stat|strace|su|sudo|sum|suspend|sync|tac|tail|tar|tee|time|timeout|touch|top|traceroute|tr|tsort|tty|umount|uname|unexpand|uniq|units|unrar|unshar|uptime|useradd|userdel|usermod|users|uuencode|uudecode|v|vdir|vi|vmstat|wait|watch|wc|wget|whereis|which|who|whoami|write|xargs|xdg-open|yes|zenity|zip|zsh)(?=$|[)\s;|&])/,
 			lookbehind: true
 		},
 		keyword: {
-			pattern: /(^|[\s;|&]|[<>]\()(?:if|then|else|elif|fi|for|while|in|case|esac|function|select|do|done|until)(?=$|[\)\s;|&])/,
+			pattern: /(^|[\s;|&]|[<>]\()(?:if|then|else|elif|fi|for|while|in|case|esac|function|select|do|done|until)(?=$|[)\s;|&])/,
 			lookbehind: true
 		},
         // https://www.gnu.org/software/bash/manual/html_node/Shell-Builtin-Commands.html
 		builtin: {
-			pattern: /(^|[\s;|&]|[<>]\()(?:\.|:|break|cd|continue|eval|exec|exit|export|getopts|hash|pwd|readonly|return|shift|test|times|trap|umask|unset|alias|bind|builtin|caller|command|declare|echo|enable|help|let|local|logout|mapfile|printf|read|readarray|source|type|typeset|ulimit|unalias|set|shopt)(?=$|[\)\s;|&])/,
+			pattern: /(^|[\s;|&]|[<>]\()(?:\.|:|break|cd|continue|eval|exec|exit|export|getopts|hash|pwd|readonly|return|shift|test|times|trap|umask|unset|alias|bind|builtin|caller|command|declare|echo|enable|help|let|local|logout|mapfile|printf|read|readarray|source|type|typeset|ulimit|unalias|set|shopt)(?=$|[)\s;|&])/,
 			lookbehind: true
 		},
 		boolean: {
-			pattern: /(^|[\s;|&]|[<>]\()(?:true|false)(?=$|[\)\s;|&])/,
+			pattern: /(^|[\s;|&]|[<>]\()(?:true|false)(?=$|[)\s;|&])/,
 			lookbehind: true
 		},
 		'file-descriptor': {
-			pattern: /(^|\W)(?:&[0-9])(?=$|\W)/,
+			pattern: /(^|\W)&\d(?=$|\W)/,
 			lookbehind: true,
 			alias: 'important'
 		},
@@ -157,15 +158,15 @@
 			pattern: /\d?<>|>\||\+=|==?|!=?|=~|<<[<-]?|[&\d]?>>|\d?[<>]&?|&>|&&?|\|&|\|\|?|<=?|>=?/,
 			inside: {
 				'file-descriptor': {
-					pattern: /(^|[^\d])(?:\d)(?=$|[^\d])/,
+					pattern: /^\d/,
 					lookbehind: true,
 					alias: 'important'
 				}
 			}
 		},
-		punctuation: /\$?\(\(?|\)\)?|\.\.|[{}[\];]|\\/,
+		punctuation: /\$?\(\(?|\)\)?|\.\.|[{}[\];\\]/,
 		number: {
-			pattern: /(^|\s)(?:([1-9]\d*|0)([.,]\d+)?)(?=$|\W)/,
+			pattern: /(^|\s)(?:[1-9]\d*|0)(?:[.,]\d+)?\b/,
 			lookbehind: true
 		}
 	};

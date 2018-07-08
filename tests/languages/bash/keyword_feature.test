@@ -16,12 +16,19 @@ until
 ----------------------------------------------------
 
 [
-	["keyword", "if"], ["keyword", "then"], ["keyword", "else"], ["keyword", 
-	"elif"], ["keyword", "fi"], ["keyword", "for"], ["for-or-select", "x"],
-	["keyword", "in"], " a\r\n", ["keyword", "while"], 
-	["keyword", "case"], ["keyword", "esac"], ["keyword", 
-	"function"], ["keyword", "select"], ["for-or-select", "x"], ["keyword",
-    "in"], " a\r\n", ["keyword", "do"], ["keyword", "done"], 
+	["keyword", "if"],
+	["keyword", "then"],
+	["keyword", "else"],
+	["keyword", "elif"],
+	["keyword", "fi"],
+	["keyword", "for"], ["for-or-select", "x"], ["keyword", "in"], " a\r\n",
+	["keyword", "while"], 
+	["keyword", "case"],
+	["keyword", "esac"],
+	["keyword", "function"],
+	["keyword", "select"], ["for-or-select", "x"], ["keyword", "in"], " a\r\n",
+	["keyword", "do"],
+	["keyword", "done"], 
 	["keyword", "until"]
 ]
 
