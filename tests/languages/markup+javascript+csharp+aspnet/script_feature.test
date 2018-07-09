@@ -39,7 +39,7 @@
 		["punctuation", ">"]
 	]],
 	["script", [
-		["regex", "/foo/"]
+		["regex", ["/foo/"]]
 	]],
 	["tag", [
 		["tag", [

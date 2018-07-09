@@ -5,19 +5,44 @@
 /foo\//
 1 / 4 + "/, not a regex";
 / '1' '2' '3' '4' '5' /
-[/foo/]
+[/foo/],
+/url\(path\)/,
+/\.jpg$|\.png$/
 
 ----------------------------------------------------
 
 [
-	["regex", "/foo bar/"], ["punctuation", ";"],
-	["regex", "/foo/gimyu"], ["punctuation", ","],
-	["regex", "/[\\[\\]]{2,4}(?:foo)*/"], ["punctuation", ";"],
-	["regex", "/foo\"test\"bar/"], ["punctuation", ";"],
-	["regex", "/foo\\//"],
+	["regex", ["/foo bar/"]], ["punctuation", ";"],
+	["regex", ["/foo/", ["regex-flags", "gimyu"]]], ["punctuation", ","],
+	["regex", [
+		"/",
+		["regex-group", "[\\[\\]]"],
+		["regex-punctuation", "{"],
+		"2,4",
+		["regex-punctuation", "}"],
+		["regex-punctuation", "("],
+		"?:foo",
+		["regex-punctuation", ")"],
+		["regex-punctuation", "*"],
+		"/"
+	]], ["punctuation", ";"],
+	["regex", ["/foo\"test\"bar/"]], ["punctuation", ";"],
+	["regex", ["/foo", ["regex-escape", "\\/"], "/"]],
 	["number", "1"], ["operator", "/"], ["number", "4"], ["operator", "+"], ["string", "\"/, not a regex\""], ["punctuation", ";"],
-	["regex", "/ '1' '2' '3' '4' '5' /"],
-	["punctuation", "["], ["regex", "/foo/"], ["punctuation", "]"]
+	["regex", ["/ '1' '2' '3' '4' '5' /"]],
+	["punctuation", "["], ["regex", ["/foo/"]], ["punctuation", "]"], ["punctuation", ","],
+	["regex", ["/url", ["regex-escape", "\\("], "path", ["regex-escape", "\\)"], "/"]], ["punctuation", ","],
+	["regex", [
+		"/",
+		["regex-escape", "\\."],
+		"jpg",
+		["regex-punctuation", "$"],
+		["regex-punctuation", "|"],
+		["regex-escape", "\\."],
+		"png",
+		["regex-punctuation", "$"],
+		"/"
+	]]
 ]
 
 ----------------------------------------------------
