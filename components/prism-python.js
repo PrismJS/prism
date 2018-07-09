@@ -1,4 +1,8 @@
 Prism.languages.python = {
+	// "#" can only introduce a comment if it is not inside a
+	// string, so we are careful to skip strings earlier in the line
+	// before accepting that a comment has started.  Otherwise we
+	// may throw off the greedy string patterns that follow.
 	'comment': {
 		pattern: /((?:^|[\r\n])[^'"#]*(?:"(?:[^"\r\n]|\\")*"[^"'#]*|'(?:[^'\r\n]|\\')*'[^"'#]*)*)#.*/,
 		lookbehind: true
