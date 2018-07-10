@@ -4,6 +4,7 @@ Foo<Bar> c = null;
 static Foo<(Bar, int)>[,,] d;
 void Foo(Foo a, Bar<Foo> b, Bar[, ] c, Foo<(int, int)> d);
 Bar<Foo> Abc => 0;
+Bar<Foo>.FooBar<IFoo> Abc;
 
 ----------------------------------------------------
 
@@ -92,6 +93,20 @@ Bar<Foo> Abc => 0;
 	["operator", "="],
 	["operator", ">"],
 	["number", "0"],
+	["punctuation", ";"],
+
+	["class-name", [
+		"Bar",
+		["punctuation", "<"],
+		"Foo",
+		["punctuation", ">"],
+		["punctuation", "."],
+		"FooBar",
+		["punctuation", "<"],
+		"IFoo",
+		["punctuation", ">"]
+	]],
+	" Abc",
 	["punctuation", ";"]
 ]
 

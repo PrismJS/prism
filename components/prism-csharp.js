@@ -30,7 +30,7 @@
 
 	var genericParameters = /(?:<(?:[^<>]|<(?:[^<>]|<(?:[^<>]|<[^<>]+>)+>)+>)+>)/;
 
-	var className = replace(/(?:[A-Z]\w*(?:\.\w+)*<<0>>?(?:\.\w+)*)/, genericParameters);
+	var className = replace(/(?:[A-Z]\w*(?:\.\w+)*(?:<<0>>(?:\.\w+)*)*)/, genericParameters);
 	var classNamePlusArray = replace(/(?:<<0>>)(?:\[\s*(?:,\s*)*\])*/, className);
 	var classNamePlusArrayOrKeyword = replace(/(?:<<0>>|[a-z]+)/, className);
 
@@ -60,6 +60,26 @@
 				inside: {
 					'punctuation': /\./
 				}
+			},
+			{
+				// Using static
+				// using static System.Math;
+				pattern: replace(/(\busing\s+static\s+)<<0>>(?=\s*;)/, className),
+				lookbehind: true,
+				inside: classNameInside
+			},
+			{
+				// Using alias (type)
+				// using Project = PC.MyCompany.Project;
+				pattern: replace(/(\busing\s+[A-Z]\w*\s*=\s*)<<0>>(?=\s*;)/, className),
+				lookbehind: true,
+				inside: classNameInside
+			},
+			{
+				// Using alias (alias)
+				// using Project = PC.MyCompany.Project;
+				pattern: /(\busing\s+)[A-Z]\w*(?=\s*=)/,
+				lookbehind: true
 			},
 			{
 				// Type declarations
@@ -105,6 +125,13 @@
 	});
 
 	Prism.languages.insertBefore('csharp', 'class-name', {
+		'namespace': {
+			pattern: /(\b(?:namespace|using)\s+)[A-Z]\w*(\.\w+)*(?=\s*[;{])/,
+			lookbehind: true,
+			inside: {
+				'punctuation': /\./
+			}
+		},
 		'type-expression': {
 			// default(Foo), typeof(Foo<Bar>)
 			pattern: /(\b(?:default|typeof)\s*\(\s*)[A-Z][^()]*?(?=\s*\))/,
