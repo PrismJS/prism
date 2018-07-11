@@ -153,12 +153,12 @@
 			inside: classNameInside,
 			alias: 'class-name'
 		},
-		'explicit-implementation': {
+		/*'explicit-implementation': {
 			// int IFoo<Foo>.Bar => 0; void IFoo<Foo<Foo>>.Foo<T>();
 			pattern: replace(/\b<<0>>(?=\.<<1>>)/, className, methodOrPropertyDeclaration),
 			inside: classNameInside,
 			alias: 'class-name'
-		},
+		},*/
 		'generic-method': {
 			// foo<Bar>()
 			pattern: replace(/\w+\s*<<0>>(?=\s*\()/, genericParameters),
