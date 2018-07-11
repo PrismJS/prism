@@ -3,6 +3,7 @@ interface BarBaz
 struct Foo
 enum Foo
 class Foo<A, B>
+interface Bar<out T>
 
 ----------------------------------------------------
 
@@ -26,6 +27,15 @@ class Foo<A, B>
 		"A",
 		["punctuation", ","],
 		" B",
+		["punctuation", ">"]
+	]],
+
+	["keyword", "interface"],
+	["class-name", [
+		"Bar",
+		["punctuation", "<"],
+		["keyword", "out"],
+		" T",
 		["punctuation", ">"]
 	]]
 ]

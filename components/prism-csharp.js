@@ -87,7 +87,8 @@
 				pattern: replace(/(\b<<0>>\s+)[A-Z]\w*(?:\s*<[^<>]+>)?/, typeDeclarationKeywords),
 				lookbehind: true,
 				inside: {
-					'punctuation': /[<>,]/
+					'punctuation': /[<>,]/,
+					'keyword': /\b(?:in|out)\b/
 				}
 			},
 			{
@@ -117,7 +118,7 @@
 			{
 				// Variable, field and parameter declaration
 				// (Foo bar, Bar baz, Foo[,,] bay, Foo<Bar, FooBar<Bar>> bax)
-				pattern: replace(/\b<<0>>(?=\s+\w+(?:\s*[=,;:{)\]]|\s+in))/, classNamePlusArray),
+				pattern: replace(/\b<<0>>(?=\s+[@\w]+(?:\s*[=,;:{)\]]|\s+in))/, classNamePlusArray),
 				inside: classNameInside
 			}
 		],

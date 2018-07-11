@@ -1,5 +1,6 @@
 int a;
 Foo b;
+Foo @new_var;
 Foo<Bar> c = null;
 static Foo<(Bar, int)>[,,] d;
 void Foo(Foo a, Bar<Foo> b, Bar[, ] c, Foo<(int, int)> d);
@@ -15,6 +16,10 @@ Bar<Foo>.FooBar<IFoo> Abc;
 
 	["class-name", ["Foo"]],
 	" b",
+	["punctuation", ";"],
+
+	["class-name", ["Foo"]],
+	" @new_var",
 	["punctuation", ";"],
 
 	["class-name", [
