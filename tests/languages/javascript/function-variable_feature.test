@@ -2,7 +2,7 @@ foo = function ( x, y) {}
 bar = async function baz (x ) {}
 baz = async(x) => x
 fooBar = x => x
-fooBar = (x, y) => x
+fooBar = ( x, y ) => x
 ಠ_ಠ = () => {}
 Ƞȡ_҇ = async (ಠ, Ƞ = 2) => {}
 
@@ -29,7 +29,7 @@ fooBar = (x, y) => x
 	["function", "baz"],
 	["punctuation", "("],
 	["parameter", [
-		"x "
+		"x"
 	]],
 	["punctuation", ")"],
 	["punctuation", "{"],

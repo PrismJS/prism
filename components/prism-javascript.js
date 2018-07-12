@@ -19,7 +19,7 @@ Prism.languages.insertBefore('javascript', 'keyword', {
 	},
 	'parameter': [
 		{
-			pattern: /(function(?:\s+[_$a-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*)?\s*\(\s*)\S[^()]*(?=\s*\))/,
+			pattern: /(function(?:\s+[_$a-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*)?\s*\(\s*)[^\s()][^()]*?(?=\s*\))/,
 			lookbehind: true,
 			inside: Prism.languages.javascript
 		},
@@ -28,12 +28,12 @@ Prism.languages.insertBefore('javascript', 'keyword', {
 			inside: Prism.languages.javascript
 		},
 		{
-			pattern: /(\()[^()]+(?=\)\s*=>)/,
+			pattern: /(\(\s*)[^\s()][^()]*?(?=\s*\)\s*=>)/,
 			lookbehind: true,
 			inside: Prism.languages.javascript
 		},
 		{
-			pattern: /(\b(?!await|delete|export|for|if|new|return|switch|throw|typeof|while|yield)(?:[_$a-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*\s*)\(\s*)\S[^()]*(?=\s*\)\s*\{)/,
+			pattern: /((?:\b|\s|^)(?!(?:await|delete|export|for|if|new|return|switch|throw|typeof|while|yield)(?![$\w\xA0-\uFFFF]))(?:[_$a-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*\s*)\(\s*)[^\s()][^()]*?(?=\s*\)\s*\{)/,
 			lookbehind: true,
 			inside: Prism.languages.javascript
 		}
