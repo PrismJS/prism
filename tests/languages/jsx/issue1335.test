@@ -20,11 +20,11 @@
 		["script", [
 			["script-punctuation", "="],
 			["punctuation", "{"],
+			["punctuation", "("],
 			["parameter", [
-				["punctuation", "("],
-				"e",
-				["punctuation", ")"]
+				"e"
 			]],
+			["punctuation", ")"],
 			["operator", "=>"],
 			["keyword", "this"],
 			["punctuation", "."],

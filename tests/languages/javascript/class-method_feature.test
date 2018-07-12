@@ -11,38 +11,36 @@ class Test {
 	["class-name", ["Test"]],
 	["punctuation", "{"],
 
+	["function", "foo"],
+	["punctuation", "("],
 	["parameter", [
-		["function", "foo"],
-		["punctuation", "("],
 		"x",
 		["punctuation", ","],
 		" y ",
 		["operator", "="],
-		["number", "0"],
-		["punctuation", ")"]
+		["number", "0"]
 	]],
+	["punctuation", ")"],
 	["punctuation", "{"],
 	["punctuation", "}"],
 
 	["keyword", "async"],
+	["function", "bar"],
+	["punctuation", "("],
 	["parameter", [
-		["function", "bar"],
-		["punctuation", "("],
 		"x",
 		["punctuation", ","],
 		" y ",
 		["operator", "="],
-		["number", "0"],
-		["punctuation", ")"]
+		["number", "0"]
 	]],
+	["punctuation", ")"],
 	["punctuation", "{"],
 	["punctuation", "}"],
 
-	["parameter", [
-		["function", "_"],
-		["punctuation", "("],
-		["punctuation", ")"]
-	]],
+	["function", "_"],
+	["punctuation", "("],
+	["punctuation", ")"],
 	["punctuation", "{"],
 	["punctuation", "}"],
 

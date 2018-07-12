@@ -12,13 +12,13 @@ fooBar = (x, y) => x
 	["function-variable", "foo"],
 	["operator", "="],
 	["keyword", "function"],
+	["punctuation", "("],
 	["parameter", [
-		["punctuation", "("],
-		" x",
+		"x",
 		["punctuation", ","],
-		" y",
-		["punctuation", ")"]
+		" y"
 	]],
+	["punctuation", ")"],
 	["punctuation", "{"],
 	["punctuation", "}"],
 
@@ -26,23 +26,23 @@ fooBar = (x, y) => x
 	["operator", "="],
 	["keyword", "async"],
 	["keyword", "function"],
+	["function", "baz"],
+	["punctuation", "("],
 	["parameter", [
-		["function", "baz"],
-		["punctuation", "("],
-		"x ",
-		["punctuation", ")"]
+		"x "
 	]],
+	["punctuation", ")"],
 	["punctuation", "{"],
 	["punctuation", "}"],
 
 	["function-variable", "baz"],
 	["operator", "="],
 	["keyword", "async"],
+	["punctuation", "("],
 	["parameter", [
-		["punctuation", "("],
-		"x",
-		["punctuation", ")"]
+		"x"
 	]],
+	["punctuation", ")"],
 	["operator", "=>"], " x\r\n",
 
 	["function-variable", "fooBar"],
@@ -54,21 +54,19 @@ fooBar = (x, y) => x
 
 	["function-variable", "fooBar"],
 	["operator", "="],
+	["punctuation", "("],
 	["parameter", [
-		["punctuation", "("],
 		"x",
 		["punctuation", ","],
-		" y",
-		["punctuation", ")"]
+		" y"
 	]],
+	["punctuation", ")"],
 	["operator", "=>"], " x\r\n",
 
 	["function-variable", "ಠ_ಠ"],
 	["operator", "="],
-	["parameter", [
-		["punctuation", "("],
-		["punctuation", ")"]
-	]],
+	["punctuation", "("],
+	["punctuation", ")"],
 	["operator", "=>"],
 	["punctuation", "{"],
 	["punctuation", "}"],
@@ -76,15 +74,15 @@ fooBar = (x, y) => x
 	["function-variable", "Ƞȡ_҇"],
 	["operator", "="],
 	["keyword", "async"],
+	["punctuation", "("],
 	["parameter", [
-		["punctuation", "("],
 		"ಠ",
 		["punctuation", ","],
 		" Ƞ ",
 		["operator", "="],
-		["number", "2"],
-		["punctuation", ")"]
+		["number", "2"]
 	]],
+	["punctuation", ")"],
 	["operator", "=>"],
 	["punctuation", "{"],
 	["punctuation", "}"]
