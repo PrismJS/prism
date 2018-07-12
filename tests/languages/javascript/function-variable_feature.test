@@ -1,5 +1,6 @@
 foo = function ( x, y) {}
 bar = async function baz (x ) {}
+baz = async(x) => x
 fooBar = x => x
 fooBar = (x, y) => x
 ಠ_ಠ = () => {}
@@ -11,7 +12,7 @@ fooBar = (x, y) => x
 	["function-variable", "foo"],
 	["operator", "="],
 	["keyword", "function"],
-	["es5-function-parameter", [
+	["parameter", [
 		["punctuation", "("],
 		" x",
 		["punctuation", ","],
@@ -25,7 +26,7 @@ fooBar = (x, y) => x
 	["operator", "="],
 	["keyword", "async"],
 	["keyword", "function"],
-	["es5-function-parameter", [
+	["parameter", [
 		["function", "baz"],
 		["punctuation", "("],
 		"x ",
@@ -34,16 +35,26 @@ fooBar = (x, y) => x
 	["punctuation", "{"],
 	["punctuation", "}"],
 
+	["function-variable", "baz"],
+	["operator", "="],
+	["keyword", "async"],
+	["parameter", [
+		["punctuation", "("],
+		"x",
+		["punctuation", ")"]
+	]],
+	["operator", "=>"], " x\r\n",
+
 	["function-variable", "fooBar"],
 	["operator", "="],
-	["es6-function-parameter", [
+	["parameter", [
 		"x"
 	]],
 	["operator", "=>"], " x\r\n",
 
 	["function-variable", "fooBar"],
 	["operator", "="],
-	["es6-function-parameter", [
+	["parameter", [
 		["punctuation", "("],
 		"x",
 		["punctuation", ","],
@@ -54,7 +65,7 @@ fooBar = (x, y) => x
 
 	["function-variable", "ಠ_ಠ"],
 	["operator", "="],
-	["es6-function-parameter", [
+	["parameter", [
 		["punctuation", "("],
 		["punctuation", ")"]
 	]],
@@ -65,7 +76,7 @@ fooBar = (x, y) => x
 	["function-variable", "Ƞȡ_҇"],
 	["operator", "="],
 	["keyword", "async"],
-	["es6-function-parameter", [
+	["parameter", [
 		["punctuation", "("],
 		"ಠ",
 		["punctuation", ","],

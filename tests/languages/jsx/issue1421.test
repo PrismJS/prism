@@ -17,7 +17,7 @@ class Columns extends React.Component {
 	["keyword", "extends"],
 	["class-name", ["React", ["punctuation", "."], "Component"]],
 	["punctuation", "{"],
-	["es6-class-method-parameter", [
+	["parameter", [
 		["function", "render"],
 		["punctuation", "("], ["punctuation", ")"]
 	]],

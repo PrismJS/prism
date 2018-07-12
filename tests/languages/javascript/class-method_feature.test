@@ -11,7 +11,7 @@ class Test {
 	["class-name", ["Test"]],
 	["punctuation", "{"],
 
-	["es6-class-method-parameter", [
+	["parameter", [
 		["function", "foo"],
 		["punctuation", "("],
 		"x",
@@ -25,7 +25,7 @@ class Test {
 	["punctuation", "}"],
 
 	["keyword", "async"],
-	["es6-class-method-parameter", [
+	["parameter", [
 		["function", "bar"],
 		["punctuation", "("],
 		"x",
@@ -38,7 +38,7 @@ class Test {
 	["punctuation", "{"],
 	["punctuation", "}"],
 
-	["es6-class-method-parameter", [
+	["parameter", [
 		["function", "_"],
 		["punctuation", "("],
 		["punctuation", ")"]

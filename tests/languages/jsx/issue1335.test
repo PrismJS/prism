@@ -20,7 +20,7 @@
 		["script", [
 			["script-punctuation", "="],
 			["punctuation", "{"],
-			["es6-function-parameter", [
+			["parameter", [
 				["punctuation", "("],
 				"e",
 				["punctuation", ")"]
