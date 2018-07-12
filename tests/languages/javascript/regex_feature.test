@@ -7,23 +7,21 @@
 / '1' '2' '3' '4' '5' /
 [/foo/],
 /url\(path\)/,
-/\.jpg$|\.png$/
+/\.jpg$|\.png$/,
+/\xCA\xfe\u4d5a\u{12345}\076\cI?/,
+/^.\1+?/
 
 ----------------------------------------------------
 
 [
 	["regex", ["/foo bar/"]], ["punctuation", ";"],
-	["regex", ["/foo/", ["regex-flags", "gimyu"]]], ["punctuation", ","],
+	["regex", ["/foo/", ["regex-flag", "gimyu"]]], ["punctuation", ","],
 	["regex", [
 		"/",
-		["regex-group", "[\\[\\]]"],
-		["regex-punctuation", "{"],
-		"2,4",
-		["regex-punctuation", "}"],
-		["regex-punctuation", "("],
-		"?:foo",
-		["regex-punctuation", ")"],
-		["regex-punctuation", "*"],
+		["regex-charset1", "[\\[\\]]"],
+		["regex-quantifier", "{2,4}"],
+		"(?:foo)",
+		["regex-quantifier", "*"],
 		"/"
 	]], ["punctuation", ";"],
 	["regex", ["/foo\"test\"bar/"]], ["punctuation", ";"],
@@ -36,11 +34,31 @@
 		"/",
 		["regex-escape", "\\."],
 		"jpg",
-		["regex-punctuation", "$"],
-		["regex-punctuation", "|"],
+		["regex-anchor", "$"],
+		["regex-alternation", "|"],
 		["regex-escape", "\\."],
 		"png",
-		["regex-punctuation", "$"],
+		["regex-anchor", "$"],
+		"/"
+	]], ["punctuation", ","],
+	["regex", [
+		"/",
+		["regex-escape", "\\xCA"],
+		["regex-escape", "\\xfe"],
+		["regex-escape", "\\u4d5a"],
+		["regex-escape", "\\u{12345}"],
+		["regex-escape", "\\076"],
+		["regex-escape", "\\cI"],
+		["regex-quantifier", "?"],
+		"/"
+	]], ["punctuation", ","],
+	["regex", [
+		"/",
+		["regex-anchor", "^"],
+		["regex-charset2", "."],
+		["regex-reference", "\\1"],
+		["regex-quantifier", "+"],
+		["regex-quantifier", "?"],
 		"/"
 	]]
 ]

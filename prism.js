@@ -733,22 +733,26 @@ Prism.languages.insertBefore('javascript', 'keyword', {
 	'regex': {
 		pattern: /((?:^|[^$\w\xA0-\uFFFF."'\])\s])\s*)\/(\[[^\]\r\n]+]|\\.|[^/\\\[\r\n])+\/[gimyu]{0,5}(?=\s*($|[\r\n,.;})\]]))/,
 		inside: {
-			'regex-flags': {
-				pattern: /[gimyu]{1,5}$/,
-				alias: 'keyword'
+			'regex-flag': {
+				pattern: /(\/)[gimyu]{1,5}$/,
+				lookbehind: true
 			},
-			'regex-group': {
-				pattern: /\[(?:\\\\|\\\]|[^\]])*\]/,
-				alias: 'escape'
+			'regex-charset1': {
+				pattern: /(\[(\\\]|[^\]])*\])|(\\[wds])/i,
+				alias: 'regex-charset'
 			},
-			'regex-escape': {
-				pattern: /\\./,
-				alias: 'escape'
+			'regex-escape': /\\(\\|\+|x[0-9a-f]{2}|u[0-9A-F]{4}|u\{\d+\}|c[a-z]|0[0-7]{1,2}|[^\d])/i,
+			'regex-reference': /\\\d/,
+			'regex-charset2': {
+				pattern: /\./,
+				alias: 'regex-charset'
 			},
-			'regex-punctuation': {
-				pattern: /[|^$*+(){}]|(?:\?(?![:!=<]))/,
-				alias: 'operator'
-			}
+			'regex-anchor': /(\^|\$|\\b)/i,
+			'regex-quantifier': {
+				pattern: /\+|\*|(?:\{(?:\d+|\d+,|,\d+|\d+,\d+)\})|(^|[^(])\?/,
+				lookbehind: true
+			},
+			'regex-alternation': /\|/
 		},
 		lookbehind: true,
 		greedy: true
