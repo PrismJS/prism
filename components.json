@@ -364,10 +364,20 @@
 			"require": "clike",
 			"owner": "sherblot"
 		},
+		"javadoc": {
+			"title": "JavaDoc",
+			"require": "java",
+			"owner": "RunDevelopment"
+		},
 		"jolie": {
 			"title": "Jolie",
 			"require": "clike",
 			"owner": "thesave"
+		},
+		"jsdoc": {
+			"title": "JSDoc",
+			"require": "javascript",
+			"owner": "RunDevelopment"
 		},
 		"json": {
 			"title": "JSON",

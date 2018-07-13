@@ -1,0 +1,47 @@
+@author
+@deprecated
+@exception
+@param
+@return
+@see
+@serial
+@serialData
+@serialField
+@since
+@throws
+@version
+{@code}
+{@docRoot}
+{@inheritDoc}
+{@link}
+{@linkplain}
+{@literal}
+{@value}
+
+----------------------------------------------------
+
+[
+	["keyword", "@author"],
+	["keyword", "@deprecated"],
+	["keyword", "@exception"],
+	["keyword", "@param"],
+	["keyword", "@return"],
+	["keyword", "@see"],
+	["keyword", "@serial"],
+	["keyword", "@serialData"],
+	["keyword", "@serialField"],
+	["keyword", "@since"],
+	["keyword", "@throws"],
+	["keyword", "@version"],
+	["punctuation", "{"], ["keyword", "@code"], ["punctuation", "}"],
+	["punctuation", "{"], ["keyword", "@docRoot"], ["punctuation", "}"],
+	["punctuation", "{"], ["keyword", "@inheritDoc"], ["punctuation", "}"],
+	["punctuation", "{"], ["keyword", "@link"], ["punctuation", "}"],
+	["punctuation", "{"], ["keyword", "@linkplain"], ["punctuation", "}"],
+	["punctuation", "{"], ["keyword", "@literal"], ["punctuation", "}"],
+	["punctuation", "{"], ["keyword", "@value"], ["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for all keywords.
