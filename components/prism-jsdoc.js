@@ -1,6 +1,6 @@
 Prism.languages.jsdoc = {
 	'parameter': {
-		pattern: /(@(?:param|arg|argument)\s+(?:\{[^{}]+\}\s+)?)(?:\w+|\[\w+(?:=[^[[\]]+)?\])(?=\s|$)/,
+		pattern: /(@(?:param|arg|argument)\s+(?:\{(?:[^{}]|\{(?:[^{}]|\{[^{}]*\})*\})+\}\s+)?)(?:\w+|\[\w+(?:=[^[[\]]+)?\])(?=\s|$)/,
 		lookbehind: true,
 		inside: {
 			'code': {
@@ -13,7 +13,7 @@ Prism.languages.jsdoc = {
 	},
 	'class-name': [
 		{
-			pattern: /(@(?:class|constant|const|constructs|enum|implements|member|var|namespace|param|arg|argument|property|prop|returns|return|throws|exception|type|typedef|yields?)\s+)\{(?:[^{}]|\{(?:[^{}]|\{[^{}]*\})*\})+\}/,
+			pattern: /(@[a-z]+\s+)\{(?:[^{}]|\{(?:[^{}]|\{[^{}]*\})*\})+\}/,
 			lookbehind: true,
 			inside: {
 				'punctuation': /[.,:?=<>|{}()[\]]/

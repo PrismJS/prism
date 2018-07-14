@@ -1,0 +1,43 @@
+@param {number} n - A number.
+@param {{[x: string]: {start: number, end: number}}} map
+
+----------------------------------------------------
+
+[
+	["keyword", "@param"],
+	["class-name", [
+		["punctuation", "{"],
+		"number",
+		["punctuation", "}"]
+	]],
+	["parameter", ["n"]],
+	" - A number.\n",
+
+	["keyword", "@param"],
+	["class-name", [
+		["punctuation", "{"],
+		["punctuation", "{"],
+		["punctuation", "["],
+		"x",
+		["punctuation", ":"],
+		" string",
+		["punctuation", "]"],
+		["punctuation", ":"],
+		["punctuation", "{"],
+		"start",
+		["punctuation", ":"],
+		" number",
+		["punctuation", ","],
+		" end",
+		["punctuation", ":"],
+		" number",
+		["punctuation", "}"],
+		["punctuation", "}"],
+		["punctuation", "}"]
+	]],
+	["parameter", ["map"]]
+]
+
+----------------------------------------------------
+
+Checks for parameter types and names.
