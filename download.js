@@ -223,7 +223,11 @@ for (var category in components) {
 						href: all.meta.link.replace(/\{id}/g, id)
 					},
 					contents: info.title
-				} : info.title,
+				} : {
+					tag: 'span',
+					contents: info.title
+				},
+				' ',
 				all[id].owner? {
 					tag: 'a',
 					properties: {
