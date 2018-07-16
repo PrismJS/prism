@@ -733,21 +733,31 @@ Prism.languages.insertBefore('javascript', 'keyword', {
 	'regex': {
 		pattern: /((?:^|[^$\w\xA0-\uFFFF."'\])\s])\s*)\/(\[[^\]\r\n]+]|\\.|[^/\\\[\r\n])+\/[gimyu]{0,5}(?=\s*($|[\r\n,.;})\]]))/,
 		inside: {
-			'regex-flag': {
-				pattern: /(\/)[gimyu]{1,5}$/,
-				lookbehind: true
+			'regex-flag': /[gimyu]{1,5}$/,
+			'regex-charset': {
+				pattern: /((?:^|[^\\])(?:\\\\)*)\[(?:\\.|[^\\\]])*\]/,
+				lookbehind: true,
+				inside: {
+					'regex-range': {
+						pattern: /((?:^|[^\\])(?:\\\\)*)\\?.-\\?./,
+						lookbehind: true
+					},
+					'regex-nageted': {
+						pattern: /(^\[)\^/,
+						lookbehind: true
+					},
+					// same as the patterns which are not in charset
+					'regex-escape': /\\(x[0-9A-Fa-f]{2}|u[0-9A-Fa-f]{4}|u\{\d+\}|c[A-Za-z]|0[0-7]{1,2}|[^WwDdSsBb\d]|0)/,
+					'regex-reference': /\\[1-9]/,
+					// things get different, some characters become normal characters
+					'regex-charclass': /\\[wds]/i,
+					'regex-anchor': /\\b/i,
+				}
 			},
-			'regex-charset1': {
-				pattern: /(\[(\\\]|[^\]])*\])|(\\[wds])/i,
-				alias: 'regex-charset'
-			},
-			'regex-escape': /\\(\\|\+|x[0-9a-f]{2}|u[0-9A-F]{4}|u\{\d+\}|c[a-z]|0[0-7]{1,2}|[^\d])/i,
-			'regex-reference': /\\\d/,
-			'regex-charset2': {
-				pattern: /\./,
-				alias: 'regex-charset'
-			},
-			'regex-anchor': /(\^|\$|\\b)/i,
+			'regex-escape': /\\(x[0-9A-Fa-f]{2}|u[0-9A-Fa-f]{4}|u\{\d+\}|c[A-Za-z]|0[0-7]{1,2}|[^WwDdSsBb\d]|0)/,
+			'regex-reference': /\\[1-9]/,
+			'regex-charclass': /(\\[wds])|\./i,
+			'regex-anchor': /\^|\$|\\b/i,
 			'regex-quantifier': {
 				pattern: /\+|\*|(?:\{(?:\d+|\d+,|,\d+|\d+,\d+)\})|(^|[^(])\?/,
 				lookbehind: true

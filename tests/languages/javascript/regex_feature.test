@@ -1,15 +1,16 @@
 /foo bar/;
 /foo/gimyu,
-/[\[\]]{2,4}(?:foo)*/;
+/[\[\b\]]{2,4}(?:foo)*/;
 /foo"test"bar/;
 /foo\//
 1 / 4 + "/, not a regex";
 / '1' '2' '3' '4' '5' /
 [/foo/],
-/url\(path\)/,
-/\.jpg$|\.png$/,
-/\xCA\xfe\u4d5a\u{12345}\076\cI?/,
-/^.\1+?/
+/\burl\(path\)/,
+/gimyu\.jpg$|\.png$/,
+/\xCA\xfe\XA1\u4d5a\u{12345}\076\cI?/,
+/^.\1+\0?/,
+/[s^]\\\[s]\\\\[^sA-c\w\0\1\uffff${1}]/
 
 ----------------------------------------------------
 
@@ -18,7 +19,13 @@
 	["regex", ["/foo/", ["regex-flag", "gimyu"]]], ["punctuation", ","],
 	["regex", [
 		"/",
-		["regex-charset1", "[\\[\\]]"],
+		["regex-charset", [
+			"[",
+			["regex-escape", "\\["],
+			["regex-anchor", "\\b"],
+			["regex-escape", "\\]"],
+			"]"
+		]],
 		["regex-quantifier", "{2,4}"],
 		"(?:foo)",
 		["regex-quantifier", "*"],
@@ -29,9 +36,17 @@
 	["number", "1"], ["operator", "/"], ["number", "4"], ["operator", "+"], ["string", "\"/, not a regex\""], ["punctuation", ";"],
 	["regex", ["/ '1' '2' '3' '4' '5' /"]],
 	["punctuation", "["], ["regex", ["/foo/"]], ["punctuation", "]"], ["punctuation", ","],
-	["regex", ["/url", ["regex-escape", "\\("], "path", ["regex-escape", "\\)"], "/"]], ["punctuation", ","],
 	["regex", [
 		"/",
+		["regex-anchor", "\\b"],
+		"url",
+		["regex-escape", "\\("],
+		"path",
+		["regex-escape", "\\)"],
+		"/"
+	]], ["punctuation", ","],
+	["regex", [
+		"/gimyu",
 		["regex-escape", "\\."],
 		"jpg",
 		["regex-anchor", "$"],
@@ -45,6 +60,8 @@
 		"/",
 		["regex-escape", "\\xCA"],
 		["regex-escape", "\\xfe"],
+		["regex-escape", "\\X"],
+		"A1",
 		["regex-escape", "\\u4d5a"],
 		["regex-escape", "\\u{12345}"],
 		["regex-escape", "\\076"],
@@ -55,10 +72,32 @@
 	["regex", [
 		"/",
 		["regex-anchor", "^"],
-		["regex-charset2", "."],
+		["regex-charclass", "."],
 		["regex-reference", "\\1"],
 		["regex-quantifier", "+"],
+		["regex-escape", "\\0"],
 		["regex-quantifier", "?"],
+		"/"
+	]], ["punctuation", ","],
+	["regex", [
+		"/",
+		["regex-charset", ["[s^]"]],
+		["regex-escape", "\\\\"],
+		["regex-escape", "\\["],
+		"s]",
+		["regex-escape", "\\\\"],
+		["regex-escape", "\\\\"],
+		["regex-charset", [
+			"[",
+			["regex-nageted", "^"],
+			"s",
+			["regex-range", "A-c"],
+			["regex-charclass", "\\w"],
+			["regex-escape", "\\0"],
+			["regex-reference", "\\1"],
+			["regex-escape", "\\uffff"],
+			"${1}]"
+		]],
 		"/"
 	]]
 ]
