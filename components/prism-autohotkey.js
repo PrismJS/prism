@@ -1,5 +1,5 @@
 // NOTES - follows first-first highlight method, block is locked after highlight, different from SyntaxHl
-Prism.languages.autohotkey= {
+Prism.languages.autohotkey = {
 	'comment': {
 		pattern: /(^[^";\n]*("[^"\n]*?"[^"\n]*?)*)(?:;.*$|^\s*\/\*[\s\S]*\n\*\/)/m,
 		lookbehind: true

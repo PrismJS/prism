@@ -4,7 +4,6 @@ Prism.languages.q = {
 		// From http://code.kx.com/wiki/Reference/Slash:
 		// When / is following a space (or a right parenthesis, bracket, or brace), it is ignored with the rest of the line.
 		{
-
 			pattern: /([\t )\]}])\/.*/,
 			lookbehind: true,
 			greedy: true

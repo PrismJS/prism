@@ -4,8 +4,8 @@ Prism.languages.insertBefore('php', 'variable', {
 	'scope': {
 		pattern: /\b[\w\\]+::/,
 		inside: {
-			keyword: /static|self|parent/,
-			punctuation: /::|\\/
+			'keyword': /static|self|parent/,
+			'punctuation': /::|\\/
 		}
 	}
 });

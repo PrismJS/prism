@@ -6,7 +6,7 @@ Prism.languages.inform7 = {
 				pattern: /\[[^\]]+\]/,
 				inside: {
 					'delimiter': {
-						pattern:/\[|\]/,
+						pattern: /\[|\]/,
 						alias: 'punctuation'
 					}
 					// See rest below

@@ -1,22 +1,23 @@
-(function(Prism) {
+(function (Prism) {
 	var insideString = {
-		variable: [
+		'variable': [
 			// Arithmetic Environment
 			{
 				pattern: /\$?\(\([\s\S]+?\)\)/,
 				inside: {
 					// If there is a $ sign at the beginning highlight $(( and )) as variable
-					variable: [{
+					'variable': [
+						{
 							pattern: /(^\$\(\([\s\S]+)\)\)/,
 							lookbehind: true
 						},
 						/^\$\(\(/
 					],
-					number: /\b0x[\dA-Fa-f]+\b|(?:\b\d+\.?\d*|\B\.\d+)(?:[Ee]-?\d+)?/,
+					'number': /\b0x[\dA-Fa-f]+\b|(?:\b\d+\.?\d*|\B\.\d+)(?:[Ee]-?\d+)?/,
 					// Operators according to https://www.gnu.org/software/bash/manual/bashref.html#Shell-Arithmetic
-					operator: /--?|-=|\+\+?|\+=|!=?|~|\*\*?|\*=|\/=?|%=?|<<=?|>>=?|<=?|>=?|==?|&&?|&=|\^=?|\|\|?|\|=|\?|:/,
+					'operator': /--?|-=|\+\+?|\+=|!=?|~|\*\*?|\*=|\/=?|%=?|<<=?|>>=?|<=?|>=?|==?|&&?|&=|\^=?|\|\|?|\|=|\?|:/,
 					// If there is no $ sign at the beginning highlight (( and )) as punctuation
-					punctuation: /\(\(?|\)\)?|,|;/
+					'punctuation': /\(\(?|\)\)?|,|;/
 				}
 			},
 			// Command Substitution
@@ -24,7 +25,7 @@
 				pattern: /\$\([^)]+\)|`[^`]+`/,
 				greedy: true,
 				inside: {
-					variable: /^\$\(|^`|\)$|`$/
+					'variable': /^\$\(|^`|\)$|`$/
 				}
 			},
 			/\$(?:[\w#?*!@]+|\{[^}]+\})/i
@@ -79,6 +80,6 @@
 	inside['boolean'] = Prism.languages.bash['boolean'];
 	inside.operator = Prism.languages.bash.operator;
 	inside.punctuation = Prism.languages.bash.punctuation;
-	
+
 	Prism.languages.shell = Prism.languages.bash;
 })(Prism);

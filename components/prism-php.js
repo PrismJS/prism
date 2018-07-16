@@ -38,7 +38,7 @@
 			pattern: /(\\|namespace\s+|use\s+)[\w\\]+/,
 			lookbehind: true,
 			inside: {
-				punctuation: /\\/
+				'punctuation': /\\/
 			}
 		}
 	});
@@ -108,7 +108,7 @@
 	Prism.languages.php['heredoc-string'].inside['interpolation'] = string_interpolation;
 	Prism.languages.php['double-quoted-string'].inside['interpolation'] = string_interpolation;
 
-	Prism.hooks.add('before-tokenize', function(env) {
+	Prism.hooks.add('before-tokenize', function (env) {
 		if (!/(?:<\?php|<\?)/ig.test(env.code)) {
 			return;
 		}
@@ -117,7 +117,7 @@
 		Prism.languages['markup-templating'].buildPlaceholders(env, 'php', phpPattern);
 	});
 
-	Prism.hooks.add('after-tokenize', function(env) {
+	Prism.hooks.add('after-tokenize', function (env) {
 		Prism.languages['markup-templating'].tokenizePlaceholders(env, 'php');
 	});
 

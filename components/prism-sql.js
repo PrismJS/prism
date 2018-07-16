@@ -1,9 +1,9 @@
-Prism.languages.sql= {
+Prism.languages.sql = {
 	'comment': {
 		pattern: /(^|[^\\])(?:\/\*[\s\S]*?\*\/|(?:--|\/\/|#).*)/,
 		lookbehind: true
 	},
-	'string' : {
+	'string': {
 		pattern: /(^|[^@\\])("|')(?:\\[\s\S]|(?!\2)[^\\])*\2/,
 		greedy: true,
 		lookbehind: true

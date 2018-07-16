@@ -19,7 +19,7 @@ Prism.languages.gherkin = {
 				pattern: /(:)[^\r\n]+/,
 				lookbehind: true
 			},
-			keyword: /[^:\r\n]+:/
+			'keyword': /[^:\r\n]+:/
 		}
 	},
 	'scenario': {
@@ -30,7 +30,7 @@ Prism.languages.gherkin = {
 				pattern: /(:)[^\r\n]*/,
 				lookbehind: true
 			},
-			keyword: /[^:\r\n]+:/
+			'keyword': /[^:\r\n]+:/
 		}
 	},
 	'table-body': {

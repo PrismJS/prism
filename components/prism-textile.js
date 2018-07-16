@@ -1,4 +1,4 @@
-(function(Prism) {
+(function (Prism) {
 	// We don't allow for pipes inside parentheses
 	// to not break table pattern |(. foo |). bar |
 	var modifierRegex = '(?:\\([^|)]+\\)|\\[[^\\]]+\\]|\\{[^}]+\\})+';
@@ -220,7 +220,7 @@
 					pattern: /\b\((?:TM|R|C)\)/,
 					alias: 'comment',
 					inside: {
-						'punctuation':/[()]/
+						'punctuation': /[()]/
 					}
 				}
 			}

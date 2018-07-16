@@ -28,7 +28,7 @@ Prism.languages.insertBefore('markdown', 'prolog', {
 			pattern: /\w+.*(?:\r?\n|\r)(?:==+|--+)/,
 			alias: 'important',
 			inside: {
-				punctuation: /==+$|--+$/
+				'punctuation': /==+$|--+$/
 			}
 		},
 		{
@@ -38,7 +38,7 @@ Prism.languages.insertBefore('markdown', 'prolog', {
 			lookbehind: true,
 			alias: 'important',
 			inside: {
-				punctuation: /^#+|#+$/
+				'punctuation': /^#+|#+$/
 			}
 		}
 	],

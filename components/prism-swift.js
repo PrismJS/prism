@@ -7,7 +7,7 @@ Prism.languages.swift = Prism.languages.extend('clike', {
 			'interpolation': {
 				pattern: /\\\((?:[^()]|\([^)]+\))+\)/,
 				inside: {
-					delimiter: {
+					'delimiter': {
 						pattern: /^\\\(|\)$/,
 						alias: 'variable'
 					}

@@ -23,8 +23,8 @@ Prism.languages.eiffel = {
 	'boolean': /\b(?:True|False)\b/i,
 	// Convention: class-names are always all upper-case characters
 	'class-name': {
-		'pattern': /\b[A-Z][\dA-Z_]*\b/,
-		'alias': 'builtin'
+		pattern: /\b[A-Z][\dA-Z_]*\b/,
+		alias: 'builtin'
 	},
 	'number': [
 		// hexa | octal | bin

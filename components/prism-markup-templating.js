@@ -12,7 +12,7 @@ Object.defineProperties(Prism.languages['markup-templating'], {
 
 			env.tokenStack = [];
 
-			env.code = env.code.replace(placeholderPattern, function(match) {
+			env.code = env.code.replace(placeholderPattern, function (match) {
 				if (typeof replaceFilter === 'function' && !replaceFilter(match)) {
 					return match;
 				}

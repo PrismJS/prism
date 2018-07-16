@@ -10,7 +10,7 @@
  */
 
 Prism.languages.csp = {
-	'directive':  {
+	'directive': {
 		pattern: /\b(?:(?:base-uri|form-action|frame-ancestors|plugin-types|referrer|reflected-xss|report-to|report-uri|require-sri-for|sandbox) |(?:block-all-mixed-content|disown-opener|upgrade-insecure-requests)(?: |;)|(?:child|connect|default|font|frame|img|manifest|media|object|script|style|worker)-src )/i,
 		alias: 'keyword'
 	},

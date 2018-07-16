@@ -26,17 +26,17 @@
 	var language = {
 		// Three or four semicolons are considered a heading.
 		// See https://www.gnu.org/software/emacs/manual/html_node/elisp/Comment-Tips.html
-		heading: {
+		'heading': {
 			pattern: /;;;.*/,
 			alias: ['comment', 'title']
 		},
-		comment: /;.*/,
-		string: {
+		'comment': /;.*/,
+		'string': {
 			pattern: /"(?:[^"\\]*|\\.)*"/,
 			greedy: true,
 			inside: {
-				argument: /[-A-Z]+(?=[.,\s])/,
-				symbol: new RegExp('`' + symbol + "'")
+				'argument': /[-A-Z]+(?=[.,\s])/,
+				'symbol': new RegExp('`' + symbol + "'")
 			}
 		},
 		'quoted-symbol': {
@@ -47,16 +47,16 @@
 			pattern: new RegExp(':' + symbol),
 			alias: 'property'
 		},
-		splice: {
+		'splice': {
 			pattern: new RegExp(',@?' + symbol),
 			alias: ['symbol', 'variable']
 		},
-		keyword: [
+		'keyword': [
 			{
 				pattern: new RegExp(
 					par +
-						'(?:(?:lexical-)?let\\*?|(?:cl-)?letf|if|when|while|unless|cons|cl-loop|and|or|not|cond|setq|error|message|null|require|provide|use-package)' +
-						space
+					'(?:(?:lexical-)?let\\*?|(?:cl-)?letf|if|when|while|unless|cons|cl-loop|and|or|not|cond|setq|error|message|null|require|provide|use-package)' +
+					space
 				),
 				lookbehind: true
 			},
@@ -67,68 +67,68 @@
 				lookbehind: true
 			},
 		],
-		declare: {
+		'declare': {
 			pattern: simple_form('declare'),
 			lookbehind: true,
 			alias: 'keyword'
 		},
-		interactive: {
+		'interactive': {
 			pattern: simple_form('interactive'),
 			lookbehind: true,
 			alias: 'keyword'
 		},
-		boolean: {
+		'boolean': {
 			pattern: primitive('(?:t|nil)'),
 			lookbehind: true
 		},
-		number: {
+		'number': {
 			pattern: primitive('[-+]?\\d+(?:\\.\\d*)?'),
 			lookbehind: true
 		},
-		defvar: {
+		'defvar': {
 			pattern: new RegExp(par + 'def(?:var|const|custom|group)\\s+' + symbol),
 			lookbehind: true,
 			inside: {
-				keyword: /^def[a-z]+/,
-				variable: new RegExp(symbol)
+				'keyword': /^def[a-z]+/,
+				'variable': new RegExp(symbol)
 			}
 		},
-		defun: {
+		'defun': {
 			pattern: new RegExp(
 				par +
-					'(?:cl-)?(?:defun\\*?|defmacro)\\s+' +
-					symbol +
-					'\\s+\\([\\s\\S]*?\\)'
+				'(?:cl-)?(?:defun\\*?|defmacro)\\s+' +
+				symbol +
+				'\\s+\\([\\s\\S]*?\\)'
 			),
 			lookbehind: true,
 			inside: {
-				keyword: /^(?:cl-)?def\S+/,
+				'keyword': /^(?:cl-)?def\S+/,
 				// See below, this property needs to be defined later so that it can
 				// reference the language object.
-				arguments: null,
-				function: {
+				'arguments': null,
+				'function': {
 					pattern: new RegExp('(^\\s)' + symbol),
 					lookbehind: true
 				},
-				punctuation: /[()]/
+				'punctuation': /[()]/
 			}
 		},
-		lambda: {
+		'lambda': {
 			pattern: new RegExp(par + 'lambda\\s+\\((?:&?' + symbol + '\\s*)*\\)'),
 			lookbehind: true,
 			inside: {
-				keyword: /^lambda/,
+				'keyword': /^lambda/,
 				// See below, this property needs to be defined later so that it can
 				// reference the language object.
-				arguments: null,
-				punctuation: /[()]/
+				'arguments': null,
+				'punctuation': /[()]/
 			}
 		},
-		car: {
+		'car': {
 			pattern: new RegExp(par + symbol),
 			lookbehind: true
 		},
-		punctuation: [
+		'punctuation': [
 			// open paren, brackets, and close paren
 			/(['`,]?\(|[)\[\]])/,
 			// cons

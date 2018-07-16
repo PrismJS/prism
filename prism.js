@@ -611,7 +611,7 @@ Prism.languages.markup['tag'].inside['attr-value'].inside['entity'] =
 	Prism.languages.markup['entity'];
 
 // Plugin to make entity title show the real entity, idea by Roman Komarov
-Prism.hooks.add('wrap', function(env) {
+Prism.hooks.add('wrap', function (env) {
 
 	if (env.type === 'entity') {
 		env.attributes['title'] = env.content.replace(/&amp;/, '&');
@@ -681,6 +681,7 @@ if (Prism.languages.markup) {
 	}, Prism.languages.markup.tag);
 }
 
+
 /* **********************************************
      Begin prism-clike.js
 ********************************************** */
@@ -705,7 +706,7 @@ Prism.languages.clike = {
 		pattern: /((?:\b(?:class|interface|extends|implements|trait|instanceof|new)\s+)|(?:catch\s+\())[\w.\\]+/i,
 		lookbehind: true,
 		inside: {
-			punctuation: /[.\\]/
+			'punctuation': /[.\\]/
 		}
 	},
 	'keyword': /\b(?:if|else|while|do|for|return|in|instanceof|function|new|try|throw|catch|finally|null|break|continue)\b/,

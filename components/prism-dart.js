@@ -16,7 +16,7 @@ Prism.languages.dart = Prism.languages.extend('clike', {
 	'operator': /\bis!|\b(?:as|is)\b|\+\+|--|&&|\|\||<<=?|>>=?|~(?:\/=?)?|[+\-*\/%&^|=!<>]=?|\?/
 });
 
-Prism.languages.insertBefore('dart','function',{
+Prism.languages.insertBefore('dart', 'function', {
 	'metadata': {
 		pattern: /@\w+/,
 		alias: 'symbol'

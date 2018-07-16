@@ -1,4 +1,4 @@
-Prism.languages.ini= {
+Prism.languages.ini = {
 	'comment': /^[ \t]*;.*$/m,
 	'selector': /^[ \t]*\[.*?\]/m,
 	'constant': /^[ \t]*[^\s=]+?(?=[ \t]*=)/m,

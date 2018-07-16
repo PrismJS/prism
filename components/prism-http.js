@@ -3,7 +3,7 @@ Prism.languages.http = {
 		pattern: /^(?:POST|GET|PUT|DELETE|OPTIONS|PATCH|TRACE|CONNECT)\s(?:https?:\/\/|\/)\S+\sHTTP\/[0-9.]+/m,
 		inside: {
 			// HTTP Verb
-			property: /^(?:POST|GET|PUT|DELETE|OPTIONS|PATCH|TRACE|CONNECT)\b/,
+			'property': /^(?:POST|GET|PUT|DELETE|OPTIONS|PATCH|TRACE|CONNECT)\b/,
 			// Path or query argument
 			'attr-name': /:\w+/
 		}
@@ -12,17 +12,17 @@ Prism.languages.http = {
 		pattern: /^HTTP\/1.[01] \d+.*/m,
 		inside: {
 			// Status, e.g. 200 OK
-			property: {
-                pattern: /(^HTTP\/1.[01] )\d+.*/i,
-                lookbehind: true
-            }
+			'property': {
+				pattern: /(^HTTP\/1.[01] )\d+.*/i,
+				lookbehind: true
+			}
 		}
 	},
 	// HTTP header name
 	'header-name': {
-        pattern: /^[\w-]+:(?=.)/m,
-        alias: 'keyword'
-    }
+		pattern: /^[\w-]+:(?=.)/m,
+		alias: 'keyword'
+	}
 };
 
 // Create a mapping of Content-Type headers to language definitions
