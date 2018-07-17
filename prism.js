@@ -721,6 +721,8 @@ Prism.languages.clike = {
      Begin prism-javascript.js
 ********************************************** */
 
+(function(Prism) {
+
 Prism.languages.javascript = Prism.languages.extend('clike', {
 	'keyword': /\b(?:as|async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|var|void|while|with|yield)\b/,
 	'number': /\b(?:0[xX][\dA-Fa-f]+|0[bB][01]+|0[oO][0-7]+|NaN|Infinity)\b|(?:\b\d+\.?\d*|\B\.\d+)(?:[Ee][+-]?\d+)?/,
@@ -728,6 +730,9 @@ Prism.languages.javascript = Prism.languages.extend('clike', {
 	'function': /[_$a-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\s*\()/i,
 	'operator': /-[-=]?|\+[+=]?|!=?=?|<<?=?|>>?>?=?|=(?:==?|>)?|&[&=]?|\|[|=]?|\*\*?=?|\/=?|~|\^=?|%=?|\?|\.{3}/
 });
+
+var regex_escape_pattern = /\\(x[0-9A-Fa-f]{2}|u[0-9A-Fa-f]{4}|u\{\d+\}|c[A-Za-z]|0[0-7]{1,2}|[^WwDdSsBb\d]|0)/;
+var regex_reference_pattern = /\\[1-9]/;
 
 Prism.languages.insertBefore('javascript', 'keyword', {
 	'regex': {
@@ -738,25 +743,22 @@ Prism.languages.insertBefore('javascript', 'keyword', {
 				pattern: /((?:^|[^\\])(?:\\\\)*)\[(?:\\.|[^\\\]])*\]/,
 				lookbehind: true,
 				inside: {
-					'regex-range': {
-						pattern: /((?:^|[^\\])(?:\\\\)*)\\?.-\\?./,
-						lookbehind: true
-					},
-					'regex-nageted': {
+					'regex-negated': {
 						pattern: /(^\[)\^/,
-						lookbehind: true
+						lookbehind: true,
+						alias: 'regex-punctuation'
 					},
-					// same as the patterns which are not in charset
-					'regex-escape': /\\(x[0-9A-Fa-f]{2}|u[0-9A-Fa-f]{4}|u\{\d+\}|c[A-Za-z]|0[0-7]{1,2}|[^WwDdSsBb\d]|0)/,
-					'regex-reference': /\\[1-9]/,
-					// things get different, some characters become normal characters
+					'regex-punctuation': /^\[|\]$/,
+					'regex-escape': regex_escape_pattern,
+					'regex-reference': regex_reference_pattern,
+					// unlike those stuff outside the charset, some characters become normal characters
 					'regex-charclass': /\\[wds]/i,
 					'regex-anchor': /\\b/i,
 				}
 			},
-			'regex-escape': /\\(x[0-9A-Fa-f]{2}|u[0-9A-Fa-f]{4}|u\{\d+\}|c[A-Za-z]|0[0-7]{1,2}|[^WwDdSsBb\d]|0)/,
-			'regex-reference': /\\[1-9]/,
-			'regex-charclass': /(\\[wds])|\./i,
+			'regex-escape': regex_escape_pattern,
+			'regex-reference': regex_reference_pattern,
+			'regex-charclass': /\\[wds]|\./i,
 			'regex-anchor': /\^|\$|\\b/i,
 			'regex-quantifier': {
 				pattern: /\+|\*|(?:\{(?:\d+|\d+,|,\d+|\d+,\d+)\})|(^|[^(])\?/,
@@ -809,6 +811,8 @@ if (Prism.languages.markup) {
 }
 
 Prism.languages.js = Prism.languages.javascript;
+
+}(Prism));
 
 
 /* **********************************************

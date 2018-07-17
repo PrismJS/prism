@@ -20,11 +20,11 @@
 	["regex", [
 		"/",
 		["regex-charset", [
-			"[",
+			["regex-punctuation", "["],
 			["regex-escape", "\\["],
 			["regex-anchor", "\\b"],
 			["regex-escape", "\\]"],
-			"]"
+			["regex-punctuation", "]"]
 		]],
 		["regex-quantifier", "{2,4}"],
 		"(?:foo)",
@@ -81,22 +81,26 @@
 	]], ["punctuation", ","],
 	["regex", [
 		"/",
-		["regex-charset", ["[s^]"]],
+		["regex-charset", [
+			["regex-punctuation", "["],
+			"s^",
+			["regex-punctuation", "]"]
+		]],
 		["regex-escape", "\\\\"],
 		["regex-escape", "\\["],
 		"s]",
 		["regex-escape", "\\\\"],
 		["regex-escape", "\\\\"],
 		["regex-charset", [
-			"[",
-			["regex-nageted", "^"],
-			"s",
-			["regex-range", "A-c"],
+			["regex-punctuation", "["],
+			["regex-negated", "^"],
+			"sA-c",
 			["regex-charclass", "\\w"],
 			["regex-escape", "\\0"],
 			["regex-reference", "\\1"],
 			["regex-escape", "\\uffff"],
-			"${1}]"
+			"${1}",
+			["regex-punctuation", "]"]
 		]],
 		"/"
 	]]
