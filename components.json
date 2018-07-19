@@ -708,6 +708,10 @@
 			"peerDependencies": "css",
 			"owner": "Golmote"
 		},
+		"toml": {
+			"title": "TOML",
+			"owner": "RunDevelopment"
+		},
 		"tt2": {
 			"title": "Template Toolkit 2",
 			"require": ["clike", "markup-templating"],
