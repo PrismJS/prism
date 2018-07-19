@@ -199,67 +199,69 @@
 
 	// Allow some nesting. There is no recursion though, so cloning should not be needed.
 
+	var asciidoc = Prism.languages.asciidoc;
+
 	attributes.inside['interpreted'].inside.rest = {
-		'macro': Prism.languages.asciidoc['macro'],
-		'inline': Prism.languages.asciidoc['inline'],
-		'replacement': Prism.languages.asciidoc['replacement'],
-		'entity': Prism.languages.asciidoc['entity']
+		'macro': asciidoc['macro'],
+		'inline': asciidoc['inline'],
+		'replacement': asciidoc['replacement'],
+		'entity': asciidoc['entity']
 	};
 
-	Prism.languages.asciidoc['passthrough-block'].inside.rest = {
-		'macro': Prism.languages.asciidoc['macro']
+	asciidoc['passthrough-block'].inside.rest = {
+		'macro': asciidoc['macro']
 	};
 
-	Prism.languages.asciidoc['literal-block'].inside.rest = {
-		'callout': Prism.languages.asciidoc['callout']
+	asciidoc['literal-block'].inside.rest = {
+		'callout': asciidoc['callout']
 	};
 
-	Prism.languages.asciidoc['table'].inside.rest = {
-		'comment-block': Prism.languages.asciidoc['comment-block'],
-		'passthrough-block': Prism.languages.asciidoc['passthrough-block'],
-		'literal-block': Prism.languages.asciidoc['literal-block'],
-		'other-block': Prism.languages.asciidoc['other-block'],
-		'list-punctuation': Prism.languages.asciidoc['list-punctuation'],
-		'indented-block': Prism.languages.asciidoc['indented-block'],
-		'comment': Prism.languages.asciidoc['comment'],
-		'title': Prism.languages.asciidoc['title'],
-		'attribute-entry': Prism.languages.asciidoc['attribute-entry'],
-		'attributes': Prism.languages.asciidoc['attributes'],
-		'hr': Prism.languages.asciidoc['hr'],
-		'page-break': Prism.languages.asciidoc['page-break'],
-		'admonition': Prism.languages.asciidoc['admonition'],
-		'list-label': Prism.languages.asciidoc['list-label'],
-		'callout': Prism.languages.asciidoc['callout'],
-		'macro': Prism.languages.asciidoc['macro'],
-		'inline': Prism.languages.asciidoc['inline'],
-		'replacement': Prism.languages.asciidoc['replacement'],
-		'entity': Prism.languages.asciidoc['entity'],
-		'line-continuation': Prism.languages.asciidoc['line-continuation']
+	asciidoc['table'].inside.rest = {
+		'comment-block': asciidoc['comment-block'],
+		'passthrough-block': asciidoc['passthrough-block'],
+		'literal-block': asciidoc['literal-block'],
+		'other-block': asciidoc['other-block'],
+		'list-punctuation': asciidoc['list-punctuation'],
+		'indented-block': asciidoc['indented-block'],
+		'comment': asciidoc['comment'],
+		'title': asciidoc['title'],
+		'attribute-entry': asciidoc['attribute-entry'],
+		'attributes': asciidoc['attributes'],
+		'hr': asciidoc['hr'],
+		'page-break': asciidoc['page-break'],
+		'admonition': asciidoc['admonition'],
+		'list-label': asciidoc['list-label'],
+		'callout': asciidoc['callout'],
+		'macro': asciidoc['macro'],
+		'inline': asciidoc['inline'],
+		'replacement': asciidoc['replacement'],
+		'entity': asciidoc['entity'],
+		'line-continuation': asciidoc['line-continuation']
 	};
 
-	Prism.languages.asciidoc['other-block'].inside.rest = {
-		'table': Prism.languages.asciidoc['table'],
-		'list-punctuation': Prism.languages.asciidoc['list-punctuation'],
-		'indented-block': Prism.languages.asciidoc['indented-block'],
-		'comment': Prism.languages.asciidoc['comment'],
-		'attribute-entry': Prism.languages.asciidoc['attribute-entry'],
-		'attributes': Prism.languages.asciidoc['attributes'],
-		'hr': Prism.languages.asciidoc['hr'],
-		'page-break': Prism.languages.asciidoc['page-break'],
-		'admonition': Prism.languages.asciidoc['admonition'],
-		'list-label': Prism.languages.asciidoc['list-label'],
-		'macro': Prism.languages.asciidoc['macro'],
-		'inline': Prism.languages.asciidoc['inline'],
-		'replacement': Prism.languages.asciidoc['replacement'],
-		'entity': Prism.languages.asciidoc['entity'],
-		'line-continuation': Prism.languages.asciidoc['line-continuation']
+	asciidoc['other-block'].inside.rest = {
+		'table': asciidoc['table'],
+		'list-punctuation': asciidoc['list-punctuation'],
+		'indented-block': asciidoc['indented-block'],
+		'comment': asciidoc['comment'],
+		'attribute-entry': asciidoc['attribute-entry'],
+		'attributes': asciidoc['attributes'],
+		'hr': asciidoc['hr'],
+		'page-break': asciidoc['page-break'],
+		'admonition': asciidoc['admonition'],
+		'list-label': asciidoc['list-label'],
+		'macro': asciidoc['macro'],
+		'inline': asciidoc['inline'],
+		'replacement': asciidoc['replacement'],
+		'entity': asciidoc['entity'],
+		'line-continuation': asciidoc['line-continuation']
 	};
 
-	Prism.languages.asciidoc['title'].inside.rest = {
-		'macro': Prism.languages.asciidoc['macro'],
-		'inline': Prism.languages.asciidoc['inline'],
-		'replacement': Prism.languages.asciidoc['replacement'],
-		'entity': Prism.languages.asciidoc['entity']
+	asciidoc['title'].inside.rest = {
+		'macro': asciidoc['macro'],
+		'inline': asciidoc['inline'],
+		'replacement': asciidoc['replacement'],
+		'entity': asciidoc['entity']
 	};
 
 	// Plugin to make entity title show the real entity, idea by Roman Komarov
