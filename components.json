@@ -359,6 +359,14 @@
 			"title": "J",
 			"owner": "Golmote"
 		},
+		"javadoclike": {
+			"title": "JavaDoc-like",
+			"peerDependencies": [
+				"java",
+				"javascript"
+			],
+			"owner": "RunDevelopment"
+		},
 		"java": {
 			"title": "Java",
 			"require": "clike",
@@ -366,7 +374,7 @@
 		},
 		"javadoc": {
 			"title": "JavaDoc",
-			"require": "java",
+			"require": ["java", "javadoclike"],
 			"owner": "RunDevelopment"
 		},
 		"jolie": {
@@ -376,7 +384,7 @@
 		},
 		"jsdoc": {
 			"title": "JSDoc",
-			"require": "javascript",
+			"require": ["javascript", "javadoclike"],
 			"owner": "RunDevelopment"
 		},
 		"json": {

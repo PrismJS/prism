@@ -729,14 +729,6 @@ Prism.languages.javascript = Prism.languages.extend('clike', {
 	'operator': /-[-=]?|\+[+=]?|!=?=?|<<?=?|>>?>?=?|=(?:==?|>)?|&[&=]?|\|[|=]?|\*\*?=?|\/=?|~|\^=?|%=?|\?|\.{3}/
 });
 
-Prism.languages.insertBefore('javascript', 'comment', {
-	'doc-comment': {
-		pattern: /(^|[^\\])\/\*\*[\s\S]*?(?:\*\/|$)/,
-		greedy: true,
-		alias: 'comment'
-	}
-});
-
 Prism.languages.insertBefore('javascript', 'keyword', {
 	'regex': {
 		pattern: /((?:^|[^$\w\xA0-\uFFFF."'\])\s])\s*)\/(\[[^\]\r\n]+]|\\.|[^/\\\[\r\n])+\/[gimyu]{0,5}(?=\s*($|[\r\n,.;})\]]))/,

@@ -1,18 +1,17 @@
 (function (Prism) {
 
+	var java = Prism.languages.java;
+
 	var codeLines = {
 		'code': {
 			pattern: /(^(\s*(?:\*\s*)*)).*[^*\s].+$/m,
 			lookbehind: true,
-			inside: Prism.languages.java
+			inside: java
 		}
 	};
 
-	Prism.languages.javadoc = {
-		'parameter': {
-			pattern: /(@param\s+)\w+/,
-			lookbehind: true
-		},
+	Prism.languages.javadoc = Prism.languages.extend('javadoclike', {});
+	Prism.languages.insertBefore('javadoc', 'keyword', {
 		'class-name': [
 			{
 				pattern: /(@(?:exception|throws|see|link|linkplain|value)\s+(?:[a-z\d]+\.)*)[A-Z](?:\w*[a-z]\w*)?(?:\.[A-Z](?:\w*[a-z]\w*)?)*/,
@@ -49,9 +48,7 @@
 			}
 		],
 		'tag': /<\/?(?!\d)[^\s>\/=$<%]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/i,
-		'keyword': /@(?:author|deprecated|exception|param|return|see|serial|serialData|serialField|since|throws|version|code|docRoot|inheritDoc|link|linkplain|literal|value)\b/,
-		'punctuation': /[{}]/
-	};
+	});
 
-	Prism.languages.java['doc-comment'].inside = Prism.languages.javadoc;
+	java['doc-comment'][0].inside = Prism.languages.javadoc;
 }(Prism));

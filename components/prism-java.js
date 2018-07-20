@@ -7,14 +7,6 @@ Prism.languages.java = Prism.languages.extend('clike', {
 	}
 });
 
-Prism.languages.insertBefore('java', 'comment', {
-	'doc-comment': {
-		pattern: /(^|[^\\])\/\*\*[\s\S]*?(?:\*\/|$)/,
-		greedy: true,
-		alias: 'comment'
-	}
-});
-
 Prism.languages.insertBefore('java', 'function', {
 	'annotation': {
 		alias: 'punctuation',

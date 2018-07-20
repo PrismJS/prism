@@ -1,9 +1,12 @@
-@param {number} n - A number.
-@param {{[x: string]: {start: number, end: number}}} map
+/**
+ * @param {number} n - A number.
+ * @param {{[x: string]: {start: number, end: number}}} map
+ */
 
 ----------------------------------------------------
 
 [
+	"/**\n * ",
 	["keyword", "@param"],
 	["class-name", [
 		["punctuation", "{"],
@@ -11,7 +14,7 @@
 		["punctuation", "}"]
 	]],
 	["parameter", ["n"]],
-	" - A number.\n",
+	" - A number.\n * ",
 
 	["keyword", "@param"],
 	["class-name", [
@@ -35,7 +38,8 @@
 		["punctuation", "}"],
 		["punctuation", "}"]
 	]],
-	["parameter", ["map"]]
+	["parameter", ["map"]],
+	"\n */"
 ]
 
 ----------------------------------------------------
