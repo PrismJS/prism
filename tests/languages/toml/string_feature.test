@@ -2,6 +2,7 @@
 "abc"
 "\""
 ''
+'#'
 '"abc"'
 """
 	abc
@@ -17,6 +18,7 @@
 	["string", "\"abc\""],
 	["string", "\"\\\"\""],
 	["string", "''"],
+	["string", "'#'"],
 	["string", "'\"abc\"'"],
 	["string", "\"\"\"\n\tabc\n\t\"\"\""],
 	["string", "'''\n\tabc\n\t'''"]
