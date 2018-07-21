@@ -1,11 +1,13 @@
 (function (Prism) {
 
-	var plsql = Prism.languages.plsql = Prism.languages.extend('sql', {
+	Prism.languages.plsql = Prism.languages.extend('sql', {
 		'comment': [
 			/\/\*[\s\S]*?\*\//,
 			/--.*/
 		]
 	});
+
+	var plsql = Prism.languages.plsql;
 
 	var keyword = plsql['keyword'];
 	if (Prism.util.type(keyword) !== 'Array') {

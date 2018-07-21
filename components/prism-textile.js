@@ -24,7 +24,7 @@
 	};
 
 
-	var textile = Prism.languages.textile = Prism.languages.extend('markup', {
+	Prism.languages.textile = Prism.languages.extend('markup', {
 		'phrase': {
 			pattern: /(^|\r|\n)\S[\s\S]*?(?=$|\r?\n\r?\n|\r\r)/,
 			lookbehind: true,
@@ -226,6 +226,8 @@
 			}
 		}
 	});
+
+	var textile = Prism.languages.textile;
 
 	var phraseInside = textile['phrase'].inside;
 	var nestedPatterns = {

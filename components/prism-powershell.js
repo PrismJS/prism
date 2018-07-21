@@ -1,6 +1,6 @@
 (function (Prism) {
 
-	var powershell = Prism.languages.powershell = {
+	Prism.languages.powershell = {
 		'comment': [
 			{
 				pattern: /(^|[^`])<#[\s\S]*?#>/,
@@ -50,6 +50,8 @@
 		},
 		'punctuation': /[|{}[\];(),.]/
 	};
+
+	var powershell = Prism.languages.powershell;
 
 	// Variable interpolation inside strings, and nested expressions
 	var stringInside = powershell.string[0].inside;

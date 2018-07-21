@@ -1,6 +1,6 @@
 (function (Prism) {
 
-	var parser = Prism.languages.parser = Prism.languages.extend('markup', {
+	Prism.languages.parser = Prism.languages.extend('markup', {
 		'keyword': {
 			pattern: /(^|[^^])(?:\^(?:case|eval|for|if|switch|throw)\b|@(?:BASE|CLASS|GET(?:_DEFAULT)?|OPTIONS|SET_DEFAULT|USE)\b)/,
 			lookbehind: true
@@ -30,6 +30,8 @@
 		'punctuation': /[\[\](){};]/
 	});
 
+	var parser = Prism.languages.parser;
+
 	parser = Prism.languages.insertBefore('parser', 'keyword', {
 		'parser-comment': {
 			pattern: /(\s)#.*/,
@@ -58,7 +60,7 @@
 		}
 	});
 
-	parser = Prism.languages.insertBefore('inside', 'punctuation', {
+	Prism.languages.insertBefore('inside', 'punctuation', {
 		'expression': parser.expression,
 		'keyword': parser.keyword,
 		'variable': parser.variable,
