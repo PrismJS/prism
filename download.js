@@ -220,10 +220,18 @@ for (var category in components) {
 				all.meta.link? {
 					tag: 'a',
 					properties: {
-						href: all.meta.link.replace(/\{id}/g, id)
+						href: all.meta.link.replace(/\{id}/g, id),
+						className: 'name'
 					},
 					contents: info.title
-				} : info.title,
+				} : {
+					tag: 'span',
+					properties: {
+						className: 'name'
+					},
+					contents: info.title
+				},
+				' ',
 				all[id].owner? {
 					tag: 'a',
 					properties: {
