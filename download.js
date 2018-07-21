@@ -458,8 +458,8 @@ function getSortedComponents(components, requireName, sorted) {
 	return sorted;
 }
 
-function getSortedComponentsByRequirements(components, secondaryOrderKey) {
-	var sorted = getSortedComponents(components, secondaryOrderKey);
+function getSortedComponentsByRequirements(components, afterName) {
+	var sorted = getSortedComponents(components, afterName);
 	return getSortedComponents(components, "require", sorted);
 }
 
