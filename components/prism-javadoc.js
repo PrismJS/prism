@@ -50,5 +50,5 @@
 		'tag': /<\/?(?!\d)[^\s>\/=$<%]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/i,
 	});
 
-	java['doc-comment'][0].inside = Prism.languages.javadoc;
+	java['doc-comment'][0].inside.rest = Prism.languages.javadoc;
 }(Prism));

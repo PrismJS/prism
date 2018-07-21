@@ -47,6 +47,6 @@
 		}
 	});
 
-	js['doc-comment'][0].inside = Prism.languages.jsdoc;
+	js['doc-comment'][0].inside.rest = Prism.languages.jsdoc;
 
 }(Prism));

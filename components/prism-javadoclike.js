@@ -17,7 +17,7 @@
 	 * Adds doc comment support to the given language and calls a given callback on each doc comment pattern.
 	 *
 	 * @param {string} lang the language add doc comment support to.
-	 * @param {(pattern: {inside: undefined}, index: number, array: {inside: undefined}[]) => void} callback the function called with each doc comment pattern as argument.
+	 * @param {(pattern: {inside: {rest: undefined}}, index: number, array: {inside: {rest: undefined}}[]) => void} callback the function called with each doc comment pattern as argument.
 	 */
 	function docCommentSupport(lang, callback) {
 		var tokenName = 'doc-comment';
@@ -33,7 +33,8 @@
 			definition[tokenName] = {
 				pattern: /(^|[^\\])\/\*\*[\s\S]*?(?:\*\/|$)/,
 				greedy: true,
-				alias: 'comment'
+				alias: 'comment',
+				inside: {}
 			};
 
 			Prism.languages.insertBefore(lang, 'comment', definition);
@@ -60,7 +61,7 @@
 	var basicSupport = ['java', 'javascript'];
 	for (var i = 0; i < basicSupport.length; i++) {
 		docCommentSupport(basicSupport[i], function (pattern, index, array) {
-			pattern.inside = doc;
+			pattern.inside.rest = doc;
 		});
 	}
 
