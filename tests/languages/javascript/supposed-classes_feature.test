@@ -1,0 +1,22 @@
+Foo.prototype.bar;
+Bar.constructor;
+
+----------------------------------------------------
+
+[
+	["class-name", "Foo"],
+	["punctuation", "."],
+	"prototype",
+	["punctuation", "."],
+	"bar",
+	["punctuation", ";"],
+
+	["class-name", "Bar"],
+	["punctuation", "."],
+	"constructor",
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for supposed function variables based on standard function invocations or modifications.
