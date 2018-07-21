@@ -22,24 +22,24 @@
 		}
 	};
 
-	Prism.languages.django = Prism.languages.extend('markup', { 'comment': /(?:<!--|{#)[\s\S]*?(?:#}|-->)/ });
+	var django = Prism.languages.django = Prism.languages.extend('markup', { 'comment': /(?:<!--|{#)[\s\S]*?(?:#}|-->)/ });
 	// Updated html tag pattern to allow template tags inside html tags
-	Prism.languages.django.tag.pattern = /<\/?(?!\d)[^\s>\/=$<]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^>=]+))?)*\s*\/?>/i;
-	Prism.languages.insertBefore('django', 'entity', _django_template);
-	Prism.languages.insertBefore('inside', 'tag', _django_template, Prism.languages.django.tag);
+	django.tag.pattern = /<\/?(?!\d)[^\s>\/=$<]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^>=]+))?)*\s*\/?>/i;
+	django = Prism.languages.insertBefore('django', 'entity', _django_template);
+	Prism.languages.insertBefore('inside', 'tag', _django_template, django.tag);
 
 	if (Prism.languages.javascript) {
 		// Combine js code and template tags painting inside <script> blocks
-		Prism.languages.insertBefore('inside', 'string', _django_template, Prism.languages.django.script);
-		Prism.languages.django.script.inside.string.inside = _django_template;
+		Prism.languages.insertBefore('inside', 'string', _django_template, django.script);
+		django.script.inside.string.inside = _django_template;
 	}
 	if (Prism.languages.css) {
 		// Combine css code and template tags painting inside <style> blocks
-		Prism.languages.insertBefore('inside', 'atrule', { 'tag': _django_template.property }, Prism.languages.django.style);
-		Prism.languages.django.style.inside.string.inside = _django_template;
+		Prism.languages.insertBefore('inside', 'atrule', { 'tag': _django_template.property }, django.style);
+		django.style.inside.string.inside = _django_template;
 	}
 
 	// Add an Jinja2 alias
-	Prism.languages.jinja2 = Prism.languages.django;
+	Prism.languages.jinja2 = django;
 
 }(Prism));

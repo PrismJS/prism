@@ -25,7 +25,7 @@
 			'attr-value': /(?!^\s+$).+/
 		}
 	};
-	Prism.languages.asciidoc = {
+	var asciidoc = Prism.languages.asciidoc = {
 		'comment-block': {
 			pattern: /^(\/{4,})(?:\r?\n|\r)(?:[\s\S]*(?:\r?\n|\r))??\1/m,
 			alias: 'comment'
@@ -198,8 +198,6 @@
 
 
 	// Allow some nesting. There is no recursion though, so cloning should not be needed.
-
-	var asciidoc = Prism.languages.asciidoc;
 
 	attributes.inside['interpreted'].inside.rest = {
 		'macro': asciidoc['macro'],
