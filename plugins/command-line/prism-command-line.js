@@ -23,11 +23,6 @@ Prism.hooks.add('before-highlight', function (env) {
 		return;
 	}
 
-	if (env.element.querySelector('.command-line-prompt')) { // Abort if prompt already exists.
-		env.vars['command-line'].complete = true;
-		return;
-	}
-
 	var codeLines = env.code.split('\n');
 	env.vars['command-line'].numberOfLines = codeLines.length;
 	env.vars['command-line'].outputLines = [];
@@ -118,8 +113,11 @@ Prism.hooks.add('complete', function (env) {
 	}
 
 	// Create the wrapper element. -- cwells
-	var prompt = document.createElement('span');
-	prompt.className = 'command-line-prompt';
+	var prompt = env.element.querySelector('.command-line-prompt');
+	if (!prompt) {
+		prompt = document.createElement('span');
+		prompt.className = 'command-line-prompt';
+	}
 	prompt.innerHTML = promptLines;
 
 	// Remove the prompt from the output lines. -- cwells
