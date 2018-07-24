@@ -470,21 +470,23 @@
 	/**
 	 * Returns the absolute X, Y offsets for an element
 	 * @param {HTMLElement} element
-	 * @returns {{top: number, right: number, bottom: number, left: number}}
+	 * @returns {{top: number, right: number, bottom: number, left: number, width: number, height: number}}
 	 */
 	var getOffset = function (element) {
-		var bb = element.getBoundingClientRect();
-		var left = bb.left;
-		var top = bb.top;
-		bb = document.documentElement.getBoundingClientRect();
-		left -= bb.left;
-		top -= bb.top;
+		var elementBounds = element.getBoundingClientRect();
+		var left = elementBounds.left;
+		var top = elementBounds.top;
+		var documentBounds = document.documentElement.getBoundingClientRect();
+		left -= documentBounds.left;
+		top -= documentBounds.top;
 
 		return {
 			top: top,
-			right: innerWidth - left - element.offsetWidth,
-			bottom: innerHeight - top - element.offsetHeight,
-			left: left
+			right: innerWidth - left - elementBounds.width,
+			bottom: innerHeight - top - elementBounds.height,
+			left: left,
+			width: elementBounds.width,
+			height: elementBounds.height
 		};
 	};
 
@@ -612,7 +614,7 @@
 				this._elt.style.top = '';
 			}
 
-			this._elt.style.left = offset.left + Math.min(200, this._token.offsetWidth / 2) + 'px';
+			this._elt.style.left = offset.left + Math.min(200, offset.width / 2) + 'px';
 		} else {
 			this.hide();
 		}
