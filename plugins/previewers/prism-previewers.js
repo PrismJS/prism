@@ -473,21 +473,12 @@
 	 * @returns {{top: number, right: number, bottom: number, left: number}}
 	 */
 	var getOffset = function (element) {
-		var left = 0, top = 0, el = element;
-
-		if (el.parentNode) {
-			do {
-				left += el.offsetLeft;
-				top += el.offsetTop;
-			} while ((el = el.offsetParent) && el.nodeType < 9);
-
-			el = element;
-
-			do {
-				left -= el.scrollLeft;
-				top -= el.scrollTop;
-			} while ((el = el.parentNode) && !/body/i.test(el.nodeName));
-		}
+		var bb = element.getBoundingClientRect();
+		var left = bb.left;
+		var top = bb.top;
+		bb = document.documentElement.getBoundingClientRect();
+		left -= bb.left;
+		top -= bb.top;
 
 		return {
 			top: top,
