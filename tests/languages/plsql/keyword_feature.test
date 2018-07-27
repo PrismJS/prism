@@ -1,6 +1,7 @@
 ACCESS
 AGENT
 AGGREGATE
+AND
 ARRAY
 ARROW
 AT
@@ -19,10 +20,10 @@ CHAR_BASE
 CHARSETFORM
 CHARSETID
 CLOB_BASE
-COLAUTH
-COLLECT
 CLUSTER
 CLUSTERS
+COLAUTH
+COLLECT
 COMPILED
 COMPRESS
 CONSTANT
@@ -43,6 +44,7 @@ EXCLUSIVE
 EXTERNAL
 FINAL
 FORALL
+FOREACH
 FORM
 FOUND
 GENERAL
@@ -50,17 +52,19 @@ HEAP
 HIDDEN
 IDENTIFIED
 IMMEDIATE
+IN
 INCLUDING
 INCREMENT
-INDICATOR
 INDEXES
+INDICATOR
 INDICES
 INFINITE
 INITIAL
-ISOPEN
+INOUT
 INSTANTIABLE
 INTERFACE
 INVALIDATE
+ISOPEN
 JAVA
 LARGE
 LEADING
@@ -83,9 +87,11 @@ NAME
 NAN
 NATIVE
 NEW
+NEXT
 NOAUDIT
 NOCOMPRESS
 NOCOPY
+NOT
 NOTFOUND
 NOWAIT
 NUMBER
@@ -109,6 +115,7 @@ ONLINE
 ONLY
 OPAQUE
 OPERATOR
+OR
 ORACLE
 ORADATA
 ORGANIZATION
@@ -128,6 +135,7 @@ PIPELINED
 PRAGMA
 PRIOR
 PRIVATE
+QUERY
 RAISE
 RANGE
 RAW
@@ -136,8 +144,8 @@ REF
 REFERENCE
 REM
 REMAINDER
-RESULT
 RESOURCE
+RESULT
 RETURNING
 REVERSE
 ROWID
@@ -194,6 +202,7 @@ VALIDATE
 VALIST
 VARCHAR2
 VARIABLE
+VARIADIC
 VARIANCE
 VARRAY
 VIEWS
@@ -204,10 +213,12 @@ ZONE
 
 ----------------------------------------------------
 
+	
 [
 	["keyword", "ACCESS"],
 	["keyword", "AGENT"],
 	["keyword", "AGGREGATE"],
+	["keyword", "AND"],
 	["keyword", "ARRAY"],
 	["keyword", "ARROW"],
 	["keyword", "AT"],
@@ -226,10 +237,10 @@ ZONE
 	["keyword", "CHARSETFORM"],
 	["keyword", "CHARSETID"],
 	["keyword", "CLOB_BASE"],
-	["keyword", "COLAUTH"],
-	["keyword", "COLLECT"],
 	["keyword", "CLUSTER"],
 	["keyword", "CLUSTERS"],
+	["keyword", "COLAUTH"],
+	["keyword", "COLLECT"],
 	["keyword", "COMPILED"],
 	["keyword", "COMPRESS"],
 	["keyword", "CONSTANT"],
@@ -250,6 +261,7 @@ ZONE
 	["keyword", "EXTERNAL"],
 	["keyword", "FINAL"],
 	["keyword", "FORALL"],
+	["keyword", "FOREACH"],
 	["keyword", "FORM"],
 	["keyword", "FOUND"],
 	["keyword", "GENERAL"],
@@ -257,17 +269,19 @@ ZONE
 	["keyword", "HIDDEN"],
 	["keyword", "IDENTIFIED"],
 	["keyword", "IMMEDIATE"],
+	["keyword", "IN"],
 	["keyword", "INCLUDING"],
 	["keyword", "INCREMENT"],
-	["keyword", "INDICATOR"],
 	["keyword", "INDEXES"],
+	["keyword", "INDICATOR"],
 	["keyword", "INDICES"],
 	["keyword", "INFINITE"],
 	["keyword", "INITIAL"],
-	["keyword", "ISOPEN"],
+	["keyword", "INOUT"],
 	["keyword", "INSTANTIABLE"],
 	["keyword", "INTERFACE"],
 	["keyword", "INVALIDATE"],
+	["keyword", "ISOPEN"],
 	["keyword", "JAVA"],
 	["keyword", "LARGE"],
 	["keyword", "LEADING"],
@@ -290,9 +304,11 @@ ZONE
 	["keyword", "NAN"],
 	["keyword", "NATIVE"],
 	["keyword", "NEW"],
+	["keyword", "NEXT"],
 	["keyword", "NOAUDIT"],
 	["keyword", "NOCOMPRESS"],
 	["keyword", "NOCOPY"],
+	["keyword", "NOT"],
 	["keyword", "NOTFOUND"],
 	["keyword", "NOWAIT"],
 	["keyword", "NUMBER"],
@@ -316,6 +332,7 @@ ZONE
 	["keyword", "ONLY"],
 	["keyword", "OPAQUE"],
 	["keyword", "OPERATOR"],
+	["keyword", "OR"],
 	["keyword", "ORACLE"],
 	["keyword", "ORADATA"],
 	["keyword", "ORGANIZATION"],
@@ -335,6 +352,7 @@ ZONE
 	["keyword", "PRAGMA"],
 	["keyword", "PRIOR"],
 	["keyword", "PRIVATE"],
+	["keyword", "QUERY"],
 	["keyword", "RAISE"],
 	["keyword", "RANGE"],
 	["keyword", "RAW"],
@@ -343,8 +361,8 @@ ZONE
 	["keyword", "REFERENCE"],
 	["keyword", "REM"],
 	["keyword", "REMAINDER"],
-	["keyword", "RESULT"],
 	["keyword", "RESOURCE"],
+	["keyword", "RESULT"],
 	["keyword", "RETURNING"],
 	["keyword", "REVERSE"],
 	["keyword", "ROWID"],
@@ -401,6 +419,7 @@ ZONE
 	["keyword", "VALIST"],
 	["keyword", "VARCHAR2"],
 	["keyword", "VARIABLE"],
+	["keyword", "VARIADIC"],
 	["keyword", "VARIANCE"],
 	["keyword", "VARRAY"],
 	["keyword", "VIEWS"],
