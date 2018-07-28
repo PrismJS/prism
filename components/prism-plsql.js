@@ -16,5 +16,5 @@ if (Prism.util.type(Prism.languages.plsql['operator']) !== 'Array') {
 	Prism.languages.plsql['operator'] = [Prism.languages.plsql['operator']];
 }
 Prism.languages.plsql['operator'].unshift(
-	/:=/
+	/:=|\|\|/
 );
