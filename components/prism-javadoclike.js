@@ -6,7 +6,9 @@
 			lookbehind: true
 		},
 		'keyword': {
-			pattern: /(^\s*(?:\/{3}|\*|\/\*\*)\s*|\{)@[a-z][a-zA-Z]+\b/m,
+			// keywords are the first word in a line preceded be an `@` or surrounded by curly braces.
+			// @word, {@word}
+			pattern: /(^\s*(?:\/{3}|\*|\/\*\*)\s*|\{)@[a-z][a-zA-Z-]+\b/m,
 			lookbehind: true
 		},
 		'punctuation': /[{}]/
@@ -58,7 +60,7 @@
 		}
 	}
 
-	var basicSupport = ['java', 'javascript'];
+	var basicSupport = ['java', 'javascript', 'php'];
 	for (var i = 0; i < basicSupport.length; i++) {
 		docCommentSupport(basicSupport[i], function (pattern, index, array) {
 			pattern.inside.rest = doc;

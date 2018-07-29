@@ -359,14 +359,6 @@
 			"title": "J",
 			"owner": "Golmote"
 		},
-		"javadoclike": {
-			"title": "JavaDoc-like",
-			"peerDependencies": [
-				"java",
-				"javascript"
-			],
-			"owner": "RunDevelopment"
-		},
 		"java": {
 			"title": "Java",
 			"require": "clike",
@@ -375,6 +367,15 @@
 		"javadoc": {
 			"title": "JavaDoc",
 			"require": ["java", "javadoclike"],
+			"owner": "RunDevelopment"
+		},
+		"javadoclike": {
+			"title": "JavaDoc-like",
+			"peerDependencies": [
+				"java",
+				"javascript",
+				"php"
+			],
 			"owner": "RunDevelopment"
 		},
 		"jolie": {
@@ -538,6 +539,11 @@
 			"title": "PHP",
 			"require": ["clike", "markup-templating"],
 			"owner": "milesj"
+		},
+		"phpdoc": {
+			"title": "PHPDoc",
+			"require": ["php", "javadoclike"],
+			"owner": "RunDevelopment"
 		},
 		"php-extras": {
 			"title": "PHP Extras",
