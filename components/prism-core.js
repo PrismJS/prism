@@ -149,19 +149,24 @@ var _ = _self.Prism = {
 		},
 
 		// Traverse a language definition with Depth First Search
-		DFS: function(o, callback, type, visited) {
+		DFS: function DFS(o, callback, type, visited) {
 			visited = visited || {};
 			for (var i in o) {
 				if (o.hasOwnProperty(i)) {
 					callback.call(o, i, o[i], type || i);
 
-					if (_.util.type(o[i]) === 'Object' && !visited[_.util.objId(o[i])]) {
-						visited[_.util.objId(o[i])] = true;
-						_.languages.DFS(o[i], callback, null, visited);
+					var property = o[i],
+					    propertyType = _.util.type(property);
+
+					var objId = _.util.objId;
+
+					if (propertyType === 'Object' && !visited[objId(property)]) {
+						visited[objId(property)] = true;
+						DFS(property, callback, null, visited);
 					}
-					else if (_.util.type(o[i]) === 'Array' && !visited[_.util.objId(o[i])]) {
-						visited[_.util.objId(o[i])] = true;
-						_.languages.DFS(o[i], callback, i, visited);
+					else if (propertyType === 'Array' && !visited[objId(property)]) {
+						visited[objId(property)] = true;
+						DFS(property, callback, i, visited);
 					}
 				}
 			}
