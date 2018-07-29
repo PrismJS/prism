@@ -84,6 +84,14 @@ var _ = _self.Prism = {
 			}
 
 			return o;
+		},
+
+		isGenerator: function (o) {
+			return o && o.generate instanceof Function;
+		},
+
+		generate: function (o) {
+			return o.generate.apply(null, arguments);
 		}
 	},
 
@@ -289,7 +297,10 @@ var _ = _self.Prism = {
 	},
 
 	matchGrammar: function (text, strarr, grammar, index, startPos, oneshot, target) {
-		var Token = _.Token;
+		var Token = _.Token,
+		    util = _.util,
+		    isGenerator = util.isGenerator,
+		    generate = util.generate;
 
 		for (var token in grammar) {
 			if(!grammar.hasOwnProperty(token) || !grammar[token]) {
@@ -301,11 +312,22 @@ var _ = _self.Prism = {
 			}
 
 			var patterns = grammar[token];
-			patterns = (_.util.type(patterns) === "Array") ? patterns : [patterns];
+			var isArray = util.type(patterns) === "Array" && !isGenerator(patterns);
+			patterns = isArray ? patterns : [patterns];
 
 			for (var j = 0; j < patterns.length; ++j) {
-				var pattern = patterns[j],
-					inside = pattern.inside,
+				var pattern = patterns[j];
+
+				// replace generators with generated patterns
+				if (isGenerator(pattern)) {
+					patterns[j] = pattern = generate(pattern);
+					if (!isArray)
+						grammar[token] = pattern;
+				}
+				if (isGenerator(pattern.pattern))
+					pattern.pattern = generate(pattern.pattern, pattern);
+
+				var inside = pattern.inside,
 					lookbehind = !!pattern.lookbehind,
 					greedy = !!pattern.greedy,
 					lookbehindLength = 0,
