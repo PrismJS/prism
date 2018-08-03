@@ -2,10 +2,12 @@
 
 	var keywords = /\b(?:abstract|continue|for|new|switch|assert|default|goto|package|synchronized|boolean|do|if|private|this|break|double|implements|protected|throw|byte|else|import|public|throws|case|enum|instanceof|return|transient|catch|extends|int|short|try|char|final|interface|static|void|class|finally|long|strictfp|volatile|const|float|native|super|while|var|null)\b/;
 
+	// based on the java naming conventions
+	var className = /\b[A-Z](?:\w*[a-z]\w*)?\b/;
+
 	Prism.languages.java = Prism.languages.extend('clike', {
 		'class-name': [
-			// based on the java naming conventions
-			/\b[A-Z](?:\w*[a-z]\w*)?\b/,
+			className,
 
 			// variables and parameters
 			// this to support class names (or generic parameters) which do not contain a lower case letter (also works for methods)
@@ -19,7 +21,7 @@
 				lookbehind: true
 			}
 		],
-		'number': /\b0b[01]+\b|\b0x[\da-f]*\.?[\da-fp-]+\b|(?:\b\d+\.?\d*|\B\.\d+)(?:e[+-]?\d+)?[df]?/i,
+		'number': /\b0b[01][01_]*L?\b|\b0x[\da-f_]*\.?[\da-f_p+-]+\b|(?:\b\d[\d_]*\.?[\d_]*|\B\.\d[\d_]*)(?:e[+-]?\d[\d_]*)?[dfl]?/i,
 		'operator': {
 			pattern: /(^|[^.])(?:\+[+=]?|-[-=]?|!=?|<<?=?|>>?>?=?|==?|&[&=]?|\|[|=]?|\*=?|\/=?|%=?|\^=?|[?:~])/m,
 			lookbehind: true
@@ -38,14 +40,11 @@
 			inside: {
 				'punctuation': /\./,
 			}
-		}
-	});
-
-	Prism.languages.insertBefore('java', 'class-name', {
+		},
 		'generics': {
 			pattern: /<(?:[\w\s,.&?]|<(?:[\w\s,.&?]|<(?:[\w\s,.&?]|<[\w\s,.&?]*>)*>)*>)*>/,
 			inside: {
-				'class-name': Prism.languages.java['class-name'],
+				'class-name': className,
 				'keyword': keywords,
 				'punctuation': /[<>(),.:]/,
 				'operator': /[?&|]/
