@@ -87,6 +87,19 @@ var walkTokens = function (tokens) {
 			} else {
 				notTagNorBrace = true
 			}
+
+			// class-name alias to tags which refer to classes
+			if (token.type === 'tag' && token.content.length === 2 && token.content[0].type === 'punctuation' && typeof token.content[1] === 'string') {
+				if (/^[A-Z]/.test(token.content[1])) {
+					var alias = 'class-name';
+					if (!token.alias)
+						token.alias = alias;
+					else if (typeof token.alias === 'string')
+						token.alias = [token.alias, alias];
+					else
+						token.alias.push(alias);
+				}
+			}
 		}
 		if (notTagNorBrace || typeof token === 'string') {
 			if (openedTags.length > 0 && openedTags[openedTags.length - 1].openedBraces === 0) {
