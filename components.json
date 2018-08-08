@@ -364,6 +364,10 @@
 			"require": "clike",
 			"owner": "sherblot"
 		},
+		"javastacktrace": {
+			"title": "Java stack trace",
+			"owner": "RunDevelopment"
+		},
 		"jolie": {
 			"title": "Jolie",
 			"require": "clike",
