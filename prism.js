@@ -508,10 +508,10 @@ Token.prototype.addAlias = function () {
 	var args = [].slice.call(arguments);
 
 	if (!alias) {
-		// undefined or null
+		// undefined
 		this.alias = args;
 	} else if (typeof alias === 'string') {
-		// one single alias
+		// string alias
 		args.unshift(alias);
 		this.alias = args;
 	} else {
