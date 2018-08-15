@@ -496,7 +496,23 @@ Token.stringify = function(o, language, parent) {
 	}).join(' ');
 
 	return '<' + env.tag + ' class="' + env.classes.join(' ') + '"' + (attributes ? ' ' + attributes : '') + '>' + env.content + '</' + env.tag + '>';
+};
 
+Token.prototype.addAlias = function () {
+	var alias = this.alias;
+	var args = [].slice.call(arguments);
+
+	if (!alias) {
+		// undefined
+		this.alias = args;
+	} else if (typeof alias === 'string') {
+		// string alias
+		args.unshift(alias);
+		this.alias = args;
+	} else {
+		// array of aliases
+		[].push.apply(this.alias, args);
+	}
 };
 
 if (!_self.document) {
