@@ -1,14 +1,16 @@
 as; async; await; break; case;
-catch; class; const; continue; debugger;
+class; const; continue; debugger;
 default; delete; do; else; enum;
-export; extends; finally; for;
+export; extends; for;
 from; function; get; if; implements;
 import; in; instanceof; interface; let;
 new; null; of; package; private;
 protected; public; return; set; static;
 super; switch; this; throw;
-try; typeof; var; void; while;
+typeof; var; void; while;
 with; yield;
+
+try {} catch (e) {} finally {}
 
 ----------------------------------------------------
 
@@ -18,7 +20,6 @@ with; yield;
 	["keyword", "await"], ["punctuation", ";"],
 	["keyword", "break"], ["punctuation", ";"],
 	["keyword", "case"], ["punctuation", ";"],
-	["keyword", "catch"], ["punctuation", ";"],
 	["keyword", "class"], ["punctuation", ";"],
 	["keyword", "const"], ["punctuation", ";"],
 	["keyword", "continue"], ["punctuation", ";"],
@@ -30,7 +31,6 @@ with; yield;
 	["keyword", "enum"], ["punctuation", ";"],
 	["keyword", "export"], ["punctuation", ";"],
 	["keyword", "extends"], ["punctuation", ";"],
-	["keyword", "finally"], ["punctuation", ";"],
 	["keyword", "for"], ["punctuation", ";"],
 	["keyword", "from"], ["punctuation", ";"],
 	["keyword", "function"], ["punctuation", ";"],
@@ -56,13 +56,16 @@ with; yield;
 	["keyword", "switch"], ["punctuation", ";"],
 	["keyword", "this"], ["punctuation", ";"],
 	["keyword", "throw"], ["punctuation", ";"],
-	["keyword", "try"], ["punctuation", ";"],
 	["keyword", "typeof"], ["punctuation", ";"],
 	["keyword", "var"], ["punctuation", ";"],
 	["keyword", "void"], ["punctuation", ";"],
 	["keyword", "while"], ["punctuation", ";"],
 	["keyword", "with"], ["punctuation", ";"],
-	["keyword", "yield"], ["punctuation", ";"]
+	["keyword", "yield"], ["punctuation", ";"],
+
+	["keyword", "try"], ["punctuation", "{"], ["punctuation", "}"],
+	["keyword", "catch"], ["punctuation", "("], "e", ["punctuation", ")"], ["punctuation", "{"], ["punctuation", "}"],
+	["keyword", "finally"], ["punctuation", "{"], ["punctuation", "}"]
 ]
 
 ----------------------------------------------------
