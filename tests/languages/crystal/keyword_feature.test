@@ -1,6 +1,7 @@
 abstract alias as asm begin break case
 class;
-def do else elsif
+def
+do else elsif
 end ensure enum extend for fun
 if include instance_sizeof
 .is_a?
