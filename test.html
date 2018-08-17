@@ -213,9 +213,13 @@ radios[selectedRadio].onclick();
 
 var textarea = $('textarea', form);
 
-var lastCode = sessionStorage.getItem('test-code');
-if (lastCode) {
-	textarea.value = lastCode;
+try {
+	var lastCode = sessionStorage.getItem('test-code');
+	if (lastCode) {
+		textarea.value = lastCode;
+	}
+} catch (e) {
+	console.error(e);
 }
 
 (textarea.oninput = function() {
