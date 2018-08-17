@@ -95,6 +95,15 @@ var form = $('form'), code = $('code', form),
     languages = components.languages,
     highlightCode = function() { Prism.highlightElement(code); };
 
+
+function updateUrl(lang) {
+	var href = window.location.href.split('#')[0] + '#';
+	if (lang)
+		href += 'language=' + lang;
+	window.location.href = href;
+}
+
+
 for (var id in languages) {
 	if (id == 'meta') {
 		continue;
@@ -117,6 +126,7 @@ for (var id in languages) {
 						var lang = this.value;
 						code.className = 'language-' + lang;
 						code.textContent = code.textContent;
+						updateUrl(lang);
 
 						// loadLanguage() returns a promise, so we use highlightCode()
 						// as resolve callback. The promise will be immediately
@@ -185,14 +195,34 @@ function getDependenciesOfLanguage (lang)
 
 
 var radios = $$('input[name=language]');
-radios[0].checked = true;
-radios[0].onclick();
+var selectedRadio = 0;
+
+var lastLang = /[#&]language=([^&]+)/.exec(window.location.href);
+if (lastLang) {
+	lastLang = lastLang[1];
+	for (var i = 0, radio; radio = radios[i]; i++) {
+		if (radio.value === lastLang) {
+			selectedRadio = i;
+			break;
+		}
+	}
+}
+
+radios[selectedRadio].checked = true;
+radios[selectedRadio].onclick();
 
 var textarea = $('textarea', form);
+
+var lastCode = sessionStorage.getItem('test-code');
+if (lastCode) {
+	textarea.value = lastCode;
+}
 
 (textarea.oninput = function() {
 	code.textContent = this.value || '';
 	highlightCode();
+
+	sessionStorage.setItem('test-code', code.textContent);
 }).call(textarea);
 
 })();
