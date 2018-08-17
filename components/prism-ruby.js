@@ -79,7 +79,7 @@
 			lookbehind: true
 		},
 		'function': {
-			pattern: /(def )[\w.]+/,
+			pattern: /(\bdef\s+)[\w.]+/,
 			lookbehind: true,
 		}
 	});
