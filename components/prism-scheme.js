@@ -22,7 +22,7 @@ Prism.languages.scheme = {
 		lookbehind: true
 	},
 	'function' : {
-		pattern : /(\()[^\s()]*(?=\s)/,
+		pattern : /(\()[^\s()]*(?=[\s)])/,
 		lookbehind : true
 	},
 	'punctuation' : /[()]/
