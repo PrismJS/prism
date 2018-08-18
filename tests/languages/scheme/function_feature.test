@@ -2,6 +2,7 @@
 (flmin 2 3)
 (exact? 2)
 (inexact->exact 3)
+(!fact)
 
 ----------------------------------------------------
 
@@ -9,7 +10,8 @@
 	["punctuation", "("], ["function", "fl="], ["number", "1"], ["number", "2"], ["punctuation", ")"],
 	["punctuation", "("], ["function", "flmin"], ["number", "2"], ["number", "3"], ["punctuation", ")"],
 	["punctuation", "("], ["function", "exact?"], ["number", "2"], ["punctuation", ")"],
-	["punctuation", "("], ["function", "inexact->exact"], ["number", "3"], ["punctuation", ")"]
+	["punctuation", "("], ["function", "inexact->exact"], ["number", "3"], ["punctuation", ")"],
+	["punctuation", "("], ["function", "!fact"], ["punctuation", ")"]
 ]
 
 ----------------------------------------------------
