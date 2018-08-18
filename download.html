@@ -11,11 +11,25 @@
 form label {
 	display: block;
 	padding: .2em;
+	padding-left: 1.9em;
+	page-break-inside: avoid;
+	break-inside: avoid;
+	-webkit-column-break-inside: avoid;
 }
 
-form input {
-	margin-right: .7em;
-}
+	form label .name {
+		margin-right: .3em;
+	}
+
+	form label a.owner {
+		margin-left: 0;
+		hyphens: none;
+	}
+
+	form label input {
+		margin-right: .7em;
+		margin-left: -1.7em;
+	}
 
 form > p:first-of-type > label {
 	font-size: 150%;
@@ -24,7 +38,7 @@ form > p:first-of-type > label {
 	form > p:first-of-type > label input {
 		vertical-align: .3em;
 	}
-	
+
 .filesize:empty {
 	display: none;
 }
@@ -113,7 +127,7 @@ section.download {
 		border-top-right-radius: 0;
 		border-bottom-right-radius: 0;
 	}
-	
+
 	#download-css .download-button {
 		background-color: #dc9e23;
 		border-top-left-radius: 0;
@@ -129,7 +143,7 @@ section.download {
 
 <header>
 	<div class="intro" data-src="templates/header-main.html" data-type="text/html"></div>
-	
+
 	<h2>Customize your download</h2>
 	<p>Select your compression level, as well as the languages and plugins you need.</p>
 </header>
@@ -141,29 +155,29 @@ section.download {
 			<label><input type="radio" name="compression" value="0" /> Development version</label>
 			<label><input type="radio" name="compression" value="1" checked /> Minified version</label>
 		</p>
-		
+
 		<section id="components"></section>
-		
+
 		<p>
 			Total filesize: <strong id="filesize"></strong> (<strong id="percent-js"></strong> JavaScript + <strong id="percent-css"></strong> CSS)
 		</p>
 		<p><strong>Note:</strong> The filesizes displayed refer to non-gizipped files and include any CSS code required. The CSS code is not minified.</p>
-		
+
 		<section id="download">
 			<div class="error"></div>
 			<section id="download-js" class="download">
 				<pre><code class="language-javascript"></code></pre>
 				<a href="#" class="download-button" download="prism.js" target="_blank">Download JS</a>
 			</section>
-			
+
 			<section id="download-css" class="download">
 				<pre><code class="language-css"></code></pre>
 				<a href="#" class="download-button" download="prism.css" target="_blank">Download CSS</a>
 			</section>
 		</section>
-		
+
 	</form>
-	
+
 </section>
 
 <footer data-src="templates/footer.html" data-type="text/html"></footer>
