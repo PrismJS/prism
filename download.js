@@ -143,6 +143,7 @@ for (var category in components) {
 			enabled: checked,
 			require: $u.type(all[id].require) === 'string' ? [all[id].require] : all[id].require,
 			after: $u.type(all[id].after) === 'string' ? [all[id].after] : all[id].after,
+			peerDependencies: $u.type(all[id].peerDependencies) === 'string' ? [all[id].peerDependencies] : all[id].peerDependencies,
 			owner: all[id].owner,
 			files: {
 				minified: {
@@ -220,10 +221,18 @@ for (var category in components) {
 				all.meta.link? {
 					tag: 'a',
 					properties: {
-						href: all.meta.link.replace(/\{id}/g, id)
+						href: all.meta.link.replace(/\{id}/g, id),
+						className: 'name'
 					},
 					contents: info.title
-				} : info.title,
+				} : {
+					tag: 'span',
+					properties: {
+						className: 'name'
+					},
+					contents: info.title
+				},
+				' ',
 				all[id].owner? {
 					tag: 'a',
 					properties: {
@@ -457,8 +466,8 @@ function getSortedComponents(components, requireName, sorted) {
 	return sorted;
 }
 
-function getSortedComponentsByRequirements(components){
-	var sorted = getSortedComponents(components, "after");
+function getSortedComponentsByRequirements(components, afterName) {
+	var sorted = getSortedComponents(components, afterName);
 	return getSortedComponents(components, "require", sorted);
 }
 
@@ -470,7 +479,7 @@ function generateCode(){
 		var all = components[category];
 
 		// In case if one component requires other, required component should go first.
-		var sorted = getSortedComponentsByRequirements(all);
+		var sorted = getSortedComponentsByRequirements(all, category === 'languages' ? 'peerDependencies' : 'after');
 
 		for (var i = 0; i < sorted.length; i++) {
 			var id = sorted[i];

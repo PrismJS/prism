@@ -51,6 +51,14 @@
 		}
 	});
 
+	var string_interpolation = {
+		pattern: /{\$(?:{(?:{[^{}]+}|[^{}]+)}|[^{}])+}|(^|[^\\{])\$+(?:\w+(?:\[.+?]|->\w+)*)/,
+		lookbehind: true,
+		inside: {
+			rest: Prism.languages.php
+		}
+	};
+
 	Prism.languages.insertBefore('php', 'string', {
 		'nowdoc-string': {
 			pattern: /<<<'([^']+)'(?:\r\n?|\n)(?:.*(?:\r\n?|\n))*?\1;/,
@@ -78,7 +86,7 @@
 						'punctuation': /^<<<"?|[";]$/
 					}
 				},
-				'interpolation': null // See below
+				'interpolation': string_interpolation // See below
 			}
 		},
 		'single-quoted-string': {
@@ -91,22 +99,12 @@
 			greedy: true,
 			alias: 'string',
 			inside: {
-				'interpolation': null // See below
+				'interpolation': string_interpolation // See below
 			}
 		}
 	});
 	// The different types of PHP strings "replace" the C-like standard string
 	delete Prism.languages.php['string'];
-
-	var string_interpolation = {
-		pattern: /{\$(?:{(?:{[^{}]+}|[^{}]+)}|[^{}])+}|(^|[^\\{])\$+(?:\w+(?:\[.+?]|->\w+)*)/,
-		lookbehind: true,
-		inside: {
-			rest: Prism.languages.php
-		}
-	};
-	Prism.languages.php['heredoc-string'].inside['interpolation'] = string_interpolation;
-	Prism.languages.php['double-quoted-string'].inside['interpolation'] = string_interpolation;
 
 	Prism.hooks.add('before-tokenize', function(env) {
 		if (!/(?:<\?php|<\?)/ig.test(env.code)) {
