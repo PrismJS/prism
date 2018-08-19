@@ -52,7 +52,7 @@ code[class*="language"] {
 	overflow: auto;
 }
 
-/* Margin bottom to accomodate shadow */
+/* Margin bottom to accommodate shadow */
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
 	background-color: #fdfdfd;
