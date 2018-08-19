@@ -8,8 +8,8 @@ Prism.languages.sql = {
 		greedy: true,
 		alias: 'variable'
 	},
-	'string': {
-		pattern: /(^|[^@\\])("|')(?:\\[\s\S]|(?!\2)[^\\])*\2/,
+	'string' : {
+		pattern: /(^|[^@\\])("|')(?:\\[\s\S]|(?!\2)[^\\]|\2\2)*\2/,
 		greedy: true,
 		lookbehind: true
 	},
