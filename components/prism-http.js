@@ -39,7 +39,7 @@ for (var contentType in httpLanguages) {
 	if (httpLanguages[contentType]) {
 		var options = {};
 		options[contentType] = {
-			pattern: new RegExp('(content-type:\\s*' + contentType + '[\\w\\W]*?)(?:\\r?\\n|\\r){2}[\\w\\W]*', 'i'),
+			pattern: RegExp('(content-type:\\s*' + contentType + '[\\w\\W]*?)(?:\\r?\\n|\\r){2}[\\w\\W]*', 'i'),
 			lookbehind: true,
 			inside: {
 				rest: httpLanguages[contentType]

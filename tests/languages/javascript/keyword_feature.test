@@ -1,24 +1,28 @@
+catch finally;
+
 as; async; await; break; case;
-catch; class; const; continue; debugger;
+class; const; continue; debugger;
 default; delete; do; else; enum;
-export; extends; finally; for;
+export; extends; for;
 from; function; get; if; implements;
 import; in; instanceof; interface; let;
 new; null; of; package; private;
 protected; public; return; set; static;
-super; switch; this; throw;
-try; typeof; var; void; while;
+super; switch; this; throw; try;
+typeof; var; void; while;
 with; yield;
 
 ----------------------------------------------------
 
 [
+	["keyword", "catch"],
+	["keyword", "finally"], ["punctuation", ";"],
+
 	["keyword", "as"], ["punctuation", ";"],
 	["keyword", "async"], ["punctuation", ";"],
 	["keyword", "await"], ["punctuation", ";"],
 	["keyword", "break"], ["punctuation", ";"],
 	["keyword", "case"], ["punctuation", ";"],
-	["keyword", "catch"], ["punctuation", ";"],
 	["keyword", "class"], ["punctuation", ";"],
 	["keyword", "const"], ["punctuation", ";"],
 	["keyword", "continue"], ["punctuation", ";"],
@@ -30,7 +34,6 @@ with; yield;
 	["keyword", "enum"], ["punctuation", ";"],
 	["keyword", "export"], ["punctuation", ";"],
 	["keyword", "extends"], ["punctuation", ";"],
-	["keyword", "finally"], ["punctuation", ";"],
 	["keyword", "for"], ["punctuation", ";"],
 	["keyword", "from"], ["punctuation", ";"],
 	["keyword", "function"], ["punctuation", ";"],

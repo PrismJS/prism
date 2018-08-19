@@ -60,7 +60,7 @@ NormalizeWhitespace.prototype = {
 	},
 	spacesToTabs: function (input, spaces) {
 		spaces = spaces|0 || 4;
-		return input.replace(new RegExp(' {' + spaces + '}', 'g'), '\t');
+		return input.replace(RegExp(' {' + spaces + '}', 'g'), '\t');
 	},
 	removeTrailing: function (input) {
 		return input.replace(/\s*?$/gm, '');
@@ -80,7 +80,7 @@ NormalizeWhitespace.prototype = {
 		if (!indents[0].length)
 			return input;
 
-		return input.replace(new RegExp('^' + indents[0], 'gm'), '');
+		return input.replace(RegExp('^' + indents[0], 'gm'), '');
 	},
 	indent: function (input, tabs) {
 		return input.replace(/^[^\S\n\r]*(?=\S)/gm, new Array(++tabs).join('\t') + '$&');
