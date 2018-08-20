@@ -1,4 +1,5 @@
 foo = function () {}
+{foo: function () {}}
 bar = function baz () {}
 fooBar = x => x
 ಠ_ಠ = () => {}
@@ -9,6 +10,8 @@ fooBar = x => x
 [
 	["function-variable", "foo"], ["operator", "="], ["keyword", "function"],
 	["punctuation", "("], ["punctuation", ")"], ["punctuation", "{"], ["punctuation", "}"],
+	["punctuation", "{"], ["function-variable", "foo"], ["punctuation", ":"], ["keyword", "function"],
+	["punctuation", "("], ["punctuation", ")"], ["punctuation", "{"],["punctuation","}"],["punctuation","}"],
 	["function-variable", "bar"], ["operator", "="], ["keyword", "function"], ["function", "baz"],
 	["punctuation", "("], ["punctuation", ")"], ["punctuation", "{"], ["punctuation", "}"],
 	["function-variable", "fooBar"], ["operator", "="], " x ", ["operator", "=>"], " x\r\n",
