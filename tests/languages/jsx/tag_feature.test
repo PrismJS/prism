@@ -31,7 +31,7 @@ var myElement = <MyComponent someProperty={true} />;
 	["tag", [
 		["tag", [
 			["punctuation", "<"],
-			"MyComponent"
+			["class-name", "MyComponent"]
 		]],
 		["attr-name", ["someProperty"]],
 		["script", [
