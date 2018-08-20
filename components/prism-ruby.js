@@ -78,9 +78,13 @@
 			pattern: /(^|[^:]):[a-zA-Z_]\w*(?:[?!]|\b)/,
 			lookbehind: true
 		},
-		'function': {
-			pattern: /(\bdef\s+(?:\w+\.)?)[\w.]+/,
+		'method-definition': {
+			pattern: /(\bdef\s+)[\w.]+/,
 			lookbehind: true,
+			inside: {
+				'function': /\w+$/,
+				rest: Prism.languages.ruby
+			}
 		}
 	});
 

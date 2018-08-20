@@ -23,9 +23,11 @@ end
   ["keyword", "class"],
   ["class-name", ["Circle"]],
   ["keyword", "def"],
-  ["keyword", "self"],
-  ["punctuation", "."],
-  ["function", "of_diameter"],
+  ["method-definition", [
+    ["keyword", "self"],
+    ["punctuation", "."],
+    ["function", "of_diameter"]
+  ]],
   ["punctuation", "("],
   "diameter",
   ["punctuation", ")"],
@@ -35,7 +37,9 @@ end
   ["number", "2"],
   ["keyword", "end"],
   ["keyword", "def"],
-  ["function", "initialize"],
+  ["method-definition", [
+    ["function", "initialize"]
+  ]],
   ["punctuation", "("],
   "radius",
   ["punctuation", ")"],
@@ -44,7 +48,9 @@ end
   " radius\n  ",
   ["keyword", "end"],
   ["keyword", "def"],
-  ["function", "circumference"],
+  ["method-definition", [
+    ["function", "circumference"]
+  ]],
   ["constant", "Math"],
   ["punctuation", ":"],
   ["punctuation", ":"],
@@ -57,7 +63,9 @@ end
   ["keyword", "end"],
   ["comment", "# Seattle style"],
   ["keyword", "def"],
-  ["function", "grow_by"],
+  ["method-definition", [
+    ["function", "grow_by"]
+  ]],
   " factor",
   ["punctuation", ":"],
   ["variable", "@radius"],
