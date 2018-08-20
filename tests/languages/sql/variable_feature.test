@@ -14,11 +14,11 @@ ar`
 [
 	["variable", "@foo"],
 	["variable", "@foo_bar_42"],
-	["quoted-variable", "@\"fo\\\"o-b\r\nar\""],
-	["quoted-variable", "@'fo\\'o-b\r\nar'"],
-	["quoted-variable", "@`fo\\`o-b\r\nar`"],
-	["quoted-variable", "@'foo'"],
-	["quoted-variable", "@'bar'"]
+	["variable", "@\"fo\\\"o-b\r\nar\""],
+	["variable", "@'fo\\'o-b\r\nar'"],
+	["variable", "@`fo\\`o-b\r\nar`"],
+	["variable", "@'foo'"],
+	["variable", "@'bar'"]
 ]
 
 ----------------------------------------------------
