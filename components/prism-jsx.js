@@ -7,6 +7,7 @@ Prism.languages.jsx.tag.pattern= /<\/?(?:[\w.:-]+\s*(?:\s+(?:[\w.:-]+(?:=(?:("|'
 
 Prism.languages.jsx.tag.inside['tag'].pattern = /^<\/?[^\s>\/]*/i;
 Prism.languages.jsx.tag.inside['attr-value'].pattern = /=(?!\{)(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s'">]+)/i;
+Prism.languages.jsx.tag.inside['tag'].inside['class-name'] = /^[A-Z]\w*$/;
 
 Prism.languages.insertBefore('inside', 'attr-name', {
 	'spread': {
@@ -86,19 +87,6 @@ var walkTokens = function (tokens) {
 
 			} else {
 				notTagNorBrace = true
-			}
-
-			// class-name alias to tags which refer to classes
-			if (token.type === 'tag' && token.content.length === 2 && token.content[0].type === 'punctuation' && typeof token.content[1] === 'string') {
-				if (/^[A-Z]/.test(token.content[1])) {
-					var alias = 'class-name';
-					if (!token.alias)
-						token.alias = alias;
-					else if (typeof token.alias === 'string')
-						token.alias = [token.alias, alias];
-					else
-						token.alias.push(alias);
-				}
 			}
 		}
 		if (notTagNorBrace || typeof token === 'string') {

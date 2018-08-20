@@ -6,7 +6,7 @@
 	["tag", [
 		["tag", [
 			["punctuation", "<"],
-			"CodeView"
+			["class-name", "CodeView"]
 		]],
 		["attr-name", ["title"]],
 		["script", [
@@ -42,7 +42,7 @@
 	["tag", [
 		["tag", [
 			["punctuation", "</"],
-			"CodeView"
+			["class-name", "CodeView"]
 		]],
 		["punctuation", ">"]
 	]]
