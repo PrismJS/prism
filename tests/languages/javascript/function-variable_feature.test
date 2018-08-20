@@ -1,4 +1,5 @@
 foo = function ( x, y) {}
+{foo: function () {}}
 bar = async function baz (x ) {}
 baz = async(x) => x
 fooBar = x => x
@@ -21,6 +22,16 @@ fooBar = ( x, y ) => x
 	["punctuation", ")"],
 	["punctuation", "{"],
 	["punctuation", "}"],
+
+	["punctuation", "{"],
+	["function-variable", "foo"],
+	["punctuation", ":"],
+	["keyword", "function"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation","}"],
+	["punctuation","}"],
 
 	["function-variable", "bar"],
 	["operator", "="],
