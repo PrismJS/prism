@@ -226,12 +226,12 @@
 						},
 						contents: info.title
 					} : {
-							tag: 'span',
-							properties: {
-								className: 'name'
-							},
-							contents: info.title
+						tag: 'span',
+						properties: {
+							className: 'name'
 						},
+						contents: info.title
+					},
 					' ',
 					all[id].owner ? {
 						tag: 'a',

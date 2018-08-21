@@ -25,6 +25,13 @@
 			"last"
 		],
 		"func-call-spacing": 2,
+		"indent": [
+			2,
+			"tab",
+			{
+				"SwitchCase": 1
+			}
+		],
 		"keyword-spacing": 2,
 		"linebreak-style": [
 			2,

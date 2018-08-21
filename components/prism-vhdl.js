@@ -2,8 +2,8 @@ Prism.languages.vhdl = {
 	'comment': /--.+/,
 	// support for all logic vectors
 	'vhdl-vectors': {
-		'pattern': /\b[oxb]"[\da-f_]+"|"[01uxzwlh-]+"/i,
-		'alias': 'number'
+		pattern: /\b[oxb]"[\da-f_]+"|"[01uxzwlh-]+"/i,
+		alias: 'number'
 	},
 	// support for operator overloading included
 	'quoted-function': {
