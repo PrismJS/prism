@@ -26,7 +26,7 @@ Prism.languages.erlang = {
 		lookbehind: true
 	},
 	'operator': [
-		/[=\/<>:]=|=[:\/]=|\+\+?|--?|[=*\/!]|\b(?:bnot|div|rem|band|bor|bxor|bsl|bsr|not|and|or|xor|orelse|andalso)\b/,
+		/[=/<>:]=|=[:/]=|\+\+?|--?|[=*/!]|\b(?:bnot|div|rem|band|bor|bxor|bsl|bsr|not|and|or|xor|orelse|andalso)\b/,
 		{
 			// We don't want to match <<
 			pattern: /(^|[^<])<(?!<)/,

@@ -8,5 +8,5 @@ Prism.languages.mizar = {
 	'variable': /\w+(?=:)/,
 	'number': /(?:\b|-)\d+\b/,
 	'operator': /\.\.\.|->|&|\.?=/,
-	'punctuation': /\(#|#\)|[,:;\[\](){}]/
+	'punctuation': /\(#|#\)|[,:;[\](){}]/
 };

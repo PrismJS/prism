@@ -42,9 +42,9 @@
 			alias: 'builtin'
 		},
 		// Any combination of operator chars can be an operator
-		'operator': /(?=\b_|[^_])[!"#$%&'*+,\-.\/:<=>?@\\^_`|~\u00a1-\u00bf\u00d7-\u00f7\u20d0-\u2bff]+|\b(?:and|div|mod|not|or)\b/,
+		'operator': /(?=\b_|[^_])[!"#$%&'*+,\-./:<=>?@\\^_`|~\u00a1-\u00bf\u00d7-\u00f7\u20d0-\u2bff]+|\b(?:and|div|mod|not|or)\b/,
 		// FIXME: How can we prevent | and , to be highlighted as operator when they are used alone?
-		'punctuation': /[(){}\[\];,|]/
+		'punctuation': /[(){}[\];,|]/
 	};
 
 	var inlineLanguages = [
@@ -65,7 +65,7 @@
 		if (Prism.languages[alias]) {
 			var o = {};
 			o['inline-lang-' + alias] = {
-				pattern: RegExp(inlineLanguageRe.replace('{lang}', lang.replace(/([.+*?\/\\(){}\[\]])/g, '\\$1')), 'i'),
+				pattern: RegExp(inlineLanguageRe.replace('{lang}', lang.replace(/([.+*?/\\(){}[\]])/g, '\\$1')), 'i'),
 				inside: Prism.util.clone(Prism.languages.pure['inline-lang'].inside)
 			};
 			o['inline-lang-' + alias].inside.rest = Prism.util.clone(Prism.languages[alias]);

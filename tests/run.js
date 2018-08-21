@@ -1,16 +1,16 @@
-"use strict";
+'use strict';
 
-var TestDiscovery = require("./helper/test-discovery");
-var TestCase = require("./helper/test-case");
-var path = require("path");
-var argv = require("yargs").argv;
+var TestDiscovery = require('./helper/test-discovery');
+var TestCase = require('./helper/test-case');
+var path = require('path');
+var argv = require('yargs').argv;
 
 var testSuite;
 if (argv.language) {
-	testSuite = TestDiscovery.loadSomeTests(__dirname + "/languages", argv.language);
+	testSuite = TestDiscovery.loadSomeTests(__dirname + '/languages', argv.language);
 } else {
 	// load complete test suite
-	testSuite = TestDiscovery.loadAllTests(__dirname + "/languages");
+	testSuite = TestDiscovery.loadAllTests(__dirname + '/languages');
 }
 
 // define tests for all tests in all languages in the test suite

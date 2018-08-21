@@ -43,13 +43,13 @@ Prism.languages.pascal = {
 		/\b\d+(?:\.\d+)?(?:e[+-]?\d+)?/i
 	],
 	'operator': [
-		/\.\.|\*\*|:=|<[<=>]?|>[>=]?|[+\-*\/]=?|[@^=]/i,
+		/\.\.|\*\*|:=|<[<=>]?|>[>=]?|[+\-*/]=?|[@^=]/i,
 		{
 			pattern: /(^|[^&])\b(?:and|as|div|exclude|in|include|is|mod|not|or|shl|shr|xor)\b/,
 			lookbehind: true
 		}
 	],
-	'punctuation': /\(\.|\.\)|[()\[\]:;,.]/
+	'punctuation': /\(\.|\.\)|[()[\]:;,.]/
 };
 
 Prism.languages.objectpascal = Prism.languages.pascal;

@@ -33,7 +33,7 @@ Prism.languages.twig = {
 				/[=<>]=?|!=|\*\*?|\/\/?|\?:?|[-+~%|]/
 			],
 			'property': /\b[a-zA-Z_]\w*\b/,
-			'punctuation': /[()\[\]{}:.,]/
+			'punctuation': /[()[\]{}:.,]/
 		}
 	},
 

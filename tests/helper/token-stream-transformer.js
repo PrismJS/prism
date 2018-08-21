@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 
 module.exports = {
@@ -18,14 +18,12 @@ module.exports = {
 			return tokenStream
 				.map(this.simplify.bind(this))
 				.filter(function (value) {
-					return !(Array.isArray(value) && !value.length) && !(typeof value === "string" && !value.trim().length);
+					return !(Array.isArray(value) && !value.length) && !(typeof value === 'string' && !value.trim().length);
 				}
-			);
-		}
-		else if (typeof tokenStream === "object") {
+				);
+		} else if (typeof tokenStream === 'object') {
 			return [tokenStream.type, this.simplify(tokenStream.content)];
-		}
-		else {
+		} else {
 			return tokenStream;
 		}
 	}

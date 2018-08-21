@@ -42,7 +42,7 @@
 			lookbehind: true
 		},
 		'string': [
-			//Support for Here-Documents https://en.wikipedia.org/wiki/Here_document
+			// Support for Here-Documents https://en.wikipedia.org/wiki/Here_document
 			{
 				pattern: /((?:^|[^<])<<\s*)["']?(\w+?)["']?\s*\r?\n(?:[\s\S])*?\r?\n\2/,
 				lookbehind: true,

@@ -9,7 +9,7 @@
 	 * @type {String}
 	 */
 	var PLUGIN_NAME = 'line-numbers';
-	
+
 	/**
 	 * Regular expression used for determining line breaks
 	 * @type {RegExp}
@@ -123,7 +123,7 @@
 		env.plugins = env.plugins || {};
 		env.plugins.lineNumbers = true;
 	});
-	
+
 	/**
 	 * Global exports
 	 */

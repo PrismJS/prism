@@ -1,8 +1,8 @@
-"use strict";
+'use strict';
 
-var fs = require("fs");
-var vm = require("vm");
-var components = require("../../components");
+var fs = require('fs');
+var vm = require('vm');
+var components = require('../../components');
 var languagesCatalog = components.languages;
 
 
@@ -87,7 +87,7 @@ module.exports = {
 	 * @returns {Prism}
 	 */
 	createEmptyPrism: function () {
-		var coreSource = this.loadFileSource("core");
+		var coreSource = this.loadFileSource('core');
 		var context = this.runFileWithContext(coreSource);
 		return context.Prism;
 	},
@@ -110,7 +110,7 @@ module.exports = {
 	 * @returns {string}
 	 */
 	loadFileSource: function (name) {
-		return this.fileSourceCache[name] = this.fileSourceCache[name] || fs.readFileSync(__dirname + "/../../components/prism-" + name + ".js", "utf8");
+		return this.fileSourceCache[name] = this.fileSourceCache[name] || fs.readFileSync(__dirname + '/../../components/prism-' + name + '.js', 'utf8');
 	},
 
 

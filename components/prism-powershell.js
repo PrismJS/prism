@@ -30,7 +30,7 @@ Prism.languages.powershell = {
 	],
 	// Matches name spaces as well as casts, attribute decorators. Force starting with letter to avoid matching array indices
 	// Supports two levels of nested brackets (e.g. `[OutputType([System.Collections.Generic.List[int]])]`)
-	'namespace': /\[[a-z](?:\[(?:\[[^\]]*]|[^\[\]])*]|[^\[\]])*]/i,
+	'namespace': /\[[a-z](?:\[(?:\[[^\]]*]|[^[\]])*]|[^[\]])*]/i,
 	'boolean': /\$(?:true|false)\b/i,
 	'variable': /\$\w+\b/i,
 	// Cmdlets and aliases. Aliases should come last, otherwise "write" gets preferred over "write-host" for example
@@ -43,7 +43,7 @@ Prism.languages.powershell = {
 	// per http://technet.microsoft.com/en-us/library/hh847744.aspx
 	'keyword': /\b(?:Begin|Break|Catch|Class|Continue|Data|Define|Do|DynamicParam|Else|ElseIf|End|Exit|Filter|Finally|For|ForEach|From|Function|If|InlineScript|Parallel|Param|Process|Return|Sequence|Switch|Throw|Trap|Try|Until|Using|Var|While|Workflow)\b/i,
 	'operator': {
-		pattern: /(\W?)(?:!|-(eq|ne|gt|ge|lt|le|sh[lr]|not|b?(?:and|x?or)|(?:Not)?(?:Like|Match|Contains|In)|Replace|Join|is(?:Not)?|as)\b|-[-=]?|\+[+=]?|[*\/%]=?)/i,
+		pattern: /(\W?)(?:!|-(eq|ne|gt|ge|lt|le|sh[lr]|not|b?(?:and|x?or)|(?:Not)?(?:Like|Match|Contains|In)|Replace|Join|is(?:Not)?|as)\b|-[-=]?|\+[+=]?|[*/%]=?)/i,
 		lookbehind: true
 	},
 	'punctuation': /[|{}[\];(),.]/

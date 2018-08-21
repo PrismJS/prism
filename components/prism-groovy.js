@@ -6,11 +6,11 @@ Prism.languages.groovy = Prism.languages.extend('clike', {
 			greedy: true
 		},
 		{
-			pattern: /(["'\/])(?:\\.|(?!\1)[^\\\r\n])*\1/,
+			pattern: /(["'/])(?:\\.|(?!\1)[^\\\r\n])*\1/,
 			greedy: true
 		}
 	],
-	'number': /\b(?:0b[01_]+|0x[\da-f_]+(?:\.[\da-f_p\-]+)?|[\d_]+(?:\.[\d_]+)?(?:e[+-]?[\d]+)?)[glidf]?\b/i,
+	'number': /\b(?:0b[01_]+|0x[\da-f_]+(?:\.[\da-f_p-]+)?|[\d_]+(?:\.[\d_]+)?(?:e[+-]?[\d]+)?)[glidf]?\b/i,
 	'operator': {
 		pattern: /(^|[^.])(?:~|==?~?|\?[.:]?|\*(?:[.=]|\*=?)?|\.[@&]|\.\.<|\.{1,2}(?!\.)|-[-=>]?|\+[+=]?|!=?|<(?:<=?|=>?)?|>(?:>>?=?|=)?|&[&=]?|\|[|=]?|\/=?|\^=?|%=?)/,
 		lookbehind: true
@@ -45,7 +45,7 @@ Prism.hooks.add('wrap', function (env) {
 		if (delimiter != "'") {
 			var pattern = /([^\\])(?:\$(?:\{.*?\}|[\w.]+))/;
 			if (delimiter === '$') {
-				pattern = /([^\$])(?:\$(?:\{.*?\}|[\w.]+))/;
+				pattern = /([^$])(?:\$(?:\{.*?\}|[\w.]+))/;
 			}
 
 			// To prevent double HTML-encoding we have to decode env.content first

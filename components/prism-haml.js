@@ -58,7 +58,7 @@
 		},
 		'tag': {
 			// Allows for one nested group of braces
-			pattern: /((?:^|\r?\n|\r)[\t ]*)[%.#][\w\-#.]*[\w\-](?:\([^)]+\)|\{(?:\{[^}]+\}|[^}])+\}|\[[^\]]+\])*[\/<>]*/,
+			pattern: /((?:^|\r?\n|\r)[\t ]*)[%.#][\w\-#.]*[\w-](?:\([^)]+\)|\{(?:\{[^}]+\}|[^}])+\}|\[[^\]]+\])*[/<>]*/,
 			lookbehind: true,
 			inside: {
 				'attributes': [
@@ -145,7 +145,7 @@
 					},
 					rest: Prism.languages[filter.language]
 				}
-			}
+			};
 		}
 	}
 

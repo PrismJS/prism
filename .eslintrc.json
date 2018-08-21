@@ -1,0 +1,71 @@
+{
+	"parserOptions": {
+		"ecmaVersion": 5,
+		"sourceType": "script",
+		"ecmaFeatures": {
+			"impliedStrict": true
+		}
+	},
+	"env": {
+		"browser": true,
+		"node": true
+	},
+	"rules": {
+		"semi": 2,
+		"no-extra-semi": 2,
+		"no-dupe-args": 2,
+		"no-dupe-keys": 2,
+		"no-unreachable": 2,
+		"valid-typeof": 2,
+		"no-useless-call": 2,
+		"no-unused-vars": 2,
+		"no-useless-escape": 2,
+		"no-invalid-regexp": 2,
+		"brace-style": [
+			2,
+			"1tbs",
+			{
+				"allowSingleLine": true
+			}
+		],
+		"linebreak-style": [
+			2,
+			"unix"
+		],
+		"no-mixed-spaces-and-tabs": [
+			2,
+			"smart-tabs"
+		],
+		"quotes": [
+			2,
+			"single",
+			"avoid-escape"
+		],
+		"spaced-comment": [
+			2,
+			"always",
+			{
+				"block": {
+					"exceptions": [
+						"*"
+					]
+				}
+			}
+		],
+		"space-before-blocks": [
+			2,
+			"always"
+		],
+		"arrow-spacing": 2,
+		"comma-spacing": 2,
+		"keyword-spacing": 2,
+		"space-before-function-paren": [
+			2,
+			{
+				"anonymous": "always",
+				"named": "never",
+				"asyncArrow": "always"
+			}
+		]
+	}
+}

@@ -31,7 +31,7 @@ Prism.languages.less = Prism.languages.extend('css', {
 
 	'property': /(?:@\{[\w-]+\}|[\w-])+(?:\+_?)?(?=\s*:)/i,
 	'punctuation': /[{}();:,]/,
-	'operator': /[+\-*\/]/
+	'operator': /[+\-*/]/
 });
 
 // Invert function and punctuation positions
@@ -45,7 +45,7 @@ Prism.languages.insertBefore('less', 'property', {
 		{
 			pattern: /@[\w-]+\s*:/,
 			inside: {
-				"punctuation": /:/
+				'punctuation': /:/
 			}
 		},
 

@@ -1,0 +1,4 @@
+*.min.js
+/node_modules/**/*.js
+utopia.js
+/vendor/**/*.js

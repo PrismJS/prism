@@ -20,5 +20,5 @@ Prism.languages.graphql = {
 		/\b(?:query|fragment|mutation)\b/
 	],
 	'operator': /!|=|\.{3}/,
-	'punctuation': /[!(){}\[\]:=,]/
+	'punctuation': /[!(){}[\]:=,]/
 };

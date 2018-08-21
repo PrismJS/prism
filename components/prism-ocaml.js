@@ -22,6 +22,6 @@ Prism.languages.ocaml = {
 	'keyword': /\b(?:as|assert|begin|class|constraint|do|done|downto|else|end|exception|external|for|fun|function|functor|if|in|include|inherit|initializer|lazy|let|match|method|module|mutable|new|object|of|open|prefix|private|rec|then|sig|struct|to|try|type|val|value|virtual|where|while|with)\b/,
 	'boolean': /\b(?:false|true)\b/,
 	// Custom operators are allowed
-	'operator': /:=|[=<>@^|&+\-*\/$%!?~][!$%&*+\-.\/:<=>?@^|~]*|\b(?:and|asr|land|lor|lxor|lsl|lsr|mod|nor|or)\b/,
-	'punctuation': /[(){}\[\]|_.,:;]/
+	'operator': /:=|[=<>@^|&+\-*/$%!?~][!$%&*+\-./:<=>?@^|~]*|\b(?:and|asr|land|lor|lxor|lsl|lsr|mod|nor|or)\b/,
+	'punctuation': /[(){}[\]|_.,:;]/
 };

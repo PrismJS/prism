@@ -1,4 +1,4 @@
-(function(){
+(function () {
 	if (typeof self === 'undefined' || !self.Prism || !self.document) {
 		return;
 	}
@@ -21,7 +21,7 @@
 		var script = document.createElement('script');
 		var head = document.querySelector('head');
 
-		script.onload = function() {
+		script.onload = function () {
 			ClipboardJS = window.ClipboardJS;
 
 			if (ClipboardJS) {
@@ -54,7 +54,7 @@
 				}
 			});
 
-			clip.on('success', function() {
+			clip.on('success', function () {
 				linkCopy.textContent = 'Copied!';
 
 				resetText();

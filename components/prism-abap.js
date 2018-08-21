@@ -25,25 +25,25 @@ Prism.languages.abap = {
 	adjacent to operands.
 	*/
 	'operator': {
-		pattern: /(\s)(?:\*\*?|<[=>]?|>=?|\?=|[-+\/=])(?=\s)/,
+		pattern: /(\s)(?:\*\*?|<[=>]?|>=?|\?=|[-+/=])(?=\s)/,
 		lookbehind: true
 	},
 	'string-operator': {
 		pattern: /(\s)&&?(?=\s)/,
 		lookbehind: true,
 		/* The official editor highlights */
-		alias: "keyword"
+		alias: 'keyword'
 	},
 	'token-operator': [
 		{
 			/* Special operators used to access structure components, class methods/attributes, etc. */
 			pattern: /(\w)(?:->?|=>|[~|{}])(?=\w)/,
 			lookbehind: true,
-			alias: "punctuation"
+			alias: 'punctuation'
 		}, {
 			/* Special tokens used do delimit string templates */
 			pattern: /[|{}]/,
-			alias: "punctuation"
+			alias: 'punctuation'
 		}
 	],
 	'punctuation': /[,.:()]/

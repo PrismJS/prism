@@ -5,8 +5,8 @@ Prism.languages.autohotkey = {
 		lookbehind: true
 	},
 	'string': /"(?:[^"\n\r]|"")*"/m,
-	'function': /[^(); \t,\n+*\-=?>:\\\/<&%\[\]]+?(?=\()/m,  //function - don't use .*\) in the end bcoz string locks it
-	'tag': /^[ \t]*[^\s:]+?(?=:(?:[^:]|$))/m,  //labels
+	'function': /[^(); \t,\n+*\-=?>:\\/<&%[\]]+?(?=\()/m,  // function - don't use .*\) in the end bcoz string locks it
+	'tag': /^[ \t]*[^\s:]+?(?=:(?:[^:]|$))/m,  // labels
 	'variable': /%\w+%/,
 	'number': /\b0x[\dA-Fa-f]+\b|(?:\b\d+\.?\d*|\B\.\d+)(?:[Ee]-?\d+)?/,
 	'operator': /\?|\/\/?=?|:=|\|[=|]?|&[=&]?|\+[=+]?|-[=-]?|\*[=*]?|<(?:<=?|>|=)?|>>?=?|[.^!=~]=?|\b(?:AND|NOT|OR)\b/,

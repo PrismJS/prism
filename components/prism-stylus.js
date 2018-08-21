@@ -18,9 +18,9 @@
 		'operator': [
 			// We want non-word chars around "-" because it is
 			// accepted in property names.
-			/~|[+!\/%<>?=]=?|[-:]=|\*[*=]?|\.+|&&|\|\||\B-\B|\b(?:and|in|is(?: a| defined| not|nt)?|not|or)\b/
+			/~|[+!/%<>?=]=?|[-:]=|\*[*=]?|\.+|&&|\|\||\B-\B|\b(?:and|in|is(?: a| defined| not|nt)?|not|or)\b/
 		],
-		'punctuation': /[{}()\[\];:,]/
+		'punctuation': /[{}()[\];:,]/
 	};
 
 	inside['interpolation'] = {
@@ -106,6 +106,6 @@
 		'func': inside.func,
 		'string': inside.string,
 		'interpolation': inside.interpolation,
-		'punctuation': /[{}()\[\];:.]/
+		'punctuation': /[{}()[\];:.]/
 	};
 }(Prism));

@@ -1,12 +1,13 @@
-var gulp   = require('gulp'),
+var gulp = require('gulp'),
 	rename = require('gulp-rename'),
 	uglify = require('gulp-uglify'),
 	header = require('gulp-header'),
 	concat = require('gulp-concat'),
+	eslint = require('gulp-eslint'),
 	replace = require('gulp-replace'),
 	fs = require('fs'),
 
-	paths  = {
+	paths = {
 		componentsFile: 'components.json',
 		componentsFileJS: 'components.js',
 		components: ['components/**/*.js', '!components/index.js', '!components/**/*.min.js'],
@@ -21,7 +22,8 @@ var gulp   = require('gulp'),
 		plugins: ['plugins/**/*.js', '!plugins/**/*.min.js'],
 		showLanguagePlugin: 'plugins/show-language/prism-show-language.js',
 		autoloaderPlugin: 'plugins/autoloader/prism-autoloader.js',
-		changelog: 'CHANGELOG.md'
+		changelog: 'CHANGELOG.md',
+		tests: 'tests/**/*.js'
 	},
 
 	componentsPromise = new Promise(function (resolve, reject) {
@@ -34,16 +36,39 @@ var gulp   = require('gulp'),
 				reject(err);
 			}
 		});
-	});
+	}),
 
-gulp.task('components', function() {
+	lintSrc = function () {
+		var args = arguments;
+		return function () {
+			return gulp.src.apply(gulp, args)
+				.pipe(eslint())
+				.pipe(eslint.format())
+				.pipe(eslint.failAfterError());
+		};
+	};
+
+gulp.task('lint-components', lintSrc(paths.components));
+gulp.task('lint-plugins', lintSrc(paths.plugins));
+gulp.task('lint-tests', lintSrc(paths.tests));
+gulp.task('lint-others', lintSrc([
+	'components/index.js',
+	'code.js',
+	'download.js',
+	'examples.js',
+	'gulpfile.js'
+]));
+
+gulp.task('lint', ['lint-components', 'lint-plugins', 'lint-tests', 'lint-others']);
+
+gulp.task('components', ['lint-components'], function () {
 	return gulp.src(paths.components)
 		.pipe(uglify())
 		.pipe(rename({ suffix: '.min' }))
 		.pipe(gulp.dest('components'));
 });
 
-gulp.task('build', function() {
+gulp.task('build', function () {
 	return gulp.src(paths.main)
 		.pipe(header('\n/* **********************************************\n' +
 			'     Begin <%= file.relative %>\n' +
@@ -52,7 +77,7 @@ gulp.task('build', function() {
 		.pipe(gulp.dest('./'));
 });
 
-gulp.task('plugins', ['languages-plugins'], function() {
+gulp.task('plugins', ['languages-plugins', 'lint-plugins'], function () {
 	return gulp.src(paths.plugins)
 		.pipe(uglify())
 		.pipe(rename({ suffix: '.min' }))
@@ -67,7 +92,7 @@ gulp.task('components-json', function (cb) {
 	});
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', function () {
 	gulp.watch(paths.components, ['components', 'build']);
 	gulp.watch(paths.plugins, ['plugins', 'build']);
 });
@@ -88,7 +113,7 @@ gulp.task('languages-plugins', function (cb) {
 					languagesMap[name] = data.languages[p].aliasTitles[name];
 				}
 
-				if(data.languages[p].require) {
+				if (data.languages[p].require) {
 					dependenciesMap[p] = data.languages[p].require;
 				}
 			}
@@ -98,20 +123,20 @@ gulp.task('languages-plugins', function (cb) {
 		var jsonDependenciesMap = JSON.stringify(dependenciesMap);
 
 		var tasks = [
-			{plugin: paths.showLanguagePlugin, map: jsonLanguagesMap},
-			{plugin: paths.autoloaderPlugin, map: jsonDependenciesMap}
+			{ plugin: paths.showLanguagePlugin, map: jsonLanguagesMap },
+			{ plugin: paths.autoloaderPlugin, map: jsonDependenciesMap }
 		];
 
 		var cpt = 0;
 		var l = tasks.length;
-		var done = function() {
+		var done = function () {
 			cpt++;
-			if(cpt === l) {
+			if (cpt === l) {
 				cb && cb();
 			}
 		};
 
-		tasks.forEach(function(task) {
+		tasks.forEach(function (task) {
 			var stream = gulp.src(task.plugin)
 				.pipe(replace(
 					/\/\*languages_placeholder\[\*\/[\s\S]*?\/\*\]\*\//,
@@ -125,7 +150,7 @@ gulp.task('languages-plugins', function (cb) {
 	});
 });
 
-gulp.task('changelog', function (cb) {
+gulp.task('changelog', function () {
 	return gulp.src(paths.changelog)
 		.pipe(replace(
 			/#(\d+)(?![\d\]])/g,
@@ -140,4 +165,4 @@ gulp.task('changelog', function (cb) {
 		.pipe(gulp.dest('.'));
 });
 
-gulp.task('default', ['components', 'components-json', 'plugins', 'build']);
+gulp.task('default', ['components', 'components-json', 'plugins', 'build', 'lint']);

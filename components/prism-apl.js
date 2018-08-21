@@ -13,7 +13,7 @@ Prism.languages.apl = {
 	'constant': /[⍬⌾#⎕⍞]/,
 	'function': /[-+×÷⌈⌊∣|⍳⍸?*⍟○!⌹<≤=>≥≠≡≢∊⍷∪∩~∨∧⍱⍲⍴,⍪⌽⊖⍉↑↓⊂⊃⊆⊇⌷⍋⍒⊤⊥⍕⍎⊣⊢⍁⍂≈⍯↗¤→]/,
 	'monadic-operator': {
-		pattern: /[\\\/⌿⍀¨⍨⌶&∥]/,
+		pattern: /[\\/⌿⍀¨⍨⌶&∥]/,
 		alias: 'operator'
 	},
 	'dyadic-operator': {
@@ -24,7 +24,7 @@ Prism.languages.apl = {
 		pattern: /←/,
 		alias: 'keyword'
 	},
-	'punctuation': /[\[;\]()◇⋄]/,
+	'punctuation': /[[;\]()◇⋄]/,
 	'dfn': {
 		pattern: /[{}⍺⍵⍶⍹∇⍫:]/,
 		alias: 'builtin'

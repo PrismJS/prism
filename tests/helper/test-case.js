@@ -1,9 +1,9 @@
-"use strict";
+'use strict';
 
-var fs = require("fs");
-var assert = require("chai").assert;
-var PrismLoader = require("./prism-loader");
-var TokenStreamTransformer = require("./token-stream-transformer");
+var fs = require('fs');
+var assert = require('chai').assert;
+var PrismLoader = require('./prism-loader');
+var TokenStreamTransformer = require('./token-stream-transformer');
 
 /**
  * Handles parsing of a test case file.
@@ -56,7 +56,7 @@ module.exports = {
 		var usedLanguages = this.parseLanguageNames(languageIdentifier);
 
 		if (null === testCase) {
-			throw new Error("Test case file has invalid format (or the provided token stream is invalid JSON), please read the docs.");
+			throw new Error('Test case file has invalid format (or the provided token stream is invalid JSON), please read the docs.');
 		}
 
 		var Prism = PrismLoader.createInstance(usedLanguages.languages);
@@ -75,16 +75,18 @@ module.exports = {
 		var simplifiedTokenStream = TokenStreamTransformer.simplify(compiledTokenStream);
 
 		var tzd = JSON.stringify( simplifiedTokenStream ); var exp = JSON.stringify( testCase.expectedTokenStream );
-		var i = 0; var j = 0; var diff = "";
-		while ( j < tzd.length ){ if (exp[i] != tzd[j] || i == exp.length) diff += tzd[j]; else i++; j++; }
+		var i = 0; var j = 0; var diff = '';
+		while ( j < tzd.length ) {
+			if (exp[i] != tzd[j] || i == exp.length) diff += tzd[j]; else i++; j++;
+		}
 
-		// var message = "\nToken Stream: \n" + JSON.stringify( simplifiedTokenStream, null, " " ) + 
-		var message = "\nToken Stream: \n" + tzd + 
-			"\n-----------------------------------------\n" +
-			"Expected Token Stream: \n" + exp +
-			"\n-----------------------------------------\n" + diff;
+		// var message = '\nToken Stream: \n' + JSON.stringify( simplifiedTokenStream, null, ' ' ) +
+		var message = '\nToken Stream: \n' + tzd +
+			'\n-----------------------------------------\n' +
+			'Expected Token Stream: \n' + exp +
+			'\n-----------------------------------------\n' + diff;
 
-		var result = assert.deepEqual(simplifiedTokenStream, testCase.expectedTokenStream, testCase.comment + message);
+		assert.deepEqual(simplifiedTokenStream, testCase.expectedTokenStream, testCase.comment + message);
 	},
 
 
@@ -99,19 +101,19 @@ module.exports = {
 	 * @returns {{languages: string[], mainLanguage: string}}
 	 */
 	parseLanguageNames: function (languageIdentifier) {
-		var languages = languageIdentifier.split("+");
+		var languages = languageIdentifier.split('+');
 		var mainLanguage = null;
 
 		languages = languages.map(
 			function (language) {
-				var pos = language.indexOf("!");
+				var pos = language.indexOf('!');
 
 				if (-1 < pos) {
 					if (mainLanguage) {
-						throw "There are multiple main languages defined.";
+						throw 'There are multiple main languages defined.';
 					}
 
-					mainLanguage = language.replace("!", "");
+					mainLanguage = language.replace('!', '');
 					return mainLanguage;
 				}
 
@@ -138,7 +140,7 @@ module.exports = {
 	 * @returns {{testSource: string, expectedTokenStream: Array.<Array.<string>>, comment:string?}|null}
 	 */
 	parseTestCaseFile: function (filePath) {
-		var testCaseSource = fs.readFileSync(filePath, "utf8");
+		var testCaseSource = fs.readFileSync(filePath, 'utf8');
 		var testCaseParts = testCaseSource.split(/^-{10,}\w*$/m);
 
 		try {
@@ -155,8 +157,7 @@ module.exports = {
 			}
 
 			return testCase;
-		}
-		catch (e) {
+		} catch (e) {
 			// the JSON can't be parsed (e.g. it could be empty)
 			return null;
 		}

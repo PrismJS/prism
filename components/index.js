@@ -37,7 +37,7 @@ function loadLanguages(arr, withoutDependencies) {
 			return language !== 'meta';
 		});
 	}
-	if (arr && !arr.length) {
+	if (!arr.length) {
 		return;
 	}
 

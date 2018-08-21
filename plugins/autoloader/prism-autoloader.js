@@ -3,8 +3,12 @@
 		return;
 	}
 
+	/* eslint-disable */
+
 	// The dependencies map is built automatically with gulp
 	var lang_dependencies = /*languages_placeholder[*/{"javascript":"clike","actionscript":"javascript","arduino":"cpp","aspnet":["markup","csharp"],"bison":"c","c":"clike","csharp":"clike","cpp":"c","coffeescript":"javascript","crystal":"ruby","css-extras":"css","d":"clike","dart":"clike","django":"markup","erb":["ruby","markup-templating"],"fsharp":"clike","flow":"javascript","glsl":"clike","go":"clike","groovy":"clike","haml":"ruby","handlebars":"markup-templating","haxe":"clike","java":"clike","jolie":"clike","kotlin":"clike","less":"css","markdown":"markup","markup-templating":"markup","n4js":"javascript","nginx":"clike","objectivec":"c","opencl":"cpp","parser":"markup","php":["clike","markup-templating"],"php-extras":"php","plsql":"sql","processing":"clike","protobuf":"clike","pug":"javascript","qore":"clike","jsx":["markup","javascript"],"tsx":["jsx","typescript"],"reason":"clike","ruby":"clike","sass":"css","scss":"css","scala":"java","smarty":"markup-templating","soy":"markup-templating","swift":"clike","tap":"yaml","textile":"markup","tt2":["clike","markup-templating"],"twig":"markup","typescript":"javascript","vbnet":"basic","velocity":"markup","wiki":"markup","xeora":"markup","xquery":"markup"}/*]*/;
+
+	/* eslint-enable */
 
 	var lang_data = {};
 
@@ -13,9 +17,9 @@
 	var script = document.getElementsByTagName('script');
 	script = script[script.length - 1];
 	var languages_path = 'components/';
-	if(script.hasAttribute('data-autoloader-path')) {
+	if (script.hasAttribute('data-autoloader-path')) {
 		var path = script.getAttribute('data-autoloader-path').trim();
-		if(path.length > 0 && !/^[a-z]+:\/\//i.test(script.src)) {
+		if (path.length > 0 && !/^[a-z]+:\/\//i.test(script.src)) {
 			languages_path = path.replace(/\/?$/, '/');
 		}
 	} else if (/[\w-]+\.js$/.test(script.src)) {
@@ -36,11 +40,11 @@
 		var s = document.createElement('script');
 		s.src = src;
 		s.async = true;
-		s.onload = function() {
+		s.onload = function () {
 			document.body.removeChild(s);
 			success && success();
 		};
-		s.onerror = function() {
+		s.onerror = function () {
 			document.body.removeChild(s);
 			error && error();
 		};
@@ -55,7 +59,7 @@
 	var getLanguagePath = function (lang) {
 		return config.languages_path +
 			'prism-' + lang
-			+ (config.use_minified ? '.min' : '') + '.js'
+			+ (config.use_minified ? '.min' : '') + '.js';
 	};
 
 	/**
@@ -167,7 +171,7 @@
 			}
 		};
 		var dependencies = lang_dependencies[lang];
-		if(dependencies && dependencies.length) {
+		if (dependencies && dependencies.length) {
 			loadLanguages(dependencies, load);
 		} else {
 			load();

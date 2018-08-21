@@ -49,7 +49,7 @@
 			alias: 'function'
 		},
 		'directive-inline': {
-			pattern: /\$\w(?:#\d+\+?)?(?:\[[-\w.]+])?:[-\/\w.]+\$/,
+			pattern: /\$\w(?:#\d+\+?)?(?:\[[-\w.]+])?:[-/\w.]+\$/,
 			inside: {
 				'punctuation': {
 					pattern: /\$(?:\w:|C(?:\[|#\d))?|[:{[\]]/,
@@ -107,7 +107,7 @@
 
 	Prism.languages.insertBefore('inside', 'punctuation', {
 		'variable': Prism.languages.xeora['function-inline'].inside['variable']
-	}, Prism.languages.xeora["function-block"]);
+	}, Prism.languages.xeora['function-block']);
 
 	Prism.languages.xeoracube = Prism.languages.xeora;
 

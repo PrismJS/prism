@@ -67,7 +67,7 @@ Prism.languages.insertBefore('scss', 'function', {
 	'boolean': /\b(?:true|false)\b/,
 	'null': /\bnull\b/,
 	'operator': {
-		pattern: /(\s)(?:[-+*\/%]|[=!]=|<=?|>=?|and|or|not)(?=\s)/,
+		pattern: /(\s)(?:[-+*/%]|[=!]=|<=?|>=?|and|or|not)(?=\s)/,
 		lookbehind: true
 	}
 });

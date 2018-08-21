@@ -2,7 +2,7 @@
 	Prism.languages.sass = Prism.languages.extend('css', {
 		// Sass comments don't need to be closed, only indented
 		'comment': {
-			pattern: /^([ \t]*)\/[\/*].*(?:(?:\r?\n|\r)\1[ \t]+.+)*/m,
+			pattern: /^([ \t]*)\/[/*].*(?:(?:\r?\n|\r)\1[ \t]+.+)*/m,
 			lookbehind: true
 		}
 	});
@@ -22,7 +22,7 @@
 
 	var variable = /\$[-\w]+|#\{\$[-\w]+\}/;
 	var operator = [
-		/[+*\/%]|[=!]=|<=?|>=?|\b(?:and|or|not)\b/,
+		/[+*/%]|[=!]=|<=?|>=?|\b(?:and|or|not)\b/,
 		{
 			pattern: /(\s+)-(?=\s)/,
 			lookbehind: true

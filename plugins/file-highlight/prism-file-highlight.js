@@ -3,7 +3,7 @@
 		return;
 	}
 
-	self.Prism.fileHighlight = function() {
+	self.Prism.fileHighlight = function () {
 
 		var Extensions = {
 			'js': 'javascript',
@@ -55,11 +55,9 @@
 						code.textContent = xhr.responseText;
 
 						Prism.highlightElement(code);
-					}
-					else if (xhr.status >= 400) {
+					} else if (xhr.status >= 400) {
 						code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
-					}
-					else {
+					} else {
 						code.textContent = '✖ Error: File does not exist or is empty';
 					}
 				}

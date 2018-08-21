@@ -1,4 +1,4 @@
-(function() {
+(function () {
 
 	if (
 		typeof self !== 'undefined' && !self.Prism ||
@@ -22,7 +22,7 @@
 				 * @param {string} func Gradient function name ("linear-gradient")
 				 * @param {string[]} values Array of the gradient function parameters (["0deg", "red 0%", "blue 100%"])
 				 */
-				var convertToW3CLinearGradient = function(prefix, func, values) {
+				var convertToW3CLinearGradient = function (prefix, func, values) {
 					// Default value for angle
 					var angle = '180deg';
 
@@ -71,7 +71,7 @@
 				 * @param {string} func Gradient function name ("linear-gradient")
 				 * @param {string[]} values Array of the gradient function parameters (["0deg", "red 0%", "blue 100%"])
 				 */
-				var convertToW3CRadialGradient = function(prefix, func, values) {
+				var convertToW3CRadialGradient = function (prefix, func, values) {
 					if (values[0].indexOf('at') < 0) {
 						// Looks like old syntax
 
@@ -113,7 +113,7 @@
 				 * Does not support old webkit syntax (-webkit-gradient(linear...) and -webkit-gradient(radial...))
 				 * @param {string} gradient The CSS gradient
 				 */
-				var convertToW3CGradient = function(gradient) {
+				var convertToW3CGradient = function (gradient) {
 					if (cache[gradient]) {
 						return cache[gradient];
 					}
@@ -134,7 +134,7 @@
 				};
 
 				return function () {
-					new Prism.plugins.Previewer('gradient', function(value) {
+					new Prism.plugins.Previewer('gradient', function (value) {
 						this.firstChild.style.backgroundImage = '';
 						this.firstChild.style.backgroundImage = convertToW3CGradient(value);
 						return !!this.firstChild.style.backgroundImage;
@@ -145,7 +145,7 @@
 			}()),
 			tokens: {
 				'gradient': {
-					pattern: /(?:\b|\B-[a-z]{1,10}-)(?:repeating-)?(?:linear|radial)-gradient\((?:(?:rgb|hsl)a?\(.+?\)|[^\)])+\)/gi,
+					pattern: /(?:\b|\B-[a-z]{1,10}-)(?:repeating-)?(?:linear|radial)-gradient\((?:(?:rgb|hsl)a?\(.+?\)|[^)])+\)/gi,
 					inside: {
 						'function': /[\w-]+(?=\()/,
 						'punctuation': /[(),]/
@@ -188,7 +188,7 @@
 		},
 		'angle': {
 			create: function () {
-				new Prism.plugins.Previewer('angle', function(value) {
+				new Prism.plugins.Previewer('angle', function (value) {
 					var num = parseFloat(value);
 					var unit = value.match(/[a-z]+$/i);
 					var max, percentage;
@@ -197,7 +197,7 @@
 					}
 					unit = unit[0];
 
-					switch(unit) {
+					switch (unit) {
 						case 'deg':
 							max = 360;
 							break;
@@ -211,10 +211,10 @@
 							max = 1;
 					}
 
-					percentage = 100 * num/max;
+					percentage = 100 * num / max;
 					percentage %= 100;
 
-					this[(num < 0? 'set' : 'remove') + 'Attribute']('data-negative', '');
+					this[(num < 0 ? 'set' : 'remove') + 'Attribute']('data-negative', '');
 					this.querySelector('circle').style.strokeDasharray = Math.abs(percentage) + ',500';
 					return true;
 				}, '*', function () {
@@ -267,7 +267,7 @@
 		},
 		'color': {
 			create: function () {
-				new Prism.plugins.Previewer('color', function(value) {
+				new Prism.plugins.Previewer('color', function (value) {
 					this.style.backgroundColor = '';
 					this.style.backgroundColor = value;
 					return !!this.style.backgroundColor;
@@ -330,13 +330,13 @@
 						'ease': '.25,.1,.25,1',
 						'ease-in': '.42,0,1,1',
 						'ease-out': '0,0,.58,1',
-						'ease-in-out':'.42,0,.58,1'
+						'ease-in-out': '.42,0,.58,1'
 					}[value] || value;
 
 					var p = value.match(/-?\d*\.?\d+/g);
 
-					if(p.length === 4) {
-						p = p.map(function(p, i) { return (i % 2? 1 - p : p) * 100; });
+					if (p.length === 4) {
+						p = p.map(function (p, i) { return (i % 2 ? 1 - p : p) * 100; });
 
 						this.querySelector('path').setAttribute('d', 'M0,100 C' + p[0] + ',' + p[1] + ', ' + p[2] + ',' + p[3] + ', 100,0');
 
@@ -408,7 +408,7 @@
 
 		'time': {
 			create: function () {
-				new Prism.plugins.Previewer('time', function(value) {
+				new Prism.plugins.Previewer('time', function (value) {
 					var num = parseFloat(value);
 					var unit = value.match(/[a-z]+$/i);
 					if (!num || !unit) {
@@ -543,7 +543,7 @@
 		this._elt = document.createElement('div');
 		this._elt.className = 'prism-previewer prism-previewer-' + this._type;
 		document.body.appendChild(this._elt);
-		if(this.initializer) {
+		if (this.initializer) {
 			this.initializer();
 		}
 	};
@@ -554,7 +554,7 @@
 				var previewers = token.getAttribute('data-previewers');
 				return (previewers || '').split(/\s+/).indexOf(this._type) === -1;
 			}
-		} while(token = token.parentNode);
+		} while (token = token.parentNode);
 		return false;
 	};
 
@@ -570,7 +570,7 @@
 			if (tokenRegexp.test(token.className) && this._clsRegexp.test(token.className)) {
 				break;
 			}
-		} while(token = token.parentNode);
+		} while (token = token.parentNode);
 
 		if (token && token !== this._token) {
 			this._token = token;
@@ -581,7 +581,7 @@
 	/**
 	 * Called on mouseout
 	 */
-	Previewer.prototype.mouseout = function() {
+	Previewer.prototype.mouseout = function () {
 		this._token.removeEventListener('mouseout', this._mouseout, false);
 		this._token = null;
 		this.hide();
@@ -609,7 +609,7 @@
 				this._elt.style.top = offset.top + 'px';
 				this._elt.style.bottom = '';
 			} else {
-				this._elt.className +=  ' flipped';
+				this._elt.className += ' flipped';
 				this._elt.style.bottom = offset.bottom + 'px';
 				this._elt.style.top = '';
 			}
@@ -687,7 +687,7 @@
 						Prism.languages.insertBefore(inside, before, previewers[previewer].tokens, root);
 						env.grammar = Prism.languages[lang];
 
-						languages[env.language] = {initialized: true};
+						languages[env.language] = { initialized: true };
 					}
 				});
 			}
@@ -696,7 +696,7 @@
 
 	// Initialize the previewers only when needed
 	Prism.hooks.add('after-highlight', function (env) {
-		if(Previewer.byLanguages['*'] || Previewer.byLanguages[env.language]) {
+		if (Previewer.byLanguages['*'] || Previewer.byLanguages[env.language]) {
 			Previewer.initEvents(env.element, env.language);
 		}
 	});

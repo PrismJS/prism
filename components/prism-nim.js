@@ -26,8 +26,8 @@ Prism.languages.nim = {
 		// Look behind and look ahead prevent wrong highlighting of punctuations [. .] {. .} (. .)
 		// but allow the slice operator .. to take precedence over them
 		// One can define his own operators in Nim so all combination of operators might be an operator.
-		pattern: /(^|[({\[](?=\.\.)|(?![({\[]\.).)(?:(?:[=+\-*\/<>@$~&%|!?^:\\]|\.\.|\.(?![)}\]]))+|\b(?:and|div|of|or|in|is|isnot|mod|not|notin|shl|shr|xor)\b)/m,
+		pattern: /(^|[({[](?=\.\.)|(?![({[]\.).)(?:(?:[=+\-*/<>@$~&%|!?^:\\]|\.\.|\.(?![)}\]]))+|\b(?:and|div|of|or|in|is|isnot|mod|not|notin|shl|shr|xor)\b)/m,
 		lookbehind: true
 	},
-	'punctuation': /[({\[]\.|\.[)}\]]|[`(){}\[\],:]/
+	'punctuation': /[({[]\.|\.[)}\]]|[`(){}[\],:]/
 };

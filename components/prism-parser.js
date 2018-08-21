@@ -22,10 +22,10 @@ Prism.languages.parser = Prism.languages.extend('markup', {
 		}
 	},
 	'escape': {
-		pattern: /\^(?:[$^;@()\[\]{}"':]|#[a-f\d]*)/i,
+		pattern: /\^(?:[$^;@()[\]{}"':]|#[a-f\d]*)/i,
 		alias: 'builtin'
 	},
-	'punctuation': /[\[\](){};]/
+	'punctuation': /[[\](){};]/
 });
 Prism.languages.insertBefore('parser', 'keyword', {
 	'parser-comment': {
@@ -49,7 +49,7 @@ Prism.languages.insertBefore('parser', 'keyword', {
 			'boolean': /\b(?:true|false)\b/,
 			'number': /\b(?:0x[a-f\d]+|\d+\.?\d*(?:e[+-]?\d+)?)\b/i,
 			'escape': Prism.languages.parser.escape,
-			'operator': /[~+*\/\\%]|!(?:\|\|?|=)?|&&?|\|\|?|==|<[<=]?|>[>=]?|-[fd]?|\b(?:def|eq|ge|gt|in|is|le|lt|ne)\b/,
+			'operator': /[~+*/\\%]|!(?:\|\|?|=)?|&&?|\|\|?|==|<[<=]?|>[>=]?|-[fd]?|\b(?:def|eq|ge|gt|in|is|le|lt|ne)\b/,
 			'punctuation': Prism.languages.parser.punctuation
 		}
 	}

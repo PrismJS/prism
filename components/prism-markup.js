@@ -4,14 +4,14 @@ Prism.languages.markup = {
 	'doctype': /<!DOCTYPE[\s\S]+?>/i,
 	'cdata': /<!\[CDATA\[[\s\S]*?]]>/i,
 	'tag': {
-		pattern: /<\/?(?!\d)[^\s>\/=$<%]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/i,
+		pattern: /<\/?(?!\d)[^\s>/=$<%]+(?:\s+[^\s>/=]+(?:=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/i,
 		greedy: true,
 		inside: {
 			'tag': {
-				pattern: /^<\/?[^\s>\/]+/i,
+				pattern: /^<\/?[^\s>/]+/i,
 				inside: {
 					'punctuation': /^<\/?/,
-					'namespace': /^[^\s>\/:]+:/
+					'namespace': /^[^\s>/:]+:/
 				}
 			},
 			'attr-value': {
@@ -28,9 +28,9 @@ Prism.languages.markup = {
 			},
 			'punctuation': /\/?>/,
 			'attr-name': {
-				pattern: /[^\s>\/]+/,
+				pattern: /[^\s>/]+/,
 				inside: {
-					'namespace': /^[^\s>\/:]+:/
+					'namespace': /^[^\s>/:]+:/
 				}
 			}
 

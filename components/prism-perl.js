@@ -14,7 +14,7 @@ Prism.languages.perl = {
 	'string': [
 		// q/.../
 		{
-			pattern: /\b(?:q|qq|qx|qw)\s*([^a-zA-Z0-9\s{(\[<])(?:(?!\1)[^\\]|\\[\s\S])*\1/,
+			pattern: /\b(?:q|qq|qx|qw)\s*([^a-zA-Z0-9\s{([<])(?:(?!\1)[^\\]|\\[\s\S])*\1/,
 			greedy: true
 		},
 
@@ -64,7 +64,7 @@ Prism.languages.perl = {
 	'regex': [
 		// m/.../
 		{
-			pattern: /\b(?:m|qr)\s*([^a-zA-Z0-9\s{(\[<])(?:(?!\1)[^\\]|\\[\s\S])*\1[msixpodualngc]*/,
+			pattern: /\b(?:m|qr)\s*([^a-zA-Z0-9\s{([<])(?:(?!\1)[^\\]|\\[\s\S])*\1[msixpodualngc]*/,
 			greedy: true
 		},
 
@@ -102,7 +102,7 @@ Prism.languages.perl = {
 		// FIXME We don't handle change of separator like s(...)[...]
 		// s/.../.../
 		{
-			pattern: /(^|[^-]\b)(?:s|tr|y)\s*([^a-zA-Z0-9\s{(\[<])(?:(?!\2)[^\\]|\\[\s\S])*\2(?:(?!\2)[^\\]|\\[\s\S])*\2[msixpodualngcer]*/,
+			pattern: /(^|[^-]\b)(?:s|tr|y)\s*([^a-zA-Z0-9\s{([<])(?:(?!\2)[^\\]|\\[\s\S])*\2(?:(?!\2)[^\\]|\\[\s\S])*\2[msixpodualngcer]*/,
 			lookbehind: true,
 			greedy: true
 		},
@@ -147,7 +147,7 @@ Prism.languages.perl = {
 		// the same line from being highlighted as regex.
 		// This does not support multi-line regex.
 		{
-			pattern: /\/(?:[^\/\\\r\n]|\\.)*\/[msixpodualngc]*(?=\s*(?:$|[\r\n,.;})&|\-+*~<>!?^]|(lt|gt|le|ge|eq|ne|cmp|not|and|or|xor|x)\b))/,
+			pattern: /\/(?:[^/\\\r\n]|\\.)*\/[msixpodualngc]*(?=\s*(?:$|[\r\n,.;})&|\-+*~<>!?^]|(lt|gt|le|ge|eq|ne|cmp|not|and|or|xor|x)\b))/,
 			greedy: true
 		}
 	],
@@ -166,7 +166,7 @@ Prism.languages.perl = {
 		/[&*$@%]\d+/,
 		// $_, @_, %!
 		// The negative lookahead prevents from breaking the %= operator
-		/(?!%=)[$@%][!"#$%&'()*+,\-.\/:;<=>?@[\\\]^_`{|}~]/
+		/(?!%=)[$@%][!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~]/
 	],
 	'filehandle': {
 		// <>, <FOO>, _

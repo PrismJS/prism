@@ -16,5 +16,5 @@ Prism.languages.lua = {
 			lookbehind: true
 		}
 	],
-	'punctuation': /[\[\](){},;]|\.+|:+/
+	'punctuation': /[[\](){},;]|\.+|:+/
 };

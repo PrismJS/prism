@@ -20,7 +20,7 @@
 			alias: 'attr-value'
 		},
 		// Anything else is punctuation (the first pattern is for row/col spans inside tables)
-		'punctuation': /[\\\/]\d+|\S/
+		'punctuation': /[\\/]\d+|\S/
 	};
 
 
@@ -145,7 +145,7 @@
 							pattern: /(\])\S+$/,
 							lookbehind: true
 						},
-						'punctuation': /[\[\]]/
+						'punctuation': /[[\]]/
 					}
 				},
 
@@ -237,7 +237,7 @@
 	};
 
 	// Only allow alpha-numeric HTML tags, not XML tags
-	Prism.languages.textile.tag.pattern = /<\/?(?!\d)[a-z0-9]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/i;
+	Prism.languages.textile.tag.pattern = /<\/?(?!\d)[a-z0-9]+(?:\s+[^\s>/=]+(?:=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/i;
 
 	// Allow some nesting
 	Prism.languages.textile['phrase'].inside['inline'].inside['bold'].inside = nestedPatterns;

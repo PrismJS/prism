@@ -13,8 +13,8 @@
 
 	Prism.hooks.add('before-sanity-check', function (env) {
 		if ((env.element.matches || env.element.msMatchesSelector).call(env.element, "script[type='text/plain']")) {
-			var code = document.createElement("code");
-			var pre = document.createElement("pre");
+			var code = document.createElement('code');
+			var pre = document.createElement('pre');
 
 			pre.className = code.className = env.element.className;
 
@@ -26,7 +26,7 @@
 				});
 			}
 
-			env.code = env.code.replace(/&lt;\/script(>|&gt;)/gi, "</scri" + "pt>");
+			env.code = env.code.replace(/&lt;\/script(>|&gt;)/gi, '</scri' + 'pt>');
 			code.textContent = env.code;
 
 			pre.appendChild(code);
@@ -37,7 +37,7 @@
 
 		var pre = env.element.parentNode;
 		if (!env.code && pre && pre.nodeName.toLowerCase() == 'pre' &&
-				env.element.childNodes.length && env.element.childNodes[0].nodeName == "#comment") {
+				env.element.childNodes.length && env.element.childNodes[0].nodeName == '#comment') {
 			env.element.textContent = env.code = env.element.childNodes[0].textContent;
 		}
 	});

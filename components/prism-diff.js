@@ -14,7 +14,7 @@ Prism.languages.diff = {
 
 	// Match "different" lines (prefixed with "!") in context diff.
 	'diff': {
-		'pattern': /^!(?!!).+$/m,
-		'alias': 'important'
+		pattern: /^!(?!!).+$/m,
+		alias: 'important'
 	}
 };
