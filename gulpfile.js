@@ -47,7 +47,7 @@ var gulp = require('gulp'),
 	});
 
 gulp.task('lint', function () {
-	return gulp.src('**/*.js', { base: './' })
+	return gulp.src(['**/*.js', '!node_modules/**'], { base: './' })
 		.pipe(eslint())
 		.pipe(eslint.format())
 		.pipe(eslint.failAfterError());
@@ -58,7 +58,7 @@ gulp.task('lint-fix', function () {
 		return file.eslint != null && file.eslint.fixed;
 	}
 
-	return gulp.src('**/*.js', { base: './' })
+	return gulp.src(['**/*.js', '!node_modules/**'], { base: './' })
 		.pipe(eslint({ fix: true, useEslintrc: true }))
 		.pipe(eslint.format())
 		.pipe(gulpif(isFixed, gulp.dest('./')));
