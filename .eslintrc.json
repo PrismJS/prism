@@ -32,6 +32,13 @@
 				"SwitchCase": 1
 			}
 		],
+		"key-spacing": [
+			2,
+			{
+				"beforeColon": false,
+				"afterColon": true
+			}
+		],
 		"keyword-spacing": 2,
 		"linebreak-style": [
 			2,
