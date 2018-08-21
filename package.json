@@ -27,6 +27,7 @@
     "gulp-concat": "^2.3.4",
     "gulp-eslint": "^5.0.0",
     "gulp-header": "^1.0.5",
+    "gulp-if": "^2.0.2",
     "gulp-rename": "^1.2.0",
     "gulp-replace": "^0.5.4",
     "gulp-uglify": "^0.3.1",

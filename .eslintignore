@@ -1,4 +1,5 @@
 *.min.js
 /node_modules/**/*.js
+components.js
 utopia.js
 /vendor/**/*.js

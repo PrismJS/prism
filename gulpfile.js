@@ -3,6 +3,7 @@ var gulp = require('gulp'),
 	uglify = require('gulp-uglify'),
 	header = require('gulp-header'),
 	concat = require('gulp-concat'),
+	gulpif = require('gulp-if'),
 	eslint = require('gulp-eslint'),
 	replace = require('gulp-replace'),
 	fs = require('fs'),
@@ -23,7 +24,14 @@ var gulp = require('gulp'),
 		showLanguagePlugin: 'plugins/show-language/prism-show-language.js',
 		autoloaderPlugin: 'plugins/autoloader/prism-autoloader.js',
 		changelog: 'CHANGELOG.md',
-		tests: 'tests/**/*.js'
+		tests: 'tests/**/*.js',
+		others: [
+			'components/index.js',
+			'code.js',
+			'download.js',
+			'examples.js',
+			'gulpfile.js'
+		]
 	},
 
 	componentsPromise = new Promise(function (resolve, reject) {
@@ -36,32 +44,27 @@ var gulp = require('gulp'),
 				reject(err);
 			}
 		});
-	}),
+	});
 
-	lintSrc = function () {
-		var args = arguments;
-		return function () {
-			return gulp.src.apply(gulp, args)
-				.pipe(eslint())
-				.pipe(eslint.format())
-				.pipe(eslint.failAfterError());
-		};
-	};
+gulp.task('lint', function () {
+	return gulp.src('**/*.js', { base: './' })
+		.pipe(eslint())
+		.pipe(eslint.format())
+		.pipe(eslint.failAfterError());
+});
 
-gulp.task('lint-components', lintSrc(paths.components));
-gulp.task('lint-plugins', lintSrc(paths.plugins));
-gulp.task('lint-tests', lintSrc(paths.tests));
-gulp.task('lint-others', lintSrc([
-	'components/index.js',
-	'code.js',
-	'download.js',
-	'examples.js',
-	'gulpfile.js'
-]));
+gulp.task('lint-fix', function () {
+	function isFixed(file) {
+		return file.eslint != null && file.eslint.fixed;
+	}
 
-gulp.task('lint', ['lint-components', 'lint-plugins', 'lint-tests', 'lint-others']);
+	return gulp.src('**/*.js', { base: './' })
+		.pipe(eslint({ fix: true, useEslintrc: true }))
+		.pipe(eslint.format())
+		.pipe(gulpif(isFixed, gulp.dest('./')));
+});
 
-gulp.task('components', ['lint-components'], function () {
+gulp.task('components', function () {
 	return gulp.src(paths.components)
 		.pipe(uglify())
 		.pipe(rename({ suffix: '.min' }))
@@ -77,7 +80,7 @@ gulp.task('build', function () {
 		.pipe(gulp.dest('./'));
 });
 
-gulp.task('plugins', ['languages-plugins', 'lint-plugins'], function () {
+gulp.task('plugins', ['languages-plugins'], function () {
 	return gulp.src(paths.plugins)
 		.pipe(uglify())
 		.pipe(rename({ suffix: '.min' }))
