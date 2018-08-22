@@ -94,13 +94,13 @@ function replaceAnnotations(replacer) {
 
 		var comment = /^[ \t]*\/\/[ \t]*/.source + annotation + annotationOptions + /[ \t]*/.source;
 
-		var variableDeclaration = /(?:var|let|const)\s+\w+\s*=\s*/.source;
+		var variableDeclaration = /(?:(?:var|let|const)\s+)?\w+\s*=\s*/.source;
 		var objectKey = /(?:'(?:[^'\\]|\\.)*'|"(?:[^"\\]|\\.)*"|\w+)\s*:\s*/.source;
 
 		var beforeValue = '^(' + comment + /[\n\r]+^[ \t]*/.source + '(?:' + variableDeclaration + '|' + objectKey + ')' + ')'; // capturing group
-		var afterValue = /(?=[ \t]*[;,][ \t]*$|[ \t]*$\s*\})/.source;
+		var afterValue = /(?=\s*[;,][ \t]*$|[ \t]*$\s*\})/.source;
 
-		replaceAnnotations.pattern = RegExp(beforeValue + '(.*[^;,\\s])' + afterValue, 'gm');
+		replaceAnnotations.pattern = RegExp(beforeValue + '(.*?)' + afterValue, 'gm');
 	}
 
 	return replace(
