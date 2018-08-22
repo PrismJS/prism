@@ -22,19 +22,80 @@ var gulp   = require('gulp'),
 		showLanguagePlugin: 'plugins/show-language/prism-show-language.js',
 		autoloaderPlugin: 'plugins/autoloader/prism-autoloader.js',
 		changelog: 'CHANGELOG.md'
-	},
+	};
 
-	componentsPromise = new Promise(function (resolve, reject) {
-		fs.readFile(paths.componentsFile, {
+
+/**
+ * Converts the given stream into a `Promise`.
+ * @param {NodeJS.ReadableStream & NodeJS.EventEmitter} stream
+ * @returns {Promise}
+ */
+function promiseStream(stream) {
+	return new Promise(function (resolve, reject) {
+		stream.on('end', function (err) {
+			err ? reject(err) : resolve();
+		});
+	});
+}
+
+/**
+ * Reads the given file and returns a `Promise` with the read string.
+ * @param {string} path the path of the file.
+ * @returns {Promise.<string>}
+ */
+function readString(path) {
+	var cache = readString._cache || {};
+	readString._cache = cache;
+
+	return cache[path] = cache[path] || new Promise(function (resolve, reject) {
+		fs.readFile(path, {
 			encoding: 'utf-8'
 		}, function (err, data) {
 			if (!err) {
-				resolve(JSON.parse(data));
+				resolve(data);
 			} else {
 				reject(err);
 			}
 		});
 	});
+}
+
+/**
+ * Reads the given file and returns a `Promise` with the parsed JSON data.
+ * @param {string} path the path of the file.
+ * @returns {Promise.<Object.<string, any>>}
+ */
+function readJson(path) {
+	return readString(path).then(JSON.parse);
+}
+
+/**
+ * Replaces all annotations with the value returned by `replacer`.
+ *
+ * An annotation are some JS code lines of the form:
+ *
+ * ```
+// @annotationName(options)
+var variable = $value$;
+```
+ *
+ * The `replacer` will be given the name of the annotation and the specified options (optional). The returned value will
+ * then replace `$value$`.
+ * @param {(annotation: string, options: string) => string} replacer
+ * @returns {NodeJS.ReadWriteStream}
+ */
+function replaceAnnotation(replacer) {
+	return replace(
+		/^([ \t]*\/\/ *@([\w.]+)(?:\(((?:[^"()]|"(?:[^\\"]|\\.)*")*)\))? *[\n\r]+^[ \t]*(?:var|let|const)\s+\w+).*$/gm,
+		function (m, commentPlusVar, annotationName, annotationOptions) {
+			try {
+				return commentPlusVar + ' = ' + replacer(annotationName, annotationOptions) + ';';
+			} catch (e) {
+				throw new Error(e.message + '\nAt:\n' + commentPlusVar);
+			}
+		}
+	);
+}
 
 gulp.task('components', function() {
 	return gulp.src(paths.components)
@@ -60,10 +121,20 @@ gulp.task('plugins', ['languages-plugins'], function() {
 });
 
 gulp.task('components-json', function (cb) {
-	componentsPromise.then(function (data) {
-		data = 'var components = ' + JSON.stringify(data) + ';\n' +
-			'if (typeof module !== \'undefined\' && module.exports) { module.exports = components; }';
-		fs.writeFile(paths.componentsFileJS, data, cb);
+	return readJson(paths.componentsFile).then(function (json) {
+
+		var stream = gulp.src(paths.componentsFileJS, { base: './' })
+			.pipe(replaceAnnotation(function (anno, options) {
+				switch (anno) {
+					case 'components':
+						return JSON.stringify(json);
+					default:
+						throw new Error('Unknown annotation: ' + anno);
+				}
+			}))
+			.pipe(gulp.dest('./'));
+
+		return promiseStream(stream);
 	});
 });
 
@@ -73,7 +144,7 @@ gulp.task('watch', function() {
 });
 
 gulp.task('languages-plugins', function (cb) {
-	componentsPromise.then(function (data) {
+	return readJson(paths.componentsFile).then(function (data) {
 		var languagesMap = {};
 		var dependenciesMap = {};
 		for (var p in data.languages) {
@@ -88,7 +159,7 @@ gulp.task('languages-plugins', function (cb) {
 					languagesMap[name] = data.languages[p].aliasTitles[name];
 				}
 
-				if(data.languages[p].require) {
+				if (data.languages[p].require) {
 					dependenciesMap[p] = data.languages[p].require;
 				}
 			}
@@ -97,31 +168,20 @@ gulp.task('languages-plugins', function (cb) {
 		var jsonLanguagesMap = JSON.stringify(languagesMap);
 		var jsonDependenciesMap = JSON.stringify(dependenciesMap);
 
-		var tasks = [
-			{plugin: paths.showLanguagePlugin, map: jsonLanguagesMap},
-			{plugin: paths.autoloaderPlugin, map: jsonDependenciesMap}
-		];
+		var stream = gulp.src(paths.plugins, { base: './' })
+			.pipe(replaceAnnotation(function (anno, options) {
+				switch (anno) {
+					case 'languages.dependencies':
+						return jsonDependenciesMap;
+					case 'languages.titles':
+						return jsonLanguagesMap;
+					default:
+						throw new Error('Unknown annotation: ' + anno);
+				}
+			}))
+			.pipe(gulp.dest('./'));
 
-		var cpt = 0;
-		var l = tasks.length;
-		var done = function() {
-			cpt++;
-			if(cpt === l) {
-				cb && cb();
-			}
-		};
-
-		tasks.forEach(function(task) {
-			var stream = gulp.src(task.plugin)
-				.pipe(replace(
-					/\/\*languages_placeholder\[\*\/[\s\S]*?\/\*\]\*\//,
-					'/*languages_placeholder[*/' + task.map + '/*]*/'
-				))
-				.pipe(gulp.dest(task.plugin.substring(0, task.plugin.lastIndexOf('/'))));
-
-			stream.on('error', done);
-			stream.on('end', done);
-		});
+		return promiseStream(stream);
 	});
 });
 
