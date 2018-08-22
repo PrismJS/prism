@@ -78,7 +78,7 @@ module.exports = {
 
 		// load the language itself
 		var languageSource = this.loadFileSource(language);
-		context.Prism = this.runFileWithContext(languageSource, { Prism: context.Prism }).Prism;
+		context.Prism = this.runFileWithContext(languageSource, {Prism: context.Prism}).Prism;
 		context.loadedLanguages.push(language);
 
 		return context;
