@@ -34,10 +34,20 @@ var gulp   = require('gulp'),
 				reject(err);
 			}
 		});
-	});
+	}),
+
+	inlineRegexSource = function () {
+		return replace(
+			/\/((?:[^\n\r[\\\/]|\\.|\[(?:[^\\\]]|\\.)*\])*)\/\.source\b/,
+			function (m, source) {
+				return '\'' + source.replace(/\\/g, '\\\\').replace(/(['"`])/g, '\\$1') + '\'';
+			}
+		);
+	};
 
 gulp.task('components', function() {
 	return gulp.src(paths.components)
+		.pipe(inlineRegexSource())
 		.pipe(uglify())
 		.pipe(rename({ suffix: '.min' }))
 		.pipe(gulp.dest('components'));
@@ -54,6 +64,7 @@ gulp.task('build', function() {
 
 gulp.task('plugins', ['languages-plugins'], function() {
 	return gulp.src(paths.plugins)
+		.pipe(inlineRegexSource())
 		.pipe(uglify())
 		.pipe(rename({ suffix: '.min' }))
 		.pipe(gulp.dest('plugins'));
