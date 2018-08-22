@@ -4,21 +4,25 @@
 
 		// test the base pattern
 
+		// 'abc<<0>>def<<1>>ghi' -> [ 'abc', '0', 'def', '1', 'ghi']
 		var parts = source.split(placeholder);
 
 		for (var i = 0; i < parts.length - 1; i += 2) {
 			var part = parts[i];
 
-			// preceded by an unescaped back slash
-			if (/(?:^|[^\\])(?:\\\\)*\\$/.test(part))
-				throw new Error('Escaped placeholder in ' + basePattern);
+			// remove escapes
+			part = part.replace(/\\[^1-9]/g, '');
 
-			// inside a char set
-			if (/(?:^|[^\\])(?:\\\\)*\[(?:[^\\\]]|\\.)*$/.test(part))
-				throw new Error('Placeholder inside of char set in ' + basePattern);
+			// preceded by an unescaped back slash
+			if (/\\$/.test(part))
+				throw new Error('Escaped placeholder "' + parts[i + 1] + '" in ' + basePattern);
+
+			// inside a character set
+			if (/\[[^\]]*$/.test(part))
+				throw new Error('Placeholder "' + parts[i + 1] + '" inside a character set in ' + basePattern);
 		}
 
-		// test the replacements
+		// test the used replacements
 
 		var names = {};
 		for (var i = 1; i < parts.length; i += 2)
@@ -29,7 +33,7 @@
 
 			// no replacement
 			if (!replacement)
-				throw new Error('"' + name + '" does not have a replacement in ' + basePattern);
+				throw new Error('There is no replacement "' + name + '" for ' + basePattern);
 
 			replacement = '' + (replacement.source || replacement);
 
@@ -38,14 +42,14 @@
 
 			// backreferences
 			if (/\\[1-9]/.test(replacement))
-				throw new Error('Backreference in replacement ' + name);
+				throw new Error('Backreference in replacement "' + name + '" for ' + basePattern);
 
 			// remove char sets
 			replacement = replacement.replace(/\[[^\]]*\]/g, '');
 
 			// capturing groups
 			if (/\((?!\?)/.test(replacement))
-				throw new Error('Capturing group in replacement ' + name);
+				throw new Error('Capturing group in replacement "' + name + '" for ' + basePattern);
 		}
 	};
 
