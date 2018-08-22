@@ -100,7 +100,7 @@ function replaceAnnotations(replacer) {
 		var beforeValue = '^(' + comment + /[\n\r]+^[ \t]*/.source + '(?:' + variableDeclaration + '|' + objectKey + ')' + ')'; // capturing group
 		var afterValue = /(?=[;,][ \t]*$|[ \t]*$\s*\})/.source;
 
-		replaceAnnotations.pattern = RegExp(beforeValue + '(.*)' + afterValue, 'gm');
+		replaceAnnotations.pattern = RegExp(beforeValue + '(.*[^;,\s])' + afterValue, 'gm');
 	}
 
 	return replace(
