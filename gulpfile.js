@@ -98,7 +98,7 @@ function replaceAnnotations(replacer) {
 		var objectKey = /(?:'(?:[^'\\]|\\.)*'|"(?:[^"\\]|\\.)*"|\w+)\s*:\s*/.source;
 
 		var beforeValue = '^(' + comment + /[\n\r]+^[ \t]*/.source + '(?:' + variableDeclaration + '|' + objectKey + ')' + ')'; // capturing group
-		var afterValue = /(?=[;,][ \t]*$)/.source;
+		var afterValue = /(?=[;,][ \t]*$|[ \t]*$\s*\})/.source;
 
 		replaceAnnotations.pattern = RegExp(beforeValue + '(.*)' + afterValue, 'gm');
 	}
