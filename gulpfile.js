@@ -33,7 +33,8 @@ var gulp   = require('gulp'),
 function promiseStream(stream) {
 	return new Promise(function (resolve, reject) {
 		stream.on('end', function (err) {
-			err ? reject(err) : resolve();
+			if (err) reject(err);
+			else resolve();
 		});
 	});
 }
@@ -84,9 +85,9 @@ var variable = $value$;
  * @param {(annotation: string, options: string) => string} replacer
  * @returns {NodeJS.ReadWriteStream}
  */
-function replaceAnnotation(replacer) {
+function replaceAnnotations(replacer) {
 	return replace(
-		/^([ \t]*\/\/ *@([\w.]+)(?:\(((?:[^"()]|"(?:[^\\"]|\\.)*")*)\))? *[\n\r]+^[ \t]*(?:var|let|const)\s+\w+).*$/gm,
+		/^([ \t]*\/\/ *@([\w.]+)(?:\(((?:[^"()]|"(?:[^\\"]|\\.)*")*)\))? *[\n\r]+^[ \t]*(?:var|let|const)\s+\w+).*;[ \t]*$/gm,
 		function (m, commentPlusVar, annotationName, annotationOptions) {
 			try {
 				return commentPlusVar + ' = ' + replacer(annotationName, annotationOptions) + ';';
@@ -96,6 +97,7 @@ function replaceAnnotation(replacer) {
 		}
 	);
 }
+
 
 gulp.task('components', function() {
 	return gulp.src(paths.components)
@@ -120,11 +122,11 @@ gulp.task('plugins', ['languages-plugins'], function() {
 		.pipe(gulp.dest('plugins'));
 });
 
-gulp.task('components-json', function (cb) {
+gulp.task('components-json', function () {
 	return readJson(paths.componentsFile).then(function (json) {
 
 		var stream = gulp.src(paths.componentsFileJS, { base: './' })
-			.pipe(replaceAnnotation(function (anno, options) {
+			.pipe(replaceAnnotations(function (anno, options) {
 				switch (anno) {
 					case 'components':
 						return JSON.stringify(json);
@@ -143,7 +145,7 @@ gulp.task('watch', function() {
 	gulp.watch(paths.plugins, ['plugins', 'build']);
 });
 
-gulp.task('languages-plugins', function (cb) {
+gulp.task('languages-plugins', function () {
 	return readJson(paths.componentsFile).then(function (data) {
 		var languagesMap = {};
 		var dependenciesMap = {};
@@ -169,7 +171,7 @@ gulp.task('languages-plugins', function (cb) {
 		var jsonDependenciesMap = JSON.stringify(dependenciesMap);
 
 		var stream = gulp.src(paths.plugins, { base: './' })
-			.pipe(replaceAnnotation(function (anno, options) {
+			.pipe(replaceAnnotations(function (anno, options) {
 				switch (anno) {
 					case 'languages.dependencies':
 						return jsonDependenciesMap;
