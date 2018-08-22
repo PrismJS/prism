@@ -71,26 +71,43 @@ function readJson(path) {
 }
 
 /**
- * Replaces all annotations with the value returned by `replacer`.
+ * Replaces all annotation values with the value returned by `replacer`.
  *
- * An annotation are some JS code lines of the form:
+ * An annotation is a single line JS comment followed by a variable declaration. E.g.:
  *
  * ```
-// @annotationName(options)
+// @annotation
 var variable = $value$;
+// @annotation.name(options)
+'objectKey': $value$,
 ```
  *
- * The `replacer` will be given the name of the annotation and the specified options (optional). The returned value will
- * then replace `$value$`.
+ * The `replacer` will be given the name of the annotation, the specified options (optional), and `$value$`.
+ * The returned string will replace `$value$`.
  * @param {(annotation: string, options: string) => string} replacer
  * @returns {NodeJS.ReadWriteStream}
  */
 function replaceAnnotations(replacer) {
+	if (!replaceAnnotations.pattern) {
+		var annotation = /@([\w.]+)/.source; // capturing group
+		var annotationOptions = /(?:\(((?:[^"()]|"(?:[^\\"]|\\.)*")*)\))?/.source; // capturing group
+
+		var comment = /^[ \t]*\/\/[ \t]*/.source + annotation + annotationOptions + /[ \t]*/.source;
+
+		var variableDeclaration = /(?:var|let|const)\s+\w+\s*=\s*/.source;
+		var objectKey = /(?:'(?:[^'\\]|\\.)*'|"(?:[^"\\]|\\.)*"|\w+)\s*:\s*/.source;
+
+		var beforeValue = '^(' + comment + /[\n\r]+^[ \t]*/.source + '(?:' + variableDeclaration + '|' + objectKey + ')' + ')'; // capturing group
+		var afterValue = /(?=[;,][ \t]*$)/.source;
+
+		replaceAnnotations.pattern = RegExp(beforeValue + '(.*)' + afterValue, 'gm');
+	}
+
 	return replace(
-		/^([ \t]*\/\/ *@([\w.]+)(?:\(((?:[^"()]|"(?:[^\\"]|\\.)*")*)\))? *[\n\r]+^[ \t]*(?:var|let|const)\s+\w+).*;[ \t]*$/gm,
-		function (m, commentPlusVar, annotationName, annotationOptions) {
+		replaceAnnotations.pattern,
+		function (m, commentPlusVar, annotationName, annotationOptions, value) {
 			try {
-				return commentPlusVar + ' = ' + replacer(annotationName, annotationOptions) + ';';
+				return commentPlusVar + replacer(annotationName, annotationOptions, value);
 			} catch (e) {
 				throw new Error(e.message + '\nAt:\n' + commentPlusVar);
 			}
@@ -126,7 +143,7 @@ gulp.task('components-json', function () {
 	return readJson(paths.componentsFile).then(function (json) {
 
 		var stream = gulp.src(paths.componentsFileJS, { base: './' })
-			.pipe(replaceAnnotations(function (anno, options) {
+			.pipe(replaceAnnotations(function (anno) {
 				switch (anno) {
 					case 'components':
 						return JSON.stringify(json);
