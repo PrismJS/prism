@@ -38,7 +38,7 @@ var gulp   = require('gulp'),
 
 	inlineRegexSource = function () {
 		return replace(
-			/\/((?:[^\n\r[\\\/]|\\.|\[(?:[^\\\]]|\\.)*\])*)\/\.source\b/,
+			/\/((?:[^\n\r[\\\/]|\\.|\[(?:[^\n\r\\\]]|\\.)*\])*)\/\.source\b/,
 			function (m, source) {
 				return '\'' + source.replace(/\\/g, '\\\\').replace(/(['"`])/g, '\\$1') + '\'';
 			}
