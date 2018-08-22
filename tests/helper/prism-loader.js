@@ -20,6 +20,11 @@ module.exports = {
 			Prism: this.createEmptyPrism()
 		};
 
+		// add core testers
+		var coreTesterSource = fs.readFileSync(__dirname + "/prism-core-tester.js", "utf8");
+		context.Prism = this.runFileWithContext(coreTesterSource, { Prism: context.Prism }).Prism;
+
+
 		context = this.loadLanguages(languages, context);
 
 		return context.Prism;
@@ -73,7 +78,7 @@ module.exports = {
 
 		// load the language itself
 		var languageSource = this.loadFileSource(language);
-		context.Prism = this.runFileWithContext(languageSource, {Prism: context.Prism}).Prism;
+		context.Prism = this.runFileWithContext(languageSource, { Prism: context.Prism }).Prism;
 		context.loadedLanguages.push(language);
 
 		return context;

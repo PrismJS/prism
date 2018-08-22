@@ -54,7 +54,7 @@
 		'ats',
 		'dsp'
 	];
-	var inlineLanguageRe = '%< *-\\*- *{lang}\\d* *-\\*-[\\s\\S]+?%>';
+	var inlineLanguageRe = /%< *-\*- *<<lang>>\d* *-\*-[\s\S]+?%>/i;
 
 	inlineLanguages.forEach(function (lang) {
 		var alias = lang;
@@ -65,7 +65,7 @@
 		if (Prism.languages[alias]) {
 			var o = {};
 			o['inline-lang-' + alias] = {
-				pattern: RegExp(inlineLanguageRe.replace('{lang}', lang.replace(/([.+*?\/\\(){}\[\]])/g,'\\$1')), 'i'),
+				pattern: Prism.patterns.build(inlineLanguageRe, { lang: lang.replace(/([.+*?\/\\(){}\[\]])/g,'\\$1') }),
 				inside: Prism.util.clone(Prism.languages.pure['inline-lang'].inside)
 			};
 			o['inline-lang-' + alias].inside.rest = Prism.util.clone(Prism.languages[alias]);

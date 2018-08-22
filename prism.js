@@ -459,6 +459,32 @@ var _ = _self.Prism = {
 				callback(env);
 			}
 		}
+	},
+
+	patterns: {
+
+		/**
+		 * asd
+		 * @param {string|RegExp} basePattern
+		 * @param {Object.<string, string|RegExp>} replacements
+		 * @returns {RegExp}
+		 */
+		build: function build(basePattern, replacements) {
+			var placeholder = /<<([\w-]+)>>/g;
+			var source = basePattern.source || basePattern;
+			var flags = basePattern.flags || (basePattern.exec ? basePattern.toString().match(/[igmuy]*$/)[0] : '');
+
+			if (build.test)
+				build.test(basePattern, replacements, placeholder, source, flags);
+
+			source = source.replace(placeholder, function (m, name) {
+				var replacement = replacements[name];
+				return '(?:' + (replacement.source || replacement) + ')';
+			});
+
+			return RegExp(source, flags);
+		}
+
 	}
 };
 
