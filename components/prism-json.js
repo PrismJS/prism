@@ -4,8 +4,8 @@ Prism.languages.json = {
 		pattern: /"(?:\\.|[^\\"\r\n])*"(?!\s*:)/,
 		greedy: true
 	},
-	'number': /\b0x[\dA-Fa-f]+\b|(?:\b\d+\.?\d*|\B\.\d+)(?:[Ee][+-]?\d+)?/,
-	'punctuation': /[{}[\]);,]/,
+	'number': /-?\d+\.?\d*([Ee][+-]?\d+)?/,
+	'punctuation': /[{}[\],]/,
 	'operator': /:/g,
 	'boolean': /\b(?:true|false)\b/i,
 	'null': /\bnull\b/i

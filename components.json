@@ -132,6 +132,10 @@
 		},
 		"bash": {
 			"title": "Bash",
+			"alias": "shell",
+			"aliasTitles": {
+				"shell": "Shell"
+			},
 			"owner": "zeitgeist87"
 		},
 		"basic": {
@@ -221,6 +225,7 @@
 		},
 		"docker": {
 			"title": "Docker",
+			"alias": "dockerfile",
 			"owner": "JustinBeckwith"
 		},
 		"eiffel": {
@@ -390,6 +395,10 @@
 		},
 		"json": {
 			"title": "JSON",
+			"alias": "jsonp",
+			"aliasTitles": {
+				"jsonp": "JSONP"
+			},
 			"owner": "CupOfTea696"
 		},
 		"julia": {
@@ -420,8 +429,8 @@
 		},
 		"lisp": {
 			"title": "Lisp",
-			"owner": "JuanCaicedo",
-			"alias": ["emacs", "elisp", "emacs-lisp"]
+			"alias": ["emacs", "elisp", "emacs-lisp"],
+			"owner": "JuanCaicedo"
 		},
 		"livescript": {
 			"title": "LiveScript",
@@ -468,6 +477,7 @@
 		"n4js": {
 			"title": "N4JS",
 			"require": "javascript",
+			"alias": "n4jsd",
 			"owner": "bsmith-n4"
 		},
 		"nasm": {
@@ -772,8 +782,8 @@
 		},
 		"visual-basic": {
 			"title": "Visual Basic",
-			"owner": "Golmote",
-			"alias": "vb"
+			"alias": "vb",
+			"owner": "Golmote"
 		},
 		"wasm": {
 			"title": "WebAssembly",
@@ -787,6 +797,10 @@
 		"xeora": {
 			"title": "Xeora",
 			"require": "markup",
+			"alias": "xeoracube",
+			"aliasTitles": {
+				"xeoracube": "XeoraCube"
+			},
 			"owner": "freakmaxi"
 		},
 		"xojo": {
