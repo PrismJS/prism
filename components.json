@@ -396,8 +396,7 @@
 			"require": ["javascript", "javadoclike"],
 			"peerDependencies": [
 				"actionscript",
-				"coffeescript",
-				"n4js"
+				"coffeescript"
 			],
 			"owner": "RunDevelopment"
 		},
