@@ -1,6 +1,9 @@
 (function (Prism) {
 
-	var js = Prism.languages.javascript;
+	var javaDocLike = Prism.languages.javadoclike;
+	var javascript = Prism.languages.javascript;
+
+	var type = /\{(?:[^{}]|\{(?:[^{}]|\{[^{}]*\})*\})+\}/.source;
 
 	Prism.languages.jsdoc = Prism.languages.extend('javadoclike', {
 		'parameter': {
@@ -10,7 +13,8 @@
 				'code': {
 					pattern: /(\w=)[^[[\]]+(?=\]$)/,
 					lookbehind: true,
-					inside: js
+					inside: javascript,
+					alias: 'language-javascript'
 				},
 				'punctuation': /[=[\]]/
 			}
@@ -41,12 +45,13 @@
 				'code': {
 					pattern: /^(\s*(?:\*\s*)?).+$/m,
 					lookbehind: true,
-					inside: js
+					inside: javascript,
+					alias: 'language-javascript'
 				}
 			}
 		}
 	});
 
-	js['doc-comment'][0].inside.rest = Prism.languages.jsdoc;
+	javaDocLike.addSupport(['javascript'], Prism.languages.jsdoc);
 
 }(Prism));

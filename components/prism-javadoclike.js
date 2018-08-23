@@ -1,6 +1,6 @@
 (function (Prism) {
 
-	var doc = Prism.languages.javadoclike = {
+	var javaDocLike = Prism.languages.javadoclike = {
 		'parameter': {
 			pattern: /(^\s*(?:\/{3}|\*|\/\*\*)\s*@(?:param|arg|arguments)\s+)\w+/m,
 			lookbehind: true
@@ -19,7 +19,7 @@
 	 * Adds doc comment support to the given language and calls a given callback on each doc comment pattern.
 	 *
 	 * @param {string} lang the language add doc comment support to.
-	 * @param {(pattern: {inside: {rest: undefined}}, index: number, array: {inside: {rest: undefined}}[]) => void} callback the function called with each doc comment pattern as argument.
+	 * @param {(pattern: {inside: {rest: undefined}}) => void} callback the function called with each doc comment pattern as argument.
 	 */
 	function docCommentSupport(lang, callback) {
 		var tokenName = 'doc-comment';
@@ -34,37 +34,45 @@
 			var definition = {};
 			definition[tokenName] = {
 				pattern: /(^|[^\\])\/\*\*[\s\S]*?(?:\*\/|$)/,
-				greedy: true,
 				alias: 'comment',
 				inside: {}
 			};
 
-			Prism.languages.insertBefore(lang, 'comment', definition);
-			token = (grammar = Prism.languages[lang])[tokenName];
+			grammar = Prism.languages.insertBefore(lang, 'comment', definition);
+			token = grammar[tokenName];
+
+		} else if (token instanceof RegExp) { // convert existing regex to object
+			token = grammar[tokenName] = { pattern: token };
 		}
 
-		if (token instanceof RegExp) // convert to regex to object array
-			token = grammar[tokenName] = [{ pattern: token }];
-
-		else if (Prism.util.type(token) !== 'Array') // convert object to array
-			token = grammar[tokenName] = [token];
-
-		else // convert regexes to objects
-			for (var i = 0; i < token.length; i++)
+		if (Prism.util.type(token) === 'Array') {
+			for (var i = 0, l = token.length; i < l; i++) {
 				if (token[i] instanceof RegExp)
 					token[i] = { pattern: token[i] };
-
-		// call function on each object
-		for (var i = 0; i < token.length; i++) {
-			callback(token[i], i, token);
+				callback(token[i]);
+			}
+		} else {
+			callback(token);
 		}
 	}
 
-	var basicSupport = ['java', 'javascript', 'php'];
-	for (var i = 0; i < basicSupport.length; i++) {
-		docCommentSupport(basicSupport[i], function (pattern, index, array) {
-			pattern.inside.rest = doc;
-		});
-	}
+	Object.defineProperty(javaDocLike, 'addSupport', {
+
+		/**
+		 * Adds doc-comment support to the given languages for the given documentation language.
+		 */
+		value: function addSupport(languages, docLanguage) {
+			languages.forEach(function (lang) {
+				docCommentSupport(lang, function (pattern) {
+					if (!pattern.inside)
+						pattern.inside = {};
+					pattern.inside.rest = docLanguage;
+				});
+			});
+		}
+
+	});
+
+	javaDocLike.addSupport(['java', 'javascript', 'php'], javaDocLike);
 
 }(Prism));

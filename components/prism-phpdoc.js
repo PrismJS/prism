@@ -22,6 +22,7 @@
 		],
 	});
 
-	Prism.languages.php['doc-comment'][0].inside.rest = Prism.languages.phpdoc;
+	var javaDocLike = Prism.languages.javadoclike;
+	javaDocLike.addSupport(['php'], Prism.languages.phpdoc);
 
 }(Prism));

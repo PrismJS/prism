@@ -1,12 +1,14 @@
 (function (Prism) {
 
+	var javaDocLike = Prism.languages.javadoclike;
 	var java = Prism.languages.java;
 
 	var codeLines = {
 		'code': {
 			pattern: /(^(\s*(?:\*\s*)*)).*[^*\s].+$/m,
 			lookbehind: true,
-			inside: java
+			inside: java,
+			alias: 'language-java'
 		}
 	};
 
@@ -21,7 +23,7 @@
 				}
 			},
 			{
-				pattern: /(@param\s+)<\w+>/,
+				pattern: /(@param\s+)<[A-Z]\w*>/,
 				lookbehind: true,
 				inside: {
 					'punctuation': /[.<>]/
@@ -50,5 +52,5 @@
 		'tag': /<\/?(?!\d)[^\s>\/=$<%]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/i,
 	});
 
-	java['doc-comment'][0].inside.rest = Prism.languages.javadoc;
+	javaDocLike.addSupport(['java'], Prism.languages.javadoc);
 }(Prism));
