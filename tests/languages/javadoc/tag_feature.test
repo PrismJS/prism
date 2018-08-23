@@ -1,0 +1,46 @@
+/**
+ * <p>
+ * <table>
+ *     <tr>
+ *         <td>
+ *             foo
+ *         </td>
+ *         <td>
+ *             bar
+ *         </td>
+ *     </tr>
+ * </table>
+ * <a href="example.com">some link</a>
+ */
+
+----------------------------------------------------
+
+[
+	"/**\n * ",
+	["tag", "<p>"],
+	"\n * ",
+	["tag", "<table>"],
+	"\n *     ",
+	["tag", "<tr>"],
+	"\n *         ",
+	["tag", "<td>"],
+	"\n *             foo\n *         ",
+	["tag", "</td>"],
+	"\n *         ",
+	["tag", "<td>"],
+	"\n *             bar\n *         ",
+	["tag", "</td>"],
+	"\n *     ",
+	["tag", "</tr>"],
+	"\n * ",
+	["tag", "</table>"],
+	"\n * ",
+	["tag", "<a href=\"example.com\">"],
+	"some link",
+	["tag", "</a>"],
+	"\n */"
+]
+
+----------------------------------------------------
+
+Checks for HTML tags inside doc comments.

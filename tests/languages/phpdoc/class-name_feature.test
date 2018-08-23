@@ -1,0 +1,37 @@
+/**
+ * @param string $parameter a parameter
+ * @return self
+ * @var MyClass
+ * @throws Exception if something bad happens
+ */
+
+----------------------------------------------------
+
+[
+	"/**\n * ",
+	["keyword", "@param"],
+	["class-name", [
+		["keyword", "string"]
+	]],
+	["parameter", "$parameter"],
+	" a parameter\n * ",
+	["keyword", "@return"],
+	["class-name", [
+		["keyword", "self"]
+	]],
+	"\n * ",
+	["keyword", "@var"],
+	["class-name", [
+		"MyClass"
+	]],
+	"\n * ",
+	["keyword", "@throws"],
+	["class-name", [
+		"Exception"
+	]],
+	" if something bad happens\n */"
+]
+
+----------------------------------------------------
+
+Checks for class names.

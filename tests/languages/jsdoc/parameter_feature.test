@@ -1,12 +1,38 @@
 /**
+ * @param n - A number.
+ * @param [n] - A number.
+ * @param [n=1+2] - A number.
  * @param {number} n - A number.
- * @param {{[x: string]: {start: number, end: number}}} map
+ * @param {{[x: string]: {start: number, end?: number}}} map
  */
 
 ----------------------------------------------------
 
 [
 	"/**\n * ",
+	["keyword", "@param"],
+	["parameter", ["n"]],
+	" - A number.\n * ",
+	["keyword", "@param"],
+	["parameter", [
+		["punctuation", "["],
+		"n",
+		["punctuation", "]"]
+	]],
+	" - A number.\n * ",
+	["keyword", "@param"],
+	["parameter", [
+		["punctuation", "["],
+		"n",
+		["punctuation", "="],
+		["code", [
+			["number", "1"],
+			["operator", "+"],
+			["number", "2"]
+		]],
+		["punctuation", "]"]
+	]],
+	" - A number.\n * ",
 	["keyword", "@param"],
 	["class-name", [
 		["punctuation", "{"],
@@ -15,7 +41,6 @@
 	]],
 	["parameter", ["n"]],
 	" - A number.\n * ",
-
 	["keyword", "@param"],
 	["class-name", [
 		["punctuation", "{"],
@@ -32,6 +57,7 @@
 		" number",
 		["punctuation", ","],
 		" end",
+		["punctuation", "?"],
 		["punctuation", ":"],
 		" number",
 		["punctuation", "}"],
@@ -44,4 +70,4 @@
 
 ----------------------------------------------------
 
-Checks for parameter types and names.
+Checks for parameters.

@@ -8,4 +8,4 @@
 
 ----------------------------------------------------
 
-Checks for doc comments.
+Checks for PHPDoc doc comments in PHP.

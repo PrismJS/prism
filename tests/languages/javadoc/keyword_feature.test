@@ -1,4 +1,4 @@
-/*
+/**
  * @author
  * @deprecated
  * @exception
@@ -23,7 +23,7 @@
 ----------------------------------------------------
 
 [
-	"/*\n * ",
+	"/**\n * ",
 	["keyword", "@author"],
 	"\n * ",
 	["keyword", "@deprecated"],
