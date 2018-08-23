@@ -372,6 +372,9 @@
 		"javadoc": {
 			"title": "JavaDoc",
 			"require": ["java", "javadoclike"],
+			"peerDependencies": [
+				"scala"
+			],
 			"owner": "RunDevelopment"
 		},
 		"javadoclike": {
@@ -391,6 +394,11 @@
 		"jsdoc": {
 			"title": "JSDoc",
 			"require": ["javascript", "javadoclike"],
+			"peerDependencies": [
+				"actionscript",
+				"coffeescript",
+				"n4js"
+			],
 			"owner": "RunDevelopment"
 		},
 		"json": {
@@ -477,6 +485,9 @@
 		"n4js": {
 			"title": "N4JS",
 			"require": "javascript",
+			"peerDependencies": [
+				"jsdoc"
+			],
 			"alias": "n4jsd",
 			"owner": "bsmith-n4"
 		},
@@ -641,6 +652,9 @@
 		"jsx": {
 			"title": "React JSX",
 			"require": ["markup", "javascript"],
+			"peerDependencies": [
+				"jsdoc"
+			],
 			"owner": "vkbansal"
 		},
 		"tsx": {
