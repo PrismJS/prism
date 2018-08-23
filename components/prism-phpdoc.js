@@ -1,6 +1,6 @@
 (function (Prism) {
 
-	var typeExpression = /(?:(?:\\?[A-Za-z]\w*)+(?:\[\])?\|?)+/.source;
+	var typeExpression = /(?:[a-zA-Z]\w*|[|\\[\]])+/.source;
 
 	Prism.languages.phpdoc = Prism.languages.extend('javadoclike', {
 		'parameter': {
