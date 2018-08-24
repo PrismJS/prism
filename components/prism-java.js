@@ -7,7 +7,7 @@ Prism.languages.java = Prism.languages.extend('clike', {
 	}
 });
 
-Prism.languages.insertBefore('java', 'function', {
+Prism.languages.insertBefore('java','function', {
 	'annotation': {
 		alias: 'punctuation',
 		pattern: /(^|[^.])@\w+/,
