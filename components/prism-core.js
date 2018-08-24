@@ -459,11 +459,11 @@ var _ = _self.Prism = {
 	patterns: {
 
 		/**
-		 * Replaces all placeholders (`<<name>>`) in `basePattern` with `replacements[name]`.
+		 * Replaces all placeholders of the form `<<name>>` in `basePattern` with `replacements[name]`.
 		 * @param {string|RegExp} basePattern the pattern in which all placeholder are to be replaced. Placeholders are
-		 * not allowed to be inside character sets and cannot be preceded by a unescaped backslash.
+		 * not allowed to be inside character sets and cannot be preceded by an unescaped backslash.
 		 * @param {Object.<string, string|RegExp>} replacements the name-replacement-pairs. Replacements are not allowed
-		 * to contain backreferences and capturing groups.
+		 * to contain backreferences or capturing groups.
 		 * @returns {RegExp} the base pattern with all placeholders replaced.
 		 */
 		build: function build(basePattern, replacements) {
