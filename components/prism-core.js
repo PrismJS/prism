@@ -464,7 +464,8 @@ var _ = _self.Prism = {
 		 * not allowed to be inside character sets and cannot be preceded by an unescaped backslash.
 		 * @param {Object.<string, string|RegExp>} replacements the name-replacement-pairs. Replacements are not allowed
 		 * to contain backreferences or capturing groups.
-		 * @returns {RegExp} the base pattern with all placeholders replaced.
+		 * @returns {RegExp} A new regular expression with the flags of `basePattern` and its source with all 
+		 * placeholders replaced.
 		 */
 		build: function build(basePattern, replacements) {
 			var placeholder = /<<([\w-]+)>>/g;
