@@ -37,7 +37,11 @@
 		"prism-tomorrow": {
 			"title": "Tomorrow Night",
 			"owner": "Rosey"
-		}
+    },
+    "prism-dracula": {
+      "title": "Dracula",
+      "owner": "Byverdu"
+    }
 	},
 	"languages": {
 		"meta": {
