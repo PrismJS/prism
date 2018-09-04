@@ -618,7 +618,6 @@
 			"title": "Racket",
 			"owner": "Eugleo"
 		},
-
 		"jsx": {
 			"title": "React JSX",
 			"require": ["markup", "javascript"],
