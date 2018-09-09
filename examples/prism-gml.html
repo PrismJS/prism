@@ -10,7 +10,7 @@ on multiple lines */</code></pre>
 <pre><code>if(instance_exists(_inst) || _inst==global){
 	if(_delay<=0){
 		_time+=1;
-		if(_time<_duration){
+		if(_time&lt;_duration){
 			event_user(0);
 		}else{
 			if(_inst!=global){
