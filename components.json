@@ -280,6 +280,11 @@
 			"require": "clike",
 			"owner": "Golmote"
 		},
+		"gml": {
+			"title": "GameMaker Language",
+			"require": "clike",
+			"owner": "LiarOnce"
+		},
 		"go": {
 			"title": "Go",
 			"require": "clike",
