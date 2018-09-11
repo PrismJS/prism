@@ -16,6 +16,24 @@ Prism.languages.insertBefore('markdown', 'prolog', {
 			// ``code``
 			pattern: /``.+?``|`[^`\n]+`/,
 			alias: 'keyword'
+		},
+		{
+			// ```optional language
+			// code block
+			// ```
+			pattern: /^```[\s\S]*?^```$/m,
+			greedy: true,
+			inside: {
+				'code-block': {
+					pattern: /^(```.*(?:\r?\n|\r))[\s\S]+?(?=(?:\r?\n|\r)^```$)/m,
+					lookbehind: true
+				},
+				'code-language': {
+					pattern: /^(```).+/,
+					lookbehind: true
+				},
+				'punctuation': /```/
+			}
 		}
 	],
 	'title': [
