@@ -12,6 +12,8 @@ branches:
 before_script:
 - npm install -g gulp
 - gulp
+test:
+  - npm test
 deploy:
   provider: npm
   email: lea@verou.me
