@@ -282,6 +282,7 @@
 		},
 		"gml": {
 			"title": "GameMaker Language",
+			"alias": "gamemakerlanguage",
 			"require": "clike",
 			"owner": "LiarOnce"
 		},
