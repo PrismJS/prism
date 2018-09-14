@@ -1,5 +1,4 @@
-Prism.languages.gamemakerlanguage = Prism.languages.gml;
-Prism.languages.gml = Prism.languages.extend('clike', {
+Prism.languages.gamemakerlanguage = Prism.languages.gml = Prism.languages.extend('clike', {
 	'number': /(?:\b0x[\da-f]+|(?:\b\d+\.?\d*|\B\.\d+)(?:e[+-]?\d+)?)[ulf]*/i,
 	'keyword': /\b(?:if|else|switch|case|default|break|for|repeat|while|do|until|continue|exit|return|globalvar|var|enum)\b/,
 	'operator': /[-+%=]=?|!=|\*\*?=?|\/\/?=?|<[<=>]?|>[=>]?|[&|^~]|\b(?:or|and|not|with|at|xor|not)\b/,
