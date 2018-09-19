@@ -19,12 +19,12 @@ calc(100% - var(--margin-size) * 2)
 	["punctuation", "("],
 	["number", "100"],
 	["unit", "%"],
-	" - ",
+	["operator", "-"],
 	["function", "var"],
 	["punctuation", "("],
 	["variable", "--margin-size"],
 	["punctuation", ")"],
-	" * ",
+	["operator", "*"],
 	["number", "2"],
 	["punctuation", ")"]
 ]

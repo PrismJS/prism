@@ -14,6 +14,10 @@ Prism.languages.insertBefore('css', 'function', {
 		pattern: /(var\()[^)]+(?=\))/,
 		lookbehind: true
 	},
+	'operator': {
+		pattern: /(\s)[+\-*\/](?=\s)/,
+		lookbehind: true
+	},
 	'hexcode': /#[\da-f]{3,8}/i,
 	'entity': /\\[\da-f]{1,8}/i,
 	'unit': {
