@@ -197,7 +197,7 @@ Prism.hooks.add('wrap', function (env) {
 		return;
 
 	// reverse Prism.util.encode
-	var code = env.content.replace(/&lt;/, '<').replace(/&amp;/g, '&');
+	var code = env.content.replace(/&lt;/g, '<').replace(/&amp;/g, '&');
 
 	env.content = Prism.highlight(code, grammar, codeLang);
 })
