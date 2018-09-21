@@ -136,3 +136,68 @@ Prism.languages.markdown['bold'].inside['url'] = Prism.languages.markdown['url']
 Prism.languages.markdown['italic'].inside['url'] = Prism.languages.markdown['url'];
 Prism.languages.markdown['bold'].inside['italic'] = Prism.languages.markdown['italic'];
 Prism.languages.markdown['italic'].inside['bold'] = Prism.languages.markdown['bold'];
+
+Prism.hooks.add('after-tokenize', function (env) {
+	if (env.language !== 'markdown')
+		return;
+
+	function walkTokens (tokens) {
+		if (!tokens || typeof tokens === 'string')
+			return;
+
+		for (var i = 0, l = tokens.length; i < l; i++) {
+			var token = tokens[i];
+
+			if (token.type !== 'code') {
+				walkTokens(token.content);
+				continue;
+			}
+
+			var codeLang = token.content[1];
+			var codeBlock = token.content[3];
+
+			if (codeLang && codeBlock &&
+				codeLang.type === 'code-language' && codeBlock.type === 'code-block' &&
+				typeof codeLang.content === 'string') {
+
+				// this might be a language that Prism does not support
+				var alias = 'language-' + codeLang.content.trim().split(/\s+/)[0].toLowerCase();
+
+				// add alias
+				if (!codeBlock.alias)
+					codeBlock.alias = [alias];
+				else if (typeof codeBlock.alias === 'string')
+					codeBlock.alias = [codeBlock.alias, alias];
+				else
+					codeBlock.alias.push(alias);
+			}
+		}
+	}
+
+	walkTokens(env.tokens);
+});
+
+Prism.hooks.add('wrap', function (env) {
+	if (env.type !== 'code-block')
+		return;
+
+	var codeLang = '';
+	for (var i =0; i < env.classes.length; i++) {
+		var cls = env.classes[i];
+		var match = /language-(\w+)/.exec(cls);
+		if (match) {
+			codeLang = match[1];
+			break;
+		}
+	}
+
+	var grammar = Prism.languages[codeLang];
+
+	if (!grammar)
+		return;
+
+	// reverse Prism.util.encode
+	var code = env.content.replace(/&lt;/, '<').replace(/&amp;/g, '&');
+
+	env.content = Prism.highlight(code, grammar, codeLang);
+})
