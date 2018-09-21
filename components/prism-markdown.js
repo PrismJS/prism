@@ -141,7 +141,7 @@ Prism.hooks.add('after-tokenize', function (env) {
 	if (env.language !== 'markdown')
 		return;
 
-	function walkTokens (tokens) {
+	function walkTokens(tokens) {
 		if (!tokens || typeof tokens === 'string')
 			return;
 
@@ -182,7 +182,7 @@ Prism.hooks.add('wrap', function (env) {
 		return;
 
 	var codeLang = '';
-	for (var i =0; i < env.classes.length; i++) {
+	for (var i = 0, l = env.classes.length; i < l; i++) {
 		var cls = env.classes[i];
 		var match = /language-(\w+)/.exec(cls);
 		if (match) {
@@ -200,4 +200,4 @@ Prism.hooks.add('wrap', function (env) {
 	var code = env.content.replace(/&lt;/g, '<').replace(/&amp;/g, '&');
 
 	env.content = Prism.highlight(code, grammar, codeLang);
-})
+});
