@@ -13,23 +13,14 @@ Prism.languages.fsharp = Prism.languages.extend('clike', {
 		pattern: /(?:"""[\s\S]*?"""|@"(?:""|[^"])*"|"(?:\\[\s\S]|[^\\"])*")B?|'(?:[^\\']|\\.)'B?/,
 		greedy: true
 	},
-	'class-name': [
-		{
-			pattern: /(\b(?:exception|inherit|interface|new|type)\s+|\w\s*:\s*|\s:\??>\s*)[.\w]+(?:\s*->\s*[.\w]+)*/,
-			lookbehind: true,
-			inside: {
-				'operator': /->/,
-				'punctuation': /\./
-			}
-		},
-		{
-			pattern: /(\bof\s+)\w+\b(?:\s*\*\s*\w+\b)*(?!\s*:)/,
-			lookbehind: true,
-			inside: {
-				'operator': /\*/
-			}
+	'class-name': {
+		pattern: /(\b(?:exception|inherit|interface|new|of|type)\s+|\w\s*:\s*|\s:\??>\s*)[.\w]+\b(?:\s*(?:->|\*)\s*[.\w]+\b)*(?!\s*[:.])/,
+		lookbehind: true,
+		inside: {
+			'operator': /->|\*/,
+			'punctuation': /\./
 		}
-	],
+	},
 	'keyword': /\b(?:let|return|use|yield)(?:!\B|\b)|\b(abstract|and|as|assert|base|begin|class|default|delegate|do|done|downcast|downto|elif|else|end|exception|extern|false|finally|for|fun|function|global|if|in|inherit|inline|interface|internal|lazy|match|member|module|mutable|namespace|new|not|null|of|open|or|override|private|public|rec|select|static|struct|then|to|true|try|type|upcast|val|void|when|while|with|asr|land|lor|lsl|lsr|lxor|mod|sig|atomic|break|checked|component|const|constraint|constructor|continue|eager|event|external|fixed|functor|include|method|mixin|object|parallel|process|protected|pure|sealed|tailcall|trait|virtual|volatile)\b/,
 	'number': [
 		/\b0x[\da-fA-F]+(?:un|lf|LF)?\b/,
