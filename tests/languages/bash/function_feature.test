@@ -30,7 +30,7 @@ printf ps pushd pv pwd quota
 quotacheck quotactl ram rar rcp
 read readarray readonly reboot
 rename renice remsync rev rm
-rmdir rsync screen scp sdiff sed sendmail
+rmdir rpm rsync screen scp sdiff sed sendmail
 seq service sftp shift
 shopt shutdown sleep slocate
 sort source split ssh stat strace
@@ -43,7 +43,7 @@ units unrar unshar unzip update-grub uptime
 useradd userdel usermod users uuencode
 uudecode vdir vi vim virsh vmstat wait watch
 wc wget whereis which who whoami write
-xargs xdg-open yes zip
+xargs xdg-open yes zip zypper
 
 ----------------------------------------------------
 
@@ -80,7 +80,7 @@ xargs xdg-open yes zip
 	["function", "quotacheck"], ["function", "quotactl"], ["function", "ram"], ["function", "rar"], ["function", "rcp"],
 	["function", "read"], ["function", "readarray"], ["function", "readonly"], ["function", "reboot"],
 	["function", "rename"], ["function", "renice"], ["function", "remsync"], ["function", "rev"], ["function", "rm"],
-	["function", "rmdir"], ["function", "rsync"], ["function", "screen"], ["function", "scp"], ["function", "sdiff"], ["function", "sed"], ["function", "sendmail"],
+	["function", "rmdir"], ["function", "rpm"], ["function", "rsync"], ["function", "screen"], ["function", "scp"], ["function", "sdiff"], ["function", "sed"], ["function", "sendmail"],
 	["function", "seq"], ["function", "service"], ["function", "sftp"], ["function", "shift"],
 	["function", "shopt"], ["function", "shutdown"], ["function", "sleep"], ["function", "slocate"],
 	["function", "sort"], ["function", "source"], ["function", "split"], ["function", "ssh"], ["function", "stat"], ["function", "strace"],
@@ -93,7 +93,7 @@ xargs xdg-open yes zip
 	["function", "useradd"], ["function", "userdel"], ["function", "usermod"], ["function", "users"], ["function", "uuencode"],
 	["function", "uudecode"], ["function", "vdir"], ["function", "vi"], ["function", "vim"], ["function", "virsh"],  ["function", "vmstat"], ["function", "wait"], ["function", "watch"],
 	["function", "wc"], ["function", "wget"], ["function", "whereis"], ["function", "which"], ["function", "who"], ["function", "whoami"], ["function", "write"],
-	["function", "xargs"], ["function", "xdg-open"], ["function", "yes"], ["function", "zip"]
+	["function", "xargs"], ["function", "xdg-open"], ["function", "yes"], ["function", "zip"], ["function", "zypper"]
 ]
 
 ----------------------------------------------------
