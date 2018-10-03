@@ -72,7 +72,7 @@ xargs xdg-open yes zip
 	["function", "lprint"], ["function", "lprintd"], ["function", "lprintq"], ["function", "lprm"], ["function", "ls"],
 	["function", "lsof"], ["function", "lynx"], ["function", "make"], ["function", "man"], ["function", "mc"], ["function", "mdadm"], ["function", "mkconfig"], ["function", "mkdir"], ["function", "mke2fs"], ["function", "mkfifo"],
 	["function", "mkfs"], ["function", "mkisofs"], ["function", "mknod"], ["function", "mkswap"], ["function", "more"], ["function", "most"], ["function", "mount"],
-	["function", "mtools"], ["function", "mtr"], ["function", "mutt"], ["function", "mv"], ["function", "mmv"], ["function", "nano"], ["function", "nano"], ["function", "netstat"],
+	["function", "mtools"], ["function", "mtr"], ["function", "mutt"], ["function", "mv"], ["function", "mmv"], ["function", "nano"], ["function", "nc"], ["function", "netstat"],
 	["function", "nice"], ["function", "nl"], ["function", "nohup"], ["function", "notify-send"], ["function", "nslookup"],
 	["function", "open"], ["function", "parted"], ["function", "op"], ["function", "passwd"], ["function", "paste"], ["function", "pathchk"], ["function", "ping"],
 	["function", "pkill"], ["function", "popd"], ["function", "pr"], ["function", "printcap"], ["function", "printenv"],
