@@ -49,7 +49,7 @@ xargs xdg-open yes zip
 
 [
 	["function", "alias"], ["function", "apropos"], ["function", "apt"], ["function", "apt-cache"], ["function", "apt-get"], ["function", "aptitude"], ["function", "aspell"],
-	["function", "automysqlbackup"], ["function", "awk"], ["function", "basename"], ["function", "bash"], ["function", "bc"], ["function", " bconsole"], ["function", "bg"],
+	["function", "automysqlbackup"], ["function", "awk"], ["function", "basename"], ["function", "bash"], ["function", "bc"], ["function", "bconsole"], ["function", "bg"],
 	["function", "builtin"], ["function", "bzip2"], ["function", "cal"], ["function", "cat"], ["function", "cd"],
 	["function", "cfdisk"], ["function", "chgrp"], ["function", "chmod"], ["function", "chown"], ["function", "chroot"],
 	["function", "chkconfig"], ["function", "cksum"], ["function", "clear"], ["function", "cmp"], ["function", "comm"],
