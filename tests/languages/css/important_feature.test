@@ -11,15 +11,15 @@ position:absolute!important;
 	["important", "!important"],
 	["punctuation", ";"],
 	["property", "padding"],
-    ["punctuation", ":"],
-    " 10px 20px 30px ",
-    ["important", "!important"],
+	["punctuation", ":"],
+	" 10px 20px 30px ",
+	["important", "!important"],
 	["punctuation", ";"],
-    ["property", "position"],
-    ["punctuation", ":"],
-    "absolute",
-    ["important", "!important"],
-    ["punctuation", ";"]
+	["property", "position"],
+	["punctuation", ":"],
+	"absolute",
+	["important", "!important"],
+	["punctuation", ";"]
 ]
 
 ----------------------------------------------------
