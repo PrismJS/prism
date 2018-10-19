@@ -807,7 +807,7 @@ Prism.languages.js = Prism.languages.javascript;
 	}
 
 	/**
-	 * @param {Element} [container=documnet]
+	 * @param {Element} [container=document]
 	 */
 	self.Prism.fileHighlight = function(container) {
 		container = container || document;

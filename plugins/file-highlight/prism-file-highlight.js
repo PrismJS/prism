@@ -4,7 +4,7 @@
 	}
 
 	/**
-	 * @param {Element} [container=documnet]
+	 * @param {Element} [container=document]
 	 */
 	self.Prism.fileHighlight = function(container) {
 		container = container || document;
