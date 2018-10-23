@@ -1,4 +1,6 @@
 Prism.languages.cil = {
+	'displayTitle': "CIL",
+	
 	'comment': /\/\/[^\n]*(?=\r?\n)/,
 	
 	'string': {
