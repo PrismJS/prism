@@ -1,0 +1,106 @@
+"${data.aws_availability_zones.available.names[0]}"
+"${aws_db_subnet_group.default.id}"
+"${var.something ? 1 : 0}"
+"${length(var.hostnames)}"
+"${format("web-%03d", count.index + 1)}"
+"${file("templates/web_init.tpl")}"
+
+----------------------------------------------------
+
+[
+	"\"",
+	["interpolation",
+		[
+			["operator", "${"],
+			["keyword", "data"],
+			["operator", "."],
+			["type", "aws_availability_zones"],
+			["operator", "."],
+			["others", "available"],
+			["operator", "."],
+			["others", "names"],
+			["punctuation", "["],
+			["number", "0"],
+			["punctuation", "]"],
+			["operator", "}"]
+		]
+	],
+	"\"\r\n\"",
+	["interpolation",
+		[
+			["operator", "${"],
+			["others", "aws_db_subnet_group"],
+			["operator", "."],
+			["others", "default"],
+			["operator", "."],
+			["others", "id"],
+			["operator", "}"]
+		]
+	],
+	"\"\r\n\"",
+	["interpolation",
+		[
+			["operator", "${"],
+			["keyword", "var"],
+			["operator", "."],
+			["type", "something"],
+			" ? ",
+			["number", "1"],
+			" : ",
+			["number", "0"],
+			["operator", "}"]
+		]
+	],
+	"\"\r\n\"",
+	["interpolation",
+		[
+			["operator", "${"],
+			["function", "length"],
+			["punctuation", "("],
+			["keyword", "var"],
+			["operator", "."],
+			["type", "hostnames"],
+			["punctuation", ")"],
+			["operator", "}"]
+		]
+	],
+	"\"\r\n\"",
+	["interpolation",
+		[
+			["operator", "${"],
+			["function", "format"],
+			["punctuation", "("],
+			["string", "\"web-%03d\""],
+			["punctuation", ","],
+			["keyword", "count"],
+			["operator", "."],
+			["type", "index"],
+			["punctuation", "+"],
+			["number", "1"],
+			["punctuation", ")"],
+			["operator", "}"]
+		]
+	],
+	"\"\r\n\"",
+	["interpolation",
+		[
+			["operator", "${"],
+			["function", "file"],
+			["punctuation", "("],
+			["punctuation", "\""],
+			["others", "templates"],
+			["punctuation", "/"],
+			["others", "web_init"],
+			["operator", "."],
+			["others", "tpl"],
+			["punctuation", "\""],
+			["punctuation", ")"],
+			["operator", "}"]
+		]
+	],
+	"\""
+]
+
+----------------------------------------------------
+
+Checks for all interpolation.
