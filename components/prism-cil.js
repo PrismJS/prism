@@ -7,8 +7,8 @@ Prism.languages.cil = {
 	},
 	
 	'class-name': {
-		lookbehind: true,
-		pattern: /([^a-zA-Z0-9])\.[a-z]+\b/
+		pattern: /([^a-zA-Z0-9])\.[a-z]+\b/,
+		lookbehind: true
 	},
 	
 	// Actually an assembly reference
