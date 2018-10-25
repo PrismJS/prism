@@ -1,5 +1,9 @@
 Prism.languages.json = {
-	'property': /"(?:\\.|[^\\"\r\n])*"(?=\s*:)/i,
+	'comment': /\/\/.*|\/\*[\s\S]*?(?:\*\/|$)/,
+	'property': {
+		pattern: /"(?:\\.|[^\\"\r\n])*"(?=\s*:)/i,
+		greedy: true
+	},
 	'string': {
 		pattern: /"(?:\\.|[^\\"\r\n])*"(?!\s*:)/,
 		greedy: true
