@@ -45,20 +45,29 @@
 			alias: 'function'
 		},
 		'function': /\b(?!\d)\w+(?=\s*\()/,
-		'operator': [
-			/[+\-*\/%]|==?=?|[!<>]=?|&&|\|\|?/,
-			/\b(?:or|and)\b/
+		'keyword': [
+			{
+				pattern: /\b(?:true|false)\b/,
+				alias: 'boolean'
+			},
+			{
+				pattern: /\b(?:null|as)\b/,
+			},
+			{
+				pattern: /\b(?:or|and)\b/,
+				alias: 'operator'
+			}
 		],
-		'keyword': /\b(?:true|false|null|as)\b/,
 		'word': {
-			pattern: /:?[a-zA-Z0-9_.-]+(?::[a-zA-Z0-9_.-]+)*:?(?=[\s,\])]|$)/,
+			pattern: /:?[a-zA-Z0-9_.-]+(?::[a-zA-Z0-9_.-]+)*[:!]?(?=[\s,\])]|$)/,
 			alias: 'string'
 		},
+		'operator': /[+\-*\/%]|==?=?|[!<>]=?|&&|\|\|?/,
 		'punctuation': /[\[\]().,:`]+|->|=>/
 	};
 
 	function mkmacro(begin, content, closing) {
-		var pattern = new RegExp('^\\{\\{?' + (closing ? '\\/?' : '') + (begin ? begin.source : ''));
+		var pattern = new RegExp('^\\{\\{?' + (closing ? '\\/?' : '') + (begin ? begin.source : '(?!\\s)'));
 
 		var macro = {
 			'macro-open': {
@@ -99,7 +108,7 @@
 			inside: mkmacro(/[a-zA-Z0-9_.!]+/, inside, true)
 		},
 		'expression': {
-			pattern: /\{\{[\s\S]*?\}\}|\{[\s\S]*?\}/,
+			pattern: /\{\{(?!\s)[\s\S]*?\}\}|\{(?!\s)[\s\S]*?\}/,
 			greedy: true,
 			inside: mkmacro(null, inside)
 		}
@@ -131,7 +140,7 @@
 			return;
 		}
 
-		var pattern = /\{\{\*[\s\S]*?\*\}\}|\{\{[\s\S]+?\}\}|\{\*[\s\S]*?\*\}|\{[\s\S]+?\}/g;
+		var pattern = /\{\{\*[\s\S]*?\*\}\}|\{\{(?!\s)[\s\S]+?\}\}|\{\*[\s\S]*?\*\}|\{(?!\s)[\s\S]+?\}/g;
 		var syntaxPattern = /^\{\{?syntax\s+(latte|double|off)\}?\}$/;
 		var syntaxModes = {
 			'off': 0,
