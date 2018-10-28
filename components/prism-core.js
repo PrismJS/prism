@@ -249,9 +249,9 @@ var _ = _self.Prism = {
 
 				env.element.innerHTML = env.highlightedCode;
 
-				callback && callback.call(env.element);
 				_.hooks.run('after-highlight', env);
 				_.hooks.run('complete', env);
+				callback && callback.call(env.element);
 			};
 
 			worker.postMessage(JSON.stringify({
@@ -267,10 +267,11 @@ var _ = _self.Prism = {
 
 			env.element.innerHTML = env.highlightedCode;
 
-			callback && callback.call(element);
-
 			_.hooks.run('after-highlight', env);
+
 			_.hooks.run('complete', env);
+
+			callback && callback.call(element);
 		}
 	},
 
