@@ -39,7 +39,7 @@ for (var contentType in httpLanguages) {
 	if (httpLanguages[contentType]) {
 		var options = {};
 		options[contentType] = {
-			pattern: RegExp('(content-type:\\s*' + contentType + '[\\w\\W]*?)(?:\\r?\\n|\\r){2}[\\w\\W]*', 'i'),
+			pattern: Prism.patterns.build(/(content-type:\s*<<0>>[\w\W]*?)(?:\r?\n|\r){2}[\w\W]*/i, [contentType]),
 			lookbehind: true,
 			inside: {
 				rest: httpLanguages[contentType]
