@@ -7,7 +7,7 @@ Prism.languages.cil = {
 	},
 	
 	'directive': {
-		pattern: /([^a-zA-Z0-9])\.[a-z]+\b/,
+		pattern: /(^|\W)\.[a-z]+(?=\s)/,
 		lookbehind: true,
 		alias: 'class-name'
 	},
