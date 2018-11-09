@@ -13,7 +13,7 @@ Prism.languages.cil = {
 	},
 	
 	// Actually an assembly reference
-	'variable': /\[\w+\]/,
+	'variable': /\[[\w\.]+\]/,
 	
 	
 	'keyword': /\b(?:abstract|ansi|assembly|auto|autochar|beforefieldinit|bool|bstr|byvalstr|cil|class|currency|date|decimal|default|enum|error|explicit|extends|extern|famandassem|family|famorassem|final|float32|float64|hidebysig|iant|idispatch|import|initonly|instance|int|int16|int32|int64|int8|interface|iunknown|lpstr|lpstruct|lptstr|lpwstr|managed|nativeType|nested|newslot|objectref|pinvokeimpl|private|privatescope|public|reqsecobj|rtspecialname|sealed|sequential|serializable|specialname|static|string|struct|syschar|tbstr|unicode|unmanagedexp|unsigned|value|variant|virtual|void)\b/,
