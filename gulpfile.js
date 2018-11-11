@@ -40,7 +40,14 @@ var gulp   = require('gulp'),
 		return replace(
 			/\/((?:[^\n\r[\\\/]|\\.|\[(?:[^\n\r\\\]]|\\.)*\])*)\/\.source\b/,
 			function (m, source) {
-				return '\'' + source.replace(/\\/g, '\\\\').replace(/(['"`])/g, '\\$1') + '\'';
+				// escape backslashes
+				source = source.replace(/\\/g, '\\\\');
+				// escape single quotes
+				source = source.replace(/'/g, "\\'");
+				// unescape characters like \\n and \\t to \n and \t
+				source = source.replace(/(^|[^\\])\\\\([nrt0])/g, '$1\\$2');
+				// wrap source in single quotes
+				return "'" + source + "'";
 			}
 		);
 	};
