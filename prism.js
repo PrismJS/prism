@@ -468,9 +468,9 @@ var _ = _self.Prism = {
 		 * Replaces all placeholders of the form `<<name>>` in `basePattern` with `replacements[name]`.
 		 * @param {string|RegExp} basePattern the pattern in which all placeholder are to be replaced. Placeholders are
 		 * not allowed to be inside character sets and cannot be preceded by an unescaped backslash.
-		 * @param {Object.<string, string|RegExp>} replacements the name-replacement-pairs. Replacements are not allowed
-		 * to contain backreferences or capturing groups.
-		 * @returns {RegExp} A new regular expression with the flags of `basePattern` and its source with all 
+		 * @param {Object.<string, string|RegExp>|Array.<string|RegExp>} replacements the name-replacement-pairs.
+		 * Replacements are not allowed to contain backreferences or capturing groups.
+		 * @returns {RegExp} A new regular expression with the flags of `basePattern` and its source with all
 		 * placeholders replaced.
 		 */
 		build: function build(basePattern, replacements) {
