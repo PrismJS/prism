@@ -254,9 +254,9 @@ var _ = _self.Prism = {
 
 				env.element.innerHTML = env.highlightedCode;
 
-				callback && callback.call(env.element);
 				_.hooks.run('after-highlight', env);
 				_.hooks.run('complete', env);
+				callback && callback.call(env.element);
 			};
 
 			worker.postMessage(JSON.stringify({
@@ -272,10 +272,11 @@ var _ = _self.Prism = {
 
 			env.element.innerHTML = env.highlightedCode;
 
-			callback && callback.call(element);
-
 			_.hooks.run('after-highlight', env);
+
 			_.hooks.run('complete', env);
+
+			callback && callback.call(element);
 		}
 	},
 
@@ -647,7 +648,7 @@ Prism.languages.css = {
 		greedy: true
 	},
 	'property': /[-_a-z\xA0-\uFFFF][-\w\xA0-\uFFFF]*(?=\s*:)/i,
-	'important': /\B!important\b/i,
+	'important': /!important\b/i,
 	'function': /[-a-z0-9]+(?=\()/i,
 	'punctuation': /[(){};:]/
 };
@@ -684,6 +685,7 @@ if (Prism.languages.markup) {
 	}, Prism.languages.markup.tag);
 }
 
+
 /* **********************************************
      Begin prism-clike.js
 ********************************************** */
@@ -713,7 +715,7 @@ Prism.languages.clike = {
 	},
 	'keyword': /\b(?:if|else|while|do|for|return|in|instanceof|function|new|try|throw|catch|finally|null|break|continue)\b/,
 	'boolean': /\b(?:true|false)\b/,
-	'function': /[a-z0-9_]+(?=\()/i,
+	'function': /\w+(?=\()/,
 	'number': /\b0x[\da-f]+\b|(?:\b\d+\.?\d*|\B\.\d+)(?:e[+-]?\d+)?/i,
 	'operator': /--?|\+\+?|!=?=?|<=?|>=?|==?=?|&&?|\|\|?|\?|\*|\/|~|\^|%/,
 	'punctuation': /[{}[\];(),.:]/
@@ -727,7 +729,10 @@ Prism.languages.clike = {
 Prism.languages.javascript = Prism.languages.extend('clike', {
 	'class-name': [
 		Prism.languages.clike['class-name'],
-		/[_$A-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\.(?:prototype|constructor))/
+		{
+			pattern: /(^|[^$\w\xA0-\uFFFF])[_$A-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\.(?:prototype|constructor))/,
+			lookbehind: true
+		}
 	],
 	'keyword': [
 		{
@@ -736,7 +741,7 @@ Prism.languages.javascript = Prism.languages.extend('clike', {
 		},
 		/\b(?:as|async|await|break|case|class|const|continue|debugger|default|delete|do|else|enum|export|extends|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|var|void|while|with|yield)\b/
 	],
-	'number': /\b(?:0[xX][\dA-Fa-f]+|0[bB][01]+|0[oO][0-7]+|NaN|Infinity)\b|(?:\b\d+\.?\d*|\B\.\d+)(?:[Ee][+-]?\d+)?/,
+	'number': /\b(?:(?:0[xX][\dA-Fa-f]+|0[bB][01]+|0[oO][0-7]+)n?|\d+n|NaN|Infinity)\b|(?:\b\d+\.?\d*|\B\.\d+)(?:[Ee][+-]?\d+)?/,
 	// Allow for all non-ASCII characters (See http://stackoverflow.com/a/2008444)
 	'function': /[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\s*\(|\.(?:apply|bind|call)\()/,
 	'operator': /-[-=]?|\+[+=]?|!=?=?|<<?=?|>>?>?=?|=(?:==?|>)?|&[&=]?|\|[|=]?|\*\*?=?|\/=?|~|\^=?|%=?|\?|\.{3}/
