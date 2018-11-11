@@ -24,6 +24,16 @@
 	};
 
 
+	/**
+	 * Creates a new RegExp using `Prism.patterns.build` and `{ mod: modifierRegex }`.
+	 *
+	 * @param {string|RegExp} basePattern
+	 * @returns {RegExp}
+	 */
+	function buildWithModifier(basePattern) {
+		return Prism.patterns.build(basePattern, { mod: modifierRegex });
+	}
+
 	Prism.languages.textile = Prism.languages.extend('markup', {
 		'phrase': {
 			pattern: /(^|\r|\n)\S[\s\S]*?(?=$|\r?\n\r?\n|\r\r)/,
@@ -32,10 +42,10 @@
 
 				// h1. Header 1
 				'block-tag': {
-					pattern: RegExp('^[a-z]\\w*(?:' + modifierRegex + '|[<>=()])*\\.'),
+					pattern: buildWithModifier('^[a-z]\\w*(?:<<mod>>|[<>=()])*\\.'),
 					inside: {
 						'modifier': {
-							pattern: RegExp('(^[a-z]\\w*)(?:' + modifierRegex + '|[<>=()])+(?=\\.)'),
+							pattern: buildWithModifier('(^[a-z]\\w*)(?:<<mod>>|[<>=()])+(?=\\.)'),
 							lookbehind: true,
 							inside: modifierTokens
 						},
@@ -47,10 +57,10 @@
 				// # List item
 				// * List item
 				'list': {
-					pattern: RegExp('^[*#]+(?:' + modifierRegex + ')?\\s+.+', 'm'),
+					pattern: buildWithModifier(/^[*#]+<<mod>>?\s+.+/m),
 					inside: {
 						'modifier': {
-							pattern: RegExp('(^[*#]+)' + modifierRegex),
+							pattern: buildWithModifier('(^[*#]+)<<mod>>'),
 							lookbehind: true,
 							inside: modifierTokens
 						},
@@ -62,12 +72,12 @@
 				'table': {
 					// Modifiers can be applied to the row: {color:red}.|1|2|3|
 					// or the cell: |{color:red}.1|2|3|
-					pattern: RegExp('^(?:(?:' + modifierRegex + '|[<>=()^~])+\\.\\s*)?(?:\\|(?:(?:' + modifierRegex + '|[<>=()^~_]|[\\\\/]\\d+)+\\.)?[^|]*)+\\|', 'm'),
+					pattern: buildWithModifier(/^(?:(?:<<mod>>|[<>=()^~])+\.\s*)?(?:\|(?:(?:<<mod>>|[<>=()^~_]|[\\/]\d+)+\.)?[^|]*)+\|/m),
 					inside: {
 						'modifier': {
 							// Modifiers for rows after the first one are
 							// preceded by a pipe and a line feed
-							pattern: RegExp('(^|\\|(?:\\r?\\n|\\r)?)(?:' + modifierRegex + '|[<>=()^~_]|[\\\\/]\\d+)+(?=\\.)'),
+							pattern: buildWithModifier('(^|\\|(?:\\r?\\n|\\r)?)(?:<<mod>>|[<>=()^~_]|[\\\\/]\\d+)+(?=\\.)'),
 							lookbehind: true,
 							inside: modifierTokens
 						},
@@ -76,56 +86,56 @@
 				},
 
 				'inline': {
-					pattern: RegExp('(\\*\\*|__|\\?\\?|[*_%@+\\-^~])(?:' + modifierRegex + ')?.+?\\1'),
+					pattern: buildWithModifier('(\\*\\*|__|\\?\\?|[*_%@+\\-^~])<<mod>>?.+?\\1'),
 					inside: {
 						// Note: superscripts and subscripts are not handled specifically
 
 						// *bold*, **bold**
 						'bold': {
-							pattern: RegExp('(^(\\*\\*?)(?:' + modifierRegex + ')?).+?(?=\\2)'),
+							pattern: buildWithModifier('(^(\\*\\*?)<<mod>>?).+?(?=\\2)'),
 							lookbehind: true
 						},
 
 						// _italic_, __italic__
 						'italic': {
-							pattern: RegExp('(^(__?)(?:' + modifierRegex + ')?).+?(?=\\2)'),
+							pattern: buildWithModifier('(^(__?)<<mod>>?).+?(?=\\2)'),
 							lookbehind: true
 						},
 
 						// ??cite??
 						'cite': {
-							pattern: RegExp('(^\\?\\?(?:' + modifierRegex + ')?).+?(?=\\?\\?)'),
+							pattern: buildWithModifier('(^\\?\\?<<mod>>?).+?(?=\\?\\?)'),
 							lookbehind: true,
 							alias: 'string'
 						},
 
 						// @code@
 						'code': {
-							pattern: RegExp('(^@(?:' + modifierRegex + ')?).+?(?=@)'),
+							pattern: buildWithModifier('(^@<<mod>>?).+?(?=@)'),
 							lookbehind: true,
 							alias: 'keyword'
 						},
 
 						// +inserted+
 						'inserted': {
-							pattern: RegExp('(^\\+(?:' + modifierRegex + ')?).+?(?=\\+)'),
+							pattern: buildWithModifier('(^\\+<<mod>>?).+?(?=\\+)'),
 							lookbehind: true
 						},
 
 						// -deleted-
 						'deleted': {
-							pattern: RegExp('(^-(?:' + modifierRegex + ')?).+?(?=-)'),
+							pattern: buildWithModifier('(^-<<mod>>?).+?(?=-)'),
 							lookbehind: true
 						},
 
 						// %span%
 						'span': {
-							pattern: RegExp('(^%(?:' + modifierRegex + ')?).+?(?=%)'),
+							pattern: buildWithModifier('(^%<<mod>>?).+?(?=%)'),
 							lookbehind: true
 						},
 
 						'modifier': {
-							pattern: RegExp('(^\\*\\*|__|\\?\\?|[*_%@+\\-^~])' + modifierRegex),
+							pattern: buildWithModifier('(^\\*\\*|__|\\?\\?|[*_%@+\\-^~])<<mod>>'),
 							lookbehind: true,
 							inside: modifierTokens
 						},
@@ -152,14 +162,14 @@
 				// "text":http://example.com
 				// "text":link-ref
 				'link': {
-					pattern: RegExp('"(?:' + modifierRegex + ')?[^"]+":.+?(?=[^\\w/]?(?:\\s|$))'),
+					pattern: buildWithModifier('"<<mod>>?[^"]+":.+?(?=[^\\w/]?(?:\\s|$))'),
 					inside: {
 						'text': {
-							pattern: RegExp('(^"(?:' + modifierRegex + ')?)[^"]+(?=")'),
+							pattern: buildWithModifier('(^"<<mod>>?)[^"]+(?=")'),
 							lookbehind: true
 						},
 						'modifier': {
-							pattern: RegExp('(^")' + modifierRegex),
+							pattern: buildWithModifier('(^")<<mod>>'),
 							lookbehind: true,
 							inside: modifierTokens
 						},
@@ -174,15 +184,15 @@
 				// !image.jpg!
 				// !image.jpg(Title)!:http://example.com
 				'image': {
-					pattern: RegExp('!(?:' + modifierRegex + '|[<>=()])*[^!\\s()]+(?:\\([^)]+\\))?!(?::.+?(?=[^\\w/]?(?:\\s|$)))?'),
+					pattern: buildWithModifier('!(?:<<mod>>|[<>=()])*[^!\\s()]+(?:\\([^)]+\\))?!(?::.+?(?=[^\\w/]?(?:\\s|$)))?'),
 					inside: {
 						'source': {
-							pattern: RegExp('(^!(?:' + modifierRegex + '|[<>=()])*)[^!\\s()]+(?:\\([^)]+\\))?(?=!)'),
+							pattern: buildWithModifier('(^!(?:<<mod>>|[<>=()])*)[^!\\s()]+(?:\\([^)]+\\))?(?=!)'),
 							lookbehind: true,
 							alias: 'url'
 						},
 						'modifier': {
-							pattern: RegExp('(^!)(?:' + modifierRegex + '|[<>=()])+'),
+							pattern: buildWithModifier('(^!)(?:<<mod>>|[<>=()])+'),
 							lookbehind: true,
 							inside: modifierTokens
 						},
