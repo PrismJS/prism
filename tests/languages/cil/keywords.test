@@ -8,6 +8,7 @@ bool
 bstr
 byvalstr
 cil
+char
 class
 currency
 date
@@ -35,6 +36,11 @@ int16
 int32
 int64
 int8
+uint
+uint16
+uint32
+uint64
+uint8
 interface
 iunknown
 lpstr
@@ -82,6 +88,7 @@ void
 	[ "keyword", "bstr" ],
 	[ "keyword", "byvalstr" ],
 	[ "keyword", "cil" ],
+	[ "keyword", "char" ],
 	[ "keyword", "class" ],
 	[ "keyword", "currency" ],
 	[ "keyword", "date" ],
@@ -109,6 +116,11 @@ void
 	[ "keyword", "int32" ],
 	[ "keyword", "int64" ],
 	[ "keyword", "int8" ],
+	[ "keyword", "uint" ],
+	[ "keyword", "uint16" ],
+	[ "keyword", "uint32" ],
+	[ "keyword", "uint64" ],
+	[ "keyword", "uint8" ],
 	[ "keyword", "interface" ],
 	[ "keyword", "iunknown" ],
 	[ "keyword", "lpstr" ],
