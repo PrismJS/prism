@@ -80,7 +80,6 @@ describe('Prism Keep Markup Plugin', function () {
 	})
 	// The markup is removed if it's the last element and the element's name is a single letter: a(nchor), b(old), i(talic)...
 	// https://github.com/PrismJS/prism/issues/1618
-	/*
 	it('should keep last single letter empty markup', function () {
 		const result = execute(`<code class="language-javascript">xy<a></a></code>`)
 		expect(result.start.length).to.equal(1)
@@ -88,5 +87,4 @@ describe('Prism Keep Markup Plugin', function () {
 		expect(result.nodes.length).to.equal(1)
 		expect(result.nodes[0].nodeName).to.equal('A')
 	})
-	*/
 })

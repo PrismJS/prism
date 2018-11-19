@@ -55,7 +55,7 @@
 						}
 
 					} else if (child.nodeType === 3) { // text
-						if(!nodeState.nodeStart && nodeState.pos + child.data.length > nodeState.node.posOpen) {
+						if(!nodeState.nodeStart && nodeState.pos + child.data.length >= nodeState.node.posOpen) {
 							// We found the start position
 							nodeState.nodeStart = child;
 							nodeState.nodeStartPos = nodeState.node.posOpen - nodeState.pos;
