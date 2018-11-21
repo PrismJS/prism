@@ -181,11 +181,11 @@ for (var category in components) {
 			if (!lang.aliasTitles)
 				return lang.title;
 
-			var titles = [];
+			var titles = [lang.title];
 			for (var alias in lang.aliasTitles)
 				if (lang.aliasTitles.hasOwnProperty(alias))
 					titles.push(lang.aliasTitles[alias]);
-			return lang.title + " + " + titles.join(" + ");
+			return titles.join(" + ");
 		}
 
 		var label = $u.element.create('label', {
