@@ -51,7 +51,7 @@
 	 */
 	function getSuffixPattern(contentType) {
 		var suffix = contentType.replace(/^[a-z]+\//, '');
-		var suffixPattern = '\\w+/(?:[\\w.-]+\\+)+' + suffix + '(?=[^+\\w.-])';
+		var suffixPattern = '\\w+/(?:[\\w.-]+\\+)+' + suffix + '(?![+\\w.-])';
 		return '(?:' + contentType + '|' + suffixPattern + ')';
 	}
 
@@ -64,7 +64,7 @@
 
 			var pattern = suffixTypes[contentType] ? getSuffixPattern(contentType) : contentType;
 			options[contentType] = {
-				pattern: RegExp('(content-type:\\s*' + pattern + '[\\w\\W]*?)(?:\\r?\\n|\\r){2}[\\w\\W]*', 'i'),
+				pattern: RegExp('(content-type:\\s*' + pattern + '[\\s\\S]*?)(?:\\r?\\n|\\r){2}[\\s\\S]*', 'i'),
 				lookbehind: true,
 				inside: {
 					rest: httpLanguages[contentType]
