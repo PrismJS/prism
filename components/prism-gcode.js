@@ -4,7 +4,7 @@ Prism.languages.gcode = {
 		pattern: /"(?:""|[^"])*"/,
 		greedy: true
 	},
-	'keyword': /\b[GM][\d]+(?:\.\d+)?\b/,
+	'keyword': /\b[GM]\d+(?:\.\d+)?\b/,
 	'property': /\b[A-Z]/,
 	'checksum': {
 		pattern: /\*\d+/,
