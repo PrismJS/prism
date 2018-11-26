@@ -45,7 +45,7 @@ Prism.languages.csharp = Prism.languages.extend('clike', {
 	],
 	'number': /\b0x[\da-f]+\b|(?:\b\d+\.?\d*|\B\.\d+)f?/i,
 	'operator': />>=?|<<=?|[-=]>|([-+&|?])\1|~|[-+*/%&|^!=<>]=?/,
-	'punctuation': /\?[?.]?|[{}[\];(),.:]/
+	'punctuation': /\?\.?|::|[{}[\];(),.:]/
 });
 
 Prism.languages.insertBefore('csharp', 'class-name', {
