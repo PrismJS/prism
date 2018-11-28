@@ -83,6 +83,7 @@ Prism.languages.insertBefore('markdown', 'prolog', {
 		// Allow only one line break
 		pattern: /(^|[^\\])(\*\*|__)(?:(?:\r?\n|\r)(?!\r?\n|\r)|.)+?\2/,
 		lookbehind: true,
+		greedy: true,
 		inside: {
 			'punctuation': /^\*\*|^__|\*\*$|__$/
 		}
@@ -94,8 +95,21 @@ Prism.languages.insertBefore('markdown', 'prolog', {
 		// Allow only one line break
 		pattern: /(^|[^\\])([*_])(?:(?:\r?\n|\r)(?!\r?\n|\r)|.)+?\2/,
 		lookbehind: true,
+		greedy: true,
 		inside: {
 			'punctuation': /^[*_]|[*_]$/
+		}
+	},
+	'strike': {
+		// ~~strike through~~
+		// ~strike~
+
+		// Allow only one line break
+		pattern: /(^|[^\\])(~~?)(?:(?:\r?\n|\r)(?!\r?\n|\r)|.)+?\2/,
+		lookbehind: true,
+		greedy: true,
+		inside: {
+			'punctuation': /^~~?|~~?$/
 		}
 	},
 	'url': {
@@ -116,5 +130,10 @@ Prism.languages.insertBefore('markdown', 'prolog', {
 
 Prism.languages.markdown['bold'].inside['url'] = Prism.languages.markdown['url'];
 Prism.languages.markdown['italic'].inside['url'] = Prism.languages.markdown['url'];
+Prism.languages.markdown['strike'].inside['url'] = Prism.languages.markdown['url'];
 Prism.languages.markdown['bold'].inside['italic'] = Prism.languages.markdown['italic'];
+Prism.languages.markdown['bold'].inside['strike'] = Prism.languages.markdown['strike'];
 Prism.languages.markdown['italic'].inside['bold'] = Prism.languages.markdown['bold'];
+Prism.languages.markdown['italic'].inside['strike'] = Prism.languages.markdown['strike'];
+Prism.languages.markdown['strike'].inside['bold'] = Prism.languages.markdown['bold'];
+Prism.languages.markdown['strike'].inside['italic'] = Prism.languages.markdown['italic'];
