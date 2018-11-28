@@ -175,6 +175,10 @@
 			"require": "c",
 			"owner": "zeitgeist87"
 		},
+		"cil": {
+			"title": "CIL",
+			"owner": "sbrl"
+		},
 		"coffeescript": {
 			"title": "CoffeeScript",
 			"require": "javascript",
