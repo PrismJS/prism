@@ -807,7 +807,11 @@ Prism.languages.js = Prism.languages.javascript;
 		return;
 	}
 
-	self.Prism.fileHighlight = function() {
+	/**
+	 * @param {Element} [container=document]
+	 */
+	self.Prism.fileHighlight = function(container) {
+		container = container || document;
 
 		var Extensions = {
 			'js': 'javascript',
@@ -821,7 +825,13 @@ Prism.languages.js = Prism.languages.javascript;
 			'tex': 'latex'
 		};
 
-		Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+		Array.prototype.slice.call(container.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+			// ignore if already loaded
+			if (pre.hasAttribute('data-src-loaded')) {
+				return;
+			}
+
+			// load current
 			var src = pre.getAttribute('data-src');
 
 			var language, parent = pre;
@@ -859,6 +869,8 @@ Prism.languages.js = Prism.languages.javascript;
 						code.textContent = xhr.responseText;
 
 						Prism.highlightElement(code);
+						// mark as loaded
+						pre.setAttribute('data-src-loaded', '');
 					}
 					else if (xhr.status >= 400) {
 						code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
@@ -889,6 +901,9 @@ Prism.languages.js = Prism.languages.javascript;
 
 	};
 
-	document.addEventListener('DOMContentLoaded', self.Prism.fileHighlight);
+	document.addEventListener('DOMContentLoaded', function () {
+		// execute inside handler, for dropping Event as argumnet
+		self.Prism.fileHighlight();
+	});
 
 })();
