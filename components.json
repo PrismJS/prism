@@ -144,7 +144,6 @@
 		},
 		"batch": {
 			"title": "Batch",
-			"alias": "shell",
 			"owner": "Golmote"
 		},
 		"bison": {
