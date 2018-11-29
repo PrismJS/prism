@@ -8,6 +8,8 @@ You can learn more on http://prismjs.com/.
 
 Why another syntax highlighter?: http://lea.verou.me/2012/07/introducing-prism-an-awesome-new-syntax-highlighter/#more-1841
 
+More themes for Prism: https://github.com/PrismJS/prism-themes
+
 ## Contribute to Prism!
 
 Prism depends on community contributions to expand and cover a wider array of use cases. If you like it, considering giving back by sending a pull request. Here are a few tips:
