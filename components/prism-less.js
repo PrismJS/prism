@@ -33,11 +33,6 @@ Prism.languages.less = Prism.languages.extend('css', {
 	'operator': /[+\-*\/]/
 });
 
-// Invert function and punctuation positions
-Prism.languages.insertBefore('less', 'punctuation', {
-	'function': Prism.languages.less.function
-});
-
 Prism.languages.insertBefore('less', 'property', {
 	'variable': [
 		// Variable declaration (the colon must be consumed!)
