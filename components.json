@@ -266,6 +266,10 @@
 			"title": "Fortran",
 			"owner": "Golmote"
 		},
+		"gcode": {
+			"title": "G-code",
+			"owner": "RunDevelopment"
+		},
 		"gedcom": {
 			"title": "GEDCOM",
 			"owner": "Golmote"
