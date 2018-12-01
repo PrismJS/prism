@@ -124,8 +124,9 @@ var _ = _self.Prism = {
 					}
 
 					// Do not insert token which also occur in insert. See #1525
-					if (!insert.hasOwnProperty(token))
+					if (!insert.hasOwnProperty(token)) {
 						ret[token] = grammar[token];
+					}
 				}
 			}
 
