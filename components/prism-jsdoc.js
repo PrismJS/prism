@@ -1,6 +1,5 @@
 (function (Prism) {
 
-	var javaDocLike = Prism.languages.javadoclike;
 	var javascript = Prism.languages.javascript;
 
 	var type = /\{(?:[^{}]|\{(?:[^{}]|\{[^{}]*\})*\})+\}/.source;
@@ -52,6 +51,6 @@
 		}
 	});
 
-	javaDocLike.addSupport(['javascript'], Prism.languages.jsdoc);
+	Prism.languages.javadoclike.addSupport(['javascript'], Prism.languages.jsdoc);
 
 }(Prism));

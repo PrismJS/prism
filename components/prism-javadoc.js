@@ -1,13 +1,10 @@
 (function (Prism) {
 
-	var javaDocLike = Prism.languages.javadoclike;
-	var java = Prism.languages.java;
-
 	var codeLines = {
 		'code': {
 			pattern: /(^(\s*(?:\*\s*)*)).*[^*\s].+$/m,
 			lookbehind: true,
-			inside: java,
+			inside: Prism.languages.java,
 			alias: 'language-java'
 		}
 	};
@@ -52,5 +49,5 @@
 		'tag': /<\/?(?!\d)[^\s>\/=$<%]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/i,
 	});
 
-	javaDocLike.addSupport(['java'], Prism.languages.javadoc);
+	Prism.languages.javadoclike.addSupport(['java'], Prism.languages.javadoc);
 }(Prism));
