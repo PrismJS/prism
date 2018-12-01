@@ -8,6 +8,7 @@ import in is lambda
 pass print raise return
 try while with yield
 nonlocal
+and not or
 
 ----------------------------------------------------
 
@@ -21,7 +22,8 @@ nonlocal
 	["keyword", "import"], ["keyword", "in"], ["keyword", "is"], ["keyword", "lambda"],
 	["keyword", "pass"], ["keyword", "print"], ["keyword", "raise"], ["keyword", "return"],
 	["keyword", "try"], ["keyword", "while"], ["keyword", "with"], ["keyword", "yield"],
-	["keyword", "nonlocal"]
+	["keyword", "nonlocal"],
+	["keyword", "and"], ["keyword", "not"], ["keyword", "or"]
 ]
 
 ----------------------------------------------------

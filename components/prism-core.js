@@ -33,7 +33,7 @@ var _ = _self.Prism = {
 		},
 
 		type: function (o) {
-			return Object.prototype.toString.call(o).match(/\[object (\w+)\]/)[1];
+			return Object.prototype.toString.call(o).slice(8, -1);
 		},
 
 		objId: function (obj) {
