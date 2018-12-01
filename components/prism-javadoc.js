@@ -20,6 +20,7 @@
 				}
 			},
 			{
+				// @param <T> the first generic type parameter
 				pattern: /(@param\s+)<[A-Z]\w*>/,
 				lookbehind: true,
 				inside: {
@@ -46,7 +47,7 @@
 				inside: codeLines
 			}
 		],
-		'tag': /<\/?(?!\d)[^\s>\/=$<%]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/i,
+		'tag': Prism.languages.markup.tag,
 	});
 
 	Prism.languages.javadoclike.addSupport(['java'], Prism.languages.javadoc);

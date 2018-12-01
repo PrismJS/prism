@@ -380,7 +380,7 @@
 		},
 		"javadoc": {
 			"title": "JavaDoc",
-			"require": ["java", "javadoclike"],
+			"require": ["markup", "java", "javadoclike"],
 			"peerDependencies": [
 				"scala"
 			],

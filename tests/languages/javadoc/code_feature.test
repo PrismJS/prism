@@ -31,7 +31,14 @@
 	]],
 	["punctuation", "}"],
 	".\n * ",
-	["tag", "<code>"],
+
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"code"
+		]],
+		["punctuation", ">"]
+	]],
 	["code-section", [
 		["code", [
 			"Foo",
@@ -42,10 +49,29 @@
 			["punctuation", ")"]
 		]]
 	]],
-	["tag", "</code>"],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"code"
+		]],
+		["punctuation", ">"]
+	]],
 	"\n * ",
-	["tag", "<pre>"],
-	["tag", "<code>"],
+
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"pre"
+		]],
+		["punctuation", ">"]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"code"
+		]],
+		["punctuation", ">"]
+	]],
 	["code-section", [
 		"* ",
 		["code", [
@@ -85,8 +111,20 @@
 		]],
 		"\n *"
 	]],
-	["tag", "</code>"],
-	["tag", "</pre>"],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"code"
+		]],
+		["punctuation", ">"]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"pre"
+		]],
+		["punctuation", ">"]
+	]],
 	"\n */"
 ]
 
