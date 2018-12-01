@@ -157,12 +157,14 @@ Prism.languages.markdown['strike'].inside['bold'] = Prism.languages.markdown['bo
 Prism.languages.markdown['strike'].inside['italic'] = Prism.languages.markdown['italic'];
 
 Prism.hooks.add('after-tokenize', function (env) {
-	if (env.language !== 'markdown')
+	if (env.language !== 'markdown') {
 		return;
+	}
 
 	function walkTokens(tokens) {
-		if (!tokens || typeof tokens === 'string')
+		if (!tokens || typeof tokens === 'string') {
 			return;
+		}
 
 		for (var i = 0, l = tokens.length; i < l; i++) {
 			var token = tokens[i];
@@ -183,12 +185,13 @@ Prism.hooks.add('after-tokenize', function (env) {
 				var alias = 'language-' + codeLang.content.trim().split(/\s+/)[0].toLowerCase();
 
 				// add alias
-				if (!codeBlock.alias)
+				if (!codeBlock.alias) {
 					codeBlock.alias = [alias];
-				else if (typeof codeBlock.alias === 'string')
+				} else if (typeof codeBlock.alias === 'string') {
 					codeBlock.alias = [codeBlock.alias, alias];
-				else
+				} else {
 					codeBlock.alias.push(alias);
+				}
 			}
 		}
 	}
@@ -197,8 +200,9 @@ Prism.hooks.add('after-tokenize', function (env) {
 });
 
 Prism.hooks.add('wrap', function (env) {
-	if (env.type !== 'code-block')
+	if (env.type !== 'code-block') {
 		return;
+	}
 
 	var codeLang = '';
 	for (var i = 0, l = env.classes.length; i < l; i++) {
@@ -212,8 +216,9 @@ Prism.hooks.add('wrap', function (env) {
 
 	var grammar = Prism.languages[codeLang];
 
-	if (!grammar)
+	if (!grammar) {
 		return;
+	}
 
 	// reverse Prism.util.encode
 	var code = env.content.replace(/&lt;/g, '<').replace(/&amp;/g, '&');
