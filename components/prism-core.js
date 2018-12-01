@@ -33,7 +33,7 @@ var _ = _self.Prism = {
 		},
 
 		type: function (o) {
-			return Object.prototype.toString.call(o).match(/\[object (\w+)\]/)[1];
+			return Object.prototype.toString.call(o).slice(8, -1);
 		},
 
 		objId: function (obj) {
@@ -98,26 +98,13 @@ var _ = _self.Prism = {
 		 * As this needs to recreate the object (we cannot actually insert before keys in object literals),
 		 * we cannot just provide an object, we need an object and a key.
 		 * @param inside The key (or language id) of the parent
-		 * @param before The key to insert before. If not provided, the function appends instead.
+		 * @param before The key to insert before.
 		 * @param insert Object with the key/value pairs to insert
 		 * @param root The object that contains `inside`. If equal to Prism.languages, it can be omitted.
 		 */
 		insertBefore: function (inside, before, insert, root) {
 			root = root || _.languages;
 			var grammar = root[inside];
-
-			if (arguments.length == 2) {
-				insert = arguments[1];
-
-				for (var newToken in insert) {
-					if (insert.hasOwnProperty(newToken)) {
-						grammar[newToken] = insert[newToken];
-					}
-				}
-
-				return grammar;
-			}
-
 			var ret = {};
 
 			for (var token in grammar) {
