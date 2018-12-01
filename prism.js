@@ -101,7 +101,7 @@ var _ = _self.Prism = {
 		/**
 		 * Insert a token before another token in a language literal
 		 * As this needs to recreate the object (we cannot actually insert before keys in object literals),
-		 * we cannot just provide an object, we need anobject and a key.
+		 * we cannot just provide an object, we need an object and a key.
 		 * @param inside The key (or language id) of the parent
 		 * @param before The key to insert before.
 		 * @param insert Object with the key/value pairs to insert
@@ -889,7 +889,7 @@ Prism.languages.js = Prism.languages.javascript;
 	};
 
 	document.addEventListener('DOMContentLoaded', function () {
-		// execute inside handler, for dropping Event as argumnet
+		// execute inside handler, for dropping Event as argument
 		self.Prism.fileHighlight();
 	});
 
