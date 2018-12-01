@@ -32,7 +32,7 @@
 	 * @param {function=} success
 	 * @param {function=} error
 	 */
-	var script = function (src, success, error) {
+	var addScript = function (src, success, error) {
 		var s = document.createElement('script');
 		s.src = src;
 		s.async = true;
@@ -155,7 +155,7 @@
 			} else if (force || !data.loading) {
 				data.loading = true;
 				var src = getLanguagePath(lang);
-				script(src, function () {
+				addScript(src, function () {
 					data.loading = false;
 					languageSuccess(lang);
 

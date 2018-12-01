@@ -144,7 +144,6 @@
 		},
 		"batch": {
 			"title": "Batch",
-			"alias": "shell",
 			"owner": "Golmote"
 		},
 		"bison": {
@@ -175,6 +174,10 @@
 			"title": "C++",
 			"require": "c",
 			"owner": "zeitgeist87"
+		},
+		"cil": {
+			"title": "CIL",
+			"owner": "sbrl"
 		},
 		"coffeescript": {
 			"title": "CoffeeScript",
