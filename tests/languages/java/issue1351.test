@@ -5,18 +5,18 @@ public class AllChangesIndexer extends SiteIndexer<Change.Id, ChangeData, Change
 [
 	["keyword", "public"],
 	["keyword", "class"],
-	["class-name", ["AllChangesIndexer"]],
+	["class-name", "AllChangesIndexer"],
 	["keyword", "extends"],
-	["class-name", ["SiteIndexer"]],
+	["class-name", "SiteIndexer"],
 	["generics", [
 		["punctuation", "<"],
-		"Change",
+		["class-name", "Change"],
 		["punctuation", "."],
-		"Id",
+		["class-name", "Id"],
 		["punctuation", ","],
-		" ChangeData",
+		["class-name", "ChangeData"],
 		["punctuation", ","],
-		" ChangeIndex",
+		["class-name", "ChangeIndex"],
 		["punctuation", ">"]
 	]],
 	["punctuation", "{"]
