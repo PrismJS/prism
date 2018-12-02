@@ -266,6 +266,10 @@
 			"title": "Fortran",
 			"owner": "Golmote"
 		},
+		"gcode": {
+			"title": "G-code",
+			"owner": "RunDevelopment"
+		},
 		"gedcom": {
 			"title": "GEDCOM",
 			"owner": "Golmote"
@@ -849,7 +853,13 @@
 			"title": "Line Numbers",
 			"owner": "kuba-kubula"
 		},
-		"show-invisibles": "Show Invisibles",
+		"show-invisibles": {
+			"title": "Show Invisibles",
+			"after": [
+				"autolinker",
+				"data-uri-highlight"
+			]
+		},
 		"autolinker": "Autolinker",
 		"wpd": "WebPlatform Docs",
 		"custom-class": {
