@@ -273,21 +273,40 @@ var html = Prism.highlight(code, Prism.languages.haml, 'haml');</code></pre>
 			continue;
 		}
 		count++;
-		var name = languages[id].title || languages[id];
+
+		var lang = languages[id];
+		var name = lang.title || lang;
+
+		var contents = [
+			name,
+			' - ',
+			{
+				tag: 'code',
+				contents: id
+			}
+		];
+
+		var alias = lang.alias;
+		if (typeof alias === 'string')
+			alias = [alias];
+
+		if (alias) {
+			for (var i = 0, l = alias.length; i < l; i++) {
+				contents.push(
+					', ',
+					{
+						tag: 'code',
+						contents: alias[i]
+					});
+			}
+		}
 
 		languageItems.push({
 			tag: 'li',
 			attributes: {
 				'data-id': id
 			},
-			contents: [
-				name,
-				' - ',
-				{
-					tag: 'code',
-					contents: id
-				}
-			]
+			contents: contents
 		});
 	}
 	$u.element.create('ul', {
