@@ -7,49 +7,51 @@ Duo<Double, Character> dual = new Duo<Double, Character>(12.2585, 'C');
 [
 	["keyword", "public"],
 	["keyword", "class"],
-	["class-name", ["Solo"]],
+	["class-name", "Solo"],
 	["generics", [
 		["punctuation", "<"],
-		"T",
+		["class-name", "T"],
 		["punctuation", ">"]
 	]],
 	["punctuation", "{"],
 	["punctuation", "}"],
-	"\r\nSolo",
+
+	["class-name", "Solo"],
 	["generics", [
 		["punctuation", "<"],
-		"Integer",
+		["class-name", "Integer"],
 		["punctuation", ">"]
 	]],
 	" val ",
 	["operator", "="],
 	["keyword", "new"],
-	["class-name", ["Solo"]],
+	["class-name", "Solo"],
 	["generics", [
 		["punctuation", "<"],
-		"Integer",
+		["class-name", "Integer"],
 		["punctuation", ">"]
 	]],
 	["punctuation", "("],
 	["punctuation", ")"],
 	["punctuation", ";"],
-	"\r\nDuo",
+
+	["class-name", "Duo"],
 	["generics", [
 		["punctuation", "<"],
-		"Double",
+		["class-name", "Double"],
 		["punctuation", ","],
-		" Character",
+		["class-name", "Character"],
 		["punctuation", ">"]
 	]],
 	" dual ",
 	["operator", "="],
 	["keyword", "new"],
-	["class-name", ["Duo"]],
+	["class-name", "Duo"],
 	["generics", [
 		["punctuation", "<"],
-		"Double",
+		["class-name", "Double"],
 		["punctuation", ","],
-		" Character",
+		["class-name", "Character"],
 		["punctuation", ">"]
 	]],
 	["punctuation", "("],

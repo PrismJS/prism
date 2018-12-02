@@ -20,7 +20,7 @@
 		'property': /[-_a-z\xA0-\uFFFF][-\w\xA0-\uFFFF]*(?=\s*:)/i,
 		'important': /!important\b/i,
 		'function': /[-a-z0-9]+(?=\()/i,
-		'punctuation': /[(){};:]/
+		'punctuation': /[(){};:,]/
 	};
 
 	Prism.languages.css['atrule'].inside.rest = Prism.languages.css;
