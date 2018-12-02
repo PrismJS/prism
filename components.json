@@ -132,6 +132,10 @@
 		},
 		"bash": {
 			"title": "Bash",
+			"alias": "shell",
+			"aliasTitles": {
+				"shell": "Shell"
+			},
 			"owner": "zeitgeist87"
 		},
 		"basic": {
@@ -140,7 +144,6 @@
 		},
 		"batch": {
 			"title": "Batch",
-			"alias": "shell",
 			"owner": "Golmote"
 		},
 		"bison": {
@@ -171,6 +174,10 @@
 			"title": "C++",
 			"require": "c",
 			"owner": "zeitgeist87"
+		},
+		"cil": {
+			"title": "CIL",
+			"owner": "sbrl"
 		},
 		"coffeescript": {
 			"title": "CoffeeScript",
@@ -221,6 +228,7 @@
 		},
 		"docker": {
 			"title": "Docker",
+			"alias": "dockerfile",
 			"owner": "JustinBeckwith"
 		},
 		"eiffel": {
@@ -258,6 +266,10 @@
 			"title": "Fortran",
 			"owner": "Golmote"
 		},
+		"gcode": {
+			"title": "G-code",
+			"owner": "RunDevelopment"
+		},
 		"gedcom": {
 			"title": "GEDCOM",
 			"owner": "Golmote"
@@ -274,6 +286,12 @@
 			"title": "GLSL",
 			"require": "clike",
 			"owner": "Golmote"
+		},
+		"gml": {
+			"title": "GameMaker Language",
+			"alias": "gamemakerlanguage",
+			"require": "clike",
+			"owner": "LiarOnce"
 		},
 		"go": {
 			"title": "Go",
@@ -371,6 +389,10 @@
 		},
 		"json": {
 			"title": "JSON",
+			"alias": "jsonp",
+			"aliasTitles": {
+				"jsonp": "JSONP"
+			},
 			"owner": "CupOfTea696"
 		},
 		"julia": {
@@ -401,8 +423,8 @@
 		},
 		"lisp": {
 			"title": "Lisp",
-			"owner": "JuanCaicedo",
-			"alias": ["emacs", "elisp", "emacs-lisp"]
+			"alias": ["emacs", "elisp", "emacs-lisp"],
+			"owner": "JuanCaicedo"
 		},
 		"livescript": {
 			"title": "LiveScript",
@@ -449,6 +471,7 @@
 		"n4js": {
 			"title": "N4JS",
 			"require": "javascript",
+			"alias": "n4jsd",
 			"owner": "bsmith-n4"
 		},
 		"nasm": {
@@ -748,8 +771,8 @@
 		},
 		"visual-basic": {
 			"title": "Visual Basic",
-			"owner": "Golmote",
-			"alias": "vb"
+			"alias": "vb",
+			"owner": "Golmote"
 		},
 		"wasm": {
 			"title": "WebAssembly",
@@ -763,6 +786,10 @@
 		"xeora": {
 			"title": "Xeora",
 			"require": "markup",
+			"alias": "xeoracube",
+			"aliasTitles": {
+				"xeoracube": "XeoraCube"
+			},
 			"owner": "freakmaxi"
 		},
 		"xojo": {
@@ -789,7 +816,13 @@
 			"title": "Line Numbers",
 			"owner": "kuba-kubula"
 		},
-		"show-invisibles": "Show Invisibles",
+		"show-invisibles": {
+			"title": "Show Invisibles",
+			"after": [
+				"autolinker",
+				"data-uri-highlight"
+			]
+		},
 		"autolinker": "Autolinker",
 		"wpd": "WebPlatform Docs",
 		"custom-class": {
