@@ -25,8 +25,9 @@
 		var tokenName = 'doc-comment';
 
 		var grammar = Prism.languages[lang];
-		if (!grammar) return;
-
+		if (!grammar) {
+			return;
+		}
 		var token = grammar[tokenName];
 
 		if (!token) {
@@ -34,21 +35,22 @@
 			var definition = {};
 			definition[tokenName] = {
 				pattern: /(^|[^\\])\/\*\*[\s\S]*?(?:\*\/|$)/,
-				alias: 'comment',
-				inside: {}
+				alias: 'comment'
 			};
 
 			grammar = Prism.languages.insertBefore(lang, 'comment', definition);
 			token = grammar[tokenName];
+		}
 
-		} else if (token instanceof RegExp) { // convert existing regex to object
+		if (token instanceof RegExp) { // convert regex to object
 			token = grammar[tokenName] = { pattern: token };
 		}
 
 		if (Prism.util.type(token) === 'Array') {
 			for (var i = 0, l = token.length; i < l; i++) {
-				if (token[i] instanceof RegExp)
+				if (token[i] instanceof RegExp) {
 					token[i] = { pattern: token[i] };
+				}
 				callback(token[i]);
 			}
 		} else {
@@ -62,10 +64,15 @@
 		 * Adds doc-comment support to the given languages for the given documentation language.
 		 */
 		value: function addSupport(languages, docLanguage) {
+			if (typeof languages === 'string') {
+				languages = [languages];
+			}
+
 			languages.forEach(function (lang) {
 				docCommentSupport(lang, function (pattern) {
-					if (!pattern.inside)
+					if (!pattern.inside) {
 						pattern.inside = {};
+					}
 					pattern.inside.rest = docLanguage;
 				});
 			});

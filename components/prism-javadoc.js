@@ -50,5 +50,5 @@
 		'tag': Prism.languages.markup.tag,
 	});
 
-	Prism.languages.javadoclike.addSupport(['java'], Prism.languages.javadoc);
+	Prism.languages.javadoclike.addSupport('java', Prism.languages.javadoc);
 }(Prism));

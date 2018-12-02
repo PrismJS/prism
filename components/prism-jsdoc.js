@@ -62,6 +62,6 @@
 		}
 	});
 
-	Prism.languages.javadoclike.addSupport(['javascript'], Prism.languages.jsdoc);
+	Prism.languages.javadoclike.addSupport('javascript', Prism.languages.jsdoc);
 
 }(Prism));
