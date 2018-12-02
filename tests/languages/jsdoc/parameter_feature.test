@@ -11,19 +11,19 @@
 [
 	"/**\n * ",
 	["keyword", "@param"],
-	["parameter", ["n"]],
+	["parameter", "n"],
 	" - A number.\n * ",
 	["keyword", "@param"],
-	["parameter", [
+	["optional-parameter", [
 		["punctuation", "["],
-		"n",
+		["parameter", "n"],
 		["punctuation", "]"]
 	]],
 	" - A number.\n * ",
 	["keyword", "@param"],
-	["parameter", [
+	["optional-parameter", [
 		["punctuation", "["],
-		"n",
+		["parameter", "n"],
 		["punctuation", "="],
 		["code", [
 			["number", "1"],
@@ -39,7 +39,7 @@
 		"number",
 		["punctuation", "}"]
 	]],
-	["parameter", ["n"]],
+	["parameter", "n"],
 	" - A number.\n * ",
 	["keyword", "@param"],
 	["class-name", [
@@ -64,7 +64,7 @@
 		["punctuation", "}"],
 		["punctuation", "}"]
 	]],
-	["parameter", ["map"]],
+	["parameter", "map"],
 	"\n */"
 ]
 

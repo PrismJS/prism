@@ -84,8 +84,6 @@
  * @version
  * @yield
  * @yields
- *
- * @example ;
  */
 
 ----------------------------------------------------
@@ -176,14 +174,6 @@
 	"\n * ", ["keyword", "@version"],
 	"\n * ", ["keyword", "@yield"],
 	"\n * ", ["keyword", "@yields"],
-
-
-	"\n *\n * ", ["keyword", "@example"],
-	["example", [
-		["code", [
-			["punctuation", ";"]
-		]]
-	]],
 	"\n */"
 ]
 
