@@ -27,7 +27,9 @@
 	["punctuation", "{"],
 	["keyword", "@code"],
 	["code-section", [
-		["code", ["null"]]
+		["code", [
+			["keyword", "null"]
+		]]
 	]],
 	["punctuation", "}"],
 	".\n * ",
@@ -41,11 +43,11 @@
 	]],
 	["code-section", [
 		["code", [
-			"Foo",
+			["class-name", "Foo"],
 			["punctuation", "."],
 			["function", "bar"],
 			["punctuation", "("],
-			"null",
+			["keyword", "null"],
 			["punctuation", ")"]
 		]]
 	]],
