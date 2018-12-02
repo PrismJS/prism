@@ -57,8 +57,5 @@ if __name__ == '__main__':
 	If a failure is listed here, it doesn’t mean it will never be fixed. This is more of a “known bugs” list, just with a certain type of bug.
 </p>
 
-<h3>Triple-quoted strings with what look like strings inside</h3>
-<pre><code>def antique(string):
-    """Replace anachronistic Latin "j" with "i"."""
-    return string.replace("j", "i").replace("J", "I")
-    </code></pre>
+<h3>Interpolation expressions containing strings with <code>{</code> or <code>}</code></h3>
+<pre><code>f"{'}'}"</code></pre>
