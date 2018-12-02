@@ -1,8 +1,8 @@
 /**
- * @param string $parameter a parameter
+ * @param string|null $parameter a parameter
  * @return self
- * @var MyClass
- * @throws Exception if something bad happens
+ * @var MyClass[int]
+ * @throws \foo\MyException if something bad happens
  */
 
 ----------------------------------------------------
@@ -11,7 +11,9 @@
 	"/**\n * ",
 	["keyword", "@param"],
 	["class-name", [
-		["keyword", "string"]
+		["keyword", "string"],
+		["punctuation", "|"],
+		["keyword", "null"]
 	]],
 	["parameter", "$parameter"],
 	" a parameter\n * ",
@@ -22,12 +24,18 @@
 	"\n * ",
 	["keyword", "@var"],
 	["class-name", [
-		"MyClass"
+		"MyClass",
+		["punctuation", "["],
+		["keyword", "int"],
+		["punctuation", "]"]
 	]],
 	"\n * ",
 	["keyword", "@throws"],
 	["class-name", [
-		"Exception"
+		["punctuation", "\\"],
+		"foo",
+		["punctuation", "\\"],
+		"MyException"
 	]],
 	" if something bad happens\n */"
 ]
