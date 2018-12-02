@@ -1,10 +1,14 @@
 # [Prism](http://prismjs.com/)
 
+[![Build Status](https://travis-ci.org/PrismJS/prism.svg?branch=master)](https://travis-ci.org/PrismJS/prism)
+
 Prism is a lightweight, robust, elegant syntax highlighting library. It's a spin-off project from [Dabblet](http://dabblet.com/).
 
 You can learn more on http://prismjs.com/.
 
 Why another syntax highlighter?: http://lea.verou.me/2012/07/introducing-prism-an-awesome-new-syntax-highlighter/#more-1841
+
+More themes for Prism: https://github.com/PrismJS/prism-themes
 
 ## Contribute to Prism!
 
@@ -17,7 +21,7 @@ Prism depends on community contributions to expand and cover a wider array of us
 - Please try to err towards more smaller PRs rather than few huge PRs. If a PR includes changes I want to merge and changes I don't, handling it becomes difficult.
 - My time is very limited these days, so it might take a long time to review longer PRs (short ones are usually merged very quickly), especially those modifying the Prism Core. This doesn't mean your PR is rejected.
 - If you contribute a new language definition, you will be responsible for handling bug reports about that language definition.
-- If you add a new language definition, theme or plugin, you need to add it to `components.js` as well, so that it becomes available to the download build page.
+- If you add a new language definition, theme or plugin, you need to add it to `components.json` as well and rebuild Prism by running `gulp`, so that it becomes available to the download build page.
 
 Thank you so much for contributing!!
 
