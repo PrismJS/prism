@@ -9,11 +9,14 @@ Prism.languages.css.selector = {
 	}
 };
 
-Prism.languages.insertBefore('css', 'function', {
+Prism.languages.insertBefore('css', 'property', {
 	'variable': {
-		pattern: /(var\()[^)]+(?=\))/,
+		pattern: /(^|[^-\w\xA0-\uFFFF])--[-_a-z\xA0-\uFFFF][-\w\xA0-\uFFFF]*/i,
 		lookbehind: true
-	},
+	}
+});
+
+Prism.languages.insertBefore('css', 'function', {
 	'operator': {
 		pattern: /(\s)[+\-*\/](?=\s)/,
 		lookbehind: true
