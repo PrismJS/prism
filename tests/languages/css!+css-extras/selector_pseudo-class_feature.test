@@ -1,0 +1,102 @@
+foo:hover {}
+
+:lang(en) {}
+
+foo:nth-child(-2n+1) {}
+
+.bar:not(baz:hover):not(.foo) {}
+
+:where(p:not(.class)) {}
+
+----------------------------------------------------
+
+[
+	["selector", [
+		"foo",
+		["pseudo-class", [
+			":hover"
+		]]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["selector", [
+		["pseudo-class", [
+			":lang",
+			["punctuation", "("],
+			["argument", [
+				"en"
+			]],
+			["punctuation", ")"]
+		]]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["selector", [
+		"foo",
+		["pseudo-class", [
+			":nth-child",
+			["punctuation", "("],
+			["argument", [
+				["operator", "-"],
+				["number", "2n"],
+				["operator", "+"],
+				["number", "1"]
+			]],
+			["punctuation", ")"]
+		]]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["selector", [
+		["class", ".bar"],
+		["pseudo-class", [
+			":not",
+			["punctuation", "("],
+			["selector", [
+				"baz",
+				["pseudo-class", [
+					":hover"
+				]]
+			]],
+			["punctuation", ")"]
+		]],
+		["pseudo-class", [
+			":not",
+			["punctuation", "("],
+			["selector", [
+				["class", ".foo"]
+			]],
+			["punctuation", ")"]
+		]]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["selector", [
+		["pseudo-class", [
+			":where",
+			["punctuation", "("],
+			["selector", [
+				"p",
+				["pseudo-class", [
+					":not",
+					["punctuation", "("],
+					["selector", [
+						["class", ".class"]
+					]],
+					["punctuation", ")"]
+				]]
+			]],
+			["punctuation", ")"]
+		]]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for pseudo-classes inside selectors.

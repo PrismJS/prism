@@ -2,12 +2,34 @@ Prism.languages.css.selector = {
 	pattern: Prism.languages.css.selector,
 	inside: {
 		'pseudo-element': /:(?:after|before|first-letter|first-line|selection)|::[-\w]+/,
-		'pseudo-class': /:[-\w]+(?:\(.*\))?/,
+		'pseudo-class': {
+			pattern: /:[-\w]+(?:\((?:[^()]|\([^()]*\))*\))?/,
+			inside: {
+				'selector': {
+					pattern: /(^:(?:has|is|not|where)\()[\s\S]+(?=\)$)/,
+					lookbehind: true,
+					alias: 'argument',
+					inside: null
+				},
+				'argument': {
+					pattern: /(^:[-\w]+\()[\s\S]+(?=\)$)/,
+					lookbehind: true,
+					inside: {
+						// an + b
+						'number': /\b\d*[\dn]\b/,
+						'operator': /[-+]/
+					}
+				},
+				'punctuation': /[()]/
+			}
+		},
 		'class': /\.[-:.\w]+/,
 		'id': /#[-:.\w]+/,
 		'attribute': /\[[^\]]+\]/
 	}
 };
+
+Prism.languages.css.selector.inside['pseudo-class'].inside['selector'].inside = Prism.languages.css.selector.inside;
 
 Prism.languages.insertBefore('css', 'property', {
 	'variable': {
