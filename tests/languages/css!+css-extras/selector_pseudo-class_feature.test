@@ -2,8 +2,6 @@ foo:hover {}
 
 :lang(en) {}
 
-foo:nth-child(-2n+1) {}
-
 .bar:not(baz:hover):not(.foo) {}
 
 :where(p:not(.class)) {}
@@ -22,21 +20,6 @@ foo:nth-child(-2n+1) {}
 		["pseudo-class", ":lang"],
 		["punctuation", "("],
 		"en",
-		["punctuation", ")"]
-	]],
-	["punctuation", "{"],
-	["punctuation", "}"],
-
-	["selector", [
-		"foo",
-		["pseudo-class", ":nth-child"],
-		["punctuation", "("],
-		["n-th", [
-			["operator", "-"],
-			["number", "2n"],
-			["operator", "+"],
-			["number", "1"]
-		]],
 		["punctuation", ")"]
 	]],
 	["punctuation", "{"],

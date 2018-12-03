@@ -7,7 +7,7 @@ Prism.languages.css.selector = {
 		'id': /#[-:.\w]+/,
 		'attribute': /\[[^\]]+\]/,
 		'n-th': {
-			pattern: /(\(\s*)[+-]\d*[\dn](?:\s*[+-]\s*\d+)?(?=\s*\))/,
+			pattern: /(\(\s*)[+-]?\d*[\dn](?:\s*[+-]\s*\d+)?(?=\s*\))/,
 			lookbehind: true,
 			inside: {
 				'number': /[\dn]+/,
