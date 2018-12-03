@@ -34,7 +34,7 @@
 			// add doc comment: /** */
 			var definition = {};
 			definition[tokenName] = {
-				pattern: /(^|[^\\])\/\*\*[\s\S]*?(?:\*\/|$)/,
+				pattern: /(^|[^\\])\/\*\*[^/][\s\S]*?(?:\*\/|$)/,
 				alias: 'comment'
 			};
 
