@@ -1,9 +1,9 @@
 language: node_js
 node_js:
-- '4'
 - '6'
 - '8'
-- '9'
+- '10'
+- 'node'
 # Build all branches
 branches:
   only:
