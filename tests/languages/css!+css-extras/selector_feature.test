@@ -36,7 +36,7 @@ div[foo="bar"] {
 		["id", "#foo"],
 		" > ",
 		["class", ".bar"],
-		["pseudo-class", [":hover"]],
+		["pseudo-class", ":hover"],
 		["pseudo-element", ":after"]
 	]], ["punctuation", "{"],
 
