@@ -49,35 +49,37 @@ var _ = _self.Prism = {
 		},
 
 		// Deep clone a language definition (e.g. to extend it)
-		clone: function (o, visited) {
+		clone: function deepClone(o, visited) {
 			var type = _.util.type(o);
 			visited = visited || {};
 
 			switch (type) {
 				case 'Object':
-					if (visited[_.util.objId(o)]) {
-						return visited[_.util.objId(o)];
+					var id = _.util.objId(o);
+					if (visited[id]) {
+						return visited[id];
 					}
 					var clone = {};
-					visited[_.util.objId(o)] = clone;
+					visited[id] = clone;
 
 					for (var key in o) {
 						if (o.hasOwnProperty(key)) {
-							clone[key] = _.util.clone(o[key], visited);
+							clone[key] = deepClone(o[key], visited);
 						}
 					}
 
 					return clone;
 
 				case 'Array':
-					if (visited[_.util.objId(o)]) {
-						return visited[_.util.objId(o)];
+					var id = _.util.objId(o);
+					if (visited[id]) {
+						return visited[id];
 					}
 					var clone = [];
-					visited[_.util.objId(o)] = clone;
+					visited[id] = clone;
 
 					o.forEach(function (v, i) {
-						clone[i] = _.util.clone(v, visited);
+						clone[i] = deepClone(v, visited);
 					});
 
 					return clone;
@@ -146,14 +148,15 @@ var _ = _self.Prism = {
 		// Traverse a language definition with Depth First Search
 		DFS: function DFS(o, callback, type, visited) {
 			visited = visited || {};
+
+			var objId = _.util.objId;
+
 			for (var i in o) {
 				if (o.hasOwnProperty(i)) {
 					callback.call(o, i, o[i], type || i);
 
 					var property = o[i],
 					    propertyType = _.util.type(property);
-
-					var objId = _.util.objId;
 
 					if (propertyType === 'Object' && !visited[objId(property)]) {
 						visited[objId(property)] = true;
