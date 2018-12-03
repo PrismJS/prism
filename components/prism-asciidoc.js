@@ -25,6 +25,7 @@
 			'attr-value': /(?!^\s+$).+/
 		}
 	};
+
 	var asciidoc = Prism.languages.asciidoc = {
 		'comment-block': {
 			pattern: /^(\/{4,})(?:\r?\n|\r)(?:[\s\S]*(?:\r?\n|\r))??\1/m,
@@ -199,71 +200,31 @@
 
 	// Allow some nesting. There is no recursion though, so cloning should not be needed.
 
-	attributes.inside['interpreted'].inside.rest = {
-		'macro': asciidoc['macro'],
-		'inline': asciidoc['inline'],
-		'replacement': asciidoc['replacement'],
-		'entity': asciidoc['entity']
-	};
+	function copyFromAsciiDoc(keys) {
+		keys = keys.split(' ');
 
-	asciidoc['passthrough-block'].inside.rest = {
-		'macro': asciidoc['macro']
-	};
+		var o = {};
+		for (var i = 0, l = keys.length; i < l; i++) {
+			o[keys[i]] = asciidoc[keys[i]];
+		}
+		return o;
+	}
 
-	asciidoc['literal-block'].inside.rest = {
-		'callout': asciidoc['callout']
-	};
+	attributes.inside['interpreted'].inside.rest = copyFromAsciiDoc('macro inline replacement entity');
 
-	asciidoc['table'].inside.rest = {
-		'comment-block': asciidoc['comment-block'],
-		'passthrough-block': asciidoc['passthrough-block'],
-		'literal-block': asciidoc['literal-block'],
-		'other-block': asciidoc['other-block'],
-		'list-punctuation': asciidoc['list-punctuation'],
-		'indented-block': asciidoc['indented-block'],
-		'comment': asciidoc['comment'],
-		'title': asciidoc['title'],
-		'attribute-entry': asciidoc['attribute-entry'],
-		'attributes': asciidoc['attributes'],
-		'hr': asciidoc['hr'],
-		'page-break': asciidoc['page-break'],
-		'admonition': asciidoc['admonition'],
-		'list-label': asciidoc['list-label'],
-		'callout': asciidoc['callout'],
-		'macro': asciidoc['macro'],
-		'inline': asciidoc['inline'],
-		'replacement': asciidoc['replacement'],
-		'entity': asciidoc['entity'],
-		'line-continuation': asciidoc['line-continuation']
-	};
+	asciidoc['passthrough-block'].inside.rest = copyFromAsciiDoc('macro');
 
-	asciidoc['other-block'].inside.rest = {
-		'table': asciidoc['table'],
-		'list-punctuation': asciidoc['list-punctuation'],
-		'indented-block': asciidoc['indented-block'],
-		'comment': asciidoc['comment'],
-		'attribute-entry': asciidoc['attribute-entry'],
-		'attributes': asciidoc['attributes'],
-		'hr': asciidoc['hr'],
-		'page-break': asciidoc['page-break'],
-		'admonition': asciidoc['admonition'],
-		'list-label': asciidoc['list-label'],
-		'macro': asciidoc['macro'],
-		'inline': asciidoc['inline'],
-		'replacement': asciidoc['replacement'],
-		'entity': asciidoc['entity'],
-		'line-continuation': asciidoc['line-continuation']
-	};
+	asciidoc['literal-block'].inside.rest = copyFromAsciiDoc('callout');
 
-	asciidoc['title'].inside.rest = {
-		'macro': asciidoc['macro'],
-		'inline': asciidoc['inline'],
-		'replacement': asciidoc['replacement'],
-		'entity': asciidoc['entity']
-	};
+	asciidoc['table'].inside.rest = copyFromAsciiDoc('comment-block passthrough-block literal-block other-block list-punctuation indented-block comment title attribute-entry attributes hr page-break admonition list-label callout macro inline replacement entity line-continuation');
+
+	asciidoc['other-block'].inside.rest = copyFromAsciiDoc('table list-punctuation indented-block comment attribute-entry attributes hr page-break admonition list-label macro inline replacement entity line-continuation');
+
+	asciidoc['title'].inside.rest = copyFromAsciiDoc('macro inline replacement entity');
+
 
 	// Plugin to make entity title show the real entity, idea by Roman Komarov
-	Prism.hooks.add('wrap', function(env) {
+	Prism.hooks.add('wrap', function (env) {
 		if (env.type === 'entity') {
 			env.attributes['title'] = env.content.replace(/&amp;/, '&');
 		}
