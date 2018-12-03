@@ -58,27 +58,28 @@
 		}
 	}
 
-	Object.defineProperty(javaDocLike, 'addSupport', {
-
-		/**
-		 * Adds doc-comment support to the given languages for the given documentation language.
-		 */
-		value: function addSupport(languages, docLanguage) {
-			if (typeof languages === 'string') {
-				languages = [languages];
-			}
-
-			languages.forEach(function (lang) {
-				docCommentSupport(lang, function (pattern) {
-					if (!pattern.inside) {
-						pattern.inside = {};
-					}
-					pattern.inside.rest = docLanguage;
-				});
-			});
+	/**
+	 * Adds doc-comment support to the given languages for the given documentation language.
+	 *
+	 * @param {string[]|string} languages
+	 * @param {Grammar} docLanguage
+	 */
+	function addSupport(languages, docLanguage) {
+		if (typeof languages === 'string') {
+			languages = [languages];
 		}
 
-	});
+		languages.forEach(function (lang) {
+			docCommentSupport(lang, function (pattern) {
+				if (!pattern.inside) {
+					pattern.inside = {};
+				}
+				pattern.inside.rest = docLanguage;
+			});
+		});
+	}
+
+	Object.defineProperty(javaDocLike, 'addSupport', { value: addSupport });
 
 	javaDocLike.addSupport(['java', 'javascript', 'php'], javaDocLike);
 
