@@ -62,7 +62,7 @@
 	 * Adds doc-comment support to the given languages for the given documentation language.
 	 *
 	 * @param {string[]|string} languages
-	 * @param {Grammar} docLanguage
+	 * @param {Object} docLanguage
 	 */
 	function addSupport(languages, docLanguage) {
 		if (typeof languages === 'string') {
