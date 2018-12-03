@@ -4,6 +4,7 @@
  * @param [n=1+2] - A number.
  * @param {number} n - A number.
  * @param {{[x: string]: {start: number, end?: number}}} map
+ * @param {any} foo.bar
  */
 
 ----------------------------------------------------
@@ -11,19 +12,19 @@
 [
 	"/**\n * ",
 	["keyword", "@param"],
-	["parameter", "n"],
+	["parameter", ["n"]],
 	" - A number.\n * ",
 	["keyword", "@param"],
 	["optional-parameter", [
 		["punctuation", "["],
-		["parameter", "n"],
+		["parameter", ["n"]],
 		["punctuation", "]"]
 	]],
 	" - A number.\n * ",
 	["keyword", "@param"],
 	["optional-parameter", [
 		["punctuation", "["],
-		["parameter", "n"],
+		["parameter", ["n"]],
 		["punctuation", "="],
 		["code", [
 			["number", "1"],
@@ -39,7 +40,7 @@
 		"number",
 		["punctuation", "}"]
 	]],
-	["parameter", "n"],
+	["parameter", ["n"]],
 	" - A number.\n * ",
 	["keyword", "@param"],
 	["class-name", [
@@ -64,7 +65,19 @@
 		["punctuation", "}"],
 		["punctuation", "}"]
 	]],
-	["parameter", "map"],
+	["parameter", ["map"]],
+	"\n * ",
+	["keyword", "@param"],
+	["class-name", [
+		["punctuation", "{"],
+		"any",
+		["punctuation", "}"]
+	]],
+	["parameter", [
+		"foo",
+		["punctuation", "."],
+		"bar"
+	]],
 	"\n */"
 ]
 
