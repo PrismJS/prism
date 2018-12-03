@@ -43,3 +43,5 @@ Prism.languages.yaml = {
 	'important': /[&*][\w]+/,
 	'punctuation': /---|[:[\]{}\-,|>?]|\.\.\./
 };
+
+Prism.languages.yml = Prism.languages.yaml;

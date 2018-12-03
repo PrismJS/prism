@@ -399,6 +399,10 @@
 			],
 			"owner": "RunDevelopment"
 		},
+		"javastacktrace": {
+			"title": "Java stack trace",
+			"owner": "RunDevelopment"
+		},
 		"jolie": {
 			"title": "Jolie",
 			"require": "clike",
@@ -767,6 +771,10 @@
 			"require": "markup",
 			"peerDependencies": "css",
 			"owner": "Golmote"
+		},
+		"toml": {
+			"title": "TOML",
+			"owner": "RunDevelopment"
 		},
 		"tt2": {
 			"title": "Template Toolkit 2",
