@@ -1,0 +1,34 @@
+var(--color-primary)
+var(--level-3)
+calc(100% - var(--margin-size) * 2)
+
+----------------------------------------------------
+
+[
+	["function", "var"],
+	["punctuation", "("],
+	["variable", "--color-primary"],
+	["punctuation", ")"],
+
+	["function", "var"],
+	["punctuation", "("],
+	["variable", "--level-3"],
+	["punctuation", ")"],
+
+	["function", "calc"],
+	["punctuation", "("],
+	["number", "100"],
+	["unit", "%"],
+	["operator", "-"],
+	["function", "var"],
+	["punctuation", "("],
+	["variable", "--margin-size"],
+	["punctuation", ")"],
+	["operator", "*"],
+	["number", "2"],
+	["punctuation", ")"]
+]
+
+----------------------------------------------------
+
+Checks for variables.
