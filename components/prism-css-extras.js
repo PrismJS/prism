@@ -6,7 +6,7 @@ Prism.languages.css.selector = {
 			pattern: /:[-\w]+(?:\((?:[^()]|\([^()]*\))*\))?/,
 			inside: {
 				'selector': {
-					pattern: /(^:(?:has|is|not|where)\()[\s\S]+(?=\)$)/,
+					pattern: /(^:(?:has|host|host-context|is|not|where)\()[\s\S]+(?=\)$)/,
 					lookbehind: true,
 					alias: 'argument',
 					inside: null
