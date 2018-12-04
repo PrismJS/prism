@@ -407,7 +407,7 @@ var _ = _self.Prism = {
 		}
 	},
 
-	tokenize: function(text, grammar, language) {
+	tokenize: function(text, grammar) {
 		var strarr = [text];
 
 		var rest = grammar.rest;
