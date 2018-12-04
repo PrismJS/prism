@@ -291,7 +291,7 @@ function loadPlugin (pluginName)
 {
 	var plugin = components.plugins[pluginName];
 	if (!plugin){
-		return;
+		return Promise.resolve();
 	}
 
 	var pluginPath = components.plugins.meta.path;
@@ -302,7 +302,7 @@ function loadPlugin (pluginName)
 		$u.script(pluginPath + '.js', function() {
 			this.setAttribute('data-type', 'plugin');
 
-			var hasCss = !!!plugin.noCSS;
+			var hasCss = !!plugin.noCSS;
 
 			if (hasCss) {
 				var style = document.createElement('link');
