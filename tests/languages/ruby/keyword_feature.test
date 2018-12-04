@@ -5,7 +5,7 @@ begin
 break
 case
 class;
-def
+def;
 define_method
 defined
 do
@@ -56,7 +56,7 @@ yield
 	["keyword", "break"],
 	["keyword", "case"],
 	["keyword", "class"], ["punctuation", ";"],
-	["keyword", "def"],
+	["keyword", "def"], ["punctuation", ";"],
 	["keyword", "define_method"],
 	["keyword", "defined"],
 	["keyword", "do"],

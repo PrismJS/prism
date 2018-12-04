@@ -12,7 +12,7 @@ fetch('some-resource.json')
 	["punctuation", "."],
 	["function", "then"],
 	["punctuation", "("],
-	"response ",
+	["parameter", ["response"]],
 	["operator", "=>"],
 	" response",
 	["punctuation", "."],

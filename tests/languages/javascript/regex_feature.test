@@ -1,22 +1,24 @@
 /foo bar/;
-/foo/gimyu,
+/foo/gimyu;
 /[\[\b\]]{2,4}(?:foo)*/;
 /foo"test"bar/;
-/foo\//
+/foo\//;
+/[]/;
+/[\]/]/;
 1 / 4 + "/, not a regex";
 / '1' '2' '3' '4' '5' /
-[/foo/],
-/\burl\(path\)/,
-/gimyu\.jpg$|\.png$/,
-/\xCA\xfe\XA1\u4d5a\u{12345}\076\cI?/,
-/^.\1+\0?/,
-/[s^]\\\[s]\\\\[^sA-c\w\0\1\uffff${1}]/
+[/foo/];
+/\burl\(path\)/;
+/gimyu\.jpg$|\.png$/;
+/\xCA\xfe\XA1\u4d5a\u{12345}\076\cI?/;
+/^.\1+\0?/;
+/[s^]\\\[s]\\\\[^sA-c\w\0\1\uffff${1}]/;
 
 ----------------------------------------------------
 
 [
 	["regex", ["/foo bar/"]], ["punctuation", ";"],
-	["regex", ["/foo/", ["regex-flag", "gimyu"]]], ["punctuation", ","],
+	["regex", ["/foo/", ["regex-flag", "gimyu"]]], ["punctuation", ";"],
 	["regex", [
 		"/",
 		["regex-charset", [
@@ -32,10 +34,28 @@
 		"/"
 	]], ["punctuation", ";"],
 	["regex", ["/foo\"test\"bar/"]], ["punctuation", ";"],
-	["regex", ["/foo", ["regex-escape", "\\/"], "/"]],
+	["regex", ["/foo", ["regex-escape", "\\/"], "/"]], ["punctuation", ";"],
+	["regex", [
+		"/",
+		["regex-charset", [
+			["regex-punctuation", "["],
+			["regex-punctuation", "]"]
+		]],
+		"/"
+	]], ["punctuation", ";"],
+	["regex", [
+		"/",
+		["regex-charset", [
+			["regex-punctuation", "["],
+			["regex-escape", "\\]"],
+			"/",
+			["regex-punctuation", "]"]
+		]],
+		"/"
+	]], ["punctuation", ";"],
 	["number", "1"], ["operator", "/"], ["number", "4"], ["operator", "+"], ["string", "\"/, not a regex\""], ["punctuation", ";"],
 	["regex", ["/ '1' '2' '3' '4' '5' /"]],
-	["punctuation", "["], ["regex", ["/foo/"]], ["punctuation", "]"], ["punctuation", ","],
+	["punctuation", "["], ["regex", ["/foo/"]], ["punctuation", "]"], ["punctuation", ";"],
 	["regex", [
 		"/",
 		["regex-anchor", "\\b"],
@@ -44,7 +64,7 @@
 		"path",
 		["regex-escape", "\\)"],
 		"/"
-	]], ["punctuation", ","],
+	]], ["punctuation", ";"],
 	["regex", [
 		"/gimyu",
 		["regex-escape", "\\."],
@@ -55,7 +75,7 @@
 		"png",
 		["regex-anchor", "$"],
 		"/"
-	]], ["punctuation", ","],
+	]], ["punctuation", ";"],
 	["regex", [
 		"/",
 		["regex-escape", "\\xCA"],
@@ -68,7 +88,7 @@
 		["regex-escape", "\\cI"],
 		["regex-quantifier", "?"],
 		"/"
-	]], ["punctuation", ","],
+	]], ["punctuation", ";"],
 	["regex", [
 		"/",
 		["regex-anchor", "^"],
@@ -78,7 +98,7 @@
 		["regex-escape", "\\0"],
 		["regex-quantifier", "?"],
 		"/"
-	]], ["punctuation", ","],
+	]], ["punctuation", ";"],
 	["regex", [
 		"/",
 		["regex-charset", [
@@ -103,7 +123,7 @@
 			["regex-punctuation", "]"]
 		]],
 		"/"
-	]]
+	]], ["punctuation", ";"]
 ]
 
 ----------------------------------------------------
