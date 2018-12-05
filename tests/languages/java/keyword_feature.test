@@ -20,6 +20,9 @@ finally long
 strictfp volatile const
 float native super while
 var null
+module requires transitive
+exports uses open
+opens with to provides
 
 ----------------------------------------------------
 
@@ -45,7 +48,10 @@ var null
 	["keyword", "finally"], ["keyword", "long"],
 	["keyword", "strictfp"], ["keyword", "volatile"], ["keyword", "const"],
 	["keyword", "float"], ["keyword", "native"], ["keyword", "super"], ["keyword", "while"],
-	["keyword", "var"], ["keyword", "null"]
+	["keyword", "var"], ["keyword", "null"],
+	["keyword", "module"], ["keyword", "requires"], ["keyword", "transitive"],
+	["keyword", "exports"], ["keyword", "uses"], ["keyword", "open"],
+	["keyword", "opens"], ["keyword", "with"], ["keyword", "to"], ["keyword","provides"]
 ]
 
 ----------------------------------------------------
