@@ -643,12 +643,20 @@ Prism.languages.css = {
 Prism.languages.css['atrule'].inside.rest = Prism.languages.css;
 
 if (Prism.languages.markup) {
-	Prism.languages.insertBefore('markup', 'tag', {
+	Prism.languages.insertBefore('markup', 'cdata', {
 		'style': {
-			pattern: /(<style[\s\S]*?>)[\s\S]*?(?=<\/style>)/i,
+			pattern: /(<style[\s\S]*?>)(?:\s*<!\[CDATA\[[\s\S]*?\]\]>\s*|[\s\S]*?)(?=<\/style>)/i,
 			lookbehind: true,
-			inside: Prism.languages.css,
-			alias: 'language-css',
+			inside: {
+				'cdata': {
+					pattern: /^(\s*)<!\[CDATA\[|\]\]>(?=\s*$)/i,
+					lookbehind: true
+				},
+				'language-css': {
+					pattern: /\S[\s\S]*/,
+					inside: Prism.languages.css
+				}
+			},
 			greedy: true
 		}
 	});
@@ -792,12 +800,20 @@ Prism.languages.insertBefore('javascript', 'string', {
 });
 
 if (Prism.languages.markup) {
-	Prism.languages.insertBefore('markup', 'tag', {
+	Prism.languages.insertBefore('markup', 'cdata', {
 		'script': {
-			pattern: /(<script[\s\S]*?>)[\s\S]*?(?=<\/script>)/i,
+			pattern: /(<script[\s\S]*?>)(?:\s*<!\[CDATA\[[\s\S]*?\]\]>\s*|[\s\S]*?)(?=<\/script>)/i,
 			lookbehind: true,
-			inside: Prism.languages.javascript,
-			alias: 'language-javascript',
+			inside: {
+				'cdata': {
+					pattern: /^(\s*)<!\[CDATA\[|\]\]>(?=\s*$)/i,
+					lookbehind: true
+				},
+				'language-javascript': {
+					pattern: /\S[\s\S]*/,
+					inside: Prism.languages.javascript
+				}
+			},
 			greedy: true
 		}
 	});

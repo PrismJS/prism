@@ -1,20 +1,22 @@
 <script type="text/javascript">foo()</script>
+
 <script>
 "foo bar"
 </script>
 
+<script type="application/javascript"><![CDATA[
+let '</script>';
+]]></script>
+
 ----------------------------------------------------
 
 [
-
 	["tag", [
 		["tag", [
 			["punctuation", "<"],
 			"script"
 		]],
-		["attr-name", [
-			"type"
-		]],
+		["attr-name", ["type"]],
 		["attr-value", [
 			["punctuation", "="],
 			["punctuation", "\""],
@@ -24,9 +26,11 @@
 		["punctuation", ">"]
 	]],
 	["script", [
-		["function", "foo"],
-		["punctuation", "("],
-		["punctuation", ")"]
+		["language-javascript", [
+			["function", "foo"],
+			["punctuation", "("],
+			["punctuation", ")"]
+		]]
 	]],
 	["tag", [
 		["tag", [
@@ -44,7 +48,40 @@
 		["punctuation", ">"]
 	]],
 	["script", [
-		["string", "\"foo bar\""]
+		["language-javascript", [
+			["string", "\"foo bar\""]
+		]]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"script"
+		]],
+		["punctuation", ">"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"script"
+		]],
+		["attr-name", ["type"]],
+		["attr-value", [
+			["punctuation", "="],
+			["punctuation", "\""],
+			"application/javascript",
+			["punctuation", "\""]
+		]],
+		["punctuation", ">"]
+	]],
+	["script", [
+		["cdata", "<![CDATA["],
+		["language-javascript", [
+			["keyword", "let"],
+			["string", "'</script>'"],
+			["punctuation", ";"]
+		]],
+		["cdata", "]]>"]
 	]],
 	["tag", [
 		["tag", [
