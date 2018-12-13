@@ -3,7 +3,7 @@ Prism.languages.vala = Prism.languages.extend('clike', {
 	'class-name': [
 		{
 			// (Foo bar, Bar baz)
-			pattern: /\b[A-Z]\w*(?:\.\w+)*\b(?=\s+\w+)/,
+			pattern: /\b[A-Z]\w*(?:\.\w+)*\b(?=(?:\?\s+|\*?\s+\*?)\w+)/,
 			inside: {
 				punctuation: /\./
 			}
@@ -26,7 +26,7 @@ Prism.languages.vala = Prism.languages.extend('clike', {
 		},
 		{
 			// class Foo
-			pattern: /((?:\b(?:class|interface|new)\s+)|(?:catch\s+\())[A-Z]\w*(?:\.\w+)*\b/,
+			pattern: /((?:\b(?:class|interface|new|struct|enum)\s+)|(?:catch\s+\())[A-Z]\w*(?:\.\w+)*\b/,
 			lookbehind: true,
 			inside: {
 				punctuation: /\./
