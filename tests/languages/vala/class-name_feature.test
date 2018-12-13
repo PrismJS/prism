@@ -1,4 +1,5 @@
 class Foo
+enum Bar
 interface BarBaz
 class Foo : Bar
 [Foobar]
@@ -9,6 +10,8 @@ void Foo(Bar bar, Baz baz)
 [
 	["keyword", "class"],
 	["class-name", ["Foo"]],
+	["keyword", "enum"],
+	["class-name", ["Bar"]],
 	["keyword", "interface"],
 	["class-name", ["BarBaz"]],
 	["keyword", "class"],

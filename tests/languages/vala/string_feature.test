@@ -20,7 +20,7 @@ string"""
 	["raw-string", "\"\"\"Multi line\r\nstring\"\"\""],
 	["template-string", 
 		[
-			"@\"foo ",
+			["string", "@\"foo "],
 			[
 				"interpolation",
 				[
@@ -30,12 +30,12 @@ string"""
 					"bar"
 				]
 			],
-			"\""
+			["string", "\""]
 		]
 	],
 	["template-string",
 		[
-			"@\"foo ",
+			["string", "@\"foo "],
 			[
 				"interpolation",
 				[
@@ -50,7 +50,7 @@ string"""
 					]
 				]
 			],
-			"\""
+			["string", "\""]
 		]
 	],
 	["string", "'a'"],
