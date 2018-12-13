@@ -40,25 +40,25 @@ Prism.languages.vala = Prism.languages.extend('clike', {
 
 Prism.languages.insertBefore('vala','string', {
 	'raw-string': {
-		pattern: /(""")[\s\S]*?\1/,
+		pattern: /"""[\s\S]*?"""/,
 		greedy: true,
 		alias: 'string'
 	},
 	'template-string': {
 		pattern: /@"[\s\S]*?"/,
 		greedy: true,
-		alias: 'string',
 		inside: {
 			'interpolation': {
 				pattern: /\$(?:\([^)]*\)|[a-zA-Z]\w*)/,
 				inside: {
 					'delimiter': {
 						pattern: /^\$\(?|\)$/,
-							alias: 'punctuation'
-				},
+						alias: 'punctuation'
+					},
 					rest: Prism.languages.vala
 				}
-			}
+			},
+			'string': /[\s\S]+/
 		}
 	}
 });
