@@ -755,6 +755,11 @@
 			"alias": "ts",
 			"owner": "vkbansal"
 		},
+		"vala": {
+			"title": "Vala",
+			"require": "clike",
+			"owner": "TemplarVolk"
+		},
 		"vbnet": {
 			"title": "VB.Net",
 			"require": "basic",
