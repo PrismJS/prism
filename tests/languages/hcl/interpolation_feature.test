@@ -4,6 +4,7 @@
 "${length(var.hostnames)}"
 "${format("web-%03d", count.index + 1)}"
 "${file("templates/web_init.tpl")}"
+"${replace(var.sub_domain, ".", "\\\\\\\\.")}"
 
 ----------------------------------------------------
 
@@ -11,91 +12,107 @@
 	"\"",
 	["interpolation",
 		[
-			["operator", "${"],
+			["punctuation", "$"],
+			["punctuation", "{"],
 			["keyword", "data"],
-			["operator", "."],
+			["punctuation", "."],
 			["type", "aws_availability_zones"],
-			["operator", "."],
+			["punctuation", "."],
 			["others", "available"],
-			["operator", "."],
+			["punctuation", "."],
 			["others", "names"],
 			["punctuation", "["],
 			["number", "0"],
 			["punctuation", "]"],
-			["operator", "}"]
+			["punctuation", "}"]
 		]
 	],
 	"\"\r\n\"",
 	["interpolation",
 		[
-			["operator", "${"],
+			["punctuation", "$"],
+			["punctuation", "{"],
 			["others", "aws_db_subnet_group"],
-			["operator", "."],
+			["punctuation", "."],
 			["others", "default"],
-			["operator", "."],
+			["punctuation", "."],
 			["others", "id"],
-			["operator", "}"]
+			["punctuation", "}"]
 		]
 	],
 	"\"\r\n\"",
 	["interpolation",
 		[
-			["operator", "${"],
+			["punctuation", "$"],
+			["punctuation", "{"],
 			["keyword", "var"],
-			["operator", "."],
+			["punctuation", "."],
 			["type", "something"],
 			" ? ",
 			["number", "1"],
 			" : ",
 			["number", "0"],
-			["operator", "}"]
+			["punctuation", "}"]
 		]
 	],
 	"\"\r\n\"",
 	["interpolation",
 		[
-			["operator", "${"],
+			["punctuation", "$"],
+			["punctuation", "{"],
 			["function", "length"],
 			["punctuation", "("],
 			["keyword", "var"],
-			["operator", "."],
+			["punctuation", "."],
 			["type", "hostnames"],
 			["punctuation", ")"],
-			["operator", "}"]
+			["punctuation", "}"]
 		]
 	],
 	"\"\r\n\"",
 	["interpolation",
 		[
-			["operator", "${"],
+			["punctuation", "$"],
+			["punctuation", "{"],
 			["function", "format"],
 			["punctuation", "("],
 			["string", "\"web-%03d\""],
 			["punctuation", ","],
 			["keyword", "count"],
-			["operator", "."],
+			["punctuation", "."],
 			["type", "index"],
 			["punctuation", "+"],
 			["number", "1"],
 			["punctuation", ")"],
-			["operator", "}"]
+			["punctuation", "}"]
 		]
 	],
 	"\"\r\n\"",
 	["interpolation",
 		[
-			["operator", "${"],
+			["punctuation", "$"],
+			["punctuation", "{"],
 			["function", "file"],
 			["punctuation", "("],
-			["punctuation", "\""],
-			["others", "templates"],
-			["punctuation", "/"],
-			["others", "web_init"],
-			["operator", "."],
-			["others", "tpl"],
-			["punctuation", "\""],
+			["string", "\"templates/web_init.tpl\""],
 			["punctuation", ")"],
-			["operator", "}"]
+			["punctuation", "}"]
+		]
+	],
+	"\"\r\n\"",
+	["interpolation",
+		[
+			["punctuation", "$"],
+			["punctuation", "{"],
+			["function", "replace"],
+			["punctuation", "("],
+			["keyword", "var"],
+			["punctuation", "."],
+			["type", "sub_domain"],
+			["punctuation", ","],
+			["string", "\".\", \"\\\\\\\\\\\\\\\\.\""],
+			["punctuation", ")"],
+			["punctuation", "}"]
 		]
 	],
 	"\""
