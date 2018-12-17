@@ -10,21 +10,21 @@ terraform {
 	["keyword",
 		["resource ",
 		["type", "\"aws_db_instance\""]]],
-		["string", "\"main\""],
-		" {\r\n",
+    ["string", "\"main\""],
+    ["punctuation", "{"],
 	["keyword",
 		["data ",
 		["type", "\"terraform_remote_state\""]]],
-		["string", "\"main\""],
-		" {\r\n",
+    ["string", "\"main\""],
+    ["punctuation", "{"],
 	["keyword",
 		["output",
 		["type", " \"dev_vpc_id\" "]]],
-		"{\r\n",
+	["punctuation", "{"],
 	["keyword", "config"],
-		" {\r\n",
+	["punctuation", "{"],
 	["keyword", "terraform"],
-		" {"
+	["punctuation", "{"]
 ]
 
 ----------------------------------------------------

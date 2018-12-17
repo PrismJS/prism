@@ -1,11 +1,14 @@
 "double quoted\"' % string"
-'single quoted"\' % string'
+multiline_literal = "hello
+  world"
 
 ----------------------------------------------------
 
 [
 	["string", "\"double quoted\\\"' % string\""],
-	"\r\n'single quoted\"\\' % string'"
+	["property", "multiline_literal"],
+	["punctuation", "="],
+	["string", "\"hello\r\n  world\""]
 ]
 
 ----------------------------------------------------

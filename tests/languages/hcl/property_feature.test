@@ -6,16 +6,16 @@ FOO = "bar"
 ----------------------------------------------------
 
 [
-	["property", "foo "],
+	["property", "foo"],
 	["punctuation", "="],
 	["string", "\"bar\""],
-	["property", "c "],
+	["property", "c"],
 	["punctuation", "="],
 	["number", "1e10"],
-	["property", "FOO "],
+	["property", "FOO"],
 	["punctuation", "="],
 	["string", "\"bar\""],
-	["property", "\"bool\" "],
+	["property", "\"bool\""],
 	["punctuation", "="],
 	["punctuation", "["],
 	["boolean", "false"],
@@ -24,4 +24,4 @@ FOO = "bar"
 
 ----------------------------------------------------
 
-Checks for all keywords.
+Checks for all properties.

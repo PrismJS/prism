@@ -40,9 +40,9 @@ Prism.languages.hcl = {
 						alias: 'variable'
 					}
 				],
-				'keyword': /(?:terraform|var|self|count|module|path|data|local)/i,
+				'keyword': /terraform|var|self|count|module|path|data|local/i,
 				'function': /\w+(?=\()/,
-				'string': /"(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*"/,
+				'string': /"(?:\\[\s\S]|[^\\"])*"/,
 				'punctuation': /[!"\$#%&'()*+,.\/;<=>@\[\\\]^`{|}~]/,
 				'number': /-?\d+\.?\d*/,
 				'others': [
@@ -55,11 +55,11 @@ Prism.languages.hcl = {
 		}
 	],
 	'property': [
-		/[^\\\r\n]+(?=\s*=)/,
-		/"[^\\\r\n]+"(?=\s*:)/
+		/[\w-\.]+(?=\s*=)/,
+		/"(?:\\[\s\S]|[^\\"])+"(?=\s*[:=])/,
 	],
-	'string': /"(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*"/,
-	'number': /(?:\d+.?\d*e[+-]?\d+|0[0-7]+|0x[\da-f]+|\d+\.?\d*)/i,
-	'boolean': /\b(?:true|false)\b/i,
-	'punctuation': /[=\[\]]/,
+	'string': /"(?:\\[\s\S]|[^\\"])*"/,
+	'number': /0x[\da-f]+|\d+\.?\d*(?:e[+-]?\d+)?/i,
+	'boolean': /\b(true|false)\b/i,
+	'punctuation': /[=\[\]{}]/,
 };

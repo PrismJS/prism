@@ -14,13 +14,10 @@
 }</code></pre>
 
 <h2>Provider</h2>
-<pre><code>resource "aws_instance" "web" {
-  ami           = "${data.aws_ami.ubuntu.id}"
-  instance_type = "t2.micro"
-
-  tags {
-    Name = "HelloWorld"
-  }
+<pre><code>provider "aws" {
+  access_key = "${var.aws_access_key}"
+  secret_key = "${var.aws_secret_key}"
+  region     = "us-east-1"
 }</code></pre>
 
 <h2>Variables</h2>
