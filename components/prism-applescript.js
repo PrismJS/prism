@@ -1,7 +1,7 @@
 Prism.languages.applescript = {
 	'comment': [
 		// Allow one level of nesting
-		/\(\*(?:\(\*[\s\S]*?\*\)|[\s\S])*?\*\)/,
+		RegExp(Prism.patterns.nested(1, /\(\*/, /\*\)/, /(?!\(\*)[\s\S]/, { quantifier: '*?' })),
 		/--.+/,
 		/#.+/
 	],

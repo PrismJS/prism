@@ -447,6 +447,52 @@ var _ = _self.Prism = {
 				callback(env);
 			}
 		}
+	},
+
+	patterns: {
+		/**
+		 * Creates a pattern for a structure which can be recursively nested in itself a finite number of times.
+		 *
+		 * Note that the flags of all given patterns will be ignored.
+		 *
+		 * @param {number} depth the maximum number of times the structure can be nested in itself.
+		 * A depth of zero is equal to no recursive occurrences.
+		 * @param {string|RegExp} opening the opening pattern of the recursive structure to be matched.
+		 * @param {string|RegExp} closing the closing pattern of the recursive structure to be matched.
+		 * @param {string|RegExp|(string|RegExp)[]} inside the contents of the recursive structure without the
+		 * occurrences of itself. Because `inside` is matched repeatedly it might take exponential time to fail,
+		 * so only match one character/structure at a time to avoid this.
+		 * @param {object} [options={}]
+		 * @param {string} [options.quantifier = '*'] the quantifier describing how many times `inside` will be matched.
+		 * @returns {string} the pattern source.
+		 * @example
+		 * nested(2, /{/, /}/, [/[^{}\\]/, /\\./], { quantifier: '+' })
+		 */
+		nested: function (depth, opening, closing, inside, options) {
+
+			function toPattern(value) {
+				if (_.util.type(value) === 'Array') {
+					value = value.map(toPattern).join('|');
+				} else if (typeof value !== 'string') {
+					value = value.source;
+				}
+				return value;
+			}
+
+			var openingPattern = toPattern(opening);
+			var closingPattern = toPattern(closing);
+			var insidePattern = toPattern(inside);
+
+			options = options || {};
+			var quantifier = options.quantifier || '*';
+
+			function getLevel(currentDepth) {
+				var nestedPattern = currentDepth >= depth ? '' : '|' + getLevel(currentDepth + 1);
+				return openingPattern + '(?:' + insidePattern + nestedPattern + ')' + quantifier + closingPattern;
+			}
+
+			return '(?:' + getLevel(0) + ')';
+		}
 	}
 };
 

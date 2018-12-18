@@ -42,7 +42,7 @@
 			}
 		},
 		'generics': {
-			pattern: /<(?:[\w\s,.&?]|<(?:[\w\s,.&?]|<(?:[\w\s,.&?]|<[\w\s,.&?]*>)*>)*>)*>/,
+			pattern: RegExp(Prism.patterns.nested(3, '<', '>', /[\w\s,.&?]/)),
 			inside: {
 				'class-name': className,
 				'keyword': keywords,
