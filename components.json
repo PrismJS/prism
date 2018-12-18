@@ -649,6 +649,10 @@
 			"require": "clike",
 			"owner": "Golmote"
 		},
+		"regex-javascript": {
+			"title": "Regex (Javascript)",
+			"owner": "RunDevelopment"
+		},
 		"rest": {
 			"title": "reST (reStructuredText)",
 			"owner": "Golmote"
