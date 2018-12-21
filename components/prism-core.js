@@ -195,11 +195,19 @@ var _ = _self.Prism = {
 		element.className = element.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language;
 
 		if (element.parentNode) {
-			// Set language on the parent, for styling
 			parent = element.parentNode;
 
 			if (/pre/i.test(parent.nodeName)) {
+				// Set language on the parent, for styling
 				parent.className = parent.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language;
+
+				// remove leading and trailing spaces before <code>
+				[parent.childNodes.length - 1, 0].forEach(function (i) {
+					var node = parent.childNodes[i];
+					if (node && node.nodeType === 3 && !node.wholeText.trim()) {
+						parent.removeChild(node);
+					}
+				});
 			}
 		}
 
