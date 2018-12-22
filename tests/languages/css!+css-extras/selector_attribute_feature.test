@@ -13,8 +13,12 @@
 [foo|attr][*|attr][|attr] {}
 [foo|attr|=val] {}
 
-[attr = val i] {}
-[attr = "val" S] {}
+[attr=val i] {}
+[attr="val" S] {}
+
+[ attr ] {}
+[ attr = val ] {}
+[ attr = val   i] {}
 
 [attr="i#m :not(a.class)"] {}
 
@@ -206,6 +210,41 @@
 			["operator", "="],
 			["value", "\"val\""],
 			["case-sensitivity", "S"],
+			["punctuation", "]"]
+		]]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["selector", [
+		["attribute", [
+			["punctuation", "["],
+			["attribute", "attr"],
+			["punctuation", "]"]
+		]]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["selector", [
+		["attribute", [
+			["punctuation", "["],
+			["attribute", "attr"],
+			["operator", "="],
+			["value", "val"],
+			["punctuation", "]"]
+		]]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["selector", [
+		["attribute", [
+			["punctuation", "["],
+			["attribute", "attr"],
+			["operator", "="],
+			["value", "val"],
+			["case-sensitivity", "i"],
 			["punctuation", "]"]
 		]]
 	]],

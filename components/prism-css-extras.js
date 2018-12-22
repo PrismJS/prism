@@ -16,12 +16,16 @@ Prism.languages.css.selector = {
 					alias: 'keyword'
 				},
 				'namespace': {
-					pattern: /^[-*\w\xA0-\uFFFF]*\|(?!=)/,
+					pattern: /^(\s*)[-*\w\xA0-\uFFFF]*\|(?!=)/,
+					lookbehind: true,
 					inside: {
 						'punctuation': /\|$/
 					}
 				},
-				'attribute': /^[-\w\xA0-\uFFFF]+/,
+				'attribute': {
+					pattern: /^(\s*)[-\w\xA0-\uFFFF]+/,
+					lookbehind: true
+				},
 				'value': [
 					/("|')(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,
 					{
