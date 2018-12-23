@@ -13,7 +13,7 @@
 	 *
 	 * If the given adapter is already registered or not a function, nothing will happen.
 	 *
-	 * @param {(response: any, pre?: HTMLElement) => string} adapter The adapter to be registered.
+	 * @param {(response: any, pre?: HTMLPreElement) => string} adapter The adapter to be registered.
 	 */
 	function registerAdapter(adapter) {
 		if (typeof adapter === "function" && !getAdapter(adapter)) {
@@ -26,7 +26,7 @@
 	 * If no fitting adapter is registered, `null` will be returned.
 	 *
 	 * @param {string|Function} adapter The adapter itself or the function name of an adapter.
-	 * @returns {(response: any, pre?: HTMLElement) => string} A registered adapter or `null`.
+	 * @returns {(response: any, pre?: HTMLPreElement) => string} A registered adapter or `null`.
 	 */
 	function getAdapter(adapter) {
 		if (typeof adapter === "function") {
