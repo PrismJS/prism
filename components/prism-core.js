@@ -107,6 +107,10 @@ var _ = _self.Prism = {
 			var grammar = root[inside];
 			var ret = {};
 
+			if (!grammar.hasOwnProperty(before)) {
+				throw new Error('Cannot insert before "' + before + '" in "' + inside + '"');
+			}
+
 			for (var token in grammar) {
 				if (grammar.hasOwnProperty(token)) {
 
