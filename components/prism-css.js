@@ -1,7 +1,7 @@
 Prism.languages.css = {
 	'comment': /\/\*[\s\S]*?\*\//,
 	'atrule': {
-		pattern: /@[\w-]+?.*?(?:;|(?=\s*\{))/i,
+		pattern: /@[\w-]+?[\s\S]*?(?:;|(?=\s*\{))/i,
 		inside: {
 			'rule': /@[\w-]+/
 			// See rest below
