@@ -5,11 +5,13 @@ foo {
 </style>
 
 <style>
+.bar { }
 <![CDATA[
 foo {
 	bar: baz;
 }
 ]]>
+#foo { }
 </style>
 
 <foo style="bar:baz;">
@@ -58,17 +60,31 @@ foo {
 		["punctuation", ">"]
 	]],
 	["style", [
-		["cdata", "<![CDATA["],
 		["language-css", [
-			["selector", "foo"],
+			["selector", ".bar"],
 			["punctuation", "{"],
-			["property", "bar"],
-			["punctuation", ":"],
-			" baz",
-			["punctuation", ";"],
 			["punctuation", "}"]
 		]],
-		["cdata", "]]>"]
+		["included-cdata", [
+			["cdata", "<![CDATA["],
+			["content", [
+				["language-css", [
+					["selector", "foo"],
+					["punctuation", "{"],
+					["property", "bar"],
+					["punctuation", ":"],
+					" baz",
+					["punctuation", ";"],
+					["punctuation", "}"]
+				]]
+			]],
+			["cdata", "]]>"]
+		]],
+		["language-css", [
+			["selector", "#foo"],
+			["punctuation", "{"],
+			["punctuation", "}"]
+		]]
 	]],
 	["tag", [
 		["tag", [

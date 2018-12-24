@@ -609,6 +609,50 @@ Prism.hooks.add('wrap', function(env) {
 	}
 });
 
+Object.defineProperty(Prism.languages.markup.tag, 'addInlined', {
+	/**
+	 * Adds an inlined language to markup.
+	 *
+	 * An example of an inlined language is CSS with `<style>` tags.
+	 *
+	 * @param {string} tagName The name of the tag that contains the inlined language. This name will be treated as
+	 * case insensitive.
+	 * @param {string} lang The language key.
+	 * @example
+	 * addInlined('style', 'css');
+	 */
+	value: function addInlined(tagName, lang) {
+		var inside = {};
+		inside['language-' + lang] = {
+			pattern: /[\s\S]+/,
+			inside: Prism.languages[lang]
+		};
+
+		var def = {};
+		def[tagName] = {
+			pattern: RegExp(/(<__[\s\S]*?>)(?:<!\[CDATA\[[\s\S]*?\]\]>\s*|[\s\S])*?(?=<\/__>)/.source.replace(/__/g, tagName), 'i'),
+			lookbehind: true,
+			greedy: true,
+			inside: {
+				'included-cdata': {
+					pattern: /<!\[CDATA\[[\s\S]*?\]\]>/i,
+					inside: {
+						'content': {
+							pattern: /(^<!\[CDATA\[)[\s\S]+?(?=\]\]>$)/i,
+							lookbehind: true,
+							inside: inside
+						},
+						'cdata': /^<!\[CDATA\[|\]\]>$/i
+					}
+				},
+				rest: inside
+			}
+		};
+
+		Prism.languages.insertBefore('markup', 'cdata', def);
+	}
+});
+
 Prism.languages.xml = Prism.languages.markup;
 Prism.languages.html = Prism.languages.markup;
 Prism.languages.mathml = Prism.languages.markup;
@@ -643,23 +687,7 @@ Prism.languages.css = {
 Prism.languages.css['atrule'].inside.rest = Prism.languages.css;
 
 if (Prism.languages.markup) {
-	Prism.languages.insertBefore('markup', 'cdata', {
-		'style': {
-			pattern: /(<style[\s\S]*?>)(?:\s*<!\[CDATA\[[\s\S]*?\]\]>\s*|[\s\S]*?)(?=<\/style>)/i,
-			lookbehind: true,
-			inside: {
-				'cdata': {
-					pattern: /^(\s*)<!\[CDATA\[|\]\]>(?=\s*$)/i,
-					lookbehind: true
-				},
-				'language-css': {
-					pattern: /\S[\s\S]*/,
-					inside: Prism.languages.css
-				}
-			},
-			greedy: true
-		}
-	});
+	Prism.languages.markup.tag.addInlined('style', 'css');
 
 	Prism.languages.insertBefore('inside', 'attr-value', {
 		'style-attr': {
@@ -800,23 +828,7 @@ Prism.languages.insertBefore('javascript', 'string', {
 });
 
 if (Prism.languages.markup) {
-	Prism.languages.insertBefore('markup', 'cdata', {
-		'script': {
-			pattern: /(<script[\s\S]*?>)(?:\s*<!\[CDATA\[[\s\S]*?\]\]>\s*|[\s\S]*?)(?=<\/script>)/i,
-			lookbehind: true,
-			inside: {
-				'cdata': {
-					pattern: /^(\s*)<!\[CDATA\[|\]\]>(?=\s*$)/i,
-					lookbehind: true
-				},
-				'language-javascript': {
-					pattern: /\S[\s\S]*/,
-					inside: Prism.languages.javascript
-				}
-			},
-			greedy: true
-		}
-	});
+	Prism.languages.markup.tag.addInlined('script', 'javascript');
 }
 
 Prism.languages.js = Prism.languages.javascript;

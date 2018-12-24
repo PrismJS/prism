@@ -22,23 +22,7 @@ Prism.languages.css = {
 Prism.languages.css['atrule'].inside.rest = Prism.languages.css;
 
 if (Prism.languages.markup) {
-	Prism.languages.insertBefore('markup', 'cdata', {
-		'style': {
-			pattern: /(<style[\s\S]*?>)(?:\s*<!\[CDATA\[[\s\S]*?\]\]>\s*|[\s\S]*?)(?=<\/style>)/i,
-			lookbehind: true,
-			inside: {
-				'cdata': {
-					pattern: /^(\s*)<!\[CDATA\[|\]\]>(?=\s*$)/i,
-					lookbehind: true
-				},
-				'language-css': {
-					pattern: /\S[\s\S]*/,
-					inside: Prism.languages.css
-				}
-			},
-			greedy: true
-		}
-	});
+	Prism.languages.markup.tag.addInlined('style', 'css');
 
 	Prism.languages.insertBefore('inside', 'attr-value', {
 		'style-attr': {

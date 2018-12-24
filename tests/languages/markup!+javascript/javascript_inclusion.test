@@ -4,9 +4,13 @@
 "foo bar"
 </script>
 
-<script type="application/javascript"><![CDATA[
-let '</script>';
-]]></script>
+<script type="application/javascript">
+var a = 0;
+<![CDATA[
+let foo = '</script>';
+]]>
+"foo"
+</script>
 
 ----------------------------------------------------
 
@@ -75,13 +79,29 @@ let '</script>';
 		["punctuation", ">"]
 	]],
 	["script", [
-		["cdata", "<![CDATA["],
 		["language-javascript", [
-			["keyword", "let"],
-			["string", "'</script>'"],
+			["keyword", "var"],
+			" a ",
+			["operator", "="],
+			["number", "0"],
 			["punctuation", ";"]
 		]],
-		["cdata", "]]>"]
+		["included-cdata", [
+			["cdata", "<![CDATA["],
+			["content", [
+				["language-javascript", [
+					["keyword", "let"],
+					" foo ",
+					["operator", "="],
+					["string", "'</script>'"],
+					["punctuation", ";"]
+				]]
+			]],
+			["cdata", "]]>"]
+		]],
+		["language-javascript", [
+			["string", "\"foo\""]
+		]]
 	]],
 	["tag", [
 		["tag", [

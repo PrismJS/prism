@@ -77,23 +77,7 @@ Prism.languages.insertBefore('javascript', 'string', {
 });
 
 if (Prism.languages.markup) {
-	Prism.languages.insertBefore('markup', 'cdata', {
-		'script': {
-			pattern: /(<script[\s\S]*?>)(?:\s*<!\[CDATA\[[\s\S]*?\]\]>\s*|[\s\S]*?)(?=<\/script>)/i,
-			lookbehind: true,
-			inside: {
-				'cdata': {
-					pattern: /^(\s*)<!\[CDATA\[|\]\]>(?=\s*$)/i,
-					lookbehind: true
-				},
-				'language-javascript': {
-					pattern: /\S[\s\S]*/,
-					inside: Prism.languages.javascript
-				}
-			},
-			greedy: true
-		}
-	});
+	Prism.languages.markup.tag.addInlined('script', 'javascript');
 }
 
 Prism.languages.js = Prism.languages.javascript;
