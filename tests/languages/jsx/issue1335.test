@@ -21,7 +21,9 @@
 			["script-punctuation", "="],
 			["punctuation", "{"],
 			["punctuation", "("],
-			"e",
+			["parameter", [
+				"e"
+			]],
 			["punctuation", ")"],
 			["operator", "=>"],
 			["keyword", "this"],

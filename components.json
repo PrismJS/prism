@@ -382,6 +382,10 @@
 			"require": "clike",
 			"owner": "sherblot"
 		},
+		"javastacktrace": {
+			"title": "Java stack trace",
+			"owner": "RunDevelopment"
+		},
 		"jolie": {
 			"title": "Jolie",
 			"require": "clike",
@@ -731,6 +735,10 @@
 			"peerDependencies": "css",
 			"owner": "Golmote"
 		},
+		"toml": {
+			"title": "TOML",
+			"owner": "RunDevelopment"
+		},
 		"tt2": {
 			"title": "Template Toolkit 2",
 			"require": ["clike", "markup-templating"],
@@ -746,6 +754,11 @@
 			"require": "javascript",
 			"alias": "ts",
 			"owner": "vkbansal"
+		},
+		"vala": {
+			"title": "Vala",
+			"require": "clike",
+			"owner": "TemplarVolk"
 		},
 		"vbnet": {
 			"title": "VB.Net",
