@@ -455,6 +455,9 @@ var _ = _self.Prism = {
 		 * Replacements are not allowed to contain backreferences or capturing groups.
 		 * @returns {RegExp} A new regular expression with the flags of `basePattern` and its source with all
 		 * placeholders replaced.
+		 * @example
+		 * build(/^foo<<bar>>$/m, { bar: /b[Aa]r/ }) == /^foo(?:b[Aa]r)$/m
+		 * build(/<<0>>foo<<0>>?/, [ /bar/ ])        == /(?:bar)foo(?:bar)?/
 		 */
 		build: function build(basePattern, replacements) {
 			var placeholder = /<<([\w-]+)>>/g;
