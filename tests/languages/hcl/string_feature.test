@@ -5,10 +5,10 @@ multiline_literal = "hello
 ----------------------------------------------------
 
 [
-	["string", "\"double quoted\\\"' % string\""],
+	["string", ["\"double quoted\\\"' % string\""]],
 	["property", "multiline_literal"],
 	["punctuation", "="],
-	["string", "\"hello\r\n  world\""]
+	["string", ["\"hello\r\n  world\""]]
 ]
 
 ----------------------------------------------------

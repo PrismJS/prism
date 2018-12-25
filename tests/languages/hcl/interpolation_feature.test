@@ -9,115 +9,156 @@
 ----------------------------------------------------
 
 [
-	"\"",
-	["interpolation",
+	["string",
 		[
-			["punctuation", "$"],
-			["punctuation", "{"],
-			["keyword", "data"],
-			["punctuation", "."],
-			["type", "aws_availability_zones"],
-			["punctuation", "."],
-			["others", "available"],
-			["punctuation", "."],
-			["others", "names"],
-			["punctuation", "["],
-			["number", "0"],
-			["punctuation", "]"],
-			["punctuation", "}"]
+			"\"",
+			[
+				"interpolation",
+				[
+					["punctuation", "$"],
+					["punctuation", "{"],
+					["keyword", "data"],
+					["punctuation", "."],
+					["type", "aws_availability_zones"],
+					["punctuation", "."],
+					"available",
+					["punctuation", "."],
+					"names",
+					["punctuation", "["],
+					["number", "0"],
+					["punctuation", "]"],
+					["punctuation", "}"]
+				]
+			],
+			"\""
 		]
 	],
-	["string", "\"\r\n\""],
-	["interpolation",
+	["string",
 		[
-			["punctuation", "$"],
-			["punctuation", "{"],
-			["others", "aws_db_subnet_group"],
-			["punctuation", "."],
-			["others", "default"],
-			["punctuation", "."],
-			["others", "id"],
-			["punctuation", "}"]
+			"\"",
+			[
+				"interpolation",
+				[
+					["punctuation", "$"],
+					["punctuation", "{"],
+					"aws_db_subnet_group",
+					["punctuation", "."],
+					"default",
+					["punctuation", "."],
+					"id",
+					["punctuation", "}"]
+				]
+			],
+			"\""
 		]
 	],
-	["string", "\"\r\n\""],
-	["interpolation",
+	["string",
 		[
-			["punctuation", "$"],
-			["punctuation", "{"],
-			["keyword", "var"],
-			["punctuation", "."],
-			["type", "something"],
-			" ? ",
-			["number", "1"],
-			" : ",
-			["number", "0"],
-			["punctuation", "}"]
+			"\"",
+			[
+				"interpolation",
+				[
+					["punctuation", "$"],
+					["punctuation", "{"],
+					["keyword", "var"],
+					["punctuation", "."],
+					["type", "something"],
+					["punctuation", "?"],
+					["number", "1"],
+					["punctuation", ":"],
+					["number", "0"],
+					["punctuation", "}"]
+				]
+			],
+			"\""
 		]
 	],
-	["string", "\"\r\n\""],
-	["interpolation",
+	["string",
 		[
-			["punctuation", "$"],
-			["punctuation", "{"],
-			["function", "length"],
-			["punctuation", "("],
-			["keyword", "var"],
-			["punctuation", "."],
-			["type", "hostnames"],
-			["punctuation", ")"],
-			["punctuation", "}"]
+			"\"",
+			[
+				"interpolation",
+				[
+					["punctuation", "$"],
+					["punctuation", "{"],
+					["function", "length"],
+					["punctuation", "("],
+					["keyword", "var"],
+					["punctuation", "."],
+					["type", "hostnames"],
+					["punctuation", ")"],
+					["punctuation", "}"]
+				]
+			],
+			"\""
 		]
 	],
-	["string", "\"\r\n\""],
-	["interpolation",
+	["string",
 		[
-			["punctuation", "$"],
-			["punctuation", "{"],
-			["function", "format"],
-			["punctuation", "("],
-			["string", "\"web-%03d\""],
-			["punctuation", ","],
-			["keyword", "count"],
-			["punctuation", "."],
-			["type", "index"],
-			["punctuation", "+"],
-			["number", "1"],
-			["punctuation", ")"],
-			["punctuation", "}"]
+			"\"",
+			[
+				"interpolation",
+				[
+					["punctuation", "$"],
+					["punctuation", "{"],
+					["function", "format"],
+					["punctuation", "("],
+					["string", "\"web-%03d\""],
+					["punctuation", ","],
+					["keyword", "count"],
+					["punctuation", "."],
+					["type", "index"],
+					["punctuation", "+"],
+					["number", "1"],
+					["punctuation", ")"],
+					["punctuation", "}"]
+				]
+			],
+			"\""
 		]
 	],
-	["string", "\"\r\n\""],
-	["interpolation",
+	["string",
 		[
-			["punctuation", "$"],
-			["punctuation", "{"],
-			["function", "file"],
-			["punctuation", "("],
-			["string", "\"templates/web_init.tpl\""],
-			["punctuation", ")"],
-			["punctuation", "}"]
+			"\"",
+			[
+				"interpolation",
+				[
+					["punctuation", "$"],
+					["punctuation", "{"],
+					["function", "file"],
+					["punctuation", "("],
+					["string", "\"templates/web_init.tpl\""],
+					["punctuation", ")"],
+					["punctuation", "}"]
+				]
+			],
+			"\""
 		]
 	],
-	["string", "\"\r\n\""],
-	["interpolation",
+	["string",
 		[
-			["punctuation", "$"],
-			["punctuation", "{"],
-			["function", "replace"],
-			["punctuation", "("],
-			["keyword", "var"],
-			["punctuation", "."],
-			["type", "sub_domain"],
-			["punctuation", ","],
-			["string", "\".\""],
-			["punctuation", ","],
-			["string", "\"\\\\\\\\\\\\\\\\.\""],
-			["punctuation", ")"],
-			["punctuation", "}"]
+			"\"",
+			[
+				"interpolation",
+				[
+					["punctuation", "$"],
+					["punctuation", "{"],
+					["function", "replace"],
+					["punctuation", "("],
+					["keyword", "var"],
+					["punctuation", "."],
+					["type", "sub_domain"],
+					["punctuation", ","],
+					["string", "\".\""],
+					["punctuation", ","],
+					["string", "\"\\\\\\\\\\\\\\\\.\""],
+					["punctuation", ")"],
+					["punctuation", "}"]
+				]
+			],
+			"\""
 		]
-	],
-	"\""
+	]
 ]
 
 ----------------------------------------------------
