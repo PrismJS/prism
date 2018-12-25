@@ -3,13 +3,36 @@ Prism.languages.python = {
 		pattern: /(^|[^\\])#.*/,
 		lookbehind: true
 	},
+	'string-interpolation': {
+		pattern: /(?:f|rf|fr)(?:("""|''')[\s\S]+?\1|("|')(?:\\.|(?!\2)[^\\\r\n])*\2)/i,
+		greedy: true,
+		inside: {
+			'interpolation': {
+				// "{" <expression> <optional "!s", "!r", or "!a"> <optional ":" format specifier> "}"
+				pattern: /((?:^|[^{])(?:{{)*){(?!{)(?:[^{}]|{(?!{)(?:[^{}]|{(?!{)(?:[^{}])+})+})+}/,
+				lookbehind: true,
+				inside: {
+					'format-spec': {
+						pattern: /(:)[^:(){}]+(?=}$)/,
+						lookbehind: true
+					},
+					'conversion-option': {
+						pattern: /![sra](?=[:}]$)/,
+						alias: 'punctuation'
+					},
+					rest: null
+				}
+			},
+			'string': /[\s\S]+/
+		}
+	},
 	'triple-quoted-string': {
-		pattern: /("""|''')[\s\S]+?\1/,
+		pattern: /(?:[rub]|rb|br)?("""|''')[\s\S]+?\1/i,
 		greedy: true,
 		alias: 'string'
 	},
 	'string': {
-		pattern: /("|')(?:\\.|(?!\1)[^\\\r\n])*\1/,
+		pattern: /(?:[rub]|rb|br)?("|')(?:\\.|(?!\1)[^\\\r\n])*\1/i,
 		greedy: true
 	},
 	'function': {
@@ -35,3 +58,7 @@ Prism.languages.python = {
 	'operator': /[-+%=]=?|!=|\*\*?=?|\/\/?=?|<[<=>]?|>[=>]?|[&|^~]/,
 	'punctuation': /[{}[\];(),.:]/
 };
+
+Prism.languages.python['string-interpolation'].inside['interpolation'].inside.rest = Prism.languages.python;
+
+Prism.languages.py = Prism.languages.python;

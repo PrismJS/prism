@@ -225,3 +225,5 @@ Prism.hooks.add('wrap', function (env) {
 
 	env.content = Prism.highlight(code, grammar, codeLang);
 });
+
+Prism.languages.md = Prism.languages.markdown;
