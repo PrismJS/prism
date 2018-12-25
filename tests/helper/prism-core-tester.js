@@ -11,8 +11,8 @@
 	 * 1. There has to a replacement for each placeholder. E.g. `build(/<<bar>>/, {})`.
 	 * 2. A replacement's flags without the `g` flag have to be a subset of the flags of `basePattern`.
 	 *    E.g. `build(/foo<<0>>/, [ /[a-z]/i ])`
-	 * 3. A replacement cannot contain backreferences. E.g. `build(/foo<<0>>/, [ /\1/ ])`
-	 * 3. A replacement cannot contain capturing groups. E.g. `build(/<<0>>(foo)\1/, [ /(bar)/ ])`
+	 * 3. A replacement cannot contain backreferences. E.g. `build(/(foo)\1<<0>>/, [ /(bar)\1/ ])`
+	 * 3. A replacement cannot contain capturing groups. E.g. `build(/<<0>>(foo)\1/, [ /(bar)\1/ ])`
 	 *
 	 * __Note:__ All strings are assumed to represent patterns without flags.
 	 *
