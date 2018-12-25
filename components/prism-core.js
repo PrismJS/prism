@@ -448,6 +448,7 @@ var _ = _self.Prism = {
 
 		/**
 		 * Replaces all placeholders of the form `<<name>>` in `basePattern` with `replacements[name]`.
+		 *
 		 * @param {string|RegExp} basePattern the pattern in which all placeholder are to be replaced. Placeholders are
 		 * not allowed to be inside character sets and cannot be preceded by an unescaped backslash.
 		 * @param {Object.<string, string|RegExp>|Array.<string|RegExp>} replacements the name-replacement-pairs.
@@ -458,10 +459,12 @@ var _ = _self.Prism = {
 		build: function build(basePattern, replacements) {
 			var placeholder = /<<([\w-]+)>>/g;
 			var source = basePattern.source || basePattern;
-			var flags = basePattern.flags || (basePattern.exec ? basePattern.toString().match(/[igmuy]*$/)[0] : '');
+			var flags = basePattern.flags;
+			if (flags === undefined) {
+				flags = basePattern.exec ? basePattern.toString().match(/[igmuy]*$/)[0] : '';
+			}
 
-			if (build.test)
-				build.test(basePattern, replacements, placeholder, source, flags);
+			build.test && build.test(basePattern, replacements, placeholder, source, flags);
 
 			source = source.replace(placeholder, function (m, name) {
 				var replacement = replacements[name];

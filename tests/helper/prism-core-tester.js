@@ -1,5 +1,27 @@
 (function (Prism) {
 
+	/**
+	 * Tests the inputs of `Prism.patterns.build` calls for the following criteria:
+	 *
+	 * `basePattern`:
+	 * 1. Placeholders cannot be escaped. E.g. `foo\<<bar>>`.
+	 * 2. Placeholders cannot be inside character sets. E.g. `foo[<<bar>>]`.
+	 *
+	 * `replacements`:
+	 * 1. There has to a replacement for each placeholder. E.g. `build(/<<bar>>/, {})`.
+	 * 2. A replacement's flags without the `g` flag have to be a subset of the flags of `basePattern`.
+	 *    E.g. `build(/foo<<0>>/, [ /[a-z]/i ])`
+	 * 3. A replacement cannot contain backreferences. E.g. `build(/foo<<0>>/, [ /\1/ ])`
+	 * 3. A replacement cannot contain capturing groups. E.g. `build(/<<0>>(foo)\1/, [ /(bar)/ ])`
+	 *
+	 * __Note:__ All strings are assumed to represent patterns without flags.
+	 *
+	 * @param {string|RegExp} basePattern The base pattern.
+	 * @param {Object.<string, string|RegExp>|Array.<string|RegExp>} replacements The replacements.
+	 * @param {RegExp} placeholder The regex to detect placeholders.
+	 * @param {string} source The source of `basePattern`.
+	 * @param {string} flags The flags of `basePattern`.
+	 */
 	Prism.patterns.build.test = function buildTest(basePattern, replacements, placeholder, source, flags) {
 
 		// test the base pattern
@@ -14,42 +36,65 @@
 			part = part.replace(/\\[^1-9]/g, '');
 
 			// preceded by an unescaped back slash
-			if (/\\$/.test(part))
+			if (/\\$/.test(part)) {
 				throw new Error('Escaped placeholder "' + parts[i + 1] + '" in ' + basePattern);
+			}
 
 			// inside a character set
-			if (/\[[^\]]*$/.test(part))
+			if (/\[[^\]]*$/.test(part)) {
 				throw new Error('Placeholder "' + parts[i + 1] + '" inside a character set in ' + basePattern);
+			}
 		}
 
 		// test the used replacements
 
 		var names = {};
-		for (var i = 1; i < parts.length; i += 2)
+		for (var i = 1; i < parts.length; i += 2) {
 			names[parts[i]] = true;
+		}
 
 		for (var name in names) {
 			var replacement = replacements[name];
 
 			// no replacement
-			if (!replacement)
+			if (!replacement) {
 				throw new Error('There is no replacement "' + name + '" for ' + basePattern);
+			}
 
+			// flags
+			// strings are assumed to have no flags
+			var repFlags = replacement.flags;
+			if (repFlags === undefined) {
+				repFlags = replacement.exec ? replacement.toString().match(/[igmuy]*$/)[0] : '';
+			}
+
+			// the replacement's flags have to be a subset of the base pattern's ones. (excluding g)
+			for (var i = repFlags.length - 1; i >= 0; i++) {
+				var f = repFlags[i];
+				if (f !== 'g' && flags.indexOf(f) < 0) {
+					throw new Error('The ' + f + ' flag is present in replacement "' + name +
+						'" but in its base pattern ' + basePattern);
+				}
+			}
+
+			// source
 			replacement = '' + (replacement.source || replacement);
 
 			// remove escapes
 			replacement = replacement.replace(/\\[^1-9]/g, '');
 
 			// backreferences
-			if (/\\[1-9]/.test(replacement))
+			if (/\\[1-9]/.test(replacement)) {
 				throw new Error('Backreference in replacement "' + name + '" for ' + basePattern);
+			}
 
 			// remove char sets
 			replacement = replacement.replace(/\[[^\]]*\]/g, '');
 
 			// capturing groups
-			if (/\((?!\?)/.test(replacement))
+			if (/\((?!\?)/.test(replacement)) {
 				throw new Error('Capturing group in replacement "' + name + '" for ' + basePattern);
+			}
 		}
 	};
 
