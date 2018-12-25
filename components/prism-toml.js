@@ -1,7 +1,11 @@
 (function (Prism) {
 
-	// pattern: /(?:[\w-]+|'[^'\n\r]*'|"(?:\.|[^\\"\r\n])*")/
-	var key = "(?:[\\w-]+|'[^'\n\r]*'|\"(?:\\.|[^\\\\\"\r\n])*\")";
+	var build = Prism.patterns.build;
+
+	var simpleString = /'[^'\n\r]*'|"(?:\\.|[^\\"\r\n])*"/;
+
+	var simpleKey = build(/[\w-]+|<<0>>/, [simpleString]);
+	var key = build(/<<0>>(?:\s*\.\s*<<0>>)*/, [simpleKey])
 
 	Prism.languages.toml = {
 		'comment': {
@@ -9,19 +13,19 @@
 			greedy: true
 		},
 		'table': {
-			pattern: RegExp("(\\[\\s*)" + key + "(?:\\s*\\.\\s*" + key + ")*(?=\\s*\\])"),
+			pattern: build(/(\[\s*)<<0>>(?=\s*\])/, [key]),
 			lookbehind: true,
 			greedy: true,
 			alias: 'class-name'
 		},
 		'key': {
-			pattern: RegExp("(^\\s*|[{,]\\s*)" + key + "(?:\\s*\\.\\s*" + key + ")*(?=\\s*=)", "m"),
+			pattern: build(/(^\s*|[{,]\s*)<<0>>(?=\s*=)/m, [key]),
 			lookbehind: true,
 			greedy: true,
 			alias: 'property'
 		},
 		'string': {
-			pattern: /"""(?:\\[\s\S]|[^\\])*?"""|'''[\s\S]*?'''|'[^'\n\r]*'|"(?:\\.|[^\\"\r\n])*"/,
+			pattern: build(/"""(?:\\[\s\S]|[^\\])*?"""|'''[\s\S]*?'''|<<0>>/, [simpleString]),
 			greedy: true
 		},
 		'date': [
