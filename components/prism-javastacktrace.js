@@ -40,38 +40,40 @@ Prism.languages.javastacktrace = {
 	// at org.hsqldb.jdbc.Util.throwError(Unknown Source) here could be some notes
 	// at Util.<init>(Unknown Source)
 	'stack-frame': {
-		pattern: /^[\t ]*at [\w$.]+(?:<init>)?\([^()]*\)/m,
-		inside: {
-			'keyword': {
-				pattern: /^(\s*)at/,
-				lookbehind: true
-			},
-			'source': [
-				// (Main.java:15)
-				// (Main.scala:15)
-				{
-					pattern: /(\()\w+.\w+:\d+(?=\))/,
-					lookbehind: true,
-					inside: {
-						'file': /^\w+\.\w+/,
-						'punctuation': /:/,
-						'line-number': {
-							pattern: /\d+/,
-							alias: 'number'
+		pattern: /^[\t ]*(at) [\w$.]+(?:<init>)?\(([^()]*\))/m,
+		groups: {
+			$1: 'keyword',
+			$2: {
+				'punctuation': /\)/,
+				'source': [
+					// (Main.java:15)
+					// (Main.scala:15)
+					{
+						pattern: /(\w+.\w+)(:)(\d+)/,
+						groups: {
+							$1: 'file',
+							$2: 'punctuation',
+							$3: {
+								'line-number': {
+									pattern: /\d+/,
+									alias: 'number'
+								}
+							}
+						}
+					},
+					// (Unknown Source)
+					// (Native Method)
+					// (...something...)
+					{
+						pattern: /[^()]+/,
+						inside: {
+							'keyword': /^(?:Unknown Source|Native Method)$/
 						}
 					}
-				},
-				// (Unknown Source)
-				// (Native Method)
-				// (...something...)
-				{
-					pattern: /(\()[^()]*(?=\))/,
-					lookbehind: true,
-					inside: {
-						'keyword': /^(?:Unknown Source|Native Method)$/
-					}
-				}
-			],
+				]
+			}
+		},
+		inside: {
 			'class-name': /[\w$]+(?=\.(?:<init>|[\w$]+)\()/,
 			'function': /(?:<init>|[\w$]+)(?=\()/,
 			'namespace': /[a-z]\w*/,
@@ -82,11 +84,11 @@ Prism.languages.javastacktrace = {
 	// ... 32 more
 	// ... 32 common frames omitted
 	'more': {
-		pattern: /^[\t ]*\.{3} \d+ [a-z]+(?: [a-z]+)*/m,
-		inside: {
-			'punctuation': /\.{3}/,
-			'number': /\d+/,
-			'keyword': /\b[a-z]+(?: [a-z]+)*\b/
+		pattern: /^[\t ]*(\.{3}) (\d+) ([a-z]+(?: [a-z]+)*)/m,
+		groups: {
+			$1: 'punctuation',
+			$2: 'number',
+			$3: 'keyword'
 		}
 	}
 
