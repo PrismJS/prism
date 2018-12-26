@@ -1,25 +1,26 @@
 Prism.languages.hcl = {
+	'comment': /(?:\/\/|#).*|\/\*[\s\S]*?(?:\*\/|$)/,
 	'heredoc': {
 		pattern: /<<-?(\w+)[\s\S]*?^\s*\1/m,
+		greedy: true,
 		alias: 'string'
 	},
-	'comment': /(?:\/\/|#).*|\/\*[\s\S]*?(?:\*\/|$)/,
 	'keyword': [
 		{
-			pattern: /(?:resource|data)\s+(?:[\w-]+|"[\w-]+")(?=\s+"[\w-]+"\s+{)/i,
+			pattern: /(?:resource|data)\s+(?:[\w-]+|"(?:\\[\s\S]|[^\\"])*")(?=\s+"[\w-]+"\s+{)/i,
 			inside: {
 				'type': {
-					pattern: /(resource|data|\s+)(?:[\w-]+|"[\w-]+")/i,
+					pattern: /(resource|data|\s+)(?:[\w-]+|"(?:\\[\s\S]|[^\\"])*")/i,
 					lookbehind: true,
 					alias: 'variable'
 				}
 			}
 		},
 		{
-			pattern: /(?:provider|provisioner|variable|output|module|backend)\s+"?[\w-]+"?\s+(?={)/i,
+			pattern: /(?:provider|provisioner|variable|output|module|backend)\s+(?:[\w-]+|"(?:\\[\s\S]|[^\\"])*")\s+(?={)/i,
 			inside: {
 				'type': {
-					pattern: /(provider|provisioner|variable|output|module|backend)\s+"?[\w-]+"?\s+/i,
+					pattern: /(provider|provisioner|variable|output|module|backend)\s+(?:[\w-]+|"(?:\\[\s\S]|[^\\"])*")\s+/i,
 					lookbehind: true,
 					alias: 'variable'
 				}
