@@ -1,9 +1,9 @@
 Prism.languages.hcl = {
-	'comment': /(?:\/\/|#).*|\/\*[\s\S]*?(?:\*\/|$)/,
 	'heredoc': {
-		pattern: /<<(\w+)(?:[^\1])*?\1/,
+		pattern: /<<-?(\w+)[\s\S]*?^\s*\1/m,
 		alias: 'string'
 	},
+	'comment': /(?:\/\/|#).*|\/\*[\s\S]*?(?:\*\/|$)/,
 	'keyword': [
 		{
 			pattern: /(?:resource|data)\s+(?:[\w-]+|"[\w-]+")(?=\s+"[\w-]+"\s+{)/i,
@@ -35,21 +35,25 @@ Prism.languages.hcl = {
 	],
 	'string': {
 		pattern: /"(?:[^\\$"]|\\[\s\S]|\$(?:(?=")|\$+|[^"${])|\$\{(?:[^{}"]|"(?:[^\\"]|\\[\s\S])*")*\})*"/,
+		greedy: true,
 		inside: {
 			'interpolation': {
 				pattern: /(^|[^$])\$\{(?:[^{}"]|"(?:[^\\"]|\\[\s\S])*")*\}/,
 				lookbehind: true,
 				inside: {
 					'type': {
-						pattern: /((?:terraform|var|self|count|module|path|data|local)\.)[\w\*]+/i,
+						pattern: /(\b(?:terraform|var|self|count|module|path|data|local)\b\.)[\w\*]+/i,
 						lookbehind: true,
 						alias: 'variable'
 					},
-					'keyword': /terraform|var|self|count|module|path|data|local/ig,
+					'keyword': /\b(?:terraform|var|self|count|module|path|data|local)\b/i,
 					'function': /\w+(?=\()/,
-					'string': /"(?:\\[\s\S]|[^\\"])*"/,
+					'string': {
+						pattern: /"(?:\\[\s\S]|[^\\"])*"/,
+						greedy: true,
+					},
+					'number': /0x[\da-f]+|\d+\.?\d*(?:e[+-]?\d+)?/i,
 					'punctuation': /[!\$#%&'()*+,.\/;<=>@\[\\\]^`{|}~?:]/,
-					'number': /-?\d+\.?\d*/,
 				}
 			},
 		}
