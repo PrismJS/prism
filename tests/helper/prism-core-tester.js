@@ -33,7 +33,7 @@
 			var part = parts[i];
 
 			// remove escapes
-			part = part.replace(/\\[^1-9]/g, '');
+			part = part.replace(/\\[\s\S]/g, '');
 
 			// preceded by an unescaped back slash
 			if (/\\$/.test(part)) {
@@ -81,10 +81,10 @@
 			replacement = '' + (replacement.source || replacement);
 
 			// remove escapes
-			replacement = replacement.replace(/\\[^1-9]/g, '');
+			replacement = replacement.replace(/\\[^1-9k]/g, '');
 
 			// backreferences
-			if (/\\[1-9]/.test(replacement)) {
+			if (/\\(?:[1-9]|k<\w+>)/.test(replacement)) {
 				throw new Error('Backreference in replacement "' + name + '" for ' + basePattern);
 			}
 
@@ -92,7 +92,7 @@
 			replacement = replacement.replace(/\[[^\]]*\]/g, '');
 
 			// capturing groups
-			if (/\((?!\?)/.test(replacement)) {
+			if (/\((?!\?)|\(\?<\w+>/.test(replacement)) {
 				throw new Error('Capturing group in replacement "' + name + '" for ' + basePattern);
 			}
 		}
