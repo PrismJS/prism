@@ -81,82 +81,111 @@ var _ = _self.Prism = {
 			return o;
 		},
 
-		spanOfFirstCapturingGroup: function (pattern) {
-			var s = pattern.source;
-			var length = s.length;
+		/**
+		 * Returns the span of the first capturing group in the given regex source.
+		 *
+		 * If `regexSource` does not contain any capturing groups, `undefined` will be returned.
+		 *
+		 * @param {string} regexSource
+		 * @returns {{ start: number, length: number}|undefined}
+		 */
+		spanOfFirstCapturingGroup: function (regexSource) {
+			// Simplify regex pattern without changing the position of other characters.
 
-			var start = -1;
-			var end = -1;
+			// replace all escapes
+			regexSource = regexSource.replace(/\\[\s\S]/g, '__');
 
+			// replace char sets
+			regexSource = regexSource.replace(/\[[^\]]*\]/g, function (m) {
+				// == '_'.repeat(m.length)
+				return m.replace(/[\s\S]/, '_');
+			});
+
+			// TODO: Add support for named capturing groups
+
+			// skip to first capturing group.
+			var first = /\((?!\?)/.exec(regexSource);
+
+			if (!first) {
+				// no capturing groups.
+				return undefined;
+			}
+
+			var start = first.index;
 			var depth = 0;
-			var firstCapturing = -1;
-			var charset = false;
-			for (var i = 0; i < length; i++) {
-				var c = s[i];
+			for (var i = start + 1, l = regexSource.length; i < l; i++) {
+				var c = regexSource[i];
 
-				if (c == '\\') {
-					i++;
-					continue;
-				}
-
-				if (charset) {
-					if (c == ']')
-						charset = false;
-					continue;
-				}
-				if (c == '[') {
-					charset = true;
-					continue;
-				}
-
-				if (c == '(') {
+				if (c === '(') {
 					depth++;
-					if (firstCapturing == -1 && i + 1 < length && s[i + 1] != '?') {
-						start = i;
-						firstCapturing = depth;
-					}
 				}
-				if (c == ')') {
-					if (firstCapturing == depth) {
-						end = i;
-						break;
+
+				if (c === ')') {
+					if (depth === 0) {
+						return {
+							start: start,
+							length: i - start + 1
+						};
 					}
 					depth--;
 				}
 			}
 
-			if (end == -1) return null;
-			return { start: start, length: end - start + 1 };
+			return undefined;
 		},
 
-		makeFirstOptional: function (pattern) {
-			var span = _.util.spanOfFirstCapturingGroup(pattern);
+		/**
+		 * Makes the first capturing group of the given RegExp optional, if not optional already.
+		 *
+		 * @param {RegExp} regex The regex for which the first capturing group is to be made optional.
+		 * @returns {RegExp} Same as `regex` but with an optional first capturing group.
+		 * @throws If `regex` does not contain any capturing groups.
+		 */
+		makeFirstOptional: function (regex) {
+			var source = regex.source;
+			var span = _.util.spanOfFirstCapturingGroup(source);
 
-			if (!span)
-				return pattern;
-
-			var s = pattern.source;
+			// no capturing group
+			if (!span) {
+				return regex;
+			}
 
 			var pos = span.start + span.length;
-			if (s[pos] != '?') {
-				s = s.substr(0, pos) + "?" + s.substr(pos);
+
+			// group is optional already
+			if (source[pos] === '?') {
+				return regex;
 			}
 
-			return new RegExp(s, pattern.toString().match(/[imuyg]*$/)[0]);
+			// insert ?
+			source = source.substr(0, pos) + "?" + source.substr(pos);
+
+			return new RegExp(source, regex.flags || regex.toString().match(/[imuyg]*$/)[0]);
 		},
 
-		execPattern: function (pattern, str, lastIndex, negativeLookbehind) {
-			pattern.lastIndex = lastIndex;
+		/**
+		 * Executes the regex on the given string handling Prism's negative lookbehind feature.
+		 *
+		 * @param {RegExp} regex The regex performing the search. This is assumed to have the global flag set.
+		 * @param {number} lastIndex The index at which `regex` will start the search.
+		 * @param {string} str The string on which to perform the search.
+		 * @param {boolean} negativeLookbehind Whether the pattern contains a negative lookbehind.
+		 * @returns {RegExpMatchArray|null}
+		 */
+		execPattern: function (regex, lastIndex, str, negativeLookbehind) {
+			regex.lastIndex = lastIndex;
 
-			if (!negativeLookbehind)
-				return pattern.exec(str);
+			var match = regex.exec(str);
 
-			var match = pattern.exec(str);
-			while (match && match[1] !== undefined) {
-				lastIndex = match.index + match[1].length + 1;
-				pattern.lastIndex = lastIndex;
-				match = pattern.exec(str);
+			if (negativeLookbehind) {
+				// if the negative lookbehind group captures anything (including ""), it's not a match
+				while (match && match[1] !== undefined) {
+					// advance to next position and try again
+					regex.lastIndex = match.index + match[1].length + 1;
+					match = regex.exec(str);
+				}
 			}
+
 			return match;
 		}
 	},
@@ -383,19 +412,19 @@ var _ = _self.Prism = {
 			for (var j = 0; j < patterns.length; ++j) {
 				var pattern = patterns[j],
 					inside = pattern.inside,
-					lookbehindNegative = !!pattern.lookbehindNegative,
-					lookbehind = !lookbehindNegative && !!pattern.lookbehind,
+					negativeLookbehind = !!pattern.negativeLookbehind,
+					lookbehind = !negativeLookbehind && !!pattern.lookbehind,
 					greedy = !!pattern.greedy,
 					lookbehindLength = 0,
 					alias = pattern.alias;
 
-				if (lookbehindNegative || (greedy && !pattern.pattern.global)) {
+				if ((greedy || negativeLookbehind) && !pattern.pattern.global) {
 					// Without the global flag, lastIndex won't work
 					var flags = pattern.pattern.toString().match(/[imuy]*$/)[0];
 					pattern.pattern = RegExp(pattern.pattern.source, flags + "g");
 				}
 
-				if (lookbehindNegative && !pattern.pattern._firstIsOptional) {
+				if (negativeLookbehind && !pattern.pattern._firstIsOptional) {
 					// the first capturing group has to be optional
 					pattern.pattern = _.util.makeFirstOptional(pattern.pattern);
 					pattern.pattern._firstIsOptional = true;
@@ -419,7 +448,7 @@ var _ = _self.Prism = {
 					}
 
 					if (greedy && i != strarr.length - 1) {
-						var match = _.util.execPattern(pattern, text, pos, lookbehindNegative);
+						var match = _.util.execPattern(pattern, pos, text, negativeLookbehind);
 						if (!match) {
 							break;
 						}
@@ -448,7 +477,7 @@ var _ = _self.Prism = {
 						str = text.slice(pos, p);
 						match.index -= pos;
 					} else {
-						var match = _.util.execPattern(pattern, str, 0, lookbehindNegative);
+						var match = _.util.execPattern(pattern, 0, str, negativeLookbehind);
 					}
 
 					if (!match) {
