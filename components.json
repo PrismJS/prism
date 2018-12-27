@@ -337,6 +337,10 @@
 			"require": "clike",
 			"owner": "Golmote"
 		},
+		"hcl": {
+			"title": "HCL",
+			"owner": "outsideris"
+		},
 		"http": {
 			"title": "HTTP",
 			"peerDependencies": [
