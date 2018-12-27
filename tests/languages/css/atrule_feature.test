@@ -1,6 +1,8 @@
 @import url(foo.css);
 @media print {}
 @media (min-width: 640px) and (min-height: 1000px) {}
+@supports (top: 50vmax)
+	or (top: 50vw) {}
 @main-color: red;
 
 ----------------------------------------------------
@@ -26,13 +28,29 @@
 		["punctuation", ")"],
 		" and ",
 		["punctuation", "("],
-        ["property", "min-height"],
-        ["punctuation", ":"],
-        " 1000px",
-        ["punctuation", ")"]
+		["property", "min-height"],
+		["punctuation", ":"],
+		" 1000px",
+		["punctuation", ")"]
 	]],
 	["punctuation", "{"],
-    ["punctuation", "}"],
+	["punctuation", "}"],
+	["atrule", [
+		["rule", "@supports"],
+		["punctuation", "("],
+		["property", "top"],
+		["punctuation", ":"],
+		" 50vmax",
+		["punctuation", ")"],
+		"\r\n\tor ",
+		["punctuation", "("],
+		["property", "top"],
+		["punctuation", ":"],
+		" 50vw",
+		["punctuation", ")"]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
 	["atrule", [
 		["rule", "@main-color"],
 		["punctuation", ":"],
