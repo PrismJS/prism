@@ -1,0 +1,32 @@
+resource "aws_db_instance" "main" {
+data "terraform_remote_state" "main" {
+output "dev_vpc_id" {
+config {
+terraform {
+
+----------------------------------------------------
+
+[
+	["keyword",
+		["resource ",
+		["type", "\"aws_db_instance\""]]],
+    ["string", ["\"main\""]],
+    ["punctuation", "{"],
+	["keyword",
+		["data ",
+		["type", "\"terraform_remote_state\""]]],
+    ["string", ["\"main\""]],
+    ["punctuation", "{"],
+	["keyword",
+		["output",
+		["type", " \"dev_vpc_id\" "]]],
+	["punctuation", "{"],
+	["keyword", "config"],
+	["punctuation", "{"],
+	["keyword", "terraform"],
+	["punctuation", "{"]
+]
+
+----------------------------------------------------
+
+Checks for all keywords.

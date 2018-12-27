@@ -14,14 +14,16 @@
 	["tag", [
 		["tag", [
 			["punctuation", "<"],
-			"Button"
+			["class-name", "Button"]
 		]],
 		["attr-name", ["onClick"]],
 		["script", [
 			["script-punctuation", "="],
 			["punctuation", "{"],
 			["punctuation", "("],
-			"e",
+			["parameter", [
+				"e"
+			]],
 			["punctuation", ")"],
 			["operator", "=>"],
 			["keyword", "this"],
@@ -41,7 +43,7 @@
 	["tag", [
 		["tag", [
 			["punctuation", "<"],
-			"Component"
+			["class-name", "Component"]
 		]],
 		["attr-name", ["data"]],
 		["script", [
@@ -76,7 +78,7 @@
 	["tag", [
 		["tag", [
 			["punctuation", "<"],
-			"Component"
+			["class-name", "Component"]
 		]],
 		["attr-name", ["title"]],
 		["script", [
@@ -98,7 +100,7 @@
 	["tag", [
 		["tag", [
 			["punctuation", "<"],
-			"Component"
+			["class-name", "Component"]
 		]],
 		["attr-name", ["title"]],
 		["script", [

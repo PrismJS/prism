@@ -5,13 +5,24 @@
 
 	foobar
 
+``` js
+var a = 0;
+```
+
 ----------------------------------------------------
 
 [
 	["code", "`foo bar baz`"],
 	["code", "``foo `bar` baz``"],
 	["code", "    foobar"],
-	["code", "\tfoobar"]
+	["code", "\tfoobar"],
+
+	["code", [
+		["punctuation", "```"],
+		["code-language", " js"],
+		["code-block", "var a = 0;"],
+		["punctuation", "```"]
+	]]
 ]
 
 ----------------------------------------------------
