@@ -7,10 +7,10 @@ Prism.languages.hcl = {
 	},
 	'keyword': [
 		{
-			pattern: /(?:resource|data)\s+(?:[\w-]+|"(?:\\[\s\S]|[^\\"])*")(?=\s+"[\w-]+"\s+{)/i,
+			pattern: /(?:resource|data)\s+(?:"(?:\\[\s\S]|[^\\"])*")(?=\s+"[\w-]+"\s+{)/i,
 			inside: {
 				'type': {
-					pattern: /(resource|data|\s+)(?:[\w-]+|"(?:\\[\s\S]|[^\\"])*")/i,
+					pattern: /(resource|data|\s+)(?:"(?:\\[\s\S]|[^\\"])*")/i,
 					lookbehind: true,
 					alias: 'variable'
 				}
@@ -59,7 +59,7 @@ Prism.languages.hcl = {
 			},
 		}
 	},
-	'number': /0x[\da-f]+|\d+\.?\d*(?:e[+-]?\d+)?/i,
+	'number': /\b0x[\da-f]+|\d+\.?\d*(?:e[+-]?\d+)?/i,
 	'boolean': /\b(?:true|false)\b/i,
 	'punctuation': /[=\[\]{}]/,
 };
