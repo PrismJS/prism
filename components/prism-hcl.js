@@ -53,7 +53,7 @@ Prism.languages.hcl = {
 						pattern: /"(?:\\[\s\S]|[^\\"])*"/,
 						greedy: true,
 					},
-					'number': /0x[\da-f]+|\d+\.?\d*(?:e[+-]?\d+)?/i,
+					'number': /\b0x[\da-f]+|\d+\.?\d*(?:e[+-]?\d+)?/i,
 					'punctuation': /[!\$#%&'()*+,.\/;<=>@\[\\\]^`{|}~?:]/,
 				}
 			},
