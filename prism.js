@@ -23,6 +23,88 @@ var Prism = (function(){
 var lang = /\blang(?:uage)?-([\w-]+)\b/i;
 var uniqueId = 0;
 
+/**
+ * Returns the span of the first capturing group in the given regex source.
+ *
+ * If `regexSource` does not contain any capturing groups, `undefined` will be returned.
+ *
+ * @param {string} regexSource
+ * @returns {{ start: number, length: number}|undefined}
+ */
+function spanOfFirstCapturingGroup(regexSource) {
+	// Simplify regex pattern without changing the position of other characters.
+
+	// replace all escapes
+	regexSource = regexSource.replace(/\\[\s\S]/g, '__');
+
+	// replace char sets
+	regexSource = regexSource.replace(/\[[^\]]*\]/g, function (m) {
+		// == '_'.repeat(m.length)
+		return m.replace(/[\s\S]/, '_');
+	});
+
+	// TODO: Add support for named capturing groups
+
+	// skip to first capturing group.
+	var first = /\((?!\?)/.exec(regexSource);
+
+	if (!first) {
+		// no capturing groups.
+		return undefined;
+	}
+
+	var start = first.index;
+	var depth = 0;
+	for (var i = start + 1, l = regexSource.length; i < l; i++) {
+		var c = regexSource[i];
+
+		if (c === '(') {
+			depth++;
+		}
+
+		if (c === ')') {
+			if (depth === 0) {
+				return {
+					start: start,
+					length: i - start + 1
+				};
+			}
+			depth--;
+		}
+	}
+
+	return undefined;
+}
+
+/**
+ * Makes the first capturing group of the given RegExp optional, if not optional already.
+ *
+ * @param {RegExp} regex The regex for which the first capturing group is to be made optional.
+ * @returns {RegExp} Same as `regex` but with an optional first capturing group.
+ * @throws If `regex` does not contain any capturing groups.
+ */
+function makeFirstOptional(regex) {
+	var source = regex.source;
+	var span = spanOfFirstCapturingGroup(source);
+
+	// no capturing group
+	if (!span) {
+		return regex;
+	}
+
+	var pos = span.start + span.length;
+
+	// group is optional already
+	if (source[pos] === '?') {
+		return regex;
+	}
+
+	// insert ?
+	source = source.substr(0, pos) + "?" + source.substr(pos);
+
+	return new RegExp(source, regex.flags || regex.toString().match(/[imuyg]*$/)[0]);
+}
+
 var _ = _self.Prism = {
 	manual: _self.Prism && _self.Prism.manual,
 	disableWorkerMessageHandler: _self.Prism && _self.Prism.disableWorkerMessageHandler,
@@ -84,88 +166,6 @@ var _ = _self.Prism = {
 			}
 
 			return o;
-		},
-
-		/**
-		 * Returns the span of the first capturing group in the given regex source.
-		 *
-		 * If `regexSource` does not contain any capturing groups, `undefined` will be returned.
-		 *
-		 * @param {string} regexSource
-		 * @returns {{ start: number, length: number}|undefined}
-		 */
-		spanOfFirstCapturingGroup: function (regexSource) {
-			// Simplify regex pattern without changing the position of other characters.
-
-			// replace all escapes
-			regexSource = regexSource.replace(/\\[\s\S]/g, '__');
-
-			// replace char sets
-			regexSource = regexSource.replace(/\[[^\]]*\]/g, function (m) {
-				// == '_'.repeat(m.length)
-				return m.replace(/[\s\S]/, '_');
-			});
-
-			// TODO: Add support for named capturing groups
-
-			// skip to first capturing group.
-			var first = /\((?!\?)/.exec(regexSource);
-
-			if (!first) {
-				// no capturing groups.
-				return undefined;
-			}
-
-			var start = first.index;
-			var depth = 0;
-			for (var i = start + 1, l = regexSource.length; i < l; i++) {
-				var c = regexSource[i];
-
-				if (c === '(') {
-					depth++;
-				}
-
-				if (c === ')') {
-					if (depth === 0) {
-						return {
-							start: start,
-							length: i - start + 1
-						};
-					}
-					depth--;
-				}
-			}
-
-			return undefined;
-		},
-
-		/**
-		 * Makes the first capturing group of the given RegExp optional, if not optional already.
-		 *
-		 * @param {RegExp} regex The regex for which the first capturing group is to be made optional.
-		 * @returns {RegExp} Same as `regex` but with an optional first capturing group.
-		 * @throws If `regex` does not contain any capturing groups.
-		 */
-		makeFirstOptional: function (regex) {
-			var source = regex.source;
-			var span = _.util.spanOfFirstCapturingGroup(source);
-
-			// no capturing group
-			if (!span) {
-				return regex;
-			}
-
-			var pos = span.start + span.length;
-
-			// group is optional already
-			if (source[pos] === '?') {
-				return regex;
-			}
-
-			// insert ?
-			source = source.substr(0, pos) + "?" + source.substr(pos);
-
-			return new RegExp(source, regex.flags || regex.toString().match(/[imuyg]*$/)[0]);
 		},
 
 		/**
@@ -419,7 +419,7 @@ var _ = _self.Prism = {
 
 				if (negativeLookbehind && !pattern.pattern._firstIsOptional) {
 					// the first capturing group has to be optional
-					pattern.pattern = _.util.makeFirstOptional(pattern.pattern);
+					pattern.pattern = makeFirstOptional(pattern.pattern);
 					pattern.pattern._firstIsOptional = true;
 				}
 
