@@ -34,18 +34,23 @@ function getOffsets(match) {
 	var $_ = match[0];
 	var offsets = [0];
 	var start = 0;
+
 	for (var i = 1; i < match.length; i++) {
 		var $i = match[i];
+
 		// failed to match this group
 		if ($i === undefined) {
 			offsets.push(-1);
 			continue;
 		}
+
 		var index = $_.indexOf($i, start);
+
 		// not found
 		if (index < 0) {
 			throw new Error('The pattern matching "' + $_ + '" is not allowed to contain nested groups.');
 		}
+
 		offsets.push(index);
 		start = index + $i.length;
 	}
@@ -64,20 +69,24 @@ function joinStrings(array) {
 	if (l <= 1) {
 		return array;
 	}
+
 	var removed = 0;
 	var predecessorIsString = typeof array[0] === 'string';
 	var writeIndex = 0;
 	for (var i = 1; i < l; i++) {
 		var token = array[i];
 		var tokenIsString = typeof token === 'string';
+
 		if (predecessorIsString && tokenIsString) {
 			array[writeIndex] = array[writeIndex] + token;
 			removed++;
 		} else {
 			array[++writeIndex] = token;
 		}
+
 		predecessorIsString = tokenIsString;
 	}
+
 	array.splice(l - removed, removed);
 }
 
