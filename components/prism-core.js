@@ -18,6 +18,69 @@ var Prism = (function(){
 var lang = /\blang(?:uage)?-([\w-]+)\b/i;
 var uniqueId = 0;
 
+/**
+ * Returns the list of offsets for the groups of the given RegExp match.
+ *
+ * Groups which were not captured will have an offset of `-1`.
+ *
+ * All groups are assumed to be disjoint.
+ *
+ * This is only an approximation of the real offsets and may not return the correct offset for some groups.
+ *
+ * @param {RegExpMatchArray} match The RegExp match.
+ * @returns {number[]} The list of offsets.
+ */
+function getOffsets(match) {
+	var $_ = match[0];
+	var offsets = [0];
+	var start = 0;
+	for (var i = 1; i < match.length; i++) {
+		var $i = match[i];
+		// failed to match this group
+		if ($i === undefined) {
+			offsets.push(-1);
+			continue;
+		}
+		var index = $_.indexOf($i, start);
+		// not found
+		if (index < 0) {
+			throw new Error('The pattern matching "' + $_ + '" is not allowed to contain nested groups.');
+		}
+		offsets.push(index);
+		start = index + $i.length;
+	}
+	return offsets;
+}
+
+/**
+ * Joins adjacent string in the given array array leaving every other item as is.
+ *
+ * @param {any[]} array The string containing array.
+ * @example
+ * joinStrings([1, 'foo', 'bar']) == [1, 'foobar']
+ */
+function joinStrings(array) {
+	var l = array.length;
+	if (l <= 1) {
+		return array;
+	}
+	var removed = 0;
+	var predecessorIsString = typeof array[0] === 'string';
+	var writeIndex = 0;
+	for (var i = 1; i < l; i++) {
+		var token = array[i];
+		var tokenIsString = typeof token === 'string';
+		if (predecessorIsString && tokenIsString) {
+			array[writeIndex] = array[writeIndex] + token;
+			removed++;
+		} else {
+			array[++writeIndex] = token;
+		}
+		predecessorIsString = tokenIsString;
+	}
+	array.splice(l - removed, removed);
+}
+
 var _ = _self.Prism = {
 	manual: _self.Prism && _self.Prism.manual,
 	disableWorkerMessageHandler: _self.Prism && _self.Prism.disableWorkerMessageHandler,
@@ -79,78 +142,6 @@ var _ = _self.Prism = {
 			}
 
 			return o;
-		},
-
-		/**
-		 * Returns the list of offsets for the groups of the given RegExp match.
-		 *
-		 * Groups which were not captured will have an offset of `-1`.
-		 *
-		 * All groups are assumed to be disjoint.
-		 *
-		 * This is only an approximation of the real offsets and may not return the correct offset for some groups.
-		 *
-		 * @param {RegExpMatchArray} match The RegExp match.
-		 * @returns {number[]} The list of offsets.
-		 */
-		offsets: function (match) {
-			var $_ = match[0];
-			var offsets = [0];
-			var start = 0;
-
-			for (var i = 1; i < match.length; i++) {
-				var $i = match[i];
-
-				// failed to match this group
-				if ($i === undefined) {
-					offsets.push(-1);
-					continue;
-				}
-
-				var index = $_.indexOf($i, start);
-
-				// not found
-				if (index < 0) {
-					throw new Error('The pattern matching "' + $_ + '" is not allowed to contain nested groups.');
-				}
-
-				offsets.push(index);
-				start = index + $i.length;
-			}
-
-			return offsets;
-		},
-
-		/**
-		 * Joins adjacent string in the given array array leaving every other item as is.
-		 *
-		 * @param {any[]} array The string containing array.
-		 * @example
-		 * joinStrings([1, 'foo', 'bar']) == [1, 'foobar']
-		 */
-		joinStrings: function simplifyTokens(array) {
-			var l = array.length;
-
-			if (l <= 1) {
-				return array;
-			}
-
-			var removed = 0;
-			var predecessorIsString = typeof array[0] === 'string';
-			var writeIndex = 0;
-			for (var i = 1; i < l; i++) {
-				var token = array[i];
-				var tokenIsString = typeof token === 'string';
-				if (predecessorIsString && tokenIsString) {
-					array[writeIndex] = array[writeIndex] + token;
-					removed++;
-				} else {
-					array[++writeIndex] = token;
-				}
-				predecessorIsString = tokenIsString;
-			}
-
-			array.splice(l - removed, removed);
 		}
 	},
 
@@ -459,7 +450,7 @@ var _ = _self.Prism = {
 					var tokenContent;
 					if (groups) {
 						var content = [];
-						var offsets = _.util.offsets(match);
+						var offsets = getOffsets(match);
 						var start = 0;
 
 						for (var g = 1 + lookbehind; g < match.length; g++) {
@@ -489,7 +480,7 @@ var _ = _self.Prism = {
 							content.push(matchStr.substr(start));
 						}
 
-						_.util.joinStrings(content);
+						joinStrings(content);
 
 						if (inside) {
 							var newContent = [];
