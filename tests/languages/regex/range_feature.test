@@ -6,50 +6,50 @@
 
 [
 	["char-set", [
-		["punctuation", "["],
+		["char-set-punctuation", "["],
 		["content", [
 			["range", [
 				"a",
-				["punctuation", "-"],
+				["delimiter", "-"],
 				"z"
 			]],
 			["range", [
 				"A",
-				["punctuation", "-"],
+				["delimiter", "-"],
 				"Z"
 			]],
 			["range", [
 				"0",
-				["punctuation", "-"],
+				["delimiter", "-"],
 				"9"
 			]]
 		]],
-		["punctuation", "]"]
+		["char-set-punctuation", "]"]
 	]],
 
 	["char-set", [
-		["punctuation", "["],
+		["char-set-punctuation", "["],
 		["content", [
 			["range", [
 				["escape", "\\xa1"],
-				["punctuation", "-"],
+				["delimiter", "-"],
 				"Z"
 			]],
 			["range", [
 				["escape", "\\u00FF"],
-				["punctuation", "-"],
+				["delimiter", "-"],
 				["escape", "\\u{256}"]
 			]]
 		]],
-		["punctuation", "]"]
+		["char-set-punctuation", "]"]
 	]],
 
 	["char-set", [
-		["punctuation", "[^"],
+		["char-set-punctuation", "[^"],
 		["content", [
 			"-aaa-"
 		]],
-		["punctuation", "]"]
+		["char-set-punctuation", "]"]
 	]]
 ]
 

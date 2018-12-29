@@ -28,7 +28,7 @@
 			pattern: /((?:^|[^\\])(?:\\\\)*)\[(?:[^\\\]]|\\[\s\S])*\]/,
 			lookbehind: true,
 			inside: {
-				'punctuation': /^\[\^?|\]$/,
+				'char-set-punctuation': /^\[\^?|\]$/,
 				'content': {
 					pattern: /[\s\S]+/,
 					lookbehind: true,
@@ -37,7 +37,7 @@
 							pattern: range,
 							inside: {
 								'escape': escape,
-								'punctuation': /-/
+								'delimiter': /-/
 							}
 						},
 						'escape': escape,
@@ -66,15 +66,6 @@
 	};
 
 
-	var inlineRegex = {
-		'flags': /[a-z]+$/,
-		'delimiter': /^\/|\/$/,
-		'language-regex': {
-			pattern: /[\s\S]+/,
-			inside: Prism.languages.regex
-		}
-	};
-
 	[
 		'actionscript',
 		'coffescript',
@@ -84,7 +75,14 @@
 	].forEach(function (lang) {
 		var grammar = Prism.languages[lang];
 		if (grammar) {
-			grammar['regex'].inside = inlineRegex;
+			grammar['regex'].inside = {
+				'flags': /[a-z]+$/,
+				'delimiter': /^\/|\/$/,
+				'language-regex': {
+					pattern: /[\s\S]+/,
+					inside: Prism.languages.regex
+				}
+			};
 		}
 	});
 

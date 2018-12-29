@@ -10,15 +10,15 @@
 			["quantifier", "+"],
 			["group", ["(?:"]],
 			["char-set", [
-				["punctuation", "["],
+				["char-set-punctuation", "["],
 				["content", [
 					["range", [
 						"a",
-						["punctuation", "-"],
+						["delimiter", "-"],
 						"z"
 					]]
 				]],
-				["punctuation", "]"]
+				["char-set-punctuation", "]"]
 			]],
 			["alternation", "|"],
 			["char-class", "\\d"],
