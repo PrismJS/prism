@@ -333,6 +333,7 @@ footer {
 #toc {
 	position: fixed;
 	left: 1%;
+	bottom: 1%;
 	max-width: calc(48% - 450px);
 	font-size: 80%;
 	opacity: .3;
