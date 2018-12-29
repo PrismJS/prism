@@ -1,0 +1,38 @@
+[]
+[^]
+[foo]
+[\]]
+
+----------------------------------------------------
+
+[
+	["char-set", [
+		["punctuation", "["],
+		["punctuation", "]"]
+	]],
+
+	["char-set", [
+		["punctuation", "[^"],
+		["punctuation", "]"]
+	]],
+
+	["char-set", [
+		["punctuation", "["],
+		["content", [
+			"foo"
+		]],
+		["punctuation", "]"]
+	]],
+
+	["char-set", [
+		["punctuation", "["],
+		["content", [
+			["escape", "\\]"]
+		]],
+		["punctuation", "]"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for character sets.
