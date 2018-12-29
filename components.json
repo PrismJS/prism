@@ -649,8 +649,15 @@
 			"require": "clike",
 			"owner": "Golmote"
 		},
-		"regex-javascript": {
-			"title": "Regex (Javascript)",
+		"regex": {
+			"title": "Regex",
+			"peerDependencies": [
+				"actionscript",
+				"coffeescript",
+				"flow",
+				"javascript",
+				"typescript"
+			],
 			"owner": "RunDevelopment"
 		},
 		"rest": {
