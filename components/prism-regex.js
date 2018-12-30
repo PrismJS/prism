@@ -71,7 +71,8 @@
 		'coffescript',
 		'flow',
 		'javascript',
-		'typescript'
+		'typescript',
+		'vala'
 	].forEach(function (lang) {
 		var grammar = Prism.languages[lang];
 		if (grammar) {
