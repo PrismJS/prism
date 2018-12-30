@@ -6,30 +6,27 @@
 ----------------------------------------------------
 
 [
-	["char-set", [
-		["char-set-punctuation", "["],
-		["char-set-punctuation", "]"]
+	["charset", [
+		["charset-punctuation", "["],
+		["charset-punctuation", "]"]
 	]],
 
-	["char-set", [
-		["char-set-punctuation", "[^"],
-		["char-set-punctuation", "]"]
+	["charset", [
+		["charset-punctuation", "["],
+		["charset-negation", "^"],
+		["charset-punctuation", "]"]
 	]],
 
-	["char-set", [
-		["char-set-punctuation", "["],
-		["content", [
-			"foo"
-		]],
-		["char-set-punctuation", "]"]
+	["charset", [
+		["charset-punctuation", "["],
+		"foo",
+		["charset-punctuation", "]"]
 	]],
 
-	["char-set", [
-		["char-set-punctuation", "["],
-		["content", [
-			["escape", "\\]"]
-		]],
-		["char-set-punctuation", "]"]
+	["charset", [
+		["charset-punctuation", "["],
+		["escape", "\\]"],
+		["charset-punctuation", "]"]
 	]]
 ]
 

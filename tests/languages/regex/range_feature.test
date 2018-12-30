@@ -5,51 +5,46 @@
 ----------------------------------------------------
 
 [
-	["char-set", [
-		["char-set-punctuation", "["],
-		["content", [
-			["range", [
-				"a",
-				["delimiter", "-"],
-				"z"
-			]],
-			["range", [
-				"A",
-				["delimiter", "-"],
-				"Z"
-			]],
-			["range", [
-				"0",
-				["delimiter", "-"],
-				"9"
-			]]
+	["charset", [
+		["charset-punctuation", "["],
+		["range", [
+			"a",
+			["range-punctuation", "-"],
+			"z"
 		]],
-		["char-set-punctuation", "]"]
+		["range", [
+			"A",
+			["range-punctuation", "-"],
+			"Z"
+		]],
+		["range", [
+			"0",
+			["range-punctuation", "-"],
+			"9"
+		]],
+		["charset-punctuation", "]"]
 	]],
 
-	["char-set", [
-		["char-set-punctuation", "["],
-		["content", [
-			["range", [
-				["escape", "\\xa1"],
-				["delimiter", "-"],
-				"Z"
-			]],
-			["range", [
-				["escape", "\\u00FF"],
-				["delimiter", "-"],
-				["escape", "\\u{256}"]
-			]]
+	["charset", [
+		["charset-punctuation", "["],
+		["range", [
+			["escape", "\\xa1"],
+			["range-punctuation", "-"],
+			"Z"
 		]],
-		["char-set-punctuation", "]"]
+		["range", [
+			["escape", "\\u00FF"],
+			["range-punctuation", "-"],
+			["escape", "\\u{256}"]
+		]],
+		["charset-punctuation", "]"]
 	]],
 
-	["char-set", [
-		["char-set-punctuation", "[^"],
-		["content", [
-			"-aaa-"
-		]],
-		["char-set-punctuation", "]"]
+	["charset", [
+		["charset-punctuation", "["],
+		["charset-negation", "^"],
+		"-aaa-",
+		["charset-punctuation", "]"]
 	]]
 ]
 

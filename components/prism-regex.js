@@ -24,31 +24,29 @@
 	];
 
 	Prism.languages.regex = {
-		'char-set': {
+		'charset': {
 			pattern: /((?:^|[^\\])(?:\\\\)*)\[(?:[^\\\]]|\\[\s\S])*\]/,
 			lookbehind: true,
 			inside: {
-				'char-set-punctuation': /^\[\^?|\]$/,
-				'content': {
-					pattern: /[\s\S]+/,
+				'charset-negation': {
+					pattern: /(^\[)\^/,
 					lookbehind: true,
+				},
+				'charset-punctuation': /^\[|\]$/,
+				'range': {
+					pattern: range,
 					inside: {
-						'range': {
-							pattern: range,
-							inside: {
-								'escape': escape,
-								'delimiter': /-/
-							}
-						},
 						'escape': escape,
-						'char-class': charClass,
-						'backreference': backreference
+						'range-punctuation': /-/
 					}
-				}
+				},
+				'escape': escape,
+				'charclass': charClass,
+				'backreference': backreference
 			}
 		},
 		'escape': escape,
-		'char-class': charClass,
+		'charclass': charClass,
 		'backreference': backreference,
 		'group': [
 			{

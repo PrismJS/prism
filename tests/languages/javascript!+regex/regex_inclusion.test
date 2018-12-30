@@ -9,19 +9,17 @@
 			"a",
 			["quantifier", "+"],
 			["group", ["(?:"]],
-			["char-set", [
-				["char-set-punctuation", "["],
-				["content", [
-					["range", [
-						"a",
-						["delimiter", "-"],
-						"z"
-					]]
+			["charset", [
+				["charset-punctuation", "["],
+				["range", [
+					"a",
+					["range-punctuation", "-"],
+					"z"
 				]],
-				["char-set-punctuation", "]"]
+				["charset-punctuation", "]"]
 			]],
 			["alternation", "|"],
-			["char-class", "\\d"],
+			["charclass", "\\d"],
 			["group", ")"],
 			["quantifier", "?"]
 		]],
