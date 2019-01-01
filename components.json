@@ -110,6 +110,7 @@
 			"owner": "Golmote"
 		},
 		"asciidoc": {
+ 			"alias": "adoc",
 			"title": "AsciiDoc",
 			"owner": "Golmote"
 		},

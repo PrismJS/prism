@@ -268,4 +268,6 @@
 			env.attributes['title'] = env.content.replace(/&amp;/, '&');
 		}
 	});
+	
+	Prism.languages.adoc = Prism.languages.asciidoc;
 }(Prism));
