@@ -336,7 +336,11 @@ footer {
 	bottom: 1%;
 	max-width: calc(48% - 450px);
 	font-size: 80%;
-	opacity: .3;
+    z-index: 999;
+    background: rgb(255, 255, 255);
+    color: rgba(0,0,0,.5);
+    padding: 0 15px 10px;
+    border-radius: 3px;
 }
 
 @media (max-width: 1200px) {
@@ -351,6 +355,7 @@ footer {
 
 	#toc h1 {
 		font-size: 180%;
+		margin-top: .75rem;
 	}
 
 	#toc li {
