@@ -332,16 +332,14 @@ footer {
 
 #toc {
 	position: fixed;
-	left: 0;
 	bottom: 15px;
-	max-width: calc(48% - 450px - 30px);
+	max-width: calc(50% - 450px - 40px);
 	font-size: 80%;
     z-index: 999;
     background: white;
     color: rgba(0,0,0,.5);
     padding: 0 10px 10px;
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
+	border-radius: 0 3px 3px 0;
 	box-sizing: border-box;
 }
 
