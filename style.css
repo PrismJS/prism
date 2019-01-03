@@ -206,7 +206,7 @@ header {
 				float: left;
 				margin-left: -.8em;
 				color: #7fab14;
-				font-size: 300%;
+				font-size: 400%;
 				line-height: 1;
 			}
 
@@ -350,7 +350,7 @@ footer {
 }
 
 #toc:hover {
-	opacity: 1;
+    color: rgba(0,0,0,1);
 }
 
 	#toc h1 {
