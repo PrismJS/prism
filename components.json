@@ -477,6 +477,10 @@
 			"title": "Monkey",
 			"owner": "Golmote"
 		},
+		"n1ql": {
+			"title": "N1QL",
+			"owner": "TMWilds"
+		},
 		"n4js": {
 			"title": "N4JS",
 			"require": "javascript",
