@@ -9,8 +9,6 @@
 		punctuation: /[[\]{},()]/
 	});
 
-	delete Prism.languages.tt2['operator'];
-	delete Prism.languages.tt2['variable'];
 	Prism.languages.insertBefore('tt2', 'number', {
 		operator: /=[>=]?|!=?|<=?|>=?|&&|\|\|?|\b(?:and|or|not)\b/,
 		variable: {
@@ -18,7 +16,6 @@
 		}
 	});
 
-	delete Prism.languages.tt2['delimiter'];
 	Prism.languages.insertBefore('tt2', 'keyword', {
 		'delimiter': {
 			pattern: /^(?:\[%|%%)-?|-?%]$/,
