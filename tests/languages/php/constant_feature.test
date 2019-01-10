@@ -1,3 +1,4 @@
+null
 _
 X
 AZ
@@ -7,6 +8,7 @@ FOOBAR_42
 ----------------------------------------------------
 
 [
+	["constant", "null"],
 	["constant", "_"],
 	["constant", "X"],
 	["constant", "AZ"],

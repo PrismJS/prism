@@ -46,7 +46,6 @@ isset
 list
 namespace;
 new;
-null
 or
 parent
 print
@@ -119,7 +118,6 @@ yield
 	["keyword", "list"],
 	["keyword", "namespace"], ["punctuation", ";"],
 	["keyword", "new"], ["punctuation", ";"],
-	["keyword", "null"],
 	["keyword", "or"],
 	["keyword", "parent"],
 	["keyword", "print"],
