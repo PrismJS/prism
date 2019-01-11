@@ -764,6 +764,16 @@
 			"alias": "ts",
 			"owner": "vkbansal"
 		},
+		"t4": {
+			"title": "T4: Text Template Transformation Toolkit",
+			"require": ["csharp", "visual-basic"],
+			"alias": ["t4-cs", "t4-vb"],
+			"aliasTitle": {
+				"t4-cs": "T4 C#",
+				"t4-vb": "T4 Visual Basic"
+			},
+			"owner": "RunDevelopment"
+		},
 		"vala": {
 			"title": "Vala",
 			"require": "clike",

@@ -1,0 +1,28 @@
+Foo
+<#+
+public class Bar {}
+#>
+
+----------------------------------------------------
+
+[
+	"Foo\n",
+	["block", [
+		["class-feature", [
+			["punctuation", "<#"],
+			["content", [
+				["operator", "+"],
+				["keyword", "public"],
+				["keyword", "class"],
+				["class-name", ["Bar"]],
+				["punctuation", "{"],
+				["punctuation", "}"]
+			]],
+			["punctuation", "#>"]
+		]]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for class feature control blocks.
