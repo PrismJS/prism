@@ -765,10 +765,10 @@
 			"owner": "vkbansal"
 		},
 		"t4": {
-			"title": "T4: Text Template Transformation Toolkit",
+			"title": "T4 Text Templates",
 			"require": ["csharp", "visual-basic"],
 			"alias": ["t4-cs", "t4-vb"],
-			"aliasTitle": {
+			"aliasTitles": {
 				"t4-cs": "T4 C#",
 				"t4-vb": "T4 Visual Basic"
 			},
