@@ -1,5 +1,6 @@
 ;foo
 ; bar
+nota;comment
 /*
 0
 */
@@ -13,6 +14,7 @@
 [
 	["comment", ";foo"],
 	["comment", "; bar"],
+	"\r\nnota;comment\r\n",
 	["comment", "/*\r\n0\r\n*/"],
 	["comment", "/*1*/\r\n*/"],
 	["comment", "/*\r\n2*/"]
