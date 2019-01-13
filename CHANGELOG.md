@@ -313,7 +313,7 @@
 ### Updated components
 
 * __ABAP__:
-	* Regexp optimisation [[`7547f83`](https://github.com/PrismJS/prism/commit/7547f83)]
+	* Regexp optimisation [[`e7b411e`](https://github.com/PrismJS/prism/commit/e7b411e)]
 * __ActionScript__:
 	* Fix XML regex + optimise [[`75d00d7`](https://github.com/PrismJS/prism/commit/75d00d7)]
 * __Ada__:
@@ -363,7 +363,7 @@
 * __Elixir__:
 	* Regexp optimisation + uniform behavior between ~r and ~s [[`5d12e80`](https://github.com/PrismJS/prism/commit/5d12e80)]
 * __Erlang__:
-	* Regexp optimisation [[`e7b411e`](https://github.com/PrismJS/prism/commit/e7b411e)]
+	* Regexp optimisation [[`7547f83`](https://github.com/PrismJS/prism/commit/7547f83)]
 * __F#__:
 	* Regexp optimisation + don't use captures if not needed [[`7753fc4`](https://github.com/PrismJS/prism/commit/7753fc4)]
 * __Gherkin__:
