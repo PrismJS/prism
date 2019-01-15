@@ -1,0 +1,15 @@
+true
+false
+trueVal
+
+----------------------------------------------------
+
+[
+	["boolean", "true"],
+	["boolean", "false"],
+	"\r\ntrueVal"
+]
+
+----------------------------------------------------
+
+Checks for booleans (outside of identifiers).

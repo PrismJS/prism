@@ -342,6 +342,10 @@
 			"title": "HCL",
 			"owner": "outsideris"
 		},
+		"hdl": {
+			"title": "HDL",
+			"owner": "stephanmax"
+		},
 		"http": {
 			"title": "HTTP",
 			"peerDependencies": [

@@ -1,0 +1,23 @@
+CHIP
+IN
+OUT
+PARTS
+BUILTIN
+CLOCKED
+myCHIP
+
+----------------------------------------------------
+
+[
+	["keyword", "CHIP"],
+  ["keyword", "IN"],
+  ["keyword", "OUT"],
+  ["keyword", "PARTS"],
+  ["keyword", "BUILTIN"],
+  ["keyword", "CLOCKED"],
+  "\r\nmyCHIP"
+]
+
+----------------------------------------------------
+
+Checks for all keywords (outside of identifiers).
