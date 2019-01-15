@@ -3,6 +3,6 @@ Prism.languages['nand2tetris-hdl'] = {
 	'keyword': /\b(?:CHIP|IN|OUT|PARTS|BUILTIN|CLOCKED)\b/,
 	'boolean': /\b(?:true|false)\b/,
 	'number': /\b\d+\b/,
-	'operator': /=/,
-	'punctuation': /[{}[\];(),.:]/
+	'operator': /=|\.\./,
+	'punctuation': /[{}[\];(),:]/
 };
