@@ -1,17 +1,15 @@
 0
 16
 32
-num65
 
 ----------------------------------------------------
 
 [
 	["number", "0"],
 	["number", "16"],
-	["number", "32"],
-	"\r\nnum65"
+	["number", "32"]
 ]
 
 ----------------------------------------------------
 
-Checks for integer numbers (outside of identifiers).
+Checks for integer numbers.

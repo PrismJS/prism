@@ -1,15 +1,13 @@
 true
 false
-trueVal
 
 ----------------------------------------------------
 
 [
 	["boolean", "true"],
-	["boolean", "false"],
-	"\r\ntrueVal"
+	["boolean", "false"]
 ]
 
 ----------------------------------------------------
 
-Checks for booleans (outside of identifiers).
+Checks for booleans.
