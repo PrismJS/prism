@@ -1,0 +1,17 @@
+struct foo
+enum bar
+
+struct foo var;
+
+----------------------------------------------------
+
+[
+	["keyword", "struct"], ["class-name", "foo"],
+	["keyword", "enum"], ["class-name", "bar"],
+
+	["keyword", "struct"], ["class-name", "foo"], " var", ["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for structs and enums.
