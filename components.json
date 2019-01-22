@@ -487,6 +487,10 @@
 			"alias": "n4jsd",
 			"owner": "bsmith-n4"
 		},
+		"nand2tetris-hdl": {
+			"title": "Nand To Tetris HDL",
+			"owner": "stephanmax"
+		},
 		"nasm": {
 			"title": "NASM",
 			"owner": "rbmj"
