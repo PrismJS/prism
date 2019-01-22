@@ -76,19 +76,49 @@ gulp.task('languages-plugins', function (cb) {
 	componentsPromise.then(function (data) {
 		var languagesMap = {};
 		var dependenciesMap = {};
+
+		/**
+		 * Tries to guess the name of a language given its id.
+		 *
+		 * From `prism-show-language.js`.
+		 *
+		 * @param {string} id The language id.
+		 * @returns {string}
+		 */
+		function guessTitle(id) {
+			if (!id) {
+				return id;
+			}
+			return (id.substring(0, 1).toUpperCase() + id.substring(1)).replace(/s(?=cript)/, 'S');
+		}
+
+		function addLanguageTitle(key, title) {
+			if (!languagesMap[key] && guessTitle(key) !== title) {
+				languagesMap[key] = title;
+			}
+		}
+
 		for (var p in data.languages) {
 			if (p !== 'meta') {
 				var title = data.languages[p].displayTitle || data.languages[p].title;
-				var ucfirst = p.substring(0, 1).toUpperCase() + p.substring(1);
-				if (title !== ucfirst) {
-					languagesMap[p] = title;
-				}
+
+				addLanguageTitle(p, title);
 
 				for (var name in data.languages[p].aliasTitles) {
-					languagesMap[name] = data.languages[p].aliasTitles[name];
+					addLanguageTitle(name, data.languages[p].aliasTitles[name]);
 				}
 
-				if(data.languages[p].require) {
+				if (data.languages[p].alias) {
+					if (typeof data.languages[p].alias === 'string') {
+						addLanguageTitle(data.languages[p].alias, title);
+					} else {
+						data.languages[p].alias.forEach(function (alias) {
+							addLanguageTitle(alias, title);
+						});
+					}
+				}
+
+				if (data.languages[p].require) {
 					dependenciesMap[p] = data.languages[p].require;
 				}
 			}
