@@ -110,6 +110,7 @@
 			"owner": "Golmote"
 		},
 		"asciidoc": {
+ 			"alias": "adoc",
 			"title": "AsciiDoc",
 			"owner": "Golmote"
 		},
@@ -337,6 +338,10 @@
 			"require": "clike",
 			"owner": "Golmote"
 		},
+		"hcl": {
+			"title": "HCL",
+			"owner": "outsideris"
+		},
 		"http": {
 			"title": "HTTP",
 			"peerDependencies": [
@@ -472,11 +477,19 @@
 			"title": "Monkey",
 			"owner": "Golmote"
 		},
+		"n1ql": {
+			"title": "N1QL",
+			"owner": "TMWilds"
+		},
 		"n4js": {
 			"title": "N4JS",
 			"require": "javascript",
 			"alias": "n4jsd",
 			"owner": "bsmith-n4"
+		},
+		"nand2tetris-hdl": {
+			"title": "Nand To Tetris HDL",
+			"owner": "stephanmax"
 		},
 		"nasm": {
 			"title": "NASM",
