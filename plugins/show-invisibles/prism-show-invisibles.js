@@ -38,8 +38,9 @@
 				break;
 
 			case 'Array':
-				for (var i = 0, l = value.length; i < l; i++)
+				for (var i = 0, l = value.length; i < l; i++) {
 					handleToken(value, i);
+				}
 				break;
 
 			default: // 'Object'
@@ -55,21 +56,24 @@
 	 * @param {Object} grammar
 	 */
 	function addInvisibles(grammar) {
-		if (!grammar || grammar['tab'])
+		if (!grammar || grammar['tab']) {
 			return;
+		}
 
 		// assign invisibles here to "mark" the grammar in case of self references
 		for (var name in invisibles) {
-			if (invisibles.hasOwnProperty(name))
+			if (invisibles.hasOwnProperty(name)) {
 				grammar[name] = invisibles[name];
+			}
 		}
 
 		for (var name in grammar) {
 			if (grammar.hasOwnProperty(name) && !invisibles[name]) {
-				if (name === 'rest')
+				if (name === 'rest') {
 					addInvisibles(grammar['rest']);
-				else
+				} else {
 					handleToken(grammar, name);
+				}
 			}
 		}
 	}
