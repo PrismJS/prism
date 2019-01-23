@@ -1,0 +1,82 @@
+styled.button`
+  color: blue;
+  background: ${props => props.background || 'none'};
+`
+styled(Button)`
+  background: red;
+`
+createGlobalStyle`
+  html {
+    color: blue;
+  }
+`
+css`
+  color: blue;
+`
+keyframes`
+  0% {
+    color: blue;
+  }
+  100% {
+    color: red;
+  }
+`
+
+----------------------------------------------------
+
+[
+  "styled",
+  ["punctuation", "."],
+  "button",
+  ["styled-components-template-string", [ 
+    ["string", "`\n  color: blue"],
+    ";",
+    ["string", "\n  background: "],
+    ["interpolation", [
+      ["interpolation-punctuation", "${"],
+      ["parameter", ["props"]],
+      ["operator", "=>"],
+      " props",
+      ["punctuation", "."],
+      "background ",
+      ["operator", "||"],
+      ["string", "'none'"],
+      ["interpolation-punctuation", "}"]
+    ]],
+    ";",
+    ["string", "\n`"]
+  ]],
+  ["function", "styled"],
+  ["punctuation", "("],
+  "Button",
+  ["punctuation", ")"],
+  ["styled-components-template-string", [
+    ["string", "`\n  background: red"],
+    ";",
+    ["string", "\n`"]
+  ]],
+  "\ncreateGlobalStyle",
+  ["styled-components-template-string", [
+    ["string", "`\n  html {\n    color: blue"],
+    ";",
+    ["string", "\n  }\n`"]
+  ]],
+  "\ncss",
+  ["styled-components-template-string", [
+    ["string", "`\n  color: blue"],
+    ";",
+    ["string", "\n`"]
+  ]],
+  "\nkeyframes",
+  ["styled-components-template-string", [
+    ["string", "`\n  0% {\n    color: blue"],
+    ";",
+    ["string", "\n  }\n  100% {\n    color: red"],
+    ";",
+    ["string", "\n  }\n`"]
+  ]]
+]
+
+----------------------------------------------------
+
+Checks for styled-components and its APIs.
