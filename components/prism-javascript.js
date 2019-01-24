@@ -78,7 +78,7 @@ Prism.languages.insertBefore('javascript', 'string', {
 
 Prism.languages.insertBefore("javascript", "template-string", {
 	"styled-components-template-string": {
-		pattern: /(styled(\.\w+|\([^\)]*\))(\.\w+(\([^\)]*\))*)*|css|createGlobalStyle|keyframes)`(?:\$\{[^}]+\}|\\\\|\\?[^\\])*?`/,
+		pattern: /(styled(?:\([^)]*\))?(?:\.\w+(?:\([^)]*\))*)*|css|createGlobalStyle|keyframes)`(?:\$\{[^}]+\}|\\\\|\\?[^\\])*?`/,
 		lookbehind: true,
 		greedy: true,
 		inside: {
