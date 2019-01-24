@@ -70,7 +70,7 @@
 		"javascript": {
 			"title": "JavaScript",
 			"require": "clike",
-			"peerDependencies": "markup",
+			"peerDependencies": ["markup", "css"],
 			"alias": "js",
 			"option": "default"
 		},
