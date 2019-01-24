@@ -91,11 +91,6 @@ Prism.languages.insertBefore("javascript", "template-string", {
 					},
 					rest: Prism.languages.javascript
 				}
-			},
-			string: {
-				pattern: /[^$;]+/,
-				inside: Prism.languages.css,
-				alias: "language-css"
 			}
 		}
 	}

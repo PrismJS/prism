@@ -29,9 +29,7 @@ keyframes`
 	["punctuation", "."],
 	"button",
 	["styled-components-template-string", [ 
-		["string", "`\n\tcolor: blue"],
-		";",
-		["string", "\n\tbackground: "],
+		"`\n\tcolor: blue;\n\tbackground: ",
 		["interpolation", [
 			["interpolation-punctuation", "${"],
 			["parameter", ["props"]],
@@ -43,37 +41,26 @@ keyframes`
 			["string", "'none'"],
 			["interpolation-punctuation", "}"]
 		]],
-		";",
-		["string", "\n`"]
+		";\n`"
 	]],
 	["function", "styled"],
 	["punctuation", "("],
 	"Button",
 	["punctuation", ")"],
 	["styled-components-template-string", [
-		["string", "`\n\tbackground: red"],
-		";",
-		["string", "\n`"]
+		"`\n\tbackground: red;\n`"
 	]],
 	"\ncreateGlobalStyle",
 	["styled-components-template-string", [
-		["string", "`\n\thtml {\n\t\tcolor: blue"],
-		";",
-		["string", "\n\t}\n`"]
+		"`\n\thtml {\n\t\tcolor: blue;\n\t}\n`"
 	]],
 	"\ncss",
 	["styled-components-template-string", [
-		["string", "`\n\tcolor: blue"],
-		";",
-		["string", "\n`"]
+		"`\n\tcolor: blue;\n`"
 	]],
 	"\nkeyframes",
 	["styled-components-template-string", [
-		["string", "`\n\t0% {\n\t\tcolor: blue"],
-		";",
-		["string", "\n\t}\n\t100% {\n\t\tcolor: red"],
-		";",
-		["string", "\n\t}\n`"]
+		"`\n\t0% {\n\t\tcolor: blue;\n\t}\n\t100% {\n\t\tcolor: red;\n\t}\n`"
 	]]
 ]
 
