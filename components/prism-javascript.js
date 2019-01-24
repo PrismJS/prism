@@ -77,28 +77,28 @@ Prism.languages.insertBefore('javascript', 'string', {
 });
 
 Prism.languages.insertBefore("javascript", "template-string", {
-  "styled-components-template-string": {
-    pattern: /(styled(\.\w+|\([^\)]*\))(\.\w+(\([^\)]*\))*)*|css|createGlobalStyle|keyframes)`(?:\$\{[^}]+\}|\\\\|\\?[^\\])*?`/,
-    lookbehind: true,
-    greedy: true,
-    inside: {
-      interpolation: {
-        pattern: /\$\{[^}]+\}/,
-        inside: {
-          "interpolation-punctuation": {
-            pattern: /^\$\{|\}$/,
-            alias: "punctuation"
-          },
-          rest: Prism.languages.javascript
-        }
-      },
-      string: {
-        pattern: /[^$;]+/,
-        inside: Prism.languages.css,
-        alias: "language-css"
-      }
-    }
-  }
+	"styled-components-template-string": {
+		pattern: /(styled(\.\w+|\([^\)]*\))(\.\w+(\([^\)]*\))*)*|css|createGlobalStyle|keyframes)`(?:\$\{[^}]+\}|\\\\|\\?[^\\])*?`/,
+		lookbehind: true,
+		greedy: true,
+		inside: {
+			interpolation: {
+				pattern: /\$\{[^}]+\}/,
+				inside: {
+					"interpolation-punctuation": {
+						pattern: /^\$\{|\}$/,
+						alias: "punctuation"
+					},
+					rest: Prism.languages.javascript
+				}
+			},
+			string: {
+				pattern: /[^$;]+/,
+				inside: Prism.languages.css,
+				alias: "language-css"
+			}
+		}
+	}
 });
 
 if (Prism.languages.markup) {
