@@ -34,10 +34,27 @@ var gulp   = require('gulp'),
 				reject(err);
 			}
 		});
-	});
+	}),
+
+	inlineRegexSource = function () {
+		return replace(
+			/\/((?:[^\n\r[\\\/]|\\.|\[(?:[^\n\r\\\]]|\\.)*\])*)\/\.source\b/g,
+			function (m, source) {
+				// escape backslashes
+				source = source.replace(/\\/g, '\\\\');
+				// escape single quotes
+				source = source.replace(/'/g, "\\'");
+				// unescape characters like \\n and \\t to \n and \t
+				source = source.replace(/(^|[^\\])\\\\([nrt0])/g, '$1\\$2');
+				// wrap source in single quotes
+				return "'" + source + "'";
+			}
+		);
+	};
 
 gulp.task('components', function() {
 	return gulp.src(paths.components)
+		.pipe(inlineRegexSource())
 		.pipe(uglify())
 		.pipe(rename({ suffix: '.min' }))
 		.pipe(gulp.dest('components'));
@@ -54,6 +71,7 @@ gulp.task('build', function() {
 
 gulp.task('plugins', ['languages-plugins'], function() {
 	return gulp.src(paths.plugins)
+		.pipe(inlineRegexSource())
 		.pipe(uglify())
 		.pipe(rename({ suffix: '.min' }))
 		.pipe(gulp.dest('plugins'));
