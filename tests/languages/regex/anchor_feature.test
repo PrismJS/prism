@@ -1,5 +1,9 @@
 ^
 $
+\A
+\G
+\Z
+\z
 \b
 \B
 
@@ -8,6 +12,10 @@ $
 [
 	["anchor", "^"],
 	["anchor", "$"],
+	["anchor", "\\A"],
+	["anchor", "\\G"],
+	["anchor", "\\Z"],
+	["anchor", "\\z"],
 	["anchor", "\\b"],
 	["anchor", "\\B"]
 ]

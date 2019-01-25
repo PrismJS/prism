@@ -3,7 +3,14 @@
 (?>)
 (?=) (?!)
 (?<=) (?<!)
+
 (?<name>)
+(?'name')
+
+(?i)
+(?i:)
+(?idmsuxU-idmsuxU)
+(?idmsux-idmsux:X)
 
 ----------------------------------------------------
 
@@ -32,6 +39,23 @@
 		["group-name", "name"],
 		">"]
 	],
+	["group", ")"],
+
+	["group", [
+		"(?'",
+		["group-name", "name"],
+		"'"]
+	],
+	["group", ")"],
+
+	["group", ["(?i"]],
+	["group", ")"],
+	["group", ["(?i:"]],
+	["group", ")"],
+	["group", ["(?idmsuxU-idmsuxU"]],
+	["group", ")"],
+	["group", ["(?idmsux-idmsux:"]],
+	"X",
 	["group", ")"]
 ]
 

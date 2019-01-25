@@ -1,6 +1,6 @@
 (function (Prism) {
 
-	var escape = /\\(?:x[\da-fA-F]{2}|u[\da-fA-F]{4}|u\{\d+\}|c[a-zA-Z]|0[0-7]{0,2}|[123][0-7]{2}|[^bBdDkpPsSwW1-9])/
+	var escape = /\\(?:x[\da-fA-F]{2}|u[\da-fA-F]{4}|u\{\d+\}|c[a-zA-Z]|0[0-7]{0,2}|[123][0-7]{2}|[^dDkpPsSwW1-9ABbGZz])/
 	var charClass = /\\[wsd]|\.|\\p{[^{}]+}/i
 
 	var rangeChar = '(?:[^\\\\-]|' + escape.source + ')';
@@ -8,7 +8,7 @@
 
 	// the name of a capturing group
 	var groupName = {
-		pattern: /(<)[^<>]+(?=>)/,
+		pattern: /(<|')[^<>']+(?=[>']$)/,
 		lookbehind: true,
 		alias: 'variable'
 	};
@@ -16,7 +16,7 @@
 	var backreference = [
 		/\\[1-9]/,
 		{
-			pattern: /\\k<[^<>]+>/,
+			pattern: /\\k<[^<>']+>/,
 			inside: {
 				'group-name': groupName
 			}
@@ -50,15 +50,18 @@
 		'backreference': backreference,
 		'group': [
 			{
-				// (), (?<name>), (?>), (?:), (?=), (?!), (?<=), (?<!)
-				pattern: /\((?:\?(?:<[^<>]+>|[>:]|<?[=!]))?/,
+				// https://docs.oracle.com/javase/10/docs/api/java/util/regex/Pattern.html
+				// https://docs.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference?view=netframework-4.7.2#grouping-constructs
+
+				// (), (?<name>), (?'name'), (?>), (?:), (?=), (?!), (?<=), (?<!), (?is-m), (?i-m:)
+				pattern: /\((?:\?(?:<[^<>']+>|'[^<>']+'|[>:]|<?[=!]|[idmnsuxU]+(?:-[idmnsuxU]+)?:?))?/,
 				inside: {
 					'group-name': groupName
 				}
 			},
 			/\)/
 		],
-		'anchor': /[$^]|\\b/i,
+		'anchor': /[$^]|\\[ABbGZz]/,
 		'quantifier': /[+*?]|\{(?:\d+,?\d*)\}/,
 		'alternation': /\|/
 	};
