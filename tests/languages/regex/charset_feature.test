@@ -1,7 +1,7 @@
 []
 [^]
 [foo]
-[\]]
+[\]\b]
 
 ----------------------------------------------------
 
@@ -25,7 +25,8 @@
 
 	["charset", [
 		["charset-punctuation", "["],
-		["escape", "\\]"],
+		["special-escape", "\\]"],
+		["escape", "\\b"],
 		["charset-punctuation", "]"]
 	]]
 ]

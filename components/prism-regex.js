@@ -1,6 +1,10 @@
 (function (Prism) {
 
-	var escape = /\\(?:x[\da-fA-F]{2}|u[\da-fA-F]{4}|u\{\d+\}|c[a-zA-Z]|0[0-7]{0,2}|[123][0-7]{2}|[^dDkpPsSwW1-9ABbGZz])/
+	var specialEscape = {
+		pattern: /\\[\\(){}[\]^$+*?|.]/,
+		alias: 'escape'
+	};
+	var escape = /\\(?:x[\da-fA-F]{2}|u[\da-fA-F]{4}|u\{\d+\}|c[a-zA-Z]|0[0-7]{0,2}|[123][0-7]{2}|.)/
 	var charClass = /\\[wsd]|\.|\\p{[^{}]+}/i
 
 	var rangeChar = '(?:[^\\\\-]|' + escape.source + ')';
@@ -14,7 +18,7 @@
 	};
 
 	var backreference = [
-		/\\[1-9]/,
+		/\\(?![123][0-7]{2})[1-9]/, // a backreference which is not an octal escape
 		{
 			pattern: /\\k<[^<>']+>/,
 			inside: {
@@ -40,14 +44,17 @@
 						'range-punctuation': /-/
 					}
 				},
-				'escape': escape,
+				'special-escape': specialEscape,
 				'charclass': charClass,
-				'backreference': backreference
+				'backreference': backreference,
+				'escape': escape
 			}
 		},
-		'escape': escape,
+		'special-escape': specialEscape,
 		'charclass': charClass,
 		'backreference': backreference,
+		'anchor': /[$^]|\\[ABbGZz]/,
+		'escape': escape,
 		'group': [
 			{
 				// https://docs.oracle.com/javase/10/docs/api/java/util/regex/Pattern.html
@@ -61,7 +68,6 @@
 			},
 			/\)/
 		],
-		'anchor': /[$^]|\\[ABbGZz]/,
 		'quantifier': /[+*?]|\{(?:\d+,?\d*)\}/,
 		'alternation': /\|/
 	};
