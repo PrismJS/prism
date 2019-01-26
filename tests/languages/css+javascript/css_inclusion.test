@@ -1,0 +1,122 @@
+styled.button`
+	color: blue;
+	background: ${props => props.background || 'none'};
+`
+styled(Button)`
+	background: red;
+`
+createGlobalStyle`
+	html {
+		color: blue;
+	}
+`
+css`
+	color: blue;
+`
+keyframes`
+	0% {
+		color: blue;
+	}
+	100% {
+		color: red;
+	}
+`
+
+----------------------------------------------------
+
+[
+	"styled",
+	["punctuation", "."],
+	"button",
+	["template-string", [
+		["string", [
+			"`\n\t",
+			["property", "color"],
+			["punctuation", ":"],
+			" blue",
+			["punctuation", ";"],
+			["property", "background"],
+			["punctuation", ":"]
+		]],
+		["interpolation", [
+			["interpolation-punctuation", "${"],
+			["parameter", ["props"]],
+			["operator", "=>"],
+			" props",
+			["punctuation", "."],
+			"background ",
+			["operator", "||"],
+			["string", "'none'"],
+			["interpolation-punctuation", "}"]
+		]],
+		["string", [
+			["punctuation", ";"],
+			"\n`"
+		]]
+	]],
+
+	["function", "styled"],
+	["punctuation", "("],
+	"Button",
+	["punctuation", ")"],
+	["template-string", [
+		["string", [
+			"`\n\t",
+			["property", "background"],
+			["punctuation", ":"],
+			" red",
+			["punctuation", ";"],
+			"\n`"
+		]]
+	]],
+
+	"\ncreateGlobalStyle",
+	["template-string", [
+		["string", [
+			["selector", "`\n\thtml"],
+			["punctuation", "{"],
+			["property", "color"],
+			["punctuation", ":"],
+			" blue",
+			["punctuation", ";"],
+			["punctuation", "}"],
+			"\n`"
+		]]
+	]],
+
+	"\ncss",
+	["template-string", [
+		["string", [
+			"`\n\t",
+			["property", "color"],
+			["punctuation", ":"],
+			" blue",
+			["punctuation", ";"],
+			"\n`"
+		]]
+	]],
+
+	"\nkeyframes",
+	["template-string", [
+		["string", [
+			["selector", "`\n\t0%"],
+			["punctuation", "{"],
+			["property", "color"],
+			["punctuation", ":"],
+			" blue", ["punctuation", ";"],
+			["punctuation", "}"],
+			["selector", "100%"],
+			["punctuation", "{"],
+			["property", "color"],
+			["punctuation", ":"],
+			" red",
+			["punctuation", ";"],
+			["punctuation", "}"],
+			"\n`"
+		]]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for the inclusion of CSS code in tagged template strings for styled-components and its APIs.
