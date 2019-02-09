@@ -81,7 +81,6 @@
 			{
 				// b)
 				pattern: /\b\w+(?=\s*\(\s*\)\s*\{)/,
-				lookbehind: true,
 				alias: 'function'
 			}
 		],
