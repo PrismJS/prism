@@ -9,6 +9,7 @@ fooBar = ( x, y ) => x
 d = function Example({ props: { a: _A, b} } = Props) {}
 f = function (x = fun()) {}
 l = (x = fun(), y) => {}
+a = function () {}, b = () => {}
 
 ----------------------------------------------------
 
@@ -43,7 +44,7 @@ l = (x = fun(), y) => {}
 	["function", "baz"],
 	["punctuation", "("],
 	["parameter", [
-		"x"
+		"x "
 	]],
 	["punctuation", ")"],
 	["punctuation", "{"],
@@ -72,7 +73,7 @@ l = (x = fun(), y) => {}
 	["parameter", [
 		"x",
 		["punctuation", ","],
-		" y"
+		" y "
 	]],
 	["punctuation", ")"],
 	["operator", "=>"], " x\r\n",
@@ -152,6 +153,22 @@ l = (x = fun(), y) => {}
 		["punctuation", ","],
 		" y"
 	]],
+	["punctuation", ")"],
+	["operator", "=>"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["function-variable", "a"],
+	["operator", "="],
+	["keyword", "function"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["function-variable", "b"],
+	["operator", "="],
+	["punctuation", "("],
 	["punctuation", ")"],
 	["operator", "=>"],
 	["punctuation", "{"],
