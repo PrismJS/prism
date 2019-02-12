@@ -2,6 +2,7 @@ var myDivElement = <div className="foo" />;
 var myElement = <MyComponent someProperty={true} />;
 <div {...foo}></div>
 <> </>
+<Tree.TreeNode.Item leaf={true}></Tree.TreeNode.Item>
 
 ----------------------------------------------------
 
@@ -73,6 +74,27 @@ var myElement = <MyComponent someProperty={true} />;
 	["tag", [
 		["tag", [
 			["punctuation", "</"]
+		]],
+		["punctuation", ">"]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			["class-name", "Tree.TreeNode.Item"]
+		]],
+		["attr-name", ["leaf"]],
+		["script", [
+			 ["script-punctuation", "="],
+			 ["punctuation", "{"],
+			 ["boolean", "true"],
+			 ["punctuation", "}"]
+		]],
+		["punctuation", ">"]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			["class-name", "Tree.TreeNode.Item"]
 		]],
 		["punctuation", ">"]
 	]]
