@@ -70,6 +70,7 @@ pre[class*="language-"] {
 }
 
 .token.boolean,
+.token.null,
 .token.number,
 .token.function {
 	color: #f08d49;

@@ -90,6 +90,7 @@ code[class*="language-"]::selection, code[class*="language-"] ::selection {
 
 .token.tag,
 .token.boolean,
+.token.null,
 .token.number,
 .token.deleted {
 	color: hsl(14, 58%, 55%); /* #CF6A4C */

@@ -118,6 +118,7 @@ pre[class*="language-"]:after {
 .token.property,
 .token.tag,
 .token.boolean,
+.token.null,
 .token.number,
 .token.function-name,
 .token.constant,

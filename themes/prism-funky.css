@@ -65,6 +65,7 @@ code[class*="language-"] {
 .token.property,
 .token.tag,
 .token.boolean,
+.token.null,
 .token.number,
 .token.constant,
 .token.symbol {
