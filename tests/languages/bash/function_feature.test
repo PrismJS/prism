@@ -1,4 +1,4 @@
-alias apropos apt apt-cache apt-get aptitude aspell
+add alias apropos apt apt-cache apt-get aptitude aspell
 automysqlbackup awk basename bash bc bconsole bg
 builtin bzip2 cal cat cd
 cfdisk chgrp chmod chown chroot
@@ -43,12 +43,12 @@ units unrar unshar unzip update-grub uptime
 useradd userdel usermod users uuencode
 uudecode vdir vi vim virsh vmstat wait watch
 wc wget whereis which who whoami write
-xargs xdg-open yes zip zypper
+xargs xdg-open yarn yes zip zypper
 
 ----------------------------------------------------
 
 [
-	["function", "alias"], ["function", "apropos"], ["function", "apt"], ["function", "apt-cache"], ["function", "apt-get"], ["function", "aptitude"], ["function", "aspell"],
+	["function", "add"], ["function", "alias"], ["function", "apropos"], ["function", "apt"], ["function", "apt-cache"], ["function", "apt-get"], ["function", "aptitude"], ["function", "aspell"],
 	["function", "automysqlbackup"], ["function", "awk"], ["function", "basename"], ["function", "bash"], ["function", "bc"], ["function", "bconsole"], ["function", "bg"],
 	["function", "builtin"], ["function", "bzip2"], ["function", "cal"], ["function", "cat"], ["function", "cd"],
 	["function", "cfdisk"], ["function", "chgrp"], ["function", "chmod"], ["function", "chown"], ["function", "chroot"],
@@ -93,7 +93,7 @@ xargs xdg-open yes zip zypper
 	["function", "useradd"], ["function", "userdel"], ["function", "usermod"], ["function", "users"], ["function", "uuencode"],
 	["function", "uudecode"], ["function", "vdir"], ["function", "vi"], ["function", "vim"], ["function", "virsh"],  ["function", "vmstat"], ["function", "wait"], ["function", "watch"],
 	["function", "wc"], ["function", "wget"], ["function", "whereis"], ["function", "which"], ["function", "who"], ["function", "whoami"], ["function", "write"],
-	["function", "xargs"], ["function", "xdg-open"], ["function", "yes"], ["function", "zip"], ["function", "zypper"]
+	["function", "xargs"], ["function", "xdg-open"], ["function", "yarn"], ["function", "yes"], ["function", "zip"], ["function", "zypper"]
 ]
 
 ----------------------------------------------------
