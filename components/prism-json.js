@@ -12,7 +12,10 @@ Prism.languages.json = {
 	'punctuation': /[{}[\],]/,
 	'operator': /:/,
 	'boolean': /\b(?:true|false)\b/,
-	'null': /\bnull\b/
+	'null': {
+		pattern: /\bnull\b/,
+		alias: 'keyword'
+	}
 };
 
 Prism.languages.jsonp = Prism.languages.json;
