@@ -11,10 +11,7 @@ Prism.languages.json = {
 	'number': /-?\d+\.?\d*(e[+-]?\d+)?/i,
 	'punctuation': /[{}[\],]/,
 	'operator': /:/,
-	'boolean': {
-		pattern: /\b(?:true|false)\b/,
-		alias: 'keyword'
-	},
+	'boolean': /\b(?:true|false)\b/,
 	'null': {
 		pattern: /\bnull\b/,
 		alias: 'keyword'
