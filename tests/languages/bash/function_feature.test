@@ -25,7 +25,7 @@ mkfs mkisofs mknod mkswap more most mount
 mtools mtr mutt mv mmv nano nc netstat
 nice nl nohup notify-send nslookup
 open parted op passwd paste pathchk ping
-pkill popd pr printcap printenv
+pkill pnpm popd pr printcap printenv
 printf ps pushd pv pwd quota
 quotacheck quotactl ram rar rcp
 read readarray readonly reboot
@@ -75,7 +75,7 @@ xargs xdg-open yarn yes zip zypper
 	["function", "mtools"], ["function", "mtr"], ["function", "mutt"], ["function", "mv"], ["function", "mmv"], ["function", "nano"], ["function", "nc"], ["function", "netstat"],
 	["function", "nice"], ["function", "nl"], ["function", "nohup"], ["function", "notify-send"], ["function", "nslookup"],
 	["function", "open"], ["function", "parted"], ["function", "op"], ["function", "passwd"], ["function", "paste"], ["function", "pathchk"], ["function", "ping"],
-	["function", "pkill"], ["function", "popd"], ["function", "pr"], ["function", "printcap"], ["function", "printenv"],
+	["function", "pkill"], ["function", "pnpm"], ["function", "popd"], ["function", "pr"], ["function", "printcap"], ["function", "printenv"],
 	["function", "printf"], ["function", "ps"], ["function", "pushd"], ["function", "pv"], ["function", "pwd"], ["function", "quota"],
 	["function", "quotacheck"], ["function", "quotactl"], ["function", "ram"], ["function", "rar"], ["function", "rcp"],
 	["function", "read"], ["function", "readarray"], ["function", "readonly"], ["function", "reboot"],
