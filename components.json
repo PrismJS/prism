@@ -261,6 +261,7 @@
 		"flow": {
 			"title": "Flow",
 			"require": "javascript",
+			"peerDependencies": "js-extras",
 			"owner": "Golmote"
 		},
 		"fortran": {
@@ -396,6 +397,12 @@
 			"require": "clike",
 			"owner": "thesave"
 		},
+		"js-extras": {
+			"title": "JS Extras",
+			"require": "javascript",
+			"peerDependencies": "coffeescript",
+			"owner": "RunDevelopment"
+		},
 		"json": {
 			"title": "JSON",
 			"alias": "jsonp",
@@ -484,6 +491,7 @@
 		"n4js": {
 			"title": "N4JS",
 			"require": "javascript",
+			"peerDependencies": "js-extras",
 			"alias": "n4jsd",
 			"owner": "bsmith-n4"
 		},
@@ -647,6 +655,7 @@
 		"jsx": {
 			"title": "React JSX",
 			"require": ["markup", "javascript"],
+			"peerDependencies": "js-extras",
 			"owner": "vkbansal"
 		},
 		"tsx": {
@@ -765,6 +774,7 @@
 		"typescript": {
 			"title": "TypeScript",
 			"require": "javascript",
+			"peerDependencies": "js-extras",
 			"alias": "ts",
 			"owner": "vkbansal"
 		},
