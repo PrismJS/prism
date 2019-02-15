@@ -4,7 +4,7 @@
 		'method-variable': {
 			pattern: RegExp('(\\.\\s*)' + Prism.languages.javascript['function-variable'].pattern.source),
 			lookbehind: true,
-			alias: ['function-variable', 'function', 'property-access']
+			alias: ['function-variable', 'method', 'function', 'property-access']
 		}
 	});
 
