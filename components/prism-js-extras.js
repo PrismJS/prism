@@ -32,16 +32,16 @@
 		]
 	});
 
-	Prism.languages.insertBefore('javascript', 'keyword', {
-		'module': {
+	Prism.languages.javascript['keyword'].unshift(
+		{
 			pattern: /\b(?:as|default|export|from|import)\b/,
-			alias: 'keyword'
+			alias: 'module'
 		},
-		'nil': {
+		{
 			pattern: /\b(?:null|undefined)\b/,
-			alias: 'keyword'
+			alias: 'nil'
 		}
-	});
+	);
 
 	Prism.languages.insertBefore('javascript', 'operator', {
 		'spread': {
