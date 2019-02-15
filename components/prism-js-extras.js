@@ -54,7 +54,18 @@
 		}
 	});
 
+	var propertyDef = /(?:[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*|)(?=\s*:)/;
+	var propertyDefSource = /(?:[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*|__)(?=\s*:)/.source
+		.replace('__', Prism.languages.javascript['string'].pattern.source);
+
 	Prism.languages.insertBefore('javascript', 'punctuation', {
+		'safe-property-definition': {
+			pattern: RegExp(/([,{]\s*)/.source + propertyDef.source),
+			lookbehind: true,
+			inside: {
+				'string': Prism.languages.javascript['string']
+			}
+		},
 		__conditional: {
 			pattern: /(\?)(?:[^"'])+(?=:)/,
 			lookbehind: true,
