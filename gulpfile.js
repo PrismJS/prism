@@ -4,6 +4,7 @@ var gulp   = require('gulp'),
 	header = require('gulp-header'),
 	concat = require('gulp-concat'),
 	replace = require('gulp-replace'),
+	pump = require('pump'),
 	fs = require('fs'),
 
 	paths  = {
@@ -52,12 +53,17 @@ var gulp   = require('gulp'),
 		);
 	};
 
-gulp.task('components', function() {
-	return gulp.src(paths.components)
-		.pipe(inlineRegexSource())
-		.pipe(uglify())
-		.pipe(rename({ suffix: '.min' }))
-		.pipe(gulp.dest('components'));
+gulp.task('components', function(cb) {
+	pump(
+		[
+			gulp.src(paths.components),
+			inlineRegexSource(),
+			uglify(),
+			rename({ suffix: '.min' }),
+			gulp.dest('components')
+		],
+		cb
+	);
 });
 
 gulp.task('build', function() {
@@ -69,12 +75,17 @@ gulp.task('build', function() {
 		.pipe(gulp.dest('./'));
 });
 
-gulp.task('plugins', ['languages-plugins'], function() {
-	return gulp.src(paths.plugins)
-		.pipe(inlineRegexSource())
-		.pipe(uglify())
-		.pipe(rename({ suffix: '.min' }))
-		.pipe(gulp.dest('plugins'));
+gulp.task('plugins', ['languages-plugins'], function(cb) {
+	pump(
+		[
+			gulp.src(paths.plugins),
+			inlineRegexSource(),
+			uglify(),
+			rename({ suffix: '.min' }),
+			gulp.dest('plugins')
+		],
+		cb
+	);
 });
 
 gulp.task('components-json', function (cb) {
