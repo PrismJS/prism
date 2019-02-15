@@ -10,7 +10,7 @@ import; in; instanceof; interface; let;
 new; null; of; package; private;
 protected; public; return; set; static;
 super; switch; this; throw; try;
-typeof; var; void; while;
+typeof; undefined; var; void; while;
 with; yield;
 
 ----------------------------------------------------
@@ -63,6 +63,7 @@ with; yield;
 	["keyword", "throw"], ["punctuation", ";"],
 	["keyword", "try"], ["punctuation", ";"],
 	["keyword", "typeof"], ["punctuation", ";"],
+	["keyword", "undefined"], ["punctuation", ";"],
 	["keyword", "var"], ["punctuation", ";"],
 	["keyword", "void"], ["punctuation", ";"],
 	["keyword", "while"], ["punctuation", ";"],
