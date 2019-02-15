@@ -34,7 +34,7 @@
 
 	Prism.languages.insertBefore('javascript', 'keyword', {
 		'module': {
-			pattern: /\b(?:import|as|export|from|default)\b/,
+			pattern: /\b(?:as|default|export|from|import)\b/,
 			alias: 'keyword'
 		},
 		'nil': {
