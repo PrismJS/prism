@@ -7,6 +7,9 @@ _()
 $()
 ಠ_ಠ()
 Ƞȡ_҇()
+if(notAFunction)
+foo({ x })
+foo({ y: fun() })
 
 ----------------------------------------------------
 
@@ -19,7 +22,10 @@ $()
 	["function", "_"], ["punctuation", "("], ["punctuation", ")"],
 	["function", "$"], ["punctuation", "("], ["punctuation", ")"],
 	["function", "ಠ_ಠ"], ["punctuation", "("], ["punctuation", ")"],
-	["function", "Ƞȡ_҇"], ["punctuation", "("], ["punctuation", ")"]
+	["function", "Ƞȡ_҇"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "if"], ["punctuation", "("], "notAFunction", ["punctuation", ")"],
+	["function", "foo"], ["punctuation", "("], ["punctuation", "{"], " x ", ["punctuation", "}"], ["punctuation", ")"],
+	["function", "foo"], ["punctuation", "("], ["punctuation", "{"], " y", ["punctuation", ":"], ["function", "fun"], ["punctuation", "("], ["punctuation", ")"], ["punctuation", "}"], ["punctuation", ")"]
 ]
 
 ----------------------------------------------------

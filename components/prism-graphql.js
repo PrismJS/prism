@@ -11,7 +11,7 @@ Prism.languages.graphql = {
 		pattern: /@[a-z_]\w*/i,
 		alias: 'function'
 	},
-	'attr-name': /[a-z_]\w*(?=\s*:)/i,
+	'attr-name': /[a-z_]\w*(?=\s*(?:\([^()]*\))?:)/i,
 	'keyword': [
 		{
 			pattern: /(fragment\s+(?!on)[a-z_]\w*\s+|\.{3}\s*)on\b/,
