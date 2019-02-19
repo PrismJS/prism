@@ -4,7 +4,8 @@
 bar
 baz">
 <div foo:bar=42>
-<div foo="=\"=">
+<div foo = 42 bar = "42">
+<div foo="=\"bar=baz/>
 
 ----------------------------------------------------
 
@@ -61,12 +62,12 @@ baz">
 		["attr-name", [
 			"class"
 		]],
-        ["attr-value", [
-            ["punctuation", "="],
-            ["punctuation", "\""],
-            "foo\r\nbar\r\nbaz",
-            ["punctuation", "\""]
-        ]],
+		["attr-value", [
+			["punctuation", "="],
+			["punctuation", "\""],
+			"foo\r\nbar\r\nbaz",
+			["punctuation", "\""]
+		]],
 		["punctuation", ">"]
 	]],
 
@@ -91,14 +92,37 @@ baz">
 			["punctuation", "<"],
 			"div"
 		]],
-		["attr-name", [
-			"foo"
+		["attr-name", ["foo"]],
+		["attr-value", [
+			["punctuation", "="],
+			" 42"
 		]],
+		["attr-name", ["bar"]],
 		["attr-value", [
 			["punctuation", "="],
 			["punctuation", "\""],
-			"=\\\"=",
+			"42",
 			["punctuation", "\""]
+		]],
+		["punctuation", ">"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"div"
+		]],
+		["attr-name", ["foo"]],
+		["attr-value", [
+			["punctuation", "="],
+			["punctuation", "\""],
+			"=\\",
+			["punctuation", "\""]
+		]],
+		["attr-name", ["bar"]],
+		["attr-value", [
+			["punctuation", "="],
+			"baz/"
 		]],
 		["punctuation", ">"]
 	]]
