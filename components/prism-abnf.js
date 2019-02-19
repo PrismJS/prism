@@ -24,10 +24,18 @@
 			lookbehind: true,
 			alias: 'operator'
 		},
+		'definition': {
+			pattern: /(^[ \t]*)(?:[a-z][\w-]*|<[^>\r\n]*>)(?=\s*=)/m,
+			lookbehind: true,
+			alias: 'keyword',
+			inside: {
+				'punctuation': /<|>/
+			}
+		},
 		'core-rule': {
 			pattern: RegExp('(?:(^|[^<\\w-])' + coreRules + '|<' + coreRules + '>)(?![\\w-])', 'i'),
 			lookbehind: true,
-			alias: ['rule', 'keyword'],
+			alias: ['rule', 'constant'],
 			inside: {
 				'punctuation': /<|>/
 			}
