@@ -152,6 +152,14 @@
 			"require": "c",
 			"owner": "Golmote"
 		},
+		"bnf": {
+			"title": "Backus–Naur form",
+			"alias": "rbfn",
+			"aliasTitles": {
+				"rbfn": "Routing Backus–Naur form"
+			},
+			"owner": "RunDevelopment"
+		},
 		"brainfuck": {
 			"title": "Brainfuck",
 			"owner": "Golmote"
