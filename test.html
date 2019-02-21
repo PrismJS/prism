@@ -238,14 +238,15 @@ var textarea = $('textarea', form);
 	highlightCode();
 }).call(textarea);
 
-$('#option-show-tokens').onchange = function (evt) {
+$('#option-show-tokens').onchange = function () {
 	var cls = 'show-tokens';
 	if (this.checked) {
 		$('pre').classList.add(cls);
 	} else {
 		$('pre').classList.remove(cls);
 	}
-}
+};
+$('#option-show-tokens').onchange();
 
 })();
 
