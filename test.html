@@ -92,6 +92,7 @@ textarea {
 -->
 <script src="code.js"></script>
 <script src="vendor/promise.js"></script>
+<script src="https://unpkg.com/@ungap/url-search-params@0.1.2/min.js"></script>
 
 <script>
 
@@ -116,7 +117,7 @@ if (location.hash) {
  */
 function loadPrismFile(relativePath) {
 	return new Promise(function (resolve, reject) {
-		$u.script(new URL(relativePath, sourceUrl).href, resolve).onerror = reject;
+		$u.script(sourceUrl + relativePath, resolve).onerror = reject;
 	});
 }
 
