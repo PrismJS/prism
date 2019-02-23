@@ -86,59 +86,47 @@ textarea {
 <script src="prism.js"></script>
 <script src="utopia.js"></script>
 <script src="components.js"></script>
+<!--
+	code.js only uses components.themes and components.language,
+	so it should be fine to load this potentially incorrect version
+-->
 <script src="code.js"></script>
 <script src="vendor/promise.js"></script>
 
 <script>
-(function() {
-var form = $('form'), code = $('code', form),
-    languages = components.languages,
-    highlightCode = function() { Prism.highlightElement(code); };
 
-for (var id in languages) {
-	if (id == 'meta') {
-		continue;
+(function(){
+
+var sourceUrl = '';
+
+if (location.hash) {
+	var source = new URLSearchParams(location.hash.substr(1)).get('source');
+
+	if (source) {
+		sourceUrl = source;
 	}
-
-	var name = languages[id].title || languages[id];
-
-	$u.element.create('label', {
-		attributes: {
-			'data-id': id
-		},
-		contents: [
-			{
-				tag: 'input',
-				properties: {
-					type: 'radio',
-					name: 'language',
-					value: id,
-					onclick: function () {
-						var lang = this.value;
-						code.className = 'language-' + lang;
-						code.textContent = code.textContent;
-
-						// loadLanguage() returns a promise, so we use highlightCode()
-						// as resolve callback. The promise will be immediately
-						// resolved if there is nothing to load.
-						loadLanguage(lang).then(highlightCode);
-					}
-				}
-			}, name
-		],
-		inside: '#language'
-	});
 }
 
+
+/**
+ * Loads a file of a Prism repository.
+ *
+ * @param {string} relativePath the relative path of the JavaScript file to load within the repository
+ * @return {Promise}
+ */
+function loadPrismFile(relativePath) {
+	return new Promise(function (resolve, reject) {
+		$u.script(new URL(relativePath, sourceUrl).href, resolve).onerror = reject;
+	});
+}
 
 /**
  * Loads a language, including all dependencies
  *
  * @param {string} lang the language to load
- * @type {Promise} the promise which resolves as soon as everything is loaded
+ * @returns {Promise} the promise which resolves as soon as everything is loaded
  */
-function loadLanguage (lang)
-{
+function loadLanguage (lang) {
 	// at first we need to fetch all dependencies for the main language
 	// Note: we need to do this, even if the main language already is loaded (just to be sure..)
 	//
@@ -157,13 +145,10 @@ function loadLanguage (lang)
 			// If the language is already loaded, just do nothing - the next .then()
 			// will immediately be called
 			if (!Prism.languages[lang]) {
-				return new Promise(function (resolve) {
-					$u.script('components/prism-' + lang + '.js', resolve);
-				});
+				return loadPrismFile( 'components/prism-' + lang + '.js');
 			}
 		});
 }
-
 
 /**
  * Returns all dependencies (as identifiers) of a specific language
@@ -171,8 +156,7 @@ function loadLanguage (lang)
  * @param {string} lang
  * @returns {Array.<string>} the list of dependencies. Empty if the language has none.
  */
-function getDependenciesOfLanguage (lang)
-{
+function getDependenciesOfLanguage (lang) {
 	if (!components.languages[lang] || !components.languages[lang].require)
 	{
 		return [];
@@ -183,17 +167,97 @@ function getDependenciesOfLanguage (lang)
 		: [components.languages[lang].require];
 }
 
+function createUI() {
+	var form = $('form'), code = $('code', form),
+	    languages = components.languages,
+	    highlightCode = function() { Prism.highlightElement(code); };
 
-var radios = $$('input[name=language]');
-radios[0].checked = true;
-radios[0].onclick();
+	for (var id in languages) {
+		if (id == 'meta') {
+			continue;
+		}
 
-var textarea = $('textarea', form);
+		var name = languages[id].title || languages[id];
 
-(textarea.oninput = function() {
-	code.textContent = this.value || '';
-	highlightCode();
-}).call(textarea);
+		$u.element.create('label', {
+			attributes: {
+				'data-id': id
+			},
+			contents: [
+				{
+					tag: 'input',
+					properties: {
+						type: 'radio',
+						name: 'language',
+						value: id,
+						onclick: function () {
+							var lang = this.value;
+							code.className = 'language-' + lang;
+							code.textContent = code.textContent;
+
+							// loadLanguage() returns a promise, so we use highlightCode()
+							// as resolve callback. The promise will be immediately
+							// resolved if there is nothing to load.
+							loadLanguage(lang).then(highlightCode);
+						}
+					}
+				}, name
+			],
+			inside: '#language'
+		});
+	}
+
+
+	var radios = $$('input[name=language]');
+	radios[0].checked = true;
+	radios[0].onclick();
+
+	var textarea = $('textarea', form);
+
+	(textarea.oninput = function() {
+		code.textContent = this.value || '';
+		highlightCode();
+	}).call(textarea);
+
+}
+
+if (sourceUrl) {
+	// reload prism.js and components.js before creating the UI
+	window.Prism = undefined;
+	window.components = undefined;
+
+	Promise
+		.all(['prism.js', 'components.js'].map(loadPrismFile))
+		.then(function () {
+			if (window.Prism && window.components) {
+				return Promise.resolve();
+			} else {
+				return Promise.reject('Failed to load prism.js and components.js from source');
+			}
+		})
+		.then(function() { createUI(); })
+		.catch(function (e) {
+			console.error(e);
+			//alert('Ops!\nThe source "' + sourceUrl + '" is not available.');
+
+			var section = $('section');
+			section.innerHTML = '';
+			$u.element.create('h1', {
+				contents: 'Oops!',
+				inside: section
+			});
+			$u.element.create('p', {
+				contents: 'The source "' + sourceUrl + '" is not available.',
+				inside: section
+			});
+			$u.element.create('p', {
+				contents: 'For more details, see the developer console for your browser.',
+				inside: section
+			});
+		});
+} else {
+	createUI();
+}
 
 })();
 
