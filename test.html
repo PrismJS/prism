@@ -85,10 +85,7 @@ textarea {
 
 <script src="utopia.js"></script>
 <script src="components.js"></script>
-<!--
-	code.js only uses components.themes and components.language,
-	so it should be fine to load this potentially incorrect version
--->
+<!-- code.js only uses components.themes and components.plugins -->
 <script src="code.js"></script>
 <script src="vendor/promise.js"></script>
 <script src="https://unpkg.com/@ungap/url-search-params@0.1.2/min.js"></script>
@@ -112,7 +109,7 @@ if (location.hash) {
  * Loads a file of a Prism repository.
  *
  * @param {string} relativePath the relative path of the JavaScript file to load within the repository
- * @return {Promise}
+ * @return {Promise.<void>}
  */
 function loadPrismFile(relativePath) {
 	return new Promise(function (resolve, reject) {
@@ -124,7 +121,7 @@ function loadPrismFile(relativePath) {
  * Loads a language, including all dependencies
  *
  * @param {string} lang the language to load
- * @returns {Promise} the promise which resolves as soon as everything is loaded
+ * @returns {Promise.<void>} the promise which resolves as soon as everything is loaded
  */
 function loadLanguage (lang) {
 	// at first we need to fetch all dependencies for the main language
@@ -145,7 +142,7 @@ function loadLanguage (lang) {
 			// If the language is already loaded, just do nothing - the next .then()
 			// will immediately be called
 			if (!Prism.languages[lang]) {
-				return loadPrismFile( 'components/prism-' + lang + '.js');
+				return loadPrismFile('components/prism-' + lang + '.js');
 			}
 		});
 }
@@ -222,23 +219,24 @@ function createUI() {
 }
 
 if (sourceUrl) {
-	// reload prism.js and components.js before creating the UI
-	window.Prism = undefined;
+	// load prism.js and reload components.js before creating the UI
+
 	window.components = undefined;
 
 	Promise
 		.all(['prism.js', 'components.js'].map(loadPrismFile))
 		.then(function () {
+			// this is to detect files which were loaded with HTTP 200 but contain a 404 (or similar) message
+			// E.g. https://combinatronics.com/ does this
 			if (window.Prism && window.components) {
 				return Promise.resolve();
 			} else {
-				return Promise.reject('Failed to load prism.js and components.js from source');
+				return Promise.reject('Failed to load "prism.js" or "components.js".');
 			}
 		})
-		.then(function() { createUI(); })
+		.then(function () { createUI(); })
 		.catch(function (e) {
 			console.error(e);
-			//alert('Ops!\nThe source "' + sourceUrl + '" is not available.');
 
 			var section = $('section');
 			section.innerHTML = '';
