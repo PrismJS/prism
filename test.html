@@ -83,7 +83,6 @@ textarea {
 
 <footer data-src="templates/footer.html" data-type="text/html"></footer>
 
-<script src="prism.js"></script>
 <script src="utopia.js"></script>
 <script src="components.js"></script>
 <!--
@@ -257,7 +256,7 @@ if (sourceUrl) {
 			});
 		});
 } else {
-	createUI();
+	loadPrismFile('prism.js').then(function () { createUI(); });
 }
 
 })();
