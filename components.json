@@ -595,20 +595,15 @@
 		},
 		"pug": {
 			"title": "Pug",
-			"require": "javascript",
+			"require": ["markup", "javascript"],
 			"peerDependencies": [
 				"coffeescript",
-				"ejs",
 				"handlebars",
-				"hogan",
 				"less",
 				"livescript",
 				"markdown",
-				"mustache",
-				"plates",
 				"scss",
-				"stylus",
-				"swig"
+				"stylus"
 			],
 			"owner": "Golmote"
 		},
@@ -621,9 +616,7 @@
 			"peerDependencies": [
 				"c",
 				"cpp",
-				"fortran",
-				"ats",
-				"dsp"
+				"fortran"
 			],
 			"owner": "Golmote"
 		},

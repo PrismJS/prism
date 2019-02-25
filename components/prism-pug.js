@@ -161,18 +161,12 @@
 	var filters = [
 		{filter:'atpl',language:'twig'},
 		{filter:'coffee',language:'coffeescript'},
-		'ejs',
 		'handlebars',
-		'hogan',
 		'less',
 		'livescript',
 		'markdown',
-		'mustache',
-		'plates',
 		{filter:'sass',language:'scss'},
-		'stylus',
-		'swig'
-
+		'stylus'
 	];
 	var all_filters = {};
 	for (var i = 0, l = filters.length; i < l; i++) {
