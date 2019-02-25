@@ -9,9 +9,7 @@ Prism.languages.json = {
 		greedy: true
 	},
 	'number': /-?\d+\.?\d*(e[+-]?\d+)?/i,
-	// function is for JSONP
-	'function': /[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\s*\()/,
-	'punctuation': /[{}[\]();,]/,
+	'punctuation': /[{}[\],]/,
 	'operator': /:/,
 	'boolean': /\b(?:true|false)\b/,
 	'null': {
@@ -19,5 +17,3 @@ Prism.languages.json = {
 		alias: 'keyword'
 	}
 };
-
-Prism.languages.jsonp = Prism.languages.json;
