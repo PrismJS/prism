@@ -203,7 +203,7 @@ var _ = _self.Prism = {
 			}
 		}
 
-		var code = element.textContent;
+		var code = element.innerText;
 
 		var env = {
 			element: element,
