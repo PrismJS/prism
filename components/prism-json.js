@@ -17,5 +17,3 @@ Prism.languages.json = {
 		alias: 'keyword'
 	}
 };
-
-Prism.languages.jsonp = Prism.languages.json;
