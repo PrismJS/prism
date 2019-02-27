@@ -33,7 +33,7 @@ var _ = _self.Prism = {
 			} else if (_.util.type(tokens) === 'Array') {
 				return tokens.map(_.util.encode);
 			} else {
-				return tokens.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+				return tokens.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/\u00a0/g, ' ');
 			}
 		},
 
@@ -208,7 +208,7 @@ var _ = _self.Prism = {
 			}
 		}
 
-		var code = element.innerText;
+		var code = element.innerText || element.textContent;
 
 		var env = {
 			element: element,
