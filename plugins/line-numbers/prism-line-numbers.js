@@ -9,7 +9,7 @@
 	 * @type {String}
 	 */
 	var PLUGIN_NAME = 'line-numbers';
-	
+
 	/**
 	 * Regular expression used for determining line breaks
 	 * @type {RegExp}
@@ -73,7 +73,7 @@
 
 		// works only for <code> wrapped inside <pre> (not inline)
 		var pre = env.element.parentNode;
-		var clsReg = /\s*\bline-numbers\b\s*/;
+		var clsReg = /(?:^|\s)line-numbers(?:\s|$)/;
 		if (
 			!pre || !/pre/i.test(pre.nodeName) ||
 			// Abort only if nor the <pre> nor the <code> have the class
@@ -123,7 +123,7 @@
 		env.plugins = env.plugins || {};
 		env.plugins.lineNumbers = true;
 	});
-	
+
 	/**
 	 * Global exports
 	 */
