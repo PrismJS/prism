@@ -38,7 +38,11 @@
 			alias: 'module'
 		},
 		{
-			pattern: /\b(?:null|undefined)\b/,
+			pattern: /\bnull\b/,
+			alias: ['null', 'nil']
+		},
+		{
+			pattern: /\bundefined\b/,
 			alias: 'nil'
 		}
 	);
