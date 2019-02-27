@@ -9,7 +9,7 @@
 		'comment': [
 			/#.*/,
 			{
-				pattern: /^=begin(?=\s)[\s\S]+?^=end/m,
+				pattern: /^=begin\s[\s\S]*?^=end/m,
 				greedy: true
 			}
 		],
