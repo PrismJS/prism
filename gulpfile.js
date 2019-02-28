@@ -201,8 +201,6 @@ gulp.task('changelog', function (cb) {
 		.pipe(gulp.dest('.'));
 });
 
-gulp.task('default', ['components', 'components-json', 'plugins', 'build']);
-
 
 gulp.task('docs-clean', function () {
 	return gulp.src('docs', { read: false }).pipe(clean());
@@ -228,3 +226,6 @@ gulp.task('docs-remove-excess-files', ['docs-create'], function () {
 });
 
 gulp.task('docs', ['docs-remove-date', 'docs-remove-excess-files']);
+
+
+gulp.task('default', ['components', 'components-json', 'plugins', 'build', 'docs']);
