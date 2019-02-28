@@ -24,6 +24,7 @@
   "devDependencies": {
     "chai": "^2.3.0",
     "gulp": "^3.8.6",
+    "gulp-clean": "^0.4.0",
     "gulp-concat": "^2.3.4",
     "gulp-header": "^1.0.5",
     "gulp-jsdoc3": "^2.0.0",
