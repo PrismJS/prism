@@ -412,6 +412,18 @@
 			"require": "clike",
 			"owner": "thesave"
 		},
+		"js-extras": {
+			"title": "JS Extras",
+			"require": "javascript",
+			"peerDependencies": [
+				"actionscript",
+				"coffeescript",
+				"flow",
+				"n4js",
+				"typescript"
+			],
+			"owner": "RunDevelopment"
+		},
 		"json": {
 			"title": "JSON",
 			"owner": "CupOfTea696"
@@ -669,6 +681,7 @@
 		"jsx": {
 			"title": "React JSX",
 			"require": ["markup", "javascript"],
+			"peerDependencies": "js-extras",
 			"owner": "vkbansal"
 		},
 		"tsx": {
