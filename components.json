@@ -244,6 +244,10 @@
 			"alias": "dockerfile",
 			"owner": "JustinBeckwith"
 		},
+		"ebnf": {
+			"title": "Extended Backus–Naur form",
+			"owner": "RunDevelopment"
+		},
 		"eiffel": {
 			"title": "Eiffel",
 			"owner": "Conaclos"
