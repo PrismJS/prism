@@ -4,13 +4,14 @@ var gulp   = require('gulp'),
 	header = require('gulp-header'),
 	concat = require('gulp-concat'),
 	replace = require('gulp-replace'),
+	jsdoc = require('gulp-jsdoc3'),
 	pump = require('pump'),
 	fs = require('fs'),
 
 	paths  = {
 		componentsFile: 'components.json',
 		componentsFileJS: 'components.js',
-		components: ['components/**/*.js', '!components/index.js', '!components/**/*.min.js'],
+		components: ['components/**/*.js', '!components/index.js', '!components/prism-core.type-definitions.js', '!components/**/*.min.js'],
 		main: [
 			'components/prism-core.js',
 			'components/prism-markup.js',
@@ -197,6 +198,12 @@ gulp.task('changelog', function (cb) {
 			}
 		))
 		.pipe(gulp.dest('.'));
+});
+
+gulp.task('docs', function (cb) {
+	var config = require('./.jsdoc.json');
+	gulp.src(['README.md'], { read: false })
+		.pipe(jsdoc(config, cb));
 });
 
 gulp.task('default', ['components', 'components-json', 'plugins', 'build']);

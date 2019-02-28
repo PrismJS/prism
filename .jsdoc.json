@@ -1,0 +1,29 @@
+{
+	"plugins": [
+		"plugins/markdown"
+	],
+	"opts": {
+		"destination": "./docs",
+		"template": "./node_modules/minami"
+	},
+	"recurseDepth": 10,
+	"source": {
+		"include": [
+			"components/prism-core.js",
+			"components/prism-core.type-definitions.js"
+		],
+		"includePattern": "\\.js$",
+		"excludePattern": "\\.min\\.js$"
+	},
+	"tags": {
+		"allowUnknownTags": true,
+		"dictionaries": [
+			"jsdoc",
+			"closure"
+		]
+	},
+	"templates": {
+		"cleverLinks": true,
+		"monospaceLinks": true
+	}
+}
