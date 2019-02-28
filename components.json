@@ -421,6 +421,11 @@
 			"require": "json",
 			"owner": "RunDevelopment"
 		},
+		"json5": {
+			"title": "JSON5",
+			"require": "json",
+			"owner": "RunDevelopment"
+		},
 		"julia": {
 			"title": "Julia",
 			"owner": "cdagnino"
