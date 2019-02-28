@@ -1,0 +1,75 @@
+/**
+ * @param {number}
+ * @param {number | string}
+ * @param {Array.<number> | Object.<string, number>}
+ * @param {{[x: string]: {start: number, end?: number}}}
+ */
+
+----------------------------------------------------
+
+[
+	"/**\n * ",
+	["keyword", "@param"],
+	["class-name", [
+		["punctuation", "{"],
+		"number",
+		["punctuation", "}"]
+	]],
+	"\n * ",
+	["keyword", "@param"],
+	["class-name", [
+		["punctuation", "{"],
+		"number ",
+		["punctuation", "|"],
+		" string",
+		["punctuation", "}"]
+	]],
+	"\n * ",
+	["keyword", "@param"],
+	["class-name", [
+		["punctuation", "{"],
+		"Array",
+		["punctuation", "."],
+		["punctuation", "<"],
+		"number",
+		["punctuation", ">"],
+		["punctuation", "|"],
+		" Object",
+		["punctuation", "."],
+		["punctuation", "<"],
+		"string",
+		["punctuation", ","],
+		" number",
+		["punctuation", ">"],
+		["punctuation", "}"]
+	]],
+	"\n * ",
+	["keyword", "@param"],
+	["class-name", [
+		["punctuation", "{"],
+		["punctuation", "{"],
+		["punctuation", "["],
+		"x",
+		["punctuation", ":"],
+		" string",
+		["punctuation", "]"],
+		["punctuation", ":"],
+		["punctuation", "{"],
+		"start",
+		["punctuation", ":"],
+		" number",
+		["punctuation", ","],
+		" end",
+		["punctuation", "?"],
+		["punctuation", ":"],
+		" number",
+		["punctuation", "}"],
+		["punctuation", "}"],
+		["punctuation", "}"]
+	]],
+	"\n */"
+]
+
+----------------------------------------------------
+
+Checks for class names.
