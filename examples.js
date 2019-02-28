@@ -6,7 +6,7 @@
 
 var examples = {};
 
-var treeURL = 'https://api.github.com/repos/PrismJS/prism/git/trees/gh-pages?recursive=1';
+var treeURL = 'https://api.github.com/repos/PrismJS/prism/git/trees/master?recursive=1';
 var treePromise = new Promise(function (resolve) {
 	$u.xhr({
 		url: treeURL,

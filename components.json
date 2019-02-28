@@ -78,6 +78,10 @@
 			"title": "ABAP",
 			"owner": "dellagustin"
 		},
+		"abnf": {
+			"title": "Augmented Backus–Naur form",
+			"owner": "RunDevelopment"
+		},
 		"actionscript": {
 			"title": "ActionScript",
 			"require": "javascript",
@@ -110,6 +114,7 @@
 			"owner": "Golmote"
 		},
 		"asciidoc": {
+ 			"alias": "adoc",
 			"title": "AsciiDoc",
 			"owner": "Golmote"
 		},
@@ -150,6 +155,14 @@
 			"title": "Bison",
 			"require": "c",
 			"owner": "Golmote"
+		},
+		"bnf": {
+			"title": "Backus–Naur form",
+			"alias": "rbfn",
+			"aliasTitles": {
+				"rbfn": "Routing Backus–Naur form"
+			},
+			"owner": "RunDevelopment"
 		},
 		"brainfuck": {
 			"title": "Brainfuck",
@@ -230,6 +243,10 @@
 			"title": "Docker",
 			"alias": "dockerfile",
 			"owner": "JustinBeckwith"
+		},
+		"ebnf": {
+			"title": "Extended Backus–Naur form",
+			"owner": "RunDevelopment"
 		},
 		"eiffel": {
 			"title": "Eiffel",
@@ -421,13 +438,31 @@
 			],
 			"owner": "RunDevelopment"
 		},
+		"js-extras": {
+			"title": "JS Extras",
+			"require": "javascript",
+			"peerDependencies": [
+				"actionscript",
+				"coffeescript",
+				"flow",
+				"n4js",
+				"typescript"
+			],
+			"owner": "RunDevelopment"
+		},
 		"json": {
 			"title": "JSON",
-			"alias": "jsonp",
-			"aliasTitles": {
-				"jsonp": "JSONP"
-			},
 			"owner": "CupOfTea696"
+		},
+		"jsonp": {
+			"title": "JSONP",
+			"require": "json",
+			"owner": "RunDevelopment"
+		},
+		"json5": {
+			"title": "JSON5",
+			"require": "json",
+			"owner": "RunDevelopment"
 		},
 		"julia": {
 			"title": "Julia",
@@ -502,6 +537,10 @@
 			"title": "Monkey",
 			"owner": "Golmote"
 		},
+		"n1ql": {
+			"title": "N1QL",
+			"owner": "TMWilds"
+		},
 		"n4js": {
 			"title": "N4JS",
 			"require": "javascript",
@@ -510,6 +549,10 @@
 			],
 			"alias": "n4jsd",
 			"owner": "bsmith-n4"
+		},
+		"nand2tetris-hdl": {
+			"title": "Nand To Tetris HDL",
+			"owner": "stephanmax"
 		},
 		"nasm": {
 			"title": "NASM",
@@ -673,7 +716,8 @@
 			"title": "React JSX",
 			"require": ["markup", "javascript"],
 			"peerDependencies": [
-				"jsdoc"
+				"jsdoc",
+				"js-extras"
 			],
 			"owner": "vkbansal"
 		},
