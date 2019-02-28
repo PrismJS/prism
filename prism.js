@@ -724,7 +724,7 @@ Prism.languages.javascript = Prism.languages.extend('clike', {
 	],
 	'number': /\b(?:(?:0[xX][\dA-Fa-f]+|0[bB][01]+|0[oO][0-7]+)n?|\d+n|NaN|Infinity)\b|(?:\b\d+\.?\d*|\B\.\d+)(?:[Ee][+-]?\d+)?/,
 	// Allow for all non-ASCII characters (See http://stackoverflow.com/a/2008444)
-	'function': /[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\s*\(|\.(?:apply|bind|call)\()/,
+	'function': /[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\s*(?:\.\s*(?:apply|bind|call)\s*)?\()/,
 	'operator': /-[-=]?|\+[+=]?|!=?=?|<<?=?|>>?>?=?|=(?:==?|>)?|&[&=]?|\|[|=]?|\*\*?=?|\/=?|~|\^=?|%=?|\?|\.{3}/
 });
 
@@ -904,7 +904,7 @@ Prism.languages.js = Prism.languages.javascript;
 	};
 
 	document.addEventListener('DOMContentLoaded', function () {
-		// execute inside handler, for dropping Event as argumnet
+		// execute inside handler, for dropping Event as argument
 		self.Prism.fileHighlight();
 	});
 
