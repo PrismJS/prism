@@ -11,7 +11,7 @@ var gulp   = require('gulp'),
 	paths  = {
 		componentsFile: 'components.json',
 		componentsFileJS: 'components.js',
-		components: ['components/**/*.js', '!components/index.js', '!components/prism-core.type-definitions.js', '!components/**/*.min.js'],
+		components: ['components/**/*.js', '!components/index.js', '!components/**/*.doc.js', '!components/**/*.min.js'],
 		main: [
 			'components/prism-core.js',
 			'components/prism-markup.js',
@@ -20,7 +20,7 @@ var gulp   = require('gulp'),
 			'components/prism-javascript.js',
 			'plugins/file-highlight/prism-file-highlight.js'
 		],
-		plugins: ['plugins/**/*.js', '!plugins/**/*.min.js'],
+		plugins: ['plugins/**/*.js', '!plugins/**/*.min.js', '!plugins/**/*.doc.js'],
 		showLanguagePlugin: 'plugins/show-language/prism-show-language.js',
 		autoloaderPlugin: 'plugins/autoloader/prism-autoloader.js',
 		changelog: 'CHANGELOG.md'
@@ -202,7 +202,7 @@ gulp.task('changelog', function (cb) {
 
 gulp.task('docs', function (cb) {
 	var config = require('./.jsdoc.json');
-	gulp.src(['README.md'], { read: false })
+	gulp.src(['README.md', 'components/**/*.doc.js'], { read: false })
 		.pipe(jsdoc(config, cb));
 });
 

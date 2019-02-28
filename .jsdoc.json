@@ -9,8 +9,7 @@
 	"recurseDepth": 10,
 	"source": {
 		"include": [
-			"components/prism-core.js",
-			"components/prism-core.type-definitions.js"
+			"components/prism-core.js"
 		],
 		"includePattern": "\\.js$",
 		"excludePattern": "\\.min\\.js$"
