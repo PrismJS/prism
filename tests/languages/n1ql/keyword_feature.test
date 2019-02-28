@@ -1,0 +1,311 @@
+ALL
+ALTER
+ANALYZE
+AS
+ASC
+BEGIN
+BINARY
+BOOLEAN
+BREAK
+BUCKET
+BUILD
+BY
+CALL
+CAST
+CLUSTER
+COLLATE
+COLLECTION
+COMMIT
+CONNECT
+CONTINUE
+CORRELATE
+COVER
+CREATE
+DATABASE
+DATASET
+DATASTORE
+DECLARE
+DECREMENT
+DELETE
+DERIVED
+DESC
+DESCRIBE
+DISTINCT
+DO
+DROP
+EACH
+ELEMENT
+EXCEPT
+EXCLUDE
+EXECUTE
+EXPLAIN
+FETCH
+FLATTEN
+FOR
+FORCE
+FROM
+FUNCTION
+GRANT
+GROUP
+GSI
+HAVING
+IF
+IGNORE
+ILIKE
+INCLUDE
+INCREMENT
+INDEX
+INFER
+INLINE
+INNER
+INSERT
+INTERSECT
+INTO
+IS
+JOIN
+KEY
+KEYS
+KEYSPACE
+KNOWN
+LAST
+LEFT
+LET
+LETTING
+LIMIT
+LSM
+MAP
+MAPPING
+MATCHED
+MATERIALIZED
+MERGE
+MINUS
+MISSING
+NAMESPACE
+NEST
+NULL
+NUMBER
+OBJECT
+OFFSET
+ON
+OPTION
+ORDER
+OUTER
+OVER
+PARSE
+PARTITION
+PASSWORD
+PATH
+POOL
+PREPARE
+PRIMARY
+PRIVATE
+PRIVILEGE
+PROCEDURE
+PUBLIC
+RAW
+REALM
+REDUCE
+RENAME
+RETURN
+RETURNING
+REVOKE
+RIGHT
+ROLE
+ROLLBACK
+SATISFIES
+SCHEMA
+SELECT
+SELF
+SEMI
+SET
+SHOW
+SOME
+START
+STATISTICS
+STRING
+SYSTEM
+TO
+TRANSACTION
+TRIGGER
+TRUNCATE
+UNDER
+UNION
+UNIQUE
+UNKNOWN
+UNNEST
+UNSET
+UPDATE
+UPSERT
+USE
+USER
+USING
+VALIDATE
+VALUE
+VALUES
+VIA
+VIEW
+WHERE
+WHILE
+WITH
+WORK
+XOR
+
+----------------------------------------------------
+
+[
+	["keyword", "ALL"],
+	["keyword", "ALTER"],
+	["keyword", "ANALYZE"],
+	["keyword", "AS"],
+	["keyword", "ASC"],
+	["keyword", "BEGIN"],
+	["keyword", "BINARY"],
+	["keyword", "BOOLEAN"],
+	["keyword", "BREAK"],
+	["keyword", "BUCKET"],
+	["keyword", "BUILD"],
+	["keyword", "BY"],
+	["keyword", "CALL"],
+	["keyword", "CAST"],
+	["keyword", "CLUSTER"],
+	["keyword", "COLLATE"],
+	["keyword", "COLLECTION"],
+	["keyword", "COMMIT"],
+	["keyword", "CONNECT"],
+	["keyword", "CONTINUE"],
+	["keyword", "CORRELATE"],
+	["keyword", "COVER"],
+	["keyword", "CREATE"],
+	["keyword", "DATABASE"],
+	["keyword", "DATASET"],
+	["keyword", "DATASTORE"],
+	["keyword", "DECLARE"],
+	["keyword", "DECREMENT"],
+	["keyword", "DELETE"],
+	["keyword", "DERIVED"],
+	["keyword", "DESC"],
+	["keyword", "DESCRIBE"],
+	["keyword", "DISTINCT"],
+	["keyword", "DO"],
+	["keyword", "DROP"],
+	["keyword", "EACH"],
+	["keyword", "ELEMENT"],
+	["keyword", "EXCEPT"],
+	["keyword", "EXCLUDE"],
+	["keyword", "EXECUTE"],
+	["keyword", "EXPLAIN"],
+	["keyword", "FETCH"],
+	["keyword", "FLATTEN"],
+	["keyword", "FOR"],
+	["keyword", "FORCE"],
+	["keyword", "FROM"],
+	["keyword", "FUNCTION"],
+	["keyword", "GRANT"],
+	["keyword", "GROUP"],
+	["keyword", "GSI"],
+	["keyword", "HAVING"],
+	["keyword", "IF"],
+	["keyword", "IGNORE"],
+	["keyword", "ILIKE"],
+	["keyword", "INCLUDE"],
+	["keyword", "INCREMENT"],
+	["keyword", "INDEX"],
+	["keyword", "INFER"],
+	["keyword", "INLINE"],
+	["keyword", "INNER"],
+	["keyword", "INSERT"],
+	["keyword", "INTERSECT"],
+	["keyword", "INTO"],
+	["keyword", "IS"],
+	["keyword", "JOIN"],
+	["keyword", "KEY"],
+	["keyword", "KEYS"],
+	["keyword", "KEYSPACE"],
+	["keyword", "KNOWN"],
+	["keyword", "LAST"],
+	["keyword", "LEFT"],
+	["keyword", "LET"],
+	["keyword", "LETTING"],
+	["keyword", "LIMIT"],
+	["keyword", "LSM"],
+	["keyword", "MAP"],
+	["keyword", "MAPPING"],
+	["keyword", "MATCHED"],
+	["keyword", "MATERIALIZED"],
+	["keyword", "MERGE"],
+	["keyword", "MINUS"],
+	["keyword", "MISSING"],
+	["keyword", "NAMESPACE"],
+	["keyword", "NEST"],
+	["keyword", "NULL"],
+	["keyword", "NUMBER"],
+	["keyword", "OBJECT"],
+	["keyword", "OFFSET"],
+	["keyword", "ON"],
+	["keyword", "OPTION"],
+	["keyword", "ORDER"],
+	["keyword", "OUTER"],
+	["keyword", "OVER"],
+	["keyword", "PARSE"],
+	["keyword", "PARTITION"],
+	["keyword", "PASSWORD"],
+	["keyword", "PATH"],
+	["keyword", "POOL"],
+	["keyword", "PREPARE"],
+	["keyword", "PRIMARY"],
+	["keyword", "PRIVATE"],
+	["keyword", "PRIVILEGE"],
+	["keyword", "PROCEDURE"],
+	["keyword", "PUBLIC"],
+	["keyword", "RAW"],
+	["keyword", "REALM"],
+	["keyword", "REDUCE"],
+	["keyword", "RENAME"],
+	["keyword", "RETURN"],
+	["keyword", "RETURNING"],
+	["keyword", "REVOKE"],
+	["keyword", "RIGHT"],
+	["keyword", "ROLE"],
+	["keyword", "ROLLBACK"],
+	["keyword", "SATISFIES"],
+	["keyword", "SCHEMA"],
+	["keyword", "SELECT"],
+	["keyword", "SELF"],
+	["keyword", "SEMI"],
+	["keyword", "SET"],
+	["keyword", "SHOW"],
+	["keyword", "SOME"],
+	["keyword", "START"],
+	["keyword", "STATISTICS"],
+	["keyword", "STRING"],
+	["keyword", "SYSTEM"],
+	["keyword", "TO"],
+	["keyword", "TRANSACTION"],
+	["keyword", "TRIGGER"],
+	["keyword", "TRUNCATE"],
+	["keyword", "UNDER"],
+	["keyword", "UNION"],
+	["keyword", "UNIQUE"],
+	["keyword", "UNKNOWN"],
+	["keyword", "UNNEST"],
+	["keyword", "UNSET"],
+	["keyword", "UPDATE"],
+	["keyword", "UPSERT"],
+	["keyword", "USE"],
+	["keyword", "USER"],
+	["keyword", "USING"],
+	["keyword", "VALIDATE"],
+	["keyword", "VALUE"],
+	["keyword", "VALUES"],
+	["keyword", "VIA"],
+	["keyword", "VIEW"],
+	["keyword", "WHERE"],
+	["keyword", "WHILE"],
+	["keyword", "WITH"],
+	["keyword", "WORK"],
+	["keyword", "XOR"]
+]
+
+----------------------------------------------------
+
+Checks for all keywords.

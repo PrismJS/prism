@@ -1,0 +1,63 @@
+Foo.Bar;
+Foo.Bar();
+Baz.foo();
+var Foo = function() {};
+foo.Bar = function() {};
+
+----------------------------------------------------
+
+[
+	["maybe-class-name", "Foo"],
+	["punctuation", "."],
+	["property-access", [
+		["maybe-class-name", "Bar"]
+	]],
+	["punctuation", ";"],
+
+	["maybe-class-name", "Foo"],
+	["punctuation", "."],
+	["method", [
+		["maybe-class-name", "Bar"]
+	]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["maybe-class-name", "Baz"],
+	["punctuation", "."],
+	["method", [
+		"foo"
+	]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "var"],
+	["function-variable", [
+		["maybe-class-name", "Foo"]
+	]],
+	["operator", "="],
+	["keyword", "function"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	"\nfoo",
+	["punctuation", "."],
+	["method-variable", [
+		["maybe-class-name", "Bar"]
+	]],
+	["operator", "="],
+	["keyword", "function"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for names which may be class names.
