@@ -402,11 +402,12 @@
 		},
 		"json": {
 			"title": "JSON",
-			"alias": "jsonp",
-			"aliasTitles": {
-				"jsonp": "JSONP"
-			},
 			"owner": "CupOfTea696"
+		},
+		"jsonp": {
+			"title": "JSONP",
+			"require": "json",
+			"owner": "RunDevelopment"
 		},
 		"julia": {
 			"title": "Julia",
