@@ -403,6 +403,23 @@
 			"require": "clike",
 			"owner": "sherblot"
 		},
+		"javadoc": {
+			"title": "JavaDoc",
+			"require": ["markup", "java", "javadoclike"],
+			"peerDependencies": [
+				"scala"
+			],
+			"owner": "RunDevelopment"
+		},
+		"javadoclike": {
+			"title": "JavaDoc-like",
+			"peerDependencies": [
+				"java",
+				"javascript",
+				"php"
+			],
+			"owner": "RunDevelopment"
+		},
 		"javastacktrace": {
 			"title": "Java stack trace",
 			"owner": "RunDevelopment"
@@ -411,6 +428,15 @@
 			"title": "Jolie",
 			"require": "clike",
 			"owner": "thesave"
+		},
+		"jsdoc": {
+			"title": "JSDoc",
+			"require": ["javascript", "javadoclike"],
+			"peerDependencies": [
+				"actionscript",
+				"coffeescript"
+			],
+			"owner": "RunDevelopment"
 		},
 		"js-extras": {
 			"title": "JS Extras",
@@ -518,6 +544,9 @@
 		"n4js": {
 			"title": "N4JS",
 			"require": "javascript",
+			"peerDependencies": [
+				"jsdoc"
+			],
 			"alias": "n4jsd",
 			"owner": "bsmith-n4"
 		},
@@ -594,6 +623,11 @@
 			"title": "PHP",
 			"require": ["clike", "markup-templating"],
 			"owner": "milesj"
+		},
+		"phpdoc": {
+			"title": "PHPDoc",
+			"require": ["php", "javadoclike"],
+			"owner": "RunDevelopment"
 		},
 		"php-extras": {
 			"title": "PHP Extras",
@@ -681,7 +715,10 @@
 		"jsx": {
 			"title": "React JSX",
 			"require": ["markup", "javascript"],
-			"peerDependencies": "js-extras",
+			"peerDependencies": [
+				"jsdoc",
+				"js-extras"
+			],
 			"owner": "vkbansal"
 		},
 		"tsx": {

@@ -1,0 +1,135 @@
+/**
+ * {@code this.foo} is never {@code null}.
+ * <code>Foo.bar(null)</code>
+ * <pre><code>
+ * for (int i = 0; i < array.length; i++) {
+ *     array[i] += 1;
+ * }
+ * return array;
+ * </code></pre>
+ */
+
+----------------------------------------------------
+
+[
+	"/**\n * ",
+	["punctuation", "{"],
+	["keyword", "@code"],
+	["code-section", [
+		["code", [
+			["keyword", "this"],
+			["punctuation", "."],
+			"foo"
+		]]
+	]],
+	["punctuation", "}"],
+	" is never ",
+	["punctuation", "{"],
+	["keyword", "@code"],
+	["code-section", [
+		["code", [
+			["keyword", "null"]
+		]]
+	]],
+	["punctuation", "}"],
+	".\n * ",
+
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"code"
+		]],
+		["punctuation", ">"]
+	]],
+	["code-section", [
+		["code", [
+			["class-name", "Foo"],
+			["punctuation", "."],
+			["function", "bar"],
+			["punctuation", "("],
+			["keyword", "null"],
+			["punctuation", ")"]
+		]]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"code"
+		]],
+		["punctuation", ">"]
+	]],
+	"\n * ",
+
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"pre"
+		]],
+		["punctuation", ">"]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"code"
+		]],
+		["punctuation", ">"]
+	]],
+	["code-section", [
+		"* ",
+		["code", [
+			["keyword", "for"],
+			["punctuation", "("],
+			["keyword", "int"],
+			" i ",
+			["operator", "="],
+			["number", "0"],
+			["punctuation", ";"],
+			" i ",
+			["operator", "<"],
+			" array",
+			["punctuation", "."],
+			"length",
+			["punctuation", ";"],
+			" i",
+			["operator", "++"],
+			["punctuation", ")"],
+			["punctuation", "{"]
+		]],
+		"\n *     ",
+		["code", [
+			"array",
+			["punctuation", "["],
+			"i",
+			["punctuation", "]"],
+			["operator", "+="],
+			["number", "1"],
+			["punctuation", ";"]
+		]],
+		"\n * }\n * ",
+		["code", [
+			["keyword", "return"],
+			" array",
+			["punctuation", ";"]
+		]],
+		"\n *"
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"code"
+		]],
+		["punctuation", ">"]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"pre"
+		]],
+		["punctuation", ">"]
+	]],
+	"\n */"
+]
+
+----------------------------------------------------
+
+Checks for code.
