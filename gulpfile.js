@@ -77,11 +77,16 @@ function build(cb) {
 `), concat('prism.js'), dest('./')], cb);
 }
 
-function componentsJsonToJs(cb) {
-	componentsPromise.then(data => {
-		const js = `var components = ${JSON.stringify(data)};
+/**
+ * @return {Promise<void>}
+ */
+async function componentsJsonToJs() {
+	const data = await componentsPromise;
+	const js = `var components = ${JSON.stringify(data)};
 if (typeof module !== 'undefined' && module.exports) { module.exports = components; }`;
-		fs.writeFile(paths.componentsFileJS, js, cb);
+	// Node's `util.promisify()` requires Node 8+
+	return new Promise((resolve, reject) => {
+		fs.writeFile(paths.componentsFileJS, js, err => err ? reject(err) : resolve());
 	});
 }
 
@@ -90,87 +95,74 @@ function watchComponentsAndPlugins() {
 	watch(paths.plugins, parallel(minifyPlugins, build));
 }
 
-function languagePlugins(cb) {
-	componentsPromise.then(data => {
-		const languagesMap = {};
-		const dependenciesMap = {};
+async function languagePlugins() {
+	const data = await componentsPromise;
+	const languagesMap = {};
+	const dependenciesMap = {};
 
-		/**
-		 * Tries to guess the name of a language given its id.
-		 *
-		 * From `prism-show-language.js`.
-		 *
-		 * @param {string} id The language id.
-		 * @returns {string}
-		 */
-		function guessTitle(id) {
-			if (!id) {
-				return id;
-			}
-			return (id.substring(0, 1).toUpperCase() + id.substring(1)).replace(/s(?=cript)/, 'S');
+	/**
+	 * Tries to guess the name of a language given its id.
+	 *
+	 * From `prism-show-language.js`.
+	 *
+	 * @param {string} id The language id.
+	 * @returns {string}
+	 */
+	function guessTitle(id) {
+		if (!id) {
+			return id;
 		}
+		return (id.substring(0, 1).toUpperCase() + id.substring(1)).replace(/s(?=cript)/, 'S');
+	}
 
-		function addLanguageTitle(key, title) {
-			if (!languagesMap[key] && guessTitle(key) !== title) {
-				languagesMap[key] = title;
-			}
+	/**
+	 * @param {string} key
+	 * @param {string} title
+	 */
+	function addLanguageTitle(key, title) {
+		if (!languagesMap[key] && guessTitle(key) !== title) {
+			languagesMap[key] = title;
 		}
+	}
 
-		for (const p in data.languages) {
-			if (p !== 'meta') {
-				const title = data.languages[p].displayTitle || data.languages[p].title;
-
-				addLanguageTitle(p, title);
-
-				for (const name in data.languages[p].aliasTitles) {
-					addLanguageTitle(name, data.languages[p].aliasTitles[name]);
+	for (const p in data.languages) {
+		if (p !== 'meta') {
+			const title = data.languages[p].displayTitle || data.languages[p].title;
+			addLanguageTitle(p, title);
+			for (const name in data.languages[p].aliasTitles) {
+				addLanguageTitle(name, data.languages[p].aliasTitles[name]);
+			}
+			if (data.languages[p].alias) {
+				if (typeof data.languages[p].alias === 'string') {
+					addLanguageTitle(data.languages[p].alias, title);
 				}
-
-				if (data.languages[p].alias) {
-					if (typeof data.languages[p].alias === 'string') {
-						addLanguageTitle(data.languages[p].alias, title);
-					} else {
-						data.languages[p].alias.forEach(function (alias) {
-							addLanguageTitle(alias, title);
-						});
-					}
-				}
-
-				if (data.languages[p].require) {
-					dependenciesMap[p] = data.languages[p].require;
+				else {
+					data.languages[p].alias.forEach(function (alias) {
+						addLanguageTitle(alias, title);
+					});
 				}
 			}
-		}
-
-		const jsonLanguagesMap = JSON.stringify(languagesMap);
-		const jsonDependenciesMap = JSON.stringify(dependenciesMap);
-
-		const tasks = [
-			{ plugin: paths.showLanguagePlugin, map: jsonLanguagesMap },
-			{ plugin: paths.autoloaderPlugin, map: jsonDependenciesMap }
-		];
-
-		let cpt = 0;
-		const l = tasks.length;
-		const done = () => {
-			cpt++;
-			if (cpt === l) {
-				cb && cb();
+			if (data.languages[p].require) {
+				dependenciesMap[p] = data.languages[p].require;
 			}
-		};
-
-		for (const task of tasks) {
-			const stream = src(task.plugin)
-				.pipe(replace(
-					/\/\*languages_placeholder\[\*\/[\s\S]*?\/\*\]\*\//,
-					'/*languages_placeholder[*/' + task.map + '/*]*/'
-				))
-				.pipe(dest(task.plugin.substring(0, task.plugin.lastIndexOf('/'))));
-
-			stream.on('error', done);
-			stream.on('end', done);
 		}
-	});
+	}
+
+	const jsonLanguagesMap = JSON.stringify(languagesMap);
+	const jsonDependenciesMap = JSON.stringify(dependenciesMap);
+
+	const tasks = [
+		{ plugin: paths.showLanguagePlugin, map: jsonLanguagesMap },
+		{ plugin: paths.autoloaderPlugin, map: jsonDependenciesMap }
+	];
+
+	await Promise.all(tasks.map(task => new Promise(resolve => {
+		const stream = src(task.plugin)
+			.pipe(replace(/\/\*languages_placeholder\[\*\/[\s\S]*?\/\*\]\*\//, '/*languages_placeholder[*/' + task.map + '/*]*/'))
+			.pipe(dest(task.plugin.substring(0, task.plugin.lastIndexOf('/'))));
+		stream.on('error', resolve);
+		stream.on('end', resolve);
+	})));
 }
 
 function changelog(cb) {
