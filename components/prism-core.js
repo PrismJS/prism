@@ -45,16 +45,16 @@ var _ = _self.Prism = {
 
 		// Deep clone a language definition (e.g. to extend it)
 		clone: function deepClone(o, visited) {
-			var type = _.util.type(o);
+			var clone, id, type = _.util.type(o);
 			visited = visited || {};
 
 			switch (type) {
 				case 'Object':
-					var id = _.util.objId(o);
+					id = _.util.objId(o);
 					if (visited[id]) {
 						return visited[id];
 					}
-					var clone = {};
+					clone = {};
 					visited[id] = clone;
 
 					for (var key in o) {
@@ -66,11 +66,11 @@ var _ = _self.Prism = {
 					return clone;
 
 				case 'Array':
-					var id = _.util.objId(o);
+					id = _.util.objId(o);
 					if (visited[id]) {
 						return visited[id];
 					}
-					var clone = [];
+					clone = [];
 					visited[id] = clone;
 
 					o.forEach(function (v, i) {
@@ -78,9 +78,10 @@ var _ = _self.Prism = {
 					});
 
 					return clone;
-			}
 
-			return o;
+				default:
+					return o;
+			}
 		}
 	},
 
