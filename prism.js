@@ -592,17 +592,55 @@ var _ = _self.Prism = {
 				callback(env);
 			}
 		}
-	}
+	},
+
+	Token: Token
 };
 
-var Token = _.Token = function(type, content, alias, matchedStr, greedy) {
+/**
+ * Creates a new token.
+ *
+ * @param {string} type See {@link Prism.Token#type type}
+ * @param {string | Prism.Token | Array.<string|Prism.Token>} content See {@link Prism.Token#content content}
+ * @param {string|string[]} [alias] The alias(es) of the token.
+ * @param {string} [matchedStr=""] A copy of the full string this token was created from.
+ * @param {boolean} [greedy=false] See {@link Prism.Token#greedy greedy}
+ * @class
+ * @memberof Prism
+ */
+function Token(type, content, alias, matchedStr, greedy) {
+	/**
+	 * The type of the token.
+	 *
+	 * This is usually the key of a pattern in a {@link Grammar}.
+	 * @member {string}
+	 */
 	this.type = type;
+	/**
+	 * The strings or tokens contained by this token.
+	 *
+	 * This will be a token stream if the pattern matched also defined an `inside` grammar.
+	 * @member {string | Prism.Token | Array.<string|Prism.Token>}
+	 */
 	this.content = content;
+	/**
+	 * The alias(es) of the token.
+	 * @member {string|string[]}
+	 * @see TokenObject
+	 */
 	this.alias = alias;
-	// Copy of the full string this token was created from
+	/**
+	 *
+	 * @member {number}
+	 */
 	this.length = (matchedStr || "").length|0;
+	/**
+	 * Whether the pattern that created this token is greedy or not.
+	 * @member {boolean}
+	 * @see TokenObject
+	 */
 	this.greedy = !!greedy;
-};
+}
 
 Token.stringify = function(o, language, parent) {
 	if (typeof o == 'string') {
