@@ -4,6 +4,7 @@ var gulp   = require('gulp'),
 	header = require('gulp-header'),
 	concat = require('gulp-concat'),
 	replace = require('gulp-replace'),
+	pump = require('pump'),
 	fs = require('fs'),
 
 	paths  = {
@@ -34,13 +35,35 @@ var gulp   = require('gulp'),
 				reject(err);
 			}
 		});
-	});
+	}),
 
-gulp.task('components', function() {
-	return gulp.src(paths.components)
-		.pipe(uglify())
-		.pipe(rename({ suffix: '.min' }))
-		.pipe(gulp.dest('components'));
+	inlineRegexSource = function () {
+		return replace(
+			/\/((?:[^\n\r[\\\/]|\\.|\[(?:[^\n\r\\\]]|\\.)*\])*)\/\.source\b/g,
+			function (m, source) {
+				// escape backslashes
+				source = source.replace(/\\/g, '\\\\');
+				// escape single quotes
+				source = source.replace(/'/g, "\\'");
+				// unescape characters like \\n and \\t to \n and \t
+				source = source.replace(/(^|[^\\])\\\\([nrt0])/g, '$1\\$2');
+				// wrap source in single quotes
+				return "'" + source + "'";
+			}
+		);
+	};
+
+gulp.task('components', function(cb) {
+	pump(
+		[
+			gulp.src(paths.components),
+			inlineRegexSource(),
+			uglify(),
+			rename({ suffix: '.min' }),
+			gulp.dest('components')
+		],
+		cb
+	);
 });
 
 gulp.task('build', function() {
@@ -52,12 +75,18 @@ gulp.task('build', function() {
 		.pipe(gulp.dest('./'));
 });
 
-gulp.task('plugins', ['languages-plugins'], function() {
-	return gulp.src(paths.plugins)
-		.pipe(uglify())
-		.pipe(rename({ suffix: '.min' }))
-		.pipe(gulp.dest('plugins'));
-});
+function plugins(cb) {
+	pump(
+		[
+			gulp.src(paths.plugins),
+			inlineRegexSource(),
+			uglify(),
+			rename({ suffix: '.min' }),
+			gulp.dest('plugins')
+		],
+		cb
+	);
+}
 
 gulp.task('components-json', function (cb) {
 	componentsPromise.then(function (data) {
@@ -68,27 +97,57 @@ gulp.task('components-json', function (cb) {
 });
 
 gulp.task('watch', function() {
-	gulp.watch(paths.components, ['components', 'build']);
-	gulp.watch(paths.plugins, ['plugins', 'build']);
+	gulp.watch(paths.components, gulp.parallel('components', 'build'));
+	gulp.watch(paths.plugins, gulp.parallel('plugins', 'build'));
 });
 
 gulp.task('languages-plugins', function (cb) {
 	componentsPromise.then(function (data) {
 		var languagesMap = {};
 		var dependenciesMap = {};
+
+		/**
+		 * Tries to guess the name of a language given its id.
+		 *
+		 * From `prism-show-language.js`.
+		 *
+		 * @param {string} id The language id.
+		 * @returns {string}
+		 */
+		function guessTitle(id) {
+			if (!id) {
+				return id;
+			}
+			return (id.substring(0, 1).toUpperCase() + id.substring(1)).replace(/s(?=cript)/, 'S');
+		}
+
+		function addLanguageTitle(key, title) {
+			if (!languagesMap[key] && guessTitle(key) !== title) {
+				languagesMap[key] = title;
+			}
+		}
+
 		for (var p in data.languages) {
 			if (p !== 'meta') {
 				var title = data.languages[p].displayTitle || data.languages[p].title;
-				var ucfirst = p.substring(0, 1).toUpperCase() + p.substring(1);
-				if (title !== ucfirst) {
-					languagesMap[p] = title;
-				}
+
+				addLanguageTitle(p, title);
 
 				for (var name in data.languages[p].aliasTitles) {
-					languagesMap[name] = data.languages[p].aliasTitles[name];
+					addLanguageTitle(name, data.languages[p].aliasTitles[name]);
 				}
 
-				if(data.languages[p].require) {
+				if (data.languages[p].alias) {
+					if (typeof data.languages[p].alias === 'string') {
+						addLanguageTitle(data.languages[p].alias, title);
+					} else {
+						data.languages[p].alias.forEach(function (alias) {
+							addLanguageTitle(alias, title);
+						});
+					}
+				}
+
+				if (data.languages[p].require) {
 					dependenciesMap[p] = data.languages[p].require;
 				}
 			}
@@ -125,6 +184,8 @@ gulp.task('languages-plugins', function (cb) {
 	});
 });
 
+gulp.task('plugins', gulp.series('languages-plugins', plugins));
+
 gulp.task('changelog', function (cb) {
 	return gulp.src(paths.changelog)
 		.pipe(replace(
@@ -140,4 +201,4 @@ gulp.task('changelog', function (cb) {
 		.pipe(gulp.dest('.'));
 });
 
-gulp.task('default', ['components', 'components-json', 'plugins', 'build']);
+gulp.task('default', gulp.parallel('components', 'components-json', 'plugins', 'build'));

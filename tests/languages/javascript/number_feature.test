@@ -9,6 +9,8 @@
 0xBABE
 NaN
 Infinity
+123n
+0x123n
 
 ----------------------------------------------------
 
@@ -23,7 +25,9 @@ Infinity
 	["number", "0xbabe"],
 	["number", "0xBABE"],
 	["number", "NaN"],
-	["number", "Infinity"]
+	["number", "Infinity"],
+	["number", "123n"],
+	["number", "0x123n"]
 ]
 
 ----------------------------------------------------

@@ -105,7 +105,7 @@
 		"%html",
 		["attributes", [
 			["punctuation", "{"],
-			["function", "html_attrs"],
+			"html_attrs",
 			["punctuation", "("],
 			["string", ["'fr-fr'"]],
 			["punctuation", ")"],

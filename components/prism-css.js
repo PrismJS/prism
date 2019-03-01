@@ -1,7 +1,7 @@
 Prism.languages.css = {
 	'comment': /\/\*[\s\S]*?\*\//,
 	'atrule': {
-		pattern: /@[\w-]+?.*?(?:;|(?=\s*\{))/i,
+		pattern: /@[\w-]+?[\s\S]*?(?:;|(?=\s*\{))/i,
 		inside: {
 			'rule': /@[\w-]+/
 			// See rest below
@@ -14,9 +14,9 @@ Prism.languages.css = {
 		greedy: true
 	},
 	'property': /[-_a-z\xA0-\uFFFF][-\w\xA0-\uFFFF]*(?=\s*:)/i,
-	'important': /\B!important\b/i,
+	'important': /!important\b/i,
 	'function': /[-a-z0-9]+(?=\()/i,
-	'punctuation': /[(){};:]/
+	'punctuation': /[(){};:,]/
 };
 
 Prism.languages.css['atrule'].inside.rest = Prism.languages.css;
