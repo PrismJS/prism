@@ -1,5 +1,3 @@
-// @ts-check
-
 const { src, dest, series, parallel, watch } = require('gulp');
 
 const rename = require('gulp-rename');
