@@ -78,10 +78,10 @@ var _ = _self.Prism = {
 					});
 
 					return clone;
-			}
 
-			// default:
-			return o;
+				default:
+					return o;
+			}
 		}
 	},
 
