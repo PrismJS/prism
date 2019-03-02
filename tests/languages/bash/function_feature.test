@@ -1,3 +1,4 @@
+add
 apropos
 apt
 aptitude
@@ -148,6 +149,7 @@ paste
 pathchk
 ping
 pkill
+pnpm
 popd
 pr
 printcap
@@ -240,6 +242,7 @@ whoami
 write
 xargs
 xdg-open
+yarn
 yes
 zenity
 zip
@@ -249,7 +252,7 @@ zypper
 ----------------------------------------------------
 
 [
-	["function", "apropos"], ["function", "apt"], ["function", "aptitude"], 
+	["function", "add"], ["function", "apropos"], ["function", "apt"], ["function", "aptitude"], 
 	["function", "apt-cache"], ["function", "apt-get"], ["function", "aspell"], 
 	["function", "automysqlbackup"], ["function", "awk"], ["function", 
 	"basename"], ["function", "bash"], ["function", "bc"], ["function", 
@@ -298,7 +301,7 @@ zypper
 	["function", "npm"], ["function", "nslookup"], ["function", "op"], 
 	["function", "open"], ["function", "parted"], ["function", "passwd"], 
 	["function", "paste"], ["function", "pathchk"], ["function", "ping"], 
-	["function", "pkill"], ["function", "popd"], ["function", "pr"], 
+	["function", "pkill"], ["function", "pnpm"], ["function", "popd"], ["function", "pr"], 
 	["function", "printcap"], ["function", "printenv"], ["function", "ps"], 
 	["function", "pushd"], ["function", "pv"], ["function", "quota"], 
 	["function", "quotacheck"], ["function", "quotactl"], ["function", "ram"], 
@@ -328,7 +331,7 @@ zypper
 	"wait"], ["function", "watch"], ["function", "wc"], ["function", "wget"], 
 	["function", "whereis"], ["function", "which"], ["function", "who"], 
 	["function", "whoami"], ["function", "write"], ["function", "xargs"], 
-	["function", "xdg-open"], ["function", "yes"], ["function", "zenity"], 
+	["function", "xdg-open"], ["function", "yarn"], ["function", "yes"], ["function", "zenity"], 
 	["function", "zip"], ["function", "zsh"], ["function", "zypper"]
 ]
 
