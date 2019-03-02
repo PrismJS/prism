@@ -69,9 +69,12 @@ function minifyPlugins(cb) {
 	pump([src(paths.plugins), ...minifyJS(), rename({ suffix: '.min' }), dest('plugins')], cb);
 }
 function build(cb) {
-	pump([src(paths.main), header('\n/* **********************************************\n' +
-		'     Begin <%= file.relative %>\n' +
-		'********************************************** */\n\n'), concat('prism.js'), dest('./')], cb);
+	pump([src(paths.main), header(`
+/* **********************************************
+     Begin <%= file.relative %>
+********************************************** */
+
+`), concat('prism.js'), dest('./')], cb);
 }
 
 function componentsJsonToJs(cb) {
