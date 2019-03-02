@@ -6,6 +6,7 @@ const header = require('gulp-header');
 const concat = require('gulp-concat');
 const replace = require('gulp-replace');
 const pump = require('pump');
+const util = require('util');
 const fs = require('fs');
 
 const paths = {
@@ -77,17 +78,11 @@ function build(cb) {
 `), concat('prism.js'), dest('./')], cb);
 }
 
-/**
- * @return {Promise<void>}
- */
 async function componentsJsonToJs() {
 	const data = await componentsPromise;
 	const js = `var components = ${JSON.stringify(data)};
 if (typeof module !== 'undefined' && module.exports) { module.exports = components; }`;
-	// Node's `util.promisify()` requires Node 8+
-	return new Promise((resolve, reject) => {
-		fs.writeFile(paths.componentsFileJS, js, err => err ? reject(err) : resolve());
-	});
+	return util.promisify(fs.writeFile)(paths.componentsFileJS, js);
 }
 
 function watchComponentsAndPlugins() {
