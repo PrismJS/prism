@@ -18,13 +18,13 @@ var _self = (typeof window !== 'undefined')
  * @namespace
  */
 
-var Prism = (function(){
+var Prism = (function (_self){
 
 // Private helper vars
 var lang = /\blang(?:uage)?-([\w-]+)\b/i;
 var uniqueId = 0;
 
-var _ = _self.Prism = {
+var _ = {
 	manual: _self.Prism && _self.Prism.manual,
 	disableWorkerMessageHandler: _self.Prism && _self.Prism.disableWorkerMessageHandler,
 	util: {
@@ -387,8 +387,6 @@ var _ = _self.Prism = {
 	},
 
 	matchGrammar: function (text, strarr, grammar, index, startPos, oneshot, target) {
-		var Token = _.Token;
-
 		for (var token in grammar) {
 			if(!grammar.hasOwnProperty(token) || !grammar[token]) {
 				continue;
@@ -596,6 +594,7 @@ var _ = _self.Prism = {
 
 	Token: Token
 };
+_self.Prism = _;
 
 /**
  * Creates a new token.
@@ -681,7 +680,7 @@ Token.stringify = function(o, language, parent) {
 if (!_self.document) {
 	if (!_self.addEventListener) {
 		// in Node.js
-		return _self.Prism;
+		return _;
 	}
 
 	if (!_.disableWorkerMessageHandler) {
@@ -699,7 +698,7 @@ if (!_self.document) {
 		}, false);
 	}
 
-	return _self.Prism;
+	return _;
 }
 
 //Get current script and highlight
@@ -722,9 +721,9 @@ if (script) {
 	}
 }
 
-return _self.Prism;
+return _;
 
-})();
+})(_self);
 
 if (typeof module !== 'undefined' && module.exports) {
 	module.exports = Prism;
