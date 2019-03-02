@@ -1,0 +1,53 @@
+ALPHA
+BIT
+CHAR
+CR
+CRLF
+CTL
+DIGIT
+DQUOTE
+HEXDIG
+HTAB
+LF
+LWSP
+OCTET
+SP
+VCHAR
+WSP
+
+bit
+biT
+<bIt>
+
+----------------------------------------------------
+
+[
+	["core-rule", ["ALPHA"]],
+	["core-rule", ["BIT"]],
+	["core-rule", ["CHAR"]],
+	["core-rule", ["CR"]],
+	["core-rule", ["CRLF"]],
+	["core-rule", ["CTL"]],
+	["core-rule", ["DIGIT"]],
+	["core-rule", ["DQUOTE"]],
+	["core-rule", ["HEXDIG"]],
+	["core-rule", ["HTAB"]],
+	["core-rule", ["LF"]],
+	["core-rule", ["LWSP"]],
+	["core-rule", ["OCTET"]],
+	["core-rule", ["SP"]],
+	["core-rule", ["VCHAR"]],
+	["core-rule", ["WSP"]],
+
+	["core-rule", ["bit"]],
+	["core-rule", ["biT"]],
+	["core-rule", [
+		["punctuation", "<"],
+		"bIt",
+		["punctuation", ">"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for core rules.

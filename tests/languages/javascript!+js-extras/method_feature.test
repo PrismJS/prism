@@ -1,0 +1,32 @@
+foo.bar();
+foo.bar.call();
+
+----------------------------------------------------
+
+[
+	"foo",
+	["punctuation", "."],
+	["method", [
+		"bar"
+	]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	"\nfoo",
+	["punctuation", "."],
+	["method", [
+		"bar"
+	]],
+	["punctuation", "."],
+	["method", [
+		"call"
+	]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for methods.

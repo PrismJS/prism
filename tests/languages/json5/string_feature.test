@@ -1,0 +1,36 @@
+""
+"foo"
+"foo\"bar\"baz"
+"\u2642\\ "
+{"foo":"bar","baz":"\""}
+'foo"bar"baz'
+'\u0001'
+"\
+newline"
+
+----------------------------------------------------
+
+[
+	["string", "\"\""],
+	["string", "\"foo\""],
+	["string", "\"foo\\\"bar\\\"baz\""],
+	["string", "\"\\u2642\\\\ \""],
+
+	["punctuation", "{"],
+	["property", "\"foo\""],
+	["operator", ":"],
+	["string", "\"bar\""],
+	["punctuation", ","],
+	["property", "\"baz\""],
+	["operator", ":"],
+	["string", "\"\\\"\""],
+	["punctuation", "}"],
+
+	["string", "'foo\"bar\"baz'"],
+	["string", "'\\u0001'"],
+	["string", "\"\\\nnewline\""]
+]
+
+----------------------------------------------------
+
+Checks for strings.
