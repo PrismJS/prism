@@ -6,7 +6,7 @@ libname set output options
 
 [
 	["keyword", "data"], ["keyword", "else"], ["keyword", "format"], ["keyword", "if"],
-	["keyword", "input"], ["keyword", "proc run"], ["keyword", "then"], ["keyword", "libname],
+	["keyword", "input"], ["keyword", "proc run"], ["keyword", "then"], ["keyword", "libname"],
 	["keyword", "set"], ["keyword", "output"], ["keyword", "options"]
 ]
 
