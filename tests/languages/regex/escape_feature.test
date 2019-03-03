@@ -1,6 +1,6 @@
 \0 \\ \. \+
 \xFF
-\uFFFF \u{12345}
+\uFFFF \u{10FFFF}
 \cA \cZ
 \01 \077 \377
 \n \r \t \f \a
@@ -18,7 +18,7 @@
 	["escape", "\\xFF"],
 
 	["escape", "\\uFFFF"],
-	["escape", "\\u{12345}"],
+	["escape", "\\u{10FFFF}"],
 
 	["escape", "\\cA"],
 	["escape", "\\cZ"],
