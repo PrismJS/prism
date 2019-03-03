@@ -1,81 +1,99 @@
-var gulp   = require('gulp'),
-	rename = require('gulp-rename'),
-	uglify = require('gulp-uglify'),
-	header = require('gulp-header'),
-	concat = require('gulp-concat'),
-	replace = require('gulp-replace'),
-	fs = require('fs'),
+const { src, dest, series, parallel, watch } = require('gulp');
 
-	paths  = {
-		componentsFile: 'components.json',
-		componentsFileJS: 'components.js',
-		components: ['components/**/*.js', '!components/index.js', '!components/**/*.min.js'],
-		main: [
-			'components/prism-core.js',
-			'components/prism-markup.js',
-			'components/prism-css.js',
-			'components/prism-clike.js',
-			'components/prism-javascript.js',
-			'plugins/file-highlight/prism-file-highlight.js'
-		],
-		plugins: ['plugins/**/*.js', '!plugins/**/*.min.js'],
-		showLanguagePlugin: 'plugins/show-language/prism-show-language.js',
-		autoloaderPlugin: 'plugins/autoloader/prism-autoloader.js',
-		changelog: 'CHANGELOG.md'
-	},
+const rename = require('gulp-rename');
+const uglify = require('gulp-uglify');
+const header = require('gulp-header');
+const concat = require('gulp-concat');
+const replace = require('gulp-replace');
+const pump = require('pump');
+const fs = require('fs');
 
-	componentsPromise = new Promise(function (resolve, reject) {
-		fs.readFile(paths.componentsFile, {
-			encoding: 'utf-8'
-		}, function (err, data) {
-			if (!err) {
-				resolve(JSON.parse(data));
-			} else {
-				reject(err);
-			}
-		});
-	});
+const paths = {
+	componentsFile: 'components.json',
+	componentsFileJS: 'components.js',
+	components: ['components/**/*.js', '!components/index.js', '!components/**/*.min.js'],
+	main: [
+		'components/prism-core.js',
+		'components/prism-markup.js',
+		'components/prism-css.js',
+		'components/prism-clike.js',
+		'components/prism-javascript.js',
+		'plugins/file-highlight/prism-file-highlight.js'
+	],
+	plugins: ['plugins/**/*.js', '!plugins/**/*.min.js'],
+	showLanguagePlugin: 'plugins/show-language/prism-show-language.js',
+	autoloaderPlugin: 'plugins/autoloader/prism-autoloader.js',
+	changelog: 'CHANGELOG.md'
+};
 
-gulp.task('components', function() {
-	return gulp.src(paths.components)
-		.pipe(uglify())
-		.pipe(rename({ suffix: '.min' }))
-		.pipe(gulp.dest('components'));
-});
-
-gulp.task('build', function() {
-	return gulp.src(paths.main)
-		.pipe(header('\n/* **********************************************\n' +
-			'     Begin <%= file.relative %>\n' +
-			'********************************************** */\n\n'))
-		.pipe(concat('prism.js'))
-		.pipe(gulp.dest('./'));
-});
-
-gulp.task('plugins', ['languages-plugins'], function() {
-	return gulp.src(paths.plugins)
-		.pipe(uglify())
-		.pipe(rename({ suffix: '.min' }))
-		.pipe(gulp.dest('plugins'));
-});
-
-gulp.task('components-json', function (cb) {
-	componentsPromise.then(function (data) {
-		data = 'var components = ' + JSON.stringify(data) + ';\n' +
-			'if (typeof module !== \'undefined\' && module.exports) { module.exports = components; }';
-		fs.writeFile(paths.componentsFileJS, data, cb);
+const componentsPromise = new Promise((resolve, reject) => {
+	fs.readFile(paths.componentsFile, {
+		encoding: 'utf-8'
+	}, (err, data) => {
+		if (!err) {
+			resolve(JSON.parse(data));
+		} else {
+			reject(err);
+		}
 	});
 });
 
-gulp.task('watch', function() {
-	gulp.watch(paths.components, ['components', 'build']);
-	gulp.watch(paths.plugins, ['plugins', 'build']);
-});
+function inlineRegexSource() {
+	return replace(
+		/\/((?:[^\n\r[\\\/]|\\.|\[(?:[^\n\r\\\]]|\\.)*\])*)\/\.source\b/g,
+		(m, source) => {
+			// escape backslashes
+			source = source.replace(/\\/g, '\\\\');
+			// escape single quotes
+			source = source.replace(/'/g, "\\'");
+			// unescape characters like \\n and \\t to \n and \t
+			source = source.replace(/(^|[^\\])\\\\([nrt0])/g, '$1\\$2');
+			// wrap source in single quotes
+			return "'" + source + "'";
+		}
+	);
+}
 
-gulp.task('languages-plugins', function (cb) {
-	componentsPromise.then(function (data) {
-		var languagesMap = {};
-		var dependenciesMap = {};
+function minifyJS() {
+	return [
+		inlineRegexSource(),
+		uglify()
+	];
+}
+
+
+function minifyComponents(cb) {
+	pump([src(paths.components), ...minifyJS(), rename({ suffix: '.min' }), dest('components')], cb);
+}
+function minifyPlugins(cb) {
+	pump([src(paths.plugins), ...minifyJS(), rename({ suffix: '.min' }), dest('plugins')], cb);
+}
+function build(cb) {
+	pump([src(paths.main), header(`
+/* **********************************************
+     Begin <%= file.relative %>
+********************************************** */
+
+`), concat('prism.js'), dest('./')], cb);
+}
+
+function componentsJsonToJs(cb) {
+	componentsPromise.then(data => {
+		const js = `var components = ${JSON.stringify(data)};
+if (typeof module !== 'undefined' && module.exports) { module.exports = components; }`;
+		fs.writeFile(paths.componentsFileJS, js, cb);
+	});
+}
+
+function watchComponentsAndPlugins() {
+	watch(paths.components, parallel(minifyComponents, build));
+	watch(paths.plugins, parallel(minifyPlugins, build));
+}
+
+function languagePlugins(cb) {
+	componentsPromise.then(data => {
+		const languagesMap = {};
+		const dependenciesMap = {};
 
 		/**
 		 * Tries to guess the name of a language given its id.
@@ -98,13 +116,13 @@ gulp.task('languages-plugins', function (cb) {
 			}
 		}
 
-		for (var p in data.languages) {
+		for (const p in data.languages) {
 			if (p !== 'meta') {
-				var title = data.languages[p].displayTitle || data.languages[p].title;
+				const title = data.languages[p].displayTitle || data.languages[p].title;
 
 				addLanguageTitle(p, title);
 
-				for (var name in data.languages[p].aliasTitles) {
+				for (const name in data.languages[p].aliasTitles) {
 					addLanguageTitle(name, data.languages[p].aliasTitles[name]);
 				}
 
@@ -124,50 +142,56 @@ gulp.task('languages-plugins', function (cb) {
 			}
 		}
 
-		var jsonLanguagesMap = JSON.stringify(languagesMap);
-		var jsonDependenciesMap = JSON.stringify(dependenciesMap);
+		const jsonLanguagesMap = JSON.stringify(languagesMap);
+		const jsonDependenciesMap = JSON.stringify(dependenciesMap);
 
-		var tasks = [
-			{plugin: paths.showLanguagePlugin, map: jsonLanguagesMap},
-			{plugin: paths.autoloaderPlugin, map: jsonDependenciesMap}
+		const tasks = [
+			{ plugin: paths.showLanguagePlugin, map: jsonLanguagesMap },
+			{ plugin: paths.autoloaderPlugin, map: jsonDependenciesMap }
 		];
 
-		var cpt = 0;
-		var l = tasks.length;
-		var done = function() {
+		let cpt = 0;
+		const l = tasks.length;
+		const done = () => {
 			cpt++;
-			if(cpt === l) {
+			if (cpt === l) {
 				cb && cb();
 			}
 		};
 
-		tasks.forEach(function(task) {
-			var stream = gulp.src(task.plugin)
+		for (const task of tasks) {
+			const stream = src(task.plugin)
 				.pipe(replace(
 					/\/\*languages_placeholder\[\*\/[\s\S]*?\/\*\]\*\//,
 					'/*languages_placeholder[*/' + task.map + '/*]*/'
 				))
-				.pipe(gulp.dest(task.plugin.substring(0, task.plugin.lastIndexOf('/'))));
+				.pipe(dest(task.plugin.substring(0, task.plugin.lastIndexOf('/'))));
 
 			stream.on('error', done);
 			stream.on('end', done);
-		});
+		}
 	});
-});
+}
 
-gulp.task('changelog', function (cb) {
-	return gulp.src(paths.changelog)
-		.pipe(replace(
+function changelog(cb) {
+	return pump([
+		src(paths.changelog),
+		replace(
 			/#(\d+)(?![\d\]])/g,
 			'[#$1](https://github.com/PrismJS/prism/issues/$1)'
-		))
-		.pipe(replace(
+		),
+		replace(
 			/\[[\da-f]+(?:, *[\da-f]+)*\]/g,
-			function (match) {
-				return match.replace(/([\da-f]{7})[\da-f]*/g, '[`$1`](https://github.com/PrismJS/prism/commit/$1)');
-			}
-		))
-		.pipe(gulp.dest('.'));
-});
+			m => m.replace(/([\da-f]{7})[\da-f]*/g, '[`$1`](https://github.com/PrismJS/prism/commit/$1)')
+		),
+		dest('.')
+	], cb);
+}
 
-gulp.task('default', ['components', 'components-json', 'plugins', 'build']);
+const components = minifyComponents;
+const plugins = series(languagePlugins, minifyPlugins);
+
+
+exports.watch = watchComponentsAndPlugins;
+exports.default = parallel(components, plugins, componentsJsonToJs, build);
+exports.changelog = changelog;

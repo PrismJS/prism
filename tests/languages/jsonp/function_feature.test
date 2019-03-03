@@ -1,0 +1,13 @@
+callback();
+
+----------------------------------------------------
+
+[
+	["function", "callback"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"]
+]
+----------------------------------------------------
+
+Checks for callback functions.
