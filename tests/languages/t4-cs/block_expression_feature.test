@@ -9,19 +9,19 @@ var b = new int[] { <#=
 	"var a = ",
 	["block", [
 		["expression", [
-			["punctuation", "<#="],
+			["delimiter", "<#="],
 			["content", [
 				" name ",
 				["operator", "+"],
 				["string", "\"abc\""]
 			]],
-			["punctuation", "#>"]
+			["delimiter", "#>"]
 		]]
 	]],
 	";\nvar b = new int[] { ",
 	["block", [
 		["expression", [
-			["punctuation", "<#="],
+			["delimiter", "<#="],
 			["content", [
 				"\n\tString",
 				["punctuation", "."],
@@ -37,7 +37,7 @@ var b = new int[] { <#=
 				["punctuation", ")"],
 				["punctuation", ")"]
 			]],
-			["punctuation", "#>"]
+			["delimiter", "#>"]
 		]]
 	]],
 	" };"

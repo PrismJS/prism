@@ -15,7 +15,7 @@ The number <#= i #> is even.
 [
 	["block", [
 		["class-feature", [
-			["punctuation", "<#"],
+			["delimiter", "<#"],
 			["content", [
 				["keyword", "for"],
 				["punctuation", "("],
@@ -42,28 +42,28 @@ The number <#= i #> is even.
 				["punctuation", ")"],
 				["punctuation", "{"]
 			]],
-			["punctuation", "#>"]
+			["delimiter", "#>"]
 		]]
 	]],
 
 	"\nThe number ",
 	["block", [
 		["expression", [
-			["punctuation", "<#="],
+			["delimiter", "<#="],
 			["content", [" i "]],
-			["punctuation", "#>"]
+			["delimiter", "#>"]
 		]]
 	]],
 	" is even.\n",
 
 	["block", [
 		["class-feature", [
-			["punctuation", "<#"],
+			["delimiter", "<#"],
 			["content", [
 				["punctuation", "}"],
 				["punctuation", "}"]
 			]],
-			["punctuation", "#>"]
+			["delimiter", "#>"]
 		]]
 	]]
 ]

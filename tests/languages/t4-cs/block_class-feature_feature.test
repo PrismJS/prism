@@ -9,7 +9,7 @@ public class Bar {}
 	"Foo\n",
 	["block", [
 		["class-feature", [
-			["punctuation", "<#"],
+			["delimiter", "<#"],
 			["content", [
 				["operator", "+"],
 				["keyword", "public"],
@@ -18,7 +18,7 @@ public class Bar {}
 				["punctuation", "{"],
 				["punctuation", "}"]
 			]],
-			["punctuation", "#>"]
+			["delimiter", "#>"]
 		]]
 	]]
 ]

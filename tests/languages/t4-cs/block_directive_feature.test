@@ -11,7 +11,7 @@
 [
 	["block", [
 		["directive", [
-			["punctuation", "<#@"],
+			["delimiter", "<#@"],
 			["content", [
 				["keyword", "template"],
 				["attr-name", "debug"],
@@ -36,12 +36,12 @@
 					["punctuation", "\""]
 				]]
 			]],
-			["punctuation", "#>"]
+			["delimiter", "#>"]
 		]]
 	]],
 	["block", [
 		["directive", [
-			["punctuation", "<#@"],
+			["delimiter", "<#@"],
 			["content", [
 				["keyword", "assembly"],
 				["attr-name", "name"],
@@ -52,12 +52,12 @@
 					["punctuation", "\""]
 				]]
 			]],
-			["punctuation", "#>"]
+			["delimiter", "#>"]
 		]]
 	]],
 	["block", [
 		["directive", [
-			["punctuation", "<#@"],
+			["delimiter", "<#@"],
 			["content", [
 				["keyword", "assembly"],
 				["attr-name", "name"],
@@ -68,12 +68,12 @@
 					["punctuation", "\""]
 				]]
 			]],
-			["punctuation", "#>"]
+			["delimiter", "#>"]
 		]]
 	]],
 	["block", [
 		["directive", [
-			["punctuation", "<#@"],
+			["delimiter", "<#@"],
 			["content", [
 				["keyword", "import"],
 				["attr-name", "namespace"],
@@ -84,12 +84,12 @@
 					["punctuation", "\""]
 				]]
 			]],
-			["punctuation", "#>"]
+			["delimiter", "#>"]
 		]]
 	]],
 	["block", [
 		["directive", [
-			["punctuation", "<#@"],
+			["delimiter", "<#@"],
 			["content", [
 				["keyword", "output"],
 				["attr-name", "extension"],
@@ -100,12 +100,12 @@
 					["punctuation", "\""]
 				]]
 			]],
-			["punctuation", "#>"]
+			["delimiter", "#>"]
 		]]
 	]],
 	["block", [
 		["directive", [
-			["punctuation", "<#@"],
+			["delimiter", "<#@"],
 			["content", [
 				["keyword", "include"],
 				["attr-name", "file"],
@@ -116,12 +116,12 @@
 					["punctuation", "\""]
 				]]
 			]],
-			["punctuation", "#>"]
+			["delimiter", "#>"]
 		]]
 	]],
 	["block", [
 		["directive", [
-			["punctuation", "<#@"],
+			["delimiter", "<#@"],
 			["content", [
 				["keyword", "CleanupBehavior"],
 				["attr-name", "processor"],
@@ -139,7 +139,7 @@
 					["punctuation", "\""]
 				]]
 			]],
-			["punctuation", "#>"]
+			["delimiter", "#>"]
 		]]
 	]]
 ]
