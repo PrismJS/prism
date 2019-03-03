@@ -1,0 +1,40 @@
+/**
+ * @throws IllegalArgumentException if the argument is negative.
+ * @see org.my.company.InfoClass for more information.
+ * @param <T> the first generic argument.
+ */
+
+----------------------------------------------------
+
+[
+	"/**\n * ",
+	["keyword", "@throws"],
+	["class-name", [
+		"IllegalArgumentException"
+	]],
+	" if the argument is negative.\n * ",
+	["keyword", "@see"],
+	["namespace", [
+		"org",
+		["punctuation", "."],
+		"my",
+		["punctuation", "."],
+		"company",
+		["punctuation", "."]
+	]],
+	["class-name", [
+		"InfoClass"
+	]],
+	" for more information.\n * ",
+	["keyword", "@param"],
+	["class-name", [
+		["punctuation", "<"],
+		"T",
+		["punctuation", ">"]
+	]],
+	" the first generic argument.\n */"
+]
+
+----------------------------------------------------
+
+Checks for class names.

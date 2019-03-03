@@ -1,0 +1,182 @@
+/**
+ * @abstract
+ * @virtual
+ * @access
+ * @alias
+ * @async
+ * @augments
+ * @extends
+ * @author
+ * @borrows
+ * @callback
+ * @class
+ * @constructor
+ * @hideconstructor
+ * @classdesc
+ * @constant
+ * @const
+ * @constructs
+ * @copyright
+ * @default
+ * @defaultValue
+ * @deprecated
+ * @description
+ * @desc
+ * @enum
+ * @event
+ * @exports
+ * @external
+ * @host
+ * @file
+ * @overview
+ * @fileoverview
+ * @fires
+ * @emits
+ * @function
+ * @func
+ * @method
+ * @generator
+ * @global
+ * @ignore
+ * @implements
+ * @inheritdoc
+ * @inner
+ * @instance
+ * @interface
+ * @kind
+ * @lends
+ * @license
+ * @listens
+ * @member
+ * @var
+ * @memberof
+ * @mixes
+ * @mixin
+ * @module
+ * @name
+ * @namespace
+ * @override
+ * @package
+ * @param
+ * @arg
+ * @argument
+ * @private
+ * @property
+ * @prop
+ * @protected
+ * @public
+ * @readonly
+ * @requires
+ * @return
+ * @returns
+ * @see
+ * @since
+ * @static
+ * @summary
+ * @this
+ * @throws
+ * @exception
+ * @todo
+ * @tutorial
+ * @type
+ * @typedef
+ * @variation
+ * @version
+ * @yield
+ * @yields
+ */
+
+----------------------------------------------------
+
+[
+	"/**\n * ", ["keyword", "@abstract"],
+	"\n * ", ["keyword", "@virtual"],
+	"\n * ", ["keyword", "@access"],
+	"\n * ", ["keyword", "@alias"],
+	"\n * ", ["keyword", "@async"],
+	"\n * ", ["keyword", "@augments"],
+	"\n * ", ["keyword", "@extends"],
+	"\n * ", ["keyword", "@author"],
+	"\n * ", ["keyword", "@borrows"],
+	"\n * ", ["keyword", "@callback"],
+	"\n * ", ["keyword", "@class"],
+	"\n * ", ["keyword", "@constructor"],
+	"\n * ", ["keyword", "@hideconstructor"],
+	"\n * ", ["keyword", "@classdesc"],
+	"\n * ", ["keyword", "@constant"],
+	"\n * ", ["keyword", "@const"],
+	"\n * ", ["keyword", "@constructs"],
+	"\n * ", ["keyword", "@copyright"],
+	"\n * ", ["keyword", "@default"],
+	"\n * ", ["keyword", "@defaultValue"],
+	"\n * ", ["keyword", "@deprecated"],
+	"\n * ", ["keyword", "@description"],
+	"\n * ", ["keyword", "@desc"],
+	"\n * ", ["keyword", "@enum"],
+	"\n * ", ["keyword", "@event"],
+	"\n * ", ["keyword", "@exports"],
+	"\n * ", ["keyword", "@external"],
+	"\n * ", ["keyword", "@host"],
+	"\n * ", ["keyword", "@file"],
+	"\n * ", ["keyword", "@overview"],
+	"\n * ", ["keyword", "@fileoverview"],
+	"\n * ", ["keyword", "@fires"],
+	"\n * ", ["keyword", "@emits"],
+	"\n * ", ["keyword", "@function"],
+	"\n * ", ["keyword", "@func"],
+	"\n * ", ["keyword", "@method"],
+	"\n * ", ["keyword", "@generator"],
+	"\n * ", ["keyword", "@global"],
+	"\n * ", ["keyword", "@ignore"],
+	"\n * ", ["keyword", "@implements"],
+	"\n * ", ["keyword", "@inheritdoc"],
+	"\n * ", ["keyword", "@inner"],
+	"\n * ", ["keyword", "@instance"],
+	"\n * ", ["keyword", "@interface"],
+	"\n * ", ["keyword", "@kind"],
+	"\n * ", ["keyword", "@lends"],
+	"\n * ", ["keyword", "@license"],
+	"\n * ", ["keyword", "@listens"],
+	"\n * ", ["keyword", "@member"],
+	"\n * ", ["keyword", "@var"],
+	"\n * ", ["keyword", "@memberof"],
+	"\n * ", ["keyword", "@mixes"],
+	"\n * ", ["keyword", "@mixin"],
+	"\n * ", ["keyword", "@module"],
+	"\n * ", ["keyword", "@name"],
+	"\n * ", ["keyword", "@namespace"],
+	"\n * ", ["keyword", "@override"],
+	"\n * ", ["keyword", "@package"],
+	"\n * ", ["keyword", "@param"],
+	"\n * ", ["keyword", "@arg"],
+	"\n * ", ["keyword", "@argument"],
+	"\n * ", ["keyword", "@private"],
+	"\n * ", ["keyword", "@property"],
+	"\n * ", ["keyword", "@prop"],
+	"\n * ", ["keyword", "@protected"],
+	"\n * ", ["keyword", "@public"],
+	"\n * ", ["keyword", "@readonly"],
+	"\n * ", ["keyword", "@requires"],
+	"\n * ", ["keyword", "@return"],
+	"\n * ", ["keyword", "@returns"],
+	"\n * ", ["keyword", "@see"],
+	"\n * ", ["keyword", "@since"],
+	"\n * ", ["keyword", "@static"],
+	"\n * ", ["keyword", "@summary"],
+	"\n * ", ["keyword", "@this"],
+	"\n * ", ["keyword", "@throws"],
+	"\n * ", ["keyword", "@exception"],
+	"\n * ", ["keyword", "@todo"],
+	"\n * ", ["keyword", "@tutorial"],
+	"\n * ", ["keyword", "@type"],
+	"\n * ", ["keyword", "@typedef"],
+	"\n * ", ["keyword", "@variation"],
+	"\n * ", ["keyword", "@version"],
+	"\n * ", ["keyword", "@yield"],
+	"\n * ", ["keyword", "@yields"],
+	"\n */"
+]
+
+----------------------------------------------------
+
+Checks for keywords.
