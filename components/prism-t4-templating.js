@@ -5,7 +5,7 @@
 			pattern: RegExp('<#' + prefix + '[\\s\\S]*?#>'),
 			alias: 'block',
 			inside: {
-				'punctuation': RegExp('^<#' + prefix + '|#>$'),
+				'delimiter': RegExp('^<#' + prefix + '|#>$'),
 				'content': {
 					pattern: /[\s\S]+/,
 					inside: inside,
@@ -41,9 +41,6 @@
 		};
 	}
 
-	Prism.languages['t4-cs'] = createT4('csharp');
-	Prism.languages['t4-vb'] = createT4('visual-basic');
-
-	Prism.languages.t4 = Prism.languages['t4-cs'];
+	Prism.languages['t4-templating'] = Object.defineProperty({}, 'createT4', { value: createT4 });
 
 }(Prism));
