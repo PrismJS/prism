@@ -1,0 +1,21 @@
+CHIP
+IN
+OUT
+PARTS
+BUILTIN
+CLOCKED
+
+----------------------------------------------------
+
+[
+	["keyword", "CHIP"],
+	["keyword", "IN"],
+	["keyword", "OUT"],
+	["keyword", "PARTS"],
+	["keyword", "BUILTIN"],
+	["keyword", "CLOCKED"]
+]
+
+----------------------------------------------------
+
+Checks for all keywords.

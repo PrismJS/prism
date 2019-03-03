@@ -10,7 +10,7 @@ var minified = true;
 
 var dependencies = {};
 
-var treeURL = 'https://api.github.com/repos/PrismJS/prism/git/trees/gh-pages?recursive=1';
+var treeURL = 'https://api.github.com/repos/PrismJS/prism/git/trees/master?recursive=1';
 var treePromise = new Promise(function(resolve) {
 	$u.xhr({
 		url: treeURL,
@@ -138,11 +138,13 @@ for (var category in components) {
 
 		var info = all[id] = {
 			title: all[id].title || all[id],
+			aliasTitles: all[id].aliasTitles,
 			noCSS: all[id].noCSS || all.meta.noCSS,
 			noJS: all[id].noJS || all.meta.noJS,
 			enabled: checked,
 			require: $u.type(all[id].require) === 'string' ? [all[id].require] : all[id].require,
 			after: $u.type(all[id].after) === 'string' ? [all[id].after] : all[id].after,
+			peerDependencies: $u.type(all[id].peerDependencies) === 'string' ? [all[id].peerDependencies] : all[id].peerDependencies,
 			owner: all[id].owner,
 			files: {
 				minified: {
@@ -173,6 +175,17 @@ for (var category in components) {
 
 			info.files.minified.paths.push(cssFile);
 			info.files.dev.paths.push(cssFile);
+		}
+
+		function getLanguageTitle(lang) {
+			if (!lang.aliasTitles)
+				return lang.title;
+
+			var titles = [lang.title];
+			for (var alias in lang.aliasTitles)
+				if (lang.aliasTitles.hasOwnProperty(alias))
+					titles.push(lang.aliasTitles[alias]);
+			return titles.join(" + ");
 		}
 
 		var label = $u.element.create('label', {
@@ -220,10 +233,18 @@ for (var category in components) {
 				all.meta.link? {
 					tag: 'a',
 					properties: {
-						href: all.meta.link.replace(/\{id}/g, id)
+						href: all.meta.link.replace(/\{id}/g, id),
+						className: 'name'
 					},
 					contents: info.title
-				} : info.title,
+				} : {
+					tag: 'span',
+					properties: {
+						className: 'name'
+					},
+					contents: getLanguageTitle(info)
+				},
+				' ',
 				all[id].owner? {
 					tag: 'a',
 					properties: {
@@ -457,8 +478,8 @@ function getSortedComponents(components, requireName, sorted) {
 	return sorted;
 }
 
-function getSortedComponentsByRequirements(components){
-	var sorted = getSortedComponents(components, "after");
+function getSortedComponentsByRequirements(components, afterName) {
+	var sorted = getSortedComponents(components, afterName);
 	return getSortedComponents(components, "require", sorted);
 }
 
@@ -470,7 +491,7 @@ function generateCode(){
 		var all = components[category];
 
 		// In case if one component requires other, required component should go first.
-		var sorted = getSortedComponentsByRequirements(all);
+		var sorted = getSortedComponentsByRequirements(all, category === 'languages' ? 'peerDependencies' : 'after');
 
 		for (var i = 0; i < sorted.length; i++) {
 			var id = sorted[i];

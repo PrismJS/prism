@@ -1,0 +1,99 @@
+/**
+ * @api
+ * @author
+ * @category
+ * @copyright
+ * @deprecated
+ * @example
+ * @filesource
+ * @global
+ * @ignore
+ * @internal
+ * @license
+ * @link
+ * @method
+ * @package
+ * @param
+ * @property
+ * @property-read
+ * @property-write
+ * @return
+ * @see
+ * @since
+ * @source
+ * @subpackage
+ * @throws
+ * @todo
+ * @uses
+ * @used-by
+ * @var
+ * @version
+ */
+
+----------------------------------------------------
+
+[
+	"/**\n * ",
+	["keyword", "@api"],
+	"\n * ",
+	["keyword", "@author"],
+	"\n * ",
+	["keyword", "@category"],
+	"\n * ",
+	["keyword", "@copyright"],
+	"\n * ",
+	["keyword", "@deprecated"],
+	"\n * ",
+	["keyword", "@example"],
+	"\n * ",
+	["keyword", "@filesource"],
+	"\n * ",
+	["keyword", "@global"],
+	"\n * ",
+	["keyword", "@ignore"],
+	"\n * ",
+	["keyword", "@internal"],
+	"\n * ",
+	["keyword", "@license"],
+	"\n * ",
+	["keyword", "@link"],
+	"\n * ",
+	["keyword", "@method"],
+	"\n * ",
+	["keyword", "@package"],
+	"\n * ",
+	["keyword", "@param"],
+	"\n * ",
+	["keyword", "@property"],
+	"\n * ",
+	["keyword", "@property-read"],
+	"\n * ",
+	["keyword", "@property-write"],
+	"\n * ",
+	["keyword", "@return"],
+	"\n * ",
+	["keyword", "@see"],
+	"\n * ",
+	["keyword", "@since"],
+	"\n * ",
+	["keyword", "@source"],
+	"\n * ",
+	["keyword", "@subpackage"],
+	"\n * ",
+	["keyword", "@throws"],
+	"\n * ",
+	["keyword", "@todo"],
+	"\n * ",
+	["keyword", "@uses"],
+	"\n * ",
+	["keyword", "@used-by"],
+	"\n * ",
+	["keyword", "@var"],
+	"\n * ",
+	["keyword", "@version"],
+	"\n */"
+]
+
+----------------------------------------------------
+
+Checks for keywords.

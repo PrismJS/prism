@@ -6,6 +6,7 @@
 (** 10)
 (exact?
 (**
+(defined foo)
 
 ----------------------------------------------------
 
@@ -17,7 +18,8 @@
 	["punctuation", "("], ["function", "!fact"], ["punctuation", ")"],
 	["punctuation", "("], ["function", "**"], ["number", "10"], ["punctuation", ")"],
 	["punctuation", "("], ["function", "exact?"],
-	["punctuation", "("], ["function", "**"]
+	["punctuation", "("], ["function", "**"],
+	["punctuation", "("], ["function", "defined"], " foo", ["punctuation", ")"]
 ]
 
 ----------------------------------------------------

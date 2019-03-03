@@ -59,7 +59,7 @@
 	<p>If you need more control, you can provide a function to <code>registerButton</code> that returns either a <code>span</code>, <code>a</code>, or
 		<code>button</code> element.</p>
 
-	<pre><code class="language-javascript">Prism.plugins.toolbar.registerButton('select-code', function() {
+	<pre><code class="language-javascript">Prism.plugins.toolbar.registerButton('select-code', function(env) {
 	var button = document.createElement('button');
 	button.innerHTML = 'Select Code';
 

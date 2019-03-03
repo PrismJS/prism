@@ -1,0 +1,48 @@
+{"foo\"bar\"baz":1,"foo":2}
+{
+	"foo": 1,
+	"b\"ar": 2,
+	'foo': 3
+	foo: 3,
+	'"':'"',
+}
+
+----------------------------------------------------
+
+[
+	["punctuation", "{"],
+	["property", "\"foo\\\"bar\\\"baz\""],
+	["operator", ":"],
+	["number", "1"],
+	["punctuation", ","],
+	["property", "\"foo\""],
+	["operator", ":"],
+	["number", "2"],
+	["punctuation", "}"],
+
+	["punctuation", "{"],
+	["property", "\"foo\""],
+	["operator", ":"],
+	["number", "1"],
+	["punctuation", ","],
+	["property", "\"b\\\"ar\""],
+	["operator", ":"],
+	["number", "2"],
+	["punctuation", ","],
+	["property", "'foo'"],
+	["operator", ":"],
+	["number", "3"],
+	["property", "foo"],
+	["operator", ":"],
+	["number", "3"],
+	["punctuation", ","],
+	["property", "'\"'"],
+	["operator", ":"],
+	["string", "'\"'"],
+	["punctuation", ","],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for properties.

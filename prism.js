@@ -17,13 +17,13 @@ var _self = (typeof window !== 'undefined')
  * @author Lea Verou http://lea.verou.me
  */
 
-var Prism = (function(){
+var Prism = (function (_self){
 
 // Private helper vars
 var lang = /\blang(?:uage)?-([\w-]+)\b/i;
 var uniqueId = 0;
 
-var _ = _self.Prism = {
+var _ = {
 	manual: _self.Prism && _self.Prism.manual,
 	disableWorkerMessageHandler: _self.Prism && _self.Prism.disableWorkerMessageHandler,
 	util: {
@@ -38,7 +38,7 @@ var _ = _self.Prism = {
 		},
 
 		type: function (o) {
-			return Object.prototype.toString.call(o).match(/\[object (\w+)\]/)[1];
+			return Object.prototype.toString.call(o).slice(8, -1);
 		},
 
 		objId: function (obj) {
@@ -49,41 +49,44 @@ var _ = _self.Prism = {
 		},
 
 		// Deep clone a language definition (e.g. to extend it)
-		clone: function (o, visited) {
-			var type = _.util.type(o);
+		clone: function deepClone(o, visited) {
+			var clone, id, type = _.util.type(o);
 			visited = visited || {};
 
 			switch (type) {
 				case 'Object':
-					if (visited[_.util.objId(o)]) {
-						return visited[_.util.objId(o)];
+					id = _.util.objId(o);
+					if (visited[id]) {
+						return visited[id];
 					}
-					var clone = {};
-					visited[_.util.objId(o)] = clone;
+					clone = {};
+					visited[id] = clone;
 
 					for (var key in o) {
 						if (o.hasOwnProperty(key)) {
-							clone[key] = _.util.clone(o[key], visited);
+							clone[key] = deepClone(o[key], visited);
 						}
 					}
 
 					return clone;
 
 				case 'Array':
-					if (visited[_.util.objId(o)]) {
-						return visited[_.util.objId(o)];
+					id = _.util.objId(o);
+					if (visited[id]) {
+						return visited[id];
 					}
-					var clone = [];
-					visited[_.util.objId(o)] = clone;
+					clone = [];
+					visited[id] = clone;
 
 					o.forEach(function (v, i) {
-						clone[i] = _.util.clone(v, visited);
+						clone[i] = deepClone(v, visited);
 					});
 
 					return clone;
-			}
 
-			return o;
+				default:
+					return o;
+			}
 		}
 	},
 
@@ -101,72 +104,68 @@ var _ = _self.Prism = {
 		/**
 		 * Insert a token before another token in a language literal
 		 * As this needs to recreate the object (we cannot actually insert before keys in object literals),
-		 * we cannot just provide an object, we need anobject and a key.
+		 * we cannot just provide an object, we need an object and a key.
 		 * @param inside The key (or language id) of the parent
-		 * @param before The key to insert before. If not provided, the function appends instead.
+		 * @param before The key to insert before.
 		 * @param insert Object with the key/value pairs to insert
 		 * @param root The object that contains `inside`. If equal to Prism.languages, it can be omitted.
 		 */
 		insertBefore: function (inside, before, insert, root) {
 			root = root || _.languages;
 			var grammar = root[inside];
-
-			if (arguments.length == 2) {
-				insert = arguments[1];
-
-				for (var newToken in insert) {
-					if (insert.hasOwnProperty(newToken)) {
-						grammar[newToken] = insert[newToken];
-					}
-				}
-
-				return grammar;
-			}
-
 			var ret = {};
 
 			for (var token in grammar) {
-
 				if (grammar.hasOwnProperty(token)) {
 
 					if (token == before) {
-
 						for (var newToken in insert) {
-
 							if (insert.hasOwnProperty(newToken)) {
 								ret[newToken] = insert[newToken];
 							}
 						}
 					}
 
-					ret[token] = grammar[token];
+					// Do not insert token which also occur in insert. See #1525
+					if (!insert.hasOwnProperty(token)) {
+						ret[token] = grammar[token];
+					}
 				}
 			}
 
+			var old = root[inside];
+			root[inside] = ret;
+
 			// Update references in other language definitions
 			_.languages.DFS(_.languages, function(key, value) {
-				if (value === root[inside] && key != inside) {
+				if (value === old && key != inside) {
 					this[key] = ret;
 				}
 			});
 
-			return root[inside] = ret;
+			return ret;
 		},
 
 		// Traverse a language definition with Depth First Search
-		DFS: function(o, callback, type, visited) {
+		DFS: function DFS(o, callback, type, visited) {
 			visited = visited || {};
+
+			var objId = _.util.objId;
+
 			for (var i in o) {
 				if (o.hasOwnProperty(i)) {
 					callback.call(o, i, o[i], type || i);
 
-					if (_.util.type(o[i]) === 'Object' && !visited[_.util.objId(o[i])]) {
-						visited[_.util.objId(o[i])] = true;
-						_.languages.DFS(o[i], callback, null, visited);
+					var property = o[i],
+					    propertyType = _.util.type(property);
+
+					if (propertyType === 'Object' && !visited[objId(property)]) {
+						visited[objId(property)] = true;
+						DFS(property, callback, null, visited);
 					}
-					else if (_.util.type(o[i]) === 'Array' && !visited[_.util.objId(o[i])]) {
-						visited[_.util.objId(o[i])] = true;
-						_.languages.DFS(o[i], callback, i, visited);
+					else if (propertyType === 'Array' && !visited[objId(property)]) {
+						visited[objId(property)] = true;
+						DFS(property, callback, i, visited);
 					}
 				}
 			}
@@ -227,33 +226,37 @@ var _ = _self.Prism = {
 			code: code
 		};
 
+		var insertHighlightedCode = function (highlightedCode) {
+			env.highlightedCode = highlightedCode;
+
+			_.hooks.run('before-insert', env);
+
+			env.element.innerHTML = env.highlightedCode;
+
+			_.hooks.run('after-highlight', env);
+			_.hooks.run('complete', env);
+			callback && callback.call(env.element);
+		}
+
 		_.hooks.run('before-sanity-check', env);
 
-		if (!env.code || !env.grammar) {
-			if (env.code) {
-				_.hooks.run('before-highlight', env);
-				env.element.textContent = env.code;
-				_.hooks.run('after-highlight', env);
-			}
+		if (!env.code) {
 			_.hooks.run('complete', env);
 			return;
 		}
 
 		_.hooks.run('before-highlight', env);
 
+		if (!env.grammar) {
+			insertHighlightedCode(_.util.encode(env.code));
+			return;
+		}
+
 		if (async && _self.Worker) {
 			var worker = new Worker(_.filename);
 
 			worker.onmessage = function(evt) {
-				env.highlightedCode = evt.data;
-
-				_.hooks.run('before-insert', env);
-
-				env.element.innerHTML = env.highlightedCode;
-
-				callback && callback.call(env.element);
-				_.hooks.run('after-highlight', env);
-				_.hooks.run('complete', env);
+				insertHighlightedCode(evt.data);
 			};
 
 			worker.postMessage(JSON.stringify({
@@ -263,16 +266,7 @@ var _ = _self.Prism = {
 			}));
 		}
 		else {
-			env.highlightedCode = _.highlight(env.code, env.grammar, env.language);
-
-			_.hooks.run('before-insert', env);
-
-			env.element.innerHTML = env.highlightedCode;
-
-			callback && callback.call(element);
-
-			_.hooks.run('after-highlight', env);
-			_.hooks.run('complete', env);
+			insertHighlightedCode(_.highlight(env.code, env.grammar, env.language));
 		}
 	},
 
@@ -289,8 +283,6 @@ var _ = _self.Prism = {
 	},
 
 	matchGrammar: function (text, strarr, grammar, index, startPos, oneshot, target) {
-		var Token = _.Token;
-
 		for (var token in grammar) {
 			if(!grammar.hasOwnProperty(token) || !grammar[token]) {
 				continue;
@@ -416,7 +408,7 @@ var _ = _self.Prism = {
 		}
 	},
 
-	tokenize: function(text, grammar, language) {
+	tokenize: function(text, grammar) {
 		var strarr = [text];
 
 		var rest = grammar.rest;
@@ -456,17 +448,21 @@ var _ = _self.Prism = {
 				callback(env);
 			}
 		}
-	}
+	},
+
+	Token: Token
 };
 
-var Token = _.Token = function(type, content, alias, matchedStr, greedy) {
+_self.Prism = _;
+
+function Token(type, content, alias, matchedStr, greedy) {
 	this.type = type;
 	this.content = content;
 	this.alias = alias;
 	// Copy of the full string this token was created from
 	this.length = (matchedStr || "").length|0;
 	this.greedy = !!greedy;
-};
+}
 
 Token.stringify = function(o, language, parent) {
 	if (typeof o == 'string') {
@@ -507,7 +503,7 @@ Token.stringify = function(o, language, parent) {
 if (!_self.document) {
 	if (!_self.addEventListener) {
 		// in Node.js
-		return _self.Prism;
+		return _;
 	}
 
 	if (!_.disableWorkerMessageHandler) {
@@ -525,7 +521,7 @@ if (!_self.document) {
 		}, false);
 	}
 
-	return _self.Prism;
+	return _;
 }
 
 //Get current script and highlight
@@ -548,9 +544,9 @@ if (script) {
 	}
 }
 
-return _self.Prism;
+return _;
 
-})();
+})(_self);
 
 if (typeof module !== 'undefined' && module.exports) {
 	module.exports = Prism;
@@ -572,7 +568,7 @@ Prism.languages.markup = {
 	'doctype': /<!DOCTYPE[\s\S]+?>/i,
 	'cdata': /<!\[CDATA\[[\s\S]*?]]>/i,
 	'tag': {
-		pattern: /<\/?(?!\d)[^\s>\/=$<%]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/i,
+		pattern: /<\/?(?!\d)[^\s>\/=$<%]+(?:\s(?:\s*[^\s>\/=]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+(?=[\s>]))|(?=[\s/>])))+)?\s*\/?>/i,
 		greedy: true,
 		inside: {
 			'tag': {
@@ -583,12 +579,12 @@ Prism.languages.markup = {
 				}
 			},
 			'attr-value': {
-				pattern: /=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s'">=]+)/i,
+				pattern: /=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+)/i,
 				inside: {
 					'punctuation': [
 						/^=/,
 						{
-							pattern: /(^|[^\\])["']/,
+							pattern: /^(\s*)["']|["']$/,
 							lookbehind: true
 						}
 					]
@@ -618,7 +614,7 @@ Prism.hooks.add('wrap', function(env) {
 	}
 });
 
-Prism.languages.xml = Prism.languages.markup;
+Prism.languages.xml = Prism.languages.extend('markup', {});
 Prism.languages.html = Prism.languages.markup;
 Prism.languages.mathml = Prism.languages.markup;
 Prism.languages.svg = Prism.languages.markup;
@@ -631,7 +627,7 @@ Prism.languages.svg = Prism.languages.markup;
 Prism.languages.css = {
 	'comment': /\/\*[\s\S]*?\*\//,
 	'atrule': {
-		pattern: /@[\w-]+?.*?(?:;|(?=\s*\{))/i,
+		pattern: /@[\w-]+?[\s\S]*?(?:;|(?=\s*\{))/i,
 		inside: {
 			'rule': /@[\w-]+/
 			// See rest below
@@ -644,9 +640,9 @@ Prism.languages.css = {
 		greedy: true
 	},
 	'property': /[-_a-z\xA0-\uFFFF][-\w\xA0-\uFFFF]*(?=\s*:)/i,
-	'important': /\B!important\b/i,
+	'important': /!important\b/i,
 	'function': /[-a-z0-9]+(?=\()/i,
-	'punctuation': /[(){};:]/
+	'punctuation': /[(){};:,]/
 };
 
 Prism.languages.css['atrule'].inside.rest = Prism.languages.css;
@@ -681,6 +677,7 @@ if (Prism.languages.markup) {
 	}, Prism.languages.markup.tag);
 }
 
+
 /* **********************************************
      Begin prism-clike.js
 ********************************************** */
@@ -710,7 +707,7 @@ Prism.languages.clike = {
 	},
 	'keyword': /\b(?:if|else|while|do|for|return|in|instanceof|function|new|try|throw|catch|finally|null|break|continue)\b/,
 	'boolean': /\b(?:true|false)\b/,
-	'function': /[a-z0-9_]+(?=\()/i,
+	'function': /\w+(?=\()/,
 	'number': /\b0x[\da-f]+\b|(?:\b\d+\.?\d*|\B\.\d+)(?:e[+-]?\d+)?/i,
 	'operator': /--?|\+\+?|!=?=?|<=?|>=?|==?=?|&&?|\|\|?|\?|\*|\/|~|\^|%/,
 	'punctuation': /[{}[\];(),.:]/
@@ -722,25 +719,61 @@ Prism.languages.clike = {
 ********************************************** */
 
 Prism.languages.javascript = Prism.languages.extend('clike', {
-	'keyword': /\b(?:as|async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|var|void|while|with|yield)\b/,
-	'number': /\b(?:0[xX][\dA-Fa-f]+|0[bB][01]+|0[oO][0-7]+|NaN|Infinity)\b|(?:\b\d+\.?\d*|\B\.\d+)(?:[Ee][+-]?\d+)?/,
+	'class-name': [
+		Prism.languages.clike['class-name'],
+		{
+			pattern: /(^|[^$\w\xA0-\uFFFF])[_$A-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\.(?:prototype|constructor))/,
+			lookbehind: true
+		}
+	],
+	'keyword': [
+		{
+			pattern: /((?:^|})\s*)(?:catch|finally)\b/,
+			lookbehind: true
+		},
+		/\b(?:as|async(?=\s*(?:function\b|\(|[$\w\xA0-\uFFFF]|$))|await|break|case|class|const|continue|debugger|default|delete|do|else|enum|export|extends|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|undefined|var|void|while|with|yield)\b/
+	],
+	'number': /\b(?:(?:0[xX][\dA-Fa-f]+|0[bB][01]+|0[oO][0-7]+)n?|\d+n|NaN|Infinity)\b|(?:\b\d+\.?\d*|\B\.\d+)(?:[Ee][+-]?\d+)?/,
 	// Allow for all non-ASCII characters (See http://stackoverflow.com/a/2008444)
-	'function': /[_$a-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\s*\()/i,
+	'function': /[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\s*(?:\.\s*(?:apply|bind|call)\s*)?\()/,
 	'operator': /-[-=]?|\+[+=]?|!=?=?|<<?=?|>>?>?=?|=(?:==?|>)?|&[&=]?|\|[|=]?|\*\*?=?|\/=?|~|\^=?|%=?|\?|\.{3}/
 });
 
+Prism.languages.javascript['class-name'][0].pattern = /(\b(?:class|interface|extends|implements|instanceof|new)\s+)[\w.\\]+/
+
 Prism.languages.insertBefore('javascript', 'keyword', {
 	'regex': {
-		pattern: /((?:^|[^$\w\xA0-\uFFFF."'\])\s])\s*)\/(\[[^\]\r\n]+]|\\.|[^/\\\[\r\n])+\/[gimyu]{0,5}(?=\s*($|[\r\n,.;})\]]))/,
+		pattern: /((?:^|[^$\w\xA0-\uFFFF."'\])\s])\s*)\/(\[(?:[^\]\\\r\n]|\\.)*]|\\.|[^/\\\[\r\n])+\/[gimyu]{0,5}(?=\s*($|[\r\n,.;})\]]))/,
 		lookbehind: true,
 		greedy: true
 	},
 	// This must be declared before keyword because we use "function" inside the look-forward
 	'function-variable': {
-		pattern: /[_$a-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\s*=\s*(?:function\b|(?:\([^()]*\)|[_$a-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*)\s*=>))/i,
+		pattern: /[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\s*[=:]\s*(?:async\s*)?(?:\bfunction\b|(?:\((?:[^()]|\([^()]*\))*\)|[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*)\s*=>))/,
 		alias: 'function'
 	},
-	'constant': /\b[A-Z][A-Z\d_]*\b/
+	'parameter': [
+		{
+			pattern: /(function(?:\s+[_$A-Za-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*)?\s*\(\s*)(?!\s)(?:[^()]|\([^()]*\))+?(?=\s*\))/,
+			lookbehind: true,
+			inside: Prism.languages.javascript
+		},
+		{
+			pattern: /[_$a-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\s*=>)/i,
+			inside: Prism.languages.javascript
+		},
+		{
+			pattern: /(\(\s*)(?!\s)(?:[^()]|\([^()]*\))+?(?=\s*\)\s*=>)/,
+			lookbehind: true,
+			inside: Prism.languages.javascript
+		},
+		{
+			pattern: /((?:\b|\s|^)(?!(?:as|async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|undefined|var|void|while|with|yield)(?![$\w\xA0-\uFFFF]))(?:[_$A-Za-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*\s*)\(\s*)(?!\s)(?:[^()]|\([^()]*\))+?(?=\s*\)\s*\{)/,
+			lookbehind: true,
+			inside: Prism.languages.javascript
+		}
+	],
+	'constant': /\b[A-Z](?:[A-Z_]|\dx?)*\b/
 });
 
 Prism.languages.insertBefore('javascript', 'string', {
@@ -755,14 +788,13 @@ Prism.languages.insertBefore('javascript', 'string', {
 						pattern: /^\${|}$/,
 						alias: 'punctuation'
 					},
-					rest: null // See below
+					rest: Prism.languages.javascript
 				}
 			},
 			'string': /[\s\S]+/
 		}
 	}
 });
-Prism.languages.javascript['template-string'].inside['interpolation'].inside.rest = Prism.languages.javascript;
 
 if (Prism.languages.markup) {
 	Prism.languages.insertBefore('markup', 'tag', {
@@ -788,7 +820,11 @@ Prism.languages.js = Prism.languages.javascript;
 		return;
 	}
 
-	self.Prism.fileHighlight = function() {
+	/**
+	 * @param {Element} [container=document]
+	 */
+	self.Prism.fileHighlight = function(container) {
+		container = container || document;
 
 		var Extensions = {
 			'js': 'javascript',
@@ -802,7 +838,13 @@ Prism.languages.js = Prism.languages.javascript;
 			'tex': 'latex'
 		};
 
-		Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+		Array.prototype.slice.call(container.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+			// ignore if already loaded
+			if (pre.hasAttribute('data-src-loaded')) {
+				return;
+			}
+
+			// load current
 			var src = pre.getAttribute('data-src');
 
 			var language, parent = pre;
@@ -840,6 +882,8 @@ Prism.languages.js = Prism.languages.javascript;
 						code.textContent = xhr.responseText;
 
 						Prism.highlightElement(code);
+						// mark as loaded
+						pre.setAttribute('data-src-loaded', '');
 					}
 					else if (xhr.status >= 400) {
 						code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
@@ -870,6 +914,9 @@ Prism.languages.js = Prism.languages.javascript;
 
 	};
 
-	document.addEventListener('DOMContentLoaded', self.Prism.fileHighlight);
+	document.addEventListener('DOMContentLoaded', function () {
+		// execute inside handler, for dropping Event as argument
+		self.Prism.fileHighlight();
+	});
 
 })();

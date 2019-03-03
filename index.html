@@ -234,11 +234,11 @@ var html = Prism.highlight(code, Prism.languages.haml, 'haml');</code></pre>
 		<li><a href="http://crambler.com/how-to-implement-prism-js-syntax-highlighting-into-your-wordpress-site/">How To Implement Prism.js Syntax Highlighting Into Your WordPress Site</a></li>
 		<li><a href="http://wp.tutsplus.com/tutorials/plugins/adding-a-syntax-highlighter-shortcode-using-prism-js/">Adding a Syntax Highlighter Shortcode Using Prism.js | WPTuts+</a></li>
 		<li><a href="https://www.stramaxon.com/2012/07/prism-syntax-highlighter-for-blogger.html">Implement PrismJs Syntax Highlighting to your Blogger/BlogSpot</a></li>
-		<li><a href="http://www.allblogtools.com/tricks-and-hacks/beautify-source-codes-in-your-posts-with-prism-syntax-highlighter-for-blogger/">Beautify Source Codes In Your Posts With Prism Syntax Highlighter For Blogger</a></li>
 		<li><a href="https://schier.co/blog/2013/01/07/how-to-re-run-prismjs-on-ajax-content.html">How To Re-Run Prism.js On AJAX Content</a></li>
 		<li><a href="https://www.semisedlak.com/highlight-your-code-syntax-with-prismjs">Highlight your code syntax with Prism.js</a></li>
 		<li><a href="https://usetypo3.com/fs-code-snippet.html">A code snippet content element powered by Prism.js for TYPO3 CMS</a></li>
 		<li><a href="https://auralinna.blog/post/2017/code-syntax-highlighting-with-angular-and-prismjs">Code syntax highlighting with Angular and Prism.js</a></li>
+		<li><a href="https://mkaz.blog/wordpress/code-syntax-highlighting-in-gutenberg/">Code syntax highlighting in Gutenberg, WordPress block editor</a></li>
 	</ul>
 
 	<p>Please note that the tutorials listed here are not verified to contain correct information. Read at your risk and always check the official documentation here if something doesn’t work :)</p>
@@ -273,21 +273,40 @@ var html = Prism.highlight(code, Prism.languages.haml, 'haml');</code></pre>
 			continue;
 		}
 		count++;
-		var name = languages[id].title || languages[id];
+
+		var lang = languages[id];
+		var name = lang.title || lang;
+
+		var contents = [
+			name,
+			' - ',
+			{
+				tag: 'code',
+				contents: id
+			}
+		];
+
+		var alias = lang.alias;
+		if (typeof alias === 'string')
+			alias = [alias];
+
+		if (alias) {
+			for (var i = 0, l = alias.length; i < l; i++) {
+				contents.push(
+					', ',
+					{
+						tag: 'code',
+						contents: alias[i]
+					});
+			}
+		}
 
 		languageItems.push({
 			tag: 'li',
 			attributes: {
 				'data-id': id
 			},
-			contents: [
-				name,
-				' - ',
-				{
-					tag: 'code',
-					contents: id
-				}
-			]
+			contents: contents
 		});
 	}
 	$u.element.create('ul', {
