@@ -5,7 +5,10 @@
 			pattern: RegExp('<#' + prefix + '[\\s\\S]*?#>'),
 			alias: 'block',
 			inside: {
-				'delimiter': RegExp('^<#' + prefix + '|#>$'),
+				'delimiter': {
+					pattern: RegExp('^<#' + prefix + '|#>$'),
+					alias: 'important'
+				},
 				'content': {
 					pattern: /[\s\S]+/,
 					inside: inside,
@@ -34,7 +37,7 @@
 						'attr-name': /\w+/
 					}),
 					'expression': createBlock('=', grammar, className),
-					'class-feature': createBlock('+', grammar, className),
+					'class-feature': createBlock('\\+', grammar, className),
 					'standard': createBlock('', grammar, className)
 				}
 			}
