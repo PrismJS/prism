@@ -18,11 +18,11 @@ Prism.languages.scheme = {
 	},
 	'boolean' : /#[tf]/,
 	'operator': {
-		pattern: /(\()(?:[-+*%\/]|[<>]=?|=>?)(?:(?=\s)|$)/,
+		pattern: /(\()(?:[-+*%\/]|[<>]=?|=>?)(?=\s|$)/,
 		lookbehind: true
 	},
 	'function' : {
-		pattern : /(\()[^\s()]+(?:(?=[\s)])|$)/,
+		pattern : /(\()[^\s()]+(?=[\s)]|$)/,
 		lookbehind : true
 	},
 	'punctuation' : /[()]/
