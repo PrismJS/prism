@@ -9,9 +9,8 @@ public class Bar {}
 	"Foo\n",
 	["block", [
 		["class-feature", [
-			["delimiter", "<#"],
+			["delimiter", "<#+"],
 			["content", [
-				["operator", "+"],
 				["keyword", "public"],
 				["keyword", "class"],
 				["class-name", ["Bar"]],

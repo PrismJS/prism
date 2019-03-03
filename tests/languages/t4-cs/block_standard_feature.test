@@ -14,7 +14,7 @@ The number <#= i #> is even.
 
 [
 	["block", [
-		["class-feature", [
+		["standard", [
 			["delimiter", "<#"],
 			["content", [
 				["keyword", "for"],
@@ -57,7 +57,7 @@ The number <#= i #> is even.
 	" is even.\n",
 
 	["block", [
-		["class-feature", [
+		["standard", [
 			["delimiter", "<#"],
 			["content", [
 				["punctuation", "}"],
