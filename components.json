@@ -741,7 +741,8 @@
 				"coffeescript",
 				"flow",
 				"javascript",
-				"typescript"
+				"typescript",
+				"vala"
 			],
 			"owner": "RunDevelopment"
 		},
