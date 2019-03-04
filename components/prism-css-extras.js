@@ -6,12 +6,12 @@ Prism.languages.css.selector = {
 		'class': /\.[-:.\w]+/,
 		'id': /#[-:.\w]+/,
 		'attribute': {
-			pattern: /\[(?:[^[\]"']|("|')(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1)+\]/,
+			pattern: /\[(?:[^[\]"']|("|')(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1)*\]/,
 			greedy: true,
 			inside: {
 				'punctuation': /^\[|\]$/,
 				'case-sensitivity': {
-					pattern: /( )[si]$/i,
+					pattern: /(\s)[si]$/i,
 					lookbehind: true,
 					alias: 'keyword'
 				},
