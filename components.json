@@ -840,6 +840,21 @@
 			"alias": "ts",
 			"owner": "vkbansal"
 		},
+		"t4-cs": {
+			"title": "T4 Text Templates (C#)",
+			"require": ["t4-templating", "csharp"],
+			"alias": "t4",
+			"owner": "RunDevelopment"
+		},
+		"t4-vb": {
+			"title": "T4 Text Templates (VB)",
+			"require": ["t4-templating", "visual-basic"],
+			"owner": "RunDevelopment"
+		},
+		"t4-templating": {
+			"title": "T4 templating",
+			"owner": "RunDevelopment"
+		},
 		"vala": {
 			"title": "Vala",
 			"require": "clike",
