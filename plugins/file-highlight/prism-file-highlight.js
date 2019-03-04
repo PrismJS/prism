@@ -98,7 +98,7 @@
 	};
 
 	document.addEventListener('DOMContentLoaded', function () {
-		// execute inside handler, for dropping Event as argumnet
+		// execute inside handler, for dropping Event as argument
 		self.Prism.fileHighlight();
 	});
 

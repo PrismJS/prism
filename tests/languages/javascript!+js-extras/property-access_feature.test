@@ -1,0 +1,22 @@
+foo.bar.baz = 0;
+
+----------------------------------------------------
+
+[
+	"foo",
+	["punctuation", "."],
+	["property-access", [
+		"bar"
+	]],
+	["punctuation", "."],
+	["property-access", [
+		"baz"
+	]],
+	["operator", "="],
+	["number", "0"],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for property access.
