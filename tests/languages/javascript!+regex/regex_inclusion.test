@@ -4,7 +4,7 @@
 
 [
 	["regex", [
-		["delimiter", "/"],
+		["regex-delimiter", "/"],
 		["language-regex", [
 			"a",
 			["quantifier", "+"],
@@ -23,8 +23,8 @@
 			["group", ")"],
 			["quantifier", "?"]
 		]],
-		["delimiter", "/"],
-		["flags", "im"]
+		["regex-delimiter", "/"],
+		["regex-flags", "im"]
 	]],
 	["punctuation", ";"]
 ]

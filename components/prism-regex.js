@@ -84,8 +84,8 @@
 		var grammar = Prism.languages[lang];
 		if (grammar) {
 			grammar['regex'].inside = {
-				'flags': /[a-z]+$/,
-				'delimiter': /^\/|\/$/,
+				'regex-flags': /[a-z]+$/,
+				'regex-delimiter': /^\/|\/$/,
 				'language-regex': {
 					pattern: /[\s\S]+/,
 					inside: Prism.languages.regex
