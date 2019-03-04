@@ -12,8 +12,15 @@
  */
 (function (Prism) {
 	Prism.languages.php = Prism.languages.extend('clike', {
-		'keyword': /\b(?:and|or|xor|array|as|break|case|cfunction|class|const|continue|declare|default|die|do|else|elseif|enddeclare|endfor|endforeach|endif|endswitch|endwhile|extends|for|foreach|function|include|include_once|global|if|new|return|static|switch|use|require|require_once|var|while|abstract|interface|public|implements|private|protected|parent|throw|null|echo|print|trait|namespace|final|yield|goto|instanceof|finally|try|catch)\b/i,
-		'constant': /\b[A-Z0-9_]{2,}\b/,
+		'keyword': /\b(?:__halt_compiler|abstract|and|array|as|break|callable|case|catch|class|clone|const|continue|declare|default|die|do|echo|else|elseif|empty|enddeclare|endfor|endforeach|endif|endswitch|endwhile|eval|exit|extends|final|finally|for|foreach|function|global|goto|if|implements|include|include_once|instanceof|insteadof|interface|isset|list|namespace|new|or|parent|print|private|protected|public|require|require_once|return|static|switch|throw|trait|try|unset|use|var|while|xor|yield)\b/i,
+		'boolean': {
+			pattern: /\b(?:false|true)\b/i,
+			alias: 'constant'
+		},
+		'constant': [
+			/\b[A-Z_][A-Z0-9_]*\b/,
+			/\b(?:null)\b/i,
+		],
 		'comment': {
 			pattern: /(^|[^\\])(?:\/\*[\s\S]*?\*\/|\/\/.*)/,
 			lookbehind: true
@@ -28,11 +35,14 @@
 		}
 	});
 
-	Prism.languages.insertBefore('php', 'keyword', {
+	Prism.languages.insertBefore('php', 'comment', {
 		'delimiter': {
-			pattern: /\?>|<\?(?:php|=)?/i,
+			pattern: /\?>$|^<\?(?:php(?=\s)|=)?/i,
 			alias: 'important'
-		},
+		}
+	});
+
+	Prism.languages.insertBefore('php', 'keyword', {
 		'variable': /\$+(?:\w+\b|(?={))/i,
 		'package': {
 			pattern: /(\\|namespace\s+|use\s+)[\w\\]+/,
@@ -107,11 +117,11 @@
 	delete Prism.languages.php['string'];
 
 	Prism.hooks.add('before-tokenize', function(env) {
-		if (!/(?:<\?php|<\?)/ig.test(env.code)) {
+		if (!/<\?/.test(env.code)) {
 			return;
 		}
 
-		var phpPattern = /(?:<\?php|<\?)[\s\S]*?(?:\?>|$)/ig;
+		var phpPattern = /<\?(?:[^"'/#]|\/(?![*/])|("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|(?:\/\/|#)(?:[^?\n\r]|\?(?!>))*|\/\*[\s\S]*?(?:\*\/|$))*?(?:\?>|$)/ig;
 		Prism.languages['markup-templating'].buildPlaceholders(env, 'php', phpPattern);
 	});
 

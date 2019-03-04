@@ -1,0 +1,23 @@
+/**
+ * @param string $parameter a parameter
+ * @param $arg2 a second parameter
+ */
+
+----------------------------------------------------
+
+[
+	"/**\n * ",
+	["keyword", "@param"],
+	["class-name", [
+		["keyword", "string"]
+	]],
+	["parameter", "$parameter"],
+	" a parameter\n * ",
+	["keyword", "@param"],
+	["parameter", "$arg2"],
+	" a second parameter\n */"
+]
+
+----------------------------------------------------
+
+Checks for parameters.
