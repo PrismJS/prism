@@ -22,15 +22,7 @@ Prism.languages.css = {
 Prism.languages.css['atrule'].inside.rest = Prism.languages.css;
 
 if (Prism.languages.markup) {
-	Prism.languages.insertBefore('markup', 'tag', {
-		'style': {
-			pattern: /(<style[\s\S]*?>)[\s\S]*?(?=<\/style>)/i,
-			lookbehind: true,
-			inside: Prism.languages.css,
-			alias: 'language-css',
-			greedy: true
-		}
-	});
+	Prism.languages.markup.tag.addInlined('style', 'css');
 
 	Prism.languages.insertBefore('inside', 'attr-value', {
 		'style-attr': {
