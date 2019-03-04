@@ -5,7 +5,37 @@ Prism.languages.css.selector = {
 		'pseudo-class': /:[-\w]+(?:\(.*\))?/,
 		'class': /\.[-:.\w]+/,
 		'id': /#[-:.\w]+/,
-		'attribute': /\[[^\]]+\]/
+		'attribute': {
+			pattern: /\[(?:[^[\]"']|("|')(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1)*\]/,
+			greedy: true,
+			inside: {
+				'punctuation': /^\[|\]$/,
+				'case-sensitivity': {
+					pattern: /(\s)[si]$/i,
+					lookbehind: true,
+					alias: 'keyword'
+				},
+				'namespace': {
+					pattern: /^(\s*)[-*\w\xA0-\uFFFF]*\|(?!=)/,
+					lookbehind: true,
+					inside: {
+						'punctuation': /\|$/
+					}
+				},
+				'attribute': {
+					pattern: /^(\s*)[-\w\xA0-\uFFFF]+/,
+					lookbehind: true
+				},
+				'value': [
+					/("|')(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,
+					{
+						pattern: /(=\s*)[-\w\xA0-\uFFFF]+(?=\s*$)/,
+						lookbehind: true
+					}
+				],
+				'operator': /[|~*^$]?=/
+			}
+		}
 	}
 };
 
