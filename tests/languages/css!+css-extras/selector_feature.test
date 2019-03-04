@@ -7,8 +7,6 @@ foo#bar {
 
 #foo > .bar:hover:after {
 
-div[foo="bar"] {
-
 ----------------------------------------------------
 
 [
@@ -38,11 +36,6 @@ div[foo="bar"] {
 		["class", ".bar"],
 		["pseudo-class", ":hover"],
 		["pseudo-element", ":after"]
-	]], ["punctuation", "{"],
-
-	["selector", [
-		"div",
-		["attribute", "[foo=\"bar\"]"]
 	]], ["punctuation", "{"]
 ]
 
