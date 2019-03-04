@@ -24,7 +24,7 @@
  * A function which will invoked after an element was successfully highlighted.
  *
  * @callback HighlightCallback
- * @param {HTMLElement} element The element successfully highlighted.
+ * @param {Element} element The element successfully highlighted.
  * @returns {void}
  * @memberof Prism
 */

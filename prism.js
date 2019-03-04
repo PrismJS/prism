@@ -216,7 +216,6 @@ var _ = {
 	 *
 	 * This is equivalent to `Prism.highlightAllUnder(document, async, callback)`.
 	 *
-	 * @param {HTMLElement} container The root element, whose descendants that have a `.language-xxxx` class will be highlighted.
 	 * @param {boolean} [async=false] Same as in {@link Prism.highlightAllUnder}.
 	 * @param {Prism.HighlightCallback} [callback] Same as in {@link Prism.highlightAllUnder}.
 	 * @memberof Prism
@@ -233,7 +232,7 @@ var _ = {
 	 * 1. `before-highlightall`
 	 * 2. All hooks of {@link Prism.highlightElement} for each element.
 	 *
-	 * @param {HTMLElement} container The root element, whose descendants that have a `.language-xxxx` class will be highlighted.
+	 * @param {ParentNode} container The root element, whose descendants that have a `.language-xxxx` class will be highlighted.
 	 * @param {boolean} [async=false] Whether each element is to be highlighted asynchronously using Web Workers.
 	 * @param {Prism.HighlightCallback} [callback] An optional callback to be invoked on each element after its highlighting is done.
 	 * @memberof Prism
@@ -264,7 +263,7 @@ var _ = {
 	 * 5. `after-highlight`
 	 * 6. `complete`
 	 *
-	 * @param {HTMLElement} element The element containing the code.
+	 * @param {Element} element The element containing the code.
 	 * It must have a class of `language-xxxx` to be processed, where `xxxx` is a valid language identifier.
 	 * @param {boolean} [async=false] Whether the element is to be highlighted asynchronously using Web Workers
 	 * to improve performance and avoid blocking the UI when highlighting very large chunks of code. This option is
@@ -629,7 +628,7 @@ function Token(type, content, alias, matchedStr, greedy) {
 	 */
 	this.alias = alias;
 	/**
-	 *
+	 * The length of the matched string or 0.
 	 * @member {number}
 	 */
 	this.length = (matchedStr || "").length|0;
@@ -641,6 +640,18 @@ function Token(type, content, alias, matchedStr, greedy) {
 	this.greedy = !!greedy;
 }
 
+/**
+ * Converts the given token or token stream to an HTML representation.
+ *
+ * The following hooks will be run:
+ * 1. `wrap`: On each {@link Prism.Token}.
+ *
+ * @param {string | Prism.Token | Array.<string|Prism.Token>} o The token or token stream to be converted.
+ * @param {string} language The name of current language.
+ * @param {Array.<string|Prism.Token>} [parent] The parent token stream, if any.
+ * @return {string} The HTML representation of the token or token stream.
+ * @private
+ */
 Token.stringify = function(o, language, parent) {
 	if (typeof o == 'string') {
 		return o;
