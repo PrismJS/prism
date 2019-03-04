@@ -23,8 +23,10 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
+    "eslint": "^5.15.1",
     "gulp": "^4.0.0",
     "gulp-concat": "^2.3.4",
+    "gulp-eslint": "^5.0.0",
     "gulp-header": "^2.0.7",
     "gulp-rename": "^1.2.0",
     "gulp-replace": "^1.0.0",

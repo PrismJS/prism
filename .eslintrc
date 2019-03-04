@@ -1,0 +1,91 @@
+{
+	"env": {
+		"browser": true,
+		"node": true,
+	},
+	"extends": "eslint:recommended",
+	"globals": {
+		"Prism": "readonly",
+	},
+	"parserOptions": {
+		"ecmaVersion": 5,
+	},
+	"root": true,
+	"rules": {
+//		"indent": [
+//			"error",
+//			"tab",
+//			{
+//				"SwitchCase": 1,
+//				"outerIIFEBody": 0,
+//			}
+//		],
+		"linebreak-style": [
+			"error",
+			"unix",
+		],
+		"no-console": "off",
+		"no-empty": "off",
+		"no-inner-declarations": "off",
+		"no-mixed-spaces-and-tabs": "error",
+		"no-redeclare": "off",
+		"no-sparse-arrays": "off",
+		"no-unused-vars": [
+			"warn",
+			{
+				"args": "none",
+				"argsIgnorePattern": "^_",
+				"varsIgnorePattern": "^_",
+			}
+		],
+		"no-useless-escape": "off",
+//		"quotes": [
+//			"warn",
+//			"single",
+//			{
+//				"avoidEscape": true,
+//			}
+//		],
+		"semi": [
+			"error",
+			"always",
+		],
+	},
+	"overrides": [
+		{
+			"files": [
+				"gulpfile.js",
+			],
+			"env": {
+				"es6": true,
+			},
+			"parserOptions": {
+				"ecmaVersion": 2015,
+			}
+		},
+		{
+			"files": [
+				"code.js",
+				"download.js",
+				"examples.js",
+				"utopia.js",
+			],
+			"globals": {
+				"$": "readonly",
+				"$$": "readonly",
+				"$u": "readonly",
+				"Utopia": "readonly",
+				"Promise": "readonly",
+				"components": "readonly",
+				"setTheme": "readonly",
+				"PrefixFree": "readonly",
+				"StyleFix": "readonly",
+			},
+			"rules": {
+				"no-cond-assign": "off",
+				"no-mixed-spaces-and-tabs": "off",
+				"semi": "off",
+			},
+		}
+	]
+}

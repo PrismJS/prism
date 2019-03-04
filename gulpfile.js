@@ -1,5 +1,6 @@
 const { src, dest, series, parallel, watch } = require('gulp');
 
+const eslint = require('gulp-eslint');
 const rename = require('gulp-rename');
 const uglify = require('gulp-uglify');
 const header = require('gulp-header');
@@ -61,6 +62,13 @@ function minifyJS() {
 	];
 }
 
+function lint(cb) {
+	return pump([
+		src(['**/*.js', '!node_modules/**'], { base: './' }),
+		eslint(),
+		eslint.format(),
+	], cb);
+}
 
 function minifyComponents(cb) {
 	pump([src(paths.components), ...minifyJS(), rename({ suffix: '.min' }), dest('components')], cb);
@@ -191,7 +199,7 @@ function changelog(cb) {
 const components = minifyComponents;
 const plugins = series(languagePlugins, minifyPlugins);
 
-
+exports.lint = lint;
 exports.watch = watchComponentsAndPlugins;
-exports.default = parallel(components, plugins, componentsJsonToJs, build);
+exports.default = parallel(lint, components, plugins, componentsJsonToJs, build);
 exports.changelog = changelog;
