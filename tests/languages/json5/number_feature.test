@@ -1,0 +1,59 @@
+0
++0
+-0
+
+123
++123
+-123
+
+0xdeadBEEF
++0xdeadBEEF
+-0xdeadBEEF
+
+NaN
+Infinity
++Infinity
+-Infinity
+
+3.14159
+5.0e8
+5.e8
+0.2E+2
+.2E+2
+47e-5
+-1.23
+-2.34E33
+-4.34E-33
++4.34E+33
+
+----------------------------------------------------
+
+[
+	["number", "0"],
+	["number", "+0"],
+	["number", "-0"],
+	["number", "123"],
+	["number", "+123"],
+	["number", "-123"],
+	["number", "0xdeadBEEF"],
+	["number", "+0xdeadBEEF"],
+	["number", "-0xdeadBEEF"],
+	["number", "NaN"],
+	["number", "Infinity"],
+	["number", "+Infinity"],
+	["number", "-Infinity"],
+	["number", "3.14159"],
+	["number", "5.0e8"],
+	["number", "5.e8"],
+	["number", "0.2E+2"],
+	["number", ".2E+2"],
+	["number", "47e-5"],
+	["number", "-1.23"],
+	["number", "-2.34E33"],
+	["number", "-4.34E-33"],
+	["number", "+4.34E+33"]
+]
+
+----------------------------------------------------
+
+Checks for numbers.

@@ -22,12 +22,12 @@ Prism.languages.scheme = {
 	},
 	'boolean': /#[tf]/,
 	'operator': {
-		pattern: /(\()(?:[-+*%\/]|[<>]=?|=>?)/,
+		pattern: /(\()(?:[-+*%\/]|[<>]=?|=>?)(?=\s|$)/,
 		lookbehind: true
 	},
-	'function': {
-		pattern: /(\()[^()#'\s]+(?=[()\s)])/,
-		lookbehind: true
+	'function' : {
+		pattern : /(\()[^()'\s]+(?=[()\s)]|$)/,
+		lookbehind : true
 	},
-	'punctuation': /[()']/
+	'punctuation' : /[()']/
 };
