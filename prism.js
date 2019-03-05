@@ -47,6 +47,7 @@ function joinStrings(array) {
 			previousWasString = true;
 		} else {
 			res.push(a);
+			previousWasString = false;
 		}
 	}
 	return res;
@@ -156,6 +157,7 @@ var _ = {
 				offsets.push(index);
 				start = index + $i.length;
 			}
+			return offsets;
 		}
 	},
 
