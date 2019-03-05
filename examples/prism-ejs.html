@@ -1,0 +1,16 @@
+<h2>Full example</h2>
+<pre><code>&lt;h1>Let's have fun!&lt;/h1>
+&lt;%
+    const fruits = ["Apple", "Pear", "Orange", "Lemon"];
+    const random = Array.from({ length: 198 }).map(x => Math.random());
+%>
+
+&lt;p>These fruits are amazing:&lt;/p>
+&lt;ul>&lt;% for (const fruit of fruits) { %>
+  &lt;li>&lt;%=fruit%>s&lt;/li>&lt;% } %>
+&lt;/ul>
+
+&lt;p>Some random numbers:&lt;/p>
+
+&lt;% random.forEach((c, i) => {
+%> &lt;%- c.toFixed(10) + ((i + 1) % 6 === 0 ? " &lt;br>\n": "") %>&lt;%});%></code></pre>
