@@ -1,0 +1,149 @@
+<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ output extension=".cs" #>
+<#@ include file="Foo.t4" #>
+<#@ CleanupBehavior processor="T4VSHost" CleanupAfterProcessingtemplate="true" #>
+
+----------------------------------------------------
+
+[
+	["block", [
+		["directive", [
+			["delimiter", "<#@"],
+			["content", [
+				["keyword", "template"],
+				["attr-name", "debug"],
+				["attr-value", [
+					["punctuation", "="],
+					["punctuation", "\""],
+					"false",
+					["punctuation", "\""]
+				]],
+				["attr-name", "hostspecific"],
+				["attr-value", [
+					["punctuation", "="],
+					["punctuation", "\""],
+					"false",
+					["punctuation", "\""]
+				]],
+				["attr-name", "language"],
+				["attr-value", [
+					["punctuation", "="],
+					["punctuation", "\""],
+					"C#",
+					["punctuation", "\""]
+				]]
+			]],
+			["delimiter", "#>"]
+		]]
+	]],
+	["block", [
+		["directive", [
+			["delimiter", "<#@"],
+			["content", [
+				["keyword", "assembly"],
+				["attr-name", "name"],
+				["attr-value", [
+					["punctuation", "="],
+					["punctuation", "\""],
+					"System",
+					["punctuation", "\""]
+				]]
+			]],
+			["delimiter", "#>"]
+		]]
+	]],
+	["block", [
+		["directive", [
+			["delimiter", "<#@"],
+			["content", [
+				["keyword", "assembly"],
+				["attr-name", "name"],
+				["attr-value", [
+					["punctuation", "="],
+					["punctuation", "\""],
+					"System.Core",
+					["punctuation", "\""]
+				]]
+			]],
+			["delimiter", "#>"]
+		]]
+	]],
+	["block", [
+		["directive", [
+			["delimiter", "<#@"],
+			["content", [
+				["keyword", "import"],
+				["attr-name", "namespace"],
+				["attr-value", [
+					["punctuation", "="],
+					["punctuation", "\""],
+					"System.Linq",
+					["punctuation", "\""]
+				]]
+			]],
+			["delimiter", "#>"]
+		]]
+	]],
+	["block", [
+		["directive", [
+			["delimiter", "<#@"],
+			["content", [
+				["keyword", "output"],
+				["attr-name", "extension"],
+				["attr-value", [
+					["punctuation", "="],
+					["punctuation", "\""],
+					".cs",
+					["punctuation", "\""]
+				]]
+			]],
+			["delimiter", "#>"]
+		]]
+	]],
+	["block", [
+		["directive", [
+			["delimiter", "<#@"],
+			["content", [
+				["keyword", "include"],
+				["attr-name", "file"],
+				["attr-value", [
+					["punctuation", "="],
+					["punctuation", "\""],
+					"Foo.t4",
+					["punctuation", "\""]
+				]]
+			]],
+			["delimiter", "#>"]
+		]]
+	]],
+	["block", [
+		["directive", [
+			["delimiter", "<#@"],
+			["content", [
+				["keyword", "CleanupBehavior"],
+				["attr-name", "processor"],
+				["attr-value", [
+					["punctuation", "="],
+					["punctuation", "\""],
+					"T4VSHost",
+					["punctuation", "\""]
+				]],
+				["attr-name", "CleanupAfterProcessingtemplate"],
+				["attr-value", [
+					["punctuation", "="],
+					["punctuation", "\""],
+					"true",
+					["punctuation", "\""]
+				]]
+			]],
+			["delimiter", "#>"]
+		]]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for text template directives.

@@ -1,0 +1,86 @@
+/**
+ * @param n - A number.
+ * @param [n] - A number.
+ * @param [n=1+2] - A number.
+ * @param {number} n - A number.
+ * @param {{[x: string]: {start: number, end?: number}}} map
+ * @param {any} foo.bar
+ */
+
+----------------------------------------------------
+
+[
+	"/**\n * ",
+	["keyword", "@param"],
+	["parameter", ["n"]],
+	" - A number.\n * ",
+	["keyword", "@param"],
+	["optional-parameter", [
+		["punctuation", "["],
+		["parameter", ["n"]],
+		["punctuation", "]"]
+	]],
+	" - A number.\n * ",
+	["keyword", "@param"],
+	["optional-parameter", [
+		["punctuation", "["],
+		["parameter", ["n"]],
+		["punctuation", "="],
+		["code", [
+			["number", "1"],
+			["operator", "+"],
+			["number", "2"]
+		]],
+		["punctuation", "]"]
+	]],
+	" - A number.\n * ",
+	["keyword", "@param"],
+	["class-name", [
+		["punctuation", "{"],
+		"number",
+		["punctuation", "}"]
+	]],
+	["parameter", ["n"]],
+	" - A number.\n * ",
+	["keyword", "@param"],
+	["class-name", [
+		["punctuation", "{"],
+		["punctuation", "{"],
+		["punctuation", "["],
+		"x",
+		["punctuation", ":"],
+		" string",
+		["punctuation", "]"],
+		["punctuation", ":"],
+		["punctuation", "{"],
+		"start",
+		["punctuation", ":"],
+		" number",
+		["punctuation", ","],
+		" end",
+		["punctuation", "?"],
+		["punctuation", ":"],
+		" number",
+		["punctuation", "}"],
+		["punctuation", "}"],
+		["punctuation", "}"]
+	]],
+	["parameter", ["map"]],
+	"\n * ",
+	["keyword", "@param"],
+	["class-name", [
+		["punctuation", "{"],
+		"any",
+		["punctuation", "}"]
+	]],
+	["parameter", [
+		"foo",
+		["punctuation", "."],
+		"bar"
+	]],
+	"\n */"
+]
+
+----------------------------------------------------
+
+Checks for parameters.

@@ -35,11 +35,14 @@
 		}
 	});
 
-	Prism.languages.insertBefore('php', 'keyword', {
+	Prism.languages.insertBefore('php', 'comment', {
 		'delimiter': {
-			pattern: /\?>|<\?(?:php|=)?/i,
+			pattern: /\?>$|^<\?(?:php(?=\s)|=)?/i,
 			alias: 'important'
-		},
+		}
+	});
+
+	Prism.languages.insertBefore('php', 'keyword', {
 		'variable': /\$+(?:\w+\b|(?={))/i,
 		'package': {
 			pattern: /(\\|namespace\s+|use\s+)[\w\\]+/,
@@ -114,11 +117,11 @@
 	delete Prism.languages.php['string'];
 
 	Prism.hooks.add('before-tokenize', function(env) {
-		if (!/(?:<\?php|<\?)/ig.test(env.code)) {
+		if (!/<\?/.test(env.code)) {
 			return;
 		}
 
-		var phpPattern = /(?:<\?php|<\?)[\s\S]*?(?:\?>|$)/ig;
+		var phpPattern = /<\?(?:[^"'/#]|\/(?![*/])|("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|(?:\/\/|#)(?:[^?\n\r]|\?(?!>))*|\/\*[\s\S]*?(?:\*\/|$))*?(?:\?>|$)/ig;
 		Prism.languages['markup-templating'].buildPlaceholders(env, 'php', phpPattern);
 	});
 

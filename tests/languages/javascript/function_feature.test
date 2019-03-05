@@ -1,5 +1,6 @@
 foo()
 foo ()
+foo . call ()
 foo_bar()
 foo_bar ( )
 f42()
@@ -16,6 +17,7 @@ foo({ y: fun() })
 [
 	["function", "foo"], ["punctuation", "("], ["punctuation", ")"],
 	["function", "foo"], ["punctuation", "("], ["punctuation", ")"],
+	["function", "foo"], ["punctuation", "."], ["function", "call"], ["punctuation", "("], ["punctuation", ")"],
 	["function", "foo_bar"], ["punctuation", "("], ["punctuation", ")"],
 	["function", "foo_bar"], ["punctuation", "("], ["punctuation", ")"],
 	["function", "f42"], ["punctuation", "("], ["punctuation", ")"],
