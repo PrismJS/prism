@@ -729,6 +729,18 @@
 			"require": "clike",
 			"owner": "Golmote"
 		},
+		"regex": {
+			"title": "Regex",
+			"peerDependencies": [
+				"actionscript",
+				"coffeescript",
+				"flow",
+				"javascript",
+				"typescript",
+				"vala"
+			],
+			"owner": "RunDevelopment"
+		},
 		"rest": {
 			"title": "reST (reStructuredText)",
 			"owner": "Golmote"
