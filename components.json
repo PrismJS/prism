@@ -598,12 +598,14 @@
 			"require": ["markup", "javascript"],
 			"peerDependencies": [
 				"coffeescript",
+				"ejs",
 				"handlebars",
 				"less",
 				"livescript",
 				"markdown",
 				"scss",
-				"stylus"
+				"stylus",
+				"twig"
 			],
 			"owner": "Golmote"
 		},

@@ -161,6 +161,7 @@
 	var filters = [
 		{filter:'atpl',language:'twig'},
 		{filter:'coffee',language:'coffeescript'},
+		'ejs',
 		'handlebars',
 		'less',
 		'livescript',
