@@ -1,0 +1,15 @@
+let async = true;
+
+----------------------------------------------------
+
+[
+	["keyword", "let"],
+	" async ",
+	["operator", "="],
+	["boolean", "true"],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for variables with special names.

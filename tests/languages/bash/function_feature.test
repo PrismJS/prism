@@ -1,4 +1,4 @@
-alias apropos apt apt-cache apt-get aptitude aspell
+add alias apropos apt apt-cache apt-get aptitude aspell
 automysqlbackup awk basename bash bc bconsole bg
 builtin bzip2 cal cat cd
 cfdisk chgrp chmod chown chroot
@@ -25,7 +25,7 @@ mkfs mkisofs mknod mkswap more most mount
 mtools mtr mutt mv mmv nano nc netstat
 nice nl nohup notify-send nslookup
 open parted op passwd paste pathchk ping
-pkill popd pr printcap printenv
+pkill pnpm popd pr printcap printenv
 printf ps pushd pv pwd quota
 quotacheck quotactl ram rar rcp
 read readarray readonly reboot
@@ -43,12 +43,12 @@ units unrar unshar unzip update-grub uptime
 useradd userdel usermod users uuencode
 uudecode vdir vi vim virsh vmstat wait watch
 wc wget whereis which who whoami write
-xargs xdg-open yes zip zypper
+xargs xdg-open yarn yes zip zypper
 
 ----------------------------------------------------
 
 [
-	["function", "alias"], ["function", "apropos"], ["function", "apt"], ["function", "apt-cache"], ["function", "apt-get"], ["function", "aptitude"], ["function", "aspell"],
+	["function", "add"], ["function", "alias"], ["function", "apropos"], ["function", "apt"], ["function", "apt-cache"], ["function", "apt-get"], ["function", "aptitude"], ["function", "aspell"],
 	["function", "automysqlbackup"], ["function", "awk"], ["function", "basename"], ["function", "bash"], ["function", "bc"], ["function", "bconsole"], ["function", "bg"],
 	["function", "builtin"], ["function", "bzip2"], ["function", "cal"], ["function", "cat"], ["function", "cd"],
 	["function", "cfdisk"], ["function", "chgrp"], ["function", "chmod"], ["function", "chown"], ["function", "chroot"],
@@ -75,7 +75,7 @@ xargs xdg-open yes zip zypper
 	["function", "mtools"], ["function", "mtr"], ["function", "mutt"], ["function", "mv"], ["function", "mmv"], ["function", "nano"], ["function", "nc"], ["function", "netstat"],
 	["function", "nice"], ["function", "nl"], ["function", "nohup"], ["function", "notify-send"], ["function", "nslookup"],
 	["function", "open"], ["function", "parted"], ["function", "op"], ["function", "passwd"], ["function", "paste"], ["function", "pathchk"], ["function", "ping"],
-	["function", "pkill"], ["function", "popd"], ["function", "pr"], ["function", "printcap"], ["function", "printenv"],
+	["function", "pkill"], ["function", "pnpm"], ["function", "popd"], ["function", "pr"], ["function", "printcap"], ["function", "printenv"],
 	["function", "printf"], ["function", "ps"], ["function", "pushd"], ["function", "pv"], ["function", "pwd"], ["function", "quota"],
 	["function", "quotacheck"], ["function", "quotactl"], ["function", "ram"], ["function", "rar"], ["function", "rcp"],
 	["function", "read"], ["function", "readarray"], ["function", "readonly"], ["function", "reboot"],
@@ -93,7 +93,7 @@ xargs xdg-open yes zip zypper
 	["function", "useradd"], ["function", "userdel"], ["function", "usermod"], ["function", "users"], ["function", "uuencode"],
 	["function", "uudecode"], ["function", "vdir"], ["function", "vi"], ["function", "vim"], ["function", "virsh"],  ["function", "vmstat"], ["function", "wait"], ["function", "watch"],
 	["function", "wc"], ["function", "wget"], ["function", "whereis"], ["function", "which"], ["function", "who"], ["function", "whoami"], ["function", "write"],
-	["function", "xargs"], ["function", "xdg-open"], ["function", "yes"], ["function", "zip"], ["function", "zypper"]
+	["function", "xargs"], ["function", "xdg-open"], ["function", "yarn"], ["function", "yes"], ["function", "zip"], ["function", "zypper"]
 ]
 
 ----------------------------------------------------
