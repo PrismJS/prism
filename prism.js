@@ -670,7 +670,7 @@ Prism.languages.svg = Prism.languages.markup;
 
 (function (Prism) {
 
-	var string = /("|')(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/.source;
+	var string = /("|')(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/;
 
 	Prism.languages.css = {
 		'comment': /\/\*[\s\S]*?\*\//,
@@ -681,10 +681,10 @@ Prism.languages.svg = Prism.languages.markup;
 				// See rest below
 			}
 		},
-		'url': RegExp('url\\((?:' + string + '|.*?)\\)', 'i'),
-		'selector': RegExp('[^{}\\s](?:[^{};"\']|' + string + ')*?(?=\\s*\\{)'),
+		'url': RegExp('url\\((?:' + string.source + '|.*?)\\)', 'i'),
+		'selector': RegExp('[^{}\\s](?:[^{};"\']|' + string.source + ')*?(?=\\s*\\{)'),
 		'string': {
-			pattern: RegExp(string),
+			pattern: string,
 			greedy: true
 		},
 		'property': /[-_a-z\xA0-\uFFFF][-\w\xA0-\uFFFF]*(?=\s*:)/i,
