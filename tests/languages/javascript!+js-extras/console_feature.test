@@ -1,0 +1,12 @@
+console.
+
+----------------------------------------------------
+
+[
+	["console", "console"],
+	["punctuation", "."]
+]
+
+----------------------------------------------------
+
+Checks for the console variable being used.

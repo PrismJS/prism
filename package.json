@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "chai": "^2.3.0",
-    "gulp": "^3.8.6",
+    "gulp": "^4.0.0",
     "gulp-concat": "^2.3.4",
     "gulp-header": "^1.0.5",
     "gulp-rename": "^1.2.0",
