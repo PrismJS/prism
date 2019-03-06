@@ -78,6 +78,10 @@
 			"title": "ABAP",
 			"owner": "dellagustin"
 		},
+		"abnf": {
+			"title": "Augmented Backus–Naur form",
+			"owner": "RunDevelopment"
+		},
 		"actionscript": {
 			"title": "ActionScript",
 			"require": "javascript",
@@ -110,6 +114,7 @@
 			"owner": "Golmote"
 		},
 		"asciidoc": {
+ 			"alias": "adoc",
 			"title": "AsciiDoc",
 			"owner": "Golmote"
 		},
@@ -150,6 +155,14 @@
 			"title": "Bison",
 			"require": "c",
 			"owner": "Golmote"
+		},
+		"bnf": {
+			"title": "Backus–Naur form",
+			"alias": "rbfn",
+			"aliasTitles": {
+				"rbfn": "Routing Backus–Naur form"
+			},
+			"owner": "RunDevelopment"
 		},
 		"brainfuck": {
 			"title": "Brainfuck",
@@ -231,9 +244,18 @@
 			"alias": "dockerfile",
 			"owner": "JustinBeckwith"
 		},
+		"ebnf": {
+			"title": "Extended Backus–Naur form",
+			"owner": "RunDevelopment"
+		},
 		"eiffel": {
 			"title": "Eiffel",
 			"owner": "Conaclos"
+		},
+		"ejs": {
+			"title": "EJS",
+			"require": ["javascript", "markup-templating"],
+			"owner": "RunDevelopment"
 		},
 		"elixir": {
 			"title": "Elixir",
@@ -337,6 +359,10 @@
 			"require": "clike",
 			"owner": "Golmote"
 		},
+		"hcl": {
+			"title": "HCL",
+			"owner": "outsideris"
+		},
 		"http": {
 			"title": "HTTP",
 			"peerDependencies": [
@@ -382,6 +408,23 @@
 			"require": "clike",
 			"owner": "sherblot"
 		},
+		"javadoc": {
+			"title": "JavaDoc",
+			"require": ["markup", "java", "javadoclike"],
+			"peerDependencies": [
+				"scala"
+			],
+			"owner": "RunDevelopment"
+		},
+		"javadoclike": {
+			"title": "JavaDoc-like",
+			"peerDependencies": [
+				"java",
+				"javascript",
+				"php"
+			],
+			"owner": "RunDevelopment"
+		},
 		"javastacktrace": {
 			"title": "Java stack trace",
 			"owner": "RunDevelopment"
@@ -391,13 +434,40 @@
 			"require": "clike",
 			"owner": "thesave"
 		},
+		"jsdoc": {
+			"title": "JSDoc",
+			"require": ["javascript", "javadoclike"],
+			"peerDependencies": [
+				"actionscript",
+				"coffeescript"
+			],
+			"owner": "RunDevelopment"
+		},
+		"js-extras": {
+			"title": "JS Extras",
+			"require": "javascript",
+			"peerDependencies": [
+				"actionscript",
+				"coffeescript",
+				"flow",
+				"n4js",
+				"typescript"
+			],
+			"owner": "RunDevelopment"
+		},
 		"json": {
 			"title": "JSON",
-			"alias": "jsonp",
-			"aliasTitles": {
-				"jsonp": "JSONP"
-			},
 			"owner": "CupOfTea696"
+		},
+		"jsonp": {
+			"title": "JSONP",
+			"require": "json",
+			"owner": "RunDevelopment"
+		},
+		"json5": {
+			"title": "JSON5",
+			"require": "json",
+			"owner": "RunDevelopment"
 		},
 		"julia": {
 			"title": "Julia",
@@ -472,11 +542,22 @@
 			"title": "Monkey",
 			"owner": "Golmote"
 		},
+		"n1ql": {
+			"title": "N1QL",
+			"owner": "TMWilds"
+		},
 		"n4js": {
 			"title": "N4JS",
 			"require": "javascript",
+			"peerDependencies": [
+				"jsdoc"
+			],
 			"alias": "n4jsd",
 			"owner": "bsmith-n4"
+		},
+		"nand2tetris-hdl": {
+			"title": "Nand To Tetris HDL",
+			"owner": "stephanmax"
 		},
 		"nasm": {
 			"title": "NASM",
@@ -548,6 +629,11 @@
 			"require": ["clike", "markup-templating"],
 			"owner": "milesj"
 		},
+		"phpdoc": {
+			"title": "PHPDoc",
+			"require": ["php", "javadoclike"],
+			"owner": "RunDevelopment"
+		},
 		"php-extras": {
 			"title": "PHP Extras",
 			"require": "php",
@@ -582,20 +668,17 @@
 		},
 		"pug": {
 			"title": "Pug",
-			"require": "javascript",
+			"require": ["markup", "javascript"],
 			"peerDependencies": [
 				"coffeescript",
 				"ejs",
 				"handlebars",
-				"hogan",
 				"less",
 				"livescript",
 				"markdown",
-				"mustache",
-				"plates",
 				"scss",
 				"stylus",
-				"swig"
+				"twig"
 			],
 			"owner": "Golmote"
 		},
@@ -608,9 +691,7 @@
 			"peerDependencies": [
 				"c",
 				"cpp",
-				"fortran",
-				"ats",
-				"dsp"
+				"fortran"
 			],
 			"owner": "Golmote"
 		},
@@ -634,6 +715,10 @@
 		"jsx": {
 			"title": "React JSX",
 			"require": ["markup", "javascript"],
+			"peerDependencies": [
+				"jsdoc",
+				"js-extras"
+			],
 			"owner": "vkbansal"
 		},
 		"tsx": {
@@ -648,6 +733,18 @@
 			"title": "Reason",
 			"require": "clike",
 			"owner": "Golmote"
+		},
+		"regex": {
+			"title": "Regex",
+			"peerDependencies": [
+				"actionscript",
+				"coffeescript",
+				"flow",
+				"javascript",
+				"typescript",
+				"vala"
+			],
+			"owner": "RunDevelopment"
 		},
 		"rest": {
 			"title": "reST (reStructuredText)",
@@ -754,6 +851,21 @@
 			"require": "javascript",
 			"alias": "ts",
 			"owner": "vkbansal"
+		},
+		"t4-cs": {
+			"title": "T4 Text Templates (C#)",
+			"require": ["t4-templating", "csharp"],
+			"alias": "t4",
+			"owner": "RunDevelopment"
+		},
+		"t4-vb": {
+			"title": "T4 Text Templates (VB)",
+			"require": ["t4-templating", "visual-basic"],
+			"owner": "RunDevelopment"
+		},
+		"t4-templating": {
+			"title": "T4 templating",
+			"owner": "RunDevelopment"
 		},
 		"vala": {
 			"title": "Vala",

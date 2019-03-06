@@ -25,16 +25,9 @@
 
 	Prism.languages.css['atrule'].inside.rest = Prism.languages.css;
 
-	if (Prism.languages.markup) {
-		Prism.languages.insertBefore('markup', 'tag', {
-			'style': {
-				pattern: /(<style[\s\S]*?>)[\s\S]*?(?=<\/style>)/i,
-				lookbehind: true,
-				inside: Prism.languages.css,
-				alias: 'language-css',
-				greedy: true
-			}
-		});
+	var markup = Prism.languages.markup;
+	if (markup) {
+		markup.tag.addInlined('style', 'css');
 
 		Prism.languages.insertBefore('inside', 'attr-value', {
 			'style-attr': {
@@ -42,7 +35,7 @@
 				inside: {
 					'attr-name': {
 						pattern: /^\s*style/i,
-						inside: Prism.languages.markup.tag.inside
+						inside: markup.tag.inside
 					},
 					'punctuation': /^\s*=\s*['"]|['"]\s*$/,
 					'attr-value': {
@@ -52,7 +45,7 @@
 				},
 				alias: 'language-css'
 			}
-		}, Prism.languages.markup.tag);
+		}, markup.tag);
 	}
 
 }(Prism));
