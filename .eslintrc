@@ -12,6 +12,10 @@
 	},
 	"root": true,
 	"rules": {
+		"comma-dangle": [
+			"warn",
+			"only-multiline",
+		],
 //		"indent": [
 //			"error",
 //			"tab",
@@ -34,7 +38,6 @@
 			"warn",
 			{
 				"args": "none",
-				"argsIgnorePattern": "^_",
 				"varsIgnorePattern": "^_",
 			}
 		],
@@ -61,7 +64,13 @@
 			},
 			"parserOptions": {
 				"ecmaVersion": 2015,
-			}
+			},
+			"rules": {
+				"comma-dangle": [
+					"error",
+					"always-multiline",
+				],
+			},
 		},
 		{
 			"files": [

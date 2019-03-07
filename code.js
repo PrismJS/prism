@@ -18,7 +18,8 @@ $$('[data-src][data-type="text/html"]').forEach(function(element) {
 				// Run JS
 
 				$$('script', element).forEach(function (script) {
-					var after = script.nextSibling, parent = script.parentNode;
+					var _after = script.nextSibling,
+						parent = script.parentNode;
 					parent.removeChild(script);
 					document.head.appendChild(script);
 				});

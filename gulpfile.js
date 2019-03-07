@@ -19,17 +19,17 @@ const paths = {
 		'components/prism-css.js',
 		'components/prism-clike.js',
 		'components/prism-javascript.js',
-		'plugins/file-highlight/prism-file-highlight.js'
+		'plugins/file-highlight/prism-file-highlight.js',
 	],
 	plugins: ['plugins/**/*.js', '!plugins/**/*.min.js'],
 	showLanguagePlugin: 'plugins/show-language/prism-show-language.js',
 	autoloaderPlugin: 'plugins/autoloader/prism-autoloader.js',
-	changelog: 'CHANGELOG.md'
+	changelog: 'CHANGELOG.md',
 };
 
 const componentsPromise = new Promise((resolve, reject) => {
 	fs.readFile(paths.componentsFile, {
-		encoding: 'utf-8'
+		encoding: 'utf-8',
 	}, (err, data) => {
 		if (!err) {
 			resolve(JSON.parse(data));
@@ -58,7 +58,7 @@ function inlineRegexSource() {
 function minifyJS() {
 	return [
 		inlineRegexSource(),
-		uglify()
+		uglify(),
 	];
 }
 
@@ -67,6 +67,7 @@ function lint(cb) {
 		src(['**/*.js', '!node_modules/**'], { base: './' }),
 		eslint(),
 		eslint.format(),
+		eslint.failAfterError(),
 	], cb);
 }
 
@@ -155,7 +156,7 @@ function languagePlugins(cb) {
 
 		const tasks = [
 			{ plugin: paths.showLanguagePlugin, map: jsonLanguagesMap },
-			{ plugin: paths.autoloaderPlugin, map: jsonDependenciesMap }
+			{ plugin: paths.autoloaderPlugin, map: jsonDependenciesMap },
 		];
 
 		let cpt = 0;
@@ -192,7 +193,7 @@ function changelog(cb) {
 			/\[[\da-f]+(?:, *[\da-f]+)*\]/g,
 			m => m.replace(/([\da-f]{7})[\da-f]*/g, '[`$1`](https://github.com/PrismJS/prism/commit/$1)')
 		),
-		dest('.')
+		dest('.'),
 	], cb);
 }
 
