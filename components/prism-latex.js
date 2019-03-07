@@ -1,11 +1,11 @@
 (function(Prism) {
 	var funcPattern = /\\(?:[^a-z()[\]]|[a-z*]+)/i,
-	    insideEqu = {
-		    'equation-command': {
-			    pattern: funcPattern,
-			    alias: 'regex'
-		    }
-	    };
+		insideEqu = {
+			'equation-command': {
+				pattern: funcPattern,
+				alias: 'regex'
+			}
+		};
 
 	Prism.languages.latex = {
 		'comment': /%.*/m,

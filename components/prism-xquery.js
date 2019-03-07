@@ -120,7 +120,7 @@
 					openedTags[openedTags.length - 1].openedBraces--;
 
 				} else if (token.type !== 'comment') {
-					notTagNorBrace = true
+					notTagNorBrace = true;
 				}
 			}
 			if (notTagNorBrace || typeof token === 'string') {

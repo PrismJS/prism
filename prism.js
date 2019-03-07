@@ -3,10 +3,10 @@
      Begin prism-core.js
 ********************************************** */
 
+/* global WorkerGlobalScope */
 var _self = (typeof window !== 'undefined')
 	? window   // if in browser
-	: (
-		(typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope)
+	: ((typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope)
 		? self // if in worker
 		: {}   // if in node js
 	);
@@ -157,7 +157,7 @@ var _ = {
 					callback.call(o, i, o[i], type || i);
 
 					var property = o[i],
-					    propertyType = _.util.type(property);
+						propertyType = _.util.type(property);
 
 					if (propertyType === 'Object' && !visited[objId(property)]) {
 						visited[objId(property)] = true;
@@ -187,7 +187,7 @@ var _ = {
 
 		var elements = env.elements || container.querySelectorAll(env.selector);
 
-		for (var i=0, element; element = elements[i++];) {
+		for (var i=0, element; (element = elements[i++]);) {
 			_.highlightElement(element, async === true, env.callback);
 		}
 	},
@@ -236,7 +236,7 @@ var _ = {
 			_.hooks.run('after-highlight', env);
 			_.hooks.run('complete', env);
 			callback && callback.call(env.element);
-		}
+		};
 
 		_.hooks.run('before-sanity-check', env);
 
@@ -333,9 +333,9 @@ var _ = {
 						}
 
 						var from = match.index + (lookbehind ? match[1].length : 0),
-						    to = match.index + match[0].length,
-						    k = i,
-						    p = pos;
+							to = match.index + match[0].length,
+							k = i,
+							p = pos;
 
 						for (var len = strarr.length; k < len && (p < to || (!strarr[k].type && !strarr[k - 1].greedy)); ++k) {
 							p += strarr[k].length;
@@ -375,10 +375,10 @@ var _ = {
 					}
 
 					var from = match.index + lookbehindLength,
-					    match = match[0].slice(lookbehindLength),
-					    to = from + match.length,
-					    before = str.slice(0, from),
-					    after = str.slice(to);
+						match = match[0].slice(lookbehindLength),
+						to = from + match.length,
+						before = str.slice(0, from),
+						after = str.slice(to);
 
 					var args = [i, delNum];
 
@@ -444,7 +444,7 @@ var _ = {
 				return;
 			}
 
-			for (var i=0, callback; callback = callbacks[i++];) {
+			for (var i=0, callback; (callback = callbacks[i++]);) {
 				callback(env);
 			}
 		}
@@ -554,7 +554,7 @@ if (typeof module !== 'undefined' && module.exports) {
 
 // hack for components to work correctly in node.js
 if (typeof global !== 'undefined') {
-	global.Prism = Prism;
+	global['Prism'] = Prism;
 }
 
 
@@ -782,7 +782,7 @@ Prism.languages.javascript = Prism.languages.extend('clike', {
 	'operator': /-[-=]?|\+[+=]?|!=?=?|<<?=?|>>?>?=?|=(?:==?|>)?|&[&=]?|\|[|=]?|\*\*?=?|\/=?|~|\^=?|%=?|\?|\.{3}/
 });
 
-Prism.languages.javascript['class-name'][0].pattern = /(\b(?:class|interface|extends|implements|instanceof|new)\s+)[\w.\\]+/
+Prism.languages.javascript['class-name'][0].pattern = /(\b(?:class|interface|extends|implements|instanceof|new)\s+)[\w.\\]+/;
 
 Prism.languages.insertBefore('javascript', 'keyword', {
 	'regex': {

@@ -17,7 +17,7 @@ Prism.plugins.customClass = {
 	prefix: function prefix(string) {
 		options.prefixString = string;
 	}
-}
+};
 
 Prism.hooks.add('wrap', function (env) {
 	if (!options.classMap && !options.prefixString) {

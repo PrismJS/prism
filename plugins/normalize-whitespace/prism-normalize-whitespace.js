@@ -6,7 +6,7 @@ var assign = Object.assign || function (obj1, obj2) {
 			obj1[name] = obj2[name];
 	}
 	return obj1;
-}
+};
 
 function NormalizeWhitespace(defaults) {
 	this.defaults = assign({}, defaults);
@@ -94,7 +94,7 @@ NormalizeWhitespace.prototype = {
 				continue;
 
 			var line = lines[i].split(/(\s+)/g),
-			    len = 0;
+				len = 0;
 
 			for (var j = 0; j < line.length; ++j) {
 				var tl = tabLen(line[j]);
@@ -154,9 +154,9 @@ Prism.hooks.add('before-sanity-check', function (env) {
 		return;
 
 	var children = pre.childNodes,
-	    before = '',
-	    after = '',
-	    codeFound = false;
+		before = '',
+		after = '',
+		codeFound = false;
 
 	// Move surrounding whitespace from the <pre> tag into the <code> tag
 	for (var i = 0; i < children.length; ++i) {

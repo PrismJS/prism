@@ -40,14 +40,14 @@
 	 */
 	function getAdapter(adapter) {
 		if (typeof adapter === "function") {
-			for (var i = 0, item; item = adapters[i++];) {
+			for (var i = 0, item; (item = adapters[i++]);) {
 				if (item.adapter.valueOf() === adapter.valueOf()) {
 					return item.adapter;
 				}
 			}
 		}
 		else if (typeof adapter === "string") {
-			for (var i = 0, item; item = adapters[i++];) {
+			for (var i = 0, item; (item = adapters[i++]);) {
 				if (item.name === adapter) {
 					return item.adapter;
 				}

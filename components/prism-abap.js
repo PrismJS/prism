@@ -6,7 +6,7 @@ Prism.languages.abap = {
 		lookbehind: true,
 		alias: 'string'
 	},
-	/* End Of Line comments should not interfere with strings when the  
+	/* End Of Line comments should not interfere with strings when the
 	quote character occurs within them. We assume a string being highlighted
 	inside an EOL comment is more acceptable than the opposite.
 	*/
@@ -21,8 +21,8 @@ Prism.languages.abap = {
 	},
 	/* Numbers can be only integers. Decimal or Hex appear only as strings */
 	'number' : /\b\d+\b/,
-	/* Operators must always be surrounded by whitespace, they cannot be put 
-	adjacent to operands. 
+	/* Operators must always be surrounded by whitespace, they cannot be put
+	adjacent to operands.
 	*/
 	'operator' : {
 		pattern: /(\s)(?:\*\*?|<[=>]?|>=?|\?=|[-+\/=])(?=\s)/,
@@ -40,8 +40,8 @@ Prism.languages.abap = {
 		lookbehind: true,
 		alias: "punctuation"
 	}, {
-	    /* Special tokens used do delimit string templates */
-	    pattern: /[|{}]/,
+		/* Special tokens used do delimit string templates */
+		pattern: /[|{}]/,
 		alias: "punctuation"
 	}],
 	'punctuation' : /[,.:()]/

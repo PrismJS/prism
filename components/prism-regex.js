@@ -4,8 +4,8 @@
 		pattern: /\\[\\(){}[\]^$+*?|.]/,
 		alias: 'escape'
 	};
-	var escape = /\\(?:x[\da-fA-F]{2}|u[\da-fA-F]{4}|u\{[\da-fA-F]+\}|c[a-zA-Z]|0[0-7]{0,2}|[123][0-7]{2}|.)/
-	var charClass = /\\[wsd]|\.|\\p{[^{}]+}/i
+	var escape = /\\(?:x[\da-fA-F]{2}|u[\da-fA-F]{4}|u\{[\da-fA-F]+\}|c[a-zA-Z]|0[0-7]{0,2}|[123][0-7]{2}|.)/;
+	var charClass = /\\[wsd]|\.|\\p{[^{}]+}/i;
 
 	var rangeChar = '(?:[^\\\\-]|' + escape.source + ')';
 	var range = RegExp(rangeChar + '-' + rangeChar);
@@ -94,4 +94,4 @@
 		}
 	});
 
-}(Prism))
+}(Prism));

@@ -9,8 +9,8 @@ function $$(expr, con) {
 }
 
 function hasClass(element, className) {
-  className = " " + className + " ";
-  return (" " + element.className + " ").replace(/[\n\t]/g, " ").indexOf(className) > -1
+	className = " " + className + " ";
+	return (" " + element.className + " ").replace(/[\n\t]/g, " ").indexOf(className) > -1;
 }
 
 // Some browsers round the line-height, others don't.
@@ -32,24 +32,24 @@ var isLineHeightRounded = (function() {
 			document.body.removeChild(d);
 		}
 		return res;
-	}
+	};
 }());
 
 function highlightLines(pre, lines, classes) {
 	lines = typeof lines === 'string' ? lines : pre.getAttribute('data-line');
-	
+
 	var ranges = lines.replace(/\s+/g, '').split(','),
-	    offset = +pre.getAttribute('data-line-offset') || 0;
+		offset = +pre.getAttribute('data-line-offset') || 0;
 
 	var parseMethod = isLineHeightRounded() ? parseInt : parseFloat;
 	var lineHeight = parseMethod(getComputedStyle(pre).lineHeight);
 	var hasLineNumbers = hasClass(pre, 'line-numbers');
 
-	for (var i=0, currentRange; currentRange = ranges[i++];) {
+	for (var i=0, currentRange; (currentRange = ranges[i++]);) {
 		var range = currentRange.split('-');
 
 		var start = +range[0],
-		    end = +range[1] || start;
+			end = +range[1] || start;
 
 		var line = pre.querySelector('.line-highlight[data-range="' + currentRange + '"]') || document.createElement('div');
 
@@ -61,11 +61,11 @@ function highlightLines(pre, lines, classes) {
 		if(hasLineNumbers && Prism.plugins.lineNumbers) {
 			var startNode = Prism.plugins.lineNumbers.getLine(pre, start);
 			var endNode = Prism.plugins.lineNumbers.getLine(pre, end);
-			
+
 			if (startNode) {
 				line.style.top = startNode.offsetTop + 'px';
 			}
-			
+
 			if (endNode) {
 				line.style.height = (endNode.offsetTop - startNode.offsetTop) + endNode.offsetHeight + 'px';
 			}
@@ -75,7 +75,7 @@ function highlightLines(pre, lines, classes) {
 			if(end > start) {
 				line.setAttribute('data-end', end);
 			}
-			
+
 			line.style.top = (start - offset - 1) * lineHeight + 'px';
 
 			line.textContent = new Array(end - start + 2).join(' \n');
@@ -106,7 +106,7 @@ function applyHash() {
 	}
 
 	var id = hash.slice(0, hash.lastIndexOf('.')),
-	    pre = document.getElementById(id);
+		pre = document.getElementById(id);
 
 	if (!pre) {
 		return;
@@ -130,9 +130,9 @@ Prism.hooks.add('before-sanity-check', function(env) {
 	if (!pre || !lines || !/pre/i.test(pre.nodeName)) {
 		return;
 	}
-	
+
 	/*
-	* Cleanup for other plugins (e.g. autoloader).
+	 * Cleanup for other plugins (e.g. autoloader).
 	 *
 	 * Sometimes <code> blocks are highlighted multiple times. It is necessary
 	 * to cleanup any left-over tags, because the whitespace inside of the <div>

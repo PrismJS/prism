@@ -25,19 +25,19 @@ for (var language in testSuite) {
 
 			testFiles.forEach(
 				function (filePath) {
-			        var fileName = path.basename(filePath, path.extname(filePath));
+					var fileName = path.basename(filePath, path.extname(filePath));
 
-			        it("– should pass test case '" + fileName + "'",
-			            function () {
+					it("– should pass test case '" + fileName + "'",
+						function () {
 
-				            if (path.extname(filePath) === '.test') {
-					            TestCase.runTestCase(language, filePath);
-				            } else {
-					            TestCase.runTestsWithHooks(language, require(filePath));
-				            }
+							if (path.extname(filePath) === '.test') {
+								TestCase.runTestCase(language, filePath);
+							} else {
+								TestCase.runTestsWithHooks(language, require(filePath));
+							}
 
-			            }
-			        );
+						}
+					);
 				}
 			);
 		});

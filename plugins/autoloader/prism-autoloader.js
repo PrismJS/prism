@@ -55,7 +55,7 @@
 	var getLanguagePath = function (lang) {
 		return config.languages_path +
 			'prism-' + lang
-			+ (config.use_minified ? '.min' : '') + '.js'
+			+ (config.use_minified ? '.min' : '') + '.js';
 	};
 
 	/**

@@ -184,7 +184,7 @@
 					},
 					rest: Prism.languages[filter.language]
 				}
-			}
+			};
 		}
 	}
 

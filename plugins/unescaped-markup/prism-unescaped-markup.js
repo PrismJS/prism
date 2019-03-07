@@ -7,14 +7,16 @@
 	Prism.plugins.UnescapedMarkup = true;
 
 	Prism.hooks.add('before-highlightall', function (env) {
-		env.selector += ", [class*='lang-'] script[type='text/plain'], [class*='language-'] script[type='text/plain']" +
-		                ", script[type='text/plain'][class*='lang-'], script[type='text/plain'][class*='language-']";
+		env.selector +=
+			", [class*='lang-'] script[type='text/plain'], [class*='language-'] script[type='text/plain']" +
+			", script[type='text/plain'][class*='lang-'], script[type='text/plain'][class*='language-']";
 	});
 
 	Prism.hooks.add('before-sanity-check', function (env) {
+		var pre;
 		if ((env.element.matches || env.element.msMatchesSelector).call(env.element, "script[type='text/plain']")) {
 			var code = document.createElement("code");
-			var pre = document.createElement("pre");
+			pre = document.createElement("pre");
 
 			pre.className = code.className = env.element.className;
 
@@ -35,7 +37,7 @@
 			return;
 		}
 
-		var pre = env.element.parentNode;
+		pre = env.element.parentNode;
 		if (!env.code && pre && pre.nodeName.toLowerCase() == 'pre' &&
 				env.element.childNodes.length && env.element.childNodes[0].nodeName == "#comment") {
 			env.element.textContent = env.code = env.element.childNodes[0].textContent;
