@@ -3,6 +3,12 @@
 
 module.exports = {
 	/**
+	 * @typedef TokenStreamItem
+	 * @property {string} type
+	 * @property {string | TokenStreamItem | Array.<string|TokenStreamItem>} content
+	*/
+
+	/**
 	 * Simplifies the token stream to ease the matching with the expected token stream.
 	 *
 	 * * Strings are kept as-is
@@ -10,17 +16,16 @@ module.exports = {
 	 * * Values that are empty (empty arrays or strings only containing whitespace)
 	 *
 	 *
-	 * @param {Array} tokenStream
-	 * @returns {Array.<string[]|Array>}
+	 * @param {string | TokenStreamItem | Array.<string|TokenStreamItem>} tokenStream
+	 * @returns {string | Array.<string|Array.<string|Array>>}
 	 */
-	simplify: function (tokenStream) {
+	simplify(tokenStream) {
 		if (Array.isArray(tokenStream)) {
 			return tokenStream
-				.map(this.simplify.bind(this))
-				.filter(function (value) {
+				.map(value => this.simplify(value))
+				.filter(value => {
 					return !(Array.isArray(value) && !value.length) && !(typeof value === "string" && !value.trim().length);
-				}
-			);
+				});
 		}
 		else if (typeof tokenStream === "object") {
 			return [tokenStream.type, this.simplify(tokenStream.content)];
