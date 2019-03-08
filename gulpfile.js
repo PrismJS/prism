@@ -29,7 +29,8 @@ const paths = {
 	jsDoc: {
 		config: './.jsdoc.json',
 		readme: 'README.md',
-		files: ['components/prism-core.js', 'components/**/*.doc.js']
+		files: ['components/prism-core.js', 'components/**/*.doc.js'],
+		junk: ['docs/fonts', 'docs/**/Apache-License-2.0.txt', 'docs/styles/prettify-jsdoc.css']
 	}
 };
 
@@ -218,7 +219,7 @@ function docsRemoveDate(cb) {
 	], cb);
 }
 function docsRemoveExcessFiles() {
-	return src('docs/fonts', { read: false }).pipe(clean());
+	return src(paths.jsDoc.junk, { read: false }).pipe(clean());
 }
 
 const docs = series(docsClean, docsCreate, parallel(docsRemoveDate, docsRemoveExcessFiles));
