@@ -135,7 +135,7 @@ module.exports = {
 	 *
 	 * @private
 	 * @param {string} filePath
-	 * @returns {{testSource: string, expectedTokenStream: Array<Array<string>>, comment:string?}|null}
+	 * @returns {{testSource: string, expectedTokenStream: Array<string[]>, comment:string?}|null}
 	 */
 	parseTestCaseFile: function (filePath) {
 		var testCaseSource = fs.readFileSync(filePath, "utf8");

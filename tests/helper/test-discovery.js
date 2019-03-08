@@ -51,7 +51,7 @@ module.exports = {
 	 * in the given src directory
 	 *
 	 * @param {string} src
-	 * @returns {Array<string>}
+	 * @returns {string[]}
 	 */
 	getAllDirectories: function (src) {
 		return fs.readdirSync(src).filter(
@@ -67,7 +67,7 @@ module.exports = {
 	 *
 	 * @param {string} src
 	 * @param {string|string[]} languages
-	 * @returns {Array<string>}
+	 * @returns {string[]}
 	 */
 	getSomeDirectories: function (src, languages) {
 		var self = this;
@@ -99,7 +99,7 @@ module.exports = {
 	 *
 	 * @private
 	 * @param {string} src
-	 * @returns {Array<string>}
+	 * @returns {string[]}
 	 */
 	getAllFiles: function (src) {
 		return fs.readdirSync(src).filter(

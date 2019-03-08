@@ -200,7 +200,7 @@ function loadLanguage (lang)
  * Returns all dependencies (as identifiers) of a specific language
  *
  * @param {string} lang
- * @returns {Array<string>} the list of dependencies. Empty if the language has none.
+ * @returns {string[]} the list of dependencies. Empty if the language has none.
  */
 function getDependenciesOfLanguage (lang)
 {
