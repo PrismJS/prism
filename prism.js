@@ -3,7 +3,6 @@
      Begin prism-core.js
 ********************************************** */
 
-/* global WorkerGlobalScope */
 var _self = (typeof window !== 'undefined')
 	? window   // if in browser
 	: ((typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope)

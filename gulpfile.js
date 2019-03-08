@@ -202,5 +202,5 @@ const plugins = series(languagePlugins, minifyPlugins);
 
 exports.lint = lint;
 exports.watch = watchComponentsAndPlugins;
-exports.default = parallel(lint, components, plugins, componentsJsonToJs, build);
+exports.default = series(parallel(components, plugins, componentsJsonToJs, build), lint);
 exports.changelog = changelog;

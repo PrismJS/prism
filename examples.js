@@ -166,8 +166,8 @@ function update(id) {
  * Loads a language, including all dependencies
  *
  * @param {string} lang the language to load
- * @returns {Promise<Event|void>} the promise which resolves as soon as everything is loaded
-s */
+ * @returns {Promise<Event|void>} the promise which resolves as soon as everything is loaded.
+ */
 function loadLanguage (lang)
 {
 	// at first we need to fetch all dependencies for the main language
