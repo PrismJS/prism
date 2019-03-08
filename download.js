@@ -25,9 +25,9 @@ var treePromise = new Promise(function(resolve) {
 var hstr = window.location.hash.match(/(?:languages|plugins)=[-+\w]+|themes=[-\w]+/g);
 if (hstr) {
 	hstr.forEach(function(str) {
-		var kv = str.split('=', 2),
-		    category = kv[0],
-		    ids = kv[1].split('+');
+		var kv = str.split('=', 2);
+		var category = kv[0];
+		var ids = kv[1].split('+');
 		if (category !== 'meta' && category !== 'core' && components[category]) {
 			for (var id in components[category]) {
 				if (components[category][id].option) {
@@ -46,7 +46,7 @@ if (hstr) {
 					if (components[category][id]) {
 						if (components[category][id].option !== 'default') {
 							if (typeof components[category][id] === 'string') {
-								components[category][id] = { title: components[category][id] }
+								components[category][id] = { title: components[category][id] };
 							}
 							components[category][id].option = 'default';
 						}
@@ -123,7 +123,8 @@ for (var category in components) {
 			continue;
 		}
 
-		var checked = false, disabled = false;
+		var checked = false;
+		var disabled = false;
 		var option = all[id].option || all.meta.option;
 
 		switch (option) {
@@ -306,8 +307,8 @@ function getFilesSizes() {
 				continue;
 			}
 
-			var distro = all[id].files[minified? 'minified' : 'dev'],
-			    files = distro.paths;
+			var distro = all[id].files[minified? 'minified' : 'dev'];
+			var files = distro.paths;
 
 			files.forEach(function (filepath) {
 				var file = cache[filepath] = cache[filepath] || {};
@@ -356,7 +357,8 @@ function prettySize(size) {
 
 function update(updatedCategory, updatedId){
 	// Update total size
-	var total = {js: 0, css: 0}, updated = {js: 0, css: 0};
+	var total = {js: 0, css: 0};
+	var updated = {js: 0, css: 0};
 
 	for (var category in components) {
 		var all = components[category];
@@ -372,8 +374,8 @@ function update(updatedCategory, updatedId){
 					if (cache[path]) {
 						var file = cache[path];
 
-						var type = path.match(/\.(\w+)$/)[1],
-						    size = file.size || 0;
+						var type = path.match(/\.(\w+)$/)[1];
+						var size = file.size || 0;
 
 						if (info.enabled) {
 
@@ -558,8 +560,8 @@ function generateCode(){
 }
 
 function buildCode(promises) {
-	var i = 0,
-	    l = promises.length;
+	var i = 0;
+	var l = promises.length;
 	var code = {js: '', css: ''};
 	var errors = [];
 
@@ -574,7 +576,7 @@ function buildCode(promises) {
 			p.contentsPromise['catch'](function() {
 				errors.push($u.element.create({
 					tag: 'p',
-					prop: {
+					properties: {
 						textContent: 'An error occurred while fetching the file "' + p.path + '".'
 					}
 				}));

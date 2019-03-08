@@ -241,7 +241,7 @@ var _ = window.Utopia = {
 		
 		attr: function (element, attributes) {
 			if (attributes) {
-				for (attr in attributes) {
+				for (var attr in attributes) {
 					element.setAttribute(attr, attributes[attr]);
 				}
 			}
@@ -349,8 +349,8 @@ var _ = window.Utopia = {
 			else if (document.createEvent) {
 				var evt = document.createEvent("HTMLEvents");
 		
-				evt.initEvent(type, true, true );
-				evt.custom = true;
+				evt.initEvent(type, true, true);
+				evt['custom'] = true;
 		
 				if(properties) {
 					_.attach(evt, properties);

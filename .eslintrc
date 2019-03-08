@@ -77,7 +77,6 @@
 				"code.js",
 				"download.js",
 				"examples.js",
-				"utopia.js",
 			],
 			"globals": {
 				"$": "readonly",
@@ -89,11 +88,6 @@
 				"setTheme": "readonly",
 				"PrefixFree": "readonly",
 				"StyleFix": "readonly",
-			},
-			"rules": {
-				"no-cond-assign": "off",
-				"no-mixed-spaces-and-tabs": "off",
-				"semi": "off",
 			},
 		}
 	]

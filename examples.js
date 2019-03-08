@@ -152,7 +152,7 @@ function update(id) {
 			loadLanguage(id).then(function () {
 				var elements = examples[id].querySelectorAll('code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code');
 
-				for (var i=0, element; element = elements[i++];) {
+				for (var i=0, element; (element = elements[i++]);) {
 					Prism.highlightElement(element);
 				}
 			});
@@ -166,8 +166,8 @@ function update(id) {
  * Loads a language, including all dependencies
  *
  * @param {string} lang the language to load
- * @type {Promise} the promise which resolves as soon as everything is loaded
- */
+ * @returns {Promise<Event|void>} the promise which resolves as soon as everything is loaded
+s */
 function loadLanguage (lang)
 {
 	// at first we need to fetch all dependencies for the main language
