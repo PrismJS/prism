@@ -1,7 +1,7 @@
 {
 	"env": {
 		"browser": true,
-		"node": true,
+		"commonjs": true,
 	},
 	"extends": "eslint:recommended",
 	"globals": {
@@ -66,10 +66,20 @@
 		},
 		{
 			"files": [
+				"tests/**/*.js"
+			],
+			"env": {
+				"node": true,
+				"mocha": true,
+			},
+		},
+		{
+			"files": [
 				"gulpfile.js",
 			],
 			"env": {
 				"es6": true,
+				"node": true,
 			},
 			"parserOptions": {
 				"ecmaVersion": 2015,
