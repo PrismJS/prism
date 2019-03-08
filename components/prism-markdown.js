@@ -146,18 +146,16 @@ Prism.languages.insertBefore('markdown', 'prolog', {
 	}
 });
 
-Prism.languages.markdown['bold'].inside['url'] = Prism.languages.markdown['url'];
-Prism.languages.markdown['italic'].inside['url'] = Prism.languages.markdown['url'];
-Prism.languages.markdown['strike'].inside['url'] = Prism.languages.markdown['url'];
-Prism.languages.markdown['bold'].inside['italic'] = Prism.languages.markdown['italic'];
-Prism.languages.markdown['bold'].inside['strike'] = Prism.languages.markdown['strike'];
-Prism.languages.markdown['italic'].inside['bold'] = Prism.languages.markdown['bold'];
-Prism.languages.markdown['italic'].inside['strike'] = Prism.languages.markdown['strike'];
-Prism.languages.markdown['strike'].inside['bold'] = Prism.languages.markdown['bold'];
-Prism.languages.markdown['strike'].inside['italic'] = Prism.languages.markdown['italic'];
+['bold', 'italic', 'strike'].forEach(function (token) {
+	['url', 'bold', 'italic', 'strike'].forEach(function (inside) {
+		if (token !== inside) {
+			Prism.languages.markdown[token].inside[inside] = Prism.languages.markdown[inside];
+		}
+	});
+});
 
 Prism.hooks.add('after-tokenize', function (env) {
-	if (env.language !== 'markdown') {
+	if (env.language !== 'markdown' && env.language !== 'md') {
 		return;
 	}
 
@@ -207,7 +205,7 @@ Prism.hooks.add('wrap', function (env) {
 	var codeLang = '';
 	for (var i = 0, l = env.classes.length; i < l; i++) {
 		var cls = env.classes[i];
-		var match = /language-(\w+)/.exec(cls);
+		var match = /language-(.+)/.exec(cls);
 		if (match) {
 			codeLang = match[1];
 			break;
