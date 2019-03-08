@@ -16,7 +16,7 @@
 
 /**
  * @typedef Grammar
- * @type {Object.<string, RegExp | TokenObject | Array.<RegExp | TokenObject>>}
+ * @type {Object<string, RegExp | TokenObject | Array<RegExp | TokenObject>>}
  * @property {Grammar} [rest] An optional grammar object that will appended to this grammar.
  */
 
@@ -31,7 +31,7 @@
 
 /**
  * @callback HookCallback
- * @param {Object.<string, any>} env The environment variables of the hook.
+ * @param {Object<string, any>} env The environment variables of the hook.
  * @returns {void}
  * @memberof Prism.hooks
  */

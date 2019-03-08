@@ -11,7 +11,7 @@ module.exports = {
 	 *
 	 *
 	 * @param {Array} tokenStream
-	 * @returns {Array.<string[]|Array>}
+	 * @returns {Array<string[]|Array>}
 	 */
 	simplify: function (tokenStream) {
 		if (Array.isArray(tokenStream)) {

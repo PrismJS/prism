@@ -78,8 +78,8 @@ module.exports = {
 		var i = 0; var j = 0; var diff = "";
 		while ( j < tzd.length ){ if (exp[i] != tzd[j] || i == exp.length) diff += tzd[j]; else i++; j++; }
 
-		// var message = "\nToken Stream: \n" + JSON.stringify( simplifiedTokenStream, null, " " ) + 
-		var message = "\nToken Stream: \n" + tzd + 
+		// var message = "\nToken Stream: \n" + JSON.stringify( simplifiedTokenStream, null, " " ) +
+		var message = "\nToken Stream: \n" + tzd +
 			"\n-----------------------------------------\n" +
 			"Expected Token Stream: \n" + exp +
 			"\n-----------------------------------------\n" + diff;
@@ -135,7 +135,7 @@ module.exports = {
 	 *
 	 * @private
 	 * @param {string} filePath
-	 * @returns {{testSource: string, expectedTokenStream: Array.<Array.<string>>, comment:string?}|null}
+	 * @returns {{testSource: string, expectedTokenStream: Array<Array<string>>, comment:string?}|null}
 	 */
 	parseTestCaseFile: function (filePath) {
 		var testCaseSource = fs.readFileSync(filePath, "utf8");

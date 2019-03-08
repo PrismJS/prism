@@ -137,7 +137,7 @@ var _ = {
 		 * This is usually a language id.
 		 * @param {string} before The key to insert before.
 		 * @param {Grammar} insert An object containing the key-value pairs to be inserted.
-		 * @param {Object.<string, Grammar>} [root] The object containing `inside`, i.e. the object that contains the object that will be modified.
+		 * @param {Object<string, Grammar>} [root] The object containing `inside`, i.e. the object that contains the object that will be modified.
 		 *
 		 * Defaults to `Prism.languages`.
 		 * @returns {Grammar} The new grammar created.
@@ -523,7 +523,7 @@ var _ = {
 	 * @param {Grammar} grammar An object containing the tokens to use.
 	 *
 	 * Usually a language definition like `Prism.languages.markup`.
-	 * @returns {Array.<string | Prism.Token>} An array of strings, tokens and other arrays.
+	 * @returns {Array<string | Prism.Token>} An array of strings, tokens and other arrays.
 	 * @memberof Prism
 	 */
 	tokenize: function(text, grammar) {
@@ -576,7 +576,7 @@ var _ = {
 		 * Callbacks will be invoked synchronously and in the order in which they were registered.
 		 *
 		 * @param {string} name The name of the hook.
-		 * @param {Object.<string, any>} env The environment variables of the hook passed to all callbacks registered.
+		 * @param {Object<string, any>} env The environment variables of the hook passed to all callbacks registered.
 		 */
 		run: function (name, env) {
 			var callbacks = _.hooks.all[name];
@@ -599,7 +599,7 @@ _self.Prism = _;
  * Creates a new token.
  *
  * @param {string} type See {@link Prism.Token#type type}
- * @param {string | Prism.Token | Array.<string|Prism.Token>} content See {@link Prism.Token#content content}
+ * @param {string | Prism.Token | Array<string|Prism.Token>} content See {@link Prism.Token#content content}
  * @param {string|string[]} [alias] The alias(es) of the token.
  * @param {string} [matchedStr=""] A copy of the full string this token was created from.
  * @param {boolean} [greedy=false] See {@link Prism.Token#greedy greedy}
@@ -618,7 +618,7 @@ function Token(type, content, alias, matchedStr, greedy) {
 	 * The strings or tokens contained by this token.
 	 *
 	 * This will be a token stream if the pattern matched also defined an `inside` grammar.
-	 * @member {string | Prism.Token | Array.<string|Prism.Token>}
+	 * @member {string | Prism.Token | Array<string|Prism.Token>}
 	 */
 	this.content = content;
 	/**
@@ -646,9 +646,9 @@ function Token(type, content, alias, matchedStr, greedy) {
  * The following hooks will be run:
  * 1. `wrap`: On each {@link Prism.Token}.
  *
- * @param {string | Prism.Token | Array.<string|Prism.Token>} o The token or token stream to be converted.
+ * @param {string | Prism.Token | Array<string|Prism.Token>} o The token or token stream to be converted.
  * @param {string} language The name of current language.
- * @param {Array.<string|Prism.Token>} [parent] The parent token stream, if any.
+ * @param {Array<string|Prism.Token>} [parent] The parent token stream, if any.
  * @return {string} The HTML representation of the token or token stream.
  * @private
  */

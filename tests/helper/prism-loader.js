@@ -97,7 +97,7 @@ module.exports = {
 	 * Cached file sources, to prevent massive HDD work
 	 *
 	 * @private
-	 * @type {Object.<string, string>}
+	 * @type {Object<string, string>}
 	 */
 	fileSourceCache: {},
 
