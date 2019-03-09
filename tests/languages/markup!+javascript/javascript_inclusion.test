@@ -88,14 +88,12 @@ let foo = '</script>';
 		]],
 		["included-cdata", [
 			["cdata", "<![CDATA["],
-			["content", [
-				["language-javascript", [
-					["keyword", "let"],
-					" foo ",
-					["operator", "="],
-					["string", "'</script>'"],
-					["punctuation", ";"]
-				]]
+			["language-javascript", [
+				["keyword", "let"],
+				" foo ",
+				["operator", "="],
+				["string", "'</script>'"],
+				["punctuation", ";"]
 			]],
 			["cdata", "]]>"]
 		]],

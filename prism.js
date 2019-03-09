@@ -627,7 +627,20 @@ Object.defineProperty(Prism.languages.markup.tag, 'addInlined', {
 	 * addInlined('style', 'css');
 	 */
 	value: function addInlined(tagName, lang) {
-		var inside = {};
+		var includedCdataInside = {};
+		includedCdataInside['language-' + lang] = {
+			pattern: /(^<!\[CDATA\[)[\s\S]+?(?=\]\]>$)/i,
+			lookbehind: true,
+			inside: Prism.languages[lang]
+		};
+		includedCdataInside['cdata'] = /^<!\[CDATA\[|\]\]>$/i;
+
+		var inside = {
+			'included-cdata': {
+				pattern: /<!\[CDATA\[[\s\S]*?\]\]>/i,
+				inside: includedCdataInside
+			}
+		};
 		inside['language-' + lang] = {
 			pattern: /[\s\S]+/,
 			inside: Prism.languages[lang]
@@ -638,20 +651,7 @@ Object.defineProperty(Prism.languages.markup.tag, 'addInlined', {
 			pattern: RegExp(/(<__[\s\S]*?>)(?:<!\[CDATA\[[\s\S]*?\]\]>\s*|[\s\S])*?(?=<\/__>)/.source.replace(/__/g, tagName), 'i'),
 			lookbehind: true,
 			greedy: true,
-			inside: {
-				'included-cdata': {
-					pattern: /<!\[CDATA\[[\s\S]*?\]\]>/i,
-					inside: {
-						'content': {
-							pattern: /(^<!\[CDATA\[)[\s\S]+?(?=\]\]>$)/i,
-							lookbehind: true,
-							inside: inside
-						},
-						'cdata': /^<!\[CDATA\[|\]\]>$/i
-					}
-				},
-				rest: inside
-			}
+			inside: inside
 		};
 
 		Prism.languages.insertBefore('markup', 'cdata', def);
