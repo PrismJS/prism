@@ -12,6 +12,7 @@ if (argv.language) {
 	// load complete test suite
 	testSuite = TestDiscovery.loadAllTests(__dirname + "/languages");
 }
+const pretty = 'pretty' in argv;
 
 // define tests for all tests in all languages in the test suite
 for (var language in testSuite) {
@@ -31,7 +32,7 @@ for (var language in testSuite) {
 			            function () {
 
 				            if (path.extname(filePath) === '.test') {
-					            TestCase.runTestCase(language, filePath);
+					            TestCase.runTestCase(language, filePath, pretty);
 				            } else {
 					            TestCase.runTestsWithHooks(language, require(filePath));
 				            }
