@@ -67,16 +67,14 @@ foo {
 		]],
 		["included-cdata", [
 			["cdata", "<![CDATA["],
-			["content", [
-				["language-css", [
-					["selector", "foo"],
-					["punctuation", "{"],
-					["property", "bar"],
-					["punctuation", ":"],
-					" baz",
-					["punctuation", ";"],
-					["punctuation", "}"]
-				]]
+			["language-css", [
+				["selector", "foo"],
+				["punctuation", "{"],
+				["property", "bar"],
+				["punctuation", ":"],
+				" baz",
+				["punctuation", ";"],
+				["punctuation", "}"]
 			]],
 			["cdata", "]]>"]
 		]],

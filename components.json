@@ -231,11 +231,7 @@
 		},
 		"django": {
 			"title": "Django/Jinja2",
-			"require": "markup",
-			"peerDependencies": [
-				"css",
-				"javascript"
-			],
+			"require": "markup-templating",
 			"alias": "jinja2",
 			"owner": "romanvm"
 		},

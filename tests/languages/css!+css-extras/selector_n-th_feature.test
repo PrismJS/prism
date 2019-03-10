@@ -1,0 +1,62 @@
+:nth-child(2n+1) {}
+:nth-child(+2n - 1) {}
+:nth-child(2n) {}
+:nth-child(+5) {}
+
+----------------------------------------------------
+
+[
+	["selector", [
+		["pseudo-class", ":nth-child"],
+		["punctuation", "("],
+		["n-th", [
+			["number", "2n"],
+			["operator", "+"],
+			["number", "1"]
+		]],
+		["punctuation", ")"]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["selector", [
+		["pseudo-class", ":nth-child"],
+		["punctuation", "("],
+		["n-th", [
+			["operator", "+"],
+			["number", "2n"],
+			["operator", "-"],
+			["number", "1"]
+		]],
+		["punctuation", ")"]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["selector", [
+		["pseudo-class", ":nth-child"],
+		["punctuation", "("],
+		["n-th", [
+			["number", "2n"]
+		]],
+		["punctuation", ")"]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["selector", [
+		["pseudo-class", ":nth-child"],
+		["punctuation", "("],
+		["n-th", [
+			["operator", "+"],
+			["number", "5"]
+		]],
+		["punctuation", ")"]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for n-th expressions.

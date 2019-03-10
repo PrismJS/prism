@@ -7,7 +7,7 @@
 <title>Running the test suite ▲ Prism</title>
 <link rel="stylesheet" href="style.css" />
 <link rel="stylesheet" href="themes/prism.css" data-noprefix />
-<script src="prefixfree.min.js"></script>
+<script src="scripts/prefixfree.min.js"></script>
 
 <script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
 <script src="https://www.google-analytics.com/ga.js" async></script>
@@ -120,6 +120,8 @@ This is a comment explaining this test case.</code></pre>
 			<li>All strings that are either empty or only contain whitespace, are removed from the token stream.</li>
 			<li>All empty structures are removed.</li>
 		</ul>
+		<p>To get a pretty-printed version of the simplified token stream of a failed test, add the <code>--pretty</code> modifier. Keep in mind that the pretty-printed token stream is indented using spaces, you may need to convert these to tabs. (Most editors today have an option which handles the conversion for you.)<br>
+			E.g. <code class="language-bash">npm test -- --pretty</code>.</p>
 		<p>For further information: reading the tests of the test runner (<code>tests/testrunner-tests.js</code>) will help you understand the transformation.</p>
 	</section>
 </section>
@@ -157,11 +159,11 @@ This is a comment explaining this test case.</code></pre>
 
 <footer data-src="templates/footer.html" data-type="text/html"></footer>
 
+<script src="scripts/utopia.js"></script>
 <script src="prism.js"></script>
 <script src="components/prism-bash.js"></script>
-<script src="utopia.js"></script>
 <script src="components.js"></script>
-<script src="code.js"></script>
+<script src="scripts/code.js"></script>
 
 </body>
 </html>

@@ -1,9 +1,9 @@
 "use strict";
 
-var fs = require("fs");
-var vm = require("vm");
-var components = require("../../components");
-var languagesCatalog = components.languages;
+const fs = require("fs");
+const vm = require("vm");
+const components = require("../../components");
+const languagesCatalog = components.languages;
 
 
 module.exports = {
@@ -14,8 +14,8 @@ module.exports = {
 	 * @param {string|string[]} languages
 	 * @returns {Prism}
 	 */
-	createInstance: function (languages) {
-		var context = {
+	createInstance(languages) {
+		let context = {
 			loadedLanguages: [],
 			Prism: this.createEmptyPrism()
 		};
@@ -33,16 +33,14 @@ module.exports = {
 	 * @param {{loadedLanguages: string[], Prism: Prism}} context
 	 * @returns {{loadedLanguages: string[], Prism: Prism}}
 	 */
-	loadLanguages: function (languages, context) {
+	loadLanguages(languages, context) {
 		if (typeof languages === 'string') {
 			languages = [languages];
 		}
 
-		var self = this;
-
-		languages.forEach(function (language) {
-			context = self.loadLanguage(language, context);
-		});
+		for (const language of languages) {
+			context = this.loadLanguage(language, context);
+		}
 
 		return context;
 	},
@@ -56,7 +54,7 @@ module.exports = {
 	 * @param {{loadedLanguages: string[], Prism: Prism}} context
 	 * @returns {{loadedLanguages: string[], Prism: Prism}}
 	 */
-	loadLanguage: function (language, context) {
+	loadLanguage(language, context) {
 		if (!languagesCatalog[language]) {
 			throw new Error("Language '" + language + "' not found.");
 		}
@@ -72,8 +70,8 @@ module.exports = {
 		}
 
 		// load the language itself
-		var languageSource = this.loadFileSource(language);
-		context.Prism = this.runFileWithContext(languageSource, {Prism: context.Prism}).Prism;
+		const languageSource = this.loadFileSource(language);
+		context.Prism = this.runFileWithContext(languageSource, { Prism: context.Prism }).Prism;
 		context.loadedLanguages.push(language);
 
 		return context;
@@ -86,9 +84,9 @@ module.exports = {
 	 * @private
 	 * @returns {Prism}
 	 */
-	createEmptyPrism: function () {
-		var coreSource = this.loadFileSource("core");
-		var context = this.runFileWithContext(coreSource);
+	createEmptyPrism() {
+		const coreSource = this.loadFileSource("core");
+		const context = this.runFileWithContext(coreSource);
 		return context.Prism;
 	},
 
@@ -109,7 +107,7 @@ module.exports = {
 	 * @param {string} name
 	 * @returns {string}
 	 */
-	loadFileSource: function (name) {
+	loadFileSource(name) {
 		return this.fileSourceCache[name] = this.fileSourceCache[name] || fs.readFileSync(__dirname + "/../../components/prism-" + name + ".js", "utf8");
 	},
 
@@ -119,12 +117,11 @@ module.exports = {
 	 *
 	 * @private
 	 * @param {string} fileSource
-	 * @param {*} [context]
+	 * @param {*} [context={}]
 	 *
 	 * @returns {*}
 	 */
-	runFileWithContext: function (fileSource, context) {
-		context = context || {};
+	runFileWithContext(fileSource, context = {}) {
 		vm.runInNewContext(fileSource, context);
 		return context;
 	}
