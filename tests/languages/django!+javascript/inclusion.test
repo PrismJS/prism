@@ -1,5 +1,7 @@
 <script>
+{% if foo %}
 var foo = {{ bar }};
+{% endif %}
 </script>
 
 ----------------------------------------------------
@@ -14,6 +16,12 @@ var foo = {{ bar }};
 	]],
 	["script", [
 		["language-javascript", [
+			["django", [
+				["delimiter", "{%"],
+				["tag", "if"],
+				["variable", "foo"],
+				["delimiter", "%}"]
+			]],
 			["keyword", "var"],
 			" foo ",
 			["operator", "="],
@@ -22,7 +30,12 @@ var foo = {{ bar }};
 				["variable", "bar"],
 				["delimiter", "}}"]
 			]],
-			["punctuation", ";"]
+			["punctuation", ";"],
+			["django", [
+				["delimiter", "{%"],
+				["tag", "endif"],
+				["delimiter", "%}"]
+			]]
 		]]
 	]],
 	["tag", [

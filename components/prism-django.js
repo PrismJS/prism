@@ -3,9 +3,6 @@
 
 (function (Prism) {
 
-	var string = /("|')(?:\\.|(?!\1)[^\\\r\n])*\1/;
-	var number = /\b\d+(?:\.\d+)?\b/;
-
 	Prism.languages.django = {
 		'comment': /^{#[\s\S]*?#}$/,
 		'tag': {
@@ -18,7 +15,7 @@
 			alias: 'punctuation'
 		},
 		'string': {
-			pattern: string,
+			pattern: /("|')(?:\\.|(?!\1)[^\\\r\n])*\1/,
 			greedy: true
 		},
 		'filter': {
@@ -34,7 +31,7 @@
 		'function': /\b[a-z_]\w+(?=\s*\()/i,
 		'keyword': /\b(?:and|as|by|else|for|if|import|in|is|loop|not|or|recursive|with|without)\b/,
 		'operator': /[-+*/%=]=?|!=|\*\*?=?|\/\/?=?|<[<=>]?|>[=>]?|[&|^~]/,
-		'number': number,
+		'number': /\b\d+(?:\.\d+)?\b/,
 		'boolean': /[Tt]rue|[Ff]alse|[Nn]one/,
 		'variable': /\b\w+?\b/,
 		'punctuation': /[{}[\](),.:;]/

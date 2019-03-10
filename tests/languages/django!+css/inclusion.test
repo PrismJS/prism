@@ -1,6 +1,8 @@
 <style>
 a {
+{% if setColor %}
 	color: {{ bar }};
+{% endif %}
 }
 </style>
 
@@ -18,6 +20,12 @@ a {
 		["language-css", [
 			["selector", "a"],
 			["punctuation", "{"],
+			["django", [
+				["delimiter", "{%"],
+				["tag", "if"],
+				["variable", "setColor"],
+				["delimiter", "%}"]
+			]],
 			["property", "color"],
 			["punctuation", ":"],
 			["django", [
@@ -26,6 +34,11 @@ a {
 				["delimiter", "}}"]
 			]],
 			["punctuation", ";"],
+			["django", [
+				["delimiter", "{%"],
+				["tag", "endif"],
+				["delimiter", "%}"]
+			]],
 			["punctuation", "}"]
 		]]
 	]],
