@@ -1,21 +1,21 @@
-Content-type: application/json
+Content-type: application/javascript
 
-{"foo":"bar"}
+var a = true;
 
 ----------------------------------------------------
 
 [
 	["header-name", "Content-type:"],
-	" application/json",
-	["application/json", [
-		["punctuation", "{"],
-		["string", "\"foo\""],
-		["punctuation", ":"],
-		["string", "\"bar\""],
-		["punctuation", "}"]
+	" application/javascript",
+	["application/javascript", [
+		["keyword", "var"],
+		" a ",
+		["operator", "="],
+		["boolean", "true"],
+		["punctuation", ";"]
 	]]
 ]
 
 ----------------------------------------------------
 
-Checks for JSON content in HTTP.
+Checks for JavaScript content in HTTP.
