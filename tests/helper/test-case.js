@@ -50,8 +50,9 @@ module.exports = {
 	 *
 	 * @param {string} languageIdentifier
 	 * @param {string} filePath
+	 * @param {boolean} [pretty=false]
 	 */
-	runTestCase: function (languageIdentifier, filePath) {
+	runTestCase: function (languageIdentifier, filePath, pretty) {
 		var testCase = this.parseTestCaseFile(filePath);
 		var usedLanguages = this.parseLanguageNames(languageIdentifier);
 
@@ -74,12 +75,13 @@ module.exports = {
 
 		var simplifiedTokenStream = TokenStreamTransformer.simplify(compiledTokenStream);
 
-		var tzd = JSON.stringify( simplifiedTokenStream ); var exp = JSON.stringify( testCase.expectedTokenStream );
+		var tzd = JSON.stringify(simplifiedTokenStream);
+		var exp = JSON.stringify(testCase.expectedTokenStream);
 		var i = 0; var j = 0; var diff = "";
-		while ( j < tzd.length ){ if (exp[i] != tzd[j] || i == exp.length) diff += tzd[j]; else i++; j++; }
+		while (j < tzd.length) { if (exp[i] != tzd[j] || i == exp.length) diff += tzd[j]; else i++; j++; }
 
-		// var message = "\nToken Stream: \n" + JSON.stringify( simplifiedTokenStream, null, " " ) + 
-		var message = "\nToken Stream: \n" + tzd + 
+		const tokenStreamStr = pretty ? TokenStreamTransformer.prettyprint(simplifiedTokenStream) : tzd;
+		var message = "\nToken Stream: \n" + tokenStreamStr +
 			"\n-----------------------------------------\n" +
 			"Expected Token Stream: \n" + exp +
 			"\n-----------------------------------------\n" + diff;
@@ -120,7 +122,7 @@ module.exports = {
 		);
 
 		if (!mainLanguage) {
-			mainLanguage = languages[languages.length-1];
+			mainLanguage = languages[languages.length - 1];
 		}
 
 		return {

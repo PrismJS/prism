@@ -11,7 +11,7 @@ module.exports = {
 	 *
 	 *
 	 * @param {Array} tokenStream
-	 * @returns {Array.<string[]|Array>}
+	 * @returns {Array<string|[string, string|any[]]>}
 	 */
 	simplify: function (tokenStream) {
 		if (Array.isArray(tokenStream)) {
@@ -19,8 +19,7 @@ module.exports = {
 				.map(this.simplify.bind(this))
 				.filter(function (value) {
 					return !(Array.isArray(value) && !value.length) && !(typeof value === "string" && !value.trim().length);
-				}
-			);
+				});
 		}
 		else if (typeof tokenStream === "object") {
 			return [tokenStream.type, this.simplify(tokenStream.content)];
@@ -28,5 +27,45 @@ module.exports = {
 		else {
 			return tokenStream;
 		}
+	},
+
+	/**
+	 *
+	 * @param {ReadonlyArray<string|[string, string|ReadonlyArray]>} tokenStream
+	 * @param {number} [indentationLevel=0]
+	 */
+	prettyprint(tokenStream, indentationLevel = 1) {
+		const indentChar = '    ';
+
+		// can't use tabs because the console will convert one tab to four spaces
+		const indentation = new Array(indentationLevel + 1).join(indentChar);
+
+		let out = "";
+		out += "[\n"
+		tokenStream.forEach((item, i) => {
+			out += indentation;
+
+			if (typeof item === 'string') {
+				out += JSON.stringify(item);
+			} else {
+				const name = item[0];
+				const content = item[1];
+
+				out += '[' + JSON.stringify(name) + ', ';
+
+				if (typeof content === 'string') {
+					out += JSON.stringify(content);
+				} else {
+					out += this.prettyprint(content, indentationLevel + 1);
+				}
+
+				out += ']';
+			}
+
+			const lineEnd = (i === tokenStream.length - 1) ? '\n' : ',\n';
+			out += lineEnd;
+		})
+		out += indentation.substr(indentChar.length) + ']'
+		return out;
 	}
 };
