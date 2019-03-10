@@ -22,16 +22,16 @@
     "clipboard": "^2.0.0"
   },
   "devDependencies": {
-    "chai": "^2.3.0",
+    "chai": "^4.2.0",
     "gulp": "^4.0.0",
     "gulp-concat": "^2.3.4",
-    "gulp-header": "^1.0.5",
+    "gulp-header": "^2.0.7",
     "gulp-rename": "^1.2.0",
-    "gulp-replace": "^0.5.4",
-    "gulp-uglify": "^0.3.1",
-    "mocha": "^2.2.5",
+    "gulp-replace": "^1.0.0",
+    "gulp-uglify": "^3.0.1",
+    "mocha": "^6.0.0",
     "pump": "^3.0.0",
-    "yargs": "^3.26.0"
+    "yargs": "^13.2.2"
   },
   "jspm": {
     "main": "prism",

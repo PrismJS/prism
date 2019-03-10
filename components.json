@@ -252,6 +252,11 @@
 			"title": "Eiffel",
 			"owner": "Conaclos"
 		},
+		"ejs": {
+			"title": "EJS",
+			"require": ["javascript", "markup-templating"],
+			"owner": "RunDevelopment"
+		},
 		"elixir": {
 			"title": "Elixir",
 			"owner": "Golmote"
@@ -663,20 +668,17 @@
 		},
 		"pug": {
 			"title": "Pug",
-			"require": "javascript",
+			"require": ["markup", "javascript"],
 			"peerDependencies": [
 				"coffeescript",
 				"ejs",
 				"handlebars",
-				"hogan",
 				"less",
 				"livescript",
 				"markdown",
-				"mustache",
-				"plates",
 				"scss",
 				"stylus",
-				"swig"
+				"twig"
 			],
 			"owner": "Golmote"
 		},
@@ -689,9 +691,7 @@
 			"peerDependencies": [
 				"c",
 				"cpp",
-				"fortran",
-				"ats",
-				"dsp"
+				"fortran"
 			],
 			"owner": "Golmote"
 		},
@@ -733,6 +733,18 @@
 			"title": "Reason",
 			"require": "clike",
 			"owner": "Golmote"
+		},
+		"regex": {
+			"title": "Regex",
+			"peerDependencies": [
+				"actionscript",
+				"coffeescript",
+				"flow",
+				"javascript",
+				"typescript",
+				"vala"
+			],
+			"owner": "RunDevelopment"
 		},
 		"rest": {
 			"title": "reST (reStructuredText)",
@@ -839,6 +851,21 @@
 			"require": "javascript",
 			"alias": "ts",
 			"owner": "vkbansal"
+		},
+		"t4-cs": {
+			"title": "T4 Text Templates (C#)",
+			"require": ["t4-templating", "csharp"],
+			"alias": "t4",
+			"owner": "RunDevelopment"
+		},
+		"t4-vb": {
+			"title": "T4 Text Templates (VB)",
+			"require": ["t4-templating", "visual-basic"],
+			"owner": "RunDevelopment"
+		},
+		"t4-templating": {
+			"title": "T4 templating",
+			"owner": "RunDevelopment"
 		},
 		"vala": {
 			"title": "Vala",
