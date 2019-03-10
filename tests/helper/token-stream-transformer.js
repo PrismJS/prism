@@ -3,21 +3,26 @@
 
 module.exports = {
 	/**
+	 * @typedef TokenStreamItem
+	 * @property {string} type
+	 * @property {string | TokenStreamItem | Array<string|TokenStreamItem>} content
+	*/
+
+	/**
 	 * Simplifies the token stream to ease the matching with the expected token stream.
 	 *
 	 * * Strings are kept as-is
 	 * * In arrays each value is transformed individually
 	 * * Values that are empty (empty arrays or strings only containing whitespace)
 	 *
-	 *
-	 * @param {Array} tokenStream
-	 * @returns {Array<string|[string, string|any[]]>}
+	 * @param {string | TokenStreamItem | Array<string|TokenStreamItem>} tokenStream
+	 * @returns {Array<string|Array<string|any[]>>}
 	 */
-	simplify: function (tokenStream) {
+	simplify(tokenStream) {
 		if (Array.isArray(tokenStream)) {
 			return tokenStream
-				.map(this.simplify.bind(this))
-				.filter(function (value) {
+				.map(value => this.simplify(value))
+				.filter(value => {
 					return !(Array.isArray(value) && !value.length) && !(typeof value === "string" && !value.trim().length);
 				});
 		}
@@ -31,7 +36,7 @@ module.exports = {
 
 	/**
 	 *
-	 * @param {ReadonlyArray<string|[string, string|ReadonlyArray]>} tokenStream
+	 * @param {ReadonlyArray<string|ReadonlyArray<string|any[]>>} tokenStream
 	 * @param {number} [indentationLevel=0]
 	 */
 	prettyprint(tokenStream, indentationLevel = 1) {
