@@ -1,13 +1,11 @@
 foo:after {
 foo::first-letter {
 
-foo:nth-child(2n+1) {
-
 foo.bar {
 
 foo#bar {
 
-#foo > .bar:not(baz):after {
+#foo > .bar:hover:after {
 
 ----------------------------------------------------
 
@@ -24,11 +22,6 @@ foo#bar {
 
 	["selector", [
 		"foo",
-		["pseudo-class", ":nth-child(2n+1)"]
-	]], ["punctuation", "{"],
-
-	["selector", [
-		"foo",
 		["class", ".bar"]
 	]], ["punctuation", "{"],
 
@@ -41,7 +34,7 @@ foo#bar {
 		["id", "#foo"],
 		" > ",
 		["class", ".bar"],
-		["pseudo-class", ":not(baz)"],
+		["pseudo-class", ":hover"],
 		["pseudo-element", ":after"]
 	]], ["punctuation", "{"]
 ]

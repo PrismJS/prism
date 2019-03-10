@@ -2,7 +2,7 @@ Prism.languages.css.selector = {
 	pattern: Prism.languages.css.selector,
 	inside: {
 		'pseudo-element': /:(?:after|before|first-letter|first-line|selection)|::[-\w]+/,
-		'pseudo-class': /:[-\w]+(?:\(.*\))?/,
+		'pseudo-class': /:[-\w]+/,
 		'class': /\.[-:.\w]+/,
 		'id': /#[-:.\w]+/,
 		'attribute': {
@@ -35,7 +35,16 @@ Prism.languages.css.selector = {
 				],
 				'operator': /[|~*^$]?=/
 			}
-		}
+		},
+		'n-th': {
+			pattern: /(\(\s*)[+-]?\d*[\dn](?:\s*[+-]\s*\d+)?(?=\s*\))/,
+			lookbehind: true,
+			inside: {
+				'number': /[\dn]+/,
+				'operator': /[+-]/
+			}
+		},
+		'punctuation': /[()]/
 	}
 };
 
