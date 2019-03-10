@@ -19,8 +19,7 @@ module.exports = {
 				.map(this.simplify.bind(this))
 				.filter(function (value) {
 					return !(Array.isArray(value) && !value.length) && !(typeof value === "string" && !value.trim().length);
-				}
-				);
+				});
 		}
 		else if (typeof tokenStream === "object") {
 			return [tokenStream.type, this.simplify(tokenStream.content)];
