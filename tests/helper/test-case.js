@@ -49,8 +49,9 @@ module.exports = {
 	 *
 	 * @param {string} languageIdentifier
 	 * @param {string} filePath
+	 * @param {boolean} [pretty=false]
 	 */
-	runTestCase(languageIdentifier, filePath) {
+	runTestCase(languageIdentifier, filePath, pretty = false) {
 		const testCase = this.parseTestCaseFile(filePath);
 		const usedLanguages = this.parseLanguageNames(languageIdentifier);
 
@@ -86,8 +87,8 @@ module.exports = {
 			j++;
 		}
 
-		// const message = "\nToken Stream: \n" + JSON.stringify( simplifiedTokenStream, null, " " ) +
-		const message = "\nToken Stream: \n" + tzd +
+		const tokenStreamStr = pretty ? TokenStreamTransformer.prettyprint(simplifiedTokenStream) : tzd;
+		const message = "\nToken Stream: \n" + tokenStreamStr +
 			"\n-----------------------------------------\n" +
 			"Expected Token Stream: \n" + exp +
 			"\n-----------------------------------------\n" + diff;
