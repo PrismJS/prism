@@ -27,29 +27,48 @@ textarea {
 	word-wrap: normal;
 }
 
-#language {
+.list {
 	column-count: 4;
 }
 
-	#language label {
+	.list label {
 		display: block;
 		padding: .2em;
 	}
 
-	#language label[data-id="javascript"] {
-		border-bottom: 1px solid #aaa;
-		padding-bottom: 1em;
-		margin-bottom: 1em;
-	}
-
-	#language input {
+	.list input {
 		margin-right: 1em;
 	}
 
-	#language strong {
+	.list strong {
 		display: block;
 		column-span: all;
 	}
+
+#language label[data-id="javascript"] {
+	border-bottom: 1px solid #aaa;
+	padding-bottom: 1em;
+	margin-bottom: 1em;
+}
+
+#plugins input {
+	margin-right: 1em;
+}
+
+#options {
+	column-count: 2;
+}
+
+#options input {
+	width: 100%;
+	font-size: 14px;
+	box-sizing: border-box;
+	padding: 0 5px;
+}
+
+#options input:focus{
+	outline: none;
+}
 
 </style>
 <script src="prefixfree.min.js"></script>
@@ -75,15 +94,25 @@ textarea {
 		<p>Result:</p>
 		<pre><code></code></pre>
 
-		<p id="language">
+		<p id="language" class="list">
 			<strong>Language:</strong>
+		</p>
+
+		<p id="plugins" class="list">
+			<strong>Plugins:</strong>
+		</p>
+
+		<p id="options" class="list">
+			<strong>Options:</strong>
+			<input type="text" name="codeClass" placeholder="Class name (e.g.: line-numbers)">
+			<input type="text" name="codeAttributes" placeholder="Attributes (e.g.: data-count='10')">
 		</p>
 	</form>
 </section>
 
 <footer data-src="templates/footer.html" data-type="text/html"></footer>
 
-<script src="prism.js"></script>
+<script src="prism.js" id="prism"></script>
 <script src="utopia.js"></script>
 <script src="components.js"></script>
 <script src="code.js"></script>
@@ -93,9 +122,12 @@ textarea {
 (function() {
 var form = $('form'), code = $('code', form),
     languages = components.languages,
+    plugins = components.plugins,
     highlightCode = function() { Prism.highlightElement(code); };
+var ENTER_KEY = 13;
+var id;
 
-for (var id in languages) {
+for (id in languages) {
 	if (id == 'meta') {
 		continue;
 	}
@@ -129,6 +161,91 @@ for (var id in languages) {
 		inside: '#language'
 	});
 }
+
+for (id in plugins) {
+	if (id == 'meta') {
+		continue;
+	}
+
+	var name = plugins[id].title || plugins[id];
+
+	$u.element.create('label', {
+		attributes: {
+			'data-id': id
+		},
+		contents: [
+			{
+				tag: 'input',
+				properties: {
+					type: 'checkbox',
+					name: 'plugins',
+					value: id,
+					onchange: function () {
+						var plugin = this.value;
+
+						if (this.checked){
+							loadPlugin(plugin).then(highlightCode);
+						}else{
+							reloadPlugins().then(highlightCode);
+						}
+					}
+				}
+			}, name
+		],
+		inside: '#plugins'
+	});
+}
+
+// update <pre> class either on inputs blur or if Enter key was pressed
+form.codeClass.onblur =
+	form.codeClass.onkeypress = function (event) {
+		if (event.type === 'blur' || event.which === ENTER_KEY){
+			code.parentElement.className = this.value + ' language-' + form.language.value;
+			highlightCode();
+		}
+	};
+
+// update <pre> attributes either on inputs blur or if Enter key was pressed
+form.codeAttributes.onblur =
+	form.codeAttributes.onkeypress = function (event) {
+		if (event.type === 'blur' || event.which === ENTER_KEY){
+			// remove existing attributes
+			var pre = code.parentElement;
+			var attributes = pre.getAttribute('data-attributes');
+
+			if (attributes){
+				attributes.split(',').forEach(function (attr) {
+					pre.removeAttribute(attr);
+				});
+			}
+
+			// add user entered attributes
+			var value;
+			if (value = this.value.trim()){
+				attributes = [];
+				this.value.split(' ').forEach(function (keyValue) {
+					var attr = keyValue.split('=');
+
+					if (attr === 'data-attributes'){
+						return;
+					}
+
+					try{
+						pre.setAttribute(attr[0], attr[1] || '');
+						attributes.push(attr[0]);
+					}catch(e){
+						// catch the situations when user entered attribute name which starts from numbers
+					}
+
+				});
+
+				pre.setAttribute('data-attributes', attributes.join(','));
+			}
+
+			highlightCode();
+		}
+	}
+
 
 
 /**
@@ -164,12 +281,72 @@ function loadLanguage (lang)
 		});
 }
 
+/**
+ * Loads a plugin including it css file
+ *
+ * @param {string} pluginName the plugin to load
+ * @type {Promise} the promise which resolves as soon as plugin is loaded
+ */
+function loadPlugin (pluginName)
+{
+	var plugin = components.plugins[pluginName];
+	if (!plugin){
+		return Promise.resolve();
+	}
+
+	var pluginPath = components.plugins.meta.path;
+
+	return new Promise(function (resolve) {
+		pluginPath = pluginPath.replace(/{id}/g, pluginName);
+
+		$u.script(pluginPath + '.js', function() {
+			this.setAttribute('data-type', 'plugin');
+
+			var hasCss = !!plugin.noCSS;
+
+			if (hasCss) {
+				var style = document.createElement('link');
+				style.setAttribute('rel', 'stylesheet');
+				style.setAttribute('href', pluginPath + '.css')
+				style.setAttribute('data-type', 'plugin');
+				document.body.appendChild(style);
+			}
+
+			resolve();
+		});
+	});
+}
+
+/**
+ * Reload all selected plugins and prism core
+ * You can hit me for such solution, but there are no other way :)
+ */
+function reloadPlugins ()
+{
+	var selectedPlugins = $$('input[type="checkbox"]:checked', document.forms[0]);
+	selectedPlugins = selectedPlugins.map(function(plugin) { return plugin.value });
+
+	$('#prism').remove();
+	$$('script[data-type="plugin"],link[data-type="plugin"]').forEach(function (script) {
+		script.remove();
+	});
+
+	// firstly loads prism core, after it - all selected plugins
+	return new Promise(function (resolve) {
+		$u.script('prism.js', function () {
+			this.setAttribute('id', 'prism');
+			resolve();
+		});
+	}).then(function () {
+		return Promise.all(selectedPlugins.map(loadPlugin));
+	});
+}
 
 /**
  * Returns all dependencies (as identifiers) of a specific language
  *
  * @param {string} lang
- * @returns {Array.<string>} the list of dependencies. Empty if the language has none.
+ * @returns {Array<string>} the list of dependencies. Empty if the language has none.
  */
 function getDependenciesOfLanguage (lang)
 {
@@ -189,14 +366,12 @@ radios[0].checked = true;
 radios[0].onclick();
 
 var textarea = $('textarea', form);
-
 (textarea.oninput = function() {
 	code.textContent = this.value || '';
 	highlightCode();
 }).call(textarea);
 
 })();
-
 </script>
 
 </body>
