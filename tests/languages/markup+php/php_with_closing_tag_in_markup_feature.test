@@ -1,0 +1,44 @@
+<?php
+
+	// '
+	# "
+	//*
+	echo '?>' + "?>"; /* ?> */
+	echo PHP_EOL;
+	// */
+	// ?>
+
+<?php # ?>
+
+----------------------------------------------------
+
+[
+	["php", [
+		["delimiter", "<?php"],
+		["comment", "// '"],
+		["shell-comment", "# \""],
+		["comment", "//*"],
+		["keyword", "echo"],
+		["single-quoted-string", "'?>'"],
+		["operator", "+"],
+		["double-quoted-string", ["\"?>\""]],
+		["punctuation", ";"],
+		["comment", "/* ?> */"],
+		["keyword", "echo"],
+		["constant", "PHP_EOL"],
+		["punctuation", ";"],
+		["comment", "// */"],
+		["comment", "// "],
+		["delimiter", "?>"]
+	]],
+
+	["php", [
+		["delimiter", "<?php"],
+		["shell-comment", "# "],
+		["delimiter", "?>"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for PHP closing tags '?>' inside of strings and comments.
