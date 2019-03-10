@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="style.css" />
 <link rel="stylesheet" href="themes/prism.css" data-noprefix />
 <link rel="stylesheet" href="plugins/toolbar/prism-toolbar.css" data-noprefix />
-<script src="prefixfree.min.js"></script>
+<script src="scripts/prefixfree.min.js"></script>
 
 <script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
 <script src="https://www.google-analytics.com/ga.js" async></script>
@@ -25,14 +25,14 @@
 
 <section class="language-markup">
 	<h1>How to use</h1>
-	
+
 	<p>Use the <code>data-src</code> attribute on empty <code>&lt;pre></code> elements, like so:</p>
-	
+
 	<pre><code>&lt;pre data-src="myfile.js">&lt;/pre></code></pre>
-	
+
 	<p>You don’t need to specify the language, it’s automatically determined by the file extension.
 	If, however, the language cannot be determined from the file extension or the file extension is incorrect, you may specify a language as well (with the usual class name way).</p>
-	
+
 	<p>Please note that the files are fetched with XMLHttpRequest. This means that if the file is on a different origin, fetching it will fail, unless CORS is enabled on that website.</p>
 
 	<p>
@@ -48,7 +48,7 @@
 
 	<p>The plugin’s JS code:</p>
 	<pre data-src="plugins/file-highlight/prism-file-highlight.js"></pre>
-	
+
 	<p>This page:</p>
 	<pre data-src="plugins/file-highlight/index.html"></pre>
 
@@ -66,9 +66,9 @@
 <script src="prism.js"></script>
 <!-- The File Highlight plugin is already included into Prism.js build -->
 <script src="plugins/toolbar/prism-toolbar.js"></script>
-<script src="utopia.js"></script>
+<script src="scripts/utopia.js"></script>
 <script src="components.js"></script>
-<script src="code.js"></script>
+<script src="scripts/code.js"></script>
 
 
 </body>
