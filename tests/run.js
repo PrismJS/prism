@@ -1,20 +1,20 @@
+// @ts-check
 "use strict";
 
-var TestDiscovery = require("./helper/test-discovery");
-var TestCase = require("./helper/test-case");
-var path = require("path");
-var argv = require("yargs").argv;
+const TestDiscovery = require("./helper/test-discovery");
+const TestCase = require("./helper/test-case");
+const path = require("path");
+const { argv } = require("yargs");
 
-var testSuite;
-if (argv.language) {
-	testSuite = TestDiscovery.loadSomeTests(__dirname + "/languages", argv.language);
-} else {
-	// load complete test suite
-	testSuite = TestDiscovery.loadAllTests(__dirname + "/languages");
-}
+const testSuite =
+	(argv.language)
+		? TestDiscovery.loadSomeTests(__dirname + "/languages", argv.language)
+		// load complete test suite
+		: TestDiscovery.loadAllTests(__dirname + "/languages");
+const pretty = 'pretty' in argv;
 
 // define tests for all tests in all languages in the test suite
-for (var language in testSuite) {
+for (const language in testSuite) {
 	if (!testSuite.hasOwnProperty(language)) {
 		continue;
 	}
@@ -23,23 +23,17 @@ for (var language in testSuite) {
 		describe("Testing language '" + language + "'", function () {
 			this.timeout(10000);
 
-			testFiles.forEach(
-				function (filePath) {
-			        var fileName = path.basename(filePath, path.extname(filePath));
+			for (const filePath of testFiles) {
+				const fileName = path.basename(filePath, path.extname(filePath));
 
-			        it("– should pass test case '" + fileName + "'",
-			            function () {
-
-				            if (path.extname(filePath) === '.test') {
-					            TestCase.runTestCase(language, filePath);
-				            } else {
-					            TestCase.runTestsWithHooks(language, require(filePath));
-				            }
-
-			            }
-			        );
-				}
-			);
+				it("– should pass test case '" + fileName + "'", function () {
+					if (path.extname(filePath) === '.test') {
+						TestCase.runTestCase(language, filePath, pretty);
+					} else {
+						TestCase.runTestsWithHooks(language, require(filePath));
+					}
+				});
+			}
 		});
 	})(language, testSuite[language]);
 }

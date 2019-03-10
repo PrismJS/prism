@@ -1,0 +1,29 @@
+{
+	...frag
+}
+
+fragment frag on FooBar {
+	foo
+	bar
+}
+
+----------------------------------------------------
+
+[
+	["punctuation", "{"],
+	["operator", "..."],
+	["fragment", "frag"],
+	["punctuation", "}"],
+
+	["keyword", "fragment"],
+	["fragment", "frag"],
+	["keyword", "on"],
+	["class-name", "FooBar"],
+	["punctuation", "{"],
+	"\r\n\tfoo\r\n\tbar\r\n",
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for fragments.

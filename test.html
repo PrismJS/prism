@@ -51,6 +51,46 @@ textarea {
 		column-span: all;
 	}
 
+
+pre.show-tokens {
+	line-height: calc(1.5em + 12px);
+}
+
+.show-tokens .token:not(:first-child) {
+	margin-left: 1px;
+}
+
+.show-tokens .token:empty {
+	background: red;
+}
+.show-tokens .token:empty::before {
+	color: white;
+	content: 'empty';
+	font-style: italic;
+	text-shadow: black 0 0 .3em;
+}
+
+.show-tokens .token {
+	border: 1px solid;
+	padding: 6px 1px;
+}
+.show-tokens .token > .token {
+	padding: 4px 1px;
+}
+.show-tokens .token > .token > .token {
+	padding: 2px 1px;
+}
+.show-tokens .token > .token > .token > .token {
+	padding: 0 1px;
+}
+.show-tokens .token > .token > .token > .token > .token {
+	border: none;
+	border-left: 1px solid;
+	border-right: 1px solid;
+	padding: 0;
+	margin: 0 1px;
+}
+
 </style>
 <script src="prefixfree.min.js"></script>
 
@@ -75,6 +115,9 @@ textarea {
 		<p>Result:</p>
 		<pre><code></code></pre>
 
+		<p id="options">
+			<label><input type="checkbox" id="option-show-tokens"> Show tokens</label>
+		</p>
 		<p id="language">
 			<strong>Language:</strong>
 		</p>
@@ -194,6 +237,16 @@ var textarea = $('textarea', form);
 	code.textContent = this.value || '';
 	highlightCode();
 }).call(textarea);
+
+$('#option-show-tokens').onchange = function () {
+	var cls = 'show-tokens';
+	if (this.checked) {
+		$('pre').classList.add(cls);
+	} else {
+		$('pre').classList.remove(cls);
+	}
+};
+$('#option-show-tokens').onchange();
 
 })();
 
