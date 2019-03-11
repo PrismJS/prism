@@ -1,0 +1,48 @@
+var a = <#= name + "abc" #>;
+var b = new int[] { <#=
+	String.Join(", ", number.Select(Transformation))
+	#> };
+
+----------------------------------------------------
+
+[
+	"var a = ",
+	["block", [
+		["expression", [
+			["delimiter", "<#="],
+			["content", [
+				" name ",
+				["operator", "+"],
+				["string", "\"abc\""]
+			]],
+			["delimiter", "#>"]
+		]]
+	]],
+	";\nvar b = new int[] { ",
+	["block", [
+		["expression", [
+			["delimiter", "<#="],
+			["content", [
+				"\n\tString",
+				["punctuation", "."],
+				["function", "Join"],
+				["punctuation", "("],
+				["string", "\", \""],
+				["punctuation", ","],
+				" number",
+				["punctuation", "."],
+				["function", "Select"],
+				["punctuation", "("],
+				"Transformation",
+				["punctuation", ")"],
+				["punctuation", ")"]
+			]],
+			["delimiter", "#>"]
+		]]
+	]],
+	" };"
+]
+
+----------------------------------------------------
+
+Checks for expression control blocks.

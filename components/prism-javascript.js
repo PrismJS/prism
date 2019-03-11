@@ -13,11 +13,11 @@
 				pattern: /((?:^|})\s*)(?:catch|finally)\b/,
 				lookbehind: true
 			},
-			/\b(?:as|async|await|break|case|class|const|continue|debugger|default|delete|do|else|enum|export|extends|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|var|void|while|with|yield)\b/
+			/\b(?:as|async(?=\s*(?:function\b|\(|[$\w\xA0-\uFFFF]|$))|await|break|case|class|const|continue|debugger|default|delete|do|else|enum|export|extends|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|undefined|var|void|while|with|yield)\b/
 		],
 		'number': /\b(?:(?:0[xX][\dA-Fa-f]+|0[bB][01]+|0[oO][0-7]+)n?|\d+n|NaN|Infinity)\b|(?:\b\d+\.?\d*|\B\.\d+)(?:[Ee][+-]?\d+)?/,
 		// Allow for all non-ASCII characters (See http://stackoverflow.com/a/2008444)
-		'function': /[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\s*\(|\.(?:apply|bind|call)\()/,
+		'function': /[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\s*(?:\.\s*(?:apply|bind|call)\s*)?\()/,
 		'operator': /-[-=]?|\+[+=]?|!=?=?|<<?=?|>>?>?=?|=(?:==?|>)?|&[&=]?|\|[|=]?|\*\*?=?|\/=?|~|\^=?|%=?|\?|\.{3}/
 	});
 
@@ -31,39 +31,39 @@
 		},
 		// This must be declared before keyword because we use "function" inside the look-forward
 		'function-variable': {
-			pattern: /[_$a-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\s*[=:]\s*(?:async\s*)?(?:\bfunction\b|(?:\([^()]*\)|[_$a-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*)\s*=>))/i,
+			pattern: /[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\s*[=:]\s*(?:async\s*)?(?:\bfunction\b|(?:\((?:[^()]|\([^()]*\))*\)|[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*)\s*=>))/,
 			alias: 'function'
 		},
 		'parameter': [
 			{
-				pattern: /(function(?:\s+[_$a-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*)?\s*\(\s*)[^\s()][^()]*?(?=\s*\))/,
+				pattern: /(function(?:\s+[_$A-Za-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*)?\s*\(\s*)(?!\s)(?:[^()]|\([^()]*\))+?(?=\s*\))/,
 				lookbehind: true,
 				inside: Prism.languages.javascript
 			},
 			{
-				pattern: /[_$a-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\s*=>)/,
+				pattern: /[_$a-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\s*=>)/i,
 				inside: Prism.languages.javascript
 			},
 			{
-				pattern: /(\(\s*)[^\s()][^()]*?(?=\s*\)\s*=>)/,
+				pattern: /(\(\s*)(?!\s)(?:[^()]|\([^()]*\))+?(?=\s*\)\s*=>)/,
 				lookbehind: true,
 				inside: Prism.languages.javascript
 			},
 			{
-				pattern: /((?:\b|\s|^)(?!(?:as|async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|var|void|while|with|yield)(?![$\w\xA0-\uFFFF]))(?:[_$a-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*\s*)\(\s*)[^\s()][^()]*?(?=\s*\)\s*\{)/,
+				pattern: /((?:\b|\s|^)(?!(?:as|async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|undefined|var|void|while|with|yield)(?![$\w\xA0-\uFFFF]))(?:[_$A-Za-z\xA0-\uFFFF][$\w\xA0-\uFFFF]*\s*)\(\s*)(?!\s)(?:[^()]|\([^()]*\))+?(?=\s*\)\s*\{)/,
 				lookbehind: true,
 				inside: Prism.languages.javascript
 			}
 		],
-		'constant': /\b[A-Z][A-Z\d_]*\b/
+		'constant': /\b[A-Z](?:[A-Z_]|\dx?)*\b/
 	});
 
 
 	/**
 	 * Creates a new pattern to match a template string with a special tag.
 	 *
-	 * @param {string} language The language inside the template string.
-	 * @param {string} tag The regex pattern to match the tag.
+	 * @param {string} [language] The id of the language inside the template string.
+	 * @param {string} [tag] The regex pattern to match the tag.
 	 * @returns {object} The new token.
 	 * @example
 	 * createTemplate('css', /\bcss/.source);
@@ -72,7 +72,7 @@
 	function createTemplate(language, tag) {
 		var string = !language ? /[\s\S]+/ : {
 			pattern: /[\s\S]+/,
-			alias: 'language-' + language,
+			alias: [language, 'language-' + language],
 			inside: Prism.languages[language]
 		};
 
@@ -96,7 +96,6 @@
 		}
 	}
 
-
 	var templates = [createTemplate()];
 	if (Prism.languages.css) {
 		templates.unshift(createTemplate('css', /\b(?:styled(?:\([^)]*\))?(?:\.\w+(?:\([^)]*\))*)*|css|createGlobalStyle|keyframes)/.source));
@@ -108,17 +107,9 @@
 
 
 	if (Prism.languages.markup) {
-		Prism.languages.insertBefore('markup', 'tag', {
-			'script': {
-				pattern: /(<script[\s\S]*?>)[\s\S]*?(?=<\/script>)/i,
-				lookbehind: true,
-				inside: Prism.languages.javascript,
-				alias: 'language-javascript',
-				greedy: true
-			}
-		});
+		Prism.languages.markup.tag.addInlined('script', 'javascript');
 	}
 
 	Prism.languages.js = Prism.languages.javascript;
 
-}(Prism));
+})(Prism);

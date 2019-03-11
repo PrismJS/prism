@@ -1,0 +1,130 @@
+{{ foo|cut|bar:5 }}
+{{ foo|bar('baz') }}
+
+{{ my_date|date:"Y-m-d" }}
+{{ value|truncatechars:9 }}
+{{ name|striptags|title }}
+{{ listx|join(', ') }}
+{{ "%s - %s"|format("Hello?", "Foo!") }}
+{{ users|join(', ', attribute='username') }}
+{{ mytext|urlize(40, true) }}
+{{ [1, 2, -3]|max }}
+
+----------------------------------------------------
+
+[
+	["django", [
+		["delimiter", "{{"],
+		["variable", "foo"],
+		["operator", "|"],
+		["filter", "cut"],
+		["operator", "|"],
+		["filter", "bar"],
+		["punctuation", ":"],
+		["number", "5"],
+		["delimiter", "}}"]
+	]],
+	["django", [
+		["delimiter", "{{"],
+		["variable", "foo"],
+		["operator", "|"],
+		["filter", "bar"],
+		["punctuation", "("],
+		["string", "'baz'"],
+		["punctuation", ")"],
+		["delimiter", "}}"]
+	]],
+	["django", [
+		["delimiter", "{{"],
+		["variable", "my_date"],
+		["operator", "|"],
+		["filter", "date"],
+		["punctuation", ":"],
+		["string", "\"Y-m-d\""],
+		["delimiter", "}}"]
+	]],
+	["django", [
+		["delimiter", "{{"],
+		["variable", "value"],
+		["operator", "|"],
+		["filter", "truncatechars"],
+		["punctuation", ":"],
+		["number", "9"],
+		["delimiter", "}}"]
+	]],
+	["django", [
+		["delimiter", "{{"],
+		["variable", "name"],
+		["operator", "|"],
+		["filter", "striptags"],
+		["operator", "|"],
+		["filter", "title"],
+		["delimiter", "}}"]
+	]],
+	["django", [
+		["delimiter", "{{"],
+		["variable", "listx"],
+		["operator", "|"],
+		["filter", "join"],
+		["punctuation", "("],
+		["string", "', '"],
+		["punctuation", ")"],
+		["delimiter", "}}"]
+	]],
+	["django", [
+		["delimiter", "{{"],
+		["string", "\"%s - %s\""],
+		["operator", "|"],
+		["filter", "format"],
+		["punctuation", "("],
+		["string", "\"Hello?\""],
+		["punctuation", ","],
+		["string", "\"Foo!\""],
+		["punctuation", ")"],
+		["delimiter", "}}"]
+	]],
+	["django", [
+		["delimiter", "{{"],
+		["variable", "users"],
+		["operator", "|"],
+		["filter", "join"],
+		["punctuation", "("],
+		["string", "', '"],
+		["punctuation", ","],
+		["variable", "attribute"],
+		["operator", "="],
+		["string", "'username'"],
+		["punctuation", ")"],
+		["delimiter", "}}"]
+	]],
+	["django", [
+		["delimiter", "{{"],
+		["variable", "mytext"],
+		["operator", "|"],
+		["filter", "urlize"],
+		["punctuation", "("],
+		["number", "40"],
+		["punctuation", ","],
+		["boolean", "true"],
+		["punctuation", ")"],
+		["delimiter", "}}"]
+	]],
+	["django", [
+		["delimiter", "{{"],
+		["punctuation", "["],
+		["number", "1"],
+		["punctuation", ","],
+		["number", "2"],
+		["punctuation", ","],
+		["operator", "-"],
+		["number", "3"],
+		["punctuation", "]"],
+		["operator", "|"],
+		["filter", "max"],
+		["delimiter", "}}"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for filters.
