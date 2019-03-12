@@ -2,6 +2,7 @@
 
 const fs = require("fs");
 const vm = require("vm");
+const { getAllFiles } = require("./test-discovery");
 const components = require("../../components");
 const languagesCatalog = components.languages;
 
@@ -70,7 +71,7 @@ module.exports = {
 		}
 
 		// load the language itself
-		const languageSource = this.loadFileSource(language);
+		const languageSource = this.loadComponentSource(language);
 		context.Prism = this.runFileWithContext(languageSource, { Prism: context.Prism }).Prism;
 		context.loadedLanguages.push(language);
 
@@ -85,8 +86,13 @@ module.exports = {
 	 * @returns {Prism}
 	 */
 	createEmptyPrism() {
-		const coreSource = this.loadFileSource("core");
+		const coreSource = this.loadComponentSource("core");
 		const context = this.runFileWithContext(coreSource);
+
+		for (const testSource of this.getCoreTestFiles().map(src => this.loadFileSource(src))) {
+			context.Prism = this.runFileWithContext(testSource, { Prism: context.Prism }).Prism;
+		}
+
 		return context.Prism;
 	},
 
@@ -101,14 +107,37 @@ module.exports = {
 
 
 	/**
-	 * Loads the given file source as string
+	 * Loads the given component's file source as string
 	 *
 	 * @private
 	 * @param {string} name
 	 * @returns {string}
 	 */
-	loadFileSource(name) {
-		return this.fileSourceCache[name] = this.fileSourceCache[name] || fs.readFileSync(__dirname + "/../../components/prism-" + name + ".js", "utf8");
+	loadComponentSource(name) {
+		return this.loadFileSource(__dirname + "/../../components/prism-" + name + ".js");
+	},
+
+	/**
+	 * Loads the given file source as string
+	 *
+	 * @private
+	 * @param {string} src
+	 * @returns {string}
+	 */
+	loadFileSource(src) {
+		return this.fileSourceCache[src] = this.fileSourceCache[src] || fs.readFileSync(src, "utf8");
+	},
+
+
+	coreTestFileCache: null,
+
+	/**
+	 * Returns a list of files which add tests to a Prism instance.
+	 *
+	 * @returns {ReadonlyArray<string>}
+	 */
+	getCoreTestFiles() {
+		return this.coreTestFileCache = this.coreTestFileCache || getAllFiles(__dirname + "/../core");
 	},
 
 
