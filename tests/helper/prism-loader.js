@@ -89,7 +89,7 @@ module.exports = {
 		const coreSource = this.loadComponentSource("core");
 		const context = this.runFileWithContext(coreSource);
 
-		for (const testSource of this.getCoreTestFiles().map(src => this.loadFileSource(src))) {
+		for (const testSource of this.getChecks().map(src => this.loadFileSource(src))) {
 			context.Prism = this.runFileWithContext(testSource, { Prism: context.Prism }).Prism;
 		}
 
@@ -129,15 +129,15 @@ module.exports = {
 	},
 
 
-	coreTestFileCache: null,
+	checkCache: null,
 
 	/**
-	 * Returns a list of files which add tests to a Prism instance.
+	 * Returns a list of files which add additional checks to Prism functions.
 	 *
 	 * @returns {ReadonlyArray<string>}
 	 */
-	getCoreTestFiles() {
-		return this.coreTestFileCache = this.coreTestFileCache || getAllFiles(__dirname + "/../core");
+	getChecks() {
+		return this.checkCache = this.checkCache || getAllFiles(__dirname + "/../checks");
 	},
 
 
