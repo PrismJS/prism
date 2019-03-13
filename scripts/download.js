@@ -52,7 +52,7 @@ if (hstr) {
 						}
 						if (components[category][id].require) {
 							var deps = components[category][id].require;
-							if ($u.type(deps) !== 'array') {
+							if (!Array.isArray(deps)) {
 								deps = [deps];
 							}
 							deps.forEach(makeDefault);
