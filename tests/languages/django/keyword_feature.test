@@ -1,0 +1,50 @@
+{% some_tag
+
+and
+as
+by
+else
+for
+if
+import
+in
+is
+loop
+not
+or
+recursive
+with
+without
+
+%}
+
+----------------------------------------------------
+
+[
+	["django", [
+		["delimiter", "{%"],
+		["tag", "some_tag"],
+
+		["keyword", "and"],
+		["keyword", "as"],
+		["keyword", "by"],
+		["keyword", "else"],
+		["keyword", "for"],
+		["keyword", "if"],
+		["keyword", "import"],
+		["keyword", "in"],
+		["keyword", "is"],
+		["test", "loop"],
+		["keyword", "not"],
+		["keyword", "or"],
+		["keyword", "recursive"],
+		["keyword", "with"],
+		["keyword", "without"],
+
+		["delimiter", "%}"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for keywords.

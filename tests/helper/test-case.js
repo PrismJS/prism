@@ -1,9 +1,9 @@
 "use strict";
 
-var fs = require("fs");
-var assert = require("chai").assert;
-var PrismLoader = require("./prism-loader");
-var TokenStreamTransformer = require("./token-stream-transformer");
+const fs = require("fs");
+const { assert } = require("chai");
+const PrismLoader = require("./prism-loader");
+const TokenStreamTransformer = require("./token-stream-transformer");
 
 /**
  * Handles parsing of a test case file.
@@ -32,7 +32,6 @@ var TokenStreamTransformer = require("./token-stream-transformer");
  * the test case will later be marked as failed.
  *
  *
- * @type {{runTestCase: Function, transformCompiledTokenStream: Function, parseTestCaseFile: Function}}
  */
 module.exports = {
 
@@ -50,19 +49,20 @@ module.exports = {
 	 *
 	 * @param {string} languageIdentifier
 	 * @param {string} filePath
+	 * @param {boolean} [pretty=false]
 	 */
-	runTestCase: function (languageIdentifier, filePath) {
-		var testCase = this.parseTestCaseFile(filePath);
-		var usedLanguages = this.parseLanguageNames(languageIdentifier);
+	runTestCase(languageIdentifier, filePath, pretty = false) {
+		const testCase = this.parseTestCaseFile(filePath);
+		const usedLanguages = this.parseLanguageNames(languageIdentifier);
 
 		if (null === testCase) {
 			throw new Error("Test case file has invalid format (or the provided token stream is invalid JSON), please read the docs.");
 		}
 
-		var Prism = PrismLoader.createInstance(usedLanguages.languages);
+		const Prism = PrismLoader.createInstance(usedLanguages.languages);
 		// the first language is the main language to highlight
-		var mainLanguageGrammar = Prism.languages[usedLanguages.mainLanguage];
-		var env = {
+		const mainLanguageGrammar = Prism.languages[usedLanguages.mainLanguage];
+		const env = {
 			code: testCase.testSource,
 			grammar: mainLanguageGrammar,
 			language: usedLanguages.mainLanguage
@@ -70,21 +70,30 @@ module.exports = {
 		Prism.hooks.run('before-tokenize', env);
 		env.tokens = Prism.tokenize(env.code, env.grammar);
 		Prism.hooks.run('after-tokenize', env);
-		var compiledTokenStream = env.tokens;
+		const compiledTokenStream = env.tokens;
 
-		var simplifiedTokenStream = TokenStreamTransformer.simplify(compiledTokenStream);
+		const simplifiedTokenStream = TokenStreamTransformer.simplify(compiledTokenStream);
 
-		var tzd = JSON.stringify( simplifiedTokenStream ); var exp = JSON.stringify( testCase.expectedTokenStream );
-		var i = 0; var j = 0; var diff = "";
-		while ( j < tzd.length ){ if (exp[i] != tzd[j] || i == exp.length) diff += tzd[j]; else i++; j++; }
+		const tzd = JSON.stringify(simplifiedTokenStream);
+		const exp = JSON.stringify(testCase.expectedTokenStream);
+		let i = 0;
+		let j = 0;
+		let diff = "";
+		while (j < tzd.length) {
+			if (exp[i] != tzd[j] || i == exp.length)
+				diff += tzd[j];
+			else
+				i++;
+			j++;
+		}
 
-		// var message = "\nToken Stream: \n" + JSON.stringify( simplifiedTokenStream, null, " " ) + 
-		var message = "\nToken Stream: \n" + tzd + 
+		const tokenStreamStr = pretty ? TokenStreamTransformer.prettyprint(simplifiedTokenStream) : tzd;
+		const message = "\nToken Stream: \n" + tokenStreamStr +
 			"\n-----------------------------------------\n" +
 			"Expected Token Stream: \n" + exp +
 			"\n-----------------------------------------\n" + diff;
 
-		var result = assert.deepEqual(simplifiedTokenStream, testCase.expectedTokenStream, testCase.comment + message);
+		const result = assert.deepEqual(simplifiedTokenStream, testCase.expectedTokenStream, testCase.comment + message);
 	},
 
 
@@ -98,13 +107,13 @@ module.exports = {
 	 *
 	 * @returns {{languages: string[], mainLanguage: string}}
 	 */
-	parseLanguageNames: function (languageIdentifier) {
-		var languages = languageIdentifier.split("+");
-		var mainLanguage = null;
+	parseLanguageNames(languageIdentifier) {
+		let languages = languageIdentifier.split("+");
+		let mainLanguage = null;
 
 		languages = languages.map(
 			function (language) {
-				var pos = language.indexOf("!");
+				const pos = language.indexOf("!");
 
 				if (-1 < pos) {
 					if (mainLanguage) {
@@ -120,7 +129,7 @@ module.exports = {
 		);
 
 		if (!mainLanguage) {
-			mainLanguage = languages[languages.length-1];
+			mainLanguage = languages[languages.length - 1];
 		}
 
 		return {
@@ -137,12 +146,12 @@ module.exports = {
 	 * @param {string} filePath
 	 * @returns {{testSource: string, expectedTokenStream: Array.<Array.<string>>, comment:string?}|null}
 	 */
-	parseTestCaseFile: function (filePath) {
-		var testCaseSource = fs.readFileSync(filePath, "utf8");
-		var testCaseParts = testCaseSource.split(/^-{10,}\w*$/m);
+	parseTestCaseFile(filePath) {
+		const testCaseSource = fs.readFileSync(filePath, "utf8");
+		const testCaseParts = testCaseSource.split(/^-{10,}\w*$/m);
 
 		try {
-			var testCase = {
+			const testCase = {
 				testSource: testCaseParts[0].trim(),
 				expectedTokenStream: JSON.parse(testCaseParts[1]),
 				comment: null
@@ -170,14 +179,14 @@ module.exports = {
 	 * @param {string} languageIdentifier
 	 * @param {object} codes
 	 */
-	runTestsWithHooks: function (languageIdentifier, codes) {
-		var usedLanguages = this.parseLanguageNames(languageIdentifier);
-		var Prism = PrismLoader.createInstance(usedLanguages.languages);
+	runTestsWithHooks(languageIdentifier, codes) {
+		const usedLanguages = this.parseLanguageNames(languageIdentifier);
+		const Prism = PrismLoader.createInstance(usedLanguages.languages);
 		// the first language is the main language to highlight
 
-		for (var code in codes) {
+		for (const code in codes) {
 			if (codes.hasOwnProperty(code)) {
-				var env = {
+				const env = {
 					element: {},
 					language: usedLanguages.mainLanguage,
 					grammar: Prism.languages[usedLanguages.mainLanguage],

@@ -1,3 +1,6 @@
+null
+_
+X
 AZ
 PRISM
 FOOBAR_42
@@ -5,6 +8,9 @@ FOOBAR_42
 ----------------------------------------------------
 
 [
+	["constant", "null"],
+	["constant", "_"],
+	["constant", "X"],
 	["constant", "AZ"],
 	["constant", "PRISM"],
 	["constant", "FOOBAR_42"]
