@@ -5,7 +5,7 @@
   "main": "prism.js",
   "style": "themes/prism.css",
   "scripts": {
-    "test": "mocha tests/testrunner-tests.js && mocha tests/run.js && mocha tests/plugins/**/*.js"
+    "test": "mocha tests/testrunner-tests.js && mocha tests/plugins/**/*.js && mocha tests/run.js"
   },
   "repository": {
     "type": "git",
