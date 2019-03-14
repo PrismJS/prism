@@ -8,7 +8,7 @@
 	});
 
 	var keyword = plsql['keyword'];
-	if (Prism.util.type(keyword) !== 'Array') {
+	if (!Array.isArray(keyword)) {
 		keyword = plsql['keyword'] = [keyword];
 	}
 	keyword.unshift(
@@ -16,7 +16,7 @@
 	);
 
 	var operator = plsql['operator'];
-	if (Prism.util.type(operator) !== 'Array') {
+	if (!Array.isArray(operator)) {
 		operator = plsql['operator'] = [operator];
 	}
 	operator.unshift(
