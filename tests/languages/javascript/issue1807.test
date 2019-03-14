@@ -1,0 +1,23 @@
+Array.from();
+foo.var.new;
+
+----------------------------------------------------
+
+[
+	"Array",
+	["punctuation", "."],
+	["function", "from"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	"\nfoo",
+	["punctuation", "."],
+	"var",
+	["punctuation", "."],
+	"new",
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for properties which have the same name as keywords. See #1807.
