@@ -12,7 +12,9 @@ assignees: ''
 - Environment: [e.g. Browser, Node, Webpack]
 
 Does the latest version of Prism from the [download page](https://prismjs.com/download.html) also have this issue?
-Do Prism's [usage section](https://prismjs.com/index.html#basic-usage) or [docs](https://prismjs.com/extending.html) say anything about the issue?
+Does Prism's [documentation](https://prismjs.com/extending.html) say anything about the issue?
+
+If you're using Prism with Node or Webpack, please also see the [usage section](https://prismjs.com/index.html#basic-usage).
 
 **Description**
 A clear and concise description of what the bug is and how to reproduce it.
