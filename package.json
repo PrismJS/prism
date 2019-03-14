@@ -5,7 +5,7 @@
   "main": "prism.js",
   "style": "themes/prism.css",
   "scripts": {
-    "test": "mocha tests/testrunner-tests.js && mocha tests/run.js"
+    "test": "mocha tests/testrunner-tests.js && mocha tests/run.js && mocha tests/plugins/**/*.js"
   },
   "repository": {
     "type": "git",
@@ -31,6 +31,7 @@
     "gulp-rename": "^1.2.0",
     "gulp-replace": "^1.0.0",
     "gulp-uglify": "^3.0.1",
+    "jsdom": "^13.0.0",
     "minami": "^1.2.3",
     "mocha": "^6.0.0",
     "pump": "^3.0.0",
