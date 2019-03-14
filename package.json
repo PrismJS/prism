@@ -5,7 +5,10 @@
   "main": "prism.js",
   "style": "themes/prism.css",
   "scripts": {
-    "test": "mocha tests/testrunner-tests.js && mocha tests/run.js && mocha tests/plugins/**/*.js"
+    "test:runner": "mocha tests/testrunner-tests.js",
+    "test:languages": "mocha tests/run.js",
+    "test:plugins": "mocha tests/plugins/**/*.js",
+    "test": "npm run test:runner && npm run test:languages && npm run test:plugins"
   },
   "repository": {
     "type": "git",
