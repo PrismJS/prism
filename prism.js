@@ -40,7 +40,7 @@ function spanOfFirstCapturingGroup(regexSource) {
 	// replace char sets
 	regexSource = regexSource.replace(/\[[^\]]*\]/g, function (m) {
 		// == '_'.repeat(m.length)
-		return m.replace(/[\s\S]/, '_');
+		return m.replace(/[\s\S]/g, '_');
 	});
 
 	// TODO: Add support for named capturing groups
