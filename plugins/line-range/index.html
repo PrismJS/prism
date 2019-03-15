@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<meta charset="utf-8" />
+	<link rel="icon" href="favicon.png" />
+	<title>Line Range ▲ Prism plugins</title>
+	<base href="../.." />
+	<link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="themes/prism.css" data-noprefix />
+  <link rel="stylesheet" href="plugins/line-numbers/prism-line-numbers.css" data-noprefix />
+	<script src="scripts/prefixfree.min.js"></script>
+
+	<script>
+		var _gaq = [
+			['_setAccount', 'UA-33746269-1'],
+			['_trackPageview']
+		];
+	</script>
+	<script src="https://www.google-analytics.com/ga.js" async></script>
+</head>
+
+<body>
+
+	<header>
+		<div class="intro" data-src="templates/header-plugins.html" data-type="text/html"></div>
+
+		<h2>Line Range</h2>
+		<p>Efficiently display a range of line numbers from a fetched source file</p>
+	</header>
+
+	<section class="language-markup">
+		<h1>How to use</h1>
+		<p>Adding a <code>data-fetch</code> and <code>data-range</code> attribute to an empty <code>&lt;pre></code> will trigger Fetch Line Numbers.</p>
+		<p>The <code>data-fetch</code> attribute takes a filepath or valid URL, and the <code>data-range</code> attribute expects a comma
+			separated value of integers that describe the desired range of lines to display (<code>1,15</code>). </p>
+		<p>
+			Fetch Line Range automatically inserts the correct <code>data-start</code> parameter for use with the Line Numbers
+			plugin.
+			This way, the line numbers displayed will correspond correctly with the code file that was fetched.
+			You can override this functionality by setting the <code>data-start</code> attribute on your <code>&lt;pre></code>
+			element
+			manually, and Line Range will use it instead of injecting a value.
+		</p>
+
+	</section>
+
+
+	<section>
+		<h1>Example</h1>
+		<h3>Line-Range is a plugin for Prism.js</h3>
+		<p>It allows you to easily define a source code file and a line range to display, and it will automatically retrieve
+      the file and display the specified range. Line Range does this efficiently by only fetching each specified file once, and caching the response. Line Range also minimizes iterating over the DOM as much as reasonably possible for a plugin =)
+      
+			For example, the highlighted block below is the first 5 lines of this plugins source,
+			which was fetched locally, and displayed using the markup:
+			<p><code class="language-html">
+					<<!---->pre data-fetch="plugins/line-range/prism-line-range.js" data-range="1,5" class="language-js line-numbers"></pre>
+				</code> <br>results in:</p>
+		</p>
+		<pre data-fetch="plugins/line-range/prism-line-range.js" data-range="1,5" class="language-js line-numbers"></pre>
+		<p>Hey! What happened to line 5 as specified in the markup? Well, as also shown below, leading and trailing blank
+			lines that end up in codechunks are stripped. This does not affect the line numbering.</p>
+		<p> This makes it much easier to do with Prism what many of us use it for: breaking down code files in to logical
+			chunks for explanation.
+			Fetch-Line-Range also requests each file only once, and uses cache to provide the information to the markup rather
+			than
+			making a request each time the file is used. This minimizes network requests. Fetch-Line-Range uses the <code class="language-js">fetch()</code>
+			method to make
+			requests, and so can load external source files as long as the request destination is CORS enabled. Here is the rest
+			of the plugins code:
+		</p>
+		<pre data-fetch="plugins/line-range/prism-line-range.js" data-range="6,26" class="language-js line-numbers"></pre>
+		<p>The splitLines() function does the work of reading the data range and retrieving the codechunk from cache.
+			Then it inserts it in to the proper place and highlights it. If you are using the line numbers plugin
+			with Prism, it will appropriately adjust the data-start value so that your line numbers display properly.
+		</p>
+		<pre data-fetch="plugins/line-range/prism-line-range.js" data-range="28,46" class="language-js line-numbers"></pre>
+		<p>lineRange() is where the magic happens. It grabs all the pre elements with a <code>data-fetch</code> property,
+			creates a list of unique source files used, sends them to the init() function to be fetched and cached to be used by
+			splitLines().
+		</p>
+		<pre data-fetch="plugins/line-range/prism-line-range.js" data-range="48,67" class="language-css line-numbers"></pre>
+		<p>Here are the hooks to register with Prism as a plugin, and also the execution of the main function once Prism has
+			loaded</p>
+		<pre data-fetch="plugins/line-range/prism-line-range.js" data-range="69,91" class="language-css line-numbers"></pre>
+	</section>
+
+	<footer data-src="templates/footer.html" data-type="text/html"></footer>
+
+	<script src="prism.js"></script>
+	<script src="plugins/line-numbers/prism-line-numbers.js"></script>
+	<script src="plugins/line-range/prism-line-range.js"></script>
+	<script src="scripts/utopia.js"></script>
+	<script src="components.js"></script>
+	<script src="scripts/code.js"></script>
+
+
+</body>
+
+</html>

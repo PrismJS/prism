@@ -937,6 +937,11 @@
 			"title": "Line Numbers",
 			"owner": "kuba-kubula"
 		},
+		"line-range": {
+			"title": "Line Range",
+			"noCSS": true,
+			"owner":"berti"
+		},
 		"show-invisibles": {
 			"title": "Show Invisibles",
 			"after": [
