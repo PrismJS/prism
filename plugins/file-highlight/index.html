@@ -1,75 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
-<meta charset="utf-8" />
-<link rel="icon" href="favicon.png" />
-<title>File Highlight ▲ Prism plugins</title>
-<base href="../.." />
-<link rel="stylesheet" href="style.css" />
-<link rel="stylesheet" href="themes/prism.css" data-noprefix />
-<link rel="stylesheet" href="plugins/toolbar/prism-toolbar.css" data-noprefix />
-<script src="scripts/prefixfree.min.js"></script>
+	<meta charset="utf-8" />
+	<link rel="icon" href="favicon.png" />
+	<title>File Highlight ▲ Prism plugins</title>
+	<base href="../.." />
+	<link rel="stylesheet" href="style.css" />
+	<link rel="stylesheet" href="themes/prism.css" data-noprefix />
+	<link rel="stylesheet" href="plugins/toolbar/prism-toolbar.css" data-noprefix />
+	<link rel="stylesheet" href="plugins/line-numbers/prism-line-numbers.css" data-noprefix />
 
-<script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
-<script src="https://www.google-analytics.com/ga.js" async></script>
+	<script src="scripts/prefixfree.min.js"></script>
+
+	<script>
+		var _gaq = [
+			['_setAccount', 'UA-33746269-1'],
+			['_trackPageview']
+		];
+	</script>
+	<script src="https://www.google-analytics.com/ga.js" async></script>
 </head>
+
 <body>
 
-<header>
-	<div class="intro" data-src="templates/header-plugins.html" data-type="text/html"></div>
+	<header>
+		<div class="intro" data-src="templates/header-plugins.html" data-type="text/html"></div>
 
-	<h2>File Highlight</h2>
-	<p>Fetch external files and highlight them with Prism. Used on the Prism website itself.</p>
-</header>
+		<h2>File Highlight</h2>
+		<p>Fetch external files and highlight them with Prism. Used on the Prism website itself.</p>
+	</header>
 
-<section class="language-markup">
-	<h1>How to use</h1>
+	<section class="language-markup">
+		<h1>How to use</h1>
 
-	<p>Use the <code>data-src</code> attribute on empty <code>&lt;pre></code> elements, like so:</p>
+		<p>Use the <code>data-src</code> attribute on empty <code>&lt;pre></code> elements, like so:</p>
 
-	<pre><code>&lt;pre data-src="myfile.js">&lt;/pre></code></pre>
+		<pre><code>&lt;pre data-src="myfile.js">&lt;/pre></code></pre>
 
-	<p>You don’t need to specify the language, it’s automatically determined by the file extension.
-	If, however, the language cannot be determined from the file extension or the file extension is incorrect, you may specify a language as well (with the usual class name way).</p>
+		<p>Use the <code>data-range</code> attribute to display only a desired range of lines
+			from the file, like so:</p>
 
-	<p>Please note that the files are fetched with XMLHttpRequest. This means that if the file is on a different origin, fetching it will fail, unless CORS is enabled on that website.</p>
+		<pre><code>&lt;pre data-src="myfile.js" data-range="1,5">&lt;/pre></code></pre>
+		<p>File Highlight only makes one XHR request per unique file identified, so you don't have to worry about extra
+			requests when displaying multiple chunks of the same file =)</p>
+		<p>
+			When used in conjunction with the <a href="plugins/line-numbers">Line Numbers plugin</a>, this plugin will also
+			inject the proper <code>data-start</code> value and display line numbers corresponding to the fetched file.
+			To override this behavior, simply set the <code>data-start</code> attribute manually.
+		</p>
+		<p>You don’t need to specify the language, it’s automatically determined by the file extension.
+			If, however, the language cannot be determined from the file extension or the file extension is incorrect, you may
+			specify a language as well (with the usual class name way).</p>
 
-	<p>
-		When used in conjunction with the <a href="plugins/toolbar">Toolbar plugin</a>, this plugin can also display a button to download the file.
-		To use it, add a <code>data-download-link</code> attribute on the <code>&lt;pre></code> element.<br />
-		Optionally, the text can also be customized by using a <code>data-download-link-label</code> attribute.
-	</p>
-	<pre><code>&lt;pre data-src="myfile.js" data-download-link data-download-link-label="Download this file">&lt;/pre></code></pre>
-</section>
+		<p>Please note that the files are fetched with XMLHttpRequest. This means that if the file is on a different origin,
+			fetching it will fail, unless CORS is enabled on that website.</p>
 
-<section>
-	<h1>Examples</h1>
+		<p>
+			When used in conjunction with the <a href="plugins/toolbar">Toolbar plugin</a>, this plugin can also display a
+			button to download the file.
+			To use it, add a <code>data-download-link</code> attribute on the <code>&lt;pre></code> element.<br />
+			Optionally, the text can also be customized by using a <code>data-download-link-label</code> attribute.
+		</p>
+		<pre><code>&lt;pre data-src="myfile.js" data-download-link data-download-link-label="Download this file">&lt;/pre></code></pre>
+	</section>
 
-	<p>The plugin’s JS code:</p>
-	<pre data-src="plugins/file-highlight/prism-file-highlight.js"></pre>
+	<section>
+		<h1>Examples</h1>
 
-	<p>This page:</p>
-	<pre data-src="plugins/file-highlight/index.html"></pre>
+		<p>The plugin’s JS code:</p>
+		<pre data-src="plugins/file-highlight/prism-file-highlight.js"></pre>
 
-	<p>File that doesn’t exist:</p>
-	<pre data-src="foobar.js"></pre>
+		<p>This page (first 15 lines using data-range):</p>
+		<pre data-src="plugins/file-highlight/index.html" data-range="1,15"></pre>
 
-	<p>With a download button:</p>
-	<pre data-src="plugins/file-highlight/prism-file-highlight.js" data-download-link data-download-link-label="Download this file"></pre>
+		<p>File that doesn’t exist:</p>
+		<pre data-src="foobar.js"></pre>
 
-	<p>For more examples, browse around the Prism website. Most large code samples are actually files fetched with this plugin.</p>
-</section>
+		<p>With a download button, line-numbers, and data-range="1,6" :</p>
+		<pre data-src="plugins/file-highlight/prism-file-highlight.js" data-range="1,6" class="line-numbers"
+		 data-download-link data-download-link-label="Download this file"></pre>
 
-<footer data-src="templates/footer.html" data-type="text/html"></footer>
+		<p>For more examples, browse around the Prism website. Most large code samples are actually files fetched with this
+			plugin.</p>
+	</section>
 
-<script src="prism.js"></script>
-<!-- The File Highlight plugin is already included into Prism.js build -->
-<script src="plugins/toolbar/prism-toolbar.js"></script>
-<script src="scripts/utopia.js"></script>
-<script src="components.js"></script>
-<script src="scripts/code.js"></script>
+	<footer data-src="templates/footer.html" data-type="text/html"></footer>
+
+	<script src="prism.js"></script>
+	<!-- The File Highlight plugin is already included into Prism.js build -->
+	<script src="plugins/toolbar/prism-toolbar.js"></script>
+	<script src="plugins/line-numbers/prism-line-numbers.js"></script>
+	<script src="scripts/utopia.js"></script>
+	<script src="components.js"></script>
+	<script src="scripts/code.js"></script>
 
 
 </body>
+
 </html>
