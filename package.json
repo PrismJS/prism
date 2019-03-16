@@ -48,8 +48,5 @@
       "themes/*.css",
       "prism.js"
     ]
-  },
-  "dependencies": {
-    "gulp": "^4.0.0"
   }
 }
