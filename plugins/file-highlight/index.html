@@ -39,23 +39,32 @@
 
 		<pre><code>&lt;pre data-src="myfile.js">&lt;/pre></code></pre>
 
-		<p>Use the <code>data-range</code> attribute to display only a desired range of lines
-			from the file, like so:</p>
+		<p>
+			You don’t need to specify the language, it’s automatically determined by the file extension.
+			If, however, the language cannot be determined from the file extension or the file extension is incorrect, you may
+			specify a language as well (with the usual class name way).
+		</p>
+
+		<p>
+			Use the <code>data-range</code> attribute to display only a selected range of lines
+			from the file, like so:
+		</p>
 
 		<pre><code>&lt;pre data-src="myfile.js" data-range="1,5">&lt;/pre></code></pre>
-		<p>File Highlight only makes one XHR request per unique file identified, so you don't have to worry about extra
-			requests when displaying multiple chunks of the same file =)</p>
-		<p>
-			When used in conjunction with the <a href="plugins/line-numbers">Line Numbers plugin</a>, this plugin will also
-			inject the proper <code>data-start</code> value and display line numbers corresponding to the fetched file.
-			To override this behavior, simply set the <code>data-start</code> attribute manually.
-		</p>
-		<p>You don’t need to specify the language, it’s automatically determined by the file extension.
-			If, however, the language cannot be determined from the file extension or the file extension is incorrect, you may
-			specify a language as well (with the usual class name way).</p>
 
-		<p>Please note that the files are fetched with XMLHttpRequest. This means that if the file is on a different origin,
-			fetching it will fail, unless CORS is enabled on that website.</p>
+		<p>
+			Lines start at 1, so <code>"1,5"</code> will display line 1 up to and including line 5. It's also possible to specify just a single line (e.g. <code>"5"</code> for just line 5) and open ranges (e.g. <code>"3,"</code> for all lines starting at line 3). Negative integers can be used to specify the n-th last line, e.g. -2 for the second last line.
+		</p>
+		<p>
+			When <code>data-range</code> is used in conjunction with the <a href="plugins/line-numbers">Line Numbers plugin</a>,
+			this plugin will add the proper <code>data-start</code> according to the specified range.
+			This behavior can be overridden by setting the <code>data-start</code> attribute manually.
+		</p>
+
+		<p>
+			Please note that the files are fetched with XMLHttpRequest. This means that if the file is on a different origin,
+			fetching it will fail, unless CORS is enabled on that website.
+		</p>
 
 		<p>
 			When used in conjunction with the <a href="plugins/toolbar">Toolbar plugin</a>, this plugin can also display a
@@ -78,12 +87,11 @@
 		<p>File that doesn’t exist:</p>
 		<pre data-src="foobar.js"></pre>
 
-		<p>With a download button, line-numbers, and data-range="1,6" :</p>
-		<pre data-src="plugins/file-highlight/prism-file-highlight.js" data-range="1,6" class="line-numbers"
+		<p>With a download button, line-numbers, and data-range="29,62" :</p>
+		<pre data-src="plugins/file-highlight/prism-file-highlight.js" data-range="29,62" class="line-numbers"
 		 data-download-link data-download-link-label="Download this file"></pre>
 
-		<p>For more examples, browse around the Prism website. Most large code samples are actually files fetched with this
-			plugin.</p>
+		<p>For more examples, browse around the Prism website. Most large code samples are actually files fetched with this plugin.</p>
 	</section>
 
 	<footer data-src="templates/footer.html" data-type="text/html"></footer>

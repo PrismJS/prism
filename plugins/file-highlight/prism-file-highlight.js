@@ -2,96 +2,181 @@
 	if (typeof self === 'undefined' || !self.Prism || !self.document || !document.querySelector) {
 		return;
 	}
+
+	var NEW_LINE = /\r\n?|\n/g;
+	var LANG = /\blang(?:uage)?-([\w-]+)\b/i;
+
+	var EXTENSIONS = {
+		'js': 'javascript',
+		'py': 'python',
+		'rb': 'ruby',
+		'ps1': 'powershell',
+		'psm1': 'powershell',
+		'sh': 'bash',
+		'bat': 'batch',
+		'h': 'c',
+		'tex': 'latex'
+	};
+
+
 	/**
-	 * @param  {String} src - URL or path of source file to load
-	 * @param  {Function} cb - callback function to process the re constructed response
+	 * @typedef LoadResult
+	 * @property {string} source The URL or relative path of the loaded file.
+	 * @property {string} text The text of the file loaded or an error message.
+	 * @property {boolean} failed Whether an error occurred during loading.
+	 */
+
+	/**
+	 * Loads the given file.
+	 *
+	 * @param {string} src The URL or path of the source file to load.
+	 * @param {(result: Readonly<LoadResult>) => void} cb A callback function to process the response.
 	 */
 	function loadFile(src, cb) {
 		var xhr = new XMLHttpRequest();
-		var s = [src];
-		xhr.open("GET", src, true);
+		xhr.open('GET', src, true);
 		xhr.onreadystatechange = function () {
 			if (xhr.readyState == 4) {
+				/** @type {LoadResult} */
+				var result = {
+					source: src,
+					text: '',
+					failed: false
+				};
+
 				if (xhr.status < 400 && xhr.responseText) {
-					s[1] = xhr.responseText.split('\n')
-				} else if (xhr.status >= 400) {
-					s[1] = "✖ Error " + xhr.status + " while fetching file: " + xhr.statusText
-					s[3] = "ERROR"
+					result.text = xhr.responseText;
 				} else {
-					s[1] = "✖ Error: File does not exist or is empty"
-					s[3] = "ERROR"
+					result.failed = true;
+					if (xhr.status >= 400) {
+						result.text = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+					} else {
+						result.text = '✖ Error: File does not exist or is empty';
+					}
 				}
-				return cb(s)
+
+				return cb(result);
 			}
-		}
+		};
 		xhr.send(null);
 	}
-	/**
-	 * @param  {Element} pre - expects a DOM element - in this case a pre 
-	 * @param  {Array} s - an array containing the file name from data-src and the text of the source split by newline [filename, filetext]
-	 */
-	function splitLines(pre, s) {
-		var Extensions = {
-			'js': 'javascript',
-			'py': 'python',
-			'rb': 'ruby',
-			'ps1': 'powershell',
-			'psm1': 'powershell',
-			'sh': 'bash',
-			'bat': 'batch',
-			'h': 'c',
-			'tex': 'latex'
-		};
-		var language, lineNumbers, parent = pre;
-		var lang = /\blang(?:uage)?-([\w-]+)\b/i;
-		var lineNumbersTest = /\bline-numbers\b/i;
 
-		while (parent && !lang.test(parent.className)) {
-			parent = parent.parentNode;
-		}
-		if (parent) {
-			language = (pre.className.match(lang) || [, ''])[1];
-			lineNumbers = lineNumbersTest.test(pre.className);
-		}
+	/**
+	 * Inserts the text content of a loaded file into the given `pre` and highlights the code.
+	 *
+	 * @param {HTMLPreElement} pre
+	 * @param {Readonly<LoadResult>} result
+	 */
+	function processElement(pre, result) {
+		// check <pre> for a language-xxxx class
+		var language = (LANG.exec(pre.className) || [, ''])[1];
+
+		// no language found -> use the file extension
 		if (!language) {
-			var extension = (s[0].match(/\.(\w+)$/) || [, ''])[1];
-			language = Extensions[extension] || extension;
+			var extension = (result.source.match(/\.(\w+)$/) || [, ''])[1];
+			language = EXTENSIONS[extension] || extension;
 		}
-		// if there is no data-range, set it to show all
-		!pre.getAttribute('data-range') ? pre.setAttribute('data-range', "1,-1") : null;
-		// save the data-range string
-		var lineRange = pre.getAttribute('data-range');
-		// split it in to an array
-		var rawLines = lineRange.split(',');
-		// if the range is a single line, the array will contain an NaN element from the split(), this removes it
-		var lines = rawLines.filter(function (x) {
-			return isNaN(x) === false;
-		});
-		// integer value of the startLine
-		var startLine = parseInt(lines[0], 10);
-		// if no endLine value is provided, make it -1, which is the end of the file, otherwise, use the integer value provided
-		var endLine = lines[1] === undefined ? -1 : parseInt(lines[1], 10);
-		// if the element has a data-start, dont do anything, if it doesn't and we are using line-numbers, add it
-		!pre.getAttribute('data-start') && lineNumbers ? pre.setAttribute('data-start', startLine) : null;
-		// the code text is in s[1] 
-		var codeRange = s[1];
-		// make the code element
+
+		var text = result.text;
+
+		var range = pre.getAttribute('data-range');
+		if (!result.failed && range) {
+			var parts = range.split(',', 2);
+			var start = parseInt(parts[0], 10);
+			var end;
+			if (parts[1] === undefined) {
+				// e.g. data-range="2"
+				end = start;
+			} else if (parts[1] === '') {
+				// e.g. data-range="2,"
+				end = -1;
+			} else {
+				// e.g. data-range="1,5"
+				end = parseInt(parts[1], 10);
+			}
+
+			// only if both are valid
+			if (!isNaN(start) && !isNaN(end)) {
+				var lines = text.split(NEW_LINE);
+
+				if (start > 0) {
+					start--;
+				} else if (start < 0) {
+					start += lines.length; // slice can handle negatives but data-start cannot.
+				}
+				if (end === -1) {
+					end = lines.length;
+				} else if (end < 0) {
+					end++;
+				}
+
+				text = lines.slice(start, end).join('\n');
+
+				// add data-start for line numbers
+				if (!pre.hasAttribute('data-start')) {
+					pre.setAttribute('data-start', String(start + 1));
+				}
+			}
+		}
+
+		// create <code class="language-xxxx">
 		var code = document.createElement('code');
-		// add the language class from the auto-identifier
-		code.classList = 'language-' + language;
-		// are we using line numbers? add that class to code element
-		lineNumbers ? code.classList += ' line-numbers' : null;
-		// empty the pre and append the code
-		pre.textContent = '';
-		pre.appendChild(code);
-		// s[3] is only present in the array upon XHR error, check for it, if it's not there, slice/join the code array
-		if (!s[3]) {
-			codeRange = codeRange.slice(startLine - 1, endLine).join('\n');
+		code.className = 'language-' + language;
+		code.textContent = text;
+
+		// set <pre> class
+		pre.className = pre.className.replace(LANG, ' ').replace(/\s+/g, ' ') + ' language-' + language;
+
+		// empty <pre> and append <code>
+		while (pre.firstChild) {
+			pre.removeChild(pre.firstChild);
 		}
-		// put the joined code/error message in the code element
-		code.textContent = codeRange;
-		// Priiizzzzaammmm...
-		Prism.highlightAllUnder(pre);
+		pre.appendChild(code);
+
+		if (!result.failed) {
+			// highlight <code>
+			Prism.highlightElement(code);
+		}
+
+		// mark as loaded
+		pre.setAttribute('data-src-loaded', '');
+	}
+
+	/**
+	 * @param {ParentNode} [container=document]
+	 */
+	Prism.fileHighlight = function (container) {
+		container = container || document;
+		var preElements = Array.prototype.slice.call(container.querySelectorAll('pre[data-src]'));
+
+		/**
+		 * A map from file source to `pre` elements with that source.
+		 *
+		 * This is to make only one request per file.
+		 *
+		 * @type {Object<string, HTMLPreElement[]>}
+		 */
+		var map = {};
+		preElements.forEach(function (pre) {
+			// ignore if already loaded
+			if (pre.hasAttribute('data-src-loaded')) {
+				return;
+			}
+
+			pre.textContent = 'Loading…';
+
+			var src = pre.getAttribute('data-src');
+			(map[src] = map[src] || []).push(pre);
+		});
+
+		Object.keys(map).forEach(function (src) {
+			loadFile(src, function (result) {
+				map[src].forEach(function (pre) {
+					processElement(pre, result);
+				});
+			});
+		});
+
 		// download toolbar button
 		if (Prism.plugins.toolbar) {
 			Prism.plugins.toolbar.registerButton('download-file', function (env) {
@@ -107,33 +192,12 @@
 				return a;
 			});
 		}
-	}
-
-	/**
-	 * @param {Element} [container=document]
-	 */
-	self.Prism.fileHighlight = function (container) {
-		container = container || document;
-		var preElements = Array.prototype.slice.call(container.querySelectorAll('pre[data-src]'));
-		var fileArray = preElements.map(function (el) {
-			return el.getAttribute('data-src');
-		});
-		var filteredFileArray = fileArray.filter(function (el, pos) {
-			return fileArray.indexOf(el) == pos;
-		});
-		filteredFileArray.map(function (src) {
-			loadFile(src, function (s) {
-				preElements.map(function (el) {
-					el.getAttribute('data-src') === s[0] ? splitLines(el, s) : null;
-				});
-			});
-		});
-		
 	};
-	if (document.readyState === 'loading') { // Loading hasn't finished yet
-		document.addEventListener('DOMContentLoaded', self.Prism.fileHighlight());
+
+	if (document.readyState === 'loading') {
+		// Loading hasn't finished yet
+		document.addEventListener('DOMContentLoaded', function () { Prism.fileHighlight(); });
 	} else {
-		// execute inside handler, for dropping Event as argument
-		self.Prism.fileHighlight();
+		Prism.fileHighlight();
 	}
 })();
