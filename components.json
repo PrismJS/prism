@@ -925,6 +925,10 @@
 		"yaml": {
 			"title": "YAML",
 			"owner": "hason"
+		},
+		"cmake": {
+			"title": "CMake",
+			"owner": "mjrogozinski"
 		}
 	},
 	"plugins": {
