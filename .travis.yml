@@ -12,6 +12,7 @@ branches:
 before_script:
 - npm install -g gulp
 - gulp
+- gulp gitChanges
 script: npm test
 deploy:
   provider: npm
