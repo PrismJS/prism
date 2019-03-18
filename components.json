@@ -197,6 +197,11 @@
 			"require": "javascript",
 			"owner": "R-osey"
 		},
+		"cmake": {
+			"title": "CMake",
+			"require": "python",
+			"owner": "mjrogozinski"
+		},
 		"clojure": {
 			"title": "Clojure",
 			"owner": "troglotit"
@@ -925,11 +930,6 @@
 		"yaml": {
 			"title": "YAML",
 			"owner": "hason"
-		},
-		"cmake": {
-			"title": "CMake",
-			"require": "python",
-			"owner": "mjrogozinski"
 		}
 	},
 	"plugins": {
