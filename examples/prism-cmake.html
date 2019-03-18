@@ -31,56 +31,56 @@ CXX_STANDARD</code></pre>
 <h2>Full example</h2>
 <pre><code>cmake_minimum_required(VERSION 3.13)
 
-        project(crypto)
-        
-        add_library(base INTERFACE)
-        target_compile_features(base INTERFACE
-            cxx_std_17
-            )
-        
-        add_subdirectory(helpers)
-        add_subdirectory(msg)
-        
-        add_library(analyzers-obj OBJECT
-            CryptoAnalyzer.cpp
-            )
-        
-        target_include_directories(analyzers-obj
-            PUBLIC
-                ${CMAKE_CURRENT_SOURCE_DIR}
-            )
-        
-        find_package(predi REQUIRED)
-        target_link_libraries(analyzers-obj
-            PUBLIC
-                base
-                predi::predi
-                crypto::helpers
-            )
-        
-        set_target_properties(analyzers-obj
-            PROPERTIES
-                POSITION_INDEPENDENT_CODE ON
-            )
-        
-        add_library(analyzers SHARED
-            $<TARGET_OBJECTS:analyzers-obj>
-            )
-        
-        target_link_libraries(analyzers PUBLIC analyzers-obj)
-        
-        add_executable(crypto
-            main.cpp
-            )
-        
-        target_link_libraries(crypto
-            PUBLIC
-                analyzers
-            PRIVATE
-                base
-                messages
-            )
-        
-        enable_testing()
-        add_subdirectory(tests)
+project(crypto)
+
+add_library(base INTERFACE)
+target_compile_features(base INTERFACE
+    cxx_std_17
+    )
+
+add_subdirectory(helpers)
+add_subdirectory(msg)
+
+add_library(analyzers-obj OBJECT
+    CryptoAnalyzer.cpp
+    )
+
+target_include_directories(analyzers-obj
+    PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}
+    )
+
+find_package(predi REQUIRED)
+target_link_libraries(analyzers-obj
+    PUBLIC
+        base
+        predi::predi
+        crypto::helpers
+    )
+
+set_target_properties(analyzers-obj
+    PROPERTIES
+        POSITION_INDEPENDENT_CODE ON
+    )
+
+add_library(analyzers SHARED
+    $<TARGET_OBJECTS:analyzers-obj>
+    )
+
+target_link_libraries(analyzers PUBLIC analyzers-obj)
+
+add_executable(crypto
+    main.cpp
+    )
+
+target_link_libraries(crypto
+    PUBLIC
+        analyzers
+    PRIVATE
+        base
+        messages
+    )
+
+enable_testing()
+add_subdirectory(tests)
 </code></pre>
