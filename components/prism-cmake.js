@@ -4,7 +4,7 @@ Prism.languages.cmake = {
 		lookbehind: true
     },
     'string': {
-		pattern: /(?:[rub]|rb|br)?("|')(?:\\.|(?!\1)[^\\\r\n])*\1/i,
+		pattern: /("|')(?:\\.|(?!\1)[^\\\r\n])*\1/,
 		greedy: true
     },
     'punctuation': /[()>}]|\$[<{]/,
