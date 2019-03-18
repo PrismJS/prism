@@ -199,7 +199,6 @@
 		},
 		"cmake": {
 			"title": "CMake",
-			"require": "python",
 			"owner": "mjrogozinski"
 		},
 		"clojure": {

@@ -1,0 +1,13 @@
+# standalone
+add_library() # after code
+
+----------------------------------------------------
+
+[
+	["comment", "# standalone"],
+    ["function", "add_library"], ["punctuation", "("], ["punctuation", ")"], ["comment", "# after code"]
+]
+
+----------------------------------------------------
+
+Checks for comments.

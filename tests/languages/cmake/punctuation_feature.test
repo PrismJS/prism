@@ -1,0 +1,15 @@
+${CMAKE_CURRENT_SOURCE_DIR}
+$<TARGET_OBJECTS:foo>
+add_library()
+
+----------------------------------------------------
+
+[
+	["punctuation", "${"], ["keyword", "CMAKE_CURRENT_SOURCE_DIR"], ["punctuation", "}"],
+    ["punctuation", "$<"], ["namespace", "TARGET_OBJECTS"], ":foo", ["punctuation", ">"],
+    ["function", "add_library"], ["punctuation", "("], ["punctuation", ")"]
+]
+
+----------------------------------------------------
+
+Checks for punctuation.
