@@ -1,9 +1,14 @@
 "This is a string"
+"This is 
+multi
+line
+string"
 
 ----------------------------------------------------
 
 [
-	["string", "\"This is a string\""]
+	["string", "\"This is a string\""],
+	["string", "\"This is \nmulti\nline\nstring\""]
 ]
 
 ----------------------------------------------------

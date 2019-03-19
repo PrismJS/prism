@@ -3,8 +3,8 @@ Prism.languages.cmake = {
 	  pattern: /#.*/,
     },
     'string': {
-		pattern: /("|')(?:\\.|(?!\1)[^\\\r\n])*\1/,
-		greedy: true
+    pattern: /"(?:[^\\"]|\\.)*"/,
+    greedy: true
     },
     'punctuation': /[()>}]|\$[<{]/,
     'number': /(?:\b(?=\d)|\B(?=\.))(?:0[bo])?(?:(?:\d|0x[\da-f])[\da-f]*\.?\d*|\.\d+)(?:e[+-]?\d+)?j?\b/i,
