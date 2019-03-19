@@ -9,13 +9,13 @@ TARGET_OBJECTS
 ----------------------------------------------------
 
 [
-    ["namespace", "PROPERTIES"],
-    ["namespace", "SHARED"],
-    ["namespace", "PRIVATE"],
-    ["namespace", "STATIC"],
-    ["namespace", "PUBLIC"],
-    ["namespace", "INTERFACE"],
-    ["namespace", "TARGET_OBJECTS"]
+	["namespace", "PROPERTIES"],
+	["namespace", "SHARED"],
+	["namespace", "PRIVATE"],
+	["namespace", "STATIC"],
+	["namespace", "PUBLIC"],
+	["namespace", "INTERFACE"],
+	["namespace", "TARGET_OBJECTS"]
 ]
 
 ----------------------------------------------------

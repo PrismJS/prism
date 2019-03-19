@@ -5,7 +5,7 @@ baz()
 
 [
 	["function", "foobar"], ["punctuation", "("], ["punctuation", ")"],
-    ["function", "baz"], ["punctuation", "("], ["punctuation", ")"]
+	["function", "baz"], ["punctuation", "("], ["punctuation", ")"]
 ]
 
 ----------------------------------------------------

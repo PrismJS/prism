@@ -16,20 +16,20 @@ DEFINED
 ----------------------------------------------------
 
 [
-    ["operator", "NOT"],
-    ["operator", "AND"],
-    ["operator", "OR"],
-    ["operator", "MATCHES"],
-    ["operator", "LESS"],
-    ["operator", "GREATER"],
-    ["operator", "EQUAL"],
-    ["operator", "STRLESS"],
-    ["operator", "STRGREATER"],
-    ["operator", "STREQUAL"],
-    ["operator", "VERSION_LESS"],
-    ["operator", "VERSION_EQUAL"],
-    ["operator", "VERSION_GREATER"],
-    ["operator", "DEFINED"]
+	["operator", "NOT"],
+	["operator", "AND"],
+	["operator", "OR"],
+	["operator", "MATCHES"],
+	["operator", "LESS"],
+	["operator", "GREATER"],
+	["operator", "EQUAL"],
+	["operator", "STRLESS"],
+	["operator", "STRGREATER"],
+	["operator", "STREQUAL"],
+	["operator", "VERSION_LESS"],
+	["operator", "VERSION_EQUAL"],
+	["operator", "VERSION_GREATER"],
+	["operator", "DEFINED"]
 ]
 
 ----------------------------------------------------
