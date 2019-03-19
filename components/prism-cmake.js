@@ -1,10 +1,10 @@
 Prism.languages.cmake = {
     'comment': {
-    pattern: /#.*/,
+        pattern: /#.*/,
     },
     'string': {
-    pattern: /"(?:[^\\"]|\\.)*"/,
-    greedy: true
+        pattern: /"(?:[^\\"]|\\.)*"/,
+        greedy: true
     },
     'punctuation': /[()>}]|\$[<{]/,
     'number': /(?:\b(?=\d)|\B(?=\.))(?:0[bo])?(?:(?:\d|0x[\da-f])[\da-f]*\.?\d*|\.\d+)(?:e[+-]?\d+)?j?\b/i,
