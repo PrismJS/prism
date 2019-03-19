@@ -11,6 +11,6 @@ Prism.languages.cmake = {
 	'namespace': /\b(?:PROPERTIES|SHARED|PRIVATE|STATIC|PUBLIC|INTERFACE|TARGET_OBJECTS)\b/,
 	'operator': /\b(?:NOT|AND|OR|MATCHES|LESS|GREATER|EQUAL|STRLESS|STRGREATER|STREQUAL|VERSION_LESS|VERSION_EQUAL|VERSION_GREATER|DEFINED)\b/,
 	'number': /\b\d+(?:\.\d+)*\b/,
-	'function': /\b[a-z_]\w*(?=\s*\()\b/,
+	'function': /\b[a-z_]\w*(?=\s*\()\b/i,
 	'punctuation': /[()>}]|\$[<{]/
 };
