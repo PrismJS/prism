@@ -5,9 +5,7 @@ Prism.languages.cmake = {
 	'boolean': /\b(ON|OFF|TRUE|FALSE)\b/,
 	'namespace': /\b(PROPERTIES|SHARED|PRIVATE|STATIC|PUBLIC|INTERFACE|TARGET_OBJECTS)\b/,
 	'operator': /\b(NOT|AND|OR|MATCHES|LESS|GREATER|EQUAL|STRLESS|STRGREATER|STREQUAL|VERSION_LESS|VERSION_EQUAL|VERSION_GREATER|DEFINED)\b/,
-	'comment': {
-		pattern: /#.*/,
-	},
+	'comment': /#.*/,
 	'string': {
 		pattern: /"(?:[^\\"]|\\.)*"/,
 		greedy: true
