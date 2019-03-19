@@ -64,7 +64,7 @@ set_target_properties(analyzers-obj
     )
 
 add_library(analyzers SHARED
-    $<TARGET_OBJECTS:analyzers-obj>
+    $&lt;TARGET_OBJECTS:analyzers-obj&gt;
     )
 
 target_link_libraries(analyzers PUBLIC analyzers-obj)
