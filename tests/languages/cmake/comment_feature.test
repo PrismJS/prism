@@ -4,8 +4,8 @@ add_library() # after code
 ----------------------------------------------------
 
 [
-	["comment", "# standalone"],
-    ["function", "add_library"], ["punctuation", "("], ["punctuation", ")"], ["comment", "# after code"]
+    ["comment", "# standalone"],
+    ["keyword", "add_library"], ["punctuation", "("], ["punctuation", ")"], ["comment", "# after code"]
 ]
 
 ----------------------------------------------------
