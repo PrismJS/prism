@@ -1,7 +1,6 @@
 Prism.languages.cmake = {
     'comment': {
-		pattern: /#.*/,
-		lookbehind: true
+	  pattern: /#.*/,
     },
     'string': {
 		pattern: /("|')(?:\\.|(?!\1)[^\\\r\n])*\1/,
