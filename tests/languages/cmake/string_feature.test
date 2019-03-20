@@ -3,12 +3,34 @@
 multi
 line
 string"
+"${VAR}with${BAR}"
+"${FOO} with ${BAR}"
 
 ----------------------------------------------------
 
 [
-	["string", "\"This is a string\""],
-	["string", "\"This is \nmulti\nline\nstring\""]
+	["string", ["\"This is a string\""]],
+	["string", ["\"This is \nmulti\nline\nstring\""]],
+	["string", [
+		"\"",
+		["interpolation", [
+			["punctuation", "${"], ["variable", "VAR"], ["punctuation", "}"]]
+		],
+		"with",
+		["interpolation", [
+			["punctuation", "${"], ["variable", "BAR"], ["punctuation", "}"]]
+		], "\""]
+	],
+	["string", [
+		"\"",
+		["interpolation", [
+			["punctuation", "${"], ["variable", "FOO"], ["punctuation", "}"]]
+		],
+		" with ",
+		["interpolation", [
+			["punctuation", "${"], ["variable", "BAR"], ["punctuation", "}"]]
+		], "\""]
+	]
 ]
 
 ----------------------------------------------------
