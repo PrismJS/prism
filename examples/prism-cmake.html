@@ -25,13 +25,17 @@ CMAKE_CUDA_HOST_COMPILER
 CMAKE_CUDA_SEPARABLE_COMPILATION
 CMAKE_CUDA_STANDARD
 CMAKE_CUDA_STANDARD_REQUIRED
+"${INSIDE_STRING}"
+"${PROPER}chaining${VARIABLES}"
 </code></pre>
 
 <h2>Properties</h2>
 <pre><code>CUDA_STANDARD
 CUDA_STANDARD_REQUIRED
 CXX_EXTENSIONS
-CXX_STANDARD</code></pre>
+CXX_STANDARD
+cxx_std_17
+cxx_variadic_templates</code></pre>
 
 <h2>Full example</h2>
 <pre><code>cmake_minimum_required(VERSION 3.13)

@@ -405,6 +405,63 @@ XCODE_SCHEME_UNDEFINED_BEHAVIOUR_SANITIZER
 XCODE_SCHEME_UNDEFINED_BEHAVIOUR_SANITIZER_STOP
 XCODE_SCHEME_ZOMBIE_OBJECTS
 XCTEST
+cxx_aggregate_default_initializers
+cxx_alias_templates
+cxx_alignas
+cxx_alignof
+cxx_attributes
+cxx_attribute_deprecated
+cxx_auto_type
+cxx_binary_literals
+cxx_constexpr
+cxx_contextual_conversions
+cxx_decltype_incomplete_return_types
+cxx_decltype
+cxx_decltype_auto
+cxx_default_function_template_args
+cxx_defaulted_functions
+cxx_defaulted_move_initializers
+cxx_delegating_constructors
+cxx_deleted_functions
+cxx_digit_separators
+cxx_enum_forward_declarations
+cxx_explicit_conversions
+cxx_extended_friend_declarations
+cxx_extern_templates
+cxx_final
+cxx_func_identifier
+cxx_generalized_initializers
+cxx_generic_lambdas
+cxx_inheriting_constructors
+cxx_inline_namespaces
+cxx_lambdas
+cxx_lambda_init_captures
+cxx_local_type_template_args
+cxx_long_long_type
+cxx_noexcept
+cxx_nonstatic_member_init
+cxx_nullptr
+cxx_override
+cxx_range_for
+cxx_raw_string_literals
+cxx_reference_qualified_functions
+cxx_relaxed_constexpr
+cxx_return_type_deduction
+cxx_right_angle_brackets
+cxx_rvalue_references
+cxx_sizeof_member
+cxx_static_assert
+cxx_strong_enums
+cxx_thread_local
+cxx_trailing_return_types
+cxx_unicode_literals
+cxx_uniform_initialization
+cxx_unrestricted_unions
+cxx_user_literals
+cxx_variable_templates
+cxx_variadic_macros
+cxx_variadic_templates
+cxx_template_template_parameters
 
 ----------------------------------------------------
 
@@ -815,7 +872,64 @@ XCTEST
 	["property", "XCODE_SCHEME_UNDEFINED_BEHAVIOUR_SANITIZER"],
 	["property", "XCODE_SCHEME_UNDEFINED_BEHAVIOUR_SANITIZER_STOP"],
 	["property", "XCODE_SCHEME_ZOMBIE_OBJECTS"],
-	["property", "XCTEST"]
+	["property", "XCTEST"],
+	["property", "cxx_aggregate_default_initializers"],
+	["property", "cxx_alias_templates"],
+	["property", "cxx_alignas"],
+	["property", "cxx_alignof"],
+	["property", "cxx_attributes"],
+	["property", "cxx_attribute_deprecated"],
+	["property", "cxx_auto_type"],
+	["property", "cxx_binary_literals"],
+	["property", "cxx_constexpr"],
+	["property", "cxx_contextual_conversions"],
+	["property", "cxx_decltype_incomplete_return_types"],
+	["property", "cxx_decltype"],
+	["property", "cxx_decltype_auto"],
+	["property", "cxx_default_function_template_args"],
+	["property", "cxx_defaulted_functions"],
+	["property", "cxx_defaulted_move_initializers"],
+	["property", "cxx_delegating_constructors"],
+	["property", "cxx_deleted_functions"],
+	["property", "cxx_digit_separators"],
+	["property", "cxx_enum_forward_declarations"],
+	["property", "cxx_explicit_conversions"],
+	["property", "cxx_extended_friend_declarations"],
+	["property", "cxx_extern_templates"],
+	["property", "cxx_final"],
+	["property", "cxx_func_identifier"],
+	["property", "cxx_generalized_initializers"],
+	["property", "cxx_generic_lambdas"],
+	["property", "cxx_inheriting_constructors"],
+	["property", "cxx_inline_namespaces"],
+	["property", "cxx_lambdas"],
+	["property", "cxx_lambda_init_captures"],
+	["property", "cxx_local_type_template_args"],
+	["property", "cxx_long_long_type"],
+	["property", "cxx_noexcept"],
+	["property", "cxx_nonstatic_member_init"],
+	["property", "cxx_nullptr"],
+	["property", "cxx_override"],
+	["property", "cxx_range_for"],
+	["property", "cxx_raw_string_literals"],
+	["property", "cxx_reference_qualified_functions"],
+	["property", "cxx_relaxed_constexpr"],
+	["property", "cxx_return_type_deduction"],
+	["property", "cxx_right_angle_brackets"],
+	["property", "cxx_rvalue_references"],
+	["property", "cxx_sizeof_member"],
+	["property", "cxx_static_assert"],
+	["property", "cxx_strong_enums"],
+	["property", "cxx_thread_local"],
+	["property", "cxx_trailing_return_types"],
+	["property", "cxx_unicode_literals"],
+	["property", "cxx_uniform_initialization"],
+	["property", "cxx_unrestricted_unions"],
+	["property", "cxx_user_literals"],
+	["property", "cxx_variable_templates"],
+	["property", "cxx_variadic_macros"],
+	["property", "cxx_variadic_templates"],
+	["property", "cxx_template_template_parameters"]
 ]
 
 ----------------------------------------------------
