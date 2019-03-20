@@ -12,7 +12,6 @@ VERSION_LESS
 VERSION_EQUAL
 VERSION_GREATER
 DEFINED
-ns::tgt
 
 ----------------------------------------------------
 
@@ -30,8 +29,7 @@ ns::tgt
 	["operator", "VERSION_LESS"],
 	["operator", "VERSION_EQUAL"],
 	["operator", "VERSION_GREATER"],
-	["operator", "DEFINED"],
-	"\nns", ["operator", "::"], "tgt"
+	["operator", "DEFINED"]
 ]
 
 ----------------------------------------------------
