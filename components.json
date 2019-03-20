@@ -197,6 +197,10 @@
 			"require": "javascript",
 			"owner": "R-osey"
 		},
+		"cmake": {
+			"title": "CMake",
+			"owner": "mjrogozinski"
+		},
 		"clojure": {
 			"title": "Clojure",
 			"owner": "troglotit"

@@ -1,0 +1,102 @@
+<h2>Comments</h2>
+<pre><code># This is a comment</code></pre>
+
+<h2>Keywords</h2>
+<pre><code>add_library(foo main.cpp)
+target_link_libraries(foo bar)
+</code></pre>
+
+<h2>Functions</h2>
+<pre><code>user_defined_function()
+another_custom_function(argument)
+</code></pre>
+
+<h2>Variables</h2>
+<pre><code>CMAKE_COMPILER_IS_GNUG77
+CMAKE_COMPILE_PDB_OUTPUT_DIRECTORY
+CMAKE_COMPILE_PDB_OUTPUT_DIRECTORY_WHATEVER
+CMAKE_CONFIGURATION_TYPES
+CMAKE_CPACK_COMMAND
+CMAKE_CROSSCOMPILING
+CMAKE_CROSSCOMPILING_EMULATOR
+CMAKE_CTEST_COMMAND
+CMAKE_CUDA_EXTENSIONS
+CMAKE_CUDA_HOST_COMPILER
+CMAKE_CUDA_SEPARABLE_COMPILATION
+CMAKE_CUDA_STANDARD
+CMAKE_CUDA_STANDARD_REQUIRED
+"${INSIDE_STRING}"
+"${PROPER}chaining${VARIABLES}"
+</code></pre>
+
+<h2>Properties</h2>
+<pre><code>CUDA_STANDARD
+CUDA_STANDARD_REQUIRED
+CXX_EXTENSIONS
+CXX_STANDARD
+cxx_std_17
+cxx_variadic_templates</code></pre>
+
+<h2>Strings</h2>
+<pre><code>"A string"
+    "A multi
+    line
+    string"
+    "A ${VARIABLE} insde a string"</code></pre>
+
+<h2>Full example</h2>
+<pre><code>cmake_minimum_required(VERSION 3.13)
+
+project(crypto)
+
+add_library(base INTERFACE)
+target_compile_features(base INTERFACE
+    cxx_std_17
+    )
+
+add_subdirectory(helpers)
+add_subdirectory(msg)
+
+add_library(analyzers-obj OBJECT
+    CryptoAnalyzer.cpp
+    )
+
+target_include_directories(analyzers-obj
+    PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}
+    )
+
+find_package(predi REQUIRED)
+target_link_libraries(analyzers-obj
+    PUBLIC
+        base
+        predi::predi
+        crypto::helpers
+    )
+
+set_target_properties(analyzers-obj
+    PROPERTIES
+        POSITION_INDEPENDENT_CODE ON
+    )
+
+add_library(analyzers SHARED
+    $&lt;TARGET_OBJECTS:analyzers-obj&gt;
+    )
+
+target_link_libraries(analyzers PUBLIC analyzers-obj)
+
+add_executable(crypto
+    main.cpp
+    )
+
+target_link_libraries(crypto
+    PUBLIC
+        analyzers
+    PRIVATE
+        base
+        messages
+    )
+
+enable_testing()
+add_subdirectory(tests)
+</code></pre>
