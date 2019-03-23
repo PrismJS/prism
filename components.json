@@ -158,9 +158,9 @@
 		},
 		"bnf": {
 			"title": "Backus–Naur form",
-			"alias": "rbfn",
+			"alias": "rbnf",
 			"aliasTitles": {
-				"rbfn": "Routing Backus–Naur form"
+				"rbnf": "Routing Backus–Naur form"
 			},
 			"owner": "RunDevelopment"
 		},

@@ -5,10 +5,11 @@
   "main": "prism.js",
   "style": "themes/prism.css",
   "scripts": {
-    "test:runner": "mocha tests/testrunner-tests.js",
+    "test:aliases": "mocha tests/aliases-test.js",
     "test:languages": "mocha tests/run.js",
     "test:plugins": "mocha tests/plugins/**/*.js",
-    "test": "npm run test:runner && npm run test:languages && npm run test:plugins"
+    "test:runner": "mocha tests/testrunner-tests.js",
+    "test": "npm run test:runner && npm run test:languages && npm run test:plugins && npm run test:aliases"
   },
   "repository": {
     "type": "git",
