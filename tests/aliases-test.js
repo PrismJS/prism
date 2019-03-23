@@ -4,17 +4,19 @@ const { assert } = require("chai");
 const PrismLoader = require('./helper/prism-loader');
 const { languages } = require('./../components');
 
-const ignoreKeys = Object.keys(PrismLoader.createEmptyPrism().languages);
 
 function toArray(value) {
 	if (Array.isArray(value)) {
 		return value;
 	} else if (value === undefined) {
 		return [];
-	} else {
-		return [value];
 	}
+	return [value];
 }
+
+// the keys of Prism.languages without any loaded languages (basically just a few functions)
+const ignoreKeys = Object.keys(PrismLoader.createEmptyPrism().languages);
+
 
 for (const lang in languages) {
 	if (lang === 'meta') {
@@ -29,7 +31,8 @@ for (const lang in languages) {
 
 				Object.keys(languages[lang].aliasTitles).forEach(id => {
 					if (!aliases.has(id)) {
-						assert.fail(`The alias '${id}' with the title ${JSON.stringify(languages[lang].aliasTitles[id])} is not registered as an alias.`);
+						const titleJson = JSON.stringify(languages[lang].aliasTitles[id]);
+						assert.fail(`The alias '${id}' with the title ${titleJson} is not registered as an alias.`);
 					}
 				});
 			});
@@ -41,7 +44,7 @@ for (const lang in languages) {
 
 			// check that all aliases are defined
 			toArray(languages[lang].alias).forEach(alias => {
-				assert.isTrue(loadedLanguages.has(alias), `Alias '${alias}' is not present.`);
+				assert.isTrue(loadedLanguages.has(alias), `The registered alias '${alias}' is not present.`);
 			});
 
 
@@ -61,7 +64,8 @@ for (const lang in languages) {
 
 			// there should be nothing left
 			if (loadedLanguages.size > 0) {
-				assert.fail(`There are unregistered aliases (${loadedLanguages.size}): ${JSON.stringify([...loadedLanguages])}`);
+				const unregisteredAliases = `(${loadedLanguages.size}) ${JSON.stringify([...loadedLanguages])}`;
+				assert.fail(`There are unregistered aliases: ${unregisteredAliases}`);
 			}
 		});
 	});
