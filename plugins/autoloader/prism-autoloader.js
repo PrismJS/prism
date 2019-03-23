@@ -4,7 +4,9 @@
 	}
 
 	// The dependencies map is built automatically with gulp
-	var lang_dependencies = /*languages_placeholder[*/{"javascript":"clike","actionscript":"javascript","arduino":"cpp","aspnet":["markup","csharp"],"bison":"c","c":"clike","csharp":"clike","cpp":"c","coffeescript":"javascript","crystal":"ruby","css-extras":"css","d":"clike","dart":"clike","django":"markup-templating","ejs":["javascript","markup-templating"],"erb":["ruby","markup-templating"],"fsharp":"clike","flow":"javascript","glsl":"clike","gml":"clike","go":"clike","groovy":"clike","haml":"ruby","handlebars":"markup-templating","haxe":"clike","java":"clike","javadoc":["markup","java","javadoclike"],"jolie":"clike","jsdoc":["javascript","javadoclike"],"js-extras":"javascript","jsonp":"json","json5":"json","kotlin":"clike","less":"css","markdown":"markup","markup-templating":"markup","n4js":"javascript","nginx":"clike","objectivec":"c","opencl":"cpp","parser":"markup","php":["clike","markup-templating"],"phpdoc":["php","javadoclike"],"php-extras":"php","plsql":"sql","processing":"clike","protobuf":"clike","pug":["markup","javascript"],"qore":"clike","jsx":["markup","javascript"],"tsx":["jsx","typescript"],"reason":"clike","ruby":"clike","sass":"css","scss":"css","scala":"java","smarty":"markup-templating","soy":"markup-templating","swift":"clike","tap":"yaml","textile":"markup","tt2":["clike","markup-templating"],"twig":"markup","typescript":"javascript","t4-cs":["t4-templating","csharp"],"t4-vb":["t4-templating","visual-basic"],"vala":"clike","vbnet":"basic","velocity":"markup","wiki":"markup","xeora":"markup","xquery":"markup"}/*]*/;
+	var lang_dependencies = /*dependencies_placeholder[*/{"javascript":"clike","actionscript":"javascript","arduino":"cpp","aspnet":["markup","csharp"],"bison":"c","c":"clike","csharp":"clike","cpp":"c","coffeescript":"javascript","crystal":"ruby","css-extras":"css","d":"clike","dart":"clike","django":"markup-templating","ejs":["javascript","markup-templating"],"erb":["ruby","markup-templating"],"fsharp":"clike","flow":"javascript","glsl":"clike","gml":"clike","go":"clike","groovy":"clike","haml":"ruby","handlebars":"markup-templating","haxe":"clike","java":"clike","javadoc":["markup","java","javadoclike"],"jolie":"clike","jsdoc":["javascript","javadoclike"],"js-extras":"javascript","jsonp":"json","json5":"json","kotlin":"clike","less":"css","markdown":"markup","markup-templating":"markup","n4js":"javascript","nginx":"clike","objectivec":"c","opencl":"cpp","parser":"markup","php":["clike","markup-templating"],"phpdoc":["php","javadoclike"],"php-extras":"php","plsql":"sql","processing":"clike","protobuf":"clike","pug":["markup","javascript"],"qore":"clike","jsx":["markup","javascript"],"tsx":["jsx","typescript"],"reason":"clike","ruby":"clike","sass":"css","scss":"css","scala":"java","smarty":"markup-templating","soy":"markup-templating","swift":"clike","tap":"yaml","textile":"markup","tt2":["clike","markup-templating"],"twig":"markup","typescript":"javascript","t4-cs":["t4-templating","csharp"],"t4-vb":["t4-templating","visual-basic"],"vala":"clike","vbnet":"basic","velocity":"markup","wiki":"markup","xeora":"markup","xquery":"markup"}/*]*/;
+
+	var lang_aliases = /*aliases_placeholder[*/{"html":"markup","xml":"markup","svg":"markup","mathml":"markup","js":"javascript","adoc":"asciidoc","shell":"bash","rbfn":"bnf","dotnet":"csharp","jinja2":"django","dockerfile":"docker","gamemakerlanguage":"gml","emacs":"lisp","elisp":"lisp","emacs-lisp":"lisp","n4jsd":"n4js","objectpascal":"pascal","ts":"typescript","t4":"t4-cs","vb":"visual-basic","xeoracube":"xeora"}/*]*/;
 
 	var lang_data = {};
 
@@ -65,6 +67,10 @@
 	 * @param {HTMLElement} elt
 	 */
 	var registerElement = function (lang, elt) {
+		if (lang in lang_aliases) {
+			lang = lang_aliases[lang];
+		}
+
 		var data = lang_data[lang];
 		if (!data) {
 			data = lang_data[lang] = {};
@@ -123,14 +129,12 @@
 	 * @param {function=} error
 	 */
 	var loadLanguage = function (lang, success, error) {
-		var load = function () {
-			var force = false;
-			// Do we want to force reload the grammar?
-			if (lang.indexOf('!') >= 0) {
-				force = true;
-				lang = lang.replace('!', '');
-			}
+		var force = lang.indexOf('!') >= 0;
 
+		lang = lang.replace('!', '');
+		lang = lang_aliases[lang] || lang;
+
+		var load = function () {
 			var data = lang_data[lang];
 			if (!data) {
 				data = lang_data[lang] = {};
@@ -166,6 +170,7 @@
 				});
 			}
 		};
+
 		var dependencies = lang_dependencies[lang];
 		if(dependencies && dependencies.length) {
 			loadLanguages(dependencies, load);
