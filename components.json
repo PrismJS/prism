@@ -195,6 +195,7 @@
 		"coffeescript": {
 			"title": "CoffeeScript",
 			"require": "javascript",
+			"alias": "coffee",
 			"owner": "R-osey"
 		},
 		"cmake": {
@@ -519,6 +520,7 @@
 		"markdown": {
 			"title": "Markdown",
 			"require": "markup",
+			"alias": "md",
 			"owner": "Golmote"
 		},
 		"markup-templating": {
@@ -697,6 +699,7 @@
 		},
 		"python": {
 			"title": "Python",
+			"alias": "py",
 			"owner": "multipetros"
 		},
 		"q": {
@@ -761,6 +764,7 @@
 		"ruby": {
 			"title": "Ruby",
 			"require": "clike",
+			"alias": "rb",
 			"owner": "samflores"
 		},
 		"rust": {
@@ -928,6 +932,7 @@
 		},
 		"yaml": {
 			"title": "YAML",
+			"alias": "yml",
 			"owner": "hason"
 		}
 	},
