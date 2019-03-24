@@ -8,6 +8,7 @@ const replace = require('gulp-replace');
 const pump = require('pump');
 const fs = require('fs');
 const simpleGit = require('simple-git');
+const shelljs = require('shelljs');
 
 const paths = {
 	componentsFile: 'components.json',
@@ -185,19 +186,57 @@ function languagePlugins(cb) {
 	});
 }
 
-function changelog(cb) {
+const ISSUE_RE = /#(\d+)(?![\d\]])/g;
+const ISSUE_SUB = '[#$1](https://github.com/PrismJS/prism/issues/$1)';
+
+function linkify(cb) {
 	return pump([
 		src(paths.changelog),
-		replace(
-			/#(\d+)(?![\d\]])/g,
-			'[#$1](https://github.com/PrismJS/prism/issues/$1)'
-		),
+		replace(ISSUE_RE, ISSUE_SUB),
 		replace(
 			/\[[\da-f]+(?:, *[\da-f]+)*\]/g,
 			m => m.replace(/([\da-f]{7})[\da-f]*/g, '[`$1`](https://github.com/PrismJS/prism/commit/$1)')
 		),
 		dest('.')
 	], cb);
+}
+
+const COMMIT_RE = /^([\da-z]{8})\s(.*)/;
+
+function changes(cb) {
+	const tag = shelljs.exec('git describe --abbrev=0 --tags', { silent: true }).stdout;
+	const commits = shelljs
+		.exec(
+			`git log ${tag.trim()}..HEAD --oneline`,
+			{ silent: true }
+		)
+		.stdout.split('\n')
+		.map(line => line.trim())
+		.filter(line => line !== '')
+		.map(line => {
+			const [,hash, msg] = COMMIT_RE.exec(line);
+			return `* ${msg.replace(ISSUE_RE, ISSUE_SUB)} [\`${hash}\`](https://github.com/PrismJS/prism/commit/${hash})`
+		})
+		.join('\n');
+
+	const changes = `## Unreleased
+
+${commits}
+
+### New components
+
+### Updated components
+
+### Updated plugins
+
+### Updated themes
+
+### Other changes
+
+* __Website__`;
+
+	console.log(changes);
+	cb();
 }
 
 const components = minifyComponents;
@@ -221,6 +260,6 @@ function gitChanges(cb) {
 
 exports.watch = watchComponentsAndPlugins;
 exports.default = parallel(components, plugins, componentsJsonToJs, build);
-exports.changelog = changelog;
-
 exports.premerge = gitChanges;
+exports.linkify = linkify;
+exports.changes = changes;
