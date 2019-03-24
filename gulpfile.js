@@ -192,12 +192,7 @@ function changelog(cb) {
 const components = minifyComponents;
 const plugins = series(languagePlugins, minifyPlugins);
 
-
-exports.watch = watchComponentsAndPlugins;
-exports.default = parallel(components, plugins, componentsJsonToJs, build);
-exports.changelog = changelog;
-
-exports.gitChanges = function (cb) {
+function gitChanges(cb) {
 	const git = simpleGit(__dirname);
 
 	// first we have to clear the `package-lock.json` from `npm install`
@@ -214,3 +209,10 @@ exports.gitChanges = function (cb) {
 		}
 	});
 }
+
+
+exports.watch = watchComponentsAndPlugins;
+exports.default = parallel(components, plugins, componentsJsonToJs, build);
+exports.changelog = changelog;
+
+exports.premerge = gitChanges;
