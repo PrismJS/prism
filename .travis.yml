@@ -13,8 +13,6 @@ before_script:
 - npm install -g gulp
 - gulp
 - gulp premerge
-install:
-- npm ci
 script: npm test
 deploy:
   provider: npm
