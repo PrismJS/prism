@@ -109,6 +109,10 @@ section.download {
 		height: 20em;
 		word-wrap: break-word;
 	}
+	#download .download-button {
+		cursor: pointer;
+		width: 100%;
+	}
 
 	#download-js .download-button {
 		border-top-right-radius: 0;
@@ -154,12 +158,12 @@ section.download {
 			<div class="error"></div>
 			<section id="download-js" class="download">
 				<pre><code class="language-javascript"></code></pre>
-				<a href="#" class="download-button" download="prism.js" target="_blank">Download JS</a>
+				<button type="button" class="download-button">Download JS</button>
 			</section>
 
 			<section id="download-css" class="download">
 				<pre><code class="language-css"></code></pre>
-				<a href="#" class="download-button" download="prism.css" target="_blank">Download CSS</a>
+				<button type="button" class="download-button">Download CSS</button>
 			</section>
 		</section>
 
@@ -174,6 +178,7 @@ section.download {
 <script src="components.js"></script>
 <script src="scripts/code.js"></script>
 <script src="scripts/vendor/promise.js"></script>
+<script src="scripts/vendor/FileSaver.min.js"></script>
 <script src="scripts/download.js"></script>
 
 </body>
