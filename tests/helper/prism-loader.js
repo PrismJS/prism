@@ -92,11 +92,21 @@ module.exports = {
 		for (const testSource of this.getChecks().map(src => this.loadFileSource(src))) {
 			context.Prism = this.runFileWithContext(testSource, {
 				Prism: context.Prism,
-				require(path) {
-					if (path.startsWith('./')) {
-						return require('./../checks/' + path.substr(2));
+				/**
+				 * A pseudo require function for the checks.
+				 *
+				 * This function will behave like the regular `require` in real modules when called form a check file.
+				 *
+				 * @param {string} id The id of relative path to require.
+				 */
+				require(id) {
+					if (id.startsWith('./')) {
+						// We have to rewrite relative paths starting with './'
+						return require('./../checks/' + id.substr(2));
 					} else {
-						return require(path);
+						// This might be an id like 'mocha' or 'fs' or a relative path starting with '../'.
+						// In both cases we don't have to change anything.
+						return require(id);
 					}
 				}
 			}).Prism;
