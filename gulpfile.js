@@ -95,6 +95,7 @@ function languagePlugins(cb) {
 	componentsPromise.then(data => {
 		const languagesMap = {};
 		const dependenciesMap = {};
+		const aliasMap = {};
 
 		/**
 		 * Tries to guess the name of a language given its id.
@@ -117,38 +118,48 @@ function languagePlugins(cb) {
 			}
 		}
 
-		for (const p in data.languages) {
-			if (p !== 'meta') {
-				const title = data.languages[p].displayTitle || data.languages[p].title;
+		for (const id in data.languages) {
+			if (id !== 'meta') {
+				const language = data.languages[id];
+				const title = language.displayTitle || language.title;
 
-				addLanguageTitle(p, title);
+				addLanguageTitle(id, title);
 
-				for (const name in data.languages[p].aliasTitles) {
-					addLanguageTitle(name, data.languages[p].aliasTitles[name]);
+				for (const name in language.aliasTitles) {
+					addLanguageTitle(name, language.aliasTitles[name]);
 				}
 
-				if (data.languages[p].alias) {
-					if (typeof data.languages[p].alias === 'string') {
-						addLanguageTitle(data.languages[p].alias, title);
+				if (language.alias) {
+					if (typeof language.alias === 'string') {
+						aliasMap[language.alias] = id;
+						addLanguageTitle(language.alias, title);
 					} else {
-						data.languages[p].alias.forEach(function (alias) {
+						language.alias.forEach(function (alias) {
+							aliasMap[alias] = id;
 							addLanguageTitle(alias, title);
 						});
 					}
 				}
 
-				if (data.languages[p].require) {
-					dependenciesMap[p] = data.languages[p].require;
+				if (language.require) {
+					dependenciesMap[id] = language.require;
 				}
 			}
 		}
 
 		const jsonLanguagesMap = JSON.stringify(languagesMap);
 		const jsonDependenciesMap = JSON.stringify(dependenciesMap);
+		const jsonAliasMap = JSON.stringify(aliasMap);
 
 		const tasks = [
-			{ plugin: paths.showLanguagePlugin, map: jsonLanguagesMap },
-			{ plugin: paths.autoloaderPlugin, map: jsonDependenciesMap }
+			{
+				plugin: paths.showLanguagePlugin,
+				maps: { languages: jsonLanguagesMap}
+			},
+			{
+				plugin: paths.autoloaderPlugin,
+				maps: { aliases: jsonAliasMap, dependencies: jsonDependenciesMap }
+			}
 		];
 
 		let cpt = 0;
@@ -163,8 +174,8 @@ function languagePlugins(cb) {
 		for (const task of tasks) {
 			const stream = src(task.plugin)
 				.pipe(replace(
-					/\/\*languages_placeholder\[\*\/[\s\S]*?\/\*\]\*\//,
-					'/*languages_placeholder[*/' + task.map + '/*]*/'
+					/\/\*(\w+)_placeholder\[\*\/[\s\S]*?\/\*\]\*\//g,
+					(m, mapName) => `/*${mapName}_placeholder[*/${task.maps[mapName]}/*]*/`
 				))
 				.pipe(dest(task.plugin.substring(0, task.plugin.lastIndexOf('/'))));
 
