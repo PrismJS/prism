@@ -51,7 +51,7 @@
 		}
 
 		if (key in map) {
-			console.warn('The is a button with the key "' + key + '" registered already.');
+			console.warn('There is a button with the key "' + key + '" registered already.');
 			return;
 		}
 
