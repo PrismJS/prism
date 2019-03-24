@@ -1,3 +1,5 @@
+const { testFunction } = require('./../helper/check-functionality');
+
 function extendTest(id, redef) {
 	const details = `\nextend("${id}", ${redef})`;
 
@@ -15,13 +17,4 @@ function extendTest(id, redef) {
 	}
 }
 
-
-function testFunction(name, object, tester) {
-	const func = object[name];
-
-	object[name] = function () {
-		tester.apply(this, arguments);
-		return func.apply(this, arguments);
-	};
-}
 testFunction('extend', Prism.languages, extendTest);

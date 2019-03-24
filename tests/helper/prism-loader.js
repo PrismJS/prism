@@ -90,7 +90,16 @@ module.exports = {
 		const context = this.runFileWithContext(coreSource);
 
 		for (const testSource of this.getChecks().map(src => this.loadFileSource(src))) {
-			context.Prism = this.runFileWithContext(testSource, { Prism: context.Prism }).Prism;
+			context.Prism = this.runFileWithContext(testSource, {
+				Prism: context.Prism,
+				require(path) {
+					if (path.startsWith('./')) {
+						return require('./../checks/' + path.substr(2));
+					} else {
+						return require(path);
+					}
+				}
+			}).Prism;
 		}
 
 		return context.Prism;

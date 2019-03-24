@@ -1,3 +1,5 @@
+const { testFunction } = require('./../helper/check-functionality');
+
 function insertBeforeTest(inside, before, insert, root) {
 	const details = `\ninsertBefore("${inside}", "${before}", ${insert}, ${root})`;
 
@@ -27,13 +29,4 @@ function insertBeforeTest(inside, before, insert, root) {
 	}
 }
 
-
-function testFunction(name, object, tester) {
-	const func = object[name];
-
-	object[name] = function () {
-		tester.apply(this, arguments);
-		return func.apply(this, arguments);
-	};
-}
 testFunction('insertBefore', Prism.languages, insertBeforeTest);
