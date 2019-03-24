@@ -17,7 +17,6 @@ Prism.languages.scheme = {
 		lookbehind: true
 	},
 	'number': {
-		newPattern: /(?:#d(?:#[ei])?|#[ei](?:#d)?)?/i,
 		pattern: /([\s()])[-+]?\d*\.?\d+(?:\s*[-+]\s*\d*\.?\d+i)?\b/,
 		lookbehind: true
 	},
