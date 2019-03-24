@@ -353,6 +353,7 @@
 		},
 		"haskell": {
 			"title": "Haskell",
+			"alias": "hs",
 			"owner": "bholst"
 		},
 		"haxe": {
