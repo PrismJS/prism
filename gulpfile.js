@@ -195,15 +195,12 @@ const plugins = series(languagePlugins, minifyPlugins);
 function gitChanges(cb) {
 	const git = simpleGit(__dirname);
 
-	// first we have to clear the `package-lock.json` from `npm install`
-	git.clean('f', ['./package-lock.json']).status((err, res) => {
+	git.status((err, res) => {
 		if (err) {
 			cb(new Error(`Something went wrong!\n${err}`));
-
 		} else if (res.files.length > 0) {
 			console.log(res);
 			cb(new Error('There are changes in the file system. Did you forget to run gulp?'));
-
 		} else {
 			cb();
 		}
