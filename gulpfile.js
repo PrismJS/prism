@@ -7,6 +7,7 @@ const concat = require('gulp-concat');
 const replace = require('gulp-replace');
 const pump = require('pump');
 const fs = require('fs');
+const simpleGit = require('simple-git');
 
 const paths = {
 	componentsFile: 'components.json',
@@ -202,7 +203,24 @@ function changelog(cb) {
 const components = minifyComponents;
 const plugins = series(languagePlugins, minifyPlugins);
 
+function gitChanges(cb) {
+	const git = simpleGit(__dirname);
+
+	git.status((err, res) => {
+		if (err) {
+			cb(new Error(`Something went wrong!\n${err}`));
+		} else if (res.files.length > 0) {
+			console.log(res);
+			cb(new Error('There are changes in the file system. Did you forget to run gulp?'));
+		} else {
+			cb();
+		}
+	});
+}
+
 
 exports.watch = watchComponentsAndPlugins;
 exports.default = parallel(components, plugins, componentsJsonToJs, build);
 exports.changelog = changelog;
+
+exports.premerge = gitChanges;
