@@ -17,7 +17,9 @@ before_script:
 - npm install -g gulp
 - gulp
 - gulp premerge
-script: npm test
+script:
+- gulp lint
+- npm test
 deploy:
   provider: npm
   email: lea@verou.me

@@ -268,7 +268,7 @@ function gitChanges(cb) {
 
 exports.lint = lint;
 exports.watch = watchComponentsAndPlugins;
-exports.default = series(parallel(components, plugins, componentsJsonToJs, build), lint);
+exports.default = parallel(components, plugins, componentsJsonToJs, build);
 exports.premerge = gitChanges;
 exports.linkify = linkify;
 exports.changes = changes;
