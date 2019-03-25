@@ -25,8 +25,20 @@ function linkify(cb) {
 	], cb);
 }
 
-
-
+function createSortedArray(compareFn) {
+	const a = [];
+	a[Symbol.iterator] = function*() {
+		const copy = [];
+		for (let i = 0; i < this.length; i++) {
+			copy.push(this[i]);
+		}
+		copy.sort(compareFn);
+		for (const item of copy) {
+			yield item;
+		}
+	};
+	return a;
+}
 
 function getCommitInfo(line) {
 	const [, hash, message] = /^([a-f\d]+)\s+(.*)$/i.exec(line);
@@ -68,6 +80,7 @@ const logRanges = {
 	v1_15_0__HEAD: 'v1.15.0..HEAD',
 	v1_14_0__v1_15_0: 'v1.14.0..v1.15.0',
 };
+const strCompare = (a, b) => a.localeCompare(b, 'en');
 
 function changes() {
 
@@ -77,7 +90,9 @@ function changes() {
 
 		const entries = {
 			'TODO:': {},
-			'New components': {},
+			'New components': {
+				['']: createSortedArray(strCompare)
+			},
 			'Updated components': {},
 			'Updated plugins': {},
 			'Updated themes': {},
@@ -253,7 +268,7 @@ function changes() {
 			return `${info.message} [\`${info.hash}\`](https://github.com/PrismJS/prism/commit/${info.hash})`;
 		}
 		function printCategory(category, indentation = '') {
-			for (const subCategory of Object.keys(category).sort((a, b) => a.localeCompare(b, 'en'))) {
+			for (const subCategory of Object.keys(category).sort(strCompare)) {
 				if (subCategory) {
 					md += `${indentation}* __${subCategory}__\n`;
 					printCategory(category[subCategory], indentation + '    ')
