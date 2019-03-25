@@ -1,9 +1,10 @@
 "use strict";
 
-var fs = require("fs");
-var vm = require("vm");
-var components = require("../../components");
-var languagesCatalog = components.languages;
+const fs = require("fs");
+const vm = require("vm");
+const { getAllFiles } = require("./test-discovery");
+const components = require("../../components");
+const languagesCatalog = components.languages;
 
 
 module.exports = {
@@ -14,8 +15,8 @@ module.exports = {
 	 * @param {string|string[]} languages
 	 * @returns {Prism}
 	 */
-	createInstance: function (languages) {
-		var context = {
+	createInstance(languages) {
+		let context = {
 			loadedLanguages: [],
 			Prism: this.createEmptyPrism()
 		};
@@ -33,16 +34,14 @@ module.exports = {
 	 * @param {{loadedLanguages: string[], Prism: Prism}} context
 	 * @returns {{loadedLanguages: string[], Prism: Prism}}
 	 */
-	loadLanguages: function (languages, context) {
+	loadLanguages(languages, context) {
 		if (typeof languages === 'string') {
 			languages = [languages];
 		}
 
-		var self = this;
-
-		languages.forEach(function (language) {
-			context = self.loadLanguage(language, context);
-		});
+		for (const language of languages) {
+			context = this.loadLanguage(language, context);
+		}
 
 		return context;
 	},
@@ -56,7 +55,7 @@ module.exports = {
 	 * @param {{loadedLanguages: string[], Prism: Prism}} context
 	 * @returns {{loadedLanguages: string[], Prism: Prism}}
 	 */
-	loadLanguage: function (language, context) {
+	loadLanguage(language, context) {
 		if (!languagesCatalog[language]) {
 			throw new Error("Language '" + language + "' not found.");
 		}
@@ -72,8 +71,8 @@ module.exports = {
 		}
 
 		// load the language itself
-		var languageSource = this.loadFileSource(language);
-		context.Prism = this.runFileWithContext(languageSource, {Prism: context.Prism}).Prism;
+		const languageSource = this.loadComponentSource(language);
+		context.Prism = this.runFileWithContext(languageSource, { Prism: context.Prism }).Prism;
 		context.loadedLanguages.push(language);
 
 		return context;
@@ -86,9 +85,33 @@ module.exports = {
 	 * @private
 	 * @returns {Prism}
 	 */
-	createEmptyPrism: function () {
-		var coreSource = this.loadFileSource("core");
-		var context = this.runFileWithContext(coreSource);
+	createEmptyPrism() {
+		const coreSource = this.loadComponentSource("core");
+		const context = this.runFileWithContext(coreSource);
+
+		for (const testSource of this.getChecks().map(src => this.loadFileSource(src))) {
+			context.Prism = this.runFileWithContext(testSource, {
+				Prism: context.Prism,
+				/**
+				 * A pseudo require function for the checks.
+				 *
+				 * This function will behave like the regular `require` in real modules when called form a check file.
+				 *
+				 * @param {string} id The id of relative path to require.
+				 */
+				require(id) {
+					if (id.startsWith('./')) {
+						// We have to rewrite relative paths starting with './'
+						return require('./../checks/' + id.substr(2));
+					} else {
+						// This might be an id like 'mocha' or 'fs' or a relative path starting with '../'.
+						// In both cases we don't have to change anything.
+						return require(id);
+					}
+				}
+			}).Prism;
+		}
+
 		return context.Prism;
 	},
 
@@ -103,14 +126,37 @@ module.exports = {
 
 
 	/**
-	 * Loads the given file source as string
+	 * Loads the given component's file source as string
 	 *
 	 * @private
 	 * @param {string} name
 	 * @returns {string}
 	 */
-	loadFileSource: function (name) {
-		return this.fileSourceCache[name] = this.fileSourceCache[name] || fs.readFileSync(__dirname + "/../../components/prism-" + name + ".js", "utf8");
+	loadComponentSource(name) {
+		return this.loadFileSource(__dirname + "/../../components/prism-" + name + ".js");
+	},
+
+	/**
+	 * Loads the given file source as string
+	 *
+	 * @private
+	 * @param {string} src
+	 * @returns {string}
+	 */
+	loadFileSource(src) {
+		return this.fileSourceCache[src] = this.fileSourceCache[src] || fs.readFileSync(src, "utf8");
+	},
+
+
+	checkCache: null,
+
+	/**
+	 * Returns a list of files which add additional checks to Prism functions.
+	 *
+	 * @returns {ReadonlyArray<string>}
+	 */
+	getChecks() {
+		return this.checkCache = this.checkCache || getAllFiles(__dirname + "/../checks");
 	},
 
 
@@ -119,12 +165,11 @@ module.exports = {
 	 *
 	 * @private
 	 * @param {string} fileSource
-	 * @param {*} [context]
+	 * @param {*} [context={}]
 	 *
 	 * @returns {*}
 	 */
-	runFileWithContext: function (fileSource, context) {
-		context = context || {};
+	runFileWithContext(fileSource, context = {}) {
 		vm.runInNewContext(fileSource, context);
 		return context;
 	}

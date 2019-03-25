@@ -46,7 +46,7 @@
 			token = grammar[tokenName] = { pattern: token };
 		}
 
-		if (Prism.util.type(token) === 'Array') {
+		if (Array.isArray(token)) {
 			for (var i = 0, l = token.length; i < l; i++) {
 				if (token[i] instanceof RegExp) {
 					token[i] = { pattern: token[i] };

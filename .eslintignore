@@ -1,4 +1,4 @@
 *.min.js
 /components.js
-/utopia.js
-/vendor/**
+/scripts/utopia.js
+/scripts/vendor/**

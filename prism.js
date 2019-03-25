@@ -29,7 +29,7 @@ var _ = {
 		encode: function (tokens) {
 			if (tokens instanceof Token) {
 				return new Token(tokens.type, _.util.encode(tokens.content), tokens.alias);
-			} else if (_.util.type(tokens) === 'Array') {
+			} else if (Array.isArray(tokens)) {
 				return tokens.map(_.util.encode);
 			} else {
 				return tokens.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/\u00a0/g, ' ');
@@ -468,7 +468,7 @@ Token.stringify = function(o, language, parent) {
 		return o;
 	}
 
-	if (_.util.type(o) === 'Array') {
+	if (Array.isArray(o)) {
 		return o.map(function(element) {
 			return Token.stringify(element, language, o);
 		}).join('');
@@ -485,7 +485,7 @@ Token.stringify = function(o, language, parent) {
 	};
 
 	if (o.alias) {
-		var aliases = _.util.type(o.alias) === 'Array' ? o.alias : [o.alias];
+		var aliases = Array.isArray(o.alias) ? o.alias : [o.alias];
 		Array.prototype.push.apply(env.classes, aliases);
 	}
 
@@ -626,7 +626,20 @@ Object.defineProperty(Prism.languages.markup.tag, 'addInlined', {
 	 * addInlined('style', 'css');
 	 */
 	value: function addInlined(tagName, lang) {
-		var inside = {};
+		var includedCdataInside = {};
+		includedCdataInside['language-' + lang] = {
+			pattern: /(^<!\[CDATA\[)[\s\S]+?(?=\]\]>$)/i,
+			lookbehind: true,
+			inside: Prism.languages[lang]
+		};
+		includedCdataInside['cdata'] = /^<!\[CDATA\[|\]\]>$/i;
+
+		var inside = {
+			'included-cdata': {
+				pattern: /<!\[CDATA\[[\s\S]*?\]\]>/i,
+				inside: includedCdataInside
+			}
+		};
 		inside['language-' + lang] = {
 			pattern: /[\s\S]+/,
 			inside: Prism.languages[lang]
@@ -637,20 +650,7 @@ Object.defineProperty(Prism.languages.markup.tag, 'addInlined', {
 			pattern: RegExp(/(<__[\s\S]*?>)(?:<!\[CDATA\[[\s\S]*?\]\]>\s*|[\s\S])*?(?=<\/__>)/.source.replace(/__/g, tagName), 'i'),
 			lookbehind: true,
 			greedy: true,
-			inside: {
-				'included-cdata': {
-					pattern: /<!\[CDATA\[[\s\S]*?\]\]>/i,
-					inside: {
-						'content': {
-							pattern: /(^<!\[CDATA\[)[\s\S]+?(?=\]\]>$)/i,
-							lookbehind: true,
-							inside: inside
-						},
-						'cdata': /^<!\[CDATA\[|\]\]>$/i
-					}
-				},
-				rest: inside
-			}
+			inside: inside
 		};
 
 		Prism.languages.insertBefore('markup', 'cdata', def);
@@ -773,7 +773,10 @@ Prism.languages.javascript = Prism.languages.extend('clike', {
 			pattern: /((?:^|})\s*)(?:catch|finally)\b/,
 			lookbehind: true
 		},
-		/\b(?:as|async(?=\s*(?:function\b|\(|[$\w\xA0-\uFFFF]|$))|await|break|case|class|const|continue|debugger|default|delete|do|else|enum|export|extends|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|undefined|var|void|while|with|yield)\b/
+		{
+			pattern: /(^|[^.])\b(?:as|async(?=\s*(?:function\b|\(|[$\w\xA0-\uFFFF]|$))|await|break|case|class|const|continue|debugger|default|delete|do|else|enum|export|extends|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|undefined|var|void|while|with|yield)\b/,
+			lookbehind: true
+		},
 	],
 	'number': /\b(?:(?:0[xX][\dA-Fa-f]+|0[bB][01]+|0[oO][0-7]+)n?|\d+n|NaN|Infinity)\b|(?:\b\d+\.?\d*|\B\.\d+)(?:[Ee][+-]?\d+)?/,
 	// Allow for all non-ASCII characters (See http://stackoverflow.com/a/2008444)

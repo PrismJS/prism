@@ -1,0 +1,36 @@
+{% block %}
+{% endif %}
+{% foo %}
+{% foo_bar some.variable %}
+
+----------------------------------------------------
+
+[
+	["django", [
+		["delimiter", "{%"],
+		["tag", "block"],
+		["delimiter", "%}"]
+	]],
+	["django", [
+		["delimiter", "{%"],
+		["tag", "endif"],
+		["delimiter", "%}"]
+	]],
+	["django", [
+		["delimiter", "{%"],
+		["tag", "foo"],
+		["delimiter", "%}"]
+	]],
+	["django", [
+		["delimiter", "{%"],
+		["tag", "foo_bar"],
+		["variable", "some"],
+		["punctuation", "."],
+		["variable", "variable"],
+		["delimiter", "%}"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for tags.

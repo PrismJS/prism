@@ -1,0 +1,20 @@
+{{ foo.bar['baz'] }}
+
+----------------------------------------------------
+
+[
+	["django", [
+		["delimiter", "{{"],
+		["variable", "foo"],
+		["punctuation", "."],
+		["variable", "bar"],
+		["punctuation", "["],
+		["string", "'baz'"],
+		["punctuation", "]"],
+		["delimiter", "}}"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for variables.

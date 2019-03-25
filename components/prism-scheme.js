@@ -1,11 +1,11 @@
 Prism.languages.scheme = {
 	'comment': /;.*/,
 	'string': {
-		pattern: /"(?:[^"\\\r\n]|\\.)*"|'[^()#'\s]+/,
+		pattern: /"(?:[^"\\]|\\.)*"|'[^()#'\s]+/,
 		greedy: true
 	},
 	'character': {
-		pattern: /#\\(?:u[a-fA-F\d]{4}|[a-zA-Z]+|\S)/,
+		pattern: /#\\(?:[ux][a-fA-F\d]+|[a-zA-Z]+|\S)/,
 		alias: 'string'
 	},
 	'keyword': {
@@ -17,7 +17,7 @@ Prism.languages.scheme = {
 		lookbehind: true
 	},
 	'number': {
-		pattern: /(\s|[()])[-+]?\d*\.?\d+(?:\s*[-+]\s*\d*\.?\d+i)?\b/,
+		pattern: /([\s()])[-+]?\d*\.?\d+(?:\s*[-+]\s*\d*\.?\d+i)?\b/,
 		lookbehind: true
 	},
 	'boolean': /#[tf]/,
@@ -25,9 +25,9 @@ Prism.languages.scheme = {
 		pattern: /(\()(?:[-+*%\/]|[<>]=?|=>?)(?=\s|$)/,
 		lookbehind: true
 	},
-	'function' : {
-		pattern : /(\()[^()'\s]+(?=[()\s)]|$)/,
-		lookbehind : true
+	'function': {
+		pattern: /(\()[^()'\s]+(?=[()\s)]|$)/,
+		lookbehind: true
 	},
-	'punctuation' : /[()']/
+	'punctuation': /[()']/
 };

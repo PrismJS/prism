@@ -516,7 +516,7 @@
 		if (!supportedLanguages) {
 			supportedLanguages = ['*'];
 		}
-		if (Prism.util.type(supportedLanguages) !== 'Array') {
+		if (!Array.isArray(supportedLanguages)) {
 			supportedLanguages = [supportedLanguages];
 		}
 		supportedLanguages.forEach(function (lang) {
@@ -666,7 +666,7 @@
 			var languages = previewers[previewer].languages;
 			if (env.language && languages[env.language] && !languages[env.language].initialized) {
 				var lang = languages[env.language];
-				if (Prism.util.type(lang) !== 'Array') {
+				if (!Array.isArray(lang)) {
 					lang = [lang];
 				}
 				lang.forEach(function (lang) {

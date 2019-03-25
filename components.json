@@ -158,9 +158,9 @@
 		},
 		"bnf": {
 			"title": "Backus–Naur form",
-			"alias": "rbfn",
+			"alias": "rbnf",
 			"aliasTitles": {
-				"rbfn": "Routing Backus–Naur form"
+				"rbnf": "Routing Backus–Naur form"
 			},
 			"owner": "RunDevelopment"
 		},
@@ -195,7 +195,12 @@
 		"coffeescript": {
 			"title": "CoffeeScript",
 			"require": "javascript",
+			"alias": "coffee",
 			"owner": "R-osey"
+		},
+		"cmake": {
+			"title": "CMake",
+			"owner": "mjrogozinski"
 		},
 		"clojure": {
 			"title": "Clojure",
@@ -231,11 +236,7 @@
 		},
 		"django": {
 			"title": "Django/Jinja2",
-			"require": "markup",
-			"peerDependencies": [
-				"css",
-				"javascript"
-			],
+			"require": "markup-templating",
 			"alias": "jinja2",
 			"owner": "romanvm"
 		},
@@ -352,6 +353,7 @@
 		},
 		"haskell": {
 			"title": "Haskell",
+			"alias": "hs",
 			"owner": "bholst"
 		},
 		"haxe": {
@@ -519,6 +521,7 @@
 		"markdown": {
 			"title": "Markdown",
 			"require": "markup",
+			"alias": "md",
 			"owner": "Golmote"
 		},
 		"markup-templating": {
@@ -697,6 +700,7 @@
 		},
 		"python": {
 			"title": "Python",
+			"alias": "py",
 			"owner": "multipetros"
 		},
 		"q": {
@@ -761,6 +765,7 @@
 		"ruby": {
 			"title": "Ruby",
 			"require": "clike",
+			"alias": "rb",
 			"owner": "samflores"
 		},
 		"rust": {
@@ -928,6 +933,7 @@
 		},
 		"yaml": {
 			"title": "YAML",
+			"alias": "yml",
 			"owner": "hason"
 		}
 	},

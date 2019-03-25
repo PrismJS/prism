@@ -11,7 +11,7 @@
 <title>Prism</title>
 <link rel="stylesheet" href="style.css" />
 <link rel="stylesheet" href="themes/prism.css" data-noprefix />
-<script src="prefixfree.min.js"></script>
+<script src="scripts/prefixfree.min.js"></script>
 
 <script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
 <script src="https://www.google-analytics.com/ga.js" async></script>
@@ -201,10 +201,12 @@ var html = Prism.highlight(code, Prism.languages.haml, 'haml');</code></pre>
 
 </section>
 
-<section id="languages-list" class="language-markup">
+<section class="language-markup">
 	<h1>Supported languages</h1>
 	<p>This is the list of all <span id="languages-list-count"></span> languages currently supported by Prism, with
 		their corresponding alias, to use in place of <code>xxxx</code> in the <code>language-xxxx</code> (or <code>lang-xxxx</code>) class:</p>
+	<div id="languages-list"></div>
+	<p>Couldn’t find the language you were looking for? <a href="https://github.com/PrismJS/prism/issues" target="_blank">Request it</a>!</p>
 </section>
 
 <section id="plugins">
@@ -259,10 +261,10 @@ var html = Prism.highlight(code, Prism.languages.haml, 'haml');</code></pre>
 
 <footer data-src="templates/footer.html" data-type="text/html"></footer>
 
+<script src="scripts/utopia.js"></script>
 <script src="prism.js"></script>
-<script src="utopia.js"></script>
 <script src="components.js"></script>
-<script src="code.js"></script>
+<script src="scripts/code.js"></script>
 <script>
 (function() {
 	var languageItems = [];

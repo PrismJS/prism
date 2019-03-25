@@ -93,9 +93,7 @@
 		},
 		{
 			"files": [
-				"code.js",
-				"download.js",
-				"examples.js",
+				"scripts/**/*.js",
 			],
 			"globals": {
 				"$": "readonly",

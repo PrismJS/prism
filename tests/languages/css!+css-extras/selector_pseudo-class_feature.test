@@ -1,0 +1,59 @@
+foo:hover {}
+
+:lang(en) {}
+
+.bar:not(baz:hover):not(.foo) {}
+
+:where(p:not(.class)) {}
+
+----------------------------------------------------
+
+[
+	["selector", [
+		"foo",
+		["pseudo-class", ":hover"]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["selector", [
+		["pseudo-class", ":lang"],
+		["punctuation", "("],
+		"en",
+		["punctuation", ")"]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["selector", [
+		["class", ".bar"],
+		["pseudo-class", ":not"],
+		["punctuation", "("],
+		"baz",
+		["pseudo-class", ":hover"],
+		["punctuation", ")"],
+		["pseudo-class", ":not"],
+		["punctuation", "("],
+		["class", ".foo"],
+		["punctuation", ")"]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["selector", [
+		["pseudo-class", ":where"],
+		["punctuation", "("],
+		"p",
+		["pseudo-class", ":not"],
+		["punctuation", "("],
+		["class", ".class"],
+		["punctuation", ")"],
+		["punctuation", ")"]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for pseudo-classes inside selectors.
