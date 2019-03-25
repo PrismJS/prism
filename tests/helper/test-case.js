@@ -91,7 +91,7 @@ module.exports = {
 			"Expected Token Stream: \n" + exp +
 			"\n-----------------------------------------\n" + diff;
 
-		const result = assert.deepEqual(simplifiedTokenStream, testCase.expectedTokenStream, testCase.comment + message);
+		assert.deepEqual(simplifiedTokenStream, testCase.expectedTokenStream, testCase.comment + message);
 	},
 
 

@@ -9,5 +9,4 @@ module.exports = {
 			return func.apply(this, arguments);
 		};
 	}
-
-}
+};

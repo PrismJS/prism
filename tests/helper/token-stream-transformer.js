@@ -6,7 +6,7 @@ module.exports = {
 	 * @typedef TokenStreamItem
 	 * @property {string} type
 	 * @property {string | TokenStreamItem | Array<string|TokenStreamItem>} content
-	*/
+	 */
 
 	/**
 	 * Simplifies the token stream to ease the matching with the expected token stream.
@@ -46,7 +46,7 @@ module.exports = {
 		const indentation = new Array(indentationLevel + 1).join(indentChar);
 
 		let out = "";
-		out += "[\n"
+		out += "[\n";
 		tokenStream.forEach((item, i) => {
 			out += indentation;
 
@@ -69,8 +69,8 @@ module.exports = {
 
 			const lineEnd = (i === tokenStream.length - 1) ? '\n' : ',\n';
 			out += lineEnd;
-		})
-		out += indentation.substr(indentChar.length) + ']'
+		});
+		out += indentation.substr(indentChar.length) + ']';
 		return out;
 	}
 };

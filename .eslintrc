@@ -38,7 +38,6 @@
 			"warn",
 			{
 				"args": "none",
-				"varsIgnorePattern": "^_",
 			}
 		],
 		"no-useless-escape": "off",
@@ -69,8 +68,12 @@
 				"tests/**/*.js"
 			],
 			"env": {
+				"es6": true,
 				"node": true,
 				"mocha": true,
+			},
+			"parserOptions": {
+				"ecmaVersion": 2015,
 			},
 		},
 		{
@@ -103,6 +106,7 @@
 				"Promise": "readonly",
 				"components": "readonly",
 				"setTheme": "readonly",
+				"saveAs": "readonly",
 				"PrefixFree": "readonly",
 				"StyleFix": "readonly",
 			},
