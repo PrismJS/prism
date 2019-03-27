@@ -815,7 +815,7 @@
 		},
 		"solidity": {
 			"title": "Solidity (Ethereum)",
-			"require": "clike",
+			"require": "javascript",
 			"owner": "glachaud"
 		},
 		"stylus": {
