@@ -1026,6 +1026,12 @@
 			"owner": "mAAdhaTTah",
 			"require": "toolbar",
 			"noCSS": true
+		},
+		"download-button": {
+			"title": "Download Button",
+			"owner": "Golmote",
+			"require": "toolbar",
+			"noCSS": true
 		}
 	}
 }
