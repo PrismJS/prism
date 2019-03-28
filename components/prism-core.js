@@ -22,14 +22,8 @@ var _ = {
 	manual: _self.Prism && _self.Prism.manual,
 	disableWorkerMessageHandler: _self.Prism && _self.Prism.disableWorkerMessageHandler,
 	util: {
-		encode: function (tokens) {
-			if (tokens instanceof Token) {
-				return new Token(tokens.type, _.util.encode(tokens.content), tokens.alias);
-			} else if (Array.isArray(tokens)) {
-				return tokens.map(_.util.encode);
-			} else {
-				return tokens.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/\u00a0/g, ' ');
-			}
+		encode: function (str) {
+			return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/\u00a0/g, ' ');
 		},
 
 		type: function (o) {
@@ -274,7 +268,7 @@ var _ = {
 		_.hooks.run('before-tokenize', env);
 		env.tokens = _.tokenize(env.code, env.grammar);
 		_.hooks.run('after-tokenize', env);
-		return Token.stringify(_.util.encode(env.tokens), env.language);
+		return Token.stringify(env.tokens, env.language);
 	},
 
 	matchGrammar: function (text, strarr, grammar, index, startPos, oneshot, target) {
@@ -461,7 +455,7 @@ function Token(type, content, alias, matchedStr, greedy) {
 
 Token.stringify = function(o, language) {
 	if (typeof o == 'string') {
-		return o;
+		return _.util.encode(o);
 	}
 
 	if (Array.isArray(o)) {
