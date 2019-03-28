@@ -158,9 +158,9 @@
 		},
 		"bnf": {
 			"title": "Backus–Naur form",
-			"alias": "rbfn",
+			"alias": "rbnf",
 			"aliasTitles": {
-				"rbfn": "Routing Backus–Naur form"
+				"rbnf": "Routing Backus–Naur form"
 			},
 			"owner": "RunDevelopment"
 		},
@@ -195,7 +195,12 @@
 		"coffeescript": {
 			"title": "CoffeeScript",
 			"require": "javascript",
+			"alias": "coffee",
 			"owner": "R-osey"
+		},
+		"cmake": {
+			"title": "CMake",
+			"owner": "mjrogozinski"
 		},
 		"clojure": {
 			"title": "Clojure",
@@ -231,11 +236,7 @@
 		},
 		"django": {
 			"title": "Django/Jinja2",
-			"require": "markup",
-			"peerDependencies": [
-				"css",
-				"javascript"
-			],
+			"require": "markup-templating",
 			"alias": "jinja2",
 			"owner": "romanvm"
 		},
@@ -251,6 +252,11 @@
 		"eiffel": {
 			"title": "Eiffel",
 			"owner": "Conaclos"
+		},
+		"ejs": {
+			"title": "EJS",
+			"require": ["javascript", "markup-templating"],
+			"owner": "RunDevelopment"
 		},
 		"elixir": {
 			"title": "Elixir",
@@ -347,6 +353,7 @@
 		},
 		"haskell": {
 			"title": "Haskell",
+			"alias": "hs",
 			"owner": "bholst"
 		},
 		"haxe": {
@@ -514,6 +521,7 @@
 		"markdown": {
 			"title": "Markdown",
 			"require": "markup",
+			"alias": "md",
 			"owner": "Golmote"
 		},
 		"markup-templating": {
@@ -663,20 +671,17 @@
 		},
 		"pug": {
 			"title": "Pug",
-			"require": "javascript",
+			"require": ["markup", "javascript"],
 			"peerDependencies": [
 				"coffeescript",
 				"ejs",
 				"handlebars",
-				"hogan",
 				"less",
 				"livescript",
 				"markdown",
-				"mustache",
-				"plates",
 				"scss",
 				"stylus",
-				"swig"
+				"twig"
 			],
 			"owner": "Golmote"
 		},
@@ -689,14 +694,13 @@
 			"peerDependencies": [
 				"c",
 				"cpp",
-				"fortran",
-				"ats",
-				"dsp"
+				"fortran"
 			],
 			"owner": "Golmote"
 		},
 		"python": {
 			"title": "Python",
+			"alias": "py",
 			"owner": "multipetros"
 		},
 		"q": {
@@ -734,6 +738,18 @@
 			"require": "clike",
 			"owner": "Golmote"
 		},
+		"regex": {
+			"title": "Regex",
+			"peerDependencies": [
+				"actionscript",
+				"coffeescript",
+				"flow",
+				"javascript",
+				"typescript",
+				"vala"
+			],
+			"owner": "RunDevelopment"
+		},
 		"rest": {
 			"title": "reST (reStructuredText)",
 			"owner": "Golmote"
@@ -749,6 +765,7 @@
 		"ruby": {
 			"title": "Ruby",
 			"require": "clike",
+			"alias": "rb",
 			"owner": "samflores"
 		},
 		"rust": {
@@ -916,6 +933,7 @@
 		},
 		"yaml": {
 			"title": "YAML",
+			"alias": "yml",
 			"owner": "hason"
 		}
 	},

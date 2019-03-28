@@ -2,53 +2,71 @@
 	if (!self.Prism || !self.document || !document.querySelectorAll || ![].filter) return;
 
 	/**
+	 * @callback Adapter
+	 * @param {any} response
+	 * @param {HTMLPreElement} [pre]
+	 * @returns {string}
+	 */
+
+	/**
 	 * The list of adapter which will be used if `data-adapter` is not specified.
 	 *
-	 * @type {Array.<(response: any, pre?: HTMLPreElement) => string>}
+	 * @type {Array.<{adapter: Adapter, name: string}>}
 	 */
 	var adapters = [];
 
 	/**
 	 * Adds a new function to the list of adapters.
 	 *
-	 * If the given adapter is already registered or not a function, nothing will happen.
+	 * If the given adapter is already registered or not a function or there is an adapter with the given name already,
+	 * nothing will happen.
 	 *
-	 * @param {(response: any, pre?: HTMLPreElement) => string} adapter The adapter to be registered.
+	 * @param {Adapter} adapter The adapter to be registered.
+	 * @param {string} [name] The name of the adapter. Defaults to the function name of `adapter`.
 	 */
-	function registerAdapter(adapter) {
-		if (typeof adapter === "function" && !getAdapter(adapter)) {
-			adapters.push(adapter);
+	function registerAdapter(adapter, name) {
+		name = name || adapter.name;
+		if (typeof adapter === "function" && !getAdapter(adapter) && !getAdapter(name)) {
+			adapters.push({ adapter: adapter, name: name });
 		}
 	}
 	/**
-	 * Returns the given adapter itself, if registered, or a registered adapter with the given function name.
+	 * Returns the given adapter itself, if registered, or a registered adapter with the given name.
 	 *
 	 * If no fitting adapter is registered, `null` will be returned.
 	 *
-	 * @param {string|Function} adapter The adapter itself or the function name of an adapter.
-	 * @returns {(response: any, pre?: HTMLPreElement) => string} A registered adapter or `null`.
+	 * @param {string|Function} adapter The adapter itself or the name of an adapter.
+	 * @returns {Adapter} A registered adapter or `null`.
 	 */
 	function getAdapter(adapter) {
 		if (typeof adapter === "function") {
-			return adapters.filter(function (fn) { return fn.valueOf() === adapter.valueOf(); })[0];
+			for (var i = 0, item; item = adapters[i++];) {
+				if (item.adapter.valueOf() === adapter.valueOf()) {
+					return item.adapter;
+				}
+			}
 		}
-		else if (typeof adapter === "string" && adapter.length > 0) {
-			return adapters.filter(function (fn) { return fn.name === adapter; })[0];
+		else if (typeof adapter === "string") {
+			for (var i = 0, item; item = adapters[i++];) {
+				if (item.name === adapter) {
+					return item.adapter;
+				}
+			}
 		}
 		return null;
 	}
 	/**
-	 * Remove the given adapter or the first registered adapter with the given function name from the list of
+	 * Remove the given adapter or the first registered adapter with the given name from the list of
 	 * registered adapters.
 	 *
-	 * @param {string|Function} adapter The adapter itself or the function name of an adapter.
+	 * @param {string|Function} adapter The adapter itself or the name of an adapter.
 	 */
 	function removeAdapter(adapter) {
 		if (typeof adapter === "string") {
 			adapter = getAdapter(adapter);
 		}
 		if (typeof adapter === "function") {
-			var index = adapters.indexOf(adapter);
+			var index = adapters.map(function (item) { return item.adapter; }).indexOf(adapter);
 			if (index >= 0) {
 				adapters.splice(index, 1);
 			}
@@ -67,7 +85,7 @@
 			}
 		}
 		return null;
-	});
+	}, 'github');
 	registerAdapter(function gist(rsp, el) {
 		if (rsp && rsp.meta && rsp.data && rsp.data.files) {
 			if (rsp.meta.status && rsp.meta.status >= 400) {
@@ -94,13 +112,13 @@
 			return "Error: unknown or missing gist file " + filename;
 		}
 		return null;
-	});
+	}, 'gist');
 	registerAdapter(function bitbucket(rsp, el) {
 		if (rsp && rsp.node && typeof (rsp.data) === "string") {
 			return rsp.data;
 		}
 		return null;
-	});
+	}, 'bitbucket');
 
 	var jsonpcb = 0,
 		loadMsg = "Loading\u2026";
@@ -158,7 +176,7 @@
 				}
 				else {
 					for (var p in adapters) {
-						data = adapters[p](rsp, pre);
+						data = adapters[p].adapter(rsp, pre);
 						if (data !== null) {
 							break;
 						}

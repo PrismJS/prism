@@ -1,0 +1,62 @@
+<% var foo = ''
+     , bar = false; %>
+
+<% if (bar) { %>
+  <%= foo + 'It\'s ' + output %>
+<% } %>
+
+----------------------------------------------------
+
+[
+	["ejs", [
+		["delimiter", "<%"],
+		["language-javascript", [
+			["keyword", "var"],
+			" foo ",
+			["operator", "="],
+			["string", "''"],
+			["punctuation", ","],
+			" bar ",
+			["operator", "="],
+			["boolean", "false"],
+			["punctuation", ";"]
+		]],
+		["delimiter", "%>"]
+	]],
+
+	["ejs", [
+		["delimiter", "<%"],
+		["language-javascript", [
+			["keyword", "if"],
+			["punctuation", "("],
+			"bar",
+			["punctuation", ")"],
+			["punctuation", "{"]
+		]],
+		["delimiter", "%>"]
+	]],
+
+	["ejs", [
+		["delimiter", "<%="],
+		["language-javascript", [
+			" foo ",
+			["operator", "+"],
+			["string", "'It\\'s '"],
+			["operator", "+"],
+			" output "
+		]],
+		["delimiter", "%>"]
+	]],
+
+	["ejs", [
+		["delimiter", "<%"],
+		["language-javascript", [
+			["punctuation", "}"]
+		]],
+		["delimiter", "%>"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for EJS.

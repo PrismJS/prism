@@ -7,7 +7,7 @@
 <title>Extending Prism ▲ Prism</title>
 <link rel="stylesheet" href="style.css" />
 <link rel="stylesheet" href="themes/prism.css" data-noprefix />
-<script src="prefixfree.min.js"></script>
+<script src="scripts/prefixfree.min.js"></script>
 
 <script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
 <script src="https://www.google-analytics.com/ga.js" async></script>
@@ -202,9 +202,9 @@
 	</section>
 
 	<section id="highlight">
-		<h1><code>Prism.highlight(text, grammar)</code></h1>
+		<h1><code>Prism.highlight(text, grammar, language)</code></h1>
 		<p>Low-level function, only use if you know what you’re doing.
-		It accepts a string of text as input and the language definitions to use, and returns a string with the HTML produced.</p>
+		It accepts a string of text as input, the language definitions to use, and the name of the language, and returns a string with the HTML produced.</p>
 
 		<h2>Parameters</h2>
 		<dl>
@@ -212,6 +212,8 @@
 			<dd>A string with the code to be highlighted.</dd>
 			<dt>grammar</dt>
 			<dd>An object containing the tokens to use. Usually a language definition like <code>Prism.languages.markup</code></dd>
+			<dt>language</dt>
+			<dd>The name of the language definition passed to <code>grammar</code>. E.g. <code>markup</code> or <code>javascript</code></dd>
 		</dl>
 
 		<h2>Returns</h2>
@@ -238,10 +240,10 @@
 
 <footer data-src="templates/footer.html" data-type="text/html"></footer>
 
+<script src="scripts/utopia.js"></script>
 <script src="prism.js"></script>
-<script src="utopia.js"></script>
 <script src="components.js"></script>
-<script src="code.js"></script>
+<script src="scripts/code.js"></script>
 
 </body>
 </html>

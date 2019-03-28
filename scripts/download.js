@@ -52,7 +52,7 @@ if (hstr) {
 						}
 						if (components[category][id].require) {
 							var deps = components[category][id].require;
-							if ($u.type(deps) !== 'array') {
+							if (!Array.isArray(deps)) {
 								deps = [deps];
 							}
 							deps.forEach(makeDefault);
@@ -547,12 +547,20 @@ function generateCode(){
 		var versionComment = "/* PrismJS " + version + "\n" + redownloadUrl + " */";
 
 		for (var type in code) {
-			var codeElement = $('#download-' + type + ' code');
+			(function (type) {
+				var text = versionComment + "\n" + code[type];
+				var fileName = 'prism.' + type;
 
-			codeElement.textContent = versionComment + "\n" + code[type];
-			Prism.highlightElement(codeElement, true);
+				var codeElement = $('#download-' + type + ' code');
 
-			$('#download-' + type + ' .download-button').href = 'data:application/octet-stream;charset=utf-8,' + encodeURIComponent(versionComment + "\n" + code[type]);
+				codeElement.textContent = text;
+				Prism.highlightElement(codeElement, true);
+
+
+				$('#download-' + type + ' .download-button').onclick = function () {
+					saveAs(new Blob([text], { type: "application/octet-stream;charset=utf-8" }), fileName);
+				};
+			})(type);
 		}
 	});
 }

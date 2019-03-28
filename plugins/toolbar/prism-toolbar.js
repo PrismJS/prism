@@ -10,10 +10,17 @@
 	Prism.plugins.toolbar = {};
 
 	/**
+	 * @typedef ButtonOptions
+	 * @property {string} text The text displayed.
+	 * @property {string} [url] The URL of the link which will be created.
+	 * @property {Function} [onClick] The event listener for the `click` event of the created button.
+	 */
+
+	/**
 	 * Register a button callback with the toolbar.
 	 *
 	 * @param {string} key
-	 * @param {Object|Function} opts
+	 * @param {ButtonOptions|Function} opts
 	 */
 	var registerButton = Prism.plugins.toolbar.registerButton = function (key, opts) {
 		var callback;
@@ -41,6 +48,11 @@
 
 				return element;
 			};
+		}
+
+		if (key in map) {
+			console.warn('There is a button with the key "' + key + '" registered already.');
+			return;
 		}
 
 		callbacks.push(map[key] = callback);

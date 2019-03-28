@@ -8,7 +8,7 @@ examples/
 img/
 templates/
 tests/
-vendor/
+scripts/
 *.tgz
 *.html
 style.css
@@ -16,12 +16,7 @@ favicon.png
 logo.svg
 bower.json
 composer.json
-download.js
-examples.js
 gulpfile.js
-prefixfree.min.js
-utopia.js
-code.js
 .editorconfig
 .gitattributes
 .travis.yml
