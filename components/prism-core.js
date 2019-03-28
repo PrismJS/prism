@@ -480,7 +480,9 @@ var _ = {
 							start = offset + $g.length;
 
 							if (typeof group === 'string') {
-								content.push(new Token(group, $g, undefined, $g, false))
+								content.push(new Token(group, $g, undefined, $g, false));
+							} else if (Array.isArray(group)) {
+								content.push(new Token(group[0], $g, group.slice(1), $g, false));
 							} else {
 								content.push.apply(content, tokenize($g, group));
 							}

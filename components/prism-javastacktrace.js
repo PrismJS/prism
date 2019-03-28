@@ -53,12 +53,7 @@ Prism.languages.javastacktrace = {
 						groups: {
 							$1: 'file',
 							$2: 'punctuation',
-							$3: {
-								'line-number': {
-									pattern: /\d+/,
-									alias: 'number'
-								}
-							}
+							$3: ['line-number', 'number']
 						}
 					},
 					// (Unknown Source)
