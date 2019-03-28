@@ -459,7 +459,7 @@ function Token(type, content, alias, matchedStr, greedy) {
 }
 
 Token.stringify = function(o, language) {
-	if (typeof o == 'string') {
+	if (typeof o === 'string') {
 		return _.util.encode(o);
 	}
 
