@@ -7,6 +7,7 @@ bar`
 "test // test" `template`
 
 console.log(`This is${it.with({ type: false })}!`)
+`${ {foo:'bar'}.foo }`
 
 ----------------------------------------------------
 
@@ -67,7 +68,23 @@ console.log(`This is${it.with({ type: false })}!`)
 		]],
 		["string", "!`"]
 	]],
-	["punctuation", ")"]
+	["punctuation", ")"],
+
+	["template-string", [
+		["string", "`"],
+		["interpolation", [
+			["interpolation-punctuation", "${"],
+			["punctuation", "{"],
+			"foo",
+			["punctuation", ":"],
+			["string", "'bar'"],
+			["punctuation", "}"],
+			["punctuation", "."],
+			"foo ",
+			["interpolation-punctuation", "}"]
+		]],
+		["string", "`"]
+	]]
 ]
 
 ----------------------------------------------------
