@@ -6,7 +6,7 @@ bar`
 "foo `a` `b` `c` `d` bar"
 "test // test" `template`
 
-console.log(`This is${it.with({ type: false })}!`)
+console.log(`This is ${it.with({ type: false })}!`)
 `${ {foo:'bar'}.foo }`
 
 ----------------------------------------------------
@@ -51,7 +51,7 @@ console.log(`This is${it.with({ type: false })}!`)
 	["function", "log"],
 	["punctuation", "("],
 	["template-string", [
-		["string", "`This is"],
+		["string", "`This is "],
 		["interpolation", [
 			["interpolation-punctuation", "${"],
 			"it",
