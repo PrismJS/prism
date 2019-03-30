@@ -9,13 +9,13 @@
 			greedy: true
 		},
 		'table': {
-			pattern: RegExp("(\\[\\s*)" + key + "(?:\\s*\\.\\s*" + key + ")*(?=\\s*\\])"),
+			pattern: RegExp('(\\[\\s*)' + key + '(?:\\s*\\.\\s*' + key + ')*(?=\\s*\\])'),
 			lookbehind: true,
 			greedy: true,
 			alias: 'class-name'
 		},
 		'key': {
-			pattern: RegExp("(^\\s*|[{,]\\s*)" + key + "(?:\\s*\\.\\s*" + key + ")*(?=\\s*=)", "m"),
+			pattern: RegExp('(^\\s*|[{,]\\s*)' + key + '(?:\\s*\\.\\s*' + key + ')*(?=\\s*=)', 'm'),
 			lookbehind: true,
 			greedy: true,
 			alias: 'property'

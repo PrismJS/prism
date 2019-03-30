@@ -177,7 +177,7 @@ var _ = {
 			selector: 'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'
 		};
 
-		_.hooks.run("before-highlightall", env);
+		_.hooks.run('before-highlightall', env);
 
 		var elements = env.elements || container.querySelectorAll(env.selector);
 
@@ -287,7 +287,7 @@ var _ = {
 			}
 
 			var patterns = grammar[token];
-			patterns = (_.util.type(patterns) === "Array") ? patterns : [patterns];
+			patterns = (_.util.type(patterns) === 'Array') ? patterns : [patterns];
 
 			for (var j = 0; j < patterns.length; ++j) {
 				var pattern = patterns[j],
@@ -300,7 +300,7 @@ var _ = {
 				if (greedy && !pattern.pattern.global) {
 					// Without the global flag, lastIndex won't work
 					var flags = pattern.pattern.toString().match(/[imuy]*$/)[0];
-					pattern.pattern = RegExp(pattern.pattern.source, flags + "g");
+					pattern.pattern = RegExp(pattern.pattern.source, flags + 'g');
 				}
 
 				pattern = pattern.pattern || pattern;
@@ -454,7 +454,7 @@ function Token(type, content, alias, matchedStr, greedy) {
 	this.content = content;
 	this.alias = alias;
 	// Copy of the full string this token was created from
-	this.length = (matchedStr || "").length|0;
+	this.length = (matchedStr || '').length|0;
 	this.greedy = !!greedy;
 }
 
@@ -517,13 +517,13 @@ if (!_self.document) {
 }
 
 //Get current script and highlight
-var script = document.currentScript || [].slice.call(document.getElementsByTagName("script")).pop();
+var script = document.currentScript || [].slice.call(document.getElementsByTagName('script')).pop();
 
 if (script) {
 	_.filename = script.src;
 
 	if (!_.manual && !script.hasAttribute('data-manual')) {
-		if(document.readyState !== "loading") {
+		if(document.readyState !== 'loading') {
 			if (window.requestAnimationFrame) {
 				window.requestAnimationFrame(_.highlightAll);
 			} else {

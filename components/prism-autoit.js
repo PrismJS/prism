@@ -1,5 +1,5 @@
 Prism.languages.autoit = {
-	"comment": [
+	'comment': [
 		/;.*/,
 		{
 			// The multi-line comments delimiters can actually be commented out with ";"
@@ -7,28 +7,28 @@ Prism.languages.autoit = {
 			lookbehind: true
 		}
 	],
-	"url": {
+	'url': {
 		pattern: /(^\s*#include\s+)(?:<[^\r\n>]+>|"[^\r\n"]+")/m,
 		lookbehind: true
 	},
-	"string": {
+	'string': {
 		pattern: /(["'])(?:\1\1|(?!\1)[^\r\n])*\1/,
 		greedy: true,
 		inside: {
-			"variable": /([%$@])\w+\1/
+			'variable': /([%$@])\w+\1/
 		}
 	},
-	"directive": {
+	'directive': {
 		pattern: /(^\s*)#\w+/m,
 		lookbehind: true,
 		alias: 'keyword'
 	},
-	"function": /\b\w+(?=\()/,
+	'function': /\b\w+(?=\()/,
 	// Variables and macros
-	"variable": /[$@]\w+/,
-	"keyword": /\b(?:Case|Const|Continue(?:Case|Loop)|Default|Dim|Do|Else(?:If)?|End(?:Func|If|Select|Switch|With)|Enum|Exit(?:Loop)?|For|Func|Global|If|In|Local|Next|Null|ReDim|Select|Static|Step|Switch|Then|To|Until|Volatile|WEnd|While|With)\b/i,
-	"number": /\b(?:0x[\da-f]+|\d+(?:\.\d+)?(?:e[+-]?\d+)?)\b/i,
-	"boolean": /\b(?:True|False)\b/i,
-	"operator": /<[=>]?|[-+*\/=&>]=?|[?^]|\b(?:And|Or|Not)\b/i,
-	"punctuation": /[\[\]().,:]/
+	'variable': /[$@]\w+/,
+	'keyword': /\b(?:Case|Const|Continue(?:Case|Loop)|Default|Dim|Do|Else(?:If)?|End(?:Func|If|Select|Switch|With)|Enum|Exit(?:Loop)?|For|Func|Global|If|In|Local|Next|Null|ReDim|Select|Static|Step|Switch|Then|To|Until|Volatile|WEnd|While|With)\b/i,
+	'number': /\b(?:0x[\da-f]+|\d+(?:\.\d+)?(?:e[+-]?\d+)?)\b/i,
+	'boolean': /\b(?:True|False)\b/i,
+	'operator': /<[=>]?|[-+*\/=&>]=?|[?^]|\b(?:And|Or|Not)\b/i,
+	'punctuation': /[\[\]().,:]/
 };

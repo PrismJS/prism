@@ -16,7 +16,7 @@
 		'operator': /\+[+=]?|-[-=>]?|==?=?|!(?:!|==?)?|[\/*%<>]=?|[?:]:?|\.\.|&&|\|\||\b(?:and|inv|or|shl|shr|ushr|xor)\b/
 	});
 
-	delete Prism.languages.kotlin["class-name"];
+	delete Prism.languages.kotlin['class-name'];
 
 	Prism.languages.insertBefore('kotlin', 'string', {
 		'raw-string': {

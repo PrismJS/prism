@@ -16,14 +16,6 @@
 			"warn",
 			"only-multiline",
 		],
-//		"indent": [
-//			"error",
-//			"tab",
-//			{
-//				"SwitchCase": 1,
-//				"outerIIFEBody": 0,
-//			}
-//		],
 		"linebreak-style": [
 			"error",
 			"unix",
@@ -41,19 +33,27 @@
 			}
 		],
 		"no-useless-escape": "off",
-//		"quotes": [
-//			"warn",
-//			"single",
-//			{
-//				"avoidEscape": true,
-//			}
-//		],
 		"semi": [
 			"error",
 			"always",
 		],
 	},
 	"overrides": [
+		{
+			"files": [
+				"components/*.js",
+				"gulpfile.js",
+			],
+			"rules": {
+				"quotes": [
+					"warn",
+					"single",
+					{
+						"avoidEscape": true,
+					}
+				],
+			},
+		},
 		{
 			"files": [
 				"components/prism-core.js",
@@ -86,12 +86,6 @@
 			},
 			"parserOptions": {
 				"ecmaVersion": 2015,
-			},
-			"rules": {
-				"comma-dangle": [
-					"error",
-					"always-multiline",
-				],
 			},
 		},
 		{
