@@ -69,7 +69,19 @@ function lint(cb) {
 		src(['**/*.js', '!node_modules/**'], { base: './' }),
 		eslint(),
 		eslint.format(),
-		eslint.failAfterError(),
+		eslint.results(({ errorCount, warningCount }) => {
+			if (errorCount > 0 || warningCount > 0) {
+				let err = new Error(
+					`Failed with ${errorCount} ${
+						errorCount === 1 ? 'error' : 'errors'
+					} and ${warningCount} ${
+						errorCount === 1 ? 'warning' : 'warnings'
+					}.`
+				);
+				err['showStack'] = false;
+				throw err;
+			}
+		}),
 	], cb);
 }
 
