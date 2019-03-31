@@ -21,7 +21,12 @@
 			"unix",
 		],
 		"no-console": "off",
-		"no-empty": "off",
+		"no-empty": [
+			"warn",
+			{
+				"allowEmptyCatch": true,
+			}
+		],
 		"no-inner-declarations": "off",
 		"no-mixed-spaces-and-tabs": "error",
 		"no-redeclare": "off",
