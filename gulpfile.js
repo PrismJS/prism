@@ -43,10 +43,11 @@ const componentsPromise = new Promise((resolve, reject) => {
 });
 
 /**
+ * Returns a Promise which resolves the hash of the given file.
  *
- * @param {string} algorithm
- * @param {string} encoding
- * @param {string} path
+ * @param {string} algorithm The hash algorithm.
+ * @param {string} encoding The encoding used to convert the hash bytes to a string.
+ * @param {string} path The path of the file to hash.
  * @returns {Promise<string>}
  */
 function hashFile(algorithm, encoding, path) {
@@ -325,7 +326,7 @@ function gitChanges(cb) {
 
 
 exports.watch = watchComponentsAndPlugins;
-exports.default = parallel(components, plugins, componentsJsonToJs, build);
+exports.default = parallel(series(components, plugins), componentsJsonToJs, build);
 exports.premerge = gitChanges;
 exports.linkify = linkify;
 exports.changes = changes;
