@@ -995,6 +995,12 @@
 			"owner": "Golmote",
 			"noCSS": true
 		},
+		"autoloader-sri-sha384": {
+			"title": "Autoloader SRI (SHA384)",
+			"require": "autoloader",
+			"owner": "RunDevelopment",
+			"noCSS": true
+		},
 		"keep-markup": {
 			"title": "Keep Markup",
 			"owner": "Golmote",

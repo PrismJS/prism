@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8" />
+<link rel="icon" href="favicon.png" />
+<title>Autoloader SRI (SHA384) ▲ Prism plugins</title>
+<base href="../.." />
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="themes/prism.css" data-noprefix />
+<script src="scripts/prefixfree.min.js"></script>
+
+<script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
+<script src="https://www.google-analytics.com/ga.js" async></script>
+</head>
+<body>
+
+<header>
+	<div class="intro" data-src="templates/header-plugins.html" data-type="text/html"></div>
+
+	<h2>Autoloader SRI (SHA384)</h2>
+	<p>Adds subresource-integrity verification to the languages automatically loaded by the <a href="plugins/autoloader/">Autoloader</a>.</p>
+</header>
+
+<section>
+	<h1>How to use</h1>
+
+	<p>
+		Just select this plugin on the <a href="download.html">Download</a> page and it will automatically enable SRI for all language definitions including minified ones.
+	</p>
+	<p>
+		You can disable SRI like this:
+	</p>
+
+	<pre class="language-javascript"><code>Prism.plugins.autoloader.sri.enabled = false;</code></pre>
+
+</section>
+
+<section>
+	<h1>How it works</h1>
+
+	<p>
+		SRI works by computing a checksum of a downloaded resources and checking it against a list of valid checksums. Only if the computed checksum valid, will the resource be parsed and executed. <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity">More information</a>.
+	</p>
+	<p>
+		This plugin uses the SHA384 hash algorithm to compute the checksums of language files. This algorithm was chosen because it present a good compromise between security and the file size of this plugin.
+	</p>
+
+</section>
+
+<section>
+	<h1>Examples</h1>
+
+	<pre class="language-javascript"><code>var a = 9;</code></pre>
+
+	<p>
+		The checksum of CSS was changed to a wrong hash causing CSS to fail to load.
+	</p>
+
+	<pre class="language-css"><code>a {
+	color: red;
+}</code></pre>
+
+	<p>
+		Autoloader won't even attempt to load languages for which there isn't a checksum registered. This means unknown languages won't be loaded at all.
+	</p>
+
+	<pre class="language-unknown"><code>a {
+	color: red;
+}</code></pre>
+
+</section>
+
+<footer data-src="templates/footer.html" data-type="text/html"></footer>
+
+<script src="components/prism-core.js"></script>
+<script src="plugins/autoloader/prism-autoloader.js" data-autoloader-path="components"></script>
+<script src="plugins/autoloader-sri-sha384/prism-autoloader-sri-sha384.js"></script>
+<script>
+var sri = Prism.plugins.autoloader.sri;
+sri.hashes['css'] = sri.hashes['typescript']
+</script>
+<script src="scripts/utopia.js"></script>
+<script src="components.js"></script>
+<script src="scripts/code.js"></script>
+
+</body>
+</html>
