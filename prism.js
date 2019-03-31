@@ -281,6 +281,15 @@ var _ = {
 		return Token.stringify(_.util.encode(env.tokens), env.language);
 	},
 
+	/**
+	 * @param {string} text
+	 * @param {string | string[] | Array<string|Token>} strarr
+	 * @param {Prism.Grammar} grammar
+	 * @param {number} index
+	 * @param {number} startPos
+	 * @param {boolean} oneshot
+	 * @param {string} [target]
+	 */
 	matchGrammar: function (text, strarr, grammar, index, startPos, oneshot, target) {
 		for (var token in grammar) {
 			if(!grammar.hasOwnProperty(token) || !grammar[token]) {
@@ -313,7 +322,9 @@ var _ = {
 				// Don’t cache length as it changes during the loop
 				for (var i = index, pos = startPos; i < strarr.length; pos += strarr[i].length, ++i) {
 
-					var str = strarr[i];
+					var str = strarr[i],
+						match,
+						delNum;
 
 					if (strarr.length > text.length) {
 						// Something went terribly wrong, ABORT, ABORT!
@@ -326,7 +337,7 @@ var _ = {
 
 					if (greedy && i != strarr.length - 1) {
 						pattern.lastIndex = pos;
-						var match = pattern.exec(text);
+						match = pattern.exec(text);
 						if (!match) {
 							break;
 						}
@@ -357,8 +368,8 @@ var _ = {
 					} else {
 						pattern.lastIndex = 0;
 
-						var match = pattern.exec(str),
-							delNum = 1;
+						match = pattern.exec(str);
+						delNum = 1;
 					}
 
 					if (!match) {
@@ -373,12 +384,14 @@ var _ = {
 						lookbehindLength = match[1] ? match[1].length : 0;
 					}
 
-					var from = match.index + lookbehindLength,
-						match = match[0].slice(lookbehindLength),
-						to = from + match.length,
-						before = str.slice(0, from),
+					from = match.index + lookbehindLength;
+					match = match[0].slice(lookbehindLength);
+					to = from + match.length;
+
+					var before = str.slice(0, from),
 						after = str.slice(to);
 
+					/** @type {[number, number, ...any[]]} */
 					var args = [i, delNum];
 
 					if (before) {
@@ -551,7 +564,7 @@ if (typeof module !== 'undefined' && module.exports) {
 
 // hack for components to work correctly in node.js
 if (typeof global !== 'undefined') {
-	global['Prism'] = Prism;
+	global.Prism = Prism;
 }
 
 

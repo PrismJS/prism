@@ -34,9 +34,11 @@ Prism.hooks.add('before-highlight', function (env) {
 
 	var outputSections = pre.getAttribute('data-output');
 	var outputFilter = pre.getAttribute('data-filter-output');
+
+	var i;
 	if (outputSections || outputSections === '') { // The user specified the output lines. -- cwells
 		outputSections = outputSections.split(',');
-		for (var i = 0; i < outputSections.length; i++) { // Parse the output sections into start/end ranges. -- cwells
+		for (i = 0; i < outputSections.length; i++) { // Parse the output sections into start/end ranges. -- cwells
 			var range = outputSections[i].split('-');
 			var outputStart = parseInt(range[0], 10);
 			var outputEnd = (range.length === 2 ? parseInt(range[1], 10) : outputStart);
@@ -59,7 +61,7 @@ Prism.hooks.add('before-highlight', function (env) {
 			}
 		}
 	} else if (outputFilter) { // Treat lines beginning with this string as output. -- cwells
-		for (var i = 0; i < codeLines.length; i++) {
+		for (i = 0; i < codeLines.length; i++) {
 			if (codeLines[i].indexOf(outputFilter) === 0) { // This line is output. -- cwells
 				outputLines[i] = codeLines[i].slice(outputFilter.length);
 				codeLines[i] = '';

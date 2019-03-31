@@ -24,12 +24,13 @@
 	 * @param {string|number} name The name or index of the token in `tokens`.
 	 */
 	function handleToken(tokens, name) {
-		var value = tokens[name];
+		var value = tokens[name],
+			inside;
 
 		var type = Prism.util.type(value);
 		switch (type) {
 			case 'RegExp':
-				var inside = {};
+				inside = {};
 				tokens[name] = {
 					pattern: value,
 					inside: inside
@@ -44,7 +45,7 @@
 				break;
 
 			default: // 'Object'
-				var inside = value.inside || (value.inside = {});
+				inside = value.inside || (value.inside = {});
 				addInvisibles(inside);
 				break;
 		}
@@ -67,7 +68,7 @@
 			}
 		}
 
-		for (var name in grammar) {
+		for (name in grammar) {
 			if (grammar.hasOwnProperty(name) && !invisibles[name]) {
 				if (name === 'rest') {
 					addInvisibles(grammar['rest']);

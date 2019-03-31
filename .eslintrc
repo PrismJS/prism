@@ -29,7 +29,7 @@
 		],
 		"no-inner-declarations": "off",
 		"no-mixed-spaces-and-tabs": "error",
-		"no-redeclare": "off",
+		"no-redeclare": "error",
 		"no-sparse-arrays": "off",
 		"no-unused-vars": [
 			"warn",
