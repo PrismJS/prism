@@ -189,14 +189,14 @@ var _ = {
 
 	highlightElement: function(element, async, callback) {
 		// Find language
-		var language, grammar, parent = element;
+		var language = 'none', grammar, parent = element;
 
 		while (parent && !lang.test(parent.className)) {
 			parent = parent.parentNode;
 		}
 
 		if (parent) {
-			language = (parent.className.match(lang) || [,''])[1].toLowerCase();
+			language = (parent.className.match(lang) || [,'none'])[1].toLowerCase();
 			grammar = _.languages[language];
 		}
 
