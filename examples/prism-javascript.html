@@ -73,5 +73,8 @@ multiple lines.`
 </p>
 
 <h3>String interpolation containing a closing brace</h3>
-<pre><code>`${ {foo:'bar'}.foo }`
+<pre><code>`${ /* } */ a + b }`
 `${ '}' }`</code></pre>
+
+<h3>String interpolation with deeply nested braces</h3>
+<pre><code>`${foo({ a: { b: { c: true } } })}`</code></pre>

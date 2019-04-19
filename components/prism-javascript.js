@@ -61,11 +61,11 @@ Prism.languages.insertBefore('javascript', 'keyword', {
 
 Prism.languages.insertBefore('javascript', 'string', {
 	'template-string': {
-		pattern: /`(?:\\[\s\S]|\${[^}]+}|[^\\`])*`/,
+		pattern: /`(?:\\[\s\S]|\${(?:[^{}]|{(?:[^{}]|{[^}]*})*})+}|[^\\`])*`/,
 		greedy: true,
 		inside: {
 			'interpolation': {
-				pattern: /\${[^}]+}/,
+				pattern: /\${(?:[^{}]|{(?:[^{}]|{[^}]*})*})+}/,
 				inside: {
 					'interpolation-punctuation': {
 						pattern: /^\${|}$/,
