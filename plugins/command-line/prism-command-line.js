@@ -79,7 +79,7 @@ Prism.hooks.add('before-insert', function (env) {
 
 	// Reinsert the output lines into the highlighted code. -- cwells
 	var codeLines = env.highlightedCode.split('\n');
-	for (var i = 0; i < (commandLine.outputLines.length || 0); i++) {
+	for (var i = 0, l = (commandLine.outputLines || []).length; i < l; i++) {
 		if (commandLine.outputLines.hasOwnProperty(i)) {
 			codeLines[i] = commandLine.outputLines[i];
 		}
