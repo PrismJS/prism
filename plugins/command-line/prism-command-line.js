@@ -123,7 +123,7 @@ Prism.hooks.add('complete', function (env) {
 	prompt.innerHTML = promptLines;
 
 	// Remove the prompt from the output lines. -- cwells
-	for (var i = 0; i < (commandLine.outputLines.length || 0); i++) {
+	for (var i = 0, l = (commandLine.outputLines || []).length; i < l; i++) {
 		if (commandLine.outputLines.hasOwnProperty(i)) {
 			var node = prompt.children[i];
 			node.removeAttribute('data-user');
