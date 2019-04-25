@@ -9,6 +9,11 @@
 <link rel="stylesheet" href="style.css" />
 <link rel="stylesheet" href="themes/prism.css" data-noprefix />
 <script src="scripts/prefixfree.min.js"></script>
+<style>
+b {
+	font-weight: bold;
+}
+</style>
 
 <script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
 <script src="https://www.google-analytics.com/ga.js" async></script>
@@ -27,6 +32,9 @@
 
 	<p>
 		Just select this plugin on the <a href="download.html">Download</a> page and it will automatically enable SRI for all language definitions including minified ones.
+	</p>
+	<p>
+		<b>IMPORTANT:</b> The Prism versions of the plugin and the grammars linked to in Autoloader's <code class="language-javascript">languages_path</code> variable must be identical. Mixed versions <b>will not</b> work.
 	</p>
 	<p>
 		You can disable SRI like this:
