@@ -12,7 +12,7 @@
 			}
 		},
 		'url': {
-			pattern: RegExp('url\\((?:' + string.source + '|[^\n\r()]*?)\\)', 'i'),
+			pattern: RegExp('url\\((?:' + string.source + '|[^\n\r()]*)\\)', 'i'),
 			inside: {
 				'function': /^url/,
 				'punctuation': /^\(|\)$/
