@@ -36,14 +36,20 @@ Prism.languages.css.selector = {
 				'operator': /[|~*^$]?=/
 			}
 		},
-		'n-th': {
-			pattern: /(\(\s*)[+-]?\d*[\dn](?:\s*[+-]\s*\d+)?(?=\s*\))/,
-			lookbehind: true,
-			inside: {
-				'number': /[\dn]+/,
-				'operator': /[+-]/
+		'n-th': [
+			{
+				pattern: /(\(\s*)[+-]?\d*[\dn](?:\s*[+-]\s*\d+)?(?=\s*\))/,
+				lookbehind: true,
+				inside: {
+					'number': /[\dn]+/,
+					'operator': /[+-]/
+				}
+			},
+			{
+				pattern: /(\(\s*)(?:even|odd)(?=\s*\))/i,
+				lookbehind: true
 			}
-		},
+		],
 		'punctuation': /[()]/
 	}
 };
