@@ -194,14 +194,14 @@ var _ = {
 
 	highlightElement: function(element, async, callback) {
 		// Find language
-		var language, grammar, parent = element;
+		var language = 'none', grammar, parent = element;
 
 		while (parent && !lang.test(parent.className)) {
 			parent = parent.parentNode;
 		}
 
 		if (parent) {
-			language = (parent.className.match(lang) || [,''])[1].toLowerCase();
+			language = (parent.className.match(lang) || [,'none'])[1].toLowerCase();
 			grammar = _.languages[language];
 		}
 
@@ -783,11 +783,11 @@ Prism.languages.javascript = Prism.languages.extend('clike', {
 	'operator': /-[-=]?|\+[+=]?|!=?=?|<<?=?|>>?>?=?|=(?:==?|>)?|&[&=]?|\|[|=]?|\*\*?=?|\/=?|~|\^=?|%=?|\?|\.{3}/
 });
 
-Prism.languages.javascript['class-name'][0].pattern = /(\b(?:class|interface|extends|implements|instanceof|new)\s+)[\w.\\]+/
+Prism.languages.javascript['class-name'][0].pattern = /(\b(?:class|interface|extends|implements|instanceof|new)\s+)[\w.\\]+/;
 
 Prism.languages.insertBefore('javascript', 'keyword', {
 	'regex': {
-		pattern: /((?:^|[^$\w\xA0-\uFFFF."'\])\s])\s*)\/(\[(?:[^\]\\\r\n]|\\.)*]|\\.|[^/\\\[\r\n])+\/[gimyu]{0,5}(?=\s*($|[\r\n,.;})\]]))/,
+		pattern: /((?:^|[^$\w\xA0-\uFFFF."'\])\s])\s*)\/(\[(?:[^\]\\\r\n]|\\.)*]|\\.|[^/\\\[\r\n])+\/[gimyus]{0,6}(?=\s*($|[\r\n,.;})\]]))/,
 		lookbehind: true,
 		greedy: true
 	},
@@ -822,11 +822,11 @@ Prism.languages.insertBefore('javascript', 'keyword', {
 
 Prism.languages.insertBefore('javascript', 'string', {
 	'template-string': {
-		pattern: /`(?:\\[\s\S]|\${[^}]+}|[^\\`])*`/,
+		pattern: /`(?:\\[\s\S]|\${(?:[^{}]|{(?:[^{}]|{[^}]*})*})+}|[^\\`])*`/,
 		greedy: true,
 		inside: {
 			'interpolation': {
-				pattern: /\${[^}]+}/,
+				pattern: /\${(?:[^{}]|{(?:[^{}]|{[^}]*})*})+}/,
 				inside: {
 					'interpolation-punctuation': {
 						pattern: /^\${|}$/,
