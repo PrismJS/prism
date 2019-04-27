@@ -44,12 +44,12 @@ comment *)</code></pre>
       match t with
       | Empty -> false
       | Interval (l,h) ->
-        Endpoint.compare x l >= 0 && Endpoint.compare x h <= 0
+        Endpoint.compare x l >= 0 && Endpoint.compare x h &lt;= 0
 
     (** [intersect t1 t2] returns the intersection of the two input
         intervals *)
     let intersect t1 t2 =
-      let min x y = if Endpoint.compare x y <= 0 then x else y in
+      let min x y = if Endpoint.compare x y &lt;= 0 then x else y in
       let max x y = if Endpoint.compare x y >= 0 then x else y in
       match t1,t2 with
       | Empty, _ | _, Empty -> Empty
