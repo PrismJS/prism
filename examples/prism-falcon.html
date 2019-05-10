@@ -1,0 +1,36 @@
+<h2>Full example</h2>
+<pre><code>
+# System
+enum System {
+  Darwin = "darwin" # mac osx
+  Linux = "linux" # linux
+}
+
+# Notebook
+struct Notebook {
+  system: System # system
+  color: string # color
+}
+
+# Person
+struct Person {
+  name: string    # name
+  age: int32      # age
+  gender: Gender  # genfer
+  notebooks: [Notebook] # notebooks
+}
+
+# description
+api get|post '/api/hello/world' {
+  set name  = 'name'
+  set sign = ['sign1, sign2']
+
+  struct Request {
+    // name: type # description
+  }
+
+  struct Response {
+    // name: type # description
+  }
+}
+</code></pre>

@@ -280,6 +280,12 @@
 			"require": "clike",
 			"owner": "simonreynolds7"
 		},
+		"falcon": {
+			"title": "Falcon",
+			"require": "javascript",
+			"peerDependencies": "markup",
+			"owner": "qfish"
+		},
 		"flow": {
 			"title": "Flow",
 			"require": "javascript",
