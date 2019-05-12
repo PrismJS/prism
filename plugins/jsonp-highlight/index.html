@@ -152,11 +152,11 @@
 	<p>Bitbucket API:</p>
 	<pre class="lang-css" data-jsonp="https://bitbucket.org/!api/1.0/repositories/nauzilus/stylish/src/master/whirlpool/style.css"></pre>
 
-	<p>Custom adapter (JSON.stringify showing GitHub <a href="https://status.github.com/api/status.json">status</a>):</p>
-	<pre class="lang-javascript" data-jsonp="https://status.github.com/api/status.json" data-adapter="dump_json"></pre>
+	<p>Custom adapter (JSON.stringify showing the GitHub REST API for <a href="https://api.github.com/repos/PrismJS/prism">Prism's repository</a>):</p>
+	<pre class="lang-javascript" data-jsonp="https://api.github.com/repos/PrismJS/prism" data-adapter="dump_json"></pre>
 
 	<p>Registered adapter (as above, but without explicitly declaring the <code>data-adapter</code> attribute):</p>
-	<pre class="lang-javascript" data-jsonp="https://status.github.com/api/status.json"></pre>
+	<pre class="lang-javascript" data-jsonp="https://api.github.com/repos/PrismJS/prism"></pre>
 </section>
 
 <footer data-src="templates/footer.html" data-type="text/html"></footer>
