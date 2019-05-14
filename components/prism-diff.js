@@ -87,9 +87,10 @@
 			// This will NOT be handled correctly, so I just kinda hope that it doesn't happen.
 
 			// add prefix
-			var lines = highlighted.split(/^/gm); // split lines like so: "a\n\b\nc" -> ["a\n", "b\n", "c"]
-			for (var i = lines.length - 1; i >= 0; i--) {
-				lines[i] = prefix + lines[i];
+			var lines = [], m;
+			var linePattern = /.*(?:\r\n?|\n|.(?!.))/g
+			while (m = linePattern.exec(highlighted)) {
+				lines.push(prefix + m[0]);
 			}
 			if (/(?:^|[\r\n]).$/.test(decoded)) {
 				// because both "+a\n+" and "+a\n" will map to "a\n" after the prefix is removed
