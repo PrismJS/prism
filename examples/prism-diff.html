@@ -31,3 +31,11 @@
 -    qt: core
 +    qt: core gui
  public_headers: "src/*.h"</code></pre>
+
+<h2>Language specific Diff</h2>
+<p>Using the <code class="language-none">language-diff-xxxx</code> class for your code elements will enable language specific highlighting for your diffs.</p>
+<pre><code class="language-diff-javascript">@@ -4,6 +4,5 @@
+-    const foo = bar.baz([1, 2, 3]);
+-    foo = foo + 1;
++    const f = bar.baz([1, 2, 3]) + 1;
+     console.log(`f: ${f}`);</code></pre>

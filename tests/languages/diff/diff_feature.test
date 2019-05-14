@@ -1,5 +1,7 @@
 !     qt: core
 
+  unchanged
+
 -    qt: core
 +    qt: core gui
 
@@ -9,11 +11,12 @@
 ----------------------------------------------------
 
 [
-	["diff", "!     qt: core"],
-	["deleted", "-    qt: core"],
-	["inserted", "+    qt: core gui"],
-	["deleted", "< qt: core"],
-	["inserted", "> qt: core quick"]
+	["diff", "!     qt: core\r\n"],
+	["unchanged", "  unchanged\r\n"],
+	["deleted-sign", "-    qt: core\r\n"],
+	["inserted-sign", "+    qt: core gui\r\n"],
+	["deleted-arrow", "< qt: core\r\n"],
+	["inserted-arrow", "> qt: core quick"]
 ]
 
 ----------------------------------------------------
