@@ -45,8 +45,14 @@
 
 	Prism.hooks.add('before-sanity-check', function (env) {
 		var lang = env.language;
-		if (LANGUAGE_REGEX.test(lang)) {
+		if (LANGUAGE_REGEX.test(lang) && !env.grammar) {
 			env.grammar = Prism.languages[lang] = Prism.languages.diff;
+		}
+	})
+	Prism.hooks.add('before-tokenize', function (env) {
+		var lang = env.language;
+		if (LANGUAGE_REGEX.test(lang) && !Prism.languages[lang]) {
+			Prism.languages[lang] = Prism.languages.diff;
 		}
 	})
 
