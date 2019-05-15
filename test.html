@@ -7,6 +7,7 @@
 <title>Test drive ▲ Prism</title>
 <link rel="stylesheet" href="style.css" />
 <link rel="stylesheet" href="themes/prism.css" data-noprefix />
+<link rel="stylesheet" href="./plugins/line-numbers/prism-line-numbers.css">
 <style>
 #theme {
 	margin-right: -9em;
@@ -73,6 +74,10 @@ textarea {
 		</p>
 
 		<p>Result:</p>
+		<p>
+			<input type="checkbox" name="line-numbers" id="line-numbers">
+			<label for="line-numbers">Enable Line Numbers</label>
+		</p>
 		<pre><code></code></pre>
 
 		<p id="language">
@@ -88,7 +93,7 @@ textarea {
 <script src="components.js"></script>
 <script src="code.js"></script>
 <script src="vendor/promise.js"></script>
-
+<script src="./plugins/line-numbers/prism-line-numbers.min.js"></script>
 <script>
 (function() {
 var form = $('form'), code = $('code', form),
@@ -195,7 +200,17 @@ var textarea = $('textarea', form);
 	highlightCode();
 }).call(textarea);
 
+// Line Numbers Switcher
+var $lineNumbersBtn = document.getElementById("line-numbers");
+$lineNumbersBtn && $lineNumbersBtn.addEventListener("click", function(){
+
+	document.querySelector("pre").classList.toggle("line-numbers");
+	highlightCode();
+
+});
+
 })();
+
 
 </script>
 
