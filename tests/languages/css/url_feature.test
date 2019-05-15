@@ -9,11 +9,36 @@ bar.png")
 ----------------------------------------------------
 
 [
-	["url", "url(foo.png)"],
-	["url", "url('foo.png')"],
-	["url", "url(\"foo.png\")"],
-	["url", "url('foo\\\r\nbar.png')"],
-	["url", "url(\"foo\\\r\nbar.png\")"]
+	["url", [
+		["function", "url"],
+		["punctuation", "("],
+		"foo.png",
+		["punctuation", ")"]
+	]],
+	["url", [
+		["function", "url"],
+		["punctuation", "("],
+		"'foo.png'",
+		["punctuation", ")"]
+	]],
+	["url", [
+		["function", "url"],
+		["punctuation", "("],
+		"\"foo.png\"",
+		["punctuation", ")"]
+	]],
+	["url", [
+		["function", "url"],
+		["punctuation", "("],
+		"'foo\\\r\nbar.png'",
+		["punctuation", ")"]
+	]],
+	["url", [
+		["function", "url"],
+		["punctuation", "("],
+		"\"foo\\\r\nbar.png\"",
+		["punctuation", ")"]
+	]]
 ]
 
 ----------------------------------------------------
