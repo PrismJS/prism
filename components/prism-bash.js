@@ -43,7 +43,7 @@
 		'string': [
 			//Support for Here-Documents https://en.wikipedia.org/wiki/Here_document
 			{
-				pattern: /((?:^|[^<])<<\s*)["']?(\w+?)["']?\s*\r?\n(?:[\s\S])*?\r?\n\2/,
+				pattern: /((?:^|[^<])<<\s*)["']?(\w+?)["']?\s*(?:\r\n?|\n)(?:[\s\S])*?(?:\r\n?|\n)\2/,
 				lookbehind: true,
 				greedy: true,
 				inside: insideString
