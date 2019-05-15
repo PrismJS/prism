@@ -1,12 +1,4 @@
 (function (Prism) {
-	var prefixes = {
-		'deleted-sign': '-',
-		'deleted-arrow': '<',
-		'inserted-sign': '+',
-		'inserted-arrow': '>',
-		'unchanged': ' ',
-		'diff': '!',
-	};
 
 	Prism.languages.diff = {
 		'coord': [
@@ -19,6 +11,20 @@
 		]
 
 		// deleted, inserted, unchanged, diff
+	};
+
+	/**
+	 * A map from the name of a block to its line prefix.
+	 *
+	 * @type {Object<string, string>}
+	 */
+	var prefixes = {
+		'deleted-sign': '-',
+		'deleted-arrow': '<',
+		'inserted-sign': '+',
+		'inserted-arrow': '>',
+		'unchanged': ' ',
+		'diff': '!',
 	};
 
 	Object.keys(prefixes).forEach(function (name) {
