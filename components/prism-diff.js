@@ -27,6 +27,7 @@
 		'diff': '!',
 	};
 
+	// add a token for each prefix
 	Object.keys(prefixes).forEach(function (name) {
 		var prefix = prefixes[name];
 
@@ -46,8 +47,10 @@
 	});
 
 
-
 	var LANGUAGE_REGEX = /diff-([\w-]+)/i;
+	var HTML_TAG = /<\/?(?!\d)[^\s>\/=$<%]+(?:\s(?:\s*[^\s>\/=]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+(?=[\s>]))|(?=[\s/>])))+)?\s*\/?>/gi;
+	//this will match a line plus the line break while ignoring the line breaks HTML tags may contain.
+	var HTML_LINE = RegExp(/(?:__|[^\r\n<])*(?:\r\n?|\n|(?:__|[^\r\n<])(?![^\r\n]))/.source.replace(/__/g, HTML_TAG.source), 'gi');
 
 	Prism.hooks.add('before-sanity-check', function (env) {
 		var lang = env.language;
@@ -76,9 +79,12 @@
 		}
 
 		// one of the diff tokens without any nested tokens
-		if (env.type in prefixes && env.content.indexOf('<') === -1) {
+		if (env.type in prefixes) {
 			/** @type {string} */
-			var decoded = env.content.replace(/&amp;/g, '&').replace(/&lt;/g, '<');
+			var content = env.content.replace(HTML_TAG, ''); // remove all HTML tags
+
+			/** @type {string} */
+			var decoded = content.replace(/&amp;/g, '&').replace(/&lt;/g, '<');
 
 			// remove any one-character prefix
 			var code = decoded.replace(/(^|[\r\n])./g, '$1');
@@ -95,17 +101,14 @@
 			var prefixToken = new Prism.Token('prefix', prefixes[env.type], [/\w+/.exec(env.type)[0]]);
 			var prefix = Prism.Token.stringify(prefixToken, env.language);
 
-			// the highlighted code might contain tags which contain a line break.
-			// This will NOT be handled correctly, so I just kinda hope that it doesn't happen.
-
 			// add prefix
 			var lines = [], m;
-			var linePattern = /.*(?:\r\n?|\n|.(?!.))/g
-			while (m = linePattern.exec(highlighted)) {
+			HTML_LINE.lastIndex = 0;
+			while (m = HTML_LINE.exec(highlighted)) {
 				lines.push(prefix + m[0]);
 			}
 			if (/(?:^|[\r\n]).$/.test(decoded)) {
-				// because both "+a\n+" and "+a\n" will map to "a\n" after the prefix is removed
+				// because both "+a\n+" and "+a\n" will map to "a\n" after the line prefixes are removed
 				lines.push(prefix);
 			}
 			env.content = lines.join('');
