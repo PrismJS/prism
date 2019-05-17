@@ -1,11 +1,11 @@
 <h2>Full example</h2>
 <pre><code># comment
-def zip_object:
-	to_entries | sort_by(.key) |
-	map(.key) as $keys |
-	map(.value) | transpose |
+def some_method:
+	to_entries | sort_by(.foo) |
+	map(.foo) as $keys |
+	map(.bar) | transpose |
 	map(
 		[$keys, .] | transpose |
-		map({key: .[0], value: .[1]}) | from_entries
+		map({foo: .[0], bar: .[1], "foo-bar": "foo\("-" + "bar")"}) | from_entries
 	)
 ;</code></pre>
