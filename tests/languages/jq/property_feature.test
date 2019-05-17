@@ -1,0 +1,37 @@
+{ foo: 1, "bar": 2, "foo\("Bar")": 3 }
+
+----------------------------------------------------
+
+[
+	["punctuation", "{"],
+	["property-literal", "foo"],
+	["punctuation", ":"],
+	["number", "1"],
+	["punctuation", ","],
+	["property", [
+		"\"bar\""
+	]],
+	["punctuation", ":"],
+	["number", "2"],
+	["punctuation", ","],
+	["property", [
+		"\"foo",
+		["interpolation", [
+			["punctuation", "\\("],
+			["content", [
+				["string", [
+					"\"Bar\""
+				]]
+			]],
+			["punctuation", ")"]
+		]],
+		"\""
+	]],
+	["punctuation", ":"],
+	["number", "3"],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for properties.

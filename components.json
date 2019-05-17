@@ -436,6 +436,10 @@
 			"require": "clike",
 			"owner": "thesave"
 		},
+		"jq": {
+			"title": "JQ",
+			"owner": "RunDevelopment"
+		},
 		"jsdoc": {
 			"title": "JSDoc",
 			"require": ["javascript", "javadoclike"],
