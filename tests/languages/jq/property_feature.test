@@ -1,5 +1,8 @@
 { foo: 1, "bar": 2, "foo\("Bar")": 3 }
 
+# not a property
+foo::bar
+
 ----------------------------------------------------
 
 [
@@ -29,7 +32,12 @@
 	]],
 	["punctuation", ":"],
 	["number", "3"],
-	["punctuation", "}"]
+	["punctuation", "}"],
+
+	["comment", "# not a property"],
+	"\r\nfoo",
+	["punctuation", "::"],
+	"bar"
 ]
 
 ----------------------------------------------------

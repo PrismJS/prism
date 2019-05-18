@@ -20,7 +20,7 @@
 	var jq = Prism.languages.jq = {
 		'comment': /#.*/,
 		'property': {
-			pattern: RegExp(string.source + /(?=\s*:)/.source),
+			pattern: RegExp(string.source + /(?=\s*:(?!:))/.source),
 			greedy: true,
 			inside: stringInterpolation
 		},
@@ -37,7 +37,7 @@
 
 		'variable': /\B\$\w+/,
 		'property-literal': {
-			pattern: /[a-z_]\w*(?=\s*:)/i,
+			pattern: /[a-z_]\w*(?=\s*:(?!:))/i,
 			alias: 'property'
 		},
 		'keyword': /\b(?:as|break|catch|def|elif|else|end|foreach|if|import|include|label|module|modulemeta|null|reduce|then|try|while)\b/,
