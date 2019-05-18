@@ -40,11 +40,11 @@
 			loadLanguages(languages, function (langs) {
 				setTimeout(function () {
 					success && success(langs);
-				}, 0);
+				});
 			}, function (lang) {
 				setTimeout(function () {
 					error && error(lang);
-				}, 0);
+				});
 			});
 		}
 	};
