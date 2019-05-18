@@ -42,14 +42,24 @@
 		},
 		'keyword': /\b(?:as|break|catch|def|elif|else|end|foreach|if|import|include|label|module|modulemeta|null|reduce|then|try|while)\b/,
 		'boolean': /\b(?:true|false)\b/,
-		'number': /\d+/,
+		'number': /(?:\b\d+\.|\B\.)?\d+(?:[eE][+-]?\d+)?\b/,
 
-		'operator': /\.\.|[!=<>]?=|\?\/\/|\/\/=?|[-+*/%|]=?|[<>?]|\b(?:and|or|not)\b/,
+		'operator': [
+			{
+				pattern: /\|=?/,
+				alias: 'pipe'
+			},
+			/\.\.|[!=<>]?=|\?\/\/|\/\/=?|[-+*/%]=?|[<>?]|\b(?:and|or|not)\b/
+		],
 		'c-style-function': {
 			pattern: /\b[a-z_]\w*(?=\s*\()/i,
 			alias: 'function'
 		},
-		'punctuation': /[()\[\]{}.,:;]/,
+		'punctuation': /::|[()\[\]{},:;]|\.(?=\s*[\[\w$])/,
+		'dot': {
+			pattern: /\./,
+			alias: 'important'
+		}
 	}
 
 	stringInterpolation.interpolation.inside.content.inside = jq;
