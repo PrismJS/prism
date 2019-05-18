@@ -180,7 +180,7 @@
 		"csharp": {
 			"title": "C#",
 			"require": "clike",
-			"alias": "dotnet",
+			"alias": ["cs", "dotnet"],
 			"owner": "mvalipour"
 		},
 		"cpp": {
