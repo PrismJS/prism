@@ -120,6 +120,28 @@
 
 </section>
 
+<section>
+	<h1>Markdown</h1>
+
+	<p>Markdown will use the Autoloader to automatically load missing languages.</p>
+	<pre><code class="language-markdown">The C# code will be highlighted __after__ the rest of this document.
+
+```csharp
+public class Foo : IBar&lt;int&gt; {
+	public string Baz { get; set; } = "foo";
+}
+```
+
+The CSS code will be highlighted with this document because CSS has already been loaded.
+
+```css
+a:hover {
+	color: green !important;
+}
+```</code></pre>
+
+</section>
+
 <footer data-src="templates/footer.html" data-type="text/html"></footer>
 
 <script src="components/prism-core.js"></script>

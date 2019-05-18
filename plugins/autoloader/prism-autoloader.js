@@ -25,7 +25,28 @@
 	}
 	var config = Prism.plugins.autoloader = {
 		languages_path: languages_path,
-		use_minified: true
+		use_minified: true,
+		/**
+		 * Loads the given language(s) and calls the given callback(s) asynchronously.
+		 *
+		 * The error callback will be called once for each language failing to load.
+		 *
+		 * @param {string|string[]} languages
+		 * @param {(languages: string[]) => void} [success]
+		 * @param {(language: string) => void} [error]
+		 */
+		loadLanguages: function (languages, success, error) {
+			// loadLanguages might call the callbacks synchronously, so we guarantee that this is not the case
+			loadLanguages(languages, function (langs) {
+				setTimeout(function () {
+					success && success(langs);
+				}, 0);
+			}, function (lang) {
+				setTimeout(function () {
+					error && error(lang);
+				}, 0);
+			});
+		}
 	};
 
 	/**
@@ -173,7 +194,7 @@
 
 		var dependencies = lang_dependencies[lang];
 		if(dependencies && dependencies.length) {
-			loadLanguages(dependencies, load);
+			loadLanguages(dependencies, load, error);
 		} else {
 			load();
 		}
