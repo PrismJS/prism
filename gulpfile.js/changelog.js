@@ -4,10 +4,9 @@ const { src, dest } = require('gulp');
 
 const replace = require('gulp-replace');
 const pump = require('pump');
-const simpleGit = require('simple-git/promise');
+const git = require('simple-git/promise')(__dirname);
 
 const { changelog } = require('./paths');
-const git = require('simple-git/promise')(__dirname);
 
 
 const ISSUE_RE = /#(\d+)(?![\d\]])/g;
@@ -25,9 +24,22 @@ function linkify(cb) {
 	], cb);
 }
 
+/**
+ * Creates an array which iterates its items in the order given by `compareFn`.
+ *
+ * The array may not be sorted at all times.
+ *
+ * @param {(a: T, b: T) => number} compareFn
+ * @returns {T[]}
+ * @template T
+ */
 function createSortedArray(compareFn) {
 	const a = [];
-	a[Symbol.iterator] = function*() {
+
+	a['sort'] = function () {
+		return Array.prototype.sort.call(this, compareFn);
+	};
+	a[Symbol.iterator] = function* () {
 		const copy = [];
 		for (let i = 0; i < this.length; i++) {
 			copy.push(this[i]);
@@ -37,9 +49,20 @@ function createSortedArray(compareFn) {
 			yield item;
 		}
 	};
+
 	return a;
 }
 
+/**
+ * Parses the given log line and adds the list of the changed files to the output.
+ *
+ * @param {string} line A one-liner log line consisting of the commit hash and the commit message.
+ * @returns {Promise<CommitInfo>}
+ *
+ * @typedef {{ message: string, hash: string, changes: CommitChange[] }} CommitInfo
+ * @typedef {{ file: string, mode: ChangeMode }} CommitChange
+ * @typedef {"A" | "C" | "D" | "M" | "R" | "T" | "U" | "X" | "B"} ChangeMode
+ */
 function getCommitInfo(line) {
 	const [, hash, message] = /^([a-f\d]+)\s+(.*)$/i.exec(line);
 
@@ -54,12 +77,18 @@ function getCommitInfo(line) {
 
 		const changes = !res ? [] : res.trim().split(/\n/g).map(line => {
 			const [, mode, file] = /(\w)\s+(.+)/.exec(line);
-			return { mode, file };
+			return { mode: /** @type {ChangeMode} */ (mode), file };
 		});
 		return { hash, message, changes };
 	});
 }
 
+/**
+ * Parses the output of `git log` with the given revision range.
+ *
+ * @param {string | Promise<string>} range The revision range in which the log will be parsed.
+ * @returns {Promise<CommitInfo[]>}
+ */
 function getLog(range) {
 	return Promise.resolve(range).then(range => {
 		return git.raw(['log', range, '--oneline']);
@@ -75,7 +104,7 @@ function getLog(range) {
 	});
 }
 
-const logRanges = {
+const revisionRanges = {
 	nextRelease: git.raw(['describe', '--abbrev=0', '--tags']).then(res => `${res.trim()}..HEAD`),
 	v1_15_0__HEAD: 'v1.15.0..HEAD',
 	v1_14_0__v1_15_0: 'v1.14.0..v1.15.0',
@@ -86,7 +115,7 @@ function changes() {
 
 	const { languages, plugins } = require('../components');
 
-	return getLog(logRanges.nextRelease).then(infos => {
+	return getLog(revisionRanges.nextRelease).then(infos => {
 
 		const entries = {
 			'TODO:': {},
@@ -98,6 +127,11 @@ function changes() {
 			'Updated themes': {},
 			'Other': {},
 		};
+		/**
+		 *
+		 * @param {string} category
+		 * @param {string | { message: string, hash: string }} info
+		 */
 		function addEntry(category, info) {
 			const path = category.split(/\s*>>\s*/g);
 			if (path[path.length - 1] !== '') {
@@ -115,37 +149,78 @@ function changes() {
 		}
 
 
-		function outMinJs(change) {
-			return !change.file.endsWith('.min.js');
+		/** @param {CommitChange} change */
+		function notGenerated(change) {
+			return !change.file.endsWith('.min.js') && ['prism.js', 'components.js'].indexOf(change.file) === -1;
 		}
-		function outGenerated(change) {
-			return ['prism.js', 'components.js'].indexOf(change.file) === -1;
-		}
-		function outPartlyGenerated(change) {
+		/** @param {CommitChange} change */
+		function notPartlyGenerated(change) {
 			return change.file !== 'plugins/autoloader/prism-autoloader.js' &&
 				change.file !== 'plugins/show-language/prism-show-language.js';
 		}
-		function outTests(change) {
+		/** @param {CommitChange} change */
+		function notTests(change) {
 			return !/^tests\//.test(change.file);
 		}
-		function outExamples(change) {
+		/** @param {CommitChange} change */
+		function notExamples(change) {
 			return !/^examples\//.test(change.file);
 		}
+		/** @param {CommitChange} change */
+		function notComponentsJSON(change) {
+			return change.file !== 'components.json';
+		}
 
-		for (const info of infos) {
+		/**
+		 * @param {((e: T, index: number) => boolean)[]} filters
+		 * @returns {(e: T, index: number) => boolean}
+		 * @template T
+		 */
+		function and(...filters) {
+			return (e, index) => {
+				let res = true;
+				for (let i = 0, l = filters.length; i < l && res; i++) {
+					res = res && filters[i](e, index);
+				}
+				return res;
+			};
+		}
 
-			// ignore rebuilds were only minified and generated files change
-			if (info.changes.length > 0 && info.changes.filter(outMinJs).filter(outGenerated).length === 0) {
-				console.log('Rebuild found: ' + info.message);
-				continue;
-			}
+		/**
+		 * Some commit message have the format `component changed: actual message`.
+		 * This function can be used to remove this prefix.
+		 *
+		 * @param {string} prefix
+		 * @param {CommitInfo} info
+		 * @returns {{ message: string, hash: string }}
+		 */
+		function removeMessagePrefix(prefix, info) {
+			const patter = RegExp(String.raw`^${prefix.replace(/[-\s]/g, '[-\\s]')}:\s*`, 'i')
+			return {
+				message: info.message.replace(patter, ''),
+				hash: info.hash
+			};
+		}
 
-			{ // detect added components
-				let relevantChanges = info.changes.filter(outMinJs).filter(outGenerated).filter(outTests).filter(outExamples);
+
+		/**
+		 * @type {((info: CommitInfo) => boolean)[]}
+		 */
+		const commitSorters = [
+
+			function rebuild(info) {
+				if (info.changes.length > 0 && info.changes.filter(notGenerated).length === 0) {
+					console.log('Rebuild found: ' + info.message);
+					return true;
+				}
+			},
+
+			function addedComponent(info) {
+				let relevantChanges = info.changes.filter(and(notGenerated, notTests, notExamples));
 
 				// `components.json` has to be modified
 				if (relevantChanges.some(c => c.file === 'components.json')) {
-					relevantChanges = relevantChanges.filter(c => c.file !== 'components.json').filter(outPartlyGenerated);
+					relevantChanges = relevantChanges.filter(and(notComponentsJSON, notPartlyGenerated));
 
 					// now, only the newly added JS should be left
 					if (relevantChanges.length === 1) {
@@ -157,18 +232,18 @@ function changes() {
 								titles.push(...Object.values(languages[lang].aliasTitles));
 							}
 							addEntry('New components', `__${titles.join('__ & __')}__: ${infoToString(info)}`);
-							continue;
+							return true;
 						}
 					}
 				}
-			}
+			},
 
-			{ // detect changed components & changed Core
-				let relevantChanges = info.changes.filter(outMinJs).filter(outGenerated).filter(outTests).filter(outExamples);
+			function changedComponentOrCore(info) {
+				let relevantChanges = info.changes.filter(and(notGenerated, notTests, notExamples));
 
 				// if `components.json` changed, then autoloader and show-language also change
 				if (relevantChanges.some(c => c.file === 'components.json')) {
-					relevantChanges = relevantChanges.filter(c => c.file !== 'components.json').filter(outPartlyGenerated);
+					relevantChanges = relevantChanges.filter(and(notComponentsJSON, notPartlyGenerated));
 				}
 
 				if (relevantChanges.length === 1) {
@@ -176,19 +251,18 @@ function changes() {
 					if (change.mode === 'M' && change.file.startsWith('components/prism-')) {
 						var lang = change.file.match(/prism-([\w-]+)\.js$/)[1];
 						if (lang === 'core') {
-							addEntry('Other >> Core', info);
-							continue;
+							addEntry('Other >> Core', removeMessagePrefix('Core', info));
 						} else {
-							addEntry('Updated components >> ' + languages[lang].title, info);
-							continue;
+							const title = languages[lang].title;
+							addEntry('Updated components >> ' + title, removeMessagePrefix(title, info));
 						}
+						return true;
 					}
 				}
-			}
+			},
 
-			{ // detect changed plugins
-				let relevantChanges = info.changes.filter(outMinJs).filter(outGenerated).filter(outTests).filter(outExamples)
-					.filter(c => !/\.(?:html|css)$/.test(c.file));
+			function changedPlugin(info) {
+				let relevantChanges = info.changes.filter(and(notGenerated, notTests, notExamples, c => !/\.(?:html|css)$/.test(c.file)));
 
 				if (relevantChanges.length > 0 &&
 					relevantChanges.every(c => c.mode === 'M' && /^plugins\/.*\.js$/.test(c.file))) {
@@ -197,67 +271,75 @@ function changes() {
 						const change = relevantChanges[0];
 						const id = change.file.match(/\/prism-([\w-]+)\.js/)[1];
 						const title = plugins[id].title || plugins[id];
-						addEntry('Updated plugins >> ' + title, info);
-						continue;
+						addEntry('Updated plugins >> ' + title, removeMessagePrefix(title, info));
 					} else {
 						addEntry('Updated plugins', info);
-						continue;
 					}
-				}
-			}
-
-			// detect changed themes
-			if (info.changes.length > 0 && info.changes.every(c => {
-				return /themes\/.*\.css/.test(c.file) && c.mode === 'M';
-			})) {
-				if (info.changes.length === 1) {
-					const change = info.changes[0];
-					let name = (change.file.match(/prism-(\w+)\.css$/) || [, 'Default'])[1];
-					name = name[0].toUpperCase() + name.substr(1);
-					addEntry('Updated themes >> ' + name, info);
-					continue;
-				} else {
-					addEntry('Updated themes', info);
-					continue;
-				}
-			}
-
-			// detect infrastructure changes
-			if (info.changes.length > 0 && info.changes.every(c => {
-				if (c.file.startsWith('gulpfile.js')) {
 					return true;
 				}
-				if (/^\.[\w.]+$/.test(c.file)) {
+			},
+
+			function changedTheme(info) {
+				if (info.changes.length > 0 && info.changes.every(c => {
+					return /themes\/.*\.css/.test(c.file) && c.mode === 'M';
+				})) {
+					if (info.changes.length === 1) {
+						const change = info.changes[0];
+						let name = (change.file.match(/prism-(\w+)\.css$/) || [, 'Default'])[1];
+						name = name[0].toUpperCase() + name.substr(1);
+						addEntry('Updated themes >> ' + name, removeMessagePrefix(name, info));
+					} else {
+						addEntry('Updated themes', info);
+					}
 					return true;
 				}
-				return ['CNAME', 'composer.json', 'package.json', 'package-lock.json'].indexOf(c.file) >= 0;
-			})) {
-				addEntry('Other >> Infrastructure', info);
-				continue;
-			}
+			},
 
-			// detect website changes
-			if (info.changes.length > 0 && info.changes.every(c => {
-				if (/[\w-]+\.(?:html|svg)$/.test(c.file)) {
+			function changedInfrastructure(info) {
+				if (info.changes.length > 0 && info.changes.every(c => {
+					if (c.file.startsWith('gulpfile.js')) {
+						return true;
+					}
+					if (/^\.[\w.]+$/.test(c.file)) {
+						return true;
+					}
+					return ['CNAME', 'composer.json', 'package.json', 'package-lock.json'].indexOf(c.file) >= 0;
+				})) {
+					addEntry('Other >> Infrastructure', info);
 					return true;
 				}
-				if (/^scripts(?:\/[\w-]+)*\/[\w-]+\.js$/.test(c.file)) {
+			},
+
+			function changedWebsite(info) {
+				if (info.changes.length > 0 && info.changes.every(c => {
+					if (/[\w-]+\.(?:html|svg)$/.test(c.file)) {
+						return true;
+					}
+					if (/^scripts(?:\/[\w-]+)*\/[\w-]+\.js$/.test(c.file)) {
+						return true;
+					}
+					return ['style.css'].indexOf(c.file) >= 0;
+				})) {
+					addEntry('Other >> Website', info);
 					return true;
 				}
-				return ['style.css'].indexOf(c.file) >= 0;
-			})) {
-				addEntry('Other >> Website', info);
-				continue;
-			}
+			},
 
-			// detect changes of the Github setup
-			// This assumes that .md files are related to GitHub
-			if (info.changes.length > 0 && info.changes.every(c => /\.md$/i.test(c.file))) {
-				addEntry('Other', info);
-				continue;
-			}
+			function otherChanges(info) {
+				// detect changes of the Github setup
+				// This assumes that .md files are related to GitHub
+				if (info.changes.length > 0 && info.changes.every(c => /\.md$/i.test(c.file))) {
+					addEntry('Other', info);
+					return true;
+				}
+			},
 
-			addEntry('TODO:', info);
+		];
+
+		for (const info of infos) {
+			if (!commitSorters.some(sorter => sorter(info))) {
+				addEntry('TODO:', info);
+			}
 		}
 
 

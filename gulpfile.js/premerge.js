@@ -1,13 +1,9 @@
 "use strict";
 
-const simpleGit = require('simple-git/promise');
+const git = require('simple-git/promise')(__dirname);
 
 
 function gitChanges() {
-	const git = simpleGit(__dirname);
-
-	console.log(__dirname);
-
 	return git.status().then(res => {
 		if (res.files.length > 0) {
 			console.log(res);
