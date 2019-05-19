@@ -8,8 +8,9 @@
     "test:aliases": "mocha tests/aliases-test.js",
     "test:languages": "mocha tests/run.js",
     "test:plugins": "mocha tests/plugins/**/*.js",
+    "test:regex": "mocha tests/regex-tests.js",
     "test:runner": "mocha tests/testrunner-tests.js",
-    "test": "npm run test:runner && npm run test:languages && npm run test:plugins && npm run test:aliases"
+    "test": "npm run test:runner && npm run test:languages && npm run test:plugins && npm run test:aliases && npm run test:regex"
   },
   "repository": {
     "type": "git",
