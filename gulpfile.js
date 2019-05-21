@@ -7,6 +7,7 @@ const concat = require('gulp-concat');
 const replace = require('gulp-replace');
 const pump = require('pump');
 const fs = require('fs');
+const crypto = require('crypto');
 const simpleGit = require('simple-git');
 const shelljs = require('shelljs');
 
@@ -25,6 +26,7 @@ const paths = {
 	plugins: ['plugins/**/*.js', '!plugins/**/*.min.js'],
 	showLanguagePlugin: 'plugins/show-language/prism-show-language.js',
 	autoloaderPlugin: 'plugins/autoloader/prism-autoloader.js',
+	autoloaderSriSha384Plugin: 'plugins/autoloader-sri-sha384/prism-autoloader-sri-sha384.js',
 	changelog: 'CHANGELOG.md'
 };
 
@@ -37,6 +39,66 @@ const componentsPromise = new Promise((resolve, reject) => {
 		} else {
 			reject(err);
 		}
+	});
+});
+
+/**
+ * Returns a Promise which resolves the hash of the given file.
+ *
+ * @param {string} algorithm The hash algorithm.
+ * @param {string} encoding The encoding used to convert the hash bytes to a string.
+ * @param {string} path The path of the file to hash.
+ * @returns {Promise<string>}
+ */
+function hashFile(algorithm, encoding, path) {
+	return new Promise((resolve, reject) => {
+		return fs.createReadStream(path)
+			.on('error', reject)
+			.pipe(crypto.createHash(algorithm).setEncoding(encoding))
+			.once('finish', function () {
+				resolve(this.read())
+			});
+	});
+}
+
+const checksumsPromise = componentsPromise.then(components => {
+	const promises = [];
+	const languages = [];
+
+	const algorithms = ['sha384'];
+
+	for (const lang in components.languages) {
+		if (lang === 'meta') {
+			continue;
+		}
+
+		const files = [
+			`./components/prism-${lang}.js`,
+			`./components/prism-${lang}.min.js`,
+		];
+		const promise = Promise.all(algorithms.map(alg => {
+			return Promise
+				.all(files.map(file => hashFile(alg, 'base64', file)))
+				.then((hashes) => hashes.join(' '));
+		}));
+
+		languages.push(lang);
+		promises.push(promise);
+	}
+
+	return Promise.all(promises).then(hashes => {
+		/** @type {{[algorithm: string]: {[language: string]: string}}} */
+		const result = {};
+
+		algorithms.forEach((alg, i) => {
+			/** @type {Object<string, string>} */
+			const map = result[alg] = {};
+			hashes.forEach((hash, j) => {
+				map[languages[j]] = hash[i];
+			});
+		});
+
+		return result;
 	});
 });
 
@@ -93,7 +155,7 @@ function watchComponentsAndPlugins() {
 }
 
 function languagePlugins(cb) {
-	componentsPromise.then(data => {
+	Promise.all([componentsPromise, checksumsPromise]).then(([data, { sha384 }]) => {
 		const languagesMap = {};
 		const dependenciesMap = {};
 		const aliasMap = {};
@@ -151,15 +213,20 @@ function languagePlugins(cb) {
 		const jsonLanguagesMap = JSON.stringify(languagesMap);
 		const jsonDependenciesMap = JSON.stringify(dependenciesMap);
 		const jsonAliasMap = JSON.stringify(aliasMap);
+		const jsonSha384Map = '\n' + JSON.stringify(sha384, undefined, '\t').replace(/^(?=[\S\t])/gm, '\t');
 
 		const tasks = [
 			{
 				plugin: paths.showLanguagePlugin,
-				maps: { languages: jsonLanguagesMap}
+				maps: { languages: jsonLanguagesMap }
 			},
 			{
 				plugin: paths.autoloaderPlugin,
 				maps: { aliases: jsonAliasMap, dependencies: jsonDependenciesMap }
+			},
+			{
+				plugin: paths.autoloaderSriSha384Plugin,
+				maps: { sha384: jsonSha384Map }
 			}
 		];
 
@@ -214,7 +281,7 @@ function changes(cb) {
 		.map(line => line.trim())
 		.filter(line => line !== '')
 		.map(line => {
-			const [,hash, msg] = COMMIT_RE.exec(line);
+			const [, hash, msg] = COMMIT_RE.exec(line);
 			return `* ${msg.replace(ISSUE_RE, ISSUE_SUB)} [\`${hash}\`](https://github.com/PrismJS/prism/commit/${hash})`
 		})
 		.join('\n');
@@ -259,7 +326,7 @@ function gitChanges(cb) {
 
 
 exports.watch = watchComponentsAndPlugins;
-exports.default = parallel(components, plugins, componentsJsonToJs, build);
+exports.default = parallel(series(components, plugins), componentsJsonToJs, build);
 exports.premerge = gitChanges;
 exports.linkify = linkify;
 exports.changes = changes;

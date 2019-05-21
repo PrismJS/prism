@@ -12,8 +12,8 @@
 
 	var ignored_language = 'none';
 
-	var script = document.getElementsByTagName('script');
-	script = script[script.length - 1];
+	var scripts = document.getElementsByTagName('script');
+	var script = scripts[scripts.length - 1];
 	var languages_path = 'components/';
 	if(script.hasAttribute('data-autoloader-path')) {
 		var path = script.getAttribute('data-autoloader-path').trim();
@@ -25,18 +25,37 @@
 	}
 	var config = Prism.plugins.autoloader = {
 		languages_path: languages_path,
-		use_minified: true
+		use_minified: true,
+		sri: {
+			enabled: false,
+			hashes: {},
+		}
 	};
 
 	/**
 	 * Lazy loads an external script
-	 * @param {string} src
+	 * @param {string} lang
 	 * @param {function=} success
 	 * @param {function=} error
 	 */
-	var addScript = function (src, success, error) {
+	var addScript = function (lang, success, error) {
+		var src = getLanguagePath(lang);
+		var integrity;
+		if (config.sri.enabled) {
+			integrity = config.sri.hashes[lang];
+			if (!integrity) {
+				console.error('Unknown language "' + lang + '".');
+				error && error();
+				return;
+			}
+		}
+
 		var s = document.createElement('script');
 		s.src = src;
+		if (integrity) {
+			s.integrity = integrity;
+			s.crossOrigin = 'anonymous';
+		}
 		s.async = true;
 		s.onload = function() {
 			document.body.removeChild(s);
@@ -158,8 +177,7 @@
 				languageError(lang);
 			} else if (force || !data.loading) {
 				data.loading = true;
-				var src = getLanguagePath(lang);
-				addScript(src, function () {
+				addScript(lang, function () {
 					data.loading = false;
 					languageSuccess(lang);
 
