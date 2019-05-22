@@ -5,7 +5,7 @@ Prism.languages.falcon = Prism.languages.extend('javascript', {
 			pattern: /\b(?:api)\b/
 		}
 	],
-	'builtin': /\b(?:get|post|put|delete|head|byte|int|int8|int16|int32|int64|uint|uint8|uint64|int_t|int8_t|int16_t|int32_t|int64_t|uint_t|uint8_t|uint64_t|long|Long|float|Float|double|Double|boolean|Boolean|bool|Bool|string|String|binary|string|Function|any|number|boolean|Array|symbol|console|Promise|unknown|never)\b/,
+	'builtin': /\b(?:int(?:8|16|32|64)?(?:_t)?|uint(?:8|64)?(?:_t)?|Array|Bool|Boolean|Double|Float|Function|Long|Promise|String|any|binary|bool|boolean|boolean|byte|console|delete|double|float|get|head|long|never|number|post|put|string|string|symbol|unknown)\b/,
 });
 
 Prism.languages.falcon['class-name'][0].pattern = /(\b(?:class|enum|extends|implements|instanceof|interface|new|struct)\s+)[\w.\\]+/;
