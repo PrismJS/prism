@@ -552,15 +552,18 @@ function generateCode(){
 				var fileName = 'prism.' + type;
 
 				var codeElement = $('#download-' + type + ' code');
+				var pre = codeElement.parentElement;
 
-				codeElement.textContent = text;
-				codeElement.style.display = "none";
-				codeElement.getBoundingClientRect(); // force layout update
+				var newCode = document.createElement('CODE');
+				newCode.className = codeElement.className;
+				newCode.textContent = text;
 
-				Prism.highlightElement(codeElement);
-
-				codeElement.style.display = null;
-				// this display: none hack is to improve performance on chromium browsers
+				Prism.highlightElement(newCode, true, function () {
+					while (pre.firstChild) {
+						pre.removeChild(pre.firstChild);
+					}
+					pre.appendChild(newCode);
+				});
 
 
 				$('#download-' + type + ' .download-button').onclick = function () {
