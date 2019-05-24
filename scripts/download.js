@@ -554,7 +554,13 @@ function generateCode(){
 				var codeElement = $('#download-' + type + ' code');
 
 				codeElement.textContent = text;
-				Prism.highlightElement(codeElement, true);
+				codeElement.style.display = "none";
+				codeElement.getBoundingClientRect(); // force layout update
+
+				Prism.highlightElement(codeElement);
+
+				codeElement.style.display = null;
+				// this display: none hack is to improve performance on chromium browsers
 
 
 				$('#download-' + type + ' .download-button').onclick = function () {
