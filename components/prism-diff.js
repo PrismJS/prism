@@ -84,7 +84,7 @@
 			var content = env.content.replace(HTML_TAG, ''); // remove all HTML tags
 
 			/** @type {string} */
-			var decoded = content.replace(/&amp;/g, '&').replace(/&lt;/g, '<');
+			var decoded = content.replace(/&lt;/g, '<').replace(/&amp;/g, '&');
 
 			// remove any one-character prefix
 			var code = decoded.replace(/(^|[\r\n])./g, '$1');
