@@ -9,6 +9,8 @@ const jsdoc = require('gulp-jsdoc3');
 const clean = require('gulp-clean');
 const pump = require('pump');
 const fs = require('fs');
+const simpleGit = require('simple-git');
+const shelljs = require('shelljs');
 
 const paths = {
 	componentsFile: 'components.json',
@@ -102,6 +104,7 @@ function languagePlugins(cb) {
 	componentsPromise.then(data => {
 		const languagesMap = {};
 		const dependenciesMap = {};
+		const aliasMap = {};
 
 		/**
 		 * Tries to guess the name of a language given its id.
@@ -124,38 +127,48 @@ function languagePlugins(cb) {
 			}
 		}
 
-		for (const p in data.languages) {
-			if (p !== 'meta') {
-				const title = data.languages[p].displayTitle || data.languages[p].title;
+		for (const id in data.languages) {
+			if (id !== 'meta') {
+				const language = data.languages[id];
+				const title = language.displayTitle || language.title;
 
-				addLanguageTitle(p, title);
+				addLanguageTitle(id, title);
 
-				for (const name in data.languages[p].aliasTitles) {
-					addLanguageTitle(name, data.languages[p].aliasTitles[name]);
+				for (const name in language.aliasTitles) {
+					addLanguageTitle(name, language.aliasTitles[name]);
 				}
 
-				if (data.languages[p].alias) {
-					if (typeof data.languages[p].alias === 'string') {
-						addLanguageTitle(data.languages[p].alias, title);
+				if (language.alias) {
+					if (typeof language.alias === 'string') {
+						aliasMap[language.alias] = id;
+						addLanguageTitle(language.alias, title);
 					} else {
-						data.languages[p].alias.forEach(function (alias) {
+						language.alias.forEach(function (alias) {
+							aliasMap[alias] = id;
 							addLanguageTitle(alias, title);
 						});
 					}
 				}
 
-				if (data.languages[p].require) {
-					dependenciesMap[p] = data.languages[p].require;
+				if (language.require) {
+					dependenciesMap[id] = language.require;
 				}
 			}
 		}
 
 		const jsonLanguagesMap = JSON.stringify(languagesMap);
 		const jsonDependenciesMap = JSON.stringify(dependenciesMap);
+		const jsonAliasMap = JSON.stringify(aliasMap);
 
 		const tasks = [
-			{ plugin: paths.showLanguagePlugin, map: jsonLanguagesMap },
-			{ plugin: paths.autoloaderPlugin, map: jsonDependenciesMap }
+			{
+				plugin: paths.showLanguagePlugin,
+				maps: { languages: jsonLanguagesMap}
+			},
+			{
+				plugin: paths.autoloaderPlugin,
+				maps: { aliases: jsonAliasMap, dependencies: jsonDependenciesMap }
+			}
 		];
 
 		let cpt = 0;
@@ -170,8 +183,8 @@ function languagePlugins(cb) {
 		for (const task of tasks) {
 			const stream = src(task.plugin)
 				.pipe(replace(
-					/\/\*languages_placeholder\[\*\/[\s\S]*?\/\*\]\*\//,
-					'/*languages_placeholder[*/' + task.map + '/*]*/'
+					/\/\*(\w+)_placeholder\[\*\/[\s\S]*?\/\*\]\*\//g,
+					(m, mapName) => `/*${mapName}_placeholder[*/${task.maps[mapName]}/*]*/`
 				))
 				.pipe(dest(task.plugin.substring(0, task.plugin.lastIndexOf('/'))));
 
@@ -181,13 +194,13 @@ function languagePlugins(cb) {
 	});
 }
 
-function changelog(cb) {
+const ISSUE_RE = /#(\d+)(?![\d\]])/g;
+const ISSUE_SUB = '[#$1](https://github.com/PrismJS/prism/issues/$1)';
+
+function linkify(cb) {
 	return pump([
 		src(paths.changelog),
-		replace(
-			/#(\d+)(?![\d\]])/g,
-			'[#$1](https://github.com/PrismJS/prism/issues/$1)'
-		),
+		replace(ISSUE_RE, ISSUE_SUB),
 		replace(
 			/\[[\da-f]+(?:, *[\da-f]+)*\]/g,
 			m => m.replace(/([\da-f]{7})[\da-f]*/g, '[`$1`](https://github.com/PrismJS/prism/commit/$1)')
@@ -196,8 +209,61 @@ function changelog(cb) {
 	], cb);
 }
 
+const COMMIT_RE = /^([\da-z]{8})\s(.*)/;
+
+function changes(cb) {
+	const tag = shelljs.exec('git describe --abbrev=0 --tags', { silent: true }).stdout;
+	const commits = shelljs
+		.exec(
+			`git log ${tag.trim()}..HEAD --oneline`,
+			{ silent: true }
+		)
+		.stdout.split('\n')
+		.map(line => line.trim())
+		.filter(line => line !== '')
+		.map(line => {
+			const [,hash, msg] = COMMIT_RE.exec(line);
+			return `* ${msg.replace(ISSUE_RE, ISSUE_SUB)} [\`${hash}\`](https://github.com/PrismJS/prism/commit/${hash})`
+		})
+		.join('\n');
+
+	const changes = `## Unreleased
+
+${commits}
+
+### New components
+
+### Updated components
+
+### Updated plugins
+
+### Updated themes
+
+### Other changes
+
+* __Website__`;
+
+	console.log(changes);
+	cb();
+}
+
 const components = minifyComponents;
 const plugins = series(languagePlugins, minifyPlugins);
+
+function gitChanges(cb) {
+	const git = simpleGit(__dirname);
+
+	git.status((err, res) => {
+		if (err) {
+			cb(new Error(`Something went wrong!\n${err}`));
+		} else if (res.files.length > 0) {
+			console.log(res);
+			cb(new Error('There are changes in the file system. Did you forget to run gulp?'));
+		} else {
+			cb();
+		}
+	});
+}
 
 
 function docsClean() {
@@ -228,4 +294,6 @@ const docs = series(docsClean, docsCreate, parallel(docsRemoveDate, docsRemoveEx
 exports.docs = docs;
 exports.watch = watchComponentsAndPlugins;
 exports.default = parallel(components, plugins, componentsJsonToJs, build, docs);
-exports.changelog = changelog;
+exports.premerge = gitChanges;
+exports.linkify = linkify;
+exports.changes = changes;

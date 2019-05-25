@@ -2,6 +2,7 @@
 
 const fs = require("fs");
 const vm = require("vm");
+const { getAllFiles } = require("./test-discovery");
 const components = require("../../components");
 const languagesCatalog = components.languages;
 
@@ -70,7 +71,7 @@ module.exports = {
 		}
 
 		// load the language itself
-		const languageSource = this.loadFileSource(language);
+		const languageSource = this.loadComponentSource(language);
 		context.Prism = this.runFileWithContext(languageSource, { Prism: context.Prism }).Prism;
 		context.loadedLanguages.push(language);
 
@@ -85,8 +86,32 @@ module.exports = {
 	 * @returns {Prism}
 	 */
 	createEmptyPrism() {
-		const coreSource = this.loadFileSource("core");
+		const coreSource = this.loadComponentSource("core");
 		const context = this.runFileWithContext(coreSource);
+
+		for (const testSource of this.getChecks().map(src => this.loadFileSource(src))) {
+			context.Prism = this.runFileWithContext(testSource, {
+				Prism: context.Prism,
+				/**
+				 * A pseudo require function for the checks.
+				 *
+				 * This function will behave like the regular `require` in real modules when called form a check file.
+				 *
+				 * @param {string} id The id of relative path to require.
+				 */
+				require(id) {
+					if (id.startsWith('./')) {
+						// We have to rewrite relative paths starting with './'
+						return require('./../checks/' + id.substr(2));
+					} else {
+						// This might be an id like 'mocha' or 'fs' or a relative path starting with '../'.
+						// In both cases we don't have to change anything.
+						return require(id);
+					}
+				}
+			}).Prism;
+		}
+
 		return context.Prism;
 	},
 
@@ -101,14 +126,37 @@ module.exports = {
 
 
 	/**
-	 * Loads the given file source as string
+	 * Loads the given component's file source as string
 	 *
 	 * @private
 	 * @param {string} name
 	 * @returns {string}
 	 */
-	loadFileSource(name) {
-		return this.fileSourceCache[name] = this.fileSourceCache[name] || fs.readFileSync(__dirname + "/../../components/prism-" + name + ".js", "utf8");
+	loadComponentSource(name) {
+		return this.loadFileSource(__dirname + "/../../components/prism-" + name + ".js");
+	},
+
+	/**
+	 * Loads the given file source as string
+	 *
+	 * @private
+	 * @param {string} src
+	 * @returns {string}
+	 */
+	loadFileSource(src) {
+		return this.fileSourceCache[src] = this.fileSourceCache[src] || fs.readFileSync(src, "utf8");
+	},
+
+
+	checkCache: null,
+
+	/**
+	 * Returns a list of files which add additional checks to Prism functions.
+	 *
+	 * @returns {ReadonlyArray<string>}
+	 */
+	getChecks() {
+		return this.checkCache = this.checkCache || getAllFiles(__dirname + "/../checks");
 	},
 
 

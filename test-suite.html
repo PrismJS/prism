@@ -30,8 +30,8 @@
 	<section id="running-tests-for-specific-languages">
 		<h2>Running tests for specific languages</h2>
 
-		<p>To run the tests only for one language, you can use the <code>language</code> parameter: <code class="language-bash">npm test -- --language=markup</code>.</p>
-		<p>You can even specify multiple languages: <code class="language-bash">npm test -- --language=markup --language=css</code>.</p>
+		<p>To run the tests only for one language, you can use the <code>language</code> parameter: <code class="language-bash">npm run test:languages -- --language=markup</code>.</p>
+		<p>You can even specify multiple languages: <code class="language-bash">npm run test:languages -- --language=markup --language=css</code>.</p>
 	</section>
 </section>
 
@@ -121,7 +121,7 @@ This is a comment explaining this test case.</code></pre>
 			<li>All empty structures are removed.</li>
 		</ul>
 		<p>To get a pretty-printed version of the simplified token stream of a failed test, add the <code>--pretty</code> modifier. Keep in mind that the pretty-printed token stream is indented using spaces, you may need to convert these to tabs. (Most editors today have an option which handles the conversion for you.)<br>
-			E.g. <code class="language-bash">npm test -- --pretty</code>.</p>
+			E.g. <code class="language-bash">npm run test:languages -- --pretty</code>.</p>
 		<p>For further information: reading the tests of the test runner (<code>tests/testrunner-tests.js</code>) will help you understand the transformation.</p>
 	</section>
 </section>

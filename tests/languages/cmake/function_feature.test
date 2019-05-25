@@ -1,0 +1,17 @@
+foobar()
+baz()
+Foobar()
+FOOBAR()
+
+----------------------------------------------------
+
+[
+	["function", "foobar"], ["punctuation", "("], ["punctuation", ")"],
+	["function", "baz"], ["punctuation", "("], ["punctuation", ")"],
+	["function", "Foobar"], ["punctuation", "("], ["punctuation", ")"],
+	["function", "FOOBAR"], ["punctuation", "("], ["punctuation", ")"]
+]
+
+----------------------------------------------------
+
+Checks for functions.

@@ -1,0 +1,15 @@
+foo::bar
+foo::foo
+Foo::Bar
+
+----------------------------------------------------
+
+[
+	["inserted", "foo::bar"],
+	["inserted", "foo::foo"],
+	["inserted", "Foo::Bar"]
+]
+
+----------------------------------------------------
+
+Checks for all namespaces.
