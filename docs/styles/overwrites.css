@@ -1,0 +1,3 @@
+.prettyprint code:empty:before {
+  content: '\20'; /* This fixes the issue that empty lines were not displayed */
+}

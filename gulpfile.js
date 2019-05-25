@@ -6,7 +6,7 @@ const header = require('gulp-header');
 const concat = require('gulp-concat');
 const replace = require('gulp-replace');
 const jsdoc = require('gulp-jsdoc3');
-const clean = require('gulp-clean');
+const del = require('del');
 const pump = require('pump');
 const fs = require('fs');
 const simpleGit = require('simple-git');
@@ -267,13 +267,22 @@ function gitChanges(cb) {
 
 
 function docsClean() {
-	return src('docs', { read: false }).pipe(clean());
+	return del([
+		// everything in the docs folder
+		'docs/**/*',
+		// except for our CSS overwrites
+		'!docs/styles',
+		'!docs/styles/overwrites.css',
+	]);
 }
 function docsCreate(cb) {
 	var config = require(paths.jsDoc.config);
 	var files = [paths.jsDoc.readme].concat(paths.jsDoc.files);
 	src(files, { read: false }).pipe(jsdoc(config, cb));
 }
+/**
+ * This will remove the timestamp (for which there is no working JSDoc option to remove it).
+ */
 function docsRemoveDate(cb) {
 	return pump([
 		src('docs/*.html'),
@@ -284,11 +293,21 @@ function docsRemoveDate(cb) {
 		dest('docs/')
 	], cb);
 }
+function docsAddCSSOverwrites(cb) {
+	return pump([
+		src('docs/*.html'),
+		replace(
+			/\s*<\/head>/,
+			'\n    <link type="text/css" rel="stylesheet" href="styles/overwrites.css">$&'
+		),
+		dest('docs/')
+	], cb);
+}
 function docsRemoveExcessFiles() {
-	return src(paths.jsDoc.junk, { read: false }).pipe(clean());
+	return del(paths.jsDoc.junk);
 }
 
-const docs = series(docsClean, docsCreate, parallel(docsRemoveDate, docsRemoveExcessFiles));
+const docs = series(docsClean, docsCreate, docsRemoveExcessFiles, docsRemoveDate, docsAddCSSOverwrites);
 
 
 exports.docs = docs;
