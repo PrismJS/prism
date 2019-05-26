@@ -553,7 +553,7 @@ LinkedList.prototype.removeRange = function(node, count) {
 	}
 	node.next = next;
 	next.prev = node;
-	this.length -= Math.min(i, count);
+	this.length -= i;
 };
 /**
  * @returns {(string | Token)[]}
