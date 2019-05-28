@@ -1,4 +1,4 @@
-Prism.languages.cpp = Prism.languages.extend('c', {
+Prism.languages.cpp = Prism.languages.extend('clike', {
 	'class-name': {
 		pattern: /(\b(?:class|enum|struct)\s+)\w+/,
 		lookbehind: true
