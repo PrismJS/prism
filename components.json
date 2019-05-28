@@ -486,6 +486,11 @@
 		},
 		"latex": {
 			"title": "LaTeX",
+			"alias": ["tex", "context"],
+			"aliasTitles": {
+				"tex": "TeX",
+				"context": "ConTeXt"
+			},
 			"owner": "japborst"
 		},
 		"less": {
