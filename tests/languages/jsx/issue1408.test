@@ -8,7 +8,9 @@
 			["punctuation", "<"],
 			"div"
 		]],
-		["attr-name", ["style"]],
+		["attr-name", [
+			"style"
+		]],
 		["script", [
 			["script-punctuation", "="],
 			["punctuation", "{"],
@@ -16,13 +18,14 @@
 			" marginLeft",
 			["punctuation", ":"],
 			["template-string", [
-				["string", "`"],
+				["template-punctuation", "`"],
 				["interpolation", [
 					["interpolation-punctuation", "${"],
 					"sidePanelWidth",
 					["interpolation-punctuation", "}"]
 				]],
-				["string", "px`"]
+				["string", "px"],
+				["template-punctuation", "`"]
 			]],
 			["punctuation", "}"],
 			["punctuation", "}"]
