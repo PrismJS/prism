@@ -1,0 +1,42 @@
+"foo"
+"\""
+"Aa\r\n\t\b\f\u03bc"
+"inter\("pol" + "ation")"
+
+----------------------------------------------------
+
+[
+	["string", [
+		"\"foo\""
+	]],
+
+	["string", [
+		"\"\\\"\""
+	]],
+
+	["string", [
+		"\"Aa\\r\\n\\t\\b\\f\\u03bc\""
+	]],
+
+	["string", [
+		"\"inter",
+		["interpolation", [
+			["punctuation", "\\("],
+			["content", [
+				["string", [
+					"\"pol\""
+				]],
+				["operator", "+"],
+				["string", [
+					"\"ation\""
+				]]
+			]],
+			["punctuation", ")"]
+		]],
+		"\""
+	]]
+]
+
+----------------------------------------------------
+
+Checks for strings and string interpolation.
