@@ -1,0 +1,11 @@
+<h2>Full example</h2>
+<pre><code># comment
+def some_method:
+	to_entries | sort_by(.foo) |
+	map(.foo) as $keys |
+	map(.bar) | transpose |
+	map(
+		[$keys, .] | transpose |
+		map({foo: .[0], bar: .[1], "foo-bar": "foo\("-" + "bar")"}) | from_entries
+	)
+;</code></pre>
