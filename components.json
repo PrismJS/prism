@@ -462,10 +462,12 @@
 			"require": [
 				"javascript",
 				"css",
-				"css-extras",
 				"graphql",
 				"markdown",
 				"markup"
+			],
+			"peerDependencies": [
+				"css-extras"
 			],
 			"owner": "RunDevelopment"
 		},
@@ -872,7 +874,7 @@
 		"typescript": {
 			"title": "TypeScript",
 			"require": "javascript",
-			"peer-dependencies": "js-templates",
+			"peerDependencies": "js-templates",
 			"alias": "ts",
 			"owner": "vkbansal"
 		},
