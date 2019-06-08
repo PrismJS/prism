@@ -148,9 +148,13 @@ function languagePlugins(cb) {
 			}
 		}
 
-		const jsonLanguagesMap = JSON.stringify(languagesMap);
-		const jsonDependenciesMap = JSON.stringify(dependenciesMap);
-		const jsonAliasMap = JSON.stringify(aliasMap);
+		function formattedStringify(json) {
+			return JSON.stringify(json, null, '\t').replace(/\n/g, '\n\t');
+		}
+
+		const jsonLanguagesMap = formattedStringify(languagesMap);
+		const jsonDependenciesMap = formattedStringify(dependenciesMap);
+		const jsonAliasMap = formattedStringify(aliasMap);
 
 		const tasks = [
 			{
