@@ -180,7 +180,7 @@
 		"csharp": {
 			"title": "C#",
 			"require": "clike",
-			"alias": "dotnet",
+			"alias": ["cs", "dotnet"],
 			"owner": "mvalipour"
 		},
 		"cpp": {
@@ -490,6 +490,11 @@
 		},
 		"latex": {
 			"title": "LaTeX",
+			"alias": ["tex", "context"],
+			"aliasTitles": {
+				"tex": "TeX",
+				"context": "ConTeXt"
+			},
 			"owner": "japborst"
 		},
 		"less": {
