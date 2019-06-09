@@ -8,6 +8,12 @@
 <link rel="stylesheet" href="style.css" />
 <link rel="stylesheet" href="themes/prism.css" data-noprefix />
 <script src="scripts/prefixfree.min.js"></script>
+<style>
+ol.indent {
+	margin: 1em 0;
+	padding-left: 2em;
+}
+</style>
 
 <script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
 <script src="https://www.google-analytics.com/ga.js" async></script>
@@ -122,6 +128,93 @@
 			<dd>The root object, i.e. the object that contains the object that will be modified. Optional, default value is <code>Prism.languages</code>.</dd>
 		</dl>
 	</section>
+</section>
+
+<section id="creating-a-new-language-definition" class="language-none">
+	<h1>Creating a new language definition</h1>
+
+	<ol class="indent">
+		<li>
+			<p>Create a new file <code>components/prism-lang-id.js</code>.</p>
+		</li>
+		<li>
+			<p>Edit <code>components.json</code> to register the new language by adding it to the <code>languages</code> object. (Please note that all language entries are sorted alphabetically by title.) <br>
+			Your new entry will look like this:</p>
+
+			<pre><code class="language-js">"lang-id": {
+	"title": "Language Title",
+	"owner": "Your GitHub name"
+}</code></pre>
+
+			<p>If your language definition depends any other languages, you have to specify this here as well by adding a <code class="language-js">"require"</code> property. E.g. <code class="language-js">"require": "clike"</code>, or <code class="language-js">"require" : ["markup", "css"]</code>.</p>
+
+			<p><em>Note:</em> Any changes made to <code>components.json</code> require a rebuild (see step 3).</p>
+		</li>
+		<li>
+			<p>Rebuild Prism by running <code class="language-bash">npx gulp</code>.</p>
+
+			<p>This will make your language available to the <a href="test.html">test page</a>, or more precise: your local version of it. You can open you local <code>test.html</code> page in any browser, select your language, and see how your language definition highlights the given code.</p>
+
+			<p><em>Note:</em> You have to reload the page to apply changes made to <code>prism-lang-id.js</code>.</p>
+		</li>
+		<li>
+			<p>Write the language definition.</p>
+
+			<p>The <a href="#language-definitions">above section</a> already explains the makeup of language definitions.</p>
+		</li>
+		<li>
+			<p>Add some tests.</p>
+
+			<p>Create a folder <code>tests/languages/lang-id/</code>. This is where your test files will live. The test format and how to run tests is described <a href="test-suite.html">here</a>. A good example are <a href="https://github.com/PrismJS/prism/tree/master/tests/languages/javascript">the tests of the JavaScript language</a>.</p>
+
+			<p>You should add a test for every major feature of your language. Test files should test the common case and certain edge cases (if any). <br>
+			You can use this template for new <code>.test</code> files:</p>
+
+			<pre><code>The code to test.
+
+----------------------------------------------------
+
+[ "JSON of the simplified token stream. We will add this later." ]
+
+----------------------------------------------------
+
+Brief description.</code></pre>
+
+			<p>For every test file:</p>
+
+			<ol class="indent">
+				<li>
+					<p>Add the code to test and a brief description.</p>
+				</li>
+				<li>
+					<p>Verify that your language definition correctly highlights the test code. This can be done using the test page. <br>
+					<em>Note:</em> Using the <em>Show tokens</em> options, you see the token stream your language definition created.</p>
+				</li>
+				<li>
+					<p>Once you <strong>carefully checked</strong> that the test case is handled correctly (i.e. by using the test page), run the following command:</p>
+					<code class="language-bash">npm run test:languages -- --language=lang-id --pretty</code>
+					<p>This command will check only your test files. The new test will fail because the specified JSON is incorrect but the error message of the failed test will also include the JSON of the simplified token stream Prism created. This is what we're after. Replace the current incorrect JSON with the output labeled <em>Token Stream</em>. (Please also adjust the indentation. We use tabs.)</p>
+				</li>
+				<li>
+					<p><strong>Carefully check</strong> that the token stream JSON you just inserted is what you expect.</p>
+				</li>
+				<li>Re-run <code class="language-bash">npm run test:languages -- --language=lang-id --pretty</code> to verify that the test passes.</li>
+			</ol>
+		</li>
+		<li>
+			<p>Run <code class="language-bash">npm test</code> to check that <em>all</em> tests pass, not just your language tests.<br>
+			This will usually pass without problems. If you can't get all the tests to pass, skip this step.</p>
+		</li>
+		<li>
+			<p>Add an example page.</p>
+
+			<p>Create a new file <code>examples/prism-lang-id.html</code>. This will be the template containing the example markup. Just look at other examples to see how these files are structured. <br>
+			We don't have any rules as to what counts as an example, so a single <em>Full example</em> section where you present the highlighting of the major features of the language is enough.</p>
+		</li>
+		<li>
+			<p>Run <code class="language-bash">npx gulp</code> again.</p>
+		</li>
+	</ol>
 </section>
 
 <section id="writing-plugins">

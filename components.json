@@ -180,7 +180,7 @@
 		"csharp": {
 			"title": "C#",
 			"require": "clike",
-			"alias": "dotnet",
+			"alias": ["cs", "dotnet"],
 			"owner": "mvalipour"
 		},
 		"cpp": {
@@ -436,6 +436,10 @@
 			"require": "clike",
 			"owner": "thesave"
 		},
+		"jq": {
+			"title": "JQ",
+			"owner": "RunDevelopment"
+		},
 		"jsdoc": {
 			"title": "JSDoc",
 			"require": ["javascript", "javadoclike"],
@@ -486,6 +490,11 @@
 		},
 		"latex": {
 			"title": "LaTeX",
+			"alias": ["tex", "context"],
+			"aliasTitles": {
+				"tex": "TeX",
+				"context": "ConTeXt"
+			},
 			"owner": "japborst"
 		},
 		"less": {
