@@ -149,8 +149,7 @@
 			lookbehind: true
 		},
 		'file-descriptor': {
-			pattern: /(^|\W)&\d\b/,
-			lookbehind: true,
+			pattern: /\B&\d\b/,
 			alias: 'important'
 		},
 		'operator': {
