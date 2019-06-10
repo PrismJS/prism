@@ -1,0 +1,247 @@
+$foo
+$IFS
+IFS=a
+"$PS1"
+"${PS1}"
+$BASH
+$BASHOPTS
+$BASH_ALIASES
+$BASH_ARGC
+$BASH_ARGV
+$BASH_CMDS
+$BASH_COMPLETION_COMPAT_DIR
+$BASH_LINENO
+$BASH_REMATCH
+$BASH_SOURCE
+$BASH_VERSINFO
+$BASH_VERSION
+$COLORTERM
+$COLUMNS
+$COMP_WORDBREAKS
+$DBUS_SESSION_BUS_ADDRESS
+$DEFAULTS_PATH
+$DESKTOP_SESSION
+$DIRSTACK
+$DISPLAY
+$EUID
+$GDMSESSION
+$GDM_LANG
+$GNOME_KEYRING_CONTROL
+$GNOME_KEYRING_PID
+$GPG_AGENT_INFO
+$GROUPS
+$HISTCONTROL
+$HISTFILE
+$HISTFILESIZE
+$HISTSIZE
+$HOME
+$HOSTNAME
+$HOSTTYPE
+$IFS
+$INSTANCE
+$JOB
+$LANG
+$LANGUAGE
+$LC_ADDRESS
+$LC_ALL
+$LC_IDENTIFICATION
+$LC_MEASUREMENT
+$LC_MONETARY
+$LC_NAME
+$LC_NUMERIC
+$LC_PAPER
+$LC_TELEPHONE
+$LC_TIME
+$LESSCLOSE
+$LESSOPEN
+$LINES
+$LOGNAME
+$LS_COLORS
+$MACHTYPE
+$MAILCHECK
+$MANDATORY_PATH
+$NO_AT_BRIDGE
+$OLDPWD
+$OPTERR
+$OPTIND
+$ORBIT_SOCKETDIR
+$OSTYPE
+$PAPERSIZE
+$PATH
+$PIPESTATUS
+$PPID
+$PS1
+$PS2
+$PS3
+$PS4
+$PWD
+$RANDOM
+$REPLY
+$SECONDS
+$SELINUX_INIT
+$SESSION
+$SESSIONTYPE
+$SESSION_MANAGER
+$SHELL
+$SHELLOPTS
+$SHLVL
+$SSH_AUTH_SOCK
+$TERM
+$UID
+$UPSTART_EVENTS
+$UPSTART_INSTANCE
+$UPSTART_JOB
+$UPSTART_SESSION
+$USER
+$WINDOWID
+$XAUTHORITY
+$XDG_CONFIG_DIRS
+$XDG_CURRENT_DESKTOP
+$XDG_DATA_DIRS
+$XDG_GREETER_DATA_DIR
+$XDG_MENU_PREFIX
+$XDG_RUNTIME_DIR
+$XDG_SEAT
+$XDG_SEAT_PATH
+$XDG_SESSION_DESKTOP
+$XDG_SESSION_ID
+$XDG_SESSION_PATH
+$XDG_SESSION_TYPE
+$XDG_VTNR
+$XMODIFIERS
+
+----------------------------------------------------
+
+[
+	["variable", "$foo"],
+	["environment", "$IFS"],
+	["assign-left", [
+		["environment", "IFS"]
+	]],
+	["operator", ["="]],
+	"a\r\n",
+	["string", [
+		"\"",
+		["environment", "$PS1"],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["variable", [
+			"${",
+			["environment", "PS1"],
+			"}"
+		]],
+		"\""
+	]],
+	["environment", "$BASH"],
+	["environment", "$BASHOPTS"],
+	["environment", "$BASH_ALIASES"],
+	["environment", "$BASH_ARGC"],
+	["environment", "$BASH_ARGV"],
+	["environment", "$BASH_CMDS"],
+	["environment", "$BASH_COMPLETION_COMPAT_DIR"],
+	["environment", "$BASH_LINENO"],
+	["environment", "$BASH_REMATCH"],
+	["environment", "$BASH_SOURCE"],
+	["environment", "$BASH_VERSINFO"],
+	["environment", "$BASH_VERSION"],
+	["environment", "$COLORTERM"],
+	["environment", "$COLUMNS"],
+	["environment", "$COMP_WORDBREAKS"],
+	["environment", "$DBUS_SESSION_BUS_ADDRESS"],
+	["environment", "$DEFAULTS_PATH"],
+	["environment", "$DESKTOP_SESSION"],
+	["environment", "$DIRSTACK"],
+	["environment", "$DISPLAY"],
+	["environment", "$EUID"],
+	["environment", "$GDMSESSION"],
+	["environment", "$GDM_LANG"],
+	["environment", "$GNOME_KEYRING_CONTROL"],
+	["environment", "$GNOME_KEYRING_PID"],
+	["environment", "$GPG_AGENT_INFO"],
+	["environment", "$GROUPS"],
+	["environment", "$HISTCONTROL"],
+	["environment", "$HISTFILE"],
+	["environment", "$HISTFILESIZE"],
+	["environment", "$HISTSIZE"],
+	["environment", "$HOME"],
+	["environment", "$HOSTNAME"],
+	["environment", "$HOSTTYPE"],
+	["environment", "$IFS"],
+	["environment", "$INSTANCE"],
+	["environment", "$JOB"],
+	["environment", "$LANG"],
+	["environment", "$LANGUAGE"],
+	["environment", "$LC_ADDRESS"],
+	["environment", "$LC_ALL"],
+	["environment", "$LC_IDENTIFICATION"],
+	["environment", "$LC_MEASUREMENT"],
+	["environment", "$LC_MONETARY"],
+	["environment", "$LC_NAME"],
+	["environment", "$LC_NUMERIC"],
+	["environment", "$LC_PAPER"],
+	["environment", "$LC_TELEPHONE"],
+	["environment", "$LC_TIME"],
+	["environment", "$LESSCLOSE"],
+	["environment", "$LESSOPEN"],
+	["environment", "$LINES"],
+	["environment", "$LOGNAME"],
+	["environment", "$LS_COLORS"],
+	["environment", "$MACHTYPE"],
+	["environment", "$MAILCHECK"],
+	["environment", "$MANDATORY_PATH"],
+	["environment", "$NO_AT_BRIDGE"],
+	["environment", "$OLDPWD"],
+	["environment", "$OPTERR"],
+	["environment", "$OPTIND"],
+	["environment", "$ORBIT_SOCKETDIR"],
+	["environment", "$OSTYPE"],
+	["environment", "$PAPERSIZE"],
+	["environment", "$PATH"],
+	["environment", "$PIPESTATUS"],
+	["environment", "$PPID"],
+	["environment", "$PS1"],
+	["environment", "$PS2"],
+	["environment", "$PS3"],
+	["environment", "$PS4"],
+	["environment", "$PWD"],
+	["environment", "$RANDOM"],
+	["environment", "$REPLY"],
+	["environment", "$SECONDS"],
+	["environment", "$SELINUX_INIT"],
+	["environment", "$SESSION"],
+	["environment", "$SESSIONTYPE"],
+	["environment", "$SESSION_MANAGER"],
+	["environment", "$SHELL"],
+	["environment", "$SHELLOPTS"],
+	["environment", "$SHLVL"],
+	["environment", "$SSH_AUTH_SOCK"],
+	["environment", "$TERM"],
+	["environment", "$UID"],
+	["environment", "$UPSTART_EVENTS"],
+	["environment", "$UPSTART_INSTANCE"],
+	["environment", "$UPSTART_JOB"],
+	["environment", "$UPSTART_SESSION"],
+	["environment", "$USER"],
+	["environment", "$WINDOWID"],
+	["environment", "$XAUTHORITY"],
+	["environment", "$XDG_CONFIG_DIRS"],
+	["environment", "$XDG_CURRENT_DESKTOP"],
+	["environment", "$XDG_DATA_DIRS"],
+	["environment", "$XDG_GREETER_DATA_DIR"],
+	["environment", "$XDG_MENU_PREFIX"],
+	["environment", "$XDG_RUNTIME_DIR"],
+	["environment", "$XDG_SEAT"],
+	["environment", "$XDG_SEAT_PATH"],
+	["environment", "$XDG_SESSION_DESKTOP"],
+	["environment", "$XDG_SESSION_ID"],
+	["environment", "$XDG_SESSION_PATH"],
+	["environment", "$XDG_SESSION_TYPE"],
+	["environment", "$XDG_VTNR"],
+	["environment", "$XMODIFIERS"]
+]
+
+----------------------------------------------------
+
+Checks for environment variables.

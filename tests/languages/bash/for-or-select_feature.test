@@ -1,0 +1,25 @@
+for var in a b c
+do :; done
+select var in a b c
+do :; done
+
+----------------------------------------------------
+
+[
+	["keyword", "for"],
+	["for-or-select", "var"],
+	["keyword", "in"], " a b c\r\n", ["keyword", "do"],
+	["builtin", ":"],
+	["punctuation", ";"],
+	["keyword", "done"],
+	["keyword", "select"],
+	["for-or-select", "var"],
+	["keyword", "in"], " a b c\r\n", ["keyword", "do"],
+	["builtin", ":"],
+	["punctuation", ";"],
+	["keyword", "done"]
+]
+
+----------------------------------------------------
+
+Checks for variable names in “for” and “select” loops.
