@@ -10,6 +10,30 @@ Prism.languages.sas = {
 			'punctuation': /;/
 		}
 	},
+	'options': {
+		pattern: /(^options)(?:((?:\s+?)(?:\r?\n|\r)*[\'\w+=\(\)]*)*;)/im,
+		inside: {
+			'options': {
+				alias: 'keyword',
+				pattern: /(^options)/i,
+			},
+		  'operator': /\*\*?|\|\|?|!!?|¦¦?|<[>=]?|>[<=]?|[-+\/=&]|[~¬^]=?|\b(?:eq|ne|gt|lt|ge|le|in|not)\b/i,
+		  'keyword': {
+		    pattern: /(\s)((\w+)(?:=?))/im,
+		    lookbehind: true,
+		  },
+		  'punctuation': /[$%@.(){}\[\];,\\]/,
+		  'number': /\b(?:[\da-f]+x(?!\w+)|\d+(?:\.\d+)?(?:e[+-]?\d+)?)/,
+			'string': {
+				pattern: /(["'])(?:\1\1|(?!\1)[\s\S])*\1/,
+				greedy: true
+			},
+		}
+	},
+	'function': {
+		pattern: /\w+(?=\()/,
+		alias: 'keyword'
+	},
 	'comment': [
 		{
 			pattern: /(^\s*|;\s*)\*.*;/m,
@@ -26,9 +50,10 @@ Prism.languages.sas = {
 		pattern: /(["'])(?:\1\1|(?!\1)[\s\S])*\1/,
 		greedy: true
 	},
-	'keyword': /\b(?:data|else|format|if|input|proc\s\w+|quit|run|then|libname|set|output|options)\b/i,
+	'function-name': /\b(?:data|proc\s\w+|quit|run)\b/i,
+	'keyword': /\b(=)?(?:close|define|column|analysis|sum|headline|headskip|rbreak|after|dol|dul|summarize|noobs|compute|endcomp|where|contains|midpoints|cfill|fill|title|histogram|rannor|ranexp|cbarline|var|name|document|ods|drop|else|format|do|end|to|if|input|label|length|retain|proc\s\w+|quit|run|then|then\sdo|libname|set|output)\b/i,
 	// Decimal (1.2e23), hexadecimal (0c1x)
-	'number': /\b(?:[\da-f]+x|\d+(?:\.\d+)?(?:e[+-]?\d+)?)/i,
+	'number': /\b(?:[\da-f]+x(?!\w+)|\d+(?:\.\d+)?(?:e[+-]?\d+)?)/,
 	'operator': /\*\*?|\|\|?|!!?|¦¦?|<[>=]?|>[<=]?|[-+\/=&]|[~¬^]=?|\b(?:eq|ne|gt|lt|ge|le|in|not)\b/i,
 	'punctuation': /[$%@.(){}\[\];,\\]/
 };
