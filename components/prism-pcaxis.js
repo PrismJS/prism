@@ -1,7 +1,7 @@
 Prism.languages.pcaxis = {
 	'string': /"[^"]*"/,
 	'keyword': {
-		pattern: /((?:^|;)\s*)[-A-Z\d]+(?:\s*\[[-\w]+\])?(?:\s*\("[^"]*"(?:,\s*"[^"]*")*\))?(?=\s*[=])/,
+		pattern: /((?:^|;)\s*)[-A-Z\d]+(?:\s*\[[-\w]+\])?(?:\s*\("[^"]*"(?:,\s*"[^"]*")*\))?(?=\s*=)/,
 		lookbehind: true,
 		greedy: true,
 		inside: {
