@@ -192,6 +192,6 @@
 	for(var i = 0; i < toBeCopied.length; i++) {
 		inside[toBeCopied[i]] = Prism.languages.bash[toBeCopied[i]];
 	}
-	
+
 	Prism.languages.shell = Prism.languages.bash;
 })(Prism);

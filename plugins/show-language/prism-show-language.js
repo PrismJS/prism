@@ -112,6 +112,7 @@
 		"sas": "SAS",
 		"sass": "Sass (Sass)",
 		"scss": "Sass (Scss)",
+		"shell-session": "Shell session",
 		"sql": "SQL",
 		"soy": "Soy (Closure Template)",
 		"tap": "TAP",

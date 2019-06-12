@@ -92,6 +92,7 @@
 		"sass": "css",
 		"scss": "css",
 		"scala": "java",
+		"shell-session": "bash",
 		"smarty": "markup-templating",
 		"soy": "markup-templating",
 		"swift": "clike",
