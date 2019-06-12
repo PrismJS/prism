@@ -1,0 +1,16 @@
+<h2>Full example</h2>
+<pre><code>&lt;#@ template hostspecific="false" language="VB" #&gt;
+&lt;#@ assembly name="System.Core.dll" #&gt;
+&lt;#@ output extension=".txt" #&gt;
+&lt;#
+    Imports System.Collections.Generic
+
+    Dim numbers() As Integer = { 0, 1, 2, 3, 4, 5, 6, 8, 9, 10  }
+    ' not including 7
+
+    For Each i In numbers
+#&gt;
+The square of &lt;#= i #&gt; is &lt;#= i * i #&gt;
+&lt;#
+    Next
+#&gt;</code></pre>

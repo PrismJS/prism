@@ -9,7 +9,7 @@ $ echo "Foo
 	["command", [
 		["sh", "$"],
 		["bash", [
-			["keyword", "echo"],
+			["builtin", "echo"],
 			["string", [
 				"'Foo\n> Bar'"
 			]]
@@ -19,7 +19,7 @@ $ echo "Foo
 	["command", [
 		["sh", "$"],
 		["bash", [
-			["keyword", "echo"],
+			["builtin", "echo"],
 			["string", [
 				"\"Foo\n> Bar\""
 			]]
