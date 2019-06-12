@@ -1,0 +1,89 @@
+html`
+<p>
+	Foo.
+</p>`;
+
+div.innerHTML = `<p></p>`;
+div.outerHTML = `<p></p>`;
+
+----------------------------------------------------
+
+[
+	"html",
+	["template-string", [
+		["template-punctuation", "`"],
+		["html", [
+			["tag", [
+				["tag", [
+					["punctuation", "<"],
+					"p"
+				]],
+				["punctuation", ">"]
+			]],
+			"\r\n\tFoo.\r\n",
+			["tag", [
+				["tag", [
+					["punctuation", "</"],
+					"p"
+				]],
+				["punctuation", ">"]
+			]]
+		]],
+		["template-punctuation", "`"]
+	]],
+	["punctuation", ";"],
+	"\r\n\r\ndiv",
+	["punctuation", "."],
+	"innerHTML ",
+	["operator", "="],
+	["template-string", [
+		["template-punctuation", "`"],
+		["html", [
+			["tag", [
+				["tag", [
+					["punctuation", "<"],
+					"p"
+				]],
+				["punctuation", ">"]
+			]],
+			["tag", [
+				["tag", [
+					["punctuation", "</"],
+					"p"
+				]],
+				["punctuation", ">"]
+			]]
+		]],
+		["template-punctuation", "`"]
+	]],
+	["punctuation", ";"],
+	"\r\ndiv",
+	["punctuation", "."],
+	"outerHTML ",
+	["operator", "="],
+	["template-string", [
+		["template-punctuation", "`"],
+		["html", [
+			["tag", [
+				["tag", [
+					["punctuation", "<"],
+					"p"
+				]],
+				["punctuation", ">"]
+			]],
+			["tag", [
+				["tag", [
+					["punctuation", "</"],
+					"p"
+				]],
+				["punctuation", ">"]
+			]]
+		]],
+		["template-punctuation", "`"]
+	]],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for tagged template literals containing HTML/XML code.

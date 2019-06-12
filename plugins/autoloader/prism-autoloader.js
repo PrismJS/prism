@@ -51,6 +51,13 @@
 			"javadoclike"
 		],
 		"js-extras": "javascript",
+		"js-templates": [
+			"javascript",
+			"css",
+			"graphql",
+			"markdown",
+			"markup"
+		],
 		"jsonp": "json",
 		"json5": "json",
 		"kotlin": "clike",
