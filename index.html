@@ -152,6 +152,27 @@
 	<p>If you want to prevent any elements from being automatically highlighted, you can use the attribute <code>data-manual</code> on the <code>&lt;script></code> element you used for prism and use the <a href="extending.html#api">API</a>.
 	Example:</p>
 	<pre><code>&lt;script src="prism.js" data-manual>&lt;/script></code></pre>
+	<h2>Usage with CDNs</h2>
+
+	<p>In combination with CDNs, we recommend using the <a href="plugins/autoloader">Autoloader plugin</a> which automatically loads languages when necessary.</p>
+
+	<p>The setup of the Autoloader, will look like the following. You can also your own themes of course.</p>
+
+	<pre><code>&lt;!DOCTYPE html>
+&lt;html>
+&lt;head>
+	...</code>
+	<code class="highlight">&lt;link href="https://myCDN.com/prism@v1.x/themes/prism.css" rel="stylesheet" /></code>
+<code>&lt;/head>
+&lt;body>
+	...</code>
+<code class="highlight" style="display: inline-block; outline-offset: .2em; margin-bottom: .2em;">	&lt;script src="https://myCDN.com/prism@v1.x/components/prism-core.min.js"&gt;&lt;/script&gt;
+	&lt;script src="https://myCDN.com/prism@v1.x/plugins/autoloader/prism-autoloader.min.js"&gt;&lt;/script&gt;
+	&lt;script&gt;Prism.plugins.autoloader.languages_path = 'https://myCDN.com/prism@v1.x/components/'&lt;/script&gt;</code>
+<code>&lt;/body>
+&lt;/html></code></pre>
+
+	<p>CDNs which provide PrismJS are e.g. <a href="https://cdnjs.com/libraries/prism">cdnjs</a> and <a href="https://www.jsdelivr.com/package/npm/prismjs">jsDelivr</a>.</p>
 
 	<h2>Usage with Webpack, Browserify, & Other Bundlers</h2>
 
