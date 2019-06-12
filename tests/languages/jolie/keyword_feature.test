@@ -1,23 +1,23 @@
-include 
-define 
-is_defined 
-undef 
-main 
-init 
-outputPort ; 
+include
+define
+is_defined
+undef
+main
+init
+outputPort ;
 inputPort ;
-Location 
-Protocol 
-Interfaces 
-RequestResponse 
-OneWay 
-type 
-interface 
-extender 
-throws 
-cset 
-csets 
-forward 
+Location
+Protocol
+Interfaces
+RequestResponse
+OneWay
+type
+interface
+extender
+throws
+cset
+csets
+forward
 courier ;
 Aggregates
 Redirects
@@ -45,7 +45,7 @@ else
 while
 in ;
 Jolie
-Java 
+Java
 Javascript
 nullProcess
 spawn
@@ -61,67 +61,70 @@ service
 
 ----------------------------------------------------
 [
-	["keyword", "include" ],
-	["keyword", "define" ], 
-	["keyword", "is_defined" ], 
-	["keyword", "undef" ], 
-	["keyword", "main" ], 
-	["keyword", "init" ], 
-	["keyword", "outputPort" ], [ "symbol", ";" ], 
-	["keyword", "inputPort" ], [ "symbol", ";" ],
-	["keyword", "Location" ], 
-	["keyword", "Protocol" ], 
-	["keyword", "Interfaces" ], 
-	["keyword", "RequestResponse" ], 
-	["keyword", "OneWay" ], 
-	["keyword", "type" ], 
-	["keyword", "interface" ], 
-	["keyword", "extender" ], 
-	["keyword", "throws" ], 
-	["keyword", "cset" ], 
-	["keyword", "csets" ], 
-	["keyword", "forward" ], 
-	["keyword", "courier" ], [ "symbol", ";" ],
-	["keyword", "Aggregates" ],
-	["keyword", "Redirects" ],
-	["keyword", "embedded" ],
-	["keyword", "extender" ],
-	["keyword", "execution" ],
-	["keyword", "sequential" ],
-	["keyword", "concurrent" ],
-	["keyword", "single" ],
-	["keyword", "scope" ],
-	["keyword", "install" ],
-	["keyword", "throw" ],
-	["keyword", "comp" ],
-	["keyword", "cH" ],
-	["keyword", "default" ],
-	["keyword", "global" ],
-	["keyword", "linkIn" ],
-	["keyword", "linkOut" ],
-	["keyword", "synchronized" ],
-	["keyword", "this" ],
-	["keyword", "new" ],
-	["keyword", "for" ],
-	["keyword", "if" ],
-	["keyword", "else" ],
-	["keyword", "while" ],
-	["keyword", "in" ], [ "symbol", ";" ],
-	["keyword", "Jolie" ],
-	["keyword", "Java" ], 
-	["keyword", "Javascript" ],
-	["keyword", "nullProcess" ],
-	["keyword", "spawn" ],
-	["keyword", "constants" ],
-	["keyword", "with" ],
-	["keyword", "provide" ],
-	["keyword", "until" ],
-	["keyword", "exit" ],
-	["keyword", "foreach" ],
-	["keyword", "instanceof" ],
-	["keyword", "over" ],
-	["keyword", "service" ]
-
+	["keyword", "include"],
+	["keyword", "define"],
+	["keyword", "is_defined"],
+	["keyword", "undef"],
+	["keyword", "main"],
+	["keyword", "init"],
+	["keyword", "outputPort"],
+	["symbol", ";"],
+	["keyword", "inputPort"],
+	["symbol", ";"],
+	["keyword", "Location"],
+	["keyword", "Protocol"],
+	["keyword", "Interfaces"],
+	["keyword", "RequestResponse"],
+	["keyword", "OneWay"],
+	["keyword", "type"],
+	["keyword", "interface"],
+	["keyword", "extender"],
+	["keyword", "throws"],
+	["keyword", "cset"],
+	["keyword", "csets"],
+	["keyword", "forward"],
+	["keyword", "courier"],
+	["symbol", ";"],
+	["keyword", "Aggregates"],
+	["keyword", "Redirects"],
+	["keyword", "embedded"],
+	["keyword", "extender"],
+	["keyword", "execution"],
+	["keyword", "sequential"],
+	["keyword", "concurrent"],
+	["keyword", "single"],
+	["keyword", "scope"],
+	["keyword", "install"],
+	["keyword", "throw"],
+	["keyword", "comp"],
+	["keyword", "cH"],
+	["keyword", "default"],
+	["keyword", "global"],
+	["keyword", "linkIn"],
+	["keyword", "linkOut"],
+	["keyword", "synchronized"],
+	["keyword", "this"],
+	["keyword", "new"],
+	["keyword", "for"],
+	["keyword", "if"],
+	["keyword", "else"],
+	["keyword", "while"],
+	["keyword", "in"],
+	["symbol", ";"],
+	["keyword", "Jolie"],
+	["keyword", "Java"],
+	["keyword", "Javascript"],
+	["keyword", "nullProcess"],
+	["keyword", "spawn"],
+	["keyword", "constants"],
+	["keyword", "with"],
+	["keyword", "provide"],
+	["keyword", "until"],
+	["keyword", "exit"],
+	["keyword", "foreach"],
+	["keyword", "instanceof"],
+	["keyword", "over"],
+	["keyword", "service"]
 ]
 
 ----------------------------------------------------

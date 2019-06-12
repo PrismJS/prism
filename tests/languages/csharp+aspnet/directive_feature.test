@@ -8,61 +8,61 @@
 ----------------------------------------------------
 
 [
-	["directive tag", [
-		["directive tag", "<%:"],
+	["directive", [
+		["directive", "<%:"],
 		" Page",
 		["punctuation", "."],
 		"Title ",
-		["directive tag", "%>"]
+		["directive", "%>"]
 	]],
 
-	["directive tag", [
-        ["directive tag", "<%#:"],
-        "Item",
-        ["punctuation", "."],
-        "ProductID",
-        ["directive tag", "%>"]
-    ]],
+	["directive", [
+		["directive", "<%#:"],
+		"Item",
+		["punctuation", "."],
+		"ProductID",
+		["directive", "%>"]
+	]],
 
-    ["tag", [
-        ["tag", [
-            ["punctuation", "<"],
-            "a"
-        ]],
-        ["attr-name", [
-            "href"
-        ]],
-        ["attr-value", [
-            ["punctuation", "="],
-            ["punctuation", "\""],
-            "ProductDetails.aspx?productID=",
-            ["directive tag", [
-                ["directive tag", "<%#:"],
-                "Item",
-		        ["punctuation", "."],
-		        "ProductID",
-		        ["directive tag", "%>"]
-            ]],
-            ["punctuation", "\""]
-        ]],
-        ["punctuation", ">"]
-    ]],
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"a"
+		]],
+		["attr-name", [
+			"href"
+		]],
+		["attr-value", [
+			["punctuation", "="],
+			["punctuation", "\""],
+			"ProductDetails.aspx?productID=",
+			["directive", [
+				["directive", "<%#:"],
+				"Item",
+				["punctuation", "."],
+				"ProductID",
+				["directive", "%>"]
+			]],
+			["punctuation", "\""]
+		]],
+		["punctuation", ">"]
+	]],
 
-    ["directive tag", [
-        ["directive tag", "<%"],
-        ["keyword", "if"],
-        ["punctuation", "("],
-        "foo",
-        ["punctuation", ")"],
-        ["punctuation", "{"],
-        ["directive tag", "%>"]
-    ]],
-    "\r\n\tfoobar\r\n",
-    ["directive tag", [
-        ["directive tag", "<%"],
-        ["punctuation", "}"],
-        ["directive tag", "%>"]
-    ]]
+	["directive", [
+		["directive", "<%"],
+		["keyword", "if"],
+		["punctuation", "("],
+		"foo",
+		["punctuation", ")"],
+		["punctuation", "{"],
+		["directive", "%>"]
+	]],
+	"\r\n\tfoobar\r\n",
+	["directive", [
+		["directive", "<%"],
+		["punctuation", "}"],
+		["directive", "%>"]
+	]]
 ]
 
 ----------------------------------------------------
