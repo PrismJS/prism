@@ -1040,6 +1040,10 @@
 			"owner": "mAAdhaTTah",
 			"require": "toolbar",
 			"noCSS": true
+		},
+		"match-braces": {
+			"title": "Match braces",
+			"owner": "RunDevelopment"
 		}
 	}
 }
