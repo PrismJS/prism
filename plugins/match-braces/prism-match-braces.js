@@ -130,18 +130,20 @@
 
 			for (var i = 0; i < punctuation.length; i++) {
 				var element = punctuation[i];
-				var text = element.textContent;
-				if (text === open) {
-					allBraces.push({ index: i, open: true, element: element });
-					element.className += ' ' + name;
-					element.className += ' brace-open';
-					openStack.push(i);
-				} else if (text === close) {
-					allBraces.push({ index: i, open: false, element: element });
-					element.className += ' ' + name;
-					element.className += ' brace-close';
-					if (openStack.length) {
-						pairs.push([i, openStack.pop()]);
+				if (element.childElementCount == 0) {
+					var text = element.textContent;
+					if (text === open) {
+						allBraces.push({ index: i, open: true, element: element });
+						element.className += ' ' + name;
+						element.className += ' brace-open';
+						openStack.push(i);
+					} else if (text === close) {
+						allBraces.push({ index: i, open: false, element: element });
+						element.className += ' ' + name;
+						element.className += ' brace-close';
+						if (openStack.length) {
+							pairs.push([i, openStack.pop()]);
+						}
 					}
 				}
 			}
