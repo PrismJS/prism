@@ -1,0 +1,12 @@
+int unit 
+string nat map
+----------------------------------------------------
+
+[
+	["builtin", "int"], ["builtin", "unit"],
+	["builtin", "string"], ["builtin", "nat"], ["builtin", "map"]
+]
+
+----------------------------------------------------
+
+Checks for builtins.
