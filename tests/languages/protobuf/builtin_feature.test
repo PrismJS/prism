@@ -1,0 +1,18 @@
+optional
+repeated
+required
+reserved
+
+
+----------------------------------------------------
+
+[
+	["builtin", "optional"],
+	["builtin", "repeated"],
+	["builtin", "required"],
+	["builtin", "reserved"]
+]
+
+----------------------------------------------------
+
+Check for builtins.
