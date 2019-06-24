@@ -109,7 +109,9 @@ Markdown | Less | Pretty
 			["table-data", [
 				["italic", [
 					["punctuation", "*"],
-					"Still",
+					["content", [
+						"Still"
+					]],
 					["punctuation", "*"]
 				]]
 			]],
@@ -121,7 +123,9 @@ Markdown | Less | Pretty
 			["table-data", [
 				["bold", [
 					["punctuation", "**"],
-					"nicely",
+					["content", [
+						"nicely"
+					]],
 					["punctuation", "**"]
 				]]
 			]],

@@ -1,0 +1,32 @@
+$ echo 'Foo
+> Bar'
+$ echo "Foo
+> Bar"
+
+----------------------------------------------------
+
+[
+	["command", [
+		["sh", "$"],
+		["bash", [
+			["builtin", "echo"],
+			["string", [
+				"'Foo\n> Bar'"
+			]]
+		]]
+	]],
+
+	["command", [
+		["sh", "$"],
+		["bash", [
+			["builtin", "echo"],
+			["string", [
+				"\"Foo\n> Bar\""
+			]]
+		]]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for multi-line strings inside commands.

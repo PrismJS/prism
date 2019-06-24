@@ -1,0 +1,21 @@
+<h2>Full example</h2>
+<pre><code class="language-javascript">/**
+ * @typedef {object} Foo
+ * @property {string} bar
+ * @memberof Baz
+ */
+
+/**
+ * Trims the given string.
+ *
+ * @param {string} [str=""] the string.
+ * @returns {string} the trimmed string.
+ * @throws {TypeError} if the argument is not a string.
+ * @example trim(" hello ")
+ */
+function trim(str = "") {
+	if (typeof str != "string") {
+		throw new TypeError("str has to be a string");
+	}
+	return str.trim();
+}</code></pre>

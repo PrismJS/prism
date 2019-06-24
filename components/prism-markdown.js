@@ -1,11 +1,34 @@
 (function (Prism) {
 
-	Prism.languages.markdown = Prism.languages.extend('markup', {});
+	// Allow only one line break
+	var inner = /\\.|[^\\\n\r_]|(?:\r?\n|\r)(?!\r?\n|\r)/.source;
+
+	/**
+	 * This function is intended for the creation of the bold or italic pattern.
+	 *
+	 * This also adds a lookbehind group to the given pattern to ensure that the pattern is not backslash-escaped.
+	 *
+	 * _Note:_ Keep in mind that this adds a capturing group.
+	 *
+	 * @param {string} pattern
+	 * @param {boolean} starAlternative Whether to also add an alternative where all `_`s are replaced with `*`s.
+	 * @returns {RegExp}
+	 */
+	function createInline(pattern, starAlternative) {
+		pattern = pattern.replace(/<inner>/g, inner);
+		if (starAlternative) {
+			pattern = pattern + '|' + pattern.replace(/_/g, '\\*');
+		}
+		return RegExp(/((?:^|[^\\])(?:\\{2})*)/.source + '(?:' + pattern + ')');
+	}
+
 
 	var tableCell = /(?:\\.|``.+?``|`[^`\r\n]+`|[^\\|\r\n`])+/.source;
 	var tableRow = /\|?__(?:\|__)+\|?(?:(?:\r?\n|\r)|$)/.source.replace(/__/g, tableCell);
 	var tableLine = /\|?[ \t]*:?-{3,}:?[ \t]*(?:\|[ \t]*:?-{3,}:?[ \t]*)+\|?(?:\r?\n|\r)/.source;
 
+
+	Prism.languages.markdown = Prism.languages.extend('markup', {});
 	Prism.languages.insertBefore('markdown', 'prolog', {
 		'blockquote': {
 			// > ...
@@ -49,7 +72,7 @@
 		},
 		'code': [
 			{
-				// Prefixed by 4 spaces or 1 tab
+				// Prefixed by 4 spaces or 1 tab and preceded by an empty line
 				pattern: /(^[ \t]*(?:\r?\n|\r))(?: {4}|\t).+(?:(?:\r?\n|\r)(?: {4}|\t).+)*/m,
 				lookbehind: true,
 				alias: 'keyword'
@@ -141,36 +164,51 @@
 			// **strong**
 			// __strong__
 
-			// Allow only one line break
-			pattern: /(^|[^\\])(\*\*|__)(?:(?:\r?\n|\r)(?!\r?\n|\r)|.)+?\2/,
+			// allow one nested instance of italic text using the same delimiter
+			pattern: createInline(/__(?:<inner>|_(?:<inner>)+_)+__/.source, true),
 			lookbehind: true,
 			greedy: true,
 			inside: {
-				'punctuation': /^\*\*|^__|\*\*$|__$/
+				'content': {
+					pattern: /(^..)[\s\S]+(?=..$)/,
+					lookbehind: true,
+					inside: {} // see below
+				},
+				'punctuation': /\*\*|__/
 			}
 		},
 		'italic': {
 			// *em*
 			// _em_
 
-			// Allow only one line break
-			pattern: /(^|[^\\])([*_])(?:(?:\r?\n|\r)(?!\r?\n|\r)|.)+?\2/,
+			// allow one nested instance of bold text using the same delimiter
+			pattern: createInline(/_(?:<inner>|__(?:<inner>)+__)+_/.source, true),
 			lookbehind: true,
 			greedy: true,
 			inside: {
-				'punctuation': /^[*_]|[*_]$/
+				'content': {
+					pattern: /(^.)[\s\S]+(?=.$)/,
+					lookbehind: true,
+					inside: {} // see below
+				},
+				'punctuation': /[*_]/
 			}
 		},
 		'strike': {
 			// ~~strike through~~
 			// ~strike~
 
-			// Allow only one line break
-			pattern: /(^|[^\\])(~~?)(?:(?:\r?\n|\r)(?!\r?\n|\r)|.)+?\2/,
+			// extra _ is because the inner pattern intentionally doesn't include it because of bold and italic
+			pattern: createInline(/(~~?)(?:<inner>|_)+?\2/.source, false),
 			lookbehind: true,
 			greedy: true,
 			inside: {
-				'punctuation': /^~~?|~~?$/
+				'content': {
+					pattern: /(^~~?)[\s\S]+(?=\1$)/,
+					lookbehind: true,
+					inside: {} // see below
+				},
+				'punctuation': /~~?/
 			}
 		},
 		'url': {
@@ -192,7 +230,7 @@
 	['bold', 'italic', 'strike'].forEach(function (token) {
 		['url', 'bold', 'italic', 'strike'].forEach(function (inside) {
 			if (token !== inside) {
-				Prism.languages.markdown[token].inside[inside] = Prism.languages.markdown[inside];
+				Prism.languages.markdown[token].inside.content.inside[inside] = Prism.languages.markdown[inside];
 			}
 		});
 	});
@@ -214,6 +252,20 @@
 					walkTokens(token.content);
 					continue;
 				}
+
+				/*
+				 * Add the correct `language-xxxx` class to this code block. Keep in mind that the `code-language` token
+				 * is optional. But the grammar is defined so that there is only one case we have to handle:
+				 *
+				 * token.content = [
+				 *     <span class="punctuation">```</span>,
+				 *     <span class="code-language">xxxx</span>,
+				 *     '\n', // exactly one new lines (\r or \n or \r\n)
+				 *     <span class="code-block">...</span>,
+				 *     '\n', // exactly one new lines again
+				 *     <span class="punctuation">```</span>
+				 * ];
+				 */
 
 				var codeLang = token.content[1];
 				var codeBlock = token.content[3];

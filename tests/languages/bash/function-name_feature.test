@@ -1,0 +1,41 @@
+function foo { :; }
+bar() { :; }
+function foo() { :; }
+# Not a function:
+bar { :; }
+
+----------------------------------------------------
+
+[
+	["keyword", "function"],
+	["function-name", "foo"],
+	["punctuation", "{"],
+	["builtin", ":"],
+	["punctuation", ";"],
+	["punctuation", "}"],
+	["function-name", "bar"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["builtin", ":"],
+	["punctuation", ";"],
+	["punctuation", "}"],
+	["keyword", "function"],
+	["function-name", "foo"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["builtin", ":"],
+	["punctuation", ";"],
+	["punctuation", "}"],
+	["comment", "# Not a function:"],
+	"\r\nbar ",
+	["punctuation", "{"],
+	["builtin", ":"],
+	["punctuation", ";"],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for function definitions.
