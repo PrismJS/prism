@@ -5,7 +5,17 @@ _foobar_
 _foo
 bar_
 
+_foo__bar__baz_
+_foo**bar**baz_
+_foo~bar~baz_
+_foo~~bar~~baz_
 _foo[bar](baz)_
+
+*foo__bar__baz*
+*foo**bar**baz*
+*foo~bar~baz*
+*foo~~bar~~baz*
+*foo[bar](baz)*
 
 ----------------------------------------------------
 
@@ -42,11 +52,141 @@ _foo[bar](baz)_
 		["punctuation", "_"],
 		["content", [
 			"foo",
+			["bold", [
+				["punctuation", "__"],
+				["content", [
+					"bar"
+				]],
+				["punctuation", "__"]
+			]],
+			"baz"
+		]],
+		["punctuation", "_"]
+	]],
+	["italic", [
+		["punctuation", "_"],
+		["content", [
+			"foo",
+			["bold", [
+				["punctuation", "**"],
+				["content", [
+					"bar"
+				]],
+				["punctuation", "**"]
+			]],
+			"baz"
+		]],
+		["punctuation", "_"]
+	]],
+	["italic", [
+		["punctuation", "_"],
+		["content", [
+			"foo",
+			["strike", [
+				["punctuation", "~"],
+				["content", [
+					"bar"
+				]],
+				["punctuation", "~"]
+			]],
+			"baz"
+		]],
+		["punctuation", "_"]
+	]],
+	["italic", [
+		["punctuation", "_"],
+		["content", [
+			"foo",
+			["strike", [
+				["punctuation", "~~"],
+				["content", [
+					"bar"
+				]],
+				["punctuation", "~~"]
+			]],
+			"baz"
+		]],
+		["punctuation", "_"]
+	]],
+	["italic", [
+		["punctuation", "_"],
+		["content", [
+			"foo",
 			["url", [
 				"[bar](baz)"
 			]]
 		]],
 		["punctuation", "_"]
+	]],
+	["italic", [
+		["punctuation", "*"],
+		["content", [
+			"foo",
+			["bold", [
+				["punctuation", "__"],
+				["content", [
+					"bar"
+				]],
+				["punctuation", "__"]
+			]],
+			"baz"
+		]],
+		["punctuation", "*"]
+	]],
+	["italic", [
+		["punctuation", "*"],
+		["content", [
+			"foo",
+			["bold", [
+				["punctuation", "**"],
+				["content", [
+					"bar"
+				]],
+				["punctuation", "**"]
+			]],
+			"baz"
+		]],
+		["punctuation", "*"]
+	]],
+	["italic", [
+		["punctuation", "*"],
+		["content", [
+			"foo",
+			["strike", [
+				["punctuation", "~"],
+				["content", [
+					"bar"
+				]],
+				["punctuation", "~"]
+			]],
+			"baz"
+		]],
+		["punctuation", "*"]
+	]],
+	["italic", [
+		["punctuation", "*"],
+		["content", [
+			"foo",
+			["strike", [
+				["punctuation", "~~"],
+				["content", [
+					"bar"
+				]],
+				["punctuation", "~~"]
+			]],
+			"baz"
+		]],
+		["punctuation", "*"]
+	]],
+	["italic", [
+		["punctuation", "*"],
+		["content", [
+			"foo",
+			["url", [
+				"[bar](baz)"
+			]]
+		]],
+		["punctuation", "*"]
 	]]
 ]
 
