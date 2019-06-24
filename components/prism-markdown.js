@@ -3,9 +3,25 @@
 	// Allow only one line break
 	var inner = /\\.|[^\\\n\r_]|(?:\r?\n|\r)(?!\r?\n|\r)/.source;
 
-	// both bold and italic allow one nested instance of the other
-	var bold_ = /__(?:<inner>|_(?:<inner>)+_)+__/.source.replace(/<inner>/g, inner);
-	var italic_ = /_(?:<inner>|__(?:<inner>)+__)+_/.source.replace(/<inner>/g, inner);
+	/**
+	 * This function is intended for the creation of the bold or italic pattern.
+	 *
+	 * This also adds a lookbehind group to the given pattern to ensure that the pattern is not backslash-escaped.
+	 *
+	 * _Note:_ Keep in mind that this adds a capturing group.
+	 *
+	 * @param {string} pattern
+	 * @param {boolean} starAlternative Whether to also add an alternative where all `_`s are replaced with `*`s.
+	 * @returns {RegExp}
+	 */
+	function createInline(pattern, starAlternative) {
+		pattern = pattern.replace(/<inner>/g, inner);
+		if (starAlternative) {
+			pattern = pattern + '|' + pattern.replace(/_/g, '\\*');
+		}
+		return RegExp(/((?:^|[^\\])(?:\\{2})*)/.source + '(?:' + pattern + ')');
+	}
+
 
 	Prism.languages.markdown = Prism.languages.extend('markup', {});
 	Prism.languages.insertBefore('markdown', 'prolog', {
@@ -107,7 +123,8 @@
 			// **strong**
 			// __strong__
 
-			pattern: RegExp('((?:^|[^\\\\])(?:\\\\{2})*)(?:' + bold_ + '|' + bold_.replace(/_/g, '\\*') + ')'),
+			// allow one nested instance of italic text using the same delimiter
+			pattern: createInline(/__(?:<inner>|_(?:<inner>)+_)+__/.source, true),
 			lookbehind: true,
 			greedy: true,
 			inside: {
@@ -123,7 +140,8 @@
 			// *em*
 			// _em_
 
-			pattern: RegExp('((?:^|[^\\\\])(?:\\\\{2})*)(?:' + italic_ + '|' + italic_.replace(/_/g, '\\*') + ')'),
+			// allow one nested instance of bold text using the same delimiter
+			pattern: createInline(/_(?:<inner>|__(?:<inner>)+__)+_/.source, true),
 			lookbehind: true,
 			greedy: true,
 			inside: {
@@ -139,7 +157,8 @@
 			// ~~strike through~~
 			// ~strike~
 
-			pattern: RegExp(/((?:^|[^\\])(?:\\{2})*)(~~?)(?:<inner>|_)+?\2/.source.replace(/<inner>/g, inner)),
+			// extra _ is because the inner pattern intentionally doesn't include it because of bold and italic
+			pattern: createInline(/(~~?)(?:<inner>|_)+?\2/.source, false),
 			lookbehind: true,
 			greedy: true,
 			inside: {
@@ -192,6 +211,20 @@
 					walkTokens(token.content);
 					continue;
 				}
+
+				/*
+				 * Add the correct `language-xxxx` class to this code block. Keep in mind that the `code-language` token
+				 * is optional. But the grammar is defined so that there is only one case we have to handle:
+				 *
+				 * token.content = [
+				 *     <span class="punctuation">```</span>,
+				 *     <span class="code-language">xxxx</span>,
+				 *     '\n', // exactly one new lines (\r or \n or \r\n)
+				 *     <span class="code-block">...</span>,
+				 *     '\n', // exactly one new lines again
+				 *     <span class="punctuation">```</span>
+				 * ];
+				 */
 
 				var codeLang = token.content[1];
 				var codeBlock = token.content[3];
