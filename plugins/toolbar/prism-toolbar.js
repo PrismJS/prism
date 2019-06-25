@@ -44,6 +44,10 @@
 					element = document.createElement('span');
 				}
 
+				if ( opts.className ) {
+					element.classList.add( opts.className );
+				}
+
 				element.textContent = opts.text;
 
 				return element;
