@@ -44,7 +44,6 @@
 					inside: {
 						'table-data': {
 							pattern: RegExp(tableCell),
-							lookbehind: true,
 							inside: Prism.languages.markdown
 						},
 						'punctuation': /\|/
