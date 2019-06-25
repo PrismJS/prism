@@ -14,6 +14,7 @@
 	 * @property {string} text The text displayed.
 	 * @property {string} [url] The URL of the link which will be created.
 	 * @property {Function} [onClick] The event listener for the `click` event of the created button.
+	 * @property {string} className The class attribute to include with element.
 	 */
 
 	/**
@@ -44,8 +45,8 @@
 					element = document.createElement('span');
 				}
 
-				if ( opts.className ) {
-					element.classList.add( opts.className );
+				if (opts.className) {
+					element.classList.add(opts.className);
 				}
 
 				element.textContent = opts.text;
