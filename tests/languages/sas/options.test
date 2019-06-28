@@ -1,0 +1,34 @@
+options nodate linesize=72;
+options validmemname=extend validvarname=any;
+----------------------------------------------------
+
+[
+  [
+    "options",
+    [
+      ["options", "options"],
+      ["arg","nodate"],
+      ["arg", "linesize"],
+      ["equals", "="],
+      ["number", "72"],
+      ";"
+    ]
+  ],
+  [
+    "options",
+    [
+      ["options", "options"],
+      ["arg", "validmemname"],
+      ["equals", "="],
+      ["arg", "extend"],
+      ["arg", "validvarname"],
+      ["equals", "="],
+      ["arg", "any"],
+      ";"
+    ]
+  ]
+]
+
+----------------------------------------------------
+
+Checks that options captures "options" and correctly tags following text.

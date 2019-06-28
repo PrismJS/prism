@@ -1,13 +1,26 @@
-data else format if
-input proc run then
-libname set output options
+action after analysis and cas cbarline cfill
+close column compute computed contains data= define
+document do dol drop dul end else endcomp fill filename
+group headline headskip histogram if infile label length
+libname midpoints name noobs nowd ods or output ranexp
+rannor rbreak retain set sessref sum summarize table
+temp then then do title to var where
 
 ----------------------------------------------------
 
 [
-	["keyword", "data"], ["keyword", "else"], ["keyword", "format"], ["keyword", "if"],
-	["keyword", "input"], ["keyword", "proc run"], ["keyword", "then"], ["keyword", "libname"],
-	["keyword", "set"], ["keyword", "output"], ["keyword", "options"]
+	["keyword", "action"], ["keyword", "after"], ["keyword", "analysis"], ["keyword", "and"], ["keyword", "cas"],
+	["keyword", "cbarline"], ["keyword", "cfill"], ["keyword", "close"], ["keyword", "column"], ["keyword", "compute"],
+	["keyword", "computed"], ["keyword", "contains"], ["keyword", "data"], ["operator", "="], ["keyword", "define"],
+	["keyword", "document"], ["keyword", "do"], ["keyword", "dol"], ["keyword", "drop"], ["keyword", "dul"],
+	["keyword", "end"], ["keyword", "else"], ["keyword", "endcomp"], ["keyword", "fill"], ["keyword", "filename"],
+	["keyword", "group"], ["keyword", "headline"], ["keyword", "headskip"], ["keyword", "histogram"], ["keyword", "if"],
+	["keyword", "infile"], ["keyword", "label"], ["keyword", "length"], ["keyword", "libname"], ["keyword", "midpoints"],
+	["keyword", "name"], ["keyword", "noobs"], ["keyword", "nowd"], ["keyword", "ods"], ["keyword", "or"],
+	["keyword", "output"], ["keyword", "ranexp"], ["keyword", "rannor"], ["keyword", "rbreak"], ["keyword", "retain"],
+	["keyword", "set"], ["keyword", "sessref"], ["keyword", "sum"], ["keyword", "summarize"], ["keyword", "table"],
+	["keyword", "temp"], ["keyword", "then"], ["keyword", "then do"], ["keyword", "title"], ["keyword", "to"],
+	["keyword", "var"], ["keyword", "where"]
 ]
 
 ----------------------------------------------------
