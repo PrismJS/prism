@@ -154,7 +154,7 @@
 
 	/**
 	 * @typedef LangDataItem
-	 * @property {{ success: function, error: function }[]} callbacks
+	 * @property {{ success?: function, error?: function }[]} callbacks
 	 * @property {boolean} [error]
 	 * @property {boolean} [loading]
 	 */
