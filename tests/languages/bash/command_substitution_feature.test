@@ -8,13 +8,13 @@ $(echo "foo")
 [
 	["variable", [
 		["variable", "$("],
-		["keyword", "echo"], 
+		["builtin", "echo"], 
 		["string", ["\"foo\""]],
 		["variable", ")"]
 	]],
 	["variable", [
 		["variable", "`"],
-		["keyword", "echo"], 
+		["builtin", "echo"], 
 		["string", ["\"foo\""]],
 		["variable", "`"]
 	]],
@@ -22,7 +22,7 @@ $(echo "foo")
 		"\"",
 		["variable", [
 			["variable", "$("],
-			["keyword", "echo"], 
+			["builtin", "echo"], 
 			["string", ["\"foo\""]],
 			["variable", ")"]
 		]],
@@ -32,7 +32,7 @@ $(echo "foo")
 		"\"",
 		["variable", [
 			["variable", "`"],
-			["keyword", "echo"],
+			["builtin", "echo"],
 			["string", ["\"foo\""]],
 			["variable", "`"]
 		]],

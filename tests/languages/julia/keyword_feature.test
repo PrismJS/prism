@@ -8,6 +8,7 @@ immutable import importall in
 let local macro module
 print println quote
 return try type
+struct
 typealias using while
 
 ----------------------------------------------------
@@ -23,6 +24,7 @@ typealias using while
 	["keyword", "let"], ["keyword", "local"], ["keyword", "macro"], ["keyword", "module"],
 	["keyword", "print"], ["keyword", "println"], ["keyword", "quote"],
 	["keyword", "return"], ["keyword", "try"], ["keyword", "type"],
+	["keyword", "struct"],
 	["keyword", "typealias"], ["keyword", "using"], ["keyword", "while"]
 ]
 
