@@ -39,8 +39,8 @@ public class Life {
 
     public static boolean[][] gen(){
         boolean[][] grid = new boolean[10][10];
-        for(int r = 0; r < 10; r++)
-            for(int c = 0; c < 10; c++)
+        for(int r = 0; r &lt; 10; r++)
+            for(int c = 0; c &lt; 10; c++)
                 if( Math.random() > 0.7 )
                     grid[r][c] = true;
         return grid;

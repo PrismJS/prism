@@ -252,16 +252,3 @@ void main(char[][] args)   // 'void' here means return 0 by default.
          assert(_totalc >= _argc);
      }
 }</code></pre>
-
-<h2>Known failures</h2>
-<p>There are certain edge cases where Prism will fail.
-	There are always such cases in every regex-based syntax highlighter.
-	However, Prism dares to be open and honest about them.
-	If a failure is listed here, it doesn’t mean it will never be fixed. This is more of a “known bugs” list, just with a certain type of bug.
-</p>
-
-<h3>Comments only support one level of nesting</h3>
-<pre><code>/+ /+ /+ this does not work +/ +/ +/</code></pre>
-
-<h3>Token strings only support one level of nesting</h3>
-<pre><code>q{ q{ q{ this does not work } } }</code></pre>

@@ -92,6 +92,7 @@
 		"sass": "css",
 		"scss": "css",
 		"scala": "java",
+		"shell-session": "bash",
 		"smarty": "markup-templating",
 		"soy": "markup-templating",
 		"swift": "clike",
@@ -154,7 +155,7 @@
 
 	/**
 	 * @typedef LangDataItem
-	 * @property {{ success: function, error: function }[]} callbacks
+	 * @property {{ success?: function, error?: function }[]} callbacks
 	 * @property {boolean} [error]
 	 * @property {boolean} [loading]
 	 */
