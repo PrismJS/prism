@@ -26,22 +26,3 @@ h1
 #main
   width: $width
 </code></pre>
-
-<h2>Known failures</h2>
-<p>There are certain edge cases where Prism will fail.
-    There are always such cases in every regex-based syntax highlighter.
-    However, Prism dares to be open and honest about them.
-    If a failure is listed here, it doesn’t mean it will never be fixed. This is more of a “known bugs” list, just with a certain type of bug.
-</p>
-
-<h3>Deprecated Sass syntax is not supported</h3>
-<pre><code>.page
-  color = 5px + 9px
-
-!width = 13px
-.icon
-  width = !width</code></pre>
-
-<h3>Selectors with pseudo classes are highlighted as property/value pairs</h3>
-<pre><code>a:hover
-  text-decoration: underline</code></pre>
