@@ -1,0 +1,16 @@
+<h2>Full example</h2>
+<pre><code>&lt;#@ template hostspecific="false" language="C#" #&gt;
+&lt;#@ assembly name="System.Core.dll" #&gt;
+&lt;#@ output extension=".txt" #&gt;
+&lt;#
+    using System.Collections.Generic;
+
+    var numbers = new List&lt;int&gt; { 0, 1, 2, 3, 4, 5, 6, /* 7, */ 8, 9, 10  };
+
+    foreach (var i in numbers)
+    {
+#&gt;
+The square of &lt;#= i #&gt; is &lt;#= i * i #&gt;
+&lt;#
+    }
+#&gt;</code></pre>

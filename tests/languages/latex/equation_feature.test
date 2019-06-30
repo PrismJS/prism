@@ -1,6 +1,9 @@
 $foo$
 $a \dots
 b$
+$$foo$$
+$$a \dots
+b$$
 \(foo\)
 \(a \dots
 b\)
@@ -35,6 +38,14 @@ b\end{gather}
 		"$a ",
 		["equation-command", "\\dots"],
 		"\r\nb$"
+	]],
+	["equation", [
+		"$$foo$$"
+	]],
+	["equation", [
+		"$$a ",
+		["equation-command", "\\dots"],
+		"\r\nb$$"
 	]],
 	["equation", ["\\(foo\\)"]],
 	["equation", [
