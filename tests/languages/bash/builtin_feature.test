@@ -1,0 +1,95 @@
+.
+:
+break
+cd
+continue
+eval
+exec
+exit
+export
+getopts
+hash
+pwd
+readonly
+return
+shift
+test
+times
+trap
+umask
+unset
+alias
+bind
+builtin
+caller
+command
+declare
+echo
+enable
+help
+let
+local
+logout
+mapfile
+printf
+read
+readarray
+source
+type
+typeset
+ulimit
+unalias
+set
+shopt
+
+----------------------------------------------------
+
+[
+	["builtin", "."],
+	["builtin", ":"],
+	["builtin", "break"],
+	["builtin", "cd"],
+	["builtin", "continue"],
+	["builtin", "eval"],
+	["builtin", "exec"],
+	["builtin", "exit"],
+	["builtin", "export"],
+	["builtin", "getopts"],
+	["builtin", "hash"],
+	["builtin", "pwd"],
+	["builtin", "readonly"],
+	["builtin", "return"],
+	["builtin", "shift"],
+	["builtin", "test"],
+	["builtin", "times"],
+	["builtin", "trap"],
+	["builtin", "umask"],
+	["builtin", "unset"],
+	["builtin", "alias"],
+	["builtin", "bind"],
+	["builtin", "builtin"],
+	["builtin", "caller"],
+	["builtin", "command"],
+	["builtin", "declare"],
+	["builtin", "echo"],
+	["builtin", "enable"],
+	["builtin", "help"],
+	["builtin", "let"],
+	["builtin", "local"],
+	["builtin", "logout"],
+	["builtin", "mapfile"],
+	["builtin", "printf"],
+	["builtin", "read"],
+	["builtin", "readarray"],
+	["builtin", "source"],
+	["builtin", "type"],
+	["builtin", "typeset"],
+	["builtin", "ulimit"],
+	["builtin", "unalias"],
+	["builtin", "set"],
+	["builtin", "shopt"]
+]
+
+----------------------------------------------------
+
+Checks for all builtins.

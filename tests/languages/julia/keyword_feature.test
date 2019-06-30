@@ -4,10 +4,11 @@ ccall const continue
 do else elseif end
 export finally for
 function global if
-immutable import importall
+immutable import importall in
 let local macro module
 print println quote
 return try type
+struct
 typealias using while
 
 ----------------------------------------------------
@@ -19,10 +20,11 @@ typealias using while
 	["keyword", "do"], ["keyword", "else"], ["keyword", "elseif"], ["keyword", "end"],
 	["keyword", "export"], ["keyword", "finally"], ["keyword", "for"],
 	["keyword", "function"], ["keyword", "global"], ["keyword", "if"],
-	["keyword", "immutable"], ["keyword", "import"], ["keyword", "importall"],
+	["keyword", "immutable"], ["keyword", "import"], ["keyword", "importall"], ["keyword", "in"],
 	["keyword", "let"], ["keyword", "local"], ["keyword", "macro"], ["keyword", "module"],
 	["keyword", "print"], ["keyword", "println"], ["keyword", "quote"],
 	["keyword", "return"], ["keyword", "try"], ["keyword", "type"],
+	["keyword", "struct"],
 	["keyword", "typealias"], ["keyword", "using"], ["keyword", "while"]
 ]
 
