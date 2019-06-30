@@ -6,7 +6,7 @@ module.exports = {
 	 * @typedef TokenStreamItem
 	 * @property {string} type
 	 * @property {string | TokenStreamItem | Array<string|TokenStreamItem>} content
-	*/
+	 */
 
 	/**
 	 * Simplifies the token stream to ease the matching with the expected token stream.
