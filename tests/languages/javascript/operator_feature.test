@@ -10,7 +10,6 @@
 / /= ~
 ^ ^= % %=
 ? ...
-#foo
 
 ----------------------------------------------------
 
@@ -26,8 +25,7 @@
 	["operator", "*"], ["operator", "**"], ["operator", "*="], ["operator", "**="],
 	["operator", "/"], ["operator", "/="], ["operator", "~"],
 	["operator", "^"], ["operator", "^="], ["operator", "%"], ["operator", "%="],
-	["operator", "?"], ["operator", "..."],
-	["operator", "#"], "foo"
+	["operator", "?"], ["operator", "..."]
 ]
 
 ----------------------------------------------------
