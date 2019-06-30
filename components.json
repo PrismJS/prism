@@ -436,6 +436,10 @@
 			"require": "clike",
 			"owner": "thesave"
 		},
+		"jq": {
+			"title": "JQ",
+			"owner": "RunDevelopment"
+		},
 		"jsdoc": {
 			"title": "JSDoc",
 			"require": ["javascript", "javadoclike"],
@@ -799,6 +803,11 @@
 		"scheme": {
 			"title": "Scheme",
 			"owner": "bacchus123"
+		},
+		"shell-session": {
+			"title": "Shell session",
+			"require": "bash",
+			"owner": "RunDevelopment"
 		},
 		"smalltalk": {
 			"title": "Smalltalk",

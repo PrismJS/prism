@@ -1,0 +1,31 @@
+$ git checkout master
+Switched to branch 'master'
+Your branch is up-to-date with 'origin/master'.
+$ git push
+Everything up-to-date
+
+----------------------------------------------------
+
+[
+	["command", [
+		["sh", "$"],
+		["bash", [
+			["function", "git"],
+			" checkout master"
+		]]
+	]],
+	["output", "Switched to branch 'master'\nYour branch is up-to-date with 'origin/master'.\n"],
+
+	["command", [
+		["sh", "$"],
+		["bash", [
+			["function", "git"],
+			" push"
+		]]
+	]],
+	["output", "Everything up-to-date"]
+]
+
+----------------------------------------------------
+
+Checks for commands.
