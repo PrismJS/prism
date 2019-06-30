@@ -9,12 +9,14 @@ const Button = styled.button`
 	background: red;
 `;
 styled.button.attr({})`color: blue;`;
+styled(Component)`color: blue;`;
 styled(Component).attr({})`color: blue;`;
 
 ----------------------------------------------------
 
 [
 	["comment", "// styled-jsx"],
+
 	"\r\ncss",
 	["template-string", [
 		["template-punctuation", "`"],
@@ -30,6 +32,7 @@ styled(Component).attr({})`color: blue;`;
 		["template-punctuation", "`"]
 	]],
 	["punctuation", ";"],
+
 	"\r\ncss",
 	["punctuation", "."],
 	"global",
@@ -47,6 +50,7 @@ styled(Component).attr({})`color: blue;`;
 		["template-punctuation", "`"]
 	]],
 	["punctuation", ";"],
+
 	"\r\ncss",
 	["punctuation", "."],
 	"resolve",
@@ -64,6 +68,7 @@ styled(Component).attr({})`color: blue;`;
 		["template-punctuation", "`"]
 	]],
 	["punctuation", ";"],
+
 	["comment", "// styled-components"],
 	["keyword", "const"],
 	" Button ",
@@ -86,6 +91,7 @@ styled(Component).attr({})`color: blue;`;
 		["template-punctuation", "`"]
 	]],
 	["punctuation", ";"],
+
 	"\r\nstyled",
 	["punctuation", "."],
 	"button",
@@ -106,6 +112,23 @@ styled(Component).attr({})`color: blue;`;
 		["template-punctuation", "`"]
 	]],
 	["punctuation", ";"],
+
+	["function", "styled"],
+	["punctuation", "("],
+	"Component",
+	["punctuation", ")"],
+	["template-string", [
+		["template-punctuation", "`"],
+		["css", [
+			["property", "color"],
+			["punctuation", ":"],
+			" blue",
+			["punctuation", ";"]
+		]],
+		["template-punctuation", "`"]
+	]],
+	["punctuation", ";"],
+
 	["function", "styled"],
 	["punctuation", "("],
 	"Component",
