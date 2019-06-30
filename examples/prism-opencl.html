@@ -52,11 +52,11 @@ type_single filter_sum_single_3x3(read_only image2d_t imgIn,
     // Image patch is row-wise accessed
     // Filter kernel is centred in the middle
     #pragma unroll
-    for (int y = -ROWS_HALF_3x3; y <= ROWS_HALF_3x3; ++y)       // Start at the top left corner of the filter
+    for (int y = -ROWS_HALF_3x3; y &lt;= ROWS_HALF_3x3; ++y)       // Start at the top left corner of the filter
     {
         coordCurrent.y = coordBase.y + y;
         #pragma unroll
-        for (int x = -COLS_HALF_3x3; x <= COLS_HALF_3x3; ++x)   // And end at the bottom right corner
+        for (int x = -COLS_HALF_3x3; x &lt;= COLS_HALF_3x3; ++x)   // And end at the bottom right corner
         {
             coordCurrent.x = coordBase.x + x;
             coordBorder = borderCoordinate(coordCurrent, rows, cols, border);

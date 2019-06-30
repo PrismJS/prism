@@ -30,7 +30,7 @@ $foo::bar::baz</code></pre>
 <h2>Functions</h2>
 <pre><code>require apache
 template('apache/vhost-default.conf.erb')
-[1,20,3].filter |$value| { $value < 10 }</code></pre>
+[1,20,3].filter |$value| { $value &lt; 10 }</code></pre>
 
 <h2>All-in-one example</h2>
 <pre><code>file {'ntp.conf':
@@ -114,10 +114,10 @@ $rootgroup = $osfamily ? {
     default            => 'root',
 }
 
-User <| groups == 'admin' |>
-Concat::Fragment <<| tag == "bacula-storage-dir-${bacula_director}" |>>
+User &lt;| groups == 'admin' |>
+Concat::Fragment &lt;&lt;| tag == "bacula-storage-dir-${bacula_director}" |>>
 
-Exec <| title == 'update_migrations' |> {
+Exec &lt;| title == 'update_migrations' |> {
   environment => 'RUBYLIB=/usr/lib/ruby/site_ruby/1.8/',
 }
 
@@ -137,16 +137,3 @@ Exec <| title == 'update_migrations' |> {
   target              => '/etc/nagios3/conf.d/nagios_service.cfg',
   notify              => Service[$nagios::params::nagios_service],
 }</code></pre>
-
-<h2>Known failures</h2>
-<p>There are certain edge cases where Prism will fail.
-	There are always such cases in every regex-based syntax highlighter.
-	However, Prism dares to be open and honest about them.
-	If a failure is listed here, it doesn’t mean it will never be fixed. This is more of a “known bugs” list, just with a certain type of bug.
-</p>
-
-<h3>More than one level of nested braces inside interpolation</h3>
-<pre><code>"Foobar ${foo({
-    bar => {baz => 42}
-    baz => 42
-})} <- broken"</code></pre>
