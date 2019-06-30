@@ -559,10 +559,7 @@ function generateCode(){
 				newCode.textContent = text;
 
 				Prism.highlightElement(newCode, true, function () {
-					while (pre.firstChild) {
-						pre.removeChild(pre.firstChild);
-					}
-					pre.appendChild(newCode);
+					pre.replaceChild(newCode, codeElement);
 				});
 
 
