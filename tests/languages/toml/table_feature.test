@@ -1,6 +1,9 @@
 [table]
 [[array]]
 
+# not a table
+foo = [ "bar" ]
+
 ----------------------------------------------------
 
 [
@@ -12,6 +15,14 @@
 	["punctuation", "["],
 	["table", "array"],
 	["punctuation", "]"],
+	["punctuation", "]"],
+
+	["comment", "# not a table"],
+
+	["key", "foo"],
+	["punctuation", "="],
+	["punctuation", "["],
+	["string", "\"bar\""],
 	["punctuation", "]"]
 ]
 
