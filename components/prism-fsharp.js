@@ -10,7 +10,7 @@ Prism.languages.fsharp = Prism.languages.extend('clike', {
 		}
 	],
 	'string': {
-		pattern: /(?:"""[\s\S]*?"""|@"(?:""|[^"])*"|"(?:\\[\s\S]|[^\\"])*")B?|'(?:[^\\']|\\.)'B?/,
+		pattern: /(?:"""[\s\S]*?"""|@"(?:""|[^"])*"|"(?:\\[\s\S]|[^\\"])*")B?|'(?:[^\\']|\\(?:.|x[a-fA-F\d]{2}|u[a-fA-F\d]{4}))'B?/,
 		greedy: true
 	},
 	'class-name': {
