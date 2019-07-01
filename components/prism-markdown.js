@@ -156,8 +156,6 @@
 		'strike': {
 			// ~~strike through~~
 			// ~strike~
-
-			// extra _ is because the inner pattern intentionally doesn't include it because of bold and italic
 			pattern: createInline(/(~~?)(?:(?!~)<inner>)+?\2/.source, false),
 			lookbehind: true,
 			greedy: true,
