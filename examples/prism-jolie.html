@@ -60,7 +60,7 @@ interface extender AuthInterfaceExtender {
     OneWay: *(AuthenticationData)
 }
 
-service SubService 
+service SubService
 {
   Interfaces: NetInterface
 
@@ -92,9 +92,9 @@ inputPort In {
     .debug.showContent = true
   }
   Interfaces: NetInterface
-  Aggregates: SubService, 
+  Aggregates: SubService,
               LoggerService
-  Redirects: A => SubService, 
+  Redirects: A => SubService,
              B => SubService
 }
 
@@ -105,11 +105,11 @@ cset {
 execution{ concurrent }
 
 define netmodule {
-  if( request.load == 0 || request.load < 1 && 
-      request.load <= 2 || request.load >= 3 && 
+  if( request.load == 0 || request.load &lt; 1 &&
+      request.load &lt;= 2 || request.load >= 3 &&
       request.load > 4  || request.load%4 == 2
   ) {
-    scope( scopeName ) {   
+    scope( scopeName ) {
       // inline comment
       install( MyFault => println@Console( "Something \"Went\" Wrong" + ' but it\'s ok' )() );
       /*
@@ -127,9 +127,9 @@ define netmodule {
       with( node ){
         while( .load != 100 ) {
           .load++
-        }   
+        }
       }
-    } 
+    }
   }
 }
 
