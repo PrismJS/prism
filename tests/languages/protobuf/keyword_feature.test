@@ -5,13 +5,15 @@ import
 message
 oneof
 option
+optional
 package
 public
+repeated
+required
+reserved
 service
 syntax
-
-0 to 1
-
+to
 
 ----------------------------------------------------
 
@@ -23,13 +25,15 @@ syntax
 	["keyword", "message"],
 	["keyword", "oneof"],
 	["keyword", "option"],
+	["keyword", "optional"],
 	["keyword", "package"],
 	["keyword", "public"],
+	["keyword", "repeated"],
+	["keyword", "required"],
+	["keyword", "reserved"],
 	["keyword", "service"],
 	["keyword", "syntax"],
-	["number", "0"],
-	["keyword", "to"],
-	["number", "1"]
+	["keyword", "to"]
 ]
 
 ----------------------------------------------------

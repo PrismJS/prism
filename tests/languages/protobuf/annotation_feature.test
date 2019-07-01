@@ -1,10 +1,9 @@
 int32 foo = 1 [deprecated=true];
 
-
 ----------------------------------------------------
 
 [
-	["primitive", "int32"],
+	["builtin", "int32"],
 	" foo ",
 	["operator", "="],
 	["number", "1"],

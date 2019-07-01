@@ -1,13 +1,12 @@
 map<string, .foo.Foo> bar;
 
-
 ----------------------------------------------------
 
 [
 	["map", [
 		"map",
 		["punctuation", "<"],
-		["primitives", "string"],
+		["builtin", "string"],
 		["punctuation", ","],
 		["punctuation", "."],
 		"foo",
