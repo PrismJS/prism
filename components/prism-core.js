@@ -533,15 +533,21 @@ if (script) {
 	_.filename = script.src;
 
 	if (!_.manual && !script.hasAttribute('data-manual')) {
+		_.highlightAutomaticallyCallback = function () {
+			if (!_.manual) {
+				_.highlightAll();
+			}
+		}
+
 		if(document.readyState !== 'loading') {
 			if (window.requestAnimationFrame) {
-				window.requestAnimationFrame(_.highlightAll);
+				window.requestAnimationFrame(_.highlightAutomaticallyCallback);
 			} else {
-				window.setTimeout(_.highlightAll, 16);
+				window.setTimeout(_.highlightAutomaticallyCallback, 16);
 			}
 		}
 		else {
-			document.addEventListener('DOMContentLoaded', _.highlightAll);
+			document.addEventListener('DOMContentLoaded', _.highlightAutomaticallyCallback);
 		}
 	}
 }
