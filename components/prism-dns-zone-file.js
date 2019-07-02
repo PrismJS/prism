@@ -29,3 +29,5 @@ Prism.languages['dns-zone-file'] = {
 	},
 	'punctuation': /[()]/
 };
+
+Prism.languages['dns-zone'] = Prism.languages['dns-zone-file']

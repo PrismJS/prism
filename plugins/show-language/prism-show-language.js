@@ -46,6 +46,7 @@
 		"django": "Django/Jinja2",
 		"jinja2": "Django/Jinja2",
 		"dns-zone-file": "DNS zone file",
+		"dns-zone": "DNS zone file",
 		"dockerfile": "Docker",
 		"ebnf": "Extended Backus–Naur form",
 		"ejs": "EJS",

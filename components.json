@@ -242,7 +242,8 @@
 		},
 		"dns-zone-file": {
 			"title": "DNS zone file",
-			"owner": "RunDevelopment"
+			"owner": "RunDevelopment",
+			"alias": "dns-zone"
 		},
 		"docker": {
 			"title": "Docker",
