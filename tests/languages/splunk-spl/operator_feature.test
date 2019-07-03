@@ -1,0 +1,44 @@
+=
+== >= <= > <
++ - * / %
+|
+
+and not or xor AND NOT OR XOR
+as by AS BY
+
+----------------------------------------------------
+
+[
+	["operator", "="],
+
+	["operator", "=="],
+	["operator", ">="],
+	["operator", "<="],
+	["operator", ">"],
+	["operator", "<"],
+
+	["operator", "+"],
+	["operator", "-"],
+	["operator", "*"],
+	["operator", "/"],
+	["operator", "%"],
+	["operator", "|"],
+
+	["operator-word", "and"],
+	["operator-word", "not"],
+	["operator-word", "or"],
+	["operator-word", "xor"],
+	["operator-word", "AND"],
+	["operator-word", "NOT"],
+	["operator-word", "OR"],
+	["operator-word", "XOR"],
+
+	["operator-word", "as"],
+	["operator-word", "by"],
+	["operator-word", "AS"],
+	["operator-word", "BY"]
+]
+
+----------------------------------------------------
+
+Checks for operators.

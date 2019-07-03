@@ -823,14 +823,18 @@
 			"require": "markup-templating",
 			"owner": "Golmote"
 		},
-		"sql": {
-			"title": "SQL",
-			"owner": "multipetros"
-		},
 		"soy": {
 			"title": "Soy (Closure Template)",
 			"require": "markup-templating",
 			"owner": "Golmote"
+		},
+		"splunk-spl": {
+			"title": "Splunk SPL",
+			"owner": "RunDevelopment"
+		},
+		"sql": {
+			"title": "SQL",
+			"owner": "multipetros"
 		},
 		"stylus": {
 			"title": "Stylus",
