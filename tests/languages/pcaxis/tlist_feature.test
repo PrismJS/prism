@@ -1,0 +1,72 @@
+FOO=TLIST(A1),"bar","baz";
+FOO=TLIST(A1);
+FOO=TLIST(A1,"bar","baz");
+FOO=TLIST(A1,"1"-"100");
+
+----------------------------------------------------
+
+[
+	["keyword", [
+		["keyword", "FOO"]
+	]],
+	["operator", "="],
+	["tlist", [
+		["function", "TLIST"],
+		["punctuation", "("],
+		["property", "A1"],
+		["punctuation", ")"]
+	]],
+	["punctuation", ","],
+	["string", "\"bar\""],
+	["punctuation", ","],
+	["string", "\"baz\""],
+	["punctuation", ";"],
+
+	["keyword", [
+		["keyword", "FOO"]
+	]],
+	["operator", "="],
+	["tlist", [
+		["function", "TLIST"],
+		["punctuation", "("],
+		["property", "A1"],
+		["punctuation", ")"]
+	]],
+	["punctuation", ";"],
+
+	["keyword", [
+		["keyword", "FOO"]
+	]],
+	["operator", "="],
+	["tlist", [
+		["function", "TLIST"],
+		["punctuation", "("],
+		["property", "A1"],
+		["punctuation", ","],
+		["string", "\"bar\""],
+		["punctuation", ","],
+		["string", "\"baz\""],
+		["punctuation", ")"]
+	]],
+	["punctuation", ";"],
+
+	["keyword", [
+		["keyword", "FOO"]
+	]],
+	["operator", "="],
+	["tlist", [
+		["function", "TLIST"],
+		["punctuation", "("],
+		["property", "A1"],
+		["punctuation", ","],
+		["string", "\"1\""],
+		["operator", "-"],
+		["string", "\"100\""],
+		["punctuation", ")"]
+	]],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for TLIST.

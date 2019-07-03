@@ -95,6 +95,8 @@
 		"opencl": "OpenCL",
 		"parigp": "PARI/GP",
 		"objectpascal": "Object Pascal",
+		"pcaxis": "PC-Axis",
+		"px": "PC-Axis",
 		"php": "PHP",
 		"phpdoc": "PHPDoc",
 		"php-extras": "PHP Extras",
