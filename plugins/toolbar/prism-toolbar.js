@@ -86,6 +86,10 @@
 		pre.parentNode.insertBefore(wrapper, pre);
 		wrapper.appendChild(pre);
 
+		// transfer margin of pre to wrapper
+		wrapper.style.margin = window.getComputedStyle(pre).margin;
+		pre.style.margin = "0";
+
 		// Setup the toolbar
 		var toolbar = document.createElement('div');
 		toolbar.classList.add('toolbar');
