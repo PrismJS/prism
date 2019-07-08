@@ -502,6 +502,12 @@
 			"require": "css",
 			"owner": "Golmote"
 		},
+		"lilypond": {
+			"title": "LilyPond",
+			"require": "scheme",
+			"alias": "ly",
+			"owner": "RunDevelopment"
+		},
 		"liquid": {
 			"title": "Liquid",
 			"owner": "cinhtau"
