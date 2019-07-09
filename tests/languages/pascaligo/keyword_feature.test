@@ -3,10 +3,11 @@ return nil
 remove
 from else 
 then skip
-with is function
+with function
 var
 const type 
 end begin block
+case of
 
 ----------------------------------------------------
 
@@ -16,10 +17,11 @@ end begin block
 	["keyword", "remove"],
 	["keyword", "from"], ["keyword", "else"],
 	["keyword", "then"], ["keyword", "skip"],
-	["keyword", "with"], ["keyword", "is"], ["keyword", "function"],
+	["keyword", "with"], ["keyword", "function"],
 	["keyword", "var"],
 	["keyword", "const"], ["keyword", "type"],
-	["keyword", "end"], ["keyword", "begin"], ["keyword", "block"]
+	["keyword", "end"], ["keyword", "begin"], ["keyword", "block"],
+	["keyword", "case"], ["keyword", "of"]
 ]
 
 ----------------------------------------------------

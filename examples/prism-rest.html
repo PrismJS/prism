@@ -308,22 +308,3 @@ floating-point numbers (without exponents).
 See the `Python home page &lt;http://www.python.org>`_ for info.
 
 Oh yes, the _`Norwegian Blue`.  What's, um, what's wrong with it?</code></pre>
-
-<h2>Known failures</h2>
-<p>There are certain edge cases where Prism will fail.
-	There are always such cases in every regex-based syntax highlighter.
-	However, Prism dares to be open and honest about them.
-	If a failure is listed here, it doesn’t mean it will never be fixed. This is more of a “known bugs” list, just with a certain type of bug.
-</p>
-
-<h3>Nothing is highlighted inside table cells</h3>
-<pre><code>+---------------+----------+
-| column 1     | column 2  |
-+--------------+-----------+
-| **bold**?    | *italic*? |
-+--------------+-----------+</code></pre>
-
-<h3>The inline markup recognition rules are not as strict as they are in the spec</h3>
-<p>No inline markup should be highlighted in the following code.</p>
-<pre><code>2 * x a ** b (* BOM32_* ` `` _ __ |
-"*" '|' (*) [*] {*} <*> ‘*’ ‚*‘ ‘*‚ ’*’ ‚*’ “*” „*“ “*„ ”*” „*” »*« ›*‹ «*» »*» ›*›</code></pre>

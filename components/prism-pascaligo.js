@@ -2,18 +2,15 @@
 
 Prism.languages.pascaligo = {
 	'comment': /\(\*[\s\S]+?\*\)|\/\/.*/,
-	'string': [
-		{
-			pattern: /(?:'(?:''|[^'\r\n])*')+|\^[a-z]/i,
-			greedy: true
-		},
-		{
-			pattern: /(?:"(?:""|[^"\r\n])*")+|\^[a-z]/i,
-			greedy: true
-		},
-	],
+	'string': {
+		pattern: /(["'`])(\\[\s\S]|(?!\1)[^\\])*\1/,
+		greedy: true
+	},
+	'class-name': {
+        pattern: /\w+(?=\s+is\b)/i,
+    },
 	'keyword': {
-		pattern: /(^|[^&])\b(?:begin|block|const|else|end|for|from|function|if|is|nil|remove|return|skip|then|type|var|while|with)\b/i,
+		pattern: /(^|[^&])\b(?:begin|block|case|const|else|end|for|from|function|if|is|nil|of|remove|return|skip|then|type|var|while|with)\b/i,
 		lookbehind: true
 	},
 	'boolean': {
@@ -21,7 +18,7 @@ Prism.languages.pascaligo = {
 		lookbehind: true
 	},
     'builtin': {
-        pattern: /(^|[^&])\b(?:int|unit|string|nat|map)\b/i,
+		pattern: /(^|[^&])\b(?:int|map|nat|record|string|unit)\b/i,
 		lookbehind: true
     },
     'function': {
@@ -31,15 +28,16 @@ Prism.languages.pascaligo = {
 	{ 
 		pattern: /\w+ ?(?=\:)/,
 	},
-    'class-name': {
-        pattern: /\w+(?=\s+is\b)/i,
-    },
 	'number': [
 		// Hexadecimal, octal and binary
 		/(?:[&%]\d+|\$[a-f\d]+)/i,
+		//Natural Numbers
+		/([0-9]+)n/,
 		// Decimal
 		/\b\d+(?:\.\d+)?(?:e[+-]?\d+)?/i
+		
+
 	],
-	'operator': /\.\.|\*\*|:=|<[<=>]?|>[>=]?|[+\-*\/]=?|[@^=]/,
-	'punctuation': /\(\.|\.\)|[()\[\]:;,.]/
+	'operator': /\.\.|\*\*|\||->|=\/=|:=|<[<=>]?|>[>=]?|[+\-*\/]=?|[@^=]/,
+	'punctuation': /\(\.|\.\)|[()\[\]:;,.{}]/
 };
