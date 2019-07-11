@@ -1,21 +1,15 @@
-const expect = require('chai').expect;
-const jsdom = require('jsdom')
-const { JSDOM } = jsdom
+const { expect } = require('chai');
+const dom = require('../../helper/prism-loader').createPrismDOM();
 
-require('../../../prism')
-// fake DOM
-global.self = {}
-global.self.Prism = Prism
-global.document = {}
-document.createRange = function () {
-}
-global.self.document = document
+const { Prism, document } = dom.window;
 
-require('../../../plugins/keep-markup/prism-keep-markup')
+document.createRange = function () { }; // fake createRange for Keep Markup
+dom.loadPlugins('keep-markup');
 
-describe('Prism Keep Markup Plugin', function () {
 
-	function execute (code) {
+describe('Keep Markup', function () {
+
+	function execute(code) {
 		const start = [];
 		const end = [];
 		const nodes = [];
@@ -28,7 +22,7 @@ describe('Prism Keep Markup Plugin', function () {
 					end.push({ node, offset })
 				},
 				extractContents: function () {
-					return new JSDOM('').window.document.createTextNode('')
+					return document.createTextNode('')
 				},
 				insertNode: function (node) {
 					nodes.push(node)
@@ -36,11 +30,17 @@ describe('Prism Keep Markup Plugin', function () {
 				detach: function () {
 				}
 			}
-		}
-		const beforeHighlight = Prism.hooks.all['before-highlight'][0]
-		const afterHighlight = Prism.hooks.all['after-highlight'][0]
+		};
+
+		document.body.innerHTML = code;
+		const element = document.body.firstElementChild;
+
+
+		const beforeHighlight = Prism.hooks.all['before-highlight'][0];
+		const afterHighlight = Prism.hooks.all['after-highlight'][0];
+
 		const env = {
-			element: new JSDOM(code).window.document.getElementsByTagName('code')[0],
+			element,
 			language: "javascript"
 		}
 		beforeHighlight(env)
@@ -49,14 +49,14 @@ describe('Prism Keep Markup Plugin', function () {
 	}
 
 	it('should keep <span> markup', function () {
-		const result = execute(`<code class="language-javascript">x<span>a</span>y</code>`)
+		const result = execute(`<code class="language-none">x<span>a</span>y</code>`)
 		expect(result.start.length).to.equal(1)
 		expect(result.end.length).to.equal(1)
 		expect(result.nodes.length).to.equal(1)
 		expect(result.nodes[0].nodeName).to.equal('SPAN')
 	})
 	it('should preserve markup order', function () {
-		const result = execute(`<code class="language-javascript">x<a></a><b></b>y</code>`)
+		const result = execute(`<code class="language-none">x<a></a><b></b>y</code>`)
 		expect(result.start.length).to.equal(2)
 		expect(result.start[0].offset).to.equal(0)
 		expect(result.start[0].node.textContent).to.equal('y')
@@ -72,7 +72,7 @@ describe('Prism Keep Markup Plugin', function () {
 		expect(result.nodes[1].nodeName).to.equal('B')
 	})
 	it('should keep last <span> markup', function () {
-		const result = execute(`<code class="language-javascript">xy<span>a</span></code>`)
+		const result = execute(`<code class="language-none">xy<span>a</span></code>`)
 		expect(result.start.length).to.equal(1)
 		expect(result.end.length).to.equal(1)
 		expect(result.nodes.length).to.equal(1)
@@ -82,7 +82,7 @@ describe('Prism Keep Markup Plugin', function () {
 	// https://github.com/PrismJS/prism/issues/1618
 	/*
 	it('should keep last single letter empty markup', function () {
-		const result = execute(`<code class="language-javascript">xy<a></a></code>`)
+		const result = execute(`<code class="language-none">xy<a></a></code>`)
 		expect(result.start.length).to.equal(1)
 		expect(result.end.length).to.equal(1)
 		expect(result.nodes.length).to.equal(1)
