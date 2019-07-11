@@ -1,11 +1,11 @@
 if while for
-return nil 
+return nil
 remove
-from else 
+from else
 then skip
-with function
+with; is function
 var
-const type 
+const type
 end begin block
 case of
 
@@ -13,11 +13,11 @@ case of
 
 [
 	["keyword", "if"], ["keyword", "while"], ["keyword", "for"],
-	["keyword", "return"], ["keyword", "nil"], 
+	["keyword", "return"], ["keyword", "nil"],
 	["keyword", "remove"],
 	["keyword", "from"], ["keyword", "else"],
 	["keyword", "then"], ["keyword", "skip"],
-	["keyword", "with"], ["keyword", "function"],
+	["keyword", "with"], ["punctuation", ";"], ["keyword", "is"], ["keyword", "function"],
 	["keyword", "var"],
 	["keyword", "const"], ["keyword", "type"],
 	["keyword", "end"], ["keyword", "begin"], ["keyword", "block"],

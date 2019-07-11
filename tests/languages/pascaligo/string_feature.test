@@ -17,7 +17,7 @@
 	["string", "'\\t'"],
 	["string", "'\\xff'"],
 	["string", "'\\u12e4'"],
-	
+
 
 	["string", "\"日本語\""],
 	["string", "\"\\xff\\u00FF\""]
