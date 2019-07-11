@@ -47,6 +47,12 @@ dom.window.ClipboardJS = class {
 	}
 };
 
+// the timeout which resets the button's text takes forever, so we just do it immediately.
+const oldSetTimeout = dom.window.setTimeout;
+dom.window.setTimeout = function (handle, timeout, ...args) {
+	return oldSetTimeout(handle, 0, args);
+};
+
 dom.loadLanguages('javascript');
 dom.loadPlugins('copy-to-clipboard');
 

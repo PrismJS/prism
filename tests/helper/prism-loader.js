@@ -66,7 +66,7 @@ module.exports = {
 		const loadLanguageSource = this.loadComponentSource.bind(this);
 		const loadPluginSource = this.loadPluginSource.bind(this);
 
-		window.eval(`window.self = window;`); // set self for plugins
+		window.self = window; // set self for plugins
 		window.eval(loadLanguageSource('core'));
 
 		const loadedLanguages = new Set();
