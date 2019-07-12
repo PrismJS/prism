@@ -35,3 +35,7 @@ describe('Show language', function () {
 	});
 
 });
+
+after(() => {
+	dom.window.close();
+});

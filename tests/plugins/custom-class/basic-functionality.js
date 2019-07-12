@@ -67,3 +67,7 @@ describe('Custom class', function () {
 	});
 
 });
+
+after(() => {
+	dom.window.close();
+});

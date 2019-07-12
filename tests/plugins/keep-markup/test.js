@@ -90,3 +90,7 @@ describe('Keep Markup', function () {
 	})
 	*/
 })
+
+after(() => {
+	dom.window.close();
+});

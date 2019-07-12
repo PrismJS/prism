@@ -24,3 +24,7 @@ describe('Show Invisibles', function () {
 	});
 
 });
+
+after(() => {
+	dom.window.close();
+});

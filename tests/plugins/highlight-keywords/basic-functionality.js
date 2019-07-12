@@ -16,3 +16,7 @@ describe('Highlight Keywords', function () {
 	});
 
 });
+
+after(() => {
+	dom.window.close();
+});
