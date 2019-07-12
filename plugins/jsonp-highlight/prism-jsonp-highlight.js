@@ -1,5 +1,5 @@
 (function () {
-	if (!self.Prism || !self.document || !document.querySelectorAll || ![].filter) {
+	if (typeof self === 'undefined' || !self.Prism || !self.document) {
 		return;
 	}
 
