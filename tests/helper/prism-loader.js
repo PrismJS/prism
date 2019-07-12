@@ -77,6 +77,10 @@ module.exports = {
 
 			loadLanguages: function loadLanguages(languages) {
 				for (const language of toArray(languages)) {
+					if (!(language in languagesCatalog)) {
+						throw new Error(`Unknown language '${language}'`);
+					}
+
 					if (loadedLanguages.has(language)) {
 						continue;
 					}
@@ -93,6 +97,10 @@ module.exports = {
 
 			loadPlugins: function loadPlugins(plugins) {
 				for (const plugin of toArray(plugins)) {
+					if (!(plugin in pluginsCatalog)) {
+						throw new Error(`Unknown plugin '${plugin}'`);
+					}
+
 					if (loadedPlugins.has(plugin)) {
 						continue;
 					}
