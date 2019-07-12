@@ -18,6 +18,25 @@ var Prism = (function (_self){
 var lang = /\blang(?:uage)?-([\w-]+)\b/i;
 var uniqueId = 0;
 
+/**
+ * Returns the Prism language of the given element set by a `language-xxxx` or `lang-xxxx` class.
+ *
+ * If no language is set for the element or the element is `null` or `undefined`, `none` will be returned.
+ *
+ * @param {Element} element
+ * @returns {string}
+ */
+function getLanguage(element) {
+	while (element && !lang.test(element.className)) {
+		element = element.parentNode;
+	}
+	if (element) {
+		return (element.className.match(lang) || [, 'none'])[1].toLowerCase();
+	}
+	return 'none';
+}
+
+
 var _ = {
 	manual: _self.Prism && _self.Prism.manual,
 	disableWorkerMessageHandler: _self.Prism && _self.Prism.disableWorkerMessageHandler,
@@ -189,25 +208,17 @@ var _ = {
 
 	highlightElement: function(element, async, callback) {
 		// Find language
-		var language = 'none', grammar, parent = element;
-
-		while (parent && !lang.test(parent.className)) {
-			parent = parent.parentNode;
-		}
-
-		if (parent) {
-			language = (parent.className.match(lang) || [,'none'])[1].toLowerCase();
-			grammar = _.languages[language];
-		}
+		var language = getLanguage(element);
+		var grammar = _.languages[language];
 
 		// Set language on the element, if not present
 		element.className = element.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language;
 
 		if (element.parentNode) {
 			// Set language on the parent, for styling
-			parent = element.parentNode;
+			var parent = element.parentNode;
 
-			if (/pre/i.test(parent.nodeName)) {
+			if (/^pre$/i.test(parent.nodeName)) {
 				parent.className = parent.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language;
 			}
 		}
@@ -288,7 +299,7 @@ var _ = {
 			}
 
 			var patterns = grammar[token];
-			patterns = (_.util.type(patterns) === "Array") ? patterns : [patterns];
+			patterns = Array.isArray(patterns) ? patterns : [patterns];
 
 			for (var j = 0; j < patterns.length; ++j) {
 				var pattern = patterns[j],
@@ -300,7 +311,7 @@ var _ = {
 
 				if (greedy && !pattern.pattern.global) {
 					// Without the global flag, lastIndex won't work
-					var flags = pattern.pattern.toString().match(/[imuy]*$/)[0];
+					var flags = pattern.pattern.toString().match(/[imsuy]*$/)[0];
 					pattern.pattern = RegExp(pattern.pattern.source, flags + "g");
 				}
 
@@ -455,7 +466,7 @@ function Token(type, content, alias, matchedStr, greedy) {
 	this.content = content;
 	this.alias = alias;
 	// Copy of the full string this token was created from
-	this.length = (matchedStr || "").length|0;
+	this.length = (matchedStr || '').length|0;
 	this.greedy = !!greedy;
 }
 
