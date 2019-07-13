@@ -196,7 +196,7 @@
 		return lines.join('\n');
 	}
 
-	let interval, timer;
+	var interval, timer;
 
 	function foo() {
 		clearInterval(interval);
@@ -223,6 +223,17 @@
 			}, 5000);
 		}
 	}
+
+	// The Autoloader goes crazy on extensions, so here's a failsafe
+	Prism.hooks.add('before-highlight', function (env) {
+		/** @type {HTMLElement} */
+		var element = env.element;
+		var counter = +(element.getAttribute('data-highlight-count') || '1');
+		if (counter >= 8) {
+			throw new Error('BAD Autoloader! BAD!');
+		}
+		element.setAttribute('data-highlight-count', ++counter);
+	});
 
 	$('#language-select').onchange = foo;
 	$('#language-select').innerHTML = Object.keys(components.languages).filter(x => x !== 'meta').map(x => {
