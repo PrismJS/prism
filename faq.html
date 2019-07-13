@@ -181,7 +181,7 @@
 				if (name === 'rest') {
 					inner(element, (prefix ? prefix + ' > ' : '') + ':rest:');
 				} else {
-					for (var token of toArray(element)) {
+					for (var a = toArray(element), i = 0, token; token = a[i++];) {
 						var line = (prefix ? prefix + ' > ' : '') + name + toArray(token.alias).map(function (a) {
 							return '.' + a;
 						}).join('');
