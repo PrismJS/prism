@@ -1,5 +1,7 @@
 foo.bar.baz = 0;
 
+this.#foo;
+
 ----------------------------------------------------
 
 [
@@ -14,6 +16,13 @@ foo.bar.baz = 0;
 	]],
 	["operator", "="],
 	["number", "0"],
+	["punctuation", ";"],
+
+	["keyword", "this"],
+	["punctuation", "."],
+	["property-access", [
+		"#foo"
+	]],
 	["punctuation", ";"]
 ]
 
