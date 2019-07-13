@@ -144,6 +144,7 @@
 		"md": "markdown",
 		"n4jsd": "n4js",
 		"objectpascal": "pascal",
+		"px": "pcaxis",
 		"py": "python",
 		"rb": "ruby",
 		"ts": "typescript",
