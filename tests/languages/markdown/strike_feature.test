@@ -113,7 +113,11 @@ bar~
 		["content", [
 			"foo",
 			["url", [
-				"[bar](baz)"
+				"[",
+				["content", [
+					"bar"
+				]],
+				"](baz)"
 			]]
 		]],
 		["punctuation", "~"]
@@ -183,7 +187,11 @@ bar~
 		["content", [
 			"foo",
 			["url", [
-				"[bar](baz)"
+				"[",
+				["content", [
+					"bar"
+				]],
+				"](baz)"
 			]]
 		]],
 		["punctuation", "~~"]
