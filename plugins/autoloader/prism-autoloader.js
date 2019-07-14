@@ -154,13 +154,8 @@
 		"yml": "yaml"
 	}/*]*/;
 
-	/**
-	 * @typedef LangDataItem
-	 * @property {{ success?: function, error?: function }[]} callbacks
-	 * @property {boolean} [error]
-	 * @property {boolean} [loading]
-	 */
-	/** @type {Object<string, LangDataItem>} */
+
+	/** @type {Object<string, Promise<void>>} */
 	var lang_data = {};
 
 	var ignored_language = 'none';
@@ -168,9 +163,9 @@
 	var script = document.getElementsByTagName('script');
 	script = script[script.length - 1];
 	var languages_path = 'components/';
-	if(script.hasAttribute('data-autoloader-path')) {
+	if (script.hasAttribute('data-autoloader-path')) {
 		var path = script.getAttribute('data-autoloader-path').trim();
-		if(path.length > 0 && !/^[a-z]+:\/\//i.test(script.src)) {
+		if (path.length > 0 && !/^[a-z]+:\/\//i.test(script.src)) {
 			languages_path = path.replace(/\/?$/, '/');
 		}
 	} else if (/[\w-]+\.js$/.test(script.src)) {
@@ -184,34 +179,35 @@
 	/**
 	 * Lazy loads an external script
 	 * @param {string} src
-	 * @param {function=} success
-	 * @param {function=} error
+	 * @return {Promise<void>}
 	 */
-	var addScript = function (src, success, error) {
-		var s = document.createElement('script');
-		s.src = src;
-		s.async = true;
-		s.onload = function() {
-			document.body.removeChild(s);
-			success && success();
-		};
-		s.onerror = function() {
-			document.body.removeChild(s);
-			error && error();
-		};
-		document.body.appendChild(s);
-	};
+	function addScript(src) {
+		return new Promise(function (resolve, reject) {
+			var s = document.createElement('script');
+			s.src = src;
+			s.async = true;
+			s.onload = function () {
+				document.body.removeChild(s);
+				resolve();
+			};
+			s.onerror = function () {
+				document.body.removeChild(s);
+				reject();
+			};
+			document.body.appendChild(s);
+		});
+	}
 
 	/**
 	 * Returns the path to a grammar, using the language_path and use_minified config keys.
 	 * @param {string} lang
 	 * @returns {string}
 	 */
-	var getLanguagePath = function (lang) {
+	function getLanguagePath(lang) {
 		return config.languages_path +
 			'prism-' + lang
 			+ (config.use_minified ? '.min' : '') + '.js'
-	};
+	}
 
 	/**
 	 * Tries to load a grammar and
@@ -219,11 +215,7 @@
 	 * @param {string} lang
 	 * @param {HTMLElement} elt
 	 */
-	var registerElement = function (lang, elt) {
-		if (lang in lang_aliases) {
-			lang = lang_aliases[lang];
-		}
-
+	function registerElement(lang, elt) {
 		// Look for additional dependencies defined on the <code> or <pre> tags
 		var deps = elt.getAttribute('data-dependencies');
 		if (!deps && elt.parentNode && elt.parentNode.tagName.toLowerCase() === 'pre') {
@@ -236,122 +228,55 @@
 			deps = [];
 		}
 
-		loadLanguages(deps, function () {
-			loadLanguage(lang, function () {
-				Prism.highlightElement(elt);
-			});
+		deps.push(lang);
+		loadLanguages(deps).then(function () {
+			Prism.highlightElement(elt);
 		});
-	};
+	}
 
 	/**
-	 * Sequentially loads an array of grammars.
+	 * Loads an array of grammars.
 	 * @param {string[]|string} langs
-	 * @param {function=} success
-	 * @param {function=} error
+	 * @return {Promise<void>}
 	 */
-	var loadLanguages = function (langs, success, error) {
+	function loadLanguages(langs) {
 		if (typeof langs === 'string') {
 			langs = [langs];
 		}
-		var i = 0;
-		var l = langs.length;
-		var f = function () {
-			if (i < l) {
-				loadLanguage(langs[i], function () {
-					i++;
-					f();
-				}, function () {
-					error && error(langs[i]);
-				});
-			} else if (i === l) {
-				success && success(langs);
-			}
-		};
-		f();
-	};
+
+		return Promise.all(langs.map(function (lang) {
+			return loadLanguage(lang);
+		})).then(function () { });
+	}
 
 	/**
-	 * Load a grammar with its dependencies
+	 * Loads a grammar with its dependencies
 	 * @param {string} lang
-	 * @param {function=} success
-	 * @param {function=} error
+	 * @return {Promise<void>}
 	 */
-	var loadLanguage = function (lang, success, error) {
+	function loadLanguage(lang) {
 		var force = lang.indexOf('!') >= 0;
 
 		lang = lang.replace('!', '');
 		lang = lang_aliases[lang] || lang;
 
-		var load = function () {
-			var data = lang_data[lang];
-			if (!data) {
-				data = lang_data[lang] = {
-					callbacks: []
-				};
-			}
-			data.callbacks.push({
-				success: success,
-				error: error
-			});
-
-			if (!force && Prism.languages[lang]) {
-				languageSuccess(lang);
-			} else if (!force && data.error) {
-				languageError(lang);
-			} else if (force || !data.loading) {
-				data.loading = true;
-				var src = getLanguagePath(lang);
-				addScript(src, function () {
-					data.loading = false;
-					languageSuccess(lang);
-
-				}, function () {
-					data.loading = false;
-					data.error = true;
-					languageError(lang);
-				});
-			}
-		};
-
 		var dependencies = lang_dependencies[lang];
-		if(dependencies && dependencies.length) {
-			loadLanguages(dependencies, load);
+		if (dependencies) {
+			return loadLanguages(dependencies).then(load);
 		} else {
-			load();
+			return load();
 		}
-	};
 
-	/**
-	 * Runs all success callbacks for this language.
-	 * @param {string} lang
-	 */
-	var languageSuccess = function (lang) {
-		if (lang_data[lang] ) {
-			var callbacks = lang_data[lang].callbacks;
-			while (callbacks.length) {
-				var callback = callbacks.shift().success;
-				if (callback) {
-					callback();
-				}
+		function load() {
+			var data = lang_data[lang];
+			if (!force && data) {
+				return data;
+			} else {
+				var src = getLanguagePath(lang);
+				return lang_data[lang] = addScript(src);
 			}
 		}
-	};
-
-	/**
-	 * Runs all error callbacks for this language.
-	 * @param {string} lang
-	 */
-	var languageError = function (lang) {
-		if (lang_data[lang]) {
-			var callbacks = lang_data[lang].callbacks;
-			while (callbacks.length) {
-				var callback = callbacks.shift().error;
-				if (callback) {
-					callback();
-				}
-			}
-		}
-	};
+	}
 
 	Prism.hooks.add('complete', function (env) {
 		if (env.element && env.language && !env.grammar) {
