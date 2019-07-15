@@ -5,7 +5,6 @@ comment *)</code></pre>
 
 <h2>Strings</h2>
 <pre><code>"foo \"bar\" baz"
-'foo \'bar\' baz'
 @"Verbatim strings"
 """Alternate "verbatim" strings"""
 </code></pre>
@@ -58,32 +57,32 @@ comment *)</code></pre>
 </code></pre>
 
 <h2>Full example</h2>
-<pre><code>// The declaration creates a constructor that takes two values, name and age. 
+<pre><code>// The declaration creates a constructor that takes two values, name and age.
 type Person(name:string, age:int) =
-    // A Person object's age can be changed. The mutable keyword in the 
-    // declaration makes that possible. 
+    // A Person object's age can be changed. The mutable keyword in the
+    // declaration makes that possible.
     let mutable internalAge = age
 
-    // Declare a second constructor that takes only one argument, a name. 
-    // This constructor calls the constructor that requires two arguments, 
-    // sending 0 as the value for age. 
+    // Declare a second constructor that takes only one argument, a name.
+    // This constructor calls the constructor that requires two arguments,
+    // sending 0 as the value for age.
     new(name:string) = Person(name, 0)
 
-    // A read-only property. 
+    // A read-only property.
     member this.Name = name
-    // A read/write property. 
+    // A read/write property.
     member this.Age
         with get() = internalAge
         and set(value) = internalAge &lt;- value
 
-    // Instance methods. 
-    // Increment the person's age. 
+    // Instance methods.
+    // Increment the person's age.
     member this.HasABirthday () = internalAge &lt;- internalAge + 1
 
-    // Check current age against some threshold. 
+    // Check current age against some threshold.
     member this.IsOfAge targetAge = internalAge &gt;= targetAge
 
-    // Display the person's name and age. 
-    override this.ToString () = 
+    // Display the person's name and age.
+    override this.ToString () =
         "Name:  " + name + "\n" + "Age:   " + (string)internalAge
 </code></pre>

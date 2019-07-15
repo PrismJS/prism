@@ -1,0 +1,63 @@
+<h2>Comments</h2>
+<pre><code>// Single line comment
+(* Multi-line
+comment *)</code></pre>
+
+<h2>Strings</h2>
+<pre><code>"foo \"bar\" baz";
+'foo \'bar\' baz';</code></pre>
+
+<h2>Numbers</h2>
+<pre><code>123
+123.456
+-123.456
+1e-23
+123.456E789
+0xaf
+0xAF
+</code></pre>
+
+<h2>Functions</h2>
+<pre><code>foo()
+Bar()
+_456()
+</code></pre>
+
+<h2>Full Example</h2>
+<pre><code>
+function pop (const h : heap) : (heap * heap_element * nat) is
+	begin
+		const result : heap_element = get_top (h) ;
+		var s : nat := size(h) ;
+		const last : heap_element = get_force(s, h) ;
+		remove s from map h ;
+		h[1n] := last ;
+		s := size(h) ;
+		var i : nat := 0n ;
+		var largest : nat := 1n ;
+		var left : nat := 0n ;
+		var right : nat := 0n ;
+		var c : nat := 0n ;
+		while (largest =/= i) block {
+			c := c + 1n ;
+			i := largest ;
+			left := 2n * i ;
+			right := left + 1n ;
+			if (left &lt;= s) then begin
+				if (heap_element_lt(get_force(left , h) , get_force(i , h))) then begin
+					largest := left ;
+					const tmp : heap_element = get_force(i , h) ;
+					h[i] := get_force(left , h) ;
+					h[left] := tmp ;
+				end else skip ;
+			end else if (right &lt;= s) then begin
+				if (heap_element_lt(get_force(right , h) , get_force(i , h))) then begin
+					largest := right ;
+					const tmp : heap_element = get_force(i , h) ;
+					h[i] := get_force(right , h) ;
+					h[left] := tmp ;
+				end else skip ;
+			end else skip ;
+		}
+	end with (h , result , c)
+</code></pre>

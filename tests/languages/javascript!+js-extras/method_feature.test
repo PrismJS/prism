@@ -1,5 +1,6 @@
 foo.bar();
 foo.bar.call();
+this.#bar();
 
 ----------------------------------------------------
 
@@ -21,6 +22,15 @@ foo.bar.call();
 	["punctuation", "."],
 	["method", [
 		"call"
+	]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "this"],
+	["punctuation", "."],
+	["method", [
+		"#bar"
 	]],
 	["punctuation", "("],
 	["punctuation", ")"],
