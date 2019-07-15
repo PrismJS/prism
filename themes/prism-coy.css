@@ -6,11 +6,10 @@
 
 code[class*="language-"],
 pre[class*="language-"] {
-	color: #686868;
+	color: black;
 	background: none;
-	font-family: Consolas, 'Lucida Console', Courier, Monaco, monospace;
-	font-size: 14px;
-	font-weight: 400;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	font-size: 1em;
 	text-align: left;
 	white-space: pre;
 	word-spacing: normal;
@@ -20,7 +19,6 @@ pre[class*="language-"] {
 
 	-moz-tab-size: 4;
 	-o-tab-size: 4;
-	text-rendering: optimizeSpeed;
 	tab-size: 4;
 
 	-webkit-hyphens: none;
@@ -40,11 +38,11 @@ pre[class*="language-"]>code {
 	position: relative;
 	border-left: 10px solid #358ccb;
 	box-shadow: -1px 0px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf;
-	background-color: white;
-	/* background-image: linear-gradient(transparent 50%, rgba(69, 142, 209, 0.04) 50%);
+	background-color: #fdfdfd;
+	background-image: linear-gradient(transparent 50%, rgba(69, 142, 209, 0.04) 50%);
 	background-size: 3em 3em;
 	background-origin: content-box;
-	background-attachment: local; */
+	background-attachment: local;
 }
 
 code[class*="language"] {
@@ -58,7 +56,7 @@ code[class*="language"] {
 /* Margin bottom to accommodate shadow */
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
-	background-color: white;
+	background-color: #fdfdfd;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
@@ -111,7 +109,7 @@ pre[class*="language-"]:after {
 .token.prolog,
 .token.doctype,
 .token.cdata {
-	color: #1B7A1B;
+	color: #7D8B99;
 }
 
 .token.punctuation {
@@ -122,19 +120,11 @@ pre[class*="language-"]:after {
 .token.tag,
 .token.boolean,
 .token.number,
+.token.function-name,
 .token.constant,
 .token.symbol,
 .token.deleted {
-	color: #08726D;
-}
-
-.token.step.keyword{
-	color: #000080;
-	font-weight: 600;
-}
-
-.token.datalines.string{
-	color: #89632B;
+	color: #c92c2c;
 }
 
 .token.selector,
@@ -144,14 +134,14 @@ pre[class*="language-"]:after {
 .token.function,
 .token.builtin,
 .token.inserted {
-	color: #800080;
+	color: #2f9c0a;
 }
 
 .token.operator,
 .token.entity,
 .token.url,
 .token.variable {
-	color: #686868;
+	color: #a67f59;
 	background: rgba(255, 255, 255, 0.5);
 }
 
@@ -159,7 +149,7 @@ pre[class*="language-"]:after {
 .token.attr-value,
 .token.keyword,
 .token.class-name {
-	color: #0000FF;
+	color: #1990b8;
 }
 
 .token.regex,
