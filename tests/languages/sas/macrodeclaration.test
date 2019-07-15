@@ -1,0 +1,16 @@
+%macro _zscore(var,l, m, s, z, p, f);
+----------------------------------------------------
+
+[
+  [
+    "macrodeclaration",
+    [
+      ["keyword", "%macro"],
+      " _zscore(var,l, m, s, z, p, f);"
+    ]
+  ]
+]
+
+----------------------------------------------------
+
+Checks that options captures "options" and correctly tags following text.

@@ -17,7 +17,7 @@ quit;
   "allacty",
   ["punctuation", ";"],
   ["step", "\nrun"],
-  ["punctuation", ";"]
+  ["punctuation", ";"],
   ["step", "\nquit"],
   ["punctuation", ";"]
 ]

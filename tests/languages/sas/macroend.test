@@ -1,0 +1,16 @@
+%mend _zscore;
+----------------------------------------------------
+
+[
+  [
+    "macroend",
+    [
+      ["keyword", "%mend"],
+      " _zscore;"
+    ]
+  ]
+]
+
+----------------------------------------------------
+
+Checks that options captures "options" and correctly tags following text.

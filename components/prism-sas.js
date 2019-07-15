@@ -10,18 +10,53 @@ Prism.languages.sas = {
 			'punctuation': /;/
 		}
 	},
-	// TODO: Explore why this does not work
-	// 'procSQL': {
-	// 	pattern: /(^|\n)(?:proc\s+sql);[\s\S]+?(?:\r?\n|\r)(?:proc\s\w+|quit|run|data(?!\=));/im,
-	// 	alias: 'string',
-	// 	inside: {
-	// 		'step': {
-	// 			pattern: /(^|\n)(?:proc\s+sql)/i,
-	// 			alias: 'keyword'
-	// 		},
-	// 		rest: Prism.languages.sql
-	// 	}
-	// },
+	'procSQL': {
+		pattern: /(^|\n)(?:proc\s+sql(?:\s+[\w|=]+)?);([\s\S]+(?:\r?\n|\r)(?=((?:proc\s\w+|quit|run|data(?!\=));))((?:proc\s\w+|quit|run|data(?!\=));)|(?:\r?\n|\r)[\s\S]+;)/im,
+		inside: {
+			'fullStep': {
+				pattern: /(^|\n)(?:proc\s+sql(?:\s+[\w|=]+)?);/i,
+				inside: {
+					'step': {
+						pattern: /(?:proc\s\w+|quit|run|data(?!\=))\b/i,
+						alias: 'keyword'
+					},
+					'argument': {
+						pattern: /\w+(?==)/,
+						alias: 'keyword'
+					},
+					'operator': /=/,
+					'punctuation': /;/,
+					'number': /\b(?:[\da-f]+x(?!\w+)|\d+(?:\.\d+)?(?:e[+-]?\d+)?)/,
+					'string': {
+						pattern: /(["'])(?:\1\1|(?!\1)[\s\S])*\1/,
+						greedy: true
+					}
+				}
+			},
+			'step': {
+				pattern: /(?:proc\s\w+|quit|run|data(?!\=))\b/i,
+				alias: 'keyword'
+			},
+			rest: Prism.languages.sql
+		}
+	},
+	'macrodeclaration': {
+		pattern: /((^|\n)(%macro)((\s)+([\w\s\S]+?))+);/im,
+		inside: {
+			keyword: /%macro/im,
+		}
+	},
+	'macroend': {
+		pattern: /((^|\n)(%mend)((\s)+([\w\s\S]+?))+);/im,
+		inside: {
+			keyword: /%mend/im,
+		}
+	},
+	/*%_zscore(headcir, _lhc, _mhc, _shc, headcz, headcpct, _Fheadcz); */
+	'macro': {
+		pattern: /%_\w+(?=\()/,
+		alias: 'keyword'
+	},
 	'input': {
 		pattern: /(\b)+(?:input(?!\=))\s+(?:\w|\$|\&|\s|\-|\.|\/|\*)+;/im,
 		inside:{
@@ -41,7 +76,7 @@ Prism.languages.sas = {
 	},
 	'comment': [
 		{
-			pattern: /(^\s*|;\s*)\*.*;/m,
+			pattern: /(^\s*|;\s*)\*(.|[\r\n])*?;/m,
 			lookbehind: true
 		},
 		/\/\*[\s\S]+?\*\//
@@ -110,13 +145,12 @@ Prism.languages.sas = {
 		pattern: /(["'])(?:\1\1|(?!\1)[\s\S])*\1/,
 		greedy: true
 	},
-			//TODO: Add handling for proc sql
 	'step': {
 		pattern: /(^|\n)(?:proc\s\w+|quit|run|data(?!\=))\b/i,
 		alias: 'keyword'
 	},
 	'keyword': {
-		pattern: /((^|[\s])=?)(?:action|after|analysis|and|barchart|barwidth|begingraph|cas|cbarline|cfill|close|column|compute(d)?|contains|data(?=\=)|define|document|do|dol|drop|dul|end|entryTitle|else|endcomp|fill(attrs)?|filename|group(by)?|headline|headskip|histogram|if|infile|label|layout|legendlabel|length|libname|midpoints|name|noobs|nowd|ods|or|out(put)?|overlay|ranexp|rannor|rbreak|retain|set|sessref|statgraph|sum|summarize|table|temp|then\sdo|then|title|to|var|where|xaxisopts|yxisopts|y2axisopts)\b/i,
+		pattern: /((^|[\s])=?)(?:action|after|analysis|and|array|barchart|barwidth|begingraph|by|cas|cbarline|cfill|close|column|compute(d)?|contains|data(?=\=)|define|document|do\s+over|do|dol|drop|dul|end|entryTitle|else|endcomp|fill(attrs)?|filename|group(by)?|headline|headskip|histogram|if|infile|keep|label|layout|legendlabel|length|libname|merge|midpoints|name|noobs|nowd|ods|or|out(put)?|overlay|ranexp|rannor|rbreak|retain|set|session|sessref|statgraph|sum|summarize|table|temp|then\sdo|then|title|to|var|where|xaxisopts|yaxisopts|y2axisopts)\b/i,
 		lookbehind: true,
 	},
 	// In SAS Studio syntax highlighting, these operators are styled like keywords
