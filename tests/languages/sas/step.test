@@ -1,0 +1,27 @@
+data carsurvey;
+proc format;
+proc sort data=allacty;
+run;
+quit;
+----------------------------------------------------
+
+[
+  ["step", "data"],
+  " carsurvey",
+  ["punctuation", ";"],
+  ["step", "\nproc format"],
+  ["punctuation", ";"],
+  ["step", "\nproc sort"],
+  ["keyword", "data"],
+  ["operator", "="],
+  "allacty",
+  ["punctuation", ";"],
+  ["step", "\nrun"],
+  ["punctuation", ";"],
+  ["step", "\nquit"],
+  ["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks that options captures "options" and correctly tags following text.

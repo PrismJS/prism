@@ -28,8 +28,8 @@ ge le in not
 	["operator", "="], ["operator", "/"], ["operator", "+"],
 	["operator", "-"], ["operator", "&"],
 
-	["operator", "eq"], ["operator", "ne"], ["operator", "gt"], ["operator", "lt"],
-	["operator", "ge"], ["operator", "le"], ["operator", "in"], ["operator", "not"]
+	["specialOperator", "eq"], ["specialOperator", "ne"], ["specialOperator", "gt"], ["specialOperator", "lt"],
+	["specialOperator", "ge"], ["specialOperator", "le"], ["specialOperator", "in"], ["specialOperator", "not"]
 ]
 
 ----------------------------------------------------
