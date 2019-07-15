@@ -240,6 +240,11 @@
 			"alias": "jinja2",
 			"owner": "romanvm"
 		},
+		"dns-zone-file": {
+			"title": "DNS zone file",
+			"owner": "RunDevelopment",
+			"alias": "dns-zone"
+		},
 		"docker": {
 			"title": "Docker",
 			"alias": "dockerfile",
