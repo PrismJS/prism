@@ -171,16 +171,26 @@ async function languagePlugins() {
 		}
 	];
 
-	await Promise.all(tasks.map(task => new Promise(resolve => {
+	// TODO: Use `Promise.allSettled` (https://github.com/tc39/proposal-promise-allSettled)
+	const taskResults = await Promise.all(tasks.map(task => new Promise((resolve, reject) => {
 		const stream = src(task.plugin)
 			.pipe(replace(
 				/\/\*(\w+)_placeholder\[\*\/[\s\S]*?\/\*\]\*\//g,
 				(m, mapName) => `/*${mapName}_placeholder[*/${task.maps[mapName]}/*]*/`
 			))
 			.pipe(dest(task.plugin.substring(0, task.plugin.lastIndexOf('/'))));
-		stream.on('error', resolve);
+
+		stream.on('error', reject);
 		stream.on('end', resolve);
-	})));
+	}).then(
+		/** @type {<T>(value: T) => {status: 'fulfilled', value: T}} */ value => ({status: 'fulfilled', value}),
+		/** @type {<T>(error: T) => {status: 'rejected', reason: T}} */ error => ({status: 'rejected', reason: error}),
+	)));
+
+	const rejectedTasks = taskResults.filter(/** @return {r is {status: 'rejected', reason: any}} */ r => r.status === 'rejected');
+	if (rejectedTasks.length > 0) {
+		throw rejectedTasks.map(r => r.reason);
+	}
 }
 
 const ISSUE_RE = /#(\d+)(?![\d\]])/g;
