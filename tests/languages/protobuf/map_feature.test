@@ -1,0 +1,23 @@
+map<string, .foo.Foo> bar;
+
+----------------------------------------------------
+
+[
+	["map", [
+		"map",
+		["punctuation", "<"],
+		["builtin", "string"],
+		["punctuation", ","],
+		["punctuation", "."],
+		"foo",
+		["punctuation", "."],
+		"Foo",
+		["punctuation", ">"]
+	]],
+	" bar",
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Check for maps.
