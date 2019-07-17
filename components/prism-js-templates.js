@@ -13,7 +13,10 @@
 
 		// html`<p></p>`
 		// div.innerHTML = `<p></p>`
-		createTemplate('html', /\bhtml|\.\s*(?:inner|outer)HTML\s*=/.source, 'markup'),
+		createTemplate('html', /\bhtml|\.\s*(?:inner|outer)HTML\s*\+?=/.source, 'markup'),
+
+		// svg`<path fill="#fff" d="M55.37 ..."/>`
+		createTemplate('svg', /\bsvg/.source, 'markup'),
 
 		// md`# h1`, markdown`## h2`
 		createTemplate('markdown', /\b(?:md|markdown)/.source, 'markdown'),
