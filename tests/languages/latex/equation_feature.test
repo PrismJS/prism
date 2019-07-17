@@ -39,7 +39,7 @@ b\end{gather}
 		["equation-command", "\\dots"],
 		"\r\nb$"
 	]],
-		["equation", [
+	["equation", [
 		"$$foo$$"
 	]],
 	["equation", [
