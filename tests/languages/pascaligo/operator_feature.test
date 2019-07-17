@@ -1,0 +1,25 @@
+.. ** :=
+< << <= > >> >=
++ - * /
++= -= *= /=
+@ ^ = =/=
+-> |
+
+mod and or
+
+----------------------------------------------------
+
+[
+	["operator", ".."], ["operator", "**"], ["operator", ":="],
+	["operator", "<"], ["operator", "<<"], ["operator", "<="], ["operator", ">"], ["operator", ">>"], ["operator", ">="],
+	["operator", "+"], ["operator", "-"], ["operator", "*"], ["operator", "/"],
+	["operator", "+="], ["operator", "-="], ["operator", "*="], ["operator", "/="],
+	["operator", "@"], ["operator", "^"], ["operator", "="], ["operator", "=/="],
+	["operator", "->"], ["operator", "|"],
+
+	["operator", "mod"], ["operator", "and"], ["operator", "or"]
+]
+
+----------------------------------------------------
+
+Checks for operators.

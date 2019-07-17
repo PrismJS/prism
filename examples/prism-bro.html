@@ -300,7 +300,7 @@ function check_scan(c: connection, established: bool, reverse: bool): bool
 	# because c might not correspond to an active connection (which
 	# causes the function to fail).
 	if ( suppress_UDP_scan_checks &&
-	     service >= 0/udp && service <= 65535/udp )
+	     service >= 0/udp && service &lt;= 65535/udp )
 		return F;
 
 	if ( service in skip_services && ! outbound )
@@ -343,8 +343,8 @@ function check_scan(c: connection, established: bool, reverse: bool): bool
 					empty_bs_table;
 				}
 
-			if ( ++distinct_backscatter_peers[orig][resp] <= 2 &&
-			     # The test is <= 2 because we get two check_scan()
+			if ( ++distinct_backscatter_peers[orig][resp] &lt;= 2 &&
+			     # The test is &lt;= 2 because we get two check_scan()
 			     # calls, once on connection attempt and once on
 			     # tear-down.
 
@@ -380,7 +380,7 @@ function check_scan(c: connection, established: bool, reverse: bool): bool
 					pre_distinct_peers[orig] = set();
 
 				add pre_distinct_peers[orig][resp];
-				if ( |pre_distinct_peers[orig]| < addr_scan_trigger )
+				if ( |pre_distinct_peers[orig]| &lt; addr_scan_trigger )
 					ignore = T;
 				}
 
@@ -462,7 +462,7 @@ function check_scan(c: connection, established: bool, reverse: bool): bool
 		}
 
 	# Check for low ports.
-	if ( activate_priv_port_check && ! outbound && service < 1024/tcp &&
+	if ( activate_priv_port_check && ! outbound && service &lt; 1024/tcp &&
 	     service !in troll_skip_service )
 		{
 		if ( orig !in distinct_low_ports ||
@@ -559,7 +559,7 @@ function thresh_check(v: vector of count, idx: table[addr] of count,
 		return F;
 		}
 
-	if ( idx[orig] <= |v| && n >= v[idx[orig]] )
+	if ( idx[orig] &lt;= |v| && n >= v[idx[orig]] )
 		{
 		++idx[orig];
 		return T;
@@ -578,7 +578,7 @@ function thresh_check_2(v: vector of count, idx: table[addr, addr] of count,
 		return F;
 		}
 
-	if ( idx[orig,resp] <= |v| && n >= v[idx[orig, resp]] )
+	if ( idx[orig,resp] &lt;= |v| && n >= v[idx[orig, resp]] )
 		{
 		++idx[orig,resp];
 		return T;

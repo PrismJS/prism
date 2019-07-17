@@ -158,9 +158,9 @@
 		},
 		"bnf": {
 			"title": "Backus–Naur form",
-			"alias": "rbfn",
+			"alias": "rbnf",
 			"aliasTitles": {
-				"rbfn": "Routing Backus–Naur form"
+				"rbnf": "Routing Backus–Naur form"
 			},
 			"owner": "RunDevelopment"
 		},
@@ -180,7 +180,7 @@
 		"csharp": {
 			"title": "C#",
 			"require": "clike",
-			"alias": "dotnet",
+			"alias": ["cs", "dotnet"],
 			"owner": "mvalipour"
 		},
 		"cpp": {
@@ -195,7 +195,12 @@
 		"coffeescript": {
 			"title": "CoffeeScript",
 			"require": "javascript",
+			"alias": "coffee",
 			"owner": "R-osey"
+		},
+		"cmake": {
+			"title": "CMake",
+			"owner": "mjrogozinski"
 		},
 		"clojure": {
 			"title": "Clojure",
@@ -231,13 +236,14 @@
 		},
 		"django": {
 			"title": "Django/Jinja2",
-			"require": "markup",
-			"peerDependencies": [
-				"css",
-				"javascript"
-			],
+			"require": "markup-templating",
 			"alias": "jinja2",
 			"owner": "romanvm"
+		},
+		"dns-zone-file": {
+			"title": "DNS zone file",
+			"owner": "RunDevelopment",
+			"alias": "dns-zone"
 		},
 		"docker": {
 			"title": "Docker",
@@ -251,6 +257,11 @@
 		"eiffel": {
 			"title": "Eiffel",
 			"owner": "Conaclos"
+		},
+		"ejs": {
+			"title": "EJS",
+			"require": ["javascript", "markup-templating"],
+			"owner": "RunDevelopment"
 		},
 		"elixir": {
 			"title": "Elixir",
@@ -347,6 +358,7 @@
 		},
 		"haskell": {
 			"title": "Haskell",
+			"alias": "hs",
 			"owner": "bholst"
 		},
 		"haxe": {
@@ -429,6 +441,10 @@
 			"require": "clike",
 			"owner": "thesave"
 		},
+		"jq": {
+			"title": "JQ",
+			"owner": "RunDevelopment"
+		},
 		"jsdoc": {
 			"title": "JSDoc",
 			"require": ["javascript", "javadoclike"],
@@ -479,6 +495,11 @@
 		},
 		"latex": {
 			"title": "LaTeX",
+			"alias": ["tex", "context"],
+			"aliasTitles": {
+				"tex": "TeX",
+				"context": "ConTeXt"
+			},
 			"owner": "japborst"
 		},
 		"less": {
@@ -514,6 +535,7 @@
 		"markdown": {
 			"title": "Markdown",
 			"require": "markup",
+			"alias": "md",
 			"owner": "Golmote"
 		},
 		"markup-templating": {
@@ -615,6 +637,15 @@
 			},
 			"owner": "Golmote"
 		},
+		"pascaligo": {
+			"title": "Pascaligo",
+			"owner": "DefinitelyNotAGoat"
+		},
+		"pcaxis": {
+			"title": "PC-Axis",
+			"alias": "px",
+			"owner": "RunDevelopment"
+		},
 		"perl": {
 			"title": "Perl",
 			"owner": "Golmote"
@@ -663,20 +694,17 @@
 		},
 		"pug": {
 			"title": "Pug",
-			"require": "javascript",
+			"require": ["markup", "javascript"],
 			"peerDependencies": [
 				"coffeescript",
 				"ejs",
 				"handlebars",
-				"hogan",
 				"less",
 				"livescript",
 				"markdown",
-				"mustache",
-				"plates",
 				"scss",
 				"stylus",
-				"swig"
+				"twig"
 			],
 			"owner": "Golmote"
 		},
@@ -689,14 +717,13 @@
 			"peerDependencies": [
 				"c",
 				"cpp",
-				"fortran",
-				"ats",
-				"dsp"
+				"fortran"
 			],
 			"owner": "Golmote"
 		},
 		"python": {
 			"title": "Python",
+			"alias": "py",
 			"owner": "multipetros"
 		},
 		"q": {
@@ -734,6 +761,18 @@
 			"require": "clike",
 			"owner": "Golmote"
 		},
+		"regex": {
+			"title": "Regex",
+			"peerDependencies": [
+				"actionscript",
+				"coffeescript",
+				"flow",
+				"javascript",
+				"typescript",
+				"vala"
+			],
+			"owner": "RunDevelopment"
+		},
 		"rest": {
 			"title": "reST (reStructuredText)",
 			"owner": "Golmote"
@@ -749,6 +788,7 @@
 		"ruby": {
 			"title": "Ruby",
 			"require": "clike",
+			"alias": "rb",
 			"owner": "samflores"
 		},
 		"rust": {
@@ -777,6 +817,11 @@
 		"scheme": {
 			"title": "Scheme",
 			"owner": "bacchus123"
+		},
+		"shell-session": {
+			"title": "Shell session",
+			"require": "bash",
+			"owner": "RunDevelopment"
 		},
 		"smalltalk": {
 			"title": "Smalltalk",
@@ -840,6 +885,21 @@
 			"alias": "ts",
 			"owner": "vkbansal"
 		},
+		"t4-cs": {
+			"title": "T4 Text Templates (C#)",
+			"require": ["t4-templating", "csharp"],
+			"alias": "t4",
+			"owner": "RunDevelopment"
+		},
+		"t4-vb": {
+			"title": "T4 Text Templates (VB)",
+			"require": ["t4-templating", "visual-basic"],
+			"owner": "RunDevelopment"
+		},
+		"t4-templating": {
+			"title": "T4 templating",
+			"owner": "RunDevelopment"
+		},
 		"vala": {
 			"title": "Vala",
 			"require": "clike",
@@ -901,6 +961,7 @@
 		},
 		"yaml": {
 			"title": "YAML",
+			"alias": "yml",
 			"owner": "hason"
 		}
 	},

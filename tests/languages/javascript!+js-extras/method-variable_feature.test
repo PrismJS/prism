@@ -1,5 +1,6 @@
 foo.bar = function() {};
 foo.bar = async () => {};
+this.bar = () => {};
 
 ----------------------------------------------------
 
@@ -24,6 +25,19 @@ foo.bar = async () => {};
 	]],
 	["operator", "="],
 	["keyword", "async"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["arrow", "=>"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["keyword", "this"],
+	["punctuation", "."],
+	["method-variable", [
+		"bar"
+	]],
+	["operator", "="],
 	["punctuation", "("],
 	["punctuation", ")"],
 	["arrow", "=>"],

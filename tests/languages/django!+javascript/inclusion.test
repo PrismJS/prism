@@ -1,0 +1,52 @@
+<script>
+{% if foo %}
+var foo = {{ bar }};
+{% endif %}
+</script>
+
+----------------------------------------------------
+
+[
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"script"
+		]],
+		["punctuation", ">"]
+	]],
+	["script", [
+		["language-javascript", [
+			["django", [
+				["delimiter", "{%"],
+				["tag", "if"],
+				["variable", "foo"],
+				["delimiter", "%}"]
+			]],
+			["keyword", "var"],
+			" foo ",
+			["operator", "="],
+			["django", [
+				["delimiter", "{{"],
+				["variable", "bar"],
+				["delimiter", "}}"]
+			]],
+			["punctuation", ";"],
+			["django", [
+				["delimiter", "{%"],
+				["tag", "endif"],
+				["delimiter", "%}"]
+			]]
+		]]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"script"
+		]],
+		["punctuation", ">"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for Django/Jinja2 code inside <script> elements.
