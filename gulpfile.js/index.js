@@ -167,12 +167,9 @@ async function languagePlugins() {
 			))
 			.pipe(dest(task.plugin.substring(0, task.plugin.lastIndexOf('/'))));
 
-		stream.on('error', reject);
-		stream.on('end', resolve);
-	}).then(
-		/** @type {<T>(value: T) => {status: 'fulfilled', value: T}} */ value => ({status: 'fulfilled', value}),
-		/** @type {<T>(error: T) => {status: 'rejected', reason: T}} */ error => ({status: 'rejected', reason: error}),
-	)));
+		stream.on('error', value => resolve({ status: 'fulfilled', value }));
+		stream.on('end', error => resolve({ status: 'rejected', reason: error }));
+	})));
 
 	const rejectedTasks = taskResults.filter(/** @return {r is {status: 'rejected', reason: any}} */ r => r.status === 'rejected');
 	if (rejectedTasks.length > 0) {

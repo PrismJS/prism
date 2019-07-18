@@ -151,7 +151,7 @@ function changes() {
 
 		/** @param {CommitChange} change */
 		function notGenerated(change) {
-			return !change.file.endsWith('.min.js') && ['prism.js', 'components.js'].indexOf(change.file) === -1;
+			return !change.file.endsWith('.min.js') && ['prism.js', 'components.js', 'package-lock.json'].indexOf(change.file) === -1;
 		}
 		/** @param {CommitChange} change */
 		function notPartlyGenerated(change) {
@@ -165,6 +165,10 @@ function changes() {
 		/** @param {CommitChange} change */
 		function notExamples(change) {
 			return !/^examples\//.test(change.file);
+		}
+		/** @param {CommitChange} change */
+		function notFailures(change) {
+			return !/^known-failures.html$/.test(change.file);
 		}
 		/** @param {CommitChange} change */
 		function notComponentsJSON(change) {
@@ -195,7 +199,8 @@ function changes() {
 		 * @returns {{ message: string, hash: string }}
 		 */
 		function removeMessagePrefix(prefix, info) {
-			const patter = RegExp(String.raw`^${prefix.replace(/[-\s]/g, '[-\\s]')}:\s*`, 'i')
+			const source = String.raw`^${prefix.replace(/([^-\w\s])/g, '\\$1').replace(/[-\s]/g, '[-\\s]')}:\s*`;
+			const patter = RegExp(source, 'i');
 			return {
 				message: info.message.replace(patter, ''),
 				hash: info.hash
@@ -216,7 +221,7 @@ function changes() {
 			},
 
 			function addedComponent(info) {
-				let relevantChanges = info.changes.filter(and(notGenerated, notTests, notExamples));
+				let relevantChanges = info.changes.filter(and(notGenerated, notTests, notExamples, notFailures));
 
 				// `components.json` has to be modified
 				if (relevantChanges.some(c => c.file === 'components.json')) {
@@ -239,7 +244,7 @@ function changes() {
 			},
 
 			function changedComponentOrCore(info) {
-				let relevantChanges = info.changes.filter(and(notGenerated, notTests, notExamples));
+				let relevantChanges = info.changes.filter(and(notGenerated, notTests, notExamples, notFailures));
 
 				// if `components.json` changed, then autoloader and show-language also change
 				if (relevantChanges.some(c => c.file === 'components.json')) {
