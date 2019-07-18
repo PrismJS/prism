@@ -169,9 +169,9 @@
 	var script = document.getElementsByTagName('script');
 	script = script[script.length - 1];
 	var languages_path = 'components/';
-	if(script.hasAttribute('data-autoloader-path')) {
+	if (script.hasAttribute('data-autoloader-path')) {
 		var path = script.getAttribute('data-autoloader-path').trim();
-		if(path.length > 0 && !/^[a-z]+:\/\//i.test(script.src)) {
+		if (path.length > 0 && !/^[a-z]+:\/\//i.test(script.src)) {
 			languages_path = path.replace(/\/?$/, '/');
 		}
 	} else if (/[\w-]+\.js$/.test(script.src)) {
@@ -183,19 +183,21 @@
 		/**
 		 * Loads the given language(s) and calls the given callback(s) asynchronously.
 		 *
-		 * The error callback will be called once for each language failing to load.
-		 *
 		 * @param {string|string[]} languages
 		 * @param {(languages: string[]) => void} [success]
-		 * @param {(language: string) => void} [error]
+		 * @param {(reason: string) => void} [error]
 		 */
 		loadLanguages: function (languages, success, error) {
-			// loadLanguages might call the callbacks synchronously, so we guarantee that this is not the case
+			var failed = false;
 			loadLanguages(languages, function (langs) {
 				setTimeout(function () {
 					success && success(langs);
 				});
 			}, function (lang) {
+				if (failed) {
+					return;
+				}
+				failed = true;
 				setTimeout(function () {
 					error && error(lang);
 				});
@@ -213,11 +215,11 @@
 		var s = document.createElement('script');
 		s.src = src;
 		s.async = true;
-		s.onload = function() {
+		s.onload = function () {
 			document.body.removeChild(s);
 			success && success();
 		};
-		s.onerror = function() {
+		s.onerror = function () {
 			document.body.removeChild(s);
 			error && error();
 		};
@@ -236,8 +238,8 @@
 	};
 
 	/**
-	 * Tries to load a grammar and
-	 * highlight again the given element once loaded.
+	 * Tries to load the grammar(s) and once loaded, highlights the given element again.
+	 *
 	 * @param {string} lang
 	 * @param {HTMLElement} elt
 	 */
@@ -267,9 +269,12 @@
 
 	/**
 	 * Sequentially loads an array of grammars.
+	 *
+	 * _Note:_ The given callbacks might be called synchronously or asynchronously.
+	 *
 	 * @param {string[]|string} langs
 	 * @param {function=} success
-	 * @param {function=} error
+	 * @param {function=} error The error callback will be called once per grammar which failed to load.
 	 */
 	var loadLanguages = function (langs, success, error) {
 		if (typeof langs === 'string') {
@@ -293,7 +298,10 @@
 	};
 
 	/**
-	 * Load a grammar with its dependencies
+	 * Loads a grammar with its dependencies.
+	 *
+	 * _Note:_ The given callbacks might be called synchronously or asynchronously.
+	 *
 	 * @param {string} lang
 	 * @param {function=} success
 	 * @param {function=} error
@@ -336,7 +344,7 @@
 		};
 
 		var dependencies = lang_dependencies[lang];
-		if(dependencies && dependencies.length) {
+		if (dependencies && dependencies.length) {
 			loadLanguages(dependencies, load, error);
 		} else {
 			load();
@@ -348,7 +356,7 @@
 	 * @param {string} lang
 	 */
 	var languageSuccess = function (lang) {
-		if (lang_data[lang] ) {
+		if (lang_data[lang]) {
 			var callbacks = lang_data[lang].callbacks;
 			while (callbacks.length) {
 				var callback = callbacks.shift().success;
