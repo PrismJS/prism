@@ -150,7 +150,7 @@ async function languagePlugins() {
 	const tasks = [
 		{
 			plugin: paths.showLanguagePlugin,
-			maps: { languages: jsonLanguagesMap}
+			maps: { languages: jsonLanguagesMap }
 		},
 		{
 			plugin: paths.autoloaderPlugin,
@@ -159,17 +159,19 @@ async function languagePlugins() {
 	];
 
 	// TODO: Use `Promise.allSettled` (https://github.com/tc39/proposal-promise-allSettled)
-	const taskResults = await Promise.all(tasks.map(task => new Promise((resolve, reject) => {
-		const stream = src(task.plugin)
-			.pipe(replace(
-				/\/\*(\w+)_placeholder\[\*\/[\s\S]*?\/\*\]\*\//g,
-				(m, mapName) => `/*${mapName}_placeholder[*/${task.maps[mapName]}/*]*/`
-			))
-			.pipe(dest(task.plugin.substring(0, task.plugin.lastIndexOf('/'))));
+	const taskResults = await Promise.all(tasks.map(task => {
+		return new Promise((resolve, reject) => {
+			const stream = src(task.plugin)
+				.pipe(replace(
+					/\/\*(\w+)_placeholder\[\*\/[\s\S]*?\/\*\]\*\//g,
+					(m, mapName) => `/*${mapName}_placeholder[*/${task.maps[mapName]}/*]*/`
+				))
+				.pipe(dest(task.plugin.substring(0, task.plugin.lastIndexOf('/'))));
 
-		stream.on('error', value => resolve({ status: 'fulfilled', value }));
-		stream.on('end', error => resolve({ status: 'rejected', reason: error }));
-	})));
+			stream.on('error', error => reject({ status: 'rejected', reason: error }));
+			stream.on('end', value => resolve({ status: 'fulfilled', value }));
+		});
+	}));
 
 	const rejectedTasks = taskResults.filter(/** @return {r is {status: 'rejected', reason: any}} */ r => r.status === 'rejected');
 	if (rejectedTasks.length > 0) {
