@@ -143,23 +143,3 @@ dolor sit amet.
 |
 |15.00
 |}</code></pre>
-
-<h2>Known failures</h2>
-<p>There are certain edge cases where Prism will fail.
-	There are always such cases in every regex-based syntax highlighter.
-	However, Prism dares to be open and honest about them.
-	If a failure is listed here, it doesn’t mean it will never be fixed. This is more of a “known bugs” list, just with a certain type of bug.
-</p>
-
-<h3>Nested magic words are not supported</h3>
-
-<pre><code>{{#switch:{{PAGENAME}}
-| L'Aquila = No translation
-| L = Not OK
-| L&apos;Aquila = Entity escaping
-| L&#39;Aquila = Numeric char encoding
-}}</code></pre>
-
-<h3>Nesting of bold and italic is not supported</h3>
-<pre><code>''Italic with '''bold''' inside''</code></pre>
-

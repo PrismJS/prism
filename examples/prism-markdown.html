@@ -67,20 +67,3 @@ is not allowed__
 > Containing &lt;strong>raw HTML&lt;/strong>
 
 &lt;p>*Italic text inside HTML tag*&lt;/p></code></pre>
-
-<h2>Known failures</h2>
-<p>There are certain edge cases where Prism will fail.
-	There are always such cases in every regex-based syntax highlighter.
-	However, Prism dares to be open and honest about them.
-	If a failure is listed here, it doesn’t mean it will never be fixed. This is more of a “known bugs” list, just with a certain type of bug.
-</p>
-
-<h3>Nesting of elements is not fully supported</h3>
-<pre><code>_ **bold** inside italic DOESN'T work _
-__ but *italic* inside bold DOES work __
-
-[Link partially *italic* DOESN'T work](http://example.com)
-_ [But link inside italic DOES work](http://example.com) _
-
-[Link partially **bold** DOESN'T work](http://example.com)
-__ [But link inside bold DOES work](http://example.com) __</code></pre>

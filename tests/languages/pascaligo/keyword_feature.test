@@ -1,0 +1,29 @@
+if while for
+return nil
+remove
+from else
+then skip
+with; is function
+var
+const type
+end begin block
+case of
+
+----------------------------------------------------
+
+[
+	["keyword", "if"], ["keyword", "while"], ["keyword", "for"],
+	["keyword", "return"], ["keyword", "nil"],
+	["keyword", "remove"],
+	["keyword", "from"], ["keyword", "else"],
+	["keyword", "then"], ["keyword", "skip"],
+	["keyword", "with"], ["punctuation", ";"], ["keyword", "is"], ["keyword", "function"],
+	["keyword", "var"],
+	["keyword", "const"], ["keyword", "type"],
+	["keyword", "end"], ["keyword", "begin"], ["keyword", "block"],
+	["keyword", "case"], ["keyword", "of"]
+]
+
+----------------------------------------------------
+
+Checks for all keywords.
