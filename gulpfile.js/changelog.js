@@ -34,20 +34,14 @@ function linkify(cb) {
  * @template T
  */
 function createSortedArray(compareFn) {
+	/** @type {T[]} */
 	const a = [];
 
 	a['sort'] = function () {
 		return Array.prototype.sort.call(this, compareFn);
 	};
-	a[Symbol.iterator] = function* () {
-		const copy = [];
-		for (let i = 0; i < this.length; i++) {
-			copy.push(this[i]);
-		}
-		copy.sort(compareFn);
-		for (const item of copy) {
-			yield item;
-		}
+	a[Symbol.iterator] = function () {
+		return this.slice().sort(compareFn)[Symbol.iterator]();
 	};
 
 	return a;
@@ -105,9 +99,7 @@ function getLog(range) {
 }
 
 const revisionRanges = {
-	nextRelease: git.raw(['describe', '--abbrev=0', '--tags']).then(res => `${res.trim()}..HEAD`),
-	v1_15_0__HEAD: 'v1.15.0..HEAD',
-	v1_14_0__v1_15_0: 'v1.14.0..v1.15.0',
+	nextRelease: git.raw(['describe', '--abbrev=0', '--tags']).then(res => `${res.trim()}..HEAD`)
 };
 const strCompare = (a, b) => a.localeCompare(b, 'en');
 
@@ -231,8 +223,8 @@ function changes() {
 					if (relevantChanges.length === 1) {
 						const change = relevantChanges[0];
 						if (change.mode === 'A' && change.file.startsWith('components/prism-')) {
-							var lang = change.file.match(/prism-([\w-]+)\.js$/)[1];
-							var titles = [languages[lang].title];
+							const lang = change.file.match(/prism-([\w-]+)\.js$/)[1];
+							const titles = [languages[lang].title];
 							if (languages[lang].aliasTitles) {
 								titles.push(...Object.values(languages[lang].aliasTitles));
 							}
@@ -254,7 +246,7 @@ function changes() {
 				if (relevantChanges.length === 1) {
 					const change = relevantChanges[0];
 					if (change.mode === 'M' && change.file.startsWith('components/prism-')) {
-						var lang = change.file.match(/prism-([\w-]+)\.js$/)[1];
+						const lang = change.file.match(/prism-([\w-]+)\.js$/)[1];
 						if (lang === 'core') {
 							addEntry('Other >> Core', removeMessagePrefix('Core', info));
 						} else {
