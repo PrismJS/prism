@@ -1,0 +1,14 @@
+<h2>Full example</h2>
+<pre><code>$TTL 3d
+@ IN SOA root.localhost. root.sneaky.net. (
+    2015050503 ; serial
+    12h        ; refresh
+    15m        ; retry
+    3w         ; expire
+    3h         ; negative response TTL
+  )
+  IN NS root.localhost.
+  IN NS localhost. ; secondary name server is preferably externally maintained
+
+www IN A 3.141.59.26
+ww1 IN CNAME www</code></pre>

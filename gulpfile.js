@@ -6,6 +6,7 @@ const header = require('gulp-header');
 const concat = require('gulp-concat');
 const replace = require('gulp-replace');
 const pump = require('pump');
+const util = require('util');
 const fs = require('fs');
 const simpleGit = require('simple-git');
 const shelljs = require('shelljs');
@@ -79,12 +80,11 @@ function build(cb) {
 `), concat('prism.js'), dest('./')], cb);
 }
 
-function componentsJsonToJs(cb) {
-	componentsPromise.then(data => {
-		const js = `var components = ${JSON.stringify(data)};
+async function componentsJsonToJs() {
+	const data = await componentsPromise;
+	const js = `var components = ${JSON.stringify(data)};
 if (typeof module !== 'undefined' && module.exports) { module.exports = components; }`;
-		fs.writeFile(paths.componentsFileJS, js, cb);
-	});
+	return util.promisify(fs.writeFile)(paths.componentsFileJS, js);
 }
 
 function watchComponentsAndPlugins() {
@@ -92,98 +92,105 @@ function watchComponentsAndPlugins() {
 	watch(paths.plugins, parallel(minifyPlugins, build));
 }
 
-function languagePlugins(cb) {
-	componentsPromise.then(data => {
-		const languagesMap = {};
-		const dependenciesMap = {};
-		const aliasMap = {};
+async function languagePlugins() {
+	const data = await componentsPromise;
+	const languagesMap = {};
+	const dependenciesMap = {};
+	const aliasMap = {};
 
-		/**
-		 * Tries to guess the name of a language given its id.
-		 *
-		 * From `prism-show-language.js`.
-		 *
-		 * @param {string} id The language id.
-		 * @returns {string}
-		 */
-		function guessTitle(id) {
-			if (!id) {
-				return id;
-			}
-			return (id.substring(0, 1).toUpperCase() + id.substring(1)).replace(/s(?=cript)/, 'S');
+	/**
+	 * Tries to guess the name of a language given its id.
+	 *
+	 * From `prism-show-language.js`.
+	 *
+	 * @param {string} id The language id.
+	 * @returns {string}
+	 */
+	function guessTitle(id) {
+		if (!id) {
+			return id;
 		}
+		return (id.substring(0, 1).toUpperCase() + id.substring(1)).replace(/s(?=cript)/, 'S');
+	}
 
-		function addLanguageTitle(key, title) {
-			if (!languagesMap[key] && guessTitle(key) !== title) {
-				languagesMap[key] = title;
-			}
+	/**
+	 * @param {string} key
+	 * @param {string} title
+	 */
+	function addLanguageTitle(key, title) {
+		if (!languagesMap[key] && guessTitle(key) !== title) {
+			languagesMap[key] = title;
 		}
+	}
 
-		for (const id in data.languages) {
-			if (id !== 'meta') {
-				const language = data.languages[id];
-				const title = language.displayTitle || language.title;
+	for (const id in data.languages) {
+		if (id !== 'meta') {
+			const language = data.languages[id];
+			const title = language.displayTitle || language.title;
 
-				addLanguageTitle(id, title);
+			addLanguageTitle(id, title);
 
-				for (const name in language.aliasTitles) {
-					addLanguageTitle(name, language.aliasTitles[name]);
+			for (const name in language.aliasTitles) {
+				addLanguageTitle(name, language.aliasTitles[name]);
+			}
+
+			if (language.alias) {
+				if (typeof language.alias === 'string') {
+					aliasMap[language.alias] = id;
+					addLanguageTitle(language.alias, title);
+				} else {
+					language.alias.forEach(function (alias) {
+						aliasMap[alias] = id;
+						addLanguageTitle(alias, title);
+					});
 				}
+			}
 
-				if (language.alias) {
-					if (typeof language.alias === 'string') {
-						aliasMap[language.alias] = id;
-						addLanguageTitle(language.alias, title);
-					} else {
-						language.alias.forEach(function (alias) {
-							aliasMap[alias] = id;
-							addLanguageTitle(alias, title);
-						});
-					}
-				}
-
-				if (language.require) {
-					dependenciesMap[id] = language.require;
-				}
+			if (language.require) {
+				dependenciesMap[id] = language.require;
 			}
 		}
+	}
 
-		const jsonLanguagesMap = JSON.stringify(languagesMap);
-		const jsonDependenciesMap = JSON.stringify(dependenciesMap);
-		const jsonAliasMap = JSON.stringify(aliasMap);
+	function formattedStringify(json) {
+		return JSON.stringify(json, null, '\t').replace(/\n/g, '\n\t');
+	}
 
-		const tasks = [
-			{
-				plugin: paths.showLanguagePlugin,
-				maps: { languages: jsonLanguagesMap}
-			},
-			{
-				plugin: paths.autoloaderPlugin,
-				maps: { aliases: jsonAliasMap, dependencies: jsonDependenciesMap }
-			}
-		];
+	const jsonLanguagesMap = formattedStringify(languagesMap);
+	const jsonDependenciesMap = formattedStringify(dependenciesMap);
+	const jsonAliasMap = formattedStringify(aliasMap);
 
-		let cpt = 0;
-		const l = tasks.length;
-		const done = () => {
-			cpt++;
-			if (cpt === l) {
-				cb && cb();
-			}
-		};
-
-		for (const task of tasks) {
-			const stream = src(task.plugin)
-				.pipe(replace(
-					/\/\*(\w+)_placeholder\[\*\/[\s\S]*?\/\*\]\*\//g,
-					(m, mapName) => `/*${mapName}_placeholder[*/${task.maps[mapName]}/*]*/`
-				))
-				.pipe(dest(task.plugin.substring(0, task.plugin.lastIndexOf('/'))));
-
-			stream.on('error', done);
-			stream.on('end', done);
+	const tasks = [
+		{
+			plugin: paths.showLanguagePlugin,
+			maps: { languages: jsonLanguagesMap}
+		},
+		{
+			plugin: paths.autoloaderPlugin,
+			maps: { aliases: jsonAliasMap, dependencies: jsonDependenciesMap }
 		}
-	});
+	];
+
+	// TODO: Use `Promise.allSettled` (https://github.com/tc39/proposal-promise-allSettled)
+	const taskResults = await Promise.all(tasks.map(task => new Promise((resolve, reject) => {
+		const stream = src(task.plugin)
+			.pipe(replace(
+				/\/\*(\w+)_placeholder\[\*\/[\s\S]*?\/\*\]\*\//g,
+				(m, mapName) => `/*${mapName}_placeholder[*/${task.maps[mapName]}/*]*/`
+			))
+			.pipe(dest(task.plugin.substring(0, task.plugin.lastIndexOf('/'))));
+
+		stream.on('error', reject);
+		stream.on('end', resolve);
+	}).then(
+		/** @type {<T>(value: T) => {status: 'fulfilled', value: T}} */ value => ({status: 'fulfilled', value}),
+		/** @type {<T>(error: T) => {status: 'rejected', reason: T}} */ error => ({status: 'rejected', reason: error}),
+	)));
+
+	const rejectedTasks = taskResults.filter(/** @return {r is {status: 'rejected', reason: any}} */ r => r.status === 'rejected');
+	if (rejectedTasks.length > 0) {
+		throw rejectedTasks.map(r => r.reason);
+	}
 }
 
 const ISSUE_RE = /#(\d+)(?![\d\]])/g;

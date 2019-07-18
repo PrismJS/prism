@@ -11,14 +11,14 @@ schemes NAT_1;
 begin
 
 P: for k being Nat
-	st for n being Nat st n < k holds Fib (n+1) ≥ n
+	st for n being Nat st n &lt; k holds Fib (n+1) ≥ n
 		holds Fib (k+1) ≥ k
 proof let k be Nat; assume
-IH: for n being Nat st n < k holds Fib (n+1) ≥ n;
+IH: for n being Nat st n &lt; k holds Fib (n+1) ≥ n;
 	per cases;
 		suppose k ≤ 1; then k = 0 or k = 0+1 by CQC_THE1:2;
 			hence Fib (k+1) ≥ k by PRE_FF:1;
-		suppose 1 < k; then
+		suppose 1 &lt; k; then
 			1+1 ≤ k by NAT_1:38; then
 			consider m being Nat such that
 		A: k = 1+1+m by NAT_1:28;
@@ -33,8 +33,8 @@ IH: for n being Nat st n < k holds Fib (n+1) ≥ n;
 					m ≥ 1 by NAT_1:38; then
 				B: m+(m+1) ≥ m+1+1 by REAL_1:49;
 				C: k = m+1+1 by A, AXIOMS:13;
-				   m < m+1 & m+1 < m+1+1 by REAL_1:69; then
-				   m < k & m+1 < k by C, AXIOMS:22; then
+				   m &lt; m+1 & m+1 &lt; m+1+1 by REAL_1:69; then
+				   m &lt; k & m+1 &lt; k by C, AXIOMS:22; then
 				D: Fib (m+1) ≥ m & Fib (m+1+1) ≥ m+1 by IH;
 				   Fib (m+1+1+1) = Fib (m+1) + Fib (m+1+1) by PRE_FF:1; then
 				   Fib (m+1+1+1) ≥ m+(m+1) by D, REAL_1:55;
