@@ -1,0 +1,102 @@
+syntax = "proto2";
+syntax = "proto3";
+
+option java_multiple_files = true;
+
+import public "new.proto";
+import "other.proto";
+
+enum Foo {}
+extend Foo {}
+service Foo {}
+message Foo {
+	Bar Bar = 0;
+	foo.Bar Bar2 = 0;
+	.baz.Bar Bar3 = 0;
+}
+
+----------------------------------------------------
+
+[
+	["keyword", "syntax"],
+	["operator", "="],
+	["string", "\"proto2\""],
+	["punctuation", ";"],
+
+	["keyword", "syntax"],
+	["operator", "="],
+	["string", "\"proto3\""],
+	["punctuation", ";"],
+
+
+	["keyword", "option"],
+	" java_multiple_files ",
+	["operator", "="],
+	["boolean", "true"],
+	["punctuation", ";"],
+
+
+	["keyword", "import"],
+	["keyword", "public"],
+	["string", "\"new.proto\""],
+	["punctuation", ";"],
+
+	["keyword", "import"],
+	["string", "\"other.proto\""],
+	["punctuation", ";"],
+
+
+	["keyword", "enum"],
+	["class-name", "Foo"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "extend"],
+	["class-name", "Foo"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "service"],
+	["class-name", "Foo"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "message"],
+	["class-name", "Foo"],
+	["punctuation", "{"],
+
+	["positional-class-name", [
+		"Bar"
+	]],
+	" Bar ",
+	["operator", "="],
+	["number", "0"],
+	["punctuation", ";"],
+
+	["positional-class-name", [
+		"foo",
+		["punctuation", "."],
+		"Bar"
+	]],
+	" Bar2 ",
+	["operator", "="],
+	["number", "0"],
+	["punctuation", ";"],
+
+	["positional-class-name", [
+		["punctuation", "."],
+		"baz",
+		["punctuation", "."],
+		"Bar"
+	]],
+	" Bar3 ",
+	["operator", "="],
+	["number", "0"],
+	["punctuation", ";"],
+
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Check for class names

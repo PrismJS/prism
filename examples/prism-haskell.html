@@ -28,7 +28,7 @@ comment -}</code></pre>
   wantReadableHandle_ "Data.ByteString.hGetLine" h $
     \ h_@Handle__{haByteBuffer} -> do
       flushCharReadBuffer h_
-      buf <- readIORef haByteBuffer
+      buf &lt;- readIORef haByteBuffer
       if isEmptyBuffer buf
          then fill h_ buf 0 []
          else haveBuf h_ buf 0 []
@@ -36,7 +36,7 @@ comment -}</code></pre>
 
   fill h_@Handle__{haByteBuffer,haDevice} buf len xss =
     len `seq` do
-    (r,buf') <- Buffered.fillReadBuffer haDevice buf
+    (r,buf') &lt;- Buffered.fillReadBuffer haDevice buf
     if r == 0
        then do writeIORef haByteBuffer buf{ bufR=0, bufL=0 }
                if len > 0
@@ -48,9 +48,9 @@ comment -}</code></pre>
           buf@Buffer{ bufRaw=raw, bufR=w, bufL=r }
           len xss =
     do
-        off <- findEOL r w raw
+        off &lt;- findEOL r w raw
         let new_len = len + off - r
-        xs <- mkPS raw r off
+        xs &lt;- mkPS raw r off
 
       -- if eol == True, then off is the offset of the '\n'
       -- otherwise off == w and the buffer is now empty.
@@ -66,7 +66,7 @@ comment -}</code></pre>
   findEOL r w raw
         | r == w = return w
         | otherwise =  do
-            c <- readWord8Buf raw r
+            c &lt;- readWord8Buf raw r
             if c == fromIntegral (ord '\n')
                 then return r -- NB. not r+1: don't include the '\n'
                 else findEOL (r+1) w raw

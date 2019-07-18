@@ -1,18 +1,35 @@
-if then else elif fi
-for break continue while
-in case function select
-do done until echo exit
-return set declare
-. :
+if
+then
+else
+elif
+fi
+for x in a
+while
+case
+esac
+function
+select x in a
+do
+done
+until
+
 ----------------------------------------------------
 
 [
-	["keyword", "if"], ["keyword", "then"], ["keyword", "else"], ["keyword", "elif"], ["keyword", "fi"],
-	["keyword", "for"], ["keyword", "break"], ["keyword", "continue"], ["keyword", "while"],
-	["keyword", "in"], ["keyword", "case"], ["keyword", "function"], ["keyword", "select"],
-	["keyword", "do"], ["keyword", "done"], ["keyword", "until"], ["keyword", "echo"], ["keyword", "exit"],
-	["keyword", "return"], ["keyword", "set"], ["keyword", "declare"],
-	["keyword", "."], ["keyword", ":"]
+	["keyword", "if"],
+	["keyword", "then"],
+	["keyword", "else"],
+	["keyword", "elif"],
+	["keyword", "fi"],
+	["keyword", "for"], ["for-or-select", "x"], ["keyword", "in"], " a\r\n",
+	["keyword", "while"], 
+	["keyword", "case"],
+	["keyword", "esac"],
+	["keyword", "function"],
+	["keyword", "select"], ["for-or-select", "x"], ["keyword", "in"], " a\r\n",
+	["keyword", "do"],
+	["keyword", "done"], 
+	["keyword", "until"]
 ]
 
 ----------------------------------------------------

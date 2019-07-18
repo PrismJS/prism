@@ -180,7 +180,7 @@
 		"csharp": {
 			"title": "C#",
 			"require": "clike",
-			"alias": "dotnet",
+			"alias": ["cs", "dotnet"],
 			"owner": "mvalipour"
 		},
 		"cpp": {
@@ -239,6 +239,11 @@
 			"require": "markup-templating",
 			"alias": "jinja2",
 			"owner": "romanvm"
+		},
+		"dns-zone-file": {
+			"title": "DNS zone file",
+			"owner": "RunDevelopment",
+			"alias": "dns-zone"
 		},
 		"docker": {
 			"title": "Docker",
@@ -436,6 +441,10 @@
 			"require": "clike",
 			"owner": "thesave"
 		},
+		"jq": {
+			"title": "JQ",
+			"owner": "RunDevelopment"
+		},
 		"jsdoc": {
 			"title": "JSDoc",
 			"require": ["javascript", "javadoclike"],
@@ -486,6 +495,11 @@
 		},
 		"latex": {
 			"title": "LaTeX",
+			"alias": ["tex", "context"],
+			"aliasTitles": {
+				"tex": "TeX",
+				"context": "ConTeXt"
+			},
 			"owner": "japborst"
 		},
 		"less": {
@@ -622,6 +636,15 @@
 				"objectpascal": "Object Pascal"
 			},
 			"owner": "Golmote"
+		},
+		"pascaligo": {
+			"title": "Pascaligo",
+			"owner": "DefinitelyNotAGoat"
+		},
+		"pcaxis": {
+			"title": "PC-Axis",
+			"alias": "px",
+			"owner": "RunDevelopment"
 		},
 		"perl": {
 			"title": "Perl",
@@ -794,6 +817,11 @@
 		"scheme": {
 			"title": "Scheme",
 			"owner": "bacchus123"
+		},
+		"shell-session": {
+			"title": "Shell session",
+			"require": "bash",
+			"owner": "RunDevelopment"
 		},
 		"smalltalk": {
 			"title": "Smalltalk",

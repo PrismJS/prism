@@ -54,10 +54,10 @@ $1, $_, %!;</code></pre>
     $conf{user} = delete $conf{username} unless $conf{user};
   }
   else { # Process .pause manually
-    open my $pauserc, '<', $filename
+    open my $pauserc, '&lt;', $filename
       or die "can't open $filename for reading: $!";
 
-    while (<$pauserc>) {
+    while (&lt;$pauserc>) {
       chomp;
       next unless $_ and $_ !~ /^\s*#/;
 

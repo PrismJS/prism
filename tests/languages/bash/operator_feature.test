@@ -1,0 +1,68 @@
+a |& b &> c
+a >&2
+a 2<&
+a <> b
+a &>> b
+a && b || c
+
+<(yes) <(if true; then :; fi) <(echo) <(true)
+<(for x in a b; do :; done)
+<(select x in a b; do :; done)
+>(yes) >(if true; then :; fi) >(echo) >(true)
+>(for x in a b; do :; done)
+>(select x in a b; do :; done)
+
+${x:1:2} ${x:-a} ${x:=a} ${x:?a} ${x:+a}
+${!x} ${x/a/b}
+${x#*a} ${x##*a} ${x%a*} ${x%%a*}
+${x^a} ${x^^a} ${x,a} ${x,,a}
+
+----------------------------------------------------
+
+[
+	"a ", ["operator", ["|&"]], " b ", ["operator", ["&>"]], " c\r\na ",
+	["operator", [">"]], ["file-descriptor", "&2"], "\r\na ",
+	["operator", [
+		["file-descriptor", "2"], "<&"
+	]],
+	"\r\na ", ["operator", ["<>"]], " b\r\na ",
+	["operator", ["&>>"]], " b\r\na ",
+	["operator", ["&&"]], " b ", ["operator", ["||"]], " c\r\n\r\n",
+	["operator", ["<"]], ["punctuation", "("], ["function", "yes"], ["punctuation", ")"],
+	["operator", ["<"]], ["punctuation", "("], ["keyword", "if"], ["boolean", "true"], ["punctuation", ";"],
+	["keyword", "then"], ["builtin", ":"], ["punctuation", ";"], ["keyword", "fi"], ["punctuation", ")"],
+	["operator", ["<"]], ["punctuation", "("], ["builtin", "echo"], ["punctuation", ")"],
+	["operator", ["<"]], ["punctuation", "("], ["boolean", "true"], ["punctuation", ")"],
+	["operator", ["<"]], ["punctuation", "("], ["keyword", "for"], ["for-or-select", "x"], ["keyword", "in"], " a b", ["punctuation", ";"],
+	["keyword", "do"], ["builtin", ":"], ["punctuation", ";"], ["keyword", "done"], ["punctuation", ")"],
+	["operator", ["<"]], ["punctuation", "("], ["keyword", "select"], ["for-or-select", "x"], ["keyword", "in"], " a b", ["punctuation", ";"],
+	["keyword", "do"], ["builtin", ":"], ["punctuation", ";"], ["keyword", "done"], ["punctuation", ")"],
+	["operator", [">"]], ["punctuation", "("], ["function", "yes"], ["punctuation", ")"],
+	["operator", [">"]], ["punctuation", "("], ["keyword", "if"], ["boolean", "true"], ["punctuation", ";"],
+	["keyword", "then"], ["builtin", ":"], ["punctuation", ";"], ["keyword", "fi"], ["punctuation", ")"],
+	["operator", [">"]], ["punctuation", "("], ["builtin", "echo"], ["punctuation", ")"],
+	["operator", [">"]], ["punctuation", "("], ["boolean", "true"], ["punctuation", ")"],
+	["operator", [">"]], ["punctuation", "("], ["keyword", "for"], ["for-or-select", "x"], ["keyword", "in"], " a b", ["punctuation", ";"],
+	["keyword", "do"], ["builtin", ":"], ["punctuation", ";"], ["keyword", "done"], ["punctuation", ")"],
+	["operator", [">"]], ["punctuation", "("], ["keyword", "select"], ["for-or-select", "x"], ["keyword", "in"], " a b", ["punctuation", ";"],
+	["keyword", "do"], ["builtin", ":"], ["punctuation", ";"], ["keyword", "done"], ["punctuation", ")"],
+	["variable", ["${x", ["operator", ":"], "1", ["operator", ":"], "2}"]],
+	["variable", ["${x", ["operator", ":-"], "a}"]],
+	["variable", ["${x", ["operator", ":="], "a}"]],
+	["variable", ["${x", ["operator", ":?"], "a}"]],
+	["variable", ["${x", ["operator", ":+"], "a}"]],
+	["variable", ["${", ["operator", "!"], "x}"]],
+	["variable", ["${x", ["operator", "/"], "a", ["operator", "/"], "b}"]],
+	["variable", ["${x", ["operator", "#"], "*a}"]],
+	["variable", ["${x", ["operator", "##"], "*a}"]],
+	["variable", ["${x", ["operator", "%"], "a*}"]],
+	["variable", ["${x", ["operator", "%%"], "a*}"]],
+	["variable", ["${x", ["operator", "^"], "a}"]],
+	["variable", ["${x", ["operator", "^^"], "a}"]],
+	["variable", ["${x", ["operator", ","], "a}"]],
+	["variable", ["${x", ["operator", ",,"], "a}"]]
+]
+
+----------------------------------------------------
+
+Checks for operators.
