@@ -188,8 +188,10 @@ const components = minifyComponents;
 const plugins = series(languagePlugins, minifyPlugins);
 
 
-exports.watch = watchComponentsAndPlugins;
-exports.default = parallel(components, plugins, componentsJsonToJs, build);
-exports.premerge = premerge;
-exports.linkify = linkify;
-exports.changes = changes;
+module.exports = {
+	watch: watchComponentsAndPlugins,
+	default: parallel(components, plugins, componentsJsonToJs, build),
+	premerge,
+	linkify,
+	changes
+};

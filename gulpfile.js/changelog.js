@@ -375,4 +375,7 @@ async function changes() {
 }
 
 
-module.exports = { linkify, changes };
+module.exports = {
+	linkify,
+	changes
+};

@@ -12,4 +12,7 @@ function gitChanges() {
 	});
 }
 
-exports.premerge = gitChanges;
+
+module.exports = {
+	premerge: gitChanges
+};
