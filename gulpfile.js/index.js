@@ -159,18 +159,23 @@ async function languagePlugins() {
 	];
 
 	// TODO: Use `Promise.allSettled` (https://github.com/tc39/proposal-promise-allSettled)
-	const taskResults = await Promise.all(tasks.map(task => {
-		return new Promise((resolve, reject) => {
-			const stream = src(task.plugin)
-				.pipe(replace(
-					/\/\*(\w+)_placeholder\[\*\/[\s\S]*?\/\*\]\*\//g,
-					(m, mapName) => `/*${mapName}_placeholder[*/${task.maps[mapName]}/*]*/`
-				))
-				.pipe(dest(task.plugin.substring(0, task.plugin.lastIndexOf('/'))));
+	const taskResults = await Promise.all(tasks.map(async task => {
+		try {
+			const value = await new Promise((resolve, reject) => {
+				const stream = src(task.plugin)
+					.pipe(replace(
+						/\/\*(\w+)_placeholder\[\*\/[\s\S]*?\/\*\]\*\//g,
+						(m, mapName) => `/*${mapName}_placeholder[*/${task.maps[mapName]}/*]*/`
+					))
+					.pipe(dest(task.plugin.substring(0, task.plugin.lastIndexOf('/'))));
 
-			stream.on('error', error => reject({ status: 'rejected', reason: error }));
-			stream.on('end', value => resolve({ status: 'fulfilled', value }));
-		});
+				stream.on('error', reject);
+				stream.on('end', resolve);
+			});
+			return { status: 'fulfilled', value };
+		} catch (error) {
+			return { status: 'rejected', reason: error };
+		}
 	}));
 
 	const rejectedTasks = taskResults.filter(/** @return {r is {status: 'rejected', reason: any}} */ r => r.status === 'rejected');
