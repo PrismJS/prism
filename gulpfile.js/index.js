@@ -1,3 +1,5 @@
+"use strict";
+
 const { src, dest, series, parallel, watch } = require('gulp');
 
 const rename = require('gulp-rename');
@@ -8,26 +10,11 @@ const replace = require('gulp-replace');
 const pump = require('pump');
 const util = require('util');
 const fs = require('fs');
-const simpleGit = require('simple-git');
-const shelljs = require('shelljs');
 
-const paths = {
-	componentsFile: 'components.json',
-	componentsFileJS: 'components.js',
-	components: ['components/**/*.js', '!components/index.js', '!components/**/*.min.js'],
-	main: [
-		'components/prism-core.js',
-		'components/prism-markup.js',
-		'components/prism-css.js',
-		'components/prism-clike.js',
-		'components/prism-javascript.js',
-		'plugins/file-highlight/prism-file-highlight.js'
-	],
-	plugins: ['plugins/**/*.js', '!plugins/**/*.min.js'],
-	showLanguagePlugin: 'plugins/show-language/prism-show-language.js',
-	autoloaderPlugin: 'plugins/autoloader/prism-autoloader.js',
-	changelog: 'CHANGELOG.md'
-};
+const paths = require('./paths');
+const { premerge } = require('./premerge');
+const { changes, linkify } = require('./changelog');
+
 
 const componentsPromise = new Promise((resolve, reject) => {
 	fs.readFile(paths.componentsFile, {
@@ -163,7 +150,7 @@ async function languagePlugins() {
 	const tasks = [
 		{
 			plugin: paths.showLanguagePlugin,
-			maps: { languages: jsonLanguagesMap}
+			maps: { languages: jsonLanguagesMap }
 		},
 		{
 			plugin: paths.autoloaderPlugin,
@@ -172,20 +159,24 @@ async function languagePlugins() {
 	];
 
 	// TODO: Use `Promise.allSettled` (https://github.com/tc39/proposal-promise-allSettled)
-	const taskResults = await Promise.all(tasks.map(task => new Promise((resolve, reject) => {
-		const stream = src(task.plugin)
-			.pipe(replace(
-				/\/\*(\w+)_placeholder\[\*\/[\s\S]*?\/\*\]\*\//g,
-				(m, mapName) => `/*${mapName}_placeholder[*/${task.maps[mapName]}/*]*/`
-			))
-			.pipe(dest(task.plugin.substring(0, task.plugin.lastIndexOf('/'))));
+	const taskResults = await Promise.all(tasks.map(async task => {
+		try {
+			const value = await new Promise((resolve, reject) => {
+				const stream = src(task.plugin)
+					.pipe(replace(
+						/\/\*(\w+)_placeholder\[\*\/[\s\S]*?\/\*\]\*\//g,
+						(m, mapName) => `/*${mapName}_placeholder[*/${task.maps[mapName]}/*]*/`
+					))
+					.pipe(dest(task.plugin.substring(0, task.plugin.lastIndexOf('/'))));
 
-		stream.on('error', reject);
-		stream.on('end', resolve);
-	}).then(
-		/** @type {<T>(value: T) => {status: 'fulfilled', value: T}} */ value => ({status: 'fulfilled', value}),
-		/** @type {<T>(error: T) => {status: 'rejected', reason: T}} */ error => ({status: 'rejected', reason: error}),
-	)));
+				stream.on('error', reject);
+				stream.on('end', resolve);
+			});
+			return { status: 'fulfilled', value };
+		} catch (error) {
+			return { status: 'rejected', reason: error };
+		}
+	}));
 
 	const rejectedTasks = taskResults.filter(/** @return {r is {status: 'rejected', reason: any}} */ r => r.status === 'rejected');
 	if (rejectedTasks.length > 0) {
@@ -193,80 +184,14 @@ async function languagePlugins() {
 	}
 }
 
-const ISSUE_RE = /#(\d+)(?![\d\]])/g;
-const ISSUE_SUB = '[#$1](https://github.com/PrismJS/prism/issues/$1)';
-
-function linkify(cb) {
-	return pump([
-		src(paths.changelog),
-		replace(ISSUE_RE, ISSUE_SUB),
-		replace(
-			/\[[\da-f]+(?:, *[\da-f]+)*\]/g,
-			m => m.replace(/([\da-f]{7})[\da-f]*/g, '[`$1`](https://github.com/PrismJS/prism/commit/$1)')
-		),
-		dest('.')
-	], cb);
-}
-
-const COMMIT_RE = /^([\da-z]{8})\s(.*)/;
-
-function changes(cb) {
-	const tag = shelljs.exec('git describe --abbrev=0 --tags', { silent: true }).stdout;
-	const commits = shelljs
-		.exec(
-			`git log ${tag.trim()}..HEAD --oneline`,
-			{ silent: true }
-		)
-		.stdout.split('\n')
-		.map(line => line.trim())
-		.filter(line => line !== '')
-		.map(line => {
-			const [,hash, msg] = COMMIT_RE.exec(line);
-			return `* ${msg.replace(ISSUE_RE, ISSUE_SUB)} [\`${hash}\`](https://github.com/PrismJS/prism/commit/${hash})`
-		})
-		.join('\n');
-
-	const changes = `## Unreleased
-
-${commits}
-
-### New components
-
-### Updated components
-
-### Updated plugins
-
-### Updated themes
-
-### Other changes
-
-* __Website__`;
-
-	console.log(changes);
-	cb();
-}
-
 const components = minifyComponents;
 const plugins = series(languagePlugins, minifyPlugins);
 
-function gitChanges(cb) {
-	const git = simpleGit(__dirname);
 
-	git.status((err, res) => {
-		if (err) {
-			cb(new Error(`Something went wrong!\n${err}`));
-		} else if (res.files.length > 0) {
-			console.log(res);
-			cb(new Error('There are changes in the file system. Did you forget to run gulp?'));
-		} else {
-			cb();
-		}
-	});
-}
-
-
-exports.watch = watchComponentsAndPlugins;
-exports.default = parallel(components, plugins, componentsJsonToJs, build);
-exports.premerge = gitChanges;
-exports.linkify = linkify;
-exports.changes = changes;
+module.exports = {
+	watch: watchComponentsAndPlugins,
+	default: parallel(components, plugins, componentsJsonToJs, build),
+	premerge,
+	linkify,
+	changes
+};
