@@ -91,6 +91,7 @@
     * Made `language-none` the default language ([#1858](https://github.com/PrismJS/prism/issues/1858)) [`fd691c52`](https://github.com/PrismJS/prism/commit/fd691c52)
     * Removed `parent` from the `wrap` hook's environment ([#1837](https://github.com/PrismJS/prism/issues/1837)) [`65a4e894`](https://github.com/PrismJS/prism/commit/65a4e894)
 * __Infrastructure__
+    * gulp: Split `gulpfile.js` and expanded `changes` task ([#1835](https://github.com/PrismJS/prism/issues/1835)) [`033c5ad8`](https://github.com/PrismJS/prism/commit/033c5ad8)
     * gulp: JSON formatting for partly generated files ([#1933](https://github.com/PrismJS/prism/issues/1933)) [`d4373f3a`](https://github.com/PrismJS/prism/commit/d4373f3a)
     * gulp: Use `async` functions & drop testing on Node v6 ([#1783](https://github.com/PrismJS/prism/issues/1783)) [`0dd44d53`](https://github.com/PrismJS/prism/commit/0dd44d53)
     * Tests: `lookbehind` test for patterns ([#1890](https://github.com/PrismJS/prism/issues/1890)) [`3ba786cd`](https://github.com/PrismJS/prism/commit/3ba786cd)
