@@ -55,16 +55,14 @@
 			}
 		},
 		'operator': /[=|]|<<|>>/,
-		'punctuation': [
-			{
-				pattern: /(^|[a-z\d])(?:'+|,+|[_^]?-[_^]?(?:[-+^!>._]|(?=\d))|[_^]\.?|[.!])|[{}()[\]<>^~]|\\[()[\]<>\\!]|--|__/,
-				lookbehind: true
-			}
-		],
+		'punctuation': {
+			pattern: /(^|[a-z\d])(?:'+|,+|[_^]?-[_^]?(?:[-+^!>._]|(?=\d))|[_^]\.?|[.!])|[{}()[\]<>^~]|\\[()[\]<>\\!]|--|__/,
+			lookbehind: true
+		},
 		'number': /\b\d+(?:\/\d+)?\b/
 	};
 
-	lilypond["embedded-scheme"].inside.scheme.inside["embedded-lilypond"].inside.lilypond.inside = lilypond;
+	lilypond['embedded-scheme'].inside['scheme'].inside['embedded-lilypond'].inside['lilypond'].inside = lilypond;
 
 	Prism.languages.ly = lilypond;
 
