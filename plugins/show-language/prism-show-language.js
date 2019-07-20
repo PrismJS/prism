@@ -77,6 +77,8 @@
 		"latex": "LaTeX",
 		"tex": "TeX",
 		"context": "ConTeXt",
+		"lilypond": "LilyPond",
+		"ly": "LilyPond",
 		"emacs": "Lisp",
 		"elisp": "Lisp",
 		"emacs-lisp": "Lisp",
