@@ -9,6 +9,8 @@ div.innerHTML += `<p></p>`;
 
 svg`<path fill="#fff" d="M55.37 ..."/>`
 
+html`<img src="${host}${path}" alt="\${foo}"/>`
+
 ----------------------------------------------------
 
 [
@@ -135,6 +137,47 @@ svg`<path fill="#fff" d="M55.37 ..."/>`
 					["punctuation", "="],
 					["punctuation", "\""],
 					"M55.37 ...",
+					["punctuation", "\""]
+				]],
+				["punctuation", "/>"]
+			]]
+		]],
+		["template-punctuation", "`"]
+	]],
+	"\r\n\r\nhtml",
+	["template-string", [
+		["template-punctuation", "`"],
+		["html", [
+			["tag", [
+				["tag", [
+					["punctuation", "<"],
+					"img"
+				]],
+				["attr-name", [
+					"src"
+				]],
+				["attr-value", [
+					["punctuation", "="],
+					["punctuation", "\""],
+					["interpolation", [
+						["interpolation-punctuation", "${"],
+						"host",
+						["interpolation-punctuation", "}"]
+					]],
+					["interpolation", [
+						["interpolation-punctuation", "${"],
+						"path",
+						["interpolation-punctuation", "}"]
+					]],
+					["punctuation", "\""]
+				]],
+				["attr-name", [
+					"alt"
+				]],
+				["attr-value", [
+					["punctuation", "="],
+					["punctuation", "\""],
+					"\\${foo}",
 					["punctuation", "\""]
 				]],
 				["punctuation", "/>"]

@@ -3,6 +3,7 @@
 bar`
 `40+2=${40+2}`
 `${foo()}`
+`\${foo}${bar}`
 "foo `a` `b` `c` `d` bar"
 "test // test" `template`
 
@@ -41,6 +42,16 @@ console.log(`This is ${it.with({ type: false })}!`)
 			["function", "foo"],
 			["punctuation", "("],
 			["punctuation", ")"],
+			["interpolation-punctuation", "}"]
+		]],
+		["template-punctuation", "`"]
+	]],
+	["template-string", [
+		["template-punctuation", "`"],
+		["string", "\\${foo}"],
+		["interpolation", [
+			["interpolation-punctuation", "${"],
+			"bar",
 			["interpolation-punctuation", "}"]
 		]],
 		["template-punctuation", "`"]

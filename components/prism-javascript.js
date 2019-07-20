@@ -60,59 +60,29 @@ Prism.languages.insertBefore('javascript', 'keyword', {
 });
 
 Prism.languages.insertBefore('javascript', 'string', {
-	'template-string': []
-});
-
-Object.defineProperty(Prism.languages.javascript['template-string'], 'createTemplate', {
-
-	/**
-	 * Creates a new pattern to match a template string with a special tag.
-	 *
-	 * @param {string} tokenName The the name of the token matching the content inside a template. E.g. `string`.
-	 * @param {string} [tag] The regex pattern to match the tag.
-	 * @param {string} [language] The id of the language inside the template string.
-	 *
-	 * If defined, a `language-xxxx` alias for the given language id will also be added.
-	 * @returns {object} The new token.
-	 * @example
-	 * createTemplate('style', /\bcss/.source, 'css');
-	 * createTemplate('string'); // template strings without tags
-	 */
-	value: function createTemplate(tokenName, tag, language) {
-		var patternObj = {
-			pattern: RegExp((tag ? '((?:' + tag + ')\\s*)' : '') + /`(?:\\[\s\S]|\${(?:[^{}]|{(?:[^{}]|{[^}]*})*})+}|[^\\`])*`/.source),
-			lookbehind: !!tag,
-			greedy: true,
-			inside: {
-				'template-punctuation': {
-					pattern: /^`|`$/,
-					alias: 'string'
-				},
-				'interpolation': {
-					pattern: /\${(?:[^{}]|{(?:[^{}]|{[^}]*})*})+}/,
-					inside: {
-						'interpolation-punctuation': {
-							pattern: /^\${|}$/,
-							alias: 'punctuation'
-						},
-						rest: Prism.languages.javascript
-					}
+	'template-string': {
+		pattern: /`(?:\\[\s\S]|\${(?:[^{}]|{(?:[^{}]|{[^}]*})*})+}|(?!\${)[^\\`])*`/,
+		greedy: true,
+		inside: {
+			'template-punctuation': {
+				pattern: /^`|`$/,
+				alias: 'string'
+			},
+			'interpolation': {
+				pattern: /((?:^|[^\\])(?:\\{2})*)\${(?:[^{}]|{(?:[^{}]|{[^}]*})*})+}/,
+				lookbehind: true,
+				inside: {
+					'interpolation-punctuation': {
+						pattern: /^\${|}$/,
+						alias: 'punctuation'
+					},
+					rest: Prism.languages.javascript
 				}
-			}
-		};
-
-		patternObj.inside[tokenName] = !language ? /[\s\S]+/ : {
-			pattern: /[\s\S]+/,
-			alias: 'language-' + language,
-			inside: Prism.languages[language]
-		};
-
-		return patternObj;
+			},
+			'string': /[\s\S]+/
+		}
 	}
-
 });
-
-Prism.languages.javascript['template-string'].push(Prism.languages.javascript['template-string'].createTemplate('string'));
 
 if (Prism.languages.markup) {
 	Prism.languages.markup.tag.addInlined('script', 'javascript');
