@@ -133,6 +133,7 @@
 		"dotnet": "csharp",
 		"coffee": "coffeescript",
 		"jinja2": "django",
+		"dns-zone": "dns-zone-file",
 		"dockerfile": "docker",
 		"gamemakerlanguage": "gml",
 		"hs": "haskell",
