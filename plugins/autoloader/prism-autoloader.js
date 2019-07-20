@@ -55,6 +55,7 @@
 		"json5": "json",
 		"kotlin": "clike",
 		"less": "css",
+		"lilypond": "scheme",
 		"markdown": "markup",
 		"markup-templating": "markup",
 		"n4js": "javascript",
@@ -133,17 +134,20 @@
 		"dotnet": "csharp",
 		"coffee": "coffeescript",
 		"jinja2": "django",
+		"dns-zone": "dns-zone-file",
 		"dockerfile": "docker",
 		"gamemakerlanguage": "gml",
 		"hs": "haskell",
 		"tex": "latex",
 		"context": "latex",
+		"ly": "lilypond",
 		"emacs": "lisp",
 		"elisp": "lisp",
 		"emacs-lisp": "lisp",
 		"md": "markdown",
 		"n4jsd": "n4js",
 		"objectpascal": "pascal",
+		"px": "pcaxis",
 		"py": "python",
 		"rb": "ruby",
 		"ts": "typescript",
@@ -153,6 +157,13 @@
 		"yml": "yaml"
 	}/*]*/;
 
+	/**
+	 * @typedef LangDataItem
+	 * @property {{ success?: function, error?: function }[]} callbacks
+	 * @property {boolean} [error]
+	 * @property {boolean} [loading]
+	 */
+	/** @type {Object<string, LangDataItem>} */
 	var lang_data = {};
 
 	var ignored_language = 'none';
@@ -216,11 +227,6 @@
 			lang = lang_aliases[lang];
 		}
 
-		var data = lang_data[lang];
-		if (!data) {
-			data = lang_data[lang] = {};
-		}
-
 		// Look for additional dependencies defined on the <code> or <pre> tags
 		var deps = elt.getAttribute('data-dependencies');
 		if (!deps && elt.parentNode && elt.parentNode.tagName.toLowerCase() === 'pre') {
@@ -282,20 +288,14 @@
 		var load = function () {
 			var data = lang_data[lang];
 			if (!data) {
-				data = lang_data[lang] = {};
+				data = lang_data[lang] = {
+					callbacks: []
+				};
 			}
-			if (success) {
-				if (!data.success_callbacks) {
-					data.success_callbacks = [];
-				}
-				data.success_callbacks.push(success);
-			}
-			if (error) {
-				if (!data.error_callbacks) {
-					data.error_callbacks = [];
-				}
-				data.error_callbacks.push(error);
-			}
+			data.callbacks.push({
+				success: success,
+				error: error
+			});
 
 			if (!force && Prism.languages[lang]) {
 				languageSuccess(lang);
@@ -329,10 +329,14 @@
 	 * @param {string} lang
 	 */
 	var languageSuccess = function (lang) {
-		if (lang_data[lang] && lang_data[lang].success_callbacks && lang_data[lang].success_callbacks.length) {
-			lang_data[lang].success_callbacks.forEach(function (f) {
-				f(lang);
-			});
+		if (lang_data[lang] ) {
+			var callbacks = lang_data[lang].callbacks;
+			while (callbacks.length) {
+				var callback = callbacks.shift().success;
+				if (callback) {
+					callback();
+				}
+			}
 		}
 	};
 
@@ -341,10 +345,14 @@
 	 * @param {string} lang
 	 */
 	var languageError = function (lang) {
-		if (lang_data[lang] && lang_data[lang].error_callbacks && lang_data[lang].error_callbacks.length) {
-			lang_data[lang].error_callbacks.forEach(function (f) {
-				f(lang);
-			});
+		if (lang_data[lang]) {
+			var callbacks = lang_data[lang].callbacks;
+			while (callbacks.length) {
+				var callback = callbacks.shift().error;
+				if (callback) {
+					callback();
+				}
+			}
 		}
 	};
 

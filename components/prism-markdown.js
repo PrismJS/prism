@@ -1,7 +1,7 @@
 (function (Prism) {
 
 	// Allow only one line break
-	var inner = /\\.|[^\\\n\r_]|(?:\r?\n|\r)(?!\r?\n|\r)/.source;
+	var inner = /(?:\\.|[^\\\n\r]|(?:\r?\n|\r)(?!\r?\n|\r))/.source;
 
 	/**
 	 * This function is intended for the creation of the bold or italic pattern.
@@ -164,7 +164,7 @@
 			// __strong__
 
 			// allow one nested instance of italic text using the same delimiter
-			pattern: createInline(/__(?:<inner>|_(?:<inner>)+_)+__/.source, true),
+			pattern: createInline(/__(?:(?!_)<inner>|_(?:(?!_)<inner>)+_)+__/.source, true),
 			lookbehind: true,
 			greedy: true,
 			inside: {
@@ -181,7 +181,7 @@
 			// _em_
 
 			// allow one nested instance of bold text using the same delimiter
-			pattern: createInline(/_(?:<inner>|__(?:<inner>)+__)+_/.source, true),
+			pattern: createInline(/_(?:(?!_)<inner>|__(?:(?!_)<inner>)+__)+_/.source, true),
 			lookbehind: true,
 			greedy: true,
 			inside: {
@@ -196,9 +196,7 @@
 		'strike': {
 			// ~~strike through~~
 			// ~strike~
-
-			// extra _ is because the inner pattern intentionally doesn't include it because of bold and italic
-			pattern: createInline(/(~~?)(?:<inner>|_)+?\2/.source, false),
+			pattern: createInline(/(~~?)(?:(?!~)<inner>)+?\2/.source, false),
 			lookbehind: true,
 			greedy: true,
 			inside: {
@@ -212,12 +210,20 @@
 		},
 		'url': {
 			// [example](http://example.com "Optional title")
+			// [example][id]
 			// [example] [id]
-			pattern: /!?\[[^\]]+\](?:\([^\s)]+(?:[\t ]+"(?:\\.|[^"\\])*")?\)| ?\[[^\]\n]*\])/,
+			pattern: createInline(/!?\[(?:(?!\])<inner>)+\](?:\([^\s)]+(?:[\t ]+"(?:\\.|[^"\\])*")?\)| ?\[(?:(?!\])<inner>)+\])/.source, false),
+			lookbehind: true,
+			greedy: true,
 			inside: {
 				'variable': {
-					pattern: /(!?\[)[^\]]+(?=\]$)/,
+					pattern: /(\[)[^\]]+(?=\]$)/,
 					lookbehind: true
+				},
+				'content': {
+					pattern: /(^!?\[)[^\]]+(?=\])/,
+					lookbehind: true,
+					inside: {} // see below
 				},
 				'string': {
 					pattern: /"(?:\\.|[^"\\])*"(?=\)$)/
@@ -226,7 +232,7 @@
 		}
 	});
 
-	['bold', 'italic', 'strike'].forEach(function (token) {
+	['url', 'bold', 'italic', 'strike'].forEach(function (token) {
 		['url', 'bold', 'italic', 'strike'].forEach(function (inside) {
 			if (token !== inside) {
 				Prism.languages.markdown[token].inside.content.inside[inside] = Prism.languages.markdown[inside];

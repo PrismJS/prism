@@ -1,0 +1,76 @@
+FOO=0;
+FOO[en]=1;
+FOO("param")=0;
+FOO("param1","param2")=0;
+FOO-BAR[en]("param1","param2")=1;
+
+----------------------------------------------------
+
+[
+	["keyword", [
+		["keyword", "FOO"]
+	]],
+	["operator", "="],
+	["number", "0"],
+	["punctuation", ";"],
+	["keyword", [
+		["keyword", "FOO"],
+		["language", [
+			["punctuation", "["],
+			["property", "en"],
+			["punctuation", "]"]
+		]]
+	]],
+	["operator", "="],
+	["number", "1"],
+	["punctuation", ";"],
+
+	["keyword", [
+		["keyword", "FOO"],
+		["sub-key", [
+			["punctuation", "("],
+			["parameter", "\"param\""],
+			["punctuation", ")"]
+		]]
+	]],
+	["operator", "="],
+	["number", "0"],
+	["punctuation", ";"],
+
+	["keyword", [
+		["keyword", "FOO"],
+		["sub-key", [
+			["punctuation", "("],
+			["parameter", "\"param1\""],
+			["punctuation", ","],
+			["parameter", "\"param2\""],
+			["punctuation", ")"]
+		]]
+	]],
+	["operator", "="],
+	["number", "0"],
+	["punctuation", ";"],
+
+	["keyword", [
+		["keyword", "FOO-BAR"],
+		["language", [
+			["punctuation", "["],
+			["property", "en"],
+			["punctuation", "]"]
+		]],
+		["sub-key", [
+			["punctuation", "("],
+			["parameter", "\"param1\""],
+			["punctuation", ","],
+			["parameter", "\"param2\""],
+			["punctuation", ")"]
+		]]
+	]],
+	["operator", "="],
+	["number", "1"],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for keywords.

@@ -84,7 +84,7 @@ code[class*="language-"] {
 .token.entity,
 .token.url,
 .language-css .token.string,
-.toke.variable,
+.token.variable,
 .token.inserted {
 	color: yellowgreen;
 }
