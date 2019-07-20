@@ -6,9 +6,11 @@
 
 * __DNS zone file__ ([#1961](https://github.com/PrismJS/prism/issues/1961)) [`bb84f98c`](https://github.com/PrismJS/prism/commit/bb84f98c)
 * __JQ__ ([#1896](https://github.com/PrismJS/prism/issues/1896)) [`73d964be`](https://github.com/PrismJS/prism/commit/73d964be)
+* __LilyPond__ ([#1967](https://github.com/PrismJS/prism/issues/1967)) [`5d992fc5`](https://github.com/PrismJS/prism/commit/5d992fc5)
 * __PascaLIGO__ ([#1947](https://github.com/PrismJS/prism/issues/1947)) [`858201c7`](https://github.com/PrismJS/prism/commit/858201c7)
 * __PC-Axis__ ([#1940](https://github.com/PrismJS/prism/issues/1940)) [`473f7fbd`](https://github.com/PrismJS/prism/commit/473f7fbd)
 * __Shell session__ ([#1892](https://github.com/PrismJS/prism/issues/1892)) [`96044979`](https://github.com/PrismJS/prism/commit/96044979)
+* __Splunk SPL__ ([#1962](https://github.com/PrismJS/prism/issues/1962)) [`c93c066b`](https://github.com/PrismJS/prism/commit/c93c066b)
 
 ### Updated components
 
@@ -43,15 +45,20 @@
 * __Markdown__
     * Improved URLs ([#1955](https://github.com/PrismJS/prism/issues/1955)) [`b9ec6fd8`](https://github.com/PrismJS/prism/commit/b9ec6fd8)
     * Added support for nested bold and italic expressions ([#1897](https://github.com/PrismJS/prism/issues/1897)) [`11903721`](https://github.com/PrismJS/prism/commit/11903721)
+    * Added support for tables ([#1848](https://github.com/PrismJS/prism/issues/1848)) [`cedb8e84`](https://github.com/PrismJS/prism/commit/cedb8e84)
 * __Perl__
     * Added `return` keyword ([#1943](https://github.com/PrismJS/prism/issues/1943)) [`2f39de97`](https://github.com/PrismJS/prism/commit/2f39de97)
 * __Protocol Buffers__
     * Full support for PB2 and PB3 syntax + numerous other improvements ([#1948](https://github.com/PrismJS/prism/issues/1948)) [`de10bd1d`](https://github.com/PrismJS/prism/commit/de10bd1d)
+* __reST (reStructuredText)__
+    * Fixed exponentially backtracking pattern ([#1986](https://github.com/PrismJS/prism/issues/1986)) [`8b5d67a3`](https://github.com/PrismJS/prism/commit/8b5d67a3)
 * __Rust__
     * Added `async` and `await` keywords. ([#1882](https://github.com/PrismJS/prism/issues/1882)) [`4faa3314`](https://github.com/PrismJS/prism/commit/4faa3314)
     * Improved punctuation and operators ([#1839](https://github.com/PrismJS/prism/issues/1839)) [`a42b1557`](https://github.com/PrismJS/prism/commit/a42b1557)
 * __Sass (Scss)__
     * Fixed exponential url pattern ([#1938](https://github.com/PrismJS/prism/issues/1938)) [`4b6b6e8b`](https://github.com/PrismJS/prism/commit/4b6b6e8b)
+* __Scheme__
+    * Added support for rational number literals ([#1964](https://github.com/PrismJS/prism/issues/1964)) [`e8811d22`](https://github.com/PrismJS/prism/commit/e8811d22)
 * __TOML__
     * Minor improvements ([#1917](https://github.com/PrismJS/prism/issues/1917)) [`3e181241`](https://github.com/PrismJS/prism/commit/3e181241)
 * __Visual Basic__
