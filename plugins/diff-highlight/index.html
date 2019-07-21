@@ -39,31 +39,35 @@
 
 		<p>Using <code>class="language-diff"</code>:</p>
 
-		<pre><code class="language-diff"> function add(a, b) {
--    return a - b;
-+    return a + b;
- }</code></pre>
+		<pre><code class="language-diff">@@ -4,6 +4,5 @@
+-    let foo = bar.baz([1, 2, 3]);
+-    foo = foo + 1;
++    const foo = bar.baz([1, 2, 3]) + 1;
+     console.log(`foo: ${foo}`);</code></pre>
 
 		<p>Using <code>class="language-diff diff-highlight"</code>:</p>
 
-		<pre><code class="language-diff diff-highlight"> function add(a, b) {
--    return a - b;
-+    return a + b;
- }</code></pre>
+		<pre><code class="language-diff diff-highlight">@@ -4,6 +4,5 @@
+-    let foo = bar.baz([1, 2, 3]);
+-    foo = foo + 1;
++    const foo = bar.baz([1, 2, 3]) + 1;
+     console.log(`foo: ${foo}`);</code></pre>
 
 		<p>Using <code>class="language-diff-javascript"</code>:</p>
 
-		<pre><code class="language-diff-javascript"> function add(a, b) {
--    return a - b;
-+    return a + b;
- }</code></pre>
+		<pre><code class="language-diff-javascript">@@ -4,6 +4,5 @@
+-    let foo = bar.baz([1, 2, 3]);
+-    foo = foo + 1;
++    const foo = bar.baz([1, 2, 3]) + 1;
+     console.log(`foo: ${foo}`);</code></pre>
 
 		<p>Using <code>class="language-diff-javascript diff-highlight"</code>:</p>
 
-		<pre><code class="language-diff-javascript diff-highlight"> function add(a, b) {
--    return a - b;
-+    return a + b;
- }</code></pre>
+		<pre><code class="language-diff-javascript diff-highlight">@@ -4,6 +4,5 @@
+-    let foo = bar.baz([1, 2, 3]);
+-    foo = foo + 1;
++    const foo = bar.baz([1, 2, 3]) + 1;
+     console.log(`foo: ${foo}`);</code></pre>
 
 	</section>
 
