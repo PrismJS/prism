@@ -16,7 +16,7 @@
 	 *
 	 * @param {string} language The language id of the embedded language. E.g. `markdown`.
 	 * @param {string} tag The regex pattern to match the tag.
-	 * @returns {object}
+	 * @returns {object | undefined}
 	 * @example
 	 * createTemplate('css', /\bcss/.source);
 	 */
@@ -65,7 +65,7 @@
 
 		// vanilla template string
 		templateString
-	].filter(function (x) { return x; });
+	].filter(Boolean);
 
 
 	/**
@@ -143,7 +143,7 @@
 	 *    tokenized as two tokens by the grammar of the embedded language.
 	 *
 	 * @param {string} code
-	 * @param {any} grammar
+	 * @param {object} grammar
 	 * @param {string} language
 	 * @returns {Token}
 	 */
@@ -168,10 +168,6 @@
 				return token;
 			} else {
 				var interpolationExpression = token.content;
-				if (typeof interpolationExpression !== 'string') {
-					// this should not happen
-					throw new Error();
-				}
 
 				var placeholder;
 				while (code.indexOf(placeholder = getPlaceholder(placeholderCounter++, language)) !== -1) { }
@@ -194,11 +190,12 @@
 		/**
 		 *
 		 * @param {(Token|string)[]} tokens
+		 * @returns {void}
 		 */
 		function walkTokens(tokens) {
 			for (var i = 0; i < tokens.length; i++) {
 				if (placeholderCounter >= placeholders.length) {
-					return tokens;
+					return;
 				}
 
 				var token = tokens[i];
@@ -221,7 +218,9 @@
 						}
 						replacement.push(middle);
 						if (after) {
-							replacement.push.apply(replacement, walkTokens([after]));
+							var afterTokens = [after];
+							walkTokens(afterTokens);
+							replacement.push.apply(replacement, afterTokens);
 						}
 
 						if (typeof token === 'string') {
@@ -240,8 +239,6 @@
 					}
 				}
 			}
-
-			return tokens
 		}
 		walkTokens(embeddedTokens);
 
@@ -249,7 +246,9 @@
 	}
 
 	/**
-	 * A list of languages which support the
+	 * The languages for which JS templating will handle tagged template literals.
+	 *
+	 * JS templating isn't active for only JavaScript but also related languages like TypeScript, JSX, and TSX.
 	 */
 	var supportedLanguages = {
 		'javascript': true,
@@ -265,10 +264,12 @@
 		}
 
 		/**
+		 * Finds and tokenizes all template strings with an embedded languages.
 		 *
 		 * @param {(Token | string)[]} tokens
+		 * @returns {void}
 		 */
-		function walkTokens(tokens) {
+		function findTemplateStrings(tokens) {
 			for (var i = 0, l = tokens.length; i < l; i++) {
 				var token = tokens[i];
 
@@ -279,7 +280,7 @@
 				var content = token.content;
 				if (!Array.isArray(content)) {
 					if (typeof content !== 'string') {
-						walkTokens([content]);
+						findTemplateStrings([content]);
 					}
 					continue;
 				}
@@ -302,12 +303,8 @@
 
 					var embedded = content[1];
 					if (content.length === 3 && typeof embedded !== 'string' && embedded.type === 'embedded-code') {
-						var code = embedded.content;
-
-						if (typeof code !== 'string') {
-							// something went wrong. Maybe some plugin interfered?
-							continue;
-						}
+						// get string content
+						var code = stringContent(embedded);
 
 						var alias = embedded.alias;
 						var language = Array.isArray(alias) ? alias[0] : alias;
@@ -321,12 +318,29 @@
 						content[1] = tokenizeEmbedded(code, grammar, language);
 					}
 				} else {
-					walkTokens(content);
+					findTemplateStrings(content);
 				}
 			}
 		}
 
-		walkTokens(env.tokens);
+		findTemplateStrings(env.tokens);
 	});
+
+
+	/**
+	 * Returns the string content of a token or token stream.
+	 *
+	 * @param {string | Token | (string | Token)[]} value
+	 * @returns {string}
+	 */
+	function stringContent(value) {
+		if (typeof value === 'string') {
+			return value;
+		} else if (Array.isArray(value)) {
+			return value.map(stringContent).join('');
+		} else {
+			return stringContent(value.content);
+		}
+	}
 
 }(Prism));
