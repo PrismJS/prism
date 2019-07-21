@@ -1078,6 +1078,11 @@
 			"owner": "mAAdhaTTah",
 			"require": "toolbar",
 			"noCSS": true
+		},
+		"diff-highlight": {
+			"title": "Diff Highlight",
+			"owner": "RunDevelopment",
+			"require": "diff"
 		}
 	}
 }
