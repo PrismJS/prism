@@ -158,19 +158,10 @@ function update(id) {
 
 			// the current language might be an extension of a language
 			// so to be safe, we explicitly add a dependency to the current language
-			$$('code', container).forEach(/** @param {HTMLElement} code */function (code) {
-				var dependencies = code.getAttribute('data-dependencies');
-				if (!dependencies) {
-					var parent = code.parentElement;
-					if (parent) {
-						dependencies = parent.getAttribute('data-dependencies');
-					}
-				}
-
-				dependencies = (dependencies || '').trim();
+			$$('pre', container).forEach(/** @param {HTMLElement} code */function (pre) {
+				var dependencies = (pre.getAttribute('data-dependencies') || '').trim();
 				dependencies = dependencies ? dependencies + ',' + id : id;
-
-				code.setAttribute('data-dependencies', dependencies);
+				pre.setAttribute('data-dependencies', dependencies);
 			});
 
 			Prism.highlightAllUnder(container);
