@@ -468,8 +468,8 @@
 		},
 		"js-templates": {
 			"title": "JS Templates",
+			"require": "javascript",
 			"peerDependencies": [
-				"javascript",
 				"css",
 				"css-extras",
 				"graphql",
