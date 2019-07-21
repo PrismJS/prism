@@ -168,17 +168,27 @@
 
 	var ignored_language = 'none';
 
-	var script = document.getElementsByTagName('script');
-	script = script[script.length - 1];
+	var scripts = document.getElementsByTagName('script');
+	var script = scripts[scripts.length - 1];
 	var languages_path = 'components/';
-	if(script.hasAttribute('data-autoloader-path')) {
-		var path = script.getAttribute('data-autoloader-path').trim();
-		if(path.length > 0 && !/^[a-z]+:\/\//i.test(script.src)) {
-			languages_path = path.replace(/\/?$/, '/');
+
+	var autoloaderFile = /\bplugins\/autoloader\/prism-autoloader\.(?:min\.)js$/i;
+	var prismFile = /[\w-]+\.(?:min\.)js$/i;
+
+	if (script.hasAttribute('data-autoloader-path')) {
+		// data-autoloader-path is set, so just use it
+		languages_path = script.getAttribute('data-autoloader-path').trim().replace(/\/?$/, '/');
+	} else {
+		var src = script.src;
+		if (autoloaderFile.test(src)) {
+			// the script is the original autoloader script in the usual Prism project structure
+			languages_path = src.replace(autoloaderFile, 'components/');
+		} else if (prismFile.test(src)) {
+			// the script is part of a bundle like a custom prism.js from the download page
+			languages_path = src.replace(prismFile, 'components/');
 		}
-	} else if (/[\w-]+\.js$/.test(script.src)) {
-		languages_path = script.src.replace(/[\w-]+\.js$/, 'components/');
 	}
+
 	var config = Prism.plugins.autoloader = {
 		languages_path: languages_path,
 		use_minified: true
@@ -229,8 +239,9 @@
 
 		// Look for additional dependencies defined on the <code> or <pre> tags
 		var deps = elt.getAttribute('data-dependencies');
-		if (!deps && elt.parentNode && elt.parentNode.tagName.toLowerCase() === 'pre') {
-			deps = elt.parentNode.getAttribute('data-dependencies');
+		var parent = elt.parentElement;
+		if (!deps && parent && parent.tagName.toLowerCase() === 'pre') {
+			deps = parent.getAttribute('data-dependencies');
 		}
 
 		if (deps) {
