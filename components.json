@@ -240,6 +240,11 @@
 			"alias": "jinja2",
 			"owner": "romanvm"
 		},
+		"dns-zone-file": {
+			"title": "DNS zone file",
+			"owner": "RunDevelopment",
+			"alias": "dns-zone"
+		},
 		"docker": {
 			"title": "Docker",
 			"alias": "dockerfile",
@@ -502,6 +507,12 @@
 			"require": "css",
 			"owner": "Golmote"
 		},
+		"lilypond": {
+			"title": "LilyPond",
+			"require": "scheme",
+			"alias": "ly",
+			"owner": "RunDevelopment"
+		},
 		"liquid": {
 			"title": "Liquid",
 			"owner": "cinhtau"
@@ -631,6 +642,15 @@
 				"objectpascal": "Object Pascal"
 			},
 			"owner": "Golmote"
+		},
+		"pascaligo": {
+			"title": "Pascaligo",
+			"owner": "DefinitelyNotAGoat"
+		},
+		"pcaxis": {
+			"title": "PC-Axis",
+			"alias": "px",
+			"owner": "RunDevelopment"
 		},
 		"perl": {
 			"title": "Perl",
@@ -818,14 +838,18 @@
 			"require": "markup-templating",
 			"owner": "Golmote"
 		},
-		"sql": {
-			"title": "SQL",
-			"owner": "multipetros"
-		},
 		"soy": {
 			"title": "Soy (Closure Template)",
 			"require": "markup-templating",
 			"owner": "Golmote"
+		},
+		"splunk-spl": {
+			"title": "Splunk SPL",
+			"owner": "RunDevelopment"
+		},
+		"sql": {
+			"title": "SQL",
+			"owner": "multipetros"
 		},
 		"stylus": {
 			"title": "Stylus",

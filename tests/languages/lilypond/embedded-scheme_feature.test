@@ -1,0 +1,86 @@
+#(define foo)
+
+#(define-music-function (parser location notes) (ly:music?) #{
+	% Yes! You can embed LilyPond in Scheme.
+	\override Score.Stem.beamlet-max-length-proportion = #'(0.5 . 0.5)
+#})
+
+##t
+
+#"s t r i n g"
+
+----------------------------------------------------
+
+[
+	["embedded-scheme", [
+		["punctuation", "#"],
+		["scheme", [
+			["punctuation", "("],
+			["keyword", "define"],
+			" foo",
+			["punctuation", ")"]
+		]]
+	]],
+
+	["embedded-scheme", [
+		["punctuation", "#"],
+		["scheme", [
+			["punctuation", "("],
+			["function", "define-music-function"],
+			["punctuation", "("],
+			["function", "parser"],
+			" location notes",
+			["punctuation", ")"],
+			["punctuation", "("],
+			["function", "ly:music?"],
+			["punctuation", ")"],
+			["embedded-lilypond", [
+				["punctuation", "#{"],
+				["lilypond", [
+					["comment", "% Yes! You can embed LilyPond in Scheme."],
+					["keyword", [
+						["punctuation", "\\"],
+						"override"
+					]],
+					" Score",
+					["punctuation", "."],
+					"Stem",
+					["punctuation", "."],
+					"beamlet-max-length-proportion ",
+					["operator", "="],
+					["embedded-scheme", [
+						["punctuation", "#"],
+						["scheme", [
+							["punctuation", "'"],
+							["punctuation", "("],
+							["number", "0.5"],
+							" . ",
+							["number", "0.5"],
+							["punctuation", ")"]
+						]]
+					]]
+				]],
+				["punctuation", "#}"]
+			]],
+			["punctuation", ")"]
+		]]
+	]],
+
+	["embedded-scheme", [
+		["punctuation", "#"],
+		["scheme", [
+			["boolean", "#t"]
+		]]
+	]],
+
+	["embedded-scheme", [
+		["punctuation", "#"],
+		["scheme", [
+			["string", "\"s t r i n g\""]
+		]]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for Scheme code embedded in LilyPond.
