@@ -466,6 +466,18 @@
 			],
 			"owner": "RunDevelopment"
 		},
+		"js-templates": {
+			"title": "JS Templates",
+			"require": "javascript",
+			"peerDependencies": [
+				"css",
+				"css-extras",
+				"graphql",
+				"markdown",
+				"markup"
+			],
+			"owner": "RunDevelopment"
+		},
 		"json": {
 			"title": "JSON",
 			"owner": "CupOfTea696"
@@ -750,7 +762,8 @@
 			"require": ["markup", "javascript"],
 			"peerDependencies": [
 				"jsdoc",
-				"js-extras"
+				"js-extras",
+				"js-templates"
 			],
 			"owner": "vkbansal"
 		},
@@ -892,6 +905,7 @@
 		"typescript": {
 			"title": "TypeScript",
 			"require": "javascript",
+			"peerDependencies": "js-templates",
 			"alias": "ts",
 			"owner": "vkbansal"
 		},

@@ -1,0 +1,157 @@
+// styled-jsx
+css`a:hover { color: blue; }`;
+css.global`a:hover { color: blue; }`;
+css.resolve`a:hover { color: blue; }`;
+
+// styled-components
+const Button = styled.button`
+	color: blue;
+	background: red;
+`;
+styled.button.attr({})`color: blue;`;
+styled(Component)`color: blue;`;
+styled(Component).attr({})`color: blue;`;
+
+----------------------------------------------------
+
+[
+	["comment", "// styled-jsx"],
+
+	"\r\ncss",
+	["template-string", [
+		["template-punctuation", "`"],
+		["css", [
+			["selector", "a:hover"],
+			["punctuation", "{"],
+			["property", "color"],
+			["punctuation", ":"],
+			" blue",
+			["punctuation", ";"],
+			["punctuation", "}"]
+		]],
+		["template-punctuation", "`"]
+	]],
+	["punctuation", ";"],
+
+	"\r\ncss",
+	["punctuation", "."],
+	"global",
+	["template-string", [
+		["template-punctuation", "`"],
+		["css", [
+			["selector", "a:hover"],
+			["punctuation", "{"],
+			["property", "color"],
+			["punctuation", ":"],
+			" blue",
+			["punctuation", ";"],
+			["punctuation", "}"]
+		]],
+		["template-punctuation", "`"]
+	]],
+	["punctuation", ";"],
+
+	"\r\ncss",
+	["punctuation", "."],
+	"resolve",
+	["template-string", [
+		["template-punctuation", "`"],
+		["css", [
+			["selector", "a:hover"],
+			["punctuation", "{"],
+			["property", "color"],
+			["punctuation", ":"],
+			" blue",
+			["punctuation", ";"],
+			["punctuation", "}"]
+		]],
+		["template-punctuation", "`"]
+	]],
+	["punctuation", ";"],
+
+	["comment", "// styled-components"],
+	["keyword", "const"],
+	" Button ",
+	["operator", "="],
+	" styled",
+	["punctuation", "."],
+	"button",
+	["template-string", [
+		["template-punctuation", "`"],
+		["css", [
+			["property", "color"],
+			["punctuation", ":"],
+			" blue",
+			["punctuation", ";"],
+			["property", "background"],
+			["punctuation", ":"],
+			" red",
+			["punctuation", ";"]
+		]],
+		["template-punctuation", "`"]
+	]],
+	["punctuation", ";"],
+
+	"\r\nstyled",
+	["punctuation", "."],
+	"button",
+	["punctuation", "."],
+	["function", "attr"],
+	["punctuation", "("],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ")"],
+	["template-string", [
+		["template-punctuation", "`"],
+		["css", [
+			["property", "color"],
+			["punctuation", ":"],
+			" blue",
+			["punctuation", ";"]
+		]],
+		["template-punctuation", "`"]
+	]],
+	["punctuation", ";"],
+
+	["function", "styled"],
+	["punctuation", "("],
+	"Component",
+	["punctuation", ")"],
+	["template-string", [
+		["template-punctuation", "`"],
+		["css", [
+			["property", "color"],
+			["punctuation", ":"],
+			" blue",
+			["punctuation", ";"]
+		]],
+		["template-punctuation", "`"]
+	]],
+	["punctuation", ";"],
+
+	["function", "styled"],
+	["punctuation", "("],
+	"Component",
+	["punctuation", ")"],
+	["punctuation", "."],
+	["function", "attr"],
+	["punctuation", "("],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ")"],
+	["template-string", [
+		["template-punctuation", "`"],
+		["css", [
+			["property", "color"],
+			["punctuation", ":"],
+			" blue",
+			["punctuation", ";"]
+		]],
+		["template-punctuation", "`"]
+	]],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for tagged template literals containing CSS code.
