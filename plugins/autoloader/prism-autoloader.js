@@ -51,6 +51,7 @@
 			"javadoclike"
 		],
 		"js-extras": "javascript",
+		"js-templates": "javascript",
 		"jsonp": "json",
 		"json5": "json",
 		"kotlin": "clike",

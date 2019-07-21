@@ -71,6 +71,7 @@
 		"jq": "JQ",
 		"jsdoc": "JSDoc",
 		"js-extras": "JS Extras",
+		"js-templates": "JS Templates",
 		"json": "JSON",
 		"jsonp": "JSONP",
 		"json5": "JSON5",
