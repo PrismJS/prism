@@ -12,6 +12,8 @@
 	/**
 	 * Creates a new pattern to match a template string with a special tag.
 	 *
+	 * This will return `undefined` if there is no grammar with the given language id.
+	 *
 	 * @param {string} language The language id of the embedded language. E.g. `markdown`.
 	 * @param {string} tag The regex pattern to match the tag.
 	 * @returns {object}
@@ -19,6 +21,10 @@
 	 * createTemplate('css', /\bcss/.source);
 	 */
 	function createTemplate(language, tag) {
+		if (!Prism.languages[language]) {
+			return undefined;
+		}
+
 		return {
 			pattern: RegExp('((?:' + tag + ')\\s*)' + templateLiteralPattern),
 			lookbehind: true,
@@ -59,7 +65,7 @@
 
 		// vanilla template string
 		templateString
-	];
+	].filter(function (x) { return x; });
 
 
 	/**

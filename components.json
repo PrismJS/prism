@@ -468,15 +468,13 @@
 		},
 		"js-templates": {
 			"title": "JS Templates",
-			"require": [
+			"peerDependencies": [
 				"javascript",
 				"css",
+				"css-extras",
 				"graphql",
 				"markdown",
 				"markup"
-			],
-			"peerDependencies": [
-				"css-extras"
 			],
 			"owner": "RunDevelopment"
 		},
