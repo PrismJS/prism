@@ -1,6 +1,6 @@
 # Prism Changelog
 
-## 1.17.0 (TBD)
+## 1.17.0 (2019-07-21)
 
 ### New components
 
