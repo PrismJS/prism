@@ -1,5 +1,12 @@
 # Prism Changelog
 
+## 1.17.1 (2019-07-21)
+
+### Other
+
+* __Infrastructure__
+    * Add .DS_Store to npmignore [`c2229ec2`](https://github.com/PrismJS/prism/commit/c2229ec2)
+
 ## 1.17.0 (2019-07-21)
 
 ### New components
