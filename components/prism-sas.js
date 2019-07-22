@@ -1,3 +1,16 @@
+(function (Prism) {
+
+	numberpattern = /\b(?:\d[\da-f]*x|\d+(?:\.\d+)?(?:e[+-]?\d+)?)\b/i;
+	numericconstant = {
+	    pattern: /(["'])(?:\1\1|\\.|(!?\1)[^\\])\1[bx]/,
+	    alias: 'number'
+	};
+
+	string = {
+		pattern: /(["'])(?:\1\1|(?!\1)[\s\S])*\1/,
+		greedy: true
+	};
+
 Prism.languages.sas = {
 	'datalines': {
 		pattern: /^\s*(?:(?:data)?lines|cards);[\s\S]+?(?:\r?\n|\r);/im,
@@ -26,11 +39,9 @@ Prism.languages.sas = {
 					},
 					'operator': /=/,
 					'punctuation': /;/,
-					'number': /\b(?:[\da-f]+x(?!\w+)|\d+(?:\.\d+)?(?:e[+-]?\d+)?)/,
-					'string': {
-						pattern: /(["'])(?:\1\1|(?!\1)[\s\S])*\1/,
-						greedy: true
-					}
+					'number': numberpattern,
+					'numeric-constant': numericconstant,
+					'string': string
 				}
 			},
 			'step': {
@@ -41,15 +52,15 @@ Prism.languages.sas = {
 		}
 	},
 	'macrodeclaration': {
-		pattern: /((^|\n)(%macro)((\s)+([\w\s\S]+?))+);/im,
+		pattern: /((^|\n)(%macro)((\s)+([\s\S]+?))+);/im,
 		inside: {
 			keyword: /%macro/im,
 		}
 	},
 	'macroend': {
-		pattern: /((^|\n)(%mend)((\s)+([\w\s\S]+?))+);/im,
+		pattern: /^%mend[\s\S]+?;/i,
 		inside: {
-			keyword: /%mend/im,
+			keyword: /%mend/i,
 		}
 	},
 	/*%_zscore(headcir, _lhc, _mhc, _shc, headcz, headcpct, _Fheadcz); */
@@ -58,7 +69,7 @@ Prism.languages.sas = {
 		alias: 'keyword'
 	},
 	'input': {
-		pattern: /(\b)+(?:input(?!\=))\s+(?:\w|\$|\&|\s|\-|\.|\/|\*)+;/im,
+		pattern: /\binput\s+[-\w\s/*.$&]+;/i,
 		inside:{
 			'input':{
 				alias: 'keyword',
@@ -71,7 +82,8 @@ Prism.languages.sas = {
 				},
 				/\/\*[\s\S]+?\*\//
 			],
-			'number': /\b(?:[\da-f]+x(?!\w+)|\d+(?:\.\d+)?(?:e[+-]?\d+)?)/i,
+			'number': numberpattern,
+			'numeric-constant': numericconstant
 		}
 	},
 	'comment': [
@@ -99,11 +111,9 @@ Prism.languages.sas = {
 				pattern: /([A-Z]+)/im,
 				alias: 'keyword'
 			},
-			'number': /\b(?:[\da-f]+x(?!\w+)|\d+(?:\.\d+)?(?:e[+-]?\d+)?)/,
-			'string': {
-				pattern: /(["'])(?:\1\1|(?!\1)[\s\S])*\1/,
-				greedy: true
-			}
+			'number': numberpattern,
+			'numeric-constant': numericconstant,
+			'string': string
 		},
 	},
 	'function': {
@@ -126,25 +136,23 @@ Prism.languages.sas = {
 		}
 	},
 	'altformat': {
-		pattern: /(\b)(?:((format)|(put))(?:\s)+)([\w\'])+((\s)+([\$\.\w]+))+;/im,
+		pattern: /\b(?:(?:format|put)\s+)[\w']+(\s+[$.\w]+)+;/i,
 		inside: {
-			'keyword': /(format|put)/im,
+			'keyword': /(format|put)/i,
 			'format': {
-					pattern: /(\w|\$)+\.\d?/im,
+					pattern: /(\w|\$)+\.\d?/,
 					alias: 'number',
 				},
 				'punctuation': /;/
 		}
 	},
+	'numeric-constant': numericconstant,
 	'datetime': {
 		// '1jan2013'd, '9:25:19pm't, '18jan2003:9:27:05am'dt
-		pattern: /'[^']+'(?:dt?|t)\b/i,
+		pattern: /(["'])(?:.+)\1(?:dt?|t)/,
 		alias: 'number'
 	},
-	'string': {
-		pattern: /(["'])(?:\1\1|(?!\1)[\s\S])*\1/,
-		greedy: true
-	},
+	'string': string,
 	'step': {
 		pattern: /(^|\n)(?:proc\s\w+|quit|run|data(?!\=))\b/i,
 		alias: 'keyword'
@@ -159,7 +167,8 @@ Prism.languages.sas = {
 		alias: 'operator'
 	},
 	// Decimal (1.2e23), hexadecimal (0c1x)
-	'number': /\b(?:[\da-f]+x(?!\w+)|\d+(?:\.\d+)?(?:e[+-]?\d+)?)/i,
+	'number': numberpattern,
 	'operator': /\*\*?|\|\|?|!!?|¦¦?|<[>=]?|>[<=]?|[-+\/=&]|[~¬^]=?/i,
 	'punctuation': /[$%@.(){}\[\];,\\]/
 };
+}(Prism));

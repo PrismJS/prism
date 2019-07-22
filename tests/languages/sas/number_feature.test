@@ -13,7 +13,7 @@ BadFacex
 	["number", "3.2e10"],
 	["number", "0.4e-8"],
 	["number", "1.4E+2"],
-	["number", "BadFacex"]
+	"\r\nBadFacex"
 ]
 
 ----------------------------------------------------
