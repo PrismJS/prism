@@ -49,6 +49,7 @@
     * Added TeX and ConTeXt alias ([#1915](https://github.com/PrismJS/prism/issues/1915)) [`5ad58a75`](https://github.com/PrismJS/prism/commit/5ad58a75)
     * Added support for $$ equations [`6f53f749`](https://github.com/PrismJS/prism/commit/6f53f749)
 * __Markdown__
+    * Markdown: Added support for auto-loading code block languages ([#1898](https://github.com/PrismJS/prism/issues/1898)) [`05823e88`](https://github.com/PrismJS/prism/commit/05823e88)
     * Improved URLs ([#1955](https://github.com/PrismJS/prism/issues/1955)) [`b9ec6fd8`](https://github.com/PrismJS/prism/commit/b9ec6fd8)
     * Added support for nested bold and italic expressions ([#1897](https://github.com/PrismJS/prism/issues/1897)) [`11903721`](https://github.com/PrismJS/prism/commit/11903721)
     * Added support for tables ([#1848](https://github.com/PrismJS/prism/issues/1848)) [`cedb8e84`](https://github.com/PrismJS/prism/commit/cedb8e84)
