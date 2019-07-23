@@ -2,7 +2,7 @@
 *.iml
 
 hide-*.js
-
+.DS_Store
 CNAME
 examples/
 img/

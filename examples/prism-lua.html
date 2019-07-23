@@ -77,13 +77,3 @@ function song(n)
     io.write(line1(i), line2(i), line3(i - 1), "\n")
   end
 end</code></pre>
-
-<h2>Known failures</h2>
-<p>There are certain edge cases where Prism will fail.
-	There are always such cases in every regex-based syntax highlighter.
-	However, Prism dares to be open and honest about them.
-	If a failure is listed here, it doesn’t mean it will never be fixed. This is more of a “known bugs” list, just with a certain type of bug.
-</p>
-
-<h3>Functions with a single string parameter not using parentheses are not highlighted</h3>
-<pre><code>foobar"param";</code></pre>
