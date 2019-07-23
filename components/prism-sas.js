@@ -13,7 +13,7 @@
 
 	comment = [
 		{
-			pattern: /(^\s*|;\s*)\*(.|[\s\S]])*?;/m,
+			pattern: /(^\s*|;\s*)\*[^;]*;/m,
 			lookbehind: true
 		},
 		/\/\*[\s\S]+?\*\//
@@ -99,7 +99,7 @@ Prism.languages.sas = {
 		inside: {
 			'options': {
 				alias: 'keyword',
-				pattern: /(^options)/i,
+				pattern: /^options/i,
 			},
 			'equals': {
 				pattern: /=/,
@@ -137,7 +137,7 @@ Prism.languages.sas = {
 		}
 	},
 	'altformat': {
-		pattern: /\b(?:(?:format|put)\s+)[\w']+(\s+[$.\w]+)+;/i,
+		pattern: /\b(?:format|put)\s+[\w']+(?:\s+[$.\w]+)+;/i,
 		inside: {
 			'keyword': /(format|put)/i,
 			'format': {

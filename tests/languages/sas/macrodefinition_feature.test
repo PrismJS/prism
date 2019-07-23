@@ -1,0 +1,44 @@
+%macro prnt(var,sum);
+  proc print data=srhigh;
+    var &var;
+    sum &sum;
+  run;
+%mend prnt;
+
+----------------------------------------------------
+
+[
+  [
+    "macro-declaration",
+    [
+      ["keyword", "%macro"],
+      " prnt(var,sum);"
+    ]
+  ],
+  ["step", "proc print"],
+  ["keyword", "data"],
+  ["operator", "="],
+  "srhigh",
+  ["punctuation", ";"],
+  ["keyword", "var"],
+  ["operator", "&"],
+  "var",
+  ["punctuation", ";"],
+  ["keyword", "sum"],
+  ["operator", "&"],
+  "sum",
+  ["punctuation", ";"],
+  ["step", "run"],
+  ["punctuation", ";"],
+  [
+    "macro-end",
+    [
+      ["keyword", "%mend"],
+      " prnt;"
+    ]
+  ]
+]
+
+----------------------------------------------------
+
+Checks that options captures "options" and correctly tags following text.
