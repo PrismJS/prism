@@ -1,58 +1,58 @@
 proc sql;
 select *
-   from proclib.paylist;
+ from proclib.paylist;
 proc print;
 proc sql outobs=10;
-   title 'Proclib.Payroll';
-   select * from proclib.payroll;
-   title;
+ title 'Proclib.Payroll';
+ select * from proclib.payroll;
+ title;
 ----------------------------------------------------
 
 [
-  ["procSQL",
-    [
-      ["fullStep",
-        [
-        ["step", "proc sql"],
-        ["punctuation", ";"]
-        ]
-      ],
-      ["keyword", "select"],
-      ["operator", "*"],
-      ["keyword", "from"],
-      " proclib",
-      ["punctuation",  "."],
-      "paylist",
-      ["punctuation", ";"],
-      ["step", "proc print"],
-      ["punctuation", ";"]
-    ]
-  ],
-  ["procSQL",
-    [
-      ["fullStep",
-        [
-          ["step", "proc sql"],
-          ["argument", "outobs"],
-          ["operator", "="],
-          ["number", "10"],
-          ["punctuation", ";"]
-        ]
-      ],
-      "\r\n   title ",
-      ["string", "'Proclib.Payroll'"],
-      ["punctuation", ";"],
-      ["keyword", "select"],
-      ["operator", "*"],
-      ["keyword", "from"],
-      " proclib",
-      ["punctuation", "."],
-      "payroll",
-      ["punctuation", ";"],
-      "\r\n   title",
-      ["punctuation", ";"]
-  ]
-]
+	["procSQL",
+		[
+			["fullStep",
+				[
+				["step", "proc sql"],
+				["punctuation", ";"]
+				]
+			],
+			["keyword", "select"],
+			["operator", "*"],
+			["keyword", "from"],
+			" proclib",
+			["punctuation", "."],
+			"paylist",
+			["punctuation", ";"],
+			["step", "proc print"],
+			["punctuation", ";"]
+		]
+	],
+	["procSQL",
+		[
+			["fullStep",
+				[
+					["step", "proc sql"],
+					["argument", "outobs"],
+					["operator", "="],
+					["number", "10"],
+					["punctuation", ";"]
+				]
+			],
+			"\r\n title ",
+			["string", "'Proclib.Payroll'"],
+			["punctuation", ";"],
+			["keyword", "select"],
+			["operator", "*"],
+			["keyword", "from"],
+			" proclib",
+			["punctuation", "."],
+			"payroll",
+			["punctuation", ";"],
+			"\r\n title",
+			["punctuation", ";"]
+		]
+	]
 ]
 ----------------------------------------------------
 

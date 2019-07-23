@@ -12,7 +12,7 @@ y2axisopts
 [
 	["keyword", "action"], ["keyword", "after"], ["keyword", "analysis"],
 	["keyword", "and"], ["keyword", "array"], ["keyword", "barchart"],
-	 ["keyword", "barwidth"], ["keyword", "begingraph"], ["keyword", "by"],
+	["keyword", "barwidth"], ["keyword", "begingraph"], ["keyword", "by"],
 	["keyword", "cas"], ["keyword", "cbarline"], ["keyword", "cfill"],
 	["keyword", "close"], ["keyword", "column"], ["keyword", "compute"],
 	["keyword", "computed"], ["keyword", "contains"], ["keyword", "data"],

@@ -27,7 +27,6 @@ ge le in not
 	["operator", "^"], ["operator", "^="],
 	["operator", "="], ["operator", "/"], ["operator", "+"],
 	["operator", "-"], ["operator", "&"],
-
 	["operator-keyword", "eq"], ["operator-keyword", "ne"], ["operator-keyword", "gt"], ["operator-keyword", "lt"],
 	["operator-keyword", "ge"], ["operator-keyword", "le"], ["operator-keyword", "in"], ["operator-keyword", "not"]
 ]

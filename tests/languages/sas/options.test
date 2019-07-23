@@ -1,32 +1,47 @@
 options nodate linesize=72;
 options validmemname=extend validvarname=any;
+options insert=(fmtsearch="c:/myformats");
 ----------------------------------------------------
 
 [
-  [
-    "options",
-    [
-      ["options", "options"],
-      ["arg","nodate"],
-      ["arg", "linesize"],
-      ["equals", "="],
-      ["number", "72"],
-      ";"
-    ]
-  ],
-  [
-    "options",
-    [
-      ["options", "options"],
-      ["arg", "validmemname"],
-      ["equals", "="],
-      ["arg", "extend"],
-      ["arg", "validvarname"],
-      ["equals", "="],
-      ["arg", "any"],
-      ";"
-    ]
-  ]
+	[
+		"options",
+		[
+			["options", "options"],
+			["arg","nodate"],
+			["arg", "linesize"],
+			["equals", "="],
+			["number", "72"],
+			["punctuation", ";"]
+		]
+	],
+	[
+		"options",
+		[
+			["options", "options"],
+			["arg", "validmemname"],
+			["equals", "="],
+			["argValue", "extend"],
+			["arg", "validvarname"],
+			["equals", "="],
+			["argValue", "any"],
+			["punctuation", ";"]
+		]
+	],
+	[
+		"options",
+		[
+			["options", "options"],
+			["arg", "insert"],
+			["equals", "="],
+			["punctuation", "("],
+			["arg", "fmtsearch"],
+			["equals", "="],
+			["string", "\"c:/myformats\""],
+			["punctuation", ")"],
+			["punctuation", ";"]
+		]
+	]
 ]
 
 ----------------------------------------------------

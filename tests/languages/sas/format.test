@@ -4,30 +4,30 @@ format=dollar12.;
 ----------------------------------------------------
 
 [
-  ["altformat",
-    [
-      ["keyword", "put"],
-      " x ",
-      ["format", "$hex16."],
-      ["punctuation", ";"]
-    ]
-  ],
-  ["altformat",
-    [
-      ["keyword","format"],
-      " salary ",
-      ["format", "uscurrency."],
-      ["punctuation", ";"]
-    ]
-  ],
-  ["format",
-    [
-      ["keyword", "format"],
-      ["equals", "="],
-      ["format", "dollar12."]
-    ]
-  ],
-  ["punctuation", ";"]
+	["altformat",
+		[
+			["keyword", "put"],
+			" x ",
+			["format", "$hex16."],
+			["punctuation", ";"]
+		]
+	],
+	["altformat",
+		[
+			["keyword","format"],
+			" salary ",
+			["format", "uscurrency."],
+			["punctuation", ";"]
+		]
+	],
+	["format",
+		[
+			["keyword", "format"],
+			["equals", "="],
+			["format", "dollar12."]
+		]
+	],
+	["punctuation", ";"]
 ]
 
 ----------------------------------------------------
