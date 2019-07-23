@@ -1,9 +1,10 @@
 %macro _zscore(var,l, m, s, z, p, f);
+
 ----------------------------------------------------
 
 [
   [
-    "macrodeclaration",
+    "macro-declaration",
     [
       ["keyword", "%macro"],
       " _zscore(var,l, m, s, z, p, f);"
