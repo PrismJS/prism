@@ -6,20 +6,20 @@ quit;
 ----------------------------------------------------
 
 [
-  ["step", "data"],
-  " carsurvey",
-  ["punctuation", ";"],
-  ["step", "proc format"],
-  ["punctuation", ";"],
-  ["step", "proc sort"],
-  ["keyword", "data"],
-  ["operator", "="],
-  "allacty",
-  ["punctuation", ";"],
-  ["step", "run"],
-  ["punctuation", ";"],
-  ["step", "quit"],
-  ["punctuation", ";"]
+	["step", "data"],
+	" carsurvey",
+	["punctuation", ";"],
+	["step", "proc format"],
+	["punctuation", ";"],
+	["step", "proc sort"],
+	["keyword", "data"],
+	["operator", "="],
+	"allacty",
+	["punctuation", ";"],
+	["step", "run"],
+	["punctuation", ";"],
+	["step", "quit"],
+	["punctuation", ";"]
 ]
 
 ----------------------------------------------------

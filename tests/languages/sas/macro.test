@@ -3,18 +3,18 @@
 ----------------------------------------------------
 
 [
-  ["macro", "%_zscore"],
-  ["punctuation", "("],
-  "length",
-  ["punctuation", ")"],
-  ["punctuation", ";"],
-  ["macro", "%_test"],
-  ["punctuation", "("],
-  "string",
-  ["punctuation", ","],
-  ["number", "0.3"],
-  ["punctuation", ")"],
-  ["punctuation", ";"]
+	["macro", "%_zscore"],
+	["punctuation", "("],
+	"length",
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["macro", "%_test"],
+	["punctuation", "("],
+	"string",
+	["punctuation", ","],
+	["number", "0.3"],
+	["punctuation", ")"],
+	["punctuation", ";"]
 ]
 
 ----------------------------------------------------
