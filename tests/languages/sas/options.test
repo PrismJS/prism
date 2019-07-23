@@ -11,10 +11,10 @@ options insert=(fmtsearch="c:/myformats");
 			["arg","nodate"],
 			["arg", "linesize"],
 			["equals", "="],
-			["number", "72"],
-			["punctuation", ";"]
+			["number", "72"]
 		]
 	],
+	["punctuation", ";"],
 	[
 		"options",
 		[
@@ -24,10 +24,10 @@ options insert=(fmtsearch="c:/myformats");
 			["argValue", "extend"],
 			["arg", "validvarname"],
 			["equals", "="],
-			["argValue", "any"],
-			["punctuation", ";"]
+			["argValue", "any"]
 		]
 	],
+	["punctuation", ";"],
 	[
 		"options",
 		[
@@ -38,10 +38,10 @@ options insert=(fmtsearch="c:/myformats");
 			["arg", "fmtsearch"],
 			["equals", "="],
 			["string", "\"c:/myformats\""],
-			["punctuation", ")"],
-			["punctuation", ";"]
+			["punctuation", ")"]
 		]
-	]
+	],
+	["punctuation", ";"]
 ]
 
 ----------------------------------------------------

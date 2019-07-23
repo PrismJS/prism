@@ -67,17 +67,15 @@
 			alias: 'keyword'
 		},
 		'macro-declaration': {
-			pattern: /^%macro[\s\S]+?;/im,
+			pattern: /^%macro[\s\S]+?(?=;)/im,
 			inside: {
 				keyword: /%macro/i,
-				'punctuation': /;/
 			}
 		},
 		'macro-end': {
-			pattern: /^%mend[\s\S]+?;/im,
+			pattern: /^%mend[\s\S]+?(?=;)/im,
 			inside: {
 				keyword: /%mend/i,
-				'punctuation': /;/
 			}
 		},
 		/*%_zscore(headcir, _lhc, _mhc, _shc, headcz, headcpct, _Fheadcz); */
@@ -99,7 +97,7 @@
 		},
 		'comment': comment,
 		'options': {
-			pattern: /^options[-'"|/\\<>*+=:()\w\s]*;/im,
+			pattern: /^options[-'"|/\\<>*+=:()\w\s]*(?=;)/im,
 			inside: {
 				'options': {
 					alias: 'keyword',
@@ -138,19 +136,18 @@
 						},
 				'format': {
 						pattern: /(\w|\$\d)+\.\d?/i,
-						alias: 'number',
+						alias: 'number'
 					}
 			}
 		},
 		'altformat': {
-			pattern: /\b(?:format|put)\s+[\w']+(?:\s+[$.\w]+)+;/i,
+			pattern: /\b(?:format|put)\s+[\w']+(?:\s+[$.\w]+)+(?=;)/i,
 			inside: {
 				'keyword': /(format|put)/i,
 				'format': {
 						pattern: /(\w|\$)+\.\d?/,
-						alias: 'number',
-					},
-					'punctuation': /;/
+						alias: 'number'
+					}
 			}
 		},
 		'numeric-constant': numericConstant,

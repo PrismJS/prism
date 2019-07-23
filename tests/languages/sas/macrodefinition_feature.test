@@ -23,10 +23,10 @@
 		"macro-declaration",
 		[
 			["keyword", "%macro"],
-			" prnt(var,sum)",
-			["punctuation", ";"]
+			" prnt(var,sum)"
 		]
 	],
+	["punctuation", ";"],
 	["step", "proc print"],
 	["keyword", "data"],
 	["operator", "="],
@@ -46,18 +46,18 @@
 		"macro-end",
 		[
 			["keyword", "%mend"],
-			" prnt",
-			["punctuation", ";"]
+			" prnt"
 		]
 	],
+	["punctuation", ";"],
 	[
 		"macro-declaration",
 		[
 			["keyword", "%macro"],
-			" printz/parmbuff",
-			["punctuation", ";"]
+			" printz/parmbuff"
 		]
 	],
+	["punctuation", ";"],
 	["macro-keyword", "%let"],
 	" num",
 	["operator", "="],
@@ -120,10 +120,10 @@
 		"macro-end",
 		[
 			["keyword", "%mend"],
-			" printz",
-			["punctuation", ";"]
+			" printz"
 		]
-	]
+	],
+	["punctuation", ";"]
 ]
 
 ----------------------------------------------------

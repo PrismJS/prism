@@ -8,18 +8,18 @@ format=dollar12.;
 		[
 			["keyword", "put"],
 			" x ",
-			["format", "$hex16."],
-			["punctuation", ";"]
+			["format", "$hex16."]
 		]
 	],
+	["punctuation", ";"],
 	["altformat",
 		[
 			["keyword","format"],
 			" salary ",
-			["format", "uscurrency."],
-			["punctuation", ";"]
+			["format", "uscurrency."]
 		]
 	],
+	["punctuation", ";"],
 	["format",
 		[
 			["keyword", "format"],
