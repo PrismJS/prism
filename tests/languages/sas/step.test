@@ -9,16 +9,16 @@ quit;
   ["step", "data"],
   " carsurvey",
   ["punctuation", ";"],
-  ["step", "\nproc format"],
+  ["step", "proc format"],
   ["punctuation", ";"],
-  ["step", "\nproc sort"],
+  ["step", "proc sort"],
   ["keyword", "data"],
   ["operator", "="],
   "allacty",
   ["punctuation", ";"],
-  ["step", "\nrun"],
+  ["step", "run"],
   ["punctuation", ";"],
-  ["step", "\nquit"],
+  ["step", "quit"],
   ["punctuation", ";"]
 ]
 

@@ -6,9 +6,14 @@
 	    alias: 'number'
 	};
 
+	step = {
+		pattern: /(?:proc\s+\w+|quit|run|data(?!\=))\b/i,
+		alias: 'keyword'
+	};
+
 	comment = [
 		{
-			pattern: /(^\s*|;\s*)\*(.|[\r\n])*?;/m,
+			pattern: /(^\s*|;\s*)\*(.|[\s\S]])*?;/m,
 			lookbehind: true
 		},
 		/\/\*[\s\S]+?\*\//
@@ -32,15 +37,12 @@ Prism.languages.sas = {
 		}
 	},
 	'procSQL': {
-		pattern: /(^|\n)(?:proc\s+sql(?:\s+[\w|=]+)?);([\s\S]+(?:\r?\n|\r)(?=((?:proc\s\w+|quit|run|data(?!\=));))((?:proc\s\w+|quit|run|data(?!\=));)|(?:\r?\n|\r)[\s\S]+;)/im,
+		pattern: /(^|\n)(?:proc\s+sql(?:\s+[\w|=]+)?);([\s\S]+(?:\r?\n|\r)(?=((?:proc\s+\w+|quit|run|data(?!\=));))((?:proc\s+\w+|quit|run|data(?!\=));)|(?:\r?\n|\r)[\s\S]+;)/im,
 		inside: {
 			'fullStep': {
 				pattern: /(^|\n)(?:proc\s+sql(?:\s+[\w|=]+)?);/i,
 				inside: {
-					'step': {
-						pattern: /(?:proc\s\w+|quit|run|data(?!\=))\b/i,
-						alias: 'keyword'
-					},
+					'step': step,
 					'argument': {
 						pattern: /\w+(?==)/,
 						alias: 'keyword'
@@ -52,12 +54,15 @@ Prism.languages.sas = {
 					'string': string
 				}
 			},
-			'step': {
-				pattern: /(?:proc\s\w+|quit|run|data(?!\=))\b/i,
-				alias: 'keyword'
-			},
+			'step': step,
 			rest: Prism.languages.sql
 		}
+	},
+	/*Special keywords within macros*/
+	'macro-keyword': {
+		pattern: /((^|[\s])=?)%(?:ABORT|BQUOTE|BY|CMS|COPY|DISPLAY|DO|ELSE|END|EVAL|GLOBAL|GO|GOTO|IF|INC|INCLUDE|INDEX|INPUT|KTRIM|LENGTH|LET|LIST|LOCAL|NRBQUOTE|NRQUOTE|NRSTR|PUT|QKTRIM|QSCAN|QSUBSTR|QSYSFUNC|QUOTE|QUPCASE|RETURN|RUN|SCAN|STR|SUBSTR|SUPERQ|SYMDEL|SYMGLOBL|SYMLOCAL|SYMEXIST|SYSCALL|SYSEVALF|SYSEXEC|SYSFUNC|SYSGET|SYSRPUT|THEN|TO|TSO|UNQUOTE|UNTIL|UPCASE|WHILE|WINDOW)\b/i,
+		lookbehind: true,
+		alias: 'keyword'
 	},
 	'macro-declaration': {
 		pattern: /^%macro[\s\S]+?;/im,
@@ -66,7 +71,7 @@ Prism.languages.sas = {
 		}
 	},
 	'macro-end': {
-		pattern: /^%mend[\s\S]+?;/i,
+		pattern: /^%mend[\s\S]+?;/im,
 		inside: {
 			keyword: /%mend/i,
 		}
@@ -113,7 +118,7 @@ Prism.languages.sas = {
 		},
 	},
 	'function': {
-		pattern: /\w+(?=\()/,
+		pattern: /%?\w+(?=\()/,
 		alias: 'keyword'
 	},
 	'format': {
@@ -149,22 +154,13 @@ Prism.languages.sas = {
 		alias: 'number'
 	},
 	'string': string,
-	'step': {
-		pattern: /(^|\n)(?:proc\s\w+|quit|run|data(?!\=))\b/i,
-		alias: 'keyword'
-	},
-	/*Special keywords within macros*/
-	'macro-keyword': {
-		pattern: /((^|[\s])=?)%(?:ABORT|BQUOTE|BY|CMS|COPY|DISPLAY|DO|ELSE|END|EVAL|GLOBAL|GO|GOTO|IF|INC|INCLUDE|INDEX|INPUT|KTRIM|LENGTH|LET|LIST|LOCAL|NRBQUOTE|NRQUOTE|NRSTR|PUT|QKTRIM|QSCAN|QSUBSTR|QSYSFUNC|QUOTE|QUPCASE|RETURN|RUN|SCAN|STR|SUBSTR|SUPERQ|SYMDEL|SYMGLOBL|SYMLOCAL|SYMEXIST|SYSCALL|SYSEVALF|SYSEXEC|SYSFUNC|SYSGET|SYSRPUT|THEN|TO|TSO|UNQUOTE|UNTIL|UPCASE|WHILE|WINDOW)\b/i,
-		lookbehind: true,
-		alias: 'keyword'
-	},
+	'step': step,
 	'keyword': {
-		pattern: /((^|[\s])=?)(?:action|after|analysis|and|array|barchart|barwidth|begingraph|by|cas|cbarline|cfill|close|column|compute(d)?|contains|data(?=\=)|define|document|do\s+over|do|dol|drop|dul|end|entryTitle|else|endcomp|fill(attrs)?|filename|group(by)?|headline|headskip|histogram|if|infile|keep|label|layout|legendlabel|length|libname|merge|midpoints|name|noobs|nowd|ods|or|out(put)?|overlay|ranexp|rannor|rbreak|retain|set|session|sessref|statgraph|sum|summarize|table|temp|then\sdo|then|title|to|var|where|xaxisopts|yaxisopts|y2axisopts)\b/i,
+		pattern: /((^|[\s])=?)(?:action|after|analysis|and|array|barchart|barwidth|begingraph|by|cas|cbarline|cfill|close|column|compute(d)?|contains|data(?=\=)|define|document|do\s+over|do|dol|drop|dul|end|entryTitle|else|endcomp|fill(attrs)?|filename|group(by)?|headline|headskip|histogram|if|infile|keep|label|layout|legendlabel|length|libname|merge|midpoints|name|noobs|nowd|ods|or|out(put)?|overlay|plot|ranexp|rannor|rbreak|retain|set|session|sessref|statgraph|sum|summarize|table|temp|then\sdo|then|title|to|var|where|xaxisopts|yaxisopts|y2axisopts)\b/i,
 		lookbehind: true,
 	},
 	// In SAS Studio syntax highlighting, these operators are styled like keywords
-	'specialOperator':{
+	'operator-keyword':{
 		pattern: /\b(?:eq|ne|gt|lt|ge|le|in|not)\b/i,
 		alias: 'operator'
 	},
