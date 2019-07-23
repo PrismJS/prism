@@ -90,7 +90,7 @@ Prism.languages.sas = {
 	},
 	'comment': comment,
 	'options': {
-		pattern: /(^options)(?:((?:\s+?)(?:\r?\n|\r)*[\'\-|\"\/\\<>\*\w+=\(\)]*)*;)/im,
+		pattern: /^options[-'"|/\\<>*+=()\w\s]*;/im,
 		inside: {
 			'options': {
 				alias: 'keyword',
