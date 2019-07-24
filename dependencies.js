@@ -4,12 +4,7 @@ var getLoad = (function () {
 
 	/**
 	 * @typedef {Object<string, ComponentCategory>} Components
-	 * @typedef {{ meta: Meta & Object<string, any> } & Object<string, ComponentEntry>} ComponentCategory
-	 *
-	 * @typedef Meta
-	 * @property {string} path
-	 * @property {string} [link]
-	 * @property {string} [example]
+	 * @typedef {{ meta: Object<string, any> } & Object<string, ComponentEntry>} ComponentCategory
 	 *
 	 * @typedef ComponentEntry
 	 * @property {string} title The title of the component.
@@ -237,6 +232,8 @@ var getLoad = (function () {
 	 * If a component is in this list, then all of its requirements will also be assumed to be in the list.
 	 */
 	function getLoad(components, load, loaded) {
+		debugger;
+
 		var loadedSet = toSet(loaded || []);
 		var loadSet = toSet(load);
 
@@ -246,8 +243,8 @@ var getLoad = (function () {
 		function addRequirements(id) {
 			var require = toArray(getEntry(components, id).require);
 			require.forEach(function (reqId) {
-				if (!(reqId in loadSet)) {
-					loadedSet[reqId] = true;
+				if (!(reqId in loadedSet)) {
+					loadSet[reqId] = true;
 					addRequirements(reqId);
 				}
 			});
@@ -273,7 +270,7 @@ var getLoad = (function () {
 			for (var loadId in loadAdditions) {
 				var modify = toArray(getEntry(components, loadId).modify);
 				modify.forEach(function (modId) {
-					if (!(modId in loadedSet)) {
+					if (modId in loadedSet) {
 						newIds[modId] = true;
 					}
 				});
@@ -323,6 +320,42 @@ var getLoad = (function () {
 			}
 		};
 	}
+
+	/** @type {Components} */
+	window._comp = {
+		languages: {
+			"meta": {
+				"path": ""
+			},
+			"markup": {
+				"title": "Markup",
+				"alias": ["html", "xml", "svg", "mathml"],
+				"aliasTitles": {
+					"html": "HTML",
+					"xml": "XML",
+					"svg": "SVG",
+					"mathml": "MathML"
+				},
+			},
+			"css": {
+				"title": "CSS",
+				"modify": "markup"
+			},
+			"clike": {
+				"title": "C-like",
+			},
+			"javascript": {
+				"title": "JavaScript",
+				"require": "clike",
+				"modify": "markup",
+				"alias": "js",
+			},
+		}
+	};
+
+	console.dir(getLoad(_comp, ['javascript']));
+	console.dir(getLoad(_comp, ['javascript'], ['clike', 'markup', 'css']));
+
 
 	return getLoad;
 
