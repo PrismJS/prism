@@ -2,80 +2,15 @@
 
 const { assert } = require('chai');
 const PrismLoader = require('./helper/prism-loader');
+const { BFS, parseRegex } = require('./helper/util');
 const { languages } = require('../components');
-const { RegExpParser, visitRegExpAST } = require('regexpp');
+const { visitRegExpAST } = require('regexpp');
 
 
 /**
- * @typedef {import("regexpp/ast").Pattern} Pattern
- * @typedef {import("regexpp/ast").Flags} Flags
- * @typedef {{ pattern: Pattern, flags: Flags }} LiteralAST
+ * @typedef {import("./helper/util").LiteralAST} LiteralAST
+ * @typedef {import("regexpp/ast").Element} Element
  */
-
-
-/**
- * Performs a breadth-first search on the given start element.
- *
- * @param {any} start
- * @param {(path: { key: string, value: any }[]) => void} callback
- */
-function BFS(start, callback) {
-	const visited = new Set();
-	/** @type {{ key: string, value: any }[][]} */
-	let toVisit = [
-		[{ key: null, value: start }]
-	];
-
-	callback(toVisit[0]);
-
-	while (toVisit.length > 0) {
-		/** @type {{ key: string, value: any }[][]} */
-		const newToVisit = [];
-
-		for (const path of toVisit) {
-			const obj = path[path.length - 1].value;
-			if (!visited.has(obj)) {
-				visited.add(obj);
-
-				for (const key in obj) {
-					const value = obj[key];
-
-					path.push({ key, value });
-					callback(path);
-
-					if (Array.isArray(value) || Object.prototype.toString.call(value) == '[object Object]') {
-						newToVisit.push([...path]);
-					}
-
-					path.pop();
-				}
-			}
-		}
-
-		toVisit = newToVisit;
-	}
-}
-
-const parser = new RegExpParser({ strict: false, ecmaVersion: 5 });
-/** @type {Map<string, LiteralAST>} */
-const astCache = new Map();
-/**
- * Returns the AST of a given pattern.
- *
- * @param {RegExp} regex
- * @returns {LiteralAST}
- */
-function parseRegex(regex) {
-	const key = regex.toString();
-	let literal = astCache.get(key);
-	if (literal === undefined) {
-		const flags = parser.parseFlags(regex.flags, undefined);
-		const pattern = parser.parsePattern(regex.source, undefined, undefined, flags.unicode);
-		literal = { pattern, flags };
-		astCache.set(key, literal);
-	}
-	return literal;
-}
 
 
 for (const lang in languages) {
@@ -105,6 +40,9 @@ function testPatterns(Prism) {
 	/**
 	 * Invokes the given function on every pattern in `Prism.languages`.
 	 *
+	 * _Note:_ This will aggregate all errors thrown by the given callback and throw an aggregated error at the end
+	 * of the iteration. You can also append any number of errors per callback using the `reportError` function.
+	 *
 	 * @param {(values: CallbackValue) => void} callback
 	 *
 	 * @typedef CallbackValue
@@ -114,8 +52,11 @@ function testPatterns(Prism) {
 	 * @property {string} name
 	 * @property {any} parent
 	 * @property {{ key: string, value: any }[]} path
+	 * @property {(message: string) => void} reportError
 	 */
 	function forEachPattern(callback) {
+		const errors = [];
+
 		BFS(Prism.languages, path => {
 			const { key, value } = path[path.length - 1];
 
@@ -133,23 +74,32 @@ function testPatterns(Prism) {
 			}
 
 			if (Object.prototype.toString.call(value) == '[object RegExp]') {
-				let ast;
 				try {
-					ast = parseRegex(value);
-				} catch (error) {
-					throw new SyntaxError(`Invalid RegExp at ${tokenPath}\n\n${error.message}`);
-				}
+					let ast;
+					try {
+						ast = parseRegex(value);
+					} catch (error) {
+						throw new SyntaxError(`Invalid RegExp at ${tokenPath}\n\n${error.message}`);
+					}
 
-				callback({
-					pattern: value,
-					ast,
-					tokenPath,
-					name: key,
-					parent: path.length > 1 ? path[path.length - 2].value : undefined,
-					path
-				});
+					callback({
+						pattern: value,
+						ast,
+						tokenPath,
+						name: key,
+						parent: path.length > 1 ? path[path.length - 2].value : undefined,
+						path,
+						reportError: message => errors.push(message)
+					});
+				} catch (error) {
+					errors.push(error);
+				}
 			}
 		});
+
+		if (errors.length > 0) {
+			throw new Error(errors.map(e => String(e.message || e)).join('\n\n'));
+		}
 	}
 
 
@@ -179,27 +129,104 @@ function testPatterns(Prism) {
 		});
 	});
 
-	it('- should not have unused capturing groups', function () {
-		const errors = [];
+	it('- should not have lookbehind groups with 0 as their only possible index', function () {
+		/**
+		 * Returns whether the given element will have zero length meaning that it doesn't extend the matched string.
+		 *
+		 * @param {Element} element
+		 * @returns {boolean}
+		 */
+		function isZeroLength(element) {
+			switch (element.type) {
+				case 'Assertion':
+					// assertions == ^, $, \b, lookarounds
+					return true;
+				case 'Quantifier':
+					return element.max === 0 || isZeroLength(element.element);
+				case 'CapturingGroup':
+				case 'Group':
+					// every element in every alternative has to be of zero length
+					return element.alternatives.every(alt => alt.elements.every(isZeroLength));
+				case 'Backreference':
+					// on if the group referred to is of zero length
+					return isZeroLength(element.resolved);
+				default:
+					return false; // what's left are characters
+			}
+		}
+
+		/**
+		 * Returns whether the given element will always match the start of the string.
+		 *
+		 * @param {Element} element
+		 * @returns {boolean}
+		 */
+		function isFirstMatch(element) {
+			const parent = element.parent;
+			switch (parent.type) {
+				case 'Alternative':
+					// all elements before this element have to of zero length
+					if (!parent.elements.slice(0, parent.elements.indexOf(element)).every(isZeroLength)) {
+						return false;
+					}
+					const grandParent = parent.parent;
+					if (grandParent.type === 'Pattern') {
+						return true;
+					} else {
+						return isFirstMatch(grandParent);
+					}
+
+				case 'Quantifier':
+					if (parent.max === null /* null == open ended */ || parent.max >= 2) {
+						return false;
+					} else {
+						return isFirstMatch(parent);
+					}
+
+				default:
+					throw new Error(`Internal error: The given node should not be a '${element.type}'.`);
+			}
+		}
 
 		forEachPattern(({ ast, tokenPath, name, parent }) => {
 			const lookbehind = name === 'pattern' && parent.lookbehind;
 
+			if (!lookbehind) {
+				return;
+			}
+
 			let first = true;
 			visitRegExpAST(ast.pattern, {
 				onCapturingGroupEnter(node) {
-					if (node.references.length === 0 && !(lookbehind && first)) {
-						errors.push(`Token ${tokenPath}: Unused capturing group ${node.raw}`);
+					if (!first) {
+						return;
+					}
+
+					if (!isFirstMatch(node)) {
+						assert.fail(`Token ${tokenPath}: The lookbehind group (if matched at all) always has to be at index 0 relative to the whole match.`);
 					}
 
 					first = false;
 				}
 			});
 		});
+	});
 
-		if (errors.length > 0) {
-			assert.fail(errors.join('\n\n'));
-		}
+	it('- should not have unused capturing groups', function () {
+		forEachPattern(({ ast, tokenPath, name, parent, reportError }) => {
+			const lookbehind = name === 'pattern' && parent.lookbehind;
+
+			let first = true;
+			visitRegExpAST(ast.pattern, {
+				onCapturingGroupEnter(node) {
+					if (node.references.length === 0 && !(lookbehind && first)) {
+						reportError(`Token ${tokenPath}: Unused capturing group ${node.raw}. All capturing groups have to either references or used as lookbehind groups.`);
+					}
+
+					first = false;
+				}
+			});
+		});
 	});
 
 }

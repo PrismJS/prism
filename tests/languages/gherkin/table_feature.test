@@ -11,28 +11,28 @@ Examples: foo
 		["punctuation", "|"],
 		["th", " start  "],
 		["punctuation", "|"],
-        ["th", " eat "],
-        ["punctuation", "|"],
-        ["th", " left "],
-        ["punctuation", "|"]
-    ]],
-    ["table-body", [
+		["th", " eat "],
+		["punctuation", "|"],
+		["th", " left "],
+		["punctuation", "|"]
+	]],
+	["table-body", [
 		["punctuation", "|"],
 		["outline", "<foo>"],
 		["punctuation", "|"],
 		["td", "  5  "],
 		["punctuation", "|"],
-        ["td", "  7   "],
-        ["punctuation", "|"],
+		["td", "  7   "],
+		["punctuation", "|"],
 
-        ["punctuation", "|"],
-        ["td", "  20    "],
-        ["punctuation", "|"],
-        ["td", "  5  "],
-        ["punctuation", "|"],
-        ["td", "  15  "],
-        ["punctuation", "|"]
-    ]]
+		["punctuation", "|"],
+		["td", "  20    "],
+		["punctuation", "|"],
+		["td", "  5  "],
+		["punctuation", "|"],
+		["td", "  15  "],
+		["punctuation", "|"]
+	]]
 ]
 
 ----------------------------------------------------
