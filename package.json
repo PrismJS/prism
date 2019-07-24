@@ -6,6 +6,7 @@
   "style": "themes/prism.css",
   "scripts": {
     "test:aliases": "mocha tests/aliases-test.js",
+    "test:dependency": "mocha tests/dependency-test.js",
     "test:languages": "mocha tests/run.js",
     "test:plugins": "mocha tests/plugins/**/*.js",
     "test:regex": "mocha tests/regex-tests.js",
