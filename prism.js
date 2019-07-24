@@ -538,7 +538,7 @@ if (script) {
 	_.filename = script.src;
 
 	if (!_.manual && !script.hasAttribute('data-manual')) {
-		_.highlightAutomaticallyCallback = function () {
+		function highlightAutomaticallyCallback() {
 			if (!_.manual) {
 				_.highlightAll();
 			}
@@ -546,13 +546,13 @@ if (script) {
 
 		if(document.readyState !== 'loading') {
 			if (window.requestAnimationFrame) {
-				window.requestAnimationFrame(_.highlightAutomaticallyCallback);
+				window.requestAnimationFrame(highlightAutomaticallyCallback);
 			} else {
-				window.setTimeout(_.highlightAutomaticallyCallback, 16);
+				window.setTimeout(highlightAutomaticallyCallback, 16);
 			}
 		}
 		else {
-			document.addEventListener('DOMContentLoaded', _.highlightAutomaticallyCallback);
+			document.addEventListener('DOMContentLoaded', highlightAutomaticallyCallback);
 		}
 	}
 }
