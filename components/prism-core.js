@@ -133,7 +133,7 @@ var _ = {
 
 			// Update references in other language definitions
 			_.languages.DFS(_.languages, function(key, value) {
-				if (value === old && key != inside) {
+				if (value === old) {
 					this[key] = ret;
 				}
 			});
