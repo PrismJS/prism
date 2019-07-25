@@ -106,4 +106,5 @@ quit;
 
 ----------------------------------------------------
 
-Checks that options captures "options" and correctly tags following text.
+Checks that SQL captures SAS language elements and leverages
+SQL language support for nested SQL.
