@@ -1,0 +1,36 @@
+put x $hex16.;
+format salary uscurrency.;
+format=dollar12.;
+
+----------------------------------------------------
+
+[
+	["altformat",
+		[
+			["keyword", "put"],
+			" x ",
+			["format", "$hex16."]
+		]
+	],
+	["punctuation", ";"],
+	["altformat",
+		[
+			["keyword","format"],
+			" salary ",
+			["format", "uscurrency."]
+		]
+	],
+	["punctuation", ";"],
+	["format",
+		[
+			["keyword", "format"],
+			["equals", "="],
+			["format", "dollar12."]
+		]
+	],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks that options captures "options" and correctly tags following text.

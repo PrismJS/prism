@@ -1,0 +1,109 @@
+proc sql;
+select *
+ from proclib.paylist;
+proc print;
+
+proc sql outobs=10;
+ title 'Proclib.Payroll';
+ select * from proclib.payroll;
+ title;
+quit;
+
+proc sql;
+ select BookingDate,
+ ReleaseDate,
+ ReleaseCode
+ from SASclass.Bookings;
+quit;
+
+proc sql;
+ select BookingDate,
+ ReleaseDate,
+ ReleaseCode
+ from SASclass.Bookings;
+quit;
+
+----------------------------------------------------
+
+[
+	["proc-sql", [
+		["full-step", [
+			["step", "proc sql"],
+			["punctuation", ";"]
+		]],
+		["keyword", "select"],
+		["operator", "*"],
+		["keyword", "from"],
+		" proclib",
+		["punctuation", "."],
+		"paylist",
+		["punctuation", ";"],
+		["step", "proc print"],
+		["punctuation", ";"]
+	]],
+	["proc-sql", [
+		["full-step", [
+			["step", "proc sql"],
+			["argument", "outobs"],
+			["operator", "="],
+			["number", "10"],
+			["punctuation", ";"]
+		]],
+		"\r\n title ",
+		["string", "'Proclib.Payroll'"],
+		["punctuation", ";"],
+		["keyword", "select"],
+		["operator", "*"],
+		["keyword", "from"],
+		" proclib",
+		["punctuation", "."],
+		"payroll",
+		["punctuation", ";"],
+		"\r\n title",
+		["punctuation", ";"],
+		["step", "quit"],
+		["punctuation", ";"]
+	]],
+	["proc-sql", [
+		["full-step", [
+			["step", "proc sql"],
+			["punctuation", ";"]
+		]],
+		["keyword", "select"],
+		" BookingDate",
+		["punctuation", ","],
+		"\r\n ReleaseDate",
+		["punctuation", ","],
+		"\r\n ReleaseCode\r\n ",
+		["keyword", "from"],
+		" SASclass",
+		["punctuation", "."],
+		"Bookings",
+		["punctuation", ";"],
+		["step", "quit"],
+		["punctuation", ";"]
+	]],
+	["proc-sql", [
+		["full-step", [
+			["step", "proc sql"],
+			["punctuation", ";"]
+		]],
+		["keyword", "select"],
+		" BookingDate",
+		["punctuation", ","],
+		"\r\n ReleaseDate",
+		["punctuation", ","],
+		"\r\n ReleaseCode\r\n ",
+		["keyword", "from"],
+		" SASclass",
+		["punctuation", "."],
+		"Bookings",
+		["punctuation", ";"],
+		["step", "quit"],
+		["punctuation", ";"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks that options captures "options" and correctly tags following text.

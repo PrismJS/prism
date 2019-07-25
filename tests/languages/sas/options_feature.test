@@ -1,0 +1,50 @@
+options nodate linesize=72;
+options validmemname=extend validvarname=any;
+options insert=(fmtsearch="c:/myformats");
+
+----------------------------------------------------
+
+[
+	[
+		"options",
+		[
+			["options", "options"],
+			["arg","nodate"],
+			["arg", "linesize"],
+			["operator", "="],
+			["number", "72"]
+		]
+	],
+	["punctuation", ";"],
+	[
+		"options",
+		[
+			["options", "options"],
+			["arg", "validmemname"],
+			["operator", "="],
+			["arg-value", "extend"],
+			["arg", "validvarname"],
+			["operator", "="],
+			["arg-value", "any"]
+		]
+	],
+	["punctuation", ";"],
+	[
+		"options",
+		[
+			["options", "options"],
+			["arg", "insert"],
+			["operator", "="],
+			["punctuation", "("],
+			["arg", "fmtsearch"],
+			["operator", "="],
+			["string", "\"c:/myformats\""],
+			["punctuation", ")"]
+		]
+	],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks that options captures "options" and correctly tags following text.
