@@ -36,8 +36,7 @@
 			alias: 'string',
 			inside: {
 				'keyword': {
-					pattern: /^(?:(?:data)?lines|cards)/i,
-					lookbehind: true
+					pattern: /^(?:(?:data)?lines|cards)/i
 				},
 				'punctuation': /;/
 			}
