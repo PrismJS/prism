@@ -1,0 +1,42 @@
+input name $ score1 score2 score3 team $;
+input name $ & score;
+input outlook $ 1-8 temperature humidity windy $ 16 - 21 /* golf $22 - 32 */;
+
+----------------------------------------------------
+
+[
+	[
+		"input",
+		[
+			["input", "input"],
+			" name $ score1 score2 score3 team $;"
+		]
+	],
+	[
+		"input",
+		[
+			["input", "input"],
+			" name $ & score;"
+		]
+	],
+	["input",
+		[
+			["input", "input"],
+			" outlook $ ",
+			["number", "1"],
+			"-",
+			["number", "8"],
+			" temperature humidity windy $ ",
+			["number", "16"],
+			" - ",
+			["number", "21"],
+			["comment", "/* golf $22 - 32 */"],
+			";"
+		]
+	]
+]
+
+----------------------------------------------------
+
+Checks that input captures "input" and text that follows up to and including
+the semicolon.
