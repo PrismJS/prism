@@ -1,5 +1,8 @@
 (function (Prism) {
 
+	var createTemplate = Prism.languages.templating.createTemplate;
+	var tokenizeWithHooks = Prism.languages.templating.tokenizeWithHooks;
+
 	var templateString = Prism.languages.javascript['template-string'];
 
 	// see the pattern in prism-javascript.js
@@ -18,9 +21,9 @@
 	 * @param {string} tag The regex pattern to match the tag.
 	 * @returns {object | undefined}
 	 * @example
-	 * createTemplate('css', /\bcss/.source);
+	 * taggedLiteral('css', /\bcss/.source);
 	 */
-	function createTemplate(language, tag) {
+	function taggedLiteral(language, tag) {
 		if (!Prism.languages[language]) {
 			return undefined;
 		}
@@ -48,87 +51,24 @@
 		//   css`a { color: #25F; }`
 		// styled-components:
 		//   styled.h1`color: red;`
-		createTemplate('css', /\b(?:styled(?:\([^)]*\))?(?:\s*\.\s*\w+(?:\([^)]*\))*)*|css(?:\s*\.\s*(?:global|resolve))?|createGlobalStyle|keyframes)/.source),
+		taggedLiteral('css', /\b(?:styled(?:\([^)]*\))?(?:\s*\.\s*\w+(?:\([^)]*\))*)*|css(?:\s*\.\s*(?:global|resolve))?|createGlobalStyle|keyframes)/.source),
 
 		// html`<p></p>`
 		// div.innerHTML = `<p></p>`
-		createTemplate('html', /\bhtml|\.\s*(?:inner|outer)HTML\s*\+?=/.source),
+		taggedLiteral('html', /\bhtml|\.\s*(?:inner|outer)HTML\s*\+?=/.source),
 
 		// svg`<path fill="#fff" d="M55.37 ..."/>`
-		createTemplate('svg', /\bsvg/.source),
+		taggedLiteral('svg', /\bsvg/.source),
 
 		// md`# h1`, markdown`## h2`
-		createTemplate('markdown', /\b(?:md|markdown)/.source),
+		taggedLiteral('markdown', /\b(?:md|markdown)/.source),
 
 		// gql`...`, graphql`...`, graphql.experimental`...`
-		createTemplate('graphql', /\b(?:gql|graphql(?:\s*\.\s*experimental)?)/.source),
+		taggedLiteral('graphql', /\b(?:gql|graphql(?:\s*\.\s*experimental)?)/.source),
 
 		// vanilla template string
 		templateString
 	].filter(Boolean);
-
-
-	/**
-	 * Returns a specific placeholder literal for the given language.
-	 *
-	 * @param {number} counter
-	 * @param {string} language
-	 * @returns {string}
-	 */
-	function getPlaceholder(counter, language) {
-		return '___' + language.toUpperCase() + '_' + counter + '___';
-	}
-
-	/**
-	 * Returns the tokens of `Prism.tokenize` but also runs the `before-tokenize` and `after-tokenize` hooks.
-	 *
-	 * @param {string} code
-	 * @param {any} grammar
-	 * @param {string} language
-	 * @returns {(string|Token)[]}
-	 */
-	function tokenizeWithHooks(code, grammar, language) {
-		var env = {
-			code: code,
-			grammar: grammar,
-			language: language
-		};
-		Prism.hooks.run('before-tokenize', env);
-		env.tokens = Prism.tokenize(env.code, env.grammar);
-		Prism.hooks.run('after-tokenize', env);
-		return env.tokens;
-	}
-
-	/**
-	 * Returns the token of the given JavaScript interpolation expression.
-	 *
-	 * @param {string} expression The code of the expression. E.g. `"${42}"`
-	 * @returns {Token}
-	 */
-	function tokenizeInterpolationExpression(expression) {
-		var tempGrammar = {};
-		tempGrammar['interpolation-punctuation'] = interpolationPunctuationObject;
-
-		/** @type {Array} */
-		var tokens = Prism.tokenize(expression, tempGrammar);
-		if (tokens.length === 3) {
-			/**
-			 * The token array will look like this
-			 * [
-			 *     ["interpolation-punctuation", "${"]
-			 *     "..." // JavaScript expression of the interpolation
-			 *     ["interpolation-punctuation", "}"]
-			 * ]
-			 */
-
-			var args = [1, 1];
-			args.push.apply(args, tokenizeWithHooks(tokens[1], Prism.languages.javascript, 'javascript'));
-
-			tokens.splice.apply(tokens, args);
-		}
-
-		return new Prism.Token('interpolation', tokens, interpolationObject.alias, expression);
-	}
 
 	/**
 	 * Tokenizes the given code with support for JavaScript interpolation expressions mixed in.
@@ -148,101 +88,44 @@
 	 * @returns {Token}
 	 */
 	function tokenizeEmbedded(code, grammar, language) {
-		// 1. First filter out all interpolations
+		// create template
+		var template = createTemplate(code, {
+			grammar: {
+				'interpolation': {
+					pattern: RegExp(interpolationPattern),
+					lookbehind: true,
+					alias: 'language-javascript',
+					inside: {
+						'interpolation-punctuation': interpolationPunctuationObject
+					}
+				}
+			},
+			getValue: function (interpolationToken) {
+				/**
+				 * The content of the interpolation token will look like this
+				 * [
+				 *     ["interpolation-punctuation", "${"]
+				 *     "..." // JavaScript expression of the interpolation
+				 *     ["interpolation-punctuation", "}"]
+				 * ]
+				 */
 
-		// because they might be escaped, we need a lookbehind, so we use Prism
-		/** @type {(Token|string)[]} */
-		var _tokens = Prism.tokenize(code, {
-			'interpolation': {
-				pattern: RegExp(interpolationPattern),
-				lookbehind: true
+				var jsCode = interpolationToken.content[1];
+				if (typeof jsCode === 'string') {
+					// tokenize JavaScript code
+					var args = [1, 1];
+					args.push.apply(args, tokenizeWithHooks(jsCode, Prism.languages.javascript, 'javascript'));
+
+					interpolationToken.content.splice.apply(interpolationToken.content, args);
+				}
+
+				return interpolationToken;
 			}
 		});
 
-		// replace all interpolations with a placeholder which is not in the code already
-		var placeholderCounter = 0;
-		/** @type {Object<string, string>} */
-		var placeholderMap = {};
-		var embeddedCode = _tokens.map(function (token) {
-			if (typeof token === 'string') {
-				return token;
-			} else {
-				var interpolationExpression = token.content;
-
-				var placeholder;
-				while (code.indexOf(placeholder = getPlaceholder(placeholderCounter++, language)) !== -1) { }
-				placeholderMap[placeholder] = interpolationExpression;
-				return placeholder;
-			}
-		}).join('');
-
-
-		// 2. Tokenize the embedded code
-
-		var embeddedTokens = tokenizeWithHooks(embeddedCode, grammar, language);
-
-
-		// 3. Re-insert the interpolation
-
-		var placeholders = Object.keys(placeholderMap);
-		placeholderCounter = 0;
-
-		/**
-		 *
-		 * @param {(Token|string)[]} tokens
-		 * @returns {void}
-		 */
-		function walkTokens(tokens) {
-			for (var i = 0; i < tokens.length; i++) {
-				if (placeholderCounter >= placeholders.length) {
-					return;
-				}
-
-				var token = tokens[i];
-
-				if (typeof token === 'string' || typeof token.content === 'string') {
-					var placeholder = placeholders[placeholderCounter];
-					var s = typeof token === 'string' ? token : /** @type {string} */ (token.content);
-
-					var index = s.indexOf(placeholder);
-					if (index !== -1) {
-						++placeholderCounter;
-
-						var before = s.substring(0, index);
-						var middle = tokenizeInterpolationExpression(placeholderMap[placeholder]);
-						var after = s.substring(index + placeholder.length);
-
-						var replacement = [];
-						if (before) {
-							replacement.push(before);
-						}
-						replacement.push(middle);
-						if (after) {
-							var afterTokens = [after];
-							walkTokens(afterTokens);
-							replacement.push.apply(replacement, afterTokens);
-						}
-
-						if (typeof token === 'string') {
-							tokens.splice.apply(tokens, [i, 1].concat(replacement));
-							i += replacement.length - 1;
-						} else {
-							token.content = replacement;
-						}
-					}
-				} else {
-					var content = token.content;
-					if (Array.isArray(content)) {
-						walkTokens(content);
-					} else {
-						walkTokens([content]);
-					}
-				}
-			}
-		}
-		walkTokens(embeddedTokens);
-
-		return new Prism.Token(language, embeddedTokens, 'language-' + language, code);
+		var tokens = tokenizeWithHooks(template.code, grammar, language);
+		template.interpolate(tokens);
+		return new Prism.Token(language, tokens, 'language-' + language, code);
 	}
 
 	/**

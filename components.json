@@ -468,7 +468,7 @@
 		},
 		"js-templates": {
 			"title": "JS Templates",
-			"require": "javascript",
+			"require": ["javascript", "templating"],
 			"peerDependencies": [
 				"css",
 				"css-extras",
@@ -558,7 +558,7 @@
 		},
 		"markup-templating": {
 			"title": "Markup templating",
-			"require": "markup",
+			"require": ["markup", "templating"],
 			"owner": "Golmote"
 		},
 		"matlab": {
@@ -881,6 +881,10 @@
 		"tcl": {
 			"title": "Tcl",
 			"owner": "PeterChaplin"
+		},
+		"templating": {
+			"title": "Templating",
+			"owner": "RunDevelopment"
 		},
 		"textile": {
 			"title": "Textile",

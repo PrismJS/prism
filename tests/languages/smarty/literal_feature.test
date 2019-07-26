@@ -1,0 +1,54 @@
+{literal}
+<script type="text/javascript">
+	function foo(bar) {
+		if (bar == '') {
+			return '{$foo}';
+		} else {
+			return true;
+		}
+	}
+</script>
+{/literal}
+
+----------------------------------------------------
+
+[
+	["smarty", [
+		["delimiter", "{"],
+		["function", "literal"],
+		["delimiter", "}"]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"script"
+		]],
+		["attr-name", [
+			"type"
+		]],
+		["attr-value", [
+			["punctuation", "="],
+			["punctuation", "\""],
+			"text/javascript",
+			["punctuation", "\""]
+		]],
+		["punctuation", ">"]
+	]],
+	"\n\tfunction foo(bar) {\n\t\tif (bar == '') {\n\t\t\treturn '{$foo}';\n\t\t} else {\n\t\t\treturn true;\n\t\t}\n\t}\n",
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"script"
+		]],
+		["punctuation", ">"]
+	]],
+	["smarty", [
+		["delimiter", "{"],
+		["function", "/literal"],
+		["delimiter", "}"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for literals.

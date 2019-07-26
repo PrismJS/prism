@@ -66,25 +66,15 @@
 
 	// Tokenize all inline Soy expressions
 	Prism.hooks.add('before-tokenize', function (env) {
-		var soyPattern = /{{.+?}}|{.+?}|\s\/\/.*|\/\*[\s\S]*?\*\//g;
-		var soyLitteralStart = '{literal}';
-		var soyLitteralEnd = '{/literal}';
-		var soyLitteralMode = false;
-
-		Prism.languages['markup-templating'].buildPlaceholders(env, 'soy', soyPattern, function (match) {
-			// Soy tags inside {literal} block are ignored
-			if (match === soyLitteralEnd) {
-				soyLitteralMode = false;
+		Prism.languages['markup-templating'].buildPlaceholders(env, 'soy', {
+			'ignore-literal': {
+				pattern: /({literal})[\s\S]+?(?={\/literal})/,
+				lookbehind: true
+			},
+			'soy': {
+				pattern: /{{.+?}}|{.+?}|\s\/\/.*|\/\*[\s\S]*?\*\//,
+				alias: 'language-soy'
 			}
-
-			if (!soyLitteralMode) {
-				if (match === soyLitteralStart) {
-					soyLitteralMode = true;
-				}
-
-				return true;
-			}
-			return false;
 		});
 	});
 
