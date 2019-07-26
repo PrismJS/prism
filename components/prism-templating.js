@@ -138,9 +138,12 @@
 
 						var token = tokens[i];
 
-						if (typeof token === 'string' || typeof token.content === 'string') {
+						/** @type {string|Token|TokenStream} */
+						var content = typeof token === 'string' ? token : token.content;
+
+						if (typeof content === 'string') {
 							var placeholder = placeholders[placeholderCounter];
-							var str = typeof token === 'string' ? token : /** @type {string} */ (token.content);
+							var str = content;
 
 							var index = str.indexOf(placeholder);
 							if (index !== -1) {
@@ -176,8 +179,6 @@
 								}
 							}
 						} else {
-							/** @type {Token | TokenStream} */
-							var content = token.content;
 							if (Array.isArray(content)) {
 								walkTokens(content);
 							} else {
@@ -197,7 +198,7 @@
 	 * @param {string} code
 	 * @param {Grammar} grammar
 	 * @param {string} language
-	 * @returns {TokenStream}
+	 * @returns {(Token|string)[]}
 	 */
 	function tokenizeWithHooks(code, grammar, language) {
 		var env = {
@@ -205,9 +206,10 @@
 			grammar: grammar,
 			language: language
 		};
-		Prism.hooks.run('before-tokenize', env);
+		var run = Prism.hooks.run;
+		run('before-tokenize', env);
 		env.tokens = Prism.tokenize(env.code, env.grammar);
-		Prism.hooks.run('after-tokenize', env);
+		run('after-tokenize', env);
 		return env.tokens;
 	}
 

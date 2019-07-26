@@ -12,13 +12,9 @@
 			 * @param {RegExp|Object<string, any>} placeholderPatternOrGrammar The pattern of templating grammar which
 			 * matches the parts of the code that will be replaced with placeholders.
 			 */
-			value: function (env, language, placeholderPatternOrGrammar, replaceFilter) {
+			value: function (env, language, placeholderPatternOrGrammar) {
 				if (env.language !== language) {
 					return;
-				}
-
-				if (replaceFilter) {
-					throw new Error('replaceFilter is not supported anymore.')
 				}
 
 				var grammar;
@@ -40,8 +36,8 @@
 					}
 				});
 
-				env.template = template;
 				env.code = template.code;
+				env.interpolate = template.interpolate;
 
 				// Switch the grammar to markup
 				env.grammar = Prism.languages.markup;
@@ -55,14 +51,16 @@
 			 * @param {string} language The language id.
 			 */
 			value: function (env, language) {
-				if (env.language !== language || !env.template) {
+				var interpolate = env.interpolate;
+
+				if (env.language !== language || !interpolate) {
 					return;
 				}
 
 				// Switch the grammar back
 				env.grammar = Prism.languages[language];
 
-				env.template.interpolate(env.tokens);
+				interpolate(env.tokens);
 			}
 		}
 	});

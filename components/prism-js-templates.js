@@ -1,7 +1,9 @@
 (function (Prism) {
 
-	var createTemplate = Prism.languages.templating.createTemplate;
-	var tokenizeWithHooks = Prism.languages.templating.tokenizeWithHooks;
+	var PrismTemplating = Prism.languages.templating;
+	var createTemplate = PrismTemplating.createTemplate;
+	var tokenizeWithHooks = PrismTemplating.tokenizeWithHooks;
+
 
 	var templateString = Prism.languages.javascript['template-string'];
 
@@ -101,13 +103,14 @@
 				 * ]
 				 */
 
-				var jsCode = interpolationToken.content[1];
+				var content = interpolationToken.content;
+				var jsCode = content[1];
 				if (typeof jsCode === 'string') {
 					// tokenize JavaScript code
 					var args = [1, 1];
 					args.push.apply(args, tokenizeWithHooks(jsCode, Prism.languages.javascript, 'javascript'));
 
-					interpolationToken.content.splice.apply(interpolationToken.content, args);
+					content.splice.apply(content, args);
 				}
 
 				return interpolationToken;
@@ -116,6 +119,7 @@
 
 		var tokens = tokenizeWithHooks(template.code, grammar, language);
 		template.interpolate(tokens);
+
 		return new Prism.Token(language, tokens, 'language-' + language, code);
 	}
 
@@ -136,6 +140,8 @@
 		if (!(env.language in supportedLanguages)) {
 			return;
 		}
+
+		findTemplateStrings(env.tokens);
 
 		/**
 		 * Finds and tokenizes all template strings with an embedded languages.
@@ -196,8 +202,6 @@
 				}
 			}
 		}
-
-		findTemplateStrings(env.tokens);
 	});
 
 
