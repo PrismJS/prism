@@ -73,15 +73,6 @@
 	/**
 	 * Tokenizes the given code with support for JavaScript interpolation expressions mixed in.
 	 *
-	 * This function has 3 phases:
-	 *
-	 * 1. Replace all JavaScript interpolation expression with a placeholder.
-	 *    The placeholder will have the syntax of a identify of the target language.
-	 * 2. Tokenize the code with placeholders.
-	 * 3. Tokenize the interpolation expressions and re-insert them into the tokenize code.
-	 *    The insertion only works if a placeholder hasn't been "ripped apart" meaning that the placeholder has been
-	 *    tokenized as two tokens by the grammar of the embedded language.
-	 *
 	 * @param {string} code
 	 * @param {object} grammar
 	 * @param {string} language
