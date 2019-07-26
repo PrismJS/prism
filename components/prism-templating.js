@@ -57,23 +57,37 @@
 	 * Create a new template from the given code and options.
 	 *
 	 * The given code will be tokenized using the grammar of the given options. All toplevel tokens will then be
-	 * replaced by placeholders except for token with a type that starts with `ignore`.
+	 * replaced by placeholders except for tokens with a type that starts with `ignore`.
 	 *
-	 * Use the `getPlaceholder` function to return placeholders suited to your target language. The code with
-	 * placeholders will be returned as part of the template.The code with placeholders can then be tokenized by
-	 * the target language.
+	 * Use the `getPlaceholder` function to return placeholders suited for your target language. The code with
+	 * placeholders will be returned as part of the template and can then be tokenized by the target language.
 	 *
 	 * __It is important that the target language DOES NOT partly tokenize any placeholders. Placeholders have to
-	 * be tokenized whole.__
+	 * be tokenized as a whole.__
 	 *
-	 * Then use the `interpolate` function to replace all placeholders with their values. The `getValue` function
-	 * can be used to replace the placeholders with arbitrary tokens or token stream.
+	 * Then use the `interpolate` function to replace all placeholders in the token stream of the target languag with
+	 * their values. The `getValue` function can be used to replace the placeholders with arbitrary tokens or
+	 * a token stream.
 	 *
 	 * `interpolate` modifies the given token stream.
 	 *
 	 * @param {string} code
 	 * @param {TemplateOptions} options
 	 * @returns {Template}
+	 * @example
+	 * const template = createTemplate(myCode, {
+	 *     grammar: {
+	 *         'ignore-this': /\/\/.+/,
+	 *         'value': /{[^}]*}/
+	 *     },
+	 *     getValue(token) {
+	 *         return Prism.tokenize(token.content, Prism.languages.embeddedLanguage);
+	 *     }
+	 * });
+	 *
+	 * const tokens = Prism.tokenize(template.code, Prism.languages.templateLanguage);
+	 * template.interpolate(tokens);
+	 * // tokens is now ready to be used
 	 */
 	function createTemplate(code, options) {
 		/** @type {TokenStream} */
