@@ -56,7 +56,8 @@ Prism.languages.insertBefore('javascript', 'keyword', {
 			inside: Prism.languages.javascript
 		}
 	],
-	'constant': /\b[A-Z](?:[A-Z_]|\dx?)*\b/
+	'constant': /\b[A-Z](?:[A-Z_]|\dx?)*\b/,
+	'property': /[\['"`]?[\w-_]+['"`\]]?(?::)/
 });
 
 Prism.languages.insertBefore('javascript', 'string', {
