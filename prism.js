@@ -824,7 +824,7 @@ Prism.languages.insertBefore('javascript', 'keyword', {
 		}
 	],
 	'constant': /\b[A-Z](?:[A-Z_]|\dx?)*\b/,
-	'property': /((?:\[(?:(?:(['"`])[\w-.\$\{\}]+\2)|(?:[\w-.\$\{\}]+))\])|(?:(['"`])[\w-.\$\{\}]+\3)|(?:[\w-.\$\{\}]+))(?:\s*:)/,
+	'property': /(?=\{?|^)(?:[\n\s]*)((?:\[(?:(?:(['"`])[\w-.\$\{\}]+\2)|(?:[\w-.]+))\])|(?:(['"`])[\w-.]+\3)|(?:[\w-.]+))(?=\s*:)/gm
 });
 
 Prism.languages.insertBefore('javascript', 'string', {
