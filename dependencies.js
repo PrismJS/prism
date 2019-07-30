@@ -1,24 +1,23 @@
 "use strict";
 
+/**
+ * @typedef {Object<string, ComponentCategory>} Components
+ * @typedef {{ meta: Object<string, any> } & Object<string, ComponentEntry>} ComponentCategory
+ *
+ * @typedef ComponentEntry
+ * @property {string} [title] The title of the component.
+ * @property {string} [owner] The GitHub user name of the owner.
+ * @property {boolean} [noCSS=false] Whether the component doesn't have style sheets which should also be loaded.
+ * @property {string | string[]} [alias] An optional list of aliases for the id of the component.
+ * @property {Object<string, string>} [aliasTitles] An optional map from an alias to its title.
+ *
+ * Aliases which are not in this map will the get title of the component.
+ * @property {string | string[]} [require]
+ * @property {string | string[]} [modify]
+ * @property {string | string[]} [after]
+ */
+
 var getLoad = (function () {
-
-	/**
-	 * @typedef {Object<string, ComponentCategory>} Components
-	 * @typedef {{ meta: Object<string, any> } & Object<string, ComponentEntry>} ComponentCategory
-	 *
-	 * @typedef ComponentEntry
-	 * @property {string} [title] The title of the component.
-	 * @property {string} [owner] The GitHub user name of the owner.
-	 * @property {boolean} [noCSS=false] Whether the component doesn't have style sheets which should also be loaded.
-	 * @property {string | string[]} [alias] An optional list of aliases for the id of the component.
-	 * @property {Object<string, string>} [aliasTitles] An optional map from an alias to its title.
-	 *
-	 * Aliases which are not in this map will the get title of the component.
-	 * @property {string | string[]} [require]
-	 * @property {string | string[]} [modify]
-	 * @property {string | string[]} [after]
-	 */
-
 
 	/**
 	 * A function which does absolutely nothing.

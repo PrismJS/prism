@@ -4,6 +4,7 @@ const getLoad = require('../dependencies');
 
 describe('Dependency logic', function () {
 
+	/** @type {import("../dependencies").Components} */
 	const components = {
 		languages: {
 			meta: {},
