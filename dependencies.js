@@ -75,6 +75,25 @@ var getLoad = (function () {
 	}
 
 	/**
+	 * Iterates all component entries in the given components object.
+	 *
+	 * _Note:_ This does not include meta entries.
+	 *
+	 * @param {Components} components
+	 * @param {(id: string, entry: ComponentEntry) => void} callback
+	 */
+	function forEachEntry(components, callback) {
+		for (var categoryName in components) {
+			var category = components[categoryName];
+			for (var id in category) {
+				if (id !== 'meta') {
+					callback(id, category[id]);
+				}
+			}
+		}
+	}
+
+	/**
 	 * Creates a full dependencies map which includes all types of dependencies and their transitive dependencies.
 	 *
 	 * @param {Components} components
@@ -113,18 +132,31 @@ var getLoad = (function () {
 			map[id] = dependencies;
 		}
 
-		for (var categoryName in components) {
-			var category = components[categoryName];
-			for (var id in category) {
-				if (id === 'meta') {
-					continue;
-				} else {
-					addToMap(id, category[id]);
-				}
-			}
-		}
+		forEachEntry(components, addToMap);
 
 		return map;
+	}
+
+	/**
+	 * Returns a function which resolves the aliases of its given id of alias.
+	 *
+	 * @param {Components} components
+	 * @returns {(idOrAlias: string) => string}
+	 */
+	function createAliasResolver(components) {
+		/** @type {Object<string, string>} */
+		var map = {};
+
+		forEachEntry(components, function (id, entry) {
+			var aliases = toArray(entry.alias);
+			aliases.forEach(function (alias) {
+				map[alias] = id;
+			});
+		});
+
+		return function (idOrAlias) {
+			return map[idOrAlias] || idOrAlias;
+		};
 	}
 
 	/**
@@ -232,8 +264,13 @@ var getLoad = (function () {
 	 * If a component is in this list, then all of its requirements will also be assumed to be in the list.
 	 */
 	function getLoad(components, load, loaded) {
-		var loadedSet = toSet(loaded || []);
+		var resolveAlias = createAliasResolver(components);
+
+		load = load.map(resolveAlias);
+		loaded = (loaded || []).map(resolveAlias);
+
 		var loadSet = toSet(load);
+		var loadedSet = toSet(loaded);
 
 		// add requirements
 

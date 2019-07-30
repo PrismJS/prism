@@ -7,14 +7,19 @@ describe('Dependency logic', function () {
 	const components = {
 		languages: {
 			meta: {},
-			'a': {},
-			'b': {},
+			'a': {
+				alias: 'a2'
+			},
+			'b': {
+				alias: 'b2'
+			},
 			'c': {
 				require: 'a',
 				after: ['b', 'e']
 			},
 			'd': {
-				require: ['c', 'b']
+				require: ['c', 'b'],
+				alias: 'xyz'
 			},
 		},
 		pluginsOrSomething: {
@@ -25,18 +30,31 @@ describe('Dependency logic', function () {
 		}
 	};
 
-	describe('Returned ids', function () {
+	/**
+	 * Returns the ids of `getLoad`.
+	 *
+	 * @param {string[]} load
+	 * @param {string[]} [loaded]
+	 * @returns {string[]}
+	 */
+	function getIds(load, loaded) {
+		return getLoad(components, load, loaded).ids
+	}
 
-		/**
-		 * Returns the ids of `getLoad`.
-		 *
-		 * @param {string[]} load
-		 * @param {string[]} [loaded]
-		 * @returns {string[]}
-		 */
-		function getIds(load, loaded) {
-			return getLoad(components, load, loaded).ids
-		}
+	/**
+	 * Returns the load order of `getLoad`.
+	 *
+	 * @param {string[]} load
+	 * @param {string[]} [loaded]
+	 * @returns {string[]}
+	 */
+	function loadOrder(load, loaded) {
+		const order = [];
+		getLoad(components, load, loaded).load(id => order.push(id));
+		return order;
+	}
+
+	describe('Returned ids', function () {
 
 		it('- should load requirements', function () {
 			assert.sameMembers(getIds(['d']), ['a', 'b', 'c', 'd']);
@@ -58,19 +76,6 @@ describe('Dependency logic', function () {
 
 	describe('Load order', function () {
 
-		/**
-		 * Returns the load order of `getLoad`.
-		 *
-		 * @param {string[]} load
-		 * @param {string[]} [loaded]
-		 * @returns {string[]}
-		 */
-		function loadOrder(load, loaded) {
-			const order = [];
-			getLoad(components, load, loaded).load(id => order.push(id));
-			return order;
-		}
-
 		// Note: The order of a and b isn't defined, so don't add any test with both of them being loaded here
 
 		it('- should load components in the correct order (require)', function () {
@@ -91,6 +96,18 @@ describe('Dependency logic', function () {
 
 		it('- should load components in the correct order (require + modify + after)', function () {
 			assert.deepStrictEqual(loadOrder(['d', 'e'], ['b']), ['a', 'e', 'c', 'd']);
+		});
+
+	});
+
+	describe('Aliases', function () {
+
+		it('- should resolve aliases in the list of components to load', function () {
+			assert.sameMembers(getIds(['xyz']), ['a', 'b', 'c', 'd']);
+		});
+
+		it('- should resolve aliases in the list of loaded components', function () {
+			assert.sameMembers(getIds(['d'], ['a', 'a2', 'b2']), ['c', 'd']);
 		});
 
 	});
