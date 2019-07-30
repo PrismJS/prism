@@ -298,6 +298,10 @@
 			"title": "G-code",
 			"owner": "RunDevelopment"
 		},
+		"gdscript": {
+			"title": "GDScript",
+			"owner": "RunDevelopment"
+		},
 		"gedcom": {
 			"title": "GEDCOM",
 			"owner": "Golmote"
