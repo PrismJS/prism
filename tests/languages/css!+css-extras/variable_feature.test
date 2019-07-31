@@ -14,7 +14,7 @@ calc(100% - var(--margin-size) * 2)
 	["punctuation", "{"],
 	["variable", "--foo"],
 	["punctuation", ":"],
-	" green",
+	["color", "green"],
 	["punctuation", ";"],
 	["punctuation", "}"],
 
@@ -32,7 +32,7 @@ calc(100% - var(--margin-size) * 2)
 	["punctuation", "("],
 	["variable", "--foo"],
 	["punctuation", ","],
-	" red",
+	["color", "red"],
 	["punctuation", ")"],
 
 	["function", "calc"],
