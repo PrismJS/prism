@@ -72,5 +72,5 @@ Prism.languages.insertBefore('css', 'function', {
 		pattern: /(\d)(?:%|[a-z]+)/,
 		lookbehind: true
 	},
-	'number': /-?[\d.]+/
+	'number': /(?:\b|\B-)[\d.]+/
 });

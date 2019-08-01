@@ -1,0 +1,44 @@
+<img style="width:<?php echo (80 / count($images)) ?>%"/>
+
+----------------------------------------------------
+
+[
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"img"
+		]],
+		["style-attr", [
+			["attr-name", [
+				["attr-name", [
+					"style"
+				]]
+			]],
+			["punctuation", "=\""],
+			["attr-value", [
+				["property", "width"],
+				["punctuation", ":"],
+				["php", [
+					["delimiter", "<?php"],
+					["keyword", "echo"],
+					["punctuation", "("],
+					["number", "80"],
+					["operator", "/"],
+					["function", "count"],
+					["punctuation", "("],
+					["variable", "$images"],
+					["punctuation", ")"],
+					["punctuation", ")"],
+					["delimiter", "?>"]
+				]],
+				"%"
+			]],
+			["punctuation", "\""]
+		]],
+		["punctuation", "/>"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for #2008 where a part of markup templating's placeholder was tokenized as `number` by CSS Extras.
