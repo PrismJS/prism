@@ -757,6 +757,11 @@
 			"title": "R",
 			"owner": "Golmote"
 		},
+		"turtle": {
+			"title": "RDF Turtle/TriG",
+			"alias": ["turtle", "ttl", "trig"],
+			"owner": "jakubklimek"
+		},
 		"jsx": {
 			"title": "React JSX",
 			"require": ["markup", "javascript"],
