@@ -1,0 +1,37 @@
+<h2>Full example</h2>
+<pre><code>rules_version = '2';
+service cloud.firestore {
+
+  match /databases/{database}/documents {
+
+    // Returns `true` if the requested post is 'published'
+    // or the user authored the post
+    function authorOrPublished() {
+      return resource.data.published == true || request.auth.uid == resource.data.author;
+    }
+
+    match /{path=**}/posts/{post} {
+
+      // Anyone can query published posts
+      // Authors can query their unpublished posts
+      allow list: if authorOrPublished();
+
+      // Anyone can retrieve a published post
+      // Authors can retrieve an unpublished post
+      allow get: if authorOrPublished();
+    }
+
+    match /forums/{forumid}/posts/{postid} {
+      // Only a post's author can write to a post
+      allow write: if request.auth.uid == resource.data.author;
+    }
+  }
+
+  match /databases/{database}/reviews {
+    // Assign roles to all users and refine access based on user roles
+    match /some_collection/{document} {
+      allow read: if get(/databases/$(database)/reviews/users/$(request.auth.uid)).data.role == "Reader"
+      allow write: if get(/databases/$(database)/reviews/users/$(request.auth.uid)).data.role == "Writer"
+    }
+  }
+}</code></pre>

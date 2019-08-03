@@ -1,0 +1,38 @@
+allow read;
+allow read, write: if false;
+allow get, list, update;
+
+----------------------------------------------------
+
+[
+	["keyword", "allow"],
+	["method", [
+		"read"
+	]],
+	["punctuation", ";"],
+
+	["keyword", "allow"],
+	["method", [
+		"read",
+		["punctuation", ","],
+		" write"
+	]],
+	["punctuation", ":"],
+	["keyword", "if"],
+	["boolean", "false"],
+	["punctuation", ";"],
+
+	["keyword", "allow"],
+	["method", [
+		"get",
+		["punctuation", ","],
+		" list",
+		["punctuation", ","],
+		" update"
+	]],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for methods.

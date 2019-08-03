@@ -31,6 +31,7 @@
 			"markup-templating"
 		],
 		"fsharp": "clike",
+		"firestore-security-rules": "clike",
 		"flow": "javascript",
 		"glsl": "clike",
 		"gml": "clike",

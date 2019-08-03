@@ -1,0 +1,25 @@
+allow
+function
+if
+match
+null
+return
+rules_version
+service
+
+----------------------------------------------------
+
+[
+	["keyword", "allow"],
+	["keyword", "function"],
+	["keyword", "if"],
+	["keyword", "match"],
+	["keyword", "null"],
+	["keyword", "return"],
+	["keyword", "rules_version"],
+	["keyword", "service"]
+]
+
+----------------------------------------------------
+
+Checks for keywords.
