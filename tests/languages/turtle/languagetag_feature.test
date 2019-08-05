@@ -4,18 +4,13 @@ show:218 show:localName 'Cette Série des Années Soixante-dix'@fr, "Cette Séri
 ----------------------------------------------------
 
 [
-	["keyword", "@prefix"],
-	["function", "rdfs:"],
-	["url", "<http://www.w3.org/2000/01/rdf-schema#>"],
-	["punctuation", "."],
-	["keyword", "@prefix"],
-	["function", "show:"],
-	["url", "<http://example.org/vocab/show/>"],
-	["punctuation", "."],
 	["function", "show:218"],
 	["function", "show:localName"],
 	["string", "\"That Seventies Show\""],
 	["tag", "@en"],
+	["punctuation", ","],
+	["string", "\"test\""],
+	["tag", "@en-t-es-t0-abcd"],
 	["punctuation", "."],
 	["function", "show:218"],
 	["function", "show:localName"],
