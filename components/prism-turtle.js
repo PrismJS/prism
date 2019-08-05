@@ -1,25 +1,33 @@
 Prism.languages.turtle = {
+	'comment': {
+		pattern: /#.*/,
+		greedy: true
+	},
 	'multilineString': {
-		pattern: /"""(?:.|\n|\r)*"""/,
+		pattern: /(?:(?:"""(?:(?:[^"]|\n|\r)"?"?)*""")|(?:'''(?:(?:[^']|\n|\r)'?'?)*'''))/,
 		greedy: true,
-		alias: "string"
+		alias: "string",
+		inside: {
+			'comment' : {
+				pattern: /#.*/,
+				greedy: true
+			}
+		}
 	},
 	'string': {
-		pattern: /"(?:[^\"\r\n]|\\")*"/,
+		pattern: /(?:(?:"(?:[^\"\r\n]|\\")*")|(?:'(?:[^\'\r\n]|\\')*'))/,
 		greedy: true
 	},
 	'url': {
 		pattern: /<(?:[^ ])*>/,
 		greedy: true
 	},
-	'comment': {
-		pattern: /#.*/,
-		greedy: true
-	},
-	'number': /\b[\+-]?\d+\.?\d*(e[+-]?\d+)?/i,
-	'punctuation': /[\{\}\^\.,;\(\)\[\]]/,
-	'function': /(?:[^: \r\n]*)?:(?:[^: \r\n]*)?/,
+	'function': /\b(?:[^: \r\n]*)?:(?:[^: \r\n,.;\(\)\{\}\[\]\^\.]*)?/,
+	'number': /[\+-]?\b\d+\.?\d*(?:e[+-]?\d+)?/i,
+	'punctuation': /(?:[\{\}\.,;\(\)\[\]]|\^\^)/,
 	'boolean': /\b(?:true|false)\b/,
-	'keyword': /(?:\b(?:a|graph)|@prefix|@base|\=)\b/i,
+	'keyword': /(?:(?:\b(?:a|graph|base|prefix)|@prefix|@base)\b|\=)/i,
 	'tag': /@(?:.)*\b/i,
 };
+Prism.languages.ttl = Prism.languages['turtle'];
+Prism.languages.trig = Prism.languages['turtle'];

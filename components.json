@@ -759,7 +759,7 @@
 		},
 		"turtle": {
 			"title": "RDF Turtle/TriG",
-			"alias": ["turtle", "ttl", "trig"],
+			"alias": ["ttl", "trig"],
 			"owner": "jakubklimek"
 		},
 		"jsx": {
