@@ -18,7 +18,7 @@ Prism.languages.turtle = {
 		greedy: true
 	},
 	'url': {
-		pattern: /<(?:[^ ])*>/,
+		pattern: /<[^\s<>]*>/,
 		greedy: true
 	},
 	'function': /\b(?:[^: \r\n]*)?:(?:[^: \r\n,.;\(\)\{\}\[\]\^\.]*)?/,
