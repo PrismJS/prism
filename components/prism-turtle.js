@@ -9,8 +9,7 @@ Prism.languages.turtle = {
 		alias: "string",
 		inside: {
 			'comment' : {
-				pattern: /#.*/,
-				greedy: true
+				pattern: /#.*/
 			}
 		}
 	},
@@ -27,7 +26,7 @@ Prism.languages.turtle = {
 	'punctuation': /(?:[\{\}\.,;\(\)\[\]]|\^\^)/,
 	'boolean': /\b(?:true|false)\b/,
 	'keyword': /(?:(?:\b(?:a|graph|base|prefix)|@prefix|@base)\b|\=)/i,
-	'tag': /@(?:.)*\b/i,
+	'tag': /@(?:[a-zA-Z]+)(?:-[a-zA-Z0-9]+)*/,
 };
 Prism.languages.ttl = Prism.languages['turtle'];
 Prism.languages.trig = Prism.languages['turtle'];

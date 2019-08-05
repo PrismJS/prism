@@ -1,0 +1,32 @@
+show:218 show:localName "That Seventies Show"@en, "test"@en-t-es-t0-abcd .
+show:218 show:localName 'Cette Série des Années Soixante-dix'@fr, "Cette Série des Années Septante"@fr-be .
+
+----------------------------------------------------
+
+[
+	["keyword", "@prefix"],
+	["function", "rdfs:"],
+	["url", "<http://www.w3.org/2000/01/rdf-schema#>"],
+	["punctuation", "."],
+	["keyword", "@prefix"],
+	["function", "show:"],
+	["url", "<http://example.org/vocab/show/>"],
+	["punctuation", "."],
+	["function", "show:218"],
+	["function", "show:localName"],
+	["string", "\"That Seventies Show\""],
+	["tag", "@en"],
+	["punctuation", "."],
+	["function", "show:218"],
+	["function", "show:localName"],
+	["string", "'Cette Série des Années Soixante-dix'"],
+	["tag", "@fr"],
+	["punctuation", ","],
+	["string", "\"Cette Série des Années Septante\""],
+	["tag", "@fr-be"],
+	["punctuation", "."]
+]
+
+----------------------------------------------------
+
+Checks language tags.
