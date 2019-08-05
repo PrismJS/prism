@@ -758,8 +758,11 @@
 			"owner": "Golmote"
 		},
 		"turtle": {
-			"title": "RDF Turtle/TriG",
-			"alias": ["ttl", "trig"],
+			"title": "Turtle",
+			"alias": ["trig"],
+			"aliasTitles": {
+				"trig": "TriG"
+			},
 			"owner": "jakubklimek"
 		},
 		"jsx": {

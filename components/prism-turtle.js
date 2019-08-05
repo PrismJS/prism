@@ -28,5 +28,4 @@ Prism.languages.turtle = {
 	'keyword': /(?:\b(?:a|graph|base|prefix)|@prefix|@base)\b|=/i,
 	'tag': /@[a-z]+(?:-[a-z\d]+)*/i,
 };
-Prism.languages.ttl = Prism.languages['turtle'];
 Prism.languages.trig = Prism.languages['turtle'];

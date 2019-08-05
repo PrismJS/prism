@@ -150,7 +150,6 @@
 		"objectpascal": "pascal",
 		"px": "pcaxis",
 		"py": "python",
-		"ttl": "turtle",
 		"trig": "turtle",
 		"rb": "ruby",
 		"ts": "typescript",
