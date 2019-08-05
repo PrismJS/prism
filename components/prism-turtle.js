@@ -14,7 +14,7 @@ Prism.languages.turtle = {
 		}
 	},
 	'string': {
-		pattern: /(?:(?:"(?:[^\"\r\n]|\\")*")|(?:'(?:[^\'\r\n]|\\')*'))/,
+		pattern: /"(?:[^\\"\r\n]|\\.)*"|'(?:[^\\'\r\n]|\\.)*'/,
 		greedy: true
 	},
 	'url': {
