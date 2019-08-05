@@ -21,7 +21,7 @@ Prism.languages.turtle = {
 		pattern: /<[^\s<>]*>/,
 		greedy: true
 	},
-	'function': /\b(?:[^: \r\n]*)?:(?:[^: \r\n,.;\(\)\{\}\[\]\^\.]*)?/,
+	'function': /\b[^\s:]*:[^\s:.;,(){}[\]^]*/,
 	'number': /[+-]?\b\d+\.?\d*(?:e[+-]?\d+)?/i,
 	'punctuation': /[{}.,;()[\]]|\^\^/,
 	'boolean': /\b(?:true|false)\b/,
