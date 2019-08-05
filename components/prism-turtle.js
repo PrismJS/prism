@@ -6,7 +6,7 @@ Prism.languages.turtle = {
 	'multilineString': {
 		pattern: /(?:(?:"""(?:(?:[^"]|\n|\r)"?"?)*""")|(?:'''(?:(?:[^']|\n|\r)'?'?)*'''))/,
 		greedy: true,
-		alias: "string",
+		alias: 'string',
 		inside: {
 			'comment' : {
 				pattern: /#.*/
