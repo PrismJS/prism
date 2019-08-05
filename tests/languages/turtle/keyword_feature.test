@@ -1,0 +1,26 @@
+@base <http://example.org/> .
+BASE <http://example.org/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+GRAPH <urn:newGraph> {
+	<urn:myClass> a rdfs:Class ;
+	= <urn:equivalentClass> .
+}
+
+----------------------------------------------------
+
+[
+	["keyword", "@base"], ["url", "<http://example.org/>"],	["punctuation", "."],
+	["keyword", "BASE"], ["url", "<http://example.org/>"],	["punctuation", "."],
+	["keyword", "@prefix"],	["function", "rdf:"], ["url", "<http://www.w3.org/1999/02/22-rdf-syntax-ns#>"], ["punctuation", "."],
+	["keyword", "PREFIX"], ["function", "rdfs:"], ["url", "<http://www.w3.org/2000/01/rdf-schema#>"], ["punctuation", "."],
+	["keyword", "GRAPH"], ["url", "<urn:newGraph>"], ["punctuation", "{"],
+	["url", "<urn:myClass>"], ["keyword", "a"], ["function", "rdfs:Class"], ["punctuation", ";"],
+	["keyword", "="], ["url", "<urn:equivalentClass>"], ["punctuation", "."],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for all keywords.

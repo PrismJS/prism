@@ -1,0 +1,90 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix show: <http://example.org/vocab/show/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+show:218 rdfs:label "That Seventies Show"^^xsd:string .            # literal with XML Schema string datatype
+show:218 rdfs:label "That Seventies Show"^^<http://www.w3.org/2001/XMLSchema#string> . # same as above
+show:218 rdfs:label "That Seventies Show" .                                            # same again
+show:218 show:localName "That Seventies Show"@en .                 # literal with a language tag
+show:218 show:localName 'Cette Série des Années Soixante-dix'@fr . # literal delimited by single quote
+show:218 show:localName "Cette Série des Années Septante"@fr-be .  # literal with a region subtag
+show:218 show:blurb '''This is a multi-line                        # literal with embedded new lines and quotes
+literal with many quotes (""""")
+and up to two sequential apostrophes ('').''' .
+show:218 show:blurb """This is a multi-line                        # literal with embedded new lines and apostrophes
+literal with many apostrophes (''''')
+and up to two sequential quotes ("").""" .
+
+----------------------------------------------------
+
+[
+	["keyword", "@prefix"],
+	["function", "rdfs:"],
+	["url", "<http://www.w3.org/2000/01/rdf-schema#>"],
+	["punctuation", "."],
+	["keyword", "@prefix"],
+	["function", "show:"],
+	["url", "<http://example.org/vocab/show/>"],
+	["punctuation", "."],
+	["keyword", "@prefix"],
+	["function", "xsd:"],
+	["url", "<http://www.w3.org/2001/XMLSchema#>"],
+	["punctuation", "."],
+	["function", "show:218"],
+	["function", "rdfs:label"],
+	["string", "\"That Seventies Show\""],
+	["punctuation", "^^"],
+	["function", "xsd:string"],
+	["punctuation", "."],
+	["comment", "# literal with XML Schema string datatype"],
+	["function", "show:218"],
+	["function", "rdfs:label"],
+	["string", "\"That Seventies Show\""],
+	["punctuation", "^^"],
+	["url", "<http://www.w3.org/2001/XMLSchema#string>"],
+	["punctuation", "."],
+	["comment", "# same as above"],
+	["function", "show:218"],
+	["function", "rdfs:label"],
+	["string", "\"That Seventies Show\""],
+	["punctuation", "."],
+	["comment", "# same again"],
+	["function", "show:218"],
+	["function", "show:localName"],
+	["string", "\"That Seventies Show\""],
+	["tag", "@en"],
+	["punctuation", "."],
+	["comment", "# literal with a language tag"],
+	["function", "show:218"],
+	["function", "show:localName"],
+	["string", "'Cette Série des Années Soixante-dix'"],
+	["tag", "@fr"],
+	["punctuation", "."],
+	["comment", "# literal delimited by single quote"],
+	["function", "show:218"],
+	["function", "show:localName"],
+	["string", "\"Cette Série des Années Septante\""],
+	["tag", "@fr-be"],
+	["punctuation", "."],
+	["comment", "# literal with a region subtag"],
+	["function", "show:218"],
+	["function", "show:blurb"],
+	["multilineString", [
+		"'''This is a multi-line                        ",
+		["comment", "# literal with embedded new lines and quotes"],
+		"\r\nliteral with many quotes (\"\"\"\"\")\r\nand up to two sequential apostrophes ('').'''"
+	]],
+	["punctuation", "."],
+	["function", "show:218"],
+	["function", "show:blurb"],
+	["multilineString", [
+		"\"\"\"This is a multi-line                        ",
+		["comment", "# literal with embedded new lines and apostrophes"],
+		"\r\nliteral with many apostrophes (''''')\r\nand up to two sequential quotes (\"\").\"\"\""
+	]],
+	["punctuation", "."]
+]
+
+----------------------------------------------------
+
+Checks for all keywords.

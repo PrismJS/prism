@@ -1,0 +1,59 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+<1.1> rdf:value 1 .
+<1.2> rdf:value +1 .
+<1.3> rdf:value -1 .
+<2.1> rdf:value 1.13 .
+<2.2> rdf:value +1.13 .
+<2.3> rdf:value -1.13 .
+<3.1> rdf:value 1e3 .
+<3.2> rdf:value +1e3 .
+<3.3> rdf:value -1e3 .
+
+----------------------------------------------------
+
+[
+	["keyword", "@prefix"],
+	["function", "rdf:"],
+	["url", "<http://www.w3.org/1999/02/22-rdf-syntax-ns#>"],
+	["punctuation", "."],
+	["url", "<1.1>"],
+	["function", "rdf:value"],
+	["number", "1"],
+	["punctuation", "."],
+	["url", "<1.2>"],
+	["function", "rdf:value"],
+	["number", "+1"],
+	["punctuation", "."],
+	["url", "<1.3>"],
+	["function", "rdf:value"],
+	["number", "-1"],
+	["punctuation", "."],
+	["url", "<2.1>"],
+	["function", "rdf:value"],
+	["number", "1.13"],
+	["punctuation", "."],
+	["url", "<2.2>"],
+	["function", "rdf:value"],
+	["number", "+1.13"],
+	["punctuation", "."],
+	["url", "<2.3>"],
+	["function", "rdf:value"],
+	["number", "-1.13"],
+	["punctuation", "."],
+	["url", "<3.1>"],
+	["function", "rdf:value"],
+	["number", "1e3"],
+	["punctuation", "."],
+	["url", "<3.2>"],
+	["function", "rdf:value"],
+	["number", "+1e3"],
+	["punctuation", "."],
+	["url", "<3.3>"],
+	["function", "rdf:value"],
+	["number", "-1e3"],
+	["punctuation", "."]
+]
+----------------------------------------------------
+
+Checks for supported numbers.

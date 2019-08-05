@@ -1,0 +1,58 @@
+@base <http://example.org/> .
+
+GRAPH <urn:newGraph> {
+	<urn:myClass> a rdfs:Class, <other-class> ;
+	= <urn:equivalentClass> .
+	<urn:myList> a rdf:List ;
+		rdf:value [ a <blankNode> ;
+			rdf:value ( <list> <of> <things> () [] )
+			] ;
+		.
+}
+
+----------------------------------------------------
+
+[
+	["keyword", "@base"],
+	["url", "<http://example.org/>"],
+	["punctuation", "."],
+	["keyword", "GRAPH"],
+	["url", "<urn:newGraph>"],
+	["punctuation", "{"],
+	["url", "<urn:myClass>"],
+	["keyword", "a"],
+	["function", "rdfs:Class"],
+	["punctuation", ","],
+	["url", "<other-class>"],
+	["punctuation", ";"],
+	["keyword", "="],
+	["url", "<urn:equivalentClass>"],
+	["punctuation", "."],
+	["url", "<urn:myList>"],
+	["keyword", "a"],
+	["function", "rdf:List"],
+	["punctuation", ";"],
+	["function", "rdf:value"],
+	["punctuation", "["],
+	["keyword", "a"],
+	["url", "<blankNode>"],
+	["punctuation", ";"],
+	["function", "rdf:value"],
+	["punctuation", "("],
+	["url", "<list>"],
+	["url", "<of>"],
+	["url", "<things>"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "["],
+	["punctuation", "]"],
+	["punctuation", ")"],
+	["punctuation", "]"],
+	["punctuation", ";"],
+	["punctuation", "."],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for all types of punctuation.
