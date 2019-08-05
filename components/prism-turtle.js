@@ -25,7 +25,7 @@ Prism.languages.turtle = {
 	'number': /[+-]?\b\d+\.?\d*(?:e[+-]?\d+)?/i,
 	'punctuation': /[{}.,;()[\]]|\^\^/,
 	'boolean': /\b(?:true|false)\b/,
-	'keyword': /(?:(?:\b(?:a|graph|base|prefix)|@prefix|@base)\b|\=)/i,
+	'keyword': /(?:\b(?:a|graph|base|prefix)|@prefix|@base)\b|=/i,
 	'tag': /@(?:[a-zA-Z]+)(?:-[a-zA-Z0-9]+)*/,
 };
 Prism.languages.ttl = Prism.languages['turtle'];
