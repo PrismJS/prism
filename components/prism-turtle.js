@@ -23,7 +23,7 @@ Prism.languages.turtle = {
 	},
 	'function': /\b(?:[^: \r\n]*)?:(?:[^: \r\n,.;\(\)\{\}\[\]\^\.]*)?/,
 	'number': /[\+-]?\b\d+\.?\d*(?:e[+-]?\d+)?/i,
-	'punctuation': /(?:[\{\}\.,;\(\)\[\]]|\^\^)/,
+	'punctuation': /[{}.,;()[\]]|\^\^/,
 	'boolean': /\b(?:true|false)\b/,
 	'keyword': /(?:(?:\b(?:a|graph|base|prefix)|@prefix|@base)\b|\=)/i,
 	'tag': /@(?:[a-zA-Z]+)(?:-[a-zA-Z0-9]+)*/,
