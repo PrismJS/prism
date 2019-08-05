@@ -4,7 +4,7 @@ Prism.languages.turtle = {
 		greedy: true
 	},
 	'multiline-string': {
-		pattern: /(?:(?:"""(?:(?:[^"]|\n|\r)"?"?)*""")|(?:'''(?:(?:[^']|\n|\r)'?'?)*'''))/,
+		pattern: /"""(?:[^"]"?"?)*"""|'''(?:[^']'?'?)*'''/,
 		greedy: true,
 		alias: 'string',
 		inside: {
