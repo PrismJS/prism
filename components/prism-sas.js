@@ -68,7 +68,7 @@
 			pattern: /(^proc\s+(fed)?sql(?:\s+[\w|=]+)?;)[\s\S]+?(?=^(?:proc\s+\w+|quit|run|data);|(?![\s\S]))/im,
 			inside: {
 				'sql': {
-					pattern: RegExp(/^[ \t]*(?:select|alter\s+table|(?:create|describe|drop)\s+(?:index|table(\s+constraints)?|view)|create\s+unique\s+index|insert\s+into|update)(?:<str>|[^;"'])+;/.source.replace(/<str>/g, stringPattern), 'im'),
+					pattern: RegExp(/^[ \t]*(?:select|alter\s+table|(?:create|describe|drop)(?:\s+)(?:index|table(?:\s+constraints)?|view)|create\s+unique\s+index|insert\s+into|update)(?:<str>|[^;"'])+;/.source.replace(/<str>/g, stringPattern), 'im'),
 					alias: 'language-sql',
 					inside: Prism.languages.sql
 				},
