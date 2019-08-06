@@ -1,0 +1,63 @@
+show:218 show:localName "That Seventies Show"@en, "test"@en-t-es-t0-abcd .
+show:218 show:localName 'Cette Série des Années Soixante-dix'@fr, "Cette Série des Années Septante"@fr-be .
+
+----------------------------------------------------
+
+[
+	["function", [
+		["prefix", [
+			"show",
+			["punctuation", ":"]
+		]],
+		["local-name", "218"]
+	]],
+	["function", [
+		["prefix", [
+			"show",
+			["punctuation", ":"]
+		]],
+		["local-name", "localName"]
+	]],
+	["string", "\"That Seventies Show\""],
+	["tag", [
+		["punctuation", "@"],
+		"en"
+	]],
+	["punctuation", ","],
+	["string", "\"test\""],
+	["tag", [
+		["punctuation", "@"],
+		"en-t-es-t0-abcd"
+	]],
+	["punctuation", "."],
+	["function", [
+		["prefix", [
+			"show",
+			["punctuation", ":"]
+		]],
+		["local-name", "218"]
+	]],
+	["function", [
+		["prefix", [
+			"show",
+			["punctuation", ":"]
+		]],
+		["local-name", "localName"]
+	]],
+	["string", "'Cette Série des Années Soixante-dix'"],
+	["tag", [
+		["punctuation", "@"],
+		"fr"
+	]],
+	["punctuation", ","],
+	["string", "\"Cette Série des Années Septante\""],
+	["tag", [
+		["punctuation", "@"],
+		"fr-be"
+	]],
+	["punctuation", "."]
+]
+
+----------------------------------------------------
+
+Checks language tags.
