@@ -18,7 +18,7 @@ GRAPH <urn:newGraph> {
 		["punctuation", ">"]
 	]],
 	["punctuation", "."],
-	["case-insensitive-keyword", "BASE"],
+	["keyword", "BASE"],
 	["url", [
 		["punctuation", "<"],
 		"http://example.org/",
@@ -38,7 +38,7 @@ GRAPH <urn:newGraph> {
 		["punctuation", ">"]
 	]],
 	["punctuation", "."],
-	["case-insensitive-keyword", "PREFIX"],
+	["keyword", "PREFIX"],
 	["function", [
 		["prefix", [
 			"rdfs",
@@ -51,7 +51,7 @@ GRAPH <urn:newGraph> {
 		["punctuation", ">"]
 	]],
 	["punctuation", "."],
-	["case-insensitive-keyword", "GRAPH"],
+	["keyword", "GRAPH"],
 	["url", [
 		["punctuation", "<"],
 		"urn:newGraph",

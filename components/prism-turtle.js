@@ -37,11 +37,10 @@ Prism.languages.turtle = {
 	'number': /[+-]?\b\d+\.?\d*(?:e[+-]?\d+)?/i,
 	'punctuation': /[{}.,;()[\]]|\^\^/,
 	'boolean': /\b(?:true|false)\b/,
-	'keyword': /(?:\ba|@prefix|@base)\b|=/,
-	'case-insensitive-keyword': {
-		pattern: /\b(?:graph|base|prefix)\b|=/i,
-		alias: 'keyword'
-	},
+	'keyword': [
+		/(?:\ba|@prefix|@base)\b|=/,
+		/\b(?:graph|base|prefix)\b|=/i
+	],
 	'tag': {
 		'pattern': /@[a-z]+(?:-[a-z\d]+)*/i,
 		inside: {
