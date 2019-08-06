@@ -4,21 +4,49 @@ show:218 show:localName 'Cette Série des Années Soixante-dix'@fr, "Cette Séri
 ----------------------------------------------------
 
 [
-	["function", "show:218"],
-	["function", "show:localName"],
+	["function", [
+		["prefix", "show"],
+		["punctuation", ":"],
+		["name", "218"]
+	]],
+	["function", [
+		["prefix", "show"],
+		["punctuation", ":"],
+		["name", "localName"]
+	]],
 	["string", "\"That Seventies Show\""],
-	["tag", "@en"],
+	["tag", [
+		["punctuation", "@"],
+		"en"
+	]],
 	["punctuation", ","],
 	["string", "\"test\""],
-	["tag", "@en-t-es-t0-abcd"],
+	["tag", [
+		["punctuation", "@"],
+		"en-t-es-t0-abcd"
+	]],
 	["punctuation", "."],
-	["function", "show:218"],
-	["function", "show:localName"],
+	["function", [
+		["prefix", "show"],
+		["punctuation", ":"],
+		["name", "218"]
+	]],
+	["function", [
+		["prefix", "show"],
+		["punctuation", ":"],
+		["name", "localName"]
+	]],
 	["string", "'Cette Série des Années Soixante-dix'"],
-	["tag", "@fr"],
+	["tag", [
+		["punctuation", "@"],
+		"fr"
+	]],
 	["punctuation", ","],
 	["string", "\"Cette Série des Années Septante\""],
-	["tag", "@fr-be"],
+	["tag", [
+		["punctuation", "@"],
+		"fr-be"
+	]],
 	["punctuation", "."]
 ]
 

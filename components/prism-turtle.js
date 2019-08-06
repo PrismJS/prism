@@ -17,13 +17,28 @@ Prism.languages.turtle = {
 	},
 	'url': {
 		pattern: /<[^\s<>]*>/,
-		greedy: true
+		greedy: true,
+		inside: {
+			'punctuation': /[<>]/
+		}
 	},
-	'function': /\b[^\s:]*:[^\s:.;,(){}[\]^]*/,
+	'function': {
+		pattern: /[^\s:^]*:[^\s:.;,(){}[\]^]*/,
+		inside: {
+			'prefix': /^[^:]+(?=:)/,
+			'punctuation': /:/,
+			'name': /[\s\S]+/
+		}
+	},
 	'number': /[+-]?\b\d+\.?\d*(?:e[+-]?\d+)?/i,
 	'punctuation': /[{}.,;()[\]]|\^\^/,
 	'boolean': /\b(?:true|false)\b/,
 	'keyword': /(?:\b(?:a|graph|base|prefix)|@prefix|@base)\b|=/i,
-	'tag': /@[a-z]+(?:-[a-z\d]+)*/i,
+	'tag': {
+		'pattern': /@[a-z]+(?:-[a-z\d]+)*/i,
+		inside: {
+			'punctuation': /@/
+		}
+	}
 };
 Prism.languages.trig = Prism.languages['turtle'];

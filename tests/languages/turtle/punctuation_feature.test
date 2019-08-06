@@ -14,34 +14,90 @@ GRAPH <urn:newGraph> {
 
 [
 	["keyword", "@base"],
-	["url", "<http://example.org/>"],
+	["url", [
+		["punctuation", "<"],
+		"http://example.org/",
+		["punctuation", ">"]
+	]],
 	["punctuation", "."],
 	["keyword", "GRAPH"],
-	["url", "<urn:newGraph>"],
+	["url", [
+		["punctuation", "<"],
+		"urn:newGraph",
+		["punctuation", ">"]
+	]],
 	["punctuation", "{"],
-	["url", "<urn:myClass>"],
+	["url", [
+		["punctuation", "<"],
+		"urn:myClass",
+		["punctuation", ">"]
+	]],
 	["keyword", "a"],
-	["function", "rdfs:Class"],
+	["function", [
+		["prefix", "rdfs"],
+		["punctuation", ":"],
+		["name", "Class"]
+	]],
 	["punctuation", ","],
-	["url", "<other-class>"],
+	["url", [
+		["punctuation", "<"],
+		"other-class",
+		["punctuation", ">"]
+	]],
 	["punctuation", ";"],
 	["keyword", "="],
-	["url", "<urn:equivalentClass>"],
+	["url", [
+		["punctuation", "<"],
+		"urn:equivalentClass",
+		["punctuation", ">"]
+	]],
 	["punctuation", "."],
-	["url", "<urn:myList>"],
+	["url", [
+		["punctuation", "<"],
+		"urn:myList",
+		["punctuation", ">"]
+	]],
 	["keyword", "a"],
-	["function", "rdf:List"],
+	["function", [
+		["prefix", "rdf"],
+		["punctuation", ":"],
+		["name", "List"]
+	]],
 	["punctuation", ";"],
-	["function", "rdf:value"],
+	["function", [
+		["prefix", "rdf"],
+		["punctuation", ":"],
+		["name", "value"]
+	]],
 	["punctuation", "["],
 	["keyword", "a"],
-	["url", "<blankNode>"],
+	["url", [
+		["punctuation", "<"],
+		"blankNode",
+		["punctuation", ">"]
+	]],
 	["punctuation", ";"],
-	["function", "rdf:value"],
+	["function", [
+		["prefix", "rdf"],
+		["punctuation", ":"],
+		["name", "value"]
+	]],
 	["punctuation", "("],
-	["url", "<list>"],
-	["url", "<of>"],
-	["url", "<things>"],
+	["url", [
+		["punctuation", "<"],
+		"list",
+		["punctuation", ">"]
+	]],
+	["url", [
+		["punctuation", "<"],
+		"of",
+		["punctuation", ">"]
+	]],
+	["url", [
+		["punctuation", "<"],
+		"things",
+		["punctuation", ">"]
+	]],
 	["punctuation", "("],
 	["punctuation", ")"],
 	["punctuation", "["],
