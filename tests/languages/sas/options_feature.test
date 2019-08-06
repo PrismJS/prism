@@ -5,10 +5,10 @@ options insert=(fmtsearch="c:/myformats");
 ----------------------------------------------------
 
 [
+	["keyword", "options"],
 	[
-		"options",
+		"options-args",
 		[
-			["options", "options"],
 			["arg","nodate"],
 			["arg", "linesize"],
 			["operator", "="],
@@ -16,10 +16,10 @@ options insert=(fmtsearch="c:/myformats");
 		]
 	],
 	["punctuation", ";"],
+	["keyword", "options"],
 	[
-		"options",
+		"options-args",
 		[
-			["options", "options"],
 			["arg", "validmemname"],
 			["operator", "="],
 			["arg-value", "extend"],
@@ -29,10 +29,10 @@ options insert=(fmtsearch="c:/myformats");
 		]
 	],
 	["punctuation", ";"],
+	["keyword", "options"],
 	[
-		"options",
+		"options-args",
 		[
-			["options", "options"],
 			["arg", "insert"],
 			["operator", "="],
 			["punctuation", "("],
