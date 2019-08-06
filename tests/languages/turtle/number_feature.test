@@ -17,9 +17,11 @@
 		["punctuation", ">"]
 	]],
 	["function", [
-		["prefix", "rdf"],
-		["punctuation", ":"],
-		["name", "value"]
+		["prefix", [
+			"rdf",
+			["punctuation", ":"]
+		]],
+		["local-name", "value"]
 	]],
 	["number", "1"],
 	["punctuation", "."],
@@ -29,9 +31,11 @@
 		["punctuation", ">"]
 	]],
 	["function", [
-		["prefix", "rdf"],
-		["punctuation", ":"],
-		["name", "value"]
+		["prefix", [
+			"rdf",
+			["punctuation", ":"]
+		]],
+		["local-name", "value"]
 	]],
 	["number", "+1"],
 	["punctuation", "."],
@@ -41,9 +45,11 @@
 		["punctuation", ">"]
 	]],
 	["function", [
-		["prefix", "rdf"],
-		["punctuation", ":"],
-		["name", "value"]
+		["prefix", [
+			"rdf",
+			["punctuation", ":"]
+		]],
+		["local-name", "value"]
 	]],
 	["number", "-1"],
 	["punctuation", "."],
@@ -53,9 +59,11 @@
 		["punctuation", ">"]
 	]],
 	["function", [
-		["prefix", "rdf"],
-		["punctuation", ":"],
-		["name", "value"]
+		["prefix", [
+			"rdf",
+			["punctuation", ":"]
+		]],
+		["local-name", "value"]
 	]],
 	["number", "1.13"],
 	["punctuation", "."],
@@ -65,9 +73,11 @@
 		["punctuation", ">"]
 	]],
 	["function", [
-		["prefix", "rdf"],
-		["punctuation", ":"],
-		["name", "value"]
+		["prefix", [
+			"rdf",
+			["punctuation", ":"]
+		]],
+		["local-name", "value"]
 	]],
 	["number", "+1.13"],
 	["punctuation", "."],
@@ -77,9 +87,11 @@
 		["punctuation", ">"]
 	]],
 	["function", [
-		["prefix", "rdf"],
-		["punctuation", ":"],
-		["name", "value"]
+		["prefix", [
+			"rdf",
+			["punctuation", ":"]
+		]],
+		["local-name", "value"]
 	]],
 	["number", "-1.13"],
 	["punctuation", "."],
@@ -89,9 +101,11 @@
 		["punctuation", ">"]
 	]],
 	["function", [
-		["prefix", "rdf"],
-		["punctuation", ":"],
-		["name", "value"]
+		["prefix", [
+			"rdf",
+			["punctuation", ":"]
+		]],
+		["local-name", "value"]
 	]],
 	["number", "1e3"],
 	["punctuation", "."],
@@ -101,9 +115,11 @@
 		["punctuation", ">"]
 	]],
 	["function", [
-		["prefix", "rdf"],
-		["punctuation", ":"],
-		["name", "value"]
+		["prefix", [
+			"rdf",
+			["punctuation", ":"]
+		]],
+		["local-name", "value"]
 	]],
 	["number", "+1e3"],
 	["punctuation", "."],
@@ -113,9 +129,11 @@
 		["punctuation", ">"]
 	]],
 	["function", [
-		["prefix", "rdf"],
-		["punctuation", ":"],
-		["name", "value"]
+		["prefix", [
+			"rdf",
+			["punctuation", ":"]
+		]],
+		["local-name", "value"]
 	]],
 	["number", "-1e3"],
 	["punctuation", "."]

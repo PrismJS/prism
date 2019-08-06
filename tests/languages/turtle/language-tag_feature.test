@@ -5,14 +5,18 @@ show:218 show:localName 'Cette Série des Années Soixante-dix'@fr, "Cette Séri
 
 [
 	["function", [
-		["prefix", "show"],
-		["punctuation", ":"],
-		["name", "218"]
+		["prefix", [
+			"show",
+			["punctuation", ":"]
+		]],
+		["local-name", "218"]
 	]],
 	["function", [
-		["prefix", "show"],
-		["punctuation", ":"],
-		["name", "localName"]
+		["prefix", [
+			"show",
+			["punctuation", ":"]
+		]],
+		["local-name", "localName"]
 	]],
 	["string", "\"That Seventies Show\""],
 	["tag", [
@@ -27,14 +31,18 @@ show:218 show:localName 'Cette Série des Années Soixante-dix'@fr, "Cette Séri
 	]],
 	["punctuation", "."],
 	["function", [
-		["prefix", "show"],
-		["punctuation", ":"],
-		["name", "218"]
+		["prefix", [
+			"show",
+			["punctuation", ":"]
+		]],
+		["local-name", "218"]
 	]],
 	["function", [
-		["prefix", "show"],
-		["punctuation", ":"],
-		["name", "localName"]
+		["prefix", [
+			"show",
+			["punctuation", ":"]
+		]],
+		["local-name", "localName"]
 	]],
 	["string", "'Cette Série des Années Soixante-dix'"],
 	["tag", [

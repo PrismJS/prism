@@ -34,9 +34,11 @@ GRAPH <urn:newGraph> {
 	]],
 	["keyword", "a"],
 	["function", [
-		["prefix", "rdfs"],
-		["punctuation", ":"],
-		["name", "Class"]
+		["prefix", [
+			"rdfs",
+			["punctuation", ":"]
+		]],
+		["local-name", "Class"]
 	]],
 	["punctuation", ","],
 	["url", [
@@ -59,15 +61,19 @@ GRAPH <urn:newGraph> {
 	]],
 	["keyword", "a"],
 	["function", [
-		["prefix", "rdf"],
-		["punctuation", ":"],
-		["name", "List"]
+		["prefix", [
+			"rdf",
+			["punctuation", ":"]
+		]],
+		["local-name", "List"]
 	]],
 	["punctuation", ";"],
 	["function", [
-		["prefix", "rdf"],
-		["punctuation", ":"],
-		["name", "value"]
+		["prefix", [
+			"rdf",
+			["punctuation", ":"]
+		]],
+		["local-name", "value"]
 	]],
 	["punctuation", "["],
 	["keyword", "a"],
@@ -78,9 +84,11 @@ GRAPH <urn:newGraph> {
 	]],
 	["punctuation", ";"],
 	["function", [
-		["prefix", "rdf"],
-		["punctuation", ":"],
-		["name", "value"]
+		["prefix", [
+			"rdf",
+			["punctuation", ":"]
+		]],
+		["local-name", "value"]
 	]],
 	["punctuation", "("],
 	["url", [

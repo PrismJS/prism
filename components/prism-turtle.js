@@ -23,11 +23,15 @@ Prism.languages.turtle = {
 		}
 	},
 	'function': {
-		pattern: /[^\s:^]*:[^\s:.;,(){}[\]^]*/,
+		pattern: /(?:(?![-._\d\xB7])[-.\w\xB7\xC0-\uFFFD]+)?:(?:(?![-.])(?:[-.:\w\xC0-\uFFFD]|%[\da-f]{2}|\\.)+)?/i,
 		inside: {
-			'prefix': /^[^:]+(?=:)/,
-			'punctuation': /:/,
-			'name': /[\s\S]+/
+			'prefix': {
+				pattern: /(?:(?![-._\d\xB7])[-.\w\xB7\xC0-\uFFFD]+)?:/i,
+				inside: {
+					'punctuation': /:/
+				}
+			},
+			'local-name': /(?![-.])(?:[-.:\w\xC0-\uFFFD]|%[\da-f]{2}|\\.)+/i
 		}
 	},
 	'number': /[+-]?\b\d+\.?\d*(?:e[+-]?\d+)?/i,

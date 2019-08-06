@@ -15,33 +15,43 @@ and up to two sequential quotes ("").""" .
 
 [
 	["function", [
-		["prefix", "show"],
-		["punctuation", ":"],
-		["name", "218"]
+		["prefix", [
+			"show",
+			["punctuation", ":"]
+		]],
+		["local-name", "218"]
 	]],
 	["function", [
-		["prefix", "rdfs"],
-		["punctuation", ":"],
-		["name", "label"]
+		["prefix", [
+			"rdfs",
+			["punctuation", ":"]
+		]],
+		["local-name", "label"]
 	]],
 	["string", "\"That Seventies Show\""],
 	["punctuation", "^^"],
 	["function", [
-		["prefix", "xsd"],
-		["punctuation", ":"],
-		["name", "string"]
+		["prefix", [
+			"xsd",
+			["punctuation", ":"]
+		]],
+		["local-name", "string"]
 	]],
 	["punctuation", "."],
 	["comment", "# literal with XML Schema string datatype"],
 	["function", [
-		["prefix", "show"],
-		["punctuation", ":"],
-		["name", "218"]
+		["prefix", [
+			"show",
+			["punctuation", ":"]
+		]],
+		["local-name", "218"]
 	]],
 	["function", [
-		["prefix", "rdfs"],
-		["punctuation", ":"],
-		["name", "label"]
+		["prefix", [
+			"rdfs",
+			["punctuation", ":"]
+		]],
+		["local-name", "label"]
 	]],
 	["string", "\"That Seventies Show\""],
 	["punctuation", "^^"],
@@ -53,27 +63,35 @@ and up to two sequential quotes ("").""" .
 	["punctuation", "."],
 	["comment", "# same as above"],
 	["function", [
-		["prefix", "show"],
-		["punctuation", ":"],
-		["name", "218"]
+		["prefix", [
+			"show",
+			["punctuation", ":"]
+		]],
+		["local-name", "218"]
 	]],
 	["function", [
-		["prefix", "rdfs"],
-		["punctuation", ":"],
-		["name", "label"]
+		["prefix", [
+			"rdfs",
+			["punctuation", ":"]
+		]],
+		["local-name", "label"]
 	]],
 	["string", "\"That Seventies Show\""],
 	["punctuation", "."],
 	["comment", "# same again"],
 	["function", [
-		["prefix", "show"],
-		["punctuation", ":"],
-		["name", "218"]
+		["prefix", [
+			"show",
+			["punctuation", ":"]
+		]],
+		["local-name", "218"]
 	]],
 	["function", [
-		["prefix", "show"],
-		["punctuation", ":"],
-		["name", "localName"]
+		["prefix", [
+			"show",
+			["punctuation", ":"]
+		]],
+		["local-name", "localName"]
 	]],
 	["string", "\"That Seventies Show\""],
 	["tag", [
@@ -83,14 +101,18 @@ and up to two sequential quotes ("").""" .
 	["punctuation", "."],
 	["comment", "# literal with a language tag"],
 	["function", [
-		["prefix", "show"],
-		["punctuation", ":"],
-		["name", "218"]
+		["prefix", [
+			"show",
+			["punctuation", ":"]
+		]],
+		["local-name", "218"]
 	]],
 	["function", [
-		["prefix", "show"],
-		["punctuation", ":"],
-		["name", "localName"]
+		["prefix", [
+			"show",
+			["punctuation", ":"]
+		]],
+		["local-name", "localName"]
 	]],
 	["string", "'Cette Série des Années Soixante-dix'"],
 	["tag", [
@@ -100,14 +122,18 @@ and up to two sequential quotes ("").""" .
 	["punctuation", "."],
 	["comment", "# literal delimited by single quote"],
 	["function", [
-		["prefix", "show"],
-		["punctuation", ":"],
-		["name", "218"]
+		["prefix", [
+			"show",
+			["punctuation", ":"]
+		]],
+		["local-name", "218"]
 	]],
 	["function", [
-		["prefix", "show"],
-		["punctuation", ":"],
-		["name", "localName"]
+		["prefix", [
+			"show",
+			["punctuation", ":"]
+		]],
+		["local-name", "localName"]
 	]],
 	["string", "\"Cette Série des Années Septante\""],
 	["tag", [
@@ -117,14 +143,18 @@ and up to two sequential quotes ("").""" .
 	["punctuation", "."],
 	["comment", "# literal with a region subtag"],
 	["function", [
-		["prefix", "show"],
-		["punctuation", ":"],
-		["name", "218"]
+		["prefix", [
+			"show",
+			["punctuation", ":"]
+		]],
+		["local-name", "218"]
 	]],
 	["function", [
-		["prefix", "show"],
-		["punctuation", ":"],
-		["name", "blurb"]
+		["prefix", [
+			"show",
+			["punctuation", ":"]
+		]],
+		["local-name", "blurb"]
 	]],
 	["multiline-string", [
 		"'''This is a multi-line                        ",
@@ -133,14 +163,18 @@ and up to two sequential quotes ("").""" .
 	]],
 	["punctuation", "."],
 	["function", [
-		["prefix", "show"],
-		["punctuation", ":"],
-		["name", "218"]
+		["prefix", [
+			"show",
+			["punctuation", ":"]
+		]],
+		["local-name", "218"]
 	]],
 	["function", [
-		["prefix", "show"],
-		["punctuation", ":"],
-		["name", "blurb"]
+		["prefix", [
+			"show",
+			["punctuation", ":"]
+		]],
+		["local-name", "blurb"]
 	]],
 	["multiline-string", [
 		"\"\"\"This is a multi-line                        ",
