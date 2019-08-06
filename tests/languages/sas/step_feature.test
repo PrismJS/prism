@@ -13,10 +13,12 @@ quit;
 	["step", "proc format"],
 	["punctuation", ";"],
 	["step", "proc sort"],
-	["keyword", "data"],
-	["operator", "="],
-	"allacty",
-	["punctuation", ";"],
+	["proc-args",[
+		["arg", "data"],
+		["operator", "="],
+		["arg-value", "allacty"],
+		["punctuation", ";"]
+	]],
 	["step", "run"],
 	["punctuation", ";"],
 	["step", "quit"],

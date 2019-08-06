@@ -816,7 +816,7 @@
 		},
 		"sas": {
 			"title": "SAS",
-			"require": "sql",
+			"require": ["sql", "lua", "groovy"],
 			"owner": "Golmote"
 		},
 		"sass": {

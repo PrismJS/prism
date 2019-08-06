@@ -9,8 +9,9 @@
 	};
 
 	var step = {
-		pattern: /(?:proc\s+\w+|quit|run|data(?!\=))\b/i,
-		alias: 'keyword'
+		pattern: /(^|\s+)(?:proc\s+\w+|quit|run|data(?!\=))\b/i,
+		alias: 'keyword',
+		lookbehind: true
 	};
 
 	var comment = [
@@ -28,6 +29,27 @@
 
 	var punctuation = /[$%@.(){}\[\];,\\]/;
 
+	var args = {
+		'arg-value': {
+			pattern: /(=)[A-Z]+/i,
+			lookbehind: true
+		},
+		'operator': /=/,
+		'arg': {
+			pattern: /[A-Z]+/i,
+			alias: 'keyword'
+		},
+		'number': number,
+		'numeric-constant': numericConstant,
+		'punctuation': punctuation,
+		'string': string
+	};
+
+	var globalStatements = {
+		pattern: /((?:^|[\s])=?)(?:catname|checkpoint execute_always|dm|endsas|filename|footnote|%include|libname|%list|lock|missing|options|page|resetline|%run|sasfile|skip|sysecho|title\d?)\b/i,
+		lookbehind: true,
+		alias: 'keyword'
+	};
 
 	Prism.languages.sas = {
 		'datalines': {
@@ -41,28 +63,35 @@
 				'punctuation': /;/
 			}
 		},
+
 		'proc-sql': {
-			pattern: /^proc\s+sql(?:\s+[\w|=]+)?;(?:[\s\S]+?^(?:proc\s+\w+|quit|run|data);|(?:\r?\n|\r)[\s\S]+;)/im,
+			pattern: /(^proc\s+(fed)?sql(?:\s+[\w|=]+)?;)[\s\S]+?(?=^(?:proc\s+\w+|quit|run|data);|(?![\s\S]))/im,
 			inside: {
-				'full-step': {
-					pattern: /^proc\s+sql(?:\s+[\w|=]+)?;/i,
-					inside: {
-						'step': step,
-						'argument': {
-							pattern: /\w+(?==)/,
-							alias: 'keyword'
-						},
-						'operator': /=/,
-						'punctuation': /;/,
-						'number': number,
-						'numeric-constant': numericConstant,
-						'string': string
-					}
+				'sql': {
+					pattern: RegExp(/^[ \t]*(?:select|alter\s+table|(?:create|describe|drop)\s+(?:index|table(\s+constraints)?|view)|create\s+unique\s+index|insert\s+into|update)(?:<str>|[^;"'])+;/.source.replace(/<str>/g, stringPattern), 'im'),
+					alias: 'language-sql',
+					inside: Prism.languages.sql
 				},
-				'step': step,
-				rest: Prism.languages.sql
-			}
+				'global-statements': globalStatements,
+				'sqlStatements': {
+					pattern: /((?:^|[\s]))(?:disconnect\s+from|exec(ute)?|begin|commit|rollback|reset|validate)\b/i,
+					lookbehind: true,
+					alias: 'keyword'
+				},
+				'number': number,
+				'numeric-constant': numericConstant,
+				'punctuation': punctuation,
+				'string': string
+			},
+			lookbehind: true
 		},
+
+		'proc-args': {
+			pattern: /(^proc\s+\w+)(\s+[\w="'']+);/im,
+			lookbehind: true,
+			inside: args
+		},
+
 		/*Special keywords within macros*/
 		'macro-keyword': {
 			pattern: /((?:^|[\s])=?)%(?:ABORT|BQUOTE|BY|CMS|COPY|DISPLAY|DO|ELSE|END|EVAL|GLOBAL|GO|GOTO|IF|INC|INCLUDE|INDEX|INPUT|KTRIM|LENGTH|LET|LIST|LOCAL|NRBQUOTE|NRQUOTE|NRSTR|PUT|QKTRIM|QSCAN|QSUBSTR|QSYSFUNC|QUOTE|QUPCASE|RETURN|RUN|SCAN|STR|SUBSTR|SUPERQ|SYMDEL|SYMGLOBL|SYMLOCAL|SYMEXIST|SYSCALL|SYSEVALF|SYSEXEC|SYSFUNC|SYSGET|SYSRPUT|THEN|TO|TSO|UNQUOTE|UNTIL|UPCASE|WHILE|WINDOW)\b/i,
@@ -99,27 +128,10 @@
 			}
 		},
 		'comment': comment,
-		'options': {
-			pattern: /^options[-'"|/\\<>*+=:()\w\s]*(?=;)/im,
-			inside: {
-				'options': {
-					alias: 'keyword',
-					pattern: /^options/i,
-				},
-				'arg-value': {
-					pattern: /(=)[A-Z]+/i,
-					lookbehind: true
-				},
-				'operator': /=/,
-				'arg': {
-					pattern: /[A-Z]+/i,
-					alias: 'keyword'
-				},
-				'number': number,
-				'numeric-constant': numericConstant,
-				'punctuation': punctuation,
-				'string': string
-			},
+		'options-args': {
+			pattern: /(^options)[-'"|/\\<>*+=:()\w\s]*(?=;)/im,
+			lookbehind: true,
+			inside: args
 		},
 		'function': {
 			pattern: /%?\w+(?=\()/,
@@ -155,7 +167,7 @@
 		'string': string,
 		'step': step,
 		'keyword': {
-			pattern: /((?:^|[\s])=?)(?:action|after|analysis|and|array|barchart|barwidth|begingraph|by|cas|cbarline|cfill|close|column|computed?|contains|data(?=\=)|define|document|do\s+over|do|dol|drop|dul|end|entryTitle|else|endcomp|fill(?:attrs)?|filename|group(?:by)?|headline|headskip|histogram|if|infile|keep|label|layout|legendlabel|length|libname|merge|midpoints|name|noobs|nowd|ods|or|out(?:put)?|overlay|plot|ranexp|rannor|rbreak|retain|set|session|sessref|statgraph|sum|summarize|table|temp|then\sdo|then|title|to|var|where|xaxisopts|yaxisopts|y2axisopts)\b/i,
+			pattern: /((?:^|[\s])=?)(?:action|after|analysis|and|array|barchart|barwidth|begingraph|by|cas|cbarline|cfill|close|column|computed?|contains|data(?=\=)|define|document|do\s+over|do|dol|drop|dul|end|entryTitle|else|endcomp|fill(?:attrs)?|filename|group(?:by)?|headline|headskip|histogram|if|infile|keep|label|layout|legendlabel|length|libname|merge|midpoints|name|noobs|nowd|ods|options|or|out(?:put)?|overlay|plot|ranexp|rannor|rbreak|retain|set|session|sessref|statgraph|sum|summarize|table|temp|then\sdo|then|title\d?|to|var|where|xaxisopts|yaxisopts|y2axisopts)\b/i,
 			lookbehind: true,
 		},
 		// In SAS Studio syntax highlighting, these operators are styled like keywords
