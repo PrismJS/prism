@@ -1,0 +1,75 @@
+<http://www.w3.org/TR/rdf-syntax-grammar> <http://purl.org/dc/elements/1.1/title> "RDF/XML Syntax Specification (Revised)" .
+ <http://www.w3.org/TR/rdf-syntax-grammar> <http://example.org/stuff/1.0/editor> _:bnode .
+ _:bnode <http://example.org/stuff/1.0/fullname> "Dave Beckett" .
+ _:bnode <http://example.org/stuff/1.0/homePage> <http://purl.org/net/dajobe/> .
+
+----------------------------------------------------
+
+[
+	["url", [
+		["punctuation", "<"],
+		"http://www.w3.org/TR/rdf-syntax-grammar",
+		["punctuation", ">"]
+	]],
+	["url", [
+		["punctuation", "<"],
+		"http://purl.org/dc/elements/1.1/title",
+		["punctuation", ">"]
+	]],
+	["string", "\"RDF/XML Syntax Specification (Revised)\""],
+	["punctuation", "."],
+	["url", [
+		["punctuation", "<"],
+		"http://www.w3.org/TR/rdf-syntax-grammar",
+		["punctuation", ">"]
+	]],
+	["url", [
+		["punctuation", "<"],
+		"http://example.org/stuff/1.0/editor",
+		["punctuation", ">"]
+	]],
+	["function", [
+		["prefix", [
+			"_",
+			["punctuation", ":"]
+		]],
+		["local-name", "bnode"]
+	]],
+	["punctuation", "."],
+	["function", [
+		["prefix", [
+			"_",
+			["punctuation", ":"]
+		]],
+		["local-name", "bnode"]
+	]],
+	["url", [
+		["punctuation", "<"],
+		"http://example.org/stuff/1.0/fullname",
+		["punctuation", ">"]
+	]],
+	["string", "\"Dave Beckett\""],
+	["punctuation", "."],
+	["function", [
+		["prefix", [
+			"_",
+			["punctuation", ":"]
+		]],
+		["local-name", "bnode"]
+	]],
+	["url", [
+		["punctuation", "<"],
+		"http://example.org/stuff/1.0/homePage",
+		["punctuation", ">"]
+	]],
+	["url", [
+		["punctuation", "<"],
+		"http://purl.org/net/dajobe/",
+		["punctuation", ">"]
+	]],
+	["punctuation", "."]
+]
+
+----------------------------------------------------
+
+Checks blank node underscore prefixes.

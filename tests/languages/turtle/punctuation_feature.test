@@ -1,0 +1,122 @@
+@base <http://example.org/> .
+
+GRAPH <urn:newGraph> {
+	<urn:myClass> a rdfs:Class, <other-class> ;
+	= <urn:equivalentClass> .
+	<urn:myList> a rdf:List ;
+		rdf:value [ a <blankNode> ;
+			rdf:value ( <list> <of> <things> () [] )
+			] ;
+		.
+}
+
+----------------------------------------------------
+
+[
+	["keyword", "@base"],
+	["url", [
+		["punctuation", "<"],
+		"http://example.org/",
+		["punctuation", ">"]
+	]],
+	["punctuation", "."],
+	["keyword", "GRAPH"],
+	["url", [
+		["punctuation", "<"],
+		"urn:newGraph",
+		["punctuation", ">"]
+	]],
+	["punctuation", "{"],
+	["url", [
+		["punctuation", "<"],
+		"urn:myClass",
+		["punctuation", ">"]
+	]],
+	["keyword", "a"],
+	["function", [
+		["prefix", [
+			"rdfs",
+			["punctuation", ":"]
+		]],
+		["local-name", "Class"]
+	]],
+	["punctuation", ","],
+	["url", [
+		["punctuation", "<"],
+		"other-class",
+		["punctuation", ">"]
+	]],
+	["punctuation", ";"],
+	["keyword", "="],
+	["url", [
+		["punctuation", "<"],
+		"urn:equivalentClass",
+		["punctuation", ">"]
+	]],
+	["punctuation", "."],
+	["url", [
+		["punctuation", "<"],
+		"urn:myList",
+		["punctuation", ">"]
+	]],
+	["keyword", "a"],
+	["function", [
+		["prefix", [
+			"rdf",
+			["punctuation", ":"]
+		]],
+		["local-name", "List"]
+	]],
+	["punctuation", ";"],
+	["function", [
+		["prefix", [
+			"rdf",
+			["punctuation", ":"]
+		]],
+		["local-name", "value"]
+	]],
+	["punctuation", "["],
+	["keyword", "a"],
+	["url", [
+		["punctuation", "<"],
+		"blankNode",
+		["punctuation", ">"]
+	]],
+	["punctuation", ";"],
+	["function", [
+		["prefix", [
+			"rdf",
+			["punctuation", ":"]
+		]],
+		["local-name", "value"]
+	]],
+	["punctuation", "("],
+	["url", [
+		["punctuation", "<"],
+		"list",
+		["punctuation", ">"]
+	]],
+	["url", [
+		["punctuation", "<"],
+		"of",
+		["punctuation", ">"]
+	]],
+	["url", [
+		["punctuation", "<"],
+		"things",
+		["punctuation", ">"]
+	]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "["],
+	["punctuation", "]"],
+	["punctuation", ")"],
+	["punctuation", "]"],
+	["punctuation", ";"],
+	["punctuation", "."],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for all types of punctuation.
