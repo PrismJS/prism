@@ -1,0 +1,143 @@
+<1.1> rdf:value 1 .
+<1.2> rdf:value +1 .
+<1.3> rdf:value -1 .
+<2.1> rdf:value 1.13 .
+<2.2> rdf:value +1.13 .
+<2.3> rdf:value -1.13 .
+<3.1> rdf:value 1e3 .
+<3.2> rdf:value +1e3 .
+<3.3> rdf:value -1e3 .
+
+----------------------------------------------------
+
+[
+	["url", [
+		["punctuation", "<"],
+		"1.1",
+		["punctuation", ">"]
+	]],
+	["function", [
+		["prefix", [
+			"rdf",
+			["punctuation", ":"]
+		]],
+		["local-name", "value"]
+	]],
+	["number", "1"],
+	["punctuation", "."],
+	["url", [
+		["punctuation", "<"],
+		"1.2",
+		["punctuation", ">"]
+	]],
+	["function", [
+		["prefix", [
+			"rdf",
+			["punctuation", ":"]
+		]],
+		["local-name", "value"]
+	]],
+	["number", "+1"],
+	["punctuation", "."],
+	["url", [
+		["punctuation", "<"],
+		"1.3",
+		["punctuation", ">"]
+	]],
+	["function", [
+		["prefix", [
+			"rdf",
+			["punctuation", ":"]
+		]],
+		["local-name", "value"]
+	]],
+	["number", "-1"],
+	["punctuation", "."],
+	["url", [
+		["punctuation", "<"],
+		"2.1",
+		["punctuation", ">"]
+	]],
+	["function", [
+		["prefix", [
+			"rdf",
+			["punctuation", ":"]
+		]],
+		["local-name", "value"]
+	]],
+	["number", "1.13"],
+	["punctuation", "."],
+	["url", [
+		["punctuation", "<"],
+		"2.2",
+		["punctuation", ">"]
+	]],
+	["function", [
+		["prefix", [
+			"rdf",
+			["punctuation", ":"]
+		]],
+		["local-name", "value"]
+	]],
+	["number", "+1.13"],
+	["punctuation", "."],
+	["url", [
+		["punctuation", "<"],
+		"2.3",
+		["punctuation", ">"]
+	]],
+	["function", [
+		["prefix", [
+			"rdf",
+			["punctuation", ":"]
+		]],
+		["local-name", "value"]
+	]],
+	["number", "-1.13"],
+	["punctuation", "."],
+	["url", [
+		["punctuation", "<"],
+		"3.1",
+		["punctuation", ">"]
+	]],
+	["function", [
+		["prefix", [
+			"rdf",
+			["punctuation", ":"]
+		]],
+		["local-name", "value"]
+	]],
+	["number", "1e3"],
+	["punctuation", "."],
+	["url", [
+		["punctuation", "<"],
+		"3.2",
+		["punctuation", ">"]
+	]],
+	["function", [
+		["prefix", [
+			"rdf",
+			["punctuation", ":"]
+		]],
+		["local-name", "value"]
+	]],
+	["number", "+1e3"],
+	["punctuation", "."],
+	["url", [
+		["punctuation", "<"],
+		"3.3",
+		["punctuation", ">"]
+	]],
+	["function", [
+		["prefix", [
+			"rdf",
+			["punctuation", ":"]
+		]],
+		["local-name", "value"]
+	]],
+	["number", "-1e3"],
+	["punctuation", "."]
+]
+----------------------------------------------------
+
+Checks for supported numbers.
