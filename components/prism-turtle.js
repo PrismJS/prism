@@ -25,13 +25,16 @@ Prism.languages.turtle = {
 	'function': {
 		pattern: /(?:(?![-.\d\xB7])[-.\w\xB7\xC0-\uFFFD]+)?:(?:(?![-.])(?:[-.:\w\xC0-\uFFFD]|%[\da-f]{2}|\\.)+)?/i,
 		inside: {
+			'local-name': {
+				pattern: /([^:]*:)[\s\S]+/,
+				lookbehind: true
+			},
 			'prefix': {
-				pattern: /(?:(?![-.\d\xB7])[-.\w\xB7\xC0-\uFFFD]+)?:/i,
+				pattern: /[\s\S]+/,
 				inside: {
 					'punctuation': /:/
 				}
-			},
-			'local-name': /(?![-.])(?:[-.:\w\xC0-\uFFFD]|%[\da-f]{2}|\\.)+/i
+			}
 		}
 	},
 	'number': /[+-]?\b\d+\.?\d*(?:e[+-]?\d+)?/i,

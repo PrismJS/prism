@@ -1,0 +1,16 @@
+:foo:bar:baz
+
+----------------------------------------------------
+
+[
+	["function", [
+		["prefix", [
+			["punctuation", ":"]
+		]],
+		["local-name", "foo:bar:baz"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks that local name containing colons is parsed correctly.
