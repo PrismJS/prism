@@ -20,7 +20,7 @@ GRAPH <urn:newGraph> {
 		["punctuation", ">"]
 	]],
 	["punctuation", "."],
-	["keyword", "GRAPH"],
+	["case-insensitive-keyword", "GRAPH"],
 	["url", [
 		["punctuation", "<"],
 		"urn:newGraph",
