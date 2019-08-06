@@ -8,9 +8,7 @@ Prism.languages.turtle = {
 		greedy: true,
 		alias: 'string',
 		inside: {
-			'comment' : {
-				pattern: /#.*/
-			}
+			'comment': /#.*/
 		}
 	},
 	'string': {
