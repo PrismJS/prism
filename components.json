@@ -816,6 +816,7 @@
 		},
 		"sas": {
 			"title": "SAS",
+			"require": "sql",
 			"owner": "Golmote"
 		},
 		"sass": {
