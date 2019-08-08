@@ -65,16 +65,17 @@
 		},
 
 		'proc-sql': {
-			pattern: /(^proc\s+(fed)?sql(?:\s+[\w|=]+)?;)[\s\S]+?(?=^(?:proc\s+\w+|quit|run|data);|(?![\s\S]))/im,
+			pattern: /(^proc\s+(?:fed)?sql(?:\s+[\w|=]+)?;)[\s\S]+?(?=^(?:proc\s+\w+|quit|run|data);|(?![\s\S]))/im,
+			lookbehind: true,
 			inside: {
 				'sql': {
-					pattern: RegExp(/^[ \t]*(?:select|alter\s+table|(?:create|describe|drop)(?:\s+)(?:index|table(?:\s+constraints)?|view)|create\s+unique\s+index|insert\s+into|update)(?:<str>|[^;"'])+;/.source.replace(/<str>/g, stringPattern), 'im'),
+					pattern: RegExp(/^[ \t]*(?:select|alter\s+table|(?:create|describe|drop)\s+(?:index|table(?:\s+constraints)?|view)|create\s+unique\s+index|insert\s+into|update)(?:<str>|[^;"'])+;/.source.replace(/<str>/g, stringPattern), 'im'),
 					alias: 'language-sql',
 					inside: Prism.languages.sql
 				},
 				'global-statements': globalStatements,
-				'sqlStatements': {
-					pattern: /((?:^|[\s]))(?:disconnect\s+from|exec(ute)?|begin|commit|rollback|reset|validate)\b/i,
+				'sql-statements': {
+					pattern: /(^|[\s])(?:disconnect\s+from|exec(ute)?|begin|commit|rollback|reset|validate)\b/i,
 					lookbehind: true,
 					alias: 'keyword'
 				},
@@ -82,19 +83,18 @@
 				'numeric-constant': numericConstant,
 				'punctuation': punctuation,
 				'string': string
-			},
-			lookbehind: true
+			}
 		},
 
 		'proc-args': {
-			pattern: /(^proc\s+\w+)(\s+[\w="'']+);/im,
+			pattern: RegExp(/(^proc\s+\w+\s+)(?!\s)(?:[^;"']|<str>)+;/.source.replace(/<str>/g, stringPattern), 'im'),
 			lookbehind: true,
 			inside: args
 		},
 
 		/*Special keywords within macros*/
 		'macro-keyword': {
-			pattern: /((?:^|[\s])=?)%(?:ABORT|BQUOTE|BY|CMS|COPY|DISPLAY|DO|ELSE|END|EVAL|GLOBAL|GO|GOTO|IF|INC|INCLUDE|INDEX|INPUT|KTRIM|LENGTH|LET|LIST|LOCAL|NRBQUOTE|NRQUOTE|NRSTR|PUT|QKTRIM|QSCAN|QSUBSTR|QSYSFUNC|QUOTE|QUPCASE|RETURN|RUN|SCAN|STR|SUBSTR|SUPERQ|SYMDEL|SYMGLOBL|SYMLOCAL|SYMEXIST|SYSCALL|SYSEVALF|SYSEXEC|SYSFUNC|SYSGET|SYSRPUT|THEN|TO|TSO|UNQUOTE|UNTIL|UPCASE|WHILE|WINDOW)\b/i,
+			pattern: /((?:^|\s)=?)%(?:ABORT|BQUOTE|BY|CMS|COPY|DISPLAY|DO|ELSE|END|EVAL|GLOBAL|GO|GOTO|IF|INC|INCLUDE|INDEX|INPUT|KTRIM|LENGTH|LET|LIST|LOCAL|NRBQUOTE|NRQUOTE|NRSTR|PUT|QKTRIM|QSCAN|QSUBSTR|QSYSFUNC|QUOTE|QUPCASE|RETURN|RUN|SCAN|STR|SUBSTR|SUPERQ|SYMDEL|SYMGLOBL|SYMLOCAL|SYMEXIST|SYSCALL|SYSEVALF|SYSEXEC|SYSFUNC|SYSGET|SYSRPUT|THEN|TO|TSO|UNQUOTE|UNTIL|UPCASE|WHILE|WINDOW)\b/i,
 			lookbehind: true,
 			alias: 'keyword'
 		},

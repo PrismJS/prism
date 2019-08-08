@@ -91,11 +91,7 @@
 		],
 		"reason": "clike",
 		"ruby": "clike",
-		"sas": [
-			"sql",
-			"lua",
-			"groovy"
-		],
+		"sas": "sql",
 		"sass": "css",
 		"scss": "css",
 		"scala": "java",
