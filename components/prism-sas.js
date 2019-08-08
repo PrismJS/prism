@@ -1,6 +1,6 @@
 (function (Prism) {
 
-	var stringPattern = /(["'])(?:\1\1|(?!\1)[\s\S])*\1(?!\1)/.source;
+	var stringPattern = /(?:"(?:""|[^"])*"(?!")|'(?:''|[^'])*'(?!'))/.source;
 
 	var number = /\b(?:\d[\da-f]*x|\d+(?:\.\d+)?(?:e[+-]?\d+)?)\b/i;
 	var numericConstant = {
