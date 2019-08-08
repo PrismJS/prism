@@ -75,7 +75,7 @@
 				},
 				'global-statements': globalStatements,
 				'sql-statements': {
-					pattern: /(^|[\s])(?:disconnect\s+from|exec(ute)?|begin|commit|rollback|reset|validate)\b/i,
+					pattern: /(^|\s)(?:disconnect\s+from|exec(?:ute)?|begin|commit|rollback|reset|validate)\b/i,
 					lookbehind: true,
 					alias: 'keyword'
 				},
