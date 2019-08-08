@@ -897,6 +897,14 @@
 			"require": ["clike", "markup-templating"],
 			"owner": "gflohr"
 		},
+		"turtle": {
+			"title": "Turtle",
+			"alias": ["trig"],
+			"aliasTitles": {
+				"trig": "TriG"
+			},
+			"owner": "jakubklimek"
+		},
 		"twig": {
 			"title": "Twig",
 			"require": "markup",

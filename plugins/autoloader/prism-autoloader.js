@@ -151,6 +151,7 @@
 		"px": "pcaxis",
 		"py": "python",
 		"rb": "ruby",
+		"trig": "turtle",
 		"ts": "typescript",
 		"t4": "t4-cs",
 		"vb": "visual-basic",

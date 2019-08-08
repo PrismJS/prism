@@ -126,6 +126,7 @@
 		"tap": "TAP",
 		"toml": "TOML",
 		"tt2": "Template Toolkit 2",
+		"trig": "TriG",
 		"ts": "TypeScript",
 		"t4-cs": "T4 Text Templates (C#)",
 		"t4": "T4 Text Templates (C#)",
