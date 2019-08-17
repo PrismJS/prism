@@ -54,7 +54,7 @@ function testPatterns(Prism) {
 	 * @property {string} tokenPath
 	 * @property {string} name
 	 * @property {any} parent
-	 * @property {boolean} lookbehind
+	 * @property {boolean} lookbehind Whether the first capturing group of the pattern is a Prism lookbehind group.
 	 * @property {{ key: string, value: any }[]} path
 	 * @property {(message: string) => void} reportError
 	 */
@@ -92,7 +92,7 @@ function testPatterns(Prism) {
 						ast,
 						tokenPath,
 						name: key,
-						parent: parent,
+						parent,
 						path,
 						lookbehind: key === 'pattern' && parent && !!parent.lookbehind,
 						reportError: message => errors.push(message)
