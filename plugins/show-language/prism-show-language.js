@@ -53,6 +53,7 @@
 		"erb": "ERB",
 		"fsharp": "F#",
 		"gcode": "G-code",
+		"gdscript": "GDScript",
 		"gedcom": "GEDCOM",
 		"glsl": "GLSL",
 		"gml": "GameMaker Language",
