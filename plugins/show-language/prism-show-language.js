@@ -52,6 +52,7 @@
 		"ejs": "EJS",
 		"erb": "ERB",
 		"fsharp": "F#",
+		"firestore-security-rules": "Firestore security rules",
 		"gcode": "G-code",
 		"gdscript": "GDScript",
 		"gedcom": "GEDCOM",

@@ -1,0 +1,99 @@
+/databases/foo
+
+/foo/{wildcard}
+/foo/{wildcard}/bar
+/foo/{x}/{y}/{z}/bar
+
+/foo/$(x)/$(y)/bar/$(request.auth.uid)
+
+----------------------------------------------------
+
+[
+	["path", [
+		["punctuation", "/"],
+		"databases",
+		["punctuation", "/"],
+		"foo"
+	]],
+	["path", [
+		["punctuation", "/"],
+		"foo",
+		["punctuation", "/"],
+		["variable", [
+			["punctuation", "{"],
+			"wildcard",
+			["punctuation", "}"]
+		]]
+	]],
+	["path", [
+		["punctuation", "/"],
+		"foo",
+		["punctuation", "/"],
+		["variable", [
+			["punctuation", "{"],
+			"wildcard",
+			["punctuation", "}"]
+		]],
+		["punctuation", "/"],
+		"bar"
+	]],
+	["path", [
+		["punctuation", "/"],
+		"foo",
+		["punctuation", "/"],
+		["variable", [
+			["punctuation", "{"],
+			"x",
+			["punctuation", "}"]
+		]],
+		["punctuation", "/"],
+		["variable", [
+			["punctuation", "{"],
+			"y",
+			["punctuation", "}"]
+		]],
+		["punctuation", "/"],
+		["variable", [
+			["punctuation", "{"],
+			"z",
+			["punctuation", "}"]
+		]],
+		["punctuation", "/"],
+		"bar"
+	]],
+	["path", [
+		["punctuation", "/"],
+		"foo",
+		["punctuation", "/"],
+		["variable", [
+			["punctuation", "$"],
+			["punctuation", "("],
+			"x",
+			["punctuation", ")"]
+		]],
+		["punctuation", "/"],
+		["variable", [
+			["punctuation", "$"],
+			["punctuation", "("],
+			"y",
+			["punctuation", ")"]
+		]],
+		["punctuation", "/"],
+		"bar",
+		["punctuation", "/"],
+		["variable", [
+			["punctuation", "$"],
+			["punctuation", "("],
+			"request",
+			["punctuation", "."],
+			"auth",
+			["punctuation", "."],
+			"uid",
+			["punctuation", ")"]
+		]]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for paths.
