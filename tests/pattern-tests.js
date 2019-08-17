@@ -7,12 +7,6 @@ const { languages } = require('../components');
 const { visitRegExpAST } = require('regexpp');
 
 
-/**
- * @typedef {import("./helper/util").LiteralAST} LiteralAST
- * @typedef {import("regexpp/ast").Element} Element
- */
-
-
 for (const lang in languages) {
 	if (lang === 'meta') {
 		continue;
@@ -35,6 +29,15 @@ for (const lang in languages) {
 	}
 }
 
+/**
+ * Tests all patterns in the given Prism instance.
+ *
+ * @param {any} Prism
+ *
+ * @typedef {import("./helper/util").LiteralAST} LiteralAST
+ * @typedef {import("regexpp/ast").Element} Element
+ * @typedef {import("regexpp/ast").Pattern} Pattern
+ */
 function testPatterns(Prism) {
 
 	/**
@@ -43,14 +46,15 @@ function testPatterns(Prism) {
 	 * _Note:_ This will aggregate all errors thrown by the given callback and throw an aggregated error at the end
 	 * of the iteration. You can also append any number of errors per callback using the `reportError` function.
 	 *
-	 * @param {(values: CallbackValue) => void} callback
+	 * @param {(values: ForEachPatternCallbackValue) => void} callback
 	 *
-	 * @typedef CallbackValue
+	 * @typedef ForEachPatternCallbackValue
 	 * @property {RegExp} pattern
 	 * @property {LiteralAST} ast
 	 * @property {string} tokenPath
 	 * @property {string} name
 	 * @property {any} parent
+	 * @property {boolean} lookbehind
 	 * @property {{ key: string, value: any }[]} path
 	 * @property {(message: string) => void} reportError
 	 */
@@ -82,13 +86,15 @@ function testPatterns(Prism) {
 						throw new SyntaxError(`Invalid RegExp at ${tokenPath}\n\n${error.message}`);
 					}
 
+					const parent = path.length > 1 ? path[path.length - 2].value : undefined;
 					callback({
 						pattern: value,
 						ast,
 						tokenPath,
 						name: key,
-						parent: path.length > 1 ? path[path.length - 2].value : undefined,
+						parent: parent,
 						path,
+						lookbehind: key === 'pattern' && parent && !!parent.lookbehind,
 						reportError: message => errors.push(message)
 					});
 				} catch (error) {
@@ -102,6 +108,28 @@ function testPatterns(Prism) {
 		}
 	}
 
+	/**
+	 * Invokes the given callback for all capturing groups in the given pattern in left to right order.
+	 *
+	 * @param {Pattern} pattern
+	 * @param {(values: ForEachCapturingGroupCallbackValue) => void} callback
+	 *
+	 * @typedef ForEachCapturingGroupCallbackValue
+	 * @property {import("regexpp/ast").CapturingGroup} group
+	 * @property {number} number Note: Starts at 1.
+	 */
+	function forEachCapturingGroup(pattern, callback) {
+		let number = 0;
+		visitRegExpAST(pattern, {
+			onCapturingGroupEnter(node) {
+				callback({
+					group: node,
+					number: ++number
+				});
+			}
+		});
+	}
+
 
 	it('- should not match the empty string', function () {
 		forEachPattern(({ pattern, tokenPath }) => {
@@ -111,16 +139,10 @@ function testPatterns(Prism) {
 	});
 
 	it('- should have a capturing group if lookbehind is set to true', function () {
-		forEachPattern(({ ast, tokenPath, name, parent }) => {
-			const lookbehind = name === 'pattern' && parent.lookbehind;
-
+		forEachPattern(({ ast, tokenPath, lookbehind }) => {
 			if (lookbehind) {
 				let hasCapturingGroup = false;
-				visitRegExpAST(ast.pattern, {
-					onCapturingGroupEnter() {
-						hasCapturingGroup = true;
-					}
-				});
+				forEachCapturingGroup(ast.pattern, () => { hasCapturingGroup = true; });
 
 				if (!hasCapturingGroup) {
 					assert.fail(`Token ${tokenPath}: The pattern is set to 'lookbehind: true' but does not have a capturing group.`);
@@ -188,42 +210,23 @@ function testPatterns(Prism) {
 			}
 		}
 
-		forEachPattern(({ ast, tokenPath, name, parent }) => {
-			const lookbehind = name === 'pattern' && parent.lookbehind;
-
-			if (!lookbehind) {
-				return;
-			}
-
-			let first = true;
-			visitRegExpAST(ast.pattern, {
-				onCapturingGroupEnter(node) {
-					if (!first) {
-						return;
-					}
-
-					if (!isFirstMatch(node)) {
+		forEachPattern(({ ast, tokenPath, lookbehind }) => {
+			if (lookbehind) {
+				forEachCapturingGroup(ast.pattern, ({ group, number }) => {
+					if (number === 1 && !isFirstMatch(group)) {
 						assert.fail(`Token ${tokenPath}: The lookbehind group (if matched at all) always has to be at index 0 relative to the whole match.`);
 					}
-
-					first = false;
-				}
-			});
+				});
+			}
 		});
 	});
 
 	it('- should not have unused capturing groups', function () {
-		forEachPattern(({ ast, tokenPath, name, parent, reportError }) => {
-			const lookbehind = name === 'pattern' && parent.lookbehind;
-
-			let first = true;
-			visitRegExpAST(ast.pattern, {
-				onCapturingGroupEnter(node) {
-					if (node.references.length === 0 && !(lookbehind && first)) {
-						reportError(`Token ${tokenPath}: Unused capturing group ${node.raw}. All capturing groups have to be either referenced or used as a Prism lookbehind group.`);
-					}
-
-					first = false;
+		forEachPattern(({ ast, tokenPath, lookbehind, reportError }) => {
+			forEachCapturingGroup(ast.pattern, ({ group, number }) => {
+				const isLookbehindGroup = lookbehind && number === 1;
+				if (group.references.length === 0 && !isLookbehindGroup) {
+					reportError(`Token ${tokenPath}: Unused capturing group ${group.raw}. All capturing groups have to be either referenced or used as a Prism lookbehind group.`);
 				}
 			});
 		});
