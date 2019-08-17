@@ -298,6 +298,10 @@
 			"title": "G-code",
 			"owner": "RunDevelopment"
 		},
+		"gdscript": {
+			"title": "GDScript",
+			"owner": "RunDevelopment"
+		},
 		"gedcom": {
 			"title": "GEDCOM",
 			"owner": "Golmote"
@@ -816,6 +820,7 @@
 		},
 		"sas": {
 			"title": "SAS",
+			"require": "sql",
 			"owner": "Golmote"
 		},
 		"sass": {
@@ -896,6 +901,14 @@
 			"title": "Template Toolkit 2",
 			"require": ["clike", "markup-templating"],
 			"owner": "gflohr"
+		},
+		"turtle": {
+			"title": "Turtle",
+			"alias": ["trig"],
+			"aliasTitles": {
+				"trig": "TriG"
+			},
+			"owner": "jakubklimek"
 		},
 		"twig": {
 			"title": "Twig",
