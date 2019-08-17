@@ -220,7 +220,7 @@ function testPatterns(Prism) {
 			visitRegExpAST(ast.pattern, {
 				onCapturingGroupEnter(node) {
 					if (node.references.length === 0 && !(lookbehind && first)) {
-						reportError(`Token ${tokenPath}: Unused capturing group ${node.raw}. All capturing groups have to either references or used as lookbehind groups.`);
+						reportError(`Token ${tokenPath}: Unused capturing group ${node.raw}. All capturing groups have to be either referenced or used as a Prism lookbehind group.`);
 					}
 
 					first = false;
