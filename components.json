@@ -285,6 +285,11 @@
 			"require": "clike",
 			"owner": "simonreynolds7"
 		},
+		"firestore-security-rules": {
+			"title": "Firestore security rules",
+			"require": "clike",
+			"owner": "RunDevelopment"
+		},
 		"flow": {
 			"title": "Flow",
 			"require": "javascript",
@@ -296,6 +301,10 @@
 		},
 		"gcode": {
 			"title": "G-code",
+			"owner": "RunDevelopment"
+		},
+		"gdscript": {
+			"title": "GDScript",
 			"owner": "RunDevelopment"
 		},
 		"gedcom": {
