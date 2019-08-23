@@ -104,6 +104,10 @@
 			"title": "AppleScript",
 			"owner": "Golmote"
 		},
+		"aql": {
+			"title": "AQL",
+			"owner": "RunDevelopment"
+		},
 		"arduino": {
 			"title": "Arduino",
 			"require": "cpp",

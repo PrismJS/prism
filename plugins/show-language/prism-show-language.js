@@ -23,6 +23,7 @@
 		"abnf": "Augmented Backus–Naur form",
 		"apacheconf": "Apache Configuration",
 		"apl": "APL",
+		"aql": "AQL",
 		"arff": "ARFF",
 		"asciidoc": "AsciiDoc",
 		"adoc": "AsciiDoc",
