@@ -2,7 +2,7 @@
 { 'foo': … }
 { "foo": … }
 { `foo`: … }
-{ foo: … }
+{ ´foo´: … }
 
 // not a property
 LET opType = IS_NULL(OLD) ? "insert" : "update"
@@ -35,7 +35,7 @@ LET opType = IS_NULL(OLD) ? "insert" : "update"
 	["punctuation", "}"],
 
 	["punctuation", "{"],
-	["property", "foo"],
+	["property", "´foo´"],
 	["punctuation", ":"],
 	" … ",
 	["punctuation", "}"],
