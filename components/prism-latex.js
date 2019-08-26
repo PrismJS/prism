@@ -15,12 +15,12 @@
 			lookbehind: true
 		},
 		/*
-		 * equations can be between $$ $$ or $ $ or \( \) or \[ \]
+		 * equations can be between $ $ or \( \) or \[ \]
 		 * (all are multiline)
 		 */
 		'equation': [
 			{
-				pattern: /\$\$(?:\\[\s\S]|[^\\$])+\$\$|\$(?:\\[\s\S]|[^\\$])+\$|\\\([\s\S]*?\\\)|\\\[[\s\S]*?\\\]/,
+				pattern: /\$(?:\\[\s\S]|[^\\$])*\$|\\\([\s\S]*?\\\)|\\\[[\s\S]*?\\\]/,
 				inside: insideEqu,
 				alias: 'string'
 			},
