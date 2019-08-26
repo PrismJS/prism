@@ -240,6 +240,11 @@
 			"alias": "jinja2",
 			"owner": "romanvm"
 		},
+		"dns-zone-file": {
+			"title": "DNS zone file",
+			"owner": "RunDevelopment",
+			"alias": "dns-zone"
+		},
 		"docker": {
 			"title": "Docker",
 			"alias": "dockerfile",
@@ -280,6 +285,11 @@
 			"require": "clike",
 			"owner": "simonreynolds7"
 		},
+		"firestore-security-rules": {
+			"title": "Firestore security rules",
+			"require": "clike",
+			"owner": "RunDevelopment"
+		},
 		"flow": {
 			"title": "Flow",
 			"require": "javascript",
@@ -291,6 +301,10 @@
 		},
 		"gcode": {
 			"title": "G-code",
+			"owner": "RunDevelopment"
+		},
+		"gdscript": {
+			"title": "GDScript",
 			"owner": "RunDevelopment"
 		},
 		"gedcom": {
@@ -461,6 +475,18 @@
 			],
 			"owner": "RunDevelopment"
 		},
+		"js-templates": {
+			"title": "JS Templates",
+			"require": "javascript",
+			"peerDependencies": [
+				"css",
+				"css-extras",
+				"graphql",
+				"markdown",
+				"markup"
+			],
+			"owner": "RunDevelopment"
+		},
 		"json": {
 			"title": "JSON",
 			"owner": "CupOfTea696"
@@ -501,6 +527,12 @@
 			"title": "Less",
 			"require": "css",
 			"owner": "Golmote"
+		},
+		"lilypond": {
+			"title": "LilyPond",
+			"require": "scheme",
+			"alias": "ly",
+			"owner": "RunDevelopment"
 		},
 		"liquid": {
 			"title": "Liquid",
@@ -632,6 +664,15 @@
 			},
 			"owner": "Golmote"
 		},
+		"pascaligo": {
+			"title": "Pascaligo",
+			"owner": "DefinitelyNotAGoat"
+		},
+		"pcaxis": {
+			"title": "PC-Axis",
+			"alias": "px",
+			"owner": "RunDevelopment"
+		},
 		"perl": {
 			"title": "Perl",
 			"owner": "Golmote"
@@ -730,7 +771,8 @@
 			"require": ["markup", "javascript"],
 			"peerDependencies": [
 				"jsdoc",
-				"js-extras"
+				"js-extras",
+				"js-templates"
 			],
 			"owner": "vkbansal"
 		},
@@ -783,6 +825,7 @@
 		},
 		"sas": {
 			"title": "SAS",
+			"require": "sql",
 			"owner": "Golmote"
 		},
 		"sass": {
@@ -818,14 +861,18 @@
 			"require": "markup-templating",
 			"owner": "Golmote"
 		},
-		"sql": {
-			"title": "SQL",
-			"owner": "multipetros"
-		},
 		"soy": {
 			"title": "Soy (Closure Template)",
 			"require": "markup-templating",
 			"owner": "Golmote"
+		},
+		"splunk-spl": {
+			"title": "Splunk SPL",
+			"owner": "RunDevelopment"
+		},
+		"sql": {
+			"title": "SQL",
+			"owner": "multipetros"
 		},
 		"stylus": {
 			"title": "Stylus",
@@ -860,6 +907,14 @@
 			"require": ["clike", "markup-templating"],
 			"owner": "gflohr"
 		},
+		"turtle": {
+			"title": "Turtle",
+			"alias": ["trig"],
+			"aliasTitles": {
+				"trig": "TriG"
+			},
+			"owner": "jakubklimek"
+		},
 		"twig": {
 			"title": "Twig",
 			"require": "markup",
@@ -868,6 +923,7 @@
 		"typescript": {
 			"title": "TypeScript",
 			"require": "javascript",
+			"peerDependencies": "js-templates",
 			"alias": "ts",
 			"owner": "vkbansal"
 		},
@@ -1040,6 +1096,11 @@
 			"owner": "mAAdhaTTah",
 			"require": "toolbar",
 			"noCSS": true
+		},
+		"diff-highlight": {
+			"title": "Diff Highlight",
+			"owner": "RunDevelopment",
+			"require": "diff"
 		}
 	}
 }

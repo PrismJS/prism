@@ -1,0 +1,87 @@
+@base <http://example.org/> .
+BASE <http://example.org/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+GRAPH <urn:newGraph> {
+	<urn:myClass> a rdfs:Class ;
+	= <urn:equivalentClass> .
+}
+
+----------------------------------------------------
+
+[
+	["keyword", "@base"],
+	["url", [
+		["punctuation", "<"],
+		"http://example.org/",
+		["punctuation", ">"]
+	]],
+	["punctuation", "."],
+	["keyword", "BASE"],
+	["url", [
+		["punctuation", "<"],
+		"http://example.org/",
+		["punctuation", ">"]
+	]],
+	["punctuation", "."],
+	["keyword", "@prefix"],
+	["function", [
+		["prefix", [
+			"rdf",
+			["punctuation", ":"]
+		]]
+	]],
+	["url", [
+		["punctuation", "<"],
+		"http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+		["punctuation", ">"]
+	]],
+	["punctuation", "."],
+	["keyword", "PREFIX"],
+	["function", [
+		["prefix", [
+			"rdfs",
+			["punctuation", ":"]
+		]]
+	]],
+	["url", [
+		["punctuation", "<"],
+		"http://www.w3.org/2000/01/rdf-schema#",
+		["punctuation", ">"]
+	]],
+	["punctuation", "."],
+	["keyword", "GRAPH"],
+	["url", [
+		["punctuation", "<"],
+		"urn:newGraph",
+		["punctuation", ">"]
+	]],
+	["punctuation", "{"],
+	["url", [
+		["punctuation", "<"],
+		"urn:myClass",
+		["punctuation", ">"]
+	]],
+	["keyword", "a"],
+	["function", [
+		["prefix", [
+			"rdfs",
+			["punctuation", ":"]
+		]],
+		["local-name", "Class"]
+	]],
+	["punctuation", ";"],
+	["keyword", "="],
+	["url", [
+		["punctuation", "<"],
+		"urn:equivalentClass",
+		["punctuation", ">"]
+	]],
+	["punctuation", "."],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for all keywords.

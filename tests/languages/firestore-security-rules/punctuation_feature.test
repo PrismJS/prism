@@ -1,0 +1,29 @@
+. : , ;
+[ ] ( ) { }
+
+[0:2]
+
+----------------------------------------------------
+
+[
+	["punctuation", "."],
+	["punctuation", ":"],
+	["punctuation", ","],
+	["punctuation", ";"],
+	["punctuation", "["],
+	["punctuation", "]"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", "["],
+
+	["number", "0"],
+	["punctuation", ":"],
+	["number", "2"],
+	["punctuation", "]"]
+]
+
+----------------------------------------------------
+
+Checks for punctuation.

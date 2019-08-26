@@ -57,7 +57,7 @@ DO
    CALL PrintSomeStars(NumStars)
    DO
       INPUT "Do you want more stars? ", Answer$
-   LOOP UNTIL Answer$ <> ""
+   LOOP UNTIL Answer$ &lt;> ""
    Answer$ = LEFT$(Answer$, 1)
 LOOP WHILE UCASE$(Answer$) = "Y"
 PRINT "Goodbye "; UserName$
