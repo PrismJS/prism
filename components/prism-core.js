@@ -277,13 +277,13 @@ var _ = {
 		return Token.stringify(_.util.encode(env.tokens), env.language);
 	},
 
-	matchGrammar: function (text, strarr, grammar, index, startPos, oneshot, target) {
+	matchGrammar: function (text, strarr, grammar, startIndex, startPos, greedyRematching, rematchCause, rematchReach) {
 		for (var token in grammar) {
 			if(!grammar.hasOwnProperty(token) || !grammar[token]) {
 				continue;
 			}
 
-			if (token == target) {
+			if (token == rematchCause) {
 				return;
 			}
 
@@ -291,23 +291,28 @@ var _ = {
 			patterns = (_.util.type(patterns) === "Array") ? patterns : [patterns];
 
 			for (var j = 0; j < patterns.length; ++j) {
-				var pattern = patterns[j],
-					inside = pattern.inside,
-					lookbehind = !!pattern.lookbehind,
-					greedy = !!pattern.greedy,
+				var patternObj = patterns[j],
+					inside = patternObj.inside,
+					lookbehind = !!patternObj.lookbehind,
+					greedy = !!patternObj.greedy,
 					lookbehindLength = 0,
-					alias = pattern.alias;
+					alias = patternObj.alias;
 
-				if (greedy && !pattern.pattern.global) {
+				if (greedy && !patternObj.pattern.global) {
 					// Without the global flag, lastIndex won't work
-					var flags = pattern.pattern.toString().match(/[imuy]*$/)[0];
-					pattern.pattern = RegExp(pattern.pattern.source, flags + "g");
+					var flags = patternObj.pattern.toString().match(/[imuy]*$/)[0];
+					patternObj.pattern = RegExp(patternObj.pattern.source, flags + "g");
 				}
 
-				pattern = pattern.pattern || pattern;
+				/** @type {RegExp} */
+				var pattern = patternObj.pattern || patternObj;
 
 				// Don’t cache length as it changes during the loop
-				for (var i = index, pos = startPos; i < strarr.length; pos += strarr[i].length, ++i) {
+				for (var i = startIndex, pos = startPos; i < strarr.length; pos += strarr[i].length, ++i) {
+
+					if (greedyRematching && pos >= rematchReach) {
+						break;
+					}
 
 					var str = strarr[i];
 
@@ -327,12 +332,16 @@ var _ = {
 							break;
 						}
 
-						var from = match.index + (lookbehind ? match[1].length : 0),
-						    to = match.index + match[0].length,
-						    k = i,
-						    p = pos;
+						var from = match.index + (lookbehind ? match[1].length : 0);
+						var to = match.index + match[0].length;
+						var len = strarr.length;
 
-						for (var len = strarr.length; k < len && (p < to || (!strarr[k].type && !strarr[k - 1].greedy)); ++k) {
+						for (
+							var k = i, p = pos;
+							// `!strarr[k].type` checks whether `strarr[k]` is a string
+							k < len && (p < to || !strarr[k].type);
+							++k
+						) {
 							p += strarr[k].length;
 							// Move the index i to the element in strarr that is closest to from
 							if (from >= p) {
@@ -358,22 +367,25 @@ var _ = {
 					}
 
 					if (!match) {
-						if (oneshot) {
-							break;
-						}
-
 						continue;
 					}
 
-					if(lookbehind) {
+					if (lookbehind) {
 						lookbehindLength = match[1] ? match[1].length : 0;
 					}
 
 					var from = match.index + lookbehindLength,
-					    match = match[0].slice(lookbehindLength),
-					    to = from + match.length,
+					    matchStr = match[0].slice(lookbehindLength),
+						to = from + matchStr.length,
 					    before = str.slice(0, from),
 					    after = str.slice(to);
+
+					var reach = pos + str.length;
+
+					if (greedyRematching && reach > rematchReach) {
+						// expand rematch reach for potential future matches
+						rematchReach = reach
+					}
 
 					var args = [i, delNum];
 
@@ -383,7 +395,7 @@ var _ = {
 						args.push(before);
 					}
 
-					var wrapped = new Token(token, inside? _.tokenize(match, inside) : match, alias, match, greedy);
+					var wrapped = new Token(token, inside ? _.tokenize(matchStr, inside) : matchStr, alias, matchStr);
 
 					args.push(wrapped);
 
@@ -393,11 +405,9 @@ var _ = {
 
 					Array.prototype.splice.apply(strarr, args);
 
-					if (delNum != 1)
-						_.matchGrammar(text, strarr, grammar, i, pos, true, token);
-
-					if (oneshot)
-						break;
+					if (delNum != 1) {
+						_.matchGrammar(text, strarr, grammar, i, pos, true, token, reach);
+					}
 				}
 			}
 		}
@@ -416,7 +426,7 @@ var _ = {
 			delete grammar.rest;
 		}
 
-		_.matchGrammar(text, strarr, grammar, 0, 0, false);
+		_.matchGrammar(text, strarr, grammar, 0, 0);
 
 		return strarr;
 	},
@@ -450,13 +460,12 @@ var _ = {
 
 _self.Prism = _;
 
-function Token(type, content, alias, matchedStr, greedy) {
+function Token(type, content, alias, matchedStr) {
 	this.type = type;
 	this.content = content;
 	this.alias = alias;
 	// Copy of the full string this token was created from
 	this.length = (matchedStr || "").length|0;
-	this.greedy = !!greedy;
 }
 
 Token.stringify = function(o, language) {
