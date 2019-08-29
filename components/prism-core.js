@@ -279,18 +279,18 @@ var _ = {
 
 	matchGrammar: function (text, strarr, grammar, startIndex, startPos, greedyRematching, rematchCause, rematchReach) {
 		for (var token in grammar) {
-			if(!grammar.hasOwnProperty(token) || !grammar[token]) {
+			if (!grammar.hasOwnProperty(token) || !grammar[token]) {
 				continue;
 			}
 
-			if (token == rematchCause) {
-				return;
-			}
-
 			var patterns = grammar[token];
-			patterns = (_.util.type(patterns) === "Array") ? patterns : [patterns];
+			patterns = Array.isArray(patterns) ? patterns : [patterns];
 
 			for (var j = 0; j < patterns.length; ++j) {
+				if (rematchCause && rematchCause == token + ',' + j) {
+					return;
+				}
+
 				var patternObj = patterns[j],
 					inside = patternObj.inside,
 					lookbehind = !!patternObj.lookbehind,
@@ -332,7 +332,7 @@ var _ = {
 							break;
 						}
 
-						var from = match.index + (lookbehind ? match[1].length : 0);
+						var from = match.index + (lookbehind && match[1] ? match[1].length : 0);
 						var to = match.index + match[0].length;
 						var len = strarr.length;
 
@@ -406,7 +406,7 @@ var _ = {
 					Array.prototype.splice.apply(strarr, args);
 
 					if (delNum != 1) {
-						_.matchGrammar(text, strarr, grammar, i, pos, true, token, reach);
+						_.matchGrammar(text, strarr, grammar, i, pos, true, token + ',' + j, reach);
 					}
 				}
 			}
