@@ -327,7 +327,7 @@ var _ = {
 							break;
 						}
 
-						var from = match.index + (lookbehind ? match[1].length : 0),
+						var from = match.index + (lookbehind && match[1] ? match[1].length : 0),
 						    to = match.index + match[0].length,
 						    k = i,
 						    p = pos;
