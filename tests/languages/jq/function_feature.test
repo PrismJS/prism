@@ -1,0 +1,31 @@
+def foo:
+def bar(x,y,z):
+	fooBar(x)
+
+----------------------------------------------------
+
+[
+	["keyword", "def"],
+	["function", "foo"],
+	["punctuation", ":"],
+
+	["keyword", "def"],
+	["function", "bar"],
+	["punctuation", "("],
+	"x",
+	["punctuation", ","],
+	"y",
+	["punctuation", ","],
+	"z",
+	["punctuation", ")"],
+	["punctuation", ":"],
+
+	["c-style-function", "fooBar"],
+	["punctuation", "("],
+	"x",
+	["punctuation", ")"]
+]
+
+----------------------------------------------------
+
+Checks for functions.

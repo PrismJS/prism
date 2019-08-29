@@ -24,7 +24,6 @@ footer p {
 * {
 	margin: 0;
 	padding: 0;
-	font-weight: normal;
 }
 
 body {
@@ -75,6 +74,10 @@ p {
 section h1,
 h2 {
 	margin: 1em 0 .3em;
+}
+
+h2 {
+	font-weight: normal;
 }
 
 dt {

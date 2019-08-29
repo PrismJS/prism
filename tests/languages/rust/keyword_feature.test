@@ -1,5 +1,5 @@
-abstract alignof as
-be box break const
+abstract alignof as async
+await be box break const
 continue crate do dyn
 else enum extern
 false final fn for
@@ -17,7 +17,7 @@ yield
 ----------------------------------------------------
 
 [
-	["keyword", "abstract"], ["keyword", "alignof"], ["keyword", "as"],
+	["keyword", "abstract"], ["keyword", "alignof"], ["keyword", "as"], ["keyword", "async"], ["keyword", "await"],
 	["keyword", "be"], ["keyword", "box"], ["keyword", "break"], ["keyword", "const"],
 	["keyword", "continue"], ["keyword", "crate"], ["keyword", "do"], ["keyword", "dyn"],
 	["keyword", "else"], ["keyword", "enum"], ["keyword", "extern"],

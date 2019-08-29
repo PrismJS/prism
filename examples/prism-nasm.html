@@ -57,18 +57,3 @@ dq    1.e-10                  ; 0.000 000 000 1
 dt    3.141592653589793238462 ; pi
 do    1.e+4000                ; IEEE 754r quad precision
 </code></pre>
-
-<h2>Known failures</h2>
-<p>There are certain edge cases where Prism will fail.
-	There are always such cases in every regex-based syntax highlighter.
-	However, Prism dares to be open and honest about them.
-	If a failure is listed here, it doesn’t mean it will never be fixed. This is more of a “known bugs” list, just with a certain type of bug.
-</p>
-
-<h3>Numbers with underscores</h3>
-<pre><code>mov     ax,1100_1000b
-mov     ax,1100_1000y
-mov     ax,0b1100_1000
-mov     ax,0y1100_1000
-
-dd    1.222_222_222</code></pre>

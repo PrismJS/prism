@@ -1,5 +1,5 @@
 /foo bar/;
-/foo/gimyu,
+/foo/gimyus,
 /[\[\]]{2,4}(?:foo)*/;
 /foo"test"bar/;
 /foo\//;
@@ -13,7 +13,7 @@
 
 [
 	["regex", "/foo bar/"], ["punctuation", ";"],
-	["regex", "/foo/gimyu"], ["punctuation", ","],
+	["regex", "/foo/gimyus"], ["punctuation", ","],
 	["regex", "/[\\[\\]]{2,4}(?:foo)*/"], ["punctuation", ";"],
 	["regex", "/foo\"test\"bar/"], ["punctuation", ";"],
 	["regex", "/foo\\//"], ["punctuation", ";"],

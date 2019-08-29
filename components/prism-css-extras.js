@@ -36,14 +36,20 @@ Prism.languages.css.selector = {
 				'operator': /[|~*^$]?=/
 			}
 		},
-		'n-th': {
-			pattern: /(\(\s*)[+-]?\d*[\dn](?:\s*[+-]\s*\d+)?(?=\s*\))/,
-			lookbehind: true,
-			inside: {
-				'number': /[\dn]+/,
-				'operator': /[+-]/
+		'n-th': [
+			{
+				pattern: /(\(\s*)[+-]?\d*[\dn](?:\s*[+-]\s*\d+)?(?=\s*\))/,
+				lookbehind: true,
+				inside: {
+					'number': /[\dn]+/,
+					'operator': /[+-]/
+				}
+			},
+			{
+				pattern: /(\(\s*)(?:even|odd)(?=\s*\))/i,
+				lookbehind: true
 			}
-		},
+		],
 		'punctuation': /[()]/
 	}
 };
@@ -66,5 +72,9 @@ Prism.languages.insertBefore('css', 'function', {
 		pattern: /(\d)(?:%|[a-z]+)/,
 		lookbehind: true
 	},
-	'number': /-?[\d.]+/
+	'number': {
+		// 123 -123 .123 -.123 12.3 -12.3
+		pattern: /(^|[^\w.-])-?\d*\.?\d+/,
+		lookbehind: true
+	}
 });
