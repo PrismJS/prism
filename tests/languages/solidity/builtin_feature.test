@@ -1,0 +1,126 @@
+address
+bool
+string
+byte
+bytes
+int
+uint
+
+bytes1 bytes2 bytes3 bytes4 bytes5 bytes6 bytes7 bytes8 bytes9 bytes10 bytes11 bytes12 bytes13 bytes14 bytes15 bytes16 bytes17 bytes18 bytes19 bytes20 bytes21 bytes22 bytes23 bytes24 bytes25 bytes26 bytes27 bytes28 bytes29 bytes30 bytes31 bytes32
+int8 int16 int24 int32 int40 int48 int56 int64 int72 int80 int88 int96 int104 int112 int120 int128 int136 int144 int152 int160 int168 int176 int184 int192 int200 int208 int216 int224 int232 int240 int248 int256
+uint8 uint16 uint24 uint32 uint40 uint48 uint56 uint64 uint72 uint80 uint88 uint96 uint104 uint112 uint120 uint128 uint136 uint144 uint152 uint160 uint168 uint176 uint184 uint192 uint200 uint208 uint216 uint224 uint232 uint240 uint248 uint256
+
+----------------------------------------------------
+
+[
+	["builtin", "address"],
+	["builtin", "bool"],
+	["builtin", "string"],
+	["builtin", "byte"],
+	["builtin", "bytes"],
+	["builtin", "int"],
+	["builtin", "uint"],
+
+	["builtin", "bytes1"],
+	["builtin", "bytes2"],
+	["builtin", "bytes3"],
+	["builtin", "bytes4"],
+	["builtin", "bytes5"],
+	["builtin", "bytes6"],
+	["builtin", "bytes7"],
+	["builtin", "bytes8"],
+	["builtin", "bytes9"],
+	["builtin", "bytes10"],
+	["builtin", "bytes11"],
+	["builtin", "bytes12"],
+	["builtin", "bytes13"],
+	["builtin", "bytes14"],
+	["builtin", "bytes15"],
+	["builtin", "bytes16"],
+	["builtin", "bytes17"],
+	["builtin", "bytes18"],
+	["builtin", "bytes19"],
+	["builtin", "bytes20"],
+	["builtin", "bytes21"],
+	["builtin", "bytes22"],
+	["builtin", "bytes23"],
+	["builtin", "bytes24"],
+	["builtin", "bytes25"],
+	["builtin", "bytes26"],
+	["builtin", "bytes27"],
+	["builtin", "bytes28"],
+	["builtin", "bytes29"],
+	["builtin", "bytes30"],
+	["builtin", "bytes31"],
+	["builtin", "bytes32"],
+
+	["builtin", "int8"],
+	["builtin", "int16"],
+	["builtin", "int24"],
+	["builtin", "int32"],
+	["builtin", "int40"],
+	["builtin", "int48"],
+	["builtin", "int56"],
+	["builtin", "int64"],
+	["builtin", "int72"],
+	["builtin", "int80"],
+	["builtin", "int88"],
+	["builtin", "int96"],
+	["builtin", "int104"],
+	["builtin", "int112"],
+	["builtin", "int120"],
+	["builtin", "int128"],
+	["builtin", "int136"],
+	["builtin", "int144"],
+	["builtin", "int152"],
+	["builtin", "int160"],
+	["builtin", "int168"],
+	["builtin", "int176"],
+	["builtin", "int184"],
+	["builtin", "int192"],
+	["builtin", "int200"],
+	["builtin", "int208"],
+	["builtin", "int216"],
+	["builtin", "int224"],
+	["builtin", "int232"],
+	["builtin", "int240"],
+	["builtin", "int248"],
+	["builtin", "int256"],
+
+	["builtin", "uint8"],
+	["builtin", "uint16"],
+	["builtin", "uint24"],
+	["builtin", "uint32"],
+	["builtin", "uint40"],
+	["builtin", "uint48"],
+	["builtin", "uint56"],
+	["builtin", "uint64"],
+	["builtin", "uint72"],
+	["builtin", "uint80"],
+	["builtin", "uint88"],
+	["builtin", "uint96"],
+	["builtin", "uint104"],
+	["builtin", "uint112"],
+	["builtin", "uint120"],
+	["builtin", "uint128"],
+	["builtin", "uint136"],
+	["builtin", "uint144"],
+	["builtin", "uint152"],
+	["builtin", "uint160"],
+	["builtin", "uint168"],
+	["builtin", "uint176"],
+	["builtin", "uint184"],
+	["builtin", "uint192"],
+	["builtin", "uint200"],
+	["builtin", "uint208"],
+	["builtin", "uint216"],
+	["builtin", "uint224"],
+	["builtin", "uint232"],
+	["builtin", "uint240"],
+	["builtin", "uint248"],
+	["builtin", "uint256"]
+]
+
+----------------------------------------------------
+
+Checks for builtin types.

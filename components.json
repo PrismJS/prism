@@ -861,15 +861,15 @@
 			"require": "markup-templating",
 			"owner": "Golmote"
 		},
+		"solidity": {
+			"title": "Solidity (Ethereum)",
+			"require": "clike",
+			"owner": "glachaud"
+		},
 		"soy": {
 			"title": "Soy (Closure Template)",
 			"require": "markup-templating",
 			"owner": "Golmote"
-		},
-		"solidity": {
-			"title": "Solidity (Ethereum)",
-			"require": "javascript",
-			"owner": "glachaud"
 		},
 		"splunk-spl": {
 			"title": "Splunk SPL",

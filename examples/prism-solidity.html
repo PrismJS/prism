@@ -1,5 +1,5 @@
-<h2>Contract</h2>
-<pre><code>pragma solidity >=0.4.22 <0.7.0;
+<h2>Full example</h2>
+<pre><code>pragma solidity >=0.4.22 &lt;0.7.0;
 
 /// @title Voting with delegation.
 contract Ballot {
@@ -36,7 +36,7 @@ contract Ballot {
 		// For each of the provided proposal names,
 		// create a new proposal object and add it
 		// to the end of the array.
-		for (uint i = 0; i < proposalNames.length; i++) {
+		for (uint i = 0; i &lt; proposalNames.length; i++) {
 			// `Proposal({...})` creates a temporary
 			// Proposal object and `proposals.push(...)`
 			// appends it to the end of `proposals`.
@@ -132,7 +132,7 @@ contract Ballot {
 			returns (uint winningProposal_)
 	{
 		uint winningVoteCount = 0;
-		for (uint p = 0; p < proposals.length; p++) {
+		for (uint p = 0; p &lt; proposals.length; p++) {
 			if (proposals[p].voteCount > winningVoteCount) {
 				winningVoteCount = proposals[p].voteCount;
 				winningProposal_ = p;
@@ -148,5 +148,4 @@ contract Ballot {
 	{
 		winnerName_ = proposals[winningProposal()].name;
 	}
-}
-</code></pre>
+}</code></pre>
