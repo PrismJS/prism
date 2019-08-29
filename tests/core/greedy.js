@@ -35,6 +35,26 @@ describe('Greedy matching', function () {
 		});
 	});
 
+	it('should support patterns with top-level alternatives that do not contain the lookbehind group', function () {
+		testTokens({
+			grammar: {
+				'a': /'[^']*'/,
+				'b': {
+					// This pattern has 2 top-level alternatives:  foo  and  (^|[^\\])"[^"]*"
+					pattern: /foo|(^|[^\\])"[^"]*"/,
+					lookbehind: true,
+					greedy: true
+				}
+			},
+			code: 'foo "bar" \'baz\'',
+			expected: [
+				["b", "foo"],
+				["b", "\"bar\""],
+				["a", "'baz'"]
+			]
+		});
+	});
+
 	// https://github.com/PrismJS/prism/issues/1492
 	/*
 	it('should correctly rematch tokens', function () {
@@ -66,4 +86,3 @@ describe('Greedy matching', function () {
 	});
 	*/
 });
-
