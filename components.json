@@ -813,6 +813,11 @@
 			"title": "Roboconf",
 			"owner": "Golmote"
 		},
+		"robot-framework": {
+			"title": "Robot Framework",
+			"alias": "robot",
+			"owner": "RunDevelopment"
+		},
 		"ruby": {
 			"title": "Ruby",
 			"require": "clike",

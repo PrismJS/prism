@@ -1,0 +1,19 @@
+*** Settings ***
+Documentation    Example using the space separated plain text format.
+Library          OperatingSystem
+
+----------------------------------------------------
+
+[
+	["settings", [
+		["section-header", "*** Settings ***"],
+		["property", "Documentation"],
+		["documentation", "Example using the space separated plain text format."],
+		["property", "Library"],
+		"          OperatingSystem"
+	]]
+]
+
+----------------------------------------------------
+
+Checks for setting properties.
