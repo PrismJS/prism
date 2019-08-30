@@ -122,6 +122,8 @@
 		"sass": "Sass (Sass)",
 		"scss": "Sass (Scss)",
 		"shell-session": "Shell session",
+		"sparql": "SPARQL",
+		"rq": "SPARQL",
 		"soy": "Soy (Closure Template)",
 		"splunk-spl": "Splunk SPL",
 		"sql": "SQL",
