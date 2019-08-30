@@ -204,10 +204,10 @@ YEAR(
 	["keyword","SUBSTR"], "(\r\n",
 	["keyword","SUM"], "(\r\n",
 	["keyword","TIMEZONE"], "(\r\n",
-	[ "keyword", "TZ"], "(\r\n",
+	["keyword", "TZ"], "(\r\n",
 	["keyword", "UCASE"], "(\r\n",
-	[ "keyword", "URI"], "(\r\n",
-	[ "keyword", "YEAR"], "("
+	["keyword", "URI"], "(\r\n",
+	["keyword", "YEAR"], "("
 ]
 
 ----------------------------------------------------
