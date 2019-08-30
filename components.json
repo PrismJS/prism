@@ -861,15 +861,15 @@
 			"require": "markup-templating",
 			"owner": "Golmote"
 		},
-		"sparql": {
-			"title": "SPARQL",
-			"owner": "Triply",
-			"alias": ["rq"]
-		},
 		"soy": {
 			"title": "Soy (Closure Template)",
 			"require": "markup-templating",
 			"owner": "Golmote"
+		},
+		"sparql": {
+			"title": "SPARQL",
+			"owner": "Triply",
+			"alias": ["rq"]
 		},
 		"splunk-spl": {
 			"title": "Splunk SPL",

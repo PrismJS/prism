@@ -9,12 +9,12 @@
 ----------------------------------------------------
 
 [
-    ["languagetag", "@ne"],
-    ["languagetag", "@ned-nl"],
-    ["languagetag", "@ne-nl"],
-    ["languagetag", "@ne-01"],
-    ["languagetag", "@ne-JA"],
-    ["languagetag", "@ne-NE01"]
+		["languagetag", "@ne"],
+		["languagetag", "@ned-nl"],
+		["languagetag", "@ne-nl"],
+		["languagetag", "@ne-01"],
+		["languagetag", "@ne-JA"],
+		["languagetag", "@ne-NE01"]
 ]
 
 
