@@ -1,0 +1,32 @@
+foo:bar
+foo:
+:bar
+foo:ba1
+foo:1ba
+foo:bar:bar
+foo:bar%20bar
+foo:bar.bar
+foo-2:
+foo.-:
+
+
+----------------------------------------------------
+
+[
+    ["PrefixedName", "foo:bar"],
+    ["PrefixedName", "foo:"],
+    ["PrefixedName", ":bar"],
+    ["PrefixedName", "foo:ba1"],
+    ["PrefixedName", "foo:1ba"],
+    ["PrefixedName", "foo:bar"],
+    ["PrefixedName", ":bar"],
+    ["PrefixedName", "foo:bar%20bar"],
+    ["PrefixedName", "foo:bar.bar"],
+    ["PrefixedName", "foo-2:"],
+    ["PrefixedName", "foo.-:"]
+]
+
+
+----------------------------------------------------
+
+Checks for PrefixedName.

@@ -861,6 +861,11 @@
 			"require": "markup-templating",
 			"owner": "Golmote"
 		},
+		"sparql": {
+			"title": "SPARQL",
+			"owner": "TriplyDB",
+			"alias": ["rq"]
+		},
 		"soy": {
 			"title": "Soy (Closure Template)",
 			"require": "markup-templating",

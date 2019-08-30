@@ -1,0 +1,23 @@
+@ne
+@ned-nl
+@ne-nl
+@ne-01
+@ne-JA
+@ne-NE01
+
+
+----------------------------------------------------
+
+[
+    ["languagetag", "@ne"],
+    ["languagetag", "@ned-nl"],
+    ["languagetag", "@ne-nl"],
+    ["languagetag", "@ne-01"],
+    ["languagetag", "@ne-JA"],
+    ["languagetag", "@ne-NE01"]
+]
+
+
+----------------------------------------------------
+
+Checks for languagetags.
