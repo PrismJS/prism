@@ -863,7 +863,7 @@
 		},
 		"sparql": {
 			"title": "SPARQL",
-			"owner": "TriplyDB",
+			"owner": "Triply",
 			"alias": ["rq"]
 		},
 		"soy": {
