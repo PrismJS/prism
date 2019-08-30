@@ -44,8 +44,7 @@ Multiline documentation
 			"Documentation",
 			["punctuation", "]"]
 		]],
-		["documentation", "The first line creates the short doc.\r\n\t...\r\n\t...                This is the body of the documentation.\r\n\t...
-	  It is not shown in Libdoc outputs but only\r\n\t...                the short doc is shown in logs."],
+		["documentation", "The first line creates the short doc.\r\n\t...\r\n\t...                This is the body of the documentation.\r\n\t...                It is not shown in Libdoc outputs but only\r\n\t...                the short doc is shown in logs."],
 		["property", [
 			"No Operation"
 		]]
