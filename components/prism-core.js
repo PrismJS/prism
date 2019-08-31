@@ -310,7 +310,7 @@ var _ = {
 				if (greedy && !pattern.pattern.global) {
 					// Without the global flag, lastIndex won't work
 					var flags = pattern.pattern.toString().match(/[imsuy]*$/)[0];
-					pattern.pattern = RegExp(pattern.pattern.source, flags + "g");
+					pattern.pattern = RegExp(pattern.pattern.source, flags + 'g');
 				}
 
 				pattern = pattern.pattern || pattern;
@@ -527,13 +527,13 @@ if (!_self.document) {
 }
 
 //Get current script and highlight
-var script = document.currentScript || [].slice.call(document.getElementsByTagName("script")).pop();
+var script = document.currentScript || [].slice.call(document.getElementsByTagName('script')).pop();
 
 if (script) {
 	_.filename = script.src;
 
 	if (!_.manual && !script.hasAttribute('data-manual')) {
-		if(document.readyState !== "loading") {
+		if(document.readyState !== 'loading') {
 			if (window.requestAnimationFrame) {
 				window.requestAnimationFrame(_.highlightAll);
 			} else {
