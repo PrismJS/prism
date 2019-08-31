@@ -60,7 +60,7 @@
 
 	Prism.languages.insertBefore('javascript', 'punctuation', {
 		'property-access': {
-			pattern: /(\.\s*)[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*/,
+			pattern: /(\.\s*)#?[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*/,
 			lookbehind: true
 		},
 		'maybe-class-name': {

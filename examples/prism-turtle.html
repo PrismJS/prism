@@ -1,0 +1,18 @@
+<h2>Full example</h2>
+<pre><code>@base &lt;http://example.org/&gt; .
+@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .
+@prefix rel: &lt;http://www.perceive.net/schemas/relationship/&gt; .
+
+GRAPH &lt;urn:myGraph&gt; {
+&lt;#green-goblin&gt;
+    rel:enemyOf &lt;#spiderman&gt; ;
+    a foaf:Person ;    # in the context of the Marvel universe
+    foaf:name "Green Goblin" .
+
+&lt;#spiderman&gt;
+    rel:enemyOf &lt;#green-goblin&gt; ;
+    a foaf:Person ;
+    foaf:name "Spiderman", "Человек-паук"@ru .
+}</code></pre>

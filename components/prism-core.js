@@ -291,18 +291,18 @@ var _ = {
 
 	matchGrammar: function (text, strarr, grammar, index, startPos, oneshot, target) {
 		for (var token in grammar) {
-			if(!grammar.hasOwnProperty(token) || !grammar[token]) {
+			if (!grammar.hasOwnProperty(token) || !grammar[token]) {
 				continue;
-			}
-
-			if (token == target) {
-				return;
 			}
 
 			var patterns = grammar[token];
 			patterns = Array.isArray(patterns) ? patterns : [patterns];
 
 			for (var j = 0; j < patterns.length; ++j) {
+				if (target && target == token + ',' + j) {
+					return;
+				}
+
 				var pattern = patterns[j],
 					inside = pattern.inside,
 					lookbehind = !!pattern.lookbehind,
@@ -339,7 +339,7 @@ var _ = {
 							break;
 						}
 
-						var from = match.index + (lookbehind ? match[1].length : 0),
+						var from = match.index + (lookbehind && match[1] ? match[1].length : 0),
 						    to = match.index + match[0].length,
 						    k = i,
 						    p = pos;
@@ -406,7 +406,7 @@ var _ = {
 					Array.prototype.splice.apply(strarr, args);
 
 					if (delNum != 1)
-						_.matchGrammar(text, strarr, grammar, i, pos, true, token);
+						_.matchGrammar(text, strarr, grammar, i, pos, true, token + ',' + j);
 
 					if (oneshot)
 						break;

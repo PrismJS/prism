@@ -1,0 +1,58 @@
+class Foo {
+	#foo = function () {
+		return this.#bar;
+	}
+	#bar = 9;
+
+	get value() {
+		return this.#foo();
+	}
+}
+
+----------------------------------------------------
+
+[
+	["keyword", "class"],
+	["class-name", [
+		"Foo"
+	]],
+	["punctuation", "{"],
+
+	["function-variable", "#foo"],
+	["operator", "="],
+	["keyword", "function"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["keyword", "return"],
+	["keyword", "this"],
+	["punctuation", "."],
+	"#bar",
+	["punctuation", ";"],
+	["punctuation", "}"],
+
+	"\r\n\t#bar ",
+	["operator", "="],
+	["number", "9"],
+	["punctuation", ";"],
+
+	["keyword", "get"],
+	["function", "value"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["keyword", "return"],
+	["keyword", "this"],
+	["punctuation", "."],
+	["function", "#foo"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["punctuation", "}"],
+
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for the private field syntax.
