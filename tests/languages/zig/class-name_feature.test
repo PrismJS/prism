@@ -1,0 +1,504 @@
+const Timestamp = struct {
+	seconds: i64,
+	nanos: u32,
+	pub fn unixEpoch() Timestamp {
+		return Timestamp{
+			.seconds = 0,
+			.nanos = 0,
+		};
+	}
+};
+
+const one_plus_one: i32 = 1 + 1;
+var x: i32;
+const value: ?u32 = null;
+var optional_value: ?[]const u8 = null;
+var number_or_error: anyerror!i32 = error.ArgNotFound;
+const array1 = [_]u32{1,2};
+var foo: S align(4) = undefined;
+
+fn add(a: i32, b: i32) i32 {
+	return a + b;
+}
+extern fn foo(x: f64) f64;
+fn noop4() align(4) void {}
+fn derp() align(@sizeOf(usize) * 2) i32 { return 1234; }
+
+fn eventuallyNullSequence() ?u32 {
+	return if (numbers_left == 0) null else blk: {
+		numbers_left -= 1;
+		break :blk numbers_left;
+	};
+}
+
+const message = [_]u8{ 'h', 'e', 'l', 'l', 'o' };
+
+const mat4x4 = [4][4]f32{
+	[_]f32{ 1.0, 0.0, 0.0, 0.0 },
+	[_]f32{ 0.0, 1.0, 0.0, 1.0 },
+	[_]f32{ 0.0, 0.0, 1.0, 0.0 },
+	[_]f32{ 0.0, 0.0, 0.0, 1.0 },
+};
+
+const Point = struct {};
+const Point2 = packed struct {};
+const Type = enum {};
+const Value = enum(u2) {};
+const Number = packed enum(u8) {};
+const Foo = extern enum { A, B, C };
+const Foo = extern enum { A, B, C };
+const Payload = union {};
+const ComplexType = union(ComplexTypeTag) {};
+
+var node = ListOfInts.Node {};
+var list2 = LinkedList(i32) {};
+
+----------------------------------------------------
+
+[
+	["keyword", "const"],
+	["class-name", "Timestamp"],
+	["operator", "="],
+	["keyword", "struct"],
+	["punctuation", "{"],
+	"\r\n\tseconds",
+	["punctuation", ":"],
+	["class-name", [
+		["builtin-types", "i64"]
+	]],
+	["punctuation", ","],
+	"\r\n\tnanos",
+	["punctuation", ":"],
+	["class-name", [
+		["builtin-types", "u32"]
+	]],
+	["punctuation", ","],
+	["keyword", "pub"],
+	["keyword", "fn"],
+	["function", "unixEpoch"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["class-name", [
+		"Timestamp"
+	]],
+	["punctuation", "{"],
+	["keyword", "return"],
+	["class-name", [
+		"Timestamp"
+	]],
+	["punctuation", "{"],
+	["punctuation", "."],
+	"seconds ",
+	["operator", "="],
+	["number", "0"],
+	["punctuation", ","],
+	["punctuation", "."],
+	"nanos ",
+	["operator", "="],
+	["number", "0"],
+	["punctuation", ","],
+	["punctuation", "}"],
+	["punctuation", ";"],
+	["punctuation", "}"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+	["keyword", "const"],
+	" one_plus_one",
+	["punctuation", ":"],
+	["class-name", [
+		["builtin-types", "i32"]
+	]],
+	["operator", "="],
+	["number", "1"],
+	["operator", "+"],
+	["number", "1"],
+	["punctuation", ";"],
+	["keyword", "var"],
+	" x",
+	["punctuation", ":"],
+	["class-name", [
+		["builtin-types", "i32"]
+	]],
+	["punctuation", ";"],
+	["keyword", "const"],
+	" value",
+	["punctuation", ":"],
+	["class-name", [
+		["operator", "?"],
+		["builtin-types", "u32"]
+	]],
+	["operator", "="],
+	["keyword", "null"],
+	["punctuation", ";"],
+	["keyword", "var"],
+	" optional_value",
+	["punctuation", ":"],
+	["class-name", [
+		["operator", "?"],
+		["punctuation", "["],
+		["punctuation", "]"],
+		["keyword", "const"],
+		["builtin-types", "u8"]
+	]],
+	["operator", "="],
+	["keyword", "null"],
+	["punctuation", ";"],
+	["keyword", "var"],
+	" number_or_error",
+	["punctuation", ":"],
+	["class-name", [
+		["builtin-types", "anyerror"],
+		["operator", "!"],
+		["builtin-types", "i32"]
+	]],
+	["operator", "="],
+	["keyword", "error"],
+	["punctuation", "."],
+	"ArgNotFound",
+	["punctuation", ";"],
+	["keyword", "const"],
+	" array1 ",
+	["operator", "="],
+	["class-name", [
+		["punctuation", "["],
+		"_",
+		["punctuation", "]"],
+		["builtin-types", "u32"]
+	]],
+	["punctuation", "{"],
+	["number", "1"],
+	["punctuation", ","],
+	["number", "2"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+	["keyword", "var"],
+	" foo",
+	["punctuation", ":"],
+	["class-name", [
+		"S"
+	]],
+	["keyword", "align"],
+	["punctuation", "("],
+	["number", "4"],
+	["punctuation", ")"],
+	["operator", "="],
+	["keyword", "undefined"],
+	["punctuation", ";"],
+	["keyword", "fn"],
+	["function", "add"],
+	["punctuation", "("],
+	"a",
+	["punctuation", ":"],
+	["class-name", [
+		["builtin-types", "i32"]
+	]],
+	["punctuation", ","],
+	" b",
+	["punctuation", ":"],
+	["class-name", [
+		["builtin-types", "i32"]
+	]],
+	["punctuation", ")"],
+	["class-name", [
+		["builtin-types", "i32"]
+	]],
+	["punctuation", "{"],
+	["keyword", "return"],
+	" a ",
+	["operator", "+"],
+	" b",
+	["punctuation", ";"],
+	["punctuation", "}"],
+	["keyword", "extern"],
+	["keyword", "fn"],
+	["function", "foo"],
+	["punctuation", "("],
+	"x",
+	["punctuation", ":"],
+	["class-name", [
+		["builtin-types", "f64"]
+	]],
+	["punctuation", ")"],
+	["class-name", [
+		["builtin-types", "f64"]
+	]],
+	["punctuation", ";"],
+	["keyword", "fn"],
+	["function", "noop4"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["keyword", "align"],
+	["punctuation", "("],
+	["number", "4"],
+	["punctuation", ")"],
+	["class-name", [
+		["builtin-types", "void"]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["keyword", "fn"],
+	["function", "derp"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["keyword", "align"],
+	["punctuation", "("],
+	["builtin", "@sizeOf"],
+	["punctuation", "("],
+	["builtin-types", "usize"],
+	["punctuation", ")"],
+	["operator", "*"],
+	["number", "2"],
+	["punctuation", ")"],
+	["class-name", [
+		["builtin-types", "i32"]
+	]],
+	["punctuation", "{"],
+	["keyword", "return"],
+	["number", "1234"],
+	["punctuation", ";"],
+	["punctuation", "}"],
+	["keyword", "fn"],
+	["function", "eventuallyNullSequence"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["class-name", [
+		["operator", "?"],
+		["builtin-types", "u32"]
+	]],
+	["punctuation", "{"],
+	["keyword", "return"],
+	["keyword", "if"],
+	["punctuation", "("],
+	"numbers_left ",
+	["operator", "=="],
+	["number", "0"],
+	["punctuation", ")"],
+	["keyword", "null"],
+	["keyword", "else"],
+	["label", "blk"],
+	["punctuation", ":"],
+	["punctuation", "{"],
+	"\r\n\t\tnumbers_left ",
+	["operator", "-="],
+	["number", "1"],
+	["punctuation", ";"],
+	["keyword", "break"],
+	["punctuation", ":"],
+	["label", "blk"],
+	" numbers_left",
+	["punctuation", ";"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+	["punctuation", "}"],
+	["keyword", "const"],
+	" message ",
+	["operator", "="],
+	["class-name", [
+		["punctuation", "["],
+		"_",
+		["punctuation", "]"],
+		["builtin-types", "u8"]
+	]],
+	["punctuation", "{"],
+	["string", "'h'"],
+	["punctuation", ","],
+	["string", "'e'"],
+	["punctuation", ","],
+	["string", "'l'"],
+	["punctuation", ","],
+	["string", "'l'"],
+	["punctuation", ","],
+	["string", "'o'"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+	["keyword", "const"],
+	" mat4x4 ",
+	["operator", "="],
+	["class-name", [
+		["punctuation", "["],
+		["number", "4"],
+		["punctuation", "]"],
+		["punctuation", "["],
+		["number", "4"],
+		["punctuation", "]"],
+		["builtin-types", "f32"]
+	]],
+	["punctuation", "{"],
+	["class-name", [
+		["punctuation", "["],
+		"_",
+		["punctuation", "]"],
+		["builtin-types", "f32"]
+	]],
+	["punctuation", "{"],
+	["number", "1.0"],
+	["punctuation", ","],
+	["number", "0.0"],
+	["punctuation", ","],
+	["number", "0.0"],
+	["punctuation", ","],
+	["number", "0.0"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["class-name", [
+		["punctuation", "["],
+		"_",
+		["punctuation", "]"],
+		["builtin-types", "f32"]
+	]],
+	["punctuation", "{"],
+	["number", "0.0"],
+	["punctuation", ","],
+	["number", "1.0"],
+	["punctuation", ","],
+	["number", "0.0"],
+	["punctuation", ","],
+	["number", "1.0"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["class-name", [
+		["punctuation", "["],
+		"_",
+		["punctuation", "]"],
+		["builtin-types", "f32"]
+	]],
+	["punctuation", "{"],
+	["number", "0.0"],
+	["punctuation", ","],
+	["number", "0.0"],
+	["punctuation", ","],
+	["number", "1.0"],
+	["punctuation", ","],
+	["number", "0.0"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["class-name", [
+		["punctuation", "["],
+		"_",
+		["punctuation", "]"],
+		["builtin-types", "f32"]
+	]],
+	["punctuation", "{"],
+	["number", "0.0"],
+	["punctuation", ","],
+	["number", "0.0"],
+	["punctuation", ","],
+	["number", "0.0"],
+	["punctuation", ","],
+	["number", "1.0"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["punctuation", "}"],
+	["punctuation", ";"],
+	["keyword", "const"],
+	["class-name", "Point"],
+	["operator", "="],
+	["keyword", "struct"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+	["keyword", "const"],
+	["class-name", "Point2"],
+	["operator", "="],
+	["keyword", "packed"],
+	["keyword", "struct"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+	["keyword", "const"],
+	["class-name", "Type"],
+	["operator", "="],
+	["keyword", "enum"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+	["keyword", "const"],
+	["class-name", "Value"],
+	["operator", "="],
+	["keyword", "enum"],
+	["punctuation", "("],
+	"u2",
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+	["keyword", "const"],
+	["class-name", "Number"],
+	["operator", "="],
+	["keyword", "packed"],
+	["keyword", "enum"],
+	["punctuation", "("],
+	["builtin-types", "u8"],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+	["keyword", "const"],
+	["class-name", "Foo"],
+	["operator", "="],
+	["keyword", "extern"],
+	["keyword", "enum"],
+	["punctuation", "{"],
+	" A",
+	["punctuation", ","],
+	" B",
+	["punctuation", ","],
+	" C ",
+	["punctuation", "}"],
+	["punctuation", ";"],
+	["keyword", "const"],
+	["class-name", "Foo"],
+	["operator", "="],
+	["keyword", "extern"],
+	["keyword", "enum"],
+	["punctuation", "{"],
+	" A",
+	["punctuation", ","],
+	" B",
+	["punctuation", ","],
+	" C ",
+	["punctuation", "}"],
+	["punctuation", ";"],
+	["keyword", "const"],
+	["class-name", "Payload"],
+	["operator", "="],
+	["keyword", "union"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+	["keyword", "const"],
+	["class-name", "ComplexType"],
+	["operator", "="],
+	["keyword", "union"],
+	["punctuation", "("],
+	"ComplexTypeTag",
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+	["keyword", "var"],
+	" node ",
+	["operator", "="],
+	["class-name", [
+		"ListOfInts",
+		["punctuation", "."],
+		"Node"
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+	["keyword", "var"],
+	" list2 ",
+	["operator", "="],
+	["function", "LinkedList"],
+	["punctuation", "("],
+	["builtin-types", "i32"],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for class names.
