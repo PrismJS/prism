@@ -98,6 +98,7 @@
 		"scala": "java",
 		"shell-session": "bash",
 		"smarty": "markup-templating",
+		"solidity": "clike",
 		"soy": "markup-templating",
 		"swift": "clike",
 		"tap": "yaml",

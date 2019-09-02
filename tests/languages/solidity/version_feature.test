@@ -1,0 +1,24 @@
+pragma solidity >=0.4.0 <0.7.0;
+pragma solidity ^0.5.0;
+
+----------------------------------------------------
+
+[
+	["keyword", "pragma"],
+	["keyword", "solidity"],
+	["operator", ">="],
+	["version", "0.4.0"],
+	["operator", "<"],
+	["version", "0.7.0"],
+	["punctuation", ";"],
+
+	["keyword", "pragma"],
+	["keyword", "solidity"],
+	["operator", "^"],
+	["version", "0.5.0"],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for version literals.

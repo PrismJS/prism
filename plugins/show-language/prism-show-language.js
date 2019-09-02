@@ -123,6 +123,7 @@
 		"sass": "Sass (Sass)",
 		"scss": "Sass (Scss)",
 		"shell-session": "Shell session",
+		"solidity": "Solidity (Ethereum)",
 		"soy": "Soy (Closure Template)",
 		"splunk-spl": "Splunk SPL",
 		"sql": "SQL",
