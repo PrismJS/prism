@@ -1009,6 +1009,10 @@
 			"title": "YAML",
 			"alias": "yml",
 			"owner": "hason"
+		},
+		"zig": {
+			"title": "Zig",
+			"owner": "RunDevelopment"
 		}
 	},
 	"plugins": {
