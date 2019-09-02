@@ -7,6 +7,8 @@
 	// Copied from the markup language definition
 	var HTML_TAG = /<\/?(?!\d)[^\s>\/=$<%]+(?:\s(?:\s*[^\s>\/=]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+(?=[\s>]))|(?=[\s/>])))+)?\s*\/?>/g;
 
+	var HEX_COLOR = /^#?(?=(?:[\da-f]{1,2}){3,4}$)([\da-f][\da-f]?)([\da-f][\da-f]?)([\da-f][\da-f]?)([\da-f][\da-f]?)?$/i;
+
 	/**
 	 * Parses the given hexadecimal representation and returns the parsed RGBA color.
 	 *
@@ -19,21 +21,21 @@
 	function parseHexColor(hex) {
 		// the regex explained: In first lookahead we check whether the string is valid and then we use the
 		// capturing groups to split the string into its components.
-		var match = /^#?(?=(?:[\da-f]{1,2}){3,4}$)([\da-f][\da-f]?)([\da-f][\da-f]?)([\da-f][\da-f]?)([\da-f][\da-f]?)?$/i.exec(hex);
+		var match = HEX_COLOR.exec(hex);
+		if (!match) {
+			return undefined;
+		}
 
 		// This is used to scale normalize 4bit and 8bit values
 		var scale = hex.length <= 4 ? 1 / 15 : 1 / 255;
 
-		if (match) {
-			var rgb = match.slice(1, 4).map(function (c) {
-				return String(Math.round(parseInt(c, 16) * scale * 255));
-			}).join(',');
+		var rgb = match.slice(1, 4).map(function (c) {
+			return String(Math.round(parseInt(c, 16) * scale * 255));
+		}).join(',');
 
-			var alpha = match[4] === undefined ? '1' : (parseInt(match[4], 16) * scale).toFixed(3);
+		var alpha = match[4] === undefined ? '1' : (parseInt(match[4], 16) * scale).toFixed(3);
 
-			return 'rgba(' + rgb + ',' + alpha + ')';
-		}
-		return undefined;
+		return 'rgba(' + rgb + ',' + alpha + ')';
 	}
 
 	/**
