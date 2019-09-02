@@ -869,7 +869,7 @@
 		"sparql": {
 			"title": "SPARQL",
 			"owner": "Triply",
-			"alias": ["rq"]
+			"alias": "rq"
 		},
 		"splunk-spl": {
 			"title": "Splunk SPL",
