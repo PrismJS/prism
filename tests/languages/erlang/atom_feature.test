@@ -9,7 +9,7 @@ foo@_bar
 	["atom", "foo"],
 	["atom", "foo@_bar"],
 	["quoted-atom", "'foo bar'"],
-    ["quoted-atom", "'\\'\\\\'"]
+	["quoted-atom", "'\\'\\\\'"]
 ]
 
 ----------------------------------------------------

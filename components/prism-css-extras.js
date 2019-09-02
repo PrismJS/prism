@@ -67,7 +67,11 @@
 		pattern: /(\d)(?:%|[a-z]+)/,
 		lookbehind: true
 	};
-	var number = /-?[\d.]+/;
+	// 123 -123 .123 -.123 12.3 -12.3
+	var number = {
+		pattern: /(^|[^\w.-])-?\d*\.?\d+/,
+		lookbehind: true
+	};
 
 	Prism.languages.insertBefore('css', 'function', {
 		'operator': {
