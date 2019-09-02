@@ -4,7 +4,7 @@ Prism.languages.turtle = {
 		greedy: true
 	},
 	'multiline-string': {
-		pattern: /"""(?:[^"]"?"?)*"""|'''(?:[^']'?'?)*'''/,
+		pattern: /"""(?:(?:""?)?(?:[^"\\]|\\.))*"""|'''(?:(?:''?)?(?:[^'\\]|\\.))*'''/,
 		greedy: true,
 		alias: 'string',
 		inside: {
@@ -16,7 +16,7 @@ Prism.languages.turtle = {
 		greedy: true
 	},
 	'url': {
-		pattern: /<[^\s<>]*>/,
+		pattern: /<(?:[^\x00-\x20<>"{}|^`\\]|\\(?:u[\da-f]{4}|U[\da-f]{8}))*>/i,
 		greedy: true,
 		inside: {
 			'punctuation': /[<>]/
@@ -42,10 +42,10 @@ Prism.languages.turtle = {
 	'boolean': /\b(?:true|false)\b/,
 	'keyword': [
 		/(?:\ba|@prefix|@base)\b|=/,
-		/\b(?:graph|base|prefix)\b|=/i
+		/\b(?:graph|base|prefix)\b/i
 	],
 	'tag': {
-		'pattern': /@[a-z]+(?:-[a-z\d]+)*/i,
+		pattern: /@[a-z]+(?:-[a-z\d]+)*/i,
 		inside: {
 			'punctuation': /@/
 		}
