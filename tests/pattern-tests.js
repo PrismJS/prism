@@ -232,4 +232,36 @@ function testPatterns(Prism) {
 		});
 	});
 
+	it('- should have nice names and aliases', function () {
+		const niceName = /^[a-z][a-z\d]*(?:[-_][a-z\d]+)*$/;
+		function testName(name, desc = 'token name') {
+			if (!niceName.test(name)) {
+				assert.fail(`The ${desc} '${name}' does not match ${niceName}`);
+			}
+		}
+
+		forEachPattern(({ name, parent, tokenPath, path }) => {
+			// token name
+			let offset = 1;
+			if (name == 'pattern') { // regex can be inside an object
+				offset++;
+			}
+			if (Array.isArray(path[path.length - 1 - offset].value)) { // regex/regex object can be inside an array
+				offset++;
+			}
+			const patternName = path[path.length - offset].key;
+			testName(patternName);
+
+			// check alias
+			if (name == 'pattern' && 'alias' in parent) {
+				const alias = parent.alias;
+				if (typeof alias === 'string') {
+					testName(alias, `alias of '${tokenPath}'`);
+				} else if (Array.isArray(alias)) {
+					alias.forEach(name => testName(name, `alias of '${tokenPath}'`));
+				}
+			}
+		});
+	});
+
 }

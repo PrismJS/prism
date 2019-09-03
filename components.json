@@ -104,6 +104,10 @@
 			"title": "AppleScript",
 			"owner": "Golmote"
 		},
+		"aql": {
+			"title": "AQL",
+			"owner": "RunDevelopment"
+		},
 		"arduino": {
 			"title": "Arduino",
 			"require": "cpp",
@@ -861,6 +865,11 @@
 			"require": "markup-templating",
 			"owner": "Golmote"
 		},
+		"solidity": {
+			"title": "Solidity (Ethereum)",
+			"require": "clike",
+			"owner": "glachaud"
+		},
 		"soy": {
 			"title": "Soy (Closure Template)",
 			"require": "markup-templating",
@@ -1005,6 +1014,10 @@
 			"title": "YAML",
 			"alias": "yml",
 			"owner": "hason"
+		},
+		"zig": {
+			"title": "Zig",
+			"owner": "RunDevelopment"
 		}
 	},
 	"plugins": {
