@@ -149,9 +149,16 @@
 	<pre><code>&lt;pre>&lt;code class="language-css">p { color: red }&lt;/code>&lt;/pre></code></pre>
 	<p>If you use that pattern, the <code>&lt;pre></code> will automatically get the <code>language-xxxx</code> class (if it doesn’t already have it) and will be styled as a code block.</p>
 
-	<p>If you want to prevent any elements from being automatically highlighted, you can use the attribute <code>data-manual</code> on the <code>&lt;script></code> element you used for prism and use the <a href="extending.html#api">API</a>.
+	<p>If you want to prevent any elements from being automatically highlighted and instead use the <a href="extending.html#api">API</a>, you can set <code class="language-javascript">Prism.manual</code> to <code class="language-javascript">true</code> before the <code>DOMContentLoaded</code> event is fired. By setting the <code>data-manual</code> attribute on the <code>&lt;script></code> element containing Prism core, this will be done automatically.
 	Example:</p>
 	<pre><code>&lt;script src="prism.js" data-manual>&lt;/script></code></pre>
+	<p>or</p>
+	<pre><code>&lt;script>
+window.Prism = window.Prism || {};
+window.Prism.manual = true;
+&lt;/script>
+&lt;script src="prism.js">&lt;/script></code></pre>
+	
 	<h2>Usage with CDNs</h2>
 
 	<p>In combination with CDNs, we recommend using the <a href="plugins/autoloader">Autoloader plugin</a> which automatically loads languages when necessary.</p>
