@@ -4,6 +4,7 @@
     foobar
 
 	foobar
+	continuous
 
 ``` js
 var a = 0;
@@ -15,7 +16,7 @@ var a = 0;
 	["code", "`foo bar baz`"],
 	["code", "``foo `bar` baz``"],
 	["code", "    foobar"],
-	["code", "\tfoobar"],
+	["code", "\tfoobar\r\n\tcontinuous"],
 
 	["code", [
 		["punctuation", "```"],

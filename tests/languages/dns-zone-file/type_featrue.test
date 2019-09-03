@@ -1,0 +1,155 @@
+A
+A6
+AAAA
+AFSDB
+APL
+ATMA
+CAA
+CDNSKEY
+CDS
+CERT
+CNAME
+DHCID
+DLV
+DNAME
+DNSKEY
+DS
+EID
+GID
+GPOS
+HINFO
+HIP
+IPSECKEY
+ISDN
+KEY
+KX
+LOC
+MAILA
+MAILB
+MB
+MD
+MF
+MG
+MINFO
+MR
+MX
+NAPTR
+NB
+NBSTAT
+NIMLOC
+NINFO
+NS
+NSAP
+NSAP-PTR
+NSEC
+NSEC3
+NSEC3PARAM
+NULL
+NXT
+OPENPGPKEY
+PTR
+PX
+RKEY
+RP
+RRSIG
+RT
+SIG
+SINK
+SMIMEA
+SOA
+SPF
+SRV
+SSHFP
+TA
+TKEY
+TLSA
+TSIG
+TXT
+UID
+UINFO
+UNSPEC
+URI
+WKS
+X25
+
+----------------------------------------------------
+
+[
+	["type", "A"],
+	["type", "A6"],
+	["type", "AAAA"],
+	["type", "AFSDB"],
+	["type", "APL"],
+	["type", "ATMA"],
+	["type", "CAA"],
+	["type", "CDNSKEY"],
+	["type", "CDS"],
+	["type", "CERT"],
+	["type", "CNAME"],
+	["type", "DHCID"],
+	["type", "DLV"],
+	["type", "DNAME"],
+	["type", "DNSKEY"],
+	["type", "DS"],
+	["type", "EID"],
+	["type", "GID"],
+	["type", "GPOS"],
+	["type", "HINFO"],
+	["type", "HIP"],
+	["type", "IPSECKEY"],
+	["type", "ISDN"],
+	["type", "KEY"],
+	["type", "KX"],
+	["type", "LOC"],
+	["type", "MAILA"],
+	["type", "MAILB"],
+	["type", "MB"],
+	["type", "MD"],
+	["type", "MF"],
+	["type", "MG"],
+	["type", "MINFO"],
+	["type", "MR"],
+	["type", "MX"],
+	["type", "NAPTR"],
+	["type", "NB"],
+	["type", "NBSTAT"],
+	["type", "NIMLOC"],
+	["type", "NINFO"],
+	["type", "NS"],
+	["type", "NSAP"],
+	["type", "NSAP-PTR"],
+	["type", "NSEC"],
+	["type", "NSEC3"],
+	["type", "NSEC3PARAM"],
+	["type", "NULL"],
+	["type", "NXT"],
+	["type", "OPENPGPKEY"],
+	["type", "PTR"],
+	["type", "PX"],
+	["type", "RKEY"],
+	["type", "RP"],
+	["type", "RRSIG"],
+	["type", "RT"],
+	["type", "SIG"],
+	["type", "SINK"],
+	["type", "SMIMEA"],
+	["type", "SOA"],
+	["type", "SPF"],
+	["type", "SRV"],
+	["type", "SSHFP"],
+	["type", "TA"],
+	["type", "TKEY"],
+	["type", "TLSA"],
+	["type", "TSIG"],
+	["type", "TXT"],
+	["type", "UID"],
+	["type", "UINFO"],
+	["type", "UNSPEC"],
+	["type", "URI"],
+	["type", "WKS"],
+	["type", "X25"]
+]
+
+----------------------------------------------------
+
+Checks for all resource record types.
