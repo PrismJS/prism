@@ -552,9 +552,15 @@ function generateCode(){
 				var fileName = 'prism.' + type;
 
 				var codeElement = $('#download-' + type + ' code');
+				var pre = codeElement.parentElement;
 
-				codeElement.textContent = text;
-				Prism.highlightElement(codeElement, true);
+				var newCode = document.createElement('CODE');
+				newCode.className = codeElement.className;
+				newCode.textContent = text;
+
+				Prism.highlightElement(newCode, true, function () {
+					pre.replaceChild(newCode, codeElement);
+				});
 
 
 				$('#download-' + type + ' .download-button').onclick = function () {

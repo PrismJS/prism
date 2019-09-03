@@ -6,7 +6,7 @@ multi-line comment */
 
 <h2>Numbers, dates and times</h2>
 <pre><code>42; 4.5; 4.5e-10; -3; -3.5e2; -4.2e-23;
-0afx; 0123x; abcdefx;
+0afx; 0123x;
 '1jan2013'd; '01jan09'd;
 '9:25't; '9:25:19pm't;
 '01may12:9:30:00'dt; '18jan2003:9:27:05am'dt;
@@ -23,7 +23,7 @@ multi-line comment */
 <pre><code>A**B;
 'foo'||'bar'!!'baz'¦¦'test';
 A&lt;>B>&lt;C;
-A~=B¬=C^=D>=E<=F;
+A~=B¬=C^=D>=E&lt;=F;
 a*b/c+d-e&lt;f>g&amp;h|i!j¦k;
 ~a;¬b;^c;
 (a eq b) ne (c gt d) lt e ge f le h;
@@ -31,7 +31,8 @@ state in ('NY','NJ','PA');
 not a;</code></pre>
 
 <h2>More examples</h2>
-<pre><code>/* Some examples adapted from the documentation (http://support.sas.com/documentation/cdl/en/basess/64003/PDF/default/basess.pdf) */
+<pre><code>/* Some examples adapted from the documentation
+   http://support.sas.com/documentation/cdl/en/basess/64003/PDF/default/basess.pdf */
 
 data city; * another inline comment;
 

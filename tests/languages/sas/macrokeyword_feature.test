@@ -1,0 +1,39 @@
+%ABORT %BQUOTE %BY %CMS %COPY %DISPLAY %DO %ELSE %END %EVAL %GLOBAL %GO %GOTO %IF %INC %INCLUDE
+%INDEX %INPUT %KTRIM %LENGTH %LET %LIST %LOCAL %NRBQUOTE %NRQUOTE %NRSTR %PUT %QKTRIM %QSCAN
+%QSUBSTR %QSYSFUNC %QUOTE %QUPCASE %RETURN %RUN %SCAN %STR %SUBSTR %SUPERQ %SYMDEL %SYMGLOBL
+%SYMLOCAL %SYMEXIST %SYSCALL %SYSEVALF %SYSEXEC %SYSFUNC %SYSGET %SYSRPUT %THEN %TO %TSO
+%UNQUOTE %UNTIL %UPCASE %WHILE %WINDOW
+
+----------------------------------------------------
+
+[
+	["macro-keyword", "%ABORT"], ["macro-keyword", "%BQUOTE"], ["macro-keyword", "%BY"],
+	["macro-keyword", "%CMS"], ["macro-keyword", "%COPY"], ["macro-keyword", "%DISPLAY"],
+	["macro-keyword", "%DO"], ["macro-keyword", "%ELSE"], ["macro-keyword", "%END"],
+	["macro-keyword", "%EVAL"], ["macro-keyword", "%GLOBAL"], ["macro-keyword", "%GO"],
+	["macro-keyword", "%GOTO"], ["macro-keyword", "%IF"], ["macro-keyword", "%INC"],
+	["macro-keyword", "%INCLUDE"], ["macro-keyword", "%INDEX"],
+	["macro-keyword", "%INPUT"], ["macro-keyword", "%KTRIM"],
+	["macro-keyword", "%LENGTH"], ["macro-keyword", "%LET"], ["macro-keyword", "%LIST"],
+	["macro-keyword", "%LOCAL"], ["macro-keyword", "%NRBQUOTE"],
+	["macro-keyword", "%NRQUOTE"], ["macro-keyword", "%NRSTR"],
+	["macro-keyword", "%PUT"], ["macro-keyword", "%QKTRIM"],
+	["macro-keyword", "%QSCAN"], ["macro-keyword", "%QSUBSTR"],
+	["macro-keyword", "%QSYSFUNC"], ["macro-keyword", "%QUOTE"],
+	["macro-keyword", "%QUPCASE"], ["macro-keyword", "%RETURN"],
+	["macro-keyword", "%RUN"], ["macro-keyword", "%SCAN"], ["macro-keyword", "%STR"],
+	["macro-keyword", "%SUBSTR"], ["macro-keyword", "%SUPERQ"],
+	["macro-keyword", "%SYMDEL"], ["macro-keyword", "%SYMGLOBL"],
+	["macro-keyword", "%SYMLOCAL"], ["macro-keyword", "%SYMEXIST"],
+	["macro-keyword", "%SYSCALL"], ["macro-keyword", "%SYSEVALF"],
+	["macro-keyword", "%SYSEXEC"], ["macro-keyword", "%SYSFUNC"],
+	["macro-keyword", "%SYSGET"], ["macro-keyword", "%SYSRPUT"],
+	["macro-keyword", "%THEN"], ["macro-keyword", "%TO"], ["macro-keyword", "%TSO"],
+	["macro-keyword", "%UNQUOTE"], ["macro-keyword", "%UNTIL"],
+	["macro-keyword", "%UPCASE"], ["macro-keyword", "%WHILE"],
+	["macro-keyword", "%WINDOW"]
+]
+
+----------------------------------------------------
+
+Checks for all keywords.

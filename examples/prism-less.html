@@ -48,23 +48,3 @@ comment */</code></pre>
   @{property}: #0ee;
   background-@{property}: #999;
 }</code></pre>
-
-<h2>Known failures</h2>
-<p>There are certain edge cases where Prism will fail.
-	There are always such cases in every regex-based syntax highlighter.
-	However, Prism dares to be open and honest about them.
-	If a failure is listed here, it doesn’t mean it will never be fixed. This is more of a “known bugs” list, just with a certain type of bug.
-</p>
-
-<h3>At-rules looking like variables</h3>
-<pre><code>@import "some file.less";</code></pre>
-
-<h3>At-rules containing interpolation</h3>
-<pre><code>@import "@{themes}/tidal-wave.less";</code></pre>
-
-<h3>extend is not highlighted consistently</h3>
-<pre><code>nav ul {
-  &:extend(.inline);
-  background: blue;
-}
-.a:extend(.b) {}</code></pre>

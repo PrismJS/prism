@@ -1,0 +1,20 @@
+int32 foo = 1 [deprecated=true];
+
+----------------------------------------------------
+
+[
+	["builtin", "int32"],
+	" foo ",
+	["operator", "="],
+	["number", "1"],
+	["punctuation", "["],
+	["annotation", "deprecated"],
+	["operator", "="],
+	["boolean", "true"],
+	["punctuation", "]"],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Check for annotations.
