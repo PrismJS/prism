@@ -14,6 +14,10 @@ bar'
 foo
 bar
 STRING_END
+<<- STRING_END
+foo
+bar
+STRING_END
 <<   EOF
 foo $@
 bar
@@ -24,7 +28,7 @@ EOF
 EOF
 << "EOF"
 foo
-bar
+$bar
 EOF
 << STRING_END
 # comment
@@ -46,17 +50,19 @@ STRING_END
 		"\"", ["variable", "$@"], "\""
 	]],
 	["string", [
-		"\"", ["variable", "${foo}"], "\""
+		"\"", ["variable", ["${foo}"]], "\""
 	]],
-	["operator", "<<"],
+	["operator", ["<<"]],
 	["string", ["STRING_END\r\nfoo\r\nbar\r\nSTRING_END"]],
-	["operator", "<<"],
+	["operator", ["<<-"]],
+	["string", ["STRING_END\r\nfoo\r\nbar\r\nSTRING_END"]],
+	["operator", ["<<"]],
 	["string", ["EOF\r\nfoo ", ["variable", "$@"], "\r\nbar\r\nEOF"]],
-	["operator", "<<"],
-	["string", ["'EOF'\r\n'single quoted string'\r\n\"double quoted string\"\r\nEOF"]],
-	["operator", "<<"],
-	["string", ["\"EOF\"\r\nfoo\r\nbar\r\nEOF"]],
-	["operator", "<<"],
+	["operator", ["<<"]],
+	["string", "'EOF'\r\n'single quoted string'\r\n\"double quoted string\"\r\nEOF"],
+	["operator", ["<<"]],
+	["string", "\"EOF\"\r\nfoo\r\n$bar\r\nEOF"],
+	["operator", ["<<"]],
 	["string", ["STRING_END\r\n# comment\r\nSTRING_END"]],
 	["string", ["\"  # comment  \""]]
 ]

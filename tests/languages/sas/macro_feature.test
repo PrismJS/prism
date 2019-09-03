@@ -1,0 +1,23 @@
+%_zscore(length);
+%_test(string, 0.3);
+
+----------------------------------------------------
+
+[
+	["macro", "%_zscore"],
+	["punctuation", "("],
+	"length",
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["macro", "%_test"],
+	["punctuation", "("],
+	"string",
+	["punctuation", ","],
+	["number", "0.3"],
+	["punctuation", ")"],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks that options captures "options" and correctly tags following text.

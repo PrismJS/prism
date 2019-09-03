@@ -19,7 +19,7 @@ if f_path =
     return
 if f_class = #32770    ; It's a dialog.
 {
-    if f_Edit1Pos <>   ; And it has an Edit1 control.
+    if f_Edit1Pos &lt;>   ; And it has an Edit1 control.
     {
         ; Activate the window so that if the user is middle-clicking
         ; outside the dialog, subsequent clicks will also work:
@@ -37,7 +37,7 @@ if f_class = #32770    ; It's a dialog.
 }
 else if f_class in ExploreWClass,CabinetWClass  ; In Explorer, switch folders.
 {
-    if f_Edit1Pos <>   ; And it has an Edit1 control.
+    if f_Edit1Pos &lt;>   ; And it has an Edit1 control.
     {
         ControlSetText, Edit1, %f_path%, ahk_id %f_window_id%
         ; Tekl reported the following: "If I want to change to Folder L:\folder

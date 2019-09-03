@@ -52,9 +52,19 @@
 	keyword: 'special-keyword',
 	string: 'string_ch29s',
 	comment: 'comment_93jsa'
-})</code></pre>
+});</code></pre>
 
 	<p>Object's keys are the tokens you want to replace (eg: <code>comment</code>), with their values being the classes you want to use (eg: <code>my-comment</code>). Tokens which are not specified will stay the same.</p>
+
+	<p>Alternatively you can also pass a function that takes the original class and returns the mapped class. This function can also be used implement language specific mapped classes.<br>Example:</p>
+
+	<pre class="language-js"><code>Prism.plugins.customClass.map(function (className, language) {
+	if (language === 'css') {
+		return cssSpecificMap[className] || className;
+	} else {
+		return className;
+	}
+});</code></pre>
 
 	<h1>Notes</h1>
 
@@ -111,14 +121,6 @@ Prism.plugins.customClass.prefix('pr-');</code></pre>
 	&lt;span class=&quot;pr-my-string&quot;&gt;'bar'&lt;/span&gt;
 	&lt;span class=&quot;pr-token pr-punctuation&quot;&gt;;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;</code></pre>
-</section>
-
-<section>
-	<h1>Todo</h1>
-	<ul>
-		<li>Take a function as the transformation (<a href="https://github.com/PrismJS/prism/pull/950#issuecomment-224289585">Comment in #950</a></li>
-		<li>Allow to custom tokens per language, using nested object (<a href="https://github.com/PrismJS/prism/issues/947#issuecomment-216979932">Comment in #947</a>)</li>
-	</ul>
 </section>
 
 <footer data-src="templates/footer.html" data-type="text/html"></footer>

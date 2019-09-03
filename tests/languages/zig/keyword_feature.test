@@ -1,0 +1,105 @@
+align
+allowzero
+and
+asm
+async
+await
+break
+cancel
+catch
+comptime
+const
+continue
+defer
+else
+enum
+errdefer
+error
+export
+extern
+fn
+for
+if
+inline
+linksection
+nakedcc
+noalias
+null
+or
+orelse
+packed
+promise
+pub
+resume
+return
+stdcallcc
+struct
+suspend
+switch
+test
+threadlocal
+try
+undefined
+union
+unreachable
+usingnamespace
+var
+volatile
+while
+
+----------------------------------------------------
+
+[
+	["keyword", "align"],
+	["keyword", "allowzero"],
+	["keyword", "and"],
+	["keyword", "asm"],
+	["keyword", "async"],
+	["keyword", "await"],
+	["keyword", "break"],
+	["keyword", "cancel"],
+	["keyword", "catch"],
+	["keyword", "comptime"],
+	["keyword", "const"],
+	["keyword", "continue"],
+	["keyword", "defer"],
+	["keyword", "else"],
+	["keyword", "enum"],
+	["keyword", "errdefer"],
+	["keyword", "error"],
+	["keyword", "export"],
+	["keyword", "extern"],
+	["keyword", "fn"],
+	["keyword", "for"],
+	["keyword", "if"],
+	["keyword", "inline"],
+	["keyword", "linksection"],
+	["keyword", "nakedcc"],
+	["keyword", "noalias"],
+	["keyword", "null"],
+	["keyword", "or"],
+	["keyword", "orelse"],
+	["keyword", "packed"],
+	["keyword", "promise"],
+	["keyword", "pub"],
+	["keyword", "resume"],
+	["keyword", "return"],
+	["keyword", "stdcallcc"],
+	["keyword", "struct"],
+	["keyword", "suspend"],
+	["keyword", "switch"],
+	["keyword", "test"],
+	["keyword", "threadlocal"],
+	["keyword", "try"],
+	["keyword", "undefined"],
+	["keyword", "union"],
+	["keyword", "unreachable"],
+	["keyword", "usingnamespace"],
+	["keyword", "var"],
+	["keyword", "volatile"],
+	["keyword", "while"]
+]
+
+----------------------------------------------------
+
+Checks for keywords.

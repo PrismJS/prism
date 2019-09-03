@@ -1,0 +1,45 @@
+# comment
+
+*** Keywords ***   # comment
+Run Program        # comment
+	[Arguments]    @{args}     # comment
+	Run Process    program.py    @{args}    # comment
+
+----------------------------------------------------
+
+[
+	["comment", "# comment"],
+	["keywords", [
+		["section-header", "*** Keywords ***"],
+		["comment", "# comment"],
+		["keyword-name", [
+			"Run Program"
+		]],
+		["comment", "# comment"],
+		["tag", [
+			["punctuation", "["],
+			"Arguments",
+			["punctuation", "]"]
+		]],
+		["variable", [
+			["punctuation", "@{"],
+			"args",
+			["punctuation", "}"]
+		]],
+		["comment", "# comment"],
+		["property", [
+			"Run Process"
+		]],
+		"    program.py    ",
+		["variable", [
+			["punctuation", "@{"],
+			"args",
+			["punctuation", "}"]
+		]],
+		["comment", "# comment"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for comments.

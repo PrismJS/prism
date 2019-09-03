@@ -1,0 +1,27 @@
+{
+	"A": "/*",
+	"B": "B",
+	"C": "C"
+}
+
+----------------------------------------------------
+
+[
+	["punctuation", "{"],
+	["property", "\"A\""],
+	["operator", ":"],
+	["string", "\"/*\""],
+	["punctuation", ","],
+	["property", "\"B\""],
+	["operator", ":"],
+	["string", "\"B\""],
+	["punctuation", ","],
+	["property", "\"C\""],
+	["operator", ":"],
+	["string", "\"C\""],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for issue #1852.

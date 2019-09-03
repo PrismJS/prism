@@ -1,0 +1,65 @@
+contract Foo {}
+contract Foo is Bar {}
+enum Foo { X, Y, Z }
+interface Foo {}
+library Foo {}
+new Foo();
+struct Foo {}
+using Foo for bar;
+
+----------------------------------------------------
+
+[
+	["keyword", "contract"],
+	["class-name", "Foo"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "contract"],
+	["class-name", "Foo"],
+	["keyword", "is"],
+	" Bar ",
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "enum"],
+	["class-name", "Foo"],
+	["punctuation", "{"],
+	" X",
+	["punctuation", ","],
+	" Y",
+	["punctuation", ","],
+	" Z ",
+	["punctuation", "}"],
+
+	["keyword", "interface"],
+	["class-name", "Foo"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "library"],
+	["class-name", "Foo"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "new"],
+	["class-name", "Foo"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "struct"],
+	["class-name", "Foo"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "using"],
+	["class-name", "Foo"],
+	["keyword", "for"],
+	" bar",
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for class names.

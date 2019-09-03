@@ -10,7 +10,7 @@ assignees: ''
 
 **Information**
 - Language: [e.g. C++, JavaScript, YAML, etc.]
-- Plugins: [what plugin you are using]
+- Plugins: [a list of plugins you are using or 'none']
 
 Does the problem still occur in the latest version of Prism? You can check using the [test page](https://prismjs.com/test.html) or get the latest version at the [download page](https://prismjs.com/download.html).
 

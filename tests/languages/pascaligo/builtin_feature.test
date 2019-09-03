@@ -1,0 +1,15 @@
+int unit
+string nat map
+list record bool
+
+----------------------------------------------------
+
+[
+	["builtin", "int"], ["builtin", "unit"],
+	["builtin", "string"], ["builtin", "nat"], ["builtin", "map"],
+	["builtin", "list"], ["builtin", "record"], ["builtin", "bool"]
+]
+
+----------------------------------------------------
+
+Checks for builtins.

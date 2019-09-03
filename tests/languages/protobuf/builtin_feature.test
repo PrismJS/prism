@@ -1,0 +1,39 @@
+double
+float
+int32
+int64
+uint32
+uint64
+sint32
+sint64
+fixed32
+fixed64
+sfixed32
+sfixed64
+bool
+string
+bytes
+
+----------------------------------------------------
+
+[
+	["builtin", "double"],
+	["builtin", "float"],
+	["builtin", "int32"],
+	["builtin", "int64"],
+	["builtin", "uint32"],
+	["builtin", "uint64"],
+	["builtin", "sint32"],
+	["builtin", "sint64"],
+	["builtin", "fixed32"],
+	["builtin", "fixed64"],
+	["builtin", "sfixed32"],
+	["builtin", "sfixed64"],
+	["builtin", "bool"],
+	["builtin", "string"],
+	["builtin", "bytes"]
+]
+
+----------------------------------------------------
+
+Check for builtin types.

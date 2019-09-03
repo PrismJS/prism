@@ -1,0 +1,25 @@
+<h2>Full example</h2>
+<pre><code>syntax = "proto3";
+
+package foo.generated;
+option java_package = "org.foo.generated";
+option optimize_for = SPEED;
+
+// What's up with all the foo?
+message Foo {
+
+  message Bar {
+
+    optional string key   = 1;
+    optional Foo value = 2;
+    optional string value_raw = 3 [deprecated=true];
+  }
+
+  enum Level {
+    INFO  = 0;
+    WARN  = 1;
+    ERROR = 2;
+  }
+
+  repeated Property property = 1;
+}</code></pre>

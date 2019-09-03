@@ -10,7 +10,12 @@
 [
 	["atrule", [
 		["rule", "@import"],
-		["url", "url(foo.css)"],
+		["url", [
+			["function", "url"],
+			["punctuation", "("],
+			"foo.css",
+			["punctuation", ")"]
+		]],
 		["punctuation", ";"]
 	]],
 	["atrule", [
