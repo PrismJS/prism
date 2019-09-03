@@ -104,6 +104,10 @@
 			"title": "AppleScript",
 			"owner": "Golmote"
 		},
+		"aql": {
+			"title": "AQL",
+			"owner": "RunDevelopment"
+		},
 		"arduino": {
 			"title": "Arduino",
 			"require": "cpp",
@@ -865,6 +869,11 @@
 			"title": "Smarty",
 			"require": "markup-templating",
 			"owner": "Golmote"
+		},
+		"solidity": {
+			"title": "Solidity (Ethereum)",
+			"require": "clike",
+			"owner": "glachaud"
 		},
 		"soy": {
 			"title": "Soy (Closure Template)",
