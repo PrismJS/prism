@@ -353,6 +353,7 @@
 			"require": "ruby",
 			"peerDependencies": [
 				"css",
+				"css-extras",
 				"coffeescript",
 				"erb",
 				"javascript",
@@ -530,6 +531,7 @@
 		"less": {
 			"title": "Less",
 			"require": "css",
+			"peerDependencies": "css-extras",
 			"owner": "Golmote"
 		},
 		"lilypond": {
@@ -845,6 +847,7 @@
 		"scss": {
 			"title": "Sass (Scss)",
 			"require": "css",
+			"peerDependencies": "css-extras",
 			"owner": "MoOx"
 		},
 		"scala": {
@@ -1074,8 +1077,14 @@
 			"owner": "Golmote",
 			"noCSS": true
 		},
+		"inline-color": {
+			"title": "Inline color",
+			"require": "css-extras",
+			"owner": "RunDevelopment"
+		},
 		"previewers": {
 			"title": "Previewers",
+			"require": "css-extras",
 			"owner": "Golmote"
 		},
 		"autoloader": {
