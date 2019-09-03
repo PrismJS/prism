@@ -194,28 +194,28 @@
 	This might be useful if you're trying to generate static HTML pages with highlighted code for environments that don't support browser-side JS, like <a href="https://www.ampproject.org/">AMP pages</a>.</p>
 
 	<p>Example:</p>
-	<pre><code class="language-js">var Prism = require('prismjs');
+	<pre><code class="language-js">const Prism = require('prismjs');
 
 // The code snippet you want to highlight, as a string
-var code = "var data = 1;";
+const code = `var data = 1;`;
 
 // Returns a highlighted HTML string
-var html = Prism.highlight(code, Prism.languages.javascript, 'javascript');</code></pre>
+const html = Prism.highlight(code, Prism.languages.javascript, 'javascript');</code></pre>
 
 	<p>Requiring <code>prismjs</code> will load the default languages: <code>markup</code>, <code>css</code>,
 		<code>clike</code> and <code>javascript</code>. You can load more languages with the
 		<code class="language-javascript">loadLanguages()</code> utility, which will automatically handle any required dependencies.</p>
 	<p>Example:</p>
 
-	<pre><code class="language-js">var Prism = require('prismjs');
-var loadLanguages = require('prismjs/components/');
+	<pre><code class="language-js">const Prism = require('prismjs');
+const loadLanguages = require('prismjs/components/');
 loadLanguages(['haml']);
 
 // The code snippet you want to highlight, as a string
-var code = "= ['hi', 'there', 'reader!'].join \" \"";
+const code = `= ['hi', 'there', 'reader!'].join " "`;
 
 // Returns a highlighted HTML string
-var html = Prism.highlight(code, Prism.languages.haml, 'haml');</code></pre>
+const html = Prism.highlight(code, Prism.languages.haml, 'haml');</code></pre>
 
 	<p><strong>Note</strong>: Do <em>not</em> use <code class="language-javascript">loadLanguages()</code> with Webpack or another bundler, as this will cause Webpack to include all languages and plugins. Use the babel plugin described above.</p>
 
