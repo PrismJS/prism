@@ -1,6 +1,14 @@
 @some.decorator(foobar)
 def foo(bar):
-    pass
+	pass
+
+@decorator
+def foo(bar):
+	pass
+
+@decorator
+def foo(bar):
+	pass
 
 ----------------------------------------------------
 
@@ -8,12 +16,33 @@ def foo(bar):
 	["decorator", [
 		"@some",
 		["punctuation", "."],
-		"decorator"]
-	],
+		"decorator"
+	]],
 	["punctuation", "("],
 	"foobar",
 	["punctuation", ")"],
+	["keyword", "def"],
+	["function", "foo"],
+	["punctuation", "("],
+	"bar",
+	["punctuation", ")"],
+	["punctuation", ":"],
+	["keyword", "pass"],
 
+	["decorator", [
+		"@decorator"
+	]],
+	["keyword", "def"],
+	["function", "foo"],
+	["punctuation", "("],
+	"bar",
+	["punctuation", ")"],
+	["punctuation", ":"],
+	["keyword", "pass"],
+
+	["decorator", [
+		"@decorator"
+	]],
 	["keyword", "def"],
 	["function", "foo"],
 	["punctuation", "("],

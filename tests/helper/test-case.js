@@ -60,19 +60,9 @@ module.exports = {
 		}
 
 		const Prism = PrismLoader.createInstance(usedLanguages.languages);
-		// the first language is the main language to highlight
-		const mainLanguageGrammar = Prism.languages[usedLanguages.mainLanguage];
-		const env = {
-			code: testCase.testSource,
-			grammar: mainLanguageGrammar,
-			language: usedLanguages.mainLanguage
-		};
-		Prism.hooks.run('before-tokenize', env);
-		env.tokens = Prism.tokenize(env.code, env.grammar);
-		Prism.hooks.run('after-tokenize', env);
-		const compiledTokenStream = env.tokens;
 
-		const simplifiedTokenStream = TokenStreamTransformer.simplify(compiledTokenStream);
+		// the first language is the main language to highlight
+		const simplifiedTokenStream = this.simpleTokenize(Prism, testCase.testSource, usedLanguages.mainLanguage);
 
 		const tzd = JSON.stringify(simplifiedTokenStream);
 		const exp = JSON.stringify(testCase.expectedTokenStream);
@@ -93,7 +83,31 @@ module.exports = {
 			"Expected Token Stream: \n" + exp +
 			"\n-----------------------------------------\n" + diff;
 
-		const result = assert.deepEqual(simplifiedTokenStream, testCase.expectedTokenStream, testCase.comment + message);
+		assert.deepEqual(simplifiedTokenStream, testCase.expectedTokenStream, testCase.comment + message);
+	},
+
+	/**
+	 * Returns the simplified token stream of the given code highlighted with `language`.
+	 *
+	 * The `before-tokenize` and `after-tokenize` hooks will also be executed.
+	 *
+	 * @param {any} Prism The Prism instance which will tokenize `code`.
+	 * @param {string} code The code to tokenize.
+	 * @param {string} language The language id.
+	 * @returns {Array<string|Array<string|any[]>>}
+	 */
+	simpleTokenize(Prism, code, language) {
+		const env = {
+			code,
+			grammar: Prism.languages[language],
+			language
+		};
+
+		Prism.hooks.run('before-tokenize', env);
+		env.tokens = Prism.tokenize(env.code, env.grammar);
+		Prism.hooks.run('after-tokenize', env);
+
+		return TokenStreamTransformer.simplify(env.tokens);
 	},
 
 

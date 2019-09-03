@@ -1,0 +1,17 @@
+<h2>Full example</h2>
+<pre><code>FOR u IN users
+    FOR f IN friends
+        FILTER u.active == @active && f.active == true && u.id == f.userId
+        RETURN { "name" : u.name, "friends" : friends }
+
+LET name = "Peter"
+LET age = 42
+RETURN { name, age }
+
+FOR u IN users
+    FILTER u.status == "not active"
+    UPDATE u WITH { status: "inactive" } IN users
+
+FOR i IN 1..100
+    INSERT { value: i } IN test
+    RETURN NEW</code></pre>

@@ -104,6 +104,10 @@
 			"title": "AppleScript",
 			"owner": "Golmote"
 		},
+		"aql": {
+			"title": "AQL",
+			"owner": "RunDevelopment"
+		},
 		"arduino": {
 			"title": "Arduino",
 			"require": "cpp",
@@ -240,6 +244,11 @@
 			"alias": "jinja2",
 			"owner": "romanvm"
 		},
+		"dns-zone-file": {
+			"title": "DNS zone file",
+			"owner": "RunDevelopment",
+			"alias": "dns-zone"
+		},
 		"docker": {
 			"title": "Docker",
 			"alias": "dockerfile",
@@ -280,6 +289,11 @@
 			"require": "clike",
 			"owner": "simonreynolds7"
 		},
+		"firestore-security-rules": {
+			"title": "Firestore security rules",
+			"require": "clike",
+			"owner": "RunDevelopment"
+		},
 		"flow": {
 			"title": "Flow",
 			"require": "javascript",
@@ -291,6 +305,10 @@
 		},
 		"gcode": {
 			"title": "G-code",
+			"owner": "RunDevelopment"
+		},
+		"gdscript": {
+			"title": "GDScript",
 			"owner": "RunDevelopment"
 		},
 		"gedcom": {
@@ -335,6 +353,7 @@
 			"require": "ruby",
 			"peerDependencies": [
 				"css",
+				"css-extras",
 				"coffeescript",
 				"erb",
 				"javascript",
@@ -461,6 +480,18 @@
 			],
 			"owner": "RunDevelopment"
 		},
+		"js-templates": {
+			"title": "JS Templates",
+			"require": "javascript",
+			"peerDependencies": [
+				"css",
+				"css-extras",
+				"graphql",
+				"markdown",
+				"markup"
+			],
+			"owner": "RunDevelopment"
+		},
 		"json": {
 			"title": "JSON",
 			"owner": "CupOfTea696"
@@ -500,7 +531,14 @@
 		"less": {
 			"title": "Less",
 			"require": "css",
+			"peerDependencies": "css-extras",
 			"owner": "Golmote"
+		},
+		"lilypond": {
+			"title": "LilyPond",
+			"require": "scheme",
+			"alias": "ly",
+			"owner": "RunDevelopment"
 		},
 		"liquid": {
 			"title": "Liquid",
@@ -632,6 +670,10 @@
 			},
 			"owner": "Golmote"
 		},
+		"pascaligo": {
+			"title": "Pascaligo",
+			"owner": "DefinitelyNotAGoat"
+		},
 		"pcaxis": {
 			"title": "PC-Axis",
 			"alias": "px",
@@ -735,7 +777,8 @@
 			"require": ["markup", "javascript"],
 			"peerDependencies": [
 				"jsdoc",
-				"js-extras"
+				"js-extras",
+				"js-templates"
 			],
 			"owner": "vkbansal"
 		},
@@ -776,6 +819,11 @@
 			"title": "Roboconf",
 			"owner": "Golmote"
 		},
+		"robot-framework": {
+			"title": "Robot Framework",
+			"alias": "robot",
+			"owner": "RunDevelopment"
+		},
 		"ruby": {
 			"title": "Ruby",
 			"require": "clike",
@@ -788,6 +836,7 @@
 		},
 		"sas": {
 			"title": "SAS",
+			"require": "sql",
 			"owner": "Golmote"
 		},
 		"sass": {
@@ -798,6 +847,7 @@
 		"scss": {
 			"title": "Sass (Scss)",
 			"require": "css",
+			"peerDependencies": "css-extras",
 			"owner": "MoOx"
 		},
 		"scala": {
@@ -823,14 +873,23 @@
 			"require": "markup-templating",
 			"owner": "Golmote"
 		},
-		"sql": {
-			"title": "SQL",
-			"owner": "multipetros"
+		"solidity": {
+			"title": "Solidity (Ethereum)",
+			"require": "clike",
+			"owner": "glachaud"
 		},
 		"soy": {
 			"title": "Soy (Closure Template)",
 			"require": "markup-templating",
 			"owner": "Golmote"
+		},
+		"splunk-spl": {
+			"title": "Splunk SPL",
+			"owner": "RunDevelopment"
+		},
+		"sql": {
+			"title": "SQL",
+			"owner": "multipetros"
 		},
 		"stylus": {
 			"title": "Stylus",
@@ -865,6 +924,14 @@
 			"require": ["clike", "markup-templating"],
 			"owner": "gflohr"
 		},
+		"turtle": {
+			"title": "Turtle",
+			"alias": ["trig"],
+			"aliasTitles": {
+				"trig": "TriG"
+			},
+			"owner": "jakubklimek"
+		},
 		"twig": {
 			"title": "Twig",
 			"require": "markup",
@@ -873,6 +940,7 @@
 		"typescript": {
 			"title": "TypeScript",
 			"require": "javascript",
+			"peerDependencies": "js-templates",
 			"alias": "ts",
 			"owner": "vkbansal"
 		},
@@ -954,6 +1022,10 @@
 			"title": "YAML",
 			"alias": "yml",
 			"owner": "hason"
+		},
+		"zig": {
+			"title": "Zig",
+			"owner": "RunDevelopment"
 		}
 	},
 	"plugins": {
@@ -1005,8 +1077,14 @@
 			"owner": "Golmote",
 			"noCSS": true
 		},
+		"inline-color": {
+			"title": "Inline color",
+			"require": "css-extras",
+			"owner": "RunDevelopment"
+		},
 		"previewers": {
 			"title": "Previewers",
+			"require": "css-extras",
 			"owner": "Golmote"
 		},
 		"autoloader": {
@@ -1045,6 +1123,17 @@
 			"owner": "mAAdhaTTah",
 			"require": "toolbar",
 			"noCSS": true
+		},
+		"download-button": {
+			"title": "Download Button",
+			"owner": "Golmote",
+			"require": "toolbar",
+			"noCSS": true
+		},
+		"diff-highlight": {
+			"title": "Diff Highlight",
+			"owner": "RunDevelopment",
+			"require": "diff"
 		}
 	}
 }

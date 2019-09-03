@@ -134,9 +134,22 @@ pre.show-tokens {
 
 <script>
 (function() {
-var form = $('form'), code = $('code', form),
-    languages = components.languages,
-    highlightCode = function() { Prism.highlightElement(code); };
+/** @type {HTMLFormElement} */
+var form = $('form');
+/** @type {HTMLElement} */
+var code = $('code', form);
+var languages = components.languages;
+
+function highlightCode() {
+	var newCode = document.createElement('code');
+	newCode.textContent = code.textContent;
+	newCode.className = code.className;
+
+	Prism.highlightElement(newCode);
+
+	code.parentElement.replaceChild(newCode, code);
+	code = newCode;
+};
 
 
 function updateHashLanguage(lang) {

@@ -1,0 +1,179 @@
+| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
+
+Markdown | Less | Pretty
+--- | --- | ---
+*Still* | `renders` | **nicely**
+1 | 2 | 3
+
+|Abc | Def   |
+--- | ---
+|`` `. ``|2|
+
+----------------------------------------------------
+
+[
+	["table", [
+		["table-header-row", [
+			["punctuation", "|"],
+			["table-header", [
+				" Tables        "
+			]],
+			["punctuation", "|"],
+			["table-header", [
+				" Are           "
+			]],
+			["punctuation", "|"],
+			["table-header", [
+				" Cool  "
+			]],
+			["punctuation", "|"]
+		]],
+		["table-line", [
+			["punctuation", "|"],
+			["punctuation", "-------------"],
+			["punctuation", "|"],
+			["punctuation", ":-------------:"],
+			["punctuation", "|"],
+			["punctuation", "-----:"],
+			["punctuation", "|"]
+		]],
+		["table-data-rows", [
+			["punctuation", "|"],
+			["table-data", [
+				" col 3 is      "
+			]],
+			["punctuation", "|"],
+			["table-data", [
+				" right-aligned "
+			]],
+			["punctuation", "|"],
+			["table-data", [
+				" $1600 "
+			]],
+			["punctuation", "|"],
+			["punctuation", "|"],
+			["table-data", [
+				" col 2 is      "
+			]],
+			["punctuation", "|"],
+			["table-data", [
+				" centered      "
+			]],
+			["punctuation", "|"],
+			["table-data", [
+				"   $12 "
+			]],
+			["punctuation", "|"],
+			["punctuation", "|"],
+			["table-data", [
+				" zebra stripes "
+			]],
+			["punctuation", "|"],
+			["table-data", [
+				" are neat      "
+			]],
+			["punctuation", "|"],
+			["table-data", [
+				"    $1 "
+			]],
+			["punctuation", "|"]
+		]]
+	]],
+
+	["table", [
+		["table-header-row", [
+			["table-header", [
+				"Markdown "
+			]],
+			["punctuation", "|"],
+			["table-header", [
+				" Less "
+			]],
+			["punctuation", "|"],
+			["table-header", [
+				" Pretty"
+			]]
+		]],
+		["table-line", [
+			["punctuation", "---"],
+			["punctuation", "|"],
+			["punctuation", "---"],
+			["punctuation", "|"],
+			["punctuation", "---"]
+		]],
+		["table-data-rows", [
+			["table-data", [
+				["italic", [
+					["punctuation", "*"],
+					["content", [
+						"Still"
+					]],
+					["punctuation", "*"]
+				]]
+			]],
+			["punctuation", "|"],
+			["table-data", [
+				["code", "`renders`"]
+			]],
+			["punctuation", "|"],
+			["table-data", [
+				["bold", [
+					["punctuation", "**"],
+					["content", [
+						"nicely"
+					]],
+					["punctuation", "**"]
+				]]
+			]],
+			["table-data", [
+				"1 "
+			]],
+			["punctuation", "|"],
+			["table-data", [
+				" 2 "
+			]],
+			["punctuation", "|"],
+			["table-data", [
+				" 3"
+			]]
+		]]
+	]],
+
+	["table", [
+		["table-header-row", [
+			["punctuation", "|"],
+			["table-header", [
+				"Abc "
+			]],
+			["punctuation", "|"],
+			["table-header", [
+				" Def   "
+			]],
+			["punctuation", "|"]
+		]],
+		["table-line", [
+			["punctuation", "---"],
+			["punctuation", "|"],
+			["punctuation", "---"]
+		]],
+		["table-data-rows", [
+			["punctuation", "|"],
+			["table-data", [
+				["code", "`` `. ``"]
+			]],
+			["punctuation", "|"],
+			["table-data", [
+				"2"
+			]],
+			["punctuation", "|"]
+		]]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for tables.
