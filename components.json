@@ -104,6 +104,10 @@
 			"title": "AppleScript",
 			"owner": "Golmote"
 		},
+		"aql": {
+			"title": "AQL",
+			"owner": "RunDevelopment"
+		},
 		"arduino": {
 			"title": "Arduino",
 			"require": "cpp",
@@ -813,6 +817,11 @@
 			"title": "Roboconf",
 			"owner": "Golmote"
 		},
+		"robot-framework": {
+			"title": "Robot Framework",
+			"alias": "robot",
+			"owner": "RunDevelopment"
+		},
 		"ruby": {
 			"title": "Ruby",
 			"require": "clike",
@@ -860,6 +869,11 @@
 			"title": "Smarty",
 			"require": "markup-templating",
 			"owner": "Golmote"
+		},
+		"solidity": {
+			"title": "Solidity (Ethereum)",
+			"require": "clike",
+			"owner": "glachaud"
 		},
 		"soy": {
 			"title": "Soy (Closure Template)",
@@ -1005,6 +1019,10 @@
 			"title": "YAML",
 			"alias": "yml",
 			"owner": "hason"
+		},
+		"zig": {
+			"title": "Zig",
+			"owner": "RunDevelopment"
 		}
 	},
 	"plugins": {
@@ -1094,6 +1112,12 @@
 		"copy-to-clipboard": {
 			"title": "Copy to Clipboard Button",
 			"owner": "mAAdhaTTah",
+			"require": "toolbar",
+			"noCSS": true
+		},
+		"download-button": {
+			"title": "Download Button",
+			"owner": "Golmote",
 			"require": "toolbar",
 			"noCSS": true
 		},

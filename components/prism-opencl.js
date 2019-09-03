@@ -40,7 +40,7 @@
 	/* OpenCL host API */
 	Prism.languages.insertBefore('c', 'keyword', attributes);
 	// Extracted from doxygen class list http://github.khronos.org/OpenCL-CLHPP/annotated.html
-	attributes['type-opencl-host-c++'] = {
+	attributes['type-opencl-host-cpp'] = {
 		pattern: /\b(?:Buffer|BufferGL|BufferRenderGL|CommandQueue|Context|Device|DeviceCommandQueue|EnqueueArgs|Event|Image|Image1D|Image1DArray|Image1DBuffer|Image2D|Image2DArray|Image2DGL|Image3D|Image3DGL|ImageFormat|ImageGL|Kernel|KernelFunctor|LocalSpaceArg|Memory|NDRange|Pipe|Platform|Program|Sampler|SVMAllocator|SVMTraitAtomic|SVMTraitCoarse|SVMTraitFine|SVMTraitReadOnly|SVMTraitReadWrite|SVMTraitWriteOnly|UserEvent)\b/,
 		alias: 'keyword'
 	};
