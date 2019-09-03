@@ -28,6 +28,8 @@
 
 	var pairIdCounter = 0;
 
+	var BRACE_ID_PATTERN = /^(pair-\d+-)(open|close)$/;
+
 	/**
 	 * Returns the brace partner given one brace of a brace pair.
 	 *
@@ -35,7 +37,7 @@
 	 * @returns {HTMLElement}
 	 */
 	function getPartnerBrace(brace) {
-		var match = /^(pair-\d+-)(open|close)$/.exec(brace.id);
+		var match = BRACE_ID_PATTERN.exec(brace.id);
 		return document.querySelector('#' + match[1] + (match[2] == 'open' ? 'close' : 'open'));
 	}
 
