@@ -22,7 +22,9 @@
 			" str ",
 			["operator", "="],
 			["template-string", [
-				["string", "`\r\n\t\t<style>\r\n\t\t\t.foo { color: blue; }\r\n\t\t</style>\r\n\t`"]
+				["template-punctuation", "`"],
+				["string", "\r\n\t\t<style>\r\n\t\t\t.foo { color: blue; }\r\n\t\t</style>\r\n\t"],
+				["template-punctuation", "`"]
 			]],
 			["punctuation", ";"]
 		]]

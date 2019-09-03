@@ -1,5 +1,6 @@
 (foo 42)
 (foo 3.14159)
+(foo 8/3)
 (foo 3+4i)
 (foo 2.5+0.0i)
 (foo 3+0i)
@@ -9,6 +10,7 @@
 [
 	["punctuation", "("], ["function", "foo"], ["number", "42"], ["punctuation", ")"],
 	["punctuation", "("], ["function", "foo"], ["number", "3.14159"], ["punctuation", ")"],
+	["punctuation", "("], ["function", "foo"], ["number", "8/3"], ["punctuation", ")"],
 	["punctuation", "("], ["function", "foo"], ["number", "3+4i"], ["punctuation", ")"],
 	["punctuation", "("], ["function", "foo"], ["number", "2.5+0.0i"], ["punctuation", ")"],
 	["punctuation", "("], ["function", "foo"], ["number", "3+0i"], ["punctuation", ")"]
@@ -16,4 +18,4 @@
 
 ----------------------------------------------------
 
-Checks for numbers and complex numbers.
+Checks for numbers, rational numbers, and complex numbers.
