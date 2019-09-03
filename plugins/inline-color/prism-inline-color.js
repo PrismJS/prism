@@ -81,8 +81,6 @@
 			}
 
 			var previewElement = '<span class="inline-color" style="background-color:' + color + ';"></span>';
-
-			env.attributes['data-color'] = '';
 			env.content = previewElement + content;
 		}
 	});

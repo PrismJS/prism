@@ -1,4 +1,4 @@
-span[data-color] > span.inline-color {
+span.inline-color {
 	display: inline-block;
 	height: 1.333ch;
 	width: 1.333ch;
