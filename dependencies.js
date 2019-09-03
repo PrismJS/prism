@@ -27,6 +27,11 @@ var getLoad = (function () {
 	var noop = function () { };
 
 	/**
+	 * Converts the given value to an array.
+	 *
+	 * If the given value is already an array, the value itself will be returned.
+	 * `null` and `undefined` will return an empty array.
+	 * For every other value a new array with the given value as its only element will be created.
 	 *
 	 * @param {null | undefined | T | T[]} value
 	 * @returns {T[]}
@@ -45,6 +50,7 @@ var getLoad = (function () {
 	 *
 	 * @param {string[]} array
 	 * @returns {StringSet}
+	 *
 	 * @typedef {Object<string, true>} StringSet
 	 */
 	function toSet(array) {
@@ -57,6 +63,7 @@ var getLoad = (function () {
 	}
 
 	/**
+	 * Returns the entry of the given id in the given components.
 	 *
 	 * @param {Components} components
 	 * @param {string} id
@@ -159,6 +166,8 @@ var getLoad = (function () {
 	}
 
 	/**
+	 * Creates an implicit DAG from the given components and dependencies and call the given `loadComponent` for each
+	 * component in topological order.
 	 *
 	 * @param {DependencyMap} dependencyMap
 	 * @param {StringSet} ids
@@ -168,7 +177,7 @@ var getLoad = (function () {
 	 * @returns {T}
 	 * @template T
 	 */
-	function loadDAG(dependencyMap, ids, loadComponent, series, parallel) {
+	function loadComponentsInOrder(dependencyMap, ids, loadComponent, series, parallel) {
 		/** @type {Object<string, T>} */
 		var cache = {};
 
@@ -261,6 +270,33 @@ var getLoad = (function () {
 	 * @param {string[]} [loaded=[]] A list of already loaded components.
 	 *
 	 * If a component is in this list, then all of its requirements will also be assumed to be in the list.
+	 * @returns {GetLoadResult}
+	 *
+	 * @typedef GetLoadResult
+	 * @property {() => string[]} getIds A function to get all ids of the components to load.
+	 *
+	 * The elements of the returned array will be duplicate and alias-free and ordered by load order.
+	 * @property {LoadFunction} load A functional interface to load components.
+	 *
+	 * @typedef {<T> (loadComponent: (id: string) => T, series?: (before: T, after: T) => T, parallel?: (values: T[]) => T) => T} 	LoadFunction
+	 * A functional interface to load components.
+	 *
+	 * The `loadComponent` function will be called for every component in the order in which they have to be loaded.
+	 *
+	 * `series` and `parallel` are useful for asynchronous loading and can be thought of as
+	 * `Promise#then` and `Promise.all`.
+	 *
+	 * _Note:_ Even though, both `series` and `parallel` are optional, they have to both defined or both
+	 * undefined together. It's not valid for just one to be defined while the other is undefined.
+	 *
+	 * @example
+	 * load(id => { loadComponent(id); }); // returns undefined
+	 *
+	 * await load(
+	 *     id => loadComponentAsync(id), // returns a Promise for each id
+	 *     (before, after) => before.then(() => after),
+	 *     Promise.all
+	 * );
 	 */
 	function getLoad(components, load, loaded) {
 		var resolveAlias = createAliasResolver(components);
@@ -328,31 +364,21 @@ var getLoad = (function () {
 			}
 		}
 
-		// return ids and a method to load them
-
-		return {
-			ids: Object.keys(loadSet),
-			/**
-			 * A functional interface to load components.
-			 *
-			 * The `loadComponent` will be called for every component in the order in which they are loaded.
-			 *
-			 * `series` and `parallel` are useful for asynchronous loading and can be thought of as
-			 * `Promise#then` and `Promise.all`.
-			 *
-			 * _Note:_ Even though, both `series` and `parallel` are optional, they have to both defined or both
-			 * undefined together. It's not valid for just one to be defined while the other is undefined.
-			 *
-			 * @param {(id: string) => T} loadComponent
-			 * @param {(before: T, after: T) => T} [series]
-			 * @param {(values: T[]) => T} [parallel]
-			 * @return {T}
-			 * @template T
-			 */
+		/** @type {GetLoadResult} */
+		var result = {
+			getIds: function () {
+				var ids = [];
+				result.load(function (id) {
+					ids.push(id);
+				});
+				return ids;
+			},
 			load: function (loadComponent, series, parallel) {
-				return loadDAG(dependencyMap, loadSet, loadComponent, series || noop, parallel || noop);
+				return loadComponentsInOrder(dependencyMap, loadSet, loadComponent, series || noop, parallel || noop);
 			}
 		};
+
+		return result;
 	}
 
 	return getLoad;
