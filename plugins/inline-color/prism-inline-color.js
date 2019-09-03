@@ -7,6 +7,8 @@
 	// Copied from the markup language definition
 	var HTML_TAG = /<\/?(?!\d)[^\s>\/=$<%]+(?:\s(?:\s*[^\s>\/=]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+(?=[\s>]))|(?=[\s/>])))+)?\s*\/?>/g;
 
+	// the regex explained: In first lookahead we check whether the string is valid and then we use the
+	// capturing groups to split the string into its components.
 	var HEX_COLOR = /^#?(?=(?:[\da-f]{1,2}){3,4}$)([\da-f][\da-f]?)([\da-f][\da-f]?)([\da-f][\da-f]?)([\da-f][\da-f]?)?$/i;
 
 	/**
@@ -19,8 +21,6 @@
 	 * @returns {string | undefined}
 	 */
 	function parseHexColor(hex) {
-		// the regex explained: In first lookahead we check whether the string is valid and then we use the
-		// capturing groups to split the string into its components.
 		var match = HEX_COLOR.exec(hex);
 		if (!match) {
 			return undefined;
