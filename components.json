@@ -1115,6 +1115,12 @@
 			"require": "toolbar",
 			"noCSS": true
 		},
+		"download-button": {
+			"title": "Download Button",
+			"owner": "Golmote",
+			"require": "toolbar",
+			"noCSS": true
+		},
 		"diff-highlight": {
 			"title": "Diff Highlight",
 			"owner": "RunDevelopment",
