@@ -202,44 +202,23 @@
 		return lines.join('\n');
 	}
 
-	var interval, timer;
-
+	var loadedLanguages = {};
 	function showTokens() {
-		clearInterval(interval);
-		clearTimeout(timer);
-
 		var language = $('#language-select').value;
 		if (Prism.languages[language]) {
 			$('#print-tokens-output').textContent = printTokens(Prism.languages[language]);
+		} else if (language in loadedLanguages) {
+			$('#print-tokens-output').textContent = '"' + language + '" doesn\'t have any tokens.';
 		} else {
 			// load grammar
-			var dummy = document.createElement('CODE');
-			dummy.className = 'language-' + language;
-			dummy.textContent = 'dummy';
-			Prism.highlightElement(dummy);
-
-			interval = setInterval(function () {
-				if (Prism.languages[language]) {
-					showTokens();
-				}
-			}, 30);
-			timer = setTimeout(function () {
-				clearInterval(interval);
+			Prism.plugins.autoloader.loadLanguages([language], function() {
+				loadedLanguages[language] = true;
+				showTokens();
+			}, function () {
 				$('#print-tokens-output').textContent = 'Timeout while loading "' + language + '"';
-			}, 5000);
+			});
 		}
 	}
-
-	// The Autoloader goes crazy on extensions, so here's a failsafe
-	Prism.hooks.add('before-highlight', function (env) {
-		/** @type {HTMLElement} */
-		var element = env.element;
-		var counter = +(element.getAttribute('data-highlight-count') || '1');
-		if (counter >= 8) {
-			throw new Error('BAD Autoloader! BAD!');
-		}
-		element.setAttribute('data-highlight-count', ++counter);
-	});
 
 	$('#language-select').onchange = showTokens;
 	$('#language-select').innerHTML = Object.keys(components.languages)
