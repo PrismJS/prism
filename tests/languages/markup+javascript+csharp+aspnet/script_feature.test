@@ -20,7 +20,7 @@
 		]],
 		["punctuation", ">"]
 	]],
-	["asp script", [
+	["asp-script", [
 		["preprocessor", ["#", ["directive", "pragma"]]]
 	]],
 	["tag", [
