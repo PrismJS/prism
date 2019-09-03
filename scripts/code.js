@@ -212,14 +212,13 @@ $$('.plugin-list').forEach(listPlugins);
 
 // small polyfill for Element#matches
 if (!Element.prototype.matches) {
-	Element.prototype.matches = Element.prototype.msMatchesSelector ||
-		Element.prototype.webkitMatchesSelector;
+	Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
 }
 
 Prism && Prism.hooks.add('complete', function (env) {
 	var element = env.element;
 
-	setTimeout(function () {
+	requestAnimationFrame(function () {
 		if (!element.matches('div.code-toolbar > pre > code')) {
 			return;
 		}
@@ -231,7 +230,7 @@ Prism && Prism.hooks.add('complete', function (env) {
 		wrapper.style.margin = window.getComputedStyle(pre).margin;
 		pre.style.margin = "0";
 
-	}, 16);
+	});
 });
 
 })();
