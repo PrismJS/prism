@@ -104,6 +104,10 @@
 			"title": "AppleScript",
 			"owner": "Golmote"
 		},
+		"aql": {
+			"title": "AQL",
+			"owner": "RunDevelopment"
+		},
 		"arduino": {
 			"title": "Arduino",
 			"require": "cpp",
@@ -285,6 +289,11 @@
 			"require": "clike",
 			"owner": "simonreynolds7"
 		},
+		"firestore-security-rules": {
+			"title": "Firestore security rules",
+			"require": "clike",
+			"owner": "RunDevelopment"
+		},
 		"flow": {
 			"title": "Flow",
 			"require": "javascript",
@@ -296,6 +305,10 @@
 		},
 		"gcode": {
 			"title": "G-code",
+			"owner": "RunDevelopment"
+		},
+		"gdscript": {
+			"title": "GDScript",
 			"owner": "RunDevelopment"
 		},
 		"gedcom": {
@@ -804,6 +817,11 @@
 			"title": "Roboconf",
 			"owner": "Golmote"
 		},
+		"robot-framework": {
+			"title": "Robot Framework",
+			"alias": "robot",
+			"owner": "RunDevelopment"
+		},
 		"ruby": {
 			"title": "Ruby",
 			"require": "clike",
@@ -816,6 +834,7 @@
 		},
 		"sas": {
 			"title": "SAS",
+			"require": "sql",
 			"owner": "Golmote"
 		},
 		"sass": {
@@ -850,6 +869,11 @@
 			"title": "Smarty",
 			"require": "markup-templating",
 			"owner": "Golmote"
+		},
+		"solidity": {
+			"title": "Solidity (Ethereum)",
+			"require": "clike",
+			"owner": "glachaud"
 		},
 		"soy": {
 			"title": "Soy (Closure Template)",
@@ -896,6 +920,14 @@
 			"title": "Template Toolkit 2",
 			"require": ["clike", "markup-templating"],
 			"owner": "gflohr"
+		},
+		"turtle": {
+			"title": "Turtle",
+			"alias": ["trig"],
+			"aliasTitles": {
+				"trig": "TriG"
+			},
+			"owner": "jakubklimek"
 		},
 		"twig": {
 			"title": "Twig",
@@ -987,6 +1019,10 @@
 			"title": "YAML",
 			"alias": "yml",
 			"owner": "hason"
+		},
+		"zig": {
+			"title": "Zig",
+			"owner": "RunDevelopment"
 		}
 	},
 	"plugins": {
@@ -1078,6 +1114,11 @@
 			"owner": "mAAdhaTTah",
 			"require": "toolbar",
 			"noCSS": true
+		},
+		"diff-highlight": {
+			"title": "Diff Highlight",
+			"owner": "RunDevelopment",
+			"require": "diff"
 		}
 	}
 }

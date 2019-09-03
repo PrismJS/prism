@@ -1,0 +1,75 @@
+outer: while (true) {
+	while (true) {
+		break :outer;
+	}
+}
+
+fn eventuallyErrorSequence() anyerror!u32 {
+	return if (numbers_left == 0) error.ReachedZero else blk: {
+		numbers_left -= 1;
+		break :blk numbers_left;
+	};
+}
+
+----------------------------------------------------
+
+[
+	["label", "outer"],
+	["punctuation", ":"],
+	["keyword", "while"],
+	["punctuation", "("],
+	["boolean", "true"],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["keyword", "while"],
+	["punctuation", "("],
+	["boolean", "true"],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["keyword", "break"],
+	["punctuation", ":"],
+	["label", "outer"],
+	["punctuation", ";"],
+	["punctuation", "}"],
+	["punctuation", "}"],
+	["keyword", "fn"],
+	["function", "eventuallyErrorSequence"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["class-name", [
+		["builtin-types", "anyerror"],
+		["operator", "!"],
+		["builtin-types", "u32"]
+	]],
+	["punctuation", "{"],
+	["keyword", "return"],
+	["keyword", "if"],
+	["punctuation", "("],
+	"numbers_left ",
+	["operator", "=="],
+	["number", "0"],
+	["punctuation", ")"],
+	["keyword", "error"],
+	["punctuation", "."],
+	"ReachedZero ",
+	["keyword", "else"],
+	["label", "blk"],
+	["punctuation", ":"],
+	["punctuation", "{"],
+	"\r\n\t\tnumbers_left ",
+	["operator", "-="],
+	["number", "1"],
+	["punctuation", ";"],
+	["keyword", "break"],
+	["punctuation", ":"],
+	["label", "blk"],
+	" numbers_left",
+	["punctuation", ";"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for labels.

@@ -315,13 +315,23 @@
 		var grammar = Prism.languages[codeLang];
 
 		if (!grammar) {
-			return;
+			if (codeLang && codeLang !== 'none' && Prism.plugins.autoloader) {
+				var id = 'md-' + new Date().valueOf() + '-' + Math.floor(Math.random() * 1e16);
+				env.attributes['id'] = id;
+
+				Prism.plugins.autoloader.loadLanguages(codeLang, function () {
+					var ele = document.getElementById(id);
+					if (ele) {
+						ele.innerHTML = Prism.highlight(ele.textContent, Prism.languages[codeLang], codeLang);
+					}
+				});
+			}
+		} else {
+			// reverse Prism.util.encode
+			var code = env.content.replace(/&lt;/g, '<').replace(/&amp;/g, '&');
+
+			env.content = Prism.highlight(code, grammar, codeLang);
 		}
-
-		// reverse Prism.util.encode
-		var code = env.content.replace(/&lt;/g, '<').replace(/&amp;/g, '&');
-
-		env.content = Prism.highlight(code, grammar, codeLang);
 	});
 
 	Prism.languages.md = Prism.languages.markdown;

@@ -1,0 +1,358 @@
+*** Test Cases ***
+Variables
+	Log    ${GREET}, ${NAME}!!
+	Login  &{USER}
+
+Environment variables for ${name}
+	Log    Current user: %{USER}
+	Run    %{JAVA_HOME}${/}javac
+
+Assign multiple
+	${a}    ${b}    ${c} =    Get Three
+	${first}    @{rest} =    Get Three
+	@{before}    ${last} =    Get Three
+	${begin}    @{middle}    ${end} =    Get Three
+
+*** Keywords ***
+With Positional
+	[Arguments]    ${positional}    @{}    ${named}
+	Log Many    ${positional}    ${named}
+
+With Free Named
+	[Arguments]    @{varargs}    ${named only}    &{free named}
+	Log Many    @{varargs}    ${named only}    &{free named}
+
+*** Settings ***
+Suite Setup     Some Keyword        @{KW ARGS}
+Suite Setup     ${KEYWORD}          @{KW ARGS}
+
+*** Variables ***
+${ANOTHER VARIABLE}    This is pretty easy!
+${INTEGER}             ${42}
+@{STRINGS}             one          two           kolme         four
+@{NUMBERS}             ${1}         ${INTEGER}    ${3.14}
+&{MAPPING}             one=${1}     two=${2}      three=${3}
+@{ANIMALS}             cat          dog
+&{FINNISH}             cat=kissa    dog=koira
+${MULTILINE}           SEPARATOR=\n    First line
+...                    Second line     Third line
+
+----------------------------------------------------
+
+[
+	["test-cases", [
+		["section-header", "*** Test Cases ***"],
+		["test-name", [
+			"Variables"
+		]],
+		["property", [
+			"Log"
+		]],
+		["variable", [
+			["punctuation", "${"],
+			"GREET",
+			["punctuation", "}"]
+		]],
+		", ",
+		["variable", [
+			["punctuation", "${"],
+			"NAME",
+			["punctuation", "}"]
+		]],
+		"!!\r\n\t",
+		["property", [
+			"Login"
+		]],
+		["variable", [
+			["punctuation", "&{"],
+			"USER",
+			["punctuation", "}"]
+		]],
+		["test-name", [
+			"Environment variables for ",
+			["variable", [
+				["punctuation", "${"],
+				"name",
+				["punctuation", "}"]
+			]]
+		]],
+		["property", [
+			"Log"
+		]],
+		"    Current user: ",
+		["variable", [
+			["punctuation", "%{"],
+			"USER",
+			["punctuation", "}"]
+		]],
+		["property", [
+			"Run"
+		]],
+		["variable", [
+			["punctuation", "%{"],
+			"JAVA_HOME",
+			["punctuation", "}"]
+		]],
+		["variable", [
+			["punctuation", "${"],
+			"/",
+			["punctuation", "}"]
+		]],
+		"javac\r\n\r\n",
+		["test-name", [
+			"Assign multiple"
+		]],
+		["property", [
+			["variable", [
+				["punctuation", "${"],
+				"a",
+				["punctuation", "}"]
+			]]
+		]],
+		["variable", [
+			["punctuation", "${"],
+			"b",
+			["punctuation", "}"]
+		]],
+		["variable", [
+			["punctuation", "${"],
+			"c",
+			["punctuation", "}"]
+		]],
+		" =    Get Three\r\n\t",
+		["property", [
+			["variable", [
+				["punctuation", "${"],
+				"first",
+				["punctuation", "}"]
+			]]
+		]],
+		["variable", [
+			["punctuation", "@{"],
+			"rest",
+			["punctuation", "}"]
+		]],
+		" =    Get Three\r\n\t",
+		["property", [
+			["variable", [
+				["punctuation", "@{"],
+				"before",
+				["punctuation", "}"]
+			]]
+		]],
+		["variable", [
+			["punctuation", "${"],
+			"last",
+			["punctuation", "}"]
+		]],
+		" =    Get Three\r\n\t",
+		["property", [
+			["variable", [
+				["punctuation", "${"],
+				"begin",
+				["punctuation", "}"]
+			]]
+		]],
+		["variable", [
+			["punctuation", "@{"],
+			"middle",
+			["punctuation", "}"]
+		]],
+		["variable", [
+			["punctuation", "${"],
+			"end",
+			["punctuation", "}"]
+		]],
+		" =    Get Three\r\n\r"
+	]],
+	["keywords", [
+		["section-header", "*** Keywords ***"],
+		["keyword-name", [
+			"With Positional"
+		]],
+		["tag", [
+			["punctuation", "["],
+			"Arguments",
+			["punctuation", "]"]
+		]],
+		["variable", [
+			["punctuation", "${"],
+			"positional",
+			["punctuation", "}"]
+		]],
+		["variable", [
+			["punctuation", "@{"],
+			["punctuation", "}"]
+		]],
+		["variable", [
+			["punctuation", "${"],
+			"named",
+			["punctuation", "}"]
+		]],
+		["property", [
+			"Log Many"
+		]],
+		["variable", [
+			["punctuation", "${"],
+			"positional",
+			["punctuation", "}"]
+		]],
+		["variable", [
+			["punctuation", "${"],
+			"named",
+			["punctuation", "}"]
+		]],
+		["keyword-name", [
+			"With Free Named"
+		]],
+		["tag", [
+			["punctuation", "["],
+			"Arguments",
+			["punctuation", "]"]
+		]],
+		["variable", [
+			["punctuation", "@{"],
+			"varargs",
+			["punctuation", "}"]
+		]],
+		["variable", [
+			["punctuation", "${"],
+			"named only",
+			["punctuation", "}"]
+		]],
+		["variable", [
+			["punctuation", "&{"],
+			"free named",
+			["punctuation", "}"]
+		]],
+		["property", [
+			"Log Many"
+		]],
+		["variable", [
+			["punctuation", "@{"],
+			"varargs",
+			["punctuation", "}"]
+		]],
+		["variable", [
+			["punctuation", "${"],
+			"named only",
+			["punctuation", "}"]
+		]],
+		["variable", [
+			["punctuation", "&{"],
+			"free named",
+			["punctuation", "}"]
+		]]
+	]],
+	["settings", [
+		["section-header", "*** Settings ***"],
+		["property", "Suite Setup"],
+		"     Some Keyword        ",
+		["variable", [
+			["punctuation", "@{"],
+			"KW ARGS",
+			["punctuation", "}"]
+		]],
+		["property", "Suite Setup"],
+		["variable", [
+			["punctuation", "${"],
+			"KEYWORD",
+			["punctuation", "}"]
+		]],
+		["variable", [
+			["punctuation", "@{"],
+			"KW ARGS",
+			["punctuation", "}"]
+		]]
+	]],
+	["variables", [
+		["section-header", "*** Variables ***"],
+		["variable", [
+			["punctuation", "${"],
+			"ANOTHER VARIABLE",
+			["punctuation", "}"]
+		]],
+		"    This is pretty easy!\r\n",
+		["variable", [
+			["punctuation", "${"],
+			"INTEGER",
+			["punctuation", "}"]
+		]],
+		["variable", [
+			["punctuation", "${"],
+			"42",
+			["punctuation", "}"]
+		]],
+		["variable", [
+			["punctuation", "@{"],
+			"STRINGS",
+			["punctuation", "}"]
+		]],
+		"             one          two           kolme         four\r\n",
+		["variable", [
+			["punctuation", "@{"],
+			"NUMBERS",
+			["punctuation", "}"]
+		]],
+		["variable", [
+			["punctuation", "${"],
+			"1",
+			["punctuation", "}"]
+		]],
+		["variable", [
+			["punctuation", "${"],
+			"INTEGER",
+			["punctuation", "}"]
+		]],
+		["variable", [
+			["punctuation", "${"],
+			"3.14",
+			["punctuation", "}"]
+		]],
+		["variable", [
+			["punctuation", "&{"],
+			"MAPPING",
+			["punctuation", "}"]
+		]],
+		"             one=",
+		["variable", [
+			["punctuation", "${"],
+			"1",
+			["punctuation", "}"]
+		]],
+		"     two=",
+		["variable", [
+			["punctuation", "${"],
+			"2",
+			["punctuation", "}"]
+		]],
+		"      three=",
+		["variable", [
+			["punctuation", "${"],
+			"3",
+			["punctuation", "}"]
+		]],
+		["variable", [
+			["punctuation", "@{"],
+			"ANIMALS",
+			["punctuation", "}"]
+		]],
+		"             cat          dog\r\n",
+		["variable", [
+			["punctuation", "&{"],
+			"FINNISH",
+			["punctuation", "}"]
+		]],
+		"             cat=kissa    dog=koira\r\n",
+		["variable", [
+			["punctuation", "${"],
+			"MULTILINE",
+			["punctuation", "}"]
+		]],
+		"           SEPARATOR=\\n    First line\r\n...                    Second line     Third line"
+	]]
+]
+
+----------------------------------------------------
+
+Checks for variables in different positions.

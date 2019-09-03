@@ -1,0 +1,56 @@
+*** Settings ***
+Documentation    Example using the space separated plain text format.
+Documentation    This is documentation for this test suite.
+...              This kind of documentation can often be get quite long...
+
+*** Keywords ***
+One line documentation
+	[Documentation]    One line documentation.
+
+Multiline documentation
+	[Documentation]    The first line creates the short doc.
+	...
+	...                This is the body of the documentation.
+	...                It is not shown in Libdoc outputs but only
+	...                the short doc is shown in logs.
+	No Operation
+
+----------------------------------------------------
+
+[
+	["settings", [
+		["section-header", "*** Settings ***"],
+		["property", "Documentation"],
+		["documentation", "Example using the space separated plain text format."],
+		["property", "Documentation"],
+		["documentation", "This is documentation for this test suite.\r\n...              This kind of documentation can often be get quite long..."]
+	]],
+	["keywords", [
+		["section-header", "*** Keywords ***"],
+		["keyword-name", [
+			"One line documentation"
+		]],
+		["tag", [
+			["punctuation", "["],
+			"Documentation",
+			["punctuation", "]"]
+		]],
+		["documentation", "One line documentation."],
+		["keyword-name", [
+			"Multiline documentation"
+		]],
+		["tag", [
+			["punctuation", "["],
+			"Documentation",
+			["punctuation", "]"]
+		]],
+		["documentation", "The first line creates the short doc.\r\n\t...\r\n\t...                This is the body of the documentation.\r\n\t...                It is not shown in Libdoc outputs but only\r\n\t...                the short doc is shown in logs."],
+		["property", [
+			"No Operation"
+		]]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for documentation.
