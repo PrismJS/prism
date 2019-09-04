@@ -10,4 +10,4 @@ $'
 
 ----------------------------------------------------
 
-xChecks for strings.
+Checks a single-quote-character doesn't confuse string parsing.
