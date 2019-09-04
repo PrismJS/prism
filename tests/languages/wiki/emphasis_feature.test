@@ -7,7 +7,7 @@
 [
 	["emphasis", [
 		["punctuation", "'''''"],
-		["bold italic", "foo"],
+		["bold-italic", "foo"],
 		["punctuation", "'''''"]
 	]],
 	["emphasis", [

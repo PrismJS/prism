@@ -1,0 +1,60 @@
+{ foo: … }
+{ 'foo': … }
+{ "foo": … }
+{ `foo`: … }
+{ ´foo´: … }
+
+// not a property
+LET opType = IS_NULL(OLD) ? "insert" : "update"
+
+----------------------------------------------------
+
+[
+	["punctuation", "{"],
+	["property", "foo"],
+	["punctuation", ":"],
+	" … ",
+	["punctuation", "}"],
+
+	["punctuation", "{"],
+	["property", "'foo'"],
+	["punctuation", ":"],
+	" … ",
+	["punctuation", "}"],
+
+	["punctuation", "{"],
+	["property", "\"foo\""],
+	["punctuation", ":"],
+	" … ",
+	["punctuation", "}"],
+
+	["punctuation", "{"],
+	["property", "`foo`"],
+	["punctuation", ":"],
+	" … ",
+	["punctuation", "}"],
+
+	["punctuation", "{"],
+	["property", "´foo´"],
+	["punctuation", ":"],
+	" … ",
+	["punctuation", "}"],
+
+	["comment", "// not a property"],
+
+	["keyword", "LET"],
+	" opType ",
+	["operator", "="],
+	["function", "IS_NULL"],
+	["punctuation", "("],
+	"OLD",
+	["punctuation", ")"],
+	["punctuation", "?"],
+	["string", "\"insert\""],
+	["punctuation", ":"],
+	["string", "\"update\""]
+]
+
+----------------------------------------------------
+
+Checks for properties. (beware of ternary operators)
