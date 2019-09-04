@@ -15,7 +15,7 @@
 			["script-punctuation", "="],
 			["punctuation", "{"],
 			["punctuation", "{"],
-			" marginLeft",
+			["property", "marginLeft"],
 			["punctuation", ":"],
 			["template-string", [
 				["template-punctuation", "`"],

@@ -1,7 +1,7 @@
 type
 opaque
 declare
-Class
+Class;
 $await
 $Diff
 $Exact
@@ -21,6 +21,7 @@ $Enum
 	["keyword", "opaque"],
 	["keyword", "declare"],
 	["keyword", "Class"],
+	["punctuation", ";"],
 	["keyword", "$await"],
 	["keyword", "$Diff"],
 	["keyword", "$Exact"],

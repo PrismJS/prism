@@ -18,7 +18,9 @@ a: span
 ----------------------------------------------------
 
 [
-	["tag", ["div"]],
+	["tag", [
+		"div"
+	]],
 	["tag", [
 		"span",
 		["attributes", [
@@ -26,7 +28,7 @@ a: span
 			["function", "attributes"],
 			["punctuation", "("],
 			["punctuation", "{"],
-			["string", "'data-foo'"],
+			["property", "'data-foo'"],
 			["punctuation", ":"],
 			["string", "'bar'"],
 			["punctuation", "}"],
@@ -40,11 +42,15 @@ a: span
 			["punctuation", "("],
 			["attr-name", "data-bar"],
 			["punctuation", "="],
-			["attr-value", [["string", "\"foo\""]]],
+			["attr-value", [
+				["string", "\"foo\""]
+			]],
 			["punctuation", ","],
 			["attr-name", "type"],
 			["punctuation", "="],
-			["attr-value", [["string", "'checkbox'"]]],
+			["attr-value", [
+				["string", "'checkbox'"]
+			]],
 			["punctuation", ","],
 			["attr-name", "checked"],
 			["punctuation", ")"]
@@ -59,11 +65,11 @@ a: span
 			["punctuation", "="],
 			["attr-value", [
 				["punctuation", "{"],
-				"color",
+				["property", "color"],
 				["punctuation", ":"],
 				["string", "'red'"],
 				["punctuation", ","],
-				" background",
+				["property", "background"],
 				["punctuation", ":"],
 				["string", "'green'"],
 				["punctuation", "}"]
@@ -78,18 +84,34 @@ a: span
 			["punctuation", "("],
 			["attr-name", "unescaped"],
 			["punctuation", "!="],
-			["attr-value", [["string", "\"<code>\""]]],
+			["attr-value", [
+				["string", "\"<code>\""]
+			]],
 			["punctuation", ")"]
 		]]
 	]],
 
-	["tag", ["a.button"]],
-	["tag", [".content"]],
-	["tag", ["a#main-link"]],
-	["tag", ["#content"]],
+	["tag", [
+		"a.button"
+	]],
+	["tag", [
+		".content"
+	]],
 
-	["tag", ["a", ["punctuation", ":"]]],
-	["tag", ["span"]]
+	["tag", [
+		"a#main-link"
+	]],
+	["tag", [
+		"#content"
+	]],
+
+	["tag", [
+		"a",
+		["punctuation", ":"]
+	]],
+	["tag", [
+		"span"
+	]]
 ]
 
 ----------------------------------------------------
