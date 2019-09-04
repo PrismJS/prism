@@ -27,7 +27,7 @@ foo({ y: fun() })
 	["function", "Ƞȡ_҇"], ["punctuation", "("], ["punctuation", ")"],
 	["keyword", "if"], ["punctuation", "("], "notAFunction", ["punctuation", ")"],
 	["function", "foo"], ["punctuation", "("], ["punctuation", "{"], " x ", ["punctuation", "}"], ["punctuation", ")"],
-	["function", "foo"], ["punctuation", "("], ["punctuation", "{"], " y", ["punctuation", ":"], ["function", "fun"], ["punctuation", "("], ["punctuation", ")"], ["punctuation", "}"], ["punctuation", ")"]
+	["function", "foo"], ["punctuation", "("], ["punctuation", "{"], ["property", "y"], ["punctuation", ":"], ["function", "fun"], ["punctuation", "("], ["punctuation", ")"], ["punctuation", "}"], ["punctuation", ")"]
 ]
 
 ----------------------------------------------------

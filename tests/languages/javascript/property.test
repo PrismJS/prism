@@ -1,0 +1,133 @@
+{ foo: 0, bar: 0 };
+{ 'foo': 0, "bar": 0 };
+{
+	// comment
+	foo: 0,
+	// comment
+	"bar": 0
+}
+
+{
+	foo: () => 0,
+	bar: async function () {}
+}
+
+switch(foo) {
+	case "bar":
+		return false;
+	default:
+		return true;
+}
+
+{
+	[foo]: 0,
+	[1 + `bar${foo};`]: 1
+}
+
+----------------------------------------------------
+
+[
+	["punctuation", "{"],
+	["property", "foo"],
+	["punctuation", ":"],
+	["number", "0"],
+	["punctuation", ","],
+	["property", "bar"],
+	["punctuation", ":"],
+	["number", "0"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["punctuation", "{"],
+	["property", "'foo'"],
+	["punctuation", ":"],
+	["number", "0"],
+	["punctuation", ","],
+	["property", "\"bar\""],
+	["punctuation", ":"],
+	["number", "0"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["punctuation", "{"],
+	["comment", "// comment"],
+	["property", "foo"],
+	["punctuation", ":"],
+	["number", "0"],
+	["punctuation", ","],
+	["comment", "// comment"],
+	["property", "\"bar\""],
+	["punctuation", ":"],
+	["number", "0"],
+	["punctuation", "}"],
+
+	["punctuation", "{"],
+	["property", "foo"],
+	["punctuation", ":"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["operator", "=>"],
+	["number", "0"],
+	["punctuation", ","],
+	["property", "bar"],
+	["punctuation", ":"],
+	["keyword", "async"],
+	["keyword", "function"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", "}"],
+
+	["keyword", "switch"],
+	["punctuation", "("],
+	"foo",
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["keyword", "case"],
+	["string", "\"bar\""],
+	["punctuation", ":"],
+	["keyword", "return"],
+	["boolean", "false"],
+	["punctuation", ";"],
+	["keyword", "default"],
+	["punctuation", ":"],
+	["keyword", "return"],
+	["boolean", "true"],
+	["punctuation", ";"],
+	["punctuation", "}"],
+
+	["punctuation", "{"],
+	["property", [
+		["punctuation", "["],
+		"foo",
+		["punctuation", "]"]
+	]],
+	["punctuation", ":"],
+	["number", "0"],
+	["punctuation", ","],
+	["property", [
+		["punctuation", "["],
+		["number", "1"],
+		["operator", "+"],
+		["template-string", [
+			["template-punctuation", "`"],
+			["string", "bar"],
+			["interpolation", [
+				["interpolation-punctuation", "${"],
+				"foo",
+				["interpolation-punctuation", "}"]
+			]],
+			["string", ";"],
+			["template-punctuation", "`"]
+		]],
+		["punctuation", "]"]
+	]],
+	["punctuation", ":"],
+	["number", "1"],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for object property definitions.

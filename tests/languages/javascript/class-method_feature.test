@@ -11,7 +11,9 @@ class Test {
 
 [
 	["keyword", "class"],
-	["class-name", ["Test"]],
+	["class-name", [
+		"Test"
+	]],
 	["punctuation", "{"],
 
 	["function", "foo"],
@@ -55,21 +57,19 @@ class Test {
 
 	["function", "Example"],
 	["punctuation", "("],
-	["parameter", [
-		["punctuation", "{"],
-		" props",
-		["punctuation", ":"],
-		["punctuation", "{"],
-		" a",
-		["punctuation", ":"],
-		" _A",
-		["punctuation", ","],
-		" b",
-		["punctuation", "}"],
-		["punctuation", "}"],
-		["operator", "="],
-		" Props"
-	]],
+	["punctuation", "{"],
+	["property", "props"],
+	["punctuation", ":"],
+	["punctuation", "{"],
+	["property", "a"],
+	["punctuation", ":"],
+	" _A",
+	["punctuation", ","],
+	" b",
+	["punctuation", "}"],
+	["punctuation", "}"],
+	["operator", "="],
+	" Props",
 	["punctuation", ")"],
 	["punctuation", "{"],
 	["punctuation", "}"],

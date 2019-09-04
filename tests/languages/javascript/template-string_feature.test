@@ -77,7 +77,7 @@ console.log(`This is ${it.with({ type: false })}!`)
 			["function", "with"],
 			["punctuation", "("],
 			["punctuation", "{"],
-			" type",
+			["property", "type"],
 			["punctuation", ":"],
 			["boolean", "false"],
 			["punctuation", "}"],
@@ -93,7 +93,7 @@ console.log(`This is ${it.with({ type: false })}!`)
 		["interpolation", [
 			["interpolation-punctuation", "${"],
 			["punctuation", "{"],
-			"foo",
+			["property", "foo"],
 			["punctuation", ":"],
 			["string", "'bar'"],
 			["punctuation", "}"],

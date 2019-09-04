@@ -101,4 +101,9 @@
 		inside['maybe-class-name'] = /^[A-Z][\s\S]*/;
 	}
 
+	// also property functions
+	Prism.languages.javascript['property'][0].inside = {
+		'maybe-class-name': /^[A-Z][\s\S]*/
+	};
+
 }(Prism));
