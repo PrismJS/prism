@@ -9,12 +9,31 @@
 ----------------------------------------------------
 
 [
-	["languagetag", "@ne"],
-	["languagetag", "@ned-nl"],
-	["languagetag", "@ne-nl"],
-	["languagetag", "@ne-01"],
-	["languagetag", "@ne-JA"],
-	["languagetag", "@ne-NE01"]
+		["tag", [
+				["punctuation", "@"],
+				"ne"
+		]],
+		["tag", [
+				["punctuation", "@"],
+				"ned-nl"
+		]],
+		["tag", [
+				["punctuation", "@"],
+				"ne-nl"
+		]],
+		["tag", [
+				["punctuation", "@"],
+				"ne"
+		]],
+		["number", "-01"],
+		["tag", [
+				["punctuation", "@"],
+				"ne-JA"
+		]],
+		["tag", [
+				["punctuation", "@"],
+				"ne-NE01"
+		]]
 ]
 
 

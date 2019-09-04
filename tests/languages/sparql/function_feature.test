@@ -13,17 +13,72 @@ foo.-:
 ----------------------------------------------------
 
 [
-	["PrefixedName", "foo:bar"],
-	["PrefixedName", "foo:"],
-	["PrefixedName", ":bar"],
-	["PrefixedName", "foo:ba1"],
-	["PrefixedName", "foo:1ba"],
-	["PrefixedName", "foo:bar"],
-	["PrefixedName", ":bar"],
-	["PrefixedName", "foo:bar%20bar"],
-	["PrefixedName", "foo:bar.bar"],
-	["PrefixedName", "foo-2:"],
-	["PrefixedName", "foo.-:"]
+		["function", [
+				["prefix", [
+						"foo",
+						["punctuation", ":"]
+				]],
+				["local-name", "bar"]
+		]],
+		["function", [
+				["prefix", [
+						"foo",
+						["punctuation", ":"]
+				]]
+		]],
+		["function", [
+				["prefix", [
+						["punctuation", ":"]
+				]],
+				["local-name", "bar"]
+		]],
+		["function", [
+				["prefix", [
+						"foo",
+						["punctuation", ":"]
+				]],
+				["local-name", "ba1"]
+		]],
+		["function", [
+				["prefix", [
+						"foo",
+						["punctuation", ":"]
+				]],
+				["local-name", "1ba"]
+		]],
+		["function", [
+				["prefix", [
+						"foo",
+						["punctuation", ":"]
+				]],
+				["local-name", "bar:bar"]
+		]],
+		["function", [
+				["prefix", [
+						"foo",
+						["punctuation", ":"]
+				]],
+				["local-name", "bar%20bar"]
+		]],
+		["function", [
+				["prefix", [
+						"foo",
+						["punctuation", ":"]
+				]],
+				["local-name", "bar.bar"]
+		]],
+		["function", [
+				["prefix", [
+						"foo-2",
+						["punctuation", ":"]
+				]]
+		]],
+		["function", [
+				["prefix", [
+						"foo.-",
+						["punctuation", ":"]
+				]]
+		]]
 ]
 
 

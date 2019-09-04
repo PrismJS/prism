@@ -118,7 +118,7 @@
 			"owner": "Golmote"
 		},
 		"asciidoc": {
- 			"alias": "adoc",
+			"alias": "adoc",
 			"title": "AsciiDoc",
 			"owner": "Golmote"
 		},
@@ -885,6 +885,7 @@
 		},
 		"sparql": {
 			"title": "SPARQL",
+			"require": "turtle",
 			"owner": "Triply",
 			"alias": "rq"
 		},

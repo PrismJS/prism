@@ -100,6 +100,7 @@
 		"smarty": "markup-templating",
 		"solidity": "clike",
 		"soy": "markup-templating",
+		"sparql": "turtle",
 		"swift": "clike",
 		"tap": "yaml",
 		"textile": "markup",
