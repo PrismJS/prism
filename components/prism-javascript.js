@@ -64,8 +64,7 @@
 				inside: Prism.languages.javascript
 			}
 		],
-		'constant': /\b[A-Z](?:[A-Z_]|\dx?)*\b/,
-		'property': /(?=\{?|^)(?:[\n\s]*)((?:\[(?:(?:(['"`])[\w-.\$\{\}]+\2)|(?:[\w-.]+))\])|(?:(['"`])[\w-.]+\3)|(?:[\w-.]+))(?=\s*:)/gm
+		'constant': /\b[A-Z](?:[A-Z_]|\dx?)*\b/
 	});
 
 	var propertyLiteral = /(?!\d|default\b)[$\w\xA0-\uFFFF]+/.source;

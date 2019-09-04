@@ -831,14 +831,15 @@ Prism.languages.clike = {
 				inside: Prism.languages.javascript
 			}
 		],
-		'constant': /\b[A-Z](?:[A-Z_]|\dx?)*\b/,
-		'property': /(?=\{?|^)(?:[\n\s]*)((?:\[(?:(?:(['"`])[\w-.\$\{\}]+\2)|(?:[\w-.]+))\])|(?:(['"`])[\w-.]+\3)|(?:[\w-.]+))(?=\s*:)/gm
+		'constant': /\b[A-Z](?:[A-Z_]|\dx?)*\b/
 	});
+
+	var propertyLiteral = /(?!\d|default\b)[$\w\xA0-\uFFFF]+/.source;
 
 	Prism.languages.insertBefore('javascript', 'string', {
 		'property': [
 			{
-				pattern: RegExp(/((?:^|[{,])\s*)(?!\d)[$\w\xA0-\uFFFF]+(?=\s*:<func>)/.source.replace(/<func>/g, functionVariableLookahead), 'm'),
+				pattern: RegExp(/((?:^|[{,])\s*)/.source + propertyLiteral + '(?=\\s*:' + functionVariableLookahead + ')', 'm'),
 				lookbehind: true,
 				greedy: true,
 				alias: ['function-variable', 'function']
@@ -846,7 +847,7 @@ Prism.languages.clike = {
 			{
 				pattern: RegExp(/((?:^|[{,])\s*)(?:<prop>)(?=\s*:)/.source.replace(/<prop>/g, [
 					// simple literals e.g. { foo: 5, bar: true }
-					/(?!\d)[$\w\xA0-\uFFFF]+/.source,
+					propertyLiteral,
 					// string literals e.g. { "foo": 5, 'bar': true }
 					/(["'])(?:\\(?:\r\n|[\s\S])|(?!\2)[^\\\r\n])*\2/.source
 				].join('|')), 'm'),
