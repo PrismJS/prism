@@ -22,6 +22,21 @@ var treePromise = new Promise(function(resolve) {
 	});
 });
 
+/**
+ * Converts the given value into an array.
+ *
+ * @param {T | T[] | null | undefined} value
+ * @returns {T[]}
+ * @template T
+ */
+function toArray(value) {
+	if (Array.isArray(value)) {
+		return value;
+	} else {
+		return value == null ? [] : [value];
+	}
+}
+
 var hstr = window.location.hash.match(/(?:languages|plugins)=[-+\w]+|themes=[-\w]+/g);
 if (hstr) {
 	hstr.forEach(function(str) {
@@ -50,13 +65,8 @@ if (hstr) {
 							}
 							components[category][id].option = 'default';
 						}
-						if (components[category][id].require) {
-							var deps = components[category][id].require;
-							if (!Array.isArray(deps)) {
-								deps = [deps];
-							}
-							deps.forEach(makeDefault);
-						}
+
+						toArray(components[category][id].require).forEach(makeDefault);
 					}
 				}
 			};
@@ -142,9 +152,9 @@ for (var category in components) {
 			noCSS: all[id].noCSS || all.meta.noCSS,
 			noJS: all[id].noJS || all.meta.noJS,
 			enabled: checked,
-			require: $u.type(all[id].require) === 'string' ? [all[id].require] : all[id].require,
-			after: $u.type(all[id].after) === 'string' ? [all[id].after] : all[id].after,
-			peerDependencies: $u.type(all[id].peerDependencies) === 'string' ? [all[id].peerDependencies] : all[id].peerDependencies,
+			require: toArray(all[id].require),
+			after: toArray(all[id].after),
+			modify: toArray(all[id].modify),
 			owner: all[id].owner,
 			files: {
 				minified: {
@@ -158,11 +168,9 @@ for (var category in components) {
 			}
 		};
 
-		if (info.require) {
-			info.require.forEach(function (v) {
-				dependencies[v] = (dependencies[v] || []).concat(id);
-			});
-		}
+		info.require.forEach(function (v) {
+			dependencies[v] = (dependencies[v] || []).concat(id);
+		});
 
 		if (!all[id].noJS && !/\.css$/.test(filepath)) {
 			info.files.minified.paths.push(filepath.replace(/(\.js)?$/, '.min.js'));
@@ -446,72 +454,31 @@ function delayedGenerateCode(){
 	timerId = setTimeout(generateCode, 500);
 }
 
-function getSortedComponents(components, requireName, sorted) {
-	if (!sorted) {
-		sorted = [];
-		for (var component in components) {
-			sorted.push(component);
-		}
-	}
-
-	var i = 0;
-	while (i < sorted.length) {
-		var id = sorted[i];
-		var indexOfRequirement = i;
-		var notNow = false;
-		for (var requirement in components[id][requireName]) {
-			indexOfRequirement = sorted.indexOf(components[id][requireName][requirement]);
-			if (indexOfRequirement > i) {
-				notNow = true;
-				break;
-			}
-		}
-		if (notNow) {
-			var tmp = sorted[i];
-			sorted[i] = sorted[indexOfRequirement];
-			sorted[indexOfRequirement] = tmp;
-		}
-		else {
-			i++;
-		}
-	}
-	return sorted;
-}
-
-function getSortedComponentsByRequirements(components, afterName) {
-	var sorted = getSortedComponents(components, afterName);
-	return getSortedComponents(components, "require", sorted);
-}
-
 function generateCode(){
+	/** @type {CodePromiseInfo[]} */
 	var promises = [];
 	var redownload = {};
 
 	for (var category in components) {
-		var all = components[category];
-
-		// In case if one component requires other, required component should go first.
-		var sorted = getSortedComponentsByRequirements(all, category === 'languages' ? 'peerDependencies' : 'after');
-
-		for (var i = 0; i < sorted.length; i++) {
-			var id = sorted[i];
-
-			if(id === 'meta') {
+		for (var id in components[category]) {
+			if (id === 'meta') {
 				continue;
 			}
 
-			var info = all[id];
+			var info = components[category][id];
 			if (info.enabled) {
 				if (category !== 'core') {
-					redownload[category] = redownload[category]  || [];
+					redownload[category] = redownload[category] || [];
 					redownload[category].push(id);
 				}
-				info.files[minified? 'minified' : 'dev'].paths.forEach(function (path) {
+				info.files[minified ? 'minified' : 'dev'].paths.forEach(function (path) {
 					if (cache[path]) {
 						var type = path.match(/\.(\w+)$/)[1];
 
 						promises.push({
 							contentsPromise: cache[path].contentsPromise,
+							id: id,
+							category: category,
 							path: path,
 							type: type
 						});
@@ -531,7 +498,7 @@ function generateCode(){
 		var code = res.code;
 		var errors = res.errors;
 
-		if(errors.length) {
+		if (errors.length) {
 			error.style.display = 'block';
 			error.innerHTML = '';
 			$u.element.contents(error, errors);
@@ -571,7 +538,50 @@ function generateCode(){
 	});
 }
 
+/**
+ * Returns a promise of the code of the Prism bundle.
+ *
+ * @param {CodePromiseInfo[]} promises
+ * @returns {Promise<{ code: { js: string, css: string }, errors: HTMLElement[] }>}
+ *
+ * @typedef CodePromiseInfo
+ * @property {Promise} contentsPromise
+ * @property {string} id
+ * @property {string} category
+ * @property {string} path
+ * @property {string} type
+ */
 function buildCode(promises) {
+	// sort the promises
+
+	/** @type {CodePromiseInfo[]} */
+	var finalPromises = [];
+	/** @type {Object<string, CodePromiseInfo[]>} */
+	var toSortMap = {};
+
+	promises.forEach(function (p) {
+		p.contentsPromise = Promise.resolve(p.id);
+		if (p.category == "core" || p.category == "themes") {
+			finalPromises.push(p);
+		} else {
+			var infos = toSortMap[p.id];
+			if (!infos) {
+				toSortMap[p.id]=infos = [];
+			}
+			infos.push(p);
+		}
+	});
+
+	// this assumes that the ids in `toSortMap` are complete under transitive requirements
+	getLoad(components, Object.keys(toSortMap)).getIds().forEach(function (id) {
+		if (!toSortMap[id]) {
+			console.error(id + " not found.");
+		}
+		finalPromises.push.apply(finalPromises, toSortMap[id]);
+	});
+	promises = finalPromises;
+
+	// build
 	var i = 0,
 	    l = promises.length;
 	var code = {js: '', css: ''};
@@ -603,6 +613,9 @@ function buildCode(promises) {
 	return new Promise(f);
 }
 
+/**
+ * @returns {Promise<string>}
+ */
 function getVersion() {
 	return getFileContents('./package.json').then(function (jsonStr) {
 		return JSON.parse(jsonStr).version;
