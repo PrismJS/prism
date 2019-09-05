@@ -886,7 +886,7 @@
 		"sparql": {
 			"title": "SPARQL",
 			"require": "turtle",
-			"owner": "Triply",
+			"owner": "Triply-Dev",
 			"alias": "rq"
 		},
 		"splunk-spl": {

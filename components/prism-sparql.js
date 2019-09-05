@@ -1,7 +1,8 @@
 Prism.languages.sparql = Prism.languages.extend('turtle', {
-		'variable': {pattern: /(\?|\$)[\w]+/,
-								 greedy: true
-							 },
+		'variable': {
+			pattern: /[?$]\w+/,
+			greedy: true
+		},
 		'boolean': /\b(?:true|false)\b/i,
 	}
 );
