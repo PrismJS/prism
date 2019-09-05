@@ -1,82 +1,51 @@
-var components = require('../components.js');
-var peerDependentsMap = null;
+const components = require('../components.js');
+const getLoad = require('../dependencies');
 
-function getPeerDependentsMap() {
-	var peerDependentsMap = {};
-	Object.keys(components.languages).forEach(function (language) {
-		if (language === 'meta') {
-			return false;
+
+/**
+ * The set of all languages which have been loaded using the below function.
+ *
+ * @type {Set<string>}
+ */
+const loadedLanguages = new Set();
+
+/**
+ * Loads the given languages and adds them to the current Prism instance.
+ *
+ * @param {string|string[]} languages
+ * @returns {void}
+ */
+function loadLanguages(languages) {
+	if (!Array.isArray(languages)) {
+		languages = [languages];
+	}
+
+	const loaded = [...loadedLanguages];
+
+	// the user might have loaded languages via some other way or used `prism.js` which already includes some
+	for (const lang in Prism.languages) {
+		// type check because there are also some functions in Prism.languages
+		if (typeof Prism.languages[lang] == 'object') {
+			loaded.push(lang);
 		}
-		if (components.languages[language].peerDependencies) {
-			var peerDependencies = components.languages[language].peerDependencies;
-			if (!Array.isArray(peerDependencies)) {
-				peerDependencies = [peerDependencies];
-			}
-			peerDependencies.forEach(function (peerDependency) {
-				if (!peerDependentsMap[peerDependency]) {
-					peerDependentsMap[peerDependency] = [];
-				}
-				peerDependentsMap[peerDependency].push(language);
-			});
-		}
-	});
-	return peerDependentsMap;
-}
-
-function getPeerDependents(mainLanguage) {
-	if (!peerDependentsMap) {
-		peerDependentsMap = getPeerDependentsMap();
-	}
-	return peerDependentsMap[mainLanguage] || [];
-}
-
-function loadLanguages(arr, withoutDependencies) {
-	// If no argument is passed, load all components
-	if (!arr) {
-		arr = Object.keys(components.languages).filter(function (language) {
-			return language !== 'meta';
-		});
-	}
-	if (arr && !arr.length) {
-		return;
 	}
 
-	if (!Array.isArray(arr)) {
-		arr = [arr];
-	}
-
-	arr.forEach(function (language) {
-		if (!components.languages[language]) {
-			console.warn('Language does not exist ' + language);
+	getLoad(components, languages, loaded).load(lang => {
+		if (!(lang in components.languages)) {
+			console.warn('Language does not exist: ' + lang);
 			return;
 		}
-		// Load dependencies first
-		if (!withoutDependencies && components.languages[language].require) {
-			loadLanguages(components.languages[language].require);
-		}
 
-		var pathToLanguage = './prism-' + language;
+		const pathToLanguage = './prism-' + lang;
+
+		// remove from require cache and from Prism
 		delete require.cache[require.resolve(pathToLanguage)];
-		delete Prism.languages[language];
+		delete Prism.languages[lang];
+
 		require(pathToLanguage);
 
-		// Reload dependents
-		var dependents = getPeerDependents(language).filter(function (dependent) {
-			// If dependent language was already loaded,
-			// we want to reload it.
-			if (Prism.languages[dependent]) {
-				delete Prism.languages[dependent];
-				return true;
-			}
-			return false;
-		});
-		if (dependents.length) {
-			loadLanguages(dependents, true);
-		}
+		loadedLanguages.add(lang);
 	});
 }
 
-module.exports = function (arr) {
-	// Don't expose withoutDependencies
-	loadLanguages(arr);
-};
+module.exports = loadLanguages;
