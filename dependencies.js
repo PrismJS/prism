@@ -2,7 +2,7 @@
 
 /**
  * @typedef {Object<string, ComponentCategory>} Components
- * @typedef {{ meta: Object<string, any> } & Object<string, ComponentEntry>} ComponentCategory
+ * @typedef {Object<string, ComponentEntry | string>} ComponentCategory
  *
  * @typedef ComponentEntry
  * @property {string} [title] The title of the component.
@@ -63,72 +63,61 @@ var getLoad = (function () {
 	}
 
 	/**
-	 * Returns the entry of the given id in the given components.
+	 * Creates a map of every components id to its entry.
 	 *
 	 * @param {Components} components
-	 * @param {string} id
-	 * @returns {ComponentEntry | undefined}
+	 * @returns {EntryMap}
+	 *
+	 * @typedef {{ [id: string]: Readonly<ComponentEntry> | undefined }} EntryMap
 	 */
-	function getEntry(components, id) {
-		for (var categoryName in components) {
-			var category = components[categoryName];
-			for (var entryId in category) {
-				if (entryId === id) {
-					return category[entryId];
-				}
-			}
-		}
-	}
+	function createEntryMap(components) {
+		/** @type {EntryMap} */
+		var map = {};
 
-	/**
-	 * Iterates all component entries in the given components object.
-	 *
-	 * _Note:_ This does not include meta entries.
-	 *
-	 * @param {Components} components
-	 * @param {(id: string, entry: ComponentEntry) => void} callback
-	 */
-	function forEachEntry(components, callback) {
 		for (var categoryName in components) {
 			var category = components[categoryName];
 			for (var id in category) {
-				if (id !== 'meta') {
-					callback(id, category[id]);
+				if (id != 'meta') {
+					/** @type {ComponentEntry | string} */
+					var entry = category[id];
+					map[id] = typeof entry == 'string' ? { title: entry } : entry;
 				}
 			}
 		}
+
+		return map;
 	}
 
 	/**
 	 * Creates a full dependencies map which includes all types of dependencies and their transitive dependencies.
 	 *
-	 * @param {Components} components
+	 * @param {EntryMap} entryMap
 	 * @returns {DependencyMap}
+	 *
 	 * @typedef {Object<string, StringSet>} DependencyMap
 	 */
-	function createDependencyMap(components) {
+	function createDependencyMap(entryMap) {
 		/** @type {DependencyMap} */
 		var map = {};
 
 		/**
+		 * Adds the dependencies of the given component to the dependency map.
 		 *
 		 * @param {string} id
-		 * @param {ComponentEntry | undefined} [entry]
 		 */
-		function addToMap(id, entry) {
+		function addToMap(id) {
 			if (id in map) {
 				return;
 			}
 
-			if (entry == undefined) {
-				entry = getEntry(components, id);
-			}
+			var entry = entryMap[id];
 
 			/** @type {StringSet} */
 			var dependencies = {};
 
 			if (entry) {
-				var deps = /** @type {string[]} */([]).concat(entry.require, entry.modify, entry.after).filter(Boolean);
+				/** @type {string[]} */
+				var deps = (/** @type {any[]} */([]).concat(entry.require, entry.modify, entry.after).filter(Boolean));
 				deps.forEach(function (depId) {
 					addToMap(depId);
 					dependencies[depId] = true;
@@ -141,7 +130,9 @@ var getLoad = (function () {
 			map[id] = dependencies;
 		}
 
-		forEachEntry(components, addToMap);
+		for (var id in entryMap) {
+			addToMap(id);
+		}
 
 		return map;
 	}
@@ -149,19 +140,20 @@ var getLoad = (function () {
 	/**
 	 * Returns a function which resolves the aliases of its given id of alias.
 	 *
-	 * @param {Components} components
+	 * @param {EntryMap} entryMap
 	 * @returns {(idOrAlias: string) => string}
 	 */
-	function createAliasResolver(components) {
+	function createAliasResolver(entryMap) {
 		/** @type {Object<string, string>} */
 		var map = {};
 
-		forEachEntry(components, function (id, entry) {
-			var aliases = toArray(entry.alias);
+		for (var id in entryMap) {
+			var entry = entryMap[id];
+			var aliases = toArray(entry && entry.alias);
 			aliases.forEach(function (alias) {
 				map[alias] = id;
 			});
-		});
+		}
 
 		return function (idOrAlias) {
 			return map[idOrAlias] || idOrAlias;
@@ -302,7 +294,8 @@ var getLoad = (function () {
 	 * );
 	 */
 	function getLoad(components, load, loaded) {
-		var resolveAlias = createAliasResolver(components);
+		var entryMap = createEntryMap(components);
+		var resolveAlias = createAliasResolver(entryMap);
 
 		load = load.map(resolveAlias);
 		loaded = (loaded || []).map(resolveAlias);
@@ -314,7 +307,7 @@ var getLoad = (function () {
 
 		load.forEach(addRequirements);
 		function addRequirements(id) {
-			var entry = getEntry(components, id);
+			var entry = entryMap[id];
 			if (entry) {
 				var require = toArray(entry.require);
 				require.forEach(function (reqId) {
@@ -333,7 +326,7 @@ var getLoad = (function () {
 		//  2) x depends on a component in `load`.
 		// The above two condition have to be applied until nothing changes anymore.
 
-		var dependencyMap = createDependencyMap(components);
+		var dependencyMap = createDependencyMap(entryMap);
 
 		/** @type {StringSet} */
 		var loadAdditions = loadSet;
@@ -344,7 +337,7 @@ var getLoad = (function () {
 
 			// condition 1)
 			for (var loadId in loadAdditions) {
-				var entry = getEntry(components, loadId);
+				var entry = entryMap[loadId];
 				if (entry) {
 					var modify = toArray(entry.modify);
 					modify.forEach(function (modId) {
