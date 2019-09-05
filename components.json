@@ -118,7 +118,7 @@
 			"owner": "Golmote"
 		},
 		"asciidoc": {
- 			"alias": "adoc",
+			"alias": "adoc",
 			"title": "AsciiDoc",
 			"owner": "Golmote"
 		},
@@ -882,6 +882,12 @@
 			"title": "Soy (Closure Template)",
 			"require": "markup-templating",
 			"owner": "Golmote"
+		},
+		"sparql": {
+			"title": "SPARQL",
+			"require": "turtle",
+			"owner": "Triply-Dev",
+			"alias": "rq"
 		},
 		"splunk-spl": {
 			"title": "Splunk SPL",
