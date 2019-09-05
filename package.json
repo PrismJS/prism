@@ -7,7 +7,7 @@
   "scripts": {
     "test:aliases": "mocha tests/aliases-test.js",
     "test:core": "mocha tests/core/**/*.js",
-    "test:dependency": "mocha tests/dependency-test.js",
+    "test:dependencies": "mocha tests/dependencies-test.js",
     "test:languages": "mocha tests/run.js",
     "test:pattern": "mocha tests/pattern-tests.js",
     "test:plugins": "mocha tests/plugins/**/*.js",

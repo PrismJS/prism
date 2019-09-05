@@ -67,7 +67,7 @@ var getLoad = (function () {
 	 *
 	 * @param {Components} components
 	 * @param {string} id
-	 * @returns {ComponentEntry}
+	 * @returns {ComponentEntry | undefined}
 	 */
 	function getEntry(components, id) {
 		for (var categoryName in components) {
@@ -113,7 +113,7 @@ var getLoad = (function () {
 		/**
 		 *
 		 * @param {string} id
-		 * @param {ComponentEntry} [entry]
+		 * @param {ComponentEntry | undefined} [entry]
 		 */
 		function addToMap(id, entry) {
 			if (id in map) {
@@ -127,13 +127,15 @@ var getLoad = (function () {
 			/** @type {StringSet} */
 			var dependencies = {};
 
-			[].concat(entry.require, entry.modify, entry.after).filter(Boolean).forEach(function (depId) {
-				addToMap(depId);
-				dependencies[depId] = true;
-				for (var transitiveDepId in map[depId]) {
-					dependencies[transitiveDepId] = true;
-				}
-			});
+			if (entry) {
+				(/** @type {string[]} */([])).concat(entry.require, entry.modify, entry.after).filter(Boolean).forEach(function (depId) {
+					addToMap(depId);
+					dependencies[depId] = true;
+					for (var transitiveDepId in map[depId]) {
+						dependencies[transitiveDepId] = true;
+					}
+				});
+			}
 
 			map[id] = dependencies;
 		}
@@ -257,10 +259,10 @@ var getLoad = (function () {
 	}
 
 	/**
-	 * Returns a new array with the ids of the components which have to be loaded. The returns ids can be in any order
-	 * and will be duplicate-free.
+	 * Returns an object which provides methods to get the ids of the components which have to be loaded (`getIds`) and
+	 * a way to efficiently load them in synchronously and asynchronous contexts (`load`).
 	 *
-	 * The returned ids will be superset of `load`. If some of the returned ids are in `loaded`, the corresponding
+	 * The set of ids to be loaded is a superset of `load`. If some of these ids are in `loaded`, the corresponding
 	 * components will have to reloaded.
 	 *
 	 * The ids in `load` and `loaded` may be in any order and can contain duplicates.
@@ -275,10 +277,10 @@ var getLoad = (function () {
 	 * @typedef GetLoadResult
 	 * @property {() => string[]} getIds A function to get all ids of the components to load.
 	 *
-	 * The elements of the returned array will be duplicate and alias-free and ordered by load order.
+	 * The returned ids will be duplicate-free, alias-free and in load order.
 	 * @property {LoadFunction} load A functional interface to load components.
 	 *
-	 * @typedef {<T> (loadComponent: (id: string) => T, series?: (before: T, after: T) => T, parallel?: (values: T[]) => T) => T} 	LoadFunction
+	 * @typedef {<T> (loadComponent: (id: string) => T, series?: (before: T, after: T) => T, parallel?: (values: T[]) => T) => T} LoadFunction
 	 * A functional interface to load components.
 	 *
 	 * The `loadComponent` function will be called for every component in the order in which they have to be loaded.
@@ -311,13 +313,16 @@ var getLoad = (function () {
 
 		load.forEach(addRequirements);
 		function addRequirements(id) {
-			var require = toArray(getEntry(components, id).require);
-			require.forEach(function (reqId) {
-				if (!(reqId in loadedSet)) {
-					loadSet[reqId] = true;
-					addRequirements(reqId);
-				}
-			});
+			var entry = getEntry(components, id);
+			if (entry) {
+				var require = toArray(entry.require);
+				require.forEach(function (reqId) {
+					if (!(reqId in loadedSet)) {
+						loadSet[reqId] = true;
+						addRequirements(reqId);
+					}
+				});
+			}
 		}
 
 		// add components to reload
@@ -338,12 +343,15 @@ var getLoad = (function () {
 
 			// condition 1)
 			for (var loadId in loadAdditions) {
-				var modify = toArray(getEntry(components, loadId).modify);
-				modify.forEach(function (modId) {
-					if (modId in loadedSet) {
-						newIds[modId] = true;
-					}
-				});
+				var entry = getEntry(components, loadId);
+				if (entry) {
+					var modify = toArray(entry.modify);
+					modify.forEach(function (modId) {
+						if (modId in loadedSet) {
+							newIds[modId] = true;
+						}
+					});
+				}
 			}
 
 			// condition 2)

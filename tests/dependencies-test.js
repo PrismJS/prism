@@ -60,6 +60,14 @@ describe('Dependency logic', function () {
 			assert.sameMembers(getIds(['e'], ['a', 'b', 'c', 'd']), ['a', 'c', 'd', 'e']);
 		});
 
+		it('- should work with empty load', function () {
+			assert.sameMembers(getIds([], ['a', 'b', 'c', 'd']), []);
+		});
+
+		it('- should return unknown ids as is', function () {
+			assert.sameMembers(getIds(['c', 'foo'], ['bar']), ['foo', 'c', 'a']);
+		});
+
 	});
 
 	describe('Load order', function () {
