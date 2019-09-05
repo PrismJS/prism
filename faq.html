@@ -55,7 +55,7 @@
 	<p>For this reason, most syntax highlighters on the web and on desktop, are powered by regular expressions. This includes the internal syntax
 	highlighters used by popular native applications like Espresso and Sublime Text, at the time of writing.
 	Of course, not every regex-powered syntax highlighter is created equal. The number and type of failures can be vastly different, depending on
-	the exact algorithm used. <a href="examples.html">Prism’s known failures are documented in the Examples section</a>.</p>
+	the exact algorithm used. <a href="known-failures.html">Prism’s known failures are documented on this page.</a>.</p>
 </section>
 
 <section>
@@ -89,48 +89,12 @@
 <section>
 	<h1>How do I know which tokens I can style for every language?</h1>
 
-	<p>Every token that is highlighted gets two classes: <code>token</code> and a class with the token type (e.g. <code>comment</code>).
-	You can find the different types of tokens either by looking at the keys of the object defining the language or by running this snippet in the console:
-	<pre><code class="language-javascript">function printTokens(o, prefix) { for (var i in o) { console.log((prefix? prefix + ' > ' : '') + i); if (o[i].inside) printTokens(o[i].inside, (prefix? prefix + ' > ' : '') + i); } };</code></pre>
-	<p>Then you can use the function for every language you want to examine. For example, markup:</p>
-	<pre><code class="language-javascript">printTokens(Prism.languages.markup);</code></pre>
-	<p>which outputs:</p>
-	<pre>comment
-prolog
-doctype
-script
-script > tag
-script > tag > tag
-script > tag > tag > punctuation
-script > tag > tag > namespace
-script > tag > attr-value
-script > tag > attr-value > punctuation
-script > tag > punctuation
-script > tag > attr-name
-script > tag > attr-name > namespace
-script > rest
-style
-style > tag
-style > tag > tag
-style > tag > tag > punctuation
-style > tag > tag > namespace
-style > tag > attr-value
-style > tag > attr-value > punctuation
-style > tag > punctuation
-style > tag > attr-name
-style > tag > attr-name > namespace
-style > rest
-cdata
-tag
-tag > tag
-tag > tag > punctuation
-tag > tag > namespace
-tag > attr-value
-tag > attr-value > punctuation
-tag > punctuation
-tag > attr-name
-tag > attr-name > namespace
-entity</pre>
+	<p>Every token that is highlighted gets at least two classes: <code>token</code> and a class with the token type (e.g. <code>comment</code>) plus any number of aliases.
+	Aliases can be seen as additional token types and are used to give specialized tokens a more common class for easier styling.
+	You can find the different types of tokens either by looking at the keys of the object defining the language or by using the below interface.</p>
+
+	<p>Language: <select id="language-select"></select></p>
+	<pre class="language-none" style="height: 30em"><code id="print-tokens-output"></code></pre>
 </section>
 
 <section>
@@ -161,8 +125,13 @@ entity</pre>
 
 <script src="scripts/utopia.js"></script>
 <script src="prism.js"></script>
+<script src="plugins/autoloader/prism-autoloader.min.js"></script>
+<script>
+	Prism.plugins.autoloader.languages_path = 'components/';
+</script>
 <script src="components.js"></script>
 <script>
+(function () {
 	$$('section > h1').forEach(function (h1) {
 		$u.element.create('p', {
 			contents: {
@@ -175,6 +144,90 @@ entity</pre>
 			inside: h1.parentNode
 		});
 	});
+
+	function printTokens(grammar) {
+		function toArray(x) {
+			return Array.isArray(x) ? x : (x == undefined ? [] : [x]);
+		}
+
+		var lines = [];
+		function log(line) {
+			if (lines.indexOf(line) === -1) {
+				lines.push(line);
+			}
+		}
+
+		var languageMap = new Map();
+		Object.keys(Prism.languages).filter(function (l) { return l in components.languages; }).forEach(function (l) {
+			languageMap.set(Prism.languages[l], 'Prism.languages["' + l + '"]');
+		});
+
+		var stack = new Map();
+
+		function inner(g, prefix) {
+			if (prefix && languageMap.has(g)) {
+				log(prefix + ' > ...' + languageMap.get(g));
+				return;
+			}
+			if (stack.has(g)) {
+				log(prefix + ' > ...' + stack.get(g));
+				return;
+			}
+
+			stack.set(g, '(' + (prefix || ':root:') + ')');
+
+			for (var name in g) {
+				var element = g[name];
+				if (name === 'rest') {
+					inner(element, (prefix ? prefix + ' > ' : '') + ':rest:');
+				} else {
+					for (var a = toArray(element), i = 0, token; token = a[i++];) {
+						var line = (prefix ? prefix + ' > ' : '') + name + toArray(token.alias).map(function (a) {
+							return '.' + a;
+						}).join('');
+
+						log(line);
+
+						if (token.inside) {
+							inner(token.inside, line);
+						}
+					}
+				}
+			}
+
+			stack.delete(g);
+		}
+		inner(grammar, '');
+
+		return lines.join('\n');
+	}
+
+	var loadedLanguages = {};
+	function showTokens() {
+		var language = $('#language-select').value;
+		if (Prism.languages[language]) {
+			$('#print-tokens-output').textContent = printTokens(Prism.languages[language]);
+		} else if (language in loadedLanguages) {
+			$('#print-tokens-output').textContent = '"' + language + '" doesn\'t have any tokens.';
+		} else {
+			// load grammar
+			Prism.plugins.autoloader.loadLanguages([language], function() {
+				loadedLanguages[language] = true;
+				showTokens();
+			}, function () {
+				$('#print-tokens-output').textContent = 'Unable to load "' + language + '"';
+			});
+		}
+	}
+
+	$('#language-select').onchange = showTokens;
+	$('#language-select').innerHTML = Object.keys(components.languages)
+		.filter(function (x) { return x !== 'meta'; })
+		.map(function (x) {
+			return '<option value="' + x + '">' + components.languages[x].title + '</option>';
+		}).join('');
+	showTokens();
+}());
 </script>
 <script src="scripts/code.js"></script>
 

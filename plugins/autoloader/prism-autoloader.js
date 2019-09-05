@@ -153,6 +153,7 @@
 		"objectpascal": "pascal",
 		"px": "pcaxis",
 		"py": "python",
+		"robot": "robot-framework",
 		"rb": "ruby",
 		"trig": "turtle",
 		"ts": "typescript",

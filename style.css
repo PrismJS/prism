@@ -414,3 +414,12 @@ label a.owner:not(:hover) {
 		margin-bottom: 1em;
 		margin-right: 1em;
 	}
+
+/*
+ * Fix for Toolbar's overflow issue
+ */
+
+div.code-toolbar {
+	display: block;
+	overflow: auto;
+}
