@@ -128,7 +128,8 @@ var getLoad = (function () {
 			var dependencies = {};
 
 			if (entry) {
-				(/** @type {string[]} */([])).concat(entry.require, entry.modify, entry.after).filter(Boolean).forEach(function (depId) {
+				var deps = /** @type {string[]} */([]).concat(entry.require, entry.modify, entry.after).filter(Boolean);
+				deps.forEach(function (depId) {
 					addToMap(depId);
 					dependencies[depId] = true;
 					for (var transitiveDepId in map[depId]) {
