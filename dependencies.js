@@ -104,22 +104,30 @@ var getLoad = (function () {
 		 * Adds the dependencies of the given component to the dependency map.
 		 *
 		 * @param {string} id
+		 * @param {string[]} stack
 		 */
-		function addToMap(id) {
+		function addToMap(id, stack) {
 			if (id in map) {
 				return;
 			}
 
-			var entry = entryMap[id];
+			stack.push(id);
+
+			// check for circular dependencies
+			var firstIndex = stack.indexOf(id);
+			if (firstIndex < stack.length - 1) {
+				throw new Error('Circular dependency: ' + stack.slice(firstIndex).join(' -> '));
+			}
 
 			/** @type {StringSet} */
 			var dependencies = {};
 
+			var entry = entryMap[id];
 			if (entry) {
 				/** @type {string[]} */
 				var deps = (/** @type {any[]} */([]).concat(entry.require, entry.modify, entry.after).filter(Boolean));
 				deps.forEach(function (depId) {
-					addToMap(depId);
+					addToMap(depId, stack);
 					dependencies[depId] = true;
 					for (var transitiveDepId in map[depId]) {
 						dependencies[transitiveDepId] = true;
@@ -128,10 +136,12 @@ var getLoad = (function () {
 			}
 
 			map[id] = dependencies;
+
+			stack.pop();
 		}
 
 		for (var id in entryMap) {
-			addToMap(id);
+			addToMap(id, []);
 		}
 
 		return map;

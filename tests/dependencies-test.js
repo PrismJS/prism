@@ -108,4 +108,25 @@ describe('Dependency logic', function () {
 
 	});
 
+	describe('Circular dependencies', function () {
+
+		it('- should throw on circular dependencies', function () {
+			assert.throws(() => {
+				/** @type {import("../dependencies").Components} */
+				const circular = {
+					languages: {
+						a: {
+							require: 'b'
+						},
+						b: {
+							require: 'a'
+						}
+					}
+				};
+				getLoad(circular, ['a']).getIds();
+			});
+		});
+
+	});
+
 });
