@@ -127,6 +127,8 @@
 		"shell-session": "Shell session",
 		"solidity": "Solidity (Ethereum)",
 		"soy": "Soy (Closure Template)",
+		"sparql": "SPARQL",
+		"rq": "SPARQL",
 		"splunk-spl": "Splunk SPL",
 		"sql": "SQL",
 		"tap": "TAP",
