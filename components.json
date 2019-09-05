@@ -60,7 +60,7 @@
 		"css": {
 			"title": "CSS",
 			"option": "default",
-			"peerDependencies": "markup"
+			"modify": "markup"
 		},
 		"clike": {
 			"title": "C-like",
@@ -70,7 +70,7 @@
 		"javascript": {
 			"title": "JavaScript",
 			"require": "clike",
-			"peerDependencies": "markup",
+			"modify": "markup",
 			"alias": "js",
 			"option": "default"
 		},
@@ -85,7 +85,7 @@
 		"actionscript": {
 			"title": "ActionScript",
 			"require": "javascript",
-			"peerDependencies": "markup",
+			"modify": "markup",
 			"owner": "Golmote"
 		},
 		"ada": {
@@ -222,6 +222,7 @@
 		"css-extras": {
 			"title": "CSS Extras",
 			"require": "css",
+			"modify": "css",
 			"owner": "milesj"
 		},
 		"d": {
@@ -351,7 +352,7 @@
 		"haml": {
 			"title": "Haml",
 			"require": "ruby",
-			"peerDependencies": [
+			"after": [
 				"css",
 				"css-extras",
 				"coffeescript",
@@ -386,8 +387,10 @@
 		},
 		"http": {
 			"title": "HTTP",
-			"peerDependencies": [
+			"after": [
+				"css",
 				"javascript",
+				"json",
 				"markup"
 			],
 			"owner": "danielgtaylor"
@@ -432,14 +435,17 @@
 		"javadoc": {
 			"title": "JavaDoc",
 			"require": ["markup", "java", "javadoclike"],
-			"peerDependencies": [
+			"modify": [
+				"java"
+			],
+			"after": [
 				"scala"
 			],
 			"owner": "RunDevelopment"
 		},
 		"javadoclike": {
 			"title": "JavaDoc-like",
-			"peerDependencies": [
+			"modify": [
 				"java",
 				"javascript",
 				"php"
@@ -462,7 +468,8 @@
 		"jsdoc": {
 			"title": "JSDoc",
 			"require": ["javascript", "javadoclike"],
-			"peerDependencies": [
+			"modify": "javascript",
+			"after": [
 				"actionscript",
 				"coffeescript"
 			],
@@ -471,7 +478,8 @@
 		"js-extras": {
 			"title": "JS Extras",
 			"require": "javascript",
-			"peerDependencies": [
+			"modify": "javascript",
+			"after": [
 				"actionscript",
 				"coffeescript",
 				"flow",
@@ -483,7 +491,8 @@
 		"js-templates": {
 			"title": "JS Templates",
 			"require": "javascript",
-			"peerDependencies": [
+			"modify": "javascript",
+			"after": [
 				"css",
 				"css-extras",
 				"graphql",
@@ -531,7 +540,7 @@
 		"less": {
 			"title": "Less",
 			"require": "css",
-			"peerDependencies": "css-extras",
+			"after": "css-extras",
 			"owner": "Golmote"
 		},
 		"lilypond": {
@@ -599,7 +608,7 @@
 		"n4js": {
 			"title": "N4JS",
 			"require": "javascript",
-			"peerDependencies": [
+			"after": [
 				"jsdoc"
 			],
 			"alias": "n4jsd",
@@ -642,7 +651,7 @@
 		"opencl": {
 			"title": "OpenCL",
 			"require": "cpp",
-			"peerDependencies": [
+			"modify": [
 				"c",
 				"cpp"
 			],
@@ -691,11 +700,13 @@
 		"phpdoc": {
 			"title": "PHPDoc",
 			"require": ["php", "javadoclike"],
+			"modify": "php",
 			"owner": "RunDevelopment"
 		},
 		"php-extras": {
 			"title": "PHP Extras",
 			"require": "php",
+			"modify": "php",
 			"owner": "milesj"
 		},
 		"plsql": {
@@ -728,7 +739,7 @@
 		"pug": {
 			"title": "Pug",
 			"require": ["markup", "javascript"],
-			"peerDependencies": [
+			"after": [
 				"coffeescript",
 				"ejs",
 				"handlebars",
@@ -747,7 +758,7 @@
 		},
 		"pure": {
 			"title": "Pure",
-			"peerDependencies": [
+			"after": [
 				"c",
 				"cpp",
 				"fortran"
@@ -775,7 +786,7 @@
 		"jsx": {
 			"title": "React JSX",
 			"require": ["markup", "javascript"],
-			"peerDependencies": [
+			"after": [
 				"jsdoc",
 				"js-extras",
 				"js-templates"
@@ -797,7 +808,7 @@
 		},
 		"regex": {
 			"title": "Regex",
-			"peerDependencies": [
+			"modify": [
 				"actionscript",
 				"coffeescript",
 				"flow",
@@ -847,7 +858,7 @@
 		"scss": {
 			"title": "Sass (Scss)",
 			"require": "css",
-			"peerDependencies": "css-extras",
+			"after": "css-extras",
 			"owner": "MoOx"
 		},
 		"scala": {
@@ -912,7 +923,7 @@
 		"textile": {
 			"title": "Textile",
 			"require": "markup",
-			"peerDependencies": "css",
+			"after": "css",
 			"owner": "Golmote"
 		},
 		"toml": {
@@ -940,7 +951,7 @@
 		"typescript": {
 			"title": "TypeScript",
 			"require": "javascript",
-			"peerDependencies": "js-templates",
+			"after": "js-templates",
 			"alias": "ts",
 			"owner": "vkbansal"
 		},
