@@ -67,6 +67,21 @@ describe('Dependency logic', function () {
 			assert.sameMembers(getIds(['c', 'foo'], ['bar']), ['foo', 'c', 'a']);
 		});
 
+		it('- should throw on unknown dependencies', function () {
+			assert.throws(() => {
+				/** @type {import("../dependencies").Components} */
+				const circular = {
+					languages: {
+						a: {
+							require: 'c'
+						},
+						b: "B"
+					}
+				};
+				getLoad(circular, ['a']).getIds();
+			});
+		});
+
 	});
 
 	describe('Load order', function () {
