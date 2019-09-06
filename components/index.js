@@ -24,15 +24,9 @@ function loadLanguages(languages) {
 		languages = [languages];
 	}
 
-	const loaded = [...loadedLanguages];
-
 	// the user might have loaded languages via some other way or used `prism.js` which already includes some
-	for (const lang in Prism.languages) {
-		// type check because there are also some functions in Prism.languages
-		if (typeof Prism.languages[lang] == 'object') {
-			loaded.push(lang);
-		}
-	}
+	// we don't need to validate the ids because `getLoad` will ignore invalid ones
+	const loaded = [...loadedLanguages, ...Object.keys(Prism.languages)];
 
 	getLoad(components, languages, loaded).load(lang => {
 		if (!(lang in components.languages)) {
