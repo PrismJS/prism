@@ -10,7 +10,10 @@ Prism.languages.aql = {
 		greedy: true
 	},
 	'variable': /@@?\w+/,
-	'keyword': /\b(?:AGGREGATE|ALL|AND|ANY|ASC|COLLECT|DESC|DISTINCT|FILTER|FOR|GRAPH|IN|INBOUND|INSERT|INTO|K_SHORTEST_PATHS|LET|LIKE|LIMIT|NONE|NOT|NULL|OPTIONS|OR|OUTBOUND|REMOVE|REPLACE|RETURN|SEARCH|SHORTEST_PATH|SORT|TO|UPDATE|UPSERT|WITH)\b/i,
+	'keyword': [
+		/\b(?:AGGREGATE|ALL|AND|ANY|ASC|COLLECT|DESC|DISTINCT|FILTER|FOR|GRAPH|IN|INBOUND|INSERT|INTO|K_SHORTEST_PATHS|LET|LIKE|LIMIT|NONE|NOT|NULL|OPTIONS|OR|OUTBOUND|REMOVE|REPLACE|RETURN|SEARCH|SHORTEST_PATH|SORT|TO|UPDATE|UPSERT|WITH)\b/i,
+		/\b(?:NEW|OLD)\b/
+	],
 	'function': /(?!\d)\w+(?=\s*\()/,
 	'boolean': /(?:true|false)/i,
 	'range': {
@@ -19,6 +22,5 @@ Prism.languages.aql = {
 	},
 	'number': /(?:\B\.\d+|\b\d+(?:\.\d+)?)(?:e[+-]?\d+)?/i,
 	'operator': /\*\*|[=!]~|[!=<>]=?|&&|\|\||[-+*/%]/,
-	'punctuation': /::|[?.:,;()[\]{}]/,
-	'constant': /\b(?:NEW|OLD)\b/
+	'punctuation': /::|[?.:,;()[\]{}]/
 };

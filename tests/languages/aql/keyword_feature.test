@@ -34,6 +34,9 @@ UPDATE
 UPSERT
 WITH
 
+OLD
+NEW
+
 ----------------------------------------------------
 
 [
@@ -71,7 +74,10 @@ WITH
 	["keyword", "TO"],
 	["keyword", "UPDATE"],
 	["keyword", "UPSERT"],
-	["keyword", "WITH"]
+	["keyword", "WITH"],
+
+	["keyword", "OLD"],
+	["keyword", "NEW"]
 ]
 
 ----------------------------------------------------

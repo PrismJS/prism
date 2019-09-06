@@ -47,7 +47,7 @@ LET opType = IS_NULL(OLD) ? "insert" : "update"
 	["operator", "="],
 	["function", "IS_NULL"],
 	["punctuation", "("],
-	["constant", "OLD"],
+	["keyword", "OLD"],
 	["punctuation", ")"],
 	["punctuation", "?"],
 	["string", "\"insert\""],
