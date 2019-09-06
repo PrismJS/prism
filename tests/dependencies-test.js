@@ -1,5 +1,6 @@
 const { assert } = require('chai');
 const getLoad = require('../dependencies');
+const components = require('../components');
 
 
 describe('Dependency logic', function () {
@@ -7,7 +8,6 @@ describe('Dependency logic', function () {
 	/** @type {import("../dependencies").Components} */
 	const components = {
 		languages: {
-			meta: {},
 			'a': {
 				alias: 'a2'
 			},
@@ -24,7 +24,6 @@ describe('Dependency logic', function () {
 			},
 		},
 		pluginsOrSomething: {
-			meta: {},
 			'e': {
 				modify: 'a'
 			},
@@ -106,6 +105,38 @@ describe('Dependency logic', function () {
 			assert.sameMembers(getIds(['d'], ['a', 'a2', 'b2']), ['c', 'd']);
 		});
 
+		it('- should throw on duplicate aliases', function () {
+			assert.throws(() => {
+				/** @type {import("../dependencies").Components} */
+				const circular = {
+					languages: {
+						a: {
+							alias: 'c'
+						},
+						b: {
+							alias: 'c'
+						}
+					}
+				};
+				getLoad(circular, ['a']).getIds();
+			});
+		});
+
+		it('- should throw on aliases which are components', function () {
+			assert.throws(() => {
+				/** @type {import("../dependencies").Components} */
+				const circular = {
+					languages: {
+						a: {
+							alias: 'b'
+						},
+						b: "B"
+					}
+				};
+				getLoad(circular, ['a']).getIds();
+			});
+		});
+
 	});
 
 	describe('Circular dependencies', function () {
@@ -119,7 +150,7 @@ describe('Dependency logic', function () {
 							require: 'b'
 						},
 						b: {
-							require: 'a'
+							after: 'a'
 						}
 					}
 				};
@@ -127,6 +158,18 @@ describe('Dependency logic', function () {
 			});
 		});
 
+	});
+
+});
+
+describe('components.json', function () {
+
+	it('- should be valid', function () {
+		try {
+			getLoad(components, Object.keys(components.languages).filter(k => k != 'meta')).getIds();
+		} catch (error) {
+			assert.fail(error.toString());
+		}
 	});
 
 });
