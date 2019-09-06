@@ -12,11 +12,15 @@ const loadedLanguages = new Set();
 /**
  * Loads the given languages and adds them to the current Prism instance.
  *
- * @param {string|string[]} languages
+ * If no languages are provided, __all__ Prism languages will be loaded.
+ *
+ * @param {string|string[]} [languages]
  * @returns {void}
  */
 function loadLanguages(languages) {
-	if (!Array.isArray(languages)) {
+	if (languages === undefined) {
+		languages = Object.keys(components.languages).filter(l => l != 'meta');
+	} else if (!Array.isArray(languages)) {
 		languages = [languages];
 	}
 
