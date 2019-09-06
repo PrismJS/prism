@@ -161,6 +161,12 @@ var getLoad = (function () {
 			var entry = entryMap[id];
 			var aliases = toArray(entry && entry.alias);
 			aliases.forEach(function (alias) {
+				if (alias in map) {
+					throw new Error(alias + ' cannot be alias for both ' + id + ' and ' + map[alias]);
+				}
+				if (alias in entryMap) {
+					throw new Error(alias + ' cannot be alias of ' + id + ' because it is a component.');
+				}
 				map[alias] = id;
 			});
 		}
