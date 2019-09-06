@@ -19,5 +19,6 @@ Prism.languages.aql = {
 	},
 	'number': /(?:\B\.\d+|\b\d+(?:\.\d+)?)(?:e[+-]?\d+)?/i,
 	'operator': /\*\*|[=!]~|[!=<>]=?|&&|\|\||[-+*/%]/,
-	'punctuation': /::|[?.:,;()[\]{}]/
+	'punctuation': /::|[?.:,;()[\]{}]/,
+	'constant': /\b(?:NEW|OLD)\b/
 };

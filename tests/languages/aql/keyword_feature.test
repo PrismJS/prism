@@ -1,0 +1,79 @@
+AGGREGATE
+ALL
+AND
+ANY
+ASC
+COLLECT
+DESC
+DISTINCT
+FILTER
+FOR
+GRAPH
+IN
+INBOUND
+INSERT
+INTO
+K_SHORTEST_PATHS
+LET
+LIKE
+LIMIT
+NONE
+NOT
+NULL
+OPTIONS
+OR
+OUTBOUND
+REMOVE
+REPLACE
+RETURN
+SEARCH
+SHORTEST_PATH
+SORT
+TO
+UPDATE
+UPSERT
+WITH
+
+----------------------------------------------------
+
+[
+	["keyword", "AGGREGATE"],
+	["keyword", "ALL"],
+	["keyword", "AND"],
+	["keyword", "ANY"],
+	["keyword", "ASC"],
+	["keyword", "COLLECT"],
+	["keyword", "DESC"],
+	["keyword", "DISTINCT"],
+	["keyword", "FILTER"],
+	["keyword", "FOR"],
+	["keyword", "GRAPH"],
+	["keyword", "IN"],
+	["keyword", "INBOUND"],
+	["keyword", "INSERT"],
+	["keyword", "INTO"],
+	["keyword", "K_SHORTEST_PATHS"],
+	["keyword", "LET"],
+	["keyword", "LIKE"],
+	["keyword", "LIMIT"],
+	["keyword", "NONE"],
+	["keyword", "NOT"],
+	["keyword", "NULL"],
+	["keyword", "OPTIONS"],
+	["keyword", "OR"],
+	["keyword", "OUTBOUND"],
+	["keyword", "REMOVE"],
+	["keyword", "REPLACE"],
+	["keyword", "RETURN"],
+	["keyword", "SEARCH"],
+	["keyword", "SHORTEST_PATH"],
+	["keyword", "SORT"],
+	["keyword", "TO"],
+	["keyword", "UPDATE"],
+	["keyword", "UPSERT"],
+	["keyword", "WITH"]
+]
+
+----------------------------------------------------
+
+Checks for keywords.
