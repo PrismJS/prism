@@ -275,6 +275,11 @@
 			"title": "Elm",
 			"owner": "zwilias"
 		},
+		"etlua": {
+			"title": "Embedded Lua templating",
+			"require": ["lua", "markup-templating"],
+			"owner": "RunDevelopment"
+		},
 		"erb": {
 			"title": "ERB",
 			"require": ["ruby", "markup-templating"],

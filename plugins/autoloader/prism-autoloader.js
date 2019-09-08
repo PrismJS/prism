@@ -26,6 +26,10 @@
 			"javascript",
 			"markup-templating"
 		],
+		"etlua": [
+			"lua",
+			"markup-templating"
+		],
 		"erb": [
 			"ruby",
 			"markup-templating"
