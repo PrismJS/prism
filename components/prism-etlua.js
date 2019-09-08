@@ -2,7 +2,7 @@
 
 	Prism.languages.etlua = {
 		'delimiter': {
-			pattern: /^<%[-=]?|[-]?%>$/,
+			pattern: /^<%[-=]?|-?%>$/,
 			alias: 'punctuation'
 		},
 		'language-lua': {
@@ -12,7 +12,7 @@
 	};
 
 	Prism.hooks.add('before-tokenize', function (env) {
-		var pattern = /<%(?!%)[\s\S]+?%>/g;
+		var pattern = /<%[\s\S]+?%>/g;
 		Prism.languages['markup-templating'].buildPlaceholders(env, 'etlua', pattern);
 	});
 
