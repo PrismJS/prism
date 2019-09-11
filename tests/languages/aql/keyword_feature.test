@@ -20,19 +20,20 @@ LIMIT
 NONE
 NOT
 NULL
-OPTIONS
 OR
 OUTBOUND
 REMOVE
 REPLACE
 RETURN
-SEARCH
 SHORTEST_PATH
 SORT
-TO
 UPDATE
 UPSERT
 WITH
+
+OPTIONS
+SEARCH
+TO
 
 OLD
 NEW
@@ -62,19 +63,20 @@ NEW
 	["keyword", "NONE"],
 	["keyword", "NOT"],
 	["keyword", "NULL"],
-	["keyword", "OPTIONS"],
 	["keyword", "OR"],
 	["keyword", "OUTBOUND"],
 	["keyword", "REMOVE"],
 	["keyword", "REPLACE"],
 	["keyword", "RETURN"],
-	["keyword", "SEARCH"],
 	["keyword", "SHORTEST_PATH"],
 	["keyword", "SORT"],
-	["keyword", "TO"],
 	["keyword", "UPDATE"],
 	["keyword", "UPSERT"],
 	["keyword", "WITH"],
+
+	["keyword", "OPTIONS"],
+	["keyword", "SEARCH"],
+	["keyword", "TO"],
 
 	["keyword", "OLD"],
 	["keyword", "NEW"]
