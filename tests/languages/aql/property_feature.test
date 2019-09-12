@@ -7,6 +7,9 @@
 // not a property
 LET opType = IS_NULL(OLD) ? "insert" : "update"
 
+LET foo = { to: 5, search: 6, options: 7 }
+LET bar = foo.search + foo[options] + foo["to"]
+
 ----------------------------------------------------
 
 [
@@ -15,25 +18,21 @@ LET opType = IS_NULL(OLD) ? "insert" : "update"
 	["punctuation", ":"],
 	" … ",
 	["punctuation", "}"],
-
 	["punctuation", "{"],
 	["property", "'foo'"],
 	["punctuation", ":"],
 	" … ",
 	["punctuation", "}"],
-
 	["punctuation", "{"],
 	["property", "\"foo\""],
 	["punctuation", ":"],
 	" … ",
 	["punctuation", "}"],
-
 	["punctuation", "{"],
 	["property", "`foo`"],
 	["punctuation", ":"],
 	" … ",
 	["punctuation", "}"],
-
 	["punctuation", "{"],
 	["property", "´foo´"],
 	["punctuation", ":"],
@@ -41,18 +40,50 @@ LET opType = IS_NULL(OLD) ? "insert" : "update"
 	["punctuation", "}"],
 
 	["comment", "// not a property"],
-
 	["keyword", "LET"],
 	" opType ",
 	["operator", "="],
 	["function", "IS_NULL"],
 	["punctuation", "("],
-	"OLD",
+	["keyword", "OLD"],
 	["punctuation", ")"],
 	["punctuation", "?"],
 	["string", "\"insert\""],
 	["punctuation", ":"],
-	["string", "\"update\""]
+	["string", "\"update\""],
+
+	["keyword", "LET"],
+	" foo ",
+	["operator", "="],
+	["punctuation", "{"],
+	["property", "to"],
+	["punctuation", ":"],
+	["number", "5"],
+	["punctuation", ","],
+	["property", "search"],
+	["punctuation", ":"],
+	["number", "6"],
+	["punctuation", ","],
+	["property", "options"],
+	["punctuation", ":"],
+	["number", "7"],
+	["punctuation", "}"],
+	["keyword", "LET"],
+	" bar ",
+	["operator", "="],
+	" foo",
+	["punctuation", "."],
+	"search ",
+	["operator", "+"],
+	" foo",
+	["punctuation", "["],
+	"options",
+	["punctuation", "]"],
+	["operator", "+"],
+	" foo",
+	["punctuation", "["],
+	["string", "\"to\""],
+	["punctuation", "]"]
 ]
 
 ----------------------------------------------------
