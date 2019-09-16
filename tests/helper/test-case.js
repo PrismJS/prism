@@ -64,8 +64,8 @@ module.exports = {
 		// the first language is the main language to highlight
 		const simplifiedTokenStream = this.simpleTokenize(Prism, testCase.testSource, usedLanguages.mainLanguage);
 
-		const tzd = JSON.stringify(simplifiedTokenStream);
-		const exp = JSON.stringify(testCase.expectedTokenStream);
+		const tzd = pretty ? TokenStreamTransformer.prettyprint(simplifiedTokenStream) : JSON.stringify(simplifiedTokenStream);
+		const exp = pretty ? TokenStreamTransformer.prettyprint(testCase.expectedTokenStream) : JSON.stringify(testCase.expectedTokenStream);
 		let i = 0;
 		let j = 0;
 		let diff = "";
@@ -77,11 +77,12 @@ module.exports = {
 			j++;
 		}
 
-		const tokenStreamStr = pretty ? TokenStreamTransformer.prettyprint(simplifiedTokenStream) : tzd;
-		const message = "\nToken Stream: \n" + tokenStreamStr +
+		const message = "\n\nToken Stream:\n\n" + tzd +
 			"\n-----------------------------------------\n" +
-			"Expected Token Stream: \n" + exp +
-			"\n-----------------------------------------\n" + diff;
+			"Expected Token Stream:\n\n" + exp +
+			"\n-----------------------------------------\n" +
+			"First Difference: \n\n" + diff +
+			"\n-----------------------------------------\n\n";
 
 		assert.deepEqual(simplifiedTokenStream, testCase.expectedTokenStream, testCase.comment + message);
 	},
