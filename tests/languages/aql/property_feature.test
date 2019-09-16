@@ -7,8 +7,8 @@
 // not a property
 LET opType = IS_NULL(OLD) ? "insert" : "update"
 
-LET foo = { to: 5, search: 6, options: 7 }
-LET bar = foo.search + foo[options] + foo["to"]
+LET foo = { keep: 1, options: 2, prune: 3, search: 4, to: 5 }
+LET bar = foo.keep + foo[options] + foo["prune"] + foo.search + foo[to]
 
 ----------------------------------------------------
 
@@ -56,24 +56,32 @@ LET bar = foo.search + foo[options] + foo["to"]
 	" foo ",
 	["operator", "="],
 	["punctuation", "{"],
-	["property", "to"],
+	["property", "keep"],
 	["punctuation", ":"],
-	["number", "5"],
-	["punctuation", ","],
-	["property", "search"],
-	["punctuation", ":"],
-	["number", "6"],
+	["number", "1"],
 	["punctuation", ","],
 	["property", "options"],
 	["punctuation", ":"],
-	["number", "7"],
+	["number", "2"],
+	["punctuation", ","],
+	["property", "prune"],
+	["punctuation", ":"],
+	["number", "3"],
+	["punctuation", ","],
+	["property", "search"],
+	["punctuation", ":"],
+	["number", "4"],
+	["punctuation", ","],
+	["property", "to"],
+	["punctuation", ":"],
+	["number", "5"],
 	["punctuation", "}"],
 	["keyword", "LET"],
 	" bar ",
 	["operator", "="],
 	" foo",
 	["punctuation", "."],
-	"search ",
+	"keep ",
 	["operator", "+"],
 	" foo",
 	["punctuation", "["],
@@ -82,7 +90,16 @@ LET bar = foo.search + foo[options] + foo["to"]
 	["operator", "+"],
 	" foo",
 	["punctuation", "["],
-	["string", "\"to\""],
+	["string", "\"prune\""],
+	["punctuation", "]"],
+	["operator", "+"],
+	" foo",
+	["punctuation", "."],
+	"search ",
+	["operator", "+"],
+	" foo",
+	["punctuation", "["],
+	"to",
 	["punctuation", "]"]
 ]
 
