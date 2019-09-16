@@ -11,16 +11,23 @@ Prism.languages.aql = {
 	},
 	'variable': /@@?\w+/,
 	'keyword': [
+		{
+			pattern: /(\bWITH\s+)COUNT(?=\s+INTO\b)/i,
+			lookbehind: true
+		},
 		/\b(?:AGGREGATE|ALL|AND|ANY|ASC|COLLECT|DESC|DISTINCT|FILTER|FOR|GRAPH|IN|INBOUND|INSERT|INTO|K_SHORTEST_PATHS|LET|LIKE|LIMIT|NONE|NOT|NULL|OR|OUTBOUND|REMOVE|REPLACE|RETURN|SHORTEST_PATH|SORT|UPDATE|UPSERT|WITH)\b/i,
 		// pseudo keywords get a lookbehind to avoid false positives
 		{
-			pattern: /(^|[^\w.[])(?:OPTIONS|SEARCH|TO)\b/i,
+			pattern: /(^|[^\w.[])(?:KEEP|PRUNE|SEARCH|TO)\b/i,
 			lookbehind: true
 		},
 		{
-			pattern: /(^|[^\w.[])(?:NEW|OLD)\b/,
+			pattern: /(^|[^\w.[])(?:CURRENT|NEW|OLD)\b/,
 			lookbehind: true
 		},
+		{
+			pattern: /\bOPTIONS(?=\s*{)/i
+		}
 	],
 	'function': /(?!\d)\w+(?=\s*\()/,
 	'boolean': /(?:true|false)/i,

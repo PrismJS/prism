@@ -1,3 +1,6 @@
+WITH COUNT INTO
+COUNT
+
 AGGREGATE
 ALL
 AND
@@ -31,16 +34,26 @@ UPDATE
 UPSERT
 WITH
 
-OPTIONS
+KEEP
+PRUNE
 SEARCH
 TO
 
-OLD
+CURRENT
 NEW
+OLD
+
+OPTIONS {}
+OPTIONS
 
 ----------------------------------------------------
 
 [
+	["keyword", "WITH"],
+	["keyword", "COUNT"],
+	["keyword", "INTO"],
+	"\r\nCOUNT\r\n\r\n",
+
 	["keyword", "AGGREGATE"],
 	["keyword", "ALL"],
 	["keyword", "AND"],
@@ -74,12 +87,19 @@ NEW
 	["keyword", "UPSERT"],
 	["keyword", "WITH"],
 
-	["keyword", "OPTIONS"],
+	["keyword", "KEEP"],
+	["keyword", "PRUNE"],
 	["keyword", "SEARCH"],
 	["keyword", "TO"],
 
+	["keyword", "CURRENT"],
+	["keyword", "NEW"],
 	["keyword", "OLD"],
-	["keyword", "NEW"]
+
+	["keyword", "OPTIONS"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	"\r\nOPTIONS"
 ]
 
 ----------------------------------------------------
