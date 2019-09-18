@@ -65,23 +65,13 @@ module.exports = {
 		const simplifiedTokenStream = this.simpleTokenize(Prism, testCase.testSource, usedLanguages.mainLanguage);
 
 		const tzd = JSON.stringify(simplifiedTokenStream);
-		const exp = JSON.stringify(testCase.expectedTokenStream);
-		let i = 0;
-		let j = 0;
-		let diff = "";
-		while (j < tzd.length) {
-			if (exp[i] != tzd[j] || i == exp.length)
-				diff += tzd[j];
-			else
-				i++;
-			j++;
-		}
 
 		const tokenStreamStr = pretty ? TokenStreamTransformer.prettyprint(simplifiedTokenStream) : tzd;
-		const message = "\nToken Stream: \n" + tokenStreamStr +
+		const message = "\n\nActual Token Stream:" +
 			"\n-----------------------------------------\n" +
-			"Expected Token Stream: \n" + exp +
-			"\n-----------------------------------------\n" + diff;
+			tokenStreamStr +
+			"\n-----------------------------------------\n" +
+			"File: " + filePath + "\n\n";
 
 		assert.deepEqual(simplifiedTokenStream, testCase.expectedTokenStream, testCase.comment + message);
 	},
