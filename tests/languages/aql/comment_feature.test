@@ -3,12 +3,15 @@
  multi
  line
  */
+/* unclosed multi-line comments are allowed
+RETURN 1
 
 ----------------------------------------------------
 
 [
 	["comment", "// single line"],
-	["comment", "/*\r\n multi\r\n line\r\n */"]
+	["comment", "/*\r\n multi\r\n line\r\n */"],
+	["comment", "/* unclosed multi-line comments are allowed\r\nRETURN 1"]
 ]
 
 ----------------------------------------------------

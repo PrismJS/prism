@@ -1,5 +1,5 @@
 Prism.languages.aql = {
-	'comment': /\/\/.*|\/\*[\s\S]*?\*\//,
+	'comment': /\/\/.*|\/\*[\s\S]*?(?:\*\/|$)/,
 	'property': {
 		pattern: /([{,]\s*)(?:(?!\d)\w+|(["'´`])(?:(?!\2)[^\\\r\n]|\\.)*\2)(?=\s*:)/,
 		lookbehind: true,
