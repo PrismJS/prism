@@ -64,14 +64,27 @@ module.exports = {
 		// the first language is the main language to highlight
 		const simplifiedTokenStream = this.simpleTokenize(Prism, testCase.testSource, usedLanguages.mainLanguage);
 
-		const tzd = JSON.stringify(simplifiedTokenStream);
+		const actual = JSON.stringify(simplifiedTokenStream);
+		const expected = JSON.stringify(testCase.expectedTokenStream);
 
-		const tokenStreamStr = pretty ? TokenStreamTransformer.prettyprint(simplifiedTokenStream) : tzd;
+		if (actual === expected) {
+			// no difference
+			return;
+		}
+
+		// The index of the first difference between the expected token stream and the actual token stream.
+		// The index is in the raw expected token stream JSON of the test case.
+		const diffIndex = translateIndexIgnoreSpaces(testCase.expectedJson, expected, firstDiff(expected, actual));
+		const expectedJsonLines = testCase.expectedJson.substr(0, diffIndex).split(/\r\n?|\n/g);
+		const columnNumber = expectedJsonLines.pop().length + 1;
+		const lineNumber = testCase.expectedLineOffset + expectedJsonLines.length;
+
+		const tokenStreamStr = pretty ? TokenStreamTransformer.prettyprint(simplifiedTokenStream) : actual;
 		const message = "\n\nActual Token Stream:" +
 			"\n-----------------------------------------\n" +
 			tokenStreamStr +
 			"\n-----------------------------------------\n" +
-			"File: " + filePath + "\n\n";
+			"File: " + filePath + ":" + lineNumber + ":" + columnNumber + "\n\n";
 
 		assert.deepEqual(simplifiedTokenStream, testCase.expectedTokenStream, testCase.comment + message);
 	},
@@ -148,7 +161,6 @@ module.exports = {
 	 *
 	 * @private
 	 * @param {string} filePath
-	 * @returns {{testSource: string, expectedTokenStream: Array.<Array.<string>>, comment:string?}|null}
 	 */
 	parseTestCaseFile(filePath) {
 		const testCaseSource = fs.readFileSync(filePath, "utf8");
@@ -157,6 +169,8 @@ module.exports = {
 		try {
 			const testCase = {
 				testSource: testCaseParts[0].trim(),
+				expectedJson: testCaseParts[1],
+				expectedLineOffset: testCaseParts[0].split(/\r\n?|\n/g).length,
 				expectedTokenStream: JSON.parse(testCaseParts[1]),
 				comment: null
 			};
@@ -207,3 +221,54 @@ module.exports = {
 		}
 	}
 };
+
+/**
+ * Returns the index at which the given expected string differs from the given actual string.
+ *
+ * This will returns `undefined` if the strings are equal.
+ *
+ * @param {string} expected
+ * @param {string} actual
+ * @returns {number | undefined}
+ */
+function firstDiff(expected, actual) {
+	let i = 0;
+	let j = 0;
+	while (i < expected.length && j < actual.length) {
+		if (expected[i] !== actual[j]) {
+			return i;
+		}
+		i++; j++;
+	}
+
+	if (i == expected.length && j == actual.length) {
+		return undefined;
+	}
+	return i;
+}
+
+/**
+ * Translates an index within a string (`withoutSpaces`) to the index of another string (`spacey`) where the only
+ * difference between the two strings is that the other string can have any number of additional white spaces at any
+ * position.
+ *
+ * In out use case, the `withoutSpaces` string is an unformatted JSON string and the `spacey` string is a formatted JSON
+ * string.
+ *
+ * @param {string} spacey
+ * @param {string} withoutSpaces
+ * @param {number} withoutSpaceIndex
+ * @returns {number | undefined}
+ */
+function translateIndexIgnoreSpaces(spacey, withoutSpaces, withoutSpaceIndex) {
+	let i = 0;
+	let j = 0;
+	while (i < spacey.length && j < withoutSpaces.length) {
+		while (spacey[i] !== withoutSpaces[j]) i++;
+		if (j === withoutSpaceIndex) {
+			return i;
+		}
+		i++; j++;
+	}
+	return undefined;
+}
