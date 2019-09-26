@@ -38,7 +38,7 @@ a = function () {}, b = () => {}
 
 	["punctuation", "{"],
 	["function-variable", "foo"],
-	["punctuation", ":"],
+	["operator", ":"],
 	["keyword", "function"],
 	["punctuation", "("],
 	["punctuation", ")"],
@@ -119,10 +119,10 @@ a = function () {}, b = () => {}
 	["parameter", [
 		["punctuation", "{"],
 		" props",
-		["punctuation", ":"],
+		["operator", ":"],
 		["punctuation", "{"],
 		" a",
-		["punctuation", ":"],
+		["operator", ":"],
 		" _A",
 		["punctuation", ","],
 		" b",
