@@ -97,7 +97,6 @@ module.exports = {
 	 * @param {any} Prism The Prism instance which will tokenize `code`.
 	 * @param {string} code The code to tokenize.
 	 * @param {string} language The language id.
-	 * @returns {Array<string|Array<string|any[]>>}
 	 */
 	simpleTokenize(Prism, code, language) {
 		const env = {
