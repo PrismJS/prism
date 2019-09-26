@@ -1144,6 +1144,11 @@
 			"title": "Diff Highlight",
 			"owner": "RunDevelopment",
 			"require": "diff"
+		},
+		"not-all": {
+			"title": "Not all",
+			"owner": "RunDevelopment",
+			"noCSS": true
 		}
 	}
 }

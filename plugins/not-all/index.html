@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta charset="utf-8" />
+	<link rel="icon" href="favicon.png" />
+	<title>Not all ▲ Prism plugins</title>
+	<base href="../.." />
+	<link rel="stylesheet" href="style.css" />
+	<link rel="stylesheet" href="themes/prism.css" data-noprefix />
+	<script src="scripts/prefixfree.min.js"></script>
+
+	<script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
+	<script src="https://www.google-analytics.com/ga.js" async></script>
+	<style>
+	dt {
+		font-size: 100%;
+	}
+	</style>
+</head>
+<body>
+
+<header>
+	<div class="intro" data-src="templates/header-plugins.html" data-type="text/html"></div>
+
+	<h2>Not all</h2>
+	<p>Filter the elements the <code>highlightAll</code> and <code>highlightAllUnder</code> methods actually highlight.</p>
+</header>
+
+<section class="language-typescript">
+	<h1>How to use</h1>
+
+	<p>Not all provides you with ways to filter the element the <code>highlightAll</code> and <code>highlightAllUnder</code> methods actually highlight. This can be very useful when you use Prism's automatic highlighting when loading the page but want to exclude certain code blocks.</p>
+
+	<p>In <code>Prism.plugins.notAll</code> you can find the following:</p>
+
+	<dl>
+		<dt><code>filter(condition: (value: { element, language: string }) => boolean): void</code></dt>
+		<dd>
+			Only if the given function return <code>true</code> will the element be highlighted.
+			This can be used to define a custom language filter.
+		</dd>
+
+		<dt><code>filterCss(selector: string): void</code></dt>
+		<dd>
+			Only elements which match the given CSS selector will be highlighted.
+		</dd>
+
+		<dt><code>filterKnown: boolean = false</code></dt>
+		<dd>
+			Set this to <code>true</code> to only allow known languages.
+			Code blocks without a set language or an unknown language will not be highlighted.
+		</dd>
+	</dl>
+</section>
+
+<section>
+	<h1>Examples</h1>
+
+	<p>The following code is used to define a filter on this page.</p>
+
+	<pre><code class="language-javascript">// &lt;code> elements with a .no-highlight class will be ignored
+Prism.plugins.notAll.filterCss('code:not(.no-highlight)');
+Prism.plugins.notAll.filterCss('pre:not(.no-highlight) > code');
+
+// don't highlight CSS code
+Prism.plugins.notAll.filter(function (env) {
+	return env.language !== 'css';
+});</code></pre>
+
+	<p>The results:</p>
+
+	<pre class="language-javascript no-highlight"><code class="language-javascript">let foo = "I'm not being highlighted";</code></pre>
+
+	<pre class="language-css"><code class="language-css">a.link::after {
+	content: 'also not being highlighted';
+	color: #F00;
+}</code></pre>
+
+	<p>Prism will ignore these blocks, so you can even define your own static highlighting which Prism would normally remove.</p>
+
+	<pre class="language-css"><code class="language-css">a.link::after {
+	cont<span class="token selector">ent: 'also not be</span>ing highlighted';
+	color: <span class="token constant">#F00</span>;
+}</code></pre>
+
+</section>
+
+<footer data-src="templates/footer.html" data-type="text/html"></footer>
+
+<script src="prism.js"></script>
+<script src="plugins/not-all/prism-not-all.js"></script>
+<script src="plugins/autoloader/prism-autoloader.js"></script>
+<script src="scripts/utopia.js"></script>
+<script src="components.js"></script>
+<script src="scripts/code.js"></script>
+
+<script>
+// elements with a .no-highlight class will be ignored
+Prism.plugins.notAll.filterCss('code:not(.no-highlight)');
+Prism.plugins.notAll.filterCss('pre:not(.no-highlight) > code');
+
+// don't highlight CSS code
+Prism.plugins.notAll.filter(function (env) {
+	return env.language !== 'css';
+});
+</script>
+
+</body>
+</html>
