@@ -1,68 +1,92 @@
-(function(){
+(function () {
 
-if (
-	(typeof self === 'undefined' || !self.Prism) &&
-	(typeof global === 'undefined' || !global.Prism)
-) {
-	return;
-}
-
-/**
- * @callback ClassMapper
- * @param {string} className
- * @param {string} language
- * @returns {string}
- */
-/**
- * @typedef CustomClassOptions
- * @property {ClassMapper} classMap
- * @property {string} prefixString
- */
-
-/** @type {ClassMapper} */
-var defaultClassMap = function (className) { return className; };
-
-/** @type {CustomClassOptions} */
-var options = {
-	classMap: defaultClassMap,
-	prefixString: ''
-};
-
-Prism.plugins.customClass = {
-	/**
-	 * Maps all class names using the given object or map function.
-	 *
-	 * This does not affect the prefix.
-	 *
-	 * @param {Object<string, string> | ClassMapper} classMap
-	 */
-	map: function map(classMap) {
-		if (typeof classMap === 'function') {
-			options.classMap = classMap;
-		} else {
-			options.classMap = function (className) {
-				return classMap[className] || className;
-			};
-		}
-	},
-	/**
-	 * Adds the given prefix to all class names.
-	 *
-	 * @param {string} string
-	 */
-	prefix: function prefix(string) {
-		options.prefixString = string;
-	}
-}
-
-Prism.hooks.add('wrap', function (env) {
-	if (options.classMap === defaultClassMap && !options.prefixString) {
+	if (
+		(typeof self === 'undefined' || !self.Prism) &&
+		(typeof global === 'undefined' || !global.Prism)
+	) {
 		return;
 	}
 
-	env.classes = env.classes.map(function (c) {
-		return options.prefixString + options.classMap(c, env.language);
+	/**
+	 * @callback ClassMapper
+	 * @param {string} className
+	 * @param {string} language
+	 * @returns {string}
+	 *
+	 * @callback ClassAdder
+	 * @param {string} language
+	 * @param {string} type
+	 * @param {string} content
+	 * @returns {undefined | string | string[]}
+	 */
+
+	/** @type {ClassMapper} */
+	var defaultClassMap = function (className) { return className; };
+
+	// options
+
+	/** @type {ClassAdder[]} */
+	var classAdders = [];
+	/** @type {ClassMapper} */
+	var classMapper = defaultClassMap;
+	/** @type {string} */
+	var prefixString = '';
+
+
+	Prism.plugins.customClass = {
+		/**
+		 * Sets the function which can be used to add custom aliases to any token.
+		 *
+		 * @param {ClassAdder} adder
+		 */
+		add: function (classAdder) {
+			classAdders.push(classAdder);
+		},
+		/**
+		 * Maps all class names using the given object or map function.
+		 *
+		 * This does not affect the prefix.
+		 *
+		 * @param {Object<string, string> | ClassMapper} classMap
+		 */
+		map: function map(classMap) {
+			if (typeof classMap === 'function') {
+				classMapper = classMap;
+			} else {
+				classMapper = function (className) {
+					return classMap[className] || className;
+				};
+			}
+		},
+		/**
+		 * Adds the given prefix to all class names.
+		 *
+		 * @param {string} string
+		 */
+		prefix: function prefix(string) {
+			prefixString = string;
+		}
+	}
+
+	Prism.hooks.add('wrap', function (env) {
+		for (var i = 0, l = classAdders.length; i < l; i++) {
+			var result = classAdders[i](env.language, env.type, env.content);
+			if (result) {
+				if (Array.isArray(result)) {
+					env.classes.push.apply(env.classes, result);
+				} else {
+					env.classes.push(result);
+				}
+			}
+		}
+
+		if (classMapper === defaultClassMap && !prefixString) {
+			return;
+		}
+
+		env.classes = env.classes.map(function (c) {
+			return prefixString + classMapper(c, env.language);
+		});
 	});
-});
 
 })();
