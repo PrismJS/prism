@@ -1,15 +1,14 @@
 Prism.languages.asmatmel = {
 	'comment': /;.*/,
 	'constant' : {
-		pattern: /PB[0-7]|PD[0-7]|PC[0-5]|PORT[A-D]|DDR[A-D]|DD[A-D][0-7]/,
-		alias: 'constant'
+		pattern: /P[A-L][0-7]|PORT[A-L]|DDR[A-L]|DD[A-L][0-7]/
 	},
 	'directive': {
 		pattern: /\.\w+(?= )/,
 		alias: 'property'
 	},
 	'rregister': {
-		pattern: /r3[0-1]|r[1-2][0-9]|r[0-9]/,
+		pattern: /\b(?:r3[0-1])\b|\b(?:r[1-2][0-9])\b|\b(?:r[0-9])\b/,
 		alias: 'variable'
 	},
 	'string': /(["'`])(?:\\.|(?!\1)[^\\\r\n])*\1/,
@@ -33,4 +32,10 @@ Prism.languages.asmatmel = {
 		pattern: /\b[acznvshtixyz]\b/i,
 		alias: 'variable'
 	},
+	'operator': {
+		pattern: />>=?|<<=?/
+	},
+	'punctuation': {
+		pattern: /[(),:]/
+	}
 };

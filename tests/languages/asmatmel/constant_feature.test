@@ -6,11 +6,11 @@ ldi r17,PD6
 [
   ["opcode", "OUT"],
   ["constant", "PORTD"],
-  ",",
+  ["punctuation", ","],
   ["register", "x"],
   ["opcode", "ldi"],
   ["rregister", "r17"],
-  ",",
+  ["punctuation", ","],
   ["constant", "PD6"]
 ]
 

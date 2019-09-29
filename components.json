@@ -126,14 +126,14 @@
 			"title": "6502 Assembly",
 			"owner": "kzurawel"
 		},
-		"asmatmel": {
-			"title": "Atmel AVR Assembly",
-			"owner": "cerkit"
-		},
 		"aspnet": {
 			"title": "ASP.NET (C#)",
 			"require": ["markup", "csharp"],
 			"owner": "nauzilus"
+		},
+		"asmatmel": {
+			"title": "Atmel AVR Assembly",
+			"owner": "cerkit"
 		},
 		"autohotkey": {
 			"title": "AutoHotkey",

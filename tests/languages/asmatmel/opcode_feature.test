@@ -1,5 +1,5 @@
 LDY
-LDX
+LDZ
 out
 ldi
 
@@ -7,7 +7,7 @@ ldi
 
 [
   ["opcode", "LDY"],
-  ["opcode", "LDX"],
+  ["opcode", "LDZ"],
   ["opcode", "out"],
   ["opcode", "ldi"]
 ]
