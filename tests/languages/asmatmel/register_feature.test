@@ -1,6 +1,7 @@
 OUT PORTB,x
-ldi r17, (1<<PD7)
+ldi r17,PD7
 OUT PORTD,r31
+OUT PORTB,A
 
 -------------------------
 
@@ -10,14 +11,17 @@ OUT PORTD,r31
   ",",
   ["register", "x"],
   ["opcode", "ldi"],
-  ["rregister", "r17"]
-  "(1<<",
+  ["rregister", "r17"],
+  ",",
   ["constant", "PD7"],
-  ")"
   ["opcode","OUT"],
   ["constant", "PORTD"],
   ",",
-  ["rregister", "r31"]
+  ["rregister", "r31"],
+  ["opcode","OUT"],
+  ["constant", "PORTB"],
+  ",",
+  ["register", "A"]
 ]
 
 -------------------------

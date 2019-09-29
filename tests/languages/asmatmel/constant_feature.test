@@ -1,18 +1,17 @@
-OUT PORTB,x
-ldi r17, (1<<PD6)
+OUT PORTD,x
+ldi r17,PD6
 
 -------------------------
 
 [
   ["opcode", "OUT"],
-  ["constant", "PORTB"],
+  ["constant", "PORTD"],
   ",",
   ["register", "x"],
   ["opcode", "ldi"],
-  ["register", "r17"]
-  "(1<<",
-  ["constant", "PD7"],
-  ")"
+  ["rregister", "r17"],
+  ",",
+  ["constant", "PD6"]
 ]
 
 -------------------------

@@ -1,15 +1,15 @@
-LDA #127
-STA $8000
-LDX #%10001010
+LD #127
+ST $8000
+LD #%10001010
 
 -------------------------
 
 [
-  ["opcode", "LDA"],
+  ["opcode", "LD"],
   ["decimalnumber", "#127"],
-  ["opcode", "STA"],
+  ["opcode", "ST"],
   ["hexnumber", "$8000"],
-  ["opcode", "LDX"],
+  ["opcode", "LD"],
   ["binarynumber", "#%10001010"]
 ]
 

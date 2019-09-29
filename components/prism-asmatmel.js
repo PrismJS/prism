@@ -30,7 +30,7 @@ Prism.languages.asmatmel = {
 		alias: 'string'
 	},
 	'register': {
-		pattern: /\b[cznvshtixyz]\b/i,
+		pattern: /\b[acznvshtixyz]\b/i,
 		alias: 'variable'
 	},
 };
