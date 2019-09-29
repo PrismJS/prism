@@ -894,7 +894,7 @@
 			"owner": "RunDevelopment"
 		},
 		"sqf": {
-			"title": "Status Quo Function (Arma 3)",
+			"title": "SQF: Status Quo Function (Arma 3)",
 			"require": "clike",
 			"owner": "RunDevelopment"
 		},
