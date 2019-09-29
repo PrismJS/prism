@@ -1,0 +1,20 @@
+OUT PORTB,x
+ldi r17, (1<<PD6)
+
+-------------------------
+
+[
+  ["opcode", "OUT"],
+  ["constant", "PORTB"],
+  ",",
+  ["register", "x"],
+  ["opcode", "ldi"],
+  ["register", "r17"]
+  "(1<<",
+  ["constant", "PD7"],
+  ")"
+]
+
+-------------------------
+
+Check for constants

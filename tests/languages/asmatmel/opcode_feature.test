@@ -1,0 +1,17 @@
+LDY
+LDX
+out
+ldi
+
+-------------------------------------
+
+[
+  ["opcode", "LDY"],
+  ["opcode", "LDX"],
+  ["opcode", "out"],
+  ["opcode", "ldi"]
+]
+
+-------------------------------------
+
+Check for opcodes

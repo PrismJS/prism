@@ -1,0 +1,25 @@
+OUT PORTB,x
+ldi r17, (1<<PD7)
+OUT PORTD,r31
+
+-------------------------
+
+[
+  ["opcode", "OUT"],
+  ["constant", "PORTB"],
+  ",",
+  ["register", "x"],
+  ["opcode", "ldi"],
+  ["rregister", "r17"]
+  "(1<<",
+  ["constant", "PD7"],
+  ")"
+  ["opcode","OUT"],
+  ["constant", "PORTD"],
+  ",",
+  ["rregister", "r31"]
+]
+
+-------------------------
+
+Check for registers

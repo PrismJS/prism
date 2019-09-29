@@ -1,6 +1,6 @@
 Prism.languages.asmatmel = {
 	'comment': /;.*/,
-	'constants' : {
+	'constant' : {
 		pattern: /PB[0-7]|PD[0-7]|PC[0-5]|PORT[A-D]|DDR[A-D]|DD[A-D][0-7]/,
 		alias: 'constant'
 	},
