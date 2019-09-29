@@ -1,7 +1,7 @@
 Prism.languages.asmatmel = {
 	'comment': /;.*/,
 	'constant' : {
-		pattern: /\b(?:P[A-Z]3[0-1])\b|\b(?:P[A-Z][0-2][0-9])\b|PORT[A-Z]|DDR[A-Z]|\b(?:DD[A-Z]3[0-1])\b|\b(?:DD[A-Z][0-2][0-9])\b/
+		pattern: /\b(?:P[A-Z][0-9])\b|\b(?:P[A-Z]3[0-1])\b|\b(?:P[A-Z][0-2][0-9])\b|PORT[A-Z]|DDR[A-Z]|\b(?:DD[A-Z]3[0-1])\b|\b(?:DD[A-Z][0-2][0-9])\b/
 	},
 	'directive': {
 		pattern: /\.\w+(?= )/,

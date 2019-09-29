@@ -4,6 +4,7 @@ ldi	r19,(1<<DDB31)
 ldi	r19,(1<<DDA30)
 ldi	r19,(1<<DDL10)
 ldi	r19,(1<<DDZ05)
+ldi	r19,(1<<PD7)
 
 -------------------------
 
@@ -47,6 +48,14 @@ ldi	r19,(1<<DDZ05)
 	["decimalnumber", "1"],
 	["operator", "<<"],
 	["constant", "DDZ05"],
+	["punctuation", ")"],
+	["opcode", "ldi"],
+	["rregister", "r19"],
+	["punctuation", ","],
+	["punctuation", "("],
+	["decimalnumber", "1"],
+	["operator", "<<"],
+	["constant", "PD7"],
 	["punctuation", ")"]
 ]
 
