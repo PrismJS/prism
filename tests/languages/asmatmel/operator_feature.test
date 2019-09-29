@@ -1,5 +1,5 @@
 OUT PORTB,x
-ldi r17,(1<<PD7)
+ldi r17,(1<<PD07)
 
 -------------------------
 
@@ -14,7 +14,7 @@ ldi r17,(1<<PD7)
 	["punctuation", "("],
 	["decimalnumber", "1"],
 	["operator", "<<"],
-	["constant", "PD7"],
+	["constant", "PD07"],
 	["punctuation", ")"]
 ]
 
