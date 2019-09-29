@@ -1,0 +1,51 @@
+call
+case
+catch
+default
+do
+echo
+else
+endsWith
+for
+forEach
+from
+goto
+if
+nil
+private
+step
+switch
+then
+to
+try
+while
+
+----------------------------------------------------
+
+[
+	["keyword", "call"],
+	["keyword", "case"],
+	["keyword", "catch"],
+	["keyword", "default"],
+	["keyword", "do"],
+	["keyword", "echo"],
+	["keyword", "else"],
+	["keyword", "endsWith"],
+	["keyword", "for"],
+	["keyword", "forEach"],
+	["keyword", "from"],
+	["keyword", "goto"],
+	["keyword", "if"],
+	["keyword", "nil"],
+	["keyword", "private"],
+	["keyword", "step"],
+	["keyword", "switch"],
+	["keyword", "then"],
+	["keyword", "to"],
+	["keyword", "try"],
+	["keyword", "while"]
+]
+
+----------------------------------------------------
+
+Checks for keywords.

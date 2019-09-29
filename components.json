@@ -893,6 +893,11 @@
 			"title": "Splunk SPL",
 			"owner": "RunDevelopment"
 		},
+		"sqf": {
+			"title": "Status Quo Function (Arma 3)",
+			"require": "clike",
+			"owner": "RunDevelopment"
+		},
 		"sql": {
 			"title": "SQL",
 			"owner": "multipetros"
