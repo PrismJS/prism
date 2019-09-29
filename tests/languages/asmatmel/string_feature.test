@@ -3,8 +3,8 @@
 -------------------------
 
 [
-  ["directive", ".include"],
-  ["string", "\"header.asm\""]
+	["directive", ".include"],
+	["string", "\"header.asm\""]
 ]
 
 -------------------------

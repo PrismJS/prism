@@ -6,10 +6,10 @@ ldi
 -------------------------------------
 
 [
-  ["opcode", "LDY"],
-  ["opcode", "LDZ"],
-  ["opcode", "out"],
-  ["opcode", "ldi"]
+	["opcode", "LDY"],
+	["opcode", "LDZ"],
+	["opcode", "out"],
+	["opcode", "ldi"]
 ]
 
 -------------------------------------

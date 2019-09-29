@@ -3,8 +3,8 @@
 -------------------------
 
 [
-  ["directive", ".segment"],
-  " CODE"
+	["directive", ".segment"],
+	" CODE"
 ]
 
 -------------------------

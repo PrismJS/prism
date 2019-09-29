@@ -5,12 +5,12 @@ LD #%10001010
 -------------------------
 
 [
-  ["opcode", "LD"],
-  ["decimalnumber", "#127"],
-  ["opcode", "ST"],
-  ["hexnumber", "$8000"],
-  ["opcode", "LD"],
-  ["binarynumber", "#%10001010"]
+	["opcode", "LD"],
+	["decimalnumber", "#127"],
+	["opcode", "ST"],
+	["hexnumber", "$8000"],
+	["opcode", "LD"],
+	["binarynumber", "#%10001010"]
 ]
 
 -------------------------
