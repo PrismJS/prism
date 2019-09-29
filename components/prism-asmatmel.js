@@ -9,7 +9,7 @@ Prism.languages.asmatmel = {
 		alias: 'property'
 	},
 	'rregister': {
-		pattern: /r[0-9][0-9]/,
+		pattern: /r3[0-1]|r[1-2][0-9]|r[0-9]/,
 		alias: 'variable'
 	},
 	'string': /(["'`])(?:\\.|(?!\1)[^\\\r\n])*\1/,
