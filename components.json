@@ -303,6 +303,11 @@
 			"title": "Fortran",
 			"owner": "Golmote"
 		},
+		"ftl": {
+			"title": "FreeMarker Template Language",
+			"require": "markup-templating",
+			"owner": "RunDevelopment"
+		},
 		"gcode": {
 			"title": "G-code",
 			"owner": "RunDevelopment"
