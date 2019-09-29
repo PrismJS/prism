@@ -1,0 +1,23 @@
+OUT PORTB,x
+ldi r17,(1<<PD7)
+
+-------------------------
+
+[
+	["opcode", "OUT"],
+	["constant", "PORTB"],
+	["punctuation", ","],
+	["register", "x"],
+	["opcode", "ldi"],
+	["rregister", "r17"],
+	["punctuation", ","],
+	["punctuation", "("],
+	["decimalnumber", "1"],
+	["operator", "<<"],
+	["constant", "PD7"],
+	["punctuation", ")"]
+]
+
+-------------------------
+
+Check for operators
