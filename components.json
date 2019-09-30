@@ -1066,7 +1066,7 @@
 		},
 		"custom-class": {
 			"title": "Custom Class",
-			"description": "This plugin allows you to prefix Prism default classes (e.g. <code>.comment</code> will become <code>.namespace--comment</code>) or replace them with your defined ones (like <code>.editor__comment</code> or <code>.comment_7sh3a</code>).",
+			"description": "Allows you to prefix Prism default classes (e.g. <code>.comment</code> will become <code>.namespace--comment</code>) or replace them with your defined ones (like <code>.editor__comment</code> or <code>.comment_7sh3a</code>).",
 			"owner": "dvkndn",
 			"noCSS": true
 		},
@@ -1090,7 +1090,7 @@
 		},
 		"highlight-keywords": {
 			"title": "Highlight Keywords",
-			"description": "This plugin adds special CSS classes for each keyword matched in the code. For example, the keyword <code>if</code> will have the class <code>keyword-if</code> as well. You can have fine grained control over the appearance of each keyword by providing your own CSS rules.",
+			"description": "Adds special CSS classes for each keyword matched in the code. For example, the keyword <code>if</code> will have the class <code>keyword-if</code> as well. You can have fine grained control over the appearance of each keyword by providing your own CSS rules.",
 			"owner": "vkbansal",
 			"noCSS": true
 		},
@@ -1102,7 +1102,7 @@
 		},
 		"inline-color": {
 			"title": "Inline color",
-			"description": "This plugin adds a small inline preview for colors in style sheets.",
+			"description": "Adds a small inline preview for colors in style sheets.",
 			"require": "css-extras",
 			"owner": "RunDevelopment"
 		},
