@@ -68,7 +68,7 @@
 			pattern: /(^[ \t]*)(?:if|else|for|return|unless)[ \t]+.+/m,
 			lookbehind: true,
 			inside: {
-				keyword: /^\S+/,
+				'keyword': /^\S+/,
 				rest: inside
 			}
 		},

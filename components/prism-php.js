@@ -64,9 +64,7 @@
 	var string_interpolation = {
 		pattern: /{\$(?:{(?:{[^{}]+}|[^{}]+)}|[^{}])+}|(^|[^\\{])\$+(?:\w+(?:\[.+?]|->\w+)*)/,
 		lookbehind: true,
-		inside: {
-			rest: Prism.languages.php
-		}
+		inside: Prism.languages.php
 	};
 
 	Prism.languages.insertBefore('php', 'string', {
