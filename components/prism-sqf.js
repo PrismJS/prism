@@ -5,7 +5,7 @@ Prism.languages.sqf = Prism.languages.extend('clike', {
 	},
 	'keyword': /\b(?:call|case|catch|default|do|echo|else|endsWith|for|forEach|from|goto|if|nil|private|step|switch|then|to|try|while)\b/,
 	'magic-variable': {
-		pattern: /\b(?:_exception|_fnc_scriptName|_fnc_scriptNameParent|_forEachIndex|_this|_thisEventHandler|_thisFSM|_thisScript|_time|_x|this|thisList|thisTrigger)\b/,
+		pattern: /\b(?:_exception|_fnc_scriptName|_fnc_scriptNameParent|_forEachIndex|_this|_thisEventHandler|_thisFSM|_thisScript|_x|this|thisList|thisTrigger)\b/,
 		alias: 'keyword'
 	},
 	'boolean': /\b(?:true|false)\b/,

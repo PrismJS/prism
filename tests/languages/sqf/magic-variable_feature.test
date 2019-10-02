@@ -6,7 +6,6 @@ _this
 _thisEventHandler
 _thisFSM
 _thisScript
-_time
 _x
 this
 thisList
@@ -23,7 +22,6 @@ thisTrigger
 	["magic-variable", "_thisEventHandler"],
 	["magic-variable", "_thisFSM"],
 	["magic-variable", "_thisScript"],
-	["magic-variable", "_time"],
 	["magic-variable", "_x"],
 	["magic-variable", "this"],
 	["magic-variable", "thisList"],
