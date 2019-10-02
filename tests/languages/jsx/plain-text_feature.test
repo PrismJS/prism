@@ -39,7 +39,7 @@
 	["number", "0"],
 	["operator", "?"],
 	["number", "42"],
-	["punctuation", ":"],
+	["operator", ":"],
 	["number", "0"],
 	["punctuation", "}"],
 	["plain-text", "}\r\n"],
