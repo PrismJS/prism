@@ -1,3 +1,5 @@
+breakOut
+breakTo
 call
 case
 catch
@@ -13,9 +15,11 @@ goto
 if
 nil
 private
+scopeName
 step
 switch
 then
+throw
 to
 try
 while
@@ -24,6 +28,8 @@ with
 ----------------------------------------------------
 
 [
+	["keyword", "breakOut"],
+	["keyword", "breakTo"],
 	["keyword", "call"],
 	["keyword", "case"],
 	["keyword", "catch"],
@@ -39,9 +45,11 @@ with
 	["keyword", "if"],
 	["keyword", "nil"],
 	["keyword", "private"],
+	["keyword", "scopeName"],
 	["keyword", "step"],
 	["keyword", "switch"],
 	["keyword", "then"],
+	["keyword", "throw"],
 	["keyword", "to"],
 	["keyword", "try"],
 	["keyword", "while"],
