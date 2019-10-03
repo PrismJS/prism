@@ -3,7 +3,7 @@ Prism.languages.sqf = Prism.languages.extend('clike', {
 		pattern: /"(?:(?:"")?[^"])*"(?!")|'(?:[^'])*'/,
 		greedy: true
 	},
-	'keyword': /\b(?:breakOut|breakTo|call|case|catch|default|do|echo|else|exitWith|for|forEach|from|goto|if|nil|private|scopeName|step|switch|then|throw|to|try|while|with)\b/i,
+	'keyword': /\b(?:breakOut|breakTo|call|case|catch|default|do|echo|else|execVM|execFSM|exitWith|for|forEach|forEachMember|forEachMemberAgent|forEachMemberTeam|from|goto|if|nil|preprocessFile|preprocessFileLineNumbers|private|scopeName|spawn|step|switch|then|throw|to|try|while|with)\b/i,
 	'magic-variable': {
 		pattern: /\b(?:_exception|_fnc_scriptName|_fnc_scriptNameParent|_forEachIndex|_this|_thisEventHandler|_thisFSM|_thisScript|_x|this|thisList|thisTrigger)\b/i,
 		alias: 'keyword'
