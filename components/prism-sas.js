@@ -15,11 +15,11 @@
 	};
 
 	var comment = [
+		/\/\*[\s\S]*?\*\//,
 		{
 			pattern: /(^\s*|;\s*)\*[^;]*;/m,
 			lookbehind: true
-		},
-		/\/\*[\s\S]+?\*\//
+		}
 	];
 
 	var string = {
@@ -53,7 +53,7 @@
 
 	Prism.languages.sas = {
 		'datalines': {
-			pattern: /^(\s*)(?:(?:data)?lines|cards);[\s\S]+?^;/im,
+			pattern: /^(\s*)(?:(?:data)?lines|cards);[\s\S]+?^\s*;/im,
 			lookbehind: true,
 			alias: 'string',
 			inside: {
@@ -127,7 +127,6 @@
 				'numeric-constant': numericConstant
 			}
 		},
-		'comment': comment,
 		'options-args': {
 			pattern: /(^options)[-'"|/\\<>*+=:()\w\s]*(?=;)/im,
 			lookbehind: true,
@@ -159,6 +158,7 @@
 			}
 		},
 		'numeric-constant': numericConstant,
+		'comment': comment,
 		'datetime': {
 			// '1jan2013'd, '9:25:19pm't, '18jan2003:9:27:05am'dt
 			pattern: RegExp(stringPattern + '(?:dt?|t)'),
@@ -167,7 +167,7 @@
 		'string': string,
 		'step': step,
 		'keyword': {
-			pattern: /((?:^|\s)=?)(?:action|after|analysis|and|array|barchart|barwidth|begingraph|by|cas|cbarline|cfill|close|column|computed?|contains|data(?=\=)|define|document|do\s+over|do|dol|drop|dul|end|entryTitle|else|endcomp|fill(?:attrs)?|filename|group(?:by)?|headline|headskip|histogram|if|infile|keep|label|layout|legendlabel|length|libname|merge|midpoints|name|noobs|nowd|ods|options|or|out(?:put)?|overlay|plot|ranexp|rannor|rbreak|retain|set|session|sessref|statgraph|sum|summarize|table|temp|then\sdo|then|title\d?|to|var|where|xaxisopts|yaxisopts|y2axisopts)\b/i,
+			pattern: /((?:^|\s)=?)(?:action|after|analysis|and|array|barchart|barwidth|begingraph|by|cas|cbarline|cfill|class(?:lev)?|close|column|computed?|contains|data(?=\=)|define|document|do\s+over|do|dol|drop|dul|end|entryTitle|else|endcomp|fill(?:attrs)?|filename|group(?:by)?|headline|headskip|histogram|if|infile|keep|keylabel|keyword|label|layout|legendlabel|length|libname|merge|midpoints|name|noobs|nowd|ods|options|or|out(?:put)?|overlay|plot|ranexp|rannor|rbreak|retain|set|session|sessref|statgraph|sum|summarize|table|temp|then\s+do|then|title\d?|to|var|where|xaxisopts|yaxisopts|y2axisopts)\b/i,
 			lookbehind: true,
 		},
 		// In SAS Studio syntax highlighting, these operators are styled like keywords
