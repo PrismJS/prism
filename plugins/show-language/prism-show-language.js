@@ -53,6 +53,7 @@
 		"dockerfile": "Docker",
 		"ebnf": "Extended Backus–Naur form",
 		"ejs": "EJS",
+		"etlua": "Embedded Lua templating",
 		"erb": "ERB",
 		"fsharp": "F#",
 		"firestore-security-rules": "Firestore security rules",
