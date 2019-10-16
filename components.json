@@ -92,6 +92,11 @@
 			"title": "Ada",
 			"owner": "Lucretia"
 		},
+		"antlr4": {
+			"title": "ANTLR4",
+			"alias": "g4",
+			"owner": "RunDevelopment"
+		},
 		"apacheconf": {
 			"title": "Apache Configuration",
 			"owner": "GuiTeK"
@@ -302,6 +307,11 @@
 		"fortran": {
 			"title": "Fortran",
 			"owner": "Golmote"
+		},
+		"ftl": {
+			"title": "FreeMarker Template Language",
+			"require": "markup-templating",
+			"owner": "RunDevelopment"
 		},
 		"gcode": {
 			"title": "G-code",

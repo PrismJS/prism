@@ -1,0 +1,78 @@
+${testString?upper_case}
+${testString?html}
+${testString?upper_case?html}
+
+${testSequence?size}
+${testSequence?join(", ")}
+
+----------------------------------------------------
+
+[
+	["ftl", [
+		["ftl-interpolation", [
+			["punctuation", "${"],
+			["content", [
+				"testString",
+				["operator", "?"],
+				["builtin-function", "upper_case"]
+			]],
+			["punctuation", "}"]
+		]]
+	]],
+	["ftl", [
+		["ftl-interpolation", [
+			["punctuation", "${"],
+			["content", [
+				"testString",
+				["operator", "?"],
+				["builtin-function", "html"]
+			]],
+			["punctuation", "}"]
+		]]
+	]],
+	["ftl", [
+		["ftl-interpolation", [
+			["punctuation", "${"],
+			["content", [
+				"testString",
+				["operator", "?"],
+				["builtin-function", "upper_case"],
+				["operator", "?"],
+				["builtin-function", "html"]
+			]],
+			["punctuation", "}"]
+		]]
+	]],
+
+	["ftl", [
+		["ftl-interpolation", [
+			["punctuation", "${"],
+			["content", [
+				"testSequence",
+				["operator", "?"],
+				["builtin-function", "size"]
+			]],
+			["punctuation", "}"]
+		]]
+	]],
+	["ftl", [
+		["ftl-interpolation", [
+			["punctuation", "${"],
+			["content", [
+				"testSequence",
+				["operator", "?"],
+				["builtin-function", "join"],
+				["punctuation", "("],
+				["string", [
+					"\", \""
+				]],
+				["punctuation", ")"]
+			]],
+			["punctuation", "}"]
+		]]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for builtin functions.

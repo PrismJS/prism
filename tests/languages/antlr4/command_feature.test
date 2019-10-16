@@ -1,0 +1,213 @@
+WS : [ \t]+ -> skip ;
+
+OPEN        : '<' -> pushMode(INSIDE) ;
+XMLDeclOpen : '<?xml' S -> pushMode(INSIDE) ;
+SPECIAL_OPEN: '<?' Name -> more, pushMode(PROC_INSTR) ;
+
+mode INSIDE;
+CLOSE        : '>' -> popMode ;
+SPECIAL_CLOSE: '?>' -> popMode ;
+SLASH_CLOSE  : '/>' -> popMode ;
+
+LQUOTE : '"' -> more, mode(STR) ;
+WS : [ \t]+ -> skip ;
+mode STR;
+STRING : '"' -> mode(DEFAULT_MODE) ;
+TEXT : . -> more ;
+
+DOUBLE : '"' .*? '"'   -> type(STRING) ;
+SINGLE : '\'' .*? '\'' -> type(STRING) ;
+WS     : [ \t]+    -> skip ;
+
+WS : [ \t]+ -> channel(HIDDEN) ;
+
+----------------------------------------------------
+
+[
+	["definition", "WS"],
+	["punctuation", ":"],
+	["character-class", [
+		["punctuation", "["],
+		["escape", "\\t"],
+		["punctuation", "]"]
+	]],
+	["operator", "+"],
+	["operator", "->"],
+	["command", [
+		["function", "skip"]
+	]],
+	["punctuation", ";"],
+	["definition", "OPEN"],
+	["punctuation", ":"],
+	["string", "'<'"],
+	["operator", "->"],
+	["command", [
+		["function", "pushMode"],
+		["punctuation", "("],
+		"INSIDE",
+		["punctuation", ")"]
+	]],
+	["punctuation", ";"],
+	["definition", "XMLDeclOpen"],
+	["punctuation", ":"],
+	["string", "'<?xml'"],
+	["constant", "S"],
+	["operator", "->"],
+	["command", [
+		["function", "pushMode"],
+		["punctuation", "("],
+		"INSIDE",
+		["punctuation", ")"]
+	]],
+	["punctuation", ";"],
+	["definition", "SPECIAL_OPEN"],
+	["punctuation", ":"],
+	["string", "'<?'"],
+	" Name ",
+	["operator", "->"],
+	["command", [
+		["function", "more"],
+		["punctuation", ","],
+		["function", "pushMode"],
+		["punctuation", "("],
+		"PROC_INSTR",
+		["punctuation", ")"]
+	]],
+	["punctuation", ";"],
+	["keyword", "mode"],
+	["constant", "INSIDE"],
+	["punctuation", ";"],
+	["definition", "CLOSE"],
+	["punctuation", ":"],
+	["string", "'>'"],
+	["operator", "->"],
+	["command", [
+		["function", "popMode"]
+	]],
+	["punctuation", ";"],
+	["definition", "SPECIAL_CLOSE"],
+	["punctuation", ":"],
+	["string", "'?>'"],
+	["operator", "->"],
+	["command", [
+		["function", "popMode"]
+	]],
+	["punctuation", ";"],
+	["definition", "SLASH_CLOSE"],
+	["punctuation", ":"],
+	["string", "'/>'"],
+	["operator", "->"],
+	["command", [
+		["function", "popMode"]
+	]],
+	["punctuation", ";"],
+	["definition", "LQUOTE"],
+	["punctuation", ":"],
+	["string", "'\"'"],
+	["operator", "->"],
+	["command", [
+		["function", "more"],
+		["punctuation", ","],
+		["function", "mode"],
+		["punctuation", "("],
+		"STR",
+		["punctuation", ")"]
+	]],
+	["punctuation", ";"],
+	["definition", "WS"],
+	["punctuation", ":"],
+	["character-class", [
+		["punctuation", "["],
+		["escape", "\\t"],
+		["punctuation", "]"]
+	]],
+	["operator", "+"],
+	["operator", "->"],
+	["command", [
+		["function", "skip"]
+	]],
+	["punctuation", ";"],
+	["keyword", "mode"],
+	["constant", "STR"],
+	["punctuation", ";"],
+	["definition", "STRING"],
+	["punctuation", ":"],
+	["string", "'\"'"],
+	["operator", "->"],
+	["command", [
+		["function", "mode"],
+		["punctuation", "("],
+		"DEFAULT_MODE",
+		["punctuation", ")"]
+	]],
+	["punctuation", ";"],
+	["definition", "TEXT"],
+	["punctuation", ":"],
+	" . ",
+	["operator", "->"],
+	["command", [
+		["function", "more"]
+	]],
+	["punctuation", ";"],
+	["definition", "DOUBLE"],
+	["punctuation", ":"],
+	["string", "'\"'"],
+	" .",
+	["operator", "*?"],
+	["string", "'\"'"],
+	["operator", "->"],
+	["command", [
+		["function", "type"],
+		["punctuation", "("],
+		"STRING",
+		["punctuation", ")"]
+	]],
+	["punctuation", ";"],
+	["definition", "SINGLE"],
+	["punctuation", ":"],
+	["string", "'\\''"],
+	" .",
+	["operator", "*?"],
+	["string", "'\\''"],
+	["operator", "->"],
+	["command", [
+		["function", "type"],
+		["punctuation", "("],
+		"STRING",
+		["punctuation", ")"]
+	]],
+	["punctuation", ";"],
+	["definition", "WS"],
+	["punctuation", ":"],
+	["character-class", [
+		["punctuation", "["],
+		["escape", "\\t"],
+		["punctuation", "]"]
+	]],
+	["operator", "+"],
+	["operator", "->"],
+	["command", [
+		["function", "skip"]
+	]],
+	["punctuation", ";"],
+	["definition", "WS"],
+	["punctuation", ":"],
+	["character-class", [
+		["punctuation", "["],
+		["escape", "\\t"],
+		["punctuation", "]"]
+	]],
+	["operator", "+"],
+	["operator", "->"],
+	["command", [
+		["function", "channel"],
+		["punctuation", "("],
+		"HIDDEN",
+		["punctuation", ")"]
+	]],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for commands.
