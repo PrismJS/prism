@@ -14,7 +14,7 @@
 			["punctuation", "{"],
 			["punctuation", "{"],
 			" track",
-			["punctuation", ":"],
+			["operator", ":"],
 			["boolean", "true"],
 			["punctuation", "}"],
 			["punctuation", "}"]

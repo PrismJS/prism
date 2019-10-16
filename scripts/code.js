@@ -4,10 +4,16 @@ if(!document.body.addEventListener) {
 	return;
 }
 
+$$('[data-plugin-header]').forEach(function (element) {
+	var plugin = components.plugins[element.getAttribute('data-plugin-header')];
+	element.innerHTML = '<div class="intro" data-src="templates/header-plugins.html" data-type="text/html"></div>\n'
+	+ '<h2>' + plugin.title  + '</h2>\n<p>' + plugin.description + '</p>';
+});
+
 $$('[data-src][data-type="text/html"]').forEach(function(element) {
 	var src = element.getAttribute('data-src'),
 	    html = element.getAttribute('data-type') === 'text/html',
-	    contentProperty = html? 'innerHTML' : 'textContent';
+	    contentProperty = html ? 'innerHTML' : 'textContent';
 
 	$u.xhr({
 		url: src,
@@ -195,16 +201,25 @@ function listPlugins(ul) {
 
 		var plugin = components.plugins[id];
 
-		$u.element.create('li', {
-			contents: {
-				tag: 'a',
-				prop: {
-					href: 'plugins/' + id
+		var li = $u.element.create('li', {
+			contents: [
+				{
+					tag: 'a',
+					prop: {
+						href: 'plugins/' + id
+					},
+					contents: plugin.title || plugin
 				},
-				contents: plugin.title || plugin
-			},
+				{
+					tag: 'br'
+				}
+			],
 			inside: ul
 		});
+
+		var desc = document.createElement('div');
+		desc.innerHTML = plugin.description;
+		li.appendChild(desc);
 	}
 }
 

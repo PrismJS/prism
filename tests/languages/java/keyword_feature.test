@@ -23,6 +23,7 @@ var null
 module requires transitive
 exports uses open
 opens with to provides
+yield
 
 ----------------------------------------------------
 
@@ -51,7 +52,8 @@ opens with to provides
 	["keyword", "var"], ["keyword", "null"],
 	["keyword", "module"], ["keyword", "requires"], ["keyword", "transitive"],
 	["keyword", "exports"], ["keyword", "uses"], ["keyword", "open"],
-	["keyword", "opens"], ["keyword", "with"], ["keyword", "to"], ["keyword","provides"]
+	["keyword", "opens"], ["keyword", "with"], ["keyword", "to"], ["keyword", "provides"],
+	["keyword", "yield"]
 ]
 
 ----------------------------------------------------
