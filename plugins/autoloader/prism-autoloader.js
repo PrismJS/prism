@@ -133,6 +133,7 @@
 		"svg": "markup",
 		"mathml": "markup",
 		"js": "javascript",
+		"g4": "antlr4",
 		"adoc": "asciidoc",
 		"shell": "bash",
 		"rbnf": "bnf",
