@@ -213,7 +213,11 @@
 		'string': string,
 		'step': step,
 		'keyword': {
+<<<<<<< HEAD
 			pattern: /((?:^|\s)=?)(?:action|after|analysis|and|array|barchart|barwidth|begingraph|by|cas|cbarline|cfill|class(?:lev)?|close|column|computed?|contains|data(?=\=)|define|document|do\s+over|do|dol|drop|dul|end|entryTitle|else|endcomp|eval(?:uate)?|exec(ute)?|fill(?:attrs)?|filename|group(?:by)?|headline|headskip|histogram|if|infile|keep|keylabel|keyword|label|layout|legendlabel|length|libname|merge|midpoints|name|noobs|nowd|ods|options|or|out(?:put)?|overlay|plot|ranexp|rannor|rbreak|retain|set|session|sessref|statgraph|sum|summarize|table|temp|then\s+do|then|title\d?|to|var|where|xaxisopts|yaxisopts|y2axisopts)\b/i,
+=======
+			pattern: /((?:^|\s)=?)(?:action|after|analysis|and|array|barchart|barwidth|begingraph|by|cas|cbarline|cfill|class(?:lev)?|close|column|computed?|contains|data(?=\=)|define|document|do\s+over|do|dol|drop|dul|end|entryTitle|else|endcomp|fill(?:attrs)?|filename|group(?:by)?|headline|headskip|histogram|if|infile|keep|keylabel|keyword|label|layout|legendlabel|length|libname|merge|midpoints|name|noobs|nowd|ods|options|or|out(?:put)?|overlay|plot|ranexp|rannor|rbreak|retain|set|session|sessref|statgraph|sum|summarize|table|temp|then\s+do|then|title\d?|to|var|where|xaxisopts|yaxisopts|y2axisopts)\b/i,
+>>>>>>> c187e229aafa1e8bf58bbf39dee7b228ade473f9
 			lookbehind: true,
 		},
 		// In SAS Studio syntax highlighting, these operators are styled like keywords

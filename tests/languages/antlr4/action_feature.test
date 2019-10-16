@@ -1,0 +1,49 @@
+options { superClass = LexerAdaptor; }
+
+@lexer::header {
+  import { Token } from 'antlr4ts/Token';
+  import { CommonToken } from 'antlr4ts/CommonToken';
+  import { Python3Parser } from './Python3Parser';
+}
+
+END : 'end' {System.out.println("found an end");} ;
+
+@header {
+from LexerAdaptor import LexerAdaptor
+}
+
+----------------------------------------------------
+
+[
+	["keyword", "options"],
+	["action", [
+		["punctuation", "{"],
+		["content", " superClass = LexerAdaptor; "],
+		["punctuation", "}"]
+	]],
+	["annotation", "@lexer::header"],
+	["action", [
+		["punctuation", "{"],
+		["content", "\n  import { Token } from 'antlr4ts/Token';\n  import { CommonToken } from 'antlr4ts/CommonToken';\n  import { Python3Parser } from './Python3Parser';\n"],
+		["punctuation", "}"]
+	]],
+	["definition", "END"],
+	["punctuation", ":"],
+	["string", "'end'"],
+	["action", [
+		["punctuation", "{"],
+		["content", "System.out.println(\"found an end\");"],
+		["punctuation", "}"]
+	]],
+	["punctuation", ";"],
+	["annotation", "@header"],
+	["action", [
+		["punctuation", "{"],
+		["content", "\nfrom LexerAdaptor import LexerAdaptor\n"],
+		["punctuation", "}"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for actions.
