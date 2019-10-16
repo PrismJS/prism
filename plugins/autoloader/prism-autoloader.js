@@ -26,6 +26,10 @@
 			"javascript",
 			"markup-templating"
 		],
+		"etlua": [
+			"lua",
+			"markup-templating"
+		],
 		"erb": [
 			"ruby",
 			"markup-templating"
@@ -33,6 +37,7 @@
 		"fsharp": "clike",
 		"firestore-security-rules": "clike",
 		"flow": "javascript",
+		"ftl": "markup-templating",
 		"glsl": "clike",
 		"gml": "clike",
 		"go": "clike",
@@ -132,6 +137,7 @@
 		"svg": "markup",
 		"mathml": "markup",
 		"js": "javascript",
+		"g4": "antlr4",
 		"adoc": "asciidoc",
 		"shell": "bash",
 		"rbnf": "bnf",
