@@ -1,0 +1,41 @@
+<% lua_code %>
+<%= lua_expression %>
+<%- lua_expression %>
+<%= 'hello' -%>
+
+----------------------------------------------------
+
+[
+	["etlua", [
+		["delimiter", "<%"],
+		["language-lua", [
+			" lua_code "
+		]],
+		["delimiter", "%>"]
+	]],
+	["etlua", [
+		["delimiter", "<%="],
+		["language-lua", [
+			" lua_expression "
+		]],
+		["delimiter", "%>"]
+	]],
+	["etlua", [
+		["delimiter", "<%-"],
+		["language-lua", [
+			" lua_expression "
+		]],
+		["delimiter", "%>"]
+	]],
+	["etlua", [
+		["delimiter", "<%="],
+		["language-lua", [
+			["string", "'hello'"]
+		]],
+		["delimiter", "-%>"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for different delimiters.
