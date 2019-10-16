@@ -33,6 +33,7 @@
 		"fsharp": "clike",
 		"firestore-security-rules": "clike",
 		"flow": "javascript",
+		"ftl": "markup-templating",
 		"glsl": "clike",
 		"gml": "clike",
 		"go": "clike",
