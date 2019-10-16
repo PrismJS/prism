@@ -92,6 +92,11 @@
 			"title": "Ada",
 			"owner": "Lucretia"
 		},
+		"antlr4": {
+			"title": "ANTLR4",
+			"alias": "g4",
+			"owner": "RunDevelopment"
+		},
 		"apacheconf": {
 			"title": "Apache Configuration",
 			"owner": "GuiTeK"
@@ -275,6 +280,11 @@
 			"title": "Elm",
 			"owner": "zwilias"
 		},
+		"etlua": {
+			"title": "Embedded Lua templating",
+			"require": ["lua", "markup-templating"],
+			"owner": "RunDevelopment"
+		},
 		"erb": {
 			"title": "ERB",
 			"require": ["ruby", "markup-templating"],
@@ -302,6 +312,11 @@
 		"fortran": {
 			"title": "Fortran",
 			"owner": "Golmote"
+		},
+		"ftl": {
+			"title": "FreeMarker Template Language",
+			"require": "markup-templating",
+			"owner": "RunDevelopment"
 		},
 		"gcode": {
 			"title": "G-code",
@@ -891,6 +906,11 @@
 		},
 		"splunk-spl": {
 			"title": "Splunk SPL",
+			"owner": "RunDevelopment"
+		},
+		"sqf": {
+			"title": "SQF: Status Quo Function (Arma 3)",
+			"require": "clike",
 			"owner": "RunDevelopment"
 		},
 		"sql": {
