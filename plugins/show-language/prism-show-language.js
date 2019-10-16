@@ -54,6 +54,7 @@
 		"erb": "ERB",
 		"fsharp": "F#",
 		"firestore-security-rules": "Firestore security rules",
+		"ftl": "FreeMarker Template Language",
 		"gcode": "G-code",
 		"gdscript": "GDScript",
 		"gedcom": "GEDCOM",
