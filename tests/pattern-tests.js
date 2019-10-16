@@ -151,7 +151,7 @@ function testPatterns(Prism) {
 		});
 	});
 
-	it('- should not have lookbehind groups with 0 as their only possible index', function () {
+	it('- should not have lookbehind groups which can be preceded by other some characters', function () {
 		/**
 		 * Returns whether the given element will have zero length meaning that it doesn't extend the matched string.
 		 *
