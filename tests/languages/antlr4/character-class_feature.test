@@ -1,0 +1,51 @@
+[abc]
+[\r\n\\\]]
+[a-z]
+[+-] [-+]
+[\uFFFF\u{10FFFF}\p{Block=Latin_1_Supplement}]
+
+----------------------------------------------------
+
+[
+	["character-class", [
+		["punctuation", "["],
+		"abc",
+		["punctuation", "]"]
+	]],
+	["character-class", [
+		["punctuation", "["],
+		["escape", "\\r"],
+		["escape", "\\n"],
+		["escape", "\\\\"],
+		["escape", "\\]"],
+		["punctuation", "]"]
+	]],
+	["character-class", [
+		["punctuation", "["],
+		"a",
+		["range", "-"],
+		"z",
+		["punctuation", "]"]
+	]],
+	["character-class", [
+		["punctuation", "["],
+		"+-",
+		["punctuation", "]"]
+	]],
+	["character-class", [
+		["punctuation", "["],
+		"-+",
+		["punctuation", "]"]
+	]],
+	["character-class", [
+		["punctuation", "["],
+		["escape", "\\uFFFF"],
+		["escape", "\\u{10FFFF}"],
+		["escape", "\\p{Block=Latin_1_Supplement}"],
+		["punctuation", "]"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for character classes.
