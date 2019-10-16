@@ -414,3 +414,26 @@ label a.owner:not(:hover) {
 		margin-bottom: 1em;
 		margin-right: 1em;
 	}
+
+ul.plugin-list {
+	column-count: 2;
+}
+	ul.plugin-list > li {
+		break-inside: avoid;
+		page-break-inside: avoid;
+	}
+	ul.plugin-list > li > a {
+		font-size: 110%;
+	}
+	ul.plugin-list > li > div {
+		margin-bottom: .5em;
+	}
+
+/*
+ * Fix for Toolbar's overflow issue
+ */
+
+div.code-toolbar {
+	display: block;
+	overflow: auto;
+}

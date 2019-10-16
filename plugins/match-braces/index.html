@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8" />
+<link rel="icon" href="favicon.png" />
+<title>Match braces ▲ Prism plugins</title>
+<base href="../.." />
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="themes/prism.css" data-noprefix />
+<link rel="stylesheet" href="plugins/match-braces/prism-match-braces.css" data-noprefix />
+<script src="scripts/prefixfree.min.js"></script>
+
+<script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
+<script src="https://www.google-analytics.com/ga.js" async></script>
+</head>
+<body class="language-none">
+
+<header data-plugin-header="match-braces"></header>
+
+<section class="language-markup">
+	<h1>How to use</h1>
+
+	<p>To enable this plugin add the <code>match-braces</code> class to a code block:</p>
+
+	<pre><code>&lt;pre>&lt;code class="language-xxxx match-braces">...&lt;/pre>&lt;/code></code></pre>
+
+	<p>Just like <code>language-xxxx</code>, the <code>match-braces</code> class is inherited, so you can add the class to the <code>&lt;body></code> to enable the plugin for the whole page.</p>
+
+	<p>The plugin will highlight brace pairs when the cursor hovers over one of the braces. The highlighting effect will disappear as soon as the cursor leaves the brace pair.<br>
+	The hover effect can be disabled by adding the <code>no-brace-hover</code> to the code block. This class can also be inherited.</p>
+
+	<p>You can also click on a brace to select the brace pair. To deselect the pair, click anywhere within the code block or select another pair.<br>
+	The selection effect can be disabled by adding the <code>no-brace-select</code> to the code block. This class can also be
+	inherited.</p>
+
+	<h2>Rainbow braces &#x1F308;</h2>
+
+	<p>To enable rainbow braces, simply add the <code>rainbow-braces</code> class to a code block. This class can also get inherited.</p>
+</section>
+
+<section class="match-braces">
+	<h1>Examples</h1>
+
+	<h2>JavaScript</h2>
+	<pre data-src="plugins/match-braces/prism-match-braces.js"></pre>
+
+	<h2>Lisp</h2>
+	<pre class="language-lisp"><code>(defun factorial (n)
+	(if (= n 0) 1
+		(* n (factorial (- n 1)))))</code></pre>
+
+	<h2>Lisp with rainbow braces &#x1F308; but without hover</h2>
+	<pre class="language-lisp rainbow-braces no-brace-hover"><code>(defun factorial (n)
+	(if (= n 0) 1
+		(* n (factorial (- n 1)))))</code></pre>
+</section>
+
+<footer data-src="templates/footer.html" data-type="text/html"></footer>
+
+<script src="prism.js"></script>
+<script src="plugins/match-braces/prism-match-braces.js"></script>
+<script src="plugins/autoloader/prism-autoloader.js" data-autoloader-path="components/"></script>
+<script src="scripts/utopia.js"></script>
+<script src="components.js"></script>
+<script src="scripts/code.js"></script>
+
+
+</body>
+</html>

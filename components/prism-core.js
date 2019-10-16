@@ -531,18 +531,28 @@ var script = document.currentScript || [].slice.call(document.getElementsByTagNa
 
 if (script) {
 	_.filename = script.src;
+	
+	if (script.hasAttribute('data-manual')) {
+		_.manual = true;
+	}
+}
 
-	if (!_.manual && !script.hasAttribute('data-manual')) {
-		if(document.readyState !== 'loading') {
-			if (window.requestAnimationFrame) {
-				window.requestAnimationFrame(_.highlightAll);
-			} else {
-				window.setTimeout(_.highlightAll, 16);
-			}
+if (!_.manual) {
+	function highlightAutomaticallyCallback() {
+		if (!_.manual) {
+			_.highlightAll();
 		}
-		else {
-			document.addEventListener('DOMContentLoaded', _.highlightAll);
+	}
+
+	if(document.readyState !== 'loading') {
+		if (window.requestAnimationFrame) {
+			window.requestAnimationFrame(highlightAutomaticallyCallback);
+		} else {
+			window.setTimeout(highlightAutomaticallyCallback, 16);
 		}
+	}
+	else {
+		document.addEventListener('DOMContentLoaded', highlightAutomaticallyCallback);
 	}
 }
 

@@ -26,6 +26,10 @@
 			"javascript",
 			"markup-templating"
 		],
+		"etlua": [
+			"lua",
+			"markup-templating"
+		],
 		"erb": [
 			"ruby",
 			"markup-templating"
@@ -33,6 +37,7 @@
 		"fsharp": "clike",
 		"firestore-security-rules": "clike",
 		"flow": "javascript",
+		"ftl": "markup-templating",
 		"glsl": "clike",
 		"gml": "clike",
 		"go": "clike",
@@ -100,6 +105,8 @@
 		"smarty": "markup-templating",
 		"solidity": "clike",
 		"soy": "markup-templating",
+		"sparql": "turtle",
+		"sqf": "clike",
 		"swift": "clike",
 		"tap": "yaml",
 		"textile": "markup",
@@ -131,6 +138,7 @@
 		"svg": "markup",
 		"mathml": "markup",
 		"js": "javascript",
+		"g4": "antlr4",
 		"adoc": "asciidoc",
 		"shell": "bash",
 		"rbnf": "bnf",
@@ -153,7 +161,9 @@
 		"objectpascal": "pascal",
 		"px": "pcaxis",
 		"py": "python",
+		"robot": "robot-framework",
 		"rb": "ruby",
+		"rq": "sparql",
 		"trig": "turtle",
 		"ts": "typescript",
 		"t4": "t4-cs",
