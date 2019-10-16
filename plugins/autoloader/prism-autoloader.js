@@ -106,6 +106,7 @@
 		"solidity": "clike",
 		"soy": "markup-templating",
 		"sparql": "turtle",
+		"sqf": "clike",
 		"swift": "clike",
 		"tap": "yaml",
 		"textile": "markup",

@@ -134,6 +134,7 @@
 		"sparql": "SPARQL",
 		"rq": "SPARQL",
 		"splunk-spl": "Splunk SPL",
+		"sqf": "SQF: Status Quo Function (Arma 3)",
 		"sql": "SQL",
 		"tap": "TAP",
 		"toml": "TOML",
