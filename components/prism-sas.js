@@ -96,14 +96,13 @@
 			pattern: /(^proc\s+groovy(?:\s+[\w|=]+)?;)(?:\s*submit)[\s\S]+?(?=^(?:proc\s+\w+|quit|run|data);|(?![\s\S]))/im,
 			lookbehind: true,
 			inside: {
-				'submit': {
-					pattern: RegExp(/^[ \t]*(?:submit(\s+(?:(load|parseonly|norun)))?)(?:<str>|[^"'])+endsubmit;/.source.replace(/<str>/g, stringPattern), 'im'),
+				'groovy': {
+					pattern: RegExp(/(^[ \t]*submit(?:\s+(?:load|parseonly|norun))?)(?:<str>|[^"'])+?(?=endsubmit;)/.source.replace(/<str>/g, stringPattern), 'im'),
+					lookbehind: true,
 					alias: 'language-groovy',
-					inside: {
-						'submit-statement': submitStatement,
-						rest: Prism.languages.groovy
-					}
+					inside: Prism.languages.groovy
 				},
+				'submit-statement': submitStatement,
 				'global-statements': globalStatements,
 				'number': number,
 				'numeric-constant': numericConstant,
@@ -116,14 +115,13 @@
 			pattern: /(^proc\s+lua(?:\s+[\w|=]+)?;)(?:\s*submit)[\s\S]+?(?=^(?:proc\s+\w+|quit|run|data);|(?![\s\S]))/im,
 			lookbehind: true,
 			inside: {
-				'submit': {
-					pattern: RegExp(/^[ \t]*(?:submit(\s+(?:(load|parseonly|norun)))?)(?:<str>|[^"'])+endsubmit;/.source.replace(/<str>/g, stringPattern), 'im'),
-					alias: 'language-lua',
-					inside: {
-						'submit-statement': submitStatement,
-						rest: Prism.languages.lua
-					}
+				'lua': {
+					pattern: RegExp(/(^[ \t]*submit(?:\s+(?:load|parseonly|norun))?)(?:<str>|[^"'])+?(?=endsubmit;)/.source.replace(/<str>/g, stringPattern), 'im'),
+					lookbehind: true,
+					alias: 'language-groovy',
+					inside: Prism.languages.groovy
 				},
+				'submit-statement': submitStatement,
 				'global-statements': globalStatements,
 				'number': number,
 				'numeric-constant': numericConstant,

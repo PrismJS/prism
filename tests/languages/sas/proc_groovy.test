@@ -26,10 +26,9 @@ quit;
 	],
 	[
 		"proc-groovy", [
+			["submit-statement", "submit parseonly"],
 			[
-				"submit",
-				[
-					["submit-statement", "submit parseonly"],
+				"groovy", [
 					["punctuation", ";"],
 					["keyword", "class"],
 					["class-name", ["Speaker"]],
@@ -43,11 +42,11 @@ quit;
 					"\r\n        println ",
 					["string", "\"----> \\\"${word}\\\"\""],
 					["punctuation", "}"],
-					["punctuation", "}"],
-					["submit-statement", "endsubmit"],
-					["punctuation", ";"]
+					["punctuation", "}"]
 				]
-			]
+			],
+			["submit-statement", "endsubmit"],
+			["punctuation", ";"]
 		]
 	],
 	["step", "quit"],
