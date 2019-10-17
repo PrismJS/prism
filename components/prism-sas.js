@@ -52,7 +52,7 @@
 	};
 
 	var submitStatement = {
-		pattern: /(^|\s)(?:(submit)(?:\s+(load|parseonly|norun))?|endsubmit)\b/i,
+		pattern: /(^|\s)(?:submit(?:\s+(?:load|parseonly|norun))?|endsubmit)\b/i,
 		lookbehind: true,
 		alias: 'keyword'
 	};
@@ -211,7 +211,7 @@
 		'string': string,
 		'step': step,
 		'keyword': {
-			pattern: /((?:^|\s)=?)(?:action|after|analysis|and|array|barchart|barwidth|begingraph|by|cas|cbarline|cfill|class(?:lev)?|close|column|computed?|contains|data(?=\=)|define|document|do\s+over|do|dol|drop|dul|end|entryTitle|else|endcomp|eval(?:uate)?|exec(ute)?|fill(?:attrs)?|filename|group(?:by)?|headline|headskip|histogram|if|infile|keep|keylabel|keyword|label|layout|legendlabel|length|libname|merge|midpoints|name|noobs|nowd|ods|options|or|out(?:put)?|overlay|plot|ranexp|rannor|rbreak|retain|set|session|sessref|statgraph|sum|summarize|table|temp|then\s+do|then|title\d?|to|var|where|xaxisopts|yaxisopts|y2axisopts)\b/i,
+			pattern: /((?:^|\s)=?)(?:action|after|analysis|and|array|barchart|barwidth|begingraph|by|cas|cbarline|cfill|class(?:lev)?|close|column|computed?|contains|data(?=\=)|define|document|do\s+over|do|dol|drop|dul|end|entryTitle|else|endcomp|eval(?:uate)?|exec(?:ute)?|fill(?:attrs)?|filename|group(?:by)?|headline|headskip|histogram|if|infile|keep|keylabel|keyword|label|layout|legendlabel|length|libname|merge|midpoints|name|noobs|nowd|ods|options|or|out(?:put)?|overlay|plot|ranexp|rannor|rbreak|retain|set|session|sessref|statgraph|sum|summarize|table|temp|then\s+do|then|title\d?|to|var|where|xaxisopts|yaxisopts|y2axisopts)\b/i,
 			lookbehind: true,
 		},
 		// In SAS Studio syntax highlighting, these operators are styled like keywords
