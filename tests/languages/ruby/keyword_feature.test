@@ -15,16 +15,19 @@ elsif
 END
 end
 ensure
+extend
 false
 for
 if
 in
+include
 module
 new;
 next
 nil
 not
 or
+prepend
 protected
 private
 public
@@ -66,16 +69,19 @@ yield
 	["keyword", "END"],
 	["keyword", "end"],
 	["keyword", "ensure"],
+	["keyword", "extend"],
 	["keyword", "false"],
 	["keyword", "for"],
 	["keyword", "if"],
 	["keyword", "in"],
+	["keyword", "include"],
 	["keyword", "module"],
 	["keyword", "new"], ["punctuation", ";"],
 	["keyword", "next"],
 	["keyword", "nil"],
 	["keyword", "not"],
 	["keyword", "or"],
+	["keyword", "prepend"],
 	["keyword", "protected"],
 	["keyword", "private"],
 	["keyword", "public"],
