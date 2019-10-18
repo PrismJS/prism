@@ -2,13 +2,25 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE greeting SYSTEM "hello.dtd">
+<!DOCTYPE greeting [
+	<!ELEMENT greeting (#PCDATA)>
+]>
+<!DOCTYPE greeting [
+	<!ELEMENT greeting (#PCDATA)>
+	<!ELEMENT subject (#PCDATA)>
+	<!-- comment ]> -->
+]>
 
 ----------------------------------------------------
 
 [
 	["doctype", "<!DOCTYPE html>"],
 	["doctype", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\">"],
-	["doctype", "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\"\r\n\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">"]
+	["doctype", "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\"\r\n\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">"],
+	["doctype", "<!DOCTYPE greeting SYSTEM \"hello.dtd\">"],
+	["doctype", "<!DOCTYPE greeting [\r\n\t<!ELEMENT greeting (#PCDATA)>\r\n]>"],
+	["doctype", "<!DOCTYPE greeting [\r\n\t<!ELEMENT greeting (#PCDATA)>\r\n\t<!ELEMENT subject (#PCDATA)>\r\n\t<!-- comment ]> -->\r\n]>"]
 ]
 
 ----------------------------------------------------
