@@ -16,7 +16,6 @@ END
 end
 ensure
 extend
-false
 for
 if
 in
@@ -41,7 +40,6 @@ self
 super
 then
 throw
-true
 undef
 unless
 until
@@ -70,7 +68,6 @@ yield
 	["keyword", "end"],
 	["keyword", "ensure"],
 	["keyword", "extend"],
-	["keyword", "false"],
 	["keyword", "for"],
 	["keyword", "if"],
 	["keyword", "in"],
@@ -95,7 +92,6 @@ yield
 	["keyword", "super"],
 	["keyword", "then"],
 	["keyword", "throw"],
-	["keyword", "true"],
 	["keyword", "undef"],
 	["keyword", "unless"],
 	["keyword", "until"],
