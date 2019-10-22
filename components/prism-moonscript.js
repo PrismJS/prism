@@ -28,7 +28,7 @@ Prism.languages.moonscript = {
 	],
 	'class-name': [
 		{
-			pattern: /(\b(?:class|extends|with)[ \t]+)\w+/,
+			pattern: /(\b(?:class|extends)[ \t]+)\w+/,
 			lookbehind: true
 		},
 		// class-like names start with a capital letter
