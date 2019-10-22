@@ -175,6 +175,73 @@ describe('Dependency logic', function () {
 
 	});
 
+	describe('Async loading', function () {
+
+		it('- should load components in the correct order', async function () {
+
+			/** @type {import("../dependencies").Components} */
+			const localComponents = {
+				languages: {
+					'a': {},
+					'b': {
+						require: 'a'
+					},
+					'c': {
+						require: 'b'
+					}
+				}
+			};
+
+			/** @type {string[]} */
+			const actualLoadOrder = [];
+			/** @type {string[]} */
+			const actualResolveOrder = [];
+
+			/**
+			 *
+			 * @param {string} id
+			 * @returns {Promise<void>}
+			 */
+			function loadComp(id) {
+				actualLoadOrder.push(id);
+
+				// the idea is that the components which have to be loaded first, take the longest, so if all were to
+				// start getting loaded at the same time, their order would be the reverse of the expected order.
+				let delay;
+				if (id === 'a') {
+					delay = 30;
+				} else if (id === 'b') {
+					delay = 20;
+				} else if (id === 'c') {
+					delay = 10;
+				}
+
+				return new Promise((resolve) => {
+					setTimeout(() => {
+						actualResolveOrder.push(id);
+						resolve();
+					}, delay);
+				});
+			}
+
+			const result = getLoad(localComponents, ['c']);
+
+			await result.load(id => loadComp(id), {
+				series: async (before, after) => {
+					await before;
+					await after();
+				},
+				parallel: async (values) => {
+					await Promise.all(values);
+				}
+			});
+
+			assert.deepStrictEqual(actualLoadOrder, ['a', 'b', 'c'], `actualLoadOrder:`);
+			assert.deepStrictEqual(actualResolveOrder, ['a', 'b', 'c'], `actualResolveOrder:`);
+		});
+
+	});
+
 });
 
 describe('components.json', function () {

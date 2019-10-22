@@ -181,18 +181,27 @@ var getLoad = (function () {
 	}
 
 	/**
+	 * @typedef LoadChainer
+	 * @property {(before: T, after: () => T) => T} series
+	 * @property {(values: T[]) => T} parallel
+	 * @template T
+	 */
+
+	/**
 	 * Creates an implicit DAG from the given components and dependencies and call the given `loadComponent` for each
 	 * component in topological order.
 	 *
 	 * @param {DependencyMap} dependencyMap
 	 * @param {StringSet} ids
 	 * @param {(id: string) => T} loadComponent
-	 * @param {(before: T, after: T) => T} series
-	 * @param {(values: T[]) => T} parallel
+	 * @param {LoadChainer<T>} [chainer]
 	 * @returns {T}
 	 * @template T
 	 */
-	function loadComponentsInOrder(dependencyMap, ids, loadComponent, series, parallel) {
+	function loadComponentsInOrder(dependencyMap, ids, loadComponent, chainer) {
+		const series = chainer ? chainer.series : undefined;
+		const parallel = chainer ? chainer.parallel : noop;
+
 		/** @type {Object<string, T>} */
 		var cache = {};
 
@@ -240,7 +249,13 @@ var getLoad = (function () {
 					delete ends[depId];
 					return value;
 				}));
-				value = series(depsValue, loadComponent(id));
+				if (series) {
+					// the chainer will be responsibly for calling the function calling loadComponent
+					value = series(depsValue, function () { return loadComponent(id); });
+				} else {
+					// we don't have a chainer, so we call loadComponent ourselves
+					loadComponent(id);
+				}
 			}
 
 			// cache and return
@@ -293,16 +308,13 @@ var getLoad = (function () {
 	 * The returned ids will be duplicate-free, alias-free and in load order.
 	 * @property {LoadFunction} load A functional interface to load components.
 	 *
-	 * @typedef {<T> (loadComponent: (id: string) => T, series?: (before: T, after: T) => T, parallel?: (values: T[]) => T) => T} LoadFunction
+	 * @typedef {<T> (loadComponent: (id: string) => T, chainer?: LoadChainer<T>) => T} LoadFunction
 	 * A functional interface to load components.
 	 *
 	 * The `loadComponent` function will be called for every component in the order in which they have to be loaded.
 	 *
-	 * `series` and `parallel` are useful for asynchronous loading and can be thought of as
+	 * The `chainer` is useful for asynchronous loading and its `series` and `parallel` functions can be thought of as
 	 * `Promise#then` and `Promise.all`.
-	 *
-	 * _Note:_ Even though, both `series` and `parallel` are optional, they have to both defined or both
-	 * undefined together. It's not valid for just one to be defined while the other is undefined.
 	 *
 	 * @example
 	 * load(id => { loadComponent(id); }); // returns undefined
@@ -395,8 +407,8 @@ var getLoad = (function () {
 				});
 				return ids;
 			},
-			load: function (loadComponent, series, parallel) {
-				return loadComponentsInOrder(dependencyMap, loadSet, loadComponent, series || noop, parallel || noop);
+			load: function (loadComponent, chainer) {
+				return loadComponentsInOrder(dependencyMap, loadSet, loadComponent, chainer);
 			}
 		};
 
