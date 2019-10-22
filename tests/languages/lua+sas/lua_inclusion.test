@@ -13,39 +13,39 @@ run;
 	["punctuation", ";"],
 	[
 		"proc-lua", [
-					["submit-statement", "submit"],
-					[
-						"lua",[
-							["punctuation", ";"],
-							"\r\n   array ",
-							["operator", "="],
-							["punctuation", "{"],
-							["number", "1"],
-							["punctuation", ","],
-							["number", "2"],
-							["punctuation", ","],
-							["number", "3"],
-							["punctuation", ","],
-							["number", "4"],
-							["punctuation", ","],
-							["number", "5"],
-							["punctuation", "}"],
-							"\r\n   sum ",
-							["operator", "="],
-							" sas",
-							["punctuation", "."],
-							["function", "sumx"],
-							["punctuation", "("],
-							"array",
-							["punctuation", ")"],
-							["function", "print"],
-							["punctuation", "("],
-							"sum",
-							["punctuation", ")"]
-						]
-				],
-				["submit-statement", "endsubmit"],
-				["punctuation", ";"]
+			["submit-statement", "submit"],
+			[
+				"lua", [
+					["punctuation", ";"],
+					"\r\n   array ",
+					["operator", "="],
+					["punctuation", "{"],
+					["number", "1"],
+					["punctuation", ","],
+					["number", "2"],
+					["punctuation", ","],
+					["number", "3"],
+					["punctuation", ","],
+					["number", "4"],
+					["punctuation", ","],
+					["number", "5"],
+					["punctuation", "}"],
+					"\r\n   sum ",
+					["operator", "="],
+					" sas",
+					["punctuation", "."],
+					["function", "sumx"],
+					["punctuation", "("],
+					"array",
+					["punctuation", ")"],
+					["function", "print"],
+					["punctuation", "("],
+					"sum",
+					["punctuation", ")"]
+				]
+			],
+			["submit-statement", "endsubmit"],
+			["punctuation", ";"]
 		]
 	],
 	["step", "run"],

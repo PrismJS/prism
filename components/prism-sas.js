@@ -118,8 +118,8 @@
 				'lua': {
 					pattern: RegExp(/(^[ \t]*submit(?:\s+(?:load|parseonly|norun))?)(?:<str>|[^"'])+?(?=endsubmit;)/.source.replace(/<str>/g, stringPattern), 'im'),
 					lookbehind: true,
-					alias: 'language-groovy',
-					inside: Prism.languages.groovy
+					alias: 'language-lua',
+					inside: Prism.languages.lua
 				},
 				'submit-statement': submitStatement,
 				'global-statements': globalStatements,
