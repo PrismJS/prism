@@ -125,7 +125,7 @@ var getLoad = (function () {
 			var entry = entryMap[id];
 			if (entry) {
 				/** @type {string[]} */
-				var deps = (/** @type {any[]} */([]).concat(entry.require, entry.modify, entry.after).filter(Boolean));
+				var deps = [].concat(entry.require, entry.modify, entry.after).filter(Boolean);
 				deps.forEach(function (depId) {
 					if (!(depId in entryMap)) {
 						throw new Error(id + ' depends on an unknown component ' + depId);
