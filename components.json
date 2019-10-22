@@ -851,7 +851,7 @@
 		},
 		"sas": {
 			"title": "SAS",
-			"require": ["groovy","lua","sql"],
+			"peerDependencies": ["groovy","lua","sql"],
 			"owner": "Golmote"
 		},
 		"sass": {
