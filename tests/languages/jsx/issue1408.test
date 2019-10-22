@@ -16,7 +16,7 @@
 			["punctuation", "{"],
 			["punctuation", "{"],
 			" marginLeft",
-			["punctuation", ":"],
+			["operator", ":"],
 			["template-string", [
 				["template-punctuation", "`"],
 				["interpolation", [

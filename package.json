@@ -9,10 +9,10 @@
     "test:core": "mocha tests/core/**/*.js",
     "test:dependencies": "mocha tests/dependencies-test.js",
     "test:languages": "mocha tests/run.js",
-    "test:pattern": "mocha tests/pattern-tests.js",
+    "test:patterns": "mocha tests/pattern-tests.js",
     "test:plugins": "mocha tests/plugins/**/*.js",
     "test:runner": "mocha tests/testrunner-tests.js",
-    "test": "npm run test:runner && npm run test:core && npm run test:dependencies && npm run test:languages && npm run test:plugins && npm run test:aliases && npm run test:pattern"
+    "test": "npm run test:runner && npm run test:core && npm run test:dependencies && npm run test:languages && npm run test:plugins && npm run test:aliases && npm run test:patterns"
   },
   "repository": {
     "type": "git",
@@ -39,6 +39,7 @@
     "jsdom": "^13.0.0",
     "mocha": "^6.2.0",
     "pump": "^3.0.0",
+    "regexpp": "^2.0.1",
     "simple-git": "^1.107.0",
     "yargs": "^13.2.2"
   },
