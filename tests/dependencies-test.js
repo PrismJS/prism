@@ -75,7 +75,7 @@ describe('Dependency logic', function () {
 						a: {
 							require: 'c'
 						},
-						b: "B"
+						b: 'B'
 					}
 				};
 				getLoad(circular, ['a']).getIds();
@@ -145,7 +145,7 @@ describe('Dependency logic', function () {
 						a: {
 							alias: 'b'
 						},
-						b: "B"
+						b: 'B'
 					}
 				};
 				getLoad(circular, ['a']).getIds();
@@ -236,8 +236,8 @@ describe('Dependency logic', function () {
 				}
 			});
 
-			assert.deepStrictEqual(actualLoadOrder, ['a', 'b', 'c'], `actualLoadOrder:`);
-			assert.deepStrictEqual(actualResolveOrder, ['a', 'b', 'c'], `actualResolveOrder:`);
+			assert.deepStrictEqual(actualLoadOrder, ['a', 'b', 'c'], 'actualLoadOrder:');
+			assert.deepStrictEqual(actualResolveOrder, ['a', 'b', 'c'], 'actualResolveOrder:');
 		});
 
 	});
