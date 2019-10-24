@@ -183,8 +183,7 @@
 
 	var ignored_language = 'none';
 
-	var scripts = document.getElementsByTagName('script');
-	var script = scripts[scripts.length - 1];
+	var script = Prism.util.currentScript();
 	var languages_path = 'components/';
 
 	var autoloaderFile = /\bplugins\/autoloader\/prism-autoloader\.(?:min\.)js$/i;
