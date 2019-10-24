@@ -125,20 +125,17 @@ var _ = {
 			try {
 				throw new Error();
 			} catch (err) {
-				// Find the second match for the "at" string to get file src url from stack.
-				// Specifically works with the format of stack traces in IE.
+				// Get file src url from stack. Specifically works with the format of stack traces in IE.
 				// A stack will look like this:
 				//
 				// Error
 				//    at _.util.currentScript (http://localhost/components/prism-core.js:119:5)
 				//    at Global code (http://localhost/components/prism-core.js:606:1)
 
-				var res = (/at [^(\r\n]*\((.*):.+:.+\)$/i.exec(err.stack) || [])[1];
-
-				// For all scripts on the page, if src matches or if ready state is interactive, return the script tag
+				var src = (/at [^(\r\n]*\((.*):.+:.+\)$/i.exec(err.stack) || [])[1];
 				var scripts = document.getElementsByTagName('script');
 				for (var i in scripts) {
-					if (scripts[i].src == res) {
+					if (scripts[i].src == src) {
 						return scripts[i];
 					}
 				}
