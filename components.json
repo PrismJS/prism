@@ -160,6 +160,10 @@
 			"title": "Batch",
 			"owner": "Golmote"
 		},
+		"bbcode": {
+			"title": "BBcode",
+			"owner": "RunDevelopment"
+		},
 		"bison": {
 			"title": "Bison",
 			"require": "c",

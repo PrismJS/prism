@@ -35,6 +35,7 @@
 		"autoit": "AutoIt",
 		"shell": "Bash",
 		"basic": "BASIC",
+		"bbcode": "BBcode",
 		"bnf": "Backus–Naur form",
 		"rbnf": "Routing Backus–Naur form",
 		"csharp": "C#",
