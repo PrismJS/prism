@@ -138,10 +138,12 @@ var _ = {
 				//    at Global code (http://localhost/components/prism-core.js:606:1)
 
 				var src = (/at [^(\r\n]*\((.*):.+:.+\)$/i.exec(err.stack) || [])[1];
-				var scripts = document.getElementsByTagName('script');
-				for (var i in scripts) {
-					if (scripts[i].src == src) {
-						return scripts[i];
+				if (src) {
+					var scripts = document.getElementsByTagName('script');
+					for (var i in scripts) {
+						if (scripts[i].src == src) {
+							return scripts[i];
+						}
 					}
 				}
 				return null;
