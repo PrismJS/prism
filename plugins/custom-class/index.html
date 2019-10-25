@@ -68,8 +68,8 @@
 
 	<p>You can add new classes with per-token and per-language precision.</p>
 
-	<pre class="language-js"><code>Prism.plugins.customClass.add(function (language, type, content) {
-	if (language === 'css' && type === 'property' && content === 'content') {
+	<pre class="language-js"><code>Prism.plugins.customClass.add(function (content, type, language) {
+	if (content === 'content' && type === 'property' && language === 'css') {
 		return 'content-property';
 	}
 });</code></pre>
@@ -149,7 +149,7 @@ a::after {
 
 	<p>Options</p>
 	<pre class="language-js"><code>Prism.plugins.customClass.add(function (language, type, content) {
-	if (language === 'css' && type === 'property' && content === 'content') {
+	if (content === 'content' && type === 'property' && language === 'css') {
 		return 'content-property';
 	}
 });</code></pre>

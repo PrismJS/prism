@@ -14,9 +14,9 @@
 	 * @returns {string}
 	 *
 	 * @callback ClassAdder
-	 * @param {string} language
-	 * @param {string} type
 	 * @param {string} content
+	 * @param {string} type
+	 * @param {string} language
 	 * @returns {undefined | string | string[]}
 	 */
 
@@ -70,7 +70,7 @@
 
 	Prism.hooks.add('wrap', function (env) {
 		for (var i = 0, l = classAdders.length; i < l; i++) {
-			var result = classAdders[i](env.language, env.type, env.content);
+			var result = classAdders[i](env.content, env.type, env.language);
 			if (result) {
 				if (Array.isArray(result)) {
 					env.classes.push.apply(env.classes, result);
