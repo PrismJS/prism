@@ -16,12 +16,7 @@
 </head>
 <body>
 
-<header>
-	<div class="intro" data-src="templates/header-plugins.html" data-type="text/html"></div>
-
-	<h2>Autolinker</h2>
-	<p>Converts URLs and emails in code to clickable links. Parses <a href="https://daringfireball.net/projects/markdown/">Markdown</a> links in comments.</p>
-</header>
+<header data-plugin-header="autolinker"></header>
 
 <section>
 	<h1>How to use</h1>
@@ -44,8 +39,8 @@
 var foo = 5;
 // And a single line comment http://google.com</code></pre>
 
- 	<h2>CSS</h2>
- 	<pre><code class="language-css">@font-face {
+	<h2>CSS</h2>
+	<pre><code class="language-css">@font-face {
 	src: url(http://lea.verou.me/logo.otf);
 	font-family: 'LeaVerou';
 }</code></pre>

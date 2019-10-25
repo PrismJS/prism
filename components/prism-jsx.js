@@ -22,7 +22,7 @@ Prism.languages.insertBefore('inside', 'attr-name', {
 Prism.languages.insertBefore('inside', 'attr-value',{
 	'script': {
 		// Allow for two levels of nesting
-		pattern: /=(\{(?:\{(?:\{[^}]*\}|[^}])*\}|[^}])+\})/i,
+		pattern: /=(?:\{(?:\{(?:\{[^}]*\}|[^}])*\}|[^}])+\})/i,
 		inside: {
 			'script-punctuation': {
 				pattern: /^=(?={)/,

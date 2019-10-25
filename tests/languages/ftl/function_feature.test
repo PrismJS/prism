@@ -1,0 +1,24 @@
+${min(1,2)}
+
+----------------------------------------------------
+
+[
+	["ftl", [
+		["ftl-interpolation", [
+			["punctuation", "${"],
+			["content", [
+				["function", "min"],
+				["punctuation", "("],
+				["number", "1"],
+				["punctuation", ","],
+				["number", "2"],
+				["punctuation", ")"]
+			]],
+			["punctuation", "}"]
+		]]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for functions.
