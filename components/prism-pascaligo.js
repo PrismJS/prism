@@ -8,7 +8,7 @@
 	var pascaligo = Prism.languages.pascaligo = {
 		'comment': /\(\*[\s\S]+?\*\)|\/\/.*/,
 		'string': {
-			pattern: /(["'`])(\\[\s\S]|(?!\1)[^\\])*\1|\^[a-z]/i,
+			pattern: /(["'`])(?:\\[\s\S]|(?!\1)[^\\])*\1|\^[a-z]/i,
 			greedy: true
 		},
 		'class-name': [

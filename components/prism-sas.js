@@ -15,11 +15,11 @@
 	};
 
 	var comment = [
+		/\/\*[\s\S]*?\*\//,
 		{
 			pattern: /(^\s*|;\s*)\*[^;]*;/m,
 			lookbehind: true
-		},
-		/\/\*[\s\S]+?\*\//
+		}
 	];
 
 	var string = {
@@ -51,9 +51,15 @@
 		alias: 'keyword'
 	};
 
+	var submitStatement = {
+		pattern: /(^|\s)(?:submit(?:\s+(?:load|parseonly|norun))?|endsubmit)\b/i,
+		lookbehind: true,
+		alias: 'keyword'
+	};
+
 	Prism.languages.sas = {
 		'datalines': {
-			pattern: /^(\s*)(?:(?:data)?lines|cards);[\s\S]+?^;/im,
+			pattern: /^(\s*)(?:(?:data)?lines|cards);[\s\S]+?^\s*;/im,
 			lookbehind: true,
 			alias: 'string',
 			inside: {
@@ -79,6 +85,44 @@
 					lookbehind: true,
 					alias: 'keyword'
 				},
+				'number': number,
+				'numeric-constant': numericConstant,
+				'punctuation': punctuation,
+				'string': string
+			}
+		},
+
+		'proc-groovy': {
+			pattern: /(^proc\s+groovy(?:\s+[\w|=]+)?;)(?:\s*submit)[\s\S]+?(?=^(?:proc\s+\w+|quit|run|data);|(?![\s\S]))/im,
+			lookbehind: true,
+			inside: {
+				'groovy': {
+					pattern: RegExp(/(^[ \t]*submit(?:\s+(?:load|parseonly|norun))?)(?:<str>|[^"'])+?(?=endsubmit;)/.source.replace(/<str>/g, stringPattern), 'im'),
+					lookbehind: true,
+					alias: 'language-groovy',
+					inside: Prism.languages.groovy
+				},
+				'submit-statement': submitStatement,
+				'global-statements': globalStatements,
+				'number': number,
+				'numeric-constant': numericConstant,
+				'punctuation': punctuation,
+				'string': string
+			}
+		},
+
+		'proc-lua': {
+			pattern: /(^proc\s+lua(?:\s+[\w|=]+)?;)(?:\s*submit)[\s\S]+?(?=^(?:proc\s+\w+|quit|run|data);|(?![\s\S]))/im,
+			lookbehind: true,
+			inside: {
+				'lua': {
+					pattern: RegExp(/(^[ \t]*submit(?:\s+(?:load|parseonly|norun))?)(?:<str>|[^"'])+?(?=endsubmit;)/.source.replace(/<str>/g, stringPattern), 'im'),
+					lookbehind: true,
+					alias: 'language-lua',
+					inside: Prism.languages.lua
+				},
+				'submit-statement': submitStatement,
+				'global-statements': globalStatements,
 				'number': number,
 				'numeric-constant': numericConstant,
 				'punctuation': punctuation,
@@ -127,7 +171,6 @@
 				'numeric-constant': numericConstant
 			}
 		},
-		'comment': comment,
 		'options-args': {
 			pattern: /(^options)[-'"|/\\<>*+=:()\w\s]*(?=;)/im,
 			lookbehind: true,
@@ -159,6 +202,7 @@
 			}
 		},
 		'numeric-constant': numericConstant,
+		'comment': comment,
 		'datetime': {
 			// '1jan2013'd, '9:25:19pm't, '18jan2003:9:27:05am'dt
 			pattern: RegExp(stringPattern + '(?:dt?|t)'),
@@ -167,7 +211,7 @@
 		'string': string,
 		'step': step,
 		'keyword': {
-			pattern: /((?:^|\s)=?)(?:action|after|analysis|and|array|barchart|barwidth|begingraph|by|cas|cbarline|cfill|close|column|computed?|contains|data(?=\=)|define|document|do\s+over|do|dol|drop|dul|end|entryTitle|else|endcomp|fill(?:attrs)?|filename|group(?:by)?|headline|headskip|histogram|if|infile|keep|label|layout|legendlabel|length|libname|merge|midpoints|name|noobs|nowd|ods|options|or|out(?:put)?|overlay|plot|ranexp|rannor|rbreak|retain|set|session|sessref|statgraph|sum|summarize|table|temp|then\sdo|then|title\d?|to|var|where|xaxisopts|yaxisopts|y2axisopts)\b/i,
+			pattern: /((?:^|\s)=?)(?:action|after|analysis|and|array|barchart|barwidth|begingraph|by|cas|cbarline|cfill|class(?:lev)?|close|column|computed?|contains|data(?=\=)|define|document|do\s+over|do|dol|drop|dul|end|entryTitle|else|endcomp|eval(?:uate)?|exec(?:ute)?|fill(?:attrs)?|filename|group(?:by)?|headline|headskip|histogram|if|infile|keep|keylabel|keyword|label|layout|legendlabel|length|libname|merge|midpoints|name|noobs|nowd|ods|options|or|out(?:put)?|overlay|plot|ranexp|rannor|rbreak|retain|set|session|sessref|statgraph|sum|summarize|table|temp|then\s+do|then|title\d?|to|var|where|xaxisopts|yaxisopts|y2axisopts)\b/i,
 			lookbehind: true,
 		},
 		// In SAS Studio syntax highlighting, these operators are styled like keywords
