@@ -531,7 +531,7 @@ var script = document.currentScript || [].slice.call(document.getElementsByTagNa
 
 if (script) {
 	_.filename = script.src;
-	
+
 	if (script.hasAttribute('data-manual')) {
 		_.manual = true;
 	}
@@ -544,15 +544,21 @@ if (!_.manual) {
 		}
 	}
 
-	if(document.readyState !== 'loading') {
+	// If the document state is "loading", then we'll use DOMContentLoaded.
+	// If the document state is "interactive" and the prism.js script is deferred, then we'll also use the
+	// DOMContentLoaded event because there might be some plugins or languages which have also been deferred and they
+	// might take longer one animation frame to execute which can create a race condition where only some plugins have
+	// been loaded when Prism.highlightAll() is executed, depending on how fast resources are loaded.
+	// See https://github.com/PrismJS/prism/issues/2102
+	var readyState = document.readyState;
+	if (readyState === 'loading' || readyState === 'interactive' && script.defer) {
+		document.addEventListener('DOMContentLoaded', highlightAutomaticallyCallback);
+	} else {
 		if (window.requestAnimationFrame) {
 			window.requestAnimationFrame(highlightAutomaticallyCallback);
 		} else {
 			window.setTimeout(highlightAutomaticallyCallback, 16);
 		}
-	}
-	else {
-		document.addEventListener('DOMContentLoaded', highlightAutomaticallyCallback);
 	}
 }
 
