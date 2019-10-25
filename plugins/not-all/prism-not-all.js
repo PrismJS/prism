@@ -9,8 +9,7 @@
 		Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
 	}
 
-	var scripts = document.getElementsByTagName('script');
-	var script = scripts[scripts.length - 1];
+	var script = Prism.util.currentScript();
 
 
 	/**
@@ -64,20 +63,24 @@
 		 * will be highlighted. All elements with an unset or unknown language will be ignored.
 		 *
 		 * __Note:__ This will effectively disable the AutoLoader plugin.
+		 *
+		 * @type {boolean}
 		 */
-		filterKnown: script.hasAttribute('data-filter-known')
+		filterKnown: !!script && script.hasAttribute('data-filter-known')
 	};
 
 	config.filter(function filterKnown(env) {
 		return !config.filterKnown || typeof Prism.languages[env.language] === 'object';
 	});
 
-	var attr;
-	if (attr = script.getAttribute('data-filter-css')) {
-		config.filterCss(attr);
-	}
-	if (attr = script.getAttribute('data-exclude-css')) {
-		config.excludeCss(attr);
+	if (script) {
+		var attr;
+		if (attr = script.getAttribute('data-filter-css')) {
+			config.filterCss(attr);
+		}
+		if (attr = script.getAttribute('data-exclude-css')) {
+			config.excludeCss(attr);
+		}
 	}
 
 	Prism.hooks.add('before-highlightall', function (env) {
