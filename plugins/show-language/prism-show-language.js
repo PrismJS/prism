@@ -96,6 +96,7 @@
 		"markup-templating": "Markup templating",
 		"matlab": "MATLAB",
 		"mel": "MEL",
+		"moon": "MoonScript",
 		"n1ql": "N1QL",
 		"n4js": "N4JS",
 		"n4jsd": "N4JS",

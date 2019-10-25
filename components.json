@@ -611,6 +611,11 @@
 			"title": "Monkey",
 			"owner": "Golmote"
 		},
+		"moonscript": {
+			"title": "MoonScript",
+			"alias": "moon",
+			"owner": "RunDevelopment"
+		},
 		"n1ql": {
 			"title": "N1QL",
 			"owner": "TMWilds"
