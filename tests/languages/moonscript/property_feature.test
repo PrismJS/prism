@@ -1,0 +1,96 @@
+collection =
+  height: 32434
+  hats: {"tophat", "bball", "bowler"}
+
+my_function dance: "Tango", partner: "none"
+y = type: "dog", legs: 4, tails: 1
+
+hair = "golden"
+height = 200
+person = { :hair, :height, shoe_size: 40 }
+print_table :hair, :height
+
+----------------------------------------------------
+
+[
+	"collection ",
+	["operator", "="],
+	["property", "height"],
+	["operator", ":"],
+	["number", "32434"],
+	["property", "hats"],
+	["operator", ":"],
+	["punctuation", "{"],
+	["string", [
+		"\"tophat\""
+	]],
+	["punctuation", ","],
+	["string", [
+		"\"bball\""
+	]],
+	["punctuation", ","],
+	["string", [
+		"\"bowler\""
+	]],
+	["punctuation", "}"],
+
+	"\r\n\r\nmy_function ",
+	["property", "dance"],
+	["operator", ":"],
+	["string", [
+		"\"Tango\""
+	]],
+	["punctuation", ","],
+	["property", "partner"],
+	["operator", ":"],
+	["string", [
+		"\"none\""
+	]],
+	"\r\ny ",
+	["operator", "="],
+	["property", "type"],
+	["operator", ":"],
+	["string", [
+		"\"dog\""
+	]],
+	["punctuation", ","],
+	["property", "legs"],
+	["operator", ":"],
+	["number", "4"],
+	["punctuation", ","],
+	["property", "tails"],
+	["operator", ":"],
+	["number", "1"],
+
+	"\r\n\r\nhair ",
+	["operator", "="],
+	["string", [
+		"\"golden\""
+	]],
+	"\r\nheight ",
+	["operator", "="],
+	["number", "200"],
+	"\r\nperson ",
+	["operator", "="],
+	["punctuation", "{"],
+	["operator", ":"],
+	["property", "hair"],
+	["punctuation", ","],
+	["operator", ":"],
+	["property", "height"],
+	["punctuation", ","],
+	["property", "shoe_size"],
+	["operator", ":"],
+	["number", "40"],
+	["punctuation", "}"],
+	"\r\nprint_table ",
+	["operator", ":"],
+	["property", "hair"],
+	["punctuation", ","],
+	["operator", ":"],
+	["property", "height"]
+]
+
+----------------------------------------------------
+
+Checks for properties.
