@@ -1,0 +1,50 @@
+As;
+Dim
+Each
+Else
+Elseif
+End
+Exit
+For
+Function
+Goto
+If
+In
+Print
+Return
+Step
+Stop
+Sub
+Then
+To
+While
+
+----------------------------------------------------
+
+[
+	["keyword", "As"],
+	["punctuation", ";"],
+	["keyword", "Dim"],
+	["keyword", "Each"],
+	["keyword", "Else"],
+	["keyword", "Elseif"],
+	["keyword", "End"],
+	["keyword", "Exit"],
+	["keyword", "For"],
+	["keyword", "Function"],
+	["keyword", "Goto"],
+	["keyword", "If"],
+	["keyword", "In"],
+	["keyword", "Print"],
+	["keyword", "Return"],
+	["keyword", "Step"],
+	["keyword", "Stop"],
+	["keyword", "Sub"],
+	["keyword", "Then"],
+	["keyword", "To"],
+	["keyword", "While"]
+]
+
+----------------------------------------------------
+
+Checks for keywords.

@@ -181,6 +181,10 @@
 			"title": "Brainfuck",
 			"owner": "Golmote"
 		},
+		"brightscript": {
+			"title": "BrightScript",
+			"owner": "RunDevelopment"
+		},
 		"bro": {
 			"title": "Bro",
 			"owner": "wayward710"
