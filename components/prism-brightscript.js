@@ -1,6 +1,6 @@
 Prism.languages.brightscript = {
 	'comment': /(?:\brem|').*/i,
-	'directive': {
+	'directive-statement': {
 		pattern: /(^[\t ]*)#(?:const|else(?:[\t ]+if)?|end[\t ]+if|error|if).*/im,
 		lookbehind: true,
 		alias: 'property',
@@ -41,4 +41,4 @@ Prism.languages.brightscript = {
 	'constant': /\b(?:LINE_NUM)\b/i
 };
 
-Prism.languages.brightscript.directive.inside.expression.inside = Prism.languages.brightscript;
+Prism.languages.brightscript['directive-statement'].inside.expression.inside = Prism.languages.brightscript;
