@@ -156,6 +156,7 @@
 		"elisp": "lisp",
 		"emacs-lisp": "lisp",
 		"md": "markdown",
+		"moon": "moonscript",
 		"n4jsd": "n4js",
 		"objectpascal": "pascal",
 		"px": "pcaxis",
