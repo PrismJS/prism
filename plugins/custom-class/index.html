@@ -56,7 +56,7 @@
 
 	<p>Alternatively you can also pass a function that takes the original class and returns the mapped class. This function can also be used implement language specific mapped classes.<br>Example:</p>
 
-	<pre class="language-js"><code>Prism.plugins.customClass.map(function (className, language) {
+	<pre class="language-js"><code>Prism.plugins.customClass.map((className, language) => {
 	if (language === 'css') {
 		return cssSpecificMap[className] || className;
 	} else {
@@ -68,7 +68,7 @@
 
 	<p>You can add new classes with per-token and per-language precision.</p>
 
-	<pre class="language-js"><code>Prism.plugins.customClass.add(function (content, type, language) {
+	<pre class="language-js"><code>Prism.plugins.customClass.add(({content, type, language}) => {
 	if (content === 'content' && type === 'property' && language === 'css') {
 		return 'content-property';
 	}
@@ -148,7 +148,7 @@ a::after {
 &lt;/code&gt;&lt;/pre&gt;</code></pre>
 
 	<p>Options</p>
-	<pre class="language-js"><code>Prism.plugins.customClass.add(function (language, type, content) {
+	<pre class="language-js"><code>Prism.plugins.customClass.add(({language, type, content}) => {
 	if (content === 'content' && type === 'property' && language === 'css') {
 		return 'content-property';
 	}

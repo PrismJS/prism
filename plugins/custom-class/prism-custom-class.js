@@ -14,10 +14,13 @@
 	 * @returns {string}
 	 *
 	 * @callback ClassAdder
-	 * @param {string} content
-	 * @param {string} type
-	 * @param {string} language
+	 * @param {ClassAdderEnvironment} env
 	 * @returns {undefined | string | string[]}
+	 *
+	 * @typedef ClassAdderEnvironment
+	 * @property {string} language
+	 * @property {string} type
+	 * @property {string} content
 	 */
 
 	/** @type {ClassMapper} */
@@ -69,13 +72,21 @@
 	}
 
 	Prism.hooks.add('wrap', function (env) {
-		for (var i = 0, l = classAdders.length; i < l; i++) {
-			var result = classAdders[i](env.content, env.type, env.language);
-			if (result) {
-				if (Array.isArray(result)) {
-					env.classes.push.apply(env.classes, result);
-				} else {
-					env.classes.push(result);
+		if (classAdders.length) {
+			/** @type {ClassAdderEnvironment} */
+			var adderEnv = {
+				content: env.content,
+				type: env.type,
+				language: env.language
+			};
+			for (var i = 0, l = classAdders.length; i < l; i++) {
+				var result = classAdders[i](adderEnv);
+				if (result) {
+					if (Array.isArray(result)) {
+						env.classes.push.apply(env.classes, result);
+					} else {
+						env.classes.push(result);
+					}
 				}
 			}
 		}
