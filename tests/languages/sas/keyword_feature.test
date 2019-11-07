@@ -1,4 +1,4 @@
-action after analysis and array barchart barwidth begingraph by
+after analysis and array barchart barwidth begingraph by
 cas cbarline cfill class classlev close column compute computed contains data=
 define document do do over dol drop dul end entryTitle else endcomp eval
 evaluate exec execute fill fillattrs filename group groupby headline headskip
@@ -10,7 +10,7 @@ then do title to var where xaxisopts yaxisopts y2axisopts
 ----------------------------------------------------
 
 [
-	["keyword", "action"], ["keyword", "after"], ["keyword", "analysis"],
+	["keyword", "after"], ["keyword", "analysis"],
 	["keyword", "and"], ["keyword", "array"], ["keyword", "barchart"],
 	["keyword", "barwidth"], ["keyword", "begingraph"], ["keyword", "by"],
 	["keyword", "cas"], ["keyword", "cbarline"], ["keyword", "cfill"],
