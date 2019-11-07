@@ -101,7 +101,7 @@ quit;
 		["punctuation", ")"],
 		["punctuation", ";"],
 		["statement-var", [
-			[ "saveresult", [
+			[ "statement", [
 					["keyword", "saveresult"],
 					" tableIris"
 				]

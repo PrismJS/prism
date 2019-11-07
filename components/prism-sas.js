@@ -202,7 +202,7 @@
 					pattern: /((?:^|\s)=?)(?:saveresult)(?:\s)+(?:[\s\S]+?)(?=;)/im,
 					lookbehind: true,
 					inside: {
-						'saveresult': {
+						'statement': {
 							pattern: /^(?:saveresult)(?:\s+[\S]+?)(?=\s)/i,
 							inside: {
 								keyword: /^(?:saveresult)/i
