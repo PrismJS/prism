@@ -36,8 +36,7 @@
 
 	var func = {
 		pattern: /%?\w+(?=\()/,
-		alias: 'keyword',
-		lookbehind: true
+		alias: 'keyword'
 	};
 
 	var args = {
