@@ -23,15 +23,12 @@
 	 * @property {string} content
 	 */
 
-	/** @type {ClassMapper} */
-	var defaultClassMap = function (className) { return className; };
-
 	// options
 
-	/** @type {ClassAdder[]} */
-	var classAdders = [];
-	/** @type {ClassMapper} */
-	var classMapper = defaultClassMap;
+	/** @type {ClassAdder | undefined} */
+	var adder;
+	/** @type {ClassMapper | undefined} */
+	var mapper;
 	/** @type {string} */
 	var prefixString = '';
 
@@ -40,24 +37,24 @@
 		/**
 		 * Sets the function which can be used to add custom aliases to any token.
 		 *
-		 * @param {ClassAdder} adder
+		 * @param {ClassAdder} classAdder
 		 */
 		add: function (classAdder) {
-			classAdders.push(classAdder);
+			adder = classAdder;
 		},
 		/**
 		 * Maps all class names using the given object or map function.
 		 *
 		 * This does not affect the prefix.
 		 *
-		 * @param {Object<string, string> | ClassMapper} classMap
+		 * @param {Object<string, string> | ClassMapper} classMapper
 		 */
-		map: function map(classMap) {
-			if (typeof classMap === 'function') {
-				classMapper = classMap;
+		map: function map(classMapper) {
+			if (typeof classMapper === 'function') {
+				mapper = classMapper;
 			} else {
-				classMapper = function (className) {
-					return classMap[className] || className;
+				mapper = function (className) {
+					return classMapper[className] || className;
 				};
 			}
 		},
@@ -72,31 +69,26 @@
 	}
 
 	Prism.hooks.add('wrap', function (env) {
-		if (classAdders.length) {
-			/** @type {ClassAdderEnvironment} */
-			var adderEnv = {
+		if (adder) {
+			var result = adder({
 				content: env.content,
 				type: env.type,
 				language: env.language
-			};
-			for (var i = 0, l = classAdders.length; i < l; i++) {
-				var result = classAdders[i](adderEnv);
-				if (result) {
-					if (Array.isArray(result)) {
-						env.classes.push.apply(env.classes, result);
-					} else {
-						env.classes.push(result);
-					}
-				}
+			});
+
+			if (Array.isArray(result)) {
+				env.classes.push.apply(env.classes, result);
+			} else if (result) {
+				env.classes.push(result);
 			}
 		}
 
-		if (classMapper === defaultClassMap && !prefixString) {
+		if (!mapper && !prefixString) {
 			return;
 		}
 
 		env.classes = env.classes.map(function (c) {
-			return prefixString + classMapper(c, env.language);
+			return prefixString + mapper(c, env.language);
 		});
 	});
 
