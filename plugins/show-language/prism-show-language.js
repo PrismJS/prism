@@ -124,7 +124,7 @@
 		"tsx": "React TSX",
 		"renpy": "Ren'py",
 		"rest": "reST (reStructuredText)",
-		"robot-framework": "Robot Framework",
+		"robotframework": "Robot Framework",
 		"robot": "Robot Framework",
 		"rb": "Ruby",
 		"sas": "SAS",
