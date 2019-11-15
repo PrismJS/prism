@@ -64,7 +64,7 @@
 		 * @param {string} string
 		 */
 		prefix: function prefix(string) {
-			prefixString = string;
+			prefixString = string || '';
 		}
 	}
 
@@ -88,7 +88,7 @@
 		}
 
 		env.classes = env.classes.map(function (c) {
-			return prefixString + mapper(c, env.language);
+			return prefixString + mapper ? mapper(c, env.language) : c;
 		});
 	});
 
