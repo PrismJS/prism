@@ -847,7 +847,7 @@
 			"title": "Roboconf",
 			"owner": "Golmote"
 		},
-		"robot-framework": {
+		"robotframework": {
 			"title": "Robot Framework",
 			"alias": "robot",
 			"owner": "RunDevelopment"
