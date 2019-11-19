@@ -33,7 +33,7 @@
 			greedy: true
 		},
 		'function': /[\w]+(?=\()/i,
-		'important': /after [0-9]+(ms|s)?/i,
+		'important': /after [0-9]+[m]?s/i,
 		'punctuation': /[(){};:,]/
 	};
 
