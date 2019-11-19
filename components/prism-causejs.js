@@ -1,6 +1,6 @@
 (function (Prism) {
 
-	var variable = /\{\$([\w\-\.\#:\@\|\$\{\}]+)\}|\{\@([\w\-\.\#:\@\|\$\{\}]+)\}|\{\|[-\w\#:\@\|\$\{\}]+\}/i;
+	var variable = /\{[\$|\@|\|][\w\#\.\-\@\|\$\{\}]+\}/i;
 
 	Prism.languages.causejs = {
 		'comment': /\/\*[\s\S]*?\*\//,
@@ -12,11 +12,11 @@
 			}
 		},
 		'attr-value': {	// Using "selector" clashes with other ones, so this is instead of "selector".
-			pattern: RegExp('([\r\n\t]+)?(?![;\}\s\r\n\t]+)(#|\.|a-zA-Z)?[~#\?a-zA-Z0-9\-\\[\\]_\.\:\,\r\n\"\=\(\) \.\{\}\@\$\|]+(?=( )?\{(?![\$\@\|]+))'),
+			pattern: RegExp('(?![;\}\s\r\n\t]+)[~#\?a-zA-Z0-9\-\\[\\]_\.\:\,\r\n\"\=\(\) \.\{\}\@\$\|]+(?=[ ]?\{(?![\$\@\|]+))'),
 			inside: {
 				'variable': RegExp(variable.source),
 				'event': {
-					pattern: /:[\w]+(,| )/,
+					pattern: /:[\w]+[,| ]/,
 					alias: 'selector'
 				}
 			}
