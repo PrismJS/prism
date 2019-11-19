@@ -16,7 +16,7 @@ page-list {"/": data-ajax="/html/index.html";}
 	["punctuation", ";"],
 	["punctuation", "}"],
 
-	[ "attr-value", ["\n|searchComponent"] ],
+	[ "attr-value", ["|searchComponent"] ],
 	[ "punctuation", "{" ],
 	"<div class=",
 	["string", ["\"",
@@ -30,7 +30,7 @@ page-list {"/": data-ajax="/html/index.html";}
 	["comment", "/* Comment */"],
 
 	["attr-value", [
-		"\n.cheese:myConditional",
+		".cheese:myConditional",
 		["event", ":mouseover,"],
 		"body:click"
 	] ],
@@ -65,7 +65,7 @@ page-list {"/": data-ajax="/html/index.html";}
 	["punctuation", "}"],
 	["punctuation", "}"],
 
-	["attr-value", ["\n?conditional"] ],
+	["attr-value", ["?conditional"] ],
 	["punctuation", "{"],
 	["property", "if-exists"],
 	["punctuation", ":"],
