@@ -12,7 +12,7 @@
 			}
 		},
 		'attr-value': {	// Using "selector" clashes with other ones, so this is instead of "selector".
-			pattern: RegExp('(^|[\r\n\t]+)?(?![;\}\s\r\n\t]+)(#|\.|a-zA-Z)?[~#\?a-zA-Z0-9\-\\[\\]_\.\:\,\r\n\"\=\(\) \.\{\}\@\$\|]+(?=( )?\{(?![\$\@\|]+))'),
+			pattern: RegExp('([\r\n\t]+)?(?![;\}\s\r\n\t]+)(#|\.|a-zA-Z)?[~#\?a-zA-Z0-9\-\\[\\]_\.\:\,\r\n\"\=\(\) \.\{\}\@\$\|]+(?=( )?\{(?![\$\@\|]+))'),
 			inside: {
 				'variable': RegExp(variable.source),
 				'event': {
