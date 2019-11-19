@@ -194,6 +194,10 @@
 			"require": "clike",
 			"owner": "zeitgeist87"
 		},
+		"causejs": {
+			"title": "Cause JS",
+			"owner": "bob2517"
+		},
 		"csharp": {
 			"title": "C#",
 			"require": "clike",

@@ -38,6 +38,7 @@
 		"bbcode": "BBcode",
 		"bnf": "Backus–Naur form",
 		"rbnf": "Routing Backus–Naur form",
+		"causejs": "Cause JS",
 		"csharp": "C#",
 		"cs": "C#",
 		"dotnet": "C#",
