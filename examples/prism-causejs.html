@@ -1,0 +1,71 @@
+<p>Cause JS Release Date: December 2019.</p>
+
+<h2>General</h2>
+<pre><code>
+/* Example config */
+.divsA:not(".yourDivs"):if-notCodedYet:myConditional:click,
+.divsB:not(.yourDivs):myConditional:mouseover {
+	alert: "hello";
+	body {
+		add-class: .bob after 100ms;
+		remove-class: .geoff;
+	}
+	#divC-{@#videoPlayer:currentTime} {
+		alert: "Greetings";	/* a comment */
+	}
+	.divA{@data-test}e- {
+		alert: "Greetings";	/* a comment */
+	}
+	body:not(.divB) {
+		url: "/image/test{@data-image-num}" random parameter;
+		quick-html: {|myComponent} another param;
+	}
+}
+
+@media (max-width: 1020px) {
+	.divsC:not(.yourDivs):myConditional:click {
+		alert: "Greetings";
+		body {
+			add-class: .menuOn after 1s;
+			remove-class: .random;
+		}
+/* Random comment */
+		#topBit-{@data-test} {
+			alert: "Greetings";	/* this is an inappropriate line of code */
+		}
+		body:not(.myDivs) {
+			url: "/image/test{@data-image-num}";
+			quick-html: "{|myComponent}";
+		}
+	}
+}
+</code></pre>
+
+<h2>SPA Routing config</h2>
+<pre><code>
+page-list {
+	"/": class="ajax-full" data-ajax="/html/index.html" data-act-menu="Index" data-body="str-Index" data-title="Cause JS";
+}
+</code></pre>
+
+<h2>Basic components</h2>
+<pre><code>
+|searchComponent {
+	<div class="{$res{@i}.class}Dave">"A quote" some text
+		<a href="{$res{@i}.link}">Here is some {@random} text.
+			<span class="srch-MainTitle">{$res{@i}.data-show-main-title}</span><span class="srch-SubTitle">{$res{@i}.data-show-sub-title}</span>
+		</a>
+	</div>
+}
+|myComponent {
+	<div class="dave">This{$myVar} is a test {@data-name}.</div>
+}
+</code></pre>
+
+<h2>Conditional</h2>
+<pre><code>
+?conditional {
+	if-exists: .divsA, #wow;
+	!if-exists: .divsB, .gosh;
+}
+</code></pre>

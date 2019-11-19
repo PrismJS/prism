@@ -1,0 +1,92 @@
+page-list {"/": data-ajax="/html/index.html";}
+|searchComponent{<div class="{$res{@i}.class}Dave">"Cheesey" wotsits</div>}/* Comment */
+.cheese:myConditional:mouseover,body:click{alert: "hello";body,a{add-class:.bob after 100ms;}
+@media (max-width: 1020px) {body:click{alert:"hello";}}
+?conditional{if-exists:.dave,.cheesey;!if-exists:.dave,.cheesey;}
+
+----------------------------------------------------
+
+[
+	["attr-value", ["page-list "] ],
+	["punctuation", "{"],
+	["string", ["\"/\""] ],
+	["punctuation", ":"],
+	" data-ajax=",
+	["string", ["\"/html/index.html\""] ],
+	["punctuation", ";"],
+	["punctuation", "}"],
+
+	[ "attr-value", ["\n|searchComponent"] ],
+	[ "punctuation", "{" ],
+	"<div class=",
+	["string", ["\"",
+		["variable", "{$res{@i}.class}"],
+		"Dave\""
+	] ],
+	">",
+	["string", ["\"Cheesey\""] ],
+	" wotsits</div>",
+	["punctuation", "}"],
+	["comment", "/* Comment */"],
+
+	["attr-value", [
+		"\n.cheese:myConditional",
+		["event", ":mouseover,"],
+		"body:click"
+	] ],
+	["punctuation", "{"],
+	["property", "alert"],
+	["punctuation", ":"],
+	["string", ["\"hello\""] ],
+	["punctuation", ";"],
+	["attr-value", ["body,a"] ],
+	["punctuation", "{"],
+	["property", "add-class"],
+	["punctuation", ":"],
+	".bob ",
+	["important", "after 100ms"],
+	["punctuation", ";"],
+	["punctuation", "}"],
+
+	["atrule", [
+		["rule", "@media"],
+		["punctuation", "("],
+		["property", "max-width"],
+		["punctuation", ":"],
+		" 1020px",
+		["punctuation", ")"]
+	] ],
+	["attr-value", [" {body:click"] ],
+	["punctuation", "{"],
+	["property", "alert"],
+	["punctuation", ":"],
+	["string", ["\"hello\""] ],
+	["punctuation", ";"],
+	["punctuation", "}"],
+	["punctuation", "}"],
+
+	["attr-value", ["\n?conditional"] ],
+	["punctuation", "{"],
+	["property", "if-exists"],
+	["punctuation", ":"],
+	".dave",
+	["punctuation", ","],
+	".cheesey",
+	["punctuation", ";"],
+	"!",
+	["property", "if-exists"],
+	["punctuation", ":"],
+	".dave",
+	["punctuation", ","],
+	".cheesey",
+	["punctuation", ";"],
+	["punctuation", "}"]
+
+]
+
+----------------------------------------------------
+
+Combinations of syntax tested here for Cause JS, but not all. For full visual check on the test page, use a good-sized site config.
+No known errors on any regular formatted syntax.
+Tests here split up by line (in the syntax) and group (in the JSON).
+One known minor error on minified syntax - the curly in "{body:click" gets included in the "attr-value" selection.
