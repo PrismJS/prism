@@ -68,7 +68,7 @@
 		}
 	};
 
-	Prism.languages['robot-framework'] = {
+	Prism.languages['robotframework'] = {
 		'settings': createSection('Settings', {
 			'documentation': {
 				pattern: /([\r\n] ?Documentation(?:  |\t)[ \t]*)(?![ \t]|#)(?:.|[ \t]*(?:\r\n?|\n)[ \t]*\.{3}[ \t]*)+/,
@@ -99,6 +99,6 @@
 		'comment': comment
 	};
 
-	Prism.languages.robot = Prism.languages['robot-framework'];
+	Prism.languages.robot = Prism.languages['robotframework'];
 
 }(Prism));
