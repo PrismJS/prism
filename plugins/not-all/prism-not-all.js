@@ -83,10 +83,24 @@
 		}
 	}
 
-	Prism.hooks.add('before-highlightall', function (env) {
+	/**
+	 * Applies all filters to the given element and returns true if and only if every filter returned true on the
+	 * given element.
+	 *
+	 * @param {HTMLElement} element
+	 * @returns {boolean}
+	 */
+	function combinedFilter(element) {
 		for (var i = 0, l = filters.length; i < l; i++) {
-			env.filter(filters[i]);
+			if (!filters[i](element)) {
+				return false;
+			}
 		}
+		return true;
+	}
+
+	Prism.hooks.add('before-highlightall-name-pending', function (env) {
+		env.elements = env.elements.filter(combinedFilter);
 	});
 
 }());

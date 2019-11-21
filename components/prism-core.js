@@ -234,22 +234,20 @@ var _ = {
 	},
 
 	highlightAllUnder: function(container, async, callback) {
-		var filters = [];
-
 		var env = {
 			callback: callback,
-			selector: 'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code',
-			filter: filters.push.bind(filters)
+			container: container,
+			selector: 'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'
 		};
 
 		_.hooks.run('before-highlightall', env);
 
-		var elements = container.querySelectorAll(env.selector);
+		env.elements = Array.prototype.slice.apply(container.querySelectorAll(env.selector));
 
-		for (var i = 0, element; element = elements[i++];) {
-			if (filters.every(function (f) { return f(element); })) {
-				_.highlightElement(element, async === true, env.callback);
-			}
+		_.hooks.run('before-highlightall-name-pending', env);
+
+		for (var i = 0, element; element = env.elements[i++];) {
+			_.highlightElement(element, async === true, env.callback);
 		}
 	},
 
