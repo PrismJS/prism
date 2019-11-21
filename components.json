@@ -1210,8 +1210,8 @@
 			"owner": "RunDevelopment",
 			"require": "diff"
 		},
-		"not-all": {
-			"title": "Not all",
+		"filter-highlight-all": {
+			"title": "Filter highlightAll",
 			"description": "Filters the elements the <code>highlightAll</code> and <code>highlightAllUnder</code> methods actually highlight.",
 			"owner": "RunDevelopment",
 			"noCSS": true

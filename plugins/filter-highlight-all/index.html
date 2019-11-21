@@ -4,7 +4,7 @@
 
 	<meta charset="utf-8" />
 	<link rel="icon" href="favicon.png" />
-	<title>Not all ▲ Prism plugins</title>
+	<title>Filter highlightAll ▲ Prism plugins</title>
 	<base href="../.." />
 	<link rel="stylesheet" href="style.css" />
 	<link rel="stylesheet" href="themes/prism.css" data-noprefix />
@@ -20,18 +20,18 @@
 </head>
 <body>
 
-<header data-plugin-header="not-all"></header>
+<header data-plugin-header="filter-highlight-all"></header>
 
 <section class="language-typescript">
 	<h1>How to use</h1>
 
-	<p>Not all provides you with ways to filter the element the <code>highlightAll</code> and <code>highlightAllUnder</code> methods actually highlight. This can be very useful when you use Prism's automatic highlighting when loading the page but want to exclude certain code blocks.</p>
+	<p>Filter highlightAll provides you with ways to filter the element the <code>highlightAll</code> and <code>highlightAllUnder</code> methods actually highlight. This can be very useful when you use Prism's automatic highlighting when loading the page but want to exclude certain code blocks.</p>
 </section>
 
 <section class="language-typescript">
 	<h1>API</h1>
 
-	<p>In <code>Prism.plugins.notAll</code> you can find the following:</p>
+	<p>In <code>Prism.plugins.filterHighlightAll</code> you can find the following:</p>
 
 	<dl>
 		<dt><code>filter(condition: (value: { element, language: string }) => boolean): void</code></dt>
@@ -59,24 +59,24 @@
 
 	<h2>Attributes</h2>
 
-	<p>You can also add the following <code class="language-none">data-*</code> attributes to the script which contains the Not all plugin.</p>
+	<p>You can also add the following <code class="language-none">data-*</code> attributes to the script which contains the Filter highlightAll plugin.</p>
 
 	<dl>
 		<dt><code class="language-markup">&lt;script src="..." data-filter-css="&lt;css selector>"></code></dt>
 		<dd>
-			This attribute is a shorthand for <code>Prism.plugins.notAll.filterCss</code>.
+			This attribute is a shorthand for <code>Prism.plugins.filterHighlightAll.filterCss</code>.
 			The value of the attribute will be passed as is to the <code>filterCss</code> function.
 		</dd>
 
 		<dt><code class="language-markup">&lt;script src="..." data-exclude-css="&lt;css selector>"></code></dt>
 		<dd>
-			This attribute is a shorthand for <code>Prism.plugins.notAll.excludeCss</code>.
+			This attribute is a shorthand for <code>Prism.plugins.filterHighlightAll.excludeCss</code>.
 			The value of the attribute will be passed as is to the <code>excludeCss</code> function.
 		</dd>
 
-		<dt><code class="language-markup">&lt;script src="..." data-exclude-known></code></dt>
+		<dt><code class="language-markup">&lt;script src="..." data-filter-known></code></dt>
 		<dd>
-			This attribute can be used to set the value of <code>Prism.plugins.notAll.filterKnown</code>.
+			This attribute can be used to set the value of <code>Prism.plugins.filterHighlightAll.filterKnown</code>.
 			<code>filterKnown</code> will be set to <code>true</code> if the attribute is present, <code>false</code> otherwise.
 		</dd>
 	</dl>
@@ -89,11 +89,11 @@
 	<p>The following code is used to define a filter on this page.</p>
 
 	<pre><code class="language-javascript">// &lt;code> elements with a .no-highlight class will be ignored
-Prism.plugins.notAll.excludeCss('code.no-highlight');
-Prism.plugins.notAll.excludeCss('pre.no-highlight > code');
+Prism.plugins.filterHighlightAll.excludeCss('code.no-highlight');
+Prism.plugins.filterHighlightAll.excludeCss('pre.no-highlight > code');
 
 // don't highlight CSS code
-Prism.plugins.notAll.filter(function (env) {
+Prism.plugins.filterHighlightAll.filter(function (env) {
 	return env.language !== 'css';
 });</code></pre>
 
@@ -119,18 +119,18 @@ Prism.plugins.notAll.filter(function (env) {
 
 <script src="prism.js"></script>
 <script src="components/prism-typescript.js"></script>
-<script src="plugins/not-all/prism-not-all.js"></script>
+<script src="plugins/filter-highlight-all/prism-filter-highlight-all.js"></script>
 <script src="scripts/utopia.js"></script>
 <script src="components.js"></script>
 <script src="scripts/code.js"></script>
 
 <script>
 // elements with a .no-highlight class will be ignored
-Prism.plugins.notAll.excludeCss('code.no-highlight');
-Prism.plugins.notAll.excludeCss('pre.no-highlight > code');
+Prism.plugins.filterHighlightAll.excludeCss('code.no-highlight');
+Prism.plugins.filterHighlightAll.excludeCss('pre.no-highlight > code');
 
 // don't highlight CSS code
-Prism.plugins.notAll.filter(function (env) {
+Prism.plugins.filterHighlightAll.filter(function (env) {
 	return env.language !== 'css';
 });
 </script>

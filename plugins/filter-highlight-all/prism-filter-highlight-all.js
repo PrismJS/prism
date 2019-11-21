@@ -17,7 +17,7 @@
 	 */
 	var filters = [];
 
-	var config = Prism.plugins.notAll = {
+	var config = Prism.plugins.filterHighlightAll = {
 
 		/**
 		 * Filters the elements of `highlightAll` and `highlightAllUnder` such that only element for which the given
