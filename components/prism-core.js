@@ -242,7 +242,7 @@ var _ = {
 
 		_.hooks.run('before-highlightall', env);
 
-		env.elements = Array.prototype.slice.apply(container.querySelectorAll(env.selector));
+		env.elements = Array.prototype.slice.apply(env.container.querySelectorAll(env.selector));
 
 		_.hooks.run('before-highlightall-name-pending', env);
 
