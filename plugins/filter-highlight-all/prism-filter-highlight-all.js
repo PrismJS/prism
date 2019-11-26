@@ -40,7 +40,7 @@
 		 *
 		 * @param {string} selector
 		 */
-		filterCss: function (selector) {
+		filterSelector: function (selector) {
 			filters.push(function (element) {
 				return element.matches(selector);
 			});
@@ -52,7 +52,7 @@
 		 *
 		 * @param {string} selector
 		 */
-		excludeCss: function (selector) {
+		rejectSelector: function (selector) {
 			filters.push(function (element) {
 				return !element.matches(selector);
 			});
@@ -75,11 +75,11 @@
 
 	if (script) {
 		var attr;
-		if (attr = script.getAttribute('data-filter-css')) {
-			config.filterCss(attr);
+		if (attr = script.getAttribute('data-filter-selector')) {
+			config.filterSelector(attr);
 		}
-		if (attr = script.getAttribute('data-exclude-css')) {
-			config.excludeCss(attr);
+		if (attr = script.getAttribute('data-reject-selector')) {
+			config.rejectSelector(attr);
 		}
 	}
 
