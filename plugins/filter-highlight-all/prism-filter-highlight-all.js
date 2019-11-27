@@ -20,8 +20,8 @@
 	var config = Prism.plugins.filterHighlightAll = {
 
 		/**
-		 * Filters the elements of `highlightAll` and `highlightAllUnder` such that only element for which the given
-		 * function returns `true` will be highlighted.
+		 * Adds a new filter for the elements of `highlightAll` and `highlightAllUnder` such that only elements for
+		 * which the given function returns `true` will be highlighted.
 		 *
 		 * @param {(value: { element: HTMLElement, language: string }) => boolean} condition
 		 */
@@ -35,8 +35,8 @@
 		},
 
 		/**
-		 * Filters the elements of `highlightAll` and `highlightAllUnder` such that only element which match the given
-		 * CSS selection will be highlighted.
+		 * Adds a new filter for the elements of `highlightAll` and `highlightAllUnder` such that only elements that
+		 * match the given CSS selection will be highlighted.
 		 *
 		 * @param {string} selector
 		 */
@@ -47,8 +47,8 @@
 		},
 
 		/**
-		 * Filters the elements of `highlightAll` and `highlightAllUnder` such that only element which do not match the
-		 * given CSS selection will be highlighted.
+		 * Adds a new filter for the elements of `highlightAll` and `highlightAllUnder` such that only elements that do
+		 * not match the given CSS selection will be highlighted.
 		 *
 		 * @param {string} selector
 		 */
@@ -59,7 +59,7 @@
 		},
 
 		/**
-		 * Filters the elements of `highlightAll` and `highlightAllUnder` such that only element with a known language
+		 * Filters the elements of `highlightAll` and `highlightAllUnder` such that only elements with a known language
 		 * will be highlighted. All elements with an unset or unknown language will be ignored.
 		 *
 		 * __Note:__ This will effectively disable the AutoLoader plugin.

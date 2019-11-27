@@ -36,18 +36,18 @@
 	<dl>
 		<dt><code>filter(condition: (value: { element, language: string }) => boolean): void</code></dt>
 		<dd>
-			Only if the given function return <code>true</code> will the element be highlighted.
+			Adds a new filter which will only allow an element to be highlighted if the given function returns <code>true</code> for that element. <br>
 			This can be used to define a custom language filter.
 		</dd>
 
 		<dt><code>filterSelector(selector: string): void</code></dt>
 		<dd>
-			Only elements which match the given CSS selector will be highlighted.
+			Adds a new filter which will only allow an element to be highlighted if the element matches the given CSS selector.
 		</dd>
 
 		<dt><code>rejectSelector(selector: string): void</code></dt>
 		<dd>
-			Only elements which do not match the given CSS selector will be highlighted.
+			Adds a new filter which will only allow an element to be highlighted if the element does not match the given CSS selector.
 		</dd>
 
 		<dt><code>filterKnown: boolean = false</code></dt>
