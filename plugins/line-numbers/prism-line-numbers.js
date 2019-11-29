@@ -71,7 +71,6 @@
 					var e = lineNumberSizer.appendChild(document.createElement('span'));
 					e.style.display = 'block';
 					e.textContent = line;
-					lineNumberSizer.appendChild(document.createTextNode('\n'));
 				} else {
 					lineHeights[index] = oneLinerHeight;
 				}
