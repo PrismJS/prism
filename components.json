@@ -847,7 +847,7 @@
 			"title": "Roboconf",
 			"owner": "Golmote"
 		},
-		"robot-framework": {
+		"robotframework": {
 			"title": "Robot Framework",
 			"alias": "robot",
 			"owner": "RunDevelopment"
@@ -1099,7 +1099,7 @@
 		},
 		"custom-class": {
 			"title": "Custom Class",
-			"description": "Allows you to prefix Prism default classes (e.g. <code>.comment</code> will become <code>.namespace--comment</code>) or replace them with your defined ones (like <code>.editor__comment</code> or <code>.comment_7sh3a</code>).",
+			"description": "This plugin allows you to prefix Prism's default classes (<code>.comment</code> can become <code>.namespace--comment</code>) or replace them with your defined ones (like <code>.editor__comment</code>). You can even add new classes.",
 			"owner": "dvkndn",
 			"noCSS": true
 		},
@@ -1209,6 +1209,12 @@
 			"description": "Highlights the code inside diff blocks.",
 			"owner": "RunDevelopment",
 			"require": "diff"
+		},
+		"filter-highlight-all": {
+			"title": "Filter highlightAll",
+			"description": "Filters the elements the <code>highlightAll</code> and <code>highlightAllUnder</code> methods actually highlight.",
+			"owner": "RunDevelopment",
+			"noCSS": true
 		}
 	}
 }
