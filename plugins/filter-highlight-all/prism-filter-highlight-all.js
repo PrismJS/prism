@@ -118,7 +118,7 @@
 		return true;
 	}
 
-	Prism.hooks.add('before-highlightall-name-pending', function (env) {
+	Prism.hooks.add('before-all-elements-highlight', function (env) {
 		env.elements = env.elements.filter(combinedFilter);
 	});
 

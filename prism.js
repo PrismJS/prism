@@ -249,7 +249,7 @@ var _ = {
 
 		env.elements = Array.prototype.slice.apply(env.container.querySelectorAll(env.selector));
 
-		_.hooks.run('before-highlightall-name-pending', env);
+		_.hooks.run('before-all-elements-highlight', env);
 
 		for (var i = 0, element; element = env.elements[i++];) {
 			_.highlightElement(element, async === true, env.callback);
