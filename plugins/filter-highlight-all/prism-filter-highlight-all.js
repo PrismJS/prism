@@ -25,7 +25,7 @@
 		 *
 		 * @param {(value: { element: HTMLElement, language: string }) => boolean} condition
 		 */
-		filter: function (condition) {
+		add: function (condition) {
 			filters.push(function (element) {
 				return condition({
 					element: element,
@@ -40,22 +40,41 @@
 		 *
 		 * @param {string} selector
 		 */
-		filterSelector: function (selector) {
+		addSelector: function (selector) {
 			filters.push(function (element) {
 				return element.matches(selector);
 			});
 		},
 
-		/**
-		 * Adds a new filter for the elements of `highlightAll` and `highlightAllUnder` such that only elements that do
-		 * not match the given CSS selection will be highlighted.
-		 *
-		 * @param {string} selector
-		 */
-		rejectSelector: function (selector) {
-			filters.push(function (element) {
-				return !element.matches(selector);
-			});
+		reject: {
+
+			/**
+			 * Adds a new filter for the elements of `highlightAll` and `highlightAllUnder` such that only elements for
+			 * which the given function returns `false` will be highlighted.
+			 *
+			 * @param {(value: { element: HTMLElement, language: string }) => boolean} condition
+			 */
+			add: function (condition) {
+				filters.push(function (element) {
+					return !condition({
+						element: element,
+						language: Prism.util.getLanguage(element)
+					});
+				});
+			},
+
+			/**
+			 * Adds a new filter for the elements of `highlightAll` and `highlightAllUnder` such that only elements that do
+			 * not match the given CSS selection will be highlighted.
+			 *
+			 * @param {string} selector
+			 */
+			addSelector: function (selector) {
+				filters.push(function (element) {
+					return !element.matches(selector);
+				});
+			},
+
 		},
 
 		/**
@@ -69,17 +88,17 @@
 		filterKnown: !!script && script.hasAttribute('data-filter-known')
 	};
 
-	config.filter(function filterKnown(env) {
+	config.add(function filterKnown(env) {
 		return !config.filterKnown || typeof Prism.languages[env.language] === 'object';
 	});
 
 	if (script) {
 		var attr;
 		if (attr = script.getAttribute('data-filter-selector')) {
-			config.filterSelector(attr);
+			config.addSelector(attr);
 		}
 		if (attr = script.getAttribute('data-reject-selector')) {
-			config.rejectSelector(attr);
+			config.reject.addSelector(attr);
 		}
 	}
 
