@@ -1209,6 +1209,12 @@
 			"description": "Highlights the code inside diff blocks.",
 			"owner": "RunDevelopment",
 			"require": "diff"
+		},
+		"filter-highlight-all": {
+			"title": "Filter highlightAll",
+			"description": "Filters the elements the <code>highlightAll</code> and <code>highlightAllUnder</code> methods actually highlight.",
+			"owner": "RunDevelopment",
+			"noCSS": true
 		}
 	}
 }

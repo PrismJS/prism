@@ -18,24 +18,6 @@ var Prism = (function (_self){
 var lang = /\blang(?:uage)?-([\w-]+)\b/i;
 var uniqueId = 0;
 
-/**
- * Returns the Prism language of the given element set by a `language-xxxx` or `lang-xxxx` class.
- *
- * If no language is set for the element or the element is `null` or `undefined`, `none` will be returned.
- *
- * @param {Element} element
- * @returns {string}
- */
-function getLanguage(element) {
-	while (element && !lang.test(element.className)) {
-		element = element.parentNode;
-	}
-	if (element) {
-		return (element.className.match(lang) || [, 'none'])[1].toLowerCase();
-	}
-	return 'none';
-}
-
 
 var _ = {
 	manual: _self.Prism && _self.Prism.manual,
@@ -101,6 +83,24 @@ var _ = {
 				default:
 					return o;
 			}
+		},
+
+		/**
+		 * Returns the Prism language of the given element set by a `language-xxxx` or `lang-xxxx` class.
+		 *
+		 * If no language is set for the element or the element is `null` or `undefined`, `none` will be returned.
+		 *
+		 * @param {Element} element
+		 * @returns {string}
+		 */
+		getLanguage: function (element) {
+			while (element && !lang.test(element.className)) {
+				element = element.parentElement;
+			}
+			if (element) {
+				return (element.className.match(lang) || [, 'none'])[1].toLowerCase();
+			}
+			return 'none';
 		},
 
 		/**
@@ -236,21 +236,24 @@ var _ = {
 	highlightAllUnder: function(container, async, callback) {
 		var env = {
 			callback: callback,
+			container: container,
 			selector: 'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'
 		};
 
 		_.hooks.run('before-highlightall', env);
 
-		var elements = container.querySelectorAll(env.selector);
+		env.elements = Array.prototype.slice.apply(env.container.querySelectorAll(env.selector));
 
-		for (var i=0, element; element = elements[i++];) {
+		_.hooks.run('before-all-elements-highlight', env);
+
+		for (var i = 0, element; element = env.elements[i++];) {
 			_.highlightElement(element, async === true, env.callback);
 		}
 	},
 
 	highlightElement: function(element, async, callback) {
 		// Find language
-		var language = getLanguage(element);
+		var language = _.util.getLanguage(element);
 		var grammar = _.languages[language];
 
 		// Set language on the element, if not present
