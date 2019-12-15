@@ -12,12 +12,12 @@
  * @property {Object<string, string>} [aliasTitles] An optional map from an alias to its title.
  *
  * Aliases which are not in this map will the get title of the component.
+ * @property {string | string[]} [optional]
  * @property {string | string[]} [require]
  * @property {string | string[]} [modify]
- * @property {string | string[]} [after]
  */
 
-var getLoad = (function () {
+var getLoader = (function () {
 
 	/**
 	 * A function which does absolutely nothing.
@@ -125,7 +125,7 @@ var getLoad = (function () {
 			var entry = entryMap[id];
 			if (entry) {
 				/** @type {string[]} */
-				var deps = [].concat(entry.require, entry.modify, entry.after).filter(Boolean);
+				var deps = [].concat(entry.require, entry.modify, entry.optional).filter(Boolean);
 				deps.forEach(function (depId) {
 					if (!(depId in entryMap)) {
 						throw new Error(id + ' depends on an unknown component ' + depId);
@@ -300,9 +300,9 @@ var getLoad = (function () {
 	 * @param {string[]} [loaded=[]] A list of already loaded components.
 	 *
 	 * If a component is in this list, then all of its requirements will also be assumed to be in the list.
-	 * @returns {GetLoadResult}
+	 * @returns {Loader}
 	 *
-	 * @typedef GetLoadResult
+	 * @typedef Loader
 	 * @property {() => string[]} getIds A function to get all ids of the components to load.
 	 *
 	 * The returned ids will be duplicate-free, alias-free and in load order.
@@ -321,11 +321,18 @@ var getLoad = (function () {
 	 *
 	 * await load(
 	 *     id => loadComponentAsync(id), // returns a Promise for each id
-	 *     (before, after) => before.then(() => after),
-	 *     Promise.all
+	 *     {
+	 *         series: async (before, after) => {
+	 *             await before;
+	 *             await after();
+	 *         },
+	 *         parallel: async (values) => {
+	 *             await Promise.all(values);
+	 *         }
+	 *     }
 	 * );
 	 */
-	function getLoad(components, load, loaded) {
+	function getLoader(components, load, loaded) {
 		var entryMap = createEntryMap(components);
 		var resolveAlias = createAliasResolver(entryMap);
 
@@ -398,11 +405,11 @@ var getLoad = (function () {
 			}
 		}
 
-		/** @type {GetLoadResult} */
-		var result = {
+		/** @type {Loader} */
+		var loader = {
 			getIds: function () {
 				var ids = [];
-				result.load(function (id) {
+				loader.load(function (id) {
 					ids.push(id);
 				});
 				return ids;
@@ -412,13 +419,13 @@ var getLoad = (function () {
 			}
 		};
 
-		return result;
+		return loader;
 	}
 
-	return getLoad;
+	return getLoader;
 
 }());
 
 if (typeof module !== 'undefined') {
-	module.exports = getLoad;
+	module.exports = getLoader;
 }

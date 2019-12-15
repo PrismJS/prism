@@ -1,5 +1,5 @@
 const components = require('../components.js');
-const getLoad = require('../dependencies');
+const getLoader = require('../dependencies');
 
 
 /**
@@ -25,10 +25,10 @@ function loadLanguages(languages) {
 	}
 
 	// the user might have loaded languages via some other way or used `prism.js` which already includes some
-	// we don't need to validate the ids because `getLoad` will ignore invalid ones
+	// we don't need to validate the ids because `getLoader` will ignore invalid ones
 	const loaded = [...loadedLanguages, ...Object.keys(Prism.languages)];
 
-	getLoad(components, languages, loaded).load(lang => {
+	getLoader(components, languages, loaded).load(lang => {
 		if (!(lang in components.languages)) {
 			console.warn('Language does not exist: ' + lang);
 			return;

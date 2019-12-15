@@ -1,5 +1,5 @@
 const { assert } = require('chai');
-const getLoad = require('../dependencies');
+const getLoader = require('../dependencies');
 const components = require('../components');
 
 
@@ -16,7 +16,7 @@ describe('Dependency logic', function () {
 			},
 			'c': {
 				require: 'a',
-				after: ['b', 'e']
+				optional: ['b', 'e']
 			},
 			'd': {
 				require: ['c', 'b'],
@@ -31,14 +31,14 @@ describe('Dependency logic', function () {
 	};
 
 	/**
-	 * Returns the ids of `getLoad`.
+	 * Returns the ids of `getLoader`.
 	 *
 	 * @param {string[]} load
 	 * @param {string[]} [loaded]
 	 * @returns {string[]}
 	 */
 	function getIds(load, loaded) {
-		return getLoad(components, load, loaded).getIds();
+		return getLoader(components, load, loaded).getIds();
 	}
 
 	describe('Returned ids', function () {
@@ -78,7 +78,7 @@ describe('Dependency logic', function () {
 						b: 'B'
 					}
 				};
-				getLoad(circular, ['a']).getIds();
+				getLoader(circular, ['a']).getIds();
 			});
 		});
 
@@ -96,15 +96,15 @@ describe('Dependency logic', function () {
 			assert.deepStrictEqual(getIds(['e', 'a']), ['a', 'e']);
 		});
 
-		it('- should load components in the correct order (after)', function () {
+		it('- should load components in the correct order (optional)', function () {
 			assert.deepStrictEqual(getIds(['c', 'b'], ['a']), ['b', 'c']);
 		});
 
-		it('- should load components in the correct order (require + after)', function () {
+		it('- should load components in the correct order (require + optional)', function () {
 			assert.deepStrictEqual(getIds(['d'], ['a']), ['b', 'c', 'd']);
 		});
 
-		it('- should load components in the correct order (require + modify + after)', function () {
+		it('- should load components in the correct order (require + modify + optional)', function () {
 			assert.deepStrictEqual(getIds(['d', 'e'], ['b']), ['a', 'e', 'c', 'd']);
 		});
 
@@ -133,7 +133,7 @@ describe('Dependency logic', function () {
 						}
 					}
 				};
-				getLoad(circular, ['a']).getIds();
+				getLoader(circular, ['a']).getIds();
 			});
 		});
 
@@ -148,7 +148,7 @@ describe('Dependency logic', function () {
 						b: 'B'
 					}
 				};
-				getLoad(circular, ['a']).getIds();
+				getLoader(circular, ['a']).getIds();
 			});
 		});
 
@@ -165,11 +165,11 @@ describe('Dependency logic', function () {
 							require: 'b'
 						},
 						b: {
-							after: 'a'
+							optional: 'a'
 						}
 					}
 				};
-				getLoad(circular, ['a']).getIds();
+				getLoader(circular, ['a']).getIds();
 			});
 		});
 
@@ -224,9 +224,9 @@ describe('Dependency logic', function () {
 				});
 			}
 
-			const result = getLoad(localComponents, ['c']);
+			const loader = getLoader(localComponents, ['c']);
 
-			await result.load(id => loadComp(id), {
+			await loader.load(id => loadComp(id), {
 				series: async (before, after) => {
 					await before;
 					await after();
@@ -248,7 +248,7 @@ describe('components.json', function () {
 
 	it('- should be valid', function () {
 		try {
-			getLoad(components, Object.keys(components.languages).filter(k => k != 'meta')).getIds();
+			getLoader(components, Object.keys(components.languages).filter(k => k != 'meta')).getIds();
 		} catch (error) {
 			assert.fail(error.toString());
 		}

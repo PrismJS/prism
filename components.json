@@ -375,7 +375,7 @@
 		"haml": {
 			"title": "Haml",
 			"require": "ruby",
-			"after": [
+			"optional": [
 				"css",
 				"css-extras",
 				"coffeescript",
@@ -410,7 +410,7 @@
 		},
 		"http": {
 			"title": "HTTP",
-			"after": [
+			"optional": [
 				"css",
 				"javascript",
 				"json",
@@ -461,7 +461,7 @@
 			"modify": [
 				"java"
 			],
-			"after": [
+			"optional": [
 				"scala"
 			],
 			"owner": "RunDevelopment"
@@ -492,7 +492,7 @@
 			"title": "JSDoc",
 			"require": ["javascript", "javadoclike"],
 			"modify": "javascript",
-			"after": [
+			"optional": [
 				"actionscript",
 				"coffeescript"
 			],
@@ -502,7 +502,7 @@
 			"title": "JS Extras",
 			"require": "javascript",
 			"modify": "javascript",
-			"after": [
+			"optional": [
 				"actionscript",
 				"coffeescript",
 				"flow",
@@ -515,7 +515,7 @@
 			"title": "JS Templates",
 			"require": "javascript",
 			"modify": "javascript",
-			"after": [
+			"optional": [
 				"css",
 				"css-extras",
 				"graphql",
@@ -563,7 +563,7 @@
 		"less": {
 			"title": "Less",
 			"require": "css",
-			"after": "css-extras",
+			"optional": "css-extras",
 			"owner": "Golmote"
 		},
 		"lilypond": {
@@ -636,7 +636,7 @@
 		"n4js": {
 			"title": "N4JS",
 			"require": "javascript",
-			"after": [
+			"optional": [
 				"jsdoc"
 			],
 			"alias": "n4jsd",
@@ -767,7 +767,7 @@
 		"pug": {
 			"title": "Pug",
 			"require": ["markup", "javascript"],
-			"after": [
+			"optional": [
 				"coffeescript",
 				"ejs",
 				"handlebars",
@@ -786,7 +786,7 @@
 		},
 		"pure": {
 			"title": "Pure",
-			"after": [
+			"optional": [
 				"c",
 				"cpp",
 				"fortran"
@@ -814,7 +814,7 @@
 		"jsx": {
 			"title": "React JSX",
 			"require": ["markup", "javascript"],
-			"after": [
+			"optional": [
 				"jsdoc",
 				"js-extras",
 				"js-templates"
@@ -886,7 +886,7 @@
 		"scss": {
 			"title": "Sass (Scss)",
 			"require": "css",
-			"after": "css-extras",
+			"optional": "css-extras",
 			"owner": "MoOx"
 		},
 		"scala": {
@@ -962,7 +962,7 @@
 		"textile": {
 			"title": "Textile",
 			"require": "markup",
-			"after": "css",
+			"optional": "css",
 			"owner": "Golmote"
 		},
 		"toml": {
@@ -990,7 +990,7 @@
 		"typescript": {
 			"title": "TypeScript",
 			"require": "javascript",
-			"after": "js-templates",
+			"optional": "js-templates",
 			"alias": "ts",
 			"owner": "vkbansal"
 		},
@@ -1095,7 +1095,7 @@
 		"show-invisibles": {
 			"title": "Show Invisibles",
 			"description": "Show hidden characters such as tabs and line breaks.",
-			"after": [
+			"optional": [
 				"autolinker",
 				"data-uri-highlight"
 			]
@@ -1166,7 +1166,7 @@
 			"title": "Keep Markup",
 			"description": "Prevents custom markup from being dropped out during highlighting.",
 			"owner": "Golmote",
-			"after": "normalize-whitespace",
+			"optional": "normalize-whitespace",
 			"noCSS": true
 		},
 		"command-line": {
@@ -1182,7 +1182,7 @@
 			"title": "Normalize Whitespace",
 			"description": "Supports multiple operations to normalize whitespace in code blocks.",
 			"owner": "zeitgeist87",
-			"after": "unescaped-markup",
+			"optional": "unescaped-markup",
 			"noCSS": true
 		},
 		"data-uri-highlight": {

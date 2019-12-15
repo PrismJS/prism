@@ -573,7 +573,7 @@ function buildCode(promises) {
 	});
 
 	// this assumes that the ids in `toSortMap` are complete under transitive requirements
-	getLoad(components, Object.keys(toSortMap)).getIds().forEach(function (id) {
+	getLoader(components, Object.keys(toSortMap)).getIds().forEach(function (id) {
 		if (!toSortMap[id]) {
 			console.error(id + " not found.");
 		}

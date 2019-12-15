@@ -4,7 +4,7 @@ const fs = require("fs");
 const vm = require("vm");
 const { getAllFiles } = require("./test-discovery");
 const components = require("../../components");
-const getLoad = require("../../dependencies");
+const getLoader = require("../../dependencies");
 const languagesCatalog = components.languages;
 
 
@@ -46,7 +46,7 @@ module.exports = {
 			languages = [languages];
 		}
 
-		getLoad(components, languages, [...context.loaded]).load(id => {
+		getLoader(components, languages, [...context.loaded]).load(id => {
 			if (!languagesCatalog[id]) {
 				throw new Error(`Language '${id}' not found.`);
 			}
