@@ -560,13 +560,12 @@ function buildCode(promises) {
 	var toSortMap = {};
 
 	promises.forEach(function (p) {
-		p.contentsPromise = Promise.resolve(p.id);
 		if (p.category == "core" || p.category == "themes") {
 			finalPromises.push(p);
 		} else {
 			var infos = toSortMap[p.id];
 			if (!infos) {
-				toSortMap[p.id]=infos = [];
+				toSortMap[p.id] = infos = [];
 			}
 			infos.push(p);
 		}
