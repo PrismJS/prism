@@ -1,0 +1,42 @@
+class Foo extends Bar
+	new: (@foo)=>
+
+with MyClass 'baz'
+	.foo = "bazz"
+
+
+-- any name starting with a capital letter is considered a class
+func Foo Bar
+
+----------------------------------------------------
+
+[
+	["keyword", "class"],
+	["class-name", "Foo"],
+	["keyword", "extends"],
+	["class-name", "Bar"],
+	["property", "new"],
+	["operator", ":"],
+	["punctuation", "("],
+	["variable", "@foo"],
+	["punctuation", ")"],
+	["operator", "=>"],
+	["keyword", "with"],
+	["class-name", "MyClass"],
+	["string", "'baz'"],
+	["punctuation", "."],
+	"foo ",
+	["operator", "="],
+	["string", [
+		"\"bazz\""
+	]],
+
+	["comment", "-- any name starting with a capital letter is considered a class"],
+	"\r\nfunc ",
+	["class-name", "Foo"],
+	["class-name", "Bar"]
+]
+
+----------------------------------------------------
+
+Checks for class names.

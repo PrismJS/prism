@@ -1,0 +1,64 @@
+<h2>Full example</h2>
+<pre><code>class List
+  new: (t) =>
+    if t then return t
+
+  append: table.insert
+  join: table.concat
+
+  map: (f,...) => List [f x,... for x in *self]
+
+  -- apply a function on a list in-place
+  apply: (f,...) =>
+    for i = 1,#@ do @[i] = f @[i],...
+    self
+
+  clone: => @slice 1
+
+  slice: (i1,i2=#@) =>
+    -- workaround for MS slice bug
+    if i2 &lt; 0 then i2 = #@ + i2 + 1
+    List [x for x in *self[i1,i2]]
+
+  extend: (other) =>
+    i = #self + 1
+    for o in *other
+        self[i] = o
+        i += 1
+    self
+
+  partition: (pred,...) =>
+    res = {}
+    for x in *@
+        k = pred x,...
+        if not res[k] then res[k] = List!
+        res[k]\append x
+    res
+
+  lpartition: (n,npred,...) =>
+      res = List[List{} for i = 1,n]
+      for x in *@
+        k = npred x,...
+        if k >= 1 and k &lt;= n
+            res[k]\append x
+      res
+
+  __concat: (l1,l2) ->
+        List.clone(l1)\extend l2
+
+  __tostring: =>
+    tmp = @slice(1,10)\apply tostring
+    if #@ > 10 then tmp\append '...'
+    "["..tmp\join(',').."]"
+
+-- hack to modify class so its constructor may return a new self
+patch = (klass) -> getmetatable(klass).__call = (cls,...) ->
+    self = setmetatable {}, cls.__base
+    newself = cls.__init self, ...
+    if newself
+        self = setmetatable newself, cls.__base
+    self
+
+patch List
+
+return List</code></pre>
