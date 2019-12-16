@@ -161,7 +161,7 @@
 		"objectpascal": "pascal",
 		"px": "pcaxis",
 		"py": "python",
-		"robot": "robot-framework",
+		"robot": "robotframework",
 		"rb": "ruby",
 		"rq": "sparql",
 		"trig": "turtle",
