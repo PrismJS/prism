@@ -49,6 +49,8 @@
     * Improved doctype pattern (#2094) [`99994c58`](https://github.com/PrismJS/prism/commit/99994c58)
 * __Python__
     * Fixed decorators (#2018) [`5b8a16d9`](https://github.com/PrismJS/prism/commit/5b8a16d9)
+* __Robot Framework__
+    * Rename "robot-framework" to "robotframework" (#2113) [`baa78774`](https://github.com/PrismJS/prism/commit/baa78774)
 * __Ruby__
     * Made `true` and `false` booleans (#2098) [`68d1c472`](https://github.com/PrismJS/prism/commit/68d1c472)
     * Added missing keywords (#2097) [`f460eafc`](https://github.com/PrismJS/prism/commit/f460eafc)
@@ -68,6 +70,9 @@
 
 * New Match Braces plugin (#1944) [`365faade`](https://github.com/PrismJS/prism/commit/365faade)
 * New Inline color plugin (#2007) [`8403e453`](https://github.com/PrismJS/prism/commit/8403e453)
+* New Filter highlightAll plugin (#2074) [`a7f70090`](https://github.com/PrismJS/prism/commit/a7f70090)
+* __Custom Class__
+    * New class adder feature (#2075) [`dab7998e`](https://github.com/PrismJS/prism/commit/dab7998e)
 * __File Highlight__
     * Made the download button its own plugin (#1840) [`c6c62a69`](https://github.com/PrismJS/prism/commit/c6c62a69)
 
@@ -84,11 +89,13 @@
     * Doubly check the `manual` flag (#1957) [`d49f0f26`](https://github.com/PrismJS/prism/commit/d49f0f26)
     * IE11 workaround for `currentScript` (#2104) [`2108c60f`](https://github.com/PrismJS/prism/commit/2108c60f)
 * __Infrastructure__
+    * gulp: Fixed changes task [`2f495905`](https://github.com/PrismJS/prism/commit/2f495905)
     * npm: Added `.github` folder to npm ignore (#2052) [`1af89e06`](https://github.com/PrismJS/prism/commit/1af89e06)
     * npm: Updated dependencies to fix 122 vulnerabilities (#1997) [`3af5d744`](https://github.com/PrismJS/prism/commit/3af5d744)
     * Tests: New test for unused capturing groups (#1996) [`c187e229`](https://github.com/PrismJS/prism/commit/c187e229)
     * Tests: Simplified error message format (#2056) [`007c9af4`](https://github.com/PrismJS/prism/commit/007c9af4)
     * Tests: New test for nice names (#1911) [`3fda5c95`](https://github.com/PrismJS/prism/commit/3fda5c95)
+    * Standardized dependency logic implementation (#1998) [`7a4a0c7c`](https://github.com/PrismJS/prism/commit/7a4a0c7c)
 * __Website__
     * Added @mAAdhaTTah and @RunDevelopment to credits and footer [`5d07aa7c`](https://github.com/PrismJS/prism/commit/5d07aa7c)
     * Added plugin descriptions to plugin list (#2076) [`cdfa60ac`](https://github.com/PrismJS/prism/commit/cdfa60ac)
@@ -98,6 +105,7 @@
     * Use modern JavaScript in the NodeJS usage section (#1942) [`5c68a556`](https://github.com/PrismJS/prism/commit/5c68a556)
     * Improved test page performance for Chromium (#2020) [`3509f3e5`](https://github.com/PrismJS/prism/commit/3509f3e5)
     * Fixed alias example in extending page (#2011) [`7cb65eec`](https://github.com/PrismJS/prism/commit/7cb65eec)
+    * Robot Framework: Renamed example file (#2126) [`9908ca69`](https://github.com/PrismJS/prism/commit/9908ca69)
 
 ## 1.17.1 (2019-07-21)
 
