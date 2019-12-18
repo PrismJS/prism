@@ -70,6 +70,7 @@
 	 */
 	var hook = Prism.plugins.toolbar.hook = function (env) {
 		// Check if inline or actual code block (credit to line-numbers plugin)
+		/** @type {HTMLPreElement} */
 		var pre = env.element.parentNode;
 		if (!pre || !/pre/i.test(pre.nodeName)) {
 			return;
@@ -81,10 +82,16 @@
 		}
 
 		// Create wrapper for <pre> to prevent scrolling toolbar with content
-		var wrapper = document.createElement("div");
-		wrapper.classList.add("code-toolbar");
+		var wrapper = document.createElement('div');
+		wrapper.classList.add('code-toolbar');
 		pre.parentNode.insertBefore(wrapper, pre);
 		wrapper.appendChild(pre);
+
+		// Additional wrapper to align the toolbar properly
+		var toolbarPositioner = document.createElement('div');
+		toolbarPositioner.classList.add('toolbar-positioner');
+		wrapper.appendChild(toolbarPositioner);
+
 
 		// Setup the toolbar
 		var toolbar = document.createElement('div');
@@ -111,8 +118,32 @@
 		});
 
 		// Add our toolbar to the currently created wrapper of <pre> tag
-		wrapper.appendChild(toolbar);
+		toolbarPositioner.appendChild(toolbar);
+		refreshLayout(wrapper);
 	};
+
+
+	/**
+	 * This will adjust the width of the toolbar positioner on size changes.
+	 *
+	 * @param {HTMLDivElement} codeToolbar
+	 */
+	function refreshLayout(codeToolbar) {
+		/** @type {HTMLPreElement} */
+		var pre = codeToolbar.querySelector('div.code-toolbar > pre');
+		/** @type {HTMLDivElement} */
+		var toolbarWrapperElement = codeToolbar.querySelector('div.code-toolbar > div.toolbar-positioner');
+		if (toolbarWrapperElement) {
+			toolbarWrapperElement.style.right = (codeToolbar.clientWidth - pre.clientWidth) + 'px';
+		}
+	}
+	window.addEventListener('resize', function () {
+		/** @type {NodeListOf<HTMLDivElement>} */
+		var codeToolbars = document.querySelectorAll('div.code-toolbar');
+		for (var i = 0; i < codeToolbars.length; i++) {
+			refreshLayout(codeToolbars[i]);
+		}
+	});
 
 	registerButton('label', function(env) {
 		var pre = env.element.parentNode;
