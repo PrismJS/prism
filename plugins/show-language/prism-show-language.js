@@ -120,6 +120,7 @@
 		"protobuf": "Protocol Buffers",
 		"py": "Python",
 		"q": "Q (kdb+ database)",
+		"qml": "QML",
 		"jsx": "React JSX",
 		"tsx": "React TSX",
 		"renpy": "Ren'py",

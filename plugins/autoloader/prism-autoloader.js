@@ -86,6 +86,7 @@
 			"markup",
 			"javascript"
 		],
+		"qml": "javascript",
 		"qore": "clike",
 		"jsx": [
 			"markup",

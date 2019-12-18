@@ -802,6 +802,11 @@
 			"title": "Q (kdb+ database)",
 			"owner": "Golmote"
 		},
+		"qml": {
+			"title": "QML",
+			"require": "javascript",
+			"owner": "RunDevelopment"
+		},
 		"qore": {
 			"title": "Qore",
 			"require": "clike",
