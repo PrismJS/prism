@@ -560,6 +560,11 @@
 			},
 			"owner": "japborst"
 		},
+		"latte": {
+			"title": "Latte",
+			"require": ["clike", "markup-templating", "php"],
+			"owner": "nette"
+		},
 		"less": {
 			"title": "Less",
 			"require": "css",
