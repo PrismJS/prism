@@ -19,6 +19,7 @@
 		},
 		'php': {
 			pattern: /\S(?:[\s\S]*\S)?/,
+			alias: 'language-php',
 			inside: Prism.languages.php
 		}
 	};
@@ -33,7 +34,7 @@
 					alias: 'important'
 				},
 				'attr-value': {
-					pattern: /=.+/i,
+					pattern: /=[\s\S]+/,
 					inside: {
 						'punctuation': [
 							/^=/,
@@ -56,7 +57,7 @@
 		if (env.language !== 'latte') {
 			return;
 		}
-		var lattePattern = /\{\*[\s\S]*?\*\}|\{[^'"\s{}*](?:[^"'/]|\/(?![*/])|("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|\/\*[\s\S]*?(?:\*\/|$))*?\}/ig;
+		var lattePattern = /\{\*[\s\S]*?\*\}|\{[^'"\s{}*](?:[^"'/{}]|\/(?![*/])|("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|\/\*[\s\S]*?\*\/)*?\}/g;
 		Prism.languages['markup-templating'].buildPlaceholders(env, 'latte', lattePattern);
 		env.grammar = markupLatte;
 	});
