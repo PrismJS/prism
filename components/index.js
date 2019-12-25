@@ -30,7 +30,9 @@ function loadLanguages(languages) {
 
 	getLoader(components, languages, loaded).load(lang => {
 		if (!(lang in components.languages)) {
-			console.warn('Language does not exist: ' + lang);
+			if (!loadLanguages.silent) {
+				console.warn('Language does not exist: ' + lang);
+			}
 			return;
 		}
 
