@@ -58,10 +58,10 @@ class Test {
 	["parameter", [
 		["punctuation", "{"],
 		" props",
-		["punctuation", ":"],
+		["operator", ":"],
 		["punctuation", "{"],
 		" a",
-		["punctuation", ":"],
+		["operator", ":"],
 		" _A",
 		["punctuation", ","],
 		" b",

@@ -1,0 +1,116 @@
+*** Test Cases ***
+Another Test
+	Should Be Equal    ${MESSAGE}    Hello, world!
+
+*** Keywords ***
+My Keyword
+	Directory Should Exist    ${path}
+
+I have ${program} open
+	Start Program    ${program}
+
+Result should be ${expected}
+	${result} =    Get Result
+	Should Be Equal    ${result}    ${expected}
+
+*** Tasks ***
+Process invoice
+	Read information from PDF
+	Validate information
+
+----------------------------------------------------
+
+[
+	["test-cases", [
+		["section-header", "*** Test Cases ***"],
+		["test-name", [
+			"Another Test"
+		]],
+		["property", [
+			"Should Be Equal"
+		]],
+		["variable", [
+			["punctuation", "${"],
+			"MESSAGE",
+			["punctuation", "}"]
+		]],
+		"    Hello, world!\r\n\r"
+	]],
+	["keywords", [
+		["section-header", "*** Keywords ***"],
+		["keyword-name", [
+			"My Keyword"
+		]],
+		["property", [
+			"Directory Should Exist"
+		]],
+		["variable", [
+			["punctuation", "${"],
+			"path",
+			["punctuation", "}"]
+		]],
+		["keyword-name", [
+			"I have ",
+			["variable", [
+				["punctuation", "${"],
+				"program",
+				["punctuation", "}"]
+			]],
+			" open"
+		]],
+		["property", [
+			"Start Program"
+		]],
+		["variable", [
+			["punctuation", "${"],
+			"program",
+			["punctuation", "}"]
+		]],
+		["keyword-name", [
+			"Result should be ",
+			["variable", [
+				["punctuation", "${"],
+				"expected",
+				["punctuation", "}"]
+			]]
+		]],
+		["property", [
+			["variable", [
+				["punctuation", "${"],
+				"result",
+				["punctuation", "}"]
+			]],
+			" ="
+		]],
+		"    Get Result\r\n\t",
+		["property", [
+			"Should Be Equal"
+		]],
+		["variable", [
+			["punctuation", "${"],
+			"result",
+			["punctuation", "}"]
+		]],
+		["variable", [
+			["punctuation", "${"],
+			"expected",
+			["punctuation", "}"]
+		]]
+	]],
+	["tasks", [
+		["section-header", "*** Tasks ***"],
+		["task-name", [
+			"Process invoice"
+		]],
+		["property", [
+			"Read information from PDF"
+		]],
+		["property", [
+			"Validate information"
+		]]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for names and properties.

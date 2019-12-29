@@ -26,6 +26,10 @@
 			"javascript",
 			"markup-templating"
 		],
+		"etlua": [
+			"lua",
+			"markup-templating"
+		],
 		"erb": [
 			"ruby",
 			"markup-templating"
@@ -33,6 +37,7 @@
 		"fsharp": "clike",
 		"firestore-security-rules": "clike",
 		"flow": "javascript",
+		"ftl": "markup-templating",
 		"glsl": "clike",
 		"gml": "clike",
 		"go": "clike",
@@ -92,13 +97,15 @@
 		],
 		"reason": "clike",
 		"ruby": "clike",
-		"sas": "sql",
 		"sass": "css",
 		"scss": "css",
 		"scala": "java",
 		"shell-session": "bash",
 		"smarty": "markup-templating",
+		"solidity": "clike",
 		"soy": "markup-templating",
+		"sparql": "turtle",
+		"sqf": "clike",
 		"swift": "clike",
 		"tap": "yaml",
 		"textile": "markup",
@@ -130,6 +137,7 @@
 		"svg": "markup",
 		"mathml": "markup",
 		"js": "javascript",
+		"g4": "antlr4",
 		"adoc": "asciidoc",
 		"shell": "bash",
 		"rbnf": "bnf",
@@ -148,11 +156,14 @@
 		"elisp": "lisp",
 		"emacs-lisp": "lisp",
 		"md": "markdown",
+		"moon": "moonscript",
 		"n4jsd": "n4js",
 		"objectpascal": "pascal",
 		"px": "pcaxis",
 		"py": "python",
+		"robot": "robotframework",
 		"rb": "ruby",
+		"rq": "sparql",
 		"trig": "turtle",
 		"ts": "typescript",
 		"t4": "t4-cs",
@@ -171,25 +182,24 @@
 	var lang_data = {};
 
 	var ignored_language = 'none';
-
-	var scripts = document.getElementsByTagName('script');
-	var script = scripts[scripts.length - 1];
 	var languages_path = 'components/';
 
-	var autoloaderFile = /\bplugins\/autoloader\/prism-autoloader\.(?:min\.)js$/i;
-	var prismFile = /[\w-]+\.(?:min\.)js$/i;
-
-	if (script.hasAttribute('data-autoloader-path')) {
-		// data-autoloader-path is set, so just use it
-		languages_path = script.getAttribute('data-autoloader-path').trim().replace(/\/?$/, '/');
-	} else {
-		var src = script.src;
-		if (autoloaderFile.test(src)) {
-			// the script is the original autoloader script in the usual Prism project structure
-			languages_path = src.replace(autoloaderFile, 'components/');
-		} else if (prismFile.test(src)) {
-			// the script is part of a bundle like a custom prism.js from the download page
-			languages_path = src.replace(prismFile, 'components/');
+	var script = Prism.util.currentScript();
+	if (script) {
+		var autoloaderFile = /\bplugins\/autoloader\/prism-autoloader\.(?:min\.)js$/i;
+		var prismFile = /[\w-]+\.(?:min\.)js$/i;
+		if (script.hasAttribute('data-autoloader-path')) {
+			// data-autoloader-path is set, so just use it
+			languages_path = script.getAttribute('data-autoloader-path').trim().replace(/\/?$/, '/');
+		} else {
+			var src = script.src;
+			if (autoloaderFile.test(src)) {
+				// the script is the original autoloader script in the usual Prism project structure
+				languages_path = src.replace(autoloaderFile, 'components/');
+			} else if (prismFile.test(src)) {
+				// the script is part of a bundle like a custom prism.js from the download page
+				languages_path = src.replace(prismFile, 'components/');
+			}
 		}
 	}
 

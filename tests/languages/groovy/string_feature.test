@@ -24,9 +24,11 @@ bar/$
 '''foo
 /* comment */
 bar'''
+'''hell\'''o'''
 """foo
 // comment
 bar"""
+"""hell\"""o"""
 
 ----------------------------------------------------
 
@@ -51,7 +53,9 @@ bar"""
 	["string", "\"foo /* comment */ bar\""],
 	["string", "'foo // bar'"],
 	["string", "'''foo\r\n/* comment */\r\nbar'''"],
-	["string", "\"\"\"foo\r\n// comment\r\nbar\"\"\""]
+	["string", "'''hell\\'''o'''"],
+	["string", "\"\"\"foo\r\n// comment\r\nbar\"\"\""],
+	["string", "\"\"\"hell\\\"\"\"o\"\"\""]
 ]
 
 ----------------------------------------------------

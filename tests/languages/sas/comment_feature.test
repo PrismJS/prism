@@ -3,13 +3,16 @@ foo; * foobar;
 /* foo
 bar */
 
+/*options cashost="cloud.example.com" casport=5570;*/
+
 ----------------------------------------------------
 
 [
 	["comment", "* foobar;"],
 	"\r\nfoo", ["punctuation", ";"],
 	["comment", "* foobar;"],
-	["comment", "/* foo\r\nbar */"]
+	["comment", "/* foo\r\nbar */"],
+	["comment", "/*options cashost=\"cloud.example.com\" casport=5570;*/"]
 ]
 
 ----------------------------------------------------

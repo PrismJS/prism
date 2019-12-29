@@ -9,7 +9,7 @@ a.link:hover {
 [
 	["header-name", "Content-type:"],
 	" text/css",
-	["text/css", [
+	["text-css", [
 		["selector", "a.link:hover"],
 		["punctuation", "{"],
 		["property", "color"],
