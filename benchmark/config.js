@@ -40,7 +40,7 @@ const config = {
 	cases: {
 		'css': {
 			files: [
-				'style.css'
+				'../../style.css'
 			]
 		},
 		'css!+css-extras': { extends: 'css' },
@@ -49,19 +49,19 @@ const config = {
 			files: [
 				'prism.js',
 				'prism.min.js',
-				'utopia.js'
+				'../../scripts/utopia.js'
 			]
 		},
 		'json': {
 			files: [
-				'components.json',
-				'package-lock.json'
+				'../../components.json',
+				'../../package-lock.json'
 			]
 		},
 		'markup': {
 			files: [
-				'download.html',
-				'index.html'
+				'../../download.html',
+				'../../index.html'
 			]
 		},
 		'markup!+css+javascript': { extends: 'markup' }

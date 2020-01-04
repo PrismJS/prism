@@ -124,18 +124,24 @@ function getCases(config) {
 	 *
 	 * @typedef {{ name: string, path: string, size: number }} FileInfo
 	 * */
-	const files = new Map();
-	fs.readdirSync(path.join(__dirname, 'files')).forEach(file => {
-		const p = path.join(__dirname, 'files', file);
-		const stat = fs.statSync(p);
-		if (stat.isFile()) {
-			files.set(file, {
-				name: file,
-				path: p,
-				size: stat.size
-			});
+	const filesMap = new Map();
+	function getFileInfo(name) {
+		let fi = filesMap.get(name);
+		if (fi === undefined) {
+			const p = path.resolve(path.join(__dirname, 'files'), name);
+			const stat = fs.statSync(p);
+			if (stat.isFile()) {
+				filesMap.set(name, fi = {
+					name: name,
+					path: p,
+					size: stat.size
+				});
+			} else {
+				throw new Error(`Unknown file "${name}"`);
+			}
 		}
-	});
+		return fi;
+	}
 
 	/** @type {Map<string, Set<FileInfo>>} */
 	const map = new Map();
@@ -171,13 +177,7 @@ function getCases(config) {
 			map.get(extId).forEach(fi => caseFiles.add(fi));
 		});
 
-		forEach(caseEntry.files, file => {
-			const fi = files.get(file);
-			if (!fi) {
-				throw new Error(`Unknown file "${file}" in "${id}"`);
-			}
-			caseFiles.add(fi);
-		});
+		forEach(caseEntry.files, file => caseFiles.add(getFileInfo(file)));
 
 		map.set(id, caseFiles);
 	}
