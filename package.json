@@ -5,6 +5,7 @@
   "main": "prism.js",
   "style": "themes/prism.css",
   "scripts": {
+    "benchmark": "node benchmark/benchmark.js",
     "test:aliases": "mocha tests/aliases-test.js",
     "test:core": "mocha tests/core/**/*.js",
     "test:dependencies": "mocha tests/dependencies-test.js",
@@ -29,6 +30,7 @@
     "clipboard": "^2.0.0"
   },
   "devDependencies": {
+    "benchmark": "^2.1.4",
     "chai": "^4.2.0",
     "gulp": "^4.0.0",
     "gulp-concat": "^2.3.4",

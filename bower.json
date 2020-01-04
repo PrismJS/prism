@@ -17,6 +17,7 @@
     "img",
     "templates",
     "tests",
+    "benchmark",
     "CNAME",
     "*.html",
     "style.css",
