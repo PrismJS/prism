@@ -7,6 +7,7 @@
 <title>Extending Prism ▲ Prism</title>
 <link rel="stylesheet" href="style.css" />
 <link rel="stylesheet" href="themes/prism.css" data-noprefix />
+<link rel="stylesheet" href="plugins/line-highlight/prism-line-highlight.css" data-noprefix />
 <script src="scripts/prefixfree.min.js"></script>
 <style>
 ol.indent {
@@ -147,12 +148,12 @@ ol.indent {
 			<p>Edit <code>components.json</code> to register the new language by adding it to the <code>languages</code> object. (Please note that all language entries are sorted alphabetically by title.) <br>
 			Our new entry for this example will look like this:</p>
 
-			<pre><code class="language-js">"foo-bar": {
+			<pre><code class="language-json">"foo-bar": {
 	"title": "Foo Bar",
 	"owner": "Your GitHub name"
 }</code></pre>
 
-			<p>If your language definition depends any other languages, you have to specify this here as well by adding a <code class="language-js">"require"</code> property. E.g. <code class="language-js">"require": "clike"</code>, or <code class="language-js">"require" : ["markup", "css"]</code>.</p>
+			<p>If your language definition depends any other languages, you have to specify this here as well by adding a <code class="language-js">"require"</code> property. E.g. <code class="language-js">"require": "clike"</code>, or <code class="language-js">"require" : ["markup", "css"]</code>. For more information on dependencies read the declaring dependencies section.</p>
 
 			<p><em>Note:</em> Any changes made to <code>components.json</code> require a rebuild (see step 3).</p>
 		</li>
@@ -181,7 +182,7 @@ ol.indent {
 
 			<p>Aliases also have to be registered in <code>components.json</code> by adding the <code>alias</code> property to the language entry. In this example, the updated entry will look like this:</p>
 
-			<pre><code class="language-js">"foo-bar": {
+			<pre><code class="language-json">"foo-bar": {
 	"title": "Foo Bar",
 	"alias": "foo",
 	"owner": "Your GitHub name"
@@ -191,7 +192,7 @@ ol.indent {
 
 			<p>Using <code>aliasTitles</code>, it's also possible to give aliases specific titles. In this example, this won't be necessary but a good example as to where this is useful is the markup language:</p>
 
-			<pre><code class="language-js">"markup": {
+			<pre><code class="language-json">"markup": {
 	"title": "Markup",
 	"alias": ["html", "xml", "svg", "mathml"],
 	"aliasTitles": {
@@ -212,7 +213,7 @@ ol.indent {
 
 			<p>You can use this template for new <code>.test</code> files:</p>
 
-			<pre><code>The code to test.
+			<pre><code class="language-json">The code to test.
 
 ----------------------------------------------------
 
@@ -258,6 +259,122 @@ Brief description.</code></pre>
 		</li>
 	</ol>
 </section>
+
+
+<section id="dependencies" class="language-none">
+	<h1>Dependencies</h1>
+
+	<p>Languages and plugins can depend on each other, so Prism has its own dependency system to declare and resolve dependencies.</p>
+
+	<h2>Declaring dependencies</h2>
+
+	<p>You declare a dependency by adding a property to the entry of your language or plugin in the <a href="https://github.com/PrismJS/prism/blob/master/components.json"><code>components.json</code></a> file. The name of the property will be dependency kind and its value will be the component id of the dependee. If multiple languages or plugins are depended upon then you can also declare an array of component ids.</p>
+
+	<p>In the following example, we will use the <code>require</code> dependency kind to declare that a fictional language Foo depends on the JavaScript language and that another fictional language Bar depends on both JavaScript and CSS.</p>
+
+	<pre class="language-json" data-line="8,12"><code>{
+	"languages": {
+		"javascript": { "title": "JavaScript" },
+		"css": { "title": "CSS" },
+		...,
+		"foo": {
+			"title": "Foo",
+			"require": "javascript"
+		},
+		"bar": {
+			"title": "Bar",
+			"require": ["css", "javascript"]
+		}
+	}
+}</code></pre>
+
+	<h3>Dependency kinds</h3>
+
+	<p>There are 3 kinds of dependencies:</p>
+
+	<dl>
+		<dt><code>require</code></dt>
+		<dd>
+			Prism will ensure that all dependees are loaded before the depender. <br>
+			You are <strong>not</strong> allowed to modify the dependees unless they are also declared as <code>modify</code>.
+
+			<p>This kind of dependency is most useful if you e.g. extend another language or dependee as an embedded language (e.g. like PHP is embedded in HTML).</p>
+		</dd>
+		<dt><code>optional</code></dt>
+		<dd>
+			Prims will ensure that an optional dependee is loaded before the depender if the dependee is loaded. Unlike <code>require</code> dependencies which also guarantee that the dependees are loaded, <code>optional</code> dependencies only guarantee the order of loaded components. <br>
+			You are <strong>not</strong> allowed to modify the dependees. If you need to modify the optional dependee, declare it as <code>modify</code> instead.
+
+			<p>This kind of dependency is useful if you have embedded languages but you want to give the users a choice as to whether they want to include the embedded language. By using <code>optional</code> dependencies, users can better control the bundle size of Prism by only including the languages they need.<br>
+			E.g. HTTP can highlight JSON and XML payloads but it doesn't force the user to include these languages.</p>
+		</dd>
+		<dt><code>modify</code></dt>
+		<dd>
+			This is an <code>optional</code> dependency which also declares that the depender might modify the dependees.
+
+			<p>This kind of dependency is useful if your language modifies another language (e.g. by adding tokens).<br>
+			E.g. CSS Extras adds new tokens to the CSS language.</p>
+		</dd>
+	</dl>
+
+	<p>To summarize the properties of the different dependency kinds:</p>
+
+	<table class="stylish">
+		<tr>
+			<th></th>
+			<th>Non-optional</th>
+			<th>Optional</th>
+		</tr>
+		<tr>
+			<th>Read only</th>
+			<td><code>require</code></td>
+			<td><code>optional</code></td>
+		</tr>
+		<tr>
+			<th>Modifiable</th>
+			<td></td>
+			<td><code>modify</code></td>
+		</tr>
+	</table>
+
+	<style>
+	table.stylish {
+		border-collapse: collapse;
+	}
+	table.stylish, table.stylish tr, table.stylish td, table.stylish th {
+		border: 1px solid #CCC;
+	}
+	table.stylish td, table.stylish th {
+		padding: .5em .75em;
+	}
+	table.stylish th {
+		background-color: #F8F8F8;
+	}
+	</style>
+
+	<p>Note: You can declare a component as both <code>require</code> and <code>modify</code></p>
+
+	<h2>Resolving dependencies</h2>
+
+	<p>We consider the dependencies of components an implementation detail, so they may change from release to release. Prism will usually resolve dependencies for you automatically. So you won't have to worry about dependency loading if you <a href="download.html">download</a> a bundle or use the <code>loadLanguages</code> function in NodeJS, the <a href="plugins/autoloader/">AutoLoader</a>, or our Babel plugin.</p>
+
+	<p>If you have to resolve dependencies yourself, use the <code>getLoader</code> function exported by <a href="https://github.com/PrismJS/prism/blob/master/dependencies.js"><code>dependencies.js</code></a>. Example:</p>
+
+	<pre><code class="language-js">const getLoader = require('prismjs/dependencies');
+const components = require('prismjs/components');
+
+const componentsToLoad = ['markup', 'css', 'php'];
+const loadedComponents = ['clike', 'javascript'];
+
+const loader = getLoader(components, componentsToLoad, loadedComponents);
+loader.load(id => {
+	require(`prismjs/components/prism-${id}.min.js`);
+});</code></pre>
+
+	<p>For more details on the <code>getLoader</code> API, check out the <a href="https://github.com/PrismJS/prism/blob/master/dependencies.js">inline documentation</a>.</p>
+
+</section>
+
 
 <section id="writing-plugins">
 	<h1>Writing plugins</h1>
@@ -377,6 +494,8 @@ Brief description.</code></pre>
 
 <script src="scripts/utopia.js"></script>
 <script src="prism.js"></script>
+<script src="plugins/autoloader/prism-autoloader.js"></script>
+<script src="plugins/line-highlight/prism-line-highlight.js"></script>
 <script src="components.js"></script>
 <script src="scripts/code.js"></script>
 

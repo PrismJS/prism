@@ -133,7 +133,7 @@ describe('Dependency logic', function () {
 						}
 					}
 				};
-				getLoader(circular, ['a']).getIds();
+				getLoader(circular, ['a', 'foo' /* force the lazy alias resolver */]).getIds();
 			});
 		});
 
@@ -148,7 +148,7 @@ describe('Dependency logic', function () {
 						b: 'B'
 					}
 				};
-				getLoader(circular, ['a']).getIds();
+				getLoader(circular, ['a', 'foo' /* force the lazy alias resolver */]).getIds();
 			});
 		});
 
@@ -248,7 +248,14 @@ describe('components.json', function () {
 
 	it('- should be valid', function () {
 		try {
-			getLoader(components, Object.keys(components.languages).filter(k => k != 'meta')).getIds();
+			const allIds = [];
+			for (const category in components) {
+				Object.keys(components[category]).forEach(id => allIds.push(id));
+			}
+			// and an alias, so we force the lazy alias resolver to check all aliases
+			allIds.push('js');
+
+			getLoader(components, allIds).getIds();
 		} catch (error) {
 			assert.fail(error.toString());
 		}
