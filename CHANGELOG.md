@@ -1,6 +1,6 @@
 # Prism Changelog
 
-## 1.18.0 (TBD)
+## 1.18.0 (2020-01-04)
 
 ### New components
 
