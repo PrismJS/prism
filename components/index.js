@@ -48,4 +48,9 @@ function loadLanguages(languages) {
 	});
 }
 
+/**
+ * Set this to `true` to prevent all warning messages `loadLanguages` logs.
+ */
+loadLanguages.silent = false;
+
 module.exports = loadLanguages;
