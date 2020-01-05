@@ -27,21 +27,22 @@ var getLoader = (function () {
 	var noop = function () { };
 
 	/**
-	 * Converts the given value to an array.
+	 * Invokes the given callback for all elements of the given value.
 	 *
-	 * If the given value is already an array, the value itself will be returned.
-	 * `null` and `undefined` will return an empty array.
-	 * For every other value a new array with the given value as its only element will be created.
+	 * If the given value is an array, the callback will be invokes for all elements. If the given value is `null` or
+	 * `undefined`, the callback will not be invoked. In all other cases, the callback will be invoked with the given
+	 * value as parameter.
 	 *
 	 * @param {null | undefined | T | T[]} value
-	 * @returns {T[]}
+	 * @param {(value: T, index: number) => void} callbackFn
+	 * @returns {void}
 	 * @template T
 	 */
-	function toArray(value) {
+	function forEach(value, callbackFn) {
 		if (Array.isArray(value)) {
-			return value;
-		} else {
-			return value == null ? [] : [value];
+			value.forEach(callbackFn);
+		} else if (value != null) {
+			callbackFn(value, 0);
 		}
 	}
 
@@ -68,10 +69,10 @@ var getLoader = (function () {
 	 * @param {Components} components
 	 * @returns {EntryMap}
 	 *
-	 * @typedef {{ [id: string]: Readonly<ComponentEntry> | undefined }} EntryMap
+	 * @typedef {{ readonly [id: string]: Readonly<ComponentEntry> | undefined }} EntryMap
 	 */
 	function createEntryMap(components) {
-		/** @type {EntryMap} */
+		/** @type {Object<string, Readonly<ComponentEntry>>} */
 		var map = {};
 
 		for (var categoryName in components) {
@@ -92,13 +93,14 @@ var getLoader = (function () {
 	 * Creates a full dependencies map which includes all types of dependencies and their transitive dependencies.
 	 *
 	 * @param {EntryMap} entryMap
-	 * @returns {DependencyMap}
+	 * @returns {DependencyResolver}
 	 *
-	 * @typedef {Object<string, StringSet>} DependencyMap
+	 * @typedef {(id: string) => StringSet} DependencyResolver
 	 */
-	function createDependencyMap(entryMap) {
-		/** @type {DependencyMap} */
+	function createDependencyResolver(entryMap) {
+		/** @type {Object<string, StringSet>} */
 		var map = {};
+		var _stackArray = [];
 
 		/**
 		 * Adds the dependencies of the given component to the dependency map.
@@ -124,11 +126,20 @@ var getLoader = (function () {
 
 			var entry = entryMap[id];
 			if (entry) {
-				/** @type {string[]} */
-				var deps = [].concat(entry.require, entry.modify, entry.optional).filter(Boolean);
-				deps.forEach(function (depId) {
+				/**
+				 * This will add the direct dependency and all of its transitive dependencies to the set of
+				 * dependencies of `entry`.
+				 *
+				 * @param {string} depId
+				 * @returns {void}
+				 */
+				function handleDirectDependency(depId) {
 					if (!(depId in entryMap)) {
 						throw new Error(id + ' depends on an unknown component ' + depId);
+					}
+					if (depId in dependencies) {
+						// if the given dependency is already in the set of deps, then so are its transitive deps
+						return;
 					}
 
 					addToMap(depId, stack);
@@ -136,7 +147,11 @@ var getLoader = (function () {
 					for (var transitiveDepId in map[depId]) {
 						dependencies[transitiveDepId] = true;
 					}
-				});
+				}
+
+				forEach(entry.require, handleDirectDependency);
+				forEach(entry.optional, handleDirectDependency);
+				forEach(entry.modify, handleDirectDependency);
 			}
 
 			map[id] = dependencies;
@@ -144,11 +159,14 @@ var getLoader = (function () {
 			stack.pop();
 		}
 
-		for (var id in entryMap) {
-			addToMap(id, []);
-		}
-
-		return map;
+		return function (id) {
+			var deps = map[id];
+			if (!deps) {
+				addToMap(id, _stackArray);
+				deps = map[id];
+			}
+			return deps;
+		};
 	}
 
 	/**
@@ -158,25 +176,32 @@ var getLoader = (function () {
 	 * @returns {(idOrAlias: string) => string}
 	 */
 	function createAliasResolver(entryMap) {
-		/** @type {Object<string, string>} */
-		var map = {};
-
-		for (var id in entryMap) {
-			var entry = entryMap[id];
-			var aliases = toArray(entry && entry.alias);
-			aliases.forEach(function (alias) {
-				if (alias in map) {
-					throw new Error(alias + ' cannot be alias for both ' + id + ' and ' + map[alias]);
-				}
-				if (alias in entryMap) {
-					throw new Error(alias + ' cannot be alias of ' + id + ' because it is a component.');
-				}
-				map[alias] = id;
-			});
-		}
+		/** @type {Object<string, string> | undefined} */
+		var map;
 
 		return function (idOrAlias) {
-			return map[idOrAlias] || idOrAlias;
+			if (idOrAlias in entryMap) {
+				return idOrAlias;
+			} else {
+				// only create the alias map if necessary
+				if (!map) {
+					map = {};
+
+					for (var id in entryMap) {
+						var entry = entryMap[id];
+						forEach(entry && entry.alias, function (alias) {
+							if (alias in map) {
+								throw new Error(alias + ' cannot be alias for both ' + id + ' and ' + map[alias]);
+							}
+							if (alias in entryMap) {
+								throw new Error(alias + ' cannot be alias of ' + id + ' because it is a component.');
+							}
+							map[alias] = id;
+						});
+					}
+				}
+				return map[idOrAlias] || idOrAlias;
+			}
 		};
 	}
 
@@ -191,14 +216,14 @@ var getLoader = (function () {
 	 * Creates an implicit DAG from the given components and dependencies and call the given `loadComponent` for each
 	 * component in topological order.
 	 *
-	 * @param {DependencyMap} dependencyMap
+	 * @param {DependencyResolver} dependencyResolver
 	 * @param {StringSet} ids
 	 * @param {(id: string) => T} loadComponent
 	 * @param {LoadChainer<T>} [chainer]
 	 * @returns {T}
 	 * @template T
 	 */
-	function loadComponentsInOrder(dependencyMap, ids, loadComponent, chainer) {
+	function loadComponentsInOrder(dependencyResolver, ids, loadComponent, chainer) {
 		const series = chainer ? chainer.series : undefined;
 		const parallel = chainer ? chainer.parallel : noop;
 
@@ -228,7 +253,7 @@ var getLoader = (function () {
 
 			// all dependencies of the component in the given ids
 			var dependsOn = [];
-			for (var depId in dependencyMap[id]) {
+			for (var depId in dependencyResolver(id)) {
 				if (depId in ids) {
 					dependsOn.push(depId);
 				}
@@ -347,15 +372,12 @@ var getLoader = (function () {
 		load.forEach(addRequirements);
 		function addRequirements(id) {
 			var entry = entryMap[id];
-			if (entry) {
-				var require = toArray(entry.require);
-				require.forEach(function (reqId) {
-					if (!(reqId in loadedSet)) {
-						loadSet[reqId] = true;
-						addRequirements(reqId);
-					}
-				});
-			}
+			forEach(entry && entry.require, function (reqId) {
+				if (!(reqId in loadedSet)) {
+					loadSet[reqId] = true;
+					addRequirements(reqId);
+				}
+			});
 		}
 
 		// add components to reload
@@ -365,7 +387,7 @@ var getLoader = (function () {
 		//  2) x depends on a component in `load`.
 		// The above two condition have to be applied until nothing changes anymore.
 
-		var dependencyMap = createDependencyMap(entryMap);
+		var dependencyResolver = createDependencyResolver(entryMap);
 
 		/** @type {StringSet} */
 		var loadAdditions = loadSet;
@@ -377,20 +399,17 @@ var getLoader = (function () {
 			// condition 1)
 			for (var loadId in loadAdditions) {
 				var entry = entryMap[loadId];
-				if (entry) {
-					var modify = toArray(entry.modify);
-					modify.forEach(function (modId) {
-						if (modId in loadedSet) {
-							newIds[modId] = true;
-						}
-					});
-				}
+				forEach(entry && entry.modify, function (modId) {
+					if (modId in loadedSet) {
+						newIds[modId] = true;
+					}
+				});
 			}
 
 			// condition 2)
 			for (var loadedId in loadedSet) {
 				if (!(loadedId in loadSet)) {
-					for (var depId in dependencyMap[loadedId]) {
+					for (var depId in dependencyResolver(loadedId)) {
 						if (depId in loadSet) {
 							newIds[loadedId] = true;
 							break;
@@ -415,7 +434,7 @@ var getLoader = (function () {
 				return ids;
 			},
 			load: function (loadComponent, chainer) {
-				return loadComponentsInOrder(dependencyMap, loadSet, loadComponent, chainer);
+				return loadComponentsInOrder(dependencyResolver, loadSet, loadComponent, chainer);
 			}
 		};
 
