@@ -1,6 +1,8 @@
 <div {...foo}></div>
 <div { ...foo }></div>
 <div { ... foo }></div>
+<div { ... foo.bar('baz', () => ({a: 4, b: '}' /* } */ })) }></div>
+<div {...foo.bar(`('"${ "}" /* [ */ }`)}></div>
 
 ----------------------------------------------------
 
@@ -12,8 +14,8 @@
 		]],
 		["spread", [
 			["punctuation", "{"],
-			["punctuation", "..."],
-			["attr-value", "foo"],
+			["operator", "..."],
+			"foo",
 			["punctuation", "}"]
 		]],
 		["punctuation", ">"]
@@ -32,8 +34,8 @@
 		]],
 		["spread", [
 			["punctuation", "{"],
-			["punctuation", "..."],
-			["attr-value", "foo"],
+			["operator", "..."],
+			"foo ",
 			["punctuation", "}"]
 		]],
 		["punctuation", ">"]
@@ -52,8 +54,84 @@
 		]],
 		["spread", [
 			["punctuation", "{"],
-			["punctuation", "..."],
-			["attr-value", "foo"],
+			["operator", "..."],
+			" foo ",
+			["punctuation", "}"]
+		]],
+		["punctuation", ">"]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"div"
+		]],
+		["punctuation", ">"]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"div"
+		]],
+		["spread", [
+			["punctuation", "{"],
+			["operator", "..."],
+			" foo",
+			["punctuation", "."],
+			["function", "bar"],
+			["punctuation", "("],
+			["string", "'baz'"],
+			["punctuation", ","],
+			["punctuation", "("],
+			["punctuation", ")"],
+			["operator", "=>"],
+			["punctuation", "("],
+			["punctuation", "{"],
+			"a",
+			["operator", ":"],
+			["number", "4"],
+			["punctuation", ","],
+			" b",
+			["operator", ":"],
+			["string", "'}'"],
+			["comment", "/* } */"],
+			["punctuation", "}"],
+			["punctuation", ")"],
+			["punctuation", ")"],
+			["punctuation", "}"]
+		]],
+		["punctuation", ">"]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"div"
+		]],
+		["punctuation", ">"]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"div"
+		]],
+		["spread", [
+			["punctuation", "{"],
+			["operator", "..."],
+			"foo",
+			["punctuation", "."],
+			["function", "bar"],
+			["punctuation", "("],
+			["template-string", [
+				["template-punctuation", "`"],
+				["string", "('\""],
+				["interpolation", [
+					["interpolation-punctuation", "${"],
+					["string", "\"}\""],
+					["comment", "/* [ */"],
+					["interpolation-punctuation", "}"]
+				]],
+				["template-punctuation", "`"]
+			]],
+			["punctuation", ")"],
 			["punctuation", "}"]
 		]],
 		["punctuation", ">"]
