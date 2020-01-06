@@ -10,6 +10,10 @@ bar`
 console.log(`This is ${it.with({ type: false })}!`)
 `${ {foo:'bar'}.foo }`
 
+`${ /* } */ a + b }`
+`${ '}' }`
+`${foo({ a: { b: { c: true } } })}`
+
 ----------------------------------------------------
 
 [
@@ -99,6 +103,51 @@ console.log(`This is ${it.with({ type: false })}!`)
 			["punctuation", "}"],
 			["punctuation", "."],
 			"foo ",
+			["interpolation-punctuation", "}"]
+		]],
+		["template-punctuation", "`"]
+	]],
+	["template-string", [
+		["template-punctuation", "`"],
+		["interpolation", [
+			["interpolation-punctuation", "${"],
+			["comment", "/* } */"],
+			" a ",
+			["operator", "+"],
+			" b ",
+			["interpolation-punctuation", "}"]
+		]],
+		["template-punctuation", "`"]
+	]],
+	["template-string", [
+		["template-punctuation", "`"],
+		["interpolation", [
+			["interpolation-punctuation", "${"],
+			["string", "'}'"],
+			["interpolation-punctuation", "}"]
+		]],
+		["template-punctuation", "`"]
+	]],
+	["template-string", [
+		["template-punctuation", "`"],
+		["interpolation", [
+			["interpolation-punctuation", "${"],
+			["function", "foo"],
+			["punctuation", "("],
+			["punctuation", "{"],
+			" a",
+			["operator", ":"],
+			["punctuation", "{"],
+			" b",
+			["operator", ":"],
+			["punctuation", "{"],
+			" c",
+			["operator", ":"],
+			["boolean", "true"],
+			["punctuation", "}"],
+			["punctuation", "}"],
+			["punctuation", "}"],
+			["punctuation", ")"],
 			["interpolation-punctuation", "}"]
 		]],
 		["template-punctuation", "`"]
