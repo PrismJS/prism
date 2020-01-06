@@ -905,17 +905,38 @@ Prism.languages.clike = {
 	});
 
 
+	function nested(str, countLog2) {
+		for (var i = 0; i < countLog2; i++) { // nested depth of 2 ** countLog2
+			str = str.replace(/<self>/g, str);
+		}
+		return str.replace(/<self>/g, '[^\\s\\S]');
+	}
 	var string = /"(?:\\(?:\r\n|[\s\S])|[^\\\r\n"])*"|'(?:\\(?:\r\n|[\s\S])|[^\\\r\n'])*'/.source;
 	var comment = /\/\*[\s\S]*?\*\/|\/\/[^\r\n]*(?=[\r\n])/.source;
-	var jsStringCommentAndDivision = '\/(?![/*])' + '|' + comment + '|' + string;
+	var jsStringCommentAndDivision = '\\/(?![/*])' + '|' + comment + '|' + string;
+
+	// template string need curly and curly need template strings
+	// This is resolved by creating a temporary curly pattern without template strings.
+	// This is only an approximation and will fail for template strings like `${`'`}`
+	var tempCurly = nested('(?:[^/\'"{}]|' + jsStringCommentAndDivision + '|\\{<self>*\\})', 3);
+	var tempTemplate = /`(?:\\[\s\S]|\${<curly>+}|(?!\${)[^\\`])*`/.source.replace(/<curly>/g, tempCurly);
+	jsStringCommentAndDivision += '|' + tempTemplate;
+
 	function createNested(open, close) {
-		var nested = '(?:[^/\'"' + open + close + ']|' + jsStringCommentAndDivision + '|' + open + '<self>*' + close + ')';
-		for (var i = 0; i < 3; i++) { // nested depth of 2 ** 3.
-			nested = nested.replace(/<self>/g, nested);
-		}
-		return nested.replace(/<self>/g, '[^\\s\\S]');
+		var expr = '(?:[^/\'"' + open + close + ']|' + jsStringCommentAndDivision + '|' + open + '<self>*' + close + ')';
+		return nested(expr, 3);
 	}
 	var curly = createNested('\\{', '\\}');
+
+	Object.defineProperty(Prism.languages.javascript, '$', {
+		value: {
+			string: string,
+			comment: comment,
+			curly: curly,
+			round: createNested('\\(', '\\)'),
+			square: createNested('\\[', '\\]'),
+		}
+	});
 
 	Prism.languages.insertBefore('javascript', 'string', {
 		'template-string': {
@@ -939,23 +960,6 @@ Prism.languages.clike = {
 				},
 				'string': /[\s\S]+/
 			}
-		}
-	});
-
-	var round = createNested('\\(', '\\)');
-	var square = createNested('\\[', '\\]');
-
-	// == /(?:[^/'"(){}[\]]|<jsStringCommentAndDivision>|\(<round>\)|\[<curly>\]|\{<square>\})/
-	// var expression = '(?:[^/\'"(){}[\\]]|' + jsStringCommentAndDivision + '|\\(' + round + '\\)|\\{' + curly + '\\}|\\[' + square + '\\])';
-
-	Object.defineProperty(Prism.languages.javascript, '$', {
-		value: {
-			string: string,
-			comment: comment,
-			round: round,
-			curly: curly,
-			square: square,
-			// expr: expression,
 		}
 	});
 
