@@ -32,7 +32,7 @@ end
   "diameter",
   ["punctuation", ")"],
   ["keyword", "new"],
-  ["class-name", ["diameter"]],
+  " diameter ",
   ["operator", "/"],
   ["number", "2"],
   ["keyword", "end"],

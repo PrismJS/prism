@@ -280,7 +280,12 @@
 					typeof codeLang.content === 'string') {
 
 					// this might be a language that Prism does not support
-					var alias = 'language-' + codeLang.content.trim().split(/\s+/)[0].toLowerCase();
+
+					// do some replacements to support C++, C#, and F#
+					var lang = codeLang.content.replace(/\b#/g, 'sharp').replace(/\b\+\+/g, 'pp')
+					// only use the first word
+					lang = (/[a-z][\w-]*/i.exec(lang) || [''])[0].toLowerCase();
+					var alias = 'language-' + lang;
 
 					// add alias
 					if (!codeBlock.alias) {
