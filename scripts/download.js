@@ -2,6 +2,14 @@
  * Manage downloads
  */
 
+/// <reference path="utopia.js" />
+/// <reference path="code.js" />
+/// <reference path="../components.js" />
+/// <reference path="../dependencies.js" />
+/// <reference path="../prism.js" />
+/// <reference path="vendor/FileSaver.min.js" />
+/// <reference path="vendor/promise.js" />
+
 (function() {
 
 var cache = {};
@@ -21,6 +29,8 @@ var treePromise = new Promise(function(resolve) {
 		}
 	});
 });
+
+var options = getOptions();
 
 /**
  * Converts the given value into an array.
@@ -74,6 +84,49 @@ if (hstr) {
 		}
 	});
 }
+// options
+var optHStr = window.location.hash.match(/(options-[\w-]+)\.([\w-]+)=([^?&]*)/g);
+if (optHStr) {
+	optHStr.forEach(function (m) {
+		var match = /(options-[\w-]+)\.([\w-]+)=([^?&]*)/.exec(m);
+		if (match) {
+			var optionId = match[1];
+			var itemName = match[2];
+			var value = decodeURIComponent(match[3]);
+
+			var set = false;
+			options.forEach(function (o) {
+				if (!set && o.id === optionId) {
+					for (var name in o.items) {
+						if (name === itemName && o.items.hasOwnProperty(name)) {
+							var item = o.items[name];
+							if (item.type === 'boolean') {
+								value = value === 'true';
+							} else if (item.type === 'number') {
+								value = Number(value);
+							}
+
+							if (item.validate(value)) {
+								// invalid ignore
+								console.warn('Invalid value: ' + m);
+							} else {
+								item.value = value;
+							}
+							set = true;
+						}
+					}
+				}
+			});
+
+			if (!set) {
+				console.warn('Unknown option: ' + m);
+			}
+		}
+	});
+}
+
+// add options to the DOM
+var updateOptions = addOptionsToDOM(options);
 
 // Stay compatible with old querystring feature
 var qstr = window.location.search.match(/(?:languages|plugins)=[-+\w]+|themes=[-\w]+/g);
@@ -442,6 +495,7 @@ function update(updatedCategory, updatedId){
 		title: prettySize(total.css)
 	});
 
+	updateOptions();
 	delayedGenerateCode();
 }
 
@@ -457,7 +511,6 @@ function delayedGenerateCode(){
 function generateCode(){
 	/** @type {CodePromiseInfo[]} */
 	var promises = [];
-	var redownload = {};
 
 	for (var category in components) {
 		for (var id in components[category]) {
@@ -467,10 +520,6 @@ function generateCode(){
 
 			var info = components[category][id];
 			if (info.enabled) {
-				if (category !== 'core') {
-					redownload[category] = redownload[category] || [];
-					redownload[category].push(id);
-				}
 				info.files[minified ? 'minified' : 'dev'].paths.forEach(function (path) {
 					if (cache[path]) {
 						var type = path.match(/\.(\w+)$/)[1];
@@ -504,14 +553,15 @@ function generateCode(){
 			$u.element.contents(error, errors);
 		}
 
-		var redownloadUrl = window.location.href.split("#")[0] + "#";
-		for (var category in redownload) {
-			redownloadUrl += category + "=" + redownload[category].join('+') + "&";
-		}
-		redownloadUrl = redownloadUrl.replace(/&$/,"");
+		var redownloadUrl = buildUrl();
 		window.location.replace(redownloadUrl);
 
 		var versionComment = "/* PrismJS " + version + "\n" + redownloadUrl + " */";
+
+		options.filter(function (o) { return o.enabled; }).forEach(function (o) {
+			code.js = o.applyJs(code.js);
+			code.css = o.applyCss(code.css);
+		});
 
 		for (var type in code) {
 			(function (type) {
@@ -536,6 +586,42 @@ function generateCode(){
 			})(type);
 		}
 	});
+}
+
+function buildUrl() {
+	var redownloadUrl = window.location.href.split("#")[0] + "#";
+
+	var redownload = {};
+
+	for (var category in components) {
+		for (var id in components[category]) {
+			if (category !== 'core' && id !== 'meta' && components[category][id].enabled) {
+				redownload[category] = redownload[category] || [];
+				redownload[category].push(id);
+			}
+		}
+	}
+
+	for (var category in redownload) {
+		redownloadUrl += category + "=" + redownload[category].join('+') + "&";
+	}
+
+	options.forEach(function (o) {
+		if (!o.enabled) {
+			return;
+		}
+
+		for (var name in o.items) {
+			if (o.items.hasOwnProperty(name)) {
+				var item = o.items[name];
+				if (item.value !== item.default) {
+					redownloadUrl += o.id + '.' + name + '=' + encodeURIComponent(String(item.value)) + '&';
+				}
+			}
+		}
+	});
+
+	return redownloadUrl.replace(/&$/, "");
 }
 
 /**
@@ -620,5 +706,330 @@ function getVersion() {
 		return JSON.parse(jsonStr).version;
 	});
 }
+
+
+/**
+ * @returns {Option[]}
+ *
+ * @typedef Option
+ * @property {string} id All ids have to start with `options-`.
+ * @property {string} title
+ * @property {string|string[]} [require]
+ * @property {boolean} [enabled]
+ * @property {Object<string, OptionItem>} items
+ * @property {(this: Option, js: string) => string} [applyJs]
+ * @property {(this: Option, css: string) => string} [applyCss]
+ *
+ * @typedef {StringOptionItem | NumberOptionItem | BooleanOptionItem} OptionItem
+ *
+ * @typedef StringOptionItem
+ * @property {string} title
+ * @property {"string"} type
+ * @property {string} [value]
+ * @property {string} [default='']
+ * @property {(value: string, option: Option) => string | undefined} [validate]
+ * @typedef NumberOptionItem
+ * @property {string} title
+ * @property {"number"} type
+ * @property {number} [value]
+ * @property {number} [default=0]
+ * @property {(value: number, option: Option) => string | undefined} [validate]
+ * @typedef BooleanOptionItem
+ * @property {string} title
+ * @property {"boolean"} type
+ * @property {boolean} [value]
+ * @property {boolean} [default=false]
+ * @property {(value: boolean, option: Option) => string | undefined} [validate]
+ */
+function getOptions() {
+	/**
+	 * Note: The keys of items are used as their identifier and will be be used in the URL hash.
+	 *
+	 * CHANGING THE ITEM NAMES WILL BREAKING OLD URLS!
+	 */
+
+	/** @type {Option[]} */
+	var opts = [
+		{
+			id: 'options-general',
+			title: 'General',
+			items: {
+				manual: {
+					title: 'Manual highlighting',
+					type: 'boolean'
+				}
+			},
+			applyJs: function (js) {
+				if (this.items.manual.value) {
+					return js + 'Prism.manual=true;\n';
+				}
+				return js;
+			}
+		},
+		{
+			id: 'options-custom-class',
+			title: 'Custom Class',
+			require: 'custom-class',
+			items: {
+				prefix: {
+					title: 'Theme prefix',
+					type: 'string',
+					validate: matchRegExp(/^[\w-]*$/)
+				}
+			},
+			applyJs: function (js) {
+				var prefix = this.items.prefix.value;
+				if (prefix) {
+					return js + 'Prism.plugins.customClass.prefix(' + JSON.stringify(prefix) + ');\n';
+				}
+				return js;
+			},
+			applyCss: function (css) {
+				var prefix = this.items.prefix.value;
+				if (prefix) {
+					var tokens = Prism.tokenize(css, Prism.languages.css);
+
+					tokens.forEach(function (t) {
+						if (t.type === 'selector') {
+							var selector = stringify(t.content);
+
+							selector = selector.replace(/[-\w.#:()]*\.token(?![-\w])[-\w.#:()]*/g, function (m) {
+								return m.replace(/\.([\w-]+)/g, function (m, g1) {
+									return '.' + prefix + g1;
+								});
+							});
+
+							t.content = selector;
+						}
+					});
+
+					/**
+					 * @param {string | Token | Token[]} t
+					 * @returns {string}
+					 */
+					function stringify(t) {
+						if (typeof t === 'string') {
+							return t;
+						}
+						if (Array.isArray(t)) {
+							return t.map(stringify).join('');
+						}
+						return stringify(t.content);
+					}
+
+					css = stringify(tokens);
+				}
+				return css;
+			}
+		},
+		{
+			id: 'options-filter-highlight-all',
+			title: 'Filter highlightAll',
+			require: 'filter-highlight-all',
+			items: {
+				filterKnown: {
+					title: 'Filter known',
+					type: 'boolean'
+				},
+				filterSelector: {
+					title: 'Filter CSS selector',
+					type: 'string'
+				},
+				rejectSelector: {
+					title: 'Reject CSS selector',
+					type: 'string'
+				}
+			},
+			applyJs: function (js) {
+				if (this.items.filterKnown.value) {
+					js += 'Prism.plugins.filterHighlightAll.filterKnown=true;\n';
+				}
+				var filterSelector = this.items.filterSelector.value;
+				if (filterSelector) {
+					js += 'Prism.plugins.filterHighlightAll.addSelector(' + JSON.stringify(filterSelector) + ');\n';
+				}
+				var rejectSelector = this.items.rejectSelector.value;
+				if (rejectSelector) {
+					js += 'Prism.plugins.filterHighlightAll.reject.addSelector(' + JSON.stringify(rejectSelector) + ');\n';
+				}
+				return js;
+			}
+		}
+	];
+
+	return opts.map(function setDefaultValues(o) {
+		if (!/^options-/.test(o.id)) {
+			throw new Error('Invalid id ' + o.id);
+		}
+		o.applyCss = o.applyCss || identifyFn;
+		o.applyJs = o.applyJs || identifyFn;
+		for (var name in o.items) {
+			if (o.items.hasOwnProperty(name)) {
+				if (!/^[\w-]+$/.test(name)) {
+					throw new Error("Invalid name: " + name);
+				}
+				var element = o.items[name];
+				element.validate = element.validate || voidFn;
+
+				if (element.default == undefined) {
+					if (element.type === 'boolean') {
+						element.default = false;
+					} else if (element.type === 'number') {
+						element.default = 0;
+					} else if (element.type === 'string') {
+						element.default = '';
+					}
+				}
+
+				if ('value' in element) {
+					throw new Error('The "value" property cannot be defined here.');
+				}
+				element.value = element.default;
+
+				if (element.validate(element.value)) {
+					throw new Error('The default value of "' + name + '" has to be valid.');
+				}
+			}
+		}
+		return o;
+	});
+
+	function identifyFn(x) { return x; }
+	function voidFn() { return undefined; }
+	function matchRegExp(re) {
+		return function (value) {
+			if (!re.test(value)) {
+				return 'The value must match the regular expression <code>' + text(re) + '</code>';
+			}
+		};
+	}
+
+	function text(str) {
+		return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;');
+	}
+}
+
+/**
+ * Adds the given options to the DOM.
+ *
+ * @param {Option[]} options
+ */
+function addOptionsToDOM(options) {
+	var container = $('#option-container');
+
+	/** @type {{ option: Option, element: HTMLElement }[]} */
+	var optionElementPairs = [];
+
+	options.forEach(function (o) {
+		var element = $u.element.create('div', {
+			contents: [
+				{
+					tag: 'h3',
+					contents: o.title
+				},
+				{
+					tag: 'div',
+					properties: {
+						className: 'option-items'
+					},
+					contents: Object.keys(o.items).map(function (name) {
+						var item = o.items[name];
+						var errorId = o.id + '-' + name;
+
+						function validate(value) {
+							var message = item.validate(value, o);
+							var errorElement = $('#' + errorId);
+							if (message) {
+								errorElement.innerHTML = message;
+								errorElement.style.display = 'block';
+							} else {
+								item.value = value;
+								errorElement.textContent = '';
+								errorElement.style.display = 'none';
+								delayedGenerateCode();
+							}
+						}
+
+						var contents = [];
+						if (item.type === 'boolean') {
+							contents.push({
+								tag: 'label',
+								contents: [
+									{
+										tag: 'span',
+										contents: item.title
+									},
+									{
+										tag: 'input',
+										properties: {
+											type: 'checkbox',
+											checked: item.value,
+											onclick: function () { validate(this.checked); }
+										}
+									}
+								]
+							});
+						} else {
+							contents.push(
+								{
+									tag: 'span',
+									contents: item.title
+								},
+								{
+									tag: 'input',
+									properties: {
+										type: item.type === 'number' ? 'number' : 'text',
+										value: item.value,
+										oninput: function () { validate(this.value); }
+									}
+								}
+							);
+						}
+
+						contents.push({
+							tag: 'div',
+							properties: {
+								className: 'option-item-error',
+								id: errorId
+							}
+						});
+						return {
+							tag: 'div',
+							properties: {
+								className: 'option-item'
+							},
+							contents: contents
+						};
+					})
+				}
+			],
+			inside: container
+		});
+
+		optionElementPairs.push({
+			option: o,
+			element: element
+		});
+	});
+
+	function updateOptions() {
+		// check where the requirements of a option is met and therefore whether the option is active
+		optionElementPairs.forEach(function (pair) {
+			var option = pair.option;
+			var element = pair.element;
+
+			var enabled = toArray(option.require).every(function (id) {
+				var comp = components.languages[id] || components.plugins[id];
+				return comp && comp.enabled;
+			});
+			option.enabled = enabled;
+
+			element.style.display = enabled ? 'block' : 'none';
+		});
+	}
+	updateOptions();
+	return updateOptions;
+}
+
 
 })();

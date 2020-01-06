@@ -8,7 +8,8 @@
 <link rel="stylesheet" href="style.css" />
 <link rel="stylesheet" href="themes/prism.css" data-noprefix />
 <style>
-form label {
+form #components label,
+form > p:first-of-type > label {
 	display: block;
 	padding: .2em;
 	padding-left: 1.9em;
@@ -17,16 +18,17 @@ form label {
 	-webkit-column-break-inside: avoid;
 }
 
-	form label .name {
+	form #components label .name {
 		margin-right: .3em;
 	}
 
-	form label a.owner {
+	form #components label a.owner {
 		margin-left: 0;
 		hyphens: none;
 	}
 
-	form label input {
+	form #components label input,
+	form > p:first-of-type > label input {
 		margin-right: .7em;
 		margin-left: -1.7em;
 	}
@@ -54,7 +56,8 @@ section.options {
 }
 
 section.options#category-languages,
-section.options#category-plugins {
+section.options#category-plugins,
+section#options {
 	width: 100%;
 	float: none;
 	column-count: 3;
@@ -63,11 +66,13 @@ section.options#category-plugins {
 }
 
 	section.options#category-languages label,
-	section.options#category-plugins label {
+	section.options#category-plugins label,
+	section#options #option-container > div {
 		break-inside: avoid;
 	}
 	section.options#category-languages > h1,
-	section.options#category-plugins > h1 {
+	section.options#category-plugins > h1,
+	section#options > h1 {
 		margin-top: 0;
 		column-span: all;
 	}
@@ -90,6 +95,36 @@ section.options#category-themes {
 	section.options#category-themes > h1 {
 		column-span: all;
 	}
+
+
+#option-container > div,
+#option-container > div {
+	padding: 0 1em .5em 0;
+}
+
+#option-container label > span {
+	padding-right: .5em;
+}
+
+#option-container input[type="text"],
+#option-container input[type="number"] {
+	display: block;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.option-item {
+	position: relative;
+}
+
+#option-container .option-item-error {
+	color: #B61500;
+	font-size: 90%;
+	display: none;
+}
+
 
 section.download {
 	width: 50%;
@@ -147,6 +182,11 @@ section.download {
 		</p>
 
 		<section id="components"></section>
+
+		<section id="options">
+			<h1>Options</h1>
+			<div id="option-container"></div>
+		</section>
 
 		<p>
 			Total filesize: <strong id="filesize"></strong> (<strong id="percent-js"></strong> JavaScript + <strong id="percent-css"></strong> CSS)
