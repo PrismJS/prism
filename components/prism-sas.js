@@ -22,11 +22,6 @@
 		}
 	];
 
-	var mVariable = {
-		pattern: /&[^\.]*\./i,
-		alias: 'string'
-	};
-
 	var string = {
 		pattern: RegExp(stringPattern),
 		greedy: true
@@ -46,7 +41,10 @@
 			lookbehind: true
 		},
 		'operator': /=/,
-		'macro-variable': mVariable,
+		'macro-variable': {
+			pattern: /&[^\.]*\./i,
+			alias: 'string'
+		},
 		'arg': {
 			pattern: /[A-Z]+/i,
 			alias: 'keyword'
@@ -95,10 +93,10 @@
 	var actionSets = 'accessControl|cdm|aggregation|aStore|ruleMining|audio|autotune|bayesianNetClassifier|bioMedImage|boolRule|builtins|cardinality|sccasl|clustering|copula|countreg|dataDiscovery|dataPreprocess|dataSciencePilot|dataStep|decisionTree|deepLearn|deepNeural|varReduce|simSystem|ds2|deduplication|ecm|entityRes|espCluster|explainModel|factmac|fastKnn|fcmpact|fedSql|freqTab|gam|gleam|graphSemiSupLearn|gVarCluster|hiddenMarkovModel|hyperGroup|image|iml|ica|kernalPca|langModel|ldaTopic|sparseML|mlTools|mixed|modelPublishing|mbc|network|optNetwork|neuralNet|nonlinear|nmf|nonParametricBayes|optimization|panel|pls|percentile|pca|phreg|qkb|qlim|quantreg|recommend|tsReconcile|deepRnn|regression|reinforcementLearn|robustPca|sampling|sparkEmbeddedProcess|search(?:Analytics)?|sentimentAnalysis|sequence|configuration|session(?:Prop)?|severity|simple|smartData|sandwich|spatialreg|stabilityMonitoring|spc|loadStreams|svDataDescription|svm|table|conditionalRandomFields|text(?:Rule(?:Develop|Score)|Mining|Parse|Topic|Util|Filters|Frequency)|tsInfo|timeData|transpose|uniTimeSeries';
 
 	var casActions = {
-		pattern: RegExp('(^|\\s+)(?:action(?:\\s)+)?(?:<act>)(?:\\.[a-z]+\\b)(?:[\\s\\S]+?)(?=;)'.replace(/<act>/g, actionSets), 'i'),
+		pattern: RegExp('(^|\\s)(?:action\\s+)?(?:<act>)\\.[a-z]+\\b[^;]+'.replace(/<act>/g, actionSets), 'i'),
 		lookbehind: true,
 		inside: {
-			'keyword': RegExp('(?:<act>)(?:\\.[a-z]+\\b)'.replace(/<act>/g, actionSets), 'i'),
+			'keyword': RegExp('(?:<act>)\\.[a-z]+\\b'.replace(/<act>/g, actionSets), 'i'),
 			'action': {
 				pattern: /(?:action)/i,
 				alias: 'keyword'
@@ -198,11 +196,11 @@
 			lookbehind: true,
 			inside: {
 				'statement-var': {
-					pattern: /((?:^|\s)=?)(?:saveresult)(?:\s)+(?:[\s\S]+?)(?=;)/im,
+					pattern: /((?:^|\s)=?)saveresult\s+[^;]+/im,
 					lookbehind: true,
 					inside: {
 						'statement': {
-							pattern: /^(?:saveresult)(?:\s+[\S]+?)(?=\s)/i,
+							pattern: /^saveresult\s+\S+/i,
 							inside: {
 								keyword: /^(?:saveresult)/i
 							}
@@ -212,7 +210,7 @@
 				},
 				'cas-actions': casActions,
 				'statement': {
-					pattern: /((?:^|\s)=?)(?:default|(?:un)?set|on|output|upload)(?:[\s\S]+?)(?=;)/im,
+					pattern: /((?:^|\s)=?)(?:default|(?:un)?set|on|output|upload)[^;]+/im,
 					lookbehind: true,
 					inside: args
 				},
