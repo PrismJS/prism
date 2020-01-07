@@ -8,6 +8,7 @@ await
 base
 bool
 break
+by
 byte
 case
 catch
@@ -56,6 +57,7 @@ new;
 notnull
 null
 object
+on
 operator
 orderby
 out
@@ -96,6 +98,7 @@ var
 virtual
 void
 volatile
+when
 where;
 while
 yield
@@ -113,6 +116,7 @@ yield
 	["keyword", "base"],
 	["keyword", "bool"],
 	["keyword", "break"],
+	["keyword", "by"],
 	["keyword", "byte"],
 	["keyword", "case"],
 	["keyword", "catch"],
@@ -161,6 +165,7 @@ yield
 	["keyword", "notnull"],
 	["keyword", "null"],
 	["keyword", "object"],
+	["keyword", "on"],
 	["keyword", "operator"],
 	["keyword", "orderby"],
 	["keyword", "out"],
@@ -201,6 +206,7 @@ yield
 	["keyword", "virtual"],
 	["keyword", "void"],
 	["keyword", "volatile"],
+	["keyword", "when"],
 	["keyword", "where"], ["punctuation", ";"],
 	["keyword", "while"],
 	["keyword", "yield"]

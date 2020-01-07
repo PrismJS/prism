@@ -39,22 +39,27 @@
 		return pattern.replace(/<<self>>/g, '[^\\s\\S]');
 	}
 
+	// https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/
 	var keywords_ = {
 		// keywords which represent a return or variable type
 		type: 'bool byte char decimal double dynamic float int long object sbyte short string uint ulong ushort var void',
 		// keywords which are used to declare a type
 		typeDeclaration: 'class enum interface struct',
+		// contextual keywords
+		// ("var" and "dynamic" are missing because they are used like types)
+		contextual: 'add alias ascending async await by descending from get global group into join let nameof notnull on orderby partial remove select set unmanaged value when where where',
 		// all other keywords
-		other: 'abstract add alias as ascending async await base break case catch checked const continue default delegate descending do else event explicit extern finally fixed for foreach from get global goto group if implicit in internal into is join let lock nameof namespace new notnull null operator orderby out override params partial private protected public readonly ref remove return sealed select set sizeof stackalloc static switch this throw try typeof unchecked unmanaged unsafe using value virtual volatile where while yield'
-	}
+		other: 'abstract as base break case catch checked const continue default delegate do else event explicit extern finally fixed for foreach goto if implicit in internal is lock namespace new null operator out override params private protected public readonly ref return sealed sizeof stackalloc static switch this throw try typeof unchecked unsafe using virtual volatile while yield'
+	};
 
 	// keywords
 	function keywordsToPattern(words) {
 		return '\\b(?:' + words.trim().replace(/ /g, '|') + ')\\b';
 	}
 	var typeDeclarationKeywords = keywordsToPattern(keywords_.typeDeclaration);
-	var keywords = RegExp(keywordsToPattern(keywords_.type + ' ' + keywords_.typeDeclaration + ' ' + keywords_.other));
-	var nonTypeKeywords = keywordsToPattern(keywords_.typeDeclaration + ' ' + keywords_.other);
+	var keywords = RegExp(keywordsToPattern(keywords_.type + ' ' + keywords_.typeDeclaration + ' ' + keywords_.contextual + ' ' + keywords_.other));
+	var nonTypeKeywords = keywordsToPattern(keywords_.typeDeclaration + ' ' + keywords_.contextual + ' ' + keywords_.other);
+	var nonContextualKeywords = keywordsToPattern(keywords_.type + ' ' + keywords_.typeDeclaration + ' ' + keywords_.other);
 
 	// types
 	var generic = nested(/<(?:[^<>;=+\-*/%&|^]|<<self>>)*>/.source, 2);
@@ -147,13 +152,13 @@
 			{
 				// Variable, field and parameter declaration
 				// (Foo bar, Bar baz, Foo[,,] bay, Foo<Bar, FooBar<Bar>> bax)
-				pattern: re('', /\b<<0>>(?=\s+<<1>>(?:\s*[=,;:{)\]]|\s+in))/.source, [typeExpression, name]),
+				pattern: re('', /\b<<0>>(?=\s+(?!<<1>>)<<2>>(?:\s*[=,;:{)\]]|\s+in))/.source, [typeExpression, nonContextualKeywords, name]),
 				inside: typeInside
 			}
 		],
 		'keyword': keywords,
-		'number': /(?:\b0(?:x[\da-f_]*[\da-f]|b[01_]*[01])|(?:\B\.\d+(?:_+\d+)*|\b\d+(?:_+\d+)*(?:\.\d+(?:_+\d+)*)?)(?:e[-+]?\d+(?:_+\d+)*)?)(?:ul|[flu])?\b/i,
-		'operator': />>=?|<<=?|[-=]>|([-+&|?])\1|~|[-+*/%&|^!=<>]=?/,
+		'number': /(?:\b0(?:x[\da-f_]*[\da-f]|b[01_]*[01])|(?:\B\.\d+(?:_+\d+)*|\b\d+(?:_+\d+)*(?:\.\d+(?:_+\d+)*)?)(?:e[-+]?\d+(?:_+\d+)*)?)(?:ul|[fluM])?\b/i,
+		'operator': />>=?|<<=?|[-=]>|([-+&|])\1|~|\?\?=?|[-+*/%&|^!=<>]=?/,
 		'punctuation': /\?\.?|::|[{}[\];(),.:]/
 	});
 
