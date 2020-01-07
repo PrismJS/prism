@@ -40,7 +40,7 @@
 	}
 
 	// https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/
-	var keywords_ = {
+	var keywordKinds = {
 		// keywords which represent a return or variable type
 		type: 'bool byte char decimal double dynamic float int long object sbyte short string uint ulong ushort var void',
 		// keywords which are used to declare a type
@@ -56,13 +56,13 @@
 	function keywordsToPattern(words) {
 		return '\\b(?:' + words.trim().replace(/ /g, '|') + ')\\b';
 	}
-	var typeDeclarationKeywords = keywordsToPattern(keywords_.typeDeclaration);
-	var keywords = RegExp(keywordsToPattern(keywords_.type + ' ' + keywords_.typeDeclaration + ' ' + keywords_.contextual + ' ' + keywords_.other));
-	var nonTypeKeywords = keywordsToPattern(keywords_.typeDeclaration + ' ' + keywords_.contextual + ' ' + keywords_.other);
-	var nonContextualKeywords = keywordsToPattern(keywords_.type + ' ' + keywords_.typeDeclaration + ' ' + keywords_.other);
+	var typeDeclarationKeywords = keywordsToPattern(keywordKinds.typeDeclaration);
+	var keywords = RegExp(keywordsToPattern(keywordKinds.type + ' ' + keywordKinds.typeDeclaration + ' ' + keywordKinds.contextual + ' ' + keywordKinds.other));
+	var nonTypeKeywords = keywordsToPattern(keywordKinds.typeDeclaration + ' ' + keywordKinds.contextual + ' ' + keywordKinds.other);
+	var nonContextualKeywords = keywordsToPattern(keywordKinds.type + ' ' + keywordKinds.typeDeclaration + ' ' + keywordKinds.other);
 
 	// types
-	var generic = nested(/<(?:[^<>;=+\-*/%&|^]|<<self>>)*>/.source, 2);
+	var generic = nested(/<(?:[^<>;=+\-*/%&|^]|<<self>>)*>/.source, 2); // the idea behind the other forbidden characters is to prevent false positives. Same for tupleElement.
 	var nestedRound = nested(/\((?:[^()]|<<self>>)*\)/.source, 2);
 	var name = /@?\b[A-Za-z_]\w*\b/.source;
 	var genericName = replace(/<<0>>(?:\s*<<1>>)?/.source, [name, generic]);
@@ -77,17 +77,30 @@
 		'punctuation': /[<>()?,.:[\]]/
 	};
 
+	// strings & characters
+	// https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/lexical-structure#character-literals
+	// https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/lexical-structure#string-literals
+	var character = /'(?:[^\r\n'\\]|\\.|\\[Uux][\da-fA-F]{1,8})'/.source; // simplified pattern
+	var regularString = /"(?:\\.|[^\\"\r\n])*"/.source;
+	var verbatimString = /@"(?:""|\\[\s\S]|[^\\"])*"(?!")/.source;
+
+
 	Prism.languages.csharp = Prism.languages.extend('clike', {
 		'string': [
 			{
-				pattern: /(^|[^$\\])@"(?:""|\\[\s\S]|[^\\"])*"/,
+				pattern: re('', /(^|[^$\\])<<0>>/.source, [verbatimString]),
 				lookbehind: true,
 				greedy: true
 			},
 			{
-				pattern: /(^|[^@$\\])("|')(?:\\.|(?!\2)[^\\\r\n])*\2/,
+				pattern: re('', /(^|[^@$\\])<<0>>/.source, [regularString]),
 				lookbehind: true,
 				greedy: true
+			},
+			{
+				pattern: RegExp(character),
+				greedy: true,
+				alias: 'character'
 			}
 		],
 		'class-name': [
@@ -157,7 +170,8 @@
 			}
 		],
 		'keyword': keywords,
-		'number': /(?:\b0(?:x[\da-f_]*[\da-f]|b[01_]*[01])|(?:\B\.\d+(?:_+\d+)*|\b\d+(?:_+\d+)*(?:\.\d+(?:_+\d+)*)?)(?:e[-+]?\d+(?:_+\d+)*)?)(?:ul|[fluM])?\b/i,
+		// https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/lexical-structure#literals
+		'number': /(?:\b0(?:x[\da-f_]*[\da-f]|b[01_]*[01])|(?:\B\.\d+(?:_+\d+)*|\b\d+(?:_+\d+)*(?:\.\d+(?:_+\d+)*)?)(?:e[-+]?\d+(?:_+\d+)*)?)(?:ul|lu|[dflmu])?\b/i,
 		'operator': />>=?|<<=?|[-=]>|([-+&|])\1|~|\?\?=?|[-+*/%&|^!=<>]=?/,
 		'punctuation': /\?\.?|::|[{}[\];(),.:]/
 	});
@@ -255,13 +269,13 @@
 
 
 	// string interpolation
-	var string = /"(?:\\.|[^\\"\r\n])*"|'(?:\\.|[^\\'\r\n])*'/.source;
+	var regularStringOrCharacter = regularString + '|' + character;
 	var formatString = /:[^}\r\n]+/.source;
 	// multi line
-	var mInterpolationRound = nested(replace(/[^"'/()]|\/(?![*/])|\/\/[^\r\n]*[\r\n]|\/\*[\s\S]*?\*\/|<<0>>|\(<<self>>*\)/.source, [string]), 2)
+	var mInterpolationRound = nested(replace(/[^"'/()]|\/(?![*/])|\/\/[^\r\n]*[\r\n]|\/\*[\s\S]*?\*\/|<<0>>|\(<<self>>*\)/.source, [regularStringOrCharacter]), 2)
 	var mInterpolation = replace(/\{(?!\{)(?:(?![}:])<<0>>)*<<1>>?\}/.source, [mInterpolationRound, formatString]);
 	// single line
-	var sInterpolationRound = nested(replace(/[^"'/()]|\/(?!\*)|\/\*.*?\*\/|<<0>>|\(<<self>>*\)/.source, [string]), 2)
+	var sInterpolationRound = nested(replace(/[^"'/()]|\/(?!\*)|\/\*.*?\*\/|<<0>>|\(<<self>>*\)/.source, [regularStringOrCharacter]), 2)
 	var sInterpolation = replace(/\{(?!\{)(?:(?![}:])<<0>>)*<<1>>?\}/.source, [sInterpolationRound, formatString]);
 
 	function createInterpolationInside(interpolation, interpolationRound) {
