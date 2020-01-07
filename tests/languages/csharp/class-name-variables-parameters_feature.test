@@ -10,18 +10,21 @@ Bar<Foo>.FooBar<IFoo> Abc;
 ----------------------------------------------------
 
 [
-	["keyword", "int"],
+	["class-name", [
+		["keyword", "int"]
+	]],
 	" a",
 	["punctuation", ";"],
-
-	["class-name", ["Foo"]],
+	["class-name", [
+		"Foo"
+	]],
 	" b",
 	["punctuation", ";"],
-
-	["class-name", ["Foo"]],
+	["class-name", [
+		"Foo"
+	]],
 	" @new_var",
 	["punctuation", ";"],
-
 	["class-name", [
 		"Foo",
 		["punctuation", "<"],
@@ -32,7 +35,6 @@ Bar<Foo>.FooBar<IFoo> Abc;
 	["operator", "="],
 	["keyword", "null"],
 	["punctuation", ";"],
-
 	["keyword", "static"],
 	["class-name", [
 		"Foo",
@@ -50,11 +52,14 @@ Bar<Foo>.FooBar<IFoo> Abc;
 	]],
 	" d",
 	["punctuation", ";"],
-
-	["keyword", "void"],
+	["return-type", [
+		["keyword", "void"]
+	]],
 	["function", "Foo"],
 	["punctuation", "("],
-	["class-name", ["Foo"]],
+	["class-name", [
+		"Foo"
+	]],
 	" a",
 	["punctuation", ","],
 	["class-name", [
@@ -73,7 +78,6 @@ Bar<Foo>.FooBar<IFoo> Abc;
 	]],
 	" c",
 	["punctuation", ","],
-
 	["class-name", [
 		"Foo",
 		["punctuation", "<"],
@@ -87,7 +91,6 @@ Bar<Foo>.FooBar<IFoo> Abc;
 	" d",
 	["punctuation", ")"],
 	["punctuation", ";"],
-
 	["return-type", [
 		"Bar",
 		["punctuation", "<"],
@@ -95,11 +98,9 @@ Bar<Foo>.FooBar<IFoo> Abc;
 		["punctuation", ">"]
 	]],
 	" Abc ",
-	["operator", "="],
-	["operator", ">"],
+	["operator", "=>"],
 	["number", "0"],
 	["punctuation", ";"],
-
 	["class-name", [
 		"Bar",
 		["punctuation", "<"],
@@ -114,7 +115,6 @@ Bar<Foo>.FooBar<IFoo> Abc;
 	" Abc",
 	["punctuation", ";"]
 ]
-
 
 ----------------------------------------------------
 

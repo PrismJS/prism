@@ -1,127 +1,157 @@
 (function (Prism) {
 
 	/**
-	 * Replaces all placeholders "<<n>>" of given expression with the n-th replacement (zero based).
-	 *
-	 * Note: Only the flags of the expression are kept. The flags of replacements will be ignored.
+	 * Replaces all placeholders "<<n>>" of given pattern with the n-th replacement (zero based).
 	 *
 	 * Note: This is a simple text based replacement. Be careful when using backreferences!
 	 *
-	 * @param {RegExp} regex the given expression.
-	 * @param {RegExp[]} replacements a list of replacement which can be inserted into the given expression.
-	 * @returns {RegExp} the expression with all placeholders replaced with their corresponding replacements.
-	 * @example replace(/a<<0>>a/i, /(?:b+)/) === /ab+a/i
+	 * @param {string} pattern the given pattern.
+	 * @param {string[]} replacements a list of replacement which can be inserted into the given pattern.
+	 * @returns {string} the pattern with all placeholders replaced with their corresponding replacements.
+	 * @example replace(/a<<0>>a/.source, [/b+/.source]) === /a(?:b+)a/.source
 	 */
-	function replace(regex) {
-		var replacements = arguments;
-		return RegExp(regex.source.replace(/<<(\d+)>>/g, function (m, index) {
-			return replacements[(+index) + 1].source;
-		}), regex.toString().match(/[gimuy]*$/)[0]);
+	function replace(pattern, replacements) {
+		return pattern.replace(/<<(\d+)>>/g, function (m, index) {
+			return '(?:' + replacements[+index] + ')';
+		});
+	}
+	/**
+	 * @param {string} flags
+	 * @param {string} pattern
+	 * @param {string[]} replacements
+	 * @returns {RegExp}
+	 */
+	function re(flags, pattern, replacements) {
+		return RegExp(replace(pattern, replacements), flags);
 	}
 
+	/**
+	 * Creates a nested pattern where all occurrences of the string `<<self>>` are replaced with the pattern itself.
+	 *
+	 * @param {string} pattern
+	 * @param {number} depthLog2
+	 * @returns {string}
+	 */
+	function nested(pattern, depthLog2) {
+		for (var i = 0; i < depthLog2; i++) {
+			pattern = pattern.replace(/<<self>>/g, '(?:' + pattern + ')');
+		}
+		return pattern.replace(/<<self>>/g, '[^\\s\\S]');
+	}
 
-	var keywords = /\b(?:abstract|add|alias|as|ascending|async|await|base|bool|break|byte|case|catch|char|checked|class|const|continue|decimal|default|delegate|descending|do|double|dynamic|else|enum|event|explicit|extern|finally|fixed|float|for|foreach|from|get|global|goto|group|if|implicit|in|int|interface|internal|into|is|join|let|lock|long|nameof|namespace|new|null|object|operator|orderby|out|override|params|partial|private|protected|public|readonly|ref|remove|return|sbyte|sealed|select|set|short|sizeof|stackalloc|static|string|struct|switch|this|throw|try|typeof|uint|ulong|unchecked|unsafe|ushort|using|value|var|virtual|void|volatile|where|while|yield)\b/;
+	var keywords_ = {
+		// keywords which represent a return or variable type
+		type: 'bool byte char decimal double dynamic float int long object sbyte short string uint ulong ushort var void',
+		// keywords which are used to declare a type
+		typeDeclaration: 'class enum interface struct',
+		// all other keywords
+		other: 'abstract add alias as ascending async await base break case catch checked const continue default delegate descending do else event explicit extern finally fixed for foreach from get global goto group if implicit in internal into is join let lock nameof namespace new notnull null operator orderby out override params partial private protected public readonly ref remove return sealed select set sizeof stackalloc static switch this throw try typeof unchecked unmanaged unsafe using value virtual volatile where while yield'
+	}
 
-	var classNameInside = {
+	// keywords
+	function keywordsToPattern(words) {
+		return '\\b(?:' + words.trim().replace(/ /g, '|') + ')\\b';
+	}
+	var typeDeclarationKeywords = keywordsToPattern(keywords_.typeDeclaration);
+	var keywords = RegExp(keywordsToPattern(keywords_.type + ' ' + keywords_.typeDeclaration + ' ' + keywords_.other));
+	var nonTypeKeywords = keywordsToPattern(keywords_.typeDeclaration + ' ' + keywords_.other);
+
+	// types
+	var generic = nested(/<(?:[^<>;=+\-*/%&|^]|<<self>>)*>/.source, 2);
+	var nestedRound = nested(/\((?:[^()]|<<self>>)*\)/.source, 2);
+	var name = /@?\b[A-Za-z_]\w*\b/.source;
+	var genericName = replace(/<<0>>(?:\s*<<1>>)?/.source, [name, generic]);
+	var identifier = replace(/(?!<<0>>)<<1>>(?:\s*\.\s*<<1>>)*/.source, [nonTypeKeywords, genericName]);
+	var array = /\[\s*(?:,\s*)*\]/.source;
+	var tupleElement = replace(/[^,()<>[\];=+\-*/%&|^]|<<0>>|<<1>>|<<2>>/.source, [generic, nestedRound, array])
+	var tuple = replace(/\(<<0>>+(?:,<<0>>+)+\)/.source, [tupleElement]);
+	var typeExpression = replace(/(?:<<0>>|<<1>>)(?:\s*(?:\?\s*)?<<2>>)*(?:\s*\?)?/.source, [tuple, identifier, array]);
+
+	var typeInside = {
 		'keyword': keywords,
-		'punctuation': /[<>(),.:[\]]/
+		'punctuation': /[<>()?,.:[\]]/
 	};
 
-
-	var genericParameters = /(?:<(?:[^<>]|<(?:[^<>]|<(?:[^<>]|<[^<>]+>)+>)+>)+>)/;
-
-	var className = replace(/(?:[A-Z]\w*(?:\.\w+)*(?:<<0>>(?:\.\w+)*)*)/, genericParameters);
-	var classNamePlusArray = replace(/(?:<<0>>)(?:\[\s*(?:,\s*)*\])*/, className);
-	var classNamePlusArrayOrKeyword = replace(/(?:<<0>>|[a-z]+)/, className);
-
-	var methodOrPropertyDeclaration = /(?:\w+(?:\s*<[^<>]+>)?\s*(?:[({]|=>)|this\s*\[)/;
-
-	var typeDeclarationKeywords = /(?:class|enum|interface|struct)/;
-
-
 	Prism.languages.csharp = Prism.languages.extend('clike', {
-		'keyword': keywords,
 		'string': [
 			{
-				pattern: /@("|')(?:\1\1|\\[\s\S]|(?!\1)[^\\])*\1/,
+				pattern: /(^|[^$\\])@"(?:""|\\[\s\S]|[^\\"])*"/,
+				lookbehind: true,
 				greedy: true
 			},
 			{
-				pattern: /("|')(?:\\.|(?!\1)[^\\\r\n])*?\1/,
+				pattern: /(^|[^@$\\])("|')(?:\\.|(?!\2)[^\\\r\n])*\2/,
+				lookbehind: true,
 				greedy: true
 			}
 		],
 		'class-name': [
 			{
 				// Attributes
-				// [Foo], [Foo(Bar)]
-				pattern: /((?:^|\W)\[)[A-Z]\w*(?:\.\w+)*\b/,
+				// [Foo], [Foo(Bar)], [return: Foo(Bar)]
+				pattern: re('', /((?:^|[^\s\w>?])\s*\[\s*(?:return\s*:\s*)?)<<0>>/.source, [identifier]),
 				lookbehind: true,
-				inside: {
-					'punctuation': /\./
-				}
+				greedy: true, // it's greedy because it has to be able to see the characters before `[`
+				inside: typeInside
 			},
 			{
 				// Using static
 				// using static System.Math;
-				pattern: replace(/(\busing\s+static\s+)<<0>>(?=\s*;)/, className),
+				pattern: re('', /(\busing\s+static\s+)<<0>>(?=\s*;)/.source, [identifier]),
 				lookbehind: true,
-				inside: classNameInside
+				inside: typeInside
 			},
 			{
 				// Using alias (type)
 				// using Project = PC.MyCompany.Project;
-				pattern: replace(/(\busing\s+[A-Z]\w*\s*=\s*)<<0>>(?=\s*;)/, className),
+				pattern: re('', /(\busing\s+<<0>>\s*=\s*)<<1>>(?=\s*;)/.source, [name, typeExpression]),
 				lookbehind: true,
-				inside: classNameInside
+				inside: typeInside
 			},
 			{
 				// Using alias (alias)
 				// using Project = PC.MyCompany.Project;
-				pattern: /(\busing\s+)[A-Z]\w*(?=\s*=)/,
+				pattern: re('', /(\busing\s+)<<0>>(?=\s*=)/.source, [name]),
 				lookbehind: true
 			},
 			{
 				// Type declarations
 				// class Foo<A, B>
-				pattern: replace(/(\b<<0>>\s+)[A-Z]\w*(?:\s*<[^<>]+>)?/, typeDeclarationKeywords),
+				// interface Foo<out A, B>
+				pattern: re('', /(\b<<0>>\s+)<<1>>/.source, [typeDeclarationKeywords, genericName]),
 				lookbehind: true,
-				inside: {
-					'punctuation': /[<>,]/,
-					'keyword': /\b(?:in|out)\b/
-				}
+				inside: typeInside
 			},
 			{
 				// Single catch exception declaration
 				// catch(Foo)
 				// (things like catch(Foo e) is covered by variable declaration)
-				pattern: /(\bcatch\s*\()[A-Z]\w*(?:\.\w+)*\b/,
+				pattern: re('', /(\bcatch\s*\(\s*)<<0>>/.source, [identifier]),
 				lookbehind: true,
-				inside: {
-					'punctuation': /\./
-				}
+				inside: typeInside
 			},
 			{
 				// Name of the type parameter of generic constraints
-				// where Foo
-				pattern: /(\bwhere\s+)[A-Z]\w*\b/,
+				// where Foo : class
+				pattern: re('', /(\bwhere\s+)<<0>>/.source, [name]),
 				lookbehind: true
 			},
 			{
 				// Casts and checks via as and is.
 				// as Foo<A>, is Bar<B>
 				// (things like if(a is Foo b) is covered by variable declaration)
-				pattern: replace(/(\b(?:is|as)\s+)<<0>>/, classNamePlusArray),
+				pattern: re('', /(\b(?:is|as)\s+)<<0>>/.source, [typeExpression]),
 				lookbehind: true,
-				inside: classNameInside
+				inside: typeInside
 			},
 			{
 				// Variable, field and parameter declaration
 				// (Foo bar, Bar baz, Foo[,,] bay, Foo<Bar, FooBar<Bar>> bax)
-				pattern: replace(/\b<<0>>(?=\s+[@\w]+(?:\s*[=,;:{)\]]|\s+in))/, classNamePlusArray),
-				inside: classNameInside
+				pattern: re('', /\b<<0>>(?=\s+<<1>>(?:\s*[=,;:{)\]]|\s+in))/.source, [typeExpression, name]),
+				inside: typeInside
 			}
 		],
+		'keyword': keywords,
 		'number': /(?:\b0(?:x[\da-f_]*[\da-f]|b[01_]*[01])|(?:\B\.\d+(?:_+\d+)*|\b\d+(?:_+\d+)*(?:\.\d+(?:_+\d+)*)?)(?:e[-+]?\d+(?:_+\d+)*)?)(?:ul|[flu])?\b/i,
 		'operator': />>=?|<<=?|[-=]>|([-+&|?])\1|~|[-+*/%&|^!=<>]=?/,
 		'punctuation': /\?\.?|::|[{}[\];(),.:]/
@@ -129,30 +159,34 @@
 
 	Prism.languages.insertBefore('csharp', 'class-name', {
 		'namespace': {
-			pattern: /(\b(?:namespace|using)\s+)[A-Z]\w*(\.\w+)*(?=\s*[;{])/,
+			// namespace Foo.Bar {}
+			// using Foo.Bar;
+			pattern: re('', /(\b(?:namespace|using)\s+)<<0>>(?:\s*\.\s*<<0>>)*(?=\s*[;{])/.source, [name]),
 			lookbehind: true,
 			inside: {
 				'punctuation': /\./
 			}
 		},
 		'type-expression': {
-			// default(Foo), typeof(Foo<Bar>)
-			pattern: /(\b(?:default|typeof)\s*\(\s*)[A-Z][^()]*?(?=\s*\))/,
+			// default(Foo), typeof(Foo<Bar>), sizeof(int)
+			pattern: re('', /(\b(?:default|typeof|sizeof)\s*\(\s*)(?:[^()\s]|\s(?!\s*\))|<<0>>)*(?=\s*\))/.source, [nestedRound]),
 			lookbehind: true,
-			inside: classNameInside,
-			alias: 'class-name'
+			alias: 'class-name',
+			inside: typeInside
 		},
 		'return-type': {
-			// Foo<Bar> ForBar(), Foo IFoo.Bar() => 0
-			pattern: replace(/\b<<0>>(?=\s+(?:<<1>>\.)?<<2>>)/, classNamePlusArray, className, methodOrPropertyDeclaration),
-			inside: classNameInside,
+			// Foo<Bar> ForBar(); Foo IFoo.Bar() => 0
+			// int this[int index] => 0; T IReadOnlyList<T>.this[int index] => this[index];
+			// int Foo => 0; int Foo { get; set } = 0;
+			pattern: re('', /<<0>>(?=\s+(?:<<1>>\s*(?:=>|[({]|\.\s*this\s*\[)|this\s*\[))/.source, [typeExpression, identifier]),
+			inside: typeInside,
 			alias: 'class-name'
 		},
 		'constructor-invocation': {
 			// new List<Foo<Bar[]>> { }
-			pattern: replace(/(\bnew\s+)<<0>>(?=\s*[[({])/, classNamePlusArray),
+			pattern: re('', /(\bnew\s+)<<0>>(?=\s*[[({])/.source, [typeExpression]),
 			lookbehind: true,
-			inside: classNameInside,
+			inside: typeInside,
 			alias: 'class-name'
 		},
 		/*'explicit-implementation': {
@@ -163,34 +197,32 @@
 		},*/
 		'generic-method': {
 			// foo<Bar>()
-			pattern: replace(/\w+\s*<<0>>(?=\s*\()/, genericParameters),
+			pattern: re('', /<<0>>\s*<<1>>(?=\s*\()/.source, [name, generic]),
 			inside: {
-				'function': /^\w+/,
-				'class-name': {
-					pattern: /\b[A-Z]\w*(?:\.\w+)*\b/,
-					inside: {
-						'punctuation': /\./
-					}
-				},
-				'keyword': keywords,
-				'punctuation': /[<>(),.:[\]]/
+				'function': re('', /^<<0>>/.source, [name]),
+				'generic': {
+					pattern: RegExp(generic),
+					alias: 'class-name',
+					inside: typeInside
+				}
 			}
 		},
 		'type-list': {
 			// The list of types inherited or of generic constraints
-			// ( class Foo<F> ) : Bar, IList<FooBar>
-			// ( where F ) : Bar, IList<int>
-			pattern: replace(/\b((?:<<1>>\s+[A-Z]\w*(?:\s*<[^<>]+>)?|where\s+\w+)\s*:\s*)<<0>>(?:\s*,\s*<<0>>)*(?=\s*(?:where|[{;]|=>|$))/, classNamePlusArrayOrKeyword, typeDeclarationKeywords),
+			// class Foo<F> : Bar, IList<FooBar>
+			// where F : Bar, IList<int>
+			pattern: re(
+				'', /\b((?:<<0>>\s+<<1>>|where\s+<<2>>)\s*:\s*)(?:<<3>>|<<4>>)(?:\s*,\s*(?:<<3>>|<<4>>))*(?=\s*(?:where|[{;]|=>|$))/.source,
+				[typeDeclarationKeywords, genericName, name, typeExpression, keywords.source]
+			),
 			lookbehind: true,
 			inside: {
 				'keyword': keywords,
 				'class-name': {
-					pattern: /\b[A-Z]\w*(?:\.\w+)*\b/,
-					inside: {
-						'punctuation': /\./
-					}
+					pattern: RegExp(typeExpression),
+					inside: typeInside
 				},
-				'punctuation': /[<>(),.:[\]]/
+				'punctuation': /,/
 			}
 		},
 		'preprocessor': {
@@ -207,6 +239,68 @@
 			}
 		}
 	});
+
+	Prism.languages.insertBefore('csharp', 'punctuation', {
+		'named-parameter': {
+			pattern: re('', /([(,]\s*)<<0>>(?=\s*:)/.source, [name]),
+			lookbehind: true,
+			alias: 'punctuation'
+		}
+	});
+
+
+	// string interpolation
+	var string = /"(?:\\.|[^\\"\r\n])*"|'(?:\\.|[^\\'\r\n])*'/.source;
+	var formatString = /:[^}\r\n]+/.source;
+	// multi line
+	var mInterpolationRound = nested(replace(/[^"'/()]|\/(?![*/])|\/\/[^\r\n]*[\r\n]|\/\*[\s\S]*?\*\/|<<0>>|\(<<self>>*\)/.source, [string]), 2)
+	var mInterpolation = replace(/\{(?!\{)(?:(?![}:])<<0>>)*<<1>>?\}/.source, [mInterpolationRound, formatString]);
+	// single line
+	var sInterpolationRound = nested(replace(/[^"'/()]|\/(?!\*)|\/\*.*?\*\/|<<0>>|\(<<self>>*\)/.source, [string]), 2)
+	var sInterpolation = replace(/\{(?!\{)(?:(?![}:])<<0>>)*<<1>>?\}/.source, [sInterpolationRound, formatString]);
+
+	function createInterpolationInside(interpolation, interpolationRound) {
+		return {
+			'interpolation': {
+				pattern: re('', /([^{](?:\{\{)*)<<0>>/.source, [interpolation]),
+				lookbehind: true,
+				inside: {
+					'format-string': {
+						pattern: re('', /(^\{(?:(?![}:])<<0>>)*)<<1>>(?=\}$)/.source, [interpolationRound, formatString]),
+						lookbehind: true,
+						inside: {
+							'punctuation': /^:/
+						}
+					},
+					'punctuation': /^\{|\}$/,
+					'expression': {
+						pattern: /[\s\S]+/,
+						alias: 'language-csharp',
+						inside: Prism.languages.csharp
+					}
+				}
+			},
+			'string': /[\s\S]+/
+		};
+	}
+
+	Prism.languages.insertBefore('csharp', 'string', {
+		'interpolation-string': [
+			{
+				pattern: re('', /(^|[^\\])(?:\$@|@\$)"(?:""|\\[\s\S]|\{\{|<<0>>|[^\\{"])*"/.source, [mInterpolation]),
+				lookbehind: true,
+				greedy: true,
+				inside: createInterpolationInside(mInterpolation, mInterpolationRound),
+			},
+			{
+				pattern: re('', /(^|[^@\\])\$"(?:\\.|\{\{|<<0>>|[^\\"{])*"/.source, [sInterpolation]),
+				lookbehind: true,
+				greedy: true,
+				inside: createInterpolationInside(sInterpolation, sInterpolationRound),
+			}
+		]
+	});
+
 }(Prism));
 
 Prism.languages.dotnet = Prism.languages.cs = Prism.languages.csharp;

@@ -2,14 +2,14 @@ container.Register<Car>();
 container.Register<IJuice, Juice>();
 var container = new Container(f =>
 {
-    f.For<IFoo>().Use<Foo>();
+	f.For<IFoo>().Use<Foo>();
 });
 class LandAnimal {
-    public void Move() => Run(); }
+	public void Move() => Run(); }
 class Dog : LandAnimal {
-    public new void Move() => Run(); }
+	public new void Move() => Run(); }
 class Works : LandAnimal {
-    public override void Move() => Run(); }
+	public override void Move() => Run(); }
 [Required]
 [RequiredAttribute()]
 [Range(1, 10)]
@@ -21,135 +21,154 @@ class Works : LandAnimal {
 	["punctuation", "."],
 	["generic-method", [
 		["function", "Register"],
-		["punctuation", "<"],
-		["class-name", ["Car"]],
-		["punctuation", ">"]
+		["generic", [
+			["punctuation", "<"],
+			"Car",
+			["punctuation", ">"]
+		]]
 	]],
 	["punctuation", "("],
 	["punctuation", ")"],
 	["punctuation", ";"],
-
 	"\r\ncontainer",
 	["punctuation", "."],
 	["generic-method", [
 		["function", "Register"],
-		["punctuation", "<"],
-		["class-name", ["IJuice"]],
-		["punctuation", ","],
-		["class-name", ["Juice"]],
-		["punctuation", ">"]
+		["generic", [
+			["punctuation", "<"],
+			"IJuice",
+			["punctuation", ","],
+			" Juice",
+			["punctuation", ">"]
+		]]
 	]],
 	["punctuation", "("],
 	["punctuation", ")"],
 	["punctuation", ";"],
-
-	["keyword", "var"],
+	["class-name", [
+		["keyword", "var"]
+	]],
 	" container ",
 	["operator", "="],
 	["keyword", "new"],
-	["constructor-invocation", ["Container"]],
+	["constructor-invocation", [
+		"Container"
+	]],
 	["punctuation", "("],
 	"f ",
-	["operator", "="],
-	["operator", ">"],
+	["operator", "=>"],
 	["punctuation", "{"],
-
-	"\r\n    f",
+	"\r\n\tf",
 	["punctuation", "."],
 	["generic-method", [
 		["function", "For"],
-		["punctuation", "<"],
-		["class-name", ["IFoo"]],
-		["punctuation", ">"]
+		["generic", [
+			["punctuation", "<"],
+			"IFoo",
+			["punctuation", ">"]
+		]]
 	]],
 	["punctuation", "("],
 	["punctuation", ")"],
 	["punctuation", "."],
 	["generic-method", [
 		["function", "Use"],
-		["punctuation", "<"],
-		["class-name", ["Foo"]],
-		["punctuation", ">"]
+		["generic", [
+			["punctuation", "<"],
+			"Foo",
+			["punctuation", ">"]
+		]]
 	]],
 	["punctuation", "("],
 	["punctuation", ")"],
 	["punctuation", ";"],
-
 	["punctuation", "}"],
 	["punctuation", ")"],
 	["punctuation", ";"],
-
 	["keyword", "class"],
-	["class-name", ["LandAnimal"]],
+	["class-name", [
+		"LandAnimal"
+	]],
 	["punctuation", "{"],
-
 	["keyword", "public"],
-	["keyword", "void"],
+	["return-type", [
+		["keyword", "void"]
+	]],
 	["function", "Move"],
 	["punctuation", "("],
 	["punctuation", ")"],
-	["operator", "="],
-	["operator", ">"],
+	["operator", "=>"],
 	["function", "Run"],
 	["punctuation", "("],
 	["punctuation", ")"],
 	["punctuation", ";"],
 	["punctuation", "}"],
-
 	["keyword", "class"],
-	["class-name", ["Dog"]],
+	["class-name", [
+		"Dog"
+	]],
 	["punctuation", ":"],
 	["type-list", [
-		["class-name", ["LandAnimal"]]
+		["class-name", [
+			"LandAnimal"
+		]]
 	]],
 	["punctuation", "{"],
 	["keyword", "public"],
 	["keyword", "new"],
-	["keyword", "void"],
+	["return-type", [
+		["keyword", "void"]
+	]],
 	["function", "Move"],
 	["punctuation", "("],
 	["punctuation", ")"],
-	["operator", "="],
-	["operator", ">"],
+	["operator", "=>"],
 	["function", "Run"],
 	["punctuation", "("],
 	["punctuation", ")"],
 	["punctuation", ";"],
 	["punctuation", "}"],
-
 	["keyword", "class"],
-	["class-name", ["Works"]],
+	["class-name", [
+		"Works"
+	]],
 	["punctuation", ":"],
 	["type-list", [
-		["class-name", ["LandAnimal"]]
+		["class-name", [
+			"LandAnimal"
+		]]
 	]],
 	["punctuation", "{"],
 	["keyword", "public"],
 	["keyword", "override"],
-	["keyword", "void"],
+	["return-type", [
+		["keyword", "void"]
+	]],
 	["function", "Move"],
 	["punctuation", "("],
 	["punctuation", ")"],
-	["operator", "="],
-	["operator", ">"],
+	["operator", "=>"],
 	["function", "Run"],
 	["punctuation", "("],
 	["punctuation", ")"],
 	["punctuation", ";"],
 	["punctuation", "}"],
-
 	["punctuation", "["],
-	["class-name", ["Required"]],
+	["class-name", [
+		"Required"
+	]],
 	["punctuation", "]"],
-
 	["punctuation", "["],
-	["class-name", ["RequiredAttribute"]],
+	["class-name", [
+		"RequiredAttribute"
+	]],
 	["punctuation", "("],
 	["punctuation", ")"],
 	["punctuation", "]"],
-
 	["punctuation", "["],
-	["class-name", ["Range"]],
+	["class-name", [
+		"Range"
+	]],
 	["punctuation", "("],
 	["number", "1"],
 	["punctuation", ","],

@@ -1,18 +1,23 @@
 void abc<U, V>() where U : struct, IFoo where V : IFoo<U> {}
 delegate void F<U>(U u) where U : class, IFoo<Bar>;
 class Foo<T> where T : IFoo<int> {}
+readonly struct Foo<T> where T : unmanaged {}
 
 ----------------------------------------------------
 
 [
-	["keyword", "void"],
+	["return-type", [
+		["keyword", "void"]
+	]],
 	["generic-method", [
 		["function", "abc"],
-		["punctuation", "<"],
-		["class-name", ["U"]],
-		["punctuation", ","],
-		["class-name", ["V"]],
-		["punctuation", ">"]
+		["generic", [
+			["punctuation", "<"],
+			"U",
+			["punctuation", ","],
+			" V",
+			["punctuation", ">"]
+		]]
 	]],
 	["punctuation", "("],
 	["punctuation", ")"],
@@ -22,30 +27,39 @@ class Foo<T> where T : IFoo<int> {}
 	["type-list", [
 		["keyword", "struct"],
 		["punctuation", ","],
-		["class-name", ["IFoo"]]
+		["class-name", [
+			"IFoo"
+		]]
 	]],
 	["keyword", "where"],
 	["class-name", "V"],
 	["punctuation", ":"],
 	["type-list", [
-		["class-name", ["IFoo"]],
-		["punctuation", "<"],
-		["class-name", ["U"]],
-		["punctuation", ">"]
+		["class-name", [
+			"IFoo",
+			["punctuation", "<"],
+			"U",
+			["punctuation", ">"]
+		]]
 	]],
 	["punctuation", "{"],
 	["punctuation", "}"],
-
 	["keyword", "delegate"],
-	["keyword", "void"],
+	["return-type", [
+		["keyword", "void"]
+	]],
 	["generic-method", [
 		["function", "F"],
-		["punctuation", "<"],
-		["class-name", ["U"]],
-		["punctuation", ">"]
+		["generic", [
+			["punctuation", "<"],
+			"U",
+			["punctuation", ">"]
+		]]
 	]],
 	["punctuation", "("],
-	["class-name", ["U"]],
+	["class-name", [
+		"U"
+	]],
 	" u",
 	["punctuation", ")"],
 	["keyword", "where"],
@@ -54,13 +68,14 @@ class Foo<T> where T : IFoo<int> {}
 	["type-list", [
 		["keyword", "class"],
 		["punctuation", ","],
-		["class-name", ["IFoo"]],
-		["punctuation", "<"],
-		["class-name", ["Bar"]],
-		["punctuation", ">"]
+		["class-name", [
+			"IFoo",
+			["punctuation", "<"],
+			"Bar",
+			["punctuation", ">"]
+		]]
 	]],
 	["punctuation", ";"],
-
 	["keyword", "class"],
 	["class-name", [
 		"Foo",
@@ -72,15 +87,32 @@ class Foo<T> where T : IFoo<int> {}
 	["class-name", "T"],
 	["punctuation", ":"],
 	["type-list", [
-		["class-name", ["IFoo"]],
-		["punctuation", "<"],
+		["class-name", [
+			"IFoo"
+		]],
+		"<",
 		["keyword", "int"],
+		">"
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["keyword", "readonly"],
+	["keyword", "struct"],
+	["class-name", [
+		"Foo",
+		["punctuation", "<"],
+		"T",
 		["punctuation", ">"]
+	]],
+	["keyword", "where"],
+	["class-name", "T"],
+	["punctuation", ":"],
+	["type-list", [
+		["keyword", "unmanaged"]
 	]],
 	["punctuation", "{"],
 	["punctuation", "}"]
 ]
-
 
 ----------------------------------------------------
 

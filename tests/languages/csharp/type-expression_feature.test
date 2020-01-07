@@ -1,26 +1,41 @@
 default(int)
 default(Foo)
 typeof(Foo)
+typeof((int, long))
 default(Foo<Bar, IFoo<Bar>>)
+sizeof(int)
 
 ----------------------------------------------------
 
 [
 	["keyword", "default"],
 	["punctuation", "("],
-	["keyword", "int"],
+	["type-expression", [
+		["keyword", "int"]
+	]],
 	["punctuation", ")"],
-
 	["keyword", "default"],
 	["punctuation", "("],
-	["type-expression", ["Foo"]],
+	["type-expression", [
+		"Foo"
+	]],
 	["punctuation", ")"],
-
 	["keyword", "typeof"],
 	["punctuation", "("],
-	["type-expression", ["Foo"]],
+	["type-expression", [
+		"Foo"
+	]],
 	["punctuation", ")"],
-
+	["keyword", "typeof"],
+	["punctuation", "("],
+	["type-expression", [
+		["punctuation", "("],
+		["keyword", "int"],
+		["punctuation", ","],
+		["keyword", "long"],
+		["punctuation", ")"]
+	]],
+	["punctuation", ")"],
 	["keyword", "default"],
 	["punctuation", "("],
 	["type-expression", [
@@ -33,6 +48,12 @@ default(Foo<Bar, IFoo<Bar>>)
 		"Bar",
 		["punctuation", ">"],
 		["punctuation", ">"]
+	]],
+	["punctuation", ")"],
+	["keyword", "sizeof"],
+	["punctuation", "("],
+	["type-expression", [
+		["keyword", "int"]
 	]],
 	["punctuation", ")"]
 ]
