@@ -4,6 +4,12 @@ title 1
 foobar
 ======
 
+Überschrift
+===========
+
+Überschrift
+--
+
 title 2
 --
 
@@ -19,6 +25,8 @@ title 2
 [
 	["title", ["title 1\r\n", ["punctuation", "=="]]],
 	["title", ["foobar\r\n", ["punctuation", "======"]]],
+	["title", ["Überschrift\r\n", ["punctuation", "==========="]]],
+	["title", ["Überschrift\r\n", ["punctuation", "--"]]],
 	["title", ["title 2\r\n", ["punctuation", "--"]]],
 
 	["title", [["punctuation", "#"], " title 1"]],

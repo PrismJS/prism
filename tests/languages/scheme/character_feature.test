@@ -1,0 +1,21 @@
+#\a
+#\space
+#\u0041
+#\x10FFFF
+#\λ
+#\)
+
+----------------------------------------------------
+
+[
+	["character", "#\\a"],
+	["character", "#\\space"],
+	["character", "#\\u0041"],
+	["character", "#\\x10FFFF"],
+	["character", "#\\λ"],
+	["character", "#\\)"]
+]
+
+----------------------------------------------------
+
+Checks for character literals.

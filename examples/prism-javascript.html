@@ -49,7 +49,7 @@ var foo = /a/, bar = 3/4;</code></pre>
 
 <h2>ES6 features</h2>
 <pre><code>// Regex "y" and "u" flags
-/[a-zA-Z]+/gimyu
+var a = /[a-zA-Z]+/gimyu;
 
 // for..of loops
 for(let x of y) { }
@@ -64,14 +64,3 @@ import { foo as bar } from "file.js"
 multiple lines.`
 `40 + 2 = ${ 40 + 2 }`
 `The squares of the first 3 natural integers are ${[for (x of [1,2,3]) x*x].join(', ')}`</code></pre>
-
-<h2>Known failures</h2>
-<p>There are certain edge cases where Prism will fail.
-	There are always such cases in every regex-based syntax highlighter.
-	However, Prism dares to be open and honest about them.
-	If a failure is listed here, it doesn’t mean it will never be fixed. This is more of a “known bugs” list, just with a certain type of bug.
-</p>
-
-<h3>String interpolation containing a closing brace</h3>
-<pre><code>`${ {foo:'bar'}.foo }`
-`${ '}' }`</code></pre>

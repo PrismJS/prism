@@ -1,6 +1,7 @@
 abstract alias as asm begin break case
 class;
-def do else elsif
+def;
+do else elsif
 end ensure enum extend for fun
 if include instance_sizeof
 .is_a?
@@ -17,7 +18,8 @@ __FILE__ __LINE__
 [
 	["keyword", "abstract"], ["keyword", "alias"], ["keyword", "as"], ["keyword", "asm"], ["keyword", "begin"], ["keyword", "break"], ["keyword", "case"],
 	["keyword", "class"], ["punctuation", ";"],
-	["keyword", "def"], ["keyword", "do"], ["keyword", "else"], ["keyword", "elsif"],
+	["keyword", "def"],  ["punctuation", ";"],
+	["keyword", "do"], ["keyword", "else"], ["keyword", "elsif"],
 	["keyword", "end"], ["keyword", "ensure"], ["keyword", "enum"], ["keyword", "extend"], ["keyword", "for"], ["keyword", "fun"],
 	["keyword", "if"], ["keyword", "include"], ["keyword", "instance_sizeof"],
 	["punctuation", "."], ["keyword", "is_a?"],

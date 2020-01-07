@@ -8,6 +8,7 @@
 +. -. *. /.
 mod land lor lxor
 lsl lsr asr
+|> ->
 
 ----------------------------------------------------
 
@@ -21,7 +22,8 @@ lsl lsr asr
 	["operator", "+"], ["operator", "-"], ["operator", "*"], ["operator", "/"],
 	["operator", "+."], ["operator", "-."], ["operator", "*."], ["operator", "/."],
 	["operator", "mod"], ["operator", "land"], ["operator", "lor"], ["operator", "lxor"],
-	["operator", "lsl"], ["operator", "lsr"], ["operator", "asr"]
+	["operator", "lsl"], ["operator", "lsr"], ["operator", "asr"],
+	["operator", "|>"], ["operator", "->"]
 ]
 
 ----------------------------------------------------

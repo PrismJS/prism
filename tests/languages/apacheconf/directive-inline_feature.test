@@ -524,6 +524,7 @@ SSLRequireSSL
 SSLSessionCache
 SSLSessionCacheTimeout
 SSLSessionTicketKeyFile
+SSLSessionTickets
 SSLSRPUnknownUserSeed
 SSLSRPVerifierFile
 SSLStaplingCache
@@ -1105,6 +1106,7 @@ xml2StartParse
 	["directive-inline", "SSLSessionCache"],
 	["directive-inline", "SSLSessionCacheTimeout"],
 	["directive-inline", "SSLSessionTicketKeyFile"],
+	["directive-inline", "SSLSessionTickets"],
 	["directive-inline", "SSLSRPUnknownUserSeed"],
 	["directive-inline", "SSLSRPVerifierFile"],
 	["directive-inline", "SSLStaplingCache"],

@@ -1,0 +1,35 @@
+/**
+ * @example
+ * // returns 3
+ * globalNS.method(5, 15);
+ */
+
+----------------------------------------------------
+
+[
+	"/**\n * ",
+	["keyword", "@example"],
+	["example", [
+		"* ",
+		["code", [
+			["comment", "// returns 3"]
+		]],
+		"\n * ",
+		["code", [
+			"globalNS",
+			["punctuation", "."],
+			["function", "method"],
+			["punctuation", "("],
+			["number", "5"],
+			["punctuation", ","],
+			["number", "15"],
+			["punctuation", ")"],
+			["punctuation", ";"]
+		]]
+	]],
+	"\n */"
+]
+
+----------------------------------------------------
+
+Checks for examples.

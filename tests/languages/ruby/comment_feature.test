@@ -5,6 +5,8 @@ foo bar baz
 =end
 =begin
 =end
+=begin foo
+=end
 #{comment}
 
 ----------------------------------------------------
@@ -14,6 +16,7 @@ foo bar baz
 	["comment", "# foobar"],
 	["comment", "=begin\r\nfoo bar baz\r\n=end"],
 	["comment", "=begin\r\n=end"],
+	["comment", "=begin foo\r\n=end"],
 	["comment", "#{comment}"]
 ]
 

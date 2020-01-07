@@ -1,0 +1,118 @@
+<#@ template debug="false" hostspecific="false" language="VB" #>
+
+<#+
+Public Class Bar
+End Class
+#>
+
+<#
+	For i As Integer = 0 To 9
+		If i Mod 2 = 0 Then
+#>
+The number <#= i #> is even.
+<#
+		End If
+	Next i
+#>
+
+----------------------------------------------------
+
+[
+	["block", [
+		["directive", [
+			["delimiter", "<#@"],
+			["content", [
+				["keyword", "template"],
+				["attr-name", "debug"],
+				["attr-value", [
+					["punctuation", "="],
+					["punctuation", "\""],
+					"false",
+					["punctuation", "\""]
+				]],
+				["attr-name", "hostspecific"],
+				["attr-value", [
+					["punctuation", "="],
+					["punctuation", "\""],
+					"false",
+					["punctuation", "\""]
+				]],
+				["attr-name", "language"],
+				["attr-value", [
+					["punctuation", "="],
+					["punctuation", "\""],
+					"VB",
+					["punctuation", "\""]
+				]]
+			]],
+			["delimiter", "#>"]
+		]]
+	]],
+
+	["block", [
+		["class-feature", [
+			["delimiter", "<#+"],
+			["content", [
+				["keyword", "Public"],
+				["keyword", "Class"],
+				" Bar\n",
+				["keyword", "End"],
+				["keyword", "Class"]
+			]],
+			["delimiter", "#>"]
+		]]
+	]],
+
+	["block", [
+		["standard", [
+			["delimiter", "<#"],
+			["content", [
+				["keyword", "For"],
+				" i ",
+				["keyword", "As"],
+				["keyword", "Integer"],
+				["operator", "="],
+				["number", "0"],
+				["keyword", "To"],
+				["number", "9"],
+				["keyword", "If"],
+				" i ",
+				["keyword", "Mod"],
+				["number", "2"],
+				["operator", "="],
+				["number", "0"],
+				["keyword", "Then"]
+			]],
+			["delimiter", "#>"]
+		]]
+	]],
+
+	"\nThe number ",
+	["block", [
+		["expression", [
+			["delimiter", "<#="],
+			["content", [
+				" i "
+			]],
+			["delimiter", "#>"]
+		]]
+	]],
+	" is even.\n",
+
+	["block", [
+		["standard", [
+			["delimiter", "<#"],
+			["content", [
+				["keyword", "End"],
+				["keyword", "If"],
+				["keyword", "Next"],
+				" i\n"
+			]],
+			["delimiter", "#>"]
+		]]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for standard control blocks.

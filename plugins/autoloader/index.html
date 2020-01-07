@@ -22,19 +22,14 @@
 		content: ' [Generating... ' attr(data-progress) '%]';
 	}
 </style>
-<script src="prefixfree.min.js"></script>
+<script src="scripts/prefixfree.min.js"></script>
 
 <script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
 <script src="https://www.google-analytics.com/ga.js" async></script>
 </head>
 <body>
 
-<header>
-	<div class="intro" data-src="templates/header-plugins.html" data-type="text/html"></div>
-
-	<h2>Autoloader</h2>
-	<p>Automatically loads the needed languages to highlight the code blocks.</p>
-</header>
+<header data-plugin-header="autoloader"></header>
 
 <section class="language-javascript">
 	<h1>How to use</h1>
@@ -109,6 +104,9 @@
 	<p>Basic usage with some Perl code:</p>
 	<pre><code class="language-perl">my ($class, $filename) = @_;</code></pre>
 
+	<p>Alias support with TypeScript's <code class="language-none">ts</code>:</p>
+	<pre><code class="language-ts">const a: number = 0;</code></pre>
+
 	<p>The Less filter used in Pug:</p>
 	<pre><code class="language-pug" data-dependencies="less">:less
 	foo {
@@ -117,17 +115,39 @@
 
 </section>
 
+<section>
+	<h1>Markdown</h1>
+
+	<p>Markdown will use the Autoloader to automatically load missing languages.</p>
+	<pre><code class="language-markdown">The C# code will be highlighted __after__ the rest of this document.
+
+```csharp
+public class Foo : IBar&lt;int&gt; {
+	public string Baz { get; set; } = "foo";
+}
+```
+
+The CSS code will be highlighted with this document because CSS has already been loaded.
+
+```css
+a:hover {
+	color: green !important;
+}
+```</code></pre>
+
+</section>
+
 <footer data-src="templates/footer.html" data-type="text/html"></footer>
 
 <script src="components/prism-core.js"></script>
-<script src="plugins/autoloader/prism-autoloader.js" data-autoloader-path="components"></script>
-<script src="utopia.js"></script>
+<script src="plugins/autoloader/prism-autoloader.js"></script>
+<script src="scripts/utopia.js"></script>
 <script src="components.js"></script>
-<script src="code.js"></script>
+<script src="scripts/code.js"></script>
 
-<script src="vendor/promise.js"></script>
-<script src="vendor/jszip.min.js"></script>
-<script src="vendor/FileSaver.min.js"></script>
+<script src="scripts/vendor/promise.js"></script>
+<script src="scripts/vendor/jszip.min.js"></script>
+<script src="scripts/vendor/FileSaver.min.js"></script>
 <script>
 	function getZip(files, elt) {
 		return new Promise(function (resolve, reject) {

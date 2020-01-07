@@ -20,7 +20,7 @@
 		]],
 		["punctuation", ">"]
 	]],
-	["asp script", [
+	["asp-script", [
 		["preprocessor", ["#", ["directive", "pragma"]]]
 	]],
 	["tag", [
@@ -39,7 +39,9 @@
 		["punctuation", ">"]
 	]],
 	["script", [
-		["regex", "/foo/"]
+		["language-javascript", [
+			["regex", "/foo/"]
+		]]
 	]],
 	["tag", [
 		["tag", [

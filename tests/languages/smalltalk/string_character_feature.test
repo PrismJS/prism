@@ -1,0 +1,13 @@
+$'
+'foobar'
+
+----------------------------------------------------
+
+[
+	["character", "$'"],
+	["string", "'foobar'"]
+]
+
+----------------------------------------------------
+
+Checks a single-quote-character doesn't confuse string parsing.

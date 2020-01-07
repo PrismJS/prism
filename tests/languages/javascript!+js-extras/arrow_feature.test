@@ -1,0 +1,22 @@
+() => {};
+a => a;
+
+----------------------------------------------------
+
+[
+	["punctuation", "("],
+	["punctuation", ")"],
+	["arrow", "=>"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["parameter", ["a"]],
+	["arrow", "=>"],
+	" a",
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for function arrows.

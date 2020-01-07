@@ -1,8 +1,8 @@
 <Button onClick={(e) => this.setState({clicked: true})} />
 <Component
   data={[
-    {id: 0, name: 'Joe'},
-    {id: 1, name: 'Sue'},
+	{id: 0, name: 'Joe'},
+	{id: 1, name: 'Sue'},
   ]}
 />
 <Component title={`${name}`} />
@@ -14,14 +14,18 @@
 	["tag", [
 		["tag", [
 			["punctuation", "<"],
-			"Button"
+			["class-name", "Button"]
 		]],
-		["attr-name", ["onClick"]],
+		["attr-name", [
+			"onClick"
+		]],
 		["script", [
 			["script-punctuation", "="],
 			["punctuation", "{"],
 			["punctuation", "("],
-			"e",
+			["parameter", [
+				"e"
+			]],
 			["punctuation", ")"],
 			["operator", "=>"],
 			["keyword", "this"],
@@ -30,7 +34,7 @@
 			["punctuation", "("],
 			["punctuation", "{"],
 			"clicked",
-			["punctuation", ":"],
+			["operator", ":"],
 			["boolean", "true"],
 			["punctuation", "}"],
 			["punctuation", ")"],
@@ -41,30 +45,32 @@
 	["tag", [
 		["tag", [
 			["punctuation", "<"],
-			"Component"
+			["class-name", "Component"]
 		]],
-		["attr-name", ["data"]],
+		["attr-name", [
+			"data"
+		]],
 		["script", [
 			["script-punctuation", "="],
 			["punctuation", "{"],
 			["punctuation", "["],
 			["punctuation", "{"],
 			"id",
-			["punctuation", ":"],
+			["operator", ":"],
 			["number", "0"],
 			["punctuation", ","],
 			" name",
-			["punctuation", ":"],
+			["operator", ":"],
 			["string", "'Joe'"],
 			["punctuation", "}"],
 			["punctuation", ","],
 			["punctuation", "{"],
 			"id",
-			["punctuation", ":"],
+			["operator", ":"],
 			["number", "1"],
 			["punctuation", ","],
 			" name",
-			["punctuation", ":"],
+			["operator", ":"],
 			["string", "'Sue'"],
 			["punctuation", "}"],
 			["punctuation", ","],
@@ -76,20 +82,22 @@
 	["tag", [
 		["tag", [
 			["punctuation", "<"],
-			"Component"
+			["class-name", "Component"]
 		]],
-		["attr-name", ["title"]],
+		["attr-name", [
+			"title"
+		]],
 		["script", [
 			["script-punctuation", "="],
 			["punctuation", "{"],
 			["template-string", [
-				["string", "`"],
+				["template-punctuation", "`"],
 				["interpolation", [
 					["interpolation-punctuation", "${"],
 					"name",
 					["interpolation-punctuation", "}"]
 				]],
-				["string", "`"]
+				["template-punctuation", "`"]
 			]],
 			["punctuation", "}"]
 		]],
@@ -98,20 +106,23 @@
 	["tag", [
 		["tag", [
 			["punctuation", "<"],
-			"Component"
+			["class-name", "Component"]
 		]],
-		["attr-name", ["title"]],
+		["attr-name", [
+			"title"
+		]],
 		["script", [
 			["script-punctuation", "="],
 			["punctuation", "{"],
 			["template-string", [
-				["string", "`"],
+				["template-punctuation", "`"],
 				["interpolation", [
 					["interpolation-punctuation", "${"],
 					"name",
 					["interpolation-punctuation", "}"]
 				]],
-				["string", "'s page`"]
+				["string", "'s page"],
+				["template-punctuation", "`"]
 			]],
 			["punctuation", "}"]
 		]],

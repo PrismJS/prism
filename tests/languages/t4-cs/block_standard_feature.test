@@ -1,0 +1,73 @@
+<#
+	for (var i = 0; i < 10; i++)
+	{
+		if (i % 2 == 0)
+		{
+#>
+The number <#= i #> is even.
+<#
+		}
+	}
+#>
+
+----------------------------------------------------
+
+[
+	["block", [
+		["standard", [
+			["delimiter", "<#"],
+			["content", [
+				["keyword", "for"],
+				["punctuation", "("],
+				["keyword", "var"],
+				" i ",
+				["operator", "="],
+				["number", "0"],
+				["punctuation", ";"],
+				" i ",
+				["operator", "<"],
+				["number", "10"],
+				["punctuation", ";"],
+				" i",
+				["operator", "++"],
+				["punctuation", ")"],
+				["punctuation", "{"],
+				["keyword", "if"],
+				["punctuation", "("],
+				"i ",
+				["operator", "%"],
+				["number", "2"],
+				["operator", "=="],
+				["number", "0"],
+				["punctuation", ")"],
+				["punctuation", "{"]
+			]],
+			["delimiter", "#>"]
+		]]
+	]],
+
+	"\nThe number ",
+	["block", [
+		["expression", [
+			["delimiter", "<#="],
+			["content", [" i "]],
+			["delimiter", "#>"]
+		]]
+	]],
+	" is even.\n",
+
+	["block", [
+		["standard", [
+			["delimiter", "<#"],
+			["content", [
+				["punctuation", "}"],
+				["punctuation", "}"]
+			]],
+			["delimiter", "#>"]
+		]]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for standard control blocks.

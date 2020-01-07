@@ -1,0 +1,23 @@
+document
+location
+navigator
+performance
+localStorage
+sessionStorage
+window
+
+----------------------------------------------------
+
+[
+	["dom", "document"],
+	["dom", "location"],
+	["dom", "navigator"],
+	["dom", "performance"],
+	["dom", "localStorage"],
+	["dom", "sessionStorage"],
+	["dom", "window"]
+]
+
+----------------------------------------------------
+
+Checks for the important DOM variables being used.

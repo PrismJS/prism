@@ -24,7 +24,6 @@ footer p {
 * {
 	margin: 0;
 	padding: 0;
-	font-weight: normal;
 }
 
 body {
@@ -75,6 +74,10 @@ p {
 section h1,
 h2 {
 	margin: 1em 0 .3em;
+}
+
+h2 {
+	font-weight: normal;
 }
 
 dt {
@@ -332,10 +335,15 @@ footer {
 
 #toc {
 	position: fixed;
-	left: 1%;
-	max-width: calc(48% - 450px);
+	bottom: 15px;
+	max-width: calc(50% - 450px - 40px);
 	font-size: 80%;
-	opacity: .3;
+    z-index: 999;
+    background: white;
+    color: rgba(0,0,0,.5);
+    padding: 0 10px 10px;
+	border-radius: 0 3px 3px 0;
+	box-sizing: border-box;
 }
 
 @media (max-width: 1200px) {
@@ -345,11 +353,12 @@ footer {
 }
 
 #toc:hover {
-	opacity: 1;
+    color: rgba(0,0,0,1);
 }
 
 	#toc h1 {
 		font-size: 180%;
+		margin-top: .75rem;
 	}
 
 	#toc li {
@@ -405,3 +414,26 @@ label a.owner:not(:hover) {
 		margin-bottom: 1em;
 		margin-right: 1em;
 	}
+
+ul.plugin-list {
+	column-count: 2;
+}
+	ul.plugin-list > li {
+		break-inside: avoid;
+		page-break-inside: avoid;
+	}
+	ul.plugin-list > li > a {
+		font-size: 110%;
+	}
+	ul.plugin-list > li > div {
+		margin-bottom: .5em;
+	}
+
+/*
+ * Fix for Toolbar's overflow issue
+ */
+
+div.code-toolbar {
+	display: block;
+	overflow: auto;
+}

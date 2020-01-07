@@ -1,0 +1,23 @@
+<h2>Comments</h2>
+<pre><code>// Single line comment
+/* Multi-line
+comment */</code></pre>
+
+<h2>Literal values</h2>
+<pre><code>0
+32
+true
+false</code></pre>
+
+<h2>Full example</h2>
+<pre><code>/*
+ * Checks if two input bits are equal
+ */
+ 
+CHIP Eq {
+  IN a, b;
+  OUT out; // True iff a=b
+  PARTS:
+    Xor(a=a, b=b, out=uneq);
+    Not(in=uneq, out=out);
+}</code></pre>

@@ -6,6 +6,9 @@ boolean
 Array
 symbol
 console
+Promise
+unknown
+never
 
 ----------------------------------------------------
 
@@ -17,7 +20,10 @@ console
 	["builtin", "boolean"],
 	["builtin", "Array"],
 	["builtin", "symbol"],
-	["builtin", "console"]
+	["builtin", "console"],
+	["builtin", "Promise"],
+	["builtin", "unknown"],
+	["builtin", "never"]
 ]
 
 ----------------------------------------------------

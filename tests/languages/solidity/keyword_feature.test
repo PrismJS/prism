@@ -1,0 +1,128 @@
+_
+anonymous
+as
+assembly
+assert
+break
+calldata
+case
+constant
+constructor
+continue
+contract;
+default
+delete
+do
+else
+emit
+enum;
+event
+external
+for
+from
+function
+if
+import
+indexed
+inherited
+interface;
+internal
+is
+let
+library;
+mapping
+memory
+modifier
+new;
+payable
+pragma
+private
+public
+pure
+require
+return
+returns
+revert
+selfdestruct
+solidity
+storage
+struct;
+suicide
+switch
+this
+throw
+using;
+view
+while
+
+----------------------------------------------------
+
+[
+	["keyword", "_"],
+	["keyword", "anonymous"],
+	["keyword", "as"],
+	["keyword", "assembly"],
+	["keyword", "assert"],
+	["keyword", "break"],
+	["keyword", "calldata"],
+	["keyword", "case"],
+	["keyword", "constant"],
+	["keyword", "constructor"],
+	["keyword", "continue"],
+	["keyword", "contract"],
+	["punctuation", ";"],
+	["keyword", "default"],
+	["keyword", "delete"],
+	["keyword", "do"],
+	["keyword", "else"],
+	["keyword", "emit"],
+	["keyword", "enum"],
+	["punctuation", ";"],
+	["keyword", "event"],
+	["keyword", "external"],
+	["keyword", "for"],
+	["keyword", "from"],
+	["keyword", "function"],
+	["keyword", "if"],
+	["keyword", "import"],
+	["keyword", "indexed"],
+	["keyword", "inherited"],
+	["keyword", "interface"],
+	["punctuation", ";"],
+	["keyword", "internal"],
+	["keyword", "is"],
+	["keyword", "let"],
+	["keyword", "library"],
+	["punctuation", ";"],
+	["keyword", "mapping"],
+	["keyword", "memory"],
+	["keyword", "modifier"],
+	["keyword", "new"],
+	["punctuation", ";"],
+	["keyword", "payable"],
+	["keyword", "pragma"],
+	["keyword", "private"],
+	["keyword", "public"],
+	["keyword", "pure"],
+	["keyword", "require"],
+	["keyword", "return"],
+	["keyword", "returns"],
+	["keyword", "revert"],
+	["keyword", "selfdestruct"],
+	["keyword", "solidity"],
+	["keyword", "storage"],
+	["keyword", "struct"],
+	["punctuation", ";"],
+	["keyword", "suicide"],
+	["keyword", "switch"],
+	["keyword", "this"],
+	["keyword", "throw"],
+	["keyword", "using"],
+	["punctuation", ";"],
+	["keyword", "view"],
+	["keyword", "while"]
+]
+
+----------------------------------------------------
+
+Checks for keywords.

@@ -1,74 +1,143 @@
-and or xor array
-as break case
-cfunction
+__halt_compiler
+abstract
+and
+array
+as
+break
+callable
+case
+catch
 class;
-const continue
-declare default
-die do else
-elseif enddeclare
-endfor endforeach
-endif endswitch
+clone
+const
+continue
+declare
+default
+die
+do
+echo
+else
+elseif
+empty
+enddeclare
+endfor
+endforeach
+endif
+endswitch
 endwhile
+eval
+exit
 extends;
-for foreach function
-include include_once
-global if
-new;
-return
-static switch
-use;
-require require_once
-var while abstract
-interface;
-public
-implements;
-private
-protected parent
-throw null echo
-print trait;
-namespace;
-final yield goto
-instanceof;
+final
 finally
-try catch
+for
+foreach
+function
+global
+goto
+if
+implements;
+include
+include_once
+instanceof;
+insteadof
+interface;
+isset
+list
+namespace;
+new;
+or
+parent
+print
+private
+protected
+public
+require
+require_once
+return
+static
+switch
+throw
+trait;
+try
+unset
+use;
+var
+while
+xor
+yield
 
 ----------------------------------------------------
 
 [
-	["keyword", "and"], ["keyword", "or"], ["keyword", "xor"], ["keyword", "array"],
-	["keyword", "as"], ["keyword", "break"], ["keyword", "case"],
-	["keyword", "cfunction"],
+	["keyword", "__halt_compiler"],
+	["keyword", "abstract"],
+	["keyword", "and"],
+	["keyword", "array"],
+	["keyword", "as"],
+	["keyword", "break"],
+	["keyword", "callable"],
+	["keyword", "case"],
+	["keyword", "catch"],
 	["keyword", "class"], ["punctuation", ";"],
-	["keyword", "const"], ["keyword", "continue"],
-	["keyword", "declare"], ["keyword", "default"],
-	["keyword", "die"], ["keyword", "do"], ["keyword", "else"],
-	["keyword", "elseif"], ["keyword", "enddeclare"],
-	["keyword", "endfor"], ["keyword", "endforeach"],
-	["keyword", "endif"], ["keyword", "endswitch"],
+	["keyword", "clone"],
+	["keyword", "const"],
+	["keyword", "continue"],
+	["keyword", "declare"],
+	["keyword", "default"],
+	["keyword", "die"],
+	["keyword", "do"],
+	["keyword", "echo"],
+	["keyword", "else"],
+	["keyword", "elseif"],
+	["keyword", "empty"],
+	["keyword", "enddeclare"],
+	["keyword", "endfor"],
+	["keyword", "endforeach"],
+	["keyword", "endif"],
+	["keyword", "endswitch"],
 	["keyword", "endwhile"],
+	["keyword", "eval"],
+	["keyword", "exit"],
 	["keyword", "extends"], ["punctuation", ";"],
-	["keyword", "for"], ["keyword", "foreach"], ["keyword", "function"],
-	["keyword", "include"], ["keyword", "include_once"],
-	["keyword", "global"], ["keyword", "if"],
-	["keyword", "new"], ["punctuation", ";"],
-	["keyword", "return"],
-	["keyword", "static"], ["keyword", "switch"],
-	["keyword", "use"], ["punctuation", ";"],
-	["keyword", "require"], ["keyword", "require_once"],
-	["keyword", "var"], ["keyword", "while"], ["keyword", "abstract"],
-	["keyword", "interface"], ["punctuation", ";"],
-	["keyword", "public"],
-	["keyword", "implements"], ["punctuation", ";"],
-	["keyword", "private"],
-	["keyword", "protected"], ["keyword", "parent"],
-	["keyword", "throw"], ["keyword", "null"], ["keyword", "echo"],
-	["keyword", "print"],
-	["keyword", "trait"], ["punctuation", ";"],
-	["keyword", "namespace"], ["punctuation", ";"],
-	["keyword", "final"], ["keyword", "yield"], ["keyword", "goto"],
-	["keyword", "instanceof"], ["punctuation", ";"],
+	["keyword", "final"],
 	["keyword", "finally"],
-	["keyword", "try"], ["keyword", "catch"]
+	["keyword", "for"],
+	["keyword", "foreach"],
+	["keyword", "function"],
+	["keyword", "global"],
+	["keyword", "goto"],
+	["keyword", "if"],
+	["keyword", "implements"], ["punctuation", ";"],
+	["keyword", "include"],
+	["keyword", "include_once"],
+	["keyword", "instanceof"], ["punctuation", ";"],
+	["keyword", "insteadof"],
+	["keyword", "interface"], ["punctuation", ";"],
+	["keyword", "isset"],
+	["keyword", "list"],
+	["keyword", "namespace"], ["punctuation", ";"],
+	["keyword", "new"], ["punctuation", ";"],
+	["keyword", "or"],
+	["keyword", "parent"],
+	["keyword", "print"],
+	["keyword", "private"],
+	["keyword", "protected"],
+	["keyword", "public"],
+	["keyword", "require"],
+	["keyword", "require_once"],
+	["keyword", "return"],
+	["keyword", "static"],
+	["keyword", "switch"],
+	["keyword", "throw"],
+	["keyword", "trait"],  ["punctuation", ";"],
+	["keyword", "try"],
+	["keyword", "unset"],
+	["keyword", "use"], ["punctuation", ";"],
+	["keyword", "var"],
+	["keyword", "while"],
+	["keyword", "xor"],
+	["keyword", "yield"]
 ]
 
 ----------------------------------------------------

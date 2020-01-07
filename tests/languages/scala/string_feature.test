@@ -23,8 +23,8 @@ bar"""
 	["string", "'\\t'"],
 	["string", "\"\""],
 	["string", "\"fo\\\"obar\""],
-	["string", "\"\"\"fo\"o\r\nbar\"\"\""],
-	["string", "\"\"\"fo\"o\r\n// comment\r\nbar\"\"\""],
+	["triple-quoted-string", "\"\"\"fo\"o\r\nbar\"\"\""],
+	["triple-quoted-string", "\"\"\"fo\"o\r\n// comment\r\nbar\"\"\""],
 	["string", "\"foo /* comment */ bar\""],
 	["string", "'foo // bar'"]
 ]

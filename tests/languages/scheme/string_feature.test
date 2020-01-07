@@ -1,13 +1,20 @@
 ""
 "fo\"obar"
+"
+multi
+line
+"
 'turkey
+(define a 'foo)
 
 ----------------------------------------------------
 
 [
 	["string", "\"\""],
 	["string", "\"fo\\\"obar\""],
-	["string", "'turkey"]
+	["string", "\"\r\nmulti\r\nline\r\n\""],
+	["string", "'turkey"],
+	["punctuation", "("], ["keyword", "define"], " a ", ["string","'foo"], ["punctuation",")"]
 ]
 
 ----------------------------------------------------

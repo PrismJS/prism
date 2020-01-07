@@ -1,22 +1,31 @@
-query
+enum
 fragment
+implements
+input
+interface
 mutation
-fragment foo on Bar
-... on Foo
+on
+query
+scalar
+schema
+type
+union
 
 ----------------------------------------------------
 
 [
-	["keyword", "query"],
-	["keyword", "fragment"],
-	["keyword", "mutation"],
-	["keyword", "fragment"],
-	" foo ",
+	["keyword", "enum"],
+	["class-name", "fragment"],
+	["keyword", "implements"],
+	["class-name", "input"],
+	["keyword", "interface"],
+	["class-name", "mutation"],
 	["keyword", "on"],
-	" Bar\r\n",
-	["operator", "..."],
-	["keyword", "on"],
-	" Foo"
+	["class-name", "query"],
+	["keyword", "scalar"],
+	["class-name", "schema"],
+	["keyword", "type"],
+	["class-name", "union"]
 ]
 
 ----------------------------------------------------

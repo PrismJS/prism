@@ -3,6 +3,8 @@ foo: ""
 bar: "fo\"obar"
 foo: ''
 bar: 'fo\'obar'
+foo: "foo" # bar
+bar: 'bar' # foo
 
 ----------------------------------------------------
 
@@ -15,7 +17,11 @@ bar: 'fo\'obar'
 	["key", "foo"], ["punctuation", ":"],
 	["string", "''"],
 	["key", "bar"], ["punctuation", ":"],
-	["string", "'fo\\'obar'"]
+	["string", "'fo\\'obar'"],
+	["key", "foo"], ["punctuation", ":"],
+	["string", "\"foo\""], ["comment", "# bar"],
+	["key", "bar"], ["punctuation", ":"],
+	["string", "'bar'"], ["comment", "# foo"]
 ]
 
 ----------------------------------------------------

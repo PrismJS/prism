@@ -1,0 +1,65 @@
+#define FOO 3
+#define HINTARG(ARG) hint ("Passed argument: " + str ARG)
+#define DRAWBUTTON(NAME)\
+	__EXEC(idcNav = idcNav + 4)
+
+#undef NAME
+
+#ifdef NAME
+#ifndef NAME
+#else
+#endif
+
+#include "file.hpp"
+#include <file.txt> // Brackets are equivalent to quotation marks and may be used in their place.
+
+----------------------------------------------------
+
+[
+	["macro", [
+		["directive", "#define"],
+		" FOO 3"
+	]],
+	["macro", [
+		["directive", "#define"],
+		" HINTARG(ARG) hint (\"Passed argument: \" + str ARG)"
+	]],
+	["macro", [
+		["directive", "#define"],
+		" DRAWBUTTON(NAME)\\\r\n\t__EXEC(idcNav = idcNav + 4)"
+	]],
+
+	["macro", [
+		["directive", "#undef"],
+		" NAME"
+	]],
+
+	["macro", [
+		["directive", "#ifdef"],
+		" NAME"
+	]],
+	["macro", [
+		["directive", "#ifndef"],
+		" NAME"
+	]],
+	["macro", [
+		["directive", "#else"]
+	]],
+	["macro", [
+		["directive", "#endif"]
+	]],
+
+	["macro", [
+		["directive", "#include"],
+		" \"file.hpp\""
+	]],
+	["macro", [
+		["directive", "#include"],
+		" <file.txt> ",
+		["comment", "// Brackets are equivalent to quotation marks and may be used in their place."]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for macros.

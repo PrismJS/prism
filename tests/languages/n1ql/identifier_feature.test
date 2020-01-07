@@ -1,0 +1,19 @@
+``
+`foo`
+`foo bar`
+`foo
+bar`
+
+
+----------------------------------------------------
+
+[
+	["identifier", "``"],
+	["identifier", "`foo`"],
+	["identifier", "`foo bar`"],
+	["identifier", "`foo\r\nbar`"]
+]
+
+----------------------------------------------------
+
+Checks for escaped identifiers.

@@ -12,7 +12,6 @@ Prism.languages.jolie = Prism.languages.extend('clike', {
 });
 
 delete Prism.languages.jolie['class-name'];
-delete Prism.languages.jolie['function'];
 
 Prism.languages.insertBefore( 'jolie', 'keyword', {
 	'function':
@@ -24,7 +23,7 @@ Prism.languages.insertBefore( 'jolie', 'keyword', {
 		pattern: /(\bAggregates\s*:\s*)(?:\w+(?:\s+with\s+\w+)?\s*,\s*)*\w+(?:\s+with\s+\w+)?/,
 		lookbehind: true,
 		inside: {
-			'withExtension': {
+			'with-extension': {
 				pattern: /\bwith\s+\w+/,
 				inside: {
 					'keyword' : /\bwith\b/

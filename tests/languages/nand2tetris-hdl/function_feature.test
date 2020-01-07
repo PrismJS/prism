@@ -1,0 +1,23 @@
+And()
+not()
+mux16()
+
+----------------------------------------------------
+
+[
+	["function", "And"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["function", "not"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["function", "mux16"],
+	["punctuation", "("],
+	["punctuation", ")"]
+]
+
+----------------------------------------------------
+
+Checks for functions.

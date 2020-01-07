@@ -1,0 +1,99 @@
+class Test {
+	foo( x, y = 0) {}
+	async bar(x, y = 0 ) {}
+	$ ( ) {}
+	awaitFoo(){}
+	Example({ props: { a: _A, b} } = Props) {}
+	f(x = fun(), y = 0) {}
+}
+
+----------------------------------------------------
+
+[
+	["keyword", "class"],
+	["class-name", ["Test"]],
+	["punctuation", "{"],
+
+	["function", "foo"],
+	["punctuation", "("],
+	["parameter", [
+		"x",
+		["punctuation", ","],
+		" y ",
+		["operator", "="],
+		["number", "0"]
+	]],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "async"],
+	["function", "bar"],
+	["punctuation", "("],
+	["parameter", [
+		"x",
+		["punctuation", ","],
+		" y ",
+		["operator", "="],
+		["number", "0"]
+	]],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["function", "$"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["function", "awaitFoo"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["function", "Example"],
+	["punctuation", "("],
+	["parameter", [
+		["punctuation", "{"],
+		" props",
+		["operator", ":"],
+		["punctuation", "{"],
+		" a",
+		["operator", ":"],
+		" _A",
+		["punctuation", ","],
+		" b",
+		["punctuation", "}"],
+		["punctuation", "}"],
+		["operator", "="],
+		" Props"
+	]],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["function", "f"],
+	["punctuation", "("],
+	["parameter", [
+		"x ",
+		["operator", "="],
+		["function", "fun"],
+		["punctuation", "("],
+		["punctuation", ")"],
+		["punctuation", ","],
+		" y ",
+		["operator", "="],
+		["number", "0"]
+	]],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for class methods.

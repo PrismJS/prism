@@ -1,0 +1,7 @@
+<h2>Full example</h2>
+<pre><code>source=monthly_data.csv
+| rename remote_ip AS ip
+| eval isLocal=if(cidrmatch("123.132.32.0/25",ip), "local", "not local")
+| eval error=case(status == 200, "OK", status == 404, "Not found", true(), "Other")
+  `comment("TODO: Add support for more status codes")`
+| sort amount</code></pre>

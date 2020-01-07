@@ -1,0 +1,96 @@
+{% for value in values recursive %}
+    {% if loop.previtem is defined and value > loop.previtem %}
+        The value just increased!
+    {% endif %}
+    {{ value }}
+    {% if loop.nextitem is defined and loop.nextitem > value %}
+        The value will increase even more!
+    {% endif %}
+{% endfor %}
+
+{% for user in users if not user.hidden %}
+
+----------------------------------------------------
+
+[
+	["django", [
+		["delimiter", "{%"],
+		["tag", "for"],
+		["variable", "value"],
+		["keyword", "in"],
+		["variable", "values"],
+		["keyword", "recursive"],
+		["delimiter", "%}"]
+	]],
+	["django", [
+		["delimiter", "{%"],
+		["tag", "if"],
+		["keyword", "loop"],
+		["punctuation", "."],
+		["variable", "previtem"],
+		["keyword", "is"],
+		["test", "defined"],
+		["keyword", "and"],
+		["variable", "value"],
+		["operator", ">"],
+		["keyword", "loop"],
+		["punctuation", "."],
+		["variable", "previtem"],
+		["delimiter", "%}"]
+	]],
+	"\r\n        The value just increased!\r\n    ",
+	["django", [
+		["delimiter", "{%"],
+		["tag", "endif"],
+		["delimiter", "%}"]
+	]],
+	["django", [
+		["delimiter", "{{"],
+		["variable", "value"],
+		["delimiter", "}}"]
+	]],
+	["django", [
+		["delimiter", "{%"],
+		["tag", "if"],
+		["keyword", "loop"],
+		["punctuation", "."],
+		["variable", "nextitem"],
+		["keyword", "is"],
+		["test", "defined"],
+		["keyword", "and"],
+		["keyword", "loop"],
+		["punctuation", "."],
+		["variable", "nextitem"],
+		["operator", ">"],
+		["variable", "value"],
+		["delimiter", "%}"]
+	]],
+	"\r\n        The value will increase even more!\r\n    ",
+	["django", [
+		["delimiter", "{%"],
+		["tag", "endif"],
+		["delimiter", "%}"]
+	]],
+	["django", [
+		["delimiter", "{%"],
+		["tag", "endfor"],
+		["delimiter", "%}"]
+	]],
+	["django", [
+		["delimiter", "{%"],
+		["tag", "for"],
+		["variable", "user"],
+		["keyword", "in"],
+		["variable", "users"],
+		["keyword", "if"],
+		["keyword", "not"],
+		["variable", "user"],
+		["punctuation", "."],
+		["variable", "hidden"],
+		["delimiter", "%}"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for for-loop related features.

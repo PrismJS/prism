@@ -1,0 +1,20 @@
+/**
+ * @param foo an argument.
+ * @param bar another argument.
+ */
+
+----------------------------------------------------
+
+[
+	"/**\n * ",
+	["keyword", "@param"],
+	["parameter", "foo"],
+	" an argument.\n * ",
+	["keyword", "@param"],
+	["parameter", "bar"],
+	" another argument.\n */"
+]
+
+----------------------------------------------------
+
+Checks for parameters.

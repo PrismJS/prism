@@ -1,15 +1,66 @@
 42
 3.14159
-42%
-3.14%
+-42
+-3.14159
+.5
+-.5
+
+/* complex example */
+foo {
+	foo: 0 1em 2ch;
+	bar:-0px 3px;
+	baz:calc(100% - 5px - -4em);
+}
 
 ----------------------------------------------------
 
 [
 	["number", "42"],
 	["number", "3.14159"],
-	["number", "42%"],
-	["number", "3.14%"]
+	["number", "-42"],
+	["number", "-3.14159"],
+	["number", ".5"],
+	["number", "-.5"],
+
+	["comment", "/* complex example */"],
+	["selector", [
+		"foo"
+	]],
+	["punctuation", "{"],
+
+	["property", "foo"],
+	["punctuation", ":"],
+	["number", "0"],
+	["number", "1"],
+	["unit", "em"],
+	["number", "2"],
+	["unit", "ch"],
+	["punctuation", ";"],
+
+	["property", "bar"],
+	["punctuation", ":"],
+	["number", "-0"],
+	["unit", "px"],
+	["number", "3"],
+	["unit", "px"],
+	["punctuation", ";"],
+
+	["property", "baz"],
+	["punctuation", ":"],
+	["function", "calc"],
+	["punctuation", "("],
+	["number", "100"],
+	["unit", "%"],
+	["operator", "-"],
+	["number", "5"],
+	["unit", "px"],
+	["operator", "-"],
+	["number", "-4"],
+	["unit", "em"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["punctuation", "}"]
 ]
 
 ----------------------------------------------------

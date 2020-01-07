@@ -1,0 +1,206 @@
+"${data.aws_availability_zones.available.names[0]}"
+"${aws_db_subnet_group.default.id}"
+"${var.something ? 1 : 0}"
+"${var.num ? 1.02 : 0}"
+"${length(var.hostnames)}"
+"${format("web-%03d", count.index + 1)}"
+"${file("templates/web_init.tpl")}"
+"${replace(var.sub_domain, ".", "\\\\\\\\.")}"
+"${filepath.foo}"
+
+----------------------------------------------------
+
+[
+	["string",
+		[
+			"\"",
+			[
+				"interpolation",
+				[
+					["punctuation", "$"],
+					["punctuation", "{"],
+					["keyword", "data"],
+					["punctuation", "."],
+					["type", "aws_availability_zones"],
+					["punctuation", "."],
+					"available",
+					["punctuation", "."],
+					"names",
+					["punctuation", "["],
+					["number", "0"],
+					["punctuation", "]"],
+					["punctuation", "}"]
+				]
+			],
+			"\""
+		]
+	],
+	["string",
+		[
+			"\"",
+			[
+				"interpolation",
+				[
+					["punctuation", "$"],
+					["punctuation", "{"],
+					"aws_db_subnet_group",
+					["punctuation", "."],
+					"default",
+					["punctuation", "."],
+					"id",
+					["punctuation", "}"]
+				]
+			],
+			"\""
+		]
+	],
+	["string",
+		[
+			"\"",
+			[
+				"interpolation",
+				[
+					["punctuation", "$"],
+					["punctuation", "{"],
+					["keyword", "var"],
+					["punctuation", "."],
+					["type", "something"],
+					["punctuation", "?"],
+					["number", "1"],
+					["punctuation", ":"],
+					["number", "0"],
+					["punctuation", "}"]
+				]
+			],
+			"\""
+		]
+	],
+	["string",
+		[
+			"\"",
+			[
+				"interpolation",
+				[
+					["punctuation", "$"],
+					["punctuation", "{"],
+					["keyword", "var"],
+					["punctuation", "."],
+					["type", "num"],
+					["punctuation", "?"],
+					["number", "1.02"],
+					["punctuation", ":"],
+					["number", "0"],
+					["punctuation", "}"]
+				]
+			],
+			"\""
+		]
+	],
+	["string",
+		[
+			"\"",
+			[
+				"interpolation",
+				[
+					["punctuation", "$"],
+					["punctuation", "{"],
+					["function", "length"],
+					["punctuation", "("],
+					["keyword", "var"],
+					["punctuation", "."],
+					["type", "hostnames"],
+					["punctuation", ")"],
+					["punctuation", "}"]
+				]
+			],
+			"\""
+		]
+	],
+	["string",
+		[
+			"\"",
+			[
+				"interpolation",
+				[
+					["punctuation", "$"],
+					["punctuation", "{"],
+					["function", "format"],
+					["punctuation", "("],
+					["string", "\"web-%03d\""],
+					["punctuation", ","],
+					["keyword", "count"],
+					["punctuation", "."],
+					["type", "index"],
+					["punctuation", "+"],
+					["number", "1"],
+					["punctuation", ")"],
+					["punctuation", "}"]
+				]
+			],
+			"\""
+		]
+	],
+	["string",
+		[
+			"\"",
+			[
+				"interpolation",
+				[
+					["punctuation", "$"],
+					["punctuation", "{"],
+					["function", "file"],
+					["punctuation", "("],
+					["string", "\"templates/web_init.tpl\""],
+					["punctuation", ")"],
+					["punctuation", "}"]
+				]
+			],
+			"\""
+		]
+	],
+	["string",
+		[
+			"\"",
+			[
+				"interpolation",
+				[
+					["punctuation", "$"],
+					["punctuation", "{"],
+					["function", "replace"],
+					["punctuation", "("],
+					["keyword", "var"],
+					["punctuation", "."],
+					["type", "sub_domain"],
+					["punctuation", ","],
+					["string", "\".\""],
+					["punctuation", ","],
+					["string", "\"\\\\\\\\\\\\\\\\.\""],
+					["punctuation", ")"],
+					["punctuation", "}"]
+				]
+			],
+			"\""
+		]
+	],
+	["string",
+		[
+			"\"",
+			[
+				"interpolation",
+				[
+					["punctuation", "$"],
+					["punctuation", "{"],
+					"filepath",
+					["punctuation", "."],
+					"foo",
+					["punctuation", "}"]
+				]
+			],
+			"\""
+		]
+	]
+]
+
+----------------------------------------------------
+
+Checks for all interpolation.

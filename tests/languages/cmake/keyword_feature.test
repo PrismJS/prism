@@ -1,0 +1,253 @@
+add_compile_definitions()
+add_compile_options()
+add_custom_command()
+add_custom_target()
+add_definitions()
+add_dependencies()
+add_executable()
+add_library()
+add_link_options()
+add_subdirectory()
+add_test()
+aux_source_directory()
+break()
+build_command()
+build_name()
+cmake_host_system_information()
+cmake_minimum_required()
+cmake_parse_arguments()
+cmake_policy()
+configure_file()
+continue()
+create_test_sourcelist()
+ctest_build()
+ctest_configure()
+ctest_coverage()
+ctest_empty_binary_directory()
+ctest_memcheck()
+ctest_read_custom_files()
+ctest_run_script()
+ctest_sleep()
+ctest_start()
+ctest_submit()
+ctest_test()
+ctest_update()
+ctest_upload()
+define_property()
+else()
+elseif()
+enable_language()
+enable_testing()
+endforeach()
+endfunction()
+endif()
+endmacro()
+endwhile()
+exec_program()
+execute_process()
+export()
+export_library_dependencies()
+file()
+find_file()
+find_library()
+find_package()
+find_path()
+find_program()
+fltk_wrap_ui()
+foreach()
+function()
+get_cmake_property()
+get_directory_property()
+get_filename_component()
+get_property()
+get_source_file_property()
+get_target_property()
+get_test_property()
+if()
+include()
+include_directories()
+include_external_msproject()
+include_guard()
+include_regular_expression()
+install()
+install_files()
+install_programs()
+install_targets()
+link_directories()
+link_libraries()
+list()
+load_cache()
+load_command()
+macro()
+make_directory()
+mark_as_advanced()
+math()
+message()
+option()
+output_required_files()
+project()
+qt_wrap_cpp()
+qt_wrap_ui()
+remove()
+remove_definitions()
+return()
+separate_arguments()
+set()
+set_directory_properties()
+set_property()
+set_source_files_properties()
+set_target_properties()
+set_tests_properties()
+site_name()
+source_group()
+string()
+subdir_depends()
+subdirs()
+target_compile_definitions()
+target_compile_features()
+target_compile_options()
+target_include_directories()
+target_link_directories()
+target_link_libraries()
+target_link_options()
+target_sources()
+try_compile()
+try_run()
+unset()
+use_mangled_mesa()
+utility_source()
+variable_requires()
+variable_watch()
+while()
+write_file()
+
+----------------------------------------------------
+
+[
+	["keyword", "add_compile_definitions"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "add_compile_options"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "add_custom_command"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "add_custom_target"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "add_definitions"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "add_dependencies"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "add_executable"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "add_library"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "add_link_options"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "add_subdirectory"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "add_test"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "aux_source_directory"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "break"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "build_command"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "build_name"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "cmake_host_system_information"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "cmake_minimum_required"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "cmake_parse_arguments"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "cmake_policy"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "configure_file"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "continue"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "create_test_sourcelist"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "ctest_build"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "ctest_configure"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "ctest_coverage"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "ctest_empty_binary_directory"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "ctest_memcheck"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "ctest_read_custom_files"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "ctest_run_script"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "ctest_sleep"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "ctest_start"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "ctest_submit"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "ctest_test"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "ctest_update"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "ctest_upload"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "define_property"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "else"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "elseif"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "enable_language"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "enable_testing"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "endforeach"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "endfunction"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "endif"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "endmacro"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "endwhile"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "exec_program"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "execute_process"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "export"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "export_library_dependencies"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "file"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "find_file"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "find_library"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "find_package"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "find_path"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "find_program"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "fltk_wrap_ui"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "foreach"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "function"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "get_cmake_property"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "get_directory_property"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "get_filename_component"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "get_property"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "get_source_file_property"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "get_target_property"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "get_test_property"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "if"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "include"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "include_directories"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "include_external_msproject"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "include_guard"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "include_regular_expression"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "install"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "install_files"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "install_programs"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "install_targets"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "link_directories"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "link_libraries"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "list"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "load_cache"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "load_command"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "macro"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "make_directory"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "mark_as_advanced"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "math"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "message"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "option"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "output_required_files"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "project"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "qt_wrap_cpp"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "qt_wrap_ui"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "remove"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "remove_definitions"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "return"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "separate_arguments"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "set"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "set_directory_properties"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "set_property"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "set_source_files_properties"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "set_target_properties"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "set_tests_properties"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "site_name"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "source_group"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "string"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "subdir_depends"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "subdirs"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "target_compile_definitions"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "target_compile_features"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "target_compile_options"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "target_include_directories"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "target_link_directories"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "target_link_libraries"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "target_link_options"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "target_sources"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "try_compile"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "try_run"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "unset"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "use_mangled_mesa"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "utility_source"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "variable_requires"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "variable_watch"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "while"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "write_file"], ["punctuation", "("], ["punctuation", ")"]
+]
+
+----------------------------------------------------
+
+Checks for keywords.

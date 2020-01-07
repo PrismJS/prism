@@ -4,19 +4,20 @@ class;
 default
 delegate do done downcast
 downto elif else end
-exception extern false finally
+exception;
+extern false finally
 for fun function global
-if in inherit inline
+if in inherit; inline
 interface;
 internal lazy let
 let! match member module
 mutable namespace
 new;
 not
-null of open or override
+null of; open or override
 private public rec return
 return! select static struct
-then to true try type
+then to true try type;
 upcast use use! val void
 when while with yield
 yield! asr land lor lsl
@@ -39,19 +40,20 @@ virtual volatile
 	["keyword", "default"],
 	["keyword", "delegate"], ["keyword", "do"], ["keyword", "done"], ["keyword", "downcast"],
 	["keyword", "downto"], ["keyword", "elif"], ["keyword", "else"], ["keyword", "end"],
-	["keyword", "exception"], ["keyword", "extern"], ["keyword", "false"], ["keyword", "finally"],
+	["keyword", "exception"], ["punctuation", ";"],
+	["keyword", "extern"], ["keyword", "false"], ["keyword", "finally"],
 	["keyword", "for"], ["keyword", "fun"], ["keyword", "function"], ["keyword", "global"],
-	["keyword", "if"], ["keyword", "in"], ["keyword", "inherit"], ["keyword", "inline"],
+	["keyword", "if"], ["keyword", "in"], ["keyword", "inherit"], ["punctuation", ";"], ["keyword", "inline"],
 	["keyword", "interface"], ["punctuation", ";"],
 	["keyword", "internal"], ["keyword", "lazy"], ["keyword", "let"],
 	["keyword", "let!"], ["keyword", "match"], ["keyword", "member"], ["keyword", "module"],
 	["keyword", "mutable"], ["keyword", "namespace"],
 	["keyword", "new"], ["punctuation", ";"],
 	["keyword", "not"],
-	["keyword", "null"], ["keyword", "of"], ["keyword", "open"], ["keyword", "or"], ["keyword", "override"],
+	["keyword", "null"], ["keyword", "of"], ["punctuation", ";"], ["keyword", "open"], ["keyword", "or"], ["keyword", "override"],
 	["keyword", "private"], ["keyword", "public"], ["keyword", "rec"], ["keyword", "return"],
 	["keyword", "return!"], ["keyword", "select"], ["keyword", "static"], ["keyword", "struct"],
-	["keyword", "then"], ["keyword", "to"], ["keyword", "true"], ["keyword", "try"], ["keyword", "type"],
+	["keyword", "then"], ["keyword", "to"], ["keyword", "true"], ["keyword", "try"], ["keyword", "type"], ["punctuation", ";"],
 	["keyword", "upcast"], ["keyword", "use"], ["keyword", "use!"], ["keyword", "val"], ["keyword", "void"],
 	["keyword", "when"], ["keyword", "while"], ["keyword", "with"], ["keyword", "yield"],
 	["keyword", "yield!"], ["keyword", "asr"], ["keyword", "land"], ["keyword", "lor"], ["keyword", "lsl"],

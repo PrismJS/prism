@@ -27,7 +27,7 @@ a: span
 			["punctuation", "("],
 			["punctuation", "{"],
 			["string", "'data-foo'"],
-			["punctuation", ":"],
+			["operator", ":"],
 			["string", "'bar'"],
 			["punctuation", "}"],
 			["punctuation", ")"]
@@ -60,11 +60,11 @@ a: span
 			["attr-value", [
 				["punctuation", "{"],
 				"color",
-				["punctuation", ":"],
+				["operator", ":"],
 				["string", "'red'"],
 				["punctuation", ","],
 				" background",
-				["punctuation", ":"],
+				["operator", ":"],
 				["string", "'green'"],
 				["punctuation", "}"]
 			]],

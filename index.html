@@ -11,7 +11,7 @@
 <title>Prism</title>
 <link rel="stylesheet" href="style.css" />
 <link rel="stylesheet" href="themes/prism.css" data-noprefix />
-<script src="prefixfree.min.js"></script>
+<script src="scripts/prefixfree.min.js"></script>
 
 <script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
 <script src="https://www.google-analytics.com/ga.js" async></script>
@@ -58,7 +58,7 @@
 
 	<div class="used-by-logos">
 		<a href="https://www.smashingmagazine.com/" target="_blank"><img src="img/logo-smashing.png" alt="Smashing Magazine" /></a>
-		<a href="http://alistapart.com/" target="_blank"><img src="img/logo-ala.png" alt="A List Apart" /></a>
+		<a href="https://alistapart.com/" target="_blank"><img src="img/logo-ala.png" alt="A List Apart" /></a>
 		<a href="https://developer.mozilla.org/" target="_blank"><img src="img/logo-mdn.png" alt="Mozilla Developer Network (MDN)" /></a>
 		<a href="https://css-tricks.com/" target="_blank"><img src="img/logo-css-tricks.png" alt="CSS-Tricks" /></a>
 		<a href="https://www.sitepoint.com/" target="_blank"><img src="img/logo-sitepoint.png" alt="SitePoint" /></a>
@@ -115,7 +115,7 @@
 	<h1>Limitations</h1>
 	<ul>
 		<li>Any pre-existing HTML in the code will be stripped off. <a href="faq.html#if-pre-existing-html-is-stripped-off-how-can-i-highlight">There are ways around it though</a>.</li>
-		<li>Regex-based so it *will* fail on certain edge cases, which are documented in the <a href="examples.html">Examples section</a>.</li>
+		<li>Regex-based so it *will* fail on certain edge cases, which are documented in the <a href="known-failures.html">known failues page</a>.</li>
 		<li>No IE 6-8 support. If someone can read code, they are probably in the 85% of the population with a modern browser.</li>
 	</ul>
 </section>
@@ -149,9 +149,36 @@
 	<pre><code>&lt;pre>&lt;code class="language-css">p { color: red }&lt;/code>&lt;/pre></code></pre>
 	<p>If you use that pattern, the <code>&lt;pre></code> will automatically get the <code>language-xxxx</code> class (if it doesn’t already have it) and will be styled as a code block.</p>
 
-	<p>If you want to prevent any elements from being automatically highlighted, you can use the attribute <code>data-manual</code> on the <code>&lt;script></code> element you used for prism and use the <a href="extending.html#api">API</a>.
+	<p>If you want to prevent any elements from being automatically highlighted and instead use the <a href="extending.html#api">API</a>, you can set <code class="language-javascript">Prism.manual</code> to <code class="language-javascript">true</code> before the <code>DOMContentLoaded</code> event is fired. By setting the <code>data-manual</code> attribute on the <code>&lt;script></code> element containing Prism core, this will be done automatically.
 	Example:</p>
 	<pre><code>&lt;script src="prism.js" data-manual>&lt;/script></code></pre>
+	<p>or</p>
+	<pre><code>&lt;script>
+window.Prism = window.Prism || {};
+window.Prism.manual = true;
+&lt;/script>
+&lt;script src="prism.js">&lt;/script></code></pre>
+
+	<h2>Usage with CDNs</h2>
+
+	<p>In combination with CDNs, we recommend using the <a href="plugins/autoloader">Autoloader plugin</a> which automatically loads languages when necessary.</p>
+
+	<p>The setup of the Autoloader, will look like the following. You can also your own themes of course.</p>
+
+	<pre><code>&lt;!DOCTYPE html>
+&lt;html>
+&lt;head>
+	...</code>
+	<code class="highlight">&lt;link href="https://myCDN.com/prism@v1.x/themes/prism.css" rel="stylesheet" /></code>
+<code>&lt;/head>
+&lt;body>
+	...</code>
+<code class="highlight" style="display: inline-block; outline-offset: .2em; margin-bottom: .2em;">	&lt;script src="https://myCDN.com/prism@v1.x/components/prism-core.min.js"&gt;&lt;/script&gt;
+	&lt;script src="https://myCDN.com/prism@v1.x/plugins/autoloader/prism-autoloader.min.js"&gt;&lt;/script&gt;</code>
+<code>&lt;/body>
+&lt;/html></code></pre>
+
+	<p>CDNs which provide PrismJS are e.g. <a href="https://cdnjs.com/libraries/prism">cdnjs</a> and <a href="https://www.jsdelivr.com/package/npm/prismjs">jsDelivr</a>.</p>
 
 	<h2>Usage with Webpack, Browserify, & Other Bundlers</h2>
 
@@ -174,43 +201,47 @@
 	This might be useful if you're trying to generate static HTML pages with highlighted code for environments that don't support browser-side JS, like <a href="https://www.ampproject.org/">AMP pages</a>.</p>
 
 	<p>Example:</p>
-	<pre><code class="language-js">var Prism = require('prismjs');
+	<pre><code class="language-js">const Prism = require('prismjs');
 
 // The code snippet you want to highlight, as a string
-var code = "var data = 1;";
+const code = `var data = 1;`;
 
 // Returns a highlighted HTML string
-var html = Prism.highlight(code, Prism.languages.javascript, 'javascript');</code></pre>
+const html = Prism.highlight(code, Prism.languages.javascript, 'javascript');</code></pre>
 
 	<p>Requiring <code>prismjs</code> will load the default languages: <code>markup</code>, <code>css</code>,
 		<code>clike</code> and <code>javascript</code>. You can load more languages with the
 		<code class="language-javascript">loadLanguages()</code> utility, which will automatically handle any required dependencies.</p>
 	<p>Example:</p>
 
-	<pre><code class="language-js">var Prism = require('prismjs');
-var loadLanguages = require('prismjs/components');
+	<pre><code class="language-js">const Prism = require('prismjs');
+const loadLanguages = require('prismjs/components/');
 loadLanguages(['haml']);
 
 // The code snippet you want to highlight, as a string
-var code = "= ['hi', 'there', 'reader!'].join \" \"";
+const code = `= ['hi', 'there', 'reader!'].join " "`;
 
 // Returns a highlighted HTML string
-var html = Prism.highlight(code, Prism.languages.haml, 'haml');</code></pre>
+const html = Prism.highlight(code, Prism.languages.haml, 'haml');</code></pre>
 
 	<p><strong>Note</strong>: Do <em>not</em> use <code class="language-javascript">loadLanguages()</code> with Webpack or another bundler, as this will cause Webpack to include all languages and plugins. Use the babel plugin described above.</p>
 
+	<p><strong>Note</strong>: <code class="language-javascript">loadLanguages()</code> will ignore unknown languages and log warning messages to the console. You can prevent the warnings by setting <code class="language-javascript">loadLanguages.silent = true</code>.</p>
+
 </section>
 
-<section id="languages-list" class="language-markup">
+<section class="language-markup">
 	<h1>Supported languages</h1>
 	<p>This is the list of all <span id="languages-list-count"></span> languages currently supported by Prism, with
 		their corresponding alias, to use in place of <code>xxxx</code> in the <code>language-xxxx</code> (or <code>lang-xxxx</code>) class:</p>
+	<div id="languages-list"></div>
+	<p>Couldn’t find the language you were looking for? <a href="https://github.com/PrismJS/prism/issues" target="_blank">Request it</a>!</p>
 </section>
 
 <section id="plugins">
 	<h1>Plugins</h1>
 	<p>Plugins are additional scripts (and CSS code) that extend Prism’s functionality. Many of the following plugins are official, but are released as plugins to keep the Prism Core small for those who don’t need the extra functionality.</p>
-	<ul class="plugin-list"></ul>
+	<ul class="plugin-list language-none"></ul>
 
 	<p>No assembly required to use them. Just select them in the <a href="download.html">download</a> page.</p>
 	<p>It’s very easy to <a href="extending.html#writing-plugins">write your own Prism plugins</a>. Did you write a plugin for Prism that you want added to this list? <a href="https://github.com/LeaVerou/prism" target="_blank">Send a pull request</a>!</p>
@@ -234,11 +265,13 @@ var html = Prism.highlight(code, Prism.languages.haml, 'haml');</code></pre>
 		<li><a href="http://crambler.com/how-to-implement-prism-js-syntax-highlighting-into-your-wordpress-site/">How To Implement Prism.js Syntax Highlighting Into Your WordPress Site</a></li>
 		<li><a href="http://wp.tutsplus.com/tutorials/plugins/adding-a-syntax-highlighter-shortcode-using-prism-js/">Adding a Syntax Highlighter Shortcode Using Prism.js | WPTuts+</a></li>
 		<li><a href="https://www.stramaxon.com/2012/07/prism-syntax-highlighter-for-blogger.html">Implement PrismJs Syntax Highlighting to your Blogger/BlogSpot</a></li>
-		<li><a href="http://www.allblogtools.com/tricks-and-hacks/beautify-source-codes-in-your-posts-with-prism-syntax-highlighter-for-blogger/">Beautify Source Codes In Your Posts With Prism Syntax Highlighter For Blogger</a></li>
 		<li><a href="https://schier.co/blog/2013/01/07/how-to-re-run-prismjs-on-ajax-content.html">How To Re-Run Prism.js On AJAX Content</a></li>
 		<li><a href="https://www.semisedlak.com/highlight-your-code-syntax-with-prismjs">Highlight your code syntax with Prism.js</a></li>
 		<li><a href="https://usetypo3.com/fs-code-snippet.html">A code snippet content element powered by Prism.js for TYPO3 CMS</a></li>
 		<li><a href="https://auralinna.blog/post/2017/code-syntax-highlighting-with-angular-and-prismjs">Code syntax highlighting with Angular and Prism.js</a></li>
+		<li><a href="https://mkaz.blog/wordpress/code-syntax-highlighting-in-gutenberg/">Code syntax highlighting in Gutenberg, WordPress block editor</a></li>
+		<li><a href="https://karlkaufmann.com/writing/technotes/code-highlighting-prism-drupal">Code Highlighting with Prism.js in Drupal</a></li>
+		<li><a href="https://pathof.dev/blog/code-highlighting-in-react-using-prismjs">Code highlighting in React using Prism.js</a></li>
 	</ul>
 
 	<p>Please note that the tutorials listed here are not verified to contain correct information. Read at your risk and always check the official documentation here if something doesn’t work :)</p>
@@ -249,7 +282,7 @@ var html = Prism.highlight(code, Prism.languages.haml, 'haml');</code></pre>
 <section id="credits">
 	<h1>Credits</h1>
 	<ul>
-		<li>Special thanks to <a href="https://github.com/Golmote">Golmote</a> and <a href="https://github.com/apfelbox">Jannik Zschiesche</a> for their contributions and for being <strong>amazing maintainers</strong>. Prism would not have been able to keep up without their help.</li>
+		<li>Special thanks to <a href="https://github.com/RunDevelopment">Michael Schmidt</a>, <a href="https://github.com/mAAdhaTTah">James DiGioia</a>, <a href="https://github.com/Golmote">Golmote</a> and <a href="https://github.com/apfelbox">Jannik Zschiesche</a> for their contributions and for being <strong>amazing maintainers</strong>. Prism would not have been able to keep up without their help.</li>
 		<li>To <a href="https://twitter.com/kizmarh">Roman Komarov</a> for his contributions, feedback and testing.</li>
 		<li>To <a href="https://twitter.com/zdfs">Zachary Forrest</a> for <a href="https://twitter.com/zdfs/statuses/217834980871639041">coming up with the name “Prism”</a></li>
 		<li>To <a href="https://stellarr.deviantart.com/">stellarr</a> for the <a href="https://stellarr.deviantart.com/art/Spectra-Wallpaper-Pack-97785901">spectrum background</a> used on this page</li>
@@ -259,10 +292,10 @@ var html = Prism.highlight(code, Prism.languages.haml, 'haml');</code></pre>
 
 <footer data-src="templates/footer.html" data-type="text/html"></footer>
 
+<script src="scripts/utopia.js"></script>
 <script src="prism.js"></script>
-<script src="utopia.js"></script>
 <script src="components.js"></script>
-<script src="code.js"></script>
+<script src="scripts/code.js"></script>
 <script>
 (function() {
 	var languageItems = [];
@@ -273,21 +306,40 @@ var html = Prism.highlight(code, Prism.languages.haml, 'haml');</code></pre>
 			continue;
 		}
 		count++;
-		var name = languages[id].title || languages[id];
+
+		var lang = languages[id];
+		var name = lang.title || lang;
+
+		var contents = [
+			name,
+			' - ',
+			{
+				tag: 'code',
+				contents: id
+			}
+		];
+
+		var alias = lang.alias;
+		if (typeof alias === 'string')
+			alias = [alias];
+
+		if (alias) {
+			for (var i = 0, l = alias.length; i < l; i++) {
+				contents.push(
+					', ',
+					{
+						tag: 'code',
+						contents: alias[i]
+					});
+			}
+		}
 
 		languageItems.push({
 			tag: 'li',
 			attributes: {
 				'data-id': id
 			},
-			contents: [
-				name,
-				' - ',
-				{
-					tag: 'code',
-					contents: id
-				}
-			]
+			contents: contents
 		});
 	}
 	$u.element.create('ul', {

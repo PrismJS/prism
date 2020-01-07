@@ -1,0 +1,203 @@
+~~foobar~~
+~~foo
+bar~~
+~foobar~
+~foo
+bar~
+
+~foo*bar*baz~
+~foo_bar_baz~
+~foo**bar**baz~
+~foo__bar__baz~
+~foo[bar](baz)~
+
+~~foo*bar*baz~~
+~~foo_bar_baz~~
+~~foo**bar**baz~~
+~~foo__bar__baz~~
+~~foo[bar](baz)~~
+
+----------------------------------------------------
+
+[
+	["strike", [
+		["punctuation", "~~"],
+		["content", [
+			"foobar"
+		]],
+		["punctuation", "~~"]
+	]],
+	["strike", [
+		["punctuation", "~~"],
+		["content", [
+			"foo\r\nbar"
+		]],
+		["punctuation", "~~"]
+	]],
+	["strike", [
+		["punctuation", "~"],
+		["content", [
+			"foobar"
+		]],
+		["punctuation", "~"]
+	]],
+	["strike", [
+		["punctuation", "~"],
+		["content", [
+			"foo\r\nbar"
+		]],
+		["punctuation", "~"]
+	]],
+	["strike", [
+		["punctuation", "~"],
+		["content", [
+			"foo",
+			["italic", [
+				["punctuation", "*"],
+				["content", [
+					"bar"
+				]],
+				["punctuation", "*"]
+			]],
+			"baz"
+		]],
+		["punctuation", "~"]
+	]],
+	["strike", [
+		["punctuation", "~"],
+		["content", [
+			"foo",
+			["italic", [
+				["punctuation", "_"],
+				["content", [
+					"bar"
+				]],
+				["punctuation", "_"]
+			]],
+			"baz"
+		]],
+		["punctuation", "~"]
+	]],
+	["strike", [
+		["punctuation", "~"],
+		["content", [
+			"foo",
+			["bold", [
+				["punctuation", "**"],
+				["content", [
+					"bar"
+				]],
+				["punctuation", "**"]
+			]],
+			"baz"
+		]],
+		["punctuation", "~"]
+	]],
+	["strike", [
+		["punctuation", "~"],
+		["content", [
+			"foo",
+			["bold", [
+				["punctuation", "__"],
+				["content", [
+					"bar"
+				]],
+				["punctuation", "__"]
+			]],
+			"baz"
+		]],
+		["punctuation", "~"]
+	]],
+	["strike", [
+		["punctuation", "~"],
+		["content", [
+			"foo",
+			["url", [
+				"[",
+				["content", [
+					"bar"
+				]],
+				"](baz)"
+			]]
+		]],
+		["punctuation", "~"]
+	]],
+	["strike", [
+		["punctuation", "~~"],
+		["content", [
+			"foo",
+			["italic", [
+				["punctuation", "*"],
+				["content", [
+					"bar"
+				]],
+				["punctuation", "*"]
+			]],
+			"baz"
+		]],
+		["punctuation", "~~"]
+	]],
+	["strike", [
+		["punctuation", "~~"],
+		["content", [
+			"foo",
+			["italic", [
+				["punctuation", "_"],
+				["content", [
+					"bar"
+				]],
+				["punctuation", "_"]
+			]],
+			"baz"
+		]],
+		["punctuation", "~~"]
+	]],
+	["strike", [
+		["punctuation", "~~"],
+		["content", [
+			"foo",
+			["bold", [
+				["punctuation", "**"],
+				["content", [
+					"bar"
+				]],
+				["punctuation", "**"]
+			]],
+			"baz"
+		]],
+		["punctuation", "~~"]
+	]],
+	["strike", [
+		["punctuation", "~~"],
+		["content", [
+			"foo",
+			["bold", [
+				["punctuation", "__"],
+				["content", [
+					"bar"
+				]],
+				["punctuation", "__"]
+			]],
+			"baz"
+		]],
+		["punctuation", "~~"]
+	]],
+	["strike", [
+		["punctuation", "~~"],
+		["content", [
+			"foo",
+			["url", [
+				"[",
+				["content", [
+					"bar"
+				]],
+				"](baz)"
+			]]
+		]],
+		["punctuation", "~~"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for strike. Also tests for inclusion of bold, italic, and url.

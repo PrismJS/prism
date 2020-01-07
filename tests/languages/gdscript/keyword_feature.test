@@ -1,0 +1,91 @@
+and
+as
+assert
+break
+breakpoint
+class
+class_name
+const
+continue
+elif
+else
+enum
+export
+extends
+for
+func
+if
+in
+is
+master
+mastersync
+match
+not
+null
+onready
+or
+pass
+preload
+puppet
+puppetsync
+remote
+remotesync
+return
+self
+setget
+signal
+static
+tool
+var
+while
+yield
+
+----------------------------------------------------
+
+[
+	["keyword", "and"],
+	["keyword", "as"],
+	["keyword", "assert"],
+	["keyword", "break"],
+	["keyword", "breakpoint"],
+	["keyword", "class"],
+	["keyword", "class_name"],
+	["keyword", "const"],
+	["keyword", "continue"],
+	["keyword", "elif"],
+	["keyword", "else"],
+	["keyword", "enum"],
+	["keyword", "export"],
+	["keyword", "extends"],
+	["keyword", "for"],
+	["keyword", "func"],
+	["keyword", "if"],
+	["keyword", "in"],
+	["keyword", "is"],
+	["keyword", "master"],
+	["keyword", "mastersync"],
+	["keyword", "match"],
+	["keyword", "not"],
+	["keyword", "null"],
+	["keyword", "onready"],
+	["keyword", "or"],
+	["keyword", "pass"],
+	["keyword", "preload"],
+	["keyword", "puppet"],
+	["keyword", "puppetsync"],
+	["keyword", "remote"],
+	["keyword", "remotesync"],
+	["keyword", "return"],
+	["keyword", "self"],
+	["keyword", "setget"],
+	["keyword", "signal"],
+	["keyword", "static"],
+	["keyword", "tool"],
+	["keyword", "var"],
+	["keyword", "while"],
+	["keyword", "yield"]
+]
+
+----------------------------------------------------
+
+Checks for keywords.

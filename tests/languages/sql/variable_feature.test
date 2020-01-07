@@ -6,6 +6,8 @@ ar"
 ar'
 @`fo\`o-b
 ar`
+@'foo'
+@'bar'
 
 ----------------------------------------------------
 
@@ -14,7 +16,9 @@ ar`
 	["variable", "@foo_bar_42"],
 	["variable", "@\"fo\\\"o-b\r\nar\""],
 	["variable", "@'fo\\'o-b\r\nar'"],
-	["variable", "@`fo\\`o-b\r\nar`"]
+	["variable", "@`fo\\`o-b\r\nar`"],
+	["variable", "@'foo'"],
+	["variable", "@'bar'"]
 ]
 
 ----------------------------------------------------

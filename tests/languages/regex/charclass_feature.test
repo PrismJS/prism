@@ -1,0 +1,25 @@
+.
+\w \W
+\s \S
+\d \D
+\p{ASCII}
+\P{ASCII}
+
+----------------------------------------------------
+
+[
+	["charclass", "."],
+	["charclass", "\\w"],
+	["charclass", "\\W"],
+	["charclass", "\\s"],
+	["charclass", "\\S"],
+	["charclass", "\\d"],
+	["charclass", "\\D"],
+
+	["charclass", "\\p{ASCII}"],
+	["charclass", "\\P{ASCII}"]
+]
+
+----------------------------------------------------
+
+Checks for character classes.

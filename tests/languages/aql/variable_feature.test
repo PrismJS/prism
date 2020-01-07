@@ -1,0 +1,28 @@
+FILTER u.id == @id && u.name == @name
+FOR u IN @@collection
+
+----------------------------------------------------
+
+[
+	["keyword", "FILTER"],
+	" u",
+	["punctuation", "."],
+	"id ",
+	["operator", "=="],
+	["variable", "@id"],
+	["operator", "&&"],
+	" u",
+	["punctuation", "."],
+	"name ",
+	["operator", "=="],
+	["variable", "@name"],
+
+	["keyword", "FOR"],
+	" u ",
+	["keyword", "IN"],
+	["variable", "@@collection"]
+]
+
+----------------------------------------------------
+
+Checks for variable binds.

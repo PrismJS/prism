@@ -177,6 +177,7 @@ merge_slashes
 min_delete_depth
 modern_browser
 modern_browser_value
+more_set_headers
 mp4
 mp4_buffer_size
 mp4_max_buffer_size
@@ -298,11 +299,17 @@ ssl_ciphers
 ssl_client_certificate
 ssl_crl
 ssl_dhparam
+ssl_early_data
+ssl_ecdh_curve
 ssl_engine
 ssl_prefer_server_ciphers
 ssl_protocols
 ssl_session_cache
+ssl_session_tickets
 ssl_session_timeout
+ssl_stapling
+ssl_stapling_verify
+ssl_trusted_certificate
 ssl_verify_client
 ssl_verify_depth
 starttls
@@ -529,6 +536,7 @@ xslt_types
 	["keyword", "min_delete_depth"],
 	["keyword", "modern_browser"],
 	["keyword", "modern_browser_value"],
+	["keyword", "more_set_headers"],
 	["keyword", "mp4"],
 	["keyword", "mp4_buffer_size"],
 	["keyword", "mp4_max_buffer_size"],
@@ -650,11 +658,17 @@ xslt_types
 	["keyword", "ssl_client_certificate"],
 	["keyword", "ssl_crl"],
 	["keyword", "ssl_dhparam"],
+	["keyword", "ssl_early_data"],
+	["keyword", "ssl_ecdh_curve"],
 	["keyword", "ssl_engine"],
 	["keyword", "ssl_prefer_server_ciphers"],
 	["keyword", "ssl_protocols"],
 	["keyword", "ssl_session_cache"],
+	["keyword", "ssl_session_tickets"],
 	["keyword", "ssl_session_timeout"],
+	["keyword", "ssl_stapling"],
+	["keyword", "ssl_stapling_verify"],
+	["keyword", "ssl_trusted_certificate"],
 	["keyword", "ssl_verify_client"],
 	["keyword", "ssl_verify_depth"],
 	["keyword", "starttls"],

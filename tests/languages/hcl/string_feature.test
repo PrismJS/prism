@@ -1,0 +1,41 @@
+"double quoted\"' % string"
+"abc // what now?"
+multiline_literal = "hello
+  world"
+foo = <<EOF
+  bar
+  baz
+  EOF
+bar = <<-EOF_TEXT
+  bar
+  "baz"
+  EOF_TEXT
+foo = <<FOO
+ # I'm not a comment
+ // me neither
+ /* this might make a good test */
+ This string can contain FOO but not at the start of a line.
+FOO
+
+----------------------------------------------------
+
+[
+	["string", ["\"double quoted\\\"' % string\""]],
+	["string", ["\"abc // what now?\""]],
+	["property", "multiline_literal"],
+	["punctuation", "="],
+	["string", ["\"hello\r\n  world\""]],
+	["property", "foo"],
+	["punctuation", "="],
+	["heredoc", "<<EOF\r\n  bar\r\n  baz\r\n  EOF"],
+	["property", "bar"],
+	["punctuation", "="],
+	["heredoc", "<<-EOF_TEXT\r\n  bar\r\n  \"baz\"\r\n  EOF_TEXT"],
+	["property", "foo"],
+	["punctuation", "="],
+	["heredoc", "<<FOO\r\n # I'm not a comment\r\n // me neither\r\n /* this might make a good test */\r\n This string can contain FOO but not at the start of a line.\r\nFOO"]
+]
+
+----------------------------------------------------
+
+Checks for strings.

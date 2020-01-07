@@ -1,0 +1,27 @@
+foo = "bar"
+c = 1e10
+FOO = "bar"
+"bool" = [false]
+
+----------------------------------------------------
+
+[
+	["property", "foo"],
+	["punctuation", "="],
+	["string", ["\"bar\""]],
+	["property", "c"],
+	["punctuation", "="],
+	["number", "1e10"],
+	["property", "FOO"],
+	["punctuation", "="],
+	["string", ["\"bar\""]],
+	["property", "\"bool\""],
+	["punctuation", "="],
+	["punctuation", "["],
+	["boolean", "false"],
+	["punctuation", "]"]
+]
+
+----------------------------------------------------
+
+Checks for all properties.

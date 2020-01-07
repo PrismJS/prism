@@ -1,10 +1,16 @@
+abstract
+as
+async
+await
 break
 case
 catch
 class;
 const
+constructor
 continue
 debugger
+declare
 default
 delete
 do
@@ -14,6 +20,7 @@ export
 extends;
 finally
 for
+from
 function
 get
 if
@@ -22,14 +29,21 @@ import
 in
 instanceof;
 interface;
+is
+keyof
 let
+module
+namespace
 new;
 null
+of
 package
 private
 protected
 public
+readonly
 return
+require
 set
 static
 super
@@ -37,27 +51,30 @@ switch
 this
 throw
 try
+type
 typeof
 var
 void
 while
 with
 yield
-module
-declare
-constructor
-enum
 
 ----------------------------------------------------
 
 [
+	["keyword", "abstract"],
+	["keyword", "as"],
+	["keyword", "async"],
+	["keyword", "await"],
 	["keyword", "break"],
 	["keyword", "case"],
 	["keyword", "catch"],
 	["keyword", "class"], ["punctuation", ";"],
 	["keyword", "const"],
+	["keyword", "constructor"],
 	["keyword", "continue"],
 	["keyword", "debugger"],
+	["keyword", "declare"],
 	["keyword", "default"],
 	["keyword", "delete"],
 	["keyword", "do"],
@@ -67,6 +84,7 @@ enum
 	["keyword", "extends"], ["punctuation", ";"],
 	["keyword", "finally"],
 	["keyword", "for"],
+	["keyword", "from"],
 	["keyword", "function"],
 	["keyword", "get"],
 	["keyword", "if"],
@@ -75,14 +93,21 @@ enum
 	["keyword", "in"],
 	["keyword", "instanceof"], ["punctuation", ";"],
 	["keyword", "interface"], ["punctuation", ";"],
+	["keyword", "is"],
+	["keyword", "keyof"],
 	["keyword", "let"],
+	["keyword", "module"],
+	["keyword", "namespace"],
 	["keyword", "new"], ["punctuation", ";"],
 	["keyword", "null"],
+	["keyword", "of"],
 	["keyword", "package"],
 	["keyword", "private"],
 	["keyword", "protected"],
 	["keyword", "public"],
+	["keyword", "readonly"],
 	["keyword", "return"],
+	["keyword", "require"],
 	["keyword", "set"],
 	["keyword", "static"],
 	["keyword", "super"],
@@ -90,16 +115,13 @@ enum
 	["keyword", "this"],
 	["keyword", "throw"],
 	["keyword", "try"],
+	["keyword", "type"],
 	["keyword", "typeof"],
 	["keyword", "var"],
 	["keyword", "void"],
 	["keyword", "while"],
 	["keyword", "with"],
-	["keyword", "yield"],
-	["keyword", "module"],
-	["keyword", "declare"],
-	["keyword", "constructor"],
-	["keyword", "enum"]
+	["keyword", "yield"]
 ]
 
 ----------------------------------------------------

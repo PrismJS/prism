@@ -1,0 +1,56 @@
++ - * /
+= % ||
+!=
+< <= <>
+> >=
+
+AND
+ANY
+ARRAY
+BETWEEN
+CASE
+ELSE
+END
+EVERY
+EXISTS
+FIRST
+IN
+LIKE
+NOT
+OR
+THEN
+VALUED
+WHEN
+WITHIN
+
+----------------------------------------------------
+
+[
+	["operator", "+"], ["operator", "-"], ["operator", "*"], ["operator", "/"],
+	["operator", "="], ["operator", "%"], ["operator", "||"],
+	["operator", "!="],
+	["operator", "<"], ["operator", "<="], ["operator", "<>"],
+	["operator", ">"], ["operator", ">="],
+	["operator", "AND"],
+	["operator", "ANY"],
+	["operator", "ARRAY"],
+	["operator", "BETWEEN"],
+	["operator", "CASE"],
+	["operator", "ELSE"],
+	["operator", "END"],
+	["operator", "EVERY"],
+	["operator", "EXISTS"],
+	["operator", "FIRST"],
+	["operator", "IN"],
+	["operator", "LIKE"],
+	["operator", "NOT"],
+	["operator", "OR"],
+	["operator", "THEN"],
+	["operator", "VALUED"],
+	["operator", "WHEN"],
+	["operator", "WITHIN"]
+]
+
+----------------------------------------------------
+
+Checks for all operators.

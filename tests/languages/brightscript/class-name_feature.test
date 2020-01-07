@@ -1,0 +1,31 @@
+Function Foo(a as Object, b=1+1 as Integer) as Void
+End Function
+
+----------------------------------------------------
+
+[
+	["keyword", "Function"],
+	["function", "Foo"],
+	["punctuation", "("],
+	"a ",
+	["keyword", "as"],
+	["class-name", "Object"],
+	["punctuation", ","],
+	" b",
+	["operator", "="],
+	["number", "1"],
+	["operator", "+"],
+	["number", "1"],
+	["keyword", "as"],
+	["class-name", "Integer"],
+	["punctuation", ")"],
+	["keyword", "as"],
+	["class-name", "Void"],
+
+	["keyword", "End"],
+	["keyword", "Function"]
+]
+
+----------------------------------------------------
+
+Checks for class names.
