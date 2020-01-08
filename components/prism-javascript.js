@@ -80,18 +80,24 @@
 	jsStringCommentAndDivision += '|' + tempTemplate;
 
 	function createNested(open, close) {
-		var expr = '(?:[^/\'"' + open + close + ']|' + jsStringCommentAndDivision + '|' + open + '<self>*' + close + ')';
+		var expr = '(?:[^/\'"`' + open + close + ']|' + jsStringCommentAndDivision + '|' + open + '<self>*' + close + ')';
 		return nested(expr, 3);
 	}
 	var curly = createNested('\\{', '\\}');
+	var round = createNested('\\(', '\\)');
+	var square = createNested('\\[', '\\]');
+
+	// == /(?:[^/'"`()[\]{}]|<<string,comment,division>>|\(<<round>>*\)|\[<<square>>*\]|\{<<curly>>*\})/
+	var jsExpr = '(?:[^/\'"`()[\\]{}]|' + jsStringCommentAndDivision + '|\\(' + round + '*\\)|\\[' + square + '*\\]|\\{' + curly + '*\\})';
 
 	Object.defineProperty(Prism.languages.javascript, '$', {
 		value: {
 			string: string,
 			comment: comment,
 			curly: curly,
-			round: createNested('\\(', '\\)'),
-			square: createNested('\\[', '\\]'),
+			round: round,
+			square: square,
+			expression: jsExpr
 		}
 	});
 

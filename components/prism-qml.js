@@ -1,16 +1,9 @@
 (function (Prism) {
 
-	var jsString = /"(?:\\.|[^\\"\r\n])*"|'(?:\\.|[^\\'\r\n])*'/.source;
-	var jsComment = /\/\/.*|\/\*(?:(?!\*\/)[\s\S])*\*\//.source;
+	var javascript = Prism.languages.javascript;
+	var jsExpression = javascript.$.expression;
 
-	var jsExpr = /(?:[^\\()[\]{}"'/]|<string>|\/(?![*/])|<comment>|\(<expr>*\)|\[<expr>*\]|\{<expr>*\}|\\[\s\S])/
-		.source.replace(/<string>/g, jsString).replace(/<comment>/g, jsComment);
-
-	// the pattern will blow up, so only a few iterations
-	for (var i = 0; i < 2; i++) {
-		jsExpr = jsExpr.replace(/<expr>/g, jsExpr);
-	}
-	jsExpr = jsExpr.replace(/<expr>/g, '[^\\s\\S]');
+	console.log("dasf");
 
 
 	Prism.languages.qml = {
@@ -19,11 +12,11 @@
 			greedy: true
 		},
 		'javascript-function': {
-			pattern: RegExp(/((?:^|;)[ \t]*)function\s+[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*\s*\(<js>*\)\s*\{<js>*\}/.source.replace(/<js>/g, jsExpr), 'm'),
+			pattern: RegExp(/((?:^|;)[ \t]*)function\s+[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*\s*\(<js>*\)\s*\{<js>*\}/.source.replace(/<js>/g, jsExpression), 'm'),
 			lookbehind: true,
 			greedy: true,
 			alias: 'language-javascript',
-			inside: Prism.languages.javascript
+			inside: javascript
 		},
 		'class-name': {
 			pattern: /((?:^|[:;])[ \t]*)(?!\d)\w+(?=[ \t]*\{|[ \t]+on\b)/m,
@@ -44,11 +37,11 @@
 			}
 		],
 		'javascript-expression': {
-			pattern: RegExp(/(:[ \t]*)(?![\s;}[])(?:(?!$|[;}])<js>)+/.source.replace(/<js>/g, jsExpr), 'm'),
+			pattern: RegExp(/(:[ \t]*)(?![\s;}[])(?:(?!$|[;}])<js>)+/.source.replace(/<js>/g, jsExpression), 'm'),
 			lookbehind: true,
 			greedy: true,
 			alias: 'language-javascript',
-			inside: Prism.languages.javascript
+			inside: javascript
 		},
 		'string': /"(?:\\.|[^\\"\r\n])*"/,
 		'keyword': /\b(?:as|import|on)\b/,
