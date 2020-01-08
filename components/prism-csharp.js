@@ -176,6 +176,13 @@
 		'punctuation': /\?\.?|::|[{}[\];(),.:]/
 	});
 
+	Prism.languages.insertBefore('csharp', 'number', {
+		'range': {
+			pattern: /\.\./,
+			alias: 'operator'
+		}
+	});
+
 	Prism.languages.insertBefore('csharp', 'class-name', {
 		'namespace': {
 			// namespace Foo.Bar {}
@@ -256,6 +263,13 @@
 					alias: 'keyword'
 				}
 			}
+		}
+	});
+
+	Prism.languages.insertBefore('csharp', 'number', {
+		'range': {
+			pattern: /\.\./,
+			alias: 'operator'
 		}
 	});
 
