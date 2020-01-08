@@ -133,7 +133,7 @@ describe('Dependency logic', function () {
 						}
 					}
 				};
-				getLoader(circular, ['a']).getIds();
+				getLoader(circular, ['a', 'foo' /* force the lazy alias resolver */]).getIds();
 			});
 		});
 
@@ -148,7 +148,7 @@ describe('Dependency logic', function () {
 						b: 'B'
 					}
 				};
-				getLoader(circular, ['a']).getIds();
+				getLoader(circular, ['a', 'foo' /* force the lazy alias resolver */]).getIds();
 			});
 		});
 
@@ -248,9 +248,56 @@ describe('components.json', function () {
 
 	it('- should be valid', function () {
 		try {
-			getLoader(components, Object.keys(components.languages).filter(k => k != 'meta')).getIds();
+			const allIds = [];
+			for (const category in components) {
+				Object.keys(components[category]).forEach(id => allIds.push(id));
+			}
+			// and an alias, so we force the lazy alias resolver to check all aliases
+			allIds.push('js');
+
+			getLoader(components, allIds).getIds();
 		} catch (error) {
 			assert.fail(error.toString());
+		}
+	});
+
+	it('- should not have redundant optional dependencies', function () {
+		/** @type {Object<string, import("../dependencies").ComponentEntry>} */
+		const entries = {};
+
+		for (const category in components) {
+			for (const id in components[category]) {
+				const entry = components[category][id];
+				if (id !== 'meta' && entry && typeof entry === 'object') {
+					entries[id] = entry;
+				}
+			}
+		}
+
+		function toArray(value) {
+			if (Array.isArray(value)) {
+				return value;
+			} else if (value == undefined) {
+				return [];
+			} else {
+				return [value];
+			}
+		}
+
+		for (const id in entries) {
+			const entry = entries[id];
+			const optional = new Set(toArray(entry.optional));
+
+			for (const modifyId of toArray(entry.modify)) {
+				if (optional.has(modifyId)) {
+					assert.fail(`The component "${id}" has declared "${modifyId}" as both optional and modify.`)
+				}
+			}
+			for (const requireId of toArray(entry.require)) {
+				if (optional.has(requireId)) {
+					assert.fail(`The component "${id}" has declared "${requireId}" as both optional and require.`)
+				}
+			}
 		}
 	});
 

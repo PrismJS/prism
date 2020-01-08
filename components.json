@@ -383,7 +383,6 @@
 				"javascript",
 				"less",
 				"markdown",
-				"ruby",
 				"scss",
 				"textile"
 			],
@@ -560,6 +559,11 @@
 			},
 			"owner": "japborst"
 		},
+		"latte": {
+			"title": "Latte",
+			"require": ["clike", "markup-templating", "php"],
+			"owner": "nette"
+		},
 		"less": {
 			"title": "Less",
 			"require": "css",
@@ -649,6 +653,10 @@
 		"nasm": {
 			"title": "NASM",
 			"owner": "rbmj"
+		},
+		"neon": {
+			"title": "NEON",
+			"owner": "nette"
 		},
 		"nginx": {
 			"title": "nginx",

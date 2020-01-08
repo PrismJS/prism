@@ -226,6 +226,8 @@ const html = Prism.highlight(code, Prism.languages.haml, 'haml');</code></pre>
 
 	<p><strong>Note</strong>: Do <em>not</em> use <code class="language-javascript">loadLanguages()</code> with Webpack or another bundler, as this will cause Webpack to include all languages and plugins. Use the babel plugin described above.</p>
 
+	<p><strong>Note</strong>: <code class="language-javascript">loadLanguages()</code> will ignore unknown languages and log warning messages to the console. You can prevent the warnings by setting <code class="language-javascript">loadLanguages.silent = true</code>.</p>
+
 </section>
 
 <section class="language-markup">

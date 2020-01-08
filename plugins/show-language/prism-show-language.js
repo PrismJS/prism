@@ -102,6 +102,7 @@
 		"n4jsd": "N4JS",
 		"nand2tetris-hdl": "Nand To Tetris HDL",
 		"nasm": "NASM",
+		"neon": "NEON",
 		"nginx": "nginx",
 		"nsis": "NSIS",
 		"objectivec": "Objective-C",
