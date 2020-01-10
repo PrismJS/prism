@@ -25,9 +25,9 @@ async function doBenchmark(config) {
 	/**
 	 * @type {Summary[]}
 	 *
-	 * @typedef {{ best: number; worst: number }} Summary
+	 * @typedef {{ best: number; worst: number, relative: number[], avgRelative?: number }} Summary
 	 */
-	const totalSummary = Array.from({ length: candidates.length }).map(() => ({ best: 0, worst: 0 }));
+	const totalSummary = Array.from({ length: candidates.length }).map(() => ({ best: 0, worst: 0, relative: [] }));
 
 	for (const $case of cases) {
 
@@ -74,13 +74,19 @@ async function doBenchmark(config) {
 			const best = getBest(results);
 			const worst = getWorst(results);
 
-			results.forEach(r => {
+			results.forEach((r, index) => {
+				const name = r.name.padEnd(maxCandidateNameLength, " ");
 				const mean = (r.stats.mean * 1000).toFixed(2).padStart(8) + 'ms';
 				const r_moe = (100 * r.stats.moe / r.stats.mean).toFixed(0).padStart(3) + '%'
+				const smp = r.stats.sample.length.toString().padStart(4) + 'smp';
+
+				const relativeMean = r.stats.mean / min;
+				totalSummary[index].relative.push(relativeMean);
+				const relative = relativeMean === 1 ? ' '.repeat(5) : (relativeMean.toFixed(2) + 'x').padStart(5);
 
 				const color = r === best ? '\x1b[32m' : r === worst ? '\x1b[31m' : '\x1b[0m';
 
-				console.log(`  \x1b[90m| ${color}${r.name.padEnd(maxCandidateNameLength, " ")} ${mean} ±${r_moe} ${r.stats.sample.length}smp\x1b[0m`);
+				console.log(`  \x1b[90m| ${color}${name} ${mean} ±${r_moe} ${smp} ${relative}\x1b[0m`);
 			});
 		}
 	}
@@ -90,10 +96,22 @@ async function doBenchmark(config) {
 	console.log(`\x1b[90m${'-'.repeat(60)}\x1b[0m`);
 	console.log();
 	console.log('summary');
-	console.log(`${' '.repeat(maxCandidateNameLength + 2)}  \x1b[90mbest  worst\x1b[0m`);
+	console.log(`${' '.repeat(maxCandidateNameLength + 2)}  \x1b[90mbest  worst  avg rel  avg rel norm\x1b[0m`);
+
+	totalSummary.forEach(s => {
+		s.avgRelative = s.relative.reduce((a, c) => a + c, 0) / s.relative.length;
+	});
+	const minAvgRelative = totalSummary.reduce((a, c) => Math.min(a, c.avgRelative), Infinity);
 
 	totalSummary.forEach((s, i) => {
-		console.log(`  ${candidates[i].name.padEnd(maxCandidateNameLength, " ")}  ${String(s.best).padStart('best'.length)}  ${String(s.worst).padStart('worst'.length)}`);
+		const name = candidates[i].name.padEnd(maxCandidateNameLength, " ");
+		const best = String(s.best).padStart('best'.length);
+		const worst = String(s.worst).padStart('worst'.length);
+
+		const relative = (s.avgRelative.toFixed(2) + 'x').padStart('avg rel'.length);
+		const relativeNorm = ((s.avgRelative / minAvgRelative).toFixed(2) + 'x').padStart('avg rel norm'.length);
+
+		console.log(`  ${name}  ${best}  ${worst}  ${relative}  ${relativeNorm}`);
 	});
 }
 
