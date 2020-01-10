@@ -11,6 +11,8 @@
 
 ### Updated components
 
+* __Handlebars__
+    * Added support for `:` and improved the `variable` pattern ([#2172](https://github.com/PrismJS/prism/issues/2172)) [`ef4d29d9`](https://github.com/PrismJS/prism/commit/ef4d29d9)
 * __JavaScript__
     * Added support for keywords after a spread operator ([#2148](https://github.com/PrismJS/prism/issues/2148)) [`1f3f8929`](https://github.com/PrismJS/prism/commit/1f3f8929)
     * Better regex detection ([#2158](https://github.com/PrismJS/prism/issues/2158)) [`a23d8f84`](https://github.com/PrismJS/prism/commit/a23d8f84)
