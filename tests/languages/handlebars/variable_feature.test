@@ -5,9 +5,15 @@
 ----------------------------------------------------
 
 [
-    ["handlebars",[["delimiter","{{"],["variable","comments"],["delimiter","}}"]]],
-    ["handlebars",[["delimiter","{{"],["punctuation","@"],["variable","comments"],["delimiter","}}"]]],
-    ["handlebars",[["delimiter","{{"],["variable","this"],["punctuation","."],["variable","comments"],["delimiter","}}"]]]
+	["handlebars",[
+		["delimiter","{{"],["variable","comments"],["delimiter","}}"]]
+	],
+	["handlebars",[
+		["delimiter","{{"],["punctuation","@"],["variable","comments"],["delimiter","}}"]]
+	],
+	["handlebars",[
+		["delimiter","{{"],["variable","this"],["punctuation","."],["variable","comments"],["delimiter","}}"]]
+	]
 ]
 
 ----------------------------------------------------

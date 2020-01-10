@@ -5,12 +5,25 @@
 ----------------------------------------------------
 
 [
-	["handlebars",[["delimiter","{{"],["block","#each"],["variable","comments"],["delimiter","}}"]]],
-	["handlebars",[["delimiter","{{"],["block","/each"],["delimiter","}}"]]],
-	["handlebars",[["delimiter","{{"],["punctuation","~"],["block","#if"],["variable","isActive"],["punctuation","~"],["delimiter","}}"]]],
-	["handlebars",[["delimiter","{{"],["punctuation","~"],["block","/if"],["punctuation","~"],["delimiter","}}"]]],
-	["handlebars",[["delimiter","{{"],["block","#let"],["variable","a"],["variable","as"],["punctuation","|"],["variable","b"],["punctuation","|"],["delimiter","}}"]]],
-	["handlebars",[["delimiter","{{"],["block","/let"],["delimiter","}}"]]]]
+	["handlebars",[
+		["delimiter","{{"],["block","#each"],["variable","comments"],["delimiter","}}"]]
+	],
+	["handlebars",[
+		["delimiter","{{"],["block","/each"],["delimiter","}}"]]
+	],
+	["handlebars",[
+		["delimiter","{{"],["punctuation","~"],["block","#if"],["variable","isActive"],["punctuation","~"],["delimiter","}}"]]
+	],
+	["handlebars",[
+		["delimiter","{{"],["punctuation","~"],["block","/if"],["punctuation","~"],["delimiter","}}"]]
+	],
+	["handlebars",[
+		["delimiter","{{"],["block","#let"],["variable","a"],["variable","as"],["punctuation","|"],["variable","b"],["punctuation","|"],["delimiter","}}"]]
+	],
+	["handlebars",[
+		["delimiter","{{"],["block","/let"],["delimiter","}}"]]
+	]
+]
 
 ----------------------------------------------------
 
