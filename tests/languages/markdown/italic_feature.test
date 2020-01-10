@@ -113,7 +113,11 @@ _foo[bar](baz)_
 		["content", [
 			"foo",
 			["url", [
-				"[bar](baz)"
+				"[",
+				["content", [
+					"bar"
+				]],
+				"](baz)"
 			]]
 		]],
 		["punctuation", "_"]
@@ -183,7 +187,11 @@ _foo[bar](baz)_
 		["content", [
 			"foo",
 			["url", [
-				"[bar](baz)"
+				"[",
+				["content", [
+					"bar"
+				]],
+				"](baz)"
 			]]
 		]],
 		["punctuation", "*"]

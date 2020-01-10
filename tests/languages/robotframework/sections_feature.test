@@ -1,0 +1,43 @@
+*** Settings ***
+# foo
+
+*** Variables ***
+# foo
+
+*** Test Cases ***
+# foo
+
+*** Keywords ***
+# foo
+
+*** Tasks ***
+# foo
+
+----------------------------------------------------
+
+[
+	["settings", [
+		["section-header", "*** Settings ***"],
+		["comment", "# foo"]
+	]],
+	["variables", [
+		["section-header", "*** Variables ***"],
+		["comment", "# foo"]
+	]],
+	["test-cases", [
+		["section-header", "*** Test Cases ***"],
+		["comment", "# foo"]
+	]],
+	["keywords", [
+		["section-header", "*** Keywords ***"],
+		["comment", "# foo"]
+	]],
+	["tasks", [
+		["section-header", "*** Tasks ***"],
+		["comment", "# foo"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for all known section types.

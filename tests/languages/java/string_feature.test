@@ -1,0 +1,50 @@
+"foo"
+"\"foo\""
+
+"""
+foo
+"""
+
+var a = """
+\"""
+foo""";
+
+"""
+The quick brown fox""" + "  \n" + """
+jumps over the lazy dog
+"""
+
+String empty = """
+""";
+
+
+----------------------------------------------------
+
+[
+	["string", "\"foo\""],
+	["string", "\"\\\"foo\\\"\""],
+
+	["triple-quoted-string", "\"\"\"\nfoo\n\"\"\""],
+
+	["keyword", "var"],
+	" a ",
+	["operator", "="],
+	["triple-quoted-string", "\"\"\"\n\\\"\"\"\nfoo\"\"\""],
+	["punctuation", ";"],
+
+	["triple-quoted-string", "\"\"\"\nThe quick brown fox\"\"\""],
+	["operator", "+"],
+	["string", "\"  \\n\""],
+	["operator", "+"],
+	["triple-quoted-string", "\"\"\"\njumps over the lazy dog\n\"\"\""],
+
+	["class-name", "String"],
+	" empty ",
+	["operator", "="],
+	["triple-quoted-string", "\"\"\"\n\"\"\""],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for strings.

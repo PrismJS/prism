@@ -1,0 +1,25 @@
+phones: {home: 555-6528,work: 555-7334 }
+
+children:      # this is a comment
+	- -50.5
+
+entity: Column(type=int, nulls=yes)
+
+----------------------------------------------------
+
+[
+	["key", "phones"], ["punctuation", ":"], ["punctuation", "{"],
+	["key", "home"], ["punctuation", ":"],
+	["literal", "555-6528"], ["punctuation", ","],
+	["key", "work"], ["punctuation", ":"],
+	["literal", "555-7334"], ["punctuation", "}"],
+	["key", "children"], ["punctuation", ":"],
+	["comment", "# this is a comment"],
+	["punctuation", "-"], ["number", "-50.5"],
+	["key", "entity"], ["punctuation", ":"],
+	["literal", "Column"], ["punctuation", "("], ["key", "type"], ["punctuation", "="], ["literal", "int"], ["punctuation", ","], ["key", "nulls"], ["punctuation", "="], ["boolean", "yes"], ["punctuation", ")"]
+]
+
+----------------------------------------------------
+
+Overall test

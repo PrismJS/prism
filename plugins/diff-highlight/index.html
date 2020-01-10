@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<link rel="icon" href="favicon.png" />
+	<title>Data-URI Highlight ▲ Prism plugins</title>
+	<base href="../.." />
+	<link rel="stylesheet" href="style.css" />
+	<link rel="stylesheet" href="themes/prism.css" data-noprefix />
+	<link rel="stylesheet" href="plugins/diff-highlight/prism-diff-highlight.css" data-noprefix />
+	<script src="scripts/prefixfree.min.js"></script>
+
+	<script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
+	<script src="https://www.google-analytics.com/ga.js" async></script>
+</head>
+
+<body class="language-none">
+
+	<header data-plugin-header="diff-highlight"></header>
+
+	<section>
+		<h1>How to use</h1>
+
+		<p>Replace the <code>language-diff</code> of your code block with a <code>language-diff-xxxx</code> class to enable syntax highlighting for diff blocks.</p>
+
+		<p>Optional:<br>
+			You can add the <code>diff-highlight</code> class to your code block to indicate changes using the background color of a line rather than the color of the text.</p>
+	</section>
+
+	<section>
+		<h1>Example</h1>
+
+		<p>Using <code>class="language-diff"</code>:</p>
+
+		<pre><code class="language-diff">@@ -4,6 +4,5 @@
+-    let foo = bar.baz([1, 2, 3]);
+-    foo = foo + 1;
++    const foo = bar.baz([1, 2, 3]) + 1;
+     console.log(`foo: ${foo}`);</code></pre>
+
+		<p>Using <code>class="language-diff diff-highlight"</code>:</p>
+
+		<pre><code class="language-diff diff-highlight">@@ -4,6 +4,5 @@
+-    let foo = bar.baz([1, 2, 3]);
+-    foo = foo + 1;
++    const foo = bar.baz([1, 2, 3]) + 1;
+     console.log(`foo: ${foo}`);</code></pre>
+
+		<p>Using <code>class="language-diff-javascript"</code>:</p>
+
+		<pre><code class="language-diff-javascript">@@ -4,6 +4,5 @@
+-    let foo = bar.baz([1, 2, 3]);
+-    foo = foo + 1;
++    const foo = bar.baz([1, 2, 3]) + 1;
+     console.log(`foo: ${foo}`);</code></pre>
+
+		<p>Using <code>class="language-diff-javascript diff-highlight"</code>:</p>
+
+		<pre><code class="language-diff-javascript diff-highlight">@@ -4,6 +4,5 @@
+-    let foo = bar.baz([1, 2, 3]);
+-    foo = foo + 1;
++    const foo = bar.baz([1, 2, 3]) + 1;
+     console.log(`foo: ${foo}`);</code></pre>
+
+	</section>
+
+	<footer data-src="templates/footer.html" data-type="text/html"></footer>
+
+	<script src="prism.js"></script>
+	<script src="components/prism-diff.js"></script>
+	<script src="plugins/diff-highlight/prism-diff-highlight.js"></script>
+	<script src="scripts/utopia.js"></script>
+	<script src="components.js"></script>
+	<script src="scripts/code.js"></script>
+
+</body>
+
+</html>

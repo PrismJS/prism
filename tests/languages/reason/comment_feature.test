@@ -1,3 +1,4 @@
+// foobar
 /**/
 /* Single line comment */
 /* Multiline
@@ -9,6 +10,7 @@ Doc comment
 ----------------------------------------------------
 
 [
+	["comment", "// foobar"],
 	["comment", "/**/"],
 	["comment", "/* Single line comment */"],
 	["comment", "/* Multiline\r\ncomment */"],

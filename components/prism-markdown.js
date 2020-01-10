@@ -1,7 +1,7 @@
 (function (Prism) {
 
 	// Allow only one line break
-	var inner = /\\.|[^\\\n\r_]|(?:\r?\n|\r)(?!\r?\n|\r)/.source;
+	var inner = /(?:\\.|[^\\\n\r]|(?:\r?\n|\r)(?!\r?\n|\r))/.source;
 
 	/**
 	 * This function is intended for the creation of the bold or italic pattern.
@@ -23,6 +23,11 @@
 	}
 
 
+	var tableCell = /(?:\\.|``.+?``|`[^`\r\n]+`|[^\\|\r\n`])+/.source;
+	var tableRow = /\|?__(?:\|__)+\|?(?:(?:\r?\n|\r)|$)/.source.replace(/__/g, tableCell);
+	var tableLine = /\|?[ \t]*:?-{3,}:?[ \t]*(?:\|[ \t]*:?-{3,}:?[ \t]*)+\|?(?:\r?\n|\r)/.source;
+
+
 	Prism.languages.markdown = Prism.languages.extend('markup', {});
 	Prism.languages.insertBefore('markdown', 'prolog', {
 		'blockquote': {
@@ -30,16 +35,51 @@
 			pattern: /^>(?:[\t ]*>)*/m,
 			alias: 'punctuation'
 		},
+		'table': {
+			pattern: RegExp('^' + tableRow + tableLine + '(?:' + tableRow + ')*', 'm'),
+			inside: {
+				'table-data-rows': {
+					pattern: RegExp('^(' + tableRow + tableLine + ')(?:' + tableRow + ')*$'),
+					lookbehind: true,
+					inside: {
+						'table-data': {
+							pattern: RegExp(tableCell),
+							inside: Prism.languages.markdown
+						},
+						'punctuation': /\|/
+					}
+				},
+				'table-line': {
+					pattern: RegExp('^(' + tableRow + ')' + tableLine + '$'),
+					lookbehind: true,
+					inside: {
+						'punctuation': /\||:?-{3,}:?/
+					}
+				},
+				'table-header-row': {
+					pattern: RegExp('^' + tableRow + '$'),
+					inside: {
+						'table-header': {
+							pattern: RegExp(tableCell),
+							alias: 'important',
+							inside: Prism.languages.markdown
+						},
+						'punctuation': /\|/
+					}
+				}
+			}
+		},
 		'code': [
 			{
-				// Prefixed by 4 spaces or 1 tab
-				pattern: /^(?: {4}|\t).+/m,
+				// Prefixed by 4 spaces or 1 tab and preceded by an empty line
+				pattern: /(^[ \t]*(?:\r?\n|\r))(?: {4}|\t).+(?:(?:\r?\n|\r)(?: {4}|\t).+)*/m,
+				lookbehind: true,
 				alias: 'keyword'
 			},
 			{
 				// `code`
 				// ``code``
-				pattern: /``.+?``|`[^`\n]+`/,
+				pattern: /``.+?``|`[^`\r\n]+`/,
 				alias: 'keyword'
 			},
 			{
@@ -68,7 +108,7 @@
 
 				// title 2
 				// -------
-				pattern: /\S.*(?:\r?\n|\r)(?:==+|--+)/,
+				pattern: /\S.*(?:\r?\n|\r)(?:==+|--+)(?=[ \t]*$)/m,
 				alias: 'important',
 				inside: {
 					punctuation: /==+$|--+$/
@@ -124,7 +164,7 @@
 			// __strong__
 
 			// allow one nested instance of italic text using the same delimiter
-			pattern: createInline(/__(?:<inner>|_(?:<inner>)+_)+__/.source, true),
+			pattern: createInline(/__(?:(?!_)<inner>|_(?:(?!_)<inner>)+_)+__/.source, true),
 			lookbehind: true,
 			greedy: true,
 			inside: {
@@ -141,7 +181,7 @@
 			// _em_
 
 			// allow one nested instance of bold text using the same delimiter
-			pattern: createInline(/_(?:<inner>|__(?:<inner>)+__)+_/.source, true),
+			pattern: createInline(/_(?:(?!_)<inner>|__(?:(?!_)<inner>)+__)+_/.source, true),
 			lookbehind: true,
 			greedy: true,
 			inside: {
@@ -156,9 +196,7 @@
 		'strike': {
 			// ~~strike through~~
 			// ~strike~
-
-			// extra _ is because the inner pattern intentionally doesn't include it because of bold and italic
-			pattern: createInline(/(~~?)(?:<inner>|_)+?\2/.source, false),
+			pattern: createInline(/(~~?)(?:(?!~)<inner>)+?\2/.source, false),
 			lookbehind: true,
 			greedy: true,
 			inside: {
@@ -172,12 +210,20 @@
 		},
 		'url': {
 			// [example](http://example.com "Optional title")
+			// [example][id]
 			// [example] [id]
-			pattern: /!?\[[^\]]+\](?:\([^\s)]+(?:[\t ]+"(?:\\.|[^"\\])*")?\)| ?\[[^\]\n]*\])/,
+			pattern: createInline(/!?\[(?:(?!\])<inner>)+\](?:\([^\s)]+(?:[\t ]+"(?:\\.|[^"\\])*")?\)| ?\[(?:(?!\])<inner>)+\])/.source, false),
+			lookbehind: true,
+			greedy: true,
 			inside: {
 				'variable': {
-					pattern: /(!?\[)[^\]]+(?=\]$)/,
+					pattern: /(\[)[^\]]+(?=\]$)/,
 					lookbehind: true
+				},
+				'content': {
+					pattern: /(^!?\[)[^\]]+(?=\])/,
+					lookbehind: true,
+					inside: {} // see below
 				},
 				'string': {
 					pattern: /"(?:\\.|[^"\\])*"(?=\)$)/
@@ -186,7 +232,7 @@
 		}
 	});
 
-	['bold', 'italic', 'strike'].forEach(function (token) {
+	['url', 'bold', 'italic', 'strike'].forEach(function (token) {
 		['url', 'bold', 'italic', 'strike'].forEach(function (inside) {
 			if (token !== inside) {
 				Prism.languages.markdown[token].inside.content.inside[inside] = Prism.languages.markdown[inside];
@@ -234,7 +280,12 @@
 					typeof codeLang.content === 'string') {
 
 					// this might be a language that Prism does not support
-					var alias = 'language-' + codeLang.content.trim().split(/\s+/)[0].toLowerCase();
+
+					// do some replacements to support C++, C#, and F#
+					var lang = codeLang.content.replace(/\b#/g, 'sharp').replace(/\b\+\+/g, 'pp')
+					// only use the first word
+					lang = (/[a-z][\w-]*/i.exec(lang) || [''])[0].toLowerCase();
+					var alias = 'language-' + lang;
 
 					// add alias
 					if (!codeBlock.alias) {
@@ -269,13 +320,23 @@
 		var grammar = Prism.languages[codeLang];
 
 		if (!grammar) {
-			return;
+			if (codeLang && codeLang !== 'none' && Prism.plugins.autoloader) {
+				var id = 'md-' + new Date().valueOf() + '-' + Math.floor(Math.random() * 1e16);
+				env.attributes['id'] = id;
+
+				Prism.plugins.autoloader.loadLanguages(codeLang, function () {
+					var ele = document.getElementById(id);
+					if (ele) {
+						ele.innerHTML = Prism.highlight(ele.textContent, Prism.languages[codeLang], codeLang);
+					}
+				});
+			}
+		} else {
+			// reverse Prism.util.encode
+			var code = env.content.replace(/&lt;/g, '<').replace(/&amp;/g, '&');
+
+			env.content = Prism.highlight(code, grammar, codeLang);
 		}
-
-		// reverse Prism.util.encode
-		var code = env.content.replace(/&lt;/g, '<').replace(/&amp;/g, '&');
-
-		env.content = Prism.highlight(code, grammar, codeLang);
 	});
 
 	Prism.languages.md = Prism.languages.markdown;

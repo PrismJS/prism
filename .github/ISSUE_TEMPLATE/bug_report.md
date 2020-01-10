@@ -9,11 +9,14 @@ assignees: ''
 
 **Information:**
 - Prism version: [e.g. 1.14, latest from the download page, etc.]
+- Plugins: [a list of plugins you are using or 'none']
 - Environment: [e.g. Browser, Node, Webpack]
 
+<!--
 Does the latest version of Prism from the [download page](https://prismjs.com/download.html) also have this issue?
 
 If you're using Prism with Node or Webpack, please also see the [usage section](https://prismjs.com/index.html#basic-usage).
+-->
 
 **Description**
 A clear and concise description of what the bug is and how to reproduce it.

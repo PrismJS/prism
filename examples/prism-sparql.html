@@ -1,0 +1,303 @@
+<h2>Introduction</h2>
+The queries shown here can be found in the SPARQL specifications:
+<a href="https://www.w3.org/TR/sparql11-query/">https://www.w3.org/TR/sparql11-query/</a>
+
+<h2>query 2.1.6 Examples of Query Syntax</h2>
+
+<pre><code>PREFIX  dc: &lt;http://purl.org/dc/elements/1.1/&gt;
+	SELECT  ?title
+	WHERE   { &lt;http://example.org/book/book1&gt; dc:title ?title }
+</code></pre>
+
+<h2>query 2.1.6-q1 Examples of Query Syntax</h2>
+
+<pre><code>PREFIX  dc: &lt;http://purl.org/dc/elements/1.1/&gt;
+PREFIX  : &lt;http://example.org/book/&gt;
+SELECT  $title
+WHERE   { :book1  dc:title  $title }
+</code></pre>
+
+<h2>query 2.1.6-q2 Examples of Query Syntax</h2>
+
+<pre><code>BASE    &lt;http://example.org/book/&gt;
+PREFIX  dc: &lt;http://purl.org/dc/elements/1.1/&gt;
+SELECT  $title
+WHERE   { &lt;book1&gt;  dc:title  ?title }
+</code></pre>
+
+<h2>query 2.5.3 Example of Basic Graph Pattern Matching</h2>
+
+<pre><code>PREFIX foaf:   &lt;http://xmlns.com/foaf/0.1/&gt;
+SELECT ?mbox
+WHERE
+	{ ?x foaf:name "Johnny Lee Outlaw" .
+		?x foaf:mbox ?mbox }
+</code></pre>
+
+<h2>query 3.1.1 Matching Integers</h2>
+
+<pre><code>SELECT ?v WHERE { ?v ?p 42 }</code></pre>
+
+<h2>query 3.1.2 Matching Arbitrary Datatypes</h2>
+
+<pre><code>SELECT ?v WHERE { ?v ?p "abc"^^&lt;http://example.org/datatype#specialDatatype&gt; }</code></pre>
+
+<h2>query 3.1.3-q1 Matching Language Tags</h2>
+
+<pre><code>SELECT ?x WHERE { ?x ?p "cat"@en }</code></pre>
+
+<h2>query 3.2 Value Constraints</h2>
+
+<pre><code>PREFIX  dc:  &lt;http://purl.org/dc/elements/1.1/&gt;
+PREFIX  ns:  &lt;http://example.org/ns#&gt;
+SELECT  ?title ?price
+WHERE   { ?x ns:price ?price .
+					FILTER (?price &lt; 30) .
+					?x dc:title ?title . }
+</code></pre>
+
+<h2>query 5.5 Nested Optional Graph Patterns</h2>
+
+<pre><code>PREFIX foaf: &lt;http://xmlns.com/foaf/0.1/&gt;
+PREFIX vcard: &lt;http://www.w3.org/2001/vcard-rdf/3.0#&gt;
+SELECT ?foafName ?mbox ?gname ?fname
+WHERE
+	{  ?x foaf:name ?foafName .
+		 OPTIONAL { ?x foaf:mbox ?mbox } .
+		 OPTIONAL {  ?x vcard:N ?vc .
+								 ?vc vcard:Given ?gname .
+								 OPTIONAL { ?vc vcard:Family ?fname }
+							}
+	}
+</code></pre>
+
+<h2>query 6.1-q2 Joining Patterns with UNION</h2>
+
+<pre><code>PREFIX dc10:  &lt;http://purl.org/dc/elements/1.1/&gt;
+PREFIX dc11:  &lt;http://purl.org/dc/elements/1.0/&gt;
+
+SELECT ?title ?author
+WHERE  { { ?book dc10:title ?title .  ?book dc10:creator ?author }
+				 UNION
+				 { ?book dc11:title ?title .  ?book dc11:creator ?author }
+			 }
+
+</code></pre>
+
+<h2>query 8.3 Restricting by Bound Variables</h2>
+
+<pre><code>PREFIX  data:  &lt;http://example.org/foaf/&gt;
+PREFIX  foaf:  &lt;http://xmlns.com/foaf/0.1/&gt;
+PREFIX  rdfs:  &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+
+SELECT ?mbox ?nick ?ppd
+WHERE
+{
+	GRAPH data:aliceFoaf
+	{
+		?alice foaf:mbox &lt;mailto:alice@work.example&gt; ;
+					 foaf:knows ?whom .
+		?whom  foaf:mbox ?mbox ;
+					 rdfs:seeAlso ?ppd .
+		?ppd  a foaf:PersonalProfileDocument .
+	} .
+	GRAPH ?ppd
+	{
+			?w foaf:mbox ?mbox ;
+				 foaf:nick ?nick
+	}
+}
+</code></pre>
+
+<h2>query 9.3 Combining FROM and FROM NAMED</h2>
+
+<pre><code>PREFIX foaf: &lt;http://xmlns.com/foaf/0.1/&gt;
+PREFIX dc: &lt;http://purl.org/dc/elements/1.1/&gt;
+
+SELECT ?who ?g ?mbox
+FROM &lt;http://example.org/dft.ttl&gt;
+FROM NAMED &lt;http://example.org/alice&gt;
+FROM NAMED &lt;http://example.org/bob&gt;
+WHERE
+{
+	 ?g dc:publisher ?who .
+	 GRAPH ?g { ?x foaf:mbox ?mbox }
+}
+</code></pre>
+
+<h2>query 10.1.2 DISTINCT</h2>
+
+<pre><code>
+	PREFIX foaf:    &lt;http://xmlns.com/foaf/0.1//&gt;
+SELECT DISTINCT ?name WHERE { ?x foaf:name ?name }
+</code></pre>
+
+<h2>query 10.1.3-q2 ORDER BY</h2>
+
+<pre><code>PREFIX foaf:    &lt;http://xmlns.com/foaf/0.1/&gt;
+
+SELECT ?name
+WHERE { ?x foaf:name ?name ; :empId ?emp }
+ORDER BY ?name DESC(?emp)
+</code></pre>
+
+<h2>query 10.1.5 OFFSET</h2>
+
+<pre><code>PREFIX foaf:    &lt;http://xmlns.com/foaf/0.1/&gt;
+
+SELECT  ?name
+WHERE   { ?x foaf:name ?name }
+ORDER BY ?name
+LIMIT   5
+OFFSET  10
+</code></pre>
+
+<h2>query 10.3.1 Templates with Blank Nodes</h2>
+
+<pre><code>PREFIX foaf:    &lt;http://xmlns.com/foaf/0.1/&gt;
+PREFIX vcard:   &lt;http://www.w3.org/2001/vcard-rdf/3.0#&gt;
+
+CONSTRUCT { ?x  vcard:N _:v .
+						_:v vcard:givenName ?gname .
+						_:v vcard:familyName ?fname }
+WHERE
+ {
+		{ ?x foaf:firstname ?gname } UNION  { ?x foaf:givenname   ?gname } .
+		{ ?x foaf:surname   ?fname } UNION  { ?x foaf:family_name ?fname } .
+ }
+</code></pre>
+
+<h2>query 10.3.3 Solution Modifiers and CONSTRUCT</h2>
+
+<pre><code>PREFIX foaf: &lt;http://xmlns.com/foaf/0.1/&gt;
+PREFIX site: &lt;http://example.org/stats#&gt;
+
+CONSTRUCT { [] foaf:name ?name }
+WHERE
+{ [] foaf:name ?name ;
+		 site:hits ?hits .
+}
+ORDER BY desc(?hits)
+LIMIT 2</code></pre>
+
+<h2>query 10.4.3 Descriptions of Resources</h2>
+
+<pre><code>PREFIX ent:  &lt;http://org.example.com/employees#&gt;
+DESCRIBE ?x WHERE { ?x ent:employeeId "1234" }
+</code></pre>
+
+<h2>query 10.5-q1 Asking "yes or no" questions</h2>
+
+<pre><code>PREFIX foaf:    &lt;http://xmlns.com/foaf/0.1/&gt;
+ASK  { ?x foaf:name  "Alice" ;
+					foaf:mbox  &lt;mailto:alice@work.example&gt; }
+</code></pre>
+
+<h2>query 11.4.1 bound</h2>
+
+<pre><code>PREFIX foaf: &lt;http://xmlns.com/foaf/0.1/&gt;
+PREFIX dc:   &lt;http://purl.org/dc/elements/1.1/&gt;
+PREFIX xsd:   &lt;http://www.w3.org/2001/XMLSchema#&gt;
+SELECT ?name
+ WHERE { ?x foaf:givenName  ?givenName .
+				 OPTIONAL { ?x dc:date ?date } .
+				 FILTER ( bound(?date) ) }</code></pre>
+
+<h2>query 11.4.3 isBlank</h2>
+
+<pre><code>
+PREFIX a:      &lt;http://www.w3.org/2000/10/annotation-ns#&gt;
+PREFIX dc:     &lt;http://purl.org/dc/elements/1.1/&gt;
+PREFIX foaf:   &lt;http://xmlns.com/foaf/0.1/&gt;
+
+SELECT ?given ?family
+WHERE { ?annot  a:annotates  &lt;http://www.w3.org/TR/rdf-sparql-query/&gt; .
+?annot  dc:creator   ?c .
+OPTIONAL { ?c  foaf:given   ?given ; foaf:family  ?family } .
+FILTER isBlank(?c)
+}</code></pre>
+
+<h2>query 11.4.5 str</h2>
+
+<pre><code>
+	PREFIX foaf: &lt;http://xmlns.com/foaf/0.1/&gt;
+	SELECT ?name ?mbox
+	 WHERE { ?x foaf:name  ?name ;
+							foaf:mbox  ?mbox .
+FILTER regex(str(?mbox), "@work.example") }
+</code></pre>
+
+<h2>query 11.4.7 datatype</h2>
+
+<pre><code>
+	PREFIX foaf: &lt;http://xmlns.com/foaf/0.1/&gt;
+	PREFIX xsd:  &lt;http://www.w3.org/2001/XMLSchema#&gt;
+	PREFIX eg:   &lt;http://biometrics.example/ns#&gt;
+	SELECT ?name ?shoeSize
+	 WHERE { ?x foaf:name  ?name ; eg:shoeSize  ?shoeSize .
+					 FILTER ( datatype(?shoeSize) = xsd:integer ) }
+</code></pre>
+
+<h2>query 11.4.10-q1 RDFterm-equal</h2>
+
+<pre><code>
+	PREFIX a:      &lt;http://www.w3.org/2000/10/annotation-ns#&gt;
+	PREFIX dc:     &lt;http://purl.org/dc/elements/1.1/&gt;
+	PREFIX xsd:    &lt;http://www.w3.org/2001/XMLSchema#&gt;
+
+	SELECT ?annotates
+	WHERE { ?annot  a:annotates  ?annotates .
+					?annot  dc:date      ?date .
+					FILTER ( ?date = xsd:dateTime("2004-01-01T00:00:00Z") || ?date = xsd:dateTime("2005-01-01T00:00:00Z") ) }
+</code></pre>
+
+<h2>query 11.6-q1 Extensible Value Testing</h2>
+
+<pre><code>
+	PREFIX aGeo: &lt;http://example.org/geo#&gt;
+
+	SELECT ?neighbor
+	WHERE { ?a aGeo:placeName "Grenoble" .
+					?a aGeo:location ?axLoc .
+					?a aGeo:location ?ayLoc .
+
+					?b aGeo:placeName ?neighbor .
+					?b aGeo:location ?bxLoc .
+					?b aGeo:location ?byLoc .
+
+					FILTER ( aGeo:distance(?axLoc, ?ayLoc, ?bxLoc, ?byLoc) &lt; 10 ) .
+				}
+</code></pre>
+
+The final example query is not based on the SPARQL 1.1 queries.
+
+<h2>Full Example query</h2>
+
+<pre><code>
+	base &lt;http://example.org/geo#&gt;
+	prefix geo: &lt;http://www.opengis.net/ont/geosparql#&gt;
+	prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+	select ?shape ?shapeColor ?shapeHeight ?shapeName (sample(?shapeLabel) as ?shapeLabel)  {
+		{
+			select * {
+				values (?placeName ?streetName) {
+					"Grenoble" "Paul Mistral"
+				}
+				?place geo:NamePlace ?placeName.
+				?pand geo:hasGeometry/geo:asWKT ?shape;
+			}
+
+		}
+		?pand geo:measuredHeight ?shapeHeight.
+		# Only retrieve buildings larger then 10 meters.
+		FILTER ( ?shapeHeight &lt; 10 ) .
+		BIND(IF(!bound(?EindGeldigheid5), "#22b14c", "#ed1c24" ) AS?tColor)
+		# tekst label
+		bind(concat(str(?streetName),' ',str(?houseNumber),', ',str(?PlaceName)) as ?shapeName)
+		bind("""Multi-line
+		String Element
+		""" as ?shapeLabel)
+	}
+	group by ?shape ?shapeColor ?shapeHeight ?shapeName
+	limit 10
+</code></pre>

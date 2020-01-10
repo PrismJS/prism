@@ -1,0 +1,72 @@
+<div {...foo}></div>
+<div { ...foo }></div>
+<div { ... foo }></div>
+
+----------------------------------------------------
+
+[
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"div"
+		]],
+		["spread", [
+			["punctuation", "{"],
+			["punctuation", "..."],
+			["attr-value", "foo"],
+			["punctuation", "}"]
+		]],
+		["punctuation", ">"]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"div"
+		]],
+		["punctuation", ">"]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"div"
+		]],
+		["spread", [
+			["punctuation", "{"],
+			["punctuation", "..."],
+			["attr-value", "foo"],
+			["punctuation", "}"]
+		]],
+		["punctuation", ">"]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"div"
+		]],
+		["punctuation", ">"]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"div"
+		]],
+		["spread", [
+			["punctuation", "{"],
+			["punctuation", "..."],
+			["attr-value", "foo"],
+			["punctuation", "}"]
+		]],
+		["punctuation", ">"]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"div"
+		]],
+		["punctuation", ">"]
+	]]
+]
+
+----------------------------------------------------
+
+Allow spaces in spread operator brackets in JSX tags.
