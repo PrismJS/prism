@@ -943,7 +943,9 @@ Prism.languages.js = Prism.languages.javascript;
 	var Prism = window.Prism;
 
 	var LOADING_MESSAGE = 'Loading…';
-	var FAILURE_MESSAGE = '✖ Error {status} while fetching file: {message}';
+	var FAILURE_MESSAGE = function (status, message) {
+		return '✖ Error ' + status + ' while fetching file: ' + message;
+	};
 	var FAILURE_EMPTY_MESSAGE = '✖ Error: File does not exist or is empty';
 
 	var EXTENSIONS = {
@@ -971,8 +973,7 @@ Prism.languages.js = Prism.languages.javascript;
 	});
 
 	Prism.hooks.add('before-sanity-check', function (env) {
-		/** @type {HTMLPreElement} */
-		var pre = env.element;
+		var pre = /** @type {HTMLPreElement} */ (env.element);
 		if (pre.matches(SELECTOR)) {
 			env.code = ''; // fast-path the whole thing and go to complete
 
@@ -992,7 +993,10 @@ Prism.languages.js = Prism.languages.javascript;
 				language = EXTENSIONS[extension] || extension;
 			}
 
-			// TODO: Preload language using Autoloader
+			// preload the language
+			if (Prism.plugins.autoloader) {
+				Prism.plugins.autoloader.loadLanguages(language);
+			}
 
 			// set language classes
 			code.className = 'language-' + language;
@@ -1018,7 +1022,7 @@ Prism.languages.js = Prism.languages.javascript;
 						pre.setAttribute(ATTR_FAILED, '');
 
 						if (xhr.status >= 400) {
-							code.textContent = FAILURE_MESSAGE.replace('{status}', xhr.status).replace('{message}', xhr.statusText);
+							code.textContent = FAILURE_MESSAGE(xhr.status, xhr.statusText);
 						} else {
 							code.textContent = FAILURE_EMPTY_MESSAGE;
 						}
@@ -1035,7 +1039,7 @@ Prism.languages.js = Prism.languages.javascript;
 		 *
 		 * Note: Elements which are already loaded or currently loading will not be touched by this method.
 		 *
-		 * @param {Element | Document} [container=document]
+		 * @param {ParentNode} [container=document]
 		 */
 		highlight: function highlight(container) {
 			var elements = (container || document).querySelectorAll(SELECTOR);

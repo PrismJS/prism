@@ -68,7 +68,9 @@
 			adapter = getAdapter(adapter);
 		}
 		if (typeof adapter === "function") {
-			var index = adapters.map(function (item) { return item.adapter; }).indexOf(adapter);
+			var index = adapters.findIndex(function (item) {
+				return item.adapter === adapter;
+			});
 			if (index >= 0) {
 				adapters.splice(index, 1);
 			}
@@ -126,8 +128,12 @@
 	var jsonpCallbackCounter = 0;
 
 	var LOADING_MESSAGE = 'Loading…';
-	var MISSING_ADAPTER_MESSAGE = '✖ Error: JSONP adapter function "{name}" doesn\'t exist';
-	var TIMEOUT_MESSAGE = '✖ Error: Timeout loading {url}';
+	var MISSING_ADAPTER_MESSAGE = function (name) {
+		return '✖ Error: JSONP adapter function "' + name + '" doesn\'t exist';
+	};
+	var TIMEOUT_MESSAGE = function (url) {
+		return '✖ Error: Timeout loading ' + url;
+	};
 	var UNKNOWN_FAILURE_MESSAGE = '✖ Error: Cannot parse response (perhaps you need an adapter function?)';
 
 	var ATTR_LOADING = 'data-jsonp-loading';
@@ -141,8 +147,7 @@
 	});
 
 	Prism.hooks.add('before-sanity-check', function (env) {
-		/** @type {HTMLPreElement} */
-		var pre = env.element;
+		var pre = /** @type {HTMLPreElement} */ (env.element);
 		if (pre.matches(SELECTOR)) {
 			env.code = ''; // fast-path the whole thing and go to complete
 
@@ -169,7 +174,7 @@
 					pre.removeAttribute(ATTR_LOADING);
 					pre.setAttribute(ATTR_FAILED, '');
 
-					code.textContent = MISSING_ADAPTER_MESSAGE.replace('{name}', adapterName);
+					code.textContent = MISSING_ADAPTER_MESSAGE(adapterName);
 					return;
 				}
 			}
@@ -188,7 +193,7 @@
 				pre.removeAttribute(ATTR_LOADING);
 				pre.setAttribute(ATTR_FAILED, '');
 
-				code.textContent = TIMEOUT_MESSAGE.replace('{url}', src);
+				code.textContent = TIMEOUT_MESSAGE(src);
 			}, Prism.plugins.jsonphighlight.timeout);
 
 
