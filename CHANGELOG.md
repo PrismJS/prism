@@ -1,6 +1,6 @@
 # Prism Changelog
 
-## 1.18.1 (TBD)
+## 1.19.0 (TBD)
 
 
 ### New components
