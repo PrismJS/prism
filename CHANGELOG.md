@@ -2,7 +2,6 @@
 
 ## 1.19.0 (TBD)
 
-
 ### New components
 
 * __Latte__ ([#2140](https://github.com/PrismJS/prism/issues/2140)) [`694a81b8`](https://github.com/PrismJS/prism/commit/694a81b8)
