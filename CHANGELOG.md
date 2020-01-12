@@ -17,6 +17,8 @@
     * Better regex detection ([#2158](https://github.com/PrismJS/prism/issues/2158)) [`a23d8f84`](https://github.com/PrismJS/prism/commit/a23d8f84)
 * __Markdown__
     * Better language detection for code blocks ([#2114](https://github.com/PrismJS/prism/issues/2114)) [`d7ad48f9`](https://github.com/PrismJS/prism/commit/d7ad48f9)
+* __OCaml__
+    * Improvements ([#2179](https://github.com/PrismJS/prism/issues/2179)) [`2a570fd4`](https://github.com/PrismJS/prism/commit/2a570fd4)
 * __PHP__
     * Fixed exponential runtime of a pattern ([#2157](https://github.com/PrismJS/prism/issues/2157)) [`24c8f833`](https://github.com/PrismJS/prism/commit/24c8f833)
 * __React JSX__
@@ -45,6 +47,7 @@
 * Added silent option to `loadLanguages` ([#2147](https://github.com/PrismJS/prism/issues/2147)) [`191b4116`](https://github.com/PrismJS/prism/commit/191b4116)
 * __Infrastructure__
     * Dependencies: Improved `getLoader` ([#2151](https://github.com/PrismJS/prism/issues/2151)) [`199bdcae`](https://github.com/PrismJS/prism/commit/199bdcae)
+    * Updated gulp to v4.0.2 ([#2178](https://github.com/PrismJS/prism/issues/2178)) [`e5678a00`](https://github.com/PrismJS/prism/commit/e5678a00)
 * __Website__
     * Custom Class: Fixed examples ([#2160](https://github.com/PrismJS/prism/issues/2160)) [`0c2fe405`](https://github.com/PrismJS/prism/commit/0c2fe405)
     * Added documentation for new dependency API ([#2141](https://github.com/PrismJS/prism/issues/2141)) [`59068d67`](https://github.com/PrismJS/prism/commit/59068d67)
