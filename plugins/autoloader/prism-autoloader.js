@@ -61,6 +61,11 @@
 		"jsonp": "json",
 		"json5": "json",
 		"kotlin": "clike",
+		"latte": [
+			"clike",
+			"markup-templating",
+			"php"
+		],
 		"less": "css",
 		"lilypond": "scheme",
 		"markdown": "markup",
@@ -86,6 +91,7 @@
 			"markup",
 			"javascript"
 		],
+		"qml": "javascript",
 		"qore": "clike",
 		"jsx": [
 			"markup",

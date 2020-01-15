@@ -1,6 +1,58 @@
 # Prism Changelog
 
-## 1.18.0 (TBD)
+## 1.19.0 (2020-01-13)
+
+### New components
+
+* __Latte__ ([#2140](https://github.com/PrismJS/prism/issues/2140)) [`694a81b8`](https://github.com/PrismJS/prism/commit/694a81b8)
+* __Neon__ ([#2140](https://github.com/PrismJS/prism/issues/2140)) [`694a81b8`](https://github.com/PrismJS/prism/commit/694a81b8)
+* __QML__ ([#2139](https://github.com/PrismJS/prism/issues/2139)) [`c40d96c6`](https://github.com/PrismJS/prism/commit/c40d96c6)
+
+### Updated components
+
+* __Handlebars__
+    * Added support for `:` and improved the `variable` pattern ([#2172](https://github.com/PrismJS/prism/issues/2172)) [`ef4d29d9`](https://github.com/PrismJS/prism/commit/ef4d29d9)
+* __JavaScript__
+    * Added support for keywords after a spread operator ([#2148](https://github.com/PrismJS/prism/issues/2148)) [`1f3f8929`](https://github.com/PrismJS/prism/commit/1f3f8929)
+    * Better regex detection ([#2158](https://github.com/PrismJS/prism/issues/2158)) [`a23d8f84`](https://github.com/PrismJS/prism/commit/a23d8f84)
+* __Markdown__
+    * Better language detection for code blocks ([#2114](https://github.com/PrismJS/prism/issues/2114)) [`d7ad48f9`](https://github.com/PrismJS/prism/commit/d7ad48f9)
+* __OCaml__
+    * Improvements ([#2179](https://github.com/PrismJS/prism/issues/2179)) [`2a570fd4`](https://github.com/PrismJS/prism/commit/2a570fd4)
+* __PHP__
+    * Fixed exponential runtime of a pattern ([#2157](https://github.com/PrismJS/prism/issues/2157)) [`24c8f833`](https://github.com/PrismJS/prism/commit/24c8f833)
+* __React JSX__
+    * Improved spread operator in tag attributes ([#2159](https://github.com/PrismJS/prism/issues/2159)) [`fd857e7b`](https://github.com/PrismJS/prism/commit/fd857e7b)
+    * Made `$` a valid character for attribute names ([#2144](https://github.com/PrismJS/prism/issues/2144)) [`f018cf04`](https://github.com/PrismJS/prism/commit/f018cf04)
+* __Reason__
+    * Added support for single line comments ([#2150](https://github.com/PrismJS/prism/issues/2150)) [`7f1c55b7`](https://github.com/PrismJS/prism/commit/7f1c55b7)
+* __Ruby__
+    * Override 'class-name' definition ([#2135](https://github.com/PrismJS/prism/issues/2135)) [`401d4b02`](https://github.com/PrismJS/prism/commit/401d4b02)
+* __SAS__
+    * Added CASL support ([#2112](https://github.com/PrismJS/prism/issues/2112)) [`99d979a0`](https://github.com/PrismJS/prism/commit/99d979a0)
+
+### Updated plugins
+
+* __Custom Class__
+    * Fixed TypeError when mapper is undefined ([#2167](https://github.com/PrismJS/prism/issues/2167)) [`543f04d7`](https://github.com/PrismJS/prism/commit/543f04d7)
+
+### Updated themes
+
+* Added missing `.token` selector ([#2161](https://github.com/PrismJS/prism/issues/2161)) [`86780457`](https://github.com/PrismJS/prism/commit/86780457)
+
+### Other
+
+* Added a check for redundant dependency declarations ([#2142](https://github.com/PrismJS/prism/issues/2142)) [`a06aca06`](https://github.com/PrismJS/prism/commit/a06aca06)
+* Added a check for examples ([#2128](https://github.com/PrismJS/prism/issues/2128)) [`0b539136`](https://github.com/PrismJS/prism/commit/0b539136)
+* Added silent option to `loadLanguages` ([#2147](https://github.com/PrismJS/prism/issues/2147)) [`191b4116`](https://github.com/PrismJS/prism/commit/191b4116)
+* __Infrastructure__
+    * Dependencies: Improved `getLoader` ([#2151](https://github.com/PrismJS/prism/issues/2151)) [`199bdcae`](https://github.com/PrismJS/prism/commit/199bdcae)
+    * Updated gulp to v4.0.2 ([#2178](https://github.com/PrismJS/prism/issues/2178)) [`e5678a00`](https://github.com/PrismJS/prism/commit/e5678a00)
+* __Website__
+    * Custom Class: Fixed examples ([#2160](https://github.com/PrismJS/prism/issues/2160)) [`0c2fe405`](https://github.com/PrismJS/prism/commit/0c2fe405)
+    * Added documentation for new dependency API ([#2141](https://github.com/PrismJS/prism/issues/2141)) [`59068d67`](https://github.com/PrismJS/prism/commit/59068d67)
+
+## 1.18.0 (2020-01-04)
 
 ### New components
 

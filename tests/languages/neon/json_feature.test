@@ -1,0 +1,39 @@
+[
+	[true,false, null],
+{
+	"A": "/*",
+	"B": "B",
+	"foo": 1,
+	"b\"ar":{"bar":1},
+	"baz":"\""
+},
+	[0, 123, 3.14159, 5.0e8, 0.2E+2, 47e-5],
+	[
+	"" , "foo\"bar\"baz", "\u2642\\ "
+	]
+]
+
+----------------------------------------------------
+
+[
+	["punctuation", "["],
+	["punctuation", "["], ["boolean", "true"], ["punctuation", ","], ["boolean", "false"], ["punctuation", ","], ["null", "null"], ["punctuation", "]"], ["punctuation", ","],
+	["punctuation", "{"],
+		["string", "\"A\""], ["punctuation", ":"], ["string", "\"/*\""], ["punctuation", ","],
+		["string", "\"B\""], ["punctuation", ":"], ["string", "\"B\""], ["punctuation", ","],
+		["string", "\"foo\""], ["punctuation", ":"], ["number", "1"], ["punctuation", ","],
+		["string", "\"b\\\"ar\""], ["punctuation", ":"],["punctuation", "{"], ["string", "\"bar\""], ["punctuation", ":"], ["number", "1"], ["punctuation", "}"], ["punctuation", ","],
+		["string", "\"baz\""], ["punctuation", ":"], ["string", "\"\\\"\""],
+	["punctuation", "}"], ["punctuation", ","],
+	["punctuation", "["],
+		["number", "0"], ["punctuation", ","], ["number", "123"], ["punctuation", ","], ["number", "3.14159"], ["punctuation", ","], ["number", "5.0e8"], ["punctuation", ","], ["number", "0.2E+2"], ["punctuation", ","], ["number", "47e-5"],
+	["punctuation", "]"], ["punctuation", ","],
+	["punctuation", "["], 
+		["string", "\"\""], ["punctuation", ","], ["string", "\"foo\\\"bar\\\"baz\""], ["punctuation", ","], ["string", "\"\\u2642\\\\ \""], ["punctuation", "]"],
+	["punctuation", "]"]
+]
+
+
+----------------------------------------------------
+
+Checks for JSON superset.

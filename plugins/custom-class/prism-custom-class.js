@@ -88,7 +88,7 @@
 		}
 
 		env.classes = env.classes.map(function (c) {
-			return prefixString + mapper ? mapper(c, env.language) : c;
+			return prefixString + (mapper ? mapper(c, env.language) : c);
 		});
 	});
 
