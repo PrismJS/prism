@@ -18,7 +18,7 @@ async function doBenchmark(config) {
 	const maxCandidateNameLength = candidates.reduce((a, c) => Math.max(a, c.name.length), 0);
 
 	console.log(`Found ${cases.length} cases with ${totalNumberOfCaseFiles} files in total.`);
-	console.log(`Test ${candidates.length} candidates on ${config.options.testFunction}`);
+	console.log(`Test ${candidates.length} candidates with Prism.${config.options.testFunction}`);
 	const ert = candidates.length * totalNumberOfCaseFiles * config.options.maxTime;
 	console.log(`Estimated duration: ${Math.floor(ert / 60)}m ${Math.floor(ert % 60)}s`);
 
@@ -96,7 +96,7 @@ async function doBenchmark(config) {
 	console.log(`\x1b[90m${'-'.repeat(60)}\x1b[0m`);
 	console.log();
 	console.log('summary');
-	console.log(`${' '.repeat(maxCandidateNameLength + 2)}  \x1b[90mbest  worst  avg rel  avg rel norm\x1b[0m`);
+	console.log(`${' '.repeat(maxCandidateNameLength + 2)}  \x1b[90mbest  worst  relative\x1b[0m`);
 
 	totalSummary.forEach(s => {
 		s.avgRelative = s.relative.reduce((a, c) => a + c, 0) / s.relative.length;
@@ -104,14 +104,12 @@ async function doBenchmark(config) {
 	const minAvgRelative = totalSummary.reduce((a, c) => Math.min(a, c.avgRelative), Infinity);
 
 	totalSummary.forEach((s, i) => {
-		const name = candidates[i].name.padEnd(maxCandidateNameLength, " ");
+		const name = candidates[i].name.padEnd(maxCandidateNameLength, ' ');
 		const best = String(s.best).padStart('best'.length);
 		const worst = String(s.worst).padStart('worst'.length);
+		const relative = ((s.avgRelative / minAvgRelative).toFixed(2) + 'x').padStart('relative'.length);
 
-		const relative = (s.avgRelative.toFixed(2) + 'x').padStart('avg rel'.length);
-		const relativeNorm = ((s.avgRelative / minAvgRelative).toFixed(2) + 'x').padStart('avg rel norm'.length);
-
-		console.log(`  ${name}  ${best}  ${worst}  ${relative}  ${relativeNorm}`);
+		console.log(`  ${name}  ${best}  ${worst}  ${relative}`);
 	});
 }
 
