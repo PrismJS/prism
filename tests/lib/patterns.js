@@ -95,6 +95,13 @@ describe('prism-patterns', function () {
 			);
 		});
 
+		it('should ignore escaped and invalid placeholders', function () {
+			assertPattern(
+				template(/\<<0>><<foo>><<0\>>[<<0>>]/.source, ['bar']),
+				/\<<0>><<foo>><<0\>>[<<0>>]/
+			);
+		});
+
 		it('should throw for contradictory flags', function () {
 			assert.throw(() => {
 				template(pattern('<<0>>', { i: true }), [
@@ -163,18 +170,19 @@ describe('prism-patterns', function () {
 	describe('nested', function () {
 
 		it('should work for patterns without groups', function () {
-			assertPattern(nested(/[^{}]|{<<self>>*}/.source, 1), /[^{}]|{(?:[^{}]|{[^\s\S]*})*}/);
-			assertPattern(nested(pattern(/[^{}]|{<<self>>*}/.source), 1), /[^{}]|{(?:[^{}]|{[^\s\S]*})*}/);
-			assertPattern(nested(pattern(/[^{}]|{<<self>>*}/.source, { i: true }), 1), /[^{}]|{(?:[^{}]|{[^\s\S]*})*}/i);
+			assertPattern(nested(/[^{}]|{<<self>>*}/.source, 1), /[^{}]|{(?:[^{}]|{(?:[^\s\S])*})*}/);
+			assertPattern(nested(pattern(/[^{}]|{<<self>>*}/.source), 1), /[^{}]|{(?:[^{}]|{(?:[^\s\S])*})*}/);
+			assertPattern(nested(pattern(/[^{}]|{<<self>>*}/.source, { i: true }), 1), /[^{}]|{(?:[^{}]|{(?:[^\s\S])*})*}/i);
 		});
 
-		it('should throw for capturing groups, backreferences, and octal escapes', function () {
-			assert.throw(() => {
-				nested(/([^{}])|{<<self>>*}/.source);
-			});
-			assert.throw(() => {
-				nested(/([^{}])\1|{<<self>>*}/.source);
-			});
+		it('should work for patterns with capturing groups and backreferences', function () {
+			assertPattern(
+				nested(/[^{}"']|(["'])(?:(?!\1)[^\\]|\\.)\1|{<<self>>*}/.source, 1),
+				/[^{}"']|(["'])(?:(?!\1)[^\\]|\\.)\1|{(?:[^{}"']|(["'])(?:(?!\2)[^\\]|\\.)\2|{(?:[^\s\S])*})*}/
+			);
+		});
+
+		it('should throw for octal escapes', function () {
 			assert.throw(() => {
 				nested(/[^{}]\1|{<<self>>*}/.source);
 			});

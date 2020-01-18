@@ -97,12 +97,14 @@
 	 * Replaces all placeholders in the given pattern with the associated replacement in the given replacement array
 	 * and returns the result as a new pattern.
 	 *
-	 * Placeholder have to be of the form `<<\d+>>` where the number is the index of a replacement in the replacement
-	 * array. The pattern of each inserted replacement will be wrapped with a non-capturing group. Backreferences in
+	 * Placeholder have to be of the form `<<placeholder>>` where the placeholder is the given placeholder pattern. The
+	 * matched string by the placeholder will be the key in the replacements record to get the associated replacement.
+	 *
+	 * The pattern of each inserted replacement will be wrapped with a non-capturing group. Backreferences in
 	 * the given pattern and inserted replacements will be adjusted, so that they still reference the same group as
 	 * before this operation.
 	 *
-	 * Escaped placeholders (e.g. `\<<2>>` or `<<3>\>`), placeholders inside character classes (e.g. `[a-z<<2>>]`), and
+	 * Escaped placeholders (e.g. `\<<2>>` or `<<foo>\>`), placeholders inside character classes (e.g. `[a-z<<2>>]`), and
 	 * placeholders in replacements will not be replaced.
 	 *
 	 * If the flags of any two replacements or of the given pattern are contradictory (e.g. the given pattern requires
@@ -110,11 +112,13 @@
 	 * not allowed to use octal escapes (e.g. `\2` in `/(a)\2/i`) and backreferences cannot be declared before the
 	 * referenced capturing group (e.g. `/\1(a)/` is not allowed).
 	 *
+	 * Note: This method will __NOT__ verify whether any of the given patterns are valid regular expressions.
+	 *
 	 * @param {string | Pattern} pattern
-	 * @param {(string | Pattern)[]} replacements
-	 * @returns {Pattern}
+	 * @param {string} placeholder The placeholder pattern. This regular expression cannot contain capturing groups.
+	 * @param {Readonly<Record<number, string | Pattern>> | Readonly<Record<string, string | Pattern>>} replacements
 	 */
-	function template(pattern, replacements) {
+	function generalTemplate(pattern, placeholder, replacements) {
 		/** @type {string} */
 		var source;
 		/** @type {MutableFlags} */
@@ -125,21 +129,6 @@
 		} else {
 			source = pattern.source;
 			flags = pattern.flags;
-		}
-
-		if (!Prism.MIN) {
-			// This will verify that the template pattern and every replacement are valid regular expressions.
-			// This is done here to catch errors early since otherwise mistakes in patterns will only result in errors
-			// when converting to RegExp which may be many steps down the line.
-			RegExp(source);
-
-			replacements.forEach(function (rep) {
-				if (typeof rep === 'string') {
-					RegExp(rep);
-				} else {
-					RegExp(rep.source);
-				}
-			});
 		}
 
 		/** Whether the current flags set is actually mutable. */
@@ -285,7 +274,7 @@
 			return '\\' + newRef;
 		}
 
-		source = replaceSource(source, '<<(\\d+)>>',
+		source = replaceSource(source, '<<(' + placeholder + ')>>',
 			/**
 			 * @param {string} m
 			 * @param {string} [key]
@@ -310,17 +299,33 @@
 	}
 
 	/**
-	 * @param {string} source
-	 * @param {number} depth
-	 * @returns {string}
+	 * This is a specialization of the general template method for arrays.
+	 *
+	 * Only number placeholders (e.g. `<<0>>` and `<<12>>` but not `<<01>>`) will be valid.
+	 *
+	 * @param {string | Pattern} pattern
+	 * @param {readonly (string | Pattern)[]} replacements
+	 * @returns {Pattern}
 	 */
-	function nestedSource(source, depth) {
-		var re = /<<self>>/g;
-		if (depth >= 1) {
-			return source.replace(re, '(?:' + nestedSource(source, depth - 1) + ')');
-		} else {
-			return source.replace(re, '[^\\s\\S]');
+	function template(pattern, replacements) {
+		if (!Prism.MIN) {
+			// Verify that the pattern is a valid regular expression.
+			if (typeof pattern === 'string') {
+				RegExp(pattern);
+			} else {
+				RegExp(pattern.source);
+			}
+
+			// Verify that all replacements are valid regular expressions.
+			replacements.forEach(function (r) {
+				if (typeof r === 'string') {
+					RegExp(r);
+				} else {
+					RegExp(r.source);
+				}
+			});
 		}
+		return generalTemplate(pattern, '0|[1-9]\\d*', replacements);
 	}
 
 	/**
@@ -329,39 +334,22 @@
 	 *
 	 * This operation does not changes the flags of the pattern.
 	 *
-	 * Note: This operation does not support capturing groups and backreferences.
-	 *
 	 * @param {string | Pattern} pattern
 	 * @param {number} depth
 	 * @returns {Pattern}
 	 */
 	function nested(pattern, depth) {
-		if (typeof pattern === 'string') {
-			pattern = p(pattern);
-		}
-
-
 		if (!Prism.MIN) {
-			var source = pattern.source;
-
-			// Verify that the pattern is correct.
-			RegExp(source);
-
-			// The pattern's source is not allowed to contain capturing groups or backreferences.
-			replaceSource(source, '',
-				function (m, backRef, group) {
-					if (group) {
-						throw new Error('Capturing groups are not allowed in the nested pattern /' + source + '/');
-					}
-					if (backRef) {
-						throw new Error('Back references are not allowed in the nested pattern /' + source + '/');
-					}
-					return m;
-				}
-			)
+			// Verify that the pattern is a valid regular expression.
+			if (typeof pattern === 'string') {
+				RegExp(pattern);
+			} else {
+				RegExp(pattern.source);
+			}
 		}
 
-		return p(nestedSource(pattern.source, depth), pattern.flags);
+		var replacement = depth >= 1 ? nested(pattern, depth - 1) : '[^\\s\\S]';
+		return generalTemplate(pattern, 'self', { self: replacement });
 	}
 
 	// exports
