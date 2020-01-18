@@ -173,6 +173,24 @@ describe('prism-patterns', function () {
 			assertPattern(nested(/[^{}]|{<<self>>*}/.source, 1), /[^{}]|{(?:[^{}]|{(?:[^\s\S])*})*}/);
 			assertPattern(nested(pattern(/[^{}]|{<<self>>*}/.source), 1), /[^{}]|{(?:[^{}]|{(?:[^\s\S])*})*}/);
 			assertPattern(nested(pattern(/[^{}]|{<<self>>*}/.source, { i: true }), 1), /[^{}]|{(?:[^{}]|{(?:[^\s\S])*})*}/i);
+
+			// verify that the implementation doesn't blow up the pattern exponentially
+			assertPattern(
+				nested(/a|<<self>>/.source, 0),
+				/a|(?:[^\s\S])/
+			);
+			assertPattern(
+				nested(/a|<<self>>/.source, 1),
+				/a|(?:a|(?:[^\s\S]))/
+			);
+			assertPattern(
+				nested(/a|<<self>>/.source, 2),
+				/a|(?:a|(?:a|(?:[^\s\S])))/
+			);
+			assertPattern(
+				nested(/a|<<self>>/.source, 3),
+				/a|(?:a|(?:a|(?:a|(?:[^\s\S]))))/
+			);
 		});
 
 		it('should work for patterns with capturing groups and backreferences', function () {
