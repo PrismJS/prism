@@ -719,6 +719,10 @@
 			"title": "Pascaligo",
 			"owner": "DefinitelyNotAGoat"
 		},
+		"patterns": {
+			"title": "Patterns",
+			"owner": "RunDevelopment"
+		},
 		"pcaxis": {
 			"title": "PC-Axis",
 			"alias": "px",

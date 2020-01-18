@@ -7,12 +7,13 @@
   "scripts": {
     "test:aliases": "mocha tests/aliases-test.js",
     "test:core": "mocha tests/core/**/*.js",
+    "test:lib": "mocha tests/lib/**/*.js",
     "test:dependencies": "mocha tests/dependencies-test.js",
     "test:languages": "mocha tests/run.js",
     "test:patterns": "mocha tests/pattern-tests.js",
     "test:plugins": "mocha tests/plugins/**/*.js",
     "test:runner": "mocha tests/testrunner-tests.js",
-    "test": "npm run test:runner && npm run test:core && npm run test:dependencies && npm run test:languages && npm run test:plugins && npm run test:aliases && npm run test:patterns"
+    "test": "npm run test:runner && npm run test:core && npm run test:lib && npm run test:dependencies && npm run test:languages && npm run test:plugins && npm run test:aliases && npm run test:patterns"
   },
   "repository": {
     "type": "git",

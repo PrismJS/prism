@@ -47,7 +47,12 @@ function inlineRegexSource() {
 function minifyJS() {
 	return [
 		inlineRegexSource(),
-		uglify()
+		replace(/\bPrism.MIN\b/g, 'true'),
+		uglify({
+			compress: {
+				dead_code: true
+			}
+		})
 	];
 }
 
