@@ -154,26 +154,36 @@ class Works : LandAnimal {
 	["punctuation", ";"],
 	["punctuation", "}"],
 	["punctuation", "["],
-	["class-name", [
-		"Required"
+	["attribute", [
+		["class-name", [
+			"Required"
+		]]
 	]],
 	["punctuation", "]"],
 	["punctuation", "["],
-	["class-name", [
-		"RequiredAttribute"
+	["attribute", [
+		["class-name", [
+			"RequiredAttribute"
+		]],
+		["attribute-arguments", [
+			["punctuation", "("],
+			["punctuation", ")"]
+		]]
 	]],
-	["punctuation", "("],
-	["punctuation", ")"],
 	["punctuation", "]"],
 	["punctuation", "["],
-	["class-name", [
-		"Range"
+	["attribute", [
+		["class-name", [
+			"Range"
+		]],
+		["attribute-arguments", [
+			["punctuation", "("],
+			["number", "1"],
+			["punctuation", ","],
+			["number", "10"],
+			["punctuation", ")"]
+		]]
 	]],
-	["punctuation", "("],
-	["number", "1"],
-	["punctuation", ","],
-	["number", "10"],
-	["punctuation", ")"],
 	["punctuation", "]"]
 ]
 

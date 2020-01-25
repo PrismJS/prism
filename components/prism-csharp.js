@@ -105,14 +105,6 @@
 		],
 		'class-name': [
 			{
-				// Attributes
-				// [Foo], [Foo(Bar)], [return: Foo(Bar)]
-				pattern: re('', /((?:^|[^\s\w>?])\s*\[\s*(?:return\s*:\s*)?)<<0>>/.source, [identifier]),
-				lookbehind: true,
-				greedy: true, // it's greedy because it has to be able to see the characters before `[`
-				inside: typeInside
-			},
-			{
 				// Using static
 				// using static System.Math;
 				pattern: re('', /(\busing\s+static\s+)<<0>>(?=\s*;)/.source, [identifier]),
@@ -180,6 +172,14 @@
 		'range': {
 			pattern: /\.\./,
 			alias: 'operator'
+		}
+	});
+
+	Prism.languages.insertBefore('csharp', 'punctuation', {
+		'named-parameter': {
+			pattern: re('', /([(,]\s*)<<0>>(?=\s*:)/.source, [name]),
+			lookbehind: true,
+			alias: 'punctuation'
 		}
 	});
 
@@ -266,27 +266,47 @@
 		}
 	});
 
-	Prism.languages.insertBefore('csharp', 'number', {
-		'range': {
-			pattern: /\.\./,
-			alias: 'operator'
-		}
-	});
+	// attributes
+	var regularStringOrCharacter = regularString + '|' + character;
+	var regularStringCharacterOrComment = replace(/\/(?![*/])|\/\/[^\r\n]*[\r\n]|\/\*[\s\S]*?\*\/|<<0>>/.source, [regularStringOrCharacter]);
+	var roundExpression = nested(replace(/[^"'/()]|<<0>>|\(<<self>>*\)/.source, [regularStringCharacterOrComment]), 2);
 
-	Prism.languages.insertBefore('csharp', 'punctuation', {
-		'named-parameter': {
-			pattern: re('', /([(,]\s*)<<0>>(?=\s*:)/.source, [name]),
+	// https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/attributes/#attribute-targets
+	var attrTarget = /\b(?:assembly|event|field|method|module|param|property|return|type)\b/.source;
+	var attr = replace(/<<0>>(?:\s*\(<<1>>*\))?/.source, [identifier, roundExpression]);
+
+	Prism.languages.insertBefore('csharp', 'class-name', {
+		'attribute': {
+			// Attributes
+			// [Foo], [Foo(1), Bar(2, Prop = "foo")], [return: Foo(1), Bar(2)], [assembly: Foo(Bar)]
+			pattern: re('', /((?:^|[^\s\w>?])\s*\[\s*)(?:<<0>>\s*:\s*)?<<1>>(?:\s*,\s*<<1>>)*(?=\s*\])/.source, [attrTarget, attr]),
 			lookbehind: true,
-			alias: 'punctuation'
+			greedy: true,
+			inside: {
+				'target': {
+					pattern: re('', /^<<0>>(?=\s*:)/.source, [attrTarget]),
+					alias: 'keyword'
+				},
+				'attribute-arguments': {
+					pattern: re('', /\(<<0>>*\)/.source, [roundExpression]),
+					inside: Prism.languages.csharp
+				},
+				'class-name': {
+					pattern: RegExp(identifier),
+					inside: {
+						'punctuation': /\./
+					}
+				},
+				'punctuation': /[:,]/
+			}
 		}
 	});
 
 
 	// string interpolation
-	var regularStringOrCharacter = regularString + '|' + character;
 	var formatString = /:[^}\r\n]+/.source;
 	// multi line
-	var mInterpolationRound = nested(replace(/[^"'/()]|\/(?![*/])|\/\/[^\r\n]*[\r\n]|\/\*[\s\S]*?\*\/|<<0>>|\(<<self>>*\)/.source, [regularStringOrCharacter]), 2)
+	var mInterpolationRound = nested(replace(/[^"'/()]|<<0>>|\(<<self>>*\)/.source, [regularStringCharacterOrComment]), 2)
 	var mInterpolation = replace(/\{(?!\{)(?:(?![}:])<<0>>)*<<1>>?\}/.source, [mInterpolationRound, formatString]);
 	// single line
 	var sInterpolationRound = nested(replace(/[^"'/()]|\/(?!\*)|\/\*.*?\*\/|<<0>>|\(<<self>>*\)/.source, [regularStringOrCharacter]), 2)
