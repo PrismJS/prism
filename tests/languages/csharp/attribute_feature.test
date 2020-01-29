@@ -22,6 +22,7 @@
 var a = d
 [Foo];
 var b = new Foo<int>?[Count];
+var c = new (int, int)[Count];
 
 ----------------------------------------------------
 
@@ -228,6 +229,23 @@ var b = new Foo<int>?[Count];
 		["keyword", "int"],
 		["punctuation", ">"],
 		["punctuation", "?"]
+	]],
+	["punctuation", "["],
+	"Count",
+	["punctuation", "]"],
+	["punctuation", ";"],
+	["class-name", [
+		["keyword", "var"]
+	]],
+	" c ",
+	["operator", "="],
+	["keyword", "new"],
+	["constructor-invocation", [
+		["punctuation", "("],
+		["keyword", "int"],
+		["punctuation", ","],
+		["keyword", "int"],
+		["punctuation", ")"]
 	]],
 	["punctuation", "["],
 	"Count",
