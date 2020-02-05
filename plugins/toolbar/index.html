@@ -35,6 +35,8 @@
 
 	<pre><code>&lt;template id=&quot;my-label-button&quot;&gt;&lt;button onclick=&quot;console.log('This is an inline-handler');&quot;&gt;My button&lt;/button&gt;&lt;/template&gt;</code></pre>
 
+	<h2>Registering buttons</h2>
+
 	<p>For more flexibility, the Toolbar exposes a JavaScript function that can be used to register new buttons or labels to the Toolbar,
 		<code>Prism.plugins.toolbar.registerButton</code>.</p>
 
@@ -78,11 +80,44 @@
 
 	<p>The above function creates the Select Code button you see, and when you click it, the code gets highlighted.</p>
 
+	<h2>Reorder buttons</h2>
+
 	<p>By default, the buttons will be added to the code snippet in the order they were registered. If more control over
 		the order is needed, an HTML attribute can be added to the <code>body</code> tag with a comma-separated string indicating the
 		order.</p>
 
 	<pre><code>&lt;body data-toolbar-order="select-code,hello-world,label"&gt;</code></pre>
+
+	<h2>Disable buttons</h2>
+
+	<p>By default, all buttons are enabled for all code blocks, but sometime you want to disable a specific plugin for a certain code block. This can be done via the <code>data-toolbar-disable</code> attribute which takes a comma-separated list.</p>
+
+	<pre><code data-toolbar-disable="select-code">&lt;pre>&lt;code data-toolbar-disable="select-code">&lt;/code>&lt;/pre></code></pre>
+
+	<p>The <code>data-toolbar-disable</code> attribute is inherited, so you could add <code>data-toolbar-disable="*"</code> to the <code>&lt;body></code> of your page and the selectively re-enable buttons with the <code>data-toolbar-enable</code> attribute (also inherited). Setting an element's attribute value of <code>data-toolbar-disable</code>/<code>data-toolbar-enable</code> to <code>"*"</code> will disable/enable all buttons for code blocks in the element.</p>
+
+	<pre data-toolbar-disable="*"><code data-toolbar-enable="select-code">&lt;body data-toolbar-disable="*">
+	&lt;!-- All buttons are disabled -->
+	&lt;pre>&lt;code>&lt;/code>&lt;/pre>
+
+	&lt;!-- Enable "select-code" for the following code block -->
+	&lt;pre data-toolbar-enable="select-code">&lt;code>&lt;/code>&lt;/pre>
+
+	&lt;!-- Enable "copy-to-clipboard" for the whole div -->
+	&lt;div data-toolbar-enable="copy-to-clipboard">
+
+		&lt;!-- Enable "select-code" and "copy-to-clipboard" for the following code block -->
+		&lt;pre data-toolbar-enable="select-code">&lt;code>&lt;/code>&lt;/pre>
+
+		&lt;!-- Enable "select-code" but not "copy-to-clipboard" for the following code block -->
+		&lt;pre data-toolbar-enable="select-code" data-toolbar-disable="copy-to-clipboard">&lt;code>&lt;/code>&lt;/pre>
+
+		&lt;!-- Enable all buttons but "select-code" for the following code block -->
+		&lt;pre data-toolbar-enable="*">&lt;code data-toolbar-disable="select-code">&lt;/code>&lt;/pre>
+	&lt;/div>
+&lt;body></code></pre>
+
+	<p><strong>Note: </strong> If a button is included by both the <code>data-toolbar-enable</code> attribute and <code>data-toolbar-disable</code> attribute of one element, it will be enabled.</p>
 </section>
 
 <footer data-src="templates/footer.html" data-type="text/html"></footer>

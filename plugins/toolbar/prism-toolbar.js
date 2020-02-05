@@ -3,13 +3,11 @@
 		return;
 	}
 
-	var callbacks = [];
-	var map = {};
-	var noop = function() {};
-
-	Prism.plugins.toolbar = {};
-
 	/**
+	 * @callback ButtonCallback
+	 * @param {any} env The environment of the "complete" hook.
+	 * @returns {Element | undefined | null}
+	 *
 	 * @typedef ButtonOptions
 	 * @property {string} text The text displayed.
 	 * @property {string} [url] The URL of the link which will be created.
@@ -17,11 +15,18 @@
 	 * @property {string} [className] The class attribute to include with element.
 	 */
 
+	/** @type {{ key: string; call: ButtonCallback }[]} */
+	var callbacks = [];
+	var map = {};
+	var noop = function() {};
+
+	Prism.plugins.toolbar = {};
+
 	/**
 	 * Register a button callback with the toolbar.
 	 *
 	 * @param {string} key
-	 * @param {ButtonOptions|Function} opts
+	 * @param {ButtonOptions | ButtonCallback} opts
 	 */
 	var registerButton = Prism.plugins.toolbar.registerButton = function (key, opts) {
 		var callback;
@@ -60,8 +65,52 @@
 			return;
 		}
 
-		callbacks.push(map[key] = callback);
+		callbacks.push({ key: key, call: map[key] = callback });
 	};
+
+	/**
+	 * Returns a list of disabled buttons.
+	 *
+	 * @param {HTMLElement} element
+	 * @returns {{ [key: string]: true }}
+	 */
+	function getDisabled(element) {
+		var stack = [];
+		while (element) {
+			stack.push(element);
+			element = element.parentElement;
+		}
+
+		/** @type {{ [key: string]: true }} */
+		var disabled = {};
+		for (var i = stack.length - 1; i >= 0; i--) {
+			var e = stack[i];
+			var toDisable = e.getAttribute('data-toolbar-disable');
+			if (toDisable) {
+				toDisable.split(/\s*,\s*/g).forEach(function (key) {
+					if (key === '*') {
+						Object.keys(map).forEach(function (key) {
+							disabled[key] = true;
+						});
+					} else {
+						disabled[key] = true;
+					}
+				});
+			}
+			var toEnable = e.getAttribute('data-toolbar-enable');
+			if (toEnable) {
+				toEnable.split(/\s*,\s*/g).forEach(function (key) {
+					if (key === '*') {
+						disabled = {};
+					} else {
+						delete disabled[key];
+					}
+				});
+			}
+		}
+
+		return disabled;
+	}
 
 	/**
 	 * Post-highlight Prism hook callback.
@@ -90,14 +139,21 @@
 		var toolbar = document.createElement('div');
 		toolbar.classList.add('toolbar');
 
-		if (document.body.hasAttribute('data-toolbar-order')) {
-			callbacks = document.body.getAttribute('data-toolbar-order').split(',').map(function(key) {
-				return map[key] || noop;
+		var order = document.body.getAttribute('data-toolbar-order');
+		if (order) {
+			callbacks = order.split(/\s*,\s*/g).map(function(key) {
+				return { key: key, call: map[key] || noop };
 			});
 		}
 
+		var disabled = getDisabled(env.element);
+
 		callbacks.forEach(function(callback) {
-			var element = callback(env);
+			if (callback.key in disabled) {
+				return;
+			}
+
+			var element = callback.call(env);
 
 			if (!element) {
 				return;
