@@ -1,0 +1,69 @@
+"s" word"word" ! word: word"word"
+" ! str not comment" ! comment
+"!"
+" ! "
+"! "
+
+"\""
+"'"
+"\n"
+
+"5"
+"1/5"
+"+5"
+"-5"
+
+URL" " URL""
+SBUF" " SBUF""
+P" " P""
+
+----------------------------------------------------
+
+[
+	[ "string", "\"s\"" ],
+	[ "normal-word", "word\"word\"" ],
+	[ "comment", ["! word: word\"word\""] ],
+	[ "string", "\" ! str not comment\"" ],
+	[ "comment", ["! comment"] ],
+
+	[ "string", "\"!\"" ],
+	[ "string", "\" ! \"" ],
+	[ "string", "\"! \"" ],
+
+	[ "string", "\"\\\"\"" ],
+	[ "string", "\"'\"" ],
+	[ "string", "\"\\n\"" ],
+
+	[ "string", "\"5\"" ],
+	[ "string", "\"1/5\"" ],
+	[ "string", "\"+5\"" ],
+	[ "string", "\"-5\"" ],
+
+	[ "special-string-literal", "URL\" \"" ],
+	[ "normal-word", "URL\"\"" ],
+
+	[ "special-string-literal", "SBUF\" \"" ],
+	[ "normal-word", "SBUF\"\"" ],
+
+	[ "special-string-literal", "P\" \"" ],
+	[ "normal-word", "P\"\"" ]
+]
+
+----------------------------------------------------
+
+TODO:
+
+STRING: word-name
+text
+;
+
+HEREDOC: marker
+text
+marker
+
+[[ a ]]
+[[ a]]
+[[a ]]
+[[a]]
+
+R/ / R//

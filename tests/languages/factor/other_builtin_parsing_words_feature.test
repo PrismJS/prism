@@ -1,0 +1,29 @@
+<PRIVATE
+:>
+PRIVATE>
+$[ some code ]
+<< some code >>
+\ M\
+
+--------------------------------------------------
+
+[
+	[ "other-builtin-syntax", "<PRIVATE" ],
+	[ "semicolon-or-setlocal", ":>" ],
+	[ "other-builtin-syntax", "PRIVATE>" ],
+	[ "other-builtin-syntax", "$[" ],
+	[ "normal-word", "some" ],
+	[ "normal-word", "code" ],
+	[ "quotation-close", "]" ],
+	[ "other-builtin-syntax", "<<" ],
+	[ "normal-word", "some" ],
+	[ "normal-word", "code" ],
+	[ "other-builtin-syntax", ">>" ],
+	[ "other-builtin-syntax", "\\" ],
+	[ "other-builtin-syntax", "M\\" ]
+]
+
+
+--------------------------------------------------
+
+asdf

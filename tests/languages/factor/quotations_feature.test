@@ -1,0 +1,16 @@
+[ x y z and ]
+
+----------------------------------------------------
+
+[
+	["quotation-open", "["],
+	["normal-word", "x" ],
+	["normal-word", "y"],
+	["normal-word", "z"],
+	["kernel-builtin", "and"],
+	["quotation-close", "]"]
+]
+
+----------------------------------------------------
+
+quotation syntax

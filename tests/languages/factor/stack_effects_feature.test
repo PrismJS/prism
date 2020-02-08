@@ -1,0 +1,74 @@
+( -- )
+( a b -- c )
+( a: integer b: string -- c: word )
+( x y quot: ( ..a -- ..a ) -- ..a )
+call( -- )
+call( x -- y )
+execute( x -- y )
+eval( x -- y )
+
+----------------------------------------------------
+
+[
+	[ "stack-effect-open", "(" ],
+	[ "stack-effect-middle", "--" ],
+	[ "stack-effect-close", ")" ],
+
+	[ "stack-effect-open", "(" ],
+	[ "normal-word", "a" ],
+	[ "normal-word", "b" ],
+	[ "stack-effect-middle", "--" ],
+	[ "normal-word", "c" ],
+	[ "stack-effect-close", ")" ],
+
+	[ "stack-effect-open", "(" ],
+	[ "normal-word", "a:" ],
+	[ "math-builtin", "integer" ],
+	[ "normal-word", "b:" ],
+	[ "normal-word", "string" ],
+	[ "stack-effect-middle", "--" ],
+	[ "normal-word", "c:" ],
+	[ "normal-word", "word" ],
+	[ "stack-effect-close", ")" ],
+
+	[ "stack-effect-open", "(" ],
+	[ "normal-word", "x" ],
+	[ "normal-word", "y" ],
+	[ "normal-word", "quot:" ],
+
+	[ "stack-effect-open", "(" ],
+	[ "normal-word", "..a" ],
+	[ "stack-effect-middle", "--" ],
+	[ "normal-word", "..a" ],
+	[ "stack-effect-close", ")" ],
+
+	[ "stack-effect-middle", "--" ],
+	[ "normal-word", "..a" ],
+	[ "stack-effect-close", ")" ],
+
+	[ "stack-effect-open", "call(" ],
+	[ "stack-effect-middle", "--" ],
+	[ "stack-effect-close", ")" ],
+
+	[ "stack-effect-open", "call(" ],
+	[ "normal-word", "x" ],
+	[ "stack-effect-middle", "--" ],
+	[ "normal-word", "y" ],
+	[ "stack-effect-close", ")" ],
+
+	[ "stack-effect-open", "execute(" ],
+	[ "normal-word", "x" ],
+	[ "stack-effect-middle", "--" ],
+	[ "normal-word", "y" ],
+	[ "stack-effect-close", ")" ],
+
+	[ "stack-effect-open", "eval(" ],
+	[ "normal-word", "x" ],
+	[ "stack-effect-middle", "--" ],
+	[ "normal-word", "y" ],
+	[ "stack-effect-close", ")" ]
+]
+
+----------------------------------------------------
+
+stack effect syntax

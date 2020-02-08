@@ -1,0 +1,36 @@
+: a ( -- ) ;
+:: ;
+USING: a b c ;
+USE: a
+IN: a.b
+CHAR: a
+
+
+----------------------------------------------------
+
+[
+	[ "colon-syntax", ": a" ],
+
+	[ "stack-effect-open", "(" ],
+	[ "stack-effect-middle", "--" ],
+	[ "stack-effect-close", ")" ],
+
+	[ "semicolon-or-setlocal", ";" ],
+	[ "normal-word", "::" ],
+	[ "semicolon-or-setlocal", ";" ],
+	[ "special-using",
+		[ "USING: ",
+			[ "string", "a" ],
+			[ "string", "b" ],
+			[ "string", "c" ]
+		]
+	],
+	[ "semicolon-or-setlocal", ";" ],
+	[ "colon-syntax", "USE: a" ],
+	[ "colon-syntax", "IN: a.b" ],
+	[ "colon-syntax", "CHAR: a" ]
+]
+
+----------------------------------------------------
+
+some comments

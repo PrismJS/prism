@@ -1,0 +1,17 @@
+commas, primes' stars*
+(parens) +symbols+
+
+----------------------------------------------------
+
+[
+	[ "normal-word", "commas," ],
+	[ "normal-word", "primes'" ],
+	[ "normal-word", "stars*" ],
+	[ "conventionally-named-word", "(parens)" ],
+	[ "conventionally-named-word", "+symbols+" ]
+]
+
+----------------------------------------------------
+
+"Normal" words are not builtin well-known ones like "not", "and", "<=>", though they may be in the standard library or user-defined.
+They may start with any character except `"` (double-quote), but may contain or end with double-quotes or any other non-whitespace character.
