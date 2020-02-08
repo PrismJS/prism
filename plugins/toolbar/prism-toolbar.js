@@ -82,7 +82,6 @@
 			}
 			element = element.parentElement;
 		}
-		return undefined;
 	}
 
 	/**
@@ -113,14 +112,12 @@
 		toolbar.classList.add('toolbar');
 
 		// order callbacks
-		var elementCallbacks;
+		var elementCallbacks = callbacks;
 		var order = getOrder(env.element);
 		if (order) {
 			elementCallbacks = order.map(function (key) {
 				return map[key] || noop;
 			});
-		} else {
-			elementCallbacks = callbacks;
 		}
 
 		elementCallbacks.forEach(function(callback) {
