@@ -11,9 +11,9 @@ CHAR: a
 [
 	[ "colon-syntax", ": a" ],
 
-	[ "stack-effect-open", "(" ],
-	[ "stack-effect-middle", "--" ],
-	[ "stack-effect-close", ")" ],
+	[ "stack-effect-delimiter", "(" ],
+	[ "stack-effect-delimiter", "--" ],
+	[ "stack-effect-delimiter", ")" ],
 
 	[ "semicolon-or-setlocal", ";" ],
 	[ "normal-word", "::" ],

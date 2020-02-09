@@ -3,12 +3,12 @@
 ----------------------------------------------------
 
 [
-	["quotation-open", "["],
+	["quotation-delimiter", "["],
 	["normal-word", "x" ],
 	["normal-word", "y"],
 	["normal-word", "z"],
 	["kernel-builtin", "and"],
-	["quotation-close", "]"]
+	["quotation-delimiter", "]"]
 ]
 
 ----------------------------------------------------

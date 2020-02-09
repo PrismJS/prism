@@ -14,7 +14,7 @@ $[ some code ]
 	[ "other-builtin-syntax", "$[" ],
 	[ "normal-word", "some" ],
 	[ "normal-word", "code" ],
-	[ "quotation-close", "]" ],
+	[ "quotation-delimiter", "]" ],
 	[ "other-builtin-syntax", "<<" ],
 	[ "normal-word", "some" ],
 	[ "normal-word", "code" ],

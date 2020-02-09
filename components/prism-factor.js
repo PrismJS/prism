@@ -1,8 +1,9 @@
-(function (prism) {
+(function (Prism) {
 
 	var factor = {
 
-		comment: { // ! single-line exclamation point comments with whitespace after/around the !
+		// ! single-line exclamation point comments with whitespace after/around the !
+		'comment': {
 			pattern: /(^|\s|(?!"\s*))(?:![\t ].*|!$)/,
 			lookbehind: true,
 			inside: {
@@ -10,53 +11,62 @@
 			}
 		},
 
-		number: [
-			// basic base 10 integers 9, -9
-			{ 	pattern: /(^|\s)[+-]?\d+(?=\s|$)/,
-				lookbehind: true },
-
-			// base prefix integers 0b010 0o70 0xad 0d10 0XAD -0xa9
-			{ 	pattern: /(^|\s)[+-]?0(?:b[01]+|o[0-7]+|d\d+|x[\dA-F]+)(?=\s|$)/i,
-				lookbehind: true },
-
-			// fractional ratios 1/5 -1/5 and the literal float approximations 1/5. -1/5.
-			{ 	pattern: /(^|\s)[+-]?\d+\/\d+\.?(?=\s|$)/,
-				lookbehind: true },
-
-			// positive mixed numbers 23+1/5 +23+1/5
-			{ 	pattern: /(^|\s)\+?\d+\+\d+\/\d+(?=\s|$)/,
-				lookbehind: true },
-
-			// negative mixed numbers -23-1/5
-			{ 	pattern: /(^|\s)-\d+-\d+\/\d+(?=\s|$)/,
-				lookbehind: true },
-
-			// basic decimal floats -0.01 0. .0 .1 -.1 -1. -12.13 +12.13
-			// and scientific notation with base 10 exponents 3e4 3e-4 .3e-4
-			{ 	pattern: /(^|\s)[+-]?(?:\d*\.\d+|\d+\.\d*|\d+)(?:e[+-]?\d+)?(?=\s|$)/i,
-				lookbehind: true },
-
-			// NAN literal syntax NAN: 80000deadbeef, NAN: a
-			{ 	pattern: /(^|\s)NAN:[\n\t ]+[\da-fA-F]+(?=\s|$)/,
-				lookbehind: true },
-
-			/*
-				base prefix floats 0x1.0p3 (8.0) 0b1.010p2 (5.0) 0x1.p1 0b1.11111111111111111111111111p1111111111111111
-				"The normalized hex form ±0x1.MMMMMMMMMMMMM[pP]±EEEE allows any floating-point number to be specified precisely.
-				The values of MMMMMMMMMMMMM and EEEE map directly to the mantissa and exponent fields of the binary IEEE 754 representation."
-				<https://docs.factorcode.org/content/article-syntax-floats.html>
-			*/
-			{ 	pattern: /(^|\s)[+-]?0(?:b1\.[01]*|o1\.[0-7]*|d1\.\d*|x1\.[\dA-F]*)p\d+(?=\s|$)/i,
-				lookbehind: true }
+		'number': [
+			{
+				// basic base 10 integers 9, -9
+				pattern: /(^|\s)[+-]?\d+(?=\s|$)/,
+				lookbehind: true
+			},
+			{
+				// base prefix integers 0b010 0o70 0xad 0d10 0XAD -0xa9
+				pattern: /(^|\s)[+-]?0(?:b[01]+|o[0-7]+|d\d+|x[\dA-F]+)(?=\s|$)/i,
+				lookbehind: true
+			},
+			{
+				// fractional ratios 1/5 -1/5 and the literal float approximations 1/5. -1/5.
+				pattern: /(^|\s)[+-]?\d+\/\d+\.?(?=\s|$)/,
+				lookbehind: true
+			},
+			{
+				// positive mixed numbers 23+1/5 +23+1/5
+				pattern: /(^|\s)\+?\d+\+\d+\/\d+(?=\s|$)/,
+				lookbehind: true
+			},
+			{
+				// negative mixed numbers -23-1/5
+				pattern: /(^|\s)-\d+-\d+\/\d+(?=\s|$)/,
+				lookbehind: true
+			},
+			{
+				// basic decimal floats -0.01 0. .0 .1 -.1 -1. -12.13 +12.13
+				// and scientific notation with base 10 exponents 3e4 3e-4 .3e-4
+				pattern: /(^|\s)[+-]?(?:\d*\.\d+|\d+\.\d*|\d+)(?:e[+-]?\d+)?(?=\s|$)/i,
+				lookbehind: true
+			},
+			{
+				// NAN literal syntax NAN: 80000deadbeef, NAN: a
+				pattern: /(^|\s)NAN:[\n\t ]+[\da-fA-F]+(?=\s|$)/,
+				lookbehind: true
+			},
+			{
+				/*
+					base prefix floats 0x1.0p3 (8.0) 0b1.010p2 (5.0) 0x1.p1 0b1.11111111111111111111111111p1111111111111111
+					"The normalized hex form ±0x1.MMMMMMMMMMMMM[pP]±EEEE allows any floating-point number to be specified precisely.
+					The values of MMMMMMMMMMMMM and EEEE map directly to the mantissa and exponent fields of the binary IEEE 754 representation."
+					<https://docs.factorcode.org/content/article-syntax-floats.html>
+				*/
+				pattern: /(^|\s)[+-]?0(?:b1\.[01]*|o1\.[0-7]*|d1\.\d*|x1\.[\dA-F]*)p\d+(?=\s|$)/i,
+				lookbehind: true
+			}
 		],
 
-		boolean: {
-			pattern: /(^|\s|\r\n)(?:t|f)(?=\s|$)/,
+		'boolean': {
+			pattern: /(^|\s)(?:t|f)(?=\s|$)/,
 			lookbehind: true
 		},
 
 		'special-string-literal': {
-			pattern: /(^|\s)[A-Z0-9\-]+"\s(?:\\"|[^"])*"/,
+			pattern: /(^|\s)[A-Z0-9\-]+"\s(?:\\"|\\\S|[^"\\])*"/,
 			lookbehind: true,
 			greedy: true,
 			alias: 'string'
@@ -70,7 +80,7 @@
 				// this is essentially a regex for vocab names, which i don't want to specify
 				// but the USING: gets picked up as a vocab name
 				string: {
-					pattern: /(\s)[^:\r\n\t ]+/,
+					pattern: /(\s)[^:\s ]+/,
 					lookbehind: true
 				}
 			}
@@ -89,33 +99,36 @@
 			https://docs.factorcode.org/content/article-effects.html
 
 			these are pretty complicated to highlight properly without a real parser, and therefore out of scope
-		'stack-effect-old': {
-			pattern: /(^|\s)(?:call|execute|eval)?\((?:\s+[^"\r\n\t ]\S*)*?\s+--(?:\s+[^"\n\t ]\S*)*?\s+\)(?=\s|$)/,
-			lookbehind: true,
-			alias: 'operator',
-		},
-
-		TODO:
-		'stack-effect-variable': {
-			{ pattern: / /, lookbehind: true, alias: 'operator' },
-		},
+			the old pattern, which may be later useful, was: (^|\s)(?:call|execute|eval)?\((?:\s+[^"\r\n\t ]\S*)*?\s+--(?:\s+[^"\n\t ]\S*)*?\s+\)(?=\s|$)
 		*/
 
 		// current solution is not great
-		'stack-effect-open': {
-			pattern: /(^|\s)(?:call|execute|eval)?\((?=\s)/,
-			lookbehind: true,
-			alias: 'operator' },
-		'stack-effect-middle': {
-			pattern: /(\s)--(?=\s)/,
-			lookbehind: true,
-			alias: 'operator' },
-		'stack-effect-close': {
-			pattern: /(\s)\)(?=\s|$)/,
-			lookbehind: true,
-			alias: 'operator' },
+		'stack-effect-delimiter': [
+			{
+				// opening parenthesis
+				pattern: /(^|\s)(?:call|execute|eval)?\((?=\s)/,
+				lookbehind: true,
+				alias: 'operator'
+			},
+			{
+				// middle --
+				pattern: /(\s)--(?=\s)/,
+				lookbehind: true,
+				alias: 'operator'
+			},
+			{
+				// closing parenthesis
+				pattern: /(\s)\)(?=\s|$)/,
+				lookbehind: true,
+				alias: 'operator'
+			}
+		],
 
-		combinators: [],
+		'combinators': {
+			pattern: null,
+			lookbehind: true,
+			alias: 'keyword'
+		},
 
 		'kernel-builtin': {
 			pattern: null,
@@ -137,7 +150,7 @@
 
 		'constructor-word': {
 			// <array> but not <=>
-			pattern: /(^|\s)<(?!=+>|-+>)[^\r\n\t ]+>(?=\s|$)/,
+			pattern: /(^|\s)<(?!=+>|-+>)\S+>(?=\s|$)/,
 			lookbehind: true,
 			alias: 'keyword'
 		},
@@ -150,13 +163,13 @@
 
 		'conventionally-named-word': {
 			// for certain word naming conventions like +lt+, sequence?, readers>>, >>setters, writers<<
-			pattern: /(^|\s)(?:set-[^\r\n\t ]+|change-[^\r\n\t ]+|>[^>\r\n\t ]+|[^:>\r\n\t ]+>|[^>\r\n\t ]+>[^>\r\n\t ]+|\+[^\+\r\n\t ]+\+|[^?\r\n\t ]+\?|[^>\r\n\t ]+>>|>>[^>\r\n\t ]+|[^<\r\n\t ]+<<|\?[^?\r\n\t ]+|\([^()\r\n\t ]+\)|[^!\r\n\t ]+!)(?=\s|$)/,
+			pattern: /(^|\s)(?:set-\S+|change-\S+|>[^>\s]+|[^:>\s]+>|[^>\s]+>[^>\s]+|\+[^\+\s]+\+|[^?\s]+\?|[^>\s]+>>|>>[^>\s]+|[^<\s]+<<|\?[^?\s]+|\([^()\s]+\)|[^!\s]+!)(?=\s|$)/,
 			lookbehind: true,
 			alias: 'keyword'
 		},
 
 		'colon-syntax': {
-			pattern: /(^|\s)(?:[A-Z]*#?):{1,2}\s+(?:(?!;)|;\S+|[^\r\n\t; ]\S*)(?=\s|$)/,
+			pattern: /(^|\s)(?:[A-Z]*#?):{1,2}\s+(?:;\S+|(?!;)\S+)(?=\s|$)/,
 			lookbehind: true,
 			greedy: true,
 			alias: 'function'
@@ -168,27 +181,41 @@
 			alias: 'function'
 		},
 
-		'curly-brace-literal-open': {
-			pattern: /(^|\s)[a-zA-Z]*\{(?=\s)/i,
-			lookbehind: true,
-			alias: 'operator' },
-		'curly-brace-literal-close': {
-			pattern: /(^|\s)\}(?=\s|$)/,
-			lookbehind: true,
-			alias: 'operator' },
+		// do not highlight leading } or trailing X{ at the begin/end of the file as it's invalid syntax
+		'curly-brace-literal-delimiter': [
+			{
+				// opening
+				pattern: /(^|\s)[a-z]*\{(?=\s)/i,
+				lookbehind: true,
+				alias: 'operator'
+			},
+			{
+				// closing
+				pattern: /(\s)\}(?=\s|$)/,
+				lookbehind: true,
+				alias: 'operator'
+			},
+
+		],
 
 		// do not highlight leading ] or trailing [ at the begin/end of the file as it's invalid syntax
-		'quotation-open': {
-			pattern: /(^|\s)\[(?=\s)/,
-			lookbehind: true,
-		 	alias: 'operator' },
-		'quotation-close': {
-			pattern: /(\s)\](?=\s|$)/,
-			lookbehind: true,
-		 	alias: 'operator' },
+		'quotation-delimiter': [
+			{
+				// opening
+				pattern: /(^|\s)\[(?=\s)/,
+				lookbehind: true,
+			 	alias: 'operator'
+			},
+			{
+				// closing
+				pattern: /(\s)\](?=\s|$)/,
+				lookbehind: true,
+			 	alias: 'operator'
+			},
+		],
 
 		'normal-word': {
-			pattern: /(^|\s)[^"\r\n\t ]\S*(?=\s|$)/,
+			pattern: /(^|\s)[^"\s]\S*(?=\s|$)/,
 			lookbehind: true
 		},
 
@@ -201,24 +228,19 @@
 			"string"[ ] -> string, quotation
 			{ "a"} -> array<string>
 		*/
-		string: {
+		'string': {
 			pattern: /"(?:\\"|\\\S|[^"\\])*"/,
 			greedy: true
 		}
 	};
 
-	var quote = function (str) {
+	var escape = function (str) {
    		return (str+'').replace(/([.?*+\^$\[\]\\(){}|\-])/g, '\\$1');
  	};
 
-	var word_pattern = {
-		start: '(^|\\s)',
-		end: '(?=\\s|$)'
-	};
-
-	var arr_to_words_regex = function (arr) {
+	var arrToWordsRegExp = function (arr) {
 		return new RegExp(
-			word_pattern.start + '(?:' + arr.map(quote).join('|') + ')' + word_pattern.end
+			'(^|\\s)(?:' + arr.map(escape).join('|') + ')(?=\\s|$)'
 		);
 	};
 
@@ -237,41 +259,34 @@
 		],
 		'math-builtin': [
 			'number=', 'next-power-of-2', '?1+', 'fp-special?', 'imaginary-part', 'float>bits', 'number?', 'fp-infinity?', 'bignum?', 'fp-snan?', 'denominator', 'gcd', '*', '+', 'fp-bitwise=', '-', 'u>=', '/', '>=', 'bitand', 'power-of-2?', 'log2-expects-positive', 'neg?', '<', 'log2', '>', 'integer?', 'number', 'bits>double', '2/', 'zero?', 'bits>float', 'float?', 'shift', 'ratio?', 'rect>', 'even?', 'ratio', 'fp-sign', 'bitnot', '>fixnum', 'complex?', '/i', 'integer>fixnum', '/f', 'sgn', '>bignum', 'next-float', 'u<', 'u>', 'mod', 'recip', 'rational', '>float', '2^', 'integer', 'fixnum?', 'neg', 'fixnum', 'sq', 'bignum', '>rect', 'bit?', 'fp-qnan?', 'simple-gcd', 'complex', '<fp-nan>', 'real', '>fraction', 'double>bits', 'bitor', 'rem', 'fp-nan-payload', 'real-part', 'log2-expects-positive?', 'prev-float', 'align', 'unordered?', 'float', 'fp-nan?', 'abs', 'bitxor', 'integer>fixnum-strict', 'u<=', 'odd?', '<=', '/mod', '>integer', 'real?', 'rational?', 'numerator'
-			// that's all for now
 		]
+		// that's all for now
 	};
 
 	Object.keys(builtins).forEach(function (k) {
-		// console.log(arr_to_words_regex( builtins[k] ));
-		factor[k].pattern = arr_to_words_regex( builtins[k] );
+		factor[k].pattern = arrToWordsRegExp( builtins[k] );
 	});
 
 	var combinators = [
 		// kernel
-		['2bi', 'while', '2tri', 'bi*', '4dip', 'both?', 'same?', 'tri@', 'curry', 'prepose', '3bi', '?if', 'tri*', '2keep', '3keep', 'curried', '2keepd', 'when', '2bi*', '2tri*', '4keep', 'bi@', 'keepdd', 'do', 'unless*', 'tri-curry', 'if*', 'loop', 'bi-curry*', 'when*', '2bi@', '2tri@', 'with', '2with', 'either?', 'bi', 'until', '3dip', '3curry', 'tri-curry*', 'tri-curry@', 'bi-curry', 'keepd', 'compose', '2dip', 'if', '3tri', 'unless', 'tuple', 'keep', '2curry', 'tri', 'most', 'while*', 'dip', 'composed', 'bi-curry@'],
+		'2bi', 'while', '2tri', 'bi*', '4dip', 'both?', 'same?', 'tri@', 'curry', 'prepose', '3bi', '?if', 'tri*', '2keep', '3keep', 'curried', '2keepd', 'when', '2bi*', '2tri*', '4keep', 'bi@', 'keepdd', 'do', 'unless*', 'tri-curry', 'if*', 'loop', 'bi-curry*', 'when*', '2bi@', '2tri@', 'with', '2with', 'either?', 'bi', 'until', '3dip', '3curry', 'tri-curry*', 'tri-curry@', 'bi-curry', 'keepd', 'compose', '2dip', 'if', '3tri', 'unless', 'tuple', 'keep', '2curry', 'tri', 'most', 'while*', 'dip', 'composed', 'bi-curry@',
 		// sequences
-		['find-last-from', 'trim-head-slice', 'map-as', 'each-from', 'none?', 'trim-tail', 'partition', 'if-empty', 'accumulate*', 'reject!', 'find-from', 'accumulate-as', 'collector-for-as', 'reject', 'map', 'map-sum', 'accumulate!', '2each-from', 'follow', 'supremum-by', 'map!', 'unless-empty', 'collector', 'padding', 'reduce-index', 'replicate-as', 'infimum-by', 'trim-tail-slice', 'count', 'find-index', 'filter', 'accumulate*!', 'reject-as', 'map-integers', 'map-find', 'reduce', 'selector', 'interleave', '2map', 'filter-as', 'binary-reduce', 'map-index-as', 'find', 'produce', 'filter!', 'replicate', 'cartesian-map', 'cartesian-each', 'find-index-from', 'map-find-last', '3map-as', '3map', 'find-last', 'selector-as', '2map-as', '2map-reduce', 'accumulate', 'each', 'each-index', 'accumulate*-as', 'when-empty', 'all?', 'collector-as', 'push-either', 'new-like', 'collector-for', '2selector', 'push-if', '2all?', 'map-reduce', '3each', 'any?', 'trim-slice', '2reduce', 'change-nth', 'produce-as', '2each', 'trim', 'trim-head', 'cartesian-find', 'map-index'],
+		'find-last-from', 'trim-head-slice', 'map-as', 'each-from', 'none?', 'trim-tail', 'partition', 'if-empty', 'accumulate*', 'reject!', 'find-from', 'accumulate-as', 'collector-for-as', 'reject', 'map', 'map-sum', 'accumulate!', '2each-from', 'follow', 'supremum-by', 'map!', 'unless-empty', 'collector', 'padding', 'reduce-index', 'replicate-as', 'infimum-by', 'trim-tail-slice', 'count', 'find-index', 'filter', 'accumulate*!', 'reject-as', 'map-integers', 'map-find', 'reduce', 'selector', 'interleave', '2map', 'filter-as', 'binary-reduce', 'map-index-as', 'find', 'produce', 'filter!', 'replicate', 'cartesian-map', 'cartesian-each', 'find-index-from', 'map-find-last', '3map-as', '3map', 'find-last', 'selector-as', '2map-as', '2map-reduce', 'accumulate', 'each', 'each-index', 'accumulate*-as', 'when-empty', 'all?', 'collector-as', 'push-either', 'new-like', 'collector-for', '2selector', 'push-if', '2all?', 'map-reduce', '3each', 'any?', 'trim-slice', '2reduce', 'change-nth', 'produce-as', '2each', 'trim', 'trim-head', 'cartesian-find', 'map-index',
 		// math
-		['if-zero', 'each-integer', 'unless-zero', '(find-integer)', 'when-zero', 'find-last-integer', '(all-integers?)', 'times', '(each-integer)', 'find-integer', 'all-integers?'],
+		'if-zero', 'each-integer', 'unless-zero', '(find-integer)', 'when-zero', 'find-last-integer', '(all-integers?)', 'times', '(each-integer)', 'find-integer', 'all-integers?',
 		// math.combinators
-		['unless-negative', 'if-positive', 'when-positive', 'when-negative', 'unless-positive', 'if-negative'],
+		'unless-negative', 'if-positive', 'when-positive', 'when-negative', 'unless-positive', 'if-negative',
 		// combinators
-		['case', '2cleave', 'cond>quot', 'case>quot', '3cleave', 'wrong-values', 'to-fixed-point', 'alist>quot', 'cond', 'cleave', 'call-effect', 'recursive-hashcode', 'spread', 'deep-spread>quot'],
+		'case', '2cleave', 'cond>quot', 'case>quot', '3cleave', 'wrong-values', 'to-fixed-point', 'alist>quot', 'cond', 'cleave', 'call-effect', 'recursive-hashcode', 'spread', 'deep-spread>quot',
 		// combinators.short-circuit
-		['2||', '0||', 'n||', '0&&', '2&&', '3||', '1||', '1&&', 'n&&', '3&&'],
+		'2||', '0||', 'n||', '0&&', '2&&', '3||', '1||', '1&&', 'n&&', '3&&',
 		// combinators.smart
-		['smart-unless*', 'keep-inputs', 'reduce-outputs', 'smart-when*', 'cleave>array', 'smart-with', 'smart-apply', 'smart-if', 'inputs/outputs', 'output>sequence-n', 'map-outputs', 'map-reduce-outputs', 'dropping', 'output>array', 'smart-map-reduce', 'smart-2map-reduce', 'output>array-n', 'nullary', 'input<sequence', 'append-outputs', 'drop-inputs', 'inputs', 'smart-2reduce', 'drop-outputs', 'smart-reduce', 'preserving', 'smart-when', 'outputs', 'append-outputs-as', 'smart-unless', 'smart-if*', 'sum-outputs', 'input<sequence-unsafe', 'output>sequence'],
+		'smart-unless*', 'keep-inputs', 'reduce-outputs', 'smart-when*', 'cleave>array', 'smart-with', 'smart-apply', 'smart-if', 'inputs/outputs', 'output>sequence-n', 'map-outputs', 'map-reduce-outputs', 'dropping', 'output>array', 'smart-map-reduce', 'smart-2map-reduce', 'output>array-n', 'nullary', 'input<sequence', 'append-outputs', 'drop-inputs', 'inputs', 'smart-2reduce', 'drop-outputs', 'smart-reduce', 'preserving', 'smart-when', 'outputs', 'append-outputs-as', 'smart-unless', 'smart-if*', 'sum-outputs', 'input<sequence-unsafe', 'output>sequence',
 		// tafn
 	];
 
-	combinators.forEach(function (arr) {
-		factor.combinators.push({
-			pattern: arr_to_words_regex( arr ),
-			lookbehind: true,
-			alias: 'keyword'
-		});
-	});
+	factor.combinators.pattern = arrToWordsRegExp(combinators);
 
-	prism.languages.factor = factor;
+	Prism.languages.factor = factor;
 
 })(Prism);

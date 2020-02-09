@@ -10,63 +10,63 @@ eval( x -- y )
 ----------------------------------------------------
 
 [
-	[ "stack-effect-open", "(" ],
-	[ "stack-effect-middle", "--" ],
-	[ "stack-effect-close", ")" ],
+	[ "stack-effect-delimiter", "(" ],
+	[ "stack-effect-delimiter", "--" ],
+	[ "stack-effect-delimiter", ")" ],
 
-	[ "stack-effect-open", "(" ],
+	[ "stack-effect-delimiter", "(" ],
 	[ "normal-word", "a" ],
 	[ "normal-word", "b" ],
-	[ "stack-effect-middle", "--" ],
+	[ "stack-effect-delimiter", "--" ],
 	[ "normal-word", "c" ],
-	[ "stack-effect-close", ")" ],
+	[ "stack-effect-delimiter", ")" ],
 
-	[ "stack-effect-open", "(" ],
+	[ "stack-effect-delimiter", "(" ],
 	[ "normal-word", "a:" ],
 	[ "math-builtin", "integer" ],
 	[ "normal-word", "b:" ],
 	[ "normal-word", "string" ],
-	[ "stack-effect-middle", "--" ],
+	[ "stack-effect-delimiter", "--" ],
 	[ "normal-word", "c:" ],
 	[ "normal-word", "word" ],
-	[ "stack-effect-close", ")" ],
+	[ "stack-effect-delimiter", ")" ],
 
-	[ "stack-effect-open", "(" ],
+	[ "stack-effect-delimiter", "(" ],
 	[ "normal-word", "x" ],
 	[ "normal-word", "y" ],
 	[ "normal-word", "quot:" ],
 
-	[ "stack-effect-open", "(" ],
+	[ "stack-effect-delimiter", "(" ],
 	[ "normal-word", "..a" ],
-	[ "stack-effect-middle", "--" ],
+	[ "stack-effect-delimiter", "--" ],
 	[ "normal-word", "..a" ],
-	[ "stack-effect-close", ")" ],
+	[ "stack-effect-delimiter", ")" ],
 
-	[ "stack-effect-middle", "--" ],
+	[ "stack-effect-delimiter", "--" ],
 	[ "normal-word", "..a" ],
-	[ "stack-effect-close", ")" ],
+	[ "stack-effect-delimiter", ")" ],
 
-	[ "stack-effect-open", "call(" ],
-	[ "stack-effect-middle", "--" ],
-	[ "stack-effect-close", ")" ],
+	[ "stack-effect-delimiter", "call(" ],
+	[ "stack-effect-delimiter", "--" ],
+	[ "stack-effect-delimiter", ")" ],
 
-	[ "stack-effect-open", "call(" ],
+	[ "stack-effect-delimiter", "call(" ],
 	[ "normal-word", "x" ],
-	[ "stack-effect-middle", "--" ],
+	[ "stack-effect-delimiter", "--" ],
 	[ "normal-word", "y" ],
-	[ "stack-effect-close", ")" ],
+	[ "stack-effect-delimiter", ")" ],
 
-	[ "stack-effect-open", "execute(" ],
+	[ "stack-effect-delimiter", "execute(" ],
 	[ "normal-word", "x" ],
-	[ "stack-effect-middle", "--" ],
+	[ "stack-effect-delimiter", "--" ],
 	[ "normal-word", "y" ],
-	[ "stack-effect-close", ")" ],
+	[ "stack-effect-delimiter", ")" ],
 
-	[ "stack-effect-open", "eval(" ],
+	[ "stack-effect-delimiter", "eval(" ],
 	[ "normal-word", "x" ],
-	[ "stack-effect-middle", "--" ],
+	[ "stack-effect-delimiter", "--" ],
 	[ "normal-word", "y" ],
-	[ "stack-effect-close", ")" ]
+	[ "stack-effect-delimiter", ")" ]
 ]
 
 ----------------------------------------------------
