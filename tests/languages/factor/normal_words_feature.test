@@ -1,14 +1,32 @@
-commas, primes' stars*
-(parens) +symbols+
+commas, primes'
+stars* (parens) (stars*) +symbols+ ?of que? ?of* reader>> >>setter writer<<
+set-x change-x >hex base> string>number mutable! object.
+
+"no
 
 ----------------------------------------------------
 
 [
 	[ "normal-word", "commas," ],
 	[ "normal-word", "primes'" ],
-	[ "normal-word", "stars*" ],
+	[ "conventionally-named-word", "stars*" ],
 	[ "conventionally-named-word", "(parens)" ],
-	[ "conventionally-named-word", "+symbols+" ]
+	[ "conventionally-named-word", "(stars*)" ],
+	[ "conventionally-named-word", "+symbols+" ],
+	[ "conventionally-named-word", "?of" ],
+	[ "conventionally-named-word", "que?" ],
+	[ "conventionally-named-word", "?of*" ],
+	[ "conventionally-named-word", "reader>>" ],
+	[ "conventionally-named-word", ">>setter" ],
+	[ "conventionally-named-word", "writer<<" ],
+	[ "conventionally-named-word", "set-x" ],
+	[ "conventionally-named-word", "change-x" ],
+	[ "conventionally-named-word", ">hex" ],
+	[ "conventionally-named-word", "base>" ],
+	[ "conventionally-named-word", "string>number" ],
+	[ "conventionally-named-word", "mutable!" ],
+	[ "conventionally-named-word", "object." ],
+	"\r\n\r\n\"no"
 ]
 
 ----------------------------------------------------

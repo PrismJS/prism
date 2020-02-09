@@ -1,3 +1,5 @@
+a! ! word
+!a ! word
 ! comment
 ! "also a comment"
 ! : ( -- ) ;
@@ -8,6 +10,11 @@ words blah ! comment after code on a line
 ----------------------------------------------------
 
 [
+	[ "conventionally-named-word", "a!"],
+	[ "comment", [ "! word" ] ],
+	[ "normal-word", "!a"],
+	[ "comment", [ "! word" ] ],
+
 	[ "comment", [ "! comment" ] ],
 	[ "comment", [ "! \"also a comment\"" ] ],
 	[ "comment", [ "! : ( -- ) ;" ] ],

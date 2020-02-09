@@ -1,3 +1,4 @@
+}
 { 1 2 3 4 }
 { a b c d e f }
 { "a" "b" "c" }
@@ -8,10 +9,12 @@ H{ { "a" "b" } { "c" "d" } }
 V{ 1 2 3 4 }
 V{ "1" "2" "3" "4" }
 BV{ 1 2 3 4 }
+{
 
 ----------------------------------------------------
 
 [
+	["normal-word", "}"],
 	["curly-brace-literal-delimiter", "{"],
 	["number", "1"],
 	["number", "2"],
@@ -86,9 +89,11 @@ BV{ 1 2 3 4 }
 	["number", "2"],
 	["number", "3"],
 	["number", "4"],
-	["curly-brace-literal-delimiter", "}"]
+	["curly-brace-literal-delimiter", "}"],
+	["normal-word", "{"]
 ]
 
 ----------------------------------------------------
 
 comments
+} / { at the front / EOF are not delimiters

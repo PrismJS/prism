@@ -4,7 +4,7 @@
 
 		// ! single-line exclamation point comments with whitespace after/around the !
 		'comment': {
-			pattern: /(^|\s|(?!"\s*))(?:![\t ].*|!$)/,
+			pattern: /(^|\s)(?:![\t ].*|!$)/,
 			lookbehind: true,
 			inside: {
 				'bold': /\b(?:TODO|FIXME|NOTE|BUG|XXX|HACK)(?:\b|:)/
@@ -163,7 +163,7 @@
 
 		'conventionally-named-word': {
 			// for certain word naming conventions like +lt+, sequence?, readers>>, >>setters, writers<<
-			pattern: /(^|\s)(?:set-\S+|change-\S+|>[^>\s]+|[^:>\s]+>|[^>\s]+>[^>\s]+|\+[^\+\s]+\+|[^?\s]+\?|[^>\s]+>>|>>[^>\s]+|[^<\s]+<<|\?[^?\s]+|\([^()\s]+\)|[^!\s]+!)(?=\s|$)/,
+			pattern: /(^|\s)(?:set-\S+|change-\S+|>[^>"\s]+|[^:>"\s]+>|[^>"\s]+>[^>\s]+|\+[^\+\s]+\+|[^?"\s]+\?|\?[^?"\s]+|[^>"\s]+>>|>>[^>"\s]+|[^<"\s]+<<|\([^()"\s]+\)|[^!"\s]+!|[^"\s]\S*\*|[^"\s]\S*\.)(?=\s|$)/,
 			lookbehind: true,
 			alias: 'keyword'
 		},
@@ -219,14 +219,22 @@
 			lookbehind: true
 		},
 
-		// basic first-class string with only escaped double-quote "a" and "a\""
 		/*
+			basic first-class string "a"
+				with escaped double-quote "a\""
+				escaped backslash "\\"
+				and general escapes since Factor has so many "\N"
+
 			syntax that works in the reference implementation that i'm choosing not to
 			intentionally support for now, because it's difficult, and an implementation detail:
 			"string 1""string 2" -> 2 strings (works anyway)
 			"string"5 -> string, 5
 			"string"[ ] -> string, quotation
 			{ "a"} -> array<string>
+
+			the rest of those examples all properly recognise the string, but not
+				the other object (number, quotation, etc)
+			this is just fine for a regex-only implementation.
 		*/
 		'string': {
 			pattern: /"(?:\\"|\\\S|[^"\\])*"/,
