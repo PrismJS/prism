@@ -1,6 +1,8 @@
 a! ! word
 !a ! word
 ! comment
+!	bad
+! 	fine
 ! "also a comment"
 ! : ( -- ) ;
 ! ! leading comment-like token
@@ -14,8 +16,11 @@ words blah ! comment after code on a line
 	[ "comment", [ "! word" ] ],
 	[ "normal-word", "!a"],
 	[ "comment", [ "! word" ] ],
-
 	[ "comment", [ "! comment" ] ],
+
+	[ "normal-word", "!" ], [ "normal-word", "bad" ],
+	[ "comment", [ "! \tfine" ] ],
+
 	[ "comment", [ "! \"also a comment\"" ] ],
 	[ "comment", [ "! : ( -- ) ;" ] ],
 	[ "comment", [ "! ! leading comment-like token" ] ],

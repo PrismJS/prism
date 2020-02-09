@@ -4,7 +4,7 @@
 
 		// ! single-line exclamation point comments with whitespace after/around the !
 		'comment': {
-			pattern: /(^|\s)(?:![\t ].*|!$)/,
+			pattern: /(^|\s)(?:! .*|!$)/,
 			lookbehind: true,
 			inside: {
 				'bold': /\b(?:TODO|FIXME|NOTE|BUG|XXX|HACK)(?:\b|:)/
