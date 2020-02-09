@@ -163,7 +163,7 @@
 
 		'conventionally-named-word': {
 			// for certain word naming conventions like +lt+, sequence?, readers>>, >>setters, writers<<
-			pattern: /(^|\s)(?:set-\S+|change-\S+|>[^>"\s]+|[^:>"\s]+>|[^>"\s]+>[^>\s]+|\+[^\+\s]+\+|[^?"\s]+\?|\?[^?"\s]+|[^>"\s]+>>|>>[^>"\s]+|[^<"\s]+<<|\([^()"\s]+\)|[^!"\s]+!|[^"\s]\S*\*|[^"\s]\S*\.)(?=\s|$)/,
+			pattern: /(^|\s)(?!")(?:set-\S+|change-\S+|>[^>\s]+|[^:>\s]+>|[^>\s]+>[^>\s]+|\+[^\+\s]+\+|[^?\s]+\?|\?[^?\s]+|[^>\s]+>>|>>[^>\s]+|[^<\s]+<<|\([^()\s]+\)|[^!\s]+!|[^\s]\S*\*|[^\s]\S*\.)(?=\s|$)/,
 			lookbehind: true,
 			alias: 'keyword'
 		},
