@@ -1,0 +1,19 @@
+"hi"
+'hi'
+r'say'
+r"hello"
+'contains: "'
+
+----------------------------------------------------
+
+[
+	["string", "\"hi\""],
+	["string", "'hi'"],
+	["string", "r'say'"],
+	["string", "r\"hello\""],
+	["string", "'contains: \"'"]
+]
+
+----------------------------------------------------
+
+Checks for raw strings.
