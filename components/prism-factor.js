@@ -80,7 +80,7 @@
 				// this is essentially a regex for vocab names, which i don't want to specify
 				// but the USING: gets picked up as a vocab name
 				string: {
-					pattern: /(\s)[^:\s ]+/,
+					pattern: /(\s)[^:\s]+/,
 					lookbehind: true
 				}
 			}
@@ -237,8 +237,11 @@
 			this is just fine for a regex-only implementation.
 		*/
 		'string': {
-			pattern: /"(?:\\"|\\\S|[^"\\])*"/,
-			greedy: true
+			pattern: /"(?:\\\S|[^"\\])*"/,
+			greedy: true,
+			inside: {
+				number: /(?:\\\S|%\w)/
+			}
 		}
 	};
 
