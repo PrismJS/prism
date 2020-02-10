@@ -169,6 +169,7 @@
 		"py": "python",
 		"robot": "robotframework",
 		"rb": "ruby",
+		"console": "shell-session",
 		"rq": "sparql",
 		"trig": "turtle",
 		"ts": "typescript",

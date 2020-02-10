@@ -133,6 +133,7 @@
 		"sass": "Sass (Sass)",
 		"scss": "Sass (Scss)",
 		"shell-session": "Shell session",
+		"console": "Shell session",
 		"solidity": "Solidity (Ethereum)",
 		"soy": "Soy (Closure Template)",
 		"sparql": "SPARQL",

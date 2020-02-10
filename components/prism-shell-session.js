@@ -39,4 +39,6 @@
 		}
 	};
 
+	Prism.languages.console = Prism.languages['shell-session'];
+
 }(Prism));
