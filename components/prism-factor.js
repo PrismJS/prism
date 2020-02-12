@@ -1,15 +1,36 @@
 (function (Prism) {
 
+	var comment_inside = {
+		bold: /\b(?:TODO|FIX|FIXME|NOTE|BUG|XX+|HACK|\?\?+|!!+)(?:\b|:)/
+	};
+	var string_inside = {
+		number: /(?:\\\S|%\w)/
+	};
+
 	var factor = {
 
-		// ! single-line exclamation point comments with whitespace after/around the !
-		'comment': {
-			pattern: /(^|\s)(?:! .*|!$)/,
-			lookbehind: true,
-			inside: {
-				'bold': /\b(?:TODO|FIXME|NOTE|BUG|XXX|HACK)(?:\b|:)/
+		'comment': [
+			{
+				// ! single-line exclamation point comments with whitespace after/around the !
+				pattern: /(^|\s)(?:! .*|!$)/,
+				lookbehind: true,
+				inside: comment_inside
+			},
+
+			/* from basis/multiline: */
+			{
+				// /* comment */, /* comment*/
+				pattern: /(^|\s)\/\*\s.*?\*\/(?=\s|$)/,
+				lookbehind: true,
+				inside: comment_inside
+			},
+			{
+				// ![[ comment ]] , ![===[ comment]===]
+				pattern: /(^|\s)!\[(?:\[\s.*?]|=\[\s.*?]=|==\[\s.*?]==|===\[\s.*?]===|====\[\s.*?]====|=====\[\s.*?]=====|======\[\s.*?]======)](?=\s|$)/,
+				lookbehind: true,
+				inside: comment_inside
 			}
-		},
+		],
 
 		'number': [
 			{
@@ -65,12 +86,34 @@
 			lookbehind: true
 		},
 
-		'special-string-literal': {
-			pattern: /(^|\s)[A-Z0-9\-]+"\s(?:\\"|\\\S|[^"\\])*"/,
+		'custom-string': {
+			pattern: /(^|\s)[A-Z0-9\-]+"\s(?:\\\S|[^"\\])*"/,
 			lookbehind: true,
 			greedy: true,
-			alias: 'string'
+			alias: 'string',
+			inside: {
+				number: /(?:\\\S|%\w|\/)/
+			}
 		},
+
+		'multiline-string': [
+			{
+				// STRING: name \n content \n ; -> CONSTANT: name "content" (symbol)
+				pattern: /(^|\s)STRING:\s+\S+(?:\n|\r\n).*(?:\n|\r\n);(?=\s|$)/,
+				lookbehind: true, // TODO: semicolon inside
+				inside: {
+					number: string_inside.number,
+					// trailing semicolon on its own line
+					function: /((?:\n|\r\n)\s*);(?=\s|$)/
+				}
+			},
+			{
+				// HEREDOC: marker \n content \n marker ; -> "content" (immediate)
+				pattern: /(^|\s)HEREDOC:\s+\S+(?:\n|\r\n).*(?:\n|\r\n)\S+(?=\s|$)/,
+				lookbehind: true, // TODO: make better
+				inside: string_inside
+			}
+		],
 
 		'special-using': {
 			pattern: /(^|\s)USING:(?:\s\S+)*(?=\s+;(?:\s|$))/,
@@ -239,9 +282,7 @@
 		'string': {
 			pattern: /"(?:\\\S|[^"\\])*"/,
 			greedy: true,
-			inside: {
-				number: /(?:\\\S|%\w)/
-			}
+			inside: string_inside
 		}
 	};
 
