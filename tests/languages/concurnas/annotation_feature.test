@@ -1,9 +1,7 @@
 @Deprecated(SUBSYSTEM_DEPRECATED)
 @SetUp
 @Suppress
-@field:Ann
-@file:JvmName
-@set:[Inject VisibleForTesting]
+copyMe@
 
 ----------------------------------------------------
 
@@ -11,9 +9,8 @@
 	["annotation", "@Deprecated"], ["punctuation", "("], "SUBSYSTEM_DEPRECATED", ["punctuation", ")"],
 	["annotation", "@SetUp"],
 	["annotation", "@Suppress"],
-	["annotation", "@field:Ann"],
-	["annotation", "@file:JvmName"],
-	["annotation", "@set:[Inject VisibleForTesting]"]
+	"\r\ncopyMe",
+	["annotation","@"]
 ]
 
 ----------------------------------------------------

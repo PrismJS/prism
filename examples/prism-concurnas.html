@@ -18,12 +18,22 @@ on multiple lines */</code></pre>
 <pre><code>"hi"
 'hi'
 'c'
+'what "yach"'
+s'c'
 "c"
-r"[a-z|A-Z]+"
-myAPL || x[⍋x←6?40] ||</code></pre>
+r"[a-z|A-Z]+"</code></pre>
 
 <h2>Functions</h2>
 <pre><code>def add(a int, b int) => a + b</code></pre>
+
+<h2>Language Extensions</h2>
+<pre><code>dcalc = mylisp||(+ 1 2 (* 2 3))|| // == 9
+
+myFortran || program hello
+          		print *, "Hello World!"
+       		 end program hello|| //prints "Hello World!"
+
+lotto = myAPL || x[⍋x←6?40] || //6 unique random numbers from 1 to 40</code></pre>
 
 <h2>Full example</h2>
 <pre><code>//an overloaded function
