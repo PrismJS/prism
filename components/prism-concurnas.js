@@ -11,7 +11,7 @@ Prism.languages.concurnas = {
 		}
 	],
 	'langext': {
-		pattern: /(?:\w+)\s*(\|\|)[\s\S]+?\1/i,
+		pattern: /\w+\s*\|\|[\s\S]+?\|\|/,
 		greedy: true,
 		alias: 'string'
 	},
@@ -38,9 +38,7 @@ Prism.languages.insertBefore('concurnas', 'langext', {
 			'interpolation': {
 				pattern: /((?:^|[^\\])(?:\\{2})*){(?:[^{}]|{(?:[^{}]|{[^}]*})*})+}/,
 				lookbehind: true,
-				inside: {
-					rest: Prism.languages.concurnas
-				}
+				inside: Prism.languages.concurnas
 			},
 			'string': /[\s\S]+/
 		}
