@@ -1,10 +1,13 @@
 (function (Prism) {
 
 	var comment_inside = {
-		bold: /\b(?:TODO|FIX|FIXME|NOTE|BUG|XX+|HACK|\?\?+|!!+)(?:\b|:)/
+		function: {
+			pattern: /(\b)(?:TODO|FIX|FIXME|NOTE|BUG|XX+|HACK|\?\?+|!!+)(?=\b|:)/,
+			lookbehind: true
+		}
 	};
 	var string_inside = {
-		number: /(?:\\\S|%\w)/
+		number: /(?:\\[^\s']|%\w)/
 	};
 
 	var factor = {
@@ -20,13 +23,13 @@
 			/* from basis/multiline: */
 			{
 				// /* comment */, /* comment*/
-				pattern: /(^|\s)\/\*\s.*?\*\/(?=\s|$)/,
+				pattern: /(^|\s)\/\*\s(?:.|\s)*?\*\/(?=\s|$)/,
 				lookbehind: true,
 				inside: comment_inside
 			},
 			{
 				// ![[ comment ]] , ![===[ comment]===]
-				pattern: /(^|\s)!\[(?:\[\s.*?]|=\[\s.*?]=|==\[\s.*?]==|===\[\s.*?]===|====\[\s.*?]====|=====\[\s.*?]=====|======\[\s.*?]======)](?=\s|$)/,
+				pattern: /(^|\s)!\[(?:\[\s(?:.|\s)*?]|=\[\s(?:.|\s)*?]=|==\[\s(?:.|\s)*?]==|===\[\s(?:.|\s)*?]===|====\[\s(?:.|\s)*?]====|=====\[\s(?:.|\s)*?]=====|======\[\s(?:.|\s)*?]======)](?=\s|$)/,
 				lookbehind: true,
 				inside: comment_inside
 			}
@@ -81,6 +84,16 @@
 			}
 		],
 
+		'regexp': {
+			pattern: /(^|\s)R\/\s+(?:\\\S|[^/])*?[^\\]\//,
+			lookbehind: true,
+			alias: 'number',
+			inside: {
+				variable: /(?:\\\S)/,
+				keyword: /(?!\\)[?*\[\]^$(){}.|]/
+			}
+		},
+
 		'boolean': {
 			pattern: /(^|\s)(?:t|f)(?=\s|$)/,
 			lookbehind: true
@@ -99,18 +112,31 @@
 		'multiline-string': [
 			{
 				// STRING: name \n content \n ; -> CONSTANT: name "content" (symbol)
-				pattern: /(^|\s)STRING:\s+\S+(?:\n|\r\n).*(?:\n|\r\n);(?=\s|$)/,
-				lookbehind: true, // TODO: semicolon inside
+				pattern: /(^|\s)STRING:\s+\S+(?:\n|\r\n).*(?:\n|\r\n)\s*;(?=\s|$)/,
+				lookbehind: true,
+				alias: 'string',
 				inside: {
 					number: string_inside.number,
 					// trailing semicolon on its own line
-					function: /((?:\n|\r\n)\s*);(?=\s|$)/
+					'semicolon-or-setlocal': {
+						pattern: /((?:\n|\r\n)\s*);(?=\s|$)/,
+						lookbehind: true,
+						alias: 'function'
+					}
 				}
 			},
 			{
 				// HEREDOC: marker \n content \n marker ; -> "content" (immediate)
-				pattern: /(^|\s)HEREDOC:\s+\S+(?:\n|\r\n).*(?:\n|\r\n)\S+(?=\s|$)/,
-				lookbehind: true, // TODO: make better
+				pattern: /(^|\s)HEREDOC:\s+\S+(?:\n|\r\n).*(?:\n|\r\n)\s*\S+(?=\s|$)/,
+				lookbehind: true,
+				alias: 'string',
+				inside: string_inside
+			},
+			{
+				// [[ string ]], [==[ string]==]
+				pattern: /(^|\s)\[(?:\[\s(?:.|\s)*?]|=\[\s(?:.|\s)*?]=|==\[\s(?:.|\s)*?]==|===\[\s(?:.|\s)*?]===|====\[\s(?:.|\s)*?]====|=====\[\s(?:.|\s)*?]=====|======\[\s(?:.|\s)*?]======)](?=\s|$)/,
+				lookbehind: true,
+				alias: 'string',
 				inside: string_inside
 			}
 		],
@@ -135,7 +161,7 @@
 			- we'd like if nested stack effects were treated as such rather than just appearing flat
 			- we'd like if the following variable name conventions were recognised specifically:
 				special row variables = ..a b..
-				nested quotation variables end with a colon = quot: ( a: ( -- ) -- b )
+				type and stack effect annotations end with a colon = ( quot: ( a: ( -- ) -- b ) -- x ), ( x: number -- )
 				word throws unconditional error = *
 				any other word-like variable name = a ? q' etc
 

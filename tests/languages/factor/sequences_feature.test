@@ -32,9 +32,9 @@ BV{ 1 2 3 4 }
 	["curly-brace-literal-delimiter", "}"],
 
 	["curly-brace-literal-delimiter", "{"],
-	["string", "\"a\""],
-	["string", "\"b\""],
-	["string", "\"c\""],
+	["string", ["\"a\""] ],
+	["string", ["\"b\""] ],
+	["string", ["\"c\""] ],
 	["curly-brace-literal-delimiter", "}"],
 
 	["curly-brace-literal-delimiter", "{"],
@@ -61,12 +61,12 @@ BV{ 1 2 3 4 }
 
 	["curly-brace-literal-delimiter", "H{"],
 	["curly-brace-literal-delimiter", "{"],
-	["string", "\"a\""],
-	["string", "\"b\""],
+	["string", ["\"a\""]],
+	["string", ["\"b\""]],
 	["curly-brace-literal-delimiter", "}"],
 	["curly-brace-literal-delimiter", "{"],
-	["string", "\"c\""],
-	["string", "\"d\""],
+	["string", ["\"c\""]],
+	["string", ["\"d\""]],
 	["curly-brace-literal-delimiter", "}"],
 	["curly-brace-literal-delimiter", "}"],
 
@@ -78,10 +78,10 @@ BV{ 1 2 3 4 }
 	["curly-brace-literal-delimiter", "}"],
 
 	["curly-brace-literal-delimiter", "V{"],
-	["string", "\"1\""],
-	["string", "\"2\""],
-	["string", "\"3\""],
-	["string", "\"4\""],
+	["string", ["\"1\""]],
+	["string", ["\"2\""]],
+	["string", ["\"3\""]],
+	["string", ["\"4\""]],
 	["curly-brace-literal-delimiter", "}"],
 
 	["curly-brace-literal-delimiter", "BV{"],
@@ -95,5 +95,4 @@ BV{ 1 2 3 4 }
 
 ----------------------------------------------------
 
-comments
 } / { at the front / EOF are not delimiters

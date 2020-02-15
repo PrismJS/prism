@@ -19,77 +19,111 @@
 "+5"
 "-5"
 
+HEREDOC: marker
+text \n
+marker
+
+STRING: name
+text \n
+;
+
+[[ string ]]
+[[ string]]
+[==[ string ]==]
+[==[ string]==]
+
+[[word ]]
+
 URL" " URL""
 SBUF" " SBUF""
-P" " P"" P" as\\""
+P" " P""
 
-----------------------------------------------------
+P" as\\""
+
+----------------------------------------------------------
 
 [
-	[ "string", "\"s\"" ],
+	[ "string", ["\"s\""] ],
 	[ "normal-word", "word\"word\"" ],
 	[ "comment", ["! word: word\"word\""] ],
-	[ "string", "\"adjacent\"" ],
-	[ "string", "\"strings\"" ],
-	[ "string", "\" ! str not comment\"" ],
+	[ "string", ["\"adjacent\""] ],
+	[ "string", ["\"strings\""] ],
+	[ "string", ["\" ! str not comment\""] ],
 	[ "comment", ["! comment"] ],
 
-	[ "string", "\"!\"" ],
-	[ "string", "\" ! \"" ],
-	[ "string", "\"! \"" ],
+	[ "string", ["\"!\""] ],
+	[ "string", ["\" ! \""] ],
+	[ "string", ["\"! \""] ],
 
-	[ "string", "\"\\\"\"" ],
-	[ "string", "\"'\"" ],
-	[ "string", "\"\\n\"" ],
-	[ "string", "\"\\\\\""],
+	[ "string", [
+		"\"",
+		[ "number", "\\\"" ],
+		"\""
+	] ],
+	[ "string", ["\"'\""] ],
+	[ "string", [
+		"\"",
+		["number", "\\n"],
+		"\""
+	] ],
+	[ "string", ["\"", ["number", "\\\\"], "\""] ],
 
-	[ "string", "\"str\"" ],
+	[ "string", ["\"str\""] ],
 	"5\r\n",
 
-	["string", "\"str\"" ],
+	["string", ["\"str\""] ],
 	"[ ",
 	[ "quotation-delimiter", "]" ],
 
-	[ "string", "\"str\"" ],
+	[ "string", ["\"str\""] ],
 	"{ ",
 	[ "curly-brace-literal-delimiter", "}" ],
 
 	[ "curly-brace-literal-delimiter", "{" ],
-	[ "string", "\"a\"" ],
+	[ "string", ["\"a\""] ],
 	"}\r\n",
 
-	[ "string", "\"5\"" ],
-	[ "string", "\"1/5\"" ],
-	[ "string", "\"+5\"" ],
-	[ "string", "\"-5\"" ],
+	[ "string", ["\"5\""] ],
+	[ "string", ["\"1/5\""] ],
+	[ "string", ["\"+5\""] ],
+	[ "string", ["\"-5\""] ],
 
-	[ "special-string-literal", "URL\" \"" ],
+	[ "multiline-string", [
+		"HEREDOC: marker\r\ntext ",
+		[ "number", "\\n" ],
+		"\r\nmarker"
+	] ],
+
+	[ "multiline-string", [
+		"STRING: name\r\ntext ",
+		[ "number", "\\n" ],
+		[ "semicolon-or-setlocal", ";" ]
+	] ],
+
+	[ "multiline-string", [ "[[ string ]]" ] ],
+	[ "multiline-string", [ "[[ string]]" ] ],
+	[ "multiline-string", [ "[==[ string ]==]" ] ],
+	[ "multiline-string", [ "[==[ string]==]" ] ],
+	[ "normal-word", "[[word" ],
+	[ "normal-word", "]]" ],
+	[ "custom-string", ["URL\" \""] ],
 	[ "normal-word", "URL\"\"" ],
 
-	[ "special-string-literal", "SBUF\" \"" ],
+	[ "custom-string", ["SBUF\" \""] ],
 	[ "normal-word", "SBUF\"\"" ],
 
-	[ "special-string-literal", "P\" \"" ],
+	[ "custom-string", ["P\" \""] ],
 	[ "normal-word", "P\"\"" ],
-	[ "special-string-literal", "P\" as\\\\\"" ],
+	[ "custom-string", [
+		"P\" as",
+		[ "number", "\\\\" ],
+		"\""
+	] ],
 	"\""
 ]
 
-----------------------------------------------------
+----------------------------------------------------------
 
 TODO:
-
-STRING: word-name
-text
-;
-
-HEREDOC: marker
-text
-marker
-
-[[ a ]]
-[[ a]]
-[[a ]]
-[[a]]
 
 R/ / R//
