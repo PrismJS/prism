@@ -23,14 +23,13 @@
 			/* from basis/multiline: */
 			{
 				// /* comment */, /* comment*/
-				pattern: /(^|\s)\/\*\s(?:.|\s)*?\*\/(?=\s|$)/,
+				pattern: /(^|\s)\/\*\s[\s\S]*?\*\/(?=\s|$)/,
 				lookbehind: true,
 				inside: comment_inside
 			},
 			{
 				// ![[ comment ]] , ![===[ comment]===]
-				//pattern: /(^|\s)!\[(?:\[\s(?:.|\s)*?]|=\[\s(?:.|\s)*?]=|==\[\s(?:.|\s)*?]==|===\[\s(?:.|\s)*?]===|====\[\s(?:.|\s)*?]====|=====\[\s(?:.|\s)*?]=====|======\[\s(?:.|\s)*?]======)](?=\s|$)/,
-				pattern: /(^|\s)!\[(={0,6})\[\s(?:.|\s)*?\]\2\](?=\s|$)/,
+				pattern: /(^|\s)!\[(={0,6})\[\s[\s\S]*?\]\2\](?=\s|$)/,
 				lookbehind: true,
 				inside: comment_inside
 			}
@@ -135,7 +134,7 @@
 			},
 			{
 				// [[ string ]], [==[ string]==]
-				pattern: /(^|\s)\[(={0,6})\[\s(?:.|\s)*?\]\2\](?=\s|$)/,
+				pattern: /(^|\s)\[(={0,6})\[\s[\s\S]*?\]\2\](?=\s|$)/,
 				lookbehind: true,
 				alias: 'string',
 				inside: string_inside
