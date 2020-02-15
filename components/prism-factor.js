@@ -157,7 +157,7 @@
 		},
 
 		/* this description of stack effect literal syntax is not complete and not as specific as theoretically possible
-		 	trying to do better is more work and regex-computation-time than it's worth though.
+			trying to do better is more work and regex-computation-time than it's worth though.
 			- we'd like to have the "delimiter" parts of the stack effect [ (, --, and ) ] be a different (less-important or comment-like) colour to the stack effect contents
 			- we'd like if nested stack effects were treated as such rather than just appearing flat
 			- we'd like if the following variable name conventions were recognised specifically:
@@ -274,13 +274,13 @@
 				// opening
 				pattern: /(^|\s)\[(?=\s)/,
 				lookbehind: true,
-			 	alias: 'operator'
+				alias: 'operator'
 			},
 			{
 				// closing
 				pattern: /(\s)\](?=\s|$)/,
 				lookbehind: true,
-			 	alias: 'operator'
+				alias: 'operator'
 			},
 		],
 
@@ -314,8 +314,8 @@
 	};
 
 	var escape = function (str) {
-   		return (str+'').replace(/([.?*+\^$\[\]\\(){}|\-])/g, '\\$1');
- 	};
+		return (str+'').replace(/([.?*+\^$\[\]\\(){}|\-])/g, '\\$1');
+	};
 
 	var arrToWordsRegExp = function (arr) {
 		return new RegExp(
