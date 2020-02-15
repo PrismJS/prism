@@ -14,6 +14,7 @@ words blah ! comment after code on a line
 ![==[ comment ]==]
 ![==[ comment]==]
 ![=[word ]=]
+![=======[ words ]=======]
 
 /* com
 ment */
@@ -47,6 +48,9 @@ ment*/
 	[ "comment", [ "![==[ comment]==]" ] ],
 	[ "normal-word", "![=[word" ],
 	[ "normal-word", "]=]" ],
+	[ "normal-word", "![=======[" ],
+	[ "normal-word", "words" ],
+	[ "normal-word", "]=======]" ],
 	[ "comment", [ "/* com\r\nment */" ] ],
 	[ "comment", [ "/* com\r\nment*/" ] ],
 	[ "normal-word", "/*word" ],
