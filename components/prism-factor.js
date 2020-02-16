@@ -91,7 +91,7 @@
 				'variable': /\\\S/,
 				'keyword': /[+?*\[\]^$(){}.|]/,
 				'operator': {
-					pattern: /(\/)[idmsr]+(-[idmsr]+)?/,
+					pattern: /(\/)[idmsr]+(?:-[idmsr]+)?/,
 					lookbehind: true
 				}
 			}
