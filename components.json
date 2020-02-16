@@ -313,6 +313,10 @@
 			"require": "clike",
 			"owner": "simonreynolds7"
 		},
+		"factor": {
+			"title": "Factor",
+			"owner": "catb0t"
+		},
 		"firestore-security-rules": {
 			"title": "Firestore security rules",
 			"require": "clike",
