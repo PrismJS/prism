@@ -3,6 +3,7 @@ R/
 abcde?.+\?\*\+/
 R/ \\/
 R/ \//idmsr
+R/ \/idmsr/
 
 -----------------------------
 
@@ -18,8 +19,9 @@ R/ \//idmsr
 		[ "variable", "\\+" ],
 		"/"
 	] ],
-	[ "regexp", [ "R/ ", ["variable", "\\\\"], "/"] ],
-	[ "regexp", [ "R/ ", ["variable", "\\/"], "/", [ "operator", "idmsr" ] ] ]
+	[ "regexp", [ "R/ ", [ "variable", "\\\\"], "/"] ],
+	[ "regexp", [ "R/ ", [ "variable", "\\/" ], "/", [ "operator", "idmsr" ] ] ],
+	[ "regexp", [ "R/ ", [ "variable", "\\/" ], "idmsr/" ] ]
 ]
 
 -----------------------------
