@@ -1,17 +1,13 @@
 (function (Prism) {
 
 	var comment_inside = {
-		function: {
-			pattern: /(\b)(?:TODO|FIX|FIXME|NOTE|BUG|XX+|HACK|\?\?+|!!+)(?=\b|:)/,
-			lookbehind: true
-		}
+		'function': /\b(?:TODOS?|FIX(?:MES?)?|NOTES?|BUGS?|XX+|HACKS?|WARN(?:ING)?|\?{2,}|!{2,})\b/
 	};
 	var string_inside = {
-		number: /(?:\\[^\s']|%\w)/
+		'number': /\\[^\s']|%\w/
 	};
 
 	var factor = {
-
 		'comment': [
 			{
 				// ! single-line exclamation point comments with whitespace after/around the !
@@ -25,12 +21,14 @@
 				// /* comment */, /* comment*/
 				pattern: /(^|\s)\/\*\s[\s\S]*?\*\/(?=\s|$)/,
 				lookbehind: true,
+				greedy: true,
 				inside: comment_inside
 			},
 			{
 				// ![[ comment ]] , ![===[ comment]===]
 				pattern: /(^|\s)!\[(={0,6})\[\s[\s\S]*?\]\2\](?=\s|$)/,
 				lookbehind: true,
+				greedy: true,
 				inside: comment_inside
 			}
 		],
@@ -69,12 +67,12 @@
 			},
 			{
 				// NAN literal syntax NAN: 80000deadbeef, NAN: a
-				pattern: /(^|\s)NAN:[\n\t ]+[\da-fA-F]+(?=\s|$)/,
+				pattern: /(^|\s)NAN:\s+[\da-fA-F]+(?=\s|$)/,
 				lookbehind: true
 			},
 			{
 				/*
-					base prefix floats 0x1.0p3 (8.0) 0b1.010p2 (5.0) 0x1.p1 0b1.11111111111111111111111111p1111111111111111
+					base prefix floats 0x1.0p3 (8.0) 0b1.010p2 (5.0) 0x1.p1 0b1.11111111p11111...
 					"The normalized hex form ±0x1.MMMMMMMMMMMMM[pP]±EEEE allows any floating-point number to be specified precisely.
 					The values of MMMMMMMMMMMMM and EEEE map directly to the mantissa and exponent fields of the binary IEEE 754 representation."
 					<https://docs.factorcode.org/content/article-syntax-floats.html>
@@ -84,28 +82,30 @@
 			}
 		],
 
+		// R/ regexp?\/\\/
 		'regexp': {
-			pattern: /(^|\s)R\/\s+(?:\\\S|[^/])*?[^\\]\//,
+			pattern: /(^|\s)R\/\s+(?:\\\S|[^\\/])*\//,
 			lookbehind: true,
 			alias: 'number',
 			inside: {
-				variable: /(?:\\\S)/,
-				keyword: /(?!\\)[?*\[\]^$(){}.|]/
+				'variable': /\\\S/,
+				'keyword': /[+?*\[\]^$(){}.|]/
 			}
 		},
 
 		'boolean': {
-			pattern: /(^|\s)(?:t|f)(?=\s|$)/,
+			pattern: /(^|\s)[tf](?=\s|$)/,
 			lookbehind: true
 		},
 
+		// SBUF" asd", URL" ://...", P" /etc/"
 		'custom-string': {
 			pattern: /(^|\s)[A-Z0-9\-]+"\s(?:\\\S|[^"\\])*"/,
 			lookbehind: true,
 			greedy: true,
 			alias: 'string',
 			inside: {
-				number: /(?:\\\S|%\w|\/)/
+				'number': /\\\S|%\w|\//
 			}
 		},
 
@@ -114,9 +114,10 @@
 				// STRING: name \n content \n ; -> CONSTANT: name "content" (symbol)
 				pattern: /(^|\s)STRING:\s+\S+(?:\n|\r\n).*(?:\n|\r\n)\s*;(?=\s|$)/,
 				lookbehind: true,
+				greedy: true,
 				alias: 'string',
 				inside: {
-					number: string_inside.number,
+					'number': string_inside.number,
 					// trailing semicolon on its own line
 					'semicolon-or-setlocal': {
 						pattern: /((?:\n|\r\n)\s*);(?=\s|$)/,
@@ -129,6 +130,7 @@
 				// HEREDOC: marker \n content \n marker ; -> "content" (immediate)
 				pattern: /(^|\s)HEREDOC:\s+\S+(?:\n|\r\n).*(?:\n|\r\n)\s*\S+(?=\s|$)/,
 				lookbehind: true,
+				greedy: true,
 				alias: 'string',
 				inside: string_inside
 			},
@@ -136,6 +138,7 @@
 				// [[ string ]], [==[ string]==]
 				pattern: /(^|\s)\[(={0,6})\[\s[\s\S]*?\]\2\](?=\s|$)/,
 				lookbehind: true,
+				greedy: true,
 				alias: 'string',
 				inside: string_inside
 			}
@@ -158,7 +161,7 @@
 		/* this description of stack effect literal syntax is not complete and not as specific as theoretically possible
 			trying to do better is more work and regex-computation-time than it's worth though.
 			- we'd like to have the "delimiter" parts of the stack effect [ (, --, and ) ] be a different (less-important or comment-like) colour to the stack effect contents
-			- we'd like if nested stack effects were treated as such rather than just appearing flat
+			- we'd like if nested stack effects were treated as such rather than just appearing flat (with `inside`)
 			- we'd like if the following variable name conventions were recognised specifically:
 				special row variables = ..a b..
 				type and stack effect annotations end with a colon = ( quot: ( a: ( -- ) -- b ) -- x ), ( x: number -- )
@@ -230,15 +233,41 @@
 			alias: 'operator'
 		},
 
+		/*
+			full list of supported word naming conventions: (the convention appears outside of the [brackets])
+				set-[x]
+				change-[x]
+				with-[x]
+				new-[x]
+				>[string]
+				[base]>
+				[string]>[number]
+				+[symbol]+
+				[boolean-word]?
+				?[of]
+				[slot-reader]>>
+				>>[slot-setter]
+				[slot-writer]<<
+				([implementation-detail])
+				[mutater]!
+				[variant]*
+				[prettyprint].
+				$[help-markup]
+
+			<constructors>, SYNTAX:, etc are supported by their own patterns.
+
+			`with` and `new` from `kernel` are their own builtins.
+
+			see <https://docs.factorcode.org/content/article-conventions.html>
+		*/
 		'conventionally-named-word': {
-			// for certain word naming conventions like +lt+, sequence?, readers>>, >>setters, writers<<
-			pattern: /(^|\s)(?!")(?:set-\S+|change-\S+|>[^>\s]+|[^:>\s]+>|[^>\s]+>[^>\s]+|\+[^\+\s]+\+|[^?\s]+\?|\?[^?\s]+|[^>\s]+>>|>>[^>\s]+|[^<\s]+<<|\([^()\s]+\)|[^!\s]+!|[^\s]\S*\*|[^\s]\S*\.)(?=\s|$)/,
+			pattern: /(^|\s)(?!")(?:(?:set|change|with|new)-\S+|\$\S+|>[^>\s]+|[^:>\s]+>|[^>\s]+>[^>\s]+|\+[^+\s]+\+|[^?\s]+\?|\?[^?\s]+|[^>\s]+>>|>>[^>\s]+|[^<\s]+<<|\([^()\s]+\)|[^!\s]+!|[^*\s]\S*\*|[^.\s]\S*\.)(?=\s|$)/,
 			lookbehind: true,
 			alias: 'keyword'
 		},
 
 		'colon-syntax': {
-			pattern: /(^|\s)(?:[A-Z]*#?):{1,2}\s+(?:;\S+|(?!;)\S+)(?=\s|$)/,
+			pattern: /(^|\s)(?:[A-Z0-9\-]+#?)?:{1,2}\s+(?:;\S+|(?!;)\S+)(?=\s|$)/,
 			lookbehind: true,
 			greedy: true,
 			alias: 'function'
@@ -294,16 +323,16 @@
 				escaped backslash "\\"
 				and general escapes since Factor has so many "\N"
 
-			syntax that works in the reference implementation that i'm choosing not to
-			intentionally support for now, because it's difficult, and an implementation detail:
-			"string 1""string 2" -> 2 strings (works anyway)
-			"string"5 -> string, 5
-			"string"[ ] -> string, quotation
-			{ "a"} -> array<string>
+			syntax that works in the reference implementation that isn't fully
+			supported because it's an implementation detail:
+				"string 1""string 2" -> 2 strings (works anyway)
+				"string"5 -> string, 5
+				"string"[ ] -> string, quotation
+				{ "a"} -> array<string>
 
 			the rest of those examples all properly recognise the string, but not
 				the other object (number, quotation, etc)
-			this is just fine for a regex-only implementation.
+			this is fine for a regex-only implementation.
 		*/
 		'string': {
 			pattern: /"(?:\\\S|[^"\\])*"/,

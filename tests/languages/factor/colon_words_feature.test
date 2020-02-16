@@ -4,7 +4,8 @@ USING: a b c ;
 USE: a
 IN: a.b
 CHAR: a
-
+#: a
+GENERIC#: a
 
 ----------------------------------------------------
 
@@ -28,7 +29,10 @@ CHAR: a
 	[ "semicolon-or-setlocal", ";" ],
 	[ "colon-syntax", "USE: a" ],
 	[ "colon-syntax", "IN: a.b" ],
-	[ "colon-syntax", "CHAR: a" ]
+	[ "colon-syntax", "CHAR: a" ],
+	[ "normal-word", "#:" ],
+	[ "normal-word", "a" ],
+	[ "colon-syntax", "GENERIC#: a" ]
 ]
 
 ----------------------------------------------------

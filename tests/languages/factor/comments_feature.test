@@ -10,6 +10,9 @@ a! ! word
 words blah ! comment after code on a line
 
 ![[ comment ]]
+"![[ string ]]"
+![[ "comment" ]]
+
 ![[ comment]]
 ![==[ comment ]==]
 ![==[ comment]==]
@@ -20,8 +23,11 @@ words blah ! comment after code on a line
 ment */
 /* com
 ment*/
-
 /*word */
+
+/* "comment" */
+"/* "strings" */"
+
 
 ----------------------------------------------------
 
@@ -42,10 +48,14 @@ ment*/
 	[ "normal-word", "words" ],
 	[ "normal-word", "blah" ],
 	[ "comment", [ "! comment after code on a line" ] ],
+
 	[ "comment", [ "![[ comment ]]" ] ],
+	[ "string", [ "\"![[ string ]]\"" ] ],
+	[ "comment", [ "![[ \"comment\" ]]" ] ],
 	[ "comment", [ "![[ comment]]" ] ],
 	[ "comment", [ "![==[ comment ]==]" ] ],
 	[ "comment", [ "![==[ comment]==]" ] ],
+
 	[ "normal-word", "![=[word" ],
 	[ "normal-word", "]=]" ],
 	[ "normal-word", "![=======[" ],
@@ -54,7 +64,11 @@ ment*/
 	[ "comment", [ "/* com\r\nment */" ] ],
 	[ "comment", [ "/* com\r\nment*/" ] ],
 	[ "normal-word", "/*word" ],
- 	[ "normal-word", "*/" ]
+ 	[ "normal-word", "*/" ],
+	[ "comment", ["/* \"comment\" */"] ],
+	[ "string", ["\"/* \""] ],
+	"strings",
+	[ "string", ["\" */\""] ]
 ]
 
 ----------------------------------------------------
