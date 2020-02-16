@@ -1,5 +1,6 @@
 : a ( -- ) ;
-:: ;
+:: ; ! ; is not a word name
+:: ;a ! ;a is a word name
 USING: a b c ;
 USE: a
 IN: a.b
@@ -17,8 +18,14 @@ GENERIC#: a
 	[ "stack-effect-delimiter", ")" ],
 
 	[ "semicolon-or-setlocal", ";" ],
+
 	[ "normal-word", "::" ],
 	[ "semicolon-or-setlocal", ";" ],
+	[ "comment", [ "! ; is not a word name" ] ],
+
+	[ "colon-syntax", ":: ;a" ],
+	[ "comment", [ "! ;a is a word name" ] ],
+
 	[ "special-using",
 		[ "USING: ",
 			[ "string", "a" ],
@@ -37,4 +44,4 @@ GENERIC#: a
 
 ----------------------------------------------------
 
-some comments
+colon-ended parsing words

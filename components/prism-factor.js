@@ -155,7 +155,7 @@
 			inside: {
 				// this is essentially a regex for vocab names, which i don't want to specify
 				// but the USING: gets picked up as a vocab name
-				string: {
+				'string': {
 					pattern: /(\s)[^:\s]+/,
 					lookbehind: true
 				}
