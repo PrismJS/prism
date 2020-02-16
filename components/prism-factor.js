@@ -84,12 +84,16 @@
 
 		// R/ regexp?\/\\/
 		'regexp': {
-			pattern: /(^|\s)R\/\s+(?:\\\S|[^\\/])*\//,
+			pattern: /(^|\s)R\/\s+(?:\\\S|[^\\/])*\/(?:[idmsr]*|[idmsr]+-[idmsr]+)(?=\s|$)/,
 			lookbehind: true,
 			alias: 'number',
 			inside: {
 				'variable': /\\\S/,
-				'keyword': /[+?*\[\]^$(){}.|]/
+				'keyword': /[+?*\[\]^$(){}.|]/,
+				'operator': {
+					pattern: /(\/)[idmsr]+(-[idmsr]+)?/,
+					lookbehind: true
+				}
 			}
 		},
 
