@@ -939,6 +939,11 @@
 			"require": "clike",
 			"owner": "glachaud"
 		},
+		"solution-file": {
+			"title": "Solution file",
+			"alias": "sln",
+			"owner": "RunDevelopment"
+		},
 		"soy": {
 			"title": "Soy (Closure Template)",
 			"require": "markup-templating",
