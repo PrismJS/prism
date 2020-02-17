@@ -587,13 +587,13 @@ if (script) {
 	}
 }
 
-if (!_.manual) {
-	function highlightAutomaticallyCallback() {
-		if (!_.manual) {
-			_.highlightAll();
-		}
+function highlightAutomaticallyCallback() {
+	if (!_.manual) {
+		_.highlightAll();
 	}
+}
 
+if (!_.manual) {
 	// If the document state is "loading", then we'll use DOMContentLoaded.
 	// If the document state is "interactive" and the prism.js script is deferred, then we'll also use the
 	// DOMContentLoaded event because there might be some plugins or languages which have also been deferred and they
@@ -748,7 +748,12 @@ Prism.languages.svg = Prism.languages.markup;
 		'atrule': {
 			pattern: /@[\w-]+[\s\S]*?(?:;|(?=\s*\{))/,
 			inside: {
-				'rule': /@[\w-]+/
+				'rule': /^@[\w-]+/,
+				'selector-function-argument': {
+					pattern: /(\bselector\s*\((?!\s*\))\s*)(?:[^()]|\((?:[^()]|\([^()]*\))*\))+?(?=\s*\))/,
+					lookbehind: true,
+					alias: 'selector'
+				}
 				// See rest below
 			}
 		},

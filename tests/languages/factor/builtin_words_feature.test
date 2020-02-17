@@ -1,0 +1,15 @@
+and not with map filter
+
+----------------------------------------------------
+
+[
+	[ "kernel-builtin", "and" ],
+	[ "kernel-builtin", "not" ],
+	[ "combinators", "with" ],
+	[ "combinators", "map" ],
+	[ "combinators", "filter" ]
+]
+
+----------------------------------------------------
+
+some builtins

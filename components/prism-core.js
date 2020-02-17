@@ -582,13 +582,13 @@ if (script) {
 	}
 }
 
-if (!_.manual) {
-	function highlightAutomaticallyCallback() {
-		if (!_.manual) {
-			_.highlightAll();
-		}
+function highlightAutomaticallyCallback() {
+	if (!_.manual) {
+		_.highlightAll();
 	}
+}
 
+if (!_.manual) {
 	// If the document state is "loading", then we'll use DOMContentLoaded.
 	// If the document state is "interactive" and the prism.js script is deferred, then we'll also use the
 	// DOMContentLoaded event because there might be some plugins or languages which have also been deferred and they
