@@ -10,7 +10,7 @@ bar
 	["keyword", "void"],
 	["punctuation", ")"],
 	["punctuation", ";"],
-	["function", "bar\r\n"],
+	["function", "bar"],
 	["punctuation", "("],
 	["number", "1"],
 	["punctuation", ","],

@@ -20,7 +20,7 @@ struct __attribute__ ((aligned (8))) S { short f[3]; };
 	["keyword", "__attribute__"],
 	["punctuation", "("],
 	["punctuation", "("],
-	["function", "aligned "],
+	["function", "aligned"],
 	["punctuation", "("],
 	["number", "8"],
 	["punctuation", ")"],
