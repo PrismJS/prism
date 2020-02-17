@@ -4,6 +4,9 @@
 &SS
 *SS
 
+&build-test
+*build-test
+
 ----------------------------------------------------
 
 [
@@ -11,7 +14,10 @@
 	["important", "&A"],
 	["important", "*A"],
 	["important", "&SS"],
-	["important", "*SS"]
+	["important", "*SS"],
+
+	["important", "&build-test"],
+	["important", "*build-test"]
 ]
 
 ----------------------------------------------------

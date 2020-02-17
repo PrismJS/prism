@@ -40,7 +40,7 @@ Prism.languages.yaml = {
 		lookbehind: true
 	},
 	'tag': /![^\s]+/,
-	'important': /[&*][\w]+/,
+	'important': /[&*][\w-]+/,
 	'punctuation': /---|[:[\]{}\-,|>?]|\.\.\./
 };
 
