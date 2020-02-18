@@ -147,6 +147,7 @@
 		"adoc": "asciidoc",
 		"shell": "bash",
 		"rbnf": "bnf",
+		"conc": "concurnas",
 		"cs": "csharp",
 		"dotnet": "csharp",
 		"coffee": "coffeescript",

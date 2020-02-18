@@ -1,6 +1,6 @@
 {
   "name": "prismjs",
-  "version": "1.18.0",
+  "version": "1.19.0",
   "description": "Lightweight, robust, elegant syntax highlighting. A spin-off project from Dabblet.",
   "main": "prism.js",
   "style": "themes/prism.css",
@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "gulp": "^4.0.0",
+    "gulp": "^4.0.2",
     "gulp-concat": "^2.3.4",
     "gulp-header": "^2.0.7",
     "gulp-rename": "^1.2.0",
