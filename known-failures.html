@@ -24,7 +24,7 @@
 <script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
 <script src="https://www.google-analytics.com/ga.js" async></script>
 </head>
-<body>
+<body class="language-none">
 
 <header>
 	<div class="intro" data-src="templates/header-main.html" data-type="text/html"></div>
@@ -331,6 +331,29 @@ not supported */</code></pre>
 
 <h3>Nesting of bold and italic is not supported</h3>
 <pre><code>''Italic with '''bold''' inside''</code></pre>
+
+</section>
+
+
+<section>
+
+<h1 id="themes">Themes</h1>
+
+<p>Some of our themes are not compatible with certain layouts.</p>
+
+<h2>Coy</h2>
+
+<p>Coy's shadows and background might not wrap around the code correctly if combined with float of flexbox layouts.</p>
+
+<img src="img/failures/coy-overlap.png"/>
+
+<h3>Workarounds</h3>
+
+<p>There are 2 possible workarounds:</p>
+
+<p>The first workaround is setting <code>display: flex-root;</code> for the <code>pre</code> element. This will fix the issue but <code>flex-root</code> has <a href="https://caniuse.com/#feat=flow-root">limited browser support</a>.</p>
+
+<p>The second is adding <code>clear: both;</code> to the style of the <code>pre</code> element. This will fix the issue but it will change the way code blocks behave when overlapping with other elements.</p>
 
 </section>
 
