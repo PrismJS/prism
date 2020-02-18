@@ -1,0 +1,59 @@
+x-number: &num-ber 13
+x-string: &stri_ng "good"
+x-null: &nu-ll null
+x-boolean: &boo-lean true
+x-datetime: &date-time 2001-12-15T02:59:43.1Z
+x-scalar: &sca-lar |
+  foo
+  bar
+
+foobar: *num-ber
+fubar: *stri_ng
+
+----------------------------------------------------
+
+[
+	["key", "x-number"],
+	["punctuation", ":"],
+	["important", "&num-ber"],
+  ["number", "13"],
+
+	["key", "x-string"],
+	["punctuation", ":"],
+	["important", "&stri_ng"],
+  ["string", "\"good\""],
+
+  ["key", "x-null"],
+	["punctuation", ":"],
+	["important", "&nu-ll"],
+  ["null", "null"],
+
+  ["key", "x-boolean"],
+	["punctuation", ":"],
+	["important", "&boo-lean"],
+  ["boolean", "true"],
+
+  ["key", "x-datetime"],
+	["punctuation", ":"],
+	["important", "&date-time"],
+  ["datetime", "2001-12-15T02:59:43.1Z"],
+
+  ["key", "x-scalar"],
+	["punctuation", ":"],
+	["important", "&sca-lar"],
+  ["punctuation", "|"],
+  ["scalar", "\n  foo\n  bar"],
+
+  ["key", "foobar"],
+  ["punctuation", ":"],
+  ["important", "*num-ber"],
+
+  ["key", "fubar"],
+  ["punctuation", ":"],
+  ["important", "*stri_ng"]
+]
+
+----------------------------------------------------
+
+Checks for anchors and aliases.
+TODO: null, boolean, datetime, scalar
