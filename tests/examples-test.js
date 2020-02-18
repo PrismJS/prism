@@ -50,68 +50,6 @@ describe('Examples', function () {
 	});
 
 	describe('Validate HTML templates', function () {
-
-		async function validateHTML(html) {
-			const root = await parseHTML(html);
-
-			/**
-			 * @param {TagNode} node
-			 */
-			function checkCodeElements(node) {
-				if (node.tagName === 'code') {
-					assert.equal(node.children.length, 1,
-						'A <code> element is only allowed to contain text, no tags. '
-						+ 'Did you perhaps not escape all "<" characters?');
-
-					const child = node.children[0];
-					if (child.type !== 'text') {
-						// throw to help TypeScript's flow analysis
-						throw assert.equal(child.type, 'text',
-							'The child of a <code> element must be text only.');
-					}
-
-					const text = child.rawText;
-
-					assert.notMatch(text, /</, 'All "<" characters have to be escape with "&lt;".');
-					assert.notMatch(text, /&(?!amp;|lt;|gt;)(?:[#\w]+);/,
-						'Disallowed entity.');
-				} else {
-					node.children.forEach(n => {
-						if (n.type === 'tag') {
-							checkCodeElements(n);
-						}
-					});
-				}
-			}
-
-			for (const node of root.children) {
-				if (node.type === "text") {
-					assert.isEmpty(node.rawText.trim(), 'All non-whitespace text has to be in <p> tags.');
-				} else {
-					// only known tags
-					assert.match(node.tagName, /^(?:h2|h3|p|pre|ul|ol)$/,
-						'Only some tags are allowed as top level tags.');
-
-					// <pre> elements must have only one child, a <code> element
-					if (node.tagName === 'pre') {
-						assert.equal(node.children.length, 1,
-							'<pre> element must have one and only one child node, a <code> element.'
-							+ ' This also means that spaces around the <code> element are not allowed.');
-
-						const child = node.children[0];
-						if (child.type !== 'tag') {
-							// throw to help TypeScript's flow analysis
-							throw assert.equal(child.type, 'tag',
-								'The child of a <pre> element must be a <code> element.');
-						}
-						assert.equal(child.tagName, 'code', 'The child of a <pre> element must be a <code> element.');
-					}
-
-					checkCodeElements(node);
-				}
-			}
-		}
-
 		for (const file of validFiles) {
 			it('- ./examples/' + file, async function () {
 				const content = fs.readFileSync(__dirname + '/../examples/' + file, 'utf-8');
@@ -122,6 +60,68 @@ describe('Examples', function () {
 
 });
 
+
+/**
+ * Validates the given HTML string of an example file.
+ *
+ * @param {string} html
+ */
+async function validateHTML(html) {
+	const root = await parseHTML(html);
+
+	/**
+	 * @param {TagNode} node
+	 */
+	function checkCodeElements(node) {
+		if (node.tagName === 'code') {
+			assert.equal(node.children.length, 1,
+				'A <code> element is only allowed to contain text, no tags. '
+				+ 'Did you perhaps not escape all "<" characters?');
+
+			const child = node.children[0];
+			if (child.type !== 'text') {
+				// throw to help TypeScript's flow analysis
+				throw assert.equal(child.type, 'text', 'The child of a <code> element must be text only.');
+			}
+
+			const text = child.rawText;
+
+			assert.notMatch(text, /</, 'All "<" characters have to be escape with "&lt;".');
+			assert.notMatch(text, /&(?!amp;|lt;|gt;)(?:[#\w]+);/, 'Disallowed entity.');
+		} else {
+			node.children.forEach(n => {
+				if (n.type === 'tag') {
+					checkCodeElements(n);
+				}
+			});
+		}
+	}
+
+	for (const node of root.children) {
+		if (node.type === "text") {
+			assert.isEmpty(node.rawText.trim(), 'All non-whitespace text has to be in <p> tags.');
+		} else {
+			// only known tags
+			assert.match(node.tagName, /^(?:h2|h3|p|pre|ul|ol)$/, 'Only some tags are allowed as top level tags.');
+
+			// <pre> elements must have only one child, a <code> element
+			if (node.tagName === 'pre') {
+				assert.equal(node.children.length, 1,
+					'<pre> element must have one and only one child node, a <code> element.'
+					+ ' This also means that spaces around the <code> element are not allowed.');
+
+				const child = node.children[0];
+				if (child.type !== 'tag') {
+					// throw to help TypeScript's flow analysis
+					throw assert.equal(child.type, 'tag', 'The child of a <pre> element must be a <code> element.');
+				}
+				assert.equal(child.tagName, 'code', 'The child of a <pre> element must be a <code> element.');
+			}
+
+			checkCodeElements(node);
+		}
+	}
+}
 
 /**
  * Parses the given HTML fragment and returns a simple tree of the fragment.
@@ -177,11 +177,8 @@ function parseHTML(html) {
 				stack[stack.length - 1].children.push(newElement);
 				stack.push(newElement);
 			},
-			onclosetag(name) {
-				let popped = stack.pop();
-				if (popped.tagName !== name) {
-					reject(new Error(`Unexpected closing tag </${name}>`));
-				}
+			onclosetag() {
+				stack.pop();
 			}
 
 		}, { lowerCaseTags: false });
