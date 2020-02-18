@@ -87,7 +87,7 @@ async function validateHTML(html) {
 			const text = child.rawText;
 
 			assert.notMatch(text, /</, 'All "<" characters have to be escape with "&lt;".');
-			assert.notMatch(text, /&(?!amp;|lt;|gt;)(?:[#\w]+);/, 'Disallowed entity.');
+			assert.notMatch(text, /&(?!amp;|lt;|gt;)(?:[#\w]+);/, 'Only certain entities are allowed.');
 		} else {
 			node.children.forEach(n => {
 				if (n.type === 'tag') {
@@ -98,7 +98,7 @@ async function validateHTML(html) {
 	}
 
 	for (const node of root.children) {
-		if (node.type === "text") {
+		if (node.type === 'text') {
 			assert.isEmpty(node.rawText.trim(), 'All non-whitespace text has to be in <p> tags.');
 		} else {
 			// only known tags
@@ -108,7 +108,7 @@ async function validateHTML(html) {
 			if (node.tagName === 'pre') {
 				assert.equal(node.children.length, 1,
 					'<pre> element must have one and only one child node, a <code> element.'
-					+ ' This also means that spaces around the <code> element are not allowed.');
+					+ ' This also means that spaces and line breaks around the <code> element are not allowed.');
 
 				const child = node.children[0];
 				if (child.type !== 'tag') {
@@ -143,7 +143,7 @@ function parseHTML(html) {
 	return new Promise((resolve, reject) => {
 		/** @type {TagNode} */
 		const tree = {
-			type: "tag",
+			type: 'tag',
 			tagName: null,
 			attributes: {},
 			children: []
@@ -161,7 +161,7 @@ function parseHTML(html) {
 
 			ontext(data) {
 				stack[stack.length - 1].children.push({
-					type: "text",
+					type: 'text',
 					rawText: data
 				});
 			},
@@ -169,7 +169,7 @@ function parseHTML(html) {
 			onopentag(name, attrs) {
 				/** @type {TagNode} */
 				const newElement = {
-					type: "tag",
+					type: 'tag',
 					tagName: name,
 					attributes: attrs,
 					children: []
