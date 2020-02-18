@@ -1,3 +1,4 @@
+__attribute__
 _Alignas _Alignof _Atomic _Bool
 _Complex _Generic _Imaginary
 _Noreturn _Static_assert _Thread_local
@@ -14,6 +15,7 @@ union unsigned void volatile while
 ----------------------------------------------------
 
 [
+	["keyword", "__attribute__"],
 	["keyword", "_Alignas"], ["keyword", "_Alignof"], ["keyword", "_Atomic"], ["keyword", "_Bool"],
 	["keyword", "_Complex"], ["keyword", "_Generic"], ["keyword", "_Imaginary"],
 	["keyword", "_Noreturn"], ["keyword", "_Static_assert"], ["keyword", "_Thread_local"],
