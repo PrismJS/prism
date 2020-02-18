@@ -633,6 +633,11 @@
 			"title": "Mizar",
 			"owner": "Golmote"
 		},
+		"modx": {
+			"title":"MODx CMS",
+			"require":"php",
+			"owner":"frankie-tech"
+		},
 		"monkey": {
 			"title": "Monkey",
 			"owner": "Golmote"
