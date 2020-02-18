@@ -1,8 +1,8 @@
 const fs = require('fs');
 const { assert } = require('chai');
+const { Parser } = require('htmlparser2');
 // use the JSON file because this file is less susceptible to merge conflicts
 const { languages } = require('../components.json');
-const PrismLoader = require('./helper/prism-loader');
 
 
 describe('Examples', function () {
@@ -51,57 +51,140 @@ describe('Examples', function () {
 
 	describe('Validate HTML templates', function () {
 
-		const Prism = PrismLoader.createInstance(['markup']);
+		async function validateHTML(html) {
+			const root = await parseHTML(html);
 
-		function stringify(token) {
-			if (typeof token === 'string') {
-				return token;
-			} else if (Array.isArray(token)) {
-				return token.map(t => stringify(t)).join('');
-			} else {
-				return token.content ? stringify(token.content) : '';
-			}
-		}
+			/**
+			 * @param {TagNode} node
+			 */
+			function checkCodeElements(node) {
+				if (node.tagName === 'code') {
+					assert.equal(node.children.length, 1,
+						'A <code> element is only allowed to contain text, no tags. '
+						+ 'Did you perhaps not escape all "<" characters?');
 
-		function validateHTML(html) {
-			const tokens = Prism.tokenize(html, Prism.languages.markup);
-
-			for (const token of tokens) {
-				if (typeof token === 'string') {
-					// strings cannot contain "<"
-					if (/[<]/.test(token)) {
-						return false;
+					const child = node.children[0];
+					if (child.type !== 'text') {
+						// throw to help TypeScript's flow analysis
+						throw assert.equal(child.type, 'text',
+							'The child of a <code> element must be text only.');
 					}
-				} else if (token.type === 'tag') {
-					// Tag names have to be "nice" names.
-					// This is because sometimes, through luck, a "<" will find a ">" and form a tag.
 
-					// tag tokens have the following structure:
-					// ["tag", [
-					//     ["tag", [
-					//         ["punctuation", "</"],
-					//         ["namespace", "foo:"],
-					//         "name"
-					//     ]],
-					//     ...
-					// ]]
-					const tagName = stringify(token.content[0]).replace(/<\/?/, '');
-					if (!/^(?!(?:html|head|body|title)$)[a-z][a-z\d]*$/.test(tagName)) {
-						return false;
-					}
+					const text = child.rawText;
+
+					assert.notMatch(text, /</, 'All "<" characters have to be escape with "&lt;".');
+					assert.notMatch(text, /&(?!amp;|lt;|gt;)(?:[#\w]+);/,
+						'Disallowed entity.');
+				} else {
+					node.children.forEach(n => {
+						if (n.type === 'tag') {
+							checkCodeElements(n);
+						}
+					});
 				}
 			}
 
-			return true;
+			for (const node of root.children) {
+				if (node.type === "text") {
+					assert.isEmpty(node.rawText.trim(), 'All non-whitespace text has to be in <p> tags.');
+				} else {
+					// only known tags
+					assert.match(node.tagName, /^(?:h2|h3|p|pre|ul|ol)$/,
+						'Only some tags are allowed as top level tags.');
+
+					// <pre> elements must have only one child, a <code> element
+					if (node.tagName === 'pre') {
+						assert.equal(node.children.length, 1,
+							'<pre> element must have one and only one child node, a <code> element.'
+							+ ' This also means that spaces around the <code> element are not allowed.');
+
+						const child = node.children[0];
+						if (child.type !== 'tag') {
+							// throw to help TypeScript's flow analysis
+							throw assert.equal(child.type, 'tag',
+								'The child of a <pre> element must be a <code> element.');
+						}
+						assert.equal(child.tagName, 'code', 'The child of a <pre> element must be a <code> element.');
+					}
+
+					checkCodeElements(node);
+				}
+			}
 		}
 
 		for (const file of validFiles) {
-			it('- ./examples/' + file, function () {
+			it('- ./examples/' + file, async function () {
 				const content = fs.readFileSync(__dirname + '/../examples/' + file, 'utf-8');
-				assert.isTrue(validateHTML(content));
+				await validateHTML(content);
 			});
 		}
-
 	});
 
 });
+
+
+/**
+ * Parses the given HTML fragment and returns a simple tree of the fragment.
+ *
+ * @param {string} html
+ * @returns {Promise<TagNode>}
+ *
+ * @typedef TagNode
+ * @property {"tag"} type
+ * @property {string | null} tagName
+ * @property {Object<string, string>} attributes
+ * @property {(TagNode | TextNode)[]} children
+ *
+ * @typedef TextNode
+ * @property {"text"} type
+ * @property {string} rawText
+ */
+function parseHTML(html) {
+	return new Promise((resolve, reject) => {
+		/** @type {TagNode} */
+		const tree = {
+			type: "tag",
+			tagName: null,
+			attributes: {},
+			children: []
+		};
+		/** @type {TagNode[]} */
+		let stack = [tree];
+
+		const p = new Parser({
+			onerror(err) {
+				reject(err)
+			},
+			onend() {
+				resolve(tree);
+			},
+
+			ontext(data) {
+				stack[stack.length - 1].children.push({
+					type: "text",
+					rawText: data
+				});
+			},
+
+			onopentag(name, attrs) {
+				/** @type {TagNode} */
+				const newElement = {
+					type: "tag",
+					tagName: name,
+					attributes: attrs,
+					children: []
+				};
+				stack[stack.length - 1].children.push(newElement);
+				stack.push(newElement);
+			},
+			onclosetag(name) {
+				let popped = stack.pop();
+				if (popped.tagName !== name) {
+					reject(new Error(`Unexpected closing tag </${name}>`));
+				}
+			}
+
+		}, { lowerCaseTags: false });
+		p.end(html);
+	});
+}
