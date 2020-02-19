@@ -6,11 +6,32 @@ x-datetime: &date-time 2001-12-15T02:59:43.1Z
 x-scalar: &sca-lar |
   foo
   bar
+
 x-utf8: &アンカー "japanese anchor"
+
+x-tag-string: &tag-string !!tag-string "13"
+x-tag-number: &tag-number !!tag-number 42
+x-tag-null: &tag-null !!tag-null null
+x-tag-boolean: &tag-bool !!tag-bool true
+x-tag-datetime: &tag-date !!tag-date 2001-12-15T02:59:43.1Z
+x-tag-scalar: &tag-scalar !!tag-scalar |
+  foo
+  bar
+
+x-tag-string: !!tag-string &tag-string "13"
+x-tag-number: !!tag-number &tag-number 42
+x-tag-null: !!tag-null &tag-null null
+x-tag-boolean: !!tag-bool &tag-bool true
+x-tag-datetime: !!tag-date &tag-date 2001-12-15T02:59:43.1Z
+x-tag-scalar: !!tag-scalar &tag-scalar |
+  foo
+  bar
 
 foobar: *num-ber
 fubar: *stri_ng
 japanese: *アンカー
+taga: *tag-a !!taga
+tagb: !!tagb *tag-b
 
 ----------------------------------------------------
 
@@ -51,6 +72,80 @@ japanese: *アンカー
 	["important", "&アンカー"],
   ["string", "\"japanese anchor\""],
 
+  ["key", "x-tag-string"],
+  ["punctuation", ":"],
+  ["important", "&tag-string"],
+  ["tag", "!!tag-string"],
+  ["string", "\"13\""],
+
+  ["key", "x-tag-number"],
+  ["punctuation", ":"],
+  ["important", "&tag-number"],
+  ["tag", "!!tag-number"],
+  ["number", "42"],
+
+  ["key", "x-tag-null"],
+	["punctuation", ":"],
+	["important", "&tag-null"],
+  ["tag", "!!tag-null"],
+  ["null", "null"],
+
+  ["key", "x-tag-boolean"],
+	["punctuation", ":"],
+	["important", "&tag-bool"],
+  ["tag", "!!tag-bool"],
+  ["boolean", "true"],
+
+  ["key", "x-tag-datetime"],
+	["punctuation", ":"],
+	["important", "&tag-date"],
+  ["tag", "!!tag-date"],
+  ["datetime", "2001-12-15T02:59:43.1Z"],
+
+  ["key", "x-tag-scalar"],
+	["punctuation", ":"],
+	["important", "&tag-scalar"],
+  ["tag", "!!tag-scalar"],
+  ["punctuation", "|"],
+  ["scalar", "\n  foo\n  bar"],
+
+  ["key", "x-tag-string"],
+  ["punctuation", ":"],
+  ["tag", "!!tag-string"],
+  ["important", "&tag-string"],
+  ["string", "\"13\""],
+
+  ["key", "x-tag-number"],
+  ["punctuation", ":"],
+  ["tag", "!!tag-number"],
+  ["important", "&tag-number"],
+  ["number", "42"],
+
+  ["key", "x-tag-null"],
+	["punctuation", ":"],
+  ["tag", "!!tag-null"],
+	["important", "&tag-null"],
+  ["null", "null"],
+
+  ["key", "x-tag-boolean"],
+	["punctuation", ":"],
+  ["tag", "!!tag-bool"],
+	["important", "&tag-bool"],
+  ["boolean", "true"],
+
+  ["key", "x-tag-datetime"],
+	["punctuation", ":"],
+  ["tag", "!!tag-date"],
+	["important", "&tag-date"],
+  ["datetime", "2001-12-15T02:59:43.1Z"],
+
+  ["key", "x-tag-scalar"],
+	["punctuation", ":"],
+  ["tag", "!!tag-scalar"],
+	["important", "&tag-scalar"],
+  ["punctuation", "|"],
+  ["scalar", "\n  foo\n  bar"],
+
   ["key", "foobar"],
   ["punctuation", ":"],
   ["important", "*num-ber"],
@@ -61,10 +156,19 @@ japanese: *アンカー
 
   ["key", "japanese"],
   ["punctuation", ":"],
-  ["important", "*アンカー"]
+  ["important", "*アンカー"],
+
+  ["key", "taga"],
+  ["punctuation", ":"],
+  ["important", "*tag-a"],
+  ["tag", "!!taga"],
+
+  ["key", "tagb"],
+  ["punctuation", ":"],
+  ["tag", "!!tagb"],
+  ["important", "*tag-b"]
 ]
 
 ----------------------------------------------------
 
 Checks for anchors and aliases.
-TODO: null, boolean, datetime, scalar
