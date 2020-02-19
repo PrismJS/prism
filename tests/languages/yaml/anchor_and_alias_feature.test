@@ -6,9 +6,11 @@ x-datetime: &date-time 2001-12-15T02:59:43.1Z
 x-scalar: &sca-lar |
   foo
   bar
+x-utf8: &アンカー "japanese anchor"
 
 foobar: *num-ber
 fubar: *stri_ng
+japanese: *アンカー
 
 ----------------------------------------------------
 
@@ -44,13 +46,22 @@ fubar: *stri_ng
   ["punctuation", "|"],
   ["scalar", "\n  foo\n  bar"],
 
+  ["key", "x-utf8"],
+	["punctuation", ":"],
+	["important", "&アンカー"],
+  ["string", "\"japanese anchor\""],
+
   ["key", "foobar"],
   ["punctuation", ":"],
   ["important", "*num-ber"],
 
   ["key", "fubar"],
   ["punctuation", ":"],
-  ["important", "*stri_ng"]
+  ["important", "*stri_ng"],
+
+  ["key", "japanese"],
+  ["punctuation", ":"],
+  ["important", "*アンカー"]
 ]
 
 ----------------------------------------------------
