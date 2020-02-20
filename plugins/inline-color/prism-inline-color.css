@@ -4,7 +4,7 @@ span.inline-color-wrapper {
 	 *
 	 * <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2 2">
 	 *     <path fill="gray" d="M0 0h2v2H0z"/>
-	 *     <path fill="silver" d="M0 0h1v1H0zM1 1h1v1H1z"/>
+	 *     <path fill="white" d="M0 0h1v1H0zM1 1h1v1H1z"/>
 	 * </svg>
 	 *
 	 * SVG-inlining explained:
