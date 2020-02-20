@@ -301,4 +301,35 @@ describe('components.json', function () {
 		}
 	});
 
+	it('- should have a sorted language list', function () {
+		const ignore = new Set(['meta', 'markup', 'css', 'clike', 'javascript']);
+		/** @type {{ id: string, title: string }[]} */
+		const languages = Object.keys(components.languages).filter(key => !ignore.has(key)).map(key => {
+			return {
+				id: key,
+				title: components.languages[key].title
+			};
+		});
+
+		function pickFirstWord(title) {
+			return /\b[a-z][a-z\d]*/i.exec(title)[0].toLowerCase();
+		}
+
+		/**
+		 *
+		 * @param {string} s
+		 */
+		function transform(s) {
+			return s.replace(/\W+/g, '').replace(/^\d+/, '').toLowerCase();
+		}
+
+		const sorted = [...languages].sort((a, b) => {
+			const comp = transform(a.title).localeCompare(transform(b.title));
+			if (comp !== 0) return comp;
+			a.title.toLowerCase().localeCompare(b.title.toLowerCase())
+		});
+
+		assert.sameOrderedMembers(languages, sorted);
+	});
+
 });

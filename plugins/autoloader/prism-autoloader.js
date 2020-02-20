@@ -57,9 +57,9 @@
 			"javadoclike"
 		],
 		"js-extras": "javascript",
-		"js-templates": "javascript",
-		"jsonp": "json",
 		"json5": "json",
+		"jsonp": "json",
+		"js-templates": "javascript",
 		"kotlin": "clike",
 		"latte": [
 			"clike",
@@ -113,14 +113,6 @@
 		"sparql": "turtle",
 		"sqf": "clike",
 		"swift": "clike",
-		"tap": "yaml",
-		"textile": "markup",
-		"tt2": [
-			"clike",
-			"markup-templating"
-		],
-		"twig": "markup",
-		"typescript": "javascript",
 		"t4-cs": [
 			"t4-templating",
 			"csharp"
@@ -129,6 +121,14 @@
 			"t4-templating",
 			"visual-basic"
 		],
+		"tap": "yaml",
+		"tt2": [
+			"clike",
+			"markup-templating"
+		],
+		"textile": "markup",
+		"twig": "markup",
+		"typescript": "javascript",
 		"vala": "clike",
 		"vbnet": "basic",
 		"velocity": "markup",
@@ -145,12 +145,12 @@
 		"js": "javascript",
 		"g4": "antlr4",
 		"adoc": "asciidoc",
-		"shell": "bash",
 		"rbnf": "bnf",
-		"conc": "concurnas",
+		"shell": "bash",
 		"cs": "csharp",
 		"dotnet": "csharp",
 		"coffee": "coffeescript",
+		"conc": "concurnas",
 		"jinja2": "django",
 		"dns-zone": "dns-zone-file",
 		"dockerfile": "docker",
@@ -171,9 +171,9 @@
 		"robot": "robotframework",
 		"rb": "ruby",
 		"rq": "sparql",
+		"t4": "t4-cs",
 		"trig": "turtle",
 		"ts": "typescript",
-		"t4": "t4-cs",
 		"vb": "visual-basic",
 		"xeoracube": "xeora",
 		"yml": "yaml"
