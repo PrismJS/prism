@@ -96,6 +96,7 @@
 		"emacs": "Lisp",
 		"elisp": "Lisp",
 		"emacs-lisp": "Lisp",
+		"llvm": "LLVM IR",
 		"lolcode": "LOLCODE",
 		"md": "Markdown",
 		"markup-templating": "Markup templating",
