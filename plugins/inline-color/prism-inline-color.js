@@ -16,6 +16,9 @@
 	 * If the format of the given string is invalid, `undefined` will be returned.
 	 * Valid formats are: `RGB`, `RGBA`, `RRGGBB`, and `RRGGBBAA`.
 	 *
+	 * Hexadecimal colors are parsed because they are not fully supported by older browsers, so converting them to
+	 * `rgba` functions improves browser compatibility.
+	 *
 	 * @param {string} hex
 	 * @returns {string | undefined}
 	 */
