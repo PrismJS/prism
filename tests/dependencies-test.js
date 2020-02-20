@@ -311,21 +311,22 @@ describe('components.json', function () {
 			};
 		});
 
-		function pickFirstWord(title) {
-			return /\b[a-z][a-z\d]*/i.exec(title)[0].toLowerCase();
-		}
-
 		/**
+		 * Transforms the given title into an intermediate representation to allowed for sensible comparisons
+		 * between titles.
 		 *
-		 * @param {string} s
+		 * @param {string} title
 		 */
-		function transform(s) {
-			return s.replace(/\W+/g, '').replace(/^\d+/, '').toLowerCase();
+		function transformTitle(title) {
+			return title.replace(/\W+/g, '').replace(/^\d+/, '').toLowerCase();
 		}
 
 		const sorted = [...languages].sort((a, b) => {
-			const comp = transform(a.title).localeCompare(transform(b.title));
-			if (comp !== 0) return comp;
+			const comp = transformTitle(a.title).localeCompare(transformTitle(b.title));
+			if (comp !== 0) {
+				return comp;
+			}
+			// a and b have the same intermediate form (e.g. "C" => "C", "C++" => "C", "C#" => "C").
 			a.title.toLowerCase().localeCompare(b.title.toLowerCase())
 		});
 
