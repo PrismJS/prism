@@ -264,4 +264,16 @@ function testPatterns(Prism) {
 		});
 	});
 
+	it('- should not use octal escapes', function () {
+		forEachPattern(({ ast, tokenPath, reportError }) => {
+			visitRegExpAST(ast.pattern, {
+				onCharacterEnter(node) {
+					if (/^\\(?:[1-9]|\d{2,})$/.test(node.raw)) {
+						reportError(`Token ${tokenPath}: Octal escape ${node.raw}.`);
+					}
+				}
+			});
+		});
+	});
+
 }
