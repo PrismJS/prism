@@ -10,9 +10,24 @@
 	 */
 
 	/** @type {readonly Flag[]} */
-	var flagKeys = ['g', 'i', 'm', 's', 'u', 'y'];
+	var FLAG_KEYS = ['g', 'i', 'm', 's', 'u', 'y'];
 	/** @type {Flags} */
-	var noFlags = {};
+	var EMPTY_FLAGS = {};
+	var NO_MATCH = '[^\\s\\S]';
+
+	/**
+	 * An internal helper function to convert the given value to a pattern.
+	 *
+	 * @param {string | Pattern} pattern
+	 * @returns {Pattern}
+	 */
+	function internalToPattern(pattern) {
+		if (typeof pattern === 'string') {
+			return p(pattern);
+		} else {
+			return pattern;
+		}
+	}
 
 	/**
 	 * Creates a new pattern from the given source and optional flags.
@@ -22,7 +37,7 @@
 	 * @returns {Pattern}
 	 */
 	function p(source, flags) {
-		return { source: source, flags: flags || noFlags };
+		return { source: source, flags: flags || EMPTY_FLAGS };
 	}
 
 	/**
@@ -32,20 +47,18 @@
 	 * @returns {RegExp}
 	 */
 	function toRegExp(pattern) {
-		if (typeof pattern === 'string') {
-			return RegExp(pattern);
-		} else {
-			var patternFlags = pattern.flags;
-			var flags = '';
-			if (patternFlags !== noFlags) {
-				flagKeys.forEach(function (f) {
-					if (patternFlags[f]) {
-						flags += f;
-					}
-				});
-			}
-			return RegExp(pattern.source, flags);
+		pattern = internalToPattern(pattern);
+
+		var patternFlags = pattern.flags;
+		var flags = '';
+		if (patternFlags !== EMPTY_FLAGS) {
+			FLAG_KEYS.forEach(function (f) {
+				if (patternFlags[f]) {
+					flags += f;
+				}
+			});
 		}
+		return RegExp(pattern.source, flags);
 	}
 
 	/**
@@ -89,7 +102,7 @@
 	 * console.log(source); // (bar|[a-z])\1
 	 */
 	function replaceSource(source, additionalTokens, replacer) {
-		var tokens = (additionalTokens || '[^\\s\\S]') + '|' + /\\(?:0|([1-9]\d{0,2})|\D)|(\((?!\?))|\[[^\]]*\]/.source;
+		var tokens = (additionalTokens || NO_MATCH) + '|' + /\\(?:0|([1-9]\d{0,2})|\D)|(\((?!\?))|\[[^\]]*\]/.source;
 		return source.replace(RegExp(tokens, 'g'), replacer)
 	}
 
@@ -104,8 +117,8 @@
 	 * the given pattern and inserted replacements will be adjusted, so that they still reference the same group as
 	 * before this operation.
 	 *
-	 * Escaped placeholders (e.g. `\<<2>>` or `<<foo>\>`), placeholders inside character classes (e.g. `[a-z<<2>>]`), and
-	 * placeholders in replacements will not be replaced.
+	 * Escaped placeholders (e.g. `\<<2>>` or `<<foo>\>`), placeholders inside character classes (e.g. `[a-z<<2>>]`),
+	 * and placeholders in replacements will not be replaced.
 	 *
 	 * If the flags of any two replacements or of the given pattern are contradictory (e.g. the given pattern requires
 	 * the `i` flag while a replacement forbids it) an error will be thrown. The given pattern and the replacements are
@@ -119,17 +132,12 @@
 	 * @param {Readonly<Record<number, string | Pattern>> | Readonly<Record<string, string | Pattern>>} replacements
 	 */
 	function generalTemplate(pattern, placeholder, replacements) {
+		pattern = internalToPattern(pattern);
+
 		/** @type {string} */
-		var source;
+		var source = pattern.source;
 		/** @type {MutableFlags} */
-		var flags;
-		if (typeof pattern === 'string') {
-			source = pattern;
-			flags = noFlags;
-		} else {
-			source = pattern.source;
-			flags = pattern.flags;
-		}
+		var flags = pattern.flags;
 
 		/** Whether the current flags set is actually mutable. */
 		var mutable = false;
@@ -156,19 +164,16 @@
 		 * @returns {string}
 		 */
 		function getReplacement(key) {
-			/** @type {string | Pattern} */
+			/** @type {string | Pattern | undefined} */
 			var rep = replacements[key];
 
 			if (rep == undefined && !Prism.MIN) {
 				throw new Error('There is no replacement for <<' + key + '>>.');
 			}
 
-			if (typeof rep === 'string') {
-				return processReplacementSource(key, rep);
-			} else {
-				handleReplacementFlags(key, rep.flags);
-				return processReplacementSource(key, rep.source);
-			}
+			rep = internalToPattern(rep);
+			handleReplacementFlags(key, rep.flags);
+			return processReplacementSource(key, rep.source);
 		}
 
 		/**
@@ -179,14 +184,14 @@
 		 * @returns {void}
 		 */
 		function handleReplacementFlags(key, repFlags) {
-			if (repFlags !== noFlags) {
-				if (flags === noFlags) {
+			if (repFlags !== EMPTY_FLAGS) {
+				if (flags === EMPTY_FLAGS) {
 					// Just copy the replacement's flags, they're immutable after all.
 					flags = repFlags;
 				} else if (flags !== repFlags) {
 					// The basic idea is that we go through every flag and check whether we need to change the current
 					// flags. If so, we make the flags mutable, if not mutable already, and set the flag.
-					flagKeys.forEach(function (f) {
+					FLAG_KEYS.forEach(function (f) {
 						var rf = repFlags[f];
 						if (rf != undefined) {
 							var ff = flags[f];
@@ -202,7 +207,8 @@
 								// Contradiction. This happens if two incompatible patterns are combined.
 								// E.g. a case sensitive and a case insensitive pattern
 								if (!Prism.MIN) {
-									throw new Error('<<' + key + '>> requires the ' + f + ' flag to be ' + rf + ' in contradiction with current flags.');
+									throw new Error('<<' + key + '>> requires the ' + f + ' flag to be ' + rf
+										+ ' in contradiction with current flags.');
 								}
 							}
 						}
@@ -310,19 +316,11 @@
 	function template(pattern, replacements) {
 		if (!Prism.MIN) {
 			// Verify that the pattern is a valid regular expression.
-			if (typeof pattern === 'string') {
-				RegExp(pattern);
-			} else {
-				RegExp(pattern.source);
-			}
+			RegExp(internalToPattern(pattern).source);
 
 			// Verify that all replacements are valid regular expressions.
 			replacements.forEach(function (r) {
-				if (typeof r === 'string') {
-					RegExp(r);
-				} else {
-					RegExp(r.source);
-				}
+				RegExp(internalToPattern(r).source);
 			});
 		}
 		return generalTemplate(pattern, '0|[1-9]\\d*', replacements);
@@ -339,16 +337,19 @@
 	 * @returns {Pattern}
 	 */
 	function nested(pattern, depth) {
-		if (!Prism.MIN) {
-			// Verify that the pattern is a valid regular expression.
-			if (typeof pattern === 'string') {
-				RegExp(pattern);
-			} else {
-				RegExp(pattern.source);
+		var replacement;
+
+		if (depth >= 1) {
+			replacement = nested(pattern, depth - 1);
+		} else {
+			if (!Prism.MIN) {
+				// Verify that the pattern is a valid regular expression.
+				RegExp(internalToPattern(pattern).source);
 			}
+
+			replacement = NO_MATCH;
 		}
 
-		var replacement = depth >= 1 ? nested(pattern, depth - 1) : '[^\\s\\S]';
 		return generalTemplate(pattern, 'self', { self: replacement });
 	}
 
