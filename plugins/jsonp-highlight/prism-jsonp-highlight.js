@@ -136,10 +136,13 @@
 	};
 	var UNKNOWN_FAILURE_MESSAGE = '✖ Error: Cannot parse response (perhaps you need an adapter function?)';
 
-	var ATTR_LOADING = 'data-jsonp-loading';
-	var ATTR_LOADED = 'data-jsonp-loaded';
-	var ATTR_FAILED = 'data-jsonp-failed';
-	var SELECTOR = 'pre[data-jsonp]:not([' + ATTR_LOADED + ']):not([' + ATTR_LOADING + ']):empty';
+	var STATUS_ATTR = 'data-jsonp-status';
+	var STATUS_LOADING = 'loading';
+	var STATUS_LOADED = 'loaded';
+	var STATUS_FAILED = 'failed';
+
+	var SELECTOR = 'pre[data-jsonp]:not([' + STATUS_ATTR + '="' + STATUS_LOADED + '"])'
+		+ ':not([' + STATUS_ATTR + '="' + STATUS_LOADING + '"])';
 
 
 	Prism.hooks.add('before-highlightall', function (env) {
@@ -152,7 +155,7 @@
 			env.code = ''; // fast-path the whole thing and go to complete
 
 			// mark as loading
-			pre.setAttribute(ATTR_LOADING, '');
+			pre.setAttribute(STATUS_ATTR, STATUS_LOADING);
 
 			// add code element with loading message
 			var code = pre.appendChild(document.createElement('CODE'));
@@ -162,7 +165,11 @@
 			var language = env.language;
 			code.className = 'language-' + language;
 
-			// TODO: Preload language with Autoloader
+			// preload the language
+			var autoloader = Prism.plugins.autoloader;
+			if (autoloader) {
+				autoloader.loadLanguages(language);
+			}
 
 			var adapterName = pre.getAttribute('data-adapter');
 			var adapter = null;
@@ -171,8 +178,7 @@
 					adapter = window[adapterName];
 				} else {
 					// mark as failed
-					pre.removeAttribute(ATTR_LOADING);
-					pre.setAttribute(ATTR_FAILED, '');
+					pre.setAttribute(STATUS_ATTR, STATUS_FAILED);
 
 					code.textContent = MISSING_ADAPTER_MESSAGE(adapterName);
 					return;
@@ -190,8 +196,7 @@
 				// we could clean up window[cb], but if the request finally succeeds, keeping it around is a good thing
 
 				// mark as failed
-				pre.removeAttribute(ATTR_LOADING);
-				pre.setAttribute(ATTR_FAILED, '');
+				pre.setAttribute(STATUS_ATTR, STATUS_FAILED);
 
 				code.textContent = TIMEOUT_MESSAGE(src);
 			}, Prism.plugins.jsonphighlight.timeout);
@@ -222,14 +227,12 @@
 
 				if (data === null) {
 					// mark as failed
-					pre.removeAttribute(ATTR_LOADING);
-					pre.setAttribute(ATTR_FAILED, '');
+					pre.setAttribute(STATUS_ATTR, STATUS_FAILED);
 
 					code.textContent = UNKNOWN_FAILURE_MESSAGE;
 				} else {
 					// mark as loaded
-					pre.removeAttribute(ATTR_LOADING);
-					pre.setAttribute(ATTR_LOADED, '');
+					pre.setAttribute(STATUS_ATTR, STATUS_LOADED);
 
 					code.textContent = data;
 					Prism.highlightElement(code);
@@ -242,6 +245,12 @@
 
 
 	Prism.plugins.jsonphighlight = {
+		/**
+		 * The timeout after which an error message will be displayed.
+		 *
+		 * __Note:__ If the request succeeds after the timeout, it will still be processed and will override any
+		 * displayed error messages.
+		 */
 		timeout: 5000,
 		registerAdapter: registerAdapter,
 		removeAdapter: removeAdapter,

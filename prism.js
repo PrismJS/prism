@@ -971,12 +971,28 @@ Prism.languages.js = Prism.languages.javascript;
 		'tex': 'latex'
 	};
 
-	var ATTR_LOADING = 'data-src-loading';
-	var ATTR_LOADED = 'data-src-loaded';
-	var ATTR_FAILED = 'data-src-failed';
-	var SELECTOR = 'pre[data-src]:not([' + ATTR_LOADED + ']):not([' + ATTR_LOADING + ']):empty';
+	var STATUS_ATTR = 'data-src-status';
+	var STATUS_LOADING = 'loading';
+	var STATUS_LOADED = 'loaded';
+	var STATUS_FAILED = 'failed';
+
+	var SELECTOR = 'pre[data-src]:not([' + STATUS_ATTR + '="' + STATUS_LOADED + '"])'
+		+ ':not([' + STATUS_ATTR + '="' + STATUS_LOADING + '"])';
 
 	var lang = /\blang(?:uage)?-([\w-]+)\b/i;
+
+	/**
+	 * Sets the Prism `language-xxxx` or `lang-xxxx` class to the given language.
+	 *
+	 * @param {HTMLElement} element
+	 * @param {string} language
+	 * @returns {void}
+	 */
+	function setLanguageClass(element, language) {
+		var className = element.className;
+		className = className.replace(lang, ' ') + ' language-' + language;
+		element.className = className.replace(/\s+/g, ' ').trim();
+	}
 
 
 	Prism.hooks.add('before-highlightall', function (env) {
@@ -988,7 +1004,7 @@ Prism.languages.js = Prism.languages.javascript;
 		if (pre.matches(SELECTOR)) {
 			env.code = ''; // fast-path the whole thing and go to complete
 
-			pre.setAttribute(ATTR_LOADING, ''); // mark as loading
+			pre.setAttribute(STATUS_ATTR, STATUS_LOADING); // mark as loading
 
 			// add code element with loading message
 			var code = pre.appendChild(document.createElement('CODE'));
@@ -1004,14 +1020,15 @@ Prism.languages.js = Prism.languages.javascript;
 				language = EXTENSIONS[extension] || extension;
 			}
 
-			// preload the language
-			if (Prism.plugins.autoloader) {
-				Prism.plugins.autoloader.loadLanguages(language);
-			}
-
 			// set language classes
-			code.className = 'language-' + language;
-			pre.className = (pre.className.replace(lang, ' ') + ' language-' + language).replace(/\s+/g, ' ');
+			setLanguageClass(code, language);
+			setLanguageClass(pre, language);
+
+			// preload the language
+			var autoloader = Prism.plugins.autoloader;
+			if (autoloader) {
+				autoloader.loadLanguages(language);
+			}
 
 			// load file
 			var xhr = new XMLHttpRequest();
@@ -1020,8 +1037,7 @@ Prism.languages.js = Prism.languages.javascript;
 				if (xhr.readyState == 4) {
 					if (xhr.status < 400 && xhr.responseText) {
 						// mark as loaded
-						pre.removeAttribute(ATTR_LOADING);
-						pre.setAttribute(ATTR_LOADED, '');
+						pre.setAttribute(STATUS_ATTR, STATUS_LOADED);
 
 						// highlight code
 						code.textContent = xhr.responseText;
@@ -1029,8 +1045,7 @@ Prism.languages.js = Prism.languages.javascript;
 
 					} else {
 						// mark as failed
-						pre.removeAttribute(ATTR_LOADING);
-						pre.setAttribute(ATTR_FAILED, '');
+						pre.setAttribute(STATUS_ATTR, STATUS_FAILED);
 
 						if (xhr.status >= 400) {
 							code.textContent = FAILURE_MESSAGE(xhr.status, xhr.statusText);
@@ -1061,9 +1076,13 @@ Prism.languages.js = Prism.languages.javascript;
 		}
 	};
 
+	var logged = false;
 	/** @deprecated Use `Prism.plugins.fileHighlight.highlight` instead. */
 	Prism.fileHighlight = function () {
-		console.warn('Prism.fileHighlight is deprecated. Use `Prism.plugins.fileHighlight.highlight` instead.');
+		if (!logged) {
+			console.warn('Prism.fileHighlight is deprecated. Use `Prism.plugins.fileHighlight.highlight` instead.');
+			logged = true;
+		}
 		Prism.plugins.fileHighlight.highlight.apply(this, arguments);
 	}
 
