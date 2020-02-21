@@ -3,6 +3,16 @@ $ echo 'Foo
 $ echo "Foo
 > Bar"
 
+$ echo <<- STRING_END
+foo
+bar
+STRING_END
+
+$ echo <<- "STRING_END"
+foo
+bar
+STRING_END
+
 ----------------------------------------------------
 
 [
@@ -23,6 +33,30 @@ $ echo "Foo
 			["string", [
 				"\"Foo\n> Bar\""
 			]]
+		]]
+	]],
+
+	["command", [
+		["sh", "$"],
+		["bash", [
+			["builtin", "echo"],
+			["operator", [
+				"<<-"
+			]],
+			["string", [
+				"STRING_END\nfoo\nbar\nSTRING_END"
+			]]
+		]]
+	]],
+
+	["command", [
+		["sh", "$"],
+		["bash", [
+			["builtin", "echo"],
+			["operator", [
+				"<<-"
+			]],
+			["string", "\"STRING_END\"\nfoo\nbar\nSTRING_END"]
 		]]
 	]]
 ]
