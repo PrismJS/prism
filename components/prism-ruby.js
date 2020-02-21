@@ -2,7 +2,7 @@
  * Original by Samuel Flores
  *
  * Adds the following new token classes:
- * 		constant, builtin, variable, symbol, regex
+ *     constant, builtin, variable, symbol, regex
  */
 (function (Prism) {
 	Prism.languages.ruby = Prism.languages.extend('clike', {
@@ -75,7 +75,7 @@
 				}
 			},
 			{
-				pattern: /(^|[^/])\/(?!\/)(?:\[.+?\]|\\.|[^[/\\\r\n])+\/[gim]{0,3}(?=\s*(?:$|[\r\n,.;})]))/,
+				pattern: /(^|[^/])\/(?!\/)(?:\[[^\r\n\]]+\]|\\.|[^[/\\\r\n])+\/[gim]{0,3}(?=\s*(?:$|[\r\n,.;})]))/,
 				lookbehind: true,
 				greedy: true
 			}
