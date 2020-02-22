@@ -37,7 +37,12 @@ function inlineRegexSource() {
 			// escape single quotes
 			source = source.replace(/'/g, "\\'");
 			// unescape characters like \\n and \\t to \n and \t
-			source = source.replace(/(^|[^\\])\\\\([nrt0])/g, '$1\\$2');
+			source = source.replace(/\\\\([\s\S])/g, function (m, g1) {
+				if (/[nrt0]/.test(g1)) {
+					return '\\' + g1; // remove one backslash
+				}
+				return m;
+			});
 			// wrap source in single quotes
 			return "'" + source + "'";
 		}
