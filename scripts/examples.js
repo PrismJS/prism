@@ -122,9 +122,7 @@ function buildContentsHeader(id) {
 
 	var language = languages[id];
 	var header = '<h1>' + language.title + '</h1>';
-	if (false && language.overrideExampleHeader) {
-		return header;
-	}
+
 	if (language.alias) {
 		var alias = toArray(language.alias);
 
