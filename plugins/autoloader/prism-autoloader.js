@@ -73,7 +73,7 @@
 		"n4js": "javascript",
 		"nginx": "clike",
 		"objectivec": "c",
-		"opencl": "cpp",
+		"opencl": "c",
 		"parser": "markup",
 		"php": [
 			"clike",
