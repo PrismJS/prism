@@ -33,16 +33,18 @@ function inlineRegexSource() {
 		/\/((?:[^\n\r[\\\/]|\\.|\[(?:[^\n\r\\\]]|\\.)*\])*)\/\.source\b/g,
 		(m, source) => {
 			// escape backslashes
-			source = source.replace(/\\/g, '\\\\');
+			source = source.replace(/\\(.)/g, function (m, g1) {
+				// don't escape characters like \\n and \\t to \n and \t
+				if (/[nrt0]/.test(g1)) {
+					return m;
+				}
+				if ('\\' == g1) {
+					return '\\\\\\\\'; // escape using 4 backslashes
+				}
+				return '\\\\' + g1;
+			});
 			// escape single quotes
 			source = source.replace(/'/g, "\\'");
-			// unescape characters like \\n and \\t to \n and \t
-			source = source.replace(/\\\\([\s\S])/g, function (m, g1) {
-				if (/[nrt0]/.test(g1)) {
-					return '\\' + g1; // remove one backslash
-				}
-				return m;
-			});
 			// wrap source in single quotes
 			return "'" + source + "'";
 		}
