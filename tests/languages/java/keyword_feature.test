@@ -9,7 +9,7 @@ protected throw byte else
 import public throws case
 enum
 instanceof
-return transient catch
+record return transient catch
 extends
 int short try char
 final
@@ -39,7 +39,7 @@ yield
 	["keyword", "import"], ["keyword", "public"], ["keyword", "throws"], ["keyword", "case"],
 	["keyword", "enum"],
 	["keyword", "instanceof"],
-	["keyword", "return"], ["keyword", "transient"], ["keyword", "catch"],
+	["keyword", "record"], ["keyword", "return"], ["keyword", "transient"], ["keyword", "catch"],
 	["keyword", "extends"],
 	["keyword", "int"], ["keyword", "short"], ["keyword", "try"], ["keyword", "char"],
 	["keyword", "final"],

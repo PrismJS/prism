@@ -194,6 +194,11 @@
 			"require": "clike",
 			"owner": "zeitgeist87"
 		},
+		"concurnas": {
+			"title": "Concurnas",
+			"alias": "conc",
+			"owner": "jasontatton"
+		},
 		"csharp": {
 			"title": "C#",
 			"require": "clike",
@@ -307,6 +312,10 @@
 			"title": "F#",
 			"require": "clike",
 			"owner": "simonreynolds7"
+		},
+		"factor": {
+			"title": "Factor",
+			"owner": "catb0t"
 		},
 		"firestore-security-rules": {
 			"title": "Firestore security rules",
@@ -929,6 +938,11 @@
 			"title": "Solidity (Ethereum)",
 			"require": "clike",
 			"owner": "glachaud"
+		},
+		"solution-file": {
+			"title": "Solution file",
+			"alias": "sln",
+			"owner": "RunDevelopment"
 		},
 		"soy": {
 			"title": "Soy (Closure Template)",
