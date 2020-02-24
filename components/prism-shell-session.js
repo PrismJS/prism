@@ -18,25 +18,37 @@
 	].join('|');
 
 	Prism.languages['shell-session'] = {
+		'info': {
+			// foo@bar:~/files$ exit
+			// foo@bar$ exit
+			pattern: /^(?:[^\r\n$#*!]+)(?=[$#])/m,
+			alias: 'punctuation',
+			inside: {
+				'path': {
+					pattern: /(:)[\s\S]+/,
+					lookbehind: true
+				},
+				'user': /^[^\s@:$#*!/\\]+@[^\s@:$#*!/\\]+(?=:|$)/,
+				'punctuation': /:/
+			}
+		},
 		'command': {
-			pattern: RegExp(/\$(?:[^\r\n'"<]|<<str>>)+/.source.replace(/<<str>>/g, strings)),
+			pattern: RegExp(/[$#](?:[^\r\n'"<]|<<str>>)+/.source.replace(/<<str>>/g, strings)),
+			greedy: true,
 			inside: {
 				'bash': {
-					pattern: /(\$\s*)[\s\S]+/,
+					pattern: /(^[$#]\s*)[\s\S]+/,
 					lookbehind: true,
 					alias: 'language-bash',
 					inside: Prism.languages.bash
 				},
-				'sh': {
-					pattern: /^\$/,
+				'shell-symbol': {
+					pattern: /^[$#]/,
 					alias: 'important'
 				}
 			}
 		},
-		'output': {
-			pattern: /.(?:.*(?:\r\n?|\n|.$))*/
-			// output highlighting?
-		}
+		'output': /.(?:.*(?:\r\n?|\n|.$))*/
 	};
 
 }(Prism));

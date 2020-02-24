@@ -170,6 +170,7 @@
 		"py": "python",
 		"robot": "robotframework",
 		"rb": "ruby",
+		"sln": "solution-file",
 		"rq": "sparql",
 		"trig": "turtle",
 		"ts": "typescript",

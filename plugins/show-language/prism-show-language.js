@@ -135,6 +135,8 @@
 		"scss": "Sass (Scss)",
 		"shell-session": "Shell session",
 		"solidity": "Solidity (Ethereum)",
+		"solution-file": "Solution file",
+		"sln": "Solution file",
 		"soy": "Soy (Closure Template)",
 		"sparql": "SPARQL",
 		"rq": "SPARQL",
