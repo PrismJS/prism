@@ -48,10 +48,7 @@
 				}
 			}
 		},
-		'output': {
-			pattern: /.(?:.*(?:\r\n?|\n|.$))*/,
-			alias: 'comment'
-		}
+		'output': /.(?:.*(?:\r\n?|\n|.$))*/
 	};
 
 }(Prism));
