@@ -82,7 +82,7 @@
 				var endNode = Prism.plugins.lineNumbers.getLine(pre, end);
 
 				if (startNode) {
-					var top = startNode.offsetTop + 'px';
+					var top = startNode.offsetTop - offset * lineHeight  + 'px';
 					mutateActions.push(function () {
 						line.style.top = top;
 					});
