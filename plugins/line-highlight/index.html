@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="style.css" />
 <link rel="stylesheet" href="themes/prism.css" data-noprefix />
 <link rel="stylesheet" href="plugins/line-highlight/prism-line-highlight.css" data-noprefix />
+<link rel="stylesheet" href="plugins/line-numbers/prism-line-numbers.css" data-noprefix />
 <script src="scripts/prefixfree.min.js"></script>
 
 <script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
@@ -69,12 +70,20 @@
 	<pre data-line="43" data-line-offset="40" data-src="plugins/line-highlight/prism-line-highlight.js"></pre>
 
 	<p><a href="plugins/line-highlight/#play.50-55,60">Linking example</a></p>
+
+	<h2>Compatible with <a href="plugins/line-numbers">Line numbers</a></h2>
+	<pre class="line-numbers" data-src="plugins/line-numbers/index.html" data-line="7" data-start="-5" style="white-space:pre-wrap;"></pre>
+
+	<p>Even with some extra content before the <code>code</code> element.</p>
+	<pre class="line-numbers" data-line="7" data-start="-5"><div style="padding: .25em">Some content</div><hr/><code class="language-markup" id="foo"></code></pre>
+	<script>document.querySelector('#foo').textContent = document.documentElement.innerHTML;</script>
 </section>
 
 <footer data-src="templates/footer.html" data-type="text/html"></footer>
 
 <script src="prism.js"></script>
 <script src="plugins/line-highlight/prism-line-highlight.js"></script>
+<script src="plugins/line-numbers/prism-line-numbers.js"></script>
 <script src="scripts/utopia.js"></script>
 <script src="components.js"></script>
 <script src="scripts/code.js"></script>
