@@ -64,8 +64,7 @@
 		},
 		"clike": {
 			"title": "C-like",
-			"option": "default",
-			"overrideExampleHeader": true
+			"option": "default"
 		},
 		"javascript": {
 			"title": "JavaScript",
@@ -694,7 +693,6 @@
 				"c",
 				"cpp"
 			],
-			"overrideExampleHeader": true,
 			"owner": "Milania1"
 		},
 		"oz": {
