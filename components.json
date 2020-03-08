@@ -64,8 +64,7 @@
 		},
 		"clike": {
 			"title": "C-like",
-			"option": "default",
-			"overrideExampleHeader": true
+			"option": "default"
 		},
 		"javascript": {
 			"title": "JavaScript",
@@ -471,12 +470,8 @@
 		"javadoc": {
 			"title": "JavaDoc",
 			"require": ["markup", "java", "javadoclike"],
-			"modify": [
-				"java"
-			],
-			"optional": [
-				"scala"
-			],
+			"modify": "java",
+			"optional": "scala",
 			"owner": "RunDevelopment"
 		},
 		"javadoclike": {
@@ -654,9 +649,7 @@
 		"n4js": {
 			"title": "N4JS",
 			"require": "javascript",
-			"optional": [
-				"jsdoc"
-			],
+			"optional": "jsdoc",
 			"alias": "n4jsd",
 			"owner": "bsmith-n4"
 		},
@@ -700,12 +693,11 @@
 		},
 		"opencl": {
 			"title": "OpenCL",
-			"require": "cpp",
+			"require": "c",
 			"modify": [
 				"c",
 				"cpp"
 			],
-			"overrideExampleHeader": true,
 			"owner": "Milania1"
 		},
 		"oz": {
@@ -902,7 +894,7 @@
 		},
 		"sas": {
 			"title": "SAS",
-			"peerDependencies": ["groovy", "lua", "sql"],
+			"optional": ["groovy", "lua", "sql"],
 			"owner": "Golmote"
 		},
 		"sass": {
@@ -943,6 +935,11 @@
 			"title": "Solidity (Ethereum)",
 			"require": "clike",
 			"owner": "glachaud"
+		},
+		"solution-file": {
+			"title": "Solution file",
+			"alias": "sln",
+			"owner": "RunDevelopment"
 		},
 		"soy": {
 			"title": "Soy (Closure Template)",
@@ -1003,7 +1000,7 @@
 		},
 		"turtle": {
 			"title": "Turtle",
-			"alias": ["trig"],
+			"alias": "trig",
 			"aliasTitles": {
 				"trig": "TriG"
 			},

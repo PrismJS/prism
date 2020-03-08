@@ -17,13 +17,30 @@ for (const lang in languages) {
 		testPatterns(Prism);
 	});
 
-	/** @type {undefined | string | string[]} */
-	let peerDeps = languages[lang].peerDependencies;
-	peerDeps = !peerDeps ? [] : (Array.isArray(peerDeps) ? peerDeps : [peerDeps]);
+	function toArray(value) {
+		if (Array.isArray(value)) {
+			return value;
+		} else if (value != null) {
+			return [value];
+		} else {
+			return [];
+		}
+	}
 
-	if (peerDeps.length > 0) {
-		describe(`Patterns of '${lang}' + peer dependencies '${peerDeps.join("', '")}'`, function () {
-			const Prism = PrismLoader.createInstance([...peerDeps, lang]);
+	let optional = toArray(languages[lang].optional);
+	let modify = toArray(languages[lang].modify);
+
+	if (optional.length > 0 || modify.length > 0) {
+		let name = `Patterns of '${lang}'`;
+		if (optional.length > 0) {
+			name += ` + optional dependencies '${optional.join("', '")}'`;
+		}
+		if (modify.length > 0) {
+			name += ` + modify dependencies '${modify.join("', '")}'`;
+		}
+
+		describe(name, function () {
+			const Prism = PrismLoader.createInstance([...optional, ...modify, lang]);
 			testPatterns(Prism);
 		});
 	}

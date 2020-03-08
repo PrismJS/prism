@@ -73,7 +73,7 @@
 		"n4js": "javascript",
 		"nginx": "clike",
 		"objectivec": "c",
-		"opencl": "cpp",
+		"opencl": "c",
 		"parser": "markup",
 		"php": [
 			"clike",
@@ -172,6 +172,7 @@
 		"py": "python",
 		"robot": "robotframework",
 		"rb": "ruby",
+		"sln": "solution-file",
 		"rq": "sparql",
 		"trig": "turtle",
 		"ts": "typescript",
