@@ -3,27 +3,40 @@ Switched to branch 'master'
 Your branch is up-to-date with 'origin/master'.
 $ git push
 Everything up-to-date
+# echo "root"
+root
 
 ----------------------------------------------------
 
 [
 	["command", [
-		["sh", "$"],
+		["shell-symbol", "$"],
 		["bash", [
 			["function", "git"],
 			" checkout master"
 		]]
 	]],
-	["output", "Switched to branch 'master'\nYour branch is up-to-date with 'origin/master'.\n"],
+	["output", "Switched to branch 'master'\r\nYour branch is up-to-date with 'origin/master'.\r\n"],
 
 	["command", [
-		["sh", "$"],
+		["shell-symbol", "$"],
 		["bash", [
 			["function", "git"],
 			" push"
 		]]
 	]],
-	["output", "Everything up-to-date"]
+	["output", "Everything up-to-date\r\n"],
+
+	["command", [
+		["shell-symbol", "#"],
+		["bash", [
+			["builtin", "echo"],
+			["string", [
+				"\"root\""
+			]]
+		]]
+	]],
+	["output", "root"]
 ]
 
 ----------------------------------------------------

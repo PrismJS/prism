@@ -110,16 +110,21 @@ function getFileContents(filepath) {
 }
 
 function buildContentsHeader(id) {
+	function toArray(value) {
+		if (Array.isArray(value)) {
+			return value;
+		} else if (value != null) {
+			return [value];
+		} else {
+			return [];
+		}
+	}
+
 	var language = languages[id];
 	var header = '<h1>' + language.title + '</h1>';
-	if (language.overrideExampleHeader) {
-		return header;
-	}
+
 	if (language.alias) {
-		var alias = language.alias;
-		if (!Array.isArray(alias)) {
-			alias = [alias];
-		}
+		var alias = toArray(language.alias);
 
 		header += '<p>To use this language, use one of the following classes:</p>';
 		header += '<ul><li><code class="language-none">"language-' + id + '"</code></li>';
@@ -130,18 +135,38 @@ function buildContentsHeader(id) {
 	} else {
 		header += '<p>To use this language, use the class <code class="language-none">"language-' + id + '"</code>.</p>';
 	}
-	if (language.require) {
-		var require = language.require;
-		if (!Array.isArray(require)) {
-			require = [require];
-		}
 
-		header += '<p><strong>Dependencies:</strong> The following dependencies need to be loaded before this component: ';
-		header += require.map(function (dep) {
-			return '<code class="language-none">' + dep + '</code>';
-		}).join(', ');
-		header += '.</p>';
+	function wrapCode(text) {
+		return '<code class="language-none">' + text + '</code>';
 	}
+
+	var deps = [];
+	if (language.require) {
+		deps.push('requires ' + toArray(language.require).map(wrapCode).join(', '));
+	}
+	if (language.optional) {
+		deps.push('optionally uses ' + toArray(language.optional).map(wrapCode).join(', '));
+	}
+	if (language.modify) {
+		deps.push('modifies ' + toArray(language.modify).map(wrapCode).join(', '));
+	}
+	if (deps.length) {
+		header += '<p>';
+		header += '<a href="https://prismjs.com/extending.html#dependencies"><strong>Dependencies:</strong></a>';
+		header += ' This component';
+		if (deps.length === 1) {
+			header += ' ' + deps[0] + '.';
+		} else {
+			header += ':';
+			header += '<ul>';
+			deps.forEach(function (text) {
+				header += '<li>' + text + '.</li>'
+			});
+			header += '</ul>';
+		}
+		header += '</p>';
+	}
+
 	return header;
 }
 

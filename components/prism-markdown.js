@@ -1,7 +1,7 @@
 (function (Prism) {
 
 	// Allow only one line break
-	var inner = /(?:\\.|[^\\\n\r]|(?:\r?\n|\r)(?!\r?\n|\r))/.source;
+	var inner = /(?:\\.|[^\\\n\r]|(?:\n|\r\n?)(?!\n|\r\n?))/.source;
 
 	/**
 	 * This function is intended for the creation of the bold or italic pattern.
@@ -24,8 +24,8 @@
 
 
 	var tableCell = /(?:\\.|``.+?``|`[^`\r\n]+`|[^\\|\r\n`])+/.source;
-	var tableRow = /\|?__(?:\|__)+\|?(?:(?:\r?\n|\r)|$)/.source.replace(/__/g, tableCell);
-	var tableLine = /\|?[ \t]*:?-{3,}:?[ \t]*(?:\|[ \t]*:?-{3,}:?[ \t]*)+\|?(?:\r?\n|\r)/.source;
+	var tableRow = /\|?__(?:\|__)+\|?(?:(?:\n|\r\n?)|$)/.source.replace(/__/g, tableCell);
+	var tableLine = /\|?[ \t]*:?-{3,}:?[ \t]*(?:\|[ \t]*:?-{3,}:?[ \t]*)+\|?(?:\n|\r\n?)/.source;
 
 
 	Prism.languages.markdown = Prism.languages.extend('markup', {});
@@ -72,7 +72,7 @@
 		'code': [
 			{
 				// Prefixed by 4 spaces or 1 tab and preceded by an empty line
-				pattern: /(^[ \t]*(?:\r?\n|\r))(?: {4}|\t).+(?:(?:\r?\n|\r)(?: {4}|\t).+)*/m,
+				pattern: /((?:^|\n)[ \t]*\n|(?:^|\r\n?)[ \t]*\r\n?)(?: {4}|\t).+(?:(?:\n|\r\n?)(?: {4}|\t).+)*/,
 				lookbehind: true,
 				alias: 'keyword'
 			},
@@ -90,7 +90,7 @@
 				greedy: true,
 				inside: {
 					'code-block': {
-						pattern: /^(```.*(?:\r?\n|\r))[\s\S]+?(?=(?:\r?\n|\r)^```$)/m,
+						pattern: /^(```.*(?:\n|\r\n?))[\s\S]+?(?=(?:\n|\r\n?)^```$)/m,
 						lookbehind: true
 					},
 					'code-language': {
@@ -108,7 +108,7 @@
 
 				// title 2
 				// -------
-				pattern: /\S.*(?:\r?\n|\r)(?:==+|--+)(?=[ \t]*$)/m,
+				pattern: /\S.*(?:\n|\r\n?)(?:==+|--+)(?=[ \t]*$)/m,
 				alias: 'important',
 				inside: {
 					punctuation: /==+$|--+$/
