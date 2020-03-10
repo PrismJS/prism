@@ -40,11 +40,15 @@
 
 	/* OpenCL host API */
 	Prism.languages.insertBefore('c', 'keyword', attributes);
-	// Extracted from doxygen class list http://github.khronos.org/OpenCL-CLHPP/annotated.html
-	attributes['type-opencl-host-cpp'] = {
-		pattern: /\b(?:Buffer|BufferGL|BufferRenderGL|CommandQueue|Context|Device|DeviceCommandQueue|EnqueueArgs|Event|Image|Image1D|Image1DArray|Image1DBuffer|Image2D|Image2DArray|Image2DGL|Image3D|Image3DGL|ImageFormat|ImageGL|Kernel|KernelFunctor|LocalSpaceArg|Memory|NDRange|Pipe|Platform|Program|Sampler|SVMAllocator|SVMTraitAtomic|SVMTraitCoarse|SVMTraitFine|SVMTraitReadOnly|SVMTraitReadWrite|SVMTraitWriteOnly|UserEvent)\b/,
-		alias: 'keyword'
-	};
+
 	// C++ includes everything from the OpenCL C host API plus the classes defined in cl2.h
-	Prism.languages.insertBefore('cpp', 'keyword', attributes);
+	if (Prism.languages.cpp) {
+		// Extracted from doxygen class list http://github.khronos.org/OpenCL-CLHPP/annotated.html
+		attributes['type-opencl-host-cpp'] = {
+			pattern: /\b(?:Buffer|BufferGL|BufferRenderGL|CommandQueue|Context|Device|DeviceCommandQueue|EnqueueArgs|Event|Image|Image1D|Image1DArray|Image1DBuffer|Image2D|Image2DArray|Image2DGL|Image3D|Image3DGL|ImageFormat|ImageGL|Kernel|KernelFunctor|LocalSpaceArg|Memory|NDRange|Pipe|Platform|Program|Sampler|SVMAllocator|SVMTraitAtomic|SVMTraitCoarse|SVMTraitFine|SVMTraitReadOnly|SVMTraitReadWrite|SVMTraitWriteOnly|UserEvent)\b/,
+			alias: 'keyword'
+		};
+
+		Prism.languages.insertBefore('cpp', 'keyword', attributes);
+	}
 }(Prism));
