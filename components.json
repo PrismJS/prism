@@ -311,6 +311,11 @@
 			"title": "Erlang",
 			"owner": "Golmote"
 		},
+		"excel-formula": {
+			"title": "Excel Formula",
+			"alias": ["xlsx", "xls"],
+			"owner": "RunDevelopment"
+		},
 		"fsharp": {
 			"title": "F#",
 			"require": "clike",

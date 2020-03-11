@@ -7,15 +7,17 @@
 	// Copied from the markup language definition
 	var HTML_TAG = /<\/?(?!\d)[^\s>\/=$<%]+(?:\s(?:\s*[^\s>\/=]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+(?=[\s>]))|(?=[\s/>])))+)?\s*\/?>/g;
 
-	// the regex explained: In first lookahead we check whether the string is valid and then we use the
-	// capturing groups to split the string into its components.
-	var HEX_COLOR = /^#?(?=(?:[\da-f]{1,2}){3,4}$)([\da-f][\da-f]?)([\da-f][\da-f]?)([\da-f][\da-f]?)([\da-f][\da-f]?)?$/i;
+	// a regex to validate hexadecimal colors
+	var HEX_COLOR = /^#?((?:[\da-f]){3,4}|(?:[\da-f]{2}){3,4})$/i;
 
 	/**
 	 * Parses the given hexadecimal representation and returns the parsed RGBA color.
 	 *
 	 * If the format of the given string is invalid, `undefined` will be returned.
 	 * Valid formats are: `RGB`, `RGBA`, `RRGGBB`, and `RRGGBBAA`.
+	 *
+	 * Hexadecimal colors are parsed because they are not fully supported by older browsers, so converting them to
+	 * `rgba` functions improves browser compatibility.
 	 *
 	 * @param {string} hex
 	 * @returns {string | undefined}
@@ -25,15 +27,30 @@
 		if (!match) {
 			return undefined;
 		}
+		hex = match[1]; // removes the leading "#"
 
-		// This is used to scale normalize 4bit and 8bit values
-		var scale = hex.length <= 4 ? 1 / 15 : 1 / 255;
+		// the width and number of channels
+		var channelWidth = hex.length >= 6 ? 2 : 1;
+		var channelCount = hex.length / channelWidth;
 
-		var rgb = match.slice(1, 4).map(function (c) {
-			return String(Math.round(parseInt(c, 16) * scale * 255));
+		// the scale used to normalize 4bit and 8bit values
+		var scale = channelWidth == 1 ? 1 / 15 : 1 / 255;
+
+		// normalized RGBA channels
+		var channels = [];
+		for (var i = 0; i < channelCount; i++) {
+			var int = parseInt(hex.substr(i * channelWidth, channelWidth), 16);
+			channels.push(int * scale);
+		}
+		if (channelCount == 3) {
+			channels.push(1); // add alpha of 100%
+		}
+
+		// output
+		var rgb = channels.slice(0, 3).map(function (x) {
+			return String(Math.round(x * 255));
 		}).join(',');
-
-		var alpha = match[4] === undefined ? '1' : (parseInt(match[4], 16) * scale).toFixed(3);
+		var alpha = String(Number(channels[3].toFixed(3))); // easy way to round 3 decimal places
 
 		return 'rgba(' + rgb + ',' + alpha + ')';
 	}
@@ -65,7 +82,7 @@
 
 
 	Prism.hooks.add('wrap', function (env) {
-		if (env.type === 'color' || env.type === 'hexcode') {
+		if (env.type === 'color' || env.classes.indexOf('color') >= 0) {
 			var content = env.content;
 
 			// remove all HTML tags inside
@@ -80,7 +97,7 @@
 				return;
 			}
 
-			var previewElement = '<span class="inline-color" style="background-color:' + color + ';"></span>';
+			var previewElement = '<span class="inline-color-wrapper"><span class="inline-color" style="background-color:' + color + ';"></span></span>';
 			env.content = previewElement + content;
 		}
 	});

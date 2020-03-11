@@ -1,0 +1,104 @@
+Sales!B2
+'Winter sales'!B2
+[Sales.xlsx]Jan!B2:B5
+D:\Reports\[Sales.xlsx]Jan!B2:B5
+'[Sales.xlsx]Jan sales'!B2:B5
+'D:\Reports\[Sales.xlsx]Jan sales'!B2:B5
+
+SUM([Sales.xlsx]Jan!Jan_sales)
+
+----------------------------------------------------
+
+[
+	["reference", [
+		["sheet", "Sales"],
+		["operator", "!"]
+	]],
+	["cell", "B2"],
+	["reference", [
+		["punctuation", "'"],
+		["sheet", "Winter sales"],
+		["punctuation", "'"],
+		["operator", "!"]
+	]],
+	["cell", "B2"],
+	["reference", [
+		["file", [
+			["punctuation", "["],
+			"Sales.xlsx",
+			["punctuation", "]"]
+		]],
+		["sheet", "Jan"],
+		["operator", "!"]
+	]],
+	["range", [
+		["cell", "B2"],
+		["operator", ":"],
+		["cell", "B5"]
+	]],
+	["reference", [
+		["path", "D:\\Reports\\"],
+		["file", [
+			["punctuation", "["],
+			"Sales.xlsx",
+			["punctuation", "]"]
+		]],
+		["sheet", "Jan"],
+		["operator", "!"]
+	]],
+	["range", [
+		["cell", "B2"],
+		["operator", ":"],
+		["cell", "B5"]
+	]],
+	["reference", [
+		["punctuation", "'"],
+		["file", [
+			["punctuation", "["],
+			"Sales.xlsx",
+			["punctuation", "]"]
+		]],
+		["sheet", "Jan sales"],
+		["punctuation", "'"],
+		["operator", "!"]
+	]],
+	["range", [
+		["cell", "B2"],
+		["operator", ":"],
+		["cell", "B5"]
+	]],
+	["reference", [
+		["punctuation", "'"],
+		["path", "D:\\Reports\\"],
+		["file", [
+			["punctuation", "["],
+			"Sales.xlsx",
+			["punctuation", "]"]
+		]],
+		["sheet", "Jan sales"],
+		["punctuation", "'"],
+		["operator", "!"]
+	]],
+	["range", [
+		["cell", "B2"],
+		["operator", ":"],
+		["cell", "B5"]
+	]],
+	["function-name", "SUM"],
+	["punctuation", "("],
+	["reference", [
+		["file", [
+			["punctuation", "["],
+			"Sales.xlsx",
+			["punctuation", "]"]
+		]],
+		["sheet", "Jan"],
+		["operator", "!"]
+	]],
+	"Jan_sales",
+	["punctuation", ")"]
+]
+
+----------------------------------------------------
+
+Checks for references.
