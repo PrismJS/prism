@@ -1,0 +1,21 @@
+'table'[field]
+'table name'[field]
+'table'[field name]
+'table name'[field name]
+table[field]
+table[field name]
+
+----------------------------------------------------
+
+[
+	["data-field", "'table'[field]"],
+	["data-field", "'table name'[field]"],
+	["data-field", "'table'[field name]"],
+	["data-field", "'table name'[field name]"],
+	["data-field", "table[field]"],
+	["data-field", "table[field name]"]
+]
+
+----------------------------------------------------
+
+Checks for datafield tokens.

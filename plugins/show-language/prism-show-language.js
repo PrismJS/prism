@@ -48,6 +48,7 @@
 		"cmake": "CMake",
 		"csp": "Content-Security-Policy",
 		"css-extras": "CSS Extras",
+		"dax": "DAX",
 		"django": "Django/Jinja2",
 		"jinja2": "Django/Jinja2",
 		"dns-zone-file": "DNS zone file",

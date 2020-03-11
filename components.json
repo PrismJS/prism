@@ -252,6 +252,10 @@
 			"require": "clike",
 			"owner": "Golmote"
 		},
+		"dax": {
+			"title": "DAX",
+			"owner": "peterbud"
+		},
 		"diff": {
 			"title": "Diff",
 			"owner": "uranusjr"

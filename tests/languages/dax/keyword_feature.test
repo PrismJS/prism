@@ -1,0 +1,27 @@
+DEFINE
+MEASURE
+EVALUATE
+ORDER BY
+RETURN
+VAR
+START AT
+ASC
+DESC
+
+----------------------------------------------------
+
+[
+	["keyword", "DEFINE"],
+	["keyword", "MEASURE"],
+	["keyword", "EVALUATE"],
+	["keyword", "ORDER BY"],
+	["keyword", "RETURN"],
+	["keyword", "VAR"],
+	["keyword", "START AT"],
+	["keyword", "ASC"],
+	["keyword", "DESC"]
+]
+
+----------------------------------------------------
+
+Checks for all keywords.
