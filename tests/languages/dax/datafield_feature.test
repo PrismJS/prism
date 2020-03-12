@@ -1,19 +1,31 @@
 'table'[field]
 'table name'[field]
+'ta"ble'[field]
+'ta'ble'[field]
 'table'[field name]
+'table'[field"name]
 'table name'[field name]
 table[field]
 table[field name]
+table[fi"eld]
+table[fi'eld]
+'table'
 
 ----------------------------------------------------
 
 [
 	["data-field", "'table'[field]"],
 	["data-field", "'table name'[field]"],
+	["data-field", "'ta\"ble'[field]"],
+	["data-field", "'ta'ble'[field]"],
 	["data-field", "'table'[field name]"],
+	["data-field", "'table'[field\"name]"],
 	["data-field", "'table name'[field name]"],
 	["data-field", "table[field]"],
-	["data-field", "table[field name]"]
+	["data-field", "table[field name]"],
+	["data-field", "table[fi\"eld]"],
+	["data-field", "table[fi'eld]"],
+	["data-field", "'table'"]
 ]
 
 ----------------------------------------------------
