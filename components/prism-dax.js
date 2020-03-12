@@ -4,7 +4,7 @@ Prism.languages.dax = {
         lookbehind: true
     },
     'string': {
-        pattern: /(")(?:(?!\1)[^\\\r\n])*\1/,
+        pattern: /"(?:[^"]|"")*"(?!")/,
         greedy: true
     },
     'measure': {
