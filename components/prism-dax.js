@@ -8,7 +8,7 @@ Prism.languages.dax = {
         alias: 'symbol'
     },
     'measure': {
-        pattern: /[[ \w\xA0-\uFFFF]+\]/,
+        pattern: /\[[ \w\xA0-\uFFFF]+\]/,
         alias: 'constant'
     },
     'string': {
