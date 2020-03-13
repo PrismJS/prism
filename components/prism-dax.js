@@ -4,11 +4,11 @@ Prism.languages.dax = {
         lookbehind: true
     },
     'data-field': {
-        pattern: /'[\w '"]+'(?:\[(?:[^\]])+\](?!\])){0,1}|\w+\[(?:[^\]])+\](?!\])/,
+        pattern: /'(?:[^']|'')*'(?!')(?:\[[ \w\xA0-\uFFFF]+\])?|\w+\[[ \w\xA0-\uFFFF]+\]/,
         alias: 'symbol'
     },
     'measure': {
-        pattern: /\[.*?\]/,
+        pattern: /[[ \w\xA0-\uFFFF]+\]/,
         alias: 'constant'
     },
     'string': {
