@@ -1,0 +1,1079 @@
+BinaryFormat.7BitEncodedSignedInteger
+BinaryFormat.7BitEncodedUnsignedInteger
+BinaryFormat.Binary
+BinaryFormat.Byte
+BinaryFormat.Choice
+BinaryFormat.Decimal
+BinaryFormat.Double
+BinaryFormat.Group
+BinaryFormat.Length
+BinaryFormat.List
+BinaryFormat.Null
+BinaryFormat.Record
+BinaryFormat.SignedInteger16
+BinaryFormat.SignedInteger32
+BinaryFormat.SignedInteger64
+BinaryFormat.Single
+BinaryFormat.Text
+BinaryFormat.Transform
+BinaryFormat.UnsignedInteger16
+BinaryFormat.UnsignedInteger32
+BinaryFormat.UnsignedInteger64
+BinaryFormat.ByteOrder
+Binary.Buffer
+Binary.Combine
+Binary.Compress
+Binary.Decompress
+Binary.From
+Binary.FromList
+Binary.FromText
+Binary.InferContentType
+Binary.Length
+Binary.ToList
+Binary.ToText
+BinaryEncoding.Base64
+BinaryEncoding.Hex
+BinaryOccurrence.Optional
+BinaryOccurrence.Repeating
+BinaryOccurrence.Required
+ByteOrder.BigEndian
+ByteOrder.LittleEndian
+Compression.Deflate
+Compression.GZip
+Occurrence.Optional
+Occurrence.Repeating
+Occurrence.Required
+Combiner.CombineTextByDelimiter
+Combiner.CombineTextByEachDelimiter
+Combiner.CombineTextByLengths
+Combiner.CombineTextByPositions
+Combiner.CombineTextByRanges
+Comparer.Equals
+Comparer.FromCulture
+Comparer.Ordinal
+Comparer.OrdinalIgnoreCase
+Culture.Current
+Date.AddDays
+Date.AddMonths
+Date.AddQuarters
+Date.AddWeeks
+Date.AddYears
+Date.Day
+Date.DayOfWeek
+Date.DayOfWeekName
+Date.DayOfYear
+Date.DaysInMonth
+Date.EndOfDay
+Date.EndOfMonth
+Date.EndOfQuarter
+Date.EndOfWeek
+Date.EndOfYear
+Date.From
+Date.FromText
+Date.IsInCurrentDay
+Date.IsInCurrentMonth
+Date.IsInCurrentQuarter
+Date.IsInCurrentWeek
+Date.IsInCurrentYear
+Date.IsInNextDay
+Date.IsInNextMonth
+Date.IsInNextNDays
+Date.IsInNextNMonths
+Date.IsInNextNQuarters
+Date.IsInNextNWeeks
+Date.IsInNextNYears
+Date.IsInNextQuarter
+Date.IsInNextWeek
+Date.IsInNextYear
+Date.IsInPreviousDay
+Date.IsInPreviousMonth
+Date.IsInPreviousNDays
+Date.IsInPreviousNMonths
+Date.IsInPreviousNQuarters
+Date.IsInPreviousNWeeks
+Date.IsInPreviousNYears
+Date.IsInPreviousQuarter
+Date.IsInPreviousWeek
+Date.IsInPreviousYear
+Date.IsInYearToDate
+Date.IsLeapYear
+Date.Month
+Date.MonthName
+Date.QuarterOfYear
+Date.StartOfDay
+Date.StartOfMonth
+Date.StartOfQuarter
+Date.StartOfWeek
+Date.StartOfYear
+Date.ToRecord
+Date.ToText
+Date.WeekOfMonth
+Date.WeekOfYear
+Date.Year
+DateTime.AddZone
+DateTime.Date
+DateTime.FixedLocalNow
+DateTime.From
+DateTime.FromFileTime
+DateTime.FromText
+DateTime.IsInCurrentHour
+DateTime.IsInCurrentMinute
+DateTime.IsInCurrentSecond
+DateTime.IsInNextHour
+DateTime.IsInNextMinute
+DateTime.IsInNextNHours
+DateTime.IsInNextNMinutes
+DateTime.IsInNextNSeconds
+DateTime.IsInNextSecond
+DateTime.IsInPreviousHour
+DateTime.IsInPreviousMinute
+DateTime.IsInPreviousNHours
+DateTime.IsInPreviousNMinutes
+DateTime.IsInPreviousNSeconds
+DateTime.IsInPreviousSecond
+DateTime.LocalNow
+DateTime.Time
+DateTime.ToRecord
+DateTime.ToText
+DateTimeZone.FixedLocalNow
+DateTimeZone.FixedUtcNow
+DateTimeZone.From
+DateTimeZone.FromFileTime
+DateTimeZone.FromText
+DateTimeZone.LocalNow
+DateTimeZone.RemoveZone
+DateTimeZone.SwitchZone
+DateTimeZone.ToLocal
+DateTimeZone.ToRecord
+DateTimeZone.ToText
+DateTimeZone.ToUtc
+DateTimeZone.UtcNow
+DateTimeZone.ZoneHours
+DateTimeZone.ZoneMinutes
+Duration.Days
+Duration.From
+Duration.FromText
+Duration.Hours
+Duration.Minutes
+Duration.Seconds
+Duration.ToRecord
+Duration.TotalDays
+Duration.TotalHours
+Duration.TotalMinutes
+Duration.TotalSeconds
+Duration.ToText
+Diagnostics.ActivityId
+Diagnostics.Trace
+Error.Record
+Expression.Constant
+Expression.Evaluate
+Expression.Identifier
+Function.From
+Function.Invoke
+Function.InvokeAfter
+Function.IsDataSource
+Function.ScalarVector
+Lines.FromBinary
+Lines.FromText
+Lines.ToBinary
+Lines.ToText
+List.Count
+List.NonNullCount
+List.IsEmpty
+List.Alternate
+List.Buffer
+List.Distinct
+List.FindText
+List.First
+List.FirstN
+List.InsertRange
+List.IsDistinct
+List.Last
+List.LastN
+List.MatchesAll
+List.MatchesAny
+List.Positions
+List.Range
+List.Select
+List.Single
+List.SingleOrDefault
+List.Skip
+List.Accumulate
+List.Combine
+List.RemoveRange
+List.RemoveFirstN
+List.RemoveItems
+List.RemoveLastN
+List.Repeat
+List.ReplaceRange
+List.RemoveMatchingItems
+List.RemoveNulls
+List.ReplaceMatchingItems
+List.ReplaceValue
+List.Reverse
+List.Split
+List.Transform
+List.TransformMany
+List.AllTrue
+List.AnyTrue
+List.Contains
+List.ContainsAll
+List.ContainsAny
+List.PositionOf
+List.PositionOfAny
+List.Difference
+List.Intersect
+List.Union
+List.Zip
+List.Max
+List.MaxN
+List.Median
+List.Min
+List.MinN
+List.Sort
+List.Average
+List.Mode
+List.Modes
+List.StandardDeviation
+List.Sum
+List.Covariance
+List.Product
+List.Dates
+List.DateTimes
+List.DateTimeZones
+List.Durations
+List.Generate
+List.Numbers
+List.Random
+List.Times
+Logical.From
+Logical.FromText
+Logical.ToText
+Number.E
+Number.Epsilon
+Number.NaN
+Number.NegativeInfinity
+Number.PI
+Number.PositiveInfinity
+Number.IsEven
+Number.IsNaN
+Number.IsOdd
+Number.From
+Number.FromText
+Number.ToText
+Number.Round
+Number.RoundAwayFromZero
+Number.RoundDown
+Number.RoundTowardZero
+Number.RoundUp
+Number.Abs
+Number.Combinations
+Number.Exp
+Number.Factorial
+Number.IntegerDivide
+Number.Ln
+Number.Log
+Number.Log10
+Number.Mod
+Number.Permutations
+Number.Power
+Number.Sign
+Number.Sqrt
+Number.Random
+Number.RandomBetween
+Number.Acos
+Number.Asin
+Number.Atan
+Number.Atan2
+Number.Cos
+Number.Cosh
+Number.Sin
+Number.Sinh
+Number.Tan
+Number.Tanh
+Number.BitwiseAnd
+Number.BitwiseNot
+Number.BitwiseOr
+Number.BitwiseShiftLeft
+Number.BitwiseShiftRight
+Number.BitwiseXor
+Record.FieldCount
+Record.HasFields
+Record.AddField
+Record.Combine
+Record.RemoveFields
+Record.RenameFields
+Record.ReorderFields
+Record.TransformFields
+Record.Field
+Record.FieldNames
+Record.FieldOrDefault
+Record.FieldValues
+Record.SelectFields
+Record.FromList
+Record.FromTable
+Record.ToList
+Record.ToTable
+Replacer.ReplaceValue
+Replacer.ReplaceText
+Splitter.SplitByNothing
+Splitter.SplitTextByCharacterTransition
+Splitter.SplitTextByAnyDelimiter
+Splitter.SplitTextByDelimiter
+Splitter.SplitTextByEachDelimiter
+Splitter.SplitTextByLengths
+Splitter.SplitTextByPositions
+Splitter.SplitTextByRanges
+Splitter.SplitTextByRepeatedLengths
+Splitter.SplitTextByWhitespace
+Table.AddColumn
+Table.AddIndexColumn
+Table.AddJoinColumn
+Table.AddKey
+Table.AggregateTableColumn
+Table.AlternateRows
+Table.Buffer
+Table.Column
+Table.ColumnCount
+Table.ColumnNames
+Table.ColumnsOfType
+Table.Combine
+Table.CombineColumns
+Table.Contains
+Table.ContainsAll
+Table.ContainsAny
+Table.DemoteHeaders
+Table.Distinct
+Table.DuplicateColumn
+Table.ExpandListColumn
+Table.ExpandRecordColumn
+Table.ExpandTableColumn
+Table.FillDown
+Table.FillUp
+Table.FilterWithDataTable
+Table.FindText
+Table.First
+Table.FirstN
+Table.FirstValue
+Table.FromColumns
+Table.FromList
+Table.FromPartitions
+Table.FromRecords
+Table.FromRows
+Table.FromValue
+Table.FuzzyJoin
+Table.FuzzyNestedJoin
+Table.Group
+Table.HasColumns
+Table.InsertRows
+Table.IsDistinct
+Table.IsEmpty
+Table.Join
+Table.Keys
+Table.Last
+Table.LastN
+Table.MatchesAllRows
+Table.MatchesAnyRows
+Table.Max
+Table.MaxN
+Table.Min
+Table.MinN
+Table.NestedJoin
+Table.Partition
+Table.Pivot
+Table.PositionOf
+Table.PositionOfAny
+Table.PrefixColumns
+Table.Profile
+Table.PromoteHeaders
+Table.Range
+Table.RemoveColumns
+Table.RemoveFirstN
+Table.RemoveLastN
+Table.RemoveMatchingRows
+Table.RemoveRows
+Table.RemoveRowsWithErrors
+Table.RenameColumns
+Table.ReorderColumns
+Table.Repeat
+Table.ReplaceErrorValues
+Table.ReplaceKeys
+Table.ReplaceMatchingRows
+Table.ReplaceRelationshipIdentity
+Table.ReplaceRows
+Table.ReplaceValue
+Table.ReverseRows
+Table.RowCount
+Table.Schema
+Table.SelectColumns
+Table.SelectRows
+Table.SelectRowsWithErrors
+Table.SingleRow
+Table.Skip
+Table.Sort
+Table.Split
+Table.SplitColumn
+Table.ToColumns
+Table.ToList
+Table.ToRecords
+Table.ToRows
+Table.TransformColumnNames
+Table.TransformColumns
+Table.TransformColumnTypes
+Table.TransformRows
+Table.Transpose
+Table.Unpivot
+Table.UnpivotOtherColumns
+Table.View
+Table.ViewFunction
+Tables.GetRelationships
+Text.AfterDelimiter
+Text.At
+Text.BeforeDelimiter
+Text.BetweenDelimiters
+Text.Clean
+Text.Combine
+Text.Contains
+Text.End
+Text.EndsWith
+Text.From
+Text.FromBinary
+Text.InferNumberType
+Text.Insert
+Text.Length
+Text.Lower
+Text.Middle
+Text.NewGuid
+Text.PadEnd
+Text.PadStart
+Text.PositionOf
+Text.PositionOfAny
+Text.Proper
+Text.Range
+Text.Remove
+Text.RemoveRange
+Text.Repeat
+Text.Replace
+Text.ReplaceRange
+Text.Reverse
+Text.Select
+Text.Split
+Text.SplitAny
+Text.Start
+Text.StartsWith
+Text.ToBinary
+Text.ToList
+Text.Trim
+Text.TrimEnd
+Text.TrimStart
+Text.Upper
+Time.EndOfHour
+Time.From
+Time.FromText
+Time.Hour
+Time.Minute
+Time.Second
+Time.StartOfHour
+Time.ToRecord
+Time.ToText
+Type.AddTableKey
+Type.ClosedRecord
+Type.Facets
+Type.ForFunction
+Type.ForRecord
+Type.FunctionParameters
+Type.FunctionRequiredParameters
+Type.FunctionReturn
+Type.Is
+Type.IsNullable
+Type.IsOpenRecord
+Type.ListItem
+Type.NonNullable
+Type.OpenRecord
+Type.RecordFields
+Type.ReplaceFacets
+Type.ReplaceTableKeys
+Type.TableColumn
+Type.TableKeys
+Type.TableRow
+Type.TableSchema
+Type.Union
+Uri.BuildQueryString
+Uri.Combine
+Uri.EscapeDataString
+Uri.Parts
+Value.Add
+Value.Compare
+Value.Divide
+Value.Equals
+Value.Metadata
+Value.Multiply
+Value.NativeQuery
+Value.NullableEquals
+Value.RemoveMetadata
+Value.ReplaceMetadata
+Value.Subtract
+Value.Type
+Byte.From
+Currency.From
+Decimal.From
+Double.From
+Int8.From
+Int16.From
+Int32.From
+Int64.From
+Percentage.From
+Single.From
+ItemExpression.From
+ItemExpression.Item
+RowExpression.Column
+RowExpression.From
+RowExpression.Row
+Character.FromNumber
+Character.ToNumber
+Guid.From
+Json.FromValue
+
+----------------------------------------------------
+
+[
+	["function", "BinaryFormat.7BitEncodedSignedInteger"],
+	["function", "BinaryFormat.7BitEncodedUnsignedInteger"],
+	["function", "BinaryFormat.Binary"],
+	["function", "BinaryFormat.Byte"],
+	["function", "BinaryFormat.Choice"],
+	["function", "BinaryFormat.Decimal"],
+	["function", "BinaryFormat.Double"],
+	["function", "BinaryFormat.Group"],
+	["function", "BinaryFormat.Length"],
+	["function", "BinaryFormat.List"],
+	["function", "BinaryFormat.Null"],
+	["function", "BinaryFormat.Record"],
+	["function", "BinaryFormat.SignedInteger16"],
+	["function", "BinaryFormat.SignedInteger32"],
+	["function", "BinaryFormat.SignedInteger64"],
+	["function", "BinaryFormat.Single"],
+	["function", "BinaryFormat.Text"],
+	["function", "BinaryFormat.Transform"],
+	["function", "BinaryFormat.UnsignedInteger16"],
+	["function", "BinaryFormat.UnsignedInteger32"],
+	["function", "BinaryFormat.UnsignedInteger64"],
+	["function", "BinaryFormat.ByteOrder"],
+	["function", "Binary.Buffer"],
+	["function", "Binary.Combine"],
+	["function", "Binary.Compress"],
+	["function", "Binary.Decompress"],
+	["function", "Binary.From"],
+	["function", "Binary.FromList"],
+	["function", "Binary.FromText"],
+	["function", "Binary.InferContentType"],
+	["function", "Binary.Length"],
+	["function", "Binary.ToList"],
+	["function", "Binary.ToText"],
+	["function", "BinaryEncoding.Base64"],
+	["function", "BinaryEncoding.Hex"],
+	["function", "BinaryOccurrence.Optional"],
+	["function", "BinaryOccurrence.Repeating"],
+	["function", "BinaryOccurrence.Required"],
+	["function", "ByteOrder.BigEndian"],
+	["function", "ByteOrder.LittleEndian"],
+	["function", "Compression.Deflate"],
+	["function", "Compression.GZip"],
+	["function", "Occurrence.Optional"],
+	["function", "Occurrence.Repeating"],
+	["function", "Occurrence.Required"],
+	["function", "Combiner.CombineTextByDelimiter"],
+	["function", "Combiner.CombineTextByEachDelimiter"],
+	["function", "Combiner.CombineTextByLengths"],
+	["function", "Combiner.CombineTextByPositions"],
+	["function", "Combiner.CombineTextByRanges"],
+	["function", "Comparer.Equals"],
+	["function", "Comparer.FromCulture"],
+	["function", "Comparer.Ordinal"],
+	["function", "Comparer.OrdinalIgnoreCase"],
+	["function", "Culture.Current"],
+	["function", "Date.AddDays"],
+	["function", "Date.AddMonths"],
+	["function", "Date.AddQuarters"],
+	["function", "Date.AddWeeks"],
+	["function", "Date.AddYears"],
+	["function", "Date.Day"],
+	["function", "Date.DayOfWeek"],
+	["function", "Date.DayOfWeekName"],
+	["function", "Date.DayOfYear"],
+	["function", "Date.DaysInMonth"],
+	["function", "Date.EndOfDay"],
+	["function", "Date.EndOfMonth"],
+	["function", "Date.EndOfQuarter"],
+	["function", "Date.EndOfWeek"],
+	["function", "Date.EndOfYear"],
+	["function", "Date.From"],
+	["function", "Date.FromText"],
+	["function", "Date.IsInCurrentDay"],
+	["function", "Date.IsInCurrentMonth"],
+	["function", "Date.IsInCurrentQuarter"],
+	["function", "Date.IsInCurrentWeek"],
+	["function", "Date.IsInCurrentYear"],
+	["function", "Date.IsInNextDay"],
+	["function", "Date.IsInNextMonth"],
+	["function", "Date.IsInNextNDays"],
+	["function", "Date.IsInNextNMonths"],
+	["function", "Date.IsInNextNQuarters"],
+	["function", "Date.IsInNextNWeeks"],
+	["function", "Date.IsInNextNYears"],
+	["function", "Date.IsInNextQuarter"],
+	["function", "Date.IsInNextWeek"],
+	["function", "Date.IsInNextYear"],
+	["function", "Date.IsInPreviousDay"],
+	["function", "Date.IsInPreviousMonth"],
+	["function", "Date.IsInPreviousNDays"],
+	["function", "Date.IsInPreviousNMonths"],
+	["function", "Date.IsInPreviousNQuarters"],
+	["function", "Date.IsInPreviousNWeeks"],
+	["function", "Date.IsInPreviousNYears"],
+	["function", "Date.IsInPreviousQuarter"],
+	["function", "Date.IsInPreviousWeek"],
+	["function", "Date.IsInPreviousYear"],
+	["function", "Date.IsInYearToDate"],
+	["function", "Date.IsLeapYear"],
+	["function", "Date.Month"],
+	["function", "Date.MonthName"],
+	["function", "Date.QuarterOfYear"],
+	["function", "Date.StartOfDay"],
+	["function", "Date.StartOfMonth"],
+	["function", "Date.StartOfQuarter"],
+	["function", "Date.StartOfWeek"],
+	["function", "Date.StartOfYear"],
+	["function", "Date.ToRecord"],
+	["function", "Date.ToText"],
+	["function", "Date.WeekOfMonth"],
+	["function", "Date.WeekOfYear"],
+	["function", "Date.Year"],
+	["function", "DateTime.AddZone"],
+	["function", "DateTime.Date"],
+	["function", "DateTime.FixedLocalNow"],
+	["function", "DateTime.From"],
+	["function", "DateTime.FromFileTime"],
+	["function", "DateTime.FromText"],
+	["function", "DateTime.IsInCurrentHour"],
+	["function", "DateTime.IsInCurrentMinute"],
+	["function", "DateTime.IsInCurrentSecond"],
+	["function", "DateTime.IsInNextHour"],
+	["function", "DateTime.IsInNextMinute"],
+	["function", "DateTime.IsInNextNHours"],
+	["function", "DateTime.IsInNextNMinutes"],
+	["function", "DateTime.IsInNextNSeconds"],
+	["function", "DateTime.IsInNextSecond"],
+	["function", "DateTime.IsInPreviousHour"],
+	["function", "DateTime.IsInPreviousMinute"],
+	["function", "DateTime.IsInPreviousNHours"],
+	["function", "DateTime.IsInPreviousNMinutes"],
+	["function", "DateTime.IsInPreviousNSeconds"],
+	["function", "DateTime.IsInPreviousSecond"],
+	["function", "DateTime.LocalNow"],
+	["function", "DateTime.Time"],
+	["function", "DateTime.ToRecord"],
+	["function", "DateTime.ToText"],
+	["function", "DateTimeZone.FixedLocalNow"],
+	["function", "DateTimeZone.FixedUtcNow"],
+	["function", "DateTimeZone.From"],
+	["function", "DateTimeZone.FromFileTime"],
+	["function", "DateTimeZone.FromText"],
+	["function", "DateTimeZone.LocalNow"],
+	["function", "DateTimeZone.RemoveZone"],
+	["function", "DateTimeZone.SwitchZone"],
+	["function", "DateTimeZone.ToLocal"],
+	["function", "DateTimeZone.ToRecord"],
+	["function", "DateTimeZone.ToText"],
+	["function", "DateTimeZone.ToUtc"],
+	["function", "DateTimeZone.UtcNow"],
+	["function", "DateTimeZone.ZoneHours"],
+	["function", "DateTimeZone.ZoneMinutes"],
+	["function", "Duration.Days"],
+	["function", "Duration.From"],
+	["function", "Duration.FromText"],
+	["function", "Duration.Hours"],
+	["function", "Duration.Minutes"],
+	["function", "Duration.Seconds"],
+	["function", "Duration.ToRecord"],
+	["function", "Duration.TotalDays"],
+	["function", "Duration.TotalHours"],
+	["function", "Duration.TotalMinutes"],
+	["function", "Duration.TotalSeconds"],
+	["function", "Duration.ToText"],
+	["function", "Diagnostics.ActivityId"],
+	["function", "Diagnostics.Trace"],
+	["function", "Error.Record"],
+	["function", "Expression.Constant"],
+	["function", "Expression.Evaluate"],
+	["function", "Expression.Identifier"],
+	["function", "Function.From"],
+	["function", "Function.Invoke"],
+	["function", "Function.InvokeAfter"],
+	["function", "Function.IsDataSource"],
+	["function", "Function.ScalarVector"],
+	["function", "Lines.FromBinary"],
+	["function", "Lines.FromText"],
+	["function", "Lines.ToBinary"],
+	["function", "Lines.ToText"],
+	["function", "List.Count"],
+	["function", "List.NonNullCount"],
+	["function", "List.IsEmpty"],
+	["function", "List.Alternate"],
+	["function", "List.Buffer"],
+	["function", "List.Distinct"],
+	["function", "List.FindText"],
+	["function", "List.First"],
+	["function", "List.FirstN"],
+	["function", "List.InsertRange"],
+	["function", "List.IsDistinct"],
+	["function", "List.Last"],
+	["function", "List.LastN"],
+	["function", "List.MatchesAll"],
+	["function", "List.MatchesAny"],
+	["function", "List.Positions"],
+	["function", "List.Range"],
+	["function", "List.Select"],
+	["function", "List.Single"],
+	["function", "List.SingleOrDefault"],
+	["function", "List.Skip"],
+	["function", "List.Accumulate"],
+	["function", "List.Combine"],
+	["function", "List.RemoveRange"],
+	["function", "List.RemoveFirstN"],
+	["function", "List.RemoveItems"],
+	["function", "List.RemoveLastN"],
+	["function", "List.Repeat"],
+	["function", "List.ReplaceRange"],
+	["function", "List.RemoveMatchingItems"],
+	["function", "List.RemoveNulls"],
+	["function", "List.ReplaceMatchingItems"],
+	["function", "List.ReplaceValue"],
+	["function", "List.Reverse"],
+	["function", "List.Split"],
+	["function", "List.Transform"],
+	["function", "List.TransformMany"],
+	["function", "List.AllTrue"],
+	["function", "List.AnyTrue"],
+	["function", "List.Contains"],
+	["function", "List.ContainsAll"],
+	["function", "List.ContainsAny"],
+	["function", "List.PositionOf"],
+	["function", "List.PositionOfAny"],
+	["function", "List.Difference"],
+	["function", "List.Intersect"],
+	["function", "List.Union"],
+	["function", "List.Zip"],
+	["function", "List.Max"],
+	["function", "List.MaxN"],
+	["function", "List.Median"],
+	["function", "List.Min"],
+	["function", "List.MinN"],
+	["function", "List.Sort"],
+	["function", "List.Average"],
+	["function", "List.Mode"],
+	["function", "List.Modes"],
+	["function", "List.StandardDeviation"],
+	["function", "List.Sum"],
+	["function", "List.Covariance"],
+	["function", "List.Product"],
+	["function", "List.Dates"],
+	["function", "List.DateTimes"],
+	["function", "List.DateTimeZones"],
+	["function", "List.Durations"],
+	["function", "List.Generate"],
+	["function", "List.Numbers"],
+	["function", "List.Random"],
+	["function", "List.Times"],
+	["function", "Logical.From"],
+	["function", "Logical.FromText"],
+	["function", "Logical.ToText"],
+	["function", "Number.E"],
+	["function", "Number.Epsilon"],
+	["function", "Number.NaN"],
+	["function", "Number.NegativeInfinity"],
+	["function", "Number.PI"],
+	["function", "Number.PositiveInfinity"],
+	["function", "Number.IsEven"],
+	["function", "Number.IsNaN"],
+	["function", "Number.IsOdd"],
+	["function", "Number.From"],
+	["function", "Number.FromText"],
+	["function", "Number.ToText"],
+	["function", "Number.Round"],
+	["function", "Number.RoundAwayFromZero"],
+	["function", "Number.RoundDown"],
+	["function", "Number.RoundTowardZero"],
+	["function", "Number.RoundUp"],
+	["function", "Number.Abs"],
+	["function", "Number.Combinations"],
+	["function", "Number.Exp"],
+	["function", "Number.Factorial"],
+	["function", "Number.IntegerDivide"],
+	["function", "Number.Ln"],
+	["function", "Number.Log"],
+	["function", "Number.Log10"],
+	["function", "Number.Mod"],
+	["function", "Number.Permutations"],
+	["function", "Number.Power"],
+	["function", "Number.Sign"],
+	["function", "Number.Sqrt"],
+	["function", "Number.Random"],
+	["function", "Number.RandomBetween"],
+	["function", "Number.Acos"],
+	["function", "Number.Asin"],
+	["function", "Number.Atan"],
+	["function", "Number.Atan2"],
+	["function", "Number.Cos"],
+	["function", "Number.Cosh"],
+	["function", "Number.Sin"],
+	["function", "Number.Sinh"],
+	["function", "Number.Tan"],
+	["function", "Number.Tanh"],
+	["function", "Number.BitwiseAnd"],
+	["function", "Number.BitwiseNot"],
+	["function", "Number.BitwiseOr"],
+	["function", "Number.BitwiseShiftLeft"],
+	["function", "Number.BitwiseShiftRight"],
+	["function", "Number.BitwiseXor"],
+	["function", "Record.FieldCount"],
+	["function", "Record.HasFields"],
+	["function", "Record.AddField"],
+	["function", "Record.Combine"],
+	["function", "Record.RemoveFields"],
+	["function", "Record.RenameFields"],
+	["function", "Record.ReorderFields"],
+	["function", "Record.TransformFields"],
+	["function", "Record.Field"],
+	["function", "Record.FieldNames"],
+	["function", "Record.FieldOrDefault"],
+	["function", "Record.FieldValues"],
+	["function", "Record.SelectFields"],
+	["function", "Record.FromList"],
+	["function", "Record.FromTable"],
+	["function", "Record.ToList"],
+	["function", "Record.ToTable"],
+	["function", "Replacer.ReplaceValue"],
+	["function", "Replacer.ReplaceText"],
+	["function", "Splitter.SplitByNothing"],
+	["function", "Splitter.SplitTextByCharacterTransition"],
+	["function", "Splitter.SplitTextByAnyDelimiter"],
+	["function", "Splitter.SplitTextByDelimiter"],
+	["function", "Splitter.SplitTextByEachDelimiter"],
+	["function", "Splitter.SplitTextByLengths"],
+	["function", "Splitter.SplitTextByPositions"],
+	["function", "Splitter.SplitTextByRanges"],
+	["function", "Splitter.SplitTextByRepeatedLengths"],
+	["function", "Splitter.SplitTextByWhitespace"],
+	["function", "Table.AddColumn"],
+	["function", "Table.AddIndexColumn"],
+	["function", "Table.AddJoinColumn"],
+	["function", "Table.AddKey"],
+	["function", "Table.AggregateTableColumn"],
+	["function", "Table.AlternateRows"],
+	["function", "Table.Buffer"],
+	["function", "Table.Column"],
+	["function", "Table.ColumnCount"],
+	["function", "Table.ColumnNames"],
+	["function", "Table.ColumnsOfType"],
+	["function", "Table.Combine"],
+	["function", "Table.CombineColumns"],
+	["function", "Table.Contains"],
+	["function", "Table.ContainsAll"],
+	["function", "Table.ContainsAny"],
+	["function", "Table.DemoteHeaders"],
+	["function", "Table.Distinct"],
+	["function", "Table.DuplicateColumn"],
+	["function", "Table.ExpandListColumn"],
+	["function", "Table.ExpandRecordColumn"],
+	["function", "Table.ExpandTableColumn"],
+	["function", "Table.FillDown"],
+	["function", "Table.FillUp"],
+	["function", "Table.FilterWithDataTable"],
+	["function", "Table.FindText"],
+	["function", "Table.First"],
+	["function", "Table.FirstN"],
+	["function", "Table.FirstValue"],
+	["function", "Table.FromColumns"],
+	["function", "Table.FromList"],
+	["function", "Table.FromPartitions"],
+	["function", "Table.FromRecords"],
+	["function", "Table.FromRows"],
+	["function", "Table.FromValue"],
+	["function", "Table.FuzzyJoin"],
+	["function", "Table.FuzzyNestedJoin"],
+	["function", "Table.Group"],
+	["function", "Table.HasColumns"],
+	["function", "Table.InsertRows"],
+	["function", "Table.IsDistinct"],
+	["function", "Table.IsEmpty"],
+	["function", "Table.Join"],
+	["function", "Table.Keys"],
+	["function", "Table.Last"],
+	["function", "Table.LastN"],
+	["function", "Table.MatchesAllRows"],
+	["function", "Table.MatchesAnyRows"],
+	["function", "Table.Max"],
+	["function", "Table.MaxN"],
+	["function", "Table.Min"],
+	["function", "Table.MinN"],
+	["function", "Table.NestedJoin"],
+	["function", "Table.Partition"],
+	["function", "Table.Pivot"],
+	["function", "Table.PositionOf"],
+	["function", "Table.PositionOfAny"],
+	["function", "Table.PrefixColumns"],
+	["function", "Table.Profile"],
+	["function", "Table.PromoteHeaders"],
+	["function", "Table.Range"],
+	["function", "Table.RemoveColumns"],
+	["function", "Table.RemoveFirstN"],
+	["function", "Table.RemoveLastN"],
+	["function", "Table.RemoveMatchingRows"],
+	["function", "Table.RemoveRows"],
+	["function", "Table.RemoveRowsWithErrors"],
+	["function", "Table.RenameColumns"],
+	["function", "Table.ReorderColumns"],
+	["function", "Table.Repeat"],
+	["function", "Table.ReplaceErrorValues"],
+	["function", "Table.ReplaceKeys"],
+	["function", "Table.ReplaceMatchingRows"],
+	["function", "Table.ReplaceRelationshipIdentity"],
+	["function", "Table.ReplaceRows"],
+	["function", "Table.ReplaceValue"],
+	["function", "Table.ReverseRows"],
+	["function", "Table.RowCount"],
+	["function", "Table.Schema"],
+	["function", "Table.SelectColumns"],
+	["function", "Table.SelectRows"],
+	["function", "Table.SelectRowsWithErrors"],
+	["function", "Table.SingleRow"],
+	["function", "Table.Skip"],
+	["function", "Table.Sort"],
+	["function", "Table.Split"],
+	["function", "Table.SplitColumn"],
+	["function", "Table.ToColumns"],
+	["function", "Table.ToList"],
+	["function", "Table.ToRecords"],
+	["function", "Table.ToRows"],
+	["function", "Table.TransformColumnNames"],
+	["function", "Table.TransformColumns"],
+	["function", "Table.TransformColumnTypes"],
+	["function", "Table.TransformRows"],
+	["function", "Table.Transpose"],
+	["function", "Table.Unpivot"],
+	["function", "Table.UnpivotOtherColumns"],
+	["function", "Table.View"],
+	["function", "Table.ViewFunction"],
+	["function", "Tables.GetRelationships"],
+	["function", "Text.AfterDelimiter"],
+	["function", "Text.At"],
+	["function", "Text.BeforeDelimiter"],
+	["function", "Text.BetweenDelimiters"],
+	["function", "Text.Clean"],
+	["function", "Text.Combine"],
+	["function", "Text.Contains"],
+	["function", "Text.End"],
+	["function", "Text.EndsWith"],
+	["function", "Text.From"],
+	["function", "Text.FromBinary"],
+	["function", "Text.InferNumberType"],
+	["function", "Text.Insert"],
+	["function", "Text.Length"],
+	["function", "Text.Lower"],
+	["function", "Text.Middle"],
+	["function", "Text.NewGuid"],
+	["function", "Text.PadEnd"],
+	["function", "Text.PadStart"],
+	["function", "Text.PositionOf"],
+	["function", "Text.PositionOfAny"],
+	["function", "Text.Proper"],
+	["function", "Text.Range"],
+	["function", "Text.Remove"],
+	["function", "Text.RemoveRange"],
+	["function", "Text.Repeat"],
+	["function", "Text.Replace"],
+	["function", "Text.ReplaceRange"],
+	["function", "Text.Reverse"],
+	["function", "Text.Select"],
+	["function", "Text.Split"],
+	["function", "Text.SplitAny"],
+	["function", "Text.Start"],
+	["function", "Text.StartsWith"],
+	["function", "Text.ToBinary"],
+	["function", "Text.ToList"],
+	["function", "Text.Trim"],
+	["function", "Text.TrimEnd"],
+	["function", "Text.TrimStart"],
+	["function", "Text.Upper"],
+	["function", "Time.EndOfHour"],
+	["function", "Time.From"],
+	["function", "Time.FromText"],
+	["function", "Time.Hour"],
+	["function", "Time.Minute"],
+	["function", "Time.Second"],
+	["function", "Time.StartOfHour"],
+	["function", "Time.ToRecord"],
+	["function", "Time.ToText"],
+	["function", "Type.AddTableKey"],
+	["function", "Type.ClosedRecord"],
+	["function", "Type.Facets"],
+	["function", "Type.ForFunction"],
+	["function", "Type.ForRecord"],
+	["function", "Type.FunctionParameters"],
+	["function", "Type.FunctionRequiredParameters"],
+	["function", "Type.FunctionReturn"],
+	["function", "Type.Is"],
+	["function", "Type.IsNullable"],
+	["function", "Type.IsOpenRecord"],
+	["function", "Type.ListItem"],
+	["function", "Type.NonNullable"],
+	["function", "Type.OpenRecord"],
+	["function", "Type.RecordFields"],
+	["function", "Type.ReplaceFacets"],
+	["function", "Type.ReplaceTableKeys"],
+	["function", "Type.TableColumn"],
+	["function", "Type.TableKeys"],
+	["function", "Type.TableRow"],
+	["function", "Type.TableSchema"],
+	["function", "Type.Union"],
+	["function", "Uri.BuildQueryString"],
+	["function", "Uri.Combine"],
+	["function", "Uri.EscapeDataString"],
+	["function", "Uri.Parts"],
+	["function", "Value.Add"],
+	["function", "Value.Compare"],
+	["function", "Value.Divide"],
+	["function", "Value.Equals"],
+	["function", "Value.Metadata"],
+	["function", "Value.Multiply"],
+	["function", "Value.NativeQuery"],
+	["function", "Value.NullableEquals"],
+	["function", "Value.RemoveMetadata"],
+	["function", "Value.ReplaceMetadata"],
+	["function", "Value.Subtract"],
+	["function", "Value.Type"],
+	["function", "Byte.From"],
+	["function", "Currency.From"],
+	["function", "Decimal.From"],
+	["function", "Double.From"],
+	["function", "Int8.From"],
+	["function", "Int16.From"],
+	["function", "Int32.From"],
+	["function", "Int64.From"],
+	["function", "Percentage.From"],
+	["function", "Single.From"],
+	["function", "ItemExpression.From"],
+	["function", "ItemExpression.Item"],
+	["function", "RowExpression.Column"],
+	["function", "RowExpression.From"],
+	["function", "RowExpression.Row"],
+	["function", "Character.FromNumber"],
+	["function", "Character.ToNumber"],
+	["function", "Guid.From"],
+	["function", "Json.FromValue"]
+]
+
+----------------------------------------------------
+
+Checks for functions.

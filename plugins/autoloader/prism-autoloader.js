@@ -169,6 +169,8 @@
 		"n4jsd": "n4js",
 		"objectpascal": "pascal",
 		"px": "pcaxis",
+		"pq": "powerquery",
+		"mscript": "powerquery",
 		"py": "python",
 		"robot": "robotframework",
 		"rb": "ruby",

@@ -760,6 +760,11 @@
 			"require": "sql",
 			"owner": "Golmote"
 		},
+		"powerquery": {
+			"title": "PowerQuery",
+			"alias": ["pq", "mscript"],
+			"owner": "peterbud"
+		},
 		"powershell": {
 			"title": "PowerShell",
 			"owner": "nauzilus"
