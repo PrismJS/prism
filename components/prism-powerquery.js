@@ -28,7 +28,7 @@ Prism.languages.powerquery = {
         /\bJoinAlgorithm\.(?:Dynamic|PairwiseHash|SortMerge|LeftHash|RightHash|LeftIndex|RightIndex)\b/,
         /\bJoinSide\.(?:Left|Right)\b/,
         /\bPrecision\.(?:Double|Decimal)\b/,
-        /\bRelativePosition\.(?:From(?:End|Start))\b/,
+        /\bRelativePosition\.From(?:End|Start)\b/,
         /\bTextEncoding\.(?:Ascii|BigEndianUnicode|Unicode|Utf8|Utf16|Windows)\b/,
         /\bValue\.(?:As|Is|ReplaceType)\b/,
         /\b(?:Any|Binary|Date|DateTime|DateTimeZone|Duration|Int8|Int16|Int32|Int64|Function|List|Logical|None|Number|Record|Table|Text|Time)\.Type\b/,
