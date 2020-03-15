@@ -80,7 +80,7 @@ Prism.languages.powerquery = {
         alias: 'variable'
     },
     'number': /\b0x[\da-f]+\b|[+-]?\b\d+\.?\d*e?\d*|\B\.\d+\b/i,
-    'operator': /[-+*\/&?@^]|<(?:=>?|>)?|>(?:=?)|=(?:>?)/,
+    'operator': /[-+*\/&?@^]|<(?:=>?|>)?|>=?|=>?|\.\.\.?/,
     'punctuation': /[,;\[\](){}]/
 };
 
