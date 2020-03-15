@@ -75,8 +75,7 @@ Prism.languages.powerquery = {
         /\b(?:Byte|Currency|Decimal|Double|Guid|Int8|Int16|Int32|Int64|Percentage|Single)\.From\b/,
         /\bJson.FromValue\b/
     ],
-    'data-type':
-    {
+    'data-type': {
         pattern: /\b(?:any|anynonnull|binary|date|datetime|datetimezone|duration|function|list|logical|none|number|record|table|text|time|type)\b/,
         alias: 'variable'
     },
