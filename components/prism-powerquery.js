@@ -32,8 +32,9 @@ Prism.languages.powerquery = {
         /\bTextEncoding\.(?:Ascii|BigEndianUnicode|Unicode|Utf8|Utf16|Windows)\b/,
         /\bValue\.(?:As|Is|ReplaceType)\b/,
         /\b(?:Any|Binary|Date|DateTime|DateTimeZone|Duration|Int8|Int16|Int32|Int64|Function|List|Logical|None|Number|Record|Table|Text|Time)\.Type\b/,
-        /\b(?:true|false|null)\b/
+        /\bnull\b/
     ],
+    'boolean': /\b(?:true|false)\b/,
     'keyword': /\b(?:and|as|each|else|error|if|in|is|let|meta|not|nullable|optional|or|otherwise|section|shared|then|try|type)\b|#(?:binary|date|datetime|datetimezone|duration|infinity|nan|sections|shared|table|time)\b/,
     'function': [
         /\bBinary\.(?:Buffer|Combine|Compress|Decompress|From(?:List|Text)?|InferContentType|Length|To(?:List|Text))\b/,

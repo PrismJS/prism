@@ -77,8 +77,6 @@ Record.Type
 Table.Type
 Text.Type
 Time.Type
-true
-false
 null
 
 ----------------------------------------------------
@@ -163,8 +161,6 @@ null
 	["constant", "Table.Type"],
 	["constant", "Text.Type"],
 	["constant", "Time.Type"],
-	["constant", "true"],
-	["constant", "false"],
 	["constant", "null"]
 ]
 
