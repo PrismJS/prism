@@ -8,7 +8,7 @@ Prism.languages.powerquery = {
     'quoted-identifier': {
         pattern: /#"(?:[^"\r\n]|"")*"(?!")/,
         greedy: true,
-        alias: 'constant'
+        alias: 'variable'
     },
     'string': {
         pattern: /"(?:[^"\r\n]|"")*"(?!")/,
