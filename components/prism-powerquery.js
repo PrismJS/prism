@@ -79,7 +79,7 @@ Prism.languages.powerquery = {
         pattern: /\b(?:any|anynonnull|binary|date|datetime|datetimezone|duration|function|list|logical|none|number|record|table|text|time|type)\b/,
         alias: 'variable'
     },
-    'number': /\b0x[\da-f]+\b|[+-]?\b\d+\.?\d*e?\d*|\B\.\d+\b/i,
+    'number': /\b0x[\da-f]+\b|[+-]?(?:\b\d+\.|\B\.)?\d+(?:e[+-]?\d+)?/i,
     'operator': /[-+*\/&?@^]|<(?:=>?|>)?|>=?|=>?|\.\.\.?/,
     'punctuation': /[,;\[\](){}]/
 };
