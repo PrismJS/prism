@@ -55,9 +55,6 @@ TextEncoding.Unicode
 TextEncoding.Utf8
 TextEncoding.Utf16
 TextEncoding.Windows
-Value.As
-Value.Is
-Value.ReplaceType
 Any.Type
 Binary.Type
 Date.Type
@@ -139,9 +136,6 @@ null
 	["constant", "TextEncoding.Utf8"],
 	["constant", "TextEncoding.Utf16"],
 	["constant", "TextEncoding.Windows"],
-	["constant", "Value.As"],
-	["constant", "Value.Is"],
-	["constant", "Value.ReplaceType"],
 	["constant", "Any.Type"],
 	["constant", "Binary.Type"],
 	["constant", "Date.Type"],
