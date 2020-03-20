@@ -10,6 +10,8 @@
  * @property {number} maxTime in seconds
  * @property {string} [language] An optional comma separated list of languages than, if defined, will be the only
  * languages for which the benchmark will be run.
+ * @property {boolean} [remotesOnly=false] Whether the benchmark will only run with remotes. If `true`, the local
+ * project will be ignored
  *
  * @typedef ConfigRemote
  * @property {string} repo
@@ -22,7 +24,8 @@
 const config = {
 	options: {
 		testFunction: 'tokenize',
-		maxTime: 3
+		maxTime: 3,
+		remotesOnly: false
 	},
 
 	remotes: [
@@ -35,6 +38,10 @@ const config = {
 		{
 			repo: 'https://github.com/PrismJS/prism.git'
 		},
+		{
+			repo: 'https://github.com/RunDevelopment/prism.git',
+			branch: 'core-linked-list'
+		}
 	],
 
 	cases: {

@@ -128,6 +128,9 @@ function getConfig() {
 	if (typeof argv.language === 'string') {
 		base.options.language = argv.language;
 	}
+	if (typeof argv.remotesOnly === 'boolean') {
+		base.options.remotesOnly = argv.remotesOnly;
+	}
 
 	return base;
 }
@@ -361,14 +364,16 @@ async function getCandidates(config) {
 	const candidates = [];
 
 	// local
-	const localPrismLoader = require('../tests/helper/prism-loader');
-	candidates.push({
-		name: 'local',
-		setup(mainLanguage, languages) {
-			const Prism = localPrismLoader.createInstance(languages);
-			return createTestFunction(Prism, mainLanguage, config.options.testFunction);
-		}
-	});
+	if (!config.options.remotesOnly) {
+		const localPrismLoader = require('../tests/helper/prism-loader');
+		candidates.push({
+			name: 'local',
+			setup(mainLanguage, languages) {
+				const Prism = localPrismLoader.createInstance(languages);
+				return createTestFunction(Prism, mainLanguage, config.options.testFunction);
+			}
+		});
+	}
 
 	// remotes
 
