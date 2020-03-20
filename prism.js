@@ -336,6 +336,15 @@ var _ = {
 		return Token.stringify(_.util.encode(env.tokens), env.language);
 	},
 
+	/**
+	 * @param {string} text
+	 * @param {LinkedList<string | Token>} tokenList
+	 * @param {any} grammar
+	 * @param {LinkedListNode<string | Token>} startNode
+	 * @param {number} startPos
+	 * @param {boolean} [oneshot=false]
+	 * @param {string} [target]
+	 */
 	matchGrammar: function (text, tokenList, grammar, startNode, startPos, oneshot, target) {
 		for (var token in grammar) {
 			if (!grammar.hasOwnProperty(token) || !grammar[token]) {
@@ -451,17 +460,17 @@ var _ = {
 					var removeFrom = currentNode.prev;
 
 					if (before) {
-						removeFrom = tokenList.addAfter(removeFrom, before);
+						removeFrom = addAfter(tokenList, removeFrom, before);
 						pos += before.length;
 					}
 
-					tokenList.removeRange(removeFrom, removeCount);
+					removeRange(tokenList, removeFrom, removeCount);
 
 					var wrapped = new Token(token, inside ? _.tokenize(match, inside) : match, alias, match, greedy);
-					currentNode = tokenList.addAfter(removeFrom, wrapped);
+					currentNode = addAfter(tokenList, removeFrom, wrapped);
 
 					if (after) {
-						tokenList.addAfter(currentNode, after);
+						addAfter(tokenList, currentNode, after);
 					}
 
 
@@ -486,11 +495,11 @@ var _ = {
 		}
 
 		var tokenList = new LinkedList();
-		tokenList.addAfter(tokenList.head, text);
+		addAfter(tokenList, tokenList.head, text);
 
-		_.matchGrammar(text, tokenList, grammar, tokenList.head, 0, false);
+		_.matchGrammar(text, tokenList, grammar, tokenList.head, 0);
 
-		return tokenList.toArray();
+		return toArray(tokenList);
 	},
 
 	hooks: {
@@ -574,64 +583,77 @@ Token.stringify = function stringify(o, language) {
 /**
  * @typedef LinkedListNode
  * @property {T} value
- * @property {LinkedListNode<T>} prev
- * @property {LinkedListNode<T>} next
+ * @property {LinkedListNode<T> | null} prev The previous node.
+ * @property {LinkedListNode<T> | null} next The next node.
  * @template T
  */
 
+/**
+ * @template T
+ */
 function LinkedList() {
-	/** @type {LinkedListNode<string | Token>} */
-	this.head = { value: null, prev: null, next: null };
-	/** @type {LinkedListNode<string | Token>} */
-	this.tail = { value: null, prev: null, next: null };
-	this.head.next = this.tail;
-	this.tail.prev = this.head;
+	/** @type {LinkedListNode<T>} */
+	var head = { value: null, prev: null, next: null };
+	/** @type {LinkedListNode<T>} */
+	var tail = { value: null, prev: head, next: null };
+	head.next = tail;
+
+	/** @type {LinkedListNode<T>} */
+	this.head = head;
+	/** @type {LinkedListNode<T>} */
+	this.tail = tail;
 	this.length = 0;
 }
 
 /**
  * Adds a new node with the given value to the list.
- * @param {LinkedListNode<string | Token>} node
- * @param {(string | Token)} value
- * @returns {LinkedListNode<string | Token>} The added node.
+ * @param {LinkedList<T>} list
+ * @param {LinkedListNode<T>} node
+ * @param {T} value
+ * @returns {LinkedListNode<T>} The added node.
+ * @template T
  */
-LinkedList.prototype.addAfter = function(node, value) {
-	// assumes that node != tail && values.length >= 0
+function addAfter(list, node, value) {
+	// assumes that node != list.tail && values.length >= 0
 	var next = node.next;
 
 	var newNode = { value: value, prev: node, next: next };
 	node.next = newNode;
 	next.prev = newNode;
-	this.length++;
+	list.length++;
 
 	return newNode;
-};
+}
 /**
  * Removes `count` nodes after the given node. The given node will not be removed.
- * @param {LinkedListNode<string | Token>} node
+ * @param {LinkedList<T>} list
+ * @param {LinkedListNode<T>} node
  * @param {number} count
+ * @template T
  */
-LinkedList.prototype.removeRange = function(node, count) {
+function removeRange(list, node, count) {
 	var next = node.next;
-	for (var i = 0; i < count && next !== this.tail; i++) {
+	for (var i = 0; i < count && next !== list.tail; i++) {
 		next = next.next;
 	}
 	node.next = next;
 	next.prev = node;
-	this.length -= i;
-};
+	list.length -= i;
+}
 /**
- * @returns {(string | Token)[]}
+ * @param {LinkedList<T>} list
+ * @returns {T[]}
+ * @template T
  */
-LinkedList.prototype.toArray = function() {
+function toArray(list) {
 	var array = [];
-	var node = this.head.next;
-	while (node !== this.tail) {
+	var node = list.head.next;
+	while (node !== list.tail) {
 		array.push(node.value);
 		node = node.next;
 	}
 	return array;
-};
+}
 
 
 if (!_self.document) {
