@@ -1,6 +1,8 @@
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 const { argv } = require('yargs');
+const fetch = require('node-fetch').default;
 const Benchmark = require('benchmark');
 const simpleGit = require('simple-git/promise');
 const { parseLanguageNames } = require('../tests/helper/test-case');
@@ -12,7 +14,7 @@ doBenchmark(getConfig());
  * @param {import("./config").Config} config
  */
 async function doBenchmark(config) {
-	const cases = getCases(config);
+	const cases = await getCases(config);
 	const totalNumberOfCaseFiles = cases.reduce((a, c) => a + c.files.length, 0);
 	const candidates = await getCandidates(config);
 	const maxCandidateNameLength = candidates.reduce((a, c) => Math.max(a, c.name.length), 0);
@@ -42,7 +44,7 @@ async function doBenchmark(config) {
 		console.log();
 
 		// prepare candidates
-		const warmupCode = fs.readFileSync($case.files[0].path, 'utf8');
+		const warmupCode = await fs.promises.readFile($case.files[0].path, 'utf8');
 		/** @type {[string, (code: string) => void][]} */
 		const candidateFunctions = candidates.map(({ name, setup }) => {
 			const fn = setup($case.language, $case.languages);
@@ -55,7 +57,7 @@ async function doBenchmark(config) {
 		for (const caseFile of $case.files) {
 			console.log(`  ${caseFile.name} \x1b[90m(${Math.round(caseFile.size / 1024)} kB)\x1b[0m`);
 
-			const code = fs.readFileSync(caseFile.path, 'utf8');
+			const code = await fs.promises.readFile(caseFile.path, 'utf8');
 
 			const results = measureCandidates(candidateFunctions.map(([name, fn]) => [name, () => fn(code)]), {
 				maxTime: config.options.maxTime,
@@ -75,7 +77,7 @@ async function doBenchmark(config) {
 			const worst = getWorst(results);
 
 			results.forEach((r, index) => {
-				const name = r.name.padEnd(maxCandidateNameLength, " ");
+				const name = r.name.padEnd(maxCandidateNameLength, ' ');
 				const mean = (r.stats.mean * 1000).toFixed(2).padStart(8) + 'ms';
 				const r_moe = (100 * r.stats.moe / r.stats.mean).toFixed(0).padStart(3) + '%'
 				const smp = r.stats.sample.length.toString().padStart(4) + 'smp';
@@ -134,18 +136,33 @@ function getConfig() {
 /**
  * @param {import("./config").Config} config
  */
-function getCases(config) {
+async function getCases(config) {
 	/**
 	 * @type {Map<string, FileInfo>}
 	 *
 	 * @typedef {{ name: string, path: string, size: number }} FileInfo
 	 * */
 	const filesMap = new Map();
-	function getFileInfo(name) {
+	async function getFileInfo(name) {
 		let fi = filesMap.get(name);
 		if (fi === undefined) {
-			const p = path.resolve(path.join(__dirname, 'files'), name);
-			const stat = fs.statSync(p);
+			const filesDir = path.join(__dirname, 'files');
+			let p;
+			if (/^https:\/\//.test(name)) {
+				const downloadDir = path.join(filesDir, 'downloads');
+				await fs.promises.mkdir(downloadDir, { recursive: true });
+				// file path
+				const hash = crypto.createHash('md5').update(name).digest('hex');
+				p = path.resolve(downloadDir, hash + '-' + /[-\w\.]*$/.exec(name)[0]);
+				if (!fs.existsSync(p)) {
+					// download file
+					console.log(`Downloading ${name}...`);
+					await fs.promises.writeFile(p, await fetch(name).then(r => r.text()), 'utf8');
+				}
+			} else {
+				p = path.resolve(filesDir, name);
+			}
+			const stat = await fs.promises.stat(p);
 			if (stat.isFile()) {
 				filesMap.set(name, fi = {
 					name: name,
@@ -174,8 +191,22 @@ function getCases(config) {
 			callback(value, 0);
 		}
 	}
+	/**
+	 * @param {T[] | T | undefined | null} value
+	 * @returns {readonly T[]}
+	 * @template T
+	 */
+	function toArray(value) {
+		if (Array.isArray(value)) {
+			return value;
+		} else if (value != undefined) {
+			return [value]
+		} else {
+			return [];
+		}
+	}
 
-	function addToMap(id) {
+	async function addToMap(id) {
 		if (map.has(id)) {
 			return;
 		}
@@ -188,16 +219,19 @@ function getCases(config) {
 		/** @type {Set<FileInfo>} */
 		const caseFiles = new Set();
 
-		forEach(caseEntry.extends, extId => {
-			addToMap(extId);
+		for (const extId of toArray(caseEntry.extends)) {
+			await addToMap(extId);
 			map.get(extId).forEach(fi => caseFiles.add(fi));
-		});
-
-		forEach(caseEntry.files, file => caseFiles.add(getFileInfo(file)));
+		}
+		for (const file of toArray(caseEntry.files)) {
+			caseFiles.add(await getFileInfo(file))
+		}
 
 		map.set(id, caseFiles);
 	}
-	Object.keys(config.cases).forEach(addToMap);
+	for (const id of Object.keys(config.cases)) {
+		await addToMap(id);
+	}
 
 	let cases = [...map].map(([id, files]) => {
 		const parsed = parseLanguageNames(id);
@@ -235,7 +269,7 @@ function getCases(config) {
  * @typedef {{ name: string, stats: import("benchmark").Stats }} Result
  */
 function measureCandidates(candidates, options) {
-	const suite = new Benchmark.Suite("temp name");
+	const suite = new Benchmark.Suite('temp name');
 
 	for (const [name, fn] of candidates) {
 		suite.add(name, fn, options);
@@ -340,9 +374,7 @@ async function getCandidates(config) {
 
 	// prepare base directory
 	const remoteBaseDir = path.join(__dirname, 'remotes');
-	if (!fs.existsSync(remoteBaseDir)) {
-		fs.mkdirSync(remoteBaseDir);
-	}
+	await fs.promises.mkdir(remoteBaseDir, { recursive: true });
 
 	const baseGit = simpleGit(remoteBaseDir);
 

@@ -49,7 +49,8 @@ const config = {
 			files: [
 				'prism.js',
 				'prism.min.js',
-				'../../scripts/utopia.js'
+				'../../scripts/utopia.js',
+				'https://code.jquery.com/jquery-3.4.1.js'
 			]
 		},
 		'json': {

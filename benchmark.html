@@ -67,11 +67,12 @@
 
 	<p>The files of a case and specified in multiple ways.</p>
 
-	<p>You can specify all files in a simple array where each entry is a path relative to <code>benchmark/files</code> which resolves to a file. Example:</p>
+	<p>You can specify all files in a simple array where each entry is a path relative to <code>benchmark/files</code> which resolves to a file or a URL of a file to download. Example:</p>
 	<pre><code class="language-javascript">cases: {
 	'css': {
 		files: [
-			'style.css'
+			'style.css',
+			'https://foo.com/main.css'
 		]
 	}
 }</code></pre>
