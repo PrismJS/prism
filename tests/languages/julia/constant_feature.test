@@ -1,0 +1,19 @@
+NaN NaN16 NaN32 NaN64
+Inf Inf16 Inf32 Inf64
+
+----------------------------------------------------
+
+[
+	["constant", "NaN"],
+	["constant", "NaN16"],
+	["constant", "NaN32"],
+	["constant", "NaN64"],
+	["constant", "Inf"],
+	["constant", "Inf16"],
+	["constant", "Inf32"],
+	["constant", "Inf64"]
+]
+
+----------------------------------------------------
+
+Checks for all constants.

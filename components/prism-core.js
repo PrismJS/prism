@@ -18,15 +18,16 @@ var Prism = (function (_self){
 var lang = /\blang(?:uage)?-([\w-]+)\b/i;
 var uniqueId = 0;
 
+
 var _ = {
 	manual: _self.Prism && _self.Prism.manual,
 	disableWorkerMessageHandler: _self.Prism && _self.Prism.disableWorkerMessageHandler,
 	util: {
-		encode: function (tokens) {
+		encode: function encode(tokens) {
 			if (tokens instanceof Token) {
-				return new Token(tokens.type, _.util.encode(tokens.content), tokens.alias);
+				return new Token(tokens.type, encode(tokens.content), tokens.alias);
 			} else if (Array.isArray(tokens)) {
-				return tokens.map(_.util.encode);
+				return tokens.map(encode);
 			} else {
 				return tokens.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/\u00a0/g, ' ');
 			}
@@ -81,6 +82,66 @@ var _ = {
 
 				default:
 					return o;
+			}
+		},
+
+		/**
+		 * Returns the Prism language of the given element set by a `language-xxxx` or `lang-xxxx` class.
+		 *
+		 * If no language is set for the element or the element is `null` or `undefined`, `none` will be returned.
+		 *
+		 * @param {Element} element
+		 * @returns {string}
+		 */
+		getLanguage: function (element) {
+			while (element && !lang.test(element.className)) {
+				element = element.parentElement;
+			}
+			if (element) {
+				return (element.className.match(lang) || [, 'none'])[1].toLowerCase();
+			}
+			return 'none';
+		},
+
+		/**
+		 * Returns the script element that is currently executing.
+		 *
+		 * This does __not__ work for line script element.
+		 *
+		 * @returns {HTMLScriptElement | null}
+		 */
+		currentScript: function () {
+			if (typeof document === 'undefined') {
+				return null;
+			}
+			if ('currentScript' in document) {
+				return document.currentScript;
+			}
+
+			// IE11 workaround
+			// we'll get the src of the current script by parsing IE11's error stack trace
+			// this will not work for inline scripts
+
+			try {
+				throw new Error();
+			} catch (err) {
+				// Get file src url from stack. Specifically works with the format of stack traces in IE.
+				// A stack will look like this:
+				//
+				// Error
+				//    at _.util.currentScript (http://localhost/components/prism-core.js:119:5)
+				//    at Global code (http://localhost/components/prism-core.js:606:1)
+
+				var src = (/at [^(\r\n]*\((.*):.+:.+\)$/i.exec(err.stack) || [])[1];
+				if (src) {
+					var scripts = document.getElementsByTagName('script');
+					for (var i in scripts) {
+						if (scripts[i].src == src) {
+							return scripts[i];
+						}
+					}
+				}
+				return null;
 			}
 		}
 	},
@@ -175,41 +236,33 @@ var _ = {
 	highlightAllUnder: function(container, async, callback) {
 		var env = {
 			callback: callback,
+			container: container,
 			selector: 'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'
 		};
 
-		_.hooks.run("before-highlightall", env);
+		_.hooks.run('before-highlightall', env);
 
-		var elements = env.elements || container.querySelectorAll(env.selector);
+		env.elements = Array.prototype.slice.apply(env.container.querySelectorAll(env.selector));
 
-		for (var i=0, element; element = elements[i++];) {
+		_.hooks.run('before-all-elements-highlight', env);
+
+		for (var i = 0, element; element = env.elements[i++];) {
 			_.highlightElement(element, async === true, env.callback);
 		}
 	},
 
 	highlightElement: function(element, async, callback) {
 		// Find language
-		var language = 'none', grammar, parent = element;
-
-		while (parent && !lang.test(parent.className)) {
-			parent = parent.parentNode;
-		}
-
-		if (parent) {
-			language = (parent.className.match(lang) || [,'none'])[1].toLowerCase();
-			grammar = _.languages[language];
-		}
+		var language = _.util.getLanguage(element);
+		var grammar = _.languages[language];
 
 		// Set language on the element, if not present
 		element.className = element.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language;
 
-		if (element.parentNode) {
-			// Set language on the parent, for styling
-			parent = element.parentNode;
-
-			if (/pre/i.test(parent.nodeName)) {
-				parent.className = parent.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language;
-			}
+		// Set language on the parent, for styling
+		var parent = element.parentNode;
+		if (parent && parent.nodeName.toLowerCase() === 'pre') {
+			parent.className = parent.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language;
 		}
 
 		var code = element.textContent;
@@ -221,7 +274,7 @@ var _ = {
 			code: code
 		};
 
-		var insertHighlightedCode = function (highlightedCode) {
+		function insertHighlightedCode(highlightedCode) {
 			env.highlightedCode = highlightedCode;
 
 			_.hooks.run('before-insert', env);
@@ -237,6 +290,7 @@ var _ = {
 
 		if (!env.code) {
 			_.hooks.run('complete', env);
+			callback && callback.call(env.element);
 			return;
 		}
 
@@ -283,14 +337,14 @@ var _ = {
 				continue;
 			}
 
-			if (token == target) {
-				return;
-			}
-
 			var patterns = grammar[token];
-			patterns = (_.util.type(patterns) === "Array") ? patterns : [patterns];
+			patterns = Array.isArray(patterns) ? patterns : [patterns];
 
 			for (var j = 0; j < patterns.length; ++j) {
+				if (target && target == token + ',' + j) {
+					return;
+				}
+
 				var pattern = patterns[j],
 					inside = pattern.inside,
 					lookbehind = !!pattern.lookbehind,
@@ -300,8 +354,8 @@ var _ = {
 
 				if (greedy && !pattern.pattern.global) {
 					// Without the global flag, lastIndex won't work
-					var flags = pattern.pattern.toString().match(/[imuy]*$/)[0];
-					pattern.pattern = RegExp(pattern.pattern.source, flags + "g");
+					var flags = pattern.pattern.toString().match(/[imsuy]*$/)[0];
+					pattern.pattern = RegExp(pattern.pattern.source, flags + 'g');
 				}
 
 				pattern = pattern.pattern || pattern;
@@ -332,7 +386,7 @@ var _ = {
 							break;
 						}
 
-						var from = match.index + (lookbehind ? match[1].length : 0);
+						var from = match.index + (lookbehind && match[1] ? match[1].length : 0);
 						var to = match.index + match[0].length;
 						var p = pos;
 
@@ -407,7 +461,7 @@ var _ = {
 
 
 					if (removeCount > 1)
-						_.matchGrammar(text, tokenList, grammar, currentNode.prev, pos, true, token);
+						_.matchGrammar(text, tokenList, grammar, currentNode.prev, pos, true, token + ',' + j);
 
 					if (oneshot)
 						break;
@@ -468,42 +522,48 @@ function Token(type, content, alias, matchedStr, greedy) {
 	this.content = content;
 	this.alias = alias;
 	// Copy of the full string this token was created from
-	this.length = (matchedStr || "").length|0;
+	this.length = (matchedStr || '').length|0;
 	this.greedy = !!greedy;
 }
 
-Token.stringify = function(o, language) {
+Token.stringify = function stringify(o, language) {
 	if (typeof o == 'string') {
 		return o;
 	}
-
 	if (Array.isArray(o)) {
-		return o.map(function(element) {
-			return Token.stringify(element, language);
-		}).join('');
+		var s = '';
+		o.forEach(function (e) {
+			s += stringify(e, language);
+		});
+		return s;
 	}
 
 	var env = {
 		type: o.type,
-		content: Token.stringify(o.content, language),
+		content: stringify(o.content, language),
 		tag: 'span',
 		classes: ['token', o.type],
 		attributes: {},
 		language: language
 	};
 
-	if (o.alias) {
-		var aliases = Array.isArray(o.alias) ? o.alias : [o.alias];
-		Array.prototype.push.apply(env.classes, aliases);
+	var aliases = o.alias;
+	if (aliases) {
+		if (Array.isArray(aliases)) {
+			Array.prototype.push.apply(env.classes, aliases);
+		} else {
+			env.classes.push(aliases);
+		}
 	}
 
 	_.hooks.run('wrap', env);
 
-	var attributes = Object.keys(env.attributes).map(function(name) {
-		return name + '="' + (env.attributes[name] || '').replace(/"/g, '&quot;') + '"';
-	}).join(' ');
+	var attributes = '';
+	for (var name in env.attributes) {
+		attributes += ' ' + name + '="' + (env.attributes[name] || '').replace(/"/g, '&quot;') + '"';
+	}
 
-	return '<' + env.tag + ' class="' + env.classes.join(' ') + '"' + (attributes ? ' ' + attributes : '') + '>' + env.content + '</' + env.tag + '>';
+	return '<' + env.tag + ' class="' + env.classes.join(' ') + '"' + attributes + '>' + env.content + '</' + env.tag + '>';
 };
 
 /**
@@ -594,21 +654,37 @@ if (!_self.document) {
 }
 
 //Get current script and highlight
-var script = document.currentScript || [].slice.call(document.getElementsByTagName("script")).pop();
+var script = _.util.currentScript();
 
 if (script) {
 	_.filename = script.src;
 
-	if (!_.manual && !script.hasAttribute('data-manual')) {
-		if(document.readyState !== "loading") {
-			if (window.requestAnimationFrame) {
-				window.requestAnimationFrame(_.highlightAll);
-			} else {
-				window.setTimeout(_.highlightAll, 16);
-			}
-		}
-		else {
-			document.addEventListener('DOMContentLoaded', _.highlightAll);
+	if (script.hasAttribute('data-manual')) {
+		_.manual = true;
+	}
+}
+
+function highlightAutomaticallyCallback() {
+	if (!_.manual) {
+		_.highlightAll();
+	}
+}
+
+if (!_.manual) {
+	// If the document state is "loading", then we'll use DOMContentLoaded.
+	// If the document state is "interactive" and the prism.js script is deferred, then we'll also use the
+	// DOMContentLoaded event because there might be some plugins or languages which have also been deferred and they
+	// might take longer one animation frame to execute which can create a race condition where only some plugins have
+	// been loaded when Prism.highlightAll() is executed, depending on how fast resources are loaded.
+	// See https://github.com/PrismJS/prism/issues/2102
+	var readyState = document.readyState;
+	if (readyState === 'loading' || readyState === 'interactive' && script && script.defer) {
+		document.addEventListener('DOMContentLoaded', highlightAutomaticallyCallback);
+	} else {
+		if (window.requestAnimationFrame) {
+			window.requestAnimationFrame(highlightAutomaticallyCallback);
+		} else {
+			window.setTimeout(highlightAutomaticallyCallback, 16);
 		}
 	}
 }

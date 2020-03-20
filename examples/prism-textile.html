@@ -156,23 +156,3 @@ table{border:1px solid black}.
 
 |This|is|a|row|
 {background:#ddd}. |This|is|grey|row|</code></pre>
-
-<h2>Known failures</h2>
-<p>There are certain edge cases where Prism will fail.
-	There are always such cases in every regex-based syntax highlighter.
-	However, Prism dares to be open and honest about them.
-	If a failure is listed here, it doesn’t mean it will never be fixed. This is more of a “known bugs” list, just with a certain type of bug.
-</p>
-
-<h3>Nested styles are only partially supported</h3>
-
-<p>Only one level of nesting is supported.</p>
-
-<pre><code>*A bold paragraph %containing a span with broken _italic_ inside%!*</code></pre>
-
-<h3>HTML inside Textile is not supported</h3>
-
-<p>But Textile inside HTML should be just fine.</p>
-
-<pre><code>&lt;strong>This _should_ work properly.&lt;/strong>
-*But this is &lt;em>definitely&lt;/em> broken.*</code></pre>

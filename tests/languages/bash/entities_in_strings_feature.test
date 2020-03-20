@@ -1,0 +1,28 @@
+'1\a2\b3\c4\e5\f6\n7\r8\t9\v'
+'1234\056789'
+'abc\xdef'
+'123\456789'
+'\uABCDEFG'
+"a\"b"
+
+----------------------------------------------------
+
+[
+	["string", [
+		"'1", ["entity", "\\a"], "2", ["entity", "\\b"], "3", ["entity", "\\c"],
+		"4", ["entity", "\\e"], "5", ["entity", "\\f"], "6", ["entity", "\\n"],
+		"7", ["entity", "\\r"], "8", ["entity", "\\t"], "9", ["entity", "\\v"],
+		"'"
+	]],
+	["string", ["'1234", ["entity", "\\056"], "789'"]],
+	["string", ["'abc", ["entity", "\\xde"], "f'"]],
+	["string", ["'123", ["entity", "\\456"], "789'"]],
+	["string", ["'", ["entity", "\\uABCD"], "EFG'"]],
+	["string", ["\"a", ["entity", "\\\""], "b\""]]
+]
+
+----------------------------------------------------
+
+Checks for entities in strings, mainly according to echo and printf's manuals.
+Note that in some cases (“\x”, “\u”…) there's a limit to the number of
+characters that can be used afterwards to specify the bytes, etc.

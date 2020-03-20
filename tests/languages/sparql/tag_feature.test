@@ -1,0 +1,42 @@
+@ne
+@ned-nl
+@ne-nl
+@ne-01
+@ne-JA
+@ne-NE01
+
+
+----------------------------------------------------
+
+[
+	["tag", [
+		["punctuation", "@"],
+		"ne"
+	]],
+	["tag", [
+		["punctuation", "@"],
+		"ned-nl"
+	]],
+	["tag", [
+		["punctuation", "@"],
+		"ne-nl"
+	]],
+	["tag", [
+		["punctuation", "@"],
+		"ne"
+	]],
+	["number", "-01"],
+	["tag", [
+		["punctuation", "@"],
+		"ne-JA"
+	]],
+	["tag", [
+		["punctuation", "@"],
+		"ne-NE01"
+	]]
+]
+
+
+----------------------------------------------------
+
+Checks for languagetags.

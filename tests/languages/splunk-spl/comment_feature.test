@@ -1,0 +1,16 @@
+`comment("This is a comment")`
+`comment("This is too
+but on more than one line")`
+`comment("| stats sum(b) BY index")`
+
+----------------------------------------------------
+
+[
+	["comment", "`comment(\"This is a comment\")`"],
+	["comment", "`comment(\"This is too\r\nbut on more than one line\")`"],
+	["comment", "`comment(\"| stats sum(b) BY index\")`"]
+]
+
+----------------------------------------------------
+
+Checks for comments.

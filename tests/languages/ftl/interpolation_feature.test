@@ -1,0 +1,69 @@
+<a href="${link}">${text}</a>
+
+${ "{}foo${bar}" }
+
+----------------------------------------------------
+
+[
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"a"
+		]],
+		["attr-name", [
+			"href"
+		]],
+		["attr-value", [
+			["punctuation", "="],
+			["punctuation", "\""],
+			["ftl", [
+				["ftl-interpolation", [
+					["punctuation", "${"],
+					["content", [
+						"link"
+					]],
+					["punctuation", "}"]
+				]]
+			]],
+			["punctuation", "\""]
+		]],
+		["punctuation", ">"]
+	]],
+	["ftl", [
+		["ftl-interpolation", [
+			["punctuation", "${"],
+			["content", [
+				"text"
+			]],
+			["punctuation", "}"]
+		]]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"a"
+		]],
+		["punctuation", ">"]
+	]],
+	["ftl", [
+		["ftl-interpolation", [
+			["punctuation", "${"],
+			["content", [
+				["string", [
+					"\"{}foo",
+					["interpolation", [
+						["interpolation-punctuation", "${"],
+						"bar",
+						["interpolation-punctuation", "}"]
+					]],
+					"\""
+				]]
+			]],
+			["punctuation", "}"]
+		]]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for template interpolation.

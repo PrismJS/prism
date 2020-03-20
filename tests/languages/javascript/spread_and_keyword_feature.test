@@ -1,0 +1,45 @@
+async function bar() {
+	return [...await foo()]
+}
+
+console.log([...new Set(numbers)])
+
+----------------------------------------------------
+
+[
+	["keyword", "async"],
+	["keyword", "function"],
+	["function", "bar"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["keyword", "return"],
+	["punctuation", "["],
+	["operator", "..."],
+	["keyword", "await"],
+	["function", "foo"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "]"],
+	["punctuation", "}"],
+
+	"\r\n\r\nconsole",
+	["punctuation", "."],
+	["function", "log"],
+	["punctuation", "("],
+	["punctuation", "["],
+	["operator", "..."],
+	["keyword", "new"],
+	["class-name", [
+		"Set"
+	]],
+	["punctuation", "("],
+	"numbers",
+	["punctuation", ")"],
+	["punctuation", "]"],
+	["punctuation", ")"]
+]
+
+----------------------------------------------------
+
+Checks for the spread operator followed by a keyword.

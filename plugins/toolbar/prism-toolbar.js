@@ -14,6 +14,7 @@
 	 * @property {string} text The text displayed.
 	 * @property {string} [url] The URL of the link which will be created.
 	 * @property {Function} [onClick] The event listener for the `click` event of the created button.
+	 * @property {string} [className] The class attribute to include with element.
 	 */
 
 	/**
@@ -44,6 +45,10 @@
 					element = document.createElement('span');
 				}
 
+				if (opts.className) {
+					element.classList.add(opts.className);
+				}
+
 				element.textContent = opts.text;
 
 				return element;
@@ -57,6 +62,27 @@
 
 		callbacks.push(map[key] = callback);
 	};
+
+	/**
+	 * Returns the callback order of the given element.
+	 *
+	 * @param {HTMLElement} element
+	 * @returns {string[] | undefined}
+	 */
+	function getOrder(element) {
+		while (element) {
+			var order = element.getAttribute('data-toolbar-order');
+			if (order != null) {
+				order = order.trim();
+				if (order.length) {
+					return order.split(/\s*,\s*/g);
+				} else {
+					return [];
+				}
+			}
+			element = element.parentElement;
+		}
+	}
 
 	/**
 	 * Post-highlight Prism hook callback.
@@ -76,8 +102,8 @@
 		}
 
 		// Create wrapper for <pre> to prevent scrolling toolbar with content
-		var wrapper = document.createElement("div");
-		wrapper.classList.add("code-toolbar");
+		var wrapper = document.createElement('div');
+		wrapper.classList.add('code-toolbar');
 		pre.parentNode.insertBefore(wrapper, pre);
 		wrapper.appendChild(pre);
 
@@ -85,13 +111,16 @@
 		var toolbar = document.createElement('div');
 		toolbar.classList.add('toolbar');
 
-		if (document.body.hasAttribute('data-toolbar-order')) {
-			callbacks = document.body.getAttribute('data-toolbar-order').split(',').map(function(key) {
+		// order callbacks
+		var elementCallbacks = callbacks;
+		var order = getOrder(env.element);
+		if (order) {
+			elementCallbacks = order.map(function (key) {
 				return map[key] || noop;
 			});
 		}
 
-		callbacks.forEach(function(callback) {
+		elementCallbacks.forEach(function(callback) {
 			var element = callback(env);
 
 			if (!element) {

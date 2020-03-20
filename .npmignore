@@ -2,8 +2,9 @@
 *.iml
 
 hide-*.js
-
+.DS_Store
 CNAME
+.github/
 examples/
 img/
 templates/

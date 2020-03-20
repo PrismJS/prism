@@ -1,0 +1,233 @@
+proc sql;
+select *
+	from proclib.paylist;
+proc print;
+
+proc sql outobs=10;
+	title 'Proclib.Payroll';
+	select * from proclib.payroll;
+	title;
+quit;
+
+proc sql;
+	select BookingDate,
+	ReleaseDate,
+	ReleaseCode
+	from SASclass.Bookings;
+quit;
+
+proc sql;
+	select BookingDate,
+	ReleaseDate,
+	ReleaseCode
+	from SASclass.Bookings;
+quit;
+
+libname proclib 'SAS-library';
+proc sql;
+	create view proclib.jobs(pw-red) as
+	select Jobcode,
+		count(jobcode) as number label='Number',
+		avg(int(today()-birth/365.25)) as avgage
+			format=2. label='Average Salary'
+	from Payroll
+	group by Jobcode
+	having avage ge 30;
+	title1 'Current Summary Information for Each Job category';
+	title2 'Average Age Greater Than or Equal to 30';
+	select * form proclib.jobs(pw=red);
+title
+
+----------------------------------------------------
+
+[
+	["step", "proc sql"],
+	["punctuation", ";"],
+	["proc-sql",
+		[
+			["sql",
+				[
+					["keyword", "select"],
+					["operator", "*"],
+					["keyword", "from"],
+					" proclib",
+					["punctuation", "."],
+					"paylist",
+					["punctuation", ";"]
+				]
+			]
+		]
+	],
+	["step", "proc print"],
+	["punctuation", ";"],
+	["step", "proc sql"],
+	["proc-args",
+		[
+			["arg", "outobs"],
+			["operator", "="],
+			["number", "10"],
+			["punctuation", ";"]
+		]
+	],
+	["proc-sql",
+		[
+			["global-statements", "title"],
+			["string", "'Proclib.Payroll'"],
+			["punctuation", ";"],
+			["sql",
+				[
+					["keyword", "select"],
+					["operator", "*"],
+					["keyword", "from"],
+					" proclib",
+					["punctuation", "."],
+					"payroll",
+					["punctuation", ";"]
+				]
+			],
+			["global-statements", "title"],
+			["punctuation", ";"]
+		]
+	],
+	["step", "quit"],
+	["punctuation", ";"],
+	["step", "proc sql"],
+	["punctuation", ";"],
+	["proc-sql",
+		[
+			["sql",
+				[
+					["keyword", "select"],
+					" BookingDate",
+					["punctuation", ","],
+					"\r\n\tReleaseDate",
+					["punctuation", ","],
+					"\r\n\tReleaseCode\r\n\t",
+					["keyword", "from"],
+					" SASclass",
+					["punctuation", "."],
+					"Bookings",
+					["punctuation", ";"]
+				 ]
+			]
+		]
+	],
+	["step", "quit"],
+	["punctuation", ";"],
+	["step", "proc sql"],
+	["punctuation", ";"],
+	["proc-sql",
+		[
+			["sql",
+				[
+				["keyword", "select"],
+				" BookingDate",
+				["punctuation", ","],
+				"\r\n\tReleaseDate",
+				["punctuation", ","],
+				"\r\n\tReleaseCode\r\n\t",
+				["keyword", "from"],
+				" SASclass",
+				["punctuation", "."],
+				"Bookings",
+				["punctuation", ";"]
+				]
+			]
+		]
+	],
+	["step", "quit"],
+	["punctuation", ";"],
+	["keyword", "libname"],
+	" proclib ",
+	["string", "'SAS-library'"],
+	["punctuation", ";"],
+	["step", "proc sql"],
+	["punctuation", ";"],
+	["proc-sql",
+		[
+			["sql",
+				[
+					["keyword", "create"],
+					["keyword", "view"],
+					" proclib",
+					["punctuation", "."],
+					"jobs",
+					["punctuation", "("],
+					"pw",
+					["operator", "-"],
+					"red",
+					["punctuation", ")"],
+					["keyword", "as"],
+					["keyword", "select"],
+					" Jobcode",
+					["punctuation", ","],
+					["function", "count"],
+					["punctuation", "("],
+					"jobcode",
+					["punctuation", ")"],
+					["keyword", "as"],
+					" number label",
+					["operator", "="],
+					["string", "'Number'"],
+					["punctuation", ","],
+					["function", "avg"],
+					["punctuation", "("],
+					["keyword", "int"],
+					["punctuation", "("],
+					"today",
+					["punctuation", "("],
+					["punctuation", ")"],
+					["operator", "-"],
+					"birth",
+					["operator", "/"],
+					["number", "365.25"],
+					["punctuation", ")"],
+					["punctuation", ")"],
+					["keyword", "as"],
+					" avgage\r\n\t\t\tformat",
+					["operator", "="],
+					["number", "2."],
+					" label",
+					["operator", "="],
+					["string", "'Average Salary'"],
+					["keyword", "from"],
+					" Payroll\r\n\t",
+					["keyword", "group"],
+					["keyword", "by"],
+					" Jobcode\r\n\t",
+					["keyword", "having"],
+					" avage ge ",
+					["number", "30"],
+					["punctuation", ";"]
+				]
+			],
+			["global-statements", "title1"],
+			["string", "'Current Summary Information for Each Job category'"],
+			["punctuation", ";"],
+			["global-statements", "title2"],
+			["string", "'Average Age Greater Than or Equal to 30'"],
+			["punctuation", ";"],
+			["sql",
+				[
+					["keyword", "select"],
+					["operator", "*"],
+					" form proclib",
+					["punctuation", "."],
+					"jobs",
+					["punctuation", "("],
+					"pw",
+					["operator", "="],
+					"red",
+					["punctuation", ")"],
+					["punctuation", ";"]
+				]
+			],
+			["global-statements", "title"]
+		]
+	]
+]
+
+----------------------------------------------------
+
+Checks that SQL captures SAS language elements and leverages
+SQL language support for nested SQL.

@@ -1,22 +1,151 @@
 [foo](http://prismjs.com)
 ![foo](http://prismjs.com "Foo\"bar")
+[foo][bar]
 [foo] [bar]
+
+[foo
+bar](http://prismjs.com)
+
+[foo *bar* baz](http://prismjs.com)
+[foo _bar_ baz](http://prismjs.com)
+[foo **bar** baz](http://prismjs.com)
+[foo __bar__ baz](http://prismjs.com)
+[foo ~bar~ baz](http://prismjs.com)
+[foo ~~bar~~ baz](http://prismjs.com)
 
 ----------------------------------------------------
 
 [
 	["url", [
-		"[foo](http://prismjs.com)"
+		"[",
+		["content", [
+			"foo"
+		]],
+		"](http://prismjs.com)"
 	]],
 	["url", [
-		"![foo](http://prismjs.com ",
+		"![",
+		["content", [
+			"foo"
+		]],
+		"](http://prismjs.com ",
 		["string", "\"Foo\\\"bar\""],
 		")"
 	]],
 	["url", [
-		"[foo] [",
+		"[",
+		["content", [
+			"foo"
+		]],
+		"][",
 		["variable", "bar"],
 		"]"
+	]],
+	["url", [
+		"[",
+		["content", [
+			"foo"
+		]],
+		"] [",
+		["variable", "bar"],
+		"]"
+	]],
+	["url", [
+		"[",
+		["content", [
+			"foo\r\nbar"
+		]],
+		"](http://prismjs.com)"
+	]],
+	["url", [
+		"[",
+		["content", [
+			"foo ",
+			["italic", [
+				["punctuation", "*"],
+				["content", [
+					"bar"
+				]],
+				["punctuation", "*"]
+			]],
+			" baz"
+		]],
+		"](http://prismjs.com)"
+	]],
+	["url", [
+		"[",
+		["content", [
+			"foo ",
+			["italic", [
+				["punctuation", "_"],
+				["content", [
+					"bar"
+				]],
+				["punctuation", "_"]
+			]],
+			" baz"
+		]],
+		"](http://prismjs.com)"
+	]],
+	["url", [
+		"[",
+		["content", [
+			"foo ",
+			["bold", [
+				["punctuation", "**"],
+				["content", [
+					"bar"
+				]],
+				["punctuation", "**"]
+			]],
+			" baz"
+		]],
+		"](http://prismjs.com)"
+	]],
+	["url", [
+		"[",
+		["content", [
+			"foo ",
+			["bold", [
+				["punctuation", "__"],
+				["content", [
+					"bar"
+				]],
+				["punctuation", "__"]
+			]],
+			" baz"
+		]],
+		"](http://prismjs.com)"
+	]],
+	["url", [
+		"[",
+		["content", [
+			"foo ",
+			["strike", [
+				["punctuation", "~"],
+				["content", [
+					"bar"
+				]],
+				["punctuation", "~"]
+			]],
+			" baz"
+		]],
+		"](http://prismjs.com)"
+	]],
+	["url", [
+		"[",
+		["content", [
+			"foo ",
+			["strike", [
+				["punctuation", "~~"],
+				["content", [
+					"bar"
+				]],
+				["punctuation", "~~"]
+			]],
+			" baz"
+		]],
+		"](http://prismjs.com)"
 	]]
 ]
 

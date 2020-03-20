@@ -8,7 +8,7 @@ on multiple lines */</code></pre>
 
 <h2>Full example</h2>
 <pre><code>if(instance_exists(_inst) || _inst==global){
-	if(_delay<=0){
+	if(_delay&lt;=0){
 		_time+=1;
 		if(_time&lt;_duration){
 			event_user(0);
