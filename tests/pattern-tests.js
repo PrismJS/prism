@@ -17,13 +17,30 @@ for (const lang in languages) {
 		testPatterns(Prism);
 	});
 
-	/** @type {undefined | string | string[]} */
-	let peerDeps = languages[lang].peerDependencies;
-	peerDeps = !peerDeps ? [] : (Array.isArray(peerDeps) ? peerDeps : [peerDeps]);
+	function toArray(value) {
+		if (Array.isArray(value)) {
+			return value;
+		} else if (value != null) {
+			return [value];
+		} else {
+			return [];
+		}
+	}
 
-	if (peerDeps.length > 0) {
-		describe(`Patterns of '${lang}' + peer dependencies '${peerDeps.join("', '")}'`, function () {
-			const Prism = PrismLoader.createInstance([...peerDeps, lang]);
+	let optional = toArray(languages[lang].optional);
+	let modify = toArray(languages[lang].modify);
+
+	if (optional.length > 0 || modify.length > 0) {
+		let name = `Patterns of '${lang}'`;
+		if (optional.length > 0) {
+			name += ` + optional dependencies '${optional.join("', '")}'`;
+		}
+		if (modify.length > 0) {
+			name += ` + modify dependencies '${modify.join("', '")}'`;
+		}
+
+		describe(name, function () {
+			const Prism = PrismLoader.createInstance([...optional, ...modify, lang]);
 			testPatterns(Prism);
 		});
 	}
@@ -130,6 +147,31 @@ function testPatterns(Prism) {
 		});
 	}
 
+	/**
+	 * Returns whether the given element will always have zero width meaning that it doesn't consume characters.
+	 *
+	 * @param {Element} element
+	 * @returns {boolean}
+	 */
+	function isAlwaysZeroWidth(element) {
+		switch (element.type) {
+			case 'Assertion':
+				// assertions == ^, $, \b, lookarounds
+				return true;
+			case 'Quantifier':
+				return element.max === 0 || isAlwaysZeroWidth(element.element);
+			case 'CapturingGroup':
+			case 'Group':
+				// every element in every alternative has to be of zero length
+				return element.alternatives.every(alt => alt.elements.every(isAlwaysZeroWidth));
+			case 'Backreference':
+				// on if the group referred to is of zero length
+				return isAlwaysZeroWidth(element.resolved);
+			default:
+				return false; // what's left are characters
+		}
+	}
+
 
 	it('- should not match the empty string', function () {
 		forEachPattern(({ pattern, tokenPath }) => {
@@ -151,32 +193,7 @@ function testPatterns(Prism) {
 		});
 	});
 
-	it('- should not have lookbehind groups which can be preceded by other some characters', function () {
-		/**
-		 * Returns whether the given element will have zero length meaning that it doesn't extend the matched string.
-		 *
-		 * @param {Element} element
-		 * @returns {boolean}
-		 */
-		function isZeroLength(element) {
-			switch (element.type) {
-				case 'Assertion':
-					// assertions == ^, $, \b, lookarounds
-					return true;
-				case 'Quantifier':
-					return element.max === 0 || isZeroLength(element.element);
-				case 'CapturingGroup':
-				case 'Group':
-					// every element in every alternative has to be of zero length
-					return element.alternatives.every(alt => alt.elements.every(isZeroLength));
-				case 'Backreference':
-					// on if the group referred to is of zero length
-					return isZeroLength(element.resolved);
-				default:
-					return false; // what's left are characters
-			}
-		}
-
+	it('- should not have lookbehind groups that can be preceded by other some characters', function () {
 		/**
 		 * Returns whether the given element will always match the start of the string.
 		 *
@@ -188,7 +205,7 @@ function testPatterns(Prism) {
 			switch (parent.type) {
 				case 'Alternative':
 					// all elements before this element have to of zero length
-					if (!parent.elements.slice(0, parent.elements.indexOf(element)).every(isZeroLength)) {
+					if (!parent.elements.slice(0, parent.elements.indexOf(element)).every(isAlwaysZeroWidth)) {
 						return false;
 					}
 					const grandParent = parent.parent;
@@ -199,7 +216,7 @@ function testPatterns(Prism) {
 					}
 
 				case 'Quantifier':
-					if (parent.max === null /* null == open ended */ || parent.max >= 2) {
+					if (parent.max >= 2) {
 						return false;
 					} else {
 						return isFirstMatch(parent);
@@ -211,13 +228,32 @@ function testPatterns(Prism) {
 		}
 
 		forEachPattern(({ ast, tokenPath, lookbehind }) => {
-			if (lookbehind) {
-				forEachCapturingGroup(ast.pattern, ({ group, number }) => {
-					if (number === 1 && !isFirstMatch(group)) {
-						assert.fail(`Token ${tokenPath}: The lookbehind group (if matched at all) always has to be at index 0 relative to the whole match.`);
-					}
-				});
+			if (!lookbehind) {
+				return;
 			}
+			forEachCapturingGroup(ast.pattern, ({ group, number }) => {
+				if (number === 1 && !isFirstMatch(group)) {
+					assert.fail(`Token ${tokenPath}: `
+						+ `The lookbehind group (if matched) always has to be at index 0 relative to the whole match.`);
+				}
+			});
+		});
+	});
+
+	it('- should not have lookbehind groups that only have zero-width alternatives', function () {
+		forEachPattern(({ ast, tokenPath, lookbehind, reportError }) => {
+			if (!lookbehind) {
+				return;
+			}
+			forEachCapturingGroup(ast.pattern, ({ group, number }) => {
+				if (number === 1 && isAlwaysZeroWidth(group)) {
+					const groupContent = group.raw.substr(1, group.raw.length - 2);
+					const replacement = group.alternatives.length === 1 ? groupContent : `(?:${groupContent})`;
+					reportError(`Token ${tokenPath}: The lookbehind group ${group.raw} does not consume characters. `
+						+ `Therefor it is not necessary to use a lookbehind group. `
+						+ `Replacing the lookbehind group with: ${replacement}`);
+				}
+			});
 		});
 	});
 
@@ -261,6 +297,18 @@ function testPatterns(Prism) {
 					alias.forEach(name => testName(name, `alias of '${tokenPath}'`));
 				}
 			}
+		});
+	});
+
+	it('- should not use octal escapes', function () {
+		forEachPattern(({ ast, tokenPath, reportError }) => {
+			visitRegExpAST(ast.pattern, {
+				onCharacterEnter(node) {
+					if (/^\\(?:[1-9]|\d{2,})$/.test(node.raw)) {
+						reportError(`Token ${tokenPath}: Octal escape ${node.raw}.`);
+					}
+				}
+			});
 		});
 	});
 

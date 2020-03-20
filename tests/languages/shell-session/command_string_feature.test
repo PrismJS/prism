@@ -3,26 +3,60 @@ $ echo 'Foo
 $ echo "Foo
 > Bar"
 
+$ echo <<- STRING_END
+foo
+bar
+STRING_END
+
+$ echo <<- "STRING_END"
+foo
+bar
+STRING_END
+
 ----------------------------------------------------
 
 [
 	["command", [
-		["sh", "$"],
+		["shell-symbol", "$"],
 		["bash", [
 			["builtin", "echo"],
 			["string", [
-				"'Foo\n> Bar'"
+				"'Foo\r\n> Bar'"
 			]]
 		]]
 	]],
 
 	["command", [
-		["sh", "$"],
+		["shell-symbol", "$"],
 		["bash", [
 			["builtin", "echo"],
 			["string", [
-				"\"Foo\n> Bar\""
+				"\"Foo\r\n> Bar\""
 			]]
+		]]
+	]],
+
+	["command", [
+		["shell-symbol", "$"],
+		["bash", [
+			["builtin", "echo"],
+			["operator", [
+				"<<-"
+			]],
+			["string", [
+				"STRING_END\r\nfoo\r\nbar\r\nSTRING_END"
+			]]
+		]]
+	]],
+
+	["command", [
+		["shell-symbol", "$"],
+		["bash", [
+			["builtin", "echo"],
+			["operator", [
+				"<<-"
+			]],
+			["string", "\"STRING_END\"\r\nfoo\r\nbar\r\nSTRING_END"]
 		]]
 	]]
 ]

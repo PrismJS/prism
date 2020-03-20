@@ -1,0 +1,74 @@
+<h2>Comments</h2>
+<pre><code>// This is a comment</code></pre>
+<h2>Simple example</h2>
+<pre><code>
+let
+    x = 1 + 1,
+    y = 2 + 2,
+    z = y + 1
+in
+    x + y + z
+</code></pre>
+<h2>Another example</h2>
+<pre><code>
+let Orders = Table.FromRecords({  
+    [OrderID = 1, CustomerID = 1, Item = "fishing rod", Price = 100.0],  
+    [OrderID = 2, CustomerID = 1, Item = "1 lb. worms", Price = 5.0],  
+    [OrderID = 3, CustomerID = 2, Item = "fishing net", Price = 25.0]}),  
+    #"Capitalized Each Word" = Table.TransformColumns(Orders, {"Item", Text.Proper})  
+in  
+    #"Capitalized Each Word"
+</code></pre>
+<h2>Full example</h2>
+<pre><code>
+    let
+    Source = Sales,
+    LookupTable = #table(
+    type table
+        [
+            #"FROM"=text,
+            #"TO"=text
+        ], 
+        {
+            {"CEE","Central & Eastern Europe"},
+            {"WE","Western Europe"}  
+        }
+    ),
+
+    JT = Table.NestedJoin(
+        Source, 
+        {"Area"}, 
+        LookupTable, 
+        {"FROM"}, 
+        "Map", 
+        JoinKind.LeftOuter
+    ),
+
+    #"Expanded Map" = Table.ExpandTableColumn(
+        JT, 
+        "Map", 
+        {"TO"}, 
+        {"TO"}
+    ),
+
+    #"Replace non-matches with original value" = Table.AddColumn(
+        #"Expanded Map", 
+        "Replaced", 
+        each 
+            if [TO] = null then [Area] 
+            else [TO]
+    ),
+
+    #"Remove original column" = Table.RemoveColumns(
+        #"Replace non-matches with original value",
+        {"Area", "TO"}
+    ),
+
+    #"Renamed replace column to original name" = Table.RenameColumns(
+        #"Remove original column",
+        {{"Replaced", "Area"}}
+    )
+
+in
+    #"Renamed replace column to original name"
+</code></pre>

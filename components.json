@@ -64,8 +64,7 @@
 		},
 		"clike": {
 			"title": "C-like",
-			"option": "default",
-			"overrideExampleHeader": true
+			"option": "default"
 		},
 		"javascript": {
 			"title": "JavaScript",
@@ -194,6 +193,11 @@
 			"require": "clike",
 			"owner": "zeitgeist87"
 		},
+		"concurnas": {
+			"title": "Concurnas",
+			"alias": "conc",
+			"owner": "jasontatton"
+		},
 		"csharp": {
 			"title": "C#",
 			"require": "clike",
@@ -247,6 +251,10 @@
 			"title": "Dart",
 			"require": "clike",
 			"owner": "Golmote"
+		},
+		"dax": {
+			"title": "DAX",
+			"owner": "peterbud"
 		},
 		"diff": {
 			"title": "Diff",
@@ -303,10 +311,19 @@
 			"title": "Erlang",
 			"owner": "Golmote"
 		},
+		"excel-formula": {
+			"title": "Excel Formula",
+			"alias": ["xlsx", "xls"],
+			"owner": "RunDevelopment"
+		},
 		"fsharp": {
 			"title": "F#",
 			"require": "clike",
 			"owner": "simonreynolds7"
+		},
+		"factor": {
+			"title": "Factor",
+			"owner": "catb0t"
 		},
 		"firestore-security-rules": {
 			"title": "Firestore security rules",
@@ -457,12 +474,8 @@
 		"javadoc": {
 			"title": "JavaDoc",
 			"require": ["markup", "java", "javadoclike"],
-			"modify": [
-				"java"
-			],
-			"optional": [
-				"scala"
-			],
+			"modify": "java",
+			"optional": "scala",
 			"owner": "RunDevelopment"
 		},
 		"javadoclike": {
@@ -640,9 +653,7 @@
 		"n4js": {
 			"title": "N4JS",
 			"require": "javascript",
-			"optional": [
-				"jsdoc"
-			],
+			"optional": "jsdoc",
 			"alias": "n4jsd",
 			"owner": "bsmith-n4"
 		},
@@ -686,12 +697,11 @@
 		},
 		"opencl": {
 			"title": "OpenCL",
-			"require": "cpp",
+			"require": "c",
 			"modify": [
 				"c",
 				"cpp"
 			],
-			"overrideExampleHeader": true,
 			"owner": "Milania1"
 		},
 		"oz": {
@@ -749,6 +759,11 @@
 			"title": "PL/SQL",
 			"require": "sql",
 			"owner": "Golmote"
+		},
+		"powerquery": {
+			"title": "PowerQuery",
+			"alias": ["pq", "mscript"],
+			"owner": "peterbud"
 		},
 		"powershell": {
 			"title": "PowerShell",
@@ -888,7 +903,7 @@
 		},
 		"sas": {
 			"title": "SAS",
-			"peerDependencies": ["groovy", "lua", "sql"],
+			"optional": ["groovy", "lua", "sql"],
 			"owner": "Golmote"
 		},
 		"sass": {
@@ -929,6 +944,11 @@
 			"title": "Solidity (Ethereum)",
 			"require": "clike",
 			"owner": "glachaud"
+		},
+		"solution-file": {
+			"title": "Solution file",
+			"alias": "sln",
+			"owner": "RunDevelopment"
 		},
 		"soy": {
 			"title": "Soy (Closure Template)",
@@ -989,7 +1009,7 @@
 		},
 		"turtle": {
 			"title": "Turtle",
-			"alias": ["trig"],
+			"alias": "trig",
 			"aliasTitles": {
 				"trig": "TriG"
 			},

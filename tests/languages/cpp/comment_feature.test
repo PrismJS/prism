@@ -1,0 +1,26 @@
+//
+// comment
+// the comment \
+   continues!
+
+/**/
+/*
+ * comment
+ */
+
+/* open-ended comment
+
+----------------------------------------------------
+
+[
+	["comment", "//"],
+	["comment", "// comment"],
+	["comment", "// the comment \\\r\n   continues!"],
+	["comment", "/**/"],
+	["comment", "/*\r\n * comment\r\n */"],
+	["comment", "/* open-ended comment"]
+]
+
+----------------------------------------------------
+
+Checks for comments.
