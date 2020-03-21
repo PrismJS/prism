@@ -60,7 +60,18 @@ $ echo \'a # '
 			]],
 			["string", "\"STRING_END\"\r\nfoo\r\nbar\r\nSTRING_END"]
 		]]
-	]]
+	]],
+
+	["command", [
+		["shell-symbol", "$"],
+		["bash", [
+			["builtin", "echo"],
+			["punctuation", "\\"],
+			"'a ",
+			["comment", "# "]
+		]]
+	]],
+	["output", "'"]
 ]
 
 ----------------------------------------------------
