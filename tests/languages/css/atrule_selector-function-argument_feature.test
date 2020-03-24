@@ -1,0 +1,24 @@
+@supports selector(::-webkit-foo) {
+	/* style to apply when the `::-webkit-foo` selector is actually supported,
+	 * instead of just being parsed as matching nothing because of Selectors 4
+	 * § Appendix B: https://drafts.csswg.org/selectors-4/#compat */
+}
+
+----------------------------------------------------
+
+[
+	["atrule", [
+		["rule", "@supports"],
+		["function", "selector"],
+		["punctuation", "("],
+		["selector-function-argument", "::-webkit-foo"],
+		["punctuation", ")"]
+	]],
+	["punctuation", "{"],
+	["comment", "/* style to apply when the `::-webkit-foo` selector is actually supported,\r\n\t * instead of just being parsed as matching nothing because of Selectors 4\r\n\t * § Appendix B: https://drafts.csswg.org/selectors-4/#compat */"],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for the selector function in @supports rules.

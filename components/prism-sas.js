@@ -29,12 +29,22 @@
 
 	var punctuation = /[$%@.(){}\[\];,\\]/;
 
+	var func = {
+		pattern: /%?\w+(?=\()/,
+		alias: 'keyword'
+	};
+
 	var args = {
+		'function' : func,
 		'arg-value': {
-			pattern: /(=)[A-Z]+/i,
+			pattern: /(\s*=\s*)[A-Z\.]+/i,
 			lookbehind: true
 		},
 		'operator': /=/,
+		'macro-variable': {
+			pattern: /&[^\.]*\./i,
+			alias: 'string'
+		},
 		'arg': {
 			pattern: /[A-Z]+/i,
 			alias: 'keyword'
@@ -43,6 +53,29 @@
 		'numeric-constant': numericConstant,
 		'punctuation': punctuation,
 		'string': string
+	};
+
+	var format = {
+		pattern: /\b(?:format|put)\b=?[\w'$.]+/im,
+		inside: {
+			'keyword': /^(?:format|put)(?=\=)/i,
+			'equals': /=/,
+			'format': {
+				pattern: /(?:\w|\$\d)+\.\d?/i,
+				alias: 'number'
+			}
+		}
+	};
+
+	var altformat = {
+		pattern: /\b(?:format|put)\s+[\w']+(?:\s+[$.\w]+)+(?=;)/i,
+		inside: {
+			'keyword': /^(?:format|put)/i,
+			'format': {
+				pattern: /[\w$]+\.\d?/,
+				alias: 'number'
+			}
+		}
 	};
 
 	var globalStatements = {
@@ -55,6 +88,34 @@
 		pattern: /(^|\s)(?:submit(?:\s+(?:load|parseonly|norun))?|endsubmit)\b/i,
 		lookbehind: true,
 		alias: 'keyword'
+	};
+
+	var actionSets = 'accessControl|cdm|aggregation|aStore|ruleMining|audio|autotune|bayesianNetClassifier|bioMedImage|boolRule|builtins|cardinality|sccasl|clustering|copula|countreg|dataDiscovery|dataPreprocess|dataSciencePilot|dataStep|decisionTree|deepLearn|deepNeural|varReduce|simSystem|ds2|deduplication|ecm|entityRes|espCluster|explainModel|factmac|fastKnn|fcmpact|fedSql|freqTab|gam|gleam|graphSemiSupLearn|gVarCluster|hiddenMarkovModel|hyperGroup|image|iml|ica|kernalPca|langModel|ldaTopic|sparseML|mlTools|mixed|modelPublishing|mbc|network|optNetwork|neuralNet|nonlinear|nmf|nonParametricBayes|optimization|panel|pls|percentile|pca|phreg|qkb|qlim|quantreg|recommend|tsReconcile|deepRnn|regression|reinforcementLearn|robustPca|sampling|sparkEmbeddedProcess|search(?:Analytics)?|sentimentAnalysis|sequence|configuration|session(?:Prop)?|severity|simple|smartData|sandwich|spatialreg|stabilityMonitoring|spc|loadStreams|svDataDescription|svm|table|conditionalRandomFields|text(?:Rule(?:Develop|Score)|Mining|Parse|Topic|Util|Filters|Frequency)|tsInfo|timeData|transpose|uniTimeSeries';
+
+	var casActions = {
+		pattern: RegExp('(^|\\s)(?:action\\s+)?(?:<act>)\\.[a-z]+\\b[^;]+'.replace(/<act>/g, actionSets), 'i'),
+		lookbehind: true,
+		inside: {
+			'keyword': RegExp('(?:<act>)\\.[a-z]+\\b'.replace(/<act>/g, actionSets), 'i'),
+			'action': {
+				pattern: /(?:action)/i,
+				alias: 'keyword'
+			},
+			'function': func,
+			'arg-value': args['arg-value'],
+			'operator': args.operator,
+			'comment': comment,
+			'argument': args.arg,
+			'number': number,
+			'numeric-constant': numericConstant,
+			'punctuation': punctuation,
+			'string': string
+		}
+	};
+
+	var keywords = {
+		pattern: /((?:^|\s)=?)(?:after|analysis|and|array|barchart|barwidth|begingraph|by|call|cas|cbarline|cfill|class(?:lev)?|close|column|computed?|contains|continue|data(?=\=)|define|delete|describe|document|do\s+over|do|dol|drop|dul|end(?:source|comp)?|entryTitle|else|eval(?:uate)?|exec(?:ute)?|exit|fill(?:attrs)?|file(?:name)?|flist|fnc|function(?:list)?|goto|global|group(?:by)?|headline|headskip|histogram|if|infile|keep|keylabel|keyword|label|layout|leave|legendlabel|length|libname|loadactionset|merge|midpoints|name|noobs|nowd|_?null_|ods|options|or|otherwise|out(?:put)?|over(?:lay)?|plot|put|print|raise|ranexp|rannor|rbreak|retain|return|select|set|session|sessref|source|statgraph|sum|summarize|table|temp|terminate|then\s+do|then|title\d?|to|var|when|where|xaxisopts|yaxisopts|y2axisopts)\b/i,
+		lookbehind: true,
 	};
 
 	Prism.languages.sas = {
@@ -130,6 +191,43 @@
 			}
 		},
 
+		'proc-cas': {
+			pattern: /(^proc\s+cas(?:\s+[\w|=]+)?;)[\s\S]+?(?=^(?:proc\s+\w+|quit|data);|(?![\s\S]))/im,
+			lookbehind: true,
+			inside: {
+				'statement-var': {
+					pattern: /((?:^|\s)=?)saveresult\s+[^;]+/im,
+					lookbehind: true,
+					inside: {
+						'statement': {
+							pattern: /^saveresult\s+\S+/i,
+							inside: {
+								keyword: /^(?:saveresult)/i
+							}
+						},
+						rest: args
+					}
+				},
+				'cas-actions': casActions,
+				'statement': {
+					pattern: /((?:^|\s)=?)(?:default|(?:un)?set|on|output|upload)[^;]+/im,
+					lookbehind: true,
+					inside: args
+				},
+				'step': step,
+				'keyword': keywords,
+				'function': func,
+				'comment': comment,
+				'format': format,
+				'altformat': altformat,
+				'global-statements': globalStatements,
+				'number': number,
+				'numeric-constant': numericConstant,
+				'punctuation': punctuation,
+				'string': string
+			}
+		},
+
 		'proc-args': {
 			pattern: RegExp(/(^proc\s+\w+\s+)(?!\s)(?:[^;"']|<str>)+;/.source.replace(/<str>/g, stringPattern), 'im'),
 			lookbehind: true,
@@ -176,33 +274,12 @@
 			lookbehind: true,
 			inside: args
 		},
-		'function': {
-			pattern: /%?\w+(?=\()/,
-			alias: 'keyword'
-		},
-		'format': {
-			pattern: /\b(?:format|put)\b=?[\w'$.]+/im,
-			inside: {
-				'keyword': /^(?:format|put)(?=\=)/i,
-				'equals': /=/,
-				'format': {
-					pattern: /(?:\w|\$\d)+\.\d?/i,
-					alias: 'number'
-				}
-			}
-		},
-		'altformat': {
-			pattern: /\b(?:format|put)\s+[\w']+(?:\s+[$.\w]+)+(?=;)/i,
-			inside: {
-				'keyword': /^(?:format|put)/i,
-				'format': {
-					pattern: /[\w$]+\.\d?/,
-					alias: 'number'
-				}
-			}
-		},
-		'numeric-constant': numericConstant,
+		'cas-actions': casActions,
 		'comment': comment,
+		'function': func,
+		'format': format,
+		'altformat': altformat,
+		'numeric-constant': numericConstant,
 		'datetime': {
 			// '1jan2013'd, '9:25:19pm't, '18jan2003:9:27:05am'dt
 			pattern: RegExp(stringPattern + '(?:dt?|t)'),
@@ -210,10 +287,7 @@
 		},
 		'string': string,
 		'step': step,
-		'keyword': {
-			pattern: /((?:^|\s)=?)(?:action|after|analysis|and|array|barchart|barwidth|begingraph|by|cas|cbarline|cfill|class(?:lev)?|close|column|computed?|contains|data(?=\=)|define|document|do\s+over|do|dol|drop|dul|end|entryTitle|else|endcomp|eval(?:uate)?|exec(?:ute)?|fill(?:attrs)?|filename|group(?:by)?|headline|headskip|histogram|if|infile|keep|keylabel|keyword|label|layout|legendlabel|length|libname|merge|midpoints|name|noobs|nowd|ods|options|or|out(?:put)?|overlay|plot|ranexp|rannor|rbreak|retain|set|session|sessref|statgraph|sum|summarize|table|temp|then\s+do|then|title\d?|to|var|where|xaxisopts|yaxisopts|y2axisopts)\b/i,
-			lookbehind: true,
-		},
+		'keyword': keywords,
 		// In SAS Studio syntax highlighting, these operators are styled like keywords
 		'operator-keyword': {
 			pattern: /\b(?:eq|ne|gt|lt|ge|le|in|not)\b/i,

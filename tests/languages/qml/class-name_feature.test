@@ -1,0 +1,55 @@
+Foo {
+	bar: FooBar {}
+	Baz {}
+	RotationAnimation on rotation {
+		loops: Animation.Infinite
+		from: 0
+		to: 360
+	}
+}
+
+----------------------------------------------------
+
+[
+	["class-name", "Foo"],
+	["punctuation", "{"],
+
+	["property", "bar"],
+	["punctuation", ":"],
+	["class-name", "FooBar"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["class-name", "Baz"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["class-name", "RotationAnimation"],
+	["keyword", "on"],
+	" rotation ",
+	["punctuation", "{"],
+	["property", "loops"],
+	["punctuation", ":"],
+	["javascript-expression", [
+		"Animation",
+		["punctuation", "."],
+		"Infinite"
+	]],
+	["property", "from"],
+	["punctuation", ":"],
+	["javascript-expression", [
+		["number", "0"]
+	]],
+	["property", "to"],
+	["punctuation", ":"],
+	["javascript-expression", [
+		["number", "360"]
+	]],
+	["punctuation", "}"],
+
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for class names.
