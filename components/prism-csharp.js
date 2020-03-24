@@ -16,13 +16,13 @@
 		});
 	}
 	/**
-	 * @param {string} flags
 	 * @param {string} pattern
 	 * @param {string[]} replacements
+	 * @param {string} [flags]
 	 * @returns {RegExp}
 	 */
-	function re(flags, pattern, replacements) {
-		return RegExp(replace(pattern, replacements), flags);
+	function re(pattern, replacements, flags) {
+		return RegExp(replace(pattern, replacements), flags || '');
 	}
 
 	/**
@@ -88,12 +88,12 @@
 	Prism.languages.csharp = Prism.languages.extend('clike', {
 		'string': [
 			{
-				pattern: re('', /(^|[^$\\])<<0>>/.source, [verbatimString]),
+				pattern: re(/(^|[^$\\])<<0>>/.source, [verbatimString]),
 				lookbehind: true,
 				greedy: true
 			},
 			{
-				pattern: re('', /(^|[^@$\\])<<0>>/.source, [regularString]),
+				pattern: re(/(^|[^@$\\])<<0>>/.source, [regularString]),
 				lookbehind: true,
 				greedy: true
 			},
@@ -107,28 +107,28 @@
 			{
 				// Using static
 				// using static System.Math;
-				pattern: re('', /(\busing\s+static\s+)<<0>>(?=\s*;)/.source, [identifier]),
+				pattern: re(/(\busing\s+static\s+)<<0>>(?=\s*;)/.source, [identifier]),
 				lookbehind: true,
 				inside: typeInside
 			},
 			{
 				// Using alias (type)
 				// using Project = PC.MyCompany.Project;
-				pattern: re('', /(\busing\s+<<0>>\s*=\s*)<<1>>(?=\s*;)/.source, [name, typeExpression]),
+				pattern: re(/(\busing\s+<<0>>\s*=\s*)<<1>>(?=\s*;)/.source, [name, typeExpression]),
 				lookbehind: true,
 				inside: typeInside
 			},
 			{
 				// Using alias (alias)
 				// using Project = PC.MyCompany.Project;
-				pattern: re('', /(\busing\s+)<<0>>(?=\s*=)/.source, [name]),
+				pattern: re(/(\busing\s+)<<0>>(?=\s*=)/.source, [name]),
 				lookbehind: true
 			},
 			{
 				// Type declarations
 				// class Foo<A, B>
 				// interface Foo<out A, B>
-				pattern: re('', /(\b<<0>>\s+)<<1>>/.source, [typeDeclarationKeywords, genericName]),
+				pattern: re(/(\b<<0>>\s+)<<1>>/.source, [typeDeclarationKeywords, genericName]),
 				lookbehind: true,
 				inside: typeInside
 			},
@@ -136,28 +136,28 @@
 				// Single catch exception declaration
 				// catch(Foo)
 				// (things like catch(Foo e) is covered by variable declaration)
-				pattern: re('', /(\bcatch\s*\(\s*)<<0>>/.source, [identifier]),
+				pattern: re(/(\bcatch\s*\(\s*)<<0>>/.source, [identifier]),
 				lookbehind: true,
 				inside: typeInside
 			},
 			{
 				// Name of the type parameter of generic constraints
 				// where Foo : class
-				pattern: re('', /(\bwhere\s+)<<0>>/.source, [name]),
+				pattern: re(/(\bwhere\s+)<<0>>/.source, [name]),
 				lookbehind: true
 			},
 			{
 				// Casts and checks via as and is.
 				// as Foo<A>, is Bar<B>
 				// (things like if(a is Foo b) is covered by variable declaration)
-				pattern: re('', /(\b(?:is|as)\s+)<<0>>/.source, [typeExpression]),
+				pattern: re(/(\b(?:is|as)\s+)<<0>>/.source, [typeExpression]),
 				lookbehind: true,
 				inside: typeInside
 			},
 			{
 				// Variable, field and parameter declaration
 				// (Foo bar, Bar baz, Foo[,,] bay, Foo<Bar, FooBar<Bar>> bax)
-				pattern: re('', /\b<<0>>(?=\s+(?!<<1>>)<<2>>(?:\s*[=,;:{)\]]|\s+in))/.source, [typeExpression, nonContextualKeywords, name]),
+				pattern: re(/\b<<0>>(?=\s+(?!<<1>>)<<2>>(?:\s*[=,;:{)\]]|\s+in))/.source, [typeExpression, nonContextualKeywords, name]),
 				inside: typeInside
 			}
 		],
@@ -177,7 +177,7 @@
 
 	Prism.languages.insertBefore('csharp', 'punctuation', {
 		'named-parameter': {
-			pattern: re('', /([(,]\s*)<<0>>(?=\s*:)/.source, [name]),
+			pattern: re(/([(,]\s*)<<0>>(?=\s*:)/.source, [name]),
 			lookbehind: true,
 			alias: 'punctuation'
 		}
@@ -187,7 +187,7 @@
 		'namespace': {
 			// namespace Foo.Bar {}
 			// using Foo.Bar;
-			pattern: re('', /(\b(?:namespace|using)\s+)<<0>>(?:\s*\.\s*<<0>>)*(?=\s*[;{])/.source, [name]),
+			pattern: re(/(\b(?:namespace|using)\s+)<<0>>(?:\s*\.\s*<<0>>)*(?=\s*[;{])/.source, [name]),
 			lookbehind: true,
 			inside: {
 				'punctuation': /\./
@@ -195,7 +195,7 @@
 		},
 		'type-expression': {
 			// default(Foo), typeof(Foo<Bar>), sizeof(int)
-			pattern: re('', /(\b(?:default|typeof|sizeof)\s*\(\s*)(?:[^()\s]|\s(?!\s*\))|<<0>>)*(?=\s*\))/.source, [nestedRound]),
+			pattern: re(/(\b(?:default|typeof|sizeof)\s*\(\s*)(?:[^()\s]|\s(?!\s*\))|<<0>>)*(?=\s*\))/.source, [nestedRound]),
 			lookbehind: true,
 			alias: 'class-name',
 			inside: typeInside
@@ -204,13 +204,13 @@
 			// Foo<Bar> ForBar(); Foo IFoo.Bar() => 0
 			// int this[int index] => 0; T IReadOnlyList<T>.this[int index] => this[index];
 			// int Foo => 0; int Foo { get; set } = 0;
-			pattern: re('', /<<0>>(?=\s+(?:<<1>>\s*(?:=>|[({]|\.\s*this\s*\[)|this\s*\[))/.source, [typeExpression, identifier]),
+			pattern: re(/<<0>>(?=\s+(?:<<1>>\s*(?:=>|[({]|\.\s*this\s*\[)|this\s*\[))/.source, [typeExpression, identifier]),
 			inside: typeInside,
 			alias: 'class-name'
 		},
 		'constructor-invocation': {
 			// new List<Foo<Bar[]>> { }
-			pattern: re('', /(\bnew\s+)<<0>>(?=\s*[[({])/.source, [typeExpression]),
+			pattern: re(/(\bnew\s+)<<0>>(?=\s*[[({])/.source, [typeExpression]),
 			lookbehind: true,
 			inside: typeInside,
 			alias: 'class-name'
@@ -223,9 +223,9 @@
 		},*/
 		'generic-method': {
 			// foo<Bar>()
-			pattern: re('', /<<0>>\s*<<1>>(?=\s*\()/.source, [name, generic]),
+			pattern: re(/<<0>>\s*<<1>>(?=\s*\()/.source, [name, generic]),
 			inside: {
-				'function': re('', /^<<0>>/.source, [name]),
+				'function': re(/^<<0>>/.source, [name]),
 				'generic': {
 					pattern: RegExp(generic),
 					alias: 'class-name',
@@ -238,7 +238,7 @@
 			// class Foo<F> : Bar, IList<FooBar>
 			// where F : Bar, IList<int>
 			pattern: re(
-				'', /\b((?:<<0>>\s+<<1>>|where\s+<<2>>)\s*:\s*)(?:<<3>>|<<4>>)(?:\s*,\s*(?:<<3>>|<<4>>))*(?=\s*(?:where|[{;]|=>|$))/.source,
+				/\b((?:<<0>>\s+<<1>>|where\s+<<2>>)\s*:\s*)(?:<<3>>|<<4>>)(?:\s*,\s*(?:<<3>>|<<4>>))*(?=\s*(?:where|[{;]|=>|$))/.source,
 				[typeDeclarationKeywords, genericName, name, typeExpression, keywords.source]
 			),
 			lookbehind: true,
@@ -279,16 +279,16 @@
 		'attribute': {
 			// Attributes
 			// [Foo], [Foo(1), Bar(2, Prop = "foo")], [return: Foo(1), Bar(2)], [assembly: Foo(Bar)]
-			pattern: re('', /((?:^|[^\s\w>)?])\s*\[\s*)(?:<<0>>\s*:\s*)?<<1>>(?:\s*,\s*<<1>>)*(?=\s*\])/.source, [attrTarget, attr]),
+			pattern: re(/((?:^|[^\s\w>)?])\s*\[\s*)(?:<<0>>\s*:\s*)?<<1>>(?:\s*,\s*<<1>>)*(?=\s*\])/.source, [attrTarget, attr]),
 			lookbehind: true,
 			greedy: true,
 			inside: {
 				'target': {
-					pattern: re('', /^<<0>>(?=\s*:)/.source, [attrTarget]),
+					pattern: re(/^<<0>>(?=\s*:)/.source, [attrTarget]),
 					alias: 'keyword'
 				},
 				'attribute-arguments': {
-					pattern: re('', /\(<<0>>*\)/.source, [roundExpression]),
+					pattern: re(/\(<<0>>*\)/.source, [roundExpression]),
 					inside: Prism.languages.csharp
 				},
 				'class-name': {
@@ -315,11 +315,11 @@
 	function createInterpolationInside(interpolation, interpolationRound) {
 		return {
 			'interpolation': {
-				pattern: re('', /([^{](?:\{\{)*)<<0>>/.source, [interpolation]),
+				pattern: re(/([^{](?:\{\{)*)<<0>>/.source, [interpolation]),
 				lookbehind: true,
 				inside: {
 					'format-string': {
-						pattern: re('', /(^\{(?:(?![}:])<<0>>)*)<<1>>(?=\}$)/.source, [interpolationRound, formatString]),
+						pattern: re(/(^\{(?:(?![}:])<<0>>)*)<<1>>(?=\}$)/.source, [interpolationRound, formatString]),
 						lookbehind: true,
 						inside: {
 							'punctuation': /^:/
@@ -340,13 +340,13 @@
 	Prism.languages.insertBefore('csharp', 'string', {
 		'interpolation-string': [
 			{
-				pattern: re('', /(^|[^\\])(?:\$@|@\$)"(?:""|\\[\s\S]|\{\{|<<0>>|[^\\{"])*"/.source, [mInterpolation]),
+				pattern: re(/(^|[^\\])(?:\$@|@\$)"(?:""|\\[\s\S]|\{\{|<<0>>|[^\\{"])*"/.source, [mInterpolation]),
 				lookbehind: true,
 				greedy: true,
 				inside: createInterpolationInside(mInterpolation, mInterpolationRound),
 			},
 			{
-				pattern: re('', /(^|[^@\\])\$"(?:\\.|\{\{|<<0>>|[^\\"{])*"/.source, [sInterpolation]),
+				pattern: re(/(^|[^@\\])\$"(?:\\.|\{\{|<<0>>|[^\\"{])*"/.source, [sInterpolation]),
 				lookbehind: true,
 				greedy: true,
 				inside: createInterpolationInside(sInterpolation, sInterpolationRound),
