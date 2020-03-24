@@ -5,6 +5,9 @@
 (foo 2.5+0.0i)
 (foo 3+0i)
 
+; not a number but a symbol
+(define 1+2 10)
+
 ----------------------------------------------------
 
 [
@@ -13,7 +16,11 @@
 	["punctuation", "("], ["function", "foo"], ["number", "8/3"], ["punctuation", ")"],
 	["punctuation", "("], ["function", "foo"], ["number", "3+4i"], ["punctuation", ")"],
 	["punctuation", "("], ["function", "foo"], ["number", "2.5+0.0i"], ["punctuation", ")"],
-	["punctuation", "("], ["function", "foo"], ["number", "3+0i"], ["punctuation", ")"]
+	["punctuation", "("], ["function", "foo"], ["number", "3+0i"], ["punctuation", ")"],
+
+	["comment", "; not a number but a symbol"],
+
+	["punctuation", "("], ["keyword", "define"], " 1+2 ", ["number", "10"], ["punctuation", ")"]
 ]
 
 ----------------------------------------------------
