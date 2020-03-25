@@ -32,29 +32,32 @@ Prism.languages.treeview = {
 };
 
 Prism.hooks.add('wrap', function (env) {
-	if (env.language === 'treeview') {
-		if (env.type === 'entry-name') {
-			if (/(^|[^\\])\/\s*$/.test(env.content)) {
-				env.content = env.content.slice(0, -1);
-				// This is a folder
-				env.classes.push('dir');
-			} else {
+	if (env.language === 'treeview' && env.type === 'entry-name') {
+		var classes = env.classes;
 
-				if (/(^|[^\\])[=*|]\s*$/.test(env.content)) {
-					env.content = env.content.slice(0, -1);
-				}
+		var folderPattern = /(^|[^\\])\/\s*$/;
+		if (folderPattern.test(env.content)) {
+			// folder
 
-				var parts = env.content.toLowerCase().replace(/\s+/, '').split('.');
-				while (parts.length > 1) {
-					parts.shift();
-					// Ex. 'foo.min.js' would become '<span class="token keyword ext-min-js ext-js">foo.min.js</span>'
-					env.classes.push('ext-' + parts.join('-'));
-				}
+			// remove trailing /
+			env.content = env.content.replace(folderPattern, '$1');
+			classes.push('dir');
+		} else {
+			// file
+
+			// remove trailing file marker
+			env.content = env.content.replace(/(^|[^\\])[=*|]\s*$/, '$1');
+
+			var parts = env.content.toLowerCase().replace(/\s+/g, '').split('.');
+			while (parts.length > 1) {
+				parts.shift();
+				// Ex. 'foo.min.js' would become '<span class="token keyword ext-min-js ext-js">foo.min.js</span>'
+				classes.push('ext-' + parts.join('-'));
 			}
+		}
 
-			if (env.content.charAt(0) === '.') {
-				env.classes.push('dotfile');
-			}
+		if (env.content[0] === '.') {
+			classes.push('dotfile');
 		}
 	}
 });
