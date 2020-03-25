@@ -1,0 +1,21 @@
+Foo(abc: 4, xyz: 6);
+
+----------------------------------------------------
+
+[
+	["function", "Foo"],
+	["punctuation", "("],
+	["named-parameter", "abc"],
+	["punctuation", ":"],
+	["number", "4"],
+	["punctuation", ","],
+	["named-parameter", "xyz"],
+	["punctuation", ":"],
+	["number", "6"],
+	["punctuation", ")"],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for named method parameters.

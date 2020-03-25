@@ -21,7 +21,7 @@
 		'info': {
 			// foo@bar:~/files$ exit
 			// foo@bar$ exit
-			pattern: /^(?:[^\r\n$#*!]+)(?=[$#])/m,
+			pattern: /^[^\r\n$#*!]+(?=[$#])/m,
 			alias: 'punctuation',
 			inside: {
 				'path': {
@@ -33,7 +33,7 @@
 			}
 		},
 		'command': {
-			pattern: RegExp(/[$#](?:[^\r\n'"<]|<<str>>)+/.source.replace(/<<str>>/g, strings)),
+			pattern: RegExp(/[$#](?:[^\\\r\n'"<]|\\.|<<str>>)+/.source.replace(/<<str>>/g, strings)),
 			greedy: true,
 			inside: {
 				'bash': {

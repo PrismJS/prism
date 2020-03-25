@@ -1,0 +1,81 @@
+using System;
+using System.IO;
+using static System.Math;
+using static Foo.Bar<IFoo>.FooBar<IFoo>;
+using FooBar = Foo.Bar;
+using FooBar = Foo.Bar<IFoo>.FooBar<IFoo>;
+
+----------------------------------------------------
+
+[
+	["keyword", "using"],
+	["namespace", ["System"]],
+	["punctuation", ";"],
+
+	["keyword", "using"],
+	["namespace", [
+		"System",
+		["punctuation", "."],
+		"IO"
+	]],
+	["punctuation", ";"],
+
+	["keyword", "using"],
+	["keyword", "static"],
+	["class-name", [
+		"System",
+		["punctuation", "."],
+		"Math"
+	]],
+	["punctuation", ";"],
+
+	["keyword", "using"],
+	["keyword", "static"],
+	["class-name", [
+		"Foo",
+		["punctuation", "."],
+		"Bar",
+		["punctuation", "<"],
+		"IFoo",
+		["punctuation", ">"],
+		["punctuation", "."],
+		"FooBar",
+		["punctuation", "<"],
+		"IFoo",
+		["punctuation", ">"]
+	]],
+	["punctuation", ";"],
+
+	["keyword", "using"],
+	["class-name", "FooBar"],
+	["operator", "="],
+	["class-name", [
+		"Foo",
+		["punctuation", "."],
+		"Bar"
+	]],
+	["punctuation", ";"],
+
+	["keyword", "using"],
+	["class-name", "FooBar"],
+	["operator", "="],
+	["class-name", [
+		"Foo",
+		["punctuation", "."],
+		"Bar",
+		["punctuation", "<"],
+		"IFoo",
+		["punctuation", ">"],
+		["punctuation", "."],
+		"FooBar",
+		["punctuation", "<"],
+		"IFoo",
+		["punctuation", ">"]
+	]],
+	["punctuation", ";"]
+]
+
+
+----------------------------------------------------
+
+Checks for using directives.

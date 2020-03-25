@@ -121,7 +121,8 @@
 			},
 			// “Normal” string
 			{
-				pattern: /(["'])(?:\\[\s\S]|\$\([^)]+\)|`[^`]+`|(?!\1)[^\\])*\1/,
+				pattern: /(^|[^\\](?:\\\\)*)(["'])(?:\\[\s\S]|\$\([^)]+\)|`[^`]+`|(?!\2)[^\\])*\2/,
+				lookbehind: true,
 				greedy: true,
 				inside: insideString
 			}

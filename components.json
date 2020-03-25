@@ -602,6 +602,10 @@
 			"title": "LiveScript",
 			"owner": "Golmote"
 		},
+		"llvm": {
+			"title": "LLVM IR",
+			"owner": "porglezomp"
+		},
 		"lolcode": {
 			"title": "LOLCODE",
 			"owner": "Golmote"
