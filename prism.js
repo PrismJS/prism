@@ -336,137 +336,8 @@ var _ = {
 		return Token.stringify(_.util.encode(env.tokens), env.language);
 	},
 
-	matchGrammar: function (text, strarr, grammar, index, startPos, oneshot, target) {
-		for (var token in grammar) {
-			if (!grammar.hasOwnProperty(token) || !grammar[token]) {
-				continue;
-			}
-
-			var patterns = grammar[token];
-			patterns = Array.isArray(patterns) ? patterns : [patterns];
-
-			for (var j = 0; j < patterns.length; ++j) {
-				if (target && target == token + ',' + j) {
-					return;
-				}
-
-				var pattern = patterns[j],
-					inside = pattern.inside,
-					lookbehind = !!pattern.lookbehind,
-					greedy = !!pattern.greedy,
-					lookbehindLength = 0,
-					alias = pattern.alias;
-
-				if (greedy && !pattern.pattern.global) {
-					// Without the global flag, lastIndex won't work
-					var flags = pattern.pattern.toString().match(/[imsuy]*$/)[0];
-					pattern.pattern = RegExp(pattern.pattern.source, flags + 'g');
-				}
-
-				pattern = pattern.pattern || pattern;
-
-				// Don’t cache length as it changes during the loop
-				for (var i = index, pos = startPos; i < strarr.length; pos += strarr[i].length, ++i) {
-
-					var str = strarr[i];
-
-					if (strarr.length > text.length) {
-						// Something went terribly wrong, ABORT, ABORT!
-						return;
-					}
-
-					if (str instanceof Token) {
-						continue;
-					}
-
-					if (greedy && i != strarr.length - 1) {
-						pattern.lastIndex = pos;
-						var match = pattern.exec(text);
-						if (!match) {
-							break;
-						}
-
-						var from = match.index + (lookbehind && match[1] ? match[1].length : 0),
-						    to = match.index + match[0].length,
-						    k = i,
-						    p = pos;
-
-						for (var len = strarr.length; k < len && (p < to || (!strarr[k].type && !strarr[k - 1].greedy)); ++k) {
-							p += strarr[k].length;
-							// Move the index i to the element in strarr that is closest to from
-							if (from >= p) {
-								++i;
-								pos = p;
-							}
-						}
-
-						// If strarr[i] is a Token, then the match starts inside another Token, which is invalid
-						if (strarr[i] instanceof Token) {
-							continue;
-						}
-
-						// Number of tokens to delete and replace with the new match
-						delNum = k - i;
-						str = text.slice(pos, p);
-						match.index -= pos;
-					} else {
-						pattern.lastIndex = 0;
-
-						var match = pattern.exec(str),
-							delNum = 1;
-					}
-
-					if (!match) {
-						if (oneshot) {
-							break;
-						}
-
-						continue;
-					}
-
-					if(lookbehind) {
-						lookbehindLength = match[1] ? match[1].length : 0;
-					}
-
-					var from = match.index + lookbehindLength,
-					    match = match[0].slice(lookbehindLength),
-					    to = from + match.length,
-					    before = str.slice(0, from),
-					    after = str.slice(to);
-
-					var args = [i, delNum];
-
-					if (before) {
-						++i;
-						pos += before.length;
-						args.push(before);
-					}
-
-					var wrapped = new Token(token, inside? _.tokenize(match, inside) : match, alias, match, greedy);
-
-					args.push(wrapped);
-
-					if (after) {
-						args.push(after);
-					}
-
-					Array.prototype.splice.apply(strarr, args);
-
-					if (delNum != 1)
-						_.matchGrammar(text, strarr, grammar, i, pos, true, token + ',' + j);
-
-					if (oneshot)
-						break;
-				}
-			}
-		}
-	},
-
 	tokenize: function(text, grammar) {
-		var strarr = [text];
-
 		var rest = grammar.rest;
-
 		if (rest) {
 			for (var token in rest) {
 				grammar[token] = rest[token];
@@ -475,9 +346,12 @@ var _ = {
 			delete grammar.rest;
 		}
 
-		_.matchGrammar(text, strarr, grammar, 0, 0, false);
+		var tokenList = new LinkedList();
+		addAfter(tokenList, tokenList.head, text);
 
-		return strarr;
+		matchGrammar(text, tokenList, grammar, tokenList.head, 0);
+
+		return toArray(tokenList);
 	},
 
 	hooks: {
@@ -557,6 +431,230 @@ Token.stringify = function stringify(o, language) {
 
 	return '<' + env.tag + ' class="' + env.classes.join(' ') + '"' + attributes + '>' + env.content + '</' + env.tag + '>';
 };
+
+/**
+ * @param {string} text
+ * @param {LinkedList<string | Token>} tokenList
+ * @param {any} grammar
+ * @param {LinkedListNode<string | Token>} startNode
+ * @param {number} startPos
+ * @param {boolean} [oneshot=false]
+ * @param {string} [target]
+ */
+function matchGrammar(text, tokenList, grammar, startNode, startPos, oneshot, target) {
+	for (var token in grammar) {
+		if (!grammar.hasOwnProperty(token) || !grammar[token]) {
+			continue;
+		}
+
+		var patterns = grammar[token];
+		patterns = Array.isArray(patterns) ? patterns : [patterns];
+
+		for (var j = 0; j < patterns.length; ++j) {
+			if (target && target == token + ',' + j) {
+				return;
+			}
+
+			var pattern = patterns[j],
+				inside = pattern.inside,
+				lookbehind = !!pattern.lookbehind,
+				greedy = !!pattern.greedy,
+				lookbehindLength = 0,
+				alias = pattern.alias;
+
+			if (greedy && !pattern.pattern.global) {
+				// Without the global flag, lastIndex won't work
+				var flags = pattern.pattern.toString().match(/[imsuy]*$/)[0];
+				pattern.pattern = RegExp(pattern.pattern.source, flags + 'g');
+			}
+
+			pattern = pattern.pattern || pattern;
+
+			for ( // iterate the token list and keep track of the current token/string position
+				var currentNode = startNode.next, pos = startPos;
+				currentNode !== tokenList.tail;
+				pos += currentNode.value.length, currentNode = currentNode.next
+			) {
+
+				var str = currentNode.value;
+
+				if (tokenList.length > text.length) {
+					// Something went terribly wrong, ABORT, ABORT!
+					return;
+				}
+
+				if (str instanceof Token) {
+					continue;
+				}
+
+				var removeCount = 1; // this is the to parameter of removeBetween
+
+				if (greedy && currentNode != tokenList.tail.prev) {
+					pattern.lastIndex = pos;
+					var match = pattern.exec(text);
+					if (!match) {
+						break;
+					}
+
+					var from = match.index + (lookbehind && match[1] ? match[1].length : 0);
+					var to = match.index + match[0].length;
+					var p = pos;
+
+					// find the node that contains the match
+					p += currentNode.value.length;
+					while (from >= p) {
+						currentNode = currentNode.next;
+						p += currentNode.value.length;
+					}
+					// adjust pos (and p)
+					p -= currentNode.value.length;
+					pos = p;
+
+					// the current node is a Token, then the match starts inside another Token, which is invalid
+					if (currentNode.value instanceof Token) {
+						continue;
+					}
+
+					// find the last node which is affected by this match
+					for (
+						var k = currentNode;
+						k !== tokenList.tail && (p < to || (typeof k.value === 'string' && !k.prev.value.greedy));
+						k = k.next
+					) {
+						removeCount++;
+						p += k.value.length;
+					}
+					removeCount--;
+
+					// replace with the new match
+					str = text.slice(pos, p);
+					match.index -= pos;
+				} else {
+					pattern.lastIndex = 0;
+
+					var match = pattern.exec(str);
+				}
+
+				if (!match) {
+					if (oneshot) {
+						break;
+					}
+
+					continue;
+				}
+
+				if (lookbehind) {
+					lookbehindLength = match[1] ? match[1].length : 0;
+				}
+
+				var from = match.index + lookbehindLength,
+					match = match[0].slice(lookbehindLength),
+					to = from + match.length,
+					before = str.slice(0, from),
+					after = str.slice(to);
+
+				var removeFrom = currentNode.prev;
+
+				if (before) {
+					removeFrom = addAfter(tokenList, removeFrom, before);
+					pos += before.length;
+				}
+
+				removeRange(tokenList, removeFrom, removeCount);
+
+				var wrapped = new Token(token, inside ? _.tokenize(match, inside) : match, alias, match, greedy);
+				currentNode = addAfter(tokenList, removeFrom, wrapped);
+
+				if (after) {
+					addAfter(tokenList, currentNode, after);
+				}
+
+
+				if (removeCount > 1)
+					matchGrammar(text, tokenList, grammar, currentNode.prev, pos, true, token + ',' + j);
+
+				if (oneshot)
+					break;
+			}
+		}
+	}
+}
+
+/**
+ * @typedef LinkedListNode
+ * @property {T} value
+ * @property {LinkedListNode<T> | null} prev The previous node.
+ * @property {LinkedListNode<T> | null} next The next node.
+ * @template T
+ */
+
+/**
+ * @template T
+ */
+function LinkedList() {
+	/** @type {LinkedListNode<T>} */
+	var head = { value: null, prev: null, next: null };
+	/** @type {LinkedListNode<T>} */
+	var tail = { value: null, prev: head, next: null };
+	head.next = tail;
+
+	/** @type {LinkedListNode<T>} */
+	this.head = head;
+	/** @type {LinkedListNode<T>} */
+	this.tail = tail;
+	this.length = 0;
+}
+
+/**
+ * Adds a new node with the given value to the list.
+ * @param {LinkedList<T>} list
+ * @param {LinkedListNode<T>} node
+ * @param {T} value
+ * @returns {LinkedListNode<T>} The added node.
+ * @template T
+ */
+function addAfter(list, node, value) {
+	// assumes that node != list.tail && values.length >= 0
+	var next = node.next;
+
+	var newNode = { value: value, prev: node, next: next };
+	node.next = newNode;
+	next.prev = newNode;
+	list.length++;
+
+	return newNode;
+}
+/**
+ * Removes `count` nodes after the given node. The given node will not be removed.
+ * @param {LinkedList<T>} list
+ * @param {LinkedListNode<T>} node
+ * @param {number} count
+ * @template T
+ */
+function removeRange(list, node, count) {
+	var next = node.next;
+	for (var i = 0; i < count && next !== list.tail; i++) {
+		next = next.next;
+	}
+	node.next = next;
+	next.prev = node;
+	list.length -= i;
+}
+/**
+ * @param {LinkedList<T>} list
+ * @returns {T[]}
+ * @template T
+ */
+function toArray(list) {
+	var array = [];
+	var node = list.head.next;
+	while (node !== list.tail) {
+		array.push(node.value);
+		node = node.next;
+	}
+	return array;
+}
+
 
 if (!_self.document) {
 	if (!_self.addEventListener) {
