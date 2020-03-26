@@ -1,0 +1,44 @@
+[shortcode foo="bar"]
+[shortcode foo='bar']
+
+----------------------------------------------------
+
+[
+	["tag", [
+		["tag", [
+			["punctuation", "["],
+			"shortcode"
+		]],
+        ["attr-name", [
+			"foo"
+		]],
+        ["attr-value", [
+			["punctuation", "="],
+			["punctuation", "\""],
+			"bar",
+			["punctuation", "\""]
+		]],
+		["punctuation", "]"]
+	]],
+
+    ["tag", [
+		["tag", [
+			["punctuation", "["],
+			"shortcode"
+		]],
+        ["attr-name", [
+			"foo"
+		]],
+        ["attr-value", [
+			["punctuation", "="],
+			["punctuation", "'"],
+			"bar",
+			["punctuation", "'"]
+		]],
+		["punctuation", "]"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for single-quoted and double-quoted and unquoted attributes.

@@ -1,0 +1,71 @@
+[shortcode]
+[shortcode][/shortcode]
+[shortcode]content[/shortcode]
+[shortcode
+] [/shortcode
+]
+[shortcode
+----------------------------------------------------
+
+[
+	["tag", [
+		["tag", [
+			["punctuation", "["],
+			"shortcode"
+		]],
+		["punctuation", "]"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "["],
+			"shortcode"
+		]],
+		["punctuation", "]"]
+	]],
+	["tag", [
+        ["tag", [
+            ["punctuation", "[/"],
+            "shortcode"
+        ]],
+        ["punctuation", "]"]
+    ]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "["],
+			"shortcode"
+		]],
+		["punctuation", "]"]
+	]],
+	"content",
+	["tag", [
+        ["tag", [
+            ["punctuation", "[/"],
+            "shortcode"
+        ]],
+        ["punctuation", "]"]
+    ]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "["],
+			"shortcode"
+		]],
+		["punctuation", "]"]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "[/"],
+			"shortcode"
+		]],
+		["punctuation", "]"]
+	]],
+
+	"\r\n[shortcode"
+]
+
+----------------------------------------------------
+
+Checks for empty shortcodes, shortcodes that span multiple lines and namespaces in tag names.
+Also checks that unclosed shortcodes (e.g. "[shortcode") are not highlighted.

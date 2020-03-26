@@ -935,6 +935,10 @@
 			"require": "bash",
 			"owner": "RunDevelopment"
 		},
+		"shortcode": {
+			"title": "Shortcode",
+			"owner": "mccomaschris"
+		},
 		"smalltalk": {
 			"title": "Smalltalk",
 			"owner": "Golmote"
