@@ -18,6 +18,7 @@
 		},
 		'url': {
 			pattern: RegExp('url\\((?:' + string.source + '|[^\n\r()]*)\\)', 'i'),
+			greedy: true,
 			inside: {
 				'function': /^url/i,
 				'punctuation': /^\(|\)$/
