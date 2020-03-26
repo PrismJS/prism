@@ -334,14 +334,14 @@ keymap ; => {:a 1, :b 2, :c 3}
            java.util.Calendar))
 
 ; Use the class name with a "." at the end to make a new instance
-(Date.) ; <a date object>
+(Date.) ; &lt;a date object>
 
 ; Use . to call methods. Or, use the ".method" shortcut
-(. (Date.) getTime) ; <a timestamp>
+(. (Date.) getTime) ; &lt;a timestamp>
 (.getTime (Date.)) ; exactly the same thing.
 
 ; Use / to call static methods
-(System/currentTimeMillis) ; <a timestamp> (system is always present)
+(System/currentTimeMillis) ; &lt;a timestamp> (system is always present)
 
 ; Use doto to make dealing with (mutable) classes more tolerable
 (import java.util.Calendar)

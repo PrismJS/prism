@@ -6,6 +6,9 @@ bar.png')
 url("foo\
 bar.png")
 
+@import url("https://cdn.jsdelivr.net/npm/prismj1.19.0/themes/prism-dark.css");
+@import url("https://cdn.jsdelivr.net/npm/prismjs/themes/prism-dark.css");
+
 ----------------------------------------------------
 
 [
@@ -38,6 +41,26 @@ bar.png")
 		["punctuation", "("],
 		"\"foo\\\r\nbar.png\"",
 		["punctuation", ")"]
+	]],
+	["atrule", [
+		["rule", "@import"],
+		["url", [
+			["function", "url"],
+			["punctuation", "("],
+			"\"https://cdn.jsdelivr.net/npm/prismj1.19.0/themes/prism-dark.css\"",
+			["punctuation", ")"]
+		]],
+		["punctuation", ";"]
+	]],
+	["atrule", [
+		["rule", "@import"],
+		["url", [
+			["function", "url"],
+			["punctuation", "("],
+			"\"https://cdn.jsdelivr.net/npm/prismjs/themes/prism-dark.css\"",
+			["punctuation", ")"]
+		]],
+		["punctuation", ";"]
 	]]
 ]
 

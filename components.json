@@ -64,8 +64,7 @@
 		},
 		"clike": {
 			"title": "C-like",
-			"option": "default",
-			"overrideExampleHeader": true
+			"option": "default"
 		},
 		"javascript": {
 			"title": "JavaScript",
@@ -162,6 +161,10 @@
 		},
 		"bbcode": {
 			"title": "BBcode",
+			"alias": "shortcode",
+			"aliasTitles": {
+				"shortcode": "Shortcode"
+			},
 			"owner": "RunDevelopment"
 		},
 		"bison": {
@@ -253,6 +256,10 @@
 			"require": "clike",
 			"owner": "Golmote"
 		},
+		"dax": {
+			"title": "DAX",
+			"owner": "peterbud"
+		},
 		"diff": {
 			"title": "Diff",
 			"owner": "uranusjr"
@@ -307,6 +314,11 @@
 		"erlang": {
 			"title": "Erlang",
 			"owner": "Golmote"
+		},
+		"excel-formula": {
+			"title": "Excel Formula",
+			"alias": ["xlsx", "xls"],
+			"owner": "RunDevelopment"
 		},
 		"fsharp": {
 			"title": "F#",
@@ -594,6 +606,10 @@
 			"title": "LiveScript",
 			"owner": "Golmote"
 		},
+		"llvm": {
+			"title": "LLVM IR",
+			"owner": "porglezomp"
+		},
 		"lolcode": {
 			"title": "LOLCODE",
 			"owner": "Golmote"
@@ -689,12 +705,11 @@
 		},
 		"opencl": {
 			"title": "OpenCL",
-			"require": "cpp",
+			"require": "c",
 			"modify": [
 				"c",
 				"cpp"
 			],
-			"overrideExampleHeader": true,
 			"owner": "Milania1"
 		},
 		"oz": {
@@ -752,6 +767,11 @@
 			"title": "PL/SQL",
 			"require": "sql",
 			"owner": "Golmote"
+		},
+		"powerquery": {
+			"title": "PowerQuery",
+			"alias": ["pq", "mscript"],
+			"owner": "peterbud"
 		},
 		"powershell": {
 			"title": "PowerShell",
