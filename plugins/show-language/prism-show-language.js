@@ -36,6 +36,7 @@
 		"shell": "Bash",
 		"basic": "BASIC",
 		"bbcode": "BBcode",
+		"shortcode": "BBcode",
 		"bnf": "Backus–Naur form",
 		"rbnf": "Routing Backus–Naur form",
 		"conc": "Concurnas",
