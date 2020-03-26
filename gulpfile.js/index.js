@@ -34,7 +34,7 @@ function inlineRegexSource() {
 		(m, source) => {
 			// escape backslashes
 			source = source.replace(/\\(.)/g, function (m, g1) {
-				// don't escape characters like \\n and \\t to \n and \t
+				// characters like /\n/ can just be kept as "\n" instead of being escaped to "\\n"
 				if (/[nrt0]/.test(g1)) {
 					return m;
 				}
