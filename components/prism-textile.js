@@ -1,13 +1,20 @@
 (function (Prism) {
 	// We don't allow for pipes inside parentheses
 	// to not break table pattern |(. foo |). bar |
-	var modifierRegex = /\([^|)]+\)|\[[^\]]+\]|\{[^}]+\}/.source;
+	var modifierRegex = /\([^|()\n]+\)|\[[^\]\n]+\]|\{[^}\n]+\}/.source;
+	// Opening and closing parentheses which are not a modifier
+	// This pattern is necessary to prevent exponential backtracking
+	var parenthesesRegex = /\)|\((?![^|()\n]+\))/.source;
 	/**
 	 * @param {string} source
 	 * @param {string} [flags]
 	 */
-	function withModifyRegex(source, flags) {
-		return RegExp(source.replace(/<MOD>/g, function () { return '(?:' + modifierRegex + ')'; }), flags || '');
+	function withModifier(source, flags) {
+		return RegExp(
+			source
+				.replace(/<MOD>/g, function () { return '(?:' + modifierRegex + ')'; })
+				.replace(/<PAR>/g, function () { return '(?:' + parenthesesRegex + ')'; }),
+			flags || '');
 	}
 
 	var modifierTokens = {
@@ -40,10 +47,10 @@
 
 				// h1. Header 1
 				'block-tag': {
-					pattern: withModifyRegex(/^[a-z]\w*(?:<MOD>|[<>=()])*\./.source),
+					pattern: withModifier(/^[a-z]\w*(?:<MOD>|<PAR>|[<>=])*\./.source),
 					inside: {
 						'modifier': {
-							pattern: withModifyRegex(/(^[a-z]\w*)(?:<MOD>|[<>=()])+(?=\.)/.source),
+							pattern: withModifier(/(^[a-z]\w*)(?:<MOD>|<PAR>|[<>=])+(?=\.)/.source),
 							lookbehind: true,
 							inside: modifierTokens
 						},
@@ -55,10 +62,10 @@
 				// # List item
 				// * List item
 				'list': {
-					pattern: withModifyRegex(/^[*#]+<MOD>*\s+.+/.source, 'm'),
+					pattern: withModifier(/^[*#]+<MOD>*\s+.+/.source, 'm'),
 					inside: {
 						'modifier': {
-							pattern: withModifyRegex(/(^[*#]+)<MOD>+/.source),
+							pattern: withModifier(/(^[*#]+)<MOD>+/.source),
 							lookbehind: true,
 							inside: modifierTokens
 						},
@@ -70,12 +77,12 @@
 				'table': {
 					// Modifiers can be applied to the row: {color:red}.|1|2|3|
 					// or the cell: |{color:red}.1|2|3|
-					pattern: withModifyRegex(/^(?:(?:<MOD>|[<>=()^~])+\.\s*)?(?:\|(?:(?:<MOD>|[<>=()^~_]|[\\/]\d+)+\.)?[^|]*)+\|/.source, 'm'),
+					pattern: withModifier(/^(?:(?:<MOD>|<PAR>|[<>=^~])+\.\s*)?(?:\|(?:(?:<MOD>|<PAR>|[<>=^~_]|[\\/]\d+)+\.)?[^|]*)+\|/.source, 'm'),
 					inside: {
 						'modifier': {
 							// Modifiers for rows after the first one are
 							// preceded by a pipe and a line feed
-							pattern: withModifyRegex(/(^|\|(?:\r?\n|\r)?)(?:<MOD>|[<>=()^~_]|[\\/]\d+)+(?=\.)/.source),
+							pattern: withModifier(/(^|\|(?:\r?\n|\r)?)(?:<MOD>|<PAR>|[<>=^~_]|[\\/]\d+)+(?=\.)/.source),
 							lookbehind: true,
 							inside: modifierTokens
 						},
@@ -84,56 +91,56 @@
 				},
 
 				'inline': {
-					pattern: withModifyRegex(/(\*\*|__|\?\?|[*_%@+\-^~])<MOD>*.+?\1/.source),
+					pattern: withModifier(/(\*\*|__|\?\?|[*_%@+\-^~])<MOD>*.+?\1/.source),
 					inside: {
 						// Note: superscripts and subscripts are not handled specifically
 
 						// *bold*, **bold**
 						'bold': {
-							pattern: withModifyRegex(/(^(\*\*?)<MOD>*).+?(?=\2)/.source),
+							pattern: withModifier(/(^(\*\*?)<MOD>*).+?(?=\2)/.source),
 							lookbehind: true
 						},
 
 						// _italic_, __italic__
 						'italic': {
-							pattern: withModifyRegex(/(^(__?)<MOD>*).+?(?=\2)/.source),
+							pattern: withModifier(/(^(__?)<MOD>*).+?(?=\2)/.source),
 							lookbehind: true
 						},
 
 						// ??cite??
 						'cite': {
-							pattern: withModifyRegex(/(^\?\?<MOD>*).+?(?=\?\?)/.source),
+							pattern: withModifier(/(^\?\?<MOD>*).+?(?=\?\?)/.source),
 							lookbehind: true,
 							alias: 'string'
 						},
 
 						// @code@
 						'code': {
-							pattern: withModifyRegex(/(^@<MOD>*).+?(?=@)/.source),
+							pattern: withModifier(/(^@<MOD>*).+?(?=@)/.source),
 							lookbehind: true,
 							alias: 'keyword'
 						},
 
 						// +inserted+
 						'inserted': {
-							pattern: withModifyRegex(/(^\+<MOD>*).+?(?=\+)/.source),
+							pattern: withModifier(/(^\+<MOD>*).+?(?=\+)/.source),
 							lookbehind: true
 						},
 
 						// -deleted-
 						'deleted': {
-							pattern: withModifyRegex(/(^-<MOD>*).+?(?=-)/.source),
+							pattern: withModifier(/(^-<MOD>*).+?(?=-)/.source),
 							lookbehind: true
 						},
 
 						// %span%
 						'span': {
-							pattern: withModifyRegex(/(^%<MOD>*).+?(?=%)/.source),
+							pattern: withModifier(/(^%<MOD>*).+?(?=%)/.source),
 							lookbehind: true
 						},
 
 						'modifier': {
-							pattern: withModifyRegex(/(^\*\*|__|\?\?|[*_%@+\-^~])<MOD>+/.source),
+							pattern: withModifier(/(^\*\*|__|\?\?|[*_%@+\-^~])<MOD>+/.source),
 							lookbehind: true,
 							inside: modifierTokens
 						},
@@ -160,14 +167,14 @@
 				// "text":http://example.com
 				// "text":link-ref
 				'link': {
-					pattern: withModifyRegex(/"<MOD>*[^"]+":.+?(?=[^\w/]?(?:\s|$))/.source),
+					pattern: withModifier(/"<MOD>*[^"]+":.+?(?=[^\w/]?(?:\s|$))/.source),
 					inside: {
 						'text': {
-							pattern: withModifyRegex(/(^"<MOD>*)[^"]+(?=")/.source),
+							pattern: withModifier(/(^"<MOD>*)[^"]+(?=")/.source),
 							lookbehind: true
 						},
 						'modifier': {
-							pattern: withModifyRegex(/(^")<MOD>+/.source),
+							pattern: withModifier(/(^")<MOD>+/.source),
 							lookbehind: true,
 							inside: modifierTokens
 						},
@@ -182,15 +189,15 @@
 				// !image.jpg!
 				// !image.jpg(Title)!:http://example.com
 				'image': {
-					pattern: withModifyRegex(/!(?:<MOD>|[<>=()])*[^!\s()]+(?:\([^)]+\))?!(?::.+?(?=[^\w/]?(?:\s|$)))?/.source),
+					pattern: withModifier(/!(?:<MOD>|<PAR>|[<>=])*[^!\s()]+(?:\([^)]+\))?!(?::.+?(?=[^\w/]?(?:\s|$)))?/.source),
 					inside: {
 						'source': {
-							pattern: withModifyRegex(/(^!(?:<MOD>|[<>=()])*)[^!\s()]+(?:\([^)]+\))?(?=!)/.source),
+							pattern: withModifier(/(^!(?:<MOD>|<PAR>|[<>=])*)[^!\s()]+(?:\([^)]+\))?(?=!)/.source),
 							lookbehind: true,
 							alias: 'url'
 						},
 						'modifier': {
-							pattern: withModifyRegex(/(^!)(?:<MOD>|[<>=()])+/.source),
+							pattern: withModifier(/(^!)(?:<MOD>|<PAR>|[<>=])+/.source),
 							lookbehind: true,
 							inside: modifierTokens
 						},
