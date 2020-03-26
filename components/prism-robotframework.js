@@ -38,7 +38,7 @@
 		extendecInside['comment'] = comment;
 
 		return {
-			pattern: RegExp(/^ ?\*{3}[ \t]*<name>[ \t]*\*{3}(?:.|[\r\n](?!\*{3}))*/.source.replace(/<name>/g, name), 'im'),
+			pattern: RegExp(/^ ?\*{3}[ \t]*<name>[ \t]*\*{3}(?:.|[\r\n](?!\*{3}))*/.source.replace(/<name>/g, function () { return name; }), 'im'),
 			alias: 'section',
 			inside: extendecInside
 		};

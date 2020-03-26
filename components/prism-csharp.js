@@ -34,7 +34,7 @@
 	 */
 	function nested(pattern, depthLog2) {
 		for (var i = 0; i < depthLog2; i++) {
-			pattern = pattern.replace(/<<self>>/g, '(?:' + pattern + ')');
+			pattern = pattern.replace(/<<self>>/g, function () { return '(?:' + pattern + ')'; });
 		}
 		return pattern.replace(/<<self>>/g, '[^\\s\\S]');
 	}
