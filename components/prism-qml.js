@@ -4,11 +4,11 @@
 	var jsComment = /\/\/.*|\/\*(?:(?!\*\/)[\s\S])*\*\//.source;
 
 	var jsExpr = /(?:[^\\()[\]{}"'/]|<string>|\/(?![*/])|<comment>|\(<expr>*\)|\[<expr>*\]|\{<expr>*\}|\\[\s\S])/
-		.source.replace(/<string>/g, jsString).replace(/<comment>/g, jsComment);
+		.source.replace(/<string>/g, function () { return jsString; }).replace(/<comment>/g, function () { return jsComment; });
 
 	// the pattern will blow up, so only a few iterations
 	for (var i = 0; i < 2; i++) {
-		jsExpr = jsExpr.replace(/<expr>/g, jsExpr);
+		jsExpr = jsExpr.replace(/<expr>/g, function () { return jsExpr; });
 	}
 	jsExpr = jsExpr.replace(/<expr>/g, '[^\\s\\S]');
 
@@ -19,7 +19,7 @@
 			greedy: true
 		},
 		'javascript-function': {
-			pattern: RegExp(/((?:^|;)[ \t]*)function\s+[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*\s*\(<js>*\)\s*\{<js>*\}/.source.replace(/<js>/g, jsExpr), 'm'),
+			pattern: RegExp(/((?:^|;)[ \t]*)function\s+[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*\s*\(<js>*\)\s*\{<js>*\}/.source.replace(/<js>/g, function () { return jsExpr; }), 'm'),
 			lookbehind: true,
 			greedy: true,
 			alias: 'language-javascript',
@@ -44,7 +44,7 @@
 			}
 		],
 		'javascript-expression': {
-			pattern: RegExp(/(:[ \t]*)(?![\s;}[])(?:(?!$|[;}])<js>)+/.source.replace(/<js>/g, jsExpr), 'm'),
+			pattern: RegExp(/(:[ \t]*)(?![\s;}[])(?:(?!$|[;}])<js>)+/.source.replace(/<js>/g, function () { return jsExpr; }), 'm'),
 			lookbehind: true,
 			greedy: true,
 			alias: 'language-javascript',

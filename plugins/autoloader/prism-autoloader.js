@@ -146,6 +146,7 @@
 		"g4": "antlr4",
 		"adoc": "asciidoc",
 		"shell": "bash",
+		"shortcode": "bbcode",
 		"rbnf": "bnf",
 		"conc": "concurnas",
 		"cs": "csharp",

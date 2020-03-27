@@ -18,21 +18,21 @@
 	function createValuePattern(value, flags) {
 		flags = (flags || '').replace(/m/g, '') + 'm'; // add m flag
 		var pattern = /([:\-,[{]\s*(?:\s<<prop>>[ \t]+)?)(?:<<value>>)(?=[ \t]*(?:$|,|]|}|\s*#))/.source
-			.replace(/<<prop>>/g, properties).replace(/<<value>>/g, value);
+			.replace(/<<prop>>/g, function () { return properties; }).replace(/<<value>>/g, function () { return value; });
 		return RegExp(pattern, flags)
 	}
 
 	Prism.languages.yaml = {
 		'scalar': {
 			pattern: RegExp(/([\-:]\s*(?:\s<<prop>>[ \t]+)?[|>])[ \t]*(?:((?:\r?\n|\r)[ \t]+)[^\r\n]+(?:\2[^\r\n]+)*)/.source
-				.replace(/<<prop>>/g, properties)),
+				.replace(/<<prop>>/g, function () { return properties; })),
 			lookbehind: true,
 			alias: 'string'
 		},
 		'comment': /#.*/,
 		'key': {
 			pattern: RegExp(/((?:^|[:\-,[{\r\n?])[ \t]*(?:<<prop>>[ \t]+)?)[^\r\n{[\]},#\s]+?(?=\s*:\s)/.source
-				.replace(/<<prop>>/g, properties)),
+				.replace(/<<prop>>/g, function () { return properties; })),
 			lookbehind: true,
 			alias: 'atrule'
 		},
