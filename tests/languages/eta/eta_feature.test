@@ -1,0 +1,74 @@
+<% var foo = ''
+     , bar = false; %>
+
+<% if (bar) { %>
+  <%= foo + 'It\'s ' + output %>
+<% } %>
+
+<%= 2+4 %>
+
+----------------------------------------------------
+
+[
+	["eta", [
+		["delimiter", "<%"],
+		["language-javascript", [
+			["keyword", "var"],
+			" foo ",
+			["operator", "="],
+			["string", "''"],
+			["punctuation", ","],
+			" bar ",
+			["operator", "="],
+			["boolean", "false"],
+			["punctuation", ";"]
+		]],
+		["delimiter", "%>"]
+	]],
+
+	["eta", [
+		["delimiter", "<%"],
+		["language-javascript", [
+			["keyword", "if"],
+			["punctuation", "("],
+			"bar",
+			["punctuation", ")"],
+			["punctuation", "{"]
+		]],
+		["delimiter", "%>"]
+	]],
+
+	["eta", [
+		["delimiter", "<%="],
+		["language-javascript", [
+			" foo ",
+			["operator", "+"],
+			["string", "'It\\'s '"],
+			["operator", "+"],
+			" output "
+		]],
+		["delimiter", "%>"]
+	]],
+
+	["eta", [
+		["delimiter", "<%"],
+		["language-javascript", [
+			["punctuation", "}"]
+		]],
+		["delimiter", "%>"]
+	]],
+
+	["eta", [
+        ["delimiter", "<%="],
+        ["language-javascript", [
+            ["number", "2"],
+            ["operator", "+"],
+            ["number", "4"]
+        ]],
+        ["delimiter", "%>"]
+    ]]
+]
+
+----------------------------------------------------
+
+Checks for Eta.

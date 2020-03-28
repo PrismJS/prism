@@ -301,6 +301,11 @@
 			"title": "Elm",
 			"owner": "zwilias"
 		},
+		"eta": {
+			"title": "Eta",
+			"require": ["javascript", "markup-templating"],
+			"owner": "eta-dev"
+		},
 		"etlua": {
 			"title": "Embedded Lua templating",
 			"require": ["lua", "markup-templating"],
@@ -430,12 +435,7 @@
 		},
 		"http": {
 			"title": "HTTP",
-			"optional": [
-				"css",
-				"javascript",
-				"json",
-				"markup"
-			],
+			"optional": ["css", "javascript", "json", "markup"],
 			"owner": "danielgtaylor"
 		},
 		"hpkp": {
@@ -484,11 +484,7 @@
 		},
 		"javadoclike": {
 			"title": "JavaDoc-like",
-			"modify": [
-				"java",
-				"javascript",
-				"php"
-			],
+			"modify": ["java", "javascript", "php"],
 			"owner": "RunDevelopment"
 		},
 		"javastacktrace": {
@@ -508,10 +504,7 @@
 			"title": "JSDoc",
 			"require": ["javascript", "javadoclike"],
 			"modify": "javascript",
-			"optional": [
-				"actionscript",
-				"coffeescript"
-			],
+			"optional": ["actionscript", "coffeescript"],
 			"owner": "RunDevelopment"
 		},
 		"js-extras": {
@@ -531,13 +524,7 @@
 			"title": "JS Templates",
 			"require": "javascript",
 			"modify": "javascript",
-			"optional": [
-				"css",
-				"css-extras",
-				"graphql",
-				"markdown",
-				"markup"
-			],
+			"optional": ["css", "css-extras", "graphql", "markdown", "markup"],
 			"owner": "RunDevelopment"
 		},
 		"json": {
@@ -706,10 +693,7 @@
 		"opencl": {
 			"title": "OpenCL",
 			"require": "c",
-			"modify": [
-				"c",
-				"cpp"
-			],
+			"modify": ["c", "cpp"],
 			"owner": "Milania1"
 		},
 		"oz": {
@@ -817,11 +801,7 @@
 		},
 		"pure": {
 			"title": "Pure",
-			"optional": [
-				"c",
-				"cpp",
-				"fortran"
-			],
+			"optional": ["c", "cpp", "fortran"],
 			"owner": "Golmote"
 		},
 		"python": {
@@ -850,11 +830,7 @@
 		"jsx": {
 			"title": "React JSX",
 			"require": ["markup", "javascript"],
-			"optional": [
-				"jsdoc",
-				"js-extras",
-				"js-templates"
-			],
+			"optional": ["jsdoc", "js-extras", "js-templates"],
 			"owner": "vkbansal"
 		},
 		"tsx": {
@@ -1136,10 +1112,7 @@
 		"show-invisibles": {
 			"title": "Show Invisibles",
 			"description": "Show hidden characters such as tabs and line breaks.",
-			"optional": [
-				"autolinker",
-				"data-uri-highlight"
-			]
+			"optional": ["autolinker", "data-uri-highlight"]
 		},
 		"autolinker": {
 			"title": "Autolinker",

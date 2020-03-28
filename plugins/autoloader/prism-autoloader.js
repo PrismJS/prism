@@ -26,6 +26,10 @@
 			"javascript",
 			"markup-templating"
 		],
+		"eta": [
+			"javascript",
+			"markup-templating"
+		],
 		"etlua": [
 			"lua",
 			"markup-templating"
