@@ -26,7 +26,12 @@ Prism.languages.scheme = {
 		lookbehind: true
 	},
 	'number': {
-		pattern: /([\s()])[-+]?(?:\d+\/\d+|\d*\.?\d+(?:\s*[-+]\s*\d*\.?\d+i)?)(?=[\s()]|$)/,
+		// This pattern (apart from the lookarounds) works like this:
+		// <floating point> := \d*\.?\d+(?:[eE][+-]?\d+)?
+		// <complex>        := <floating point>(?:[+-]<floating point>i)?|<floating point>i
+		// <fraction>       := \d+\/\d+
+		// <number>         := [+-]?(?:<fraction>|<complex>)
+		pattern: /([\s()])[-+]?(?:\d+\/\d+|\d*\.?\d+(?:[eE][+-]?\d+)?(?:[+-]\d*\.?\d+(?:[eE][+-]?\d+)?i)?|\d*\.?\d+(?:[eE][+-]?\d+)?i)(?=[\s()]|$)/,
 		lookbehind: true
 	},
 	'boolean': /#[tf]/,
