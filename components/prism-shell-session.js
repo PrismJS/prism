@@ -33,7 +33,7 @@
 			}
 		},
 		'command': {
-			pattern: RegExp(/[$#](?:[^\\\r\n'"<]|\\.|<<str>>)+/.source.replace(/<<str>>/g, strings)),
+			pattern: RegExp(/[$#](?:[^\\\r\n'"<]|\\.|<<str>>)+/.source.replace(/<<str>>/g, function () { return strings; })),
 			greedy: true,
 			inside: {
 				'bash': {

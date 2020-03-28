@@ -1,0 +1,121 @@
+int a;
+Foo b;
+Foo @new_var;
+Foo<Bar> c = null;
+static Foo<(Bar, int)>[,,] d;
+void Foo(Foo a, Bar<Foo> b, Bar[, ] c, Foo<(int, int)> d);
+Bar<Foo> Abc => 0;
+Bar<Foo>.FooBar<IFoo> Abc;
+
+----------------------------------------------------
+
+[
+	["class-name", [
+		["keyword", "int"]
+	]],
+	" a",
+	["punctuation", ";"],
+	["class-name", [
+		"Foo"
+	]],
+	" b",
+	["punctuation", ";"],
+	["class-name", [
+		"Foo"
+	]],
+	" @new_var",
+	["punctuation", ";"],
+	["class-name", [
+		"Foo",
+		["punctuation", "<"],
+		"Bar",
+		["punctuation", ">"]
+	]],
+	" c ",
+	["operator", "="],
+	["keyword", "null"],
+	["punctuation", ";"],
+	["keyword", "static"],
+	["class-name", [
+		"Foo",
+		["punctuation", "<"],
+		["punctuation", "("],
+		"Bar",
+		["punctuation", ","],
+		["keyword", "int"],
+		["punctuation", ")"],
+		["punctuation", ">"],
+		["punctuation", "["],
+		["punctuation", ","],
+		["punctuation", ","],
+		["punctuation", "]"]
+	]],
+	" d",
+	["punctuation", ";"],
+	["return-type", [
+		["keyword", "void"]
+	]],
+	["function", "Foo"],
+	["punctuation", "("],
+	["class-name", [
+		"Foo"
+	]],
+	" a",
+	["punctuation", ","],
+	["class-name", [
+		"Bar",
+		["punctuation", "<"],
+		"Foo",
+		["punctuation", ">"]
+	]],
+	" b",
+	["punctuation", ","],
+	["class-name", [
+		"Bar",
+		["punctuation", "["],
+		["punctuation", ","],
+		["punctuation", "]"]
+	]],
+	" c",
+	["punctuation", ","],
+	["class-name", [
+		"Foo",
+		["punctuation", "<"],
+		["punctuation", "("],
+		["keyword", "int"],
+		["punctuation", ","],
+		["keyword", "int"],
+		["punctuation", ")"],
+		["punctuation", ">"]
+	]],
+	" d",
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["return-type", [
+		"Bar",
+		["punctuation", "<"],
+		"Foo",
+		["punctuation", ">"]
+	]],
+	" Abc ",
+	["operator", "=>"],
+	["number", "0"],
+	["punctuation", ";"],
+	["class-name", [
+		"Bar",
+		["punctuation", "<"],
+		"Foo",
+		["punctuation", ">"],
+		["punctuation", "."],
+		"FooBar",
+		["punctuation", "<"],
+		"IFoo",
+		["punctuation", ">"]
+	]],
+	" Abc",
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for class names in variables and parameters.

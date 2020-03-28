@@ -161,6 +161,10 @@
 		},
 		"bbcode": {
 			"title": "BBcode",
+			"alias": "shortcode",
+			"aliasTitles": {
+				"shortcode": "Shortcode"
+			},
 			"owner": "RunDevelopment"
 		},
 		"bison": {
