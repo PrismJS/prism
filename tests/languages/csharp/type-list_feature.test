@@ -1,6 +1,8 @@
 class Foo<T> : Bar<IList<Bar>, T>, IBar<Bar, T>, IFoo
 	where T : class, IBar<IFoo>, IFoo<Bar> {}
 
+public class Foo : IBar<int> {}
+
 public delegate ErrorCode GetInfoMethod<H, A, I>(H handle, A value, I paramName,
 	Size_t paramValueSize, IntPtr paramValue, out Size_t paramValueSizeRet)
 	where H : unmanaged, IInfoHandle<A, I> where A : unmanaged where I : unmanaged, Enum;
@@ -59,6 +61,23 @@ public delegate ErrorCode GetInfoMethod<H, A, I>(H handle, A value, I paramName,
 			"IFoo",
 			["punctuation", "<"],
 			"Bar",
+			["punctuation", ">"]
+		]]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "public"],
+	["keyword", "class"],
+	["class-name", [
+		"Foo"
+	]],
+	["punctuation", ":"],
+	["type-list", [
+		["class-name", [
+			"IBar",
+			["punctuation", "<"],
+			["keyword", "int"],
 			["punctuation", ">"]
 		]]
 	]],
