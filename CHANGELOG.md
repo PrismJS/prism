@@ -23,6 +23,7 @@
 * __C__
     * Improvemed `comment` pattern ([#2229](https://github.com/PrismJS/prism/issues/2229)) [`fa630726`](https://github.com/PrismJS/prism/commit/fa630726)
 * __C#__
+    * Fixed keywords in type lists blocking type names ([#2277](https://github.com/PrismJS/prism/issues/2277)) [`947a55bd`](https://github.com/PrismJS/prism/commit/947a55bd)
     * C# improvements ([#1444](https://github.com/PrismJS/prism/issues/1444)) [`42b15463`](https://github.com/PrismJS/prism/commit/42b15463)
 * __C++__
     * Added C++20 keywords ([#2236](https://github.com/PrismJS/prism/issues/2236)) [`462ad57e`](https://github.com/PrismJS/prism/commit/462ad57e)
