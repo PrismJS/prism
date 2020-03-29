@@ -44,6 +44,7 @@ readonly struct Foo<T> where T : unmanaged {}
 	]],
 	["punctuation", "{"],
 	["punctuation", "}"],
+
 	["keyword", "delegate"],
 	["return-type", [
 		["keyword", "void"]
@@ -76,6 +77,7 @@ readonly struct Foo<T> where T : unmanaged {}
 		]]
 	]],
 	["punctuation", ";"],
+
 	["keyword", "class"],
 	["class-name", [
 		"Foo",
@@ -88,14 +90,15 @@ readonly struct Foo<T> where T : unmanaged {}
 	["punctuation", ":"],
 	["type-list", [
 		["class-name", [
-			"IFoo"
-		]],
-		"<",
-		["keyword", "int"],
-		">"
+			"IFoo",
+			["punctuation", "<"],
+			["keyword", "int"],
+			["punctuation", ">"]
+		]]
 	]],
 	["punctuation", "{"],
 	["punctuation", "}"],
+
 	["keyword", "readonly"],
 	["keyword", "struct"],
 	["class-name", [
