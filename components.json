@@ -291,7 +291,8 @@
 		"ejs": {
 			"title": "EJS",
 			"require": ["javascript", "markup-templating"],
-			"owner": "RunDevelopment"
+			"owner": "RunDevelopment",
+			"alias": "eta"
 		},
 		"elixir": {
 			"title": "Elixir",
