@@ -292,7 +292,10 @@
 			"title": "EJS",
 			"require": ["javascript", "markup-templating"],
 			"owner": "RunDevelopment",
-			"alias": "eta"
+			"alias": "eta",
+			"aliasTitles": {
+				"eta": "Eta"
+			}
 		},
 		"elixir": {
 			"title": "Elixir",
