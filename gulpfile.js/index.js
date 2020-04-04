@@ -88,6 +88,7 @@ function watchComponentsAndPlugins() {
 
 async function languagePlugins() {
 	const data = await componentsPromise;
+	/** @type {Record<string, string | null>} */
 	const languagesMap = {};
 	const dependenciesMap = {};
 	const aliasMap = {};
@@ -112,8 +113,12 @@ async function languagePlugins() {
 	 * @param {string} title
 	 */
 	function addLanguageTitle(key, title) {
-		if (!languagesMap[key] && guessTitle(key) !== title) {
-			languagesMap[key] = title;
+		if (!(key in languagesMap)) {
+			if (guessTitle(key) === title) {
+				languagesMap[key] = null;
+			} else {
+				languagesMap[key] = title;
+			}
 		}
 	}
 
@@ -150,7 +155,16 @@ async function languagePlugins() {
 		return JSON.stringify(json, null, '\t').replace(/\n/g, '\n\t');
 	}
 
-	const jsonLanguagesMap = formattedStringify(languagesMap);
+	/** @type {Record<string, string>} */
+	const nonNullLanguageMap = {};
+	for (const id in languagesMap) {
+		const title = languagesMap[id];
+		if (title) {
+			nonNullLanguageMap[id] = title;
+		}
+	}
+
+	const jsonLanguagesMap = formattedStringify(nonNullLanguageMap);
 	const jsonDependenciesMap = formattedStringify(dependenciesMap);
 	const jsonAliasMap = formattedStringify(aliasMap);
 
