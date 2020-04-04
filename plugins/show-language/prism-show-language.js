@@ -57,6 +57,7 @@
 		"dockerfile": "Docker",
 		"ebnf": "Extended Backus–Naur form",
 		"ejs": "EJS",
+		"eta": "EJS",
 		"etlua": "Embedded Lua templating",
 		"erb": "ERB",
 		"excel-formula": "Excel Formula",
