@@ -27,11 +27,21 @@ Prism.languages.scheme = {
 	},
 	'number': {
 		// This pattern (apart from the lookarounds) works like this:
-		// <floating point> := \d*\.?\d+(?:[eE][+-]?\d+)?
-		// <complex>        := <floating point>(?:[+-]<floating point>i)?|<floating point>i
-		// <fraction>       := \d+\/\d+
-		// <number>         := [+-]?(?:<fraction>|<complex>)
-		pattern: /([\s()])[-+]?(?:\d+\/\d+|\d*\.?\d+(?:[eE][+-]?\d+)?(?:[+-]\d*\.?\d+(?:[eE][+-]?\d+)?i)?|\d*\.?\d+(?:[eE][+-]?\d+)?i)(?=[\s()]|$)/,
+		//
+		// Decimal numbers
+		// <dec real>       := \d*\.?\d+(?:[eE][+-]?\d+)?|\d+\/\d+
+		// <dec complex>    := <dec real>(?:[+-]<dec real>i)?|<dec real>i
+		// <dec prefix>     := (?:#d(?:#[ei])?|#[ei](?:#d)?)?
+		// <dec number>     := <dec prefix>[+-]?<complex>
+		//
+		// Binary, octal, and hexadecimal numbers
+		// <b.o.x. real>    := [\da-fA-F]+(?:\/[\da-fA-F]+)?
+		// <b.o.x. complex> := <b.o.x. real>(?:[+-]<b.o.x. real>i)?|<b.o.x. real>i
+		// <b.o.x. prefix>  := #[box](?:#[ei])?|#[ei](?:#[box])?
+		// <b.o.x. number>  := <b.o.x. prefix>[+-]?<b.o.x. complex>
+		//
+		// <number>         := <dec number>|<b.o.x. number>
+		pattern: /([\s()])(?:(?:#d(?:#[ei])?|#[ei](?:#d)?)?[+-]?(?:(?:\d*\.?\d+(?:[eE][+-]?\d+)?|\d+\/\d+)(?:[+-](?:\d*\.?\d+(?:[eE][+-]?\d+)?|\d+\/\d+)i)?|(?:\d*\.?\d+(?:[eE][+-]?\d+)?|\d+\/\d+)i)|(?:#[box](?:#[ei])?|#[ei](?:#[box])?)[+-]?(?:[\da-fA-F]+(?:\/[\da-fA-F]+)?(?:[+-][\da-fA-F]+(?:\/[\da-fA-F]+)?i)?|[\da-fA-F]+(?:\/[\da-fA-F]+)?i))(?=[\s()]|$)/,
 		lookbehind: true
 	},
 	'boolean': /#[tf]/,
