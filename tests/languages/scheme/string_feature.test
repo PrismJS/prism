@@ -4,19 +4,15 @@
 multi
 line
 "
-'turkey
-(define a 'foo)
 
 ----------------------------------------------------
 
 [
 	["string", "\"\""],
 	["string", "\"fo\\\"obar\""],
-	["string", "\"\r\nmulti\r\nline\r\n\""],
-	["string", "'turkey"],
-	["punctuation", "("], ["keyword", "define"], " a ", ["string","'foo"], ["punctuation",")"]
+	["string", "\"\r\nmulti\r\nline\r\n\""]
 ]
 
 ----------------------------------------------------
 
-Checks for strings and symbols.
+Checks for strings.

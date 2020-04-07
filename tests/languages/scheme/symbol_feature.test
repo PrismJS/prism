@@ -1,0 +1,13 @@
+'turkey
+(define a 'foo)
+
+----------------------------------------------------
+
+[
+	["symbol", "'turkey"],
+	["punctuation", "("], ["keyword", "define"], " a ", ["symbol","'foo"], ["punctuation",")"]
+]
+
+----------------------------------------------------
+
+Checks for symbols.
