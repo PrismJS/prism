@@ -287,6 +287,20 @@ not supported */</code></pre>
 </section>
 
 
+<section class="language-scheme">
+
+<h3>The first argument of <code>case-lambda</code> argument lists are highlighted as functions</h3>
+<pre><code>(define plus
+	(case-lambda
+		(() 0)
+		((x) x)
+		((x y) (+ x y))
+		((x y z) (+ (+ x y) z))
+		(args (apply + args))))</code></pre>
+
+</section>
+
+
 <section class="language-swift">
 
 <h3>Nested block comments</h3>
