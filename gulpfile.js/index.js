@@ -30,12 +30,12 @@ const componentsPromise = new Promise((resolve, reject) => {
 
 function inlineRegexSource() {
 	return replace(
-		/\/((?:[^\n\r[\\\/]|\\.|\[(?:[^\n\r\\\]]|\\.)*\])*)\/\.source\b/g,
+		/\/((?:[^\n\r[\\\/]|\\.|\[(?:[^\n\r\\\]]|\\.)*\])+)\/\s*\.\s*source\b/g,
 		(m, source) => {
 			// escape backslashes
 			source = source.replace(/\\(.)/g, function (m, g1) {
 				// characters like /\n/ can just be kept as "\n" instead of being escaped to "\\n"
-				if (/[nrt0]/.test(g1)) {
+				if (/[nrt0/]/.test(g1)) {
 					return m;
 				}
 				if ('\\' == g1) {
