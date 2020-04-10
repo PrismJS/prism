@@ -117,6 +117,8 @@
 		"objectpascal": "Object Pascal",
 		"pcaxis": "PC-Axis",
 		"px": "PC-Axis",
+		"peoplecode": "PeopleCode",
+		"pcode": "PeopleCode",
 		"php": "PHP",
 		"phpdoc": "PHPDoc",
 		"php-extras": "PHP Extras",
