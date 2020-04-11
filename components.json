@@ -1086,6 +1086,10 @@
 			"alias": "vb",
 			"owner": "Golmote"
 		},
+		"warpscript": {
+			"title": "WarpScript",
+			"owner": "RunDevelopment"
+		},
 		"wasm": {
 			"title": "WebAssembly",
 			"owner": "Golmote"
