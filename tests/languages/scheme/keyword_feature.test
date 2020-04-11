@@ -22,6 +22,9 @@
 (quasi-quote)
 (quote)
 (syntax-rules)
+(syntax-case)
+(letrec-syntax)
+(let-syntax)
 
 ----------------------------------------------------
 
@@ -49,7 +52,10 @@
 	["punctuation", "("], ["keyword", "set!"], ["punctuation", ")"],
 	["punctuation", "("], ["keyword", "quasi-quote"], ["punctuation", ")"],
 	["punctuation", "("], ["keyword", "quote"], ["punctuation", ")"],
-	["punctuation", "("], ["keyword", "syntax-rules"], ["punctuation", ")"]
+	["punctuation", "("], ["keyword", "syntax-rules"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "syntax-case"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "letrec-syntax"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "let-syntax"], ["punctuation", ")"]
 ]
 
 ----------------------------------------------------
