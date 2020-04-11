@@ -1054,6 +1054,11 @@
 			"title": "T4 templating",
 			"owner": "RunDevelopment"
 		},
+		"unrealscript": {
+			"title": "UnrealScript",
+			"alias": ["uscript", "uc"],
+			"owner": "RunDevelopment"
+		},
 		"vala": {
 			"title": "Vala",
 			"require": "clike",
