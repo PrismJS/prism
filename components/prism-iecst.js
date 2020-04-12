@@ -33,7 +33,7 @@ Prism.languages.iecst = {
     'operator': /\b(:?S?R?=>?|\+|\^|\-|&&?|\*\*?|\/|<=?|>=?|OR|AND|MOD|NOT|XOR|LE|GE|EQ|NE|GE|LT)\b/,
     'punctuation': /[();]/,
     'type': {
-		pattern: /#/i,
+		pattern: /#/,
 		lookbehind: true,
 		alias: 'selector'
 	},
