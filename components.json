@@ -458,6 +458,10 @@
 			"title": "Icon",
 			"owner": "Golmote"
 		},
+		"iecst": {
+			"title": "Language Title",
+			"owner": "Your GitHub name"
+		},
 		"inform7": {
 			"title": "Inform 7",
 			"owner": "Golmote"
