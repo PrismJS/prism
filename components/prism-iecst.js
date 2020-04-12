@@ -31,7 +31,7 @@ Prism.languages.iecst = {
     'number': /\b(?:16#[0-9ABCDEF]*)|\b(?:2#[01_]*)|\b(?:(?:T|D|DT|TOD)#[0-9_mshmd:]*)|\b(?:[A-Z]*\#[0-9.,_]*)|\b0x[\da-f]+\b|(?:\b\d+\.?\d*|\B\.\d+)(?:e[+-]?\d+)?/i,
     'function': /\b\w+(?=\()/,
     'operator': /\b(:?S?R?=>?|\+|\^|\-|&&?|\*\*?|\/|<=?|>=?|OR|AND|MOD|NOT|XOR|LE|GE|EQ|NE|GE|LT)\b/,
-    'punctuation': /[\(\);]/,
+    'punctuation': /[();]/,
     'type': {
 		pattern: /#/i,
 		lookbehind: true,
