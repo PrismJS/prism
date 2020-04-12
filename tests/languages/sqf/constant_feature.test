@@ -1,0 +1,21 @@
+// examples of direct input keycodes
+DIK_0
+DIK_1
+DIK_APPS
+DIK_BACKSLASH
+DIK_CAPITAL
+
+----------------------------------------------------
+
+[
+	["comment", "// examples of direct input keycodes"],
+	["constant", "DIK_0"],
+	["constant", "DIK_1"],
+	["constant", "DIK_APPS"],
+	["constant", "DIK_BACKSLASH"],
+	["constant", "DIK_CAPITAL"]
+]
+
+----------------------------------------------------
+
+Checks for constants.

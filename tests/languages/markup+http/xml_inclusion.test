@@ -7,7 +7,7 @@ Content-type: application/xml
 [
 	["header-name", "Content-type:"],
 	" application/xml",
-	["application/xml", [
+	["application-xml", [
 		["tag", [
 			["tag", [
 				["punctuation", "<"],

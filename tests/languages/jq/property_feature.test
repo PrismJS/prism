@@ -1,0 +1,45 @@
+{ foo: 1, "bar": 2, "foo\("Bar")": 3 }
+
+# not a property
+foo::bar
+
+----------------------------------------------------
+
+[
+	["punctuation", "{"],
+	["property-literal", "foo"],
+	["punctuation", ":"],
+	["number", "1"],
+	["punctuation", ","],
+	["property", [
+		"\"bar\""
+	]],
+	["punctuation", ":"],
+	["number", "2"],
+	["punctuation", ","],
+	["property", [
+		"\"foo",
+		["interpolation", [
+			["punctuation", "\\("],
+			["content", [
+				["string", [
+					"\"Bar\""
+				]]
+			]],
+			["punctuation", ")"]
+		]],
+		"\""
+	]],
+	["punctuation", ":"],
+	["number", "3"],
+	["punctuation", "}"],
+
+	["comment", "# not a property"],
+	"\r\nfoo",
+	["punctuation", "::"],
+	"bar"
+]
+
+----------------------------------------------------
+
+Checks for properties.

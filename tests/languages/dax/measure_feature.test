@@ -1,0 +1,15 @@
+[measure]
+[measure name]
+[こんにちは]
+
+----------------------------------------------------
+
+[
+	["measure", "[measure]"],
+	["measure", "[measure name]"],	
+	["measure", "[こんにちは]"]	
+]
+
+----------------------------------------------------
+
+Checks for measure tokens.

@@ -1,0 +1,31 @@
+{{~#if isActive~}}{{~/if~}}
+{{:slot-name}}
+----------------------------------------------------
+	
+[
+	["handlebars", [
+		["delimiter", "{{"],
+		["punctuation", "~"],
+		["block", "#if"],
+		["variable", "isActive"],
+		["punctuation", "~"],
+		["delimiter", "}}"]
+	]],
+	["handlebars", [
+		["delimiter", "{{"],
+		["punctuation", "~"],
+		["block", "/if"],
+		["punctuation", "~"],
+		["delimiter", "}}"]
+	]],
+	["handlebars", [
+		["delimiter", "{{"],
+		["punctuation", ":"],
+		["variable", "slot-name"],
+		["delimiter", "}}"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for punctuation.

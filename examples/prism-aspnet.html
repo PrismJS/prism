@@ -1,17 +1,17 @@
 <h2>Comments</h2>
-<pre><code><%-- This is a comment --%>
-<%-- This is a
+<pre><code>&lt;%-- This is a comment --%>
+&lt;%-- This is a
 multi-line comment --%></code></pre>
 
 <h2>Page directives</h2>
-<pre><code><%@ Page Title="Products" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"  CodeBehind="ProductList.aspx.cs" Inherits="WingtipToys.ProductList" %>
+<pre><code>&lt;%@ Page Title="Products" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"  CodeBehind="ProductList.aspx.cs" Inherits="WingtipToys.ProductList" %>
 </code></pre>
 
 <h2>Directive tag</h2>
-<pre><code><%: Page.Title %>
-&lt;a href="ProductDetails.aspx?productID=<%#:Item.ProductID%>">
+<pre><code>&lt;%: Page.Title %>
+&lt;a href="ProductDetails.aspx?productID=&lt;%#:Item.ProductID%>">
 &lt;span>
-    <%#:Item.ProductName%>
+	&lt;%#:Item.ProductName%>
 &lt;/span></code></pre>
 
 <h2>Highlighted C# inside scripts</h2>
@@ -19,18 +19,18 @@ multi-line comment --%></code></pre>
 	On this page, check C# <strong>before</strong> checking ASP.NET should make
 	the example below work properly.</p>
 <pre><code>&lt;script runat="server">
-    // The following variables are visible to all procedures
-    // within the script block.
-    String str;
-    int i;
-    int i2;
+	// The following variables are visible to all procedures
+	// within the script block.
+	String str;
+	int i;
+	int i2;
 
-    int DoubleIt(int inpt)
-    {
-        // The following variable is visible only within
-        // the DoubleIt procedure.
-        int factor = 2;
+	int DoubleIt(int inpt)
+	{
+		// The following variable is visible only within
+		// the DoubleIt procedure.
+		int factor = 2;
 
-        return inpt * factor;
-    }
+		return inpt * factor;
+	}
 &lt;/script></code></pre>

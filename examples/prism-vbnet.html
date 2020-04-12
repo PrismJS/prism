@@ -7,7 +7,7 @@ REM foobar
 <pre><code>Public Function findValue(ByVal arr() As Double,
     ByVal searchValue As Double) As Double
     Dim i As Integer = 0
-    While i <= UBound(arr) AndAlso arr(i) <> searchValue
+    While i &lt;= UBound(arr) AndAlso arr(i) &lt;> searchValue
         ' If i is greater than UBound(arr), searchValue is not checked.
         i += 1
     End While

@@ -9,6 +9,9 @@ bar +/
 baz +/
 // This q{is} a comment
 // This /* is a */ comment
+/*
+comment
+*/
 
 ----------------------------------------------------
 
@@ -18,7 +21,8 @@ baz +/
 	["comment", "/+ foo\r\nbar +/"],
 	["comment", "/+ foo\r\n\t/+\r\n\tbar +/\r\nbaz +/"],
 	["comment", "// This q{is} a comment"],
-	["comment", "// This /* is a */ comment"]
+	["comment", "// This /* is a */ comment"],
+	["comment", "/*\r\ncomment\r\n*/"]
 ]
 
 ----------------------------------------------------

@@ -5,7 +5,6 @@
 
 	if (!Prism.plugins.toolbar) {
 		console.warn("Show Languages plugin loaded before Toolbar plugin.");
-
 		return;
 	}
 
@@ -135,6 +134,7 @@
 	}; /*]*/
 
 	Prism.plugins.toolbar.registerButton("show-language", function (env) {
+
 		var pre = env.element.parentNode;
 		if (!pre || !/pre/i.test(pre.nodeName)) {
 			return;

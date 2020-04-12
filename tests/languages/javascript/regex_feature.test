@@ -9,6 +9,9 @@
 / '1' '2' '3' '4' '5' /
 [/foo/]
 
+let a = /regex/m // comment
+let b = condition ? /regex/ : /another one/
+
 ----------------------------------------------------
 
 [
@@ -21,7 +24,21 @@
 	["regex", "/[\\]/]/"], ["punctuation", ";"],
 	["number", "1"], ["operator", "/"], ["number", "4"], ["operator", "+"], ["string", "\"/, not a regex\""], ["punctuation", ";"],
 	["regex", "/ '1' '2' '3' '4' '5' /"],
-	["punctuation", "["], ["regex", "/foo/"], ["punctuation", "]"]
+	["punctuation", "["], ["regex", "/foo/"], ["punctuation", "]"],
+
+	["keyword", "let"],
+	" a ",
+	["operator", "="],
+	["regex", "/regex/m"],
+	["comment", "// comment"],
+	["keyword", "let"],
+	" b ",
+	["operator", "="],
+	" condition ",
+	["operator", "?"],
+	["regex", "/regex/"],
+	["operator", ":"],
+	["regex", "/another one/"]
 ]
 
 ----------------------------------------------------
