@@ -1,15 +1,7 @@
 Prism.languages.iecst = {
 	'comment': [
 		{
-			pattern: /(^|[^\\])\/\*[\s\S]*?(?:\*\/|$)/,
-			lookbehind: true
-		},
-		{
-			pattern: /(^|[^\\])\(\*[\s\S]*?(?:\*\)|$)/,
-			lookbehind: true
-		},
-		{
-			pattern: /(^|[^\\])\{[\s\S]*?(?:\}|$)/,
+			pattern: /(^|[^\\])(?:\/\*[\s\S]*?(?:\*\/|$)|\(\*[\s\S]*?(?:\*\)|$)|\{[\s\S]*?(?:\}|$))/,
 			lookbehind: true
 		},
 		{
