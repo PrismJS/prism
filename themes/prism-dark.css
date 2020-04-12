@@ -4,6 +4,8 @@
  * @author Lea Verou
  */
 
+/* @contrast-background: hsl(30, 20%, 25%) */
+
 code[class*="language-"],
 pre[class*="language-"] {
 	color: white;

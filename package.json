@@ -6,6 +6,7 @@
   "style": "themes/prism.css",
   "scripts": {
     "test:aliases": "mocha tests/aliases-test.js",
+    "test:contrast": "mocha tests/contrast-test.js",
     "test:core": "mocha tests/core/**/*.js",
     "test:dependencies": "mocha tests/dependencies-test.js",
     "test:examples": "mocha tests/examples-test.js",
@@ -13,7 +14,7 @@
     "test:patterns": "mocha tests/pattern-tests.js",
     "test:plugins": "mocha tests/plugins/**/*.js",
     "test:runner": "mocha tests/testrunner-tests.js",
-    "test": "npm run test:runner && npm run test:core && npm run test:dependencies && npm run test:languages && npm run test:plugins && npm run test:aliases && npm run test:patterns && npm run test:examples"
+    "test": "npm run test:runner && npm run test:core && npm run test:dependencies && npm run test:languages && npm run test:plugins && npm run test:aliases && npm run test:patterns && npm run test:examples && npm run test:contrast"
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,8 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
+    "color": "^3.1.2",
+    "css": "^2.2.4",
     "gulp": "^4.0.2",
     "gulp-concat": "^2.3.4",
     "gulp-header": "^2.0.7",
