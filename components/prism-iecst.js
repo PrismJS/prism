@@ -28,7 +28,7 @@ Prism.languages.iecst = {
     },
     'variable': /\b(?:AT|BOOL|BYTE|(?:D|L)?WORD|U?(?:S|D|L)?INT|L?REAL|TIME(?:_OF_DAY)?|TOD|DT|DATE(?:_AND_TIME)?|STRING|ARRAY|ANY|POINTER)\b/,
     'symbol': /%[IQM][XBWDL][\d.]*|%[IQ][\d.]*/,
-    'number': /\b(?:16#[0-9ABCDEF]*)|\b(?:2#[01_]*)|\b(?:(?:T|D|DT|TOD)#[0-9_mshmd:]*)|\b(?:[A-Z]*\#[0-9.,_]*)|\b0x[\da-f]+\b|(?:\b\d+\.?\d*|\B\.\d+)(?:e[+-]?\d+)?/i,
+    'number': /\b(?:16#[\da-f]+|2#[01_]+|0x[\da-f]+)\b|\b(?:T|D|DT|TOD)#[\d_shmd:]*|\b[A-Z]*\#[\d.,_]*|(?:\b\d+\.?\d*|\B\.\d+)(?:e[+-]?\d+)?/i,
     'function': /\b\w+(?=\()/,
     'operator': /\b(:?S?R?=>?|\+|\^|\-|&&?|\*\*?|\/|<=?|>=?|OR|AND|MOD|NOT|XOR|LE|GE|EQ|NE|GE|LT)\b/,
     'punctuation': /[();]/,
