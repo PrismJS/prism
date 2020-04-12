@@ -459,8 +459,8 @@
 			"owner": "Golmote"
 		},
 		"iecst": {
-			"title": "Language Title",
-			"owner": "Your GitHub name"
+			"title": "Structured Text (IEC 61131-3)",
+			"owner": "serhioromano"
 		},
 		"inform7": {
 			"title": "Inform 7",
