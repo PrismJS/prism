@@ -291,7 +291,11 @@
 		"ejs": {
 			"title": "EJS",
 			"require": ["javascript", "markup-templating"],
-			"owner": "RunDevelopment"
+			"owner": "RunDevelopment",
+			"alias": "eta",
+			"aliasTitles": {
+				"eta": "Eta"
+			}
 		},
 		"elixir": {
 			"title": "Elixir",
@@ -453,6 +457,10 @@
 		"icon": {
 			"title": "Icon",
 			"owner": "Golmote"
+		},
+		"iecst": {
+			"title": "Structured Text (IEC 61131-3)",
+			"owner": "serhioromano"
 		},
 		"inform7": {
 			"title": "Inform 7",
@@ -1267,6 +1275,11 @@
 			"description": "Filters the elements the <code>highlightAll</code> and <code>highlightAllUnder</code> methods actually highlight.",
 			"owner": "RunDevelopment",
 			"noCSS": true
+		},
+		"treeview": {
+			"title": "Treeview",
+			"description": "A language with special styles to highlight file system tree structures.",
+			"owner": "Golmote"
 		}
 	}
 }

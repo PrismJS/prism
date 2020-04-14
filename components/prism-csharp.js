@@ -246,6 +246,7 @@
 				'keyword': keywords,
 				'class-name': {
 					pattern: RegExp(typeExpression),
+					greedy: true,
 					inside: typeInside
 				},
 				'punctuation': /,/
