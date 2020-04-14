@@ -93,6 +93,7 @@
 		],
 		"qml": "javascript",
 		"qore": "clike",
+		"racket": "scheme",
 		"jsx": [
 			"markup",
 			"javascript"
@@ -174,6 +175,7 @@
 		"pq": "powerquery",
 		"mscript": "powerquery",
 		"py": "python",
+		"rkt": "racket",
 		"robot": "robotframework",
 		"rb": "ruby",
 		"sln": "solution-file",
