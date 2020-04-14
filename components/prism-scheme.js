@@ -44,7 +44,7 @@ Prism.languages.scheme = {
 		pattern: /([\s()])(?:(?:#d(?:#[ei])?|#[ei](?:#d)?)?[+-]?(?:(?:\d*\.?\d+(?:[eE][+-]?\d+)?|\d+\/\d+)(?:[+-](?:\d*\.?\d+(?:[eE][+-]?\d+)?|\d+\/\d+)i)?|(?:\d*\.?\d+(?:[eE][+-]?\d+)?|\d+\/\d+)i)|(?:#[box](?:#[ei])?|#[ei](?:#[box])?)[+-]?(?:[\da-fA-F]+(?:\/[\da-fA-F]+)?(?:[+-][\da-fA-F]+(?:\/[\da-fA-F]+)?i)?|[\da-fA-F]+(?:\/[\da-fA-F]+)?i))(?=[\s()]|$)/,
 		lookbehind: true
 	},
-	'boolean': /#[tf]/,
+	'boolean': /#[ft](?=[()\s]|$)/,
 	'operator': {
 		pattern: /(\()(?:[-+*%\/]|[<>]=?|=>?)(?=\s|$)/,
 		lookbehind: true
