@@ -374,7 +374,7 @@
 		},
 		"glsl": {
 			"title": "GLSL",
-			"require": "clike",
+			"require": "c",
 			"owner": "Golmote"
 		},
 		"gml": {
