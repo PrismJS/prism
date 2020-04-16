@@ -45,6 +45,7 @@
 		"haml": "ruby",
 		"handlebars": "markup-templating",
 		"haxe": "clike",
+		"hlsl": "c",
 		"java": "clike",
 		"javadoc": [
 			"markup",
