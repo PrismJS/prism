@@ -458,6 +458,10 @@
 			"title": "Icon",
 			"owner": "Golmote"
 		},
+		"iecst": {
+			"title": "Structured Text (IEC 61131-3)",
+			"owner": "serhioromano"
+		},
 		"inform7": {
 			"title": "Inform 7",
 			"owner": "Golmote"

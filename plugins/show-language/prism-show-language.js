@@ -76,6 +76,7 @@
 		"hpkp": "HTTP Public-Key-Pins",
 		"hsts": "HTTP Strict-Transport-Security",
 		"ichigojam": "IchigoJam",
+		"iecst": "Structured Text (IEC 61131-3)",
 		"inform7": "Inform 7",
 		"javadoc": "JavaDoc",
 		"javadoclike": "JavaDoc-like",
