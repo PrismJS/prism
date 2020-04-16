@@ -291,7 +291,11 @@
 		"ejs": {
 			"title": "EJS",
 			"require": ["javascript", "markup-templating"],
-			"owner": "RunDevelopment"
+			"owner": "RunDevelopment",
+			"alias": "eta",
+			"aliasTitles": {
+				"eta": "Eta"
+			}
 		},
 		"elixir": {
 			"title": "Elixir",
@@ -453,6 +457,10 @@
 		"icon": {
 			"title": "Icon",
 			"owner": "Golmote"
+		},
+		"iecst": {
+			"title": "Structured Text (IEC 61131-3)",
+			"owner": "serhioromano"
 		},
 		"inform7": {
 			"title": "Inform 7",
