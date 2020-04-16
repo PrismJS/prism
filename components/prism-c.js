@@ -23,12 +23,12 @@ Prism.languages.insertBefore('c', 'string', {
 		inside: {
 			// highlight the path of the include statement as a string
 			'string': {
-				pattern: /(#\s*include\s*)(?:<.+?>|("|')(?:\\?.)+?\2)/,
+				pattern: /^(#\s*include\s*)(?:<[^>]+>|(["'])(?:\\(?:\r\n|[\s\S])|(?!\2)[^\\\r\n])*\2)/,
 				lookbehind: true
 			},
 			// highlight macro directives as keywords
 			'directive': {
-				pattern: /(#\s*)\b(?:define|defined|elif|else|endif|error|ifdef|ifndef|if|import|include|line|pragma|undef|using)\b/,
+				pattern: /^(#\s*)[a-z]+/,
 				lookbehind: true,
 				alias: 'keyword'
 			}
