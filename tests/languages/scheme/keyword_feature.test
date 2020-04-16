@@ -1,7 +1,9 @@
 (define)
-(define-syntax)
 (define-library)
+(define-macro)
+(define-syntax)
 (define-values)
+(defmacro)
 (case-lambda)
 (lambda)
 (let)
@@ -30,9 +32,11 @@
 
 [
 	["punctuation", "("], ["keyword", "define"], ["punctuation", ")"],
-	["punctuation", "("], ["keyword", "define-syntax"], ["punctuation", ")"],
 	["punctuation", "("], ["keyword", "define-library"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "define-macro"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "define-syntax"], ["punctuation", ")"],
 	["punctuation", "("], ["keyword", "define-values"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "defmacro"], ["punctuation", ")"],
 	["punctuation", "("], ["keyword", "case-lambda"], ["punctuation", ")"],
 	["punctuation", "("], ["keyword", "lambda"], ["punctuation", ")"],
 	["punctuation", "("], ["keyword", "let"], ["punctuation", ")"],
