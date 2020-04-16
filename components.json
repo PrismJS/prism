@@ -161,6 +161,10 @@
 		},
 		"bbcode": {
 			"title": "BBcode",
+			"alias": "shortcode",
+			"aliasTitles": {
+				"shortcode": "Shortcode"
+			},
 			"owner": "RunDevelopment"
 		},
 		"bison": {
@@ -252,6 +256,10 @@
 			"require": "clike",
 			"owner": "Golmote"
 		},
+		"dax": {
+			"title": "DAX",
+			"owner": "peterbud"
+		},
 		"diff": {
 			"title": "Diff",
 			"owner": "uranusjr"
@@ -283,7 +291,11 @@
 		"ejs": {
 			"title": "EJS",
 			"require": ["javascript", "markup-templating"],
-			"owner": "RunDevelopment"
+			"owner": "RunDevelopment",
+			"alias": "eta",
+			"aliasTitles": {
+				"eta": "Eta"
+			}
 		},
 		"elixir": {
 			"title": "Elixir",
@@ -306,6 +318,11 @@
 		"erlang": {
 			"title": "Erlang",
 			"owner": "Golmote"
+		},
+		"excel-formula": {
+			"title": "Excel Formula",
+			"alias": ["xlsx", "xls"],
+			"owner": "RunDevelopment"
 		},
 		"fsharp": {
 			"title": "F#",
@@ -440,6 +457,10 @@
 		"icon": {
 			"title": "Icon",
 			"owner": "Golmote"
+		},
+		"iecst": {
+			"title": "Structured Text (IEC 61131-3)",
+			"owner": "serhioromano"
 		},
 		"inform7": {
 			"title": "Inform 7",
@@ -592,6 +613,10 @@
 		"livescript": {
 			"title": "LiveScript",
 			"owner": "Golmote"
+		},
+		"llvm": {
+			"title": "LLVM IR",
+			"owner": "porglezomp"
 		},
 		"lolcode": {
 			"title": "LOLCODE",
@@ -750,6 +775,11 @@
 			"title": "PL/SQL",
 			"require": "sql",
 			"owner": "Golmote"
+		},
+		"powerquery": {
+			"title": "PowerQuery",
+			"alias": ["pq", "mscript"],
+			"owner": "peterbud"
 		},
 		"powershell": {
 			"title": "PowerShell",
@@ -1245,6 +1275,11 @@
 			"description": "Filters the elements the <code>highlightAll</code> and <code>highlightAllUnder</code> methods actually highlight.",
 			"owner": "RunDevelopment",
 			"noCSS": true
+		},
+		"treeview": {
+			"title": "Treeview",
+			"description": "A language with special styles to highlight file system tree structures.",
+			"owner": "Golmote"
 		}
 	}
 }

@@ -10,18 +10,18 @@
 
 		// here doc
 		// 1 capturing group
-		/<<-?\s*(\w+?)\s*(?:\r?\n|\r)[\s\S]*?(?:\r?\n|\r)\2/.source,
+		/<<-?\s*(\w+?)[ \t]*(?!.)[\s\S]*?[\r\n]\2/.source,
 
 		// here doc quoted
 		// 2 capturing group
-		/<<-?\s*(["'])(\w+)\3\s*(?:\r?\n|\r)[\s\S]*?(?:\r?\n|\r)\4/.source
+		/<<-?\s*(["'])(\w+)\3[ \t]*(?!.)[\s\S]*?[\r\n]\4/.source
 	].join('|');
 
 	Prism.languages['shell-session'] = {
 		'info': {
 			// foo@bar:~/files$ exit
 			// foo@bar$ exit
-			pattern: /^(?:[^\r\n$#*!]+)(?=[$#])/m,
+			pattern: /^[^\r\n$#*!]+(?=[$#])/m,
 			alias: 'punctuation',
 			inside: {
 				'path': {
@@ -33,7 +33,7 @@
 			}
 		},
 		'command': {
-			pattern: RegExp(/[$#](?:[^\r\n'"<]|<<str>>)+/.source.replace(/<<str>>/g, strings)),
+			pattern: RegExp(/[$#](?:[^\\\r\n'"<]|\\.|<<str>>)+/.source.replace(/<<str>>/g, function () { return strings; })),
 			greedy: true,
 			inside: {
 				'bash': {
@@ -48,7 +48,7 @@
 				}
 			}
 		},
-		'output': /.(?:.*(?:\r\n?|\n|.$))*/
+		'output': /.(?:.*(?:[\r\n]|.$))*/
 	};
 
 }(Prism));

@@ -4,25 +4,31 @@ method<int, char>();
 ----------------------------------------------------
 
 [
-	["keyword", "void"],
+	["return-type", [
+		["keyword", "void"]
+	]],
 	["generic-method", [
 		["function", "method"],
-		["punctuation", "<"],
-		["class-name", ["T"]],
-		["punctuation", ","],
-		["class-name", ["U"]],
-		["punctuation", ">"]
+		["generic", [
+			["punctuation", "<"],
+			"T",
+			["punctuation", ","],
+			" U",
+			["punctuation", ">"]
+		]]
 	]],
 	["punctuation", "("],
 	["punctuation", ")"],
 	["punctuation", ";"],
 	["generic-method", [
 		["function", "method"],
-		["punctuation", "<"],
-		["keyword", "int"],
-		["punctuation", ","],
-		["keyword", "char"],
-		["punctuation", ">"]
+		["generic", [
+			["punctuation", "<"],
+			["keyword", "int"],
+			["punctuation", ","],
+			["keyword", "char"],
+			["punctuation", ">"]
+		]]
 	]],
 	["punctuation", "("],
 	["punctuation", ")"],

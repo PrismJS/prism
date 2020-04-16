@@ -26,6 +26,7 @@ clear
 cmp
 column
 comm
+composer
 cp
 cron
 crontab
@@ -260,7 +261,7 @@ zypper
 	"cal"], ["function", "cat"], ["function", "cfdisk"], ["function", "chgrp"], 
 	["function", "chkconfig"], ["function", "chmod"], ["function", "chown"], 
 	["function", "chroot"], ["function", "cksum"], ["function", "clear"], 
-	["function", "cmp"], ["function", "column"], ["function", "comm"], 
+	["function", "cmp"], ["function", "column"], ["function", "comm"], ["function", "composer"], 
 	["function", "cp"], ["function", "cron"], ["function", "crontab"], 
 	["function", "csplit"], ["function", "curl"], ["function", "cut"], 
 	["function", "date"], ["function", "dc"], ["function", "dd"], ["function", 
