@@ -18,7 +18,7 @@
 				inside: {
 					'function': {
 						// Allow for one level of nesting
-						pattern: /(^|[^`])\$\((?:\$\(.*?\)|(?!\$\()[^\r\n)])*\)/,
+						pattern: /(^|[^`])\$\((?:\$\([^\r\n()]*\)|(?!\$\()[^\r\n)])*\)/,
 						lookbehind: true,
 						// Populated at end of file
 						inside: {}
