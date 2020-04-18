@@ -3,7 +3,11 @@
 		return;
 	}
 
-	// The dependencies map is built automatically with gulp
+	/**
+	 * The dependencies map is built automatically with gulp.
+	 *
+	 * @type {Object<string, string | string[]>}
+	 */
 	var lang_dependencies = /*dependencies_placeholder[*/{
 		"javascript": "clike",
 		"actionscript": "javascript",
@@ -200,11 +204,13 @@
 
 	var script = Prism.util.currentScript();
 	if (script) {
-		var autoloaderFile = /\bplugins\/autoloader\/prism-autoloader\.(?:min\.)js$/i;
-		var prismFile = /[\w-]+\.(?:min\.)js$/i;
-		if (script.hasAttribute('data-autoloader-path')) {
+		var autoloaderFile = /\bplugins\/autoloader\/prism-autoloader\.(?:min\.)js(?:\?[^\r\n/]*)?$/i;
+		var prismFile = /(^|\/)[\w-]+\.(?:min\.)js(?:\?[^\r\n/]*)?$/i;
+
+		var autoloaderPath = script.getAttribute('data-autoloader-path');
+		if (autoloaderPath != null) {
 			// data-autoloader-path is set, so just use it
-			languages_path = script.getAttribute('data-autoloader-path').trim().replace(/\/?$/, '/');
+			languages_path = autoloaderPath.trim().replace(/\/?$/, '/');
 		} else {
 			var src = script.src;
 			if (autoloaderFile.test(src)) {
@@ -212,7 +218,7 @@
 				languages_path = src.replace(autoloaderFile, 'components/');
 			} else if (prismFile.test(src)) {
 				// the script is part of a bundle like a custom prism.js from the download page
-				languages_path = src.replace(prismFile, 'components/');
+				languages_path = src.replace(prismFile, '$1components/');
 			}
 		}
 	}
@@ -270,19 +276,15 @@
 		}
 
 		// Look for additional dependencies defined on the <code> or <pre> tags
-		var deps = elt.getAttribute('data-dependencies');
-		var parent = elt.parentElement;
-		if (!deps && parent && parent.tagName.toLowerCase() === 'pre') {
-			deps = parent.getAttribute('data-dependencies');
+		var deps = (elt.getAttribute('data-dependencies') || '').trim();
+		if (!deps) {
+			var parent = elt.parentElement;
+			if (parent && parent.tagName.toLowerCase() === 'pre') {
+				deps = (parent.getAttribute('data-dependencies') || '').trim();
+			}
 		}
 
-		if (deps) {
-			deps = deps.split(/\s*,\s*/g);
-		} else {
-			deps = [];
-		}
-
-		loadLanguages(deps, function () {
+		loadLanguages(deps ? deps.split(/\s*,\s*/g) : [], function () {
 			loadLanguage(lang, function () {
 				Prism.highlightElement(elt);
 			});

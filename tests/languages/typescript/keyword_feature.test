@@ -1,5 +1,6 @@
 abstract
 as
+asserts
 async
 await
 break
@@ -51,8 +52,9 @@ switch
 this
 throw
 try
-type
+type;
 typeof
+undefined
 var
 void
 while
@@ -64,6 +66,7 @@ yield
 [
 	["keyword", "abstract"],
 	["keyword", "as"],
+	["keyword", "asserts"],
 	["keyword", "async"],
 	["keyword", "await"],
 	["keyword", "break"],
@@ -115,8 +118,9 @@ yield
 	["keyword", "this"],
 	["keyword", "throw"],
 	["keyword", "try"],
-	["keyword", "type"],
+	["keyword", "type"], ["punctuation", ";"],
 	["keyword", "typeof"],
+	["keyword", "undefined"],
 	["keyword", "var"],
 	["keyword", "void"],
 	["keyword", "while"],
