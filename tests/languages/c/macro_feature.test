@@ -1,4 +1,5 @@
 # include <stdio.h>
+# include "stdio.h"
 	#define PG_locked 0
 
 #defined
@@ -18,6 +19,15 @@
 
 #somethingunknown
 
+#define FOO /*
+ comment
+*/ 1
+
+#define FOO 1 // trailing comment
+
+#define MAX(a, b) \
+	((a) < (b) ? (b) : (a))
+
 ----------------------------------------------------
 
 [
@@ -25,6 +35,11 @@
 		"# ",
 		["directive", "include"],
 		["string", "<stdio.h>"]
+	]],
+	["macro", [
+		"# ",
+		["directive", "include"],
+		["string", "\"stdio.h\""]
 	]],
 	["macro", [
 		"#",
@@ -90,6 +105,24 @@
 	["macro", [
 		"#",
 		["directive", "somethingunknown"]
+	]],
+	["macro", [
+		"#",
+		["directive", "define"],
+		" FOO ",
+		["comment", "/*\r\n comment\r\n*/"],
+		" 1"
+	]],
+	["macro", [
+		"#",
+		["directive", "define"],
+		" FOO 1 ",
+		["comment", "// trailing comment"]
+	]],
+	["macro", [
+		"#",
+		["directive", "define"],
+		" MAX(a, b) \\\r\n\t((a) < (b) ? (b) : (a))"
 	]]
 ]
 
