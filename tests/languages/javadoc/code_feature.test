@@ -75,7 +75,7 @@
 		["punctuation", ">"]
 	]],
 	["code-section", [
-		["code", [
+		["line", [
 			["code", [
 				["class-name", "Foo"],
 				["punctuation", "."],
@@ -102,7 +102,7 @@
 		["punctuation", ">"]
 	]],
 	["code-section", [
-		["code", [
+		["line", [
 			["code", [
 				["class-name", "Foo"]
 			]]
@@ -132,7 +132,7 @@
 	]],
 	["code-section", [
 		"* ",
-		["code", [
+		["line", [
 			["code", [
 				["keyword", "for"],
 				["punctuation", "("],
@@ -154,7 +154,7 @@
 			]]
 		]],
 		"\r\n *     ",
-		["code", [
+		["line", [
 			["code", [
 				"array",
 				["punctuation", "["],
@@ -166,13 +166,13 @@
 			]]
 		]],
 		"\r\n * ",
-		["code", [
+		["line", [
 			["code", [
 				["punctuation", "}"]
 			]]
 		]],
 		"\r\n * ",
-		["code", [
+		["line", [
 			["code", [
 				["keyword", "return"],
 				" array",
@@ -249,7 +249,7 @@
 	]],
 	["code-section", [
 		"*     ",
-		["code", [
+		["line", [
 			["code", [
 				"dstBegin ",
 				["operator", "+"],
@@ -281,7 +281,7 @@
 	]],
 	["code-section", [
 		"*     ",
-		["code", [
+		["line", [
 			["tag", [
 				["tag", [
 					["punctuation", "<"],
@@ -336,7 +336,7 @@
 			]]
 		]],
 		"\r\n *                         ",
-		["code", [
+		["line", [
 			["code", [
 				["operator", "|"],
 				["punctuation", "("]
