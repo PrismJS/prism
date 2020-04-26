@@ -128,6 +128,12 @@ details[open] > summary {
 		<details>
 			<summary>Source options</summary>
 			<div>
+				<p>
+					All languages are loaded from the following URL:
+					<code class="language-none" id="text-prism-base-url"></code>
+				</p>
+			</div>
+			<div>
 				<button type="button" id="button-reset">Reset</button>
 				<button type="button" id="button-from-url">From URL</button>
 				<button type="button" id="button-from-github-repo">From GitHub repo</button>
@@ -150,16 +156,37 @@ details[open] > summary {
 <script src="scripts/code.js"></script>
 
 <script>
+(function() {
 
 (window.Prism = window.Prism || {}).manual = true;
 
+/**
+ * Adds a trailing `/` to the given path if necessary.
+ *
+ * @param {string | null | undefined} path
+ * @returns {string}
+ */
+function toDir(path) {
+	return path ? path.replace(/\/?$/, '/') : '';
+}
+
+/** The base path of the current document. */
+var basePath = (function () {
+	var a = document.createElement('a');
+	a.href = ".";
+	return toDir(a.href);
+})();
+
+/** The base path from which all languages will be loaded. */
 var PrismBasePath = (function () {
 	var search = location.search;
 	if (!search) {
 		return '';
 	}
-	return new URLSearchParams(search).get('source') || '';
+	return toDir(new URLSearchParams(search).get('source'));
 })();
+
+$('#text-prism-base-url').textContent = (PrismBasePath || basePath) + 'components/prism-{id}.js';
 
 function setPrismBasePath(url) {
 	var search = new URLSearchParams(location.search);
@@ -205,6 +232,26 @@ function loadScript(src) {
  */
 function loadPrismScript(relativePath) {
 	return loadScript(PrismBasePath + relativePath);
+}
+
+/**
+ *
+ * @param {string} query
+ * @returns {Promise<any>}
+ */
+function githubApi(query) {
+	return new Promise(function(resolve, reject) {
+		$u.xhr({
+			url: 'https://api.github.com/' + query,
+			callback: function(xhr) {
+				if (xhr.status < 400) {
+					resolve(JSON.parse(xhr.responseText).tree);
+				} else {
+					reject();
+				}
+			}
+		});
+	});
 }
 
 
@@ -381,7 +428,13 @@ function createUI() {
 	// source options
 
 	$('#button-reset').onclick = function () {
-		setPrismBasePath('');
+		if (PrismBasePath) {
+			if (confirm('The URL will be reset. Languages will then be loaded from "' + basePath + '".\n\nContinue?')) {
+				setPrismBasePath('');
+			}
+		} else {
+			alert('The current URL is already unset, so there is nothing to reset.')
+		}
 	};
 	$('#button-from-url').onclick = function () {
 		var desc = 'Sets the URL from which this test page will load all languages.\n\n'
@@ -389,19 +442,28 @@ function createUI() {
 			+ 'The path "<your URL>/prism.js" has to refer to the main Prism file.';
 		var url = prompt(desc, 'https://example.com/path/to/prism-dir/');
 		if (url) {
-			url = url.replace(/\/?$/, '/');
 			setPrismBasePath(url);
 		}
 	};
 	$('#button-from-github-repo').onclick = function () {
 		var desc = 'Load all languages from a GitHub branch.\n\n'
-			+ 'The user name and a branch in the "prism" repo of that user have to be given.';
+			+ 'The user name and a branch in the "prism" repo of the user.';
 		var input = prompt(desc, '<GitHub user name>:<prism branch name>');
 		var m = /^([^:/+?*\s<>]+):([^<>]+)$/.exec(input);
 		if (input && m) {
 			var user = m[1];
 			var branch = m[2];
-			setPrismBasePath('https://ghcdn.rawgit.org/' + user + '/prism/' + branch + '/');
+
+			// https://developer.github.com/v3/repos/branches/#get-branch
+			var hasBranch = githubApi('repos/' + user + '/prism/branches/' + branch);
+
+			hasBranch.then(function () {
+				// the given branch exists
+				setPrismBasePath('https://combinatronics.com/' + user + '/prism/' + branch + '/');
+			}, function () {
+				// not a valid branch, project, or user
+				alert('The branch "' + branch + '" does not exist in the "prism" repo of user ' + user + '.');
+			});
 		} else if (input && !m) {
 			alert('Invalid GitUb user name or branch name.')
 		}
@@ -430,6 +492,8 @@ Promise.all(['components/prism-core.js', 'components.js'].map(loadPrismScript)).
 		inside: section
 	});
 });
+
+}());
 </script>
 
 </body>
