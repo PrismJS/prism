@@ -705,6 +705,7 @@
 		"objectivec": {
 			"title": "Objective-C",
 			"require": "c",
+			"alias": "objc",
 			"owner": "uranusjr"
 		},
 		"ocaml": {

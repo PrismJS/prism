@@ -173,6 +173,7 @@
 		"md": "markdown",
 		"moon": "moonscript",
 		"n4jsd": "n4js",
+		"objc": "objectivec",
 		"objectpascal": "pascal",
 		"px": "pcaxis",
 		"pq": "powerquery",

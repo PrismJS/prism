@@ -112,6 +112,7 @@
 		"nginx": "nginx",
 		"nsis": "NSIS",
 		"objectivec": "Objective-C",
+		"objc": "Objective-C",
 		"ocaml": "OCaml",
 		"opencl": "OpenCL",
 		"parigp": "PARI/GP",
