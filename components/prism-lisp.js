@@ -32,7 +32,7 @@
 		},
 		comment: /;.*/,
 		string: {
-			pattern: /"(?:[^"\\]*|\\.)*"/,
+			pattern: /"(?:[^"\\]|\\.)*"/,
 			greedy: true,
 			inside: {
 				argument: /[-A-Z]+(?=[.,\s])/,
@@ -130,7 +130,7 @@
 		},
 		punctuation: [
 			// open paren, brackets, and close paren
-			/(['`,]?\(|[)\[\]])/,
+			/(?:['`,]?\(|[)\[\]])/,
 			// cons
 			{
 				pattern: /(\s)\.(?=\s)/,

@@ -148,7 +148,7 @@ Prism.hooks.add('before-sanity-check', function (env) {
 
 	// Normal mode
 	var pre = env.element.parentNode;
-	var clsReg = /\bno-whitespace-normalization\b/;
+	var clsReg = /(?:^|\s)no-whitespace-normalization(?:\s|$)/;
 	if (!env.code || !pre || pre.nodeName.toLowerCase() !== 'pre' ||
 			clsReg.test(pre.className) || clsReg.test(env.element.className))
 		return;

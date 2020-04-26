@@ -1,0 +1,57 @@
+class
+continue
+do
+else
+elseif
+export
+extends
+for
+from
+if
+import
+in
+local
+nil
+return
+self
+super
+switch
+then
+unless
+using
+when
+while
+with
+
+----------------------------------------------------
+
+[
+	["keyword", "class"],
+	["keyword", "continue"],
+	["keyword", "do"],
+	["keyword", "else"],
+	["keyword", "elseif"],
+	["keyword", "export"],
+	["keyword", "extends"],
+	["keyword", "for"],
+	["keyword", "from"],
+	["keyword", "if"],
+	["keyword", "import"],
+	["keyword", "in"],
+	["keyword", "local"],
+	["keyword", "nil"],
+	["keyword", "return"],
+	["keyword", "self"],
+	["keyword", "super"],
+	["keyword", "switch"],
+	["keyword", "then"],
+	["keyword", "unless"],
+	["keyword", "using"],
+	["keyword", "when"],
+	["keyword", "while"],
+	["keyword", "with"]
+]
+
+----------------------------------------------------
+
+Checks for keywords.

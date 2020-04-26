@@ -9,19 +9,14 @@
 <link rel="stylesheet" href="style.css" />
 <link rel="stylesheet" href="themes/prism.css" data-noprefix />
 <link rel="stylesheet" href="plugins/autolinker/prism-autolinker.css" data-noprefix />
-<script src="prefixfree.min.js"></script>
+<script src="scripts/prefixfree.min.js"></script>
 
 <script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
 <script src="https://www.google-analytics.com/ga.js" async></script>
 </head>
 <body>
 
-<header>
-	<div class="intro" data-src="templates/header-plugins.html" data-type="text/html"></div>
-
-	<h2>Autolinker</h2>
-	<p>Converts URLs and emails in code to clickable links. Parses <a href="https://daringfireball.net/projects/markdown/">Markdown</a> links in comments.</p>
-</header>
+<header data-plugin-header="autolinker"></header>
 
 <section>
 	<h1>How to use</h1>
@@ -44,8 +39,8 @@
 var foo = 5;
 // And a single line comment http://google.com</code></pre>
 
- 	<h2>CSS</h2>
- 	<pre><code class="language-css">@font-face {
+	<h2>CSS</h2>
+	<pre><code class="language-css">@font-face {
 	src: url(http://lea.verou.me/logo.otf);
 	font-family: 'LeaVerou';
 }</code></pre>
@@ -61,9 +56,9 @@ Lea Verou http://lea.verou.me or, with Markdown, [Lea Verou](http://lea.verou.me
 
 <script src="prism.js"></script>
 <script src="plugins/autolinker/prism-autolinker.js"></script>
-<script src="utopia.js"></script>
+<script src="scripts/utopia.js"></script>
 <script src="components.js"></script>
-<script src="code.js"></script>
+<script src="scripts/code.js"></script>
 
 
 </body>

@@ -1,0 +1,48 @@
+interface Foo {}
+type Foo {}
+type Foo implements Bar {}
+enum Foo {}
+scalar Foo
+union Foo
+on Foo {}
+
+----------------------------------------------------
+
+[
+	["keyword", "interface"],
+	["class-name", "Foo"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "type"],
+	["class-name", "Foo"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "type"],
+	["class-name", "Foo"],
+	["keyword", "implements"],
+	["class-name", "Bar"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "enum"],
+	["class-name", "Foo"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "scalar"],
+	["class-name", "Foo"],
+
+	["keyword", "union"],
+	["class-name", "Foo"],
+
+	["keyword", "on"],
+	["class-name", "Foo"],
+	["punctuation", "{"],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for class names.

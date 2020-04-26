@@ -1,0 +1,22 @@
+foo-bar   =  %x20
+<foo-foo> =/ foo-bar
+
+----------------------------------------------------
+
+[
+	["definition", ["foo-bar"]],
+	["operator", "="],
+	["terminal", "%x20"],
+
+	["definition", [
+		["punctuation", "<"],
+		"foo-foo",
+		["punctuation", ">"]
+	]],
+	["operator", "=/"],
+	["rule", ["foo-bar"]]
+]
+
+----------------------------------------------------
+
+Checks for definitions.

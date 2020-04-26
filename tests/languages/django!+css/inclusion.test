@@ -1,0 +1,56 @@
+<style>
+a {
+{% if setColor %}
+	color: {{ bar }};
+{% endif %}
+}
+</style>
+
+----------------------------------------------------
+
+[
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"style"
+		]],
+		["punctuation", ">"]
+	]],
+	["style", [
+		["language-css", [
+			["selector", "a"],
+			["punctuation", "{"],
+			["django", [
+				["delimiter", "{%"],
+				["tag", "if"],
+				["variable", "setColor"],
+				["delimiter", "%}"]
+			]],
+			["property", "color"],
+			["punctuation", ":"],
+			["django", [
+				["delimiter", "{{"],
+				["variable", "bar"],
+				["delimiter", "}}"]
+			]],
+			["punctuation", ";"],
+			["django", [
+				["delimiter", "{%"],
+				["tag", "endif"],
+				["delimiter", "%}"]
+			]],
+			["punctuation", "}"]
+		]]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"style"
+		]],
+		["punctuation", ">"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for Django/Jinja2 code inside <style> elements.

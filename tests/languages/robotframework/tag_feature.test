@@ -1,0 +1,91 @@
+*** Keywords ***
+Wrapper With Customizable Timeout
+	[Arguments]    ${timeout}    @{args}
+	[Documentation]    Same as the above but timeout given as an argument.
+	[Timeout]    NONE
+
+With Teardown
+	Do Something
+	[Teardown]    Log    keyword teardown
+
+Return Three Values
+	[Return]    foo    bar    zap
+
+Settings tags using separate setting
+	[Tags]    my    fine    tags
+	No Operation
+
+----------------------------------------------------
+
+[
+	["keywords", [
+		["section-header", "*** Keywords ***"],
+		["keyword-name", [
+			"Wrapper With Customizable Timeout"
+		]],
+		["tag", [
+			["punctuation", "["],
+			"Arguments",
+			["punctuation", "]"]
+		]],
+		["variable", [
+			["punctuation", "${"],
+			"timeout",
+			["punctuation", "}"]
+		]],
+		["variable", [
+			["punctuation", "@{"],
+			"args",
+			["punctuation", "}"]
+		]],
+		["tag", [
+			["punctuation", "["],
+			"Documentation",
+			["punctuation", "]"]
+		]],
+		["documentation", "Same as the above but timeout given as an argument."],
+		["tag", [
+			["punctuation", "["],
+			"Timeout",
+			["punctuation", "]"]
+		]],
+		"    NONE\r\n\r\n",
+		["keyword-name", [
+			"With Teardown"
+		]],
+		["property", [
+			"Do Something"
+		]],
+		["tag", [
+			["punctuation", "["],
+			"Teardown",
+			["punctuation", "]"]
+		]],
+		"    Log    keyword teardown\r\n\r\n",
+		["keyword-name", [
+			"Return Three Values"
+		]],
+		["tag", [
+			["punctuation", "["],
+			"Return",
+			["punctuation", "]"]
+		]],
+		"    foo    bar    zap\r\n\r\n",
+		["keyword-name", [
+			"Settings tags using separate setting"
+		]],
+		["tag", [
+			["punctuation", "["],
+			"Tags",
+			["punctuation", "]"]
+		]],
+		"    my    fine    tags\r\n\t",
+		["property", [
+			"No Operation"
+		]]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for tags.

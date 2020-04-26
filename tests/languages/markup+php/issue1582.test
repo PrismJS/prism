@@ -1,0 +1,23 @@
+<?php
+
+	echo '<?xml version="1.0" encoding="UTF-8"?><tracker />';
+	echo PHP_EOL;
+
+----------------------------------------------------
+
+[
+	["php", [
+		["delimiter", "<?php"],
+		["keyword", "echo"],
+		["single-quoted-string", "'<?xml version=\"1.0\" encoding=\"UTF-8\"?><tracker />'"],
+		["punctuation", ";"],
+		["keyword", "echo"],
+		["constant", "PHP_EOL"],
+		["punctuation", ";"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for PHP closing tags '?>' inside of strings.
+See #1582 for details.

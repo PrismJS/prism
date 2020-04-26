@@ -1,0 +1,89 @@
+Int8Array
+Int16Array
+Int32Array
+Uint8Array
+Uint16Array
+Uint32Array
+Uint8ClampedArray
+Float32Array
+Float64Array
+Array
+ArrayBuffer
+BigInt
+Boolean
+DataView
+Date
+Error
+Function
+Intl
+JSON
+Math
+Number
+Object
+Promise
+Proxy
+Reflect
+RegExp
+String
+Symbol
+Set
+Map
+WeakSet
+WeakMap
+WebAssembly
+
+InternalError
+RangeError
+ReferenceError
+SyntaxError
+TypeError
+URIError
+
+----------------------------------------------------
+
+[
+	["known-class-name", "Int8Array"],
+	["known-class-name", "Int16Array"],
+	["known-class-name", "Int32Array"],
+	["known-class-name", "Uint8Array"],
+	["known-class-name", "Uint16Array"],
+	["known-class-name", "Uint32Array"],
+	["known-class-name", "Uint8ClampedArray"],
+	["known-class-name", "Float32Array"],
+	["known-class-name", "Float64Array"],
+	["known-class-name", "Array"],
+	["known-class-name", "ArrayBuffer"],
+	["known-class-name", "BigInt"],
+	["known-class-name", "Boolean"],
+	["known-class-name", "DataView"],
+	["known-class-name", "Date"],
+	["known-class-name", "Error"],
+	["known-class-name", "Function"],
+	["known-class-name", "Intl"],
+	["known-class-name", "JSON"],
+	["known-class-name", "Math"],
+	["known-class-name", "Number"],
+	["known-class-name", "Object"],
+	["known-class-name", "Promise"],
+	["known-class-name", "Proxy"],
+	["known-class-name", "Reflect"],
+	["known-class-name", "RegExp"],
+	["known-class-name", "String"],
+	["known-class-name", "Symbol"],
+	["known-class-name", "Set"],
+	["known-class-name", "Map"],
+	["known-class-name", "WeakSet"],
+	["known-class-name", "WeakMap"],
+	["known-class-name", "WebAssembly"],
+
+	["known-class-name", "InternalError"],
+	["known-class-name", "RangeError"],
+	["known-class-name", "ReferenceError"],
+	["known-class-name", "SyntaxError"],
+	["known-class-name", "TypeError"],
+	["known-class-name", "URIError"]
+]
+
+----------------------------------------------------
+
+Checks for known class names.

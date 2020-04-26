@@ -23,9 +23,10 @@ Prism.hooks.add('before-highlight', function (env) {
 		return;
 	}
 
-	if (env.element.querySelector('.command-line-prompt')) { // Abort if prompt already exists.
-		commandLine.complete = true;
-		return;
+	// The element might be highlighted multiple times, so we just remove the previous prompt
+	var existingPrompt = env.element.querySelector('.command-line-prompt');
+	if (existingPrompt) {
+		existingPrompt.remove();
 	}
 
 	var codeLines = env.code.split('\n');
@@ -79,7 +80,7 @@ Prism.hooks.add('before-insert', function (env) {
 
 	// Reinsert the output lines into the highlighted code. -- cwells
 	var codeLines = env.highlightedCode.split('\n');
-	for (var i = 0; i < commandLine.outputLines.length; i++) {
+	for (var i = 0, l = (commandLine.outputLines || []).length; i < l; i++) {
 		if (commandLine.outputLines.hasOwnProperty(i)) {
 			codeLines[i] = commandLine.outputLines[i];
 		}
@@ -107,7 +108,7 @@ Prism.hooks.add('complete', function (env) {
 	};
 
 	// Create the "rows" that will become the command-line prompts. -- cwells
-	var promptLines = new Array(commandLine.numberOfLines + 1);
+	var promptLines = new Array((commandLine.numberOfLines || 0) + 1);
 	var promptText = getAttribute('data-prompt', '');
 	if (promptText !== '') {
 		promptLines = promptLines.join('<span data-prompt="' + promptText + '"></span>');
@@ -123,7 +124,7 @@ Prism.hooks.add('complete', function (env) {
 	prompt.innerHTML = promptLines;
 
 	// Remove the prompt from the output lines. -- cwells
-	for (var i = 0; i < commandLine.outputLines.length; i++) {
+	for (var i = 0, l = (commandLine.outputLines || []).length; i < l; i++) {
 		if (commandLine.outputLines.hasOwnProperty(i)) {
 			var node = prompt.children[i];
 			node.removeAttribute('data-user');

@@ -1,11 +1,44 @@
-data else format if
-input proc run then
+after analysis and array barchart barwidth begingraph by
+cas cbarline cfill class classlev close column compute computed contains data=
+define document do do over dol drop dul end entryTitle else endcomp eval
+evaluate exec execute fill fillattrs filename group groupby headline headskip
+histogram if infile keep keylabel keyword label layout legendlabel length
+libname merge midpoints name noobs nowd ods or out output overlay plot ranexp
+rannor rbreak retain set session sessref statgraph sum summarize table temp then
+then do title to var where xaxisopts yaxisopts y2axisopts
 
 ----------------------------------------------------
 
 [
-	["keyword", "data"], ["keyword", "else"], ["keyword", "format"], ["keyword", "if"],
-	["keyword", "input"], ["keyword", "proc run"], ["keyword", "then"]
+	["keyword", "after"], ["keyword", "analysis"],
+	["keyword", "and"], ["keyword", "array"], ["keyword", "barchart"],
+	["keyword", "barwidth"], ["keyword", "begingraph"], ["keyword", "by"],
+	["keyword", "cas"], ["keyword", "cbarline"], ["keyword", "cfill"],
+	["keyword", "class"], ["keyword", "classlev"],
+	["keyword", "close"], ["keyword", "column"], ["keyword", "compute"],
+	["keyword", "computed"], ["keyword", "contains"], ["keyword", "data"],
+	["operator", "="], ["keyword", "define"],	["keyword", "document"],
+	["keyword", "do"], ["keyword", "do over"], ["keyword", "dol"],
+	["keyword", "drop"], ["keyword", "dul"], ["keyword", "end"],
+	["keyword", "entryTitle"], ["keyword", "else"], ["keyword", "endcomp"],
+	["keyword", "eval"], ["keyword", "evaluate"], ["keyword", "exec"],
+	["keyword", "execute"], ["keyword", "fill"], ["keyword", "fillattrs"],
+	["keyword", "filename"], ["keyword", "group"], ["keyword", "groupby"],
+	["keyword", "headline"], ["keyword", "headskip"], ["keyword", "histogram"],
+	["keyword", "if"],	["keyword", "infile"], ["keyword", "keep"],
+	["keyword", "keylabel"], ["keyword", "keyword"], ["keyword", "label"],
+	["keyword", "layout"], ["keyword", "legendlabel"], ["keyword", "length"],
+	["keyword", "libname"], ["keyword", "merge"], ["keyword", "midpoints"],
+	["keyword", "name"], ["keyword", "noobs"], ["keyword", "nowd"],
+	["keyword", "ods"], ["keyword", "or"], ["keyword", "out"],
+	["keyword", "output"], ["keyword", "overlay"], ["keyword", "plot"],
+	["keyword", "ranexp"], ["keyword", "rannor"], ["keyword", "rbreak"],
+	["keyword", "retain"], ["keyword", "set"], ["keyword", "session"],
+	["keyword", "sessref"], ["keyword", "statgraph"], ["keyword", "sum"],
+	["keyword", "summarize"], ["keyword", "table"], ["keyword", "temp"],
+	["keyword", "then"], ["keyword", "then do"], ["keyword", "title"],
+	["keyword", "to"],	["keyword", "var"], ["keyword", "where"],
+	["keyword", "xaxisopts"], ["keyword", "yaxisopts"], ["keyword", "y2axisopts"]
 ]
 
 ----------------------------------------------------

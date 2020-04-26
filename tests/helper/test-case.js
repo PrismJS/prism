@@ -1,9 +1,9 @@
 "use strict";
 
-var fs = require("fs");
-var assert = require("chai").assert;
-var PrismLoader = require("./prism-loader");
-var TokenStreamTransformer = require("./token-stream-transformer");
+const fs = require("fs");
+const { assert } = require("chai");
+const PrismLoader = require("./prism-loader");
+const TokenStreamTransformer = require("./token-stream-transformer");
 
 /**
  * Handles parsing of a test case file.
@@ -32,7 +32,6 @@ var TokenStreamTransformer = require("./token-stream-transformer");
  * the test case will later be marked as failed.
  *
  *
- * @type {{runTestCase: Function, transformCompiledTokenStream: Function, parseTestCaseFile: Function}}
  */
 module.exports = {
 
@@ -50,41 +49,68 @@ module.exports = {
 	 *
 	 * @param {string} languageIdentifier
 	 * @param {string} filePath
+	 * @param {boolean} [pretty=false]
 	 */
-	runTestCase: function (languageIdentifier, filePath) {
-		var testCase = this.parseTestCaseFile(filePath);
-		var usedLanguages = this.parseLanguageNames(languageIdentifier);
+	runTestCase(languageIdentifier, filePath, pretty = false) {
+		const testCase = this.parseTestCaseFile(filePath);
+		const usedLanguages = this.parseLanguageNames(languageIdentifier);
 
 		if (null === testCase) {
 			throw new Error("Test case file has invalid format (or the provided token stream is invalid JSON), please read the docs.");
 		}
 
-		var Prism = PrismLoader.createInstance(usedLanguages.languages);
+		const Prism = PrismLoader.createInstance(usedLanguages.languages);
+
 		// the first language is the main language to highlight
-		var mainLanguageGrammar = Prism.languages[usedLanguages.mainLanguage];
-		var env = {
-			code: testCase.testSource,
-			grammar: mainLanguageGrammar,
-			language: usedLanguages.mainLanguage
+		const simplifiedTokenStream = this.simpleTokenize(Prism, testCase.testSource, usedLanguages.mainLanguage);
+
+		const actual = JSON.stringify(simplifiedTokenStream);
+		const expected = JSON.stringify(testCase.expectedTokenStream);
+
+		if (actual === expected) {
+			// no difference
+			return;
+		}
+
+		// The index of the first difference between the expected token stream and the actual token stream.
+		// The index is in the raw expected token stream JSON of the test case.
+		const diffIndex = translateIndexIgnoreSpaces(testCase.expectedJson, expected, firstDiff(expected, actual));
+		const expectedJsonLines = testCase.expectedJson.substr(0, diffIndex).split(/\r\n?|\n/g);
+		const columnNumber = expectedJsonLines.pop().length + 1;
+		const lineNumber = testCase.expectedLineOffset + expectedJsonLines.length;
+
+		const tokenStreamStr = pretty ? TokenStreamTransformer.prettyprint(simplifiedTokenStream) : actual;
+		const message = "\n\nActual Token Stream:" +
+			"\n-----------------------------------------\n" +
+			tokenStreamStr +
+			"\n-----------------------------------------\n" +
+			"File: " + filePath + ":" + lineNumber + ":" + columnNumber + "\n\n";
+
+		assert.deepEqual(simplifiedTokenStream, testCase.expectedTokenStream, testCase.comment + message);
+	},
+
+	/**
+	 * Returns the simplified token stream of the given code highlighted with `language`.
+	 *
+	 * The `before-tokenize` and `after-tokenize` hooks will also be executed.
+	 *
+	 * @param {any} Prism The Prism instance which will tokenize `code`.
+	 * @param {string} code The code to tokenize.
+	 * @param {string} language The language id.
+	 * @returns {Array<string|Array<string|any[]>>}
+	 */
+	simpleTokenize(Prism, code, language) {
+		const env = {
+			code,
+			grammar: Prism.languages[language],
+			language
 		};
+
 		Prism.hooks.run('before-tokenize', env);
 		env.tokens = Prism.tokenize(env.code, env.grammar);
 		Prism.hooks.run('after-tokenize', env);
-		var compiledTokenStream = env.tokens;
 
-		var simplifiedTokenStream = TokenStreamTransformer.simplify(compiledTokenStream);
-
-		var tzd = JSON.stringify( simplifiedTokenStream ); var exp = JSON.stringify( testCase.expectedTokenStream );
-		var i = 0; var j = 0; var diff = "";
-		while ( j < tzd.length ){ if (exp[i] != tzd[j] || i == exp.length) diff += tzd[j]; else i++; j++; }
-
-		// var message = "\nToken Stream: \n" + JSON.stringify( simplifiedTokenStream, null, " " ) + 
-		var message = "\nToken Stream: \n" + tzd + 
-			"\n-----------------------------------------\n" +
-			"Expected Token Stream: \n" + exp +
-			"\n-----------------------------------------\n" + diff;
-
-		var result = assert.deepEqual(simplifiedTokenStream, testCase.expectedTokenStream, testCase.comment + message);
+		return TokenStreamTransformer.simplify(env.tokens);
 	},
 
 
@@ -98,13 +124,13 @@ module.exports = {
 	 *
 	 * @returns {{languages: string[], mainLanguage: string}}
 	 */
-	parseLanguageNames: function (languageIdentifier) {
-		var languages = languageIdentifier.split("+");
-		var mainLanguage = null;
+	parseLanguageNames(languageIdentifier) {
+		let languages = languageIdentifier.split("+");
+		let mainLanguage = null;
 
 		languages = languages.map(
 			function (language) {
-				var pos = language.indexOf("!");
+				const pos = language.indexOf("!");
 
 				if (-1 < pos) {
 					if (mainLanguage) {
@@ -120,7 +146,7 @@ module.exports = {
 		);
 
 		if (!mainLanguage) {
-			mainLanguage = languages[languages.length-1];
+			mainLanguage = languages[languages.length - 1];
 		}
 
 		return {
@@ -135,15 +161,16 @@ module.exports = {
 	 *
 	 * @private
 	 * @param {string} filePath
-	 * @returns {{testSource: string, expectedTokenStream: Array.<Array.<string>>, comment:string?}|null}
 	 */
-	parseTestCaseFile: function (filePath) {
-		var testCaseSource = fs.readFileSync(filePath, "utf8");
-		var testCaseParts = testCaseSource.split(/^-{10,}\w*$/m);
+	parseTestCaseFile(filePath) {
+		const testCaseSource = fs.readFileSync(filePath, "utf8");
+		const testCaseParts = testCaseSource.split(/^-{10,}\w*$/m);
 
 		try {
-			var testCase = {
+			const testCase = {
 				testSource: testCaseParts[0].trim(),
+				expectedJson: testCaseParts[1],
+				expectedLineOffset: testCaseParts[0].split(/\r\n?|\n/g).length,
 				expectedTokenStream: JSON.parse(testCaseParts[1]),
 				comment: null
 			};
@@ -170,14 +197,14 @@ module.exports = {
 	 * @param {string} languageIdentifier
 	 * @param {object} codes
 	 */
-	runTestsWithHooks: function (languageIdentifier, codes) {
-		var usedLanguages = this.parseLanguageNames(languageIdentifier);
-		var Prism = PrismLoader.createInstance(usedLanguages.languages);
+	runTestsWithHooks(languageIdentifier, codes) {
+		const usedLanguages = this.parseLanguageNames(languageIdentifier);
+		const Prism = PrismLoader.createInstance(usedLanguages.languages);
 		// the first language is the main language to highlight
 
-		for (var code in codes) {
+		for (const code in codes) {
 			if (codes.hasOwnProperty(code)) {
-				var env = {
+				const env = {
 					element: {},
 					language: usedLanguages.mainLanguage,
 					grammar: Prism.languages[usedLanguages.mainLanguage],
@@ -194,3 +221,54 @@ module.exports = {
 		}
 	}
 };
+
+/**
+ * Returns the index at which the given expected string differs from the given actual string.
+ *
+ * This will returns `undefined` if the strings are equal.
+ *
+ * @param {string} expected
+ * @param {string} actual
+ * @returns {number | undefined}
+ */
+function firstDiff(expected, actual) {
+	let i = 0;
+	let j = 0;
+	while (i < expected.length && j < actual.length) {
+		if (expected[i] !== actual[j]) {
+			return i;
+		}
+		i++; j++;
+	}
+
+	if (i == expected.length && j == actual.length) {
+		return undefined;
+	}
+	return i;
+}
+
+/**
+ * Translates an index within a string (`withoutSpaces`) to the index of another string (`spacey`) where the only
+ * difference between the two strings is that the other string can have any number of additional white spaces at any
+ * position.
+ *
+ * In out use case, the `withoutSpaces` string is an unformatted JSON string and the `spacey` string is a formatted JSON
+ * string.
+ *
+ * @param {string} spacey
+ * @param {string} withoutSpaces
+ * @param {number} withoutSpaceIndex
+ * @returns {number | undefined}
+ */
+function translateIndexIgnoreSpaces(spacey, withoutSpaces, withoutSpaceIndex) {
+	let i = 0;
+	let j = 0;
+	while (i < spacey.length && j < withoutSpaces.length) {
+		while (spacey[i] !== withoutSpaces[j]) i++;
+		if (j === withoutSpaceIndex) {
+			return i;
+		}
+		i++; j++;
+	}
+	return undefined;
+}

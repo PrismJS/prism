@@ -1,5 +1,6 @@
 foo()
 foo ()
+foo . call ()
 foo_bar()
 foo_bar ( )
 f42()
@@ -16,6 +17,7 @@ foo({ y: fun() })
 [
 	["function", "foo"], ["punctuation", "("], ["punctuation", ")"],
 	["function", "foo"], ["punctuation", "("], ["punctuation", ")"],
+	["function", "foo"], ["punctuation", "."], ["function", "call"], ["punctuation", "("], ["punctuation", ")"],
 	["function", "foo_bar"], ["punctuation", "("], ["punctuation", ")"],
 	["function", "foo_bar"], ["punctuation", "("], ["punctuation", ")"],
 	["function", "f42"], ["punctuation", "("], ["punctuation", ")"],
@@ -25,7 +27,7 @@ foo({ y: fun() })
 	["function", "Ƞȡ_҇"], ["punctuation", "("], ["punctuation", ")"],
 	["keyword", "if"], ["punctuation", "("], "notAFunction", ["punctuation", ")"],
 	["function", "foo"], ["punctuation", "("], ["punctuation", "{"], " x ", ["punctuation", "}"], ["punctuation", ")"],
-	["function", "foo"], ["punctuation", "("], ["punctuation", "{"], " y", ["punctuation", ":"], ["function", "fun"], ["punctuation", "("], ["punctuation", ")"], ["punctuation", "}"], ["punctuation", ")"]
+	["function", "foo"], ["punctuation", "("], ["punctuation", "{"], " y", ["operator", ":"], ["function", "fun"], ["punctuation", "("], ["punctuation", ")"], ["punctuation", "}"], ["punctuation", ")"]
 ]
 
 ----------------------------------------------------

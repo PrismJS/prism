@@ -1,0 +1,82 @@
+Foo {
+	function onClicked(mouse) { foo(mouse) }
+
+	function calculateMyHeight() {
+		return Math.max(otherItem.height, thirdItem.height);
+		var foo = "//";
+		let bar = (1 / 1);
+		if (true) {} else {}
+	}
+}
+
+----------------------------------------------------
+
+[
+	["class-name", "Foo"],
+	["punctuation", "{"],
+	["javascript-function", [
+		["keyword", "function"],
+		["function", "onClicked"],
+		["punctuation", "("],
+		["parameter", [
+			"mouse"
+		]],
+		["punctuation", ")"],
+		["punctuation", "{"],
+		["function", "foo"],
+		["punctuation", "("],
+		"mouse",
+		["punctuation", ")"],
+		["punctuation", "}"]
+	]],
+	["javascript-function", [
+		["keyword", "function"],
+		["function", "calculateMyHeight"],
+		["punctuation", "("],
+		["punctuation", ")"],
+		["punctuation", "{"],
+		["keyword", "return"],
+		" Math",
+		["punctuation", "."],
+		["function", "max"],
+		["punctuation", "("],
+		"otherItem",
+		["punctuation", "."],
+		"height",
+		["punctuation", ","],
+		" thirdItem",
+		["punctuation", "."],
+		"height",
+		["punctuation", ")"],
+		["punctuation", ";"],
+		["keyword", "var"],
+		" foo ",
+		["operator", "="],
+		["string", "\"//\""],
+		["punctuation", ";"],
+		["keyword", "let"],
+		" bar ",
+		["operator", "="],
+		["punctuation", "("],
+		["number", "1"],
+		["operator", "/"],
+		["number", "1"],
+		["punctuation", ")"],
+		["punctuation", ";"],
+		["keyword", "if"],
+		["punctuation", "("],
+		["boolean", "true"],
+		["punctuation", ")"],
+		["punctuation", "{"],
+		["punctuation", "}"],
+		["keyword", "else"],
+		["punctuation", "{"],
+		["punctuation", "}"],
+		["punctuation", "}"]
+	]],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for functions.

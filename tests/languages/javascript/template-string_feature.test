@@ -3,20 +3,29 @@
 bar`
 `40+2=${40+2}`
 `${foo()}`
+`\${foo}${bar}`
 "foo `a` `b` `c` `d` bar"
 "test // test" `template`
+
+console.log(`This is ${it.with({ type: false })}!`)
+`${ {foo:'bar'}.foo }`
 
 ----------------------------------------------------
 
 [
 	["template-string", [
-		["string", "`foo bar`"]
+		["template-punctuation", "`"],
+		["string", "foo bar"],
+		["template-punctuation", "`"]
 	]],
 	["template-string", [
-		["string", "`foo\r\nbar`"]
+		["template-punctuation", "`"],
+		["string", "foo\r\nbar"],
+		["template-punctuation", "`"]
 	]],
 	["template-string", [
-		["string", "`40+2="],
+		["template-punctuation", "`"],
+		["string", "40+2="],
 		["interpolation", [
 			["interpolation-punctuation", "${"],
 			["number", "40"],
@@ -24,24 +33,76 @@ bar`
 			["number", "2"],
 			["interpolation-punctuation", "}"]
 		]],
-		["string", "`"]
+		["template-punctuation", "`"]
 	]],
 	["template-string", [
-        ["string", "`"],
-        ["interpolation", [
-            ["interpolation-punctuation", "${"],
-            ["function", "foo"],
-            ["punctuation", "("],
-            ["punctuation", ")"],
-            ["interpolation-punctuation", "}"]
-        ]],
-        ["string", "`"]
-    ]],
-    ["string", "\"foo `a` `b` `c` `d` bar\""],
-    ["string", "\"test // test\""],
-    ["template-string", [
-        ["string", "`template`"]
-    ]]
+		["template-punctuation", "`"],
+		["interpolation", [
+			["interpolation-punctuation", "${"],
+			["function", "foo"],
+			["punctuation", "("],
+			["punctuation", ")"],
+			["interpolation-punctuation", "}"]
+		]],
+		["template-punctuation", "`"]
+	]],
+	["template-string", [
+		["template-punctuation", "`"],
+		["string", "\\${foo}"],
+		["interpolation", [
+			["interpolation-punctuation", "${"],
+			"bar",
+			["interpolation-punctuation", "}"]
+		]],
+		["template-punctuation", "`"]
+	]],
+	["string", "\"foo `a` `b` `c` `d` bar\""],
+	["string", "\"test // test\""],
+	["template-string", [
+		["template-punctuation", "`"],
+		["string", "template"],
+		["template-punctuation", "`"]
+	]],
+	"\r\n\r\nconsole",
+	["punctuation", "."],
+	["function", "log"],
+	["punctuation", "("],
+	["template-string", [
+		["template-punctuation", "`"],
+		["string", "This is "],
+		["interpolation", [
+			["interpolation-punctuation", "${"],
+			"it",
+			["punctuation", "."],
+			["function", "with"],
+			["punctuation", "("],
+			["punctuation", "{"],
+			" type",
+			["operator", ":"],
+			["boolean", "false"],
+			["punctuation", "}"],
+			["punctuation", ")"],
+			["interpolation-punctuation", "}"]
+		]],
+		["string", "!"],
+		["template-punctuation", "`"]
+	]],
+	["punctuation", ")"],
+	["template-string", [
+		["template-punctuation", "`"],
+		["interpolation", [
+			["interpolation-punctuation", "${"],
+			["punctuation", "{"],
+			"foo",
+			["operator", ":"],
+			["string", "'bar'"],
+			["punctuation", "}"],
+			["punctuation", "."],
+			"foo ",
+			["interpolation-punctuation", "}"]
+		]],
+		["template-punctuation", "`"]
+	]]
 ]
 
 ----------------------------------------------------

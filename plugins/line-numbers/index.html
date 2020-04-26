@@ -9,37 +9,33 @@
 <link rel="stylesheet" href="style.css" />
 <link rel="stylesheet" href="themes/prism.css" data-noprefix />
 <link rel="stylesheet" href="plugins/line-numbers/prism-line-numbers.css" data-noprefix />
-<script src="prefixfree.min.js"></script>
+<script src="scripts/prefixfree.min.js"></script>
 
 <script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
 <script src="https://www.google-analytics.com/ga.js" async></script>
 </head>
 <body>
 
-<header>
-  <div class="intro" data-src="templates/header-plugins.html" data-type="text/html"></div>
-
-  <h2>Line Numbers</h2>
-  <p>Line number at the beginning of code lines.</p>
-</header>
+<header data-plugin-header="line-numbers"></header>
 
 <section class="language-markup">
   <h1>How to use</h1>
 
   <p>Obviously, this is supposed to work only for code blocks (<code>&lt;pre>&lt;code></code>) and not for inline code.</p>
-  <p>Add the <strong>line-numbers</strong> class to your desired <code>&lt;pre></code>, and the line-numbers plugin will take care of the rest.</p>
+  <p>Add the <code>line-numbers</code> class to your desired <code>&lt;pre></code> or any of its ancestors, and the line-numbers plugin will take care of the rest. To give all code blocks line numbers, add the <code>line-numbers</code> class to the <code>&lt;body></code> of the page.</p>
   <p>Optional: You can specify the <code>data-start</code> (Number) attribute on the <code>&lt;pre></code> element. It will shift the line counter.</p>
   <p>Optional: To support multiline line numbers using soft wrap, apply the CSS <code>white-space: pre-line;</code> or <code>white-space: pre-wrap;</code> to your desired <code>&lt;pre></code>.</p>
 </section>
 
-<section>
+<section class="line-numbers">
   <h1>Examples</h1>
 
   <h2>JavaScript</h2>
   <pre class="line-numbers" data-src="plugins/line-numbers/prism-line-numbers.js"></pre>
 
   <h2>CSS</h2>
-  <pre class="line-numbers" data-src="plugins/line-numbers/prism-line-numbers.css"></pre>
+  <p>Please note that this <code class="language-markup">&lt;pre></code> does not have the <code>line-numbers</code> class but its parent does.</p>
+  <pre data-src="plugins/line-numbers/prism-line-numbers.css"></pre>
 
   <h2>HTML</h2>
   <p>Please note the <code>data-start="-5"</code> in the code below.</p>
@@ -61,9 +57,9 @@ line numbers</code></pre>
 
 <script src="prism.js"></script>
 <script src="plugins/line-numbers/prism-line-numbers.js"></script>
-<script src="utopia.js"></script>
+<script src="scripts/utopia.js"></script>
 <script src="components.js"></script>
-<script src="code.js"></script>
+<script src="scripts/code.js"></script>
 
 
 </body>

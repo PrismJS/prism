@@ -1,17 +1,21 @@
 language: node_js
 node_js:
-- '6'
-- '8'
 - '10'
+- '12'
 - 'node'
 # Build all branches
 branches:
   only:
   - gh-pages
   - /.*/
+before_install:
+- npm i -g npm@latest
+install:
+- npm ci
 before_script:
 - npm install -g gulp
 - gulp
+- gulp premerge
 script: npm test
 deploy:
   provider: npm

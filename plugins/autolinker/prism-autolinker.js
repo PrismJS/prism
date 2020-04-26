@@ -7,7 +7,7 @@ if (
 	return;
 }
 
-var url = /\b([a-z]{3,7}:\/\/|tel:)[\w\-+%~/.:=&]+(?:\?[\w\-+%~/.:#=?&!$'()*,;]*)?(?:#[\w\-+%~/.:#=?&!$'()*,;]*)?/,
+var url = /\b([a-z]{3,7}:\/\/|tel:)[\w\-+%~/.:=&@]+(?:\?[\w\-+%~/.:=?&!$'()*,;@]*)?(?:#[\w\-+%~/.:#=?&!$'()*,;@]*)?/,
     email = /\b\S+@[\w.]+[a-z]{2}/,
     linkMd = /\[([^\]]+)]\(([^)]+)\)/,
 
@@ -21,7 +21,7 @@ Prism.plugins.autolinker = {
 			return;
 		}
 		Prism.languages.DFS(grammar, function (key, def, type) {
-			if (candidates.indexOf(type) > -1 && Prism.util.type(def) !== 'Array') {
+			if (candidates.indexOf(type) > -1 && !Array.isArray(def)) {
 				if (!def.pattern) {
 					def = this[key] = {
 						pattern: def

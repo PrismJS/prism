@@ -1,0 +1,51 @@
+foo.bar = function() {};
+foo.bar = async () => {};
+this.bar = () => {};
+
+----------------------------------------------------
+
+[
+	"foo",
+	["punctuation", "."],
+	["method-variable", [
+		"bar"
+	]],
+	["operator", "="],
+	["keyword", "function"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	"\nfoo",
+	["punctuation", "."],
+	["method-variable", [
+		"bar"
+	]],
+	["operator", "="],
+	["keyword", "async"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["arrow", "=>"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["keyword", "this"],
+	["punctuation", "."],
+	["method-variable", [
+		"bar"
+	]],
+	["operator", "="],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["arrow", "=>"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for method variables.
