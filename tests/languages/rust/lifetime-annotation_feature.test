@@ -1,3 +1,4 @@
+'static
 'foo
 'a
 <'a>
@@ -5,6 +6,7 @@
 ----------------------------------------------------
 
 [
+	["lifetime-annotation", "'static"],
 	["lifetime-annotation", "'foo"],
 	["lifetime-annotation", "'a"],
 	["operator", "<"], ["lifetime-annotation", "'a"], ["operator", ">"]
