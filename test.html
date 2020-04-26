@@ -136,7 +136,7 @@ details[open] > summary {
 			<div>
 				<button type="button" id="button-reset">Reset</button>
 				<button type="button" id="button-from-url">From URL</button>
-				<button type="button" id="button-from-github-repo">From GitHub repo</button>
+				<button type="button" id="button-from-github">From GitHub</button>
 			</div>
 		</details>
 		<p id="language">
@@ -445,7 +445,7 @@ function createUI() {
 			setPrismBasePath(url);
 		}
 	};
-	$('#button-from-github-repo').onclick = function () {
+	$('#button-from-github').onclick = function () {
 		var desc = 'Load all languages from a GitHub branch.\n\n'
 			+ 'The user name and a branch in the "prism" repo of the user.';
 		var input = prompt(desc, '<GitHub user name>:<prism branch name>');
