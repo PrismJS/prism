@@ -1,0 +1,38 @@
++ - * / **
+> >= < <= = != <>
+| @
+
+and or not
+AND OR NOT
+
+----------------------------------------------------
+
+[
+	["operator", "+"],
+	["operator", "-"],
+	["operator", "*"],
+	["operator", "/"],
+	["operator", "**"],
+
+	["operator", ">"],
+	["operator", ">="],
+	["operator", "<"],
+	["operator", "<="],
+	["operator", "="],
+	["operator", "!="],
+	["operator", "<>"],
+
+	["operator", "|"],
+	["operator", "@"],
+
+	["operator-keyword", "and"],
+	["operator-keyword", "or"],
+	["operator-keyword", "not"],
+	["operator-keyword", "AND"],
+	["operator-keyword", "OR"],
+	["operator-keyword", "NOT"]
+]
+
+----------------------------------------------------
+
+Checks for operators.

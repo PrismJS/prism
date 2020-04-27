@@ -738,7 +738,7 @@ Prism.languages.markup = {
 	'comment': /<!--[\s\S]*?-->/,
 	'prolog': /<\?[\s\S]+?\?>/,
 	'doctype': {
-		pattern: /<!DOCTYPE(?:[^>"'[\]]|"[^"]*"|'[^']*')+(?:\[(?:(?!<!--)[^"'\]]|"[^"]*"|'[^']*'|<!--[\s\S]*?-->)*\]\s*)?>/i,
+		pattern: /<!DOCTYPE(?:[^>"'[\]]|"[^"]*"|'[^']*')+(?:\[(?:[^<"'\]]|"[^"]*"|'[^']*'|<(?!!--)|<!--(?:[^-]|-(?!->))*-->)*\]\s*)?>/i,
 		greedy: true
 	},
 	'cdata': /<!\[CDATA\[[\s\S]*?]]>/i,
@@ -823,7 +823,7 @@ Object.defineProperty(Prism.languages.markup.tag, 'addInlined', {
 
 		var def = {};
 		def[tagName] = {
-			pattern: RegExp(/(<__[\s\S]*?>)(?:<!\[CDATA\[[\s\S]*?\]\]>\s*|[\s\S])*?(?=<\/__>)/.source.replace(/__/g, function () { return tagName; }), 'i'),
+			pattern: RegExp(/(<__[\s\S]*?>)(?:<!\[CDATA\[(?:[^\]]|\](?!\]>))*\]\]>|(?!<!\[CDATA\[)[\s\S])*?(?=<\/__>)/.source.replace(/__/g, function () { return tagName; }), 'i'),
 			lookbehind: true,
 			greedy: true,
 			inside: inside
@@ -976,7 +976,7 @@ Prism.languages.javascript['class-name'][0].pattern = /(\b(?:class|interface|ext
 
 Prism.languages.insertBefore('javascript', 'keyword', {
 	'regex': {
-		pattern: /((?:^|[^$\w\xA0-\uFFFF."'\])\s])\s*)\/(?:\[(?:[^\]\\\r\n]|\\.)*]|\\.|[^/\\\[\r\n])+\/[gimyus]{0,6}(?=(?:\s|\/\*[\s\S]*?\*\/)*(?:$|[\r\n,.;:})\]]|\/\/))/,
+		pattern: /((?:^|[^$\w\xA0-\uFFFF."'\])\s])\s*)\/(?:\[(?:[^\]\\\r\n]|\\.)*]|\\.|[^/\\\[\r\n])+\/[gimyus]{0,6}(?=(?:\s|\/\*(?:[^*]|\*(?!\/))*\*\/)*(?:$|[\r\n,.;:})\]]|\/\/))/,
 		lookbehind: true,
 		greedy: true
 	},

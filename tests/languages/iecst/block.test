@@ -1,0 +1,23 @@
+csq := ABS(c_pi * (r * 2));
+
+----------------------------------------------------
+
+[
+	"csq ",
+	["operator", ":="],
+	["function", "ABS"],
+	["punctuation", "("],
+	"c_pi ",
+	["operator", "*"],
+	["punctuation", "("],
+	"r ",
+	["operator", "*"],
+	["number", "2"],
+	["punctuation", ")"],
+	["punctuation", ")"],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks expression.
