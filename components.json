@@ -91,6 +91,10 @@
 			"title": "Ada",
 			"owner": "Lucretia"
 		},
+		"al": {
+			"title": "AL",
+			"owner": "RunDevelopment"
+		},
 		"antlr4": {
 			"title": "ANTLR4",
 			"alias": "g4",

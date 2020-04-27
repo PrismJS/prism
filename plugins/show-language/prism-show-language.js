@@ -21,6 +21,7 @@
 		"js": "JavaScript",
 		"abap": "ABAP",
 		"abnf": "Augmented Backus–Naur form",
+		"al": "AL",
 		"antlr4": "ANTLR4",
 		"g4": "ANTLR4",
 		"apacheconf": "Apache Configuration",
