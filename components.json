@@ -92,6 +92,10 @@
 			"title": "Ada",
 			"owner": "Lucretia"
 		},
+		"al": {
+			"title": "AL",
+			"owner": "RunDevelopment"
+		},
 		"antlr4": {
 			"title": "ANTLR4",
 			"alias": "g4",
@@ -459,6 +463,10 @@
 			"title": "Icon",
 			"owner": "Golmote"
 		},
+		"iecst": {
+			"title": "Structured Text (IEC 61131-3)",
+			"owner": "serhioromano"
+		},
 		"inform7": {
 			"title": "Inform 7",
 			"owner": "Golmote"
@@ -702,6 +710,7 @@
 		"objectivec": {
 			"title": "Objective-C",
 			"require": "c",
+			"alias": "objc",
 			"owner": "uranusjr"
 		},
 		"ocaml": {
@@ -745,6 +754,11 @@
 		"pcaxis": {
 			"title": "PC-Axis",
 			"alias": "px",
+			"owner": "RunDevelopment"
+		},
+		"peoplecode": {
+			"title": "PeopleCode",
+			"alias": "pcode",
 			"owner": "RunDevelopment"
 		},
 		"perl": {
@@ -1055,6 +1069,11 @@
 			"title": "T4 templating",
 			"owner": "RunDevelopment"
 		},
+		"unrealscript": {
+			"title": "UnrealScript",
+			"alias": ["uscript", "uc"],
+			"owner": "RunDevelopment"
+		},
 		"vala": {
 			"title": "Vala",
 			"require": "clike",
@@ -1086,6 +1105,10 @@
 			"title": "Visual Basic",
 			"alias": "vb",
 			"owner": "Golmote"
+		},
+		"warpscript": {
+			"title": "WarpScript",
+			"owner": "RunDevelopment"
 		},
 		"wasm": {
 			"title": "WebAssembly",
