@@ -866,6 +866,12 @@
 			"title": "R",
 			"owner": "Golmote"
 		},
+		"racket": {
+			"title": "Racket",
+			"require": "scheme",
+			"alias": "rkt",
+			"owner": "RunDevelopment"
+		},
 		"jsx": {
 			"title": "React JSX",
 			"require": ["markup", "javascript"],

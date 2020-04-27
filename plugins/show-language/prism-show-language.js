@@ -136,6 +136,7 @@
 		"py": "Python",
 		"q": "Q (kdb+ database)",
 		"qml": "QML",
+		"rkt": "Racket",
 		"jsx": "React JSX",
 		"tsx": "React TSX",
 		"renpy": "Ren'py",
