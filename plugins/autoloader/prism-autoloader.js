@@ -176,6 +176,7 @@
 		"objc": "objectivec",
 		"objectpascal": "pascal",
 		"px": "pcaxis",
+		"pcode": "peoplecode",
 		"pq": "powerquery",
 		"mscript": "powerquery",
 		"py": "python",

@@ -755,6 +755,11 @@
 			"alias": "px",
 			"owner": "RunDevelopment"
 		},
+		"peoplecode": {
+			"title": "PeopleCode",
+			"alias": "pcode",
+			"owner": "RunDevelopment"
+		},
 		"perl": {
 			"title": "Perl",
 			"owner": "Golmote"
