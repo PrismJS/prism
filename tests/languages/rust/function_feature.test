@@ -2,6 +2,8 @@ foo (
 foobar(
 foo_bar_42(
 
+foo_generic::<T, Option<T>>()
+
 fn apply<F>(f: F) where F: FnOnce() {
 	f();
 }
@@ -15,6 +17,18 @@ fn apply<F>(f: F) where F: FnOnce() {
 	["punctuation", "("],
 	["function", "foo_bar_42"],
 	["punctuation", "("],
+
+	["function", "foo_generic"],
+	["punctuation", "::"],
+	["operator", "<"],
+	"T",
+	["punctuation", ","],
+	" Option",
+	["operator", "<"],
+	"T",
+	["operator", ">>"],
+	["punctuation", "("],
+	["punctuation", ")"],
 
 	["keyword", "fn"],
 	["function-definition", "apply"],

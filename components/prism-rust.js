@@ -81,7 +81,7 @@
 		// functions can technically start with an upper-case letter, but this will introduce a lot of false positives
 		// and Rust's naming conventions recommend snake_case anyway.
 		// https://doc.rust-lang.org/1.0.0/style/style/naming/README.html
-		'function': /\b[a-z_]\w*(?=\s*\()/,
+		'function': /\b[a-z_]\w*(?=\s*(?:::\s*<(?:[^<>]|<(?:[^<>]|<[^<>]*>)*>)*>\s*)?\()/,
 		'macro': {
 			pattern: /\w+!/,
 			alias: 'property'
