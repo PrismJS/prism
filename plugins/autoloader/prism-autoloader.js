@@ -187,6 +187,8 @@
 		"trig": "turtle",
 		"ts": "typescript",
 		"t4": "t4-cs",
+		"uscript": "unrealscript",
+		"uc": "unrealscript",
 		"vb": "visual-basic",
 		"xeoracube": "xeora",
 		"yml": "yaml"
