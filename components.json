@@ -48,12 +48,13 @@
 		},
 		"markup": {
 			"title": "Markup",
-			"alias": ["html", "xml", "svg", "mathml"],
+			"alias": ["html", "xml", "svg", "mathml", "ssml"],
 			"aliasTitles": {
 				"html": "HTML",
 				"xml": "XML",
 				"svg": "SVG",
-				"mathml": "MathML"
+				"mathml": "MathML",
+				"ssml": "SSML"
 			},
 			"option": "default"
 		},

@@ -16,6 +16,7 @@
 		"xml": "XML",
 		"svg": "SVG",
 		"mathml": "MathML",
+		"ssml": "SSML",
 		"css": "CSS",
 		"clike": "C-like",
 		"js": "JavaScript",

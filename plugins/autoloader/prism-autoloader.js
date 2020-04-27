@@ -146,6 +146,7 @@
 		"xml": "markup",
 		"svg": "markup",
 		"mathml": "markup",
+		"ssml": "markup",
 		"js": "javascript",
 		"g4": "antlr4",
 		"adoc": "asciidoc",
