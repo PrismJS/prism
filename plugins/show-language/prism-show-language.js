@@ -74,6 +74,7 @@
 		"graphql": "GraphQL",
 		"hs": "Haskell",
 		"hcl": "HCL",
+		"hlsl": "HLSL",
 		"http": "HTTP",
 		"hpkp": "HTTP Public-Key-Pins",
 		"hsts": "HTTP Strict-Transport-Security",

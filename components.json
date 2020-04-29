@@ -437,6 +437,11 @@
 			"title": "HCL",
 			"owner": "outsideris"
 		},
+		"hlsl": {
+			"title": "HLSL",
+			"require": "c",
+			"owner": "RunDevelopment"
+		},
 		"http": {
 			"title": "HTTP",
 			"optional": [
