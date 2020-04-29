@@ -1,7 +1,9 @@
+""""""
 """foobar"""
 """fo"o
 #bar
 baz"""
+''''''
 '''foobar'''
 '''fo'o
 #bar
@@ -10,8 +12,10 @@ baz'''
 ----------------------------------------------------
 
 [
+	["triple-quoted-string", "\"\"\"\"\"\""],
 	["triple-quoted-string", "\"\"\"foobar\"\"\""],
 	["triple-quoted-string", "\"\"\"fo\"o\r\n#bar\r\nbaz\"\"\""],
+	["triple-quoted-string", "''''''"],
 	["triple-quoted-string", "'''foobar'''"],
 	["triple-quoted-string", "'''fo'o\r\n#bar\r\nbaz'''"]
 ]
