@@ -11,7 +11,7 @@ enum class FooBar
 	["keyword", "class"], ["class-name", "Foo_bar"],
 	["keyword", "struct"], ["class-name", "foo"],
 	["keyword", "enum"], ["class-name", "bar"],
-	["keyword", "enum class"], ["class-name", "FooBar"]
+	["keyword", "enum"], ["keyword", "class"], ["class-name", "FooBar"]
 ]
 
 ----------------------------------------------------
