@@ -49,6 +49,7 @@
 		"haml": "ruby",
 		"handlebars": "markup-templating",
 		"haxe": "clike",
+		"hlsl": "c",
 		"java": "clike",
 		"javadoc": [
 			"markup",
@@ -97,6 +98,7 @@
 		],
 		"qml": "javascript",
 		"qore": "clike",
+		"racket": "scheme",
 		"jsx": [
 			"markup",
 			"javascript"
@@ -146,6 +148,7 @@
 		"xml": "markup",
 		"svg": "markup",
 		"mathml": "markup",
+		"ssml": "markup",
 		"js": "javascript",
 		"g4": "antlr4",
 		"adoc": "asciidoc",
@@ -173,11 +176,14 @@
 		"md": "markdown",
 		"moon": "moonscript",
 		"n4jsd": "n4js",
+		"objc": "objectivec",
 		"objectpascal": "pascal",
 		"px": "pcaxis",
+		"pcode": "peoplecode",
 		"pq": "powerquery",
 		"mscript": "powerquery",
 		"py": "python",
+		"rkt": "racket",
 		"robot": "robotframework",
 		"rb": "ruby",
 		"sln": "solution-file",
@@ -185,6 +191,8 @@
 		"trig": "turtle",
 		"ts": "typescript",
 		"t4": "t4-cs",
+		"uscript": "unrealscript",
+		"uc": "unrealscript",
 		"vb": "visual-basic",
 		"xeoracube": "xeora",
 		"yml": "yaml"
