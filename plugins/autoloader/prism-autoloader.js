@@ -42,7 +42,7 @@
 		"firestore-security-rules": "clike",
 		"flow": "javascript",
 		"ftl": "markup-templating",
-		"glsl": "clike",
+		"glsl": "c",
 		"gml": "clike",
 		"go": "clike",
 		"groovy": "clike",
