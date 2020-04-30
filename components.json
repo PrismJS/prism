@@ -48,12 +48,13 @@
 		},
 		"markup": {
 			"title": "Markup",
-			"alias": ["html", "xml", "svg", "mathml"],
+			"alias": ["html", "xml", "svg", "mathml", "ssml"],
 			"aliasTitles": {
 				"html": "HTML",
 				"xml": "XML",
 				"svg": "SVG",
-				"mathml": "MathML"
+				"mathml": "MathML",
+				"ssml": "SSML"
 			},
 			"option": "default"
 		},
@@ -90,6 +91,10 @@
 		"ada": {
 			"title": "Ada",
 			"owner": "Lucretia"
+		},
+		"al": {
+			"title": "AL",
+			"owner": "RunDevelopment"
 		},
 		"antlr4": {
 			"title": "ANTLR4",
@@ -374,7 +379,7 @@
 		},
 		"glsl": {
 			"title": "GLSL",
-			"require": "clike",
+			"require": "c",
 			"owner": "Golmote"
 		},
 		"gml": {
@@ -431,6 +436,11 @@
 		"hcl": {
 			"title": "HCL",
 			"owner": "outsideris"
+		},
+		"hlsl": {
+			"title": "HLSL",
+			"require": "c",
+			"owner": "RunDevelopment"
 		},
 		"http": {
 			"title": "HTTP",
@@ -751,6 +761,11 @@
 			"alias": "px",
 			"owner": "RunDevelopment"
 		},
+		"peoplecode": {
+			"title": "PeopleCode",
+			"alias": "pcode",
+			"owner": "RunDevelopment"
+		},
 		"perl": {
 			"title": "Perl",
 			"owner": "Golmote"
@@ -855,6 +870,12 @@
 		"r": {
 			"title": "R",
 			"owner": "Golmote"
+		},
+		"racket": {
+			"title": "Racket",
+			"require": "scheme",
+			"alias": "rkt",
+			"owner": "RunDevelopment"
 		},
 		"jsx": {
 			"title": "React JSX",
@@ -1059,6 +1080,11 @@
 			"title": "T4 templating",
 			"owner": "RunDevelopment"
 		},
+		"unrealscript": {
+			"title": "UnrealScript",
+			"alias": ["uscript", "uc"],
+			"owner": "RunDevelopment"
+		},
 		"vala": {
 			"title": "Vala",
 			"require": "clike",
@@ -1090,6 +1116,10 @@
 			"title": "Visual Basic",
 			"alias": "vb",
 			"owner": "Golmote"
+		},
+		"warpscript": {
+			"title": "WarpScript",
+			"owner": "RunDevelopment"
 		},
 		"wasm": {
 			"title": "WebAssembly",
