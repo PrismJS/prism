@@ -53,5 +53,4 @@
 		'class-name': /\b[a-z_]\w*\b(?!\s*::)/i
 	}, Prism.languages.cpp['base-clause']);
 
-
 }(Prism));
