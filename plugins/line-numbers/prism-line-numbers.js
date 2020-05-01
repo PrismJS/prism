@@ -44,8 +44,8 @@
 
 			codeLines.forEach(function (line, lineNumber) {
 				lineNumberSizer.textContent = line || '\n';
-				var lineSize = lineNumberSizer.getBoundingClientRect().height;
-				lineNumbersWrapper.children[lineNumber].style.height = lineSize + 'px';
+				var lineSize = getComputedStyle(lineNumberSizer).lineHeight;
+				lineNumbersWrapper.children[lineNumber].style.height = lineSize;
 			});
 
 			lineNumberSizer.textContent = '';
