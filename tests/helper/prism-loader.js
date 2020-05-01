@@ -153,6 +153,9 @@ module.exports = {
 	 * @returns {*}
 	 */
 	runFileWithContext(fileSource, context = {}) {
+		// we don't have to pass our console but it's the only way these scripts can talk
+		// not supplying console here means that all references to `console` inside them will refer to a no-op console
+		context.console = console;
 		vm.runInNewContext(fileSource, context);
 		return context;
 	}
