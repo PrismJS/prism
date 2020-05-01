@@ -81,6 +81,20 @@ const config = {
 				'https://raw.githubusercontent.com/git/git/master/mergesort.c',
 				'https://raw.githubusercontent.com/git/git/master/mergesort.h'
 			]
+		},
+		'ruby': {
+			files: [
+				'https://raw.githubusercontent.com/rails/rails/master/actionview/lib/action_view/base.rb',
+				'https://raw.githubusercontent.com/rails/rails/master/actionview/lib/action_view/layouts.rb',
+				'https://raw.githubusercontent.com/rails/rails/master/actionview/lib/action_view/template.rb',
+			]
+		},
+		'rust': {
+			files: [
+				'https://raw.githubusercontent.com/rust-lang/regex/master/src/utf8.rs',
+				'https://raw.githubusercontent.com/rust-lang/regex/master/src/compile.rs',
+				'https://raw.githubusercontent.com/rust-lang/regex/master/src/lib.rs'
+			]
 		}
 	}
 };
