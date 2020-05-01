@@ -54,10 +54,10 @@ const config = {
 		'javascript': {
 			extends: 'json',
 			files: [
-				'../../prism.js',
-				'prism.min.js',
-				'../../scripts/utopia.js',
-				'https://code.jquery.com/jquery-3.4.1.js'
+				'https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/prism.js',
+				'https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/prism.min.js',
+				'https://code.jquery.com/jquery-3.4.1.js',
+				'../../scripts/utopia.js'
 			]
 		},
 		'json': {
