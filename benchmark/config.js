@@ -38,10 +38,10 @@ const config = {
 		{
 			repo: 'https://github.com/PrismJS/prism.git'
 		},
-		{
+		/*{
 			repo: 'https://github.com/RunDevelopment/prism.git',
 			branch: 'core-linked-list'
-		}
+		}*/
 	],
 
 	cases: {
@@ -69,10 +69,19 @@ const config = {
 		'markup': {
 			files: [
 				'../../download.html',
-				'../../index.html'
+				'../../index.html',
+				'https://github.com/PrismJS/prism', // the PrismJS/prism GitHub page
 			]
 		},
-		'markup!+css+javascript': { extends: 'markup' }
+		'markup!+css+javascript': { extends: 'markup' },
+		'c': {
+			files: [
+				'https://raw.githubusercontent.com/git/git/master/remote.h',
+				'https://raw.githubusercontent.com/git/git/master/remote.c',
+				'https://raw.githubusercontent.com/git/git/master/mergesort.c',
+				'https://raw.githubusercontent.com/git/git/master/mergesort.h'
+			]
+		}
 	}
 };
 
