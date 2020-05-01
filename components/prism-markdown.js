@@ -15,7 +15,7 @@
 	 * @returns {RegExp}
 	 */
 	function createInline(pattern, starAlternative) {
-		pattern = pattern.replace(/<inner>/g, inner);
+		pattern = pattern.replace(/<inner>/g, function () { return inner; });
 		if (starAlternative) {
 			pattern = pattern + '|' + pattern.replace(/_/g, '\\*');
 		}
@@ -23,8 +23,8 @@
 	}
 
 
-	var tableCell = /(?:\\.|``.+?``|`[^`\r\n]+`|[^\\|\r\n`])+/.source;
-	var tableRow = /\|?__(?:\|__)+\|?(?:(?:\n|\r\n?)|$)/.source.replace(/__/g, tableCell);
+	var tableCell = /(?:\\.|``(?:[^`\r\n]|`(?!`))+``|`[^`\r\n]+`|[^\\|\r\n`])+/.source;
+	var tableRow = /\|?__(?:\|__)+\|?(?:(?:\n|\r\n?)|$)/.source.replace(/__/g, function () { return tableCell; });
 	var tableLine = /\|?[ \t]*:?-{3,}:?[ \t]*(?:\|[ \t]*:?-{3,}:?[ \t]*)+\|?(?:\n|\r\n?)/.source;
 
 

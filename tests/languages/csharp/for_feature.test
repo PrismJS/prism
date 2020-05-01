@@ -1,0 +1,33 @@
+for (Int32 i = 0; i < count; i++)
+foreach (Foo e in Elements)
+
+----------------------------------------------------
+
+[
+	["keyword", "for"],
+	["punctuation", "("],
+	["class-name", ["Int32"]],
+	" i ",
+	["operator", "="],
+	["number", "0"],
+	["punctuation", ";"],
+	" i ",
+	["operator", "<"],
+	" count",
+	["punctuation", ";"],
+	" i",
+	["operator", "++"],
+	["punctuation", ")"],
+	["keyword", "foreach"],
+	["punctuation", "("],
+	["class-name", ["Foo"]],
+	" e ",
+	["keyword", "in"],
+	" Elements",
+	["punctuation", ")"]
+]
+
+
+----------------------------------------------------
+
+Checks for `for` and `foreach` loops.

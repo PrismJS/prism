@@ -23,9 +23,10 @@ Prism.hooks.add('before-highlight', function (env) {
 		return;
 	}
 
-	if (env.element.querySelector('.command-line-prompt')) { // Abort if prompt already exists.
-		commandLine.complete = true;
-		return;
+	// The element might be highlighted multiple times, so we just remove the previous prompt
+	var existingPrompt = env.element.querySelector('.command-line-prompt');
+	if (existingPrompt) {
+		existingPrompt.remove();
 	}
 
 	var codeLines = env.code.split('\n');

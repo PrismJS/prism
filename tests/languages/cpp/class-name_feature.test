@@ -2,6 +2,7 @@ class Foo
 class Foo_bar
 struct foo
 enum bar
+enum class FooBar
 
 ----------------------------------------------------
 
@@ -9,7 +10,8 @@ enum bar
 	["keyword", "class"], ["class-name", "Foo"],
 	["keyword", "class"], ["class-name", "Foo_bar"],
 	["keyword", "struct"], ["class-name", "foo"],
-	["keyword", "enum"], ["class-name", "bar"]
+	["keyword", "enum"], ["class-name", "bar"],
+	["keyword", "enum"], ["keyword", "class"], ["class-name", "FooBar"]
 ]
 
 ----------------------------------------------------

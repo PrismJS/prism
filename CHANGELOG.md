@@ -1,5 +1,92 @@
 # Prism Changelog
 
+## 1.20.0 (TBD)
+
+### New components
+
+* __Concurnas__ ([#2206](https://github.com/PrismJS/prism/issues/2206)) [`b24f7348`](https://github.com/PrismJS/prism/commit/b24f7348)
+* __DAX__ ([#2248](https://github.com/PrismJS/prism/issues/2248)) [`9227853f`](https://github.com/PrismJS/prism/commit/9227853f)
+* __Excel Formula__ ([#2219](https://github.com/PrismJS/prism/issues/2219)) [`bf4f7bfa`](https://github.com/PrismJS/prism/commit/bf4f7bfa)
+* __Factor__ ([#2203](https://github.com/PrismJS/prism/issues/2203)) [`f941102e`](https://github.com/PrismJS/prism/commit/f941102e)
+* __LLVM IR__ ([#2221](https://github.com/PrismJS/prism/issues/2221)) [`43efde2e`](https://github.com/PrismJS/prism/commit/43efde2e)
+* __PowerQuery__ ([#2250](https://github.com/PrismJS/prism/issues/2250)) [`8119e57b`](https://github.com/PrismJS/prism/commit/8119e57b)
+* __Solution file__ ([#2213](https://github.com/PrismJS/prism/issues/2213)) [`15983d52`](https://github.com/PrismJS/prism/commit/15983d52)
+
+### Updated components
+
+* __Bash__
+    * Added support for escaped quotes ([#2256](https://github.com/PrismJS/prism/issues/2256)) [`328d0e0e`](https://github.com/PrismJS/prism/commit/328d0e0e)
+* __BBcode__
+    * Added "shortcode" alias ([#2273](https://github.com/PrismJS/prism/issues/2273)) [`57eebced`](https://github.com/PrismJS/prism/commit/57eebced)
+* __C/C++/OpenCL C__
+    * Improvements ([#2196](https://github.com/PrismJS/prism/issues/2196)) [`674f4b35`](https://github.com/PrismJS/prism/commit/674f4b35)
+* __C__
+    * Improvemed `comment` pattern ([#2229](https://github.com/PrismJS/prism/issues/2229)) [`fa630726`](https://github.com/PrismJS/prism/commit/fa630726)
+* __C#__
+    * Fixed keywords in type lists blocking type names ([#2277](https://github.com/PrismJS/prism/issues/2277)) [`947a55bd`](https://github.com/PrismJS/prism/commit/947a55bd)
+    * C# improvements ([#1444](https://github.com/PrismJS/prism/issues/1444)) [`42b15463`](https://github.com/PrismJS/prism/commit/42b15463)
+* __C++__
+    * Added C++20 keywords ([#2236](https://github.com/PrismJS/prism/issues/2236)) [`462ad57e`](https://github.com/PrismJS/prism/commit/462ad57e)
+* __CSS__
+    * Fixed `url()` containing "@" ([#2272](https://github.com/PrismJS/prism/issues/2272)) [`504a63ba`](https://github.com/PrismJS/prism/commit/504a63ba)
+* __CSS Extras__
+    * Added support for the selector function ([#2201](https://github.com/PrismJS/prism/issues/2201)) [`2e0eff76`](https://github.com/PrismJS/prism/commit/2e0eff76)
+* __Elixir__
+    * Added support for attributes names ending with `?` ([#2182](https://github.com/PrismJS/prism/issues/2182)) [`5450e24c`](https://github.com/PrismJS/prism/commit/5450e24c)
+* __Java__
+    * Added `record` keyword ([#2185](https://github.com/PrismJS/prism/issues/2185)) [`47910b5c`](https://github.com/PrismJS/prism/commit/47910b5c)
+* __Markdown__
+    * Added support for nested lists ([#2228](https://github.com/PrismJS/prism/issues/2228)) [`73c8a376`](https://github.com/PrismJS/prism/commit/73c8a376)
+* __OpenCL__
+    * Require C ([#2231](https://github.com/PrismJS/prism/issues/2231)) [`26626ded`](https://github.com/PrismJS/prism/commit/26626ded)
+* __PHPDoc__
+    * Fixed exponential backtracking ([#2198](https://github.com/PrismJS/prism/issues/2198)) [`3b42536e`](https://github.com/PrismJS/prism/commit/3b42536e)
+* __Ruby__
+    * Fixed exponential backtracking ([#2225](https://github.com/PrismJS/prism/issues/2225)) [`c5de5aa8`](https://github.com/PrismJS/prism/commit/c5de5aa8)
+* __SAS__
+    * Fixed SAS' "peerDependencies" ([#2230](https://github.com/PrismJS/prism/issues/2230)) [`7d8ff7ea`](https://github.com/PrismJS/prism/commit/7d8ff7ea)
+* __Shell session__
+    * Improvements ([#2208](https://github.com/PrismJS/prism/issues/2208)) [`bd16bd57`](https://github.com/PrismJS/prism/commit/bd16bd57)
+* __Visual Basic__
+    * Added support for comments with line continuations ([#2195](https://github.com/PrismJS/prism/issues/2195)) [`a7d67ca3`](https://github.com/PrismJS/prism/commit/a7d67ca3)
+* __YAML__
+    * Improvements ([#2226](https://github.com/PrismJS/prism/issues/2226)) [`5362ba16`](https://github.com/PrismJS/prism/commit/5362ba16)
+    * Fixed highlighting of anchors and aliases ([#2217](https://github.com/PrismJS/prism/issues/2217)) [`6124c974`](https://github.com/PrismJS/prism/commit/6124c974)
+
+### New plugins
+
+* __Treeview__ ([#2265](https://github.com/PrismJS/prism/issues/2265)) [`be909b18`](https://github.com/PrismJS/prism/commit/be909b18)
+
+### Updated plugins
+
+* __Inline Color__
+    * Support for (semi-)transparent colors and minor improvements ([#2223](https://github.com/PrismJS/prism/issues/2223)) [`8d2c5a3e`](https://github.com/PrismJS/prism/commit/8d2c5a3e)
+* __Keep Markup__
+    * Remove self & document from IIFE arguments ([#2258](https://github.com/PrismJS/prism/issues/2258)) [`3c043338`](https://github.com/PrismJS/prism/commit/3c043338)
+* __Toolbar__
+    * `data-toolbar-order` is now inherited ([#2205](https://github.com/PrismJS/prism/issues/2205)) [`238f1163`](https://github.com/PrismJS/prism/commit/238f1163)
+
+### Other
+
+* Updated all `String.propotype.replace` calls for literal strings [`5d7aab56`](https://github.com/PrismJS/prism/commit/5d7aab56)
+* __Core__
+    * Linked list implementation for `matchGrammar` ([#1909](https://github.com/PrismJS/prism/issues/1909)) [`2d4c94cd`](https://github.com/PrismJS/prism/commit/2d4c94cd)
+    * Faster `Token.stringify` ([#2171](https://github.com/PrismJS/prism/issues/2171)) [`f683972e`](https://github.com/PrismJS/prism/commit/f683972e)
+    * Fixed scope problem in script mode ([#2184](https://github.com/PrismJS/prism/issues/2184)) [`984e5d2e`](https://github.com/PrismJS/prism/commit/984e5d2e)
+* __Infrastructure__
+    * Travis: Updated NodeJS versions ([#2246](https://github.com/PrismJS/prism/issues/2246)) [`e635260b`](https://github.com/PrismJS/prism/commit/e635260b)
+    * gulp: Inline regex source improvement ([#2227](https://github.com/PrismJS/prism/issues/2227)) [`67afc5ad`](https://github.com/PrismJS/prism/commit/67afc5ad)
+    * Tests: Added new pattern check for octal escapes ([#2189](https://github.com/PrismJS/prism/issues/2189)) [`81e1c3dd`](https://github.com/PrismJS/prism/commit/81e1c3dd)
+    * Tests: Fixed optional dependencies in pattern tests ([#2242](https://github.com/PrismJS/prism/issues/2242)) [`1e3070a2`](https://github.com/PrismJS/prism/commit/1e3070a2)
+    * Tests: Added test for zero-width lookbehinds ([#2220](https://github.com/PrismJS/prism/issues/2220)) [`7d03ece4`](https://github.com/PrismJS/prism/commit/7d03ece4)
+    * Added tests for examples ([#2216](https://github.com/PrismJS/prism/issues/2216)) [`1f7a245c`](https://github.com/PrismJS/prism/commit/1f7a245c)
+* __Website__
+    * Removed invalid strings from C# example ([#2266](https://github.com/PrismJS/prism/issues/2266)) [`c917a8ca`](https://github.com/PrismJS/prism/commit/c917a8ca)
+    * Fixed Diff highlight plugin page title ([#2233](https://github.com/PrismJS/prism/issues/2233)) [`a82770f8`](https://github.com/PrismJS/prism/commit/a82770f8)
+    * Added link to `prism-liquibase` Bash language extension. ([#2191](https://github.com/PrismJS/prism/issues/2191)) [`0bf73dc7`](https://github.com/PrismJS/prism/commit/0bf73dc7)
+    * Examples: Updated content header ([#2232](https://github.com/PrismJS/prism/issues/2232)) [`6232878b`](https://github.com/PrismJS/prism/commit/6232878b)
+    * Website: Added Coy bug to the known failures page. ([#2170](https://github.com/PrismJS/prism/issues/2170)) [`e9dab85e`](https://github.com/PrismJS/prism/commit/e9dab85e)
+
 ## 1.19.0 (2020-01-13)
 
 ### New components
