@@ -16,7 +16,9 @@ before_script:
 # Rebuild Prism
 - npx gulp
 # Detect changes
-- git diff HEAD --exit-code || echo && echo "The above files changed because the build is not up to date." && echo "Please rebuild Prism."
+# First, we state all changes and then detect if there is anything stated
+- git add --all && git diff-index --cached HEAD --patch-with-stat --exit-code ||
+  echo && echo "The above files changed because the build is not up to date." && echo "Please rebuild Prism."
 script: npm test
 deploy:
   provider: npm
