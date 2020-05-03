@@ -112,6 +112,14 @@
 			pattern: /(^[\t ]*)(?!-)[\w\-#.]*[\w\-](?:(?:&[^(]+)?\([^)]+\))*\/?:?/m,
 			lookbehind: true,
 			inside: {
+				'attr-id': {
+					pattern: /(^[\t ]*(?!-)[\w\-.]*)#[\w\-]+/,
+					lookbehind: true
+				},
+				'attr-class': {
+					pattern: /(^[\t ]*(?!-)[\w\-#]*)\.[\w\-]+/,
+					lookbehind: true
+				},
 				'attributes': [
 					{
 						pattern: /&[^(]+\([^)]+\)/,
