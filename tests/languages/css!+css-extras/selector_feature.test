@@ -1,9 +1,9 @@
 foo:after {
 foo::first-letter {
 
-foo.bar {
+foo.bar.baz {
 
-foo#bar {
+foo#bar.baz {
 
 #foo > .bar:hover:after {
 
@@ -22,12 +22,14 @@ foo#bar {
 
 	["selector", [
 		"foo",
-		["class", ".bar"]
+		["class", ".bar"],
+		["class", ".baz"]
 	]], ["punctuation", "{"],
 
 	["selector", [
 		"foo",
-		["id", "#bar"]
+		["id", "#bar"],
+		["class", ".baz"]
 	]], ["punctuation", "{"],
 
 	["selector", [
