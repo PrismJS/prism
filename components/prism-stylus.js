@@ -1,5 +1,9 @@
 (function (Prism) {
 	var inside = {
+		'comment': {
+			pattern: /(^|[^\\])(?:\/\*[\s\S]*?\*\/|\/\/.*)/,
+			lookbehind: true
+		},
 		'url': {
 			pattern: /url\((["']?).*?\1\)/i,
 			greedy: true
@@ -88,10 +92,6 @@
 					inside: {
 						'interpolation': inside.interpolation
 					}
-				},
-				'comment': {
-					pattern: /(^|[^\\])(?:\/\*[\s\S]*?\*\/|\/\/.*)/,
-					lookbehind: true
 				},
 				rest: inside
 			}
