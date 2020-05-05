@@ -1,27 +1,46 @@
 ""
 "fo\"o"
+"\xe2\x88"
+
 'x'
 '\''
 '\u2200'
+'\x80'
+'\xe2\x88'
+'∀'
+
 """foo"""
 """fo"o
 bar"""
-'''foo'''
-'''fo'o
-bar'''
+
+# non-standard string
+s"\g<0>1"
+b"DATA\xff\u2200"
+v"0.3-"
+raw"\\ \\\""
 
 ----------------------------------------------------
 
 [
 	["string", "\"\""],
 	["string", "\"fo\\\"o\""],
+	["string", "\"\\xe2\\x88\""],
+
 	["string", "'x'"],
 	["string", "'\\''"],
 	["string", "'\\u2200'"],
+	["string", "'\\x80'"],
+	["string", "'\\xe2\\x88'"],
+	["string", "'∀'"],
+
 	["string", "\"\"\"foo\"\"\""],
 	["string", "\"\"\"fo\"o\r\nbar\"\"\""],
-	["string", "'''foo'''"],
-	["string", "'''fo'o\r\nbar'''"]
+
+	["comment", "# non-standard string"],
+	["string", "s\"\\g<0>1\""],
+	["string", "b\"DATA\\xff\\u2200\""],
+	["string", "v\"0.3-\""],
+	["string", "raw\"\\\\ \\\\\\\"\""]
 ]
 
 ----------------------------------------------------
