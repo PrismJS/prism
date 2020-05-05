@@ -20,7 +20,8 @@ Prism.languages.julia = {
 	'boolean': /\b(?:true|false)\b/,
 	'number': /(?:\b(?=\d)|\B(?=\.))(?:0[box])?(?:[\da-f]+\.?\d*|\.\d+)(?:[efp][+-]?\d+)?j?/i,
 	// https://docs.julialang.org/en/v1/manual/mathematical-operations/
-	'operator': /[-+*^%÷⊻&$\\]=?|\/[\/=]?|!=?=?|\|[=>]?|<(?:<=?|[=:])?|>(?:=|>>?=?)?|==?=?|[~≠≤≥']/,
-	'punctuation': /[{}[\];(),.:]/,
+	// https://docs.julialang.org/en/v1/manual/mathematical-operations/#Operator-Precedence-and-Associativity-1
+	'operator': /&&|\|\||[-+*^%÷⊻&$\\]=?|\/[\/=]?|!=?=?|\|[=>]?|<(?:<=?|[=:|])?|>(?:=|>>?=?)?|==?=?|[~≠≤≥'√∛]/,
+	'punctuation': /::?|[{}[\]();,.?]/,
 	'constant': /\b(?:(?:NaN|Inf)(?:16|32|64)?)\b/
 };
