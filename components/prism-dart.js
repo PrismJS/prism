@@ -11,7 +11,7 @@ Prism.languages.dart = Prism.languages.extend('clike', {
 	],
 	'keyword': [
 		/\b(?:async|sync|yield)\*/,
-		/\b(?:abstract|as|assert|async|await|break|case|catch|class|const|continue|covariant|default|deferred|do|dynamic|else|enum|export|extends|extension|external|factory|false|final|finally|for|Function|get|hide|if|implements|import|in|interface|is|library|mixin|new|null|on|operator|part|rethrow|return|set|show|static|super|switch|sync|this|throw|true|try|typedef|var|void|while|with|yield)\b/
+		/\b(?:abstract|as|assert|await|case|class|const|covariant|default|deferred|dynamic|enum|export|extends|extension|external|factory|final|Function|get|hide|implements|import|interface|is|library|mixin|on|operator|part|rethrow|set|show|static|super|switch|this|typedef|var|void|with|)\b/
 	],
 	'operator': /\bis!|\b(?:as|is)\b|\+\+|--|&&|\|\||<<=?|>>=?|~(?:\/=?)?|[+\-*\/%&^|=!<>]=?|\?/
 });
