@@ -48,7 +48,6 @@ module.exports = {
 
 		getLoader(components, languages, [...context.loaded]).load(id => {
 			if (!languagesCatalog[id]) {
-				// Maybe `components.js` is outdated?
 				throw new Error(`Language '${id}' not found.`);
 			}
 
