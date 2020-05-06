@@ -21,13 +21,13 @@ comment
 [
 	["selector", ["div"]],
 	["property-declaration", [
-		["property", ["width"]], ["number", "40"], "px"
+		["property", ["width"]], ["number", "40"], ["unit", "px"]
 	]],
 	["property-declaration", [
-		["property", ["color"]], ["punctuation", ":"], " red"
+		["property", ["color"]], ["punctuation", ":"], ["color", "red"]
 	]],
 	["property-declaration", [
-		["property", ["background"]], ["punctuation", ":"], " blue", ["punctuation", ";"]
+		["property", ["background"]], ["punctuation", ":"], ["color", "blue"], ["punctuation", ";"]
 	]],
 	["selector", ["div ", ["punctuation", "{"]]],
 	["property-declaration", [
