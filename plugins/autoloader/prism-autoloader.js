@@ -3,7 +3,11 @@
 		return;
 	}
 
-	// The dependencies map is built automatically with gulp
+	/**
+	 * The dependencies map is built automatically with gulp.
+	 *
+	 * @type {Object<string, string | string[]>}
+	 */
 	var lang_dependencies = /*dependencies_placeholder[*/{
 		"javascript": "clike",
 		"actionscript": "javascript",
@@ -26,6 +30,10 @@
 			"javascript",
 			"markup-templating"
 		],
+		"etlua": [
+			"lua",
+			"markup-templating"
+		],
 		"erb": [
 			"ruby",
 			"markup-templating"
@@ -33,13 +41,15 @@
 		"fsharp": "clike",
 		"firestore-security-rules": "clike",
 		"flow": "javascript",
-		"glsl": "clike",
+		"ftl": "markup-templating",
+		"glsl": "c",
 		"gml": "clike",
 		"go": "clike",
 		"groovy": "clike",
 		"haml": "ruby",
 		"handlebars": "markup-templating",
 		"haxe": "clike",
+		"hlsl": "c",
 		"java": "clike",
 		"javadoc": [
 			"markup",
@@ -56,6 +66,11 @@
 		"jsonp": "json",
 		"json5": "json",
 		"kotlin": "clike",
+		"latte": [
+			"clike",
+			"markup-templating",
+			"php"
+		],
 		"less": "css",
 		"lilypond": "scheme",
 		"markdown": "markup",
@@ -63,7 +78,7 @@
 		"n4js": "javascript",
 		"nginx": "clike",
 		"objectivec": "c",
-		"opencl": "cpp",
+		"opencl": "c",
 		"parser": "markup",
 		"php": [
 			"clike",
@@ -81,7 +96,10 @@
 			"markup",
 			"javascript"
 		],
+		"purebasic": "clike",
+		"qml": "javascript",
 		"qore": "clike",
+		"racket": "scheme",
 		"jsx": [
 			"markup",
 			"javascript"
@@ -92,7 +110,6 @@
 		],
 		"reason": "clike",
 		"ruby": "clike",
-		"sas": "sql",
 		"sass": "css",
 		"scss": "css",
 		"scala": "java",
@@ -101,6 +118,7 @@
 		"solidity": "clike",
 		"soy": "markup-templating",
 		"sparql": "turtle",
+		"sqf": "clike",
 		"swift": "clike",
 		"tap": "yaml",
 		"textile": "markup",
@@ -131,16 +149,23 @@
 		"xml": "markup",
 		"svg": "markup",
 		"mathml": "markup",
+		"ssml": "markup",
 		"js": "javascript",
+		"g4": "antlr4",
 		"adoc": "asciidoc",
 		"shell": "bash",
+		"shortcode": "bbcode",
 		"rbnf": "bnf",
+		"conc": "concurnas",
 		"cs": "csharp",
 		"dotnet": "csharp",
 		"coffee": "coffeescript",
 		"jinja2": "django",
 		"dns-zone": "dns-zone-file",
 		"dockerfile": "docker",
+		"eta": "ejs",
+		"xlsx": "excel-formula",
+		"xls": "excel-formula",
 		"gamemakerlanguage": "gml",
 		"hs": "haskell",
 		"tex": "latex",
@@ -150,16 +175,26 @@
 		"elisp": "lisp",
 		"emacs-lisp": "lisp",
 		"md": "markdown",
+		"moon": "moonscript",
 		"n4jsd": "n4js",
+		"objc": "objectivec",
 		"objectpascal": "pascal",
 		"px": "pcaxis",
+		"pcode": "peoplecode",
+		"pq": "powerquery",
+		"mscript": "powerquery",
+		"pbfasm": "purebasic",
 		"py": "python",
-		"robot": "robot-framework",
+		"rkt": "racket",
+		"robot": "robotframework",
 		"rb": "ruby",
+		"sln": "solution-file",
 		"rq": "sparql",
 		"trig": "turtle",
 		"ts": "typescript",
 		"t4": "t4-cs",
+		"uscript": "unrealscript",
+		"uc": "unrealscript",
 		"vb": "visual-basic",
 		"xeoracube": "xeora",
 		"yml": "yaml"
@@ -175,25 +210,26 @@
 	var lang_data = {};
 
 	var ignored_language = 'none';
-
-	var scripts = document.getElementsByTagName('script');
-	var script = scripts[scripts.length - 1];
 	var languages_path = 'components/';
 
-	var autoloaderFile = /\bplugins\/autoloader\/prism-autoloader\.(?:min\.)js$/i;
-	var prismFile = /[\w-]+\.(?:min\.)js$/i;
+	var script = Prism.util.currentScript();
+	if (script) {
+		var autoloaderFile = /\bplugins\/autoloader\/prism-autoloader\.(?:min\.)js(?:\?[^\r\n/]*)?$/i;
+		var prismFile = /(^|\/)[\w-]+\.(?:min\.)js(?:\?[^\r\n/]*)?$/i;
 
-	if (script.hasAttribute('data-autoloader-path')) {
-		// data-autoloader-path is set, so just use it
-		languages_path = script.getAttribute('data-autoloader-path').trim().replace(/\/?$/, '/');
-	} else {
-		var src = script.src;
-		if (autoloaderFile.test(src)) {
-			// the script is the original autoloader script in the usual Prism project structure
-			languages_path = src.replace(autoloaderFile, 'components/');
-		} else if (prismFile.test(src)) {
-			// the script is part of a bundle like a custom prism.js from the download page
-			languages_path = src.replace(prismFile, 'components/');
+		var autoloaderPath = script.getAttribute('data-autoloader-path');
+		if (autoloaderPath != null) {
+			// data-autoloader-path is set, so just use it
+			languages_path = autoloaderPath.trim().replace(/\/?$/, '/');
+		} else {
+			var src = script.src;
+			if (autoloaderFile.test(src)) {
+				// the script is the original autoloader script in the usual Prism project structure
+				languages_path = src.replace(autoloaderFile, 'components/');
+			} else if (prismFile.test(src)) {
+				// the script is part of a bundle like a custom prism.js from the download page
+				languages_path = src.replace(prismFile, '$1components/');
+			}
 		}
 	}
 
@@ -250,19 +286,15 @@
 		}
 
 		// Look for additional dependencies defined on the <code> or <pre> tags
-		var deps = elt.getAttribute('data-dependencies');
-		var parent = elt.parentElement;
-		if (!deps && parent && parent.tagName.toLowerCase() === 'pre') {
-			deps = parent.getAttribute('data-dependencies');
+		var deps = (elt.getAttribute('data-dependencies') || '').trim();
+		if (!deps) {
+			var parent = elt.parentElement;
+			if (parent && parent.tagName.toLowerCase() === 'pre') {
+				deps = (parent.getAttribute('data-dependencies') || '').trim();
+			}
 		}
 
-		if (deps) {
-			deps = deps.split(/\s*,\s*/g);
-		} else {
-			deps = [];
-		}
-
-		loadLanguages(deps, function () {
+		loadLanguages(deps ? deps.split(/\s*,\s*/g) : [], function () {
 			loadLanguage(lang, function () {
 				Prism.highlightElement(elt);
 			});

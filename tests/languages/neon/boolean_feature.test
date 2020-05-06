@@ -1,0 +1,21 @@
+foo: true
+bar: false
+alt: [yes, no, YES, NO, TRUE, FALSE]
+
+----------------------------------------------------
+
+[
+	["key", "foo"], ["punctuation", ":"],
+	["boolean", "true"],
+	["key", "bar"], ["punctuation", ":"],
+	["boolean", "false"],
+	["key", "alt"], ["punctuation", ":"], ["punctuation", "["],
+	["boolean", "yes"], ["punctuation", ","], ["boolean", "no"], ["punctuation", ","], ["boolean", "YES"], ["punctuation", ","], ["boolean", "NO"], ["punctuation", ","], ["boolean", "TRUE"], ["punctuation", ","], ["boolean", "FALSE"],
+	["punctuation", "]"]
+]
+
+----------------------------------------------------
+
+Checks for booleans.
+
+

@@ -1,0 +1,67 @@
+#const someFlag = true
+#const anotherFlag = false
+#const someOtherFlag = someFlag
+
+#if FeatureA
+#else if FeatureB
+#else
+#end if
+
+#error Your device cannot support this feature.
+
+----------------------------------------------------
+
+[
+	["directive-statement", [
+		["directive", "#const"],
+		["expression", [
+			" someFlag ",
+			["operator", "="],
+			["boolean", "true"]
+		]]
+	]],
+	["directive-statement", [
+		["directive", "#const"],
+		["expression", [
+			" anotherFlag ",
+			["operator", "="],
+			["boolean", "false"]
+		]]
+	]],
+	["directive-statement", [
+		["directive", "#const"],
+		["expression", [
+			" someOtherFlag ",
+			["operator", "="],
+			" someFlag"
+		]]
+	]],
+
+	["directive-statement", [
+		["directive", "#if"],
+		["expression", [
+			" FeatureA"
+		]]
+	]],
+	["directive-statement", [
+		["directive", "#else if"],
+		["expression", [
+			" FeatureB"
+		]]
+	]],
+	["directive-statement", [
+		["directive", "#else"]
+	]],
+	["directive-statement", [
+		["directive", "#end if"]
+	]],
+
+	["directive-statement", [
+		["directive", "#error"],
+		["error-message", " Your device cannot support this feature."]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for directives (conditional compilation).

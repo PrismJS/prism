@@ -23,12 +23,7 @@ a.not-a-class {
 
 <span style="display: none; color: blue;"></span>
 
-<header>
-	<div class="intro" data-src="templates/header-plugins.html" data-type="text/html"></div>
-
-	<h2>Inline color</h2>
-	<p>This plugin adds a small inline preview for colors in style sheets.</p>
-</header>
+<header data-plugin-header="inline-color"></header>
 
 <section>
 	<h1>Examples</h1>
@@ -40,8 +35,9 @@ a.not-a-class {
 }
 
 span.bar {
-	background: rgba(105, 0, 12, .62);
+	background: rgba(105, 0, 12, .38);
 	color: hsl(30, 100%, 50%);
+	border-color: transparent;
 }</code></pre>
 
 	<pre data-src="themes/prism.css"></pre>

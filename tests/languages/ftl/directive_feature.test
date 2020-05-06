@@ -1,0 +1,84 @@
+<#if a < b>
+	a is less than b
+<#elseif (a > b)>
+	a is greater than b
+<#else>
+	a is equal to by
+</#if>
+
+<@foo></@foo>
+<@foo/>
+
+----------------------------------------------------
+
+[
+	["ftl", [
+		["ftl-directive", [
+			["punctuation", "<"],
+			["directive", "#if"],
+			["content", [
+				" a ",
+				["operator", "<"],
+				" b"
+			]],
+			["punctuation", ">"]
+		]]
+	]],
+	"\r\n\ta is less than b\r\n",
+	["ftl", [
+		["ftl-directive", [
+			["punctuation", "<"],
+			["directive", "#elseif"],
+			["content", [
+				["punctuation", "("],
+				"a ",
+				["operator", ">"],
+				" b",
+				["punctuation", ")"]
+			]],
+			["punctuation", ">"]
+		]]
+	]],
+	"\r\n\ta is greater than b\r\n",
+	["ftl", [
+		["ftl-directive", [
+			["punctuation", "<"],
+			["directive", "#else"],
+			["punctuation", ">"]
+		]]
+	]],
+	"\r\n\ta is equal to by\r\n",
+	["ftl", [
+		["ftl-directive", [
+			["punctuation", "</"],
+			["directive", "#if"],
+			["punctuation", ">"]
+		]]
+	]],
+
+	["ftl", [
+		["ftl-directive", [
+			["punctuation", "<"],
+			["directive", "@foo"],
+			["punctuation", ">"]
+		]]
+	]],
+	["ftl", [
+		["ftl-directive", [
+			["punctuation", "</"],
+			["directive", "@foo"],
+			["punctuation", ">"]
+		]]
+	]],
+	["ftl", [
+		["ftl-directive", [
+			["punctuation", "<"],
+			["directive", "@foo"],
+			["punctuation", "/>"]
+		]]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for directive. This includes both predefined and user-defined ones.

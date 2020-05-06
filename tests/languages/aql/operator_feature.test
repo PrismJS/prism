@@ -4,7 +4,7 @@
 
 ! && ||
 
-[**]
+[**] [***] [****]
 
 ..
 1..100
@@ -35,6 +35,12 @@
 
 	["punctuation", "["],
 	["operator", "**"],
+	["punctuation", "]"],
+	["punctuation", "["],
+	["operator", "***"],
+	["punctuation", "]"],
+	["punctuation", "["],
+	["operator", "****"],
 	["punctuation", "]"],
 
 	["range", ".."],

@@ -1,0 +1,60 @@
+<h2>Full example</h2>
+<pre><code>// Source: https://github.com/microsoft/AL/blob/master/samples/ControlAddIn/al/Page/CustomerCardAddIn.al
+
+pageextension 50300 CustomerCardAddIn extends "Customer Card"
+{
+	layout
+	{
+		addafter(Blocked)
+		{
+			usercontrol(ControlName; TestAddIn)
+			{
+				ApplicationArea = All;
+
+				trigger Callback(i : integer; s: text; d : decimal; c : char)
+				begin
+					Message('Got from js: %1, %2, %3, %4', i, s, d, c);
+				end;
+			}
+		}
+	}
+
+	actions
+	{
+		addafter(Approve)
+		{
+			action(CallJavaScript)
+			{
+				ApplicationArea = All;
+
+				trigger OnAction();
+				begin
+					CurrPage.ControlName.CallJavaScript(5, 'text', 6.3, 'c');
+				end;
+			}
+
+			action(CallViaCodeunit)
+			{
+				ApplicationArea = All;
+
+				trigger OnAction();
+				var c : Codeunit AddInHelpers;
+				begin
+					c.CallJavaScript(CurrPage.ControlName);
+				end;
+			}
+
+			action(CallStaleControlAddIn)
+			{
+				ApplicationArea = All;
+
+				trigger OnAction();
+				var c : Codeunit AddInHelpersSingleton;
+				begin
+					c.CallStaleAddInMethod();
+					Message('Probably nothing should happen...');
+				end;
+			}
+		}
+	}
+}</code></pre>

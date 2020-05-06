@@ -10,6 +10,12 @@ background-{foo}: bar;
 div
 	{foo} bar
 
+comment
+	content 'http://www.example.com' // comment
+	background url(http://example.com) /* comment */
+	background /* comment */ url("http://example.com")
+	content '/* this is string not comment */'
+
 ----------------------------------------------------
 
 [
@@ -44,6 +50,27 @@ div
 			]]
 		]],
 		" bar"
+	]],
+
+	["selector", ["comment"]],
+	["property-declaration", [
+		["property", ["content"]],
+		["string", "'http://www.example.com'"],
+		["comment", "// comment"]
+	]],
+	["property-declaration", [
+		["property", ["background"]],
+		["url", "url(http://example.com)"],
+		["comment", "/* comment */"]
+	]],
+	["property-declaration", [
+		["property", ["background"]],
+		["comment", "/* comment */"],
+		["url", "url(\"http://example.com\")"]
+	]],
+	["property-declaration", [
+		["property", ["content"]],
+		["string", "'/* this is string not comment */'"]
 	]]
 ]
 

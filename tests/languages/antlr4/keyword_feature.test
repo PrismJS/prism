@@ -1,0 +1,37 @@
+catch
+channels
+finally
+fragment
+grammar
+import
+lexer
+locals
+mode
+options
+parser
+returns
+throws
+tokens
+
+----------------------------------------------------
+
+[
+	["keyword", "catch"],
+	["keyword", "channels"],
+	["keyword", "finally"],
+	["keyword", "fragment"],
+	["keyword", "grammar"],
+	["keyword", "import"],
+	["keyword", "lexer"],
+	["keyword", "locals"],
+	["keyword", "mode"],
+	["keyword", "options"],
+	["keyword", "parser"],
+	["keyword", "returns"],
+	["keyword", "throws"],
+	["keyword", "tokens"]
+]
+
+----------------------------------------------------
+
+Checks for keywords.

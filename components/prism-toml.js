@@ -1,7 +1,13 @@
 (function (Prism) {
 
-	// pattern: /(?:[\w-]+|'[^'\n\r]*'|"(?:\.|[^\\"\r\n])*")/
-	var key = "(?:[\\w-]+|'[^'\n\r]*'|\"(?:\\.|[^\\\\\"\r\n])*\")";
+	var key = /(?:[\w-]+|'[^'\n\r]*'|"(?:\\.|[^\\"\r\n])*")/.source;
+
+	/**
+	 * @param {string} pattern
+	 */
+	function insertKey(pattern) {
+		return pattern.replace(/__/g, function () { return key; });
+	}
 
 	Prism.languages.toml = {
 		'comment': {
@@ -9,13 +15,13 @@
 			greedy: true
 		},
 		'table': {
-			pattern: RegExp("(^\\s*\\[\\s*(?:\\[\\s*)?)" + key + "(?:\\s*\\.\\s*" + key + ")*(?=\\s*\\])", "m"),
+			pattern: RegExp(insertKey(/(^\s*\[\s*(?:\[\s*)?)__(?:\s*\.\s*__)*(?=\s*\])/.source), 'm'),
 			lookbehind: true,
 			greedy: true,
 			alias: 'class-name'
 		},
 		'key': {
-			pattern: RegExp("(^\\s*|[{,]\\s*)" + key + "(?:\\s*\\.\\s*" + key + ")*(?=\\s*=)", "m"),
+			pattern: RegExp(insertKey(/(^\s*|[{,]\s*)__(?:\s*\.\s*__)*(?=\s*=)/.source), 'm'),
 			lookbehind: true,
 			greedy: true,
 			alias: 'property'
