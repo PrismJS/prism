@@ -134,6 +134,8 @@
 		"powershell": "PowerShell",
 		"properties": ".properties",
 		"protobuf": "Protocol Buffers",
+		"purebasic": "PureBasic",
+		"pbfasm": "PureBasic",
 		"py": "Python",
 		"q": "Q (kdb+ database)",
 		"qml": "QML",

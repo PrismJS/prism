@@ -848,6 +848,12 @@
 			],
 			"owner": "Golmote"
 		},
+		"purebasic": {
+			"title": "PureBasic",
+			"require": "clike",
+			"alias": "pbfasm",
+			"owner": "HeX0R101"
+		},
 		"python": {
 			"title": "Python",
 			"alias": "py",

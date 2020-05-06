@@ -96,6 +96,7 @@
 			"markup",
 			"javascript"
 		],
+		"purebasic": "clike",
 		"qml": "javascript",
 		"qore": "clike",
 		"racket": "scheme",
@@ -182,6 +183,7 @@
 		"pcode": "peoplecode",
 		"pq": "powerquery",
 		"mscript": "powerquery",
+		"pbfasm": "purebasic",
 		"py": "python",
 		"rkt": "racket",
 		"robot": "robotframework",
