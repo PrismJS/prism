@@ -22,7 +22,7 @@ Prism.languages.insertBefore('purebasic', 'keyword', {
 		pattern: /(^\s*)!.*/m,
 		lookbehind: true,
 		inside: {
-			'comment': /;.*$/m,
+			'comment': /;.*/,
 			'string': {
 				pattern: /(["'`])(?:\\.|(?!\1)[^\\\r\n])*\1/,
 				greedy: true
