@@ -848,9 +848,9 @@
 			],
 			"owner": "Golmote"
 		},
-    "purebasic": {
+		"purebasic": {
 			"title": "PureBasic",
-      "require": "clike",
+			"require": "clike",
 			"alias": "pbfasm",
 			"owner": "HeX0R101"
 		},
