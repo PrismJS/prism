@@ -1,6 +1,13 @@
 (function (Prism) {
 	var inside = {
-		'url': /url\((["']?).*?\1\)/i,
+		'comment': {
+			pattern: /(^|[^\\])(?:\/\*[\s\S]*?\*\/|\/\/.*)/,
+			lookbehind: true
+		},
+		'url': {
+			pattern: /url\((["']?).*?\1\)/i,
+			greedy: true
+		},
 		'string': {
 			pattern: /("|')(?:(?!\1)[^\\\r\n]|\\(?:\r\n|[\s\S]))*\1/,
 			greedy: true
@@ -78,6 +85,7 @@
 		'property-declaration': {
 			pattern: /((?:^|\{)([ \t]*))(?:[\w-]|\{[^}\r\n]+\})+(?:\s*:\s*|[ \t]+)[^{\r\n]*(?:;|[^{\r\n,](?=$)(?!(?:\r?\n|\r)(?:\{|\2[ \t]+)))/m,
 			lookbehind: true,
+			greedy: true,
 			inside: {
 				'property': {
 					pattern: /^[^\s:]+/,
