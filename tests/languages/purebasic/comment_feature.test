@@ -1,11 +1,18 @@
 ;
-;gugug du Affe
+; comment
+
+a$ = 2 ;Test
 
 ----------------------------------------------------
 
 [
 	["comment", ";"],
-	["comment", ";gugug du Affe"]
+	["comment", "; comment"],
+
+	"\r\n\r\na$ ",
+	["operator", "="],
+	["number", "2"],
+	["comment", ";Test"]
 ]
 
 ----------------------------------------------------
