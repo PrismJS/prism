@@ -13,9 +13,7 @@ describe('Examples', function () {
 		'markup-templating',
 		't4-templating',
 		// this does alter some languages but it's mainly a library
-		'javadoclike',
-		// Regex doesn't have any classes supported by our themes and mainly extends other languages
-		'regex'
+		'javadoclike'
 	]);
 	const validFiles = new Set();
 
