@@ -18,6 +18,9 @@ color red
 {foo} {bar}:hover
   color red
 
+div    // comment
+	display inline-block // comment
+
 ----------------------------------------------------
 
 [
@@ -41,7 +44,9 @@ color red
 		]],
 		":hover"
 	]],
-	["property-declaration", [["property", ["color"]], ["color", "red"]]]
+	["property-declaration", [["property", ["color"]], ["color", "red"]]],
+	["selector", ["div    ", ["comment", "// comment"]]],
+	["property-declaration", [["property", ["display"]], " inline-block ", ["comment", "// comment"]]]
 ]
 
 ----------------------------------------------------
