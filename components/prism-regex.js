@@ -9,7 +9,7 @@
 		pattern: /\.|\\[wsd]|\\p{[^{}]+}/i,
 		alias: 'class-name'
 	};
-	var charClassWithDot = {
+	var charClassWithoutDot = {
 		pattern: /\\[wsd]|\\p{[^{}]+}/i,
 		alias: 'class-name'
 	};
@@ -49,7 +49,7 @@
 					}
 				},
 				'special-escape': specialEscape,
-				'charclass': charClassWithDot,
+				'charclass': charClassWithoutDot,
 				'escape': escape
 			}
 		},
