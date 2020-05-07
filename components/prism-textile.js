@@ -91,7 +91,8 @@
 				},
 
 				'inline': {
-					pattern: withModifier(/(\*\*|__|\?\?|[*_%@+\-^~])<MOD>*.+?\1/.source),
+					pattern: withModifier(/(^|[^a-zA-Z\d])(\*\*|__|\?\?|[*_%@+\-^~])<MOD>*.+?\2(?![a-zA-Z\d])/.source),
+					lookbehind: true,
 					inside: {
 						// Note: superscripts and subscripts are not handled specifically
 

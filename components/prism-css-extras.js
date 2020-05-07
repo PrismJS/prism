@@ -69,7 +69,7 @@
 	});
 
 	var unit = {
-		pattern: /(\d)(?:%|[a-z]+)/,
+		pattern: /(\b\d+)(?:%|[a-z]+\b)/,
 		lookbehind: true
 	};
 	// 123 -123 .123 -.123 12.3 -12.3
@@ -101,6 +101,7 @@
 				}
 			}
 		],
+		// it's import that there is no boundary assertion after the hex digits
 		'entity': /\\[\da-f]{1,8}/i,
 		'unit': unit,
 		'number': number

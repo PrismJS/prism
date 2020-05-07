@@ -5,16 +5,16 @@ bar~~
 ~foo
 bar~
 
-~foo*bar*baz~
-~foo_bar_baz~
-~foo**bar**baz~
-~foo__bar__baz~
+~foo *bar* baz~
+~foo _bar_ baz~
+~foo **bar** baz~
+~foo __bar__ baz~
 ~foo[bar](baz)~
 
-~~foo*bar*baz~~
-~~foo_bar_baz~~
-~~foo**bar**baz~~
-~~foo__bar__baz~~
+~~foo *bar* baz~~
+~~foo _bar_ baz~~
+~~foo **bar** baz~~
+~~foo __bar__ baz~~
 ~~foo[bar](baz)~~
 
 ----------------------------------------------------
@@ -51,7 +51,7 @@ bar~
 	["strike", [
 		["punctuation", "~"],
 		["content", [
-			"foo",
+			"foo ",
 			["italic", [
 				["punctuation", "*"],
 				["content", [
@@ -59,14 +59,14 @@ bar~
 				]],
 				["punctuation", "*"]
 			]],
-			"baz"
+			" baz"
 		]],
 		["punctuation", "~"]
 	]],
 	["strike", [
 		["punctuation", "~"],
 		["content", [
-			"foo",
+			"foo ",
 			["italic", [
 				["punctuation", "_"],
 				["content", [
@@ -74,14 +74,14 @@ bar~
 				]],
 				["punctuation", "_"]
 			]],
-			"baz"
+			" baz"
 		]],
 		["punctuation", "~"]
 	]],
 	["strike", [
 		["punctuation", "~"],
 		["content", [
-			"foo",
+			"foo ",
 			["bold", [
 				["punctuation", "**"],
 				["content", [
@@ -89,14 +89,14 @@ bar~
 				]],
 				["punctuation", "**"]
 			]],
-			"baz"
+			" baz"
 		]],
 		["punctuation", "~"]
 	]],
 	["strike", [
 		["punctuation", "~"],
 		["content", [
-			"foo",
+			"foo ",
 			["bold", [
 				["punctuation", "__"],
 				["content", [
@@ -104,7 +104,7 @@ bar~
 				]],
 				["punctuation", "__"]
 			]],
-			"baz"
+			" baz"
 		]],
 		["punctuation", "~"]
 	]],
@@ -125,7 +125,7 @@ bar~
 	["strike", [
 		["punctuation", "~~"],
 		["content", [
-			"foo",
+			"foo ",
 			["italic", [
 				["punctuation", "*"],
 				["content", [
@@ -133,14 +133,14 @@ bar~
 				]],
 				["punctuation", "*"]
 			]],
-			"baz"
+			" baz"
 		]],
 		["punctuation", "~~"]
 	]],
 	["strike", [
 		["punctuation", "~~"],
 		["content", [
-			"foo",
+			"foo ",
 			["italic", [
 				["punctuation", "_"],
 				["content", [
@@ -148,14 +148,14 @@ bar~
 				]],
 				["punctuation", "_"]
 			]],
-			"baz"
+			" baz"
 		]],
 		["punctuation", "~~"]
 	]],
 	["strike", [
 		["punctuation", "~~"],
 		["content", [
-			"foo",
+			"foo ",
 			["bold", [
 				["punctuation", "**"],
 				["content", [
@@ -163,14 +163,14 @@ bar~
 				]],
 				["punctuation", "**"]
 			]],
-			"baz"
+			" baz"
 		]],
 		["punctuation", "~~"]
 	]],
 	["strike", [
 		["punctuation", "~~"],
 		["content", [
-			"foo",
+			"foo ",
 			["bold", [
 				["punctuation", "__"],
 				["content", [
@@ -178,7 +178,7 @@ bar~
 				]],
 				["punctuation", "__"]
 			]],
-			"baz"
+			" baz"
 		]],
 		["punctuation", "~~"]
 	]],
