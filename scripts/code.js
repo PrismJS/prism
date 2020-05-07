@@ -100,6 +100,24 @@ if (toc.children.length > 0) {
 
 })();
 
+/**
+ * Linkify h2
+ */
+(function () {
+	$$('section h2[id]').forEach(function (h2) {
+		var text = h2.textContent;
+		h2.innerHTML = '';
+
+		$u.element.create('a', {
+			properties: {
+				href: window.location.pathname + '#' + h2.id
+			},
+			contents: text,
+			inside: h2
+		});
+	});
+})();
+
 // calc()
 (function(){
 	if(!window.PrefixFree) return;
