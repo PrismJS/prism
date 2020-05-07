@@ -2,6 +2,7 @@ div
 	width 40px
 	color: red
 	background: blue;
+	animation-name test1, animation4
 
 div {
 background-{foo}: bar;
@@ -29,6 +30,8 @@ comment
 	["property-declaration", [
 		["property", ["background"]], ["punctuation", ":"], ["color", "blue"], ["punctuation", ";"]
 	]],
+	["property-declaration", [
+		["property", ["animation-name"]], " test1", ["punctuation", ","], " animation4"]],
 	["selector", ["div ", ["punctuation", "{"]]],
 	["property-declaration", [
 		["property", [
