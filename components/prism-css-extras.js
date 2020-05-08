@@ -56,7 +56,11 @@
 				}
 			],
 			'combinator': />|\+|~|\|\|/,
-			'tag': /[a-zA-Z][-\w]*/,
+
+			// the `tag` token has been existed and removed.
+			// because we can't find a perfect tokenize to match it.
+			// if you want to add it, please read https://github.com/PrismJS/prism/pull/2373 first.
+
 			'punctuation': /[(),]/,
 		}
 	};

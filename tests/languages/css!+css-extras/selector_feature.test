@@ -19,22 +19,22 @@ div > p,
 
 [
 	["selector", [
-		["tag", "foo"],
+		"foo",
 		["pseudo-element", ":after"]
 	]], ["punctuation", "{"],
 
 	["selector", [
-		["tag", "foo"],
+		"foo",
 		["pseudo-element", "::first-letter"]
 	]], ["punctuation", "{"],
 
 	["selector", [
-		["tag", "foo"],
+		"foo",
 		["class", ".bar"]
 	]], ["punctuation", "{"],
 
 	["selector", [
-		["tag", "foo"],
+		"foo",
 		["id", "#bar"]
 	]], ["punctuation", "{"],
 
@@ -47,15 +47,15 @@ div > p,
 	]], ["punctuation", "{"],
 
 	["selector", [
-		["tag", "span"],
+		"span",
 		["punctuation", ","],
-		["tag", "div"]
+		"\r\ndiv"
 	]], ["punctuation", "{"],
 
 	["selector", [
-		["tag", "div"],
+		"div ",
 		["combinator", ">"],
-		["tag", "p"],
+		" p",
 		["punctuation", ","],
 		["class", ".css-li"],
 		["combinator", "~"],
@@ -67,7 +67,7 @@ div > p,
 		["punctuation", ","],
 		["class", ".selected"],
 		["combinator", "||"],
-		["tag", "td"]
+		" td"
 	]], ["punctuation", "{"]
 ]
 

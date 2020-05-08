@@ -10,7 +10,7 @@ foo:hover {}
 
 [
 	["selector", [
-		["tag", "foo"],
+		"foo",
 		["pseudo-class", ":hover"]
 	]],
 	["punctuation", "{"],
@@ -19,7 +19,7 @@ foo:hover {}
 	["selector", [
 		["pseudo-class", ":lang"],
 		["punctuation", "("],
-		["tag", "en"],
+		"en",
 		["punctuation", ")"]
 	]],
 	["punctuation", "{"],
@@ -29,7 +29,7 @@ foo:hover {}
 		["class", ".bar"],
 		["pseudo-class", ":not"],
 		["punctuation", "("],
-		["tag", "baz"],
+		"baz",
 		["pseudo-class", ":hover"],
 		["punctuation", ")"],
 		["pseudo-class", ":not"],
@@ -43,7 +43,7 @@ foo:hover {}
 	["selector", [
 		["pseudo-class", ":where"],
 		["punctuation", "("],
-		["tag", "p"],
+		"p",
 		["pseudo-class", ":not"],
 		["punctuation", "("],
 		["class", ".class"],
