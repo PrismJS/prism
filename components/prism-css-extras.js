@@ -55,7 +55,7 @@
 					lookbehind: true
 				}
 			],
-			'combinator': />|\+|~|(?:\|\|)]/,
+			'combinator': />|\+|~|\|\|/,
 			'tag': /[a-zA-Z][-\w]*/,
 			'punctuation': /[(),]/,
 		}

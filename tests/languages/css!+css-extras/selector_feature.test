@@ -10,6 +10,11 @@ foo#bar {
 span,
 div {
 
+div > p,
+.css-li ~ .css-li,
+.previous-selector + .selector,
+.selected || td {
+
 ----------------------------------------------------
 
 [
@@ -45,6 +50,24 @@ div {
 		["tag", "span"],
 		["punctuation", ","],
 		["tag", "div"]
+	]], ["punctuation", "{"],
+
+	["selector", [
+		["tag", "div"],
+		["combinator", ">"],
+		["tag", "p"],
+		["punctuation", ","],
+		["class", ".css-li"],
+		["combinator", "~"],
+		["class", ".css-li"],
+		["punctuation", ","],
+		["class", ".previous-selector"],
+		["combinator", "+"],
+		["class", ".selector"],
+		["punctuation", ","],
+		["class", ".selected"],
+		["combinator", "||"],
+		["tag", "td"]
 	]], ["punctuation", "{"]
 ]
 
