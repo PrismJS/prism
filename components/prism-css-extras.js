@@ -8,7 +8,7 @@
 		inside: selectorInside = {
 			'pseudo-element': /:(?:after|before|first-letter|first-line|selection)|::[-\w]+/,
 			'pseudo-class': {
-				pattern: /:[-\w]+((\([^\(]*\([^\)]*\)[^\)]*\))|(\(.*?\)))?/,
+				pattern: /:[-\w]+(?:(?:\([^\(]*\([^\)]*\)[^\)]*\))|(?:\(.*?\)))?/,
 				greedy: true,
 				inside: {
 					'n-th': [
@@ -32,7 +32,7 @@
 			'id': /#[-:.\w]+/,
 			'tag': /[-\w]+/,
 			'selector-list': /,/,
-			'combinator': />|\+|~|(\|\|)]/,
+			'combinator': />|\+|~|(?:\|\|)]/,
 			'attribute': {
 				pattern: RegExp('\\[(?:[^[\\]"\']|' + string.source + ')*\\]'),
 				greedy: true,
