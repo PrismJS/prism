@@ -7,9 +7,32 @@
 		pattern: Prism.languages.css.selector,
 		inside: selectorInside = {
 			'pseudo-element': /:(?:after|before|first-letter|first-line|selection)|::[-\w]+/,
-			'pseudo-class': /:[-\w]+/,
+			'pseudo-class': {
+				pattern: /:[-\w]+((\([^\(]*\([^\)]*\)[^\)]*\))|(\(.*?\)))?/,
+				greedy: true,
+				inside: {
+					'n-th': [
+						{
+							pattern: /(\(\s*)[+-]?\d*[\dn](?:\s*[+-]\s*\d+)?(?=\s*\))/,
+							lookbehind: true,
+							inside: {
+								'number': /[\dn]+/,
+								'operator': /[+-]/
+							}
+						},
+						{
+							pattern: /(\(\s*)(?:even|odd)(?=\s*\))/i,
+							lookbehind: true
+						}
+					],
+					'punctuation': /[()]/,
+				}
+			},
 			'class': /\.[-:.\w]+/,
 			'id': /#[-:.\w]+/,
+			'tag': /[-\w]+/,
+			'selector-list': /,/,
+			'combinator': />|\+|~|(\|\|)]/,
 			'attribute': {
 				pattern: RegExp('\\[(?:[^[\\]"\']|' + string.source + ')*\\]'),
 				greedy: true,
@@ -27,11 +50,11 @@
 							'punctuation': /\|$/
 						}
 					},
-					'attribute': {
+					'attr-name': {
 						pattern: /^(\s*)[-\w\xA0-\uFFFF]+/,
 						lookbehind: true
 					},
-					'value': [
+					'attr-value': [
 						string,
 						{
 							pattern: /(=\s*)[-\w\xA0-\uFFFF]+(?=\s*$)/,
@@ -41,23 +64,15 @@
 					'operator': /[|~*^$]?=/
 				}
 			},
-			'n-th': [
-				{
-					pattern: /(\(\s*)[+-]?\d*[\dn](?:\s*[+-]\s*\d+)?(?=\s*\))/,
-					lookbehind: true,
-					inside: {
-						'number': /[\dn]+/,
-						'operator': /[+-]/
-					}
-				},
-				{
-					pattern: /(\(\s*)(?:even|odd)(?=\s*\))/i,
-					lookbehind: true
-				}
-			],
-			'punctuation': /[()]/
 		}
 	};
+
+	// TODO: support 'pseudo-class' and 'tag' token
+	for (var token in selectorInside) {
+		if (token !== 'pseudo-class' && token !== 'tag') {
+			selectorInside['pseudo-class'].inside[token] = selectorInside[token];
+		}
+	}
 
 	Prism.languages.css['atrule'].inside['selector-function-argument'].inside = selectorInside;
 

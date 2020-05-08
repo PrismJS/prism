@@ -7,35 +7,44 @@ foo#bar {
 
 #foo > .bar:hover:after {
 
+span,
+div {
+
 ----------------------------------------------------
 
 [
 	["selector", [
-		"foo",
+		["tag", "foo"],
 		["pseudo-element", ":after"]
 	]], ["punctuation", "{"],
 
 	["selector", [
-		"foo",
+		["tag", "foo"],
 		["pseudo-element", "::first-letter"]
 	]], ["punctuation", "{"],
 
 	["selector", [
-		"foo",
+		["tag", "foo"],
 		["class", ".bar"]
 	]], ["punctuation", "{"],
 
 	["selector", [
-		"foo",
+		["tag", "foo"],
 		["id", "#bar"]
 	]], ["punctuation", "{"],
 
 	["selector", [
 		["id", "#foo"],
-		" > ",
+		["combinator", ">"],
 		["class", ".bar"],
-		["pseudo-class", ":hover"],
+		["pseudo-class", [":hover"]],
 		["pseudo-element", ":after"]
+	]], ["punctuation", "{"],
+
+	["selector", [
+		["tag", "span"],
+		["selector-list", ","],
+		["tag", "div"]
 	]], ["punctuation", "{"]
 ]
 

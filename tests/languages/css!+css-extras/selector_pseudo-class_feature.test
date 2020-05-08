@@ -10,46 +10,52 @@ foo:hover {}
 
 [
 	["selector", [
-		"foo",
-		["pseudo-class", ":hover"]
+		["tag", "foo"],
+		["pseudo-class", [":hover"]]
 	]],
 	["punctuation", "{"],
 	["punctuation", "}"],
 
 	["selector", [
-		["pseudo-class", ":lang"],
-		["punctuation", "("],
-		"en",
-		["punctuation", ")"]
-	]],
+		["pseudo-class", [
+			":lang",
+			["punctuation", "("],
+			"en",
+			["punctuation", ")"]
+		]
+	]]],
 	["punctuation", "{"],
 	["punctuation", "}"],
 
 	["selector", [
 		["class", ".bar"],
-		["pseudo-class", ":not"],
-		["punctuation", "("],
-		"baz",
-		["pseudo-class", ":hover"],
-		["punctuation", ")"],
-		["pseudo-class", ":not"],
-		["punctuation", "("],
-		["class", ".foo"],
-		["punctuation", ")"]
-	]],
+		["pseudo-class", [
+			":not",
+			["punctuation", "("],
+			"baz:hover",
+			["punctuation", ")"]
+		]],
+		["pseudo-class", [
+			":not",
+			["punctuation", "("],
+			["class", ".foo"],
+			["punctuation", ")"]
+		]
+	]]],
 	["punctuation", "{"],
 	["punctuation", "}"],
 
 	["selector", [
-		["pseudo-class", ":where"],
-		["punctuation", "("],
-		"p",
-		["pseudo-class", ":not"],
-		["punctuation", "("],
-		["class", ".class"],
-		["punctuation", ")"],
-		["punctuation", ")"]
-	]],
+		["pseudo-class", [
+			":where",
+			["punctuation", "("],
+			"p:not",
+			["punctuation", "("],
+			["class", ".class"],
+			["punctuation", ")"],
+			["punctuation", ")"]
+		]
+	]]],
 	["punctuation", "{"],
 	["punctuation", "}"]
 ]

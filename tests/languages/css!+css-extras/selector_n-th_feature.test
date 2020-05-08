@@ -9,70 +9,82 @@
 
 [
 	["selector", [
-		["pseudo-class", ":nth-child"],
-		["punctuation", "("],
-		["n-th", [
-			["number", "2n"],
-			["operator", "+"],
-			["number", "1"]
-		]],
-		["punctuation", ")"]
-	]],
+		["pseudo-class", [
+			":nth-child",
+			["punctuation", "("],
+            	["n-th", [
+            		["number", "2n"],
+            		["operator", "+"],
+            		["number", "1"]
+            	]],
+            ["punctuation", ")"]
+		]
+	]]],
 	["punctuation", "{"],
 	["punctuation", "}"],
 
 	["selector", [
-		["pseudo-class", ":nth-child"],
-		["punctuation", "("],
-		["n-th", [
-			["operator", "+"],
-			["number", "2n"],
-			["operator", "-"],
-			["number", "1"]
-		]],
-		["punctuation", ")"]
-	]],
+		["pseudo-class", [
+			":nth-child",
+			["punctuation", "("],
+			["n-th", [
+				["operator", "+"],
+				["number", "2n"],
+				["operator", "-"],
+				["number", "1"]
+			]],
+			["punctuation", ")"]
+		]
+	]]],
 	["punctuation", "{"],
 	["punctuation", "}"],
 
 	["selector", [
-		["pseudo-class", ":nth-child"],
-		["punctuation", "("],
-		["n-th", [
-			["number", "2n"]
-		]],
-		["punctuation", ")"]
-	]],
+		["pseudo-class", [
+			":nth-child",
+			["punctuation", "("],
+			["n-th", [
+				["number", "2n"]
+			]],
+			["punctuation", ")"]
+		]
+	]]],
 	["punctuation", "{"],
 	["punctuation", "}"],
 
 	["selector", [
-		["pseudo-class", ":nth-child"],
-		["punctuation", "("],
-		["n-th", [
-			["operator", "+"],
-			["number", "5"]
-		]],
-		["punctuation", ")"]
-	]],
+		["pseudo-class", [
+			":nth-child",
+			["punctuation", "("],
+			["n-th", [
+				["operator", "+"],
+				["number", "5"]
+			]],
+			["punctuation", ")"]
+		]
+	]]],
 	["punctuation", "{"],
 	["punctuation", "}"],
 
 	["selector", [
-		["pseudo-class", ":nth-child"],
-		["punctuation", "("],
-		["n-th", "even"],
-		["punctuation", ")"]
-	]],
+		["pseudo-class", [
+			":nth-child",
+			["punctuation", "("],
+			["n-th", "even"],
+			["punctuation", ")"]
+		]
+	]]],
 	["punctuation", "{"],
 	["punctuation", "}"],
 
 	["selector", [
-		["pseudo-class", ":nth-child"],
-		["punctuation", "("],
-		["n-th", "odd"],
-		["punctuation", ")"]
-	]],
+		["pseudo-class", [
+			":nth-child",
+			["punctuation", "("],
+			["n-th", "odd"],
+			["punctuation", ")"]
+		]
+	]]],
 	["punctuation", "{"],
 	["punctuation", "}"]
 ]

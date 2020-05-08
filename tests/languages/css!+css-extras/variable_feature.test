@@ -10,7 +10,7 @@ calc(100% - var(--margin-size) * 2)
 ----------------------------------------------------
 
 [
-	["selector", ["element"]],
+	["selector", [["tag", "element"]]],
 	["punctuation", "{"],
 	["variable", "--foo"],
 	["punctuation", ":"],

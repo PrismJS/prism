@@ -24,7 +24,7 @@ foo {
 
 	["comment", "/* complex example */"],
 	["selector", [
-		"foo"
+		["tag", "foo"]
 	]],
 	["punctuation", "{"],
 
