@@ -37,13 +37,13 @@ div {
 		["id", "#foo"],
 		["combinator", ">"],
 		["class", ".bar"],
-		["pseudo-class", [":hover"]],
+		["pseudo-class", ":hover"],
 		["pseudo-element", ":after"]
 	]], ["punctuation", "{"],
 
 	["selector", [
 		["tag", "span"],
-		["selector-list", ","],
+		["punctuation", ","],
 		["tag", "div"]
 	]], ["punctuation", "{"]
 ]
