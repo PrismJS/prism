@@ -179,6 +179,7 @@
 		"wasm": "WebAssembly",
 		"wiki": "Wiki markup",
 		"xeoracube": "XeoraCube",
+		"xml-doc": "XML doc (.net)",
 		"xojo": "Xojo (REALbasic)",
 		"xquery": "XQuery",
 		"yaml": "YAML",

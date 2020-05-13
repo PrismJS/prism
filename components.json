@@ -1079,7 +1079,7 @@
 		},
 		"t4-vb": {
 			"title": "T4 Text Templates (VB)",
-			"require": ["t4-templating", "visual-basic"],
+			"require": ["t4-templating", "vbnet"],
 			"owner": "RunDevelopment"
 		},
 		"t4-templating": {
@@ -1144,6 +1144,12 @@
 				"xeoracube": "XeoraCube"
 			},
 			"owner": "freakmaxi"
+		},
+		"xml-doc": {
+			"title": "XML doc (.net)",
+			"require": "markup",
+			"modify": ["csharp", "fsharp", "vbnet"],
+			"owner": "RunDevelopment"
 		},
 		"xojo": {
 			"title": "Xojo (REALbasic)",
