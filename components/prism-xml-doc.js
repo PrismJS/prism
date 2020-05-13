@@ -17,7 +17,7 @@
 	var tag = Prism.languages.markup.tag;
 
 	var slashDocComment = {
-		pattern: /\/{3}.*/,
+		pattern: /\/\/\/.*/,
 		greedy: true,
 		alias: 'comment',
 		inside: {
@@ -25,7 +25,7 @@
 		}
 	};
 	var tickDocComment = {
-		pattern: /'{3}.*/,
+		pattern: /'''.*/,
 		greedy: true,
 		alias: 'comment',
 		inside: {
