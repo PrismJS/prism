@@ -14,6 +14,9 @@
 			// However! The `foo` in the above example could also be a namespace, so we only capture the class name if
 			// it starts with an uppercase letter. This approximation should give decent results.
 			/\b[A-Z]\w*(?=\s*::\s*\w+\s*\()/,
+			// This will capture the class name before destructors like:
+			//   Foo::~Foo() {}
+			/\b[A-Z_]\w*(?=\s*::\s*~\w+\s*\()/i,
 			{
 				// This also intends to capture the class name of method implementations but here the class has template
 				// parameters, so it can't be a namespace (until C++ adds generic namespaces).

@@ -6,6 +6,7 @@ enum class FooBar
 template<typename FooBar>
 
 void Foo::bar() {}
+Foo::~Foo() {}
 void Foo<int>::bar() {}
 
 ----------------------------------------------------
@@ -23,6 +24,15 @@ void Foo<int>::bar() {}
 	["class-name", "Foo"],
 	["operator", "::"],
 	["function", "bar"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["class-name", "Foo"],
+	["operator", "::"],
+	["operator", "~"],
+	["function", "Foo"],
 	["punctuation", "("],
 	["punctuation", ")"],
 	["punctuation", "{"],
