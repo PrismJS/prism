@@ -1079,7 +1079,7 @@
 		},
 		"t4-vb": {
 			"title": "T4 Text Templates (VB)",
-			"require": ["t4-templating", "visual-basic"],
+			"require": ["t4-templating", "vbnet"],
 			"owner": "RunDevelopment"
 		},
 		"t4-templating": {
