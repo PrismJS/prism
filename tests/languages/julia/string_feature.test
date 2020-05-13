@@ -13,6 +13,9 @@
 """fo"o
 bar"""
 
+`echo hello`
+`echo "foo bar"`
+
 # non-standard string
 s"\g<0>1"
 b"DATA\xff\u2200"
@@ -39,6 +42,9 @@ A'b''
 
 	["string", "\"\"\"foo\"\"\""],
 	["string", "\"\"\"fo\"o\r\nbar\"\"\""],
+
+	["string", "`echo hello`"],
+	["string", "`echo \"foo bar\"`"],
 
 	["comment", "# non-standard string"],
 	["string", "s\"\\g<0>1\""],

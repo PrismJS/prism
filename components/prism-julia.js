@@ -1,6 +1,8 @@
 Prism.languages.julia = {
 	'comment': {
-		pattern: /(^|[^\\])#.*/,
+		// support one level of nested comments
+		// https://github.com/JuliaLang/julia/pull/6128
+		pattern: /(^|[^\\])(?:#=(?:[^#=]|=(?!#)|#(?!=)|#=(?:[^#=]|=(?!#)|#(?!=))*=#)*=#|#.*)/,
 		lookbehind: true
 	},
 	'regex': {
@@ -12,7 +14,8 @@ Prism.languages.julia = {
 		// https://docs.julialang.org/en/v1/manual/strings/#man-characters-1
 		// https://docs.julialang.org/en/v1/manual/strings/#String-Basics-1
 		// https://docs.julialang.org/en/v1/manual/strings/#non-standard-string-literals-1
-		pattern: /"""[\s\S]+?"""|\w*"(?:\\.|[^"\\\r\n])*"|(^|[^\w'])'(?:\\[^\r\n][^'\r\n]*|[^\\\r\n])'/,
+		// https://docs.julialang.org/en/v1/manual/running-external-programs/#Running-External-Programs-1
+		pattern: /"""[\s\S]+?"""|\w*"(?:\\.|[^"\\\r\n])*"|(^|[^\w'])'(?:\\[^\r\n][^'\r\n]*|[^\\\r\n])'|`(?:[^\\`\r\n]|\\.)*`/,
 		lookbehind: true,
 		greedy: true
 	},
