@@ -2,6 +2,7 @@ foo = 'bar'
 a = 4
 bar-baz = 5
 a += 8
+url = "http://example.com"	// comment
 
 ----------------------------------------------------
 
@@ -25,6 +26,12 @@ a += 8
 		["variable", "a"],
 		["operator", "+="],
 		["number", "8"]
+	]],
+	["variable-declaration", [
+		["variable", "url"],
+		["operator", "="],
+		["string", "\"http://example.com\""],
+		["comment", "// comment"]
 	]]
 ]
 

@@ -42,13 +42,14 @@
 		"firestore-security-rules": "clike",
 		"flow": "javascript",
 		"ftl": "markup-templating",
-		"glsl": "clike",
+		"glsl": "c",
 		"gml": "clike",
 		"go": "clike",
 		"groovy": "clike",
 		"haml": "ruby",
 		"handlebars": "markup-templating",
 		"haxe": "clike",
+		"hlsl": "c",
 		"java": "clike",
 		"javadoc": [
 			"markup",
@@ -95,6 +96,7 @@
 			"markup",
 			"javascript"
 		],
+		"purebasic": "clike",
 		"qml": "javascript",
 		"qore": "clike",
 		"racket": "scheme",
@@ -139,6 +141,7 @@
 		"velocity": "markup",
 		"wiki": "markup",
 		"xeora": "markup",
+		"xml-doc": "markup",
 		"xquery": "markup"
 	}/*]*/;
 
@@ -181,6 +184,7 @@
 		"pcode": "peoplecode",
 		"pq": "powerquery",
 		"mscript": "powerquery",
+		"pbfasm": "purebasic",
 		"py": "python",
 		"rkt": "racket",
 		"robot": "robotframework",
