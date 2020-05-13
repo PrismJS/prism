@@ -379,7 +379,7 @@
 		},
 		"glsl": {
 			"title": "GLSL",
-			"require": "clike",
+			"require": "c",
 			"owner": "Golmote"
 		},
 		"gml": {
@@ -436,6 +436,11 @@
 		"hcl": {
 			"title": "HCL",
 			"owner": "outsideris"
+		},
+		"hlsl": {
+			"title": "HLSL",
+			"require": "c",
+			"owner": "RunDevelopment"
 		},
 		"http": {
 			"title": "HTTP",
@@ -842,6 +847,12 @@
 				"fortran"
 			],
 			"owner": "Golmote"
+		},
+		"purebasic": {
+			"title": "PureBasic",
+			"require": "clike",
+			"alias": "pbfasm",
+			"owner": "HeX0R101"
 		},
 		"python": {
 			"title": "Python",

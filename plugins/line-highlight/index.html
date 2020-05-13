@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="style.css" />
 <link rel="stylesheet" href="themes/prism.css" data-noprefix />
 <link rel="stylesheet" href="plugins/line-highlight/prism-line-highlight.css" data-noprefix />
+<link rel="stylesheet" href="plugins/line-numbers/prism-line-numbers.css" data-noprefix />
 <script src="scripts/prefixfree.min.js"></script>
 
 <script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
@@ -51,6 +52,8 @@
 	<p>You can also link to specific lines on any code snippet, by using the following as a url hash: <code>#{element-id}.{lines}</code> where
 	<code>{element-id}</code> is the id of the <code>&lt;pre></code> element and <code>{lines}</code> is one or more lines or line ranges that follow the format
 	outlined above. For example, if there is an element with <code>id="play"</code> on the page, you can link to lines 5-6 by linking to <a href="plugins/line-highlight/#play.5-6">#play.5-6</a></p>
+
+	<p>If line numbers are also enabled for a code block and the <code>&lt;pre></code> element has an id, you can add the <code>linkable-line-numbers</code> class to the <code>&lt;pre></code> element. This will make all line numbers clickable and when clicking any line number, it will change the hash of the current page to link to that specific line.</p>
 </section>
 
 <section>
@@ -69,12 +72,20 @@
 	<pre data-line="43" data-line-offset="40" data-src="plugins/line-highlight/prism-line-highlight.js"></pre>
 
 	<p><a href="plugins/line-highlight/#play.50-55,60">Linking example</a></p>
+
+	<h2>With line numbers</h2>
+	<pre class="line-numbers" data-line="43" data-start="41" data-src="plugins/line-highlight/prism-line-highlight.js"></pre>
+
+	<h2>With linkable line numbers</h2>
+	<pre id="foo" class="line-numbers linkable-line-numbers" data-start="20" data-src="plugins/line-highlight/prism-line-highlight.js"></pre>
+
 </section>
 
 <footer data-src="templates/footer.html" data-type="text/html"></footer>
 
 <script src="prism.js"></script>
 <script src="plugins/line-highlight/prism-line-highlight.js"></script>
+<script src="plugins/line-numbers/prism-line-numbers.js"></script>
 <script src="scripts/utopia.js"></script>
 <script src="components.js"></script>
 <script src="scripts/code.js"></script>

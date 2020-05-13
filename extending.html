@@ -145,7 +145,7 @@ ol.indent {
 			<p>In this example, we choose <code>foo-bar</code> as the id of the new language. The language id has to be unique and should work well with the <code>language-xxxx</code> CSS class name Prism uses to refer to language definitions. Your language id should ideally match the regular expression <code>/^[a-z][a-z\d]*(?:-[a-z][a-z\d]*)*$/</code>.</p>
 		</li>
 		<li>
-			<p>Edit <code>components.json</code> to register the new language by adding it to the <code>languages</code> object. (Please note that all language entries are sorted alphabetically by title.) <br>
+			<p>Edit <a href="https://github.com/PrismJS/prism/blob/master/components.json"><code>components.json</code></a> to register the new language by adding it to the <code>languages</code> object. (Please note that all language entries are sorted alphabetically by title.) <br>
 			Our new entry for this example will look like this:</p>
 
 			<pre><code class="language-json">"foo-bar": {
@@ -153,7 +153,7 @@ ol.indent {
 	"owner": "Your GitHub name"
 }</code></pre>
 
-			<p>If your language definition depends any other languages, you have to specify this here as well by adding a <code class="language-js">"require"</code> property. E.g. <code class="language-js">"require": "clike"</code>, or <code class="language-js">"require" : ["markup", "css"]</code>. For more information on dependencies read the declaring dependencies section.</p>
+			<p>If your language definition depends any other languages, you have to specify this here as well by adding a <code class="language-js">"require"</code> property. E.g. <code class="language-js">"require": "clike"</code>, or <code class="language-js">"require" : ["markup", "css"]</code>. For more information on dependencies read the <a href="#declaring-dependencies">declaring dependencies</a> section.</p>
 
 			<p><em>Note:</em> Any changes made to <code>components.json</code> require a rebuild (see step 3).</p>
 		</li>
@@ -266,7 +266,7 @@ Brief description.</code></pre>
 
 	<p>Languages and plugins can depend on each other, so Prism has its own dependency system to declare and resolve dependencies.</p>
 
-	<h2>Declaring dependencies</h2>
+	<h2 id="declaring-dependencies">Declaring dependencies</h2>
 
 	<p>You declare a dependency by adding a property to the entry of your language or plugin in the <a href="https://github.com/PrismJS/prism/blob/master/components.json"><code>components.json</code></a> file. The name of the property will be dependency kind and its value will be the component id of the dependee. If multiple languages or plugins are depended upon then you can also declare an array of component ids.</p>
 
@@ -354,7 +354,7 @@ Brief description.</code></pre>
 
 	<p>Note: You can declare a component as both <code>require</code> and <code>modify</code></p>
 
-	<h2>Resolving dependencies</h2>
+	<h2 id="resolving-dependencies">Resolving dependencies</h2>
 
 	<p>We consider the dependencies of components an implementation detail, so they may change from release to release. Prism will usually resolve dependencies for you automatically. So you won't have to worry about dependency loading if you <a href="download.html">download</a> a bundle or use the <code>loadLanguages</code> function in NodeJS, the <a href="plugins/autoloader/">AutoLoader</a>, or our Babel plugin.</p>
 
