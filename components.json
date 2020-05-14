@@ -986,6 +986,7 @@
 		},
 		"solidity": {
 			"title": "Solidity (Ethereum)",
+			"alias": "sol",
 			"require": "clike",
 			"owner": "glachaud"
 		},
