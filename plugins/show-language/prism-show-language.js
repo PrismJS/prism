@@ -143,6 +143,7 @@
 		"jsx": "React JSX",
 		"tsx": "React TSX",
 		"renpy": "Ren'py",
+		"rpy": "Ren'py",
 		"rest": "reST (reStructuredText)",
 		"robotframework": "Robot Framework",
 		"robot": "Robot Framework",
