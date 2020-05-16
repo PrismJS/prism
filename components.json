@@ -899,6 +899,7 @@
 		},
 		"renpy": {
 			"title": "Ren'py",
+			"alias": "rpy",
 			"owner": "HyuchiaDiego"
 		},
 		"reason": {

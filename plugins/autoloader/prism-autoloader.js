@@ -187,6 +187,7 @@
 		"pbfasm": "purebasic",
 		"py": "python",
 		"rkt": "racket",
+		"rpy": "renpy",
 		"robot": "robotframework",
 		"rb": "ruby",
 		"sln": "solution-file",
