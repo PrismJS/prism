@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8" />
+<link rel="icon" href="favicon.png" />
+<title>Line Numbers ▲ Prism plugins</title>
+<base href="../.." />
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="themes/prism.css" data-noprefix />
+<link rel="stylesheet" href="plugins/lines/prism-lines.css" data-noprefix />
+<script src="scripts/prefixfree.min.js"></script>
+
+<script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
+<script src="https://www.google-analytics.com/ga.js" async></script>
+</head>
+<body>
+
+<header data-plugin-header="lines"></header>
+
+<section class="language-markup">
+  <h1>How to use</h1>
+
+  <p>This plugin is designed to work only for code blocks (<code>&lt;pre>&lt;code></code>) and not for inline code.</p>
+  <p>The primary functionality of the plugin does not require any configuration or additional classes or attributes, however to get the most of it you will need to provide additional CSS rules to dress things up.</p>
+  <p>To keep the plugin as non-intrusive as possible the only extra CSS rules that are provided with the plugin are to introduce a wrapped line marker on the left side of the code block.  See <a href="plugins/lines/index.html#examples">Examples</a> on how disable this or change its behaviour.
+  <p>This plugin wraps each physical line of the multi-line code block with <code>&lt;div class="line">&lt;a>&lt;/a>...&lt;/div></code>, which allows to style the result quite extensively using only CSS.</p>
+  <p>The stylesheet provided with the plugin uses one pseudo-element (<code>div.line::after</code>) to display a visual marker for the wrapped lines.  The examples below are also leveraging another pseudo element (<code>div.line > a::before</code>), which leaves two more pseudo-elements for you to style.</p>
+  <p>Using just this plugin one can mimic the Line Numbers plugin output by adding the <code>line-numbers</code> class to your desired <code>&lt;pre></code> or any of its ancestors, and by updating your CSS rules to include something along the following lines:
+    <style>
+      /* Visually backward compatible replacement of the line-numbers plugin :) */
+      .line-numbers pre[class*="language-"],
+      pre[class*="language-"].line-numbers {
+        counter-reset: linenumber;
+        counter-reset: linenumber var(--counter-start,0);
+        padding-left: 0;
+      }
+
+      pre[class*="language-"] > code {
+        white-space: inherit;
+      }
+
+      .line-numbers pre[class*="language-"] > code,
+      pre[class*="language-"].line-numbers > code {
+        padding-left: 3.8em;
+      }
+
+      .line-numbers pre[class*="language-"] div.line > a::before,
+      pre[class*="language-"].line-numbers div.line > a::before {
+        content: counter(linenumber);
+        box-sizing: border-box;
+        counter-increment: linenumber;
+        color: #999;
+        text-indent: 0;
+        text-align: right;
+        left: -3.8em;
+        display: block;
+        position: absolute;
+        width: 3em;
+        height: 100%;
+        padding-right: .8em;
+        border-right: solid #999;
+        cursor: default;
+        pointer-events: none;
+      }
+      </style>
+    <pre id="line-numbers-css" class="line-numbers" style="white-space:pre-wrap;max-width:75%;margin-bottom:1em;"><code class="language-css">/* Visually backward compatible replacement of the line-numbers plugin :) */
+.line-numbers pre[class*="language-"],
+pre[class*="language-"].line-numbers {
+  counter-reset: linenumber;
+  counter-reset: linenumber var(--counter-start,0);
+  padding-left: 0;
+}
+
+.line-numbers pre[class*="language-"] > code,
+pre[class*="language-"].line-numbers > code {
+  padding-left: 3.8em;
+}
+
+.line-numbers pre[class*="language-"] div.line > a::before,
+pre[class*="language-"].line-numbers div.line > a::before {
+  content: counter(linenumber);
+  counter-increment: linenumber;
+  color: #999;
+  text-indent: 0;
+  text-align: right;
+  box-sizing: border-box;
+  left: -3.8em; /* make it -4.6em if your box-sizing is content-box */
+  display: block;
+  position: absolute;
+  width: 3em;
+  height: 100%;
+  padding-right: 0.8em;
+  border-right: solid #999;
+}</code></pre></p>
+    <p>... and the browser will take care of the rest. To give all code blocks line numbers, add the <code>line-numbers</code> class to the <code>&lt;body></code> of the page.</p>
+  <p>Optional: You can specify the <code>data-start</code> (Number) attribute on the <code>&lt;pre></code> element. It will shift the line counter (if you are using the above CSS example).</p>
+  <p>Optional: To support multiline line numbers using soft wrap, apply the CSS <code>white-space: pre-line;</code> or <code>white-space: pre-wrap;</code> to your desired <code>&lt;pre></code>.</p>
+  <p>Optional: There is a rudimentary support for line highlighting and active line numbers, please see the corresponding examples below.
+</section>
+
+<section class="lines">
+  <h1>Examples</h1>
+
+  <h2>JavaScript</h2>
+  <p>Please note that this <code class="language-markup">&lt;pre></code> does not have the <code>line-numbers</code> class but its parent does.</p>
+  <div class="line-numbers">
+    <pre class="lines" data-src="plugins/lines/prism-lines.js" style="white-space:pre-wrap;"></pre>  </div>
+
+  <h2>CSS</h2>
+  <p>Please note the <code>data-start="-5"</code> in the code below.</p>
+    <pre class="line-numbers" data-src="plugins/lines/prism-lines.css" data-start="-5"></pre>
+
+  <h2>HTML</h2>
+  <p>Please note the <code>style="white-space:pre-wrap;"</code> in the code below and how it affects the wrapped lines.</p>
+  <pre class="line-numbers" data-src="plugins/lines/index.html" style="white-space:pre-wrap;"></pre>
+
+  <h2>Unknown languages</h2>
+  <p>Please note the how the following style:
+    <pre><code class="language-css">#demo1 div.line:nth-of-type(3) {
+background: yellow;
+}</code></pre> can be used to highlight a line.</p>
+  <style>
+    #demo1 div.line:nth-of-type(3) {
+      background: yellow;
+    }
+  </style>
+  <pre id="demo1" class="language-none" style="white-space:pre-wrap;"><code>This raw text
+is not highlighted
+but it still has
+lines wrapped in &lt;div>s, so we could benefit from the support this plugin provides such as nice visual line wrapping and the ability to select lines using CSS rules.
+
+The long and the following blank lines are here to demonstrate the wrapping of the long line.</code></pre>
+  <p>A similar example but without Lines support (please note how plugin was selectively disabled for a particular block using the <code>nolines</code> class:</p>
+  <pre class="language-none nolines" style="white-space:pre-wrap;"><code>This raw text
+is not highlighted
+and it was explicitly
+excluded from being processed through the Lines plugin.  The rendering of this block is exactly the same as if no Lines plugin was present.  You may notice that the wrapping still happens due to the associated CSS class, though, yet it is hard to understand which line was wrapped and which was not.
+
+The long and the following blank lines are here to demonstrate the wrapping of the long line.</code></pre>
+
+  <h2>Line wrap indicator</h2>
+  <p>The location and presentation of the line wrap indicator can be easily customised by adjusting the <code>div.line::after</code> pseudo-element using CSS.  For example, to relocate the indicator to the right side one could come up with something similar to the following stylesheet:</p>
+  <pre class="language-css"><code>pre[class*="language-"] div.line {
+  padding-left: 0;
+  text-indent: 0;
+}
+
+pre[class*="language-"] div.line::after {
+  right: -1em;
+  bottom: 0;
+  left: auto;
+  top: auto;
+  width: 1.5em;
+  transform: none;
+}</code></pre>
+  <p>The result of the applying the above style to a code block can be observed below:</p>
+  <style>
+    #demo2 div.line {
+      padding-left: 0;
+      text-indent: 0;
+    }
+    #demo2 div.line::after {
+      right: -1em;
+      bottom: 0;
+      left: auto;
+      top: auto;
+      width: 1.5em;
+      transform: none;
+    }
+  </style>
+  <pre id="demo2" class="language-none" style="white-space:pre-wrap;"><code>This raw text
+  has a very long line to demonstrate the relocation of the line wrapping indicator from the default left side to the right side of the block.  It is just showcases what is possible when you have semantic representation of lines inside your &lt;pre> blocks.
+
+  The empty line above is there for the demonstration purposes.</code></pre>
+
+  <p>The indicator can be completely disabled by setting the <code>display: none</code> CSS property for the <code>div.line::after</code> pseudo-element, e.g. with the following stylesheet:</p>
+  <pre class="language-css"><code>pre[class*="language-"] div.line::after {
+  display: none;
+}
+
+pre[class*="language-"] div.line {
+  padding-left: 0;
+  text-indent: 0;
+}
+
+#demo3 div.line:nth-of-type(2) {
+  background: yellow;
+}</code></pre>
+  <p>To demonstrate that the Lines plugin still did its work the highlighting of the second line was added to the above stylesheet.  The resulting rendering of a block looks as follows:
+  <style>
+    #demo3 div.line::after {
+      display: none;
+    }
+
+    #demo3 div.line {
+      padding-left: 0;
+      text-indent: 0;
+    }
+
+    #demo3 div.line:nth-of-type(2) {
+      background: yellow;
+    }
+  </style>
+  <pre id="demo3" class="language-none" style="white-space:pre-wrap;"><code>This raw text
+demonstrates that the line wrapping indicator can be completely disabled and you will get the same experience as like no Lines plugin was there.
+
+However, as you can see above, the lines are still semantically represented and are addressable using CSS.</code></pre>
+
+  <h2>Active line numbers</h2>
+  <p>There is a basic support for active line numbers, i.e. when the user clicks on the line number (if the line numbers are displayed) and the location bar is updated with the hash fragment corresponding to the line clicked.</p>
+  <p>The Lines plugin provides bare minimum to support the active line numbers, the user still need to do some preparation work.  Following are conditions for working with the active line numbers in the Lines plugin:
+    <ol>
+      <li>the active line numbers functionality is conditional on the presence of the <code>id</code> attribute of the enclosing <code>&lt;pre></code> element;</li>
+      <li>when lines are wrapped with <code>&lt;div>&lt;a>...&lt;/div>&lt;/a></code> each <code>&lt;div></code> is assigned an <code>id</code> which is a composition of <code>&lt;pre></code>'s <code>id</code> and the corresponding line number joined by <code>.</code>;</li>
+      <li>The user needs to provide the corresponding styles to make line numbers interactive.</li>
+    </ol></p>
+  <p>This means that without any additional configuration the Lines plugin provides a rudimentary support for linking lines and code blocks (e.g. this mimics what the Line Highlight plugin does with the <code>linkable-line-numbers</code> option)</p>
+  <p>However, the problem with that approach is that when somebody is following such a URL that points to a very deeply burrowed code block on a large page, chances are that PrismJS won't be able to modify the DOM tree in time to let the browser "see" the target.</p>
+  <p>One way of addressing the issue would be to pre-generate the structure inside the codeblock, so it is stable from the browser perspective, i.e. wrap all physical lines with <code>&lt;div>&lt;a></code> as the Lines plugin does and ensure that the <code>id</code>s are properly assigned to the <code>&lt;div</code>s.
+  <p>Below is a non-working(*) demonstration of the active line numbers functionality, it uses the <a href="plugins/lines/index.html#line-numbers-css">example stylesheet</a> that was presented at the start of this page.  You still can reference a line using a fragment (e.g. clicking <a href="plugins/lines/index.html#demo4.3">this will point you to line 3</a>), but since the page is using <code>&lt;base href="../.." /></code> one can forget of using fragments without page reloads.</p>
+  <p>The following style rules were added to make the experience a bit more pleasant:</p>
+  <pre class="language-css" style="white-space:pre-wrap;"><code>.line-numbers pre[class*="language-"][id] div.line > a::before,
+pre[class*="language-"][id].line-numbers div.line > a::before {
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.line-numbers pre[class*="language-"][id] div.line > a:hover::before,
+pre[class*="language-"][id].line-numbers div.line > a:hover::before {
+  color: black;
+  background: rgba(0,0,0,.1);
+}
+
+/* add visual assist for demo purposes */
+#demo4 *:target {
+  background-color: #0000ff24;
+}</code></pre>
+  <style>
+  #demo4 div.line > a::before {
+    cursor: pointer;
+    pointer-events: auto;
+  }
+
+  #demo4 div.line > a:hover::before {
+    color: black;
+    background: rgba(0,0,0,.1);
+  }
+
+  #demo4 *:target {
+    background-color: #0000ff24;
+  }
+  </style>
+  <p>All this combined renders as follows:</p>
+  <pre id="demo4" class="language-css line-numbers" style="white-space:pre-wrap;"><code><div id="demo4.1" class=line><a href="#demo4.1"></a>  This is a demo code block to demonstrate the basic active line numbering functionality of the Lines plugin.
+</div><div id="demo4.2" class=line><a href="#demo4.2"></a>
+</div><div id="demo4.3" class=line><a href="#demo4.3"></a>  It is not as sophisticated as the one provided by the Line Highlight plugin when it is used together with the Line Numbers plugin, but on the other hand this version is super lightweight and does not rely on any Javascript code at run-time.
+</div><div id="demo4.4" class=line><a href="#demo4.4"></a>
+</div><div id="demo4.5" class=line><a href="#demo4.5"></a>  One thing worth mentioning is that the line numbers are right-clickable and you can "Save the link" instead of just clicking to get through.</div></code></pre>
+</section>
+
+<footer data-src="templates/footer.html" data-type="text/html"></footer>
+
+<script src="prism.js"></script>
+<script src="plugins/lines/prism-lines.js"></script>
+<script src="scripts/utopia.js"></script>
+<script src="components.js"></script>
+<script src="scripts/code.js"></script>
+
+
+</body>
+</html>

@@ -1184,6 +1184,11 @@
 			"description": "Line number at the beginning of code lines.",
 			"owner": "kuba-kubula"
 		},
+		"lines": {
+			"title": "Lines",
+			"description": "Introduces HTML markup around physical lines to allow styling of the particular line.",
+			"owner": "galaxy4public"
+		},
 		"show-invisibles": {
 			"title": "Show Invisibles",
 			"description": "Show hidden characters such as tabs and line breaks.",
