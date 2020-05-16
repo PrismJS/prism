@@ -1,9 +1,9 @@
-pre[class*="language"] > code {
+pre[class*="language-"] > code {
 	position: relative;
 	display: block;
 }
 
-pre[class*="language"] div.line {
+pre[class*="language-"] div.line {
 	position: relative;
 	display: block;
 	height: 100%;
