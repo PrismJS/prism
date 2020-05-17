@@ -1,0 +1,18 @@
+@Deprecated(SUBSYSTEM_DEPRECATED)
+@SetUp
+@Suppress
+copyMe@
+
+----------------------------------------------------
+
+[
+	["annotation", "@Deprecated"], ["punctuation", "("], "SUBSYSTEM_DEPRECATED", ["punctuation", ")"],
+	["annotation", "@SetUp"],
+	["annotation", "@Suppress"],
+	"\r\ncopyMe",
+	["annotation","@"]
+]
+
+----------------------------------------------------
+
+Checks for annotations.

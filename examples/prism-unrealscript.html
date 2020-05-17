@@ -1,0 +1,38 @@
+<h2>Full example</h2>
+<pre><code>// Source: https://github.com/Jusas/XCOM2_ReconSoldierClass/blob/master/ReconOperatorSoldierClass/Src/ReconSoldierClass/Classes/ReconOperator_AcademyUnlocks.uc
+
+class ReconOperator_AcademyUnlocks extends X2StrategyElement;
+
+static function array&lt;X2DataTemplate> CreateTemplates()
+{
+	local array&lt;X2DataTemplate> Templates;
+
+	Templates.AddItem(AdrenalineUnlock());
+
+	return Templates;
+}
+
+static function X2SoldierAbilityUnlockTemplate AdrenalineUnlock()
+{
+	local X2SoldierAbilityUnlockTemplate Template;
+	local ArtifactCost Resources;
+
+	`CREATE_X2TEMPLATE(class'X2SoldierAbilityUnlockTemplate', Template, 'ReconAdrenalineUnlock');
+
+	Template.AllowedClasses.AddItem('ReconSoldierClass');
+	Template.AbilityName = 'ReconAdrenalineSpike';
+	Template.strImage = "img:///UILibrary_ReconOperator.GTS.GTS_adrenaline";
+
+	// Requirements
+	Template.Requirements.RequiredHighestSoldierRank = 5;
+	Template.Requirements.RequiredSoldierClass = 'ReconSoldierClass';
+	Template.Requirements.RequiredSoldierRankClassCombo = true;
+	Template.Requirements.bVisibleIfSoldierRankGatesNotMet = true;
+
+	// Cost
+	Resources.ItemTemplateName = 'Supplies';
+	Resources.Quantity = 75;
+	Template.Cost.ResourceCosts.AddItem(Resources);
+
+	return Template;
+}</code></pre>

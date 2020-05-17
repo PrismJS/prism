@@ -1,0 +1,19 @@
+] [ x y z and ] [
+
+----------------------------------------------------
+
+[
+	["normal-word", "]"],
+	["quotation-delimiter", "["],
+	["normal-word", "x" ],
+	["normal-word", "y"],
+	["normal-word", "z"],
+	["kernel-builtin", "and"],
+	["quotation-delimiter", "]"],
+	["normal-word", "["]
+]
+
+----------------------------------------------------
+
+quotation syntax
+] at the beginning, and [ at the end of the file should not be highlighted as delimiters

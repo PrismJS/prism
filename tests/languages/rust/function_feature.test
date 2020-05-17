@@ -2,20 +2,56 @@ foo (
 foobar(
 foo_bar_42(
 
-foo! (
-foobar![
-foo_bar_42!(
+foo_generic::<T, Option<T>>()
+
+fn apply<F>(f: F) where F: FnOnce() {
+	f();
+}
 
 ----------------------------------------------------
 
 [
-	["function", "foo"], ["punctuation", "("],
-	["function", "foobar"], ["punctuation", "("],
-	["function", "foo_bar_42"], ["punctuation", "("],
+	["function", "foo"],
+	["punctuation", "("],
+	["function", "foobar"],
+	["punctuation", "("],
+	["function", "foo_bar_42"],
+	["punctuation", "("],
 
-	["function", "foo!"], ["punctuation", "("],
-	["function", "foobar!"], ["punctuation", "["],
-	["function", "foo_bar_42!"], ["punctuation", "("]
+	["function", "foo_generic"],
+	["punctuation", "::"],
+	["operator", "<"],
+	"T",
+	["punctuation", ","],
+	" Option",
+	["operator", "<"],
+	"T",
+	["operator", ">>"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["keyword", "fn"],
+	["function-definition", "apply"],
+	["operator", "<"],
+	"F",
+	["operator", ">"],
+	["punctuation", "("],
+	"f",
+	["punctuation", ":"],
+	" F",
+	["punctuation", ")"],
+	["keyword", "where"],
+	" F",
+	["punctuation", ":"],
+	" FnOnce",
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["function", "f"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["punctuation", "}"]
 ]
 
 ----------------------------------------------------

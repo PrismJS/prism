@@ -1,0 +1,35 @@
+123
+-123
+5e4
+5e-4
+123.546
+123.546E-5
+
+0xFFF
+0b10101
+
+NaN
+Infinity
+-Infinity
+
+----------------------------------------------------
+
+[
+	["number", "123"],
+	["number", "-123"],
+	["number", "5e4"],
+	["number", "5e-4"],
+	["number", "123.546"],
+	["number", "123.546E-5"],
+
+	["number", "0xFFF"],
+	["number", "0b10101"],
+
+	["number", "NaN"],
+	["number", "Infinity"],
+	["number", "-Infinity"]
+]
+
+----------------------------------------------------
+
+Checks for numbers.

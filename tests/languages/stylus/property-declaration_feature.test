@@ -2,6 +2,7 @@ div
 	width 40px
 	color: red
 	background: blue;
+	animation-name test1, animation4
 
 div {
 background-{foo}: bar;
@@ -10,19 +11,27 @@ background-{foo}: bar;
 div
 	{foo} bar
 
+comment
+	content 'http://www.example.com' // comment
+	background url(http://example.com) /* comment */
+	background /* comment */ url("http://example.com")
+	content '/* this is string not comment */'
+
 ----------------------------------------------------
 
 [
 	["selector", ["div"]],
 	["property-declaration", [
-		["property", ["width"]], ["number", "40"], "px"
+		["property", ["width"]], ["number", "40"], ["unit", "px"]
 	]],
 	["property-declaration", [
-		["property", ["color"]], ["punctuation", ":"], " red"
+		["property", ["color"]], ["punctuation", ":"], ["color", "red"]
 	]],
 	["property-declaration", [
-		["property", ["background"]], ["punctuation", ":"], " blue", ["punctuation", ";"]
+		["property", ["background"]], ["punctuation", ":"], ["color", "blue"], ["punctuation", ";"]
 	]],
+	["property-declaration", [
+		["property", ["animation-name"]], " test1", ["punctuation", ","], " animation4"]],
 	["selector", ["div ", ["punctuation", "{"]]],
 	["property-declaration", [
 		["property", [
@@ -44,6 +53,27 @@ div
 			]]
 		]],
 		" bar"
+	]],
+
+	["selector", ["comment"]],
+	["property-declaration", [
+		["property", ["content"]],
+		["string", "'http://www.example.com'"],
+		["comment", "// comment"]
+	]],
+	["property-declaration", [
+		["property", ["background"]],
+		["url", "url(http://example.com)"],
+		["comment", "/* comment */"]
+	]],
+	["property-declaration", [
+		["property", ["background"]],
+		["comment", "/* comment */"],
+		["url", "url(\"http://example.com\")"]
+	]],
+	["property-declaration", [
+		["property", ["content"]],
+		["string", "'/* this is string not comment */'"]
 	]]
 ]
 
