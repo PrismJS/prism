@@ -2,13 +2,14 @@
  * Manage downloads
  */
 
-/// <reference path="utopia.js" />
-/// <reference path="code.js" />
+/// <reference path="./utopia.js" />
+/// <reference path="./code.js" />
 /// <reference path="../components.js" />
 /// <reference path="../dependencies.js" />
 /// <reference path="../prism.js" />
-/// <reference path="vendor/FileSaver.min.js" />
-/// <reference path="vendor/promise.js" />
+/// <reference path="./vendor/FileSaver.min.js" />
+/// <reference path="./vendor/promise.js" />
+/// <reference path="./download-options.js" />
 
 (function() {
 
@@ -29,8 +30,6 @@ var treePromise = new Promise(function(resolve) {
 		}
 	});
 });
-
-var options = getOptions();
 
 /**
  * Converts the given value into an array.
@@ -95,7 +94,7 @@ if (optHStr) {
 			var value = decodeURIComponent(match[3]);
 
 			var set = false;
-			options.forEach(function (o) {
+			downloadOptions.forEach(function (o) {
 				if (!set && o.id === optionId) {
 					for (var name in o.items) {
 						if (name === itemName && o.items.hasOwnProperty(name)) {
@@ -106,7 +105,7 @@ if (optHStr) {
 								value = Number(value);
 							}
 
-							if (item.validate(value)) {
+							if (item.validate(value, o)) {
 								// invalid ignore
 								console.warn('Invalid value: ' + m);
 							} else {
@@ -126,7 +125,7 @@ if (optHStr) {
 }
 
 // add options to the DOM
-var updateOptions = addOptionsToDOM(options);
+var updateOptions = addDownloadOptionsToDOM();
 
 // Stay compatible with old querystring feature
 var qstr = window.location.search.match(/(?:languages|plugins)=[-+\w]+|themes=[-\w]+/g);
@@ -558,9 +557,8 @@ function generateCode(){
 
 		var versionComment = "/* PrismJS " + version + "\n" + redownloadUrl + " */";
 
-		options.filter(function (o) { return o.enabled; }).forEach(function (o) {
-			code.js = o.applyJs(code.js);
-			code.css = o.applyCss(code.css);
+		downloadOptions.filter(function (o) { return o.enabled; }).forEach(function (o) {
+			o.apply(code);
 		});
 
 		for (var type in code) {
@@ -606,7 +604,7 @@ function buildUrl() {
 		redownloadUrl += category + "=" + redownload[category].join('+') + "&";
 	}
 
-	options.forEach(function (o) {
+	downloadOptions.forEach(function (o) {
 		if (!o.enabled) {
 			return;
 		}
@@ -709,218 +707,19 @@ function getVersion() {
 
 
 /**
- * @returns {Option[]}
- *
- * @typedef Option
- * @property {string} id All ids have to start with `options-`.
- * @property {string} title
- * @property {string|string[]} [require]
- * @property {boolean} [enabled]
- * @property {Object<string, OptionItem>} items
- * @property {(this: Option, js: string) => string} [applyJs]
- * @property {(this: Option, css: string) => string} [applyCss]
- *
- * @typedef {StringOptionItem | NumberOptionItem | BooleanOptionItem} OptionItem
- *
- * @typedef StringOptionItem
- * @property {string} title
- * @property {"string"} type
- * @property {string} [value]
- * @property {string} [default='']
- * @property {(value: string, option: Option) => string | undefined} [validate]
- * @typedef NumberOptionItem
- * @property {string} title
- * @property {"number"} type
- * @property {number} [value]
- * @property {number} [default=0]
- * @property {(value: number, option: Option) => string | undefined} [validate]
- * @typedef BooleanOptionItem
- * @property {string} title
- * @property {"boolean"} type
- * @property {boolean} [value]
- * @property {boolean} [default=false]
- * @property {(value: boolean, option: Option) => string | undefined} [validate]
- */
-function getOptions() {
-	/**
-	 * Note: The keys of items are used as their identifier and will be be used in the URL hash.
-	 *
-	 * CHANGING THE ITEM NAMES WILL BREAKING OLD URLS!
-	 */
-
-	/** @type {Option[]} */
-	var opts = [
-		{
-			id: 'options-general',
-			title: 'General',
-			items: {
-				manual: {
-					title: 'Manual highlighting',
-					type: 'boolean'
-				}
-			},
-			applyJs: function (js) {
-				if (this.items.manual.value) {
-					return js + 'Prism.manual=true;\n';
-				}
-				return js;
-			}
-		},
-		{
-			id: 'options-custom-class',
-			title: 'Custom Class',
-			require: 'custom-class',
-			items: {
-				prefix: {
-					title: 'Theme prefix',
-					type: 'string',
-					validate: matchRegExp(/^[\w-]*$/)
-				}
-			},
-			applyJs: function (js) {
-				var prefix = this.items.prefix.value;
-				if (prefix) {
-					return js + 'Prism.plugins.customClass.prefix(' + JSON.stringify(prefix) + ');\n';
-				}
-				return js;
-			},
-			applyCss: function (css) {
-				var prefix = this.items.prefix.value;
-				if (prefix) {
-					var tokens = Prism.tokenize(css, Prism.languages.css);
-
-					tokens.forEach(function (t) {
-						if (t.type === 'selector') {
-							var selector = stringify(t.content);
-
-							selector = selector.replace(/[-\w.#:()]*\.token(?![-\w])[-\w.#:()]*/g, function (m) {
-								return m.replace(/\.([\w-]+)/g, function (m, g1) {
-									return '.' + prefix + g1;
-								});
-							});
-
-							t.content = selector;
-						}
-					});
-
-					/**
-					 * @param {string | Token | Token[]} t
-					 * @returns {string}
-					 */
-					function stringify(t) {
-						if (typeof t === 'string') {
-							return t;
-						}
-						if (Array.isArray(t)) {
-							return t.map(stringify).join('');
-						}
-						return stringify(t.content);
-					}
-
-					css = stringify(tokens);
-				}
-				return css;
-			}
-		},
-		{
-			id: 'options-filter-highlight-all',
-			title: 'Filter highlightAll',
-			require: 'filter-highlight-all',
-			items: {
-				filterKnown: {
-					title: 'Filter known',
-					type: 'boolean'
-				},
-				filterSelector: {
-					title: 'Filter CSS selector',
-					type: 'string'
-				},
-				rejectSelector: {
-					title: 'Reject CSS selector',
-					type: 'string'
-				}
-			},
-			applyJs: function (js) {
-				if (this.items.filterKnown.value) {
-					js += 'Prism.plugins.filterHighlightAll.filterKnown=true;\n';
-				}
-				var filterSelector = this.items.filterSelector.value;
-				if (filterSelector) {
-					js += 'Prism.plugins.filterHighlightAll.addSelector(' + JSON.stringify(filterSelector) + ');\n';
-				}
-				var rejectSelector = this.items.rejectSelector.value;
-				if (rejectSelector) {
-					js += 'Prism.plugins.filterHighlightAll.reject.addSelector(' + JSON.stringify(rejectSelector) + ');\n';
-				}
-				return js;
-			}
-		}
-	];
-
-	return opts.map(function setDefaultValues(o) {
-		if (!/^options-/.test(o.id)) {
-			throw new Error('Invalid id ' + o.id);
-		}
-		o.applyCss = o.applyCss || identifyFn;
-		o.applyJs = o.applyJs || identifyFn;
-		for (var name in o.items) {
-			if (o.items.hasOwnProperty(name)) {
-				if (!/^[\w-]+$/.test(name)) {
-					throw new Error("Invalid name: " + name);
-				}
-				var element = o.items[name];
-				element.validate = element.validate || voidFn;
-
-				if (element.default == undefined) {
-					if (element.type === 'boolean') {
-						element.default = false;
-					} else if (element.type === 'number') {
-						element.default = 0;
-					} else if (element.type === 'string') {
-						element.default = '';
-					}
-				}
-
-				if ('value' in element) {
-					throw new Error('The "value" property cannot be defined here.');
-				}
-				element.value = element.default;
-
-				if (element.validate(element.value)) {
-					throw new Error('The default value of "' + name + '" has to be valid.');
-				}
-			}
-		}
-		return o;
-	});
-
-	function identifyFn(x) { return x; }
-	function voidFn() { return undefined; }
-	function matchRegExp(re) {
-		return function (value) {
-			if (!re.test(value)) {
-				return 'The value must match the regular expression <code>' + text(re) + '</code>';
-			}
-		};
-	}
-
-	function text(str) {
-		return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;');
-	}
-}
-
-/**
  * Adds the given options to the DOM.
  *
- * @param {Option[]} options
+ * Returns a function that will enable/disable options depending on whether the requirements of that option are met.
+ *
+ * @returns {() => void}
  */
-function addOptionsToDOM(options) {
+function addDownloadOptionsToDOM() {
 	var container = $('#option-container');
 
-	/** @type {{ option: Option, element: HTMLElement }[]} */
+	/** @type {{ option: DownloadOption, element: HTMLElement }[]} */
 	var optionElementPairs = [];
 
-	options.forEach(function (o) {
+	downloadOptions.forEach(function (o) {
 		var element = $u.element.create('div', {
 			contents: [
 				{
