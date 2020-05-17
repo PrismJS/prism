@@ -756,6 +756,9 @@ function addDownloadOptionsToDOM() {
 								contents: [
 									{
 										tag: 'span',
+										attributes: {
+											'title': item.desc || ''
+										},
 										contents: item.title
 									},
 									{
@@ -772,6 +775,9 @@ function addDownloadOptionsToDOM() {
 							contents.push(
 								{
 									tag: 'span',
+									attributes: {
+										'title': item.desc || ''
+									},
 									contents: item.title
 								},
 								{

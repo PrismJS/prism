@@ -11,6 +11,7 @@
  *
  * @typedef StringOptionItem
  * @property {string} title
+ * @property {string} [desc]
  * @property {"string"} type
  * @property {string} [value]
  * @property {string} [default='']
@@ -18,6 +19,7 @@
  *
  * @typedef NumberOptionItem
  * @property {string} title
+ * @property {string} [desc]
  * @property {"number"} type
  * @property {number} [value]
  * @property {number} [default=0]
@@ -25,6 +27,7 @@
  *
  * @typedef BooleanOptionItem
  * @property {string} title
+ * @property {string} [desc]
  * @property {"boolean"} type
  * @property {boolean} [value]
  * @property {boolean} [default=false]
@@ -60,6 +63,7 @@ var downloadOptions = [];
 		items: {
 			manual: {
 				title: 'Manual highlighting',
+				desc: 'Manual highlighting means that Prism will not highlight all code snippets and code blocks automatically. To highlight elements, you have to explicitly call Prism\'s highlight functions.',
 				type: 'boolean'
 			}
 		},
@@ -76,7 +80,8 @@ var downloadOptions = [];
 		require: 'custom-class',
 		items: {
 			prefix: {
-				title: 'Theme prefix',
+				title: 'Class prefix',
+				desc: 'The classes of all tokens produced by Prism will have the given prefix.',
 				type: 'string',
 				validate: matchRegExp(/^(?:[a-z][\w-]*)?$/)
 			}
@@ -97,6 +102,12 @@ var downloadOptions = [];
 				if (t.type === 'selector') {
 					var selector = stringify(t.content);
 
+					// The idea behind this regex is as follows:
+					// We have to detect all elements that have a `.token` class and change all classes of any such
+					// element. To do this, we search for all `.token` classes and include all surrounding component
+					// selectors as well. I.e. For the selector `code.style #id.token.foo:not(.bar)`, the text
+					// `#id.token.foo:not(.bar)` will be matched. We can then trivially detect all classes by the `.`
+					// prefix.
 					selector = selector.replace(/[-\w.#:()]*\.token(?![-\w])[-\w.#:()]*/g, function (m) {
 						return m.replace(/\.([\w-]+)/g, function (m, g1) {
 							return '.' + prefix + g1;
