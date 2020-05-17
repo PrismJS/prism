@@ -99,6 +99,7 @@
 		var lineNumber = dataStart;
 		var line = createLine(lineNumber++, pre.id)
 		var currentNode = highlightedCode.body.firstChild;
+
 		while (currentNode) {
 			// quick test for embedded lines
 			if (/\n/.test(currentNode.textContent)) {
