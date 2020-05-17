@@ -13,11 +13,11 @@
 	// The languages map is built automatically with gulp
 	var Languages = /*languages_placeholder[*/{
 		"html": "HTML",
-		"mathml": "MathML",
-		"svg": "SVG",
 		"xml": "XML",
-		"rss": "RSS",
+		"svg": "SVG",
+		"mathml": "MathML",
 		"ssml": "SSML",
+		"rss": "RSS",
 		"css": "CSS",
 		"clike": "C-like",
 		"js": "JavaScript",

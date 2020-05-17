@@ -48,15 +48,15 @@
 		},
 		"markup": {
 			"title": "Markup",
-			"alias": ["html", "mathml", "svg", "xml", "atom", "rss", "ssml"],
+			"alias": ["html", "xml", "svg", "mathml", "ssml", "atom", "rss"],
 			"aliasTitles": {
 				"html": "HTML",
-				"mathml": "MathML",
-				"svg": "SVG",
 				"xml": "XML",
+				"svg": "SVG",
+				"mathml": "MathML",
+				"ssml": "SSML",
 				"atom": "Atom",
-				"rss": "RSS",
-				"ssml": "SSML"
+				"rss": "RSS"
 			},
 			"option": "default"
 		},
