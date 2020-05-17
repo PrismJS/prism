@@ -48,12 +48,14 @@
 		},
 		"markup": {
 			"title": "Markup",
-			"alias": ["html", "xml", "svg", "mathml", "ssml"],
+			"alias": ["html", "xml", "svg", "mathml", "atom", "rss", "ssml"],
 			"aliasTitles": {
 				"html": "HTML",
 				"xml": "XML",
 				"svg": "SVG",
 				"mathml": "MathML",
+				"atom": "Atom",
+				"rss": "RSS",
 				"ssml": "SSML"
 			},
 			"option": "default"
@@ -560,6 +562,10 @@
 		},
 		"json": {
 			"title": "JSON",
+			"alias": "webmanifest",
+			"aliasTitles": {
+				"webmanifest": "Web App Manifest"
+			},
 			"owner": "CupOfTea696"
 		},
 		"jsonp": {
