@@ -119,10 +119,7 @@
 			}
 			currentNode = currentNode.nextSibling;
 		}
-
-		// if there is an uncommited line, commit it
-		if (line.children.length > 1)
-			wrapped.appendChild(line);
+		wrapped.appendChild(line);
 
 		if (wrapped.children) {
 			env.highlightedCode = '';
