@@ -1,3 +1,4 @@
+/* Protects from themes that mess the code block up */
 pre[class*="language-"] > code {
 	position: relative;
 	display: block;
