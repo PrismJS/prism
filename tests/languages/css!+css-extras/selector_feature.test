@@ -7,6 +7,14 @@ foo#bar {
 
 #foo > .bar:hover:after {
 
+span,
+div {
+
+div > p,
+.css-li ~ .css-li,
+.previous-selector + .selector,
+.selected || td {
+
 ----------------------------------------------------
 
 [
@@ -32,10 +40,34 @@ foo#bar {
 
 	["selector", [
 		["id", "#foo"],
-		" > ",
+		["combinator", ">"],
 		["class", ".bar"],
 		["pseudo-class", ":hover"],
 		["pseudo-element", ":after"]
+	]], ["punctuation", "{"],
+
+	["selector", [
+		"span",
+		["punctuation", ","],
+		"\r\ndiv"
+	]], ["punctuation", "{"],
+
+	["selector", [
+		"div ",
+		["combinator", ">"],
+		" p",
+		["punctuation", ","],
+		["class", ".css-li"],
+		["combinator", "~"],
+		["class", ".css-li"],
+		["punctuation", ","],
+		["class", ".previous-selector"],
+		["combinator", "+"],
+		["class", ".selector"],
+		["punctuation", ","],
+		["class", ".selected"],
+		["combinator", "||"],
+		" td"
 	]], ["punctuation", "{"]
 ]
 
