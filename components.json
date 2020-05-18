@@ -1193,7 +1193,7 @@
 		},
 		"lines": {
 			"title": "Lines",
-			"description": "Introduces HTML markup around physical lines to allow styling of the particular line.",
+			"description": "Creates a wrapper element for every line.",
 			"owner": "galaxy4public"
 		},
 		"show-invisibles": {
