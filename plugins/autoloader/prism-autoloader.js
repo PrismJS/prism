@@ -96,6 +96,7 @@
 			"markup",
 			"javascript"
 		],
+		"purebasic": "clike",
 		"qml": "javascript",
 		"qore": "clike",
 		"racket": "scheme",
@@ -133,13 +134,14 @@
 		],
 		"t4-vb": [
 			"t4-templating",
-			"visual-basic"
+			"vbnet"
 		],
 		"vala": "clike",
 		"vbnet": "basic",
 		"velocity": "markup",
 		"wiki": "markup",
 		"xeora": "markup",
+		"xml-doc": "markup",
 		"xquery": "markup"
 	}/*]*/;
 
@@ -149,6 +151,8 @@
 		"svg": "markup",
 		"mathml": "markup",
 		"ssml": "markup",
+		"atom": "markup",
+		"rss": "markup",
 		"js": "javascript",
 		"g4": "antlr4",
 		"adoc": "asciidoc",
@@ -167,6 +171,7 @@
 		"xls": "excel-formula",
 		"gamemakerlanguage": "gml",
 		"hs": "haskell",
+		"webmanifest": "json",
 		"tex": "latex",
 		"context": "latex",
 		"ly": "lilypond",
@@ -182,8 +187,10 @@
 		"pcode": "peoplecode",
 		"pq": "powerquery",
 		"mscript": "powerquery",
+		"pbfasm": "purebasic",
 		"py": "python",
 		"rkt": "racket",
+		"rpy": "renpy",
 		"robot": "robotframework",
 		"rb": "ruby",
 		"sln": "solution-file",

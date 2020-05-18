@@ -103,3 +103,5 @@ Prism.languages.svg = Prism.languages.markup;
 
 Prism.languages.xml = Prism.languages.extend('markup', {});
 Prism.languages.ssml = Prism.languages.xml;
+Prism.languages.atom = Prism.languages.xml;
+Prism.languages.rss = Prism.languages.xml;
