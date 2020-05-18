@@ -34,7 +34,7 @@ foo#bar.baz {
 
 	["selector", [
 		["id", "#foo"],
-		" > ",
+		["combinator", ">"],
 		["class", ".bar"],
 		["pseudo-class", ":hover"],
 		["pseudo-element", ":after"]
