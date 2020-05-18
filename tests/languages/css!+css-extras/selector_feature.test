@@ -1,19 +1,11 @@
 foo:after {
 foo::first-letter {
 
-foo.bar {
+foo.bar.baz {
 
-foo#bar {
+foo#bar.baz {
 
 #foo > .bar:hover:after {
-
-span,
-div {
-
-div > p,
-.css-li ~ .css-li,
-.previous-selector + .selector,
-.selected || td {
 
 ----------------------------------------------------
 
@@ -30,12 +22,14 @@ div > p,
 
 	["selector", [
 		"foo",
-		["class", ".bar"]
+		["class", ".bar"],
+		["class", ".baz"]
 	]], ["punctuation", "{"],
 
 	["selector", [
 		"foo",
-		["id", "#bar"]
+		["id", "#bar"],
+		["class", ".baz"]
 	]], ["punctuation", "{"],
 
 	["selector", [
@@ -44,30 +38,6 @@ div > p,
 		["class", ".bar"],
 		["pseudo-class", ":hover"],
 		["pseudo-element", ":after"]
-	]], ["punctuation", "{"],
-
-	["selector", [
-		"span",
-		["punctuation", ","],
-		"\r\ndiv"
-	]], ["punctuation", "{"],
-
-	["selector", [
-		"div ",
-		["combinator", ">"],
-		" p",
-		["punctuation", ","],
-		["class", ".css-li"],
-		["combinator", "~"],
-		["class", ".css-li"],
-		["punctuation", ","],
-		["class", ".previous-selector"],
-		["combinator", "+"],
-		["class", ".selector"],
-		["punctuation", ","],
-		["class", ".selected"],
-		["combinator", "||"],
-		" td"
 	]], ["punctuation", "{"]
 ]
 
