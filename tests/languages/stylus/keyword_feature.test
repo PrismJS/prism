@@ -2,6 +2,7 @@ for i in 1..5
 if a == 3
 z-index: 1 unless @z-index;
 return pair[1] if pair[0] == key for pair in hash
+if url == "http://example.com"	// comment
 
 ----------------------------------------------------
 
@@ -36,6 +37,13 @@ return pair[1] if pair[0] == key for pair in hash
 		["operator", "=="], " key ",
 		["keyword", "for"], " pair ",
 		["operator", "in"], " hash"
+	]],
+	["statement", [
+		["keyword", "if"],
+		" url ",
+		["operator", "=="],
+		["string", "\"http://example.com\""],
+		["comment", "// comment"]
 	]]
 ]
 
