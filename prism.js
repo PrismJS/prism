@@ -757,11 +757,11 @@ Prism.languages.markup = {
 				pattern: /=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+)/,
 				inside: {
 					'punctuation': [
-						/^=/,
 						{
-							pattern: /^(\s*)["']|["']$/,
-							lookbehind: true
-						}
+							pattern: /^=/,
+							alias: 'attr-equals'
+						},
+						/"|'/
 					]
 				}
 			},
