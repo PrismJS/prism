@@ -48,13 +48,15 @@
 		},
 		"markup": {
 			"title": "Markup",
-			"alias": ["html", "xml", "svg", "mathml", "ssml"],
+			"alias": ["html", "xml", "svg", "mathml", "ssml", "atom", "rss"],
 			"aliasTitles": {
 				"html": "HTML",
 				"xml": "XML",
 				"svg": "SVG",
 				"mathml": "MathML",
-				"ssml": "SSML"
+				"ssml": "SSML",
+				"atom": "Atom",
+				"rss": "RSS"
 			},
 			"option": "default"
 		},
@@ -560,6 +562,10 @@
 		},
 		"json": {
 			"title": "JSON",
+			"alias": "webmanifest",
+			"aliasTitles": {
+				"webmanifest": "Web App Manifest"
+			},
 			"owner": "CupOfTea696"
 		},
 		"jsonp": {
