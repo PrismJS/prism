@@ -101,10 +101,10 @@
 				pattern: /(?:action)/i,
 				alias: 'keyword'
 			},
+			'comment': comment,
 			'function': func,
 			'arg-value': args['arg-value'],
 			'operator': args.operator,
-			'comment': comment,
 			'argument': args.arg,
 			'number': number,
 			'numeric-constant': numericConstant,
@@ -154,15 +154,17 @@
 		},
 
 		'proc-groovy': {
-			pattern: /(^proc\s+groovy(?:\s+[\w|=]+)?;)(?:\s*submit)[\s\S]+?(?=^(?:proc\s+\w+|quit|run|data);|(?![\s\S]))/im,
+			pattern: /(^proc\s+groovy(?:\s+[\w|=]+)?;)[\s\S]+?(?=^(?:proc\s+\w+|quit|run|data);|(?![\s\S]))/im,
 			lookbehind: true,
 			inside: {
+				'comment': comment,
 				'groovy': {
 					pattern: RegExp(/(^[ \t]*submit(?:\s+(?:load|parseonly|norun))?)(?:<str>|[^"'])+?(?=endsubmit;)/.source.replace(/<str>/g, function () { return stringPattern; }), 'im'),
 					lookbehind: true,
 					alias: 'language-groovy',
 					inside: Prism.languages.groovy
 				},
+				'keyword': keywords,
 				'submit-statement': submitStatement,
 				'global-statements': globalStatements,
 				'number': number,
@@ -173,15 +175,17 @@
 		},
 
 		'proc-lua': {
-			pattern: /(^proc\s+lua(?:\s+[\w|=]+)?;)(?:\s*submit)[\s\S]+?(?=^(?:proc\s+\w+|quit|run|data);|(?![\s\S]))/im,
+			pattern: /(^proc\s+lua(?:\s+[\w|=]+)?;)[\s\S]+?(?=^(?:proc\s+\w+|quit|run|data);|(?![\s\S]))/im,
 			lookbehind: true,
 			inside: {
+				'comment': comment,
 				'lua': {
 					pattern: RegExp(/(^[ \t]*submit(?:\s+(?:load|parseonly|norun))?)(?:<str>|[^"'])+?(?=endsubmit;)/.source.replace(/<str>/g, function () { return stringPattern; }), 'im'),
 					lookbehind: true,
 					alias: 'language-lua',
 					inside: Prism.languages.lua
 				},
+				'keyword': keywords,
 				'submit-statement': submitStatement,
 				'global-statements': globalStatements,
 				'number': number,
@@ -195,6 +199,7 @@
 			pattern: /(^proc\s+cas(?:\s+[\w|=]+)?;)[\s\S]+?(?=^(?:proc\s+\w+|quit|data);|(?![\s\S]))/im,
 			lookbehind: true,
 			inside: {
+				'comment': comment,
 				'statement-var': {
 					pattern: /((?:^|\s)=?)saveresult\s+[^;]+/im,
 					lookbehind: true,
@@ -217,7 +222,6 @@
 				'step': step,
 				'keyword': keywords,
 				'function': func,
-				'comment': comment,
 				'format': format,
 				'altformat': altformat,
 				'global-statements': globalStatements,
