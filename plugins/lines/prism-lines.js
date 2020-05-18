@@ -1,3 +1,5 @@
+// Original author: https://github.com/galaxy4public
+
 (function () {
 
 	if (typeof self === 'undefined' || !self.Prism || !self.document) {
@@ -5,126 +7,190 @@
 	}
 
 	/**
-	 * Returns style declarations for the element
+	 * Removes all child nodes of the given element and returns the removed nodes in order.
+	 *
 	 * @param {Element} element
+	 * @returns {Node[]}
 	 */
-	Prism.hooks.add('before-insert', function (env) {
+	function clearChildNodes(element) {
+		/** @type {Node[]} */
+		var nodes = [];
 
-		// works only for <code> wrapped inside <pre> (not inline)
-		var pre = env.element.parentNode;
-		if (!pre || !/pre/i.test(pre.nodeName)) {
-			return;
+		var first;
+		while (first = element.firstChild) {
+			nodes.push(first);
+			element.removeChild(first);
 		}
 
-		// we are not welcome here :(
-		if (pre.className.includes('nolines')) {
-			return;
+		return nodes;
+	}
+
+	/**
+	 * Transfers the `count` last child nodes from `from` to `to` by appending them.
+	 *
+	 * @param {Element} from
+	 * @param {Element} to
+	 * @param {number} count
+	 */
+	function transferLastChildNodes(from, to, count) {
+		/** @type {Node[]} */
+		var nodes = [];
+
+		while (count-- !== 0) {
+			nodes.push(from.removeChild(from.lastChild));
 		}
 
-		// support for line-numbers behaviour
-		var dataStart = 1;
-		if (pre.hasAttribute('data-start')) {
-			dataStart = parseInt(pre.getAttribute('data-start'), 10);
-			if (isNaN(dataStart)) {
-				dataStart = 1;
-			}
-			pre.style.setProperty('--counter-start', dataStart - 1);
-                }
-
-		function createLine(lineNumber, prefix) {
-			var line = document.createElement('div');
-			var anchor = document.createElement('a');
-			if (prefix) {
-				var target = prefix + '.' + lineNumber;
-				line.id = target;
-				anchor.href = '#' + target;
-			}
-			line.setAttribute('class', 'line');
-			line.appendChild(anchor);
-			return line;
+		// nodes are in reversed order
+		for (var i = nodes.length - 1; i >= 0; i--) {
+			to.append(nodes[i]);
 		}
+	}
 
-		function splitNode(node) {
-			if (node.hasChildNodes()) {
-				// so we've got a kid! :)
-				var p1 = document.createElement(node.nodeName);
-				var p2 = document.createElement(node.nodeName);
-				if (node.hasAttributes()) {
-					for (i = 0; i < node.attributes.length ; i++) {
-						var key = node.attributes.item(i).name;
-						var value = node.attributes.item(i).value;
-						p1.setAttribute(key, value);
-						p2.setAttribute(key, value);
+	/** @type {Readonly<SplitResult>} */
+	var NO_SPLIT = {};
+	/** @type {Readonly<SplitResult>} */
+	var NO_SPLIT_NEWLINE = { newline: true };
+
+	/**
+	 * Modifies the given node such that its `textContent` is exactly one line.
+	 *
+	 * The `newline` property of the returned `SplitResult` is `true` if the given node contains a newline.
+	 * The `rest` property is only defined if `newline` is `true` and, if defined, contains a node representing the
+	 * rest of the text content (plus tags).
+	 *
+	 * If `newline` is `true` and `rest` is undefined, then the given contains exactly one line terminated by a single
+	 * newline.
+	 *
+	 * @param {Node} node
+	 * @param {Document} document
+	 * @returns {Readonly<SplitResult>}
+	 *
+	 * @typedef SplitResult
+	 * @property {boolean | undefined} [newline] If `newline` is `false`, then `rest` will be `undefined`.
+	 * @property {Node | undefined} [rest]
+	 */
+	function splitNode(node, document) {
+		switch (node.nodeType) {
+			case Node.ELEMENT_NODE:
+				var element = /** @type {Element} */ (node);
+
+				for (var i = 0, l = element.childNodes.length; i < l; i++) {
+					var child = element.childNodes[i];
+					var res = splitNode(child, document);
+
+					if (res.newline) {
+						if (!res.rest && i === l - 1) {
+							// This child is the last child and ends with a newline and nothing after it.
+							// Example: <span>foo\n</span>
+							return NO_SPLIT_NEWLINE;
+						}
+
+						// create a copy of the element without any child nodes (shallow copy)
+						var restElement = /** @type {Element} */ (element.cloneNode(false));
+
+						// append the rest of the split result of the current child to the new element
+						if (res.rest) {
+							restElement.append(res.rest);
+						}
+						// append all child nodes of the current child to the new element
+						transferLastChildNodes(element, restElement, l - i - 1);
+
+						return { newline: true, rest: restElement };
 					}
 				}
-				var kid = node.firstChild;
 
-				// skip all non-interesting kids
-				while (kid && !/\n/.test(kid.textContent)) {
-					p1.appendChild(kid.cloneNode(true));
-					kid = kid.nextSibling;
+				// This will be reached if the element has no children or none of the children contains a newline.
+				// Example: <span>foo</span>
+				return NO_SPLIT;
+
+			case Node.TEXT_NODE:
+				var text = /** @type {Text} */ (node);
+
+				var newlineIndex = text.data.indexOf('\n');
+				if (newlineIndex === -1) {
+					// This text does not contain a newline.
+					return NO_SPLIT;
+
+				} else if (newlineIndex === text.data.length - 1) {
+					// This text ends a line with nothing after it.
+					return NO_SPLIT_NEWLINE;
+
+				} else {
+					// This text contains a newlines and there are some characters after the first line.
+					var restText = text.splitText(newlineIndex + 1);
+					return { newline: true, rest: restText };
 				}
 
-				if (kid && /\n/.test(kid.textContent)) {
-					// found a special one :)
-					var pair = splitNode(kid);
-					p1.appendChild(pair[0]);
-					if (pair[1])
-						p2.appendChild(pair[1]);
-				}
+			default:
+				// In all other cases, we will just assume that the node doesn't contribute to the textContent and
+				// therefore cannot contain newlines. Example: comments.
+				return NO_SPLIT;
+		}
+	}
 
-				return [ p1, p2 ];
-			}
 
-			// we are at the bottom of the hierarchy
-			switch (node.nodeType) {
-				case Node.TEXT_NODE:
-					var newLine = node.textContent.indexOf('\n');
-					if (newLine == -1 || newLine == node.textContent.length - 1)
-						return [ node, null ];
-					return [
-						document.createTextNode(node.textContent.slice(0, newLine + 1)),
-						document.createTextNode(node.textContent.slice(newLine + 1))
-					];
+	Prism.hooks.add('before-insert', function (env) {
+		// works only for <code> wrapped inside <pre> (not inline)
+
+		/** @type {HTMLPreElement} */
+		var pre = env.element.parentNode;
+		if (!pre || !/^pre$/i.test(pre.nodeName)) {
+			return;
+		}
+
+		var dom = new DOMParser().parseFromString(env.highlightedCode, 'text/html');
+		var domNodesReversed = clearChildNodes(dom.body).reverse();
+		var wrapper = dom.createElement('div');
+
+		/**
+		 * @param {readonly Node[]} childNodes
+		 */
+		function addLine(childNodes) {
+			var line = dom.createElement('div');
+			line.className = 'code-line';
+			// event/hook: after-line-create
+			line.append.apply(line, childNodes);
+			// event/hook: before-add-line
+			wrapper.append(line);
+		}
+
+		var lineNodes = [];
+
+		// This outer loop will go through all nodes in the DOM in order.
+		// This can be thought of as iterating over all top-level tokens.
+		/** @type {Node | undefined} */
+		var currentNode;
+		while (currentNode = domNodesReversed.pop()) {
+
+			// The inner loop will process the current node. The current node may be split any number of times and the
+			// split result also has to be processed.
+			while (currentNode) {
+				var res = splitNode(currentNode, dom);
+				lineNodes.push(currentNode);
+
+				if (res.newline) {
+					// the returned node contains a newline, so we have to create a new line
+					addLine(lineNodes);
+					lineNodes.length = 0;
+
+					// the node was split and there is still some part of it left to precess
+					currentNode = res.rest;
+
+				} else {
+					// the current node doesn't contain a newline, so we just append it to the current line and
+					// process the next node.
 					break;
-				default:
-					console.warn('Lines plugin: encountered unexpected node type ', node.nodeType, ', please report this as bug.');
-					return [ node, null ]; // no splitting, safe
-			}
-		}
-
-		var parser = new DOMParser();
-		var highlightedCode = parser.parseFromString(env.highlightedCode, 'text/html');
-		var wrapped = new DocumentFragment();
-		var lineNumber = dataStart;
-		var line = createLine(lineNumber++, pre.id)
-		var currentNode = highlightedCode.body.firstChild;
-
-		while (currentNode) {
-			// quick test for embedded lines
-			if (/\n/.test(currentNode.textContent)) {
-				var detached = currentNode.cloneNode(true);
-				while (detached && /\n/.test(detached.textContent)) {
-					var pair = splitNode(detached);
-					line.appendChild(pair[0]);
-					wrapped.appendChild(line);
-					line = createLine(lineNumber++, pre.id);
-					detached = pair[1];
 				}
-				if (detached)
-					line.appendChild(detached);
 			}
-			else {
-				line.appendChild(currentNode.cloneNode(true));
-			}
-			currentNode = currentNode.nextSibling;
 		}
-		wrapped.appendChild(line);
 
-		if (wrapped.children) {
-			env.highlightedCode = '';
-			for (i = 0; i < wrapped.children.length; i++)
-				env.highlightedCode += wrapped.children[i].outerHTML;
+		if (lineNodes.length > 0) {
+			addLine(lineNodes);
 		}
+
+		env.highlightedCode = wrapper.innerHTML;
+
+		// event/hook: complete-lines
 	});
+
 }());
