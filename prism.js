@@ -384,7 +384,6 @@ var _ = {
 _self.Prism = _;
 
 /**
- *
  * @param {string} type
  * @param {string | Token | (string | Token)[]} content
  * @param {string | string[] | undefined} [alias]
