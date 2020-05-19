@@ -100,7 +100,7 @@
 		<li>Very easy to extend without modifying the code, due to Prism’s <a href="#plugins">plugin architecture</a>. Multiple hooks are scattered throughout the source.</li>
 		<li>Very easy to <a href="extending.html#language-definitions">define new languages</a>. Only thing you need is a good understanding of regular expressions</li>
 		<li>All styling is done through CSS, with <a href="faq.html#how-do-i-know-which-tokens-i-can-style-for">sensible class names</a> rather than ugly namespaced abbreviated nonsense.</li>
-		<li>Wide browser support: IE11, Firefox, Chrome, Safari, <a href="faq.html#this-page-doesnt-work-in-opera">Opera</a>, most Mobile browsers</li>
+		<li>Wide browser support: Edge, IE11, Firefox, Chrome, Safari, <a href="faq.html#this-page-doesnt-work-in-opera">Opera</a>, most Mobile browsers</li>
 		<li>Highlights embedded languages (e.g. CSS inside HTML, JavaScript inside HTML)</li>
 		<li>Highlights inline code as well, not just code blocks</li>
 		<li>Highlights nested languages (CSS in HTML, JavaScript in HTML)</li>
@@ -115,16 +115,16 @@
 	<h1>Limitations</h1>
 	<ul>
 		<li>Any pre-existing HTML in the code will be stripped off. <a href="faq.html#if-pre-existing-html-is-stripped-off-how-can-i-highlight">There are ways around it though</a>.</li>
-		<li>Regex-based so it *will* fail on certain edge cases, which are documented in the <a href="known-failures.html">known failues page</a>.</li>
+		<li>Regex-based so it *will* fail on certain edge cases, which are documented in the <a href="known-failures.html">known failures page</a>.</li>
 		<li>Some of our themes have problems with certain layouts. Known cases are documented <a href="known-failures.html#themes">here</a>.</li>
-		<li>No IE 6-10 support. If someone can read code, they are probably in the 85% of the population with a modern browser.</li>
+		<li>No IE 6-10 support. If someone can read code, they are probably in the 95% of the population with a modern browser.</li>
 	</ul>
 </section>
 
 <section id="basic-usage" class="language-markup">
 	<h1>Basic usage</h1>
 
-	<p>You will need to include the <code>prism.css</code> and <code>prism.js</code> files you downloaded in your page. Example:
+	<p>You will need to include the <code>prism.css</code> and <code>prism.js</code> files you <a href="download.html">downloaded</a> in your page. Example:
 	<pre><code>&lt;!DOCTYPE html>
 &lt;html>
 &lt;head>
@@ -160,7 +160,7 @@ window.Prism.manual = true;
 &lt;/script>
 &lt;script src="prism.js">&lt;/script></code></pre>
 
-	<h2>Usage with CDNs</h2>
+	<h2 id="basic-usage-cdn">Usage with CDNs</h2>
 
 	<p>In combination with CDNs, we recommend using the <a href="plugins/autoloader">Autoloader plugin</a> which automatically loads languages when necessary.</p>
 
@@ -179,9 +179,9 @@ window.Prism.manual = true;
 <code>&lt;/body>
 &lt;/html></code></pre>
 
-	<p>CDNs which provide PrismJS are e.g. <a href="https://cdnjs.com/libraries/prism">cdnjs</a> and <a href="https://www.jsdelivr.com/package/npm/prismjs">jsDelivr</a>.</p>
+	<p>CDNs which provide PrismJS are e.g. <a href="https://cdnjs.com/libraries/prism">cdnjs</a>, <a href="https://www.jsdelivr.com/package/npm/prismjs">jsDelivr</a>, and <a href="https://unpkg.com/browse/prismjs@1/">UNPKG</a>.</p>
 
-	<h2>Usage with Webpack, Browserify, & Other Bundlers</h2>
+	<h2 id="basic-usage-bundlers">Usage with Webpack, Browserify, & Other Bundlers</h2>
 
 	<p>If you want to use Prism with a bundler, install Prism with <code>npm</code>:</p>
 
@@ -196,7 +196,7 @@ window.Prism.manual = true;
 		the minimum number of languages and plugins to satisfy your needs.
 		See that plugin's documentation for configuration details.</p>
 
-	<h2>Usage with Node</h2>
+	<h2 id="basic-usage-node">Usage with Node</h2>
 
 	<p>If you want to use Prism on the server or through the command line, Prism can be used with Node.js as well.
 	This might be useful if you're trying to generate static HTML pages with highlighted code for environments that don't support browser-side JS, like <a href="https://www.ampproject.org/">AMP pages</a>.</p>

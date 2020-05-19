@@ -3,6 +3,8 @@
 @font-face {
 @keyframes {
 @media (max-{foo}: bar)
+@namespace url(http://www.w3.org/1999/xhtml)	// comment
+@namespace svg url(http://www.w3.org/2000/svg)	// comment
 
 ----------------------------------------------------
 
@@ -23,6 +25,17 @@
 		["punctuation", ":"],
 		" bar",
 		["punctuation", ")"]
+	]],
+	["atrule-declaration", [
+		["atrule", "@namespace"],
+		["url", "url(http://www.w3.org/1999/xhtml)"],
+		["comment", "// comment"]
+	]],
+	["atrule-declaration", [
+		["atrule", "@namespace"],
+		" svg ",
+		["url", "url(http://www.w3.org/2000/svg)"],
+		["comment", "// comment"]
 	]]
 ]
 
