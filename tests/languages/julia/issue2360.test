@@ -1,0 +1,39 @@
+"""
+	count_consecutive(str::AbstractString, start::Int)
+
+Counts the number of identical characters in a given string `str` starting from index `start`.
+
+# Examples
+
+```julia-repl
+julia> count_consecutive("AAAB", 3)
+('A', 3)
+
+julia> count_consecutive("x y z", 3)
+('y', 1)
+```
+"""
+function count_consecutive(str, start)
+	...
+end
+
+----------------------------------------------------
+
+[
+	["string", "\"\"\"\r\n\tcount_consecutive(str::AbstractString, start::Int)\r\n\r\nCounts the number of identical characters in a given string `str` starting from index `start`.\r\n\r\n# Examples\r\n\r\n```julia-repl\r\njulia> count_consecutive(\"AAAB\", 3)\r\n('A', 3)\r\n\r\njulia> count_consecutive(\"x y z\", 3)\r\n('y', 1)\r\n```\r\n\"\"\""],
+	["keyword", "function"],
+	" count_consecutive",
+	["punctuation", "("],
+	"str",
+	["punctuation", ","],
+	" start",
+	["punctuation", ")"],
+	["punctuation", "."],
+	["punctuation", "."],
+	["punctuation", "."],
+	["keyword", "end"]
+]
+
+----------------------------------------------------
+
+Multi-line strings didn't work correctly.

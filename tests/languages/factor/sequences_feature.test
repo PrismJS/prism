@@ -1,0 +1,98 @@
+}
+{ 1 2 3 4 }
+{ a b c d e f }
+{ "a" "b" "c" }
+
+{ { a b } { c d } }
+H{ { a b } { c d } }
+H{ { "a" "b" } { "c" "d" } }
+V{ 1 2 3 4 }
+V{ "1" "2" "3" "4" }
+BV{ 1 2 3 4 }
+{
+
+----------------------------------------------------
+
+[
+	["normal-word", "}"],
+	["curly-brace-literal-delimiter", "{"],
+	["number", "1"],
+	["number", "2"],
+	["number", "3"],
+	["number", "4"],
+	["curly-brace-literal-delimiter", "}"],
+
+	["curly-brace-literal-delimiter", "{"],
+	["normal-word", "a"],
+	["normal-word", "b"],
+	["normal-word", "c"],
+	["normal-word", "d"],
+	["normal-word", "e"],
+	["boolean", "f"],
+	["curly-brace-literal-delimiter", "}"],
+
+	["curly-brace-literal-delimiter", "{"],
+	["string", ["\"a\""] ],
+	["string", ["\"b\""] ],
+	["string", ["\"c\""] ],
+	["curly-brace-literal-delimiter", "}"],
+
+	["curly-brace-literal-delimiter", "{"],
+	["curly-brace-literal-delimiter", "{"],
+	["normal-word", "a"],
+	["normal-word", "b"],
+	["curly-brace-literal-delimiter", "}"],
+	["curly-brace-literal-delimiter", "{"],
+	["normal-word", "c"],
+	["normal-word", "d"],
+	["curly-brace-literal-delimiter", "}"],
+	["curly-brace-literal-delimiter", "}"],
+
+	["curly-brace-literal-delimiter", "H{"],
+	["curly-brace-literal-delimiter", "{"],
+	["normal-word", "a"],
+	["normal-word", "b"],
+	["curly-brace-literal-delimiter", "}"],
+	["curly-brace-literal-delimiter", "{"],
+	["normal-word", "c"],
+	["normal-word", "d"],
+	["curly-brace-literal-delimiter", "}"],
+	["curly-brace-literal-delimiter", "}"],
+
+	["curly-brace-literal-delimiter", "H{"],
+	["curly-brace-literal-delimiter", "{"],
+	["string", ["\"a\""]],
+	["string", ["\"b\""]],
+	["curly-brace-literal-delimiter", "}"],
+	["curly-brace-literal-delimiter", "{"],
+	["string", ["\"c\""]],
+	["string", ["\"d\""]],
+	["curly-brace-literal-delimiter", "}"],
+	["curly-brace-literal-delimiter", "}"],
+
+	["curly-brace-literal-delimiter", "V{"],
+	["number", "1"],
+	["number", "2"],
+	["number", "3"],
+	["number", "4"],
+	["curly-brace-literal-delimiter", "}"],
+
+	["curly-brace-literal-delimiter", "V{"],
+	["string", ["\"1\""]],
+	["string", ["\"2\""]],
+	["string", ["\"3\""]],
+	["string", ["\"4\""]],
+	["curly-brace-literal-delimiter", "}"],
+
+	["curly-brace-literal-delimiter", "BV{"],
+	["number", "1"],
+	["number", "2"],
+	["number", "3"],
+	["number", "4"],
+	["curly-brace-literal-delimiter", "}"],
+	["normal-word", "{"]
+]
+
+----------------------------------------------------
+
+} / { at the front / EOF are not delimiters

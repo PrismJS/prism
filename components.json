@@ -48,12 +48,15 @@
 		},
 		"markup": {
 			"title": "Markup",
-			"alias": ["html", "xml", "svg", "mathml"],
+			"alias": ["html", "xml", "svg", "mathml", "ssml", "atom", "rss"],
 			"aliasTitles": {
 				"html": "HTML",
 				"xml": "XML",
 				"svg": "SVG",
-				"mathml": "MathML"
+				"mathml": "MathML",
+				"ssml": "SSML",
+				"atom": "Atom",
+				"rss": "RSS"
 			},
 			"option": "default"
 		},
@@ -64,8 +67,7 @@
 		},
 		"clike": {
 			"title": "C-like",
-			"option": "default",
-			"overrideExampleHeader": true
+			"option": "default"
 		},
 		"javascript": {
 			"title": "JavaScript",
@@ -91,6 +93,10 @@
 		"ada": {
 			"title": "Ada",
 			"owner": "Lucretia"
+		},
+		"al": {
+			"title": "AL",
+			"owner": "RunDevelopment"
 		},
 		"antlr4": {
 			"title": "ANTLR4",
@@ -162,6 +168,10 @@
 		},
 		"bbcode": {
 			"title": "BBcode",
+			"alias": "shortcode",
+			"aliasTitles": {
+				"shortcode": "Shortcode"
+			},
 			"owner": "RunDevelopment"
 		},
 		"bison": {
@@ -193,6 +203,11 @@
 			"title": "C",
 			"require": "clike",
 			"owner": "zeitgeist87"
+		},
+		"concurnas": {
+			"title": "Concurnas",
+			"alias": "conc",
+			"owner": "jasontatton"
 		},
 		"csharp": {
 			"title": "C#",
@@ -248,6 +263,10 @@
 			"require": "clike",
 			"owner": "Golmote"
 		},
+		"dax": {
+			"title": "DAX",
+			"owner": "peterbud"
+		},
 		"diff": {
 			"title": "Diff",
 			"owner": "uranusjr"
@@ -279,7 +298,11 @@
 		"ejs": {
 			"title": "EJS",
 			"require": ["javascript", "markup-templating"],
-			"owner": "RunDevelopment"
+			"owner": "RunDevelopment",
+			"alias": "eta",
+			"aliasTitles": {
+				"eta": "Eta"
+			}
 		},
 		"elixir": {
 			"title": "Elixir",
@@ -303,10 +326,19 @@
 			"title": "Erlang",
 			"owner": "Golmote"
 		},
+		"excel-formula": {
+			"title": "Excel Formula",
+			"alias": ["xlsx", "xls"],
+			"owner": "RunDevelopment"
+		},
 		"fsharp": {
 			"title": "F#",
 			"require": "clike",
 			"owner": "simonreynolds7"
+		},
+		"factor": {
+			"title": "Factor",
+			"owner": "catb0t"
 		},
 		"firestore-security-rules": {
 			"title": "Firestore security rules",
@@ -349,7 +381,7 @@
 		},
 		"glsl": {
 			"title": "GLSL",
-			"require": "clike",
+			"require": "c",
 			"owner": "Golmote"
 		},
 		"gml": {
@@ -383,7 +415,6 @@
 				"javascript",
 				"less",
 				"markdown",
-				"ruby",
 				"scss",
 				"textile"
 			],
@@ -407,6 +438,11 @@
 		"hcl": {
 			"title": "HCL",
 			"owner": "outsideris"
+		},
+		"hlsl": {
+			"title": "HLSL",
+			"require": "c",
+			"owner": "RunDevelopment"
 		},
 		"http": {
 			"title": "HTTP",
@@ -434,6 +470,10 @@
 			"title": "Icon",
 			"owner": "Golmote"
 		},
+		"iecst": {
+			"title": "Structured Text (IEC 61131-3)",
+			"owner": "serhioromano"
+		},
 		"inform7": {
 			"title": "Inform 7",
 			"owner": "Golmote"
@@ -458,12 +498,8 @@
 		"javadoc": {
 			"title": "JavaDoc",
 			"require": ["markup", "java", "javadoclike"],
-			"modify": [
-				"java"
-			],
-			"optional": [
-				"scala"
-			],
+			"modify": "java",
+			"optional": "scala",
 			"owner": "RunDevelopment"
 		},
 		"javadoclike": {
@@ -526,6 +562,10 @@
 		},
 		"json": {
 			"title": "JSON",
+			"alias": "webmanifest",
+			"aliasTitles": {
+				"webmanifest": "Web App Manifest"
+			},
 			"owner": "CupOfTea696"
 		},
 		"jsonp": {
@@ -560,6 +600,11 @@
 			},
 			"owner": "japborst"
 		},
+		"latte": {
+			"title": "Latte",
+			"require": ["clike", "markup-templating", "php"],
+			"owner": "nette"
+		},
 		"less": {
 			"title": "Less",
 			"require": "css",
@@ -584,6 +629,10 @@
 		"livescript": {
 			"title": "LiveScript",
 			"owner": "Golmote"
+		},
+		"llvm": {
+			"title": "LLVM IR",
+			"owner": "porglezomp"
 		},
 		"lolcode": {
 			"title": "LOLCODE",
@@ -636,9 +685,7 @@
 		"n4js": {
 			"title": "N4JS",
 			"require": "javascript",
-			"optional": [
-				"jsdoc"
-			],
+			"optional": "jsdoc",
 			"alias": "n4jsd",
 			"owner": "bsmith-n4"
 		},
@@ -649,6 +696,10 @@
 		"nasm": {
 			"title": "NASM",
 			"owner": "rbmj"
+		},
+		"neon": {
+			"title": "NEON",
+			"owner": "nette"
 		},
 		"nginx": {
 			"title": "nginx",
@@ -670,6 +721,7 @@
 		"objectivec": {
 			"title": "Objective-C",
 			"require": "c",
+			"alias": "objc",
 			"owner": "uranusjr"
 		},
 		"ocaml": {
@@ -678,12 +730,11 @@
 		},
 		"opencl": {
 			"title": "OpenCL",
-			"require": "cpp",
+			"require": "c",
 			"modify": [
 				"c",
 				"cpp"
 			],
-			"overrideExampleHeader": true,
 			"owner": "Milania1"
 		},
 		"oz": {
@@ -716,6 +767,11 @@
 			"alias": "px",
 			"owner": "RunDevelopment"
 		},
+		"peoplecode": {
+			"title": "PeopleCode",
+			"alias": "pcode",
+			"owner": "RunDevelopment"
+		},
 		"perl": {
 			"title": "Perl",
 			"owner": "Golmote"
@@ -741,6 +797,11 @@
 			"title": "PL/SQL",
 			"require": "sql",
 			"owner": "Golmote"
+		},
+		"powerquery": {
+			"title": "PowerQuery",
+			"alias": ["pq", "mscript"],
+			"owner": "peterbud"
 		},
 		"powershell": {
 			"title": "PowerShell",
@@ -793,6 +854,12 @@
 			],
 			"owner": "Golmote"
 		},
+		"purebasic": {
+			"title": "PureBasic",
+			"require": "clike",
+			"alias": "pbfasm",
+			"owner": "HeX0R101"
+		},
 		"python": {
 			"title": "Python",
 			"alias": "py",
@@ -802,6 +869,11 @@
 			"title": "Q (kdb+ database)",
 			"owner": "Golmote"
 		},
+		"qml": {
+			"title": "QML",
+			"require": "javascript",
+			"owner": "RunDevelopment"
+		},
 		"qore": {
 			"title": "Qore",
 			"require": "clike",
@@ -810,6 +882,12 @@
 		"r": {
 			"title": "R",
 			"owner": "Golmote"
+		},
+		"racket": {
+			"title": "Racket",
+			"require": "scheme",
+			"alias": "rkt",
+			"owner": "RunDevelopment"
 		},
 		"jsx": {
 			"title": "React JSX",
@@ -827,6 +905,7 @@
 		},
 		"renpy": {
 			"title": "Ren'py",
+			"alias": "rpy",
 			"owner": "HyuchiaDiego"
 		},
 		"reason": {
@@ -875,7 +954,7 @@
 		},
 		"sas": {
 			"title": "SAS",
-			"peerDependencies": ["groovy", "lua", "sql"],
+			"optional": ["groovy", "lua", "sql"],
 			"owner": "Golmote"
 		},
 		"sass": {
@@ -916,6 +995,11 @@
 			"title": "Solidity (Ethereum)",
 			"require": "clike",
 			"owner": "glachaud"
+		},
+		"solution-file": {
+			"title": "Solution file",
+			"alias": "sln",
+			"owner": "RunDevelopment"
 		},
 		"soy": {
 			"title": "Soy (Closure Template)",
@@ -976,7 +1060,7 @@
 		},
 		"turtle": {
 			"title": "Turtle",
-			"alias": ["trig"],
+			"alias": "trig",
 			"aliasTitles": {
 				"trig": "TriG"
 			},
@@ -1002,11 +1086,16 @@
 		},
 		"t4-vb": {
 			"title": "T4 Text Templates (VB)",
-			"require": ["t4-templating", "visual-basic"],
+			"require": ["t4-templating", "vbnet"],
 			"owner": "RunDevelopment"
 		},
 		"t4-templating": {
 			"title": "T4 templating",
+			"owner": "RunDevelopment"
+		},
+		"unrealscript": {
+			"title": "UnrealScript",
+			"alias": ["uscript", "uc"],
 			"owner": "RunDevelopment"
 		},
 		"vala": {
@@ -1041,6 +1130,10 @@
 			"alias": "vb",
 			"owner": "Golmote"
 		},
+		"warpscript": {
+			"title": "WarpScript",
+			"owner": "RunDevelopment"
+		},
 		"wasm": {
 			"title": "WebAssembly",
 			"owner": "Golmote"
@@ -1058,6 +1151,12 @@
 				"xeoracube": "XeoraCube"
 			},
 			"owner": "freakmaxi"
+		},
+		"xml-doc": {
+			"title": "XML doc (.net)",
+			"require": "markup",
+			"modify": ["csharp", "fsharp", "vbnet"],
+			"owner": "RunDevelopment"
 		},
 		"xojo": {
 			"title": "Xojo (REALbasic)",
@@ -1226,6 +1325,11 @@
 			"description": "Filters the elements the <code>highlightAll</code> and <code>highlightAllUnder</code> methods actually highlight.",
 			"owner": "RunDevelopment",
 			"noCSS": true
+		},
+		"treeview": {
+			"title": "Treeview",
+			"description": "A language with special styles to highlight file system tree structures.",
+			"owner": "Golmote"
 		}
 	}
 }

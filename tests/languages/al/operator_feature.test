@@ -1,0 +1,57 @@
++ - * /
++= -= *= /=
+
+< <= > >= <> =
+
+:=
+::
+
+100..100
+
+AND DIV MOD NOT OR XOR
+and div mod not or xor
+
+----------------------------------------------------
+
+[
+	["operator", "+"],
+	["operator", "-"],
+	["operator", "*"],
+	["operator", "/"],
+
+	["operator", "+="],
+	["operator", "-="],
+	["operator", "*="],
+	["operator", "/="],
+
+	["operator", "<"],
+	["operator", "<="],
+	["operator", ">"],
+	["operator", ">="],
+	["operator", "<>"],
+	["operator", "="],
+
+	["operator", ":="],
+	["operator", "::"],
+
+	["number", "100"],
+	["operator", ".."],
+	["number", "100"],
+
+	["operator", "AND"],
+	["operator", "DIV"],
+	["operator", "MOD"],
+	["operator", "NOT"],
+	["operator", "OR"],
+	["operator", "XOR"],
+	["operator", "and"],
+	["operator", "div"],
+	["operator", "mod"],
+	["operator", "not"],
+	["operator", "or"],
+	["operator", "xor"]
+]
+
+----------------------------------------------------
+
+Checks for operators.

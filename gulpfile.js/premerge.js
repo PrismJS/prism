@@ -3,6 +3,9 @@
 const git = require('simple-git/promise')(__dirname);
 
 
+/**
+ * Checks that no files have been modified by the build process.
+ */
 function gitChanges() {
 	return git.status().then(res => {
 		if (res.files.length > 0) {
@@ -11,7 +14,6 @@ function gitChanges() {
 		}
 	});
 }
-
 
 module.exports = {
 	premerge: gitChanges

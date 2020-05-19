@@ -1,0 +1,185 @@
+as
+assert
+async
+await
+band
+bool
+boolean
+bor
+break
+bxor
+byte
+case
+catch
+changed
+char
+closed
+comp
+constant
+continue
+def
+default
+del
+double
+elif
+else
+every
+extends
+false
+finally
+float
+for
+from
+global
+gpudef
+gpukernel
+if
+import
+in
+init
+inject
+int
+is
+isnot
+lambda
+local
+long
+loop
+match
+mod
+new
+nodefault
+null
+of
+onchange
+open
+out
+override
+package
+parfor
+parforsync
+post
+pre
+private
+protected
+provide
+public
+return
+shared
+short
+single
+size_t
+sizeof
+super
+sync
+this
+throw
+trans
+transient
+true
+try
+typedef
+unchecked
+using
+val
+var
+void
+while
+with
+
+----------------------------------------------------
+
+[
+	["operator", "as"],
+	["keyword", "assert"],
+	["keyword", "async"],
+	["keyword", "await"],
+	["operator", "band"],
+	["keyword", "bool"],
+	["keyword", "boolean"],
+	["operator", "bor"],
+	["keyword", "break"],
+	["operator", "bxor"],
+	["keyword", "byte"],
+	["keyword", "case"],
+	["keyword", "catch"],
+	["keyword", "changed"],
+	["keyword", "char"],
+	["keyword", "closed"],
+	["operator", "comp"],
+	["keyword", "constant"],
+	["keyword", "continue"],
+	["keyword", "def"],
+	["keyword", "default"],
+	["keyword", "del"],
+	["keyword", "double"],
+	["keyword", "elif"],
+	["keyword", "else"],
+	["keyword", "every"],
+	["keyword", "extends"],
+	["keyword", "false"],
+	["keyword", "finally"],
+	["keyword", "float"],
+	["keyword", "for"],
+	["keyword", "from"],
+	["keyword", "global"],
+	["keyword", "gpudef"],
+	["keyword", "gpukernel"],
+	["keyword", "if"],
+	["keyword", "import"],
+	["keyword", "in"],
+	["keyword", "init"],
+	["keyword", "inject"],
+	["keyword", "int"],
+	["operator", "is"],
+	["operator", "isnot"],
+	["keyword", "lambda"],
+	["keyword", "local"],
+	["keyword", "long"],
+	["keyword", "loop"],
+	["keyword", "match"],
+	["operator", "mod"],
+	["keyword", "new"],
+	["keyword", "nodefault"],
+	["keyword", "null"],
+	["keyword", "of"],
+	["keyword", "onchange"],
+	["keyword", "open"],
+	["keyword", "out"],
+	["keyword", "override"],
+	["keyword", "package"],
+	["keyword", "parfor"],
+	["keyword", "parforsync"],
+	["keyword", "post"],
+	["keyword", "pre"],
+	["keyword", "private"],
+	["keyword", "protected"],
+	["keyword", "provide"],
+	["keyword", "public"],
+	["keyword", "return"],
+	["keyword", "shared"],
+	["keyword", "short"],
+	["keyword", "single"],
+	["keyword", "size_t"],
+	["keyword", "sizeof"],
+	["keyword", "super"],
+	["keyword", "sync"],
+	["keyword", "this"],
+	["keyword", "throw"],
+	["keyword", "trans"],
+	["keyword", "transient"],
+	["keyword", "true"],
+	["keyword", "try"],
+	["keyword", "typedef"],
+	["keyword", "unchecked"],
+	["keyword", "using"],
+	["keyword", "val"],
+	["keyword", "var"],
+	["keyword", "void"],
+	["keyword", "while"],
+	["keyword", "with"]
+]
+
+----------------------------------------------------
+
+Checks for keywords.

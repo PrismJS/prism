@@ -1,0 +1,74 @@
+a! ! word
+!a ! word
+! comment
+!	bad
+! 	fine
+! "also a comment"
+! : ( -- ) ;
+! ! leading comment-like token
+   ! whitespace before
+words blah ! comment after code on a line
+
+![[ comment ]]
+"![[ string ]]"
+![[ "comment" ]]
+
+![[ comment]]
+![==[ comment ]==]
+![==[ comment]==]
+![=[word ]=]
+![=======[ words ]=======]
+
+/* com
+ment */
+/* com
+ment*/
+/*word */
+
+/* "comment" */
+"/* "strings" */"
+
+
+----------------------------------------------------
+
+[
+	[ "conventionally-named-word", "a!"],
+	[ "comment", [ "! word" ] ],
+	[ "normal-word", "!a"],
+	[ "comment", [ "! word" ] ],
+	[ "comment", [ "! comment" ] ],
+
+	[ "normal-word", "!" ], [ "normal-word", "bad" ],
+	[ "comment", [ "! \tfine" ] ],
+
+	[ "comment", [ "! \"also a comment\"" ] ],
+	[ "comment", [ "! : ( -- ) ;" ] ],
+	[ "comment", [ "! ! leading comment-like token" ] ],
+	[ "comment", [ "! whitespace before" ] ],
+	[ "normal-word", "words" ],
+	[ "normal-word", "blah" ],
+	[ "comment", [ "! comment after code on a line" ] ],
+
+	[ "comment", [ "![[ comment ]]" ] ],
+	[ "string", [ "\"![[ string ]]\"" ] ],
+	[ "comment", [ "![[ \"comment\" ]]" ] ],
+	[ "comment", [ "![[ comment]]" ] ],
+	[ "comment", [ "![==[ comment ]==]" ] ],
+	[ "comment", [ "![==[ comment]==]" ] ],
+
+	[ "normal-word", "![=[word" ],
+	[ "normal-word", "]=]" ],
+	[ "normal-word", "![=======[" ],
+	[ "normal-word", "words" ],
+	[ "normal-word", "]=======]" ],
+	[ "comment", [ "/* com\r\nment */" ] ],
+	[ "comment", [ "/* com\r\nment*/" ] ],
+	[ "normal-word", "/*word" ],
+ 	[ "normal-word", "*/" ],
+	[ "comment", ["/* \"comment\" */"] ],
+	[ "string", ["\"/* \""] ],
+	"strings",
+	[ "string", ["\" */\""] ]
+]
+
+----------------------------------------------------

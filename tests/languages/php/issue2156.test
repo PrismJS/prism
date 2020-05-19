@@ -1,0 +1,125 @@
+<?
+	// Session starten und confog.php includen
+	session_start();
+	include ("config.php");
+
+	// CaptchaCodes abfragen
+	$CAPTCHA_RandomText = "";
+	if (isset($_POST['txtCode'])){
+	$CAPTCHA_EnteredText = str_replace("<","",str_replace(">","",str_replace("'","",str_replace("[","",str_replace("]","",$_POST['txtCode'])))));
+	}
+	if (isset($_SESSION['CAPTCHA_RndText'])) {
+	$CAPTCHA_RandomText = $_SESSION['CAPTCHA_RndText'];
+	}
+
+	// Eingabefelder abfragen
+	$_SESSION['company'] = $_POST['company'];
+	$_SESSION['name'] = $_POST['name'];
+	$_SESSION['address'] = $_POST['address'];
+	$_SESSION['zip_code'] = $_POST['zip_code'];
+	$_SESSION['city'] = $_POST['city'];
+	$_SESSION['county'] = $_POST['county'];
+	$_SESSION['country'] = $_POST['country'];
+	$_SESSION['phone'] = $_POST['phone'];
+	$_SESSION['fax'] = $_POST['fax'];
+	$_SESSION['email'] = $_POST['email'];
+	$_SESSION['nachricht'] = $_POST['nachricht'];
+
+	$email_i = $_SESSION['email'];
+
+	// Email Funktion
+	function pruefe_mail($email_i) {
+		  if(strstr($email_i, "@")) {
+			$email_i = explode ("@", $email_i);
+			if(strstr($email_i[1], ".")) $ok = TRUE;
+		  }
+		  return $ok;
+		}
+
+	// Eingaben prüfen
+	$fehler = "";
+	if(!pruefe_mail($email_i) && !empty($email_i)) {
+			$fehler .= "<li>email</li>";
+			}
+			if ($_SESSION['name'] == ""){
+			$fehler .= "<li>name</li>";
+			}
+			if ($_SESSION['city'] == ""){
+			$fehler .= "<li>city</li>";
+			}
+			if ($_SESSION['country'] == ""){
+			$fehler .= "<li>country</li>";
+			}
+			if ($_SESSION['phone'] == ""){
+			$fehler .= "<li>phone</li>";
+			}
+			if ($_SESSION['email'] == ""){
+			$fehler .= "<li>email</li>";
+			}
+			if ($_SESSION['message'] == ""){
+			$fehler .= "<li>message</li>";
+			}
+			if ($CAPTCHA_EnteredText == $CAPTCHA_RandomText and isset($_POST['txtCode']) == true and isset($_SESSION['CAPTCHA_RndText'])){
+			$captcha = true;
+			} else {
+			$fehler .= "<li>code</li>";
+			}
+	echo '<div>';
+	if ($fehler == ""){
+	// Email zumsammensetzen
+	$email = "From: " . $_SESSION['email'];
+
+
+	$nachrichtfertig =
+	"Company: " . $_SESSION['company'] "n\"
+	"Name: " $_SESSION['name'] "n\"
+	"Address: " $_SESSION['address'] "n\"
+	"ZIP Code: " $_SESSION['zip_code'] "n\"
+	"City: " $_SESSION['city'] "n\"
+	"County: " $_SESSION['county'] "n\"
+	"Country: " $_SESSION['country'] "n\"
+	"Phone: " $_SESSION['phone'] "n\"
+	"Fax: " $_SESSION['fax'] "n\"
+	"eMail: " $_SESSION['email'] "n\n\"
+	"Message: " $_SESSION['message'];
+
+
+	$versand = mail($empfaenger, $betreff, $nachrichtfertig, $email);
+			if ($versand) {
+			echo '<p class=titles>Thank you very much!</p>
+				  <p>The message were send successfully</p>';
+
+			// Sessionvariablen löschen
+			unset($_SESSION['company']);
+			unset($_SESSION['name']);
+			unset($_SESSION['address']);
+			unset($_SESSION['zip_code']);
+			unset($_SESSION['city']);
+			unset($_SESSION['county']);
+			unset($_SESSION['country']);
+			unset($_SESSION['phone']);
+			unset($_SESSION['fax']);
+			unset($_SESSION['email']);
+			unset($_SESSION['nachricht']);
+			}
+
+	} else {
+	echo '<p class=titles>Error</p>';
+	echo '<p>Please fill in all the $fehler field. <a href="contact.php">back</a></p>';
+	}
+	echo '</div>';
+
+	// Session unset
+	unset($_SESSION['CAPTCHA_RndText']);
+
+?>
+
+----------------------------------------------------
+
+[
+	["prolog", "<?\n\t// Session starten und confog.php includen\n\tsession_start();\n\tinclude (\"config.php\");\n\n\t// CaptchaCodes abfragen\n\t$CAPTCHA_RandomText = \"\";\n\tif (isset($_POST['txtCode'])){\n\t$CAPTCHA_EnteredText = str_replace(\"<\",\"\",str_replace(\">\",\"\",str_replace(\"'\",\"\",str_replace(\"[\",\"\",str_replace(\"]\",\"\",$_POST['txtCode'])))));\n\t}\n\tif (isset($_SESSION['CAPTCHA_RndText'])) {\n\t$CAPTCHA_RandomText = $_SESSION['CAPTCHA_RndText'];\n\t}\n\n\t// Eingabefelder abfragen\n\t$_SESSION['company'] = $_POST['company'];\n\t$_SESSION['name'] = $_POST['name'];\n\t$_SESSION['address'] = $_POST['address'];\n\t$_SESSION['zip_code'] = $_POST['zip_code'];\n\t$_SESSION['city'] = $_POST['city'];\n\t$_SESSION['county'] = $_POST['county'];\n\t$_SESSION['country'] = $_POST['country'];\n\t$_SESSION['phone'] = $_POST['phone'];\n\t$_SESSION['fax'] = $_POST['fax'];\n\t$_SESSION['email'] = $_POST['email'];\n\t$_SESSION['nachricht'] = $_POST['nachricht'];\n\n\t$email_i = $_SESSION['email'];\n\n\t// Email Funktion\n\tfunction pruefe_mail($email_i) {\n\t\t  if(strstr($email_i, \"@\")) {\n\t\t\t$email_i = explode (\"@\", $email_i);\n\t\t\tif(strstr($email_i[1], \".\")) $ok = TRUE;\n\t\t  }\n\t\t  return $ok;\n\t\t}\n\n\t// Eingaben prüfen\n\t$fehler = \"\";\n\tif(!pruefe_mail($email_i) && !empty($email_i)) {\n\t\t\t$fehler .= \"<li>email</li>\";\n\t\t\t}\n\t\t\tif ($_SESSION['name'] == \"\"){\n\t\t\t$fehler .= \"<li>name</li>\";\n\t\t\t}\n\t\t\tif ($_SESSION['city'] == \"\"){\n\t\t\t$fehler .= \"<li>city</li>\";\n\t\t\t}\n\t\t\tif ($_SESSION['country'] == \"\"){\n\t\t\t$fehler .= \"<li>country</li>\";\n\t\t\t}\n\t\t\tif ($_SESSION['phone'] == \"\"){\n\t\t\t$fehler .= \"<li>phone</li>\";\n\t\t\t}\n\t\t\tif ($_SESSION['email'] == \"\"){\n\t\t\t$fehler .= \"<li>email</li>\";\n\t\t\t}\n\t\t\tif ($_SESSION['message'] == \"\"){\n\t\t\t$fehler .= \"<li>message</li>\";\n\t\t\t}\n\t\t\tif ($CAPTCHA_EnteredText == $CAPTCHA_RandomText and isset($_POST['txtCode']) == true and isset($_SESSION['CAPTCHA_RndText'])){\n\t\t\t$captcha = true;\n\t\t\t} else {\n\t\t\t$fehler .= \"<li>code</li>\";\n\t\t\t}\n\techo '<div>';\n\tif ($fehler == \"\"){\n\t// Email zumsammensetzen\n\t$email = \"From: \" . $_SESSION['email'];\n\n\n\t$nachrichtfertig =\n\t\"Company: \" . $_SESSION['company'] \"n\\\"\n\t\"Name: \" $_SESSION['name'] \"n\\\"\n\t\"Address: \" $_SESSION['address'] \"n\\\"\n\t\"ZIP Code: \" $_SESSION['zip_code'] \"n\\\"\n\t\"City: \" $_SESSION['city'] \"n\\\"\n\t\"County: \" $_SESSION['county'] \"n\\\"\n\t\"Country: \" $_SESSION['country'] \"n\\\"\n\t\"Phone: \" $_SESSION['phone'] \"n\\\"\n\t\"Fax: \" $_SESSION['fax'] \"n\\\"\n\t\"eMail: \" $_SESSION['email'] \"n\\n\\\"\n\t\"Message: \" $_SESSION['message'];\n\n\n\t$versand = mail($empfaenger, $betreff, $nachrichtfertig, $email);\n\t\t\tif ($versand) {\n\t\t\techo '<p class=titles>Thank you very much!</p>\n\t\t\t\t  <p>The message were send successfully</p>';\n\n\t\t\t// Sessionvariablen löschen\n\t\t\tunset($_SESSION['company']);\n\t\t\tunset($_SESSION['name']);\n\t\t\tunset($_SESSION['address']);\n\t\t\tunset($_SESSION['zip_code']);\n\t\t\tunset($_SESSION['city']);\n\t\t\tunset($_SESSION['county']);\n\t\t\tunset($_SESSION['country']);\n\t\t\tunset($_SESSION['phone']);\n\t\t\tunset($_SESSION['fax']);\n\t\t\tunset($_SESSION['email']);\n\t\t\tunset($_SESSION['nachricht']);\n\t\t\t}\n\n\t} else {\n\techo '<p class=titles>Error</p>';\n\techo '<p>Please fill in all the $fehler field. <a href=\"contact.php\">back</a></p>';\n\t}\n\techo '</div>';\n\n\t// Session unset\n\tunset($_SESSION['CAPTCHA_RndText']);\n\n?>"]
+]
+
+----------------------------------------------------
+
+Checks for issue #2156.
