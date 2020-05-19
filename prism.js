@@ -602,7 +602,6 @@ function matchGrammar(text, tokenList, grammar, startNode, startPos, rematch) {
  * @property {T} value
  * @property {LinkedListNode<T> | null} prev The previous node.
  * @property {LinkedListNode<T> | null} next The next node.
- *
  * @template T
  */
 
