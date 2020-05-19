@@ -2,8 +2,24 @@ Prism.languages.markup = {
 	'comment': /<!--[\s\S]*?-->/,
 	'prolog': /<\?[\s\S]+?\?>/,
 	'doctype': {
+		// https://www.w3.org/TR/xml/#NT-doctypedecl
 		pattern: /<!DOCTYPE(?:[^>"'[\]]|"[^"]*"|'[^']*')+(?:\[(?:[^<"'\]]|"[^"]*"|'[^']*'|<(?!!--)|<!--(?:[^-]|-(?!->))*-->)*\]\s*)?>/i,
-		greedy: true
+		greedy: true,
+		inside: {
+			'internal-subset': {
+				pattern: /(\[)[\s\S]+(?=\]>$)/,
+				lookbehind: true,
+				greedy: true,
+				inside: null // see below
+			},
+			'string': {
+				pattern: /"[^"]*"|'[^']*'/,
+				greedy: true
+			},
+			'punctuation': /^<!|>$|[[\]]/,
+			'doctype-tag': /^DOCTYPE/,
+			'name': /[^\s<>'"]+/
+		}
 	},
 	'cdata': /<!\[CDATA\[[\s\S]*?]]>/i,
 	'tag': {
@@ -50,9 +66,10 @@ Prism.languages.markup = {
 
 Prism.languages.markup['tag'].inside['attr-value'].inside['entity'] =
 	Prism.languages.markup['entity'];
+Prism.languages.markup['doctype'].inside['internal-subset'].inside = Prism.languages.markup;
 
 // Plugin to make entity title show the real entity, idea by Roman Komarov
-Prism.hooks.add('wrap', function(env) {
+Prism.hooks.add('wrap', function (env) {
 
 	if (env.type === 'entity') {
 		env.attributes['title'] = env.content.replace(/&amp;/, '&');
