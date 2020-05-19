@@ -585,6 +585,8 @@ function matchGrammar(text, tokenList, grammar, startNode, startPos, rematch) {
 				}
 
 				if (removeCount > 1) {
+					// at least one Token object was removed, so we have to do some rematching
+					// this can only happen if the current pattern is greedy
 					matchGrammar(text, tokenList, grammar, currentNode.prev, pos, {
 						cause: token + ',' + j,
 						reach: reach
@@ -598,8 +600,8 @@ function matchGrammar(text, tokenList, grammar, startNode, startPos, rematch) {
 /**
  * @typedef LinkedListNode
  * @property {T} value
- * @property {LinkedListNode<T>} prev The previous node.
- * @property {LinkedListNode<T>} next The next node.
+ * @property {LinkedListNode<T> | null} prev The previous node.
+ * @property {LinkedListNode<T> | null} next The next node.
  *
  * @template T
  */
