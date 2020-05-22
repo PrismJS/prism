@@ -3,7 +3,7 @@
 const fs = require("fs");
 const vm = require("vm");
 const { getAllFiles } = require("./test-discovery");
-const components = require("../../components");
+const components = require("../../components.json");
 const getLoader = require("../../dependencies");
 const languagesCatalog = components.languages;
 

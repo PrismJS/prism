@@ -3,7 +3,7 @@
 const { assert } = require('chai');
 const PrismLoader = require('./helper/prism-loader');
 const { BFS, parseRegex } = require('./helper/util');
-const { languages } = require('../components');
+const { languages } = require('../components.json');
 const { visitRegExpAST } = require('regexpp');
 
 
