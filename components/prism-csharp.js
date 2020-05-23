@@ -316,7 +316,7 @@
 	function createInterpolationInside(interpolation, interpolationRound) {
 		return {
 			'interpolation': {
-				pattern: re(/([^{](?:\{\{)*)<<0>>/.source, [interpolation]),
+				pattern: re(/((?:^|[^{])(?:\{\{)*)<<0>>/.source, [interpolation]),
 				lookbehind: true,
 				inside: {
 					'format-string': {
