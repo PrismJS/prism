@@ -68,7 +68,7 @@
 	["important", "#Persistent"],
 	["important", "#SingleInstance"],
 	["important", "#UseHook"],
-	["important", "#WinActivateForce"]
+	["important", "#WinActivateForce"],
 	["important", "#Warn"]
 ]
 

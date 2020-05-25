@@ -97,8 +97,8 @@ a_programscommon
 a_ptrsize
 a_regview
 a_screendpi
-a_scripthwnd
 a_screenheight
+a_scripthwnd
 a_screenwidth
 a_scriptdir
 a_scriptfullpath
