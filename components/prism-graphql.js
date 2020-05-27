@@ -24,7 +24,7 @@ Prism.languages.graphql = {
 		lookbehind: true,
 		alias: 'function'
 	},
-	'keyword': /\b(?:directive|enum|extend|fragment|implements|input|interface|mutation|on|query|repeatable|scalar|schema|type|union)\b/,
+	'keyword': /\b(?:directive|enum|extend|fragment|implements|input|interface|mutation|on|query|repeatable|scalar|schema|subscription|type|union)\b/,
 	'operator': /[!=|]|\.{3}/,
 	'punctuation': /[!(){}\[\]:=,]/,
 	'constant': /\b(?!ID\b)[A-Z][A-Z_\d]*\b/
