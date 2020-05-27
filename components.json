@@ -397,6 +397,7 @@
 		},
 		"graphql": {
 			"title": "GraphQL",
+			"optional": ["markdown"],
 			"owner": "Golmote"
 		},
 		"groovy": {

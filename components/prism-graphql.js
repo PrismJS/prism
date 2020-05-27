@@ -1,5 +1,16 @@
 Prism.languages.graphql = {
 	'comment': /#.*/,
+	'multiline-string': {
+		pattern: /"""[\s\S]*?"""/,
+		greedy: true,
+		alias: 'string',
+		inside: {
+			'language-markdown': {
+				pattern: /[\s\S]+/,
+				inside: Prism.languages.markdown
+			}
+		}
+	},
 	'string': {
 		pattern: /"(?:\\.|[^\\"\r\n])*"/,
 		greedy: true

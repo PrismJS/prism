@@ -29,3 +29,18 @@ fragment friendFields on User {
   name
   profilePic(size: 50)
 }</code></pre>
+
+Markdown inside of descriptions require markdown to be loaded. On this page, checking Markdown before checking GraphQL should make the example below work properly.
+
+<h2>Descriptions</h2>
+<pre><code>"""
+This is a multiline description
+# Heading
+[Prism](http://www.prismjs.com)
+
+It can contain **Markdown
+	on multiple lines**
+"""
+
+"This is a single line description"
+</code></pre>
