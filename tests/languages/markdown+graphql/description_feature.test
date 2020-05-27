@@ -1,0 +1,25 @@
+"""
+Complex multiline description
+# Title
+"""
+type Baz {}
+
+----------------------------------------------------
+
+[
+	["description", [
+		["language-markdown", [
+			"\"\"\"\r\nComplex multiline description\r\n",
+			["title", [["punctuation", "#"], " Title"]],
+			"\r\n\"\"\""
+		]]
+	]],
+	["keyword", "type"],
+	["class-name", "Baz"],
+	["punctuation", "{"],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for descriptions.
