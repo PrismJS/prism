@@ -8,13 +8,21 @@ type Bar {}
 ----------------------------------------------------
 
 [
-	["description", [["language-markdown", "\"Single-line description\""]]],
+	["description", [
+		"\"",
+		["language-markdown", "Single-line description"],
+		"\""
+	]],
 	["keyword", "type"],
 	["class-name", "Foo"],
 	["punctuation", "{"],
 	["punctuation", "}"],
 
-	["description", [["language-markdown", "\"\"\"\r\nMultiline description\r\n\"\"\""]]],
+	["description", [
+		"\"\"\"",
+		["language-markdown", "\r\nMultiline description\r\n"],
+		"\"\"\""
+	]],
 	["keyword", "type"],
 	["class-name", "Bar"],
 	["punctuation", "{"],

@@ -8,11 +8,12 @@ type Baz {}
 
 [
 	["description", [
+		"\"\"\"",
 		["language-markdown", [
-			"\"\"\"\r\nComplex multiline description\r\n",
-			["title", [["punctuation", "#"], " Title"]],
-			"\r\n\"\"\""
-		]]
+			"\r\nComplex multiline description\r\n",
+			["title", [["punctuation", "#"], " Title"]]
+		]],
+		"\"\"\""
 	]],
 	["keyword", "type"],
 	["class-name", "Baz"],

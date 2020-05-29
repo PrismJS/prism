@@ -3,11 +3,11 @@ Prism.languages.graphql = {
 	'description': {
 		pattern: /(?:"""(?:[^"]|(?!""")")*"""|"(?:\\.|[^\\"\r\n])*")(?=\s*[a-z_])/i,
 		greedy: true,
-		alias: 'comment',
+		alias: 'string',
 		inside: {
-			// TODO: Exclude leading and trailing "
 			'language-markdown': {
-				pattern: /[\s\S]+/,
+				pattern: /(^"(?:"")?)(?!\1)[\s\S]+(?=\1$)/,
+				lookbehind: true,
 				inside: Prism.languages.markdown
 			}
 		}
