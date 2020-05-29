@@ -155,6 +155,7 @@
 		"scss": "Sass (Scss)",
 		"shell-session": "Shell session",
 		"solidity": "Solidity (Ethereum)",
+		"sol": "Solidity (Ethereum)",
 		"solution-file": "Solution file",
 		"sln": "Solution file",
 		"soy": "Soy (Closure Template)",
