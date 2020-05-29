@@ -1194,7 +1194,8 @@
 		"lines": {
 			"title": "Lines",
 			"description": "Creates a wrapper element for every line.",
-			"owner": "galaxy4public"
+			"owner": "galaxy4public",
+			"noCSS": true
 		},
 		"show-invisibles": {
 			"title": "Show Invisibles",
