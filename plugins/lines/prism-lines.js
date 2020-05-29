@@ -12,7 +12,7 @@
 	 * @param {Element} element
 	 * @returns {Node[]}
 	 */
-	function clearChildNodes(element) {
+	function drainChildNodes(element) {
 		/** @type {Node[]} */
 		var nodes = [];
 
@@ -62,21 +62,21 @@
 	 * newline.
 	 *
 	 * @param {Node} node
-	 * @param {Document} document
 	 * @returns {Readonly<SplitResult>}
 	 *
 	 * @typedef SplitResult
-	 * @property {boolean | undefined} [newline] If `newline` is `false`, then `rest` will be `undefined`.
+	 * @property {boolean | undefined} [newline] If `newline` is `false` (or undefined), then `rest` will be
+	 * `undefined`.
 	 * @property {Node | undefined} [rest]
 	 */
-	function splitNode(node, document) {
+	function splitNode(node) {
 		switch (node.nodeType) {
 			case Node.ELEMENT_NODE:
 				var element = /** @type {Element} */ (node);
 
 				for (var i = 0, l = element.childNodes.length; i < l; i++) {
 					var child = element.childNodes[i];
-					var res = splitNode(child, document);
+					var res = splitNode(child);
 
 					if (res.newline) {
 						if (!res.rest && i === l - 1) {
@@ -129,6 +129,8 @@
 	}
 
 
+	var parser = new DOMParser();
+
 	Prism.hooks.add('before-insert', function (env) {
 		// works only for <code> wrapped inside <pre> (not inline)
 
@@ -138,8 +140,11 @@
 			return;
 		}
 
-		var dom = new DOMParser().parseFromString(env.highlightedCode, 'text/html');
-		var domNodesReversed = clearChildNodes(dom.body).reverse();
+		// event/hook: before-lines
+
+		var dom = parser.parseFromString(env.highlightedCode, 'text/html');
+		/** @type {readonly Node[]} */
+		var domNodes = drainChildNodes(dom.body);
 		var wrapper = dom.createElement('div');
 
 		/**
@@ -158,14 +163,14 @@
 
 		// This outer loop will go through all nodes in the DOM in order.
 		// This can be thought of as iterating over all top-level tokens.
-		/** @type {Node | undefined} */
-		var currentNode;
-		while (currentNode = domNodesReversed.pop()) {
+		for (var i = 0, l = domNodes.length; i < l; i++) {
+			/** @type {Node | undefined} */
+			var currentNode = domNodes[i];
 
 			// The inner loop will process the current node. The current node may be split any number of times and the
 			// split result also has to be processed.
 			while (currentNode) {
-				var res = splitNode(currentNode, dom);
+				var res = splitNode(currentNode);
 				lineNodes.push(currentNode);
 
 				if (res.newline) {
