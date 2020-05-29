@@ -2,6 +2,7 @@ Abort
 AboveNormal
 Add
 ahk_class
+ahk_exe
 ahk_group
 ahk_id
 ahk_pid
@@ -29,6 +30,7 @@ Bold
 Border
 Button
 ByRef
+Catch
 Checkbox
 Checked
 CheckedGray
@@ -63,6 +65,7 @@ Exist
 Expand
 ExStyle
 FileSystem
+Finally
 First
 Flash
 Float
@@ -223,6 +226,7 @@ Tab2
 TabStop
 Text
 Theme
+Throw
 Tile
 ToggleCheck
 ToggleEnable
@@ -233,12 +237,14 @@ TransColor
 Transparent
 Tray
 TreeView
+Try
 TryAgain
 Type
 UnCheck
 underline
 Unicode
 Unlock
+Until
 UpDown
 Upper
 Uppercase
@@ -270,6 +276,7 @@ ys
 	["keyword", "AboveNormal"],
 	["keyword", "Add"],
 	["keyword", "ahk_class"],
+	["keyword", "ahk_exe"],
 	["keyword", "ahk_group"],
 	["keyword", "ahk_id"],
 	["keyword", "ahk_pid"],
@@ -297,6 +304,7 @@ ys
 	["keyword", "Border"],
 	["keyword", "Button"],
 	["keyword", "ByRef"],
+	["keyword", "Catch"],
 	["keyword", "Checkbox"],
 	["keyword", "Checked"],
 	["keyword", "CheckedGray"],
@@ -331,6 +339,7 @@ ys
 	["keyword", "Expand"],
 	["keyword", "ExStyle"],
 	["keyword", "FileSystem"],
+	["keyword", "Finally"],
 	["keyword", "First"],
 	["keyword", "Flash"],
 	["keyword", "Float"],
@@ -491,6 +500,7 @@ ys
 	["keyword", "TabStop"],
 	["keyword", "Text"],
 	["keyword", "Theme"],
+	["keyword", "Throw"],
 	["keyword", "Tile"],
 	["keyword", "ToggleCheck"],
 	["keyword", "ToggleEnable"],
@@ -501,12 +511,14 @@ ys
 	["keyword", "Transparent"],
 	["keyword", "Tray"],
 	["keyword", "TreeView"],
+	["keyword", "Try"],
 	["keyword", "TryAgain"],
 	["keyword", "Type"],
 	["keyword", "UnCheck"],
 	["keyword", "underline"],
 	["keyword", "Unicode"],
 	["keyword", "Unlock"],
+	["keyword", "Until"],
 	["keyword", "UpDown"],
 	["keyword", "Upper"],
 	["keyword", "Uppercase"],
