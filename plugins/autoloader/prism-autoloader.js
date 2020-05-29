@@ -193,6 +193,7 @@
 		"rpy": "renpy",
 		"robot": "robotframework",
 		"rb": "ruby",
+		"sol": "solidity",
 		"sln": "solution-file",
 		"rq": "sparql",
 		"trig": "turtle",
