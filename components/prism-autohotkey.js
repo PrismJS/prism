@@ -6,8 +6,9 @@ Prism.languages.autohotkey = {
 			lookbehind: true
 		},
 		{
-			pattern: /(^\s*)\/\*[^\r\n]*(?:[\r\n](?!\*\/)|[^\r\n])*(?:[\r\n]\*\/)?/m,
-			lookbehind: true
+			pattern: /(^\s*)\/\*[^\r\n]*(?:[\r\n](?![ \t]*\*\/)|[^\r\n])*(?:[\r\n][ \t]*\*\/)?/m,
+			lookbehind: true,
+			greedy: true
 		}
 	],
 	'string': /"(?:[^"\n\r]|"")*"/m,
