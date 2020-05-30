@@ -2,11 +2,11 @@
 Prism.languages.autohotkey = {
 	'comment': [
 		{
-			pattern: /(^|\s);.*/m,
+			pattern: /(^|\s);.*/,
 			lookbehind: true
 		},
 		{
-			pattern: /(^\s*)\/\*[^\n\r]*(?:(\n|\r|\r\n)(?:[^*]|\*[^\/])*(?:\*\/)?)?/m,
+			pattern: /(^\s*)\/\*[^\r\n]*(?:[\r\n](?!\*\/)|[^\r\n])*(?:[\r\n]\*\/)?/m,
 			lookbehind: true
 		}
 	],
