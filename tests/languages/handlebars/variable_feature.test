@@ -1,0 +1,21 @@
+{{comments}}
+{{@comments}}
+{{this.comments}}
+
+----------------------------------------------------
+
+[
+	["handlebars",[
+		["delimiter","{{"],["variable","comments"],["delimiter","}}"]]
+	],
+	["handlebars",[
+		["delimiter","{{"],["punctuation","@"],["variable","comments"],["delimiter","}}"]]
+	],
+	["handlebars",[
+		["delimiter","{{"],["variable","this"],["punctuation","."],["variable","comments"],["delimiter","}}"]]
+	]
+]
+
+----------------------------------------------------
+
+Checks for variable.

@@ -9,8 +9,8 @@
 .token.cr:before,
 .token.lf:before,
 .token.space:before {
-	color: inherit;
-	opacity: 0.4;
+	color: #808080;
+	opacity: 0.6;
 	position: absolute;
 }
 

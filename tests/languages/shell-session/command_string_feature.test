@@ -1,0 +1,79 @@
+$ echo 'Foo
+> Bar'
+$ echo "Foo
+> Bar"
+
+$ echo <<- STRING_END
+foo
+bar
+STRING_END
+
+$ echo <<- "STRING_END"
+foo
+bar
+STRING_END
+
+$ echo \'a # '
+
+----------------------------------------------------
+
+[
+	["command", [
+		["shell-symbol", "$"],
+		["bash", [
+			["builtin", "echo"],
+			["string", [
+				"'Foo\r\n> Bar'"
+			]]
+		]]
+	]],
+
+	["command", [
+		["shell-symbol", "$"],
+		["bash", [
+			["builtin", "echo"],
+			["string", [
+				"\"Foo\r\n> Bar\""
+			]]
+		]]
+	]],
+
+	["command", [
+		["shell-symbol", "$"],
+		["bash", [
+			["builtin", "echo"],
+			["operator", [
+				"<<-"
+			]],
+			["string", [
+				"STRING_END\r\nfoo\r\nbar\r\nSTRING_END"
+			]]
+		]]
+	]],
+
+	["command", [
+		["shell-symbol", "$"],
+		["bash", [
+			["builtin", "echo"],
+			["operator", [
+				"<<-"
+			]],
+			["string", "\"STRING_END\"\r\nfoo\r\nbar\r\nSTRING_END"]
+		]]
+	]],
+
+	["command", [
+		["shell-symbol", "$"],
+		["bash", [
+			["builtin", "echo"],
+			["punctuation", "\\"],
+			"'a ",
+			["comment", "# "]
+		]]
+	]],
+	["output", "'"]
+]
+
+----------------------------------------------------
+
+Checks for multi-line strings inside commands.

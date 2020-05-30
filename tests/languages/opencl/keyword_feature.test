@@ -71,7 +71,7 @@ double8x2
 double8x4
 double8x8
 else
-enum
+enum;
 event_t
 extern
 float
@@ -168,7 +168,7 @@ short4
 short8
 size_t
 static
-struct
+struct;
 switch
 typedef
 uchar
@@ -280,7 +280,7 @@ write_only
 	["keyword", "double8x4"],
 	["keyword", "double8x8"],
 	["keyword", "else"],
-	["keyword", "enum"],
+	["keyword", "enum"], ["punctuation", ";"],
 	["keyword", "event_t"],
 	["keyword", "extern"],
 	["keyword", "float"],
@@ -377,7 +377,7 @@ write_only
 	["keyword", "short8"],
 	["keyword", "size_t"],
 	["keyword", "static"],
-	["keyword", "struct"],
+	["keyword", "struct"], ["punctuation", ";"],
 	["keyword", "switch"],
 	["keyword", "typedef"],
 	["keyword", "uchar"],

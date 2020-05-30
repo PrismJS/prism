@@ -19,7 +19,7 @@
 		}
 	});
 
-	if (Prism.util.type(Prism.languages.flow.keyword) !== 'Array') {
+	if (!Array.isArray(Prism.languages.flow.keyword)) {
 		Prism.languages.flow.keyword = [Prism.languages.flow.keyword];
 	}
 	Prism.languages.flow.keyword.unshift(

@@ -1,3 +1,4 @@
+foo = function (  ) {}
 foo = function ( x, y) {}
 {foo: function () {}}
 bar = async function baz (x ) {}
@@ -6,10 +7,22 @@ fooBar = x => x
 fooBar = ( x, y ) => x
 ಠ_ಠ = () => {}
 Ƞȡ_҇ = async (ಠ, Ƞ = 2) => {}
+d = function Example({ props: { a: _A, b} } = Props) {}
+f = function (x = fun()) {}
+l = (x = fun(), y) => {}
+a = function () {}, b = () => {}
 
 ----------------------------------------------------
 
 [
+	["function-variable", "foo"],
+	["operator", "="],
+	["keyword", "function"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
 	["function-variable", "foo"],
 	["operator", "="],
 	["keyword", "function"],
@@ -25,7 +38,7 @@ fooBar = ( x, y ) => x
 
 	["punctuation", "{"],
 	["function-variable", "foo"],
-	["punctuation", ":"],
+	["operator", ":"],
 	["keyword", "function"],
 	["punctuation", "("],
 	["punctuation", ")"],
@@ -93,6 +106,78 @@ fooBar = ( x, y ) => x
 		["operator", "="],
 		["number", "2"]
 	]],
+	["punctuation", ")"],
+	["operator", "=>"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["function-variable", "d"],
+	["operator", "="],
+	["keyword", "function"],
+	["function", "Example"],
+	["punctuation", "("],
+	["parameter", [
+		["punctuation", "{"],
+		" props",
+		["operator", ":"],
+		["punctuation", "{"],
+		" a",
+		["operator", ":"],
+		" _A",
+		["punctuation", ","],
+		" b",
+		["punctuation", "}"],
+		["punctuation", "}"],
+		["operator", "="],
+		" Props"
+	]],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["function-variable", "f"],
+	["operator", "="],
+	["keyword", "function"],
+	["punctuation", "("],
+	["parameter", [
+		"x ",
+		["operator", "="],
+		["function", "fun"],
+		["punctuation", "("],
+		["punctuation", ")"]
+	]],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["function-variable", "l"],
+	["operator", "="],
+	["punctuation", "("],
+	["parameter", [
+		"x ",
+		["operator", "="],
+		["function", "fun"],
+		["punctuation", "("],
+		["punctuation", ")"],
+		["punctuation", ","],
+		" y"
+	]],
+	["punctuation", ")"],
+	["operator", "=>"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["function-variable", "a"],
+	["operator", "="],
+	["keyword", "function"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["function-variable", "b"],
+	["operator", "="],
+	["punctuation", "("],
 	["punctuation", ")"],
 	["operator", "=>"],
 	["punctuation", "{"],

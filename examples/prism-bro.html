@@ -55,100 +55,100 @@ export {
 
 	# Whether to consider UDP "connections" for scan detection.
 	# Can lead to false positives due to UDP fanout from some P2P apps.
-	const suppress_UDP_scan_checks = F &redef;
+	const suppress_UDP_scan_checks = F &amp;redef;
 
-	const activate_priv_port_check = T &redef;
-	const activate_landmine_check = F &redef;
-	const landmine_thresh_trigger = 5 &redef;
+	const activate_priv_port_check = T &amp;redef;
+	const activate_landmine_check = F &amp;redef;
+	const landmine_thresh_trigger = 5 &amp;redef;
 
-	const landmine_address: set[addr] &redef;
+	const landmine_address: set[addr] &amp;redef;
 
-	const scan_summary_trigger = 25 &redef;
-	const port_summary_trigger = 20 &redef;
-	const lowport_summary_trigger = 10 &redef;
+	const scan_summary_trigger = 25 &amp;redef;
+	const port_summary_trigger = 20 &amp;redef;
+	const lowport_summary_trigger = 10 &amp;redef;
 
 	# Raise ShutdownThresh after this many failed attempts
-	const shut_down_thresh = 100 &redef;
+	const shut_down_thresh = 100 &amp;redef;
 
 	# Which services should be analyzed when detecting scanning
 	# (not consulted if analyze_all_services is set).
-	const analyze_services: set[port] &redef;
-	const analyze_all_services = T &redef;
+	const analyze_services: set[port] &amp;redef;
+	const analyze_all_services = T &amp;redef;
 
 	# Track address scaners only if at least these many hosts contacted.
-	const addr_scan_trigger = 0 &redef;
+	const addr_scan_trigger = 0 &amp;redef;
 
 	# Ignore address scanners for further scan detection after
 	# scanning this many hosts.
 	# 0 disables.
-	const ignore_scanners_threshold = 0 &redef;
+	const ignore_scanners_threshold = 0 &amp;redef;
 
 	# Report a scan of peers at each of these points.
 	const report_peer_scan: vector of count = {
 		20, 100, 1000, 10000, 50000, 100000, 250000, 500000, 1000000,
-	} &redef;
+	} &amp;redef;
 
 	const report_outbound_peer_scan: vector of count = {
 		100, 1000, 10000,
-	} &redef;
+	} &amp;redef;
 
 	# Report a scan of ports at each of these points.
 	const report_port_scan: vector of count = {
 		50, 250, 1000, 5000, 10000, 25000, 65000,
-	} &redef;
+	} &amp;redef;
 
 	# Once a source has scanned this many different ports (to however many
 	# different remote hosts), start tracking its per-destination access.
-	const possible_port_scan_thresh = 20 &redef;
+	const possible_port_scan_thresh = 20 &amp;redef;
 
 	# Threshold for scanning privileged ports.
-	const priv_scan_trigger = 5 &redef;
+	const priv_scan_trigger = 5 &amp;redef;
 	const troll_skip_service = {
 		25/tcp, 21/tcp, 22/tcp, 20/tcp, 80/tcp,
-	} &redef;
+	} &amp;redef;
 
 	const report_accounts_tried: vector of count = {
 		20, 100, 1000, 10000, 100000, 1000000,
-	} &redef;
+	} &amp;redef;
 
 	const report_remote_accounts_tried: vector of count = {
 		100, 500,
-	} &redef;
+	} &amp;redef;
 
 	# Report a successful password guessing if the source attempted
 	# at least this many.
-	const password_guessing_success_threshhold = 20 &redef;
+	const password_guessing_success_threshhold = 20 &amp;redef;
 
-	const skip_accounts_tried: set[addr] &redef;
+	const skip_accounts_tried: set[addr] &amp;redef;
 
 	const addl_web = {
 		81/tcp, 443/tcp, 8000/tcp, 8001/tcp, 8080/tcp, }
-	&redef;
+	&amp;redef;
 
-	const skip_services = { 113/tcp, } &redef;
+	const skip_services = { 113/tcp, } &amp;redef;
 	const skip_outbound_services = { 21/tcp, addl_web, }
-		&redef;
+		&amp;redef;
 
 	const skip_scan_sources = {
 		255.255.255.255,	# who knows why we see these, but we do
-	} &redef;
+	} &amp;redef;
 
-	const skip_scan_nets: set[subnet] = {} &redef;
+	const skip_scan_nets: set[subnet] = {} &amp;redef;
 
 	# List of well known local server/ports to exclude for scanning
 	# purposes.
-	const skip_dest_server_ports: set[addr, port] = {} &redef;
+	const skip_dest_server_ports: set[addr, port] = {} &amp;redef;
 
 	# Reverse (SYN-ack) scans seen from these ports are considered
 	# to reflect possible SYN-flooding backscatter, and not true
 	# (stealth) scans.
 	const backscatter_ports = {
 		80/tcp, 8080/tcp, 53/tcp, 53/udp, 179/tcp, 6666/tcp, 6667/tcp,
-	} &redef;
+	} &amp;redef;
 
 	const report_backscatter: vector of count = {
 		20,
-	} &redef;
+	} &amp;redef;
 
 	global check_scan:
 		function(c: connection, established: bool, reverse: bool): bool;
@@ -174,14 +174,14 @@ export {
 	# Indexed by scanner address, yields # distinct peers scanned.
 	# pre_distinct_peers tracks until addr_scan_trigger hosts first.
 	global pre_distinct_peers: table[addr] of set[addr]
-		&read_expire = 15 mins &redef;
+		&read_expire = 15 mins &amp;redef;
 
 	global distinct_peers: table[addr] of set[addr]
-		&read_expire = 15 mins &expire_func=scan_summary &redef;
+		&read_expire = 15 mins &expire_func=scan_summary &amp;redef;
 	global distinct_ports: table[addr] of set[port]
-		&read_expire = 15 mins &expire_func=port_summary &redef;
+		&read_expire = 15 mins &expire_func=port_summary &amp;redef;
 	global distinct_low_ports: table[addr] of set[port]
-		&read_expire = 15 mins &expire_func=lowport_summary &redef;
+		&read_expire = 15 mins &expire_func=lowport_summary &amp;redef;
 
 	# Indexed by scanner address, yields a table with scanned hosts
 	# (and ports).
@@ -196,23 +196,23 @@ export {
 	global accounts_tried: table[addr] of set[string, string]
 		&read_expire = 1 days;
 
-	global ignored_scanners: set[addr] &create_expire = 1 day &redef;
+	global ignored_scanners: set[addr] &create_expire = 1 day &amp;redef;
 
 	# These tables track whether a threshold has been reached.
 	# More precisely, the counter is the next index of threshold vector.
 	global shut_down_thresh_reached: table[addr] of bool &default=F;
 	global rb_idx: table[addr] of count
-			&default=1 &read_expire = 1 days &redef;
+			&default=1 &read_expire = 1 days &amp;redef;
 	global rps_idx: table[addr] of count
-			&default=1 &read_expire = 1 days &redef;
+			&default=1 &read_expire = 1 days &amp;redef;
 	global rops_idx: table[addr] of count
-			&default=1 &read_expire = 1 days &redef;
+			&default=1 &read_expire = 1 days &amp;redef;
 	global rpts_idx: table[addr,addr] of count
-			&default=1 &read_expire = 1 days &redef;
+			&default=1 &read_expire = 1 days &amp;redef;
 	global rat_idx: table[addr] of count
-			&default=1 &read_expire = 1 days &redef;
+			&default=1 &read_expire = 1 days &amp;redef;
 	global rrat_idx: table[addr] of count
-			&default=1 &read_expire = 1 days &redef;
+			&default=1 &read_expire = 1 days &amp;redef;
 }
 
 global thresh_check: function(v: vector of count, idx: table[addr] of count,
@@ -300,7 +300,7 @@ function check_scan(c: connection, established: bool, reverse: bool): bool
 	# because c might not correspond to an active connection (which
 	# causes the function to fail).
 	if ( suppress_UDP_scan_checks &&
-	     service >= 0/udp && service <= 65535/udp )
+	     service >= 0/udp && service &lt;= 65535/udp )
 		return F;
 
 	if ( service in skip_services && ! outbound )
@@ -343,8 +343,8 @@ function check_scan(c: connection, established: bool, reverse: bool): bool
 					empty_bs_table;
 				}
 
-			if ( ++distinct_backscatter_peers[orig][resp] <= 2 &&
-			     # The test is <= 2 because we get two check_scan()
+			if ( ++distinct_backscatter_peers[orig][resp] &lt;= 2 &&
+			     # The test is &lt;= 2 because we get two check_scan()
 			     # calls, once on connection attempt and once on
 			     # tear-down.
 
@@ -380,7 +380,7 @@ function check_scan(c: connection, established: bool, reverse: bool): bool
 					pre_distinct_peers[orig] = set();
 
 				add pre_distinct_peers[orig][resp];
-				if ( |pre_distinct_peers[orig]| < addr_scan_trigger )
+				if ( |pre_distinct_peers[orig]| &lt; addr_scan_trigger )
 					ignore = T;
 				}
 
@@ -388,7 +388,7 @@ function check_scan(c: connection, established: bool, reverse: bool): bool
 				{ # XXXXX
 
 				if ( orig !in distinct_peers )
-					distinct_peers[orig] = set() &mergeable;
+					distinct_peers[orig] = set() &amp;mergeable;
 
 				if ( resp !in distinct_peers[orig] )
 					add distinct_peers[orig][resp];
@@ -448,7 +448,7 @@ function check_scan(c: connection, established: bool, reverse: bool): bool
 	if ( orig !in distinct_ports || service !in distinct_ports[orig] )
 		{
 		if ( orig !in distinct_ports )
-			distinct_ports[orig] = set() &mergeable;
+			distinct_ports[orig] = set() &amp;mergeable;
 
 		if ( service !in distinct_ports[orig] )
 			add distinct_ports[orig][service];
@@ -456,20 +456,20 @@ function check_scan(c: connection, established: bool, reverse: bool): bool
 		if ( |distinct_ports[orig]| >= possible_port_scan_thresh &&
 			orig !in scan_triples )
 			{
-			scan_triples[orig] = table() &mergeable;
+			scan_triples[orig] = table() &amp;mergeable;
 			add possible_scan_sources[orig];
 			}
 		}
 
 	# Check for low ports.
-	if ( activate_priv_port_check && ! outbound && service < 1024/tcp &&
+	if ( activate_priv_port_check && ! outbound && service &lt; 1024/tcp &&
 	     service !in troll_skip_service )
 		{
 		if ( orig !in distinct_low_ports ||
 		     service !in distinct_low_ports[orig] )
 			{
 			if ( orig !in distinct_low_ports )
-				distinct_low_ports[orig] = set() &mergeable;
+				distinct_low_ports[orig] = set() &amp;mergeable;
 
 			add distinct_low_ports[orig][service];
 
@@ -494,10 +494,10 @@ function check_scan(c: connection, established: bool, reverse: bool): bool
 	if ( orig in possible_scan_sources )
 		{
 		if ( orig !in scan_triples )
-			scan_triples[orig] = table() &mergeable;
+			scan_triples[orig] = table() &amp;mergeable;
 
 		if ( resp !in scan_triples[orig] )
-			scan_triples[orig][resp] = set() &mergeable;
+			scan_triples[orig][resp] = set() &amp;mergeable;
 
 		if ( service !in scan_triples[orig][resp] )
 			{
@@ -559,7 +559,7 @@ function thresh_check(v: vector of count, idx: table[addr] of count,
 		return F;
 		}
 
-	if ( idx[orig] <= |v| && n >= v[idx[orig]] )
+	if ( idx[orig] &lt;= |v| && n >= v[idx[orig]] )
 		{
 		++idx[orig];
 		return T;
@@ -578,7 +578,7 @@ function thresh_check_2(v: vector of count, idx: table[addr, addr] of count,
 		return F;
 		}
 
-	if ( idx[orig,resp] <= |v| && n >= v[idx[orig, resp]] )
+	if ( idx[orig,resp] &lt;= |v| && n >= v[idx[orig, resp]] )
 		{
 		++idx[orig,resp];
 		return T;

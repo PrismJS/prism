@@ -1,0 +1,55 @@
+(+
+(-
+(*
+(/
+(%
+(<
+(<=
+(>
+(>=
+(=
+(=>
+
+[+
+[-
+[*
+[/
+[%
+[<
+[<=
+[>
+[>=
+[=
+[=>
+
+----------------------------------------------------
+
+[
+	["punctuation", "("], ["operator", "+"],
+	["punctuation", "("], ["operator", "-"],
+	["punctuation", "("], ["operator", "*"],
+	["punctuation", "("], ["operator", "/"],
+	["punctuation", "("], ["operator", "%"],
+	["punctuation", "("], ["operator", "<"],
+	["punctuation", "("], ["operator", "<="],
+	["punctuation", "("], ["operator", ">"],
+	["punctuation", "("], ["operator", ">="],
+	["punctuation", "("], ["operator", "="],
+	["punctuation", "("], ["operator", "=>"],
+
+	["punctuation", "["], ["operator", "+"],
+	["punctuation", "["], ["operator", "-"],
+	["punctuation", "["], ["operator", "*"],
+	["punctuation", "["], ["operator", "/"],
+	["punctuation", "["], ["operator", "%"],
+	["punctuation", "["], ["operator", "<"],
+	["punctuation", "["], ["operator", "<="],
+	["punctuation", "["], ["operator", ">"],
+	["punctuation", "["], ["operator", ">="],
+	["punctuation", "["], ["operator", "="],
+	["punctuation", "["], ["operator", "=>"]
+]
+
+----------------------------------------------------
+
+Checks for operators.

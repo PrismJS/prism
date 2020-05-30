@@ -1,0 +1,23 @@
+{% if foo is defined and bar is not baz %}
+
+----------------------------------------------------
+
+[
+	["django", [
+		["delimiter", "{%"],
+		["tag", "if"],
+		["variable", "foo"],
+		["keyword", "is"],
+		["test", "defined"],
+		["keyword", "and"],
+		["variable", "bar"],
+		["keyword", "is"],
+		["keyword", "not"],
+		["test", "baz"],
+		["delimiter", "%}"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for tests.

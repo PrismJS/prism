@@ -1,0 +1,19 @@
+*foo
+2foo
+*2foo
+2*foo
+2*3foo
+
+----------------------------------------------------
+
+[
+	["repetition", "*"], ["rule", ["foo"]],
+	["repetition", "2"], ["rule", ["foo"]],
+	["repetition", "*2"], ["rule", ["foo"]],
+	["repetition", "2*"], ["rule", ["foo"]],
+	["repetition", "2*3"], ["rule", ["foo"]]
+]
+
+----------------------------------------------------
+
+Checks for repetitions.

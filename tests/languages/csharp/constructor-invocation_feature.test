@@ -1,0 +1,86 @@
+new Foo();
+new Foo<A, B<C>>();
+new Foo<A, B<C>>[0];
+new Foo<A, B<C>>[] {};
+new Foo<A, B<C>> {};
+
+----------------------------------------------------
+
+[
+	["keyword", "new"],
+	["constructor-invocation", ["Foo"]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "new"],
+	["constructor-invocation", [
+		"Foo",
+		["punctuation", "<"],
+		"A",
+		["punctuation", ","],
+		" B",
+		["punctuation", "<"],
+		"C",
+		["punctuation", ">"],
+		["punctuation", ">"]
+	]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "new"],
+	["constructor-invocation", [
+		"Foo",
+		["punctuation", "<"],
+		"A",
+		["punctuation", ","],
+		" B",
+		["punctuation", "<"],
+		"C",
+		["punctuation", ">"],
+		["punctuation", ">"]
+	]],
+	["punctuation", "["],
+	["number", "0"],
+	["punctuation", "]"],
+	["punctuation", ";"],
+
+	["keyword", "new"],
+	["constructor-invocation", [
+		"Foo",
+		["punctuation", "<"],
+		"A",
+		["punctuation", ","],
+		" B",
+		["punctuation", "<"],
+		"C",
+		["punctuation", ">"],
+		["punctuation", ">"],
+		["punctuation", "["],
+		["punctuation", "]"]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["keyword", "new"],
+	["constructor-invocation", [
+		"Foo",
+		["punctuation", "<"],
+		"A",
+		["punctuation", ","],
+		" B",
+		["punctuation", "<"],
+		"C",
+		["punctuation", ">"],
+		["punctuation", ">"]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for different constructor invocations styles.

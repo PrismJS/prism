@@ -1,0 +1,17 @@
+ON
+OFF
+TRUE
+FALSE
+
+----------------------------------------------------
+
+[
+	["boolean", "ON"],
+	["boolean", "OFF"],
+	["boolean", "TRUE"],
+	["boolean", "FALSE"]
+]
+
+----------------------------------------------------
+
+Checks for booleans.

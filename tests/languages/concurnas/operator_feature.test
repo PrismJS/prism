@@ -1,0 +1,33 @@
++ ++ +=
+- -- -=
+= == <>
+&== &<>
+isnot
+is as
+/ /= * *=
+mod mod=
+< <== > >==
+and or
+bor bxor
+^
+
+----------------------------------------------------
+
+[
+	["operator", "+"], ["operator", "++"], ["operator", "+="],
+	["operator", "-"], ["operator", "--"], ["operator", "-="],
+	["operator", "="], ["operator", "=="], ["operator", "<>"],
+	["operator", "&=="], ["operator", "&<>"],
+	["operator", "isnot"],
+	["operator", "is"], ["operator", "as"],
+	["operator", "/"], ["operator", "/="], ["operator", "*"], ["operator", "*="],
+	["operator", "mod"], ["operator", "mod="],
+	["operator", "<"], ["operator", "<=="], ["operator", ">"], ["operator", ">=="],
+	["operator", "and"], ["operator", "or"],
+	["operator", "bor"], ["operator", "bxor"],
+	["operator", "^"]
+]
+
+----------------------------------------------------
+
+Checks for operators.

@@ -1,0 +1,269 @@
+[attr] {}
+
+[attr=val] {}
+[attr="val"] {}
+[attr='val'] {}
+[attr|=val] {}
+[attr~=val] {}
+[attr|=val] {}
+[attr^=val] {}
+[attr$=val] {}
+[attr*=val] {}
+
+[foo|attr][*|attr][|attr] {}
+[foo|attr|=val] {}
+
+[attr=val i] {}
+[attr="val" S] {}
+
+[ attr ] {}
+[ attr = val ] {}
+[ attr = val   i] {}
+
+[attr="i#m :not(a.class)"] {}
+
+----------------------------------------------------
+
+[
+	["selector", [
+		["attribute", [
+			["punctuation", "["],
+			["attr-name", "attr"],
+			["punctuation", "]"]
+		]]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["selector", [
+		["attribute", [
+			["punctuation", "["],
+			["attr-name", "attr"],
+			["operator", "="],
+			["attr-value", "val"],
+			["punctuation", "]"]
+		]]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["selector", [
+		["attribute", [
+			["punctuation", "["],
+			["attr-name", "attr"],
+			["operator", "="],
+			["attr-value", "\"val\""],
+			["punctuation", "]"]
+		]]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["selector", [
+		["attribute", [
+			["punctuation", "["],
+			["attr-name", "attr"],
+			["operator", "="],
+			["attr-value", "'val'"],
+			["punctuation", "]"]
+		]]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["selector", [
+		["attribute", [
+			["punctuation", "["],
+			["attr-name", "attr"],
+			["operator", "|="],
+			["attr-value", "val"],
+			["punctuation", "]"]
+		]]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["selector", [
+		["attribute", [
+			["punctuation", "["],
+			["attr-name", "attr"],
+			["operator", "~="],
+			["attr-value", "val"],
+			["punctuation", "]"]
+		]]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["selector", [
+		["attribute", [
+			["punctuation", "["],
+			["attr-name", "attr"],
+			["operator", "|="],
+			["attr-value", "val"],
+			["punctuation", "]"]
+		]]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["selector", [
+		["attribute", [
+			["punctuation", "["],
+			["attr-name", "attr"],
+			["operator", "^="],
+			["attr-value", "val"],
+			["punctuation", "]"]
+		]]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["selector", [
+		["attribute", [
+			["punctuation", "["],
+			["attr-name", "attr"],
+			["operator", "$="],
+			["attr-value", "val"],
+			["punctuation", "]"]
+		]]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["selector", [
+		["attribute", [
+			["punctuation", "["],
+			["attr-name", "attr"],
+			["operator", "*="],
+			["attr-value", "val"],
+			["punctuation", "]"]
+		]]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["selector", [
+		["attribute", [
+			["punctuation", "["],
+			["namespace", [
+				"foo",
+				["punctuation", "|"]
+			]],
+			["attr-name", "attr"],
+			["punctuation", "]"]
+		]],
+		["attribute", [
+			["punctuation", "["],
+			["namespace", [
+				"*",
+				["punctuation", "|"]
+			]],
+			["attr-name", "attr"],
+			["punctuation", "]"]
+		]],
+		["attribute", [
+			["punctuation", "["],
+			["namespace", [
+				["punctuation", "|"]
+			]],
+			["attr-name", "attr"],
+			["punctuation", "]"]
+		]]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["selector", [
+		["attribute", [
+			["punctuation", "["],
+			["namespace", [
+				"foo",
+				["punctuation", "|"]
+			]],
+			["attr-name", "attr"],
+			["operator", "|="],
+			["attr-value", "val"],
+			["punctuation", "]"]
+		]]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["selector", [
+		["attribute", [
+			["punctuation", "["],
+			["attr-name", "attr"],
+			["operator", "="],
+			["attr-value", "val"],
+			["case-sensitivity", "i"],
+			["punctuation", "]"]
+		]]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["selector", [
+		["attribute", [
+			["punctuation", "["],
+			["attr-name", "attr"],
+			["operator", "="],
+			["attr-value", "\"val\""],
+			["case-sensitivity", "S"],
+			["punctuation", "]"]
+		]]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["selector", [
+		["attribute", [
+			["punctuation", "["],
+			["attr-name", "attr"],
+			["punctuation", "]"]
+		]]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["selector", [
+		["attribute", [
+			["punctuation", "["],
+			["attr-name", "attr"],
+			["operator", "="],
+			["attr-value", "val"],
+			["punctuation", "]"]
+		]]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["selector", [
+		["attribute", [
+			["punctuation", "["],
+			["attr-name", "attr"],
+			["operator", "="],
+			["attr-value", "val"],
+			["case-sensitivity", "i"],
+			["punctuation", "]"]
+		]]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["selector", [
+		["attribute", [
+			["punctuation", "["],
+			["attr-name", "attr"],
+			["operator", "="],
+			["attr-value", "\"i#m :not(a.class)\""],
+			["punctuation", "]"]
+		]]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for attributes inside selectors.

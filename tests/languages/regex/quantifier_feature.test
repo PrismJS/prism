@@ -1,0 +1,37 @@
+* + ?
+{2} {2,} {0,1}
+
+*? +? ??
+{2}? {2,}? {0,1}?
+
+*+ ++ ?+
+{2}+ {2,}+ {0,1}+
+
+----------------------------------------------------
+
+[
+	["quantifier", "*"],
+	["quantifier", "+"],
+	["quantifier", "?"],
+	["quantifier", "{2}"],
+	["quantifier", "{2,}"],
+	["quantifier", "{0,1}"],
+
+	["quantifier", "*?"],
+	["quantifier", "+?"],
+	["quantifier", "??"],
+	["quantifier", "{2}?"],
+	["quantifier", "{2,}?"],
+	["quantifier", "{0,1}?"],
+
+	["quantifier", "*+"],
+	["quantifier", "++"],
+	["quantifier", "?+"],
+	["quantifier", "{2}+"],
+	["quantifier", "{2,}+"],
+	["quantifier", "{0,1}+"]
+]
+
+----------------------------------------------------
+
+Checks for quantifiers.

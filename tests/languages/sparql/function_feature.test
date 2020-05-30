@@ -1,0 +1,87 @@
+foo:bar
+foo:
+:bar
+foo:ba1
+foo:1ba
+foo:bar:bar
+foo:bar%20bar
+foo:bar.bar
+foo-2:
+foo.-:
+
+
+----------------------------------------------------
+
+[
+	["function", [
+		["prefix", [
+			"foo",
+			["punctuation", ":"]
+		]],
+		["local-name", "bar"]
+	]],
+	["function", [
+		["prefix", [
+			"foo",
+			["punctuation", ":"]
+		]]
+	]],
+	["function", [
+		["prefix", [
+			["punctuation", ":"]
+		]],
+		["local-name", "bar"]
+	]],
+	["function", [
+		["prefix", [
+			"foo",
+			["punctuation", ":"]
+		]],
+		["local-name", "ba1"]
+	]],
+	["function", [
+		["prefix", [
+			"foo",
+			["punctuation", ":"]
+		]],
+		["local-name", "1ba"]
+	]],
+	["function", [
+		["prefix", [
+			"foo",
+			["punctuation", ":"]
+		]],
+		["local-name", "bar:bar"]
+	]],
+	["function", [
+		["prefix", [
+			"foo",
+			["punctuation", ":"]
+		]],
+		["local-name", "bar%20bar"]
+	]],
+	["function", [
+		["prefix", [
+			"foo",
+			["punctuation", ":"]
+		]],
+		["local-name", "bar.bar"]
+	]],
+	["function", [
+		["prefix", [
+			"foo-2",
+			["punctuation", ":"]
+		]]
+	]],
+	["function", [
+		["prefix", [
+			"foo.-",
+			["punctuation", ":"]
+		]]
+	]]
+]
+
+
+----------------------------------------------------
+
+Checks for PrefixedName.

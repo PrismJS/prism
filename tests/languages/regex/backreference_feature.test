@@ -1,0 +1,26 @@
+\1 \2 \3 \4 \5 \6 \7 \8 \9
+\k<name>
+
+----------------------------------------------------
+
+[
+	["backreference", "\\1"],
+	["backreference", "\\2"],
+	["backreference", "\\3"],
+	["backreference", "\\4"],
+	["backreference", "\\5"],
+	["backreference", "\\6"],
+	["backreference", "\\7"],
+	["backreference", "\\8"],
+	["backreference", "\\9"],
+
+	["backreference", [
+		"\\k<",
+		["group-name", "name"],
+		">"
+	]]
+]
+
+----------------------------------------------------
+
+Checks for backreferences.

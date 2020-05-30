@@ -35,11 +35,14 @@
 		}
 	});
 
-	Prism.languages.insertBefore('php', 'keyword', {
+	Prism.languages.insertBefore('php', 'comment', {
 		'delimiter': {
-			pattern: /\?>|<\?(?:php|=)?/i,
+			pattern: /\?>$|^<\?(?:php(?=\s)|=)?/i,
 			alias: 'important'
-		},
+		}
+	});
+
+	Prism.languages.insertBefore('php', 'keyword', {
 		'variable': /\$+(?:\w+\b|(?={))/i,
 		'package': {
 			pattern: /(\\|namespace\s+|use\s+)[\w\\]+/,
@@ -59,16 +62,14 @@
 	});
 
 	var string_interpolation = {
-		pattern: /{\$(?:{(?:{[^{}]+}|[^{}]+)}|[^{}])+}|(^|[^\\{])\$+(?:\w+(?:\[.+?]|->\w+)*)/,
+		pattern: /{\$(?:{(?:{[^{}]+}|[^{}]+)}|[^{}])+}|(^|[^\\{])\$+(?:\w+(?:\[[^\r\n\[\]]+\]|->\w+)*)/,
 		lookbehind: true,
-		inside: {
-			rest: Prism.languages.php
-		}
+		inside: Prism.languages.php
 	};
 
 	Prism.languages.insertBefore('php', 'string', {
 		'nowdoc-string': {
-			pattern: /<<<'([^']+)'(?:\r\n?|\n)(?:.*(?:\r\n?|\n))*?\1;/,
+			pattern: /<<<'([^']+)'[\r\n](?:.*[\r\n])*?\1;/,
 			greedy: true,
 			alias: 'string',
 			inside: {
@@ -82,7 +83,7 @@
 			}
 		},
 		'heredoc-string': {
-			pattern: /<<<(?:"([^"]+)"(?:\r\n?|\n)(?:.*(?:\r\n?|\n))*?\1;|([a-z_]\w*)(?:\r\n?|\n)(?:.*(?:\r\n?|\n))*?\2;)/i,
+			pattern: /<<<(?:"([^"]+)"[\r\n](?:.*[\r\n])*?\1;|([a-z_]\w*)[\r\n](?:.*[\r\n])*?\2;)/i,
 			greedy: true,
 			alias: 'string',
 			inside: {
@@ -114,11 +115,11 @@
 	delete Prism.languages.php['string'];
 
 	Prism.hooks.add('before-tokenize', function(env) {
-		if (!/(?:<\?php|<\?)/ig.test(env.code)) {
+		if (!/<\?/.test(env.code)) {
 			return;
 		}
 
-		var phpPattern = /(?:<\?php|<\?)[\s\S]*?(?:\?>|$)/ig;
+		var phpPattern = /<\?(?:[^"'/#]|\/(?![*/])|("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|(?:\/\/|#)(?:[^?\n\r]|\?(?!>))*(?=$|\?>|[\r\n])|\/\*[\s\S]*?(?:\*\/|$))*?(?:\?>|$)/ig;
 		Prism.languages['markup-templating'].buildPlaceholders(env, 'php', phpPattern);
 	});
 

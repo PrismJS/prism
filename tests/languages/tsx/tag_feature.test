@@ -1,6 +1,7 @@
 var myDivElement = <div className="foo" />;
 var myElement = <MyComponent someProperty={true} />;
 <div {...foo} />
+<Tree.TreeNode.Item leaf={true}></Tree.TreeNode.Item>
 class Test extends Component {
 	render() {
 		return <p onClick={this.clickHandler}>Hello world.</p>;
@@ -59,6 +60,28 @@ class Test extends Component {
 			["punctuation", "}"]
 		]],
 		["punctuation", "/>"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			["class-name", "Tree.TreeNode.Item"]
+		]],
+		["attr-name", ["leaf"]],
+		["script", [
+			 ["script-punctuation", "="],
+			 ["punctuation", "{"],
+			 ["boolean", "true"],
+			 ["punctuation", "}"]
+		]],
+		["punctuation", ">"]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			["class-name", "Tree.TreeNode.Item"]
+		]],
+		["punctuation", ">"]
 	]],
 
 	["keyword",  "class"],

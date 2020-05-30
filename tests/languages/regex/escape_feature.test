@@ -1,0 +1,42 @@
+\0 \\ \. \+
+\xFF
+\uFFFF \u{10FFFF}
+\cA \cZ
+\01 \077 \377
+\n \r \t \f \a
+
+\[ \]
+
+----------------------------------------------------
+
+[
+	["escape", "\\0"],
+	["special-escape", "\\\\"],
+	["special-escape", "\\."],
+	["special-escape", "\\+"],
+
+	["escape", "\\xFF"],
+
+	["escape", "\\uFFFF"],
+	["escape", "\\u{10FFFF}"],
+
+	["escape", "\\cA"],
+	["escape", "\\cZ"],
+
+	["escape", "\\01"],
+	["escape", "\\077"],
+	["escape", "\\377"],
+
+	["escape", "\\n"],
+	["escape", "\\r"],
+	["escape", "\\t"],
+	["escape", "\\f"],
+	["escape", "\\a"],
+
+	["special-escape", "\\["],
+	["special-escape", "\\]"]
+]
+
+----------------------------------------------------
+
+Checks for escapes.

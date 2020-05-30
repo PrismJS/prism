@@ -1,0 +1,47 @@
+as
+break
+catch
+def;
+elif
+else
+end
+foreach
+if
+import
+include
+label
+module
+modulemeta
+null
+reduce
+then
+try
+while
+
+----------------------------------------------------
+
+[
+	["keyword", "as"],
+	["keyword", "break"],
+	["keyword", "catch"],
+	["keyword", "def"], ["punctuation", ";"],
+	["keyword", "elif"],
+	["keyword", "else"],
+	["keyword", "end"],
+	["keyword", "foreach"],
+	["keyword", "if"],
+	["keyword", "import"],
+	["keyword", "include"],
+	["keyword", "label"],
+	["keyword", "module"],
+	["keyword", "modulemeta"],
+	["keyword", "null"],
+	["keyword", "reduce"],
+	["keyword", "then"],
+	["keyword", "try"],
+	["keyword", "while"]
+]
+
+----------------------------------------------------
+
+Checks for keywords.

@@ -1,0 +1,163 @@
+Day.Sunday
+Day.Monday
+Day.Tuesday
+Day.Wednesday
+Day.Thursday
+Day.Friday
+Day.Saturday
+TraceLevel.Critical
+TraceLevel.Error
+TraceLevel.Information
+TraceLevel.Verbose
+TraceLevel.Warning
+Occurrence.First
+Occurrence.Last
+Occurrence.All
+Order.Ascending
+Order.Descending
+RoundingMode.AwayFromZero
+RoundingMode.Down
+RoundingMode.ToEven
+RoundingMode.TowardZero
+RoundingMode.Up
+MissingField.Error
+MissingField.Ignore
+MissingField.UseNull
+QuoteStyle.Csv
+QuoteStyle.None
+JoinKind.Inner
+JoinKind.LeftOuter
+JoinKind.RightOuter
+JoinKind.FullOuter
+JoinKind.LeftAnti
+JoinKind.RightAnti
+GroupKind.Global
+GroupKind.Local
+ExtraValues.List
+ExtraValues.Ignore
+ExtraValues.Error
+JoinAlgorithm.Dynamic
+JoinAlgorithm.PairwiseHash
+JoinAlgorithm.SortMerge
+JoinAlgorithm.LeftHash
+JoinAlgorithm.RightHash
+JoinAlgorithm.LeftIndex
+JoinAlgorithm.RightIndex
+JoinSide.Left
+JoinSide.Right
+Precision.Double
+Precision.Decimal
+RelativePosition.FromEnd
+RelativePosition.FromStart
+TextEncoding.Ascii
+TextEncoding.BigEndianUnicode
+TextEncoding.Unicode
+TextEncoding.Utf8
+TextEncoding.Utf16
+TextEncoding.Windows
+Any.Type
+Binary.Type
+Date.Type
+DateTime.Type
+DateTimeZone.Type
+Duration.Type
+Int8.Type
+Int16.Type
+Int32.Type
+Int64.Type
+Function.Type
+List.Type
+Logical.Type
+None.Type
+Number.Type
+Record.Type
+Table.Type
+Text.Type
+Time.Type
+null
+
+----------------------------------------------------
+
+[
+	["constant", "Day.Sunday"],
+	["constant", "Day.Monday"],
+	["constant", "Day.Tuesday"],
+	["constant", "Day.Wednesday"],
+	["constant", "Day.Thursday"],
+	["constant", "Day.Friday"],
+	["constant", "Day.Saturday"],
+	["constant", "TraceLevel.Critical"],
+	["constant", "TraceLevel.Error"],
+	["constant", "TraceLevel.Information"],
+	["constant", "TraceLevel.Verbose"],
+	["constant", "TraceLevel.Warning"],
+	["constant", "Occurrence.First"],
+	["constant", "Occurrence.Last"],
+	["constant", "Occurrence.All"],
+	["constant", "Order.Ascending"],
+	["constant", "Order.Descending"],
+	["constant", "RoundingMode.AwayFromZero"],
+	["constant", "RoundingMode.Down"],
+	["constant", "RoundingMode.ToEven"],
+	["constant", "RoundingMode.TowardZero"],
+	["constant", "RoundingMode.Up"],
+	["constant", "MissingField.Error"],
+	["constant", "MissingField.Ignore"],
+	["constant", "MissingField.UseNull"],
+	["constant", "QuoteStyle.Csv"],
+	["constant", "QuoteStyle.None"],
+	["constant", "JoinKind.Inner"],
+	["constant", "JoinKind.LeftOuter"],
+	["constant", "JoinKind.RightOuter"],
+	["constant", "JoinKind.FullOuter"],
+	["constant", "JoinKind.LeftAnti"],
+	["constant", "JoinKind.RightAnti"],
+	["constant", "GroupKind.Global"],
+	["constant", "GroupKind.Local"],
+	["constant", "ExtraValues.List"],
+	["constant", "ExtraValues.Ignore"],
+	["constant", "ExtraValues.Error"],
+	["constant", "JoinAlgorithm.Dynamic"],
+	["constant", "JoinAlgorithm.PairwiseHash"],
+	["constant", "JoinAlgorithm.SortMerge"],
+	["constant", "JoinAlgorithm.LeftHash"],
+	["constant", "JoinAlgorithm.RightHash"],
+	["constant", "JoinAlgorithm.LeftIndex"],
+	["constant", "JoinAlgorithm.RightIndex"],
+	["constant", "JoinSide.Left"],
+	["constant", "JoinSide.Right"],
+	["constant", "Precision.Double"],
+	["constant", "Precision.Decimal"],
+	["constant", "RelativePosition.FromEnd"],
+	["constant", "RelativePosition.FromStart"],
+	["constant", "TextEncoding.Ascii"],
+	["constant", "TextEncoding.BigEndianUnicode"],
+	["constant", "TextEncoding.Unicode"],
+	["constant", "TextEncoding.Utf8"],
+	["constant", "TextEncoding.Utf16"],
+	["constant", "TextEncoding.Windows"],
+	["constant", "Any.Type"],
+	["constant", "Binary.Type"],
+	["constant", "Date.Type"],
+	["constant", "DateTime.Type"],
+	["constant", "DateTimeZone.Type"],
+	["constant", "Duration.Type"],
+	["constant", "Int8.Type"],
+	["constant", "Int16.Type"],
+	["constant", "Int32.Type"],
+	["constant", "Int64.Type"],
+	["constant", "Function.Type"],
+	["constant", "List.Type"],
+	["constant", "Logical.Type"],
+	["constant", "None.Type"],
+	["constant", "Number.Type"],
+	["constant", "Record.Type"],
+	["constant", "Table.Type"],
+	["constant", "Text.Type"],
+	["constant", "Time.Type"],
+	["constant", "null"]
+]
+
+----------------------------------------------------
+
+Checks for contant.

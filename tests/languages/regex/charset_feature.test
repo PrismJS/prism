@@ -1,0 +1,44 @@
+[]
+[^]
+[foo]
+[\]\b]
+[.^$\1]
+
+----------------------------------------------------
+
+[
+	["charset", [
+		["charset-punctuation", "["],
+		["charset-punctuation", "]"]
+	]],
+
+	["charset", [
+		["charset-punctuation", "["],
+		["charset-negation", "^"],
+		["charset-punctuation", "]"]
+	]],
+
+	["charset", [
+		["charset-punctuation", "["],
+		"foo",
+		["charset-punctuation", "]"]
+	]],
+
+	["charset", [
+		["charset-punctuation", "["],
+		["special-escape", "\\]"],
+		["escape", "\\b"],
+		["charset-punctuation", "]"]
+	]],
+
+	["charset", [
+		["charset-punctuation", "["],
+		".^$",
+		["escape", "\\1"],
+		["charset-punctuation", "]"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for character sets.

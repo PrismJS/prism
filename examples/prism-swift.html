@@ -29,12 +29,12 @@ let multiplier = 3
 for _ in 1...power {
 	answer *= base
 }
-while square < finalSquare {
+while square &lt; finalSquare {
 	// roll the dice
 	if ++diceRoll == 7 { diceRoll = 1 }
 	// move by the rolled amount
 	square += diceRoll
-	if square < board.count {
+	if square &lt; board.count {
 		// if we're still on the board, move up or down for a snake or a ladder
 		square += board[square]
 	}
@@ -52,29 +52,16 @@ switch someCharacter {
 
 <h2>Classes and attributes</h2>
 <pre><code>class MyViewController: UIViewController {
-    @IBOutlet weak var button: UIButton!
-    @IBOutlet var textFields: [UITextField]!
-    @IBAction func buttonTapped(AnyObject) {
-	    println("button tapped!")
+	@IBOutlet weak var button: UIButton!
+	@IBOutlet var textFields: [UITextField]!
+	@IBAction func buttonTapped(AnyObject) {
+		println("button tapped!")
 	}
 }
 
 @IBDesignable
 class MyCustomView: UIView {
-    @IBInspectable var textColor: UIColor
-    @IBInspectable var iconHeight: CGFloat
-    /* ... */
+	@IBInspectable var textColor: UIColor
+	@IBInspectable var iconHeight: CGFloat
+	/* ... */
 }</code></pre>
-
-<h2>Known failures</h2>
-<p>There are certain edge cases where Prism will fail.
-	There are always such cases in every regex-based syntax highlighter.
-	However, Prism dares to be open and honest about them.
-	If a failure is listed here, it doesn’t mean it will never be fixed. This is more of a “known bugs” list, just with a certain type of bug.
-</p>
-
-<h3>Nested block comments</h3>
-<pre><code>/* Nested block
-	/* comments
-	are */
-not supported */</code></pre>

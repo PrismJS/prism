@@ -1,7 +1,7 @@
 "use strict";
 
-var fs = require("fs");
-var path = require("path");
+const fs = require("fs");
+const path = require("path");
 
 
 module.exports = {
@@ -12,15 +12,13 @@ module.exports = {
 	 * @param {string} rootDir
 	 * @returns {Object.<string, string[]>}
 	 */
-	loadAllTests: function (rootDir) {
-		var testSuite = {};
-		var self = this;
+	loadAllTests(rootDir) {
+		/** @type {Object.<string, string[]>} */
+		const testSuite = {};
 
-		this.getAllDirectories(rootDir).forEach(
-			function (language) {
-				testSuite[language] = self.getAllFiles(path.join(rootDir, language));
-			}
-		);
+		for (const language of this.getAllDirectories(rootDir)) {
+			testSuite[language] = this.getAllFiles(path.join(rootDir, language));
+		}
 
 		return testSuite;
 	},
@@ -32,15 +30,13 @@ module.exports = {
 	 * @param {string|string[]} languages
 	 * @returns {Object.<string, string[]>}
 	 */
-	loadSomeTests: function (rootDir, languages) {
-		var testSuite = {};
-		var self = this;
+	loadSomeTests(rootDir, languages) {
+		/** @type {Object.<string, string[]>} */
+		const testSuite = {};
 
-		this.getSomeDirectories(rootDir, languages).forEach(
-			function (language) {
-				testSuite[language] = self.getAllFiles(path.join(rootDir, language));
-			}
-		);
+		for (const language of this.getSomeDirectories(rootDir, languages)) {
+			testSuite[language] = this.getAllFiles(path.join(rootDir, language));
+		}
 
 		return testSuite;
 	},
@@ -53,12 +49,10 @@ module.exports = {
 	 * @param {string} src
 	 * @returns {Array.<string>}
 	 */
-	getAllDirectories: function (src) {
-		return fs.readdirSync(src).filter(
-			function (file) {
-				return fs.statSync(path.join(src, file)).isDirectory();
-			}
-		);
+	getAllDirectories(src) {
+		return fs.readdirSync(src).filter(file => {
+			return fs.statSync(path.join(src, file)).isDirectory();
+		});
 	},
 
 	/**
@@ -69,13 +63,10 @@ module.exports = {
 	 * @param {string|string[]} languages
 	 * @returns {Array.<string>}
 	 */
-	getSomeDirectories: function (src, languages) {
-		var self = this;
-		return fs.readdirSync(src).filter(
-			function (file) {
-				return fs.statSync(path.join(src, file)).isDirectory() && self.directoryMatches(file, languages);
-			}
-		);
+	getSomeDirectories(src, languages) {
+		return fs.readdirSync(src).filter(file => {
+			return fs.statSync(path.join(src, file)).isDirectory() && this.directoryMatches(file, languages);
+		});
 	},
 
 	/**
@@ -83,14 +74,12 @@ module.exports = {
 	 * @param {string} directory
 	 * @param {string|string[]} languages
 	 */
-	directoryMatches: function (directory, languages) {
+	directoryMatches(directory, languages) {
 		if (!Array.isArray(languages)) {
 			languages = [languages];
 		}
-		var dirLanguages = directory.split(/!?\+!?/);
-		return dirLanguages.some(function (lang) {
-			return languages.indexOf(lang) >= 0;
-		});
+		const dirLanguages = directory.split(/!?\+!?/);
+		return dirLanguages.some(lang => languages.indexOf(lang) >= 0);
 	},
 
 
@@ -101,15 +90,13 @@ module.exports = {
 	 * @param {string} src
 	 * @returns {Array.<string>}
 	 */
-	getAllFiles: function (src) {
-		return fs.readdirSync(src).filter(
-			function (fileName) {
+	getAllFiles(src) {
+		return fs.readdirSync(src)
+			.filter(fileName => {
 				return fs.statSync(path.join(src, fileName)).isFile();
-			}
-		).map(
-			function (fileName) {
+			})
+			.map(fileName => {
 				return path.join(src, fileName);
-			}
-		);
+			});
 	}
 };

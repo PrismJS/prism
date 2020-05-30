@@ -93,7 +93,7 @@ class B extends A {}</code></pre>
       var gradientBmp:BitmapData = new BitmapData(256, 10, false, 0);
       gradientBmp.draw(gradient);
       RLUT = new Array(); GLUT = new Array(); BLUT = new Array();
-      for (var i:int = 0; i < 256; i++) {
+      for (var i:int = 0; i &lt; 256; i++) {
         var pixelColor:uint = gradientBmp.getPixel(i, 0);
         //I drew the gradient backwards, so sue me
         RLUT[256-i] = pixelColor & 0xff0000;

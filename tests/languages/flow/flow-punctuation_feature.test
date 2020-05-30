@@ -3,7 +3,7 @@
 ----------------------------------------------------
 
 [
-	["flow-punctuation", "{|"], " foo ", ["punctuation", ":"],
+	["flow-punctuation", "{|"], " foo ", ["operator", ":"],
 	["type", "string"], ["flow-punctuation", "|}"]
 ]
 

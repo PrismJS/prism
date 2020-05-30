@@ -2,12 +2,14 @@
 	zuck: user(id: 4) {
 		name
 	}
+	foo(bar: Int = 0, baz: String = "("): [Int!]!
 }
 
 ----------------------------------------------------
 
 [
 	["punctuation", "{"],
+
 	["attr-name", "zuck"],
 	["punctuation", ":"],
 	" user",
@@ -19,6 +21,28 @@
 	["punctuation", "{"],
 	"\r\n\t\tname\r\n\t",
 	["punctuation", "}"],
+
+	["attr-name", "foo"],
+	["punctuation", "("],
+	["attr-name", "bar"],
+	["punctuation", ":"],
+	" Int ",
+	["operator", "="],
+	["number", "0"],
+	["punctuation", ","],
+	["attr-name", "baz"],
+	["punctuation", ":"],
+	" String ",
+	["operator", "="],
+	["string", "\"(\""],
+	["punctuation", ")"],
+	["punctuation", ":"],
+	["punctuation", "["],
+	"Int",
+	["operator", "!"],
+	["punctuation", "]"],
+	["operator", "!"],
+
 	["punctuation", "}"]
 ]
 
