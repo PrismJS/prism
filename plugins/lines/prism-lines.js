@@ -129,18 +129,73 @@
 	}
 
 
+	/**
+	 * @typedef RegisterHookEnv
+	 * @property {HTMLPreElement} pre
+	 * @property {Prism.hooks.HookEnvironmentMap["before-insert"]} env
+	 * @property {LinesListener[]} listeners
+	 *
+	 * @typedef {{ [K in keyof Envs]?: (env: Envs[K]) => void }} LinesListener
+	 *
+	 * @typedef Envs
+	 * @property {BasicLinesEnv} onBefore
+	 * @property {BasicLinesEnv & NewLineEnv} onNewLine
+	 * @property {BasicLinesEnv & CompleteEnv} onComplete
+	 *
+	 * @typedef BasicLinesEnv
+	 * @property {HTMLPreElement} pre
+	 * @property {Prism.hooks.HookEnvironmentMap["before-insert"]} env
+	 *
+	 * @typedef NewLineEnv
+	 * @property {Element} line
+	 * @property {Node[]} childNodes
+	 *
+	 * @typedef CompleteEnv
+	 * @property {Node & ParentNode} lines
+	 */
+
 	var parser = new DOMParser();
 
 	Prism.hooks.add('before-insert', function (env) {
 		// works only for <code> wrapped inside <pre> (not inline)
 
-		/** @type {HTMLPreElement} */
-		var pre = env.element.parentNode;
+		var pre = /** @type {HTMLPreElement} */ (env.element.parentNode);
 		if (!pre || !/^pre$/i.test(pre.nodeName)) {
 			return;
 		}
 
-		// event/hook: before-lines
+		// prepare the registration hook
+		/** @type {LinesListener[]} */
+		var listeners = [];
+		Prism.hooks.run('lines-register', /** @type {RegisterHookEnv} */({
+			pre: pre,
+			env: env,
+			listeners: listeners
+		}));
+
+		if (!listeners.length) {
+			// no plugin needs line wrappers, so we don't add any
+			return;
+		}
+
+		/**
+		 * @param {T} event
+		 * @param {Envs[T]} env
+		 * @template {keyof Envs} T
+		 */
+		function fire(event, env) {
+			for (var listener, i = 0; listener = listeners[i++];) {
+				var fn = listener[event];
+				if (fn) {
+					fn(/** @type {any} */(env));
+				}
+			}
+		}
+
+		fire('onBefore', {
+			pre: pre,
+			env: env
+		});
 
 		var dom = parser.parseFromString(env.highlightedCode, 'text/html');
 		/** @type {readonly Node[]} */
@@ -148,14 +203,20 @@
 		var wrapper = dom.createElement('div');
 
 		/**
-		 * @param {readonly Node[]} childNodes
+		 * @param {Node[]} childNodes
 		 */
 		function addLine(childNodes) {
 			var line = dom.createElement('div');
-			line.className = 'code-line';
-			// event/hook: after-line-create
+			line.className = 'prism-line';
+
+			fire('onNewLine', {
+				pre: pre,
+				env: env,
+				line: line,
+				childNodes: childNodes
+			});
+
 			line.append.apply(line, childNodes);
-			// event/hook: before-add-line
 			wrapper.append(line);
 		}
 
@@ -193,9 +254,13 @@
 			addLine(lineNodes);
 		}
 
-		env.highlightedCode = wrapper.innerHTML;
+		fire('onComplete', {
+			pre: pre,
+			env: env,
+			lines: wrapper
+		});
 
-		// event/hook: complete-lines
+		env.highlightedCode = wrapper.innerHTML;
 	});
 
 }());
