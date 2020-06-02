@@ -11,7 +11,10 @@ public
 repeated
 required
 reserved
+returns
+rpc LotsOfReplies(
 service
+stream
 syntax
 to
 
@@ -31,7 +34,12 @@ to
 	["keyword", "repeated"],
 	["keyword", "required"],
 	["keyword", "reserved"],
+	["keyword", "returns"],
+	["keyword", "rpc"],
+	["function", "LotsOfReplies"],
+	["punctuation", "("],
 	["keyword", "service"],
+	["keyword", "stream"],
 	["keyword", "syntax"],
 	["keyword", "to"]
 ]
