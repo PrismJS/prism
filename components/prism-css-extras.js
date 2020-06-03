@@ -8,8 +8,8 @@
 		inside: selectorInside = {
 			'pseudo-element': /:(?:after|before|first-letter|first-line|selection)|::[-\w]+/,
 			'pseudo-class': /:[-\w]+/,
-			'class': /\.[-:.\w]+/,
-			'id': /#[-:.\w]+/,
+			'class': /\.[-\w]+/,
+			'id': /#[-\w]+/,
 			'attribute': {
 				pattern: RegExp('\\[(?:[^[\\]"\']|' + string.source + ')*\\]'),
 				greedy: true,
