@@ -123,8 +123,4 @@
 		Prism.languages['markup-templating'].buildPlaceholders(env, 'php', phpPattern);
 	});
 
-	Prism.hooks.add('after-tokenize', function(env) {
-		Prism.languages['markup-templating'].tokenizePlaceholders(env, 'php');
-	});
-
 }(Prism));

@@ -30,8 +30,4 @@
 		Prism.languages['markup-templating'].buildPlaceholders(env, 'handlebars', handlebarsPattern);
 	});
 
-	Prism.hooks.add('after-tokenize', function(env) {
-		Prism.languages['markup-templating'].tokenizePlaceholders(env, 'handlebars');
-	});
-
 }(Prism));

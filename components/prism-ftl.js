@@ -90,8 +90,4 @@
 		Prism.languages['markup-templating'].buildPlaceholders(env, 'ftl', pattern);
 	});
 
-	Prism.hooks.add('after-tokenize', function (env) {
-		Prism.languages['markup-templating'].tokenizePlaceholders(env, 'ftl');
-	});
-
 }(Prism));

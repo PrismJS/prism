@@ -16,24 +16,13 @@
 	 *
 	 * @typedef TemplateOptions
 	 * @property {Grammar} grammar
-	 * @property {GetPlaceholderFn} [getPlaceholder]
-	 * @property {GetValueFn} [getValue]
-	 *
-	 * @callback GetPlaceholderFn
-	 * @param {number} counter
-	 * @returns {string}
-	 *
-	 * @callback GetValueFn
-	 * @param {Token} token
-	 * @returns {string|Token|TokenStream}
+	 * @property {(counter: number) => string} [getPlaceholder]
+	 * @property {(token: Token) => string|Token|TokenStream} getValue
 	 */
 
 
 	function defaultGetPlaceholder(counter) {
 		return '___PLACEHOLDER_' + counter + '___';
-	}
-	function defaultGetValue(token) {
-		return token;
 	}
 
 	/**
@@ -56,7 +45,7 @@
 	/**
 	 * Create a new template from the given code and options.
 	 *
-	 * The given code will be tokenized using the grammar of the given options. All toplevel tokens will then be
+	 * The given code will be tokenized using the grammar of the given options. All top-level tokens will then be
 	 * replaced by placeholders except for tokens with a type that starts with `ignore`.
 	 *
 	 * Use the `getPlaceholder` function to return placeholders suited for your target language. The code with
@@ -65,11 +54,11 @@
 	 * __It is important that the target language DOES NOT partly tokenize any placeholders. Placeholders have to
 	 * be tokenized as a whole.__
 	 *
-	 * Then use the `interpolate` function to replace all placeholders in the token stream of the target languag with
+	 * Then use the `interpolate` function to replace all placeholders in the token stream of the target language with
 	 * their values. The `getValue` function can be used to replace the placeholders with arbitrary tokens or
 	 * a token stream.
 	 *
-	 * `interpolate` modifies the given token stream.
+	 * `interpolate` modifies its given token stream.
 	 *
 	 * @param {string} code
 	 * @param {TemplateOptions} options
@@ -98,7 +87,7 @@
 		var placeholderMap = {};
 		var placeholderCounter = 0;
 
-		/** @type {GetPlaceholderFn} */
+		/** @type {TemplateOptions["getPlaceholder"]} */
 		var getPlaceholder = options.getPlaceholder || defaultGetPlaceholder;
 
 		for (var i = 0, l = tokens.length; i < l; i++) {
@@ -118,8 +107,8 @@
 		return {
 			code: templateCode,
 			interpolate: function (tokens) {
-				/** @type {GetValueFn} */
-				var getValue = options.getValue || defaultGetValue;
+				/** @type {TemplateOptions["getValue"]} */
+				var getValue = options.getValue;
 
 				var placeholders = Object.keys(placeholderMap);
 				var placeholderCounter = 0;
@@ -214,9 +203,85 @@
 	}
 
 
+	/**
+	 * @typedef TemplatingState
+	 * @property {string} code The original code before being replaced with the placeholder version
+	 * @property {Grammar} grammar The original grammar.
+	 * @property {Template["interpolate"]} interpolate
+	 */
+	var TEMPLATING_STATE_PROPERTY_NAME = '__templatingState';
+
+	/**
+	 * TODO: Doc
+	 *
+	 * @param {string|Grammar} templatedLanguage
+	 * @param {any} env The environment of the `before-tokenize` hook.
+	 * @param {TemplateOptions} templateOptions The template options passed to `createTemplate`.
+	 * @returns {void}
+	 * @example
+	 * Prism.hooks.add('before-tokenize', function (env) {
+	 *     if (env.language !== 'smarty') {
+	 *         return;
+	 *     }
+	 *
+	 *     Prism.languages.templating.replaceWithTemplate('markup', env, {
+	 *         grammar: {
+	 *             'ignore-literal': {
+	 *                 pattern: /({literal})[\s\S]+?(?={\/literal})/,
+	 *                 lookbehind: true
+	 *             },
+	 *             'smarty': {
+	 *                 pattern: /\{\*[\s\S]*?\*\}|\{[\s\S]+?\}/,
+	 *                 alias: 'language-smarty'
+	 *             }
+	 *         },
+	 *         getValue: function(token) {
+	 *             token.content = Prism.tokenize(token.content, Prism.languages['smarty']);
+	 *             return token;
+	 *         }
+	 *     });
+	 * });
+	 */
+	function replaceWithTemplate(templatedLanguage, env, templateOptions) {
+		if (typeof templatedLanguage === 'string') {
+			templatedLanguage = Prism.languages[templatedLanguage];
+		}
+
+		var template = createTemplate(env.code, templateOptions);
+
+		/** @type {TemplatingState} */
+		var templatingState = {
+			grammar: env.grammar,
+			code: env.code,
+			interpolate: template.interpolate
+		};
+
+		env.code = template.code;
+		env.grammar = templatedLanguage;
+		env[TEMPLATING_STATE_PROPERTY_NAME] = templatingState;
+	}
+
+	Prism.hooks.add('after-tokenize', function (env) {
+		/** @type {TemplatingState | undefined} */
+		var templatingState = env[TEMPLATING_STATE_PROPERTY_NAME];
+		if (!templatingState) {
+			return;
+		}
+		// delete state to make double-execution impossible
+		delete env[TEMPLATING_STATE_PROPERTY_NAME];
+
+		// switch back to original grammar and code
+		env.code = templatingState.code;
+		env.grammar = templatingState.grammar;
+
+		templatingState.interpolate(env.tokens);
+	});
+
+
 	Object.defineProperties(Prism.languages.templating = {}, {
 		createTemplate: { value: createTemplate },
-		tokenizeWithHooks: { value: tokenizeWithHooks }
+		tokenizeWithHooks: { value: tokenizeWithHooks },
+		replaceWithTemplate: { value: replaceWithTemplate }
 	});
 
 }(Prism));

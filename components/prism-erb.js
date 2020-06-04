@@ -13,8 +13,4 @@
 		Prism.languages['markup-templating'].buildPlaceholders(env, 'erb', erbPattern);
 	});
 
-	Prism.hooks.add('after-tokenize', function(env) {
-		Prism.languages['markup-templating'].tokenizePlaceholders(env, 'erb');
-	});
-
 }(Prism));

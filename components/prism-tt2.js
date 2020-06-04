@@ -46,8 +46,4 @@
 		Prism.languages['markup-templating'].buildPlaceholders(env, 'tt2', tt2Pattern);
 	});
 
-	Prism.hooks.add('after-tokenize', function(env) {
-		Prism.languages['markup-templating'].tokenizePlaceholders(env, 'tt2');
-	});
-
 }(Prism));

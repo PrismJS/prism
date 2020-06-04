@@ -69,9 +69,4 @@
 		});
 	});
 
-	// Re-insert the tokens after tokenizing
-	Prism.hooks.add('after-tokenize', function (env) {
-		Prism.languages['markup-templating'].tokenizePlaceholders(env, 'smarty');
-	});
-
 }(Prism));

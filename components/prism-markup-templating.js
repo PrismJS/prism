@@ -1,6 +1,6 @@
 (function (Prism) {
 
-	var createTemplate = Prism.languages.templating.createTemplate;
+	var replaceWithTemplate = Prism.languages.templating.replaceWithTemplate;
 
 	Object.defineProperties(Prism.languages['markup-templating'] = {}, {
 		buildPlaceholders: {
@@ -28,39 +28,13 @@
 					grammar = placeholderPatternOrGrammar;
 				}
 
-				var template = createTemplate(env.code, {
+				replaceWithTemplate('markup', env, {
 					grammar: grammar,
 					getValue: function (token) {
 						token.content = Prism.tokenize(token.content, Prism.languages[language]);
 						return token;
 					}
 				});
-
-				env.code = template.code;
-				env.interpolate = template.interpolate;
-
-				// Switch the grammar to markup
-				env.grammar = Prism.languages.markup;
-			}
-		},
-		tokenizePlaceholders: {
-			/**
-			 * Replace placeholders with proper tokens after tokenizing.
-			 *
-			 * @param {object} env The environment of the `after-tokenize` hook.
-			 * @param {string} language The language id.
-			 */
-			value: function (env, language) {
-				var interpolate = env.interpolate;
-
-				if (env.language !== language || !interpolate) {
-					return;
-				}
-
-				// Switch the grammar back
-				env.grammar = Prism.languages[language];
-
-				interpolate(env.tokens);
 			}
 		}
 	});
