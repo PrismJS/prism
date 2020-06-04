@@ -1,0 +1,89 @@
+<h2>Comments</h2>
+<pre><code>// This is a comment
+/* This is a comment
+on multiple lines */</code></pre>
+
+<h2>Numbers</h2>
+<pre><code>12
+12e5
+12.f
+12f
+12d
+12.d
+12.0
+12.0f
+12.0d</code></pre>
+
+<h2>strings and language extensions</h2>
+<pre><code>"hi"
+'hi'
+'c'
+'what "yach"'
+s'c'
+"c"
+r"[a-z|A-Z]+"</code></pre>
+
+<h2>Functions</h2>
+<pre><code>def add(a int, b int) => a + b</code></pre>
+
+<h2>Language Extensions</h2>
+<pre><code>dcalc = mylisp||(+ 1 2 (* 2 3))|| // == 9
+
+myFortran || program hello
+          		print *, "Hello World!"
+       		 end program hello|| //prints "Hello World!"
+
+lotto = myAPL || x[⍋x←6?40] || //6 unique random numbers from 1 to 40</code></pre>
+
+<h2>Full example</h2>
+<pre><code>//an overloaded function
+def adder(a int, b int) => a + b
+def adder(a int, b float) => adder(a, b as int)
+def adder(a int) => adder(a, 10)
+
+//a default value
+def powerPlus(a int, raiseTo = 2, c int) => a ** raiseTo + c
+
+//call our function with a default value
+res1 = powerPlus(4, 10)//second argument defaults to '2'
+res2 = powerPlus(4, 3, 10)//second argument provided
+
+//calling a function with named parameters:
+def powerAdder(a int, raiseATo = 2, b int, raiseBTo = 2) => a**raiseATo + b**raiseBTo
+res3 = powerAdder(2, 4, raiseATo=3)//equivalent to: powerAdder(2, 3, 4, 2)
+
+//varargs:
+def sum(elms int...) int {
+  res = 0
+  for(elm in elms){
+    res += elm
+  }
+  res
+}
+
+//call our function with a vararg
+thesum = sum(1, 2, 3, 4, 5)
+
+//partially defined typedef
+typedef NameMap&lt;X> = java.util.ArrayList&lt;java.util.HashMap&lt;String, java.util.HashSet&lt;X>>>
+
+//using typedefs...
+nm NameMap&lt;String>= new NameMap&lt;String>()
+
+@Annotation
+class MyClass(a int, b int, c String){
+  override toString() => 'MyClass({a}, {b}, "{c}")'
+}
+
+mc1 = MyClass(12, 14, "hi there")
+mc2 = mc1@ //copy mc1
+
+assert mc1 == mc2//same values!
+assert mc1 &&lt;> mc2//different objects!
+
+mc3 = mc1@(a = 100)//copy mc1 but overwrite value of a
+assert 'MyClass(100, 14, "hi there")' == mc3.toString()
+
+mc4 = mc1@(&lt;a, b>)//copy mc1 but exclude a and b
+assert 'MyClass(0, 0, "hi there")' == mc3.toString()
+</code></pre>

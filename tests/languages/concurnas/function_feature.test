@@ -1,0 +1,13 @@
+def myfunc() => 12
+myfunc()
+
+----------------------------------------------------
+
+[
+	["keyword", "def"], ["function", "myfunc"], ["punctuation", "("], ["punctuation", ")"], ["operator", "=>"], ["number", "12"],
+	"\r\nmyfunc" , ["punctuation", "("], ["punctuation", ")"]
+]
+
+----------------------------------------------------
+
+Checks for functions.

@@ -1,0 +1,28 @@
+<h2>Selectors</h2>
+<pre><code class="language-css">a#id.class:hover {}
+li:nth-child(2n+1) {}
+span::before {}
+a[title], a[href$=".pdf"] {}, a[href$=".jpg" i] {}
+</code></pre>
+
+<p>Some of added tokens aren't supported by Prism's default themes.</p>
+
+<h2>Variables</h2>
+<pre><code class="language-css">:root {
+	--foo: 12px;
+}
+a {
+	font-size: var(--foo);
+	padding: calc(var(--foo) + .5em);
+}
+</code></pre>
+
+<h2>Colors</h2>
+<pre><code class="language-css">span {
+	background: rgba(0, 128, 255, .4);
+	color: red;
+	color: green;
+	color: blue;
+	border: 1px solid #FFF;
+}
+</code></pre>

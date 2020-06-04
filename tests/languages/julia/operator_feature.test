@@ -7,13 +7,18 @@
 % %=
 ÷ ÷=
 ! != !==
-& &=
-| |= |>
+& &= &&
+⊻ ⊻=
+| |= ||
+|> <|
 $ $=
 < <= <: << <<=
 > >= >> >>= >>> >>>=
 = == ===
-~ ≠ ≤ ≥
+~ ≠ ≤ ≥ √ ∛
+
+A'b
+A'b''
 
 ----------------------------------------------------
 
@@ -27,13 +32,22 @@ $ $=
 	["operator", "%"], ["operator", "%="],
 	["operator", "÷"], ["operator", "÷="],
 	["operator", "!"], ["operator", "!="], ["operator", "!=="],
-	["operator", "&"], ["operator", "&="],
-	["operator", "|"], ["operator", "|="], ["operator", "|>"],
+	["operator", "&"], ["operator", "&="], ["operator", "&&"],
+	["operator", "⊻"], ["operator", "⊻="],
+	["operator", "|"], ["operator", "|="], ["operator", "||"],
+	["operator", "|>"], ["operator", "<|"],
 	["operator", "$"], ["operator", "$="],
 	["operator", "<"], ["operator", "<="], ["operator", "<:"], ["operator", "<<"], ["operator", "<<="],
 	["operator", ">"], ["operator", ">="], ["operator", ">>"], ["operator", ">>="], ["operator", ">>>"], ["operator", ">>>="],
 	["operator", "="], ["operator", "=="], ["operator", "==="],
-	["operator", "~"], ["operator", "≠"], ["operator", "≤"], ["operator", "≥"]
+	["operator", "~"], ["operator", "≠"], ["operator", "≤"], ["operator", "≥"], ["operator", "√"], ["operator", "∛"],
+	"\r\n\r\nA",
+	["operator", "'"],
+	"b\r\nA",
+	["operator", "'"],
+	"b",
+	["operator", "'"],
+	["operator", "'"]
 ]
 
 ----------------------------------------------------

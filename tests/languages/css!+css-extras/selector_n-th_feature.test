@@ -11,11 +11,11 @@
 	["selector", [
 		["pseudo-class", ":nth-child"],
 		["punctuation", "("],
-		["n-th", [
-			["number", "2n"],
-			["operator", "+"],
-			["number", "1"]
-		]],
+			["n-th", [
+				["number", "2n"],
+				["operator", "+"],
+				["number", "1"]
+			]],
 		["punctuation", ")"]
 	]],
 	["punctuation", "{"],

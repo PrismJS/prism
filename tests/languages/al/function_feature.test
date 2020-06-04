@@ -1,0 +1,92 @@
+procedure CallJavaScript(i : integer; s: text; d : decimal; c : char);
+local procedure AssignGlobalToLocal(var addin : ControlAddIn TestAddIn)
+trigger Callback(i : integer; s: text; d : decimal; c : char)
+trigger OnAction();
+event Callback(i : integer; s: text; d : decimal; c : char);
+
+----------------------------------------------------
+
+[
+	["keyword", "procedure"],
+	["function", "CallJavaScript"],
+	["punctuation", "("],
+	"i ",
+	["punctuation", ":"],
+	["class-name", "integer"],
+	["punctuation", ";"],
+	" s",
+	["punctuation", ":"],
+	["class-name", "text"],
+	["punctuation", ";"],
+	" d ",
+	["punctuation", ":"],
+	["class-name", "decimal"],
+	["punctuation", ";"],
+	" c ",
+	["punctuation", ":"],
+	["class-name", "char"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "local"],
+	["keyword", "procedure"],
+	["function", "AssignGlobalToLocal"],
+	["punctuation", "("],
+	["keyword", "var"],
+	" addin ",
+	["punctuation", ":"],
+	["keyword", "ControlAddIn"],
+	" TestAddIn",
+	["punctuation", ")"],
+
+	["keyword", "trigger"],
+	["function", "Callback"],
+	["punctuation", "("],
+	"i ",
+	["punctuation", ":"],
+	["class-name", "integer"],
+	["punctuation", ";"],
+	" s",
+	["punctuation", ":"],
+	["class-name", "text"],
+	["punctuation", ";"],
+	" d ",
+	["punctuation", ":"],
+	["class-name", "decimal"],
+	["punctuation", ";"],
+	" c ",
+	["punctuation", ":"],
+	["class-name", "char"],
+	["punctuation", ")"],
+
+	["keyword", "trigger"],
+	["function", "OnAction"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "event"],
+	["function", "Callback"],
+	["punctuation", "("],
+	"i ",
+	["punctuation", ":"],
+	["class-name", "integer"],
+	["punctuation", ";"],
+	" s",
+	["punctuation", ":"],
+	["class-name", "text"],
+	["punctuation", ";"],
+	" d ",
+	["punctuation", ":"],
+	["class-name", "decimal"],
+	["punctuation", ";"],
+	" c ",
+	["punctuation", ":"],
+	["class-name", "char"],
+	["punctuation", ")"],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for functions.

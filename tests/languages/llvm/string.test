@@ -1,0 +1,22 @@
+" ; "
+""
+"\00\FF"
+"\22\5cI appreciate that LLVM strings only one kind of escaping"
+"/some/path"
+b"hello"
+
+----------------------------------------------------
+
+[
+	["string", "\" ; \""],
+	["string", "\"\""],
+	["string", "\"\\00\\FF\""],
+	["string", "\"\\22\\5cI appreciate that LLVM strings only one kind of escaping\""],
+	["string", "\"/some/path\""],
+	["keyword", "b"],
+	["string", "\"hello\""]
+]
+
+----------------------------------------------------
+
+Different string literals.

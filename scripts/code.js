@@ -4,10 +4,16 @@ if(!document.body.addEventListener) {
 	return;
 }
 
+$$('[data-plugin-header]').forEach(function (element) {
+	var plugin = components.plugins[element.getAttribute('data-plugin-header')];
+	element.innerHTML = '<div class="intro" data-src="templates/header-plugins.html" data-type="text/html"></div>\n'
+	+ '<h2>' + plugin.title  + '</h2>\n<p>' + plugin.description + '</p>';
+});
+
 $$('[data-src][data-type="text/html"]').forEach(function(element) {
 	var src = element.getAttribute('data-src'),
 	    html = element.getAttribute('data-type') === 'text/html',
-	    contentProperty = html? 'innerHTML' : 'textContent';
+	    contentProperty = html ? 'innerHTML' : 'textContent';
 
 	$u.xhr({
 		url: src,
@@ -92,6 +98,24 @@ if (toc.children.length > 0) {
 	});
 }
 
+})();
+
+/**
+ * Linkify h2
+ */
+(function () {
+	$$('section h2[id]').forEach(function (h2) {
+		var text = h2.textContent;
+		h2.innerHTML = '';
+
+		$u.element.create('a', {
+			properties: {
+				href: window.location.pathname + '#' + h2.id
+			},
+			contents: text,
+			inside: h2
+		});
+	});
 })();
 
 // calc()
@@ -195,19 +219,51 @@ function listPlugins(ul) {
 
 		var plugin = components.plugins[id];
 
-		$u.element.create('li', {
-			contents: {
-				tag: 'a',
-				prop: {
-					href: 'plugins/' + id
+		var li = $u.element.create('li', {
+			contents: [
+				{
+					tag: 'a',
+					prop: {
+						href: 'plugins/' + id
+					},
+					contents: plugin.title || plugin
 				},
-				contents: plugin.title || plugin
-			},
+				{
+					tag: 'br'
+				}
+			],
 			inside: ul
 		});
+
+		var desc = document.createElement('div');
+		desc.innerHTML = plugin.description;
+		li.appendChild(desc);
 	}
 }
 
 $$('.plugin-list').forEach(listPlugins);
+
+// small polyfill for Element#matches
+if (!Element.prototype.matches) {
+	Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
+}
+
+Prism && Prism.hooks.add('complete', function (env) {
+	var element = env.element;
+
+	requestAnimationFrame(function () {
+		if (!element.matches('div.code-toolbar > pre > code')) {
+			return;
+		}
+
+		var pre = element.parentElement;
+		var wrapper = pre.parentElement;
+
+		// transfer margin of pre to wrapper
+		wrapper.style.margin = window.getComputedStyle(pre).margin;
+		pre.style.margin = "0";
+
+	});
+});
 
 })();

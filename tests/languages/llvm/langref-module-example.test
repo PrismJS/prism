@@ -1,0 +1,115 @@
+; Declare the string constant as a global constant.
+@.str = private unnamed_addr constant [13 x i8] c"hello world\0A\00"
+
+; External declaration of the puts function
+declare i32 @puts(i8* nocapture) nounwind
+
+; Definition of main function
+define i32 @main() {   ; i32()*
+  ; Convert [13 x i8]* to i8*...
+  %cast210 = getelementptr [13 x i8], [13 x i8]* @.str, i64 0, i64 0
+
+  ; Call puts function to write out the string to stdout.
+  call i32 @puts(i8* %cast210)
+  ret i32 0
+}
+
+; Named metadata
+!0 = !{i32 42, null, !"string"}
+!foo = !{!0}
+
+----------------------------------------------------
+
+[
+	["comment", "; Declare the string constant as a global constant."],
+	["variable", "@.str"],
+	["punctuation", "="],
+	["keyword", "private"],
+	["keyword", "unnamed_addr"],
+	["keyword", "constant"],
+	["punctuation", "["],
+	["number", "13"],
+	["keyword", "x"],
+	["type", "i8"],
+	["punctuation", "]"],
+	["keyword", "c"],
+	["string", "\"hello world\\0A\\00\""],
+	["comment", "; External declaration of the puts function"],
+	["keyword", "declare"],
+	["type", "i32"],
+	["variable", "@puts"],
+	["punctuation", "("],
+	["type", "i8"],
+	["punctuation", "*"],
+	["keyword", "nocapture"],
+	["punctuation", ")"],
+	["keyword", "nounwind"],
+	["comment", "; Definition of main function"],
+	["keyword", "define"],
+	["type", "i32"],
+	["variable", "@main"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["comment", "; i32()*"],
+	["comment", "; Convert [13 x i8]* to i8*..."],
+	["variable", "%cast210"],
+	["punctuation", "="],
+	["keyword", "getelementptr"],
+	["punctuation", "["],
+	["number", "13"],
+	["keyword", "x"],
+	["type", "i8"],
+	["punctuation", "]"],
+	["punctuation", ","],
+	["punctuation", "["],
+	["number", "13"],
+	["keyword", "x"],
+	["type", "i8"],
+	["punctuation", "]"],
+	["punctuation", "*"],
+	["variable", "@.str"],
+	["punctuation", ","],
+	["type", "i64"],
+	["number", "0"],
+	["punctuation", ","],
+	["type", "i64"],
+	["number", "0"],
+	["comment", "; Call puts function to write out the string to stdout."],
+	["keyword", "call"],
+	["type", "i32"],
+	["variable", "@puts"],
+	["punctuation", "("],
+	["type", "i8"],
+	["punctuation", "*"],
+	["variable", "%cast210"],
+	["punctuation", ")"],
+	["keyword", "ret"],
+	["type", "i32"],
+	["number", "0"],
+	["punctuation", "}"],
+	["comment", "; Named metadata"],
+	["variable", "!0"],
+	["punctuation", "="],
+	["punctuation", "!"],
+	["punctuation", "{"],
+	["type", "i32"],
+	["number", "42"],
+	["punctuation", ","],
+	["keyword", "null"],
+	["punctuation", ","],
+	["punctuation", "!"],
+	["string", "\"string\""],
+	["punctuation", "}"],
+	["variable", "!foo"],
+	["punctuation", "="],
+	["punctuation", "!"],
+	["punctuation", "{"],
+	["variable", "!0"],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Tests the example included on the LangRef, at:
+https://llvm.org/docs/LangRef.html#module-structure

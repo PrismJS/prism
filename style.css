@@ -48,11 +48,13 @@ section h1 {
 		font-style: normal;
 	}
 
-	section h1 > a {
+	section h1 > a,
+	section h2[id] > a {
 		text-decoration: none;
 	}
 
-	section h1 > a:before {
+	section h1 > a:before,
+	section h2[id] > a:before {
 		content: '§';
 		position: absolute;
 		padding: 0 .2em;
@@ -62,7 +64,8 @@ section h1 {
 		text-shadow: 0 1px white;
 	}
 
-	section h1 > a:hover:before {
+	section h1 > a:hover:before,
+	section h2[id] > a:hover:before {
 		color: black;
 		background: #f1ad26;
 	}
@@ -414,3 +417,26 @@ label a.owner:not(:hover) {
 		margin-bottom: 1em;
 		margin-right: 1em;
 	}
+
+ul.plugin-list {
+	column-count: 2;
+}
+	ul.plugin-list > li {
+		break-inside: avoid;
+		page-break-inside: avoid;
+	}
+	ul.plugin-list > li > a {
+		font-size: 110%;
+	}
+	ul.plugin-list > li > div {
+		margin-bottom: .5em;
+	}
+
+/*
+ * Fix for Toolbar's overflow issue
+ */
+
+div.code-toolbar {
+	display: block;
+	overflow: auto;
+}

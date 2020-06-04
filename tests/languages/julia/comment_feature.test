@@ -1,11 +1,20 @@
 #
 # foobar
+#=#
+#=
+ multi line
+  =#
+
+#= #= nested =# =#
 
 ----------------------------------------------------
 
 [
 	["comment", "#"],
-	["comment", "# foobar"]
+	["comment", "# foobar"],
+	["comment", "#=#"],
+	["comment", "#=\r\n multi line\r\n  =#"],
+	["comment", "#= #= nested =# =#"]
 ]
 
 ----------------------------------------------------

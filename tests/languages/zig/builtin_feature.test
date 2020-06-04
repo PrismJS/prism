@@ -1,0 +1,417 @@
+@addWithOverflow()
+@alignCast()
+@alignOf()
+@ArgType()
+@atomicLoad()
+@atomicRmw()
+@bitCast()
+@bitOffsetOf()
+@boolToInt()
+@breakpoint()
+@mulAdd()
+@byteSwap()
+@bitReverse()
+@byteOffsetOf()
+@bytesToSlice()
+@cDefine()
+@cImport()
+@cInclude()
+@clz()
+@cmpxchgStrong()
+@cmpxchgWeak()
+@compileError()
+@compileLog()
+@ctz()
+@cUndef()
+@divExact()
+@divFloor()
+@divTrunc()
+@embedFile()
+@enumToInt()
+@errorName()
+@errorReturnTrace()
+@errorToInt()
+@errSetCast()
+@export()
+@fence()
+@field()
+@fieldParentPtr()
+@floatCast()
+@floatToInt()
+@frameAddress()
+@handle()
+@hasDecl()
+@hasField()
+@import()
+@inlineCall()
+@intCast()
+@intToEnum()
+@intToError()
+@intToFloat()
+@intToPtr()
+@IntType()
+@memberCount()
+@memberName()
+@memberType()
+@memcpy()
+@memset()
+@mod()
+@mulWithOverflow()
+@newStackCall()
+@noInlineCall()
+@OpaqueType()
+@panic()
+@popCount()
+@ptrCast()
+@ptrToInt()
+@rem()
+@returnAddress()
+@setAlignStack()
+@setCold()
+@setEvalBranchQuota()
+@setFloatMode()
+@setRuntimeSafety()
+@shlExact()
+@shlWithOverflow()
+@shrExact()
+@sizeOf()
+@sliceToBytes()
+@sqrt()
+@sin()
+@cos()
+@exp()
+@exp2()
+@ln()
+@log2()
+@log10()
+@fabs()
+@floor()
+@ceil()
+@trunc()
+@round()
+@subWithOverflow()
+@tagName()
+@TagType()
+@This()
+@truncate()
+@typeId()
+@typeInfo()
+@typeName()
+@typeOf()
+@unionInit()
+@Vector()
+
+----------------------------------------------------
+
+[
+	["builtin", "@addWithOverflow"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@alignCast"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@alignOf"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@ArgType"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@atomicLoad"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@atomicRmw"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@bitCast"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@bitOffsetOf"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@boolToInt"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@breakpoint"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@mulAdd"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@byteSwap"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@bitReverse"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@byteOffsetOf"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@bytesToSlice"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@cDefine"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@cImport"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@cInclude"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@clz"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@cmpxchgStrong"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@cmpxchgWeak"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@compileError"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@compileLog"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@ctz"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@cUndef"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@divExact"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@divFloor"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@divTrunc"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@embedFile"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@enumToInt"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@errorName"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@errorReturnTrace"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@errorToInt"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@errSetCast"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@export"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@fence"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@field"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@fieldParentPtr"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@floatCast"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@floatToInt"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@frameAddress"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@handle"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@hasDecl"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@hasField"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@import"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@inlineCall"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@intCast"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@intToEnum"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@intToError"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@intToFloat"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@intToPtr"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@IntType"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@memberCount"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@memberName"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@memberType"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@memcpy"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@memset"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@mod"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@mulWithOverflow"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@newStackCall"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@noInlineCall"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@OpaqueType"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@panic"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@popCount"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@ptrCast"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@ptrToInt"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@rem"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@returnAddress"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@setAlignStack"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@setCold"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@setEvalBranchQuota"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@setFloatMode"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@setRuntimeSafety"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@shlExact"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@shlWithOverflow"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@shrExact"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@sizeOf"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@sliceToBytes"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@sqrt"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@sin"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@cos"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@exp"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@exp2"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@ln"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@log2"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@log10"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@fabs"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@floor"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@ceil"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@trunc"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@round"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@subWithOverflow"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@tagName"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@TagType"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@This"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@truncate"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@typeId"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@typeInfo"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@typeName"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@typeOf"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@unionInit"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "@Vector"],
+	["punctuation", "("],
+	["punctuation", ")"]
+]
+
+----------------------------------------------------
+
+Checks for builtin functions.
