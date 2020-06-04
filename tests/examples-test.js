@@ -12,6 +12,7 @@ describe('Examples', function () {
 		// these are libraries and not languages
 		'markup-templating',
 		't4-templating',
+		'templating',
 		// this does alter some languages but it's mainly a library
 		'javadoclike'
 	]);
