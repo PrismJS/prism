@@ -3,6 +3,9 @@
  * Based (more or less) on the Twilight theme originally of Textmate fame.
  * @author Remy Bach
  */
+
+/* @contrast-background: black */
+
 code[class*="language-"],
 pre[class*="language-"] {
 	color: white;

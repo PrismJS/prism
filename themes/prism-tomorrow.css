@@ -4,6 +4,8 @@
  * @author Rose Pritchard
  */
 
+/* @contrast-background: #2d2d2d */
+
 code[class*="language-"],
 pre[class*="language-"] {
 	color: #ccc;

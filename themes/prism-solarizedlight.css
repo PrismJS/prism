@@ -28,6 +28,8 @@ cyan      #2aa198
 green     #859900
 */
 
+/* @contrast-background: #fdf6e3 */
+
 code[class*="language-"],
 pre[class*="language-"] {
 	color: #657b83; /* base00 */

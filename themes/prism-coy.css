@@ -4,6 +4,8 @@
  * @author Tim  Shedor
  */
 
+/* @contrast-background: #fdfdfd */
+
 code[class*="language-"],
 pre[class*="language-"] {
 	color: black;
@@ -141,6 +143,7 @@ pre[class*="language-"]:after {
 .token.entity,
 .token.url,
 .token.variable {
+	/* @contrast-background: white */
 	color: #a67f59;
 	background: rgba(255, 255, 255, 0.5);
 }
@@ -159,6 +162,7 @@ pre[class*="language-"]:after {
 
 .language-css .token.string,
 .style .token.string {
+	/* @contrast-background: white */
 	color: #a67f59;
 	background: rgba(255, 255, 255, 0.5);
 }
@@ -195,6 +199,7 @@ pre[class*="language-"]:after {
 .token.tab:not(:empty):before,
 .token.cr:before,
 .token.lf:before {
+	/* @contrast-ignore */
 	color: #e0d7d1;
 }
 

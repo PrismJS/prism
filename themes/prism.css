@@ -4,6 +4,8 @@
  * @author Lea Verou
  */
 
+/* @contrast-background: white */
+
 code[class*="language-"],
 pre[class*="language-"] {
 	color: black;
@@ -74,6 +76,7 @@ pre[class*="language-"] {
 }
 
 .token.punctuation {
+	/* @contrast-ignore */
 	color: #999;
 }
 
