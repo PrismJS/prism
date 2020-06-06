@@ -212,7 +212,13 @@
 	var TEMPLATING_STATE_PROPERTY_NAME = '__templatingState';
 
 	/**
-	 * TODO: Doc
+	 * This function is called on an environment of the `before-tokenize` hook and will replace the current grammar with
+	 * the grammar of the given template language. The code to highlight will be replaced with the template code (see
+	 * `createTemplate`).
+	 *
+	 * The `getValue` function of the template options should not access any values of the hook environment because this
+	 * function will change its properties. This meaning that the state of certain properties may be changed at the time
+	 * the `getValue` function is invoked.
 	 *
 	 * @param {string|Grammar} templatedLanguage
 	 * @param {any} env The environment of the `before-tokenize` hook.
@@ -235,7 +241,7 @@
 	 *                 alias: 'language-smarty'
 	 *             }
 	 *         },
-	 *         getValue: function(token) {
+	 *         getValue: function (token) {
 	 *             token.content = Prism.tokenize(token.content, Prism.languages['smarty']);
 	 *             return token;
 	 *         }
