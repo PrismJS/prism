@@ -27,6 +27,7 @@
 		"antlr4": "ANTLR4",
 		"g4": "ANTLR4",
 		"apacheconf": "Apache Configuration",
+		"conf": "Apache Configuration",
 		"apl": "APL",
 		"aql": "AQL",
 		"arff": "ARFF",

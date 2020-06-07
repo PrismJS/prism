@@ -105,7 +105,8 @@
 		},
 		"apacheconf": {
 			"title": "Apache Configuration",
-			"owner": "GuiTeK"
+			"owner": "GuiTeK",
+			"alias": "conf"
 		},
 		"apl": {
 			"title": "APL",

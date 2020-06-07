@@ -155,6 +155,7 @@
 		"rss": "markup",
 		"js": "javascript",
 		"g4": "antlr4",
+		"conf": "apacheconf",
 		"adoc": "asciidoc",
 		"shell": "bash",
 		"shortcode": "bbcode",
