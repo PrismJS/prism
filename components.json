@@ -579,6 +579,10 @@
 			"require": "json",
 			"owner": "RunDevelopment"
 		},
+		"jsstacktrace": {
+			"title": "Javascript stack trace",
+			"owner": "sbrl"
+		},
 		"julia": {
 			"title": "Julia",
 			"owner": "cdagnino"

@@ -93,6 +93,7 @@
 		"webmanifest": "Web App Manifest",
 		"jsonp": "JSONP",
 		"json5": "JSON5",
+		"jsstacktrace": "Javascript stack trace",
 		"latex": "LaTeX",
 		"tex": "TeX",
 		"context": "ConTeXt",
