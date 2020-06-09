@@ -93,6 +93,7 @@
 		"webmanifest": "Web App Manifest",
 		"jsonp": "JSONP",
 		"json5": "JSON5",
+		"keepalived": "Keepalived Configure",
 		"latex": "LaTeX",
 		"tex": "TeX",
 		"context": "ConTeXt",

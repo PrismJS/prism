@@ -1,0 +1,79 @@
+virtual_server 192.168.1.200 3306 {
+	lb_algo rr
+	lb_algo wrr
+	lb_algo lc
+	lb_algo wlc
+	lb_algo sh
+	lb_algo dh
+	lb_algo lblc
+
+    lb_kind NAT
+    lb_kind DR
+    lb_kind TUN
+
+    protocol TCP
+    protocol UDP
+}
+
+vrrp_instance test {
+    state MASTER
+    state BACKUP
+
+    authentication {
+        auth_type PASS
+        auth_type AH
+    }
+}
+
+----------------------------------------------------
+
+[
+	["property", "virtual_server"],
+	["ip", "192.168.1.200"],
+	["number", "3306"],
+	["punctuation", "{"],
+	["property", "lb_algo"],
+	["constant", "rr"],
+	["property", "lb_algo"],
+	["constant", "wrr"],
+	["property", "lb_algo"],
+	["constant", "lc"],
+	["property", "lb_algo"],
+	["constant", "wlc"],
+	["property", "lb_algo"],
+	["constant", "sh"],
+	["property", "lb_algo"],
+	["constant", "dh"],
+	["property", "lb_algo"],
+	["constant", "lblc"],
+	["property", "lb_kind"],
+	["constant", "NAT"],
+	["property", "lb_kind"],
+	["constant", "DR"],
+	["property", "lb_kind"],
+	["constant", "TUN"],
+	["property", "protocol"],
+	["constant", "TCP"],
+	["property", "protocol"],
+	["constant", "UDP"],
+	["punctuation", "}"],
+	["property", "vrrp_instance"],
+	" test ",
+	["punctuation", "{"],
+	["property", "state"],
+	["constant", "MASTER"],
+	["property", "state"],
+	["constant", "BACKUP"],
+	["property", "authentication"],
+	["punctuation", "{"],
+	["property", "auth_type"],
+	["constant", "PASS"],
+	["property", "auth_type"],
+	["constant", "AH"],
+	["punctuation", "}"],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for constants, ip (alias number), number, punctuations.
