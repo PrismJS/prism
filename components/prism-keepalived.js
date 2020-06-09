@@ -13,7 +13,7 @@ Prism.languages.keepalived = {
 	},
 	'string': /("|')(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,
 	'email': {
-		pattern: /(?:[\w-])+@([\w-])+((\.[\w-]{2,3}){1,2})/,
+		pattern: /(?:[\w-])+@(?:[\w-])+(?:(?:\.[\w-]{2,3}){1,2})/,
 		alias: 'string',
 	},
 	'path': {
