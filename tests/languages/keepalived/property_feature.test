@@ -58,7 +58,7 @@ script
 	["property", "notification_email_from"],
     ["property", "smtp_server"],
     ["property", "smtp_connect_timeout"],
-    ["property", "lvs_id"],
+    ["property", "router_id"],
     ["property", "virtual_server"],
     ["property", "fwmark"],
     ["property", "delay_loop"],
@@ -100,9 +100,9 @@ script
     ["property", "notify_master"],
     ["property", "notify_backup"],
     ["property", "notify_fault"],
-    ["property", "vrrp_sync_group"]
-    ["property", "vrrp_script"]
-    ["property", "interval"]
+    ["property", "vrrp_sync_group"],
+    ["property", "vrrp_script"],
+    ["property", "interval"],
     ["property", "script"]
 ]
 
