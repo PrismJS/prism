@@ -1,42 +1,48 @@
 Prism.languages.jsstacktrace = {
-	'notmycode': {
-		pattern: /\s+at\s+(?:node\.js|.*(?:node_modules|\(\<anonymous\>\)|\(internal\/|\(node\.js)).*/,
+	'not-my-code': {
+		pattern: /\s+at\s+(?:node\.js|\<unknown\>|.*(?:node_modules|\(\<anonymous\>\)|\(\<unknown\>|\<anonymous\>$|\(internal\/|\(node\.js)).*/m,
 		alias: 'comment'
 	},
 	
-	'error_message': {
-		pattern: /(\n|^)\S.*/,
-		lookbehind: true,
-		alias: "string"
-		// pattern: /\b[A-Z][a-ZA-Z]+(?=:)\b/
+	'error-message': {
+		pattern: /^\S.*$/m,
+		alias: 'string'
 	},
 	
-	'function': {
-		pattern: /(\s+at\s+(?:new\s+)?)[a-zA-Z_][a-zA-Z0-9-_<>.]+\b/,
-		lookbehind: true
-	},
-	
-	// 'error_code': {
-	// 	pattern: /\[[A-Z]+[0-9]+\]/,
-	// 	alias: "variable"
-	// },
-	
-	'keyword': /\b(?:at|new)\b/,
-
-	// 
-	// 'filename': {
-	// 	pattern: /(\(|^\s+at\s+)(?:[a-zA-Z]:)?[^):]+(?=\))/,
-	// 	lookbehind: true,
-	// 	alias: "string"
-	// },
-
-	// 'boolean': /\b(?:true|false)\b/,
-	'line_number': {
-		pattern: /([^e]):[0-9]+(?::[0-9]+)?\b/i,
-		lookbehind: true,
-		alias: "number"
+	'stack-frame': {
+		pattern: /^\s+at\s+.*$/m,
+		inside: {
+			'filename-direct': {
+				pattern: /(\s+at\s+)(?:\/|[a-zA-Z]:)[^:]+/m,
+				lookbehind: true,
+				alias: 'url'
+			},
+			
+			'function': {
+				pattern: /(at\s+)(?:new\s+)?[a-zA-Z][a-zA-Z0-9-_<>.]+/,
+				lookbehind: true
+			},
+			
+			'keyword': /\b(?:at|new)\b/,
+			
+			'alias': {
+				pattern: /\[(?:as\s+)?[a-zA-Z][a-zA-Z0-9-_]+\]/,
+				alias: 'variable'
+			},
+			
+			
+			'filename': {
+				pattern: /(\()[^):]+(?=[:)])/,
+				lookbehind: true,
+				alias: 'url'
+			},
+			
+			'line-number': {
+				pattern: /:[0-9]+(?::[0-9]+)?\b/i,
+				lookbehind: true,
+				alias: 'number'
+			},
+			
+		}
 	}
-	// 'number': /\b-?(?:0x[0-9a-fA-F]+|[0-9]+)(?:\.[0-9a-fA-F]+)?\b/i,
-
-	// 'punctuation': /[{}[\];(),:=]|IL_[0-9A-Za-z]+/
 }

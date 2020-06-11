@@ -4,9 +4,14 @@ Some text
 ----------------------------------------------------
 
 [
-	["error_message", "Some text"],
-	["keyword", "at"],
-	["function", "foo.bar"]
+	["error-message", "Some text"],
+	[
+		"stack-frame",
+		[
+			["keyword", "at"],
+			["function", "foo.bar"]
+		]
+	]
 ]
 
 ----------------------------------------------------

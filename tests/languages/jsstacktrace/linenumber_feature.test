@@ -1,13 +1,22 @@
 Some text
-	(foo.js:98:32)
+	at :98:32
 
 ----------------------------------------------------
 
 [
-	["error_message", "Some text"],
-	"\n\t(foo.js",
-	["line_number", ":98:32"],
-	")"
+	["error-message", "Some text"],
+	[
+		"stack-frame", [
+			[
+				"keyword",
+				"at"
+			],
+			[
+				"line-number",
+				":98:32"
+			]
+		]
+	]
 ]
 
 ----------------------------------------------------

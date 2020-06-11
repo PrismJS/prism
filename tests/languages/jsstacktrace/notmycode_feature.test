@@ -4,8 +4,8 @@ Some text
 ----------------------------------------------------
 
 [
-	["error_message", "Some text"],
-	["notmycode", "\n\tat processTicksAndRejections (internal/process/task_queues.js:98:32)"]
+	["error-message", "Some text"],
+	["not-my-code", "\n\tat processTicksAndRejections (internal/process/task_queues.js:98:32)"]
 ]
 
 ----------------------------------------------------
