@@ -13,10 +13,17 @@ Prism.languages.scheme = {
 		greedy: true,
 		alias: 'string'
 	},
-	'lambda-parameter': {
-		pattern: /(\(lambda\s+\()[^()'\s]+/,
-		lookbehind: true
-	},
+	'lambda-parameter': [
+		// https://www.cs.cmu.edu/Groups/AI/html/r4rs/r4rs_6.html#SEC30
+		{
+			pattern: /(\(lambda\s+)[^()'\s]+/,
+			lookbehind: true
+		},
+		{
+			pattern: /(\(lambda\s+\()[^()']+/,
+			lookbehind: true
+		}
+	],
 	'keyword': {
 		pattern: /(\()(?:define(?:-library|-macro|-syntax|-values)?|defmacro|(?:case-)?lambda|let(?:(?:\*|rec)?(?:-values)?|-syntax|rec-syntax)|else|if|cond|begin|delay(?:-force)?|parameterize|guard|set!|(?:quasi-)?quote|syntax-(?:case|rules))(?=[()\s]|$)/,
 		lookbehind: true
@@ -41,10 +48,13 @@ Prism.languages.scheme = {
 		// <b.o.x. number>  := <b.o.x. prefix>[+-]?<b.o.x. complex>
 		//
 		// <number>         := <dec number>|<b.o.x. number>
-		pattern: /([\s()])(?:(?:#d(?:#[ei])?|#[ei](?:#d)?)?[+-]?(?:(?:\d*\.?\d+(?:[eE][+-]?\d+)?|\d+\/\d+)(?:[+-](?:\d*\.?\d+(?:[eE][+-]?\d+)?|\d+\/\d+)i)?|(?:\d*\.?\d+(?:[eE][+-]?\d+)?|\d+\/\d+)i)|(?:#[box](?:#[ei])?|#[ei](?:#[box])?)[+-]?(?:[\da-fA-F]+(?:\/[\da-fA-F]+)?(?:[+-][\da-fA-F]+(?:\/[\da-fA-F]+)?i)?|[\da-fA-F]+(?:\/[\da-fA-F]+)?i))(?=[()\s]|$)/,
+		pattern: /(^|[\s()])(?:(?:#d(?:#[ei])?|#[ei](?:#d)?)?[+-]?(?:(?:\d*\.?\d+(?:[eE][+-]?\d+)?|\d+\/\d+)(?:[+-](?:\d*\.?\d+(?:[eE][+-]?\d+)?|\d+\/\d+)i)?|(?:\d*\.?\d+(?:[eE][+-]?\d+)?|\d+\/\d+)i)|(?:#[box](?:#[ei])?|#[ei](?:#[box])?)[+-]?(?:[\da-fA-F]+(?:\/[\da-fA-F]+)?(?:[+-][\da-fA-F]+(?:\/[\da-fA-F]+)?i)?|[\da-fA-F]+(?:\/[\da-fA-F]+)?i))(?=[()\s]|$)/,
 		lookbehind: true
 	},
-	'boolean': /#[ft](?=[()\s]|$)/,
+	'boolean': {
+		pattern: /(^|[\s()])#[ft](?=[()\s]|$)/,
+		lookbehind: true
+	},
 	'operator': {
 		pattern: /(\()(?:[-+*%\/]|[<>]=?|=>?)(?=[()\s]|$)/,
 		lookbehind: true

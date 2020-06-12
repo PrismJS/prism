@@ -1,0 +1,68 @@
+rpc LotsOfReplies(HelloRequest) returns (stream HelloResponse);
+rpc BidiHello(stream HelloRequest) returns (stream HelloResponse);
+rpc CancelOperation(CancelOperationRequest) returns (google.protobuf.Empty) {
+	option (google.api.http) = { post: "/v1/{name=operations/**}:cancel" body: "*" };
+}
+
+----------------------------------------------------
+
+[
+	["keyword", "rpc"],
+	["function", "LotsOfReplies"],
+	["punctuation", "("],
+	["class-name", "HelloRequest"],
+	["punctuation", ")"],
+	["keyword", "returns"],
+	["punctuation", "("],
+	["keyword", "stream"],
+	["class-name", "HelloResponse"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "rpc"],
+	["function", "BidiHello"],
+	["punctuation", "("],
+	["keyword", "stream"],
+	["class-name", "HelloRequest"],
+	["punctuation", ")"],
+	["keyword", "returns"],
+	["punctuation", "("],
+	["keyword", "stream"],
+	["class-name", "HelloResponse"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "rpc"],
+	["function", "CancelOperation"],
+	["punctuation", "("],
+	["class-name", "CancelOperationRequest"],
+	["punctuation", ")"],
+	["keyword", "returns"],
+	["punctuation", "("],
+	["class-name", "google.protobuf.Empty"],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["keyword", "option"],
+	["punctuation", "("],
+	"google",
+	["punctuation", "."],
+	"api",
+	["punctuation", "."],
+	"http",
+	["punctuation", ")"],
+	["operator", "="],
+	["punctuation", "{"],
+	" post",
+	["punctuation", ":"],
+	["string", "\"/v1/{name=operations/**}:cancel\""],
+	" body",
+	["punctuation", ":"],
+	["string", "\"*\""],
+	["punctuation", "}"],
+	["punctuation", ";"],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Check for RPC definitions.

@@ -74,10 +74,6 @@
 	};
 
 	Prism.languages.stylus = {
-		'comment': {
-			pattern: /(^|[^\\])(?:\/\*[\s\S]*?\*\/|\/\/.*)/,
-			lookbehind: true
-		},
 		'atrule-declaration': {
 			pattern: /(^\s*)@.+/m,
 			lookbehind: true,
@@ -109,7 +105,6 @@
 		'property-declaration': {
 			pattern: /((?:^|\{)([ \t]*))(?:[\w-]|\{[^}\r\n]+\})+(?:\s*:\s*|[ \t]+)[^{\r\n]*(?:;|[^{\r\n,](?=$)(?!(?:\r?\n|\r)(?:\{|\2[ \t]+)))/m,
 			lookbehind: true,
-			greedy: true,
 			inside: {
 				'property': {
 					pattern: /^[^\s:]+/,
@@ -131,12 +126,18 @@
 			lookbehind: true,
 			inside: {
 				'interpolation': inside.interpolation,
+				'comment': inside.comment,
 				'punctuation': /[{},]/
 			}
 		},
 
 		'func': inside.func,
 		'string': inside.string,
+		'comment': {
+			pattern: /(^|[^\\])(?:\/\*[\s\S]*?\*\/|\/\/.*)/,
+			lookbehind: true,
+			greedy: true
+		},
 		'interpolation': inside.interpolation,
 		'punctuation': /[{}()\[\];:.]/
 	};

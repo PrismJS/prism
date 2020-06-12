@@ -1,0 +1,34 @@
+"Single-line description"
+type Foo {}
+"""
+Multiline description
+"""
+type Bar {}
+
+----------------------------------------------------
+
+[
+	["description", [
+		"\"",
+		["language-markdown", "Single-line description"],
+		"\""
+	]],
+	["keyword", "type"],
+	["class-name", "Foo"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["description", [
+		"\"\"\"",
+		["language-markdown", "\r\nMultiline description\r\n"],
+		"\"\"\""
+	]],
+	["keyword", "type"],
+	["class-name", "Bar"],
+	["punctuation", "{"],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for descriptions.

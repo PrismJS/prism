@@ -1,7 +1,19 @@
 Prism.languages.graphql = {
 	'comment': /#.*/,
+	'description': {
+		pattern: /(?:"""(?:[^"]|(?!""")")*"""|"(?:\\.|[^\\"\r\n])*")(?=\s*[a-z_])/i,
+		greedy: true,
+		alias: 'string',
+		inside: {
+			'language-markdown': {
+				pattern: /(^"(?:"")?)(?!\1)[\s\S]+(?=\1$)/,
+				lookbehind: true,
+				inside: Prism.languages.markdown
+			}
+		}
+	},
 	'string': {
-		pattern: /"(?:\\.|[^\\"\r\n])*"/,
+		pattern: /"""(?:[^"]|(?!""")")*"""|"(?:\\.|[^\\"\r\n])*"/,
 		greedy: true
 	},
 	'number': /(?:\B-|\b)\d+(?:\.\d+)?(?:e[+-]?\d+)?\b/i,

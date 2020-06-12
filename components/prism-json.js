@@ -18,3 +18,5 @@ Prism.languages.json = {
 		alias: 'keyword'
 	}
 };
+
+Prism.languages.webmanifest = Prism.languages.json;

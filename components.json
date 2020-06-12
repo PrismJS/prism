@@ -48,13 +48,15 @@
 		},
 		"markup": {
 			"title": "Markup",
-			"alias": ["html", "xml", "svg", "mathml", "ssml"],
+			"alias": ["html", "xml", "svg", "mathml", "ssml", "atom", "rss"],
 			"aliasTitles": {
 				"html": "HTML",
 				"xml": "XML",
 				"svg": "SVG",
 				"mathml": "MathML",
-				"ssml": "SSML"
+				"ssml": "SSML",
+				"atom": "Atom",
+				"rss": "RSS"
 			},
 			"option": "default"
 		},
@@ -395,6 +397,7 @@
 		},
 		"graphql": {
 			"title": "GraphQL",
+			"optional": ["markdown"],
 			"owner": "Golmote"
 		},
 		"groovy": {
@@ -560,6 +563,10 @@
 		},
 		"json": {
 			"title": "JSON",
+			"alias": "webmanifest",
+			"aliasTitles": {
+				"webmanifest": "Web App Manifest"
+			},
 			"owner": "CupOfTea696"
 		},
 		"jsonp": {
@@ -899,6 +906,7 @@
 		},
 		"renpy": {
 			"title": "Ren'py",
+			"alias": "rpy",
 			"owner": "HyuchiaDiego"
 		},
 		"reason": {
@@ -986,6 +994,7 @@
 		},
 		"solidity": {
 			"title": "Solidity (Ethereum)",
+			"alias": "sol",
 			"require": "clike",
 			"owner": "glachaud"
 		},
@@ -1079,7 +1088,7 @@
 		},
 		"t4-vb": {
 			"title": "T4 Text Templates (VB)",
-			"require": ["t4-templating", "visual-basic"],
+			"require": ["t4-templating", "vbnet"],
 			"owner": "RunDevelopment"
 		},
 		"t4-templating": {
@@ -1144,6 +1153,12 @@
 				"xeoracube": "XeoraCube"
 			},
 			"owner": "freakmaxi"
+		},
+		"xml-doc": {
+			"title": "XML doc (.net)",
+			"require": "markup",
+			"modify": ["csharp", "fsharp", "vbnet"],
+			"owner": "RunDevelopment"
 		},
 		"xojo": {
 			"title": "Xojo (REALbasic)",
