@@ -5,6 +5,7 @@
   "main": "prism.js",
   "style": "themes/prism.css",
   "scripts": {
+    "build": "gulp",
     "test:aliases": "mocha tests/aliases-test.js",
     "test:core": "mocha tests/core/**/*.js",
     "test:dependencies": "mocha tests/dependencies-test.js",

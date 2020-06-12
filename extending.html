@@ -158,11 +158,11 @@ ol.indent {
 			<p><em>Note:</em> Any changes made to <code>components.json</code> require a rebuild (see step 3).</p>
 		</li>
 		<li>
-			<p>Rebuild Prism by running <code class="language-bash">npx gulp</code>.</p>
+			<p>Rebuild Prism by running <code class="language-bash">npm run build</code>.</p>
 
 			<p>This will make your language available to the <a href="test.html">test page</a>, or more precise: your local version of it. You can open your local <code>test.html</code> page in any browser, select your language, and see how your language definition highlights any code you input.</p>
 
-			<p><em>Note:</em> You have to reload the test page to apply changes made to <code>prism-foo-bar.js</code>.</p>
+			<p><em>Note:</em> You have to reload the test page to apply changes made to <code>prism-foo-bar.js</code> but you don't have to rebuild Prism itself. However, if you change <code>components.json</code> (e.g. because you added a dependency) then these changes will not show up until you rebuild Prism.</p>
 		</li>
 		<li>
 			<p>Write the language definition.</p>
@@ -255,7 +255,9 @@ Brief description.</code></pre>
 			We don't have any rules as to what counts as an example, so a single <em>Full example</em> section where you present the highlighting of the major features of the language is enough.</p>
 		</li>
 		<li>
-			<p>Run <code class="language-bash">npx gulp</code> again.</p>
+			<p>Run <code class="language-bash">npm run build</code> again.</p>
+
+			<p>Your language definition is now ready!</p>
 		</li>
 	</ol>
 </section>
