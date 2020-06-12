@@ -101,7 +101,7 @@
 				}
 			}
 		],
-		// it's import that there is no boundary assertion after the hex digits
+		// it's important that there is no boundary assertion after the hex digits
 		'entity': /\\[\da-f]{1,8}/i,
 		'unit': unit,
 		'number': number
