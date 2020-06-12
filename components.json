@@ -397,6 +397,7 @@
 		},
 		"graphql": {
 			"title": "GraphQL",
+			"optional": ["markdown"],
 			"owner": "Golmote"
 		},
 		"groovy": {
@@ -993,6 +994,7 @@
 		},
 		"solidity": {
 			"title": "Solidity (Ethereum)",
+			"alias": "sol",
 			"require": "clike",
 			"owner": "glachaud"
 		},
