@@ -31,7 +31,7 @@ Prism.languages.jsstacktrace = {
 			'keyword': /\b(?:at|new)\b/,
 			
 			'alias': {
-				pattern: /\[(?:as\s+)?[a-zA-Z][a-zA-Z0-9-_]+\]/,
+				pattern: /\[(?:as\s+)?[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*\]/,
 				alias: 'variable'
 			},
 			
