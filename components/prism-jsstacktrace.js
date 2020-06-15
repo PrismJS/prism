@@ -5,15 +5,15 @@ Prism.languages.jsstacktrace = {
 	},
 	
 	'error-message': {
-		pattern: /^\S.*$/m,
+		pattern: /^\S.*/m,
 		alias: 'string'
 	},
 	
 	'stack-frame': {
-		pattern: /^[ \t]+at[ \t]+.*$/m,
+		pattern: /^[ \t]+at[ \t]+.*/m,
 		inside: {
 			'filename-direct': {
-				pattern: /(\s+at\s+)(?:\/|[a-zA-Z]:)[^:]+/m,
+				pattern: /(\s+at\s+)(?:\/|[a-zA-Z]:)[^:]+/,
 				lookbehind: true,
 				alias: 'url'
 			},
