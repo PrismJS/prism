@@ -12,8 +12,8 @@ Prism.languages.jsstacktrace = {
 	'stack-frame': {
 		pattern: /^[ \t]+at[ \t]+.*/m,
 		inside: {
-			'filename-direct': {
-				pattern: /(\s+at\s+)(?:\/|[a-zA-Z]:)[^:]+/,
+			'filename': {
+				pattern: /(\bat\s+|\()[^():]+(?=:)/,
 				lookbehind: true,
 				alias: 'url'
 			},
@@ -36,11 +36,11 @@ Prism.languages.jsstacktrace = {
 			},
 			
 			
-			'filename': {
-				pattern: /(\()[^):]+(?=[:)])/,
-				lookbehind: true,
-				alias: 'url'
-			},
+			// 'filename': {
+			// 	pattern: /(\()[^):]+(?=[:)])/,
+			// 	lookbehind: true,
+			// 	alias: 'url'
+			// },
 			
 			'line-number': {
 				pattern: /:[0-9]+(?::[0-9]+)?\b/i,
