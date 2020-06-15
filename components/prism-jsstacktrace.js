@@ -1,9 +1,4 @@
 Prism.languages.jsstacktrace = {
-	'not-my-code': {
-		pattern: /[ \t]+at[ \t]+(?:node\.js|\<unknown\>|.*(?:node_modules|\(\<anonymous\>\)|\(\<unknown\>|\<anonymous\>$|\(internal\/|\(node\.js)).*/m,
-		alias: 'comment'
-	},
-	
 	'error-message': {
 		pattern: /^\S.*/m,
 		alias: 'string'
@@ -12,8 +7,13 @@ Prism.languages.jsstacktrace = {
 	'stack-frame': {
 		pattern: /^[ \t]+at[ \t]+.*/m,
 		inside: {
+			'not-my-code': {
+				pattern: /[ \t]+at[ \t]+(?:node\.js|\<unknown\>|.*(?:node_modules|\(\<anonymous\>\)|\(\<unknown\>|\<anonymous\>$|\(internal\/|\(node\.js)).*/m,
+				alias: 'comment'
+			},
+			
 			'filename': {
-				pattern: /(\bat\s+|\()[^():]+(?=:)/,
+				pattern: /(\bat\s+|\()(?:[a-zA-Z]:)?[^():]+(?=:)/,
 				lookbehind: true,
 				alias: 'url'
 			},

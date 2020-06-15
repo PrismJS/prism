@@ -9,10 +9,10 @@ Some text
 		"stack-frame",
 		[
 			["keyword", "at"],
-			" (",
+			["punctuation", "("],
 			["filename", "foo/bar.baz"],
 			["line-number", ":123:98"],
-			")"
+			["punctuation", ")"]
 		]
 	]
 ]

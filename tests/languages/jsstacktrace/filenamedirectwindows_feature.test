@@ -9,7 +9,7 @@ Some text
 		"stack-frame",
 		[
 			["keyword", "at"],
-			["filename-direct", "C:\\foo\\bar.baz"],
+			["filename", "C:\\foo\\bar.baz"],
 			["line-number", ":123:98"]
 		]
 	]

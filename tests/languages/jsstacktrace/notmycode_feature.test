@@ -5,7 +5,12 @@ Some text
 
 [
 	["error-message", "Some text"],
-	["not-my-code", "\tat processTicksAndRejections (internal/process/task_queues.js:98:32)"]
+	[
+		"stack-frame",
+		[
+			["not-my-code", "\tat processTicksAndRejections (internal/process/task_queues.js:98:32)"]
+		]
+	]
 ]
 
 ----------------------------------------------------

@@ -9,7 +9,14 @@ Some text
 		"stack-frame",
 		[
 			["keyword", "at"],
-			["function", "foo.bar"]
+			[
+				"function",
+				[
+					"foo",
+					[ "punctuation", "." ],
+					"bar"
+				]
+			]
 		]
 	]
 ]
