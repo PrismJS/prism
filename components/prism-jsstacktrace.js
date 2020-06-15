@@ -26,6 +26,8 @@ Prism.languages.jsstacktrace = {
 				}
 			},
 			
+			'punctuation': /[()]/,
+			
 			'keyword': /\b(?:at|new)\b/,
 			
 			'alias': {
