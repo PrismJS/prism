@@ -1,6 +1,6 @@
 Prism.languages.jsstacktrace = {
 	'not-my-code': {
-		pattern: /\s+at\s+(?:node\.js|\<unknown\>|.*(?:node_modules|\(\<anonymous\>\)|\(\<unknown\>|\<anonymous\>$|\(internal\/|\(node\.js)).*/m,
+		pattern: /[ \t]+at[ \t]+(?:node\.js|\<unknown\>|.*(?:node_modules|\(\<anonymous\>\)|\(\<unknown\>|\<anonymous\>$|\(internal\/|\(node\.js)).*/m,
 		alias: 'comment'
 	},
 	
@@ -10,7 +10,7 @@ Prism.languages.jsstacktrace = {
 	},
 	
 	'stack-frame': {
-		pattern: /^\s+at\s+.*$/m,
+		pattern: /^[ \t]+at[ \t]+.*$/m,
 		inside: {
 			'filename-direct': {
 				pattern: /(\s+at\s+)(?:\/|[a-zA-Z]:)[^:]+/m,
