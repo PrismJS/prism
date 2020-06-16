@@ -1,0 +1,27 @@
+vrrp_instance VI_1 {
+	notify_master /etc/keepalived/to_master.sh
+    notify_backup C:\keepalived\to_backup.bat
+    net_namespace /var/run/keepalived
+    net_namespace C:\users\prism\keepalived
+}
+
+----------------------------------------------------
+
+[
+	["property", "vrrp_instance"],
+	" VI_1 ",
+	["punctuation", "{"],
+	["property", "notify_master"],
+	["path", "/etc/keepalived/to_master.sh"],
+	["property", "notify_backup"],
+	["path", "C:\\keepalived\\to_backup.bat"],
+	["property", "net_namespace"],
+	["path", "/var/run/keepalived"],
+	["property", "net_namespace"],
+	["path", "C:\\users\\prism\\keepalived"],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for path.

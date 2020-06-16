@@ -1,0 +1,25 @@
+virtual_server 192.168.1.200 3306
+virtual_server 192.168.1.200/32 3306
+virtual_server ABCD:EF01:2345:6789:ABCD:EF01:2345:6789 3306
+virtual_server ABCD:EF01:2345:6789:ABCD:EF01:2345:6789/128 3306
+
+----------------------------------------------------
+
+[
+	["property", "virtual_server"],
+	["ip", "192.168.1.200"],
+	["number", "3306"],
+	["property", "virtual_server"],
+	["ip", "192.168.1.200/32"],
+	["number", "3306"],
+	["property", "virtual_server"],
+	["ip", "ABCD:EF01:2345:6789:ABCD:EF01:2345:6789"],
+	["number", "3306"],
+	["property", "virtual_server"],
+	["ip", "ABCD:EF01:2345:6789:ABCD:EF01:2345:6789/128"],
+	["number", "3306"]
+]
+
+----------------------------------------------------
+
+Checks for ip (IPv4, IPv6, subnet mask).
