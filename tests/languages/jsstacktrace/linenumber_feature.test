@@ -13,7 +13,12 @@ Some text
 			],
 			[
 				"line-number",
-				":98:32"
+				[
+					["punctuation", ":"],
+					"98",
+					["punctuation", ":"],
+					"32"
+				]
 			]
 		]
 	]
