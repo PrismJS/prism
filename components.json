@@ -548,6 +548,10 @@
 			],
 			"owner": "RunDevelopment"
 		},
+		"jsstacktrace": {
+			"title": "JS stack trace",
+			"owner": "sbrl"
+		},
 		"js-templates": {
 			"title": "JS Templates",
 			"require": "javascript",
@@ -578,10 +582,6 @@
 			"title": "JSON5",
 			"require": "json",
 			"owner": "RunDevelopment"
-		},
-		"jsstacktrace": {
-			"title": "Javascript stack trace",
-			"owner": "sbrl"
 		},
 		"julia": {
 			"title": "Julia",
