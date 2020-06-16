@@ -44,8 +44,10 @@ Prism.languages.jsstacktrace = {
 			
 			'line-number': {
 				pattern: /:[0-9]+(?::[0-9]+)?\b/,
-				lookbehind: true,
-				alias: 'number'
+				alias: 'number',
+				inside: {
+					'punctuation': /:/
+				}
 			},
 			
 		}
