@@ -35,13 +35,6 @@ Prism.languages.jsstacktrace = {
 				alias: 'variable'
 			},
 			
-			
-			// 'filename': {
-			// 	pattern: /(\()[^):]+(?=[:)])/,
-			// 	lookbehind: true,
-			// 	alias: 'url'
-			// },
-			
 			'line-number': {
 				pattern: /:[0-9]+(?::[0-9]+)?\b/,
 				lookbehind: true,
