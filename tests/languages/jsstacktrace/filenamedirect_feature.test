@@ -10,7 +10,15 @@ Some text
 		[
 			["keyword", "at"],
 			["filename", "/foo/bar.baz"],
-			["line-number", ":123:98"]
+			[
+				"line-number",
+				[
+					["punctuation", ":"],
+					"123",
+					["punctuation", ":"],
+					"98"
+				]
+			]
 		]
 	]
 ]
