@@ -548,6 +548,10 @@
 			],
 			"owner": "RunDevelopment"
 		},
+		"jsstacktrace": {
+			"title": "JS stack trace",
+			"owner": "sbrl"
+		},
 		"js-templates": {
 			"title": "JS Templates",
 			"require": "javascript",

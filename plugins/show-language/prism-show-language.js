@@ -88,6 +88,7 @@
 		"jq": "JQ",
 		"jsdoc": "JSDoc",
 		"js-extras": "JS Extras",
+		"jsstacktrace": "JS stack trace",
 		"js-templates": "JS Templates",
 		"json": "JSON",
 		"webmanifest": "Web App Manifest",
