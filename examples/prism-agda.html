@@ -1,5 +1,5 @@
 <h2>Agda Full Example</h2>
-** Copyright - this piece of code is a modified version of [https://plfa.github.io/Naturals/] by Philip Wadler, Wen Kokke, Jeremy G Siek and contributors.
+<p>** Copyright - this piece of code is a modified version of [https://plfa.github.io/Naturals/] by Philip Wadler, Wen Kokke, Jeremy G Siek and contributors.</p>
 <pre><code>-- 1.1 Naturals
 
 module plfa.part1.Naturals where
@@ -34,7 +34,7 @@ seven = suc (suc (suc (suc (suc (suc (suc zero))))))
 
 -- Agda has a module system corresponding to the project file structure.
 -- e.g. `My.Namespace` is in
--- `<project path>/My/Namespace.agda`.
+-- `project path/My/Namespace.agda`.
 
 -- The `import` statement does NOT expose the names to the top namespace.
 -- You'll have to use `My.Namespace.thing` instead of directly `thing`.
@@ -45,8 +45,8 @@ import Relation.Binary.PropositionalEquality as Eq
 -- Alternatively, the `hiding (a; ..)` clause can limit a range of names NOT to expose.
 -- Also the `renaming (a to b; ..)` clause can rename names.
 -- CHAR: \== → ≡
---       \< → ⟨
---       \> → ⟩
+--       \gt → ⟨
+--       \lt → ⟩
 --       \qed → ∎
 open Eq using (_≡_; refl)
 open Eq.≡-Reasoning using (begin_; _≡⟨⟩_; _∎)
