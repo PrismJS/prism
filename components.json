@@ -94,6 +94,10 @@
 			"title": "Ada",
 			"owner": "Lucretia"
 		},
+		"agda": {
+			"title": "Agda",
+			"owner": "xy-ren"
+		},
 		"al": {
 			"title": "AL",
 			"owner": "RunDevelopment"
