@@ -2,49 +2,49 @@ merge : {A : Set} (_<_ : A → A → Bool) → List A → List A → List A
 merge xs [] = xs
 merge [] ys = ys
 merge xs@(x ∷ xs₁) ys@(y ∷ ys₁) =
-  if x < y then x ∷ merge xs₁ ys
-           else y ∷ merge xs ys₁
+	if x < y then x ∷ merge xs₁ ys
+					 else y ∷ merge xs ys₁
 
 ----------------------------------------------------
 
 [
-  ["function", "merge "],
-  ["operator", ":"],
-  ["punctuation", "{"],
-  ["function", "A "],
-  ["operator", ":"],
-  ["keyword", "Set"],
-  ["punctuation", "}"],
-  ["punctuation", "("],
-  ["function", "_<_ "],
-  ["operator", ":"],
-  " A ",
-  ["operator", "→"],
-  " A ",
-  ["operator", "→"],
-  " Bool",
-  ["punctuation", ")"],
-  ["operator", "→"],
-  " List A ",
-  ["operator", "→"],
-  " List A ",
-  ["operator", "→"],
-  " List A\nmerge xs [] ",
-  ["operator", "="],
-  " xs\nmerge [] ys ",
-  ["operator", "="],
-  " ys\nmerge xs",
-  ["punctuation", "@"],
-  ["punctuation", "("],
-  "x ∷ xs₁",
-  ["punctuation", ")"],
-  " ys",
-  ["punctuation", "@"],
-  ["punctuation", "("],
-  "y ∷ ys₁",
-  ["punctuation", ")"],
-  ["operator", "="],
-  "\n  if x < y then x ∷ merge xs₁ ys\n           else y ∷ merge xs ys₁"
+	["function", "merge "],
+	["operator", ":"],
+	["punctuation", "{"],
+	["function", "A "],
+	["operator", ":"],
+	["keyword", "Set"],
+	["punctuation", "}"],
+	["punctuation", "("],
+	["function", "_<_ "],
+	["operator", ":"],
+	" A ",
+	["operator", "→"],
+	" A ",
+	["operator", "→"],
+	" Bool",
+	["punctuation", ")"],
+	["operator", "→"],
+	" List A ",
+	["operator", "→"],
+	" List A ",
+	["operator", "→"],
+	" List A\nmerge xs [] ",
+	["operator", "="],
+	" xs\nmerge [] ys ",
+	["operator", "="],
+	" ys\nmerge xs",
+	["punctuation", "@"],
+	["punctuation", "("],
+	"x ∷ xs₁",
+	["punctuation", ")"],
+	" ys",
+	["punctuation", "@"],
+	["punctuation", "("],
+	"y ∷ ys₁",
+	["punctuation", ")"],
+	["operator", "="],
+	"\n\tif x < y then x ∷ merge xs₁ ys\n\t\t\t\t\t else y ∷ merge xs ys₁"
 ]
 
 ----------------------------------------------------

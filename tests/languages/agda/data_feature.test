@@ -1,34 +1,34 @@
 data _≐_ {ℓ} {A : Set ℓ} (x : A) : A → Prop ℓ where
-  refl : x ≐ x
+	refl : x ≐ x
 
 ----------------------------------------------------
 
 [
-  ["keyword", "data"],
-  ["class-name", "_≐_"],
-  ["punctuation", "{"],
-  "ℓ",
-  ["punctuation", "}"],
-  ["punctuation", "{"],
-  ["function", "A "],
-  ["operator", ":"],
-  ["keyword", "Set"],
-  " ℓ",
-  ["punctuation", "}"],
-  ["punctuation", "("],
-  ["function", "x "],
-  ["operator", ":"],
-  " A",
-  ["punctuation", ")"],
-  ["function", " "],
-  ["operator", ":"],
-  " A ",
-  ["operator", "→"],
-  " Prop ℓ ",
-  ["keyword", "where"],
-  ["function", "refl "],
-  ["operator", ":"],
-  " x ≐ x"
+	["keyword", "data"],
+	["class-name", "_≐_"],
+	["punctuation", "{"],
+	"ℓ",
+	["punctuation", "}"],
+	["punctuation", "{"],
+	["function", "A "],
+	["operator", ":"],
+	["keyword", "Set"],
+	" ℓ",
+	["punctuation", "}"],
+	["punctuation", "("],
+	["function", "x "],
+	["operator", ":"],
+	" A",
+	["punctuation", ")"],
+	["function", " "],
+	["operator", ":"],
+	" A ",
+	["operator", "→"],
+	" Prop ℓ ",
+	["keyword", "where"],
+	["function", "refl "],
+	["operator", ":"],
+	" x ≐ x"
 ]
 
 ----------------------------------------------------
