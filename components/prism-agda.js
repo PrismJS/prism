@@ -2,7 +2,7 @@
 
 	Prism.languages.agda = {
 		'comment': [
-      /(^|[^\\])\{\-[\s\S]*?(?:\-\}|$)/,
+      /\{\-[\s\S]*?(?:\-\}|$)/,
       /\-\-.*/,
     ],
     'string': {
@@ -24,7 +24,6 @@
     },
     'keyword': {
       pattern: /\b(?:let|in|module|where|abstract|private|public|postulate|rewrite|with|record|constructor|field|open|infix|infixl|infixr|using|import|renaming|hiding|data|primitive|forall|Set|variable|tactic|instance|eta-equality|forall|inductive|macro|mutual|no-eta-equality|overlap|pattern|quote|quoteContext|quoteGoal|quoteTerm|syntax|unquote|unquoteDecl|unquoteDef)\b/,
-      lookbehind: true,
     },
 	};
 }(Prism));
