@@ -1,29 +1,24 @@
 (function (Prism) {
 
-	Prism.languages.agda = {
-		'comment': [
-      /\{\-[\s\S]*?(?:\-\}|$)/,
-      /\-\-.*/,
-    ],
+  Prism.languages.agda = {
+    'comment': /\{-[\s\S]*?(?:-\}|$)|--.*/,
     'string': {
-      pattern: /"(?:\\(?:\r\n|[\s\S])|(?!")[^\\\r\n])*"/,
+      pattern: /"(?:\\(?:\r\n|[\s\S])|[^\\\r\n"])*"/,
       greedy: true,
     },
     'punctuation': /[(){}⦃⦄.;@]/,
     'class-name': {
-      pattern: /((?:(?:data|record)) )[^\s{]+/,
+      pattern: /((?:data|record) +)\S+/,
       lookbehind: true,
     },
     'function': {
-      pattern: /(\n\s*|^\s*)[^:\r\n]+?(?=:)/,
+      pattern: /(^[ \t]*)[^:\r\n]+?(?=:)/m,
       lookbehind: true,
     },
     'operator': {
-      pattern: /(^[(){}⦃⦄.;@\s]*|[(){}⦃⦄.;@\s]+)(?:[=|:∀→λ\\\?\_]|->)(?=[(){}⦃⦄.;@\s])/,
+      pattern: /(^\s*|\s)(?:[=|:∀→λ\\?_]|->)(?=\s)/,
       lookbehind: true,
     },
-    'keyword': {
-      pattern: /\b(?:let|in|module|where|abstract|private|public|postulate|rewrite|with|record|constructor|field|open|infix|infixl|infixr|using|import|renaming|hiding|data|primitive|forall|Set|variable|tactic|instance|eta-equality|forall|inductive|macro|mutual|no-eta-equality|overlap|pattern|quote|quoteContext|quoteGoal|quoteTerm|syntax|unquote|unquoteDecl|unquoteDef)\b/,
-    },
-	};
+    'keyword': /\b(?:Set|abstract|constructor|data|eta-equality|field|forall|forall|hiding|import|in|inductive|infix|infixl|infixr|instance|let|macro|module|mutual|no-eta-equality|open|overlap|pattern|postulate|primitive|private|public|quote|quoteContext|quoteGoal|quoteTerm|record|renaming|rewrite|syntax|tactic|unquote|unquoteDecl|unquoteDef|using|variable|where|with)\b/,
+  };
 }(Prism));
