@@ -35,6 +35,7 @@ function docsAddCSSOverwrites(cb) {
 		dest('docs/')
 	], cb);
 }
+
 function docsRemoveExcessFiles() {
 	return del(paths.jsDoc.junk);
 }
