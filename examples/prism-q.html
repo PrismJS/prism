@@ -58,8 +58,8 @@ d:2006.07.04
 
 <h2>Verbs</h2>
 <pre><code>99+L
-x<42|x>98
-(x<42)|x>98
+x&lt;42|x>98
+(x&lt;42)|x>98
 42~(4 2;(1 0))
 (4 2)~(4; 2*1)</code></pre>
 
@@ -100,13 +100,3 @@ adjust:{[t;caTypes]
 getCAs exec distinct caType from ca
 
 adjust[t;`dividend] / adjust trades for dividends only</code></pre>
-
-<h2>Known failures</h2>
-<p>There are certain edge cases where Prism will fail.
-	There are always such cases in every regex-based syntax highlighter.
-	However, Prism dares to be open and honest about them.
-	If a failure is listed here, it doesn’t mean it will never be fixed. This is more of a “known bugs” list, just with a certain type of bug.
-</p>
-
-<h3>The global context is highlighted as a verb</h3>
-<pre><code>\d .</code></pre>

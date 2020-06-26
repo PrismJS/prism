@@ -1,12 +1,19 @@
 foo(
 foo_bar(
 
+; not a function
+if(
+
 ----------------------------------------------------
 
 [
 	["function", "foo"],
 	["punctuation", "("],
 	["function", "foo_bar"],
+	["punctuation", "("],
+
+	["comment", "; not a function"],
+	["keyword", "if"],
 	["punctuation", "("]
 ]
 

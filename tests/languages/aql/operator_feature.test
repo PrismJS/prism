@@ -1,0 +1,55 @@
++ - * / %
+> >= <= < == != =
+!~ =~
+
+! && ||
+
+[**] [***] [****]
+
+..
+1..100
+
+----------------------------------------------------
+
+[
+	["operator", "+"],
+	["operator", "-"],
+	["operator", "*"],
+	["operator", "/"],
+	["operator", "%"],
+
+	["operator", ">"],
+	["operator", ">="],
+	["operator", "<="],
+	["operator", "<"],
+	["operator", "=="],
+	["operator", "!="],
+	["operator", "="],
+
+	["operator", "!~"],
+	["operator", "=~"],
+
+	["operator", "!"],
+	["operator", "&&"],
+	["operator", "||"],
+
+	["punctuation", "["],
+	["operator", "**"],
+	["punctuation", "]"],
+	["punctuation", "["],
+	["operator", "***"],
+	["punctuation", "]"],
+	["punctuation", "["],
+	["operator", "****"],
+	["punctuation", "]"],
+
+	["range", ".."],
+
+	["number", "1"],
+	["range", ".."],
+	["number", "100"]
+]
+
+----------------------------------------------------
+
+Checks for operators.

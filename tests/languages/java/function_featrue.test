@@ -21,8 +21,7 @@ Bar::foo;
 	["punctuation", ";"],
 
 	["class-name", "Bar"],
-	["operator", ":"],
-	["operator", ":"],
+	["operator", "::"],
 	["function", "foo"],
 	["punctuation", ";"]
 ]

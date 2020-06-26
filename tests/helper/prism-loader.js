@@ -3,9 +3,16 @@
 const fs = require("fs");
 const vm = require("vm");
 const { getAllFiles } = require("./test-discovery");
-const components = require("../../components");
+const components = require("../../components.json");
+const getLoader = require("../../dependencies");
 const languagesCatalog = components.languages;
 
+
+/**
+ * @typedef PrismLoaderContext
+ * @property {any} Prism The Prism instance.
+ * @property {Set<string>} loaded A set of loaded components.
+ */
 
 module.exports = {
 
@@ -17,7 +24,7 @@ module.exports = {
 	 */
 	createInstance(languages) {
 		let context = {
-			loadedLanguages: [],
+			loaded: new Set(),
 			Prism: this.createEmptyPrism()
 		};
 
@@ -27,53 +34,29 @@ module.exports = {
 	},
 
 	/**
-	 * Loads the given languages and appends the config to the given Prism object
+	 * Loads the given languages and appends the config to the given Prism object.
 	 *
 	 * @private
 	 * @param {string|string[]} languages
-	 * @param {{loadedLanguages: string[], Prism: Prism}} context
-	 * @returns {{loadedLanguages: string[], Prism: Prism}}
+	 * @param {PrismLoaderContext} context
+	 * @returns {PrismLoaderContext}
 	 */
 	loadLanguages(languages, context) {
 		if (typeof languages === 'string') {
 			languages = [languages];
 		}
 
-		for (const language of languages) {
-			context = this.loadLanguage(language, context);
-		}
+		getLoader(components, languages, [...context.loaded]).load(id => {
+			if (!languagesCatalog[id]) {
+				throw new Error(`Language '${id}' not found.`);
+			}
 
-		return context;
-	},
+			// load the language itself
+			const languageSource = this.loadComponentSource(id);
+			context.Prism = this.runFileWithContext(languageSource, { Prism: context.Prism }).Prism;
 
-	/**
-	 * Loads the given language (including recursively loading the dependencies) and
-	 * appends the config to the given Prism object
-	 *
-	 * @private
-	 * @param {string} language
-	 * @param {{loadedLanguages: string[], Prism: Prism}} context
-	 * @returns {{loadedLanguages: string[], Prism: Prism}}
-	 */
-	loadLanguage(language, context) {
-		if (!languagesCatalog[language]) {
-			throw new Error("Language '" + language + "' not found.");
-		}
-
-		// the given language was already loaded
-		if (-1 < context.loadedLanguages.indexOf(language)) {
-			return context;
-		}
-
-		// if the language has a dependency -> load it first
-		if (languagesCatalog[language].require) {
-			context = this.loadLanguages(languagesCatalog[language].require, context);
-		}
-
-		// load the language itself
-		const languageSource = this.loadComponentSource(language);
-		context.Prism = this.runFileWithContext(languageSource, { Prism: context.Prism }).Prism;
-		context.loadedLanguages.push(language);
+			context.loaded.add(id);
+		});
 
 		return context;
 	},
@@ -170,6 +153,9 @@ module.exports = {
 	 * @returns {*}
 	 */
 	runFileWithContext(fileSource, context = {}) {
+		// we don't have to pass our console but it's the only way these scripts can talk
+		// not supplying console here means that all references to `console` inside them will refer to a no-op console
+		context.console = console;
 		vm.runInNewContext(fileSource, context);
 		return context;
 	}

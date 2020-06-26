@@ -1,0 +1,32 @@
+README.md = README.md
+Debug|Any CPU = Debug|Any CPU
+{D86DD040-BA41-47FA-91D3-EF62F23AF867}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+
+----------------------------------------------------
+
+[
+	["property", [
+		"README.md"
+	]],
+	["operator", "="],
+	" README.md\r\n",
+	["property", [
+		"Debug|Any CPU"
+	]],
+	["operator", "="],
+	" Debug|Any CPU\r\n",
+	["property", [
+		["guid", [
+			["punctuation", "{"],
+			"D86DD040-BA41-47FA-91D3-EF62F23AF867",
+			["punctuation", "}"]
+		]],
+		".Debug|Any CPU.ActiveCfg"
+	]],
+	["operator", "="],
+	" Debug|Any CPU"
+]
+
+----------------------------------------------------
+
+Checks for properties.

@@ -10,7 +10,7 @@
 			["variable", "font-size"],
 			["operator", "="],
 			["number", "14"],
-			"px"
+			["unit", "px"]
 		]]
 	]]
 ]

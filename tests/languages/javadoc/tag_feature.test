@@ -16,7 +16,7 @@
 ----------------------------------------------------
 
 [
-	"/**\n * ",
+	"/**\r\n * ",
 	["tag", [
 		["tag", [
 			["punctuation", "<"],
@@ -24,7 +24,7 @@
 		]],
 		["punctuation", ">"]
 	]],
-	"\n * ",
+	"\r\n * ",
 	["tag", [
 		["tag", [
 			["punctuation", "<"],
@@ -32,7 +32,7 @@
 		]],
 		["punctuation", ">"]
 	]],
-	"\n *     ",
+	"\r\n *     ",
 	["tag", [
 		["tag", [
 			["punctuation", "<"],
@@ -40,7 +40,7 @@
 		]],
 		["punctuation", ">"]
 	]],
-	"\n *         ",
+	"\r\n *         ",
 	["tag", [
 		["tag", [
 			["punctuation", "<"],
@@ -48,7 +48,7 @@
 		]],
 		["punctuation", ">"]
 	]],
-	"\n *             foo\n *         ",
+	"\r\n *             foo\r\n *         ",
 	["tag", [
 		["tag", [
 			["punctuation", "</"],
@@ -56,7 +56,7 @@
 		]],
 		["punctuation", ">"]
 	]],
-	"\n *         ",
+	"\r\n *         ",
 	["tag", [
 		["tag", [
 			["punctuation", "<"],
@@ -64,7 +64,7 @@
 		]],
 		["punctuation", ">"]
 	]],
-	"\n *             bar\n *         ",
+	"\r\n *             bar\r\n *         ",
 	["tag", [
 		["tag", [
 			["punctuation", "</"],
@@ -72,7 +72,7 @@
 		]],
 		["punctuation", ">"]
 	]],
-	"\n *     ",
+	"\r\n *     ",
 	["tag", [
 		["tag", [
 			["punctuation", "</"],
@@ -80,7 +80,7 @@
 		]],
 		["punctuation", ">"]
 	]],
-	"\n * ",
+	"\r\n * ",
 	["tag", [
 		["tag", [
 			["punctuation", "</"],
@@ -88,11 +88,15 @@
 		]],
 		["punctuation", ">"]
 	]],
-	"\n * ",
+	"\r\n * ",
 	["tag", [
 		["tag", [
-			["punctuation", "<"], "a"]],
-		["attr-name", ["href"]],
+			["punctuation", "<"],
+			"a"
+		]],
+		["attr-name", [
+			"href"
+		]],
 		["attr-value", [
 			["punctuation", "="],
 			["punctuation", "\""],
@@ -109,7 +113,7 @@
 		]],
 		["punctuation", ">"]
 	]],
-	"\n */"
+	"\r\n */"
 ]
 
 ----------------------------------------------------

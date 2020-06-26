@@ -1,0 +1,177 @@
+**a *b* c**
+
+*a **b** c*
+
+***abc***
+
+*b **c***
+
+**b *c***
+
+***b *c**
+
+***c **c*
+
+*a \* b*
+
+*a **b***
+
+**a *b***
+
+___foo___
+
+----------------------------------------------------
+
+[
+	["bold", [
+		["punctuation", "**"],
+		["content", [
+			"a ",
+			["italic", [
+				["punctuation", "*"],
+				["content", [
+					"b"
+				]],
+				["punctuation", "*"]
+			]],
+			" c"
+		]],
+		["punctuation", "**"]
+	]],
+	["italic", [
+		["punctuation", "*"],
+		["content", [
+			"a ",
+			["bold", [
+				["punctuation", "**"],
+				["content", [
+					"b"
+				]],
+				["punctuation", "**"]
+			]],
+			" c"
+		]],
+		["punctuation", "*"]
+	]],
+	["bold", [
+		["punctuation", "**"],
+		["content", [
+			["italic", [
+				["punctuation", "*"],
+				["content", [
+					"abc"
+				]],
+				["punctuation", "*"]
+			]]
+		]],
+		["punctuation", "**"]
+	]],
+	["italic", [
+		["punctuation", "*"],
+		["content", [
+			"b ",
+			["bold", [
+				["punctuation", "**"],
+				["content", [
+					"c"
+				]],
+				["punctuation", "**"]
+			]]
+		]],
+		["punctuation", "*"]
+	]],
+	["bold", [
+		["punctuation", "**"],
+		["content", [
+			"b ",
+			["italic", [
+				["punctuation", "*"],
+				["content", [
+					"c"
+				]],
+				["punctuation", "*"]
+			]]
+		]],
+		["punctuation", "**"]
+	]],
+	["bold", [
+		["punctuation", "**"],
+		["content", [
+			["italic", [
+				["punctuation", "*"],
+				["content", [
+					"b "
+				]],
+				["punctuation", "*"]
+			]],
+			"c"
+		]],
+		["punctuation", "**"]
+	]],
+	["italic", [
+		["punctuation", "*"],
+		["content", [
+			["bold", [
+				["punctuation", "**"],
+				["content", [
+					"c "
+				]],
+				["punctuation", "**"]
+			]],
+			"c"
+		]],
+		["punctuation", "*"]
+	]],
+	["italic", [
+		["punctuation", "*"],
+		["content", [
+			"a \\* b"
+		]],
+		["punctuation", "*"]
+	]],
+	["italic", [
+		["punctuation", "*"],
+		["content", [
+			"a ",
+			["bold", [
+				["punctuation", "**"],
+				["content", [
+					"b"
+				]],
+				["punctuation", "**"]
+			]]
+		]],
+		["punctuation", "*"]
+	]],
+	["bold", [
+		["punctuation", "**"],
+		["content", [
+			"a ",
+			["italic", [
+				["punctuation", "*"],
+				["content", [
+					"b"
+				]],
+				["punctuation", "*"]
+			]]
+		]],
+		["punctuation", "**"]
+	]],
+	["bold", [
+		["punctuation", "__"],
+		["content", [
+			["italic", [
+				["punctuation", "_"],
+				["content", [
+					"foo"
+				]],
+				["punctuation", "_"]
+			]]
+		]],
+		["punctuation", "__"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for nested versions of bold and italic.

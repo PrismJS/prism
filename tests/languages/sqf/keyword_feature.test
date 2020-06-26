@@ -1,0 +1,77 @@
+breakOut
+breakTo
+call
+case
+catch
+default
+do
+echo
+else
+execVM
+execFSM
+exitWith
+for
+forEach
+forEachMember
+forEachMemberAgent
+forEachMemberTeam
+from
+goto
+if
+nil
+preprocessFile
+preprocessFileLineNumbers
+private
+scopeName
+spawn
+step
+switch
+then
+throw
+to
+try
+while
+with
+
+----------------------------------------------------
+
+[
+	["keyword", "breakOut"],
+	["keyword", "breakTo"],
+	["keyword", "call"],
+	["keyword", "case"],
+	["keyword", "catch"],
+	["keyword", "default"],
+	["keyword", "do"],
+	["keyword", "echo"],
+	["keyword", "else"],
+	["keyword", "execVM"],
+	["keyword", "execFSM"],
+	["keyword", "exitWith"],
+	["keyword", "for"],
+	["keyword", "forEach"],
+	["keyword", "forEachMember"],
+	["keyword", "forEachMemberAgent"],
+	["keyword", "forEachMemberTeam"],
+	["keyword", "from"],
+	["keyword", "goto"],
+	["keyword", "if"],
+	["keyword", "nil"],
+	["keyword", "preprocessFile"],
+	["keyword", "preprocessFileLineNumbers"],
+	["keyword", "private"],
+	["keyword", "scopeName"],
+	["keyword", "spawn"],
+	["keyword", "step"],
+	["keyword", "switch"],
+	["keyword", "then"],
+	["keyword", "throw"],
+	["keyword", "to"],
+	["keyword", "try"],
+	["keyword", "while"],
+	["keyword", "with"]
+]
+
+----------------------------------------------------
+
+Checks for keywords.

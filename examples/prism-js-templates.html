@@ -1,0 +1,25 @@
+<h2>HTML template literals</h2>
+<pre><code class="language-javascript">html`
+&lt;p>
+	Foo.
+&lt;/p>`;</code></pre>
+
+<h2>JS DOM</h2>
+<pre><code class="language-javascript">div.innerHTML = `&lt;p>&lt;/p>`;
+div.outerHTML = `&lt;p>&lt;/p>`;</code></pre>
+
+<h2><a href="https://github.com/zeit/styled-jsx">styled-jsx</a> CSS template literals</h2>
+<pre><code class="language-javascript">css`a:hover { color: blue; }`;</code></pre>
+
+<h2><a href="https://github.com/styled-components/styled-components"><code class="language-none">styled-components</code></a> CSS template literals</h2>
+<pre><code class="language-javascript">const Button = styled.button`
+	color: blue;
+	background: red;
+`;</code></pre>
+
+<h2>Markdown template literals</h2>
+<pre><code class="language-javascript">markdown`# My title`;</code></pre>
+
+<h2>GraphQL template literals</h2>
+<pre><code class="language-javascript">gql`{ foo }`;
+graphql`{ foo }`;</code></pre>

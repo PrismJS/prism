@@ -1,0 +1,35 @@
+"yikes!"
+"don't know"
+"this is a \"quoted\" word"
+"this is a longer string."
+"the path separator on Windows is \\"
+
+'yikes!'
+'don\'t know'
+'this is a "quoted" word'
+'this is a longer string.'
+'the path separator on Windows is \\'
+
+´filter´
+`sort`
+
+----------------------------------------------------
+
+[
+	["string", "\"yikes!\""],
+	["string", "\"don't know\""],
+	["string", "\"this is a \\\"quoted\\\" word\""],
+	["string", "\"this is a longer string.\""],
+	["string", "\"the path separator on Windows is \\\\\""],
+	["string", "'yikes!'"],
+	["string", "'don\\'t know'"],
+	["string", "'this is a \"quoted\" word'"],
+	["string", "'this is a longer string.'"],
+	["string", "'the path separator on Windows is \\\\'"],
+	["string", "´filter´"],
+	["string", "`sort`"]
+]
+
+----------------------------------------------------
+
+Checks for strings.

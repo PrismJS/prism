@@ -27,6 +27,9 @@
 		if (whiteSpace === 'pre-wrap' || whiteSpace === 'pre-line') {
 			var codeElement = element.querySelector('code');
 			var lineNumbersWrapper = element.querySelector('.line-numbers-rows');
+			if (!codeElement || !lineNumbersWrapper) {
+				return;
+			}
 			var lineNumberSizer = element.querySelector('.line-numbers-sizer');
 			var codeLines = codeElement.textContent.split(NEW_LINE_EXP);
 
@@ -138,10 +141,10 @@
 	 */
 	Prism.plugins.lineNumbers = {
 		/**
-		 * Get node for provided line number
-		 * @param {Element} element pre element
-		 * @param {Number} number line number
-		 * @return {Element|undefined}
+		 * Returns the node of the given line number in the given element.
+		 * @param {Element} element A `<pre>` element with line numbers.
+		 * @param {Number} number
+		 * @returns {Element | undefined}
 		 */
 		getLine: function (element, number) {
 			if (element.tagName !== 'PRE' || !element.classList.contains(PLUGIN_NAME)) {
@@ -162,6 +165,16 @@
 			var lineIndex = number - lineNumberStart;
 
 			return lineNumberRows.children[lineIndex];
+		},
+		/**
+		 * Resizes the line numbers of the given element.
+		 *
+		 * This function will not add line numbers. It will only resize existing ones.
+		 * @param {Element} element A `<pre>` element with line numbers.
+		 * @returns {void}
+		 */
+		resize: function (element) {
+			_resizeElement(element);
 		}
 	};
 

@@ -1,40 +1,49 @@
-message Point {
-  required int32 x = 1;
-  required int32 y = 2;
-  optional string label = 3;
-}
+enum
+extend
+extensions
+import
+message
+oneof
+option
+optional
+package
+public
+repeated
+required
+reserved
+returns
+rpc LotsOfReplies(
+service
+stream
+syntax
+to
 
 ----------------------------------------------------
 
 [
+	["keyword", "enum"],
+	["keyword", "extend"],
+	["keyword", "extensions"],
+	["keyword", "import"],
 	["keyword", "message"],
-	" Point ",
-	["punctuation", "{"],
-
-	["builtin", "required"],
-	["primitive", "int32"],
-	" x ",
-	["operator", "="],
-	["number", "1"],
-	["punctuation", ";"],
-
-	["builtin", "required"],
-	["primitive", "int32"],
-	" y ",
-	["operator", "="],
-	["number", "2"],
-	["punctuation", ";"],
-
-	["builtin", "optional"],
-	["primitive", "string"],
-	" label ",
-	["operator", "="],
-	["number", "3"],
-	["punctuation", ";"],
-
-	["punctuation", "}"]
+	["keyword", "oneof"],
+	["keyword", "option"],
+	["keyword", "optional"],
+	["keyword", "package"],
+	["keyword", "public"],
+	["keyword", "repeated"],
+	["keyword", "required"],
+	["keyword", "reserved"],
+	["keyword", "returns"],
+	["keyword", "rpc"],
+	["function", "LotsOfReplies"],
+	["punctuation", "("],
+	["keyword", "service"],
+	["keyword", "stream"],
+	["keyword", "syntax"],
+	["keyword", "to"]
 ]
 
 ----------------------------------------------------
 
-Check for keywords and builtins
+Check for keywords

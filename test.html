@@ -127,16 +127,29 @@ pre.show-tokens {
 <footer data-src="templates/footer.html" data-type="text/html"></footer>
 
 <script src="scripts/utopia.js"></script>
-<script src="prism.js"></script>
+<script src="components/prism-core.js"></script>
 <script src="components.js"></script>
 <script src="scripts/code.js"></script>
 <script src="scripts/vendor/promise.js"></script>
 
 <script>
 (function() {
-var form = $('form'), code = $('code', form),
-    languages = components.languages,
-    highlightCode = function() { Prism.highlightElement(code); };
+/** @type {HTMLFormElement} */
+var form = $('form');
+/** @type {HTMLElement} */
+var code = $('code', form);
+var languages = components.languages;
+
+function highlightCode() {
+	var newCode = document.createElement('code');
+	newCode.textContent = code.textContent;
+	newCode.className = code.className;
+
+	Prism.highlightElement(newCode);
+
+	code.parentElement.replaceChild(newCode, code);
+	code = newCode;
+};
 
 
 function updateHashLanguage(lang) {

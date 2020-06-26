@@ -1,0 +1,77 @@
+proc groovy classpath=cp;
+  /* Testing a comment */
+  submit parseonly;
+    class Speaker {
+      def say( word ) {
+        println "----> \"${word}\""
+      }
+    }
+  endsubmit;
+quit;
+
+proc groovy classpath=cp;
+  eval "s = new Speaker(); s.say( ""Hi"" )";
+quit;
+
+----------------------------------------------------
+
+[
+	["step", "proc groovy"],
+	["proc-args",
+		[
+			["arg", "classpath"],
+			["operator", "="],
+			["arg-value", "cp"],
+			["punctuation", ";"]
+		]
+	],
+	[
+		"proc-groovy", [
+			["comment", "/* Testing a comment */"],
+			["submit-statement", "submit parseonly"],
+			[
+				"groovy", [
+					["punctuation", ";"],
+					["keyword", "class"],
+					["class-name", ["Speaker"]],
+					["punctuation", "{"],
+					["keyword", "def"],
+					["function", "say"],
+					["punctuation", "("],
+					" word ",
+					["punctuation", ")"],
+					["punctuation", "{"],
+					"\r\n        println ",
+					["string", "\"----> \\\"${word}\\\"\""],
+					["punctuation", "}"],
+					["punctuation", "}"]
+				]
+			],
+			["submit-statement", "endsubmit"],
+			["punctuation", ";"]
+		]
+	],
+	["step", "quit"],
+	["punctuation", ";"],
+	["step", "proc groovy"],
+	["proc-args",
+		[
+			["arg", "classpath"],
+			["operator", "="],
+			["arg-value", "cp"],
+			["punctuation", ";"]
+		]
+	],
+	["proc-groovy",[
+		["keyword", "eval"],
+		["string", "\"s = new Speaker(); s.say( \"\"Hi\"\" )\""],
+		["punctuation", ";"]
+		]
+	],
+	["step", "quit"],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for proc groovy support.

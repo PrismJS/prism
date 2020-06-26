@@ -4,7 +4,7 @@ abstract case catch
 class def do else
 extends final finally
 for forSome if
-implicit import lazy
+implicit import; lazy
 match new null object
 override package private
 protected return sealed
@@ -21,7 +21,7 @@ var while with yield
 	["keyword", "class"], ["keyword", "def"], ["keyword", "do"], ["keyword", "else"],
 	["keyword", "extends"], ["keyword", "final"], ["keyword", "finally"],
 	["keyword", "for"], ["keyword", "forSome"], ["keyword", "if"],
-	["keyword", "implicit"], ["keyword", "import"], ["keyword", "lazy"],
+	["keyword", "implicit"], ["keyword", "import"], ["punctuation", ";"], ["keyword", "lazy"],
 	["keyword", "match"], ["keyword", "new"], ["keyword", "null"], ["keyword", "object"],
 	["keyword", "override"], ["keyword", "package"], ["keyword", "private"],
 	["keyword", "protected"], ["keyword", "return"], ["keyword", "sealed"],

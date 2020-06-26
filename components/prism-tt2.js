@@ -1,18 +1,15 @@
 (function(Prism) {
 
 	Prism.languages.tt2 = Prism.languages.extend('clike', {
-		comment: {
-			pattern: /#.*|\[%#[\s\S]*?%\]/,
-			lookbehind: true
-		},
-		keyword: /\b(?:BLOCK|CALL|CASE|CATCH|CLEAR|DEBUG|DEFAULT|ELSE|ELSIF|END|FILTER|FINAL|FOREACH|GET|IF|IN|INCLUDE|INSERT|LAST|MACRO|META|NEXT|PERL|PROCESS|RAWPERL|RETURN|SET|STOP|TAGS|THROW|TRY|SWITCH|UNLESS|USE|WHILE|WRAPPER)\b/,
-		punctuation: /[[\]{},()]/
+		'comment': /#.*|\[%#[\s\S]*?%\]/,
+		'keyword': /\b(?:BLOCK|CALL|CASE|CATCH|CLEAR|DEBUG|DEFAULT|ELSE|ELSIF|END|FILTER|FINAL|FOREACH|GET|IF|IN|INCLUDE|INSERT|LAST|MACRO|META|NEXT|PERL|PROCESS|RAWPERL|RETURN|SET|STOP|TAGS|THROW|TRY|SWITCH|UNLESS|USE|WHILE|WRAPPER)\b/,
+		'punctuation': /[[\]{},()]/
 	});
 
 	Prism.languages.insertBefore('tt2', 'number', {
-		operator: /=[>=]?|!=?|<=?|>=?|&&|\|\|?|\b(?:and|or|not)\b/,
-		variable: {
-			pattern: /[a-z]\w*(?:\s*\.\s*(?:\d+|\$?[a-z]\w*))*/i
+		'operator': /=[>=]?|!=?|<=?|>=?|&&|\|\|?|\b(?:and|or|not)\b/,
+		'variable': {
+			pattern: /\b[a-z]\w*(?:\s*\.\s*(?:\d+|\$?[a-z]\w*))*\b/i
 		}
 	});
 
@@ -34,7 +31,7 @@
 			greedy: true,
 			alias: 'string',
 			inside: {
-				variable: {
+				'variable': {
 					pattern: /\$(?:[a-z]\w*(?:\.(?:\d+|\$?[a-z]\w*))*)/i
 				}
 			}

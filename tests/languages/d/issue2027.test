@@ -1,0 +1,47 @@
+string foo = "It's";
+foo = "It's";
+foo = "It's";
+
+string bar = `It's`;
+bar = `It's`;
+bar = `It's`;
+bar = `It's`;
+
+----------------------------------------------------
+
+[
+	["keyword", "string"],
+	" foo ",
+	["operator", "="],
+	["string", "\"It's\""],
+	["punctuation", ";"],
+	"\r\nfoo ",
+	["operator", "="],
+	["string", "\"It's\""],
+	["punctuation", ";"],
+	"\r\nfoo ",
+	["operator", "="],
+	["string", "\"It's\""],
+	["punctuation", ";"],
+	["keyword", "string"],
+	" bar ",
+	["operator", "="],
+	["string", "`It's`"],
+	["punctuation", ";"],
+	"\r\nbar ",
+	["operator", "="],
+	["string", "`It's`"],
+	["punctuation", ";"],
+	"\r\nbar ",
+	["operator", "="],
+	["string", "`It's`"],
+	["punctuation", ";"],
+	"\r\nbar ",
+	["operator", "="],
+	["string", "`It's`"],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for issue #2027 which was about strings not being matched correctly.
