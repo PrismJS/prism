@@ -10,8 +10,8 @@ var _self = (typeof window !== 'undefined')
 
 /**
  * Prism: Lightweight, robust, elegant syntax highlighting
- * @license MIT license http://www.opensource.org/licenses/mit-license.php/
- * @author Lea Verou <http://lea.verou.me>
+ * @license MIT <https://opensource.org/licenses/MIT>
+ * @author Lea Verou <https://lea.verou.me>
  * @namespace
  * @public
  */
