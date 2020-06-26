@@ -6,6 +6,7 @@
   "style": "themes/prism.css",
   "scripts": {
     "build": "gulp",
+    "build-docs": "gulp docs",
     "test:aliases": "mocha tests/aliases-test.js",
     "test:core": "mocha tests/core/**/*.js",
     "test:dependencies": "mocha tests/dependencies-test.js",

@@ -1,3 +1,5 @@
+/// <reference lib="WebWorker"/>
+
 var _self = (typeof window !== 'undefined')
 	? window   // if in browser
 	: (

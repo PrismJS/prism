@@ -40,7 +40,9 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>var _self = (typeof window !== 'undefined')
+            <pre class="prettyprint source linenums"><code>/// &lt;reference lib="WebWorker"/>
+
+var _self = (typeof window !== 'undefined')
 	? window   // if in browser
 	: (
 		(typeof WorkerGlobalScope !== 'undefined' &amp;&amp; self instanceof WorkerGlobalScope)
