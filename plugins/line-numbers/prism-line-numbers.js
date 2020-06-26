@@ -74,8 +74,8 @@
 			return;
 		}
 
-		var code = env.element;
-		var pre = code.parentNode;
+		var code = /** @type {Element} */ (env.element);
+		var pre = /** @type {Element} */ (code.parentNode);
 
 		// works only for <code> wrapped inside <pre> (not inline)
 		if (!pre || !/pre/i.test(pre.nodeName)) {
@@ -87,27 +87,15 @@
 			return;
 		}
 
-		var addLineNumbers = false;
-		var lineNumbersRegex = /(?:^|\s)line-numbers(?:\s|$)/;
-
-		for (var element = code; element; element = element.parentNode) {
-			if (lineNumbersRegex.test(element.className)) {
-				addLineNumbers = true;
-				break;
-			}
-		}
-
 		// only add line numbers if <code> or one of its ancestors has the `line-numbers` class
-		if (!addLineNumbers) {
+		if (!Prism.util.isActive(code, PLUGIN_NAME)) {
 			return;
 		}
 
 		// Remove the class 'line-numbers' from the <code>
-		code.className = code.className.replace(lineNumbersRegex, ' ');
+		code.classList.remove(PLUGIN_NAME);
 		// Add the class 'line-numbers' to the <pre>
-		if (!lineNumbersRegex.test(pre.className)) {
-			pre.className += ' line-numbers';
-		}
+		pre.classList.add(PLUGIN_NAME);
 
 		var match = env.code.match(NEW_LINE_EXP);
 		var linesNum = match ? match.length + 1 : 1;
