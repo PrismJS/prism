@@ -3,7 +3,7 @@
 module.exports = {
 	componentsFile: 'components.json',
 	componentsFileJS: 'components.js',
-	components: ['components/**/*.js', '!components/index.js', '!components/**/*.min.js', '!components/**/*.doc.js'],
+	components: ['components/**/*.js', '!components/index.js', '!components/**/*.min.js'],
 	main: [
 		'components/prism-core.js',
 		'components/prism-markup.js',
@@ -15,5 +15,11 @@ module.exports = {
 	plugins: ['plugins/**/*.js', '!plugins/**/*.min.js'],
 	showLanguagePlugin: 'plugins/show-language/prism-show-language.js',
 	autoloaderPlugin: 'plugins/autoloader/prism-autoloader.js',
-	changelog: 'CHANGELOG.md'
+	changelog: 'CHANGELOG.md',
+	jsDoc: {
+		config: '../.jsdoc.json',
+		readme: 'README.md',
+		files: ['components/prism-core.js'],
+		junk: ['docs/fonts', 'docs/**/Apache-License-2.0.txt', 'docs/styles/prettify-jsdoc.css']
+	}
 };

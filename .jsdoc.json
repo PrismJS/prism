@@ -1,10 +1,15 @@
 {
 	"plugins": [
-		"plugins/markdown"
+		"plugins/markdown",
+		"./gulpfile.js/docs.js"
 	],
 	"opts": {
 		"destination": "./docs",
-		"template": "./node_modules/minami"
+		"template": "./node_modules/minami",
+		"access": [
+			"public",
+			"protected"
+		]
 	},
 	"recurseDepth": 10,
 	"source": {
@@ -20,6 +25,9 @@
 	},
 	"templates": {
 		"cleverLinks": true,
-		"monospaceLinks": true
+		"monospaceLinks": true,
+		"default": {
+			"includeDate": false
+		}
 	}
 }

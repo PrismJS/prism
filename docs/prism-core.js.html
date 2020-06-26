@@ -25,7 +25,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Prism.Token.html">Token</a></span></li><li class="nav-heading">Namespaces</li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Prism.html">Prism</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.html#.highlight">highlight</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.html#.highlightAll">highlightAll</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.html#.highlightAllUnder">highlightAllUnder</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.html#.highlightElement">highlightElement</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.html#.tokenize">tokenize</a></span></li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Prism.hooks.html">hooks</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.hooks.html#.add">add</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.hooks.html#.run">run</a></span></li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Prism.languages.html">languages</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.languages.html#.extend">extend</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.languages.html#.insertBefore">insertBefore</a></span></li><li class="nav-heading"><a href="global.html">Globals</a></li>
+    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Token.html">Token</a></span></li><li class="nav-heading">Namespaces</li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Prism.html">Prism</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.html#.highlight">highlight</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.html#.highlightAll">highlightAll</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.html#.highlightAllUnder">highlightAllUnder</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.html#.highlightElement">highlightElement</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.html#.tokenize">tokenize</a></span></li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Prism.hooks.html">hooks</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.hooks.html#.add">add</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.hooks.html#.run">run</a></span></li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Prism.languages.html">languages</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.languages.html#.extend">extend</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.languages.html#.insertBefore">insertBefore</a></span></li><li class="nav-heading"><a href="global.html">Globals</a></li>
 </nav>
 
 <div id="main">
@@ -53,6 +53,7 @@
  * @license MIT license http://www.opensource.org/licenses/mit-license.php/
  * @author Lea Verou &lt;http://lea.verou.me>
  * @namespace
+ * @public
  */
 
 var Prism = (function (_self){
@@ -61,24 +62,59 @@ var Prism = (function (_self){
 var lang = /\blang(?:uage)?-([\w-]+)\b/i;
 var uniqueId = 0;
 
+
 var _ = {
 	manual: _self.Prism &amp;&amp; _self.Prism.manual,
 	disableWorkerMessageHandler: _self.Prism &amp;&amp; _self.Prism.disableWorkerMessageHandler,
+	/**
+	 * A namespace for utility methods.
+	 *
+	 * Almost all function in this namespace are for __internal use only__.
+	 *
+	 * @namespace
+	 * @memberof Prism
+	 */
 	util: {
-		encode: function (tokens) {
+		encode: function encode(tokens) {
 			if (tokens instanceof Token) {
-				return new Token(tokens.type, _.util.encode(tokens.content), tokens.alias);
+				return new Token(tokens.type, encode(tokens.content), tokens.alias);
 			} else if (Array.isArray(tokens)) {
-				return tokens.map(_.util.encode);
+				return tokens.map(encode);
 			} else {
 				return tokens.replace(/&amp;/g, '&amp;amp;').replace(/&lt;/g, '&amp;lt;').replace(/\u00a0/g, ' ');
 			}
 		},
 
+		/**
+		 * Returns the name of the type of the given value.
+		 *
+		 * Examples:
+		 *
+		 * ```js
+		 * type(null)      === 'Null'
+		 * type(undefined) === 'Undefined'
+		 * type(123)       === 'Number'
+		 * type('foo')     === 'String'
+		 * type(true)      === 'Boolean'
+		 * type([1, 2])    === 'Array'
+		 * type({})        === 'Object'
+		 * type(String)    === 'Function'
+		 * type(/abc+/)    === 'RegExp'
+		 * ```
+		 *
+		 * @param {any} o
+		 * @returns {string}
+		 */
 		type: function (o) {
 			return Object.prototype.toString.call(o).slice(8, -1);
 		},
 
+		/**
+		 * Returns a unique number for the given object. Later calls will still return the same number.
+		 *
+		 * @param {Object} obj
+		 * @returns {number}
+		 */
 		objId: function (obj) {
 			if (!obj['__id']) {
 				Object.defineProperty(obj, '__id', { value: ++uniqueId });
@@ -86,18 +122,27 @@ var _ = {
 			return obj['__id'];
 		},
 
-		// Deep clone a language definition (e.g. to extend it)
+		/**
+		 * Creates a deep clone of the given object.
+		 *
+		 * The main intended use of this function is to clone language definitions.
+		 *
+		 * @param {T} o
+		 * @param {Record&lt;number, any>} [visited]
+		 * @returns {T}
+		 * @template T
+		 */
 		clone: function deepClone(o, visited) {
-			var clone, id, type = _.util.type(o);
 			visited = visited || {};
 
-			switch (type) {
+			var clone, id;
+			switch (_.util.type(o)) {
 				case 'Object':
 					id = _.util.objId(o);
 					if (visited[id]) {
 						return visited[id];
 					}
-					clone = {};
+					clone = /** @type {Record&lt;string, any>} */ ({});
 					visited[id] = clone;
 
 					for (var key in o) {
@@ -106,7 +151,7 @@ var _ = {
 						}
 					}
 
-					return clone;
+					return /** @type {any} */ (clone);
 
 				case 'Array':
 					id = _.util.objId(o);
@@ -116,14 +161,74 @@ var _ = {
 					clone = [];
 					visited[id] = clone;
 
-					o.forEach(function (v, i) {
+					(/** @type {Array} */(/** @type {any} */(o))).forEach(function (v, i) {
 						clone[i] = deepClone(v, visited);
 					});
 
-					return clone;
+					return /** @type {any} */ (clone);
 
 				default:
 					return o;
+			}
+		},
+
+		/**
+		 * Returns the Prism language of the given element set by a `language-xxxx` or `lang-xxxx` class.
+		 *
+		 * If no language is set for the element or the element is `null` or `undefined`, `none` will be returned.
+		 *
+		 * @param {Element} element
+		 * @returns {string}
+		 */
+		getLanguage: function (element) {
+			while (element &amp;&amp; !lang.test(element.className)) {
+				element = element.parentElement;
+			}
+			if (element) {
+				return (element.className.match(lang) || [, 'none'])[1].toLowerCase();
+			}
+			return 'none';
+		},
+
+		/**
+		 * Returns the script element that is currently executing.
+		 *
+		 * This does __not__ work for line script element.
+		 *
+		 * @returns {HTMLScriptElement | null}
+		 */
+		currentScript: function () {
+			if (typeof document === 'undefined') {
+				return null;
+			}
+			if ('currentScript' in document &amp;&amp; 1 &lt; 2) {
+				return /** @type {any} */ (document.currentScript);
+			}
+
+			// IE11 workaround
+			// we'll get the src of the current script by parsing IE11's error stack trace
+			// this will not work for inline scripts
+
+			try {
+				throw new Error();
+			} catch (err) {
+				// Get file src url from stack. Specifically works with the format of stack traces in IE.
+				// A stack will look like this:
+				//
+				// Error
+				//    at _.util.currentScript (http://localhost/components/prism-core.js:119:5)
+				//    at Global code (http://localhost/components/prism-core.js:606:1)
+
+				var src = (/at [^(\r\n]*\((.*):.+:.+\)$/i.exec(err.stack) || [])[1];
+				if (src) {
+					var scripts = document.getElementsByTagName('script');
+					for (var i in scripts) {
+						if (scripts[i].src == src) {
+							return scripts[i];
+						}
+					}
+				}
+				return null;
 			}
 		}
 	},
@@ -133,6 +238,7 @@ var _ = {
 	 *
 	 * @namespace
 	 * @memberof Prism
+	 * @public
 	 */
 	languages: {
 		/**
@@ -144,6 +250,7 @@ var _ = {
 		 * @param {string} id The id of the language to extend. This has to be a key in `Prism.languages`.
 		 * @param {Grammar} redef The new tokens to append.
 		 * @returns {Grammar} The new language created.
+		 * @public
 		 * @example
 		 * Prism.languages['css-with-colors'] = Prism.languages.extend('css', {
 		 *     'color': /\b(?:red|green|blue)\b/
@@ -178,14 +285,16 @@ var _ = {
 		 *
 		 * Defaults to `Prism.languages`.
 		 * @returns {Grammar} The new grammar created.
+		 * @public
 		 * @example
 		 * Prism.languages.insertBefore('markup', 'cdata', {
 		 *     'style': { ... }
 		 * });
 		 */
 		insertBefore: function (inside, before, insert, root) {
-			root = root || _.languages;
+			root = root || /** @type {any} */ (_.languages);
 			var grammar = root[inside];
+			/** @type {Grammar} */
 			var ret = {};
 
 			for (var token in grammar) {
@@ -254,8 +363,9 @@ var _ = {
 	 * This is equivalent to `Prism.highlightAllUnder(document, async, callback)`.
 	 *
 	 * @param {boolean} [async=false] Same as in {@link Prism.highlightAllUnder}.
-	 * @param {Prism.HighlightCallback} [callback] Same as in {@link Prism.highlightAllUnder}.
+	 * @param {HighlightCallback} [callback] Same as in {@link Prism.highlightAllUnder}.
 	 * @memberof Prism
+	 * @public
 	 */
 	highlightAll: function(async, callback) {
 		_.highlightAllUnder(document, async, callback);
@@ -271,20 +381,24 @@ var _ = {
 	 *
 	 * @param {ParentNode} container The root element, whose descendants that have a `.language-xxxx` class will be highlighted.
 	 * @param {boolean} [async=false] Whether each element is to be highlighted asynchronously using Web Workers.
-	 * @param {Prism.HighlightCallback} [callback] An optional callback to be invoked on each element after its highlighting is done.
+	 * @param {HighlightCallback} [callback] An optional callback to be invoked on each element after its highlighting is done.
 	 * @memberof Prism
+	 * @public
 	 */
 	highlightAllUnder: function(container, async, callback) {
 		var env = {
 			callback: callback,
+			container: container,
 			selector: 'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'
 		};
 
-		_.hooks.run("before-highlightall", env);
+		_.hooks.run('before-highlightall', env);
 
-		var elements = env.elements || container.querySelectorAll(env.selector);
+		env.elements = Array.prototype.slice.apply(env.container.querySelectorAll(env.selector));
 
-		for (var i=0, element; element = elements[i++];) {
+		_.hooks.run('before-all-elements-highlight', env);
+
+		for (var i = 0, element; element = env.elements[i++];) {
 			_.highlightElement(element, async === true, env.callback);
 		}
 	},
@@ -295,7 +409,7 @@ var _ = {
 	 * The following hooks will be run:
 	 * 1. `before-sanity-check`
 	 * 2. `before-highlight`
-	 * 3. All hooks of {@link Prism.highlightElement}. These hooks will only be run by the current worker if `async` is `true`.
+	 * 3. All hooks of {@link Prism.highlight}. These hooks will only be run by the current worker if `async` is `true`.
 	 * 4. `before-insert`
 	 * 5. `after-highlight`
 	 * 6. `complete`
@@ -309,33 +423,23 @@ var _ = {
 	 * Note: All language definitions required to highlight the code must be included in the main `prism.js` file for
 	 * asynchronous highlighting to work. You can build your own bundle on the
 	 * [Download page](https://prismjs.com/download.html).
-	 * @param {Prism.HighlightCallback} [callback] An optional callback to be invoked after the highlighting is done.
+	 * @param {HighlightCallback} [callback] An optional callback to be invoked after the highlighting is done.
 	 * Mostly useful when `async` is `true`, since in that case, the highlighting is done asynchronously.
 	 * @memberof Prism
+	 * @public
 	 */
 	highlightElement: function(element, async, callback) {
 		// Find language
-		var language = 'none', grammar, parent = element;
-
-		while (parent &amp;&amp; !lang.test(parent.className)) {
-			parent = parent.parentNode;
-		}
-
-		if (parent) {
-			language = (parent.className.match(lang) || [,'none'])[1].toLowerCase();
-			grammar = _.languages[language];
-		}
+		var language = _.util.getLanguage(element);
+		var grammar = _.languages[language];
 
 		// Set language on the element, if not present
 		element.className = element.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language;
 
-		if (element.parentNode) {
-			// Set language on the parent, for styling
-			parent = element.parentNode;
-
-			if (/pre/i.test(parent.nodeName)) {
-				parent.className = parent.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language;
-			}
+		// Set language on the parent, for styling
+		var parent = element.parentElement;
+		if (parent &amp;&amp; parent.nodeName.toLowerCase() === 'pre') {
+			parent.className = parent.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language;
 		}
 
 		var code = element.textContent;
@@ -347,7 +451,7 @@ var _ = {
 			code: code
 		};
 
-		var insertHighlightedCode = function (highlightedCode) {
+		function insertHighlightedCode(highlightedCode) {
 			env.highlightedCode = highlightedCode;
 
 			_.hooks.run('before-insert', env);
@@ -363,6 +467,7 @@ var _ = {
 
 		if (!env.code) {
 			_.hooks.run('complete', env);
+			callback &amp;&amp; callback.call(env.element);
 			return;
 		}
 
@@ -398,7 +503,7 @@ var _ = {
 	 * The following hooks will be run:
 	 * 1. `before-tokenize`
 	 * 2. `after-tokenize`
-	 * 3. `wrap`: On each {@link Prism.Token}.
+	 * 3. `wrap`: On each {@link Token}.
 	 *
 	 * @param {string} text A string with the code to be highlighted.
 	 * @param {Grammar} grammar An object containing the tokens to use.
@@ -407,6 +512,7 @@ var _ = {
 	 * @param {string} language The name of the language definition passed to `grammar`.
 	 * @returns {string} The highlighted HTML.
 	 * @memberof Prism
+	 * @public
 	 * @example
 	 * Prism.highlight('var foo = true;', Prism.languages.js, 'js');
 	 */
@@ -422,132 +528,6 @@ var _ = {
 		return Token.stringify(_.util.encode(env.tokens), env.language);
 	},
 
-	matchGrammar: function (text, strarr, grammar, index, startPos, oneshot, target) {
-		for (var token in grammar) {
-			if(!grammar.hasOwnProperty(token) || !grammar[token]) {
-				continue;
-			}
-
-			if (token == target) {
-				return;
-			}
-
-			var patterns = grammar[token];
-			patterns = (_.util.type(patterns) === "Array") ? patterns : [patterns];
-
-			for (var j = 0; j &lt; patterns.length; ++j) {
-				var pattern = patterns[j],
-					inside = pattern.inside,
-					lookbehind = !!pattern.lookbehind,
-					greedy = !!pattern.greedy,
-					lookbehindLength = 0,
-					alias = pattern.alias;
-
-				if (greedy &amp;&amp; !pattern.pattern.global) {
-					// Without the global flag, lastIndex won't work
-					var flags = pattern.pattern.toString().match(/[imuy]*$/)[0];
-					pattern.pattern = RegExp(pattern.pattern.source, flags + "g");
-				}
-
-				pattern = pattern.pattern || pattern;
-
-				// Don’t cache length as it changes during the loop
-				for (var i = index, pos = startPos; i &lt; strarr.length; pos += strarr[i].length, ++i) {
-
-					var str = strarr[i];
-
-					if (strarr.length > text.length) {
-						// Something went terribly wrong, ABORT, ABORT!
-						return;
-					}
-
-					if (str instanceof Token) {
-						continue;
-					}
-
-					if (greedy &amp;&amp; i != strarr.length - 1) {
-						pattern.lastIndex = pos;
-						var match = pattern.exec(text);
-						if (!match) {
-							break;
-						}
-
-						var from = match.index + (lookbehind ? match[1].length : 0),
-						    to = match.index + match[0].length,
-						    k = i,
-						    p = pos;
-
-						for (var len = strarr.length; k &lt; len &amp;&amp; (p &lt; to || (!strarr[k].type &amp;&amp; !strarr[k - 1].greedy)); ++k) {
-							p += strarr[k].length;
-							// Move the index i to the element in strarr that is closest to from
-							if (from >= p) {
-								++i;
-								pos = p;
-							}
-						}
-
-						// If strarr[i] is a Token, then the match starts inside another Token, which is invalid
-						if (strarr[i] instanceof Token) {
-							continue;
-						}
-
-						// Number of tokens to delete and replace with the new match
-						delNum = k - i;
-						str = text.slice(pos, p);
-						match.index -= pos;
-					} else {
-						pattern.lastIndex = 0;
-
-						var match = pattern.exec(str),
-							delNum = 1;
-					}
-
-					if (!match) {
-						if (oneshot) {
-							break;
-						}
-
-						continue;
-					}
-
-					if(lookbehind) {
-						lookbehindLength = match[1] ? match[1].length : 0;
-					}
-
-					var from = match.index + lookbehindLength,
-					    match = match[0].slice(lookbehindLength),
-					    to = from + match.length,
-					    before = str.slice(0, from),
-					    after = str.slice(to);
-
-					var args = [i, delNum];
-
-					if (before) {
-						++i;
-						pos += before.length;
-						args.push(before);
-					}
-
-					var wrapped = new Token(token, inside? _.tokenize(match, inside) : match, alias, match, greedy);
-
-					args.push(wrapped);
-
-					if (after) {
-						args.push(after);
-					}
-
-					Array.prototype.splice.apply(strarr, args);
-
-					if (delNum != 1)
-						_.matchGrammar(text, strarr, grammar, i, pos, true, token);
-
-					if (oneshot)
-						break;
-				}
-			}
-		}
-	},
-
 	/**
 	 * This is the heart of Prism, and the most low-level function you can use. It accepts a string of text as input
 	 * and the language definitions to use, and returns an array with the tokenized code.
@@ -560,14 +540,12 @@ var _ = {
 	 * @param {Grammar} grammar An object containing the tokens to use.
 	 *
 	 * Usually a language definition like `Prism.languages.markup`.
-	 * @returns {Array&lt;string | Prism.Token>} An array of strings, tokens and other arrays.
+	 * @returns {Array&lt;string | Token>} An array of strings, tokens and other arrays.
 	 * @memberof Prism
+	 * @public
 	 */
 	tokenize: function(text, grammar) {
-		var strarr = [text];
-
 		var rest = grammar.rest;
-
 		if (rest) {
 			for (var token in rest) {
 				grammar[token] = rest[token];
@@ -576,14 +554,18 @@ var _ = {
 			delete grammar.rest;
 		}
 
-		_.matchGrammar(text, strarr, grammar, 0, 0, false);
+		var tokenList = new LinkedList();
+		addAfter(tokenList, tokenList.head, text);
 
-		return strarr;
+		matchGrammar(text, tokenList, grammar, tokenList.head, 0);
+
+		return toArray(tokenList);
 	},
 
 	/**
 	 * @namespace
 	 * @memberof Prism
+	 * @public
 	 */
 	hooks: {
 		all: {},
@@ -597,7 +579,8 @@ var _ = {
 		 * One callback function can be registered to multiple hooks and the same hook multiple times.
 		 *
 		 * @param {string} name The name of the hook.
-		 * @param {Prism.hooks.HookCallback} callback The callback function which is given environment variables.
+		 * @param {HookCallback} callback The callback function which is given environment variables.
+		 * @public
 		 */
 		add: function (name, callback) {
 			var hooks = _.hooks.all;
@@ -614,6 +597,7 @@ var _ = {
 		 *
 		 * @param {string} name The name of the hook.
 		 * @param {Object&lt;string, any>} env The environment variables of the hook passed to all callbacks registered.
+		 * @public
 		 */
 		run: function (name, env) {
 			var callbacks = _.hooks.all[name];
@@ -635,45 +619,44 @@ _self.Prism = _;
 /**
  * Creates a new token.
  *
- * @param {string} type See {@link Prism.Token#type type}
- * @param {string | Prism.Token | Array&lt;string|Prism.Token>} content See {@link Prism.Token#content content}
+ * @param {string} type See {@link Token#type type}
+ * @param {string | Token | Array&lt;string|Token>} content See {@link Token#content content}
  * @param {string|string[]} [alias] The alias(es) of the token.
  * @param {string} [matchedStr=""] A copy of the full string this token was created from.
- * @param {boolean} [greedy=false] See {@link Prism.Token#greedy greedy}
+ * @param {boolean} [greedy=false] Whether the pattern that created this token is greedy or not. Will be removed soon.
  * @class
- * @memberof Prism
+ * @global
+ * @public
  */
 function Token(type, content, alias, matchedStr, greedy) {
 	/**
 	 * The type of the token.
 	 *
 	 * This is usually the key of a pattern in a {@link Grammar}.
+	 *
 	 * @member {string}
+	 * @see TokenObject
+	 * @public
 	 */
 	this.type = type;
 	/**
 	 * The strings or tokens contained by this token.
 	 *
 	 * This will be a token stream if the pattern matched also defined an `inside` grammar.
-	 * @member {string | Prism.Token | Array&lt;string|Prism.Token>}
+	 *
+	 * @member {string | Token | Array&lt;string|Token>}
+	 * @public
 	 */
 	this.content = content;
 	/**
 	 * The alias(es) of the token.
+	 *
 	 * @member {string|string[]}
 	 * @see TokenObject
+	 * @public
 	 */
 	this.alias = alias;
-	/**
-	 * The length of the matched string or 0.
-	 * @member {number}
-	 */
 	this.length = (matchedStr || "").length|0;
-	/**
-	 * Whether the pattern that created this token is greedy or not.
-	 * @member {boolean}
-	 * @see TokenObject
-	 */
 	this.greedy = !!greedy;
 }
 
@@ -681,46 +664,280 @@ function Token(type, content, alias, matchedStr, greedy) {
  * Converts the given token or token stream to an HTML representation.
  *
  * The following hooks will be run:
- * 1. `wrap`: On each {@link Prism.Token}.
+ * 1. `wrap`: On each {@link Token}.
  *
- * @param {string | Prism.Token | Array&lt;string|Prism.Token>} o The token or token stream to be converted.
+ * @param {string | Token | Array&lt;string|Token>} o The token or token stream to be converted.
  * @param {string} language The name of current language.
- * @return {string} The HTML representation of the token or token stream.
- * @private
+ * @returns {string} The HTML representation of the token or token stream.
+ * @memberof Token
+ * @static
  */
-Token.stringify = function(o, language) {
+Token.stringify = function stringify(o, language) {
 	if (typeof o == 'string') {
 		return o;
 	}
-
 	if (Array.isArray(o)) {
-		return o.map(function(element) {
-			return Token.stringify(element, language);
-		}).join('');
+		var s = '';
+		o.forEach(function (e) {
+			s += stringify(e, language);
+		});
+		return s;
 	}
 
 	var env = {
 		type: o.type,
-		content: Token.stringify(o.content, language),
+		content: stringify(o.content, language),
 		tag: 'span',
 		classes: ['token', o.type],
 		attributes: {},
 		language: language
 	};
 
-	if (o.alias) {
-		var aliases = Array.isArray(o.alias) ? o.alias : [o.alias];
-		Array.prototype.push.apply(env.classes, aliases);
+	var aliases = o.alias;
+	if (aliases) {
+		if (Array.isArray(aliases)) {
+			Array.prototype.push.apply(env.classes, aliases);
+		} else {
+			env.classes.push(aliases);
+		}
 	}
 
 	_.hooks.run('wrap', env);
 
-	var attributes = Object.keys(env.attributes).map(function(name) {
-		return name + '="' + (env.attributes[name] || '').replace(/"/g, '&amp;quot;') + '"';
-	}).join(' ');
+	var attributes = '';
+	for (var name in env.attributes) {
+		attributes += ' ' + name + '="' + (env.attributes[name] || '').replace(/"/g, '&amp;quot;') + '"';
+	}
 
-	return '&lt;' + env.tag + ' class="' + env.classes.join(' ') + '"' + (attributes ? ' ' + attributes : '') + '>' + env.content + '&lt;/' + env.tag + '>';
+	return '&lt;' + env.tag + ' class="' + env.classes.join(' ') + '"' + attributes + '>' + env.content + '&lt;/' + env.tag + '>';
 };
+
+/**
+ * @param {string} text
+ * @param {LinkedList&lt;string | Token>} tokenList
+ * @param {any} grammar
+ * @param {LinkedListNode&lt;string | Token>} startNode
+ * @param {number} startPos
+ * @param {boolean} [oneshot=false]
+ * @param {string} [target]
+ * @private
+ */
+function matchGrammar(text, tokenList, grammar, startNode, startPos, oneshot, target) {
+	for (var token in grammar) {
+		if (!grammar.hasOwnProperty(token) || !grammar[token]) {
+			continue;
+		}
+
+		var patterns = grammar[token];
+		patterns = Array.isArray(patterns) ? patterns : [patterns];
+
+		for (var j = 0; j &lt; patterns.length; ++j) {
+			if (target &amp;&amp; target == token + ',' + j) {
+				return;
+			}
+
+			var pattern = patterns[j],
+				inside = pattern.inside,
+				lookbehind = !!pattern.lookbehind,
+				greedy = !!pattern.greedy,
+				lookbehindLength = 0,
+				alias = pattern.alias;
+
+			if (greedy &amp;&amp; !pattern.pattern.global) {
+				// Without the global flag, lastIndex won't work
+				var flags = pattern.pattern.toString().match(/[imsuy]*$/)[0];
+				pattern.pattern = RegExp(pattern.pattern.source, flags + 'g');
+			}
+
+			pattern = pattern.pattern || pattern;
+
+			for ( // iterate the token list and keep track of the current token/string position
+				var currentNode = startNode.next, pos = startPos;
+				currentNode !== tokenList.tail;
+				pos += currentNode.value.length, currentNode = currentNode.next
+			) {
+
+				var str = currentNode.value;
+
+				if (tokenList.length > text.length) {
+					// Something went terribly wrong, ABORT, ABORT!
+					return;
+				}
+
+				if (str instanceof Token) {
+					continue;
+				}
+
+				var removeCount = 1; // this is the to parameter of removeBetween
+
+				if (greedy &amp;&amp; currentNode != tokenList.tail.prev) {
+					pattern.lastIndex = pos;
+					var match = pattern.exec(text);
+					if (!match) {
+						break;
+					}
+
+					var from = match.index + (lookbehind &amp;&amp; match[1] ? match[1].length : 0);
+					var to = match.index + match[0].length;
+					var p = pos;
+
+					// find the node that contains the match
+					p += currentNode.value.length;
+					while (from >= p) {
+						currentNode = currentNode.next;
+						p += currentNode.value.length;
+					}
+					// adjust pos (and p)
+					p -= currentNode.value.length;
+					pos = p;
+
+					// the current node is a Token, then the match starts inside another Token, which is invalid
+					if (currentNode.value instanceof Token) {
+						continue;
+					}
+
+					// find the last node which is affected by this match
+					for (
+						var k = currentNode;
+						k !== tokenList.tail &amp;&amp; (p &lt; to || (typeof k.value === 'string' &amp;&amp; !k.prev.value.greedy));
+						k = k.next
+					) {
+						removeCount++;
+						p += k.value.length;
+					}
+					removeCount--;
+
+					// replace with the new match
+					str = text.slice(pos, p);
+					match.index -= pos;
+				} else {
+					pattern.lastIndex = 0;
+
+					var match = pattern.exec(str);
+				}
+
+				if (!match) {
+					if (oneshot) {
+						break;
+					}
+
+					continue;
+				}
+
+				if (lookbehind) {
+					lookbehindLength = match[1] ? match[1].length : 0;
+				}
+
+				var from = match.index + lookbehindLength,
+					match = match[0].slice(lookbehindLength),
+					to = from + match.length,
+					before = str.slice(0, from),
+					after = str.slice(to);
+
+				var removeFrom = currentNode.prev;
+
+				if (before) {
+					removeFrom = addAfter(tokenList, removeFrom, before);
+					pos += before.length;
+				}
+
+				removeRange(tokenList, removeFrom, removeCount);
+
+				var wrapped = new Token(token, inside ? _.tokenize(match, inside) : match, alias, match, greedy);
+				currentNode = addAfter(tokenList, removeFrom, wrapped);
+
+				if (after) {
+					addAfter(tokenList, currentNode, after);
+				}
+
+
+				if (removeCount > 1)
+					matchGrammar(text, tokenList, grammar, currentNode.prev, pos, true, token + ',' + j);
+
+				if (oneshot)
+					break;
+			}
+		}
+	}
+}
+
+/**
+ * @typedef LinkedListNode
+ * @property {T} value
+ * @property {LinkedListNode&lt;T> | null} prev The previous node.
+ * @property {LinkedListNode&lt;T> | null} next The next node.
+ * @template T
+ * @private
+ */
+
+/**
+ * @template T
+ * @private
+ */
+function LinkedList() {
+	/** @type {LinkedListNode&lt;T>} */
+	var head = { value: null, prev: null, next: null };
+	/** @type {LinkedListNode&lt;T>} */
+	var tail = { value: null, prev: head, next: null };
+	head.next = tail;
+
+	/** @type {LinkedListNode&lt;T>} */
+	this.head = head;
+	/** @type {LinkedListNode&lt;T>} */
+	this.tail = tail;
+	this.length = 0;
+}
+
+/**
+ * Adds a new node with the given value to the list.
+ * @param {LinkedList&lt;T>} list
+ * @param {LinkedListNode&lt;T>} node
+ * @param {T} value
+ * @returns {LinkedListNode&lt;T>} The added node.
+ * @template T
+ */
+function addAfter(list, node, value) {
+	// assumes that node != list.tail &amp;&amp; values.length >= 0
+	var next = node.next;
+
+	var newNode = { value: value, prev: node, next: next };
+	node.next = newNode;
+	next.prev = newNode;
+	list.length++;
+
+	return newNode;
+}
+/**
+ * Removes `count` nodes after the given node. The given node will not be removed.
+ * @param {LinkedList&lt;T>} list
+ * @param {LinkedListNode&lt;T>} node
+ * @param {number} count
+ * @template T
+ */
+function removeRange(list, node, count) {
+	var next = node.next;
+	for (var i = 0; i &lt; count &amp;&amp; next !== list.tail; i++) {
+		next = next.next;
+	}
+	node.next = next;
+	next.prev = node;
+	list.length -= i;
+}
+/**
+ * @param {LinkedList&lt;T>} list
+ * @returns {T[]}
+ * @template T
+ */
+function toArray(list) {
+	var array = [];
+	var node = list.head.next;
+	while (node !== list.tail) {
+		array.push(node.value);
+		node = node.next;
+	}
+	return array;
+}
+
 
 if (!_self.document) {
 	if (!_self.addEventListener) {
@@ -747,21 +964,37 @@ if (!_self.document) {
 }
 
 //Get current script and highlight
-var script = document.currentScript || [].slice.call(document.getElementsByTagName("script")).pop();
+var script = _.util.currentScript();
 
 if (script) {
 	_.filename = script.src;
 
-	if (!_.manual &amp;&amp; !script.hasAttribute('data-manual')) {
-		if(document.readyState !== "loading") {
-			if (window.requestAnimationFrame) {
-				window.requestAnimationFrame(_.highlightAll);
-			} else {
-				window.setTimeout(_.highlightAll, 16);
-			}
-		}
-		else {
-			document.addEventListener('DOMContentLoaded', _.highlightAll);
+	if (script.hasAttribute('data-manual')) {
+		_.manual = true;
+	}
+}
+
+function highlightAutomaticallyCallback() {
+	if (!_.manual) {
+		_.highlightAll();
+	}
+}
+
+if (!_.manual) {
+	// If the document state is "loading", then we'll use DOMContentLoaded.
+	// If the document state is "interactive" and the prism.js script is deferred, then we'll also use the
+	// DOMContentLoaded event because there might be some plugins or languages which have also been deferred and they
+	// might take longer one animation frame to execute which can create a race condition where only some plugins have
+	// been loaded when Prism.highlightAll() is executed, depending on how fast resources are loaded.
+	// See https://github.com/PrismJS/prism/issues/2102
+	var readyState = document.readyState;
+	if (readyState === 'loading' || readyState === 'interactive' &amp;&amp; script &amp;&amp; script.defer) {
+		document.addEventListener('DOMContentLoaded', highlightAutomaticallyCallback);
+	} else {
+		if (window.requestAnimationFrame) {
+			window.requestAnimationFrame(highlightAutomaticallyCallback);
+		} else {
+			window.setTimeout(highlightAutomaticallyCallback, 16);
 		}
 	}
 }
@@ -778,6 +1011,48 @@ if (typeof module !== 'undefined' &amp;&amp; module.exports) {
 if (typeof global !== 'undefined') {
 	global.Prism = Prism;
 }
+
+// some additional documentation/types
+
+/**
+ * The expansion of a simple `RegExp` literal to support additional properties.
+ *
+ * @typedef TokenObject
+ * @property {RegExp} pattern The regular expression of the token.
+ * @property {boolean} [lookbehind=false] If `true`, then the first capturing group of `pattern` will (effectively)
+ * behave as a lookbehind group meaning that the captured text will not be part of the matched text of the new token.
+ * @property {boolean} [greedy=false] Whether the token is greedy.
+ * @property {string|string[]} [alias] An optional alias or list of aliases.
+ * @property {Grammar} [inside] The nested tokens of this token.
+ *
+ * This can be used for recursive language definitions.
+ *
+ * Note that this can cause infinite recursion.
+ * @public
+*/
+
+/**
+ * @typedef Grammar
+ * @type {Object&lt;string, RegExp | TokenObject | Array&lt;RegExp | TokenObject>>}
+ * @property {Grammar} [rest] An optional grammar object that will appended to this grammar.
+ * @public
+ */
+
+/**
+ * A function which will invoked after an element was successfully highlighted.
+ *
+ * @callback HighlightCallback
+ * @param {Element} element The element successfully highlighted.
+ * @returns {void}
+ * @public
+*/
+
+/**
+ * @callback HookCallback
+ * @param {Object&lt;string, any>} env The environment variables of the hook.
+ * @returns {void}
+ * @public
+ */
 </code></pre>
         </article>
     </section>
@@ -789,7 +1064,9 @@ if (typeof global !== 'undefined') {
 
 <br class="clear">
 
-<footer>Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> using the Minami theme.</footer>
+<footer>
+    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.4</a> using the Minami theme.
+</footer>
 
 <script>prettyPrint();</script>
 <script src="scripts/linenumber.js"></script>
