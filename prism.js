@@ -16,6 +16,7 @@ var _self = (typeof window !== 'undefined')
  * @license MIT license http://www.opensource.org/licenses/mit-license.php/
  * @author Lea Verou <http://lea.verou.me>
  * @namespace
+ * @public
  */
 
 var Prism = (function (_self){
@@ -28,6 +29,14 @@ var uniqueId = 0;
 var _ = {
 	manual: _self.Prism && _self.Prism.manual,
 	disableWorkerMessageHandler: _self.Prism && _self.Prism.disableWorkerMessageHandler,
+	/**
+	 * A namespace for utility methods.
+	 *
+	 * Almost all function in this namespace are for __internal use only__.
+	 *
+	 * @namespace
+	 * @memberof Prism
+	 */
 	util: {
 		encode: function encode(tokens) {
 			if (tokens instanceof Token) {
@@ -39,10 +48,36 @@ var _ = {
 			}
 		},
 
+		/**
+		 * Returns the name of the type of the given value.
+		 *
+		 * Examples:
+		 *
+		 * ```js
+		 * type(null)      === 'Null'
+		 * type(undefined) === 'Undefined'
+		 * type(123)       === 'Number'
+		 * type('foo')     === 'String'
+		 * type(true)      === 'Boolean'
+		 * type([1, 2])    === 'Array'
+		 * type({})        === 'Object'
+		 * type(String)    === 'Function'
+		 * type(/abc+/)    === 'RegExp'
+		 * ```
+		 *
+		 * @param {any} o
+		 * @returns {string}
+		 */
 		type: function (o) {
 			return Object.prototype.toString.call(o).slice(8, -1);
 		},
 
+		/**
+		 * Returns a unique number for the given object. Later calls will still return the same number.
+		 *
+		 * @param {Object} obj
+		 * @returns {number}
+		 */
 		objId: function (obj) {
 			if (!obj['__id']) {
 				Object.defineProperty(obj, '__id', { value: ++uniqueId });
@@ -50,18 +85,27 @@ var _ = {
 			return obj['__id'];
 		},
 
-		// Deep clone a language definition (e.g. to extend it)
+		/**
+		 * Creates a deep clone of the given object.
+		 *
+		 * The main intended use of this function is to clone language definitions.
+		 *
+		 * @param {T} o
+		 * @param {Record<number, any>} [visited]
+		 * @returns {T}
+		 * @template T
+		 */
 		clone: function deepClone(o, visited) {
-			var clone, id, type = _.util.type(o);
 			visited = visited || {};
 
-			switch (type) {
+			var clone, id;
+			switch (_.util.type(o)) {
 				case 'Object':
 					id = _.util.objId(o);
 					if (visited[id]) {
 						return visited[id];
 					}
-					clone = {};
+					clone = /** @type {Record<string, any>} */ ({});
 					visited[id] = clone;
 
 					for (var key in o) {
@@ -70,7 +114,7 @@ var _ = {
 						}
 					}
 
-					return clone;
+					return /** @type {any} */ (clone);
 
 				case 'Array':
 					id = _.util.objId(o);
@@ -80,11 +124,11 @@ var _ = {
 					clone = [];
 					visited[id] = clone;
 
-					o.forEach(function (v, i) {
+					(/** @type {Array} */(/** @type {any} */(o))).forEach(function (v, i) {
 						clone[i] = deepClone(v, visited);
 					});
 
-					return clone;
+					return /** @type {any} */ (clone);
 
 				default:
 					return o;
@@ -120,8 +164,8 @@ var _ = {
 			if (typeof document === 'undefined') {
 				return null;
 			}
-			if ('currentScript' in document) {
-				return document.currentScript;
+			if ('currentScript' in document && 1 < 2) {
+				return /** @type {any} */ (document.currentScript);
 			}
 
 			// IE11 workaround
@@ -157,6 +201,7 @@ var _ = {
 	 *
 	 * @namespace
 	 * @memberof Prism
+	 * @public
 	 */
 	languages: {
 		/**
@@ -168,6 +213,7 @@ var _ = {
 		 * @param {string} id The id of the language to extend. This has to be a key in `Prism.languages`.
 		 * @param {Grammar} redef The new tokens to append.
 		 * @returns {Grammar} The new language created.
+		 * @public
 		 * @example
 		 * Prism.languages['css-with-colors'] = Prism.languages.extend('css', {
 		 *     'color': /\b(?:red|green|blue)\b/
@@ -202,14 +248,16 @@ var _ = {
 		 *
 		 * Defaults to `Prism.languages`.
 		 * @returns {Grammar} The new grammar created.
+		 * @public
 		 * @example
 		 * Prism.languages.insertBefore('markup', 'cdata', {
 		 *     'style': { ... }
 		 * });
 		 */
 		insertBefore: function (inside, before, insert, root) {
-			root = root || _.languages;
+			root = root || /** @type {any} */ (_.languages);
 			var grammar = root[inside];
+			/** @type {Grammar} */
 			var ret = {};
 
 			for (var token in grammar) {
@@ -278,8 +326,9 @@ var _ = {
 	 * This is equivalent to `Prism.highlightAllUnder(document, async, callback)`.
 	 *
 	 * @param {boolean} [async=false] Same as in {@link Prism.highlightAllUnder}.
-	 * @param {Prism.HighlightCallback} [callback] Same as in {@link Prism.highlightAllUnder}.
+	 * @param {HighlightCallback} [callback] Same as in {@link Prism.highlightAllUnder}.
 	 * @memberof Prism
+	 * @public
 	 */
 	highlightAll: function(async, callback) {
 		_.highlightAllUnder(document, async, callback);
@@ -295,8 +344,9 @@ var _ = {
 	 *
 	 * @param {ParentNode} container The root element, whose descendants that have a `.language-xxxx` class will be highlighted.
 	 * @param {boolean} [async=false] Whether each element is to be highlighted asynchronously using Web Workers.
-	 * @param {Prism.HighlightCallback} [callback] An optional callback to be invoked on each element after its highlighting is done.
+	 * @param {HighlightCallback} [callback] An optional callback to be invoked on each element after its highlighting is done.
 	 * @memberof Prism
+	 * @public
 	 */
 	highlightAllUnder: function(container, async, callback) {
 		var env = {
@@ -322,7 +372,7 @@ var _ = {
 	 * The following hooks will be run:
 	 * 1. `before-sanity-check`
 	 * 2. `before-highlight`
-	 * 3. All hooks of {@link Prism.highlightElement}. These hooks will only be run by the current worker if `async` is `true`.
+	 * 3. All hooks of {@link Prism.highlight}. These hooks will only be run by the current worker if `async` is `true`.
 	 * 4. `before-insert`
 	 * 5. `after-highlight`
 	 * 6. `complete`
@@ -336,9 +386,10 @@ var _ = {
 	 * Note: All language definitions required to highlight the code must be included in the main `prism.js` file for
 	 * asynchronous highlighting to work. You can build your own bundle on the
 	 * [Download page](https://prismjs.com/download.html).
-	 * @param {Prism.HighlightCallback} [callback] An optional callback to be invoked after the highlighting is done.
+	 * @param {HighlightCallback} [callback] An optional callback to be invoked after the highlighting is done.
 	 * Mostly useful when `async` is `true`, since in that case, the highlighting is done asynchronously.
 	 * @memberof Prism
+	 * @public
 	 */
 	highlightElement: function(element, async, callback) {
 		// Find language
@@ -349,7 +400,7 @@ var _ = {
 		element.className = element.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language;
 
 		// Set language on the parent, for styling
-		var parent = element.parentNode;
+		var parent = element.parentElement;
 		if (parent && parent.nodeName.toLowerCase() === 'pre') {
 			parent.className = parent.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language;
 		}
@@ -415,7 +466,7 @@ var _ = {
 	 * The following hooks will be run:
 	 * 1. `before-tokenize`
 	 * 2. `after-tokenize`
-	 * 3. `wrap`: On each {@link Prism.Token}.
+	 * 3. `wrap`: On each {@link Token}.
 	 *
 	 * @param {string} text A string with the code to be highlighted.
 	 * @param {Grammar} grammar An object containing the tokens to use.
@@ -424,6 +475,7 @@ var _ = {
 	 * @param {string} language The name of the language definition passed to `grammar`.
 	 * @returns {string} The highlighted HTML.
 	 * @memberof Prism
+	 * @public
 	 * @example
 	 * Prism.highlight('var foo = true;', Prism.languages.js, 'js');
 	 */
@@ -451,8 +503,9 @@ var _ = {
 	 * @param {Grammar} grammar An object containing the tokens to use.
 	 *
 	 * Usually a language definition like `Prism.languages.markup`.
-	 * @returns {Array<string | Prism.Token>} An array of strings, tokens and other arrays.
+	 * @returns {Array<string | Token>} An array of strings, tokens and other arrays.
 	 * @memberof Prism
+	 * @public
 	 */
 	tokenize: function(text, grammar) {
 		var rest = grammar.rest;
@@ -475,6 +528,7 @@ var _ = {
 	/**
 	 * @namespace
 	 * @memberof Prism
+	 * @public
 	 */
 	hooks: {
 		all: {},
@@ -488,7 +542,8 @@ var _ = {
 		 * One callback function can be registered to multiple hooks and the same hook multiple times.
 		 *
 		 * @param {string} name The name of the hook.
-		 * @param {Prism.hooks.HookCallback} callback The callback function which is given environment variables.
+		 * @param {HookCallback} callback The callback function which is given environment variables.
+		 * @public
 		 */
 		add: function (name, callback) {
 			var hooks = _.hooks.all;
@@ -505,6 +560,7 @@ var _ = {
 		 *
 		 * @param {string} name The name of the hook.
 		 * @param {Object<string, any>} env The environment variables of the hook passed to all callbacks registered.
+		 * @public
 		 */
 		run: function (name, env) {
 			var callbacks = _.hooks.all[name];
@@ -523,48 +579,53 @@ var _ = {
 };
 _self.Prism = _;
 
+
+// Typescript note:
+// The following can be used to import the Token type in JSDoc:
+//
+//   @typedef {InstanceType<import("./prism-core")["Token"]>} Token
+
 /**
  * Creates a new token.
  *
- * @param {string} type See {@link Prism.Token#type type}
- * @param {string | Prism.Token | Array<string|Prism.Token>} content See {@link Prism.Token#content content}
+ * @param {string} type See {@link Token#type type}
+ * @param {string | Token | Array<string|Token>} content See {@link Token#content content}
  * @param {string|string[]} [alias] The alias(es) of the token.
  * @param {string} [matchedStr=""] A copy of the full string this token was created from.
- * @param {boolean} [greedy=false] See {@link Prism.Token#greedy greedy}
+ * @param {boolean} [greedy=false] Whether the pattern that created this token is greedy or not. Will be removed soon.
  * @class
- * @memberof Prism
+ * @global
+ * @public
  */
 function Token(type, content, alias, matchedStr, greedy) {
 	/**
 	 * The type of the token.
 	 *
 	 * This is usually the key of a pattern in a {@link Grammar}.
+	 *
 	 * @member {string}
+	 * @see TokenObject
+	 * @public
 	 */
 	this.type = type;
 	/**
 	 * The strings or tokens contained by this token.
 	 *
 	 * This will be a token stream if the pattern matched also defined an `inside` grammar.
-	 * @member {string | Prism.Token | Array<string|Prism.Token>}
+	 *
+	 * @member {string | Token | Array<string|Token>}
+	 * @public
 	 */
 	this.content = content;
 	/**
 	 * The alias(es) of the token.
+	 *
 	 * @member {string|string[]}
 	 * @see TokenObject
+	 * @public
 	 */
 	this.alias = alias;
-	/**
-	 * The length of the matched string or 0.
-	 * @member {number}
-	 */
 	this.length = (matchedStr || "").length|0;
-	/**
-	 * Whether the pattern that created this token is greedy or not.
-	 * @member {boolean}
-	 * @see TokenObject
-	 */
 	this.greedy = !!greedy;
 }
 
@@ -572,12 +633,13 @@ function Token(type, content, alias, matchedStr, greedy) {
  * Converts the given token or token stream to an HTML representation.
  *
  * The following hooks will be run:
- * 1. `wrap`: On each {@link Prism.Token}.
+ * 1. `wrap`: On each {@link Token}.
  *
- * @param {string | Prism.Token | Array<string|Prism.Token>} o The token or token stream to be converted.
+ * @param {string | Token | Array<string|Token>} o The token or token stream to be converted.
  * @param {string} language The name of current language.
- * @return {string} The HTML representation of the token or token stream.
- * @private
+ * @returns {string} The HTML representation of the token or token stream.
+ * @memberof Token
+ * @static
  */
 Token.stringify = function stringify(o, language) {
 	if (typeof o == 'string') {
@@ -627,6 +689,7 @@ Token.stringify = function stringify(o, language) {
  * @param {number} startPos
  * @param {boolean} [oneshot=false]
  * @param {string} [target]
+ * @private
  */
 function matchGrammar(text, tokenList, grammar, startNode, startPos, oneshot, target) {
 	for (var token in grammar) {
@@ -773,10 +836,12 @@ function matchGrammar(text, tokenList, grammar, startNode, startPos, oneshot, ta
  * @property {LinkedListNode<T> | null} prev The previous node.
  * @property {LinkedListNode<T> | null} next The next node.
  * @template T
+ * @private
  */
 
 /**
  * @template T
+ * @private
  */
 function LinkedList() {
 	/** @type {LinkedListNode<T>} */
@@ -915,6 +980,48 @@ if (typeof module !== 'undefined' && module.exports) {
 if (typeof global !== 'undefined') {
 	global.Prism = Prism;
 }
+
+// some additional documentation/types
+
+/**
+ * The expansion of a simple `RegExp` literal to support additional properties.
+ *
+ * @typedef TokenObject
+ * @property {RegExp} pattern The regular expression of the token.
+ * @property {boolean} [lookbehind=false] If `true`, then the first capturing group of `pattern` will (effectively)
+ * behave as a lookbehind group meaning that the captured text will not be part of the matched text of the new token.
+ * @property {boolean} [greedy=false] Whether the token is greedy.
+ * @property {string|string[]} [alias] An optional alias or list of aliases.
+ * @property {Grammar} [inside] The nested tokens of this token.
+ *
+ * This can be used for recursive language definitions.
+ *
+ * Note that this can cause infinite recursion.
+ * @public
+*/
+
+/**
+ * @typedef Grammar
+ * @type {Object<string, RegExp | TokenObject | Array<RegExp | TokenObject>>}
+ * @property {Grammar} [rest] An optional grammar object that will appended to this grammar.
+ * @public
+ */
+
+/**
+ * A function which will invoked after an element was successfully highlighted.
+ *
+ * @callback HighlightCallback
+ * @param {Element} element The element successfully highlighted.
+ * @returns {void}
+ * @public
+*/
+
+/**
+ * @callback HookCallback
+ * @param {Object<string, any>} env The environment variables of the hook.
+ * @returns {void}
+ * @public
+ */
 
 
 /* **********************************************
