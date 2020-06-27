@@ -1,11 +1,11 @@
 "use strict";
 
 const fs = require("fs");
-const vm = require("vm");
 const { getAllFiles } = require("./test-discovery");
 const components = require("../../components.json");
 const getLoader = require("../../dependencies");
 const languagesCatalog = components.languages;
+const coreChecks = require('./checks');
 
 
 /**
@@ -13,6 +13,13 @@ const languagesCatalog = components.languages;
  * @property {any} Prism The Prism instance.
  * @property {Set<string>} loaded A set of loaded components.
  */
+
+/** @type {Map<string, string>} */
+const fileSourceCache = new Map();
+/** @type {() => any} */
+let coreSupplierFunction = null;
+/** @type {Map<string, (Prism: any) => void>} */
+const languageCache = new Map();
 
 module.exports = {
 
@@ -51,9 +58,15 @@ module.exports = {
 				throw new Error(`Language '${id}' not found.`);
 			}
 
-			// load the language itself
-			const languageSource = this.loadComponentSource(id);
-			context.Prism = this.runFileWithContext(languageSource, { Prism: context.Prism }).Prism;
+			// get the function which adds the language from cache
+			let languageFunction = languageCache.get(id);
+			if (languageFunction === undefined) {
+				// make a function from the code which take "Prism" as an argument, so the language grammar
+				// references the function argument
+				const func = new Function('Prism', this.loadComponentSource(id));
+				languageCache.set(id, languageFunction = (Prism) => func(Prism));
+			}
+			languageFunction(context.Prism);
 
 			context.loaded.add(id);
 		});
@@ -69,44 +82,25 @@ module.exports = {
 	 * @returns {Prism}
 	 */
 	createEmptyPrism() {
-		const coreSource = this.loadComponentSource("core");
-		const context = this.runFileWithContext(coreSource);
-
-		for (const testSource of this.getChecks().map(src => this.loadFileSource(src))) {
-			context.Prism = this.runFileWithContext(testSource, {
-				Prism: context.Prism,
-				/**
-				 * A pseudo require function for the checks.
-				 *
-				 * This function will behave like the regular `require` in real modules when called form a check file.
-				 *
-				 * @param {string} id The id of relative path to require.
-				 */
-				require(id) {
-					if (id.startsWith('./')) {
-						// We have to rewrite relative paths starting with './'
-						return require('./../checks/' + id.substr(2));
-					} else {
-						// This might be an id like 'mocha' or 'fs' or a relative path starting with '../'.
-						// In both cases we don't have to change anything.
-						return require(id);
-					}
-				}
-			}).Prism;
+		if (!coreSupplierFunction) {
+			const source = this.loadComponentSource("core");
+			// Core exports itself in 2 ways:
+			//  1) it uses `module.exports = Prism` which what we'll use
+			//  2) it uses `global.Prism = Prism` which we want to sabotage to prevent leaking
+			const func = new Function('module', 'global', source);
+			coreSupplierFunction = () => {
+				const module = {
+					// that's all we care about
+					exports: {}
+				};
+				func(module, {});
+				return module.exports;
+			};
 		}
-
-		return context.Prism;
+		const Prism = coreSupplierFunction();
+		coreChecks(Prism);
+		return Prism;
 	},
-
-
-	/**
-	 * Cached file sources, to prevent massive HDD work
-	 *
-	 * @private
-	 * @type {Object.<string, string>}
-	 */
-	fileSourceCache: {},
-
 
 	/**
 	 * Loads the given component's file source as string
@@ -127,36 +121,10 @@ module.exports = {
 	 * @returns {string}
 	 */
 	loadFileSource(src) {
-		return this.fileSourceCache[src] = this.fileSourceCache[src] || fs.readFileSync(src, "utf8");
-	},
-
-
-	checkCache: null,
-
-	/**
-	 * Returns a list of files which add additional checks to Prism functions.
-	 *
-	 * @returns {ReadonlyArray<string>}
-	 */
-	getChecks() {
-		return this.checkCache = this.checkCache || getAllFiles(__dirname + "/../checks");
-	},
-
-
-	/**
-	 * Runs a VM for a given file source with the given context
-	 *
-	 * @private
-	 * @param {string} fileSource
-	 * @param {*} [context={}]
-	 *
-	 * @returns {*}
-	 */
-	runFileWithContext(fileSource, context = {}) {
-		// we don't have to pass our console but it's the only way these scripts can talk
-		// not supplying console here means that all references to `console` inside them will refer to a no-op console
-		context.console = console;
-		vm.runInNewContext(fileSource, context);
-		return context;
+		let content = fileSourceCache.get(src);
+		if (content === undefined) {
+			fileSourceCache.set(src, content = fs.readFileSync(src, "utf8"));
+		}
+		return content;
 	}
 };

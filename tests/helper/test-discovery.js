@@ -10,7 +10,7 @@ module.exports = {
 	 * Loads the list of all available tests
 	 *
 	 * @param {string} rootDir
-	 * @returns {Object.<string, string[]>}
+	 * @returns {Object<string, string[]>}
 	 */
 	loadAllTests(rootDir) {
 		/** @type {Object.<string, string[]>} */
@@ -28,7 +28,7 @@ module.exports = {
 	 *
 	 * @param {string} rootDir
 	 * @param {string|string[]} languages
-	 * @returns {Object.<string, string[]>}
+	 * @returns {Object<string, string[]>}
 	 */
 	loadSomeTests(rootDir, languages) {
 		/** @type {Object.<string, string[]>} */
@@ -47,7 +47,7 @@ module.exports = {
 	 * in the given src directory
 	 *
 	 * @param {string} src
-	 * @returns {Array.<string>}
+	 * @returns {string[]}
 	 */
 	getAllDirectories(src) {
 		return fs.readdirSync(src).filter(file => {
@@ -61,7 +61,7 @@ module.exports = {
 	 *
 	 * @param {string} src
 	 * @param {string|string[]} languages
-	 * @returns {Array.<string>}
+	 * @returns {string[]}
 	 */
 	getSomeDirectories(src, languages) {
 		return fs.readdirSync(src).filter(file => {
@@ -88,7 +88,7 @@ module.exports = {
 	 *
 	 * @private
 	 * @param {string} src
-	 * @returns {Array.<string>}
+	 * @returns {string[]}
 	 */
 	getAllFiles(src) {
 		return fs.readdirSync(src)
