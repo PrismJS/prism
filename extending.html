@@ -93,42 +93,9 @@ ol.indent {
 'tokenname': [ /regex0/, /regex1/, { pattern: /regex2/ } ]
 ...</code></pre>
 
-	<section>
-		<h1><code>Prism.languages.insertBefore(inside, before, insert<span class="optional" title="Default value: Prism.languages">, root</span>)</code></h1>
+	<h2 id="helper-functions">Helper functions</h2>
 
-		<p>This is a helper method to ease modifying existing languages. For example, the CSS language definition not only defines CSS highlighting for CSS documents,
-		but also needs to define highlighting for CSS embedded in HTML through <code class="language-markup">&lt;style></code> elements. To do this, it needs to modify
-		<code>Prism.languages.markup</code> and add the appropriate tokens. However, <code>Prism.languages.markup</code>
-		is a regular JavaScript object literal, so if you do this:</p>
-
-		<pre><code >Prism.languages.markup.style = {
-	/* tokens */
-};</code></pre>
-
-		<p>then the <code>style</code> token will be added (and processed) at the end. <code>Prism.languages.insertBefore</code> allows you to insert
-		tokens <em>before</em> existing tokens. For the CSS example above, you would use it like this:</p>
-
-		<pre><code>Prism.languages.insertBefore('markup', 'cdata', {
-	'style': {
-		/* tokens */
-	}
-});</code></pre>
-
-		<h2>Parameters</h2>
-		<dl>
-			<dt>inside</dt>
-			<dd>The property of <code>root</code> that contains the object to be modified.</dd>
-
-			<dt>before</dt>
-			<dd>Key to insert before (String)</dd>
-
-			<dt>insert</dt>
-			<dd>An object containing the key-value pairs to be inserted</dd>
-
-			<dt>root</dt>
-			<dd>The root object, i.e. the object that contains the object that will be modified. Optional, default value is <code>Prism.languages</code>.</dd>
-		</dl>
-	</section>
+	<p>Prism also provides some useful function for creating and modifying language definitions. <a href="docs/Prism.languages.html#.insertBefore"><code>Prism.languages.insertBefore</code></a> can be used to modify existing languages definitions. <a href="docs/Prism.languages.html#.extend"><code>Prism.languages.extend</code></a> is useful for when your language is very similar to another existing language.</p>
 </section>
 
 <section id="creating-a-new-language-definition" class="language-none">
@@ -397,99 +364,7 @@ loader.load(id => {
 <section id="api">
 	<h1>API documentation</h1>
 
-	<section id="highlight-all">
-		<h1><code>Prism.highlightAll(async, callback)</code></h1>
-		<p>This is the most high-level function in Prism’s API. It fetches all the elements that have a <code>.language-xxxx</code> class
-		and then calls <code>Prism.highlightElement()</code> on each one of them.</p>
-
-		<h2>Parameters</h2>
-		<dl>
-			<dt>async</dt>
-			<dd>
-				Whether to use Web Workers to improve performance and avoid blocking the UI when highlighting very large
-				chunks of code. False by default
-				(<a href="faq.html#why-is-asynchronous-highlighting-disabled-by-default">why?</a>).<br />
-				Note: All language definitions required to highlight the code must be included in the main <code>prism.js</code>
-				file for the async highlighting to work. You can build your own bundle on the <a href="download.html">Download page</a>.
-			</dd>
-
-			<dt>callback</dt>
-			<dd>
-				An optional callback to be invoked after the highlighting is done. Mostly useful when <code>async</code>
-				is true, since in that case, the highlighting is done asynchronously.
-			</dd>
-		</dl>
-	</section>
-
-	<section id="highlight-all-under">
-		<h1><code>Prism.highlightAllUnder(element, async, callback)</code></h1>
-		<p>Fetches all the descendants of <code>element</code> that have a <code>.language-xxxx</code> class
-			and then calls <code>Prism.highlightElement()</code> on each one of them.</p>
-
-		<h2>Parameters</h2>
-		<dl>
-			<dt>element</dt>
-			<dd>The root element, whose descendants that have a <code>.language-xxxx</code> class will be highlighted.</dd>
-
-			<dt>async</dt>
-			<dd>Same as in <a href="#highlight-all"><code>Prism.highlightAll()</code></a></dd>
-
-			<dt>callback</dt>
-			<dd>Same as in <a href="#highlight-all"><code>Prism.highlightAll()</code></a></dd>
-		</dl>
-	</section>
-
-	<section id="highlight-element">
-		<h1><code>Prism.highlightElement(element, async, callback)</code></h1>
-		<p>Highlights the code inside a single element.</p>
-
-		<h2>Parameters</h2>
-		<dl>
-			<dt>element</dt>
-			<dd>The element containing the code. It must have a class of <code>language-xxxx</code> to be processed, where <code>xxxx</code> is a valid language identifier.</dd>
-
-			<dt>async</dt>
-			<dd>Same as in <a href="#highlight-all"><code>Prism.highlightAll()</code></a></dd>
-			<dt>callback</dt>
-			<dd>Same as in <a href="#highlight-all"><code>Prism.highlightAll()</code></a></dd>
-		</dl>
-	</section>
-
-	<section id="highlight">
-		<h1><code>Prism.highlight(text, grammar, language)</code></h1>
-		<p>Low-level function, only use if you know what you’re doing.
-		It accepts a string of text as input, the language definitions to use, and the name of the language, and returns a string with the HTML produced.</p>
-
-		<h2>Parameters</h2>
-		<dl>
-			<dt>text</dt>
-			<dd>A string with the code to be highlighted.</dd>
-			<dt>grammar</dt>
-			<dd>An object containing the tokens to use. Usually a language definition like <code>Prism.languages.markup</code></dd>
-			<dt>language</dt>
-			<dd>The name of the language definition passed to <code>grammar</code>. E.g. <code>markup</code> or <code>javascript</code></dd>
-		</dl>
-
-		<h2>Returns</h2>
-		<p>The highlighted HTML</p>
-	</section>
-
-	<section id="tokenize">
-		<h1><code>Prism.tokenize(text, grammar)</code></h1>
-		<p>This is the heart of Prism, and the most low-level function you can use. It accepts a string of text as input and the language definitions to use, and returns an array with the tokenized code.
-		When the language definition includes nested tokens, the function is called recursively on each of these tokens. This method could be useful in other contexts as well, as a very crude parser.</p>
-
-		<h2>Parameters</h2>
-		<dl>
-			<dt>text</dt>
-			<dd>A string with the code to be highlighted.</dd>
-			<dt>grammar</dt>
-			<dd>An object containing the tokens to use. Usually a language definition like <code>Prism.languages.markup</code></dd>
-		</dl>
-
-		<h2>Returns</h2>
-		<p>An array of strings, tokens (class <code>Prism.Token</code>) and other arrays.</p>
-	</section>
+	<p>All public and stable parts of <a href="docs/">Prism's API are documented here</a>.</p>
 </section>
 
 <footer data-src="templates/footer.html" data-type="text/html"></footer>
