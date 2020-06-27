@@ -1,4 +1,5 @@
 proc groovy classpath=cp;
+  /* Testing a comment */
   submit parseonly;
     class Speaker {
       def say( word ) {
@@ -26,6 +27,7 @@ quit;
 	],
 	[
 		"proc-groovy", [
+			["comment", "/* Testing a comment */"],
 			["submit-statement", "submit parseonly"],
 			[
 				"groovy", [
@@ -60,9 +62,12 @@ quit;
 			["punctuation", ";"]
 		]
 	],
-	["keyword", "eval"],
-	["string", "\"s = new Speaker(); s.say( \"\"Hi\"\" )\""],
-	["punctuation", ";"],
+	["proc-groovy",[
+		["keyword", "eval"],
+		["string", "\"s = new Speaker(); s.say( \"\"Hi\"\" )\""],
+		["punctuation", ";"]
+		]
+	],
 	["step", "quit"],
 	["punctuation", ";"]
 ]

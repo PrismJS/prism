@@ -1,33 +1,51 @@
 ""
 "fo\"obar"
+"foo\
+	bar"
+"foo
+bar"
 
 b""
 b"fo\"obar"
 
 r#""#
 r#"fo"obar"#
-r###"foo#bar"###
+r###"foo
+#
+bar"###
 
 br#""#
 br#"fo"obar"#
 br###"foo#bar"###
+
+r"(?x)
+(?P<year>\d{4})  # the year
+-
+(?P<month>\d{2}) # the month
+-
+(?P<day>\d{2})   # the day
+"
 
 ----------------------------------------------------
 
 [
 	["string", "\"\""],
 	["string", "\"fo\\\"obar\""],
+	["string", "\"foo\\\r\n\tbar\""],
+	["string", "\"foo\r\nbar\""],
 
 	["string", "b\"\""],
 	["string", "b\"fo\\\"obar\""],
 
 	["string", "r#\"\"#"],
 	["string", "r#\"fo\"obar\"#"],
-	["string", "r###\"foo#bar\"###"],
+	["string", "r###\"foo\r\n#\r\nbar\"###"],
 
 	["string", "br#\"\"#"],
 	["string", "br#\"fo\"obar\"#"],
-	["string", "br###\"foo#bar\"###"]
+	["string", "br###\"foo#bar\"###"],
+
+	["string", "r\"(?x)\r\n(?P<year>\\d{4})  # the year\r\n-\r\n(?P<month>\\d{2}) # the month\r\n-\r\n(?P<day>\\d{2})   # the day\r\n\""]
 ]
 
 ----------------------------------------------------

@@ -1,0 +1,39 @@
+<h2>Comments</h2>
+<pre><code>// This is a comment</code></pre>
+<h2>Simple example</h2>
+<pre><code>
+Sales YTD := 
+CALCULATE (
+    [Sales Amount], 
+    DATESYTD( 'Date'[Date] )
+)
+</code></pre>
+<h2>Full example</h2>
+<pre><code>
+Burn Rate (Hours) = 
+
+// Only consider those projects which have been alread created
+VAR filterDate = 
+    FILTER (
+        ALL ( 'Date'[Date] ),
+        'Date'[Date] &lt;= MAX('Date'[Date])
+    )
+
+RETURN
+IF (
+    // Show blank for months before project start
+    MAX ( 'Project'[Project Created Relative Months Pos] ) &lt; SELECTEDVALUE ( 'Date'[Fiscal RelativeMonthPos] ),
+    BLANK (),
+    MIN(
+        1,
+        DIVIDE (
+            // Add 0 to consider months with no hours
+            [Hours Actual Billable] + 0,
+            CALCULATE (
+                [Planned Hours] + 0,
+                filterDate
+            )
+        )
+    )
+)
+</code></pre>

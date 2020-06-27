@@ -1,11 +1,19 @@
 |x: int, y: int| -> int {}
 || {}
 
+vec1.iter().any(|&x| x == 2);
+foo(123, || x * x);
+
+let add_one_v2 = |x: u32| -> u32 { x + 1 };
+let add_one_v3 = |x|             { x + 1 };
+let add_one_v4 = |x|               x + 1  ;
+move || println!("This is a: {}", text)
+
 ----------------------------------------------------
 
 [
 	["closure-params", [
-		["punctuation", "|"],
+		["closure-punctuation", "|"],
 		"x",
 		["punctuation", ":"],
 		" int",
@@ -13,16 +21,112 @@
 		" y",
 		["punctuation", ":"],
 		" int",
-		["punctuation", "|"]
+		["closure-punctuation", "|"]
 	]],
 	["punctuation", "->"],
-	" int ", ["punctuation", "{"], ["punctuation", "}"],
+	" int ",
+	["punctuation", "{"],
+	["punctuation", "}"],
 
 	["closure-params", [
-		["punctuation", "|"],
-		["punctuation", "|"]
+		["closure-punctuation", "|"],
+		["closure-punctuation", "|"]
 	]],
-	["punctuation", "{"], ["punctuation", "}"]
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	"\r\n\r\nvec1",
+	["punctuation", "."],
+	["function", "iter"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "."],
+	["function", "any"],
+	["punctuation", "("],
+	["closure-params", [
+		["closure-punctuation", "|"],
+		["operator", "&"],
+		"x",
+		["closure-punctuation", "|"]
+	]],
+	" x ",
+	["operator", "=="],
+	["number", "2"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["function", "foo"],
+	["punctuation", "("],
+	["number", "123"],
+	["punctuation", ","],
+	["closure-params", [
+		["closure-punctuation", "|"],
+		["closure-punctuation", "|"]
+	]],
+	" x ",
+	["operator", "*"],
+	" x",
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "let"],
+	" add_one_v2 ",
+	["operator", "="],
+	["closure-params", [
+		["closure-punctuation", "|"],
+		"x",
+		["punctuation", ":"],
+		["keyword", "u32"],
+		["closure-punctuation", "|"]
+	]],
+	["punctuation", "->"],
+	["keyword", "u32"],
+	["punctuation", "{"],
+	" x ",
+	["operator", "+"],
+	["number", "1"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["keyword", "let"],
+	" add_one_v3 ",
+	["operator", "="],
+	["closure-params", [
+		["closure-punctuation", "|"],
+		"x",
+		["closure-punctuation", "|"]
+	]],
+	["punctuation", "{"],
+	" x ",
+	["operator", "+"],
+	["number", "1"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["keyword", "let"],
+	" add_one_v4 ",
+	["operator", "="],
+	["closure-params", [
+		["closure-punctuation", "|"],
+		"x",
+		["closure-punctuation", "|"]
+	]],
+	"               x ",
+	["operator", "+"],
+	["number", "1"],
+	["punctuation", ";"],
+
+	["keyword", "move"],
+	["closure-params", [
+		["closure-punctuation", "|"],
+		["closure-punctuation", "|"]
+	]],
+	["macro", "println!"],
+	["punctuation", "("],
+	["string", "\"This is a: {}\""],
+	["punctuation", ","],
+	" text",
+	["punctuation", ")"]
 ]
 
 ----------------------------------------------------

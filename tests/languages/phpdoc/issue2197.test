@@ -1,0 +1,16 @@
+/** @var Git_Driver_Gerrit_ProjectCreator_Factory */
+
+----------------------------------------------------
+
+[
+	"/** ",
+	["keyword", "@var"],
+	["class-name", [
+		"Git_Driver_Gerrit_ProjectCreator_Factory"
+	]],
+	" */"
+]
+
+----------------------------------------------------
+
+Checks exponential backtracking for types. See #2197.

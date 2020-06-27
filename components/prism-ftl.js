@@ -3,11 +3,11 @@
 	// https://freemarker.apache.org/docs/dgui_template_exp.html
 
 	// FTL expression with 4 levels of nesting supported
-	var FTL_EXPR = /(?!<#--)[^()"']|\((?:<expr>)*\)|<#--[\s\S]*?-->|"(?:[^\\"]|\\.)*"|'(?:[^\\']|\\.)*'/.source;
+	var FTL_EXPR = /[^<()"']|\((?:<expr>)*\)|<(?!#--)|<#--(?:[^-]|-(?!->))*-->|"(?:[^\\"]|\\.)*"|'(?:[^\\']|\\.)*'/.source;
 	for (var i = 0; i < 2; i++) {
-		FTL_EXPR = FTL_EXPR.replace(/<expr>/g, FTL_EXPR);
+		FTL_EXPR = FTL_EXPR.replace(/<expr>/g, function () { return FTL_EXPR; });
 	}
-	FTL_EXPR = FTL_EXPR.replace(/<expr>/g, '[^\s\S]');
+	FTL_EXPR = FTL_EXPR.replace(/<expr>/g, /[^\s\S]/.source);
 
 	var ftl = {
 		'comment': /<#--[\s\S]*?-->/,
@@ -18,11 +18,11 @@
 				greedy: true
 			},
 			{
-				pattern: RegExp(/("|')(?:(?!\1|\$\{)[^\\]|\\.|\$\{(?:<expr>)*?\})*\1/.source.replace(/<expr>/g, FTL_EXPR)),
+				pattern: RegExp(/("|')(?:(?!\1|\$\{)[^\\]|\\.|\$\{(?:<expr>)*?\})*\1/.source.replace(/<expr>/g, function () { return FTL_EXPR; })),
 				greedy: true,
 				inside: {
 					'interpolation': {
-						pattern: RegExp(/((?:^|[^\\])(?:\\\\)*)\$\{(?:<expr>)*?\}/.source.replace(/<expr>/g, FTL_EXPR)),
+						pattern: RegExp(/((?:^|[^\\])(?:\\\\)*)\$\{(?:<expr>)*?\}/.source.replace(/<expr>/g, function () { return FTL_EXPR; })),
 						lookbehind: true,
 						inside: {
 							'interpolation-punctuation': {
@@ -86,7 +86,7 @@
 	};
 
 	Prism.hooks.add('before-tokenize', function (env) {
-		var pattern = RegExp(/<#--[\s\S]*?-->|<\/?[#@][a-zA-Z](?:<expr>)*?>|\$\{(?:<expr>)*?\}/.source.replace(/<expr>/g, FTL_EXPR), 'gi');
+		var pattern = RegExp(/<#--[\s\S]*?-->|<\/?[#@][a-zA-Z](?:<expr>)*?>|\$\{(?:<expr>)*?\}/.source.replace(/<expr>/g, function () { return FTL_EXPR; }), 'gi');
 		Prism.languages['markup-templating'].buildPlaceholders(env, 'ftl', pattern);
 	});
 

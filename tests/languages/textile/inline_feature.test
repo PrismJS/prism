@@ -22,6 +22,8 @@ __*a* **b** ??c?? @d@ +e+ -f- %g% ^h^ ~i~__
 -*a* **b** _c_ __d__ ??e?? @f@ +g+ %h% ^i^ ~j~-
 %*a* **b** _c_ __d__ ??e?? @f@ +g+ -h- ^i^ ~j~%
 
+not_italic_ _this_either
+
 ----------------------------------------------------
 
 [
@@ -158,6 +160,10 @@ __*a* **b** ??c?? @d@ +e+ -f- %g% ^h^ ~i~__
 			["inline", [["punctuation", "^"], "i", ["punctuation", "^"]]],
 			["inline", [["punctuation", "~"], "j", ["punctuation", "~"]]]
 		]], ["punctuation", "%"]]]
+	]],
+
+	["phrase", [
+		"not_italic_ _this_either"
 	]]
 ]
 

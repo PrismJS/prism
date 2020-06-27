@@ -7,6 +7,16 @@ ceil
 chr
 class
 cos
+comobjactive
+comobjarray
+comobjconnect
+comobjcreate
+comobjerror
+comobjflags
+comobjget
+comobjquery
+comobjtype
+comobjvalue
 dllcall
 exp
 fileexist
@@ -22,6 +32,8 @@ islabel
 IsObject
 ln
 log
+ltrim
+rtrim
 lv_add
 lv_delete
 lv_deletecol
@@ -45,6 +57,7 @@ sin
 tan
 sqrt
 strlen
+strreplace
 sb_seticon
 sb_setparts
 sb_settext
@@ -80,6 +93,16 @@ __Set
 	["builtin", "chr"],
 	["builtin", "class"],
 	["builtin", "cos"],
+	["builtin", "comobjactive"],
+	["builtin", "comobjarray"],
+	["builtin", "comobjconnect"],
+	["builtin", "comobjcreate"],
+	["builtin", "comobjerror"],
+	["builtin", "comobjflags"],
+	["builtin", "comobjget"],
+	["builtin", "comobjquery"],
+	["builtin", "comobjtype"],
+	["builtin", "comobjvalue"],
 	["builtin", "dllcall"],
 	["builtin", "exp"],
 	["builtin", "fileexist"],
@@ -95,6 +118,8 @@ __Set
 	["builtin", "IsObject"],
 	["builtin", "ln"],
 	["builtin", "log"],
+	["builtin", "ltrim"],
+	["builtin", "rtrim"],
 	["builtin", "lv_add"],
 	["builtin", "lv_delete"],
 	["builtin", "lv_deletecol"],
@@ -118,6 +143,7 @@ __Set
 	["builtin", "tan"],
 	["builtin", "sqrt"],
 	["builtin", "strlen"],
+	["builtin", "strreplace"],
 	["builtin", "sb_seticon"],
 	["builtin", "sb_setparts"],
 	["builtin", "sb_settext"],

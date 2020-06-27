@@ -1,0 +1,19 @@
+# Python style comments, starting with a '#' and extending to the end of the line
+
+// Java style comments, extending to the end of the line after the '//'
+
+/*
+ C style block comments, possibly spanning multiple lines
+*/
+
+----------------------------------------------------
+
+[
+	["comment", "# Python style comments, starting with a '#' and extending to the end of the line"],
+	["comment", "// Java style comments, extending to the end of the line after the '//'"],
+	["comment", "/*\r\n C style block comments, possibly spanning multiple lines\r\n*/"]
+]
+
+----------------------------------------------------
+
+Checks for comments.

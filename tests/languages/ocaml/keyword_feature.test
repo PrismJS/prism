@@ -26,21 +26,22 @@ method
 module
 mutable
 new
+nonrec
 object
 of
 open
-prefix
 private
 rec
-then
 sig
 struct
+then
 to
 try
 type
 val
 value
 virtual
+when
 where
 while
 with
@@ -76,21 +77,22 @@ with
 	["keyword", "module"],
 	["keyword", "mutable"],
 	["keyword", "new"],
+	["keyword", "nonrec"],
 	["keyword", "object"],
 	["keyword", "of"],
 	["keyword", "open"],
-	["keyword", "prefix"],
 	["keyword", "private"],
 	["keyword", "rec"],
-	["keyword", "then"],
 	["keyword", "sig"],
 	["keyword", "struct"],
+	["keyword", "then"],
 	["keyword", "to"],
 	["keyword", "try"],
 	["keyword", "type"],
 	["keyword", "val"],
 	["keyword", "value"],
 	["keyword", "virtual"],
+	["keyword", "when"],
 	["keyword", "where"],
 	["keyword", "while"],
 	["keyword", "with"]

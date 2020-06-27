@@ -7,6 +7,9 @@
 REM
 REM Foobar
 
+' multi-line _
+  comment
+
 ----------------------------------------------------
 
 [
@@ -17,7 +20,8 @@ REM Foobar
 	["comment", ["’"]],
 	["comment", ["’ Foobar"]],
 	["comment", [["keyword", "REM"]]],
-	["comment", [["keyword", "REM"], " Foobar"]]
+	["comment", [["keyword", "REM"], " Foobar"]],
+	["comment", ["' multi-line _\r\n  comment"]]
 ]
 
 ----------------------------------------------------
