@@ -80,6 +80,10 @@
 			"title": "ABAP",
 			"owner": "dellagustin"
 		},
+		"abnf": {
+			"title": "ABNF",
+			"owner": "RunDevelopment"
+		},
 		"actionscript": {
 			"title": "ActionScript",
 			"require": "javascript",
@@ -142,10 +146,6 @@
 			"title": "6502 Assembly",
 			"owner": "kzurawel"
 		},
-		"abnf": {
-			"title": "Augmented Backus–Naur form",
-			"owner": "RunDevelopment"
-		},
 		"autohotkey": {
 			"title": "AutoHotkey",
 			"owner": "aviaryan"
@@ -153,14 +153,6 @@
 		"autoit": {
 			"title": "AutoIt",
 			"owner": "Golmote"
-		},
-		"bnf": {
-			"title": "Backus–Naur form",
-			"alias": "rbnf",
-			"aliasTitles": {
-				"rbnf": "Routing Backus–Naur form"
-			},
-			"owner": "RunDevelopment"
 		},
 		"bash": {
 			"title": "Bash",
@@ -190,6 +182,14 @@
 			"title": "Bison",
 			"require": "c",
 			"owner": "Golmote"
+		},
+		"bnf": {
+			"title": "BNF",
+			"alias": "rbnf",
+			"aliasTitles": {
+				"rbnf": "RBNF"
+			},
+			"owner": "RunDevelopment"
 		},
 		"brainfuck": {
 			"title": "Brainfuck",
@@ -291,6 +291,10 @@
 			"alias": "dockerfile",
 			"owner": "JustinBeckwith"
 		},
+		"ebnf": {
+			"title": "EBNF",
+			"owner": "RunDevelopment"
+		},
 		"eiffel": {
 			"title": "Eiffel",
 			"owner": "Conaclos"
@@ -329,10 +333,6 @@
 		"excel-formula": {
 			"title": "Excel Formula",
 			"alias": ["xlsx", "xls"],
-			"owner": "RunDevelopment"
-		},
-		"ebnf": {
-			"title": "Extended Backus–Naur form",
 			"owner": "RunDevelopment"
 		},
 		"fsharp": {
