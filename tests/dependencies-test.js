@@ -301,4 +301,36 @@ describe('components.json', function () {
 		}
 	});
 
+	it('- should have a sorted language list', function () {
+		const ignore = new Set(['meta', 'markup', 'css', 'clike', 'javascript']);
+		/** @type {{ id: string, title: string }[]} */
+		const languages = Object.keys(components.languages).filter(key => !ignore.has(key)).map(key => {
+			return {
+				id: key,
+				title: components.languages[key].title
+			};
+		});
+
+		/**
+		 * Transforms the given title into an intermediate representation to allowed for sensible comparisons
+		 * between titles.
+		 *
+		 * @param {string} title
+		 */
+		function transformTitle(title) {
+			return title.replace(/\W+/g, '').replace(/^\d+/, '').toLowerCase();
+		}
+
+		const sorted = [...languages].sort((a, b) => {
+			const comp = transformTitle(a.title).localeCompare(transformTitle(b.title));
+			if (comp !== 0) {
+				return comp;
+			}
+			// a and b have the same intermediate form (e.g. "C" => "C", "C++" => "C", "C#" => "C").
+			a.title.toLowerCase().localeCompare(b.title.toLowerCase())
+		});
+
+		assert.sameOrderedMembers(languages, sorted);
+	});
+
 });
