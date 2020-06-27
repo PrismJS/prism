@@ -304,8 +304,7 @@
 			return true;
 		}
 
-		// has already been loaded
-		// this will catch extensions like CSS extras which don't add a grammar to Prism.languages
+		// this will catch extensions like CSS extras that don't add a grammar to Prism.languages
 		var data = lang_data[lang];
 		return data && !data.error && data.loading === false;
 	}
