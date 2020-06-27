@@ -6,7 +6,12 @@ const jsdoc = require('gulp-jsdoc3');
 const pump = require('pump');
 const del = require('del');
 
-const paths = require('./paths');
+const jsDoc = {
+	config: '../.jsdoc.json',
+	readme: 'README.md',
+	files: ['components/prism-core.js'],
+	junk: ['docs/fonts/Source-Sans-Pro', 'docs/**/Apache-License-2.0.txt']
+};
 
 
 function docsClean() {
@@ -20,27 +25,27 @@ function docsClean() {
 }
 
 function docsCreate(cb) {
-	var config = require(paths.jsDoc.config);
-	var files = [paths.jsDoc.readme].concat(paths.jsDoc.files);
+	var config = require(jsDoc.config);
+	var files = [jsDoc.readme].concat(jsDoc.files);
 	src(files, { read: false }).pipe(jsdoc(config, cb));
 }
 
-function docsAddCSSOverwrites(cb) {
+function docsAddFavicon(cb) {
 	return pump([
 		src('docs/*.html'),
 		replace(
 			/\s*<\/head>/,
-			'\n    <link type="text/css" rel="stylesheet" href="styles/overwrites.css">$&'
+			'\n    <link rel="icon" type="image/png" href="/favicon.png"/>$&'
 		),
 		dest('docs/')
 	], cb);
 }
 
 function docsRemoveExcessFiles() {
-	return del(paths.jsDoc.junk);
+	return del(jsDoc.junk);
 }
 
-const docs = series(docsClean, docsCreate, docsRemoveExcessFiles, docsAddCSSOverwrites);
+const docs = series(docsClean, docsCreate, docsRemoveExcessFiles, docsAddFavicon);
 
 module.exports = {
 	docs,

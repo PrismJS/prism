@@ -15,11 +15,5 @@ module.exports = {
 	plugins: ['plugins/**/*.js', '!plugins/**/*.min.js'],
 	showLanguagePlugin: 'plugins/show-language/prism-show-language.js',
 	autoloaderPlugin: 'plugins/autoloader/prism-autoloader.js',
-	changelog: 'CHANGELOG.md',
-	jsDoc: {
-		config: '../.jsdoc.json',
-		readme: 'README.md',
-		files: ['components/prism-core.js'],
-		junk: ['docs/fonts', 'docs/**/Apache-License-2.0.txt', 'docs/styles/prettify-jsdoc.css']
-	}
+	changelog: 'CHANGELOG.md'
 };

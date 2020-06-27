@@ -1,19 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>prism-core.js - Documentation</title>
-
+    
+    
+    <meta property="og:title" content="Prism generated API documentation"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content="/logo.svg"/>
+    <meta property="og:site_name" content="Prism"/>
+    <meta property="og:url" content="https://prismjs.com"/>
+    
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
-    <link type="text/css" rel="stylesheet" href="styles/overwrites.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/favicon.png"/>
 </head>
 <body>
 
@@ -24,8 +32,11 @@
 
 <label for="nav-trigger" class="overlay"></label>
 
-<nav>
-    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Token.html">Token</a></span></li><li class="nav-heading">Namespaces</li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Prism.html">Prism</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.html#.highlight">highlight</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.html#.highlightAll">highlightAll</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.html#.highlightAllUnder">highlightAllUnder</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.html#.highlightElement">highlightElement</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.html#.tokenize">tokenize</a></span></li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Prism.hooks.html">hooks</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.hooks.html#.add">add</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.hooks.html#.run">run</a></span></li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Prism.languages.html">languages</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.languages.html#.extend">extend</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.languages.html#.insertBefore">insertBefore</a></span></li><li class="nav-heading"><a href="global.html">Globals</a></li>
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    <h2><a href="index.html">Home</a></h2><h2><a href="https://prismjs.com" class="menu-item" id="website_link" >PrismJS</a></h2><h2><a href="https://github.com/PrismJS/prism" target="_blank" class="menu-item" id="github_link" >GitHub</a></h2><h3>Classes</h3><ul><li><a href="Token.html">Token</a></li></ul><h3>Namespaces</h3><ul><li><a href="Prism.html">Prism</a><ul class='members'><li data-type='member'><a href="Prism.html#.manual">manual</a></li></ul><ul class='methods'><li data-type='method'><a href="Prism.html#.highlight">highlight</a></li><li data-type='method'><a href="Prism.html#.highlightAll">highlightAll</a></li><li data-type='method'><a href="Prism.html#.highlightAllUnder">highlightAllUnder</a></li><li data-type='method'><a href="Prism.html#.highlightElement">highlightElement</a></li><li data-type='method'><a href="Prism.html#.tokenize">tokenize</a></li></ul></li><li><a href="Prism.hooks.html">hooks</a><ul class='methods'><li data-type='method'><a href="Prism.hooks.html#.add">add</a></li><li data-type='method'><a href="Prism.hooks.html#.run">run</a></li></ul></li><li><a href="Prism.languages.html">languages</a><ul class='methods'><li data-type='method'><a href="Prism.languages.html#.extend">extend</a></li><li data-type='method'><a href="Prism.languages.html#.insertBefore">insertBefore</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#Grammar">Grammar</a></li><li><a href="global.html#HighlightCallback">HighlightCallback</a></li><li><a href="global.html#HookCallback">HookCallback</a></li><li><a href="global.html#TokenObject">TokenObject</a></li></ul>
 </nav>
 
 <div id="main">
@@ -52,12 +63,12 @@ var _self = (typeof window !== 'undefined')
 
 /**
  * Prism: Lightweight, robust, elegant syntax highlighting
- * @license MIT license http://www.opensource.org/licenses/mit-license.php/
- * @author Lea Verou &lt;http://lea.verou.me>
+ *
+ * @license MIT &lt;https://opensource.org/licenses/MIT>
+ * @author Lea Verou &lt;https://lea.verou.me>
  * @namespace
  * @public
  */
-
 var Prism = (function (_self){
 
 // Private helper vars
@@ -66,12 +77,35 @@ var uniqueId = 0;
 
 
 var _ = {
+	/**
+	 * By default, Prism will attempt to highlight all code elements (by calling {@link Prism.highlightAll}) on the
+	 * current page after the page finished loading. This might be a problem if e.g. you wanted to asynchronously load
+	 * additional languages or plugins yourself.
+	 *
+	 * By setting this value to `true`, Prism will not automatically highlight all code elements on the page.
+	 *
+	 * You obviously have to change this value before the automatic highlighting started. To do this, you can add an
+	 * empty Prism object into the global scope before loading the Prism script like this:
+	 *
+	 * ```js
+	 * window.Prism = window.Prism || {};
+	 * Prism.manual = true;
+	 * // add a new &lt;script> to load Prism's script
+	 * ```
+	 *
+	 * @default false
+	 * @type {boolean}
+	 * @memberof Prism
+	 * @public
+	 */
 	manual: _self.Prism &amp;&amp; _self.Prism.manual,
 	disableWorkerMessageHandler: _self.Prism &amp;&amp; _self.Prism.disableWorkerMessageHandler,
+
 	/**
 	 * A namespace for utility methods.
 	 *
-	 * Almost all function in this namespace are for __internal use only__.
+	 * All function in this namespace that are not explicitly marked as _public_ are for __internal use only__ and may
+	 * change or disappear at any time.
 	 *
 	 * @namespace
 	 * @memberof Prism
@@ -90,9 +124,9 @@ var _ = {
 		/**
 		 * Returns the name of the type of the given value.
 		 *
-		 * Examples:
-		 *
-		 * ```js
+		 * @param {any} o
+		 * @returns {string}
+		 * @example
 		 * type(null)      === 'Null'
 		 * type(undefined) === 'Undefined'
 		 * type(123)       === 'Number'
@@ -102,10 +136,6 @@ var _ = {
 		 * type({})        === 'Object'
 		 * type(String)    === 'Function'
 		 * type(/abc+/)    === 'RegExp'
-		 * ```
-		 *
-		 * @param {any} o
-		 * @returns {string}
 		 */
 		type: function (o) {
 			return Object.prototype.toString.call(o).slice(8, -1);
@@ -390,6 +420,7 @@ var _ = {
 			}
 		}
 	},
+
 	plugins: {},
 
 	/**
@@ -551,7 +582,7 @@ var _ = {
 	 * @memberof Prism
 	 * @public
 	 * @example
-	 * Prism.highlight('var foo = true;', Prism.languages.js, 'js');
+	 * Prism.highlight('var foo = true;', Prism.languages.javascript, 'javascript');
 	 */
 	highlight: function (text, grammar, language) {
 		var env = {
@@ -1006,7 +1037,7 @@ if (!_self.document) {
 	return _;
 }
 
-//Get current script and highlight
+// Get current script and highlight
 var script = _.util.currentScript();
 
 if (script) {
@@ -1066,18 +1097,21 @@ if (typeof global !== 'undefined') {
  * behave as a lookbehind group meaning that the captured text will not be part of the matched text of the new token.
  * @property {boolean} [greedy=false] Whether the token is greedy.
  * @property {string|string[]} [alias] An optional alias or list of aliases.
- * @property {Grammar} [inside] The nested tokens of this token.
+ * @property {Grammar} [inside] The nested grammar of this token.
  *
- * This can be used for recursive language definitions.
+ * The `inside` grammar will be used to tokenize the text value of each token of this kind.
  *
- * Note that this can cause infinite recursion.
+ * This can be used to make nested and even recursive language definitions.
+ *
+ * Note: This can cause infinite recursion. Be careful when you embed different languages or even the same language into
+ * each another.
  * @public
 */
 
 /**
  * @typedef Grammar
  * @type {Object&lt;string, RegExp | TokenObject | Array&lt;RegExp | TokenObject>>}
- * @property {Grammar} [rest] An optional grammar object that will appended to this grammar.
+ * @property {Grammar} [rest] An optional grammar object that will be appended to this grammar.
  * @public
  */
 
@@ -1103,15 +1137,25 @@ if (typeof global !== 'undefined') {
 
 
 
+    
+    
 </div>
 
 <br class="clear">
 
 <footer>
-    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.4</a> using the Minami theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.4</a> using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
 <script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+
+    <link type="text/css" rel="stylesheet" href="styles/overwrites.css">
+    
 </body>
 </html>

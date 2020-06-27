@@ -10,12 +10,12 @@ var _self = (typeof window !== 'undefined')
 
 /**
  * Prism: Lightweight, robust, elegant syntax highlighting
+ *
  * @license MIT <https://opensource.org/licenses/MIT>
  * @author Lea Verou <https://lea.verou.me>
  * @namespace
  * @public
  */
-
 var Prism = (function (_self){
 
 // Private helper vars
@@ -24,12 +24,35 @@ var uniqueId = 0;
 
 
 var _ = {
+	/**
+	 * By default, Prism will attempt to highlight all code elements (by calling {@link Prism.highlightAll}) on the
+	 * current page after the page finished loading. This might be a problem if e.g. you wanted to asynchronously load
+	 * additional languages or plugins yourself.
+	 *
+	 * By setting this value to `true`, Prism will not automatically highlight all code elements on the page.
+	 *
+	 * You obviously have to change this value before the automatic highlighting started. To do this, you can add an
+	 * empty Prism object into the global scope before loading the Prism script like this:
+	 *
+	 * ```js
+	 * window.Prism = window.Prism || {};
+	 * Prism.manual = true;
+	 * // add a new <script> to load Prism's script
+	 * ```
+	 *
+	 * @default false
+	 * @type {boolean}
+	 * @memberof Prism
+	 * @public
+	 */
 	manual: _self.Prism && _self.Prism.manual,
 	disableWorkerMessageHandler: _self.Prism && _self.Prism.disableWorkerMessageHandler,
+
 	/**
 	 * A namespace for utility methods.
 	 *
-	 * Almost all function in this namespace are for __internal use only__.
+	 * All function in this namespace that are not explicitly marked as _public_ are for __internal use only__ and may
+	 * change or disappear at any time.
 	 *
 	 * @namespace
 	 * @memberof Prism
@@ -48,9 +71,9 @@ var _ = {
 		/**
 		 * Returns the name of the type of the given value.
 		 *
-		 * Examples:
-		 *
-		 * ```js
+		 * @param {any} o
+		 * @returns {string}
+		 * @example
 		 * type(null)      === 'Null'
 		 * type(undefined) === 'Undefined'
 		 * type(123)       === 'Number'
@@ -60,10 +83,6 @@ var _ = {
 		 * type({})        === 'Object'
 		 * type(String)    === 'Function'
 		 * type(/abc+/)    === 'RegExp'
-		 * ```
-		 *
-		 * @param {any} o
-		 * @returns {string}
 		 */
 		type: function (o) {
 			return Object.prototype.toString.call(o).slice(8, -1);
@@ -348,6 +367,7 @@ var _ = {
 			}
 		}
 	},
+
 	plugins: {},
 
 	/**
@@ -509,7 +529,7 @@ var _ = {
 	 * @memberof Prism
 	 * @public
 	 * @example
-	 * Prism.highlight('var foo = true;', Prism.languages.js, 'js');
+	 * Prism.highlight('var foo = true;', Prism.languages.javascript, 'javascript');
 	 */
 	highlight: function (text, grammar, language) {
 		var env = {
@@ -964,7 +984,7 @@ if (!_self.document) {
 	return _;
 }
 
-//Get current script and highlight
+// Get current script and highlight
 var script = _.util.currentScript();
 
 if (script) {
@@ -1024,18 +1044,21 @@ if (typeof global !== 'undefined') {
  * behave as a lookbehind group meaning that the captured text will not be part of the matched text of the new token.
  * @property {boolean} [greedy=false] Whether the token is greedy.
  * @property {string|string[]} [alias] An optional alias or list of aliases.
- * @property {Grammar} [inside] The nested tokens of this token.
+ * @property {Grammar} [inside] The nested grammar of this token.
  *
- * This can be used for recursive language definitions.
+ * The `inside` grammar will be used to tokenize the text value of each token of this kind.
  *
- * Note that this can cause infinite recursion.
+ * This can be used to make nested and even recursive language definitions.
+ *
+ * Note: This can cause infinite recursion. Be careful when you embed different languages or even the same language into
+ * each another.
  * @public
 */
 
 /**
  * @typedef Grammar
  * @type {Object<string, RegExp | TokenObject | Array<RegExp | TokenObject>>}
- * @property {Grammar} [rest] An optional grammar object that will appended to this grammar.
+ * @property {Grammar} [rest] An optional grammar object that will be appended to this grammar.
  * @public
  */
 

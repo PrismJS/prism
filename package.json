@@ -6,7 +6,7 @@
   "style": "themes/prism.css",
   "scripts": {
     "build": "gulp",
-    "build-docs": "gulp docs",
+    "generate-docs": "gulp docs",
     "test:aliases": "mocha tests/aliases-test.js",
     "test:core": "mocha tests/core/**/*.js",
     "test:dependencies": "mocha tests/dependencies-test.js",
@@ -35,6 +35,7 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "del": "^4.1.1",
+    "docdash": "^1.2.0",
     "gulp": "^4.0.2",
     "gulp-concat": "^2.3.4",
     "gulp-header": "^2.0.7",
@@ -44,7 +45,6 @@
     "gulp-uglify": "^3.0.1",
     "htmlparser2": "^4.0.0",
     "jsdom": "^13.0.0",
-    "minami": "^1.2.3",
     "mocha": "^6.2.0",
     "pump": "^3.0.0",
     "regexpp": "^2.0.1",

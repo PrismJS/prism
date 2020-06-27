@@ -1,19 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>languages - Documentation</title>
-
+    
+    
+    <meta property="og:title" content="Prism generated API documentation"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content="/logo.svg"/>
+    <meta property="og:site_name" content="Prism"/>
+    <meta property="og:url" content="https://prismjs.com"/>
+    
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
-    <link type="text/css" rel="stylesheet" href="styles/overwrites.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/favicon.png"/>
 </head>
 <body>
 
@@ -24,8 +32,11 @@
 
 <label for="nav-trigger" class="overlay"></label>
 
-<nav>
-    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Token.html">Token</a></span></li><li class="nav-heading">Namespaces</li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Prism.html">Prism</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.html#.highlight">highlight</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.html#.highlightAll">highlightAll</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.html#.highlightAllUnder">highlightAllUnder</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.html#.highlightElement">highlightElement</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.html#.tokenize">tokenize</a></span></li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Prism.hooks.html">hooks</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.hooks.html#.add">add</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.hooks.html#.run">run</a></span></li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Prism.languages.html">languages</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.languages.html#.extend">extend</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.languages.html#.insertBefore">insertBefore</a></span></li><li class="nav-heading"><a href="global.html">Globals</a></li>
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    <h2><a href="index.html">Home</a></h2><h2><a href="https://prismjs.com" class="menu-item" id="website_link" >PrismJS</a></h2><h2><a href="https://github.com/PrismJS/prism" target="_blank" class="menu-item" id="github_link" >GitHub</a></h2><h3>Classes</h3><ul><li><a href="Token.html">Token</a></li></ul><h3>Namespaces</h3><ul><li><a href="Prism.html">Prism</a><ul class='members'><li data-type='member'><a href="Prism.html#.manual">manual</a></li></ul><ul class='methods'><li data-type='method'><a href="Prism.html#.highlight">highlight</a></li><li data-type='method'><a href="Prism.html#.highlightAll">highlightAll</a></li><li data-type='method'><a href="Prism.html#.highlightAllUnder">highlightAllUnder</a></li><li data-type='method'><a href="Prism.html#.highlightElement">highlightElement</a></li><li data-type='method'><a href="Prism.html#.tokenize">tokenize</a></li></ul></li><li><a href="Prism.hooks.html">hooks</a><ul class='methods'><li data-type='method'><a href="Prism.hooks.html#.add">add</a></li><li data-type='method'><a href="Prism.hooks.html#.run">run</a></li></ul></li><li><a href="Prism.languages.html">languages</a><ul class='methods'><li data-type='method'><a href="Prism.languages.html#.extend">extend</a></li><li data-type='method'><a href="Prism.languages.html#.insertBefore">insertBefore</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#Grammar">Grammar</a></li><li><a href="global.html#HighlightCallback">HighlightCallback</a></li><li><a href="global.html#HookCallback">HookCallback</a></li><li><a href="global.html#TokenObject">TokenObject</a></li></ul>
 </nav>
 
 <div id="main">
@@ -52,46 +63,42 @@
 </header>
 
 <article>
-    <div class="container-overview">
     
+        <div class="container-overview">
         
-            <div class="description"><p>This namespace contains all currently loaded languages and the some helper functions to create and modify languages.</p></div>
-        
-
-        
-
+            
 
 <dl class="details">
 
     
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line238">line 238</a>
+        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line257">line 257</a>
     </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
     
 
     
@@ -102,14 +109,23 @@
 </dl>
 
 
+
+
+            
+                <div class="description usertext"><p>This namespace contains all currently loaded languages and the some helper functions to create and modify languages.</p></div>
+            
+
+            
         
-    
-    </div>
-
+        </div>
     
 
     
 
+    
+
+    
+    
     
 
      
@@ -123,7 +139,6 @@
 
         
             
-<div class="section-method">
 
     
 
@@ -133,47 +148,38 @@
 
 
 
-<div class="description">
-    <p>Creates a deep copy of the language with the given id and appends the given tokens.</p>
-<p>If a token in <code>redef</code> also appears in the copied language, then the existing token in the copied language
-will be overwritten at its original position.</p>
-</div>
-
-
-
-
 
 <dl class="details">
 
     
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line254">line 254</a>
+        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line273">line 273</a>
     </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
     
 
     
@@ -187,6 +193,25 @@ will be overwritten at its original position.</p>
 
 
 
+<div class="description usertext">
+    <p>Creates a deep copy of the language with the given id and appends the given tokens.</p>
+<p>If a token in <code>redef</code> also appears in the copied language, then the existing token in the copied language
+will be overwritten at its original position.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>Prism.languages['css-with-colors'] = Prism.languages.extend('css', {
+    'color': /\b(?:red|green|blue)\b/
+});</code></pre>
 
 
 
@@ -222,7 +247,7 @@ will be overwritten at its original position.</p>
             <td class="type">
             
                 
-<span class="param-type"><code>string</code></span>
+<span class="param-type">string</span>
 
 
             
@@ -232,10 +257,7 @@ will be overwritten at its original position.</p>
 
             
 
-            <td class="description last">
-                <p>The id of the language to extend. This has to be a key in <code>Prism.languages</code>.</p>
-                
-            </td>
+            <td class="description last"><p>The id of the language to extend. This has to be a key in <code>Prism.languages</code>.</p></td>
         </tr>
 
     
@@ -248,7 +270,7 @@ will be overwritten at its original position.</p>
             <td class="type">
             
                 
-<span class="param-type"><code><a href="global.html#Grammar">Grammar</a></code></span>
+<span class="param-type"><a href="global.html#Grammar">Grammar</a></span>
 
 
             
@@ -258,10 +280,7 @@ will be overwritten at its original position.</p>
 
             
 
-            <td class="description last">
-                <p>The new tokens to append.</p>
-                
-            </td>
+            <td class="description last"><p>The new tokens to append.</p></td>
         </tr>
 
     
@@ -281,46 +300,35 @@ will be overwritten at its original position.</p>
 
 
 
-<div class="section-returns">
+
+
 <h5>Returns:</h5>
 
         
+<div class="param-desc">
+    <p>The new language created.</p>
+</div>
+
+
 
 <dl class="param-type">
     <dt>
-        Type:
+        Type
     </dt>
     <dd>
         
-<span class="param-type"><code><a href="global.html#Grammar">Grammar</a></code></span>
+<span class="param-type"><a href="global.html#Grammar">Grammar</a></span>
 
 
     </dd>
 </dl>
 
-
-<div class="param-desc">
-    <p>The new language created.</p>
-</div>
-
     
-</div>
 
 
 
-<div class="section-examples">
-<h5>Example</h5>
-
-    <pre class="prettyprint"><code>Prism.languages['css-with-colors'] = Prism.languages.extend('css', {
-    'color': /\b(?:red|green|blue)\b/
-});</code></pre>
-
-</div>
-
-</div>
         
             
-<div class="section-method">
 
     
 
@@ -330,7 +338,52 @@ will be overwritten at its original position.</p>
 
 
 
-<div class="description">
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line308">line 308</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
     <p>Inserts tokens <em>before</em> another token in a language definition or any other grammar.</p>
 <p>As this needs to recreate the object (we cannot actually insert before keys in object literals),
 we cannot just provide an object, we need an object and a key.</p>
@@ -342,50 +395,15 @@ we cannot just provide an object, we need an object and a key.</p>
 
 
 
-<dl class="details">
 
+
+
+
+    <h5>Example</h5>
     
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line289">line 289</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
+    <pre class="prettyprint"><code>Prism.languages.insertBefore('markup', 'cdata', {
+    'style': { ... }
+});</code></pre>
 
 
 
@@ -423,7 +441,7 @@ we cannot just provide an object, we need an object and a key.</p>
             <td class="type">
             
                 
-<span class="param-type"><code>string</code></span>
+<span class="param-type">string</span>
 
 
             
@@ -441,11 +459,8 @@ we cannot just provide an object, we need an object and a key.</p>
 
             
 
-            <td class="description last">
-                <p>The property of <code>root</code> that contains the object to be modified.</p>
-<p>This is usually a language id.</p>
-                
-            </td>
+            <td class="description last"><p>The property of <code>root</code> that contains the object to be modified.</p>
+<p>This is usually a language id.</p></td>
         </tr>
 
     
@@ -458,7 +473,7 @@ we cannot just provide an object, we need an object and a key.</p>
             <td class="type">
             
                 
-<span class="param-type"><code>string</code></span>
+<span class="param-type">string</span>
 
 
             
@@ -476,10 +491,7 @@ we cannot just provide an object, we need an object and a key.</p>
 
             
 
-            <td class="description last">
-                <p>The key to insert before.</p>
-                
-            </td>
+            <td class="description last"><p>The key to insert before.</p></td>
         </tr>
 
     
@@ -492,7 +504,7 @@ we cannot just provide an object, we need an object and a key.</p>
             <td class="type">
             
                 
-<span class="param-type"><code><a href="global.html#Grammar">Grammar</a></code></span>
+<span class="param-type"><a href="global.html#Grammar">Grammar</a></span>
 
 
             
@@ -510,10 +522,7 @@ we cannot just provide an object, we need an object and a key.</p>
 
             
 
-            <td class="description last">
-                <p>An object containing the key-value pairs to be inserted.</p>
-                
-            </td>
+            <td class="description last"><p>An object containing the key-value pairs to be inserted.</p></td>
         </tr>
 
     
@@ -526,7 +535,7 @@ we cannot just provide an object, we need an object and a key.</p>
             <td class="type">
             
                 
-<span class="param-type"><code>Object.&lt;string, <a href="global.html#Grammar">Grammar</a>></code></span>
+<span class="param-type">Object.&lt;string, <a href="global.html#Grammar">Grammar</a>></span>
 
 
             
@@ -546,11 +555,8 @@ we cannot just provide an object, we need an object and a key.</p>
 
             
 
-            <td class="description last">
-                <p>The object containing <code>inside</code>, i.e. the object that contains the object that will be modified.</p>
-<p>Defaults to <code>Prism.languages</code>.</p>
-                
-            </td>
+            <td class="description last"><p>The object containing <code>inside</code>, i.e. the object that contains the object that will be modified.</p>
+<p>Defaults to <code>Prism.languages</code>.</p></td>
         </tr>
 
     
@@ -570,43 +576,33 @@ we cannot just provide an object, we need an object and a key.</p>
 
 
 
-<div class="section-returns">
+
+
 <h5>Returns:</h5>
 
         
+<div class="param-desc">
+    <p>The new grammar created.</p>
+</div>
+
+
 
 <dl class="param-type">
     <dt>
-        Type:
+        Type
     </dt>
     <dd>
         
-<span class="param-type"><code><a href="global.html#Grammar">Grammar</a></code></span>
+<span class="param-type"><a href="global.html#Grammar">Grammar</a></span>
 
 
     </dd>
 </dl>
 
-
-<div class="param-desc">
-    <p>The new grammar created.</p>
-</div>
-
     
-</div>
 
 
 
-<div class="section-examples">
-<h5>Example</h5>
-
-    <pre class="prettyprint"><code>Prism.languages.insertBefore('markup', 'cdata', {
-    'style': { ... }
-});</code></pre>
-
-</div>
-
-</div>
         
     
 
@@ -620,15 +616,25 @@ we cannot just provide an object, we need an object and a key.</p>
 
 
 
+    
+    
 </div>
 
 <br class="clear">
 
 <footer>
-    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.4</a> using the Minami theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.4</a> using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
 <script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+
+    <link type="text/css" rel="stylesheet" href="styles/overwrites.css">
+    
 </body>
 </html>

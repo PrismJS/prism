@@ -1,3 +1,7 @@
-.prettyprint code:empty:before {
-  content: '\20'; /* This fixes the issue that empty lines were not displayed */
+pre.prettyprint > ol.linenums {
+	margin-bottom: 1em;
+}
+
+.description > *:not(pre) {
+	max-width: 60em;
 }

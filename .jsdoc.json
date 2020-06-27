@@ -5,7 +5,9 @@
 	],
 	"opts": {
 		"destination": "./docs",
-		"template": "./node_modules/minami",
+		"encoding": "utf8",
+		"template": "./node_modules/docdash",
+		"verbose": true,
 		"access": [
 			"public",
 			"protected"
@@ -28,6 +30,38 @@
 		"monospaceLinks": true,
 		"default": {
 			"includeDate": false
+		}
+	},
+	"docdash": {
+		"static": true,
+		"sort": true,
+		"search": true,
+		"collapse": false,
+		"wrap": false,
+		"typedefs": true,
+		"private": false,
+		"scripts": [
+			"styles/overwrites.css"
+		],
+		"openGraph": {
+			"title": "Prism generated API documentation",
+			"type": "website",
+			"image": "/logo.svg",
+			"site_name": "Prism",
+			"url": "https://prismjs.com"
+		},
+		"menu": {
+			"PrismJS": {
+				"href": "https://prismjs.com",
+				"class": "menu-item",
+				"id": "website_link"
+			},
+			"GitHub": {
+				"href": "https://github.com/PrismJS/prism",
+				"target": "_blank",
+				"class": "menu-item",
+				"id": "github_link"
+			}
 		}
 	}
 }

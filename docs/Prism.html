@@ -1,19 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Prism - Documentation</title>
-
+    
+    
+    <meta property="og:title" content="Prism generated API documentation"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content="/logo.svg"/>
+    <meta property="og:site_name" content="Prism"/>
+    <meta property="og:url" content="https://prismjs.com"/>
+    
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
     <!--[if lt IE 9]>
       <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <link type="text/css" rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
-    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
-    <link type="text/css" rel="stylesheet" href="styles/overwrites.css">
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="/favicon.png"/>
 </head>
 <body>
 
@@ -24,8 +32,11 @@
 
 <label for="nav-trigger" class="overlay"></label>
 
-<nav>
-    <li class="nav-link nav-home-link"><a href="index.html">Home</a></li><li class="nav-heading">Classes</li><li class="nav-heading"><span class="nav-item-type type-class">C</span><span class="nav-item-name"><a href="Token.html">Token</a></span></li><li class="nav-heading">Namespaces</li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Prism.html">Prism</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.html#.highlight">highlight</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.html#.highlightAll">highlightAll</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.html#.highlightAllUnder">highlightAllUnder</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.html#.highlightElement">highlightElement</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.html#.tokenize">tokenize</a></span></li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Prism.hooks.html">hooks</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.hooks.html#.add">add</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.hooks.html#.run">run</a></span></li><li class="nav-heading"><span class="nav-item-type type-namespace">N</span><span class="nav-item-name"><a href="Prism.languages.html">languages</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.languages.html#.extend">extend</a></span></li><li class="nav-item"><span class="nav-item-type type-function">F</span><span class="nav-item-name"><a href="Prism.languages.html#.insertBefore">insertBefore</a></span></li><li class="nav-heading"><a href="global.html">Globals</a></li>
+<nav >
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    <h2><a href="index.html">Home</a></h2><h2><a href="https://prismjs.com" class="menu-item" id="website_link" >PrismJS</a></h2><h2><a href="https://github.com/PrismJS/prism" target="_blank" class="menu-item" id="github_link" >GitHub</a></h2><h3>Classes</h3><ul><li><a href="Token.html">Token</a></li></ul><h3>Namespaces</h3><ul><li><a href="Prism.html">Prism</a><ul class='members'><li data-type='member'><a href="Prism.html#.manual">manual</a></li></ul><ul class='methods'><li data-type='method'><a href="Prism.html#.highlight">highlight</a></li><li data-type='method'><a href="Prism.html#.highlightAll">highlightAll</a></li><li data-type='method'><a href="Prism.html#.highlightAllUnder">highlightAllUnder</a></li><li data-type='method'><a href="Prism.html#.highlightElement">highlightElement</a></li><li data-type='method'><a href="Prism.html#.tokenize">tokenize</a></li></ul></li><li><a href="Prism.hooks.html">hooks</a><ul class='methods'><li data-type='method'><a href="Prism.hooks.html#.add">add</a></li><li data-type='method'><a href="Prism.hooks.html#.run">run</a></li></ul></li><li><a href="Prism.languages.html">languages</a><ul class='methods'><li data-type='method'><a href="Prism.languages.html#.extend">extend</a></li><li data-type='method'><a href="Prism.languages.html#.insertBefore">insertBefore</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#Grammar">Grammar</a></li><li><a href="global.html#HighlightCallback">HighlightCallback</a></li><li><a href="global.html#HookCallback">HookCallback</a></li><li><a href="global.html#TokenObject">TokenObject</a></li></ul>
 </nav>
 
 <div id="main">
@@ -50,16 +61,19 @@
 </header>
 
 <article>
-    <div class="container-overview">
     
+        <div class="container-overview">
         
-            <div class="description"><p>Prism: Lightweight, robust, elegant syntax highlighting</p></div>
-        
-
-        
-
+            
 
 <dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line19">line 19</a>
+    </li></ul></dd>
+    
 
     
 
@@ -81,7 +95,7 @@
     <dt class="tag-author">Author:</dt>
     <dd class="tag-author">
         <ul>
-            <li>Lea Verou &lt;http://lea.verou.me></li>
+            <li>Lea Verou &lt;https://lea.verou.me></li>
         </ul>
     </dd>
     
@@ -90,16 +104,9 @@
 
     
     <dt class="tag-license">License:</dt>
-    <dd class="tag-license"><ul class="dummy"><li>MIT license http://www.opensource.org/licenses/mit-license.php/</li></ul></dd>
+    <dd class="tag-license"><ul class="dummy"><li>MIT <https://opensource.org/licenses/MIT></li></ul></dd>
     
 
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line19">line 19</a>
-    </li></ul></dd>
     
 
     
@@ -110,14 +117,23 @@
 </dl>
 
 
+
+
+            
+                <div class="description usertext"><p>Prism: Lightweight, robust, elegant syntax highlighting</p></div>
+            
+
+            
         
-    
-    </div>
-
+        </div>
     
 
     
 
+    
+
+    
+    
     
 
      
@@ -135,13 +151,103 @@
     
 
     
+        <h3 class="subsection-title">Members</h3>
+
+        
+            
+<h4 class="name" id=".manual"><span class="type-signature">(static) </span>manual<span class="type-signature"> :boolean</span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line48">line 48</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>false</li>
+        </ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>By default, Prism will attempt to highlight all code elements (by calling <a href="Prism.html#.highlightAll"><code>Prism.highlightAll</code></a>) on the
+current page after the page finished loading. This might be a problem if e.g. you wanted to asynchronously load
+additional languages or plugins yourself.</p>
+<p>By setting this value to <code>true</code>, Prism will not automatically highlight all code elements on the page.</p>
+<p>You obviously have to change this value before the automatic highlighting started. To do this, you can add an
+empty Prism object into the global scope before loading the Prism script like this:</p>
+<pre class="prettyprint source lang-js"><code>window.Prism = window.Prism || {};
+Prism.manual = true;
+// add a new &lt;script> to load Prism's script
+</code></pre>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">boolean</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+    
 
     
         <h3 class="subsection-title">Methods</h3>
 
         
             
-<div class="section-method">
 
     
 
@@ -151,7 +257,52 @@
 
 
 
-<div class="description">
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line534">line 534</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
     <p>Low-level function, only use if you know what you’re doing. It accepts a string of text as input
 and the language definitions to use, and returns a string with the HTML produced.</p>
 <p>The following hooks will be run:</p>
@@ -166,50 +317,13 @@ and the language definitions to use, and returns a string with the HTML produced
 
 
 
-<dl class="details">
 
+
+
+
+    <h5>Example</h5>
     
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line514">line 514</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
+    <pre class="prettyprint"><code>Prism.highlight('var foo = true;', Prism.languages.javascript, 'javascript');</code></pre>
 
 
 
@@ -245,7 +359,7 @@ and the language definitions to use, and returns a string with the HTML produced
             <td class="type">
             
                 
-<span class="param-type"><code>string</code></span>
+<span class="param-type">string</span>
 
 
             
@@ -255,10 +369,7 @@ and the language definitions to use, and returns a string with the HTML produced
 
             
 
-            <td class="description last">
-                <p>A string with the code to be highlighted.</p>
-                
-            </td>
+            <td class="description last"><p>A string with the code to be highlighted.</p></td>
         </tr>
 
     
@@ -271,7 +382,7 @@ and the language definitions to use, and returns a string with the HTML produced
             <td class="type">
             
                 
-<span class="param-type"><code><a href="global.html#Grammar">Grammar</a></code></span>
+<span class="param-type"><a href="global.html#Grammar">Grammar</a></span>
 
 
             
@@ -281,11 +392,8 @@ and the language definitions to use, and returns a string with the HTML produced
 
             
 
-            <td class="description last">
-                <p>An object containing the tokens to use.</p>
-<p>Usually a language definition like <code>Prism.languages.markup</code>.</p>
-                
-            </td>
+            <td class="description last"><p>An object containing the tokens to use.</p>
+<p>Usually a language definition like <code>Prism.languages.markup</code>.</p></td>
         </tr>
 
     
@@ -298,7 +406,7 @@ and the language definitions to use, and returns a string with the HTML produced
             <td class="type">
             
                 
-<span class="param-type"><code>string</code></span>
+<span class="param-type">string</span>
 
 
             
@@ -308,10 +416,7 @@ and the language definitions to use, and returns a string with the HTML produced
 
             
 
-            <td class="description last">
-                <p>The name of the language definition passed to <code>grammar</code>.</p>
-                
-            </td>
+            <td class="description last"><p>The name of the language definition passed to <code>grammar</code>.</p></td>
         </tr>
 
     
@@ -331,44 +436,35 @@ and the language definitions to use, and returns a string with the HTML produced
 
 
 
-<div class="section-returns">
+
+
 <h5>Returns:</h5>
 
         
+<div class="param-desc">
+    <p>The highlighted HTML.</p>
+</div>
+
+
 
 <dl class="param-type">
     <dt>
-        Type:
+        Type
     </dt>
     <dd>
         
-<span class="param-type"><code>string</code></span>
+<span class="param-type">string</span>
 
 
     </dd>
 </dl>
 
-
-<div class="param-desc">
-    <p>The highlighted HTML.</p>
-</div>
-
     
-</div>
 
 
 
-<div class="section-examples">
-<h5>Example</h5>
-
-    <pre class="prettyprint"><code>Prism.highlight('var foo = true;', Prism.languages.js, 'js');</code></pre>
-
-</div>
-
-</div>
         
             
-<div class="section-method">
 
     
 
@@ -378,47 +474,13 @@ and the language definitions to use, and returns a string with the HTML produced
 
 
 
-<div class="description">
-    <p>This is the most high-level function in Prism’s API.
-It fetches all the elements that have a <code>.language-xxxx</code> class and then calls <a href="Prism.html#.highlightElement"><code>Prism.highlightElement</code></a> on
-each one of them.</p>
-<p>This is equivalent to <code>Prism.highlightAllUnder(document, async, callback)</code>.</p>
-</div>
-
-
-
-
 
 <dl class="details">
 
     
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line365">line 365</a>
+        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line385">line 385</a>
     </li></ul></dd>
     
 
@@ -427,7 +489,44 @@ each one of them.</p>
     
 
     
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
 </dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>This is the most high-level function in Prism’s API.
+It fetches all the elements that have a <code>.language-xxxx</code> class and then calls <a href="Prism.html#.highlightElement"><code>Prism.highlightElement</code></a> on
+each one of them.</p>
+<p>This is equivalent to <code>Prism.highlightAllUnder(document, async, callback)</code>.</p>
+</div>
+
+
 
 
 
@@ -472,7 +571,7 @@ each one of them.</p>
             <td class="type">
             
                 
-<span class="param-type"><code>boolean</code></span>
+<span class="param-type">boolean</span>
 
 
             
@@ -493,15 +592,12 @@ each one of them.</p>
             
                 <td class="default">
                 
-                    false
+                    <code>false</code>
                 
                 </td>
             
 
-            <td class="description last">
-                <p>Same as in <a href="Prism.html#.highlightAllUnder"><code>Prism.highlightAllUnder</code></a>.</p>
-                
-            </td>
+            <td class="description last"><p>Same as in <a href="Prism.html#.highlightAllUnder"><code>Prism.highlightAllUnder</code></a>.</p></td>
         </tr>
 
     
@@ -514,7 +610,7 @@ each one of them.</p>
             <td class="type">
             
                 
-<span class="param-type"><code><a href="global.html#HighlightCallback">HighlightCallback</a></code></span>
+<span class="param-type"><a href="global.html#HighlightCallback">HighlightCallback</a></span>
 
 
             
@@ -538,10 +634,7 @@ each one of them.</p>
                 </td>
             
 
-            <td class="description last">
-                <p>Same as in <a href="Prism.html#.highlightAllUnder"><code>Prism.highlightAllUnder</code></a>.</p>
-                
-            </td>
+            <td class="description last"><p>Same as in <a href="Prism.html#.highlightAllUnder"><code>Prism.highlightAllUnder</code></a>.</p></td>
         </tr>
 
     
@@ -563,10 +656,11 @@ each one of them.</p>
 
 
 
-</div>
+
+
+
         
             
-<div class="section-method">
 
     
 
@@ -576,7 +670,52 @@ each one of them.</p>
 
 
 
-<div class="description">
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line403">line 403</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
     <p>Fetches all the descendants of <code>container</code> that have a <code>.language-xxxx</code> class and then calls
 <a href="Prism.html#.highlightElement"><code>Prism.highlightElement</code></a> on each one of them.</p>
 <p>The following hooks will be run:</p>
@@ -587,48 +726,6 @@ each one of them.</p>
 </div>
 
 
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line383">line 383</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
 
 
 
@@ -673,7 +770,7 @@ each one of them.</p>
             <td class="type">
             
                 
-<span class="param-type"><code>ParentNode</code></span>
+<span class="param-type">ParentNode</span>
 
 
             
@@ -695,10 +792,7 @@ each one of them.</p>
                 </td>
             
 
-            <td class="description last">
-                <p>The root element, whose descendants that have a <code>.language-xxxx</code> class will be highlighted.</p>
-                
-            </td>
+            <td class="description last"><p>The root element, whose descendants that have a <code>.language-xxxx</code> class will be highlighted.</p></td>
         </tr>
 
     
@@ -711,7 +805,7 @@ each one of them.</p>
             <td class="type">
             
                 
-<span class="param-type"><code>boolean</code></span>
+<span class="param-type">boolean</span>
 
 
             
@@ -732,15 +826,12 @@ each one of them.</p>
             
                 <td class="default">
                 
-                    false
+                    <code>false</code>
                 
                 </td>
             
 
-            <td class="description last">
-                <p>Whether each element is to be highlighted asynchronously using Web Workers.</p>
-                
-            </td>
+            <td class="description last"><p>Whether each element is to be highlighted asynchronously using Web Workers.</p></td>
         </tr>
 
     
@@ -753,7 +844,7 @@ each one of them.</p>
             <td class="type">
             
                 
-<span class="param-type"><code><a href="global.html#HighlightCallback">HighlightCallback</a></code></span>
+<span class="param-type"><a href="global.html#HighlightCallback">HighlightCallback</a></span>
 
 
             
@@ -777,10 +868,7 @@ each one of them.</p>
                 </td>
             
 
-            <td class="description last">
-                <p>An optional callback to be invoked on each element after its highlighting is done.</p>
-                
-            </td>
+            <td class="description last"><p>An optional callback to be invoked on each element after its highlighting is done.</p></td>
         </tr>
 
     
@@ -802,10 +890,11 @@ each one of them.</p>
 
 
 
-</div>
+
+
+
         
             
-<div class="section-method">
 
     
 
@@ -815,7 +904,52 @@ each one of them.</p>
 
 
 
-<div class="description">
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line446">line 446</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
     <p>Highlights the code inside a single element.</p>
 <p>The following hooks will be run:</p>
 <ol>
@@ -829,48 +963,6 @@ each one of them.</p>
 </div>
 
 
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line426">line 426</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
 
 
 
@@ -915,7 +1007,7 @@ each one of them.</p>
             <td class="type">
             
                 
-<span class="param-type"><code>Element</code></span>
+<span class="param-type">Element</span>
 
 
             
@@ -937,11 +1029,8 @@ each one of them.</p>
                 </td>
             
 
-            <td class="description last">
-                <p>The element containing the code.
-It must have a class of <code>language-xxxx</code> to be processed, where <code>xxxx</code> is a valid language identifier.</p>
-                
-            </td>
+            <td class="description last"><p>The element containing the code.
+It must have a class of <code>language-xxxx</code> to be processed, where <code>xxxx</code> is a valid language identifier.</p></td>
         </tr>
 
     
@@ -954,7 +1043,7 @@ It must have a class of <code>language-xxxx</code> to be processed, where <code>
             <td class="type">
             
                 
-<span class="param-type"><code>boolean</code></span>
+<span class="param-type">boolean</span>
 
 
             
@@ -975,20 +1064,17 @@ It must have a class of <code>language-xxxx</code> to be processed, where <code>
             
                 <td class="default">
                 
-                    false
+                    <code>false</code>
                 
                 </td>
             
 
-            <td class="description last">
-                <p>Whether the element is to be highlighted asynchronously using Web Workers
+            <td class="description last"><p>Whether the element is to be highlighted asynchronously using Web Workers
 to improve performance and avoid blocking the UI when highlighting very large chunks of code. This option is
 <a href="https://prismjs.com/faq.html#why-is-asynchronous-highlighting-disabled-by-default">disabled by default</a>.</p>
 <p>Note: All language definitions required to highlight the code must be included in the main <code>prism.js</code> file for
 asynchronous highlighting to work. You can build your own bundle on the
-<a href="https://prismjs.com/download.html">Download page</a>.</p>
-                
-            </td>
+<a href="https://prismjs.com/download.html">Download page</a>.</p></td>
         </tr>
 
     
@@ -1001,7 +1087,7 @@ asynchronous highlighting to work. You can build your own bundle on the
             <td class="type">
             
                 
-<span class="param-type"><code><a href="global.html#HighlightCallback">HighlightCallback</a></code></span>
+<span class="param-type"><a href="global.html#HighlightCallback">HighlightCallback</a></span>
 
 
             
@@ -1025,11 +1111,8 @@ asynchronous highlighting to work. You can build your own bundle on the
                 </td>
             
 
-            <td class="description last">
-                <p>An optional callback to be invoked after the highlighting is done.
-Mostly useful when <code>async</code> is <code>true</code>, since in that case, the highlighting is done asynchronously.</p>
-                
-            </td>
+            <td class="description last"><p>An optional callback to be invoked after the highlighting is done.
+Mostly useful when <code>async</code> is <code>true</code>, since in that case, the highlighting is done asynchronously.</p></td>
         </tr>
 
     
@@ -1051,10 +1134,11 @@ Mostly useful when <code>async</code> is <code>true</code>, since in that case, 
 
 
 
-</div>
+
+
+
         
             
-<div class="section-method">
 
     
 
@@ -1064,47 +1148,13 @@ Mostly useful when <code>async</code> is <code>true</code>, since in that case, 
 
 
 
-<div class="description">
-    <p>This is the heart of Prism, and the most low-level function you can use. It accepts a string of text as input
-and the language definitions to use, and returns an array with the tokenized code.</p>
-<p>When the language definition includes nested tokens, the function is called recursively on each of these tokens.</p>
-<p>This method could be useful in other contexts as well, as a very crude parser.</p>
-</div>
-
-
-
-
 
 <dl class="details">
 
     
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line542">line 542</a>
+        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line562">line 562</a>
     </li></ul></dd>
     
 
@@ -1113,7 +1163,44 @@ and the language definitions to use, and returns an array with the tokenized cod
     
 
     
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
 </dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>This is the heart of Prism, and the most low-level function you can use. It accepts a string of text as input
+and the language definitions to use, and returns an array with the tokenized code.</p>
+<p>When the language definition includes nested tokens, the function is called recursively on each of these tokens.</p>
+<p>This method could be useful in other contexts as well, as a very crude parser.</p>
+</div>
+
+
 
 
 
@@ -1154,7 +1241,7 @@ and the language definitions to use, and returns an array with the tokenized cod
             <td class="type">
             
                 
-<span class="param-type"><code>string</code></span>
+<span class="param-type">string</span>
 
 
             
@@ -1164,10 +1251,7 @@ and the language definitions to use, and returns an array with the tokenized cod
 
             
 
-            <td class="description last">
-                <p>A string with the code to be highlighted.</p>
-                
-            </td>
+            <td class="description last"><p>A string with the code to be highlighted.</p></td>
         </tr>
 
     
@@ -1180,7 +1264,7 @@ and the language definitions to use, and returns an array with the tokenized cod
             <td class="type">
             
                 
-<span class="param-type"><code><a href="global.html#Grammar">Grammar</a></code></span>
+<span class="param-type"><a href="global.html#Grammar">Grammar</a></span>
 
 
             
@@ -1190,11 +1274,8 @@ and the language definitions to use, and returns an array with the tokenized cod
 
             
 
-            <td class="description last">
-                <p>An object containing the tokens to use.</p>
-<p>Usually a language definition like <code>Prism.languages.markup</code>.</p>
-                
-            </td>
+            <td class="description last"><p>An object containing the tokens to use.</p>
+<p>Usually a language definition like <code>Prism.languages.markup</code>.</p></td>
         </tr>
 
     
@@ -1214,34 +1295,33 @@ and the language definitions to use, and returns an array with the tokenized cod
 
 
 
-<div class="section-returns">
+
+
 <h5>Returns:</h5>
 
         
+<div class="param-desc">
+    <p>An array of strings, tokens and other arrays.</p>
+</div>
+
+
 
 <dl class="param-type">
     <dt>
-        Type:
+        Type
     </dt>
     <dd>
         
-<span class="param-type"><code>Array.&lt;(string|<a href="Token.html">Token</a>)></code></span>
+<span class="param-type">Array.&lt;(string|<a href="Token.html">Token</a>)></span>
 
 
     </dd>
 </dl>
 
-
-<div class="param-desc">
-    <p>An array of strings, tokens and other arrays.</p>
-</div>
-
     
-</div>
 
 
 
-</div>
         
     
 
@@ -1255,15 +1335,25 @@ and the language definitions to use, and returns an array with the tokenized cod
 
 
 
+    
+    
 </div>
 
 <br class="clear">
 
 <footer>
-    Generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.4</a> using the Minami theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.4</a> using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
 <script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+
+    <link type="text/css" rel="stylesheet" href="styles/overwrites.css">
+    
 </body>
 </html>
