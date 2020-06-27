@@ -2,6 +2,15 @@
  * Manage downloads
  */
 
+/// <reference path="./utopia.js" />
+/// <reference path="./code.js" />
+/// <reference path="../components.js" />
+/// <reference path="../dependencies.js" />
+/// <reference path="../prism.js" />
+/// <reference path="./vendor/FileSaver.min.js" />
+/// <reference path="./vendor/promise.js" />
+/// <reference path="./download-options.js" />
+
 (function() {
 
 var cache = {};
@@ -74,6 +83,49 @@ if (hstr) {
 		}
 	});
 }
+// options
+var optHStr = window.location.hash.match(/(options-[\w-]+)\.([\w-]+)=([^?&]*)/g);
+if (optHStr) {
+	optHStr.forEach(function (m) {
+		var match = /(options-[\w-]+)\.([\w-]+)=([^?&]*)/.exec(m);
+		if (match) {
+			var optionId = match[1];
+			var itemName = match[2];
+			var value = decodeURIComponent(match[3]);
+
+			var set = false;
+			downloadOptions.forEach(function (o) {
+				if (!set && o.id === optionId) {
+					for (var name in o.items) {
+						if (name === itemName && o.items.hasOwnProperty(name)) {
+							var item = o.items[name];
+							if (item.type === 'boolean') {
+								value = value === 'true';
+							} else if (item.type === 'number') {
+								value = Number(value);
+							}
+
+							if (item.validate(value, o)) {
+								// invalid ignore
+								console.warn('Invalid value: ' + m);
+							} else {
+								item.value = value;
+							}
+							set = true;
+						}
+					}
+				}
+			});
+
+			if (!set) {
+				console.warn('Unknown option: ' + m);
+			}
+		}
+	});
+}
+
+// add options to the DOM
+var updateOptions = addDownloadOptionsToDOM();
 
 // Stay compatible with old querystring feature
 var qstr = window.location.search.match(/(?:languages|plugins)=[-+\w]+|themes=[-\w]+/g);
@@ -442,6 +494,7 @@ function update(updatedCategory, updatedId){
 		title: prettySize(total.css)
 	});
 
+	updateOptions();
 	delayedGenerateCode();
 }
 
@@ -457,7 +510,6 @@ function delayedGenerateCode(){
 function generateCode(){
 	/** @type {CodePromiseInfo[]} */
 	var promises = [];
-	var redownload = {};
 
 	for (var category in components) {
 		for (var id in components[category]) {
@@ -467,10 +519,6 @@ function generateCode(){
 
 			var info = components[category][id];
 			if (info.enabled) {
-				if (category !== 'core') {
-					redownload[category] = redownload[category] || [];
-					redownload[category].push(id);
-				}
 				info.files[minified ? 'minified' : 'dev'].paths.forEach(function (path) {
 					if (cache[path]) {
 						var type = path.match(/\.(\w+)$/)[1];
@@ -504,14 +552,14 @@ function generateCode(){
 			$u.element.contents(error, errors);
 		}
 
-		var redownloadUrl = window.location.href.split("#")[0] + "#";
-		for (var category in redownload) {
-			redownloadUrl += category + "=" + redownload[category].join('+') + "&";
-		}
-		redownloadUrl = redownloadUrl.replace(/&$/,"");
+		var redownloadUrl = buildUrl();
 		window.location.replace(redownloadUrl);
 
 		var versionComment = "/* PrismJS " + version + "\n" + redownloadUrl + " */";
+
+		downloadOptions.filter(function (o) { return o.enabled; }).forEach(function (o) {
+			o.apply(code);
+		});
 
 		for (var type in code) {
 			(function (type) {
@@ -536,6 +584,42 @@ function generateCode(){
 			})(type);
 		}
 	});
+}
+
+function buildUrl() {
+	var redownloadUrl = window.location.href.split("#")[0] + "#";
+
+	var redownload = {};
+
+	for (var category in components) {
+		for (var id in components[category]) {
+			if (category !== 'core' && id !== 'meta' && components[category][id].enabled) {
+				redownload[category] = redownload[category] || [];
+				redownload[category].push(id);
+			}
+		}
+	}
+
+	for (var category in redownload) {
+		redownloadUrl += category + "=" + redownload[category].join('+') + "&";
+	}
+
+	downloadOptions.forEach(function (o) {
+		if (!o.enabled) {
+			return;
+		}
+
+		for (var name in o.items) {
+			if (o.items.hasOwnProperty(name)) {
+				var item = o.items[name];
+				if (item.value !== item.default) {
+					redownloadUrl += o.id + '.' + name + '=' + encodeURIComponent(String(item.value)) + '&';
+				}
+			}
+		}
+	});
+
+	return redownloadUrl.replace(/&$/, "");
 }
 
 /**
@@ -620,5 +704,137 @@ function getVersion() {
 		return JSON.parse(jsonStr).version;
 	});
 }
+
+
+/**
+ * Adds the given options to the DOM.
+ *
+ * Returns a function that will enable/disable options depending on whether the requirements of that option are met.
+ *
+ * @returns {() => void}
+ */
+function addDownloadOptionsToDOM() {
+	var container = $('#option-container');
+
+	/** @type {{ option: DownloadOption, element: HTMLElement }[]} */
+	var optionElementPairs = [];
+
+	downloadOptions.forEach(function (o) {
+		var element = $u.element.create('div', {
+			contents: [
+				{
+					tag: 'h3',
+					contents: o.title
+				},
+				{
+					tag: 'div',
+					properties: {
+						className: 'option-items'
+					},
+					contents: Object.keys(o.items).map(function (name) {
+						var item = o.items[name];
+						var errorId = o.id + '-' + name;
+
+						function validate(value) {
+							var message = item.validate(value, o);
+							var errorElement = $('#' + errorId);
+							if (message) {
+								errorElement.innerHTML = message;
+								errorElement.style.display = 'block';
+							} else {
+								item.value = value;
+								errorElement.textContent = '';
+								errorElement.style.display = 'none';
+								delayedGenerateCode();
+							}
+						}
+
+						var contents = [];
+						if (item.type === 'boolean') {
+							contents.push({
+								tag: 'label',
+								contents: [
+									{
+										tag: 'span',
+										attributes: {
+											'title': item.desc || ''
+										},
+										contents: item.title
+									},
+									{
+										tag: 'input',
+										properties: {
+											type: 'checkbox',
+											checked: item.value,
+											onclick: function () { validate(this.checked); }
+										}
+									}
+								]
+							});
+						} else {
+							contents.push(
+								{
+									tag: 'span',
+									attributes: {
+										'title': item.desc || ''
+									},
+									contents: item.title
+								},
+								{
+									tag: 'input',
+									properties: {
+										type: item.type === 'number' ? 'number' : 'text',
+										value: item.value,
+										oninput: function () { validate(this.value); }
+									}
+								}
+							);
+						}
+
+						contents.push({
+							tag: 'div',
+							properties: {
+								className: 'option-item-error',
+								id: errorId
+							}
+						});
+						return {
+							tag: 'div',
+							properties: {
+								className: 'option-item'
+							},
+							contents: contents
+						};
+					})
+				}
+			],
+			inside: container
+		});
+
+		optionElementPairs.push({
+			option: o,
+			element: element
+		});
+	});
+
+	function updateOptions() {
+		// check where the requirements of a option is met and therefore whether the option is active
+		optionElementPairs.forEach(function (pair) {
+			var option = pair.option;
+			var element = pair.element;
+
+			var enabled = toArray(option.require).every(function (id) {
+				var comp = components.languages[id] || components.plugins[id];
+				return comp && comp.enabled;
+			});
+			option.enabled = enabled;
+
+			element.style.display = enabled ? 'block' : 'none';
+		});
+	}
+	updateOptions();
+	return updateOptions;
+}
+
 
 })();
