@@ -320,13 +320,7 @@ async function changes() {
 
 		function changedWebsite(info) {
 			if (info.changes.length > 0 && info.changes.every(c => {
-				if (/[\w-]+\.(?:html|svg)$/.test(c.file)) {
-					return true;
-				}
-				if (/^scripts(?:\/[\w-]+)*\/[\w-]+\.js$/.test(c.file)) {
-					return true;
-				}
-				return ['style.css'].indexOf(c.file) >= 0;
+				return /[\w-]+\.html$/.test(c.file) || /^assets\//.test(c.file);
 			})) {
 				addEntry('Other >> Website', info);
 				return true;
