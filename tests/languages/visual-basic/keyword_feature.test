@@ -148,6 +148,7 @@ Widening
 With
 WithEvents
 WriteOnly
+Until
 Xor
 
 ----------------------------------------------------
@@ -303,6 +304,7 @@ Xor
 	["keyword", "With"],
 	["keyword", "WithEvents"],
 	["keyword", "WriteOnly"],
+	["keyword", "Until"],
 	["keyword", "Xor"]
 ]
 
