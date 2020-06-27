@@ -36,7 +36,7 @@
     
     <input type="text" id="nav-search" placeholder="Search" />
     
-    <h2><a href="index.html">Home</a></h2><h2><a href="https://prismjs.com" class="menu-item" id="website_link" >PrismJS</a></h2><h2><a href="https://github.com/PrismJS/prism" target="_blank" class="menu-item" id="github_link" >GitHub</a></h2><h3>Classes</h3><ul><li><a href="Token.html">Token</a></li></ul><h3>Namespaces</h3><ul><li><a href="Prism.html">Prism</a><ul class='members'><li data-type='member'><a href="Prism.html#.manual">manual</a></li></ul><ul class='methods'><li data-type='method'><a href="Prism.html#.highlight">highlight</a></li><li data-type='method'><a href="Prism.html#.highlightAll">highlightAll</a></li><li data-type='method'><a href="Prism.html#.highlightAllUnder">highlightAllUnder</a></li><li data-type='method'><a href="Prism.html#.highlightElement">highlightElement</a></li><li data-type='method'><a href="Prism.html#.tokenize">tokenize</a></li></ul></li><li><a href="Prism.hooks.html">hooks</a><ul class='methods'><li data-type='method'><a href="Prism.hooks.html#.add">add</a></li><li data-type='method'><a href="Prism.hooks.html#.run">run</a></li></ul></li><li><a href="Prism.languages.html">languages</a><ul class='methods'><li data-type='method'><a href="Prism.languages.html#.extend">extend</a></li><li data-type='method'><a href="Prism.languages.html#.insertBefore">insertBefore</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#Grammar">Grammar</a></li><li><a href="global.html#HighlightCallback">HighlightCallback</a></li><li><a href="global.html#HookCallback">HookCallback</a></li><li><a href="global.html#TokenObject">TokenObject</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h2><a href="https://prismjs.com" class="menu-item" id="website_link" >PrismJS</a></h2><h2><a href="https://github.com/PrismJS/prism" target="_blank" class="menu-item" id="github_link" >GitHub</a></h2><h3>Classes</h3><ul><li><a href="Token.html">Token</a></li></ul><h3>Namespaces</h3><ul><li><a href="Prism.html">Prism</a><ul class='members'><li data-type='member'><a href="Prism.html#.manual">manual</a></li></ul><ul class='methods'><li data-type='method'><a href="Prism.html#.highlight">highlight</a></li><li data-type='method'><a href="Prism.html#.highlightAll">highlightAll</a></li><li data-type='method'><a href="Prism.html#.highlightAllUnder">highlightAllUnder</a></li><li data-type='method'><a href="Prism.html#.highlightElement">highlightElement</a></li><li data-type='method'><a href="Prism.html#.tokenize">tokenize</a></li></ul></li><li><a href="Prism.hooks.html">hooks</a><ul class='methods'><li data-type='method'><a href="Prism.hooks.html#.add">add</a></li><li data-type='method'><a href="Prism.hooks.html#.run">run</a></li></ul></li><li><a href="Prism.languages.html">languages</a><ul class='methods'><li data-type='method'><a href="Prism.languages.html#.extend">extend</a></li><li data-type='method'><a href="Prism.languages.html#.insertBefore">insertBefore</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#Grammar">Grammar</a></li><li><a href="global.html#GrammarToken">GrammarToken</a></li><li><a href="global.html#HighlightCallback">HighlightCallback</a></li><li><a href="global.html#HookCallback">HookCallback</a></li><li><a href="global.html#TokenStream">TokenStream</a></li></ul>
 </nav>
 
 <div id="main">
@@ -154,7 +154,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line273">line 273</a>
+        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line285">line 285</a>
     </li></ul></dd>
     
 
@@ -197,6 +197,12 @@
     <p>Creates a deep copy of the language with the given id and appends the given tokens.</p>
 <p>If a token in <code>redef</code> also appears in the copied language, then the existing token in the copied language
 will be overwritten at its original position.</p>
+<h2>Best practices</h2>
+<p>Since the position of overwriting tokens (token in <code>redef</code> that overwrite tokens in the copied language)
+doesn't matter, they can technically be in any order. However, this can be confusing to others that trying to
+understand the language definition because, normally, the order of tokens matters in Prism grammars.</p>
+<p>Therefore, it is encouraged to order overwriting tokens according to the positions of the overwritten tokens.
+Furthermore, all non-overwriting tokens should be placed after the overwriting ones.</p>
 </div>
 
 
@@ -210,6 +216,9 @@ will be overwritten at its original position.</p>
     <h5>Example</h5>
     
     <pre class="prettyprint"><code>Prism.languages['css-with-colors'] = Prism.languages.extend('css', {
+    // this will overwrite the 'comment' token of CSS at its original position
+    'comment': { ... },
+    // this will be appended
     'color': /\b(?:red|green|blue)\b/
 });</code></pre>
 
@@ -344,7 +353,7 @@ will be overwritten at its original position.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line308">line 308</a>
+        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line370">line 370</a>
     </li></ul></dd>
     
 
@@ -385,10 +394,49 @@ will be overwritten at its original position.</p>
 
 <div class="description usertext">
     <p>Inserts tokens <em>before</em> another token in a language definition or any other grammar.</p>
-<p>As this needs to recreate the object (we cannot actually insert before keys in object literals),
-we cannot just provide an object, we need an object and a key.</p>
-<p>If the grammar of <code>inside</code> and <code>insert</code> have tokens with the same name, the tokens in <code>inside</code> will be ignored.</p>
-<p>All references of the old object accessible from <code>Prism.languages</code> or <code>insert</code> will be replace with the new one.</p>
+<h2>Usage</h2>
+<p>This helper method makes it easy to modify existing languages. For example, the CSS language definition
+not only defines CSS highlighting for CSS documents, but also needs to define highlighting for CSS embedded
+in HTML through <code>&lt;style&gt;</code> elements. To do this, it needs to modify <code>Prism.languages.markup</code> and add the
+appropriate tokens. However, <code>Prism.languages.markup</code> is a regular JavaScript object literal, so if you do
+this:</p>
+<pre class="prettyprint source lang-js"><code>Prism.languages.markup.style = {
+    // token
+};
+</code></pre>
+<p>then the <code>style</code> token will be added (and processed) at the end. <code>insertBefore</code> allows you to insert tokens
+before existing tokens. For the CSS example above, you would use it like this:</p>
+<pre class="prettyprint source lang-js"><code>Prism.languages.insertBefore('markup', 'cdata', {
+    'style': {
+        // token
+    }
+});
+</code></pre>
+<h2>Special cases</h2>
+<p>If the grammars of <code>inside</code> and <code>insert</code> have tokens with the same name, the tokens in <code>inside</code>'s grammar
+will be ignored.</p>
+<p>This behavior can be used to insert tokens after <code>before</code>:</p>
+<pre class="prettyprint source lang-js"><code>Prism.languages.insertBefore('markup', 'comment', {
+    'comment': Prism.languages.markup.comment,
+    // tokens after 'comment'
+});
+</code></pre>
+<h2>Limitations</h2>
+<p>The main problem <code>insertBefore</code> has to solve is iteration order. Since ES2015, the iteration order for object
+properties is guaranteed to be the insertion order (except for integer keys) but some browsers behave
+differently when keys are deleted and re-inserted. So <code>insertBefore</code> can't be implemented by temporarily
+deleting properties which is necessary to insert at arbitrary positions.</p>
+<p>To solve this problem, <code>insertBefore</code> doesn't actually insert the given tokens into the target object.
+Instead, it will create a new object and replace all references to the target object with the new one. This
+can be done without temporarily deleting properties, so the iteration order is well-defined.</p>
+<p>However, only references that can be reached from <code>Prism.languages</code> or <code>insert</code> will be replaced. I.e. if
+you hold the target object in a variable, then the value of the variable will not change.</p>
+<pre class="prettyprint source lang-js"><code>var oldMarkup = Prism.languages.markup;
+var newMarkup = Prism.languages.insertBefore('markup', 'comment', { ... });
+
+assert(oldMarkup !== Prism.languages.markup);
+assert(newMarkup === Prism.languages.markup);
+</code></pre>
 </div>
 
 
@@ -397,13 +445,6 @@ we cannot just provide an object, we need an object and a key.</p>
 
 
 
-
-
-    <h5>Example</h5>
-    
-    <pre class="prettyprint"><code>Prism.languages.insertBefore('markup', 'cdata', {
-    'style': { ... }
-});</code></pre>
 
 
 
@@ -459,8 +500,8 @@ we cannot just provide an object, we need an object and a key.</p>
 
             
 
-            <td class="description last"><p>The property of <code>root</code> that contains the object to be modified.</p>
-<p>This is usually a language id.</p></td>
+            <td class="description last"><p>The property of <code>root</code> (e.g. a language id in <code>Prism.languages</code>) that contains the
+object to be modified.</p></td>
         </tr>
 
     
@@ -535,7 +576,7 @@ we cannot just provide an object, we need an object and a key.</p>
             <td class="type">
             
                 
-<span class="param-type">Object.&lt;string, <a href="global.html#Grammar">Grammar</a>></span>
+<span class="param-type">Object.&lt;string, any></span>
 
 
             
@@ -555,7 +596,8 @@ we cannot just provide an object, we need an object and a key.</p>
 
             
 
-            <td class="description last"><p>The object containing <code>inside</code>, i.e. the object that contains the object that will be modified.</p>
+            <td class="description last"><p>The object containing <code>inside</code>, i.e. the object that contains the
+object to be modified.</p>
 <p>Defaults to <code>Prism.languages</code>.</p></td>
         </tr>
 
@@ -582,7 +624,7 @@ we cannot just provide an object, we need an object and a key.</p>
 
         
 <div class="param-desc">
-    <p>The new grammar created.</p>
+    <p>The new grammar object.</p>
 </div>
 
 

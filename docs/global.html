@@ -36,7 +36,7 @@
     
     <input type="text" id="nav-search" placeholder="Search" />
     
-    <h2><a href="index.html">Home</a></h2><h2><a href="https://prismjs.com" class="menu-item" id="website_link" >PrismJS</a></h2><h2><a href="https://github.com/PrismJS/prism" target="_blank" class="menu-item" id="github_link" >GitHub</a></h2><h3>Classes</h3><ul><li><a href="Token.html">Token</a></li></ul><h3>Namespaces</h3><ul><li><a href="Prism.html">Prism</a><ul class='members'><li data-type='member'><a href="Prism.html#.manual">manual</a></li></ul><ul class='methods'><li data-type='method'><a href="Prism.html#.highlight">highlight</a></li><li data-type='method'><a href="Prism.html#.highlightAll">highlightAll</a></li><li data-type='method'><a href="Prism.html#.highlightAllUnder">highlightAllUnder</a></li><li data-type='method'><a href="Prism.html#.highlightElement">highlightElement</a></li><li data-type='method'><a href="Prism.html#.tokenize">tokenize</a></li></ul></li><li><a href="Prism.hooks.html">hooks</a><ul class='methods'><li data-type='method'><a href="Prism.hooks.html#.add">add</a></li><li data-type='method'><a href="Prism.hooks.html#.run">run</a></li></ul></li><li><a href="Prism.languages.html">languages</a><ul class='methods'><li data-type='method'><a href="Prism.languages.html#.extend">extend</a></li><li data-type='method'><a href="Prism.languages.html#.insertBefore">insertBefore</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#Grammar">Grammar</a></li><li><a href="global.html#HighlightCallback">HighlightCallback</a></li><li><a href="global.html#HookCallback">HookCallback</a></li><li><a href="global.html#TokenObject">TokenObject</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h2><a href="https://prismjs.com" class="menu-item" id="website_link" >PrismJS</a></h2><h2><a href="https://github.com/PrismJS/prism" target="_blank" class="menu-item" id="github_link" >GitHub</a></h2><h3>Classes</h3><ul><li><a href="Token.html">Token</a></li></ul><h3>Namespaces</h3><ul><li><a href="Prism.html">Prism</a><ul class='members'><li data-type='member'><a href="Prism.html#.manual">manual</a></li></ul><ul class='methods'><li data-type='method'><a href="Prism.html#.highlight">highlight</a></li><li data-type='method'><a href="Prism.html#.highlightAll">highlightAll</a></li><li data-type='method'><a href="Prism.html#.highlightAllUnder">highlightAllUnder</a></li><li data-type='method'><a href="Prism.html#.highlightElement">highlightElement</a></li><li data-type='method'><a href="Prism.html#.tokenize">tokenize</a></li></ul></li><li><a href="Prism.hooks.html">hooks</a><ul class='methods'><li data-type='method'><a href="Prism.hooks.html#.add">add</a></li><li data-type='method'><a href="Prism.hooks.html#.run">run</a></li></ul></li><li><a href="Prism.languages.html">languages</a><ul class='methods'><li data-type='method'><a href="Prism.languages.html#.extend">extend</a></li><li data-type='method'><a href="Prism.languages.html#.insertBefore">insertBefore</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#Grammar">Grammar</a></li><li><a href="global.html#GrammarToken">GrammarToken</a></li><li><a href="global.html#HighlightCallback">HighlightCallback</a></li><li><a href="global.html#HookCallback">HookCallback</a></li><li><a href="global.html#TokenStream">TokenStream</a></li></ul>
 </nav>
 
 <div id="main">
@@ -143,7 +143,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line1058">line 1058</a>
+        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line1145">line 1145</a>
     </li></ul></dd>
     
 
@@ -250,7 +250,7 @@
     <ul>
         <li>
             
-<span class="param-type">Object.&lt;string, (RegExp|<a href="global.html#TokenObject">TokenObject</a>|Array.&lt;(RegExp|<a href="global.html#TokenObject">TokenObject</a>)>)></span>
+<span class="param-type">Object.&lt;string, (RegExp|<a href="global.html#GrammarToken">GrammarToken</a>|Array.&lt;(RegExp|<a href="global.html#GrammarToken">GrammarToken</a>)>)></span>
 
 
         </li>
@@ -263,311 +263,7 @@
 
             
                 
-
-    
-
-    <h4 class="name" id="HighlightCallback"><span class="type-signature"></span>HighlightCallback<span class="signature">(element)</span><span class="type-signature"> &rarr; {void}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line1065">line 1065</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description usertext">
-    <p>A function which will invoked after an element was successfully highlighted.</p>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>element</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Element</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The element successfully highlighted.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">void</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-            
-                
-
-    
-
-    <h4 class="name" id="HookCallback"><span class="type-signature"></span>HookCallback<span class="signature">(env)</span><span class="type-signature"> &rarr; {void}</span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line1074">line 1074</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>env</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object.&lt;string, any></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>The environment variables of the hook.</p></td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-
-
-<dl class="param-type">
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">void</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-            
-                
-<h4 class="name" id="TokenObject">TokenObject</h4>
+<h4 class="name" id="GrammarToken">GrammarToken</h4>
 
 
 
@@ -578,7 +274,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line1038">line 1038</a>
+        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line1124">line 1124</a>
     </li></ul></dd>
     
 
@@ -840,6 +536,394 @@ each another.</p></td>
 </div>
 
 
+
+
+
+
+
+
+            
+                
+
+    
+
+    <h4 class="name" id="HighlightCallback"><span class="type-signature"></span>HighlightCallback<span class="signature">(element)</span><span class="type-signature"> &rarr; {void}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line1153">line 1153</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>A function which will invoked after an element was successfully highlighted.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>element</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Element</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The element successfully highlighted.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">void</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+            
+                
+
+    
+
+    <h4 class="name" id="HookCallback"><span class="type-signature"></span>HookCallback<span class="signature">(env)</span><span class="type-signature"> &rarr; {void}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line1163">line 1163</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>env</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object.&lt;string, any></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The environment variables of the hook.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">void</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+            
+                
+<h4 class="name" id="TokenStream">TokenStream</h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line754">line 754</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>A token stream is an array of strings and <a href="Token.html"><code>Token</code></a> objects.</p>
+<p>Token streams have to fulfill a few properties that are assumed by most functions (mostly internal ones) that process
+them.</p>
+<ol>
+<li>
+<p>No adjacent strings.</p>
+</li>
+<li>
+<p>No empty strings.</p>
+<p>The only exception here is the token stream that only contains the empty string and nothing else.</p>
+</li>
+</ol>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Array.&lt;(string|<a href="Token.html">Token</a>)></span>
+
+
+        </li>
+    </ul>
 
 
 
