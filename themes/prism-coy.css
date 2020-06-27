@@ -190,13 +190,6 @@ pre[class*="language-"]:after {
 
 }
 
-/* Plugin styles */
-.token.tab:not(:empty):before,
-.token.cr:before,
-.token.lf:before {
-	color: #e0d7d1;
-}
-
 /* Plugin styles: Line Numbers */
 pre[class*="language-"].line-numbers.line-numbers {
 	padding-left: 0;
