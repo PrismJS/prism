@@ -1,0 +1,127 @@
+"s" word"word" ! word: word"word"
+"adjacent""strings"
+" ! str not comment" ! comment
+"!"
+" ! "
+"! "
+
+"\""
+"'"
+"\n"
+"\\"
+
+"str"5
+"str"[ ]
+"str"{ }
+{ "a"}
+"5"
+"1/5"
+"+5"
+"-5"
+
+HEREDOC: marker
+text \n
+marker
+
+STRING: name
+text \n
+;
+
+[[ string ]]
+[[ string]]
+[==[ string ]==]
+[==[ string]==]
+
+[[word ]]
+
+URL" " URL""
+SBUF" " SBUF""
+P" " P""
+
+P" as\\""
+
+----------------------------------------------------------
+
+[
+	[ "string", ["\"s\""] ],
+	[ "normal-word", "word\"word\"" ],
+	[ "comment", ["! word: word\"word\""] ],
+	[ "string", ["\"adjacent\""] ],
+	[ "string", ["\"strings\""] ],
+	[ "string", ["\" ! str not comment\""] ],
+	[ "comment", ["! comment"] ],
+
+	[ "string", ["\"!\""] ],
+	[ "string", ["\" ! \""] ],
+	[ "string", ["\"! \""] ],
+
+	[ "string", [
+		"\"",
+		[ "number", "\\\"" ],
+		"\""
+	] ],
+	[ "string", ["\"'\""] ],
+	[ "string", [
+		"\"",
+		["number", "\\n"],
+		"\""
+	] ],
+	[ "string", ["\"", ["number", "\\\\"], "\""] ],
+
+	[ "string", ["\"str\""] ],
+	"5\r\n",
+
+	["string", ["\"str\""] ],
+	"[ ",
+	[ "quotation-delimiter", "]" ],
+
+	[ "string", ["\"str\""] ],
+	"{ ",
+	[ "curly-brace-literal-delimiter", "}" ],
+
+	[ "curly-brace-literal-delimiter", "{" ],
+	[ "string", ["\"a\""] ],
+	"}\r\n",
+
+	[ "string", ["\"5\""] ],
+	[ "string", ["\"1/5\""] ],
+	[ "string", ["\"+5\""] ],
+	[ "string", ["\"-5\""] ],
+
+	[ "multiline-string", [
+		"HEREDOC: marker\r\ntext ",
+		[ "number", "\\n" ],
+		"\r\nmarker"
+	] ],
+
+	[ "multiline-string", [
+		"STRING: name\r\ntext ",
+		[ "number", "\\n" ],
+		[ "semicolon-or-setlocal", ";" ]
+	] ],
+
+	[ "multiline-string", [ "[[ string ]]" ] ],
+	[ "multiline-string", [ "[[ string]]" ] ],
+	[ "multiline-string", [ "[==[ string ]==]" ] ],
+	[ "multiline-string", [ "[==[ string]==]" ] ],
+	[ "normal-word", "[[word" ],
+	[ "normal-word", "]]" ],
+	[ "custom-string", ["URL\" \""] ],
+	[ "normal-word", "URL\"\"" ],
+
+	[ "custom-string", ["SBUF\" \""] ],
+	[ "normal-word", "SBUF\"\"" ],
+
+	[ "custom-string", ["P\" \""] ],
+	[ "normal-word", "P\"\"" ],
+	[ "custom-string", [
+		"P\" as",
+		[ "number", "\\\\" ],
+		"\""
+	] ],
+	"\""
+]
+
+----------------------------------------------------------
+
+string kinds

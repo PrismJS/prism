@@ -35,6 +35,8 @@
 
 	<pre><code>&lt;template id=&quot;my-label-button&quot;&gt;&lt;button onclick=&quot;console.log('This is an inline-handler');&quot;&gt;My button&lt;/button&gt;&lt;/template&gt;</code></pre>
 
+	<h2>Registering buttons</h2>
+
 	<p>For more flexibility, the Toolbar exposes a JavaScript function that can be used to register new buttons or labels to the Toolbar,
 		<code>Prism.plugins.toolbar.registerButton</code>.</p>
 
@@ -78,9 +80,17 @@
 
 	<p>The above function creates the Select Code button you see, and when you click it, the code gets highlighted.</p>
 
+	<h2>Ordering buttons</h2>
+
 	<p>By default, the buttons will be added to the code snippet in the order they were registered. If more control over
-		the order is needed, an HTML attribute can be added to the <code>body</code> tag with a comma-separated string indicating the
-		order.</p>
+		the order is needed, the <code>data-toolbar-order</code> attribute can be used. Given a comma-separated list of button names, it will ensure that these buttons will be displayed in the given order. <br>
+		Buttons not listed will not be displayed. This means that buttons can be disabled using this technique.</p>
+
+	<p>Example: The "Hello World!" button will appear before the "Select Code" button and the custom label button will not be displayed.</p>
+
+	<pre data-toolbar-order="hello-world,select-code" data-label="Hello World!"><code>&lt;pre data-toolbar-order="hello-world,select-code" data-label="Hello World!">&lt;code>&lt;/code>&lt;/pre></code></pre>
+
+	<p>The <code>data-toolbar-order</code> attribute is inherited, so you can define the button order for the whole document by adding the attribute to the <code>body</code> of the page.</p>
 
 	<pre><code>&lt;body data-toolbar-order="select-code,hello-world,label"&gt;</code></pre>
 </section>

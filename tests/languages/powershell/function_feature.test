@@ -53,6 +53,7 @@ Unregister-PSSessionConfiguration Update-FormatData Update-Help Update-List
 Update-TypeData Use-Transaction Wait-Event Wait-Job Wait-Process Where-Object
 Write-Debug Write-Error Write-EventLog Write-Host Write-Output Write-Progress
 Write-Verbose Write-Warning
+Get-AppxPackage
 
 ----------------------------------------------------
 
@@ -391,7 +392,8 @@ Write-Verbose Write-Warning
 	["function", "Write-Output"],
 	["function", "Write-Progress"],
 	["function", "Write-Verbose"],
-	["function", "Write-Warning"]
+	["function", "Write-Warning"],
+	["function", "Get-AppxPackage"]
 ]
 ----------------------------------------------------
 

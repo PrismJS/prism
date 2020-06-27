@@ -1,0 +1,74 @@
+#define
+#undef
+#if
+#ifdef
+#ifndef
+#else
+#elif
+#endif
+#error
+#pragma
+#extension
+#version
+#line
+
+----------------------------------------------------
+
+[
+	["macro", [
+		"#",
+		["directive", "define"]
+	]],
+	["macro", [
+		"#",
+		["directive", "undef"]
+	]],
+	["macro", [
+		"#",
+		["directive", "if"]
+	]],
+	["macro", [
+		"#",
+		["directive", "ifdef"]
+	]],
+	["macro", [
+		"#",
+		["directive", "ifndef"]
+	]],
+	["macro", [
+		"#",
+		["directive", "else"]
+	]],
+	["macro", [
+		"#",
+		["directive", "elif"]
+	]],
+	["macro", [
+		"#",
+		["directive", "endif"]
+	]],
+	["macro", [
+		"#",
+		["directive", "error"]
+	]],
+	["macro", [
+		"#",
+		["directive", "pragma"]
+	]],
+	["macro", [
+		"#",
+		["directive", "extension"]
+	]],
+	["macro", [
+		"#",
+		["directive", "version"]
+	]],
+	["macro", [
+		"#",
+		["directive", "line"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for preprocessor instructions.

@@ -1,0 +1,46 @@
+<p>The regex languages con be used for inline regex snippets like <code>(?&lt;number>\d+)[-_ ]\k&lt;number></code> but it mainly adds itself to other languages such as:</p>
+
+<h2>JavaScript</h2>
+<pre class="language-javascript" data-dependencies="regex"><code>Prism.languages.markup = {
+	'comment': /&lt;!--[\s\S]*?-->/,
+	'prolog': /&lt;\?[\s\S]+?\?>/,
+	'doctype': {
+		pattern: /&lt;!DOCTYPE(?:[^>"'[\]]|"[^"]*"|'[^']*')+(?:\[(?:[^&lt;"'\]]|"[^"]*"|'[^']*'|&lt;(?!!--)|&lt;!--(?:[^-]|-(?!->))*-->)*\]\s*)?>/i,
+		greedy: true
+	},
+	'cdata': /&lt;!\[CDATA\[[\s\S]*?]]>/i,
+	'tag': {
+		pattern: /&lt;\/?(?!\d)[^\s>\/=$&lt;%]+(?:\s(?:\s*[^\s>\/=]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+(?=[\s>]))|(?=[\s/>])))+)?\s*\/?>/i,
+		greedy: true,
+		inside: {
+			'tag': {
+				pattern: /^&lt;\/?[^\s>\/]+/i,
+				inside: {
+					'punctuation': /^&lt;\/?/,
+					'namespace': /^[^\s>\/:]+:/
+				}
+			},
+			'attr-value': {
+				pattern: /=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+)/i,
+				inside: {
+					'punctuation': [
+						/^=/,
+						{
+							pattern: /^(\s*)["']|["']$/,
+							lookbehind: true
+						}
+					]
+				}
+			},
+			'punctuation': /\/?>/,
+			'attr-name': {
+				pattern: /[^\s>\/]+/,
+				inside: {
+					'namespace': /^[^\s>\/:]+:/
+				}
+			}
+
+		}
+	},
+	'entity': /&amp;#?[\da-z]{1,8};/i
+};</code></pre>

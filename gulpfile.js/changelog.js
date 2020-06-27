@@ -309,6 +309,13 @@ async function changes() {
 				addEntry('Other >> Infrastructure', info);
 				return true;
 			}
+
+			// or dependencies.js
+			const excludeTests = info.changes.filter(notTests);
+			if (excludeTests.length === 1 && excludeTests[0].file === 'dependencies.js') {
+				addEntry('Other >> Infrastructure', info);
+				return true;
+			}
 		},
 
 		function changedWebsite(info) {
