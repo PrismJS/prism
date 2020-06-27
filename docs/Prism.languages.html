@@ -154,7 +154,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line285">line 285</a>
+        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line286">line 286</a>
     </li></ul></dd>
     
 
@@ -216,9 +216,10 @@ Furthermore, all non-overwriting tokens should be placed after the overwriting o
     <h5>Example</h5>
     
     <pre class="prettyprint"><code>Prism.languages['css-with-colors'] = Prism.languages.extend('css', {
-    // this will overwrite the 'comment' token of CSS at its original position
+    // Prism.languages.css already has a 'comment' token, so this token will overwrite CSS' 'comment' token
+    // at its original position
     'comment': { ... },
-    // this will be appended
+    // CSS doesn't have a 'color' token, so this token will be appended
     'color': /\b(?:red|green|blue)\b/
 });</code></pre>
 
@@ -353,7 +354,7 @@ Furthermore, all non-overwriting tokens should be placed after the overwriting o
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line370">line 370</a>
+        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line371">line 371</a>
     </li></ul></dd>
     
 
