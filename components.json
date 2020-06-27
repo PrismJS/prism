@@ -987,6 +987,10 @@
 			"require": "bash",
 			"owner": "RunDevelopment"
 		},
+		"smali": {
+			"title": "Smali",
+			"owner": "RunDevelopment"
+		},
 		"smalltalk": {
 			"title": "Smalltalk",
 			"owner": "Golmote"
