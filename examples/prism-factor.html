@@ -55,8 +55,7 @@ BV{ 1 2 3 4 }</code></pre>
 
 <h2>Regular Expressions</h2>
 <pre><code>USE: regexp
-R/ abcde?.*+\?\.\*\+\/\\\/idmsr-idmsr/idmsr-idmsr</code>
-</pre>
+R/ abcde?.*+\?\.\*\+\/\\\/idmsr-idmsr/idmsr-idmsr</code></pre>
 
 <h2>Colon parsing words</h2>
 <pre><code>: a ( -- ) ;
@@ -73,9 +72,9 @@ GENERIC#: x 1 ( x: integer quot: ( x -- y ) -- )</code></pre>
 
 new last-index + - neg
 
-&lt;array&gt; <=> SYNTAX: x $[ xyz ]
+&lt;array&gt; &lt;=> SYNTAX: x $[ xyz ]
 
-set-x change-x with-variable ?of if* (gensym) hex. $description reader>> >>setter writer<<
+set-x change-x with-variable ?of if* (gensym) hex. $description reader>> >>setter writer&lt;&lt;
 
 string>number >hex base> mutater!
 </code></pre>

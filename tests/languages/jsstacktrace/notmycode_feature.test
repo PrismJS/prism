@@ -1,0 +1,18 @@
+Some text
+	at processTicksAndRejections (internal/process/task_queues.js:98:32)
+
+----------------------------------------------------
+
+[
+	["error-message", "Some text"],
+	[
+		"stack-frame",
+		[
+			["not-my-code", "\tat processTicksAndRejections (internal/process/task_queues.js:98:32)"]
+		]
+	]
+]
+
+----------------------------------------------------
+
+Checks greying out internal / library code stack trace frames

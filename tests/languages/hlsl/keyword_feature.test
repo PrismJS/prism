@@ -1,0 +1,711 @@
+asm
+asm_fragment
+auto
+break
+case
+catch
+cbuffer
+centroid
+char
+class
+column_major
+compile
+compile_fragment
+const
+const_cast
+continue
+default
+delete
+discard
+do
+dynamic_cast
+else
+enum
+explicit
+export
+extern
+for
+friend
+fxgroup
+goto
+groupshared
+if
+in
+inline
+inout
+interface
+line
+lineadj
+linear
+long
+matrix
+mutable
+namespace
+new
+nointerpolation
+noperspective
+operator
+out
+packoffset
+pass
+pixelfragment
+point
+precise
+private
+protected
+public
+register
+reinterpret_cast
+return
+row_major
+sample
+sampler
+shared
+short
+signed
+sizeof
+snorm
+stateblock
+stateblock_state
+static
+static_cast
+string
+struct
+switch
+tbuffer
+technique
+technique10
+technique11
+template
+texture
+this
+throw
+triangle
+triangleadj
+try
+typedef
+typename
+uniform
+union
+unorm
+unsigned
+using
+vector
+vertexfragment
+virtual
+void
+volatile
+while
+
+bool
+bool1
+bool1x1
+bool1x2
+bool1x3
+bool1x4
+bool2
+bool2x1
+bool2x2
+bool2x3
+bool2x4
+bool3
+bool3x1
+bool3x2
+bool3x3
+bool3x4
+bool4
+bool4x1
+bool4x2
+bool4x3
+bool4x4
+double
+double1
+double1x1
+double1x2
+double1x3
+double1x4
+double2
+double2x1
+double2x2
+double2x3
+double2x4
+double3
+double3x1
+double3x2
+double3x3
+double3x4
+double4
+double4x1
+double4x2
+double4x3
+double4x4
+dword
+dword1
+dword1x1
+dword1x2
+dword1x3
+dword1x4
+dword2
+dword2x1
+dword2x2
+dword2x3
+dword2x4
+dword3
+dword3x1
+dword3x2
+dword3x3
+dword3x4
+dword4
+dword4x1
+dword4x2
+dword4x3
+dword4x4
+float
+float1
+float1x1
+float1x2
+float1x3
+float1x4
+float2
+float2x1
+float2x2
+float2x3
+float2x4
+float3
+float3x1
+float3x2
+float3x3
+float3x4
+float4
+float4x1
+float4x2
+float4x3
+float4x4
+half
+half1
+half1x1
+half1x2
+half1x3
+half1x4
+half2
+half2x1
+half2x2
+half2x3
+half2x4
+half3
+half3x1
+half3x2
+half3x3
+half3x4
+half4
+half4x1
+half4x2
+half4x3
+half4x4
+int
+int1
+int1x1
+int1x2
+int1x3
+int1x4
+int2
+int2x1
+int2x2
+int2x3
+int2x4
+int3
+int3x1
+int3x2
+int3x3
+int3x4
+int4
+int4x1
+int4x2
+int4x3
+int4x4
+min10float
+min10float1
+min10float1x1
+min10float1x2
+min10float1x3
+min10float1x4
+min10float2
+min10float2x1
+min10float2x2
+min10float2x3
+min10float2x4
+min10float3
+min10float3x1
+min10float3x2
+min10float3x3
+min10float3x4
+min10float4
+min10float4x1
+min10float4x2
+min10float4x3
+min10float4x4
+min12int
+min12int1
+min12int1x1
+min12int1x2
+min12int1x3
+min12int1x4
+min12int2
+min12int2x1
+min12int2x2
+min12int2x3
+min12int2x4
+min12int3
+min12int3x1
+min12int3x2
+min12int3x3
+min12int3x4
+min12int4
+min12int4x1
+min12int4x2
+min12int4x3
+min12int4x4
+min16float
+min16float1
+min16float1x1
+min16float1x2
+min16float1x3
+min16float1x4
+min16float2
+min16float2x1
+min16float2x2
+min16float2x3
+min16float2x4
+min16float3
+min16float3x1
+min16float3x2
+min16float3x3
+min16float3x4
+min16float4
+min16float4x1
+min16float4x2
+min16float4x3
+min16float4x4
+min16int
+min16int1
+min16int1x1
+min16int1x2
+min16int1x3
+min16int1x4
+min16int2
+min16int2x1
+min16int2x2
+min16int2x3
+min16int2x4
+min16int3
+min16int3x1
+min16int3x2
+min16int3x3
+min16int3x4
+min16int4
+min16int4x1
+min16int4x2
+min16int4x3
+min16int4x4
+min16uint
+min16uint1
+min16uint1x1
+min16uint1x2
+min16uint1x3
+min16uint1x4
+min16uint2
+min16uint2x1
+min16uint2x2
+min16uint2x3
+min16uint2x4
+min16uint3
+min16uint3x1
+min16uint3x2
+min16uint3x3
+min16uint3x4
+min16uint4
+min16uint4x1
+min16uint4x2
+min16uint4x3
+min16uint4x4
+uint
+uint1
+uint1x1
+uint1x2
+uint1x3
+uint1x4
+uint2
+uint2x1
+uint2x2
+uint2x3
+uint2x4
+uint3
+uint3x1
+uint3x2
+uint3x3
+uint3x4
+uint4
+uint4x1
+uint4x2
+uint4x3
+uint4x4
+
+----------------------------------------------------
+
+[
+	["keyword", "asm"],
+	["keyword", "asm_fragment"],
+	["keyword", "auto"],
+	["keyword", "break"],
+	["keyword", "case"],
+	["keyword", "catch"],
+	["keyword", "cbuffer"],
+	["keyword", "centroid"],
+	["keyword", "char"],
+	["keyword", "class"],
+	["keyword", "column_major"],
+	["keyword", "compile"],
+	["keyword", "compile_fragment"],
+	["keyword", "const"],
+	["keyword", "const_cast"],
+	["keyword", "continue"],
+	["keyword", "default"],
+	["keyword", "delete"],
+	["keyword", "discard"],
+	["keyword", "do"],
+	["keyword", "dynamic_cast"],
+	["keyword", "else"],
+	["keyword", "enum"],
+	["class-name", "explicit"],
+	["keyword", "export"],
+	["keyword", "extern"],
+	["keyword", "for"],
+	["keyword", "friend"],
+	["keyword", "fxgroup"],
+	["keyword", "goto"],
+	["keyword", "groupshared"],
+	["keyword", "if"],
+	["keyword", "in"],
+	["keyword", "inline"],
+	["keyword", "inout"],
+	["keyword", "interface"],
+	["keyword", "line"],
+	["keyword", "lineadj"],
+	["keyword", "linear"],
+	["keyword", "long"],
+	["keyword", "matrix"],
+	["keyword", "mutable"],
+	["keyword", "namespace"],
+	["keyword", "new"],
+	["keyword", "nointerpolation"],
+	["keyword", "noperspective"],
+	["keyword", "operator"],
+	["keyword", "out"],
+	["keyword", "packoffset"],
+	["keyword", "pass"],
+	["keyword", "pixelfragment"],
+	["keyword", "point"],
+	["keyword", "precise"],
+	["keyword", "private"],
+	["keyword", "protected"],
+	["keyword", "public"],
+	["keyword", "register"],
+	["keyword", "reinterpret_cast"],
+	["keyword", "return"],
+	["keyword", "row_major"],
+	["keyword", "sample"],
+	["keyword", "sampler"],
+	["keyword", "shared"],
+	["keyword", "short"],
+	["keyword", "signed"],
+	["keyword", "sizeof"],
+	["keyword", "snorm"],
+	["keyword", "stateblock"],
+	["keyword", "stateblock_state"],
+	["keyword", "static"],
+	["keyword", "static_cast"],
+	["keyword", "string"],
+	["keyword", "struct"],
+	["class-name", "switch"],
+	["keyword", "tbuffer"],
+	["keyword", "technique"],
+	["keyword", "technique10"],
+	["keyword", "technique11"],
+	["keyword", "template"],
+	["keyword", "texture"],
+	["keyword", "this"],
+	["keyword", "throw"],
+	["keyword", "triangle"],
+	["keyword", "triangleadj"],
+	["keyword", "try"],
+	["keyword", "typedef"],
+	["keyword", "typename"],
+	["keyword", "uniform"],
+	["keyword", "union"],
+	["keyword", "unorm"],
+	["keyword", "unsigned"],
+	["keyword", "using"],
+	["keyword", "vector"],
+	["keyword", "vertexfragment"],
+	["keyword", "virtual"],
+	["keyword", "void"],
+	["keyword", "volatile"],
+	["keyword", "while"],
+
+	["keyword", "bool"],
+	["keyword", "bool1"],
+	["keyword", "bool1x1"],
+	["keyword", "bool1x2"],
+	["keyword", "bool1x3"],
+	["keyword", "bool1x4"],
+	["keyword", "bool2"],
+	["keyword", "bool2x1"],
+	["keyword", "bool2x2"],
+	["keyword", "bool2x3"],
+	["keyword", "bool2x4"],
+	["keyword", "bool3"],
+	["keyword", "bool3x1"],
+	["keyword", "bool3x2"],
+	["keyword", "bool3x3"],
+	["keyword", "bool3x4"],
+	["keyword", "bool4"],
+	["keyword", "bool4x1"],
+	["keyword", "bool4x2"],
+	["keyword", "bool4x3"],
+	["keyword", "bool4x4"],
+	["keyword", "double"],
+	["keyword", "double1"],
+	["keyword", "double1x1"],
+	["keyword", "double1x2"],
+	["keyword", "double1x3"],
+	["keyword", "double1x4"],
+	["keyword", "double2"],
+	["keyword", "double2x1"],
+	["keyword", "double2x2"],
+	["keyword", "double2x3"],
+	["keyword", "double2x4"],
+	["keyword", "double3"],
+	["keyword", "double3x1"],
+	["keyword", "double3x2"],
+	["keyword", "double3x3"],
+	["keyword", "double3x4"],
+	["keyword", "double4"],
+	["keyword", "double4x1"],
+	["keyword", "double4x2"],
+	["keyword", "double4x3"],
+	["keyword", "double4x4"],
+	["keyword", "dword"],
+	["keyword", "dword1"],
+	["keyword", "dword1x1"],
+	["keyword", "dword1x2"],
+	["keyword", "dword1x3"],
+	["keyword", "dword1x4"],
+	["keyword", "dword2"],
+	["keyword", "dword2x1"],
+	["keyword", "dword2x2"],
+	["keyword", "dword2x3"],
+	["keyword", "dword2x4"],
+	["keyword", "dword3"],
+	["keyword", "dword3x1"],
+	["keyword", "dword3x2"],
+	["keyword", "dword3x3"],
+	["keyword", "dword3x4"],
+	["keyword", "dword4"],
+	["keyword", "dword4x1"],
+	["keyword", "dword4x2"],
+	["keyword", "dword4x3"],
+	["keyword", "dword4x4"],
+	["keyword", "float"],
+	["keyword", "float1"],
+	["keyword", "float1x1"],
+	["keyword", "float1x2"],
+	["keyword", "float1x3"],
+	["keyword", "float1x4"],
+	["keyword", "float2"],
+	["keyword", "float2x1"],
+	["keyword", "float2x2"],
+	["keyword", "float2x3"],
+	["keyword", "float2x4"],
+	["keyword", "float3"],
+	["keyword", "float3x1"],
+	["keyword", "float3x2"],
+	["keyword", "float3x3"],
+	["keyword", "float3x4"],
+	["keyword", "float4"],
+	["keyword", "float4x1"],
+	["keyword", "float4x2"],
+	["keyword", "float4x3"],
+	["keyword", "float4x4"],
+	["keyword", "half"],
+	["keyword", "half1"],
+	["keyword", "half1x1"],
+	["keyword", "half1x2"],
+	["keyword", "half1x3"],
+	["keyword", "half1x4"],
+	["keyword", "half2"],
+	["keyword", "half2x1"],
+	["keyword", "half2x2"],
+	["keyword", "half2x3"],
+	["keyword", "half2x4"],
+	["keyword", "half3"],
+	["keyword", "half3x1"],
+	["keyword", "half3x2"],
+	["keyword", "half3x3"],
+	["keyword", "half3x4"],
+	["keyword", "half4"],
+	["keyword", "half4x1"],
+	["keyword", "half4x2"],
+	["keyword", "half4x3"],
+	["keyword", "half4x4"],
+	["keyword", "int"],
+	["keyword", "int1"],
+	["keyword", "int1x1"],
+	["keyword", "int1x2"],
+	["keyword", "int1x3"],
+	["keyword", "int1x4"],
+	["keyword", "int2"],
+	["keyword", "int2x1"],
+	["keyword", "int2x2"],
+	["keyword", "int2x3"],
+	["keyword", "int2x4"],
+	["keyword", "int3"],
+	["keyword", "int3x1"],
+	["keyword", "int3x2"],
+	["keyword", "int3x3"],
+	["keyword", "int3x4"],
+	["keyword", "int4"],
+	["keyword", "int4x1"],
+	["keyword", "int4x2"],
+	["keyword", "int4x3"],
+	["keyword", "int4x4"],
+	["keyword", "min10float"],
+	["keyword", "min10float1"],
+	["keyword", "min10float1x1"],
+	["keyword", "min10float1x2"],
+	["keyword", "min10float1x3"],
+	["keyword", "min10float1x4"],
+	["keyword", "min10float2"],
+	["keyword", "min10float2x1"],
+	["keyword", "min10float2x2"],
+	["keyword", "min10float2x3"],
+	["keyword", "min10float2x4"],
+	["keyword", "min10float3"],
+	["keyword", "min10float3x1"],
+	["keyword", "min10float3x2"],
+	["keyword", "min10float3x3"],
+	["keyword", "min10float3x4"],
+	["keyword", "min10float4"],
+	["keyword", "min10float4x1"],
+	["keyword", "min10float4x2"],
+	["keyword", "min10float4x3"],
+	["keyword", "min10float4x4"],
+	["keyword", "min12int"],
+	["keyword", "min12int1"],
+	["keyword", "min12int1x1"],
+	["keyword", "min12int1x2"],
+	["keyword", "min12int1x3"],
+	["keyword", "min12int1x4"],
+	["keyword", "min12int2"],
+	["keyword", "min12int2x1"],
+	["keyword", "min12int2x2"],
+	["keyword", "min12int2x3"],
+	["keyword", "min12int2x4"],
+	["keyword", "min12int3"],
+	["keyword", "min12int3x1"],
+	["keyword", "min12int3x2"],
+	["keyword", "min12int3x3"],
+	["keyword", "min12int3x4"],
+	["keyword", "min12int4"],
+	["keyword", "min12int4x1"],
+	["keyword", "min12int4x2"],
+	["keyword", "min12int4x3"],
+	["keyword", "min12int4x4"],
+	["keyword", "min16float"],
+	["keyword", "min16float1"],
+	["keyword", "min16float1x1"],
+	["keyword", "min16float1x2"],
+	["keyword", "min16float1x3"],
+	["keyword", "min16float1x4"],
+	["keyword", "min16float2"],
+	["keyword", "min16float2x1"],
+	["keyword", "min16float2x2"],
+	["keyword", "min16float2x3"],
+	["keyword", "min16float2x4"],
+	["keyword", "min16float3"],
+	["keyword", "min16float3x1"],
+	["keyword", "min16float3x2"],
+	["keyword", "min16float3x3"],
+	["keyword", "min16float3x4"],
+	["keyword", "min16float4"],
+	["keyword", "min16float4x1"],
+	["keyword", "min16float4x2"],
+	["keyword", "min16float4x3"],
+	["keyword", "min16float4x4"],
+	["keyword", "min16int"],
+	["keyword", "min16int1"],
+	["keyword", "min16int1x1"],
+	["keyword", "min16int1x2"],
+	["keyword", "min16int1x3"],
+	["keyword", "min16int1x4"],
+	["keyword", "min16int2"],
+	["keyword", "min16int2x1"],
+	["keyword", "min16int2x2"],
+	["keyword", "min16int2x3"],
+	["keyword", "min16int2x4"],
+	["keyword", "min16int3"],
+	["keyword", "min16int3x1"],
+	["keyword", "min16int3x2"],
+	["keyword", "min16int3x3"],
+	["keyword", "min16int3x4"],
+	["keyword", "min16int4"],
+	["keyword", "min16int4x1"],
+	["keyword", "min16int4x2"],
+	["keyword", "min16int4x3"],
+	["keyword", "min16int4x4"],
+	["keyword", "min16uint"],
+	["keyword", "min16uint1"],
+	["keyword", "min16uint1x1"],
+	["keyword", "min16uint1x2"],
+	["keyword", "min16uint1x3"],
+	["keyword", "min16uint1x4"],
+	["keyword", "min16uint2"],
+	["keyword", "min16uint2x1"],
+	["keyword", "min16uint2x2"],
+	["keyword", "min16uint2x3"],
+	["keyword", "min16uint2x4"],
+	["keyword", "min16uint3"],
+	["keyword", "min16uint3x1"],
+	["keyword", "min16uint3x2"],
+	["keyword", "min16uint3x3"],
+	["keyword", "min16uint3x4"],
+	["keyword", "min16uint4"],
+	["keyword", "min16uint4x1"],
+	["keyword", "min16uint4x2"],
+	["keyword", "min16uint4x3"],
+	["keyword", "min16uint4x4"],
+	["keyword", "uint"],
+	["keyword", "uint1"],
+	["keyword", "uint1x1"],
+	["keyword", "uint1x2"],
+	["keyword", "uint1x3"],
+	["keyword", "uint1x4"],
+	["keyword", "uint2"],
+	["keyword", "uint2x1"],
+	["keyword", "uint2x2"],
+	["keyword", "uint2x3"],
+	["keyword", "uint2x4"],
+	["keyword", "uint3"],
+	["keyword", "uint3x1"],
+	["keyword", "uint3x2"],
+	["keyword", "uint3x3"],
+	["keyword", "uint3x4"],
+	["keyword", "uint4"],
+	["keyword", "uint4x1"],
+	["keyword", "uint4x2"],
+	["keyword", "uint4x3"],
+	["keyword", "uint4x4"]
+]
+
+----------------------------------------------------
+
+Checks for keywords.

@@ -1,0 +1,17 @@
+#lang racket
+#lang racket/base
+#lang s-exp "html.rkt"
+#lang s-exp pollen/private/dialect
+
+----------------------------------------------------
+
+[
+	["lang", "#lang racket"],
+	["lang", "#lang racket/base"],
+	["lang", "#lang s-exp \"html.rkt\""],
+	["lang", "#lang s-exp pollen/private/dialect"]
+]
+
+----------------------------------------------------
+
+Checks for #lang.

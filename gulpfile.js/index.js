@@ -12,7 +12,6 @@ const util = require('util');
 const fs = require('fs');
 
 const paths = require('./paths');
-const { premerge } = require('./premerge');
 const { changes, linkify } = require('./changelog');
 
 
@@ -30,14 +29,25 @@ const componentsPromise = new Promise((resolve, reject) => {
 
 function inlineRegexSource() {
 	return replace(
-		/\/((?:[^\n\r[\\\/]|\\.|\[(?:[^\n\r\\\]]|\\.)*\])*)\/\.source\b/g,
+		/\/((?:[^\n\r[\\\/]|\\.|\[(?:[^\n\r\\\]]|\\.)*\])+)\/\s*\.\s*source\b/g,
 		(m, source) => {
 			// escape backslashes
-			source = source.replace(/\\/g, '\\\\');
+			source = source.replace(/\\(.)|\[(\\s\\S|\\S\\s)\]/g, function (m, g1, g2) {
+				if (g1) {
+					// characters like /\n/ can just be kept as "\n" instead of being escaped to "\\n"
+					if (/[nrt0/]/.test(g1)) {
+						return m;
+					}
+					if ('\\' == g1) {
+						return '\\\\\\\\'; // escape using 4 backslashes
+					}
+					return '\\\\' + g1;
+				} else {
+					return "[^]";
+				}
+			});
 			// escape single quotes
 			source = source.replace(/'/g, "\\'");
-			// unescape characters like \\n and \\t to \n and \t
-			source = source.replace(/(^|[^\\])\\\\([nrt0])/g, '$1\\$2');
 			// wrap source in single quotes
 			return "'" + source + "'";
 		}
@@ -81,6 +91,7 @@ function watchComponentsAndPlugins() {
 
 async function languagePlugins() {
 	const data = await componentsPromise;
+	/** @type {Record<string, string | null>} */
 	const languagesMap = {};
 	const dependenciesMap = {};
 	const aliasMap = {};
@@ -105,8 +116,12 @@ async function languagePlugins() {
 	 * @param {string} title
 	 */
 	function addLanguageTitle(key, title) {
-		if (!languagesMap[key] && guessTitle(key) !== title) {
-			languagesMap[key] = title;
+		if (!(key in languagesMap)) {
+			if (guessTitle(key) === title) {
+				languagesMap[key] = null;
+			} else {
+				languagesMap[key] = title;
+			}
 		}
 	}
 
@@ -143,7 +158,16 @@ async function languagePlugins() {
 		return JSON.stringify(json, null, '\t').replace(/\n/g, '\n\t');
 	}
 
-	const jsonLanguagesMap = formattedStringify(languagesMap);
+	/** @type {Record<string, string>} */
+	const nonNullLanguageMap = {};
+	for (const id in languagesMap) {
+		const title = languagesMap[id];
+		if (title) {
+			nonNullLanguageMap[id] = title;
+		}
+	}
+
+	const jsonLanguagesMap = formattedStringify(nonNullLanguageMap);
 	const jsonDependenciesMap = formattedStringify(dependenciesMap);
 	const jsonAliasMap = formattedStringify(aliasMap);
 
@@ -191,7 +215,6 @@ const plugins = series(languagePlugins, minifyPlugins);
 module.exports = {
 	watch: watchComponentsAndPlugins,
 	default: parallel(components, plugins, componentsJsonToJs, build),
-	premerge,
 	linkify,
 	changes
 };

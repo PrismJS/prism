@@ -5,17 +5,19 @@ _foobar_
 _foo
 bar_
 
-_foo__bar__baz_
-_foo**bar**baz_
-_foo~bar~baz_
-_foo~~bar~~baz_
+_foo __bar__ baz_
+_foo **bar** baz_
+_foo ~bar~ baz_
+_foo ~~bar~~ baz_
 _foo[bar](baz)_
 
-*foo__bar__baz*
-*foo**bar**baz*
-*foo~bar~baz*
-*foo~~bar~~baz*
+*foo __bar__ baz*
+*foo **bar** baz*
+*foo ~bar~ baz*
+*foo ~~bar~~ baz*
 *foo[bar](baz)*
+
+not_italic_ _this_either
 
 ----------------------------------------------------
 
@@ -51,7 +53,7 @@ _foo[bar](baz)_
 	["italic", [
 		["punctuation", "_"],
 		["content", [
-			"foo",
+			"foo ",
 			["bold", [
 				["punctuation", "__"],
 				["content", [
@@ -59,14 +61,14 @@ _foo[bar](baz)_
 				]],
 				["punctuation", "__"]
 			]],
-			"baz"
+			" baz"
 		]],
 		["punctuation", "_"]
 	]],
 	["italic", [
 		["punctuation", "_"],
 		["content", [
-			"foo",
+			"foo ",
 			["bold", [
 				["punctuation", "**"],
 				["content", [
@@ -74,14 +76,14 @@ _foo[bar](baz)_
 				]],
 				["punctuation", "**"]
 			]],
-			"baz"
+			" baz"
 		]],
 		["punctuation", "_"]
 	]],
 	["italic", [
 		["punctuation", "_"],
 		["content", [
-			"foo",
+			"foo ",
 			["strike", [
 				["punctuation", "~"],
 				["content", [
@@ -89,14 +91,14 @@ _foo[bar](baz)_
 				]],
 				["punctuation", "~"]
 			]],
-			"baz"
+			" baz"
 		]],
 		["punctuation", "_"]
 	]],
 	["italic", [
 		["punctuation", "_"],
 		["content", [
-			"foo",
+			"foo ",
 			["strike", [
 				["punctuation", "~~"],
 				["content", [
@@ -104,7 +106,7 @@ _foo[bar](baz)_
 				]],
 				["punctuation", "~~"]
 			]],
-			"baz"
+			" baz"
 		]],
 		["punctuation", "_"]
 	]],
@@ -125,7 +127,7 @@ _foo[bar](baz)_
 	["italic", [
 		["punctuation", "*"],
 		["content", [
-			"foo",
+			"foo ",
 			["bold", [
 				["punctuation", "__"],
 				["content", [
@@ -133,14 +135,14 @@ _foo[bar](baz)_
 				]],
 				["punctuation", "__"]
 			]],
-			"baz"
+			" baz"
 		]],
 		["punctuation", "*"]
 	]],
 	["italic", [
 		["punctuation", "*"],
 		["content", [
-			"foo",
+			"foo ",
 			["bold", [
 				["punctuation", "**"],
 				["content", [
@@ -148,14 +150,14 @@ _foo[bar](baz)_
 				]],
 				["punctuation", "**"]
 			]],
-			"baz"
+			" baz"
 		]],
 		["punctuation", "*"]
 	]],
 	["italic", [
 		["punctuation", "*"],
 		["content", [
-			"foo",
+			"foo ",
 			["strike", [
 				["punctuation", "~"],
 				["content", [
@@ -163,14 +165,14 @@ _foo[bar](baz)_
 				]],
 				["punctuation", "~"]
 			]],
-			"baz"
+			" baz"
 		]],
 		["punctuation", "*"]
 	]],
 	["italic", [
 		["punctuation", "*"],
 		["content", [
-			"foo",
+			"foo ",
 			["strike", [
 				["punctuation", "~~"],
 				["content", [
@@ -178,7 +180,7 @@ _foo[bar](baz)_
 				]],
 				["punctuation", "~~"]
 			]],
-			"baz"
+			" baz"
 		]],
 		["punctuation", "*"]
 	]],
@@ -195,7 +197,8 @@ _foo[bar](baz)_
 			]]
 		]],
 		["punctuation", "*"]
-	]]
+	]],
+	"\r\n\r\nnot_italic_ _this_either"
 ]
 
 ----------------------------------------------------

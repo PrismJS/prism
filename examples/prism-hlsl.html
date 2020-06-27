@@ -1,0 +1,18 @@
+<h2>Full example</h2>
+<pre><code>// Source: https://github.com/mellinoe/veldrid/blob/d60e5a036add2123a15f0da02f1da65a80503d54/src/Veldrid.ImGui/Assets/HLSL/imgui-frag.hlsl
+
+struct PS_INPUT
+{
+	float4 pos : SV_POSITION;
+	float4 col : COLOR0;
+	float2 uv  : TEXCOORD0;
+};
+
+Texture2D FontTexture : register(t0);
+sampler FontSampler : register(s0);
+
+float4 FS(PS_INPUT input) : SV_Target
+{
+	float4 out_col = input.col * FontTexture.Sample(FontSampler, input.uv);
+	return out_col;
+}</code></pre>

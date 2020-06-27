@@ -1,0 +1,211 @@
+automation
+biginteger
+bigtext
+blob
+boolean
+byte
+char
+clienttype
+code
+completiontriggererrorlevel
+connectiontype
+database
+dataclassification
+datascope
+date
+dateformula
+datetime
+decimal
+defaultlayout
+dialog
+dictionary
+dotnetassembly
+dotnettypedeclaration
+duration
+errorinfo
+errortype
+executioncontext
+executionmode
+fieldclass
+fieldref
+fieldtype
+file
+filterpagebuilder
+guid
+httpclient
+httpcontent
+httpheaders
+httprequestmessage
+httpresponsemessage
+instream
+integer
+joker
+jsonarray
+jsonobject
+jsontoken
+jsonvalue
+keyref
+list
+moduledependencyinfo
+moduleinfo
+none
+notification
+notificationscope
+objecttype
+option
+outstream
+pageresult
+record
+recordid
+recordref
+reportformat
+securityfilter
+sessionsettings
+tableconnectiontype
+tablefilter
+testaction
+testfield
+testfilterfield
+testpage
+testpermissions
+testrequestpage
+text
+textbuilder
+textconst
+textencoding
+time
+transactionmodel
+transactiontype
+variant
+verbosity
+version
+view
+views
+webserviceactioncontext
+webserviceactionresultcode
+xmlattribute
+xmlattributecollection
+xmlcdata
+xmlcomment
+xmldeclaration
+xmldocument
+xmldocumenttype
+xmlelement
+xmlnamespacemanager
+xmlnametable
+xmlnode
+xmlnodelist
+xmlprocessinginstruction
+xmlreadoptions
+xmltext
+xmlwriteoptions
+
+----------------------------------------------------
+
+[
+	["class-name", "automation"],
+	["class-name", "biginteger"],
+	["class-name", "bigtext"],
+	["class-name", "blob"],
+	["class-name", "boolean"],
+	["class-name", "byte"],
+	["class-name", "char"],
+	["class-name", "clienttype"],
+	["class-name", "code"],
+	["class-name", "completiontriggererrorlevel"],
+	["class-name", "connectiontype"],
+	["class-name", "database"],
+	["class-name", "dataclassification"],
+	["class-name", "datascope"],
+	["class-name", "date"],
+	["class-name", "dateformula"],
+	["class-name", "datetime"],
+	["class-name", "decimal"],
+	["class-name", "defaultlayout"],
+	["class-name", "dialog"],
+	["class-name", "dictionary"],
+	["class-name", "dotnetassembly"],
+	["class-name", "dotnettypedeclaration"],
+	["class-name", "duration"],
+	["class-name", "errorinfo"],
+	["class-name", "errortype"],
+	["class-name", "executioncontext"],
+	["class-name", "executionmode"],
+	["class-name", "fieldclass"],
+	["class-name", "fieldref"],
+	["class-name", "fieldtype"],
+	["class-name", "file"],
+	["class-name", "filterpagebuilder"],
+	["class-name", "guid"],
+	["class-name", "httpclient"],
+	["class-name", "httpcontent"],
+	["class-name", "httpheaders"],
+	["class-name", "httprequestmessage"],
+	["class-name", "httpresponsemessage"],
+	["class-name", "instream"],
+	["class-name", "integer"],
+	["class-name", "joker"],
+	["class-name", "jsonarray"],
+	["class-name", "jsonobject"],
+	["class-name", "jsontoken"],
+	["class-name", "jsonvalue"],
+	["class-name", "keyref"],
+	["class-name", "list"],
+	["class-name", "moduledependencyinfo"],
+	["class-name", "moduleinfo"],
+	["class-name", "none"],
+	["class-name", "notification"],
+	["class-name", "notificationscope"],
+	["class-name", "objecttype"],
+	["class-name", "option"],
+	["class-name", "outstream"],
+	["class-name", "pageresult"],
+	["class-name", "record"],
+	["class-name", "recordid"],
+	["class-name", "recordref"],
+	["class-name", "reportformat"],
+	["class-name", "securityfilter"],
+	["class-name", "sessionsettings"],
+	["class-name", "tableconnectiontype"],
+	["class-name", "tablefilter"],
+	["class-name", "testaction"],
+	["class-name", "testfield"],
+	["class-name", "testfilterfield"],
+	["class-name", "testpage"],
+	["class-name", "testpermissions"],
+	["class-name", "testrequestpage"],
+	["class-name", "text"],
+	["class-name", "textbuilder"],
+	["class-name", "textconst"],
+	["class-name", "textencoding"],
+	["class-name", "time"],
+	["class-name", "transactionmodel"],
+	["class-name", "transactiontype"],
+	["class-name", "variant"],
+	["class-name", "verbosity"],
+	["class-name", "version"],
+	["class-name", "view"],
+	["class-name", "views"],
+	["class-name", "webserviceactioncontext"],
+	["class-name", "webserviceactionresultcode"],
+	["class-name", "xmlattribute"],
+	["class-name", "xmlattributecollection"],
+	["class-name", "xmlcdata"],
+	["class-name", "xmlcomment"],
+	["class-name", "xmldeclaration"],
+	["class-name", "xmldocument"],
+	["class-name", "xmldocumenttype"],
+	["class-name", "xmlelement"],
+	["class-name", "xmlnamespacemanager"],
+	["class-name", "xmlnametable"],
+	["class-name", "xmlnode"],
+	["class-name", "xmlnodelist"],
+	["class-name", "xmlprocessinginstruction"],
+	["class-name", "xmlreadoptions"],
+	["class-name", "xmltext"],
+	["class-name", "xmlwriteoptions"]
+]
+
+----------------------------------------------------
+
+Checks for class names.
