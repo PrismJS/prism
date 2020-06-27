@@ -215,8 +215,7 @@ const plugins = series(languagePlugins, minifyPlugins);
 
 module.exports = {
 	watch: watchComponentsAndPlugins,
-	default: parallel(components, plugins, componentsJsonToJs, build),
+	default: series(parallel(components, plugins, componentsJsonToJs, build), docs),
 	linkify,
-	changes,
-	docs
+	changes
 };
