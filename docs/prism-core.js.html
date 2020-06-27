@@ -765,7 +765,7 @@ _self.Prism = _;
  * Creates a new token.
  *
  * @param {string} type See {@link Token#type type}
- * @param {string | Token | TokenStream} content See {@link Token#content content}
+ * @param {string | TokenStream} content See {@link Token#content content}
  * @param {string|string[]} [alias] The alias(es) of the token.
  * @param {string} [matchedStr=""] A copy of the full string this token was created from.
  * @param {boolean} [greedy=false] Whether the pattern that created this token is greedy or not. Will be removed soon.
@@ -779,7 +779,7 @@ function Token(type, content, alias, matchedStr, greedy) {
 	 *
 	 * This is usually the key of a pattern in a {@link Grammar}.
 	 *
-	 * @member {string}
+	 * @type {string}
 	 * @see GrammarToken
 	 * @public
 	 */
@@ -789,14 +789,14 @@ function Token(type, content, alias, matchedStr, greedy) {
 	 *
 	 * This will be a token stream if the pattern matched also defined an `inside` grammar.
 	 *
-	 * @member {string | Token | TokenStream}
+	 * @type {string | TokenStream}
 	 * @public
 	 */
 	this.content = content;
 	/**
 	 * The alias(es) of the token.
 	 *
-	 * @member {string|string[]}
+	 * @type {string|string[]}
 	 * @see GrammarToken
 	 * @public
 	 */
