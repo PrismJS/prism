@@ -49,9 +49,8 @@ module.exports = {
 	 *
 	 * @param {string} languageIdentifier
 	 * @param {string} filePath
-	 * @param {boolean} [pretty=false]
 	 */
-	runTestCase(languageIdentifier, filePath, pretty = false) {
+	runTestCase(languageIdentifier, filePath) {
 		const testCase = this.parseTestCaseFile(filePath);
 		const usedLanguages = this.parseLanguageNames(languageIdentifier);
 
@@ -79,7 +78,7 @@ module.exports = {
 		const columnNumber = expectedJsonLines.pop().length + 1;
 		const lineNumber = testCase.expectedLineOffset + expectedJsonLines.length;
 
-		const tokenStreamStr = pretty ? TokenStreamTransformer.prettyprint(simplifiedTokenStream) : actual;
+		const tokenStreamStr = TokenStreamTransformer.prettyprint(simplifiedTokenStream);
 		const message = "\n\nActual Token Stream:" +
 			"\n-----------------------------------------\n" +
 			tokenStreamStr +
