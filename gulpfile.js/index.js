@@ -12,7 +12,6 @@ const util = require('util');
 const fs = require('fs');
 
 const paths = require('./paths');
-const { premerge } = require('./premerge');
 const { changes, linkify } = require('./changelog');
 
 
@@ -216,7 +215,6 @@ const plugins = series(languagePlugins, minifyPlugins);
 module.exports = {
 	watch: watchComponentsAndPlugins,
 	default: parallel(components, plugins, componentsJsonToJs, build),
-	premerge,
 	linkify,
 	changes
 };

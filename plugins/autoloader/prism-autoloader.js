@@ -42,13 +42,14 @@
 		"firestore-security-rules": "clike",
 		"flow": "javascript",
 		"ftl": "markup-templating",
-		"glsl": "clike",
 		"gml": "clike",
+		"glsl": "c",
 		"go": "clike",
 		"groovy": "clike",
 		"haml": "ruby",
 		"handlebars": "markup-templating",
 		"haxe": "clike",
+		"hlsl": "c",
 		"java": "clike",
 		"javadoc": [
 			"markup",
@@ -61,9 +62,9 @@
 			"javadoclike"
 		],
 		"js-extras": "javascript",
-		"js-templates": "javascript",
-		"jsonp": "json",
 		"json5": "json",
+		"jsonp": "json",
+		"js-templates": "javascript",
 		"kotlin": "clike",
 		"latte": [
 			"clike",
@@ -95,8 +96,10 @@
 			"markup",
 			"javascript"
 		],
+		"purebasic": "clike",
 		"qml": "javascript",
 		"qore": "clike",
+		"racket": "scheme",
 		"jsx": [
 			"markup",
 			"javascript"
@@ -117,27 +120,28 @@
 		"sparql": "turtle",
 		"sqf": "clike",
 		"swift": "clike",
-		"tap": "yaml",
-		"textile": "markup",
-		"tt2": [
-			"clike",
-			"markup-templating"
-		],
-		"twig": "markup",
-		"typescript": "javascript",
 		"t4-cs": [
 			"t4-templating",
 			"csharp"
 		],
 		"t4-vb": [
 			"t4-templating",
-			"visual-basic"
+			"vbnet"
 		],
+		"tap": "yaml",
+		"tt2": [
+			"clike",
+			"markup-templating"
+		],
+		"textile": "markup",
+		"twig": "markup",
+		"typescript": "javascript",
 		"vala": "clike",
 		"vbnet": "basic",
 		"velocity": "markup",
 		"wiki": "markup",
 		"xeora": "markup",
+		"xml-doc": "markup",
 		"xquery": "markup"
 	}/*]*/;
 
@@ -146,16 +150,19 @@
 		"xml": "markup",
 		"svg": "markup",
 		"mathml": "markup",
+		"ssml": "markup",
+		"atom": "markup",
+		"rss": "markup",
 		"js": "javascript",
 		"g4": "antlr4",
 		"adoc": "asciidoc",
 		"shell": "bash",
 		"shortcode": "bbcode",
 		"rbnf": "bnf",
-		"conc": "concurnas",
 		"cs": "csharp",
 		"dotnet": "csharp",
 		"coffee": "coffeescript",
+		"conc": "concurnas",
 		"jinja2": "django",
 		"dns-zone": "dns-zone-file",
 		"dockerfile": "docker",
@@ -164,6 +171,7 @@
 		"xls": "excel-formula",
 		"gamemakerlanguage": "gml",
 		"hs": "haskell",
+		"webmanifest": "json",
 		"tex": "latex",
 		"context": "latex",
 		"ly": "lilypond",
@@ -173,18 +181,26 @@
 		"md": "markdown",
 		"moon": "moonscript",
 		"n4jsd": "n4js",
+		"objc": "objectivec",
 		"objectpascal": "pascal",
 		"px": "pcaxis",
+		"pcode": "peoplecode",
 		"pq": "powerquery",
 		"mscript": "powerquery",
+		"pbfasm": "purebasic",
 		"py": "python",
+		"rkt": "racket",
+		"rpy": "renpy",
 		"robot": "robotframework",
 		"rb": "ruby",
+		"sol": "solidity",
 		"sln": "solution-file",
 		"rq": "sparql",
+		"t4": "t4-cs",
 		"trig": "turtle",
 		"ts": "typescript",
-		"t4": "t4-cs",
+		"uscript": "unrealscript",
+		"uc": "unrealscript",
 		"vb": "visual-basic",
 		"xeoracube": "xeora",
 		"yml": "yaml"

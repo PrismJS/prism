@@ -13,6 +13,9 @@ a.button
 a#main-link
 #content
 
+div#test-id.test-class1.test-class2
+.test-class1#test-id.test-class2
+
 a: span
 
 ----------------------------------------------------
@@ -83,10 +86,23 @@ a: span
 		]]
 	]],
 
-	["tag", ["a.button"]],
-	["tag", [".content"]],
-	["tag", ["a#main-link"]],
-	["tag", ["#content"]],
+	["tag", [
+		"a",
+		["attr-class", ".button"]]],
+	["tag", [["attr-class", ".content"]]],
+	["tag", [
+		"a",
+		["attr-id", "#main-link"]]],
+	["tag", [["attr-id", "#content"]]],
+	["tag", [
+		"div",
+		["attr-id", "#test-id"],
+		["attr-class", ".test-class1"],
+		["attr-class", ".test-class2"]]],
+	["tag", [
+		["attr-class", ".test-class1"],
+		["attr-id", "#test-id"],
+		["attr-class", ".test-class2"]]],
 
 	["tag", ["a", ["punctuation", ":"]]],
 	["tag", ["span"]]

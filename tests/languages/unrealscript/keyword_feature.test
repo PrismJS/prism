@@ -1,0 +1,204 @@
+abstract
+actor
+array
+auto
+autoexpandcategories
+bool
+break
+byte
+case
+class;
+classgroup
+client
+coerce
+collapsecategories
+config
+const
+continue
+default
+defaultproperties
+delegate
+dependson
+deprecated
+do
+dontcollapsecategories
+editconst
+editinlinenew
+else
+enum;
+event
+exec
+export
+extends;
+final
+float
+for
+forcescriptorder
+foreach
+function
+goto
+guid
+hidecategories
+hidedropdown
+if
+ignores
+implements
+inherits
+input
+int
+interface;
+iterator
+latent
+local
+material
+name
+native
+nativereplication
+noexport
+nontransient
+noteditinlinenew
+notplaceable
+operator
+optional
+out
+pawn
+perobjectconfig
+perobjectlocalized
+placeable
+postoperator
+preoperator
+private
+protected
+reliable
+replication
+return
+server
+showcategories
+simulated
+singular
+state;
+static
+string
+struct;
+structdefault
+structdefaultproperties
+switch
+texture
+transient
+travel
+unreliable
+until
+var
+vector
+while
+within;
+
+----------------------------------------------------
+
+[
+	["keyword", "abstract"],
+	["keyword", "actor"],
+	["keyword", "array"],
+	["keyword", "auto"],
+	["keyword", "autoexpandcategories"],
+	["keyword", "bool"],
+	["keyword", "break"],
+	["keyword", "byte"],
+	["keyword", "case"],
+	["keyword", "class"],
+	["punctuation", ";"],
+	["keyword", "classgroup"],
+	["keyword", "client"],
+	["keyword", "coerce"],
+	["keyword", "collapsecategories"],
+	["keyword", "config"],
+	["keyword", "const"],
+	["keyword", "continue"],
+	["keyword", "default"],
+	["keyword", "defaultproperties"],
+	["keyword", "delegate"],
+	["keyword", "dependson"],
+	["keyword", "deprecated"],
+	["keyword", "do"],
+	["keyword", "dontcollapsecategories"],
+	["keyword", "editconst"],
+	["keyword", "editinlinenew"],
+	["keyword", "else"],
+	["keyword", "enum"],
+	["punctuation", ";"],
+	["keyword", "event"],
+	["keyword", "exec"],
+	["keyword", "export"],
+	["keyword", "extends"],
+	["punctuation", ";"],
+	["keyword", "final"],
+	["keyword", "float"],
+	["keyword", "for"],
+	["keyword", "forcescriptorder"],
+	["keyword", "foreach"],
+	["keyword", "function"],
+	["keyword", "goto"],
+	["keyword", "guid"],
+	["keyword", "hidecategories"],
+	["keyword", "hidedropdown"],
+	["keyword", "if"],
+	["keyword", "ignores"],
+	["keyword", "implements"],
+	["keyword", "inherits"],
+	["keyword", "input"],
+	["keyword", "int"],
+	["keyword", "interface"],
+	["punctuation", ";"],
+	["keyword", "iterator"],
+	["keyword", "latent"],
+	["keyword", "local"],
+	["keyword", "material"],
+	["keyword", "name"],
+	["keyword", "native"],
+	["keyword", "nativereplication"],
+	["keyword", "noexport"],
+	["keyword", "nontransient"],
+	["keyword", "noteditinlinenew"],
+	["keyword", "notplaceable"],
+	["keyword", "operator"],
+	["keyword", "optional"],
+	["keyword", "out"],
+	["keyword", "pawn"],
+	["keyword", "perobjectconfig"],
+	["keyword", "perobjectlocalized"],
+	["keyword", "placeable"],
+	["keyword", "postoperator"],
+	["keyword", "preoperator"],
+	["keyword", "private"],
+	["keyword", "protected"],
+	["keyword", "reliable"],
+	["keyword", "replication"],
+	["keyword", "return"],
+	["keyword", "server"],
+	["keyword", "showcategories"],
+	["keyword", "simulated"],
+	["keyword", "singular"],
+	["keyword", "state"],
+	["punctuation", ";"],
+	["keyword", "static"],
+	["keyword", "string"],
+	["keyword", "struct"],
+	["punctuation", ";"],
+	["keyword", "structdefault"],
+	["keyword", "structdefaultproperties"],
+	["keyword", "switch"],
+	["keyword", "texture"],
+	["keyword", "transient"],
+	["keyword", "travel"],
+	["keyword", "unreliable"],
+	["keyword", "until"],
+	["keyword", "var"],
+	["keyword", "vector"],
+	["keyword", "while"],
+	["keyword", "within"],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for keywords.

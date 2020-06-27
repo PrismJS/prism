@@ -1,0 +1,99 @@
+struct Foo {};
+
+AppendStructuredBuffer
+BlendState
+Buffer
+ByteAddressBuffer
+CompileShader
+ComputeShader
+ConsumeStructuredBuffer
+DepthStencilState
+DepthStencilView
+DomainShader
+GeometryShader
+Hullshader
+InputPatch
+LineStream
+OutputPatch
+PixelShader
+PointStream
+RWBuffer
+RWByteAddressBuffer
+RWStructuredBuffer
+RWTexture1D
+RWTexture1DArray
+RWTexture2D
+RWTexture2DArray
+RWTexture3D
+RasterizerState
+RenderTargetView
+SamplerComparisonState
+SamplerState
+StructuredBuffer
+Texture1D
+Texture1DArray
+Texture2D
+Texture2DArray
+Texture2DMS
+Texture2DMSArray
+Texture3D
+TextureCube
+TextureCubeArray
+TriangleStream
+VertexShader
+
+----------------------------------------------------
+
+[
+	["keyword", "struct"],
+	["class-name", "Foo"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["class-name", "AppendStructuredBuffer"],
+	["class-name", "BlendState"],
+	["class-name", "Buffer"],
+	["class-name", "ByteAddressBuffer"],
+	["class-name", "CompileShader"],
+	["class-name", "ComputeShader"],
+	["class-name", "ConsumeStructuredBuffer"],
+	["class-name", "DepthStencilState"],
+	["class-name", "DepthStencilView"],
+	["class-name", "DomainShader"],
+	["class-name", "GeometryShader"],
+	["class-name", "Hullshader"],
+	["class-name", "InputPatch"],
+	["class-name", "LineStream"],
+	["class-name", "OutputPatch"],
+	["class-name", "PixelShader"],
+	["class-name", "PointStream"],
+	["class-name", "RWBuffer"],
+	["class-name", "RWByteAddressBuffer"],
+	["class-name", "RWStructuredBuffer"],
+	["class-name", "RWTexture1D"],
+	["class-name", "RWTexture1DArray"],
+	["class-name", "RWTexture2D"],
+	["class-name", "RWTexture2DArray"],
+	["class-name", "RWTexture3D"],
+	["class-name", "RasterizerState"],
+	["class-name", "RenderTargetView"],
+	["class-name", "SamplerComparisonState"],
+	["class-name", "SamplerState"],
+	["class-name", "StructuredBuffer"],
+	["class-name", "Texture1D"],
+	["class-name", "Texture1DArray"],
+	["class-name", "Texture2D"],
+	["class-name", "Texture2DArray"],
+	["class-name", "Texture2DMS"],
+	["class-name", "Texture2DMSArray"],
+	["class-name", "Texture3D"],
+	["class-name", "TextureCube"],
+	["class-name", "TextureCubeArray"],
+	["class-name", "TriangleStream"],
+	["class-name", "VertexShader"]
+]
+
+----------------------------------------------------
+
+Checks for class names.
