@@ -7,7 +7,25 @@
 	var map = {};
 	var noop = function() {};
 
-	Prism.plugins.toolbar = {};
+	Prism.plugins.toolbar = {
+		registerButton: registerButton,
+		hook: hook,
+
+		/**
+		 * Adjusts the layout of the toolbar of the given `pre` element.
+		 *
+		 * @param {HTMLElement} pre
+		 */
+		resize: function (pre) {
+			if (!pre || !/pre/i.test(pre.nodeName)) {
+				return;
+			}
+			var toolbar = pre.parentElement;
+			if (toolbar && toolbar.classList.contains('code-toolbar')) {
+				refreshLayout(toolbar);
+			}
+		}
+	};
 
 	/**
 	 * @typedef ButtonOptions
@@ -23,7 +41,7 @@
 	 * @param {string} key
 	 * @param {ButtonOptions|Function} opts
 	 */
-	var registerButton = Prism.plugins.toolbar.registerButton = function (key, opts) {
+	function registerButton(key, opts) {
 		var callback;
 
 		if (typeof opts === 'function') {
@@ -89,7 +107,7 @@
 	 *
 	 * @param env
 	 */
-	var hook = Prism.plugins.toolbar.hook = function (env) {
+	function hook(env) {
 		// Check if inline or actual code block (credit to line-numbers plugin)
 		/** @type {HTMLPreElement} */
 		var pre = env.element.parentNode;
@@ -150,7 +168,7 @@
 	/**
 	 * This will adjust the width of the toolbar positioner on size changes.
 	 *
-	 * @param {HTMLDivElement} codeToolbar
+	 * @param {HTMLElement} codeToolbar
 	 */
 	function refreshLayout(codeToolbar) {
 		/** @type {HTMLPreElement} */
