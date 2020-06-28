@@ -6,6 +6,7 @@ hide-*.js
 CNAME
 .github/
 assets/
+docs/
 examples/
 tests/
 *.tgz
