@@ -255,7 +255,7 @@ describe('components.json', function () {
 			// and an alias, so we force the lazy alias resolver to check all aliases
 			allIds.push('js');
 
-			getLoader(components, allIds).getIds();
+			getLoader(/** @type {any} */(components), allIds).getIds();
 		} catch (error) {
 			assert.fail(error.toString());
 		}

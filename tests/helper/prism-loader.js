@@ -16,7 +16,7 @@ const coreChecks = require('./checks');
 
 /** @type {Map<string, string>} */
 const fileSourceCache = new Map();
-/** @type {() => any} */
+/** @type {() => any | null} */
 let coreSupplierFunction = null;
 /** @type {Map<string, (Prism: any) => void>} */
 const languageCache = new Map();
@@ -53,7 +53,7 @@ module.exports = {
 			languages = [languages];
 		}
 
-		getLoader(components, languages, [...context.loaded]).load(id => {
+		getLoader(/** @type {any} */(components), languages, [...context.loaded]).load(id => {
 			if (!languagesCatalog[id]) {
 				throw new Error(`Language '${id}' not found.`);
 			}
@@ -79,7 +79,7 @@ module.exports = {
 	 * Creates a new empty prism instance
 	 *
 	 * @private
-	 * @returns {Prism}
+	 * @returns {import('../../components/prism-core')}
 	 */
 	createEmptyPrism() {
 		if (!coreSupplierFunction) {

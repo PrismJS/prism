@@ -9,6 +9,9 @@ function testFunction(name, object, tester) {
 	};
 }
 
+/**
+ * @param {import('../../components/prism-core')} Prism
+ */
 module.exports = (Prism) => {
 
 	function extendTest(id, redef) {

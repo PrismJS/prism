@@ -13,7 +13,7 @@ module.exports = {
 	 * @returns {Object<string, string[]>}
 	 */
 	loadAllTests(rootDir) {
-		/** @type {Object.<string, string[]>} */
+		/** @type {Object<string, string[]>} */
 		const testSuite = {};
 
 		for (const language of this.getAllDirectories(rootDir)) {
@@ -31,7 +31,7 @@ module.exports = {
 	 * @returns {Object<string, string[]>}
 	 */
 	loadSomeTests(rootDir, languages) {
-		/** @type {Object.<string, string[]>} */
+		/** @type {Object<string, string[]>} */
 		const testSuite = {};
 
 		for (const language of this.getSomeDirectories(rootDir, languages)) {

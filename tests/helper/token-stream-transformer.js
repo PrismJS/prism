@@ -54,7 +54,6 @@ module.exports = {
 	},
 
 	/**
-	 *
 	 * @param {Readonly<SimplifiedTokenStream>} tokenStream
 	 * @param {number} [indentationLevel]
 	 */

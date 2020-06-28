@@ -7,12 +7,17 @@ const TestCase = require("./helper/test-case");
 
 describe("The token stream transformer", function () {
 
+	/**
+	 * @typedef {import('./helper/types').SimplifiedTokenStream} SimplifiedTokenStream
+	 */
+
 	it("should handle all kinds of simple transformations", function () {
 		const tokens = [
 			{ type: "type", content: "content" },
 			"string"
 		];
 
+		/** @type {SimplifiedTokenStream} */
 		const expected = [
 			["type", "content"],
 			"string"
@@ -37,6 +42,7 @@ describe("The token stream transformer", function () {
 			}
 		];
 
+		/** @type {SimplifiedTokenStream} */
 		const expected = [
 			["type", [
 				["insideType", [
@@ -57,6 +63,7 @@ describe("The token stream transformer", function () {
 			" "
 		];
 
+		/** @type {SimplifiedTokenStream} */
 		const expectedSimplified = [];
 
 		assert.deepEqual(TokenStreamTransformer.simplify(tokenStream), expectedSimplified);
@@ -76,6 +83,7 @@ describe("The token stream transformer", function () {
 			""
 		];
 
+		/** @type {SimplifiedTokenStream} */
 		const expectedSimplified = [
 			["type", [
 				["nested", []]
@@ -92,6 +100,7 @@ describe("The token stream transformer", function () {
 			{ type: "type", content: "content", alias: "alias" }
 		];
 
+		/** @type {SimplifiedTokenStream} */
 		const expectedSimplified = [
 			["type", "content"]
 		];

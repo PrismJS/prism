@@ -96,7 +96,7 @@ module.exports = {
 	 * @param {import('../../components/prism-core')} Prism The Prism instance which will tokenize `code`.
 	 * @param {string} code The code to tokenize.
 	 * @param {string} language The language id.
-	 * @returns {Array<string|Array<string|any[]>>}
+	 * @returns {import('./types').SimplifiedTokenStream}
 	 */
 	simpleTokenize(Prism, code, language) {
 		const env = {
@@ -120,7 +120,6 @@ module.exports = {
 	 * There should only be one language with an exclamation mark.
 	 *
 	 * @param {string} languageIdentifier
-	 *
 	 * @returns {{languages: string[], mainLanguage: string}}
 	 */
 	parseLanguageNames(languageIdentifier) {
@@ -160,7 +159,6 @@ module.exports = {
 	 *
 	 * @private
 	 * @param {string} filePath
-	 * @returns {{testSource: string, expectedTokenStream: Array<string[]>, comment:string?}|null}
 	 */
 	parseTestCaseFile(filePath) {
 		const testCaseSource = fs.readFileSync(filePath, "utf8");

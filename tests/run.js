@@ -8,7 +8,7 @@ const { argv } = require("yargs");
 
 const testSuite =
 	(argv.language)
-		? TestDiscovery.loadSomeTests(__dirname + "/languages", argv.language)
+		? TestDiscovery.loadSomeTests(__dirname + "/languages", /** @type {any} */(argv.language))
 		// load complete test suite
 		: TestDiscovery.loadAllTests(__dirname + "/languages");
 
