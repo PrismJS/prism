@@ -6,6 +6,7 @@ div.code-toolbar > div.toolbar-positioner {
 	position: absolute;
 	top: 0;
 	left: 0;
+	right: 0;
 	height: 0;
 	overflow: visible;
 }

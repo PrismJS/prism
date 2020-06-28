@@ -134,7 +134,7 @@
 		/** @type {HTMLDivElement} */
 		var toolbarWrapperElement = codeToolbar.querySelector('div.code-toolbar > div.toolbar-positioner');
 		if (toolbarWrapperElement) {
-			toolbarWrapperElement.style.right = (codeToolbar.clientWidth - pre.clientWidth) + 'px';
+			toolbarWrapperElement.style.marginRight = (codeToolbar.clientWidth - pre.clientWidth) + 'px';
 		}
 	}
 	window.addEventListener('resize', function () {
