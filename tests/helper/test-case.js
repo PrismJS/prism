@@ -93,7 +93,7 @@ module.exports = {
 	 *
 	 * The `before-tokenize` and `after-tokenize` hooks will also be executed.
 	 *
-	 * @param {any} Prism The Prism instance which will tokenize `code`.
+	 * @param {import('../../components/prism-core')} Prism The Prism instance which will tokenize `code`.
 	 * @param {string} code The code to tokenize.
 	 * @param {string} language The language id.
 	 * @returns {Array<string|Array<string|any[]>>}
