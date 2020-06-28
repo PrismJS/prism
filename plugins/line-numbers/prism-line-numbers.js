@@ -49,6 +49,17 @@
 		},
 
 		/**
+		 * Resizes the line numbers of the given element.
+		 *
+		 * This function will not add line numbers. It will only resize existing ones.
+		 * @param {HTMLElement} element A `<pre>` element with line numbers.
+		 * @returns {void}
+		 */
+		resize: function (element) {
+			resizeElements([element]);
+		},
+
+		/**
 		 * Whether the plugin can assume that the units font sizes and margins are not depended on the size of
 		 * the current viewport.
 		 *
@@ -79,6 +90,12 @@
 
 		var infos = elements.map(function (element) {
 			var codeElement = element.querySelector('code');
+			var lineNumbersWrapper = element.querySelector('.line-numbers-rows');
+			if (!codeElement || !lineNumbersWrapper) {
+				return undefined;
+			}
+
+			/** @type {HTMLElement} */
 			var lineNumberSizer = element.querySelector('.line-numbers-sizer');
 			var codeLines = codeElement.textContent.split(NEW_LINE_EXP);
 
@@ -102,7 +119,7 @@
 				oneLinerHeight: oneLinerHeight,
 				sizer: lineNumberSizer,
 			};
-		});
+		}).filter(Boolean);
 
 		infos.forEach(function (info) {
 			var lineNumberSizer = info.sizer;
@@ -174,8 +191,8 @@
 			return;
 		}
 
-		var code = env.element;
-		var pre = code.parentNode;
+		var code = /** @type {Element} */ (env.element);
+		var pre = /** @type {HTMLElement} */ (code.parentNode);
 
 		// works only for <code> wrapped inside <pre> (not inline)
 		if (!pre || !/pre/i.test(pre.nodeName)) {
@@ -187,27 +204,15 @@
 			return;
 		}
 
-		var addLineNumbers = false;
-		var lineNumbersRegex = /(?:^|\s)line-numbers(?:\s|$)/;
-
-		for (var element = code; element; element = element.parentNode) {
-			if (lineNumbersRegex.test(element.className)) {
-				addLineNumbers = true;
-				break;
-			}
-		}
-
 		// only add line numbers if <code> or one of its ancestors has the `line-numbers` class
-		if (!addLineNumbers) {
+		if (!Prism.util.isActive(code, PLUGIN_NAME)) {
 			return;
 		}
 
 		// Remove the class 'line-numbers' from the <code>
-		code.className = code.className.replace(lineNumbersRegex, ' ');
+		code.classList.remove(PLUGIN_NAME);
 		// Add the class 'line-numbers' to the <pre>
-		if (!lineNumbersRegex.test(pre.className)) {
-			pre.className += ' line-numbers';
-		}
+		pre.classList.add(PLUGIN_NAME);
 
 		var match = env.code.match(NEW_LINE_EXP);
 		var linesNum = match ? match.length + 1 : 1;

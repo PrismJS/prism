@@ -1,0 +1,85 @@
+$B$2:$B$4
+$B2:B$4
+B$2:$B4
+B2:B4
+
+$B:$B
+$B:B
+B:$B
+B:B
+
+$2:$4
+$2:4
+2:$4
+2:4
+
+----------------------------------------------------
+
+[
+	["range", [
+		["cell", "$B$2"],
+		["operator", ":"],
+		["cell", "$B$4"]
+	]],
+	["range", [
+		["cell", "$B2"],
+		["operator", ":"],
+		["cell", "B$4"]
+	]],
+	["range", [
+		["cell", "B$2"],
+		["operator", ":"],
+		["cell", "$B4"]
+	]],
+	["range", [
+		["cell", "B2"],
+		["operator", ":"],
+		["cell", "B4"]
+	]],
+
+	["range", [
+		["column", "$B"],
+		["operator", ":"],
+		["column", "$B"]
+	]],
+	["range", [
+		["column", "$B"],
+		["operator", ":"],
+		["column", "B"]
+	]],
+	["range", [
+		["column", "B"],
+		["operator", ":"],
+		["column", "$B"]
+	]],
+	["range", [
+		["column", "B"],
+		["operator", ":"],
+		["column", "B"]
+	]],
+
+	["range", [
+		["row", "$2"],
+		["operator", ":"],
+		["row", "$4"]
+	]],
+	["range", [
+		["row", "$2"],
+		["operator", ":"],
+		["row", "4"]
+	]],
+	["range", [
+		["row", "2"],
+		["operator", ":"],
+		["row", "$4"]
+	]],
+	["range", [
+		["row", "2"],
+		["operator", ":"],
+		["row", "4"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for ranges.

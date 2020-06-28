@@ -105,7 +105,7 @@ const revisionRanges = {
 const strCompare = (a, b) => a.localeCompare(b, 'en');
 
 async function changes() {
-	const { languages, plugins } = require('../components');
+	const { languages, plugins } = require('../components.js');
 
 	const infos = await getLog(revisionRanges.nextRelease);
 
@@ -225,9 +225,12 @@ async function changes() {
 					const change = relevantChanges[0];
 					if (change.mode === 'A' && change.file.startsWith('components/prism-')) {
 						const lang = change.file.match(/prism-([\w-]+)\.js$/)[1];
-						const titles = [languages[lang].title];
-						if (languages[lang].aliasTitles) {
-							titles.push(...Object.values(languages[lang].aliasTitles));
+						const entry = languages[lang] || {
+							title: "REMOVED LANGUAGE " + lang,
+						};
+						const titles = [entry.title];
+						if (entry.aliasTitles) {
+							titles.push(...Object.values(entry.aliasTitles));
 						}
 						addEntry('New components', `__${titles.join('__ & __')}__: ${infoToString(info)}`);
 						return true;
@@ -306,17 +309,18 @@ async function changes() {
 				addEntry('Other >> Infrastructure', info);
 				return true;
 			}
+
+			// or dependencies.js
+			const excludeTests = info.changes.filter(notTests);
+			if (excludeTests.length === 1 && excludeTests[0].file === 'dependencies.js') {
+				addEntry('Other >> Infrastructure', info);
+				return true;
+			}
 		},
 
 		function changedWebsite(info) {
 			if (info.changes.length > 0 && info.changes.every(c => {
-				if (/[\w-]+\.(?:html|svg)$/.test(c.file)) {
-					return true;
-				}
-				if (/^scripts(?:\/[\w-]+)*\/[\w-]+\.js$/.test(c.file)) {
-					return true;
-				}
-				return ['style.css'].indexOf(c.file) >= 0;
+				return /[\w-]+\.html$/.test(c.file) || /^assets\//.test(c.file);
 			})) {
 				addEntry('Other >> Website', info);
 				return true;

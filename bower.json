@@ -14,17 +14,9 @@
   },
   "ignore": [
     "**/.*",
-    "img",
-    "templates",
+    "assets",
     "tests",
     "CNAME",
-    "*.html",
-    "style.css",
-    "favicon.png",
-    "logo.svg",
-    "download.js",
-    "prefixfree.min.js",
-    "utopia.js",
-    "code.js"
+    "*.html"
   ]
 }

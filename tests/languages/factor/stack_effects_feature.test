@@ -1,0 +1,74 @@
+( -- )
+( a b -- c )
+( a: integer b: string -- c: word )
+( x y quot: ( ..a -- ..a ) -- ..a )
+call( -- )
+call( x -- y )
+execute( x -- y )
+eval( x -- y )
+
+----------------------------------------------------
+
+[
+	[ "stack-effect-delimiter", "(" ],
+	[ "stack-effect-delimiter", "--" ],
+	[ "stack-effect-delimiter", ")" ],
+
+	[ "stack-effect-delimiter", "(" ],
+	[ "normal-word", "a" ],
+	[ "normal-word", "b" ],
+	[ "stack-effect-delimiter", "--" ],
+	[ "normal-word", "c" ],
+	[ "stack-effect-delimiter", ")" ],
+
+	[ "stack-effect-delimiter", "(" ],
+	[ "normal-word", "a:" ],
+	[ "math-builtin", "integer" ],
+	[ "normal-word", "b:" ],
+	[ "normal-word", "string" ],
+	[ "stack-effect-delimiter", "--" ],
+	[ "normal-word", "c:" ],
+	[ "normal-word", "word" ],
+	[ "stack-effect-delimiter", ")" ],
+
+	[ "stack-effect-delimiter", "(" ],
+	[ "normal-word", "x" ],
+	[ "normal-word", "y" ],
+	[ "normal-word", "quot:" ],
+
+	[ "stack-effect-delimiter", "(" ],
+	[ "normal-word", "..a" ],
+	[ "stack-effect-delimiter", "--" ],
+	[ "normal-word", "..a" ],
+	[ "stack-effect-delimiter", ")" ],
+
+	[ "stack-effect-delimiter", "--" ],
+	[ "normal-word", "..a" ],
+	[ "stack-effect-delimiter", ")" ],
+
+	[ "stack-effect-delimiter", "call(" ],
+	[ "stack-effect-delimiter", "--" ],
+	[ "stack-effect-delimiter", ")" ],
+
+	[ "stack-effect-delimiter", "call(" ],
+	[ "normal-word", "x" ],
+	[ "stack-effect-delimiter", "--" ],
+	[ "normal-word", "y" ],
+	[ "stack-effect-delimiter", ")" ],
+
+	[ "stack-effect-delimiter", "execute(" ],
+	[ "normal-word", "x" ],
+	[ "stack-effect-delimiter", "--" ],
+	[ "normal-word", "y" ],
+	[ "stack-effect-delimiter", ")" ],
+
+	[ "stack-effect-delimiter", "eval(" ],
+	[ "normal-word", "x" ],
+	[ "stack-effect-delimiter", "--" ],
+	[ "normal-word", "y" ],
+	[ "stack-effect-delimiter", ")" ]
+]
+
+----------------------------------------------------
+
+stack effect syntax

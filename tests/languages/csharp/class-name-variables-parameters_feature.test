@@ -1,0 +1,207 @@
+int a;
+Foo b;
+Foo @new_var;
+Foo<Bar> c = null;
+static Foo<(Bar, int)>[,,] d;
+void Foo(Foo a, Bar<Foo> b, Bar[, ] c, Foo<(int, int)> d);
+Bar<Foo> Abc => 0;
+Bar<Foo>.FooBar<IFoo> Abc;
+
+if (foo is Bar)
+if (foo is not Bar)
+if (foo is null)
+if (foo is not null)
+if (t is (int, string))
+if ((e1, e2) is (0, int i) or (int i, 0))
+var baz = foo as Bar;
+
+----------------------------------------------------
+
+[
+	["class-name", [
+		["keyword", "int"]
+	]],
+	" a",
+	["punctuation", ";"],
+	["class-name", [
+		"Foo"
+	]],
+	" b",
+	["punctuation", ";"],
+	["class-name", [
+		"Foo"
+	]],
+	" @new_var",
+	["punctuation", ";"],
+	["class-name", [
+		"Foo",
+		["punctuation", "<"],
+		"Bar",
+		["punctuation", ">"]
+	]],
+	" c ",
+	["operator", "="],
+	["keyword", "null"],
+	["punctuation", ";"],
+	["keyword", "static"],
+	["class-name", [
+		"Foo",
+		["punctuation", "<"],
+		["punctuation", "("],
+		"Bar",
+		["punctuation", ","],
+		["keyword", "int"],
+		["punctuation", ")"],
+		["punctuation", ">"],
+		["punctuation", "["],
+		["punctuation", ","],
+		["punctuation", ","],
+		["punctuation", "]"]
+	]],
+	" d",
+	["punctuation", ";"],
+	["return-type", [
+		["keyword", "void"]
+	]],
+	["function", "Foo"],
+	["punctuation", "("],
+	["class-name", [
+		"Foo"
+	]],
+	" a",
+	["punctuation", ","],
+	["class-name", [
+		"Bar",
+		["punctuation", "<"],
+		"Foo",
+		["punctuation", ">"]
+	]],
+	" b",
+	["punctuation", ","],
+	["class-name", [
+		"Bar",
+		["punctuation", "["],
+		["punctuation", ","],
+		["punctuation", "]"]
+	]],
+	" c",
+	["punctuation", ","],
+	["class-name", [
+		"Foo",
+		["punctuation", "<"],
+		["punctuation", "("],
+		["keyword", "int"],
+		["punctuation", ","],
+		["keyword", "int"],
+		["punctuation", ")"],
+		["punctuation", ">"]
+	]],
+	" d",
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["return-type", [
+		"Bar",
+		["punctuation", "<"],
+		"Foo",
+		["punctuation", ">"]
+	]],
+	" Abc ",
+	["operator", "=>"],
+	["number", "0"],
+	["punctuation", ";"],
+	["class-name", [
+		"Bar",
+		["punctuation", "<"],
+		"Foo",
+		["punctuation", ">"],
+		["punctuation", "."],
+		"FooBar",
+		["punctuation", "<"],
+		"IFoo",
+		["punctuation", ">"]
+	]],
+	" Abc",
+	["punctuation", ";"],
+
+	["keyword", "if"],
+	["punctuation", "("],
+	"foo ",
+	["keyword", "is"],
+	["class-name", [
+		"Bar"
+	]],
+	["punctuation", ")"],
+	["keyword", "if"],
+	["punctuation", "("],
+	"foo ",
+	["keyword", "is"],
+	["keyword", "not"],
+	["class-name", [
+		"Bar"
+	]],
+	["punctuation", ")"],
+	["keyword", "if"],
+	["punctuation", "("],
+	"foo ",
+	["keyword", "is"],
+	["keyword", "null"],
+	["punctuation", ")"],
+	["keyword", "if"],
+	["punctuation", "("],
+	"foo ",
+	["keyword", "is"],
+	["keyword", "not"],
+	["keyword", "null"],
+	["punctuation", ")"],
+	["keyword", "if"],
+	["punctuation", "("],
+	"t ",
+	["keyword", "is"],
+	["punctuation", "("],
+	["keyword", "int"],
+	["punctuation", ","],
+	["keyword", "string"],
+	["punctuation", ")"],
+	["punctuation", ")"],
+	["keyword", "if"],
+	["punctuation", "("],
+	["punctuation", "("],
+	"e1",
+	["punctuation", ","],
+	" e2",
+	["punctuation", ")"],
+	["keyword", "is"],
+	["punctuation", "("],
+	["number", "0"],
+	["punctuation", ","],
+	["class-name", [
+		["keyword", "int"]
+	]],
+	" i",
+	["punctuation", ")"],
+	["keyword", "or"],
+	["punctuation", "("],
+	["class-name", [
+		["keyword", "int"]
+	]],
+	" i",
+	["punctuation", ","],
+	["number", "0"],
+	["punctuation", ")"],
+	["punctuation", ")"],
+	["class-name", [
+		["keyword", "var"]
+	]],
+	" baz ",
+	["operator", "="],
+	" foo ",
+	["keyword", "as"],
+	["class-name", [
+		"Bar"
+	]],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for class names in variables and parameters.

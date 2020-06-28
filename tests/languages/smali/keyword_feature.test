@@ -1,0 +1,45 @@
+abstract
+annotation
+bridge
+constructor
+enum
+final
+interface
+private
+protected
+public
+runtime
+static
+synthetic
+system
+transient
+
+.something
+.end something
+
+----------------------------------------------------
+
+[
+	["keyword", "abstract"],
+	["keyword", "annotation"],
+	["keyword", "bridge"],
+	["keyword", "constructor"],
+	["keyword", "enum"],
+	["keyword", "final"],
+	["keyword", "interface"],
+	["keyword", "private"],
+	["keyword", "protected"],
+	["keyword", "public"],
+	["keyword", "runtime"],
+	["keyword", "static"],
+	["keyword", "synthetic"],
+	["keyword", "system"],
+	["keyword", "transient"],
+	["keyword", ".something"],
+	["keyword", ".end"],
+	["keyword", "something"]
+]
+
+----------------------------------------------------
+
+Checks for keywords.

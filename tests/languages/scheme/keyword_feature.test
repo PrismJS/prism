@@ -1,7 +1,9 @@
 (define)
-(define-syntax)
 (define-library)
+(define-macro)
+(define-syntax)
 (define-values)
+(defmacro)
 (case-lambda)
 (lambda)
 (let)
@@ -22,14 +24,19 @@
 (quasi-quote)
 (quote)
 (syntax-rules)
+(syntax-case)
+(letrec-syntax)
+(let-syntax)
 
 ----------------------------------------------------
 
 [
 	["punctuation", "("], ["keyword", "define"], ["punctuation", ")"],
-	["punctuation", "("], ["keyword", "define-syntax"], ["punctuation", ")"],
 	["punctuation", "("], ["keyword", "define-library"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "define-macro"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "define-syntax"], ["punctuation", ")"],
 	["punctuation", "("], ["keyword", "define-values"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "defmacro"], ["punctuation", ")"],
 	["punctuation", "("], ["keyword", "case-lambda"], ["punctuation", ")"],
 	["punctuation", "("], ["keyword", "lambda"], ["punctuation", ")"],
 	["punctuation", "("], ["keyword", "let"], ["punctuation", ")"],
@@ -49,7 +56,10 @@
 	["punctuation", "("], ["keyword", "set!"], ["punctuation", ")"],
 	["punctuation", "("], ["keyword", "quasi-quote"], ["punctuation", ")"],
 	["punctuation", "("], ["keyword", "quote"], ["punctuation", ")"],
-	["punctuation", "("], ["keyword", "syntax-rules"], ["punctuation", ")"]
+	["punctuation", "("], ["keyword", "syntax-rules"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "syntax-case"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "letrec-syntax"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "let-syntax"], ["punctuation", ")"]
 ]
 
 ----------------------------------------------------

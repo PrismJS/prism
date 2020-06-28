@@ -1,27 +1,65 @@
 ""
 "fo\"o"
+"\xe2\x88"
+
 'x'
 '\''
 '\u2200'
+'\x80'
+'\xe2\x88'
+'∀'
+
 """foo"""
 """fo"o
 bar"""
-'''foo'''
-'''fo'o
-bar'''
+
+`echo hello`
+`echo "foo bar"`
+
+# non-standard string
+s"\g<0>1"
+b"DATA\xff\u2200"
+v"0.3-"
+raw"\\ \\\""
+
+# not a character
+A'b
+A'b''
 
 ----------------------------------------------------
 
 [
 	["string", "\"\""],
 	["string", "\"fo\\\"o\""],
+	["string", "\"\\xe2\\x88\""],
+
 	["string", "'x'"],
 	["string", "'\\''"],
 	["string", "'\\u2200'"],
+	["string", "'\\x80'"],
+	["string", "'\\xe2\\x88'"],
+	["string", "'∀'"],
+
 	["string", "\"\"\"foo\"\"\""],
 	["string", "\"\"\"fo\"o\r\nbar\"\"\""],
-	["string", "'''foo'''"],
-	["string", "'''fo'o\r\nbar'''"]
+
+	["string", "`echo hello`"],
+	["string", "`echo \"foo bar\"`"],
+
+	["comment", "# non-standard string"],
+	["string", "s\"\\g<0>1\""],
+	["string", "b\"DATA\\xff\\u2200\""],
+	["string", "v\"0.3-\""],
+	["string", "raw\"\\\\ \\\\\\\"\""],
+
+	["comment", "# not a character"],
+	"\r\nA",
+	["operator", "'"],
+	"b\r\nA",
+	["operator", "'"],
+	"b",
+	["operator", "'"],
+	["operator", "'"]
 ]
 
 ----------------------------------------------------

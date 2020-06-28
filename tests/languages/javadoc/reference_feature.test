@@ -1,0 +1,348 @@
+/**
+ * @throws IllegalArgumentException if the argument is negative.
+ * @see org.my.company.InfoClass for more information.
+ * @param <T> the first generic argument.
+ * {@linkplain #foo(char[], java.lang.String) foo}
+ *
+ * multi-line {@link
+ * #foo(char[], java.lang.String)}
+ *
+ * @see #field
+ * @see #method(Type, Type)
+ * @see #method(Type argname, Type argname)
+ * @see #constructor(Type, Type)
+ * @see #constructor(Type argname, Type argname)
+ * @see Class#field
+ * @see Class#method(Type, Type)
+ * @see Class#method(Type argname, Type argname)
+ * @see Class#constructor(Type, Type)
+ * @see Class#constructor(Type argname, Type argname)
+ * @see Class.NestedClass
+ * @see Class
+ * @see foo.bar.Class#field
+ * @see foo.bar.Class#method(Type, Type)
+ * @see foo.bar.Class#method(Type argname, Type argname)
+ * @see foo.bar.Class#constructor(Type, Type)
+ * @see foo.bar.Class#constructor(Type argname, Type argname)
+ * @see foo.bar.Class.NestedClass
+ * @see foo.bar.Class
+ */
+
+----------------------------------------------------
+
+[
+	"/**\r\n * ",
+	["keyword", "@throws"],
+	["reference", [
+		["class-name", "IllegalArgumentException"]
+	]],
+	" if the argument is negative.\r\n * ",
+	["keyword", "@see"],
+	["reference", [
+		["namespace", [
+			"org",
+			["punctuation", "."],
+			"my",
+			["punctuation", "."],
+			"company",
+			["punctuation", "."]
+		]],
+		["class-name", "InfoClass"]
+	]],
+	" for more information.\r\n * ",
+	["keyword", "@param"],
+	["class-name", [
+		["punctuation", "<"],
+		"T",
+		["punctuation", ">"]
+	]],
+	" the first generic argument.\r\n * ",
+	["punctuation", "{"],
+	["keyword", "@linkplain"],
+	["reference", [
+		["punctuation", "#"],
+		["function", "foo"],
+		["punctuation", "("],
+		["keyword", "char"],
+		["punctuation", "["],
+		["punctuation", "]"],
+		["punctuation", ","],
+		["namespace", [
+			"java",
+			["punctuation", "."],
+			"lang",
+			["punctuation", "."]
+		]],
+		["class-name", "String"],
+		["punctuation", ")"]
+	]],
+	" foo",
+	["punctuation", "}"],
+
+	"\r\n *\r\n * multi-line ",
+	["punctuation", "{"],
+	["keyword", "@link"],
+	"\r\n * ",
+	["reference", [
+		["punctuation", "#"],
+		["function", "foo"],
+		["punctuation", "("],
+		["keyword", "char"],
+		["punctuation", "["],
+		["punctuation", "]"],
+		["punctuation", ","],
+		["namespace", [
+			"java",
+			["punctuation", "."],
+			"lang",
+			["punctuation", "."]
+		]],
+		["class-name", "String"],
+		["punctuation", ")"]
+	]],
+	["punctuation", "}"],
+
+	"\r\n *\r\n * ",
+	["keyword", "@see"],
+	["reference", [
+		["punctuation", "#"],
+		["field", "field"]
+	]],
+	"\r\n * ",
+	["keyword", "@see"],
+	["reference", [
+		["punctuation", "#"],
+		["function", "method"],
+		["punctuation", "("],
+		["class-name", "Type"],
+		["punctuation", ","],
+		["class-name", "Type"],
+		["punctuation", ")"]
+	]],
+	"\r\n * ",
+	["keyword", "@see"],
+	["reference", [
+		["punctuation", "#"],
+		["function", "method"],
+		["punctuation", "("],
+		["class-name", "Type"],
+		" argname",
+		["punctuation", ","],
+		["class-name", "Type"],
+		" argname",
+		["punctuation", ")"]
+	]],
+	"\r\n * ",
+	["keyword", "@see"],
+	["reference", [
+		["punctuation", "#"],
+		["function", "constructor"],
+		["punctuation", "("],
+		["class-name", "Type"],
+		["punctuation", ","],
+		["class-name", "Type"],
+		["punctuation", ")"]
+	]],
+	"\r\n * ",
+	["keyword", "@see"],
+	["reference", [
+		["punctuation", "#"],
+		["function", "constructor"],
+		["punctuation", "("],
+		["class-name", "Type"],
+		" argname",
+		["punctuation", ","],
+		["class-name", "Type"],
+		" argname",
+		["punctuation", ")"]
+	]],
+	"\r\n * ",
+	["keyword", "@see"],
+	["reference", [
+		["class-name", "Class"],
+		["punctuation", "#"],
+		["field", "field"]
+	]],
+	"\r\n * ",
+	["keyword", "@see"],
+	["reference", [
+		["class-name", "Class"],
+		["punctuation", "#"],
+		["function", "method"],
+		["punctuation", "("],
+		["class-name", "Type"],
+		["punctuation", ","],
+		["class-name", "Type"],
+		["punctuation", ")"]
+	]],
+	"\r\n * ",
+	["keyword", "@see"],
+	["reference", [
+		["class-name", "Class"],
+		["punctuation", "#"],
+		["function", "method"],
+		["punctuation", "("],
+		["class-name", "Type"],
+		" argname",
+		["punctuation", ","],
+		["class-name", "Type"],
+		" argname",
+		["punctuation", ")"]
+	]],
+	"\r\n * ",
+	["keyword", "@see"],
+	["reference", [
+		["class-name", "Class"],
+		["punctuation", "#"],
+		["function", "constructor"],
+		["punctuation", "("],
+		["class-name", "Type"],
+		["punctuation", ","],
+		["class-name", "Type"],
+		["punctuation", ")"]
+	]],
+	"\r\n * ",
+	["keyword", "@see"],
+	["reference", [
+		["class-name", "Class"],
+		["punctuation", "#"],
+		["function", "constructor"],
+		["punctuation", "("],
+		["class-name", "Type"],
+		" argname",
+		["punctuation", ","],
+		["class-name", "Type"],
+		" argname",
+		["punctuation", ")"]
+	]],
+	"\r\n * ",
+	["keyword", "@see"],
+	["reference", [
+		["class-name", "Class"],
+		["punctuation", "."],
+		["class-name", "NestedClass"]
+	]],
+	"\r\n * ",
+	["keyword", "@see"],
+	["reference", [
+		["class-name", "Class"]
+	]],
+	"\r\n * ",
+	["keyword", "@see"],
+	["reference", [
+		["namespace", [
+			"foo",
+			["punctuation", "."],
+			"bar",
+			["punctuation", "."]
+		]],
+		["class-name", "Class"],
+		["punctuation", "#"],
+		["field", "field"]
+	]],
+	"\r\n * ",
+	["keyword", "@see"],
+	["reference", [
+		["namespace", [
+			"foo",
+			["punctuation", "."],
+			"bar",
+			["punctuation", "."]
+		]],
+		["class-name", "Class"],
+		["punctuation", "#"],
+		["function", "method"],
+		["punctuation", "("],
+		["class-name", "Type"],
+		["punctuation", ","],
+		["class-name", "Type"],
+		["punctuation", ")"]
+	]],
+	"\r\n * ",
+	["keyword", "@see"],
+	["reference", [
+		["namespace", [
+			"foo",
+			["punctuation", "."],
+			"bar",
+			["punctuation", "."]
+		]],
+		["class-name", "Class"],
+		["punctuation", "#"],
+		["function", "method"],
+		["punctuation", "("],
+		["class-name", "Type"],
+		" argname",
+		["punctuation", ","],
+		["class-name", "Type"],
+		" argname",
+		["punctuation", ")"]
+	]],
+	"\r\n * ",
+	["keyword", "@see"],
+	["reference", [
+		["namespace", [
+			"foo",
+			["punctuation", "."],
+			"bar",
+			["punctuation", "."]
+		]],
+		["class-name", "Class"],
+		["punctuation", "#"],
+		["function", "constructor"],
+		["punctuation", "("],
+		["class-name", "Type"],
+		["punctuation", ","],
+		["class-name", "Type"],
+		["punctuation", ")"]
+	]],
+	"\r\n * ",
+	["keyword", "@see"],
+	["reference", [
+		["namespace", [
+			"foo",
+			["punctuation", "."],
+			"bar",
+			["punctuation", "."]
+		]],
+		["class-name", "Class"],
+		["punctuation", "#"],
+		["function", "constructor"],
+		["punctuation", "("],
+		["class-name", "Type"],
+		" argname",
+		["punctuation", ","],
+		["class-name", "Type"],
+		" argname",
+		["punctuation", ")"]
+	]],
+	"\r\n * ",
+	["keyword", "@see"],
+	["reference", [
+		["namespace", [
+			"foo",
+			["punctuation", "."],
+			"bar",
+			["punctuation", "."]
+		]],
+		["class-name", "Class"],
+		["punctuation", "."],
+		["class-name", "NestedClass"]
+	]],
+	"\r\n * ",
+	["keyword", "@see"],
+	["reference", [
+		["namespace", [
+			"foo",
+			["punctuation", "."],
+			"bar",
+			["punctuation", "."]
+		]],
+		["class-name", "Class"]
+	]],
+	"\r\n */"
+]
+
+----------------------------------------------------
+
+Checks for references.
