@@ -1,11 +1,25 @@
 "use strict";
 
 const fs = require("fs");
-const vm = require("vm");
 const { getAllFiles } = require("./test-discovery");
-const components = require("../../components");
+const components = require("../../components.json");
+const getLoader = require("../../dependencies");
 const languagesCatalog = components.languages;
+const coreChecks = require('./checks');
 
+
+/**
+ * @typedef PrismLoaderContext
+ * @property {any} Prism The Prism instance.
+ * @property {Set<string>} loaded A set of loaded components.
+ */
+
+/** @type {Map<string, string>} */
+const fileSourceCache = new Map();
+/** @type {() => any} */
+let coreSupplierFunction = null;
+/** @type {Map<string, (Prism: any) => void>} */
+const languageCache = new Map();
 
 module.exports = {
 
@@ -17,7 +31,7 @@ module.exports = {
 	 */
 	createInstance(languages) {
 		let context = {
-			loadedLanguages: [],
+			loaded: new Set(),
 			Prism: this.createEmptyPrism()
 		};
 
@@ -27,53 +41,35 @@ module.exports = {
 	},
 
 	/**
-	 * Loads the given languages and appends the config to the given Prism object
+	 * Loads the given languages and appends the config to the given Prism object.
 	 *
 	 * @private
 	 * @param {string|string[]} languages
-	 * @param {{loadedLanguages: string[], Prism: Prism}} context
-	 * @returns {{loadedLanguages: string[], Prism: Prism}}
+	 * @param {PrismLoaderContext} context
+	 * @returns {PrismLoaderContext}
 	 */
 	loadLanguages(languages, context) {
 		if (typeof languages === 'string') {
 			languages = [languages];
 		}
 
-		for (const language of languages) {
-			context = this.loadLanguage(language, context);
-		}
+		getLoader(components, languages, [...context.loaded]).load(id => {
+			if (!languagesCatalog[id]) {
+				throw new Error(`Language '${id}' not found.`);
+			}
 
-		return context;
-	},
+			// get the function which adds the language from cache
+			let languageFunction = languageCache.get(id);
+			if (languageFunction === undefined) {
+				// make a function from the code which take "Prism" as an argument, so the language grammar
+				// references the function argument
+				const func = new Function('Prism', this.loadComponentSource(id));
+				languageCache.set(id, languageFunction = (Prism) => func(Prism));
+			}
+			languageFunction(context.Prism);
 
-	/**
-	 * Loads the given language (including recursively loading the dependencies) and
-	 * appends the config to the given Prism object
-	 *
-	 * @private
-	 * @param {string} language
-	 * @param {{loadedLanguages: string[], Prism: Prism}} context
-	 * @returns {{loadedLanguages: string[], Prism: Prism}}
-	 */
-	loadLanguage(language, context) {
-		if (!languagesCatalog[language]) {
-			throw new Error("Language '" + language + "' not found.");
-		}
-
-		// the given language was already loaded
-		if (-1 < context.loadedLanguages.indexOf(language)) {
-			return context;
-		}
-
-		// if the language has a dependency -> load it first
-		if (languagesCatalog[language].require) {
-			context = this.loadLanguages(languagesCatalog[language].require, context);
-		}
-
-		// load the language itself
-		const languageSource = this.loadComponentSource(language);
-		context.Prism = this.runFileWithContext(languageSource, { Prism: context.Prism }).Prism;
-		context.loadedLanguages.push(language);
+			context.loaded.add(id);
+		});
 
 		return context;
 	},
@@ -86,44 +82,25 @@ module.exports = {
 	 * @returns {Prism}
 	 */
 	createEmptyPrism() {
-		const coreSource = this.loadComponentSource("core");
-		const context = this.runFileWithContext(coreSource);
-
-		for (const testSource of this.getChecks().map(src => this.loadFileSource(src))) {
-			context.Prism = this.runFileWithContext(testSource, {
-				Prism: context.Prism,
-				/**
-				 * A pseudo require function for the checks.
-				 *
-				 * This function will behave like the regular `require` in real modules when called form a check file.
-				 *
-				 * @param {string} id The id of relative path to require.
-				 */
-				require(id) {
-					if (id.startsWith('./')) {
-						// We have to rewrite relative paths starting with './'
-						return require('./../checks/' + id.substr(2));
-					} else {
-						// This might be an id like 'mocha' or 'fs' or a relative path starting with '../'.
-						// In both cases we don't have to change anything.
-						return require(id);
-					}
-				}
-			}).Prism;
+		if (!coreSupplierFunction) {
+			const source = this.loadComponentSource("core");
+			// Core exports itself in 2 ways:
+			//  1) it uses `module.exports = Prism` which what we'll use
+			//  2) it uses `global.Prism = Prism` which we want to sabotage to prevent leaking
+			const func = new Function('module', 'global', source);
+			coreSupplierFunction = () => {
+				const module = {
+					// that's all we care about
+					exports: {}
+				};
+				func(module, {});
+				return module.exports;
+			};
 		}
-
-		return context.Prism;
+		const Prism = coreSupplierFunction();
+		coreChecks(Prism);
+		return Prism;
 	},
-
-
-	/**
-	 * Cached file sources, to prevent massive HDD work
-	 *
-	 * @private
-	 * @type {Object.<string, string>}
-	 */
-	fileSourceCache: {},
-
 
 	/**
 	 * Loads the given component's file source as string
@@ -144,33 +121,10 @@ module.exports = {
 	 * @returns {string}
 	 */
 	loadFileSource(src) {
-		return this.fileSourceCache[src] = this.fileSourceCache[src] || fs.readFileSync(src, "utf8");
-	},
-
-
-	checkCache: null,
-
-	/**
-	 * Returns a list of files which add additional checks to Prism functions.
-	 *
-	 * @returns {ReadonlyArray<string>}
-	 */
-	getChecks() {
-		return this.checkCache = this.checkCache || getAllFiles(__dirname + "/../checks");
-	},
-
-
-	/**
-	 * Runs a VM for a given file source with the given context
-	 *
-	 * @private
-	 * @param {string} fileSource
-	 * @param {*} [context={}]
-	 *
-	 * @returns {*}
-	 */
-	runFileWithContext(fileSource, context = {}) {
-		vm.runInNewContext(fileSource, context);
-		return context;
+		let content = fileSourceCache.get(src);
+		if (content === undefined) {
+			fileSourceCache.set(src, content = fs.readFileSync(src, "utf8"));
+		}
+		return content;
 	}
 };

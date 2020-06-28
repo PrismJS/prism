@@ -33,7 +33,7 @@ form input[type=button]
 		["function", "border-radius"],
 		["punctuation", "("],
 		["number", "5"],
-		"px",
+		["unit", "px"],
 		["punctuation", ")"]
 	]],
 	["property-declaration", [

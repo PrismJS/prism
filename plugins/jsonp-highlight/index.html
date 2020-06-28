@@ -3,24 +3,19 @@
 <head>
 
 <meta charset="utf-8" />
-<link rel="icon" href="favicon.png" />
+<link rel="icon" href="assets/favicon.png" />
 <title>JSONP Highlight ▲ Prism plugins</title>
 <base href="../.." />
-<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="assets/style.css" />
 <link rel="stylesheet" href="themes/prism.css" data-noprefix />
-<script src="scripts/prefixfree.min.js"></script>
+<script src="assets/prefixfree.min.js"></script>
 
 <script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
 <script src="https://www.google-analytics.com/ga.js" async></script>
 </head>
 <body>
 
-<header>
-	<div class="intro" data-src="templates/header-plugins.html" data-type="text/html"></div>
-
-	<h2>JSONP Highlight</h2>
-	<p>Fetch content with JSONP and highlight some interesting content (e.g. GitHub/Gists or Bitbucket API).</p>
-</header>
+<header data-plugin-header="jsonp-highlight"></header>
 
 <section class="language-markup">
 	<h1>How to use</h1>
@@ -159,15 +154,15 @@
 	<pre class="lang-javascript" data-jsonp="https://api.github.com/repos/PrismJS/prism"></pre>
 </section>
 
-<footer data-src="templates/footer.html" data-type="text/html"></footer>
+<footer data-src="assets/templates/footer.html" data-type="text/html"></footer>
 
 <script>function dump_json(x) { return "using dump_json: " + JSON.stringify(x,null,2); }</script>
 <script src="prism.js"></script>
 <script src="plugins/jsonp-highlight/prism-jsonp-highlight.js"></script>
 <script>Prism.plugins.jsonphighlight.registerAdapter(function (x) { return "using registerAdapter: " + JSON.stringify(x,null,2); })</script>
-<script src="scripts/utopia.js"></script>
+<script src="assets/utopia.js"></script>
 <script src="components.js"></script>
-<script src="scripts/code.js"></script>
+<script src="assets/code.js"></script>
 
 
 </body>

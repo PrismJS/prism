@@ -1,0 +1,14 @@
+Table.ReplaceValue (
+UserDefinedFunction (
+
+----------------------------------------------------
+
+[
+	["function", "Table.ReplaceValue"], ["punctuation","("],
+	["function", "UserDefinedFunction"], ["punctuation","("]
+
+]
+
+----------------------------------------------------
+
+Checks for functions.

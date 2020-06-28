@@ -1,0 +1,23 @@
+"hi"
+'hi'
+r'say'
+r"hello"
+'contains: "'
+myAPL || x[⍋x←6?40] ||
+ || invalid ||
+
+----------------------------------------------------
+
+[
+    ["string", [["string", "\"hi\""]]],
+    ["string", [["string", "'hi'"]]],
+    ["string", [["string", "r'say'"]]],
+    ["string", [["string", "r\"hello\""]]],
+    ["string", [["string", "'contains: \"'"]]],
+	["langext", "myAPL || x[⍋x←6?40] ||"],
+	"\r\n || invalid ||"
+]
+
+----------------------------------------------------
+
+Checks for raw strings.

@@ -1,0 +1,125 @@
+LMain;
+Ljava/lang/String;
+Lfoo/bar/Foo$Bar;
+LFoo$Bar;
+
+Ljava/lang/String;
+LI;
+LV;
+LI/I/I;
+L`single`;
+L`java`/lang/String;
+L`java`/`lang`/`String`;
+Lspace/test/`20 a0 1680 2000 2001 2002 2003 2004 2005 2006 2007 2008 2009 200a 202f 205f 3000　`;
+
+
+----------------------------------------------------
+
+[
+	["class-name", [
+		["builtin", "L"],
+		["class-name", "Main"]
+	]],
+	["punctuation", ";"],
+	["class-name", [
+		["builtin", "L"],
+		["namespace", [
+			"java",
+			["punctuation", "/"],
+			"lang",
+			["punctuation", "/"]
+		]],
+		["class-name", "String"]
+	]],
+	["punctuation", ";"],
+	["class-name", [
+		["builtin", "L"],
+		["namespace", [
+			"foo",
+			["punctuation", "/"],
+			"bar",
+			["punctuation", "/"]
+		]],
+		["class-name", "Foo$Bar"]
+	]],
+	["punctuation", ";"],
+	["class-name", [
+		["builtin", "L"],
+		["class-name", "Foo$Bar"]
+	]],
+	["punctuation", ";"],
+	["class-name", [
+		["builtin", "L"],
+		["namespace", [
+			"java",
+			["punctuation", "/"],
+			"lang",
+			["punctuation", "/"]
+		]],
+		["class-name", "String"]
+	]],
+	["punctuation", ";"],
+	["class-name", [
+		["builtin", "L"],
+		["class-name", "I"]
+	]],
+	["punctuation", ";"],
+	["class-name", [
+		["builtin", "L"],
+		["class-name", "V"]
+	]],
+	["punctuation", ";"],
+	["class-name", [
+		["builtin", "L"],
+		["namespace", [
+			"I",
+			["punctuation", "/"],
+			"I",
+			["punctuation", "/"]
+		]],
+		["class-name", "I"]
+	]],
+	["punctuation", ";"],
+	["class-name", [
+		["builtin", "L"],
+		["class-name", "`single`"]
+	]],
+	["punctuation", ";"],
+	["class-name", [
+		["builtin", "L"],
+		["namespace", [
+			"`java`",
+			["punctuation", "/"],
+			"lang",
+			["punctuation", "/"]
+		]],
+		["class-name", "String"]
+	]],
+	["punctuation", ";"],
+	["class-name", [
+		["builtin", "L"],
+		["namespace", [
+			"`java`",
+			["punctuation", "/"],
+			"`lang`",
+			["punctuation", "/"]
+		]],
+		["class-name", "`String`"]
+	]],
+	["punctuation", ";"],
+	["class-name", [
+		["builtin", "L"],
+		["namespace", [
+			"space",
+			["punctuation", "/"],
+			"test",
+			["punctuation", "/"]
+		]],
+		["class-name", "`20 a0 1680 2000 2001 2002 2003 2004 2005 2006 2007 2008 2009 200a 202f 205f 3000　`"]
+	]],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for class names.
