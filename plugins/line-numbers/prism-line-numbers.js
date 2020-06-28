@@ -69,7 +69,7 @@
 		 *
 		 * @type {boolean}
 		 */
-		assumeViewportIndependence: false
+		assumeViewportIndependence: true
 	};
 
 	/**
