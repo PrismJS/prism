@@ -14,18 +14,10 @@
   },
   "ignore": [
     "**/.*",
+    "assets",
     "docs",
-    "img",
-    "templates",
     "tests",
     "CNAME",
-    "*.html",
-    "style.css",
-    "favicon.png",
-    "logo.svg",
-    "download.js",
-    "prefixfree.min.js",
-    "utopia.js",
-    "code.js"
+    "*.html"
   ]
 }
