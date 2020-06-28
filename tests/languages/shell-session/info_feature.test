@@ -1,0 +1,68 @@
+foo@bar:/var/local$ cd ~
+foo@bar:~$ sudo -i
+[sudo] password for foo:
+root@bar:~# echo "hello!"
+hello!
+
+foo@bar$ exit
+
+----------------------------------------------------
+
+[
+	["info", [
+		["user", "foo@bar"],
+		["punctuation", ":"],
+		["path", "/var/local"]
+	]],
+	["command", [
+		["shell-symbol", "$"],
+		["bash", [
+			["builtin", "cd"],
+			" ~"
+		]]
+	]],
+
+	["info", [
+		["user", "foo@bar"],
+		["punctuation", ":"],
+		["path", "~"]
+	]],
+	["command", [
+		["shell-symbol", "$"],
+		["bash", [
+			["function", "sudo"],
+			" -i"
+		]]
+	]],
+	["output", "[sudo] password for foo:\r\n"],
+
+	["info", [
+		["user", "root@bar"],
+		["punctuation", ":"],
+		["path", "~"]
+	]],
+	["command", [
+		["shell-symbol", "#"],
+		["bash", [
+			["builtin", "echo"],
+			["string", [
+				"\"hello!\""
+			]]
+		]]
+	]],
+	["output", "hello!\r\n\r\n"],
+
+	["info", [
+		["user", "foo@bar"]
+	]],
+	["command", [
+		["shell-symbol", "$"],
+		["bash", [
+			["builtin", "exit"]
+		]]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for the info bash outputs.

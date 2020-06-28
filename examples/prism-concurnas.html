@@ -65,10 +65,10 @@ def sum(elms int...) int {
 thesum = sum(1, 2, 3, 4, 5)
 
 //partially defined typedef
-typedef NameMap<X> = java.util.ArrayList<java.util.HashMap<String, java.util.HashSet<X>>>
+typedef NameMap&lt;X> = java.util.ArrayList&lt;java.util.HashMap&lt;String, java.util.HashSet&lt;X>>>
 
 //using typedefs...
-nm NameMap<String>= new NameMap<String>()
+nm NameMap&lt;String>= new NameMap&lt;String>()
 
 @Annotation
 class MyClass(a int, b int, c String){
@@ -79,11 +79,11 @@ mc1 = MyClass(12, 14, "hi there")
 mc2 = mc1@ //copy mc1
 
 assert mc1 == mc2//same values!
-assert mc1 &<> mc2//different objects!
+assert mc1 &&lt;> mc2//different objects!
 
 mc3 = mc1@(a = 100)//copy mc1 but overwrite value of a
 assert 'MyClass(100, 14, "hi there")' == mc3.toString()
 
-mc4 = mc1@(<a, b>)//copy mc1 but exclude a and b
+mc4 = mc1@(&lt;a, b>)//copy mc1 but exclude a and b
 assert 'MyClass(0, 0, "hi there")' == mc3.toString()
 </code></pre>

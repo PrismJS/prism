@@ -1,4 +1,4 @@
-(function (self, document) {
+(function () {
 
 	if (typeof self === 'undefined' || !self.Prism || !self.document || !document.createRange) {
 		return;
@@ -8,6 +8,10 @@
 
 	Prism.hooks.add('before-highlight', function (env) {
 		if (!env.element.children.length) {
+			return;
+		}
+
+		if (!Prism.util.isActive(env.element, 'keep-markup', true)) {
 			return;
 		}
 
@@ -96,4 +100,4 @@
 			env.highlightedCode = env.element.innerHTML;
 		}
 	});
-}(self, document));
+}());

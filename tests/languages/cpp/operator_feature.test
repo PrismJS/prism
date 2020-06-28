@@ -5,7 +5,7 @@
 ! && ||
 -> ::
 ? :
-= == != < > <= >=
+= == != < > <= >= <=>
 and and_eq bitand bitor not not_eq or or_eq xor xor_eq
 
 ----------------------------------------------------
@@ -55,6 +55,7 @@ and and_eq bitand bitor not not_eq or or_eq xor xor_eq
 	["operator", ">"],
 	["operator", "<="],
 	["operator", ">="],
+	["operator", "<=>"],
 
 	["operator", "and"],
 	["operator", "and_eq"],

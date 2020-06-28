@@ -13,52 +13,65 @@ foo
 bar
 STRING_END
 
+$ echo \'a # '
+
 ----------------------------------------------------
 
 [
 	["command", [
-		["sh", "$"],
+		["shell-symbol", "$"],
 		["bash", [
 			["builtin", "echo"],
 			["string", [
-				"'Foo\n> Bar'"
+				"'Foo\r\n> Bar'"
 			]]
 		]]
 	]],
 
 	["command", [
-		["sh", "$"],
+		["shell-symbol", "$"],
 		["bash", [
 			["builtin", "echo"],
 			["string", [
-				"\"Foo\n> Bar\""
+				"\"Foo\r\n> Bar\""
 			]]
 		]]
 	]],
 
 	["command", [
-		["sh", "$"],
+		["shell-symbol", "$"],
 		["bash", [
 			["builtin", "echo"],
 			["operator", [
 				"<<-"
 			]],
 			["string", [
-				"STRING_END\nfoo\nbar\nSTRING_END"
+				"STRING_END\r\nfoo\r\nbar\r\nSTRING_END"
 			]]
 		]]
 	]],
 
 	["command", [
-		["sh", "$"],
+		["shell-symbol", "$"],
 		["bash", [
 			["builtin", "echo"],
 			["operator", [
 				"<<-"
 			]],
-			["string", "\"STRING_END\"\nfoo\nbar\nSTRING_END"]
+			["string", "\"STRING_END\"\r\nfoo\r\nbar\r\nSTRING_END"]
 		]]
-	]]
+	]],
+
+	["command", [
+		["shell-symbol", "$"],
+		["bash", [
+			["builtin", "echo"],
+			["punctuation", "\\"],
+			"'a ",
+			["comment", "# "]
+		]]
+	]],
+	["output", "'"]
 ]
 
 ----------------------------------------------------

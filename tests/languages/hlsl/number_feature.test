@@ -1,0 +1,83 @@
+123
+0123
+0xBADface
+123.345
+123.456e-4
+123.456E+44
+
+.423h
+.423H
+.423f
+.423F
+.423l
+.423L
+0.423e-4h
+0.423e-4H
+0.423e-4f
+0.423e-4F
+0.423e-4l
+0.423e-4L
+1.h
+1.H
+1.f
+1.F
+1.l
+1.L
+
+123u
+123U
+123l
+123L
+01234567u
+01234567U
+01234567l
+01234567L
+0xBadFaceu
+0xBadFaceU
+0xBadFacel
+0xBadFaceL
+
+----------------------------------------------------
+
+[
+	["number", "123"],
+	["number", "0123"],
+	["number", "0xBADface"],
+	["number", "123.345"],
+	["number", "123.456e-4"],
+	["number", "123.456E+44"],
+	["number", ".423h"],
+	["number", ".423H"],
+	["number", ".423f"],
+	["number", ".423F"],
+	["number", ".423l"],
+	["number", ".423L"],
+	["number", "0.423e-4h"],
+	["number", "0.423e-4H"],
+	["number", "0.423e-4f"],
+	["number", "0.423e-4F"],
+	["number", "0.423e-4l"],
+	["number", "0.423e-4L"],
+	["number", "1.h"],
+	["number", "1.H"],
+	["number", "1.f"],
+	["number", "1.F"],
+	["number", "1.l"],
+	["number", "1.L"],
+	["number", "123u"],
+	["number", "123U"],
+	["number", "123l"],
+	["number", "123L"],
+	["number", "01234567u"],
+	["number", "01234567U"],
+	["number", "01234567l"],
+	["number", "01234567L"],
+	["number", "0xBadFaceu"],
+	["number", "0xBadFaceU"],
+	["number", "0xBadFacel"],
+	["number", "0xBadFaceL"]
+]
+
+----------------------------------------------------
+
+Checks for numbers.

@@ -1,0 +1,26 @@
+Some text
+	at foo.bar
+
+----------------------------------------------------
+
+[
+	["error-message", "Some text"],
+	[
+		"stack-frame",
+		[
+			["keyword", "at"],
+			[
+				"function",
+				[
+					"foo",
+					[ "punctuation", "." ],
+					"bar"
+				]
+			]
+		]
+	]
+]
+
+----------------------------------------------------
+
+Checks basic a basic error message.

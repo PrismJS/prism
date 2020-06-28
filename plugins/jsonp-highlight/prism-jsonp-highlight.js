@@ -13,7 +13,7 @@
 	/**
 	 * The list of adapter which will be used if `data-adapter` is not specified.
 	 *
-	 * @type {Array.<{adapter: Adapter, name: string}>}
+	 * @type {Array<{adapter: Adapter, name: string}>}
 	 */
 	var adapters = [];
 

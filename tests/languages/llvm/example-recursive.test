@@ -1,0 +1,87 @@
+define i32 @add(i32 %a, i32 %b) {
+entry:
+  %tmp1 = icmp eq i32 %a, 0
+  br i1 %tmp1, label %done, label %recurse
+
+recurse:
+  %tmp2 = sub i32 %a, 1
+  %tmp3 = add i32 %b, 1
+  %tmp4 = call i32 @add(i32 %tmp2, i32 %tmp3)
+  ret i32 %tmp4
+
+done:
+  ret i32 %b
+}
+
+----------------------------------------------------
+
+[
+	["keyword", "define"],
+	["type", "i32"],
+	["variable", "@add"],
+	["punctuation", "("],
+	["type", "i32"],
+	["variable", "%a"],
+	["punctuation", ","],
+	["type", "i32"],
+	["variable", "%b"],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["label", "entry:"],
+	["variable", "%tmp1"],
+	["punctuation", "="],
+	["keyword", "icmp"],
+	["keyword", "eq"],
+	["type", "i32"],
+	["variable", "%a"],
+	["punctuation", ","],
+	["number", "0"],
+	["keyword", "br"],
+	["type", "i1"],
+	["variable", "%tmp1"],
+	["punctuation", ","],
+	["type", "label"],
+	["variable", "%done"],
+	["punctuation", ","],
+	["type", "label"],
+	["variable", "%recurse"],
+	["label", "recurse:"],
+	["variable", "%tmp2"],
+	["punctuation", "="],
+	["keyword", "sub"],
+	["type", "i32"],
+	["variable", "%a"],
+	["punctuation", ","],
+	["number", "1"],
+	["variable", "%tmp3"],
+	["punctuation", "="],
+	["keyword", "add"],
+	["type", "i32"],
+	["variable", "%b"],
+	["punctuation", ","],
+	["number", "1"],
+	["variable", "%tmp4"],
+	["punctuation", "="],
+	["keyword", "call"],
+	["type", "i32"],
+	["variable", "@add"],
+	["punctuation", "("],
+	["type", "i32"],
+	["variable", "%tmp2"],
+	["punctuation", ","],
+	["type", "i32"],
+	["variable", "%tmp3"],
+	["punctuation", ")"],
+	["keyword", "ret"],
+	["type", "i32"],
+	["variable", "%tmp4"],
+	["label", "done:"],
+	["keyword", "ret"],
+	["type", "i32"],
+	["variable", "%b"],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+A recursive example program.

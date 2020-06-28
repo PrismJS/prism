@@ -1,0 +1,123 @@
+abstract
+alias
+as;
+catch;
+class;
+component;
+constant;
+create;
+declare
+else
+end-class
+end-evaluate
+end-for
+end-function
+end-get
+end-if
+end-method
+end-set
+end-try
+end-while
+evaluate
+extends;
+for
+function
+get
+global;
+implements;
+import
+instance;
+if
+library
+local;
+method
+null
+of;
+out
+peopleCode
+private
+program
+property;
+protected
+readonly
+ref
+repeat
+return
+returns;
+set
+step
+then
+throw
+to
+try
+until
+value
+when
+when-other
+while
+
+----------------------------------------------------
+
+[
+	["keyword", "abstract"],
+	["keyword", "alias"],
+	["keyword", "as"], ["punctuation", ";"],
+	["keyword", "catch"], ["punctuation", ";"],
+	["keyword", "class"], ["punctuation", ";"],
+	["keyword", "component"], ["punctuation", ";"],
+	["keyword", "constant"], ["punctuation", ";"],
+	["keyword", "create"], ["punctuation", ";"],
+	["keyword", "declare"],
+	["keyword", "else"],
+	["keyword", "end-class"],
+	["keyword", "end-evaluate"],
+	["keyword", "end-for"],
+	["keyword", "end-function"],
+	["keyword", "end-get"],
+	["keyword", "end-if"],
+	["keyword", "end-method"],
+	["keyword", "end-set"],
+	["keyword", "end-try"],
+	["keyword", "end-while"],
+	["keyword", "evaluate"],
+	["keyword", "extends"], ["punctuation", ";"],
+	["keyword", "for"],
+	["keyword", "function"],
+	["function-definition", "get"],
+	["keyword", "global"], ["punctuation", ";"],
+	["keyword", "implements"], ["punctuation", ";"],
+	["keyword", "import"],
+	["keyword", "instance"], ["punctuation", ";"],
+	["keyword", "if"],
+	["keyword", "library"],
+	["keyword", "local"], ["punctuation", ";"],
+	["keyword", "method"],
+	["function-definition", "null"],
+	["keyword", "of"], ["punctuation", ";"],
+	["keyword", "out"],
+	["keyword", "peopleCode"],
+	["keyword", "private"],
+	["keyword", "program"],
+	["keyword", "property"], ["punctuation", ";"],
+	["keyword", "protected"],
+	["keyword", "readonly"],
+	["keyword", "ref"],
+	["keyword", "repeat"],
+	["keyword", "return"],
+	["keyword", "returns"], ["punctuation", ";"],
+	["keyword", "set"],
+	["keyword", "step"],
+	["keyword", "then"],
+	["keyword", "throw"],
+	["keyword", "to"],
+	["keyword", "try"],
+	["keyword", "until"],
+	["keyword", "value"],
+	["keyword", "when"],
+	["keyword", "when-other"],
+	["keyword", "while"]
+]
+
+----------------------------------------------------
+
+Checks for keywords.
