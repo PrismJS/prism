@@ -2,6 +2,8 @@
 <pre><code># These are the comments for a dockerfile.
 # I want to make sure $(variables) don't break out,
 # and we shouldn't see keywords like ADD or ENTRYPOINT
+
+# I also want to make sure that this "string" and this 'string' don't break out.
 </code></pre>
 
 <h2>Full example</h2>
@@ -10,7 +12,7 @@
 # VERSION               0.0.1
 
 FROM      ubuntu
-MAINTAINER Victor Vieux <victor@docker.com>
+MAINTAINER Victor Vieux &lt;victor@docker.com>
 
 LABEL Description="This image is used to start the foobar executable" Vendor="ACME Products" Version="1.0"
 RUN apt-get update && apt-get install -y inotify-tools nginx apache2 openssh-server

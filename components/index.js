@@ -30,7 +30,9 @@ function loadLanguages(languages) {
 
 	getLoader(components, languages, loaded).load(lang => {
 		if (!(lang in components.languages)) {
-			console.warn('Language does not exist: ' + lang);
+			if (!loadLanguages.silent) {
+				console.warn('Language does not exist: ' + lang);
+			}
 			return;
 		}
 
@@ -45,5 +47,10 @@ function loadLanguages(languages) {
 		loadedLanguages.add(lang);
 	});
 }
+
+/**
+ * Set this to `true` to prevent all warning messages `loadLanguages` logs.
+ */
+loadLanguages.silent = false;
 
 module.exports = loadLanguages;

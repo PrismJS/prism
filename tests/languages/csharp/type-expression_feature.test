@@ -1,0 +1,63 @@
+default(int)
+default(Foo)
+typeof(Foo)
+typeof((int, long))
+default(Foo<Bar, IFoo<Bar>>)
+sizeof(int)
+
+----------------------------------------------------
+
+[
+	["keyword", "default"],
+	["punctuation", "("],
+	["type-expression", [
+		["keyword", "int"]
+	]],
+	["punctuation", ")"],
+	["keyword", "default"],
+	["punctuation", "("],
+	["type-expression", [
+		"Foo"
+	]],
+	["punctuation", ")"],
+	["keyword", "typeof"],
+	["punctuation", "("],
+	["type-expression", [
+		"Foo"
+	]],
+	["punctuation", ")"],
+	["keyword", "typeof"],
+	["punctuation", "("],
+	["type-expression", [
+		["punctuation", "("],
+		["keyword", "int"],
+		["punctuation", ","],
+		["keyword", "long"],
+		["punctuation", ")"]
+	]],
+	["punctuation", ")"],
+	["keyword", "default"],
+	["punctuation", "("],
+	["type-expression", [
+		"Foo",
+		["punctuation", "<"],
+		"Bar",
+		["punctuation", ","],
+		" IFoo",
+		["punctuation", "<"],
+		"Bar",
+		["punctuation", ">"],
+		["punctuation", ">"]
+	]],
+	["punctuation", ")"],
+	["keyword", "sizeof"],
+	["punctuation", "("],
+	["type-expression", [
+		["keyword", "int"]
+	]],
+	["punctuation", ")"]
+]
+
+----------------------------------------------------
+
+Checks for class names of type expressions.

@@ -49,9 +49,8 @@ module.exports = {
 	 *
 	 * @param {string} languageIdentifier
 	 * @param {string} filePath
-	 * @param {boolean} [pretty=false]
 	 */
-	runTestCase(languageIdentifier, filePath, pretty = false) {
+	runTestCase(languageIdentifier, filePath) {
 		const testCase = this.parseTestCaseFile(filePath);
 		const usedLanguages = this.parseLanguageNames(languageIdentifier);
 
@@ -79,7 +78,7 @@ module.exports = {
 		const columnNumber = expectedJsonLines.pop().length + 1;
 		const lineNumber = testCase.expectedLineOffset + expectedJsonLines.length;
 
-		const tokenStreamStr = pretty ? TokenStreamTransformer.prettyprint(simplifiedTokenStream) : actual;
+		const tokenStreamStr = TokenStreamTransformer.prettyprint(simplifiedTokenStream);
 		const message = "\n\nActual Token Stream:" +
 			"\n-----------------------------------------\n" +
 			tokenStreamStr +
@@ -94,7 +93,7 @@ module.exports = {
 	 *
 	 * The `before-tokenize` and `after-tokenize` hooks will also be executed.
 	 *
-	 * @param {any} Prism The Prism instance which will tokenize `code`.
+	 * @param {import('../../components/prism-core')} Prism The Prism instance which will tokenize `code`.
 	 * @param {string} code The code to tokenize.
 	 * @param {string} language The language id.
 	 * @returns {Array<string|Array<string|any[]>>}
@@ -161,6 +160,7 @@ module.exports = {
 	 *
 	 * @private
 	 * @param {string} filePath
+	 * @returns {{testSource: string, expectedTokenStream: Array<string[]>, comment:string?}|null}
 	 */
 	parseTestCaseFile(filePath) {
 		const testCaseSource = fs.readFileSync(filePath, "utf8");

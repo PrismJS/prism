@@ -6,13 +6,13 @@
 ----------------------------------------------------
 
 [
-	"/**\n * ",
+	"/**\r\n * ",
 	["keyword", "@param"],
 	["parameter", "foo"],
-	" an argument.\n * ",
+	" an argument.\r\n * ",
 	["keyword", "@param"],
 	["parameter", "bar"],
-	" another argument.\n */"
+	" another argument.\r\n */"
 ]
 
 ----------------------------------------------------

@@ -1,0 +1,87 @@
+var float MyVar<TAG=VALUE>;
+
+enum EMyEnum
+{
+	EME_ValA<TAG=VALUE>,
+	EME_ValB<TAG=VALUE>,
+};
+
+var() LinearColor DrawColor<DisplayName=Draw Color|EditCondition=bOverrideDrawColor>;
+
+
+// not metadata
+var array<class<Foo>> Bar;
+
+----------------------------------------------------
+
+[
+	["keyword", "var"],
+	["keyword", "float"],
+	" MyVar",
+	["metadata", [
+		["punctuation", "<"],
+		["property", "TAG"],
+		["operator", "="],
+		"VALUE",
+		["punctuation", ">"]
+	]],
+	["punctuation", ";"],
+
+	["keyword", "enum"],
+	["class-name", "EMyEnum"],
+	["punctuation", "{"],
+	"\r\n\tEME_ValA",
+	["metadata", [
+		["punctuation", "<"],
+		["property", "TAG"],
+		["operator", "="],
+		"VALUE",
+		["punctuation", ">"]
+	]],
+	["punctuation", ","],
+	"\r\n\tEME_ValB",
+	["metadata", [
+		["punctuation", "<"],
+		["property", "TAG"],
+		["operator", "="],
+		"VALUE",
+		["punctuation", ">"]
+	]],
+	["punctuation", ","],
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["keyword", "var"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	" LinearColor DrawColor",
+	["metadata", [
+		["punctuation", "<"],
+		["property", "DisplayName"],
+		["operator", "="],
+		"Draw Color",
+		["punctuation", "|"],
+		["property", "EditCondition"],
+		["operator", "="],
+		"bOverrideDrawColor",
+		["punctuation", ">"]
+	]],
+	["punctuation", ";"],
+
+
+	["comment", "// not metadata"],
+
+	["keyword", "var"],
+	["keyword", "array"],
+	["operator", "<"],
+	["keyword", "class"],
+	["operator", "<"],
+	"Foo",
+	["operator", ">>"],
+	" Bar",
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for metadata.

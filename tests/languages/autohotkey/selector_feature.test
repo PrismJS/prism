@@ -118,6 +118,7 @@ SetFormat
 SetKeyDelay
 SetMouseDelay
 SetNumlockState
+SetRegView
 SetScrollLockState
 SetStoreCapslockMode
 SetTimer
@@ -308,6 +309,7 @@ WinWaitNotActive
 	["selector", "SetKeyDelay"],
 	["selector", "SetMouseDelay"],
 	["selector", "SetNumlockState"],
+	["selector", "SetRegView"],
 	["selector", "SetScrollLockState"],
 	["selector", "SetStoreCapslockMode"],
 	["selector", "SetTimer"],

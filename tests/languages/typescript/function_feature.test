@@ -1,0 +1,91 @@
+function getProperty<T, K extends keyof T>(o: T, propertyName: K): T[K] { }
+
+declare function f<T extends boolean>(x: T): T extends true ? string : number;
+
+function assert(condition: any, msg?: string): asserts condition { }
+
+----------------------------------------------------
+
+[
+	["keyword", "function"],
+	["generic-function", [
+		["function", "getProperty"],
+		["generic", [
+			["operator", "<"],
+			["constant", "T"],
+			["punctuation", ","],
+			["constant", "K"],
+			["keyword", "extends"],
+			["keyword", "keyof"],
+			["constant", "T"],
+			["operator", ">"]
+		]]
+	]],
+	["punctuation", "("],
+	"o",
+	["operator", ":"],
+	["constant", "T"],
+	["punctuation", ","],
+	" propertyName",
+	["operator", ":"],
+	["constant", "K"],
+	["punctuation", ")"],
+	["operator", ":"],
+	["constant", "T"],
+	["punctuation", "["],
+	["constant", "K"],
+	["punctuation", "]"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "declare"],
+	["keyword", "function"],
+	["generic-function", [
+		["function", "f"],
+		["generic", [
+			["operator", "<"],
+			["constant", "T"],
+			["keyword", "extends"],
+			["builtin", "boolean"],
+			["operator", ">"]
+		]]
+	]],
+	["punctuation", "("],
+	"x",
+	["operator", ":"],
+	["constant", "T"],
+	["punctuation", ")"],
+	["operator", ":"],
+	["constant", "T"],
+	["keyword", "extends"],
+	["class-name", [
+		["boolean", "true"]
+	]],
+	["operator", "?"],
+	["builtin", "string"],
+	["operator", ":"],
+	["builtin", "number"],
+	["punctuation", ";"],
+
+	["keyword", "function"],
+	["function", "assert"],
+	["punctuation", "("],
+	"condition",
+	["operator", ":"],
+	["builtin", "any"],
+	["punctuation", ","],
+	" msg",
+	["operator", "?"],
+	["operator", ":"],
+	["builtin", "string"],
+	["punctuation", ")"],
+	["operator", ":"],
+	["keyword", "asserts"],
+	" condition ",
+	["punctuation", "{"],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for functions.

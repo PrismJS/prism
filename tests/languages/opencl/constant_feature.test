@@ -57,7 +57,17 @@ FLT_MIN
 FLT_MIN_10_EXP
 FLT_MIN_EXP
 FLT_RADIX
+HALF_DIG
+HALF_EPSILON
+HALF_MANT_DIG
+HALF_MAX
+HALF_MAX_10_EXP
+HALF_MAX_EXP
+HALF_MIN
+HALF_MIN_10_EXP
+HALF_MIN_EXP
 HUGE_VALF
+HUGE_VAL
 INFINITY
 INT_MAX
 INT_MIN
@@ -73,17 +83,43 @@ M_LN2
 M_LOG10E
 M_LOG2E
 M_PI
-M_PI2
-M_PI4
+M_PI_2
+M_PI_4
 M_SQRT1_2
 M_SQRT2
+M_1_PI_F
+M_2_PI_F
+M_2_SQRTPI_F
+M_E_F
+M_LN10_F
+M_LN2_F
+M_LOG10E_F
+M_LOG2E_F
+M_PI_F
+M_PI_2_F
+M_PI_4_F
+M_SQRT1_2_F
+M_SQRT2_F
+M_1_PI_H
+M_2_PI_H
+M_2_SQRTPI_H
+M_E_H
+M_LN10_H
+M_LN2_H
+M_LOG10E_H
+M_LOG2E_H
+M_PI_H
+M_PI_2_H
+M_PI_4_H
+M_SQRT1_2_H
+M_SQRT2_H
 NAN
 SCHAR_MAX
 SCHAR_MIN
 SHRT_MAX
 SHRT_MIN
 UCHAR_MAX
-UCHAR_MIN
+USHRT_MAX
 UINT_MAX
 ULONG_MAX
 
@@ -149,7 +185,17 @@ ULONG_MAX
 	["constant-opencl-kernel", "FLT_MIN_10_EXP"],
 	["constant-opencl-kernel", "FLT_MIN_EXP"],
 	["constant-opencl-kernel", "FLT_RADIX"],
+	["constant-opencl-kernel", "HALF_DIG"],
+	["constant-opencl-kernel", "HALF_EPSILON"],
+	["constant-opencl-kernel", "HALF_MANT_DIG"],
+	["constant-opencl-kernel", "HALF_MAX"],
+	["constant-opencl-kernel", "HALF_MAX_10_EXP"],
+	["constant-opencl-kernel", "HALF_MAX_EXP"],
+	["constant-opencl-kernel", "HALF_MIN"],
+	["constant-opencl-kernel", "HALF_MIN_10_EXP"],
+	["constant-opencl-kernel", "HALF_MIN_EXP"],
 	["constant-opencl-kernel", "HUGE_VALF"],
+	["constant-opencl-kernel", "HUGE_VAL"],
 	["constant-opencl-kernel", "INFINITY"],
 	["constant-opencl-kernel", "INT_MAX"],
 	["constant-opencl-kernel", "INT_MIN"],
@@ -165,17 +211,43 @@ ULONG_MAX
 	["constant-opencl-kernel", "M_LOG10E"],
 	["constant-opencl-kernel", "M_LOG2E"],
 	["constant-opencl-kernel", "M_PI"],
-	["constant-opencl-kernel", "M_PI2"],
-	["constant-opencl-kernel", "M_PI4"],
+	["constant-opencl-kernel", "M_PI_2"],
+	["constant-opencl-kernel", "M_PI_4"],
 	["constant-opencl-kernel", "M_SQRT1_2"],
 	["constant-opencl-kernel", "M_SQRT2"],
+	["constant-opencl-kernel", "M_1_PI_F"],
+	["constant-opencl-kernel", "M_2_PI_F"],
+	["constant-opencl-kernel", "M_2_SQRTPI_F"],
+	["constant-opencl-kernel", "M_E_F"],
+	["constant-opencl-kernel", "M_LN10_F"],
+	["constant-opencl-kernel", "M_LN2_F"],
+	["constant-opencl-kernel", "M_LOG10E_F"],
+	["constant-opencl-kernel", "M_LOG2E_F"],
+	["constant-opencl-kernel", "M_PI_F"],
+	["constant-opencl-kernel", "M_PI_2_F"],
+	["constant-opencl-kernel", "M_PI_4_F"],
+	["constant-opencl-kernel", "M_SQRT1_2_F"],
+	["constant-opencl-kernel", "M_SQRT2_F"],
+	["constant-opencl-kernel", "M_1_PI_H"],
+	["constant-opencl-kernel", "M_2_PI_H"],
+	["constant-opencl-kernel", "M_2_SQRTPI_H"],
+	["constant-opencl-kernel", "M_E_H"],
+	["constant-opencl-kernel", "M_LN10_H"],
+	["constant-opencl-kernel", "M_LN2_H"],
+	["constant-opencl-kernel", "M_LOG10E_H"],
+	["constant-opencl-kernel", "M_LOG2E_H"],
+	["constant-opencl-kernel", "M_PI_H"],
+	["constant-opencl-kernel", "M_PI_2_H"],
+	["constant-opencl-kernel", "M_PI_4_H"],
+	["constant-opencl-kernel", "M_SQRT1_2_H"],
+	["constant-opencl-kernel", "M_SQRT2_H"],
 	["constant-opencl-kernel", "NAN"],
 	["constant-opencl-kernel", "SCHAR_MAX"],
 	["constant-opencl-kernel", "SCHAR_MIN"],
 	["constant-opencl-kernel", "SHRT_MAX"],
 	["constant-opencl-kernel", "SHRT_MIN"],
 	["constant-opencl-kernel", "UCHAR_MAX"],
-	["constant-opencl-kernel", "UCHAR_MIN"],
+	["constant-opencl-kernel", "USHRT_MAX"],
 	["constant-opencl-kernel", "UINT_MAX"],
 	["constant-opencl-kernel", "ULONG_MAX"]
 ]

@@ -1,6 +1,6 @@
 const { assert } = require('chai');
 const getLoader = require('../dependencies');
-const components = require('../components');
+const components = require('../components.json');
 
 
 describe('Dependency logic', function () {
@@ -133,7 +133,7 @@ describe('Dependency logic', function () {
 						}
 					}
 				};
-				getLoader(circular, ['a']).getIds();
+				getLoader(circular, ['a', 'foo' /* force the lazy alias resolver */]).getIds();
 			});
 		});
 
@@ -148,7 +148,7 @@ describe('Dependency logic', function () {
 						b: 'B'
 					}
 				};
-				getLoader(circular, ['a']).getIds();
+				getLoader(circular, ['a', 'foo' /* force the lazy alias resolver */]).getIds();
 			});
 		});
 
@@ -248,10 +248,89 @@ describe('components.json', function () {
 
 	it('- should be valid', function () {
 		try {
-			getLoader(components, Object.keys(components.languages).filter(k => k != 'meta')).getIds();
+			const allIds = [];
+			for (const category in components) {
+				Object.keys(components[category]).forEach(id => allIds.push(id));
+			}
+			// and an alias, so we force the lazy alias resolver to check all aliases
+			allIds.push('js');
+
+			getLoader(components, allIds).getIds();
 		} catch (error) {
 			assert.fail(error.toString());
 		}
+	});
+
+	it('- should not have redundant optional dependencies', function () {
+		/** @type {Object<string, import("../dependencies").ComponentEntry>} */
+		const entries = {};
+
+		for (const category in components) {
+			for (const id in components[category]) {
+				const entry = components[category][id];
+				if (id !== 'meta' && entry && typeof entry === 'object') {
+					entries[id] = entry;
+				}
+			}
+		}
+
+		function toArray(value) {
+			if (Array.isArray(value)) {
+				return value;
+			} else if (value == undefined) {
+				return [];
+			} else {
+				return [value];
+			}
+		}
+
+		for (const id in entries) {
+			const entry = entries[id];
+			const optional = new Set(toArray(entry.optional));
+
+			for (const modifyId of toArray(entry.modify)) {
+				if (optional.has(modifyId)) {
+					assert.fail(`The component "${id}" has declared "${modifyId}" as both optional and modify.`)
+				}
+			}
+			for (const requireId of toArray(entry.require)) {
+				if (optional.has(requireId)) {
+					assert.fail(`The component "${id}" has declared "${requireId}" as both optional and require.`)
+				}
+			}
+		}
+	});
+
+	it('- should have a sorted language list', function () {
+		const ignore = new Set(['meta', 'markup', 'css', 'clike', 'javascript']);
+		/** @type {{ id: string, title: string }[]} */
+		const languages = Object.keys(components.languages).filter(key => !ignore.has(key)).map(key => {
+			return {
+				id: key,
+				title: components.languages[key].title
+			};
+		});
+
+		/**
+		 * Transforms the given title into an intermediate representation to allowed for sensible comparisons
+		 * between titles.
+		 *
+		 * @param {string} title
+		 */
+		function transformTitle(title) {
+			return title.replace(/\W+/g, '').replace(/^\d+/, '').toLowerCase();
+		}
+
+		const sorted = [...languages].sort((a, b) => {
+			const comp = transformTitle(a.title).localeCompare(transformTitle(b.title));
+			if (comp !== 0) {
+				return comp;
+			}
+			// a and b have the same intermediate form (e.g. "C" => "C", "C++" => "C", "C#" => "C").
+			a.title.toLowerCase().localeCompare(b.title.toLowerCase())
+		});
+
+		assert.sameOrderedMembers(languages, sorted);
 	});
 
 });

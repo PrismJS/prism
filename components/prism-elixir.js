@@ -8,7 +8,7 @@ Prism.languages.elixir = {
 	'string': [
 		{
 			// ~s"""foo""" (multi-line), ~s'''foo''' (multi-line), ~s/foo/, ~s|foo|, ~s"foo", ~s'foo', ~s(foo), ~s[foo], ~s{foo} (with interpolation care), ~s<foo>
-			pattern: /~[cCsSwW](?:("""|''')(?:\\[\s\S]|(?!\1)[^\\])+\1|([\/|"'])(?:\\.|(?!\2)[^\\\r\n])+\2|\((?:\\.|[^\\)\r\n])+\)|\[(?:\\.|[^\\\]\r\n])+\]|\{(?:\\.|#\{[^}]+\}|[^\\}\r\n])+\}|<(?:\\.|[^\\>\r\n])+>)[csa]?/,
+			pattern: /~[cCsSwW](?:("""|''')(?:\\[\s\S]|(?!\1)[^\\])+\1|([\/|"'])(?:\\.|(?!\2)[^\\\r\n])+\2|\((?:\\.|[^\\)\r\n])+\)|\[(?:\\.|[^\\\]\r\n])+\]|\{(?:\\.|#\{[^}]+\}|#(?!\{)|[^#\\}\r\n])+\}|<(?:\\.|[^\\>\r\n])+>)[csa]?/,
 			greedy: true,
 			inside: {
 				// See interpolation below
@@ -37,7 +37,7 @@ Prism.languages.elixir = {
 		alias: 'symbol'
 	},
 	// Look-ahead prevents bad highlighting of the :: operator
-	'attr-name': /\w+:(?!:)/,
+	'attr-name': /\w+\??:(?!:)/,
 	'capture': {
 		// Look-behind prevents bad highlighting of the && operator
 		pattern: /(^|[^&])&(?:[^&\s\d()][^\s()]*|(?=\())/,
