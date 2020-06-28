@@ -10,7 +10,7 @@ const coreChecks = require('./checks');
 
 /**
  * @typedef PrismLoaderContext
- * @property {any} Prism The Prism instance.
+ * @property {import('../../components/prism-core')} Prism The Prism instance.
  * @property {Set<string>} loaded A set of loaded components.
  */
 
@@ -27,7 +27,7 @@ module.exports = {
 	 * Creates a new Prism instance with the given language loaded
 	 *
 	 * @param {string|string[]} languages
-	 * @returns {Prism}
+	 * @returns {import('../../components/prism-core')}
 	 */
 	createInstance(languages) {
 		let context = {

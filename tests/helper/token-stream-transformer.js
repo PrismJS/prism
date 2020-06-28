@@ -5,7 +5,7 @@ module.exports = {
 	/**
 	 * @typedef TokenStreamItem
 	 * @property {string} type
-	 * @property {string | TokenStreamItem | Array<string|TokenStreamItem>} content
+	 * @property {string | Array<string|TokenStreamItem>} content
 	 *
 	 * @typedef {Array<string | [string, string | Array]>} SimplifiedTokenStream
 	 */
@@ -45,7 +45,7 @@ module.exports = {
 				if (Array.isArray(value.content)) {
 					return [value.type, simplify(value.content)];
 				} else {
-					return [value.type, innerSimple(value.content)];
+					return [value.type, value.content];
 				}
 			} else {
 				return value;
