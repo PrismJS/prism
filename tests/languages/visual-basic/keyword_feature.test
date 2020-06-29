@@ -32,6 +32,7 @@ CType
 CUInt
 CULng
 CUShort
+Currency
 Date
 Decimal
 Declare
@@ -133,6 +134,7 @@ Throw
 To
 Try
 TryCast
+Type
 TypeOf
 UInteger
 ULong
@@ -146,6 +148,7 @@ Widening
 With
 WithEvents
 WriteOnly
+Until
 Xor
 
 ----------------------------------------------------
@@ -185,6 +188,7 @@ Xor
 	["keyword", "CUInt"],
 	["keyword", "CULng"],
 	["keyword", "CUShort"],
+	["keyword", "Currency"],
 	["keyword", "Date"],
 	["keyword", "Decimal"],
 	["keyword", "Declare"],
@@ -286,6 +290,7 @@ Xor
 	["keyword", "To"],
 	["keyword", "Try"],
 	["keyword", "TryCast"],
+	["keyword", "Type"],
 	["keyword", "TypeOf"],
 	["keyword", "UInteger"],
 	["keyword", "ULong"],
@@ -299,6 +304,7 @@ Xor
 	["keyword", "With"],
 	["keyword", "WithEvents"],
 	["keyword", "WriteOnly"],
+	["keyword", "Until"],
 	["keyword", "Xor"]
 ]
 

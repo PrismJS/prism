@@ -12,8 +12,8 @@ const util = require('util');
 const fs = require('fs');
 
 const paths = require('./paths');
-const { premerge } = require('./premerge');
 const { changes, linkify } = require('./changelog');
+const { docs } = require('./docs');
 
 
 const componentsPromise = new Promise((resolve, reject) => {
@@ -203,7 +203,7 @@ async function languagePlugins() {
 		}
 	}));
 
-	const rejectedTasks = taskResults.filter(/** @return {r is {status: 'rejected', reason: any}} */ r => r.status === 'rejected');
+	const rejectedTasks = taskResults.filter(/** @returns {r is {status: 'rejected', reason: any}} */ r => r.status === 'rejected');
 	if (rejectedTasks.length > 0) {
 		throw rejectedTasks.map(r => r.reason);
 	}
@@ -215,8 +215,7 @@ const plugins = series(languagePlugins, minifyPlugins);
 
 module.exports = {
 	watch: watchComponentsAndPlugins,
-	default: parallel(components, plugins, componentsJsonToJs, build),
-	premerge,
+	default: series(parallel(components, plugins, componentsJsonToJs, build), docs),
 	linkify,
 	changes
 };

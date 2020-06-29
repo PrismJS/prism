@@ -5,7 +5,7 @@
 	Prism.languages.cpp = Prism.languages.extend('c', {
 		'class-name': [
 			{
-				pattern: RegExp(/(\b(?:class|enum|struct|typename)\s+)(?!<keyword>)\w+/.source
+				pattern: RegExp(/(\b(?:class|concept|enum|struct|typename)\s+)(?!<keyword>)\w+/.source
 					.replace(/<keyword>/g, function () { return keyword.source; })),
 				lookbehind: true
 			},
@@ -17,19 +17,16 @@
 			// This will capture the class name before destructors like:
 			//   Foo::~Foo() {}
 			/\b[A-Z_]\w*(?=\s*::\s*~\w+\s*\()/i,
-			{
-				// This also intends to capture the class name of method implementations but here the class has template
-				// parameters, so it can't be a namespace (until C++ adds generic namespaces).
-				pattern: /\w+(?=\s*<(?:[^<>]|<(?:[^<>]|<[^<>]*>)*>)*>\s*::\s*\w+\s*\()/,
-				inside: null // see below
-			}
+			// This also intends to capture the class name of method implementations but here the class has template
+			// parameters, so it can't be a namespace (until C++ adds generic namespaces).
+			/\w+(?=\s*<(?:[^<>]|<(?:[^<>]|<[^<>]*>)*>)*>\s*::\s*\w+\s*\()/
 		],
 		'keyword': keyword,
 		'number': {
 			pattern: /(?:\b0b[01']+|\b0x(?:[\da-f']+\.?[\da-f']*|\.[\da-f']+)(?:p[+-]?[\d']+)?|(?:\b[\d']+\.?[\d']*|\B\.[\d']+)(?:e[+-]?[\d']+)?)[ful]*/i,
 			greedy: true
 		},
-		'operator': />>=?|<<=?|->|([-+&|:])\1|[?:~]|[-+*/%&|^!=<>]=?|\b(?:and|and_eq|bitand|bitor|not|not_eq|or|or_eq|xor|xor_eq)\b/,
+		'operator': />>=?|<<=?|->|([-+&|:])\1|[?:~]|<=>|[-+*/%&|^!=<>]=?|\b(?:and|and_eq|bitand|bitor|not|not_eq|or|or_eq|xor|xor_eq)\b/,
 		'boolean': /\b(?:true|false)\b/
 	});
 

@@ -1,6 +1,7 @@
 abstract
 add
 alias
+and
 as
 ascending
 async
@@ -54,11 +55,13 @@ long
 nameof
 namespace;
 new;
+not
 notnull
 null
 object
 on
 operator
+or
 orderby
 out
 override
@@ -109,6 +112,7 @@ yield
 	["keyword", "abstract"],
 	["keyword", "add"],
 	["keyword", "alias"],
+	["keyword", "and"],
 	["keyword", "as"],
 	["keyword", "ascending"],
 	["keyword", "async"],
@@ -162,11 +166,13 @@ yield
 	["keyword", "nameof"],
 	["keyword", "namespace"], ["punctuation", ";"],
 	["keyword", "new"], ["punctuation", ";"],
+	["keyword", "not"],
 	["keyword", "notnull"],
 	["keyword", "null"],
 	["keyword", "object"],
 	["keyword", "on"],
 	["keyword", "operator"],
+	["keyword", "or"],
 	["keyword", "orderby"],
 	["keyword", "out"],
 	["keyword", "override"],
