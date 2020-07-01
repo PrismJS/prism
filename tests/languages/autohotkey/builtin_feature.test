@@ -22,6 +22,7 @@ exp
 fileexist
 Fileopen
 floor
+format
 il_add
 il_create
 il_destroy
