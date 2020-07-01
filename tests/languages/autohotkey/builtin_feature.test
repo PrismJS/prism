@@ -109,6 +109,7 @@ __Set
 	["builtin", "fileexist"],
 	["builtin", "Fileopen"],
 	["builtin", "floor"],
+	["builtin", "format"],
 	["builtin", "il_add"],
 	["builtin", "il_create"],
 	["builtin", "il_destroy"],
