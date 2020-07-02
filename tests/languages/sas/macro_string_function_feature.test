@@ -1,0 +1,88 @@
+%let a=%bquote(' ");
+%let b=%nrbquote(' ");
+%let c=%nrquote(%' %");
+%let d=%nrstr(%' %");
+%let e=%quote(%' %");
+%let f=%str(%' %");
+
+----------------------------------------------------
+
+[
+	["macro-keyword", "%let"],
+	" a",
+	["operator", "="],
+	["macro-string-functions",
+		[
+			["function", "%bquote"],
+			["punctuation", "("],
+			["string", "' \""],
+			["punctuation", ")"]
+		]
+	],
+	["punctuation", ";"],
+	["macro-keyword", "%let"],
+	" b",
+	["operator", "="],
+	["macro-string-functions",
+		[
+			["function", "%nrbquote"],
+			["punctuation", "("],
+			["string", "' \""],
+			["punctuation", ")"]
+		]
+	],
+	["punctuation", ";"],
+	["macro-keyword", "%let"],
+	" c",
+	["operator", "="],
+	["macro-string-functions",
+		[
+			["function", "%nrquote"],
+			["punctuation", "("],
+			["string", "%' %\""],
+			["punctuation", ")"]
+		]
+	],
+	["punctuation", ";"],
+	["macro-keyword", "%let"],
+	" d",
+	["operator", "="],
+	["macro-string-functions",
+		[
+			["function", "%nrstr"],
+			["punctuation", "("],
+			["string", "%' %\""],
+			["punctuation", ")"]
+		]
+	],
+	["punctuation", ";"],
+	["macro-keyword", "%let"],
+	" e",
+	["operator", "="],
+	["macro-string-functions",
+		[
+			["function", "%quote"],
+			["punctuation", "("],
+			["string", "%' %\""],
+			["punctuation", ")"]
+		]
+	],
+	["punctuation", ";"],
+	["macro-keyword", "%let"],
+	" f",
+	["operator", "="],
+	["macro-string-functions",
+		[
+			["function", "%str"],
+			["punctuation", "("],
+			["string", "%' %\""],
+			["punctuation", ")"]
+		]
+	],
+	["punctuation", ";"
+	]
+]
+
+----------------------------------------------------
+
+Checks for all macro string functions.
