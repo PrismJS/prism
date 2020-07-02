@@ -246,7 +246,7 @@
 					alias: 'keyword'
 				},
 				string: {
-					pattern: /(\()(?:[\s\S]*?)(?=(?!%)\))/,
+					pattern: /(\()[^)]+/,
 					lookbehind: true,
 					alias: 'string'
 				},
