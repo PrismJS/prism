@@ -241,16 +241,15 @@
 			pattern: /((?:^|\s|=))%(?:NRBQUOTE|NRQUOTE|NRSTR|BQUOTE|QUOTE|STR)\(.*?(?:[^%]\))/i,
 			lookbehind: true,
 			inside: {
-				function: {
+				'function': {
 					pattern: /%(?:NRBQUOTE|NRQUOTE|NRSTR|BQUOTE|QUOTE|STR)/i,
 					alias: 'keyword'
 				},
-				string: {
+				'string': {
 					pattern: /(\()[^)]+/,
-					lookbehind: true,
-					alias: 'string'
+					lookbehind: true
 				},
-				punctuation: punctuation
+				'punctuation': punctuation
 			}
 		},
 		/*Special keywords within macros*/
