@@ -271,7 +271,7 @@ Brief description.</code></pre>
 		</dd>
 		<dt><code>optional</code></dt>
 		<dd>
-			Prims will ensure that an optional dependee is loaded before the depender if the dependee is loaded. Unlike <code>require</code> dependencies which also guarantee that the dependees are loaded, <code>optional</code> dependencies only guarantee the order of loaded components. <br>
+			Prism will ensure that an optional dependee is loaded before the depender if the dependee is loaded. Unlike <code>require</code> dependencies which also guarantee that the dependees are loaded, <code>optional</code> dependencies only guarantee the order of loaded components. <br>
 			You are <strong>not</strong> allowed to modify the dependees. If you need to modify the optional dependee, declare it as <code>modify</code> instead.
 
 			<p>This kind of dependency is useful if you have embedded languages but you want to give the users a choice as to whether they want to include the embedded language. By using <code>optional</code> dependencies, users can better control the bundle size of Prism by only including the languages they need.<br>
