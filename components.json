@@ -257,6 +257,10 @@
 			"modify": "css",
 			"owner": "milesj"
 		},
+		"cypher": {
+			"title": "Cypher",
+			"owner": "RunDevelopment"
+		},
 		"d": {
 			"title": "D",
 			"require": "clike",
