@@ -1,12 +1,12 @@
 (p:Student)
 (p:Student { name: "John" })
-(:Student)
-(:Student { name: "John"})
+(:`Student`)
+(:`Student` { name: "John"})
 
 (p:Student:Teacher)
 (p:Student { name: "John" }:Teacher)
-(:Student:Teacher)
-(:Student { name: "John"}:Teacher { classes: "..." })
+(:`Student`:`Teacher`)
+(:`Student` { name: "John"}:`Teacher` { classes: "..." })
 
 // no class names but still interesting cases
 
@@ -34,11 +34,11 @@
 	["punctuation", ")"],
 	["punctuation", "("],
 	["operator", ":"],
-	["class-name", "Student"],
+	["class-name", "`Student`"],
 	["punctuation", ")"],
 	["punctuation", "("],
 	["operator", ":"],
-	["class-name", "Student"],
+	["class-name", "`Student`"],
 	["punctuation", "{"],
 	" name",
 	["operator", ":"],
@@ -67,20 +67,20 @@
 	["punctuation", ")"],
 	["punctuation", "("],
 	["operator", ":"],
-	["class-name", "Student"],
+	["class-name", "`Student`"],
 	["operator", ":"],
-	["class-name", "Teacher"],
+	["class-name", "`Teacher`"],
 	["punctuation", ")"],
 	["punctuation", "("],
 	["operator", ":"],
-	["class-name", "Student"],
+	["class-name", "`Student`"],
 	["punctuation", "{"],
 	" name",
 	["operator", ":"],
 	["string", "\"John\""],
 	["punctuation", "}"],
 	["operator", ":"],
-	["class-name", "Teacher"],
+	["class-name", "`Teacher`"],
 	["punctuation", "{"],
 	" classes",
 	["operator", ":"],
