@@ -36,13 +36,13 @@ function loadLanguages(languages) {
 			return;
 		}
 
-		const pathToLanguage = './prism-' + lang;
+		const pathToLanguage = '/prism-' + lang;
 
 		// remove from require cache and from Prism
 		delete require.cache[require.resolve(pathToLanguage)];
 		delete Prism.languages[lang];
 
-		require(pathToLanguage);
+		require("prismjs/components" + pathToLanguage);
 
 		loadedLanguages.add(lang);
 	});
