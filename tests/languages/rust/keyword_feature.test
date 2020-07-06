@@ -7,11 +7,11 @@ box
 break
 const
 continue
-crate
+crate;
 do
 dyn
 else
-enum
+enum;
 extern
 final
 fn;
@@ -23,7 +23,7 @@ let
 loop
 macro
 match
-mod
+mod;
 move
 mut
 override
@@ -34,13 +34,13 @@ return
 self
 Self
 static
-struct
+struct;
 super
 trait
 try
 type
 typeof
-union
+union;
 unsafe
 unsized
 use
@@ -61,11 +61,11 @@ yield
 	["keyword", "break"],
 	["keyword", "const"],
 	["keyword", "continue"],
-	["keyword", "crate"],
+	["keyword", "crate"], ["punctuation", ";"],
 	["keyword", "do"],
 	["keyword", "dyn"],
 	["keyword", "else"],
-	["keyword", "enum"],
+	["keyword", "enum"], ["punctuation", ";"],
 	["keyword", "extern"],
 	["keyword", "final"],
 	["keyword", "fn"], ["punctuation", ";"],
@@ -77,7 +77,7 @@ yield
 	["keyword", "loop"],
 	["keyword", "macro"],
 	["keyword", "match"],
-	["keyword", "mod"],
+	["keyword", "mod"], ["punctuation", ";"],
 	["keyword", "move"],
 	["keyword", "mut"],
 	["keyword", "override"],
@@ -88,13 +88,13 @@ yield
 	["keyword", "self"],
 	["keyword", "Self"],
 	["keyword", "static"],
-	["keyword", "struct"],
+	["keyword", "struct"], ["punctuation", ";"],
 	["keyword", "super"],
 	["keyword", "trait"],
 	["keyword", "try"],
 	["keyword", "type"],
 	["keyword", "typeof"],
-	["keyword", "union"],
+	["keyword", "union"], ["punctuation", ";"],
 	["keyword", "unsafe"],
 	["keyword", "unsized"],
 	["keyword", "use"],
