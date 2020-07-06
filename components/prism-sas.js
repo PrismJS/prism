@@ -9,7 +9,7 @@
 	};
 
 	var macroVariable = {
-		pattern: /&[a-z_][a-z_1-9]*/i
+		pattern: /&[a-z_][a-z_0-9]*/i
 	};
 
 	var macroKeyword = {
@@ -258,7 +258,7 @@
 				'macro-keyword': macroKeyword,
 				'macro-variable': macroVariable,
 				'escaped-char': {
-					pattern: /%(?:'|"|\(|\)|<|>|=|¬|\^|~|;|,|#)/i,
+					pattern: /%['"()<>=¬^~;,#]/i,
 				},
 				'punctuation': punctuation
 			}
