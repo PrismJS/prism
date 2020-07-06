@@ -8,6 +8,16 @@
 		alias: 'number'
 	};
 
+	var macroVariable = {
+		pattern: /&[a-z_][a-z_0-9]*/i
+	};
+
+	var macroKeyword = {
+		pattern: /((?:^|\s|=|\())%(?:ABORT|BY|CMS|COPY|DISPLAY|DO|ELSE|END|EVAL|GLOBAL|GO|GOTO|IF|INC|INCLUDE|INDEX|INPUT|KTRIM|LENGTH|LET|LIST|LOCAL|PUT|QKTRIM|QSCAN|QSUBSTR|QSYSFUNC|QUPCASE|RETURN|RUN|SCAN|SUBSTR|SUPERQ|SYMDEL|SYMGLOBL|SYMLOCAL|SYMEXIST|SYSCALL|SYSEVALF|SYSEXEC|SYSFUNC|SYSGET|SYSRPUT|THEN|TO|TSO|UNQUOTE|UNTIL|UPCASE|WHILE|WINDOW)\b/i,
+		lookbehind: true,
+		alias: 'keyword'
+	};
+
 	var step = {
 		pattern: /(^|\s+)(?:proc\s+\w+|quit|run|data(?!\=))\b/i,
 		alias: 'keyword',
@@ -41,10 +51,7 @@
 			lookbehind: true
 		},
 		'operator': /=/,
-		'macro-variable': {
-			pattern: /&[^\.]*\./i,
-			alias: 'string'
-		},
+		'macro-variable': macroVariable,
 		'arg': {
 			pattern: /[A-Z]+/i,
 			alias: 'keyword'
@@ -237,6 +244,9 @@
 			lookbehind: true,
 			inside: args
 		},
+		/*Special keywords within macros*/
+		'macro-keyword': macroKeyword,
+		'macro-variable': macroVariable,
 		'macro-string-functions': {
 			pattern: /((?:^|\s|=))%(?:NRBQUOTE|NRQUOTE|NRSTR|BQUOTE|QUOTE|STR)\(.*?(?:[^%]\))/i,
 			lookbehind: true,
@@ -245,18 +255,13 @@
 					pattern: /%(?:NRBQUOTE|NRQUOTE|NRSTR|BQUOTE|QUOTE|STR)/i,
 					alias: 'keyword'
 				},
-				'string': {
-					pattern: /(\()[^)]+/,
-					lookbehind: true
+				'macro-keyword': macroKeyword,
+				'macro-variable': macroVariable,
+				'escaped-char': {
+					pattern: /%['"()<>=¬^~;,#]/i,
 				},
 				'punctuation': punctuation
 			}
-		},
-		/*Special keywords within macros*/
-		'macro-keyword': {
-			pattern: /((?:^|\s)=?)%(?:ABORT|BQUOTE|BY|CMS|COPY|DISPLAY|DO|ELSE|END|EVAL|GLOBAL|GO|GOTO|IF|INC|INCLUDE|INDEX|INPUT|KTRIM|LENGTH|LET|LIST|LOCAL|NRBQUOTE|NRQUOTE|NRSTR|PUT|QKTRIM|QSCAN|QSUBSTR|QSYSFUNC|QUOTE|QUPCASE|RETURN|RUN|SCAN|STR|SUBSTR|SUPERQ|SYMDEL|SYMGLOBL|SYMLOCAL|SYMEXIST|SYSCALL|SYSEVALF|SYSEXEC|SYSFUNC|SYSGET|SYSRPUT|THEN|TO|TSO|UNQUOTE|UNTIL|UPCASE|WHILE|WINDOW)\b/i,
-			lookbehind: true,
-			alias: 'keyword'
 		},
 		'macro-declaration': {
 			pattern: /^%macro[^;]+(?=;)/im,
