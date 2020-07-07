@@ -527,7 +527,7 @@
 		},
 		"jsdoc": {
 			"title": "JSDoc",
-			"require": ["javascript", "javadoclike"],
+			"require": ["javascript", "javadoclike", "typescript"],
 			"modify": "javascript",
 			"optional": [
 				"actionscript",
