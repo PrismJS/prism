@@ -11,6 +11,8 @@
 
 let a = /regex/m // comment
 let b = condition ? /regex/ : /another one/
+return /regex/;
+yield /regex/;
 
 ----------------------------------------------------
 
