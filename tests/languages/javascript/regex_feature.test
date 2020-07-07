@@ -40,7 +40,13 @@ yield /regex/;
 	["operator", "?"],
 	["regex", "/regex/"],
 	["operator", ":"],
-	["regex", "/another one/"]
+	["regex", "/another one/"],
+	["keyword", "return"],
+	["regex", "/regex/"],
+	["punctuation", ";"],
+	["keyword", "yield"],
+	["regex", "/regex/"],
+	["punctuation", ";"]
 ]
 
 ----------------------------------------------------
