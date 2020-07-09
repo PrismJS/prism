@@ -188,7 +188,8 @@
 		"xojo": "Xojo (REALbasic)",
 		"xquery": "XQuery",
 		"yaml": "YAML",
-		"yml": "YAML"
+		"yml": "YAML",
+		"yang": "YANG"
 	}/*]*/;
 
 	Prism.plugins.toolbar.registerButton('show-language', function (env) {
