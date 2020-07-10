@@ -94,7 +94,9 @@ async function languagePlugins() {
 	const data = await componentsPromise;
 	/** @type {Record<string, string | null>} */
 	const languagesMap = {};
+	/** @type {Record<string, string | string[]>} */
 	const dependenciesMap = {};
+	/** @type {Record<string, string>} */
 	const aliasMap = {};
 
 	/**
@@ -168,9 +170,54 @@ async function languagePlugins() {
 		}
 	}
 
+	/**
+	 * Inverts the given object making all values keys and all keys values.
+	 *
+	 * This essential changes the direction of all edges in the directed graph described by the given record.
+	 *
+	 * @param {Object<string, string | string[]>} rec
+	 * @returns {Object<string, string | string[]>}
+	 */
+	function invertRecord(rec) {
+		/** @type {Object<string, string[]>} */
+		const inv = {};
+		/**
+		 * @param {string} recKey
+		 * @param {string} recValue
+		 */
+		function add(recKey, recValue) {
+			(inv[recValue] = inv[recValue] || []).push(recKey);
+		}
+		for (var key in rec) {
+			var value = rec[key];
+			if (Array.isArray(value)) {
+				value.forEach(v => add(key, v));
+			} else {
+				add(key, value);
+			}
+		}
+
+		/**
+		 * This will all single-element arrays.
+		 *
+		 * @param {Object<string, string | string[]>} rec
+		 * @returns {void}
+		 */
+		function inlineElement(rec) {
+			for (const key in rec) {
+				const element = rec[key];
+				if (Array.isArray(element) && element.length === 1) {
+					rec[key] = element[0];
+				}
+			}
+		}
+		inlineElement(inv);
+		return inv;
+	}
+
 	const jsonLanguagesMap = formattedStringify(nonNullLanguageMap);
-	const jsonDependenciesMap = formattedStringify(dependenciesMap);
-	const jsonAliasMap = formattedStringify(aliasMap);
+	const jsonDependenciesMap = `invertRecord(${formattedStringify(invertRecord(dependenciesMap))})`;
+	const jsonAliasMap = `invertRecord(${formattedStringify(invertRecord(aliasMap))})`;
 
 	const tasks = [
 		{

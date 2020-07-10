@@ -4,207 +4,264 @@
 	}
 
 	/**
-	 * The dependencies map is built automatically with gulp.
+	 * Inverts the given object making all values keys and all keys values.
 	 *
-	 * @type {Object<string, string | string[]>}
+	 * This essential changes the direction of all edges in the directed graph described by the given record.
+	 *
+	 * @param {Object<string, string | string[]>} rec
+	 * @returns {Object<string, string[]>}
 	 */
-	var lang_dependencies = /*dependencies_placeholder[*/{
-		"javascript": "clike",
-		"actionscript": "javascript",
-		"arduino": "cpp",
-		"aspnet": [
-			"markup",
-			"csharp"
-		],
-		"bison": "c",
-		"c": "clike",
-		"csharp": "clike",
-		"cpp": "c",
-		"coffeescript": "javascript",
-		"crystal": "ruby",
-		"css-extras": "css",
-		"d": "clike",
-		"dart": "clike",
-		"django": "markup-templating",
-		"ejs": [
+	function invertRecord(rec) {
+		/** @type {Object<string, string[]>} */
+		var inv = {};
+		/**
+		 * @param {string} recKey
+		 * @param {string} recValue
+		 */
+		function add(recKey, recValue) {
+			(inv[recValue] = inv[recValue] || []).push(recKey);
+		}
+		for (var key in rec) {
+			var value = rec[key];
+			if (Array.isArray(value)) {
+				value.forEach(function (v) { add(key, v); });
+			} else {
+				add(key, value);
+			}
+		}
+		return inv;
+	}
+
+	/**
+	 * The dependencies map is built automatically with gulp.
+	 */
+	var lang_dependencies = /*dependencies_placeholder[*/invertRecord({
+		"clike": [
 			"javascript",
-			"markup-templating"
-		],
-		"etlua": [
-			"lua",
-			"markup-templating"
-		],
-		"erb": [
-			"ruby",
-			"markup-templating"
-		],
-		"fsharp": "clike",
-		"firestore-security-rules": "clike",
-		"flow": "javascript",
-		"ftl": "markup-templating",
-		"gml": "clike",
-		"glsl": "c",
-		"go": "clike",
-		"groovy": "clike",
-		"haml": "ruby",
-		"handlebars": "markup-templating",
-		"haxe": "clike",
-		"hlsl": "c",
-		"java": "clike",
-		"javadoc": [
-			"markup",
+			"c",
+			"csharp",
+			"d",
+			"dart",
+			"fsharp",
+			"firestore-security-rules",
+			"gml",
+			"go",
+			"groovy",
+			"haxe",
 			"java",
-			"javadoclike"
-		],
-		"jolie": "clike",
-		"jsdoc": [
-			"javascript",
-			"javadoclike"
-		],
-		"js-extras": "javascript",
-		"json5": "json",
-		"jsonp": "json",
-		"js-templates": "javascript",
-		"kotlin": "clike",
-		"latte": [
-			"clike",
-			"markup-templating",
-			"php"
-		],
-		"less": "css",
-		"lilypond": "scheme",
-		"markdown": "markup",
-		"markup-templating": "markup",
-		"n4js": "javascript",
-		"nginx": "clike",
-		"objectivec": "c",
-		"opencl": "c",
-		"parser": "markup",
-		"php": [
-			"clike",
-			"markup-templating"
-		],
-		"phpdoc": [
+			"jolie",
+			"kotlin",
+			"latte",
+			"nginx",
 			"php",
-			"javadoclike"
+			"processing",
+			"protobuf",
+			"purebasic",
+			"qore",
+			"reason",
+			"ruby",
+			"solidity",
+			"sqf",
+			"swift",
+			"tt2",
+			"vala"
 		],
-		"php-extras": "php",
-		"plsql": "sql",
-		"processing": "clike",
-		"protobuf": "clike",
-		"pug": [
-			"markup",
-			"javascript"
-		],
-		"purebasic": "clike",
-		"qml": "javascript",
-		"qore": "clike",
-		"racket": "scheme",
-		"jsx": [
-			"markup",
-			"javascript"
-		],
-		"tsx": [
+		"javascript": [
+			"actionscript",
+			"coffeescript",
+			"ejs",
+			"flow",
+			"jsdoc",
+			"js-extras",
+			"js-templates",
+			"n4js",
+			"pug",
+			"qml",
 			"jsx",
 			"typescript"
 		],
-		"reason": "clike",
-		"ruby": "clike",
-		"sass": "css",
-		"scss": "css",
-		"scala": "java",
-		"shell-session": "bash",
-		"smarty": "markup-templating",
-		"solidity": "clike",
-		"soy": "markup-templating",
-		"sparql": "turtle",
-		"sqf": "clike",
-		"swift": "clike",
-		"t4-cs": [
-			"t4-templating",
-			"csharp"
+		"cpp": "arduino",
+		"markup": [
+			"aspnet",
+			"javadoc",
+			"markdown",
+			"markup-templating",
+			"parser",
+			"pug",
+			"jsx",
+			"textile",
+			"twig",
+			"velocity",
+			"wiki",
+			"xeora",
+			"xml-doc",
+			"xquery"
 		],
-		"t4-vb": [
-			"t4-templating",
-			"vbnet"
+		"csharp": [
+			"aspnet",
+			"t4-cs"
 		],
-		"tap": "yaml",
-		"tt2": [
-			"clike",
-			"markup-templating"
+		"c": [
+			"bison",
+			"cpp",
+			"glsl",
+			"hlsl",
+			"objectivec",
+			"opencl"
 		],
-		"textile": "markup",
-		"twig": "markup",
-		"typescript": "javascript",
-		"vala": "clike",
-		"vbnet": "basic",
-		"velocity": "markup",
-		"wiki": "markup",
-		"xeora": "markup",
-		"xml-doc": "markup",
-		"xquery": "markup"
-	}/*]*/;
+		"ruby": [
+			"crystal",
+			"erb",
+			"haml"
+		],
+		"css": [
+			"css-extras",
+			"less",
+			"sass",
+			"scss"
+		],
+		"markup-templating": [
+			"django",
+			"ejs",
+			"etlua",
+			"erb",
+			"ftl",
+			"handlebars",
+			"latte",
+			"php",
+			"smarty",
+			"soy",
+			"tt2"
+		],
+		"lua": "etlua",
+		"java": [
+			"javadoc",
+			"scala"
+		],
+		"javadoclike": [
+			"javadoc",
+			"jsdoc",
+			"phpdoc"
+		],
+		"json": [
+			"json5",
+			"jsonp"
+		],
+		"php": [
+			"latte",
+			"phpdoc",
+			"php-extras"
+		],
+		"scheme": [
+			"lilypond",
+			"racket"
+		],
+		"sql": "plsql",
+		"jsx": "tsx",
+		"typescript": "tsx",
+		"bash": "shell-session",
+		"turtle": "sparql",
+		"t4-templating": [
+			"t4-cs",
+			"t4-vb"
+		],
+		"vbnet": "t4-vb",
+		"yaml": "tap",
+		"basic": "vbnet"
+	})/*]*/;
 
-	var lang_aliases = /*aliases_placeholder[*/{
-		"html": "markup",
-		"xml": "markup",
-		"svg": "markup",
-		"mathml": "markup",
-		"ssml": "markup",
-		"atom": "markup",
-		"rss": "markup",
-		"js": "javascript",
-		"g4": "antlr4",
-		"adoc": "asciidoc",
-		"shell": "bash",
-		"shortcode": "bbcode",
-		"rbnf": "bnf",
-		"cs": "csharp",
-		"dotnet": "csharp",
-		"coffee": "coffeescript",
-		"conc": "concurnas",
-		"jinja2": "django",
-		"dns-zone": "dns-zone-file",
-		"dockerfile": "docker",
-		"eta": "ejs",
-		"xlsx": "excel-formula",
-		"xls": "excel-formula",
-		"gamemakerlanguage": "gml",
-		"hs": "haskell",
-		"webmanifest": "json",
-		"tex": "latex",
-		"context": "latex",
-		"ly": "lilypond",
-		"emacs": "lisp",
-		"elisp": "lisp",
-		"emacs-lisp": "lisp",
-		"md": "markdown",
-		"moon": "moonscript",
-		"n4jsd": "n4js",
-		"objc": "objectivec",
-		"objectpascal": "pascal",
-		"px": "pcaxis",
-		"pcode": "peoplecode",
-		"pq": "powerquery",
-		"mscript": "powerquery",
-		"pbfasm": "purebasic",
-		"py": "python",
-		"rkt": "racket",
-		"rpy": "renpy",
-		"robot": "robotframework",
-		"rb": "ruby",
-		"sol": "solidity",
-		"sln": "solution-file",
-		"rq": "sparql",
-		"t4": "t4-cs",
-		"trig": "turtle",
-		"ts": "typescript",
-		"uscript": "unrealscript",
-		"uc": "unrealscript",
-		"vb": "visual-basic",
-		"xeoracube": "xeora",
-		"yml": "yaml"
-	}/*]*/;
+	/**
+	 * The map of all language aliases is built automatically with gulp.
+	 */
+	var lang_aliases = /*aliases_placeholder[*/invertRecord({
+		"markup": [
+			"html",
+			"xml",
+			"svg",
+			"mathml",
+			"ssml",
+			"atom",
+			"rss"
+		],
+		"javascript": "js",
+		"antlr4": "g4",
+		"asciidoc": "adoc",
+		"bash": "shell",
+		"bbcode": "shortcode",
+		"bnf": "rbnf",
+		"csharp": [
+			"cs",
+			"dotnet"
+		],
+		"coffeescript": "coffee",
+		"concurnas": "conc",
+		"django": "jinja2",
+		"dns-zone-file": "dns-zone",
+		"docker": "dockerfile",
+		"ejs": "eta",
+		"excel-formula": [
+			"xlsx",
+			"xls"
+		],
+		"gml": "gamemakerlanguage",
+		"haskell": "hs",
+		"json": "webmanifest",
+		"latex": [
+			"tex",
+			"context"
+		],
+		"lilypond": "ly",
+		"lisp": [
+			"emacs",
+			"elisp",
+			"emacs-lisp"
+		],
+		"markdown": "md",
+		"moonscript": "moon",
+		"n4js": "n4jsd",
+		"objectivec": "objc",
+		"pascal": "objectpascal",
+		"pcaxis": "px",
+		"peoplecode": "pcode",
+		"powerquery": [
+			"pq",
+			"mscript"
+		],
+		"purebasic": "pbfasm",
+		"python": "py",
+		"racket": "rkt",
+		"renpy": "rpy",
+		"robotframework": "robot",
+		"ruby": "rb",
+		"solidity": "sol",
+		"solution-file": "sln",
+		"sparql": "rq",
+		"t4-cs": "t4",
+		"turtle": "trig",
+		"typescript": "ts",
+		"unrealscript": [
+			"uscript",
+			"uc"
+		],
+		"visual-basic": "vb",
+		"xeora": "xeoracube",
+		"yaml": "yml"
+	})/*]*/;
+
+	/**
+	 * If the given language is an alias of another language, this will return aliases language. Otherwise, the given
+	 * language itself will be returned.
+	 *
+	 * @param {string} lang
+	 * @returns {string}
+	 */
+	function resolveAlias(lang) {
+		if (lang_aliases[lang]) {
+			return lang_aliases[lang][0];
+		} else {
+			return lang;
+		}
+	}
 
 	/**
 	 * @typedef LangDataItem
@@ -297,7 +354,7 @@
 			return false;
 		}
 
-		lang = lang_aliases[lang] || lang; // resolve alias
+		lang = resolveAlias(lang);
 
 		if (lang in Prism.languages) {
 			// the given language is already loaded
@@ -374,7 +431,7 @@
 		var force = lang.indexOf('!') >= 0;
 
 		lang = lang.replace('!', '');
-		lang = lang_aliases[lang] || lang;
+		lang = resolveAlias(lang);
 
 		function load() {
 			var data = lang_data[lang];
