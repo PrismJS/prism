@@ -202,6 +202,7 @@
 		"uscript": "unrealscript",
 		"uc": "unrealscript",
 		"vb": "visual-basic",
+		"vba": "visual-basic",
 		"xeoracube": "xeora",
 		"yml": "yaml"
 	}/*]*/;
