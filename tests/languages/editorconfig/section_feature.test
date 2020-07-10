@@ -8,24 +8,24 @@
 
 [
 	["section", [
-		["punctuation", "["], ["punctuation", "*"], ["punctuation", "]"]
+		["punctuation", "["], ["operator", "*"], ["punctuation", "]"]
 	]],
 	["section", [
-		["punctuation", "["], ["punctuation", "**"], ".kt", ["punctuation", "]"]
+		["punctuation", "["], ["operator", "**"], ".kt", ["punctuation", "]"]
 	]],
 	["section", [
 		["punctuation", "["],  ["punctuation", "{"],
-		["punctuation", "**"], ".kt", ["punctuation", ","], ["punctuation", "**"], ".kts",
+		["operator", "**"], ".kt", ["punctuation", ","], ["operator", "**"], ".kts",
 		["punctuation", "}"], ["punctuation", "]"]
 	]],
 	["section", [
-		["punctuation", "["], ["punctuation", "?"],
-		["punctuation", "["], ["punctuation", "!"], "seq", ["punctuation", "]"],
-		".log.", ["punctuation", "{"], "0", ["punctuation", ".."], "9", ["punctuation", "}"],
+		["punctuation", "["], ["operator", "?"],
+		["punctuation", "["], ["operator", "!"], "seq", ["punctuation", "]"],
+		".log.", ["punctuation", "{"], "0", ["operator", ".."], "9", ["punctuation", "}"],
 		["punctuation", "]"]
 	]],
 	["section", [
-    	["punctuation", "["], ["regex", "\\\\*"], ["punctuation", "*"], ".log", ["punctuation", "]"]
+    	["punctuation", "["], ["regex", "\\\\*"], ["operator", "*"], ".log", ["punctuation", "]"]
     ]]
 ]
 
