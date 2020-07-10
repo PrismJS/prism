@@ -57,6 +57,7 @@
 		"dns-zone": "DNS zone file",
 		"dockerfile": "Docker",
 		"ebnf": "EBNF",
+		"editorconfig": "EditorConfig",
 		"ejs": "EJS",
 		"etlua": "Embedded Lua templating",
 		"erb": "ERB",
