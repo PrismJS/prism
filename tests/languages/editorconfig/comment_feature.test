@@ -1,0 +1,15 @@
+;
+; comment
+# comment can also contain ; and #
+
+----------------------------------------------------
+
+[
+	["comment", ";"],
+	["comment", "; comment"],
+	["comment", "# comment can also contain ; and #"]
+]
+
+----------------------------------------------------
+
+Checks for comments.
