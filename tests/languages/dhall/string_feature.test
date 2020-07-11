@@ -1,0 +1,61 @@
+""
+"foo"
+"\""
+
+"foo/${bar}"
+
+''foo''
+''bar'''baz''
+
+''
+foo/${bar}
+''
+
+----------------------------------------------------
+
+[
+	["string", [
+		"\"\""
+	]],
+	["string", [
+		"\"foo\""
+	]],
+	["string", [
+		"\"\\\"\""
+	]],
+
+	["string", [
+		"\"foo/",
+		["interpolation", [
+			["punctuation", "${"],
+			["expression", [
+				"bar"
+			]],
+			["punctuation", "}"]
+		]],
+		"\""
+	]],
+
+	["string", [
+		"''foo''"
+	]],
+	["string", [
+		"''bar'''baz''"
+	]],
+
+	["string", [
+		"''\nfoo/",
+		["interpolation", [
+			["punctuation", "${"],
+			["expression", [
+				"bar"
+			]],
+			["punctuation", "}"]
+		]],
+		"\n''"
+	]]
+]
+
+----------------------------------------------------
+
+Checks for strings.

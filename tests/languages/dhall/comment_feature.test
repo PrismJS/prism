@@ -1,0 +1,20 @@
+-- comment
+
+{-
+	comment
+	{-
+		nested comment
+	-}
+-}
+
+----------------------------------------------------
+
+[
+	["comment", "-- comment"],
+
+	["comment", "{-\n\tcomment\n\t{-\n\t\tnested comment\n\t-}\n-}"]
+]
+
+----------------------------------------------------
+
+Checks for comments.
