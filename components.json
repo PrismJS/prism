@@ -295,6 +295,10 @@
 			"title": "EBNF",
 			"owner": "RunDevelopment"
 		},
+		"editorconfig": {
+			"title": "EditorConfig",
+			"owner": "osipxd"
+		},
 		"eiffel": {
 			"title": "Eiffel",
 			"owner": "Conaclos"

@@ -450,7 +450,7 @@
 
 		if (!deps.every(isLoaded)) {
 			// the language or some dependencies aren't loaded
-			loadLanguages(dependencies, function () {
+			loadLanguages(deps, function () {
 				Prism.highlightElement(element);
 			});
 		}
