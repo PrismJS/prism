@@ -94,6 +94,8 @@
 		"jsonp": "JSONP",
 		"jsstacktrace": "JS stack trace",
 		"js-templates": "JS Templates",
+		"kts": "Kotlin Script",
+		"kt": "Kotlin",
 		"latex": "LaTeX",
 		"tex": "TeX",
 		"context": "ConTeXt",

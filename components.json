@@ -597,6 +597,10 @@
 		},
 		"kotlin": {
 			"title": "Kotlin",
+			"alias": ["kt", "kts"],
+			"aliasTitles": {
+				"kts": "Kotlin Script"
+			},
 			"require": "clike",
 			"owner": "Golmote"
 		},
