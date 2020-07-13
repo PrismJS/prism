@@ -720,12 +720,11 @@ _self.Prism = _;
  * @param {string | TokenStream} content See {@link Token#content content}
  * @param {string|string[]} [alias] The alias(es) of the token.
  * @param {string} [matchedStr=""] A copy of the full string this token was created from.
- * @param {boolean} [greedy=false] Whether the pattern that created this token is greedy or not. Will be removed soon.
  * @class
  * @global
  * @public
  */
-function Token(type, content, alias, matchedStr, greedy) {
+function Token(type, content, alias, matchedStr) {
 	/**
 	 * The type of the token.
 	 *
@@ -753,8 +752,8 @@ function Token(type, content, alias, matchedStr, greedy) {
 	 * @public
 	 */
 	this.alias = alias;
-	this.length = (matchedStr || "").length|0;
-	this.greedy = !!greedy;
+	// Copy of the full string this token was created from
+	this.length = (matchedStr || '').length | 0;
 }
 
 /**
@@ -831,11 +830,15 @@ Token.stringify = function stringify(o, language) {
  * @param {any} grammar
  * @param {LinkedListNode<string | Token>} startNode
  * @param {number} startPos
- * @param {boolean} [oneshot=false]
- * @param {string} [target]
+ * @param {RematchOptions} [rematch]
+ * @returns {void}
  * @private
+ *
+ * @typedef RematchOptions
+ * @property {string} cause
+ * @property {number} reach
  */
-function matchGrammar(text, tokenList, grammar, startNode, startPos, oneshot, target) {
+function matchGrammar(text, tokenList, grammar, startNode, startPos, rematch) {
 	for (var token in grammar) {
 		if (!grammar.hasOwnProperty(token) || !grammar[token]) {
 			continue;
@@ -845,30 +848,35 @@ function matchGrammar(text, tokenList, grammar, startNode, startPos, oneshot, ta
 		patterns = Array.isArray(patterns) ? patterns : [patterns];
 
 		for (var j = 0; j < patterns.length; ++j) {
-			if (target && target == token + ',' + j) {
+			if (rematch && rematch.cause == token + ',' + j) {
 				return;
 			}
 
-			var pattern = patterns[j],
-				inside = pattern.inside,
-				lookbehind = !!pattern.lookbehind,
-				greedy = !!pattern.greedy,
+			var patternObj = patterns[j],
+				inside = patternObj.inside,
+				lookbehind = !!patternObj.lookbehind,
+				greedy = !!patternObj.greedy,
 				lookbehindLength = 0,
-				alias = pattern.alias;
+				alias = patternObj.alias;
 
-			if (greedy && !pattern.pattern.global) {
+			if (greedy && !patternObj.pattern.global) {
 				// Without the global flag, lastIndex won't work
-				var flags = pattern.pattern.toString().match(/[imsuy]*$/)[0];
-				pattern.pattern = RegExp(pattern.pattern.source, flags + 'g');
+				var flags = patternObj.pattern.toString().match(/[imsuy]*$/)[0];
+				patternObj.pattern = RegExp(patternObj.pattern.source, flags + 'g');
 			}
 
-			pattern = pattern.pattern || pattern;
+			/** @type {RegExp} */
+			var pattern = patternObj.pattern || patternObj;
 
 			for ( // iterate the token list and keep track of the current token/string position
 				var currentNode = startNode.next, pos = startPos;
 				currentNode !== tokenList.tail;
 				pos += currentNode.value.length, currentNode = currentNode.next
 			) {
+
+				if (rematch && pos >= rematch.reach) {
+					break;
+				}
 
 				var str = currentNode.value;
 
@@ -912,7 +920,7 @@ function matchGrammar(text, tokenList, grammar, startNode, startPos, oneshot, ta
 					// find the last node which is affected by this match
 					for (
 						var k = currentNode;
-						k !== tokenList.tail && (p < to || (typeof k.value === 'string' && !k.prev.value.greedy));
+						k !== tokenList.tail && (p < to || typeof k.value === 'string');
 						k = k.next
 					) {
 						removeCount++;
@@ -930,10 +938,6 @@ function matchGrammar(text, tokenList, grammar, startNode, startPos, oneshot, ta
 				}
 
 				if (!match) {
-					if (oneshot) {
-						break;
-					}
-
 					continue;
 				}
 
@@ -942,10 +946,15 @@ function matchGrammar(text, tokenList, grammar, startNode, startPos, oneshot, ta
 				}
 
 				var from = match.index + lookbehindLength,
-					match = match[0].slice(lookbehindLength),
-					to = from + match.length,
+					matchStr = match[0].slice(lookbehindLength),
+					to = from + matchStr.length,
 					before = str.slice(0, from),
 					after = str.slice(to);
+
+				var reach = pos + str.length;
+				if (rematch && reach > rematch.reach) {
+					rematch.reach = reach;
+				}
 
 				var removeFrom = currentNode.prev;
 
@@ -956,19 +965,21 @@ function matchGrammar(text, tokenList, grammar, startNode, startPos, oneshot, ta
 
 				removeRange(tokenList, removeFrom, removeCount);
 
-				var wrapped = new Token(token, inside ? _.tokenize(match, inside) : match, alias, match, greedy);
+				var wrapped = new Token(token, inside ? _.tokenize(matchStr, inside) : matchStr, alias, matchStr);
 				currentNode = addAfter(tokenList, removeFrom, wrapped);
 
 				if (after) {
 					addAfter(tokenList, currentNode, after);
 				}
 
-
-				if (removeCount > 1)
-					matchGrammar(text, tokenList, grammar, currentNode.prev, pos, true, token + ',' + j);
-
-				if (oneshot)
-					break;
+				if (removeCount > 1) {
+					// at least one Token object was removed, so we have to do some rematching
+					// this can only happen if the current pattern is greedy
+					matchGrammar(text, tokenList, grammar, currentNode.prev, pos, {
+						cause: token + ',' + j,
+						reach: reach
+					});
+				}
 			}
 		}
 	}
