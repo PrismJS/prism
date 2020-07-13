@@ -172,6 +172,8 @@
 		"gamemakerlanguage": "gml",
 		"hs": "haskell",
 		"webmanifest": "json",
+		"kt": "kotlin",
+		"kts": "kotlin",
 		"tex": "latex",
 		"context": "latex",
 		"ly": "lilypond",
