@@ -617,6 +617,7 @@ YEAR
 	["keyword", "RESTRICT"],
 	["keyword", "RETURN"],
 	["keyword", "RETURNS"],
+	["keyword", "RETURNING"],
 	["keyword", "REVOKE"],
 	["keyword", "RIGHT"],
 	["keyword", "ROLLBACK"],
