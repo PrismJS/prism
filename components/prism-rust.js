@@ -31,7 +31,7 @@
 			alias: 'string'
 		},
 		'attribute': {
-			pattern: /#!?\[[^[\]]*\]/,
+			pattern: /#!?\[(?:[^\[\]"]|"(?:\\[\s\S]|[^\\"])*")*\]/,
 			greedy: true,
 			alias: 'attr-name',
 			inside: {
@@ -66,7 +66,7 @@
 		'variable': /\$\w+/,
 
 		'function-definition': {
-			pattern: /(\bfn\s*)\w+/,
+			pattern: /(\bfn\s+)\w+/,
 			lookbehind: true,
 			alias: 'function'
 		},
