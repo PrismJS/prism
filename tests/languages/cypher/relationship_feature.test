@@ -1,0 +1,79 @@
+-[r:REL_TYPE]->
+
+-[:REL_TYPE]->
+
+<-[:LIKES]-
+
+-[{blocked: false}]->
+
+-[:KNOWS*1..2]-
+
+-[*]->
+
+-[*3..5]->
+
+----------------------------------------------------
+
+[
+	["operator", "-"],
+	["punctuation", "["],
+	"r",
+	["operator", ":"],
+	["relationship", "REL_TYPE"],
+	["punctuation", "]"],
+	["operator", "->"],
+
+	["operator", "-"],
+	["punctuation", "["],
+	["operator", ":"],
+	["relationship", "REL_TYPE"],
+	["punctuation", "]"],
+	["operator", "->"],
+
+	["operator", "<-"],
+	["punctuation", "["],
+	["operator", ":"],
+	["relationship", "LIKES"],
+	["punctuation", "]"],
+	["operator", "-"],
+
+	["operator", "-"],
+	["punctuation", "["],
+	["punctuation", "{"],
+	"blocked",
+	["operator", ":"],
+	["boolean", "false"],
+	["punctuation", "}"],
+	["punctuation", "]"],
+	["operator", "->"],
+
+	["operator", "-"],
+	["punctuation", "["],
+	["operator", ":"],
+	["relationship", "KNOWS"],
+	["operator", "*"],
+	["number", "1"],
+	["operator", ".."],
+	["number", "2"],
+	["punctuation", "]"],
+	["operator", "-"],
+
+	["operator", "-"],
+	["punctuation", "["],
+	["operator", "*"],
+	["punctuation", "]"],
+	["operator", "->"],
+
+	["operator", "-"],
+	["punctuation", "["],
+	["operator", "*"],
+	["number", "3"],
+	["operator", ".."],
+	["number", "5"],
+	["punctuation", "]"],
+	["operator", "->"]
+]
+
+----------------------------------------------------
+
+Checks for relationships.
