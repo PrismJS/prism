@@ -1,0 +1,34 @@
+[*]
+[**.kt]
+[{**.kt, **.kts}]
+[?[!seq].log.{0..9}]
+[\\**.log]
+
+----------------------------------------------------
+
+[
+	["section", [
+		["punctuation", "["], ["operator", "*"], ["punctuation", "]"]
+	]],
+	["section", [
+		["punctuation", "["], ["operator", "**"], ".kt", ["punctuation", "]"]
+	]],
+	["section", [
+		["punctuation", "["],  ["punctuation", "{"],
+		["operator", "**"], ".kt", ["punctuation", ","], ["operator", "**"], ".kts",
+		["punctuation", "}"], ["punctuation", "]"]
+	]],
+	["section", [
+		["punctuation", "["], ["operator", "?"],
+		["punctuation", "["], ["operator", "!"], "seq", ["punctuation", "]"],
+		".log.", ["punctuation", "{"], "0", ["operator", ".."], "9", ["punctuation", "}"],
+		["punctuation", "]"]
+	]],
+	["section", [
+    	["punctuation", "["], ["regex", "\\\\*"], ["operator", "*"], ".log", ["punctuation", "]"]
+    ]]
+]
+
+----------------------------------------------------
+
+Checks for section titles.

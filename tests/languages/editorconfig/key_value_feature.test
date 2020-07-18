@@ -1,0 +1,21 @@
+foo = Bar Baz
+foobar = 42
+
+----------------------------------------------------
+
+[
+	["property", "foo"],
+	["value", [
+		["punctuation", "="],
+		" Bar Baz"
+	]],
+	["property", "foobar"],
+	["value", [
+		["punctuation", "="],
+		" 42"
+	]]
+]
+
+----------------------------------------------------
+
+Checks for key/value pairs.
