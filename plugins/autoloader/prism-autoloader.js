@@ -59,7 +59,8 @@
 		"jolie": "clike",
 		"jsdoc": [
 			"javascript",
-			"javadoclike"
+			"javadoclike",
+			"typescript"
 		],
 		"js-extras": "javascript",
 		"json5": "json",
