@@ -31,7 +31,7 @@
 			alias: 'string'
 		},
 		'attribute': {
-			pattern: /#!?\[[^[\]]*\]/,
+			pattern: /#!?\[(?:[^\[\]"]|"(?:\\[\s\S]|[^\\"])*")*\]/,
 			greedy: true,
 			alias: 'attr-name',
 			inside: {
@@ -66,25 +66,54 @@
 		'variable': /\$\w+/,
 
 		'function-definition': {
-			pattern: /(\bfn\s*)\w+/,
+			pattern: /(\bfn\s+)\w+/,
 			lookbehind: true,
 			alias: 'function'
 		},
+		'type-definition': {
+			pattern: /(\b(?:enum|struct|union)\s+)\w+/,
+			lookbehind: true,
+			alias: 'class-name'
+		},
+		'module-declaration': [
+			{
+				pattern: /(\b(?:crate|mod)\s+)[a-z][a-z_\d]*/,
+				lookbehind: true,
+				alias: 'namespace'
+			},
+			{
+				pattern: /(\b(?:crate|self|super)\s*)::\s*[a-z][a-z_\d]*\b(?:\s*::(?:\s*[a-z][a-z_\d]*\s*::)*)?/,
+				lookbehind: true,
+				alias: 'namespace',
+				inside: {
+					'punctuation': /::/
+				}
+			}
+		],
 		'keyword': [
 			// https://github.com/rust-lang/reference/blob/master/src/keywords.md
 			/\b(?:abstract|as|async|await|become|box|break|const|continue|crate|do|dyn|else|enum|extern|final|fn|for|if|impl|in|let|loop|macro|match|mod|move|mut|override|priv|pub|ref|return|self|Self|static|struct|super|trait|try|type|typeof|union|unsafe|unsized|use|virtual|where|while|yield)\b/,
-			// primitives
+			// primitives and str
 			// https://doc.rust-lang.org/stable/rust-by-example/primitives.html
-			/\b(?:[ui](?:8|16|32|64|128|size)|f(?:32|64)|bool|char)\b/
+			/\b(?:[ui](?:8|16|32|64|128|size)|f(?:32|64)|bool|char|str)\b/
 		],
 
 		// functions can technically start with an upper-case letter, but this will introduce a lot of false positives
 		// and Rust's naming conventions recommend snake_case anyway.
 		// https://doc.rust-lang.org/1.0.0/style/style/naming/README.html
-		'function': /\b[a-z_]\w*(?=\s*(?:::\s*<(?:[^<>]|<(?:[^<>]|<[^<>]*>)*>)*>\s*)?\()/,
+		'function': /\b[a-z_]\w*(?=\s*(?:::\s*<|\())/,
 		'macro': {
 			pattern: /\w+!/,
 			alias: 'property'
+		},
+		'constant': /\b[A-Z_][A-Z_\d]+\b/,
+		'class-name': /\b[A-Z]\w*\b/,
+
+		'namespace': {
+			pattern: /(?:\b[a-z][a-z_\d]*\s*::\s*)*\b[a-z][a-z_\d]*\s*::(?!\s*<)/,
+			inside: {
+				'punctuation': /::/
+			}
 		},
 
 		// Hex, oct, bin, dec numbers with visual separators and type suffix
