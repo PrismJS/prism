@@ -299,6 +299,10 @@
 			"title": "EBNF",
 			"owner": "RunDevelopment"
 		},
+		"editorconfig": {
+			"title": "EditorConfig",
+			"owner": "osipxd"
+		},
 		"eiffel": {
 			"title": "Eiffel",
 			"owner": "Conaclos"
@@ -597,6 +601,10 @@
 		},
 		"kotlin": {
 			"title": "Kotlin",
+			"alias": ["kt", "kts"],
+			"aliasTitles": {
+				"kts": "Kotlin Script"
+			},
 			"require": "clike",
 			"owner": "Golmote"
 		},

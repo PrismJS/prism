@@ -55,8 +55,6 @@ describe('Greedy matching', function () {
 		});
 	});
 
-	// https://github.com/PrismJS/prism/issues/1492
-	/*
 	it('should correctly rematch tokens', function () {
 		testTokens({
 			grammar: {
@@ -75,8 +73,9 @@ describe('Greedy matching', function () {
 			code: `<'> '' ''\n<"> "" ""`,
 			expected: [
 				["c", "<'>"],
-				["a", "''"],
-				["a", "''"],
+				" '",
+				["a", "' '"],
+				"'\n",
 
 				["c", "<\">"],
 				["b", "\"\""],
@@ -84,5 +83,4 @@ describe('Greedy matching', function () {
 			]
 		});
 	});
-	*/
 });
