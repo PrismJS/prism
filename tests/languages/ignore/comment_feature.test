@@ -1,17 +1,13 @@
 # Simple comment
-## Section comment
-### Header comment
+## A comment too
 \# Not a comment
-\## Not a section
 
 ----------------------------------------------------
 
 [
 	["comment", "# Simple comment"],
-	["section", "## Section comment"],
-	["header", "### Header comment"],
-	["entry", ["\\# Not a comment"]],
-	["entry", ["\\## Not a section"]]
+	["comment", "## A comment too"],
+	["entry", ["\\# Not a comment"]]
 ]
 
 ----------------------------------------------------
