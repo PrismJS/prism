@@ -257,6 +257,10 @@
 			"modify": "css",
 			"owner": "milesj"
 		},
+		"cypher": {
+			"title": "Cypher",
+			"owner": "RunDevelopment"
+		},
 		"d": {
 			"title": "D",
 			"require": "clike",
@@ -294,6 +298,10 @@
 		"ebnf": {
 			"title": "EBNF",
 			"owner": "RunDevelopment"
+		},
+		"editorconfig": {
+			"title": "EditorConfig",
+			"owner": "osipxd"
 		},
 		"eiffel": {
 			"title": "Eiffel",
@@ -475,6 +483,20 @@
 			"title": "Icon",
 			"owner": "Golmote"
 		},
+		"ignore": {
+			"title": ".ignore",
+			"owner": "osipxd",
+			"alias": [
+				"gitignore",
+				"hgignore",
+				"npmignore"
+			],
+			"aliasTitles": {
+				"gitignore": ".gitignore",
+				"hgignore": ".hgignore",
+				"npmignore": ".npmignore"
+			}
+		},
 		"inform7": {
 			"title": "Inform 7",
 			"owner": "Golmote"
@@ -527,7 +549,7 @@
 		},
 		"jsdoc": {
 			"title": "JSDoc",
-			"require": ["javascript", "javadoclike"],
+			"require": ["javascript", "javadoclike", "typescript"],
 			"modify": "javascript",
 			"optional": [
 				"actionscript",
@@ -593,6 +615,10 @@
 		},
 		"kotlin": {
 			"title": "Kotlin",
+			"alias": ["kt", "kts"],
+			"aliasTitles": {
+				"kts": "Kotlin Script"
+			},
 			"require": "clike",
 			"owner": "Golmote"
 		},
