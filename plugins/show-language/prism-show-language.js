@@ -57,6 +57,7 @@
 		"dns-zone": "DNS zone file",
 		"dockerfile": "Docker",
 		"ebnf": "EBNF",
+		"editorconfig": "EditorConfig",
 		"ejs": "EJS",
 		"etlua": "Embedded Lua templating",
 		"erb": "ERB",
@@ -80,6 +81,10 @@
 		"hpkp": "HTTP Public-Key-Pins",
 		"hsts": "HTTP Strict-Transport-Security",
 		"ichigojam": "IchigoJam",
+		"ignore": ".ignore",
+		"gitignore": ".gitignore",
+		"hgignore": ".hgignore",
+		"npmignore": ".npmignore",
 		"inform7": "Inform 7",
 		"javadoc": "JavaDoc",
 		"javadoclike": "JavaDoc-like",
@@ -93,6 +98,8 @@
 		"jsonp": "JSONP",
 		"jsstacktrace": "JS stack trace",
 		"js-templates": "JS Templates",
+		"kts": "Kotlin Script",
+		"kt": "Kotlin",
 		"latex": "LaTeX",
 		"tex": "TeX",
 		"context": "ConTeXt",
@@ -189,7 +196,8 @@
 		"xojo": "Xojo (REALbasic)",
 		"xquery": "XQuery",
 		"yaml": "YAML",
-		"yml": "YAML"
+		"yml": "YAML",
+		"yang": "YANG"
 	}/*]*/;
 
 	Prism.plugins.toolbar.registerButton('show-language', function (env) {

@@ -1,0 +1,47 @@
+<h2>Comment</h2>
+<pre><code># This is a comment
+; And this is too</code></pre>
+
+<h2>Section Header</h2>
+<pre><code>[*]
+[*.js]
+[*.{bash,sh,zsh}]</code></pre>
+
+<h2>Key-Value Pair</h2>
+<pre><code>key = value
+indent_style = space</code></pre>
+
+<h2>Full example</h2>
+<pre><code># EditorConfig is awesome: https://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+# Unix-style newlines with a newline ending every file
+[*]
+end_of_line = lf
+insert_final_newline = true
+
+# Matches multiple files with brace expansion notation
+# Set default charset
+[*.{js,py}]
+charset = utf-8
+
+# 4 space indentation
+[*.py]
+indent_style = space
+indent_size = 4
+
+# Tab indentation (no size specified)
+[Makefile]
+indent_style = tab
+
+# Indentation override for all JS under lib directory
+[lib/**.js]
+indent_style = space
+indent_size = 2
+
+# Matches the exact files either package.json or .travis.yml
+[{package.json,.travis.yml}]
+indent_style = space
+indent_size = 2</code></pre>

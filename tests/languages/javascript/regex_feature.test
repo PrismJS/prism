@@ -11,6 +11,8 @@
 
 let a = /regex/m // comment
 let b = condition ? /regex/ : /another one/
+return /regex/;
+yield /regex/;
 
 ----------------------------------------------------
 
@@ -38,7 +40,13 @@ let b = condition ? /regex/ : /another one/
 	["operator", "?"],
 	["regex", "/regex/"],
 	["operator", ":"],
-	["regex", "/another one/"]
+	["regex", "/another one/"],
+	["keyword", "return"],
+	["regex", "/regex/"],
+	["punctuation", ";"],
+	["keyword", "yield"],
+	["regex", "/regex/"],
+	["punctuation", ";"]
 ]
 
 ----------------------------------------------------

@@ -1,0 +1,186 @@
+use std::{
+	fs::File,
+	io::{BufRead, BufReader},
+	path::PathBuf,
+};
+use ::serde::de::{Error, Visitor};
+use std::sync::atomic::{AtomicBool, Ordering};
+pub mod sample;
+extern crate test;
+
+Result<Self, D::Error>
+
+where D: serde::Deserializer<'de>,
+
+serde_json::from_str(&line)
+self.read_records::<smol_str::SmolStr>()
+
+pub static ALLOCATOR: alloc::Tracing = alloc::Tracing::new();
+
+unsafe fn alloc(&self, layout: std::alloc::Layout) -> *mut u8 {}
+
+----------------------------------------------------
+
+[
+	["keyword", "use"],
+	["namespace", [
+		"std",
+		["punctuation", "::"]
+	]],
+	["punctuation", "{"],
+	["namespace", [
+		"fs",
+		["punctuation", "::"]
+	]],
+	["class-name", "File"],
+	["punctuation", ","],
+	["namespace", [
+		"io",
+		["punctuation", "::"]
+	]],
+	["punctuation", "{"],
+	["class-name", "BufRead"],
+	["punctuation", ","],
+	["class-name", "BufReader"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["namespace", [
+		"path",
+		["punctuation", "::"]
+	]],
+	["class-name", "PathBuf"],
+	["punctuation", ","],
+	["punctuation", "}"],
+	["punctuation", ";"],
+	["keyword", "use"],
+	["punctuation", "::"],
+	["namespace", [
+		"serde",
+		["punctuation", "::"],
+		"de",
+		["punctuation", "::"]
+	]],
+	["punctuation", "{"],
+	["class-name", "Error"],
+	["punctuation", ","],
+	["class-name", "Visitor"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+	["keyword", "use"],
+	["namespace", [
+		"std",
+		["punctuation", "::"],
+		"sync",
+		["punctuation", "::"],
+		"atomic",
+		["punctuation", "::"]
+	]],
+	["punctuation", "{"],
+	["class-name", "AtomicBool"],
+	["punctuation", ","],
+	["class-name", "Ordering"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+	["keyword", "pub"],
+	["keyword", "mod"],
+	["module-declaration", "sample"],
+	["punctuation", ";"],
+	["keyword", "extern"],
+	["keyword", "crate"],
+	["module-declaration", "test"],
+	["punctuation", ";"],
+
+	["class-name", "Result"],
+	["operator", "<"],
+	["keyword", "Self"],
+	["punctuation", ","],
+	["class-name", "D"],
+	["punctuation", "::"],
+	["class-name", "Error"],
+	["operator", ">"],
+
+	["keyword", "where"],
+	["class-name", "D"],
+	["punctuation", ":"],
+	["namespace", [
+		"serde",
+		["punctuation", "::"]
+	]],
+	["class-name", "Deserializer"],
+	["operator", "<"],
+	["lifetime-annotation", "'de"],
+	["operator", ">"],
+	["punctuation", ","],
+
+	["namespace", [
+		"serde_json",
+		["punctuation", "::"]
+	]],
+	["function", "from_str"],
+	["punctuation", "("],
+	["operator", "&"],
+	"line",
+	["punctuation", ")"],
+	["keyword", "self"],
+	["punctuation", "."],
+	["function", "read_records"],
+	["punctuation", "::"],
+	["operator", "<"],
+	["namespace", [
+		"smol_str",
+		["punctuation", "::"]
+	]],
+	["class-name", "SmolStr"],
+	["operator", ">"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["keyword", "pub"],
+	["keyword", "static"],
+	["constant", "ALLOCATOR"],
+	["punctuation", ":"],
+	["namespace", [
+		"alloc",
+		["punctuation", "::"]
+	]],
+	["class-name", "Tracing"],
+	["operator", "="],
+	["namespace", [
+		"alloc",
+		["punctuation", "::"]
+	]],
+	["class-name", "Tracing"],
+	["punctuation", "::"],
+	["function", "new"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "unsafe"],
+	["keyword", "fn"],
+	["function-definition", "alloc"],
+	["punctuation", "("],
+	["operator", "&"],
+	["keyword", "self"],
+	["punctuation", ","],
+	" layout",
+	["punctuation", ":"],
+	["namespace", [
+		"std",
+		["punctuation", "::"],
+		"alloc",
+		["punctuation", "::"]
+	]],
+	["class-name", "Layout"],
+	["punctuation", ")"],
+	["punctuation", "->"],
+	["operator", "*"],
+	["keyword", "mut"],
+	["keyword", "u8"],
+	["punctuation", "{"],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for namespaces.
