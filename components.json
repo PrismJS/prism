@@ -483,6 +483,20 @@
 			"title": "Icon",
 			"owner": "Golmote"
 		},
+		"ignore": {
+			"title": ".ignore",
+			"owner": "osipxd",
+			"alias": [
+				"gitignore",
+				"hgignore",
+				"npmignore"
+			],
+			"aliasTitles": {
+				"gitignore": ".gitignore",
+				"hgignore": ".hgignore",
+				"npmignore": ".npmignore"
+			}
+		},
 		"inform7": {
 			"title": "Inform 7",
 			"owner": "Golmote"
