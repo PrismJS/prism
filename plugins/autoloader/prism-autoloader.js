@@ -172,6 +172,7 @@
 		"xls": "excel-formula",
 		"gamemakerlanguage": "gml",
 		"hs": "haskell",
+		"gitignore": "ignore",
 		"webmanifest": "json",
 		"kt": "kotlin",
 		"kts": "kotlin",

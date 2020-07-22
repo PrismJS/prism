@@ -81,6 +81,8 @@
 		"hpkp": "HTTP Public-Key-Pins",
 		"hsts": "HTTP Strict-Transport-Security",
 		"ichigojam": "IchigoJam",
+		"ignore": ".ignore",
+		"gitignore": ".gitignore",
 		"inform7": "Inform 7",
 		"javadoc": "JavaDoc",
 		"javadoclike": "JavaDoc-like",
