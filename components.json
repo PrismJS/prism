@@ -1167,7 +1167,10 @@
 		},
 		"visual-basic": {
 			"title": "Visual Basic",
-			"alias": "vb",
+			"alias": ["vb", "vba"],
+			"aliasTitles": {
+				"vba": "VBA"
+			},
 			"owner": "Golmote"
 		},
 		"warpscript": {
