@@ -1212,6 +1212,10 @@
 			"alias": "yml",
 			"owner": "hason"
 		},
+		"yang": {
+			"title": "YANG",
+			"owner": "RunDevelopment"
+		},
 		"zig": {
 			"title": "Zig",
 			"owner": "RunDevelopment"
