@@ -3,6 +3,7 @@
 [{**.kt, **.kts}]
 [?[!seq].log.{0..9}]
 [\\**.log]
+  [Section with indent]
 
 ----------------------------------------------------
 
@@ -26,6 +27,9 @@
 	]],
 	["section", [
     	["punctuation", "["], ["regex", "\\\\*"], ["operator", "*"], ".log", ["punctuation", "]"]
+    ]],
+	["section", [
+    	["punctuation", "["], "Section with indent", ["punctuation", "]"]
     ]]
 ]
 
