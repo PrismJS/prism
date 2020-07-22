@@ -28,5 +28,7 @@
 	};
 
 	Prism.languages.gitignore = Prism.languages.ignore
+	Prism.languages.hgignore = Prism.languages.ignore
+	Prism.languages.npmignore = Prism.languages.ignore
 
 }(Prism));

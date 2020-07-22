@@ -173,6 +173,8 @@
 		"gamemakerlanguage": "gml",
 		"hs": "haskell",
 		"gitignore": "ignore",
+		"hgignore": "ignore",
+		"npmignore": "ignore",
 		"webmanifest": "json",
 		"kt": "kotlin",
 		"kts": "kotlin",

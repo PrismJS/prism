@@ -83,6 +83,8 @@
 		"ichigojam": "IchigoJam",
 		"ignore": ".ignore",
 		"gitignore": ".gitignore",
+		"hgignore": ".hgignore",
+		"npmignore": ".npmignore",
 		"inform7": "Inform 7",
 		"javadoc": "JavaDoc",
 		"javadoclike": "JavaDoc-like",

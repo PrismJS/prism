@@ -486,9 +486,15 @@
 		"ignore": {
 			"title": ".ignore",
 			"owner": "osipxd",
-			"alias": "gitignore",
+			"alias": [
+				"gitignore",
+				"hgignore",
+				"npmignore"
+			],
 			"aliasTitles": {
-				"gitignore": ".gitignore"
+				"gitignore": ".gitignore",
+				"hgignore": ".hgignore",
+				"npmignore": ".npmignore"
 			}
 		},
 		"inform7": {
