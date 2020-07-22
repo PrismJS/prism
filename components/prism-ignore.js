@@ -2,26 +2,24 @@
 	Prism.languages.ignore = {
 		// https://git-scm.com/docs/gitignore
 		'header': {
-			pattern: /(^|[^\\])###.*/,
-			lookbehind: true,
+			pattern: /^###.*/m,
 			alias: ['comment', 'bold']
 		},
 		'section': {
-			pattern: /(^|[^\\])##.*/,
-			lookbehind: true,
+			pattern: /^##.*/m,
 			alias: 'comment'
 		},
 		'comment': {
-			pattern: /(^|[^\\])#.*/,
-			lookbehind: true,
+			pattern: /^#.*/m,
 			alias: 'namespace'
 		},
 		'entry': {
 			pattern: /\S(?:.*(?:(?:\\ )|\S))?/,
 			alias: 'string',
 			inside: {
+				'operator': /^!|\*\*?|\?/,
 				'regex': {
-					pattern: /^!|(^|[^\\])[\[\]]/,
+					pattern: /(^|[^\\])\[[^\[\]]*\]/,
 					lookbehind: true
 				},
 				'punctuation': /\//
