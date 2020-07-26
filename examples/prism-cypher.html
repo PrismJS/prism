@@ -1,0 +1,8 @@
+<h2>Full example</h2>
+<pre><code>MATCH (person:Person)-[:WORKS_FOR]->(company)
+WHERE company.name STARTS WITH "Company"
+AND EXISTS {
+  MATCH (person)-[:LIKES]->(t:Technology)
+  WHERE size((t)&lt;-[:LIKES]-()) >= 3
+}
+RETURN person.name as person, company.name AS company;</code></pre>

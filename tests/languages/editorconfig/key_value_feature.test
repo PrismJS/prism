@@ -1,5 +1,6 @@
 foo = Bar Baz
 foobar = 42
+  another_value = with_indent
 
 ----------------------------------------------------
 
@@ -13,6 +14,11 @@ foobar = 42
 	["value", [
 		["punctuation", "="],
 		" 42"
+	]],
+	["property", "another_value"],
+	["value", [
+		["punctuation", "="],
+		" with_indent"
 	]]
 ]
 

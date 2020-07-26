@@ -59,7 +59,8 @@
 		"jolie": "clike",
 		"jsdoc": [
 			"javascript",
-			"javadoclike"
+			"javadoclike",
+			"typescript"
 		],
 		"js-extras": "javascript",
 		"json5": "json",
@@ -171,7 +172,12 @@
 		"xls": "excel-formula",
 		"gamemakerlanguage": "gml",
 		"hs": "haskell",
+		"gitignore": "ignore",
+		"hgignore": "ignore",
+		"npmignore": "ignore",
 		"webmanifest": "json",
+		"kt": "kotlin",
+		"kts": "kotlin",
 		"tex": "latex",
 		"context": "latex",
 		"ly": "lilypond",
@@ -202,6 +208,7 @@
 		"uscript": "unrealscript",
 		"uc": "unrealscript",
 		"vb": "visual-basic",
+		"vba": "visual-basic",
 		"xeoracube": "xeora",
 		"yml": "yaml"
 	}/*]*/;
