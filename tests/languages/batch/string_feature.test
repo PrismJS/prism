@@ -1,0 +1,29 @@
+cmd ""
+cmd "f\"oo"
+cmd "f\\"oo"
+cmd "print(""hello"")"
+
+----------------------------------------------------
+
+[
+	["command", [
+		["keyword", "cmd"],
+		["string", "\"\""]
+	]],
+	["command", [
+		["keyword", "cmd"],
+		["string", "\"f\\\"oo\""]
+	]],
+	["command", [
+		["keyword", "cmd"],
+		["string", "\"f\\\\\"oo\""]
+	]],
+	["command", [
+		["keyword", "cmd"],
+		["string", "\"print(\"\"hello\"\")\""]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for strings.
