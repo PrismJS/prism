@@ -7,7 +7,7 @@
 			'punctuation': /:/
 		}
 	};
-	var string = /"(?:[\\"]"|[^"])*"/;
+	var string = /"(?:[\\"]"|[^"])*"(?!")/;
 	var number = /(?:\b|-)\d+\b/;
 
 	Prism.languages.batch = {
