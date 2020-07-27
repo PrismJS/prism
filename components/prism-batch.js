@@ -76,7 +76,7 @@
 			},
 			{
 				// Other commands
-				pattern: /((?:^|[&(])[ \t]*@?)\w+\b(?:"(?:[\\"]"|[^"])*"|[^^&)\r\n]|\^(?:\r\n|[\s\S]))*/im,
+				pattern: /((?:^|[&(])[ \t]*@?)\w+\b(?:"(?:[\\"]"|[^"])*"(?!")|[^"^&)\r\n]|\^(?:\r\n|[\s\S]))*/im,
 				lookbehind: true,
 				inside: {
 					'keyword': /^\w+\b/i,
