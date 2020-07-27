@@ -275,6 +275,10 @@
 			"title": "DAX",
 			"owner": "peterbud"
 		},
+		"dhall": {
+			"title": "Dhall",
+			"owner": "RunDevelopment"
+		},
 		"diff": {
 			"title": "Diff",
 			"owner": "uranusjr"
