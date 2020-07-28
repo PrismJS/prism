@@ -1,4 +1,7 @@
 (function (Prism) {
+
+	var functionName = /(?:`[\w !"#$%^&()*+,=?@{|}~\-]+`|\w+)/.source;
+
 	Prism.languages.kotlin = Prism.languages.extend('clike', {
 		'keyword': {
 			// The lookbehind prevents wrong highlighting of e.g. kotlin.properties.get
@@ -6,9 +9,9 @@
 			lookbehind: true
 		},
 		'function': [
-			/\w+(?=\s*\()/,
+			RegExp(/<name>(?=\s*\()/.source.replace('<name>', functionName)),
 			{
-				pattern: /(\.)\w+(?=\s*\{)/,
+				pattern: RegExp(/(\.)<name>(?=\s*\{)/.source.replace('<name>', functionName)),
 				lookbehind: true
 			}
 		],
