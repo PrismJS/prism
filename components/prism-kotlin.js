@@ -9,10 +9,14 @@
 			lookbehind: true
 		},
 		'function': [
-			RegExp(/<name>(?=\s*\()/.source.replace('<name>', functionName)),
+			{
+				pattern: RegExp(/<name>(?=\s*\()/.source.replace('<name>', functionName)),
+				greedy: true
+			},
 			{
 				pattern: RegExp(/(\.)<name>(?=\s*\{)/.source.replace('<name>', functionName)),
-				lookbehind: true
+				lookbehind: true,
+				greedy: true
 			}
 		],
 		'number': /\b(?:0[xX][\da-fA-F]+(?:_[\da-fA-F]+)*|0[bB][01]+(?:_[01]+)*|\d+(?:_\d+)*(?:\.\d+(?:_\d+)*)?(?:[eE][+-]?\d+(?:_\d+)*)?[fFL]?)\b/,

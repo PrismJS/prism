@@ -4,6 +4,7 @@ list.filter {}
 `function 1`()
 ` !"#$%^&()*+,=?@{|}~-_`()
 list.`take 1` {}
+`make fun`()
 
 ----------------------------------------------------
 
@@ -15,7 +16,8 @@ list.`take 1` {}
 	["function", "`function 1`"], ["punctuation", "("], ["punctuation", ")"],
 	["function", "` !\"#$%^&()*+,=?@{|}~-_`"], ["punctuation", "("], ["punctuation", ")"],
 	"\r\nlist", ["punctuation", "."],
-	["function", "`take 1`"], ["punctuation", "{"], ["punctuation", "}"]
+	["function", "`take 1`"], ["punctuation", "{"], ["punctuation", "}"],
+	["function", "`make fun`"], ["punctuation", "("], ["punctuation", ")"]
 ]
 
 ----------------------------------------------------
