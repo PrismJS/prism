@@ -1,0 +1,176 @@
+real<lower=a> b;
+
+real<lower=a, upper=b> theta;
+
+int<lower=1> T;
+
+matrix<multiplier=5>[3, 4] B;
+
+row_vector<lower=-1,upper=1>[10] u;
+
+row_vector<offset=-42,multiplier=3>[3] u;
+
+real<lower=min(y), upper=max(y)> phi;
+
+real<offset=mu,multiplier=sigma> x;
+
+----------------------------------------------------
+
+[
+	["keyword", "real"],
+	["constraint", [
+		["punctuation", "<"],
+		["property", "lower"],
+		["operator", "="],
+		["expression", [
+			"a"
+		]],
+		["punctuation", ">"]
+	]],
+	" b",
+	["punctuation", ";"],
+
+	["keyword", "real"],
+	["constraint", [
+		["punctuation", "<"],
+		["property", "lower"],
+		["operator", "="],
+		["expression", [
+			"a"
+		]],
+		["punctuation", ","],
+		["property", "upper"],
+		["operator", "="],
+		["expression", [
+			"b"
+		]],
+		["punctuation", ">"]
+	]],
+	" theta",
+	["punctuation", ";"],
+
+	["keyword", "int"],
+	["constraint", [
+		["punctuation", "<"],
+		["property", "lower"],
+		["operator", "="],
+		["expression", [
+			["number", "1"]
+		]],
+		["punctuation", ">"]
+	]],
+	" T",
+	["punctuation", ";"],
+
+	["keyword", "matrix"],
+	["constraint", [
+		["punctuation", "<"],
+		["property", "multiplier"],
+		["operator", "="],
+		["expression", [
+			["number", "5"]
+		]],
+		["punctuation", ">"]
+	]],
+	["punctuation", "["],
+	["number", "3"],
+	["punctuation", ","],
+	["number", "4"],
+	["punctuation", "]"],
+	" B",
+	["punctuation", ";"],
+
+	["keyword", "row_vector"],
+	["constraint", [
+		["punctuation", "<"],
+		["property", "lower"],
+		["operator", "="],
+		["expression", [
+			["operator", "-"],
+			["number", "1"]
+		]],
+		["punctuation", ","],
+		["property", "upper"],
+		["operator", "="],
+		["expression", [
+			["number", "1"]
+		]],
+		["punctuation", ">"]
+	]],
+	["punctuation", "["],
+	["number", "10"],
+	["punctuation", "]"],
+	" u",
+	["punctuation", ";"],
+
+	["keyword", "row_vector"],
+	["constraint", [
+		["punctuation", "<"],
+		["property", "offset"],
+		["operator", "="],
+		["expression", [
+			["operator", "-"],
+			["number", "42"]
+		]],
+		["punctuation", ","],
+		["property", "multiplier"],
+		["operator", "="],
+		["expression", [
+			["number", "3"]
+		]],
+		["punctuation", ">"]
+	]],
+	["punctuation", "["],
+	["number", "3"],
+	["punctuation", "]"],
+	" u",
+	["punctuation", ";"],
+
+	["keyword", "real"],
+	["constraint", [
+		["punctuation", "<"],
+		["property", "lower"],
+		["operator", "="],
+		["expression", [
+			["function", "min"],
+			["punctuation", "("],
+			"y",
+			["punctuation", ")"]
+		]],
+		["punctuation", ","],
+		["property", "upper"],
+		["operator", "="],
+		["expression", [
+			["function", "max"],
+			["punctuation", "("],
+			"y",
+			["punctuation", ")"]
+		]],
+		["punctuation", ">"]
+	]],
+	" phi",
+	["punctuation", ";"],
+
+	["keyword", "real"],
+	["constraint", [
+		["punctuation", "<"],
+		["property", "offset"],
+		["operator", "="],
+		["expression", [
+			"mu"
+		]],
+		["punctuation", ","],
+		["property", "multiplier"],
+		["operator", "="],
+		["expression", [
+			"sigma"
+		]],
+		["punctuation", ">"]
+	]],
+	" x",
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for type constraints.
