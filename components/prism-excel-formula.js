@@ -38,7 +38,7 @@ Prism.languages['excel-formula'] = {
 		}
 	},
 	'function-name': {
-		pattern: /\b[A-Z]\w*(?=\()/i,
+		pattern: /\b[A-Z][\w.]*(?=\()/i,
 		alias: 'keyword'
 	},
 	'range': {
