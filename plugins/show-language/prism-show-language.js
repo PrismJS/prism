@@ -119,6 +119,8 @@
 		"n4js": "N4JS",
 		"n4jsd": "N4JS",
 		"nand2tetris-hdl": "Nand To Tetris HDL",
+		"naniscript": "Naninovel Script",
+		"nani": "Naninovel Script",
 		"nasm": "NASM",
 		"neon": "NEON",
 		"nginx": "nginx",
