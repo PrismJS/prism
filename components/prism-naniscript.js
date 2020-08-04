@@ -20,7 +20,7 @@ Prism.languages.naniscript = {
 		inside: {
 			value: {
 				pattern: /(^>[a-zA-Z0-9_]+)[\t ]{1}[^{}\r\n]+/,
-				alias: 'punctuation',
+				alias: 'operator',
 				lookbehind: true,
 				inside: {
 					_hor_space: /^[\t ]{1}/,
@@ -83,13 +83,13 @@ Prism.languages.naniscript = {
 						},
 						{
 							pattern: /([\t ]+).+?(?=[\t ]|$)/,
-							alias: 'selector',
+							alias: 'operator',
 							greedy: true,
 							lookbehind: true
 						},
 						{
 							pattern: /.*/,
-							alias: 'selector',
+							alias: 'operator',
 						}
 					]
 				}
@@ -113,9 +113,8 @@ Prism.languages.naniscript = {
 				inside: {
 					'quoted-string': {
 						pattern: /"(?:[^"\\]|\\.)*"/,
-						alias: 'selector',
+						alias: 'operator'
 					},
-				
 					'command-param-id': {
 						alias: 'property',
 						pattern: /([^"\\]?) [a-zA-Z0-9_]+:/,
@@ -128,13 +127,13 @@ Prism.languages.naniscript = {
 						},
 						{
 							pattern: /([\t ]+).+?(?=[\t ]|$)/,
-							alias: 'selector',
+							alias: 'operator',
 							greedy: true,
 							lookbehind: true
 						},
 						{
 							pattern: /.*/,
-							alias: 'selector',
+							alias: 'operator',
 						}
 					],
 					_hor_space: horSpace
