@@ -12,28 +12,10 @@
 
 [
 	"#\r\n",
-	["label", [
-		"#",
-		["_hor_space", " "],
-		["value", "Section1"]
-	]],
-	["label", [
-		"#",
-		["value", "Section2"],
-		["_hor_space", " "]
-	]],
-	["label", [
-		"#",
-		["_hor_space", " "],
-		["value", "Section4"]
-	]],
-	["label", [
-		"#",
-		["_hor_space", "\t"],
-		["_hor_space", "\t"],
-		["_hor_space", "\t"],
-		["value", "SectionWithMultipleTabsBefore"]
-	]],
+	["label", "# Section1"],
+	["label", "#Section2 "],
+	["label", "# Section4"],
+	["label", "#\t\t\tSectionWithMultipleTabsBefore"],
 	"\r\n## Section3\r\n# Section with multiple words\r\n\t# Section with \r\n\t# Section with tab"
 ]
 

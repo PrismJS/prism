@@ -1,4 +1,3 @@
-var horSpace = /[\t ]{1}/;
 var expressionDef = function (isMultiline) {
 	if (isMultiline === void 0) { isMultiline = true; }
 	return isMultiline
@@ -19,13 +18,9 @@ Prism.languages.naniscript = {
 		alias: 'tag',
 		inside: {
 			value: {
-				pattern: /(^>[a-zA-Z0-9_]+)[\t ]{1}[^{}\r\n]+/,
-				alias: 'punctuation',
+				pattern: /(^>[a-zA-Z0-9_]+)[\t ]+[^{}\r\n]+/,
+				alias: 'operator',
 				lookbehind: true,
-				inside: {
-					_hor_space: /^[\t ]{1}/,
-					_template: /.*/,
-				}
 			},
 			key: {
 				pattern: /(^>)[a-zA-Z0-9_]+/,
@@ -35,13 +30,9 @@ Prism.languages.naniscript = {
 	},
 	// # ...
 	'label': {
-		pattern: /^[\t ]*[#]{1}[\t ]*[a-zA-Z0-9]+[\t ]?$/m,
-		lookbehind: true,
+		pattern: /^([\t ]*)[#]{1}[\t ]*[a-zA-Z0-9]+[\t ]?$/m,
 		alias: 'regex',
-		inside: {
-			_hor_space: horSpace,
-			value: /[^# ]+/,
-		}
+		lookbehind: true
 	},
 	// Generic is any line that doesn't start with operators: ;>#@
 	'generic-text': {
@@ -83,13 +74,13 @@ Prism.languages.naniscript = {
 						},
 						{
 							pattern: /([\t ]+).+?(?=[\t ]|$)/,
-							alias: 'selector',
+							alias: 'operator',
 							greedy: true,
 							lookbehind: true
 						},
 						{
-							pattern: /.*/,
-							alias: 'selector',
+							pattern: /.+/,
+							alias: 'operator',
 						}
 					]
 				}
@@ -113,9 +104,8 @@ Prism.languages.naniscript = {
 				inside: {
 					'quoted-string': {
 						pattern: /"(?:[^"\\]|\\.)*"/,
-						alias: 'selector',
+						alias: 'operator'
 					},
-				
 					'command-param-id': {
 						alias: 'property',
 						pattern: /([^"\\]?) [a-zA-Z0-9_]+:/,
@@ -128,16 +118,15 @@ Prism.languages.naniscript = {
 						},
 						{
 							pattern: /([\t ]+).+?(?=[\t ]|$)/,
-							alias: 'selector',
+							alias: 'operator',
 							greedy: true,
 							lookbehind: true
 						},
 						{
-							pattern: /.*/,
-							alias: 'selector',
+							pattern: /.+/,
+							alias: 'operator',
 						}
-					],
-					_hor_space: horSpace
+					]
 				}
 			},
 		}
