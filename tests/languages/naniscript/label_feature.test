@@ -1,11 +1,12 @@
 #
 # Section1
 #Section2 
+# Section4
+#			SectionWithMultipleTabsBefore
 ## Section3
 # Section with multiple words
-  # Section with 
+	# Section with 
 	# Section with tab
-  # Section4
 
 ----------------------------------------------------
 
@@ -17,18 +18,23 @@
 		["value", "Section1"]
 	]],
 	["label", [
-			"#",
-			["value", "Section2"],
-			["_hor_space", " "]
+		"#",
+		["value", "Section2"],
+		["_hor_space", " "]
 	]],
-	"\r\n## Section3\r\n# Section with multiple words\r\n  # Section with \r\n\t# Section with tab\r\n",
 	["label", [
-		["_hor_space", " "],
-		["_hor_space", " "],
 		"#",
 		["_hor_space", " "],
 		["value", "Section4"]
-	]]
+	]],
+	["label", [
+		"#",
+		["_hor_space", "\t"],
+		["_hor_space", "\t"],
+		["_hor_space", "\t"],
+		["value", "SectionWithMultipleTabsBefore"]
+	]],
+	"\r\n## Section3\r\n# Section with multiple words\r\n\t# Section with \r\n\t# Section with tab"
 ]
 
 ----------------------------------------------------
