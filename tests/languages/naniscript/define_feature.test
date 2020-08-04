@@ -1,5 +1,5 @@
 >
->DefineKey define _ + 3h f[29 j] value *
+>DefineKey 	define _ + 3h f[29 j] value *
 
 ----------------------------------------------------
 
@@ -9,12 +9,7 @@
 		[
 			">",
 			["key", "DefineKey"],
-			["value",
-				[
-					["_hor_space", " "],
-					["_template", "define _ + 3h f[29 j] value *"]
-				]
-			]
+			["value", " \tdefine _ + 3h f[29 j] value *"]
 		]
 	]
 ]
