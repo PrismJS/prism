@@ -1,0 +1,96 @@
+{}
+{ Abs(a, d) + 12 - 1 / -230.0 + "Lol ipsum" }
+Expressions inside a generic text line: Loreim ipsu,{ Abs(a, d) + 12 - 1 / -230.0 + "Lol ipsum" } doler sit amen {¯\_(ツ)_/¯}.
+@ExpressionInsteadOfNamelessParameterValue {x > 0}
+@ExpressionBlendedWithNamelessParameterValue sdf{x > 0}df
+@ExpressionsInsideNamedParameterValueWrappedInQuotes text:"{a} < {b}"
+@ExpressionsBlendedWithNamedParameterValue param:32r2f,df{x > 0},d.{Abs(0) + 12.24 > 0}ff
+@ExpressionsInsteadOfNamelessParameterAndQuotedParameter {remark} if:remark=="Saying \\"Stop { "the" } car\\" was a mistake."
+
+----------------------------------------------------
+
+[
+  ["generic-text", [
+      ["expression", "{}"]
+  ]],
+  ["generic-text", [
+      ["expression", "{ Abs(a, d) + 12 - 1 / -230.0 + \"Lol ipsum\" }"]
+  ]],
+  ["generic-text", [
+      "Expressions inside a generic text line: Loreim ipsu,",
+      ["expression", "{ Abs(a, d) + 12 - 1 / -230.0 + \"Lol ipsum\" }"],
+      " doler sit amen ",
+      ["expression", "{¯\\_(ツ)_/¯}"],
+      "."
+  ]],
+  ["command", [
+      ["command-name", "@ExpressionInsteadOfNamelessParameterValue"],
+      ["whitespaces", " "],
+      ["expression", "{x > 0}"]
+  ]],
+  ["command", [
+      ["command-name", "@ExpressionBlendedWithNamelessParameterValue"],
+      ["command-params", [
+          ["_hor_space", " "],
+          "sdf"
+      ]],
+      ["expression", "{x > 0}"],
+      ["command-params", [
+          "df"
+      ]]
+  ]],
+  ["command", [
+      ["command-name", "@ExpressionsInsideNamedParameterValueWrappedInQuotes"],
+      ["command-params", [
+          ["command-param-id", " text:"],
+          "\""
+      ]],
+      ["expression", "{a}"],
+      ["command-params", [
+          ["_hor_space", " "],
+          "<"
+      ]],
+      ["whitespaces", " "],
+      ["expression", "{b}"],
+      ["command-params", [
+          "\""
+      ]]
+  ]],
+  ["command", [
+      ["command-name", "@ExpressionsBlendedWithNamedParameterValue"],
+      ["command-params", [
+          ["command-param-id", " param:"],
+          "32r2f,df"
+      ]],
+      ["expression", "{x > 0}"],
+      ["command-params", [
+          ",d."
+      ]],
+      ["expression", "{Abs(0) + 12.24 > 0}"],
+      ["command-params", [
+          "ff"
+      ]]
+  ]],
+  ["command", [
+      ["command-name", "@ExpressionsInsteadOfNamelessParameterAndQuotedParameter"],
+      ["whitespaces", " "],
+      ["expression", "{remark}"],
+      ["command-params", [
+          ["command-param-id", " if:"],
+          "remark=="
+      ]],
+      ["quoted-string", "\"Saying \\\\\""],
+      ["command-params", [
+          "Stop"
+      ]],
+      ["whitespaces", " "],
+      ["expression", "{ \"the\" }"],
+      ["command-params", [
+          ["_hor_space", " "],
+          "car\\\\"
+      ]],
+      ["quoted-string", "\" was a mistake.\""]
+  ]]
+]
+
+----------------------------------------------------
