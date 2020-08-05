@@ -1137,15 +1137,19 @@
 			"alias": "ts",
 			"owner": "vkbansal"
 		},
+		"typoscript": {
+			"title": "TypoScript",
+			"require": "javascript",
+			"alias": "tsconfig",
+			"aliasTitles": {
+				"tsconfig": "TSConfig"
+			},
+			"owner": "dkern"
+		},
 		"unrealscript": {
 			"title": "UnrealScript",
 			"alias": ["uscript", "uc"],
 			"owner": "RunDevelopment"
-		},
-		"typoscript": {
-			"title": "TypoScript",
-			"require": "javascript",
-			"owner": "dkern"
 		},
 		"vala": {
 			"title": "Vala",
