@@ -28,7 +28,7 @@
 
 [
     ["punctuation", "{"],
-    ["property", [
+    ["string", [
         "'_id'"
     ]],
     ["punctuation", ":"],
@@ -39,7 +39,7 @@
     ]],
     ["punctuation", ")"],
     ["punctuation", ","],
-    ["property", [
+    ["string", [
         "'code'"
     ]],
     ["punctuation", ":"],
@@ -50,7 +50,7 @@
     ]],
     ["punctuation", ")"],
     ["punctuation", ","],
-    ["property", [
+    ["string", [
         "'binary'"
     ]],
     ["punctuation", ":"],
@@ -63,7 +63,7 @@
     ]],
     ["punctuation", ")"],
     ["punctuation", ","],
-    ["property", [
+    ["string", [
         "'dbref'"
     ]],
     ["punctuation", ":"],
@@ -85,7 +85,7 @@
     ]],
     ["punctuation", ")"],
     ["punctuation", ","],
-    ["property", [
+    ["string", [
         "'timestamp'"
     ]],
     ["punctuation", ":"],
@@ -96,7 +96,7 @@
     ["number", "0"],
     ["punctuation", ")"],
     ["punctuation", ","],
-    ["property", [
+    ["string", [
         "'long'"
     ]],
     ["punctuation", ":"],
@@ -105,7 +105,7 @@
     ["number", "9223372036854775807"],
     ["punctuation", ")"],
     ["punctuation", ","],
-    ["property", [
+    ["string", [
         "'decimal'"
     ]],
     ["punctuation", ":"],
@@ -116,13 +116,13 @@
     ]],
     ["punctuation", ")"],
     ["punctuation", ","],
-    ["property", [
+    ["string", [
         "'integer'"
     ]],
     ["punctuation", ":"],
     ["number", "100"],
     ["punctuation", ","],
-    ["property", [
+    ["string", [
         "'maxkey'"
     ]],
     ["punctuation", ":"],
@@ -130,7 +130,7 @@
     ["punctuation", "("],
     ["punctuation", ")"],
     ["punctuation", ","],
-    ["property", [
+    ["string", [
         "'minkey'"
     ]],
     ["punctuation", ":"],
@@ -138,22 +138,14 @@
     ["punctuation", "("],
     ["punctuation", ")"],
     ["punctuation", ","],
-    ["property", [
+    ["string", [
         "'isodate'"
     ]],
     ["punctuation", ":"],
     ["function", "ISODate"],
     ["punctuation", "("],
-    "'",
-    ["number", "2012"],
-    ["number", "-01"],
-    "-",
     ["property", [
-        "01T00"
-    ]],
-    ["punctuation", ":"],
-    ["property", [
-        "00"
+        "'2012-01-01T00:00"
     ]],
     ["punctuation", ":"],
     ["number", "00"],
@@ -161,7 +153,7 @@
     "Z'",
     ["punctuation", ")"],
     ["punctuation", ","],
-    ["property", [
+    ["string", [
         "'regexp'"
     ]],
     ["punctuation", ":"],
@@ -176,7 +168,7 @@
     ]],
     ["punctuation", ")"],
     ["punctuation", ","],
-    ["property", [
+    ["string", [
         "'string'"
     ]],
     ["punctuation", ":"],
@@ -184,7 +176,7 @@
         "'Hello World'"
     ]],
     ["punctuation", ","],
-    ["property", [
+    ["string", [
         "'numberArray'"
     ]],
     ["punctuation", ":"],
@@ -196,7 +188,7 @@
     ["number", "3"],
     ["punctuation", "]"],
     ["punctuation", ","],
-    ["property", [
+    ["string", [
         "'stringArray'"
     ]],
     ["punctuation", ":"],
@@ -214,31 +206,31 @@
     ]],
     ["punctuation", "]"],
     ["punctuation", ","],
-    ["property", [
+    ["string", [
         "'randomKey'"
     ]],
     ["punctuation", ":"],
     ["constant", "null"],
     ["punctuation", ","],
-    ["property", [
+    ["string", [
         "'object'"
     ]],
     ["punctuation", ":"],
     ["punctuation", "{"],
-    ["property", [
+    ["string", [
         "'a'"
     ]],
     ["punctuation", ":"],
     ["number", "1"],
     ["punctuation", ","],
-    ["property", [
+    ["string", [
         "'b'"
     ]],
     ["punctuation", ":"],
     ["number", "2"],
     ["punctuation", "}"],
     ["punctuation", ","],
-    ["property", [
+    ["string", [
         "'max_key2'"
     ]],
     ["punctuation", ":"],
@@ -246,13 +238,13 @@
     ["punctuation", "("],
     ["punctuation", ")"],
     ["punctuation", ","],
-    ["property", [
+    ["string", [
         "'number'"
     ]],
     ["punctuation", ":"],
     ["number", "1234"],
     ["punctuation", ","],
-    ["property", [
+    ["string", [
         "'invalid-key'"
     ]],
     ["punctuation", ":"],
@@ -302,4 +294,4 @@
 
 ----------------------------------------------------
 
-Checks for keywords.
+Common query.

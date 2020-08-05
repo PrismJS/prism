@@ -87,13 +87,13 @@
 
 	Prism.languages['mongodb-query'] = {
 		'property': {
-			pattern: /([\$_a-z0-9]+|(?<quote>['"])[\$[\]_a-z0-9.:-]+\k<quote>)(?=\s*:)/i,
+			pattern: /([\$_a-z0-9]+|(['"])[\$[\]_a-z0-9.:-]+\1)(?=\s*:)/i,
 			inside: {
-				'keyword': RegExp('^(?<quote>[\'"])?' + keywordsRegex + '(\\k<quote>)?$')
+				'keyword': RegExp('^([\'"])?' + keywordsRegex + '(\\1)?$')
 			}
 		},
 		'string': {
-			pattern: /(?<quote>['"]).*?[^\\]\k<quote>/i,
+			pattern: /(['"]).*?[^\\]\1/i,
 			inside: {
 				url: {
 					// url pattern
