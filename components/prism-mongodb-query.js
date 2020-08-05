@@ -100,7 +100,7 @@
 		'property': {
 			pattern: /(?:[\$_a-z0-9]+|(['"])[\$[\]_a-z0-9.:-]+\1)(?=\s*:)/i,
 			inside: {
-				'keyword': RegExp('^([\'"])?' + keywordsRegex + '(\\1)?$')
+				'keyword': RegExp('^([\'"])?' + keywordsRegex + '(?:\\1)?$')
 			}
 		},
 		'string': {
