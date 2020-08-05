@@ -1,0 +1,35 @@
+ObjectId()
+ObjectId ()
+Code()
+BinData()
+DBRef()
+Timestamp()
+NumberLong()
+NumberDecimal()
+MaxKey()
+MinKey()
+RegExp()
+ISODate()
+UUID()
+
+----------------------------------------------------
+
+[
+	["function", "ObjectId"], ["punctuation", "("], ["punctuation", ")"],
+	["function", "ObjectId"], ["punctuation", "("], ["punctuation", ")"],
+	["function", "Code"], ["punctuation", "("], ["punctuation", ")"],
+	["function", "BinData"], ["punctuation", "("], ["punctuation", ")"],
+	["function", "DBRef"], ["punctuation", "("], ["punctuation", ")"],
+	["function", "Timestamp"], ["punctuation", "("], ["punctuation", ")"],
+	["function", "NumberLong"], ["punctuation", "("], ["punctuation", ")"],
+	["function", "NumberDecimal"], ["punctuation", "("], ["punctuation", ")"],
+	["function", "MaxKey"], ["punctuation", "("], ["punctuation", ")"],
+	["function", "MinKey"], ["punctuation", "("], ["punctuation", ")"],
+	["function", "RegExp"], ["punctuation", "("], ["punctuation", ")"],
+	["function", "ISODate"], ["punctuation", "("], ["punctuation", ")"],
+	["function", "UUID"], ["punctuation", "("], ["punctuation", ")"]
+]
+
+----------------------------------------------------
+
+Checks for functions.
