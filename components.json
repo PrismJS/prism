@@ -126,7 +126,7 @@
 		"arduino": {
 			"title": "Arduino",
 			"require": "cpp",
-			"owner": "eisbehr-"
+			"owner": "dkern"
 		},
 		"arff": {
 			"title": "ARFF",
@@ -1141,6 +1141,11 @@
 			"title": "UnrealScript",
 			"alias": ["uscript", "uc"],
 			"owner": "RunDevelopment"
+		},
+		"typoscript": {
+			"title": "TypoScript",
+			"require": "javascript",
+			"owner": "dkern"
 		},
 		"vala": {
 			"title": "Vala",
