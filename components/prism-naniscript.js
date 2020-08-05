@@ -75,7 +75,7 @@ Prism.languages.naniscript = {
 						{
 							pattern: /([\t ]+).+?(?=[\t ]|$)/,
 							alias: 'operator',
-							greedy: true,
+							greedy: false,
 							lookbehind: true
 						},
 						{
