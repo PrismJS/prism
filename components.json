@@ -704,6 +704,10 @@
 			"title": "Mizar",
 			"owner": "Golmote"
 		},
+		"mongodb-query": {
+			"title": "MongoDB Query",
+			"owner": "airs0urce"
+		},
 		"monkey": {
 			"title": "Monkey",
 			"owner": "Golmote"

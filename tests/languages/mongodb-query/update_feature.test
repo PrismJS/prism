@@ -1,0 +1,54 @@
+{
+    $inc: {product_available:-1}, 
+    $push: {product_bought_by:{customer:"rob",date:"9-Jan-2014"}} 
+}
+
+----------------------------------------------------
+
+[
+    ["punctuation", "{"],
+    ["property", [
+        ["keyword", "$inc"]
+    ]],
+    ["punctuation", ":"],
+    ["punctuation", "{"],
+    ["property", [
+        "product_available"
+    ]],
+    ["punctuation", ":"],
+    ["number", "-1"],
+    ["punctuation", "}"],
+    ["punctuation", ","],
+    ["property", [
+        ["keyword", "$push"]
+    ]],
+    ["punctuation", ":"],
+    ["punctuation", "{"],
+    ["property", [
+        "product_bought_by"
+    ]],
+    ["punctuation", ":"],
+    ["punctuation", "{"],
+    ["property", [
+        "customer"
+    ]],
+    ["punctuation", ":"],
+    ["string", [
+        "\"rob\""
+    ]],
+    ["punctuation", ","],
+    ["property", [
+        "date"
+    ]],
+    ["punctuation", ":"],
+    ["string", [
+        "\"9-Jan-2014\""
+    ]],
+    ["punctuation", "}"],
+    ["punctuation", "}"],
+    ["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for keywords.
