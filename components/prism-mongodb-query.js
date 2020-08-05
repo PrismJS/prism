@@ -121,7 +121,7 @@
 		},
 		"boolean": /\b(?:true|false)\b/,
 		'constant': /\b(?:null|undefined|NaN|Infinity)\b/,
-		'number': /\-?(?:\d?\.\d+|\d+)/,
+		'number': /\b(?:(?:0[xX](?:[\dA-Fa-f](?:_[\dA-Fa-f])?)+|0[bB](?:[01](?:_[01])?)+|0[oO](?:[0-7](?:_[0-7])?)+)n?|(?:\d(?:_\d)?)+n|NaN|Infinity)\b|(?:\b(?:\d(?:_\d)?)+\.?(?:\d(?:_\d)?)*|\B\.(?:\d(?:_\d)?)+)(?:[Ee][+-]?(?:\d(?:_\d)?)+)?/,
 		'function': RegExp('\\b(?:' + functions.join('|') + ')(?=\\s*\\()'),
 		'punctuation': /[{}\[\]:,()]/,
 	};
