@@ -83,11 +83,22 @@
 		return keyword.replace('$', '\\$');
 	});
 
-	var keywordsRegex = '(' + keywords.join('(\\b|:)|') + ')\\b';
+	var keywordsRegex = '(?:' + keywords.join('(?:\\b|:)|') + ')\\b';
 
 	Prism.languages['mongodb-query'] = {
+		'comment': [
+			{
+				pattern: /(^|[^\\])\/\*[\s\S]*?(?:\*\/|$)/,
+				lookbehind: true
+			},
+			{
+				pattern: /(^|[^\\:])\/\/.*/,
+				lookbehind: true,
+				greedy: true
+			}
+		],
 		'property': {
-			pattern: /([\$_a-z0-9]+|(['"])[\$[\]_a-z0-9.:-]+\2)(?=\s*:)/i,
+			pattern: /(?:[\$_a-z0-9]+|(['"])[\$[\]_a-z0-9.:-]+\1)(?=\s*:)/i,
 			inside: {
 				'keyword': RegExp('^([\'"])?' + keywordsRegex + '(\\1)?$')
 			}
@@ -98,24 +109,20 @@
 			inside: {
 				url: {
 					// url pattern
-					pattern: /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,  
+					pattern: /https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b[-a-zA-Z0-9()@:%_\+.~#?&//=]*/,  
 					greedy: true
 				},
 				entity: {
 					// ipv4
-					pattern: /\b((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b/,  
+					pattern: /\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\b/,  
 					greedy: true  
 				}
 			}
 		},
-		'comment': [
-			{pattern: /\/\*.*\*\//s, greedy: true},
-			{pattern: /\/\/.*/, greedy: true}
-		],
-		"boolean": /\b(true|false)\b/,
-		'constant': /\b(null|undefined|NaN|Infinity)\b/,
-		'number': /\-?(\d?\.\d+|\d+)/,
-		'function': RegExp('\\b(' + functions.join('|') + ')(?=\\s*\\()'),
+		"boolean": /\b(?:true|false)\b/,
+		'constant': /\b(?:null|undefined|NaN|Infinity)\b/,
+		'number': /\-?(?:\d?\.\d+|\d+)/,
+		'function': RegExp('\\b(?:' + functions.join('|') + ')(?=\\s*\\()'),
 		'punctuation': /[{}\[\]:,()]/,
 	};
 
