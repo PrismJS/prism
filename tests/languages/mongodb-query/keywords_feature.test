@@ -75,15 +75,15 @@
     ["punctuation", "{"],
     ["punctuation", "}"],
     ["punctuation", ","],
-    ["string", [
-        "\"$eq\""
+    ["property", [
+        ["keyword", "\"$eq\""]
     ]],
     ["punctuation", ":"],
     ["punctuation", "{"],
     ["punctuation", "}"],
     ["punctuation", ","],
-    ["string", [
-        "'$eq'"
+    ["property", [
+        ["keyword", "'$eq'"]
     ]],
     ["punctuation", ":"],
     ["punctuation", "{"],
@@ -511,6 +511,7 @@
     ["punctuation", ","],
     ["punctuation", "}"]
 ]
+
 
 ----------------------------------------------------
 

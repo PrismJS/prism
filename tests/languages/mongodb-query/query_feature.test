@@ -28,7 +28,7 @@
 
 [
     ["punctuation", "{"],
-    ["string", [
+    ["property", [
         "'_id'"
     ]],
     ["punctuation", ":"],
@@ -39,7 +39,7 @@
     ]],
     ["punctuation", ")"],
     ["punctuation", ","],
-    ["string", [
+    ["property", [
         "'code'"
     ]],
     ["punctuation", ":"],
@@ -50,7 +50,7 @@
     ]],
     ["punctuation", ")"],
     ["punctuation", ","],
-    ["string", [
+    ["property", [
         "'binary'"
     ]],
     ["punctuation", ":"],
@@ -63,7 +63,7 @@
     ]],
     ["punctuation", ")"],
     ["punctuation", ","],
-    ["string", [
+    ["property", [
         "'dbref'"
     ]],
     ["punctuation", ":"],
@@ -85,7 +85,7 @@
     ]],
     ["punctuation", ")"],
     ["punctuation", ","],
-    ["string", [
+    ["property", [
         "'timestamp'"
     ]],
     ["punctuation", ":"],
@@ -96,7 +96,7 @@
     ["number", "0"],
     ["punctuation", ")"],
     ["punctuation", ","],
-    ["string", [
+    ["property", [
         "'long'"
     ]],
     ["punctuation", ":"],
@@ -105,7 +105,7 @@
     ["number", "9223372036854775807"],
     ["punctuation", ")"],
     ["punctuation", ","],
-    ["string", [
+    ["property", [
         "'decimal'"
     ]],
     ["punctuation", ":"],
@@ -116,13 +116,13 @@
     ]],
     ["punctuation", ")"],
     ["punctuation", ","],
-    ["string", [
+    ["property", [
         "'integer'"
     ]],
     ["punctuation", ":"],
     ["number", "100"],
     ["punctuation", ","],
-    ["string", [
+    ["property", [
         "'maxkey'"
     ]],
     ["punctuation", ":"],
@@ -130,7 +130,7 @@
     ["punctuation", "("],
     ["punctuation", ")"],
     ["punctuation", ","],
-    ["string", [
+    ["property", [
         "'minkey'"
     ]],
     ["punctuation", ":"],
@@ -138,22 +138,18 @@
     ["punctuation", "("],
     ["punctuation", ")"],
     ["punctuation", ","],
-    ["string", [
+    ["property", [
         "'isodate'"
     ]],
     ["punctuation", ":"],
     ["function", "ISODate"],
     ["punctuation", "("],
-    ["property", [
-        "'2012-01-01T00:00"
+    ["string", [
+        "'2012-01-01T00:00:00.000Z'"
     ]],
-    ["punctuation", ":"],
-    ["number", "00"],
-    ["number", ".000"],
-    "Z'",
     ["punctuation", ")"],
     ["punctuation", ","],
-    ["string", [
+    ["property", [
         "'regexp'"
     ]],
     ["punctuation", ":"],
@@ -168,7 +164,7 @@
     ]],
     ["punctuation", ")"],
     ["punctuation", ","],
-    ["string", [
+    ["property", [
         "'string'"
     ]],
     ["punctuation", ":"],
@@ -176,7 +172,7 @@
         "'Hello World'"
     ]],
     ["punctuation", ","],
-    ["string", [
+    ["property", [
         "'numberArray'"
     ]],
     ["punctuation", ":"],
@@ -188,7 +184,7 @@
     ["number", "3"],
     ["punctuation", "]"],
     ["punctuation", ","],
-    ["string", [
+    ["property", [
         "'stringArray'"
     ]],
     ["punctuation", ":"],
@@ -206,31 +202,31 @@
     ]],
     ["punctuation", "]"],
     ["punctuation", ","],
-    ["string", [
+    ["property", [
         "'randomKey'"
     ]],
     ["punctuation", ":"],
     ["constant", "null"],
     ["punctuation", ","],
-    ["string", [
+    ["property", [
         "'object'"
     ]],
     ["punctuation", ":"],
     ["punctuation", "{"],
-    ["string", [
+    ["property", [
         "'a'"
     ]],
     ["punctuation", ":"],
     ["number", "1"],
     ["punctuation", ","],
-    ["string", [
+    ["property", [
         "'b'"
     ]],
     ["punctuation", ":"],
     ["number", "2"],
     ["punctuation", "}"],
     ["punctuation", ","],
-    ["string", [
+    ["property", [
         "'max_key2'"
     ]],
     ["punctuation", ":"],
@@ -238,13 +234,13 @@
     ["punctuation", "("],
     ["punctuation", ")"],
     ["punctuation", ","],
-    ["string", [
+    ["property", [
         "'number'"
     ]],
     ["punctuation", ":"],
     ["number", "1234"],
     ["punctuation", ","],
-    ["string", [
+    ["property", [
         "'invalid-key'"
     ]],
     ["punctuation", ":"],
