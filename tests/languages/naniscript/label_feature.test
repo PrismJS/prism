@@ -16,7 +16,9 @@
 	["label", "#Section2 "],
 	["label", "# Section4"],
 	["label", "#\t\t\tSectionWithMultipleTabsBefore"],
-	"\r\n## Section3\r\n# Section with multiple words\r\n\t# Section with \r\n\t# Section with tab"
+	"\r\n## Section3\r\n# Section with multiple words\r\n",
+	["generic-text", ["\t# Section with "]],
+	["generic-text", ["\t# Section with tab"]]
 ]
 
 ----------------------------------------------------

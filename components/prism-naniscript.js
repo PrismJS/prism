@@ -34,59 +34,6 @@ Prism.languages.naniscript = {
 		alias: 'regex',
 		lookbehind: true
 	},
-	// Generic is any line that doesn't start with operators: ;>#@
-	'generic-text': {
-		pattern: /^[^#@>;\s]{1}.*$/m,
-		alias: 'punctuation',
-		inside: {
-			// \{ ... \} ... \[ ... \] ... \"
-			'escaped-char': {
-				pattern: /\\[{}\[\]"]{1}/m
-			},
-			expression: {
-				pattern: expressionDef(),
-				greedy: true,
-				alias: 'selector'
-			},
-			'inline-command': {
-				pattern: /\[[\t ]*[a-zA-Z0-9_]+[^\r\n\[]*\]/m,
-				greedy: true,
-				alias: 'function',
-				inside: {
-					'quoted-string': {
-						pattern: /"(?:[^"\\]|\\.)*"/
-					},
-					'command-param-id': {
-						alias: 'property',
-						pattern: /([^"\\]?)[a-zA-Z0-9_]+:/,
-						lookbehind: true,
-					},
-					'command-param-name': {
-						pattern: /^(\[)[\t ]*[a-zA-Z0-9_]+/,
-						alias: 'name',
-						lookbehind: true
-					},
-					'start-stop-char': /[\[\]]{1}/,
-					'command-param-value': [
-						{
-							pattern: expressionDef(false),
-							alias: 'selector',
-						},
-						{
-							pattern: /([\t ]+).+?(?=[\t ]|$)/,
-							alias: 'operator',
-							greedy: false,
-							lookbehind: true
-						},
-						{
-							pattern: /.+/,
-							alias: 'operator',
-						}
-					]
-				}
-			},
-		}
-	},
 	'command': {
 		pattern: /^([\t ]*)@[a-zA-Z0-9_]+(?=[\t ]+[\S]{1,}|[\t ]+['"][\S]|[\t ]+$|$).*/m,
 		lookbehind: true,
@@ -131,6 +78,58 @@ Prism.languages.naniscript = {
 			},
 		}
 	},
+	// Generic is any line that doesn't start with operators: ;>#@
+	'generic-text': {
+		pattern: /^[^#@>;\r\n]{1}.*$/m,
+		alias: 'punctuation',
+		inside: {
+			// \{ ... \} ... \[ ... \] ... \"
+			'escaped-char': {
+				pattern: /\\[{}\[\]"]{1}/m
+			},
+			expression: {
+				pattern: expressionDef(),
+				greedy: true,
+				alias: 'selector'
+			},
+			'inline-command': {
+				pattern: /\[[\t ]*[a-zA-Z0-9_]+[^\r\n\[]*\]/m,
+				greedy: true,
+				alias: 'function',
+				inside: {
+					'quoted-string': {
+						pattern: /"(?:[^"\\]|\\.)*"/
+					},
+					'command-param-id': {
+						alias: 'property',
+						pattern: /([^"\\]?)[a-zA-Z0-9_]+:/,
+						lookbehind: true,
+					},
+					'command-param-name': {
+						pattern: /^(\[)[\t ]*[a-zA-Z0-9_]+/,
+						alias: 'name',
+						lookbehind: true
+					},
+					'start-stop-char': /[\[\]]{1}/,
+					'command-param-value': [
+						{
+							pattern: expressionDef(false),
+							alias: 'selector',
+						},
+						{
+							pattern: /([\t ]+).+?(?=[\t ]|$)/,
+							alias: 'operator',
+							lookbehind: true
+						},
+						{
+							pattern: /.+/,
+							alias: 'operator',
+						}
+					]
+				}
+			},
+		}
+	}
 };
 Prism.languages.nani = Prism.languages['naniscript'];
 

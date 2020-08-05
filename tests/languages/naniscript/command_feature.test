@@ -39,15 +39,19 @@
 	["command", [
 		["command-name", "@paramlessCmd"]
 	]],
+	["generic-text", []],
 	["command", [
 		["command-name", "@cmdWithNoParamsAndWhitespaceBefore"]
 	]],
+	["generic-text", []],
 	["command", [
 		["command-name", "@cmdWithNoParamsAndTabBefore"]
 	]],
+	["generic-text", []],
 	["command", [
 		["command-name", "@cmdWithNoParamsAndTabAndSpacesBefore"]
 	]],
+	["generic-text", []],
 	["command", [
 		["command-name", "@cmdWithNoParamsWrappedInWhitespaces"],
 		["whitespaces", "             "]

@@ -1,7 +1,5 @@
 ;
 ; comment
-	;	comment  with tabs
-	; comment with spaces
 \:; invalid comment
 
 ----------------------------------------------------
@@ -9,8 +7,6 @@
 [
 	["comment", ";"],
 	["comment", "; comment"],
-	["comment", ";\tcomment  with tabs"],
-	["comment", "; comment with spaces"],
 	["generic-text", [
 			"\\:; invalid comment"
 	]]
