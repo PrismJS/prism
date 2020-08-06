@@ -25,13 +25,11 @@ Expressions inside a generic text line: Loreim ipsu,{ Abs(a, d) + 12 - 1 / -230.
 	]],
 	["command", [
 		["command-name", "@ExpressionInsteadOfNamelessParameterValue"],
-		["whitespaces", " "],
 		["expression", "{x > 0}"]
 	]],
 	["command", [
 		["command-name", "@ExpressionBlendedWithNamelessParameterValue"],
 		["command-params", [
-			["command-param-value", " "],
 			["command-param-value", "sdf"]
 		]],
 		["expression", "{x > 0}"],
@@ -42,15 +40,13 @@ Expressions inside a generic text line: Loreim ipsu,{ Abs(a, d) + 12 - 1 / -230.
 	["command", [
 		["command-name", "@ExpressionsInsideNamedParameterValueWrappedInQuotes"],
 		["command-params", [
-			["command-param-id", " text:"],
+			["command-param-id", "text:"],
 			["command-param-value", "\""]
 		]],
 		["expression", "{a}"],
 		["command-params", [
-			["command-param-value", " "],
 			["command-param-value", "<"]
 		]],
-		["whitespaces", " "],
 		["expression", "{b}"],
 		["command-params", [
 			["command-param-value", "\""]
@@ -59,7 +55,7 @@ Expressions inside a generic text line: Loreim ipsu,{ Abs(a, d) + 12 - 1 / -230.
 	["command", [
 		["command-name", "@ExpressionsBlendedWithNamedParameterValue"],
 		["command-params", [
-			["command-param-id", " param:"],
+			["command-param-id", "param:"],
 			["command-param-value", "32r2f,df"]
 		]],
 		["expression", "{x > 0}"],
@@ -73,24 +69,18 @@ Expressions inside a generic text line: Loreim ipsu,{ Abs(a, d) + 12 - 1 / -230.
 	]],
 	["command", [
 		["command-name", "@ExpressionsInsteadOfNamelessParameterAndQuotedParameter"],
-		["whitespaces", " "],
 		["expression", "{remark}"],
 		["command-params", [
-			["command-param-id", " if:"],
+			["command-param-id", "if:"],
 			["command-param-value", "remark=="],
 			["quoted-string", "\"Saying \\\\\""],
 			["command-param-value", "Stop"]
 		]],
-		["whitespaces", " "],
 		["expression", "{ \"the\" }"],
 		["command-params", [
-			["command-param-value", " "],
 			["command-param-value", "car\\\\\""],
-			["command-param-value", " "],
 			["command-param-value", "was"],
-			["command-param-value", " "],
 			["command-param-value", "a"],
-			["command-param-value", " "],
 			["command-param-value", "mistake.\""]
 		]]
 	]]
