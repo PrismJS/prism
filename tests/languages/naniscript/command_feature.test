@@ -5,11 +5,11 @@
  @cmdWithNoParamsAndWhitespaceBefore
 	@cmdWithNoParamsAndTabBefore
 				 @cmdWithNoParamsAndTabAndSpacesBefore
-						 @cmdWithNoParamsWrappedInWhitespaces             
+						 @cmdWithNoParamsWrappedInWhitespaces
 @cmdWithNoParamWithTrailingSpace 
-@cmdWithNoParamWithMultipleTrailingSpaces   
+@cmdWithNoParamWithMultipleTrailingSpaces    
 @cmdWithNoParamWithTrailingTab	
-@cmdWithNoParamWithTrailingTabAndSpaces	  
+@cmdWithNoParamWithTrailingTabAndSpaces				
 @cmdWithPositiveIntParam 1
 @cmdWithNegativeIntParam -1
 @cmdWithPositiveFloatParamAndNoFraction 1.
@@ -39,191 +39,164 @@
 	["command", [
 		["command-name", "@paramlessCmd"]
 	]],
-	["generic-text", []],
 	["command", [
 		["command-name", "@cmdWithNoParamsAndWhitespaceBefore"]
 	]],
-	["generic-text", []],
 	["command", [
 		["command-name", "@cmdWithNoParamsAndTabBefore"]
 	]],
-	["generic-text", []],
 	["command", [
 		["command-name", "@cmdWithNoParamsAndTabAndSpacesBefore"]
 	]],
-	["generic-text", []],
 	["command", [
-		["command-name", "@cmdWithNoParamsWrappedInWhitespaces"],
-		["whitespaces", "             "]
+		["command-name", "@cmdWithNoParamsWrappedInWhitespaces"]
 	]],
 	["command", [
-		["command-name", "@cmdWithNoParamWithTrailingSpace"],
-		["whitespaces", " "]
+		["command-name", "@cmdWithNoParamWithTrailingSpace"]
 	]],
 	["command", [
-		["command-name", "@cmdWithNoParamWithMultipleTrailingSpaces"],
-		["whitespaces", "   "]
+		["command-name", "@cmdWithNoParamWithMultipleTrailingSpaces"]
 	]],
 	["command", [
-		["command-name", "@cmdWithNoParamWithTrailingTab"],
-		["whitespaces", "\t"]
+		["command-name", "@cmdWithNoParamWithTrailingTab"]
 	]],
 	["command", [
-		["command-name", "@cmdWithNoParamWithTrailingTabAndSpaces"],
-		["whitespaces", "\t  "]
+		["command-name", "@cmdWithNoParamWithTrailingTabAndSpaces"]
 	]],
 	["command", [
 		["command-name", "@cmdWithPositiveIntParam"],
 		["command-params", [
-			["command-param-value", " "],
 			["command-param-value", "1"]
 		]]
 	]],
 	["command", [
 		["command-name", "@cmdWithNegativeIntParam"],
 		["command-params", [
-			["command-param-value", " "],
 			["command-param-value", "-1"]
 		]]
 	]],
 	["command", [
 		["command-name", "@cmdWithPositiveFloatParamAndNoFraction"],
 		["command-params", [
-			["command-param-value", " "],
 			["command-param-value", "1."]
 		]]
 	]],
 	["command", [
 		["command-name", "@cmdWithPositiveFloatParamAndFraction"],
 		["command-params", [
-			["command-param-value", " "],
 			["command-param-value", "1.10"]
 		]]
 	]],
 	["command", [
 		["command-name", "@cmdWithPositiveHegativeFloatParamAndNoFraction"],
 		["command-params", [
-			["command-param-value", " "],
 			["command-param-value", "-1."]
 		]]
 	]],
 	["command", [
 		["command-name", "@cmdWithPositiveHegativeFloatParamAndFraction"],
 		["command-params", [
-			["command-param-value", " "],
 			["command-param-value", "-1.10"]
 		]]
 	]],
 	["command", [
 		["command-name", "@cmdWithBoolParamAndPositive"],
 		["command-params", [
-			["command-param-value", " "],
 			["command-param-value", "true"]
 		]]
 	]],
 	["command", [
 		["command-name", "@cmdWithBoolParamAndNegative"],
 		["command-params", [
-			["command-param-value", " "],
 			["command-param-value", "false"]
 		]]
 	]],
 	["command", [
 		["command-name", "@cmdWithStringParam"],
 		["command-params", [
-			["command-param-value", " "],
 			["command-param-value", "hello$co\\:mma\"d\""]
 		]]
 	]],
 	["command", [
 		["command-name", "@cmdWithQuotedStringNamelessParameter"],
 		["command-params", [
-			["command-param-value", " "],
 			["quoted-string", "\"hello grizzly\""]
 		]]
 	]],
 	["command", [
 		["command-name", "@cmdWithQuotedStringNamelessParameterWithEscapedQuotesInTheValue"],
 		["command-params", [
-			["command-param-value", " "],
 			["quoted-string", "\"hello \\\"grizzly\\\"\""]
 		]]
 	]],
 	["command", [
 		["command-name", "@set"],
 		["command-params", [
-			["command-param-value", " "],
 			["command-param-value", "choice=\"moe\""]
 		]]
 	]],
 	["command", [
 		["command-name", "@command"],
 		["command-params", [
-			["command-param-value", " "],
 			["command-param-value", "hello.grizzly"]
 		]]
 	]],
 	["command", [
 		["command-name", "@command"],
 		["command-params", [
-			["command-param-value", " "],
 			["command-param-value", "one,two,three"]
 		]]
 	]],
 	["command", [
 		["command-name", "@command"],
 		["command-params", [
-			["command-param-value", " "],
 			["command-param-value", "1,2,3"]
 		]]
 	]],
 	["command", [
 		["command-name", "@command"],
 		["command-params", [
-			["command-param-value", " "],
 			["command-param-value", "true,false,true"]
 		]]
 	]],
 	["command", [
 		["command-name", "@command"],
 		["command-params", [
-			["command-param-id", " hi:"],
+			["command-param-id", "hi:"],
 			["command-param-value", "grizzly"]
 		]]
 	]],
 	["command", [
 		["command-name", "@command"],
 		["command-params", [
-			["command-param-id", " hi:"],
+			["command-param-id", "hi:"],
 			["command-param-value", "1"]
 		]]
 	]],
 	["command", [
 		["command-name", "@command"],
 		["command-params", [
-			["command-param-id", " hi:"],
+			["command-param-id", "hi:"],
 			["command-param-value", "true"]
 		]]
 	]],
 	["command", [
 		["command-name", "@command"],
 		["command-params", [
-			["command-param-value", " "],
 			["command-param-value", "1"],
-			["command-param-id", " in:"],
+			["command-param-id", "in:"],
 			["command-param-value", "forest"],
-			["command-param-id", " danger:"],
+			["command-param-id", "danger:"],
 			["command-param-value", "true"]
 		]]
 	]],
 	["command", [
 		["command-name", "@char"],
 		["command-params", [
-			["command-param-value", " "],
 			["command-param-value", "1"],
-			["command-param-id", " pos:"],
+			["command-param-id", "pos:"],
 			["command-param-value", "0.25,-0.75"],
-			["command-param-id", " look:"],
+			["command-param-id", "look:"],
 			["command-param-value", "right"]
 		]]
 	]]

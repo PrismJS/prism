@@ -5,13 +5,11 @@
 
 [
 	">\r\n",
-	["define", 
-		[
-			">",
-			["key", "DefineKey"],
-			["value", " \tdefine _ + 3h f[29 j] value *"]
-		]
-	]
+	["define", [
+		">",
+		["key", "DefineKey"],
+		["value", "define _ + 3h f[29 j] value *"]
+	]]
 ]
 
 ----------------------------------------------------

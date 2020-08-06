@@ -31,22 +31,23 @@ UnclosedExpression{ab{cndum dui dolor tincidu{nt [s[fa]sdf [
 		["inline-command", [
 			["start-stop-char", "["],
 			["command-param-name", "command"],
-			["command-param-value", " "],
-			["command-param-value", "1"],
-			["command-param-value", " "],
-			["command-param-id", "danger:"],
-			["command-param-value", "true"],
+			["command-params", [
+				["command-param-value", "1"],
+				["command-param-id", "danger:"],
+				["command-param-value", "true"]
+			]],
 			["start-stop-char", "]"]
 		]],
 		" more text here ",
 		["inline-command", [
 			["start-stop-char", "["],
 			["command-param-name", "act"],
-			["command-param-value", " "],
-			["command-param-id", "danger:"],
-			["command-param-value", "false "],
-			["command-param-id", "true:"],
-			["command-param-value", "false"],
+			["command-params", [
+				["command-param-id", "danger:"],
+				["command-param-value", "false"],
+				["command-param-id", "true:"],
+				["command-param-value", "false"]
+			]],
 			["start-stop-char", "]"]
 		]]
 	]],
@@ -64,16 +65,17 @@ UnclosedExpression{ab{cndum dui dolor tincidu{nt [s[fa]sdf [
 	["generic-text", [
 		"Massa ut elementum."
 	]],
+
 	["command", [
 		["command-name", "@commandWithParameterAndGenericTextOnNewLine"],
 		["command-params", [
-			["command-param-value", " "],
 			["command-param-value", "WideParam"]
 		]]
 	]],
 	["generic-text", [
 		"Integer"
 	]],
+
 	["generic-text", [
 		"Escaped braces inside generic text",
 		["escaped-char", "\\{"],
@@ -84,6 +86,7 @@ UnclosedExpression{ab{cndum dui dolor tincidu{nt [s[fa]sdf [
 		"sdff j9dj",
 		["escaped-char", "\\]"]
 	]],
+
 	["bad-line", "UnclosedExpression{ab{cndum dui dolor tincidu{nt [s[fa]sdf ["],
 	["bad-line", "\"Integer: a = {a} malesuada a + b = {a + b}\", Random(a, b) = {Random(a, b)}, Random(\"foo\", \"bar\", \"foobar\") = {Random(\"foo\", \"bar\", \"foobar\")},}"],
 	"\n#\n>\n@"

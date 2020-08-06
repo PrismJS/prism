@@ -8,7 +8,7 @@
 	["comment", ";"],
 	["comment", "; comment"],
 	["generic-text", [
-			"\\:; invalid comment"
+		"\\:; invalid comment"
 	]]
 ]
 

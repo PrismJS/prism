@@ -1,189 +1,174 @@
-var expressionDef = function (isMultiline) {
-	if (isMultiline === void 0) { isMultiline = true; }
-	return isMultiline
-		? /\{[^\r\n\[\]{]*\}(?=[^\r\n\[\]\}]*)/m
-		: /\{[^\r\n\[\]{}]*\}/;
-};
+(function (Prism) {
 
-Prism.languages.naniscript = {
-	// ; ...
-	'comment': {
-		pattern: /^([\t ]*);[^\r\n]*$/m,
-		lookbehind: true,
-	},
-	// > ...
-	// Define is a control line starting with '>' followed by a word, a space and a text.
-	'define': {
-		pattern: /^>.+$/m,
-		alias: 'tag',
-		inside: {
-			value: {
-				pattern: /(^>[a-zA-Z0-9_]+)[\t ]+[^{}\r\n]+/,
+	function expressionDef(isMultiline) {
+		return isMultiline
+			? /\{[^\r\n\[\]{]*\}(?=[^\r\n\[\]\}]*)/m
+			: /\{[^\r\n\[\]{}]*\}/;
+	};
+
+	var params = {
+		'quoted-string': {
+			pattern: /"(?:[^"\\]|\\.)*"/,
+			alias: 'operator'
+		},
+		'command-param-id': {
+			pattern: /(\s)\w+:/,
+			lookbehind: true,
+			alias: 'property'
+		},
+		'command-param-value': [
+			{
+				pattern: expressionDef(false),
+				alias: 'selector',
+			},
+			{
+				pattern: /([\t ])\S+/,
+				lookbehind: true,
+				greedy: true,
 				alias: 'operator',
-				lookbehind: true,
 			},
-			key: {
-				pattern: /(^>)[a-zA-Z0-9_]+/,
-				lookbehind: true,
+			{
+				pattern: /\S(?:.*\S)?/,
+				alias: 'operator',
 			}
-		}
-	},
-	// # ...
-	'label': {
-		pattern: /^([\t ]*)[#]{1}[\t ]*[a-zA-Z0-9]+[\t ]?$/m,
-		alias: 'regex',
-		lookbehind: true
-	},
-	'command': {
-		pattern: /^([\t ]*)@[a-zA-Z0-9_]+(?=[\t ]+[\S]{1,}|[\t ]+['"][\S]|[\t ]+$|$).*/m,
-		lookbehind: true,
-		alias: 'function',
-		inside: {
-			expression: {
-				pattern: expressionDef(),
-				greedy: true,
-				alias: 'selector'
-			},
-			'whitespaces': /[\t ]+$/,
-			'command-name': /^[\t ]*@[a-zA-Z0-9_]+/,
-			'command-params': {
-				pattern: /[^\n]+$/,
-				inside: {
-					'quoted-string': {
-						pattern: /"(?:[^"\\]|\\.)*"/,
-						alias: 'operator'
-					},
-					'command-param-id': {
-						alias: 'property',
-						pattern: /([^"\\]?) [a-zA-Z0-9_]+:/,
-						lookbehind: true,
-					},
-					'command-param-value': [
-						{
-							pattern: expressionDef(false),
-							alias: 'selector',
-						},
-						{
-							pattern: /([\t ]+).+?(?=[\t ]|$)/,
-							alias: 'operator',
-							greedy: true,
-							lookbehind: true
-						},
-						{
-							pattern: /.+/,
-							alias: 'operator',
-						}
-					]
+		]
+	};
+
+	Prism.languages.naniscript = {
+		// ; ...
+		'comment': {
+			pattern: /^([\t ]*);.*/m,
+			lookbehind: true,
+		},
+		// > ...
+		// Define is a control line starting with '>' followed by a word, a space and a text.
+		'define': {
+			pattern: /^>.+/m,
+			alias: 'tag',
+			inside: {
+				'value': {
+					pattern: /(^>\w+[\t ]+)(?!\s)[^{}\r\n]+/,
+					lookbehind: true,
+					alias: 'operator'
+				},
+				'key': {
+					pattern: /(^>)\w+/,
+					lookbehind: true,
 				}
-			},
+			}
+		},
+		// # ...
+		'label': {
+			pattern: /^([\t ]*)#[\t ]*\w+[\t ]?$/m,
+			lookbehind: true,
+			alias: 'regex'
+		},
+		'command': {
+			pattern: /^([\t ]*)@\w+(?=[\t ]|$).*/m,
+			lookbehind: true,
+			alias: 'function',
+			inside: {
+				'command-name': /^@\w+/,
+				'expression': {
+					pattern: expressionDef(true),
+					greedy: true,
+					alias: 'selector'
+				},
+				'command-params': {
+					pattern: /[\s\S]*\S[\s\S]*/,
+					inside: params
+				},
+			}
+		},
+		// Generic is any line that doesn't start with operators: ;>#@
+		'generic-text': {
+			pattern: /(^[ \t]*)[^#@>;\s].*/m,
+			lookbehind: true,
+			alias: 'punctuation',
+			inside: {
+				// \{ ... \} ... \[ ... \] ... \"
+				'escaped-char': /\\[{}\[\]"]/,
+				'expression': {
+					pattern: expressionDef(true),
+					greedy: true,
+					alias: 'selector'
+				},
+				'inline-command': {
+					pattern: /\[[\t ]*\w+[^\r\n\[]*\]/,
+					greedy: true,
+					alias: 'function',
+					inside: {
+						'command-params': {
+							pattern: /(^\[[\t ]*\w+\b)[\s\S]+(?=\]$)/,
+							lookbehind: true,
+							inside: params
+						},
+						'command-param-name': {
+							pattern: /^(\[[\t ]*)\w+/,
+							lookbehind: true,
+							alias: 'name',
+						},
+						'start-stop-char': /[\[\]]/,
+					}
+				},
+			}
 		}
-	},
-	// Generic is any line that doesn't start with operators: ;>#@
-	'generic-text': {
-		pattern: /^[^#@>;\r\n]{1}.*$/m,
-		alias: 'punctuation',
-		inside: {
-			// \{ ... \} ... \[ ... \] ... \"
-			'escaped-char': {
-				pattern: /\\[{}\[\]"]{1}/m
-			},
-			expression: {
-				pattern: expressionDef(),
-				greedy: true,
-				alias: 'selector'
-			},
-			'inline-command': {
-				pattern: /\[[\t ]*[a-zA-Z0-9_]+[^\r\n\[]*\]/m,
-				greedy: true,
-				alias: 'function',
-				inside: {
-					'quoted-string': {
-						pattern: /"(?:[^"\\]|\\.)*"/
-					},
-					'command-param-id': {
-						alias: 'property',
-						pattern: /([^"\\]?)[a-zA-Z0-9_]+:/,
-						lookbehind: true,
-					},
-					'command-param-name': {
-						pattern: /^(\[)[\t ]*[a-zA-Z0-9_]+/,
-						alias: 'name',
-						lookbehind: true
-					},
-					'start-stop-char': /[\[\]]{1}/,
-					'command-param-value': [
-						{
-							pattern: expressionDef(false),
-							alias: 'selector',
-						},
-						{
-							pattern: /([\t ]+).+?(?=[\t ]|$)/,
-							alias: 'operator',
-							lookbehind: true
-						},
-						{
-							pattern: /.+/,
-							alias: 'operator',
-						}
-					]
+	};
+	Prism.languages.nani = Prism.languages['naniscript'];
+
+	/** @typedef {InstanceType<import("./prism-core")["Token"]>} Token */
+
+	/**
+	 * This hook is used to validate generic-text tokens for balanced brackets.
+	 * Mark token as bad-line when contains not balanced brackets: {},[]
+	 */
+	Prism.hooks.add('after-tokenize', function (env) {
+		/** @type {(Token | string)[]} */
+		var tokens = env.tokens;
+		tokens.forEach(function (token) {
+			if (typeof token !== "string" && token.type === 'generic-text') {
+				var content = getTextContent(token);
+				if (!isBracketsBalanced(content)) {
+					token.type = 'bad-line';
+					token.content = content;
 				}
-			},
-		}
-	}
-};
-Prism.languages.nani = Prism.languages['naniscript'];
-
-/**
- * This hook is used to validate generic-text tokens for balanced brackets.
- * Mark token as bad-line when contains not balanced brackets: {},[]
- */
-Prism.hooks.add('after-tokenize', function (env) {
-	env.tokens.map(function (token, index) {
-		if (token.type === 'generic-text') {
-			var content = getContents(token, []).join('');
-			if (!isBracketsBalanced(content)) {
-				token.type = 'bad-line';
-				token.content = content;
-				env.tokens[index] = token;
 			}
-		}
-		return false;
-	});
-});
-
-var isBracketsBalanced = function (input) {
-	var brackets = "[]{}";
-	var stack = [];
-	for (var _i = 0, input_1 = input; _i < input_1.length; _i++) {
-		var bracket = input_1[_i];
-		var bracketsIndex = brackets.indexOf(bracket);
-		if (bracketsIndex === -1) {
-			continue;
-		}
-		if (bracketsIndex % 2 === 0) {
-			stack.push(bracketsIndex + 1);
-		}
-		else {
-			if (stack.pop() !== bracketsIndex) {
-				return false;
-			}
-		}
-	}
-	return stack.length === 0;
-};
-
-function getContents(list, accumulator) {
-	accumulator = accumulator || [];
-	if (typeof list === 'string') {
-		accumulator.push(list);
-	}
-	else if (typeof list.content === 'string') {
-		accumulator.push(list.content);
-	}
-	else if (Array.isArray(list.content)) {
-		list.content.forEach(function (item) {
-			getContents(item, accumulator);
 		});
+	});
+
+	/**
+	 * @param {string} input
+	 * @returns {boolean}
+	 */
+	function isBracketsBalanced(input) {
+		var brackets = "[]{}";
+		var stack = [];
+		for (var i = 0; i < input.length; i++) {
+			var bracket = input[i];
+			var bracketsIndex = brackets.indexOf(bracket);
+			if (bracketsIndex !== -1) {
+				if (bracketsIndex % 2 === 0) {
+					stack.push(bracketsIndex + 1);
+				} else if (stack.pop() !== bracketsIndex) {
+					return false;
+				}
+			}
+		}
+		return stack.length === 0;
+	};
+
+	/**
+	 * @param {string | Token | (string | Token)[]} token
+	 * @returns {string}
+	 */
+	function getTextContent(token) {
+		if (typeof token === 'string') {
+			return token;
+		} else if (Array.isArray(token)) {
+			return token.map(getTextContent).join('');
+		} else {
+			return getTextContent(token.content);
+		}
 	}
-	return accumulator;
-}
+
+})(Prism);
