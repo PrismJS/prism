@@ -8,7 +8,6 @@
 
 	var params = {
 		'quoted-string': {
-			// TODO: Figure out how escaping works
 			pattern: /"(?:[^"\\]|\\.)*"/,
 			alias: 'operator'
 		},
