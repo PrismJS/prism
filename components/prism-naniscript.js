@@ -1,8 +1,6 @@
 (function (Prism) {
 
-	function expressionDef(isMultiline) {
-		return RegExp(/\{[^\r\n\[\]{}]*\}/, isMultiline ? 'm': '');
-	};
+	var expressionDef = /\{[^\r\n\[\]{}]*\}/;
 
 	var params = {
 		'quoted-string': {
