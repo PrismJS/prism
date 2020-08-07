@@ -1,9 +1,7 @@
 (function (Prism) {
 
 	function expressionDef(isMultiline) {
-		return isMultiline
-			? /\{[^\r\n\[\]{]*\}(?=[^\r\n\[\]\}]*)/m
-			: /\{[^\r\n\[\]{}]*\}/;
+		return RegExp(/\{[^\r\n\[\]{}]*\}/, isMultiline ? 'm': '');
 	};
 
 	var params = {
@@ -94,7 +92,7 @@
 					alias: 'selector'
 				},
 				'inline-command': {
-					pattern: /\[[\t ]*\w+[^\r\n\[]*\]/,
+					pattern: /\[[\t ]*\w+[^\r\n\[\]]*\]/,
 					greedy: true,
 					alias: 'function',
 					inside: {
