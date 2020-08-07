@@ -94,7 +94,7 @@
 					alias: 'selector'
 				},
 				'inline-command': {
-					pattern: /\[[\t ]*\w+[^\r\n\[]*\]/,
+					pattern: /\[[\t ]*\w+[^\r\n\[\]]*\]/,
 					greedy: true,
 					alias: 'function',
 					inside: {
