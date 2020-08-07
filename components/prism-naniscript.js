@@ -14,7 +14,7 @@
 		},
 		'command-param-value': [
 			{
-				pattern: expressionDef(false),
+				pattern: expressionDef,
 				alias: 'selector',
 			},
 			{
@@ -66,7 +66,7 @@
 			inside: {
 				'command-name': /^@\w+/,
 				'expression': {
-					pattern: expressionDef(true),
+					pattern: expressionDef,
 					greedy: true,
 					alias: 'selector'
 				},
@@ -85,7 +85,7 @@
 				// \{ ... \} ... \[ ... \] ... \"
 				'escaped-char': /\\[{}\[\]"]/,
 				'expression': {
-					pattern: expressionDef(true),
+					pattern: expressionDef,
 					greedy: true,
 					alias: 'selector'
 				},
