@@ -55,7 +55,7 @@
 		},
 		// # ...
 		'label': {
-			pattern: /^([\t ]*)#[\t ]*\w+[\t ]?$/m,
+			pattern: /^([\t ]*)#[\t ]*\w+[\t ]*$/m,
 			lookbehind: true,
 			alias: 'regex'
 		},
