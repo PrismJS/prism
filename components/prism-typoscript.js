@@ -11,7 +11,8 @@
 			{
 				// double-slash comments - ignored when backslashes or colon is found in front
 				// also ignored whenever directly after an equal-sign, because it would probably be an url without protocol
-				pattern: /(^|(?<!\\|:|=\s*))\/\/.*/,
+				// pattern: /(^|(?<!\\|:|=\s*))\/\/.*/,
+				pattern: /(^|[^\\:= \t]|(?:^|[^= \t])[ \t]+)\/\/.*/,
 				lookbehind: true,
 				greedy: true
 			},
@@ -52,7 +53,7 @@
 			inside: {
 				'function': /{\$.*}/, // constants include
 				'keyword': keywords,
-				'number': /^[0-9]*$/,
+				'number': /^[0-9]+$/,
 				'punctuation': /[,|:]/,
 			}
 		},
