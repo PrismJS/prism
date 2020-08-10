@@ -5,9 +5,9 @@ baz.10 =
 ----------------------------------------------------
 
 [
-    ["tag", ["foo "]], ["operator", "="], ["string", [["number", "423"]]],
-    ["tag", ["\r\nbar"]], ["operator", "="], ["string", [["number", "1"]]],
-    ["tag", ["\r\nbaz",["punctuation", "."]]],["number", ["10 ", ["operator", "="]]], ["string", []]
+	["tag", ["foo "]], ["operator", "="], ["string", [["number", "423"]]],
+	["tag", ["\r\nbar"]], ["operator", "="], ["string", [["number", "1"]]],
+	["tag", ["\r\nbaz",["punctuation", "."]]],["number", ["10 ", ["operator", "="]]], ["string", []]
 ]
 
 ----------------------------------------------------

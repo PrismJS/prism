@@ -4,26 +4,26 @@ foo.bar.baz {
 	bar = {$const.foo}
 	foo = LLL:EXT:str
 	IFSUB < .NO
-    IFSUB = 1
-    IFSUB {
-    	foo = bar
-    }
+	IFSUB = 1
+	IFSUB {
+		foo = bar
+	}
 }
 
 ----------------------------------------------------
 
 [
-	    ["tag", ["foo", ["punctuation", "."]]], ["tag", ["bar", ["punctuation", "."]]], ["tag", ["baz "]], ["operator", "="], ["string", [["keyword", "HMENU"]]],
-        ["tag", ["\r\nfoo", ["punctuation", "."]]], ["tag", ["bar", ["punctuation", "."]]], ["tag", ["baz "]], ["punctuation", "{"],
-        ["tag", ["\r\n\tbaz", ["punctuation", "."]]], ["tag", ["foo "]], ["operator", "="], ["string", ["bar"]],
-        ["tag", ["\r\n\tbar "]], ["operator", "="], ["string", [["function", "{$const.foo}"]]],
-        ["tag", ["\r\n\tfoo "]], ["operator", "="], ["string", [["keyword", "LLL"], ["punctuation", ":"], ["keyword", "EXT"], ["punctuation", ":"], "str"]],
-        ["keyword", "IFSUB"], ["operator", "<"], ["punctuation", "."], ["keyword", "NO"],
-        ["keyword", "IFSUB"], ["operator", "="], ["string", [["number", "1"]]],
-        ["keyword", "IFSUB"], ["punctuation", "{"],
-        ["tag", ["\r\n    \tfoo "]], ["operator", "="], ["string", ["bar"]],
-        ["punctuation", "}"],
-        ["punctuation", "}"]
+	["tag", ["foo", ["punctuation", "."]]], ["tag", ["bar", ["punctuation", "."]]], ["tag", ["baz "]], ["operator", "="], ["string", [["keyword", "HMENU"]]],
+	["tag", ["\r\nfoo", ["punctuation", "."]]], ["tag", ["bar", ["punctuation", "."]]], ["tag", ["baz "]], ["punctuation", "{"],
+	["tag", ["\r\n\tbaz", ["punctuation", "."]]], ["tag", ["foo "]], ["operator", "="], ["string", ["bar"]],
+	["tag", ["\r\n\tbar "]], ["operator", "="], ["string", [["function", "{$const.foo}"]]],
+	["tag", ["\r\n\tfoo "]], ["operator", "="], ["string", [["keyword", "LLL"], ["punctuation", ":"], ["keyword", "EXT"], ["punctuation", ":"], "str"]],
+	["keyword", "IFSUB"], ["operator", "<"], ["punctuation", "."], ["keyword", "NO"],
+	["keyword", "IFSUB"], ["operator", "="], ["string", [["number", "1"]]],
+	["keyword", "IFSUB"], ["punctuation", "{"],
+	["tag", ["\r\n\t\tfoo "]], ["operator", "="], ["string", ["bar"]],
+	["punctuation", "}"],
+	["punctuation", "}"]
 ]
 
 ----------------------------------------------------
