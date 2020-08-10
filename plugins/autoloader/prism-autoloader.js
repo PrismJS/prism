@@ -137,7 +137,6 @@
 		"textile": "markup",
 		"twig": "markup",
 		"typescript": "javascript",
-		"typoscript": "javascript",
 		"vala": "clike",
 		"vbnet": "basic",
 		"velocity": "markup",

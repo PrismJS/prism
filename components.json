@@ -1139,7 +1139,6 @@
 		},
 		"typoscript": {
 			"title": "TypoScript",
-			"require": "javascript",
 			"alias": "tsconfig",
 			"aliasTitles": {
 				"tsconfig": "TSConfig"
