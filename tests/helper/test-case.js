@@ -49,43 +49,66 @@ module.exports = {
 	 *
 	 * @param {string} languageIdentifier
 	 * @param {string} filePath
+	 * @param {boolean} acceptEmpty
 	 */
-	runTestCase(languageIdentifier, filePath) {
+	runTestCase(languageIdentifier, filePath, acceptEmpty) {
 		const testCase = this.parseTestCaseFile(filePath);
 		const usedLanguages = this.parseLanguageNames(languageIdentifier);
-
-		if (null === testCase) {
-			throw new Error("Test case file has invalid format (or the provided token stream is invalid JSON), please read the docs.");
-		}
 
 		const Prism = PrismLoader.createInstance(usedLanguages.languages);
 
 		// the first language is the main language to highlight
-		const simplifiedTokenStream = this.simpleTokenize(Prism, testCase.testSource, usedLanguages.mainLanguage);
+		const simplifiedTokenStream = this.simpleTokenize(Prism, testCase.code, usedLanguages.mainLanguage);
 
-		const actual = JSON.stringify(simplifiedTokenStream);
-		const expected = JSON.stringify(testCase.expectedTokenStream);
+		if (testCase.expectedTokenStream === null) {
+			// the test case doesn't have an expected value
+			if (!acceptEmpty) {
+				throw new Error('This test case doesn\'t have an expected toke n stream.'
+					+ ' Either add the JSON of a token stream or run \`npm run test:languages -- --accept\`'
+					+ ' to automatically add the current token stream.');
+			}
 
-		if (actual === expected) {
-			// no difference
-			return;
+			// change the file
+			const lineEnd = (/\r\n/.test(testCase.code) || !/\n/.test(testCase.code)) ? '\r\n' : '\n';
+			const separator = "\n\n----------------------------------------------------\n\n";
+			const pretty = TokenStreamTransformer.prettyprint(simplifiedTokenStream)
+				.replace(/^( +)/gm, m => {
+					return "\t".repeat(m.length / 4);
+				});
+
+			let content = testCase.code + separator + pretty;
+			if (testCase.comment) {
+				content += separator + testCase.comment;
+			}
+			content = content.replace(/\r?\n/g, lineEnd);
+
+			fs.writeFileSync(filePath, content, "utf-8");
+		} else {
+			// there is an expected value
+			const actual = JSON.stringify(simplifiedTokenStream);
+			const expected = JSON.stringify(testCase.expectedTokenStream);
+
+			if (actual === expected) {
+				// no difference
+				return;
+			}
+
+			// The index of the first difference between the expected token stream and the actual token stream.
+			// The index is in the raw expected token stream JSON of the test case.
+			const diffIndex = translateIndexIgnoreSpaces(testCase.expectedJson, expected, firstDiff(expected, actual));
+			const expectedJsonLines = testCase.expectedJson.substr(0, diffIndex).split(/\r\n?|\n/g);
+			const columnNumber = expectedJsonLines.pop().length + 1;
+			const lineNumber = testCase.expectedLineOffset + expectedJsonLines.length;
+
+			const tokenStreamStr = TokenStreamTransformer.prettyprint(simplifiedTokenStream);
+			const message = "\n\nActual Token Stream:" +
+				"\n-----------------------------------------\n" +
+				tokenStreamStr +
+				"\n-----------------------------------------\n" +
+				"File: " + filePath + ":" + lineNumber + ":" + columnNumber + "\n\n";
+
+			assert.deepEqual(simplifiedTokenStream, testCase.expectedTokenStream, testCase.comment + message);
 		}
-
-		// The index of the first difference between the expected token stream and the actual token stream.
-		// The index is in the raw expected token stream JSON of the test case.
-		const diffIndex = translateIndexIgnoreSpaces(testCase.expectedJson, expected, firstDiff(expected, actual));
-		const expectedJsonLines = testCase.expectedJson.substr(0, diffIndex).split(/\r\n?|\n/g);
-		const columnNumber = expectedJsonLines.pop().length + 1;
-		const lineNumber = testCase.expectedLineOffset + expectedJsonLines.length;
-
-		const tokenStreamStr = TokenStreamTransformer.prettyprint(simplifiedTokenStream);
-		const message = "\n\nActual Token Stream:" +
-			"\n-----------------------------------------\n" +
-			tokenStreamStr +
-			"\n-----------------------------------------\n" +
-			"File: " + filePath + ":" + lineNumber + ":" + columnNumber + "\n\n";
-
-		assert.deepEqual(simplifiedTokenStream, testCase.expectedTokenStream, testCase.comment + message);
 	},
 
 	/**
@@ -160,33 +183,36 @@ module.exports = {
 	 *
 	 * @private
 	 * @param {string} filePath
-	 * @returns {{testSource: string, expectedTokenStream: Array<string[]>, comment:string?}|null}
+	 * @returns {ParsedTestCase}
+	 *
+	 * @typedef ParsedTestCase
+	 * @property {string} code
+	 * @property {string} expectedJson
+	 * @property {number} expectedLineOffset
+	 * @property {Array | null} expectedTokenStream
+	 * @property {string} comment
 	 */
 	parseTestCaseFile(filePath) {
 		const testCaseSource = fs.readFileSync(filePath, "utf8");
-		const testCaseParts = testCaseSource.split(/^-{10,}\w*$/m);
+		const testCaseParts = testCaseSource.split(/^-{10,}[ \t]*$/m);
 
-		try {
-			const testCase = {
-				testSource: testCaseParts[0].trim(),
-				expectedJson: testCaseParts[1],
-				expectedLineOffset: testCaseParts[0].split(/\r\n?|\n/g).length,
-				expectedTokenStream: JSON.parse(testCaseParts[1]),
-				comment: null
-			};
-
-			// if there are three parts, the third one is the comment
-			// explaining the test case
-			if (testCaseParts[2]) {
-				testCase.comment = testCaseParts[2].trim();
-			}
-
-			return testCase;
+		if (testCaseParts.length > 3) {
+			throw new Error("Invalid test case format: Too many sections.");
 		}
-		catch (e) {
-			// the JSON can't be parsed (e.g. it could be empty)
-			return null;
-		}
+
+		const code = testCaseParts[0].trim();
+		const expected = (testCaseParts[1] || '').trim();
+		const comment = (testCaseParts[2] || '').trim();
+
+		const testCase = {
+			code,
+			expectedJson: expected,
+			expectedLineOffset: code.split(/\r\n?|\n/g).length,
+			expectedTokenStream: expected ? JSON.parse(expected) : null,
+			comment
+		};
+
+		return testCase;
 	},
 
 	/**
