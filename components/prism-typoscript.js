@@ -66,7 +66,7 @@
 			}
 		},
 		'tag': {
-            pattern: /\.?[\w-\\]+\.?/,
+			pattern: /\.?[\w-\\]+\.?/,
 			inside: {
 				'punctuation': /\./,
 			}
