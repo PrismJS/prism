@@ -1,0 +1,95 @@
+<h2>Typical TypoScript Setup File</h2>
+<pre><code># import other files
+@import 'EXT:fluid_styled_content/Configuration/TypoScript/setup.typoscript'
+@import 'EXT:sitepackage/Configuration/TypoScript/Helper/DynamicContent.typoscript'
+
+page = PAGE
+page {
+	typeNum = 0
+
+	// setup templates
+	10 = FLUIDTEMPLATE
+	10 {
+		templateName = TEXT
+		templateName.stdWrap.cObject = CASE
+		templateName.stdWrap.cObject {
+			key.data = pagelayout
+
+			pagets__sitepackage_default = TEXT
+			pagets__sitepackage_default.value = Default
+
+			pagets__sitepackage_alternate = TEXT
+			pagets__sitepackage_alternate.value = Alternative
+
+			default = TEXT
+			default.value = Default
+		}
+		
+		templateRootPaths {
+			0 = EXT:sitepackage/Resources/Private/Templates/Page/
+			1 = {$sitepackage.fluidtemplate.templateRootPath}
+		}
+		
+		partialRootPaths {
+			0 = EXT:sitepackage/Resources/Private/Partials/Page/
+			1 = {$sitepackage.fluidtemplate.partialRootPath}
+		}
+		
+		layoutRootPaths {
+			0 = EXT:sitepackage/Resources/Private/Layouts/Page/
+			1 = {$sitepackage.fluidtemplate.layoutRootPath}
+		}
+
+		dataProcessing {
+			10 = TYPO3\CMS\Frontend\DataProcessing\MenuProcessor
+			10 {
+				levels = 1
+				includeSpacer = 1
+				as = mainnavigation
+			}
+		}
+	}
+
+	// include css into head
+	includeCSS {
+		bootstrap = https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css
+		bootstrap.external = 1
+		website = EXT:sitepackage/Resources/Public/Css/styles.css
+	}
+
+	// include js into footer
+	includeJSFooter {
+		jquery = https://code.jquery.com/jquery-3.2.1.slim.min.js
+		jquery.external = 1
+		bootstrap = https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js
+		bootstrap.external = 1
+		website = EXT:sitepackage/Resources/Public/JavaScript/scripts.js
+	}
+}
+
+// global site configuration
+config {
+	absRefPrefix = auto
+	cache_period = 86400
+	debug = 0
+	disablePrefixComment = 1
+	doctype = html5
+	extTarget =
+	index_enable = 1
+	index_externals = 1
+	index_metatags = 1
+	inlineStyle2TempFile = 1
+	intTarget =
+	linkVars = L
+	metaCharset = utf-8
+	no_cache = 0
+	pageTitleFirst = 1
+	prefixLocalAnchors = all
+	removeDefaultJS = 0
+	sendCacheHeaders = 1
+	compressCss = 0
+	compressJs = 0
+	concatenateCss = 0
+	concatenateJs = 0
+}
+</code></pre>

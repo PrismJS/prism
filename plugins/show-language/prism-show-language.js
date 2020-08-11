@@ -183,6 +183,7 @@
 		"toml": "TOML",
 		"trig": "TriG",
 		"ts": "TypeScript",
+		"tsconfig": "TSConfig",
 		"uscript": "UnrealScript",
 		"uc": "UnrealScript",
 		"vbnet": "VB.Net",

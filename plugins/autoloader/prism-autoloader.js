@@ -206,6 +206,7 @@
 		"t4": "t4-cs",
 		"trig": "turtle",
 		"ts": "typescript",
+		"tsconfig": "typoscript",
 		"uscript": "unrealscript",
 		"uc": "unrealscript",
 		"vb": "visual-basic",

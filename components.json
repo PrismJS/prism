@@ -126,7 +126,7 @@
 		"arduino": {
 			"title": "Arduino",
 			"require": "cpp",
-			"owner": "eisbehr-"
+			"owner": "dkern"
 		},
 		"arff": {
 			"title": "ARFF",
@@ -1141,6 +1141,14 @@
 			"optional": "js-templates",
 			"alias": "ts",
 			"owner": "vkbansal"
+		},
+		"typoscript": {
+			"title": "TypoScript",
+			"alias": "tsconfig",
+			"aliasTitles": {
+				"tsconfig": "TSConfig"
+			},
+			"owner": "dkern"
 		},
 		"unrealscript": {
 			"title": "UnrealScript",
