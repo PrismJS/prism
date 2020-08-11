@@ -1,0 +1,17 @@
+;
+; comment
+\:; invalid comment
+
+----------------------------------------------------
+
+[
+	["comment", ";"],
+	["comment", "; comment"],
+	["generic-text", [
+		"\\:; invalid comment"
+	]]
+]
+
+----------------------------------------------------
+
+Comment tests.

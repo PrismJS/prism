@@ -728,6 +728,11 @@
 			"title": "Nand To Tetris HDL",
 			"owner": "stephanmax"
 		},
+		"naniscript": {
+			"title": "Naninovel Script",
+			"owner": "Elringus",
+			"alias": "nani"
+		},
 		"nasm": {
 			"title": "NASM",
 			"owner": "rbmj"

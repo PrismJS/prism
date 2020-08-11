@@ -187,6 +187,7 @@
 		"md": "markdown",
 		"moon": "moonscript",
 		"n4jsd": "n4js",
+		"nani": "naniscript",
 		"objc": "objectivec",
 		"objectpascal": "pascal",
 		"px": "pcaxis",
