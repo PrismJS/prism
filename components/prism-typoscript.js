@@ -25,10 +25,10 @@
 		'function': [
 			{
 				// old include style
-				pattern: /<INCLUDE_TYPOSCRIPT:\s*source\s*=\s*['"].*['"]\s*>/,
+				pattern: /<INCLUDE_TYPOSCRIPT:\s*source\s*=\s*(?:"[^"\r\n]*"|'[^'\r\n]*')\s*>/,
 				inside: {
 					'string': {
-						pattern: /['"].*['"]/,
+						pattern: /"[^"\r\n]*"|'[^'\r\n]*'/,
 						inside: {
 							'keyword': keywords,
 						},
@@ -40,9 +40,9 @@
 			},
 			{
 				// new include style
-				pattern: /@import\s*['"].*['"]/,
+				pattern: /@import\s*(?:"[^"\r\n]*"|'[^'\r\n]*')/,
 				inside: {
-					'string': /['"].*['"]/,
+					'string': /"[^"\r\n]*"|'[^'\r\n]*'/,
 				},
 			}
 		],
@@ -65,7 +65,7 @@
 			}
 		},
 		'tag': {
-			pattern: /\s*\.?[A-z0-9-_]+\.?\s*/,
+            pattern: /\.?[\w-\\]+\.?/,
 			inside: {
 				'punctuation': /\./,
 			}

@@ -12,10 +12,10 @@ baz = //url
 [
 	["comment", "// comment"],
 	["comment", "# comment"],
-	["tag", ["\r\ntext "]], ["comment", "// comment"],
+	["tag", ["text"]], ["comment", "// comment"],
 	["comment", "\n/*\r\ncomment\r\n*/"],
-	["tag", ["\r\nfoo "]], ["operator", "="], ["string", ["bar "]], ["comment", "// comment"],
-	["tag", ["\r\nbaz "]], ["operator", "="], ["string", ["//url"]]
+	["tag", ["foo"]], ["operator", "="], ["string", ["bar "]], ["comment", "// comment"],
+	["tag", ["baz"]], ["operator", "="], ["string", ["//url"]]
 ]
 
 ----------------------------------------------------

@@ -9,20 +9,26 @@ foo.bar.baz {
 		foo = bar
 	}
 }
+Namespace\Classes\Test {
+	baz.foo = bar
+}
 
 ----------------------------------------------------
 
 [
-	["tag", ["foo", ["punctuation", "."]]], ["tag", ["bar", ["punctuation", "."]]], ["tag", ["baz "]], ["operator", "="], ["string", [["keyword", "HMENU"]]],
-	["tag", ["\r\nfoo", ["punctuation", "."]]], ["tag", ["bar", ["punctuation", "."]]], ["tag", ["baz "]], ["punctuation", "{"],
-	["tag", ["\r\n\tbaz", ["punctuation", "."]]], ["tag", ["foo "]], ["operator", "="], ["string", ["bar"]],
-	["tag", ["\r\n\tbar "]], ["operator", "="], ["string", [["function", "{$const.foo}"]]],
-	["tag", ["\r\n\tfoo "]], ["operator", "="], ["string", [["keyword", "LLL"], ["punctuation", ":"], ["keyword", "EXT"], ["punctuation", ":"], "str"]],
-	["keyword", "IFSUB"], ["operator", "<"], ["punctuation", "."], ["keyword", "NO"],
+	["tag", ["foo",["punctuation", "."]]], ["tag", ["bar", ["punctuation", "."]]],["tag", ["baz"]], ["operator", "="], ["string", [["keyword", "HMENU"]]],
+	["tag", ["foo", ["punctuation", "."]]], ["tag", ["bar", ["punctuation", "."]]], ["tag", ["baz"]], ["punctuation", "{"],
+	["tag", ["baz", ["punctuation", "."]]], ["tag", ["foo"]], ["operator", "="], ["string", ["bar"]],
+	["tag", ["bar"]], ["operator", "="], ["string", [["function", "{$const.foo}"]]],
+	["tag", ["foo"]],["operator", "="], ["string", [["keyword", "LLL"], ["punctuation", ":"], ["keyword", "EXT"], ["punctuation", ":"], "str"]],
+	["keyword", "IFSUB"], ["operator", "<"], ["punctuation", "."],["keyword", "NO"],
 	["keyword", "IFSUB"], ["operator", "="], ["string", [["number", "1"]]],
 	["keyword", "IFSUB"], ["punctuation", "{"],
-	["tag", ["\r\n\t\tfoo "]], ["operator", "="], ["string", ["bar"]],
+	["tag", ["foo"]], ["operator", "="], ["string", ["bar"]],
 	["punctuation", "}"],
+	["punctuation", "}"],
+	["tag", ["Namespace\\Classes\\Test"]], ["punctuation", "{"],
+	["tag", ["baz", ["punctuation", "."]]], ["tag", ["foo"]], ["operator", "="], ["string", ["bar"]],
 	["punctuation", "}"]
 ]
 
