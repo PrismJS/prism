@@ -6,7 +6,8 @@
 		'comment': [
 			{
 				// multiline comments /* */
-				pattern: /[^\/]\/\*[^.][\s\S]*?\*\//,
+				pattern: /(^|[^\\])\/\*[\s\S]*?(?:\*\/|$)/,
+				lookbehind: true
 			},
 			{
 				// double-slash comments - ignored when backslashes or colon is found in front

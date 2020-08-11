@@ -13,7 +13,7 @@ baz = //url
 	["comment", "// comment"],
 	["comment", "# comment"],
 	["tag", ["text"]], ["comment", "// comment"],
-	["comment", "\n/*\r\ncomment\r\n*/"],
+	["comment", "/*\r\ncomment\r\n*/"],
 	["tag", ["foo"]], ["operator", "="], ["string", ["bar "]], ["comment", "// comment"],
 	["tag", ["baz"]], ["operator", "="], ["string", ["//url"]]
 ]
