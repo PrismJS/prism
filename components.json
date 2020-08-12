@@ -126,7 +126,7 @@
 		"arduino": {
 			"title": "Arduino",
 			"require": "cpp",
-			"owner": "eisbehr-"
+			"owner": "dkern"
 		},
 		"arff": {
 			"title": "ARFF",
@@ -728,6 +728,11 @@
 			"title": "Nand To Tetris HDL",
 			"owner": "stephanmax"
 		},
+		"naniscript": {
+			"title": "Naninovel Script",
+			"owner": "Elringus",
+			"alias": "nani"
+		},
 		"nasm": {
 			"title": "NASM",
 			"owner": "rbmj"
@@ -1140,6 +1145,14 @@
 			"optional": "js-templates",
 			"alias": "ts",
 			"owner": "vkbansal"
+		},
+		"typoscript": {
+			"title": "TypoScript",
+			"alias": "tsconfig",
+			"aliasTitles": {
+				"tsconfig": "TSConfig"
+			},
+			"owner": "dkern"
 		},
 		"unrealscript": {
 			"title": "UnrealScript",
