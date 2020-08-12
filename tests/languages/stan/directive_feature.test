@@ -1,0 +1,14 @@
+#include my-std-normal.stan  // definition of standard normal
+	#include my-std-normal.stan
+
+----------------------------------------------------
+
+[
+	["directive", "#include my-std-normal.stan  "],
+	["comment", "// definition of standard normal"],
+	["directive", "#include my-std-normal.stan"]
+]
+
+----------------------------------------------------
+
+Checks for include directives.

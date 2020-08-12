@@ -1070,6 +1070,10 @@
 			"title": "SQL",
 			"owner": "multipetros"
 		},
+		"stan": {
+			"title": "Stan",
+			"owner": "RunDevelopment"
+		},
 		"iecst": {
 			"title": "Structured Text (IEC 61131-3)",
 			"owner": "serhioromano"

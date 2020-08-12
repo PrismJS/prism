@@ -1,0 +1,17 @@
+# comment
+// comment
+/*
+comment
+*/
+
+----------------------------------------------------
+
+[
+	["comment", "# comment"],
+	["comment", "// comment"],
+	["comment", "/*\ncomment\n*/"]
+]
+
+----------------------------------------------------
+
+Checks for comments.
