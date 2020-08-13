@@ -76,6 +76,7 @@
 		"lilypond": "scheme",
 		"markdown": "markup",
 		"markup-templating": "markup",
+		"mongodb": "javascript",
 		"n4js": "javascript",
 		"nginx": "clike",
 		"objectivec": "c",
