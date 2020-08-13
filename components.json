@@ -704,6 +704,11 @@
 			"title": "Mizar",
 			"owner": "Golmote"
 		},
+		"mongodb": {
+			"title": "MongoDB",
+			"owner": "airs0urce",
+			"require": "javascript"
+		},
 		"monkey": {
 			"title": "Monkey",
 			"owner": "Golmote"
