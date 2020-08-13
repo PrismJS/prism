@@ -1,6 +1,3 @@
-
-
-
 (function (Prism) {
 
 	var operators = [
@@ -62,7 +59,7 @@
 		return operator.replace('$', '\\$');
 	});
 
-	var operatorsRegex = '(?:' + operators.join('(?:\\b|:)|') + ')\\b';
+	var operatorsSource = '(?:' + operators.join('|') + ')\\b';
 
 	Prism.languages.mongodb = Prism.languages.extend('javascript', {});
 
@@ -71,7 +68,7 @@
 			pattern: /(?:(["'])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1|[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*)(?=\s*:)/,
 			greedy: true,
 			inside: {
-				'keyword': RegExp('^([\'"])?' + operatorsRegex + '(?:\\1)?$')
+				'keyword': RegExp('^([\'"])?' + operatorsSource + '(?:\\1)?$')
 			}
 		}
 	});
@@ -79,7 +76,7 @@
 	Prism.languages.mongodb.string.inside = {
 		url: {
 			// url pattern
-			pattern: /https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b[-a-zA-Z0-9()@:%_\+.~#?&//=]*/,  
+			pattern: /https?:\/\/[-\w@:%.+~#=]{1,256}\.[a-z0-9()]{1,6}\b[-\w()@:%+.~#?&/=]*/i, 
 			greedy: true
 		},
 		entity: {
@@ -97,7 +94,3 @@
 	});
 
 }(Prism));
-
-
-
-
