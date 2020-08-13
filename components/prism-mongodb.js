@@ -90,7 +90,10 @@
 	};
 
 	Prism.languages.insertBefore('mongodb', 'constant', {
-		'builtin': RegExp('\\b(?:' + builtinFunctions.join('|') + ')\\b')
+		'builtin': {
+			pattern: RegExp('\\b(?:' + builtinFunctions.join('|') + ')\\b'),
+			alias: 'keyword'
+		}
 	});
 
 }(Prism));
