@@ -1,0 +1,21 @@
+=
+< <= > >=
++ - * / %
+
+and not or
+и не или
+
+----------------------------------------------------
+
+[
+	["operator", "="],
+	["operator", "<"], ["operator", "<="], ["operator", ">"],["operator", ">="],
+	["operator", "+"], ["operator", "-"], ["operator", "*"], ["operator", "/"],	["operator", "%"]
+
+	["operator", "and"], ["operator", "not"], ["operator", "or"],
+	["operator", "и"], ["operator", "не"], ["operator", "или"]
+]
+
+----------------------------------------------------
+
+Checks for operators.
