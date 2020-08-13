@@ -161,7 +161,6 @@
 		"shortcode": "bbcode",
 		"rbnf": "bnf",
 		"oscript": "bsl",
-		"sdbl": "bsl",
 		"cs": "csharp",
 		"dotnet": "csharp",
 		"coffee": "coffeescript",

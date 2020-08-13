@@ -205,10 +205,9 @@
 		},
 		"bsl": {
 			"title": "BSL (1C:Enterprise)",
-			"alias": ["oscript", "sdbl"],
+			"alias": "oscript",
 			"aliasTitles": {
-				"oscript": "OneScript",
-				"sdbl": "SDBL"
+				"oscript": "OneScript"
 			},
 			"owner": "Diversus23"
 		},		

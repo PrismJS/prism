@@ -42,7 +42,6 @@
 		"rbnf": "RBNF",
 		"bsl": "BSL (1C:Enterprise)",
 		"oscript": "OneScript",
-		"sdbl": "SDBL",
 		"csharp": "C#",
 		"cs": "C#",
 		"dotnet": "C#",

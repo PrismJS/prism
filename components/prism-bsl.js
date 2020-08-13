@@ -19,24 +19,28 @@ Prism.languages.bsl = {
 	'keyword': [
 		{
 			// RU
-			pattern: /\b(?:пока|для|новый|прервать|попытка|исключение|вызватьисключение|иначе|конецпопытки|неопределено|функция|перем|возврат|конецфункции|null|если|иначеесли|процедура|конецпроцедуры|тогда|знач|экспорт|или|конецесли|не|из|каждого|истина|ложь|по|цикл|конеццикла)\b/uig,
-			lookbehind: true		
+			pattern: /(?:(?<=[\p{L}\p{N}_])(?![\p{L}\p{N}_])|(?<![\p{L}\p{N}_])(?=[\p{L}\p{N}_]))(?:пока|для|новый|прервать|попытка|исключение|вызватьисключение|иначе|конецпопытки|неопределено|функция|перем|возврат|конецфункции|если|иначеесли|процедура|конецпроцедуры|тогда|знач|экспорт|конецесли|из|каждого|истина|ложь|по|цикл|конеццикла|истина|ложь)(?:(?<=[\p{L}\p{N}_])(?![\p{L}\p{N}_])|(?<![\p{L}\p{N}_])(?=[\p{L}\p{N}_]))/iu
 		},
 		{
-			// Eng
-			pattern: /\b(?:while|for|new|break|try|except|raise|else|endtry|undefined|function|var|return|endfunction|null|if|elsif|procedure|endprocedure|then|val|export|or|endif|not|in|each|true|false|to|do|enddo)\b/ig,
-			lookbehind: true
+			// EN
+			pattern: /\b(?:while|for|new|break|try|except|raise|else|endtry|undefined|function|var|return|endfunction|null|if|elseif|procedure|endprocedure|then|val|export|endif|in|each|true|false|to|do|enddo|true|false)\b/i,
 		}
 	],
 	'number': /(?:\b\d+\.?\d*|\B\.\d+)(?:E[+-]?\d+)?/i,
-	'operator': [
-		/\+|\)|\(|\.|\,|\\|\*|=|\:|;|<|>|\[|\]|\?/g,
+	'operator': [	
+		/<[=]?|>[=]?|[+\-*\/]=?|[\%=]/i,
+		// RU
 		{
-			pattern: /(^|[^&])\b(?:и|или|не|and|or|not)\b/,
+			pattern: /(?:(?<=[\p{L}\p{N}_])(?![\p{L}\p{N}_])|(?<![\p{L}\p{N}_])(?=[\p{L}\p{N}_]))(?:и|или|не)(?:(?<=[\p{L}\p{N}_])(?![\p{L}\p{N}_])|(?<![\p{L}\p{N}_])(?=[\p{L}\p{N}_]))/iu,
+			lookbehind: true
+		},		
+		// EN
+		{
+			pattern: /(^|[^&])\b(?:and|or|not)\b/,
 			lookbehind: true
 		}
+		
 	],
-	'boolean': /\b(?:истина|ложь|true|false)\b/,
 	'punctuation': /\(\.|\.\)|[()\[\]:;,.]/,	
 	'directive': [
 		// Теги препроцессора вида &Клиент and &Сервер
@@ -54,6 +58,4 @@ Prism.languages.bsl = {
 	]
 };
 
-Prism.languages.sdbl = Prism.languages['bsl'];
-Prism.languages.os = Prism.languages['bsl'];
 Prism.languages.oscript = Prism.languages['bsl'];

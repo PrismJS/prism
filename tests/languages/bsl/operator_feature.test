@@ -1,19 +1,17 @@
-=
 < <= > >=
-+ - * / %
-
-and not or
-и не или
-
++ - * /
+% =
+и или не
+and or not
 ----------------------------------------------------
 
-[
-	["operator", "="],
-	["operator", "<"], ["operator", "<="], ["operator", ">"],["operator", ">="],
-	["operator", "+"], ["operator", "-"], ["operator", "*"], ["operator", "/"],	["operator", "%"]
-
-	["operator", "and"], ["operator", "not"], ["operator", "or"],
-	["operator", "и"], ["operator", "не"], ["operator", "или"]
+[	
+	["operator", "<"], ["operator", "<="], ["operator", ">"], ["operator", ">="],
+	["operator", "+"], ["operator", "-"], ["operator", "*"], ["operator", "/"],
+	["operator", "%"], ["operator", "="],
+	["operator", "и"], ["operator", "или"], ["operator", "не"],
+	["operator", "and"], ["operator", "or"], ["operator", "not"]
+	
 ]
 
 ----------------------------------------------------
