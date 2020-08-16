@@ -12,7 +12,7 @@ Prism.languages.bsl = {
 		},
 		// date & time
 		{
-			pattern: /\'(?:\\?.)*?\'/,
+			pattern: /'(?:[^'\r\n\\]|\\.)*'/,
 			lookbehind: true			
 		}
 	],
