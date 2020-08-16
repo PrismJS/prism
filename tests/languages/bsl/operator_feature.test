@@ -1,16 +1,14 @@
 < <= > >=
 + - * /
 % =
-и или не
-and or not
+and or not и или не
 ----------------------------------------------------
 
 [	
 	["operator", "<"], ["operator", "<="], ["operator", ">"], ["operator", ">="],
 	["operator", "+"], ["operator", "-"], ["operator", "*"], ["operator", "/"],
-	["operator", "%"], ["operator", "="],
-	["operator", "и"], ["operator", "или"], ["operator", "не"],
-	["operator", "and"], ["operator", "or"], ["operator", "not"]
+	["operator", "%"], ["operator", "="],	
+	["operator", "and"], ["operator", "or"], ["operator", "not"], ["operator", "и"], ["operator", "или"], ["operator", "не"]
 	
 ]
 

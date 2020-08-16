@@ -4,14 +4,14 @@
 если иначеесли процедура конецпроцедуры тогда
 знач экспорт конецесли
 из каждого истина по
-цикл конеццикла истина ложь
+цикл конеццикла выполнить
 while for new break try
 except raise else endtry undefined 
 function var return endfunction null
 if elseif procedure endprocedure then
 val export endif
 in each true false to
-do enddo true false
+do enddo execute
 ----------------------------------------------------
 
 [	
@@ -21,7 +21,7 @@ do enddo true false
 	["keyword", "если"], ["keyword", "иначеесли"], ["keyword", "процедура"], ["keyword", "конецпроцедуры"], ["keyword", "тогда"],
 	["keyword", "знач"], ["keyword", "экспорт"], ["keyword", "конецесли"],
 	["keyword", "из"], ["keyword", "каждого"], ["keyword", "истина"], ["keyword", "по"],
-	["keyword", "цикл"], ["keyword", "конеццикла"], ["keyword", "истина"], ["keyword", "ложь"],
+	["keyword", "цикл"], ["keyword", "конеццикла"], ["keyword", "выполнить"],	
 	
 	["keyword", "while"], ["keyword", "for"], ["keyword", "new"], ["keyword", "break"], ["keyword", "try"],
 	["keyword", "except"], ["keyword", "raise"], ["keyword", "else"], ["keyword", "endtry"], ["keyword", "undefined"],
@@ -29,7 +29,7 @@ do enddo true false
 	["keyword", "if"], ["keyword", "elseif"], ["keyword", "procedure"], ["keyword", "endprocedure"], ["keyword", "then"],
 	["keyword", "val"], ["keyword", "export"], ["keyword", "endif"],
 	["keyword", "in"], ["keyword", "each"], ["keyword", "true"], ["keyword", "false"], ["keyword", "to"],
-	["keyword", "do"], ["keyword", "enddo"], ["keyword", "true"], ["keyword", "false"]
+	["keyword", "do"], ["keyword", "enddo"], ["keyword", "execute"]
 ]
 
 ----------------------------------------------------
