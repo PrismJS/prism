@@ -47,7 +47,8 @@ Prism.languages.bsl = {
 	'directive': [
 		// Теги препроцессора вида &Клиент and &Сервер
 		{
-			pattern: /^\s*&.*/gm,
+			pattern: /^(\s*)&.*/m,
+			lookbehind: true,
 			alias: 'important'
 		},
 		// Теги препроцессора вида #Область и #КонецОбласти
