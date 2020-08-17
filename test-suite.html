@@ -94,7 +94,10 @@
 	<p>Your file is built up of two or three sections, separated by ten or more dashes <code>-</code>, starting at the begin of the line:</p>
 	<ol>
 		<li>Your language snippet. The code you want to tokenize using Prism. (<strong>required</strong>)</li>
-		<li>The simplified token stream you expect. Needs to be valid JSON. (<strong>required</strong> or <em>optional</em>)</li>
+		<li>
+			The simplified token stream you expect. Needs to be valid JSON. (<em>optional</em>) <br>
+			If there no token stream defined, the test case will fail unless the <code>--accept</code> flag is present when running the test command (e.g. <code>npm run test:languages -- --accept</code>). If the flag is present and there is no expected token stream, the runner will insert the actual token stream into the test case file, changing it.
+		</li>
 		<li>A comment explaining the test case. (<em>optional</em>)</li>
 	</ol>
 	<p>The easiest way would be to look at an existing test file:</p>
