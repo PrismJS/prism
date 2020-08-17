@@ -54,7 +54,7 @@ Prism.languages.insertBefore('purebasic', 'keyword', {
 				alias: 'fasm-label'
 			},
 			'keyword': [
-				/(?:extern|extern|global)[^;\r\n]*/i,
+				/(?:extern|global)[^;\r\n]*/i,
 				/(?:CPU|FLOAT|DEFAULT).*/
 			],
 			'register': /\b(?:st\d|[xyz]mm\d\d?|[cdt]r\d|r\d\d?[bwd]?|[er]?[abcd]x|[abcd][hl]|[er]?(?:bp|sp|si|di)|[cdefgs]s|mm\d+)\b/i,
