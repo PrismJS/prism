@@ -161,6 +161,7 @@
 		"shell": "bash",
 		"shortcode": "bbcode",
 		"rbnf": "bnf",
+		"oscript": "bsl",
 		"cs": "csharp",
 		"dotnet": "csharp",
 		"coffee": "coffeescript",

@@ -203,6 +203,14 @@
 			"title": "Bro",
 			"owner": "wayward710"
 		},
+		"bsl": {
+			"title": "BSL (1C:Enterprise)",
+			"alias": "oscript",
+			"aliasTitles": {
+				"oscript": "OneScript"
+			},
+			"owner": "Diversus23"
+		},		
 		"c": {
 			"title": "C",
 			"require": "clike",

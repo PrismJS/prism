@@ -40,6 +40,8 @@
 		"bbcode": "BBcode",
 		"bnf": "BNF",
 		"rbnf": "RBNF",
+		"bsl": "BSL (1C:Enterprise)",
+		"oscript": "OneScript",
 		"csharp": "C#",
 		"cs": "C#",
 		"dotnet": "C#",
