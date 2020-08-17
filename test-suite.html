@@ -93,8 +93,11 @@
 
 	<p>Your file is built up of two or three sections, separated by ten or more dashes <code>-</code>, starting at the begin of the line:</p>
 	<ol>
-		<li>Your language snippet. The code you want to compile using Prism. (<strong>required</strong>)</li>
-		<li>The simplified token stream you expect. Needs to be valid JSON. (<strong>required</strong>)</li>
+		<li>Your language snippet. The code you want to tokenize using Prism. (<strong>required</strong>)</li>
+		<li>
+			The simplified token stream you expect. Needs to be valid JSON. (<em>optional</em>) <br>
+			If there no token stream defined, the test case will fail unless the <code>--accept</code> flag is present when running the test command (e.g. <code>npm run test:languages -- --accept</code>). If the flag is present and there is no expected token stream, the runner will insert the actual token stream into the test case file, changing it.
+		</li>
 		<li>A comment explaining the test case. (<em>optional</em>)</li>
 	</ol>
 	<p>The easiest way would be to look at an existing test file:</p>
@@ -114,10 +117,25 @@
 
 This is a comment explaining this test case.</code></pre>
 
+	<h2 id="writing-tests-the-easy-way">The easy way</h2>
+	<p>The easy way to create one or multiple new test case(s) is this:</p>
+
+	<ol>
+		<li>Create a new file for a new test case in <code>tests/languages/${language}</code>.</li>
+		<li>Insert the code you want to test (and nothing more).</li>
+		<li>Repeat the first two steps for as many test cases as you want.</li>
+		<li>Run <code>npm run test:languages -- --accept</code>.</li>
+		<li>Done.</li>
+	</ol>
+
+	<p>This works by making the test runner insert the actual token stream of you test code as the expected token stream. <strong>Carefully check that the inserted token stream is actually what you expect or else the test is meaningless!</strong></p>
+
+	<p>Optionally, you can then also add comments to test cases.</p>
+
 
 	<h2 id="writing-tests-explaining-the-simplified-token-stream">Explaining the simplified token stream</h2>
 
-	<p>While compiling, Prism transforms your source code into a token stream. This is basically a tree of nested tokens (or arrays, or strings).</p>
+	<p>While highlighting, Prism transforms your source code into a token stream. This is basically a tree of nested tokens (or arrays, or strings).</p>
 	<p>As these trees are hard to write by hand, the test runner uses a simplified version of it.</p>
 	<p>It uses the following rules:</p>
 	<ul>
