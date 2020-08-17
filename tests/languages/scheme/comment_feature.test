@@ -1,11 +1,18 @@
 ;
 ; foobar
 
+#|
+ comment
+ #| nested comment |#
+|#
+
 ----------------------------------------------------
 
 [
 	["comment", ";"],
-	["comment", "; foobar"]
+	["comment", "; foobar"],
+
+	["comment", "#|\r\n comment\r\n #| nested comment |#\r\n|#"]
 ]
 
 ----------------------------------------------------
