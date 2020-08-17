@@ -1210,13 +1210,7 @@ and the language definitions to use, and returns an array with the tokenized cod
 
     <h5>Example</h5>
     
-    <pre class="prettyprint"><code>let code = `var foo = 0;`;
-let tokens = Prism.tokenize(code, Prism.languages.javascript);
-tokens.forEach(token => {
-    if (token instanceof Prism.Token &amp;&amp; token.type === 'number') {
-        console.log(`Found numeric literal: ${token.content}`);
-    }
-});</code></pre>
+    <pre class="prettyprint"><code>let code = `var foo = 0;`;let tokens = Prism.tokenize(code, Prism.languages.javascript);tokens.forEach(token => {    if (token instanceof Prism.Token &amp;&amp; token.type === 'number') {        console.log(`Found numeric literal: ${token.content}`);    }});</code></pre>
 
 
 
