@@ -45,7 +45,16 @@ function docsRemoveExcessFiles() {
 	return del(jsDoc.junk);
 }
 
-const docs = series(docsClean, docsCreate, docsRemoveExcessFiles, docsAddFavicon);
+function docsFixLineEnds(cb) {
+	// https://github.com/jsdoc/jsdoc/issues/1837
+	return pump([
+		src('docs/*.html'),
+		replace(/\r\n?|\n/g, '\n'),
+		dest('docs/')
+	], cb);
+}
+
+const docs = series(docsClean, docsCreate, docsRemoveExcessFiles, docsAddFavicon, docsFixLineEnds);
 
 module.exports = {
 	docs,
