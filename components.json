@@ -913,6 +913,11 @@
 			"alias": "pbfasm",
 			"owner": "HeX0R101"
 		},
+		"purescript": {
+			"title": "PureScript",
+			"alias": "purs",
+			"owner": "Sri Harsha Chilakapati"
+		},
 		"python": {
 			"title": "Python",
 			"alias": "py",

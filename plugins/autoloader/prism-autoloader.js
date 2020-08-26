@@ -197,6 +197,7 @@
 		"pq": "powerquery",
 		"mscript": "powerquery",
 		"pbfasm": "purebasic",
+		"purs": "purescript",
 		"py": "python",
 		"rkt": "racket",
 		"rpy": "renpy",
