@@ -38,6 +38,10 @@
 			alias: 'module'
 		},
 		{
+			pattern: /\b(?:await|break|catch|continue|do|else|for|finally|if|return|switch|throw|try|while|yield)\b/,
+			alias: 'control-flow'
+		},
+		{
 			pattern: /\bnull\b/,
 			alias: ['null', 'nil']
 		},
