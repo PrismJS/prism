@@ -1470,7 +1470,16 @@ Prism.languages.insertBefore('javascript', 'keyword', {
 	'regex': {
 		pattern: /((?:^|[^$\w\xA0-\uFFFF."'\])\s]|\b(?:return|yield))\s*)\/(?:\[(?:[^\]\\\r\n]|\\.)*]|\\.|[^/\\\[\r\n])+\/[gimyus]{0,6}(?=(?:\s|\/\*(?:[^*]|\*(?!\/))*\*\/)*(?:$|[\r\n,.;:})\]]|\/\/))/,
 		lookbehind: true,
-		greedy: true
+		greedy: true,
+		inside: {
+			'language-regex': {
+				pattern: /^(\/)[\s\S]+(?=\/[gimyus]*$)/,
+				lookbehind: true,
+				inside: Prism.languages.regex
+			},
+			'regex-flags': /[gimyus]+$/,
+			'regex-delimiter': /^\/|\/$/
+		}
 	},
 	// This must be declared before keyword because we use "function" inside the look-forward
 	'function-variable': {
