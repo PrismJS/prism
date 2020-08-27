@@ -19,44 +19,44 @@ yield /regex/;
 [
 	["regex", [
 		["regex-delimiter", "/"],
-		["language-regex", "foo bar"],
+		["regex-source", "foo bar"],
 		["regex-delimiter", "/"]
 	]],
 	["punctuation", ";"],
 	["regex", [
 		["regex-delimiter", "/"],
-		["language-regex", "foo"],
+		["regex-source", "foo"],
 		["regex-delimiter", "/"],
 		["regex-flags", "gimyus"]
 	]],
 	["punctuation", ","],
 	["regex", [
 		["regex-delimiter", "/"],
-		["language-regex", "[\\[\\]]{2,4}(?:foo)*"],
+		["regex-source", "[\\[\\]]{2,4}(?:foo)*"],
 		["regex-delimiter", "/"]
 	]],
 	["punctuation", ";"],
 	["regex", [
 		["regex-delimiter", "/"],
-		["language-regex", "foo\"test\"bar"],
+		["regex-source", "foo\"test\"bar"],
 		["regex-delimiter", "/"]
 	]],
 	["punctuation", ";"],
 	["regex", [
 		["regex-delimiter", "/"],
-		["language-regex", "foo\\/"],
+		["regex-source", "foo\\/"],
 		["regex-delimiter", "/"]
 	]],
 	["punctuation", ";"],
 	["regex", [
 		["regex-delimiter", "/"],
-		["language-regex", "[]"],
+		["regex-source", "[]"],
 		["regex-delimiter", "/"]
 	]],
 	["punctuation", ";"],
 	["regex", [
 		["regex-delimiter", "/"],
-		["language-regex", "[\\]/]"],
+		["regex-source", "[\\]/]"],
 		["regex-delimiter", "/"]
 	]],
 	["punctuation", ";"],
@@ -68,13 +68,13 @@ yield /regex/;
 	["punctuation", ";"],
 	["regex", [
 		["regex-delimiter", "/"],
-		["language-regex", " '1' '2' '3' '4' '5' "],
+		["regex-source", " '1' '2' '3' '4' '5' "],
 		["regex-delimiter", "/"]
 	]],
 	["punctuation", "["],
 	["regex", [
 		["regex-delimiter", "/"],
-		["language-regex", "foo"],
+		["regex-source", "foo"],
 		["regex-delimiter", "/"]
 	]],
 	["punctuation", "]"],
@@ -84,7 +84,7 @@ yield /regex/;
 	["operator", "="],
 	["regex", [
 		["regex-delimiter", "/"],
-		["language-regex", "regex"],
+		["regex-source", "regex"],
 		["regex-delimiter", "/"],
 		["regex-flags", "m"]
 	]],
@@ -96,26 +96,26 @@ yield /regex/;
 	["operator", "?"],
 	["regex", [
 		["regex-delimiter", "/"],
-		["language-regex", "regex"],
+		["regex-source", "regex"],
 		["regex-delimiter", "/"]
 	]],
 	["operator", ":"],
 	["regex", [
 		["regex-delimiter", "/"],
-		["language-regex", "another one"],
+		["regex-source", "another one"],
 		["regex-delimiter", "/"]
 	]],
 	["keyword", "return"],
 	["regex", [
 		["regex-delimiter", "/"],
-		["language-regex", "regex"],
+		["regex-source", "regex"],
 		["regex-delimiter", "/"]
 	]],
 	["punctuation", ";"],
 	["keyword", "yield"],
 	["regex", [
 		["regex-delimiter", "/"],
-		["language-regex", "regex"],
+		["regex-source", "regex"],
 		["regex-delimiter", "/"]
 	]],
 	["punctuation", ";"]

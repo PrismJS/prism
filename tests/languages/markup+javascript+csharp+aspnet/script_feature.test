@@ -45,7 +45,7 @@
 		["language-javascript", [
 			["regex", [
 				["regex-delimiter", "/"],
-				["language-regex", "foo"],
+				["regex-source", "foo"],
 				["regex-delimiter", "/"]
 			]]
 		]]

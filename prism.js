@@ -1472,12 +1472,13 @@ Prism.languages.insertBefore('javascript', 'keyword', {
 		lookbehind: true,
 		greedy: true,
 		inside: {
-			'language-regex': {
-				pattern: /^(\/)[\s\S]+(?=\/[gimyus]*$)/,
+			'regex-source': {
+				pattern: /^(\/)[\s\S]+(?=\/[a-z]*$)/,
 				lookbehind: true,
+				alias: 'language-regex',
 				inside: Prism.languages.regex
 			},
-			'regex-flags': /[gimyus]+$/,
+			'regex-flags': /[a-z]+$/,
 			'regex-delimiter': /^\/|\/$/
 		}
 	},

@@ -30,9 +30,10 @@ Prism.languages.insertBefore('javascript', 'keyword', {
 		lookbehind: true,
 		greedy: true,
 		inside: {
-			'language-regex': {
+			'regex-source': {
 				pattern: /^(\/)[\s\S]+(?=\/[a-z]*$)/,
 				lookbehind: true,
+				alias: 'language-regex',
 				inside: Prism.languages.regex
 			},
 			'regex-flags': /[a-z]+$/,
