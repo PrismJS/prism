@@ -32,6 +32,31 @@
 		]
 	});
 
+	/**
+	 * Replaces the `<ID>` placeholder in the given pattern with a pattern for general JS identifier.
+	 *
+	 * @param {string} source
+	 * @param {string} [flags]
+	 * @returns {RegExp}
+	 */
+	function withId(source, flags) {
+		return RegExp(
+			source.replace(/<ID>/g, function () { return /[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*/.source; }),
+			flags);
+	}
+	Prism.languages.insertBefore('javascript', 'keyword', {
+		'imports': {
+			pattern: withId(/(\bimport\b\s*)(?:<ID>(?:\s*,\s*(?:\*\s*as\s+<ID>|\{[^{}]*\}))?|\*\s*as\s+<ID>|\{[^{}]*\})(?=\s*\bfrom\b)/.source),
+			lookbehind: true,
+			inside: Prism.languages.javascript
+		},
+		'exports': {
+			pattern: withId(/(\bexport\b\s*)(?:\*(?:\s*as\s+<ID>)?(?=\s*\bfrom\b)|\{[^{}]*\})/.source),
+			lookbehind: true,
+			inside: Prism.languages.javascript
+		}
+	});
+
 	Prism.languages.javascript['keyword'].unshift(
 		{
 			pattern: /\b(?:as|default|export|from|import)\b/,
@@ -60,7 +85,7 @@
 
 	Prism.languages.insertBefore('javascript', 'punctuation', {
 		'property-access': {
-			pattern: /(\.\s*)#?[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*/,
+			pattern: withId(/(\.\s*)#?<ID>/.source),
 			lookbehind: true
 		},
 		'maybe-class-name': {
