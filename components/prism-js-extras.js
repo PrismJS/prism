@@ -46,11 +46,13 @@
 	}
 	Prism.languages.insertBefore('javascript', 'keyword', {
 		'imports': {
+			// https://tc39.es/ecma262/#sec-imports
 			pattern: withId(/(\bimport\b\s*)(?:<ID>(?:\s*,\s*(?:\*\s*as\s+<ID>|\{[^{}]*\}))?|\*\s*as\s+<ID>|\{[^{}]*\})(?=\s*\bfrom\b)/.source),
 			lookbehind: true,
 			inside: Prism.languages.javascript
 		},
 		'exports': {
+			// https://tc39.es/ecma262/#sec-exports
 			pattern: withId(/(\bexport\b\s*)(?:\*(?:\s*as\s+<ID>)?(?=\s*\bfrom\b)|\{[^{}]*\})/.source),
 			lookbehind: true,
 			inside: Prism.languages.javascript
