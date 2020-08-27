@@ -33,7 +33,7 @@
 	});
 
 	/**
-	 * Replaces the `<ID>` placeholder in the given pattern with a pattern for general JS identifier.
+	 * Replaces the `<ID>` placeholder in the given pattern with a pattern for general JS identifiers.
 	 *
 	 * @param {string} source
 	 * @param {string} [flags]
