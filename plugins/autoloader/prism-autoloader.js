@@ -202,6 +202,7 @@
 		"rpy": "renpy",
 		"robot": "robotframework",
 		"rb": "ruby",
+		"smlnj": "sml",
 		"sol": "solidity",
 		"sln": "solution-file",
 		"rq": "sparql",

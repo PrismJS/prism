@@ -210,7 +210,7 @@
 				"oscript": "OneScript"
 			},
 			"owner": "Diversus23"
-		},		
+		},
 		"c": {
 			"title": "C",
 			"require": "clike",
@@ -1047,6 +1047,14 @@
 			"title": "Smarty",
 			"require": "markup-templating",
 			"owner": "Golmote"
+		},
+		"sml": {
+			"title": "SML",
+			"alias": "smlnj",
+			"aliasTitles": {
+				"smlnj": "SML/NJ"
+			},
+			"owner": "RunDevelopment"
 		},
 		"solidity": {
 			"title": "Solidity (Ethereum)",
