@@ -99,6 +99,7 @@
 			"javascript"
 		],
 		"purebasic": "clike",
+		"purescript": "haskell",
 		"qml": "javascript",
 		"qore": "clike",
 		"racket": "scheme",

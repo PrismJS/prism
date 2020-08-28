@@ -915,6 +915,7 @@
 		},
 		"purescript": {
 			"title": "PureScript",
+			"require": "haskell",
 			"alias": "purs",
 			"owner": "Sri Harsha Chilakapati"
 		},

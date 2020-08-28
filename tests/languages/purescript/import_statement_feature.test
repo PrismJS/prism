@@ -6,24 +6,24 @@ import Foo.Bar (test)
 ----------------------------------------------------
 
 [
-	["import_statement", [
+	["import-statement", [
 		["keyword", "import"],
 		" Foo"
 	]],
-	["import_statement", [
+	["import-statement", [
 		["keyword", "import"],
 		" Foo_42.Bar ",
 		["keyword", "as"],
 		" Foobar"
 	]],
-	["import_statement", [
+	["import-statement", [
 		["keyword", "import"],
 		" Foo.Bar ",
 		["keyword", "as"],
 		" Foo.Baz ",
 		["keyword", "hiding"]
 	]],
-	["import_statement", [
+	["import-statement", [
 	    ["keyword", "import"],
 	    " Foo.Bar"
 	]],
