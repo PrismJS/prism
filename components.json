@@ -917,7 +917,7 @@
 			"title": "PureScript",
 			"require": "haskell",
 			"alias": "purs",
-			"owner": "Sri Harsha Chilakapati"
+			"owner": "sriharshachilakapati"
 		},
 		"python": {
 			"title": "Python",
