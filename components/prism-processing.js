@@ -6,7 +6,7 @@ Prism.languages.insertBefore('processing', 'number', {
 	// Special case: XML is a type
 	'constant': /\b(?!XML\b)[A-Z][A-Z\d_]+\b/,
 	'type': {
-		pattern: /\b(?:boolean|byte|char|color|double|float|int|XML|[A-Z]\w*)\b/,
+		pattern: /\b(?:boolean|byte|char|color|double|float|int|[A-Z]\w*)\b/,
 		alias: 'variable'
 	}
 });
