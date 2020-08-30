@@ -913,6 +913,12 @@
 			"alias": "pbfasm",
 			"owner": "HeX0R101"
 		},
+		"purescript": {
+			"title": "PureScript",
+			"require": "haskell",
+			"alias": "purs",
+			"owner": "sriharshachilakapati"
+		},
 		"python": {
 			"title": "Python",
 			"alias": "py",
