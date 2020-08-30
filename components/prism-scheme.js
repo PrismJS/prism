@@ -4,7 +4,7 @@ Prism.languages.scheme = {
 	// and (potentially nested) multiline comments:
 	//   #| comment #| nested |# still comment |#
 	// (only 1 level of nesting is supported)
-	'comment': /;.*|#\|(?:[^#|]|#(?!\|)|\|(?!#)|#\|(?:[^#|]|#(?!\|)|\|(?!#)|)*\|#)*\|#/,
+	'comment': /;.*|#;\s*\((?:[^()]|\([^()]*\))*\)|#\|(?:[^#|]|#(?!\|)|\|(?!#)|#\|(?:[^#|]|#(?!\|)|\|(?!#))*\|#)*\|#/,
 	'string': {
 		pattern: /"(?:[^"\\]|\\.)*"/,
 		greedy: true
@@ -39,7 +39,7 @@ Prism.languages.scheme = {
 		lookbehind: true
 	},
 	'operator': {
-		pattern: /(\()(?:[-+*%\/]|[<>]=?|=>?)(?=[()\s]|$)/,
+		pattern: /(\()(?:[-+*%/]|[<>]=?|=>?)(?=[()\s]|$)/,
 		lookbehind: true
 	},
 	'number': {
