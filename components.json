@@ -73,6 +73,7 @@
 			"title": "JavaScript",
 			"require": "clike",
 			"modify": "markup",
+			"optional": "regex",
 			"alias": "js",
 			"option": "default"
 		},
@@ -210,7 +211,7 @@
 				"oscript": "OneScript"
 			},
 			"owner": "Diversus23"
-		},		
+		},
 		"c": {
 			"title": "C",
 			"require": "clike",
@@ -969,14 +970,6 @@
 		},
 		"regex": {
 			"title": "Regex",
-			"modify": [
-				"actionscript",
-				"coffeescript",
-				"flow",
-				"javascript",
-				"typescript",
-				"vala"
-			],
 			"owner": "RunDevelopment"
 		},
 		"renpy": {
@@ -1181,6 +1174,7 @@
 		"vala": {
 			"title": "Vala",
 			"require": "clike",
+			"optional": "regex",
 			"owner": "TemplarVolk"
 		},
 		"vbnet": {
