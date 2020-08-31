@@ -1,65 +1,103 @@
-(define)
+(begin)
+(case)
+(case-lambda)
+(cond)
+(cond-expand)
 (define-library)
 (define-macro)
+(define-record-type)
 (define-syntax)
 (define-values)
+(define)
 (defmacro)
-(case-lambda)
-(lambda)
-(let)
-(let*)
-(letrec)
-(let-values)
-(let*-values)
-(letrec-values)
-(else)
-(if)
-(cond)
-(begin)
-(delay)
 (delay-force)
-(parameterize)
+(delay)
+(do)
+(else)
+(export)
+(except)
 (guard)
-(set!)
-(quasi-quote)
-(quote)
-(syntax-rules)
-(syntax-case)
-(letrec-syntax)
+(if)
+(import)
+(include)
+(include-ci)
+(include-library-declarations)
+(lambda)
 (let-syntax)
+(let-values)
+(let)
+(let*-values)
+(let*)
+(letrec-syntax)
+(letrec-values)
+(letrec)
+(letrec*)
+(only)
+(parameterize)
+(prefix)
+(quasi-quote)
+(quasiquote)
+(quote)
+(rename)
+(set!)
+(syntax-case)
+(syntax-rules)
+(unless)
+(unquote)
+(unquote-splicing)
+(when)
 
 ----------------------------------------------------
 
 [
-	["punctuation", "("], ["keyword", "define"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "begin"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "case"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "case-lambda"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "cond"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "cond-expand"], ["punctuation", ")"],
 	["punctuation", "("], ["keyword", "define-library"], ["punctuation", ")"],
 	["punctuation", "("], ["keyword", "define-macro"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "define-record-type"], ["punctuation", ")"],
 	["punctuation", "("], ["keyword", "define-syntax"], ["punctuation", ")"],
 	["punctuation", "("], ["keyword", "define-values"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "define"], ["punctuation", ")"],
 	["punctuation", "("], ["keyword", "defmacro"], ["punctuation", ")"],
-	["punctuation", "("], ["keyword", "case-lambda"], ["punctuation", ")"],
-	["punctuation", "("], ["keyword", "lambda"], ["punctuation", ")"],
-	["punctuation", "("], ["keyword", "let"], ["punctuation", ")"],
-	["punctuation", "("], ["keyword", "let*"], ["punctuation", ")"],
-	["punctuation", "("], ["keyword", "letrec"], ["punctuation", ")"],
-	["punctuation", "("], ["keyword", "let-values"], ["punctuation", ")"],
-	["punctuation", "("], ["keyword", "let*-values"], ["punctuation", ")"],
-	["punctuation", "("], ["keyword", "letrec-values"], ["punctuation", ")"],
-	["punctuation", "("], ["keyword", "else"], ["punctuation", ")"],
-	["punctuation", "("], ["keyword", "if"], ["punctuation", ")"],
-	["punctuation", "("], ["keyword", "cond"], ["punctuation", ")"],
-	["punctuation", "("], ["keyword", "begin"], ["punctuation", ")"],
-	["punctuation", "("], ["keyword", "delay"], ["punctuation", ")"],
 	["punctuation", "("], ["keyword", "delay-force"], ["punctuation", ")"],
-	["punctuation", "("], ["keyword", "parameterize"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "delay"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "do"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "else"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "export"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "except"], ["punctuation", ")"],
 	["punctuation", "("], ["keyword", "guard"], ["punctuation", ")"],
-	["punctuation", "("], ["keyword", "set!"], ["punctuation", ")"],
-	["punctuation", "("], ["keyword", "quasi-quote"], ["punctuation", ")"],
-	["punctuation", "("], ["keyword", "quote"], ["punctuation", ")"],
-	["punctuation", "("], ["keyword", "syntax-rules"], ["punctuation", ")"],
-	["punctuation", "("], ["keyword", "syntax-case"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "if"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "import"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "include"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "include-ci"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "include-library-declarations"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "lambda"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "let-syntax"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "let-values"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "let"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "let*-values"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "let*"], ["punctuation", ")"],
 	["punctuation", "("], ["keyword", "letrec-syntax"], ["punctuation", ")"],
-	["punctuation", "("], ["keyword", "let-syntax"], ["punctuation", ")"]
+	["punctuation", "("], ["keyword", "letrec-values"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "letrec"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "letrec*"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "only"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "parameterize"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "prefix"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "quasi-quote"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "quasiquote"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "quote"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "rename"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "set!"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "syntax-case"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "syntax-rules"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "unless"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "unquote"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "unquote-splicing"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "when"], ["punctuation", ")"]
 ]
 
 ----------------------------------------------------

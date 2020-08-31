@@ -150,6 +150,7 @@
 		"protobuf": "Protocol Buffers",
 		"purebasic": "PureBasic",
 		"pbfasm": "PureBasic",
+		"purs": "PureScript",
 		"py": "Python",
 		"q": "Q (kdb+ database)",
 		"qml": "QML",

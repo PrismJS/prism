@@ -1,51 +1,397 @@
-(cons)
-(car)
-(cdr)
-(null?)
-(pair?)
-(boolean?)
-(eof-object?)
-(char?)
-(procedure?)
-(number?)
-(port?)
-(string?)
-(vector?)
-(symbol?)
-(bytevector?)
-(list)
-(call-with-current-continuation)
-(call/cc)
-(append)
-(abs)
-(apply)
-(eval)
+(abs
+(and
+(append
+(apply
+(assoc
+(assq
+(assv
+(binary-port?
+(boolean=?
+(boolean?
+(bytevector
+(bytevector-append
+(bytevector-copy
+(bytevector-copy!
+(bytevector-length
+(bytevector-u8-ref
+(bytevector-u8-set!
+(bytevector?
+(caar
+(cadr
+(call-with-current-continuation
+(call-with-port
+(call-with-values
+(call/cc
+(car
+(cdar
+(cddr
+(cdr
+(ceiling
+(char->integer
+(char-ready?
+(char<=?
+(char<?
+(char=?
+(char>=?
+(char>?
+(char?
+(close-input-port
+(close-output-port
+(close-port
+(complex?
+(cons
+(current-error-port
+(current-input-port
+(current-output-port
+(denominator
+(dynamic-wind
+(eof-object
+(eof-object?
+(eq?
+(equal?
+(eqv?
+(error
+(error-object-irritants
+(error-object-message
+(error-object?
+(eval
+(even?
+(exact
+(exact-integer-sqrt
+(exact-integer?
+(exact?
+(expt
+(features
+(file-error?
+(floor
+(floor-quotient
+(floor-remainder
+(floor/
+(flush-output-port
+(for-each
+(gcd
+(get-output-bytevector
+(get-output-string
+(inexact
+(inexact?
+(input-port-open?
+(input-port?
+(integer->char
+(integer?
+(lcm
+(length
+(list
+(list->string
+(list->vector
+(list-copy
+(list-ref
+(list-set!
+(list-tail
+(list?
+(make-bytevector
+(make-list
+(make-parameter
+(make-string
+(make-vector
+(map
+(max
+(member
+(memq
+(memv
+(min
+(modulo
+(negative?
+(newline
+(not
+(null?
+(number->string
+(number?
+(numerator
+(odd?
+(open-input-bytevector
+(open-input-string
+(open-output-bytevector
+(open-output-string
+(or
+(output-port-open?
+(output-port?
+(pair?
+(peek-char
+(peek-u8
+(port?
+(positive?
+(procedure?
+(quotient
+(raise
+(raise-continuable
+(rational?
+(rationalize
+(read-bytevector
+(read-bytevector!
+(read-char
+(read-error?
+(read-line
+(read-string
+(read-u8
+(real?
+(remainder
+(reverse
+(round
+(set-car!
+(set-cdr!
+(square
+(string
+(string->list
+(string->number
+(string->symbol
+(string->utf8
+(string->vector
+(string-append
+(string-copy
+(string-copy!
+(string-fill!
+(string-for-each
+(string-length
+(string-map
+(string-ref
+(string-set!
+(string<=?
+(string<?
+(string=?
+(string>=?
+(string>?
+(string?
+(substring
+(symbol->string
+(symbol=?
+(symbol?
+(syntax-error
+(textual-port?
+(truncate
+(truncate-quotient
+(truncate-remainder
+(truncate/
+(u8-ready?
+(utf8->string
+(values
+(vector
+(vector->list
+(vector->string
+(vector-append
+(vector-copy
+(vector-copy!
+(vector-fill!
+(vector-for-each
+(vector-length
+(vector-map
+(vector-ref
+(vector-set!
+(vector?
+(with-exception-handler
+(write-bytevector
+(write-char
+(write-string
+(write-u8
+(zero?
 
 ----------------------------------------------------
 
 [
-	["punctuation", "("], ["builtin", "cons"], ["punctuation", ")"],
-	["punctuation", "("], ["builtin", "car"], ["punctuation", ")"],
-	["punctuation", "("], ["builtin", "cdr"], ["punctuation", ")"],
-	["punctuation", "("], ["builtin", "null?"], ["punctuation", ")"],
-	["punctuation", "("], ["builtin", "pair?"], ["punctuation", ")"],
-	["punctuation", "("], ["builtin", "boolean?"], ["punctuation", ")"],
-	["punctuation", "("], ["builtin", "eof-object?"], ["punctuation", ")"],
-	["punctuation", "("], ["builtin", "char?"], ["punctuation", ")"],
-	["punctuation", "("], ["builtin", "procedure?"], ["punctuation", ")"],
-	["punctuation", "("], ["builtin", "number?"], ["punctuation", ")"],
-	["punctuation", "("], ["builtin", "port?"], ["punctuation", ")"],
-	["punctuation", "("], ["builtin", "string?"], ["punctuation", ")"],
-	["punctuation", "("], ["builtin", "vector?"], ["punctuation", ")"],
-	["punctuation", "("], ["builtin", "symbol?"], ["punctuation", ")"],
-	["punctuation", "("], ["builtin", "bytevector?"], ["punctuation", ")"],
-	["punctuation", "("], ["builtin", "list"], ["punctuation", ")"],
-	["punctuation", "("], ["builtin", "call-with-current-continuation"], ["punctuation", ")"],
-	["punctuation", "("], ["builtin", "call/cc"], ["punctuation", ")"],
-	["punctuation", "("], ["builtin", "append"], ["punctuation", ")"],
-	["punctuation", "("], ["builtin", "abs"], ["punctuation", ")"],
-	["punctuation", "("], ["builtin", "apply"], ["punctuation", ")"],
-	["punctuation", "("], ["builtin", "eval"], ["punctuation", ")"]
+	["punctuation", "("], ["builtin", "abs"],
+	["punctuation", "("], ["builtin", "and"],
+	["punctuation", "("], ["builtin", "append"],
+	["punctuation", "("], ["builtin", "apply"],
+	["punctuation", "("], ["builtin", "assoc"],
+	["punctuation", "("], ["builtin", "assq"],
+	["punctuation", "("], ["builtin", "assv"],
+	["punctuation", "("], ["builtin", "binary-port?"],
+	["punctuation", "("], ["builtin", "boolean=?"],
+	["punctuation", "("], ["builtin", "boolean?"],
+	["punctuation", "("], ["builtin", "bytevector"],
+	["punctuation", "("], ["builtin", "bytevector-append"],
+	["punctuation", "("], ["builtin", "bytevector-copy"],
+	["punctuation", "("], ["builtin", "bytevector-copy!"],
+	["punctuation", "("], ["builtin", "bytevector-length"],
+	["punctuation", "("], ["builtin", "bytevector-u8-ref"],
+	["punctuation", "("], ["builtin", "bytevector-u8-set!"],
+	["punctuation", "("], ["builtin", "bytevector?"],
+	["punctuation", "("], ["builtin", "caar"],
+	["punctuation", "("], ["builtin", "cadr"],
+	["punctuation", "("], ["builtin", "call-with-current-continuation"],
+	["punctuation", "("], ["builtin", "call-with-port"],
+	["punctuation", "("], ["builtin", "call-with-values"],
+	["punctuation", "("], ["builtin", "call/cc"],
+	["punctuation", "("], ["builtin", "car"],
+	["punctuation", "("], ["builtin", "cdar"],
+	["punctuation", "("], ["builtin", "cddr"],
+	["punctuation", "("], ["builtin", "cdr"],
+	["punctuation", "("], ["builtin", "ceiling"],
+	["punctuation", "("], ["builtin", "char->integer"],
+	["punctuation", "("], ["builtin", "char-ready?"],
+	["punctuation", "("], ["builtin", "char<=?"],
+	["punctuation", "("], ["builtin", "char<?"],
+	["punctuation", "("], ["builtin", "char=?"],
+	["punctuation", "("], ["builtin", "char>=?"],
+	["punctuation", "("], ["builtin", "char>?"],
+	["punctuation", "("], ["builtin", "char?"],
+	["punctuation", "("], ["builtin", "close-input-port"],
+	["punctuation", "("], ["builtin", "close-output-port"],
+	["punctuation", "("], ["builtin", "close-port"],
+	["punctuation", "("], ["builtin", "complex?"],
+	["punctuation", "("], ["builtin", "cons"],
+	["punctuation", "("], ["builtin", "current-error-port"],
+	["punctuation", "("], ["builtin", "current-input-port"],
+	["punctuation", "("], ["builtin", "current-output-port"],
+	["punctuation", "("], ["builtin", "denominator"],
+	["punctuation", "("], ["builtin", "dynamic-wind"],
+	["punctuation", "("], ["builtin", "eof-object"],
+	["punctuation", "("], ["builtin", "eof-object?"],
+	["punctuation", "("], ["builtin", "eq?"],
+	["punctuation", "("], ["builtin", "equal?"],
+	["punctuation", "("], ["builtin", "eqv?"],
+	["punctuation", "("], ["builtin", "error"],
+	["punctuation", "("], ["builtin", "error-object-irritants"],
+	["punctuation", "("], ["builtin", "error-object-message"],
+	["punctuation", "("], ["builtin", "error-object?"],
+	["punctuation", "("], ["builtin", "eval"],
+	["punctuation", "("], ["builtin", "even?"],
+	["punctuation", "("], ["builtin", "exact"],
+	["punctuation", "("], ["builtin", "exact-integer-sqrt"],
+	["punctuation", "("], ["builtin", "exact-integer?"],
+	["punctuation", "("], ["builtin", "exact?"],
+	["punctuation", "("], ["builtin", "expt"],
+	["punctuation", "("], ["builtin", "features"],
+	["punctuation", "("], ["builtin", "file-error?"],
+	["punctuation", "("], ["builtin", "floor"],
+	["punctuation", "("], ["builtin", "floor-quotient"],
+	["punctuation", "("], ["builtin", "floor-remainder"],
+	["punctuation", "("], ["builtin", "floor/"],
+	["punctuation", "("], ["builtin", "flush-output-port"],
+	["punctuation", "("], ["builtin", "for-each"],
+	["punctuation", "("], ["builtin", "gcd"],
+	["punctuation", "("], ["builtin", "get-output-bytevector"],
+	["punctuation", "("], ["builtin", "get-output-string"],
+	["punctuation", "("], ["builtin", "inexact"],
+	["punctuation", "("], ["builtin", "inexact?"],
+	["punctuation", "("], ["builtin", "input-port-open?"],
+	["punctuation", "("], ["builtin", "input-port?"],
+	["punctuation", "("], ["builtin", "integer->char"],
+	["punctuation", "("], ["builtin", "integer?"],
+	["punctuation", "("], ["builtin", "lcm"],
+	["punctuation", "("], ["builtin", "length"],
+	["punctuation", "("], ["builtin", "list"],
+	["punctuation", "("], ["builtin", "list->string"],
+	["punctuation", "("], ["builtin", "list->vector"],
+	["punctuation", "("], ["builtin", "list-copy"],
+	["punctuation", "("], ["builtin", "list-ref"],
+	["punctuation", "("], ["builtin", "list-set!"],
+	["punctuation", "("], ["builtin", "list-tail"],
+	["punctuation", "("], ["builtin", "list?"],
+	["punctuation", "("], ["builtin", "make-bytevector"],
+	["punctuation", "("], ["builtin", "make-list"],
+	["punctuation", "("], ["builtin", "make-parameter"],
+	["punctuation", "("], ["builtin", "make-string"],
+	["punctuation", "("], ["builtin", "make-vector"],
+	["punctuation", "("], ["builtin", "map"],
+	["punctuation", "("], ["builtin", "max"],
+	["punctuation", "("], ["builtin", "member"],
+	["punctuation", "("], ["builtin", "memq"],
+	["punctuation", "("], ["builtin", "memv"],
+	["punctuation", "("], ["builtin", "min"],
+	["punctuation", "("], ["builtin", "modulo"],
+	["punctuation", "("], ["builtin", "negative?"],
+	["punctuation", "("], ["builtin", "newline"],
+	["punctuation", "("], ["builtin", "not"],
+	["punctuation", "("], ["builtin", "null?"],
+	["punctuation", "("], ["builtin", "number->string"],
+	["punctuation", "("], ["builtin", "number?"],
+	["punctuation", "("], ["builtin", "numerator"],
+	["punctuation", "("], ["builtin", "odd?"],
+	["punctuation", "("], ["builtin", "open-input-bytevector"],
+	["punctuation", "("], ["builtin", "open-input-string"],
+	["punctuation", "("], ["builtin", "open-output-bytevector"],
+	["punctuation", "("], ["builtin", "open-output-string"],
+	["punctuation", "("], ["builtin", "or"],
+	["punctuation", "("], ["builtin", "output-port-open?"],
+	["punctuation", "("], ["builtin", "output-port?"],
+	["punctuation", "("], ["builtin", "pair?"],
+	["punctuation", "("], ["builtin", "peek-char"],
+	["punctuation", "("], ["builtin", "peek-u8"],
+	["punctuation", "("], ["builtin", "port?"],
+	["punctuation", "("], ["builtin", "positive?"],
+	["punctuation", "("], ["builtin", "procedure?"],
+	["punctuation", "("], ["builtin", "quotient"],
+	["punctuation", "("], ["builtin", "raise"],
+	["punctuation", "("], ["builtin", "raise-continuable"],
+	["punctuation", "("], ["builtin", "rational?"],
+	["punctuation", "("], ["builtin", "rationalize"],
+	["punctuation", "("], ["builtin", "read-bytevector"],
+	["punctuation", "("], ["builtin", "read-bytevector!"],
+	["punctuation", "("], ["builtin", "read-char"],
+	["punctuation", "("], ["builtin", "read-error?"],
+	["punctuation", "("], ["builtin", "read-line"],
+	["punctuation", "("], ["builtin", "read-string"],
+	["punctuation", "("], ["builtin", "read-u8"],
+	["punctuation", "("], ["builtin", "real?"],
+	["punctuation", "("], ["builtin", "remainder"],
+	["punctuation", "("], ["builtin", "reverse"],
+	["punctuation", "("], ["builtin", "round"],
+	["punctuation", "("], ["builtin", "set-car!"],
+	["punctuation", "("], ["builtin", "set-cdr!"],
+	["punctuation", "("], ["builtin", "square"],
+	["punctuation", "("], ["builtin", "string"],
+	["punctuation", "("], ["builtin", "string->list"],
+	["punctuation", "("], ["builtin", "string->number"],
+	["punctuation", "("], ["builtin", "string->symbol"],
+	["punctuation", "("], ["builtin", "string->utf8"],
+	["punctuation", "("], ["builtin", "string->vector"],
+	["punctuation", "("], ["builtin", "string-append"],
+	["punctuation", "("], ["builtin", "string-copy"],
+	["punctuation", "("], ["builtin", "string-copy!"],
+	["punctuation", "("], ["builtin", "string-fill!"],
+	["punctuation", "("], ["builtin", "string-for-each"],
+	["punctuation", "("], ["builtin", "string-length"],
+	["punctuation", "("], ["builtin", "string-map"],
+	["punctuation", "("], ["builtin", "string-ref"],
+	["punctuation", "("], ["builtin", "string-set!"],
+	["punctuation", "("], ["builtin", "string<=?"],
+	["punctuation", "("], ["builtin", "string<?"],
+	["punctuation", "("], ["builtin", "string=?"],
+	["punctuation", "("], ["builtin", "string>=?"],
+	["punctuation", "("], ["builtin", "string>?"],
+	["punctuation", "("], ["builtin", "string?"],
+	["punctuation", "("], ["builtin", "substring"],
+	["punctuation", "("], ["builtin", "symbol->string"],
+	["punctuation", "("], ["builtin", "symbol=?"],
+	["punctuation", "("], ["builtin", "symbol?"],
+	["punctuation", "("], ["builtin", "syntax-error"],
+	["punctuation", "("], ["builtin", "textual-port?"],
+	["punctuation", "("], ["builtin", "truncate"],
+	["punctuation", "("], ["builtin", "truncate-quotient"],
+	["punctuation", "("], ["builtin", "truncate-remainder"],
+	["punctuation", "("], ["builtin", "truncate/"],
+	["punctuation", "("], ["builtin", "u8-ready?"],
+	["punctuation", "("], ["builtin", "utf8->string"],
+	["punctuation", "("], ["builtin", "values"],
+	["punctuation", "("], ["builtin", "vector"],
+	["punctuation", "("], ["builtin", "vector->list"],
+	["punctuation", "("], ["builtin", "vector->string"],
+	["punctuation", "("], ["builtin", "vector-append"],
+	["punctuation", "("], ["builtin", "vector-copy"],
+	["punctuation", "("], ["builtin", "vector-copy!"],
+	["punctuation", "("], ["builtin", "vector-fill!"],
+	["punctuation", "("], ["builtin", "vector-for-each"],
+	["punctuation", "("], ["builtin", "vector-length"],
+	["punctuation", "("], ["builtin", "vector-map"],
+	["punctuation", "("], ["builtin", "vector-ref"],
+	["punctuation", "("], ["builtin", "vector-set!"],
+	["punctuation", "("], ["builtin", "vector?"],
+	["punctuation", "("], ["builtin", "with-exception-handler"],
+	["punctuation", "("], ["builtin", "write-bytevector"],
+	["punctuation", "("], ["builtin", "write-char"],
+	["punctuation", "("], ["builtin", "write-string"],
+	["punctuation", "("], ["builtin", "write-u8"],
+	["punctuation", "("], ["builtin", "zero?"]
 ]
 
 ----------------------------------------------------

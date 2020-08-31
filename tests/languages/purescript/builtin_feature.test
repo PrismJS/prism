@@ -1,0 +1,109 @@
+when
+unless
+liftA1
+apply
+bind
+discard
+join
+ifM
+identity
+whenM
+unlessM
+liftM1
+ap
+compose
+otherwise
+top
+bottom
+recip
+eq
+notEq
+degree
+div
+mod
+lcm
+gcd
+flip
+const
+map
+void
+flap
+conj
+disj
+not
+mempty
+compare
+min
+max
+comparing
+clamp
+between
+sub
+negate
+append
+add
+zero
+mul
+one
+show
+unit
+absurd
+
+----------------------------------------------------
+
+[
+  ["builtin", "when"],
+  ["builtin", "unless"],
+  ["builtin", "liftA1"],
+  ["builtin", "apply"],
+  ["builtin", "bind"],
+  ["builtin", "discard"],
+  ["builtin", "join"],
+  ["builtin", "ifM"],
+  ["builtin", "identity"],
+  ["builtin", "whenM"],
+  ["builtin", "unlessM"],
+  ["builtin", "liftM1"],
+  ["builtin", "ap"],
+  ["builtin", "compose"],
+  ["builtin", "otherwise"],
+  ["builtin", "top"],
+  ["builtin", "bottom"],
+  ["builtin", "recip"],
+  ["builtin", "eq"],
+  ["builtin", "notEq"],
+  ["builtin", "degree"],
+  ["builtin", "div"],
+  ["builtin", "mod"],
+  ["builtin", "lcm"],
+  ["builtin", "gcd"],
+  ["builtin", "flip"],
+  ["builtin", "const"],
+  ["builtin", "map"],
+  ["builtin", "void"],
+  ["builtin", "flap"],
+  ["builtin", "conj"],
+  ["builtin", "disj"],
+  ["builtin", "not"],
+  ["builtin", "mempty"],
+  ["builtin", "compare"],
+  ["builtin", "min"],
+  ["builtin", "max"],
+  ["builtin", "comparing"],
+  ["builtin", "clamp"],
+  ["builtin", "between"],
+  ["builtin", "sub"],
+  ["builtin", "negate"],
+  ["builtin", "append"],
+  ["builtin", "add"],
+  ["builtin", "zero"],
+  ["builtin", "mul"],
+  ["builtin", "one"],
+  ["builtin", "show"],
+  ["builtin", "unit"],
+  ["builtin", "absurd"]
+]
+
+----------------------------------------------------
+
+Checks for all builtin.

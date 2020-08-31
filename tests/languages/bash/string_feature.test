@@ -91,18 +91,21 @@ STRING_END
 	["punctuation", "\\"],
 	"'a ",
 	["comment", "# ' not a string"],
+
 	["operator", [
 		"<<"
 	]],
 	["string", [
 		"STRING_END\r\nfoo\r\nbar\r\nSTRING_END"
 	]],
+
 	["operator", [
 		"<<-"
 	]],
 	["string", [
 		"STRING_END\r\nfoo\r\nbar\r\nSTRING_END"
 	]],
+
 	["operator", [
 		"<<"
 	]],
@@ -111,20 +114,28 @@ STRING_END
 		["variable", "$@"],
 		"\r\nbar\r\nEOF"
 	]],
+
 	["operator", [
 		"<<"
 	]],
-	["string", "'EOF'\r\n'single quoted string'\r\n\"double quoted string\"\r\nEOF"],
+	["string", [
+		"'EOF'\r\n'single quoted string'\r\n\"double quoted string\"\r\nEOF"
+	]],
+
 	["operator", [
 		"<<"
 	]],
-	["string", "\"EOF\"\r\nfoo\r\n$bar\r\nEOF"],
+	["string", [
+		"\"EOF\"\r\nfoo\r\n$bar\r\nEOF"
+	]],
+
 	["operator", [
 		"<<"
 	]],
 	["string", [
 		"STRING_END\r\n# comment\r\nSTRING_END"
 	]],
+
 	["string", [
 		"\"  # comment  \""
 	]]
