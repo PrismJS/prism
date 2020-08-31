@@ -1,5 +1,10 @@
 Prism.languages.scheme = {
-	'comment': /;.*/,
+	// this supports "normal" single-line comments:
+	//   ; comment
+	// and (potentially nested) multiline comments:
+	//   #| comment #| nested |# still comment |#
+	// (only 1 level of nesting is supported)
+	'comment': /;.*|#;\s*\((?:[^()]|\([^()]*\))*\)|#\|(?:[^#|]|#(?!\|)|\|(?!#)|#\|(?:[^#|]|#(?!\|)|\|(?!#))*\|#)*\|#/,
 	'string': {
 		pattern: /"(?:[^"\\]|\\.)*"/,
 		greedy: true
@@ -9,14 +14,14 @@ Prism.languages.scheme = {
 		greedy: true
 	},
 	'character': {
-		pattern: /#\\(?:[ux][a-fA-F\d]+|[-a-zA-Z]+|\S)/,
+		pattern: /#\\(?:[ux][a-fA-F\d]+\b|[-a-zA-Z]+\b|\S)/,
 		greedy: true,
 		alias: 'string'
 	},
 	'lambda-parameter': [
 		// https://www.cs.cmu.edu/Groups/AI/html/r4rs/r4rs_6.html#SEC30
 		{
-			pattern: /(\(lambda\s+)[^()'\s]+/,
+			pattern: /(\(lambda\s+)(?:[^|()'\s]+|\|(?:[^\\|]|\\.)*\|)/,
 			lookbehind: true
 		},
 		{
@@ -25,11 +30,16 @@ Prism.languages.scheme = {
 		}
 	],
 	'keyword': {
-		pattern: /(\()(?:define(?:-library|-macro|-syntax|-values)?|defmacro|(?:case-)?lambda|let(?:(?:\*|rec)?(?:-values)?|-syntax|rec-syntax)|else|if|cond|begin|delay(?:-force)?|parameterize|guard|set!|(?:quasi-)?quote|syntax-(?:case|rules))(?=[()\s]|$)/,
+		pattern: /(\()(?:begin|case(?:-lambda)?|cond(?:-expand)?|define(?:-library|-macro|-record-type|-syntax|-values)?|defmacro|delay(?:-force)?|do|else|export|except|guard|if|import|include(?:-ci|-library-declarations)?|lambda|let(?:rec)?(?:-syntax|-values|\*)?|let\*-values|only|parameterize|prefix|(?:quasi-?)?quote|rename|set!|syntax-(?:case|rules)|unless|unquote(?:-splicing)?|when)(?=[()\s]|$)/,
 		lookbehind: true
 	},
 	'builtin': {
-		pattern: /(\()(?:(?:cons|car|cdr|list|call-with-current-continuation|call\/cc|append|abs|apply|eval)\b|null\?|pair\?|boolean\?|eof-object\?|char\?|procedure\?|number\?|port\?|string\?|vector\?|symbol\?|bytevector\?)(?=[()\s]|$)/,
+		// all functions of the base library of R7RS plus some of built-ins of R5Rs
+		pattern: /(\()(?:abs|and|append|apply|assoc|ass[qv]|binary-port\?|boolean=?\?|bytevector(?:-append|-copy|-copy!|-length|-u8-ref|-u8-set!|\?)?|caar|cadr|call-with-(?:current-continuation|port|values)|call\/cc|car|cdar|cddr|cdr|ceiling|char(?:->integer|-ready\?|\?|<\?|<=\?|=\?|>\?|>=\?)|close-(?:input-port|output-port|port)|complex\?|cons|current-(?:error|input|output)-port|denominator|dynamic-wind|eof-object\??|eq\?|equal\?|eqv\?|error|error-object(?:-irritants|-message|\?)|eval|even\?|exact(?:-integer-sqrt|-integer\?|\?)?|expt|features|file-error\?|floor(?:-quotient|-remainder|\/)?|flush-output-port|for-each|gcd|get-output-(?:bytevector|string)|inexact\??|input-port(?:-open\?|\?)|integer(?:->char|\?)|lcm|length|list(?:->string|->vector|-copy|-ref|-set!|-tail|\?)?|make-(?:bytevector|list|parameter|string|vector)|map|max|member|memq|memv|min|modulo|negative\?|newline|not|null\?|number(?:->string|\?)|numerator|odd\?|open-(?:input|output)-(?:bytevector|string)|or|output-port(?:-open\?|\?)|pair\?|peek-char|peek-u8|port\?|positive\?|procedure\?|quotient|raise|raise-continuable|rational\?|rationalize|read-(?:bytevector|bytevector!|char|error\?|line|string|u8)|real\?|remainder|reverse|round|set-c[ad]r!|square|string(?:->list|->number|->symbol|->utf8|->vector|-append|-copy|-copy!|-fill!|-for-each|-length|-map|-ref|-set!|\?|<\?|<=\?|=\?|>\?|>=\?)?|substring|symbol(?:->string|\?|=\?)|syntax-error|textual-port\?|truncate(?:-quotient|-remainder|\/)?|u8-ready\?|utf8->string|values|vector(?:->list|->string|-append|-copy|-copy!|-fill!|-for-each|-length|-map|-ref|-set!|\?)?|with-exception-handler|write-(?:bytevector|char|string|u8)|zero\?)(?=[()\s]|$)/,
+		lookbehind: true
+	},
+	'operator': {
+		pattern: /(\()(?:[-+*%/]|[<>]=?|=>?)(?=[()\s]|$)/,
 		lookbehind: true
 	},
 	'number': {
@@ -52,16 +62,17 @@ Prism.languages.scheme = {
 		lookbehind: true
 	},
 	'boolean': {
-		pattern: /(^|[\s()])#[ft](?=[()\s]|$)/,
-		lookbehind: true
-	},
-	'operator': {
-		pattern: /(\()(?:[-+*%\/]|[<>]=?|=>?)(?=[()\s]|$)/,
+		pattern: /(^|[\s()])#(?:[ft]|false|true)(?=[()\s]|$)/,
 		lookbehind: true
 	},
 	'function': {
-		pattern: /(\()[^()'\s]+(?=[()\s]|$)/,
+		pattern: /(\()(?:[^|()'\s]+|\|(?:[^\\|]|\\.)*\|)(?=[()\s]|$)/,
 		lookbehind: true
+	},
+	'identifier': {
+		pattern: /(^|[\s()])\|(?:[^\\|]|\\.)*\|(?=[()\s]|$)/,
+		lookbehind: true,
+		greedy: true
 	},
 	'punctuation': /[()']/
 };

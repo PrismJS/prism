@@ -99,6 +99,7 @@
 			"javascript"
 		],
 		"purebasic": "clike",
+		"purescript": "haskell",
 		"qml": "javascript",
 		"qore": "clike",
 		"racket": "scheme",
@@ -197,6 +198,7 @@
 		"pq": "powerquery",
 		"mscript": "powerquery",
 		"pbfasm": "purebasic",
+		"purs": "purescript",
 		"py": "python",
 		"rkt": "racket",
 		"rpy": "renpy",
