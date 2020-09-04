@@ -1,5 +1,5 @@
 function hideAllButCurrent(){
-    //by default all submenut items are hidden
+    //by default all submenu items are hidden
     //but we need to rehide them for search
     document.querySelectorAll("nav > ul > li > ul li").forEach(function(parent) {
         parent.style.display = "none";
