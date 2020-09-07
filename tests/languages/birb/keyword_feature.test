@@ -1,16 +1,18 @@
 assert
-break case
+bool break case
 class;
-const default
+const default double
 else enum
 final
 follows;
 for grab
-if nest
+if int List
+Map nest
 next;
 new;
-NoSeeb return
-static switch
+noSeeb return Source
+static String
+StrBuffer switch
 throw var
 void while
 
@@ -18,18 +20,20 @@ void while
 
 [
 	["keyword", "assert"],
-	["keyword", "break"], ["keyword", "case"],
+	["keyword", "bool"], ["keyword", "break"], ["keyword", "case"],
 	["keyword", "class"], ["punctuation", ";"],
-	["keyword", "const"], ["keyword", "default"],
+	["keyword", "const"], ["keyword", "default"], ["keyword", "double"],
 	["keyword", "else"], ["keyword", "enum"],
 	["keyword", "final"],
 	["keyword", "follows"], ["punctuation", ";"],
 	["keyword", "for"], ["keyword", "grab"],
-	["keyword", "if"], ["keyword", "nest"],
+	["keyword", "if"], ["keyword", "int"], ["class-name", "List"],
+	["class-name", "Map"], ["keyword", "nest"],
 	["keyword", "next"], ["punctuation", ";"],
 	["keyword", "new"], ["punctuation", ";"],
-	["keyword", "NoSeeb"], ["keyword", "return"],
-	["keyword", "static"], ["keyword", "switch"],
+	["keyword", "noSeeb"], ["keyword", "return"], ["class-name", "Source"],
+	["keyword", "static"], ["class-name", "String"],
+	["class-name", "StrBuffer"], ["keyword", "switch"],
 	["keyword", "throw"], ["keyword", "var"],
 	["keyword", "void"], ["keyword", "while"]
 ]
