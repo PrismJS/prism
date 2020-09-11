@@ -204,6 +204,8 @@
 		"rpy": "renpy",
 		"robot": "robotframework",
 		"rb": "ruby",
+		"sh-session": "shell-session",
+		"shellsession": "shell-session",
 		"sol": "solidity",
 		"sln": "solution-file",
 		"rq": "sparql",

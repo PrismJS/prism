@@ -1032,6 +1032,7 @@
 		"shell-session": {
 			"title": "Shell session",
 			"require": "bash",
+			"alias": ["sh-session", "shellsession"],
 			"owner": "RunDevelopment"
 		},
 		"smali": {
