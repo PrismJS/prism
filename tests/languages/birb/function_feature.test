@@ -7,7 +7,7 @@ foo(0);
 	["keyword", "void"],
 	["function", "foo"],
 	["punctuation", "("],
-	["keyword", "int"],
+	["variable", "int"],
 	["variable", "a"],
 	["punctuation", ")"],
 	["punctuation", "{"],
