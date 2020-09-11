@@ -10,8 +10,8 @@ Prism.languages.birb = Prism.languages.extend('clike', {
 		greedy: true
 	},
 	'keyword': /\b(?:assert|break|case|class|const|default|else|enum|final|follows|for|grab|if|nest|next|new|noSeeb|return|static|switch|throw|var|void|while)\b/,
-	'variable': /\b[a-z_]\??\w*\b/,
-	'operator': /\+\+|--|&&|\|\||<<=?|>>=?|~(?:\/=?)?|[+\-*\/%&^|=!<>:]=?|\?/,
+	'variable': /\b[a-z_]\w*\b/,
+	'operator': /\+\+|--|&&|\|\||<<=?|>>=?|~(?:\/=?)?|[+\-*\/%&^|=!<>]=?|\?|:/,
 });
 
 Prism.languages.insertBefore('birb','function',{
