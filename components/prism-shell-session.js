@@ -47,4 +47,6 @@
 		'output': /.(?:.*(?:[\r\n]|.$))*/
 	};
 
+	Prism.languages['sh-session'] = Prism.languages['shellsession'] = Prism.languages['shell-session'];
+
 }(Prism));
