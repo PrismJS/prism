@@ -205,6 +205,8 @@
 		"rpy": "renpy",
 		"robot": "robotframework",
 		"rb": "ruby",
+		"sh-session": "shell-session",
+		"shellsession": "shell-session",
 		"sol": "solidity",
 		"sln": "solution-file",
 		"rq": "sparql",
@@ -234,8 +236,8 @@
 
 	var script = Prism.util.currentScript();
 	if (script) {
-		var autoloaderFile = /\bplugins\/autoloader\/prism-autoloader\.(?:min\.)js(?:\?[^\r\n/]*)?$/i;
-		var prismFile = /(^|\/)[\w-]+\.(?:min\.)js(?:\?[^\r\n/]*)?$/i;
+		var autoloaderFile = /\bplugins\/autoloader\/prism-autoloader\.(?:min\.)?js(?:\?[^\r\n/]*)?$/i;
+		var prismFile = /(^|\/)[\w-]+\.(?:min\.)?js(?:\?[^\r\n/]*)?$/i;
 
 		var autoloaderPath = script.getAttribute('data-autoloader-path');
 		if (autoloaderPath != null) {
