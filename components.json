@@ -179,6 +179,11 @@
 			},
 			"owner": "RunDevelopment"
 		},
+		"birb": {
+			"title": "Birb",
+			"require": "clike",
+			"owner": "Calamity210"
+		},
 		"bison": {
 			"title": "Bison",
 			"require": "c",
