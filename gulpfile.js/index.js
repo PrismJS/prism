@@ -1,6 +1,7 @@
 "use strict";
 
 const { src, dest, series, parallel, watch } = require('gulp');
+const cleanCSS = require('gulp-clean-css')
 
 const rename = require('gulp-rename');
 const uglify = require('gulp-uglify');
@@ -209,13 +210,17 @@ async function languagePlugins() {
 	}
 }
 
+function minifyCSS(cb) {
+	pump([src(paths.themes), cleanCSS({compatibility: 'ie8'}), rename({ suffix: '.min' }), dest('themes')], cb);
+}
+
 const components = minifyComponents;
 const plugins = series(languagePlugins, minifyPlugins);
-
+const theme = minifyCSS;
 
 module.exports = {
 	watch: watchComponentsAndPlugins,
-	default: series(parallel(components, plugins, componentsJsonToJs, build), docs),
+	default: series(parallel(components, theme, plugins, componentsJsonToJs, build), docs),
 	linkify,
 	changes
 };

@@ -4,6 +4,7 @@ module.exports = {
 	componentsFile: 'components.json',
 	componentsFileJS: 'components.js',
 	components: ['components/**/*.js', '!components/index.js', '!components/**/*.min.js'],
+	themes: 'themes/*.css',
 	main: [
 		'components/prism-core.js',
 		'components/prism-markup.js',
