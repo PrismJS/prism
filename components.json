@@ -1053,6 +1053,14 @@
 			"require": "markup-templating",
 			"owner": "Golmote"
 		},
+		"sml": {
+			"title": "SML",
+			"alias": "smlnj",
+			"aliasTitles": {
+				"smlnj": "SML/NJ"
+			},
+			"owner": "RunDevelopment"
+		},
 		"solidity": {
 			"title": "Solidity (Ethereum)",
 			"alias": "sol",

@@ -207,6 +207,7 @@
 		"rb": "ruby",
 		"sh-session": "shell-session",
 		"shellsession": "shell-session",
+		"smlnj": "sml",
 		"sol": "solidity",
 		"sln": "solution-file",
 		"rq": "sparql",

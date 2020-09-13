@@ -169,6 +169,8 @@
 		"shell-session": "Shell session",
 		"sh-session": "Shell session",
 		"shellsession": "Shell session",
+		"sml": "SML",
+		"smlnj": "SML/NJ",
 		"solidity": "Solidity (Ethereum)",
 		"sol": "Solidity (Ethereum)",
 		"solution-file": "Solution file",
