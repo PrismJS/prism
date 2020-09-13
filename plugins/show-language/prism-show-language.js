@@ -167,6 +167,8 @@
 		"sass": "Sass (Sass)",
 		"scss": "Sass (Scss)",
 		"shell-session": "Shell session",
+		"sh-session": "Shell session",
+		"shellsession": "Shell session",
 		"sml": "SML",
 		"smlnj": "SML/NJ",
 		"solidity": "Solidity (Ethereum)",

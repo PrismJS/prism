@@ -73,6 +73,7 @@
 			"title": "JavaScript",
 			"require": "clike",
 			"modify": "markup",
+			"optional": "regex",
 			"alias": "js",
 			"option": "default"
 		},
@@ -177,6 +178,11 @@
 				"shortcode": "Shortcode"
 			},
 			"owner": "RunDevelopment"
+		},
+		"birb": {
+			"title": "Birb",
+			"require": "clike",
+			"owner": "Calamity210"
 		},
 		"bison": {
 			"title": "Bison",
@@ -969,14 +975,6 @@
 		},
 		"regex": {
 			"title": "Regex",
-			"modify": [
-				"actionscript",
-				"coffeescript",
-				"flow",
-				"javascript",
-				"typescript",
-				"vala"
-			],
 			"owner": "RunDevelopment"
 		},
 		"renpy": {
@@ -1039,6 +1037,7 @@
 		"shell-session": {
 			"title": "Shell session",
 			"require": "bash",
+			"alias": ["sh-session", "shellsession"],
 			"owner": "RunDevelopment"
 		},
 		"smali": {
@@ -1189,6 +1188,7 @@
 		"vala": {
 			"title": "Vala",
 			"require": "clike",
+			"optional": "regex",
 			"owner": "TemplarVolk"
 		},
 		"vbnet": {

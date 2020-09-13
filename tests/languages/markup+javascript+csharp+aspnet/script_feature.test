@@ -21,7 +21,10 @@
 		["punctuation", ">"]
 	]],
 	["asp-script", [
-		["preprocessor", ["#", ["directive", "pragma"]]]
+		["preprocessor", [
+			"#",
+			["directive", "pragma"]
+		]]
 	]],
 	["tag", [
 		["tag", [
@@ -40,7 +43,11 @@
 	]],
 	["script", [
 		["language-javascript", [
-			["regex", "/foo/"]
+			["regex", [
+				["regex-delimiter", "/"],
+				["regex-source", "foo"],
+				["regex-delimiter", "/"]
+			]]
 		]]
 	]],
 	["tag", [
