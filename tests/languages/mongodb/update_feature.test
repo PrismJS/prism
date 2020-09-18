@@ -1,0 +1,81 @@
+db.users.updateOne(
+	{
+		_id: ObjectId('5ec72ffe00316be87cab3927')
+	},
+	{
+		$set: { age: 30 },
+		$inc: { updateCount: 1 }, 
+		$push: { updateDates: new Date() } 
+	}
+)
+
+----------------------------------------------------
+
+[
+	"db",
+	["punctuation", "."],
+	"users",
+	["punctuation", "."],
+	["function", "updateOne"],
+	["punctuation", "("],
+	["punctuation", "{"],
+	["property", [
+		"_id"
+	]],
+	["operator", ":"],
+	["builtin", "ObjectId"],
+	["punctuation", "("],
+	["string", [
+		"'5ec72ffe00316be87cab3927'"
+	]],
+	["punctuation", ")"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["punctuation", "{"],
+	["property", [
+		["keyword", "$set"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["property", [
+		"age"
+	]],
+	["operator", ":"],
+	["number", "30"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$inc"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["property", [
+		"updateCount"
+	]],
+	["operator", ":"],
+	["number", "1"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$push"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["property", [
+		"updateDates"
+	]],
+	["operator", ":"],
+	["keyword", "new"],
+	["class-name", [
+		"Date"
+	]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "}"],
+	["punctuation", "}"],
+	["punctuation", ")"]
+]
+
+----------------------------------------------------
+
+Common update.

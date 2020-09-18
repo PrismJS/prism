@@ -29,13 +29,3 @@
 	This should probably work...
 {{/block-with-hyphens}}
 </code></pre>
-
-<h2>Known failures</h2>
-<p>There are certain edge cases where Prism will fail.
-	There are always such cases in every regex-based syntax highlighter.
-	However, Prism dares to be open and honest about them.
-	If a failure is listed here, it doesn’t mean it will never be fixed. This is more of a “known bugs” list, just with a certain type of bug.
-</p>
-
-<h3>Handlebars tag in the middle of an HTML tag</h3>
-<pre><code>&lt;div{{#if test}} class="test"{{/if}}>&lt;/div></code></pre>

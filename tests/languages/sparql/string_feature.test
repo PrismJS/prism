@@ -1,0 +1,40 @@
+""
+''
+''''''
+""""""
+'foo bar'
+"Foo bar"
+"""foo
+"bar"
+foobar"""
+'''
+foobar
+"bar"
+'foo'
+foobar
+'''
+
+----------------------------------------------------
+[
+	["string", "\"\""],
+	["string", "''"],
+	["multiline-string", [
+		"''''''"
+	]],
+	["multiline-string", [
+		"\"\"\"\"\"\""
+	]],
+	["string", "'foo bar'"],
+	["string", "\"Foo bar\""],
+	["multiline-string", [
+		"\"\"\"foo\r\n\"bar\"\r\nfoobar\"\"\""
+	]],
+	["multiline-string", [
+		"'''\r\nfoobar\r\n\"bar\"\r\n'foo'\r\nfoobar\r\n'''"
+	]]
+]
+
+
+----------------------------------------------------
+
+Checks for strings.

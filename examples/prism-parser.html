@@ -67,22 +67,4 @@ $result[$t.$sName]
 # new functionality
 @remove[iOffset;iLimit]
 $iLimit(^iLimit.int(0))
-$t[^t.select(^t.offset[]<$iOffset || ^t.offset[]>=$iOffset+$iLimit)]</code></pre>
-
-<h2>Known failures</h2>
-<p>There are certain edge cases where Prism will fail.
-	There are always such cases in every regex-based syntax highlighter.
-	However, Prism dares to be open and honest about them.
-	If a failure is listed here, it doesn’t mean it will never be fixed. This is more of a “known bugs” list, just with a certain type of bug.
-</p>
-
-<h3>Code block starting with a comment</h3>
-<pre><code># Doesn't work
-# Does work</code></pre>
-<pre><code> # Does work when prefixed with a space</code></pre>
-
-<h3>Comments inside expressions break literals and operators</h3>
-<pre><code>^if(
-    $age>=4  # not too young
-    && $age<=80  # and not too old
-)</code></pre>
+$t[^t.select(^t.offset[]&lt;$iOffset || ^t.offset[]>=$iOffset+$iLimit)]</code></pre>

@@ -5,13 +5,34 @@
 	Prism.languages.css = {
 		'comment': /\/\*[\s\S]*?\*\//,
 		'atrule': {
-			pattern: /@[\w-]+?[\s\S]*?(?:;|(?=\s*\{))/i,
+			pattern: /@[\w-]+[\s\S]*?(?:;|(?=\s*\{))/,
 			inside: {
-				'rule': /@[\w-]+/
+				'rule': /^@[\w-]+/,
+				'selector-function-argument': {
+					pattern: /(\bselector\s*\((?!\s*\))\s*)(?:[^()]|\((?:[^()]|\([^()]*\))*\))+?(?=\s*\))/,
+					lookbehind: true,
+					alias: 'selector'
+				},
+				'keyword': {
+					pattern: /(^|[^\w-])(?:and|not|only|or)(?![\w-])/,
+					lookbehind: true
+				}
 				// See rest below
 			}
 		},
-		'url': RegExp('url\\((?:' + string.source + '|.*?)\\)', 'i'),
+		'url': {
+			// https://drafts.csswg.org/css-values-3/#urls
+			pattern: RegExp('\\burl\\((?:' + string.source + '|' + /(?:[^\\\r\n()"']|\\[\s\S])*/.source + ')\\)', 'i'),
+			greedy: true,
+			inside: {
+				'function': /^url/i,
+				'punctuation': /^\(|\)$/,
+				'string': {
+					pattern: RegExp('^' + string.source + '$'),
+					alias: 'url'
+				}
+			}
+		},
 		'selector': RegExp('[^{}\\s](?:[^{};"\']|' + string.source + ')*?(?=\\s*\\{)'),
 		'string': {
 			pattern: string,

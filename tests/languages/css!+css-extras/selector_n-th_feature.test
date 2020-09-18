@@ -2,6 +2,8 @@
 :nth-child(+2n - 1) {}
 :nth-child(2n) {}
 :nth-child(+5) {}
+:nth-child(even) {}
+:nth-child(odd) {}
 
 ----------------------------------------------------
 
@@ -9,11 +11,11 @@
 	["selector", [
 		["pseudo-class", ":nth-child"],
 		["punctuation", "("],
-		["n-th", [
-			["number", "2n"],
-			["operator", "+"],
-			["number", "1"]
-		]],
+			["n-th", [
+				["number", "2n"],
+				["operator", "+"],
+				["number", "1"]
+			]],
 		["punctuation", ")"]
 	]],
 	["punctuation", "{"],
@@ -51,6 +53,24 @@
 			["operator", "+"],
 			["number", "5"]
 		]],
+		["punctuation", ")"]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["selector", [
+		["pseudo-class", ":nth-child"],
+		["punctuation", "("],
+		["n-th", "even"],
+		["punctuation", ")"]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["selector", [
+		["pseudo-class", ":nth-child"],
+		["punctuation", "("],
+		["n-th", "odd"],
 		["punctuation", ")"]
 	]],
 	["punctuation", "{"],

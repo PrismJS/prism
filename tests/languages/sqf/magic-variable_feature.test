@@ -1,0 +1,33 @@
+_exception
+_fnc_scriptName
+_fnc_scriptNameParent
+_forEachIndex
+_this
+_thisEventHandler
+_thisFSM
+_thisScript
+_x
+this
+thisList
+thisTrigger
+
+----------------------------------------------------
+
+[
+	["magic-variable", "_exception"],
+	["magic-variable", "_fnc_scriptName"],
+	["magic-variable", "_fnc_scriptNameParent"],
+	["magic-variable", "_forEachIndex"],
+	["magic-variable", "_this"],
+	["magic-variable", "_thisEventHandler"],
+	["magic-variable", "_thisFSM"],
+	["magic-variable", "_thisScript"],
+	["magic-variable", "_x"],
+	["magic-variable", "this"],
+	["magic-variable", "thisList"],
+	["magic-variable", "thisTrigger"]
+]
+
+----------------------------------------------------
+
+Checks for magic variables.

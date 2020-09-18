@@ -2,18 +2,15 @@
 *.iml
 
 hide-*.js
-
+.DS_Store
 CNAME
+.github/
+assets/
+docs/
 examples/
-img/
-templates/
 tests/
-scripts/
 *.tgz
 *.html
-style.css
-favicon.png
-logo.svg
 bower.json
 composer.json
 gulpfile.js

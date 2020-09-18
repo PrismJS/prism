@@ -1,0 +1,37 @@
+assert break case
+class;
+const default
+else enum
+final
+follows;
+for grab
+if nest
+next;
+new;
+noSeeb return
+static switch
+throw var
+void while
+
+----------------------------------------------------
+
+[
+	["keyword", "assert"], ["keyword", "break"], ["keyword", "case"],
+	["keyword", "class"], ["punctuation", ";"],
+	["keyword", "const"], ["keyword", "default"],
+	["keyword", "else"], ["keyword", "enum"],
+	["keyword", "final"],
+	["keyword", "follows"], ["punctuation", ";"],
+	["keyword", "for"], ["keyword", "grab"],
+	["keyword", "if"], ["keyword", "nest"],
+	["keyword", "next"], ["punctuation", ";"],
+	["keyword", "new"], ["punctuation", ";"],
+	["keyword", "noSeeb"], ["keyword", "return"],
+	["keyword", "static"], ["keyword", "switch"],
+	["keyword", "throw"], ["keyword", "var"],
+	["keyword", "void"], ["keyword", "while"]
+]
+
+----------------------------------------------------
+
+Checks for all keywords.

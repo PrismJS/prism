@@ -1,0 +1,29 @@
+<h2>Full example</h2>
+<pre><code class="language-java">/**
+ * Returns the value to which the specified key is mapped,
+ * or {@code null} if this map contains no mapping for the key.
+ *
+ * &lt;p&gt;More formally, if this map contains a mapping from a key
+ * {@code k} to a value {@code v} such that {@code (key==null ? k==null :
+ * key.equals(k))}, then this method returns {@code v}; otherwise
+ * it returns {@code null}.  (There can be at most one such mapping.)
+ *
+ * &lt;p&gt;If this map permits null values, then a return value of
+ * {@code null} does not &lt;i&gt;necessarily&lt;/i&gt; indicate that the map
+ * contains no mapping for the key; it's also possible that the map
+ * explicitly maps the key to {@code null}.  The {@link #containsKey
+ * containsKey} operation may be used to distinguish these two cases.
+ *
+ * @param key the key whose associated value is to be returned
+ * @return the value to which the specified key is mapped, or
+ *         {@code null} if this map contains no mapping for the key
+ * @throws ClassCastException if the key is of an inappropriate type for
+ *         this map
+ * (&lt;a href="{@docRoot}/java/util/Collection.html#optional-restrictions"&gt;optional&lt;/a&gt;)
+ * @throws NullPointerException if the specified key is null and this map
+ *         does not permit null keys
+ * (&lt;a href="{@docRoot}/java/util/Collection.html#optional-restrictions"&gt;optional&lt;/a&gt;)
+ */
+V get(Object key);
+
+// Source: Java 1.8, Map#get(Object)</code></pre>

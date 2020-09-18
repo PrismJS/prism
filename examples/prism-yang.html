@@ -1,0 +1,50 @@
+<h2>Full example</h2>
+<p><a href="http://www.yang-central.org/twiki/bin/view/Main/YangExamplesExecdDns">Source</a></p>
+<pre><code>submodule execd-dns {
+
+	belongs-to execd { prefix execd; }
+
+	import inet-types { prefix inet; }
+
+	include execd-types;
+
+	description
+		"The 'dns' component provides support for configuring the DNS resolver.
+
+		 The 'domain' keyword of /etc/resolv.conf is not supported, since
+		 it is equivalent to 'search' with a single domain. I.e. in terms
+		 of the data model, the domains are always configured as 'search'
+		 elements, even if there is only one. The set of available options
+		 has been limited to those that are generally available across
+		 different resolver implementations, and generally useful.";
+
+	revision "2008-11-04" {
+		description "draft-ietf-netmod-yang-02 compatible.";
+	}
+	revision "2007-08-29" {
+		description "Syntax fixes after pyang validation.";
+	}
+	revision "2007-06-08" {
+		description "Initial revision.";
+	}
+
+	grouping dns {
+		list search {
+			key name;
+			max-elements 3;
+			leaf name      { type int32; }
+			leaf domain    { type inet:host; }
+		}
+		list server {
+			key address;
+			max-elements 3;
+			ordered-by user;
+			leaf address   { type inet:ip-address; }
+		}
+		container options {
+			leaf ndots    { type uint8; }
+			leaf timeout  { type uint8; }
+			leaf attempts { type uint8; }
+		}
+	}
+}</code></pre>

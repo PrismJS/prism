@@ -1,0 +1,29 @@
+Some text
+	at :98:32
+
+----------------------------------------------------
+
+[
+	["error-message", "Some text"],
+	[
+		"stack-frame", [
+			[
+				"keyword",
+				"at"
+			],
+			[
+				"line-number",
+				[
+					["punctuation", ":"],
+					"98",
+					["punctuation", ":"],
+					"32"
+				]
+			]
+		]
+	]
+]
+
+----------------------------------------------------
+
+Checks basic a basic error message.

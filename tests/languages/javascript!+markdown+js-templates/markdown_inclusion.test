@@ -1,0 +1,35 @@
+md`# h1`;
+markdown`## h2`;
+
+----------------------------------------------------
+
+[
+	"md",
+	["template-string", [
+		["template-punctuation", "`"],
+		["markdown", [
+			["title", [
+				["punctuation", "#"],
+				" h1"
+			]]
+		]],
+		["template-punctuation", "`"]
+	]],
+	["punctuation", ";"],
+	"\r\nmarkdown",
+	["template-string", [
+		["template-punctuation", "`"],
+		["markdown", [
+			["title", [
+				["punctuation", "##"],
+				" h2"
+			]]
+		]],
+		["template-punctuation", "`"]
+	]],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for tagged template literals containing Markdown code.

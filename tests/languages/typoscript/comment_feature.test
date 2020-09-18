@@ -1,0 +1,23 @@
+// comment
+# comment
+text // comment
+/*
+comment
+*/
+foo = bar // comment
+baz = //url
+
+----------------------------------------------------
+
+[
+	["comment", "// comment"],
+	["comment", "# comment"],
+	["tag", ["text"]], ["comment", "// comment"],
+	["comment", "/*\r\ncomment\r\n*/"],
+	["tag", ["foo"]], ["operator", "="], ["string", ["bar "]], ["comment", "// comment"],
+	["tag", ["baz"]], ["operator", "="], ["string", ["//url"]]
+]
+
+----------------------------------------------------
+
+Checks for comments.

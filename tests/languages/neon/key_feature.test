@@ -1,0 +1,17 @@
+foo: 4
+FooBar : 5
+alt=6
+alt2 = 7
+
+----------------------------------------------------
+
+[
+	["key", "foo"], ["punctuation", ":"], ["number", "4"],
+	["key", "FooBar"], ["punctuation", ":"], ["number", "5"],
+	["key", "alt"], ["punctuation", "="], ["number", "6"],
+	["key", "alt2"], ["punctuation", "="], ["number", "7"]
+]
+
+----------------------------------------------------
+
+Checks for keys.

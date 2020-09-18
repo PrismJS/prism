@@ -1,8 +1,11 @@
+package java;
 package java.lang;
 
+import foo.Bar;
 import java.lang.Math;
 import java.lang.*;
 
+import static foo.Bar.BAZ;
 import static java.lang.Math.PI;
 import static java.lang.Math.sin;
 import static java.lang.Math.*;
@@ -10,6 +13,11 @@ import static java.lang.Math.*;
 ----------------------------------------------------
 
 [
+	["keyword", "package"],
+	["namespace", [
+		"java"
+	]],
+	["punctuation", ";"],
 	["keyword", "package"],
 	["namespace", [
 		"java",
@@ -20,11 +28,18 @@ import static java.lang.Math.*;
 
 	["keyword", "import"],
 	["namespace", [
+		"foo",
+		["punctuation", "."]
+	]],
+	["class-name", "Bar"],
+	["punctuation", ";"],
+	["keyword", "import"],
+	["namespace", [
 		"java",
 		["punctuation", "."],
-		"lang"
+		"lang",
+		["punctuation", "."]
 	]],
-	["punctuation", "."],
 	["class-name", "Math"],
 	["punctuation", ";"],
 
@@ -32,10 +47,20 @@ import static java.lang.Math.*;
 	["namespace", [
 		"java",
 		["punctuation", "."],
-		"lang"
+		"lang",
+		["punctuation", "."]
 	]],
+	["operator", "*"],
+	["punctuation", ";"],
+	["keyword", "import"],
+	["keyword", "static"],
+	["namespace", [
+		"foo",
+		["punctuation", "."]
+	]],
+	["class-name", "Bar"],
 	["punctuation", "."],
-	"*",
+	"BAZ",
 	["punctuation", ";"],
 
 	["keyword", "import"],
@@ -43,9 +68,9 @@ import static java.lang.Math.*;
 	["namespace", [
 		"java",
 		["punctuation", "."],
-		"lang"
+		"lang",
+		["punctuation", "."]
 	]],
-	["punctuation", "."],
 	["class-name", "Math"],
 	["punctuation", "."],
 	"PI",
@@ -56,9 +81,9 @@ import static java.lang.Math.*;
 	["namespace", [
 		"java",
 		["punctuation", "."],
-		"lang"
+		"lang",
+		["punctuation", "."]
 	]],
-	["punctuation", "."],
 	["class-name", "Math"],
 	["punctuation", "."],
 	"sin",
@@ -67,8 +92,10 @@ import static java.lang.Math.*;
 	["keyword", "static"],
 	["namespace", [
 		"java",
-		["punctuation", "."], "lang"
-	]], ["punctuation", "."],
+		["punctuation", "."],
+		"lang",
+		["punctuation", "."]
+	]],
 	["class-name", "Math"],
 	["punctuation", "."],
 	"*",

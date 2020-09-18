@@ -42,7 +42,7 @@
 		{
 			pattern: /\$\{[^}]+\}/,
 			inside: {
-				delimiter: {
+				'delimiter': {
 					pattern: /^\$\{|\}$/,
 					alias: 'variable'
 				},
@@ -59,4 +59,6 @@
 		interpolation: interpolation
 	};
 
+	Prism.languages.kt = Prism.languages.kotlin;
+	Prism.languages.kts = Prism.languages.kotlin;
 }(Prism));

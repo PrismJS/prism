@@ -3,211 +3,473 @@
 		return;
 	}
 
-	// The dependencies map is built automatically with gulp
-	var lang_dependencies = /*dependencies_placeholder[*/{"javascript":"clike","actionscript":"javascript","arduino":"cpp","aspnet":["markup","csharp"],"bison":"c","c":"clike","csharp":"clike","cpp":"c","coffeescript":"javascript","crystal":"ruby","css-extras":"css","d":"clike","dart":"clike","django":"markup-templating","ejs":["javascript","markup-templating"],"erb":["ruby","markup-templating"],"fsharp":"clike","flow":"javascript","glsl":"clike","gml":"clike","go":"clike","groovy":"clike","haml":"ruby","handlebars":"markup-templating","haxe":"clike","java":"clike","javadoc":["markup","java","javadoclike"],"jolie":"clike","jsdoc":["javascript","javadoclike"],"js-extras":"javascript","jsonp":"json","json5":"json","kotlin":"clike","less":"css","markdown":"markup","markup-templating":"markup","n4js":"javascript","nginx":"clike","objectivec":"c","opencl":"cpp","parser":"markup","php":["clike","markup-templating"],"phpdoc":["php","javadoclike"],"php-extras":"php","plsql":"sql","processing":"clike","protobuf":"clike","pug":["markup","javascript"],"qore":"clike","jsx":["markup","javascript"],"tsx":["jsx","typescript"],"reason":"clike","ruby":"clike","sass":"css","scss":"css","scala":"java","smarty":"markup-templating","soy":"markup-templating","swift":"clike","tap":"yaml","textile":"markup","tt2":["clike","markup-templating"],"twig":"markup","typescript":"javascript","t4-cs":["t4-templating","csharp"],"t4-vb":["t4-templating","visual-basic"],"vala":"clike","vbnet":"basic","velocity":"markup","wiki":"markup","xeora":"markup","xquery":"markup"}/*]*/;
+	/**
+	 * The dependencies map is built automatically with gulp.
+	 *
+	 * @type {Object<string, string | string[]>}
+	 */
+	var lang_dependencies = /*dependencies_placeholder[*/{
+		"javascript": "clike",
+		"actionscript": "javascript",
+		"arduino": "cpp",
+		"aspnet": [
+			"markup",
+			"csharp"
+		],
+		"birb": "clike",
+		"bison": "c",
+		"c": "clike",
+		"csharp": "clike",
+		"cpp": "c",
+		"coffeescript": "javascript",
+		"crystal": "ruby",
+		"css-extras": "css",
+		"d": "clike",
+		"dart": "clike",
+		"django": "markup-templating",
+		"ejs": [
+			"javascript",
+			"markup-templating"
+		],
+		"etlua": [
+			"lua",
+			"markup-templating"
+		],
+		"erb": [
+			"ruby",
+			"markup-templating"
+		],
+		"fsharp": "clike",
+		"firestore-security-rules": "clike",
+		"flow": "javascript",
+		"ftl": "markup-templating",
+		"gml": "clike",
+		"glsl": "c",
+		"go": "clike",
+		"groovy": "clike",
+		"haml": "ruby",
+		"handlebars": "markup-templating",
+		"haxe": "clike",
+		"hlsl": "c",
+		"java": "clike",
+		"javadoc": [
+			"markup",
+			"java",
+			"javadoclike"
+		],
+		"jolie": "clike",
+		"jsdoc": [
+			"javascript",
+			"javadoclike",
+			"typescript"
+		],
+		"js-extras": "javascript",
+		"json5": "json",
+		"jsonp": "json",
+		"js-templates": "javascript",
+		"kotlin": "clike",
+		"latte": [
+			"clike",
+			"markup-templating",
+			"php"
+		],
+		"less": "css",
+		"lilypond": "scheme",
+		"markdown": "markup",
+		"markup-templating": "markup",
+		"mongodb": "javascript",
+		"n4js": "javascript",
+		"nginx": "clike",
+		"objectivec": "c",
+		"opencl": "c",
+		"parser": "markup",
+		"php": [
+			"clike",
+			"markup-templating"
+		],
+		"phpdoc": [
+			"php",
+			"javadoclike"
+		],
+		"php-extras": "php",
+		"plsql": "sql",
+		"processing": "clike",
+		"protobuf": "clike",
+		"pug": [
+			"markup",
+			"javascript"
+		],
+		"purebasic": "clike",
+		"purescript": "haskell",
+		"qml": "javascript",
+		"qore": "clike",
+		"racket": "scheme",
+		"jsx": [
+			"markup",
+			"javascript"
+		],
+		"tsx": [
+			"jsx",
+			"typescript"
+		],
+		"reason": "clike",
+		"ruby": "clike",
+		"sass": "css",
+		"scss": "css",
+		"scala": "java",
+		"shell-session": "bash",
+		"smarty": "markup-templating",
+		"solidity": "clike",
+		"soy": "markup-templating",
+		"sparql": "turtle",
+		"sqf": "clike",
+		"swift": "clike",
+		"t4-cs": [
+			"t4-templating",
+			"csharp"
+		],
+		"t4-vb": [
+			"t4-templating",
+			"vbnet"
+		],
+		"tap": "yaml",
+		"tt2": [
+			"clike",
+			"markup-templating"
+		],
+		"textile": "markup",
+		"twig": "markup",
+		"typescript": "javascript",
+		"vala": "clike",
+		"vbnet": "basic",
+		"velocity": "markup",
+		"wiki": "markup",
+		"xeora": "markup",
+		"xml-doc": "markup",
+		"xquery": "markup"
+	}/*]*/;
 
-	var lang_aliases = /*aliases_placeholder[*/{"html":"markup","xml":"markup","svg":"markup","mathml":"markup","js":"javascript","adoc":"asciidoc","shell":"bash","rbnf":"bnf","dotnet":"csharp","coffee":"coffeescript","jinja2":"django","dockerfile":"docker","gamemakerlanguage":"gml","hs":"haskell","emacs":"lisp","elisp":"lisp","emacs-lisp":"lisp","md":"markdown","n4jsd":"n4js","objectpascal":"pascal","py":"python","rb":"ruby","ts":"typescript","t4":"t4-cs","vb":"visual-basic","xeoracube":"xeora","yml":"yaml"}/*]*/;
+	var lang_aliases = /*aliases_placeholder[*/{
+		"html": "markup",
+		"xml": "markup",
+		"svg": "markup",
+		"mathml": "markup",
+		"ssml": "markup",
+		"atom": "markup",
+		"rss": "markup",
+		"js": "javascript",
+		"g4": "antlr4",
+		"adoc": "asciidoc",
+		"shell": "bash",
+		"shortcode": "bbcode",
+		"rbnf": "bnf",
+		"oscript": "bsl",
+		"cs": "csharp",
+		"dotnet": "csharp",
+		"coffee": "coffeescript",
+		"conc": "concurnas",
+		"jinja2": "django",
+		"dns-zone": "dns-zone-file",
+		"dockerfile": "docker",
+		"eta": "ejs",
+		"xlsx": "excel-formula",
+		"xls": "excel-formula",
+		"gamemakerlanguage": "gml",
+		"hs": "haskell",
+		"gitignore": "ignore",
+		"hgignore": "ignore",
+		"npmignore": "ignore",
+		"webmanifest": "json",
+		"kt": "kotlin",
+		"kts": "kotlin",
+		"tex": "latex",
+		"context": "latex",
+		"ly": "lilypond",
+		"emacs": "lisp",
+		"elisp": "lisp",
+		"emacs-lisp": "lisp",
+		"md": "markdown",
+		"moon": "moonscript",
+		"n4jsd": "n4js",
+		"nani": "naniscript",
+		"objc": "objectivec",
+		"objectpascal": "pascal",
+		"px": "pcaxis",
+		"pcode": "peoplecode",
+		"pq": "powerquery",
+		"mscript": "powerquery",
+		"pbfasm": "purebasic",
+		"purs": "purescript",
+		"py": "python",
+		"rkt": "racket",
+		"rpy": "renpy",
+		"robot": "robotframework",
+		"rb": "ruby",
+		"sh-session": "shell-session",
+		"shellsession": "shell-session",
+		"smlnj": "sml",
+		"sol": "solidity",
+		"sln": "solution-file",
+		"rq": "sparql",
+		"t4": "t4-cs",
+		"trig": "turtle",
+		"ts": "typescript",
+		"tsconfig": "typoscript",
+		"uscript": "unrealscript",
+		"uc": "unrealscript",
+		"vb": "visual-basic",
+		"vba": "visual-basic",
+		"xeoracube": "xeora",
+		"yml": "yaml"
+	}/*]*/;
 
+	/**
+	 * @typedef LangDataItem
+	 * @property {{ success?: () => void, error?: () => void }[]} callbacks
+	 * @property {boolean} [error]
+	 * @property {boolean} [loading]
+	 */
+	/** @type {Object<string, LangDataItem>} */
 	var lang_data = {};
 
 	var ignored_language = 'none';
-
-	var script = document.getElementsByTagName('script');
-	script = script[script.length - 1];
 	var languages_path = 'components/';
-	if(script.hasAttribute('data-autoloader-path')) {
-		var path = script.getAttribute('data-autoloader-path').trim();
-		if(path.length > 0 && !/^[a-z]+:\/\//i.test(script.src)) {
-			languages_path = path.replace(/\/?$/, '/');
+
+	var script = Prism.util.currentScript();
+	if (script) {
+		var autoloaderFile = /\bplugins\/autoloader\/prism-autoloader\.(?:min\.)?js(?:\?[^\r\n/]*)?$/i;
+		var prismFile = /(^|\/)[\w-]+\.(?:min\.)?js(?:\?[^\r\n/]*)?$/i;
+
+		var autoloaderPath = script.getAttribute('data-autoloader-path');
+		if (autoloaderPath != null) {
+			// data-autoloader-path is set, so just use it
+			languages_path = autoloaderPath.trim().replace(/\/?$/, '/');
+		} else {
+			var src = script.src;
+			if (autoloaderFile.test(src)) {
+				// the script is the original autoloader script in the usual Prism project structure
+				languages_path = src.replace(autoloaderFile, 'components/');
+			} else if (prismFile.test(src)) {
+				// the script is part of a bundle like a custom prism.js from the download page
+				languages_path = src.replace(prismFile, '$1components/');
+			}
 		}
-	} else if (/[\w-]+\.js$/.test(script.src)) {
-		languages_path = script.src.replace(/[\w-]+\.js$/, 'components/');
 	}
+
 	var config = Prism.plugins.autoloader = {
 		languages_path: languages_path,
-		use_minified: true
+		use_minified: true,
+		loadLanguages: loadLanguages
 	};
 
+
 	/**
-	 * Lazy loads an external script
+	 * Lazily loads an external script.
+	 *
 	 * @param {string} src
-	 * @param {function=} success
-	 * @param {function=} error
+	 * @param {() => void} [success]
+	 * @param {() => void} [error]
 	 */
-	var addScript = function (src, success, error) {
+	function addScript(src, success, error) {
 		var s = document.createElement('script');
 		s.src = src;
 		s.async = true;
-		s.onload = function() {
+		s.onload = function () {
 			document.body.removeChild(s);
 			success && success();
 		};
-		s.onerror = function() {
+		s.onerror = function () {
 			document.body.removeChild(s);
 			error && error();
 		};
 		document.body.appendChild(s);
-	};
+	}
+
+	/**
+	 * Returns all additional dependencies of the given element defined by the `data-dependencies` attribute.
+	 *
+	 * @param {Element} element
+	 * @returns {string[]}
+	 */
+	function getDependencies(element) {
+		var deps = (element.getAttribute('data-dependencies') || '').trim();
+		if (!deps) {
+			var parent = element.parentElement;
+			if (parent && parent.tagName.toLowerCase() === 'pre') {
+				deps = (parent.getAttribute('data-dependencies') || '').trim();
+			}
+		}
+		return deps ? deps.split(/\s*,\s*/g) : [];
+	}
+
+	/**
+	 * Returns whether the given language is currently loaded.
+	 *
+	 * @param {string} lang
+	 * @returns {boolean}
+	 */
+	function isLoaded(lang) {
+		if (lang.indexOf('!') >= 0) {
+			// forced reload
+			return false;
+		}
+
+		lang = lang_aliases[lang] || lang; // resolve alias
+
+		if (lang in Prism.languages) {
+			// the given language is already loaded
+			return true;
+		}
+
+		// this will catch extensions like CSS extras that don't add a grammar to Prism.languages
+		var data = lang_data[lang];
+		return data && !data.error && data.loading === false;
+	}
 
 	/**
 	 * Returns the path to a grammar, using the language_path and use_minified config keys.
+	 *
 	 * @param {string} lang
 	 * @returns {string}
 	 */
-	var getLanguagePath = function (lang) {
-		return config.languages_path +
-			'prism-' + lang
-			+ (config.use_minified ? '.min' : '') + '.js'
-	};
+	function getLanguagePath(lang) {
+		return config.languages_path + 'prism-' + lang + (config.use_minified ? '.min' : '') + '.js'
+	}
 
 	/**
-	 * Tries to load a grammar and
-	 * highlight again the given element once loaded.
-	 * @param {string} lang
-	 * @param {HTMLElement} elt
+	 * Loads all given grammars concurrently.
+	 *
+	 * @param {string[]|string} languages
+	 * @param {(languages: string[]) => void} [success]
+	 * @param {(language: string) => void} [error] This callback will be invoked on the first language to fail.
 	 */
-	var registerElement = function (lang, elt) {
-		if (lang in lang_aliases) {
-			lang = lang_aliases[lang];
+	function loadLanguages(languages, success, error) {
+		if (typeof languages === 'string') {
+			languages = [languages];
 		}
 
-		var data = lang_data[lang];
-		if (!data) {
-			data = lang_data[lang] = {};
+		var total = languages.length;
+		var completed = 0;
+		var failed = false;
+
+		if (total === 0) {
+			if (success) {
+				setTimeout(success, 0);
+			}
+			return;
 		}
 
-		// Look for additional dependencies defined on the <code> or <pre> tags
-		var deps = elt.getAttribute('data-dependencies');
-		if (!deps && elt.parentNode && elt.parentNode.tagName.toLowerCase() === 'pre') {
-			deps = elt.parentNode.getAttribute('data-dependencies');
+		function successCallback() {
+			if (failed) {
+				return;
+			}
+			completed++;
+			if (completed === total) {
+				success && success(languages);
+			}
 		}
 
-		if (deps) {
-			deps = deps.split(/\s*,\s*/g);
-		} else {
-			deps = [];
-		}
-
-		loadLanguages(deps, function () {
-			loadLanguage(lang, function () {
-				Prism.highlightElement(elt);
+		languages.forEach(function (lang) {
+			loadLanguage(lang, successCallback, function () {
+				if (failed) {
+					return;
+				}
+				failed = true;
+				error && error(lang);
 			});
 		});
-	};
+	}
 
 	/**
-	 * Sequentially loads an array of grammars.
-	 * @param {string[]|string} langs
-	 * @param {function=} success
-	 * @param {function=} error
-	 */
-	var loadLanguages = function (langs, success, error) {
-		if (typeof langs === 'string') {
-			langs = [langs];
-		}
-		var i = 0;
-		var l = langs.length;
-		var f = function () {
-			if (i < l) {
-				loadLanguage(langs[i], function () {
-					i++;
-					f();
-				}, function () {
-					error && error(langs[i]);
-				});
-			} else if (i === l) {
-				success && success(langs);
-			}
-		};
-		f();
-	};
-
-	/**
-	 * Load a grammar with its dependencies
+	 * Loads a grammar with its dependencies.
+	 *
 	 * @param {string} lang
-	 * @param {function=} success
-	 * @param {function=} error
+	 * @param {() => void} [success]
+	 * @param {() => void} [error]
 	 */
-	var loadLanguage = function (lang, success, error) {
+	function loadLanguage(lang, success, error) {
 		var force = lang.indexOf('!') >= 0;
 
 		lang = lang.replace('!', '');
 		lang = lang_aliases[lang] || lang;
 
-		var load = function () {
+		function load() {
 			var data = lang_data[lang];
 			if (!data) {
-				data = lang_data[lang] = {};
+				data = lang_data[lang] = {
+					callbacks: []
+				};
 			}
-			if (success) {
-				if (!data.success_callbacks) {
-					data.success_callbacks = [];
-				}
-				data.success_callbacks.push(success);
-			}
-			if (error) {
-				if (!data.error_callbacks) {
-					data.error_callbacks = [];
-				}
-				data.error_callbacks.push(error);
-			}
+			data.callbacks.push({
+				success: success,
+				error: error
+			});
 
-			if (!force && Prism.languages[lang]) {
-				languageSuccess(lang);
+			if (!force && isLoaded(lang)) {
+				// the language is already loaded and we aren't forced to reload
+				languageCallback(lang, 'success');
 			} else if (!force && data.error) {
-				languageError(lang);
+				// the language failed to load before and we don't reload
+				languageCallback(lang, 'error');
 			} else if (force || !data.loading) {
+				// the language isn't currently loading and/or we are forced to reload
 				data.loading = true;
-				var src = getLanguagePath(lang);
-				addScript(src, function () {
+				data.error = false;
+
+				addScript(getLanguagePath(lang), function () {
 					data.loading = false;
-					languageSuccess(lang);
+					languageCallback(lang, 'success');
 
 				}, function () {
 					data.loading = false;
 					data.error = true;
-					languageError(lang);
+					languageCallback(lang, 'error');
 				});
 			}
 		};
 
 		var dependencies = lang_dependencies[lang];
-		if(dependencies && dependencies.length) {
-			loadLanguages(dependencies, load);
+		if (dependencies && dependencies.length) {
+			loadLanguages(dependencies, load, error);
 		} else {
 			load();
 		}
-	};
+	}
 
 	/**
-	 * Runs all success callbacks for this language.
+	 * Runs all callbacks of the given type for the given language.
+	 *
 	 * @param {string} lang
+	 * @param {"success" | "error"} type
 	 */
-	var languageSuccess = function (lang) {
-		if (lang_data[lang] && lang_data[lang].success_callbacks && lang_data[lang].success_callbacks.length) {
-			lang_data[lang].success_callbacks.forEach(function (f) {
-				f(lang);
-			});
+	function languageCallback(lang, type) {
+		if (lang_data[lang]) {
+			var callbacks = lang_data[lang].callbacks;
+			for (var i = 0, l = callbacks.length; i < l; i++) {
+				var callback = callbacks[i][type];
+				if (callback) {
+					setTimeout(callback, 0);
+				}
+			}
+			callbacks.length = 0;
 		}
-	};
-
-	/**
-	 * Runs all error callbacks for this language.
-	 * @param {string} lang
-	 */
-	var languageError = function (lang) {
-		if (lang_data[lang] && lang_data[lang].error_callbacks && lang_data[lang].error_callbacks.length) {
-			lang_data[lang].error_callbacks.forEach(function (f) {
-				f(lang);
-			});
-		}
-	};
+	}
 
 	Prism.hooks.add('complete', function (env) {
-		if (env.element && env.language && !env.grammar) {
-			if (env.language !== ignored_language) {
-				registerElement(env.language, env.element);
-			}
+		var element = env.element;
+		var language = env.language;
+		if (!element || !language || language === ignored_language) {
+			return;
+		}
+
+		var deps = getDependencies(element);
+		deps.push(language);
+
+		if (!deps.every(isLoaded)) {
+			// the language or some dependencies aren't loaded
+			loadLanguages(deps, function () {
+				Prism.highlightElement(element);
+			});
 		}
 	});
 

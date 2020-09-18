@@ -1,0 +1,51 @@
+class Foo extends Bar;
+struct Baz {};
+enum FooBar {};
+interface IFoo extends IBar;
+
+state Action {}
+state() Defense {}
+
+----------------------------------------------------
+
+[
+	["keyword", "class"],
+	["class-name", "Foo"],
+	["keyword", "extends"],
+	["class-name", "Bar"],
+	["punctuation", ";"],
+
+	["keyword", "struct"],
+	["class-name", "Baz"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["keyword", "enum"],
+	["class-name", "FooBar"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["keyword", "interface"],
+	["class-name", "IFoo"],
+	["keyword", "extends"],
+	["class-name", "IBar"],
+	["punctuation", ";"],
+
+	["keyword", "state"],
+	["class-name", "Action"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "state"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["class-name", "Defense"],
+	["punctuation", "{"],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for class names.

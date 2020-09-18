@@ -24,7 +24,7 @@ nan</code></pre>
 <p>Inline code requires the desired language to be loaded.
 On this page, check C, C++ and Fortran <strong>before</strong> checking Pure should make
 the examples below work properly.</p>
-<pre><code>%<
+<pre><code>%&lt;
 int mygcd(int x, int y)
 {
   if (y == 0)
@@ -34,7 +34,7 @@ int mygcd(int x, int y)
 }
 %>
 
-%< -*- Fortran90 -*-
+%&lt; -*- Fortran90 -*-
 function fact(n) result(p)
   integer n, p
   p = 1
@@ -44,7 +44,7 @@ function fact(n) result(p)
 end function fact
 %>
 
-%< -*- C++ -*-
+%&lt; -*- C++ -*-
 
 #include &lt;pure/runtime.h>
 #include &lt;string>

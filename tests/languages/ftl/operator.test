@@ -1,0 +1,77 @@
+<@foo (
+
++ - * / %
++= -= *= /= %=
+++ --
+
+== != >= <= > <
+gt gte lt lte
+
+! && ||
+
+? ??
+
+->
+
+.. ..* ..< ..!
+
+)/>
+
+----------------------------------------------------
+
+[
+	["ftl", [
+		["ftl-directive", [
+			["punctuation", "<"],
+			["directive", "@foo"],
+			["content", [
+				["punctuation", "("],
+
+				["operator", "+"],
+				["operator", "-"],
+				["operator", "*"],
+				["operator", "/"],
+				["operator", "%"],
+				["operator", "+="],
+				["operator", "-="],
+				["operator", "*="],
+				["operator", "/="],
+				["operator", "%="],
+				["operator", "++"],
+				["operator", "--"],
+
+				["operator", "=="],
+				["operator", "!="],
+				["operator", ">="],
+				["operator", "<="],
+				["operator", ">"],
+				["operator", "<"],
+				["operator", "gt"],
+				["operator", "gte"],
+				["operator", "lt"],
+				["operator", "lte"],
+
+				["operator", "!"],
+				["operator", "&&"],
+				["operator", "||"],
+
+				["operator", "?"],
+				["operator", "??"],
+
+				["operator", "->"],
+
+				["operator", ".."],
+				["operator", "..*"],
+				["operator", "..<"],
+				["operator", "..!"],
+
+				["punctuation", ")"]
+			]],
+			["punctuation", "/>"]
+		]]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for operators.
