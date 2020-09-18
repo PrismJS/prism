@@ -1,0 +1,99 @@
+<h2>Full example</h2>
+<pre><code>(node:40780) DeprecationWarning: Using Buffer without `new` will soon stop working. Use `new Buffer()`, or preferably `Buffer.from()`, `Buffer.allocUnsafe()` or `Buffer.alloc()` instead.
+    at Buffer (buffer.js:79:13)
+    at repl:1:1
+    at sigintHandlersWrap (vm.js:22:35)
+    at sigintHandlersWrap (vm.js:96:12)
+    at ContextifyScript.Script.runInThisContext (vm.js:21:12)
+    at REPLServer.defaultEval (repl.js:313:29)
+    at bound (domain.js:280:14)
+    at REPLServer.runBound [as eval] (domain.js:293:12)
+    at REPLServer.onLine (repl.js:513:10)
+    at emitOne (events.js:101:20)
+
+Error: custom error
+    at Server.&lt;anonymous&gt; (/trace/showcases/http.js:4:9)
+    at emitTwo (events.js:106:13)
+    at Server.emit (events.js:191:7)
+    at HTTPParser.parserOnIncoming [as onIncoming] (_http_server.js:543:12)
+    at HTTPParser.parserOnHeadersComplete (_http_common.js:105:23)
+    at new &lt;anonymous&gt; (_http_common.js:159:16)
+    at exports.FreeList.alloc (internal/freelist.js:14:46)
+    at Server.connectionListener (_http_server.js:316:24)
+    at emitOne (events.js:96:13)
+    at Server.emit (events.js:188:7)
+    at TCP.onconnection (net.js:1460:8)
+    at createServerHandle (net.js:1181:14)
+    at Server._listen2 (net.js:1225:14)
+    at listen (net.js:1290:10)
+    at Server.listen (net.js:1386:5)
+    at Object.&lt;anonymous&gt; (/trace/showcases/http.js:5:4)
+    at Module._compile (module.js:541:32)
+    at Object.Module._extensions..js (module.js:550:10)
+    at Module.load (module.js:458:32)
+    at tryModuleLoad (module.js:417:12)
+    at Function.Module._load (module.js:409:3)
+    at Module.runMain (module.js:575:10)
+    at run (bootstrap_node.js:340:7)
+    at startup (bootstrap_node.js:132:9)
+    at bootstrap_node.js:455:3
+
+
+Error: custom error
+    at /trace/showcases/basic.js:7:13
+    at _combinedTickCallback (internal/process/next_tick.js:67:7)
+    at process._tickCallback (internal/process/next_tick.js:98:9)
+    at InternalFieldObject.ondone (/trace/showcases/basic.js:6:13)
+    at /trace/showcases/basic.js:5:10
+    at FSReqWrap.readFileAfterClose [as oncomplete] (fs.js:445:3)
+    at ReadFileContext.close (fs.js:358:11)
+    at FSReqWrap.readFileAfterRead [as oncomplete] (fs.js:414:15)
+    at ReadFileContext.read (fs.js:342:11)
+    at FSReqWrap.readFileAfterStat [as oncomplete] (fs.js:398:11)
+    at FSReqWrap.readFileAfterOpen [as oncomplete] (fs.js:374:11)
+    at Object.fs.readFile (fs.js:303:11)
+    at Object.&lt;anonymous&gt; (/trace/showcases/basic.js:4:4)
+    at Module._compile (module.js:541:32)
+    at Object.Module._extensions..js (module.js:550:10)
+    at Module.load (module.js:458:32)
+    at tryModuleLoad (module.js:417:12)
+    at Function.Module._load (module.js:409:3)
+    at Module.runMain (module.js:575:10)
+    at run (bootstrap_node.js:340:7)
+    at startup (bootstrap_node.js:132:9)
+    at bootstrap_node.js:455:3
+
+
+BulkWriteError: E11000 duplicate key error collection: test.test index: _id_ dup key: { : 1 }
+    at OrderedBulkOperation.handleWriteError (/workspace/node_modules/mongodb/lib/bulk/common.js:1048:11)
+    at resultHandler (/workspace/node_modules/mongodb/lib/bulk/ordered.js:159:23)
+    at /workspace/node_modules/mongodb/node_modules/mongodb-core/lib/connection/pool.js:532:18
+    at _combinedTickCallback (internal/process/next_tick.js:131:7)
+    at process._tickCallback (internal/process/next_tick.js:180:9)
+
+Error
+    at Collection.(anonymous function) [as insertMany] (/workspace/node_modules/monogram/lib/collection.js:80:21)
+    at insert (/workspace/test.js:14:31)
+    at run (/workspace/test.js:9:9)
+    at &lt;anonymous&gt;
+    at process._tickCallback (internal/process/next_tick.js:188:7)
+
+Error
+    at Collection.(anonymous function) [as insertMany] (/workspace/node_modules/monogram/lib/collection.js:80:21)
+    at insert (/workspace/test.js:15:31)
+    at processTicksAndRejections (internal/process/next_tick.js:81:5)
+
+
+Deno:
+
+Error: Some error
+    at throwsA (&lt;unknown&gt;:1:23)
+    at &lt;unknown&gt;:1:13
+    at evaluate ($deno$/repl.ts:64:34)
+    at Object.replLoop ($deno$/repl.ts:153:13)
+
+Uncaught NotFound: No such file or directory (os error 2)
+    at DenoError (deno/js/errors.ts:22:5)
+    at maybeError (deno/js/errors.ts:41:12)
+    at handleAsyncMsgFromRust (deno/js/dispatch.ts:27:17)
+</code></pre>

@@ -1,0 +1,39 @@
+as
+assert
+else
+forall
+if
+in
+let
+merge
+missing
+then
+toMap
+using
+with
+
+∀
+
+----------------------------------------------------
+
+[
+	["keyword", "as"],
+	["keyword", "assert"],
+	["keyword", "else"],
+	["keyword", "forall"],
+	["keyword", "if"],
+	["keyword", "in"],
+	["keyword", "let"],
+	["keyword", "merge"],
+	["keyword", "missing"],
+	["keyword", "then"],
+	["keyword", "toMap"],
+	["keyword", "using"],
+	["keyword", "with"],
+
+	["keyword", "∀"]
+]
+
+----------------------------------------------------
+
+Checks for keywords.

@@ -68,12 +68,12 @@ describe("The token stream transformer", function () {
 			{
 				type: "type",
 				content: [
-					["", ""],
 					"",
-					{ type: "nested", content: [""] }
+					{ type: "nested", content: [""] },
+					""
 				]
 			},
-			[[[[[[[""]]]]]]]
+			""
 		];
 
 		const expectedSimplified = [

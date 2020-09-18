@@ -18,7 +18,7 @@ Prism.languages.groovy = Prism.languages.extend('clike', {
 		pattern: /(^|[^.])(?:~|==?~?|\?[.:]?|\*(?:[.=]|\*=?)?|\.[@&]|\.\.<|\.\.(?!\.)|-[-=>]?|\+[+=]?|!=?|<(?:<=?|=>?)?|>(?:>>?=?|=)?|&[&=]?|\|[|=]?|\/=?|\^=?|%=?)/,
 		lookbehind: true
 	},
-	'punctuation': /\.+|[{}[\];(),.:$]/
+	'punctuation': /\.+|[{}[\];(),:$]/
 });
 
 Prism.languages.insertBefore('groovy', 'string', {

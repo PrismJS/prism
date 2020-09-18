@@ -18,12 +18,14 @@ bar = 1.5%
 	["property-declaration", [
 		["property", ["width"]],
 		["punctuation", ":"],
-		["number", "23%"]
+		["number", "23"],
+		["unit", "%"]
 	]],
 	["variable-declaration", [
 		["variable", "bar"],
 		["operator", "="],
-		["number", "1.5%"]
+		["number", "1.5"],
+		["unit", "%"]
 	]]
 ]
 

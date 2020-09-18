@@ -3,10 +3,10 @@ default-src 'none'; style-src 'self' 'strict-dynamic' 'nonce-yeah' 'sha256-EpOpN
 ----------------------------------------------------
 
 [
-	["directive", "default-src "],
+	["directive", "default-src"],
 	["safe", "'none'"],
 	"; ",
-	["directive", "style-src "],
+	["directive", "style-src"],
 	["safe", "'self'"],
 	["safe", "'strict-dynamic'"],
 	["safe", "'nonce-yeah'"],

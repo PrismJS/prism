@@ -3,12 +3,12 @@
 <head>
 
 <meta charset="utf-8" />
-<link rel="icon" href="favicon.png" />
+<link rel="icon" href="assets/favicon.png" />
 <title>Extending Prism ▲ Prism</title>
-<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="assets/style.css" />
 <link rel="stylesheet" href="themes/prism.css" data-noprefix />
 <link rel="stylesheet" href="plugins/line-highlight/prism-line-highlight.css" data-noprefix />
-<script src="scripts/prefixfree.min.js"></script>
+<script src="assets/prefixfree.min.js"></script>
 <style>
 ol.indent {
 	margin: 1em 0;
@@ -22,7 +22,7 @@ ol.indent {
 <body class="language-javascript">
 
 <header>
-	<div class="intro" data-src="templates/header-main.html" data-type="text/html"></div>
+	<div class="intro" data-src="assets/templates/header-main.html" data-type="text/html"></div>
 
 	<h2>Extending Prism</h2>
 	<p>Prism is awesome out of the box, but it’s even awesomer when it’s customized to your own needs. This section will help you write new language definitions, plugins and all-around Prism hacking.</p>
@@ -93,42 +93,9 @@ ol.indent {
 'tokenname': [ /regex0/, /regex1/, { pattern: /regex2/ } ]
 ...</code></pre>
 
-	<section>
-		<h1><code>Prism.languages.insertBefore(inside, before, insert<span class="optional" title="Default value: Prism.languages">, root</span>)</code></h1>
+	<h2 id="helper-functions">Helper functions</h2>
 
-		<p>This is a helper method to ease modifying existing languages. For example, the CSS language definition not only defines CSS highlighting for CSS documents,
-		but also needs to define highlighting for CSS embedded in HTML through <code class="language-markup">&lt;style></code> elements. To do this, it needs to modify
-		<code>Prism.languages.markup</code> and add the appropriate tokens. However, <code>Prism.languages.markup</code>
-		is a regular JavaScript object literal, so if you do this:</p>
-
-		<pre><code >Prism.languages.markup.style = {
-	/* tokens */
-};</code></pre>
-
-		<p>then the <code>style</code> token will be added (and processed) at the end. <code>Prism.languages.insertBefore</code> allows you to insert
-		tokens <em>before</em> existing tokens. For the CSS example above, you would use it like this:</p>
-
-		<pre><code>Prism.languages.insertBefore('markup', 'cdata', {
-	'style': {
-		/* tokens */
-	}
-});</code></pre>
-
-		<h2>Parameters</h2>
-		<dl>
-			<dt>inside</dt>
-			<dd>The property of <code>root</code> that contains the object to be modified.</dd>
-
-			<dt>before</dt>
-			<dd>Key to insert before (String)</dd>
-
-			<dt>insert</dt>
-			<dd>An object containing the key-value pairs to be inserted</dd>
-
-			<dt>root</dt>
-			<dd>The root object, i.e. the object that contains the object that will be modified. Optional, default value is <code>Prism.languages</code>.</dd>
-		</dl>
-	</section>
+	<p>Prism also provides some useful function for creating and modifying language definitions. <a href="docs/Prism.languages.html#.insertBefore"><code>Prism.languages.insertBefore</code></a> can be used to modify existing languages definitions. <a href="docs/Prism.languages.html#.extend"><code>Prism.languages.extend</code></a> is useful for when your language is very similar to another existing language.</p>
 </section>
 
 <section id="creating-a-new-language-definition" class="language-none">
@@ -145,7 +112,7 @@ ol.indent {
 			<p>In this example, we choose <code>foo-bar</code> as the id of the new language. The language id has to be unique and should work well with the <code>language-xxxx</code> CSS class name Prism uses to refer to language definitions. Your language id should ideally match the regular expression <code>/^[a-z][a-z\d]*(?:-[a-z][a-z\d]*)*$/</code>.</p>
 		</li>
 		<li>
-			<p>Edit <code>components.json</code> to register the new language by adding it to the <code>languages</code> object. (Please note that all language entries are sorted alphabetically by title.) <br>
+			<p>Edit <a href="https://github.com/PrismJS/prism/blob/master/components.json"><code>components.json</code></a> to register the new language by adding it to the <code>languages</code> object. (Please note that all language entries are sorted alphabetically by title.) <br>
 			Our new entry for this example will look like this:</p>
 
 			<pre><code class="language-json">"foo-bar": {
@@ -153,16 +120,16 @@ ol.indent {
 	"owner": "Your GitHub name"
 }</code></pre>
 
-			<p>If your language definition depends any other languages, you have to specify this here as well by adding a <code class="language-js">"require"</code> property. E.g. <code class="language-js">"require": "clike"</code>, or <code class="language-js">"require" : ["markup", "css"]</code>. For more information on dependencies read the declaring dependencies section.</p>
+			<p>If your language definition depends any other languages, you have to specify this here as well by adding a <code class="language-js">"require"</code> property. E.g. <code class="language-js">"require": "clike"</code>, or <code class="language-js">"require" : ["markup", "css"]</code>. For more information on dependencies read the <a href="#declaring-dependencies">declaring dependencies</a> section.</p>
 
 			<p><em>Note:</em> Any changes made to <code>components.json</code> require a rebuild (see step 3).</p>
 		</li>
 		<li>
-			<p>Rebuild Prism by running <code class="language-bash">npx gulp</code>.</p>
+			<p>Rebuild Prism by running <code class="language-bash">npm run build</code>.</p>
 
 			<p>This will make your language available to the <a href="test.html">test page</a>, or more precise: your local version of it. You can open your local <code>test.html</code> page in any browser, select your language, and see how your language definition highlights any code you input.</p>
 
-			<p><em>Note:</em> You have to reload the test page to apply changes made to <code>prism-foo-bar.js</code>.</p>
+			<p><em>Note:</em> You have to reload the test page to apply changes made to <code>prism-foo-bar.js</code> but you don't have to rebuild Prism itself. However, if you change <code>components.json</code> (e.g. because you added a dependency) then these changes will not show up until you rebuild Prism.</p>
 		</li>
 		<li>
 			<p>Write the language definition.</p>
@@ -255,7 +222,9 @@ Brief description.</code></pre>
 			We don't have any rules as to what counts as an example, so a single <em>Full example</em> section where you present the highlighting of the major features of the language is enough.</p>
 		</li>
 		<li>
-			<p>Run <code class="language-bash">npx gulp</code> again.</p>
+			<p>Run <code class="language-bash">npm run build</code> again.</p>
+
+			<p>Your language definition is now ready!</p>
 		</li>
 	</ol>
 </section>
@@ -266,7 +235,7 @@ Brief description.</code></pre>
 
 	<p>Languages and plugins can depend on each other, so Prism has its own dependency system to declare and resolve dependencies.</p>
 
-	<h2>Declaring dependencies</h2>
+	<h2 id="declaring-dependencies">Declaring dependencies</h2>
 
 	<p>You declare a dependency by adding a property to the entry of your language or plugin in the <a href="https://github.com/PrismJS/prism/blob/master/components.json"><code>components.json</code></a> file. The name of the property will be dependency kind and its value will be the component id of the dependee. If multiple languages or plugins are depended upon then you can also declare an array of component ids.</p>
 
@@ -302,7 +271,7 @@ Brief description.</code></pre>
 		</dd>
 		<dt><code>optional</code></dt>
 		<dd>
-			Prims will ensure that an optional dependee is loaded before the depender if the dependee is loaded. Unlike <code>require</code> dependencies which also guarantee that the dependees are loaded, <code>optional</code> dependencies only guarantee the order of loaded components. <br>
+			Prism will ensure that an optional dependee is loaded before the depender if the dependee is loaded. Unlike <code>require</code> dependencies which also guarantee that the dependees are loaded, <code>optional</code> dependencies only guarantee the order of loaded components. <br>
 			You are <strong>not</strong> allowed to modify the dependees. If you need to modify the optional dependee, declare it as <code>modify</code> instead.
 
 			<p>This kind of dependency is useful if you have embedded languages but you want to give the users a choice as to whether they want to include the embedded language. By using <code>optional</code> dependencies, users can better control the bundle size of Prism by only including the languages they need.<br>
@@ -354,7 +323,7 @@ Brief description.</code></pre>
 
 	<p>Note: You can declare a component as both <code>require</code> and <code>modify</code></p>
 
-	<h2>Resolving dependencies</h2>
+	<h2 id="resolving-dependencies">Resolving dependencies</h2>
 
 	<p>We consider the dependencies of components an implementation detail, so they may change from release to release. Prism will usually resolve dependencies for you automatically. So you won't have to worry about dependency loading if you <a href="download.html">download</a> a bundle or use the <code>loadLanguages</code> function in NodeJS, the <a href="plugins/autoloader/">AutoLoader</a>, or our Babel plugin.</p>
 
@@ -395,109 +364,17 @@ loader.load(id => {
 <section id="api">
 	<h1>API documentation</h1>
 
-	<section id="highlight-all">
-		<h1><code>Prism.highlightAll(async, callback)</code></h1>
-		<p>This is the most high-level function in Prism’s API. It fetches all the elements that have a <code>.language-xxxx</code> class
-		and then calls <code>Prism.highlightElement()</code> on each one of them.</p>
-
-		<h2>Parameters</h2>
-		<dl>
-			<dt>async</dt>
-			<dd>
-				Whether to use Web Workers to improve performance and avoid blocking the UI when highlighting very large
-				chunks of code. False by default
-				(<a href="faq.html#why-is-asynchronous-highlighting-disabled-by-default">why?</a>).<br />
-				Note: All language definitions required to highlight the code must be included in the main <code>prism.js</code>
-				file for the async highlighting to work. You can build your own bundle on the <a href="download.html">Download page</a>.
-			</dd>
-
-			<dt>callback</dt>
-			<dd>
-				An optional callback to be invoked after the highlighting is done. Mostly useful when <code>async</code>
-				is true, since in that case, the highlighting is done asynchronously.
-			</dd>
-		</dl>
-	</section>
-
-	<section id="highlight-all-under">
-		<h1><code>Prism.highlightAllUnder(element, async, callback)</code></h1>
-		<p>Fetches all the descendants of <code>element</code> that have a <code>.language-xxxx</code> class
-			and then calls <code>Prism.highlightElement()</code> on each one of them.</p>
-
-		<h2>Parameters</h2>
-		<dl>
-			<dt>element</dt>
-			<dd>The root element, whose descendants that have a <code>.language-xxxx</code> class will be highlighted.</dd>
-
-			<dt>async</dt>
-			<dd>Same as in <a href="#highlight-all"><code>Prism.highlightAll()</code></a></dd>
-
-			<dt>callback</dt>
-			<dd>Same as in <a href="#highlight-all"><code>Prism.highlightAll()</code></a></dd>
-		</dl>
-	</section>
-
-	<section id="highlight-element">
-		<h1><code>Prism.highlightElement(element, async, callback)</code></h1>
-		<p>Highlights the code inside a single element.</p>
-
-		<h2>Parameters</h2>
-		<dl>
-			<dt>element</dt>
-			<dd>The element containing the code. It must have a class of <code>language-xxxx</code> to be processed, where <code>xxxx</code> is a valid language identifier.</dd>
-
-			<dt>async</dt>
-			<dd>Same as in <a href="#highlight-all"><code>Prism.highlightAll()</code></a></dd>
-			<dt>callback</dt>
-			<dd>Same as in <a href="#highlight-all"><code>Prism.highlightAll()</code></a></dd>
-		</dl>
-	</section>
-
-	<section id="highlight">
-		<h1><code>Prism.highlight(text, grammar, language)</code></h1>
-		<p>Low-level function, only use if you know what you’re doing.
-		It accepts a string of text as input, the language definitions to use, and the name of the language, and returns a string with the HTML produced.</p>
-
-		<h2>Parameters</h2>
-		<dl>
-			<dt>text</dt>
-			<dd>A string with the code to be highlighted.</dd>
-			<dt>grammar</dt>
-			<dd>An object containing the tokens to use. Usually a language definition like <code>Prism.languages.markup</code></dd>
-			<dt>language</dt>
-			<dd>The name of the language definition passed to <code>grammar</code>. E.g. <code>markup</code> or <code>javascript</code></dd>
-		</dl>
-
-		<h2>Returns</h2>
-		<p>The highlighted HTML</p>
-	</section>
-
-	<section id="tokenize">
-		<h1><code>Prism.tokenize(text, grammar)</code></h1>
-		<p>This is the heart of Prism, and the most low-level function you can use. It accepts a string of text as input and the language definitions to use, and returns an array with the tokenized code.
-		When the language definition includes nested tokens, the function is called recursively on each of these tokens. This method could be useful in other contexts as well, as a very crude parser.</p>
-
-		<h2>Parameters</h2>
-		<dl>
-			<dt>text</dt>
-			<dd>A string with the code to be highlighted.</dd>
-			<dt>grammar</dt>
-			<dd>An object containing the tokens to use. Usually a language definition like <code>Prism.languages.markup</code></dd>
-		</dl>
-
-		<h2>Returns</h2>
-		<p>An array of strings, tokens (class <code>Prism.Token</code>) and other arrays.</p>
-	</section>
+	<p>All public and stable parts of <a href="docs/">Prism's API are documented here</a>.</p>
 </section>
 
-<footer data-src="templates/footer.html" data-type="text/html"></footer>
+<footer data-src="assets/templates/footer.html" data-type="text/html"></footer>
 
-<script src="scripts/utopia.js"></script>
+<script src="assets/utopia.js"></script>
 <script src="prism.js"></script>
 <script src="plugins/autoloader/prism-autoloader.js"></script>
 <script src="plugins/line-highlight/prism-line-highlight.js"></script>
 <script src="components.js"></script>
-<script src="scripts/code.js"></script>
+<script src="assets/code.js"></script>
 
 </body>
 </html>
