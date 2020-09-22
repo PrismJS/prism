@@ -1,0 +1,21 @@
+env:DHALL_PRELUDE
+env:"Quotes variable"
+
+----------------------------------------------------
+
+[
+	["env", [
+		["function", "env"],
+		["operator", ":"],
+		["variable", "DHALL_PRELUDE"]
+	]],
+	["env", [
+		["function", "env"],
+		["operator", ":"],
+		["variable", "\"Quotes variable\""]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for environment variables.

@@ -1,5 +1,6 @@
 $ echo 'Foo
 > Bar'
+
 $ echo "Foo
 > Bar"
 
@@ -14,6 +15,11 @@ bar
 STRING_END
 
 $ echo \'a # '
+
+$ cat << "EOF" > /etc/ipsec.secrets
+: RSA vpn-server-a.key
+# : RSA vpn-server-b.key
+EOF
 
 ----------------------------------------------------
 
@@ -58,7 +64,9 @@ $ echo \'a # '
 			["operator", [
 				"<<-"
 			]],
-			["string", "\"STRING_END\"\r\nfoo\r\nbar\r\nSTRING_END"]
+			["string", [
+				"\"STRING_END\"\r\nfoo\r\nbar\r\nSTRING_END"
+			]]
 		]]
 	]],
 
@@ -71,7 +79,26 @@ $ echo \'a # '
 			["comment", "# "]
 		]]
 	]],
-	["output", "'"]
+	["output", "'\r\n\r\n"],
+	["command", [
+		["shell-symbol", "$"],
+		["bash", [
+			["function", "cat"],
+			["operator", [
+				"<<"
+			]],
+			["string", [
+				"\"EOF\"",
+				["bash", [
+					["operator", [
+						">"
+					]],
+					" /etc/ipsec.secrets"
+				]],
+				"\r\n: RSA vpn-server-a.key\r\n# : RSA vpn-server-b.key\r\nEOF"
+			]]
+		]]
+	]]
 ]
 
 ----------------------------------------------------

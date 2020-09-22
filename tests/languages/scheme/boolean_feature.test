@@ -1,17 +1,15 @@
 #t
 #f
-
-; not a boolean
 #true
+#false
 
 ----------------------------------------------------
 
 [
 	["boolean", "#t"],
 	["boolean", "#f"],
-
-	["comment", "; not a boolean"],
-	"\r\n#true"
+	["boolean", "#true"],
+	["boolean", "#false"]
 ]
 
 ----------------------------------------------------

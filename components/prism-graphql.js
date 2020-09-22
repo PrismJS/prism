@@ -28,7 +28,7 @@ Prism.languages.graphql = {
 		greedy: true
 	},
 	'class-name': {
-		pattern: /(\b(?:enum|implements|interface|on|scalar|type|union)\s+)[a-zA-Z_]\w*/,
+		pattern: /(\b(?:enum|implements|interface|on|scalar|type|union)\s+|&\s*)[a-zA-Z_]\w*/,
 		lookbehind: true
 	},
 	'fragment': {
@@ -36,8 +36,8 @@ Prism.languages.graphql = {
 		lookbehind: true,
 		alias: 'function'
 	},
-	'keyword': /\b(?:enum|fragment|implements|input|interface|mutation|on|query|scalar|schema|type|union)\b/,
-	'operator': /[!=|]|\.{3}/,
+	'keyword': /\b(?:directive|enum|extend|fragment|implements|input|interface|mutation|on|query|repeatable|scalar|schema|subscription|type|union)\b/,
+	'operator': /[!=|&]|\.{3}/,
 	'punctuation': /[!(){}\[\]:=,]/,
 	'constant': /\b(?!ID\b)[A-Z][A-Z_\d]*\b/
 };

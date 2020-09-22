@@ -1,5 +1,6 @@
 class Foo
 class Foo_bar
+concept Foo_bar
 struct foo
 enum bar
 enum class FooBar
@@ -14,6 +15,7 @@ void Foo<int>::bar() {}
 [
 	["keyword", "class"], ["class-name", "Foo"],
 	["keyword", "class"], ["class-name", "Foo_bar"],
+	["keyword", "concept"], ["class-name", "Foo_bar"],
 	["keyword", "struct"], ["class-name", "foo"],
 	["keyword", "enum"], ["class-name", "bar"],
 	["keyword", "enum"], ["keyword", "class"], ["class-name", "FooBar"],

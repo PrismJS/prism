@@ -13,9 +13,12 @@ before_install:
 install:
 - npm ci
 before_script:
-- npm install -g gulp
-- gulp
-- gulp premerge
+# Rebuild Prism
+- npx gulp
+# Detect changes
+# First, we stage all changes and then detect if there is anything staged
+- git add --all && git diff-index --cached HEAD --stat --exit-code ||
+  (echo && echo "The above files changed because the build is not up to date." && echo "Please rebuild Prism." && exit 1)
 script: npm test
 deploy:
   provider: npm

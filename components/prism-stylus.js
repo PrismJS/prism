@@ -1,6 +1,6 @@
 (function (Prism) {
 	var unit = {
-		pattern: /(\d)(?:%|[a-z]+)/,
+		pattern: /(\b\d+)(?:%|[a-z]+)/,
 		lookbehind: true
 	};
 	// 123 -123 .123 -.123 12.3 -12.3

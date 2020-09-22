@@ -1,0 +1,33 @@
+{
+	field1: 'Here is url: http://prismjs.com/'
+	field2: 'Here is ip: 192.168.0.1'
+}
+
+----------------------------------------------------
+
+[
+	["punctuation", "{"],
+	["property", [
+		"field1"
+	]],
+	["operator", ":"],
+	["string", [
+		"'Here is url: ",
+		["url", "http://prismjs.com/"],
+		"'"
+	]],
+	["property", [
+		"field2"
+	]],
+	["operator", ":"],
+	["string", [
+		"'Here is ip: ",
+		["entity", "192.168.0.1"],
+		"'"
+	]],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for URL and IP highlighting inside string.

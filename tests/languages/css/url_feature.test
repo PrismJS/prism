@@ -1,4 +1,5 @@
 url(foo.png)
+url(close\)parens)
 url('foo.png')
 url("foo.png")
 url('foo\
@@ -21,25 +22,31 @@ bar.png")
 	["url", [
 		["function", "url"],
 		["punctuation", "("],
-		"'foo.png'",
+		"close\\)parens",
 		["punctuation", ")"]
 	]],
 	["url", [
 		["function", "url"],
 		["punctuation", "("],
-		"\"foo.png\"",
+		["string", "'foo.png'"],
 		["punctuation", ")"]
 	]],
 	["url", [
 		["function", "url"],
 		["punctuation", "("],
-		"'foo\\\r\nbar.png'",
+		["string", "\"foo.png\""],
 		["punctuation", ")"]
 	]],
 	["url", [
 		["function", "url"],
 		["punctuation", "("],
-		"\"foo\\\r\nbar.png\"",
+		["string", "'foo\\\r\nbar.png'"],
+		["punctuation", ")"]
+	]],
+	["url", [
+		["function", "url"],
+		["punctuation", "("],
+		["string", "\"foo\\\r\nbar.png\""],
 		["punctuation", ")"]
 	]],
 	["atrule", [
@@ -47,7 +54,7 @@ bar.png")
 		["url", [
 			["function", "url"],
 			["punctuation", "("],
-			"\"https://cdn.jsdelivr.net/npm/prismj1.19.0/themes/prism-dark.css\"",
+			["string", "\"https://cdn.jsdelivr.net/npm/prismj1.19.0/themes/prism-dark.css\""],
 			["punctuation", ")"]
 		]],
 		["punctuation", ";"]
@@ -57,7 +64,7 @@ bar.png")
 		["url", [
 			["function", "url"],
 			["punctuation", "("],
-			"\"https://cdn.jsdelivr.net/npm/prismjs/themes/prism-dark.css\"",
+			["string", "\"https://cdn.jsdelivr.net/npm/prismjs/themes/prism-dark.css\""],
 			["punctuation", ")"]
 		]],
 		["punctuation", ";"]

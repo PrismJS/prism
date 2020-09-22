@@ -3,11 +3,11 @@
 <head>
 
 <meta charset="utf-8" />
-<link rel="icon" href="favicon.png" />
+<link rel="icon" href="assets/favicon.png" />
 <title>Running the test suite ▲ Prism</title>
-<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="assets/style.css" />
 <link rel="stylesheet" href="themes/prism.css" data-noprefix />
-<script src="scripts/prefixfree.min.js"></script>
+<script src="assets/prefixfree.min.js"></script>
 
 <script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
 <script src="https://www.google-analytics.com/ga.js" async></script>
@@ -15,7 +15,7 @@
 <body class="language-javascript">
 
 <header>
-	<div class="intro" data-src="templates/header-main.html" data-type="text/html"></div>
+	<div class="intro" data-src="assets/templates/header-main.html" data-type="text/html"></div>
 
 	<h2>Running the test suite</h2>
 
@@ -93,8 +93,11 @@
 
 	<p>Your file is built up of two or three sections, separated by ten or more dashes <code>-</code>, starting at the begin of the line:</p>
 	<ol>
-		<li>Your language snippet. The code you want to compile using Prism. (<strong>required</strong>)</li>
-		<li>The simplified token stream you expect. Needs to be valid JSON. (<strong>required</strong>)</li>
+		<li>Your language snippet. The code you want to tokenize using Prism. (<strong>required</strong>)</li>
+		<li>
+			The simplified token stream you expect. Needs to be valid JSON. (<em>optional</em>) <br>
+			If there no token stream defined, the test case will fail unless the <code>--accept</code> flag is present when running the test command (e.g. <code>npm run test:languages -- --accept</code>). If the flag is present and there is no expected token stream, the runner will insert the actual token stream into the test case file, changing it.
+		</li>
 		<li>A comment explaining the test case. (<em>optional</em>)</li>
 	</ol>
 	<p>The easiest way would be to look at an existing test file:</p>
@@ -114,10 +117,25 @@
 
 This is a comment explaining this test case.</code></pre>
 
+	<h2 id="writing-tests-the-easy-way">The easy way</h2>
+	<p>The easy way to create one or multiple new test case(s) is this:</p>
+
+	<ol>
+		<li>Create a new file for a new test case in <code>tests/languages/${language}</code>.</li>
+		<li>Insert the code you want to test (and nothing more).</li>
+		<li>Repeat the first two steps for as many test cases as you want.</li>
+		<li>Run <code>npm run test:languages -- --accept</code>.</li>
+		<li>Done.</li>
+	</ol>
+
+	<p>This works by making the test runner insert the actual token stream of you test code as the expected token stream. <strong>Carefully check that the inserted token stream is actually what you expect or else the test is meaningless!</strong></p>
+
+	<p>Optionally, you can then also add comments to test cases.</p>
+
 
 	<h2 id="writing-tests-explaining-the-simplified-token-stream">Explaining the simplified token stream</h2>
 
-	<p>While compiling, Prism transforms your source code into a token stream. This is basically a tree of nested tokens (or arrays, or strings).</p>
+	<p>While highlighting, Prism transforms your source code into a token stream. This is basically a tree of nested tokens (or arrays, or strings).</p>
 	<p>As these trees are hard to write by hand, the test runner uses a simplified version of it.</p>
 	<p>It uses the following rules:</p>
 	<ul>
@@ -125,9 +143,8 @@ This is a comment explaining this test case.</code></pre>
 		<li>All strings that are either empty or only contain whitespace, are removed from the token stream.</li>
 		<li>All empty structures are removed.</li>
 	</ul>
-	<p>To get a pretty-printed version of the simplified token stream of a failed test, add the <code>--pretty</code> modifier. Keep in mind that the pretty-printed token stream is indented using spaces, you may need to convert these to tabs. (Most editors today have an option which handles the conversion for you.)</p>
 
-	<pre><code class="language-bash">npm run test:languages -- --pretty</code></pre>
+	<p>Note: The pretty-printed simplified token stream is indented using 4 spaces. You have to convert these to tabs after you copy-pasted the JSON. (Most editors today have an option that handles the conversion for you.)</p>
 
 	<p>For further information: reading the tests of the test runner (<code>tests/testrunner-tests.js</code>) will help you understand the transformation.</p>
 </section>
@@ -163,13 +180,13 @@ This is a comment explaining this test case.</code></pre>
 </section>
 
 
-<footer data-src="templates/footer.html" data-type="text/html"></footer>
+<footer data-src="assets/templates/footer.html" data-type="text/html"></footer>
 
-<script src="scripts/utopia.js"></script>
+<script src="assets/utopia.js"></script>
 <script src="prism.js"></script>
 <script src="components/prism-bash.js"></script>
 <script src="components.js"></script>
-<script src="scripts/code.js"></script>
+<script src="assets/code.js"></script>
 
 </body>
 </html>
