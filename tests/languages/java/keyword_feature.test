@@ -24,6 +24,7 @@ module requires transitive
 exports uses open
 opens with to provides
 yield
+sealed non-sealed permits
 
 ----------------------------------------------------
 
@@ -53,7 +54,8 @@ yield
 	["keyword", "module"], ["keyword", "requires"], ["keyword", "transitive"],
 	["keyword", "exports"], ["keyword", "uses"], ["keyword", "open"],
 	["keyword", "opens"], ["keyword", "with"], ["keyword", "to"], ["keyword", "provides"],
-	["keyword", "yield"]
+	["keyword", "yield"],
+	["keyword", "sealed"], ["keyword", "non-sealed"], ["keyword", "permits"]
 ]
 
 ----------------------------------------------------
