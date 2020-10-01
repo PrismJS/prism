@@ -44,7 +44,6 @@ insteadof
 interface;
 isset
 list
-match
 namespace;
 new;
 or
@@ -56,6 +55,8 @@ public
 require
 require_once
 return
+self
+new self
 static
 switch
 throw
@@ -117,7 +118,6 @@ yield
 	["keyword", "interface"], ["punctuation", ";"],
 	["keyword", "isset"],
 	["keyword", "list"],
-	["keyword", "match"],
 	["keyword", "namespace"], ["punctuation", ";"],
 	["keyword", "new"], ["punctuation", ";"],
 	["keyword", "or"],
@@ -129,6 +129,9 @@ yield
 	["keyword", "require"],
 	["keyword", "require_once"],
 	["keyword", "return"],
+	["keyword", "self"],
+	["keyword", "new"],
+	["keyword", "self"],
 	["keyword", "static"],
 	["keyword", "switch"],
 	["keyword", "throw"],

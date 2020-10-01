@@ -2,6 +2,8 @@ namespace \foo
 namespace \foo\bar\baz
 use \foo
 use \foo\bar\baz
+use function \foo
+use function \foo\bar\baz
 
 ----------------------------------------------------
 
@@ -17,6 +19,16 @@ use \foo\bar\baz
 	["keyword", "use"],
 	["package", [["punctuation", "\\"], "foo"]],
 	["keyword", "use"],
+	["package", [
+		["punctuation", "\\"], "foo",
+		["punctuation", "\\"], "bar",
+		["punctuation", "\\"], "baz"
+	]],
+	["keyword", "use"],
+	["keyword", "function"],
+    ["package", [["punctuation", "\\"], "foo"]],
+	["keyword", "use"],
+	["keyword", "function"],
 	["package", [
 		["punctuation", "\\"], "foo",
 		["punctuation", "\\"], "bar",

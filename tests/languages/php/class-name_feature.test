@@ -1,0 +1,34 @@
+Foo::bar();
+(Foo $variable)
+): Foo
+): ?Foo
+
+----------------------------------------------------
+
+[
+	["class-name", ["Foo"]],
+	["punctuation", ":"],
+	["punctuation", ":"],
+	["function", "foo"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["punctuation", "("],
+	["class-name", ["Foo"]],
+	["variable", "$variable"],
+	["punctuation", ")"],
+
+	["punctuation", ")"],
+	["punctuation", ":"],
+	["class-name", ["Foo"]],
+
+	["punctuation", ")"],
+	["punctuation", ":"],
+	["operator", "?"],
+	["class-name", ["Foo"]]
+]
+
+----------------------------------------------------
+
+Checks for class names.

@@ -1,0 +1,29 @@
+bool
+boolean
+int
+integer
+float
+string
+object
+void
+array
+mixed
+
+----------------------------------------------------
+
+[
+	["type", "bool"],
+	["type", "boolean"],
+	["type", "int"],
+	["type", "integer"],
+	["type", "float"],
+	["type", "string"],
+	["type", "object"],
+	["type", "void"],
+	["type", "array"],
+	["type", "mixed"]
+]
+
+----------------------------------------------------
+
+Checks for types.

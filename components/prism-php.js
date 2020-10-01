@@ -12,7 +12,7 @@
  */
 (function (Prism) {
 	Prism.languages.php = Prism.languages.extend('clike', {
-		'keyword': /\b(?:__halt_compiler|abstract|and|array|as|break|callable|case|catch|class|clone|const|continue|declare|default|die|do|echo|else|elseif|empty|enddeclare|endfor|endforeach|endif|endswitch|endwhile|eval|exit|extends|final|finally|for|foreach|function|global|goto|if|implements|include|include_once|instanceof|insteadof|interface|isset|list|match|namespace|new|or|parent|print|private|protected|public|require|require_once|return|static|switch|throw|trait|try|unset|use|var|while|xor|yield)\b/i,
+		'keyword': /\b(?:__halt_compiler|abstract|and|array|as|break|callable|case|catch|class|clone|const|continue|declare|default|die|do|echo|else|elseif|empty|enddeclare|endfor|endforeach|endif|endswitch|endwhile|eval|exit|extends|final|finally|for|foreach|function|global|goto|if|implements|include|include_once|instanceof|insteadof|interface|isset|list|namespace|new|or|parent|print|private|protected|public|require|require_once|return|self|static|switch|throw|trait|try|unset|use|var|while|xor|yield)\b/i,
 		'boolean': {
 			pattern: /\b(?:false|true)\b/i,
 			alias: 'constant'
@@ -24,6 +24,13 @@
 		'comment': {
 			pattern: /(^|[^\\])(?:\/\*[\s\S]*?\*\/|\/\/.*)/,
 			lookbehind: true
+		},
+		'class-name': {
+			pattern: /(\b(?:class|interface|extends|implements|trait|instanceof|new\s+(?!self))\s+|\bcatch\s+\()[a-zA-Z_][\w\\]+/i,
+			lookbehind: true,
+			inside: {
+				'punctuation': /\\/
+			}
 		}
 	});
 
@@ -42,14 +49,19 @@
 		}
 	});
 
-	Prism.languages.insertBefore('php', 'keyword', {
+	// Must be defined before class-name (because primitive types must be matched before class names in function typehint)
+	Prism.languages.insertBefore('php', 'class-name', {
 		'variable': /\$+(?:\w+\b|(?={))/i,
 		'package': {
-			pattern: /(\\|namespace\s+|use\s+)[\w\\]+/,
+			pattern: /(\\|namespace\s+|use\s+(function\s+)*)[a-zA-Z_][\w\\]+/,
 			lookbehind: true,
 			inside: {
 				punctuation: /\\/
 			}
+		},
+		'type': {
+			pattern: /(bool|boolean|int|integer|float|string|object|void|array|mixed)(?!_)/,
+			greedy: !0
 		}
 	});
 
@@ -113,6 +125,25 @@
 	});
 	// The different types of PHP strings "replace" the C-like standard string
 	delete Prism.languages.php['string'];
+
+	Prism.languages.insertBefore('php', 'class-name', {
+		'class-static-call': {
+			pattern: /[a-zA-Z_][\w\\]+(?=\:\:)/,
+			greedy: !0,
+			alias: 'class-name'
+		},
+		'class-type-hint': {
+			pattern: /[a-zA-Z_][\w\\]+(?=\s*\$)/,
+			greedy: !0,
+			alias: 'class-name'
+		},
+		'class-return-type': {
+			pattern: /(\)\s*\:\s*\?*\s*)[a-zA-Z_][\w\\]+/,
+			greedy: !0,
+			alias: 'class-name',
+			lookbehind: true
+		}
+	});
 
 	Prism.hooks.add('before-tokenize', function(env) {
 		if (!/<\?/.test(env.code)) {
