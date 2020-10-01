@@ -12,6 +12,7 @@
 
 	// The languages map is built automatically with gulp
 	var Languages = /*languages_placeholder[*/{
+		"none": "Plain text",
 		"html": "HTML",
 		"xml": "XML",
 		"svg": "SVG",
