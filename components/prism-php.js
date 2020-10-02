@@ -26,7 +26,7 @@
 			lookbehind: true
 		},
 		'class-name': {
-			pattern: /(\b(?:class|interface|extends|implements|trait|instanceof|new(?!\s+self|\s+static))\s+|\bcatch\s+\()\b[a-zA-Z_][\w]*(?!\\)\b/i,
+			pattern: /(\b(?:class|interface|extends|implements|trait|instanceof|new(?!\s+self|\s+static))\s+|\bcatch\s+\()\b[a-zA-Z_]\w*(?!\\)\b/i,
 			lookbehind: true,
 		},
 		'number': /\b0b[01]+\b|\b0x[\da-f]+\b|(?:\b\d+(?:_\d+)*\.?(?:\d+(?:_\d+)*)*|\B\.\d+)(?:e[+-]?\d+)?/i,
@@ -53,14 +53,14 @@
 	Prism.languages.insertBefore('php', 'class-name', {
 		'variable': /\$+(?:\w+\b|(?={))/i,
 		'package': {
-			pattern: /(namespace\s+|use\s+(?:function\s+)?)(?:\\*\b[a-zA-Z_][\w]*)+\b(?!\\)/i,
+			pattern: /(namespace\s+|use\s+(?:function\s+)?)(?:\\?\b[a-zA-Z_]\w*)+\b(?!\\)/i,
 			lookbehind: true,
 			inside: {
-				punctuation: /\\/
+				'punctuation': /\\/
 			}
 		},
 		'type type-casting': {
-			pattern: /(\(\s*)\b(?:bool|boolean|int|integer|float|string|object|array(?!\s*\())\b(?=\s*\))/i,
+			pattern: /(\(\s*)\b(?:bool|boolean|int|integer|float|string|object|array)\b(?=\s*\))/i,
 			greedy: true,
 			lookbehind: true
 		},
@@ -155,47 +155,47 @@
 
 	Prism.languages.insertBefore('php', 'boolean', {
 		'class-name class-name-fully-qualified': {
-			pattern: /(\b(?:extends|implements|instanceof|new(?!\s+self|\s+static))\s+|\bcatch\s+\()(?:\\*\b[a-zA-Z_][\w]*)+\b(?!\\)/i,
+			pattern: /(\b(?:extends|implements|instanceof|new(?!\s+self\b|\s+static\b))\s+|\bcatch\s+\()(?:\\?\b[a-zA-Z_]\w*)+\b(?!\\)/i,
 			greedy: true,
 			inside: {
-				punctuation: /\\/
+				'punctuation': /\\/
 			},
 			lookbehind: true
 		},
 		'class-name static-context': {
-			pattern: /\b[a-zA-Z_][\w]*(?!\\)\b(?=\s*::)/i,
+			pattern: /\b[a-zA-Z_]\w*(?=\s*::)/i,
 			greedy: true,
 		},
 		'class-name class-name-fully-qualified static-context': {
-			pattern: /(?:\\*\b[a-zA-Z_][\w]*)+\b(?!\\)(?=\s*::)/i,
+			pattern: /(?:\\?\b[a-zA-Z_]\w*)+(?=\s*::)/i,
 			greedy: true,
 			inside: {
-				punctuation: /\\/
+				'punctuation': /\\/
 			}
 		},
 		'class-name type-hint': {
-			pattern: /([(,?]\s*)\b[a-zA-Z_][\w]*(?!\\)\b(?=\s*\$)/i,
+			pattern: /([(,?]\s*)[a-zA-Z_]\w*(?=\s*\$)/i,
 			greedy: true,
 			lookbehind: true
 		},
 		'class-name class-name-fully-qualified type-hint': {
-			pattern: /([(,?]\s*)(?:\\*\b[a-zA-Z_][\w]*)+\b(?!\\)(?=\s*\$)/i,
+			pattern: /([(,?]\s*)(?:\\?\b[a-zA-Z_]\w*)+(?=\s*\$)/i,
 			greedy: true,
 			inside: {
-				punctuation: /\\/
+				'punctuation': /\\/
 			},
 			lookbehind: true
 		},
 		'class-name return-type': {
-			pattern: /(\)\s*:\s*\?*\s*)\b[a-zA-Z_][\w]*(?!\\)\b/i,
+			pattern: /(\)\s*:\s*\?*\s*)\b[a-zA-Z_]\w*(?!\\)\b/i,
 			greedy: true,
 			lookbehind: true
 		},
 		'class-name class-name-fully-qualified return-type': {
-			pattern: /(\)\s*:\s*\?*\s*)(?:\\*\b[a-zA-Z_][\w]*)+\b(?!\\)/i,
+			pattern: /(\)\s*:\s*\?*\s*)(?:\\?\b[a-zA-Z_]\w*)+\b(?!\\)/i,
 			greedy: true,
 			inside: {
-				punctuation: /\\/
+				'punctuation': /\\/
 			},
 			lookbehind: true
 		}
