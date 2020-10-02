@@ -14,6 +14,8 @@ NOWDOC;
 string"
 'multi-line
 string'
+`multi-line
+shell exec string`
 
 ----------------------------------------------------
 
@@ -48,7 +50,8 @@ string'
 	["double-quoted-string", ["\"https://example.com\""]],
 	["double-quoted-string", ["\" /* not a comment */ \""]],
 	["double-quoted-string", ["\"multi-line\r\nstring\""]],
-	["single-quoted-string", "'multi-line\r\nstring'"]
+	["single-quoted-string", "'multi-line\r\nstring'"],
+	["backtick-quoted-string", "`multi-line\r\nshell exec string`"]
 ]
 
 ----------------------------------------------------

@@ -1,3 +1,4 @@
+namespace App
 namespace \foo
 namespace \foo\bar\baz
 use \foo
@@ -8,6 +9,8 @@ use function \foo\bar\baz
 ----------------------------------------------------
 
 [
+	["keyword", "namespace"],
+	["package", ["App"]],
 	["keyword", "namespace"],
 	["package", [["punctuation", "\\"], "foo"]],
 	["keyword", "namespace"],

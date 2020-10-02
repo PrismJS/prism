@@ -9,6 +9,20 @@ void
 array
 mixed
 
+(int)
+(string)
+(object)
+(array)
+
+): int
+) :string
+) : object
+): ?array
+): self
+): static
+
+function foo(int $a,  string $b, ? object $c, ?array $d, self $e, static $f)
+
 ----------------------------------------------------
 
 [
@@ -21,7 +35,28 @@ mixed
 	["type", "object"],
 	["type", "void"],
 	["type", "array"],
-	["type", "mixed"]
+	["type", "mixed"],
+
+	["punctuation", "("], ["type type-casting", "int"], ["punctuation", ")"],
+	["punctuation", "("], ["type type-casting", "string"], ["punctuation", ")"],
+	["punctuation", "("], ["type type-casting", "object"], ["punctuation", ")"],
+	["punctuation", "("], ["type type-casting", "array"], ["punctuation", ")"],
+
+	["punctuation", ")"], ["punctuation", ":"], ["type return-type", "int"],
+	["punctuation", ")"], ["punctuation", ":"], ["type return-type", "string"],
+	["punctuation", ")"], ["punctuation", ":"], ["type return-type", "object"],
+	["punctuation", ")"], ["punctuation", ":"], ["operator", "?"], ["type return-type", "array"],
+	["punctuation", ")"], ["punctuation", ":"], ["type return-type", "self"],
+	["punctuation", ")"], ["punctuation", ":"], ["type return-type", "static"],
+
+	["keyword", "function"], ["function", "foo"], ["punctuation", "("],
+	["type type-hint", "int"], ["variable", "$a"], ["punctuation", ","],
+	["type type-hint", "string"], ["variable", "$b"], ["punctuation", ","],
+	["operator", "?"], ["type type-hint", "object"], ["variable", "$c"], ["punctuation", ","],
+	["operator", "?"], ["type type-hint", "array"], ["variable", "$d"], ["punctuation", ","],
+	["type type-hint", "self"], ["variable", "$e"], ["punctuation", ","],
+	["type type-hint", "static"], ["variable", "$f"],
+	["punctuation", ")"]
 ]
 
 ----------------------------------------------------

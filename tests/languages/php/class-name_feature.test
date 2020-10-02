@@ -1,32 +1,122 @@
 Foo::bar();
+\Foo::bar();
+\Package\Foo::bar();
+
 (Foo $variable)
+(\Foo $variable)
+(\Package\Foo $variable)
+
 ): Foo
+): \Foo
+): \Package\Foo
 ): ?Foo
+
+class Foo extends Bar implements Baz
+
+class Foo extends \Package\Bar implements App\Baz
 
 ----------------------------------------------------
 
 [
-	["class-name", ["Foo"]],
-	["punctuation", ":"],
-	["punctuation", ":"],
-	["function", "foo"],
+	["class-name static-context", "Foo"],
+	["operator", "::"],
+	["function", "bar"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["class-name class-name-fully-qualified static-context", [
+		["punctuation", "\\"],
+		"Foo"
+	]],
+	["operator", "::"],
+	["function", "bar"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["class-name class-name-fully-qualified static-context", [
+		["punctuation", "\\"],
+		"Package",
+		["punctuation", "\\"],
+		"Foo"
+	]],
+	["operator", "::"],
+	["function", "bar"],
 	["punctuation", "("],
 	["punctuation", ")"],
 	["punctuation", ";"],
 
 	["punctuation", "("],
-	["class-name", ["Foo"]],
+	["class-name type-hint", "Foo"],
+	["variable", "$variable"],
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["class-name class-name-fully-qualified type-hint", [
+		["punctuation", "\\"],
+		"Foo"
+	]],
+	["variable", "$variable"],
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["class-name class-name-fully-qualified type-hint", [
+		["punctuation", "\\"],
+		"Package",
+		["punctuation", "\\"],
+		"Foo"
+	]],
 	["variable", "$variable"],
 	["punctuation", ")"],
 
 	["punctuation", ")"],
 	["punctuation", ":"],
-	["class-name", ["Foo"]],
+	["class-name return-type", "Foo"],
+
+	["punctuation", ")"],
+	["punctuation", ":"],
+	["class-name class-name-fully-qualified return-type", [
+		["punctuation", "\\"],
+		"Foo"
+	]],
+
+	["punctuation", ")"],
+	["punctuation", ":"],
+	["class-name class-name-fully-qualified return-type", [
+		["punctuation", "\\"],
+		"Package",
+		["punctuation", "\\"],
+		"Foo"
+	]],
 
 	["punctuation", ")"],
 	["punctuation", ":"],
 	["operator", "?"],
-	["class-name", ["Foo"]]
+	["class-name return-type", "Foo"],
+
+	["keyword", "class"],
+	["class-name", "Foo"],
+	["keyword", "extends"],
+	["class-name", "Bar"],
+	["keyword", "implements"],
+	["class-name", "Baz"],
+
+	["keyword", "class"],
+	["class-name", "Foo"],
+	["keyword", "extends"],
+	["class-name class-name-fully-qualified", [
+		["punctuation", "\\"],
+		"Package",
+		["punctuation", "\\"],
+		"Bar"
+	]],
+	["keyword", "implements"],
+	["class-name class-name-fully-qualified", [
+		"App",
+		["punctuation", "\\"],
+		"Baz"
+	]]
 ]
 
 ----------------------------------------------------

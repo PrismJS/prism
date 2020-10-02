@@ -26,12 +26,12 @@
 			lookbehind: true
 		},
 		'class-name': {
-			pattern: /(\b(?:class|interface|extends|implements|trait|instanceof|new\s+(?!self))\s+|\bcatch\s+\()[a-zA-Z_][\w\\]+/i,
+			pattern: /(\b(?:class|interface|extends|implements|trait|instanceof|new(?!\s+self|\s+static))\s+|\bcatch\s+\()\b[a-zA-Z_][\w]*(?!\\)\b/i,
 			lookbehind: true,
-			inside: {
-				'punctuation': /\\/
-			}
-		}
+		},
+		'number': /\b0b[01]+\b|\b0x[\da-f]+\b|(?:\b\d+(?:_\d+)*\.?(?:\d+(?:_\d+)*)*|\B\.\d+)(?:e[+-]?\d+)?/i,
+		'operator': /<?=>|\?\?=?|\.{3}|->|[!=]=?=?|::|\*\*=?|--|\+\+|&&|\|\||[?~]|[/^|%*&<>.+-]=?/,
+		'punctuation': /[{}\[\](),:;]/
 	});
 
 	Prism.languages.insertBefore('php', 'string', {
@@ -53,15 +53,29 @@
 	Prism.languages.insertBefore('php', 'class-name', {
 		'variable': /\$+(?:\w+\b|(?={))/i,
 		'package': {
-			pattern: /(\\|namespace\s+|use\s+(function\s+)*)[a-zA-Z_][\w\\]+/,
+			pattern: /(namespace\s+|use\s+(function\s+)?)(\\*\b[a-zA-Z_][\w]*)+\b(?!\\)/i,
 			lookbehind: true,
 			inside: {
 				punctuation: /\\/
 			}
 		},
+		'type type-casting': {
+			pattern: /(?<=\(\s*)\b(?:bool|boolean|int|integer|float|string|object|array(?!\s*\())\b(?=\s*\))/i,
+			greedy: true
+		},
+		'type type-hint': {
+			pattern: /(?<=[(,?]\s*)\b(?:bool|boolean|int|integer|float|string|object|array(?!\s*\()|mixed|self|static)\b(?=\s*\$)/i,
+			greedy: true,
+			lookbehind: true
+		},
+		'type return-type': {
+			pattern: /(\)\s*:\s*\?*\s*)\b(?:bool|boolean|int|integer|float|string|object|void|array(?!\s*\()|mixed|self|static)\b/i,
+			greedy: true,
+			lookbehind: true
+		},
 		'type': {
-			pattern: /(bool|boolean|int|integer|float|string|object|void|array|mixed)(?!_)/,
-			greedy: !0
+			pattern: /\b(?:bool|boolean|int|integer|float|string|object|void|array(?!\s*\()|mixed)\b/i,
+			greedy: true
 		}
 	});
 
@@ -109,6 +123,11 @@
 				'interpolation': string_interpolation // See below
 			}
 		},
+		'backtick-quoted-string': {
+			pattern: /`(?:\\[\s\S]|[^\\`])*`/,
+			greedy: true,
+			alias: 'string'
+		},
 		'single-quoted-string': {
 			pattern: /'(?:\\[\s\S]|[^\\'])*'/,
 			greedy: true,
@@ -126,21 +145,57 @@
 	// The different types of PHP strings "replace" the C-like standard string
 	delete Prism.languages.php['string'];
 
-	Prism.languages.insertBefore('php', 'class-name', {
-		'class-static-call': {
-			pattern: /[a-zA-Z_][\w\\]+(?=\:\:)/,
-			greedy: !0,
-			alias: 'class-name'
+	Prism.languages.insertBefore('php', 'keyword', {
+		'keyword static-context': {
+			pattern: /\b(parent|self|static)(?=\s*::)/i,
+			greedy: true
+		}
+	});
+
+	Prism.languages.insertBefore('php', 'boolean', {
+		'class-name class-name-fully-qualified': {
+			pattern: /(\b(?:extends|implements|instanceof|new(?!\s+self|\s+static))\s+|\bcatch\s+\()(\\*\b[a-zA-Z_][\w]*)+\b(?!\\)/i,
+			greedy: true,
+			inside: {
+				punctuation: /\\/
+			},
+			lookbehind: true
 		},
-		'class-type-hint': {
-			pattern: /[a-zA-Z_][\w\\]+(?=\s*\$)/,
-			greedy: !0,
-			alias: 'class-name'
+		'class-name static-context': {
+			pattern: /\b[a-zA-Z_][\w]*(?!\\)\b(?=\s*::)/i,
+			greedy: true,
 		},
-		'class-return-type': {
-			pattern: /(\)\s*\:\s*\?*\s*)[a-zA-Z_][\w\\]+/,
-			greedy: !0,
-			alias: 'class-name',
+		'class-name class-name-fully-qualified static-context': {
+			pattern: /(\\*\b[a-zA-Z_][\w]*)+\b(?!\\)(?=\s*::)/i,
+			greedy: true,
+			inside: {
+				punctuation: /\\/
+			}
+		},
+		'class-name type-hint': {
+			pattern: /([(,?]\s*)\b[a-zA-Z_][\w]*(?!\\)\b(?=\s*\$)/i,
+			greedy: true,
+			lookbehind: true
+		},
+		'class-name class-name-fully-qualified type-hint': {
+			pattern: /([(,?]\s*)(\\*\b[a-zA-Z_][\w]*)+\b(?!\\)(?=\s*\$)/i,
+			greedy: true,
+			inside: {
+				punctuation: /\\/
+			},
+			lookbehind: true
+		},
+		'class-name return-type': {
+			pattern: /(\)\s*:\s*\?*\s*)\b[a-zA-Z_][\w]*(?!\\)\b/i,
+			greedy: true,
+			lookbehind: true
+		},
+		'class-name class-name-fully-qualified return-type': {
+			pattern: /(\)\s*:\s*\?*\s*)(\\*\b[a-zA-Z_][\w]*)+\b(?!\\)/i,
+			greedy: true,
+			inside: {
+				punctuation: /\\/
+			},
 			lookbehind: true
 		}
 	});

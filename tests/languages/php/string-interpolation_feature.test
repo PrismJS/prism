@@ -33,7 +33,7 @@ FOO_BAR;
 	]],
 	["double-quoted-string", [
 		"\"",
-		["interpolation", [["variable", "$foo"], ["operator", "-"], ["operator", ">"], ["property", "bar"]]],
+		["interpolation", [["variable", "$foo"], ["operator", "->"], ["property", "bar"]]],
 		"\""
 	]],
 	["double-quoted-string", [
@@ -80,7 +80,7 @@ FOO_BAR;
 		"\"the return value of \\$object->getName(): ",
 		["interpolation", [
 			["punctuation", "{"], ["variable", "$"], ["punctuation", "{"],
-			["variable", "$object"], ["operator", "-"], ["operator", ">"], ["function", "getName"], ["punctuation", "("], ["punctuation", ")"],
+			["variable", "$object"], ["operator", "->"], ["function", "getName"], ["punctuation", "("], ["punctuation", ")"],
 			["punctuation", "}"], ["punctuation", "}"]
 		]],
 		"\""
@@ -89,13 +89,13 @@ FOO_BAR;
 		"\"",
 		["interpolation", [
 			["punctuation", "{"],
-			["variable", "$foo"], ["operator", "-"], ["operator", ">"], ["variable", "$bar"],
+			["variable", "$foo"], ["operator", "->"], ["variable", "$bar"],
 			["punctuation", "}"]
 		]],
 		", ",
 		["interpolation", [
 			["punctuation", "{"],
-			["variable", "$foo"], ["operator", "-"], ["operator", ">"], ["punctuation", "{"],
+			["variable", "$foo"], ["operator", "->"], ["punctuation", "{"],
 			["variable", "$baz"], ["punctuation", "["], ["number", "1"], ["punctuation", "]"],
 			["punctuation", "}"],
 			["punctuation", "}"]
@@ -108,11 +108,11 @@ FOO_BAR;
 		]],
 		"\r\nHeredoc strings ",
 		["interpolation", [
-			["variable", "$also"], ["operator", "-"], ["operator", ">"], ["property", "support"]
+			["variable", "$also"], ["operator", "->"], ["property", "support"]
 		]],
 		["interpolation", [
 			["punctuation", "{"], ["variable", "$"], ["punctuation", "{"],
-			["variable", "$string"], ["operator", "-"], ["operator", ">"], ["function", "interpolation"], ["punctuation", "("], ["punctuation", ")"],
+			["variable", "$string"], ["operator", "->"], ["function", "interpolation"], ["punctuation", "("], ["punctuation", ")"],
 			["punctuation", "}"], ["punctuation", "}"]
 		]],
 		["delimiter", [

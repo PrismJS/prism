@@ -5,12 +5,12 @@ $foo->bar->baz
 
 [
 	["variable", "$variable"],
-	["operator", "-"], ["operator", ">"],
+	["operator", "->"],
 	["property", "property"],
 	["variable", "$foo"],
-	["operator", "-"], ["operator", ">"],
+	["operator", "->"],
 	["property", "bar"],
-	["operator", "-"], ["operator", ">"],
+	["operator", "->"],
 	["property", "baz"]
 ]
 
