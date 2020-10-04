@@ -328,9 +328,8 @@ function updateShareLink() {
 		language: /\blang(?:uage)?-([\w-]+)\b/i.exec(code.className)[1],
 		text: code.textContent,
 	};
-	var url = location.href.split(/#/)[0] + '#' + stringifyUrlParams(params);
 
-	$('#share-link').href = url;
+	$('#share-link').href = '#' + stringifyUrlParams(params);
 }
 
 
