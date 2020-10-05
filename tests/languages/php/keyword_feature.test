@@ -44,6 +44,7 @@ insteadof
 interface;
 isset
 list
+match
 namespace;
 new;
 or
@@ -116,6 +117,7 @@ yield
 	["keyword", "interface"], ["punctuation", ";"],
 	["keyword", "isset"],
 	["keyword", "list"],
+	["keyword", "match"],
 	["keyword", "namespace"], ["punctuation", ";"],
 	["keyword", "new"], ["punctuation", ";"],
 	["keyword", "or"],
