@@ -1,5 +1,63 @@
 # Prism Changelog
 
+## 1.22.0 (2020-10-10)
+
+### New components
+
+* __Birb__ ([#2542](https://github.com/PrismJS/prism/issues/2542)) [`4d31e22a`](https://github.com/PrismJS/prism/commit/4d31e22a)
+* __BSL (1C:Enterprise)__ & __OneScript__ ([#2520](https://github.com/PrismJS/prism/issues/2520)) [`5c33f0bb`](https://github.com/PrismJS/prism/commit/5c33f0bb)
+* __MongoDB__ ([#2518](https://github.com/PrismJS/prism/issues/2518)) [`004eaa74`](https://github.com/PrismJS/prism/commit/004eaa74)
+* __Naninovel Script__ ([#2494](https://github.com/PrismJS/prism/issues/2494)) [`388ad996`](https://github.com/PrismJS/prism/commit/388ad996)
+* __PureScript__ ([#2526](https://github.com/PrismJS/prism/issues/2526)) [`ad748a00`](https://github.com/PrismJS/prism/commit/ad748a00)
+* __SML__ & __SML/NJ__ ([#2537](https://github.com/PrismJS/prism/issues/2537)) [`cb75d9e2`](https://github.com/PrismJS/prism/commit/cb75d9e2)
+* __Stan__ ([#2490](https://github.com/PrismJS/prism/issues/2490)) [`2da2beba`](https://github.com/PrismJS/prism/commit/2da2beba)
+* __TypoScript__ & __TSConfig__ ([#2505](https://github.com/PrismJS/prism/issues/2505)) [`bf115f47`](https://github.com/PrismJS/prism/commit/bf115f47)
+
+### Updated components
+
+* Removed duplicate alternatives in various languages ([#2524](https://github.com/PrismJS/prism/issues/2524)) [`fa2225ff`](https://github.com/PrismJS/prism/commit/fa2225ff)
+* __Haskell__
+    * Improvements ([#2535](https://github.com/PrismJS/prism/issues/2535)) [`e023044c`](https://github.com/PrismJS/prism/commit/e023044c)
+* __JS Extras__
+    * Highlight import and export bindings ([#2533](https://github.com/PrismJS/prism/issues/2533)) [`c51ababb`](https://github.com/PrismJS/prism/commit/c51ababb)
+    * Added control-flow keywords ([#2529](https://github.com/PrismJS/prism/issues/2529)) [`bcef22af`](https://github.com/PrismJS/prism/commit/bcef22af)
+* __PHP__
+    * Added `match` keyword (PHP 8.0) ([#2574](https://github.com/PrismJS/prism/issues/2574)) [`1761513e`](https://github.com/PrismJS/prism/commit/1761513e)
+* __Processing__
+    * Fixed function pattern ([#2564](https://github.com/PrismJS/prism/issues/2564)) [`35cbc02f`](https://github.com/PrismJS/prism/commit/35cbc02f)
+* __Regex__
+    * Changed how languages embed regexes ([#2532](https://github.com/PrismJS/prism/issues/2532)) [`f62ca787`](https://github.com/PrismJS/prism/commit/f62ca787)
+* __Rust__
+    * Fixed Unicode char literals ([#2550](https://github.com/PrismJS/prism/issues/2550)) [`3b4f14ca`](https://github.com/PrismJS/prism/commit/3b4f14ca)
+* __Scheme__
+    * Added support for R7RS syntax ([#2525](https://github.com/PrismJS/prism/issues/2525)) [`e4f6ccac`](https://github.com/PrismJS/prism/commit/e4f6ccac)
+* __Shell session__
+    * Added aliases ([#2548](https://github.com/PrismJS/prism/issues/2548)) [`bfb36748`](https://github.com/PrismJS/prism/commit/bfb36748)
+    * Highlight all commands after the start of any Heredoc string ([#2509](https://github.com/PrismJS/prism/issues/2509)) [`6c921801`](https://github.com/PrismJS/prism/commit/6c921801)
+* __YAML__
+    * Improved key pattern ([#2561](https://github.com/PrismJS/prism/issues/2561)) [`59853a52`](https://github.com/PrismJS/prism/commit/59853a52)
+
+### Updated plugins
+
+* __Autoloader__
+    * Fixed file detection regexes ([#2549](https://github.com/PrismJS/prism/issues/2549)) [`d36ea993`](https://github.com/PrismJS/prism/commit/d36ea993)
+* __Match braces__
+    * Fixed JS interpolation punctuation ([#2541](https://github.com/PrismJS/prism/issues/2541)) [`6b47133d`](https://github.com/PrismJS/prism/commit/6b47133d)
+* __Show Language__
+    * Added title for plain text ([#2555](https://github.com/PrismJS/prism/issues/2555)) [`a409245e`](https://github.com/PrismJS/prism/commit/a409245e)
+
+### Other
+
+* Tests: Added an option to accept the actual token stream ([#2515](https://github.com/PrismJS/prism/issues/2515)) [`bafab634`](https://github.com/PrismJS/prism/commit/bafab634)
+* __Core__
+    * Docs: Minor improvement ([#2513](https://github.com/PrismJS/prism/issues/2513)) [`206dc80f`](https://github.com/PrismJS/prism/commit/206dc80f)
+* __Infrastructure__
+    * JSDoc: Fixed line ends ([#2523](https://github.com/PrismJS/prism/issues/2523)) [`bf169e5f`](https://github.com/PrismJS/prism/commit/bf169e5f)
+* __Website__
+    * Website: Added new SB101 tutorial replacing the Crambler one ([#2576](https://github.com/PrismJS/prism/issues/2576)) [`655f985c`](https://github.com/PrismJS/prism/commit/655f985c)
+    * Website: Fix typo on homepage by adding missing word add ([#2570](https://github.com/PrismJS/prism/issues/2570)) [`8ae6a4ba`](https://github.com/PrismJS/prism/commit/8ae6a4ba)
+    * Custom class: Improved doc ([#2512](https://github.com/PrismJS/prism/issues/2512)) [`5ad6cb23`](https://github.com/PrismJS/prism/commit/5ad6cb23)
+
 ## 1.21.0 (2020-08-06)
 
 ### New components
