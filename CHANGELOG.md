@@ -21,6 +21,8 @@
 * __JS Extras__
     * Highlight import and export bindings ([#2533](https://github.com/PrismJS/prism/issues/2533)) [`c51ababb`](https://github.com/PrismJS/prism/commit/c51ababb)
     * Added control-flow keywords ([#2529](https://github.com/PrismJS/prism/issues/2529)) [`bcef22af`](https://github.com/PrismJS/prism/commit/bcef22af)
+* __PHP__
+    * Added `match` keyword (PHP 8.0) ([#2574](https://github.com/PrismJS/prism/issues/2574)) [`1761513e`](https://github.com/PrismJS/prism/commit/1761513e)
 * __Processing__
     * Fixed function pattern ([#2564](https://github.com/PrismJS/prism/issues/2564)) [`35cbc02f`](https://github.com/PrismJS/prism/commit/35cbc02f)
 * __Regex__
@@ -52,6 +54,8 @@
 * __Infrastructure__
     * JSDoc: Fixed line ends ([#2523](https://github.com/PrismJS/prism/issues/2523)) [`bf169e5f`](https://github.com/PrismJS/prism/commit/bf169e5f)
 * __Website__
+    * Website: Added new SB101 tutorial replacing the Crambler one ([#2576](https://github.com/PrismJS/prism/issues/2576)) [`655f985c`](https://github.com/PrismJS/prism/commit/655f985c)
+    * Website: Fix typo on homepage by adding missing word add ([#2570](https://github.com/PrismJS/prism/issues/2570)) [`8ae6a4ba`](https://github.com/PrismJS/prism/commit/8ae6a4ba)
     * Custom class: Improved doc ([#2512](https://github.com/PrismJS/prism/issues/2512)) [`5ad6cb23`](https://github.com/PrismJS/prism/commit/5ad6cb23)
 
 ## 1.21.0 (2020-08-06)
