@@ -1,5 +1,59 @@
 # Prism Changelog
 
+## 1.22.0 **TBD**
+
+### New components
+
+* __Birb__ [`4d31e22a`](https://github.com/PrismJS/prism/commit/4d31e22a)
+* __BSL (1C:Enterprise)__ & __OneScript__ (1C:Enterprise) (#2520) [`5c33f0bb`](https://github.com/PrismJS/prism/commit/5c33f0bb)
+* __MongoDB__ (#2518) [`004eaa74`](https://github.com/PrismJS/prism/commit/004eaa74)
+* __Naninovel Script__ (#2494) [`388ad996`](https://github.com/PrismJS/prism/commit/388ad996)
+* __PureScript__ (#2526) [`ad748a00`](https://github.com/PrismJS/prism/commit/ad748a00)
+* __SML__ & __SML/NJ__ (#2537) [`cb75d9e2`](https://github.com/PrismJS/prism/commit/cb75d9e2)
+* __Stan__ (#2490) [`2da2beba`](https://github.com/PrismJS/prism/commit/2da2beba)
+* __TypoScript__ & __TSConfig__ (#2505) [`bf115f47`](https://github.com/PrismJS/prism/commit/bf115f47)
+
+### Updated components
+
+* Removed duplicate alternatives in various languages (#2524) [`fa2225ff`](https://github.com/PrismJS/prism/commit/fa2225ff)
+* __Haskell__
+    * Improvements (#2535) [`e023044c`](https://github.com/PrismJS/prism/commit/e023044c)
+* __JS Extras__
+    * Highlight import and export bindings (#2533) [`c51ababb`](https://github.com/PrismJS/prism/commit/c51ababb)
+    * Added control-flow keywords (#2529) [`bcef22af`](https://github.com/PrismJS/prism/commit/bcef22af)
+* __Processing__
+    * Fixed function pattern (#2564) [`35cbc02f`](https://github.com/PrismJS/prism/commit/35cbc02f)
+* __Regex__
+    * Changed how languages embed regexes (#2532) [`f62ca787`](https://github.com/PrismJS/prism/commit/f62ca787)
+* __Rust__
+    * Fixed Unicode char literals (#2550) [`3b4f14ca`](https://github.com/PrismJS/prism/commit/3b4f14ca)
+* __Scheme__
+    * Added support for R7RS syntax (#2525) [`e4f6ccac`](https://github.com/PrismJS/prism/commit/e4f6ccac)
+* __Shell session__
+    * Added aliases (#2548) [`bfb36748`](https://github.com/PrismJS/prism/commit/bfb36748)
+    * Highlight all commands after the start of any Heredoc string (#2509) [`6c921801`](https://github.com/PrismJS/prism/commit/6c921801)
+* __YAML__
+    * Improved key pattern (#2561) [`59853a52`](https://github.com/PrismJS/prism/commit/59853a52)
+
+### Updated plugins
+
+* __Autoloader__
+    * Fixed file detection regexes (#2549) [`d36ea993`](https://github.com/PrismJS/prism/commit/d36ea993)
+* __Match braces__
+    * Fixed JS interpolation punctuation (#2541) [`6b47133d`](https://github.com/PrismJS/prism/commit/6b47133d)
+* __Show Language__
+    * Added title for plain text (#2555) [`a409245e`](https://github.com/PrismJS/prism/commit/a409245e)
+
+### Other
+
+* Tests: Added an option to accept the actual token stream (#2515) [`bafab634`](https://github.com/PrismJS/prism/commit/bafab634)
+* __Core__
+    * Docs: Minor improvement (#2513) [`206dc80f`](https://github.com/PrismJS/prism/commit/206dc80f)
+* __Infrastructure__
+    * JSDoc: Fixed line ends (#2523) [`bf169e5f`](https://github.com/PrismJS/prism/commit/bf169e5f)
+* __Website__
+    * Custom class: Improved doc (#2512) [`5ad6cb23`](https://github.com/PrismJS/prism/commit/5ad6cb23)
+
 ## 1.21.0 (2020-08-06)
 
 ### New components
