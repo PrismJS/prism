@@ -244,6 +244,45 @@ var _ = {
 				element = element.parentElement;
 			}
 			return !!defaultActivation;
+		},
+
+		/**
+		 * Traverse an object with Depth First Search.
+		 *
+		 * @param {object} o
+		 * @param {DFSCallback} callback
+		 * @param {string | null} [type]
+		 * @param {Object<number, true>} [visited]
+		 *
+		 * @callback DFSCallback
+		 * @param {any} this
+		 * @param {string} key
+		 * @param {any} value
+		 * @param {string} type
+		 * @returns {void}
+		 */
+		DFS: function DFS(o, callback, type, visited) {
+			visited = visited || {};
+
+			var objId = _.util.objId;
+
+			for (var i in o) {
+				if (o.hasOwnProperty(i)) {
+					callback.call(o, i, o[i], type || i);
+
+					var property = o[i],
+					    propertyType = _.util.type(property);
+
+					if (propertyType === 'Object' && !visited[objId(property)]) {
+						visited[objId(property)] = true;
+						DFS(property, callback, null, visited);
+					}
+					else if (propertyType === 'Array' && !visited[objId(property)]) {
+						visited[objId(property)] = true;
+						DFS(property, callback, i, visited);
+					}
+				}
+			}
 		}
 	},
 
@@ -396,38 +435,13 @@ var _ = {
 			root[inside] = ret;
 
 			// Update references in other language definitions
-			_.languages.DFS(_.languages, function(key, value) {
+			_.util.DFS(_.languages, function(key, value) {
 				if (value === old && key != inside) {
 					this[key] = ret;
 				}
 			});
 
 			return ret;
-		},
-
-		// Traverse a language definition with Depth First Search
-		DFS: function DFS(o, callback, type, visited) {
-			visited = visited || {};
-
-			var objId = _.util.objId;
-
-			for (var i in o) {
-				if (o.hasOwnProperty(i)) {
-					callback.call(o, i, o[i], type || i);
-
-					var property = o[i],
-					    propertyType = _.util.type(property);
-
-					if (propertyType === 'Object' && !visited[objId(property)]) {
-						visited[objId(property)] = true;
-						DFS(property, callback, null, visited);
-					}
-					else if (propertyType === 'Array' && !visited[objId(property)]) {
-						visited[objId(property)] = true;
-						DFS(property, callback, i, visited);
-					}
-				}
-			}
 		}
 	},
 

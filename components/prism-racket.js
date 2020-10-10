@@ -20,7 +20,7 @@ Prism.languages.racket = Prism.languages.extend('scheme', {
 // With the regex parsed, we only have to replace all escaped "(" (they cannot be unescaped outside of character sets)
 // with /[([]/ and replace all "(" inside character sets.
 // Note: This method does not work for "(" that are escaped like this /\x28/ or this /\u0028/.
-Prism.languages.DFS(Prism.languages.racket, function (key, value) {
+Prism.util.DFS(Prism.languages.racket, function (key, value) {
 	if (Prism.util.type(value) === 'RegExp') {
 		var source = value.source.replace(/\\(.)|\[\^?((?:\\.|[^\\\]])*)\]/g, function (m, g1, g2) {
 			if (g1) {

@@ -20,7 +20,7 @@ Prism.plugins.autolinker = {
 		if (!grammar || grammar['url-link']) {
 			return;
 		}
-		Prism.languages.DFS(grammar, function (key, def, type) {
+		Prism.util.DFS(grammar, function (key, def, type) {
 			if (candidates.indexOf(type) > -1 && !Array.isArray(def)) {
 				if (!def.pattern) {
 					def = this[key] = {
