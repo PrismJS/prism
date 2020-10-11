@@ -12,7 +12,7 @@ Prism.languages.tap = {
 	punctuation: /[{}]/,
 	directive: /#.*/,
 	yamlish: {
-		pattern: /(^[^\S\r\n]*)---(?:\r\n?|\n)(?:.*(?:\r\n?|\n))*?[^\S\r\n]*\.\.\.$/m,
+		pattern: /(^[ \t]*)---[\s\S]*?[\r\n][ \t]*\.\.\.$/m,
 		lookbehind: true,
 		inside: Prism.languages.yaml,
 		alias: 'language-yaml'
