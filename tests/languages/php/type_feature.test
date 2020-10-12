@@ -1,62 +1,61 @@
-bool
-boolean
-int
-integer
-float
-string
-object
-void
-array
-mixed
+public bool $a;
+public boolean $a;
+public int $a;
+public integer $a;
+public float $a;
+public string $a;
+public object $a;
+public array $a;
+public mixed $a;
 
-(int)
-(string)
-(object)
-(array)
+(int) $a;
+(string) $a;
+(object) $a;
+(array) $a;
 
-): int
-) :string
-) : object
-): ?array
-): self
-): static
+function f(): int {}
+function f() :string {}
+function f() : object {}
+function f(): ?array {}
+function f(): self {}
+function f(): static {}
 
-function foo(int $a,  string $b, ? object $c, ?array $d, self $e, static $f)
+function foo(int $a,  string $b, ? object $c, ?array $d, self $e, static $f) {}
 
 ----------------------------------------------------
 
 [
-	["type", "bool"],
-	["type", "boolean"],
-	["type", "int"],
-	["type", "integer"],
-	["type", "float"],
-	["type", "string"],
-	["type", "object"],
-	["type", "void"],
-	["type", "array"],
-	["type", "mixed"],
+	["keyword", "public"], ["keyword", "bool"], ["variable", "$a"], ["punctuation", ";"],
+	["keyword", "public"], ["keyword", "boolean"], ["variable", "$a"], ["punctuation", ";"],
+	["keyword", "public"], ["keyword", "int"], ["variable", "$a"], ["punctuation", ";"],
+	["keyword", "public"], ["keyword", "integer"], ["variable", "$a"], ["punctuation", ";"],
+	["keyword", "public"], ["keyword", "float"], ["variable", "$a"], ["punctuation", ";"],
+	["keyword", "public"], ["keyword", "string"], ["variable", "$a"], ["punctuation", ";"],
+	["keyword", "public"], ["keyword", "object"], ["variable", "$a"], ["punctuation", ";"],
+	["keyword", "public"], ["keyword", "array"], ["variable", "$a"], ["punctuation", ";"],
+	["keyword", "public"], ["keyword", "mixed"], ["variable", "$a"], ["punctuation", ";"],
 
-	["punctuation", "("], ["type type-casting", "int"], ["punctuation", ")"],
-	["punctuation", "("], ["type type-casting", "string"], ["punctuation", ")"],
-	["punctuation", "("], ["type type-casting", "object"], ["punctuation", ")"],
-	["punctuation", "("], ["type type-casting", "array"], ["punctuation", ")"],
+	["punctuation", "("], ["keyword", "int"], ["punctuation", ")"], ["variable", "$a"], ["punctuation", ";"],
+	["punctuation", "("], ["keyword", "string"], ["punctuation", ")"], ["variable", "$a"], ["punctuation", ";"],
+	["punctuation", "("], ["keyword", "object"], ["punctuation", ")"], ["variable", "$a"], ["punctuation", ";"],
+	["punctuation", "("], ["keyword", "array"], ["punctuation", ")"], ["variable", "$a"], ["punctuation", ";"],
 
-	["punctuation", ")"], ["punctuation", ":"], ["type return-type", "int"],
-	["punctuation", ")"], ["punctuation", ":"], ["type return-type", "string"],
-	["punctuation", ")"], ["punctuation", ":"], ["type return-type", "object"],
-	["punctuation", ")"], ["punctuation", ":"], ["operator", "?"], ["type return-type", "array"],
-	["punctuation", ")"], ["punctuation", ":"], ["type return-type", "self"],
-	["punctuation", ")"], ["punctuation", ":"], ["type return-type", "static"],
+	["keyword", "function"], ["function", "f"], ["punctuation", "("], ["punctuation", ")"], ["punctuation", ":"], ["keyword", "int"], ["punctuation", "{"], ["punctuation", "}"],
+	["keyword", "function"], ["function", "f"], ["punctuation", "("], ["punctuation", ")"], ["punctuation", ":"], ["keyword", "string"], ["punctuation", "{"], ["punctuation", "}"],
+	["keyword", "function"], ["function", "f"], ["punctuation", "("], ["punctuation", ")"], ["punctuation", ":"], ["keyword", "object"], ["punctuation", "{"], ["punctuation", "}"],
+	["keyword", "function"], ["function", "f"], ["punctuation", "("], ["punctuation", ")"], ["punctuation", ":"], ["operator", "?"], ["keyword", "array"], ["punctuation", "{"], ["punctuation", "}"],
+	["keyword", "function"], ["function", "f"], ["punctuation", "("], ["punctuation", ")"], ["punctuation", ":"], ["keyword", "self"], ["punctuation", "{"], ["punctuation", "}"],
+	["keyword", "function"], ["function", "f"], ["punctuation", "("], ["punctuation", ")"], ["punctuation", ":"], ["keyword", "static"], ["punctuation", "{"], ["punctuation", "}"],
 
 	["keyword", "function"], ["function", "foo"], ["punctuation", "("],
-	["type type-hint", "int"], ["variable", "$a"], ["punctuation", ","],
-	["type type-hint", "string"], ["variable", "$b"], ["punctuation", ","],
-	["operator", "?"], ["type type-hint", "object"], ["variable", "$c"], ["punctuation", ","],
-	["operator", "?"], ["type type-hint", "array"], ["variable", "$d"], ["punctuation", ","],
-	["type type-hint", "self"], ["variable", "$e"], ["punctuation", ","],
-	["type type-hint", "static"], ["variable", "$f"],
-	["punctuation", ")"]
+	["keyword", "int"], ["variable", "$a"], ["punctuation", ","],
+	["keyword", "string"], ["variable", "$b"], ["punctuation", ","],
+	["operator", "?"], ["keyword", "object"], ["variable", "$c"], ["punctuation", ","],
+	["operator", "?"], ["keyword", "array"], ["variable", "$d"], ["punctuation", ","],
+	["keyword", "self"], ["variable", "$e"], ["punctuation", ","],
+	["keyword", "static"], ["variable", "$f"],
+	["punctuation", ")"],
+	["punctuation", "{"], ["punctuation", "}"]
 ]
 
 ----------------------------------------------------

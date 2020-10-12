@@ -2,30 +2,26 @@ Foo::bar();
 \Foo::bar();
 \Package\Foo::bar();
 
-(Foo $variable)
-(\Foo $variable)
-(\Package\Foo $variable)
+function f(Foo $variable): Foo {}
+function f(\Foo $variable): \Foo {}
+function f(\Package\Foo $variable): \Package\Foo {}
+function f($variable): ?Foo {}
 
-): Foo
-): \Foo
-): \Package\Foo
-): ?Foo
+class Foo extends Bar implements Baz {}
 
-class Foo extends Bar implements Baz
-
-class Foo extends \Package\Bar implements App\Baz
+class Foo extends \Package\Bar implements App\Baz {}
 
 ----------------------------------------------------
 
 [
-	["class-name static-context", "Foo"],
+	["class-name", "Foo"],
 	["operator", "::"],
 	["function", "bar"],
 	["punctuation", "("],
 	["punctuation", ")"],
 	["punctuation", ";"],
 
-	["class-name class-name-fully-qualified static-context", [
+	["class-name", [
 		["punctuation", "\\"],
 		"Foo"
 	]],
@@ -35,7 +31,7 @@ class Foo extends \Package\Bar implements App\Baz
 	["punctuation", ")"],
 	["punctuation", ";"],
 
-	["class-name class-name-fully-qualified static-context", [
+	["class-name", [
 		["punctuation", "\\"],
 		"Package",
 		["punctuation", "\\"],
@@ -47,21 +43,36 @@ class Foo extends \Package\Bar implements App\Baz
 	["punctuation", ")"],
 	["punctuation", ";"],
 
+	["keyword", "function"],
+	["function", "f"],
 	["punctuation", "("],
-	["class-name type-hint", "Foo"],
+	["class-name", "Foo"],
 	["variable", "$variable"],
 	["punctuation", ")"],
+	["punctuation", ":"],
+	["class-name", "Foo"],
+	["punctuation", "{"], ["punctuation", "}"],
 
+	["keyword", "function"],
+	["function", "f"],
 	["punctuation", "("],
-	["class-name class-name-fully-qualified type-hint", [
+	["class-name", [
 		["punctuation", "\\"],
 		"Foo"
 	]],
 	["variable", "$variable"],
 	["punctuation", ")"],
+	["punctuation", ":"],
+	["class-name", [
+		["punctuation", "\\"],
+		"Foo"
+	]],
+	["punctuation", "{"], ["punctuation", "}"],
 
+	["keyword", "function"],
+	["function", "f"],
 	["punctuation", "("],
-	["class-name class-name-fully-qualified type-hint", [
+	["class-name", [
 		["punctuation", "\\"],
 		"Package",
 		["punctuation", "\\"],
@@ -69,31 +80,24 @@ class Foo extends \Package\Bar implements App\Baz
 	]],
 	["variable", "$variable"],
 	["punctuation", ")"],
-
-	["punctuation", ")"],
 	["punctuation", ":"],
-	["class-name return-type", "Foo"],
-
-	["punctuation", ")"],
-	["punctuation", ":"],
-	["class-name class-name-fully-qualified return-type", [
-		["punctuation", "\\"],
-		"Foo"
-	]],
-
-	["punctuation", ")"],
-	["punctuation", ":"],
-	["class-name class-name-fully-qualified return-type", [
+	["class-name", [
 		["punctuation", "\\"],
 		"Package",
 		["punctuation", "\\"],
 		"Foo"
 	]],
+	["punctuation", "{"], ["punctuation", "}"],
 
+	["keyword", "function"],
+	["function", "f"],
+	["punctuation", "("],
+	["variable", "$variable"],
 	["punctuation", ")"],
 	["punctuation", ":"],
 	["operator", "?"],
-	["class-name return-type", "Foo"],
+	["class-name", "Foo"],
+	["punctuation", "{"], ["punctuation", "}"],
 
 	["keyword", "class"],
 	["class-name", "Foo"],
@@ -101,22 +105,24 @@ class Foo extends \Package\Bar implements App\Baz
 	["class-name", "Bar"],
 	["keyword", "implements"],
 	["class-name", "Baz"],
+	["punctuation", "{"], ["punctuation", "}"],
 
 	["keyword", "class"],
 	["class-name", "Foo"],
 	["keyword", "extends"],
-	["class-name class-name-fully-qualified", [
+	["class-name", [
 		["punctuation", "\\"],
 		"Package",
 		["punctuation", "\\"],
 		"Bar"
 	]],
 	["keyword", "implements"],
-	["class-name class-name-fully-qualified", [
+	["class-name", [
 		"App",
 		["punctuation", "\\"],
 		"Baz"
-	]]
+	]],
+	["punctuation", "{"], ["punctuation", "}"]
 ]
 
 ----------------------------------------------------

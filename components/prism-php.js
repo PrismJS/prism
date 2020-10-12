@@ -4,9 +4,6 @@
  * Rewritten by Tom Pavelec
  *
  * Supports PHP 5.3 - 7.4
- *
- * Adds the following new token classes:
- * 		constant, delimiter, variable, function, package
  */
 (function (Prism) {
 	Prism.languages.php = {
@@ -15,25 +12,22 @@
 			alias: 'important'
 		},
 		'comment': [
+			/\/\*\*\//,
 			{
-				pattern: /(^|[^\\])(?:\/\*[\s\S]*?\*\/|\/\/.*)/,
-				lookbehind: true
+				pattern: /\/\*\*[\s\S]*?\*\//,
+				alias: 'doc-comment'
 			},
-			{
-				pattern: /(^|[^\\])#.*/,
-				alias: 'shell-comment',
-				lookbehind: true
-			}
+			/\/\*[\s\S]*?\*\/|\/\/.*|#.*/
 		],
 		'variable': /\$+(?:\w+\b|(?={))/i,
 		'package': {
-			pattern: /(namespace\s+|use\s+(?:function\s+)?)(?:\\?\b[a-zA-Z_]\w*)+\b(?!\\)/i,
+			pattern: /(namespace\s+|use\s+(?:function\s+)?)(?:\\?\b[a-z_]\w*)+\b(?!\\)/i,
 			lookbehind: true,
 			inside: {
 				'punctuation': /\\/
 			}
 		},
-		'type': [
+		'keyword': [
 			{
 				pattern: /(\(\s*)\b(?:bool|boolean|int|integer|float|string|object|array)\b(?=\s*\))/i,
 				alias: 'type-casting',
@@ -41,23 +35,22 @@
 				lookbehind: true
 			},
 			{
-				pattern: /([(,?]\s*)\b(?:bool|boolean|int|integer|float|string|object|array(?!\s*\()|mixed|self|static)\b(?=\s*\$)/i,
+				pattern: /([(,?]\s*)\b(?:bool|boolean|int|integer|float|string|object|array(?!\s*\()|mixed|self|static|callable|iterable)\b(?=\s*\$)/i,
 				alias: 'type-hint',
 				greedy: true,
 				lookbehind: true
 			},
 			{
-				pattern: /(\)\s*:\s*\?*\s*)\b(?:bool|boolean|int|integer|float|string|object|void|array(?!\s*\()|mixed|self|static)\b/i,
+				pattern: /(\)\s*:\s*\?*\s*)\b(?:bool|boolean|int|integer|float|string|object|void|array(?!\s*\()|mixed|self|static|callable|iterable)\b/i,
 				alias: 'return-type',
 				greedy: true,
 				lookbehind: true
 			},
 			{
-				pattern: /\b(?:bool|boolean|int|integer|float|string|object|void|array(?!\s*\()|mixed)\b/i,
+				pattern: /\b(?:bool|boolean|int|integer|float|string|object|void|array(?!\s*\()|mixed|iterable)\b/i,
+				alias: 'type-declaration',
 				greedy: true
-			}
-		],
-		'keyword': [
+			},
 			{
 				pattern: /\b(?:parent|self|static)(?=\s*::)/i,
 				alias: 'static-context',
@@ -67,12 +60,12 @@
 		],
 		'class-name': [
 			{
-				pattern: /(\b(?:class|interface|extends|implements|trait|instanceof|new(?!\s+self|\s+static))\s+|\bcatch\s+\()\b[a-zA-Z_]\w*(?!\\)\b/i,
+				pattern: /(\b(?:class|interface|extends|implements|trait|instanceof|new(?!\s+self|\s+static))\s+|\bcatch\s+\()\b[a-z_]\w*(?!\\)\b/i,
 				greedy: true,
 				lookbehind: true
 			},
 			{
-				pattern: /(\b(?:extends|implements|instanceof|new(?!\s+self\b|\s+static\b))\s+|\bcatch\s+\()(?:\\?\b[a-zA-Z_]\w*)+\b(?!\\)/i,
+				pattern: /(\b(?:extends|implements|instanceof|new(?!\s+self\b|\s+static\b))\s+|\bcatch\s+\()(?:\\?\b[a-z_]\w*)+\b(?!\\)/i,
 				alias: 'class-name-fully-qualified',
 				greedy: true,
 				lookbehind: true,
@@ -81,12 +74,12 @@
 				}
 			},
 			{
-				pattern: /\b[a-zA-Z_]\w*(?=\s*::)/i,
+				pattern: /\b[a-z_]\w*(?=\s*::)/i,
 				alias: 'static-context',
 				greedy: true
 			},
 			{
-				pattern: /(?:\\?\b[a-zA-Z_]\w*)+(?=\s*::)/i,
+				pattern: /(?:\\?\b[a-z_]\w*)+(?=\s*::)/i,
 				alias: ['class-name-fully-qualified', 'static-context'],
 				greedy: true,
 				inside: {
@@ -94,13 +87,13 @@
 				}
 			},
 			{
-				pattern: /([(,?]\s*)[a-zA-Z_]\w*(?=\s*\$)/i,
+				pattern: /([(,?]\s*)[a-z_]\w*(?=\s*\$)/i,
 				alias: 'type-hint',
 				greedy: true,
 				lookbehind: true
 			},
 			{
-				pattern: /([(,?]\s*)(?:\\?\b[a-zA-Z_]\w*)+(?=\s*\$)/i,
+				pattern: /([(,?]\s*)(?:\\?\b[a-z_]\w*)+(?=\s*\$)/i,
 				alias: ['class-name-fully-qualified', 'type-hint'],
 				greedy: true,
 				lookbehind: true,
@@ -109,13 +102,13 @@
 				}
 			},
 			{
-				pattern: /(\)\s*:\s*\?*\s*)\b[a-zA-Z_]\w*(?!\\)\b/i,
+				pattern: /(\)\s*:\s*\?*\s*)\b[a-z_]\w*(?!\\)\b/i,
 				alias: 'return-type',
 				greedy: true,
 				lookbehind: true
 			},
 			{
-				pattern: /(\)\s*:\s*\?*\s*)(?:\\?\b[a-zA-Z_]\w*)+\b(?!\\)/i,
+				pattern: /(\)\s*:\s*\?*\s*)(?:\\?\b[a-z_]\w*)+\b(?!\\)/i,
 				alias: ['class-name-fully-qualified', 'return-type'],
 				greedy: true,
 				lookbehind: true,
