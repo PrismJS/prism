@@ -74,6 +74,19 @@
 				}
 			},
 			{
+				pattern: /\b[a-z_]\w*(?=\s*\$)/i,
+				alias: 'type-declaration',
+				greedy: true
+			},
+			{
+				pattern: /(?:\\?\b[a-z_]\w*)+(?=\s*\$)/i,
+				alias: ['class-name-fully-qualified', 'type-declaration'],
+				greedy: true,
+				inside: {
+					'punctuation': /\\/
+				}
+			},
+			{
 				pattern: /\b[a-z_]\w*(?=\s*::)/i,
 				alias: 'static-context',
 				greedy: true

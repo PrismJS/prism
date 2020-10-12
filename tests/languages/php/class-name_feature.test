@@ -1,3 +1,5 @@
+public Foo $a;
+
 Foo::bar();
 \Foo::bar();
 \Package\Foo::bar();
@@ -14,6 +16,11 @@ class Foo extends \Package\Bar implements App\Baz {}
 ----------------------------------------------------
 
 [
+	["keyword", "public"],
+	["class-name", "Foo"],
+	["variable", "$a"],
+	["punctuation", ";"],
+
 	["class-name", "Foo"],
 	["operator", "::"],
 	["function", "bar"],
