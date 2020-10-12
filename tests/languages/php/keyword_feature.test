@@ -45,6 +45,7 @@ interface;
 isset
 list
 namespace;
+match
 new;
 or
 parent
@@ -122,6 +123,7 @@ yield
 	["keyword", "isset"],
 	["keyword", "list"],
 	["keyword", "namespace"], ["punctuation", ";"],
+	["keyword", "match"],
 	["keyword", "new"], ["punctuation", ";"],
 	["keyword", "or"],
 	["keyword", "parent"],
