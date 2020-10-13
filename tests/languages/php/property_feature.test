@@ -1,5 +1,5 @@
-$variable->property
-$foo->bar->baz
+$variable->property;
+$foo->bar->baz;
 
 ----------------------------------------------------
 
@@ -7,11 +7,13 @@ $foo->bar->baz
 	["variable", "$variable"],
 	["operator", "->"],
 	["property", "property"],
+	["punctuation", ";"],
 	["variable", "$foo"],
 	["operator", "->"],
 	["property", "bar"],
 	["operator", "->"],
-	["property", "baz"]
+	["property", "baz"],
+	["punctuation", ";"]
 ]
 
 ----------------------------------------------------

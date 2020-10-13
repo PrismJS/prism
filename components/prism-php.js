@@ -12,11 +12,6 @@
 			alias: 'important'
 		},
 		'comment': [
-			/\/\*\*\//,
-			{
-				pattern: /\/\*\*[\s\S]*?\*\//,
-				alias: 'doc-comment'
-			},
 			/\/\*[\s\S]*?\*\/|\/\/.*|#.*/
 		],
 		'variable': /\$+(?:\w+\b|(?={))/i,
