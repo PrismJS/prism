@@ -1,0 +1,109 @@
+#[comment
+#[]
+#[Foo]
+#[Foo\Bar\Baz]
+#[Route(Http::POST, '/products/create', 1)]
+#[
+	Http\Route(Http::POST, '/products/create', 1)
+	Foo\Bar\Baz
+	Attribute
+	AttributeFoo('value')
+	AttributeBaz
+]
+
+----------------------------------------------------
+
+[
+    ["comment", "#[comment"],
+
+    ["attribute", [
+        "#",
+        ["interpolation", [
+            ["punctuation", "["],
+            ["punctuation", "]"]
+        ]]
+    ]],
+
+    ["attribute", [
+        "#",
+        ["interpolation", [
+            ["punctuation", "["],
+            ["attribute-class-name", "Foo"],
+            ["punctuation", "]"]
+        ]]
+    ]],
+
+    ["attribute", [
+        "#",
+        ["interpolation", [
+            ["punctuation", "["],
+            ["attribute-class-name", [
+                "Foo",
+                ["punctuation", "\\"],
+                "Bar",
+                ["punctuation", "\\"],
+                "Baz"
+            ]],
+            ["punctuation", "]"]
+        ]]
+    ]],
+
+    ["attribute", [
+        "#",
+        ["interpolation", [
+            ["punctuation", "["],
+            ["attribute-class-name", "Route"],
+            ["punctuation", "("],
+            ["class-name", "Http"],
+            ["operator", "::"],
+            ["constant", "POST"],
+            ["punctuation", ","],
+            ["string", "'/products/create'"],
+            ["punctuation", ","],
+            ["number", "1"],
+            ["punctuation", ")"],
+            ["punctuation", "]"]
+        ]]
+    ]],
+
+    ["attribute", [
+        "#",
+        ["interpolation", [
+            ["punctuation", "["],
+            ["attribute-class-name", [
+                "Http",
+                ["punctuation", "\\"],
+                "Route"
+            ]],
+            ["punctuation", "("],
+            ["class-name", "Http"],
+            ["operator", "::"],
+            ["constant", "POST"],
+            ["punctuation", ","],
+            ["string", "'/products/create'"],
+            ["punctuation", ","],
+            ["number", "1"],
+            ["punctuation", ")"],
+            ["attribute-class-name", [
+                "Foo",
+                ["punctuation", "\\"],
+                "Bar",
+                ["punctuation", "\\"],
+                "Baz"
+            ]],
+            ["attribute-class-name", "Attribute"],
+            ["attribute-class-name", "AttributeFoo"],
+            ["punctuation", "("],
+            ["string", "'value'"],
+            ["punctuation", ")"],
+            ["attribute-class-name", "AttributeBaz"],
+            ["punctuation", "]"]
+        ]]
+    ]]
+]
+
+
+
+----------------------------------------------------
+
+Checks for attributes.
