@@ -4,10 +4,10 @@
 #[Foo\Bar\Baz]
 #[Route(Http::POST, '/products/create', 1)]
 #[
-	Http\Route(Http::POST, '/products/create', 1)
-	Foo\Bar\Baz
-	Attribute
-	AttributeFoo('value')
+	Http\Route(Http::POST, '/products/create', 1),
+	Foo\Bar\Baz,
+	Attribute,
+	AttributeFoo('value'),
 	AttributeBaz
 ]
 
@@ -84,6 +84,7 @@
             ["punctuation", ","],
             ["number", "1"],
             ["punctuation", ")"],
+            ["punctuation", ","],
             ["attribute-class-name", [
                 "Foo",
                 ["punctuation", "\\"],
@@ -91,11 +92,14 @@
                 ["punctuation", "\\"],
                 "Baz"
             ]],
+            ["punctuation", ","],
             ["attribute-class-name", "Attribute"],
+            ["punctuation", ","],
             ["attribute-class-name", "AttributeFoo"],
             ["punctuation", "("],
             ["string", "'value'"],
             ["punctuation", ")"],
+            ["punctuation", ","],
             ["attribute-class-name", "AttributeBaz"],
             ["punctuation", "]"]
         ]]
