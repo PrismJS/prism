@@ -42,13 +42,13 @@
 				lookbehind: true
 			},
 			{
-				pattern: /(\)\s*:\s*\?*\s*)\b(?:bool|int|float|string|object|void|array(?!\s*\()|mixed|self|static|callable|iterable|(?:null|false)(?=\s*\|))\b/i,
+				pattern: /(\)\s*:\s*\??\s*)\b(?:bool|int|float|string|object|void|array(?!\s*\()|mixed|self|static|callable|iterable|(?:null|false)(?=\s*\|))\b/i,
 				alias: 'return-type',
 				greedy: true,
 				lookbehind: true
 			},
 			{
-				pattern: /(\)\s*:\s*\?*\s*[a-z0-9_|]\|\s*)(?:null|false)\b/i,
+				pattern: /(\)\s*:\s*\??\s*[a-z0-9_|]\|\s*)(?:null|false)\b/i,
 				alias: 'return-type',
 				greedy: true,
 				lookbehind: true
@@ -129,13 +129,13 @@
 				}
 			},
 			{
-				pattern: /(\)\s*:\s*\?*\s*)\b[a-z_]\w*(?!\\)\b/i,
+				pattern: /(\)\s*:\s*\??\s*)\b[a-z_]\w*(?!\\)\b/i,
 				alias: 'return-type',
 				greedy: true,
 				lookbehind: true
 			},
 			{
-				pattern: /(\)\s*:\s*\?*\s*)(?:\\?\b[a-z_]\w*)+\b(?!\\)/i,
+				pattern: /(\)\s*:\s*\??\s*)(?:\\?\b[a-z_]\w*)+\b(?!\\)/i,
 				alias: ['class-name-fully-qualified', 'return-type'],
 				greedy: true,
 				lookbehind: true,
