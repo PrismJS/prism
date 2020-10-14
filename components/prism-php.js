@@ -30,21 +30,39 @@
 				lookbehind: true
 			},
 			{
-				pattern: /([(,?]\s*)\b(?:bool|boolean|int|integer|float|string|object|array(?!\s*\()|mixed|self|static|callable|iterable)\b(?=\s*\$)/i,
+				pattern: /([(,?]\s*)\b(?:bool|int|float|string|object|array(?!\s*\()|mixed|self|static|callable|iterable|(?:null|false)(?=\s*\|))\b(?=\s*\$)/i,
 				alias: 'type-hint',
 				greedy: true,
 				lookbehind: true
 			},
 			{
-				pattern: /(\)\s*:\s*\?*\s*)\b(?:bool|boolean|int|integer|float|string|object|void|array(?!\s*\()|mixed|self|static|callable|iterable)\b/i,
+				pattern: /([(,?]\s*[a-z0-9_|]\|\s*)(?:null|false)\b(?=\s*\$)/i,
+				alias: 'type-hint',
+				greedy: true,
+				lookbehind: true
+			},
+			{
+				pattern: /(\)\s*:\s*\?*\s*)\b(?:bool|int|float|string|object|void|array(?!\s*\()|mixed|self|static|callable|iterable|(?:null|false)(?=\s*\|))\b/i,
 				alias: 'return-type',
 				greedy: true,
 				lookbehind: true
 			},
 			{
-				pattern: /\b(?:bool|boolean|int|integer|float|string|object|void|array(?!\s*\()|mixed|iterable)\b/i,
+				pattern: /(\)\s*:\s*\?*\s*[a-z0-9_|]\|\s*)(?:null|false)\b/i,
+				alias: 'return-type',
+				greedy: true,
+				lookbehind: true
+			},
+			{
+				pattern: /\b(?:bool|int|float|string|object|void|array(?!\s*\()|mixed|iterable|(?:null|false)(?=\s*\|))\b/i,
 				alias: 'type-declaration',
 				greedy: true
+			},
+			{
+				pattern: /(\|\s*)(?:null|false)\b/i,
+				alias: 'type-declaration',
+				greedy: true,
+				lookbehind: true
 			},
 			{
 				pattern: /\b(?:parent|self|static)(?=\s*::)/i,
