@@ -38,6 +38,7 @@
 	Prism.plugins.toolbar.registerButton('copy-to-clipboard', function (env) {
 		var linkCopy = document.createElement('button');
 		linkCopy.textContent = 'Copy';
+		linkCopy.setAttribute('type', 'button');
 
 		var element = env.element;
 
