@@ -1,4 +1,3 @@
-#[comment
 #[]
 #[Foo]
 #[Foo\Bar\Baz]
@@ -11,47 +10,59 @@
 	AttributeBaz
 ]
 
+#[A1(1), A1(2), A2(3)]
+class Foo {
+	public function foo(#[A1(5)] $a, #[A1(6)] $b) { }
+}
+
+$object = new #[A1(7)] class () {};
+
+#[Attribute]
+class Route{}
+
+function foo(
+    #[Attribute] $param1,
+    $param2
+) {}
+
+$f1 = #[ExampleAttribute] function () {};
+
+$ref = new \ReflectionFunction(#[A1] #[A2] function () { });
+
+#[DeprecationReason('reason: <https://some-website/reason?>')]
+function main() {}
+const APP_SECRET = 'app-secret';
+echo "Test\n";
+
 ----------------------------------------------------
 
 [
-    ["comment", "#[comment"],
-
     ["attribute", [
-        "#",
-        ["interpolation", [
-            ["punctuation", "["],
-            ["punctuation", "]"]
-        ]]
+        "#[]"
     ]],
-
     ["attribute", [
-        "#",
-        ["interpolation", [
-            ["punctuation", "["],
-            ["attribute-class-name", "Foo"],
-            ["punctuation", "]"]
-        ]]
+        "#[",
+        ["content", [
+            ["attribute-class-name", "Foo"]
+        ]],
+        "]"
     ]],
-
     ["attribute", [
-        "#",
-        ["interpolation", [
-            ["punctuation", "["],
+        "#[",
+        ["content", [
             ["attribute-class-name", [
                 "Foo",
                 ["punctuation", "\\"],
                 "Bar",
                 ["punctuation", "\\"],
                 "Baz"
-            ]],
-            ["punctuation", "]"]
-        ]]
+            ]]
+        ]],
+        "]"
     ]],
-
     ["attribute", [
-        "#",
-        ["interpolation", [
-            ["punctuation", "["],
+        "#[",
+        ["content", [
             ["attribute-class-name", "Route"],
             ["punctuation", "("],
             ["class-name", "Http"],
@@ -61,15 +72,13 @@
             ["string", "'/products/create'"],
             ["punctuation", ","],
             ["number", "1"],
-            ["punctuation", ")"],
-            ["punctuation", "]"]
-        ]]
+            ["punctuation", ")"]
+        ]],
+        "]"
     ]],
-
     ["attribute", [
-        "#",
-        ["interpolation", [
-            ["punctuation", "["],
+        "#[",
+        ["content", [
             ["attribute-class-name", [
                 "Http",
                 ["punctuation", "\\"],
@@ -100,13 +109,188 @@
             ["string", "'value'"],
             ["punctuation", ")"],
             ["punctuation", ","],
-            ["attribute-class-name", "AttributeBaz"],
-            ["punctuation", "]"]
-        ]]
-    ]]
+            ["attribute-class-name", "AttributeBaz"]
+        ]],
+        "]"
+    ]],
+
+    ["attribute", [
+        "#[",
+        ["content", [
+            ["attribute-class-name", "A1"],
+            ["punctuation", "("],
+            ["number", "1"],
+            ["punctuation", ")"],
+            ["punctuation", ","],
+            ["attribute-class-name", "A1"],
+            ["punctuation", "("],
+            ["number", "2"],
+            ["punctuation", ")"],
+            ["punctuation", ","],
+            ["attribute-class-name", "A2"],
+            ["punctuation", "("],
+            ["number", "3"],
+            ["punctuation", ")"]
+        ]],
+        "]"
+    ]],
+    ["keyword", "class"],
+    ["class-name", "Foo"],
+    ["punctuation", "{"],
+    ["keyword", "public"],
+    ["keyword", "function"],
+    ["function", "foo"],
+    ["punctuation", "("],
+    ["attribute", [
+        "#[",
+        ["content", [
+            ["attribute-class-name", "A1"],
+            ["punctuation", "("],
+            ["number", "5"],
+            ["punctuation", ")"]
+        ]],
+        "]"
+    ]],
+    ["variable", "$a"],
+    ["punctuation", ","],
+    ["attribute", [
+        "#[",
+        ["content", [
+            ["attribute-class-name", "A1"],
+            ["punctuation", "("],
+            ["number", "6"],
+            ["punctuation", ")"]
+        ]],
+        "]"
+    ]],
+    ["variable", "$b"],
+    ["punctuation", ")"],
+    ["punctuation", "{"],
+    ["punctuation", "}"],
+    ["punctuation", "}"],
+
+    ["variable", "$object"],
+    ["operator", "="],
+    ["keyword", "new"],
+    ["attribute", [
+        "#[",
+        ["content", [
+            ["attribute-class-name", "A1"],
+            ["punctuation", "("],
+            ["number", "7"],
+            ["punctuation", ")"]
+        ]],
+        "]"
+    ]],
+    ["keyword", "class"],
+    ["punctuation", "("],
+    ["punctuation", ")"],
+    ["punctuation", "{"],
+    ["punctuation", "}"],
+    ["punctuation", ";"],
+
+    ["attribute", [
+        "#[",
+        ["content", [
+            ["attribute-class-name", "Attribute"]
+        ]],
+        "]"
+    ]],
+    ["keyword", "class"],
+    ["class-name", "Route"],
+    ["punctuation", "{"],
+    ["punctuation", "}"],
+
+    ["keyword", "function"],
+    ["function", "foo"],
+    ["punctuation", "("],
+    ["attribute", [
+        "#[",
+        ["content", [
+            ["attribute-class-name", "Attribute"]
+        ]],
+        "]"
+    ]],
+    ["variable", "$param1"],
+    ["punctuation", ","],
+    ["variable", "$param2"],
+    ["punctuation", ")"],
+    ["punctuation", "{"],
+    ["punctuation", "}"],
+
+    ["variable", "$f1"],
+    ["operator", "="],
+    ["attribute", [
+        "#[",
+        ["content", [
+            ["attribute-class-name", "ExampleAttribute"]
+        ]],
+        "]"
+    ]],
+    ["keyword", "function"],
+    ["punctuation", "("],
+    ["punctuation", ")"],
+    ["punctuation", "{"],
+    ["punctuation", "}"],
+    ["punctuation", ";"],
+
+    ["variable", "$ref"],
+    ["operator", "="],
+    ["keyword", "new"],
+    ["class-name", [
+        ["punctuation", "\\"],
+        "ReflectionFunction"
+    ]],
+    ["punctuation", "("],
+    ["attribute", [
+        "#[",
+        ["content", [
+            ["attribute-class-name", "A1"]
+        ]],
+        "]"
+    ]],
+    ["attribute", [
+        "#[",
+        ["content", [
+            ["attribute-class-name", "A2"]
+        ]],
+        "]"
+    ]],
+    ["keyword", "function"],
+    ["punctuation", "("],
+    ["punctuation", ")"],
+    ["punctuation", "{"],
+    ["punctuation", "}"],
+    ["punctuation", ")"],
+    ["punctuation", ";"],
+
+    ["attribute", [
+        "#[",
+        ["content", [
+            ["attribute-class-name", "DeprecationReason"],
+            ["punctuation", "("],
+            ["string", "'reason: <https://some-website/reason?>'"],
+            ["punctuation", ")"]
+        ]],
+        "]"
+    ]],
+    ["keyword", "function"],
+    ["function", "main"],
+    ["punctuation", "("],
+    ["punctuation", ")"],
+    ["punctuation", "{"],
+    ["punctuation", "}"],
+    ["keyword", "const"],
+    ["constant", "APP_SECRET"],
+    ["operator", "="],
+    ["string", "'app-secret'"],
+    ["punctuation", ";"],
+    ["keyword", "echo"],
+    ["string", [
+        "\"Test\\n\""
+    ]],
+    ["punctuation", ";"]
 ]
-
-
 
 ----------------------------------------------------
 

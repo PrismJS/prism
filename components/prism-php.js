@@ -11,9 +11,7 @@
 			pattern: /\?>$|^<\?(?:php(?=\s)|=)?/i,
 			alias: 'important'
 		},
-		'comment': [
-			/\/\*[\s\S]*?\*\/|\/\/.*|#.*/
-		],
+		'comment': /\/\*[\s\S]*?\*\/|\/\/.*|#(?!\[).*/,
 		'variable': /\$+(?:\w+\b|(?={))/i,
 		'package': {
 			pattern: /(namespace\s+|use\s+(?:function\s+)?)(?:\\?\b[a-z_]\w*)+\b(?!\\)/i,
@@ -71,7 +69,7 @@
 			},
 			/\b(?:__halt_compiler|abstract|and|array|as|break|callable|case|catch|class|clone|const|continue|declare|default|die|do|echo|else|elseif|empty|enddeclare|endfor|endforeach|endif|endswitch|endwhile|eval|exit|extends|final|finally|for|foreach|function|global|goto|if|implements|include|include_once|instanceof|insteadof|interface|isset|list|namespace|match|new|or|parent|print|private|protected|public|require|require_once|return|self|static|switch|throw|trait|try|unset|use|var|while|xor|yield)\b/i
 		],
-		'named-argument': /\b[a-z_]\w*(?=\s*:(?!:))/i,
+		'argument-name': /\b[a-z_]\w*(?=\s*:(?!:))/i,
 		'class-name': [
 			{
 				pattern: /(\b(?:class|interface|extends|implements|trait|instanceof|new(?!\s+self|\s+static))\s+|\bcatch\s+\()\b[a-z_]\w*(?!\\)\b/i,
@@ -162,38 +160,6 @@
 		'punctuation': /[{}\[\](),:;]/
 	};
 
-	Prism.languages.insertBefore('php', 'comment', {
-		'attribute': {
-			pattern: /#\[(?:(?!#\[)(?:\\[\s\S]|[^\\\]]))*]/,
-			greedy: true,
-			inside: {
-				'interpolation': {
-					pattern: /\[(?:(?!#\[)(?:\\[\s\S]|[^\\\]]))*]/,
-					inside: {
-						rest: Prism.languages.php,
-						'attribute-class-name': [
-							{
-								pattern: /([\[)\s]\s*)\b[a-z_]\w*(?!\\)\b/i,
-								alias: 'class-name',
-								greedy: true,
-								lookbehind: true
-							},
-							{
-								pattern: /([\[)\s]\s*)(?:\\?\b[a-z_]\w*)+/i,
-								alias: 'class-name-fully-qualified',
-								greedy: true,
-								lookbehind: true,
-								inside: {
-									'punctuation': /\\/
-								}
-							}
-						]
-					}
-				}
-			}
-		},
-	});
-
 	var string_interpolation = {
 		pattern: /{\$(?:{(?:{[^{}]+}|[^{}]+)}|[^{}])+}|(^|[^\\{])\$+(?:\w+(?:\[[^\r\n\[\]]+\]|->\w+)*)/,
 		lookbehind: true,
@@ -252,12 +218,45 @@
 		],
 	});
 
+	Prism.languages.insertBefore('php', 'variable', {
+		'attribute': {
+			pattern: /#\[(?:(?!#\[)(?:\\[\s\S]|[\s\S]))*]/,
+			greedy: true,
+			inside: {
+				'content': {
+					pattern: /^(#\[)[\s\S]+(?=]$)/,
+					lookbehind: true,
+					inside: {
+						'attribute-class-name': [
+							{
+								pattern: /(,\s*|^\s*)\b[a-z_]\w*(?!\\)\b/i,
+								alias: 'class-name',
+								greedy: true,
+								lookbehind: true
+							},
+							{
+								pattern: /(,\s*|^\s*)(?:\\?\b[a-z_]\w*)+/i,
+								alias: 'class-name-fully-qualified',
+								greedy: true,
+								lookbehind: true,
+								inside: {
+									'punctuation': /\\/
+								}
+							}
+						],
+						rest: Prism.languages.php,
+					}
+				}
+			}
+		},
+	});
+
 	Prism.hooks.add('before-tokenize', function(env) {
 		if (!/<\?/.test(env.code)) {
 			return;
 		}
 
-		var phpPattern = /<\?(?:[^"'/#]|\/(?![*/])|("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|(?:\/\/|#)(?:[^?\n\r]|\?(?!>))*(?=$|\?>|[\r\n])|\/\*[\s\S]*?(?:\*\/|$))*?(?:\?>|$)/ig;
+		var phpPattern = /<\?(?:[^"'/#]|\/(?![*/])|("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|(?:\/\/|#(?!\[))(?:[^?\n\r]|\?(?!>))*(?=$|\?>|[\r\n])|#\[|\/\*[\s\S]*?(?:\*\/|$))*?(?:\?>|$)/ig;
 		Prism.languages['markup-templating'].buildPlaceholders(env, 'php', phpPattern);
 	});
 
