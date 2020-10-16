@@ -1,3 +1,29 @@
+// #[Foo]
+
+#[
+	// something ]
+	Foo,
+	/* something
+	else #[] */
+	Bar
+	# shell comments aren't confusing at all in here
+]
+
+#[Foo([0, 1])]
+
+#[
+	Foo(
+		[
+			1 => [0, 1],
+			2 => [2, 3],
+			3 => [
+				[0, 1],
+				[2, 3]
+			]
+		]
+	)
+]
+
 #[]
 #[Foo]
 #[Foo\Bar\Baz]
@@ -5,9 +31,7 @@
 #[
 	Http\Route(Http::POST, '/products/create', 1),
 	Foo\Bar\Baz,
-	Attribute,
-	AttributeFoo('value'),
-	AttributeBaz
+	AttributeFoo('value')
 ]
 
 #[A1(1), A1(2), A2(3)]
@@ -16,9 +40,6 @@ class Foo {
 }
 
 $object = new #[A1(7)] class () {};
-
-#[Attribute]
-class Route{}
 
 function foo(
     #[Attribute] $param1,
@@ -31,25 +52,97 @@ $ref = new \ReflectionFunction(#[A1] #[A2] function () { });
 
 #[DeprecationReason('reason: <https://some-website/reason?>')]
 function main() {}
-const APP_SECRET = 'app-secret';
-echo "Test\n";
 
 ----------------------------------------------------
 
 [
+    ["comment", "// #[Foo]"],
+
     ["attribute", [
-        "#[]"
+        ["delimiter", "#["],
+        ["attribute-content", [
+            ["comment", "// something ]"],
+            ["attribute-class-name", "Foo"],
+            ["punctuation", ","],
+            ["comment", "/* something\r\n\telse #[] */"],
+            ["attribute-class-name", "Bar"],
+            ["comment", "# shell comments aren't confusing at all in here"]
+        ]],
+        ["delimiter", "]"]
+    ]],
+
+    ["attribute", [
+        ["delimiter", "#["],
+        ["attribute-content", [
+            ["attribute-class-name", "Foo"],
+            ["punctuation", "("],
+            ["punctuation", "["],
+            ["number", "0"],
+            ["punctuation", ","],
+            ["number", "1"],
+            ["punctuation", "]"],
+            ["punctuation", ")"]
+        ]],
+        ["delimiter", "]"]
+    ]],
+
+    ["attribute", [
+        ["delimiter", "#["],
+        ["attribute-content", [
+            ["attribute-class-name", "Foo"],
+            ["punctuation", "("],
+            ["punctuation", "["],
+            ["number", "1"],
+            ["operator", "=>"],
+            ["punctuation", "["],
+            ["number", "0"],
+            ["punctuation", ","],
+            ["number", "1"],
+            ["punctuation", "]"],
+            ["punctuation", ","],
+            ["number", "2"],
+            ["operator", "=>"],
+            ["punctuation", "["],
+            ["number", "2"],
+            ["punctuation", ","],
+            ["number", "3"],
+            ["punctuation", "]"],
+            ["punctuation", ","],
+            ["number", "3"],
+            ["operator", "=>"],
+            ["punctuation", "["],
+            ["punctuation", "["],
+            ["number", "0"],
+            ["punctuation", ","],
+            ["number", "1"],
+            ["punctuation", "]"],
+            ["punctuation", ","],
+            ["punctuation", "["],
+            ["number", "2"],
+            ["punctuation", ","],
+            ["number", "3"],
+            ["punctuation", "]"],
+            ["punctuation", "]"],
+            ["punctuation", "]"],
+            ["punctuation", ")"]
+        ]],
+        ["delimiter", "]"]
+    ]],
+
+    ["attribute", [
+        ["delimiter", "#["],
+        ["delimiter", "]"]
     ]],
     ["attribute", [
-        "#[",
-        ["content", [
+        ["delimiter", "#["],
+        ["attribute-content", [
             ["attribute-class-name", "Foo"]
         ]],
-        "]"
+        ["delimiter", "]"]
     ]],
     ["attribute", [
-        "#[",
-        ["content", [
+        ["delimiter", "#["],
+        ["attribute-content", [
             ["attribute-class-name", [
                 "Foo",
                 ["punctuation", "\\"],
@@ -58,14 +151,14 @@ echo "Test\n";
                 "Baz"
             ]]
         ]],
-        "]"
+        ["delimiter", "]"]
     ]],
     ["attribute", [
-        "#[",
-        ["content", [
+        ["delimiter", "#["],
+        ["attribute-content", [
             ["attribute-class-name", "Route"],
             ["punctuation", "("],
-            ["class-name", "Http"],
+            ["attribute-class-name", "Http"],
             ["operator", "::"],
             ["constant", "POST"],
             ["punctuation", ","],
@@ -74,18 +167,18 @@ echo "Test\n";
             ["number", "1"],
             ["punctuation", ")"]
         ]],
-        "]"
+        ["delimiter", "]"]
     ]],
     ["attribute", [
-        "#[",
-        ["content", [
+        ["delimiter", "#["],
+        ["attribute-content", [
             ["attribute-class-name", [
                 "Http",
                 ["punctuation", "\\"],
                 "Route"
             ]],
             ["punctuation", "("],
-            ["class-name", "Http"],
+            ["attribute-class-name", "Http"],
             ["operator", "::"],
             ["constant", "POST"],
             ["punctuation", ","],
@@ -102,21 +195,17 @@ echo "Test\n";
                 "Baz"
             ]],
             ["punctuation", ","],
-            ["attribute-class-name", "Attribute"],
-            ["punctuation", ","],
             ["attribute-class-name", "AttributeFoo"],
             ["punctuation", "("],
             ["string", "'value'"],
-            ["punctuation", ")"],
-            ["punctuation", ","],
-            ["attribute-class-name", "AttributeBaz"]
+            ["punctuation", ")"]
         ]],
-        "]"
+        ["delimiter", "]"]
     ]],
 
     ["attribute", [
-        "#[",
-        ["content", [
+        ["delimiter", "#["],
+        ["attribute-content", [
             ["attribute-class-name", "A1"],
             ["punctuation", "("],
             ["number", "1"],
@@ -132,7 +221,7 @@ echo "Test\n";
             ["number", "3"],
             ["punctuation", ")"]
         ]],
-        "]"
+        ["delimiter", "]"]
     ]],
     ["keyword", "class"],
     ["class-name", "Foo"],
@@ -142,26 +231,26 @@ echo "Test\n";
     ["function", "foo"],
     ["punctuation", "("],
     ["attribute", [
-        "#[",
-        ["content", [
+        ["delimiter", "#["],
+        ["attribute-content", [
             ["attribute-class-name", "A1"],
             ["punctuation", "("],
             ["number", "5"],
             ["punctuation", ")"]
         ]],
-        "]"
+        ["delimiter", "]"]
     ]],
     ["variable", "$a"],
     ["punctuation", ","],
     ["attribute", [
-        "#[",
-        ["content", [
+        ["delimiter", "#["],
+        ["attribute-content", [
             ["attribute-class-name", "A1"],
             ["punctuation", "("],
             ["number", "6"],
             ["punctuation", ")"]
         ]],
-        "]"
+        ["delimiter", "]"]
     ]],
     ["variable", "$b"],
     ["punctuation", ")"],
@@ -173,14 +262,14 @@ echo "Test\n";
     ["operator", "="],
     ["keyword", "new"],
     ["attribute", [
-        "#[",
-        ["content", [
+        ["delimiter", "#["],
+        ["attribute-content", [
             ["attribute-class-name", "A1"],
             ["punctuation", "("],
             ["number", "7"],
             ["punctuation", ")"]
         ]],
-        "]"
+        ["delimiter", "]"]
     ]],
     ["keyword", "class"],
     ["punctuation", "("],
@@ -189,27 +278,15 @@ echo "Test\n";
     ["punctuation", "}"],
     ["punctuation", ";"],
 
-    ["attribute", [
-        "#[",
-        ["content", [
-            ["attribute-class-name", "Attribute"]
-        ]],
-        "]"
-    ]],
-    ["keyword", "class"],
-    ["class-name", "Route"],
-    ["punctuation", "{"],
-    ["punctuation", "}"],
-
     ["keyword", "function"],
     ["function", "foo"],
     ["punctuation", "("],
     ["attribute", [
-        "#[",
-        ["content", [
+        ["delimiter", "#["],
+        ["attribute-content", [
             ["attribute-class-name", "Attribute"]
         ]],
-        "]"
+        ["delimiter", "]"]
     ]],
     ["variable", "$param1"],
     ["punctuation", ","],
@@ -221,11 +298,11 @@ echo "Test\n";
     ["variable", "$f1"],
     ["operator", "="],
     ["attribute", [
-        "#[",
-        ["content", [
+        ["delimiter", "#["],
+        ["attribute-content", [
             ["attribute-class-name", "ExampleAttribute"]
         ]],
-        "]"
+        ["delimiter", "]"]
     ]],
     ["keyword", "function"],
     ["punctuation", "("],
@@ -243,18 +320,18 @@ echo "Test\n";
     ]],
     ["punctuation", "("],
     ["attribute", [
-        "#[",
-        ["content", [
+        ["delimiter", "#["],
+        ["attribute-content", [
             ["attribute-class-name", "A1"]
         ]],
-        "]"
+        ["delimiter", "]"]
     ]],
     ["attribute", [
-        "#[",
-        ["content", [
+        ["delimiter", "#["],
+        ["attribute-content", [
             ["attribute-class-name", "A2"]
         ]],
-        "]"
+        ["delimiter", "]"]
     ]],
     ["keyword", "function"],
     ["punctuation", "("],
@@ -265,31 +342,21 @@ echo "Test\n";
     ["punctuation", ";"],
 
     ["attribute", [
-        "#[",
-        ["content", [
+        ["delimiter", "#["],
+        ["attribute-content", [
             ["attribute-class-name", "DeprecationReason"],
             ["punctuation", "("],
             ["string", "'reason: <https://some-website/reason?>'"],
             ["punctuation", ")"]
         ]],
-        "]"
+        ["delimiter", "]"]
     ]],
     ["keyword", "function"],
     ["function", "main"],
     ["punctuation", "("],
     ["punctuation", ")"],
     ["punctuation", "{"],
-    ["punctuation", "}"],
-    ["keyword", "const"],
-    ["constant", "APP_SECRET"],
-    ["operator", "="],
-    ["string", "'app-secret'"],
-    ["punctuation", ";"],
-    ["keyword", "echo"],
-    ["string", [
-        "\"Test\\n\""
-    ]],
-    ["punctuation", ";"]
+    ["punctuation", "}"]
 ]
 
 ----------------------------------------------------

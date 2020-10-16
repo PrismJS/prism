@@ -6,12 +6,25 @@
  * Supports PHP 5.3 - 7.4
  */
 (function (Prism) {
+	var comment = /\/\*[\s\S]*?\*\/|\/\/.*|#(?!\[).*/;
+	var constant = [
+		{
+			pattern: /\b(?:false|true)\b/i,
+			alias: 'boolean'
+		},
+		/\b[A-Z_][A-Z0-9_]*\b(?!\s*\()/,
+		/\b(?:null)\b/i,
+	];
+	var number = /\b0b[01]+\b|\b0x[\da-f]+\b|(?:\b\d+(?:_\d+)*\.?(?:\d+(?:_\d+)*)*|\B\.\d+)(?:e[+-]?\d+)?/i;
+	var operator = /<?=>|\?\?=?|\.{3}|\??->|[!=]=?=?|::|\*\*=?|--|\+\+|&&|\|\||<<|>>|[?~]|[/^|%*&<>.+-]=?/;
+	var punctuation = /[{}\[\](),:;]/;
+
 	Prism.languages.php = {
 		'delimiter': {
 			pattern: /\?>$|^<\?(?:php(?=\s)|=)?/i,
 			alias: 'important'
 		},
-		'comment': /\/\*[\s\S]*?\*\/|\/\/.*|#(?!\[).*/,
+		'comment': comment,
 		'variable': /\$+(?:\w+\b|(?={))/i,
 		'package': {
 			pattern: /(namespace\s+|use\s+(?:function\s+)?)(?:\\?\b[a-z_]\w*)+\b(?!\\)/i,
@@ -142,22 +155,15 @@
 				}
 			}
 		],
-		'constant': [
-			{
-				pattern: /\b(?:false|true)\b/i,
-				alias: 'boolean'
-			},
-			/\b[A-Z_][A-Z0-9_]*\b/,
-			/\b(?:null)\b/i,
-		],
+		'constant': constant,
 		'function': /\w+\s*(?=\()/,
 		'property': {
 			pattern: /(->)[\w]+/,
 			lookbehind: true
 		},
-		'number': /\b0b[01]+\b|\b0x[\da-f]+\b|(?:\b\d+(?:_\d+)*\.?(?:\d+(?:_\d+)*)*|\B\.\d+)(?:e[+-]?\d+)?/i,
-		'operator': /<?=>|\?\?=?|\.{3}|\??->|[!=]=?=?|::|\*\*=?|--|\+\+|&&|\|\||<<|>>|[?~]|[/^|%*&<>.+-]=?/,
-		'punctuation': /[{}\[\](),:;]/
+		'number': number,
+		'operator': operator,
+		'punctuation': punctuation
 	};
 
 	var string_interpolation = {
@@ -166,77 +172,85 @@
 		inside: Prism.languages.php
 	};
 
-	Prism.languages.insertBefore('php', 'variable', {
-		'string': [
-			{
-				pattern: /<<<'([^']+)'[\r\n](?:.*[\r\n])*?\1;/,
-				alias: 'nowdoc-string',
-				greedy: true,
-				inside: {
-					'delimiter': {
-						pattern: /^<<<'[^']+'|[a-z_]\w*;$/i,
-						alias: 'symbol',
-						inside: {
-							'punctuation': /^<<<'?|[';]$/
-						}
+	var string = [
+		{
+			pattern: /<<<'([^']+)'[\r\n](?:.*[\r\n])*?\1;/,
+			alias: 'nowdoc-string',
+			greedy: true,
+			inside: {
+				'delimiter': {
+					pattern: /^<<<'[^']+'|[a-z_]\w*;$/i,
+					alias: 'symbol',
+					inside: {
+						'punctuation': /^<<<'?|[';]$/
 					}
 				}
-			},
-			{
-				pattern: /<<<(?:"([^"]+)"[\r\n](?:.*[\r\n])*?\1;|([a-z_]\w*)[\r\n](?:.*[\r\n])*?\2;)/i,
-				alias: 'heredoc-string',
-				greedy: true,
-				inside: {
-					'delimiter': {
-						pattern: /^<<<(?:"[^"]+"|[a-z_]\w*)|[a-z_]\w*;$/i,
-						alias: 'symbol',
-						inside: {
-							'punctuation': /^<<<"?|[";]$/
-						}
-					},
-					'interpolation': string_interpolation // See below
-				}
-			},
-			{
-				pattern: /`(?:\\[\s\S]|[^\\`])*`/,
-				alias: 'backtick-quoted-string',
-				greedy: true
-			},
-			{
-				pattern: /'(?:\\[\s\S]|[^\\'])*'/,
-				alias: 'single-quoted-string',
-				greedy: true
-			},
-			{
-				pattern: /"(?:\\[\s\S]|[^\\"])*"/,
-				alias: 'double-quoted-string',
-				greedy: true,
-				inside: {
-					'interpolation': string_interpolation // See below
-				}
 			}
-		],
+		},
+		{
+			pattern: /<<<(?:"([^"]+)"[\r\n](?:.*[\r\n])*?\1;|([a-z_]\w*)[\r\n](?:.*[\r\n])*?\2;)/i,
+			alias: 'heredoc-string',
+			greedy: true,
+			inside: {
+				'delimiter': {
+					pattern: /^<<<(?:"[^"]+"|[a-z_]\w*)|[a-z_]\w*;$/i,
+					alias: 'symbol',
+					inside: {
+						'punctuation': /^<<<"?|[";]$/
+					}
+				},
+				'interpolation': string_interpolation // See below
+			}
+		},
+		{
+			pattern: /`(?:\\[\s\S]|[^\\`])*`/,
+			alias: 'backtick-quoted-string',
+			greedy: true
+		},
+		{
+			pattern: /'(?:\\[\s\S]|[^\\'])*'/,
+			alias: 'single-quoted-string',
+			greedy: true
+		},
+		{
+			pattern: /"(?:\\[\s\S]|[^\\"])*"/,
+			alias: 'double-quoted-string',
+			greedy: true,
+			inside: {
+				'interpolation': string_interpolation // See below
+			}
+		}
+	];
+
+	Prism.languages.insertBefore('php', 'variable', {
+		'string': string,
 	});
 
 	Prism.languages.insertBefore('php', 'variable', {
 		'attribute': {
-			pattern: /#\[(?:(?!#\[)(?:\\[\s\S]|[\s\S]))*]/,
+			pattern: /#\[(?:(?!#\[)(?:[^"'\/#]|\/\/.*$|#.*$|\/\*(?:[^*]|\*(?!\/))*\*\/|"(?:\\[\s\S]|[^\\"])*"|'(?:\\[\s\S]|[^\\'])*'))*](?=\s*[a-z$#])/mi,
 			greedy: true,
 			inside: {
-				'content': {
+				'attribute-content': {
 					pattern: /^(#\[)[\s\S]+(?=]$)/,
 					lookbehind: true,
+					// inside can appear subset of php
 					inside: {
+						'comment': comment,
+						'string': string,
 						'attribute-class-name': [
 							{
-								pattern: /(,\s*|^\s*)\b[a-z_]\w*(?!\\)\b/i,
+								pattern: /(?<!::)\b[a-z_]\w*(?!\\)\b/i,
 								alias: 'class-name',
 								greedy: true,
 								lookbehind: true
 							},
 							{
-								pattern: /(,\s*|^\s*)(?:\\?\b[a-z_]\w*)+/i,
-								alias: 'class-name-fully-qualified',
+								pattern: /(?<!::)(?:\\?\b[a-z_]\w*)+/i,
+								alias: [
+									'class-name',
+									'class-name-fully-qualified'
+								],
 								greedy: true,
 								lookbehind: true,
 								inside: {
@@ -244,8 +258,15 @@
 								}
 							}
 						],
-						rest: Prism.languages.php,
+						'constant': constant,
+						'number': number,
+						'operator': operator,
+						'punctuation': punctuation
 					}
+				},
+				'delimiter': {
+					pattern: /^#\[|]$/,
+					alias: 'punctuation'
 				}
 			}
 		},
