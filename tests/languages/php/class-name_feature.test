@@ -1,13 +1,22 @@
 public Foo $a;
 
 Foo::bar();
+
 \Foo::bar();
+
 \Package\Foo::bar();
 
 function f(Foo $variable): Foo {}
+
 function f(\Foo $variable): \Foo {}
+
 function f(\Package\Foo $variable): \Package\Foo {}
+
 function f($variable): ?Foo {}
+
+function f(Foo|Bar $variable): Foo|Bar {}
+
+function f(\Package\Foo|\Package\Bar $variable): \Package\Foo|\Package\Bar {}
 
 class Foo extends Bar implements Baz {}
 
@@ -58,7 +67,8 @@ class Foo extends \Package\Bar implements App\Baz {}
 	["punctuation", ")"],
 	["punctuation", ":"],
 	["class-name", "Foo"],
-	["punctuation", "{"], ["punctuation", "}"],
+	["punctuation", "{"],
+	["punctuation", "}"],
 
 	["keyword", "function"],
 	["function", "f"],
@@ -74,7 +84,8 @@ class Foo extends \Package\Bar implements App\Baz {}
 		["punctuation", "\\"],
 		"Foo"
 	]],
-	["punctuation", "{"], ["punctuation", "}"],
+	["punctuation", "{"],
+	["punctuation", "}"],
 
 	["keyword", "function"],
 	["function", "f"],
@@ -94,7 +105,8 @@ class Foo extends \Package\Bar implements App\Baz {}
 		["punctuation", "\\"],
 		"Foo"
 	]],
-	["punctuation", "{"], ["punctuation", "}"],
+	["punctuation", "{"],
+	["punctuation", "}"],
 
 	["keyword", "function"],
 	["function", "f"],
@@ -104,7 +116,58 @@ class Foo extends \Package\Bar implements App\Baz {}
 	["punctuation", ":"],
 	["operator", "?"],
 	["class-name", "Foo"],
-	["punctuation", "{"], ["punctuation", "}"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "function"],
+	["function", "f"],
+	["punctuation", "("],
+	["class-name", "Foo"],
+	["operator", "|"],
+	["class-name", "Bar"],
+	["variable", "$variable"],
+	["punctuation", ")"],
+	["punctuation", ":"],
+	["class-name", "Foo"],
+	["operator", "|"],
+	["class-name", "Bar"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "function"],
+	["function", "f"],
+	["punctuation", "("],
+	["class-name", [
+		["punctuation", "\\"],
+		"Package",
+		["punctuation", "\\"],
+		"Foo"
+	]],
+	["operator", "|"],
+	["class-name", [
+		["punctuation", "\\"],
+		"Package",
+		["punctuation", "\\"],
+		"Bar"
+	]],
+	["variable", "$variable"],
+	["punctuation", ")"],
+	["punctuation", ":"],
+	["class-name", [
+		["punctuation", "\\"],
+		"Package",
+		["punctuation", "\\"],
+		"Foo"
+	]],
+	["operator", "|"],
+	["class-name", [
+		["punctuation", "\\"],
+		"Package",
+		["punctuation", "\\"],
+		"Bar"
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
 
 	["keyword", "class"],
 	["class-name", "Foo"],
@@ -112,7 +175,8 @@ class Foo extends \Package\Bar implements App\Baz {}
 	["class-name", "Bar"],
 	["keyword", "implements"],
 	["class-name", "Baz"],
-	["punctuation", "{"], ["punctuation", "}"],
+	["punctuation", "{"],
+	["punctuation", "}"],
 
 	["keyword", "class"],
 	["class-name", "Foo"],
@@ -129,7 +193,8 @@ class Foo extends \Package\Bar implements App\Baz {}
 		["punctuation", "\\"],
 		"Baz"
 	]],
-	["punctuation", "{"], ["punctuation", "}"]
+	["punctuation", "{"],
+	["punctuation", "}"]
 ]
 
 ----------------------------------------------------
