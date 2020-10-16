@@ -228,7 +228,7 @@
 
 	Prism.languages.insertBefore('php', 'variable', {
 		'attribute': {
-			pattern: /#\[(?:(?!#\[)(?:[^"'\/#]|\/\/.*$|#.*$|\/\*(?:[^*]|\*(?!\/))*\*\/|"(?:\\[\s\S]|[^\\"])*"|'(?:\\[\s\S]|[^\\'])*'))*](?=\s*[a-z$#])/mi,
+			pattern: /#\[(?:(?!#\[)(?:[^"'\/#]|\/\/.*$|#.*$|\/\*(?:[^*]|\*(?!\/))*\*\/|"(?:\\[\s\S]|[^\\"])*"|'(?:\\[\s\S]|[^\\'])*'))+](?=\s*[a-z$#])/mi,
 			greedy: true,
 			inside: {
 				'attribute-content': {
@@ -240,13 +240,13 @@
 						'string': string,
 						'attribute-class-name': [
 							{
-								pattern: /(?<!::)\b[a-z_]\w*(?!\\)\b/i,
+								pattern: /([^:]|^)\b[a-z_]\w*(?!\\)\b/i,
 								alias: 'class-name',
 								greedy: true,
 								lookbehind: true
 							},
 							{
-								pattern: /(?<!::)(?:\\?\b[a-z_]\w*)+/i,
+								pattern: /([^:]|^)(?:\\?\b[a-z_]\w*)+/i,
 								alias: [
 									'class-name',
 									'class-name-fully-qualified'

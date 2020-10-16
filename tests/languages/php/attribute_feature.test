@@ -1,5 +1,7 @@
 // #[Foo]
 
+#[]
+
 #[
 	// something ]
 	Foo,
@@ -24,7 +26,6 @@
 	)
 ]
 
-#[]
 #[Foo]
 #[Foo\Bar\Baz]
 #[Route(Http::POST, '/products/create', 1)]
@@ -57,6 +58,9 @@ function main() {}
 
 [
     ["comment", "// #[Foo]"],
+    "\r\n\r\n#",
+    ["punctuation", "["],
+    ["punctuation", "]"],
 
     ["attribute", [
         ["delimiter", "#["],
@@ -129,10 +133,6 @@ function main() {}
         ["delimiter", "]"]
     ]],
 
-    ["attribute", [
-        ["delimiter", "#["],
-        ["delimiter", "]"]
-    ]],
     ["attribute", [
         ["delimiter", "#["],
         ["attribute-content", [
