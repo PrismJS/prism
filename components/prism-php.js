@@ -3,7 +3,7 @@
  * Modified by Miles Johnson: http://milesj.me
  * Rewritten by Tom Pavelec
  *
- * Supports PHP 5.3 - 7.4
+ * Supports PHP 5.3 - 8.0
  */
 (function (Prism) {
 	var comment = /\/\*[\s\S]*?\*\/|\/\/.*|#(?!\[).*/;
@@ -85,12 +85,38 @@
 		'argument-name': /\b[a-z_]\w*(?=\s*:(?!:))/i,
 		'class-name': [
 			{
-				pattern: /(\b(?:class|interface|extends|implements|trait|instanceof|new(?!\s+self|\s+static))\s+|\bcatch\s+\()\b[a-z_]\w*(?!\\)\b/i,
+				pattern: /(\b(?:class|interface|extends|implements|trait|instanceof|new(?!\s+self|\s+static))\s+|\bcatch\s*\()\b[a-z_]\w*(?!\\)\b/i,
 				greedy: true,
 				lookbehind: true
 			},
 			{
-				pattern: /(\b(?:extends|implements|instanceof|new(?!\s+self\b|\s+static\b))\s+|\bcatch\s+\()(?:\\?\b[a-z_]\w*)+\b(?!\\)/i,
+				pattern: /(\|\s*)\b[a-z_]\w*(?!\\)\b/i,
+				greedy: true,
+				lookbehind: true
+			},
+			{
+				pattern: /\b[a-z_]\w*(?!\\)\b(?=\s*\|)/i,
+				greedy: true
+			},
+			{
+				pattern: /(\|\s*)(?:\\?\b[a-z_]\w*)+\b/i,
+				alias: 'class-name-fully-qualified',
+				greedy: true,
+				lookbehind: true,
+				inside: {
+					'punctuation': /\\/
+				}
+			},
+			{
+				pattern: /(?:\\?\b[a-z_]\w*)+\b(?=\s*\|)/i,
+				alias: 'class-name-fully-qualified',
+				greedy: true,
+				inside: {
+					'punctuation': /\\/
+				}
+			},
+			{
+				pattern: /(\b(?:extends|implements|instanceof|new(?!\s+self\b|\s+static\b))\s+|\bcatch\s*\()(?:\\?\b[a-z_]\w*)+\b(?!\\)/i,
 				alias: 'class-name-fully-qualified',
 				greedy: true,
 				lookbehind: true,
