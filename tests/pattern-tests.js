@@ -5,7 +5,7 @@ const PrismLoader = require('./helper/prism-loader');
 const { BFS, parseRegex } = require('./helper/util');
 const { languages } = require('../components.json');
 const { visitRegExpAST } = require('regexpp');
-const { JS, Words, NFA } = require('refa');
+const { JS, Words, NFA, CharSet } = require('refa');
 
 /**
  * A map for a regex pattern to whether or not it it vulnerable to exponential backtracking.
@@ -13,6 +13,12 @@ const { JS, Words, NFA } = require('refa');
  * @type {Record<string, boolean>}
  */
 const expBacktrackingCache = {};
+/**
+ * A map for a regex pattern to whether or not it it vulnerable to polynomial backtracking.
+ *
+ * @type {Record<string, boolean>}
+ */
+const polyBacktrackingCache = {};
 
 for (const lang in languages) {
 	if (lang === 'meta') {
@@ -63,7 +69,9 @@ for (const lang in languages) {
  * @typedef {import("regexpp/ast").Element} Element
  * @typedef {import("regexpp/ast").Group} Group
  * @typedef {import("regexpp/ast").LookaroundAssertion} LookaroundAssertion
+ * @typedef {import("regexpp/ast").Node} Node
  * @typedef {import("regexpp/ast").Pattern} Pattern
+ * @typedef {import("regexpp/ast").Quantifier} Quantifier
  */
 function testPatterns(Prism) {
 
@@ -494,6 +502,195 @@ function testPatterns(Prism) {
 			});
 
 			expBacktrackingCache[patternStr] = false;
+		});
+	});
+
+	it('- should not cause polynomial backtracking', function () {
+		forEachPattern(({ pattern, ast, tokenPath }) => {
+			const patternStr = String(pattern);
+			if (polyBacktrackingCache[patternStr] === false) {
+				// we know that the pattern won't cause poly backtracking because we checked before
+				return;
+			}
+
+			const EMPTY = ast.flags.unicode ? CharSet.empty(0x10FFFF) : CharSet.empty(0xFFFF);
+
+			/**
+			 * @param {Node} node
+			 * @returns {CharSet}
+			 */
+			function toCharSet(node) {
+				switch (node.type) {
+					case "Alternative": {
+						if (node.elements.length === 1) {
+							return toCharSet(node.elements[0]);
+						}
+						return EMPTY;
+					}
+					case "CapturingGroup":
+					case "Group": {
+						let total = EMPTY;
+						for (const item of node.alternatives) {
+							total = total.union(toCharSet(item));
+						}
+						return total;
+					}
+					case "Character":
+						return JS.createCharSet([node.value], ast.flags);
+					case "CharacterClass": {
+						const value = JS.createCharSet(node.elements.map(x => {
+							if (x.type === "CharacterSet") {
+								return x;
+							} else if (x.type === "Character") {
+								return x.value;
+							} else {
+								return { min: x.min.value, max: x.max.value };
+							}
+						}), ast.flags);
+						if (node.negate) {
+							return value.negate();
+						} else {
+							return value;
+						}
+					}
+					case "CharacterSet":
+						return JS.createCharSet([node], ast.flags);
+
+					default:
+						return EMPTY;
+				}
+			}
+
+			/**
+			 * @param {Element} from
+			 * @returns {Element | null}
+			 */
+			function getAfter(from) {
+				const parent = from.parent;
+				if (parent.type === "Quantifier") {
+					return getAfter(parent);
+				} else if (parent.type === "Alternative") {
+					const index = parent.elements.indexOf(from);
+					const after = parent.elements[index + 1];
+					if (after) {
+						return after;
+					} else {
+						const grandParent = parent.parent;
+						if (grandParent.type === "Pattern") {
+							return null;
+						} else {
+							return getAfter(grandParent);
+						}
+					}
+				} else {
+					throw Error("Unreachable");
+				}
+			}
+
+			visitRegExpAST(ast.pattern, {
+				onQuantifierLeave(node) {
+					if (node.max !== Infinity) {
+						return;
+					}
+					const char = toCharSet(node.element);
+					tryReachUntil(getAfter(node), char, null);
+
+					/**
+					 * @param {Quantifier} quantifier
+					 * @param {CharSet} char
+					 */
+					function assertNoPoly(quantifier, char) {
+						if (quantifier.max === Infinity) {
+							const qChar = toCharSet(quantifier.element);
+							if (qChar && !qChar.isDisjointWith(char)) {
+								const intersection = qChar.intersect(char);
+								const literal = JS.toLiteral({
+									type: "Concatenation",
+									elements: [
+										{ type: "CharacterClass", characters: intersection }
+									]
+								})
+								const lang = `/${literal.source}/${literal.flags}`;
+
+								const rangeStr = patternStr.substring(node.start + 1, quantifier.end + 1);
+								const rangeHighlight = `^${"~".repeat(node.end - node.start - 1)}${" ".repeat(quantifier.start - node.end)}^${"~".repeat(quantifier.end - quantifier.start - 1)}`;
+
+								assert.fail(`${tokenPath}: Polynomial backtracking. By repeating any character that matches ${lang}, an attack string can be created.\n\n    ${rangeStr}\n    ${rangeHighlight}\n\nFull pattern:\n${patternStr}\n${" ".repeat(node.start + 1)}${rangeHighlight}`);
+							}
+						}
+					}
+
+					/**
+					 * @param {Element | null | undefined} element
+					 * @param {CharSet} char
+					 * @param {Element | null | undefined} until
+					 * @returns {CharSet}
+					 */
+					function tryReachUntil(element, char, until) {
+						if (!element || element == until || char.isEmpty) {
+							return char;
+						}
+
+						const after = getAfter(element);
+
+						if (element.type === "Quantifier") {
+							assertNoPoly(element, char);
+						}
+
+						return tryReachUntil(after, goInto(element, after, char), until);
+					}
+
+					/**
+					 * @param {Element} element
+					 * @param {Element} after
+					 * @param {CharSet} char
+					 * @returns {CharSet}
+					 */
+					function goInto(element, after, char) {
+						switch (element.type) {
+							case "Assertion": {
+								if (element.kind === "lookahead" || element.kind === "lookbehind") {
+									for (const alt of element.alternatives) {
+										if (alt.elements.length > 0) {
+											tryReachUntil(alt.elements[0], char, after);
+										}
+									}
+								}
+								return EMPTY;
+							}
+							case "Group":
+							case "CapturingGroup": {
+								let total = EMPTY;
+								for (const alt of element.alternatives) {
+									if (alt.elements.length > 0) {
+										total = total.union(tryReachUntil(alt.elements[0], char, after));
+									} else {
+										total = char;
+									}
+								}
+								return total;
+							}
+							case "Character":
+							case "CharacterClass":
+							case "CharacterSet": {
+								return char.intersect(toCharSet(element));
+							}
+							case "Quantifier": {
+								if (element.min === 0) {
+									goInto(element.element, after, char);
+									return char;
+								} else {
+									return goInto(element.element, after, char);
+								}
+							}
+							default:
+								return EMPTY;
+						}
+					}
+				},
+			});
+
+			polyBacktrackingCache[patternStr] = false;
 		});
 	});
 
