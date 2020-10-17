@@ -14,7 +14,7 @@ Prism.languages.autohotkey = {
 	'string': /"(?:[^"\n\r]|"")*"/m,
 	'tag': /^[ \t]*[^\s:]+?(?=:(?:[^:]|$))/m, //labels
 	'variable': /%\w+%/,
-	'number': /\b0x[\dA-Fa-f]+\b|(?:\b\d+\.?\d*|\B\.\d+)(?:[Ee]-?\d+)?/,
+	'number': /\b0x[\dA-Fa-f]+\b|(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:[Ee]-?\d+)?/,
 	'operator': /\?|\/\/?=?|:=|\|[=|]?|&[=&]?|\+[=+]?|-[=-]?|\*[=*]?|<(?:<=?|>|=)?|>>?=?|[.^!=~]=?|\b(?:AND|NOT|OR)\b/,
 	'boolean': /\b(?:true|false)\b/,
 

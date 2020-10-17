@@ -10,7 +10,7 @@ Prism.languages.scala = Prism.languages.extend('java', {
 		greedy: true
 	},
 	'builtin': /\b(?:String|Int|Long|Short|Byte|Boolean|Double|Float|Char|Any|AnyRef|AnyVal|Unit|Nothing)\b/,
-	'number': /\b0x[\da-f]*\.?[\da-f]+|(?:\b\d+\.?\d*|\B\.\d+)(?:e\d+)?[dfl]?/i,
+	'number': /\b0x[\da-f]*\.?[\da-f]+|(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:e\d+)?[dfl]?/i,
 	'symbol': /'[^\d\s\\]\w*/
 });
 delete Prism.languages.scala['class-name'];

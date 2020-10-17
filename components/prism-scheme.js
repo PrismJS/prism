@@ -46,7 +46,7 @@ Prism.languages.scheme = {
 		// This pattern (apart from the lookarounds) works like this:
 		//
 		// Decimal numbers
-		// <dec real>       := \d*\.?\d+(?:[eE][+-]?\d+)?|\d+\/\d+
+		// <dec real>       := (?:\d+(?:\.\d+)?|\.\d+)(?:[eE][+-]?\d+)?|\d+\/\d+
 		// <dec complex>    := <dec real>(?:[+-]<dec real>i)?|<dec real>i
 		// <dec prefix>     := (?:#d(?:#[ei])?|#[ei](?:#d)?)?
 		// <dec number>     := <dec prefix>[+-]?<complex>
@@ -58,7 +58,7 @@ Prism.languages.scheme = {
 		// <b.o.x. number>  := <b.o.x. prefix>[+-]?<b.o.x. complex>
 		//
 		// <number>         := <dec number>|<b.o.x. number>
-		pattern: /(^|[\s()])(?:(?:#d(?:#[ei])?|#[ei](?:#d)?)?[+-]?(?:(?:\d*\.?\d+(?:[eE][+-]?\d+)?|\d+\/\d+)(?:[+-](?:\d*\.?\d+(?:[eE][+-]?\d+)?|\d+\/\d+)i)?|(?:\d*\.?\d+(?:[eE][+-]?\d+)?|\d+\/\d+)i)|(?:#[box](?:#[ei])?|#[ei](?:#[box])?)[+-]?(?:[\da-fA-F]+(?:\/[\da-fA-F]+)?(?:[+-][\da-fA-F]+(?:\/[\da-fA-F]+)?i)?|[\da-fA-F]+(?:\/[\da-fA-F]+)?i))(?=[()\s]|$)/,
+		pattern: /(^|[\s()])(?:(?:#d(?:#[ei])?|#[ei](?:#d)?)?[+-]?(?:(?:(?:\d+(?:\.\d+)?|\.\d+)(?:[eE][+-]?\d+)?|\d+\/\d+)(?:[+-](?:(?:\d+(?:\.\d+)?|\.\d+)(?:[eE][+-]?\d+)?|\d+\/\d+)i)?|(?:(?:\d+(?:\.\d+)?|\.\d+)(?:[eE][+-]?\d+)?|\d+\/\d+)i)|(?:#[box](?:#[ei])?|#[ei](?:#[box])?)[+-]?(?:[\da-fA-F]+(?:\/[\da-fA-F]+)?(?:[+-][\da-fA-F]+(?:\/[\da-fA-F]+)?i)?|[\da-fA-F]+(?:\/[\da-fA-F]+)?i))(?=[()\s]|$)/,
 		lookbehind: true
 	},
 	'boolean': {

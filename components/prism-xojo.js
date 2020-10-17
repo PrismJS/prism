@@ -10,7 +10,7 @@ Prism.languages.xojo = {
 		greedy: true
 	},
 	'number': [
-		/(?:\b\d+\.?\d*|\B\.\d+)(?:E[+-]?\d+)?/i,
+		/(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:E[+-]?\d+)?/i,
 		/&[bchou][a-z\d]+/i
 	],
 	'symbol': /#(?:If|Else|ElseIf|Endif|Pragma)\b/i,
