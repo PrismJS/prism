@@ -1,0 +1,25 @@
+)...
+"datum"...
+datum...
+
+datum...)
+
+...
+--------------------------------------------------------------------------------
+
+[
+	["parenthesis-close", ")"],
+	["rhythm-dots", "..."],
+	["datum-quoted", "\"datum\""],
+	["rhythm-dots", "..."],
+	["datum-unquoted", "datum"],
+	["rhythm-dots", "..."],
+	["datum-unquoted", "datum"],
+	["rhythm-dots", "..."],
+	["parenthesis-close", ")"],
+	"\n\n..."
+]
+
+--------------------------------------------------------------------------------
+
+Checks for rhythm-dots.

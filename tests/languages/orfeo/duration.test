@@ -33,7 +33,7 @@
 	["duration", ":44/44"],
 	["duration", ":4.4/4.4"],
 	["duration", ":44.44/44.44"],
-	["parenthesis_open", "("],
+	["parenthesis-open", "("],
 	["duration", ":4/4"],
 	["duration", ":4/4"],
 	"\n\n:-1\n:01"

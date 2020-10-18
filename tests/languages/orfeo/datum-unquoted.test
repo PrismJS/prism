@@ -1,0 +1,58 @@
+.a
+.a.a
+..a..a
+a
+A
+0
+/
+[
+]
+♮
+♭
+♯
+-
+-0
+-0.1
+.datumDATUM0123456789/[♮♭♯]-
+
+(datum
+^datum
+datum)
+datum.
+
+a.
+
+--------------------------------------------------------------------------------
+
+[
+	["datum-unquoted", ".a"],
+	["datum-unquoted", ".a.a"],
+	["datum-unquoted", "..a..a"],
+	["datum-unquoted", "a"],
+	["datum-unquoted", "A"],
+	["datum-unquoted", "0"],
+	["datum-unquoted", "/"],
+	["datum-unquoted", "["],
+	["datum-unquoted", "]"],
+	["datum-unquoted", "♮"],
+	["datum-unquoted", "♭"],
+	["datum-unquoted", "♯"],
+	["datum-unquoted", "-"],
+	["datum-unquoted", "-0"],
+	["datum-unquoted", "-0.1"],
+	["datum-unquoted", ".datumDATUM0123456789/[♮♭♯]-"],
+	["parenthesis-open", "("],
+	["datum-unquoted", "datum"],
+	["rhythm-flags", "^"],
+	["datum-unquoted", "datum"],
+	["datum-unquoted", "datum"],
+	["parenthesis-close", ")"],
+	["datum-unquoted", "datum"],
+	["rhythm-dots", "."],
+	["datum-unquoted", "a"],
+	["rhythm-dots", "."]
+]
+
+--------------------------------------------------------------------------------
+
+Checks for datum-unquoted.

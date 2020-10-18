@@ -1,0 +1,25 @@
+"datum"
+("datum"
+	^"datum"
+"datum"
+"datum")
+"datum".
+
+--------------------------------------------------------------------------------
+
+[
+	["datum-quoted", "\"datum\""],
+	["parenthesis-open", "("],
+	["datum-quoted", "\"datum\""],
+	["rhythm-flags", "^"],
+	["datum-quoted", "\"datum\""],
+	["datum-quoted", "\"datum\""],
+	["datum-quoted", "\"datum\""],
+	["parenthesis-close", ")"],
+	["datum-quoted", "\"datum\""],
+	["rhythm-dots", "."]
+]
+
+--------------------------------------------------------------------------------
+
+Checks for datum-quoted.

@@ -1,0 +1,35 @@
+^a
+(^a
+	^a
+
+^^^(
+^^^"datum"
+^^^datum
+
+^^^
+^^^"datum
+
+^^^
+--------------------------------------------------------------------------------
+
+[
+	["rhythm-flags", "^"],
+	["datum-unquoted", "a"],
+	["parenthesis-open", "("],
+	["rhythm-flags", "^"],
+	["datum-unquoted", "a"],
+	["rhythm-flags", "^"],
+	["datum-unquoted", "a"],
+	["rhythm-flags", "^^^"],
+	["parenthesis-open", "("],
+	["rhythm-flags", "^^^"],
+	["datum-quoted", "\"datum\""],
+	["rhythm-flags", "^^^"],
+	["datum-unquoted", "datum"],
+	"\n\n^^^\n^^^\"datum\n\n",
+	["rhythm-flags", "^^^"]
+]
+
+--------------------------------------------------------------------------------
+
+Checks for rhythm-flags.
