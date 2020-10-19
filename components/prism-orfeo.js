@@ -1,12 +1,12 @@
 (function (Prism) {
 	Prism.languages.orfeo = {
 		'parenthesis-open': {
-			pattern: /(^|\(|\^|\s)\((?=[^\.]|$)/,
+			pattern: /(^|[(^\s])\((?=[^.]|$)/,
 			alias: 'punctuation',
 			lookbehind: true
 		},
 		'parenthesis-close': {
-			pattern: /(^|[^^])\)(?=\)|\.|\s|$)/,
+			pattern: /(^|[^^])\)(?=[).\s]|$)/,
 			alias: 'punctuation',
 			lookbehind: true
 		},
@@ -16,7 +16,7 @@
 			lookbehind: true
 		},
 		'datum-quoted': {
-			pattern: /(^|\(|\^|\s)"[^"]*"(?=\)|\.|\s|$)/,
+			pattern: /(^|[(^\s])"[^"]*"(?=[).\s]|$)/,
 			alias: 'string',
 			lookbehind: true
 		},
@@ -31,7 +31,7 @@
 			lookbehind: true
 		},
 		'rhythm-dots': {
-			pattern: /(^|\)|"|[_a-zA-Z0-9/\[\]♮♭♯-])\.+(?=\)|\s|$)/,
+			pattern: /(^|[)"\w/\[\]♮♭♯-])\.+(?=[)\s]|$)/,
 			alias: 'operator',
 			lookbehind: true
 		},
