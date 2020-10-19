@@ -21,12 +21,12 @@
 			lookbehind: true
 		},
 		'datum-unquoted': {
-			pattern: /(^|\(|\^|\s)(?:\.*[_a-zA-Z0-9/\[\]♮♭♯-]+)+(?=\)|\.|\s|$)/,
+			pattern: /(^|[(^\s])[.\w/\[\]♮♭♯-]*[\w/\[\]♮♭♯-](?=[).\s]|$)/,
 			alias: 'string',
 			lookbehind: true
 		},
 		'rhythm-flags': {
-			pattern: /(^|\(|\s)\^+(?=\(|"[^"]*"|(?:\.*[_a-zA-Z0-9/\[\]♮♭♯-]+)+|$)/,
+			pattern: /(^|[(\s])\^+(?=\(|"[^"]*"|[.\w/\[\]♮♭♯-]*[\w/\[\]♮♭♯-]|$)/,
 			alias: 'operator',
 			lookbehind: true
 		},
