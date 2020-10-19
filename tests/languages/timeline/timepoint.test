@@ -17,17 +17,17 @@
 
 [
 	["timepoint", ".0"],
-	["timepoint", "\n.0123456789"],
-	["timepoint", "\n0"],
-	["timepoint", "\n1"],
-	["timepoint", "\n1234567890"],
+	["timepoint", ".0123456789"],
+	["timepoint", "0"],
+	["timepoint", "1"],
+	["timepoint", "1234567890"],
 	"              a\n",
 	["timepoint", "0.0123456789"],
 	"            b\n",
 	["timepoint", "1.0123456789"],
-	["timepoint", "\n1234567890.0123456789"],
-	"   c\n",
-	["timepoint", "\t1234567890.0123456789"],
+	["timepoint", "1234567890.0123456789"],
+	"   c\n\t",
+	["timepoint", "1234567890.0123456789"],
 	"\n\n001\n001.0\n-1\n-1.0"
 ]
 
