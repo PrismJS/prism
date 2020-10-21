@@ -7,3 +7,17 @@
 		},
 	}
 }(Prism))
+/* -----------------------------------------------------------------------------
+	Timeline v0.1.0
+
+	Token Syntax
+
+		timepoint: <nonnegative int/float>
+
+	Token Placement
+
+		timepoint must be at the beginning of a line
+/* -----------------------------------------------------------------------------
+	Copyright (c) 2019-2020, Pierre-Emmanuel Lévesque
+	License: MIT
+----------------------------------------------------------------------------- */

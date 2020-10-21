@@ -37,3 +37,47 @@
 		},
 	}
 }(Prism))
+/* -----------------------------------------------------------------------------
+	Orfeo v0.1.0
+
+	Token Syntax
+
+		parenthesis-open:  (
+		parenthesis-close: )
+		duration:          :=
+                       :<nonnegative int/float>
+                       :<nonnegative int/float>/<positive int/float>
+		datum-quoted:      "<anything>"
+		datum-unquoted:    [.\w/\[\]♮♭♯-] (one or many, but cannot end with period)
+		rhythm-flags:      ^ (one or many)
+		rhythm-dots:       . (one or many)
+
+	Token Spacing
+
+		Spaces Required In-Between
+
+			[parenthesis-close] [parenthesis-open] ) (
+			[parenthesis-close] [datum]            ) "a"       ) a
+			[parenthesis-close] [rhythm-flags]     ) ^
+			[duration] [parenthesis-open]          :4 (
+			[duration] [datum]                     :4 "a"      :4 a
+			[duration] [rhythm-flags]              :4 ^
+			[datum] [parenthesis-open]             "a" (       a (
+			[datum] [datum]                        "a" "a"     "a" a     a "a"     a a
+			[datum] [rhythm-flags]                 "a" ^       a ^
+			[rhythm-dots] [parenthesis-open]       . (
+			[rhythm-dots] [datum]                  . "a"       . a
+			[rhythm-dots] [rhythm-flags]           . ^
+
+		No Spaces Allowed In-Between
+
+			[rhythm-flags] and [rhythm-dots] cannot be used alone
+
+			[parenthesis-close][rhythm-dots]       ).
+			[datum][rhythm-dots]                   "a".        a.
+			[rhythm-flags][parenthesis-open]       ^(
+			[rhythm-flags][datum]                  ^"a"        ^a
+/* -----------------------------------------------------------------------------
+	Copyright (c) 2019-2020, Pierre-Emmanuel Lévesque
+	License: MIT
+----------------------------------------------------------------------------- */
