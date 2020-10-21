@@ -83,7 +83,7 @@
 		[rhythm-flags] still get colored when followed by an incomplete [datum-quoted]
 		It looks like the variable length lookahead in [rhythm-flags] is not working.
 		^^^"datum (nothing should be colored, but [rhythm-flags] are)
-/* -----------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 	Copyright (c) 2019-2020, Pierre-Emmanuel Lévesque
 	License: MIT
 ----------------------------------------------------------------------------- */
