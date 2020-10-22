@@ -45,8 +45,8 @@
 		parenthesis-open:  (
 		parenthesis-close: )
 		duration:          :=
-                       :<nonnegative int/float>
-                       :<nonnegative int/float>/<positive int/float>
+		                   :<nonnegative int/float>
+		                   :<nonnegative int/float>/<positive int/float>
 		datum-quoted:      "<anything except ">"
 		datum-unquoted:    [.\w/\[\]♮♭♯-] (one or many, but cannot end with period)
 		rhythm-flags:      ^ (one or many)
