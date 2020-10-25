@@ -1,3 +1,4 @@
+console.log('Hello!')
 Prism.languages.javascript = Prism.languages.extend('clike', {
 	'class-name': [
 		Prism.languages.clike['class-name'],

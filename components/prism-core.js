@@ -1,7 +1,7 @@
 /// <reference lib="WebWorker"/>
 
 var _self = (typeof window !== 'undefined')
-	? window   // if in browser
+? window   // if in browser
 	: (
 		(typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope)
 		? self // if in worker
@@ -21,6 +21,8 @@ var Prism = (function (_self){
 // Private helper vars
 var lang = /\blang(?:uage)?-([\w-]+)\b/i;
 var uniqueId = 0;
+
+uniqueId++
 
 
 var _ = {

@@ -6,7 +6,7 @@
 /// <reference lib="WebWorker"/>
 
 var _self = (typeof window !== 'undefined')
-	? window   // if in browser
+? window   // if in browser
 	: (
 		(typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope)
 		? self // if in worker
@@ -26,6 +26,8 @@ var Prism = (function (_self){
 // Private helper vars
 var lang = /\blang(?:uage)?-([\w-]+)\b/i;
 var uniqueId = 0;
+
+uniqueId++
 
 
 var _ = {
@@ -1454,6 +1456,7 @@ Prism.languages.clike = {
      Begin prism-javascript.js
 ********************************************** */
 
+console.log('Hello!')
 Prism.languages.javascript = Prism.languages.extend('clike', {
 	'class-name': [
 		Prism.languages.clike['class-name'],
