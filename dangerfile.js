@@ -35,9 +35,9 @@ const relativeDiff = (from, to) => {
 }
 
 const comparedToMaster = async () => {
-	const result = await git.diff(['--name-only', 'master...']);
+	const result = await git.diffSummary(['master...']);
 	if (result) {
-		return result.split(/\r?\n/g);
+		return result.files.map(f => f.file);
 	} else {
 		return [];
 	}
@@ -87,7 +87,7 @@ const run = async () => {
 	markdown(`
 ## JS File Size Changes (gzipped)
 
-${minified.length} minified file(s) changed for a total of ${maybePlus(totalDiff)}${formatBytes(totalDiff)}.
+${minified.length} minified file(s) changed for a total of ${absoluteDiff(0, totalDiff)}.
 
 <details>
 
