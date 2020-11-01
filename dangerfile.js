@@ -83,6 +83,10 @@ const run = async () => {
 | file | master | pull | size diff | % diff |
 | --- | --- | --- | --- | --- |
 ${rows.map(row => `| ${row.join(' | ')} |`).join('\n')}
+
+${JSON.stringify(changedFiles)}
+
+${JSON.stringify(danger.git.fileMatch("components/prism-antlr4-foobar.min.js"))}
 `);
 }
 
