@@ -26,18 +26,17 @@ const absDiff = (from, to) => {
 	return `${maybePlus(from, to)}${formatBytes(to - from)}`;
 }
 
-const percDiff =  (from, to) => {
+const percDiff = (from, to) => {
 	if (from === to) {
 		return '0%';
 	}
 
-	return `${maybePlus(from, to)}${
-		(100 * (to - from) / ((from + to) / 2 )).toFixed(1)
-	}%`;
+	const percentage = 100 * (to - from) / ((from + to) / 2);
+	return `${maybePlus(from, to)}${percentage.toFixed(1)}%`;
 }
 
 const run = async () => {
-	const minified = danger.git.modified_files.filter(file => file.includes('.min.js'));
+	const minified = danger.git.modified_files.filter(file => file.endsWith('.min.js'));
 
 	if (minified.length === 0) {
 		markdown(`## No JS Changes`);
@@ -50,17 +49,18 @@ const run = async () => {
 		await git.branch(['master', 'origin/master']);
 	}
 
+	/** @type {[string, string, string, string, string][]} */
 	const rows = [];
 
 	for (const file of minified) {
 		const [fileContents, fileMasterContents] = await Promise.all([
-			fs.readFile(file, 'utf-8'),
-			git.show([`master:${file}`]),
+			fs.readFile(file, 'utf-8').catch(() => null),
+			git.show([`master:${file}`]).catch(() => null),
 		]);
 
 		const [fileSize, fileMasterSize] = await Promise.all([
-			gzipSize(fileContents),
-			gzipSize(fileMasterContents),
+			fileContents ? gzipSize(fileContents) : 0,
+			fileMasterContents ? gzipSize(fileMasterContents) : 0,
 		]);
 
 		rows.push([
