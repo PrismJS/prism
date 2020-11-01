@@ -36,7 +36,12 @@ const relativeDiff = (from, to) => {
 }
 
 const run = async () => {
-	const minified = danger.git.modified_files.filter(file => file.endsWith('.min.js'));
+	const changedFiles = [...new Set([
+		...danger.git.modified_files,
+		...danger.git.created_files,
+		...danger.git.deleted_files,
+	])];
+	const minified = changedFiles.filter(file => file.endsWith('.min.js'));
 
 	if (minified.length === 0) {
 		markdown(`## No JS Changes`);
