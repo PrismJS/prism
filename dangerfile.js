@@ -1,4 +1,4 @@
-const { danger, markdown } = require('danger');
+const { markdown } = require('danger');
 const fs = require('fs').promises;
 const gzipSize = require('gzip-size');
 const git = require('simple-git/promise')(__dirname);
