@@ -18,7 +18,7 @@ const formatBytes = (bytes, decimals = 2) => {
 
 const maybePlus = (from, to) => from < to ? "+" : "";
 
-const absDiff = (from, to) => {
+const absoluteDiff = (from, to) => {
 	if (from === to) {
 		return formatBytes(0);
 	}
@@ -26,12 +26,12 @@ const absDiff = (from, to) => {
 	return `${maybePlus(from, to)}${formatBytes(to - from)}`;
 }
 
-const percDiff = (from, to) => {
+const relativeDiff = (from, to) => {
 	if (from === to) {
 		return '0%';
 	}
 
-	const percentage = 100 * (to - from) / ((from + to) / 2);
+	const percentage = 100 * (to - from) / Math.max(from, to);
 	return `${maybePlus(from, to)}${percentage.toFixed(1)}%`;
 }
 
@@ -65,10 +65,10 @@ const run = async () => {
 
 		rows.push([
 			file,
-			formatBytes(fileSize),
 			formatBytes(fileMasterSize),
-			absDiff(fileMasterSize, fileSize),
-			percDiff(fileMasterSize, fileSize),
+			formatBytes(fileSize),
+			absoluteDiff(fileMasterSize, fileSize),
+			relativeDiff(fileMasterSize, fileSize),
 		]);
 	}
 
