@@ -87,6 +87,7 @@ ${rows.map(row => `| ${row.join(' | ')} |`).join('\n')}
 ${JSON.stringify(changedFiles)}
 
 ${JSON.stringify(danger.git.fileMatch("components/prism-antlr4-foobar.min.js"))}
+${JSON.stringify(danger.git.fileMatch("components/prism-antlr4.min.js"))}
 `);
 }
 
