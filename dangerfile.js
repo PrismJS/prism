@@ -22,10 +22,6 @@ const formatBytes = (bytes, decimals = 2) => {
 const maybePlus = (from, to) => from < to ? '+' : '';
 
 const absoluteDiff = (from, to) => {
-	if (from === to) {
-		return formatBytes(0);
-	}
-
 	return `${maybePlus(from, to)}${formatBytes(to - from)}`;
 }
 
@@ -43,7 +39,7 @@ const run = async () => {
 		...danger.git.modified_files,
 		...danger.git.created_files,
 		...danger.git.deleted_files,
-	])];
+	])].sort();
 	const minified = changedFiles.filter(file => file.endsWith('.min.js'));
 
 	if (minified.length === 0) {
@@ -59,6 +55,7 @@ const run = async () => {
 
 	/** @type {[string, string, string, string, string][]} */
 	const rows = [];
+	let totalDiff = 0;
 
 	for (const file of minified) {
 		const [fileContents, fileMasterContents] = await Promise.all([
@@ -70,6 +67,8 @@ const run = async () => {
 			fileContents ? gzipSize(fileContents) : 0,
 			fileMasterContents ? gzipSize(fileMasterContents) : 0,
 		]);
+
+		totalDiff += fileSize - fileMasterSize;
 
 		rows.push([
 			file,
@@ -83,9 +82,15 @@ const run = async () => {
 	markdown(`
 ## JS File Size Changes (gzipped)
 
+${minified.length} minified file(s) changed for a total of ${maybePlus(totalDiff)}${formatBytes(totalDiff)}.
+
+<details>
+
 | file | master | pull | size diff | % diff |
 | --- | --- | --- | --- | --- |
 ${rows.map(row => `| ${row.join(' | ')} |`).join('\n')}
+
+</details>
 `);
 }
 
