@@ -35,9 +35,9 @@ const relativeDiff = (from, to) => {
 }
 
 const comparedToMaster = async () => {
-	const result = await git.diffSummary(['master...']);
+	const result = await git.diff(['--name-only', '--no-renames', 'master...']);
 	if (result) {
-		return result.files.map(f => f.file);
+		return result.split(/\r?\n/g);
 	} else {
 		return [];
 	}
