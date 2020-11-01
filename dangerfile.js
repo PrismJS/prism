@@ -7,16 +7,19 @@ const git = require('simple-git/promise')(__dirname);
 const formatBytes = (bytes, decimals = 2) => {
 	if (bytes === 0) return '0 Bytes';
 
+	const sign = bytes < 0 ? '-' : '';
+	bytes = Math.abs(bytes);
+
 	const k = 1000;
 	const dm = decimals < 0 ? 0 : decimals;
 	const sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
 
 	const i = Math.floor(Math.log(bytes) / Math.log(k));
 
-	return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+	return sign + parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
 }
 
-const maybePlus = (from, to) => from < to ? "+" : "";
+const maybePlus = (from, to) => from < to ? '+' : '';
 
 const absoluteDiff = (from, to) => {
 	if (from === to) {
@@ -83,11 +86,6 @@ const run = async () => {
 | file | master | pull | size diff | % diff |
 | --- | --- | --- | --- | --- |
 ${rows.map(row => `| ${row.join(' | ')} |`).join('\n')}
-
-${JSON.stringify(changedFiles)}
-
-${JSON.stringify(danger.git.fileMatch("components/prism-antlr4-foobar.min.js"))}
-${JSON.stringify(danger.git.fileMatch("components/prism-antlr4.min.js"))}
 `);
 }
 
