@@ -34,23 +34,28 @@ const relativeDiff = (from, to) => {
 	return `${maybePlus(from, to)}${percentage.toFixed(1)}%`;
 }
 
-const run = async () => {
-	const changedFiles = [...new Set([
-		...danger.git.modified_files,
-		...danger.git.created_files,
-		...danger.git.deleted_files,
-	])].sort();
-	const minified = changedFiles.filter(file => file.endsWith('.min.js'));
-
-	if (minified.length === 0) {
-		markdown(`## No JS Changes`);
-		return;
+const comparedToMaster = async () => {
+	const result = await git.diff(['--name-only', 'master...']);
+	if (result) {
+		return result.split(/\r?\n/g);
+	} else {
+		return [];
 	}
+}
 
+const run = async () => {
 	// Check if master exists & check it out if not.
 	const result = await git.branch(['--list', 'master']);
 	if (result.all.length === 0) {
 		await git.branch(['master', 'origin/master']);
+	}
+
+	const changedFiles = await comparedToMaster();
+	const minified = changedFiles.filter(file => file.endsWith('.min.js')).sort();
+
+	if (minified.length === 0) {
+		markdown(`## No JS Changes`);
+		return;
 	}
 
 	/** @type {[string, string, string, string, string][]} */
