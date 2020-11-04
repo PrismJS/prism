@@ -11,7 +11,7 @@ Prism.languages.elm = {
 			greedy: true
 		},
 		{
-			pattern: /"(?:[^\\"\r\n]|\\(?:[abfnrtv\\"]|\d+|x[0-9a-fA-F]+))*"/,
+			pattern: /"(?:[^\\"\r\n]|\\.)*"/,
 			greedy: true
 		}
 	],
