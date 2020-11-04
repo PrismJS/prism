@@ -24,6 +24,7 @@
 */ 1
 
 #define FOO 1 // trailing comment
+#define FOO (1 + 1)
 
 #define MAX(a, b) \
 	((a) < (b) ? (b) : (a))
@@ -46,8 +47,8 @@
 	["macro", [
 		["directive-hash", "#"],
 		["directive", "define"],
+		["macro-name", "PG_locked"],
 		["expression", [
-			"PG_locked ",
 			["number", "0"]
 		]]
 	]],
@@ -117,9 +118,7 @@
 	["macro", [
 		["directive-hash", "#"],
 		["directive", "define"],
-		["expression", [
-			"FOO "
-		]],
+		["macro-name", "FOO"],
 		["comment", "/*\r\n comment\r\n*/"],
 		["expression", [
 			["number", "1"]
@@ -129,18 +128,30 @@
 	["macro", [
 		["directive-hash", "#"],
 		["directive", "define"],
+		["macro-name", "FOO"],
 		["expression", [
-			"FOO ",
 			["number", "1"]
 		]],
 		["comment", "// trailing comment"]
+	]],
+	["macro", [
+		["directive-hash", "#"],
+		["directive", "define"],
+		["macro-name", "FOO"],
+		["expression", [
+			["punctuation", "("],
+			["number", "1"],
+			["operator", "+"],
+			["number", "1"],
+			["punctuation", ")"]
+		]]
 	]],
 
 	["macro", [
 		["directive-hash", "#"],
 		["directive", "define"],
+		["macro-name", "MAX"],
 		["expression", [
-			["function", "MAX"],
 			["punctuation", "("],
 			"a",
 			["punctuation", ","],
@@ -172,8 +183,8 @@
 	["macro", [
 		["directive-hash", "#"],
 		["directive", "define"],
+		["macro-name", "BAR"],
 		["expression", [
-			["function", "BAR"],
 			["punctuation", "("],
 			"s",
 			["punctuation", ")"],

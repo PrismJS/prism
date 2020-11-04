@@ -2,6 +2,12 @@
 <?php ?>
 <?= // ?>
 
+<?php
+#[DeprecationReason('reason: <https://some-website/reason?>')]
+function main() {}
+// php is not ended yet
+?>
+
 ----------------------------------------------------
 
 [
@@ -17,6 +23,28 @@
 		["delimiter", "<?="],
 		["comment", "// "],
 		["delimiter", "?>"]
+	]],
+
+	["php", [
+		["delimiter", "<?php"],
+		["attribute", [
+			["delimiter", "#["],
+			["attribute-content", [
+				["attribute-class-name", "DeprecationReason"],
+				["punctuation", "("],
+				["string", "'reason: <https://some-website/reason?>'"],
+				["punctuation", ")"]
+			]],
+			["delimiter", "]"]
+		]],
+		["keyword", "function"],
+		["function", "main"],
+		["punctuation", "("],
+		["punctuation", ")"],
+		["punctuation", "{"],
+		["punctuation", "}"],
+		["comment", "// php is not ended yet"],
+   		["delimiter", "?>"]
 	]]
 ]
 

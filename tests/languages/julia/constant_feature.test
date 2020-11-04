@@ -3,10 +3,7 @@ Inf Inf16 Inf32 Inf64
 
 im
 pi π
-e ℯ
-catalan
-eulergamma γ
-golden φ
+ℯ
 
 ----------------------------------------------------
 
@@ -23,13 +20,7 @@ golden φ
 	["constant", "im"],
 	["constant", "pi"],
 	["constant", "π"],
-	["constant", "e"],
-	["constant", "ℯ"],
-	["constant", "catalan"],
-	["constant", "eulergamma"],
-	["constant", "γ"],
-	["constant", "golden"],
-	["constant", "φ"]
+	["constant", "ℯ"]
 ]
 
 ----------------------------------------------------

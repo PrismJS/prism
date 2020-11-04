@@ -27,5 +27,5 @@ Prism.languages.julia = {
 	'operator': /&&|\|\||[-+*^%÷⊻&$\\]=?|\/[\/=]?|!=?=?|\|[=>]?|<(?:<=?|[=:|])?|>(?:=|>>?=?)?|==?=?|[~≠≤≥'√∛]/,
 	'punctuation': /::?|[{}[\]();,.?]/,
 	// https://docs.julialang.org/en/v1/base/numbers/#Base.im
-	'constant': /\b(?:(?:NaN|Inf)(?:16|32|64)?|im|pi|e|catalan|eulergamma|golden)\b|[πℯγφ]/
+	'constant': /\b(?:(?:NaN|Inf)(?:16|32|64)?|im|pi)\b|[πℯ]/
 };

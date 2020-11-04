@@ -32,7 +32,7 @@ Prism.languages.scss = Prism.languages.extend('css', {
 		}
 	},
 	'property': {
-		pattern: /(?:[\w-]|\$[-\w]+|#\{\$[-\w]+\})+(?=\s*:)/,
+		pattern: /(?:[-\w]|\$[-\w]|#\{\$[-\w]+\})+(?=\s*:)/,
 		inside: {
 			'variable': /\$[-\w]+|#\{\$[-\w]+\}/
 		}

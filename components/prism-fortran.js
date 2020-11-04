@@ -4,7 +4,7 @@ Prism.languages.fortran = {
 		alias: 'number'
 	},
 	'string': {
-		pattern: /(?:\w+_)?(['"])(?:\1\1|&(?:\r\n?|\n)(?:\s*!.+(?:\r\n?|\n))?|(?!\1).)*(?:\1|&)/,
+		pattern: /(?:\w+_)?(['"])(?:\1\1|&(?:\r\n?|\n)(?:[ \t]*!.*(?:\r\n?|\n)|(?![ \t]*!))|(?!\1).)*(?:\1|&)/,
 		inside: {
 			'comment': {
 				pattern: /(&(?:\r\n?|\n)\s*)!.*/,

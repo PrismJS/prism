@@ -14,11 +14,13 @@ NOWDOC;
 string"
 'multi-line
 string'
+`multi-line
+shell exec string`
 
 ----------------------------------------------------
 
 [
-	["heredoc-string", [
+	["string", [
 		["delimiter", [
 			["punctuation", "<<<"], "FOO_BAR"
 		]],
@@ -27,7 +29,7 @@ string'
 			"FOO_BAR", ["punctuation", ";"]
 		]]
 	]],
-	["heredoc-string", [
+	["string", [
 		["delimiter", [
 			["punctuation", "<<<\""], "FOO", ["punctuation", "\""]
 		]],
@@ -36,7 +38,7 @@ string'
 			"FOO", ["punctuation", ";"]
 		]]
 	]],
-	["nowdoc-string", [
+	["string", [
 		["delimiter", [
 			["punctuation", "<<<'"], "NOWDOC", ["punctuation", "'"]
 		]],
@@ -45,10 +47,11 @@ string'
 			"NOWDOC", ["punctuation", ";"]
 		]]
 	]],
-	["double-quoted-string", ["\"https://example.com\""]],
-	["double-quoted-string", ["\" /* not a comment */ \""]],
-	["double-quoted-string", ["\"multi-line\r\nstring\""]],
-	["single-quoted-string", "'multi-line\r\nstring'"]
+	["string", ["\"https://example.com\""]],
+	["string", ["\" /* not a comment */ \""]],
+	["string", ["\"multi-line\r\nstring\""]],
+	["string", "'multi-line\r\nstring'"],
+	["string", "`multi-line\r\nshell exec string`"]
 ]
 
 ----------------------------------------------------
