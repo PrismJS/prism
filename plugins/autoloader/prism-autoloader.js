@@ -83,10 +83,7 @@
 		"objectivec": "c",
 		"opencl": "c",
 		"parser": "markup",
-		"php": [
-			"clike",
-			"markup-templating"
-		],
+		"php": "markup-templating",
 		"phpdoc": [
 			"php",
 			"javadoclike"

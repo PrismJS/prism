@@ -19,7 +19,7 @@ Prism.languages.ocaml = {
 		pattern: /\B~\w+/,
 		alias: 'function'
 	},
-	'type_variable': {
+	'type-variable': {
 		pattern: /\B'\w+/,
 		alias: 'function'
 	},

@@ -6,7 +6,7 @@
 	var strings = [
 		// normal string
 		// 1 capturing group
-		/(["'])(?:\\[\s\S]|\$\([^)]+\)|`[^`]+`|(?!\1)[^\\])*\1/.source,
+		/(["'])(?:\\[\s\S]|\$\([^)]+\)|\$(?!\()|`[^`]+`|(?!\1)[^\\`$])*\1/.source,
 
 		// here doc
 		// 2 capturing groups

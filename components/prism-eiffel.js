@@ -13,7 +13,7 @@ Prism.languages.eiffel = {
 		},
 		// Single-line string
 		{
-			pattern: /"(?:%\s*\n\s*%|%.|[^%"\r\n])*"/,
+			pattern: /"(?:%(?:(?!\n)\s)*\n\s*%|%\S|[^%"\r\n])*"/,
 			greedy: true
 		}
 	],

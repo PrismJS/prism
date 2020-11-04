@@ -98,17 +98,18 @@ foo {
 			"foo"
 		]],
 		["style-attr", [
-			["attr-name", [
-				["attr-name", ["style"]]
-			]],
-			["punctuation", "=\""],
+			["attr-name", "style"],
 			["attr-value", [
-				["property", "bar"],
-				["punctuation", ":"],
-				"baz",
-				["punctuation", ";"]
-			]],
-			["punctuation", "\""]
+				["punctuation", "="],
+				["punctuation", "\""],
+				["style", [
+					["property", "bar"],
+					["punctuation", ":"],
+					"baz",
+					["punctuation", ";"]
+				]],
+				["punctuation", "\""]
+			]]
 		]],
 		["punctuation", ">"]
 	]]
