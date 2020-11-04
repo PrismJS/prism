@@ -1,5 +1,5 @@
-public class Solo<T> {}
-Solo<Integer> val = new Solo<Integer>();
+public class Solo<T extends com.foo.Foo.Bar> {}
+Solo<Integer> val = new Solo<>();
 Duo<Double, Character> dual = new Duo<Double, Character>(12.2585, 'C');
 
 ----------------------------------------------------
@@ -14,6 +14,18 @@ Duo<Double, Character> dual = new Duo<Double, Character>(12.2585, 'C');
 		["punctuation", "<"],
 		["class-name", [
 			"T"
+		]],
+		["keyword", "extends"],
+		["class-name", [
+			["namespace", [
+				"com",
+				["punctuation", "."],
+				"foo",
+				["punctuation", "."]
+			]],
+			"Foo",
+			["punctuation", "."],
+			"Bar"
 		]],
 		["punctuation", ">"]
 	]],
@@ -38,9 +50,6 @@ Duo<Double, Character> dual = new Duo<Double, Character>(12.2585, 'C');
 	]],
 	["generics", [
 		["punctuation", "<"],
-		["class-name", [
-			"Integer"
-		]],
 		["punctuation", ">"]
 	]],
 	["punctuation", "("],
