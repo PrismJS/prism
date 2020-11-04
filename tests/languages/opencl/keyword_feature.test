@@ -7,15 +7,6 @@ __private
 __read_only
 __read_write
 __write_only
-_cl_command_queue
-_cl_context
-_cl_device_id
-_cl_event
-_cl_kernel
-_cl_mem
-_cl_platform_id
-_cl_program
-_cl_sampler
 auto
 bool
 bool16
@@ -31,9 +22,6 @@ char2
 char3
 char4
 char8
-cl_image_format
-cl_mem_fence_flags
-clk_event_t
 complex
 const
 constant
@@ -72,7 +60,6 @@ double8x4
 double8x8
 else
 enum;
-event_t
 extern
 float
 float16
@@ -114,18 +101,6 @@ half3
 half4
 half8
 if
-image1d_array_t
-image1d_buffer_t
-image1d_t
-image2d_array_depth_t
-image2d_array_msaa_depth_t
-image2d_array_msaa_t
-image2d_array_t
-image2d_depth_t
-image2d_msaa_depth_t
-image2d_msaa_t
-image2d_t
-image3d_t
 imaginary
 int
 int16
@@ -133,7 +108,6 @@ int2
 int3
 int4
 int8
-intptr_t
 kernel
 local
 long
@@ -142,31 +116,25 @@ long2
 long3
 long4
 long8
-ndrange_t
 packed
 pipe
 private
-ptrdiff_t
 quad
 quad16
 quad2
 quad3
 quad4
 quad8
-queue_t
 read_only
 read_write
 register
-reserve_id_t
 restrict
-sampler_t
 short
 short16
 short2
 short3
 short4
 short8
-size_t
 static
 struct;
 switch
@@ -183,7 +151,6 @@ uint2
 uint3
 uint4
 uint8
-uintptr_t
 ulong
 ulong16
 ulong2
@@ -216,15 +183,6 @@ write_only
 	["keyword", "__read_only"],
 	["keyword", "__read_write"],
 	["keyword", "__write_only"],
-	["keyword", "_cl_command_queue"],
-	["keyword", "_cl_context"],
-	["keyword", "_cl_device_id"],
-	["keyword", "_cl_event"],
-	["keyword", "_cl_kernel"],
-	["keyword", "_cl_mem"],
-	["keyword", "_cl_platform_id"],
-	["keyword", "_cl_program"],
-	["keyword", "_cl_sampler"],
 	["keyword", "auto"],
 	["keyword", "bool"],
 	["keyword", "bool16"],
@@ -240,9 +198,6 @@ write_only
 	["keyword", "char3"],
 	["keyword", "char4"],
 	["keyword", "char8"],
-	["keyword", "cl_image_format"],
-	["keyword", "cl_mem_fence_flags"],
-	["keyword", "clk_event_t"],
 	["keyword", "complex"],
 	["keyword", "const"],
 	["keyword", "constant"],
@@ -280,8 +235,8 @@ write_only
 	["keyword", "double8x4"],
 	["keyword", "double8x8"],
 	["keyword", "else"],
-	["keyword", "enum"], ["punctuation", ";"],
-	["keyword", "event_t"],
+	["keyword", "enum"],
+	["punctuation", ";"],
 	["keyword", "extern"],
 	["keyword", "float"],
 	["keyword", "float16"],
@@ -323,18 +278,6 @@ write_only
 	["keyword", "half4"],
 	["keyword", "half8"],
 	["keyword", "if"],
-	["keyword", "image1d_array_t"],
-	["keyword", "image1d_buffer_t"],
-	["keyword", "image1d_t"],
-	["keyword", "image2d_array_depth_t"],
-	["keyword", "image2d_array_msaa_depth_t"],
-	["keyword", "image2d_array_msaa_t"],
-	["keyword", "image2d_array_t"],
-	["keyword", "image2d_depth_t"],
-	["keyword", "image2d_msaa_depth_t"],
-	["keyword", "image2d_msaa_t"],
-	["keyword", "image2d_t"],
-	["keyword", "image3d_t"],
 	["keyword", "imaginary"],
 	["keyword", "int"],
 	["keyword", "int16"],
@@ -342,7 +285,6 @@ write_only
 	["keyword", "int3"],
 	["keyword", "int4"],
 	["keyword", "int8"],
-	["keyword", "intptr_t"],
 	["keyword", "kernel"],
 	["keyword", "local"],
 	["keyword", "long"],
@@ -351,33 +293,28 @@ write_only
 	["keyword", "long3"],
 	["keyword", "long4"],
 	["keyword", "long8"],
-	["keyword", "ndrange_t"],
 	["keyword", "packed"],
 	["keyword", "pipe"],
 	["keyword", "private"],
-	["keyword", "ptrdiff_t"],
 	["keyword", "quad"],
 	["keyword", "quad16"],
 	["keyword", "quad2"],
 	["keyword", "quad3"],
 	["keyword", "quad4"],
 	["keyword", "quad8"],
-	["keyword", "queue_t"],
 	["keyword", "read_only"],
 	["keyword", "read_write"],
 	["keyword", "register"],
-	["keyword", "reserve_id_t"],
 	["keyword", "restrict"],
-	["keyword", "sampler_t"],
 	["keyword", "short"],
 	["keyword", "short16"],
 	["keyword", "short2"],
 	["keyword", "short3"],
 	["keyword", "short4"],
 	["keyword", "short8"],
-	["keyword", "size_t"],
 	["keyword", "static"],
-	["keyword", "struct"], ["punctuation", ";"],
+	["keyword", "struct"],
+	["punctuation", ";"],
 	["keyword", "switch"],
 	["keyword", "typedef"],
 	["keyword", "uchar"],
@@ -392,7 +329,6 @@ write_only
 	["keyword", "uint3"],
 	["keyword", "uint4"],
 	["keyword", "uint8"],
-	["keyword", "uintptr_t"],
 	["keyword", "ulong"],
 	["keyword", "ulong16"],
 	["keyword", "ulong2"],
