@@ -645,9 +645,9 @@ var _ = {
 		}
 
 		var tokenList = new LinkedList();
-		addAfter(tokenList, tokenList.head, text);
+		addAfter(tokenList, tokenList.$head, text);
 
-		matchGrammar(text, tokenList, grammar, tokenList.head, 0);
+		matchGrammar(text, tokenList, grammar, tokenList.$head, 0);
 
 		return toArray(tokenList);
 	},
@@ -834,8 +834,8 @@ Token.stringify = function stringify(o, language) {
  * @private
  *
  * @typedef RematchOptions
- * @property {string} cause
- * @property {number} reach
+ * @property {string} $cause
+ * @property {number} $reach
  */
 function matchGrammar(text, tokenList, grammar, startNode, startPos, rematch) {
 	for (var token in grammar) {
@@ -847,7 +847,7 @@ function matchGrammar(text, tokenList, grammar, startNode, startPos, rematch) {
 		patterns = Array.isArray(patterns) ? patterns : [patterns];
 
 		for (var j = 0; j < patterns.length; ++j) {
-			if (rematch && rematch.cause == token + ',' + j) {
+			if (rematch && rematch.$cause == token + ',' + j) {
 				return;
 			}
 
@@ -868,18 +868,18 @@ function matchGrammar(text, tokenList, grammar, startNode, startPos, rematch) {
 			var pattern = patternObj.pattern || patternObj;
 
 			for ( // iterate the token list and keep track of the current token/string position
-				var currentNode = startNode.next, pos = startPos;
-				currentNode !== tokenList.tail;
-				pos += currentNode.value.length, currentNode = currentNode.next
+				var currentNode = startNode.$next, pos = startPos;
+				currentNode !== tokenList.$tail;
+				pos += currentNode.$value.length, currentNode = currentNode.$next
 			) {
 
-				if (rematch && pos >= rematch.reach) {
+				if (rematch && pos >= rematch.$reach) {
 					break;
 				}
 
-				var str = currentNode.value;
+				var str = currentNode.$value;
 
-				if (tokenList.length > text.length) {
+				if (tokenList.$length > text.length) {
 					// Something went terribly wrong, ABORT, ABORT!
 					return;
 				}
@@ -890,7 +890,7 @@ function matchGrammar(text, tokenList, grammar, startNode, startPos, rematch) {
 
 				var removeCount = 1; // this is the to parameter of removeBetween
 
-				if (greedy && currentNode != tokenList.tail.prev) {
+				if (greedy && currentNode != tokenList.$tail.$prev) {
 					pattern.lastIndex = pos;
 					var match = pattern.exec(text);
 					if (!match) {
@@ -902,28 +902,28 @@ function matchGrammar(text, tokenList, grammar, startNode, startPos, rematch) {
 					var p = pos;
 
 					// find the node that contains the match
-					p += currentNode.value.length;
+					p += currentNode.$value.length;
 					while (from >= p) {
-						currentNode = currentNode.next;
-						p += currentNode.value.length;
+						currentNode = currentNode.$next;
+						p += currentNode.$value.length;
 					}
 					// adjust pos (and p)
-					p -= currentNode.value.length;
+					p -= currentNode.$value.length;
 					pos = p;
 
 					// the current node is a Token, then the match starts inside another Token, which is invalid
-					if (currentNode.value instanceof Token) {
+					if (currentNode.$value instanceof Token) {
 						continue;
 					}
 
 					// find the last node which is affected by this match
 					for (
 						var k = currentNode;
-						k !== tokenList.tail && (p < to || typeof k.value === 'string');
-						k = k.next
+						k !== tokenList.$tail && (p < to || typeof k.$value === 'string');
+						k = k.$next
 					) {
 						removeCount++;
-						p += k.value.length;
+						p += k.$value.length;
 					}
 					removeCount--;
 
@@ -951,11 +951,11 @@ function matchGrammar(text, tokenList, grammar, startNode, startPos, rematch) {
 					after = str.slice(to);
 
 				var reach = pos + str.length;
-				if (rematch && reach > rematch.reach) {
-					rematch.reach = reach;
+				if (rematch && reach > rematch.$reach) {
+					rematch.$reach = reach;
 				}
 
-				var removeFrom = currentNode.prev;
+				var removeFrom = currentNode.$prev;
 
 				if (before) {
 					removeFrom = addAfter(tokenList, removeFrom, before);
@@ -974,9 +974,9 @@ function matchGrammar(text, tokenList, grammar, startNode, startPos, rematch) {
 				if (removeCount > 1) {
 					// at least one Token object was removed, so we have to do some rematching
 					// this can only happen if the current pattern is greedy
-					matchGrammar(text, tokenList, grammar, currentNode.prev, pos, {
-						cause: token + ',' + j,
-						reach: reach
+					matchGrammar(text, tokenList, grammar, currentNode.$prev, pos, {
+						$cause: token + ',' + j,
+						$reach: reach
 					});
 				}
 			}
@@ -986,9 +986,9 @@ function matchGrammar(text, tokenList, grammar, startNode, startPos, rematch) {
 
 /**
  * @typedef LinkedListNode
- * @property {T} value
- * @property {LinkedListNode<T> | null} prev The previous node.
- * @property {LinkedListNode<T> | null} next The next node.
+ * @property {T} $value
+ * @property {LinkedListNode<T> | null} $prev The previous node.
+ * @property {LinkedListNode<T> | null} $next The next node.
  * @template T
  * @private
  */
@@ -999,16 +999,16 @@ function matchGrammar(text, tokenList, grammar, startNode, startPos, rematch) {
  */
 function LinkedList() {
 	/** @type {LinkedListNode<T>} */
-	var head = { value: null, prev: null, next: null };
+	var head = { $value: null, $prev: null, $next: null };
 	/** @type {LinkedListNode<T>} */
-	var tail = { value: null, prev: head, next: null };
-	head.next = tail;
+	var tail = { $value: null, $prev: head, $next: null };
+	head.$next = tail;
 
 	/** @type {LinkedListNode<T>} */
-	this.head = head;
+	this.$head = head;
 	/** @type {LinkedListNode<T>} */
-	this.tail = tail;
-	this.length = 0;
+	this.$tail = tail;
+	this.$length = 0;
 }
 
 /**
@@ -1021,12 +1021,12 @@ function LinkedList() {
  */
 function addAfter(list, node, value) {
 	// assumes that node != list.tail && values.length >= 0
-	var next = node.next;
+	var next = node.$next;
 
-	var newNode = { value: value, prev: node, next: next };
-	node.next = newNode;
-	next.prev = newNode;
-	list.length++;
+	var newNode = { $value: value, $prev: node, $next: next };
+	node.$next = newNode;
+	next.$prev = newNode;
+	list.$length++;
 
 	return newNode;
 }
@@ -1038,13 +1038,13 @@ function addAfter(list, node, value) {
  * @template T
  */
 function removeRange(list, node, count) {
-	var next = node.next;
-	for (var i = 0; i < count && next !== list.tail; i++) {
-		next = next.next;
+	var next = node.$next;
+	for (var i = 0; i < count && next !== list.$tail; i++) {
+		next = next.$next;
 	}
-	node.next = next;
-	next.prev = node;
-	list.length -= i;
+	node.$next = next;
+	next.$prev = node;
+	list.$length -= i;
 }
 /**
  * @param {LinkedList<T>} list
@@ -1053,10 +1053,10 @@ function removeRange(list, node, count) {
  */
 function toArray(list) {
 	var array = [];
-	var node = list.head.next;
-	while (node !== list.tail) {
-		array.push(node.value);
-		node = node.next;
+	var node = list.$head.$next;
+	while (node !== list.$tail) {
+		array.push(node.$value);
+		node = node.$next;
 	}
 	return array;
 }

@@ -58,7 +58,16 @@ function inlineRegexSource() {
 function minifyJS() {
 	return [
 		inlineRegexSource(),
-		uglify()
+		uglify({
+			compress: {
+				passes: 10
+			},
+			mangle: {
+				properties: {
+					regex: /^\$\w+$/
+				}
+			}
+		})
 	];
 }
 
