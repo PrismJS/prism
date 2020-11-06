@@ -1,0 +1,48 @@
+b = [SELECT Price__c FROM Book__c WHERE Id =:b.Id];
+return [SELECT Name FROM Contact];
+
+// don't capture array indexing
+a[0].Name = 'Acme';
+
+----------------------------------------------------
+
+[
+	"b ",
+	["operator", "="],
+	["sql", [
+		["punctuation", "["],
+		["keyword", "SELECT"],
+		" Price__c ",
+		["keyword", "FROM"],
+		" Book__c ",
+		["keyword", "WHERE"],
+		" Id ",
+		["operator", "="],
+		":b",
+		["punctuation", "."],
+		"Id",
+		["punctuation", "]"]
+	]],
+	["punctuation", ";"],
+	["keyword", "return"],
+	["sql", [
+		["punctuation", "["],
+		["keyword", "SELECT"],
+		" Name ",
+		["keyword", "FROM"],
+		" Contact",
+		["punctuation", "]"]
+	]],
+	["punctuation", ";"],
+
+	["comment", "// don't capture array indexing"],
+	"\r\na",
+	["punctuation", "["],
+	["number", "0"],
+	["punctuation", "]"],
+	["punctuation", "."],
+	"Name ",
+	["operator", "="],
+	["string", "'Acme'"],
+	["punctuation", ";"]
+]

@@ -112,6 +112,11 @@
 			"title": "Apache Configuration",
 			"owner": "GuiTeK"
 		},
+		"apex": {
+			"title": "Apex",
+			"require": ["clike", "sql"],
+			"owner": "RunDevelopment"
+		},
 		"apl": {
 			"title": "APL",
 			"owner": "ngn"
