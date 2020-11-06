@@ -327,7 +327,7 @@ describe('components.json', function () {
 				return comp;
 			}
 			// a and b have the same intermediate form (e.g. "C" => "C", "C++" => "C", "C#" => "C").
-			a.title.toLowerCase().localeCompare(b.title.toLowerCase())
+			return a.title.toLowerCase().localeCompare(b.title.toLowerCase());
 		});
 
 		assert.sameOrderedMembers(languages, sorted);
