@@ -977,6 +977,10 @@
 			"title": "Regex",
 			"owner": "RunDevelopment"
 		},
+		"rego": {
+			"title": "Rego",
+			"owner": "JordanSh"
+		},
 		"renpy": {
 			"title": "Ren'py",
 			"alias": "rpy",
