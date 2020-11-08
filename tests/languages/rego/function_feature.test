@@ -1,9 +1,11 @@
-package some
+package some(
 
 ----------------------------------------------------
 
 [
-	["function", "package"], ["function", "some"]
+	["function", "package"],
+	["function", "some"],
+	"("
 ]
 
 ----------------------------------------------------

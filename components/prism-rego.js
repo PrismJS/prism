@@ -11,7 +11,7 @@ Prism.languages.rego = {
 		{
 			pattern: /\b(?:round|abs|count|sum|product|max|min|sort|all|any)\b/,
 			inside: {
-				builtin: /([^(])/,
+				builtin: /(?:[^(])/,
 			}
 		},
 	],
