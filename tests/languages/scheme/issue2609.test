@@ -1,0 +1,30 @@
+'(foo bar baz)
+`(foo bar baz)
+#(foo bar baz)
+'#(foo bar baz)
+
+----------------------------------------------------
+
+[
+	["punctuation", "'"],
+	["punctuation", "("],
+	"foo bar baz",
+	["punctuation", ")"],
+	"\r\n`",
+	["punctuation", "("],
+	"foo bar baz",
+	["punctuation", ")"],
+	"\r\n#",
+	["punctuation", "("],
+	"foo bar baz",
+	["punctuation", ")"],
+	["punctuation", "'"],
+	"#",
+	["punctuation", "("],
+	"foo bar baz",
+	["punctuation", ")"]
+]
+
+----------------------------------------------------
+
+None of the "foo"s are functions, so they shouldn't be highlighted as such. See #2609 for more details.
