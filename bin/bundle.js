@@ -31,6 +31,7 @@ module.exports = /** @type {import("yargs").CommandModule} */({
 						'|   plugins?: "all" | string[],',
 						'|   // a theme id (e.g. "default", "coy")',
 						'|   theme?: string,',
+						'|   minified?: boolean,',
 						'| }'
 					].join('\n'),
 				alias: 'c',
@@ -50,6 +51,12 @@ module.exports = /** @type {import("yargs").CommandModule} */({
 				describe: 'The name of the theme. If no theme is specified, Prism\'s default theme will be used.',
 				type: 'string'
 			})
+			.option('minified', {
+				describe: 'Whether languages and plugins should be minified.'
+					+ ' Use --minified=false for development files.',
+				default: true,
+				type: 'boolean'
+			})
 			.option('js-out', {
 				describe: 'The output JS file(s) of the generated bundle. Existing files will be overwritten.',
 				normalize: true,
@@ -67,6 +74,7 @@ module.exports = /** @type {import("yargs").CommandModule} */({
 		const languages = String(argv.languages || '');
 		const plugins = String(argv.plugins || '');
 		const theme = String(argv.theme || '');
+		const minified = argv.minified;
 
 		/** @type {string[]} */
 		const jsOut = argv.jsOut || [];
@@ -88,7 +96,8 @@ module.exports = /** @type {import("yargs").CommandModule} */({
 		options = mergeBundleOptions(options, {
 			languages: languages === 'all' ? 'all' : languages.split(/\s*,\s*/g).filter(Boolean),
 			plugins: plugins === 'all' ? 'all' : plugins.split(/\s*,\s*/g).filter(Boolean),
-			theme
+			theme,
+			minified
 		});
 
 		let header = `/* PrismJS ${version}\n * $ npx ${bundleOptionsToCommand(options)}\n */`;
@@ -114,6 +123,7 @@ module.exports = /** @type {import("yargs").CommandModule} */({
  * @property {IdList} [languages]
  * @property {IdList} [plugins]
  * @property {string} [theme]
+ * @property {boolean} [minified]
  *
  * @typedef Bundle
  * @property {string} js
@@ -149,6 +159,7 @@ function mergeBundleOptions(base, overwrite) {
 		languages: mergeList(base.languages, overwrite.languages),
 		plugins: mergeList(base.plugins, overwrite.plugins),
 		theme: overwrite.theme || base.theme,
+		minified: overwrite.minified != undefined ? overwrite.minified : base.minified,
 	};
 }
 
@@ -187,6 +198,7 @@ function bundleOptionsToCommand(options) {
 	if (options.theme) {
 		parts.push(`--theme=${options.theme}`);
 	}
+	parts.push(`--minified=${options.minified == undefined ? true : options.minified}`);
 
 	return parts.join(' ');
 }
@@ -222,7 +234,9 @@ function bundle(options) {
 		}
 	}
 
-	let js = fs.readFileSync(path.join(PROJECT_DIR, 'components/prism-core.min.js'), 'utf-8');
+	const ext = options.minified ? '.min.js' : '.js';
+
+	let js = fs.readFileSync(path.join(PROJECT_DIR, 'components/prism-core' + ext), 'utf-8');
 	let css = fs.readFileSync(path.join(THEMES_DIR, `${theme}.css`), 'utf-8');
 
 	const appendJS = (code) => js = js.replace(/;\s*$/, ';\n') + code.trim();
@@ -232,10 +246,10 @@ function bundle(options) {
 	for (const id of loadOrder) {
 		if (id in components.languages) {
 			// language
-			appendJS(fs.readFileSync(path.join(LANGUAGES_DIR, `prism-${id}.min.js`), 'utf-8'));
+			appendJS(fs.readFileSync(path.join(LANGUAGES_DIR, `prism-${id}${ext}`), 'utf-8'));
 		} else {
 			// plugin
-			appendJS(fs.readFileSync(path.join(PLUGINS_DIR, `${id}/prism-${id}.min.js`), 'utf-8'));
+			appendJS(fs.readFileSync(path.join(PLUGINS_DIR, `${id}/prism-${id}${ext}`), 'utf-8'));
 			if (!components.plugins[id].noCSS) {
 				appendCSS(fs.readFileSync(path.join(PLUGINS_DIR, `${id}/prism-${id}.css`), 'utf-8'));
 			}
