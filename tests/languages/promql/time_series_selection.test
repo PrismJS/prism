@@ -11,7 +11,7 @@ http_requests_total{job=~".*server"}
 		["label-key", "job"],
 		["punctuation", "="],
 		["label-value", "\"apiserver\""],
-		", ",
+		["punctuation", ","],
 		["label-key", "handler"],
 		["punctuation", "="],
 		["label-value", "\"/api/comments\""],

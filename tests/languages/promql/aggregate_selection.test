@@ -5,11 +5,12 @@ sum by (job) (
 ----------------------------------------------------
 
 [
-	"sum by ",
-	["context-aggregation", [
-        "(",
+	["keyword", "sum"],
+	["keyword", "by"],
+	["vector-match", [
+        ["punctuation", "("],
         ["label-key", "job"],
-        ")"
+        ["punctuation", ")"]
     ]],
 	["punctuation", "("],
 	["function", "rate"],
