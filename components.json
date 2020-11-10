@@ -875,6 +875,10 @@
 			"title": "Prolog",
 			"owner": "Golmote"
 		},
+		"promql": {
+			"title": "PromQL",
+			"owner": "arendjr"
+		},
 		"properties": {
 			"title": ".properties",
 			"owner": "Golmote"
