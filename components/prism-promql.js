@@ -115,7 +115,7 @@ Prism.languages.promql = {
 		pattern: /^\s*#.*/m,
 	},
 	"context-aggregation": {
-		pattern: new RegExp("((" + vectorMatching.join("|") + ")\\s*)\\([^)]*\\)"),
+		pattern: new RegExp("((?:" + vectorMatching.join("|") + ")\\s*)\\([^)]*\\)"),
 		lookbehind: true,
 		inside: {
 			"label-key": {
@@ -141,9 +141,9 @@ Prism.languages.promql = {
 	function: new RegExp("\\b(?:" + keywords.join("|") + ")(?=\\s*\\()", "i"),
 	"context-range": [
 		{
-			pattern: /(\[([^\]]*)\])/, // [1m]
+			pattern: /\[[^\]]*\]/, // [1m]
 			inside: {
-				punctuation: /(\[|\])/,
+				punctuation: /\[|\]/,
 				"range-duration": {
 					pattern: /\b\d+[smhdwy]\b/i,
 					alias: "number",
@@ -161,7 +161,7 @@ Prism.languages.promql = {
 			},
 		},
 	],
-	number: /-?\d+((\.\d*)?([eE][+-]?\d+)?)?\b/,
+	number: /-?\d+(?:(?:\.\d*)?(?:[eE][+-]?\d+)?)?\b/,
 	operator: new RegExp(
 		"/[-+/%^*~]|=~?|![=~]|&&?|(?:\\|\\|?)|!=?|<(?:=>?|<|>)?|>[>=]?|\\b(?:" +
 		operators.join("|") +
