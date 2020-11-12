@@ -273,7 +273,7 @@ async function treeviewIconFont() {
 }
 
 const components = minifyComponents;
-const plugins = series(languagePlugins, minifyPlugins, treeviewIconFont);
+const plugins = series(languagePlugins, treeviewIconFont, minifyPlugins);
 
 
 module.exports = {
