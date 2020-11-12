@@ -19,55 +19,6 @@
 		'quantile'
 	];
 
-	// PromQL functions
-	// (https://prometheus.io/docs/prometheus/latest/querying/functions/)
-	var functions = [
-		'abs',
-		'absent',
-		'ceil',
-		'changes',
-		'clamp_max',
-		'clamp_min',
-		'day_of_month',
-		'day_of_week',
-		'days_in_month',
-		'delta',
-		'deriv',
-		'exp',
-		'floor',
-		'histogram_quantile',
-		'holt_winters',
-		'hour',
-		'idelta',
-		'increase',
-		'irate',
-		'label_join',
-		'label_replace',
-		'ln',
-		'log2',
-		'log10',
-		'minute',
-		'month',
-		'predict_linear',
-		'rate',
-		'resets',
-		'round',
-		'scalar',
-		'sort',
-		'sort_desc',
-		'sqrt',
-		'time',
-		'timestamp',
-		'vector',
-		'year'
-	];
-
-	// PromQL specific functions: Aggregations over time
-	// (https://prometheus.io/docs/prometheus/latest/querying/functions/#aggregation_over_time)
-	aggregations.forEach(function (agg) {
-		functions.push(agg + '_over_time');
-	});
-
 	// PromQL vector matching + the by and without clauses
 	// (https://prometheus.io/docs/prometheus/latest/querying/operators/#vector-matching)
 	var vectorMatching = [
@@ -139,7 +90,7 @@
 				},
 			},
 		],
-		'function': new RegExp('\\b(?:' + functions.join('|') + ')(?=\\s*\\()', 'i'),
+		'function': /\b[a-zA-Z_]\w*(?=\s*\()/i,
 		'keyword': new RegExp('\\b(?:' + keywords.join('|') + ')\\b', 'i'),
 		'number': /[-+]?(?:(?:\b\d+(?:\.\d+)?|\B\.\d+)(?:e[-+]?\d+)?\b|\b(?:0x[0-9a-f]+|nan|inf)\b)/i,
 		'operator': /[\^*/%+-]|==|!=|<=|<|>=|>|\b(?:and|unless|or)\b/i,
