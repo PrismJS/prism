@@ -100,14 +100,16 @@ async function getLog(range) {
 }
 
 const revisionRanges = {
-	nextRelease: git.raw(['describe', '--abbrev=0', '--tags']).then(res => `${res.trim()}..HEAD`)
+	nextRelease() {
+		return git.raw(['describe', '--abbrev=0', '--tags']).then(res => `${res.trim()}..HEAD`);
+	}
 };
 const strCompare = (a, b) => a.localeCompare(b, 'en');
 
 async function changes() {
 	const { languages, plugins } = require('../components.js');
 
-	const infos = await getLog(revisionRanges.nextRelease);
+	const infos = await getLog(revisionRanges.nextRelease());
 
 	const entries = {
 		'TODO:': {},
