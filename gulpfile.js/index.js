@@ -213,6 +213,7 @@ async function languagePlugins() {
 }
 
 async function treeviewIconFont() {
+	console.log("Enter");
 	// List of all icons
 	// Add new icons to the end of the list.
 	const iconList = [
@@ -224,6 +225,7 @@ async function treeviewIconFont() {
 	];
 	const fontName = 'PrismTreeview';
 
+	console.log("webfont");
 	// generate the font
 	const result = await webfont({
 		files: iconList.map(n => `plugins/treeview/icons/${n}.svg`),
@@ -231,6 +233,7 @@ async function treeviewIconFont() {
 		fontName,
 		sort: false
 	});
+	console.log("webfont done");
 
 	/** @type {Buffer} */
 	const woff = result.woff;
@@ -246,6 +249,7 @@ async function treeviewIconFont() {
 	 * */
 	const glyphsData = result.glyphsData;
 
+	console.log("fontFace");
 	const fontFace = `
 /* @GENERATED-FONT */
 @font-face {
@@ -268,8 +272,12 @@ async function treeviewIconFont() {
 
 	const cssPath = 'plugins/treeview/prism-treeview.css';
 	const fontFaceRegex = /\/\*\s*@GENERATED-FONT\s*\*\/\s*@font-face\s*\{(?:[^{}/]|\/(?!\*)|\/\*(?:[^*]|\*(?!\/))*\*\/)*\}/;
+
+	console.log("read");
 	const css = fs.readFileSync(cssPath, 'utf-8');
+	console.log("write");
 	fs.writeFileSync(cssPath, css.replace(fontFaceRegex, fontFace), 'utf-8');
+	console.log("done");
 }
 
 const components = minifyComponents;
