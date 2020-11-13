@@ -108,7 +108,9 @@ ${rows.map(row => `| ${row.join(' | ')} |`).join('\n')}
 `);
 }
 
-run().catch(err => {
-	console.error(err);
-	process.exit(1);
-});
+//run().catch(err => {
+//	console.error(err);
+//	process.exit(1);
+//});
+
+markdown('Hello world!');
