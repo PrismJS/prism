@@ -1,0 +1,29 @@
+:= << >> (| |) ->
+
+.foo
+
+{ } [ ] ; ( ) , : ?
+
+----------------------------------------------------
+
+[
+	["punctuation", ":="],
+	["punctuation", "<<"],
+	["punctuation", ">>"],
+	["punctuation", "(|"],
+	["punctuation", "|)"],
+	["punctuation", "->"],
+
+	["punctuation", "."],
+	"foo\n\n",
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", "["],
+	["punctuation", "]"],
+	["punctuation", ";"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ","],
+	["punctuation", ":"],
+	["punctuation", "?"]
+]

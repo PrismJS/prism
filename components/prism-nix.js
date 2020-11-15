@@ -8,13 +8,7 @@ Prism.languages.nix = {
 				// The lookbehind ensures the ${} is not preceded by \ or ''
 				pattern: /(^|(?:^|(?!'').)[^\\])\$\{(?:[^{}]|\{[^}]*\})*\}/,
 				lookbehind: true,
-				inside: {
-					'antiquotation': {
-						pattern: /^\$(?=\{)/,
-						alias: 'variable'
-					}
-					// See rest below
-				}
+				inside: null // See below
 			}
 		}
 	},
@@ -37,4 +31,4 @@ Prism.languages.nix = {
 	'punctuation': /[{}()[\].,:;]/
 };
 
-Prism.languages.nix.string.inside.interpolation.inside.rest = Prism.languages.nix;
+Prism.languages.nix.string.inside.interpolation.inside = Prism.languages.nix;

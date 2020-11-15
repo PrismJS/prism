@@ -1,0 +1,181 @@
+as assert
+break class
+continue def
+del elif
+else except
+exec finally
+for from
+global if
+import in
+is lambda
+pass print
+raise return
+try while
+yield adjustment
+alignaround allow
+angle around
+box_layout cache
+changed child_size
+clicked clipping
+corner1 corner2
+default delay
+exclude scope
+slow slow_abortable
+slow_done sound
+style_group substitute
+suffix transform_anchor
+transpose unhovered
+config theme
+mm_root gm_root
+rounded_window build
+disabled_text disabled
+widget_selected widget_text
+widget_hover widget
+updater behind
+call expression
+hide init
+jump onlayer
+python renpy
+scene set
+show transform
+play queue
+stop pause
+define
+repeat contains
+choice on
+function event
+animation clockwise
+counterclockwise circles
+knot null
+None random
+has add
+use fade
+dissolve style
+store id
+voice center
+left right
+less_rounded music
+movie clear
+persistent ui
+
+----------------------------------------------------
+
+[
+	["keyword", "as"],
+	["keyword", "assert"],
+	["keyword", "break"],
+	["keyword", "class"],
+	["keyword", "continue"],
+	["keyword", "def"],
+	["keyword", "del"],
+	["keyword", "elif"],
+	["keyword", "else"],
+	["keyword", "except"],
+	["keyword", "exec"],
+	["keyword", "finally"],
+	["keyword", "for"],
+	["keyword", "from"],
+	["keyword", "global"],
+	["keyword", "if"],
+	["keyword", "import"],
+	["keyword", "in"],
+	["keyword", "is"],
+	["keyword", "lambda"],
+	["keyword", "pass"],
+	["keyword", "print"],
+	["keyword", "raise"],
+	["keyword", "return"],
+	["keyword", "try"],
+	["keyword", "while"],
+	["keyword", "yield"],
+	["keyword", "adjustment"],
+	["keyword", "alignaround"],
+	["keyword", "allow"],
+	["keyword", "angle"],
+	["keyword", "around"],
+	["keyword", "box_layout"],
+	["keyword", "cache"],
+	["keyword", "changed"],
+	["keyword", "child_size"],
+	["keyword", "clicked"],
+	["keyword", "clipping"],
+	["keyword", "corner1"],
+	["keyword", "corner2"],
+	["keyword", "default"],
+	["keyword", "delay"],
+	["keyword", "exclude"],
+	["keyword", "scope"],
+	["keyword", "slow"],
+	["keyword", "slow_abortable"],
+	["keyword", "slow_done"],
+	["keyword", "sound"],
+	["keyword", "style_group"],
+	["keyword", "substitute"],
+	["keyword", "suffix"],
+	["keyword", "transform_anchor"],
+	["keyword", "transpose"],
+	["keyword", "unhovered"],
+	["keyword", "config"],
+	["keyword", "theme"],
+	["keyword", "mm_root"],
+	["keyword", "gm_root"],
+	["keyword", "rounded_window"],
+	["keyword", "build"],
+	["keyword", "disabled_text"],
+	["keyword", "disabled"],
+	["keyword", "widget_selected"],
+	["keyword", "widget_text"],
+	["keyword", "widget_hover"],
+	["keyword", "widget"],
+	["keyword", "updater"],
+	["keyword", "behind"],
+	["keyword", "call"],
+	["keyword", "expression"],
+	["keyword", "hide"],
+	["keyword", "init"],
+	["keyword", "jump"],
+	["keyword", "onlayer"],
+	["keyword", "python"],
+	["keyword", "renpy"],
+	["keyword", "scene"],
+	["keyword", "set"],
+	["keyword", "show"],
+	["keyword", "transform"],
+	["keyword", "play"],
+	["keyword", "queue"],
+	["keyword", "stop"],
+	["keyword", "pause"],
+	["keyword", "define"],
+	["keyword", "repeat"],
+	["keyword", "contains"],
+	["keyword", "choice"],
+	["keyword", "on"],
+	["keyword", "function"],
+	["keyword", "event"],
+	["keyword", "animation"],
+	["keyword", "clockwise"],
+	["keyword", "counterclockwise"],
+	["keyword", "circles"],
+	["keyword", "knot"],
+	["keyword", "null"],
+	["keyword", "None"],
+	["keyword", "random"],
+	["keyword", "has"],
+	["keyword", "add"],
+	["keyword", "use"],
+	["keyword", "fade"],
+	["keyword", "dissolve"],
+	["keyword", "style"],
+	["keyword", "store"],
+	["keyword", "id"],
+	["keyword", "voice"],
+	["keyword", "center"],
+	["keyword", "left"],
+	["keyword", "right"],
+	["keyword", "less_rounded"],
+	["keyword", "music"],
+	["keyword", "movie"],
+	["keyword", "clear"],
+	["keyword", "persistent"],
+	["keyword", "ui"]
+]

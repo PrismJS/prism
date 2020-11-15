@@ -12,16 +12,16 @@ const testSuite =
 		// load complete test suite
 		: TestDiscovery.loadAllTests(__dirname + "/languages");
 
-const accept = !!argv.accept;
+const acceptEmpty = !!argv.accept;
 
 // define tests for all tests in all languages in the test suite
-for (const language in testSuite) {
-	if (!testSuite.hasOwnProperty(language)) {
+for (const languageIdentifier in testSuite) {
+	if (!testSuite.hasOwnProperty(languageIdentifier)) {
 		continue;
 	}
 
-	(function (language, testFiles) {
-		describe("Testing language '" + language + "'", function () {
+	(function (languageIdentifier, testFiles) {
+		describe("Testing language '" + languageIdentifier + "'", function () {
 			this.timeout(10000);
 
 			for (const filePath of testFiles) {
@@ -29,12 +29,12 @@ for (const language in testSuite) {
 
 				it("– should pass test case '" + fileName + "'", function () {
 					if (path.extname(filePath) === '.test') {
-						TestCase.runTestCase(language, filePath, accept);
+						TestCase.runTestCase({ languageIdentifier, filePath, acceptEmpty });
 					} else {
-						TestCase.runTestsWithHooks(language, require(filePath));
+						TestCase.runTestsWithHooks({ languageIdentifier, codes: require(filePath) });
 					}
 				});
 			}
 		});
-	})(language, testSuite[language]);
+	})(languageIdentifier, testSuite[languageIdentifier]);
 }

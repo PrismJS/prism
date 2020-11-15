@@ -1,0 +1,4397 @@
+abs
+accTime
+acos
+action
+actionIDs
+actionKeys
+actionKeysImages
+actionKeysNames
+actionKeysNamesArray
+actionName
+actionParams
+activateAddons
+activatedAddons
+activateKey
+add3DENConnection
+add3DENEventHandler
+add3DENLayer
+addAction
+addBackpack
+addBackpackCargo
+addBackpackCargoGlobal
+addBackpackGlobal
+addCamShake
+addCuratorAddons
+addCuratorCameraArea
+addCuratorEditableObjects
+addCuratorEditingArea
+addCuratorPoints
+addEditorObject
+addEventHandler
+addForce
+addForceGeneratorRTD
+addGoggles
+addGroupIcon
+addHandgunItem
+addHeadgear
+addItem
+addItemCargo
+addItemCargoGlobal
+addItemPool
+addItemToBackpack
+addItemToUniform
+addItemToVest
+addLiveStats
+addMagazine
+addMagazineAmmoCargo
+addMagazineCargo
+addMagazineCargoGlobal
+addMagazineGlobal
+addMagazinePool
+addMagazines
+addMagazineTurret
+addMenu
+addMenuItem
+addMissionEventHandler
+addMPEventHandler
+addMusicEventHandler
+addOwnedMine
+addPlayerScores
+addPrimaryWeaponItem
+addPublicVariableEventHandler
+addRating
+addResources
+addScore
+addScoreSide
+addSecondaryWeaponItem
+addSwitchableUnit
+addTeamMember
+addToRemainsCollector
+addTorque
+addUniform
+addVehicle
+addVest
+addWaypoint
+addWeapon
+addWeaponCargo
+addWeaponCargoGlobal
+addWeaponGlobal
+addWeaponItem
+addWeaponPool
+addWeaponTurret
+admin
+agent
+agents
+AGLToASL
+aimedAtTarget
+aimPos
+airDensityCurveRTD
+airDensityRTD
+airplaneThrottle
+airportSide
+AISFinishHeal
+alive
+all3DENEntities
+allAirports
+allControls
+allCurators
+allCutLayers
+allDead
+allDeadMen
+allDisplays
+allGroups
+allMapMarkers
+allMines
+allMissionObjects
+allow3DMode
+allowCrewInImmobile
+allowCuratorLogicIgnoreAreas
+allowDamage
+allowDammage
+allowFileOperations
+allowFleeing
+allowGetIn
+allowSprint
+allPlayers
+allSimpleObjects
+allSites
+allTurrets
+allUnits
+allUnitsUAV
+allVariables
+ammo
+ammoOnPylon
+animate
+animateBay
+animateDoor
+animatePylon
+animateSource
+animationNames
+animationPhase
+animationSourcePhase
+animationState
+append
+apply
+armoryPoints
+arrayIntersect
+asin
+ASLToAGL
+ASLToATL
+assert
+assignAsCargo
+assignAsCargoIndex
+assignAsCommander
+assignAsDriver
+assignAsGunner
+assignAsTurret
+assignCurator
+assignedCargo
+assignedCommander
+assignedDriver
+assignedGunner
+assignedItems
+assignedTarget
+assignedTeam
+assignedVehicle
+assignedVehicleRole
+assignItem
+assignTeam
+assignToAirport
+atan
+atan2
+atg
+ATLToASL
+attachedObject
+attachedObjects
+attachedTo
+attachObject
+attachTo
+attackEnabled
+backpack
+backpackCargo
+backpackContainer
+backpackItems
+backpackMagazines
+backpackSpaceFor
+behaviour
+benchmark
+binocular
+blufor
+boundingBox
+boundingBoxReal
+boundingCenter
+briefingName
+buildingExit
+buildingPos
+buldozer_EnableRoadDiag
+buldozer_IsEnabledRoadDiag
+buldozer_LoadNewRoads
+buldozer_reloadOperMap
+buttonAction
+buttonSetAction
+cadetMode
+callExtension
+camCommand
+camCommit
+camCommitPrepared
+camCommitted
+camConstuctionSetParams
+camCreate
+camDestroy
+cameraEffect
+cameraEffectEnableHUD
+cameraInterest
+cameraOn
+cameraView
+campaignConfigFile
+camPreload
+camPreloaded
+camPrepareBank
+camPrepareDir
+camPrepareDive
+camPrepareFocus
+camPrepareFov
+camPrepareFovRange
+camPreparePos
+camPrepareRelPos
+camPrepareTarget
+camSetBank
+camSetDir
+camSetDive
+camSetFocus
+camSetFov
+camSetFovRange
+camSetPos
+camSetRelPos
+camSetTarget
+camTarget
+camUseNVG
+canAdd
+canAddItemToBackpack
+canAddItemToUniform
+canAddItemToVest
+cancelSimpleTaskDestination
+canFire
+canMove
+canSlingLoad
+canStand
+canSuspend
+canTriggerDynamicSimulation
+canUnloadInCombat
+canVehicleCargo
+captive
+captiveNum
+cbChecked
+cbSetChecked
+ceil
+channelEnabled
+cheatsEnabled
+checkAIFeature
+checkVisibility
+civilian
+className
+clear3DENAttribute
+clear3DENInventory
+clearAllItemsFromBackpack
+clearBackpackCargo
+clearBackpackCargoGlobal
+clearForcesRTD
+clearGroupIcons
+clearItemCargo
+clearItemCargoGlobal
+clearItemPool
+clearMagazineCargo
+clearMagazineCargoGlobal
+clearMagazinePool
+clearOverlay
+clearRadio
+clearVehicleInit
+clearWeaponCargo
+clearWeaponCargoGlobal
+clearWeaponPool
+clientOwner
+closeDialog
+closeDisplay
+closeOverlay
+collapseObjectTree
+collect3DENHistory
+collectiveRTD
+combatMode
+commandArtilleryFire
+commandChat
+commander
+commandFire
+commandFollow
+commandFSM
+commandGetOut
+commandingMenu
+commandMove
+commandRadio
+commandStop
+commandSuppressiveFire
+commandTarget
+commandWatch
+comment
+commitOverlay
+compile
+compileFinal
+completedFSM
+composeText
+configClasses
+configFile
+configHierarchy
+configName
+configNull
+configProperties
+configSourceAddonList
+configSourceMod
+configSourceModList
+confirmSensorTarget
+connectTerminalToUAV
+controlNull
+controlsGroupCtrl
+copyFromClipboard
+copyToClipboard
+copyWaypoints
+cos
+count
+countEnemy
+countFriendly
+countSide
+countType
+countUnknown
+create3DENComposition
+create3DENEntity
+createAgent
+createCenter
+createDialog
+createDiaryLink
+createDiaryRecord
+createDiarySubject
+createDisplay
+createGearDialog
+createGroup
+createGuardedPoint
+createLocation
+createMarker
+createMarkerLocal
+createMenu
+createMine
+createMissionDisplay
+createMPCampaignDisplay
+createSimpleObject
+createSimpleTask
+createSite
+createSoundSource
+createTask
+createTeam
+createTrigger
+createUnit
+createVehicle
+createVehicleCrew
+createVehicleLocal
+crew
+ctAddHeader
+ctAddRow
+ctClear
+ctCurSel
+ctData
+ctFindHeaderRows
+ctFindRowHeader
+ctHeaderControls
+ctHeaderCount
+ctRemoveHeaders
+ctRemoveRows
+ctrlActivate
+ctrlAddEventHandler
+ctrlAngle
+ctrlAutoScrollDelay
+ctrlAutoScrollRewind
+ctrlAutoScrollSpeed
+ctrlChecked
+ctrlClassName
+ctrlCommit
+ctrlCommitted
+ctrlCreate
+ctrlDelete
+ctrlEnable
+ctrlEnabled
+ctrlFade
+ctrlHTMLLoaded
+ctrlIDC
+ctrlIDD
+ctrlMapAnimAdd
+ctrlMapAnimClear
+ctrlMapAnimCommit
+ctrlMapAnimDone
+ctrlMapCursor
+ctrlMapMouseOver
+ctrlMapScale
+ctrlMapScreenToWorld
+ctrlMapWorldToScreen
+ctrlModel
+ctrlModelDirAndUp
+ctrlModelScale
+ctrlParent
+ctrlParentControlsGroup
+ctrlPosition
+ctrlRemoveAllEventHandlers
+ctrlRemoveEventHandler
+ctrlScale
+ctrlSetActiveColor
+ctrlSetAngle
+ctrlSetAutoScrollDelay
+ctrlSetAutoScrollRewind
+ctrlSetAutoScrollSpeed
+ctrlSetBackgroundColor
+ctrlSetChecked
+ctrlSetDisabledColor
+ctrlSetEventHandler
+ctrlSetFade
+ctrlSetFocus
+ctrlSetFont
+ctrlSetFontH1
+ctrlSetFontH1B
+ctrlSetFontH2
+ctrlSetFontH2B
+ctrlSetFontH3
+ctrlSetFontH3B
+ctrlSetFontH4
+ctrlSetFontH4B
+ctrlSetFontH5
+ctrlSetFontH5B
+ctrlSetFontH6
+ctrlSetFontH6B
+ctrlSetFontHeight
+ctrlSetFontHeightH1
+ctrlSetFontHeightH2
+ctrlSetFontHeightH3
+ctrlSetFontHeightH4
+ctrlSetFontHeightH5
+ctrlSetFontHeightH6
+ctrlSetFontHeightSecondary
+ctrlSetFontP
+ctrlSetFontPB
+ctrlSetFontSecondary
+ctrlSetForegroundColor
+ctrlSetModel
+ctrlSetModelDirAndUp
+ctrlSetModelScale
+ctrlSetPixelPrecision
+ctrlSetPosition
+ctrlSetScale
+ctrlSetStructuredText
+ctrlSetText
+ctrlSetTextColor
+ctrlSetTextColorSecondary
+ctrlSetTextSecondary
+ctrlSetTooltip
+ctrlSetTooltipColorBox
+ctrlSetTooltipColorShade
+ctrlSetTooltipColorText
+ctrlShow
+ctrlShown
+ctrlText
+ctrlTextHeight
+ctrlTextSecondary
+ctrlTextWidth
+ctrlType
+ctrlVisible
+ctRowControls
+ctRowCount
+ctSetCurSel
+ctSetData
+ctSetHeaderTemplate
+ctSetRowTemplate
+ctSetValue
+ctValue
+curatorAddons
+curatorCamera
+curatorCameraArea
+curatorCameraAreaCeiling
+curatorCoef
+curatorEditableObjects
+curatorEditingArea
+curatorEditingAreaType
+curatorMouseOver
+curatorPoints
+curatorRegisteredObjects
+curatorSelected
+curatorWaypointCost
+current3DENOperation
+currentChannel
+currentCommand
+currentMagazine
+currentMagazineDetail
+currentMagazineDetailTurret
+currentMagazineTurret
+currentMuzzle
+currentNamespace
+currentTask
+currentTasks
+currentThrowable
+currentVisionMode
+currentWaypoint
+currentWeapon
+currentWeaponMode
+currentWeaponTurret
+currentZeroing
+cursorObject
+cursorTarget
+customChat
+customRadio
+cutFadeOut
+cutObj
+cutRsc
+cutText
+damage
+date
+dateToNumber
+daytime
+deActivateKey
+debriefingText
+debugFSM
+debugLog
+deg
+delete3DENEntities
+deleteAt
+deleteCenter
+deleteCollection
+deleteEditorObject
+deleteGroup
+deleteGroupWhenEmpty
+deleteIdentity
+deleteLocation
+deleteMarker
+deleteMarkerLocal
+deleteRange
+deleteResources
+deleteSite
+deleteStatus
+deleteTeam
+deleteVehicle
+deleteVehicleCrew
+deleteWaypoint
+detach
+detectedMines
+diag_activeMissionFSMs
+diag_activeScripts
+diag_activeSQFScripts
+diag_activeSQSScripts
+diag_captureFrame
+diag_captureFrameToFile
+diag_captureSlowFrame
+diag_codePerformance
+diag_drawMode
+diag_dynamicSimulationEnd
+diag_enable
+diag_enabled
+diag_fps
+diag_fpsMin
+diag_frameNo
+diag_lightNewLoad
+diag_list
+diag_log
+diag_logSlowFrame
+diag_mergeConfigFile
+diag_recordTurretLimits
+diag_setLightNew
+diag_tickTime
+diag_toggle
+dialog
+diarySubjectExists
+didJIP
+didJIPOwner
+difficulty
+difficultyEnabled
+difficultyEnabledRTD
+difficultyOption
+direction
+directSay
+disableAI
+disableCollisionWith
+disableConversation
+disableDebriefingStats
+disableMapIndicators
+disableNVGEquipment
+disableRemoteSensors
+disableSerialization
+disableTIEquipment
+disableUAVConnectability
+disableUserInput
+displayAddEventHandler
+displayCtrl
+displayNull
+displayParent
+displayRemoveAllEventHandlers
+displayRemoveEventHandler
+displaySetEventHandler
+dissolveTeam
+distance
+distance2D
+distanceSqr
+distributionRegion
+do3DENAction
+doArtilleryFire
+doFire
+doFollow
+doFSM
+doGetOut
+doMove
+doorPhase
+doStop
+doSuppressiveFire
+doTarget
+doWatch
+drawArrow
+drawEllipse
+drawIcon
+drawIcon3D
+drawLine
+drawLine3D
+drawLink
+drawLocation
+drawPolygon
+drawRectangle
+drawTriangle
+driver
+drop
+dynamicSimulationDistance
+dynamicSimulationDistanceCoef
+dynamicSimulationEnabled
+dynamicSimulationSystemEnabled
+east
+edit3DENMissionAttributes
+editObject
+editorSetEventHandler
+effectiveCommander
+emptyPositions
+enableAI
+enableAIFeature
+enableAimPrecision
+enableAttack
+enableAudioFeature
+enableAutoStartUpRTD
+enableAutoTrimRTD
+enableCamShake
+enableCaustics
+enableChannel
+enableCollisionWith
+enableCopilot
+enableDebriefingStats
+enableDiagLegend
+enableDynamicSimulation
+enableDynamicSimulationSystem
+enableEndDialog
+enableEngineArtillery
+enableEnvironment
+enableFatigue
+enableGunLights
+enableInfoPanelComponent
+enableIRLasers
+enableMimics
+enablePersonTurret
+enableRadio
+enableReload
+enableRopeAttach
+enableSatNormalOnDetail
+enableSaving
+enableSentences
+enableSimulation
+enableSimulationGlobal
+enableStamina
+enableStressDamage
+enableTeamSwitch
+enableTraffic
+enableUAVConnectability
+enableUAVWaypoints
+enableVehicleCargo
+enableVehicleSensor
+enableWeaponDisassembly
+endl
+endLoadingScreen
+endMission
+engineOn
+enginesIsOnRTD
+enginesPowerRTD
+enginesRpmRTD
+enginesTorqueRTD
+entities
+environmentEnabled
+estimatedEndServerTime
+estimatedTimeLeft
+evalObjectArgument
+everyBackpack
+everyContainer
+exec
+execEditorScript
+exp
+expectedDestination
+exportJIPMessages
+eyeDirection
+eyePos
+face
+faction
+fadeMusic
+fadeRadio
+fadeSound
+fadeSpeech
+failMission
+fillWeaponsFromPool
+find
+findCover
+findDisplay
+findEditorObject
+findEmptyPosition
+findEmptyPositionReady
+findIf
+findNearestEnemy
+finishMissionInit
+finite
+fire
+fireAtTarget
+firstBackpack
+flag
+flagAnimationPhase
+flagOwner
+flagSide
+flagTexture
+fleeing
+floor
+flyInHeight
+flyInHeightASL
+fog
+fogForecast
+fogParams
+forceAddUniform
+forceAtPositionRTD
+forcedMap
+forceEnd
+forceFlagTexture
+forceFollowRoad
+forceGeneratorRTD
+forceMap
+forceRespawn
+forceSpeed
+forceWalk
+forceWeaponFire
+forceWeatherChange
+forgetTarget
+format
+formation
+formationDirection
+formationLeader
+formationMembers
+formationPosition
+formationTask
+formatText
+formLeader
+freeLook
+fromEditor
+fuel
+fullCrew
+gearIDCAmmoCount
+gearSlotAmmoCount
+gearSlotData
+get3DENActionState
+get3DENAttribute
+get3DENCamera
+get3DENConnections
+get3DENEntity
+get3DENEntityID
+get3DENGrid
+get3DENIconsVisible
+get3DENLayerEntities
+get3DENLinesVisible
+get3DENMissionAttribute
+get3DENMouseOver
+get3DENSelected
+getAimingCoef
+getAllEnvSoundControllers
+getAllHitPointsDamage
+getAllOwnedMines
+getAllSoundControllers
+getAmmoCargo
+getAnimAimPrecision
+getAnimSpeedCoef
+getArray
+getArtilleryAmmo
+getArtilleryComputerSettings
+getArtilleryETA
+getAssignedCuratorLogic
+getAssignedCuratorUnit
+getBackpackCargo
+getBleedingRemaining
+getBurningValue
+getCameraViewDirection
+getCargoIndex
+getCenterOfMass
+getClientState
+getClientStateNumber
+getCompatiblePylonMagazines
+getConnectedUAV
+getContainerMaxLoad
+getCursorObjectParams
+getCustomAimCoef
+getDammage
+getDescription
+getDir
+getDirVisual
+getDLCAssetsUsage
+getDLCAssetsUsageByName
+getDLCs
+getDLCUsageTime
+getEditorCamera
+getEditorMode
+getEditorObjectScope
+getElevationOffset
+getEngineTargetRpmRTD
+getEnvSoundController
+getFatigue
+getFieldManualStartPage
+getForcedFlagTexture
+getFriend
+getFSMVariable
+getFuelCargo
+getGroupIcon
+getGroupIconParams
+getGroupIcons
+getHideFrom
+getHit
+getHitIndex
+getHitPointDamage
+getItemCargo
+getMagazineCargo
+getMarkerColor
+getMarkerPos
+getMarkerSize
+getMarkerType
+getMass
+getMissionConfig
+getMissionConfigValue
+getMissionDLCs
+getMissionLayerEntities
+getMissionLayers
+getModelInfo
+getMousePosition
+getMusicPlayedTime
+getNumber
+getObjectArgument
+getObjectChildren
+getObjectDLC
+getObjectMaterials
+getObjectProxy
+getObjectTextures
+getObjectType
+getObjectViewDistance
+getOxygenRemaining
+getPersonUsedDLCs
+getPilotCameraDirection
+getPilotCameraPosition
+getPilotCameraRotation
+getPilotCameraTarget
+getPlateNumber
+getPlayerChannel
+getPlayerScores
+getPlayerUID
+getPlayerUIDOld
+getPos
+getPosASL
+getPosASLVisual
+getPosASLW
+getPosATL
+getPosATLVisual
+getPosVisual
+getPosWorld
+getPylonMagazines
+getRelDir
+getRelPos
+getRemoteSensorsDisabled
+getRepairCargo
+getResolution
+getRotorBrakeRTD
+getShadowDistance
+getShotParents
+getSlingLoad
+getSoundController
+getSoundControllerResult
+getSpeed
+getStamina
+getStatValue
+getSuppression
+getTerrainGrid
+getTerrainHeightASL
+getText
+getTotalDLCUsageTime
+getTrimOffsetRTD
+getUnitLoadout
+getUnitTrait
+getUserMFDText
+getUserMFDValue
+getVariable
+getVehicleCargo
+getWeaponCargo
+getWeaponSway
+getWingsOrientationRTD
+getWingsPositionRTD
+getWPPos
+glanceAt
+globalChat
+globalRadio
+goggles
+group
+groupChat
+groupFromNetId
+groupIconSelectable
+groupIconsVisible
+groupId
+groupOwner
+groupRadio
+groupSelectedUnits
+groupSelectUnit
+grpNull
+gunner
+gusts
+halt
+handgunItems
+handgunMagazine
+handgunWeapon
+handsHit
+hasInterface
+hasPilotCamera
+hasWeapon
+hcAllGroups
+hcGroupParams
+hcLeader
+hcRemoveAllGroups
+hcRemoveGroup
+hcSelected
+hcSelectGroup
+hcSetGroup
+hcShowBar
+hcShownBar
+headgear
+hideBody
+hideObject
+hideObjectGlobal
+hideSelection
+hint
+hintC
+hintCadet
+hintSilent
+hmd
+hostMission
+htmlLoad
+HUDMovementLevels
+humidity
+image
+importAllGroups
+importance
+in
+inArea
+inAreaArray
+incapacitatedState
+independent
+inflame
+inflamed
+infoPanel
+infoPanelComponentEnabled
+infoPanelComponents
+infoPanels
+inGameUISetEventHandler
+inheritsFrom
+initAmbientLife
+inPolygon
+inputAction
+inRangeOfArtillery
+insertEditorObject
+intersect
+is3DEN
+is3DENMultiplayer
+isAbleToBreathe
+isAgent
+isAimPrecisionEnabled
+isArray
+isAutoHoverOn
+isAutonomous
+isAutoStartUpEnabledRTD
+isAutotest
+isAutoTrimOnRTD
+isBleeding
+isBurning
+isClass
+isCollisionLightOn
+isCopilotEnabled
+isDamageAllowed
+isDedicated
+isDLCAvailable
+isEngineOn
+isEqualTo
+isEqualType
+isEqualTypeAll
+isEqualTypeAny
+isEqualTypeArray
+isEqualTypeParams
+isFilePatchingEnabled
+isFlashlightOn
+isFlatEmpty
+isForcedWalk
+isFormationLeader
+isGroupDeletedWhenEmpty
+isHidden
+isInRemainsCollector
+isInstructorFigureEnabled
+isIRLaserOn
+isKeyActive
+isKindOf
+isLaserOn
+isLightOn
+isLocalized
+isManualFire
+isMarkedForCollection
+isMultiplayer
+isMultiplayerSolo
+isNil
+isNull
+isNumber
+isObjectHidden
+isObjectRTD
+isOnRoad
+isPipEnabled
+isPlayer
+isRealTime
+isRemoteExecuted
+isRemoteExecutedJIP
+isServer
+isShowing3DIcons
+isSimpleObject
+isSprintAllowed
+isStaminaEnabled
+isSteamMission
+isStreamFriendlyUIEnabled
+isStressDamageEnabled
+isText
+isTouchingGround
+isTurnedOut
+isTutHintsEnabled
+isUAVConnectable
+isUAVConnected
+isUIContext
+isUniformAllowed
+isVehicleCargo
+isVehicleRadarOn
+isVehicleSensorEnabled
+isWalking
+isWeaponDeployed
+isWeaponRested
+itemCargo
+items
+itemsWithMagazines
+join
+joinAs
+joinAsSilent
+joinSilent
+joinString
+kbAddDatabase
+kbAddDatabaseTargets
+kbAddTopic
+kbHasTopic
+kbReact
+kbRemoveTopic
+kbTell
+kbWasSaid
+keyImage
+keyName
+knowsAbout
+land
+landAt
+landResult
+language
+laserTarget
+lbAdd
+lbClear
+lbColor
+lbColorRight
+lbCurSel
+lbData
+lbDelete
+lbIsSelected
+lbPicture
+lbPictureRight
+lbSelection
+lbSetColor
+lbSetColorRight
+lbSetCurSel
+lbSetData
+lbSetPicture
+lbSetPictureColor
+lbSetPictureColorDisabled
+lbSetPictureColorSelected
+lbSetPictureRight
+lbSetPictureRightColor
+lbSetPictureRightColorDisabled
+lbSetPictureRightColorSelected
+lbSetSelectColor
+lbSetSelectColorRight
+lbSetSelected
+lbSetText
+lbSetTextRight
+lbSetTooltip
+lbSetValue
+lbSize
+lbSort
+lbSortByValue
+lbText
+lbTextRight
+lbValue
+leader
+leaderboardDeInit
+leaderboardGetRows
+leaderboardInit
+leaderboardRequestRowsFriends
+leaderboardRequestRowsGlobal
+leaderboardRequestRowsGlobalAroundUser
+leaderboardsRequestUploadScore
+leaderboardsRequestUploadScoreKeepBest
+leaderboardState
+leaveVehicle
+libraryCredits
+libraryDisclaimers
+lifeState
+lightAttachObject
+lightDetachObject
+lightIsOn
+lightnings
+limitSpeed
+linearConversion
+lineBreak
+lineIntersects
+lineIntersectsObjs
+lineIntersectsSurfaces
+lineIntersectsWith
+linkItem
+list
+listObjects
+listRemoteTargets
+listVehicleSensors
+ln
+lnbAddArray
+lnbAddColumn
+lnbAddRow
+lnbClear
+lnbColor
+lnbColorRight
+lnbCurSelRow
+lnbData
+lnbDeleteColumn
+lnbDeleteRow
+lnbGetColumnsPosition
+lnbPicture
+lnbPictureRight
+lnbSetColor
+lnbSetColorRight
+lnbSetColumnsPos
+lnbSetCurSelRow
+lnbSetData
+lnbSetPicture
+lnbSetPictureColor
+lnbSetPictureColorRight
+lnbSetPictureColorSelected
+lnbSetPictureColorSelectedRight
+lnbSetPictureRight
+lnbSetText
+lnbSetTextRight
+lnbSetValue
+lnbSize
+lnbSort
+lnbSortByValue
+lnbText
+lnbTextRight
+lnbValue
+load
+loadAbs
+loadBackpack
+loadFile
+loadGame
+loadIdentity
+loadMagazine
+loadOverlay
+loadStatus
+loadUniform
+loadVest
+local
+localize
+locationNull
+locationPosition
+lock
+lockCameraTo
+lockCargo
+lockDriver
+locked
+lockedCargo
+lockedDriver
+lockedTurret
+lockIdentity
+lockTurret
+lockWP
+log
+logEntities
+logNetwork
+logNetworkTerminate
+lookAt
+lookAtPos
+magazineCargo
+magazines
+magazinesAllTurrets
+magazinesAmmo
+magazinesAmmoCargo
+magazinesAmmoFull
+magazinesDetail
+magazinesDetailBackpack
+magazinesDetailUniform
+magazinesDetailVest
+magazinesTurret
+magazineTurretAmmo
+mapAnimAdd
+mapAnimClear
+mapAnimCommit
+mapAnimDone
+mapCenterOnCamera
+mapGridPosition
+markAsFinishedOnSteam
+markerAlpha
+markerBrush
+markerColor
+markerDir
+markerPos
+markerShape
+markerSize
+markerText
+markerType
+max
+members
+menuAction
+menuAdd
+menuChecked
+menuClear
+menuCollapse
+menuData
+menuDelete
+menuEnable
+menuEnabled
+menuExpand
+menuHover
+menuPicture
+menuSetAction
+menuSetCheck
+menuSetData
+menuSetPicture
+menuSetValue
+menuShortcut
+menuShortcutText
+menuSize
+menuSort
+menuText
+menuURL
+menuValue
+min
+mineActive
+mineDetectedBy
+missionConfigFile
+missionDifficulty
+missionName
+missionNamespace
+missionStart
+missionVersion
+modelToWorld
+modelToWorldVisual
+modelToWorldVisualWorld
+modelToWorldWorld
+modParams
+moonIntensity
+moonPhase
+morale
+move
+move3DENCamera
+moveInAny
+moveInCargo
+moveInCommander
+moveInDriver
+moveInGunner
+moveInTurret
+moveObjectToEnd
+moveOut
+moveTime
+moveTo
+moveToCompleted
+moveToFailed
+musicVolume
+name
+nameSound
+nearEntities
+nearestBuilding
+nearestLocation
+nearestLocations
+nearestLocationWithDubbing
+nearestObject
+nearestObjects
+nearestTerrainObjects
+nearObjects
+nearObjectsReady
+nearRoads
+nearSupplies
+nearTargets
+needReload
+netId
+netObjNull
+newOverlay
+nextMenuItemIndex
+nextWeatherChange
+nMenuItems
+numberOfEnginesRTD
+numberToDate
+objectCurators
+objectFromNetId
+objectParent
+objNull
+objStatus
+onBriefingGear
+onBriefingGroup
+onBriefingNotes
+onBriefingPlan
+onBriefingTeamSwitch
+onCommandModeChanged
+onDoubleClick
+onEachFrame
+onGroupIconClick
+onGroupIconOverEnter
+onGroupIconOverLeave
+onHCGroupSelectionChanged
+onMapSingleClick
+onPlayerConnected
+onPlayerDisconnected
+onPreloadFinished
+onPreloadStarted
+onShowNewObject
+onTeamSwitch
+openCuratorInterface
+openDLCPage
+openDSInterface
+openMap
+openSteamApp
+openYoutubeVideo
+opfor
+orderGetIn
+overcast
+overcastForecast
+owner
+param
+params
+parseNumber
+parseSimpleArray
+parseText
+parsingNamespace
+particlesQuality
+pi
+pickWeaponPool
+pitch
+pixelGrid
+pixelGridBase
+pixelGridNoUIScale
+pixelH
+pixelW
+playableSlotsNumber
+playableUnits
+playAction
+playActionNow
+player
+playerRespawnTime
+playerSide
+playersNumber
+playGesture
+playMission
+playMove
+playMoveNow
+playMusic
+playScriptedMission
+playSound
+playSound3D
+position
+positionCameraToWorld
+posScreenToWorld
+posWorldToScreen
+ppEffectAdjust
+ppEffectCommit
+ppEffectCommitted
+ppEffectCreate
+ppEffectDestroy
+ppEffectEnable
+ppEffectEnabled
+ppEffectForceInNVG
+precision
+preloadCamera
+preloadObject
+preloadSound
+preloadTitleObj
+preloadTitleRsc
+primaryWeapon
+primaryWeaponItems
+primaryWeaponMagazine
+priority
+processDiaryLink
+processInitCommands
+productVersion
+profileName
+profileNamespace
+profileNameSteam
+progressLoadingScreen
+progressPosition
+progressSetPosition
+publicVariable
+publicVariableClient
+publicVariableServer
+pushBack
+pushBackUnique
+putWeaponPool
+queryItemsPool
+queryMagazinePool
+queryWeaponPool
+rad
+radioChannelAdd
+radioChannelCreate
+radioChannelRemove
+radioChannelSetCallSign
+radioChannelSetLabel
+radioVolume
+rain
+rainbow
+random
+rank
+rankId
+rating
+rectangular
+registeredTasks
+registerTask
+reload
+reloadEnabled
+remoteControl
+remoteExec
+remoteExecCall
+remoteExecutedOwner
+remove3DENConnection
+remove3DENEventHandler
+remove3DENLayer
+removeAction
+removeAll3DENEventHandlers
+removeAllActions
+removeAllAssignedItems
+removeAllContainers
+removeAllCuratorAddons
+removeAllCuratorCameraAreas
+removeAllCuratorEditingAreas
+removeAllEventHandlers
+removeAllHandgunItems
+removeAllItems
+removeAllItemsWithMagazines
+removeAllMissionEventHandlers
+removeAllMPEventHandlers
+removeAllMusicEventHandlers
+removeAllOwnedMines
+removeAllPrimaryWeaponItems
+removeAllWeapons
+removeBackpack
+removeBackpackGlobal
+removeCuratorAddons
+removeCuratorCameraArea
+removeCuratorEditableObjects
+removeCuratorEditingArea
+removeDrawIcon
+removeDrawLinks
+removeEventHandler
+removeFromRemainsCollector
+removeGoggles
+removeGroupIcon
+removeHandgunItem
+removeHeadgear
+removeItem
+removeItemFromBackpack
+removeItemFromUniform
+removeItemFromVest
+removeItems
+removeMagazine
+removeMagazineGlobal
+removeMagazines
+removeMagazinesTurret
+removeMagazineTurret
+removeMenuItem
+removeMissionEventHandler
+removeMPEventHandler
+removeMusicEventHandler
+removeOwnedMine
+removePrimaryWeaponItem
+removeSecondaryWeaponItem
+removeSimpleTask
+removeSwitchableUnit
+removeTeamMember
+removeUniform
+removeVest
+removeWeapon
+removeWeaponAttachmentCargo
+removeWeaponCargo
+removeWeaponGlobal
+removeWeaponTurret
+reportRemoteTarget
+requiredVersion
+resetCamShake
+resetSubgroupDirection
+resistance
+resize
+resources
+respawnVehicle
+restartEditorCamera
+reveal
+revealMine
+reverse
+reversedMouseY
+roadAt
+roadsConnectedTo
+roleDescription
+ropeAttachedObjects
+ropeAttachedTo
+ropeAttachEnabled
+ropeAttachTo
+ropeCreate
+ropeCut
+ropeDestroy
+ropeDetach
+ropeEndPosition
+ropeLength
+ropes
+ropeUnwind
+ropeUnwound
+rotorsForcesRTD
+rotorsRpmRTD
+round
+runInitScript
+safeZoneH
+safeZoneW
+safeZoneWAbs
+safeZoneX
+safeZoneXAbs
+safeZoneY
+save3DENInventory
+saveGame
+saveIdentity
+saveJoysticks
+saveOverlay
+saveProfileNamespace
+saveStatus
+saveVar
+savingEnabled
+say
+say2D
+say3D
+score
+scoreSide
+screenshot
+screenToWorld
+scriptDone
+scriptName
+scriptNull
+scudState
+secondaryWeapon
+secondaryWeaponItems
+secondaryWeaponMagazine
+select
+selectBestPlaces
+selectDiarySubject
+selectedEditorObjects
+selectEditorObject
+selectionNames
+selectionPosition
+selectLeader
+selectMax
+selectMin
+selectNoPlayer
+selectPlayer
+selectRandom
+selectRandomWeighted
+selectWeapon
+selectWeaponTurret
+sendAUMessage
+sendSimpleCommand
+sendTask
+sendTaskResult
+sendUDPMessage
+serverCommand
+serverCommandAvailable
+serverCommandExecutable
+serverName
+serverTime
+set
+set3DENAttribute
+set3DENAttributes
+set3DENGrid
+set3DENIconsVisible
+set3DENLayer
+set3DENLinesVisible
+set3DENLogicType
+set3DENMissionAttribute
+set3DENMissionAttributes
+set3DENModelsVisible
+set3DENObjectType
+set3DENSelected
+setAccTime
+setActualCollectiveRTD
+setAirplaneThrottle
+setAirportSide
+setAmmo
+setAmmoCargo
+setAmmoOnPylon
+setAnimSpeedCoef
+setAperture
+setApertureNew
+setArmoryPoints
+setAttributes
+setAutonomous
+setBehaviour
+setBleedingRemaining
+setBrakesRTD
+setCameraInterest
+setCamShakeDefParams
+setCamShakeParams
+setCamUseTI
+setCaptive
+setCenterOfMass
+setCollisionLight
+setCombatMode
+setCompassOscillation
+setConvoySeparation
+setCuratorCameraAreaCeiling
+setCuratorCoef
+setCuratorEditingAreaType
+setCuratorWaypointCost
+setCurrentChannel
+setCurrentTask
+setCurrentWaypoint
+setCustomAimCoef
+setCustomWeightRTD
+setDamage
+setDammage
+setDate
+setDebriefingText
+setDefaultCamera
+setDestination
+setDetailMapBlendPars
+setDir
+setDirection
+setDrawIcon
+setDriveOnPath
+setDropInterval
+setDynamicSimulationDistance
+setDynamicSimulationDistanceCoef
+setEditorMode
+setEditorObjectScope
+setEffectCondition
+setEngineRpmRTD
+setFace
+setFaceAnimation
+setFatigue
+setFeatureType
+setFlagAnimationPhase
+setFlagOwner
+setFlagSide
+setFlagTexture
+setFog
+setForceGeneratorRTD
+setFormation
+setFormationTask
+setFormDir
+setFriend
+setFromEditor
+setFSMVariable
+setFuel
+setFuelCargo
+setGroupIcon
+setGroupIconParams
+setGroupIconsSelectable
+setGroupIconsVisible
+setGroupId
+setGroupIdGlobal
+setGroupOwner
+setGusts
+setHideBehind
+setHit
+setHitIndex
+setHitPointDamage
+setHorizonParallaxCoef
+setHUDMovementLevels
+setIdentity
+setImportance
+setInfoPanel
+setLeader
+setLightAmbient
+setLightAttenuation
+setLightBrightness
+setLightColor
+setLightDayLight
+setLightFlareMaxDistance
+setLightFlareSize
+setLightIntensity
+setLightnings
+setLightUseFlare
+setLocalWindParams
+setMagazineTurretAmmo
+setMarkerAlpha
+setMarkerAlphaLocal
+setMarkerBrush
+setMarkerBrushLocal
+setMarkerColor
+setMarkerColorLocal
+setMarkerDir
+setMarkerDirLocal
+setMarkerPos
+setMarkerPosLocal
+setMarkerShape
+setMarkerShapeLocal
+setMarkerSize
+setMarkerSizeLocal
+setMarkerText
+setMarkerTextLocal
+setMarkerType
+setMarkerTypeLocal
+setMass
+setMimic
+setMousePosition
+setMusicEffect
+setMusicEventHandler
+setName
+setNameSound
+setObjectArguments
+setObjectMaterial
+setObjectMaterialGlobal
+setObjectProxy
+setObjectTexture
+setObjectTextureGlobal
+setObjectViewDistance
+setOvercast
+setOwner
+setOxygenRemaining
+setParticleCircle
+setParticleClass
+setParticleFire
+setParticleParams
+setParticleRandom
+setPilotCameraDirection
+setPilotCameraRotation
+setPilotCameraTarget
+setPilotLight
+setPiPEffect
+setPitch
+setPlateNumber
+setPlayable
+setPlayerRespawnTime
+setPos
+setPosASL
+setPosASL2
+setPosASLW
+setPosATL
+setPosition
+setPosWorld
+setPylonLoadOut
+setPylonsPriority
+setRadioMsg
+setRain
+setRainbow
+setRandomLip
+setRank
+setRectangular
+setRepairCargo
+setRotorBrakeRTD
+setShadowDistance
+setShotParents
+setSide
+setSimpleTaskAlwaysVisible
+setSimpleTaskCustomData
+setSimpleTaskDescription
+setSimpleTaskDestination
+setSimpleTaskTarget
+setSimpleTaskType
+setSimulWeatherLayers
+setSize
+setSkill
+setSlingLoad
+setSoundEffect
+setSpeaker
+setSpeech
+setSpeedMode
+setStamina
+setStaminaScheme
+setStatValue
+setSuppression
+setSystemOfUnits
+setTargetAge
+setTaskMarkerOffset
+setTaskResult
+setTaskState
+setTerrainGrid
+setText
+setTimeMultiplier
+setTitleEffect
+setToneMapping
+setToneMappingParams
+setTrafficDensity
+setTrafficDistance
+setTrafficGap
+setTrafficSpeed
+setTriggerActivation
+setTriggerArea
+setTriggerStatements
+setTriggerText
+setTriggerTimeout
+setTriggerType
+setType
+setUnconscious
+setUnitAbility
+setUnitLoadout
+setUnitPos
+setUnitPosWeak
+setUnitRank
+setUnitRecoilCoefficient
+setUnitTrait
+setUnloadInCombat
+setUserActionText
+setUserMFDText
+setUserMFDValue
+setVariable
+setVectorDir
+setVectorDirAndUp
+setVectorUp
+setVehicleAmmo
+setVehicleAmmoDef
+setVehicleArmor
+setVehicleCargo
+setVehicleId
+setVehicleInit
+setVehicleLock
+setVehiclePosition
+setVehicleRadar
+setVehicleReceiveRemoteTargets
+setVehicleReportOwnPosition
+setVehicleReportRemoteTargets
+setVehicleTIPars
+setVehicleVarName
+setVelocity
+setVelocityModelSpace
+setVelocityTransformation
+setViewDistance
+setVisibleIfTreeCollapsed
+setWantedRpmRTD
+setWaves
+setWaypointBehaviour
+setWaypointCombatMode
+setWaypointCompletionRadius
+setWaypointDescription
+setWaypointForceBehaviour
+setWaypointFormation
+setWaypointHousePosition
+setWaypointLoiterRadius
+setWaypointLoiterType
+setWaypointName
+setWaypointPosition
+setWaypointScript
+setWaypointSpeed
+setWaypointStatements
+setWaypointTimeout
+setWaypointType
+setWaypointVisible
+setWeaponReloadingTime
+setWind
+setWindDir
+setWindForce
+setWindStr
+setWingForceScaleRTD
+setWPPos
+show3DIcons
+showChat
+showCinemaBorder
+showCommandingMenu
+showCompass
+showCuratorCompass
+showGPS
+showHUD
+showLegend
+showMap
+shownArtilleryComputer
+shownChat
+shownCompass
+shownCuratorCompass
+showNewEditorObject
+shownGPS
+shownHUD
+shownMap
+shownPad
+shownRadio
+shownScoretable
+shownUAVFeed
+shownWarrant
+shownWatch
+showPad
+showRadio
+showScoretable
+showSubtitles
+showUAVFeed
+showWarrant
+showWatch
+showWaypoint
+showWaypoints
+side
+sideAmbientLife
+sideChat
+sideEmpty
+sideEnemy
+sideFriendly
+sideLogic
+sideRadio
+sideUnknown
+simpleTasks
+simulationEnabled
+simulCloudDensity
+simulCloudOcclusion
+simulInClouds
+simulWeatherSync
+sin
+size
+sizeOf
+skill
+skillFinal
+skipTime
+sleep
+sliderPosition
+sliderRange
+sliderSetPosition
+sliderSetRange
+sliderSetSpeed
+sliderSpeed
+slingLoadAssistantShown
+soldierMagazines
+someAmmo
+sort
+soundVolume
+speaker
+speed
+speedMode
+splitString
+sqrt
+squadParams
+stance
+startLoadingScreen
+stop
+stopEngineRTD
+stopped
+str
+sunOrMoon
+supportInfo
+suppressFor
+surfaceIsWater
+surfaceNormal
+surfaceType
+swimInDepth
+switchableUnits
+switchAction
+switchCamera
+switchGesture
+switchLight
+switchMove
+synchronizedObjects
+synchronizedTriggers
+synchronizedWaypoints
+synchronizeObjectsAdd
+synchronizeObjectsRemove
+synchronizeTrigger
+synchronizeWaypoint
+systemChat
+systemOfUnits
+tan
+targetKnowledge
+targets
+targetsAggregate
+targetsQuery
+taskAlwaysVisible
+taskChildren
+taskCompleted
+taskCustomData
+taskDescription
+taskDestination
+taskHint
+taskMarkerOffset
+taskNull
+taskParent
+taskResult
+taskState
+taskType
+teamMember
+teamMemberNull
+teamName
+teams
+teamSwitch
+teamSwitchEnabled
+teamType
+terminate
+terrainIntersect
+terrainIntersectASL
+terrainIntersectAtASL
+text
+textLog
+textLogFormat
+tg
+time
+timeMultiplier
+titleCut
+titleFadeOut
+titleObj
+titleRsc
+titleText
+toArray
+toFixed
+toLower
+toString
+toUpper
+triggerActivated
+triggerActivation
+triggerArea
+triggerAttachedVehicle
+triggerAttachObject
+triggerAttachVehicle
+triggerDynamicSimulation
+triggerStatements
+triggerText
+triggerTimeout
+triggerTimeoutCurrent
+triggerType
+turretLocal
+turretOwner
+turretUnit
+tvAdd
+tvClear
+tvCollapse
+tvCollapseAll
+tvCount
+tvCurSel
+tvData
+tvDelete
+tvExpand
+tvExpandAll
+tvPicture
+tvPictureRight
+tvSetColor
+tvSetCurSel
+tvSetData
+tvSetPicture
+tvSetPictureColor
+tvSetPictureColorDisabled
+tvSetPictureColorSelected
+tvSetPictureRight
+tvSetPictureRightColor
+tvSetPictureRightColorDisabled
+tvSetPictureRightColorSelected
+tvSetSelectColor
+tvSetText
+tvSetTooltip
+tvSetValue
+tvSort
+tvSortByValue
+tvText
+tvTooltip
+tvValue
+type
+typeName
+typeOf
+UAVControl
+uiNamespace
+uiSleep
+unassignCurator
+unassignItem
+unassignTeam
+unassignVehicle
+underwater
+uniform
+uniformContainer
+uniformItems
+uniformMagazines
+unitAddons
+unitAimPosition
+unitAimPositionVisual
+unitBackpack
+unitIsUAV
+unitPos
+unitReady
+unitRecoilCoefficient
+units
+unitsBelowHeight
+unlinkItem
+unlockAchievement
+unregisterTask
+updateDrawIcon
+updateMenuItem
+updateObjectTree
+useAIOperMapObstructionTest
+useAISteeringComponent
+useAudioTimeForMoves
+userInputDisabled
+vectorAdd
+vectorCos
+vectorCrossProduct
+vectorDiff
+vectorDir
+vectorDirVisual
+vectorDistance
+vectorDistanceSqr
+vectorDotProduct
+vectorFromTo
+vectorMagnitude
+vectorMagnitudeSqr
+vectorModelToWorld
+vectorModelToWorldVisual
+vectorMultiply
+vectorNormalized
+vectorUp
+vectorUpVisual
+vectorWorldToModel
+vectorWorldToModelVisual
+vehicle
+vehicleCargoEnabled
+vehicleChat
+vehicleRadio
+vehicleReceiveRemoteTargets
+vehicleReportOwnPosition
+vehicleReportRemoteTargets
+vehicles
+vehicleVarName
+velocity
+velocityModelSpace
+verifySignature
+vest
+vestContainer
+vestItems
+vestMagazines
+viewDistance
+visibleCompass
+visibleGPS
+visibleMap
+visiblePosition
+visiblePositionASL
+visibleScoretable
+visibleWatch
+waitUntil
+waves
+waypointAttachedObject
+waypointAttachedVehicle
+waypointAttachObject
+waypointAttachVehicle
+waypointBehaviour
+waypointCombatMode
+waypointCompletionRadius
+waypointDescription
+waypointForceBehaviour
+waypointFormation
+waypointHousePosition
+waypointLoiterRadius
+waypointLoiterType
+waypointName
+waypointPosition
+waypoints
+waypointScript
+waypointsEnabledUAV
+waypointShow
+waypointSpeed
+waypointStatements
+waypointTimeout
+waypointTimeoutCurrent
+waypointType
+waypointVisible
+weaponAccessories
+weaponAccessoriesCargo
+weaponCargo
+weaponDirection
+weaponInertia
+weaponLowered
+weapons
+weaponsItems
+weaponsItemsCargo
+weaponState
+weaponsTurret
+weightRTD
+west
+WFSideText
+wind
+windDir
+windRTD
+windStr
+wingsForcesRTD
+worldName
+worldSize
+worldToModel
+worldToModelVisual
+worldToScreen
+
+----------------------------------------------------
+
+[
+	["function", "abs"],
+	["function", "accTime"],
+	["function", "acos"],
+	["function", "action"],
+	["function", "actionIDs"],
+	["function", "actionKeys"],
+	["function", "actionKeysImages"],
+	["function", "actionKeysNames"],
+	["function", "actionKeysNamesArray"],
+	["function", "actionName"],
+	["function", "actionParams"],
+	["function", "activateAddons"],
+	["function", "activatedAddons"],
+	["function", "activateKey"],
+	["function", "add3DENConnection"],
+	["function", "add3DENEventHandler"],
+	["function", "add3DENLayer"],
+	["function", "addAction"],
+	["function", "addBackpack"],
+	["function", "addBackpackCargo"],
+	["function", "addBackpackCargoGlobal"],
+	["function", "addBackpackGlobal"],
+	["function", "addCamShake"],
+	["function", "addCuratorAddons"],
+	["function", "addCuratorCameraArea"],
+	["function", "addCuratorEditableObjects"],
+	["function", "addCuratorEditingArea"],
+	["function", "addCuratorPoints"],
+	["function", "addEditorObject"],
+	["function", "addEventHandler"],
+	["function", "addForce"],
+	["function", "addForceGeneratorRTD"],
+	["function", "addGoggles"],
+	["function", "addGroupIcon"],
+	["function", "addHandgunItem"],
+	["function", "addHeadgear"],
+	["function", "addItem"],
+	["function", "addItemCargo"],
+	["function", "addItemCargoGlobal"],
+	["function", "addItemPool"],
+	["function", "addItemToBackpack"],
+	["function", "addItemToUniform"],
+	["function", "addItemToVest"],
+	["function", "addLiveStats"],
+	["function", "addMagazine"],
+	["function", "addMagazineAmmoCargo"],
+	["function", "addMagazineCargo"],
+	["function", "addMagazineCargoGlobal"],
+	["function", "addMagazineGlobal"],
+	["function", "addMagazinePool"],
+	["function", "addMagazines"],
+	["function", "addMagazineTurret"],
+	["function", "addMenu"],
+	["function", "addMenuItem"],
+	["function", "addMissionEventHandler"],
+	["function", "addMPEventHandler"],
+	["function", "addMusicEventHandler"],
+	["function", "addOwnedMine"],
+	["function", "addPlayerScores"],
+	["function", "addPrimaryWeaponItem"],
+	["function", "addPublicVariableEventHandler"],
+	["function", "addRating"],
+	["function", "addResources"],
+	["function", "addScore"],
+	["function", "addScoreSide"],
+	["function", "addSecondaryWeaponItem"],
+	["function", "addSwitchableUnit"],
+	["function", "addTeamMember"],
+	["function", "addToRemainsCollector"],
+	["function", "addTorque"],
+	["function", "addUniform"],
+	["function", "addVehicle"],
+	["function", "addVest"],
+	["function", "addWaypoint"],
+	["function", "addWeapon"],
+	["function", "addWeaponCargo"],
+	["function", "addWeaponCargoGlobal"],
+	["function", "addWeaponGlobal"],
+	["function", "addWeaponItem"],
+	["function", "addWeaponPool"],
+	["function", "addWeaponTurret"],
+	["function", "admin"],
+	["function", "agent"],
+	["function", "agents"],
+	["function", "AGLToASL"],
+	["function", "aimedAtTarget"],
+	["function", "aimPos"],
+	["function", "airDensityCurveRTD"],
+	["function", "airDensityRTD"],
+	["function", "airplaneThrottle"],
+	["function", "airportSide"],
+	["function", "AISFinishHeal"],
+	["function", "alive"],
+	["function", "all3DENEntities"],
+	["function", "allAirports"],
+	["function", "allControls"],
+	["function", "allCurators"],
+	["function", "allCutLayers"],
+	["function", "allDead"],
+	["function", "allDeadMen"],
+	["function", "allDisplays"],
+	["function", "allGroups"],
+	["function", "allMapMarkers"],
+	["function", "allMines"],
+	["function", "allMissionObjects"],
+	["function", "allow3DMode"],
+	["function", "allowCrewInImmobile"],
+	["function", "allowCuratorLogicIgnoreAreas"],
+	["function", "allowDamage"],
+	["function", "allowDammage"],
+	["function", "allowFileOperations"],
+	["function", "allowFleeing"],
+	["function", "allowGetIn"],
+	["function", "allowSprint"],
+	["function", "allPlayers"],
+	["function", "allSimpleObjects"],
+	["function", "allSites"],
+	["function", "allTurrets"],
+	["function", "allUnits"],
+	["function", "allUnitsUAV"],
+	["function", "allVariables"],
+	["function", "ammo"],
+	["function", "ammoOnPylon"],
+	["function", "animate"],
+	["function", "animateBay"],
+	["function", "animateDoor"],
+	["function", "animatePylon"],
+	["function", "animateSource"],
+	["function", "animationNames"],
+	["function", "animationPhase"],
+	["function", "animationSourcePhase"],
+	["function", "animationState"],
+	["function", "append"],
+	["function", "apply"],
+	["function", "armoryPoints"],
+	["function", "arrayIntersect"],
+	["function", "asin"],
+	["function", "ASLToAGL"],
+	["function", "ASLToATL"],
+	["function", "assert"],
+	["function", "assignAsCargo"],
+	["function", "assignAsCargoIndex"],
+	["function", "assignAsCommander"],
+	["function", "assignAsDriver"],
+	["function", "assignAsGunner"],
+	["function", "assignAsTurret"],
+	["function", "assignCurator"],
+	["function", "assignedCargo"],
+	["function", "assignedCommander"],
+	["function", "assignedDriver"],
+	["function", "assignedGunner"],
+	["function", "assignedItems"],
+	["function", "assignedTarget"],
+	["function", "assignedTeam"],
+	["function", "assignedVehicle"],
+	["function", "assignedVehicleRole"],
+	["function", "assignItem"],
+	["function", "assignTeam"],
+	["function", "assignToAirport"],
+	["function", "atan"],
+	["function", "atan2"],
+	["function", "atg"],
+	["function", "ATLToASL"],
+	["function", "attachedObject"],
+	["function", "attachedObjects"],
+	["function", "attachedTo"],
+	["function", "attachObject"],
+	["function", "attachTo"],
+	["function", "attackEnabled"],
+	["function", "backpack"],
+	["function", "backpackCargo"],
+	["function", "backpackContainer"],
+	["function", "backpackItems"],
+	["function", "backpackMagazines"],
+	["function", "backpackSpaceFor"],
+	["function", "behaviour"],
+	["function", "benchmark"],
+	["function", "binocular"],
+	["function", "blufor"],
+	["function", "boundingBox"],
+	["function", "boundingBoxReal"],
+	["function", "boundingCenter"],
+	["function", "briefingName"],
+	["function", "buildingExit"],
+	["function", "buildingPos"],
+	["function", "buldozer_EnableRoadDiag"],
+	["function", "buldozer_IsEnabledRoadDiag"],
+	["function", "buldozer_LoadNewRoads"],
+	["function", "buldozer_reloadOperMap"],
+	["function", "buttonAction"],
+	["function", "buttonSetAction"],
+	["function", "cadetMode"],
+	["function", "callExtension"],
+	["function", "camCommand"],
+	["function", "camCommit"],
+	["function", "camCommitPrepared"],
+	["function", "camCommitted"],
+	["function", "camConstuctionSetParams"],
+	["function", "camCreate"],
+	["function", "camDestroy"],
+	["function", "cameraEffect"],
+	["function", "cameraEffectEnableHUD"],
+	["function", "cameraInterest"],
+	["function", "cameraOn"],
+	["function", "cameraView"],
+	["function", "campaignConfigFile"],
+	["function", "camPreload"],
+	["function", "camPreloaded"],
+	["function", "camPrepareBank"],
+	["function", "camPrepareDir"],
+	["function", "camPrepareDive"],
+	["function", "camPrepareFocus"],
+	["function", "camPrepareFov"],
+	["function", "camPrepareFovRange"],
+	["function", "camPreparePos"],
+	["function", "camPrepareRelPos"],
+	["function", "camPrepareTarget"],
+	["function", "camSetBank"],
+	["function", "camSetDir"],
+	["function", "camSetDive"],
+	["function", "camSetFocus"],
+	["function", "camSetFov"],
+	["function", "camSetFovRange"],
+	["function", "camSetPos"],
+	["function", "camSetRelPos"],
+	["function", "camSetTarget"],
+	["function", "camTarget"],
+	["function", "camUseNVG"],
+	["function", "canAdd"],
+	["function", "canAddItemToBackpack"],
+	["function", "canAddItemToUniform"],
+	["function", "canAddItemToVest"],
+	["function", "cancelSimpleTaskDestination"],
+	["function", "canFire"],
+	["function", "canMove"],
+	["function", "canSlingLoad"],
+	["function", "canStand"],
+	["function", "canSuspend"],
+	["function", "canTriggerDynamicSimulation"],
+	["function", "canUnloadInCombat"],
+	["function", "canVehicleCargo"],
+	["function", "captive"],
+	["function", "captiveNum"],
+	["function", "cbChecked"],
+	["function", "cbSetChecked"],
+	["function", "ceil"],
+	["function", "channelEnabled"],
+	["function", "cheatsEnabled"],
+	["function", "checkAIFeature"],
+	["function", "checkVisibility"],
+	["function", "civilian"],
+	["function", "className"],
+	["function", "clear3DENAttribute"],
+	["function", "clear3DENInventory"],
+	["function", "clearAllItemsFromBackpack"],
+	["function", "clearBackpackCargo"],
+	["function", "clearBackpackCargoGlobal"],
+	["function", "clearForcesRTD"],
+	["function", "clearGroupIcons"],
+	["function", "clearItemCargo"],
+	["function", "clearItemCargoGlobal"],
+	["function", "clearItemPool"],
+	["function", "clearMagazineCargo"],
+	["function", "clearMagazineCargoGlobal"],
+	["function", "clearMagazinePool"],
+	["function", "clearOverlay"],
+	["function", "clearRadio"],
+	["function", "clearVehicleInit"],
+	["function", "clearWeaponCargo"],
+	["function", "clearWeaponCargoGlobal"],
+	["function", "clearWeaponPool"],
+	["function", "clientOwner"],
+	["function", "closeDialog"],
+	["function", "closeDisplay"],
+	["function", "closeOverlay"],
+	["function", "collapseObjectTree"],
+	["function", "collect3DENHistory"],
+	["function", "collectiveRTD"],
+	["function", "combatMode"],
+	["function", "commandArtilleryFire"],
+	["function", "commandChat"],
+	["function", "commander"],
+	["function", "commandFire"],
+	["function", "commandFollow"],
+	["function", "commandFSM"],
+	["function", "commandGetOut"],
+	["function", "commandingMenu"],
+	["function", "commandMove"],
+	["function", "commandRadio"],
+	["function", "commandStop"],
+	["function", "commandSuppressiveFire"],
+	["function", "commandTarget"],
+	["function", "commandWatch"],
+	["function", "comment"],
+	["function", "commitOverlay"],
+	["function", "compile"],
+	["function", "compileFinal"],
+	["function", "completedFSM"],
+	["function", "composeText"],
+	["function", "configClasses"],
+	["function", "configFile"],
+	["function", "configHierarchy"],
+	["function", "configName"],
+	["function", "configNull"],
+	["function", "configProperties"],
+	["function", "configSourceAddonList"],
+	["function", "configSourceMod"],
+	["function", "configSourceModList"],
+	["function", "confirmSensorTarget"],
+	["function", "connectTerminalToUAV"],
+	["function", "controlNull"],
+	["function", "controlsGroupCtrl"],
+	["function", "copyFromClipboard"],
+	["function", "copyToClipboard"],
+	["function", "copyWaypoints"],
+	["function", "cos"],
+	["function", "count"],
+	["function", "countEnemy"],
+	["function", "countFriendly"],
+	["function", "countSide"],
+	["function", "countType"],
+	["function", "countUnknown"],
+	["function", "create3DENComposition"],
+	["function", "create3DENEntity"],
+	["function", "createAgent"],
+	["function", "createCenter"],
+	["function", "createDialog"],
+	["function", "createDiaryLink"],
+	["function", "createDiaryRecord"],
+	["function", "createDiarySubject"],
+	["function", "createDisplay"],
+	["function", "createGearDialog"],
+	["function", "createGroup"],
+	["function", "createGuardedPoint"],
+	["function", "createLocation"],
+	["function", "createMarker"],
+	["function", "createMarkerLocal"],
+	["function", "createMenu"],
+	["function", "createMine"],
+	["function", "createMissionDisplay"],
+	["function", "createMPCampaignDisplay"],
+	["function", "createSimpleObject"],
+	["function", "createSimpleTask"],
+	["function", "createSite"],
+	["function", "createSoundSource"],
+	["function", "createTask"],
+	["function", "createTeam"],
+	["function", "createTrigger"],
+	["function", "createUnit"],
+	["function", "createVehicle"],
+	["function", "createVehicleCrew"],
+	["function", "createVehicleLocal"],
+	["function", "crew"],
+	["function", "ctAddHeader"],
+	["function", "ctAddRow"],
+	["function", "ctClear"],
+	["function", "ctCurSel"],
+	["function", "ctData"],
+	["function", "ctFindHeaderRows"],
+	["function", "ctFindRowHeader"],
+	["function", "ctHeaderControls"],
+	["function", "ctHeaderCount"],
+	["function", "ctRemoveHeaders"],
+	["function", "ctRemoveRows"],
+	["function", "ctrlActivate"],
+	["function", "ctrlAddEventHandler"],
+	["function", "ctrlAngle"],
+	["function", "ctrlAutoScrollDelay"],
+	["function", "ctrlAutoScrollRewind"],
+	["function", "ctrlAutoScrollSpeed"],
+	["function", "ctrlChecked"],
+	["function", "ctrlClassName"],
+	["function", "ctrlCommit"],
+	["function", "ctrlCommitted"],
+	["function", "ctrlCreate"],
+	["function", "ctrlDelete"],
+	["function", "ctrlEnable"],
+	["function", "ctrlEnabled"],
+	["function", "ctrlFade"],
+	["function", "ctrlHTMLLoaded"],
+	["function", "ctrlIDC"],
+	["function", "ctrlIDD"],
+	["function", "ctrlMapAnimAdd"],
+	["function", "ctrlMapAnimClear"],
+	["function", "ctrlMapAnimCommit"],
+	["function", "ctrlMapAnimDone"],
+	["function", "ctrlMapCursor"],
+	["function", "ctrlMapMouseOver"],
+	["function", "ctrlMapScale"],
+	["function", "ctrlMapScreenToWorld"],
+	["function", "ctrlMapWorldToScreen"],
+	["function", "ctrlModel"],
+	["function", "ctrlModelDirAndUp"],
+	["function", "ctrlModelScale"],
+	["function", "ctrlParent"],
+	["function", "ctrlParentControlsGroup"],
+	["function", "ctrlPosition"],
+	["function", "ctrlRemoveAllEventHandlers"],
+	["function", "ctrlRemoveEventHandler"],
+	["function", "ctrlScale"],
+	["function", "ctrlSetActiveColor"],
+	["function", "ctrlSetAngle"],
+	["function", "ctrlSetAutoScrollDelay"],
+	["function", "ctrlSetAutoScrollRewind"],
+	["function", "ctrlSetAutoScrollSpeed"],
+	["function", "ctrlSetBackgroundColor"],
+	["function", "ctrlSetChecked"],
+	["function", "ctrlSetDisabledColor"],
+	["function", "ctrlSetEventHandler"],
+	["function", "ctrlSetFade"],
+	["function", "ctrlSetFocus"],
+	["function", "ctrlSetFont"],
+	["function", "ctrlSetFontH1"],
+	["function", "ctrlSetFontH1B"],
+	["function", "ctrlSetFontH2"],
+	["function", "ctrlSetFontH2B"],
+	["function", "ctrlSetFontH3"],
+	["function", "ctrlSetFontH3B"],
+	["function", "ctrlSetFontH4"],
+	["function", "ctrlSetFontH4B"],
+	["function", "ctrlSetFontH5"],
+	["function", "ctrlSetFontH5B"],
+	["function", "ctrlSetFontH6"],
+	["function", "ctrlSetFontH6B"],
+	["function", "ctrlSetFontHeight"],
+	["function", "ctrlSetFontHeightH1"],
+	["function", "ctrlSetFontHeightH2"],
+	["function", "ctrlSetFontHeightH3"],
+	["function", "ctrlSetFontHeightH4"],
+	["function", "ctrlSetFontHeightH5"],
+	["function", "ctrlSetFontHeightH6"],
+	["function", "ctrlSetFontHeightSecondary"],
+	["function", "ctrlSetFontP"],
+	["function", "ctrlSetFontPB"],
+	["function", "ctrlSetFontSecondary"],
+	["function", "ctrlSetForegroundColor"],
+	["function", "ctrlSetModel"],
+	["function", "ctrlSetModelDirAndUp"],
+	["function", "ctrlSetModelScale"],
+	["function", "ctrlSetPixelPrecision"],
+	["function", "ctrlSetPosition"],
+	["function", "ctrlSetScale"],
+	["function", "ctrlSetStructuredText"],
+	["function", "ctrlSetText"],
+	["function", "ctrlSetTextColor"],
+	["function", "ctrlSetTextColorSecondary"],
+	["function", "ctrlSetTextSecondary"],
+	["function", "ctrlSetTooltip"],
+	["function", "ctrlSetTooltipColorBox"],
+	["function", "ctrlSetTooltipColorShade"],
+	["function", "ctrlSetTooltipColorText"],
+	["function", "ctrlShow"],
+	["function", "ctrlShown"],
+	["function", "ctrlText"],
+	["function", "ctrlTextHeight"],
+	["function", "ctrlTextSecondary"],
+	["function", "ctrlTextWidth"],
+	["function", "ctrlType"],
+	["function", "ctrlVisible"],
+	["function", "ctRowControls"],
+	["function", "ctRowCount"],
+	["function", "ctSetCurSel"],
+	["function", "ctSetData"],
+	["function", "ctSetHeaderTemplate"],
+	["function", "ctSetRowTemplate"],
+	["function", "ctSetValue"],
+	["function", "ctValue"],
+	["function", "curatorAddons"],
+	["function", "curatorCamera"],
+	["function", "curatorCameraArea"],
+	["function", "curatorCameraAreaCeiling"],
+	["function", "curatorCoef"],
+	["function", "curatorEditableObjects"],
+	["function", "curatorEditingArea"],
+	["function", "curatorEditingAreaType"],
+	["function", "curatorMouseOver"],
+	["function", "curatorPoints"],
+	["function", "curatorRegisteredObjects"],
+	["function", "curatorSelected"],
+	["function", "curatorWaypointCost"],
+	["function", "current3DENOperation"],
+	["function", "currentChannel"],
+	["function", "currentCommand"],
+	["function", "currentMagazine"],
+	["function", "currentMagazineDetail"],
+	["function", "currentMagazineDetailTurret"],
+	["function", "currentMagazineTurret"],
+	["function", "currentMuzzle"],
+	["function", "currentNamespace"],
+	["function", "currentTask"],
+	["function", "currentTasks"],
+	["function", "currentThrowable"],
+	["function", "currentVisionMode"],
+	["function", "currentWaypoint"],
+	["function", "currentWeapon"],
+	["function", "currentWeaponMode"],
+	["function", "currentWeaponTurret"],
+	["function", "currentZeroing"],
+	["function", "cursorObject"],
+	["function", "cursorTarget"],
+	["function", "customChat"],
+	["function", "customRadio"],
+	["function", "cutFadeOut"],
+	["function", "cutObj"],
+	["function", "cutRsc"],
+	["function", "cutText"],
+	["function", "damage"],
+	["function", "date"],
+	["function", "dateToNumber"],
+	["function", "daytime"],
+	["function", "deActivateKey"],
+	["function", "debriefingText"],
+	["function", "debugFSM"],
+	["function", "debugLog"],
+	["function", "deg"],
+	["function", "delete3DENEntities"],
+	["function", "deleteAt"],
+	["function", "deleteCenter"],
+	["function", "deleteCollection"],
+	["function", "deleteEditorObject"],
+	["function", "deleteGroup"],
+	["function", "deleteGroupWhenEmpty"],
+	["function", "deleteIdentity"],
+	["function", "deleteLocation"],
+	["function", "deleteMarker"],
+	["function", "deleteMarkerLocal"],
+	["function", "deleteRange"],
+	["function", "deleteResources"],
+	["function", "deleteSite"],
+	["function", "deleteStatus"],
+	["function", "deleteTeam"],
+	["function", "deleteVehicle"],
+	["function", "deleteVehicleCrew"],
+	["function", "deleteWaypoint"],
+	["function", "detach"],
+	["function", "detectedMines"],
+	["function", "diag_activeMissionFSMs"],
+	["function", "diag_activeScripts"],
+	["function", "diag_activeSQFScripts"],
+	["function", "diag_activeSQSScripts"],
+	["function", "diag_captureFrame"],
+	["function", "diag_captureFrameToFile"],
+	["function", "diag_captureSlowFrame"],
+	["function", "diag_codePerformance"],
+	["function", "diag_drawMode"],
+	["function", "diag_dynamicSimulationEnd"],
+	["function", "diag_enable"],
+	["function", "diag_enabled"],
+	["function", "diag_fps"],
+	["function", "diag_fpsMin"],
+	["function", "diag_frameNo"],
+	["function", "diag_lightNewLoad"],
+	["function", "diag_list"],
+	["function", "diag_log"],
+	["function", "diag_logSlowFrame"],
+	["function", "diag_mergeConfigFile"],
+	["function", "diag_recordTurretLimits"],
+	["function", "diag_setLightNew"],
+	["function", "diag_tickTime"],
+	["function", "diag_toggle"],
+	["function", "dialog"],
+	["function", "diarySubjectExists"],
+	["function", "didJIP"],
+	["function", "didJIPOwner"],
+	["function", "difficulty"],
+	["function", "difficultyEnabled"],
+	["function", "difficultyEnabledRTD"],
+	["function", "difficultyOption"],
+	["function", "direction"],
+	["function", "directSay"],
+	["function", "disableAI"],
+	["function", "disableCollisionWith"],
+	["function", "disableConversation"],
+	["function", "disableDebriefingStats"],
+	["function", "disableMapIndicators"],
+	["function", "disableNVGEquipment"],
+	["function", "disableRemoteSensors"],
+	["function", "disableSerialization"],
+	["function", "disableTIEquipment"],
+	["function", "disableUAVConnectability"],
+	["function", "disableUserInput"],
+	["function", "displayAddEventHandler"],
+	["function", "displayCtrl"],
+	["function", "displayNull"],
+	["function", "displayParent"],
+	["function", "displayRemoveAllEventHandlers"],
+	["function", "displayRemoveEventHandler"],
+	["function", "displaySetEventHandler"],
+	["function", "dissolveTeam"],
+	["function", "distance"],
+	["function", "distance2D"],
+	["function", "distanceSqr"],
+	["function", "distributionRegion"],
+	["function", "do3DENAction"],
+	["function", "doArtilleryFire"],
+	["function", "doFire"],
+	["function", "doFollow"],
+	["function", "doFSM"],
+	["function", "doGetOut"],
+	["function", "doMove"],
+	["function", "doorPhase"],
+	["function", "doStop"],
+	["function", "doSuppressiveFire"],
+	["function", "doTarget"],
+	["function", "doWatch"],
+	["function", "drawArrow"],
+	["function", "drawEllipse"],
+	["function", "drawIcon"],
+	["function", "drawIcon3D"],
+	["function", "drawLine"],
+	["function", "drawLine3D"],
+	["function", "drawLink"],
+	["function", "drawLocation"],
+	["function", "drawPolygon"],
+	["function", "drawRectangle"],
+	["function", "drawTriangle"],
+	["function", "driver"],
+	["function", "drop"],
+	["function", "dynamicSimulationDistance"],
+	["function", "dynamicSimulationDistanceCoef"],
+	["function", "dynamicSimulationEnabled"],
+	["function", "dynamicSimulationSystemEnabled"],
+	["function", "east"],
+	["function", "edit3DENMissionAttributes"],
+	["function", "editObject"],
+	["function", "editorSetEventHandler"],
+	["function", "effectiveCommander"],
+	["function", "emptyPositions"],
+	["function", "enableAI"],
+	["function", "enableAIFeature"],
+	["function", "enableAimPrecision"],
+	["function", "enableAttack"],
+	["function", "enableAudioFeature"],
+	["function", "enableAutoStartUpRTD"],
+	["function", "enableAutoTrimRTD"],
+	["function", "enableCamShake"],
+	["function", "enableCaustics"],
+	["function", "enableChannel"],
+	["function", "enableCollisionWith"],
+	["function", "enableCopilot"],
+	["function", "enableDebriefingStats"],
+	["function", "enableDiagLegend"],
+	["function", "enableDynamicSimulation"],
+	["function", "enableDynamicSimulationSystem"],
+	["function", "enableEndDialog"],
+	["function", "enableEngineArtillery"],
+	["function", "enableEnvironment"],
+	["function", "enableFatigue"],
+	["function", "enableGunLights"],
+	["function", "enableInfoPanelComponent"],
+	["function", "enableIRLasers"],
+	["function", "enableMimics"],
+	["function", "enablePersonTurret"],
+	["function", "enableRadio"],
+	["function", "enableReload"],
+	["function", "enableRopeAttach"],
+	["function", "enableSatNormalOnDetail"],
+	["function", "enableSaving"],
+	["function", "enableSentences"],
+	["function", "enableSimulation"],
+	["function", "enableSimulationGlobal"],
+	["function", "enableStamina"],
+	["function", "enableStressDamage"],
+	["function", "enableTeamSwitch"],
+	["function", "enableTraffic"],
+	["function", "enableUAVConnectability"],
+	["function", "enableUAVWaypoints"],
+	["function", "enableVehicleCargo"],
+	["function", "enableVehicleSensor"],
+	["function", "enableWeaponDisassembly"],
+	["function", "endl"],
+	["function", "endLoadingScreen"],
+	["function", "endMission"],
+	["function", "engineOn"],
+	["function", "enginesIsOnRTD"],
+	["function", "enginesPowerRTD"],
+	["function", "enginesRpmRTD"],
+	["function", "enginesTorqueRTD"],
+	["function", "entities"],
+	["function", "environmentEnabled"],
+	["function", "estimatedEndServerTime"],
+	["function", "estimatedTimeLeft"],
+	["function", "evalObjectArgument"],
+	["function", "everyBackpack"],
+	["function", "everyContainer"],
+	["function", "exec"],
+	["function", "execEditorScript"],
+	["function", "exp"],
+	["function", "expectedDestination"],
+	["function", "exportJIPMessages"],
+	["function", "eyeDirection"],
+	["function", "eyePos"],
+	["function", "face"],
+	["function", "faction"],
+	["function", "fadeMusic"],
+	["function", "fadeRadio"],
+	["function", "fadeSound"],
+	["function", "fadeSpeech"],
+	["function", "failMission"],
+	["function", "fillWeaponsFromPool"],
+	["function", "find"],
+	["function", "findCover"],
+	["function", "findDisplay"],
+	["function", "findEditorObject"],
+	["function", "findEmptyPosition"],
+	["function", "findEmptyPositionReady"],
+	["function", "findIf"],
+	["function", "findNearestEnemy"],
+	["function", "finishMissionInit"],
+	["function", "finite"],
+	["function", "fire"],
+	["function", "fireAtTarget"],
+	["function", "firstBackpack"],
+	["function", "flag"],
+	["function", "flagAnimationPhase"],
+	["function", "flagOwner"],
+	["function", "flagSide"],
+	["function", "flagTexture"],
+	["function", "fleeing"],
+	["function", "floor"],
+	["function", "flyInHeight"],
+	["function", "flyInHeightASL"],
+	["function", "fog"],
+	["function", "fogForecast"],
+	["function", "fogParams"],
+	["function", "forceAddUniform"],
+	["function", "forceAtPositionRTD"],
+	["function", "forcedMap"],
+	["function", "forceEnd"],
+	["function", "forceFlagTexture"],
+	["function", "forceFollowRoad"],
+	["function", "forceGeneratorRTD"],
+	["function", "forceMap"],
+	["function", "forceRespawn"],
+	["function", "forceSpeed"],
+	["function", "forceWalk"],
+	["function", "forceWeaponFire"],
+	["function", "forceWeatherChange"],
+	["function", "forgetTarget"],
+	["function", "format"],
+	["function", "formation"],
+	["function", "formationDirection"],
+	["function", "formationLeader"],
+	["function", "formationMembers"],
+	["function", "formationPosition"],
+	["function", "formationTask"],
+	["function", "formatText"],
+	["function", "formLeader"],
+	["function", "freeLook"],
+	["function", "fromEditor"],
+	["function", "fuel"],
+	["function", "fullCrew"],
+	["function", "gearIDCAmmoCount"],
+	["function", "gearSlotAmmoCount"],
+	["function", "gearSlotData"],
+	["function", "get3DENActionState"],
+	["function", "get3DENAttribute"],
+	["function", "get3DENCamera"],
+	["function", "get3DENConnections"],
+	["function", "get3DENEntity"],
+	["function", "get3DENEntityID"],
+	["function", "get3DENGrid"],
+	["function", "get3DENIconsVisible"],
+	["function", "get3DENLayerEntities"],
+	["function", "get3DENLinesVisible"],
+	["function", "get3DENMissionAttribute"],
+	["function", "get3DENMouseOver"],
+	["function", "get3DENSelected"],
+	["function", "getAimingCoef"],
+	["function", "getAllEnvSoundControllers"],
+	["function", "getAllHitPointsDamage"],
+	["function", "getAllOwnedMines"],
+	["function", "getAllSoundControllers"],
+	["function", "getAmmoCargo"],
+	["function", "getAnimAimPrecision"],
+	["function", "getAnimSpeedCoef"],
+	["function", "getArray"],
+	["function", "getArtilleryAmmo"],
+	["function", "getArtilleryComputerSettings"],
+	["function", "getArtilleryETA"],
+	["function", "getAssignedCuratorLogic"],
+	["function", "getAssignedCuratorUnit"],
+	["function", "getBackpackCargo"],
+	["function", "getBleedingRemaining"],
+	["function", "getBurningValue"],
+	["function", "getCameraViewDirection"],
+	["function", "getCargoIndex"],
+	["function", "getCenterOfMass"],
+	["function", "getClientState"],
+	["function", "getClientStateNumber"],
+	["function", "getCompatiblePylonMagazines"],
+	["function", "getConnectedUAV"],
+	["function", "getContainerMaxLoad"],
+	["function", "getCursorObjectParams"],
+	["function", "getCustomAimCoef"],
+	["function", "getDammage"],
+	["function", "getDescription"],
+	["function", "getDir"],
+	["function", "getDirVisual"],
+	["function", "getDLCAssetsUsage"],
+	["function", "getDLCAssetsUsageByName"],
+	["function", "getDLCs"],
+	["function", "getDLCUsageTime"],
+	["function", "getEditorCamera"],
+	["function", "getEditorMode"],
+	["function", "getEditorObjectScope"],
+	["function", "getElevationOffset"],
+	["function", "getEngineTargetRpmRTD"],
+	["function", "getEnvSoundController"],
+	["function", "getFatigue"],
+	["function", "getFieldManualStartPage"],
+	["function", "getForcedFlagTexture"],
+	["function", "getFriend"],
+	["function", "getFSMVariable"],
+	["function", "getFuelCargo"],
+	["function", "getGroupIcon"],
+	["function", "getGroupIconParams"],
+	["function", "getGroupIcons"],
+	["function", "getHideFrom"],
+	["function", "getHit"],
+	["function", "getHitIndex"],
+	["function", "getHitPointDamage"],
+	["function", "getItemCargo"],
+	["function", "getMagazineCargo"],
+	["function", "getMarkerColor"],
+	["function", "getMarkerPos"],
+	["function", "getMarkerSize"],
+	["function", "getMarkerType"],
+	["function", "getMass"],
+	["function", "getMissionConfig"],
+	["function", "getMissionConfigValue"],
+	["function", "getMissionDLCs"],
+	["function", "getMissionLayerEntities"],
+	["function", "getMissionLayers"],
+	["function", "getModelInfo"],
+	["function", "getMousePosition"],
+	["function", "getMusicPlayedTime"],
+	["function", "getNumber"],
+	["function", "getObjectArgument"],
+	["function", "getObjectChildren"],
+	["function", "getObjectDLC"],
+	["function", "getObjectMaterials"],
+	["function", "getObjectProxy"],
+	["function", "getObjectTextures"],
+	["function", "getObjectType"],
+	["function", "getObjectViewDistance"],
+	["function", "getOxygenRemaining"],
+	["function", "getPersonUsedDLCs"],
+	["function", "getPilotCameraDirection"],
+	["function", "getPilotCameraPosition"],
+	["function", "getPilotCameraRotation"],
+	["function", "getPilotCameraTarget"],
+	["function", "getPlateNumber"],
+	["function", "getPlayerChannel"],
+	["function", "getPlayerScores"],
+	["function", "getPlayerUID"],
+	["function", "getPlayerUIDOld"],
+	["function", "getPos"],
+	["function", "getPosASL"],
+	["function", "getPosASLVisual"],
+	["function", "getPosASLW"],
+	["function", "getPosATL"],
+	["function", "getPosATLVisual"],
+	["function", "getPosVisual"],
+	["function", "getPosWorld"],
+	["function", "getPylonMagazines"],
+	["function", "getRelDir"],
+	["function", "getRelPos"],
+	["function", "getRemoteSensorsDisabled"],
+	["function", "getRepairCargo"],
+	["function", "getResolution"],
+	["function", "getRotorBrakeRTD"],
+	["function", "getShadowDistance"],
+	["function", "getShotParents"],
+	["function", "getSlingLoad"],
+	["function", "getSoundController"],
+	["function", "getSoundControllerResult"],
+	["function", "getSpeed"],
+	["function", "getStamina"],
+	["function", "getStatValue"],
+	["function", "getSuppression"],
+	["function", "getTerrainGrid"],
+	["function", "getTerrainHeightASL"],
+	["function", "getText"],
+	["function", "getTotalDLCUsageTime"],
+	["function", "getTrimOffsetRTD"],
+	["function", "getUnitLoadout"],
+	["function", "getUnitTrait"],
+	["function", "getUserMFDText"],
+	["function", "getUserMFDValue"],
+	["function", "getVariable"],
+	["function", "getVehicleCargo"],
+	["function", "getWeaponCargo"],
+	["function", "getWeaponSway"],
+	["function", "getWingsOrientationRTD"],
+	["function", "getWingsPositionRTD"],
+	["function", "getWPPos"],
+	["function", "glanceAt"],
+	["function", "globalChat"],
+	["function", "globalRadio"],
+	["function", "goggles"],
+	["function", "group"],
+	["function", "groupChat"],
+	["function", "groupFromNetId"],
+	["function", "groupIconSelectable"],
+	["function", "groupIconsVisible"],
+	["function", "groupId"],
+	["function", "groupOwner"],
+	["function", "groupRadio"],
+	["function", "groupSelectedUnits"],
+	["function", "groupSelectUnit"],
+	["function", "grpNull"],
+	["function", "gunner"],
+	["function", "gusts"],
+	["function", "halt"],
+	["function", "handgunItems"],
+	["function", "handgunMagazine"],
+	["function", "handgunWeapon"],
+	["function", "handsHit"],
+	["function", "hasInterface"],
+	["function", "hasPilotCamera"],
+	["function", "hasWeapon"],
+	["function", "hcAllGroups"],
+	["function", "hcGroupParams"],
+	["function", "hcLeader"],
+	["function", "hcRemoveAllGroups"],
+	["function", "hcRemoveGroup"],
+	["function", "hcSelected"],
+	["function", "hcSelectGroup"],
+	["function", "hcSetGroup"],
+	["function", "hcShowBar"],
+	["function", "hcShownBar"],
+	["function", "headgear"],
+	["function", "hideBody"],
+	["function", "hideObject"],
+	["function", "hideObjectGlobal"],
+	["function", "hideSelection"],
+	["function", "hint"],
+	["function", "hintC"],
+	["function", "hintCadet"],
+	["function", "hintSilent"],
+	["function", "hmd"],
+	["function", "hostMission"],
+	["function", "htmlLoad"],
+	["function", "HUDMovementLevels"],
+	["function", "humidity"],
+	["function", "image"],
+	["function", "importAllGroups"],
+	["function", "importance"],
+	["function", "in"],
+	["function", "inArea"],
+	["function", "inAreaArray"],
+	["function", "incapacitatedState"],
+	["function", "independent"],
+	["function", "inflame"],
+	["function", "inflamed"],
+	["function", "infoPanel"],
+	["function", "infoPanelComponentEnabled"],
+	["function", "infoPanelComponents"],
+	["function", "infoPanels"],
+	["function", "inGameUISetEventHandler"],
+	["function", "inheritsFrom"],
+	["function", "initAmbientLife"],
+	["function", "inPolygon"],
+	["function", "inputAction"],
+	["function", "inRangeOfArtillery"],
+	["function", "insertEditorObject"],
+	["function", "intersect"],
+	["function", "is3DEN"],
+	["function", "is3DENMultiplayer"],
+	["function", "isAbleToBreathe"],
+	["function", "isAgent"],
+	["function", "isAimPrecisionEnabled"],
+	["function", "isArray"],
+	["function", "isAutoHoverOn"],
+	["function", "isAutonomous"],
+	["function", "isAutoStartUpEnabledRTD"],
+	["function", "isAutotest"],
+	["function", "isAutoTrimOnRTD"],
+	["function", "isBleeding"],
+	["function", "isBurning"],
+	["function", "isClass"],
+	["function", "isCollisionLightOn"],
+	["function", "isCopilotEnabled"],
+	["function", "isDamageAllowed"],
+	["function", "isDedicated"],
+	["function", "isDLCAvailable"],
+	["function", "isEngineOn"],
+	["function", "isEqualTo"],
+	["function", "isEqualType"],
+	["function", "isEqualTypeAll"],
+	["function", "isEqualTypeAny"],
+	["function", "isEqualTypeArray"],
+	["function", "isEqualTypeParams"],
+	["function", "isFilePatchingEnabled"],
+	["function", "isFlashlightOn"],
+	["function", "isFlatEmpty"],
+	["function", "isForcedWalk"],
+	["function", "isFormationLeader"],
+	["function", "isGroupDeletedWhenEmpty"],
+	["function", "isHidden"],
+	["function", "isInRemainsCollector"],
+	["function", "isInstructorFigureEnabled"],
+	["function", "isIRLaserOn"],
+	["function", "isKeyActive"],
+	["function", "isKindOf"],
+	["function", "isLaserOn"],
+	["function", "isLightOn"],
+	["function", "isLocalized"],
+	["function", "isManualFire"],
+	["function", "isMarkedForCollection"],
+	["function", "isMultiplayer"],
+	["function", "isMultiplayerSolo"],
+	["function", "isNil"],
+	["function", "isNull"],
+	["function", "isNumber"],
+	["function", "isObjectHidden"],
+	["function", "isObjectRTD"],
+	["function", "isOnRoad"],
+	["function", "isPipEnabled"],
+	["function", "isPlayer"],
+	["function", "isRealTime"],
+	["function", "isRemoteExecuted"],
+	["function", "isRemoteExecutedJIP"],
+	["function", "isServer"],
+	["function", "isShowing3DIcons"],
+	["function", "isSimpleObject"],
+	["function", "isSprintAllowed"],
+	["function", "isStaminaEnabled"],
+	["function", "isSteamMission"],
+	["function", "isStreamFriendlyUIEnabled"],
+	["function", "isStressDamageEnabled"],
+	["function", "isText"],
+	["function", "isTouchingGround"],
+	["function", "isTurnedOut"],
+	["function", "isTutHintsEnabled"],
+	["function", "isUAVConnectable"],
+	["function", "isUAVConnected"],
+	["function", "isUIContext"],
+	["function", "isUniformAllowed"],
+	["function", "isVehicleCargo"],
+	["function", "isVehicleRadarOn"],
+	["function", "isVehicleSensorEnabled"],
+	["function", "isWalking"],
+	["function", "isWeaponDeployed"],
+	["function", "isWeaponRested"],
+	["function", "itemCargo"],
+	["function", "items"],
+	["function", "itemsWithMagazines"],
+	["function", "join"],
+	["function", "joinAs"],
+	["function", "joinAsSilent"],
+	["function", "joinSilent"],
+	["function", "joinString"],
+	["function", "kbAddDatabase"],
+	["function", "kbAddDatabaseTargets"],
+	["function", "kbAddTopic"],
+	["function", "kbHasTopic"],
+	["function", "kbReact"],
+	["function", "kbRemoveTopic"],
+	["function", "kbTell"],
+	["function", "kbWasSaid"],
+	["function", "keyImage"],
+	["function", "keyName"],
+	["function", "knowsAbout"],
+	["function", "land"],
+	["function", "landAt"],
+	["function", "landResult"],
+	["function", "language"],
+	["function", "laserTarget"],
+	["function", "lbAdd"],
+	["function", "lbClear"],
+	["function", "lbColor"],
+	["function", "lbColorRight"],
+	["function", "lbCurSel"],
+	["function", "lbData"],
+	["function", "lbDelete"],
+	["function", "lbIsSelected"],
+	["function", "lbPicture"],
+	["function", "lbPictureRight"],
+	["function", "lbSelection"],
+	["function", "lbSetColor"],
+	["function", "lbSetColorRight"],
+	["function", "lbSetCurSel"],
+	["function", "lbSetData"],
+	["function", "lbSetPicture"],
+	["function", "lbSetPictureColor"],
+	["function", "lbSetPictureColorDisabled"],
+	["function", "lbSetPictureColorSelected"],
+	["function", "lbSetPictureRight"],
+	["function", "lbSetPictureRightColor"],
+	["function", "lbSetPictureRightColorDisabled"],
+	["function", "lbSetPictureRightColorSelected"],
+	["function", "lbSetSelectColor"],
+	["function", "lbSetSelectColorRight"],
+	["function", "lbSetSelected"],
+	["function", "lbSetText"],
+	["function", "lbSetTextRight"],
+	["function", "lbSetTooltip"],
+	["function", "lbSetValue"],
+	["function", "lbSize"],
+	["function", "lbSort"],
+	["function", "lbSortByValue"],
+	["function", "lbText"],
+	["function", "lbTextRight"],
+	["function", "lbValue"],
+	["function", "leader"],
+	["function", "leaderboardDeInit"],
+	["function", "leaderboardGetRows"],
+	["function", "leaderboardInit"],
+	["function", "leaderboardRequestRowsFriends"],
+	["function", "leaderboardRequestRowsGlobal"],
+	["function", "leaderboardRequestRowsGlobalAroundUser"],
+	["function", "leaderboardsRequestUploadScore"],
+	["function", "leaderboardsRequestUploadScoreKeepBest"],
+	["function", "leaderboardState"],
+	["function", "leaveVehicle"],
+	["function", "libraryCredits"],
+	["function", "libraryDisclaimers"],
+	["function", "lifeState"],
+	["function", "lightAttachObject"],
+	["function", "lightDetachObject"],
+	["function", "lightIsOn"],
+	["function", "lightnings"],
+	["function", "limitSpeed"],
+	["function", "linearConversion"],
+	["function", "lineBreak"],
+	["function", "lineIntersects"],
+	["function", "lineIntersectsObjs"],
+	["function", "lineIntersectsSurfaces"],
+	["function", "lineIntersectsWith"],
+	["function", "linkItem"],
+	["function", "list"],
+	["function", "listObjects"],
+	["function", "listRemoteTargets"],
+	["function", "listVehicleSensors"],
+	["function", "ln"],
+	["function", "lnbAddArray"],
+	["function", "lnbAddColumn"],
+	["function", "lnbAddRow"],
+	["function", "lnbClear"],
+	["function", "lnbColor"],
+	["function", "lnbColorRight"],
+	["function", "lnbCurSelRow"],
+	["function", "lnbData"],
+	["function", "lnbDeleteColumn"],
+	["function", "lnbDeleteRow"],
+	["function", "lnbGetColumnsPosition"],
+	["function", "lnbPicture"],
+	["function", "lnbPictureRight"],
+	["function", "lnbSetColor"],
+	["function", "lnbSetColorRight"],
+	["function", "lnbSetColumnsPos"],
+	["function", "lnbSetCurSelRow"],
+	["function", "lnbSetData"],
+	["function", "lnbSetPicture"],
+	["function", "lnbSetPictureColor"],
+	["function", "lnbSetPictureColorRight"],
+	["function", "lnbSetPictureColorSelected"],
+	["function", "lnbSetPictureColorSelectedRight"],
+	["function", "lnbSetPictureRight"],
+	["function", "lnbSetText"],
+	["function", "lnbSetTextRight"],
+	["function", "lnbSetValue"],
+	["function", "lnbSize"],
+	["function", "lnbSort"],
+	["function", "lnbSortByValue"],
+	["function", "lnbText"],
+	["function", "lnbTextRight"],
+	["function", "lnbValue"],
+	["function", "load"],
+	["function", "loadAbs"],
+	["function", "loadBackpack"],
+	["function", "loadFile"],
+	["function", "loadGame"],
+	["function", "loadIdentity"],
+	["function", "loadMagazine"],
+	["function", "loadOverlay"],
+	["function", "loadStatus"],
+	["function", "loadUniform"],
+	["function", "loadVest"],
+	["function", "local"],
+	["function", "localize"],
+	["function", "locationNull"],
+	["function", "locationPosition"],
+	["function", "lock"],
+	["function", "lockCameraTo"],
+	["function", "lockCargo"],
+	["function", "lockDriver"],
+	["function", "locked"],
+	["function", "lockedCargo"],
+	["function", "lockedDriver"],
+	["function", "lockedTurret"],
+	["function", "lockIdentity"],
+	["function", "lockTurret"],
+	["function", "lockWP"],
+	["function", "log"],
+	["function", "logEntities"],
+	["function", "logNetwork"],
+	["function", "logNetworkTerminate"],
+	["function", "lookAt"],
+	["function", "lookAtPos"],
+	["function", "magazineCargo"],
+	["function", "magazines"],
+	["function", "magazinesAllTurrets"],
+	["function", "magazinesAmmo"],
+	["function", "magazinesAmmoCargo"],
+	["function", "magazinesAmmoFull"],
+	["function", "magazinesDetail"],
+	["function", "magazinesDetailBackpack"],
+	["function", "magazinesDetailUniform"],
+	["function", "magazinesDetailVest"],
+	["function", "magazinesTurret"],
+	["function", "magazineTurretAmmo"],
+	["function", "mapAnimAdd"],
+	["function", "mapAnimClear"],
+	["function", "mapAnimCommit"],
+	["function", "mapAnimDone"],
+	["function", "mapCenterOnCamera"],
+	["function", "mapGridPosition"],
+	["function", "markAsFinishedOnSteam"],
+	["function", "markerAlpha"],
+	["function", "markerBrush"],
+	["function", "markerColor"],
+	["function", "markerDir"],
+	["function", "markerPos"],
+	["function", "markerShape"],
+	["function", "markerSize"],
+	["function", "markerText"],
+	["function", "markerType"],
+	["function", "max"],
+	["function", "members"],
+	["function", "menuAction"],
+	["function", "menuAdd"],
+	["function", "menuChecked"],
+	["function", "menuClear"],
+	["function", "menuCollapse"],
+	["function", "menuData"],
+	["function", "menuDelete"],
+	["function", "menuEnable"],
+	["function", "menuEnabled"],
+	["function", "menuExpand"],
+	["function", "menuHover"],
+	["function", "menuPicture"],
+	["function", "menuSetAction"],
+	["function", "menuSetCheck"],
+	["function", "menuSetData"],
+	["function", "menuSetPicture"],
+	["function", "menuSetValue"],
+	["function", "menuShortcut"],
+	["function", "menuShortcutText"],
+	["function", "menuSize"],
+	["function", "menuSort"],
+	["function", "menuText"],
+	["function", "menuURL"],
+	["function", "menuValue"],
+	["function", "min"],
+	["function", "mineActive"],
+	["function", "mineDetectedBy"],
+	["function", "missionConfigFile"],
+	["function", "missionDifficulty"],
+	["function", "missionName"],
+	["function", "missionNamespace"],
+	["function", "missionStart"],
+	["function", "missionVersion"],
+	["function", "modelToWorld"],
+	["function", "modelToWorldVisual"],
+	["function", "modelToWorldVisualWorld"],
+	["function", "modelToWorldWorld"],
+	["function", "modParams"],
+	["function", "moonIntensity"],
+	["function", "moonPhase"],
+	["function", "morale"],
+	["function", "move"],
+	["function", "move3DENCamera"],
+	["function", "moveInAny"],
+	["function", "moveInCargo"],
+	["function", "moveInCommander"],
+	["function", "moveInDriver"],
+	["function", "moveInGunner"],
+	["function", "moveInTurret"],
+	["function", "moveObjectToEnd"],
+	["function", "moveOut"],
+	["function", "moveTime"],
+	["function", "moveTo"],
+	["function", "moveToCompleted"],
+	["function", "moveToFailed"],
+	["function", "musicVolume"],
+	["function", "name"],
+	["function", "nameSound"],
+	["function", "nearEntities"],
+	["function", "nearestBuilding"],
+	["function", "nearestLocation"],
+	["function", "nearestLocations"],
+	["function", "nearestLocationWithDubbing"],
+	["function", "nearestObject"],
+	["function", "nearestObjects"],
+	["function", "nearestTerrainObjects"],
+	["function", "nearObjects"],
+	["function", "nearObjectsReady"],
+	["function", "nearRoads"],
+	["function", "nearSupplies"],
+	["function", "nearTargets"],
+	["function", "needReload"],
+	["function", "netId"],
+	["function", "netObjNull"],
+	["function", "newOverlay"],
+	["function", "nextMenuItemIndex"],
+	["function", "nextWeatherChange"],
+	["function", "nMenuItems"],
+	["function", "numberOfEnginesRTD"],
+	["function", "numberToDate"],
+	["function", "objectCurators"],
+	["function", "objectFromNetId"],
+	["function", "objectParent"],
+	["function", "objNull"],
+	["function", "objStatus"],
+	["function", "onBriefingGear"],
+	["function", "onBriefingGroup"],
+	["function", "onBriefingNotes"],
+	["function", "onBriefingPlan"],
+	["function", "onBriefingTeamSwitch"],
+	["function", "onCommandModeChanged"],
+	["function", "onDoubleClick"],
+	["function", "onEachFrame"],
+	["function", "onGroupIconClick"],
+	["function", "onGroupIconOverEnter"],
+	["function", "onGroupIconOverLeave"],
+	["function", "onHCGroupSelectionChanged"],
+	["function", "onMapSingleClick"],
+	["function", "onPlayerConnected"],
+	["function", "onPlayerDisconnected"],
+	["function", "onPreloadFinished"],
+	["function", "onPreloadStarted"],
+	["function", "onShowNewObject"],
+	["function", "onTeamSwitch"],
+	["function", "openCuratorInterface"],
+	["function", "openDLCPage"],
+	["function", "openDSInterface"],
+	["function", "openMap"],
+	["function", "openSteamApp"],
+	["function", "openYoutubeVideo"],
+	["function", "opfor"],
+	["function", "orderGetIn"],
+	["function", "overcast"],
+	["function", "overcastForecast"],
+	["function", "owner"],
+	["function", "param"],
+	["function", "params"],
+	["function", "parseNumber"],
+	["function", "parseSimpleArray"],
+	["function", "parseText"],
+	["function", "parsingNamespace"],
+	["function", "particlesQuality"],
+	["function", "pi"],
+	["function", "pickWeaponPool"],
+	["function", "pitch"],
+	["function", "pixelGrid"],
+	["function", "pixelGridBase"],
+	["function", "pixelGridNoUIScale"],
+	["function", "pixelH"],
+	["function", "pixelW"],
+	["function", "playableSlotsNumber"],
+	["function", "playableUnits"],
+	["function", "playAction"],
+	["function", "playActionNow"],
+	["function", "player"],
+	["function", "playerRespawnTime"],
+	["function", "playerSide"],
+	["function", "playersNumber"],
+	["function", "playGesture"],
+	["function", "playMission"],
+	["function", "playMove"],
+	["function", "playMoveNow"],
+	["function", "playMusic"],
+	["function", "playScriptedMission"],
+	["function", "playSound"],
+	["function", "playSound3D"],
+	["function", "position"],
+	["function", "positionCameraToWorld"],
+	["function", "posScreenToWorld"],
+	["function", "posWorldToScreen"],
+	["function", "ppEffectAdjust"],
+	["function", "ppEffectCommit"],
+	["function", "ppEffectCommitted"],
+	["function", "ppEffectCreate"],
+	["function", "ppEffectDestroy"],
+	["function", "ppEffectEnable"],
+	["function", "ppEffectEnabled"],
+	["function", "ppEffectForceInNVG"],
+	["function", "precision"],
+	["function", "preloadCamera"],
+	["function", "preloadObject"],
+	["function", "preloadSound"],
+	["function", "preloadTitleObj"],
+	["function", "preloadTitleRsc"],
+	["function", "primaryWeapon"],
+	["function", "primaryWeaponItems"],
+	["function", "primaryWeaponMagazine"],
+	["function", "priority"],
+	["function", "processDiaryLink"],
+	["function", "processInitCommands"],
+	["function", "productVersion"],
+	["function", "profileName"],
+	["function", "profileNamespace"],
+	["function", "profileNameSteam"],
+	["function", "progressLoadingScreen"],
+	["function", "progressPosition"],
+	["function", "progressSetPosition"],
+	["function", "publicVariable"],
+	["function", "publicVariableClient"],
+	["function", "publicVariableServer"],
+	["function", "pushBack"],
+	["function", "pushBackUnique"],
+	["function", "putWeaponPool"],
+	["function", "queryItemsPool"],
+	["function", "queryMagazinePool"],
+	["function", "queryWeaponPool"],
+	["function", "rad"],
+	["function", "radioChannelAdd"],
+	["function", "radioChannelCreate"],
+	["function", "radioChannelRemove"],
+	["function", "radioChannelSetCallSign"],
+	["function", "radioChannelSetLabel"],
+	["function", "radioVolume"],
+	["function", "rain"],
+	["function", "rainbow"],
+	["function", "random"],
+	["function", "rank"],
+	["function", "rankId"],
+	["function", "rating"],
+	["function", "rectangular"],
+	["function", "registeredTasks"],
+	["function", "registerTask"],
+	["function", "reload"],
+	["function", "reloadEnabled"],
+	["function", "remoteControl"],
+	["function", "remoteExec"],
+	["function", "remoteExecCall"],
+	["function", "remoteExecutedOwner"],
+	["function", "remove3DENConnection"],
+	["function", "remove3DENEventHandler"],
+	["function", "remove3DENLayer"],
+	["function", "removeAction"],
+	["function", "removeAll3DENEventHandlers"],
+	["function", "removeAllActions"],
+	["function", "removeAllAssignedItems"],
+	["function", "removeAllContainers"],
+	["function", "removeAllCuratorAddons"],
+	["function", "removeAllCuratorCameraAreas"],
+	["function", "removeAllCuratorEditingAreas"],
+	["function", "removeAllEventHandlers"],
+	["function", "removeAllHandgunItems"],
+	["function", "removeAllItems"],
+	["function", "removeAllItemsWithMagazines"],
+	["function", "removeAllMissionEventHandlers"],
+	["function", "removeAllMPEventHandlers"],
+	["function", "removeAllMusicEventHandlers"],
+	["function", "removeAllOwnedMines"],
+	["function", "removeAllPrimaryWeaponItems"],
+	["function", "removeAllWeapons"],
+	["function", "removeBackpack"],
+	["function", "removeBackpackGlobal"],
+	["function", "removeCuratorAddons"],
+	["function", "removeCuratorCameraArea"],
+	["function", "removeCuratorEditableObjects"],
+	["function", "removeCuratorEditingArea"],
+	["function", "removeDrawIcon"],
+	["function", "removeDrawLinks"],
+	["function", "removeEventHandler"],
+	["function", "removeFromRemainsCollector"],
+	["function", "removeGoggles"],
+	["function", "removeGroupIcon"],
+	["function", "removeHandgunItem"],
+	["function", "removeHeadgear"],
+	["function", "removeItem"],
+	["function", "removeItemFromBackpack"],
+	["function", "removeItemFromUniform"],
+	["function", "removeItemFromVest"],
+	["function", "removeItems"],
+	["function", "removeMagazine"],
+	["function", "removeMagazineGlobal"],
+	["function", "removeMagazines"],
+	["function", "removeMagazinesTurret"],
+	["function", "removeMagazineTurret"],
+	["function", "removeMenuItem"],
+	["function", "removeMissionEventHandler"],
+	["function", "removeMPEventHandler"],
+	["function", "removeMusicEventHandler"],
+	["function", "removeOwnedMine"],
+	["function", "removePrimaryWeaponItem"],
+	["function", "removeSecondaryWeaponItem"],
+	["function", "removeSimpleTask"],
+	["function", "removeSwitchableUnit"],
+	["function", "removeTeamMember"],
+	["function", "removeUniform"],
+	["function", "removeVest"],
+	["function", "removeWeapon"],
+	["function", "removeWeaponAttachmentCargo"],
+	["function", "removeWeaponCargo"],
+	["function", "removeWeaponGlobal"],
+	["function", "removeWeaponTurret"],
+	["function", "reportRemoteTarget"],
+	["function", "requiredVersion"],
+	["function", "resetCamShake"],
+	["function", "resetSubgroupDirection"],
+	["function", "resistance"],
+	["function", "resize"],
+	["function", "resources"],
+	["function", "respawnVehicle"],
+	["function", "restartEditorCamera"],
+	["function", "reveal"],
+	["function", "revealMine"],
+	["function", "reverse"],
+	["function", "reversedMouseY"],
+	["function", "roadAt"],
+	["function", "roadsConnectedTo"],
+	["function", "roleDescription"],
+	["function", "ropeAttachedObjects"],
+	["function", "ropeAttachedTo"],
+	["function", "ropeAttachEnabled"],
+	["function", "ropeAttachTo"],
+	["function", "ropeCreate"],
+	["function", "ropeCut"],
+	["function", "ropeDestroy"],
+	["function", "ropeDetach"],
+	["function", "ropeEndPosition"],
+	["function", "ropeLength"],
+	["function", "ropes"],
+	["function", "ropeUnwind"],
+	["function", "ropeUnwound"],
+	["function", "rotorsForcesRTD"],
+	["function", "rotorsRpmRTD"],
+	["function", "round"],
+	["function", "runInitScript"],
+	["function", "safeZoneH"],
+	["function", "safeZoneW"],
+	["function", "safeZoneWAbs"],
+	["function", "safeZoneX"],
+	["function", "safeZoneXAbs"],
+	["function", "safeZoneY"],
+	["function", "save3DENInventory"],
+	["function", "saveGame"],
+	["function", "saveIdentity"],
+	["function", "saveJoysticks"],
+	["function", "saveOverlay"],
+	["function", "saveProfileNamespace"],
+	["function", "saveStatus"],
+	["function", "saveVar"],
+	["function", "savingEnabled"],
+	["function", "say"],
+	["function", "say2D"],
+	["function", "say3D"],
+	["function", "score"],
+	["function", "scoreSide"],
+	["function", "screenshot"],
+	["function", "screenToWorld"],
+	["function", "scriptDone"],
+	["function", "scriptName"],
+	["function", "scriptNull"],
+	["function", "scudState"],
+	["function", "secondaryWeapon"],
+	["function", "secondaryWeaponItems"],
+	["function", "secondaryWeaponMagazine"],
+	["function", "select"],
+	["function", "selectBestPlaces"],
+	["function", "selectDiarySubject"],
+	["function", "selectedEditorObjects"],
+	["function", "selectEditorObject"],
+	["function", "selectionNames"],
+	["function", "selectionPosition"],
+	["function", "selectLeader"],
+	["function", "selectMax"],
+	["function", "selectMin"],
+	["function", "selectNoPlayer"],
+	["function", "selectPlayer"],
+	["function", "selectRandom"],
+	["function", "selectRandomWeighted"],
+	["function", "selectWeapon"],
+	["function", "selectWeaponTurret"],
+	["function", "sendAUMessage"],
+	["function", "sendSimpleCommand"],
+	["function", "sendTask"],
+	["function", "sendTaskResult"],
+	["function", "sendUDPMessage"],
+	["function", "serverCommand"],
+	["function", "serverCommandAvailable"],
+	["function", "serverCommandExecutable"],
+	["function", "serverName"],
+	["function", "serverTime"],
+	["function", "set"],
+	["function", "set3DENAttribute"],
+	["function", "set3DENAttributes"],
+	["function", "set3DENGrid"],
+	["function", "set3DENIconsVisible"],
+	["function", "set3DENLayer"],
+	["function", "set3DENLinesVisible"],
+	["function", "set3DENLogicType"],
+	["function", "set3DENMissionAttribute"],
+	["function", "set3DENMissionAttributes"],
+	["function", "set3DENModelsVisible"],
+	["function", "set3DENObjectType"],
+	["function", "set3DENSelected"],
+	["function", "setAccTime"],
+	["function", "setActualCollectiveRTD"],
+	["function", "setAirplaneThrottle"],
+	["function", "setAirportSide"],
+	["function", "setAmmo"],
+	["function", "setAmmoCargo"],
+	["function", "setAmmoOnPylon"],
+	["function", "setAnimSpeedCoef"],
+	["function", "setAperture"],
+	["function", "setApertureNew"],
+	["function", "setArmoryPoints"],
+	["function", "setAttributes"],
+	["function", "setAutonomous"],
+	["function", "setBehaviour"],
+	["function", "setBleedingRemaining"],
+	["function", "setBrakesRTD"],
+	["function", "setCameraInterest"],
+	["function", "setCamShakeDefParams"],
+	["function", "setCamShakeParams"],
+	["function", "setCamUseTI"],
+	["function", "setCaptive"],
+	["function", "setCenterOfMass"],
+	["function", "setCollisionLight"],
+	["function", "setCombatMode"],
+	["function", "setCompassOscillation"],
+	["function", "setConvoySeparation"],
+	["function", "setCuratorCameraAreaCeiling"],
+	["function", "setCuratorCoef"],
+	["function", "setCuratorEditingAreaType"],
+	["function", "setCuratorWaypointCost"],
+	["function", "setCurrentChannel"],
+	["function", "setCurrentTask"],
+	["function", "setCurrentWaypoint"],
+	["function", "setCustomAimCoef"],
+	["function", "setCustomWeightRTD"],
+	["function", "setDamage"],
+	["function", "setDammage"],
+	["function", "setDate"],
+	["function", "setDebriefingText"],
+	["function", "setDefaultCamera"],
+	["function", "setDestination"],
+	["function", "setDetailMapBlendPars"],
+	["function", "setDir"],
+	["function", "setDirection"],
+	["function", "setDrawIcon"],
+	["function", "setDriveOnPath"],
+	["function", "setDropInterval"],
+	["function", "setDynamicSimulationDistance"],
+	["function", "setDynamicSimulationDistanceCoef"],
+	["function", "setEditorMode"],
+	["function", "setEditorObjectScope"],
+	["function", "setEffectCondition"],
+	["function", "setEngineRpmRTD"],
+	["function", "setFace"],
+	["function", "setFaceAnimation"],
+	["function", "setFatigue"],
+	["function", "setFeatureType"],
+	["function", "setFlagAnimationPhase"],
+	["function", "setFlagOwner"],
+	["function", "setFlagSide"],
+	["function", "setFlagTexture"],
+	["function", "setFog"],
+	["function", "setForceGeneratorRTD"],
+	["function", "setFormation"],
+	["function", "setFormationTask"],
+	["function", "setFormDir"],
+	["function", "setFriend"],
+	["function", "setFromEditor"],
+	["function", "setFSMVariable"],
+	["function", "setFuel"],
+	["function", "setFuelCargo"],
+	["function", "setGroupIcon"],
+	["function", "setGroupIconParams"],
+	["function", "setGroupIconsSelectable"],
+	["function", "setGroupIconsVisible"],
+	["function", "setGroupId"],
+	["function", "setGroupIdGlobal"],
+	["function", "setGroupOwner"],
+	["function", "setGusts"],
+	["function", "setHideBehind"],
+	["function", "setHit"],
+	["function", "setHitIndex"],
+	["function", "setHitPointDamage"],
+	["function", "setHorizonParallaxCoef"],
+	["function", "setHUDMovementLevels"],
+	["function", "setIdentity"],
+	["function", "setImportance"],
+	["function", "setInfoPanel"],
+	["function", "setLeader"],
+	["function", "setLightAmbient"],
+	["function", "setLightAttenuation"],
+	["function", "setLightBrightness"],
+	["function", "setLightColor"],
+	["function", "setLightDayLight"],
+	["function", "setLightFlareMaxDistance"],
+	["function", "setLightFlareSize"],
+	["function", "setLightIntensity"],
+	["function", "setLightnings"],
+	["function", "setLightUseFlare"],
+	["function", "setLocalWindParams"],
+	["function", "setMagazineTurretAmmo"],
+	["function", "setMarkerAlpha"],
+	["function", "setMarkerAlphaLocal"],
+	["function", "setMarkerBrush"],
+	["function", "setMarkerBrushLocal"],
+	["function", "setMarkerColor"],
+	["function", "setMarkerColorLocal"],
+	["function", "setMarkerDir"],
+	["function", "setMarkerDirLocal"],
+	["function", "setMarkerPos"],
+	["function", "setMarkerPosLocal"],
+	["function", "setMarkerShape"],
+	["function", "setMarkerShapeLocal"],
+	["function", "setMarkerSize"],
+	["function", "setMarkerSizeLocal"],
+	["function", "setMarkerText"],
+	["function", "setMarkerTextLocal"],
+	["function", "setMarkerType"],
+	["function", "setMarkerTypeLocal"],
+	["function", "setMass"],
+	["function", "setMimic"],
+	["function", "setMousePosition"],
+	["function", "setMusicEffect"],
+	["function", "setMusicEventHandler"],
+	["function", "setName"],
+	["function", "setNameSound"],
+	["function", "setObjectArguments"],
+	["function", "setObjectMaterial"],
+	["function", "setObjectMaterialGlobal"],
+	["function", "setObjectProxy"],
+	["function", "setObjectTexture"],
+	["function", "setObjectTextureGlobal"],
+	["function", "setObjectViewDistance"],
+	["function", "setOvercast"],
+	["function", "setOwner"],
+	["function", "setOxygenRemaining"],
+	["function", "setParticleCircle"],
+	["function", "setParticleClass"],
+	["function", "setParticleFire"],
+	["function", "setParticleParams"],
+	["function", "setParticleRandom"],
+	["function", "setPilotCameraDirection"],
+	["function", "setPilotCameraRotation"],
+	["function", "setPilotCameraTarget"],
+	["function", "setPilotLight"],
+	["function", "setPiPEffect"],
+	["function", "setPitch"],
+	["function", "setPlateNumber"],
+	["function", "setPlayable"],
+	["function", "setPlayerRespawnTime"],
+	["function", "setPos"],
+	["function", "setPosASL"],
+	["function", "setPosASL2"],
+	["function", "setPosASLW"],
+	["function", "setPosATL"],
+	["function", "setPosition"],
+	["function", "setPosWorld"],
+	["function", "setPylonLoadOut"],
+	["function", "setPylonsPriority"],
+	["function", "setRadioMsg"],
+	["function", "setRain"],
+	["function", "setRainbow"],
+	["function", "setRandomLip"],
+	["function", "setRank"],
+	["function", "setRectangular"],
+	["function", "setRepairCargo"],
+	["function", "setRotorBrakeRTD"],
+	["function", "setShadowDistance"],
+	["function", "setShotParents"],
+	["function", "setSide"],
+	["function", "setSimpleTaskAlwaysVisible"],
+	["function", "setSimpleTaskCustomData"],
+	["function", "setSimpleTaskDescription"],
+	["function", "setSimpleTaskDestination"],
+	["function", "setSimpleTaskTarget"],
+	["function", "setSimpleTaskType"],
+	["function", "setSimulWeatherLayers"],
+	["function", "setSize"],
+	["function", "setSkill"],
+	["function", "setSlingLoad"],
+	["function", "setSoundEffect"],
+	["function", "setSpeaker"],
+	["function", "setSpeech"],
+	["function", "setSpeedMode"],
+	["function", "setStamina"],
+	["function", "setStaminaScheme"],
+	["function", "setStatValue"],
+	["function", "setSuppression"],
+	["function", "setSystemOfUnits"],
+	["function", "setTargetAge"],
+	["function", "setTaskMarkerOffset"],
+	["function", "setTaskResult"],
+	["function", "setTaskState"],
+	["function", "setTerrainGrid"],
+	["function", "setText"],
+	["function", "setTimeMultiplier"],
+	["function", "setTitleEffect"],
+	["function", "setToneMapping"],
+	["function", "setToneMappingParams"],
+	["function", "setTrafficDensity"],
+	["function", "setTrafficDistance"],
+	["function", "setTrafficGap"],
+	["function", "setTrafficSpeed"],
+	["function", "setTriggerActivation"],
+	["function", "setTriggerArea"],
+	["function", "setTriggerStatements"],
+	["function", "setTriggerText"],
+	["function", "setTriggerTimeout"],
+	["function", "setTriggerType"],
+	["function", "setType"],
+	["function", "setUnconscious"],
+	["function", "setUnitAbility"],
+	["function", "setUnitLoadout"],
+	["function", "setUnitPos"],
+	["function", "setUnitPosWeak"],
+	["function", "setUnitRank"],
+	["function", "setUnitRecoilCoefficient"],
+	["function", "setUnitTrait"],
+	["function", "setUnloadInCombat"],
+	["function", "setUserActionText"],
+	["function", "setUserMFDText"],
+	["function", "setUserMFDValue"],
+	["function", "setVariable"],
+	["function", "setVectorDir"],
+	["function", "setVectorDirAndUp"],
+	["function", "setVectorUp"],
+	["function", "setVehicleAmmo"],
+	["function", "setVehicleAmmoDef"],
+	["function", "setVehicleArmor"],
+	["function", "setVehicleCargo"],
+	["function", "setVehicleId"],
+	["function", "setVehicleInit"],
+	["function", "setVehicleLock"],
+	["function", "setVehiclePosition"],
+	["function", "setVehicleRadar"],
+	["function", "setVehicleReceiveRemoteTargets"],
+	["function", "setVehicleReportOwnPosition"],
+	["function", "setVehicleReportRemoteTargets"],
+	["function", "setVehicleTIPars"],
+	["function", "setVehicleVarName"],
+	["function", "setVelocity"],
+	["function", "setVelocityModelSpace"],
+	["function", "setVelocityTransformation"],
+	["function", "setViewDistance"],
+	["function", "setVisibleIfTreeCollapsed"],
+	["function", "setWantedRpmRTD"],
+	["function", "setWaves"],
+	["function", "setWaypointBehaviour"],
+	["function", "setWaypointCombatMode"],
+	["function", "setWaypointCompletionRadius"],
+	["function", "setWaypointDescription"],
+	["function", "setWaypointForceBehaviour"],
+	["function", "setWaypointFormation"],
+	["function", "setWaypointHousePosition"],
+	["function", "setWaypointLoiterRadius"],
+	["function", "setWaypointLoiterType"],
+	["function", "setWaypointName"],
+	["function", "setWaypointPosition"],
+	["function", "setWaypointScript"],
+	["function", "setWaypointSpeed"],
+	["function", "setWaypointStatements"],
+	["function", "setWaypointTimeout"],
+	["function", "setWaypointType"],
+	["function", "setWaypointVisible"],
+	["function", "setWeaponReloadingTime"],
+	["function", "setWind"],
+	["function", "setWindDir"],
+	["function", "setWindForce"],
+	["function", "setWindStr"],
+	["function", "setWingForceScaleRTD"],
+	["function", "setWPPos"],
+	["function", "show3DIcons"],
+	["function", "showChat"],
+	["function", "showCinemaBorder"],
+	["function", "showCommandingMenu"],
+	["function", "showCompass"],
+	["function", "showCuratorCompass"],
+	["function", "showGPS"],
+	["function", "showHUD"],
+	["function", "showLegend"],
+	["function", "showMap"],
+	["function", "shownArtilleryComputer"],
+	["function", "shownChat"],
+	["function", "shownCompass"],
+	["function", "shownCuratorCompass"],
+	["function", "showNewEditorObject"],
+	["function", "shownGPS"],
+	["function", "shownHUD"],
+	["function", "shownMap"],
+	["function", "shownPad"],
+	["function", "shownRadio"],
+	["function", "shownScoretable"],
+	["function", "shownUAVFeed"],
+	["function", "shownWarrant"],
+	["function", "shownWatch"],
+	["function", "showPad"],
+	["function", "showRadio"],
+	["function", "showScoretable"],
+	["function", "showSubtitles"],
+	["function", "showUAVFeed"],
+	["function", "showWarrant"],
+	["function", "showWatch"],
+	["function", "showWaypoint"],
+	["function", "showWaypoints"],
+	["function", "side"],
+	["function", "sideAmbientLife"],
+	["function", "sideChat"],
+	["function", "sideEmpty"],
+	["function", "sideEnemy"],
+	["function", "sideFriendly"],
+	["function", "sideLogic"],
+	["function", "sideRadio"],
+	["function", "sideUnknown"],
+	["function", "simpleTasks"],
+	["function", "simulationEnabled"],
+	["function", "simulCloudDensity"],
+	["function", "simulCloudOcclusion"],
+	["function", "simulInClouds"],
+	["function", "simulWeatherSync"],
+	["function", "sin"],
+	["function", "size"],
+	["function", "sizeOf"],
+	["function", "skill"],
+	["function", "skillFinal"],
+	["function", "skipTime"],
+	["function", "sleep"],
+	["function", "sliderPosition"],
+	["function", "sliderRange"],
+	["function", "sliderSetPosition"],
+	["function", "sliderSetRange"],
+	["function", "sliderSetSpeed"],
+	["function", "sliderSpeed"],
+	["function", "slingLoadAssistantShown"],
+	["function", "soldierMagazines"],
+	["function", "someAmmo"],
+	["function", "sort"],
+	["function", "soundVolume"],
+	["function", "speaker"],
+	["function", "speed"],
+	["function", "speedMode"],
+	["function", "splitString"],
+	["function", "sqrt"],
+	["function", "squadParams"],
+	["function", "stance"],
+	["function", "startLoadingScreen"],
+	["function", "stop"],
+	["function", "stopEngineRTD"],
+	["function", "stopped"],
+	["function", "str"],
+	["function", "sunOrMoon"],
+	["function", "supportInfo"],
+	["function", "suppressFor"],
+	["function", "surfaceIsWater"],
+	["function", "surfaceNormal"],
+	["function", "surfaceType"],
+	["function", "swimInDepth"],
+	["function", "switchableUnits"],
+	["function", "switchAction"],
+	["function", "switchCamera"],
+	["function", "switchGesture"],
+	["function", "switchLight"],
+	["function", "switchMove"],
+	["function", "synchronizedObjects"],
+	["function", "synchronizedTriggers"],
+	["function", "synchronizedWaypoints"],
+	["function", "synchronizeObjectsAdd"],
+	["function", "synchronizeObjectsRemove"],
+	["function", "synchronizeTrigger"],
+	["function", "synchronizeWaypoint"],
+	["function", "systemChat"],
+	["function", "systemOfUnits"],
+	["function", "tan"],
+	["function", "targetKnowledge"],
+	["function", "targets"],
+	["function", "targetsAggregate"],
+	["function", "targetsQuery"],
+	["function", "taskAlwaysVisible"],
+	["function", "taskChildren"],
+	["function", "taskCompleted"],
+	["function", "taskCustomData"],
+	["function", "taskDescription"],
+	["function", "taskDestination"],
+	["function", "taskHint"],
+	["function", "taskMarkerOffset"],
+	["function", "taskNull"],
+	["function", "taskParent"],
+	["function", "taskResult"],
+	["function", "taskState"],
+	["function", "taskType"],
+	["function", "teamMember"],
+	["function", "teamMemberNull"],
+	["function", "teamName"],
+	["function", "teams"],
+	["function", "teamSwitch"],
+	["function", "teamSwitchEnabled"],
+	["function", "teamType"],
+	["function", "terminate"],
+	["function", "terrainIntersect"],
+	["function", "terrainIntersectASL"],
+	["function", "terrainIntersectAtASL"],
+	["function", "text"],
+	["function", "textLog"],
+	["function", "textLogFormat"],
+	["function", "tg"],
+	["function", "time"],
+	["function", "timeMultiplier"],
+	["function", "titleCut"],
+	["function", "titleFadeOut"],
+	["function", "titleObj"],
+	["function", "titleRsc"],
+	["function", "titleText"],
+	["function", "toArray"],
+	["function", "toFixed"],
+	["function", "toLower"],
+	["function", "toString"],
+	["function", "toUpper"],
+	["function", "triggerActivated"],
+	["function", "triggerActivation"],
+	["function", "triggerArea"],
+	["function", "triggerAttachedVehicle"],
+	["function", "triggerAttachObject"],
+	["function", "triggerAttachVehicle"],
+	["function", "triggerDynamicSimulation"],
+	["function", "triggerStatements"],
+	["function", "triggerText"],
+	["function", "triggerTimeout"],
+	["function", "triggerTimeoutCurrent"],
+	["function", "triggerType"],
+	["function", "turretLocal"],
+	["function", "turretOwner"],
+	["function", "turretUnit"],
+	["function", "tvAdd"],
+	["function", "tvClear"],
+	["function", "tvCollapse"],
+	["function", "tvCollapseAll"],
+	["function", "tvCount"],
+	["function", "tvCurSel"],
+	["function", "tvData"],
+	["function", "tvDelete"],
+	["function", "tvExpand"],
+	["function", "tvExpandAll"],
+	["function", "tvPicture"],
+	["function", "tvPictureRight"],
+	["function", "tvSetColor"],
+	["function", "tvSetCurSel"],
+	["function", "tvSetData"],
+	["function", "tvSetPicture"],
+	["function", "tvSetPictureColor"],
+	["function", "tvSetPictureColorDisabled"],
+	["function", "tvSetPictureColorSelected"],
+	["function", "tvSetPictureRight"],
+	["function", "tvSetPictureRightColor"],
+	["function", "tvSetPictureRightColorDisabled"],
+	["function", "tvSetPictureRightColorSelected"],
+	["function", "tvSetSelectColor"],
+	["function", "tvSetText"],
+	["function", "tvSetTooltip"],
+	["function", "tvSetValue"],
+	["function", "tvSort"],
+	["function", "tvSortByValue"],
+	["function", "tvText"],
+	["function", "tvTooltip"],
+	["function", "tvValue"],
+	["function", "type"],
+	["function", "typeName"],
+	["function", "typeOf"],
+	["function", "UAVControl"],
+	["function", "uiNamespace"],
+	["function", "uiSleep"],
+	["function", "unassignCurator"],
+	["function", "unassignItem"],
+	["function", "unassignTeam"],
+	["function", "unassignVehicle"],
+	["function", "underwater"],
+	["function", "uniform"],
+	["function", "uniformContainer"],
+	["function", "uniformItems"],
+	["function", "uniformMagazines"],
+	["function", "unitAddons"],
+	["function", "unitAimPosition"],
+	["function", "unitAimPositionVisual"],
+	["function", "unitBackpack"],
+	["function", "unitIsUAV"],
+	["function", "unitPos"],
+	["function", "unitReady"],
+	["function", "unitRecoilCoefficient"],
+	["function", "units"],
+	["function", "unitsBelowHeight"],
+	["function", "unlinkItem"],
+	["function", "unlockAchievement"],
+	["function", "unregisterTask"],
+	["function", "updateDrawIcon"],
+	["function", "updateMenuItem"],
+	["function", "updateObjectTree"],
+	["function", "useAIOperMapObstructionTest"],
+	["function", "useAISteeringComponent"],
+	["function", "useAudioTimeForMoves"],
+	["function", "userInputDisabled"],
+	["function", "vectorAdd"],
+	["function", "vectorCos"],
+	["function", "vectorCrossProduct"],
+	["function", "vectorDiff"],
+	["function", "vectorDir"],
+	["function", "vectorDirVisual"],
+	["function", "vectorDistance"],
+	["function", "vectorDistanceSqr"],
+	["function", "vectorDotProduct"],
+	["function", "vectorFromTo"],
+	["function", "vectorMagnitude"],
+	["function", "vectorMagnitudeSqr"],
+	["function", "vectorModelToWorld"],
+	["function", "vectorModelToWorldVisual"],
+	["function", "vectorMultiply"],
+	["function", "vectorNormalized"],
+	["function", "vectorUp"],
+	["function", "vectorUpVisual"],
+	["function", "vectorWorldToModel"],
+	["function", "vectorWorldToModelVisual"],
+	["function", "vehicle"],
+	["function", "vehicleCargoEnabled"],
+	["function", "vehicleChat"],
+	["function", "vehicleRadio"],
+	["function", "vehicleReceiveRemoteTargets"],
+	["function", "vehicleReportOwnPosition"],
+	["function", "vehicleReportRemoteTargets"],
+	["function", "vehicles"],
+	["function", "vehicleVarName"],
+	["function", "velocity"],
+	["function", "velocityModelSpace"],
+	["function", "verifySignature"],
+	["function", "vest"],
+	["function", "vestContainer"],
+	["function", "vestItems"],
+	["function", "vestMagazines"],
+	["function", "viewDistance"],
+	["function", "visibleCompass"],
+	["function", "visibleGPS"],
+	["function", "visibleMap"],
+	["function", "visiblePosition"],
+	["function", "visiblePositionASL"],
+	["function", "visibleScoretable"],
+	["function", "visibleWatch"],
+	["function", "waitUntil"],
+	["function", "waves"],
+	["function", "waypointAttachedObject"],
+	["function", "waypointAttachedVehicle"],
+	["function", "waypointAttachObject"],
+	["function", "waypointAttachVehicle"],
+	["function", "waypointBehaviour"],
+	["function", "waypointCombatMode"],
+	["function", "waypointCompletionRadius"],
+	["function", "waypointDescription"],
+	["function", "waypointForceBehaviour"],
+	["function", "waypointFormation"],
+	["function", "waypointHousePosition"],
+	["function", "waypointLoiterRadius"],
+	["function", "waypointLoiterType"],
+	["function", "waypointName"],
+	["function", "waypointPosition"],
+	["function", "waypoints"],
+	["function", "waypointScript"],
+	["function", "waypointsEnabledUAV"],
+	["function", "waypointShow"],
+	["function", "waypointSpeed"],
+	["function", "waypointStatements"],
+	["function", "waypointTimeout"],
+	["function", "waypointTimeoutCurrent"],
+	["function", "waypointType"],
+	["function", "waypointVisible"],
+	["function", "weaponAccessories"],
+	["function", "weaponAccessoriesCargo"],
+	["function", "weaponCargo"],
+	["function", "weaponDirection"],
+	["function", "weaponInertia"],
+	["function", "weaponLowered"],
+	["function", "weapons"],
+	["function", "weaponsItems"],
+	["function", "weaponsItemsCargo"],
+	["function", "weaponState"],
+	["function", "weaponsTurret"],
+	["function", "weightRTD"],
+	["function", "west"],
+	["function", "WFSideText"],
+	["function", "wind"],
+	["function", "windDir"],
+	["function", "windRTD"],
+	["function", "windStr"],
+	["function", "wingsForcesRTD"],
+	["function", "worldName"],
+	["function", "worldSize"],
+	["function", "worldToModel"],
+	["function", "worldToModelVisual"],
+	["function", "worldToScreen"]
+]

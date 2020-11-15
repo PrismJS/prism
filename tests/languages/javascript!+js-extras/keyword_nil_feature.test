@@ -1,0 +1,13 @@
+null
+undefined
+
+----------------------------------------------------
+
+[
+	["keyword", "null"],
+	["keyword", "undefined"]
+]
+
+----------------------------------------------------
+
+Checks that null and undefined are keywords.

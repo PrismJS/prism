@@ -1,6 +1,7 @@
 a! ! word
 !a ! word
 ! comment
+! TODO: something
 !	bad
 ! 	fine
 ! "also a comment"
@@ -37,6 +38,11 @@ ment*/
 	[ "normal-word", "!a"],
 	[ "comment", [ "! word" ] ],
 	[ "comment", [ "! comment" ] ],
+	["comment", [
+		"! ",
+		["function", "TODO"],
+		": something"
+	]],
 
 	[ "normal-word", "!" ], [ "normal-word", "bad" ],
 	[ "comment", [ "! \tfine" ] ],

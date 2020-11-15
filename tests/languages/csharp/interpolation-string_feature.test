@@ -1,4 +1,5 @@
 $"Hello, {{ {name} }}! Today is {date.DayOfWeek}, it's {date:HH:mm} now."
+@$"Hello, {{ {name} }}! Today is {date.DayOfWeek}, it's {date:HH:mm} now."
 $"{a,5} and {b + "" /* foo ":} */:format} {h(a, b)}"
 $"{1}{2}{3}"
 
@@ -16,6 +17,39 @@ $@"{
 [
 	["interpolation-string", [
 		["string", "$\"Hello, {{ "],
+		["interpolation", [
+			["punctuation", "{"],
+			["expression", [
+				"name"
+			]],
+			["punctuation", "}"]
+		]],
+		["string", " }}! Today is "],
+		["interpolation", [
+			["punctuation", "{"],
+			["expression", [
+				"date",
+				["punctuation", "."],
+				"DayOfWeek"
+			]],
+			["punctuation", "}"]
+		]],
+		["string", ", it's "],
+		["interpolation", [
+			["punctuation", "{"],
+			["expression", [
+				"date"
+			]],
+			["format-string", [
+				["punctuation", ":"],
+				"HH:mm"
+			]],
+			["punctuation", "}"]
+		]],
+		["string", " now.\""]
+	]],
+	["interpolation-string", [
+		["string", "@$\"Hello, {{ "],
 		["interpolation", [
 			["punctuation", "{"],
 			["expression", [

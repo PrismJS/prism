@@ -16,8 +16,9 @@ Prism.languages.nim = {
 		}
 	},
 	// We don't want to highlight operators inside backticks
-	'ignore': {
+	'identifier': {
 		pattern: /`[^`\r\n]+`/,
+		greedy: true,
 		inside: {
 			'punctuation': /`/
 		}

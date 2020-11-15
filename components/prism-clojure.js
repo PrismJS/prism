@@ -11,6 +11,6 @@ Prism.languages.clojure = {
 		lookbehind: true
 	},
 	'boolean': /\b(?:true|false|nil)\b/,
-	'number': /\b[\da-f]+\b/i,
+	'number': /\b\d+\b/i,
 	'punctuation': /[{}\[\](),]/
 };

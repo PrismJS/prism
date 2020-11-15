@@ -13,6 +13,8 @@ public static RGBColor FromRainbow(Rainbow colorBand) =>
 		_           => throw new ArgumentException(message: "invalid enum value", paramName: nameof(colorBand)),
 	};
 
+try {} catch (ArgumentException e) {}
+
 ----------------------------------------------------
 
 [
@@ -102,7 +104,20 @@ public static RGBColor FromRainbow(Rainbow colorBand) =>
 	["punctuation", ")"],
 	["punctuation", ","],
 	["punctuation", "}"],
-	["punctuation", ";"]
+	["punctuation", ";"],
+
+	["keyword", "try"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["keyword", "catch"],
+	["punctuation", "("],
+	["class-name", [
+		"ArgumentException"
+	]],
+	" e",
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"]
 ]
 
 ----------------------------------------------------

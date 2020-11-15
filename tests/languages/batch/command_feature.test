@@ -1,10 +1,19 @@
 FOR /l %%a in (5,-1,1) do (TITLE %title% -- closing in %%as)
+
+FOR /F %%A IN ('TYPE "%InFile%"^|find /v /c ""')
+
 SET title=%~n0
+
 echo.Hello World
+
 @ECHO OFF
+
 if not defined ProgressFormat set "ProgressFormat=[PPPP]"
+
 EXIT /b
+
 set /a ProgressCnt+=1
+
 IF "%~1" NEQ "" (SET %~1=%new%) ELSE (echo.%new%)
 
 ----------------------------------------------------
@@ -12,13 +21,18 @@ IF "%~1" NEQ "" (SET %~1=%new%) ELSE (echo.%new%)
 [
 	["command", [
 		["keyword", "FOR"],
-		["parameter", ["/l"]],
+		["parameter", [
+			"/l"
+		]],
 		["variable", "%%a"],
 		["keyword", "in"],
 		["punctuation", "("],
-		["number", "5"], ["punctuation", ","],
-		["number", "-1"], ["punctuation", ","],
-		["number", "1"], ["punctuation", ")"],
+		["number", "5"],
+		["punctuation", ","],
+		["number", "-1"],
+		["punctuation", ","],
+		["number", "1"],
+		["punctuation", ")"],
 		["keyword", "do"]
 	]],
 	["punctuation", "("],
@@ -27,6 +41,27 @@ IF "%~1" NEQ "" (SET %~1=%new%) ELSE (echo.%new%)
 		["variable", "%title%"],
 		" -- closing in ",
 		["variable", "%%as"]
+	]],
+	["punctuation", ")"],
+
+	["command", [
+		["keyword", "FOR"],
+		["parameter", [
+			"/F"
+		]],
+		["variable", "%%A"],
+		" IN ('TYPE ",
+		["string", "\"%InFile%\""],
+		["operator", "^"],
+		"|find ",
+		["parameter", [
+			"/v"
+		]],
+		["parameter", [
+			"/c"
+		]],
+		["string", "\"\""],
+		"'"
 	]],
 	["punctuation", ")"],
 
@@ -61,12 +96,16 @@ IF "%~1" NEQ "" (SET %~1=%new%) ELSE (echo.%new%)
 
 	["command", [
 		["keyword", "EXIT"],
-		["parameter", ["/b"]]
+		["parameter", [
+			"/b"
+		]]
 	]],
 
 	["command", [
 		["keyword", "set"],
-		["parameter", ["/a"]],
+		["parameter", [
+			"/a"
+		]],
 		["variable", "ProgressCnt"],
 		["operator", "+="],
 		["number", "1"]

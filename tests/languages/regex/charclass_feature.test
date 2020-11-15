@@ -1,23 +1,51 @@
-.
-\w \W
-\s \S
-\d \D
-\p{ASCII}
-\P{ASCII}
+[]
+[^]
+[foo]
+[\]\b]
+[.^$\1]
+[\d\D\p{L}]
 
 ----------------------------------------------------
 
 [
-	["charclass", "."],
-	["charclass", "\\w"],
-	["charclass", "\\W"],
-	["charclass", "\\s"],
-	["charclass", "\\S"],
-	["charclass", "\\d"],
-	["charclass", "\\D"],
+	["charclass", [
+		["charclass-punctuation", "["],
+		["charclass-punctuation", "]"]
+	]],
 
-	["charclass", "\\p{ASCII}"],
-	["charclass", "\\P{ASCII}"]
+	["charclass", [
+		["charclass-punctuation", "["],
+		["charclass-negation", "^"],
+		["charclass-punctuation", "]"]
+	]],
+
+	["charclass", [
+		["charclass-punctuation", "["],
+		"foo",
+		["charclass-punctuation", "]"]
+	]],
+
+	["charclass", [
+		["charclass-punctuation", "["],
+		["special-escape", "\\]"],
+		["escape", "\\b"],
+		["charclass-punctuation", "]"]
+	]],
+
+	["charclass", [
+		["charclass-punctuation", "["],
+		".^$",
+		["escape", "\\1"],
+		["charclass-punctuation", "]"]
+	]],
+
+	["charclass", [
+		["charclass-punctuation", "["],
+		["charset", "\\d"],
+		["charset", "\\D"],
+		["charset", "\\p{L}"],
+		["charclass-punctuation", "]"]
+	]]
 ]
 
 ----------------------------------------------------

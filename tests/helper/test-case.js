@@ -47,15 +47,18 @@ module.exports = {
 	 *
 	 * The languages will be loaded in the order they were provided.
 	 *
-	 * @param {string} languageIdentifier
-	 * @param {string} filePath
-	 * @param {boolean} acceptEmpty
+	 * @param {object} param0
+	 * @param {string} param0.languageIdentifier
+	 * @param {string} param0.filePath
+	 * @param {boolean} [param0.acceptEmpty]
+	 * @param {(languages: string[]) => import("./prism-loader").PrismInstance} [param0.createInstance]
 	 */
-	runTestCase(languageIdentifier, filePath, acceptEmpty) {
+	runTestCase({ languageIdentifier, filePath, acceptEmpty, createInstance }) {
 		const testCase = this.parseTestCaseFile(filePath);
 		const usedLanguages = this.parseLanguageNames(languageIdentifier);
 
-		const Prism = PrismLoader.createInstance(usedLanguages.languages);
+		createInstance = createInstance || PrismLoader.createInstance.bind(PrismLoader);
+		const Prism = createInstance(usedLanguages.languages);
 
 		// the first language is the main language to highlight
 		const simplifiedTokenStream = this.simpleTokenize(Prism, testCase.code, usedLanguages.mainLanguage);
@@ -220,12 +223,17 @@ module.exports = {
 	 *
 	 * Code is provided as the key and expected result as the value.
 	 *
-	 * @param {string} languageIdentifier
-	 * @param {object} codes
+	 * @param {object} param0
+	 * @param {string} param0.languageIdentifier
+	 * @param {object} param0.codes
+	 * @param {(languages: string[]) => import("./prism-loader").PrismInstance} [param0.createInstance]
 	 */
-	runTestsWithHooks(languageIdentifier, codes) {
+	runTestsWithHooks({ languageIdentifier, codes, createInstance }) {
 		const usedLanguages = this.parseLanguageNames(languageIdentifier);
-		const Prism = PrismLoader.createInstance(usedLanguages.languages);
+
+		createInstance = createInstance || PrismLoader.createInstance.bind(PrismLoader);
+		const Prism = createInstance(usedLanguages.languages);
+
 		// the first language is the main language to highlight
 
 		for (const code in codes) {

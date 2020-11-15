@@ -19,6 +19,9 @@ pub static ALLOCATOR: alloc::Tracing = alloc::Tracing::new();
 
 unsafe fn alloc(&self, layout: std::alloc::Layout) -> *mut u8 {}
 
+use crate::cool::function as root_function;
+self::cool::function();
+
 ----------------------------------------------------
 
 [
@@ -178,7 +181,29 @@ unsafe fn alloc(&self, layout: std::alloc::Layout) -> *mut u8 {}
 	["keyword", "mut"],
 	["keyword", "u8"],
 	["punctuation", "{"],
-	["punctuation", "}"]
+	["punctuation", "}"],
+
+	["keyword", "use"],
+	["keyword", "crate"],
+	["module-declaration", [
+		["punctuation", "::"],
+		"cool",
+		["punctuation", "::"]
+	]],
+	"function ",
+	["keyword", "as"],
+	" root_function",
+	["punctuation", ";"],
+	["keyword", "self"],
+	["module-declaration", [
+		["punctuation", "::"],
+		"cool",
+		["punctuation", "::"]
+	]],
+	["function", "function"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"]
 ]
 
 ----------------------------------------------------

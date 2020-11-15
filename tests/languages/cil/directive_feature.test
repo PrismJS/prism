@@ -1,0 +1,15 @@
+.class public Foo {
+.method
+.maxstack 2
+
+----------------------------------------------------
+
+[
+	["directive", ".class"],
+	["keyword", "public"],
+	" Foo ",
+	["punctuation", "{"],
+	["directive", ".method"],
+	["directive", ".maxstack"],
+	["number", "2"]
+]

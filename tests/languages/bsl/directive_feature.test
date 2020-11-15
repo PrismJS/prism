@@ -1,0 +1,13 @@
+&Client
+
+#If Server Then
+#EndIf
+
+----------------------------------------------------
+
+[
+	["directive", "&Client"],
+
+	["directive", "#If Server Then"],
+	["directive", "#EndIf"]
+]

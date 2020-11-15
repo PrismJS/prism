@@ -2,7 +2,7 @@
 
 const { assert } = require('chai');
 const PrismLoader = require('./helper/prism-loader');
-const { BFS, parseRegex } = require('./helper/util');
+const { BFS, BFSPathToPrismTokenPath, parseRegex } = require('./helper/util');
 const { languages } = require('../components.json');
 const { visitRegExpAST } = require('regexpp');
 
@@ -80,19 +80,7 @@ function testPatterns(Prism) {
 
 		BFS(Prism.languages, path => {
 			const { key, value } = path[path.length - 1];
-
-			let tokenPath = 'Prism.languages';
-			for (const { key } of path) {
-				if (!key) {
-					// do nothing
-				} else if (/^\d+$/.test(key)) {
-					tokenPath += `[${key}]`;
-				} else if (/^[a-z]\w*$/i.test(key)) {
-					tokenPath += `.${key}`;
-				} else {
-					tokenPath += `[${JSON.stringify(key)}]`;
-				}
-			}
+			const tokenPath = BFSPathToPrismTokenPath(path);
 
 			if (Object.prototype.toString.call(value) == '[object RegExp]') {
 				try {

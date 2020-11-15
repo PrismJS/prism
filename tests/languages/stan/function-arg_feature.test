@@ -1,0 +1,21 @@
+y = algebra_solver(system, y_guess, theta, x_r, x_i);
+
+----------------------------------------------------
+
+[
+	"y ",
+	["operator", "="],
+	["keyword", "algebra_solver"],
+	["punctuation", "("],
+	["function-arg", "system"],
+	["punctuation", ","],
+	" y_guess",
+	["punctuation", ","],
+	" theta",
+	["punctuation", ","],
+	" x_r",
+	["punctuation", ","],
+	" x_i",
+	["punctuation", ")"],
+	["punctuation", ";"]
+]

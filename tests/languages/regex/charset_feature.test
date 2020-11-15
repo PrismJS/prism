@@ -1,42 +1,23 @@
-[]
-[^]
-[foo]
-[\]\b]
-[.^$\1]
+.
+\w \W
+\s \S
+\d \D
+\p{ASCII}
+\P{ASCII}
 
 ----------------------------------------------------
 
 [
-	["charset", [
-		["charset-punctuation", "["],
-		["charset-punctuation", "]"]
-	]],
+	["charset", "."],
+	["charset", "\\w"],
+	["charset", "\\W"],
+	["charset", "\\s"],
+	["charset", "\\S"],
+	["charset", "\\d"],
+	["charset", "\\D"],
 
-	["charset", [
-		["charset-punctuation", "["],
-		["charset-negation", "^"],
-		["charset-punctuation", "]"]
-	]],
-
-	["charset", [
-		["charset-punctuation", "["],
-		"foo",
-		["charset-punctuation", "]"]
-	]],
-
-	["charset", [
-		["charset-punctuation", "["],
-		["special-escape", "\\]"],
-		["escape", "\\b"],
-		["charset-punctuation", "]"]
-	]],
-
-	["charset", [
-		["charset-punctuation", "["],
-		".^$",
-		["escape", "\\1"],
-		["charset-punctuation", "]"]
-	]]
+	["charset", "\\p{ASCII}"],
+	["charset", "\\P{ASCII}"]
 ]
 
 ----------------------------------------------------

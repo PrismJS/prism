@@ -1,6 +1,7 @@
 public class Solo<T extends com.foo.Foo.Bar> {}
 Solo<Integer> val = new Solo<>();
 Duo<Double, Character> dual = new Duo<Double, Character>(12.2585, 'C');
+Optional<?> foo;
 
 ----------------------------------------------------
 
@@ -92,6 +93,17 @@ Duo<Double, Character> dual = new Duo<Double, Character>(12.2585, 'C');
 	["punctuation", ","],
 	["string", "'C'"],
 	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["class-name", [
+		"Optional"
+	]],
+	["generics", [
+		["punctuation", "<"],
+		["operator", "?"],
+		["punctuation", ">"]
+	]],
+	" foo",
 	["punctuation", ";"]
 ]
 

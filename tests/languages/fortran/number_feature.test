@@ -25,11 +25,11 @@ Z"00BC"
 	["number", "10.93E7_QUAD"],
 	["number", "3E4"],
 	["quoted-number", "B'01110'"],
-    ["quoted-number", "B\"010\""],
-    ["quoted-number", "O'047'"],
-    ["quoted-number", "O\"642\""],
-    ["quoted-number", "Z'F41A'"],
-    ["quoted-number", "Z\"00BC\""]
+	["quoted-number", "B\"010\""],
+	["quoted-number", "O'047'"],
+	["quoted-number", "O\"642\""],
+	["quoted-number", "Z'F41A'"],
+	["quoted-number", "Z\"00BC\""]
 ]
 
 ----------------------------------------------------

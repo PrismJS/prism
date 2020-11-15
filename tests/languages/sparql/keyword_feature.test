@@ -102,6 +102,10 @@ UCASE(
 URI(
 YEAR(
 
+GRAPH
+BASE
+PREFIX
+
 ----------------------------------------------------
 
 [
@@ -262,9 +266,12 @@ YEAR(
 	["keyword", "URI"],
 	["punctuation", "("],
 	["keyword", "YEAR"],
-	["punctuation", "("]
-]
+	["punctuation", "("],
 
+	["keyword", "GRAPH"],
+	["keyword", "BASE"],
+	["keyword", "PREFIX"]
+]
 
 ----------------------------------------------------
 

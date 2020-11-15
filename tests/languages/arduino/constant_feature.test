@@ -1,0 +1,43 @@
+DIGITAL_MESSAGE
+FIRMATA_STRING
+ANALOG_MESSAGE
+REPORT_DIGITAL
+REPORT_ANALOG
+INPUT_PULLUP
+SET_PIN_MODE
+INTERNAL2V56
+SYSTEM_RESET
+LED_BUILTIN
+INTERNAL1V1
+SYSEX_START
+INTERNAL
+EXTERNAL
+DEFAULT
+OUTPUT
+INPUT
+HIGH
+LOW
+
+----------------------------------------------------
+
+[
+	["constant", "DIGITAL_MESSAGE"],
+	["constant", "FIRMATA_STRING"],
+	["constant", "ANALOG_MESSAGE"],
+	["constant", "REPORT_DIGITAL"],
+	["constant", "REPORT_ANALOG"],
+	["constant", "INPUT_PULLUP"],
+	["constant", "SET_PIN_MODE"],
+	["constant", "INTERNAL2V56"],
+	["constant", "SYSTEM_RESET"],
+	["constant", "LED_BUILTIN"],
+	["constant", "INTERNAL1V1"],
+	["constant", "SYSEX_START"],
+	["constant", "INTERNAL"],
+	["constant", "EXTERNAL"],
+	["constant", "DEFAULT"],
+	["constant", "OUTPUT"],
+	["constant", "INPUT"],
+	["constant", "HIGH"],
+	["constant", "LOW"]
+]

@@ -1,0 +1,28 @@
+move v1, p1
+
+move v2, p2
+
+move-object v4, p3
+
+move v5, p4
+
+----------------------------------------------------
+
+[
+	"move ",
+	["register", "v1"],
+	["punctuation", ","],
+	["register", "p1"],
+	"\n\nmove ",
+	["register", "v2"],
+	["punctuation", ","],
+	["register", "p2"],
+	"\n\nmove-object ",
+	["register", "v4"],
+	["punctuation", ","],
+	["register", "p3"],
+	"\n\nmove ",
+	["register", "v5"],
+	["punctuation", ","],
+	["register", "p4"]
+]

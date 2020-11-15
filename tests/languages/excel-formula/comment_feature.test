@@ -1,0 +1,10 @@
+N("comment")
+
+----------------------------------------------------
+
+[
+	["function-name", "N"],
+	["punctuation", "("],
+	["comment", "\"comment\""],
+	["punctuation", ")"]
+]

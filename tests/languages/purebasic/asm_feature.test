@@ -1,0 +1,118 @@
+Procedure.i XorTwoBlocks2(*buffer1, *buffer2, length)
+  ; move all the required data to source reg, destination reg and counter reg
+  !mov esi, [p.p_buffer1]           ; read 32-bit integer from p.p_buffer1 and move to esi
+  !mov edi, [p.p_buffer2]           ; read 32-bit integer from p.p_buffer2 and move to edi
+  !mov ecx, [p.v_length]            ; read 32-bit integer from p.v_length and move to ecx
+
+  !@@:                              ; anonymous label, can be reached by @b (back) or @f (forward)
+    !mov al, byte [edi + ecx - 1]   ; read byte from destination
+    !xor byte [esi + ecx - 1], al   ; xor source with destination (i.e. xor bytes from both blocks)
+    !dec ecx                        ; decrease counter
+  !jne @b                           ; jumb back to first anonymous label behind
+  ProcedureReturn 0
+EndProcedure
+
+----------------------------------------------------
+
+[
+	["keyword", "Procedure"],
+	["punctuation", "."],
+	"i ",
+	["function", "XorTwoBlocks2"],
+	["punctuation", "("],
+	["operator", "*buffer1"],
+	["punctuation", ","],
+	["operator", "*buffer2"],
+	["punctuation", ","],
+	" length",
+	["punctuation", ")"],
+	["comment", "; move all the required data to source reg, destination reg and counter reg"],
+	["asm", [
+		["operator", "!"],
+		["function", "mov"],
+		["register", "esi"],
+		["operator", ","],
+		["operator", "["],
+		"p",
+		["operator", "."],
+		"p_buffer1",
+		["operator", "]"]
+	]],
+	["comment", "; read 32-bit integer from p.p_buffer1 and move to esi"],
+	["asm", [
+		["operator", "!"],
+		["function", "mov"],
+		["register", "edi"],
+		["operator", ","],
+		["operator", "["],
+		"p",
+		["operator", "."],
+		"p_buffer2",
+		["operator", "]"]
+	]],
+	["comment", "; read 32-bit integer from p.p_buffer2 and move to edi"],
+	["asm", [
+		["operator", "!"],
+		["function", "mov"],
+		["register", "ecx"],
+		["operator", ","],
+		["operator", "["],
+		"p",
+		["operator", "."],
+		"v_length",
+		["operator", "]"]
+	]],
+	["comment", "; read 32-bit integer from p.v_length and move to ecx"],
+
+	["asm", [
+		["operator", "!"],
+		["label", "@@"],
+		["operator", ":"]
+	]],
+	["comment", "; anonymous label, can be reached by @b (back) or @f (forward)"],
+	["asm", [
+		["operator", "!"],
+		["function", "mov"],
+		["register", "al"],
+		["operator", ","],
+		" byte ",
+		["operator", "["],
+		["register", "edi"],
+		["operator", "+"],
+		["register", "ecx"],
+		["operator", "-"],
+		["number", "1"],
+		["operator", "]"]
+	]],
+	["comment", "; read byte from destination"],
+	["asm", [
+		["operator", "!"],
+		["function", "xor"],
+		" byte ",
+		["operator", "["],
+		["register", "esi"],
+		["operator", "+"],
+		["register", "ecx"],
+		["operator", "-"],
+		["number", "1"],
+		["operator", "]"],
+		["operator", ","],
+		["register", "al"]
+	]],
+	["comment", "; xor source with destination (i.e. xor bytes from both blocks)"],
+	["asm", [
+		["operator", "!"],
+		["function", "dec"],
+		["register", "ecx"]
+	]],
+	["comment", "; decrease counter"],
+	["asm", [
+		["operator", "!"],
+		["function", "jne"],
+		["label-reference-anonymous", "@b"]
+	]],
+	["comment", "; jumb back to first anonymous label behind"],
+	["keyword", "ProcedureReturn"],
+	["number", "0"],
+	["keyword", "EndProcedure"]
+]

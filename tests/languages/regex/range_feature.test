@@ -5,8 +5,8 @@
 ----------------------------------------------------
 
 [
-	["charset", [
-		["charset-punctuation", "["],
+	["charclass", [
+		["charclass-punctuation", "["],
 		["range", [
 			"a",
 			["range-punctuation", "-"],
@@ -22,11 +22,11 @@
 			["range-punctuation", "-"],
 			"9"
 		]],
-		["charset-punctuation", "]"]
+		["charclass-punctuation", "]"]
 	]],
 
-	["charset", [
-		["charset-punctuation", "["],
+	["charclass", [
+		["charclass-punctuation", "["],
 		["range", [
 			["escape", "\\xa1"],
 			["range-punctuation", "-"],
@@ -37,14 +37,14 @@
 			["range-punctuation", "-"],
 			["escape", "\\u{256}"]
 		]],
-		["charset-punctuation", "]"]
+		["charclass-punctuation", "]"]
 	]],
 
-	["charset", [
-		["charset-punctuation", "["],
-		["charset-negation", "^"],
+	["charclass", [
+		["charclass-punctuation", "["],
+		["charclass-negation", "^"],
 		"-aaa-",
-		["charset-punctuation", "]"]
+		["charclass-punctuation", "]"]
 	]]
 ]
 

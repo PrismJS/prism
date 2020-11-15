@@ -3,6 +3,8 @@ $#foo
 
 ${^POSTMATCH}
 
+${...}
+
 $^V
 
 @1
@@ -25,6 +27,11 @@ $foo::'bar
 	["variable", "$#foo"],
 
 	["variable", "${^POSTMATCH}"],
+
+	["variable", "$"],
+	["punctuation", "{"],
+	["operator", "..."],
+	["punctuation", "}"],
 
 	["variable", "$^V"],
 

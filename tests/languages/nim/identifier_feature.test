@@ -1,0 +1,14 @@
+var `var` = 42
+
+----------------------------------------------------
+
+[
+	["keyword", "var"],
+	["identifier", [
+		["punctuation", "`"],
+		"var",
+		["punctuation", "`"]
+	]],
+	["operator", "="],
+	["number", "42"]
+]
