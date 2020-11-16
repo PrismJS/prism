@@ -142,7 +142,6 @@
 		'lisp-marker': RegExp(marker),
 		'varform': {
 			pattern: RegExp(/\(/.source + symbol + /\s+(?=\S)/.source + nestedPar + /\)/.source),
-			lookbehind: true,
 			inside: language
 		},
 		'argument': {
