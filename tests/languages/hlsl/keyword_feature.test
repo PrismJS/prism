@@ -20,7 +20,7 @@ discard
 do
 dynamic_cast
 else
-enum
+enum;
 explicit
 export
 extern
@@ -70,7 +70,7 @@ stateblock_state
 static
 static_cast
 string
-struct
+struct;
 switch
 tbuffer
 technique
@@ -376,7 +376,8 @@ uint4x4
 	["keyword", "dynamic_cast"],
 	["keyword", "else"],
 	["keyword", "enum"],
-	["class-name", "explicit"],
+	["punctuation", ";"],
+	["keyword", "explicit"],
 	["keyword", "export"],
 	["keyword", "extern"],
 	["keyword", "for"],
@@ -426,7 +427,8 @@ uint4x4
 	["keyword", "static_cast"],
 	["keyword", "string"],
 	["keyword", "struct"],
-	["class-name", "switch"],
+	["punctuation", ";"],
+	["keyword", "switch"],
 	["keyword", "tbuffer"],
 	["keyword", "technique"],
 	["keyword", "technique10"],

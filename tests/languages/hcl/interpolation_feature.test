@@ -8,197 +8,244 @@
 "${replace(var.sub_domain, ".", "\\\\\\\\.")}"
 "${filepath.foo}"
 
+// keywords
+"${terraform}"
+"${var}"
+"${self}"
+"${count}"
+"${module}"
+"${path}"
+"${data}"
+"${local}"
+
 ----------------------------------------------------
 
 [
-	["string",
-		[
-			"\"",
-			[
-				"interpolation",
-				[
-					["punctuation", "$"],
-					["punctuation", "{"],
-					["keyword", "data"],
-					["punctuation", "."],
-					["type", "aws_availability_zones"],
-					["punctuation", "."],
-					"available",
-					["punctuation", "."],
-					"names",
-					["punctuation", "["],
-					["number", "0"],
-					["punctuation", "]"],
-					["punctuation", "}"]
-				]
-			],
-			"\""
-		]
-	],
-	["string",
-		[
-			"\"",
-			[
-				"interpolation",
-				[
-					["punctuation", "$"],
-					["punctuation", "{"],
-					"aws_db_subnet_group",
-					["punctuation", "."],
-					"default",
-					["punctuation", "."],
-					"id",
-					["punctuation", "}"]
-				]
-			],
-			"\""
-		]
-	],
-	["string",
-		[
-			"\"",
-			[
-				"interpolation",
-				[
-					["punctuation", "$"],
-					["punctuation", "{"],
-					["keyword", "var"],
-					["punctuation", "."],
-					["type", "something"],
-					["punctuation", "?"],
-					["number", "1"],
-					["punctuation", ":"],
-					["number", "0"],
-					["punctuation", "}"]
-				]
-			],
-			"\""
-		]
-	],
-	["string",
-		[
-			"\"",
-			[
-				"interpolation",
-				[
-					["punctuation", "$"],
-					["punctuation", "{"],
-					["keyword", "var"],
-					["punctuation", "."],
-					["type", "num"],
-					["punctuation", "?"],
-					["number", "1.02"],
-					["punctuation", ":"],
-					["number", "0"],
-					["punctuation", "}"]
-				]
-			],
-			"\""
-		]
-	],
-	["string",
-		[
-			"\"",
-			[
-				"interpolation",
-				[
-					["punctuation", "$"],
-					["punctuation", "{"],
-					["function", "length"],
-					["punctuation", "("],
-					["keyword", "var"],
-					["punctuation", "."],
-					["type", "hostnames"],
-					["punctuation", ")"],
-					["punctuation", "}"]
-				]
-			],
-			"\""
-		]
-	],
-	["string",
-		[
-			"\"",
-			[
-				"interpolation",
-				[
-					["punctuation", "$"],
-					["punctuation", "{"],
-					["function", "format"],
-					["punctuation", "("],
-					["string", "\"web-%03d\""],
-					["punctuation", ","],
-					["keyword", "count"],
-					["punctuation", "."],
-					["type", "index"],
-					["punctuation", "+"],
-					["number", "1"],
-					["punctuation", ")"],
-					["punctuation", "}"]
-				]
-			],
-			"\""
-		]
-	],
-	["string",
-		[
-			"\"",
-			[
-				"interpolation",
-				[
-					["punctuation", "$"],
-					["punctuation", "{"],
-					["function", "file"],
-					["punctuation", "("],
-					["string", "\"templates/web_init.tpl\""],
-					["punctuation", ")"],
-					["punctuation", "}"]
-				]
-			],
-			"\""
-		]
-	],
-	["string",
-		[
-			"\"",
-			[
-				"interpolation",
-				[
-					["punctuation", "$"],
-					["punctuation", "{"],
-					["function", "replace"],
-					["punctuation", "("],
-					["keyword", "var"],
-					["punctuation", "."],
-					["type", "sub_domain"],
-					["punctuation", ","],
-					["string", "\".\""],
-					["punctuation", ","],
-					["string", "\"\\\\\\\\\\\\\\\\.\""],
-					["punctuation", ")"],
-					["punctuation", "}"]
-				]
-			],
-			"\""
-		]
-	],
-	["string",
-		[
-			"\"",
-			[
-				"interpolation",
-				[
-					["punctuation", "$"],
-					["punctuation", "{"],
-					"filepath",
-					["punctuation", "."],
-					"foo",
-					["punctuation", "}"]
-				]
-			],
-			"\""
-		]
-	]
+	["string", [
+		"\"",
+		["interpolation", [
+			["punctuation", "$"],
+			["punctuation", "{"],
+			["keyword", "data"],
+			["punctuation", "."],
+			["type", "aws_availability_zones"],
+			["punctuation", "."],
+			"available",
+			["punctuation", "."],
+			"names",
+			["punctuation", "["],
+			["number", "0"],
+			["punctuation", "]"],
+			["punctuation", "}"]
+		]],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["interpolation", [
+			["punctuation", "$"],
+			["punctuation", "{"],
+			"aws_db_subnet_group",
+			["punctuation", "."],
+			"default",
+			["punctuation", "."],
+			"id",
+			["punctuation", "}"]
+		]],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["interpolation", [
+			["punctuation", "$"],
+			["punctuation", "{"],
+			["keyword", "var"],
+			["punctuation", "."],
+			["type", "something"],
+			["punctuation", "?"],
+			["number", "1"],
+			["punctuation", ":"],
+			["number", "0"],
+			["punctuation", "}"]
+		]],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["interpolation", [
+			["punctuation", "$"],
+			["punctuation", "{"],
+			["keyword", "var"],
+			["punctuation", "."],
+			["type", "num"],
+			["punctuation", "?"],
+			["number", "1.02"],
+			["punctuation", ":"],
+			["number", "0"],
+			["punctuation", "}"]
+		]],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["interpolation", [
+			["punctuation", "$"],
+			["punctuation", "{"],
+			["function", "length"],
+			["punctuation", "("],
+			["keyword", "var"],
+			["punctuation", "."],
+			["type", "hostnames"],
+			["punctuation", ")"],
+			["punctuation", "}"]
+		]],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["interpolation", [
+			["punctuation", "$"],
+			["punctuation", "{"],
+			["function", "format"],
+			["punctuation", "("],
+			["string", "\"web-%03d\""],
+			["punctuation", ","],
+			["keyword", "count"],
+			["punctuation", "."],
+			["type", "index"],
+			["punctuation", "+"],
+			["number", "1"],
+			["punctuation", ")"],
+			["punctuation", "}"]
+		]],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["interpolation", [
+			["punctuation", "$"],
+			["punctuation", "{"],
+			["function", "file"],
+			["punctuation", "("],
+			["string", "\"templates/web_init.tpl\""],
+			["punctuation", ")"],
+			["punctuation", "}"]
+		]],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["interpolation", [
+			["punctuation", "$"],
+			["punctuation", "{"],
+			["function", "replace"],
+			["punctuation", "("],
+			["keyword", "var"],
+			["punctuation", "."],
+			["type", "sub_domain"],
+			["punctuation", ","],
+			["string", "\".\""],
+			["punctuation", ","],
+			["string", "\"\\\\\\\\\\\\\\\\.\""],
+			["punctuation", ")"],
+			["punctuation", "}"]
+		]],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["interpolation", [
+			["punctuation", "$"],
+			["punctuation", "{"],
+			"filepath",
+			["punctuation", "."],
+			"foo",
+			["punctuation", "}"]
+		]],
+		"\""
+	]],
+
+	["comment", "// keywords"],
+	["string", [
+		"\"",
+		["interpolation", [
+			["punctuation", "$"],
+			["punctuation", "{"],
+			["keyword", "terraform"],
+			["punctuation", "}"]
+		]],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["interpolation", [
+			["punctuation", "$"],
+			["punctuation", "{"],
+			["keyword", "var"],
+			["punctuation", "}"]
+		]],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["interpolation", [
+			["punctuation", "$"],
+			["punctuation", "{"],
+			["keyword", "self"],
+			["punctuation", "}"]
+		]],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["interpolation", [
+			["punctuation", "$"],
+			["punctuation", "{"],
+			["keyword", "count"],
+			["punctuation", "}"]
+		]],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["interpolation", [
+			["punctuation", "$"],
+			["punctuation", "{"],
+			["keyword", "module"],
+			["punctuation", "}"]
+		]],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["interpolation", [
+			["punctuation", "$"],
+			["punctuation", "{"],
+			["keyword", "path"],
+			["punctuation", "}"]
+		]],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["interpolation", [
+			["punctuation", "$"],
+			["punctuation", "{"],
+			["keyword", "data"],
+			["punctuation", "}"]
+		]],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["interpolation", [
+			["punctuation", "$"],
+			["punctuation", "{"],
+			["keyword", "local"],
+			["punctuation", "}"]
+		]],
+		"\""
+	]]
 ]
 
 ----------------------------------------------------

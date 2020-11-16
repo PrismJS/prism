@@ -19,6 +19,12 @@
   (or (apply 'cl-member thing thing-list :allow-other-keys t rest)
       (if need (error "Thing not found"))))
 
+(defun foo (a b &optional (c 3 c-supplied-p))
+  (list a b c c-supplied-p))
+
+(defun foo (&key ((:apple a)) ((:box b) 0) ((:charlie c) 0 c-supplied-p))
+  (list a b c c-supplied-p))
+
 ----------------------------------------------------
 
 [
@@ -211,6 +217,72 @@
 	]],
 	["punctuation", ")"],
 	["punctuation", ")"],
+	["punctuation", ")"],
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["defun", [
+		["keyword", "defun"],
+		["function", "foo"],
+		["punctuation", "("],
+		["arguments", [
+			["argument", "a"],
+			["argument", "b"],
+			["other-marker-vars", [
+				["lisp-marker", "&optional"],
+				["varform", [
+					["punctuation", "("],
+					["car", "c"],
+					["number", "3"],
+					" c-supplied-p",
+					["punctuation", ")"]
+				]]
+			]]
+		]],
+		["punctuation", ")"]
+	]],
+	["punctuation", "("],
+	["car", "list"],
+	" a b c c-supplied-p",
+	["punctuation", ")"],
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["defun", [
+		["keyword", "defun"],
+		["function", "foo"],
+		["punctuation", "("],
+		["arguments", [
+			["keys", [
+				["lisp-marker", "&key"],
+				["punctuation", "("],
+				["punctuation", "("],
+				["lisp-property", ":apple"],
+				["argument", "a"],
+				["punctuation", ")"],
+				["punctuation", ")"],
+				["punctuation", "("],
+				["punctuation", "("],
+				["lisp-property", ":box"],
+				["argument", "b"],
+				["punctuation", ")"],
+				["number", "0"],
+				["punctuation", ")"],
+				["punctuation", "("],
+				["punctuation", "("],
+				["lisp-property", ":charlie"],
+				["argument", "c"],
+				["punctuation", ")"],
+				["number", "0"],
+				["argument", "c-supplied-p"],
+				["punctuation", ")"]
+			]]
+		]],
+		["punctuation", ")"]
+	]],
+	["punctuation", "("],
+	["car", "list"],
+	" a b c c-supplied-p",
 	["punctuation", ")"],
 	["punctuation", ")"]
 ]

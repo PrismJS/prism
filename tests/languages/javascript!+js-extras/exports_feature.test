@@ -12,6 +12,7 @@ export {d}
 export {d,}
 export {d as Foo, b as Bar}
 export {d as Foo, b as Bar,}
+export default const foo = 9;
 
 ----------------------------------------------------
 
@@ -147,5 +148,12 @@ export {d as Foo, b as Bar,}
 		["maybe-class-name", "Bar"],
 		["punctuation", ","],
 		["punctuation", "}"]
-	]]
+	]],
+	["keyword", "export"],
+	["keyword", "default"],
+	["keyword", "const"],
+	" foo ",
+	["operator", "="],
+	["number", "9"],
+	["punctuation", ";"]
 ]

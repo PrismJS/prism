@@ -1,0 +1,39 @@
+if
+else
+switch
+case
+default
+break
+for
+repeat
+while
+do
+until
+continue
+exit
+return
+globalvar
+var
+enum
+
+----------------------------------------------------
+
+[
+	["keyword", "if"],
+	["keyword", "else"],
+	["keyword", "switch"],
+	["keyword", "case"],
+	["keyword", "default"],
+	["keyword", "break"],
+	["keyword", "for"],
+	["keyword", "repeat"],
+	["keyword", "while"],
+	["keyword", "do"],
+	["keyword", "until"],
+	["keyword", "continue"],
+	["keyword", "exit"],
+	["keyword", "return"],
+	["keyword", "globalvar"],
+	["keyword", "var"],
+	["keyword", "enum"]
+]

@@ -1,0 +1,43 @@
+sum
+min
+max
+avg
+group
+stddev
+stdvar
+count
+count_values
+bottomk
+topk
+quantile
+on
+ignoring
+group_right
+group_left
+by
+without
+offset
+
+----------------------------------------------------
+
+[
+	["keyword", "sum"],
+	["keyword", "min"],
+	["keyword", "max"],
+	["keyword", "avg"],
+	["keyword", "group"],
+	["keyword", "stddev"],
+	["keyword", "stdvar"],
+	["keyword", "count"],
+	["keyword", "count_values"],
+	["keyword", "bottomk"],
+	["keyword", "topk"],
+	["keyword", "quantile"],
+	["keyword", "on"],
+	["keyword", "ignoring"],
+	["keyword", "group_right"],
+	["keyword", "group_left"],
+	["keyword", "by"],
+	["keyword", "without"],
+	["keyword", "offset"]
+]
