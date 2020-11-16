@@ -16,7 +16,7 @@ describe('Pattern test coverage', function () {
 	/**
 	 * @type {Map<string, PatternData>}
 	 * @typedef PatternData
-	 * @property {string} pattern
+	 * @property {RegExp} pattern
 	 * @property {string} language
 	 * @property {Set<string>} from
 	 * @property {RegExpExecArray[]} matches
@@ -42,7 +42,7 @@ describe('Pattern test coverage', function () {
 				let data = patterns.get(patternKey);
 				if (!data) {
 					data = {
-						pattern: String(regex),
+						pattern: regex,
 						language: path[1].key,
 						from: new Set([tokenPath]),
 						matches: []
@@ -65,9 +65,14 @@ describe('Pattern test coverage', function () {
 		return Prism;
 	}
 
-	// This will cause ALL regexes of Prism to be registered in the patterns map.
-	// (Languages that don't have any tests can't be caught otherwise.)
-	createInstance(ALL_LANGUAGES);
+	describe('Register all patterns', function () {
+		it('all', function () {
+			this.slow(10 * 1000);
+			// This will cause ALL regexes of Prism to be registered in the patterns map.
+			// (Languages that don't have any tests can't be caught otherwise.)
+			createInstance(ALL_LANGUAGES);
+		});
+	});
 
 	describe('Run all language tests', function () {
 		// define tests for all tests in all languages in the test suite
@@ -77,7 +82,7 @@ describe('Pattern test coverage', function () {
 			}
 
 			it(languageIdentifier, function () {
-				this.timeout(10000);
+				this.timeout(10 * 1000);
 
 				for (const filePath of testSuite[languageIdentifier]) {
 					if (path.extname(filePath) === '.test') {
@@ -92,26 +97,135 @@ describe('Pattern test coverage', function () {
 
 	describe('Coverage', function () {
 		for (const language of ALL_LANGUAGES) {
-			it(`- should cover all patterns in ${language}`, function () {
-				const untested = [...patterns.values()].filter(d => d.language === language && d.matches.length === 0);
-				if (untested.length > 0) {
+			describe(language, function () {
+				it(`- should cover all patterns`, function () {
+					const untested = getAllOf(language).filter(d => d.matches.length === 0);
+					if (untested.length === 0) {
+						return;
+					}
+
+					const problems = untested.map(data => {
+						const { origin, otherOccurrences } = splitOccurrences(data.from);
+						return [
+							`${origin}:\n\t${short(String(data.pattern), 80)}`,
+							'This pattern is completely untested. Add test files that match this pattern.',
+							...(otherOccurrences.length ? ['Other occurrences of this pattern:', ...otherOccurrences] : [])
+						].join('\n');
+					});
+
 					assert.fail([
-						`${untested.length} pattern(s) in ${language} are untested:\n`
+						`${problems.length} pattern(s) are untested:\n`
 						+ 'You can learn more about writing tests at https://prismjs.com/test-suite.html#writing-tests',
-						...untested.map(data => {
-							const occurrences = [...data.from];
-							return [
-								`${occurrences[0]}:`,
-								`\t${data.pattern.length > 80 ? data.pattern.slice(0, 80) + '…' : data.pattern}`,
-								'This pattern is completely untested. Add test files that match this pattern.',
-								...(occurrences.length > 1 ? ['Other occurrences of this pattern:', ...occurrences.slice(1)] : [])
-							].join('\n');
-						})
+						...problems
 					].join('\n\n'));
-				}
+				});
+
+				it(`- should exhaustively cover all keywords in keyword lists`, function () {
+					const problems = [];
+
+					for (const { pattern, matches, from } of getAllOf(language)) {
+						if (matches.length === 0) {
+							// don't report the same pattern twice
+							continue;
+						}
+
+						const keywords = getKeywordList(pattern);
+						if (!keywords) {
+							continue;
+						}
+						const keywordCount = keywords.size;
+
+						matches.forEach(([m]) => {
+							if (pattern.ignoreCase) {
+								m = m.toUpperCase();
+							}
+							keywords.delete(m);
+						});
+
+						if (keywords.size > 0) {
+							const { origin, otherOccurrences } = splitOccurrences(from);
+							problems.push([
+								`${origin}:\n\t${short(String(pattern), 80)}`,
+								`Add test files to test all keywords. The following ${keywords.size}/${keywordCount} keywords are untested:`,
+								`${[...keywords].map(k => `\t${k}`).join('\n')}`,
+								...(otherOccurrences.length ? ['Other occurrences of this pattern:', ...otherOccurrences] : [])
+							].join('\n'));
+						}
+					}
+
+					if (problems.length === 0) {
+						return;
+					}
+
+					assert.fail([
+						`${problems.length} keyword list(s) are not exhaustively tested:\n`
+						+ 'You can learn more about writing tests at https://prismjs.com/test-suite.html#writing-tests',
+						...problems
+					].join('\n\n'));
+				});
 			});
 		}
 	});
+
+	/**
+	 * @param {string} language
+	 * @returns {PatternData[]}
+	 */
+	function getAllOf(language) {
+		return [...patterns.values()].filter(d => d.language === language);
+	}
+
+	/**
+	 * @param {string} string
+	 * @param {number} maxLength
+	 * @returns {string}
+	 */
+	function short(string, maxLength) {
+		if (string.length > maxLength) {
+			return string.slice(0, maxLength - 1) + '…';
+		} else {
+			return string;
+		}
+	}
+
+	/**
+	 * If the given pattern string describes a keyword list, all keyword will be returned. Otherwise, `null` will be
+	 * returned.
+	 *
+	 * @param {RegExp} pattern
+	 * @returns {Set<string> | null}
+	 */
+	function getKeywordList(pattern) {
+		// Right now, only keyword lists of the form /\b(?:foo|bar)\b/ are supported.
+		// In the future, we might want to convert these regexes to NFAs and iterate all words to cover more complex
+		// keyword lists and even operator and punctuation lists.
+
+		let source = pattern.source.replace(/^\\b|\\b$/g, '');
+		if (source.startsWith('(?:') && source.endsWith(')')) {
+			source = source.slice('(?:'.length, source.length - ')'.length);
+		}
+
+		if (/^\w+(?:\|\w+)*$/.test(source)) {
+			if (pattern.ignoreCase) {
+				source = source.toUpperCase();
+			}
+			return new Set(source.split(/\|/g));
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * @param {Iterable<string>} occurrences
+	 * @returns {{ origin: string; otherOccurrences: string[] }}
+	 */
+	function splitOccurrences(occurrences) {
+		const all = [...occurrences];
+		return {
+			origin: all[0],
+			otherOccurrences: all.slice(1),
+		};
+	}
 });
 
 /**
