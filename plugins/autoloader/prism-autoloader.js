@@ -83,10 +83,7 @@
 		"objectivec": "c",
 		"opencl": "c",
 		"parser": "markup",
-		"php": [
-			"clike",
-			"markup-templating"
-		],
+		"php": "markup-templating",
 		"phpdoc": [
 			"php",
 			"javadoclike"
@@ -463,7 +460,13 @@
 		}
 
 		var deps = getDependencies(element);
-		deps.push(language);
+		if (/^diff-./i.test(language)) {
+			// the "diff-xxxx" format is used by the Diff Highlight plugin
+			deps.push('diff');
+			deps.push(language.substr('diff-'.length));
+		} else {
+			deps.push(language);
+		}
 
 		if (!deps.every(isLoaded)) {
 			// the language or some dependencies aren't loaded

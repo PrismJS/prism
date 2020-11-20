@@ -64,5 +64,5 @@ Prism.languages.git = {
 	 *
 	 *     Add of a new line
 	 */
-	'commit_sha1': /^commit \w{40}$/m
+	'commit-sha1': /^commit \w{40}$/m
 };

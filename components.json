@@ -837,7 +837,7 @@
 		},
 		"php": {
 			"title": "PHP",
-			"require": ["clike", "markup-templating"],
+			"require": "markup-templating",
 			"owner": "milesj"
 		},
 		"phpdoc": {
@@ -874,6 +874,10 @@
 		"prolog": {
 			"title": "Prolog",
 			"owner": "Golmote"
+		},
+		"promql": {
+			"title": "PromQL",
+			"owner": "arendjr"
 		},
 		"properties": {
 			"title": ".properties",

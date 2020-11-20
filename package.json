@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
+    "danger": "^10.5.0",
     "del": "^4.1.1",
     "docdash": "^1.2.0",
     "gulp": "^4.0.2",
@@ -42,6 +43,7 @@
     "gulp-rename": "^1.2.0",
     "gulp-replace": "^1.0.0",
     "gulp-uglify": "^3.0.1",
+    "gzip-size": "^5.1.1",
     "htmlparser2": "^4.0.0",
     "jsdom": "^13.0.0",
     "mocha": "^6.2.0",
