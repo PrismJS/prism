@@ -147,6 +147,7 @@
 		"pq": "PowerQuery",
 		"mscript": "PowerQuery",
 		"powershell": "PowerShell",
+		"promql": "PromQL",
 		"properties": ".properties",
 		"protobuf": "Protocol Buffers",
 		"purebasic": "PureBasic",
