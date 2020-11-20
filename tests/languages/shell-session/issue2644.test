@@ -1,0 +1,69 @@
+$ export BORG_PASSCOMMAND="security find-generic-password -a $USER -s borg-passphrase -w"
+$ export BORG_RSH="ssh -i ~/.ssh/borg"
+$ borg init --encryption=keyfile-blake2 "borg@1.2.3.4:backup"
+
+By default repositories initialized with this version will produce security
+errors if written to with an older version (up to and including Borg 1.0.8).
+
+If you want to use these older versions, you can disable the check by running:
+borg upgrade --disable-tam ssh://borg@1.2.3.4/./backup
+
+See https://borgbackup.readthedocs.io/en/stable/changes.html#pre-1-0-9-manifest-spoofing-vulnerability for details about the security implications.
+
+IMPORTANT: you will need both KEY AND PASSPHRASE to access this repo!
+Use "borg key export" to export the key, optionally in printable format.
+Write down the passphrase. Store both at safe place(s).
+
+---
+
+----------------------------------------------------
+
+[
+	["command", [
+		["shell-symbol", "$"],
+		["bash", [
+			["builtin", "export"],
+			["assign-left", [
+				"BORG_PASSCOMMAND"
+			]],
+			["operator", [
+				"="
+			]],
+			["string", [
+				"\"security find-generic-password -a ",
+				["environment", "$USER"],
+				" -s borg-passphrase -w\""
+			]]
+		]]
+	]],
+	["command", [
+		["shell-symbol", "$"],
+		["bash", [
+			["builtin", "export"],
+			["assign-left", [
+				"BORG_RSH"
+			]],
+			["operator", [
+				"="
+			]],
+			["string", [
+				"\"ssh -i ~/.ssh/borg\""
+			]]
+		]]
+	]],
+	["command", [
+		["shell-symbol", "$"],
+		["bash", [
+			"borg init --encryption",
+			["operator", [
+				"="
+			]],
+			"keyfile-blake2 ",
+			["string", [
+				"\"borg@1.2.3.4:backup\""
+			]]
+		]]
+	]],
+
+	["output", "By default repositories initialized with this version will produce security\nerrors if written to with an older version (up to and including Borg 1.0.8).\n\nIf you want to use these older versions, you can disable the check by running:\nborg upgrade --disable-tam ssh://borg@1.2.3.4/./backup\n\nSee https://borgbackup.readthedocs.io/en/stable/changes.html#pre-1-0-9-manifest-spoofing-vulnerability for details about the security implications.\n\nIMPORTANT: you will need both KEY AND PASSPHRASE to access this repo!\nUse \"borg key export\" to export the key, optionally in printable format.\nWrite down the passphrase. Store both at safe place(s).\n\n---"]
+]
