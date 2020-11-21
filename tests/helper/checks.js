@@ -116,7 +116,8 @@ module.exports = (Prism) => {
 		} else {
 			redefStr = String(redef);
 		}
-		const details = `\n\nPrism.languages.extend('${id}', ${redefStr});` +
+		const details = `\n\nActual method call (nonconforming):` +
+			`\n\n\tPrism.languages.extend('${id}', ${redefStr.replace(/\n/g, '\n\t')});` +
 			'\n\nFor more information see: https://prismjs.com/docs/Prism.languages.html#.extend';
 
 		// type checks
