@@ -31,7 +31,9 @@ import static java.lang.Math.*;
 		"foo",
 		["punctuation", "."]
 	]],
-	["class-name", "Bar"],
+	["class-name", [
+		"Bar"
+	]],
 	["punctuation", ";"],
 	["keyword", "import"],
 	["namespace", [
@@ -40,9 +42,10 @@ import static java.lang.Math.*;
 		"lang",
 		["punctuation", "."]
 	]],
-	["class-name", "Math"],
+	["class-name", [
+		"Math"
+	]],
 	["punctuation", ";"],
-
 	["keyword", "import"],
 	["namespace", [
 		"java",
@@ -52,17 +55,19 @@ import static java.lang.Math.*;
 	]],
 	["operator", "*"],
 	["punctuation", ";"],
+
 	["keyword", "import"],
 	["keyword", "static"],
 	["namespace", [
 		"foo",
 		["punctuation", "."]
 	]],
-	["class-name", "Bar"],
+	["class-name", [
+		"Bar"
+	]],
 	["punctuation", "."],
 	"BAZ",
 	["punctuation", ";"],
-
 	["keyword", "import"],
 	["keyword", "static"],
 	["namespace", [
@@ -71,11 +76,12 @@ import static java.lang.Math.*;
 		"lang",
 		["punctuation", "."]
 	]],
-	["class-name", "Math"],
+	["class-name", [
+		"Math"
+	]],
 	["punctuation", "."],
 	"PI",
 	["punctuation", ";"],
-
 	["keyword", "import"],
 	["keyword", "static"],
 	["namespace", [
@@ -84,7 +90,9 @@ import static java.lang.Math.*;
 		"lang",
 		["punctuation", "."]
 	]],
-	["class-name", "Math"],
+	["class-name", [
+		"Math"
+	]],
 	["punctuation", "."],
 	"sin",
 	["punctuation", ";"],
@@ -96,7 +104,9 @@ import static java.lang.Math.*;
 		"lang",
 		["punctuation", "."]
 	]],
-	["class-name", "Math"],
+	["class-name", [
+		"Math"
+	]],
 	["punctuation", "."],
 	"*",
 	["punctuation", ";"]
