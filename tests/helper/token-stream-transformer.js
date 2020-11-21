@@ -57,16 +57,24 @@ module.exports = {
 	}
 };
 
+/**
+ * This item indicates that one or multiple line breaks are present between the preceding and following items in the
+ * source token stream.
+ *
+ * Only if an item is enabled will it appear in the pretty-printed token stream.
+ */
 class LineBreakItem {
-	/**
-	 * @param {number} sourceCount
-	 */
+	/** @param {number} sourceCount */
 	constructor(sourceCount) {
 		this.sourceCount = sourceCount;
 		this.enabled = false;
 	}
 }
-class GlueItem {}
+/**
+ * This item indicates the the preceding and following items are to be printed on the same line in the pretty-printed
+ * token stream.
+ */
+class GlueItem { }
 
 /**
  * @param {TokenStream} tokenStream
@@ -85,14 +93,14 @@ function toPrettyTokenStream(tokenStream) {
 				}
 			} else {
 				// might start with line breaks
-				const startLineBreaks = countLineBreaks((/^\s+/.exec(token) || [''])[0]);
+				const startLineBreaks = countLineBreaks(/^\s*/.exec(token)[0]);
 				if (startLineBreaks > 0) {
 					prettyStream.push(new LineBreakItem(startLineBreaks));
 				}
 
 				prettyStream.push(token);
 
-				const endLineBreaks = countLineBreaks((/\s+$/.exec(token) || [''])[0]);
+				const endLineBreaks = countLineBreaks(/\s*$/.exec(token)[0]);
 				if (endLineBreaks > 0) {
 					prettyStream.push(new LineBreakItem(endLineBreaks));
 				}
@@ -113,98 +121,99 @@ function toPrettyTokenStream(tokenStream) {
 		}
 	}
 
+	prettyFormat(prettyStream);
+	return prettyStream;
+}
+
+/**
+ * @param {PrettyTokenStream} prettyStream
+ * @returns {void}
+ */
+function prettyFormat(prettyStream) {
+	// The maximum number of (glued) tokens per line
+	const MAX_TOKEN_PER_LINE = 5;
+	// The maximum number of characters per line
+	// (this is based on an estimation. The actual output might be longer.)
+	const MAX_PRINT_WIDTH = 80;
+
 	prettyTrimLineBreaks(prettyStream);
+	// enable all line breaks with >=2 breaks in the source token stream
+	prettyEnableLineBreaks(prettyStream, br => br.sourceCount >= 2);
 
-	// enable all line breaks with >=2 breaks
-	prettyEnableLineBreaks(prettyStream, 2);
-
-	prettySplit(prettyStream, br => br instanceof LineBreakItem && br.enabled).forEach((group, _, breaks) => {
-		if (prettyContainsEnableLineBreaks(group, true)) {
-			// at least one of the elements contains nested line breaks
-			prettyEnableLineBreaks(group);
+	const ranges = prettySplit(prettyStream, br => br instanceof LineBreakItem && br.enabled);
+	for (const group of ranges) {
+		if (prettySomeLineBreak(group, true, br => br.enabled)) {
+			// Since we just split by enabled line break, only nested line breaks can be enabled. This usually
+			// indicates complex token streams, so let's just enable all line breaks and call it a day.
+			prettyEnableLineBreaks(group, () => true);
 		} else {
-			// try to optimize for the pattern /<token>{1,5}(\n<token>{1,5})*/
+			// try to optimize for the pattern /<token>{1,MAX_TOKEN_PER_LINE}(\n<token>{1,MAX_TOKEN_PER_LINE})*/
 			const lines = prettySplit(group, i => i instanceof LineBreakItem);
-			let doNotGlue = false;
 
-			// check for line breaks within the line
-			lines.forEach(g => {
-				if (prettyContainsNonTriviallyNested(g)) {
-					// we don't check those
-				} else if (g.length >= 2) {
-					const first = getStringContent(g[0]).trimStart();
-					const last = getStringContent(g[g.length - 1]).trimEnd();
-					if (countLineBreaks(first) > 0
-						|| countLineBreaks(last) > 0
-						|| g.slice(1, g.length - 2).some(t => countLineBreaks(getStringContent(t)) > 0)) {
-						doNotGlue = true;
-					} else {
-
-					}
-				}
-			});
-
-			// count the number of tokens per line
-			const lineTokens = lines.map(g => {
-				const count = prettyCountTokens(g, true);
-				if (prettyContainsNonTriviallyNested(g)) {
-					// nested tokens are fine as long as it's only one per line
-					if (prettyCountTokens(g, false) === 1) {
-						return count;
-					} else {
-						// it's more than one, so let's abort
-						doNotGlue = true;
-						return Infinity;
-					}
-				} else {
-					return count;
-				}
-			});
-			// estimate the output length each line will have
-			const lineLengths = lines.map(g => {
-				if (prettyContainsNonTriviallyNested(g)) {
-					// can't say anything about that since they can't be printed as just one line
-					return 0;
-				} else {
-					let count = -2;
-					for (const item of g) {
-						if (isToken(item)) {
-							count += 2 + JSON.stringify(item).length;
+			/**
+			 * Returns whether lines can generally be glued together (no line breaks within lines and don't glue with
+			 * nested tokens).
+			 */
+			function glueable() {
+				return lines.every(g => {
+					if (g.length > 1) {
+						if (prettyContainsNonTriviallyNested(g)) {
+							// the token with nested tokens might be glued together with other tokens and we can't allow
+							// that to happen
+							return false;
+						} else {
+							return true;
 						}
+					} else {
+						// we can safely ignore all tokens that are on their own line
+						return true;
 					}
-					return count;
-				}
-			});
-			const maxLineTokens = Math.max(...lineTokens);
-			const maxLineLength = Math.max(...lineLengths);
+				});
+			}
+			function tokensPerLine() {
+				return lines.map(g => prettyCountTokens(g, true));
+			}
+			/**
+			 * Returns an estimate for the output length each line will have
+			 */
+			function widthPerLine() {
+				return lines.map(g => {
+					if (g.length > 1) {
+						return g
+							.map(item => isToken(item) ? ", ".length + JSON.stringify(item).length : 0)
+							.reduce((a, b) => a + b, 0) - ", ".length;
+					} else {
+						// we don't really care about the print width of a single-token line
+						return 1;
+					}
+				});
+			}
 
-			const glueTokens = !doNotGlue
+			const glueTokens = glueable()
 				// at most this many tokens per line
-				&& maxLineTokens <= 5
+				&& Math.max(...tokensPerLine()) <= MAX_TOKEN_PER_LINE
 				// the output of each line can be at most this many characters long
-				&& maxLineLength <= 80
+				&& Math.max(...widthPerLine()) <= MAX_PRINT_WIDTH
 				// We need to have at least 2 lines in this group OR this group isn't the only group in the stream.
 				// This will prevent all tokens of a really short token stream to be glued together.
-				&& (lines.length >= 2 || breaks.length >= 2);
+				&& (lines.length > 1 || ranges.length > 1);
 
 			if (glueTokens) {
 				prettyGlueTogetherAll(prettyStream, group);
 			} else {
-				const tokenCount = prettyCountTokens(group, true);
-				if (tokenCount >= 8) {
-					const lineBreakCount = prettyCountLineBreaks(group, false);
-
-					if (tokenCount / (lineBreakCount + 1) > 2.1) {
-						// the group contains a lot of tokens, so let's try to break it up
-						// except when we have more than 1 line break per 2 tokens
-						prettyEnableLineBreaks(group);
-					}
+				const flatTokenCount = prettyCountTokens(group, false);
+				const deepTokenCount = prettyCountTokens(group, true);
+				if (
+					// prevent a one-token-per-line situation
+					flatTokenCount > lines.length &&
+					// require at least 2 tokens per line on average
+					deepTokenCount >= lines.length * 2
+				) {
+					prettyEnableLineBreaks(group, () => true);
 				}
 			}
 		}
-	});
-
-	return prettyStream;
+	}
 }
 
 /**
@@ -317,18 +326,19 @@ function prettyTrimLineBreaks(prettyStream) {
  * number of line breaks in the source token stream.
  *
  * @param {PrettyTokenStream} prettyStream
- * @param {number} minSourceCount
+ * @param {(item: LineBreakItem) => boolean} cond
  */
-function prettyEnableLineBreaks(prettyStream, minSourceCount = 0) {
+function prettyEnableLineBreaks(prettyStream, cond) {
 	prettyStream.forEach(token => {
-		if (token instanceof LineBreakItem && token.sourceCount >= minSourceCount) {
+		if (token instanceof LineBreakItem && cond(token)) {
 			token.enabled = true;
 		}
 	});
 }
 
 /**
- * Splits the given pretty stream on all enabled line breaks.
+ * Splits the given pretty stream on all items for which `cond` return `true`. The items for which `cond` returns
+ * `true` will not be part of any of the created streams. No empty streams will be returned.
  *
  * @param {PrettyTokenStream} prettyStream
  * @param {(item: PrettyTokenStreamItem) => boolean} cond
@@ -359,13 +369,14 @@ function prettySplit(prettyStream, cond) {
 /**
  * @param {PrettyTokenStream} prettyStream
  * @param {boolean} recursive
+ * @param {(item: LineBreakItem) => boolean} cond
  * @returns {boolean}
  */
-function prettyContainsEnableLineBreaks(prettyStream, recursive) {
+function prettySomeLineBreak(prettyStream, recursive, cond) {
 	for (const item of prettyStream) {
-		if (item instanceof LineBreakItem && item.enabled) {
+		if (item instanceof LineBreakItem && cond(item)) {
 			return true;
-		} else if (recursive && isNested(item) && prettyContainsEnableLineBreaks(item[1], true)) {
+		} else if (recursive && isNested(item) && prettySomeLineBreak(item[1], true, cond)) {
 			return true;
 		}
 	}
@@ -377,13 +388,8 @@ function prettyContainsEnableLineBreaks(prettyStream, recursive) {
  */
 function prettyContainsNonTriviallyNested(prettyStream) {
 	for (const item of prettyStream) {
-		if (isNested(item)) {
-			const nested = item[1];
-			if (nested.length === 1 && typeof nested[0] === 'string') {
-				// trivially nested
-			} else {
-				return true;
-			}
+		if (isNested(item) && !isTriviallyNested(item)) {
+			return true;
 		}
 	}
 	return false;
@@ -398,33 +404,9 @@ function prettyCountTokens(prettyStream, recursive) {
 	for (const item of prettyStream) {
 		if (isToken(item)) {
 			count++;
-			if (recursive && isNested(item)) {
-				const nested = item[1];
-				if (nested.length === 1 && typeof nested[0] === 'string') {
-					// in this case, the token stream will be 'inlined' (kinda), so we don't need to count
-				} else {
-					count += prettyCountTokens(nested, true);
-				}
+			if (recursive && isNested(item) && !isTriviallyNested(item)) {
+				count += prettyCountTokens(item[1], true);
 			}
-		}
-	}
-	return count;
-}
-/**
- * @param {PrettyTokenStream} prettyStream
- * @param {boolean} recursive
- * @param {(item: LineBreakItem) => boolean} [cond]
- * @returns {number}
- */
-function prettyCountLineBreaks(prettyStream, recursive, cond) {
-	let count = 0;
-	for (const item of prettyStream) {
-		if (item instanceof LineBreakItem) {
-			if (!cond || cond(item)) {
-				count++;
-			}
-		} else if (recursive && isNested(item)) {
-			count += prettyCountLineBreaks(item[1], true, cond);
 		}
 	}
 	return count;
@@ -484,28 +466,10 @@ function isToken(item) {
 function isNested(item) {
 	return Array.isArray(item) && Array.isArray(item[1]);
 }
-
 /**
- * Returns the string content of tokens. Non-trivially nested tokens will cause an error to be thrown.
- *
  * @param {PrettyTokenStreamItem} item
- * @returns {string}
+ * @returns {item is [string, [string]]}
  */
-function getStringContent(item) {
-	if (isToken(item)) {
-		if (typeof item === "string") {
-			return item;
-		} else if (typeof item[1] === "string") {
-			return item[1];
-		} else {
-			const first = item[1][0];
-			if (typeof first === "string" && item[1].length === 1) {
-				return first;
-			} else {
-				throw new Error("Nested token.");
-			}
-		}
-	} else {
-		throw Error("The given item is not a token.");
-	}
+function isTriviallyNested(item) {
+	return isNested(item) && item[1].length === 1 && typeof item[1][0] === 'string';
 }
