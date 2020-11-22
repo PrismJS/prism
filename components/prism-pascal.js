@@ -8,7 +8,7 @@ Prism.languages.pascal = {
 	'asm': {
 		pattern: /(asm)([\s\S]+?)(end)/i,
 		lookbehind: true,
-		inside:{keyword:/end$/i}
+		inside:{keyword:/end/i,punctuation:/;$/i}
 	},	
 	'directive': [
 		/\{\$[\s\S]+?\}/
