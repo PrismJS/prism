@@ -5,9 +5,12 @@
 */
 
 Prism.languages.pascal = {
+	'directive': [
+		/\{\$[\s\S]+?\}/
+	],	
 	'comment': [
 		/\(\*[\s\S]+?\*\)/,
-		/\{[\s\S]+?\}/,
+		/\{[^$][\s\S]+?\}/,
 		/\/\/.*/
 	],
 	'string': {
