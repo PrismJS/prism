@@ -8,16 +8,14 @@ title: Blogging Like a Hacker
 ----------------------------------------------------
 
 [
-	["hr", "---"],
-	["front-matter", [
-		["key", "layout"],
-		["punctuation", ":"],
-		" post\n",
-		["key", "title"],
-		["punctuation", ":"],
-		" Blogging Like a Hacker"
+	["front-matter-block", [
+		["punctuation", "---"],
+		["font-matter", [
+			["key", "layout"], ["punctuation", ":"], " post\n",
+			["key", "title"], ["punctuation", ":"], " Blogging Like a Hacker"
+		]],
+		["punctuation", "---"]
 	]],
-	["hr", "---"],
 
 	["title", [
 		["punctuation", "#"],
