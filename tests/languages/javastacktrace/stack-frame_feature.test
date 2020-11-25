@@ -2,6 +2,8 @@ at Main.main(Main.java:13)
 at Main.main(Main.java:13) Same but with some additional notes
 at com.foo.bar.Main$FooBar.main(Native Method)
 at Main$FooBar.<init>(Unknown Source)
+        at java.base/java.util.jar.JavaUtilJarAccessImpl.ensureInitialization(JavaUtilJarAccessImpl.java:69)
+        at java.base/java.lang.Class.forName0(Native Method)
 
 ----------------------------------------------------
 
@@ -37,12 +39,14 @@ at Main$FooBar.<init>(Unknown Source)
 
 	["stack-frame", [
 		["keyword", "at"],
-		["namespace", "com"],
-		["punctuation", "."],
-		["namespace", "foo"],
-		["punctuation", "."],
-		["namespace", "bar"],
-		["punctuation", "."],
+		["namespace", [
+			"com",
+			["punctuation", "."],
+			"foo",
+			["punctuation", "."],
+			"bar",
+			["punctuation", "."]
+		]],
 		["class-name", "Main$FooBar"],
 		["punctuation", "."],
 		["function", "main"],
@@ -61,6 +65,58 @@ at Main$FooBar.<init>(Unknown Source)
 		["punctuation", "("],
 		["source", [
 			["keyword", "Unknown Source"]
+		]],
+		["punctuation", ")"]
+	]],
+
+	["stack-frame", [
+		["keyword", "at"],
+		["namespace", [
+			"java",
+			["punctuation", "."],
+			"base"
+		]],
+		["punctuation", "/"],
+		["namespace", [
+			"java",
+			["punctuation", "."],
+			"util",
+			["punctuation", "."],
+			"jar",
+			["punctuation", "."]
+		]],
+		["class-name", "JavaUtilJarAccessImpl"],
+		["punctuation", "."],
+		["function", "ensureInitialization"],
+		["punctuation", "("],
+		["source", [
+			["file", "JavaUtilJarAccessImpl.java"],
+			["punctuation", ":"],
+			["line-number", "69"]
+		]],
+		["punctuation", ")"]
+	]],
+
+	["stack-frame", [
+		["keyword", "at"],
+		["namespace", [
+			"java",
+			["punctuation", "."],
+			"base"
+		]],
+		["punctuation", "/"],
+		["namespace", [
+			"java",
+			["punctuation", "."],
+			"lang",
+			["punctuation", "."]
+		]],
+		["class-name", "Class"],
+		["punctuation", "."],
+		["function", "forName0"],
+		["punctuation", "("],
+		["source", [
+			["keyword", "Native Method"]
 		]],
 		["punctuation", ")"]
 	]]

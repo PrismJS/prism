@@ -38,9 +38,10 @@ Prism.languages.javastacktrace = {
 
 	// at org.mortbay.jetty.servlet.ServletHandler$CachedChain.doFilter(ServletHandler.java:1166)
 	// at org.hsqldb.jdbc.Util.throwError(Unknown Source) here could be some notes
+	// at java.base/java.lang.Class.forName0(Native Method)
 	// at Util.<init>(Unknown Source)
 	'stack-frame': {
-		pattern: /^[\t ]*at [\w$.]+(?:<init>)?\([^()]*\)/m,
+		pattern: /^[\t ]*at [\w$./]+(?:<init>)?\([^()]*\)/m,
 		inside: {
 			'keyword': {
 				pattern: /^(\s*)at/,
@@ -74,8 +75,13 @@ Prism.languages.javastacktrace = {
 			],
 			'class-name': /[\w$]+(?=\.(?:<init>|[\w$]+)\()/,
 			'function': /(?:<init>|[\w$]+)(?=\()/,
-			'namespace': /[a-z]\w*/,
-			'punctuation': /[.()]/
+			'namespace': {
+				pattern: /[a-z]\w*(?:\.[a-z]\w*)*\.?/,
+				inside: {
+					'punctuation': /\./
+				}
+			},
+			'punctuation': /[()/.]/
 		}
 	},
 
