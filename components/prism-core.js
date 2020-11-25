@@ -890,7 +890,7 @@ function matchGrammar(text, tokenList, grammar, startNode, startPos, rematch) {
 
 				var removeCount = 1; // this is the to parameter of removeBetween
 
-				if (greedy && currentNode != tokenList.tail.prev) {
+				if (greedy) {
 					pattern.lastIndex = pos;
 					var match = pattern.exec(text);
 					if (!match) {
