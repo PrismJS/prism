@@ -914,7 +914,7 @@ function matchGrammar(text, tokenList, grammar, startNode, startPos, rematch) {
 				var removeCount = 1; // this is the to parameter of removeBetween
 				var match;
 
-				if (greedy && currentNode != tokenList.tail.prev) {
+				if (greedy) {
 					match = matchPattern(text, pos, pattern, lookbehind);
 					if (!match) {
 						break;
@@ -1575,6 +1575,11 @@ Prism.languages.js = Prism.languages.javascript;
 (function () {
 	if (typeof self === 'undefined' || !self.Prism || !self.document) {
 		return;
+	}
+
+	// https://developer.mozilla.org/en-US/docs/Web/API/Element/matches#Polyfill
+	if (!Element.prototype.matches) {
+		Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
 	}
 
 	var Prism = window.Prism;

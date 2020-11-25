@@ -1,0 +1,39 @@
+trigger HelloWorldTrigger on Book__c (before insert) {}
+
+trigger T1 on Account (before delete, after delete, after undelete) {}
+
+----------------------------------------------------
+
+[
+	["keyword", "trigger"],
+	["trigger", "HelloWorldTrigger"],
+	["keyword", "on"],
+	["class-name", [
+		"Book__c"
+	]],
+	["punctuation", "("],
+	["keyword", "before"],
+	["keyword", "insert"],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "trigger"],
+	["trigger", "T1"],
+	["keyword", "on"],
+	["class-name", [
+		"Account"
+	]],
+	["punctuation", "("],
+	["keyword", "before"],
+	["keyword", "delete"],
+	["punctuation", ","],
+	["keyword", "after"],
+	["keyword", "delete"],
+	["punctuation", ","],
+	["keyword", "after"],
+	["keyword", "undelete"],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"]
+]

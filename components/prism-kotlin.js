@@ -6,10 +6,14 @@
 			lookbehind: true
 		},
 		'function': [
-			/\w+(?=\s*\()/,
 			{
-				pattern: /(\.)\w+(?=\s*\{)/,
-				lookbehind: true
+				pattern: /(?:`[^\r\n`]+`|\w+)(?=\s*\()/,
+				greedy: true
+			},
+			{
+				pattern: /(\.)(?:`[^\r\n`]+`|\w+)(?=\s*\{)/,
+				lookbehind: true,
+				greedy: true
 			}
 		],
 		'number': /\b(?:0[xX][\da-fA-F]+(?:_[\da-fA-F]+)*|0[bB][01]+(?:_[01]+)*|\d+(?:_\d+)*(?:\.\d+(?:_\d+)*)?(?:[eE][+-]?\d+(?:_\d+)*)?[fFL]?)\b/,
