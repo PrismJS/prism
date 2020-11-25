@@ -824,13 +824,13 @@ Token.stringify = function stringify(o, language) {
 };
 
 /**
- * @param {string} text
- * @param {number} pos
  * @param {RegExp} pattern
+ * @param {number} pos
+ * @param {string} text
  * @param {boolean} lookbehind
  * @returns {RegExpExecArray | null}
  */
-function matchPattern(text, pos, pattern, lookbehind) {
+function matchPattern(pattern, pos, text, lookbehind) {
 	pattern.lastIndex = pos;
 	var match = pattern.exec(text);
 	if (match && lookbehind && match[1]) {
@@ -910,7 +910,7 @@ function matchGrammar(text, tokenList, grammar, startNode, startPos, rematch) {
 				var match;
 
 				if (greedy) {
-					match = matchPattern(text, pos, pattern, lookbehind);
+					match = matchPattern(pattern, pos, text, lookbehind);
 					if (!match) {
 						break;
 					}
@@ -949,11 +949,10 @@ function matchGrammar(text, tokenList, grammar, startNode, startPos, rematch) {
 					str = text.slice(pos, p);
 					match.index -= pos;
 				} else {
-					match = matchPattern(str, 0, pattern, lookbehind);
-				}
-
-				if (!match) {
-					continue;
+					match = matchPattern(pattern, 0, str, lookbehind);
+					if (!match) {
+						continue;
+					}
 				}
 
 				var from = match.index,
