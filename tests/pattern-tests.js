@@ -8,11 +8,11 @@ const { visitRegExpAST } = require('regexpp');
 const { JS, Words, NFA } = require('refa');
 
 /**
- * A map for a regex pattern to whether or not it it vulnerable to exponential backtracking.
+ * A set of all safe (non-exponentially-backtracking) RegExp literals (string).
  *
- * @type {Record<string, boolean>}
+ * @type {Set<string>}
  */
-const expBacktrackingCache = {};
+const safeRegexes = new Set();
 
 for (const lang in languages) {
 	if (lang === 'meta') {
@@ -379,7 +379,7 @@ function testPatterns(Prism) {
 	it('- should not cause exponential backtracking', function () {
 		forEachPattern(({ pattern, ast, tokenPath }) => {
 			const patternStr = String(pattern);
-			if (expBacktrackingCache[patternStr] === false) {
+			if (safeRegexes.has(patternStr)) {
 				// we know that the pattern won't cause exp backtracking because we checked before
 				return;
 			}
@@ -502,7 +502,7 @@ function testPatterns(Prism) {
 				},
 			});
 
-			expBacktrackingCache[patternStr] = false;
+			safeRegexes.add(patternStr);
 		});
 	});
 
