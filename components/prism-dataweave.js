@@ -1,5 +1,5 @@
 (function (Prism) {
-    var keywords = /\b(?:match|input|output|ns|type|update|null|if|else|using|unless|at|is|as|case|do|fun|var)\b/;
+    var keywords = /\b(?:match|input|output|ns|type|update|null|if|else|using|unless|at|is|as|case|do|fun|var|not|and|or)\b/;
     
     Prism.languages.dataweave = {	
         "url": {
@@ -13,17 +13,15 @@
             pattern: /(["'`])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\])*\1/,
             greedy: true
         },
-        "mimeType": {
+        "mime-type": {
             pattern: /(?:text|audio|video|application|multipart|image)\/(?:[A-z-_+0-9])+/
         },
         'regex': {
             pattern: /\/[^ ](?:[^\\\/\r\n]|\\[^\r\n])+\//,
-            lookbehind: true,
             greedy: true
         },
         'date': {
             pattern: /\|[^ ](?:[^\\\|\r\n]|\\[^\r\n])+\|/,
-            lookbehind: true,
             greedy: true
         },
         'comment': [
@@ -40,7 +38,7 @@
         'function': /[a-z_]\w*(?=\s*\()/i,
         'number': /-?\b\d+(?:\.\d+)?(?:e[+-]?\d+)?\b/i,
         'punctuation': /[{}[\];(),.:@]/,        
-        'operator': /[<>~]=?|[!=]=?=?|--?|\+|\!|not|and|or/,
+        'operator': /[<>~]=?|[!=]=?=?|--?|\+|\!/,
         'boolean': /\b(?:true|false)\b/,
         'keyword': {
             pattern: keywords

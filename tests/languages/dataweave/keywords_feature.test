@@ -22,7 +22,7 @@ else
 
 	["keyword", "input"],
 	" payalod ",
-	["mimeType", "application/json"],
+	["mime-type", "application/json"],
 
 	["keyword", "ns"],
 	" ns0 ",
@@ -51,7 +51,7 @@ else
 	["number", "123"],
 
 	["keyword", "output"],
-	["mimeType", "application/json"],
+	["mime-type", "application/json"],
 
 	["operator", "--"],
 	["operator", "-"],
