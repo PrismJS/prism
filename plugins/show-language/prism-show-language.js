@@ -38,6 +38,7 @@
 		"autohotkey": "AutoHotkey",
 		"autoit": "AutoIt",
 		"basic": "BASIC",
+		"dataweave": "DataWeave",
 		"bbcode": "BBcode",
 		"bnf": "BNF",
 		"rbnf": "RBNF",

@@ -176,6 +176,10 @@
 			"title": "Batch",
 			"owner": "Golmote"
 		},
+		"dataweave": {
+			"title": "DataWeave",
+			"owner": "machaval"
+		},
 		"bbcode": {
 			"title": "BBcode",
 			"alias": "shortcode",
