@@ -12,7 +12,7 @@
             greedy: true
         },
         'mime-type': {
-            pattern: /(?:text|audio|video|application|multipart|image)\/(?:[A-Za-z-_+0-9])+/
+            pattern: /\b(?:text|audio|video|application|multipart|image)\/[\w+-]+/
         },       
         'date': {
             pattern: /\|[^ ](?:[^\\|\r\n]|\\[^\r\n])+\|/,
