@@ -11,7 +11,7 @@
         },
         'mime-type':  /\b(?:text|audio|video|application|multipart|image)\/[\w+-]+/,       
         'date': {
-            pattern: /\|[\w\-:+-]+\|/,
+            pattern: /\|[\w:+-]+\|/,
             greedy: true
         },
         'comment': [
