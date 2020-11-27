@@ -1,8 +1,6 @@
 (function (Prism) {    
     Prism.languages.dataweave = {	
-        'url': {
-            pattern:/\b[A-Za-z]+:\/\/[\w/:.?=&-]+|\burn:[\w:.?=&-]+/
-        },
+        'url': /\b[A-Za-z]+:\/\/[\w/:.?=&-]+|\burn:[\w:.?=&-]+/,
         'property': {
             pattern: /(?:\w+#)?(?:"(?:\\.|[^\\"\r\n])*"|\w+)(?=\s*[:@])/,
             greedy: true
@@ -11,9 +9,7 @@
             pattern: /(["'`])(?:\\[\s\S]|(?!\1)[^\\])*\1/,
             greedy: true
         },
-        'mime-type': {
-            pattern: /\b(?:text|audio|video|application|multipart|image)\/[\w+-]+/
-        },       
+        'mime-type':  /\b(?:text|audio|video|application|multipart|image)\/[\w+-]+/,       
         'date': {
             pattern: /\|[\w\-:+-]+\|/,
             greedy: true
