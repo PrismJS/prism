@@ -39,9 +39,7 @@
         'punctuation': /[{}[\];(),.:@]/,        
         'operator': /<<|>>|->|[<>~=]=?|!=|--?-?|\+\+?|\!|\?/,
         'boolean': /\b(?:true|false)\b/,
-        'keyword': {
-            pattern: /\b(?:match|input|output|ns|type|update|null|if|else|using|unless|at|is|as|case|do|fun|var|not|and|or)\b/
-        }
+        'keyword': /\b(?:match|input|output|ns|type|update|null|if|else|using|unless|at|is|as|case|do|fun|var|not|and|or)\b/
     };
     
 }(Prism));
