@@ -1,33 +1,28 @@
-(function (Prism) {
-    var keywords = /\b(?:match|input|output|ns|type|update|null|if|else|using|unless|at|is|as|case|do|fun|var|not|and|or)\b/;
-    
+(function (Prism) {    
     Prism.languages.dataweave = {	
-        "url": {
-            pattern:/(?:[A-z])+:\/\/(?:[A-z0-9/:\.\-_?=&])+|urn:(?:[A-z0-9:\-_\.?=&])+/
+        'url': {
+            pattern:/\b(?:[A-Za-z])+:\/\/(?:[A-Za-z0-9/:\.\-_?=&])+|\burn:(?:[A-Za-z0-9:\-_\.?=&])+/
         },
         'property': {
-            pattern: /(?:[A-z0-9_]+#)?(?:"(?:\\.|[^\\"\r\n])*"|(?:[A-z0-9_]+))(?=\s*(?::|@))/,
+            pattern: /(?:[A-Za-z0-9_]+#)?(?:"(?:\\.|[^\\"\r\n])*"|[A-Za-z0-9_]+)(?=\s*[:@])/,
             greedy: true
         },
         'string': {
-            pattern: /(["'`])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\])*\1/,
+            pattern: /(["'`])(?:\\[\s\S]|(?!\1)[^\\])*\1/,
             greedy: true
         },
-        "mime-type": {
-            pattern: /(?:text|audio|video|application|multipart|image)\/(?:[A-z-_+0-9])+/
-        },
-        'regex': {
-            pattern: /\/[^ ](?:[^\\\/\r\n]|\\[^\r\n])+\//,
-            greedy: true
-        },
+        'mime-type': {
+            pattern: /(?:text|audio|video|application|multipart|image)\/(?:[A-Za-z-_+0-9])+/
+        },       
         'date': {
-            pattern: /\|[^ ](?:[^\\\|\r\n]|\\[^\r\n])+\|/,
+            pattern: /\|[^ ](?:[^\\|\r\n]|\\[^\r\n])+\|/,
             greedy: true
         },
         'comment': [
             {
                 pattern: /(^|[^\\])\/\*[\s\S]*?(?:\*\/|$)/,
-                lookbehind: true
+                lookbehind: true,
+                greedy: true
             },
             {
                 pattern: /(^|[^\\:])\/\/.*/,
@@ -35,13 +30,17 @@
                 greedy: true
             }
         ],
-        'function': /[a-z_]\w*(?=\s*\()/i,
+        'regex': {
+            pattern: /\/[^ ](?:[^\\\/\r\n]|\\[^\r\n])+\//,
+            greedy: true
+        },
+        'function': /\b[A-Za-z_]\w*(?=\s*\()/i,
         'number': /-?\b\d+(?:\.\d+)?(?:e[+-]?\d+)?\b/i,
         'punctuation': /[{}[\];(),.:@]/,        
-        'operator': /[<>~]=?|[!=]=?=?|--?|\+|\!/,
+        'operator': /<<|>>|[<>~=]=?|!=|-|\+|\!|\?/,
         'boolean': /\b(?:true|false)\b/,
         'keyword': {
-            pattern: keywords
+            pattern: /\b(?:match|input|output|ns|type|update|null|if|else|using|unless|at|is|as|case|do|fun|var|not|and|or)\b/
         }
     };
     

@@ -3,13 +3,15 @@
 	/**
 	* MultiLine Comment
 	**/
+/* "" */
 
 ----------------------------------------------------
 
 [
 	["comment", "// Line comment \"\"\t"],
-	["regex", "/* Block comment */"],
-	["comment", "/**\r\n\t* MultiLine Comment\r\n\t**/"]
+	["comment", "/* Block comment */"],
+	["comment", "/**\r\n\t* MultiLine Comment\r\n\t**/"],
+	["comment", "/* \"\" */"]
 ]
 ----------------------------------------------------
-Check for comment
+Check for comments

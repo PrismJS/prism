@@ -6,13 +6,19 @@ type T = String
 fun test(a: Number) = a + 123
 output application/json
 ---
-{} match
-update
-case
-if(true) do {
+{} match {
+    case a is String -> x as String
+}
+update {
+    case a at .name ->
+}
+if(true or false and not true) do {
 
 }
-else
+else 
+payload match {
+    case a is String ->  x as String
+}
 
 ----------------------------------------------------
 
@@ -59,20 +65,64 @@ else
 	["punctuation", "{"],
 	["punctuation", "}"],
 	["keyword", "match"],
-
-	["keyword", "update"],
+	["punctuation", "{"],
 
 	["keyword", "case"],
+	" a ",
+	["keyword", "is"],
+	" String ",
+	["operator", "-"],
+	["operator", ">"],
+	" x ",
+	["keyword", "as"],
+	" String\n",
+
+	["punctuation", "}"],
+
+	["keyword", "update"],
+	["punctuation", "{"],
+
+	["keyword", "case"],
+	" a ",
+	["keyword", "at"],
+	["punctuation", "."],
+	"name ",
+	["operator", "-"],
+	["operator", ">"],
+
+	["punctuation", "}"],
 
 	["function", "if"],
 	["punctuation", "("],
+	["boolean", "true"],
+	["keyword", "or"],
+	["boolean", "false"],
+	["keyword", "and"],
+	["keyword", "not"],
 	["boolean", "true"],
 	["punctuation", ")"],
 	["keyword", "do"],
 	["punctuation", "{"],
 
 	["punctuation", "}"],
-	["keyword", "else"]
+
+	["keyword", "else"],
+
+	" \npayload ",
+	["keyword", "match"],
+	["punctuation", "{"],
+
+	["keyword", "case"],
+	" a ",
+	["keyword", "is"],
+	" String ",
+	["operator", "-"],
+	["operator", ">"],
+	"  x ",
+	["keyword", "as"],
+	" String\n",
+
+	["punctuation", "}"]
 ]
 ----------------------------------------------------
 Check for keywords

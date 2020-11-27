@@ -9,6 +9,7 @@ test
 that 
 can 
 be long"
+"This string \r\n Should also \\ \t"
 
 ----------------------------------------------------
 
@@ -19,7 +20,8 @@ be long"
 	["string", "\"\\u2642\\\\\""],
 	["string", "`hello`"],
 	["string", "'test'"],
-	["string", "\"this is a multiline\r\ntest\r\nthat \r\ncan \r\nbe long\""]
+	["string", "\"this is a multiline\r\ntest\r\nthat \r\ncan \r\nbe long\""],
+	["string", "\"This string \\r\\n Should also \\\\ \\t\""]
 ]
 ----------------------------------------------------
 Check for strings
