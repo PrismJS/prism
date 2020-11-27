@@ -290,6 +290,10 @@
 			"require": "clike",
 			"owner": "Golmote"
 		},
+		"dataweave": {
+			"title": "DataWeave",
+			"owner": "machaval"
+		},
 		"dax": {
 			"title": "DAX",
 			"owner": "peterbud"
