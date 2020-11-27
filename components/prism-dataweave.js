@@ -15,7 +15,7 @@
             pattern: /\b(?:text|audio|video|application|multipart|image)\/[\w+-]+/
         },       
         'date': {
-            pattern: /\|[^ ](?:[^\\|\r\n]|\\[^\r\n])+\|/,
+            pattern: /\|[\w\-:+-]+\|/,
             greedy: true
         },
         'comment': [
@@ -31,7 +31,7 @@
             }
         ],
         'regex': {
-            pattern: /\/[^ ](?:[^\\\/\r\n]|\\[^\r\n])+\//,
+            pattern: /\/(?:[^\\\/\r\n]|\\[^\r\n])+\//,
             greedy: true
         },
         'function': /\b[A-Za-z_]\w*(?=\s*\()/i,
