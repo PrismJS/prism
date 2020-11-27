@@ -1,7 +1,7 @@
 (function (Prism) {    
     Prism.languages.dataweave = {	
         'url': {
-            pattern:/\b(?:[A-Za-z])+:\/\/(?:[A-Za-z0-9/:\.\-_?=&])+|\burn:(?:[A-Za-z0-9:\-_\.?=&])+/
+            pattern:/\b[A-Za-z]+:\/\/[\w/:.?=&-]+|\burn:[\w:.?=&-]+/
         },
         'property': {
             pattern: /(?:[A-Za-z0-9_]+#)?(?:"(?:\\.|[^\\"\r\n])*"|[A-Za-z0-9_]+)(?=\s*[:@])/,
