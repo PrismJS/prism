@@ -8,6 +8,9 @@ e >= 3
 f != 4
 g ~= 4
 h == 1
+(a) -> 1
+a ++ b
+c -- d
 payload.name!
 payload.name?
 
@@ -50,7 +53,17 @@ payload.name?
 	["operator", "=="],
 	["number", "1"],
 
-	"\npayload",
+	["punctuation", "("],
+	"a",
+	["punctuation", ")"],
+	["operator", "->"],
+	["number", "1"],
+
+	"\na ",
+	["operator", "++"],
+	" b\nc ",
+	["operator", "--"],
+	" d\npayload",
 	["punctuation", "."],
 	"name",
 	["operator", "!"],
@@ -60,3 +73,5 @@ payload.name?
 	"name",
 	["operator", "?"]
 ]
+----------------------------------------------------
+Check for operators

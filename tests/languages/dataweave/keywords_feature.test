@@ -59,8 +59,7 @@ payload match {
 	["keyword", "output"],
 	["mime-type", "application/json"],
 
-	["operator", "--"],
-	["operator", "-"],
+	["operator", "---"],
 
 	["punctuation", "{"],
 	["punctuation", "}"],
@@ -71,8 +70,7 @@ payload match {
 	" a ",
 	["keyword", "is"],
 	" String ",
-	["operator", "-"],
-	["operator", ">"],
+	["operator", "->"],
 	" x ",
 	["keyword", "as"],
 	" String\n",
@@ -87,8 +85,7 @@ payload match {
 	["keyword", "at"],
 	["punctuation", "."],
 	"name ",
-	["operator", "-"],
-	["operator", ">"],
+	["operator", "->"],
 
 	["punctuation", "}"],
 
@@ -116,8 +113,7 @@ payload match {
 	" a ",
 	["keyword", "is"],
 	" String ",
-	["operator", "-"],
-	["operator", ">"],
+	["operator", "->"],
 	"  x ",
 	["keyword", "as"],
 	" String\n",

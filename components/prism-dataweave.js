@@ -37,7 +37,7 @@
         'function': /\b[A-Za-z_]\w*(?=\s*\()/i,
         'number': /-?\b\d+(?:\.\d+)?(?:e[+-]?\d+)?\b/i,
         'punctuation': /[{}[\];(),.:@]/,        
-        'operator': /<<|>>|[<>~=]=?|!=|-|\+|\!|\?/,
+        'operator': /<<|>>|->|[<>~=]=?|!=|--?-?|\+\+?|\!|\?/,
         'boolean': /\b(?:true|false)\b/,
         'keyword': {
             pattern: /\b(?:match|input|output|ns|type|update|null|if|else|using|unless|at|is|as|case|do|fun|var|not|and|or)\b/
