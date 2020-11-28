@@ -237,10 +237,8 @@ function testPatterns(Prism) {
 	 * @template T
 	 */
 	function firstOf(iter) {
-		for (const item of iter) {
-			return item;
-		}
-		return undefined;
+		const [first] = iter;
+		return first;
 	}
 
 
