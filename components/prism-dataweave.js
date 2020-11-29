@@ -30,12 +30,12 @@
             pattern: /\/(?:[^\\\/\r\n]|\\[^\r\n])+\//,
             greedy: true
         },
+        'keyword': /\b(?:match|input|output|ns|type|update|null|if|else|using|unless|at|is|as|case|do|fun|var|not|and|or)\b/,
         'function': /\b[A-Za-z_]\w*(?=\s*\()/i,
         'number': /-?\b\d+(?:\.\d+)?(?:e[+-]?\d+)?\b/i,
         'punctuation': /[{}[\];(),.:@]/,        
         'operator': /<<|>>|->|[<>~=]=?|!=|--?-?|\+\+?|\!|\?/,
         'boolean': /\b(?:true|false)\b/,
-        'keyword': /\b(?:match|input|output|ns|type|update|null|if|else|using|unless|at|is|as|case|do|fun|var|not|and|or)\b/
     };
     
 }(Prism));

@@ -15,10 +15,14 @@ update {
 if(true or false and not true) do {
 
 }
-else 
+else
 payload match {
     case a is String ->  x as String
 }
+
+null
+unless
+using
 
 ----------------------------------------------------
 
@@ -89,7 +93,7 @@ payload match {
 
 	["punctuation", "}"],
 
-	["function", "if"],
+	["keyword", "if"],
 	["punctuation", "("],
 	["boolean", "true"],
 	["keyword", "or"],
@@ -105,7 +109,7 @@ payload match {
 
 	["keyword", "else"],
 
-	" \npayload ",
+	"\npayload ",
 	["keyword", "match"],
 	["punctuation", "{"],
 
@@ -118,7 +122,12 @@ payload match {
 	["keyword", "as"],
 	" String\n",
 
-	["punctuation", "}"]
+	["punctuation", "}"],
+
+	["keyword", "null"],
+	["keyword", "unless"],
+	["keyword", "using"]
 ]
+
 ----------------------------------------------------
 Check for keywords
