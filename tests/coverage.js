@@ -2,7 +2,6 @@
 
 const TestDiscovery = require("./helper/test-discovery");
 const TestCase = require("./helper/test-case");
-const path = require("path");
 const PrismLoader = require("./helper/prism-loader");
 const { BFS, BFSPathToPrismTokenPath } = require("./helper/util");
 const { assert } = require("chai");
@@ -11,8 +10,6 @@ const ALL_LANGUAGES = [...Object.keys(components.languages).filter(k => k !== 'm
 
 
 describe('Pattern test coverage', function () {
-	const testSuite = TestDiscovery.loadAllTests(__dirname + "/languages");
-
 	/**
 	 * @type {Map<string, PatternData>}
 	 * @typedef PatternData
@@ -76,20 +73,12 @@ describe('Pattern test coverage', function () {
 
 	describe('Run all language tests', function () {
 		// define tests for all tests in all languages in the test suite
-		for (const languageIdentifier in testSuite) {
-			if (!testSuite.hasOwnProperty(languageIdentifier)) {
-				continue;
-			}
-
+		for (const [languageIdentifier, files] of TestDiscovery.loadAllTests()) {
 			it(languageIdentifier, function () {
 				this.timeout(10 * 1000);
 
-				for (const filePath of testSuite[languageIdentifier]) {
-					if (path.extname(filePath) === '.test') {
-						TestCase.runTestCase({ languageIdentifier, filePath, createInstance });
-					} else {
-						TestCase.runTestsWithHooks({ languageIdentifier, codes: require(filePath), createInstance });
-					}
+				for (const filePath of files) {
+					TestCase.run({ languageIdentifier, filePath, createInstance });
 				}
 			});
 		}

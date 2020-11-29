@@ -4,20 +4,21 @@ const fs = require("fs");
 const path = require("path");
 
 
+const LANGUAGES_DIR = path.join(__dirname, '..', 'languages');
+
 module.exports = {
 
 	/**
 	 * Loads the list of all available tests
 	 *
-	 * @param {string} rootDir
-	 * @returns {Object<string, string[]>}
+	 * @returns {Map<string, string[]>}
 	 */
-	loadAllTests(rootDir) {
-		/** @type {Object.<string, string[]>} */
-		const testSuite = {};
+	loadAllTests() {
+		/** @type {Map.<string, string[]>} */
+		const testSuite = new Map();
 
-		for (const language of this.getAllDirectories(rootDir)) {
-			testSuite[language] = this.getAllFiles(path.join(rootDir, language));
+		for (const language of this.getAllDirectories(LANGUAGES_DIR)) {
+			testSuite.set(language, this.getAllFiles(path.join(LANGUAGES_DIR, language)));
 		}
 
 		return testSuite;
@@ -26,16 +27,15 @@ module.exports = {
 	/**
 	 * Loads the list of available tests that match the given languages
 	 *
-	 * @param {string} rootDir
 	 * @param {string|string[]} languages
-	 * @returns {Object<string, string[]>}
+	 * @returns {Map<string, string[]>}
 	 */
-	loadSomeTests(rootDir, languages) {
-		/** @type {Object.<string, string[]>} */
-		const testSuite = {};
+	loadSomeTests(languages) {
+		/** @type {Map<string, string[]>} */
+		const testSuite = new Map();
 
-		for (const language of this.getSomeDirectories(rootDir, languages)) {
-			testSuite[language] = this.getAllFiles(path.join(rootDir, language));
+		for (const language of this.getSomeDirectories(LANGUAGES_DIR, languages)) {
+			testSuite.set(language, this.getAllFiles(path.join(LANGUAGES_DIR, language)));
 		}
 
 		return testSuite;
