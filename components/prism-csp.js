@@ -16,6 +16,9 @@ Prism.languages.csp = {
 		alias: 'keyword'
 	},
 	'safe': {
+		// CSP2 hashes and nonces are base64 values. CSP3 accepts both base64 and base64url values.
+		// See https://tools.ietf.org/html/rfc4648#section-4
+		// See https://tools.ietf.org/html/rfc4648#section-5
 		pattern: /'(?:deny|none|report-sample|self|strict-dynamic|top-only|(?:nonce|sha(?:256|384|512))-[-+/\d=_a-z]+)'/i,
 		alias: 'selector'
 	},
