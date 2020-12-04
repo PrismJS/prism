@@ -29,4 +29,4 @@ Thank you so much for contributing!!
 
 ## Translations
 
-* [中文说明](https://www.awesomes.cn/repo/PrismJS/prism)
+* [简体中文](https://www.awesomes.cn/repo/PrismJS/prism)
