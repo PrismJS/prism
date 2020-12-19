@@ -33,7 +33,7 @@
 					}
 				},
 				'bash': {
-					pattern: /(^[$#]\s*)[\s\S]+/,
+					pattern: /(^[$#]\s*)\S[\s\S]*/,
 					lookbehind: true,
 					alias: 'language-bash',
 					inside: Prism.languages.bash

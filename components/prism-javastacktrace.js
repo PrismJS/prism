@@ -71,7 +71,7 @@ Prism.languages.javastacktrace = {
 				// (Main.java:15)
 				// (Main.scala:15)
 				{
-					pattern: /(\()\w+.\w+:\d+(?=\))/,
+					pattern: /(\()\w+\.\w+:\d+(?=\))/,
 					lookbehind: true,
 					inside: {
 						'file': /^\w+\.\w+/,

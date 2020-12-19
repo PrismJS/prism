@@ -92,7 +92,7 @@
 		},
 
 		'statement': {
-			pattern: /(^[ \t]*)(?:if|else|for|return|unless)[ \t]+.+/m,
+			pattern: /(^[ \t]*)(?:if|else|for|return|unless)[ \t].+/m,
 			lookbehind: true,
 			inside: {
 				'keyword': /^\S+/,

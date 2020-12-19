@@ -2,7 +2,7 @@ Prism.languages.perl = {
 	'comment': [
 		{
 			// POD
-			pattern: /(^\s*)=\w+[\s\S]*?=cut.*/m,
+			pattern: /(^\s*)=\w[\s\S]*?=cut.*/m,
 			lookbehind: true
 		},
 		{

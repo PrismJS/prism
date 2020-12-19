@@ -62,7 +62,7 @@
 				// # List item
 				// * List item
 				'list': {
-					pattern: withModifier(/^[*#]+<MOD>*\s+.+/.source, 'm'),
+					pattern: withModifier(/^[*#]+<MOD>*\s+\S.*/.source, 'm'),
 					inside: {
 						'modifier': {
 							pattern: withModifier(/(^[*#]+)<MOD>+/.source),

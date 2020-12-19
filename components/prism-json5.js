@@ -9,7 +9,7 @@
 				greedy: true
 			},
 			{
-				pattern: /[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\s*:)/,
+				pattern: /(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*:)/,
 				alias: 'unquoted'
 			}
 		],

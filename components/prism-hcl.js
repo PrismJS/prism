@@ -1,7 +1,7 @@
 Prism.languages.hcl = {
 	'comment': /(?:\/\/|#).*|\/\*[\s\S]*?(?:\*\/|$)/,
 	'heredoc': {
-		pattern: /<<-?(\w+)[\s\S]*?^\s*\1/m,
+		pattern: /<<-?(\w+\b)[\s\S]*?^[ \t]*\1/m,
 		greedy: true,
 		alias: 'string'
 	},

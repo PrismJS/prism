@@ -127,7 +127,7 @@
 
 	Prism.languages.sas = {
 		'datalines': {
-			pattern: /^(\s*)(?:(?:data)?lines|cards);[\s\S]+?^\s*;/im,
+			pattern: /^(\s*)(?:(?:data)?lines|cards);[\s\S]+?^[ \t]*;/im,
 			lookbehind: true,
 			alias: 'string',
 			inside: {
@@ -211,6 +211,7 @@
 					pattern: /((?:^|\s)=?)saveresult\s[^;]+/im,
 					lookbehind: true,
 					inside: {
+
 						'statement': {
 							pattern: /^saveresult\s+\S+/i,
 							inside: {

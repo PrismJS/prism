@@ -30,7 +30,7 @@ Prism.languages.rest = {
 				}
 			},
 			'directive': {
-				pattern: /( +)[^:]+::/,
+				pattern: /( +)(?! )[^:]+::/,
 				lookbehind: true,
 				alias: 'function',
 				inside: {
@@ -107,7 +107,7 @@ Prism.languages.rest = {
 		alias: 'symbol'
 	},
 	'literal-block': {
-		pattern: /::(?:\r?\n|\r){2}([ \t]+).+(?:(?:\r?\n|\r)\1.+)*/,
+		pattern: /::(?:\r?\n|\r){2}([ \t]+)(?![ \t]).+(?:(?:\r?\n|\r)\1.+)*/,
 		inside: {
 			'literal-block-punctuation': {
 				pattern: /^::/,
