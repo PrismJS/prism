@@ -208,7 +208,7 @@
 			inside: {
 				'comment': comment,
 				'statement-var': {
-					pattern: /((?:^|\s)=?)saveresult\s+[^;]+/im,
+					pattern: /((?:^|\s)=?)saveresult\s[^;]+/im,
 					lookbehind: true,
 					inside: {
 						'statement': {
@@ -281,7 +281,7 @@
 			alias: 'keyword'
 		},
 		'input': {
-			pattern: /\binput\s+[-\w\s/*.$&]+;/i,
+			pattern: /\binput\s[-\w\s/*.$&]+;/i,
 			inside: {
 				'input': {
 					alias: 'keyword',

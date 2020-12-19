@@ -10,7 +10,7 @@
 		'number': /\b0x[\dA-Fa-f]+\b|(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:[Ee][+-]?\d+)?/,
 		'boolean': /\b(?:true|false)\b/,
 		'block': {
-			pattern: /^(\s*~?\s*)[#\/]\S+?(?=\s*~?\s*$|\s)/i,
+			pattern: /^(\s*(?:~\s*)?)[#\/]\S+?(?=\s*~?\s*$|\s)/i,
 			lookbehind: true,
 			alias: 'keyword'
 		},
