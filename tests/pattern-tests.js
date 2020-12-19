@@ -511,6 +511,7 @@ function testPatterns(Prism) {
 
 			safeRegexes.add(patternStr);
 		});
+	});
 
 
 	it('- should not cause polynomial backtracking', function () {
