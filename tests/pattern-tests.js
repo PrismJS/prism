@@ -66,6 +66,7 @@ for (const lang in languages) {
  * @param {any} Prism
  *
  * @typedef {import("./helper/util").LiteralAST} LiteralAST
+ * @typedef {import("regexpp/ast").Assertion} Assertion
  * @typedef {import("regexpp/ast").CapturingGroup} CapturingGroup
  * @typedef {import("regexpp/ast").Element} Element
  * @typedef {import("regexpp/ast").Group} Group
@@ -513,7 +514,6 @@ function testPatterns(Prism) {
 		});
 	});
 
-
 	it('- should not cause polynomial backtracking', function () {
 		forEachPattern(({ pattern, ast, tokenPath }) => {
 			const patternStr = String(pattern);
@@ -567,6 +567,45 @@ function testPatterns(Prism) {
 
 					default:
 						return EMPTY;
+				}
+			}
+
+			/**
+			 * @param {Assertion} assertion
+			 * @returns {CharSet | false}
+			 */
+			function singleCharacterAssertion(assertion) {
+				switch (assertion.kind) {
+					case "end":
+					case "start": {
+						if (ast.flags.multiline) {
+							return JS.createCharSet([{ kind: "any" }], {}).negate();
+						} else {
+							return EMPTY;
+						}
+					}
+					case "lookahead":
+					case "lookbehind": {
+						let total = EMPTY;
+						for (const alt of assertion.alternatives) {
+							if (alt.elements.length === 1) {
+								const first = alt.elements[0];
+								if (first.type === "Character" ||
+									first.type === "CharacterSet" ||
+									first.type === "CharacterClass") {
+									total = total.union(toCharSet(first));
+								}
+							}
+						}
+
+						if (assertion.negate) {
+							return total.negate();
+						} else {
+							return total;
+						}
+					}
+					default:
+						return false;
 				}
 			}
 
@@ -665,7 +704,13 @@ function testPatterns(Prism) {
 										}
 									}
 								}
-								return EMPTY;
+
+								const assertChar = singleCharacterAssertion(element);
+								if (assertChar === false) {
+									return EMPTY;
+								} else {
+									return char.intersect(assertChar);
+								}
 							}
 							case "Group":
 							case "CapturingGroup": {
