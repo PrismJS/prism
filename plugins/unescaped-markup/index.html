@@ -24,15 +24,23 @@
 	<p>This plugin provides several methods of achieving the same thing:</p>
 
 	<ul>
-		<li>Instead of using <code>&lt;pre>&lt;code></code> elements, use <code>&lt;script type="text/plain"></code>
-		<pre><code>&lt;script type="text/plain" class="language-markup">
+		<li>
+			Instead of using <code>&lt;pre>&lt;code></code> elements, use <code>&lt;script type="text/plain"></code>:
+
+			<pre><code>&lt;script type="text/plain" class="language-markup">
 &lt;p>Example&lt;/p>
 &lt;/script></code></pre>
 		</li>
-		<li>Use a HTML-comment to escape your code
-		<pre><code>&lt;pre class="language-markup">&lt;code>&lt;!--
+		<li>
+			Use an HTML-comment to escape your code:
+
+			<pre><code>&lt;pre class="language-markup">&lt;code>&lt;!--
 &lt;p>Example&lt;/p>
--->&lt;/code>&lt;/pre></code></pre></li>
+-->&lt;/code>&lt;/pre></code></pre>
+
+			This will only work if the <code>code</code> element contains exactly one comment and nothing else (not even spaces).
+			E.g. <code>&lt;code>  &lt;!-- some text -->&lt;/code></code> and <code>&lt;code>text&lt;!-- more text -->&lt;/code></code> will not work.
+		</li>
 	</ul>
 </section>
 

@@ -33,6 +33,9 @@
 			}
 
 			var lineNumberRows = element.querySelector('.line-numbers-rows');
+			if (!lineNumberRows) {
+				return;
+			}
 			var lineNumberStart = parseInt(element.getAttribute('data-start'), 10) || 1;
 			var lineNumberEnd = lineNumberStart + (lineNumberRows.children.length - 1);
 

@@ -1,0 +1,71 @@
+_cl_command_queue
+_cl_context
+_cl_device_id
+_cl_event
+_cl_kernel
+_cl_mem
+_cl_platform_id
+_cl_program
+_cl_sampler
+cl_image_format
+cl_mem_fence_flags
+clk_event_t
+event_t
+image1d_array_t
+image1d_buffer_t
+image1d_t
+image2d_array_depth_t
+image2d_array_msaa_depth_t
+image2d_array_msaa_t
+image2d_array_t
+image2d_depth_t
+image2d_msaa_depth_t
+image2d_msaa_t
+image2d_t
+image3d_t
+intptr_t
+ndrange_t
+ptrdiff_t
+queue_t
+reserve_id_t
+sampler_t
+size_t
+uintptr_t
+
+----------------------------------------------------
+
+[
+	["builtin-type", "_cl_command_queue"],
+	["builtin-type", "_cl_context"],
+	["builtin-type", "_cl_device_id"],
+	["builtin-type", "_cl_event"],
+	["builtin-type", "_cl_kernel"],
+	["builtin-type", "_cl_mem"],
+	["builtin-type", "_cl_platform_id"],
+	["builtin-type", "_cl_program"],
+	["builtin-type", "_cl_sampler"],
+	["builtin-type", "cl_image_format"],
+	["builtin-type", "cl_mem_fence_flags"],
+	["builtin-type", "clk_event_t"],
+	["builtin-type", "event_t"],
+	["builtin-type", "image1d_array_t"],
+	["builtin-type", "image1d_buffer_t"],
+	["builtin-type", "image1d_t"],
+	["builtin-type", "image2d_array_depth_t"],
+	["builtin-type", "image2d_array_msaa_depth_t"],
+	["builtin-type", "image2d_array_msaa_t"],
+	["builtin-type", "image2d_array_t"],
+	["builtin-type", "image2d_depth_t"],
+	["builtin-type", "image2d_msaa_depth_t"],
+	["builtin-type", "image2d_msaa_t"],
+	["builtin-type", "image2d_t"],
+	["builtin-type", "image3d_t"],
+	["builtin-type", "intptr_t"],
+	["builtin-type", "ndrange_t"],
+	["builtin-type", "ptrdiff_t"],
+	["builtin-type", "queue_t"],
+	["builtin-type", "reserve_id_t"],
+	["builtin-type", "sampler_t"],
+	["builtin-type", "size_t"],
+	["builtin-type", "uintptr_t"]
+]

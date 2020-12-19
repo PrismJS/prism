@@ -129,7 +129,7 @@ ol.indent {
 
 			<p>This will make your language available to the <a href="test.html">test page</a>, or more precise: your local version of it. You can open your local <code>test.html</code> page in any browser, select your language, and see how your language definition highlights any code you input.</p>
 
-			<p><em>Note:</em> You have to reload the test page to apply changes made to <code>prism-foo-bar.js</code> but you don't have to rebuild Prism itself. However, if you change <code>components.json</code> (e.g. because you added a dependency) then these changes will not show up until you rebuild Prism.</p>
+			<p><em>Note:</em> You have to reload the test page to apply changes made to <code>prism-foo-bar.js</code> but you don't have to rebuild Prism itself. However, if you change <code>components.json</code> (e.g. because you added a dependency) then these changes will not show up on the test page until you rebuild Prism.</p>
 		</li>
 		<li>
 			<p>Write the language definition.</p>
@@ -172,7 +172,7 @@ ol.indent {
 }</code></pre>
 		</li>
 		<li>
-			<p>Add some tests.</p>
+			<p>Adding tests.</p>
 
 			<p>Create a folder <code>tests/languages/foo-bar/</code>. This is where your test files will live. The test format and how to run tests is described <a href="test-suite.html">here</a>.</p>
 
@@ -183,8 +183,6 @@ ol.indent {
 			<pre><code class="language-json">The code to test.
 
 ----------------------------------------------------
-
-[ "JSON of the simplified token stream. We will add this later." ]
 
 ----------------------------------------------------
 
@@ -197,29 +195,29 @@ Brief description.</code></pre>
 					<p>Add the code to test and a brief description.</p>
 				</li>
 				<li>
-					<p>Verify that your language definition correctly highlights the test code. This can be done using the test page. <br>
+					<p>Verify that your language definition correctly highlights the test code. This can be done using your local version of the test page. <br>
 					<em>Note:</em> Using the <em>Show tokens</em> options, you see the token stream your language definition created.</p>
 				</li>
 				<li>
 					<p>Once you <strong>carefully checked</strong> that the test case is handled correctly (i.e. by using the test page), run the following command:</p>
-					<code class="language-bash">npm run test:languages -- --language=foo-bar --pretty</code>
-					<p>This command will check only your test files. The new test will fail because the specified JSON is incorrect but the error message of the failed test will also include the JSON of the simplified token stream Prism created. This is what we're after. Replace the current incorrect JSON with the output labeled <em>Token Stream</em>. (Please also adjust the indentation. We use tabs.)</p>
+					<code class="language-bash">npm run test:languages -- --language=foo-bar --accept</code>
+					<p>This command will take the token stream your language definition currently produces and inserted into the test file. The empty space between the two lines separating the code and the description of test case will be replaced with a <a href="test-suite.html#writing-tests-explaining-the-simplified-token-stream">simplified version of the token stream</a>.</p>
 				</li>
 				<li>
-					<p><strong>Carefully check</strong> that the token stream JSON you just inserted is what you expect.</p>
+					<p><strong>Carefully check</strong> that the inserted token stream JSON is what you expect.</p>
 				</li>
-				<li>Re-run <code class="language-bash">npm run test:languages -- --language=foo-bar --pretty</code> to verify that the test passes.</li>
+				<li>Re-run <code class="language-bash">npm run test:languages -- --language=foo-bar</code> to verify that the test passes.</li>
 			</ol>
-		</li>
-		<li>
-			<p>Run <code class="language-bash">npm test</code> to check that <em>all</em> tests pass, not just your language tests.<br>
-			This will usually pass without problems. If you can't get all the tests to pass, skip this step.</p>
 		</li>
 		<li>
 			<p>Add an example page.</p>
 
 			<p>Create a new file <code>examples/prism-foo-bar.html</code>. This will be the template containing the example markup. Just look at other examples to see how these files are structured. <br>
 			We don't have any rules as to what counts as an example, so a single <em>Full example</em> section where you present the highlighting of the major features of the language is enough.</p>
+		</li>
+		<li>
+			<p>Run <code class="language-bash">npm test</code> to check that <em>all</em> tests pass, not just your language tests.<br>
+			This will usually pass without problems. If you can't get all the tests to pass, skip this step.</p>
 		</li>
 		<li>
 			<p>Run <code class="language-bash">npm run build</code> again.</p>
