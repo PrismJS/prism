@@ -60,7 +60,7 @@
 			}
 		],
 		'example': {
-			pattern: /(@example\s+(?!\s))[^@]+?(?=\s*(?:\*\s*)?(?:@\w|\*\/))/,
+			pattern: /(@example\s+(?!\s))(?:[^@\s]|\s(?!\s*(?:\*\s*)?(?:@\w|\*\/)))+(?=\s*(?:\*\s*)?(?:@\w|\*\/))/,
 			lookbehind: true,
 			inside: {
 				'code': {

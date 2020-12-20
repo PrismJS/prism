@@ -121,7 +121,7 @@
 						pattern: /\([^)]+\)/,
 						inside: {
 							'attr-value': {
-								pattern: /(=\s*)(?:\{[^}]*\}|[^,)\r\n]+)/,
+								pattern: /(=\s*(?!\s))(?:\{[^}]*\}|[^,)\r\n]+)/,
 								lookbehind: true,
 								inside: Prism.languages.javascript
 							},

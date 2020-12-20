@@ -24,7 +24,7 @@ Prism.languages.stan = {
 		lookbehind: true,
 		inside: {
 			'expression': {
-				pattern: /(=\s*)(?:(?!\s*(?:>$|,\s*\w+\s*=))[\s\S])+/,
+				pattern: /(=\s*(?!\s))(?:(?!\s*(?:>$|,\s*\w+\s*=))[\s\S])+/,
 				lookbehind: true,
 				inside: null // see below
 			},

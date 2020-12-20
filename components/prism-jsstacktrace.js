@@ -13,7 +13,7 @@ Prism.languages.jsstacktrace = {
 			},
 
 			'filename': {
-				pattern: /(\bat\s+|\()(?:[a-zA-Z]:)?[^():]+(?=:)/,
+				pattern: /(\bat\s+(?!\s)|\()(?:[a-zA-Z]:)?[^():]+(?=:)/,
 				lookbehind: true,
 				alias: 'url'
 			},

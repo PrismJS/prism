@@ -190,10 +190,10 @@
 				// !image.jpg!
 				// !image.jpg(Title)!:http://example.com
 				'image': {
-					pattern: withModifier(/!(?:<MOD>|<PAR>|[<>=])*[^!\s()]+(?:\([^)]+\))?!(?::.+?(?=[^\w/]?(?:\s|$)))?/.source),
+					pattern: withModifier(/!(?:<MOD>|<PAR>|[<>=])*(?![<>=])[^!\s()]+(?:\([^)]+\))?!(?::.+?(?=[^\w/]?(?:\s|$)))?/.source),
 					inside: {
 						'source': {
-							pattern: withModifier(/(^!(?:<MOD>|<PAR>|[<>=])*)[^!\s()]+(?:\([^)]+\))?(?=!)/.source),
+							pattern: withModifier(/(^!(?:<MOD>|<PAR>|[<>=])*)(?![<>=])[^!\s()]+(?:\([^)]+\))?(?=!)/.source),
 							lookbehind: true,
 							alias: 'url'
 						},
