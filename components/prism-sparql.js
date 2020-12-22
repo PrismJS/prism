@@ -1,10 +1,10 @@
 Prism.languages.sparql = Prism.languages.extend('turtle', {
-		'variable': {
-			pattern: /[?$]\w+/,
-			greedy: true
-		},
-		'boolean': /\b(?:true|false)\b/i,
-	}
+	'boolean': /\b(?:true|false)\b/i,
+	'variable': {
+		pattern: /[?$]\w+/,
+		greedy: true
+	},
+}
 );
 
 Prism.languages.insertBefore('sparql', 'punctuation', {

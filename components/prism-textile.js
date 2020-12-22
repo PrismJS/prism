@@ -77,7 +77,7 @@
 				'table': {
 					// Modifiers can be applied to the row: {color:red}.|1|2|3|
 					// or the cell: |{color:red}.1|2|3|
-					pattern: withModifier(/^(?:(?:<MOD>|<PAR>|[<>=^~])+\.\s*)?(?:\|(?:(?:<MOD>|<PAR>|[<>=^~_]|[\\/]\d+)+\.)?[^|]*)+\|/.source, 'm'),
+					pattern: withModifier(/^(?:(?:<MOD>|<PAR>|[<>=^~])+\.\s*)?(?:\|(?:(?:<MOD>|<PAR>|[<>=^~_]|[\\/]\d+)+\.|(?!(?:<MOD>|<PAR>|[<>=^~_]|[\\/]\d+)+\.))[^|]*)+\|/.source, 'm'),
 					inside: {
 						'modifier': {
 							// Modifiers for rows after the first one are

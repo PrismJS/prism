@@ -1,0 +1,38 @@
+max_over_time(deriv(rate(distance_covered_total[5s])[30s:5s])[10m:])
+
+----------------------------------------------------
+
+[
+	["function", "max_over_time"],
+	["punctuation", "("],
+	["function", "deriv"],
+	["punctuation", "("],
+	["function", "rate"],
+	["punctuation", "("],
+	"distance_covered_total",
+	["context-range", [
+		["punctuation", "["],
+		["range-duration", "5s"],
+		["punctuation", "]"]
+	]],
+	["punctuation", ")"],
+	["context-range", [
+		["punctuation", "["],
+		["range-duration", "30s"],
+		["punctuation", ":"],
+		["range-duration", "5s"],
+		["punctuation", "]"]
+	]],
+	["punctuation", ")"],
+	["context-range", [
+		["punctuation", "["],
+		["range-duration", "10m"],
+		["punctuation", ":"],
+		["punctuation", "]"]
+	]],
+	["punctuation", ")"]
+]
+
+----------------------------------------------------
+
+Checks subquery.

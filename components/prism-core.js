@@ -455,7 +455,8 @@ var _ = {
 	 *
 	 * The following hooks will be run:
 	 * 1. `before-highlightall`
-	 * 2. All hooks of {@link Prism.highlightElement} for each element.
+	 * 2. `before-all-elements-highlight`
+	 * 3. All hooks of {@link Prism.highlightElement} for each element.
 	 *
 	 * @param {ParentNode} container The root element, whose descendants that have a `.language-xxxx` class will be highlighted.
 	 * @param {boolean} [async=false] Whether each element is to be highlighted asynchronously using Web Workers.
@@ -487,10 +488,13 @@ var _ = {
 	 * The following hooks will be run:
 	 * 1. `before-sanity-check`
 	 * 2. `before-highlight`
-	 * 3. All hooks of {@link Prism.highlight}. These hooks will only be run by the current worker if `async` is `true`.
+	 * 3. All hooks of {@link Prism.highlight}. These hooks will be run by an asynchronous worker if `async` is `true`.
 	 * 4. `before-insert`
 	 * 5. `after-highlight`
 	 * 6. `complete`
+	 *
+	 * Some the above hooks will be skipped if the element doesn't contain any text or there is no grammar loaded for
+	 * the element's language.
 	 *
 	 * @param {Element} element The element containing the code.
 	 * It must have a class of `language-xxxx` to be processed, where `xxxx` is a valid language identifier.
@@ -820,6 +824,25 @@ Token.stringify = function stringify(o, language) {
 };
 
 /**
+ * @param {RegExp} pattern
+ * @param {number} pos
+ * @param {string} text
+ * @param {boolean} lookbehind
+ * @returns {RegExpExecArray | null}
+ */
+function matchPattern(pattern, pos, text, lookbehind) {
+	pattern.lastIndex = pos;
+	var match = pattern.exec(text);
+	if (match && lookbehind && match[1]) {
+		// change the match to remove the text matched by the Prism lookbehind group
+		var lookbehindLength = match[1].length;
+		match.index += lookbehindLength;
+		match[0] = match[0].slice(lookbehindLength);
+	}
+	return match;
+}
+
+/**
  * @param {string} text
  * @param {LinkedList<string | Token>} tokenList
  * @param {any} grammar
@@ -851,7 +874,6 @@ function matchGrammar(text, tokenList, grammar, startNode, startPos, rematch) {
 				inside = patternObj.inside,
 				lookbehind = !!patternObj.lookbehind,
 				greedy = !!patternObj.greedy,
-				lookbehindLength = 0,
 				alias = patternObj.alias;
 
 			if (greedy && !patternObj.pattern.global) {
@@ -885,15 +907,15 @@ function matchGrammar(text, tokenList, grammar, startNode, startPos, rematch) {
 				}
 
 				var removeCount = 1; // this is the to parameter of removeBetween
+				var match;
 
-				if (greedy && currentNode != tokenList.tail.prev) {
-					pattern.lastIndex = pos;
-					var match = pattern.exec(text);
+				if (greedy) {
+					match = matchPattern(pattern, pos, text, lookbehind);
 					if (!match) {
 						break;
 					}
 
-					var from = match.index + (lookbehind && match[1] ? match[1].length : 0);
+					var from = match.index;
 					var to = match.index + match[0].length;
 					var p = pos;
 
@@ -927,24 +949,16 @@ function matchGrammar(text, tokenList, grammar, startNode, startPos, rematch) {
 					str = text.slice(pos, p);
 					match.index -= pos;
 				} else {
-					pattern.lastIndex = 0;
-
-					var match = pattern.exec(str);
+					match = matchPattern(pattern, 0, str, lookbehind);
+					if (!match) {
+						continue;
+					}
 				}
 
-				if (!match) {
-					continue;
-				}
-
-				if (lookbehind) {
-					lookbehindLength = match[1] ? match[1].length : 0;
-				}
-
-				var from = match.index + lookbehindLength,
-					matchStr = match[0].slice(lookbehindLength),
-					to = from + matchStr.length,
+				var from = match.index,
+					matchStr = match[0],
 					before = str.slice(0, from),
-					after = str.slice(to);
+					after = str.slice(from + matchStr.length);
 
 				var reach = pos + str.length;
 				if (rematch && reach > rematch.reach) {

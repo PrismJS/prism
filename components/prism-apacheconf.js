@@ -33,7 +33,7 @@ Prism.languages.apacheconf = {
 		alias: 'tag'
 	},
 	'directive-flags': {
-		pattern: /\[(?:\w,?)+\]/,
+		pattern: /\[(?:[\w=],?)+\]/,
 		alias: 'keyword'
 	},
 	'string': {

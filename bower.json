@@ -18,6 +18,7 @@
     "docs",
     "tests",
     "CNAME",
-    "*.html"
+    "*.html",
+    "*.svg"
   ]
 }
