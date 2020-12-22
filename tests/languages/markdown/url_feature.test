@@ -18,59 +18,57 @@ bar](http://prismjs.com)
 [
 	["url", [
 		"[",
-		["content", [
-			"foo"
-		]],
-		"](http://prismjs.com)"
+		["content", ["foo"]],
+		"](",
+		["url", "http://prismjs.com"],
+		")"
 	]],
 	["url", [
-		"![",
-		["content", [
-			"foo"
-		]],
-		"](http://prismjs.com ",
+		["operator", "!"],
+		"[",
+		["content", ["foo"]],
+		"](",
+		["url", "http://prismjs.com"],
 		["string", "\"Foo\\\"bar\""],
 		")"
 	]],
 	["url", [
 		"[",
-		["content", [
-			"foo"
-		]],
+		["content", ["foo"]],
 		"][",
 		["variable", "bar"],
 		"]"
 	]],
 	["url", [
 		"[",
-		["content", [
-			"foo"
-		]],
+		["content", ["foo"]],
 		"] [",
 		["variable", "bar"],
 		"]"
 	]],
+
 	["url", [
 		"[",
-		["content", [
-			"foo\r\nbar"
-		]],
-		"](http://prismjs.com)"
+		["content", ["foo\r\nbar"]],
+		"](",
+		["url", "http://prismjs.com"],
+		")"
 	]],
+
 	["url", [
 		"[",
 		["content", [
 			"foo ",
 			["italic", [
 				["punctuation", "*"],
-				["content", [
-					"bar"
-				]],
+				["content", ["bar"]],
 				["punctuation", "*"]
 			]],
 			" baz"
 		]],
-		"](http://prismjs.com)"
+		"](",
+		["url", "http://prismjs.com"],
+		")"
 	]],
 	["url", [
 		"[",
@@ -78,14 +76,14 @@ bar](http://prismjs.com)
 			"foo ",
 			["italic", [
 				["punctuation", "_"],
-				["content", [
-					"bar"
-				]],
+				["content", ["bar"]],
 				["punctuation", "_"]
 			]],
 			" baz"
 		]],
-		"](http://prismjs.com)"
+		"](",
+		["url", "http://prismjs.com"],
+		")"
 	]],
 	["url", [
 		"[",
@@ -93,14 +91,14 @@ bar](http://prismjs.com)
 			"foo ",
 			["bold", [
 				["punctuation", "**"],
-				["content", [
-					"bar"
-				]],
+				["content", ["bar"]],
 				["punctuation", "**"]
 			]],
 			" baz"
 		]],
-		"](http://prismjs.com)"
+		"](",
+		["url", "http://prismjs.com"],
+		")"
 	]],
 	["url", [
 		"[",
@@ -108,14 +106,14 @@ bar](http://prismjs.com)
 			"foo ",
 			["bold", [
 				["punctuation", "__"],
-				["content", [
-					"bar"
-				]],
+				["content", ["bar"]],
 				["punctuation", "__"]
 			]],
 			" baz"
 		]],
-		"](http://prismjs.com)"
+		"](",
+		["url", "http://prismjs.com"],
+		")"
 	]],
 	["url", [
 		"[",
@@ -123,14 +121,14 @@ bar](http://prismjs.com)
 			"foo ",
 			["strike", [
 				["punctuation", "~"],
-				["content", [
-					"bar"
-				]],
+				["content", ["bar"]],
 				["punctuation", "~"]
 			]],
 			" baz"
 		]],
-		"](http://prismjs.com)"
+		"](",
+		["url", "http://prismjs.com"],
+		")"
 	]],
 	["url", [
 		"[",
@@ -138,14 +136,14 @@ bar](http://prismjs.com)
 			"foo ",
 			["strike", [
 				["punctuation", "~~"],
-				["content", [
-					"bar"
-				]],
+				["content", ["bar"]],
 				["punctuation", "~~"]
 			]],
 			" baz"
 		]],
-		"](http://prismjs.com)"
+		"](",
+		["url", "http://prismjs.com"],
+		")"
 	]]
 ]
 

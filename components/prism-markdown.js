@@ -221,21 +221,27 @@
 			// [example](http://example.com "Optional title")
 			// [example][id]
 			// [example] [id]
-			pattern: createInline(/!?\[(?:(?!\])<inner>)+\](?:\([^\s)]+(?:[\t ]+"(?:\\.|[^"\\])*")?\)| ?\[(?:(?!\])<inner>)+\])/.source),
+			pattern: createInline(/!?\[(?:(?!\])<inner>)+\](?:\([^\s)]+(?:[\t ]+"(?:\\.|[^"\\])*")?\)|[ \t]?\[(?:(?!\])<inner>)+\])/.source),
 			lookbehind: true,
 			greedy: true,
 			inside: {
-				'variable': {
-					pattern: /(\[)[^\]]+(?=\]$)/,
-					lookbehind: true
-				},
+				'operator': /^!/,
 				'content': {
-					pattern: /(^!?\[)[^\]]+(?=\])/,
+					pattern: /(^\[)[^\]]+(?=\])/,
 					lookbehind: true,
 					inside: {} // see below
 				},
+				'variable': {
+					pattern: /(^\][ \t]?\[)[^\]]+(?=\]$)/,
+					lookbehind: true
+				},
+				'url': {
+					pattern: /(^\]\()[^\s)]+/,
+					lookbehind: true
+				},
 				'string': {
-					pattern: /"(?:\\.|[^"\\])*"(?=\)$)/
+					pattern: /(^[ \t]+)"(?:\\.|[^"\\])*"(?=\)$)/,
+					lookbehind: true
 				}
 			}
 		}
