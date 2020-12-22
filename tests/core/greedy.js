@@ -3,13 +3,14 @@
 const { assert } = require('chai');
 const PrismLoader = require('../helper/prism-loader');
 const TestCase = require('../helper/test-case');
+const TokenStreamTransformer = require('../helper/token-stream-transformer');
 
 
 function testTokens({ grammar, code, expected }) {
 	const Prism = PrismLoader.createEmptyPrism();
 	Prism.languages.test = grammar;
 
-	const simpleTokens = TestCase.simpleTokenize(Prism, code, 'test');
+	const simpleTokens = TokenStreamTransformer.simplify(TestCase.tokenize(Prism, code, 'test'));
 
 	assert.deepStrictEqual(simpleTokens, expected);
 }
@@ -83,4 +84,25 @@ describe('Greedy matching', function () {
 			]
 		});
 	});
+
+	it('should always match tokens against the whole text', function () {
+		// this is to test for a bug where greedy tokens where matched like non-greedy ones if the token stream ended on
+		// a string
+		testTokens({
+			grammar: {
+				'a': /a/,
+				'b': {
+					pattern: /^b/,
+					greedy: true
+				}
+			},
+			code: 'bab',
+			expected: [
+				["b", "b"],
+				["a", "a"],
+				"b"
+			]
+		});
+	});
+
 });

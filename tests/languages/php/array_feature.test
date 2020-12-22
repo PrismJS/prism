@@ -1,0 +1,136 @@
+$a = [
+	1 => [0, 1],
+	2 => [2, 3],
+	3 => [
+		[0, 1],
+		[2, 3]
+	]
+];
+
+$b = array(
+	Array(1, 2)
+);
+
+$c = [...$a, ...$b, [5, 6]];
+
+$d = [0, 1] + [2];
+
+[$e] = [2, 3];
+
+$f[] = 3;
+
+$g['key'] = 3;
+
+----------------------------------------------------
+
+[
+	["variable", "$a"],
+	["operator", "="],
+	["punctuation", "["],
+	["number", "1"],
+	["operator", "=>"],
+	["punctuation", "["],
+	["number", "0"],
+	["punctuation", ","],
+	["number", "1"],
+	["punctuation", "]"],
+	["punctuation", ","],
+	["number", "2"],
+	["operator", "=>"],
+	["punctuation", "["],
+	["number", "2"],
+	["punctuation", ","],
+	["number", "3"],
+	["punctuation", "]"],
+	["punctuation", ","],
+	["number", "3"],
+	["operator", "=>"],
+	["punctuation", "["],
+	["punctuation", "["],
+	["number", "0"],
+	["punctuation", ","],
+	["number", "1"],
+	["punctuation", "]"],
+	["punctuation", ","],
+	["punctuation", "["],
+	["number", "2"],
+	["punctuation", ","],
+	["number", "3"],
+	["punctuation", "]"],
+	["punctuation", "]"],
+	["punctuation", "]"],
+	["punctuation", ";"],
+
+	["variable", "$b"],
+	["operator", "="],
+	["keyword", "array"],
+	["punctuation", "("],
+	["keyword", "Array"],
+	["punctuation", "("],
+	["number", "1"],
+	["punctuation", ","],
+	["number", "2"],
+	["punctuation", ")"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["variable", "$c"],
+	["operator", "="],
+	["punctuation", "["],
+	["operator", "..."],
+	["variable", "$a"],
+	["punctuation", ","],
+	["operator", "..."],
+	["variable", "$b"],
+	["punctuation", ","],
+	["punctuation", "["],
+	["number", "5"],
+	["punctuation", ","],
+	["number", "6"],
+	["punctuation", "]"],
+	["punctuation", "]"],
+	["punctuation", ";"],
+
+	["variable", "$d"],
+	["operator", "="],
+	["punctuation", "["],
+	["number", "0"],
+	["punctuation", ","],
+	["number", "1"],
+	["punctuation", "]"],
+	["operator", "+"],
+	["punctuation", "["],
+	["number", "2"],
+	["punctuation", "]"],
+	["punctuation", ";"],
+
+	["punctuation", "["],
+	["variable", "$e"],
+	["punctuation", "]"],
+	["operator", "="],
+	["punctuation", "["],
+	["number", "2"],
+	["punctuation", ","],
+	["number", "3"],
+	["punctuation", "]"],
+	["punctuation", ";"],
+
+	["variable", "$f"],
+	["punctuation", "["],
+	["punctuation", "]"],
+	["operator", "="],
+	["number", "3"],
+	["punctuation", ";"],
+
+	["variable", "$g"],
+	["punctuation", "["],
+	["string", "'key'"],
+	["punctuation", "]"],
+	["operator", "="],
+	["number", "3"],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for arrays.

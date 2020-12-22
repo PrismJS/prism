@@ -2,6 +2,15 @@ at Main.main(Main.java:13)
 at Main.main(Main.java:13) Same but with some additional notes
 at com.foo.bar.Main$FooBar.main(Native Method)
 at Main$FooBar.<init>(Unknown Source)
+        at java.base/java.util.jar.JavaUtilJarAccessImpl.ensureInitialization(JavaUtilJarAccessImpl.java:69)
+        at java.base/java.lang.Class.forName0(Native Method)
+at com.foo.loader/foo@9.0/com.foo.Main.run(Main.java:101)
+at com.foo.loader//com.foo.bar.App.run(App.java:12)
+at acme@2.1/org.acme.Lib.test(Lib.java:80)
+at MyClass.mash(MyClass.java:9)
+
+// not to forget our swiss friends
+at at.foo.bar.Main$FooBar.main(Native Method)
 
 ----------------------------------------------------
 
@@ -37,12 +46,14 @@ at Main$FooBar.<init>(Unknown Source)
 
 	["stack-frame", [
 		["keyword", "at"],
-		["namespace", "com"],
-		["punctuation", "."],
-		["namespace", "foo"],
-		["punctuation", "."],
-		["namespace", "bar"],
-		["punctuation", "."],
+		["namespace", [
+			"com",
+			["punctuation", "."],
+			"foo",
+			["punctuation", "."],
+			"bar",
+			["punctuation", "."]
+		]],
 		["class-name", "Main$FooBar"],
 		["punctuation", "."],
 		["function", "main"],
@@ -61,6 +72,184 @@ at Main$FooBar.<init>(Unknown Source)
 		["punctuation", "("],
 		["source", [
 			["keyword", "Unknown Source"]
+		]],
+		["punctuation", ")"]
+	]],
+
+	["stack-frame", [
+		["keyword", "at"],
+		["module", [
+			"java",
+			["punctuation", "."],
+			"base"
+		]],
+		["punctuation", "/"],
+		["namespace", [
+			"java",
+			["punctuation", "."],
+			"util",
+			["punctuation", "."],
+			"jar",
+			["punctuation", "."]
+		]],
+		["class-name", "JavaUtilJarAccessImpl"],
+		["punctuation", "."],
+		["function", "ensureInitialization"],
+		["punctuation", "("],
+		["source", [
+			["file", "JavaUtilJarAccessImpl.java"],
+			["punctuation", ":"],
+			["line-number", "69"]
+		]],
+		["punctuation", ")"]
+	]],
+
+	["stack-frame", [
+		["keyword", "at"],
+		["module", [
+			"java",
+			["punctuation", "."],
+			"base"
+		]],
+		["punctuation", "/"],
+		["namespace", [
+			"java",
+			["punctuation", "."],
+			"lang",
+			["punctuation", "."]
+		]],
+		["class-name", "Class"],
+		["punctuation", "."],
+		["function", "forName0"],
+		["punctuation", "("],
+		["source", [
+			["keyword", "Native Method"]
+		]],
+		["punctuation", ")"]
+	]],
+
+	["stack-frame", [
+		["keyword", "at"],
+		["class-loader", [
+			"com",
+			["punctuation", "."],
+			"foo",
+			["punctuation", "."],
+			"loader"
+		]],
+		["punctuation", "/"],
+		["module", [
+			"foo",
+			["punctuation", "@"],
+			["version", "9.0"]
+		]],
+		["punctuation", "/"],
+		["namespace", [
+			"com",
+			["punctuation", "."],
+			"foo",
+			["punctuation", "."]
+		]],
+		["class-name", "Main"],
+		["punctuation", "."],
+		["function", "run"],
+		["punctuation", "("],
+		["source", [
+			["file", "Main.java"],
+			["punctuation", ":"],
+			["line-number", "101"]
+		]],
+		["punctuation", ")"]
+	]],
+
+	["stack-frame", [
+		["keyword", "at"],
+		["class-loader", [
+			"com",
+			["punctuation", "."],
+			"foo",
+			["punctuation", "."],
+			"loader"
+		]],
+		["punctuation", "/"],
+		["punctuation", "/"],
+		["namespace", [
+			"com",
+			["punctuation", "."],
+			"foo",
+			["punctuation", "."],
+			"bar",
+			["punctuation", "."]
+		]],
+		["class-name", "App"],
+		["punctuation", "."],
+		["function", "run"],
+		["punctuation", "("],
+		["source", [
+			["file", "App.java"],
+			["punctuation", ":"],
+			["line-number", "12"]
+		]],
+		["punctuation", ")"]
+	]],
+
+	["stack-frame", [
+		["keyword", "at"],
+		["module", [
+			"acme",
+			["punctuation", "@"],
+			["version", "2.1"]
+		]],
+		["punctuation", "/"],
+		["namespace", [
+			"org",
+			["punctuation", "."],
+			"acme",
+			["punctuation", "."]
+		]],
+		["class-name", "Lib"],
+		["punctuation", "."],
+		["function", "test"],
+		["punctuation", "("],
+		["source", [
+			["file", "Lib.java"],
+			["punctuation", ":"],
+			["line-number", "80"]
+		]],
+		["punctuation", ")"]
+	]],
+
+	["stack-frame", [
+		["keyword", "at"],
+		["class-name", "MyClass"],
+		["punctuation", "."],
+		["function", "mash"],
+		["punctuation", "("],
+		["source", [
+			["file", "MyClass.java"],
+			["punctuation", ":"],
+			["line-number", "9"]
+		]],
+		["punctuation", ")"]
+	]],
+
+	"\n\n// not to forget our swiss friends\n",
+	["stack-frame", [
+		["keyword", "at"],
+		["namespace", [
+			"at",
+			["punctuation", "."],
+			"foo",
+			["punctuation", "."],
+			"bar",
+			["punctuation", "."]
+		]],
+		["class-name", "Main$FooBar"],
+		["punctuation", "."],
+		["function", "main"],
+		["punctuation", "("],
+		["source", [
+			["keyword", "Native Method"]
 		]],
 		["punctuation", ")"]
 	]]
