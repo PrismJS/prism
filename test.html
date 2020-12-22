@@ -95,33 +95,33 @@ pre.show-tokens {
 	position: relative;
 }
 
-.share-wrapper {
+.link-wrapper {
 	position: absolute;
 	top: 0;
 	right: 0;
 	background-color: white;
 }
-.share-wrapper .hidden-wrapper {
+.link-wrapper .hidden-wrapper {
 	display: none;
 }
 
-.share-wrapper:hover {
+.link-wrapper:hover {
 	top: -.5em;
 	right: -1em;
 	width: 300px;
 	padding: .5em 1em;
 	outline: 1px solid #888;
 }
-.share-wrapper:hover .hidden-wrapper {
+.link-wrapper:hover .hidden-wrapper {
 	display: block;
 }
 
-.share-wrapper input {
+.link-wrapper input {
 	width: 100%;
 	box-sizing: border-box;
 }
 
-.share-wrapper button {
+.link-wrapper button {
 	border: none;
 	background: none;
 	font: inherit;
@@ -155,7 +155,7 @@ pre.show-tokens {
 
 		<div id="options" style="margin: 1em 0">
 			<label><input type="checkbox" id="option-show-tokens"> Show tokens</label>
-			<div class="share-wrapper">
+			<div class="link-wrapper">
 				<a id="share-link" href="" style="float: right;">Share</a>
 				<div class="hidden-wrapper">
 					<input id="share-link-input" type="text" readonly onClick="this.select();"/>
