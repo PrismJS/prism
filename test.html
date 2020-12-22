@@ -91,6 +91,44 @@ pre.show-tokens {
 	margin: 0 1px;
 }
 
+#options {
+	position: relative;
+}
+
+.share-wrapper {
+	position: absolute;
+	top: 0;
+	right: 0;
+	background-color: white;
+}
+.share-wrapper .hidden-wrapper {
+	display: none;
+}
+
+.share-wrapper:hover {
+	top: -.5em;
+	right: -1em;
+	width: 300px;
+	padding: .5em 1em;
+	outline: 1px solid #888;
+}
+.share-wrapper:hover .hidden-wrapper {
+	display: block;
+}
+
+.share-wrapper input {
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.share-wrapper button {
+	border: none;
+	background: none;
+	font: inherit;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
 </style>
 <script src="assets/prefixfree.min.js"></script>
 
@@ -115,10 +153,16 @@ pre.show-tokens {
 		<p>Result:</p>
 		<pre><code></code></pre>
 
-		<p id="options">
+		<div id="options" style="margin: 1em 0">
 			<label><input type="checkbox" id="option-show-tokens"> Show tokens</label>
-			<a id="share-link" href="" style="float: right;">Share</a>
-		</p>
+			<div class="share-wrapper">
+				<a id="share-link" href="" style="float: right;">Share</a>
+				<div class="hidden-wrapper">
+					<input id="share-link-input" type="text" readonly onClick="this.select();"/>
+					<button type="button" id="copy-share-link" onclick="copyShare();">Copy to clipboard</button>
+				</div>
+			</div>
+		</div>
 		<p id="language">
 			<strong>Language:</strong>
 		</p>
@@ -169,6 +213,23 @@ function getHashLanguage() {
 function getRadio(lang) {
 	return $('input[name=language][value="' + lang + '"]');
 }
+
+function copyShare() {
+	const link = $('#share-link').href;
+	try {
+		navigator.clipboard.writeText(link).then(function () {
+			$('#copy-share-link').textContent = 'Copied!';
+		}, function () {
+			$('#copy-share-link').textContent = 'Failed to copy!';
+		});
+	} catch (e) {
+		$('#copy-share-link').textContent = 'Failed to copy!';
+	}
+	setTimeout(function () {
+		$('#copy-share-link').textContent = 'Copy to clipboard';
+	}, 5000);
+}
+window.copyShare = copyShare;
 
 window.onhashchange = function () {
 	var input = getRadio(getHashLanguage());
@@ -330,6 +391,7 @@ function updateShareLink() {
 	};
 
 	$('#share-link').href = '#' + stringifyUrlParams(params);
+	$('#share-link-input').value = $('#share-link').href;
 }
 
 
