@@ -1,18 +1,19 @@
 const fs = require('fs');
 const path = require('path');
 const gzipSize = require('gzip-size');
-const getLoader = require('../dependencies');
-const components = require('../components.json');
-const { version } = require('../package.json');
+const getLoader = require('../../dependencies');
+const components = require('../../components.json');
+const { version } = require('../../package.json');
 
 const ALL_LANGUAGES = getIds('languages');
 const ALL_PLUGINS = getIds('plugins');
 const ALL_THEMES = getIds('themes');
 
-const PROJECT_DIR = path.join(__dirname, '..');
-const LANGUAGES_DIR = path.join(PROJECT_DIR, './components');
-const PLUGINS_DIR = path.join(PROJECT_DIR, './plugins');
-const THEMES_DIR = path.join(PROJECT_DIR, './themes');
+const PROJECT_DIR = path.join(__dirname, '../..');
+// The strange ";;" is to prevent webpack from including all those files into the build
+const LANGUAGES_DIR = path.join(PROJECT_DIR, './components;;'.replace(/;;/, ''));
+const PLUGINS_DIR = path.join(PROJECT_DIR, './plugins;;'.replace(/;;/, ''));
+const THEMES_DIR = path.join(PROJECT_DIR, './themes;;'.replace(/;;/, ''));
 
 module.exports = /** @type {import("yargs").CommandModule} */({
 	command: 'bundle',

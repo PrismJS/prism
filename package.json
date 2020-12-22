@@ -4,9 +4,10 @@
   "description": "Lightweight, robust, elegant syntax highlighting. A spin-off project from Dabblet.",
   "main": "prism.js",
   "style": "themes/prism.css",
-  "bin": "./bin/cli.js",
+  "bin": "./bin/dist/index.js",
   "scripts": {
     "build": "gulp",
+    "build:cli": "ncc build bin/src/cli.js -o bin/dist",
     "start": "http-server -c-1",
     "test:aliases": "mocha tests/aliases-test.js",
     "test:core": "mocha tests/core/**/*.js",
@@ -34,6 +35,7 @@
     "clipboard": "^2.0.0"
   },
   "devDependencies": {
+    "@vercel/ncc": "^0.26.1",
     "chai": "^4.2.0",
     "danger": "^10.5.0",
     "del": "^4.1.1",
