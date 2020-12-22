@@ -18,7 +18,8 @@
     "test:patterns": "mocha tests/pattern-tests.js",
     "test:plugins": "mocha tests/plugins/**/*.js",
     "test:runner": "mocha tests/testrunner-tests.js",
-    "test": "npm run test:runner && npm run test:core && npm run test:dependencies && npm run test:languages && npm run test:plugins && npm run test:aliases && npm run test:patterns && npm run test:examples && npm run test:identifiers"
+    "test": "npm run test:runner && npm run test:core && npm run test:dependencies && npm run test:languages && npm run test:plugins && npm run test:aliases && npm run test:patterns && npm run test:examples && npm run test:identifiers",
+    "prepublishOnly": "npm run build:cli"
   },
   "repository": {
     "type": "git",
