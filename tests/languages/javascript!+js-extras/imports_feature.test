@@ -1,0 +1,124 @@
+import React from 'react';
+import x from "mod";
+import * as Foo from "mod";
+import {} from "mod";
+import {d} from "mod";
+import {d,} from "mod";
+import {d as Foo, b as Bar} from "mod";
+import {d as Foo, b as Bar,} from "mod";
+import Foo, { Bar } from "mod";
+import Foo, * as Bar from "mod";
+
+import "mod";
+
+----------------------------------------------------
+
+[
+	["keyword", "import"],
+	["imports", [
+		["maybe-class-name", "React"]
+	]],
+	["keyword", "from"],
+	["string", "'react'"],
+	["punctuation", ";"],
+	["keyword", "import"],
+	["imports", [
+		"x"
+	]],
+	["keyword", "from"],
+	["string", "\"mod\""],
+	["punctuation", ";"],
+	["keyword", "import"],
+	["imports", [
+		["operator", "*"],
+		["keyword", "as"],
+		["maybe-class-name", "Foo"]
+	]],
+	["keyword", "from"],
+	["string", "\"mod\""],
+	["punctuation", ";"],
+	["keyword", "import"],
+	["imports", [
+		["punctuation", "{"],
+		["punctuation", "}"]
+	]],
+	["keyword", "from"],
+	["string", "\"mod\""],
+	["punctuation", ";"],
+	["keyword", "import"],
+	["imports", [
+		["punctuation", "{"],
+		"d",
+		["punctuation", "}"]
+	]],
+	["keyword", "from"],
+	["string", "\"mod\""],
+	["punctuation", ";"],
+	["keyword", "import"],
+	["imports", [
+		["punctuation", "{"],
+		"d",
+		["punctuation", ","],
+		["punctuation", "}"]
+	]],
+	["keyword", "from"],
+	["string", "\"mod\""],
+	["punctuation", ";"],
+	["keyword", "import"],
+	["imports", [
+		["punctuation", "{"],
+		"d ",
+		["keyword", "as"],
+		["maybe-class-name", "Foo"],
+		["punctuation", ","],
+		" b ",
+		["keyword", "as"],
+		["maybe-class-name", "Bar"],
+		["punctuation", "}"]
+	]],
+	["keyword", "from"],
+	["string", "\"mod\""],
+	["punctuation", ";"],
+	["keyword", "import"],
+	["imports", [
+		["punctuation", "{"],
+		"d ",
+		["keyword", "as"],
+		["maybe-class-name", "Foo"],
+		["punctuation", ","],
+		" b ",
+		["keyword", "as"],
+		["maybe-class-name", "Bar"],
+		["punctuation", ","],
+		["punctuation", "}"]
+	]],
+	["keyword", "from"],
+	["string", "\"mod\""],
+	["punctuation", ";"],
+	["keyword", "import"],
+	["imports", [
+		["maybe-class-name", "Foo"],
+		["punctuation", ","],
+		["punctuation", "{"],
+		["maybe-class-name", "Bar"],
+		["punctuation", "}"]
+	]],
+	["keyword", "from"],
+	["string", "\"mod\""],
+	["punctuation", ";"],
+	["keyword", "import"],
+	["imports", [
+		["maybe-class-name", "Foo"],
+		["punctuation", ","],
+		["operator", "*"],
+		["keyword", "as"],
+		["maybe-class-name", "Bar"]
+	]],
+	["keyword", "from"],
+	["string", "\"mod\""],
+	["punctuation", ";"],
+
+	["keyword", "import"],
+	["string", "\"mod\""],
+	["punctuation", ";"]
+]

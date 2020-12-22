@@ -1,0 +1,15 @@
+foo = 423
+bar=1
+baz.10 =
+
+----------------------------------------------------
+
+[
+	["tag", ["foo"]], ["operator", "="], ["string", [["number", "423"]]],
+	["tag", ["bar"]], ["operator", "="], ["string", [["number", "1"]]],
+	["tag", ["baz", ["punctuation", "."]]],["number", ["10 ", ["operator", "="]]], ["string", []]
+]
+
+----------------------------------------------------
+
+Checks for import functions.

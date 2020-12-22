@@ -100,14 +100,16 @@ async function getLog(range) {
 }
 
 const revisionRanges = {
-	nextRelease: git.raw(['describe', '--abbrev=0', '--tags']).then(res => `${res.trim()}..HEAD`)
+	nextRelease() {
+		return git.raw(['describe', '--abbrev=0', '--tags']).then(res => `${res.trim()}..HEAD`);
+	}
 };
 const strCompare = (a, b) => a.localeCompare(b, 'en');
 
 async function changes() {
 	const { languages, plugins } = require('../components.js');
 
-	const infos = await getLog(revisionRanges.nextRelease);
+	const infos = await getLog(revisionRanges.nextRelease());
 
 	const entries = {
 		'TODO:': {},
@@ -143,7 +145,9 @@ async function changes() {
 
 	/** @param {CommitChange} change */
 	function notGenerated(change) {
-		return !change.file.endsWith('.min.js') && ['prism.js', 'components.js', 'package-lock.json'].indexOf(change.file) === -1;
+		return !change.file.endsWith('.min.js')
+			&& !change.file.startsWith('docs/')
+			&& ['prism.js', 'components.js', 'package-lock.json'].indexOf(change.file) === -1;
 	}
 	/** @param {CommitChange} change */
 	function notPartlyGenerated(change) {
@@ -297,14 +301,18 @@ async function changes() {
 		},
 
 		function changedInfrastructure(info) {
-			if (info.changes.length > 0 && info.changes.every(c => {
-				if (c.file.startsWith('gulpfile.js')) {
+			let relevantChanges = info.changes.filter(notGenerated);
+
+			if (relevantChanges.length > 0 && relevantChanges.every(c => {
+				if (/^(?:gulpfile.js|tests)\//.test(c.file)) {
+					// gulp tasks or tests
 					return true;
 				}
 				if (/^\.[\w.]+$/.test(c.file)) {
+					// a .something file
 					return true;
 				}
-				return ['CNAME', 'composer.json', 'package.json', 'package-lock.json'].indexOf(c.file) >= 0;
+				return ['bower.json', 'CNAME', 'composer.json', 'package.json', 'package-lock.json'].indexOf(c.file) >= 0;
 			})) {
 				addEntry('Other >> Infrastructure', info);
 				return true;
@@ -320,7 +328,7 @@ async function changes() {
 
 		function changedWebsite(info) {
 			if (info.changes.length > 0 && info.changes.every(c => {
-				return /[\w-]+\.html$/.test(c.file) || /^assets\//.test(c.file);
+				return /[\w-]+\.html$/.test(c.file) || /^(?:assets|docs)\//.test(c.file);
 			})) {
 				addEntry('Other >> Website', info);
 				return true;

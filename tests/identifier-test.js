@@ -186,7 +186,7 @@ function testLiterals(Prism, lang) {
 					assert.fail(
 						`${name}: Failed to tokenize the ${identifierType} '${ident}' as one or no token.\n` +
 						'Actual token stream:\n\n' +
-						TokenStreamTransformer.prettyprint(TokenStreamTransformer.simplify(tokens)) +
+						TokenStreamTransformer.prettyprint(tokens) +
 						'\n\n' +
 						'How to fix this:\n' +
 						'If your language failed any of the identifier tests then some patterns in your language can break identifiers. ' +

@@ -1,11 +1,12 @@
 const ALL_CARDS: &'static [&'static char] = &["2"]
+
 fn foo<'a> (first: &'a str, second: &'a str) => () { }
 
 ----------------------------------------------------
 
 [
 	["keyword", "const"],
-	" ALL_CARDS",
+	["constant", "ALL_CARDS"],
 	["punctuation", ":"],
 	["operator", "&"],
 	["lifetime-annotation", "'static"],
@@ -19,6 +20,7 @@ fn foo<'a> (first: &'a str, second: &'a str) => () { }
 	["punctuation", "["],
 	["string", "\"2\""],
 	["punctuation", "]"],
+
 	["keyword", "fn"],
 	["function-definition", "foo"],
 	["operator", "<"],
@@ -29,13 +31,13 @@ fn foo<'a> (first: &'a str, second: &'a str) => () { }
 	["punctuation", ":"],
 	["operator", "&"],
 	["lifetime-annotation", "'a"],
-	" str",
+	["keyword", "str"],
 	["punctuation", ","],
 	" second",
 	["punctuation", ":"],
 	["operator", "&"],
 	["lifetime-annotation", "'a"],
-	" str",
+	["keyword", "str"],
 	["punctuation", ")"],
 	["operator", "=>"],
 	["punctuation", "("],

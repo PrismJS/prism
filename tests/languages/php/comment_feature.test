@@ -1,18 +1,24 @@
 //
 // foobar
-/**/
 /* foo
 bar */
 /* <me@example.com> */
+/**/
+/** doc comment */
+#
+# foobar
 
 ----------------------------------------------------
 
 [
 	["comment", "//"],
 	["comment", "// foobar"],
-	["comment", "/**/"],
 	["comment", "/* foo\r\nbar */"],
-	["comment", "/* <me@example.com> */"]
+	["comment", "/* <me@example.com> */"],
+	["comment", "/**/"],
+	["comment", "/** doc comment */"],
+	["comment", "#"],
+	["comment", "# foobar"]
 ]
 
 ----------------------------------------------------

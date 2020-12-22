@@ -17,7 +17,6 @@ jumps over the lazy dog
 String empty = """
 """;
 
-
 ----------------------------------------------------
 
 [
@@ -38,7 +37,9 @@ String empty = """
 	["operator", "+"],
 	["triple-quoted-string", "\"\"\"\njumps over the lazy dog\n\"\"\""],
 
-	["class-name", "String"],
+	["class-name", [
+		"String"
+	]],
 	" empty ",
 	["operator", "="],
 	["triple-quoted-string", "\"\"\"\n\"\"\""],

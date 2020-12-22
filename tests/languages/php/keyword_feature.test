@@ -1,7 +1,7 @@
 __halt_compiler
 abstract
 and
-array
+array()
 as
 break
 callable
@@ -45,9 +45,11 @@ interface;
 isset
 list
 namespace;
+match
 new;
 or
 parent
+parent::
 print
 private
 protected
@@ -55,7 +57,11 @@ public
 require
 require_once
 return
+self
+new self
+self::
 static
+static::
 switch
 throw
 trait;
@@ -73,7 +79,7 @@ yield
 	["keyword", "__halt_compiler"],
 	["keyword", "abstract"],
 	["keyword", "and"],
-	["keyword", "array"],
+	["keyword", "array"], ["punctuation", "("], ["punctuation", ")"],
 	["keyword", "as"],
 	["keyword", "break"],
 	["keyword", "callable"],
@@ -117,9 +123,11 @@ yield
 	["keyword", "isset"],
 	["keyword", "list"],
 	["keyword", "namespace"], ["punctuation", ";"],
+	["keyword", "match"],
 	["keyword", "new"], ["punctuation", ";"],
 	["keyword", "or"],
 	["keyword", "parent"],
+	["keyword", "parent"], ["operator", "::"],
 	["keyword", "print"],
 	["keyword", "private"],
 	["keyword", "protected"],
@@ -127,10 +135,14 @@ yield
 	["keyword", "require"],
 	["keyword", "require_once"],
 	["keyword", "return"],
+	["keyword", "self"],
+	["keyword", "new"], ["keyword", "self"],
+	["keyword", "self"], ["operator", "::"],
 	["keyword", "static"],
+	["keyword", "static"], ["operator", "::"],
 	["keyword", "switch"],
 	["keyword", "throw"],
-	["keyword", "trait"],  ["punctuation", ";"],
+	["keyword", "trait"], ["punctuation", ";"],
 	["keyword", "try"],
 	["keyword", "unset"],
 	["keyword", "use"], ["punctuation", ";"],

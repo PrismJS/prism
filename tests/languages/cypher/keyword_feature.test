@@ -1,0 +1,138 @@
+ADD
+ALL
+AND
+AS
+ASC
+ASCENDING
+ASSERT
+CALL
+CASE
+COMMIT
+CONSTRAINT
+CONTAINS
+CREATE
+CSV
+DELETE
+DESC
+DESCENDING
+DETACH
+DISTINCT
+DO
+DROP
+ELSE
+END
+ENDS
+EXISTS
+FOR
+FOREACH
+IN
+INDEX
+IS
+JOIN
+KEY
+LIMIT
+LOAD
+MANDATORY
+MATCH
+MERGE
+NODE
+NOT
+OF
+ON
+OPTIONAL
+OR
+ORDER BY
+PERIODIC
+REMOVE
+REQUIRE
+RETURN
+SCALAR
+SCAN
+SET
+SKIP
+START
+STARTS
+THEN
+UNION
+UNIQUE
+UNWIND
+USING
+WHEN
+WHERE
+WITH
+XOR
+YIELD
+
+----------------------------------------------------
+
+[
+	["keyword", "ADD"],
+	["keyword", "ALL"],
+	["keyword", "AND"],
+	["keyword", "AS"],
+	["keyword", "ASC"],
+	["keyword", "ASCENDING"],
+	["keyword", "ASSERT"],
+	["keyword", "CALL"],
+	["keyword", "CASE"],
+	["keyword", "COMMIT"],
+	["keyword", "CONSTRAINT"],
+	["keyword", "CONTAINS"],
+	["keyword", "CREATE"],
+	["keyword", "CSV"],
+	["keyword", "DELETE"],
+	["keyword", "DESC"],
+	["keyword", "DESCENDING"],
+	["keyword", "DETACH"],
+	["keyword", "DISTINCT"],
+	["keyword", "DO"],
+	["keyword", "DROP"],
+	["keyword", "ELSE"],
+	["keyword", "END"],
+	["keyword", "ENDS"],
+	["keyword", "EXISTS"],
+	["keyword", "FOR"],
+	["keyword", "FOREACH"],
+	["keyword", "IN"],
+	["keyword", "INDEX"],
+	["keyword", "IS"],
+	["keyword", "JOIN"],
+	["keyword", "KEY"],
+	["keyword", "LIMIT"],
+	["keyword", "LOAD"],
+	["keyword", "MANDATORY"],
+	["keyword", "MATCH"],
+	["keyword", "MERGE"],
+	["keyword", "NODE"],
+	["keyword", "NOT"],
+	["keyword", "OF"],
+	["keyword", "ON"],
+	["keyword", "OPTIONAL"],
+	["keyword", "OR"],
+	["keyword", "ORDER"],
+	["keyword", "BY"],
+	["keyword", "PERIODIC"],
+	["keyword", "REMOVE"],
+	["keyword", "REQUIRE"],
+	["keyword", "RETURN"],
+	["keyword", "SCALAR"],
+	["keyword", "SCAN"],
+	["keyword", "SET"],
+	["keyword", "SKIP"],
+	["keyword", "START"],
+	["keyword", "STARTS"],
+	["keyword", "THEN"],
+	["keyword", "UNION"],
+	["keyword", "UNIQUE"],
+	["keyword", "UNWIND"],
+	["keyword", "USING"],
+	["keyword", "WHEN"],
+	["keyword", "WHERE"],
+	["keyword", "WITH"],
+	["keyword", "XOR"],
+	["keyword", "YIELD"]
+]
+
+----------------------------------------------------
+
+Checks for keywords.

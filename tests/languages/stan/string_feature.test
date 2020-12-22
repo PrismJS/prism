@@ -1,0 +1,40 @@
+""
+"foo bar"
+
+print("log density before =", target());
+print("u[", n, "] = ", u[n]);
+
+----------------------------------------------------
+
+[
+	["string", "\"\""],
+	["string", "\"foo bar\""],
+
+	["keyword", "print"],
+	["punctuation", "("],
+	["string", "\"log density before =\""],
+	["punctuation", ","],
+	["keyword", "target"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["keyword", "print"],
+	["punctuation", "("],
+	["string", "\"u[\""],
+	["punctuation", ","],
+	" n",
+	["punctuation", ","],
+	["string", "\"] = \""],
+	["punctuation", ","],
+	" u",
+	["punctuation", "["],
+	"n",
+	["punctuation", "]"],
+	["punctuation", ")"],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for strings.

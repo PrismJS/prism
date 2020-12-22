@@ -16,12 +16,12 @@
 	["php", [
 		["delimiter", "<?php"],
 		["comment", "// '"],
-		["shell-comment", "# \""],
+		["comment", "# \""],
 		["comment", "//*"],
 		["keyword", "echo"],
-		["single-quoted-string", "'?>'"],
+		["string", "'?>'"],
 		["operator", "+"],
-		["double-quoted-string", ["\"?>\""]],
+		["string", ["\"?>\""]],
 		["punctuation", ";"],
 		["comment", "/* ?> */"],
 		["keyword", "echo"],
@@ -34,7 +34,7 @@
 
 	["php", [
 		["delimiter", "<?php"],
-		["shell-comment", "# "],
+		["comment", "# "],
 		["delimiter", "?>"]
 	]]
 ]
