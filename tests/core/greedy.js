@@ -84,4 +84,25 @@ describe('Greedy matching', function () {
 			]
 		});
 	});
+
+	it('should always match tokens against the whole text', function () {
+		// this is to test for a bug where greedy tokens where matched like non-greedy ones if the token stream ended on
+		// a string
+		testTokens({
+			grammar: {
+				'a': /a/,
+				'b': {
+					pattern: /^b/,
+					greedy: true
+				}
+			},
+			code: 'bab',
+			expected: [
+				["b", "b"],
+				["a", "a"],
+				"b"
+			]
+		});
+	});
+
 });

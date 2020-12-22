@@ -829,6 +829,25 @@ Token.stringify = function stringify(o, language) {
 };
 
 /**
+ * @param {RegExp} pattern
+ * @param {number} pos
+ * @param {string} text
+ * @param {boolean} lookbehind
+ * @returns {RegExpExecArray | null}
+ */
+function matchPattern(pattern, pos, text, lookbehind) {
+	pattern.lastIndex = pos;
+	var match = pattern.exec(text);
+	if (match && lookbehind && match[1]) {
+		// change the match to remove the text matched by the Prism lookbehind group
+		var lookbehindLength = match[1].length;
+		match.index += lookbehindLength;
+		match[0] = match[0].slice(lookbehindLength);
+	}
+	return match;
+}
+
+/**
  * @param {string} text
  * @param {LinkedList<string | Token>} tokenList
  * @param {any} grammar
@@ -860,7 +879,6 @@ function matchGrammar(text, tokenList, grammar, startNode, startPos, rematch) {
 				inside = patternObj.inside,
 				lookbehind = !!patternObj.lookbehind,
 				greedy = !!patternObj.greedy,
-				lookbehindLength = 0,
 				alias = patternObj.alias;
 
 			if (greedy && !patternObj.pattern.global) {
@@ -894,15 +912,15 @@ function matchGrammar(text, tokenList, grammar, startNode, startPos, rematch) {
 				}
 
 				var removeCount = 1; // this is the to parameter of removeBetween
+				var match;
 
-				if (greedy && currentNode != tokenList.tail.prev) {
-					pattern.lastIndex = pos;
-					var match = pattern.exec(text);
+				if (greedy) {
+					match = matchPattern(pattern, pos, text, lookbehind);
 					if (!match) {
 						break;
 					}
 
-					var from = match.index + (lookbehind && match[1] ? match[1].length : 0);
+					var from = match.index;
 					var to = match.index + match[0].length;
 					var p = pos;
 
@@ -936,24 +954,16 @@ function matchGrammar(text, tokenList, grammar, startNode, startPos, rematch) {
 					str = text.slice(pos, p);
 					match.index -= pos;
 				} else {
-					pattern.lastIndex = 0;
-
-					var match = pattern.exec(str);
+					match = matchPattern(pattern, 0, str, lookbehind);
+					if (!match) {
+						continue;
+					}
 				}
 
-				if (!match) {
-					continue;
-				}
-
-				if (lookbehind) {
-					lookbehindLength = match[1] ? match[1].length : 0;
-				}
-
-				var from = match.index + lookbehindLength,
-					matchStr = match[0].slice(lookbehindLength),
-					to = from + matchStr.length,
+				var from = match.index,
+					matchStr = match[0],
 					before = str.slice(0, from),
-					after = str.slice(to);
+					after = str.slice(from + matchStr.length);
 
 				var reach = pos + str.length;
 				if (rematch && reach > rematch.reach) {
@@ -1564,6 +1574,11 @@ Prism.languages.js = Prism.languages.javascript;
 (function () {
 	if (typeof self === 'undefined' || !self.Prism || !self.document) {
 		return;
+	}
+
+	// https://developer.mozilla.org/en-US/docs/Web/API/Element/matches#Polyfill
+	if (!Element.prototype.matches) {
+		Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
 	}
 
 	var Prism = window.Prism;
