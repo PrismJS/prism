@@ -227,7 +227,7 @@
 			inside: {
 				'operator': /^!/,
 				'content': {
-					pattern: /(^\[)[^\]]+(?=\][ \t(\[])/,
+					pattern: /(^\[)[^\]]+(?=\])/,
 					lookbehind: true,
 					inside: {} // see below
 				},
