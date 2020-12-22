@@ -3,6 +3,27 @@ const fs = require('fs').promises;
 const gzipSize = require('gzip-size');
 const git = require('simple-git/promise')(__dirname).silent(true);
 
+/**
+ * Returns the contents of a text file in the base of the PR.
+ *
+ * The base is usually PrismJS/prism/master.
+ *
+ * @param {string} path
+ * @returns {Promise<string>}
+ */
+function readBaseFile(path) {
+	return fs.readFile(path, 'utf-8');
+}
+/**
+ * Returns the contents of a text file in the pull request branch.
+ *
+ * @param {string} path
+ * @returns {Promise<string>}
+ */
+function readPRFile(path) {
+	return git.show([`pr:${path}`]);
+}
+
 // https://stackoverflow.com/questions/15900485/correct-way-to-convert-size-in-bytes-to-kb-mb-gb-in-javascript
 const formatBytes = (bytes, decimals = 2) => {
 	if (bytes === 0) return '0 Bytes';
@@ -26,14 +47,12 @@ const absDiff = (from, to) => {
 	return `${maybePlus(from, to)}${formatBytes(to - from)}`;
 }
 
-const percDiff =  (from, to) => {
+const percDiff = (from, to) => {
 	if (from === to) {
 		return '0%';
 	}
 
-	return `${maybePlus(from, to)}${
-		(100 * (to - from) / (from || to)).toFixed(1)
-	}%`;
+	return `${maybePlus(from, to)}${(100 * (to - from) / (from || to)).toFixed(1)}%`;
 }
 
 const getSummary = (rows, totalMasterFileSize, totalFileSize) => {
@@ -46,20 +65,11 @@ const getSummary = (rows, totalMasterFileSize, totalFileSize) => {
 }
 
 const getChangedMinifiedFiles = async () => {
-	const result = await git.diff(['--name-only', '--no-renames', 'master...']);
-
-	return result
-		? result.split(/\r?\n/g).filter(file => file.endsWith('.min.js'))
-		: [];
+	const result = await git.diff(['--name-only', '--no-renames', 'pr', 'HEAD']);
+	return (result || '').split(/\r?\n/g).filter(file => file.endsWith('.min.js'));
 };
 
 const run = async () => {
-	// Check if master exists & check it out if not.
-	const result = await git.branch(['--list', 'master']);
-	if (result.all.length === 0) {
-		await git.branch(['master', 'origin/master']);
-	}
-
 	const minified = await getChangedMinifiedFiles();
 
 	if (minified.length === 0) {
@@ -73,8 +83,8 @@ const run = async () => {
 
 	for (const file of minified) {
 		const [fileContents, fileMasterContents] = await Promise.all([
-			fs.readFile(file, 'utf-8').catch(() => ''),
-			git.show([`master:${file}`]).catch(() => ''),
+			readPRFile(file).catch(() => ''),
+			readBaseFile(file).catch(() => ''),
 		]);
 
 		const [fileSize, fileMasterSize] = await Promise.all([
@@ -83,7 +93,7 @@ const run = async () => {
 		]);
 
 		totalFileSize += fileSize;
-		totalMasterFileSize +=fileMasterSize
+		totalMasterFileSize += fileMasterSize
 
 		rows.push([
 			file,
