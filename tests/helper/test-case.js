@@ -6,6 +6,10 @@ const PrismLoader = require("./prism-loader");
 const TokenStreamTransformer = require("./token-stream-transformer");
 
 /**
+ * @typedef {import("./token-stream-transformer").TokenStream} TokenStream
+ */
+
+/**
  * Handles parsing of a test case file.
  *
  *
@@ -58,7 +62,7 @@ module.exports = {
 		const Prism = PrismLoader.createInstance(usedLanguages.languages);
 
 		// the first language is the main language to highlight
-		const simplifiedTokenStream = this.simpleTokenize(Prism, testCase.code, usedLanguages.mainLanguage);
+		const tokenStream = this.tokenize(Prism, testCase.code, usedLanguages.mainLanguage);
 
 		if (testCase.expectedTokenStream === null) {
 			// the test case doesn't have an expected value
@@ -71,7 +75,7 @@ module.exports = {
 			// change the file
 			const lineEnd = (/\r\n/.test(testCase.code) || !/\n/.test(testCase.code)) ? '\r\n' : '\n';
 			const separator = "\n\n----------------------------------------------------\n\n";
-			const pretty = TokenStreamTransformer.prettyprint(simplifiedTokenStream)
+			const pretty = TokenStreamTransformer.prettyprint(tokenStream)
 				.replace(/^( +)/gm, m => {
 					return "\t".repeat(m.length / 4);
 				});
@@ -80,11 +84,14 @@ module.exports = {
 			if (testCase.comment) {
 				content += separator + testCase.comment;
 			}
+			//content += '\n'
 			content = content.replace(/\r?\n/g, lineEnd);
 
 			fs.writeFileSync(filePath, content, "utf-8");
 		} else {
 			// there is an expected value
+			const simplifiedTokenStream = TokenStreamTransformer.simplify(tokenStream);
+
 			const actual = JSON.stringify(simplifiedTokenStream);
 			const expected = JSON.stringify(testCase.expectedTokenStream);
 
@@ -100,7 +107,7 @@ module.exports = {
 			const columnNumber = expectedJsonLines.pop().length + 1;
 			const lineNumber = testCase.expectedLineOffset + expectedJsonLines.length;
 
-			const tokenStreamStr = TokenStreamTransformer.prettyprint(simplifiedTokenStream);
+			const tokenStreamStr = TokenStreamTransformer.prettyprint(tokenStream);
 			const message = "\n\nActual Token Stream:" +
 				"\n-----------------------------------------\n" +
 				tokenStreamStr +
@@ -112,16 +119,16 @@ module.exports = {
 	},
 
 	/**
-	 * Returns the simplified token stream of the given code highlighted with `language`.
+	 * Returns the token stream of the given code highlighted with `language`.
 	 *
 	 * The `before-tokenize` and `after-tokenize` hooks will also be executed.
 	 *
 	 * @param {import('../../components/prism-core')} Prism The Prism instance which will tokenize `code`.
 	 * @param {string} code The code to tokenize.
 	 * @param {string} language The language id.
-	 * @returns {Array<string|Array<string|any[]>>}
+	 * @returns {TokenStream}
 	 */
-	simpleTokenize(Prism, code, language) {
+	tokenize(Prism, code, language) {
 		const env = {
 			code,
 			grammar: Prism.languages[language],
@@ -132,7 +139,7 @@ module.exports = {
 		env.tokens = Prism.tokenize(env.code, env.grammar);
 		Prism.hooks.run('after-tokenize', env);
 
-		return TokenStreamTransformer.simplify(env.tokens);
+		return env.tokens;
 	},
 
 
@@ -202,7 +209,7 @@ module.exports = {
 
 		const code = testCaseParts[0].trim();
 		const expected = (testCaseParts[1] || '').trim();
-		const comment = (testCaseParts[2] || '').trim();
+		const comment = (testCaseParts[2] || '').trimStart();
 
 		const testCase = {
 			code,

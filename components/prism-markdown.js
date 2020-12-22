@@ -26,6 +26,19 @@
 
 	Prism.languages.markdown = Prism.languages.extend('markup', {});
 	Prism.languages.insertBefore('markdown', 'prolog', {
+		'front-matter-block': {
+			pattern: /(^(?:\s*[\r\n])?)---(?!.)[\s\S]*?[\r\n]---(?!.)/,
+			lookbehind: true,
+			greedy: true,
+			inside: {
+				'punctuation': /^---|---$/,
+				'font-matter': {
+					pattern: /\S+(?:\s+\S+)*/,
+					alias: ['yaml', 'language-yaml'],
+					inside: Prism.languages.yaml
+				}
+			}
+		},
 		'blockquote': {
 			// > ...
 			pattern: /^>(?:[\t ]*>)*/m,
