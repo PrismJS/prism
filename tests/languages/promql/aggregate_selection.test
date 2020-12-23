@@ -1,0 +1,30 @@
+sum by (job) (
+	rate(http_requests_total[5m])
+)
+
+----------------------------------------------------
+
+[
+	["keyword", "sum"],
+	["keyword", "by"],
+	["vector-match", [
+        ["punctuation", "("],
+        ["label-key", "job"],
+        ["punctuation", ")"]
+    ]],
+	["punctuation", "("],
+	["function", "rate"],
+	["punctuation", "("],
+	"http_requests_total",
+	["context-range", [
+		["punctuation", "["],
+		["range-duration", "5m"],
+		["punctuation", "]"]
+	]],
+	["punctuation", ")"],
+	["punctuation", ")"]
+]
+
+----------------------------------------------------
+
+Checks aggregate query.

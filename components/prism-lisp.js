@@ -114,7 +114,7 @@
 			}
 		},
 		lambda: {
-			pattern: RegExp(par + 'lambda\\s+\\((?:&?' + symbol + '\\s*)*\\)'),
+			pattern: RegExp(par + 'lambda\\s+\\(\\s*(?:&?' + symbol + '(?:\\s+&?' + symbol + ')*\\s*)?\\)'),
 			lookbehind: true,
 			inside: {
 				keyword: /^lambda/,

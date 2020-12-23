@@ -1,0 +1,45 @@
+0
+1
++1
+-1
+
++1.0
+2.7e3
+-1.0e+3
+
+double 0x432ff973cafa8000
+double 4.5e+15  ; equivalent forms as mentioned in the LangRef
+
+0xK0123456789ABCDEFabcd  ; x86_fp80
+0xM0123456789ABCDEF0123456789abcdef  ; ppc_fp128
+0xL0123456789ABCDEF0123456789abcdef  ; fp128
+0xHFACE  ; half
+
+----------------------------------------------------
+
+[
+	["number", "0"],
+	["number", "1"],
+	["number", "+1"],
+	["number", "-1"],
+	["number", "+1.0"],
+	["number", "2.7e3"],
+	["number", "-1.0e+3"],
+	["type", "double"],
+	["number", "0x432ff973cafa8000"],
+	["type", "double"],
+	["number", "4.5e+15"],
+	["comment", "; equivalent forms as mentioned in the LangRef"],
+	["number", "0xK0123456789ABCDEFabcd"],
+	["comment", "; x86_fp80"],
+	["number", "0xM0123456789ABCDEF0123456789abcdef"],
+	["comment", "; ppc_fp128"],
+	["number", "0xL0123456789ABCDEF0123456789abcdef"],
+	["comment", "; fp128"],
+	["number", "0xHFACE"],
+	["comment", "; half"]
+]
+
+----------------------------------------------------
+
+Numeric literals.

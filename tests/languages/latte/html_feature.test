@@ -15,35 +15,35 @@
 	["tag", [["tag", [["punctuation", "<"], "a"]],
 	["attr-name", ["href"]], ["attr-value", [["punctuation", "="], ["punctuation", "\""],
 	["latte", [["ld", [["punctuation", "{"], ["tag", "link"]]],
-	["php", ["Post", ["punctuation", ":"], "show ", ["variable", "$post"], ["operator", "-"], ["operator", ">"], ["property", "id"]]],
+	["php", [["argument-name", "Post"], ["punctuation", ":"], ["class-name", "show"], ["variable", "$post"], ["operator", "->"], ["property", "id"]]],
 	["rd", [["punctuation", "}"]]]]],
 	["punctuation", "\""]]], ["punctuation", ">"]]],
-	["latte", [["ld", [["punctuation", "{"]]], ["php", [["variable", "$post"], ["operator", "-"], ["operator", ">"], ["property", "title"]]], ["rd", [["punctuation", "}"]]]]],
+	["latte", [["ld", [["punctuation", "{"]]], ["php", [["variable", "$post"], ["operator", "->"], ["property", "title"]]], ["rd", [["punctuation", "}"]]]]],
 	["tag", [["tag", [["punctuation", "</"], "a"]], ["punctuation", ">"]]],
 
 	["tag", [["tag", [["punctuation", "<"], "a"]],
 	["attr-name",
-		[["latte", [["ld", [["punctuation", "{"], ["tag", "if"]]], ["php", [["variable", "$post"], ["operator", "-"], ["operator", ">"], ["property", "id"]]], ["rd", [["punctuation", "}"]]]]], "title"]
+		[["latte", [["ld", [["punctuation", "{"], ["tag", "if"]]], ["php", [["variable", "$post"], ["operator", "->"], ["property", "id"]]], ["rd", [["punctuation", "}"]]]]], "title"]
 	],
 	["attr-value", [["punctuation", "="], ["punctuation", "\""], "ahoj", ["punctuation", "\""]]],
 	["attr-name", [["latte", [["ld", [["punctuation", "{/"], ["tag", "if"]]], ["rd", [["punctuation", "}"]]]]]]],
 	["punctuation", ">"]]],
-	["latte", [["ld", [["punctuation", "{"]]], ["php", [["variable", "$post"], ["operator", "-"], ["operator", ">"], ["property", "title"]]], ["rd", [["punctuation", "}"]]]]],
+	["latte", [["ld", [["punctuation", "{"]]], ["php", [["variable", "$post"], ["operator", "->"], ["property", "title"]]], ["rd", [["punctuation", "}"]]]]],
 	["tag", [["tag", [["punctuation", "</"], "a"]], ["punctuation", ">"]]],
 
-	["latte", [["ld", [["punctuation", "{"], ["tag", "tag"]]], ["php", [["variable", "$a"], ["operator", "="], ["boolean", "true"], ["operator", "?"], ["number", "10"], ["operator", "*"], ["number", "5"]]], ["rd", [["punctuation", "}"]]]]],
+	["latte", [["ld", [["punctuation", "{"], ["tag", "tag"]]], ["php", [["variable", "$a"], ["operator", "="], ["constant", "true"], ["operator", "?"], ["number", "10"], ["operator", "*"], ["number", "5"]]], ["rd", [["punctuation", "}"]]]]],
 
 	["tag", [["tag", [["punctuation", "<"], "div"]],
-	["n-attr", [["attr-name", "n:attr"], ["attr-value", [["punctuation", "="], ["punctuation", "\""], ["php", [["variable", "$a"], ["operator", "="], ["boolean", "true"], ["operator", "?"], ["number", "10"], ["operator", "*"], ["number", "5"]]], ["punctuation", "\""]]]]],
+	["n-attr", [["attr-name", "n:attr"], ["attr-value", [["punctuation", "="], ["punctuation", "\""], ["php", [["variable", "$a"], ["operator", "="], ["constant", "true"], ["operator", "?"], ["number", "10"], ["operator", "*"], ["number", "5"]]], ["punctuation", "\""]]]]],
 	["punctuation", ">"]]],
 
-	["latte", [["ld", [["punctuation", "{"], ["tag", "php"]]], ["php", [["single-quoted-string", "''"]]], ["rd", [["punctuation", "}"]]]]],
+	["latte", [["ld", [["punctuation", "{"], ["tag", "php"]]], ["php", [["string", "''"]]], ["rd", [["punctuation", "}"]]]]],
 
-	["latte", [["ld", [["punctuation", "{"], ["tag", "php"]]], ["php", [["double-quoted-string", ["\"\""]]]], ["rd", [["punctuation", "}"]]]]],
+	["latte", [["ld", [["punctuation", "{"], ["tag", "php"]]], ["php", [["string", ["\"\""]]]], ["rd", [["punctuation", "}"]]]]],
 
-	["latte", [["ld", [["punctuation", "{"], ["tag", "php"]]], ["php", [["double-quoted-string", ["\"ba\\\"r\""]]]], ["rd", [["punctuation", "}"]]]]],
+	["latte", [["ld", [["punctuation", "{"], ["tag", "php"]]], ["php", [["string", ["\"ba\\\"r\""]]]], ["rd", [["punctuation", "}"]]]]],
 
-	["latte", [["ld", [["punctuation", "{"], ["tag", "php"]]], ["php", [["single-quoted-string", "'ba\\'z'"]]], ["rd", [["punctuation", "}"]]]]],
+	["latte", [["ld", [["punctuation", "{"], ["tag", "php"]]], ["php", [["string", "'ba\\'z'"]]], ["rd", [["punctuation", "}"]]]]],
 
 	["latte", [["ld", [["punctuation", "{"], ["tag", "php"]]], ["php", [["comment", "/* \" */"]]], ["rd", [["punctuation", "}"]]]]]
 ]

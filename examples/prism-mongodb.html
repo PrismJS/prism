@@ -1,0 +1,59 @@
+<h2>Document</h2>
+<pre><code>
+{
+	'_id': ObjectId('5ec72ffe00316be87cab3927'),
+	'code': Code('function () { return 22; }'),
+	'binary': BinData(1, '232sa3d323sd232a32sda3s2d3a2s1d23s21d3sa'),
+	'dbref': DBRef('namespace', ObjectId('5ec72f4200316be87cab3926'), 'db'),
+	'timestamp': Timestamp(0, 0),
+	'long': NumberLong(9223372036854775807),
+	'decimal': NumberDecimal('1000.55'),
+	'integer': 100,
+	'maxkey': MaxKey(),
+	'minkey': MinKey(),
+	'isodate': ISODate('2012-01-01T00:00:00.000Z'),
+	'regexp': RegExp('prism(js)?', 'i'),
+	'string': 'Hello World',
+	'numberArray': [1, 2, 3],
+	'stringArray': ['1','2','3'],
+	'randomKey': null,
+	'object': { 'a': 1, 'b': 2 },
+	'max_key2': MaxKey(),
+	'number': 1234,
+	'invalid-key': 123,
+	noQuotesKey: 'value',
+}
+</code></pre>
+
+<h2>Query</h2>
+<pre><code>
+db.users.find({
+	_id: { $nin: ObjectId('5ec72ffe00316be87cab3927') },
+	age: { $gte: 18, $lte: 99 },
+	field: { $exists: true }
+})
+</code></pre>
+
+
+<h2>Update</h2>
+<pre><code>
+db.users.updateOne(
+	{
+		_id: ObjectId('5ec72ffe00316be87cab3927')
+	},
+	{
+		$set: { age: 30 },
+		$inc: { updateCount: 1 }, 
+		$push: { updateDates: new Date() } 
+	}
+)
+</code></pre>
+
+<h2>Aggregate</h2>
+<pre><code>
+db.orders.aggregate([
+	{ $sort : { age : -1 } },
+	{ $project : { age : 1, status : 1, name : 1 } },
+	{ $limit: 5 }
+])
+</code></pre>

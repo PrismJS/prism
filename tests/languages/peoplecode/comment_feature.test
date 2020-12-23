@@ -1,0 +1,36 @@
+/*
+comment
+*/
+
+REM comment;
+REM comment
+statement;
+
+<*
+comment
+*>
+
+<*
+<*
+comment
+*>
+*>
+
+/+
+comment
++/
+
+----------------------------------------------------
+
+[
+	["comment", "/*\ncomment\n*/"],
+	["comment", "REM comment;"],
+	["comment", "REM comment\nstatement;"],
+	["comment", "<*\ncomment\n*>"],
+	["comment", "<*\n<*\ncomment\n*>\n*>"],
+	["comment", "/+\ncomment\n+/"]
+]
+
+----------------------------------------------------
+
+Checks for comments.

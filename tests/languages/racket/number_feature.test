@@ -1,0 +1,118 @@
+123
+
+(foo 42 +42 -42)
+(foo 1e3 +1e3 -1e3)
+(foo 1e+3 1e-3 3.14159 3.14159e-1)
+(foo 8/3)
+(foo 3+4i 2.5+0.0i 2.5+0.0i -2.5e4+0.0e4i 3+0i -2e-5i)
+(list +10i -10i 10+10i 10.10+10.10i 10-10i 10+10e+10i)
+
+(list #d123 #e#d123e-4 #d#i12 #i-1.234i)
+
+(list #xBAD #b1110011 #o777)
+(list #i#x10 #i#x10+10i #b10+10i)
+
+10+i
+10+.1i
+10+1.i
+
+; not a number but a symbol
+(define 1+2 10)
+
+
+[foo 42]
+
+----------------------------------------------------
+
+[
+	["number", "123"],
+
+	["punctuation", "("],
+	["function", "foo"],
+	["number", "42"],
+	["number", "+42"],
+	["number", "-42"],
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "foo"],
+	["number", "1e3"],
+	["number", "+1e3"],
+	["number", "-1e3"],
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "foo"],
+	["number", "1e+3"],
+	["number", "1e-3"],
+	["number", "3.14159"],
+	["number", "3.14159e-1"],
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "foo"],
+	["number", "8/3"],
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "foo"],
+	["number", "3+4i"],
+	["number", "2.5+0.0i"],
+	["number", "2.5+0.0i"],
+	["number", "-2.5e4+0.0e4i"],
+	["number", "3+0i"],
+	["number", "-2e-5i"],
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["builtin", "list"],
+	["number", "+10i"],
+	["number", "-10i"],
+	["number", "10+10i"],
+	["number", "10.10+10.10i"],
+	["number", "10-10i"],
+	["number", "10+10e+10i"],
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["builtin", "list"],
+	["number", "#d123"],
+	["number", "#e#d123e-4"],
+	["number", "#d#i12"],
+	["number", "#i-1.234i"],
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["builtin", "list"],
+	["number", "#xBAD"],
+	["number", "#b1110011"],
+	["number", "#o777"],
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["builtin", "list"],
+	["number", "#i#x10"],
+	["number", "#i#x10+10i"],
+	["number", "#b10+10i"],
+	["punctuation", ")"],
+
+	["number", "10+i"],
+	["number", "10+.1i"],
+	["number", "10+1.i"],
+
+	["comment", "; not a number but a symbol"],
+	["punctuation", "("],
+	["keyword", "define"],
+	" 1+2 ",
+	["number", "10"],
+	["punctuation", ")"],
+
+	["punctuation", "["],
+	["function", "foo"],
+	["number", "42"],
+	["punctuation", "]"]
+]
+
+----------------------------------------------------
+
+Checks for numbers, rational numbers, and complex numbers.

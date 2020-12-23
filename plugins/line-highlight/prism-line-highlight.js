@@ -4,15 +4,33 @@
 		return;
 	}
 
-	function $$(expr, con) {
-		return Array.prototype.slice.call((con || document).querySelectorAll(expr));
+	/**
+	 * @param {string} selector
+	 * @param {ParentNode} [container]
+	 * @returns {HTMLElement[]}
+	 */
+	function $$(selector, container) {
+		return Array.prototype.slice.call((container || document).querySelectorAll(selector));
 	}
 
+	/**
+	 * Returns whether the given element has the given class.
+	 *
+	 * @param {Element} element
+	 * @param {string} className
+	 * @returns {boolean}
+	 */
 	function hasClass(element, className) {
 		className = " " + className + " ";
 		return (" " + element.className + " ").replace(/[\n\t]/g, " ").indexOf(className) > -1
 	}
 
+	/**
+	 * Calls the given function.
+	 *
+	 * @param {() => any} func
+	 * @returns {void}
+	 */
 	function callFunction(func) {
 		func();
 	}
@@ -26,8 +44,8 @@
 				var d = document.createElement('div');
 				d.style.fontSize = '13px';
 				d.style.lineHeight = '1.5';
-				d.style.padding = 0;
-				d.style.border = 0;
+				d.style.padding = '0';
+				d.style.border = '0';
 				d.innerHTML = '&nbsp;<br />&nbsp;';
 				document.body.appendChild(d);
 				// Browsers that round the line-height should have offsetHeight === 38
@@ -40,27 +58,65 @@
 	}());
 
 	/**
+	 * Returns the top offset of the content box of the given parent and the content box of one of its children.
+	 *
+	 * @param {HTMLElement} parent
+	 * @param {HTMLElement} child
+	 */
+	function getContentBoxTopOffset(parent, child) {
+		var parentStyle = getComputedStyle(parent);
+		var childStyle = getComputedStyle(child);
+
+		/**
+		 * Returns the numeric value of the given pixel value.
+		 *
+		 * @param {string} px
+		 */
+		function pxToNumber(px) {
+			return +px.substr(0, px.length - 2);
+		}
+
+		return child.offsetTop
+			+ pxToNumber(childStyle.borderTopWidth)
+			+ pxToNumber(childStyle.paddingTop)
+			- pxToNumber(parentStyle.paddingTop);
+	}
+
+	/**
 	 * Highlights the lines of the given pre.
 	 *
 	 * This function is split into a DOM measuring and mutate phase to improve performance.
 	 * The returned function mutates the DOM when called.
 	 *
 	 * @param {HTMLElement} pre
-	 * @param {string} [lines]
+	 * @param {string | null} [lines]
 	 * @param {string} [classes='']
 	 * @returns {() => void}
 	 */
 	function highlightLines(pre, lines, classes) {
 		lines = typeof lines === 'string' ? lines : pre.getAttribute('data-line');
 
-		var ranges = lines.replace(/\s+/g, '').split(',');
+		var ranges = lines.replace(/\s+/g, '').split(',').filter(Boolean);
 		var offset = +pre.getAttribute('data-line-offset') || 0;
 
 		var parseMethod = isLineHeightRounded() ? parseInt : parseFloat;
 		var lineHeight = parseMethod(getComputedStyle(pre).lineHeight);
 		var hasLineNumbers = hasClass(pre, 'line-numbers');
-		var parentElement = hasLineNumbers ? pre : pre.querySelector('code') || pre;
+		var codeElement = pre.querySelector('code');
+		var parentElement = hasLineNumbers ? pre : codeElement || pre;
 		var mutateActions = /** @type {(() => void)[]} */ ([]);
+
+		/**
+		 * The top offset between the content box of the <code> element and the content box of the parent element of
+		 * the line highlight element (either `<pre>` or `<code>`).
+		 *
+		 * This offset might not be zero for some themes where the <code> element has a top margin. Some plugins
+		 * (or users) might also add element above the <code> element. Because the line highlight is aligned relative
+		 * to the <pre> element, we have to take this into account.
+		 *
+		 * This offset will be 0 if the parent element of the line highlight element is the `<code>` element.
+		 */
+		var codePreOffset = !codeElement || parentElement == codeElement ? 0 : getContentBoxTopOffset(pre, codeElement);
 
 		ranges.forEach(function (currentRange) {
 			var range = currentRange.split('-');
@@ -68,6 +124,7 @@
 			var start = +range[0];
 			var end = +range[1] || start;
 
+			/** @type {HTMLElement} */
 			var line = pre.querySelector('.line-highlight[data-range="' + currentRange + '"]') || document.createElement('div');
 
 			mutateActions.push(function () {
@@ -82,7 +139,7 @@
 				var endNode = Prism.plugins.lineNumbers.getLine(pre, end);
 
 				if (startNode) {
-					var top = startNode.offsetTop + 'px';
+					var top = startNode.offsetTop + codePreOffset + 'px';
 					mutateActions.push(function () {
 						line.style.top = top;
 					});
@@ -96,13 +153,13 @@
 				}
 			} else {
 				mutateActions.push(function () {
-					line.setAttribute('data-start', start);
+					line.setAttribute('data-start', String(start));
 
 					if (end > start) {
-						line.setAttribute('data-end', end);
+						line.setAttribute('data-end', String(end));
 					}
 
-					line.style.top = (start - offset - 1) * lineHeight + 'px';
+					line.style.top = (start - offset - 1) * lineHeight + codePreOffset + 'px';
 
 					line.textContent = new Array(end - start + 2).join(' \n');
 				});
@@ -115,11 +172,58 @@
 			});
 		});
 
+		var id = pre.id;
+		if (hasLineNumbers && id) {
+			// This implements linkable line numbers. Linkable line numbers use Line Highlight to create a link to a
+			// specific line. For this to work, the pre element has to:
+			//  1) have line numbers,
+			//  2) have the `linkable-line-numbers` class or an ascendant that has that class, and
+			//  3) have an id.
+
+			var linkableLineNumbersClass = 'linkable-line-numbers';
+			var linkableLineNumbers = false;
+			var node = pre;
+			while (node) {
+				if (hasClass(node, linkableLineNumbersClass)) {
+					linkableLineNumbers = true;
+					break;
+				}
+				node = node.parentElement;
+			}
+
+			if (linkableLineNumbers) {
+				if (!hasClass(pre, linkableLineNumbersClass)) {
+					// add class to pre
+					mutateActions.push(function () {
+						pre.className = (pre.className + ' ' + linkableLineNumbersClass).trim();
+					});
+				}
+
+				var start = parseInt(pre.getAttribute('data-start') || '1');
+
+				// iterate all line number spans
+				$$('.line-numbers-rows > span', pre).forEach(function (lineSpan, i) {
+					var lineNumber = i + start;
+					lineSpan.onclick = function () {
+						var hash = id + '.' + lineNumber;
+
+						// this will prevent scrolling since the span is obviously in view
+						scrollIntoView = false;
+						location.hash = hash;
+						setTimeout(function () {
+							scrollIntoView = true;
+						}, 1);
+					};
+				});
+			}
+		}
+
 		return function () {
 			mutateActions.forEach(callFunction);
 		};
 	}
 
+	var scrollIntoView = true;
 	function applyHash() {
 		var hash = location.hash.slice(1);
 
@@ -148,13 +252,15 @@
 		var mutateDom = highlightLines(pre, range, 'temporary ');
 		mutateDom();
 
-		document.querySelector('.temporary.line-highlight').scrollIntoView();
+		if (scrollIntoView) {
+			document.querySelector('.temporary.line-highlight').scrollIntoView();
+		}
 	}
 
 	var fakeTimer = 0; // Hack to limit the number of times applyHash() runs
 
 	Prism.hooks.add('before-sanity-check', function (env) {
-		var pre = env.element.parentNode;
+		var pre = env.element.parentElement;
 		var lines = pre && pre.getAttribute('data-line');
 
 		if (!pre || !lines || !/pre/i.test(pre.nodeName)) {
@@ -180,7 +286,7 @@
 	});
 
 	Prism.hooks.add('complete', function completeHook(env) {
-		var pre = env.element.parentNode;
+		var pre = env.element.parentElement;
 		var lines = pre && pre.getAttribute('data-line');
 
 		if (!pre || !lines || !/pre/i.test(pre.nodeName)) {
@@ -203,9 +309,8 @@
 
 	window.addEventListener('hashchange', applyHash);
 	window.addEventListener('resize', function () {
-		var actions = [];
-		$$('pre[data-line]').forEach(function (pre) {
-			actions.push(highlightLines(pre));
+		var actions = $$('pre[data-line]').map(function (pre) {
+			return highlightLines(pre);
 		});
 		actions.forEach(callFunction);
 	});

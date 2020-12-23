@@ -1,0 +1,125 @@
+interface Dictionary<T> {
+	[key: string]: T;
+}
+
+interface Foo extends Dictionary<number> {}
+
+class Bar<T> extends Baz<T> implements FooBar<number, T | null> {}
+
+type Record<K extends keyof any, T> = {
+	[P in K]: T;
+}
+type Diff<T, U> = T extends U ? never : T;
+
+----------------------------------------------------
+
+[
+	["keyword", "interface"],
+	["class-name", [
+		"Dictionary",
+		["operator", "<"],
+		["constant", "T"],
+		["operator", ">"]
+	]],
+	["punctuation", "{"],
+	["punctuation", "["],
+	"key",
+	["operator", ":"],
+	["builtin", "string"],
+	["punctuation", "]"],
+	["operator", ":"],
+	["constant", "T"],
+	["punctuation", ";"],
+	["punctuation", "}"],
+
+	["keyword", "interface"],
+	["class-name", [
+		"Foo"
+	]],
+	["keyword", "extends"],
+	["class-name", [
+		"Dictionary",
+		["operator", "<"],
+		["builtin", "number"],
+		["operator", ">"]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "class"],
+	["class-name", [
+		"Bar",
+		["operator", "<"],
+		["constant", "T"],
+		["operator", ">"]
+	]],
+	["keyword", "extends"],
+	["class-name", [
+		"Baz",
+		["operator", "<"],
+		["constant", "T"],
+		["operator", ">"]
+	]],
+	["keyword", "implements"],
+	["class-name", [
+		"FooBar",
+		["operator", "<"],
+		["builtin", "number"],
+		["punctuation", ","],
+		["constant", "T"],
+		["operator", "|"],
+		["keyword", "null"],
+		["operator", ">"]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "type"],
+	["class-name", [
+		"Record",
+		["operator", "<"],
+		["constant", "K"],
+		["keyword", "extends"],
+		["keyword", "keyof"],
+		["builtin", "any"],
+		["punctuation", ","],
+		["constant", "T"],
+		["operator", ">"]
+	]],
+	["operator", "="],
+	["punctuation", "{"],
+	["punctuation", "["],
+	["constant", "P"],
+	["keyword", "in"],
+	["constant", "K"],
+	["punctuation", "]"],
+	["operator", ":"],
+	["constant", "T"],
+	["punctuation", ";"],
+	["punctuation", "}"],
+
+	["keyword", "type"],
+	["class-name", [
+		"Diff",
+		["operator", "<"],
+		["constant", "T"],
+		["punctuation", ","],
+		["constant", "U"],
+		["operator", ">"]
+	]],
+	["operator", "="],
+	["constant", "T"],
+	["keyword", "extends"],
+	["class-name", [
+		["constant", "U"]
+	]],
+	["operator", "?"],
+	["builtin", "never"],
+	["operator", ":"],
+	["constant", "T"],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for class, interface, and other type names.
