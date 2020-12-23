@@ -12,11 +12,6 @@ let foo = '</script>';
 "foo"
 </script>
 
-<!-- Don't highlight plain text -->
-<script type="text/plain">
-var foo = 0;
-</script>
-
 ----------------------------------------------------
 
 [
@@ -109,34 +104,6 @@ var foo = 0;
 		["language-javascript", [
 			["string", "\"foo\""]
 		]]
-	]],
-	["tag", [
-		["tag", [
-			["punctuation", "</"],
-			"script"
-		]],
-		["punctuation", ">"]
-	]],
-
-	["comment", "<!-- Don't highlight plain text -->"],
-	["tag", [
-		["tag", [
-			["punctuation", "<"],
-			"script"
-		]],
-		["attr-name", [
-			"type"
-		]],
-		["attr-value", [
-			["punctuation", "="],
-			["punctuation", "\""],
-			"text/plain",
-			["punctuation", "\""]
-		]],
-		["punctuation", ">"]
-	]],
-	["script", [
-		["language-none", "\r\nvar foo = 0;\r\n"]
 	]],
 	["tag", [
 		["tag", [

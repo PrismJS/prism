@@ -1,0 +1,36 @@
+<!-- Don't highlight plain text -->
+<script type="text/plain">
+var foo = 0;
+</script>
+
+----------------------------------------------------
+
+[
+	["comment", "<!-- Don't highlight plain text -->"],
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"script"
+		]],
+		["attr-name", [
+			"type"
+		]],
+		["attr-value", [
+			["punctuation", "="],
+			["punctuation", "\""],
+			"text/plain",
+			["punctuation", "\""]
+		]],
+		["punctuation", ">"]
+	]],
+	["script", [
+		["language-none", "\r\nvar foo = 0;\r\n"]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"script"
+		]],
+		["punctuation", ">"]
+	]]
+]

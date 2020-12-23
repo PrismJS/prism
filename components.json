@@ -711,6 +711,11 @@
 			"alias": "md",
 			"owner": "Golmote"
 		},
+		"markup-attributes": {
+			"title": "Markup attributes",
+			"require": "markup",
+			"owner": "RunDevelopment"
+		},
 		"markup-templating": {
 			"title": "Markup templating",
 			"require": "markup",

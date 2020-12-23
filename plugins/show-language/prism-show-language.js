@@ -115,6 +115,7 @@
 		"llvm": "LLVM IR",
 		"lolcode": "LOLCODE",
 		"md": "Markdown",
+		"markup-attributes": "Markup attributes",
 		"markup-templating": "Markup templating",
 		"matlab": "MATLAB",
 		"mel": "MEL",

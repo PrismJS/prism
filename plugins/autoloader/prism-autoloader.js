@@ -80,6 +80,7 @@
 		"less": "css",
 		"lilypond": "scheme",
 		"markdown": "markup",
+		"markup-attributes": "markup",
 		"markup-templating": "markup",
 		"mongodb": "javascript",
 		"n4js": "javascript",
