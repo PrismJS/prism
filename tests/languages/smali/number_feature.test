@@ -1,0 +1,88 @@
+123
+-123
+123t
+123s
+123l
+123T
+123S
+123L
+
+123f
+123.0f
+123.0
+-1234e-9
+.2e-2
+-.2e-2
+-1234.D
+.2f
+
+0xFF
+0xFFt
+0x0FFs
+0x0FFl
+0x123ABCp-1D
+0x12AB.12ABp10d
+
+infinity
+infinityd
+infinityf
+infinityD
+infinityF
+
+INFINITY
+INFINITYd
+INFINITYf
+INFINITYD
+INFINITYF
+
+NaN
+NaNd
+NaNf
+NaND
+NaNF
+
+----------------------------------------------------
+
+[
+	["number", "123"],
+	["number", "-123"],
+	["number", "123t"],
+	["number", "123s"],
+	["number", "123l"],
+	["number", "123T"],
+	["number", "123S"],
+	["number", "123L"],
+	["number", "123f"],
+	["number", "123.0f"],
+	["number", "123.0"],
+	["number", "-1234e-9"],
+	["number", ".2e-2"],
+	["number", "-.2e-2"],
+	["number", "-1234.D"],
+	["number", ".2f"],
+	["number", "0xFF"],
+	["number", "0xFFt"],
+	["number", "0x0FFs"],
+	["number", "0x0FFl"],
+	["number", "0x123ABCp-1D"],
+	["number", "0x12AB.12ABp10d"],
+	["number", "infinity"],
+	["number", "infinityd"],
+	["number", "infinityf"],
+	["number", "infinityD"],
+	["number", "infinityF"],
+	["number", "INFINITY"],
+	["number", "INFINITYd"],
+	["number", "INFINITYf"],
+	["number", "INFINITYD"],
+	["number", "INFINITYF"],
+	["number", "NaN"],
+	["number", "NaNd"],
+	["number", "NaNf"],
+	["number", "NaND"],
+	["number", "NaNF"]
+]
+
+----------------------------------------------------
+
+Checks for numbers.

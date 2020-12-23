@@ -1,15 +1,56 @@
 class Foo
 class Foo_bar
+concept Foo_bar
 struct foo
 enum bar
+enum class FooBar
+template<typename FooBar>
+
+void Foo::bar() {}
+Foo::~Foo() {}
+void Foo<int>::bar() {}
 
 ----------------------------------------------------
 
 [
 	["keyword", "class"], ["class-name", "Foo"],
 	["keyword", "class"], ["class-name", "Foo_bar"],
+	["keyword", "concept"], ["class-name", "Foo_bar"],
 	["keyword", "struct"], ["class-name", "foo"],
-	["keyword", "enum"], ["class-name", "bar"]
+	["keyword", "enum"], ["class-name", "bar"],
+	["keyword", "enum"], ["keyword", "class"], ["class-name", "FooBar"],
+	["keyword", "template"], ["operator", "<"], ["keyword", "typename"], ["class-name", "FooBar"], ["operator", ">"],
+
+
+	["keyword", "void"],
+	["class-name", "Foo"],
+	["operator", "::"],
+	["function", "bar"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["class-name", "Foo"],
+	["operator", "::"],
+	["operator", "~"],
+	["function", "Foo"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "void"],
+	["class-name", "Foo"],
+	["operator", "<"],
+	["keyword", "int"],
+	["operator", ">"],
+	["operator", "::"],
+	["function", "bar"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"]
 ]
 
 ----------------------------------------------------

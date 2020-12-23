@@ -1,13 +1,16 @@
 ""
 "foo bar"
 "foo\"bar\\baz"
+"""multi-line
+string"""
 
 ----------------------------------------------------
 
 [
 	["string", "\"\""],
 	["string", "\"foo bar\""],
-	["string", "\"foo\\\"bar\\\\baz\""]
+	["string", "\"foo\\\"bar\\\\baz\""],
+	["string", "\"\"\"multi-line\r\nstring\"\"\""]
 ]
 
 ----------------------------------------------------

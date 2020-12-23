@@ -18,6 +18,8 @@
 
 **a *b***
 
+___foo___
+
 ----------------------------------------------------
 
 [
@@ -154,6 +156,19 @@
 			]]
 		]],
 		["punctuation", "**"]
+	]],
+	["bold", [
+		["punctuation", "__"],
+		["content", [
+			["italic", [
+				["punctuation", "_"],
+				["content", [
+					"foo"
+				]],
+				["punctuation", "_"]
+			]]
+		]],
+		["punctuation", "__"]
 	]]
 ]
 

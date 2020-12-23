@@ -1,16 +1,22 @@
-struct foo
-enum bar
+struct foo;
+enum bar;
 
 struct foo var;
 struct __attribute__ ((aligned (8))) S { short f[3]; };
+
+// by name
+uint32_t foo;
+static dtrace_helptrace_t *bar;
 
 ----------------------------------------------------
 
 [
 	["keyword", "struct"],
 	["class-name", "foo"],
+	["punctuation", ";"],
 	["keyword", "enum"],
 	["class-name", "bar"],
+	["punctuation", ";"],
 
 	["keyword", "struct"],
 	["class-name", "foo"],
@@ -35,6 +41,16 @@ struct __attribute__ ((aligned (8))) S { short f[3]; };
 	["punctuation", "]"],
 	["punctuation", ";"],
 	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["comment", "// by name"],
+	["class-name", "uint32_t"],
+	" foo",
+	["punctuation", ";"],
+	["keyword", "static"],
+	["class-name", "dtrace_helptrace_t"],
+	["operator", "*"],
+	"bar",
 	["punctuation", ";"]
 ]
 

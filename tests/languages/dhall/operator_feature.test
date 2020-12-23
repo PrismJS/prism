@@ -1,0 +1,44 @@
+/\ //\\ && || != == == // -> ++ ::
+
++ * # | = : ? < > | \
+
+∧ ⩓ ≡ ⫽ λ →
+
+----------------------------------------------------
+
+[
+	["operator", "/\\"],
+	["operator", "//\\\\"],
+	["operator", "&&"],
+	["operator", "||"],
+	["operator", "!="],
+	["operator", "=="],
+	["operator", "=="],
+	["operator", "//"],
+	["operator", "->"],
+	["operator", "++"],
+	["operator", "::"],
+
+	["operator", "+"],
+	["operator", "*"],
+	["operator", "#"],
+	["operator", "|"],
+	["operator", "="],
+	["operator", ":"],
+	["operator", "?"],
+	["operator", "<"],
+	["operator", ">"],
+	["operator", "|"],
+	["operator", "\\"],
+
+	["operator", "∧"],
+	["operator", "⩓"],
+	["operator", "≡"],
+	["operator", "⫽"],
+	["operator", "λ"],
+	["operator", "→"]
+]
+
+----------------------------------------------------
+
+Checks for operators.

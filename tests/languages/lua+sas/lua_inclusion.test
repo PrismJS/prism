@@ -1,4 +1,5 @@
 proc lua;
+/* Testing a comment */
 submit;
    array = { 1, 2, 3, 4, 5 }
    sum = sas.sumx(array)
@@ -13,6 +14,7 @@ run;
 	["punctuation", ";"],
 	[
 		"proc-lua", [
+			["comment", "/* Testing a comment */"],
 			["submit-statement", "submit"],
 			[
 				"lua", [

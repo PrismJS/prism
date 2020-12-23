@@ -1,32 +1,37 @@
 #AllowSameLineComments
 #ClipboardTimeout
 #CommentFlag
+#DerefChar
 #ErrorStdOut
 #EscapeChar
 #HotkeyInterval
 #HotkeyModifierTimeout
 #Hotstring
+#If
+#IfTimeout
 #IfWinActive
 #IfWinExist
 #IfWinNotActive
 #IfWinNotExist
 #Include
 #IncludeAgain
+#InputLevel
 #InstallKeybdHook
 #InstallMouseHook
 #KeyHistory
-#LTrim
 #MaxHotkeysPerInterval
 #MaxMem
 #MaxThreads
 #MaxThreadsBuffer
 #MaxThreadsPerHotkey
+#MenuMaskKey
 #NoEnv
 #NoTrayIcon
 #Persistent
 #SingleInstance
 #UseHook
 #WinActivateForce
+#Warn
 
 ----------------------------------------------------
 
@@ -34,32 +39,37 @@
 	["important", "#AllowSameLineComments"],
 	["important", "#ClipboardTimeout"],
 	["important", "#CommentFlag"],
+	["important", "#DerefChar"],
 	["important", "#ErrorStdOut"],
 	["important", "#EscapeChar"],
 	["important", "#HotkeyInterval"],
 	["important", "#HotkeyModifierTimeout"],
 	["important", "#Hotstring"],
+	["important", "#If"],
+	["important", "#IfTimeout"],
 	["important", "#IfWinActive"],
 	["important", "#IfWinExist"],
 	["important", "#IfWinNotActive"],
 	["important", "#IfWinNotExist"],
 	["important", "#Include"],
 	["important", "#IncludeAgain"],
+	["important", "#InputLevel"],
 	["important", "#InstallKeybdHook"],
 	["important", "#InstallMouseHook"],
 	["important", "#KeyHistory"],
-	["important", "#LTrim"],
 	["important", "#MaxHotkeysPerInterval"],
 	["important", "#MaxMem"],
 	["important", "#MaxThreads"],
 	["important", "#MaxThreadsBuffer"],
 	["important", "#MaxThreadsPerHotkey"],
+	["important", "#MenuMaskKey"],
 	["important", "#NoEnv"],
 	["important", "#NoTrayIcon"],
 	["important", "#Persistent"],
 	["important", "#SingleInstance"],
 	["important", "#UseHook"],
-	["important", "#WinActivateForce"]
+	["important", "#WinActivateForce"],
+	["important", "#Warn"]
 ]
 
 ----------------------------------------------------

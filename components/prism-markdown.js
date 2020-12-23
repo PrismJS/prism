@@ -11,25 +11,34 @@
 	 * _Note:_ Keep in mind that this adds a capturing group.
 	 *
 	 * @param {string} pattern
-	 * @param {boolean} starAlternative Whether to also add an alternative where all `_`s are replaced with `*`s.
 	 * @returns {RegExp}
 	 */
-	function createInline(pattern, starAlternative) {
-		pattern = pattern.replace(/<inner>/g, inner);
-		if (starAlternative) {
-			pattern = pattern + '|' + pattern.replace(/_/g, '\\*');
-		}
+	function createInline(pattern) {
+		pattern = pattern.replace(/<inner>/g, function () { return inner; });
 		return RegExp(/((?:^|[^\\])(?:\\{2})*)/.source + '(?:' + pattern + ')');
 	}
 
 
-	var tableCell = /(?:\\.|``.+?``|`[^`\r\n]+`|[^\\|\r\n`])+/.source;
-	var tableRow = /\|?__(?:\|__)+\|?(?:(?:\n|\r\n?)|$)/.source.replace(/__/g, tableCell);
+	var tableCell = /(?:\\.|``(?:[^`\r\n]|`(?!`))+``|`[^`\r\n]+`|[^\\|\r\n`])+/.source;
+	var tableRow = /\|?__(?:\|__)+\|?(?:(?:\n|\r\n?)|$)/.source.replace(/__/g, function () { return tableCell; });
 	var tableLine = /\|?[ \t]*:?-{3,}:?[ \t]*(?:\|[ \t]*:?-{3,}:?[ \t]*)+\|?(?:\n|\r\n?)/.source;
 
 
 	Prism.languages.markdown = Prism.languages.extend('markup', {});
 	Prism.languages.insertBefore('markdown', 'prolog', {
+		'front-matter-block': {
+			pattern: /(^(?:\s*[\r\n])?)---(?!.)[\s\S]*?[\r\n]---(?!.)/,
+			lookbehind: true,
+			greedy: true,
+			inside: {
+				'punctuation': /^---|---$/,
+				'font-matter': {
+					pattern: /\S+(?:\s+\S+)*/,
+					alias: ['yaml', 'language-yaml'],
+					inside: Prism.languages.yaml
+				}
+			}
+		},
 		'blockquote': {
 			// > ...
 			pattern: /^>(?:[\t ]*>)*/m,
@@ -164,7 +173,7 @@
 			// __strong__
 
 			// allow one nested instance of italic text using the same delimiter
-			pattern: createInline(/__(?:(?!_)<inner>|_(?:(?!_)<inner>)+_)+__/.source, true),
+			pattern: createInline(/\b__(?:(?!_)<inner>|_(?:(?!_)<inner>)+_)+__\b|\*\*(?:(?!\*)<inner>|\*(?:(?!\*)<inner>)+\*)+\*\*/.source),
 			lookbehind: true,
 			greedy: true,
 			inside: {
@@ -181,7 +190,7 @@
 			// _em_
 
 			// allow one nested instance of bold text using the same delimiter
-			pattern: createInline(/_(?:(?!_)<inner>|__(?:(?!_)<inner>)+__)+_/.source, true),
+			pattern: createInline(/\b_(?:(?!_)<inner>|__(?:(?!_)<inner>)+__)+_\b|\*(?:(?!\*)<inner>|\*\*(?:(?!\*)<inner>)+\*\*)+\*/.source),
 			lookbehind: true,
 			greedy: true,
 			inside: {
@@ -196,7 +205,7 @@
 		'strike': {
 			// ~~strike through~~
 			// ~strike~
-			pattern: createInline(/(~~?)(?:(?!~)<inner>)+?\2/.source, false),
+			pattern: createInline(/(~~?)(?:(?!~)<inner>)+?\2/.source),
 			lookbehind: true,
 			greedy: true,
 			inside: {
@@ -212,21 +221,27 @@
 			// [example](http://example.com "Optional title")
 			// [example][id]
 			// [example] [id]
-			pattern: createInline(/!?\[(?:(?!\])<inner>)+\](?:\([^\s)]+(?:[\t ]+"(?:\\.|[^"\\])*")?\)| ?\[(?:(?!\])<inner>)+\])/.source, false),
+			pattern: createInline(/!?\[(?:(?!\])<inner>)+\](?:\([^\s)]+(?:[\t ]+"(?:\\.|[^"\\])*")?\)|[ \t]?\[(?:(?!\])<inner>)+\])/.source),
 			lookbehind: true,
 			greedy: true,
 			inside: {
-				'variable': {
-					pattern: /(\[)[^\]]+(?=\]$)/,
-					lookbehind: true
-				},
+				'operator': /^!/,
 				'content': {
-					pattern: /(^!?\[)[^\]]+(?=\])/,
+					pattern: /(^\[)[^\]]+(?=\])/,
 					lookbehind: true,
 					inside: {} // see below
 				},
+				'variable': {
+					pattern: /(^\][ \t]?\[)[^\]]+(?=\]$)/,
+					lookbehind: true
+				},
+				'url': {
+					pattern: /(^\]\()[^\s)]+/,
+					lookbehind: true
+				},
 				'string': {
-					pattern: /"(?:\\.|[^"\\])*"(?=\)$)/
+					pattern: /(^[ \t]+)"(?:\\.|[^"\\])*"(?=\)$)/,
+					lookbehind: true
 				}
 			}
 		}

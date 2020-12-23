@@ -8,6 +8,16 @@
 		alias: 'number'
 	};
 
+	var macroVariable = {
+		pattern: /&[a-z_][a-z_0-9]*/i
+	};
+
+	var macroKeyword = {
+		pattern: /((?:^|\s|=|\())%(?:ABORT|BY|CMS|COPY|DISPLAY|DO|ELSE|END|EVAL|GLOBAL|GO|GOTO|IF|INC|INCLUDE|INDEX|INPUT|KTRIM|LENGTH|LET|LIST|LOCAL|PUT|QKTRIM|QSCAN|QSUBSTR|QSYSFUNC|QUPCASE|RETURN|RUN|SCAN|SUBSTR|SUPERQ|SYMDEL|SYMGLOBL|SYMLOCAL|SYMEXIST|SYSCALL|SYSEVALF|SYSEXEC|SYSFUNC|SYSGET|SYSRPUT|THEN|TO|TSO|UNQUOTE|UNTIL|UPCASE|WHILE|WINDOW)\b/i,
+		lookbehind: true,
+		alias: 'keyword'
+	};
+
 	var step = {
 		pattern: /(^|\s+)(?:proc\s+\w+|quit|run|data(?!\=))\b/i,
 		alias: 'keyword',
@@ -35,16 +45,13 @@
 	};
 
 	var args = {
-		'function' : func,
+		'function': func,
 		'arg-value': {
 			pattern: /(\s*=\s*)[A-Z\.]+/i,
 			lookbehind: true
 		},
 		'operator': /=/,
-		'macro-variable': {
-			pattern: /&[^\.]*\./i,
-			alias: 'string'
-		},
+		'macro-variable': macroVariable,
 		'arg': {
 			pattern: /[A-Z]+/i,
 			alias: 'keyword'
@@ -90,21 +97,21 @@
 		alias: 'keyword'
 	};
 
-	var actionSets = 'accessControl|cdm|aggregation|aStore|ruleMining|audio|autotune|bayesianNetClassifier|bioMedImage|boolRule|builtins|cardinality|sccasl|clustering|copula|countreg|dataDiscovery|dataPreprocess|dataSciencePilot|dataStep|decisionTree|deepLearn|deepNeural|varReduce|simSystem|ds2|deduplication|ecm|entityRes|espCluster|explainModel|factmac|fastKnn|fcmpact|fedSql|freqTab|gam|gleam|graphSemiSupLearn|gVarCluster|hiddenMarkovModel|hyperGroup|image|iml|ica|kernalPca|langModel|ldaTopic|sparseML|mlTools|mixed|modelPublishing|mbc|network|optNetwork|neuralNet|nonlinear|nmf|nonParametricBayes|optimization|panel|pls|percentile|pca|phreg|qkb|qlim|quantreg|recommend|tsReconcile|deepRnn|regression|reinforcementLearn|robustPca|sampling|sparkEmbeddedProcess|search(?:Analytics)?|sentimentAnalysis|sequence|configuration|session(?:Prop)?|severity|simple|smartData|sandwich|spatialreg|stabilityMonitoring|spc|loadStreams|svDataDescription|svm|table|conditionalRandomFields|text(?:Rule(?:Develop|Score)|Mining|Parse|Topic|Util|Filters|Frequency)|tsInfo|timeData|transpose|uniTimeSeries';
+	var actionSets = /accessControl|cdm|aggregation|aStore|ruleMining|audio|autotune|bayesianNetClassifier|bioMedImage|boolRule|builtins|cardinality|sccasl|clustering|copula|countreg|dataDiscovery|dataPreprocess|dataSciencePilot|dataStep|decisionTree|deepLearn|deepNeural|varReduce|simSystem|ds2|deduplication|ecm|entityRes|espCluster|explainModel|factmac|fastKnn|fcmpact|fedSql|freqTab|gam|gleam|graphSemiSupLearn|gVarCluster|hiddenMarkovModel|hyperGroup|image|iml|ica|kernalPca|langModel|ldaTopic|sparseML|mlTools|mixed|modelPublishing|mbc|network|optNetwork|neuralNet|nonlinear|nmf|nonParametricBayes|optimization|panel|pls|percentile|pca|phreg|qkb|qlim|quantreg|recommend|tsReconcile|deepRnn|regression|reinforcementLearn|robustPca|sampling|sparkEmbeddedProcess|search(?:Analytics)?|sentimentAnalysis|sequence|configuration|session(?:Prop)?|severity|simple|smartData|sandwich|spatialreg|stabilityMonitoring|spc|loadStreams|svDataDescription|svm|table|conditionalRandomFields|text(?:Rule(?:Develop|Score)|Mining|Parse|Topic|Util|Filters|Frequency)|tsInfo|timeData|transpose|uniTimeSeries/.source;
 
 	var casActions = {
-		pattern: RegExp('(^|\\s)(?:action\\s+)?(?:<act>)\\.[a-z]+\\b[^;]+'.replace(/<act>/g, actionSets), 'i'),
+		pattern: RegExp(/(^|\s)(?:action\s+)?(?:<act>)\.[a-z]+\b[^;]+/.source.replace(/<act>/g, function () { return actionSets; }), 'i'),
 		lookbehind: true,
 		inside: {
-			'keyword': RegExp('(?:<act>)\\.[a-z]+\\b'.replace(/<act>/g, actionSets), 'i'),
+			'keyword': RegExp(/(?:<act>)\.[a-z]+\b/.source.replace(/<act>/g, function () { return actionSets; }), 'i'),
 			'action': {
 				pattern: /(?:action)/i,
 				alias: 'keyword'
 			},
+			'comment': comment,
 			'function': func,
 			'arg-value': args['arg-value'],
 			'operator': args.operator,
-			'comment': comment,
 			'argument': args.arg,
 			'number': number,
 			'numeric-constant': numericConstant,
@@ -136,7 +143,7 @@
 			lookbehind: true,
 			inside: {
 				'sql': {
-					pattern: RegExp(/^[ \t]*(?:select|alter\s+table|(?:create|describe|drop)\s+(?:index|table(?:\s+constraints)?|view)|create\s+unique\s+index|insert\s+into|update)(?:<str>|[^;"'])+;/.source.replace(/<str>/g, stringPattern), 'im'),
+					pattern: RegExp(/^[ \t]*(?:select|alter\s+table|(?:create|describe|drop)\s+(?:index|table(?:\s+constraints)?|view)|create\s+unique\s+index|insert\s+into|update)(?:<str>|[^;"'])+;/.source.replace(/<str>/g, function () { return stringPattern; }), 'im'),
 					alias: 'language-sql',
 					inside: Prism.languages.sql
 				},
@@ -154,15 +161,17 @@
 		},
 
 		'proc-groovy': {
-			pattern: /(^proc\s+groovy(?:\s+[\w|=]+)?;)(?:\s*submit)[\s\S]+?(?=^(?:proc\s+\w+|quit|run|data);|(?![\s\S]))/im,
+			pattern: /(^proc\s+groovy(?:\s+[\w|=]+)?;)[\s\S]+?(?=^(?:proc\s+\w+|quit|run|data);|(?![\s\S]))/im,
 			lookbehind: true,
 			inside: {
+				'comment': comment,
 				'groovy': {
-					pattern: RegExp(/(^[ \t]*submit(?:\s+(?:load|parseonly|norun))?)(?:<str>|[^"'])+?(?=endsubmit;)/.source.replace(/<str>/g, stringPattern), 'im'),
+					pattern: RegExp(/(^[ \t]*submit(?:\s+(?:load|parseonly|norun))?)(?:<str>|[^"'])+?(?=endsubmit;)/.source.replace(/<str>/g, function () { return stringPattern; }), 'im'),
 					lookbehind: true,
 					alias: 'language-groovy',
 					inside: Prism.languages.groovy
 				},
+				'keyword': keywords,
 				'submit-statement': submitStatement,
 				'global-statements': globalStatements,
 				'number': number,
@@ -173,15 +182,17 @@
 		},
 
 		'proc-lua': {
-			pattern: /(^proc\s+lua(?:\s+[\w|=]+)?;)(?:\s*submit)[\s\S]+?(?=^(?:proc\s+\w+|quit|run|data);|(?![\s\S]))/im,
+			pattern: /(^proc\s+lua(?:\s+[\w|=]+)?;)[\s\S]+?(?=^(?:proc\s+\w+|quit|run|data);|(?![\s\S]))/im,
 			lookbehind: true,
 			inside: {
+				'comment': comment,
 				'lua': {
-					pattern: RegExp(/(^[ \t]*submit(?:\s+(?:load|parseonly|norun))?)(?:<str>|[^"'])+?(?=endsubmit;)/.source.replace(/<str>/g, stringPattern), 'im'),
+					pattern: RegExp(/(^[ \t]*submit(?:\s+(?:load|parseonly|norun))?)(?:<str>|[^"'])+?(?=endsubmit;)/.source.replace(/<str>/g, function () { return stringPattern; }), 'im'),
 					lookbehind: true,
 					alias: 'language-lua',
 					inside: Prism.languages.lua
 				},
+				'keyword': keywords,
 				'submit-statement': submitStatement,
 				'global-statements': globalStatements,
 				'number': number,
@@ -195,6 +206,7 @@
 			pattern: /(^proc\s+cas(?:\s+[\w|=]+)?;)[\s\S]+?(?=^(?:proc\s+\w+|quit|data);|(?![\s\S]))/im,
 			lookbehind: true,
 			inside: {
+				'comment': comment,
 				'statement-var': {
 					pattern: /((?:^|\s)=?)saveresult\s+[^;]+/im,
 					lookbehind: true,
@@ -217,7 +229,6 @@
 				'step': step,
 				'keyword': keywords,
 				'function': func,
-				'comment': comment,
 				'format': format,
 				'altformat': altformat,
 				'global-statements': globalStatements,
@@ -229,16 +240,28 @@
 		},
 
 		'proc-args': {
-			pattern: RegExp(/(^proc\s+\w+\s+)(?!\s)(?:[^;"']|<str>)+;/.source.replace(/<str>/g, stringPattern), 'im'),
+			pattern: RegExp(/(^proc\s+\w+\s+)(?!\s)(?:[^;"']|<str>)+;/.source.replace(/<str>/g, function () { return stringPattern; }), 'im'),
 			lookbehind: true,
 			inside: args
 		},
-
 		/*Special keywords within macros*/
-		'macro-keyword': {
-			pattern: /((?:^|\s)=?)%(?:ABORT|BQUOTE|BY|CMS|COPY|DISPLAY|DO|ELSE|END|EVAL|GLOBAL|GO|GOTO|IF|INC|INCLUDE|INDEX|INPUT|KTRIM|LENGTH|LET|LIST|LOCAL|NRBQUOTE|NRQUOTE|NRSTR|PUT|QKTRIM|QSCAN|QSUBSTR|QSYSFUNC|QUOTE|QUPCASE|RETURN|RUN|SCAN|STR|SUBSTR|SUPERQ|SYMDEL|SYMGLOBL|SYMLOCAL|SYMEXIST|SYSCALL|SYSEVALF|SYSEXEC|SYSFUNC|SYSGET|SYSRPUT|THEN|TO|TSO|UNQUOTE|UNTIL|UPCASE|WHILE|WINDOW)\b/i,
+		'macro-keyword': macroKeyword,
+		'macro-variable': macroVariable,
+		'macro-string-functions': {
+			pattern: /((?:^|\s|=))%(?:NRBQUOTE|NRQUOTE|NRSTR|BQUOTE|QUOTE|STR)\(.*?(?:[^%]\))/i,
 			lookbehind: true,
-			alias: 'keyword'
+			inside: {
+				'function': {
+					pattern: /%(?:NRBQUOTE|NRQUOTE|NRSTR|BQUOTE|QUOTE|STR)/i,
+					alias: 'keyword'
+				},
+				'macro-keyword': macroKeyword,
+				'macro-variable': macroVariable,
+				'escaped-char': {
+					pattern: /%['"()<>=¬^~;,#]/i,
+				},
+				'punctuation': punctuation
+			}
 		},
 		'macro-declaration': {
 			pattern: /^%macro[^;]+(?=;)/im,

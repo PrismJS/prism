@@ -6,6 +6,7 @@ run;
 quit;
 
 proc cas;
+  /* Testing a comment */
   session casauto;
   output log;
   table.loadTable / path="iris.sashdat";
@@ -61,6 +62,7 @@ quit;
 	["punctuation", ";"],
 	["proc-cas",
 		[
+			["comment", "/* Testing a comment */"],
 			["keyword", "session"],
 			" casauto",
 			["punctuation", ";"],
