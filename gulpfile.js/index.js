@@ -219,8 +219,8 @@ async function languagePlugins() {
 	}
 
 	const jsonLanguagesMap = formattedStringify(nonNullLanguageMap);
-	const jsonDependenciesMap = `invertRecord(${formattedStringify(invertRecord(dependenciesMap))})`;
-	const jsonAliasMap = `invertRecord(${formattedStringify(invertRecord(aliasMap))})`;
+	const jsonDependenciesMap = `${formattedStringify(invertRecord(dependenciesMap))}`;
+	const jsonAliasMap = `${formattedStringify(invertRecord(aliasMap))}`;
 
 	const tasks = [
 		{

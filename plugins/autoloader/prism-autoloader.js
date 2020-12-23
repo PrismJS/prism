@@ -35,7 +35,7 @@
 	/**
 	 * The dependencies map is built automatically with gulp.
 	 */
-	var lang_dependencies = /*dependencies_placeholder[*/invertRecord({
+	var lang_dependencies = invertRecord(/*dependencies_placeholder[*/{
 		"clike": [
 			"javascript",
 			"apex",
@@ -177,12 +177,12 @@
 		"vbnet": "t4-vb",
 		"yaml": "tap",
 		"basic": "vbnet"
-	})/*]*/;
+	}/*]*/);
 
 	/**
 	 * The map of all language aliases is built automatically with gulp.
 	 */
-	var lang_aliases = /*aliases_placeholder[*/invertRecord({
+	var lang_aliases = invertRecord(/*aliases_placeholder[*/{
 		"markup": [
 			"html",
 			"xml",
@@ -276,7 +276,7 @@
 		],
 		"xeora": "xeoracube",
 		"yaml": "yml"
-	})/*]*/;
+	}/*]*/);
 
 	/**
 	 * If the given language is an alias of another language, this will return aliases language. Otherwise, the given
