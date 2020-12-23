@@ -1,7 +1,8 @@
 Prism.languages.groovy = Prism.languages.extend('clike', {
 	'string': [
 		{
-			pattern: /("""|''')(?:[^\\]|\\[\s\S])*?\1|\$\/(?:\$\/\$|[\s\S])*?\/\$/,
+			// https://groovy-lang.org/syntax.html#_dollar_slashy_string
+			pattern: /("""|''')(?:[^\\]|\\[\s\S])*?\1|\$\/(?:[^/$]|\$(?:[/$]|(?![/$]))|\/(?!\$))*\/\$/,
 			greedy: true
 		},
 		{
@@ -17,7 +18,7 @@ Prism.languages.groovy = Prism.languages.extend('clike', {
 		pattern: /(^|[^.])(?:~|==?~?|\?[.:]?|\*(?:[.=]|\*=?)?|\.[@&]|\.\.<|\.\.(?!\.)|-[-=>]?|\+[+=]?|!=?|<(?:<=?|=>?)?|>(?:>>?=?|=)?|&[&=]?|\|[|=]?|\/=?|\^=?|%=?)/,
 		lookbehind: true
 	},
-	'punctuation': /\.+|[{}[\];(),.:$]/
+	'punctuation': /\.+|[{}[\];(),:$]/
 });
 
 Prism.languages.insertBefore('groovy', 'string', {

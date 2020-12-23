@@ -3,9 +3,9 @@
 <head>
 
 <meta charset="utf-8" />
-<link rel="icon" href="favicon.png" />
+<link rel="icon" href="assets/favicon.png" />
 <title>Known failures ▲ Prism</title>
-<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="assets/style.css" />
 <link rel="stylesheet" href="themes/prism.css" data-noprefix />
 <style>
 #toc {
@@ -19,15 +19,15 @@
 	columns: 4;
 }
 </style>
-<script src="scripts/prefixfree.min.js"></script>
+<script src="assets/prefixfree.min.js"></script>
 
 <script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
 <script src="https://www.google-analytics.com/ga.js" async></script>
 </head>
-<body>
+<body class="language-none">
 
 <header>
-	<div class="intro" data-src="templates/header-main.html" data-type="text/html"></div>
+	<div class="intro" data-src="assets/templates/header-main.html" data-type="text/html"></div>
 
 	<h2>Known failures</h2>
 	<p>A list of rare edge cases where Prism highlights code incorrectly.</p>
@@ -275,6 +275,20 @@ not supported */</code></pre>
 </section>
 
 
+<section class="language-scheme">
+
+<h3>The first argument of <code>case-lambda</code> argument lists are highlighted as functions</h3>
+<pre><code>(define plus
+	(case-lambda
+		(() 0)
+		((x) x)
+		((x y) (+ x y))
+		((x y z) (+ (+ x y) z))
+		(args (apply + args))))</code></pre>
+
+</section>
+
+
 <section class="language-swift">
 
 <h3>Nested block comments</h3>
@@ -323,9 +337,32 @@ not supported */</code></pre>
 </section>
 
 
-<footer data-src="templates/footer.html" data-type="text/html"></footer>
+<section>
 
-<script src="scripts/utopia.js"></script>
+<h1 id="themes">Themes</h1>
+
+<p>Some of our themes are not compatible with certain layouts.</p>
+
+<h2>Coy</h2>
+
+<p>Coy's shadows and background might not wrap around the code correctly if combined with float of flexbox layouts.</p>
+
+<img src="assets/img/failures/coy-overlap.png"/>
+
+<h3>Workarounds</h3>
+
+<p>There are 2 possible workarounds:</p>
+
+<p>The first workaround is setting <code>display: flex-root;</code> for the <code>pre</code> element. This will fix the issue but <code>flex-root</code> has <a href="https://caniuse.com/#feat=flow-root">limited browser support</a>.</p>
+
+<p>The second is adding <code>clear: both;</code> to the style of the <code>pre</code> element. This will fix the issue but it will change the way code blocks behave when overlapping with other elements.</p>
+
+</section>
+
+
+<footer data-src="assets/templates/footer.html" data-type="text/html"></footer>
+
+<script src="assets/utopia.js"></script>
 <script src="prism.js"></script>
 <script src="plugins/autoloader/prism-autoloader.js" data-autoloader-path="components"></script>
 <script src="components.js"></script>
@@ -354,7 +391,7 @@ not supported */</code></pre>
 		});
 	});
 </script>
-<script src="scripts/code.js"></script>
+<script src="assets/code.js"></script>
 
 </body>
 </html>

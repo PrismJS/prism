@@ -11,7 +11,8 @@ const testSuite =
 		? TestDiscovery.loadSomeTests(__dirname + "/languages", argv.language)
 		// load complete test suite
 		: TestDiscovery.loadAllTests(__dirname + "/languages");
-const pretty = 'pretty' in argv;
+
+const accept = !!argv.accept;
 
 // define tests for all tests in all languages in the test suite
 for (const language in testSuite) {
@@ -28,7 +29,7 @@ for (const language in testSuite) {
 
 				it("– should pass test case '" + fileName + "'", function () {
 					if (path.extname(filePath) === '.test') {
-						TestCase.runTestCase(language, filePath, pretty);
+						TestCase.runTestCase(language, filePath, accept);
 					} else {
 						TestCase.runTestsWithHooks(language, require(filePath));
 					}

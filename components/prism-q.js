@@ -15,7 +15,7 @@ Prism.languages.q = {
 		// If a / is not matched by a \, the multiline comment is unterminated and continues to end of file.
 		// The / and \ must be the first char on the line, but may be followed by any amount of whitespace.
 		{
-			pattern: /(^|\r?\n|\r)\/[\t ]*(?:(?:\r?\n|\r)(?:.*(?:\r?\n|\r))*?(?:\\(?=[\t ]*(?:\r?\n|\r))|$)|\S.*)/,
+			pattern: /(^|\r?\n|\r)\/[\t ]*(?:(?:\r?\n|\r)(?:.*(?:\r?\n|\r(?!\n)))*?(?:\\(?=[\t ]*(?:\r?\n|\r))|$)|\S.*)/,
 			lookbehind: true,
 			greedy: true
 		},
@@ -44,7 +44,7 @@ Prism.languages.q = {
 		alias: 'function'
 	},
 	'verb': {
-		pattern: /(?:\B\.\B|\b[01]:|<[=>]?|>=?|[:+\-*%,!?_~=|$&#@^]):?/,
+		pattern: /(?:\B\.\B|\b[01]:|<[=>]?|>=?|[:+\-*%,!?~=|$&#@^]):?|\b_\b:?/,
 		alias: 'operator'
 	},
 	'punctuation': /[(){}\[\];.]/

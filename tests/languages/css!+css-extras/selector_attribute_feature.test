@@ -28,7 +28,7 @@
 	["selector", [
 		["attribute", [
 			["punctuation", "["],
-			["attribute", "attr"],
+			["attr-name", "attr"],
 			["punctuation", "]"]
 		]]
 	]],
@@ -38,9 +38,9 @@
 	["selector", [
 		["attribute", [
 			["punctuation", "["],
-			["attribute", "attr"],
+			["attr-name", "attr"],
 			["operator", "="],
-			["value", "val"],
+			["attr-value", "val"],
 			["punctuation", "]"]
 		]]
 	]],
@@ -50,9 +50,9 @@
 	["selector", [
 		["attribute", [
 			["punctuation", "["],
-			["attribute", "attr"],
+			["attr-name", "attr"],
 			["operator", "="],
-			["value", "\"val\""],
+			["attr-value", "\"val\""],
 			["punctuation", "]"]
 		]]
 	]],
@@ -62,9 +62,9 @@
 	["selector", [
 		["attribute", [
 			["punctuation", "["],
-			["attribute", "attr"],
+			["attr-name", "attr"],
 			["operator", "="],
-			["value", "'val'"],
+			["attr-value", "'val'"],
 			["punctuation", "]"]
 		]]
 	]],
@@ -74,9 +74,9 @@
 	["selector", [
 		["attribute", [
 			["punctuation", "["],
-			["attribute", "attr"],
+			["attr-name", "attr"],
 			["operator", "|="],
-			["value", "val"],
+			["attr-value", "val"],
 			["punctuation", "]"]
 		]]
 	]],
@@ -86,9 +86,9 @@
 	["selector", [
 		["attribute", [
 			["punctuation", "["],
-			["attribute", "attr"],
+			["attr-name", "attr"],
 			["operator", "~="],
-			["value", "val"],
+			["attr-value", "val"],
 			["punctuation", "]"]
 		]]
 	]],
@@ -98,9 +98,9 @@
 	["selector", [
 		["attribute", [
 			["punctuation", "["],
-			["attribute", "attr"],
+			["attr-name", "attr"],
 			["operator", "|="],
-			["value", "val"],
+			["attr-value", "val"],
 			["punctuation", "]"]
 		]]
 	]],
@@ -110,9 +110,9 @@
 	["selector", [
 		["attribute", [
 			["punctuation", "["],
-			["attribute", "attr"],
+			["attr-name", "attr"],
 			["operator", "^="],
-			["value", "val"],
+			["attr-value", "val"],
 			["punctuation", "]"]
 		]]
 	]],
@@ -122,9 +122,9 @@
 	["selector", [
 		["attribute", [
 			["punctuation", "["],
-			["attribute", "attr"],
+			["attr-name", "attr"],
 			["operator", "$="],
-			["value", "val"],
+			["attr-value", "val"],
 			["punctuation", "]"]
 		]]
 	]],
@@ -134,9 +134,9 @@
 	["selector", [
 		["attribute", [
 			["punctuation", "["],
-			["attribute", "attr"],
+			["attr-name", "attr"],
 			["operator", "*="],
-			["value", "val"],
+			["attr-value", "val"],
 			["punctuation", "]"]
 		]]
 	]],
@@ -150,7 +150,7 @@
 				"foo",
 				["punctuation", "|"]
 			]],
-			["attribute", "attr"],
+			["attr-name", "attr"],
 			["punctuation", "]"]
 		]],
 		["attribute", [
@@ -159,7 +159,7 @@
 				"*",
 				["punctuation", "|"]
 			]],
-			["attribute", "attr"],
+			["attr-name", "attr"],
 			["punctuation", "]"]
 		]],
 		["attribute", [
@@ -167,7 +167,7 @@
 			["namespace", [
 				["punctuation", "|"]
 			]],
-			["attribute", "attr"],
+			["attr-name", "attr"],
 			["punctuation", "]"]
 		]]
 	]],
@@ -181,9 +181,9 @@
 				"foo",
 				["punctuation", "|"]
 			]],
-			["attribute", "attr"],
+			["attr-name", "attr"],
 			["operator", "|="],
-			["value", "val"],
+			["attr-value", "val"],
 			["punctuation", "]"]
 		]]
 	]],
@@ -193,9 +193,9 @@
 	["selector", [
 		["attribute", [
 			["punctuation", "["],
-			["attribute", "attr"],
+			["attr-name", "attr"],
 			["operator", "="],
-			["value", "val"],
+			["attr-value", "val"],
 			["case-sensitivity", "i"],
 			["punctuation", "]"]
 		]]
@@ -206,9 +206,9 @@
 	["selector", [
 		["attribute", [
 			["punctuation", "["],
-			["attribute", "attr"],
+			["attr-name", "attr"],
 			["operator", "="],
-			["value", "\"val\""],
+			["attr-value", "\"val\""],
 			["case-sensitivity", "S"],
 			["punctuation", "]"]
 		]]
@@ -219,7 +219,7 @@
 	["selector", [
 		["attribute", [
 			["punctuation", "["],
-			["attribute", "attr"],
+			["attr-name", "attr"],
 			["punctuation", "]"]
 		]]
 	]],
@@ -229,9 +229,9 @@
 	["selector", [
 		["attribute", [
 			["punctuation", "["],
-			["attribute", "attr"],
+			["attr-name", "attr"],
 			["operator", "="],
-			["value", "val"],
+			["attr-value", "val"],
 			["punctuation", "]"]
 		]]
 	]],
@@ -241,9 +241,9 @@
 	["selector", [
 		["attribute", [
 			["punctuation", "["],
-			["attribute", "attr"],
+			["attr-name", "attr"],
 			["operator", "="],
-			["value", "val"],
+			["attr-value", "val"],
 			["case-sensitivity", "i"],
 			["punctuation", "]"]
 		]]
@@ -254,9 +254,9 @@
 	["selector", [
 		["attribute", [
 			["punctuation", "["],
-			["attribute", "attr"],
+			["attr-name", "attr"],
 			["operator", "="],
-			["value", "\"i#m :not(a.class)\""],
+			["attr-value", "\"i#m :not(a.class)\""],
 			["punctuation", "]"]
 		]]
 	]],

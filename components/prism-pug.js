@@ -130,7 +130,9 @@
 						}
 					}
 				],
-				'punctuation': /:/
+				'punctuation': /:/,
+				'attr-id': /#[\w\-]+/,
+				'attr-class': /\.[\w\-]+/
 			}
 		},
 		'code': [
@@ -163,7 +165,7 @@
 		filter = typeof filter === 'string' ? {filter: filter, language: filter} : filter;
 		if (Prism.languages[filter.language]) {
 			all_filters['filter-' + filter.filter] = {
-				pattern: RegExp(filter_pattern.replace('{{filter_name}}', filter.filter), 'm'),
+				pattern: RegExp(filter_pattern.replace('{{filter_name}}', function () { return filter.filter; }), 'm'),
 				lookbehind: true,
 				inside: {
 					'filter-name': {

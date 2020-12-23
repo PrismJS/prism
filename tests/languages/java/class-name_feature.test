@@ -1,0 +1,94 @@
+class Foo extends foo.bar.Foo {
+
+	java.util.List<foo.bar.Foo.Bar> bar(foo.bar.Baz bat) throws java.lang.IOException {
+		throw new java.lang.UnsupportedOperationException("Not implemented");
+	}
+
+}
+
+----------------------------------------------------
+
+[
+	["keyword", "class"],
+	["class-name", [
+		"Foo"
+	]],
+	["keyword", "extends"],
+	["class-name", [
+		["namespace", [
+			"foo",
+			["punctuation", "."],
+			"bar",
+			["punctuation", "."]
+		]],
+		"Foo"
+	]],
+	["punctuation", "{"],
+
+	["class-name", [
+		["namespace", [
+			"java",
+			["punctuation", "."],
+			"util",
+			["punctuation", "."]
+		]],
+		"List"
+	]],
+	["generics", [
+		["punctuation", "<"],
+		["class-name", [
+			["namespace", [
+				"foo",
+				["punctuation", "."],
+				"bar",
+				["punctuation", "."]
+			]],
+			"Foo",
+			["punctuation", "."],
+			"Bar"
+		]],
+		["punctuation", ">"]
+	]],
+	["function", "bar"],
+	["punctuation", "("],
+	["class-name", [
+		["namespace", [
+			"foo",
+			["punctuation", "."],
+			"bar",
+			["punctuation", "."]
+		]],
+		"Baz"
+	]],
+	" bat",
+	["punctuation", ")"],
+	["keyword", "throws"],
+	["class-name", [
+		["namespace", [
+			"java",
+			["punctuation", "."],
+			"lang",
+			["punctuation", "."]
+		]],
+		"IOException"
+	]],
+	["punctuation", "{"],
+	["keyword", "throw"],
+	["keyword", "new"],
+	["class-name", [
+		["namespace", [
+			"java",
+			["punctuation", "."],
+			"lang",
+			["punctuation", "."]
+		]],
+		"UnsupportedOperationException"
+	]],
+	["punctuation", "("],
+	["string", "\"Not implemented\""],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["punctuation", "}"],
+
+	["punctuation", "}"]
+]

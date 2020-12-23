@@ -9,7 +9,7 @@ protected throw byte else
 import public throws case
 enum
 instanceof
-return transient catch
+record return transient catch
 extends
 int short try char
 final
@@ -24,6 +24,7 @@ module requires transitive
 exports uses open
 opens with to provides
 yield
+sealed non-sealed permits
 
 ----------------------------------------------------
 
@@ -39,7 +40,7 @@ yield
 	["keyword", "import"], ["keyword", "public"], ["keyword", "throws"], ["keyword", "case"],
 	["keyword", "enum"],
 	["keyword", "instanceof"],
-	["keyword", "return"], ["keyword", "transient"], ["keyword", "catch"],
+	["keyword", "record"], ["keyword", "return"], ["keyword", "transient"], ["keyword", "catch"],
 	["keyword", "extends"],
 	["keyword", "int"], ["keyword", "short"], ["keyword", "try"], ["keyword", "char"],
 	["keyword", "final"],
@@ -53,7 +54,8 @@ yield
 	["keyword", "module"], ["keyword", "requires"], ["keyword", "transitive"],
 	["keyword", "exports"], ["keyword", "uses"], ["keyword", "open"],
 	["keyword", "opens"], ["keyword", "with"], ["keyword", "to"], ["keyword", "provides"],
-	["keyword", "yield"]
+	["keyword", "yield"],
+	["keyword", "sealed"], ["keyword", "non-sealed"], ["keyword", "permits"]
 ]
 
 ----------------------------------------------------

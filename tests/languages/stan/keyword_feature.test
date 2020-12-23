@@ -1,0 +1,89 @@
+break
+cholesky_factor_corr
+cholesky_factor_cov
+continue
+corr_matrix
+cov_matrix
+data
+else
+for
+functions
+generated
+if
+in
+increment_log_prob
+int
+matrix
+model
+ordered
+parameters
+positive_ordered
+print
+quantities
+real
+reject
+return
+row_vector
+simplex
+target
+transformed
+unit_vector
+vector
+void
+while
+
+algebra_solver
+integrate_1d
+integrate_ode
+integrate_ode_bdf
+integrate_ode_rk45
+map_rect
+
+----------------------------------------------------
+
+[
+	["keyword", "break"],
+	["keyword", "cholesky_factor_corr"],
+	["keyword", "cholesky_factor_cov"],
+	["keyword", "continue"],
+	["keyword", "corr_matrix"],
+	["keyword", "cov_matrix"],
+	["keyword", "data"],
+	["keyword", "else"],
+	["keyword", "for"],
+	["keyword", "functions"],
+	["keyword", "generated"],
+	["keyword", "if"],
+	["keyword", "in"],
+	["keyword", "increment_log_prob"],
+	["keyword", "int"],
+	["keyword", "matrix"],
+	["keyword", "model"],
+	["keyword", "ordered"],
+	["keyword", "parameters"],
+	["keyword", "positive_ordered"],
+	["keyword", "print"],
+	["keyword", "quantities"],
+	["keyword", "real"],
+	["keyword", "reject"],
+	["keyword", "return"],
+	["keyword", "row_vector"],
+	["keyword", "simplex"],
+	["keyword", "target"],
+	["keyword", "transformed"],
+	["keyword", "unit_vector"],
+	["keyword", "vector"],
+	["keyword", "void"],
+	["keyword", "while"],
+
+	["keyword", "algebra_solver"],
+	["keyword", "integrate_1d"],
+	["keyword", "integrate_ode"],
+	["keyword", "integrate_ode_bdf"],
+	["keyword", "integrate_ode_rk45"],
+	["keyword", "map_rect"]
+]
+
+----------------------------------------------------
+
+Checks for keywords.

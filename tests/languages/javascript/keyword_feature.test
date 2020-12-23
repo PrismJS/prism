@@ -5,10 +5,10 @@ as; await; break; case;
 class; const; continue; debugger;
 default; delete; do; else; enum;
 export; extends; for;
-from; get; if; implements;
+from; if; implements;
 import; in; instanceof; interface; let;
 new; null; of; package; private;
-protected; public; return; set; static;
+protected; public; return; static;
 super; switch; this; throw; try;
 typeof; undefined; var; void; while;
 with; yield;
@@ -39,7 +39,6 @@ with; yield;
 	["keyword", "extends"], ["punctuation", ";"],
 	["keyword", "for"], ["punctuation", ";"],
 	["keyword", "from"], ["punctuation", ";"],
-	["keyword", "get"], ["punctuation", ";"],
 	["keyword", "if"], ["punctuation", ";"],
 	["keyword", "implements"], ["punctuation", ";"],
 	["keyword", "import"], ["punctuation", ";"],
@@ -55,7 +54,6 @@ with; yield;
 	["keyword", "protected"], ["punctuation", ";"],
 	["keyword", "public"], ["punctuation", ";"],
 	["keyword", "return"], ["punctuation", ";"],
-	["keyword", "set"], ["punctuation", ";"],
 	["keyword", "static"], ["punctuation", ";"],
 	["keyword", "super"], ["punctuation", ";"],
 	["keyword", "switch"], ["punctuation", ";"],

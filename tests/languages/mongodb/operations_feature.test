@@ -1,0 +1,1823 @@
+{
+	$eq: {},
+	$gt: {},
+	$gte: {},
+	$in: {},
+	$lt: {},
+	$lte: {},
+	$ne: {},
+	$nin: {},
+	$and: {},
+	$not: {},
+	$nor: {},
+	$or: {},
+	$exists: {},
+	$type: {},
+	$expr: {},
+	$jsonSchema: {},
+	$mod: {},
+	$regex: {},
+	$text: {},
+	$where: {},
+	$geoIntersects: {},
+	$geoWithin: {},
+	$near: {},
+	$nearSphere: {},
+	$all: {},
+	$elemMatch: {},
+	$size: {},
+	$bitsAllClear: {},
+	$bitsAllSet: {},
+	$bitsAnyClear: {},
+	$bitsAnySet: {},
+	$comment: {},
+	$elemMatch: {},
+	$meta: {},
+	$slice: {},
+	$currentDate: {},
+	$inc: {},
+	$min: {},
+	$max: {},
+	$mul: {},
+	$rename: {},
+	$set: {},
+	$setOnInsert: {},
+	$unset: {},
+	$addToSet: {},
+	$pop: {},
+	$pull: {},
+	$push: {},
+	$pullAll: {},
+	$each: {},
+	$position: {},
+	$slice: {},
+	$sort: {},
+	$bit: {},
+	$addFields: {},
+	$bucket: {},
+	$bucketAuto: {},
+	$collStats: {},
+	$count: {},
+	$currentOp: {},
+	$facet: {},
+	$geoNear: {},
+	$graphLookup: {},
+	$group: {},
+	$indexStats: {},
+	$limit: {},
+	$listLocalSessions: {},
+	$listSessions: {},
+	$lookup: {},
+	$match: {},
+	$merge: {},
+	$out: {},
+	$planCacheStats: {},
+	$project: {},
+	$redact: {},
+	$replaceRoot: {},
+	$replaceWith: {},
+	$sample: {},
+	$set: {},
+	$skip: {},
+	$sort: {},
+	$sortByCount: {},
+	$unionWith: {},
+	$unset: {},
+	$unwind: {},
+	$abs: {},
+	$accumulator: {},
+	$acos: {},
+	$acosh: {},
+	$add: {},
+	$addToSet: {},
+	$allElementsTrue: {},
+	$and: {},
+	$anyElementTrue: {},
+	$arrayElemAt: {},
+	$arrayToObject: {},
+	$asin: {},
+	$asinh: {},
+	$atan: {},
+	$atan2: {},
+	$atanh: {},
+	$avg: {},
+	$binarySize: {},
+	$bsonSize: {},
+	$ceil: {},
+	$cmp: {},
+	$concat: {},
+	$concatArrays: {},
+	$cond: {},
+	$convert: {},
+	$cos: {},
+	$dateFromParts: {},
+	$dateToParts: {},
+	$dateFromString: {},
+	$dateToString: {},
+	$dayOfMonth: {},
+	$dayOfWeek: {},
+	$dayOfYear: {},
+	$degreesToRadians: {},
+	$divide: {},
+	$eq: {},
+	$exp: {},
+	$filter: {},
+	$first: {},
+	$floor: {},
+	$function: {},
+	$gt: {},
+	$gte: {},
+	$hour: {},
+	$ifNull: {},
+	$in: {},
+	$indexOfArray: {},
+	$indexOfBytes: {},
+	$indexOfCP: {},
+	$isArray: {},
+	$isNumber: {},
+	$isoDayOfWeek: {},
+	$isoWeek: {},
+	$isoWeekYear: {},
+	$last: {},
+	$last: {},
+	$let: {},
+	$literal: {},
+	$ln: {},
+	$log: {},
+	$log10: {},
+	$lt: {},
+	$lte: {},
+	$ltrim: {},
+	$map: {},
+	$max: {},
+	$mergeObjects: {},
+	$meta: {},
+	$min: {},
+	$millisecond: {},
+	$minute: {},
+	$mod: {},
+	$month: {},
+	$multiply: {},
+	$ne: {},
+	$not: {},
+	$objectToArray: {},
+	$or: {},
+	$pow: {},
+	$push: {},
+	$radiansToDegrees: {},
+	$range: {},
+	$reduce: {},
+	$regexFind: {},
+	$regexFindAll: {},
+	$regexMatch: {},
+	$replaceOne: {},
+	$replaceAll: {},
+	$reverseArray: {},
+	$round: {},
+	$rtrim: {},
+	$second: {},
+	$setDifference: {},
+	$setEquals: {},
+	$setIntersection: {},
+	$setIsSubset: {},
+	$setUnion: {},
+	$size: {},
+	$sin: {},
+	$slice: {},
+	$split: {},
+	$sqrt: {},
+	$stdDevPop: {},
+	$stdDevSamp: {},
+	$strcasecmp: {},
+	$strLenBytes: {},
+	$strLenCP: {},
+	$substr: {},
+	$substrBytes: {},
+	$substrCP: {},
+	$subtract: {},
+	$sum: {},
+	$switch: {},
+	$tan: {},
+	$toBool: {},
+	$toDate: {},
+	$toDecimal: {},
+	$toDouble: {},
+	$toInt: {},
+	$toLong: {},
+	$toObjectId: {},
+	$toString: {},
+	$toLower: {},
+	$toUpper: {},
+	$trim: {},
+	$trunc: {},
+	$type: {},
+	$week: {},
+	$year: {},
+	$zip: {},
+	$comment: {},
+	$explain: {},
+	$hint: {},
+	$max: {},
+	$maxTimeMS: {},
+	$min: {},
+	$orderby: {},
+	$query: {},
+	$returnKey: {},
+	$showDiskLoc: {},
+	$natural: {},
+}
+
+----------------------------------------------------
+
+[
+	["punctuation", "{"],
+	["property", [
+		["keyword", "$eq"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$gt"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$gte"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$in"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$lt"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$lte"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$ne"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$nin"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$and"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$not"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$nor"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$or"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$exists"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$type"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$expr"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$jsonSchema"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$mod"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$regex"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$text"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$where"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$geoIntersects"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$geoWithin"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$near"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$nearSphere"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$all"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$elemMatch"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$size"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$bitsAllClear"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$bitsAllSet"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$bitsAnyClear"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$bitsAnySet"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$comment"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$elemMatch"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$meta"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$slice"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$currentDate"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$inc"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$min"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$max"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$mul"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$rename"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$set"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$setOnInsert"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$unset"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$addToSet"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$pop"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$pull"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$push"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$pullAll"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$each"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$position"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$slice"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$sort"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$bit"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$addFields"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$bucket"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$bucketAuto"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$collStats"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$count"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$currentOp"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$facet"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$geoNear"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$graphLookup"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$group"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$indexStats"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$limit"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$listLocalSessions"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$listSessions"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$lookup"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$match"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$merge"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$out"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$planCacheStats"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$project"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$redact"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$replaceRoot"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$replaceWith"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$sample"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$set"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$skip"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$sort"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$sortByCount"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$unionWith"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$unset"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$unwind"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$abs"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$accumulator"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$acos"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$acosh"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$add"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$addToSet"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$allElementsTrue"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$and"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$anyElementTrue"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$arrayElemAt"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$arrayToObject"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$asin"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$asinh"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$atan"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$atan2"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$atanh"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$avg"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$binarySize"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$bsonSize"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$ceil"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$cmp"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$concat"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$concatArrays"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$cond"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$convert"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$cos"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$dateFromParts"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$dateToParts"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$dateFromString"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$dateToString"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$dayOfMonth"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$dayOfWeek"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$dayOfYear"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$degreesToRadians"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$divide"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$eq"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$exp"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$filter"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$first"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$floor"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$function"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$gt"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$gte"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$hour"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$ifNull"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$in"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$indexOfArray"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$indexOfBytes"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$indexOfCP"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$isArray"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$isNumber"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$isoDayOfWeek"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$isoWeek"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$isoWeekYear"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$last"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$last"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$let"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$literal"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$ln"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$log"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$log10"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$lt"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$lte"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$ltrim"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$map"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$max"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$mergeObjects"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$meta"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$min"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$millisecond"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$minute"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$mod"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$month"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$multiply"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$ne"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$not"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$objectToArray"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$or"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$pow"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$push"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$radiansToDegrees"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$range"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$reduce"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$regexFind"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$regexFindAll"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$regexMatch"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$replaceOne"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$replaceAll"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$reverseArray"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$round"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$rtrim"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$second"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$setDifference"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$setEquals"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$setIntersection"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$setIsSubset"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$setUnion"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$size"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$sin"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$slice"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$split"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$sqrt"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$stdDevPop"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$stdDevSamp"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$strcasecmp"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$strLenBytes"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$strLenCP"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$substr"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$substrBytes"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$substrCP"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$subtract"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$sum"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$switch"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$tan"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$toBool"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$toDate"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$toDecimal"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$toDouble"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$toInt"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$toLong"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$toObjectId"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$toString"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$toLower"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$toUpper"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$trim"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$trunc"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$type"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$week"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$year"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$zip"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$comment"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$explain"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$hint"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$max"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$maxTimeMS"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$min"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$orderby"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$query"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$returnKey"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$showDiskLoc"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$natural"]
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["punctuation", "}"]
+]
+
+
+
+----------------------------------------------------
+
+Checks for operations.

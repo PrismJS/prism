@@ -1,10 +1,7 @@
 (function (Prism) {
 
 	var javascript = Prism.languages.javascript;
-	var jsExpression = javascript.$.expression;
-
-	console.log("dasf");
-
+	var jsExpr = javascript.$.expression;
 
 	Prism.languages.qml = {
 		'comment': {
@@ -12,7 +9,7 @@
 			greedy: true
 		},
 		'javascript-function': {
-			pattern: RegExp(/((?:^|;)[ \t]*)function\s+[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*\s*\(<js>*\)\s*\{<js>*\}/.source.replace(/<js>/g, jsExpression), 'm'),
+			pattern: RegExp(/((?:^|;)[ \t]*)function\s+[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*\s*\(<js>*\)\s*\{<js>*\}/.source.replace(/<js>/g, function () { return jsExpr; }), 'm'),
 			lookbehind: true,
 			greedy: true,
 			alias: 'language-javascript',
@@ -37,7 +34,7 @@
 			}
 		],
 		'javascript-expression': {
-			pattern: RegExp(/(:[ \t]*)(?![\s;}[])(?:(?!$|[;}])<js>)+/.source.replace(/<js>/g, jsExpression), 'm'),
+			pattern: RegExp(/(:[ \t]*)(?![\s;}[])(?:(?!$|[;}])<js>)+/.source.replace(/<js>/g, function () { return jsExpr; }), 'm'),
 			lookbehind: true,
 			greedy: true,
 			alias: 'language-javascript',

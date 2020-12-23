@@ -1,0 +1,114 @@
+(p:Student)
+(p:Student { name: "John" })
+(:`Student`)
+(:`Student` { name: "John"})
+
+(p:Student:Teacher)
+(p:Student { name: "John" }:Teacher)
+(:`Student`:`Teacher`)
+(:`Student` { name: "John"}:`Teacher` { classes: "..." })
+
+// no class names but still interesting cases
+
+(p { name: "John" })
+({ name: "John" })
+()
+
+----------------------------------------------------
+
+[
+	["punctuation", "("],
+	"p",
+	["operator", ":"],
+	["class-name", "Student"],
+	["punctuation", ")"],
+	["punctuation", "("],
+	"p",
+	["operator", ":"],
+	["class-name", "Student"],
+	["punctuation", "{"],
+	" name",
+	["operator", ":"],
+	["string", "\"John\""],
+	["punctuation", "}"],
+	["punctuation", ")"],
+	["punctuation", "("],
+	["operator", ":"],
+	["class-name", "`Student`"],
+	["punctuation", ")"],
+	["punctuation", "("],
+	["operator", ":"],
+	["class-name", "`Student`"],
+	["punctuation", "{"],
+	" name",
+	["operator", ":"],
+	["string", "\"John\""],
+	["punctuation", "}"],
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	"p",
+	["operator", ":"],
+	["class-name", "Student"],
+	["operator", ":"],
+	["class-name", "Teacher"],
+	["punctuation", ")"],
+	["punctuation", "("],
+	"p",
+	["operator", ":"],
+	["class-name", "Student"],
+	["punctuation", "{"],
+	" name",
+	["operator", ":"],
+	["string", "\"John\""],
+	["punctuation", "}"],
+	["operator", ":"],
+	["class-name", "Teacher"],
+	["punctuation", ")"],
+	["punctuation", "("],
+	["operator", ":"],
+	["class-name", "`Student`"],
+	["operator", ":"],
+	["class-name", "`Teacher`"],
+	["punctuation", ")"],
+	["punctuation", "("],
+	["operator", ":"],
+	["class-name", "`Student`"],
+	["punctuation", "{"],
+	" name",
+	["operator", ":"],
+	["string", "\"John\""],
+	["punctuation", "}"],
+	["operator", ":"],
+	["class-name", "`Teacher`"],
+	["punctuation", "{"],
+	" classes",
+	["operator", ":"],
+	["string", "\"...\""],
+	["punctuation", "}"],
+	["punctuation", ")"],
+
+	["comment", "// no class names but still interesting cases"],
+
+	["punctuation", "("],
+	"p ",
+	["punctuation", "{"],
+	" name",
+	["operator", ":"],
+	["string", "\"John\""],
+	["punctuation", "}"],
+	["punctuation", ")"],
+	["punctuation", "("],
+	["punctuation", "{"],
+	" name",
+	["operator", ":"],
+	["string", "\"John\""],
+	["punctuation", "}"],
+	["punctuation", ")"],
+	["punctuation", "("],
+	["punctuation", ")"]
+]
+
+----------------------------------------------------
+
+Checks for class names.

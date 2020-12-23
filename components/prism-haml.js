@@ -52,14 +52,14 @@
 		},
 		'tag': {
 			// Allows for one nested group of braces
-			pattern: /((?:^|\r?\n|\r)[\t ]*)[%.#][\w\-#.]*[\w\-](?:\([^)]+\)|\{(?:\{[^}]+\}|[^}])+\}|\[[^\]]+\])*[\/<>]*/,
+			pattern: /((?:^|\r?\n|\r)[\t ]*)[%.#][\w\-#.]*[\w\-](?:\([^)]+\)|\{(?:\{[^}]+\}|[^{}])+\}|\[[^\]]+\])*[\/<>]*/,
 			lookbehind: true,
 			inside: {
 				'attributes': [
 					{
 						// Lookbehind tries to prevent interpolations from breaking it all
 						// Allows for one nested group of braces
-						pattern: /(^|[^#])\{(?:\{[^}]+\}|[^}])+\}/,
+						pattern: /(^|[^#])\{(?:\{[^}]+\}|[^{}])+\}/,
 						lookbehind: true,
 						inside: Prism.languages.ruby
 					},
@@ -124,7 +124,7 @@
 		filter = typeof filter === 'string' ? {filter: filter, language: filter} : filter;
 		if (Prism.languages[filter.language]) {
 			all_filters['filter-' + filter.filter] = {
-				pattern: RegExp(filter_pattern.replace('{{filter_name}}', filter.filter)),
+				pattern: RegExp(filter_pattern.replace('{{filter_name}}', function () { return filter.filter; })),
 				lookbehind: true,
 				inside: {
 					'filter-name': {

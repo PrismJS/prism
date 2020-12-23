@@ -1,0 +1,18 @@
+<array> <byte-array> <string>
+
+<=> <-->
+
+----------------------------------------------------
+
+[
+	[ "constructor-word", "<array>" ],
+	[ "constructor-word", "<byte-array>" ],
+	[ "constructor-word", "<string>" ],
+
+	[ "conventionally-named-word", "<=>" ],
+	[ "conventionally-named-word", "<-->" ]
+]
+
+----------------------------------------------------
+
+ctors

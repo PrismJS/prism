@@ -1,6 +1,7 @@
 interface Foo {}
 type Foo {}
 type Foo implements Bar {}
+type Business implements NamedEntity & ValuedEntity {}
 enum Foo {}
 scalar Foo
 union Foo
@@ -23,6 +24,15 @@ on Foo {}
 	["class-name", "Foo"],
 	["keyword", "implements"],
 	["class-name", "Bar"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "type"],
+	["class-name", "Business"],
+	["keyword", "implements"],
+	["class-name", "NamedEntity"],
+	["operator", "&"],
+	["class-name", "ValuedEntity"],
 	["punctuation", "{"],
 	["punctuation", "}"],
 

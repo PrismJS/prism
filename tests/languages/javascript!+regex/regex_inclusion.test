@@ -5,7 +5,7 @@
 [
 	["regex", [
 		["regex-delimiter", "/"],
-		["language-regex", [
+		["regex-source", [
 			"a",
 			["quantifier", "+"],
 			["group", ["(?:"]],

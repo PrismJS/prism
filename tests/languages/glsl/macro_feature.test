@@ -1,0 +1,74 @@
+#define
+#undef
+#if
+#ifdef
+#ifndef
+#else
+#elif
+#endif
+#error
+#pragma
+#extension
+#version
+#line
+
+----------------------------------------------------
+
+[
+	["macro", [
+		["directive-hash", "#"],
+		["directive", "define"]
+	]],
+	["macro", [
+		["directive-hash", "#"],
+		["directive", "undef"]
+	]],
+	["macro", [
+		["directive-hash", "#"],
+		["directive", "if"]
+	]],
+	["macro", [
+		["directive-hash", "#"],
+		["directive", "ifdef"]
+	]],
+	["macro", [
+		["directive-hash", "#"],
+		["directive", "ifndef"]
+	]],
+	["macro", [
+		["directive-hash", "#"],
+		["directive", "else"]
+	]],
+	["macro", [
+		["directive-hash", "#"],
+		["directive", "elif"]
+	]],
+	["macro", [
+		["directive-hash", "#"],
+		["directive", "endif"]
+	]],
+	["macro", [
+		["directive-hash", "#"],
+		["directive", "error"]
+	]],
+	["macro", [
+		["directive-hash", "#"],
+		["directive", "pragma"]
+	]],
+	["macro", [
+		["directive-hash", "#"],
+		["directive", "extension"]
+	]],
+	["macro", [
+		["directive-hash", "#"],
+		["directive", "version"]
+	]],
+	["macro", [
+		["directive-hash", "#"],
+		["directive", "line"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for preprocessor instructions.

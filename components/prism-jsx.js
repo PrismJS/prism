@@ -8,7 +8,7 @@
 	var spreadAttributes = /\{\s*\.{3}<curly>+\}/.source.replace(/<curly>/g, curly);
 
 	Prism.languages.jsx = Prism.languages.extend('markup', Prism.util.clone(javascript));
-	Prism.languages.jsx.tag.pattern = RegExp(/<\/?(?:[\w.:-]+\s*(?:\s+(?:[\w.:$-]+(?:=(?:<str>|[^\s{'">=]+|\{<curly>*\}))?|<spread>))*\s*\/?)?>/.source.replace(/<str>/g, string).replace(/<curly>/g, curly).replace(/<spread>/g, spreadAttributes), 'i');
+	Prism.languages.jsx.tag.pattern = RegExp(/<\/?(?:[\w.:-]+\s*(?:\s+(?:[\w.:$-]+(?:=(?:<str>|[^\s{'">=]+|\{<curly>*\}))?|<spread>))*\s*\/?)?>/.source.replace(/<str>/g, function () { return string; }).replace(/<curly>/g, function () { return curly; }).replace(/<spread>/g, function () { return spreadAttributes; }), 'i');
 
 	Prism.languages.jsx.tag.inside['tag'].pattern = /^<\/?[^\s>\/]*/i;
 	Prism.languages.jsx.tag.inside['attr-value'].pattern = RegExp(/=(?!\{)(?:<str>|[^\s'">]+)/.source.replace(/<str>/g, string), 'i');
