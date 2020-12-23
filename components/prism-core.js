@@ -373,6 +373,9 @@ var _ = {
 			var grammar = root[inside];
 			/** @type {Grammar} */
 			var ret = {};
+			if (grammar && grammar.$) {
+				Object.defineProperty(ret, '$', { value: grammar.$ });
+			}
 
 			for (var token in grammar) {
 				if (grammar.hasOwnProperty(token)) {

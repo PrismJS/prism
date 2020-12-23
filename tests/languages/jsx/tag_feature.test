@@ -36,10 +36,10 @@ var myElement = <MyComponent someProperty={true} />;
 		]],
 		["attr-name", ["someProperty"]],
 		["script", [
-			 ["script-punctuation", "="],
-			 ["punctuation", "{"],
-			 ["boolean", "true"],
-			 ["punctuation", "}"]
+			["script-punctuation", "="],
+			["punctuation", "{"],
+			["boolean", "true"],
+			["punctuation", "}"]
 		]],
 		["punctuation", "/>"]
 	]],
@@ -51,8 +51,8 @@ var myElement = <MyComponent someProperty={true} />;
 		]],
 		["spread", [
 			["punctuation", "{"],
-			["punctuation", "..."],
-			["attr-value", "foo"],
+			["operator", "..."],
+			"foo",
 			["punctuation", "}"]
 		]],
 		["punctuation", ">"]
@@ -84,10 +84,10 @@ var myElement = <MyComponent someProperty={true} />;
 		]],
 		["attr-name", ["leaf"]],
 		["script", [
-			 ["script-punctuation", "="],
-			 ["punctuation", "{"],
-			 ["boolean", "true"],
-			 ["punctuation", "}"]
+			["script-punctuation", "="],
+			["punctuation", "{"],
+			["boolean", "true"],
+			["punctuation", "}"]
 		]],
 		["punctuation", ">"]
 	]],
