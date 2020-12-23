@@ -90,7 +90,7 @@
 	 * case insensitive.
 	 * @param {string} lang The language key.
 	 * @param {TagAttributes} [attributes] An optional record of attributes that have to have a certain value.
-	 * @param {string | string[]} [before] An optional list of languages. This inline language will be checked before
+	 * @param {string[]} [before] An optional list of languages. This inline language will be checked before
 	 * the given languages.
 	 * @example
 	 * addInlined('style', 'css');
@@ -151,11 +151,10 @@
 		} else {
 			// there are some existing tokens for this tag.
 			var index = existingTokens.length;
-			if (before && before.length > 0) {
+			if (before) {
 				// instead of appending this token, we might want to insert it before some existing ones
-				var beforeArray = Array.isArray(before) ? before : [before];
 				for (var i = 0, t; t = existingTokens[i++];) {
-					if (beforeArray.some(function (b) { return ('language-' + b) in t.inside; })) {
+					if (before.some(function (b) { return ('language-' + b) in t.inside; })) {
 						index = i;
 						break;
 					}
