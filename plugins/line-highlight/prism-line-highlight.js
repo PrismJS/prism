@@ -76,7 +76,9 @@
 			return +px.substr(0, px.length - 2);
 		}
 
-		return child.offsetTop + pxToNumber(childStyle.borderTopWidth) + pxToNumber(childStyle.paddingTop)
+		return child.offsetTop
+			+ pxToNumber(childStyle.borderTopWidth)
+			+ pxToNumber(childStyle.paddingTop)
 			- pxToNumber(parentStyle.paddingTop);
 	}
 
