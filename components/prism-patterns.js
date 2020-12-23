@@ -110,14 +110,14 @@
 	 * Replaces all placeholders in the given pattern with the associated replacement in the given replacement array
 	 * and returns the result as a new pattern.
 	 *
-	 * Placeholder have to be of the form `<<placeholder>>` where the placeholder is the given placeholder pattern. The
+	 * Placeholder have to be of the form `<placeholder>` where the placeholder is the given placeholder pattern. The
 	 * matched string by the placeholder will be the key in the replacements record to get the associated replacement.
 	 *
 	 * The pattern of each inserted replacement will be wrapped with a non-capturing group. Backreferences in
 	 * the given pattern and inserted replacements will be adjusted, so that they still reference the same group as
 	 * before this operation.
 	 *
-	 * Escaped placeholders (e.g. `\<<2>>` or `<<foo>\>`), placeholders inside character classes (e.g. `[a-z<<2>>]`),
+	 * Escaped placeholders (e.g. `\<2>` or `<foo\>`), placeholders inside character classes (e.g. `[a-z<2>]`),
 	 * and placeholders in replacements will not be replaced.
 	 *
 	 * If the flags of any two replacements or of the given pattern are contradictory (e.g. the given pattern requires
@@ -168,7 +168,7 @@
 			var rep = replacements[key];
 
 			if (rep == undefined && !Prism.MIN) {
-				throw new Error('There is no replacement for <<' + key + '>>.');
+				throw new Error('There is no replacement for <' + key + '>.');
 			}
 
 			rep = internalToPattern(rep);
@@ -207,7 +207,7 @@
 								// Contradiction. This happens if two incompatible patterns are combined.
 								// E.g. a case sensitive and a case insensitive pattern
 								if (!Prism.MIN) {
-									throw new Error('<<' + key + '>> requires the ' + f + ' flag to be ' + rf
+									throw new Error('<' + key + '> requires the ' + f + ' flag to be ' + rf
 										+ ' in contradiction with current flags.');
 								}
 							}
@@ -241,7 +241,7 @@
 						// This reference might refer to a group which has yet to appear or to no group at all in the
 						// case of an octal escape. For more information, see `getBackReference`.
 						if (ref > groupCount && !Prism.MIN) {
-							throw new Error('Invalid backreference \\' + backRef + ' in replacement <<' + key + '>>.');
+							throw new Error('Invalid backreference \\' + backRef + ' in replacement <' + key + '>.');
 						}
 						return '\\' + (ref + offset);
 					}
@@ -280,7 +280,7 @@
 			return '\\' + newRef;
 		}
 
-		source = replaceSource(source, '<<(' + placeholder + ')>>',
+		source = replaceSource(source, '<(' + placeholder + ')>',
 			/**
 			 * @param {string} m
 			 * @param {string} [key]
