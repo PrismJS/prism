@@ -460,7 +460,8 @@ var _ = {
 	 *
 	 * The following hooks will be run:
 	 * 1. `before-highlightall`
-	 * 2. All hooks of {@link Prism.highlightElement} for each element.
+	 * 2. `before-all-elements-highlight`
+	 * 3. All hooks of {@link Prism.highlightElement} for each element.
 	 *
 	 * @param {ParentNode} container The root element, whose descendants that have a `.language-xxxx` class will be highlighted.
 	 * @param {boolean} [async=false] Whether each element is to be highlighted asynchronously using Web Workers.
@@ -492,10 +493,13 @@ var _ = {
 	 * The following hooks will be run:
 	 * 1. `before-sanity-check`
 	 * 2. `before-highlight`
-	 * 3. All hooks of {@link Prism.highlight}. These hooks will only be run by the current worker if `async` is `true`.
+	 * 3. All hooks of {@link Prism.highlight}. These hooks will be run by an asynchronous worker if `async` is `true`.
 	 * 4. `before-insert`
 	 * 5. `after-highlight`
 	 * 6. `complete`
+	 *
+	 * Some the above hooks will be skipped if the element doesn't contain any text or there is no grammar loaded for
+	 * the element's language.
 	 *
 	 * @param {Element} element The element containing the code.
 	 * It must have a class of `language-xxxx` to be processed, where `xxxx` is a valid language identifier.
@@ -720,12 +724,11 @@ _self.Prism = _;
  * @param {string | TokenStream} content See {@link Token#content content}
  * @param {string|string[]} [alias] The alias(es) of the token.
  * @param {string} [matchedStr=""] A copy of the full string this token was created from.
- * @param {boolean} [greedy=false] Whether the pattern that created this token is greedy or not. Will be removed soon.
  * @class
  * @global
  * @public
  */
-function Token(type, content, alias, matchedStr, greedy) {
+function Token(type, content, alias, matchedStr) {
 	/**
 	 * The type of the token.
 	 *
@@ -753,8 +756,8 @@ function Token(type, content, alias, matchedStr, greedy) {
 	 * @public
 	 */
 	this.alias = alias;
-	this.length = (matchedStr || "").length|0;
-	this.greedy = !!greedy;
+	// Copy of the full string this token was created from
+	this.length = (matchedStr || '').length | 0;
 }
 
 /**
@@ -826,16 +829,39 @@ Token.stringify = function stringify(o, language) {
 };
 
 /**
+ * @param {RegExp} pattern
+ * @param {number} pos
+ * @param {string} text
+ * @param {boolean} lookbehind
+ * @returns {RegExpExecArray | null}
+ */
+function matchPattern(pattern, pos, text, lookbehind) {
+	pattern.lastIndex = pos;
+	var match = pattern.exec(text);
+	if (match && lookbehind && match[1]) {
+		// change the match to remove the text matched by the Prism lookbehind group
+		var lookbehindLength = match[1].length;
+		match.index += lookbehindLength;
+		match[0] = match[0].slice(lookbehindLength);
+	}
+	return match;
+}
+
+/**
  * @param {string} text
  * @param {LinkedList<string | Token>} tokenList
  * @param {any} grammar
  * @param {LinkedListNode<string | Token>} startNode
  * @param {number} startPos
- * @param {boolean} [oneshot=false]
- * @param {string} [target]
+ * @param {RematchOptions} [rematch]
+ * @returns {void}
  * @private
+ *
+ * @typedef RematchOptions
+ * @property {string} cause
+ * @property {number} reach
  */
-function matchGrammar(text, tokenList, grammar, startNode, startPos, oneshot, target) {
+function matchGrammar(text, tokenList, grammar, startNode, startPos, rematch) {
 	for (var token in grammar) {
 		if (!grammar.hasOwnProperty(token) || !grammar[token]) {
 			continue;
@@ -845,30 +871,34 @@ function matchGrammar(text, tokenList, grammar, startNode, startPos, oneshot, ta
 		patterns = Array.isArray(patterns) ? patterns : [patterns];
 
 		for (var j = 0; j < patterns.length; ++j) {
-			if (target && target == token + ',' + j) {
+			if (rematch && rematch.cause == token + ',' + j) {
 				return;
 			}
 
-			var pattern = patterns[j],
-				inside = pattern.inside,
-				lookbehind = !!pattern.lookbehind,
-				greedy = !!pattern.greedy,
-				lookbehindLength = 0,
-				alias = pattern.alias;
+			var patternObj = patterns[j],
+				inside = patternObj.inside,
+				lookbehind = !!patternObj.lookbehind,
+				greedy = !!patternObj.greedy,
+				alias = patternObj.alias;
 
-			if (greedy && !pattern.pattern.global) {
+			if (greedy && !patternObj.pattern.global) {
 				// Without the global flag, lastIndex won't work
-				var flags = pattern.pattern.toString().match(/[imsuy]*$/)[0];
-				pattern.pattern = RegExp(pattern.pattern.source, flags + 'g');
+				var flags = patternObj.pattern.toString().match(/[imsuy]*$/)[0];
+				patternObj.pattern = RegExp(patternObj.pattern.source, flags + 'g');
 			}
 
-			pattern = pattern.pattern || pattern;
+			/** @type {RegExp} */
+			var pattern = patternObj.pattern || patternObj;
 
 			for ( // iterate the token list and keep track of the current token/string position
 				var currentNode = startNode.next, pos = startPos;
 				currentNode !== tokenList.tail;
 				pos += currentNode.value.length, currentNode = currentNode.next
 			) {
+
+				if (rematch && pos >= rematch.reach) {
+					break;
+				}
 
 				var str = currentNode.value;
 
@@ -882,15 +912,15 @@ function matchGrammar(text, tokenList, grammar, startNode, startPos, oneshot, ta
 				}
 
 				var removeCount = 1; // this is the to parameter of removeBetween
+				var match;
 
-				if (greedy && currentNode != tokenList.tail.prev) {
-					pattern.lastIndex = pos;
-					var match = pattern.exec(text);
+				if (greedy) {
+					match = matchPattern(pattern, pos, text, lookbehind);
 					if (!match) {
 						break;
 					}
 
-					var from = match.index + (lookbehind && match[1] ? match[1].length : 0);
+					var from = match.index;
 					var to = match.index + match[0].length;
 					var p = pos;
 
@@ -912,7 +942,7 @@ function matchGrammar(text, tokenList, grammar, startNode, startPos, oneshot, ta
 					// find the last node which is affected by this match
 					for (
 						var k = currentNode;
-						k !== tokenList.tail && (p < to || (typeof k.value === 'string' && !k.prev.value.greedy));
+						k !== tokenList.tail && (p < to || typeof k.value === 'string');
 						k = k.next
 					) {
 						removeCount++;
@@ -924,28 +954,21 @@ function matchGrammar(text, tokenList, grammar, startNode, startPos, oneshot, ta
 					str = text.slice(pos, p);
 					match.index -= pos;
 				} else {
-					pattern.lastIndex = 0;
-
-					var match = pattern.exec(str);
-				}
-
-				if (!match) {
-					if (oneshot) {
-						break;
+					match = matchPattern(pattern, 0, str, lookbehind);
+					if (!match) {
+						continue;
 					}
-
-					continue;
 				}
 
-				if (lookbehind) {
-					lookbehindLength = match[1] ? match[1].length : 0;
-				}
-
-				var from = match.index + lookbehindLength,
-					match = match[0].slice(lookbehindLength),
-					to = from + match.length,
+				var from = match.index,
+					matchStr = match[0],
 					before = str.slice(0, from),
-					after = str.slice(to);
+					after = str.slice(from + matchStr.length);
+
+				var reach = pos + str.length;
+				if (rematch && reach > rematch.reach) {
+					rematch.reach = reach;
+				}
 
 				var removeFrom = currentNode.prev;
 
@@ -956,19 +979,21 @@ function matchGrammar(text, tokenList, grammar, startNode, startPos, oneshot, ta
 
 				removeRange(tokenList, removeFrom, removeCount);
 
-				var wrapped = new Token(token, inside ? _.tokenize(match, inside) : match, alias, match, greedy);
+				var wrapped = new Token(token, inside ? _.tokenize(matchStr, inside) : matchStr, alias, matchStr);
 				currentNode = addAfter(tokenList, removeFrom, wrapped);
 
 				if (after) {
 					addAfter(tokenList, currentNode, after);
 				}
 
-
-				if (removeCount > 1)
-					matchGrammar(text, tokenList, grammar, currentNode.prev, pos, true, token + ',' + j);
-
-				if (oneshot)
-					break;
+				if (removeCount > 1) {
+					// at least one Token object was removed, so we have to do some rematching
+					// this can only happen if the current pattern is greedy
+					matchGrammar(text, tokenList, grammar, currentNode.prev, pos, {
+						cause: token + ',' + j,
+						reach: reach
+					});
+				}
 			}
 		}
 	}
@@ -1369,19 +1394,29 @@ Prism.languages.rss = Prism.languages.xml;
 
 		Prism.languages.insertBefore('inside', 'attr-value', {
 			'style-attr': {
-				pattern: /\s*style=("|')(?:\\[\s\S]|(?!\1)[^\\])*\1/i,
+				pattern: /(^|["'\s])style\s*=\s*(?:"[^"]*"|'[^']*')/i,
+				lookbehind: true,
 				inside: {
-					'attr-name': {
-						pattern: /^\s*style/i,
-						inside: markup.tag.inside
-					},
-					'punctuation': /^\s*=\s*['"]|['"]\s*$/,
 					'attr-value': {
-						pattern: /.+/i,
-						inside: Prism.languages.css
-					}
-				},
-				alias: 'language-css'
+						pattern: /=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+)/,
+						inside: {
+							'style': {
+								pattern: /(["'])[\s\S]+(?=["']$)/,
+								lookbehind: true,
+								alias: 'language-css',
+								inside: Prism.languages.css
+							},
+							'punctuation': [
+								{
+									pattern: /^=/,
+									alias: 'attr-equals'
+								},
+								/"|'/
+							]
+						}
+					},
+					'attr-name': /^style/i
+				}
 			}
 		}, markup.tag);
 	}
@@ -1447,9 +1482,9 @@ Prism.languages.javascript = Prism.languages.extend('clike', {
 			lookbehind: true
 		},
 	],
-	'number': /\b(?:(?:0[xX](?:[\dA-Fa-f](?:_[\dA-Fa-f])?)+|0[bB](?:[01](?:_[01])?)+|0[oO](?:[0-7](?:_[0-7])?)+)n?|(?:\d(?:_\d)?)+n|NaN|Infinity)\b|(?:\b(?:\d(?:_\d)?)+\.?(?:\d(?:_\d)?)*|\B\.(?:\d(?:_\d)?)+)(?:[Ee][+-]?(?:\d(?:_\d)?)+)?/,
 	// Allow for all non-ASCII characters (See http://stackoverflow.com/a/2008444)
 	'function': /#?[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*(?=\s*(?:\.\s*(?:apply|bind|call)\s*)?\()/,
+	'number': /\b(?:(?:0[xX](?:[\dA-Fa-f](?:_[\dA-Fa-f])?)+|0[bB](?:[01](?:_[01])?)+|0[oO](?:[0-7](?:_[0-7])?)+)n?|(?:\d(?:_\d)?)+n|NaN|Infinity)\b|(?:\b(?:\d(?:_\d)?)+\.?(?:\d(?:_\d)?)*|\B\.(?:\d(?:_\d)?)+)(?:[Ee][+-]?(?:\d(?:_\d)?)+)?/,
 	'operator': /--|\+\+|\*\*=?|=>|&&=?|\|\|=?|[!=]==|<<=?|>>>?=?|[-+*/%&|^!=<>]=?|\.{3}|\?\?=?|\?\.?|[~:]/
 });
 
@@ -1457,9 +1492,19 @@ Prism.languages.javascript['class-name'][0].pattern = /(\b(?:class|interface|ext
 
 Prism.languages.insertBefore('javascript', 'keyword', {
 	'regex': {
-		pattern: /((?:^|[^$\w\xA0-\uFFFF."'\])\s])\s*)\/(?:\[(?:[^\]\\\r\n]|\\.)*]|\\.|[^/\\\[\r\n])+\/[gimyus]{0,6}(?=(?:\s|\/\*(?:[^*]|\*(?!\/))*\*\/)*(?:$|[\r\n,.;:})\]]|\/\/))/,
+		pattern: /((?:^|[^$\w\xA0-\uFFFF."'\])\s]|\b(?:return|yield))\s*)\/(?:\[(?:[^\]\\\r\n]|\\.)*]|\\.|[^/\\\[\r\n])+\/[gimyus]{0,6}(?=(?:\s|\/\*(?:[^*]|\*(?!\/))*\*\/)*(?:$|[\r\n,.;:})\]]|\/\/))/,
 		lookbehind: true,
-		greedy: true
+		greedy: true,
+		inside: {
+			'regex-source': {
+				pattern: /^(\/)[\s\S]+(?=\/[a-z]*$)/,
+				lookbehind: true,
+				alias: 'language-regex',
+				inside: Prism.languages.regex
+			},
+			'regex-flags': /[a-z]+$/,
+			'regex-delimiter': /^\/|\/$/
+		}
 	},
 	// This must be declared before keyword because we use "function" inside the look-forward
 	'function-variable': {
@@ -1529,6 +1574,11 @@ Prism.languages.js = Prism.languages.javascript;
 (function () {
 	if (typeof self === 'undefined' || !self.Prism || !self.document) {
 		return;
+	}
+
+	// https://developer.mozilla.org/en-US/docs/Web/API/Element/matches#Polyfill
+	if (!Element.prototype.matches) {
+		Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
 	}
 
 	var Prism = window.Prism;

@@ -263,7 +263,7 @@ Prism.manual = true;
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line597">line 597</a>
+        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line601">line 601</a>
     </li></ul></dd>
     
 
@@ -676,7 +676,7 @@ each one of them.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line466">line 466</a>
+        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line467">line 467</a>
     </li></ul></dd>
     
 
@@ -721,6 +721,7 @@ each one of them.</p>
 <p>The following hooks will be run:</p>
 <ol>
 <li><code>before-highlightall</code></li>
+<li><code>before-all-elements-highlight</code></li>
 <li>All hooks of <a href="Prism.html#.highlightElement"><code>Prism.highlightElement</code></a> for each element.</li>
 </ol>
 </div>
@@ -910,7 +911,7 @@ each one of them.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line509">line 509</a>
+        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line513">line 513</a>
     </li></ul></dd>
     
 
@@ -955,11 +956,13 @@ each one of them.</p>
 <ol>
 <li><code>before-sanity-check</code></li>
 <li><code>before-highlight</code></li>
-<li>All hooks of <a href="Prism.html#.highlight"><code>Prism.highlight</code></a>. These hooks will only be run by the current worker if <code>async</code> is <code>true</code>.</li>
+<li>All hooks of <a href="Prism.html#.highlight"><code>Prism.highlight</code></a>. These hooks will be run by an asynchronous worker if <code>async</code> is <code>true</code>.</li>
 <li><code>before-insert</code></li>
 <li><code>after-highlight</code></li>
 <li><code>complete</code></li>
 </ol>
+<p>Some the above hooks will be skipped if the element doesn't contain any text or there is no grammar loaded for
+the element's language.</p>
 </div>
 
 
@@ -1154,7 +1157,7 @@ Mostly useful when <code>async</code> is <code>true</code>, since in that case, 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line633">line 633</a>
+        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line637">line 637</a>
     </li></ul></dd>
     
 

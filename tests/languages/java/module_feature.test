@@ -78,7 +78,9 @@ module com.js.prism {
 		"net",
 		["punctuation", "."]
 	]],
-	["class-name", "ContentHandlerFactory"],
+	["class-name", [
+		"ContentHandlerFactory"
+	]],
 	["punctuation", ";"],
 
 	["keyword", "opens"],
@@ -88,7 +90,9 @@ module com.js.prism {
 		"time",
 		["punctuation", "."]
 	]],
-	["class-name", "DateTime"],
+	["class-name", [
+		"DateTime"
+	]],
 	["punctuation", ";"],
 
 	["keyword", "opens"],
@@ -98,7 +102,9 @@ module com.js.prism {
 		"time",
 		["punctuation", "."]
 	]],
-	["class-name", "LocalDateTime"],
+	["class-name", [
+		"LocalDateTime"
+	]],
 	["keyword", "to"],
 	["namespace", [
 		"java",
@@ -116,7 +122,9 @@ module com.js.prism {
 		"hello",
 		["punctuation", "."]
 	]],
-	["class-name", "HelloInterface"],
+	["class-name", [
+		"HelloInterface"
+	]],
 	["keyword", "with"],
 	["namespace", [
 		"com",
@@ -126,7 +134,9 @@ module com.js.prism {
 		"hello",
 		["punctuation", "."]
 	]],
-	["class-name", "HelloModules"],
+	["class-name", [
+		"HelloModules"
+	]],
 	["punctuation", ";"],
 
 	["punctuation", "}"]

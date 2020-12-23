@@ -12,19 +12,25 @@
 [
 	"/**\n * ",
 	["keyword", "@param"],
-	["parameter", ["n"]],
+	["parameter", [
+		"n"
+	]],
 	" - A number.\n * ",
 	["keyword", "@param"],
 	["optional-parameter", [
 		["punctuation", "["],
-		["parameter", ["n"]],
+		["parameter", [
+			"n"
+		]],
 		["punctuation", "]"]
 	]],
 	" - A number.\n * ",
 	["keyword", "@param"],
 	["optional-parameter", [
 		["punctuation", "["],
-		["parameter", ["n"]],
+		["parameter", [
+			"n"
+		]],
 		["punctuation", "="],
 		["code", [
 			["number", "1"],
@@ -40,7 +46,9 @@
 		"number",
 		["punctuation", "}"]
 	]],
-	["parameter", ["n"]],
+	["parameter", [
+		"n"
+	]],
 	" - A number.\n * ",
 	["keyword", "@param"],
 	["class-name", [
@@ -48,24 +56,26 @@
 		["punctuation", "{"],
 		["punctuation", "["],
 		"x",
-		["punctuation", ":"],
+		["operator", ":"],
 		" string",
 		["punctuation", "]"],
-		["punctuation", ":"],
+		["operator", ":"],
 		["punctuation", "{"],
 		"start",
-		["punctuation", ":"],
+		["operator", ":"],
 		" number",
 		["punctuation", ","],
 		" end",
-		["punctuation", "?"],
-		["punctuation", ":"],
+		["operator", "?"],
+		["operator", ":"],
 		" number",
 		["punctuation", "}"],
 		["punctuation", "}"],
 		["punctuation", "}"]
 	]],
-	["parameter", ["map"]],
+	["parameter", [
+		"map"
+	]],
 	"\n * ",
 	["keyword", "@param"],
 	["class-name", [

@@ -1,0 +1,334 @@
+Integer i;
+Integer i = (Integer)obj;
+Integer[] myInts = new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+Object obj = new MyApexClass();
+list<Item__c> itemList;
+List<List<Set<Integer>>> my_list_2 = new List<List<Set<Integer>>>();
+Map<ID, Shipping_Invoice__C> updateMap = new Map<ID, Shipping_Invoice__C>();
+set<Id> AllItems = new set<id>();
+
+public Season getSouthernHemisphereSeason(season northernHemisphereSeason) {}
+
+for(Shipping_Invoice__C sc : AllShippingInvoices){}
+public static Integer calculate() {}
+
+if (sobject instanceof Account) {
+	Account a = (Account) sobject;
+}
+
+public class myOuterClass {}
+public enum MyEnumClass { X, Y }
+public class YellowMarker extends Marker {}
+interface MySecondInterface extends MyInterface {}
+public virtual class InnerClass implements MySecondInterface {}
+
+
+class Foo {
+	List<Account> accs {get; set;}
+	Integer i {get; set;}
+}
+
+
+public with sharing class sharingClass {}
+public without sharing class noSharing {}
+public inherited sharing class InheritedSharingClass{}
+
+----------------------------------------------------
+
+[
+	["keyword", "Integer"],
+	" i",
+	["punctuation", ";"],
+	["keyword", "Integer"],
+	" i ",
+	["operator", "="],
+	["punctuation", "("],
+	["keyword", "Integer"],
+	["punctuation", ")"],
+	"obj",
+	["punctuation", ";"],
+	["class-name", [
+		["keyword", "Integer"],
+		["punctuation", "["],
+		["punctuation", "]"]
+	]],
+	" myInts ",
+	["operator", "="],
+	["keyword", "new"],
+	["class-name", [
+		["keyword", "Integer"],
+		["punctuation", "["],
+		["punctuation", "]"]
+	]],
+	["punctuation", "{"],
+	["number", "1"],
+	["punctuation", ","],
+	["number", "2"],
+	["punctuation", ","],
+	["number", "3"],
+	["punctuation", ","],
+	["number", "4"],
+	["punctuation", ","],
+	["number", "5"],
+	["punctuation", ","],
+	["number", "6"],
+	["punctuation", ","],
+	["number", "7"],
+	["punctuation", ","],
+	["number", "8"],
+	["punctuation", ","],
+	["number", "9"],
+	["punctuation", ","],
+	["number", "10"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+	["keyword", "Object"],
+	" obj ",
+	["operator", "="],
+	["keyword", "new"],
+	["class-name", [
+		"MyApexClass"
+	]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["class-name", [
+		["keyword", "list"],
+		["punctuation", "<"],
+		"Item__c",
+		["punctuation", ">"]
+	]],
+	" itemList",
+	["punctuation", ";"],
+	["class-name", [
+		["keyword", "List"],
+		["punctuation", "<"],
+		["keyword", "List"],
+		["punctuation", "<"],
+		["keyword", "Set"],
+		["punctuation", "<"],
+		["keyword", "Integer"],
+		["punctuation", ">"],
+		["punctuation", ">"],
+		["punctuation", ">"]
+	]],
+	" my_list_2 ",
+	["operator", "="],
+	["keyword", "new"],
+	["class-name", [
+		["keyword", "List"],
+		["punctuation", "<"],
+		["keyword", "List"],
+		["punctuation", "<"],
+		["keyword", "Set"],
+		["punctuation", "<"],
+		["keyword", "Integer"],
+		["punctuation", ">"],
+		["punctuation", ">"],
+		["punctuation", ">"]
+	]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["class-name", [
+		["keyword", "Map"],
+		["punctuation", "<"],
+		"ID",
+		["punctuation", ","],
+		" Shipping_Invoice__C",
+		["punctuation", ">"]
+	]],
+	" updateMap ",
+	["operator", "="],
+	["keyword", "new"],
+	["class-name", [
+		["keyword", "Map"],
+		["punctuation", "<"],
+		"ID",
+		["punctuation", ","],
+		" Shipping_Invoice__C",
+		["punctuation", ">"]
+	]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["class-name", [
+		["keyword", "set"],
+		["punctuation", "<"],
+		"Id",
+		["punctuation", ">"]
+	]],
+	" AllItems ",
+	["operator", "="],
+	["keyword", "new"],
+	["class-name", [
+		["keyword", "set"],
+		["punctuation", "<"],
+		"id",
+		["punctuation", ">"]
+	]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "public"],
+	["class-name", [
+		"Season"
+	]],
+	["function", "getSouthernHemisphereSeason"],
+	["punctuation", "("],
+	["class-name", [
+		"season"
+	]],
+	" northernHemisphereSeason",
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "for"],
+	["punctuation", "("],
+	["class-name", [
+		"Shipping_Invoice__C"
+	]],
+	" sc ",
+	["operator", ":"],
+	" AllShippingInvoices",
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["keyword", "public"],
+	["keyword", "static"],
+	["keyword", "Integer"],
+	["function", "calculate"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "if"],
+	["punctuation", "("],
+	["keyword", "sobject"],
+	["keyword", "instanceof"],
+	["class-name", [
+		"Account"
+	]],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["class-name", [
+		"Account"
+	]],
+	" a ",
+	["operator", "="],
+	["punctuation", "("],
+	["class-name", [
+		"Account"
+	]],
+	["punctuation", ")"],
+	["keyword", "sobject"],
+	["punctuation", ";"],
+	["punctuation", "}"],
+
+	["keyword", "public"],
+	["keyword", "class"],
+	["class-name", [
+		"myOuterClass"
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["keyword", "public"],
+	["keyword", "enum"],
+	["class-name", [
+		"MyEnumClass"
+	]],
+	["punctuation", "{"],
+	" X",
+	["punctuation", ","],
+	" Y ",
+	["punctuation", "}"],
+	["keyword", "public"],
+	["keyword", "class"],
+	["class-name", [
+		"YellowMarker"
+	]],
+	["keyword", "extends"],
+	["class-name", [
+		"Marker"
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["keyword", "interface"],
+	["class-name", [
+		"MySecondInterface"
+	]],
+	["keyword", "extends"],
+	["class-name", [
+		"MyInterface"
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["keyword", "public"],
+	["keyword", "virtual"],
+	["keyword", "class"],
+	["class-name", [
+		"InnerClass"
+	]],
+	["keyword", "implements"],
+	["class-name", [
+		"MySecondInterface"
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "class"],
+	["class-name", [
+		"Foo"
+	]],
+	["punctuation", "{"],
+	["class-name", [
+		["keyword", "List"],
+		["punctuation", "<"],
+		"Account",
+		["punctuation", ">"]
+	]],
+	" accs ",
+	["punctuation", "{"],
+	["keyword", "get"],
+	["punctuation", ";"],
+	["keyword", "set"],
+	["punctuation", ";"],
+	["punctuation", "}"],
+	["keyword", "Integer"],
+	" i ",
+	["punctuation", "{"],
+	["keyword", "get"],
+	["punctuation", ";"],
+	["keyword", "set"],
+	["punctuation", ";"],
+	["punctuation", "}"],
+	["punctuation", "}"],
+
+	["keyword", "public"],
+	["keyword", "with sharing"],
+	["keyword", "class"],
+	["class-name", [
+		"sharingClass"
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["keyword", "public"],
+	["keyword", "without sharing"],
+	["keyword", "class"],
+	["class-name", [
+		"noSharing"
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["keyword", "public"],
+	["keyword", "inherited sharing"],
+	["keyword", "class"],
+	["class-name", [
+		"InheritedSharingClass"
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"]
+]

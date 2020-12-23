@@ -1,0 +1,17 @@
+@use "foo" as bar;
+@use "foo" with ($color: blue);
+@forward "foo" show bar;
+@forward "foo" hide baz;
+
+----------------------------------------------------
+
+[
+	["keyword", "@use"], ["string", "\"foo\""], ["module-modifier", "as"], " bar", ["punctuation", ";"],
+	["keyword", "@use"], ["string", "\"foo\""], ["module-modifier", "with"], ["punctuation", "("], ["property", [["variable", "$color"]]], ["punctuation", ":"], " blue", ["punctuation", ")"], ["punctuation", ";"],
+	["keyword", "@forward"], ["string", "\"foo\""], ["module-modifier", "show"], " bar", ["punctuation", ";"],
+	["keyword", "@forward"], ["string", "\"foo\""], ["module-modifier", "hide"], " baz", ["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for Sass module modifiers

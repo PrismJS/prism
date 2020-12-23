@@ -52,14 +52,14 @@
 		},
 		'tag': {
 			// Allows for one nested group of braces
-			pattern: /((?:^|\r?\n|\r)[\t ]*)[%.#][\w\-#.]*[\w\-](?:\([^)]+\)|\{(?:\{[^}]+\}|[^}])+\}|\[[^\]]+\])*[\/<>]*/,
+			pattern: /((?:^|\r?\n|\r)[\t ]*)[%.#][\w\-#.]*[\w\-](?:\([^)]+\)|\{(?:\{[^}]+\}|[^{}])+\}|\[[^\]]+\])*[\/<>]*/,
 			lookbehind: true,
 			inside: {
 				'attributes': [
 					{
 						// Lookbehind tries to prevent interpolations from breaking it all
 						// Allows for one nested group of braces
-						pattern: /(^|[^#])\{(?:\{[^}]+\}|[^}])+\}/,
+						pattern: /(^|[^#])\{(?:\{[^}]+\}|[^{}])+\}/,
 						lookbehind: true,
 						inside: Prism.languages.ruby
 					},

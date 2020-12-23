@@ -6,22 +6,22 @@ import Foo.Bar as Foo.Baz hiding
 ----------------------------------------------------
 
 [
-	["import_statement", [
+	["import-statement", [
 		["keyword", "import"],
 		" Foo"
 	]],
-	["import_statement", [
+	["import-statement", [
 		["keyword", "import"],
 		["keyword", "qualified"],
 		" Foobar"
 	]],
-	["import_statement", [
+	["import-statement", [
 		["keyword", "import"],
 		" Foo_42.Bar ",
 		["keyword", "as"],
 		" Foobar"
 	]],
-	["import_statement", [
+	["import-statement", [
 		["keyword", "import"],
 		" Foo.Bar ",
 		["keyword", "as"],

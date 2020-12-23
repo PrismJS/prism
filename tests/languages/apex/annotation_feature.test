@@ -1,0 +1,16 @@
+@Future
+@IsTest
+@isTest(SeeAllData=true)
+
+----------------------------------------------------
+
+[
+	["annotation", "@Future"],
+	["annotation", "@IsTest"],
+	["annotation", "@isTest"],
+	["punctuation", "("],
+	"SeeAllData",
+	["operator", "="],
+	["boolean", "true"],
+	["punctuation", ")"]
+]

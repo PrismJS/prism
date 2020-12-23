@@ -1,0 +1,37 @@
+import Foo
+import Foo_42.Bar as Foobar
+import Foo.Bar as Foo.Baz hiding
+import Foo.Bar (test)
+
+----------------------------------------------------
+
+[
+	["import-statement", [
+		["keyword", "import"],
+		" Foo"
+	]],
+	["import-statement", [
+		["keyword", "import"],
+		" Foo_42.Bar ",
+		["keyword", "as"],
+		" Foobar"
+	]],
+	["import-statement", [
+		["keyword", "import"],
+		" Foo.Bar ",
+		["keyword", "as"],
+		" Foo.Baz ",
+		["keyword", "hiding"]
+	]],
+	["import-statement", [
+	    ["keyword", "import"],
+	    " Foo.Bar"
+	]],
+	["punctuation", "("],
+	["hvariable", "test"],
+	["punctuation", ")"]
+]
+
+----------------------------------------------------
+
+Checks for import statement.

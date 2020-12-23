@@ -38,6 +38,8 @@
 	var lang_dependencies = /*dependencies_placeholder[*/invertRecord({
 		"clike": [
 			"javascript",
+			"apex",
+			"birb",
 			"c",
 			"csharp",
 			"d",
@@ -53,7 +55,6 @@
 			"kotlin",
 			"latte",
 			"nginx",
-			"php",
 			"processing",
 			"protobuf",
 			"purebasic",
@@ -74,11 +75,16 @@
 			"jsdoc",
 			"js-extras",
 			"js-templates",
+			"mongodb",
 			"n4js",
 			"pug",
 			"qml",
 			"jsx",
 			"typescript"
+		],
+		"sql": [
+			"apex",
+			"plsql"
 		],
 		"cpp": "arduino",
 		"markup": [
@@ -143,6 +149,10 @@
 			"jsdoc",
 			"phpdoc"
 		],
+		"typescript": [
+			"jsdoc",
+			"tsx"
+		],
 		"json": [
 			"json5",
 			"jsonp"
@@ -156,9 +166,8 @@
 			"lilypond",
 			"racket"
 		],
-		"sql": "plsql",
+		"haskell": "purescript",
 		"jsx": "tsx",
-		"typescript": "tsx",
 		"bash": "shell-session",
 		"turtle": "sparql",
 		"t4-templating": [
@@ -189,6 +198,7 @@
 		"bash": "shell",
 		"bbcode": "shortcode",
 		"bnf": "rbnf",
+		"bsl": "oscript",
 		"csharp": [
 			"cs",
 			"dotnet"
@@ -205,7 +215,16 @@
 		],
 		"gml": "gamemakerlanguage",
 		"haskell": "hs",
+		"ignore": [
+			"gitignore",
+			"hgignore",
+			"npmignore"
+		],
 		"json": "webmanifest",
+		"kotlin": [
+			"kt",
+			"kts"
+		],
 		"latex": [
 			"tex",
 			"context"
@@ -219,6 +238,7 @@
 		"markdown": "md",
 		"moonscript": "moon",
 		"n4js": "n4jsd",
+		"naniscript": "nani",
 		"objectivec": "objc",
 		"pascal": "objectpascal",
 		"pcaxis": "px",
@@ -228,22 +248,32 @@
 			"mscript"
 		],
 		"purebasic": "pbfasm",
+		"purescript": "purs",
 		"python": "py",
 		"racket": "rkt",
 		"renpy": "rpy",
 		"robotframework": "robot",
 		"ruby": "rb",
+		"shell-session": [
+			"sh-session",
+			"shellsession"
+		],
+		"sml": "smlnj",
 		"solidity": "sol",
 		"solution-file": "sln",
 		"sparql": "rq",
 		"t4-cs": "t4",
 		"turtle": "trig",
 		"typescript": "ts",
+		"typoscript": "tsconfig",
 		"unrealscript": [
 			"uscript",
 			"uc"
 		],
-		"visual-basic": "vb",
+		"visual-basic": [
+			"vb",
+			"vba"
+		],
 		"xeora": "xeoracube",
 		"yaml": "yml"
 	})/*]*/;
@@ -277,8 +307,8 @@
 
 	var script = Prism.util.currentScript();
 	if (script) {
-		var autoloaderFile = /\bplugins\/autoloader\/prism-autoloader\.(?:min\.)js(?:\?[^\r\n/]*)?$/i;
-		var prismFile = /(^|\/)[\w-]+\.(?:min\.)js(?:\?[^\r\n/]*)?$/i;
+		var autoloaderFile = /\bplugins\/autoloader\/prism-autoloader\.(?:min\.)?js(?:\?[^\r\n/]*)?$/i;
+		var prismFile = /(^|\/)[\w-]+\.(?:min\.)?js(?:\?[^\r\n/]*)?$/i;
 
 		var autoloaderPath = script.getAttribute('data-autoloader-path');
 		if (autoloaderPath != null) {
@@ -503,7 +533,13 @@
 		}
 
 		var deps = getDependencies(element);
-		deps.push(language);
+		if (/^diff-./i.test(language)) {
+			// the "diff-xxxx" format is used by the Diff Highlight plugin
+			deps.push('diff');
+			deps.push(language.substr('diff-'.length));
+		} else {
+			deps.push(language);
+		}
 
 		if (!deps.every(isLoaded)) {
 			// the language or some dependencies aren't loaded
