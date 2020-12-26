@@ -714,6 +714,7 @@
 		"markup-attributes": {
 			"title": "Markup attributes",
 			"require": "markup",
+			"modify": "markup",
 			"owner": "RunDevelopment"
 		},
 		"markup-templating": {
