@@ -10,6 +10,7 @@ describe('Examples', function () {
 	const exampleFiles = new Set(fs.readdirSync(__dirname + '/../examples'));
 	const ignore = new Set([
 		// these are libraries and not languages
+		'markup-attributes',
 		'markup-templating',
 		't4-templating',
 		// this does alter some languages but it's mainly a library

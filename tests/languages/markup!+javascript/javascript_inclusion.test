@@ -20,7 +20,9 @@ let foo = '</script>';
 			["punctuation", "<"],
 			"script"
 		]],
-		["attr-name", ["type"]],
+		["attr-name", [
+			"type"
+		]],
 		["attr-value", [
 			["punctuation", "="],
 			["punctuation", "\""],
@@ -69,7 +71,9 @@ let foo = '</script>';
 			["punctuation", "<"],
 			"script"
 		]],
-		["attr-name", ["type"]],
+		["attr-name", [
+			"type"
+		]],
 		["attr-value", [
 			["punctuation", "="],
 			["punctuation", "\""],
