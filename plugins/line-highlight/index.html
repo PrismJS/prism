@@ -73,8 +73,12 @@
 
 	<p><a href="plugins/line-highlight/#play.50-55,60">Linking example</a></p>
 
-	<h2>With line numbers</h2>
-	<pre class="line-numbers" data-line="43" data-start="41" data-src="plugins/line-highlight/prism-line-highlight.js"></pre>
+	<h2>Compatible with <a href="plugins/line-numbers">Line numbers</a></h2>
+	<pre class="line-numbers" data-src="plugins/line-numbers/index.html" data-line="1" data-start="-5" style="white-space:pre-wrap;"></pre>
+
+	<p>Even with some extra content before the <code>code</code> element.</p>
+	<pre class="line-numbers" data-line="7"><div style="padding: .25em">Some content</div><hr/><code class="language-markup" id="foo"></code></pre>
+	<script>document.querySelector('#foo').textContent = document.documentElement.innerHTML;</script>
 
 	<h2>With linkable line numbers</h2>
 	<pre id="foo" class="line-numbers linkable-line-numbers" data-start="20" data-src="plugins/line-highlight/prism-line-highlight.js"></pre>
