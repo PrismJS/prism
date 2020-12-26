@@ -1375,14 +1375,9 @@ if (typeof global !== 'undefined') {
 		TAG_ATTR: { value: TAG_ATTR },
 	});
 
-	Prism.languages.html = Prism.languages.markup;
-	Prism.languages.mathml = Prism.languages.markup;
-	Prism.languages.svg = Prism.languages.markup;
+	Prism.languages.html = Prism.languages.mathml = Prism.languages.svg = Prism.languages.markup;
 
-	Prism.languages.xml = Prism.languages.extend('markup', {});
-	Prism.languages.ssml = Prism.languages.xml;
-	Prism.languages.atom = Prism.languages.xml;
-	Prism.languages.rss = Prism.languages.xml;
+	Prism.languages.rss = Prism.languages.atom = Prism.languages.ssml = Prism.languages.xml = Prism.languages.extend('markup', {});
 
 }(Prism));
 
