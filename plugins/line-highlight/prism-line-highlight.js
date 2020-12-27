@@ -58,13 +58,38 @@
 	}());
 
 	/**
+	 * Returns the top offset of the content box of the given parent and the content box of one of its children.
+	 *
+	 * @param {HTMLElement} parent
+	 * @param {HTMLElement} child
+	 */
+	function getContentBoxTopOffset(parent, child) {
+		var parentStyle = getComputedStyle(parent);
+		var childStyle = getComputedStyle(child);
+
+		/**
+		 * Returns the numeric value of the given pixel value.
+		 *
+		 * @param {string} px
+		 */
+		function pxToNumber(px) {
+			return +px.substr(0, px.length - 2);
+		}
+
+		return child.offsetTop
+			+ pxToNumber(childStyle.borderTopWidth)
+			+ pxToNumber(childStyle.paddingTop)
+			- pxToNumber(parentStyle.paddingTop);
+	}
+
+	/**
 	 * Highlights the lines of the given pre.
 	 *
 	 * This function is split into a DOM measuring and mutate phase to improve performance.
 	 * The returned function mutates the DOM when called.
 	 *
 	 * @param {HTMLElement} pre
-	 * @param {string} [lines]
+	 * @param {string | null} [lines]
 	 * @param {string} [classes='']
 	 * @returns {() => void}
 	 */
@@ -77,8 +102,21 @@
 		var parseMethod = isLineHeightRounded() ? parseInt : parseFloat;
 		var lineHeight = parseMethod(getComputedStyle(pre).lineHeight);
 		var hasLineNumbers = hasClass(pre, 'line-numbers');
-		var parentElement = hasLineNumbers ? pre : pre.querySelector('code') || pre;
+		var codeElement = pre.querySelector('code');
+		var parentElement = hasLineNumbers ? pre : codeElement || pre;
 		var mutateActions = /** @type {(() => void)[]} */ ([]);
+
+		/**
+		 * The top offset between the content box of the <code> element and the content box of the parent element of
+		 * the line highlight element (either `<pre>` or `<code>`).
+		 *
+		 * This offset might not be zero for some themes where the <code> element has a top margin. Some plugins
+		 * (or users) might also add element above the <code> element. Because the line highlight is aligned relative
+		 * to the <pre> element, we have to take this into account.
+		 *
+		 * This offset will be 0 if the parent element of the line highlight element is the `<code>` element.
+		 */
+		var codePreOffset = !codeElement || parentElement == codeElement ? 0 : getContentBoxTopOffset(pre, codeElement);
 
 		ranges.forEach(function (currentRange) {
 			var range = currentRange.split('-');
@@ -101,7 +139,7 @@
 				var endNode = Prism.plugins.lineNumbers.getLine(pre, end);
 
 				if (startNode) {
-					var top = startNode.offsetTop + 'px';
+					var top = startNode.offsetTop + codePreOffset + 'px';
 					mutateActions.push(function () {
 						line.style.top = top;
 					});
@@ -115,13 +153,13 @@
 				}
 			} else {
 				mutateActions.push(function () {
-					line.setAttribute('data-start', start);
+					line.setAttribute('data-start', String(start));
 
 					if (end > start) {
-						line.setAttribute('data-end', end);
+						line.setAttribute('data-end', String(end));
 					}
 
-					line.style.top = (start - offset - 1) * lineHeight + 'px';
+					line.style.top = (start - offset - 1) * lineHeight + codePreOffset + 'px';
 
 					line.textContent = new Array(end - start + 2).join(' \n');
 				});
@@ -222,7 +260,7 @@
 	var fakeTimer = 0; // Hack to limit the number of times applyHash() runs
 
 	Prism.hooks.add('before-sanity-check', function (env) {
-		var pre = env.element.parentNode;
+		var pre = env.element.parentElement;
 		var lines = pre && pre.getAttribute('data-line');
 
 		if (!pre || !lines || !/pre/i.test(pre.nodeName)) {
@@ -248,7 +286,7 @@
 	});
 
 	Prism.hooks.add('complete', function completeHook(env) {
-		var pre = env.element.parentNode;
+		var pre = env.element.parentElement;
 		var lines = pre && pre.getAttribute('data-line');
 
 		if (!pre || !lines || !/pre/i.test(pre.nodeName)) {
