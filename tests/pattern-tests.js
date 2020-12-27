@@ -5,7 +5,8 @@ const PrismLoader = require('./helper/prism-loader');
 const { BFS, parseRegex } = require('./helper/util');
 const { languages } = require('../components.json');
 const { visitRegExpAST } = require('regexpp');
-const { JS, Words, NFA, CharSet } = require('refa');
+const { JS, Words, NFA } = require('refa');
+const scslre = require('scslre');
 
 /**
  * A set of all safe (non-exponentially backtracking) RegExp literals (string).
@@ -522,230 +523,110 @@ function testPatterns(Prism) {
 				return;
 			}
 
-			const EMPTY = ast.flags.unicode ? CharSet.empty(0x10FFFF) : CharSet.empty(0xFFFF);
+			const result = scslre.analyse(ast, { maxReports: 1, reportTypes: { 'Move': false } });
+			if (result.reports.length > 0) {
+				const polyCase = result.reports[0];
 
-			/**
-			 * @param {Node} node
-			 * @returns {CharSet}
-			 */
-			function toCharSet(node) {
-				switch (node.type) {
-					case "Alternative": {
-						if (node.elements.length === 1) {
-							return toCharSet(node.elements[0]);
-						}
-						return EMPTY;
-					}
-					case "CapturingGroup":
-					case "Group": {
-						let total = EMPTY;
-						for (const item of node.alternatives) {
-							total = total.union(toCharSet(item));
-						}
-						return total;
-					}
-					case "Character":
-						return JS.createCharSet([node.value], ast.flags);
-					case "CharacterClass": {
-						const value = JS.createCharSet(node.elements.map(x => {
-							if (x.type === "CharacterSet") {
-								return x;
-							} else if (x.type === "Character") {
-								return x.value;
-							} else {
-								return { min: x.min.value, max: x.max.value };
-							}
-						}), ast.flags);
-						if (node.negate) {
-							return value.negate();
-						} else {
-							return value;
-						}
-					}
-					case "CharacterSet":
-						return JS.createCharSet([node], ast.flags);
+				const lang = `/${polyCase.character.literal.source}/${polyCase.character.literal.flags}`;
 
-					default:
-						return EMPTY;
-				}
-			}
+				let rangeOffset;
+				let rangeStr;
+				let rangeHighlight;
+				let exponential = polyCase.exponential;
 
-			/**
-			 * @param {Assertion} assertion
-			 * @returns {CharSet | false}
-			 */
-			function singleCharacterAssertion(assertion) {
-				switch (assertion.kind) {
-					case "end":
-					case "start": {
-						if (ast.flags.multiline) {
-							return JS.createCharSet([{ kind: "any" }], {}).negate();
-						} else {
-							return EMPTY;
-						}
+				switch (polyCase.type) {
+					case 'Trade': {
+						const start = Math.min(polyCase.startQuant.start, polyCase.endQuant.start);
+						const end = Math.max(polyCase.startQuant.end, polyCase.endQuant.end);
+						rangeOffset = start + 1;
+						rangeStr = patternStr.substring(start + 1, end + 1);
+						rangeHighlight = highlight([
+							{ ...polyCase.startQuant, label: 'start' },
+							{ ...polyCase.endQuant, label: 'end' }
+						], -start);
+						break;
 					}
-					case "lookahead":
-					case "lookbehind": {
-						let total = EMPTY;
-						for (const alt of assertion.alternatives) {
-							if (alt.elements.length === 1) {
-								const first = alt.elements[0];
-								if (first.type === "Character" ||
-									first.type === "CharacterSet" ||
-									first.type === "CharacterClass") {
-									total = total.union(toCharSet(first));
-								}
-							}
-						}
-
-						if (assertion.negate) {
-							return total.negate();
-						} else {
-							return total;
-						}
+					case 'Self': {
+						rangeOffset = polyCase.parentQuant.start + 1;
+						rangeStr = patternStr.substring(polyCase.parentQuant.start + 1, polyCase.parentQuant.end + 1);
+						rangeHighlight = highlight([{...polyCase.quant, label: 'self'}], -polyCase.parentQuant.start);
+						break;
+					}
+					case 'Move': {
+						rangeOffset = 1;
+						rangeStr = patternStr.substring(1, polyCase.quant.end + 1);
+						rangeHighlight = highlight([polyCase.quant]);
+						break;
 					}
 					default:
-						return false;
+						throw Error();
 				}
+
+				const fixed = polyCase.fix();
+
+				assert.fail(
+					`${tokenPath}: ${exponential ? 'Exponential' : 'Polynomial'} backtracking. `
+					+ `By repeating any character that matches ${lang}, an attack string can be created.`
+					+ `\n`
+					+ `\n${indent(rangeStr)}`
+					+ `\n${indent(rangeHighlight)}`
+					+ `\n`
+					+ `\nFull pattern:`
+					+ `\n${patternStr}`
+					+ `\n${indent(rangeHighlight, " ".repeat(rangeOffset))}`
+					+ `\n`
+					+ `\n` + (fixed ? `Fixed:\n/${fixed.source}/${fixed.flags}` : `Fix not available.`)
+				);
 			}
-
-			/**
-			 * @param {Element} from
-			 * @returns {Element | null}
-			 */
-			function getAfter(from) {
-				const parent = from.parent;
-				if (parent.type === "Quantifier") {
-					return getAfter(parent);
-				} else if (parent.type === "Alternative") {
-					const index = parent.elements.indexOf(from);
-					const after = parent.elements[index + 1];
-					if (after) {
-						return after;
-					} else {
-						const grandParent = parent.parent;
-						if (grandParent.type === "Pattern") {
-							return null;
-						} else {
-							return getAfter(grandParent);
-						}
-					}
-				} else {
-					throw Error("Unreachable");
-				}
-			}
-
-			visitRegExpAST(ast.pattern, {
-				onQuantifierLeave(node) {
-					if (node.max !== Infinity) {
-						return;
-					}
-					const char = toCharSet(node.element);
-					tryReachUntil(getAfter(node), char, null);
-
-					/**
-					 * @param {Quantifier} quantifier
-					 * @param {CharSet} char
-					 */
-					function assertNoPoly(quantifier, char) {
-						if (quantifier.max === Infinity) {
-							const qChar = toCharSet(quantifier.element);
-							if (qChar && !qChar.isDisjointWith(char)) {
-								const intersection = qChar.intersect(char);
-								const literal = JS.toLiteral({
-									type: "Concatenation",
-									elements: [
-										{ type: "CharacterClass", characters: intersection }
-									]
-								})
-								const lang = `/${literal.source}/${literal.flags}`;
-
-								const rangeStr = patternStr.substring(node.start + 1, quantifier.end + 1);
-								const rangeHighlight = `^${"~".repeat(node.end - node.start - 1)}${" ".repeat(quantifier.start - node.end)}^${"~".repeat(quantifier.end - quantifier.start - 1)}`;
-
-								assert.fail(`${tokenPath}: Polynomial backtracking. By repeating any character that matches ${lang}, an attack string can be created.\n\n    ${rangeStr}\n    ${rangeHighlight}\n\nFull pattern:\n${patternStr}\n${" ".repeat(node.start + 1)}${rangeHighlight}`);
-							}
-						}
-					}
-
-					/**
-					 * @param {Element | null | undefined} element
-					 * @param {CharSet} char
-					 * @param {Element | null | undefined} until
-					 * @returns {CharSet}
-					 */
-					function tryReachUntil(element, char, until) {
-						if (!element || element == until || char.isEmpty) {
-							return char;
-						}
-
-						const after = getAfter(element);
-
-						if (element.type === "Quantifier") {
-							assertNoPoly(element, char);
-						}
-
-						return tryReachUntil(after, goInto(element, after, char), until);
-					}
-
-					/**
-					 * @param {Element} element
-					 * @param {Element} after
-					 * @param {CharSet} char
-					 * @returns {CharSet}
-					 */
-					function goInto(element, after, char) {
-						switch (element.type) {
-							case "Assertion": {
-								if (element.kind === "lookahead" || element.kind === "lookbehind") {
-									for (const alt of element.alternatives) {
-										if (alt.elements.length > 0) {
-											tryReachUntil(alt.elements[0], char, after);
-										}
-									}
-								}
-
-								const assertChar = singleCharacterAssertion(element);
-								if (assertChar === false) {
-									return EMPTY;
-								} else {
-									return char.intersect(assertChar);
-								}
-							}
-							case "Group":
-							case "CapturingGroup": {
-								let total = EMPTY;
-								for (const alt of element.alternatives) {
-									if (alt.elements.length > 0) {
-										total = total.union(tryReachUntil(alt.elements[0], char, after));
-									} else {
-										total = char;
-									}
-								}
-								return total;
-							}
-							case "Character":
-							case "CharacterClass":
-							case "CharacterSet": {
-								return char.intersect(toCharSet(element));
-							}
-							case "Quantifier": {
-								if (element.min === 0) {
-									goInto(element.element, after, char);
-									return char;
-								} else {
-									return goInto(element.element, after, char);
-								}
-							}
-							default:
-								return EMPTY;
-						}
-					}
-				},
-			});
 
 			polySafeRegexes.add(patternStr);
 		});
 	});
 
+}
+
+/**
+ * @param {Highlight[]} highlights
+ * @param {number} [offset]
+ * @returns {string}
+ *
+ * @typedef Highlight
+ * @property {number} start
+ * @property {number} end
+ */
+function highlight(highlights, offset = 0) {
+	highlights.sort((a, b) => a.start - b.start);
+
+	const lines = [];
+	while (highlights.length > 0) {
+		const newHighlights = [];
+		let l = '';
+		for (const highlight of highlights) {
+			const start = highlight.start + offset;
+			const end = highlight.end + offset;
+			if (start < l.length) {
+				newHighlights.push(highlight);
+			} else {
+				l += ' '.repeat(start - l.length);
+				l += '^';
+				l += '~'.repeat(end - start - 1);
+				if (highlight.label) {
+					l += '[' + highlight.label + ']';
+				}
+			}
+		}
+		lines.push(l);
+		highlights = newHighlights;
+	}
+
+	return lines.join('\n');
+}
+
+/**
+ * @param {string} str
+ * @param {string} amount
+ * @returns {string}
+ */
+function indent(str, amount = '    ') {
+	return str.split(/\r?\n/g).map(m => m === '' ? '' : amount + m).join('\n');
 }
