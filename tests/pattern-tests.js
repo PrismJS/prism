@@ -67,14 +67,11 @@ for (const lang in languages) {
  * @param {any} Prism
  *
  * @typedef {import("./helper/util").LiteralAST} LiteralAST
- * @typedef {import("regexpp/ast").Assertion} Assertion
  * @typedef {import("regexpp/ast").CapturingGroup} CapturingGroup
  * @typedef {import("regexpp/ast").Element} Element
  * @typedef {import("regexpp/ast").Group} Group
  * @typedef {import("regexpp/ast").LookaroundAssertion} LookaroundAssertion
- * @typedef {import("regexpp/ast").Node} Node
  * @typedef {import("regexpp/ast").Pattern} Pattern
- * @typedef {import("regexpp/ast").Quantifier} Quantifier
  */
 function testPatterns(Prism) {
 
