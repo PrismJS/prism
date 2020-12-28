@@ -67,7 +67,7 @@
 
 	<p>The files of a case and specified in multiple ways.</p>
 
-	<p>You can specify all files in a simple array where each entry is a path relative to <code>benchmark/files</code> which resolves to a file or a URL of a file to download. Example:</p>
+	<p>You can specify all files in a simple array where each entry is a path relative to <code>./benchmark/</code> which resolves to a file or a URL of a file to download. Example:</p>
 	<pre><code class="language-javascript">cases: {
 	'css': {
 		files: [
@@ -77,7 +77,7 @@
 	}
 }</code></pre>
 
-	<p>If you want to include all files from another case, you can use the <code>extends</code> property. Example:</p>
+	<p>If you wanted to include all files from another case, use the <code>extends</code> property. Example:</p>
 	<pre><code class="language-javascript">cases: {
 	'css': { files: [ 'style.css' ] },
 	'css!+css-extras': {

@@ -39,15 +39,15 @@ const config = {
 			repo: 'https://github.com/PrismJS/prism.git'
 		},
 		/*{
-			repo: 'https://github.com/RunDevelopment/prism.git',
-			branch: 'core-linked-list'
+			repo: 'https://github.com/<Your user name>/prism.git',
+			branch: 'some-brach-you-want-to-compare-to'
 		}*/
 	],
 
 	cases: {
 		'css': {
 			files: [
-				'../../assets/style.css'
+				'../assets/style.css'
 			]
 		},
 		'css!+css-extras': { extends: 'css' },
@@ -58,19 +58,19 @@ const config = {
 				'https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/prism.min.js',
 				'https://code.jquery.com/jquery-3.4.1.js',
 				'https://code.jquery.com/jquery-3.4.1.min.js',
-				'../../assets/utopia.js'
+				'../assets/utopia.js'
 			]
 		},
 		'json': {
 			files: [
-				'../../components.json',
-				'../../package-lock.json'
+				'../components.json',
+				'../package-lock.json'
 			]
 		},
 		'markup': {
 			files: [
-				'../../download.html',
-				'../../index.html',
+				'../download.html',
+				'../index.html',
 				'https://github.com/PrismJS/prism', // the PrismJS/prism GitHub page
 			]
 		},

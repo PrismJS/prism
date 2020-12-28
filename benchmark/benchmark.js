@@ -149,10 +149,9 @@ async function getCases(config) {
 	async function getFileInfo(name) {
 		let fi = filesMap.get(name);
 		if (fi === undefined) {
-			const filesDir = path.join(__dirname, 'files');
 			let p;
 			if (/^https:\/\//.test(name)) {
-				const downloadDir = path.join(filesDir, 'downloads');
+				const downloadDir = path.join(__dirname, 'downloads');
 				await fs.promises.mkdir(downloadDir, { recursive: true });
 				// file path
 				const hash = crypto.createHash('md5').update(name).digest('hex');
@@ -163,7 +162,7 @@ async function getCases(config) {
 					await fs.promises.writeFile(p, await fetch(name).then(r => r.text()), 'utf8');
 				}
 			} else {
-				p = path.resolve(filesDir, name);
+				p = path.resolve(__dirname, name);
 			}
 			const stat = await fs.promises.stat(p);
 			if (stat.isFile()) {
@@ -182,18 +181,6 @@ async function getCases(config) {
 	/** @type {Map<string, Set<FileInfo>>} */
 	const map = new Map();
 
-	/**
-	 * @param {T[] | T | undefined | null} value
-	 * @param {(value: T, index: number) => void} callback
-	 * @template T
-	 */
-	function forEach(value, callback) {
-		if (Array.isArray(value)) {
-			value.forEach(callback);
-		} else if (value != undefined) {
-			callback(value, 0);
-		}
-	}
 	/**
 	 * @param {T[] | T | undefined | null} value
 	 * @returns {readonly T[]}

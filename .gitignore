@@ -4,4 +4,4 @@ node_modules
 .DS_Store
 
 benchmark/remotes/
-benchmark/files/downloads
+benchmark/downloads/

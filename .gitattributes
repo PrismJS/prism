@@ -2,6 +2,3 @@
 
 # Test files should not have their line endings modified by git
 /tests/languages/**/*.test binary
-
-# Same for benchmark files
-/benchmark/files/** binary
