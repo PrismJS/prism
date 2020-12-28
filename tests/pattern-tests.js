@@ -13,7 +13,7 @@ const scslre = require('scslre');
  *
  * @type {Set<string>}
  */
-const safeRegexes = new Set();
+const expoSafeRegexes = new Set();
 
 /**
  * A set of all safe (non-polynomially backtracking) RegExp literals (string).
@@ -385,7 +385,7 @@ function testPatterns(Prism) {
 	it('- should not cause exponential backtracking', function () {
 		forEachPattern(({ pattern, ast, tokenPath }) => {
 			const patternStr = String(pattern);
-			if (safeRegexes.has(patternStr)) {
+			if (expoSafeRegexes.has(patternStr)) {
 				// we know that the pattern won't cause exp backtracking because we checked before
 				return;
 			}
@@ -508,7 +508,7 @@ function testPatterns(Prism) {
 				},
 			});
 
-			safeRegexes.add(patternStr);
+			expoSafeRegexes.add(patternStr);
 		});
 	});
 
@@ -520,50 +520,48 @@ function testPatterns(Prism) {
 				return;
 			}
 
-			const result = scslre.analyse(ast, { maxReports: 1, reportTypes: { 'Move': false } });
+			const result = scslre.analyse(ast, { maxReports: 1, reportTypes: { 'Move': true } });
 			if (result.reports.length > 0) {
-				const polyCase = result.reports[0];
-
-				const lang = `/${polyCase.character.literal.source}/${polyCase.character.literal.flags}`;
+				const report = result.reports[0];
 
 				let rangeOffset;
 				let rangeStr;
 				let rangeHighlight;
-				let exponential = polyCase.exponential;
 
-				switch (polyCase.type) {
+				switch (report.type) {
 					case 'Trade': {
-						const start = Math.min(polyCase.startQuant.start, polyCase.endQuant.start);
-						const end = Math.max(polyCase.startQuant.end, polyCase.endQuant.end);
+						const start = Math.min(report.startQuant.start, report.endQuant.start);
+						const end = Math.max(report.startQuant.end, report.endQuant.end);
 						rangeOffset = start + 1;
 						rangeStr = patternStr.substring(start + 1, end + 1);
 						rangeHighlight = highlight([
-							{ ...polyCase.startQuant, label: 'start' },
-							{ ...polyCase.endQuant, label: 'end' }
+							{ ...report.startQuant, label: 'start' },
+							{ ...report.endQuant, label: 'end' }
 						], -start);
 						break;
 					}
 					case 'Self': {
-						rangeOffset = polyCase.parentQuant.start + 1;
-						rangeStr = patternStr.substring(polyCase.parentQuant.start + 1, polyCase.parentQuant.end + 1);
-						rangeHighlight = highlight([{...polyCase.quant, label: 'self'}], -polyCase.parentQuant.start);
+						rangeOffset = report.parentQuant.start + 1;
+						rangeStr = patternStr.substring(report.parentQuant.start + 1, report.parentQuant.end + 1);
+						rangeHighlight = highlight([{...report.quant, label: 'self'}], -report.parentQuant.start);
 						break;
 					}
 					case 'Move': {
 						rangeOffset = 1;
-						rangeStr = patternStr.substring(1, polyCase.quant.end + 1);
-						rangeHighlight = highlight([polyCase.quant]);
+						rangeStr = patternStr.substring(1, report.quant.end + 1);
+						rangeHighlight = highlight([report.quant]);
 						break;
 					}
 					default:
-						throw Error();
+						throw new Error('Invalid report type "' + report.type + '". This should never happen.');
 				}
 
-				const fixed = polyCase.fix();
+				const attackChar = `/${report.character.literal.source}/${report.character.literal.flags}`;
+				const fixed = report.fix();
 
 				assert.fail(
-					`${tokenPath}: ${exponential ? 'Exponential' : 'Polynomial'} backtracking. `
-					+ `By repeating any character that matches ${lang}, an attack string can be created.`
+					`${tokenPath}: ${report.exponential ? 'Exponential' : 'Polynomial'} backtracking. `
+					+ `By repeating any character that matches ${attackChar}, an attack string can be created.`
 					+ `\n`
 					+ `\n${indent(rangeStr)}`
 					+ `\n${indent(rangeHighlight)}`
