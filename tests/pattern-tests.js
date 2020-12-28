@@ -520,7 +520,7 @@ function testPatterns(Prism) {
 				return;
 			}
 
-			const result = scslre.analyse(ast, { maxReports: 1, reportTypes: { 'Move': true } });
+			const result = scslre.analyse(ast, { maxReports: 1, reportTypes: { 'Move': false } });
 			if (result.reports.length > 0) {
 				const report = result.reports[0];
 
