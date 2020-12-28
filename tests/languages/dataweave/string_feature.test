@@ -1,0 +1,27 @@
+""
+"foo"
+"foo\"bar\"baz"
+"\u2642\\"
+`hello`
+'test'
+"this is a multiline
+test
+that 
+can 
+be long"
+"This string \r\n Should also \\ \t"
+
+----------------------------------------------------
+
+[
+	["string", "\"\""],
+	["string", "\"foo\""],
+	["string", "\"foo\\\"bar\\\"baz\""],
+	["string", "\"\\u2642\\\\\""],
+	["string", "`hello`"],
+	["string", "'test'"],
+	["string", "\"this is a multiline\r\ntest\r\nthat \r\ncan \r\nbe long\""],
+	["string", "\"This string \\r\\n Should also \\\\ \\t\""]
+]
+----------------------------------------------------
+Check for strings

@@ -17,7 +17,7 @@ Prism.languages.erlang = {
 	'number': [
 		/\$\\?./,
 		/\d+#[a-z0-9]+/i,
-		/(?:\b\d+\.?\d*|\B\.\d+)(?:e[+-]?\d+)?/i
+		/(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:e[+-]?\d+)?/i
 	],
 	'function': /\b[a-z][\w@]*(?=\()/,
 	'variable': {

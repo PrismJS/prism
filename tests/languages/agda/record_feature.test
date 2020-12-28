@@ -15,7 +15,6 @@ open Fin
 	["operator", ":"],
 	" Nat",
 	["punctuation", ")"],
-	["function", " "],
 	["operator", ":"],
 	["keyword", "Set"],
 	["keyword", "where"],

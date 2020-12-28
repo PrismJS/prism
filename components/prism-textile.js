@@ -62,7 +62,7 @@
 				// # List item
 				// * List item
 				'list': {
-					pattern: withModifier(/^[*#]+<MOD>*\s+.+/.source, 'm'),
+					pattern: withModifier(/^[*#]+<MOD>*\s+\S.*/.source, 'm'),
 					inside: {
 						'modifier': {
 							pattern: withModifier(/(^[*#]+)<MOD>+/.source),
@@ -77,7 +77,7 @@
 				'table': {
 					// Modifiers can be applied to the row: {color:red}.|1|2|3|
 					// or the cell: |{color:red}.1|2|3|
-					pattern: withModifier(/^(?:(?:<MOD>|<PAR>|[<>=^~])+\.\s*)?(?:\|(?:(?:<MOD>|<PAR>|[<>=^~_]|[\\/]\d+)+\.)?[^|]*)+\|/.source, 'm'),
+					pattern: withModifier(/^(?:(?:<MOD>|<PAR>|[<>=^~])+\.\s*)?(?:\|(?:(?:<MOD>|<PAR>|[<>=^~_]|[\\/]\d+)+\.|(?!(?:<MOD>|<PAR>|[<>=^~_]|[\\/]\d+)+\.))[^|]*)+\|/.source, 'm'),
 					inside: {
 						'modifier': {
 							// Modifiers for rows after the first one are
@@ -190,10 +190,10 @@
 				// !image.jpg!
 				// !image.jpg(Title)!:http://example.com
 				'image': {
-					pattern: withModifier(/!(?:<MOD>|<PAR>|[<>=])*[^!\s()]+(?:\([^)]+\))?!(?::.+?(?=[^\w/]?(?:\s|$)))?/.source),
+					pattern: withModifier(/!(?:<MOD>|<PAR>|[<>=])*(?![<>=])[^!\s()]+(?:\([^)]+\))?!(?::.+?(?=[^\w/]?(?:\s|$)))?/.source),
 					inside: {
 						'source': {
-							pattern: withModifier(/(^!(?:<MOD>|<PAR>|[<>=])*)[^!\s()]+(?:\([^)]+\))?(?=!)/.source),
+							pattern: withModifier(/(^!(?:<MOD>|<PAR>|[<>=])*)(?![<>=])[^!\s()]+(?:\([^)]+\))?(?=!)/.source),
 							lookbehind: true,
 							alias: 'url'
 						},

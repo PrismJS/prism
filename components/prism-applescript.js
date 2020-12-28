@@ -6,7 +6,7 @@ Prism.languages.applescript = {
 		/#.+/
 	],
 	'string': /"(?:\\.|[^"\\\r\n])*"/,
-	'number': /(?:\b\d+\.?\d*|\B\.\d+)(?:e-?\d+)?\b/i,
+	'number': /(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:e-?\d+)?\b/i,
 	'operator': [
 		/[&=≠≤≥*+\-\/÷^]|[<>]=?/,
 		/\b(?:(?:start|begin|end)s? with|(?:(?:does not|doesn't) contain|contains?)|(?:is|isn't|is not) (?:in|contained by)|(?:(?:is|isn't|is not) )?(?:greater|less) than(?: or equal)?(?: to)?|(?:(?:does not|doesn't) come|comes) (?:before|after)|(?:is|isn't|is not) equal(?: to)?|(?:(?:does not|doesn't) equal|equals|equal to|isn't|is not)|(?:a )?(?:ref(?: to)?|reference to)|(?:and|or|div|mod|as|not))\b/

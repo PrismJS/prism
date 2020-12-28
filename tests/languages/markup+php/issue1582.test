@@ -9,7 +9,7 @@
 	["php", [
 		["delimiter", "<?php"],
 		["keyword", "echo"],
-		["single-quoted-string", "'<?xml version=\"1.0\" encoding=\"UTF-8\"?><tracker />'"],
+		["string", "'<?xml version=\"1.0\" encoding=\"UTF-8\"?><tracker />'"],
 		["punctuation", ";"],
 		["keyword", "echo"],
 		["constant", "PHP_EOL"],

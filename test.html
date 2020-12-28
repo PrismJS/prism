@@ -91,6 +91,44 @@ pre.show-tokens {
 	margin: 0 1px;
 }
 
+#options {
+	position: relative;
+}
+
+.link-wrapper {
+	position: absolute;
+	top: 0;
+	right: 0;
+	background-color: white;
+}
+.link-wrapper .hidden-wrapper {
+	display: none;
+}
+
+.link-wrapper:hover {
+	top: -.5em;
+	right: -1em;
+	width: 300px;
+	padding: .5em 1em;
+	outline: 1px solid #888;
+}
+.link-wrapper:hover .hidden-wrapper {
+	display: block;
+}
+
+.link-wrapper input {
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.link-wrapper button {
+	border: none;
+	background: none;
+	font: inherit;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
 </style>
 <script src="assets/prefixfree.min.js"></script>
 
@@ -115,9 +153,16 @@ pre.show-tokens {
 		<p>Result:</p>
 		<pre><code></code></pre>
 
-		<p id="options">
+		<div id="options" style="margin: 1em 0">
 			<label><input type="checkbox" id="option-show-tokens"> Show tokens</label>
-		</p>
+			<div class="link-wrapper">
+				<a id="share-link" href="" style="float: right;">Share</a>
+				<div class="hidden-wrapper">
+					<input id="share-link-input" type="text" readonly onClick="this.select();"/>
+					<button type="button" id="copy-share-link" onclick="copyShare();">Copy to clipboard</button>
+				</div>
+			</div>
+		</div>
 		<p id="language">
 			<strong>Language:</strong>
 		</p>
@@ -151,17 +196,40 @@ function highlightCode() {
 	code = newCode;
 };
 
-
+function getHashParams() {
+	return parseUrlParams((location.hash || '').substr(1));
+}
+function setHashParams(params) {
+	location.hash = stringifyUrlParams(params);
+}
 function updateHashLanguage(lang) {
-	location.hash = lang ? 'language=' + lang : '';
+	var params = getHashParams();
+	params.language = lang;
+	setHashParams(params);
 }
 function getHashLanguage() {
-	var match = /[#&]language=([^&]+)/.exec(location.hash);
-	return match ? match[1] : null;
+	return getHashParams().language;
 }
 function getRadio(lang) {
 	return $('input[name=language][value="' + lang + '"]');
 }
+
+function copyShare() {
+	const link = $('#share-link').href;
+	try {
+		navigator.clipboard.writeText(link).then(function () {
+			$('#copy-share-link').textContent = 'Copied!';
+		}, function () {
+			$('#copy-share-link').textContent = 'Failed to copy!';
+		});
+	} catch (e) {
+		$('#copy-share-link').textContent = 'Failed to copy!';
+	}
+	setTimeout(function () {
+		$('#copy-share-link').textContent = 'Copy to clipboard';
+	}, 5000);
+}
+window.copyShare = copyShare;
 
 window.onhashchange = function () {
 	var input = getRadio(getHashLanguage());
@@ -196,6 +264,7 @@ for (var id in languages) {
 						code.className = 'language-' + lang;
 						code.textContent = code.textContent;
 						updateHashLanguage(lang);
+						updateShareLink();
 
 						// loadLanguage() returns a promise, so we use highlightCode()
 						// as resolve callback. The promise will be immediately
@@ -277,9 +346,14 @@ selectedRadio.onclick();
 var textarea = $('textarea', form);
 
 try {
-	var lastCode = sessionStorage.getItem('test-code');
-	if (lastCode) {
-		textarea.value = lastCode;
+	var hashText = getHashParams().text;
+	if (hashText) {
+		textarea.value = hashText;
+	} else {
+		var lastCode = sessionStorage.getItem('test-code');
+		if (lastCode) {
+			textarea.value = lastCode;
+		}
 	}
 } catch (e) {
 	// ignore sessionStorage errors
@@ -289,6 +363,8 @@ textarea.oninput = function() {
 	var codeText = this.value || '';
 	code.textContent = codeText;
 	highlightCode();
+
+	updateShareLink();
 
 	try {
 		sessionStorage.setItem('test-code', codeText);
@@ -308,8 +384,57 @@ $('#option-show-tokens').onchange = function () {
 };
 $('#option-show-tokens').onchange();
 
-})();
+function updateShareLink() {
+	var params = {
+		language: /\blang(?:uage)?-([\w-]+)\b/i.exec(code.className)[1],
+		text: code.textContent,
+	};
 
+	$('#share-link').href = '#' + stringifyUrlParams(params);
+	$('#share-link-input').value = $('#share-link').href;
+}
+
+
+/**
+ * @param {Record<string, string | number | boolean>} params
+ * @returns {string}
+ */
+function stringifyUrlParams(params) {
+	var parts = [];
+	for (var name in params) {
+		if (params.hasOwnProperty(name)) {
+			var value = params[name];
+			if (typeof value === 'boolean') {
+				if (value) {
+					parts.push(name);
+				}
+			} else {
+				parts.push(name + '=' + encodeURIComponent(value));
+			}
+		}
+	}
+	return parts.join('&');
+}
+/**
+ * @param {string} str
+ * @returns {Record<string, string | boolean>}
+ */
+function parseUrlParams(str) {
+	/** @type {Record<string, string | boolean>} */
+	var params = {};
+	str.split(/&/g).filter(Boolean).forEach(function (part) {
+		var parts = part.split(/=/);
+		var name = parts[0];
+		if (parts.length === 1) {
+			params[name] = true;
+		} else {
+			params[name] = decodeURIComponent(parts[1]);
+		}
+	});
+	return params;
+}
+
+})();
 </script>
 
 </body>

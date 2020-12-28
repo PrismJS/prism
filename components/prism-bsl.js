@@ -28,23 +28,23 @@ Prism.languages.bsl = {
 		}
 	],
 	'number': {
-		pattern: /(^(?=\d)|[^\w\u0400-\u0484\u0487-\u052f\u1c80-\u1c88\u1d2b\u1d78\u2de0-\u2dff\ua640-\ua69f\ufe2e\ufe2f])(?:\d+\.?\d*|\.\d+)(?:E[+-]?\d+)?/i,
+		pattern: /(^(?=\d)|[^\w\u0400-\u0484\u0487-\u052f\u1c80-\u1c88\u1d2b\u1d78\u2de0-\u2dff\ua640-\ua69f\ufe2e\ufe2f])(?:\d+(?:\.\d*)?|\.\d+)(?:E[+-]?\d+)?/i,
 		lookbehind: true
 	},
-	'operator': [	
+	'operator': [
 		/[<>+\-*/]=?|[%=]/,
 		// RU
 		{
 			pattern: /(^|[^\w\u0400-\u0484\u0487-\u052f\u1c80-\u1c88\u1d2b\u1d78\u2de0-\u2dff\ua640-\ua69f\ufe2e\ufe2f])(?:и|или|не)(?![\w\u0400-\u0484\u0487-\u052f\u1c80-\u1c88\u1d2b\u1d78\u2de0-\u2dff\ua640-\ua69f\ufe2e\ufe2f])/i,
 			lookbehind: true
-		},		
+		},
 		// EN
 		{
 			pattern: /\b(?:and|or|not)\b/i
 		}
-		
+
 	],
-	'punctuation': /\(\.|\.\)|[()\[\]:;,.]/,	
+	'punctuation': /\(\.|\.\)|[()\[\]:;,.]/,
 	'directive': [
 		// Теги препроцессора вида &Клиент, &Сервер, ...
 		// Preprocessor tags of the type &Client, &Server, ...
@@ -54,17 +54,17 @@ Prism.languages.bsl = {
 			alias: 'important'
 		},
 		// Инструкции препроцессора вида:
-		// #Если Сервер Тогда 
-		// ... 
+		// #Если Сервер Тогда
+		// ...
 		// #КонецЕсли
 		// Preprocessor instructions of the form:
-		// #If Server Then 
-		// ... 
+		// #If Server Then
+		// ...
 		// #EndIf
 		{
 			pattern: /^\s*#.*/gm,
 			alias: 'important'
-		}	
+		}
 	]
 };
 

@@ -12,8 +12,10 @@ examples/
 tests/
 *.tgz
 *.html
+*.svg
 bower.json
 composer.json
+dangerfile.js
 gulpfile.js
 .editorconfig
 .gitattributes

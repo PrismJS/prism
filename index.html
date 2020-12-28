@@ -95,19 +95,23 @@
 			Prism forces you to use the correct element for marking up code: <code>&lt;code></code>.
 			On its own for inline code, or inside a <code>&lt;pre></code> for blocks of code.
 			In addition, the language is defined through the way recommended in the HTML5 draft: through a <code>language-xxxx</code> class.</li>
-		<li>The language definition is inherited. This means that if multiple code snippets have the same language, you can just define it once, in one of their common ancestors.</li>
-		<li>Supports <strong>parallelism with Web Workers</strong>, if available. Disabled by default (<a href="faq.html#why-is-asynchronous-highlighting-disabled-by-default">why?</a>).</li>
-		<li>Very easy to extend without modifying the code, due to Prism’s <a href="#plugins">plugin architecture</a>. Multiple hooks are scattered throughout the source.</li>
-		<li>Very easy to <a href="extending.html#language-definitions">define new languages</a>. Only thing you need is a good understanding of regular expressions</li>
-		<li>All styling is done through CSS, with <a href="faq.html#how-do-i-know-which-tokens-i-can-style-for">sensible class names</a> rather than ugly namespaced abbreviated nonsense.</li>
-		<li>Wide browser support: Edge, IE11, Firefox, Chrome, Safari, <a href="faq.html#this-page-doesnt-work-in-opera">Opera</a>, most Mobile browsers</li>
-		<li>Highlights embedded languages (e.g. CSS inside HTML, JavaScript inside HTML)</li>
-		<li>Highlights inline code as well, not just code blocks</li>
-		<li>Highlights nested languages (CSS in HTML, JavaScript in HTML)</li>
-		<li>It doesn’t force you to use any Prism-specific markup, not even a Prism-specific class name, only standard markup you should be using anyway. So, you can just try it for a while, remove it if you don’t like it and leave no traces behind.</li>
-		<li>Highlight specific lines and/or line ranges (requires <a href="plugins/line-highlight/">plugin</a>)</li>
-		<li>Show invisible characters like tabs, line breaks etc (requires <a href="plugins/show-invisibles/">plugin</a>)</li>
-		<li>Autolink URLs and emails, use Markdown links in comments (requires <a href="plugins/autolinker/">plugin</a>)</li>
+		<li>The <code>language-xxxx</code> class is inherited.
+			This means that if multiple code snippets have the same language, you can just define it once,in one of their common ancestors.</li>
+		<li>Supports <strong>parallelism with Web Workers</strong>, if available.
+			Disabled by default (<a href="faq.html#why-is-asynchronous-highlighting-disabled-by-default">why?</a>).</li>
+		<li>Very easy to extend without modifying the code, due to Prism’s <a href="#plugins">plugin architecture</a>.
+			Multiple hooks are scattered throughout the source.</li>
+		<li>Very easy to <a href="extending.html#language-definitions">define new languages</a>.
+			The only thing you need is a good understanding of regular expressions.</li>
+		<li>All styling is done through CSS, with <a href="faq.html#how-do-i-know-which-tokens-i-can-style-for">sensible class names</a> rather than ugly, namespaced, abbreviated nonsense.</li>
+		<li>Wide browser support: Edge, IE11, Firefox, Chrome, Safari, <a href="faq.html#this-page-doesnt-work-in-opera">Opera</a>, most mobile browsers.</li>
+		<li>Highlights embedded languages (e.g. CSS inside HTML, JavaScript inside HTML).</li>
+		<li>Highlights inline code as well, not just code blocks.</li>
+		<li>It doesn’t force you to use any Prism-specific markup, not even a Prism-specific class name, only standard markup you should be using anyway.
+			So, you can just try it for a while, remove it if you don’t like it and leave no traces behind.</li>
+		<li>Highlight specific lines and/or line ranges (requires <a href="plugins/line-highlight/">plugin</a>).</li>
+		<li>Show invisible characters like tabs, line breaks etc (requires <a href="plugins/show-invisibles/">plugin</a>).</li>
+		<li>Autolink URLs and emails, use Markdown links in comments (requires <a href="plugins/autolinker/">plugin</a>).</li>
 	</ul>
 </section>
 
@@ -147,13 +151,22 @@
 
 	<p>The <a href="https://www.w3.org/TR/html5/grouping-content.html#the-pre-element">recommended way to mark up a code block</a>
 	(both for semantics and for Prism) is a <code>&lt;pre></code> element with a <code>&lt;code></code> element inside, like so:</p>
+
 	<pre><code>&lt;pre>&lt;code class="language-css">p { color: red }&lt;/code>&lt;/pre></code></pre>
+
 	<p>If you use that pattern, the <code>&lt;pre></code> will automatically get the <code>language-xxxx</code> class (if it doesn’t already have it) and will be styled as a code block.</p>
 
-	<p>If you want to prevent any elements from being automatically highlighted and instead use the <a href="extending.html#api">API</a>, you can set <code class="language-javascript">Prism.manual</code> to <code class="language-javascript">true</code> before the <code>DOMContentLoaded</code> event is fired. By setting the <code>data-manual</code> attribute on the <code>&lt;script></code> element containing Prism core, this will be done automatically.
+	<p><strong>Note</strong>: You have to escape all <code>&lt;</code> and <code>&amp;</code> characters inside <code>&lt;code></code> elements with <code>&amp;lt;</code> and <code>&amp;amp;</code> respectively, or else the browser might interpret them as an HTML tag or <a href="https://developer.mozilla.org/en-US/docs/Glossary/Entity">entity</a>. If you have large portions of HTML code, you can use the <a href="plugins/unescaped-markup/">Unescaped Markup plugin</a> to work around this.</p>
+
+	<h3>Manual highlighting</h3>
+
+	<p>If you want to prevent any elements from being automatically highlighted and instead use the <a href="extending.html#api">API</a>, you can set <a href="docs/Prism.html#.manual"><code class="language-javascript">Prism.manual</code></a> to <code class="language-javascript">true</code> before the <code>DOMContentLoaded</code> event is fired. By setting the <code>data-manual</code> attribute on the <code>&lt;script></code> element containing Prism core, this will be done automatically.
 	Example:</p>
+
 	<pre><code>&lt;script src="prism.js" data-manual>&lt;/script></code></pre>
+
 	<p>or</p>
+
 	<pre><code>&lt;script>
 window.Prism = window.Prism || {};
 window.Prism.manual = true;
@@ -164,7 +177,7 @@ window.Prism.manual = true;
 
 	<p>In combination with CDNs, we recommend using the <a href="plugins/autoloader">Autoloader plugin</a> which automatically loads languages when necessary.</p>
 
-	<p>The setup of the Autoloader, will look like the following. You can also your own themes of course.</p>
+	<p>The setup of the Autoloader, will look like the following. You can also add your own themes of course.</p>
 
 	<pre><code>&lt;!DOCTYPE html>
 &lt;html>
@@ -263,8 +276,8 @@ const html = Prism.highlight(code, Prism.languages.haml, 'haml');</code></pre>
 	<p>Several tutorials have been written by members of the community to help you integrate Prism into multiple different website types and configurations:</p>
 
 	<ul>
+		<li><a href="https://startblogging101.com/how-to-add-prism-js-syntax-highlighting-wordpress/">How to Add Prism.js Syntax Highlighting to Your WordPress Site</a></li>
 		<li><a href="https://websitebeaver.com/escape-html-inside-code-or-pre-tag-to-entities-to-display-raw-code-with-prismjs">Escape HTML Inside &lt;code&gt; or &lt;pre&gt; Tag to Entities to Display Raw Code with PrismJS</a></li>
-		<li><a href="http://crambler.com/how-to-implement-prism-js-syntax-highlighting-into-your-wordpress-site/">How To Implement Prism.js Syntax Highlighting Into Your WordPress Site</a></li>
 		<li><a href="http://wp.tutsplus.com/tutorials/plugins/adding-a-syntax-highlighter-shortcode-using-prism-js/">Adding a Syntax Highlighter Shortcode Using Prism.js | WPTuts+</a></li>
 		<li><a href="https://www.stramaxon.com/2012/07/prism-syntax-highlighter-for-blogger.html">Implement PrismJs Syntax Highlighting to your Blogger/BlogSpot</a></li>
 		<li><a href="https://schier.co/blog/2013/01/07/how-to-re-run-prismjs-on-ajax-content.html">How To Re-Run Prism.js On AJAX Content</a></li>

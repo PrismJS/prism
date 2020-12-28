@@ -7,7 +7,7 @@
 			// Match "@@ ... @@" coord lines in unified diff.
 			/^@@.*@@$/m,
 			// Match coord lines in normal diff (starts with a number).
-			/^\d+.*$/m
+			/^\d.*$/m
 		]
 
 		// deleted, inserted, unchanged, diff
@@ -53,7 +53,7 @@
 				}
 			}
 		};
-		
+
 	});
 
 	// make prefixes available to Diff plugin

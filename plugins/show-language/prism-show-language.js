@@ -12,6 +12,7 @@
 
 	// The languages map is built automatically with gulp
 	var Languages = /*languages_placeholder[*/{
+		"none": "Plain text",
 		"html": "HTML",
 		"xml": "XML",
 		"svg": "SVG",
@@ -52,6 +53,7 @@
 		"conc": "Concurnas",
 		"csp": "Content-Security-Policy",
 		"css-extras": "CSS Extras",
+		"dataweave": "DataWeave",
 		"dax": "DAX",
 		"django": "Django/Jinja2",
 		"jinja2": "Django/Jinja2",
@@ -146,6 +148,7 @@
 		"pq": "PowerQuery",
 		"mscript": "PowerQuery",
 		"powershell": "PowerShell",
+		"promql": "PromQL",
 		"properties": ".properties",
 		"protobuf": "Protocol Buffers",
 		"purebasic": "PureBasic",

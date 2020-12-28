@@ -33,7 +33,7 @@ Prism.languages.unrealscript = {
 	'function': /[a-z_]\w*(?=\s*\()/i,
 
 	'boolean': /\b(?:false|true)\b/,
-	'number': /\b0x[\da-f]+\b|(?:\b\d+\.?\d*|\B\.\d+)(?:e[+-]?\d+)?/i,
+	'number': /\b0x[\da-f]+\b|(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:e[+-]?\d+)?/i,
 	// https://docs.unrealengine.com/udk/Three/UnrealScriptExpressions.html
 	'operator': />>|<<|--|\+\+|\*\*|[-+*/~!=<>$@]=?|&&?|\|\|?|\^\^?|[?:%]|\b(?:Cross|Dot|ClockwiseFrom)\b/,
 	'punctuation': /[()[\]{};,.]/

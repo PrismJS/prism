@@ -7,6 +7,7 @@ const uglify = require('gulp-uglify');
 const header = require('gulp-header');
 const concat = require('gulp-concat');
 const replace = require('gulp-replace');
+const webfont = require('webfont').default;
 const pump = require('pump');
 const util = require('util');
 const fs = require('fs');
@@ -160,7 +161,9 @@ async function languagePlugins() {
 	}
 
 	/** @type {Record<string, string>} */
-	const nonNullLanguageMap = {};
+	const nonNullLanguageMap = {
+		'none': 'Plain text'
+	};
 	for (const id in languagesMap) {
 		const title = languagesMap[id];
 		if (title) {
@@ -209,8 +212,69 @@ async function languagePlugins() {
 	}
 }
 
+async function treeviewIconFont() {
+	// List of all icons
+	// Add new icons to the end of the list.
+	const iconList = [
+		'file', 'folder',
+		'image', 'audio', 'video',
+		'text', 'code',
+		'archive', 'pdf',
+		'excel', 'powerpoint', 'word'
+	];
+	const fontName = 'PrismTreeview';
+
+	// generate the font
+	const result = await webfont({
+		files: iconList.map(n => `plugins/treeview/icons/${n}.svg`),
+		formats: ['woff'],
+		fontName,
+		sort: false
+	});
+
+	/** @type {Buffer} */
+	const woff = result.woff;
+	/**
+	 * @type {{ contents: string; srcPath: string; metadata: Metadata }[]}
+	 * @typedef Metadata
+	 * @property {string} path
+	 * @property {string} name
+	 * @property {string[]} unicode
+	 * @property {boolean} renamed
+	 * @property {number} width
+	 * @property {number} height
+	 * */
+	const glyphsData = result.glyphsData;
+
+	const fontFace = `
+/* @GENERATED-FONT */
+@font-face {
+	font-family: "${fontName}";
+	/**
+	 * This font is generated from the .svg files in the \`icons\` folder. See the \`treeviewIconFont\` function in
+	 * \`gulpfile.js/index.js\` for more information.
+	 *
+	 * Use the following escape sequences to refer to a specific icon:
+	 *
+	 * - ${glyphsData.map(({ metadata }) => {
+		const codePoint = metadata.unicode[0].codePointAt(0);
+		return `\\${codePoint.toString(16)} ${metadata.name}`;
+	}).join('\n\t * - ')}
+	 */
+	src: url("data:application/font-woff;base64,${woff.toString('base64')}")
+		format("woff");
+}
+`.trim();
+
+	const cssPath = 'plugins/treeview/prism-treeview.css';
+	const fontFaceRegex = /\/\*\s*@GENERATED-FONT\s*\*\/\s*@font-face\s*\{(?:[^{}/]|\/(?!\*)|\/\*(?:[^*]|\*(?!\/))*\*\/)*\}/;
+
+	const css = fs.readFileSync(cssPath, 'utf-8');
+	fs.writeFileSync(cssPath, css.replace(fontFaceRegex, fontFace), 'utf-8');
+}
+
 const components = minifyComponents;
-const plugins = series(languagePlugins, minifyPlugins);
+const plugins = series(languagePlugins, treeviewIconFont, minifyPlugins);
 
 
 module.exports = {
