@@ -1,6 +1,6 @@
 (function (Prism) {
 
-	var tableRow = /(?:\r?\n|\r)[ \t]*\|.+\|.*/.source;
+	var tableRow = /(?:\r?\n|\r)[ \t]*\|.+\|(?:(?!\|).)*/.source;
 
 	Prism.languages.gherkin = {
 		'pystring': {

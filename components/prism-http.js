@@ -10,11 +10,11 @@
 			}
 		},
 		'response-status': {
-			pattern: /^HTTP\/1.[01] \d+.*/m,
+			pattern: /^HTTP\/1.[01] \d.*/m,
 			inside: {
 				// Status, e.g. 200 OK
 				'property': {
-					pattern: /(^HTTP\/1.[01] )\d+.*/i,
+					pattern: /(^HTTP\/1.[01] )\d.*/i,
 					lookbehind: true
 				}
 			}
@@ -64,7 +64,7 @@
 
 			var pattern = suffixTypes[contentType] ? getSuffixPattern(contentType) : contentType;
 			options[contentType.replace(/\//g, '-')] = {
-				pattern: RegExp('(content-type:\\s*' + pattern + '[\\s\\S]*?)(?:\\r?\\n|\\r){2}[\\s\\S]*', 'i'),
+				pattern: RegExp('(content-type:\\s*' + pattern + '.*)(?:\\r?\\n|\\r){2}[\\s\\S]*', 'i'),
 				lookbehind: true,
 				inside: httpLanguages[contentType]
 			};

@@ -6,13 +6,21 @@ const { BFS, parseRegex } = require('./helper/util');
 const { languages } = require('../components.json');
 const { visitRegExpAST } = require('regexpp');
 const { JS, Words, NFA } = require('refa');
+const scslre = require('scslre');
 
 /**
- * A set of all safe (non-exponentially-backtracking) RegExp literals (string).
+ * A set of all safe (non-exponentially backtracking) RegExp literals (string).
  *
  * @type {Set<string>}
  */
-const safeRegexes = new Set();
+const expoSafeRegexes = new Set();
+
+/**
+ * A set of all safe (non-polynomially backtracking) RegExp literals (string).
+ *
+ * @type {Set<string>}
+ */
+const polySafeRegexes = new Set();
 
 for (const lang in languages) {
 	if (lang === 'meta') {
@@ -377,7 +385,7 @@ function testPatterns(Prism) {
 	it('- should not cause exponential backtracking', function () {
 		forEachPattern(({ pattern, ast, tokenPath }) => {
 			const patternStr = String(pattern);
-			if (safeRegexes.has(patternStr)) {
+			if (expoSafeRegexes.has(patternStr)) {
 				// we know that the pattern won't cause exp backtracking because we checked before
 				return;
 			}
@@ -500,8 +508,120 @@ function testPatterns(Prism) {
 				},
 			});
 
-			safeRegexes.add(patternStr);
+			expoSafeRegexes.add(patternStr);
 		});
 	});
 
+	it('- should not cause polynomial backtracking', function () {
+		forEachPattern(({ pattern, ast, tokenPath }) => {
+			const patternStr = String(pattern);
+			if (polySafeRegexes.has(patternStr)) {
+				// we know that the pattern won't cause poly backtracking because we checked before
+				return;
+			}
+
+			const result = scslre.analyse(ast, { maxReports: 1, reportTypes: { 'Move': false } });
+			if (result.reports.length > 0) {
+				const report = result.reports[0];
+
+				let rangeOffset;
+				let rangeStr;
+				let rangeHighlight;
+
+				switch (report.type) {
+					case 'Trade': {
+						const start = Math.min(report.startQuant.start, report.endQuant.start);
+						const end = Math.max(report.startQuant.end, report.endQuant.end);
+						rangeOffset = start + 1;
+						rangeStr = patternStr.substring(start + 1, end + 1);
+						rangeHighlight = highlight([
+							{ ...report.startQuant, label: 'start' },
+							{ ...report.endQuant, label: 'end' }
+						], -start);
+						break;
+					}
+					case 'Self': {
+						rangeOffset = report.parentQuant.start + 1;
+						rangeStr = patternStr.substring(report.parentQuant.start + 1, report.parentQuant.end + 1);
+						rangeHighlight = highlight([{...report.quant, label: 'self'}], -report.parentQuant.start);
+						break;
+					}
+					case 'Move': {
+						rangeOffset = 1;
+						rangeStr = patternStr.substring(1, report.quant.end + 1);
+						rangeHighlight = highlight([report.quant]);
+						break;
+					}
+					default:
+						throw new Error('Invalid report type "' + report.type + '". This should never happen.');
+				}
+
+				const attackChar = `/${report.character.literal.source}/${report.character.literal.flags}`;
+				const fixed = report.fix();
+
+				assert.fail(
+					`${tokenPath}: ${report.exponential ? 'Exponential' : 'Polynomial'} backtracking. `
+					+ `By repeating any character that matches ${attackChar}, an attack string can be created.`
+					+ `\n`
+					+ `\n${indent(rangeStr)}`
+					+ `\n${indent(rangeHighlight)}`
+					+ `\n`
+					+ `\nFull pattern:`
+					+ `\n${patternStr}`
+					+ `\n${indent(rangeHighlight, " ".repeat(rangeOffset))}`
+					+ `\n`
+					+ `\n` + (fixed ? `Fixed:\n/${fixed.source}/${fixed.flags}` : `Fix not available.`)
+				);
+			}
+
+			polySafeRegexes.add(patternStr);
+		});
+	});
+
+}
+
+/**
+ * @param {Highlight[]} highlights
+ * @param {number} [offset]
+ * @returns {string}
+ *
+ * @typedef Highlight
+ * @property {number} start
+ * @property {number} end
+ */
+function highlight(highlights, offset = 0) {
+	highlights.sort((a, b) => a.start - b.start);
+
+	const lines = [];
+	while (highlights.length > 0) {
+		const newHighlights = [];
+		let l = '';
+		for (const highlight of highlights) {
+			const start = highlight.start + offset;
+			const end = highlight.end + offset;
+			if (start < l.length) {
+				newHighlights.push(highlight);
+			} else {
+				l += ' '.repeat(start - l.length);
+				l += '^';
+				l += '~'.repeat(end - start - 1);
+				if (highlight.label) {
+					l += '[' + highlight.label + ']';
+				}
+			}
+		}
+		lines.push(l);
+		highlights = newHighlights;
+	}
+
+	return lines.join('\n');
+}
+
+/**
+ * @param {string} str
+ * @param {string} amount
+ * @returns {string}
+ */
+function indent(str, amount = '    ') {
+	return str.split(/\r?\n/g).map(m => m === '' ? '' : amount + m).join('\n');
 }
