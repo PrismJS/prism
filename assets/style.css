@@ -75,11 +75,13 @@ p {
 }
 
 section h1,
-h2 {
+h2,
+h3 {
 	margin: 1em 0 .3em;
 }
 
-h2 {
+h2,
+h3 {
 	font-weight: normal;
 }
 
@@ -141,10 +143,6 @@ footer:before {
 	background-repeat: repeat-x;
 	background-image: linear-gradient(45deg, transparent 34%, white 34%, white 66%, transparent 66%),
 	                  linear-gradient(135deg, transparent 34%, white 34%, white 66%, transparent 66%);
-}
-
-header {
-
 }
 
 	header .intro,

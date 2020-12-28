@@ -112,6 +112,11 @@
 			"title": "Apache Configuration",
 			"owner": "GuiTeK"
 		},
+		"apex": {
+			"title": "Apex",
+			"require": ["clike", "sql"],
+			"owner": "RunDevelopment"
+		},
 		"apl": {
 			"title": "APL",
 			"owner": "ngn"
@@ -284,6 +289,10 @@
 			"title": "Dart",
 			"require": "clike",
 			"owner": "Golmote"
+		},
+		"dataweave": {
+			"title": "DataWeave",
+			"owner": "machaval"
 		},
 		"dax": {
 			"title": "DAX",
@@ -698,6 +707,7 @@
 		"markdown": {
 			"title": "Markdown",
 			"require": "markup",
+			"optional": "yaml",
 			"alias": "md",
 			"owner": "Golmote"
 		},
@@ -837,7 +847,7 @@
 		},
 		"php": {
 			"title": "PHP",
-			"require": ["clike", "markup-templating"],
+			"require": "markup-templating",
 			"owner": "milesj"
 		},
 		"phpdoc": {
@@ -874,6 +884,10 @@
 		"prolog": {
 			"title": "Prolog",
 			"owner": "Golmote"
+		},
+		"promql": {
+			"title": "PromQL",
+			"owner": "arendjr"
 		},
 		"properties": {
 			"title": ".properties",

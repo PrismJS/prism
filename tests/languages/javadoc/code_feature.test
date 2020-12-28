@@ -77,7 +77,7 @@
 	["code-section", [
 		["line", [
 			["code", [
-				["class-name", "Foo"],
+				["class-name", ["Foo"]],
 				["punctuation", "."],
 				["function", "bar"],
 				["punctuation", "("],
@@ -93,6 +93,7 @@
 		]],
 		["punctuation", ">"]
 	]],
+
 	"\r\n * ",
 	["tag", [
 		["tag", [
@@ -104,7 +105,7 @@
 	["code-section", [
 		["line", [
 			["code", [
-				["class-name", "Foo"]
+				["class-name", ["Foo"]]
 			]]
 		]]
 	]],
@@ -115,6 +116,7 @@
 		]],
 		["punctuation", ">"]
 	]],
+
 	"\r\n *\r\n * ",
 	["tag", [
 		["tag", [
@@ -130,6 +132,7 @@
 		]],
 		["punctuation", ">"]
 	]],
+
 	["code-section", [
 		"* ",
 		["line", [
@@ -153,6 +156,7 @@
 				["punctuation", "{"]
 			]]
 		]],
+
 		"\r\n *     ",
 		["line", [
 			["code", [
@@ -165,12 +169,14 @@
 				["punctuation", ";"]
 			]]
 		]],
+
 		"\r\n * ",
 		["line", [
 			["code", [
 				["punctuation", "}"]
 			]]
 		]],
+
 		"\r\n * ",
 		["line", [
 			["code", [
@@ -179,6 +185,7 @@
 				["punctuation", ";"]
 			]]
 		]],
+
 		"\r\n *"
 	]],
 	["tag", [
@@ -195,6 +202,7 @@
 		]],
 		["punctuation", ">"]
 	]],
+
 	"\r\n *\r\n * ",
 	["tag", [
 		["tag", [
@@ -205,13 +213,14 @@
 	]],
 	["punctuation", "{"],
 	["keyword", "@code"],
+
 	["code-section", [
 		"*     ",
 		["code", [
-			["class-name", "String"],
+			["class-name", ["String"]],
 			" message ",
 			["operator", "="],
-			["class-name", "String"],
+			["class-name", ["String"]],
 			["punctuation", "."],
 			["function", "join"],
 			["punctuation", "("],
@@ -225,10 +234,12 @@
 			["punctuation", ")"],
 			["punctuation", ";"]
 		]],
+
 		"\r\n *     ",
 		["code", [
 			["comment", "// message returned is: \"Java-is-cool\""]
 		]],
+
 		"\r\n *"
 	]],
 	["punctuation", "}"],
@@ -239,6 +250,7 @@
 		]],
 		["punctuation", ">"]
 	]],
+
 	"\r\n *\r\n * ",
 	["tag", [
 		["tag", [
@@ -247,6 +259,7 @@
 		]],
 		["punctuation", ">"]
 	]],
+
 	["code-section", [
 		"*     ",
 		["line", [
@@ -262,6 +275,7 @@
 				["number", "1"]
 			]]
 		]],
+
 		"\r\n *"
 	]],
 	["tag", [
@@ -271,6 +285,7 @@
 		]],
 		["punctuation", ">"]
 	]],
+
 	"\r\n *\r\n * ",
 	["tag", [
 		["tag", [
@@ -279,6 +294,7 @@
 		]],
 		["punctuation", ">"]
 	]],
+
 	["code-section", [
 		"*     ",
 		["line", [
@@ -296,9 +312,7 @@
 				]],
 				["punctuation", ">"]
 			]],
-			["code", [
-				"c"
-			]],
+			["code", ["c"]],
 			["tag", [
 				["tag", [
 					["punctuation", "</"],
@@ -335,6 +349,7 @@
 				["punctuation", ")"]
 			]]
 		]],
+
 		"\r\n *                         ",
 		["line", [
 			["code", [
@@ -355,9 +370,7 @@
 				]],
 				["punctuation", ">"]
 			]],
-			["code", [
-				"b"
-			]],
+			["code", ["b"]],
 			["tag", [
 				["tag", [
 					["punctuation", "</"],
@@ -381,6 +394,7 @@
 				["punctuation", ")"]
 			]]
 		]],
+
 		"\r\n *"
 	]],
 	["tag", [
@@ -390,6 +404,7 @@
 		]],
 		["punctuation", ">"]
 	]],
+
 	"\r\n *\r\n * ",
 	["tag", [
 		["tag", [
@@ -400,53 +415,59 @@
 	]],
 	["punctuation", "{"],
 	["keyword", "@code"],
+
 	["code-section", [
 		"* ",
 		["code", [
 			["keyword", "interface"],
-			["class-name", "ArchiveSearcher"],
+			["class-name", ["ArchiveSearcher"]],
 			["punctuation", "{"],
-			["class-name", "String"],
+			["class-name", ["String"]],
 			["function", "search"],
 			["punctuation", "("],
-			["class-name", "String"],
+			["class-name", ["String"]],
 			" target",
 			["punctuation", ")"],
 			["punctuation", ";"],
 			["punctuation", "}"]
 		]],
+
 		"\r\n * ",
 		["code", [
 			["keyword", "class"],
-			["class-name", "App"],
+			["class-name", ["App"]],
 			["punctuation", "{"]
 		]],
+
 		"\r\n *   ",
 		["code", [
 			["keyword", "void"],
 			["function", "showSearch"],
 			["punctuation", "("],
 			["keyword", "final"],
-			["class-name", "String"],
+			["class-name", ["String"]],
 			" target",
 			["punctuation", ")"]
 		]],
+
 		"\r\n *       ",
 		["code", [
 			["keyword", "throws"],
-			["class-name", "InterruptedException"],
+			["class-name", ["InterruptedException"]],
 			["punctuation", "{"]
 		]],
+
 		"\r\n *     ",
 		["code", [
-			["class-name", "Future"],
+			["class-name", ["Future"]],
 			["generics", [
 				["punctuation", "<"],
-				["class-name", "String"],
+				["class-name", ["String"]],
 				["punctuation", ">"]
 			]],
 			" future"
 		]],
+
 		"\r\n *       ",
 		["code", [
 			["operator", "="],
@@ -455,25 +476,27 @@
 			["function", "submit"],
 			["punctuation", "("],
 			["keyword", "new"],
-			["class-name", "Callable"],
+			["class-name", ["Callable"]],
 			["generics", [
 				["punctuation", "<"],
-				["class-name", "String"],
+				["class-name", ["String"]],
 				["punctuation", ">"]
 			]],
 			["punctuation", "("],
 			["punctuation", ")"],
 			["punctuation", "{"]
 		]],
+
 		"\r\n *         ",
 		["code", [
 			["keyword", "public"],
-			["class-name", "String"],
+			["class-name", ["String"]],
 			["function", "call"],
 			["punctuation", "("],
 			["punctuation", ")"],
 			["punctuation", "{"]
 		]],
+
 		"\r\n *             ",
 		["code", [
 			["keyword", "return"],
@@ -485,6 +508,7 @@
 			["punctuation", ")"],
 			["punctuation", ";"]
 		]],
+
 		"\r\n *         ",
 		["code", [
 			["punctuation", "}"],
@@ -492,6 +516,7 @@
 			["punctuation", ")"],
 			["punctuation", ";"]
 		]],
+
 		"\r\n *     ",
 		["code", [
 			["function", "displayOtherThings"],
@@ -500,11 +525,13 @@
 			["punctuation", ";"],
 			["comment", "// do other things while searching"]
 		]],
+
 		"\r\n *     ",
 		["code", [
 			["keyword", "try"],
 			["punctuation", "{"]
 		]],
+
 		"\r\n *       ",
 		["code", [
 			["function", "displayText"],
@@ -518,12 +545,13 @@
 			["punctuation", ";"],
 			["comment", "// use future"]
 		]],
+
 		"\r\n *     ",
 		["code", [
 			["punctuation", "}"],
 			["keyword", "catch"],
 			["punctuation", "("],
-			["class-name", "ExecutionException"],
+			["class-name", ["ExecutionException"]],
 			" ex",
 			["punctuation", ")"],
 			["punctuation", "{"],
@@ -535,10 +563,12 @@
 			["punctuation", ";"],
 			["punctuation", "}"]
 		]],
+
 		"\r\n *   ",
 		["code", [
 			["punctuation", "}"]
 		]],
+
 		"\r\n * ",
 		["code", [
 			["punctuation", "}"]
@@ -552,6 +582,7 @@
 		]],
 		["punctuation", ">"]
 	]],
+
 	"\r\n */"
 ]
 
