@@ -4,13 +4,13 @@
 
 ### New components
 
-* __Apex__: Added support for Apex ([#2622](https://github.com/PrismJS/prism/issues/2622)) [`f0e2b70e`](https://github.com/PrismJS/prism/commit/f0e2b70e)
-* __DataWeave__: Added support for DataWeave language ([#2659](https://github.com/PrismJS/prism/issues/2659)) [`0803525b`](https://github.com/PrismJS/prism/commit/0803525b)
-* __PromQL__: Added PromQL language ([#2628](https://github.com/PrismJS/prism/issues/2628)) [`8831c706`](https://github.com/PrismJS/prism/commit/8831c706)
+* __Apex__ ([#2622](https://github.com/PrismJS/prism/issues/2622)) [`f0e2b70e`](https://github.com/PrismJS/prism/commit/f0e2b70e)
+* __DataWeave__ ([#2659](https://github.com/PrismJS/prism/issues/2659)) [`0803525b`](https://github.com/PrismJS/prism/commit/0803525b)
+* __PromQL__ ([#2628](https://github.com/PrismJS/prism/issues/2628)) [`8831c706`](https://github.com/PrismJS/prism/commit/8831c706)
 
 ### Updated components
 
-* Fixed multiple cases of vulnerable regexes ([#2584](https://github.com/PrismJS/prism/issues/2584)) [`c2f6a644`](https://github.com/PrismJS/prism/commit/c2f6a644)
+* Fixed multiple vulnerable regexes ([#2584](https://github.com/PrismJS/prism/issues/2584)) [`c2f6a644`](https://github.com/PrismJS/prism/commit/c2f6a644)
 * __Apache Configuration__
     * Update directive-flag to match `=` ([#2612](https://github.com/PrismJS/prism/issues/2612)) [`00bf00e3`](https://github.com/PrismJS/prism/commit/00bf00e3)
 * __C-like__
@@ -18,15 +18,15 @@
 * __C__
     * Better class name and macro name detection ([#2585](https://github.com/PrismJS/prism/issues/2585)) [`129faf5c`](https://github.com/PrismJS/prism/commit/129faf5c)
 * __Content-Security-Policy__
-    * CSP: Added missing directives and keywords ([#2664](https://github.com/PrismJS/prism/issues/2664)) [`f1541342`](https://github.com/PrismJS/prism/commit/f1541342)
-    * CSP: Do not highlight directive names with adjacent hyphens ([#2662](https://github.com/PrismJS/prism/issues/2662)) [`a7ccc16d`](https://github.com/PrismJS/prism/commit/a7ccc16d)
+    * Added missing directives and keywords ([#2664](https://github.com/PrismJS/prism/issues/2664)) [`f1541342`](https://github.com/PrismJS/prism/commit/f1541342)
+    * Do not highlight directive names with adjacent hyphens ([#2662](https://github.com/PrismJS/prism/issues/2662)) [`a7ccc16d`](https://github.com/PrismJS/prism/commit/a7ccc16d)
 * __CSS__
     * Better HTML `style` attribute tokenization ([#2569](https://github.com/PrismJS/prism/issues/2569)) [`b04cbafe`](https://github.com/PrismJS/prism/commit/b04cbafe)
 * __Java__
     * Improved package and class name detection ([#2599](https://github.com/PrismJS/prism/issues/2599)) [`0889bc7c`](https://github.com/PrismJS/prism/commit/0889bc7c)
     * Added Java 15 keywords ([#2567](https://github.com/PrismJS/prism/issues/2567)) [`73f81c89`](https://github.com/PrismJS/prism/commit/73f81c89)
 * __Java stack trace__
-    * JavaStackTrace: Added support stack frame element class loaders and modules ([#2658](https://github.com/PrismJS/prism/issues/2658)) [`0bb4f096`](https://github.com/PrismJS/prism/commit/0bb4f096)
+    * Added support stack frame element class loaders and modules ([#2658](https://github.com/PrismJS/prism/issues/2658)) [`0bb4f096`](https://github.com/PrismJS/prism/commit/0bb4f096)
 * __Julia__
     * Removed constants that are not exported by default ([#2601](https://github.com/PrismJS/prism/issues/2601)) [`093c8175`](https://github.com/PrismJS/prism/commit/093c8175)
 * __Kotlin__
@@ -39,7 +39,7 @@
     * Added support for PHP 8.0 features ([#2591](https://github.com/PrismJS/prism/issues/2591)) [`df922d90`](https://github.com/PrismJS/prism/commit/df922d90)
     * Removed C-like dependency ([#2619](https://github.com/PrismJS/prism/issues/2619)) [`89ebb0b7`](https://github.com/PrismJS/prism/commit/89ebb0b7)
 * __Sass (Scss)__
-    * SCSS: Added support for Sass modules ([#2643](https://github.com/PrismJS/prism/issues/2643)) [`deb238a6`](https://github.com/PrismJS/prism/commit/deb238a6)
+    * Added support for Sass modules ([#2643](https://github.com/PrismJS/prism/issues/2643)) [`deb238a6`](https://github.com/PrismJS/prism/commit/deb238a6)
 * __Scheme__
     * Fixed number pattern ([#2648](https://github.com/PrismJS/prism/issues/2648)) [`e01ecd00`](https://github.com/PrismJS/prism/commit/e01ecd00)
     * Fixed function and function-like false positives ([#2611](https://github.com/PrismJS/prism/issues/2611)) [`7951ca24`](https://github.com/PrismJS/prism/commit/7951ca24)
