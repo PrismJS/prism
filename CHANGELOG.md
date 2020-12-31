@@ -1,6 +1,6 @@
 # Prism Changelog
 
-## 1.23.0 (2020-12-30)
+## 1.23.0 (2020-12-31)
 
 ### New components
 
@@ -31,6 +31,8 @@
     * Removed constants that are not exported by default ([#2601](https://github.com/PrismJS/prism/issues/2601)) [`093c8175`](https://github.com/PrismJS/prism/commit/093c8175)
 * __Kotlin__
     * Added support for backticks in function names ([#2489](https://github.com/PrismJS/prism/issues/2489)) [`a5107d5c`](https://github.com/PrismJS/prism/commit/a5107d5c)
+* __Latte__
+    * Fixed exponential backtracking ([#2682](https://github.com/PrismJS/prism/issues/2682)) [`89f1e182`](https://github.com/PrismJS/prism/commit/89f1e182)
 * __Markdown__
     * Improved URL tokenization ([#2678](https://github.com/PrismJS/prism/issues/2678)) [`2af3e2c2`](https://github.com/PrismJS/prism/commit/2af3e2c2)
     * Added support for YAML front matter ([#2634](https://github.com/PrismJS/prism/issues/2634)) [`5cf9cfbc`](https://github.com/PrismJS/prism/commit/5cf9cfbc)
