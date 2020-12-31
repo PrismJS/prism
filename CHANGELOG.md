@@ -40,6 +40,7 @@
     * Added support for PHP 7.4 + other major improvements ([#2566](https://github.com/PrismJS/prism/issues/2566)) [`38808e64`](https://github.com/PrismJS/prism/commit/38808e64)
     * Added support for PHP 8.0 features ([#2591](https://github.com/PrismJS/prism/issues/2591)) [`df922d90`](https://github.com/PrismJS/prism/commit/df922d90)
     * Removed C-like dependency ([#2619](https://github.com/PrismJS/prism/issues/2619)) [`89ebb0b7`](https://github.com/PrismJS/prism/commit/89ebb0b7)
+    * Fixed exponential backtracking ([#2684](https://github.com/PrismJS/prism/issues/2684)) [`37b9c9a1`](https://github.com/PrismJS/prism/commit/37b9c9a1)
 * __Sass (Scss)__
     * Added support for Sass modules ([#2643](https://github.com/PrismJS/prism/issues/2643)) [`deb238a6`](https://github.com/PrismJS/prism/commit/deb238a6)
 * __Scheme__
