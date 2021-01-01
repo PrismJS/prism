@@ -40,7 +40,7 @@ Prism.languages.v = Prism.languages.extend('clike', {
 
 Prism.languages.insertBefore('v', 'function', {
 	'generic-function': {
-		// e.g. foo<T extends "bar" | "baz">( ...
+		// e.g. foo<T>( ...
 		pattern: /\w+\s*<[^<>]*>(?=\()/,
 		greedy: true,
 		inside: {
