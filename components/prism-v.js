@@ -3,15 +3,15 @@ Prism.languages.v = Prism.languages.extend('clike', {
 		{
 			pattern: /`(?:\\[\s\S]|[^\\`])*`/,
 			alias: 'backtick-quoted-string',
-			greedy: true,
+			greedy: true
 		},
 		{
 			pattern: /r?(["'])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,
-			alias: 'single-quoted-string',
+			alias: 'quoted-string',
 			greedy: true,
 			inside: {
 				'interpolation': {
-					pattern: /((?:^|[^\\])(?:\\{2})*)\$(?:\{[^{}]*\}|\w+(\.\w+(?:\([^\(\)]*\))?|\[[^\[\]]+\])*)/,
+					pattern: /(?:^|[^\\])(?:\\{2})*\$(?:\{[^{}]*\}|\w+(\.\w+(?:\([^\(\)]*\))?|\[[^\[\]]+\])*)/,
 					lookbehind: true,
 					inside: {
 						'interpolation-variable': {
