@@ -60,6 +60,8 @@
 		"dns-zone-file": "DNS zone file",
 		"dns-zone": "DNS zone file",
 		"dockerfile": "Docker",
+		"dot": "DOT (Graphviz)",
+		"gv": "DOT (Graphviz)",
 		"ebnf": "EBNF",
 		"editorconfig": "EditorConfig",
 		"ejs": "EJS",

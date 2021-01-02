@@ -172,6 +172,7 @@
 		"jinja2": "django",
 		"dns-zone": "dns-zone-file",
 		"dockerfile": "docker",
+		"gv": "dot",
 		"eta": "ejs",
 		"xlsx": "excel-formula",
 		"xls": "excel-formula",
