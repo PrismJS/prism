@@ -4,11 +4,11 @@
 
 	var ID = '(?:' + [
 		// an identifier
-		/\b[a-zA-Z_][\w\x80-\x9F\xA1-\xFF]*/.source,
+		/\b[a-zA-Z_][\w\x80-\uFFFF]*/.source,
 		// a number
 		/-?(?:\.\d+|\b\d+(?:\.\d*)?)/.source,
 		// a double-quoted string
-		/"(?:[^\\"]|\\[\s\S])*"/.source,
+		/"[^"\\]*(?:\\[\s\S][^"\\]*)*"/.source,
 		// HTML-like string
 		/<(?:[^<>]|(?!<!--)<(?:[^<>"']|"[^"]*"|'[^']*')+>|<!--(?:[^-]|-(?!->))*-->)*>/.source
 	].join('|') + ')';
@@ -37,27 +37,27 @@
 			greedy: true
 		},
 		'graph-name': {
-			pattern: withID(/(\b(?:digraph|graph|subgraph)\s+)<ID>/.source, 'i'),
+			pattern: withID(/(\b(?:digraph|graph|subgraph)[ \t\r\n]+)<ID>/.source, 'i'),
 			lookbehind: true,
 			greedy: true,
 			alias: 'class-name',
 			inside: IDInside
 		},
 		'attr-value': {
-			pattern: withID(/(=\s*)<ID>/.source),
+			pattern: withID(/(=[ \t\r\n]*)<ID>/.source),
 			lookbehind: true,
 			greedy: true,
 			inside: IDInside
 		},
 		'attr-name': {
-			pattern: withID(/([\[;,\s])<ID>(?=\s*=)/.source),
+			pattern: withID(/([\[;, \t\r\n])<ID>(?=[ \t\r\n]*=)/.source),
 			lookbehind: true,
 			greedy: true,
 			inside: IDInside
 		},
 		'keyword': /\b(?:digraph|edge|graph|node|strict|subgraph)\b/i,
 		'compass-point': {
-			pattern: /(:\s*)(?:[ns][ew]?|[ewc])(?![\w\x80-\x9F\xA1-\xFF])/,
+			pattern: /(:[ \t\r\n]*)(?:[ns][ew]?|[ewc_])(?![\w\x80-\uFFFF])/,
 			lookbehind: true,
 			alias: 'builtin'
 		},
