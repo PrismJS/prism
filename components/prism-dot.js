@@ -4,9 +4,9 @@
 
 	var ID = '(?:' + [
 		// an identifier
-		/\b[a-zA-Z_][\w\x80-\uFFFF]*/.source,
+		/[a-zA-Z_\x80-\uFFFF][\w\x80-\uFFFF]*/.source,
 		// a number
-		/-?(?:\.\d+|\b\d+(?:\.\d*)?)/.source,
+		/-?(?:\.\d+|\d+(?:\.\d*)?)/.source,
 		// a double-quoted string
 		/"[^"\\]*(?:\\[\s\S][^"\\]*)*"/.source,
 		// HTML-like string
@@ -62,7 +62,7 @@
 			alias: 'builtin'
 		},
 		'node': {
-			pattern: withID(/(^|[^\\])<ID>/.source),
+			pattern: withID(/(^|[^-.\w\x80-\uFFFF\\])<ID>/.source),
 			lookbehind: true,
 			greedy: true,
 			inside: IDInside
