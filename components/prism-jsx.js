@@ -19,7 +19,7 @@ Prism.languages.insertBefore('inside', 'attr-name', {
 	}
 }, Prism.languages.jsx.tag);
 
-Prism.languages.insertBefore('inside', 'attr-value',{
+Prism.languages.insertBefore('inside', 'special-attr',{
 	'script': {
 		// Allow for two levels of nesting
 		pattern: /=(?:\{(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])+\})/i,

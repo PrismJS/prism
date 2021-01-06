@@ -35,12 +35,8 @@ foo {
 	]],
 	["style", [
 		["language-css", [
-			["selector", "foo"],
-			["punctuation", "{"],
-			["property", "bar"],
-			["punctuation", ":"],
-			" baz",
-			["punctuation", ";"],
+			["selector", "foo"], ["punctuation", "{"],
+			["property", "bar"], ["punctuation", ":"], " baz", ["punctuation", ";"],
 			["punctuation", "}"]
 		]]
 	]],
@@ -68,12 +64,8 @@ foo {
 		["included-cdata", [
 			["cdata", "<![CDATA["],
 			["language-css", [
-				["selector", "foo"],
-				["punctuation", "{"],
-				["property", "bar"],
-				["punctuation", ":"],
-				" baz",
-				["punctuation", ";"],
+				["selector", "foo"], ["punctuation", "{"],
+				["property", "bar"], ["punctuation", ":"], " baz", ["punctuation", ";"],
 				["punctuation", "}"]
 			]],
 			["cdata", "]]>"]
@@ -97,12 +89,12 @@ foo {
 			["punctuation", "<"],
 			"foo"
 		]],
-		["style-attr", [
+		["special-attr", [
 			["attr-name", "style"],
 			["attr-value", [
 				["punctuation", "="],
 				["punctuation", "\""],
-				["style", [
+				["value", [
 					["property", "bar"],
 					["punctuation", ":"],
 					"baz",
