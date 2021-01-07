@@ -1,0 +1,39 @@
+"https://example.com"
+'single quote'
+'age = $user.age'
+'x = ${x:4.2f}'
+r'hello\nworld'
+`🚀`
+`\``
+`Not a Rune`
+
+----------------------------------------------------
+
+[
+	["string", ["\"https://example.com\""]],
+	["string", ["'single quote'"]],
+	["string", [
+		"'age = ",
+		["interpolation", [
+			["interpolation-variable", "$user.age"]
+		]],
+		"'"
+	]],
+	["string", [
+		"'x = ",
+		["interpolation", [
+			["interpolation-punctuation", "${"],
+			["interpolation-expression", "x:4.2f"],
+			["interpolation-punctuation", "}"]
+		]],
+		"'"
+	]],
+	["string", ["r'hello\\nworld'"]],
+	["string", "`🚀`"],
+	["string", "`\\``"],
+	"\r\n`Not a Rune`"
+]
+
+----------------------------------------------------
+
+Check for strings and string interpolation

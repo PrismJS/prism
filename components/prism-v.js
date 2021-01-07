@@ -1,9 +1,8 @@
 Prism.languages.v = Prism.languages.extend('clike', {
 	'string': [
 		{
-			pattern: /`(?:\\[\s\S]|[^\\`])*`/,
-			alias: 'backtick-quoted-string',
-			greedy: true
+			pattern: /`(?:\\\`|\\?[^\`]{1,2})`/, // using {1,2} instead of `u` flag for compatibility
+			alias: 'rune'
 		},
 		{
 			pattern: /r?(["'])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,
@@ -15,39 +14,59 @@ Prism.languages.v = Prism.languages.extend('clike', {
 					lookbehind: true,
 					inside: {
 						'interpolation-variable': {
-							pattern: /^\$\w+(?:\.\w+(?:\([^\(\)]*\))?|\[[^\[\]]+\])*$/,
+							pattern: /^\$\w[\s\S]*$/,
 							alias: 'variable'
 						},
 						'interpolation-punctuation': {
 							pattern: /^\${|}$/,
 							alias: 'punctuation'
 						},
-						rest: Prism.languages.v
+						'interpolation-expression': {
+							pattern: /[\s\S]+/,
+							inside: Prism.languages.v
+						}
 					}
 				}
 			}
 		}
 	],
 	'class-name': {
-		pattern: /\b(enum|interface|struct|type)\s+[\w.\\]+/,
+		pattern: /(\b(?:enum|interface|struct|type)\s+)\w+/,
 		lookbehind: true
 	},
-	'keyword': /\b(?:as|asm|assert|atomic|break|const|continue|defer|else|embed|enum|fn|for|__global|go(?:to)?|if|import|in|interface|is|lock|match|module|mut|none|or|pub|return|rlock|select|shared|sizeof|static|struct|type(?:of)?|union|unsafe)\b/,
+	'keyword': /(?:\b(?:as|asm|assert|atomic|break|chan|const|continue|defer|else|embed|enum|fn|for|__global|go(?:to)?|if|import|in|interface|is|lock|match|module|mut|none|or|pub|return|rlock|select|shared|sizeof|static|struct|type(?:of)?|union|unsafe)|\$(?:if|else|for)|#(?:include|flag))\b/,
 	'number': /\b(?:0x[a-f\d]+(?:_[a-f\d]+)*|0b[01]+(?:_[01]+)*|0o[0-7]+(?:_[0-7]+)*|\d+(?:_\d+)*(?:\.\d+(?:_\d+)*)?)\b/i,
-	'operator': /~|[*\/%^!=]=?|\+[=+]?|-[=-]?|\|[=|]?|&(?:=|&|\^=?)?|>(?:>=?|=)?|<(?:<=?|=|-)?|:=|\.\.\./,
-	'builtin': /\b(?:any(?:_int|_float)?|bool|byte(?:ptr)?|charptr|i(?:8|16|nt|64|128)|rune|size_t|string|u(?:16|32|64|128))\b/
+	'operator': /~|\?|[*\/%^!=]=?|\+[=+]?|-[=-]?|\|[=|]?|&(?:=|&|\^=?)?|>(?:>=?|=)?|<(?:<=?|=|-)?|:=|\.\.\.?/,
+	'builtin': /\b(?:any(?:_int|_float)?|bool|byte(?:ptr)?|charptr|f(?:32|64)|i(?:8|16|nt|64|128)|rune|size_t|string|u(?:16|32|64|128)|voidptr)\b/
+});
+
+Prism.languages.insertBefore('v', 'operator', {
+	'attribute': {
+		pattern: /^\s*\[(?:deprecated|unsafe_fn|typedef|live|inline|flag|ref_only|windows_stdcall|direct_array_access)\]/m,
+		alias: 'annotation',
+		inside: {
+			'punctuation': /[\[\]]/,
+			'keyword': /\w+/
+		}
+	},
+	'generic': {
+		pattern: /\<\w+\>(?=\s*[\)\{])/,
+		inside: {
+			'punctuation': /[<>]/,
+			'class-name': /\w+/
+		}
+	}
 });
 
 Prism.languages.insertBefore('v', 'function', {
 	'generic-function': {
 		// e.g. foo<T>( ...
-		pattern: /\w+\s*<[^<>]*>(?=\()/,
-		greedy: true,
+		pattern: /\w+\s*<\w+>(?=\()/,
 		inside: {
 			'function': /^\w+/,
 			'generic': {
-				pattern: /<[\s\S]+/, // everything after the first <
-				alias: 'class-name'
+				pattern: /<\w+>/,
+				inside: Prism.languages.v.generic.inside
 			}
 		}
 	}
