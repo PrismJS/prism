@@ -11,6 +11,7 @@ describe('Examples', function () {
 	const ignore = new Set([
 		// these are libraries and not languages
 		'markup-templating',
+		'patterns',
 		't4-templating',
 		// this does alter some languages but it's mainly a library
 		'javadoclike'
