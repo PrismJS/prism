@@ -25,6 +25,10 @@
 		"c": "clike",
 		"csharp": "clike",
 		"cpp": "c",
+		"chaiscript": [
+			"clike",
+			"cpp"
+		],
 		"coffeescript": "javascript",
 		"crystal": "ruby",
 		"css-extras": "css",
