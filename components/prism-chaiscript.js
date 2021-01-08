@@ -28,7 +28,8 @@ Prism.languages.insertBefore('chaiscript', 'operator', {
 	'parameter-type': {
 		// e.g. def foo(int x, Vector y) {...}
 		pattern: /([,(]\s*)\w+(?=\s+\w)/,
-		lookbehind: true
+		lookbehind: true,
+		alias: 'class-name'
 	},
 });
 

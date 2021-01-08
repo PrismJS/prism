@@ -20,6 +20,8 @@ def update(dt) {
   x = x + 20.0f * dt
 }
 
+def foo(int x, Vector y) {}
+
 ----------------------------------------------------
 
 [
@@ -172,5 +174,17 @@ def update(dt) {
 	["operator", "*"],
 	" dt\r\n",
 
+	["punctuation", "}"],
+
+	["keyword", "def"],
+	["function", "foo"],
+	["punctuation", "("],
+	["parameter-type", "int"],
+	" x",
+	["punctuation", ","],
+	["parameter-type", "Vector"],
+	" y",
+	["punctuation", ")"],
+	["punctuation", "{"],
 	["punctuation", "}"]
 ]
