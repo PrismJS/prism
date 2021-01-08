@@ -1,7 +1,7 @@
 "https://example.com"
 'single quote'
 'age = $user.age'
-'x = ${x:4.2f}'
+'[${int(x):-10}]'
 r'hello\nworld'
 `🚀`
 `\``
@@ -20,13 +20,21 @@ r'hello\nworld'
 		"'"
 	]],
 	["string", [
-		"'x = ",
+		"'[",
 		["interpolation", [
 			["interpolation-punctuation", "${"],
-			["interpolation-expression", "x:4.2f"],
+			["interpolation-expression", [
+				["function", "int"],
+				["punctuation", "("],
+				"x",
+				["punctuation", ")"],
+				["punctuation", ":"],
+				["operator", "-"],
+				["number", "10"]
+			]],
 			["interpolation-punctuation", "}"]
 		]],
-		"'"
+		"]'"
 	]],
 	["string", ["r'hello\\nworld'"]],
 	["string", "`🚀`"],
