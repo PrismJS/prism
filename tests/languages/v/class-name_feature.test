@@ -1,0 +1,41 @@
+struct Abc { }
+type Alphabet = Abc | Xyz
+enum Token { }
+interface Speaker { }
+struct Repo<T> { }
+
+----------------------------------------------------
+
+[
+	["keyword", "struct"],
+	["class-name", "Abc"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "type"],
+	["class-name", "Alphabet"],
+	["operator", "="],
+	" Abc ",
+	["operator", "|"],
+	" Xyz\r\n",
+
+	["keyword", "enum"],
+	["class-name", "Token"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "interface"],
+	["class-name", "Speaker"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "struct"],
+	["class-name", "Repo"],
+	["generic", [
+		["punctuation", "<"],
+		["class-name", "T"],
+		["punctuation", ">"]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"]
+]

@@ -1,0 +1,120 @@
+fn init() { }
+fn add(x int, y int) int { }
+fn sum(a ...int) int { }
+fn (mut t MyTime) century() int { }
+fn (d Dog) speak() string { }
+fn (r Repo) find_user_by_id(id int) ?User { }
+fn new_repo<T>(db DB) Repo<T> { }
+fn (r Repo<T>) find_by_id(id int) ?T { }
+
+----------------------------------------------------
+
+[
+	["keyword", "fn"],
+	["function", "init"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "fn"],
+	["function", "add"],
+	["punctuation", "("],
+	"x ",
+	["builtin", "int"],
+	["punctuation", ","],
+	" y ",
+	["builtin", "int"],
+	["punctuation", ")"],
+	["builtin", "int"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "fn"],
+	["function", "sum"],
+	["punctuation", "("],
+	"a ",
+	["operator", "..."],
+	["builtin", "int"],
+	["punctuation", ")"],
+	["builtin", "int"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "fn"],
+	["punctuation", "("],
+	["keyword", "mut"],
+	" t MyTime",
+	["punctuation", ")"],
+	["function", "century"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "int"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "fn"],
+	["punctuation", "("],
+	"d Dog",
+	["punctuation", ")"],
+	["function", "speak"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "string"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "fn"],
+	["punctuation", "("],
+	"r Repo",
+	["punctuation", ")"],
+	["function", "find_user_by_id"],
+	["punctuation", "("],
+	"id ",
+	["builtin", "int"],
+	["punctuation", ")"],
+	["operator", "?"],
+	"User ",
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "fn"],
+	["generic-function", [
+		["function", "new_repo"],
+		["generic", [
+			["punctuation", "<"],
+			["class-name", "T"],
+			["punctuation", ">"]
+		]]
+	]],
+	["punctuation", "("],
+	"db DB",
+	["punctuation", ")"],
+	" Repo",
+	["generic", [
+		["punctuation", "<"],
+		["class-name", "T"],
+		["punctuation", ">"]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "fn"],
+	["punctuation", "("],
+	"r Repo",
+	["generic", [
+		["punctuation", "<"],
+		["class-name", "T"],
+		["punctuation", ">"]
+	]],
+	["punctuation", ")"],
+	["function", "find_by_id"],
+	["punctuation", "("],
+	"id ",
+	["builtin", "int"],
+	["punctuation", ")"],
+	["operator", "?"],
+	"T ",
+	["punctuation", "{"],
+	["punctuation", "}"]
+]
