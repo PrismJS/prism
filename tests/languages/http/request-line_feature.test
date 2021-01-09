@@ -13,41 +13,48 @@ GET /path/to/foo.html HTTP/1.1
 [
 	["request-line", [
 		["property", "POST"],
-		" http://example.com HTTP/1.0"
+		["url", "http://example.com"],
+		" HTTP/1.0"
 	]],
 	["request-line", [
 		["property", "GET"],
-		" http://localhost",
-		["attr-name", ":9999"],
-		"/foo.html HTTP/1.1"
+		["url", "http://localhost:9999/foo.html"],
+		" HTTP/1.1"
 	]],
 	["request-line", [
 		["property", "PUT"],
-		" http://www.example.com HTTP/2.0"
+		["url", "http://www.example.com"],
+		" HTTP/2.0"
 	]],
 	["request-line", [
 		["property", "DELETE"],
-		" https://example.com HTTP/1.1"
+		["url", "https://example.com"],
+		" HTTP/1.1"
 	]],
 	["request-line", [
 		["property", "OPTIONS"],
-		" https://www.example.com HTTP/1.1"
+		["url", "https://www.example.com"],
+		" HTTP/1.1"
 	]],
 	["request-line", [
 		["property", "PATCH"],
-		" http://example.com HTTP/1.0"
+		["url", "http://example.com"],
+		" HTTP/1.0"
 	]],
 	["request-line", [
 		["property", "TRACE"],
-		" http://example.com HTTP/1.0"
+		["url", "http://example.com"],
+		" HTTP/1.0"
 	]],
 	["request-line", [
 		["property", "CONNECT"],
-		" http://example.com HTTP/1.0"
+		["url", "http://example.com"],
+		" HTTP/1.0"
 	]],
 	["request-line", [
 		["property", "GET"],
-		" /path/to/foo.html HTTP/1.1"
+		["url", "/path/to/foo.html"],
+		" HTTP/1.1"
 	]]
 ]
 

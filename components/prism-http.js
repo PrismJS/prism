@@ -3,10 +3,13 @@
 		'request-line': {
 			pattern: /^(?:POST|GET|PUT|DELETE|OPTIONS|PATCH|TRACE|CONNECT)\s(?:https?:\/\/|\/)\S+\sHTTP\/[0-9.]+/m,
 			inside: {
+				'url': {
+					pattern: /(^[A-Z]{1,10}\s+)(?:\/|https?:\/\/)\S*/,
+					lookbehind: true,
+					inside: Prism.languages.uri
+				},
 				// HTTP Verb
-				'property': /^(?:POST|GET|PUT|DELETE|OPTIONS|PATCH|TRACE|CONNECT)\b/,
-				// Path or query argument
-				'attr-name': /:\w+/
+				'property': /^(?:POST|GET|PUT|DELETE|OPTIONS|PATCH|TRACE|CONNECT)\b/
 			}
 		},
 		'response-status': {

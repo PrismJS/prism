@@ -219,6 +219,7 @@
 		"tsconfig": "typoscript",
 		"uscript": "unrealscript",
 		"uc": "unrealscript",
+		"url": "uri",
 		"vb": "visual-basic",
 		"vba": "visual-basic",
 		"xeoracube": "xeora",

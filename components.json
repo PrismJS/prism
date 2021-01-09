@@ -490,7 +490,8 @@
 				"css",
 				"javascript",
 				"json",
-				"markup"
+				"markup",
+				"uri"
 			],
 			"owner": "danielgtaylor"
 		},
@@ -1197,6 +1198,14 @@
 		"unrealscript": {
 			"title": "UnrealScript",
 			"alias": ["uscript", "uc"],
+			"owner": "RunDevelopment"
+		},
+		"uri": {
+			"title": "URI",
+			"alias": "url",
+			"aliasTitles": {
+				"url": "URL"
+			},
 			"owner": "RunDevelopment"
 		},
 		"v": {
