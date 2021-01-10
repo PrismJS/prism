@@ -73,6 +73,17 @@ Prism.languages.elixir = {
 	'punctuation': /<<|>>|[.,%\[\]{}()]/
 };
 
+Prism.languages.insertBefore('elixir', 'keyword', {
+	'module': {
+		pattern: /\b(defmodule\s)[A-Z][\w.\\]+/,
+		lookbehind: true,
+	},
+	'function': {
+		pattern: /\b(defp?\s)[\w.\\]+/,
+		lookbehind: true,
+	}
+});
+
 Prism.languages.elixir.string.forEach(function(o) {
 	o.inside = {
 		'interpolation': {
