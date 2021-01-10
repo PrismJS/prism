@@ -55,7 +55,7 @@ Prism.languages.elixir = {
 		alias: 'variable'
 	},
 	'number': /\b(?:0[box][a-f\d_]+|\d[\d_]*)(?:\.[\d_]+)?(?:e[+-]?[\d_]+)?\b/i,
-	'keyword': /\b(?:after|alias|and|case|catch|cond|def(?:callback|exception|impl|module|p|protocol|struct)?|do|else|end|fn|for|if|import|not|or|require|rescue|try|unless|use|when)\b/,
+	'keyword': /\b(?:after|alias|and|case|catch|cond|def(?:callback|exception|impl|module|p|protocol|struct|delegate)?|do|else|end|fn|for|if|import|not|or|require|rescue|try|unless|use|when)\b/,
 	'boolean': /\b(?:true|false|nil)\b/,
 	'operator': [
 		/\bin\b|&&?|\|[|>]?|\\\\|::|\.\.\.?|\+\+?|-[->]?|<[-=>]|>=|!==?|\B!|=(?:==?|[>~])?|[*\/^]/,
@@ -77,10 +77,11 @@ Prism.languages.insertBefore('elixir', 'keyword', {
 	'module': {
 		pattern: /\b(defmodule\s)[A-Z][\w.\\]+/,
 		lookbehind: true,
+		alias: 'class-name'
 	},
 	'function': {
 		pattern: /\b(defp?\s)[\w.\\]+/,
-		lookbehind: true,
+		lookbehind: true
 	}
 });
 
