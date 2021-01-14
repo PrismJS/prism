@@ -1,0 +1,52 @@
+RUN apt-get \
+update && apt-get \
+#asd
+#
+\
+\
+
+
+install git -y #asd \
+asdasdasd
+
+RUN echo hello \
+# comment
+world
+
+        # this is a comment-line
+    RUN echo hello
+RUN echo world
+
+RUN echo "\
+     hello\
+     world"
+
+LABEL multi.label1="value1" \
+      multi.label2="value2" \
+      other="value3"
+
+EXPOSE 80/udp
+
+ENV MY_NAME="John Doe"
+ENV MY_NAME="John Doe" MY_DOG=Rex\ The\ Dog \
+    MY_CAT=fluffy
+
+ADD hom?.txt /mydir/
+ADD --chown=1 files* /somedir/
+COPY --chown=1 files* /somedir/
+
+ENTRYPOINT ["executable", "param1", "param2"]
+
+FROM debian:stable
+RUN apt-get update && apt-get install -y --force-yes apache2
+EXPOSE 80 443
+VOLUME ["/var/www", "/var/log/apache2", "/etc/apache2"]
+ENTRYPOINT ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
+
+HEALTHCHECK --interval=5m --timeout=3s \
+  CMD curl -f http://localhost/ || exit 1
+
+ENTRYPOINT [ "/path/myprocess", \
+             "arg1",            \
+             "arg2"             \
+]

@@ -1,0 +1,12 @@
+FROM busybox
+USER ${user:-some_user}
+ARG user
+USER $user
+RUN echo $CONT_IMG_VER
+
+ARG  CODE_VERSION=latest
+FROM base:${CODE_VERSION}
+CMD  /code/run-app
+
+FROM extras:${CODE_VERSION}
+CMD  /code/run-extras
