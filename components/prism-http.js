@@ -1,7 +1,7 @@
 (function (Prism) {
 	Prism.languages.http = {
 		'request-line': {
-			pattern: /^(?:POST|GET|PUT|DELETE|OPTIONS|PATCH|TRACE|CONNECT)\s(?:https?:\/\/|\/)\S+\sHTTP\/[0-9.]+/m,
+			pattern: /^(?:POST|GET|PUT|DELETE|OPTIONS|PATCH|TRACE|CONNECT)\s(?:https?:\/\/|\/)\S*\sHTTP\/[0-9.]+/m,
 			inside: {
 				'url': {
 					pattern: /(^[A-Z]{1,10}\s+)(?:\/|https?:\/\/)\S*/,
