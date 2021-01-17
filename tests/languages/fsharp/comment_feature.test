@@ -4,7 +4,7 @@
 bar *)
 
 // the next one is not a comment
-(*)
+(*) (*)
 
 ----------------------------------------------------
 
@@ -14,7 +14,13 @@ bar *)
 	["comment", "(* foo\r\nbar *)"],
 
 	["comment", "// the next one is not a comment"],
-	["punctuation", "("], ["operator", "*"], ["punctuation", ")"]
+
+	["punctuation", "("],
+	["operator", "*"],
+	["punctuation", ")"],
+	["punctuation", "("],
+	["operator", "*"],
+	["punctuation", ")"]
 ]
 
 ----------------------------------------------------
