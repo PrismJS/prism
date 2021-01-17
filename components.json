@@ -1116,6 +1116,11 @@
 			"title": "SQL",
 			"owner": "multipetros"
 		},
+		"squirrel": {
+			"title": "Squirrel",
+			"require": "clike",
+			"owner": "RunDevelopment"
+		},
 		"stan": {
 			"title": "Stan",
 			"owner": "RunDevelopment"
