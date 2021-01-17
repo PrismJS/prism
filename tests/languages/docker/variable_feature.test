@@ -10,3 +10,53 @@ CMD  /code/run-app
 
 FROM extras:${CODE_VERSION}
 CMD  /code/run-extras
+
+----------------------------------------------------
+
+[
+	["command", [
+		["instruction", "FROM"],
+		" busybox"
+	]],
+	["command", [
+		["instruction", "USER"],
+		["variable", "${user:-some_user}"]
+	]],
+	["command", [
+		["instruction", "ARG"],
+		" user"
+	]],
+	["command", [
+		["instruction", "USER"],
+		["variable", "$user"]
+	]],
+	["command", [
+		["instruction", "RUN"],
+		" echo ",
+		["variable", "$CONT_IMG_VER"]
+	]],
+
+	["command", [
+		["instruction", "ARG"],
+		"  CODE_VERSION=latest"
+	]],
+	["command", [
+		["instruction", "FROM"],
+		" base:",
+		["variable", "${CODE_VERSION}"]
+	]],
+	["command", [
+		["instruction", "CMD"],
+		"  /code/run-app"
+	]],
+
+	["command", [
+		["instruction", "FROM"],
+		" extras:",
+		["variable", "${CODE_VERSION}"]
+	]],
+	["command", [
+		["instruction", "CMD"],
+		"  /code/run-extras"
+	]]
+]

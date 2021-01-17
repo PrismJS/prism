@@ -18,26 +18,80 @@ STOPSIGNAL signal
 ----------------------------------------------------
 
 [
-	["keyword", "ONBUILD"], ["keyword", "ADD"], " . /app/src\r\n",
-	["keyword", "FROM"], " ubuntu\r\n",
-	["keyword", "MAINTAINER"], " SvenDowideit@home.org.au\r\n",
-	["keyword", "RUN"], " cd /tmp\r\n",
-	["keyword", "EXPOSE"], " 5900\r\n",
-	["keyword", "ENV"], " myName John Doe\r\n",
-	["keyword", "COPY"], " hom* /mydir/\r\n",
-	["keyword", "VOLUME"], " /myvol\r\n",
-	["keyword", "USER"], " daemon\r\n",
-	["keyword", "WORKDIR"], " /a\r\n",
-	["keyword", "HEALTHCHECK"], ["keyword", "CMD"], " echo ", ["string", "\"foo\""],
-	["keyword", "LABEL"], " version=", ["string", "\"1.0\""],
-	["keyword", "ENTRYPOINT"],
-	["punctuation", "["], ["string", "\"top\""], ["punctuation", ","],
-	["string", "\"-b\""], ["punctuation", "]"],
-	["keyword", "ARG"], " user1\r\n",
-    ["keyword", "SHELL"],
-    ["punctuation", "["], ["string", "\"powershell\""], ["punctuation", ","],
-    ["string", "\"-command\""], ["punctuation", "]"],
-    ["keyword", "STOPSIGNAL"], " signal"
+	["command", [
+		["instruction", "ONBUILD"],
+		" ADD . /app/src"
+	]],
+	["command", [
+		["instruction", "FROM"],
+		" ubuntu"
+	]],
+	["command", [
+		["instruction", "MAINTAINER"],
+		" SvenDowideit@home.org.au"
+	]],
+	["command", [
+		["instruction", "RUN"],
+		" cd /tmp"
+	]],
+	["command", [
+		["instruction", "EXPOSE"],
+		" 5900"
+	]],
+	["command", [
+		["instruction", "ENV"],
+		" myName John Doe"
+	]],
+	["command", [
+		["instruction", "COPY"],
+		" hom* /mydir/"
+	]],
+	["command", [
+		["instruction", "VOLUME"],
+		" /myvol"
+	]],
+	["command", [
+		["instruction", "USER"],
+		" daemon"
+	]],
+	["command", [
+		["instruction", "WORKDIR"],
+		" /a"
+	]],
+	["command", [
+		["instruction", "HEALTHCHECK"],
+		" CMD echo ",
+		["string", "\"foo\""]
+	]],
+	["command", [
+		["instruction", "LABEL"],
+		" version=",
+		["string", "\"1.0\""]
+	]],
+	["command", [
+		["instruction", "ENTRYPOINT"],
+		" [",
+		["string", "\"top\""],
+		", ",
+		["string", "\"-b\""],
+		"]"
+	]],
+	["command", [
+		["instruction", "ARG"],
+		" user1"
+	]],
+	["command", [
+		["instruction", "SHELL"],
+		" [",
+		["string", "\"powershell\""],
+		", ",
+		["string", "\"-command\""],
+		"]"
+	]],
+	["command", [
+		["instruction", "STOPSIGNAL"],
+		" signal"
+	]]
 ]
 
 ----------------------------------------------------

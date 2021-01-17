@@ -1,6 +1,12 @@
 (function (Prism) {
 
-	var string = /"(?:[^"\\\r\n]|\\(?:\r\n|[\s\S]))*"|'(?:[^'\\\r\n]|\\(?:\r\n|[\s\S]))*'/;
+	var string = /"(?:[^"\\\r\n]|\\(?:\r\n|[\s\S]))*"|'(?:[^'\\\r\n]|\\(?:\r\n|[\s\S]))*'/.source;
+	var option = /--[\w-]+=(?:<str>|(?!["'])(?:[^\s\\]|\\.)+)/.source.replace(/<str>/g, function () { return string; });
+
+	var stringRule = {
+		pattern: RegExp(string),
+		greedy: true
+	};
 	var commentRule = {
 		pattern: /(^[ \t]*)#.*/m,
 		lookbehind: true,
@@ -13,35 +19,36 @@
 			lookbehind: true,
 			greedy: true,
 			inside: {
+				'options': {
+					pattern: RegExp(/(^\w+(?:\\$|\s)+)<opt>(?:(?:\\$|\s)+<opt>)*/.source.replace(/<opt>/g, function () { return option; }), 'm'),
+					lookbehind: true,
+					greedy: true,
+					inside: {
+						'property': {
+							pattern: /(^|\s)--[\w-]+/,
+							lookbehind: true
+						},
+						'string': [
+							stringRule,
+							{
+								pattern: /(=)(?!["'])(?:[^\s\\]|\\.)+/,
+								lookbehind: true
+							}
+						],
+						'operator': /\\$/m,
+						'punctuation': /=/
+					}
+				},
 				'instruction': {
 					pattern: /^\w+|(\s)AS(?=\s)/,
 					lookbehind: true,
 					greedy: true,
 					alias: 'keyword'
 				},
-				'option': {
-					pattern: RegExp(/(^\s+)--[\w-]+=(?:<str>|(?!["'])(?:[^\s\\]|\\.)+)/.source.replace(/<str>/g, function () { return string.source })),
-					lookbehind: true,
-					inside: {
-						'property': /^--[\w-]+/,
-						'attr-value': {
-							pattern: /^(=)[\s\S]+/,
-							lookbehind: true
-						},
-						'punctuation': /=/
-					}
-				},
 				'comment': commentRule,
-				'string': {
-					pattern: string,
-					greedy: true
-				},
+				'string': stringRule,
 				'variable': /\$(?:\w+|\{[^{}"'\\]*\})/,
-				'operator': /\\$/m,
-				// punctuation for JSON arrays
-				'punctuation': {
-					pattern: /("\s*)/
-				}
+				'operator': /\\$/m
 			}
 		},
 		'comment': commentRule

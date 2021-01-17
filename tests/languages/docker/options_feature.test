@@ -1,0 +1,67 @@
+ADD --chown=1 files* /somedir/
+COPY --chown=1 files* /somedir/
+
+HEALTHCHECK --interval=5m --timeout=3s \
+  CMD foo
+
+HEALTHCHECK \
+  --interval=5m \
+  --timeout=3s \
+  CMD foo
+
+----------------------------------------------------
+
+[
+	["command", [
+		["instruction", "ADD"],
+		["options", [
+			["property", "--chown"],
+			["punctuation", "="],
+			["string", "1"]
+		]],
+		" files* /somedir/"
+	]],
+	["command", [
+		["instruction", "COPY"],
+		["options", [
+			["property", "--chown"],
+			["punctuation", "="],
+			["string", "1"]
+		]],
+		" files* /somedir/"
+	]],
+
+	["command", [
+		["instruction", "HEALTHCHECK"],
+		["options", [
+			["property", "--interval"],
+			["punctuation", "="],
+			["string", "5m"],
+			["property", "--timeout"],
+			["punctuation", "="],
+			["string", "3s"]
+		]],
+		["operator", "\\"],
+
+		"\r\n  CMD foo"
+	]],
+
+	["command", [
+		["instruction", "HEALTHCHECK"],
+		["operator", "\\"],
+
+		["options", [
+			["property", "--interval"],
+			["punctuation", "="],
+			["string", "5m"],
+			["operator", "\\"],
+
+			["property", "--timeout"],
+			["punctuation", "="],
+			["string", "3s"]
+		]],
+		["operator", "\\"],
+
+		"\r\n  CMD foo"
+	]]
+]
