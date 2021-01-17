@@ -322,6 +322,12 @@
 			"alias": "dockerfile",
 			"owner": "JustinBeckwith"
 		},
+		"dot": {
+			"title": "DOT (Graphviz)",
+			"alias": "gv",
+			"optional": "markup",
+			"owner": "RunDevelopment"
+		},
 		"ebnf": {
 			"title": "EBNF",
 			"owner": "RunDevelopment"
