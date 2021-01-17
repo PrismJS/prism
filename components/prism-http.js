@@ -3,10 +3,21 @@
 		'request-line': {
 			pattern: /^(?:GET|HEAD|POST|PUT|DELETE|CONNECT|OPTIONS|TRACE|PATCH|PRI|SEARCH)\s(?:https?:\/\/|\/)\S*\sHTTP\/[0-9.]+/m,
 			inside: {
-				// HTTP Verb
-				'property': /^(?:GET|HEAD|POST|PUT|DELETE|CONNECT|OPTIONS|TRACE|PATCH|PRI|SEARCH)\b/,
-				// Path or query argument
-				'attr-name': /:\w+/
+				// HTTP Method
+				'method': {
+					pattern: /^(?:GET|HEAD|POST|PUT|DELETE|CONNECT|OPTIONS|TRACE|PATCH|PRI|SEARCH)\b/,
+					alias: 'property'
+				},
+				// Request Target e.g. http://example.com, /path/to/file
+				'request-target': {
+					pattern: /^(\s)(?:https?:\/\/|\/)\S*(?=\s)/,
+					lookbehind: true
+				},
+				// HTTP Version
+				'http-version': {
+					pattern: /^(\s)HTTP\/[0-9.]+/,
+					lookbehind: true
+				},
 			}
 		},
 		'response-status': {
