@@ -62,8 +62,8 @@ GET / HTTP/1.1
     ["request-target","/"],
     ["http-version","HTTP/1.1"]
   ]]
-  ]
+]
 
-  ----------------------------------------------------
+----------------------------------------------------
 
-  Checks for request lines.
+Checks for request lines.
