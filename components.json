@@ -1205,6 +1205,11 @@
 			"alias": ["uscript", "uc"],
 			"owner": "RunDevelopment"
 		},
+		"v": {
+			"title": "V",
+			"require": "clike",
+			"owner": "taggon"
+		},
 		"vala": {
 			"title": "Vala",
 			"require": "clike",

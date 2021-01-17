@@ -15,7 +15,7 @@
 			greedy: true
 		},
 		'character': {
-			pattern: /#\\(?:[ux][a-fA-F\d]+\b|[-a-zA-Z]+\b|\S)/,
+			pattern: /#\\(?:[ux][a-fA-F\d]+\b|[-a-zA-Z]+\b|[\uD800-\uDBFF][\uDC00-\uDFFF]|\S)/,
 			greedy: true,
 			alias: 'string'
 		},

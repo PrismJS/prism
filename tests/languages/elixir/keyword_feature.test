@@ -3,7 +3,9 @@ catch cond def
 defcallback
 defexception
 defimpl defmodule
-defp defprotocol
+defp
+defprotocol
+defdelegate
 defstruct do else
 end fn for if
 import not or
@@ -18,7 +20,9 @@ unless use when
 	["keyword", "defcallback"],
 	["keyword", "defexception"],
 	["keyword", "defimpl"], ["keyword", "defmodule"],
-	["keyword", "defp"], ["keyword", "defprotocol"],
+	["keyword", "defp"],
+	["keyword", "defprotocol"],
+	["keyword", "defdelegate"],
 	["keyword", "defstruct"], ["keyword", "do"], ["keyword", "else"],
 	["keyword", "end"], ["keyword", "fn"], ["keyword", "for"], ["keyword", "if"],
 	["keyword", "import"], ["keyword", "not"], ["keyword", "or"],
