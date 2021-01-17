@@ -10,12 +10,22 @@
 			}
 		},
 		'response-status': {
-			pattern: /^HTTP\/1.[01] \d.*/m,
+			pattern: /^HTTP\/1.[01] \d+ .+/m,
 			inside: {
 				// Status, e.g. 200 OK
-				'property': {
-					pattern: /(^HTTP\/1.[01] )\d.*/i,
-					lookbehind: true
+				'http-version': {
+					pattern: /^HTTP\/1.[01]+/,
+					alias: 'property'
+				},
+				'status-code': {
+					pattern: /^(\s)\d+(?=\s)/,
+					lookbehind: true,
+					alias: 'number'
+				},
+				'reason-phrase': {
+					pattern: /^(\s).+/,
+					lookbehind: true,
+					alias: 'string'
 				}
 			}
 		},
