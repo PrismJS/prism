@@ -1,10 +1,10 @@
 (function (Prism) {
 	Prism.languages.http = {
 		'request-line': {
-			pattern: /^(?:POST|GET|PUT|DELETE|OPTIONS|PATCH|TRACE|CONNECT)\s(?:https?:\/\/|\/)\S*\sHTTP\/[0-9.]+/m,
+			pattern: /^(?:GET|HEAD|POST|PUT|DELETE|CONNECT|OPTIONS|TRACE|PATCH|PRI|SEARCH)\s(?:https?:\/\/|\/)\S*\sHTTP\/[0-9.]+/m,
 			inside: {
 				// HTTP Verb
-				'property': /^(?:POST|GET|PUT|DELETE|OPTIONS|PATCH|TRACE|CONNECT)\b/,
+				'property': /^(?:GET|HEAD|POST|PUT|DELETE|CONNECT|OPTIONS|TRACE|PATCH|PRI|SEARCH)\b/,
 				// Path or query argument
 				'attr-name': /:\w+/
 			}
@@ -12,16 +12,18 @@
 		'response-status': {
 			pattern: /^HTTP\/1.[01] \d+ .+/m,
 			inside: {
-				// Status, e.g. 200 OK
+				// HTTP Version
 				'http-version': {
 					pattern: /^HTTP\/1.[01]+/,
 					alias: 'property'
 				},
+				// Status Code
 				'status-code': {
 					pattern: /^(\s)\d+(?=\s)/,
 					lookbehind: true,
 					alias: 'number'
 				},
+				// Reason Phrase
 				'reason-phrase': {
 					pattern: /^(\s).+/,
 					lookbehind: true,
