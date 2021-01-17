@@ -1,5 +1,6 @@
 ONBUILD ADD . /app/src
 FROM ubuntu
+FROM ubuntu AS build
 MAINTAINER SvenDowideit@home.org.au
 RUN cd /tmp
 EXPOSE 5900
@@ -25,6 +26,12 @@ STOPSIGNAL signal
 	["command", [
 		["instruction", "FROM"],
 		" ubuntu"
+	]],
+	["command", [
+		["instruction", "FROM"],
+		" ubuntu ",
+		["instruction", "AS"],
+		" build"
 	]],
 	["command", [
 		["instruction", "MAINTAINER"],
