@@ -11,6 +11,7 @@
 		'command': {
 			pattern: /(^[ \t]*)(?:ADD|ARG|CMD|COPY|ENTRYPOINT|ENV|EXPOSE|FROM|HEALTHCHECK|LABEL|MAINTAINER|ONBUILD|RUN|SHELL|STOPSIGNAL|USER|VOLUME|WORKDIR)(?=\s)(?:\\.|[^\r\n\\])*(?:\\$(?:\s|#.*$)*(?![\s#])(?:\\.|[^\r\n\\])*)*/mi,
 			lookbehind: true,
+			greedy: true,
 			inside: {
 				'instruction': {
 					pattern: /^\w+|(\s)AS(?=\s)/,
