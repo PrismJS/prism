@@ -5,7 +5,7 @@
 			inside: {
 				// HTTP Method
 				'method': {
-					pattern: /^(?:GET|HEAD|POST|PUT|DELETE|CONNECT|OPTIONS|TRACE|PATCH|PRI|SEARCH)\b/,
+					pattern: /^[A-Z]+\b/,
 					alias: 'property'
 				},
 				// Request Target e.g. http://example.com, /path/to/file
