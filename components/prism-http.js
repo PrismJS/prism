@@ -25,7 +25,7 @@
 			inside: {
 				// HTTP Version
 				'http-version': {
-					pattern: /^HTTP\/1.[01]+/,
+					pattern: /^HTTP\/1.[01]/,
 					alias: 'property'
 				},
 				// Status Code
