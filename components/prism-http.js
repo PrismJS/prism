@@ -17,7 +17,8 @@
 				// HTTP Version
 				'http-version': {
 					pattern: /^(\s)HTTP\/[0-9.]+/,
-					lookbehind: true
+					lookbehind: true,
+					alias: 'property'
 				},
 			}
 		},
