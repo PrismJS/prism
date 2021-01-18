@@ -22,11 +22,11 @@
 			}
 		},
 		'response-status': {
-			pattern: /^HTTP\/1.[01] \d+ .+/m,
+			pattern: /^HTTP\/[0-9.]+ \d+ .+/m,
 			inside: {
 				// HTTP Version
 				'http-version': {
-					pattern: /^HTTP\/1.[01]/,
+					pattern: /^HTTP\/[0-9.]+/,
 					alias: 'property'
 				},
 				// Status Code
