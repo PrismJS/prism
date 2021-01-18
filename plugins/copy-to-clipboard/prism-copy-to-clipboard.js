@@ -1,4 +1,4 @@
-(function(){
+(function () {
 	if (typeof self === 'undefined' || !self.Prism || !self.document) {
 		return;
 	}
@@ -21,7 +21,7 @@
 		var script = document.createElement('script');
 		var head = document.querySelector('head');
 
-		script.onload = function() {
+		script.onload = function () {
 			ClipboardJS = window.ClipboardJS;
 
 			if (ClipboardJS) {
@@ -35,12 +35,38 @@
 		head.appendChild(script);
 	}
 
-	Prism.plugins.toolbar.registerButton('copy-to-clipboard', function (env) {
-		var linkCopy = document.createElement('button');
-		linkCopy.textContent = 'Copy';
-		linkCopy.setAttribute('type', 'button');
+	function getSettings(start, defaults) {
+		var prefix = 'data-prismjs-';
+		var settings = defaults;
+		for (var key in settings) {
+			var attr = prefix + key;
+			var element = start;
+			while (element && !element.hasAttribute(attr)) {
+				element = element.parentElement;
+			}
+			if (element !== null) {
+				var value = element.getAttribute(attr);
+				if (typeof value !== 'undefined') {
+					settings[key] = value;
+				}
+			}
+		}
+		return settings;
+	}
 
+	Prism.plugins.toolbar.registerButton('copy-to-clipboard', function (env) {
+		var defaults = {
+			'copy': 'Copy',
+			'copy-error': 'Press Ctrl+C to copy',
+			'copy-success': 'Copied!',
+			'copy-timeout': 5000
+		};
 		var element = env.element;
+		var settings = getSettings(element, defaults);
+
+		var linkCopy = document.createElement('button');
+		linkCopy.textContent = settings['copy'];
+		linkCopy.setAttribute('type', 'button');
 
 		if (!ClipboardJS) {
 			callbacks.push(registerClipboard);
@@ -57,13 +83,13 @@
 				}
 			});
 
-			clip.on('success', function() {
-				linkCopy.textContent = 'Copied!';
+			clip.on('success', function () {
+				linkCopy.textContent = settings['copy-success'];
 
 				resetText();
 			});
 			clip.on('error', function () {
-				linkCopy.textContent = 'Press Ctrl+C to copy';
+				linkCopy.textContent = settings['copy-error'];
 
 				resetText();
 			});
@@ -71,8 +97,8 @@
 
 		function resetText() {
 			setTimeout(function () {
-				linkCopy.textContent = 'Copy';
-			}, 5000);
+				linkCopy.textContent = settings['copy'];
+			}, settings['copy-timeout']);
 		}
 	});
 })();
