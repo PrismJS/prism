@@ -11,7 +11,8 @@
 				// Request Target e.g. http://example.com, /path/to/file
 				'request-target': {
 					pattern: /^(\s)(?:https?:\/\/|\/)\S*(?=\s)/,
-					lookbehind: true
+					lookbehind: true,
+					alias: 'url'
 				},
 				// HTTP Version
 				'http-version': {
