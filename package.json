@@ -33,7 +33,10 @@
     "clipboard": "^2.0.0"
   },
   "devDependencies": {
+    "autoprefixer": "^10.2.1",
+    "browserslist": "^4.16.1",
     "chai": "^4.2.0",
+    "cssnano": "^4.1.10",
     "danger": "^10.5.0",
     "del": "^4.1.1",
     "docdash": "^1.2.0",
@@ -41,14 +44,18 @@
     "gulp-concat": "^2.3.4",
     "gulp-header": "^2.0.7",
     "gulp-jsdoc3": "^3.0.0",
+    "gulp-postcss": "^9.0.0",
     "gulp-rename": "^1.2.0",
     "gulp-replace": "^1.0.0",
+    "gulp-sass": "^4.1.0",
     "gulp-uglify": "^3.0.1",
     "gzip-size": "^5.1.1",
     "htmlparser2": "^4.0.0",
     "http-server": "^0.12.3",
     "jsdom": "^13.0.0",
     "mocha": "^6.2.0",
+    "node-sass": "^5.0.0",
+    "postcss": "^8.2.4",
     "pump": "^3.0.0",
     "refa": "0.5.0",
     "regexpp": "^2.0.1",
@@ -68,5 +75,11 @@
       "themes/*.css",
       "prism.js"
     ]
-  }
+  },
+  "dependencies": {},
+  "browserslist": [
+    "last 4 version",
+    "> 1%",
+    "IE 9"
+  ]
 }

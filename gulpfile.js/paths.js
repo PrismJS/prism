@@ -15,5 +15,8 @@ module.exports = {
 	plugins: ['plugins/**/*.js', '!plugins/**/*.min.js'],
 	showLanguagePlugin: 'plugins/show-language/prism-show-language.js',
 	autoloaderPlugin: 'plugins/autoloader/prism-autoloader.js',
-	changelog: 'CHANGELOG.md'
+	changelog: 'CHANGELOG.md',
+
+	/* scss */
+	styles: 'themes/**/*.scss'
 };

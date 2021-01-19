@@ -12,6 +12,14 @@ const pump = require('pump');
 const util = require('util');
 const fs = require('fs');
 
+/* style */
+const
+	sass = require('gulp-sass'),
+	postcss = require('gulp-postcss'),
+	autoprefixer = require('autoprefixer'),
+	cssnano = require('cssnano')
+	;
+
 const paths = require('./paths');
 const { changes, linkify } = require('./changelog');
 const { docs } = require('./docs');
@@ -63,6 +71,16 @@ function minifyJS() {
 	];
 }
 
+function render_scss(cb) {
+	pump([
+		src(paths.styles),
+		sass(),
+		postcss([
+			autoprefixer(),
+		]),
+		dest('themes')],
+		cb);
+}
 
 function minifyComponents(cb) {
 	pump([src(paths.components), ...minifyJS(), rename({ suffix: '.min' }), dest('components')], cb);
@@ -89,6 +107,7 @@ if (typeof module !== 'undefined' && module.exports) { module.exports = componen
 function watchComponentsAndPlugins() {
 	watch(paths.components, parallel(minifyComponents, build));
 	watch(paths.plugins, parallel(minifyPlugins, build));
+	watch(paths.styles, parallel(render_scss));
 }
 
 async function languagePlugins() {
@@ -278,7 +297,7 @@ const plugins = series(languagePlugins, treeviewIconFont, minifyPlugins);
 
 
 module.exports = {
-	watch: watchComponentsAndPlugins,
+	watch: series(watchComponentsAndPlugins, render_scss),
 	default: series(parallel(components, plugins, componentsJsonToJs, build), docs),
 	linkify,
 	changes
