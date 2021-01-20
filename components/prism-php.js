@@ -33,6 +33,14 @@
 				'punctuation': /\\/
 			}
 		},
+		'class-name-definition': [
+			{
+				pattern: /(\b(?:class|interface|trait)\s+)\b[a-z_]\w*(?!\\)\b/i,
+				greedy: true,
+				lookbehind: true,
+				alias: 'class-name'
+			},
+		],
 		'keyword': [
 			{
 				pattern: /(\(\s*)\b(?:bool|boolean|int|integer|float|string|object|array)\b(?=\s*\))/i,
