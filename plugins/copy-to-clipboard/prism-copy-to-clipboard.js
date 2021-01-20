@@ -37,18 +37,17 @@
 
 	function getSettings(start, defaults) {
 		var prefix = 'data-prismjs-';
-		var settings = defaults;
-		for (var key in settings) {
+		var settings = {};
+		for (var key in defaults) {
 			var attr = prefix + key;
 			var element = start;
 			while (element && !element.hasAttribute(attr)) {
 				element = element.parentElement;
 			}
 			if (element !== null) {
-				var value = element.getAttribute(attr);
-				if (typeof value !== 'undefined') {
-					settings[key] = value;
-				}
+				settings[key] = element.getAttribute(attr);
+			} else {
+				settings[key] = defaults[key];
 			}
 		}
 		return settings;
