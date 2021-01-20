@@ -81,7 +81,7 @@
 		var settings = getSettings(element, defaults);
 
 		var linkCopy = document.createElement('button');
-		linkCopy.textContent = settings['copy'];
+		linkCopy.textContent = settings.copy;
 		linkCopy.setAttribute('type', 'button');
 
 		if (!ClipboardJS) {
@@ -100,12 +100,12 @@
 			});
 
 			clip.on('success', function () {
-				linkCopy.textContent = settings['copy-success'];
+				linkCopy.textContent = settings.copy_success;
 
 				resetText();
 			});
 			clip.on('error', function () {
-				linkCopy.textContent = settings['copy-error'];
+				linkCopy.textContent = settings.copy_error;
 
 				resetText();
 			});
@@ -113,8 +113,8 @@
 
 		function resetText() {
 			setTimeout(function () {
-				linkCopy.textContent = settings['copy'];
-			}, settings['copy-timeout']);
+				linkCopy.textContent = settings.copy;
+			}, settings.copy_timeout);
 		}
 	});
 })();
