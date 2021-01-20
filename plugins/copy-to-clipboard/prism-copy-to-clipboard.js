@@ -1,3 +1,9 @@
+/**
+ * A DOM element.
+ * @external Element
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Element}
+ */
+
 (function () {
 	if (typeof self === 'undefined' || !self.Prism || !self.document) {
 		return;
@@ -35,11 +41,22 @@
 		head.appendChild(script);
 	}
 
+	/**
+	 * Traverses up the DOM tree to find data attributes
+	 * that override the default plugin settings.
+	 * @param {external:Element} start An element to start from.
+	 * @param {Object} defaults Keys and default values of settings.
+	 * @param {String} defaults.copy A copy-to-clipboard message.
+	 * @param {String} defaults.copy_error A copying error message.
+	 * @param {String} defaults.copy_success A message for a successful copying.
+	 * @param {Number} defaults.copy_timeout A time-out for a state changing, ms.
+	 * @returns {Object} The plugin settings.
+	 */
 	function getSettings(start, defaults) {
 		var prefix = 'data-prismjs-';
 		var settings = {};
 		for (var key in defaults) {
-			var attr = prefix + key;
+			var attr = prefix + key.replace(/_/g, '-');
 			var element = start;
 			while (element && !element.hasAttribute(attr)) {
 				element = element.parentElement;
@@ -55,10 +72,10 @@
 
 	Prism.plugins.toolbar.registerButton('copy-to-clipboard', function (env) {
 		var defaults = {
-			'copy': 'Copy',
-			'copy-error': 'Press Ctrl+C to copy',
-			'copy-success': 'Copied!',
-			'copy-timeout': 5000
+			copy: 'Copy',
+			copy_error: 'Press Ctrl+C to copy',
+			copy_success: 'Copied!',
+			copy_timeout: 5000
 		};
 		var element = env.element;
 		var settings = getSettings(element, defaults);
