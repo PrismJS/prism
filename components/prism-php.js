@@ -33,14 +33,11 @@
 				'punctuation': /\\/
 			}
 		},
-		'class-name-definition': [
-			{
-				pattern: /(\b(?:class|interface|trait)\s+)\b[a-z_]\w*(?!\\)\b/i,
-				greedy: true,
-				lookbehind: true,
-				alias: 'class-name'
-			},
-		],
+		'class-name-definition': {
+			pattern: /(\b(?:class|interface|trait)\s+)\b[a-z_]\w*(?!\\)\b/i,
+			lookbehind: true,
+			alias: 'class-name'
+		},
 		'keyword': [
 			{
 				pattern: /(\(\s*)\b(?:bool|boolean|int|integer|float|string|object|array)\b(?=\s*\))/i,
@@ -93,7 +90,7 @@
 		'argument-name': /\b[a-z_]\w*(?=\s*:(?!:))/i,
 		'class-name': [
 			{
-				pattern: /(\b(?:class|interface|extends|implements|trait|instanceof|new(?!\s+self|\s+static))\s+|\bcatch\s*\()\b[a-z_]\w*(?!\\)\b/i,
+				pattern: /(\b(?:extends|implements|instanceof|new(?!\s+self|\s+static))\s+|\bcatch\s*\()\b[a-z_]\w*(?!\\)\b/i,
 				greedy: true,
 				lookbehind: true
 			},
