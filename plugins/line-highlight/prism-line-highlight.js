@@ -321,7 +321,7 @@
 
 	window.addEventListener('hashchange', applyHash);
 	window.addEventListener('resize', function () {
-		var actions = $$('pre[data-line], pre.' + LINKABLE_LINE_NUMBERS_CLASS)
+		var actions = $$('pre')
 			.filter(isActiveFor)
 			.map(function (pre) {
 				return highlightLines(pre);
