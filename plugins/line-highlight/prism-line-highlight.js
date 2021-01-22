@@ -122,8 +122,7 @@
 	 * @returns {() => void}
 	 */
 	function highlightLines(pre, lines, classes) {
-		lines = typeof lines === 'string' ? lines : pre.getAttribute('data-line');
-		lines = lines || '';
+		lines = typeof lines === 'string' ? lines : (pre.getAttribute('data-line') || '');
 
 		var ranges = lines.replace(/\s+/g, '').split(',').filter(Boolean);
 		var offset = +pre.getAttribute('data-line-offset') || 0;
