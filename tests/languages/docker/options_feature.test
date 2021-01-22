@@ -4,6 +4,9 @@ COPY --chown=1 files* /somedir/
 HEALTHCHECK --interval=5m --timeout=3s \
   CMD foo
 
+ONBUILD HEALTHCHECK --interval=5m --timeout=3s \
+  CMD foo
+
 HEALTHCHECK \
   --interval=5m \
   --timeout=3s \
@@ -12,8 +15,8 @@ HEALTHCHECK \
 ----------------------------------------------------
 
 [
-	["command", [
-		["instruction", "ADD"],
+	["instruction", [
+		["keyword", "ADD"],
 		["options", [
 			["property", "--chown"],
 			["punctuation", "="],
@@ -21,8 +24,8 @@ HEALTHCHECK \
 		]],
 		" files* /somedir/"
 	]],
-	["command", [
-		["instruction", "COPY"],
+	["instruction", [
+		["keyword", "COPY"],
 		["options", [
 			["property", "--chown"],
 			["punctuation", "="],
@@ -31,8 +34,8 @@ HEALTHCHECK \
 		" files* /somedir/"
 	]],
 
-	["command", [
-		["instruction", "HEALTHCHECK"],
+	["instruction", [
+		["keyword", "HEALTHCHECK"],
 		["options", [
 			["property", "--interval"],
 			["punctuation", "="],
@@ -43,11 +46,29 @@ HEALTHCHECK \
 		]],
 		["operator", "\\"],
 
-		"\r\n  CMD foo"
+		["keyword", "CMD"],
+		" foo"
 	]],
 
-	["command", [
-		["instruction", "HEALTHCHECK"],
+	["instruction", [
+		["keyword", "ONBUILD"],
+		["keyword", "HEALTHCHECK"],
+		["options", [
+			["property", "--interval"],
+			["punctuation", "="],
+			["string", "5m"],
+			["property", "--timeout"],
+			["punctuation", "="],
+			["string", "3s"]
+		]],
+		["operator", "\\"],
+
+		["keyword", "CMD"],
+		" foo"
+	]],
+
+	["instruction", [
+		["keyword", "HEALTHCHECK"],
 		["operator", "\\"],
 
 		["options", [
@@ -62,6 +83,7 @@ HEALTHCHECK \
 		]],
 		["operator", "\\"],
 
-		"\r\n  CMD foo"
+		["keyword", "CMD"],
+		" foo"
 	]]
 ]

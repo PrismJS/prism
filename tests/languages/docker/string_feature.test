@@ -11,34 +11,34 @@ bar'
 ----------------------------------------------------
 
 [
-	["command", [
-		["instruction", "RUN"],
+	["instruction", [
+		["keyword", "RUN"],
 		" echo ",
 		["string", "\"\""]
 	]],
-	["command", [
-		["instruction", "RUN"],
+	["instruction", [
+		["keyword", "RUN"],
 		" echo ",
 		["string", "\"fo\\\"obar\""]
 	]],
-	["command", [
-		["instruction", "RUN"],
+	["instruction", [
+		["keyword", "RUN"],
 		" echo ",
 		["string", "\"foo\\\r\nbar\""]
 	]],
 
-	["command", [
-		["instruction", "RUN"],
+	["instruction", [
+		["keyword", "RUN"],
 		" echo ",
 		["string", "''"]
 	]],
-	["command", [
-		["instruction", "RUN"],
+	["instruction", [
+		["keyword", "RUN"],
 		" echo ",
 		["string", "'fo\\'obar'"]
 	]],
-	["command", [
-		["instruction", "RUN"],
+	["instruction", [
+		["keyword", "RUN"],
 		" echo ",
 		["string", "'foo\\\r\nbar'"]
 	]]

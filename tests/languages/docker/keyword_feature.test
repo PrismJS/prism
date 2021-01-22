@@ -10,6 +10,7 @@ VOLUME /myvol
 USER daemon
 WORKDIR /a
 HEALTHCHECK CMD echo "foo"
+HEALTHCHECK NONE
 LABEL version="1.0"
 ENTRYPOINT ["top", "-b"]
 ARG user1
@@ -19,84 +20,90 @@ STOPSIGNAL signal
 ----------------------------------------------------
 
 [
-	["command", [
-		["instruction", "ONBUILD"],
-		" ADD . /app/src"
+	["instruction", [
+		["keyword", "ONBUILD"],
+		["keyword", "ADD"],
+		" . /app/src"
 	]],
-	["command", [
-		["instruction", "FROM"],
+	["instruction", [
+		["keyword", "FROM"],
 		" ubuntu"
 	]],
-	["command", [
-		["instruction", "FROM"],
+	["instruction", [
+		["keyword", "FROM"],
 		" ubuntu ",
-		["instruction", "AS"],
+		["keyword", "AS"],
 		" build"
 	]],
-	["command", [
-		["instruction", "MAINTAINER"],
+	["instruction", [
+		["keyword", "MAINTAINER"],
 		" SvenDowideit@home.org.au"
 	]],
-	["command", [
-		["instruction", "RUN"],
+	["instruction", [
+		["keyword", "RUN"],
 		" cd /tmp"
 	]],
-	["command", [
-		["instruction", "EXPOSE"],
+	["instruction", [
+		["keyword", "EXPOSE"],
 		" 5900"
 	]],
-	["command", [
-		["instruction", "ENV"],
+	["instruction", [
+		["keyword", "ENV"],
 		" myName John Doe"
 	]],
-	["command", [
-		["instruction", "COPY"],
+	["instruction", [
+		["keyword", "COPY"],
 		" hom* /mydir/"
 	]],
-	["command", [
-		["instruction", "VOLUME"],
+	["instruction", [
+		["keyword", "VOLUME"],
 		" /myvol"
 	]],
-	["command", [
-		["instruction", "USER"],
+	["instruction", [
+		["keyword", "USER"],
 		" daemon"
 	]],
-	["command", [
-		["instruction", "WORKDIR"],
+	["instruction", [
+		["keyword", "WORKDIR"],
 		" /a"
 	]],
-	["command", [
-		["instruction", "HEALTHCHECK"],
-		" CMD echo ",
+	["instruction", [
+		["keyword", "HEALTHCHECK"],
+		["keyword", "CMD"],
+		" echo ",
 		["string", "\"foo\""]
 	]],
-	["command", [
-		["instruction", "LABEL"],
+	["instruction", [
+		["keyword", "HEALTHCHECK"],
+		["keyword", "NONE"]
+	]],
+	["instruction", [
+		["keyword", "LABEL"],
 		" version=",
 		["string", "\"1.0\""]
 	]],
-	["command", [
-		["instruction", "ENTRYPOINT"],
+	["instruction", [
+		["keyword", "ENTRYPOINT"],
 		" [",
 		["string", "\"top\""],
 		", ",
 		["string", "\"-b\""],
 		"]"
 	]],
-	["command", [
-		["instruction", "ARG"],
+	["instruction", [
+		["keyword", "ARG"],
 		" user1"
 	]],
-	["command", [
-		["instruction", "SHELL"],
+	["instruction", [
+		["keyword", "SHELL"],
 		" [",
 		["string", "\"powershell\""],
 		", ",
 		["string", "\"-command\""],
 		"]"
 	]],
-	["command", [
-		["instruction", "STOPSIGNAL"],
+	["instruction", [
+		["keyword", "STOPSIGNAL"],
 		" signal"
 	]]
 ]

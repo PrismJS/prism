@@ -14,49 +14,49 @@ CMD  /code/run-extras
 ----------------------------------------------------
 
 [
-	["command", [
-		["instruction", "FROM"],
+	["instruction", [
+		["keyword", "FROM"],
 		" busybox"
 	]],
-	["command", [
-		["instruction", "USER"],
+	["instruction", [
+		["keyword", "USER"],
 		["variable", "${user:-some_user}"]
 	]],
-	["command", [
-		["instruction", "ARG"],
+	["instruction", [
+		["keyword", "ARG"],
 		" user"
 	]],
-	["command", [
-		["instruction", "USER"],
+	["instruction", [
+		["keyword", "USER"],
 		["variable", "$user"]
 	]],
-	["command", [
-		["instruction", "RUN"],
+	["instruction", [
+		["keyword", "RUN"],
 		" echo ",
 		["variable", "$CONT_IMG_VER"]
 	]],
 
-	["command", [
-		["instruction", "ARG"],
+	["instruction", [
+		["keyword", "ARG"],
 		"  CODE_VERSION=latest"
 	]],
-	["command", [
-		["instruction", "FROM"],
+	["instruction", [
+		["keyword", "FROM"],
 		" base:",
 		["variable", "${CODE_VERSION}"]
 	]],
-	["command", [
-		["instruction", "CMD"],
+	["instruction", [
+		["keyword", "CMD"],
 		"  /code/run-app"
 	]],
 
-	["command", [
-		["instruction", "FROM"],
+	["instruction", [
+		["keyword", "FROM"],
 		" extras:",
 		["variable", "${CODE_VERSION}"]
 	]],
-	["command", [
-		["instruction", "CMD"],
+	["instruction", [
+		["keyword", "CMD"],
 		"  /code/run-extras"
 	]]
 ]

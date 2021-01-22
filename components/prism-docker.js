@@ -1,7 +1,12 @@
 (function (Prism) {
 
+	var spaceAfterBaskSlash = /\\[\r\n](?:\s|\\[\r\n]|#.*(?!.))*(?![\s#]|\\[\r\n])/.source;
+	// At least one space, comment, or line break
+	var space = /(?:[ \t]+(?![ \t])(?:<SP_BS>)?|<SP_BS>)/.source
+		.replace(/<SP_BS>/g, function () { return spaceAfterBaskSlash; });
+
 	var string = /"(?:[^"\\\r\n]|\\(?:\r\n|[\s\S]))*"|'(?:[^'\\\r\n]|\\(?:\r\n|[\s\S]))*'/.source;
-	var option = /--[\w-]+=(?:<str>|(?!["'])(?:[^\s\\]|\\.)+)/.source.replace(/<str>/g, function () { return string; });
+	var option = /--[\w-]+=(?:<STR>|(?!["'])(?:[^\s\\]|\\.)+)/.source.replace(/<STR>/g, function () { return string; });
 
 	var stringRule = {
 		pattern: RegExp(string),
@@ -13,14 +18,28 @@
 		greedy: true
 	};
 
+	/**
+	 * @param {string} source
+	 * @param {string} flags
+	 * @returns {RegExp}
+	 */
+	function re(source, flags) {
+		source = source
+			.replace(/<OPT>/g, function () { return option; })
+			.replace(/<SP>/g, function () { return space; });
+
+		return RegExp(source, flags);
+	}
+
 	Prism.languages.docker = {
-		'command': {
+		'instruction': {
 			pattern: /(^[ \t]*)(?:ADD|ARG|CMD|COPY|ENTRYPOINT|ENV|EXPOSE|FROM|HEALTHCHECK|LABEL|MAINTAINER|ONBUILD|RUN|SHELL|STOPSIGNAL|USER|VOLUME|WORKDIR)(?=\s)(?:\\.|[^\r\n\\])*(?:\\$(?:\s|#.*$)*(?![\s#])(?:\\.|[^\r\n\\])*)*/mi,
 			lookbehind: true,
 			greedy: true,
+			alias: 'command',
 			inside: {
 				'options': {
-					pattern: RegExp(/(^\w+(?:\\$|\s)+)<opt>(?:(?:\\$|\s)+<opt>)*/.source.replace(/<opt>/g, function () { return option; }), 'm'),
+					pattern: re(/(^(?:ONBUILD<SP>)?\w+<SP>)<OPT>(?:<SP><OPT>)*/.source, 'i'),
 					lookbehind: true,
 					greedy: true,
 					inside: {
@@ -39,12 +58,30 @@
 						'punctuation': /=/
 					}
 				},
-				'instruction': {
-					pattern: /^\w+|(\s)AS(?=\s)/,
-					lookbehind: true,
-					greedy: true,
-					alias: 'keyword'
-				},
+				'keyword': [
+					{
+						// https://docs.docker.com/engine/reference/builder/#healthcheck
+						pattern: re(/(^(?:ONBUILD<SP>)?HEALTHCHECK<SP>(?:<OPT><SP>)*)(?:CMD|NONE)\b/.source, 'i'),
+						lookbehind: true,
+						greedy: true
+					},
+					{
+						// https://docs.docker.com/engine/reference/builder/#from
+						pattern: re(/(^(?:ONBUILD<SP>)?FROM<SP>(?:<OPT><SP>)*(?!--)[^ \t\\]+<SP>)AS/.source, 'i'),
+						lookbehind: true,
+						greedy: true
+					},
+					{
+						// https://docs.docker.com/engine/reference/builder/#onbuild
+						pattern: re(/(^ONBUILD<SP>)\w+/.source, 'i'),
+						lookbehind: true,
+						greedy: true
+					},
+					{
+						pattern: /^\w+/,
+						greedy: true
+					}
+				],
 				'comment': commentRule,
 				'string': stringRule,
 				'variable': /\$(?:\w+|\{[^{}"'\\]*\})/,
