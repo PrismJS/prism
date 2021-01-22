@@ -85,6 +85,9 @@
 	}
 
 	/**
+	 * Returns whether the Line Highlight plugin is active for the given element.
+	 *
+	 * If this function returns `false`, do not call `highlightLines` for the given element.
 	 *
 	 * @param {HTMLElement | null | undefined} pre
 	 * @returns {boolean}
