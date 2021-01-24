@@ -1,0 +1,70 @@
+replace(/'/, `'`)
+
+const var1 = `this is fine`;
+const var2 = `this is fine`;
+
+// `load bearing comment`
+
+const var3 = `break starts here`;
+const var4 = `break ends here`;
+
+----------------------------------------------------
+
+[
+	["function", "replace"],
+	["punctuation", "("],
+	["regex", [
+		["regex-delimiter", "/"],
+		["regex-source", "'"],
+		["regex-delimiter", "/"]
+	]],
+	["punctuation", ","],
+	["template-string", [
+		["template-punctuation", "`"],
+		["string", "'"],
+		["template-punctuation", "`"]
+	]],
+	["punctuation", ")"],
+
+	["keyword", "const"],
+	" var1 ",
+	["operator", "="],
+	["template-string", [
+		["template-punctuation", "`"],
+		["string", "this is fine"],
+		["template-punctuation", "`"]
+	]],
+	["punctuation", ";"],
+
+	["keyword", "const"],
+	" var2 ",
+	["operator", "="],
+	["template-string", [
+		["template-punctuation", "`"],
+		["string", "this is fine"],
+		["template-punctuation", "`"]
+	]],
+	["punctuation", ";"],
+
+	["comment", "// `load bearing comment`"],
+
+	["keyword", "const"],
+	" var3 ",
+	["operator", "="],
+	["template-string", [
+		["template-punctuation", "`"],
+		["string", "break starts here"],
+		["template-punctuation", "`"]
+	]],
+	["punctuation", ";"],
+
+	["keyword", "const"],
+	" var4 ",
+	["operator", "="],
+	["template-string", [
+		["template-punctuation", "`"],
+		["string", "break ends here"],
+		["template-punctuation", "`"]
+	]],
+	["punctuation", ";"]
+]

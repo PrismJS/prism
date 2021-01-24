@@ -13,8 +13,8 @@ GET / HTTP/1.1
 
 [
 	["request-line", [
-		["property", "POST"],
-		["url", [
+		["method", "POST"],
+		["request-target", [
 			["scheme", [
 				"http",
 				["scheme-delimiter", ":"]
@@ -24,11 +24,11 @@ GET / HTTP/1.1
 				["host", ["example.com"]]
 			]]
 		]],
-		" HTTP/1.0"
+		["http-version", "HTTP/1.0"]
 	]],
 	["request-line", [
-		["property", "GET"],
-		["url", [
+		["method", "GET"],
+		["request-target", [
 			["scheme", [
 				"http",
 				["scheme-delimiter", ":"]
@@ -46,11 +46,11 @@ GET / HTTP/1.1
 				"foo.html"
 			]]
 		]],
-		" HTTP/1.1"
+		["http-version", "HTTP/1.1"]
 	]],
 	["request-line", [
-		["property", "PUT"],
-		["url", [
+		["method", "PUT"],
+		["request-target", [
 			["scheme", [
 				"http",
 				["scheme-delimiter", ":"]
@@ -60,11 +60,11 @@ GET / HTTP/1.1
 				["host", ["www.example.com"]]
 			]]
 		]],
-		" HTTP/2.0"
+		["http-version", "HTTP/2.0"]
 	]],
 	["request-line", [
-		["property", "DELETE"],
-		["url", [
+		["method", "DELETE"],
+		["request-target", [
 			["scheme", [
 				"https",
 				["scheme-delimiter", ":"]
@@ -74,11 +74,11 @@ GET / HTTP/1.1
 				["host", ["example.com"]]
 			]]
 		]],
-		" HTTP/1.1"
+		["http-version", "HTTP/1.1"]
 	]],
 	["request-line", [
-		["property", "OPTIONS"],
-		["url", [
+		["method", "OPTIONS"],
+		["request-target", [
 			["scheme", [
 				"https",
 				["scheme-delimiter", ":"]
@@ -88,11 +88,11 @@ GET / HTTP/1.1
 				["host", ["www.example.com"]]
 			]]
 		]],
-		" HTTP/1.1"
+		["http-version", "HTTP/1.1"]
 	]],
 	["request-line", [
-		["property", "PATCH"],
-		["url", [
+		["method", "PATCH"],
+		["request-target", [
 			["scheme", [
 				"http",
 				["scheme-delimiter", ":"]
@@ -102,11 +102,11 @@ GET / HTTP/1.1
 				["host", ["example.com"]]
 			]]
 		]],
-		" HTTP/1.0"
+		["http-version", "HTTP/1.0"]
 	]],
 	["request-line", [
-		["property", "TRACE"],
-		["url", [
+		["method", "TRACE"],
+		["request-target", [
 			["scheme", [
 				"http",
 				["scheme-delimiter", ":"]
@@ -116,11 +116,11 @@ GET / HTTP/1.1
 				["host", ["example.com"]]
 			]]
 		]],
-		" HTTP/1.0"
+		["http-version", "HTTP/1.0"]
 	]],
 	["request-line", [
-		["property", "CONNECT"],
-		["url", [
+		["method", "CONNECT"],
+		["request-target", [
 			["scheme", [
 				"http",
 				["scheme-delimiter", ":"]
@@ -130,11 +130,11 @@ GET / HTTP/1.1
 				["host", ["example.com"]]
 			]]
 		]],
-		" HTTP/1.0"
+		["http-version", "HTTP/1.0"]
 	]],
 	["request-line", [
-		["property", "GET"],
-		["url", [
+		["method", "GET"],
+		["request-target", [
 			["path", [
 				["path-separator", "/"],
 				"path",
@@ -144,16 +144,16 @@ GET / HTTP/1.1
 				"foo.html"
 			]]
 		]],
-		" HTTP/1.1"
+		["http-version", "HTTP/1.1"]
 	]],
 	["request-line", [
-		["property", "GET"],
-		["url", [
+		["method", "GET"],
+		["request-target", [
 			["path", [
 				["path-separator", "/"]
 			]]
 		]],
-		" HTTP/1.1"
+		["http-version", "HTTP/1.1"]
 	]]
 ]
 
