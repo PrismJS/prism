@@ -12,7 +12,8 @@
 				'request-target': {
 					pattern: /^(\s)(?:https?:\/\/|\/)\S*(?=\s)/,
 					lookbehind: true,
-					alias: 'url'
+					alias: 'url',
+					inside: Prism.languages.uri
 				},
 				// HTTP Version
 				'http-version': {

@@ -199,6 +199,8 @@
 		"tsconfig": "TSConfig",
 		"uscript": "UnrealScript",
 		"uc": "UnrealScript",
+		"uri": "URI",
+		"url": "URL",
 		"vbnet": "VB.Net",
 		"vhdl": "VHDL",
 		"vim": "vim",
