@@ -238,6 +238,11 @@
 			"require": "c",
 			"owner": "zeitgeist87"
 		},
+		"chaiscript": {
+			"title": "ChaiScript",
+			"require": ["clike", "cpp"],
+			"owner": "RunDevelopment"
+		},
 		"cil": {
 			"title": "CIL",
 			"owner": "sbrl"
