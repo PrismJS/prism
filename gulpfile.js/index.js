@@ -162,7 +162,8 @@ async function languagePlugins() {
 
 	/** @type {Record<string, string>} */
 	const nonNullLanguageMap = {
-		'none': 'Plain text'
+		'none': 'Plain text',
+		'plain': 'Plain text'
 	};
 	for (const id in languagesMap) {
 		const title = languagesMap[id];

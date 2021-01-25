@@ -256,6 +256,11 @@ var _ = {
 	 */
 	languages: {
 		/**
+		 * The grammar for plain, unformatted text.
+		 */
+		plain: {},
+
+		/**
 		 * Creates a deep copy of the language with the given id and appends the given tokens.
 		 *
 		 * If a token in `redef` also appears in the copied language, then the existing token in the copied language
