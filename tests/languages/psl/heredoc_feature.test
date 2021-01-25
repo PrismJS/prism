@@ -1,0 +1,21 @@
+<<<ABC_1
+Text "string"
+# comment "string"
+ABC_1;
+
+<<<ABC_2
+2nd here_doc \n\t
+ABC_2;
+
+----------------------------------------------------
+
+[
+	["string", "<<<ABC_1\r\nText \"string\"\r\n# comment \"string\"\r\nABC_1"],
+	["punctuation", ";"],
+
+	["string", "<<<ABC_2\r\n2nd here_doc \\n\\t\r\nABC_2"], ["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Test for "here_documents"

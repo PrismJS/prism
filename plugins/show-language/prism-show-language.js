@@ -153,6 +153,7 @@
 		"promql": "PromQL",
 		"properties": ".properties",
 		"protobuf": "Protocol Buffers",
+		"psl": "PSL",
 		"purebasic": "PureBasic",
 		"pbfasm": "PureBasic",
 		"purs": "PureScript",

@@ -910,6 +910,10 @@
 			"require": "clike",
 			"owner": "just-boris"
 		},
+		"psl": {
+			"title": "PSL",
+			"owner": "bertysentry"
+		},
 		"pug": {
 			"title": "Pug",
 			"require": ["markup", "javascript"],
