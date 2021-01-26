@@ -1,0 +1,15 @@
+errno
+exit_status
+PslDebug
+
+----------------------------------------------------
+
+[
+	["variable", "errno"],
+	["variable", "exit_status"],
+	["variable", "PslDebug"]
+]
+
+----------------------------------------------------
+
+Test for variables

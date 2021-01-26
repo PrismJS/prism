@@ -9,8 +9,10 @@ function test(limit) {
 
 [
 	["keyword", "function"],
-	" test",
-	["punctuation", "("],
+	["user-function", [
+		"test",
+		["punctuation", "("]
+	]],
 	"limit",
 	["punctuation", ")"],
 	["punctuation", "{"],
@@ -26,8 +28,7 @@ function test(limit) {
 	" limit ",
 	["punctuation", ";"],
 	" i",
-	["operator", "+"],
-	["operator", "+"],
+	["operator", "++"],
 	["punctuation", ")"],
 	["punctuation", "{"],
 
@@ -41,7 +42,7 @@ function test(limit) {
 
 	["punctuation", "}"],
 
-	["function", "print"],
+	["builtin-function", "print"],
 	["punctuation", "("],
 	"s",
 	["operator", "."],

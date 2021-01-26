@@ -2,7 +2,7 @@
 "a \"bc\""
 "a\nbc"
 "a\invalid"
-"a # comment"
+"foo # not a comment"
 "multi
 line string"
 
@@ -23,7 +23,7 @@ line string"
 		"bc\""
 	]],
 	["string", ["\"a\\invalid\""]],
-	["string", ["\"a # comment\""]],
+	["string", ["\"foo # not a comment\""]],
 	["string", ["\"multi\r\nline string\""]]
 ]
 

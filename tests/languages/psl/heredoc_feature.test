@@ -1,6 +1,6 @@
 <<<ABC_1
-Text "string"
-# comment "string"
+Text "not a string"
+# not a comment "not a string"
 ABC_1;
 
 <<<ABC_2
@@ -10,10 +10,10 @@ ABC_2;
 ----------------------------------------------------
 
 [
-	["string", "<<<ABC_1\r\nText \"string\"\r\n# comment \"string\"\r\nABC_1"],
+	["heredoc-string", "<<<ABC_1\r\nText \"not a string\"\r\n# not a comment \"not a string\"\r\nABC_1"],
 	["punctuation", ";"],
 
-	["string", "<<<ABC_2\r\n2nd here_doc \\n\\t\r\nABC_2"], ["punctuation", ";"]
+	["heredoc-string", "<<<ABC_2\r\n2nd here_doc \\n\\t\r\nABC_2"], ["punctuation", ";"]
 ]
 
 ----------------------------------------------------
