@@ -1,0 +1,93 @@
+this
+value
+id
+mask
+transient
+itemsOnPage
+language
+style
+type
+default
+description
+tags
+statement
+overview
+components
+audience
+inputs
+functionalities
+warnings
+upgrades
+title
+name
+label
+order
+mandatory
+version
+index
+lower
+upper
+separator
+request
+element
+help
+tip
+atomic
+fields
+loaders
+options
+key
+operation
+declarations
+operations
+
+----------------------------------------------------
+
+[
+	["important", "this"],
+	["important", "value"],
+	["important", "id"],
+	["important", "mask"],
+	["important", "transient"],
+	["important", "itemsOnPage"],
+	["important", "language"],
+	["important", "style"],
+	["important", "type"],
+	["important", "default"],
+	["important", "description"],
+	["important", "tags"],
+	["important", "statement"],
+	["important", "overview"],
+	["important", "components"],
+	["important", "audience"],
+	["important", "inputs"],
+	["important", "functionalities"],
+	["important", "warnings"],
+	["important", "upgrades"],
+	["important", "title"],
+	["important", "name"],
+	["important", "label"],
+	["important", "order"],
+	["important", "mandatory"],
+	["important", "version"],
+	["important", "index"],
+	["important", "lower"],
+	["important", "upper"],
+	["important", "separator"],
+	["important", "request"],
+	["important", "element"],
+	["important", "help"],
+	["important", "tip"],
+	["important", "atomic"],
+	["important", "fields"],
+	["important", "loaders"],
+	["important", "options"],
+	["important", "key"],
+	["important", "operation"],
+	["important", "declarations"],
+	["important", "operations"]
+]
+
+----------------------------------------------------
+
+Checks for all importants.

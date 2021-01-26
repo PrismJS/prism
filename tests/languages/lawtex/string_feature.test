@@ -1,0 +1,25 @@
+""
+"foo"
+"foo
+bar"
+"'foo'bar"
+
+----------------------------------------------------
+
+[
+	["string", [
+		"\"\""
+	]],
+	["string", [
+		"\"foo\""
+	]],
+	["string", [
+		"\"foo\nbar\""
+	]],
+	["string", [
+		"\"'foo'bar\""
+	]]	
+]
+----------------------------------------------------
+
+Checks for double-quoted strings and strings that span multiple lines.

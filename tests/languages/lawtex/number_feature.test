@@ -1,0 +1,13 @@
+9 is a number but "6" is not.
+3 + 2 = 5
+
+---------------------------------------------------
+
+[
+	["number", "9"], " is a number but ", ["string", ["\"6\""]], " is not.\n",
+	["number", "3"], ["arithmetic", "+"], ["number", "2"], ["assignment", "="], ["number", "5"]
+]
+
+----------------------------------------------------
+
+Checks for numbers.

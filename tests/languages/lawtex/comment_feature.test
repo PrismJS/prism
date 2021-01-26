@@ -1,0 +1,18 @@
+// This is a comment on a single line and will not extent. It takes priority over the classification of a "string".
+
+/* This
+comment
+runs
+over
+multiple
+lines*/
+----------------------------------------------------
+
+[
+	["comment", "// This is a comment on a single line and will not extent. It takes priority over the classification of a \"string\"."],
+	["comment", "/* This\ncomment\nruns\nover\nmultiple\nlines*/"]
+]
+
+----------------------------------------------------
+
+Checks for comments.

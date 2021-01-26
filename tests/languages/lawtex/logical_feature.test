@@ -1,0 +1,23 @@
+NOT
+AND
+OR
+XOR
+EXISTS
+FORALL
+IN
+
+----------------------------------------------------
+
+[
+	["logical", "NOT"],
+	["logical", "AND"],
+	["logical", "OR"],
+	["logical", "XOR"],
+	["logical", "EXISTS"],
+	["logical", "FORALL"],
+	["logical", "IN"]    
+]
+
+----------------------------------------------------
+
+Checks for all logical expressions.

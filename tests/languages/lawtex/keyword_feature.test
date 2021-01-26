@@ -1,0 +1,53 @@
+metainfo
+head
+body
+foot
+extra
+where
+extends
+externs
+template
+list
+struct
+dependency
+branch
+topic
+loop
+period
+if
+else
+elseif
+foreach
+print
+use
+
+----------------------------------------------------
+
+[
+	["keyword", "metainfo"],
+	["keyword", "head"],
+	["keyword", "body"],
+	["keyword", "foot"],
+	["keyword", "extra"],
+	["keyword", "where"],
+	["keyword", "extends"],
+	["keyword", "externs"],
+	["keyword", "template"],
+	["keyword", "list"],
+	["keyword", "struct"],
+	["keyword", "dependency"],
+	["keyword", "branch"],
+	["keyword", "topic"],
+	["keyword", "loop"],
+	["keyword", "period"],
+	["keyword", "if"],
+	["keyword", "else"],
+	["keyword", "elseif"],
+	["keyword", "foreach"],
+	["keyword", "print"],
+	["keyword", "use"]
+]
+
+----------------------------------------------------
+
+Checks for keywords.

@@ -1,0 +1,24 @@
+"1\a2\b3\c4\e5\f6\n7\r8\t9\v"
+"1234\56789"
+"abc\def"
+"\uABCDEFG"
+"a\"b"
+
+----------------------------------------------------
+
+[
+	["string", [
+		"\"1", ["escape", "\\a"], "2", ["escape", "\\b"], "3", ["escape", "\\c"],
+		"4", ["escape", "\\e"], "5", ["escape", "\\f"], "6", ["escape", "\\n"],
+		"7", ["escape", "\\r"], "8", ["escape", "\\t"], "9", ["escape", "\\v"],
+		"\""
+	]],
+	["string", ["\"1234", ["escape", "\\5"], "6789\""]],
+	["string", ["\"abc", ["escape", "\\d"], "ef\""]],
+	["string", ["\"", ["escape", "\\u"], "ABCDEFG\""]],
+	["string", ["\"a", ["escape", "\\\""], "b\""]]
+]
+
+----------------------------------------------------
+
+Checks for escape characters in strings.

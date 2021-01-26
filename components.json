@@ -675,6 +675,10 @@
 			"require": ["clike", "markup-templating", "php"],
 			"owner": "nette"
 		},
+		"lawtex": {
+			"title": "Lawtex",
+			"owner": "looplexLukasC"
+		},
 		"less": {
 			"title": "Less",
 			"require": "css",

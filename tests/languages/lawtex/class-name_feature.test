@@ -1,0 +1,35 @@
+List
+Object
+String
+Integer
+Real
+Boolean
+Date
+Time
+Text
+Document
+Currency
+Vector
+Struct
+
+----------------------------------------------------
+
+[
+	["class-name", "List"],
+	["class-name", "Object"],
+	["class-name", "String"],
+	["class-name", "Integer"],
+	["class-name", "Real"],
+	["class-name", "Boolean"],
+	["class-name", "Date"],
+	["class-name", "Time"],
+	["class-name", "Text"],
+	["class-name", "Document"],
+	["class-name", "Currency"],
+	["class-name", "Vector"],
+	["class-name", "Struct"]
+]
+
+----------------------------------------------------
+
+Checks for class-names.

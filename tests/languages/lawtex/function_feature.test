@@ -1,0 +1,12 @@
+Functions are marked by a capitalized Word. 
+
+----------------------------------------------------
+
+[
+	["function", "Functions"], " are marked by a capitalized ", ["function", "Word"], "."
+]
+
+
+----------------------------------------------------
+
+Checks for functions.
