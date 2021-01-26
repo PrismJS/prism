@@ -1,9 +1,3 @@
-/**
- * A DOM element.
- * @external Element
- * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Element}
- */
-
 (function () {
 	if (typeof self === 'undefined' || !self.Prism || !self.document) {
 		return;
@@ -42,46 +36,42 @@
 	}
 
 	/**
-	 * Traverses up the DOM tree to find data attributes
-	 * that override the default plugin settings.
-	 * @param {external:Element} start An element to start from.
-	 * @param {Object} defaults Keys and default values of settings.
-	 * @param {String} defaults.copy A copy-to-clipboard message.
-	 * @param {String} defaults.copy_error A copying error message.
-	 * @param {String} defaults.copy_success A message for a successful copying.
-	 * @param {Number} defaults.copy_timeout A time-out for a state changing, ms.
-	 * @returns {Object} The plugin settings.
+	 * Traverses up the DOM tree to find data attributes that override the default plugin settings.
+	 *
+	 * @param {Element} startElement An element to start from.
+	 * @returns {Settings} The plugin settings.
+	 * @typedef {Record<"copy" | "copy-error" | "copy-success" | "copy-timeout", string | number>} Settings
 	 */
-	function getSettings(start, defaults) {
+	function getSettings(startElement) {
+		/** @type {Settings} */
+		var settings = {
+			'copy': 'Copy',
+			'copy-error': 'Press Ctrl+C to copy',
+			'copy-success': 'Copied!',
+			'copy-timeout': 5000
+		};
+
 		var prefix = 'data-prismjs-';
-		var settings = {};
-		for (var key in defaults) {
-			var attr = prefix + key.replace(/_/g, '-');
-			var element = start;
+		for (var key in settings) {
+			var attr = prefix + key;
+			var element = startElement;
 			while (element && !element.hasAttribute(attr)) {
 				element = element.parentElement;
 			}
-			if (element !== null) {
+			if (element) {
 				settings[key] = element.getAttribute(attr);
-			} else {
-				settings[key] = defaults[key];
 			}
 		}
 		return settings;
 	}
 
 	Prism.plugins.toolbar.registerButton('copy-to-clipboard', function (env) {
-		var defaults = {
-			copy: 'Copy',
-			copy_error: 'Press Ctrl+C to copy',
-			copy_success: 'Copied!',
-			copy_timeout: 5000
-		};
 		var element = env.element;
-		var settings = getSettings(element, defaults);
+
+		var settings = getSettings(element);
 
 		var linkCopy = document.createElement('button');
-		linkCopy.textContent = settings.copy;
+		linkCopy.textContent = settings['copy'];
 		linkCopy.setAttribute('type', 'button');
 
 		if (!ClipboardJS) {
@@ -100,12 +90,12 @@
 			});
 
 			clip.on('success', function () {
-				linkCopy.textContent = settings.copy_success;
+				linkCopy.textContent = settings['copy-success'];
 
 				resetText();
 			});
 			clip.on('error', function () {
-				linkCopy.textContent = settings.copy_error;
+				linkCopy.textContent = settings['copy-error'];
 
 				resetText();
 			});
@@ -113,8 +103,8 @@
 
 		function resetText() {
 			setTimeout(function () {
-				linkCopy.textContent = settings.copy;
-			}, settings.copy_timeout);
+				linkCopy.textContent = settings['copy'];
+			}, settings['copy-timeout']);
 		}
 	});
 })();
