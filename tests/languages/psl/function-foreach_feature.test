@@ -5,10 +5,8 @@ foreach __single ";" entry (["a;b;c"]) { test(); }
 
 [
 	["keyword", "function"],
-	["user-function", [
-		"test",
-		["punctuation", "("]
-	]],
+	["function", "test"],
+	["punctuation", "("],
 	["punctuation", ")"],
 	["punctuation", "{"],
 	["keyword", "return"],
@@ -26,10 +24,8 @@ foreach __single ";" entry (["a;b;c"]) { test(); }
 	["punctuation", "]"],
 	["punctuation", ")"],
 	["punctuation", "{"],
-	["user-function", [
-		"test",
-		["punctuation", "("]
-	]],
+	["function", "test"],
+	["punctuation", "("],
 	["punctuation", ")"],
 	["punctuation", ";"],
 	["punctuation", "}"]

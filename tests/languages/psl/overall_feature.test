@@ -9,10 +9,8 @@ function test(limit) {
 
 [
 	["keyword", "function"],
-	["user-function", [
-		"test",
-		["punctuation", "("]
-	]],
+	["function", "test"],
+	["punctuation", "("],
 	"limit",
 	["punctuation", ")"],
 	["punctuation", "{"],
@@ -42,7 +40,7 @@ function test(limit) {
 
 	["punctuation", "}"],
 
-	["builtin-function", "print"],
+	["builtin", "print"],
 	["punctuation", "("],
 	"s",
 	["operator", "."],
