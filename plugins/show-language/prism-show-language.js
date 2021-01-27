@@ -138,6 +138,7 @@
 		"opencl": "OpenCL",
 		"parigp": "PARI/GP",
 		"objectpascal": "Object Pascal",
+		"psl": "PATROL Scripting Language",
 		"pcaxis": "PC-Axis",
 		"px": "PC-Axis",
 		"peoplecode": "PeopleCode",

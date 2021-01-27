@@ -843,6 +843,10 @@
 			"title": "Pascaligo",
 			"owner": "DefinitelyNotAGoat"
 		},
+		"psl": {
+			"title": "PATROL Scripting Language",
+			"owner": "bertysentry"
+		},
 		"pcaxis": {
 			"title": "PC-Axis",
 			"alias": "px",

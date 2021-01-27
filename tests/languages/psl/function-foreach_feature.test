@@ -1,0 +1,37 @@
+function test() { return "a"; }
+foreach __single ";" entry (["a;b;c"]) { test(); }
+
+----------------------------------------------------
+
+[
+	["keyword", "function"],
+	["function", "test"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["keyword", "return"],
+	["string", ["\"a\""]],
+	["punctuation", ";"],
+	["punctuation", "}"],
+
+	["keyword", "foreach"],
+	["keyword", "__single"],
+	["string", ["\";\""]],
+	["foreach-variable", "entry"],
+	["punctuation", "("],
+	["punctuation", "["],
+	["string", ["\"a;b;c\""]],
+	["punctuation", "]"],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["function", "test"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Test for user-defind functions... and the foreach statement!
+(lookalike, but different)
