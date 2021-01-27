@@ -522,6 +522,10 @@
 			"title": "Icon",
 			"owner": "Golmote"
 		},
+		"icu-message-format": {
+			"title": "ICU Message Format",
+			"owner": "RunDevelopment"
+		},
 		"ignore": {
 			"title": ".ignore",
 			"owner": "osipxd",
