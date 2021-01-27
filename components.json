@@ -843,6 +843,10 @@
 			"title": "Pascaligo",
 			"owner": "DefinitelyNotAGoat"
 		},
+		"psl": {
+			"title": "PATROL Scripting Language",
+			"owner": "bertysentry"
+		},
 		"pcaxis": {
 			"title": "PC-Axis",
 			"alias": "px",
@@ -909,10 +913,6 @@
 			"title": "Protocol Buffers",
 			"require": "clike",
 			"owner": "just-boris"
-		},
-		"psl": {
-			"title": "PSL",
-			"owner": "bertysentry"
 		},
 		"pug": {
 			"title": "Pug",
