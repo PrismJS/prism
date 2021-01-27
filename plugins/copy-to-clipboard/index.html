@@ -35,10 +35,10 @@
 	<p>By default, the plugin shows messages in English and sets a 5-second timeout after a click. You can use the following HTML5 data attributes to override the default settings:</p>
 
 	<ul>
-		<li><code class="token attr-name">data-prismjs-copy</code> — a copy-to-clipboard message;</li>
-		<li><code class="token attr-name">data-prismjs-copy-error</code> — a copying error message;</li>
-		<li><code class="token attr-name">data-prismjs-copy-success</code> — a message for a successful copying;</li>
-		<li><code class="token attr-name">data-prismjs-copy-timeout</code> — a timeout (in milliseconds) after copying. The value should be a non-negative integer.</li>
+		<li><code class="token attr-name">data-prismjs-copy</code> — default message displayed by Copy to Clipboard;</li>
+		<li><code class="token attr-name">data-prismjs-copy-error</code> — a message displayed after failing copying, prompting the user to press <code>Ctrl+C</code>;</li>
+		<li><code class="token attr-name">data-prismjs-copy-success</code> — a message displayed after a successful copying;</li>
+		<li><code class="token attr-name">data-prismjs-copy-timeout</code> — a timeout (in milliseconds) after copying. Once the timeout passed, the success or error message will revert back to the default message. The value should be a non-negative integer.</li>
 	</ul>
 
 	<p>The plugin traverses up the DOM tree to find each of these attributes. The search starts at every <code class="token tag">pre code</code> element and stops at the closest ancestor element that has a desired attribute or at the worst case, at the <code class="token tag">html</code> element.</p>
