@@ -224,7 +224,7 @@ function main() {}
         ["delimiter", "]"]
     ]],
     ["keyword", "class"],
-    ["class-name", "Foo"],
+    ["class-name-definition", "Foo"],
     ["punctuation", "{"],
     ["keyword", "public"],
     ["keyword", "function"],

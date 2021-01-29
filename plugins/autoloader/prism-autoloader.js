@@ -25,6 +25,10 @@
 		"c": "clike",
 		"csharp": "clike",
 		"cpp": "c",
+		"chaiscript": [
+			"clike",
+			"cpp"
+		],
 		"coffeescript": "javascript",
 		"crystal": "ruby",
 		"css-extras": "css",
@@ -221,6 +225,7 @@
 		"tsconfig": "typoscript",
 		"uscript": "unrealscript",
 		"uc": "unrealscript",
+		"url": "uri",
 		"vb": "visual-basic",
 		"vba": "visual-basic",
 		"xeoracube": "xeora",

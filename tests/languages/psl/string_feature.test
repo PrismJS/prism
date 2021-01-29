@@ -1,0 +1,32 @@
+"abc"
+"a \"bc\""
+"a\nbc"
+"a\invalid"
+"foo # not a comment"
+"multi
+line string"
+
+----------------------------------------------------
+
+[
+	["string", ["\"abc\""]],
+	["string", [
+		"\"a ",
+		["symbol", "\\\""],
+		"bc",
+		["symbol", "\\\""],
+		"\""
+	]],
+	["string", [
+		"\"a",
+		["symbol", "\\n"],
+		"bc\""
+	]],
+	["string", ["\"a\\invalid\""]],
+	["string", ["\"foo # not a comment\""]],
+	["string", ["\"multi\r\nline string\""]]
+]
+
+----------------------------------------------------
+
+Test for strings

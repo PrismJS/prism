@@ -238,6 +238,11 @@
 			"require": "c",
 			"owner": "zeitgeist87"
 		},
+		"chaiscript": {
+			"title": "ChaiScript",
+			"require": ["clike", "cpp"],
+			"owner": "RunDevelopment"
+		},
 		"cil": {
 			"title": "CIL",
 			"owner": "sbrl"
@@ -496,7 +501,8 @@
 				"css",
 				"javascript",
 				"json",
-				"markup"
+				"markup",
+				"uri"
 			],
 			"owner": "danielgtaylor"
 		},
@@ -836,6 +842,10 @@
 		"pascaligo": {
 			"title": "Pascaligo",
 			"owner": "DefinitelyNotAGoat"
+		},
+		"psl": {
+			"title": "PATROL Scripting Language",
+			"owner": "bertysentry"
 		},
 		"pcaxis": {
 			"title": "PC-Axis",
@@ -1208,6 +1218,14 @@
 		"unrealscript": {
 			"title": "UnrealScript",
 			"alias": ["uscript", "uc"],
+			"owner": "RunDevelopment"
+		},
+		"uri": {
+			"title": "URI",
+			"alias": "url",
+			"aliasTitles": {
+				"url": "URL"
+			},
 			"owner": "RunDevelopment"
 		},
 		"v": {
