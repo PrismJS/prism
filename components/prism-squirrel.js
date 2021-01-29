@@ -43,4 +43,4 @@ Prism.languages.insertBefore('squirrel', 'operator', {
 		pattern: /@(?=\()/,
 		alias: 'operator'
 	}
-})
+});
