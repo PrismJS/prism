@@ -347,8 +347,10 @@
 				});
 			}
 		} else {
-			// reverse Prism.util.encode
-			var code = env.content.replace(/&lt;/g, '<').replace(/&amp;/g, '&');
+			// get the textContent of the given env HTML
+			var tempContainer = document.createElement('div');
+			tempContainer.innerHTML = env.content;
+			var code = tempContainer.textContent;
 
 			env.content = Prism.highlight(code, grammar, codeLang);
 		}
