@@ -64,7 +64,7 @@ var _ = {
 			} else if (Array.isArray(tokens)) {
 				return tokens.map(encode);
 			} else {
-				return tokens.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/\u00a0/g, ' ');
+				return tokens.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\u00a0/g, ' ');
 			}
 		},
 
