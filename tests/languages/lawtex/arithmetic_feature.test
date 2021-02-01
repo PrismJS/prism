@@ -5,6 +5,15 @@
 / 
 % 
 ^
+[
+]
+=
+~=
+<=
+>=
+<
+>
+|
 
 ----------------------------------------------------
 
@@ -15,7 +24,16 @@
 	["arithmetic", "*"],
 	["arithmetic", "/"],
 	["arithmetic", "%"],
-	["arithmetic", "^"]     
+	["arithmetic", "^"],
+	["arithmetic", "["],
+	["arithmetic", "]"],
+	["arithmetic", "="],
+	["arithmetic", "~="],
+	["arithmetic", "<="],
+	["arithmetic", ">="],
+	["arithmetic", "<"],
+	["arithmetic", ">"],
+	["arithmetic", "|"]
 ]
 
 ----------------------------------------------------

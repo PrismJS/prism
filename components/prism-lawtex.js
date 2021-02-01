@@ -12,7 +12,7 @@ Prism.languages.lawtex = {
     }
   ],
   'string': {
-    pattern: /(^|[^\\](?:\\\\)*)(")(?:\\[\s\S]|\$\([^)]+\)|\$(?!\()|`[^`]+`|(?!\2)[^\\`$])*\2/,
+    pattern: /(^|[^\\](?:\\\\)*)"(?:\\[\s\S]|\$\([^)]+\)|\$(?!\()|`[^`]+`|[^"\\`$])*"/,
     lookbehind: true,
     greedy: true,
     inside: {
@@ -23,7 +23,7 @@ Prism.languages.lawtex = {
   'important': /\b(?:this|value|id|mask|transient|itemsOnPage|language|style|type|default|description|tags|statement|overview|components|audience|inputs|functionalities|warnings|upgrades|title|name|label|order|mandatory|version|index|lower|upper|separator|request|element|help|tip|atomic|fields|loaders|options|key|operation|declarations|operations)\b/,
   'logical': /\b(?:NOT|AND|OR|XOR|EXISTS|FORALL|IN)/,
   'class-name': /\b(?:List|Object|String|Integer|Real|Boolean|Date|Time|Text|Document|Currency|Vector|Struct)\b/,
-  'function': /\b[A-Z].*?\b/,    
+  'function': /\b[A-Z]\w*\b/,    
   'boolean': /\b(?:true|false|null)\b/,
   'operator': /(?:\[|\]|==|~=|<=|>=|<|>|\|)/,
   'assignment': /=/,

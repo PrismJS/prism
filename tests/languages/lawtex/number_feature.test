@@ -5,7 +5,7 @@
 
 [
 	["number", "9"], " is a number but ", ["string", ["\"6\""]], " is not.\n",
-	["number", "3"], ["arithmetic", "+"], ["number", "2"], ["assignment", "="], ["number", "5"]
+	["number", "3"], ["arithmetic", "+"], ["number", "2"], ["arithmetic", "="], ["number", "5"]
 ]
 
 ----------------------------------------------------
