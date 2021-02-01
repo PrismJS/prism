@@ -25,8 +25,6 @@ Prism.languages.lawtex = {
   'class-name': /\b(?:List|Object|String|Integer|Real|Boolean|Date|Time|Text|Document|Currency|Vector|Struct)\b/,
   'function': /\b[A-Z]\w*\b/,    
   'boolean': /\b(?:true|false|null)\b/,
-  'operator': /(?:\[|\]|==|~=|<=|>=|<|>|\|)/,
-  'assignment': /=/,
-  'arithmetic': /(?:\-|\+|\&|\*|\/|%|\^)/,
+  'arithmetic': /(?:\[|\]|=|~=|<=|>=|<|>|\||\-|\+|\&|\*|\/|%|\^)/,
   'number': /(?:(?:0(?:x|X)[0-9a-fA-F]*)|(?:\+|-)?\b(?:(?:[0-9]+(?:\.[0-9]*)?)|(?:\.[0-9]+))(?:(?:e|E)(?:\+|-)?[0-9]+)?)(?:[LlFfUuDd]|UL|ul)?\b/
 };
