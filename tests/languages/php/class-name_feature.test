@@ -22,6 +22,8 @@ class Foo extends Bar implements Baz {}
 
 class Foo extends \Package\Bar implements App\Baz {}
 
+enum Foo implements Bar {}
+
 ----------------------------------------------------
 
 [
@@ -193,6 +195,13 @@ class Foo extends \Package\Bar implements App\Baz {}
 		["punctuation", "\\"],
 		"Baz"
 	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "enum"],
+	["class-name-definition", "Foo"],
+	["keyword", "implements"],
+	["class-name", "Bar"],
 	["punctuation", "{"],
 	["punctuation", "}"]
 ]
