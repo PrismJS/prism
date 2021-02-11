@@ -87,6 +87,7 @@
 		"hpkp": "HTTP Public-Key-Pins",
 		"hsts": "HTTP Strict-Transport-Security",
 		"ichigojam": "IchigoJam",
+		"idr": "Idris",
 		"ignore": ".ignore",
 		"gitignore": ".gitignore",
 		"hgignore": ".hgignore",
