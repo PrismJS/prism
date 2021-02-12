@@ -522,11 +522,11 @@
 			"title": "Icon",
 			"owner": "Golmote"
 		},
-                "idris": {
-                        "title": "Idris",
-                        "alias": "idr",
-                        "owner": "KeenS"
-                },
+		"idris": {
+			"title": "Idris",
+			"alias": "idr",
+			"owner": "KeenS"
+		},
 		"ignore": {
 			"title": ".ignore",
 			"owner": "osipxd",
