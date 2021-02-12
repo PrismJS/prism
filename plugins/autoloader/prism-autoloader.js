@@ -59,6 +59,9 @@
 		"handlebars": "markup-templating",
 		"haxe": "clike",
 		"hlsl": "c",
+		"idris": [
+			"haskell"
+		],
 		"java": "clike",
 		"javadoc": [
 			"markup",

@@ -525,7 +525,8 @@
 		"idris": {
 			"title": "Idris",
 			"alias": "idr",
-			"owner": "KeenS"
+			"owner": "KeenS",
+			"require": ["haskell"]
 		},
 		"ignore": {
 			"title": ".ignore",
