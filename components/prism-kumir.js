@@ -9,7 +9,7 @@
 	/**
 	 * Surround a regular expression for IDs with patterns for non-ID sequences.
 	 * @param {String} pattern A regular expression for identifiers.
-	 * @param {String} flags The regular expression flags.
+	 * @param {String} [flags] The regular expression flags.
 	 * @returns {RegExp} A wrapped regular expression for identifiers.
 	 */
 	function wrapId(pattern, flags) {
