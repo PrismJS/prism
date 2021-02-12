@@ -661,6 +661,11 @@
 			"require": "clike",
 			"owner": "Golmote"
 		},
+		"kumir": {
+			"title": "KuMir (КуМир)",
+			"alias": "kum",
+			"owner": "edukisto"
+		},
 		"latex": {
 			"title": "LaTeX",
 			"alias": ["tex", "context"],

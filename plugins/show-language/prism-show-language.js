@@ -106,6 +106,8 @@
 		"js-templates": "JS Templates",
 		"kts": "Kotlin Script",
 		"kt": "Kotlin",
+		"kumir": "KuMir (КуМир)",
+		"kum": "KuMir (КуМир)",
 		"latex": "LaTeX",
 		"tex": "TeX",
 		"context": "ConTeXt",
