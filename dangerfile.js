@@ -33,9 +33,9 @@ const getChangedFiles = async () => {
 	// Determine the merge base between master and the PR branch.
 	// If files changed in master since PR was branched they would show in the diff otherwise.
 	// https://stackoverflow.com/questions/25071579/list-all-files-changed-in-a-pull-request-in-git-github
-	const mergeBase = await git.raw(['merge-base', 'pr', 'HEAD']);
+	const mergeBase = (await git.raw(['merge-base', 'pr', 'HEAD'])).trim();
 	const result = await git.diff(['--name-only', '--no-renames', 'pr', mergeBase]);
-	return (result || '').split(/\r?\n/g);
+	return (result || '').trim().split(/\r?\n/g);
 };
 
 const getChangedMinifiedFiles = async () => {
