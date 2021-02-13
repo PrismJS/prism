@@ -190,6 +190,7 @@
 		"webmanifest": "json",
 		"kt": "kotlin",
 		"kts": "kotlin",
+		"kum": "kumir",
 		"tex": "latex",
 		"context": "latex",
 		"ly": "lilypond",
