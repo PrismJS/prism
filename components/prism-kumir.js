@@ -57,7 +57,7 @@
 			{
 				pattern: wrapId(/(^|[<nonId>])(?:компл|сканкод|файл|цвет)(?=[<nonId>]|$)/.source),
 				lookbehind: true,
-				alias: 'inserted'
+				alias: 'important'
 			}
 		],
 
