@@ -28,7 +28,6 @@
 
 		'string': {
 			pattern: /"[^\n\r"]*"|'[^\n\r']*'/,
-			// pattern: /(["'])[^\\1\n\r]*?\1/, // 5-10% slower!
 			greedy: true
 		},
 
