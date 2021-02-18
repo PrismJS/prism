@@ -13,6 +13,12 @@
 			alias: 'boolean'
 		},
 		/\b[A-Z_][A-Z0-9_]*\b(?!\s*\()/,
+		{
+			pattern: /(case\s+|::\s*)\b[a-z_]\w*\b(?!\s*\()/i,
+			alias: 'enum-constant',
+			greedy: true,
+			lookbehind: true,
+		},
 		/\b(?:null)\b/i,
 	];
 	var number = /\b0b[01]+(?:_[01]+)*\b|\b0o[0-7]+(?:_[0-7]+)*\b|\b0x[\da-f]+(?:_[\da-f]+)*\b|(?:\b\d+(?:_\d+)*\.?(?:\d+(?:_\d+)*)?|\B\.\d+)(?:e[+-]?\d+)?/i;
