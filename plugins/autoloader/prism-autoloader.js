@@ -23,6 +23,7 @@
 		"birb": "clike",
 		"bison": "c",
 		"c": "clike",
+		"cfscript": "clike",
 		"csharp": "clike",
 		"cpp": "c",
 		"chaiscript": [
@@ -171,6 +172,7 @@
 		"shortcode": "bbcode",
 		"rbnf": "bnf",
 		"oscript": "bsl",
+		"cfc": "cfscript",
 		"cs": "csharp",
 		"dotnet": "csharp",
 		"coffee": "coffeescript",

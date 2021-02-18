@@ -43,6 +43,8 @@
 		"rbnf": "RBNF",
 		"bsl": "BSL (1C:Enterprise)",
 		"oscript": "OneScript",
+		"cfscript": "CFML Script",
+		"cfc": "CFML Script",
 		"csharp": "C#",
 		"cs": "C#",
 		"dotnet": "C#",

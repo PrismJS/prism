@@ -1,0 +1,23 @@
+// foobar
+/**/
+/* foo
+bar */
+/**
+* @product.hint
+*/
+
+----------------------------------------------------
+
+[
+	["comment", "// foobar"],
+	["comment", ["/**/"]],
+	["comment", ["/* foo\r\nbar */"]],
+	["comment", [
+		"/**\r\n*", ["annotation", " @product.hint"],
+		"\r\n*/"
+	]]
+]
+
+----------------------------------------------------
+
+Checks for single-line and multi-line comments along with annotation

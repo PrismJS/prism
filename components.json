@@ -227,6 +227,12 @@
 			"require": "clike",
 			"owner": "zeitgeist87"
 		},
+		"cfscript": {
+			"title": "CFML Script",
+			"require": "clike",
+			"alias": "cfc",
+			"owner": "mjclemente"
+		},
 		"csharp": {
 			"title": "C#",
 			"require": "clike",
