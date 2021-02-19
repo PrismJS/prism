@@ -29,6 +29,12 @@ Prism.languages.cfscript = Prism.languages.extend('clike', {
 			pattern: /\b(?:and|contains|eq|equal|eqv|gt|gte|imp|is|lt|lte|mod|not|or|xor)\b/
 		}
 	],
+	'scope': [
+		{
+			pattern: /\b(?:application|arguments|cgi|client|cookie|local|session|super|this|variables)\b/,
+			alias: ['global']
+		}
+	],
 	'type': [
 		{
 			pattern: /\b(?:any|array|binary|boolean|date|guid|numeric|query|string|struct|uuid|void|xml)\b/,
@@ -37,14 +43,8 @@ Prism.languages.cfscript = Prism.languages.extend('clike', {
 	]
 });
 
-Prism.languages.insertBefore('cfscript', 'comment', {
-	'scope': [
-		{
-			pattern: /\b(?:application|arguments|cgi|client|cookie|local|session|super|this|variables)\b/,
-			alias: ['global']
-		}
-	],
-	// This must be declared before keyword because we use "function" inside the look-forward
+Prism.languages.insertBefore('cfscript', 'keyword', {
+	// This must be declared before keyword because we use "function" inside the lookahead
 	'function-variable': {
 		pattern: /[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*[=:]\s*(?:\bfunction\b|(?:\((?:[^()]|\([^()]*\))*\)|(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*)\s*=>))/,
 		alias: 'function'
