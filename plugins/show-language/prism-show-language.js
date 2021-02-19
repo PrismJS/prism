@@ -47,6 +47,8 @@
 		"cs": "C#",
 		"dotnet": "C#",
 		"cpp": "C++",
+		"cfscript": "CFScript",
+		"cfc": "CFScript",
 		"cil": "CIL",
 		"cmake": "CMake",
 		"coffee": "CoffeeScript",

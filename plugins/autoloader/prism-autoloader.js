@@ -25,6 +25,7 @@
 		"c": "clike",
 		"csharp": "clike",
 		"cpp": "c",
+		"cfscript": "clike",
 		"chaiscript": [
 			"clike",
 			"cpp"
@@ -173,6 +174,7 @@
 		"oscript": "bsl",
 		"cs": "csharp",
 		"dotnet": "csharp",
+		"cfc": "cfscript",
 		"coffee": "coffeescript",
 		"conc": "concurnas",
 		"jinja2": "django",
