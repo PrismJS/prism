@@ -239,7 +239,7 @@
 			"owner": "zeitgeist87"
 		},
 		"cfscript": {
-			"title": "CFML Script",
+			"title": "CFScript",
 			"require": "clike",
 			"alias": "cfc",
 			"owner": "mjclemente"
