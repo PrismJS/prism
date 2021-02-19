@@ -18,14 +18,7 @@
 			lookbehind: true,
 		},
 		{
-			pattern: /(\bcase\s+)\b[a-z_]\w*(?=\s*[;=])/i,
-			alias: 'enum-definition',
-			greedy: true,
-			lookbehind: true,
-		},
-		{
-			pattern: /(\bconst\s+)\b[a-z_]\w*(?=\s*[;=])/i,
-			alias: 'class-constant-definition',
+			pattern: /(\b(?:case|const)\s+)\b[a-z_]\w*(?=\s*[;=])/i,
 			greedy: true,
 			lookbehind: true,
 		},
