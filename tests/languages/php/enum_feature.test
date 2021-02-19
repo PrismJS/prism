@@ -1,0 +1,52 @@
+enum Foo implements Bar {}
+
+enum Suit {
+	case Hearts;
+	case Diamonds = 'D';
+}
+
+$val = Suit::Diamonds;
+
+Suit::Spades->name;
+
+----------------------------------------------------
+
+[
+	["keyword", "enum"],
+	["class-name-definition", "Foo"],
+	["keyword", "implements"],
+	["class-name", "Bar"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "enum"],
+	["class-name-definition", "Suit"],
+	["punctuation", "{"],
+	["keyword", "case"],
+	["constant", "Hearts"],
+	["punctuation", ";"],
+	["keyword", "case"],
+	["constant", "Diamonds"],
+	["operator", "="],
+	["string", "'D'"],
+	["punctuation", ";"],
+	["punctuation", "}"],
+
+	["variable", "$val"],
+	["operator", "="],
+	["class-name", "Suit"],
+	["operator", "::"],
+	["constant", "Diamonds"],
+	["punctuation", ";"],
+
+	["class-name", "Suit"],
+	["operator", "::"],
+	["constant", "Spades"],
+	["operator", "->"],
+	["property", "name"],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for enums.
