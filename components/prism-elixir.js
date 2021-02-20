@@ -1,5 +1,14 @@
 Prism.languages.elixir = {
 	'comment': /#.*/m,
+	'doc': {
+    pattern: /@doc.*/,
+		alias: 'doc-comment'
+	},
+	'moduledoc': {
+    pattern: /@moduledoc\s+("""|''')[\s\S]*\1/,
+    greedy: true,
+		alias: 'doc-comment'
+	},
 	// ~r"""foo""" (multi-line), ~r'''foo''' (multi-line), ~r/foo/, ~r|foo|, ~r"foo", ~r'foo', ~r(foo), ~r[foo], ~r{foo}, ~r<foo>
 	'regex': {
 		pattern: /~[rR](?:("""|''')(?:\\[\s\S]|(?!\1)[^\\])+\1|([\/|"'])(?:\\.|(?!\2)[^\\\r\n])+\2|\((?:\\.|[^\\)\r\n])+\)|\[(?:\\.|[^\\\]\r\n])+\]|\{(?:\\.|[^\\}\r\n])+\}|<(?:\\.|[^\\>\r\n])+>)[uismxfr]*/,
@@ -36,6 +45,9 @@ Prism.languages.elixir = {
 		lookbehind: true,
 		alias: 'symbol'
 	},
+  'class-name': {
+    pattern: /\b[A-Z](?:[A-Z_a-z]|\dx?)*\b/
+  },
 	// Look-ahead prevents bad highlighting of the :: operator
 	'attr-name': /\w+\??:(?!:)/,
 	'capture': {
@@ -44,6 +56,10 @@ Prism.languages.elixir = {
 		lookbehind: true,
 		alias: 'function'
 	},
+  'function-call': {
+    pattern: /#?(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(\?|!)?(?=\s*(?:\.\s*\s*)?\()/,
+    alias: 'function'
+  },
 	'argument': {
 		// Look-behind prevents bad highlighting of the && operator
 		pattern: /(^|[^&])&\d+/,
@@ -55,7 +71,7 @@ Prism.languages.elixir = {
 		alias: 'variable'
 	},
 	'number': /\b(?:0[box][a-f\d_]+|\d[\d_]*)(?:\.[\d_]+)?(?:e[+-]?[\d_]+)?\b/i,
-	'keyword': /\b(?:after|alias|and|case|catch|cond|def(?:callback|exception|impl|module|p|protocol|struct|delegate)?|do|else|end|fn|for|if|import|not|or|require|rescue|try|unless|use|when)\b/,
+	'keyword': /\b(?:after|alias|and|case|catch|cond|def(?:callback|exception|impl|module|p|protocol|struct|delegate)?|do|else|end|fn|for|if|import|not|or|raise|require|rescue|try|unless|use|when)\b/,
 	'boolean': /\b(?:true|false|nil)\b/,
 	'operator': [
 		/\bin\b|&&?|\|[|>]?|\\\\|::|\.\.\.?|\+\+?|-[->]?|<[-=>]|>=|!==?|\B!|=(?:==?|[>~])?|[*\/^]/,
