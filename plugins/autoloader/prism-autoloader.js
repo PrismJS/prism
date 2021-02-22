@@ -60,9 +60,7 @@
 		"handlebars": "markup-templating",
 		"haxe": "clike",
 		"hlsl": "c",
-		"idris": [
-			"haskell"
-		],
+		"idris": "haskell",
 		"java": "clike",
 		"javadoc": [
 			"markup",
