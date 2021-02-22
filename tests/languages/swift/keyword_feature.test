@@ -55,6 +55,7 @@ safe
 self
 Self
 set
+some
 static
 struct
 subscript
@@ -137,6 +138,7 @@ __LINE__
 	["keyword", "self"],
 	["keyword", "Self"],
 	["keyword", "set"],
+	["keyword", "some"],
 	["keyword", "static"],
 	["keyword", "struct"],
 	["keyword", "subscript"],

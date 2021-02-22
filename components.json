@@ -238,6 +238,12 @@
 			"require": "c",
 			"owner": "zeitgeist87"
 		},
+		"cfscript": {
+			"title": "CFScript",
+			"require": "clike",
+			"alias": "cfc",
+			"owner": "mjclemente"
+		},
 		"chaiscript": {
 			"title": "ChaiScript",
 			"require": ["clike", "cpp"],
@@ -666,6 +672,11 @@
 			},
 			"require": "clike",
 			"owner": "Golmote"
+		},
+		"kumir": {
+			"title": "KuMir (КуМир)",
+			"alias": "kum",
+			"owner": "edukisto"
 		},
 		"latex": {
 			"title": "LaTeX",
