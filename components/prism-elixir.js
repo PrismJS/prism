@@ -1,6 +1,6 @@
 Prism.languages.elixir = {
 	'doc': {
-    pattern: /@(?:doc|moduledoc)\s+(?:("""|''')(?:\\[\s\S]|(?!\1)[^\\])+\1|.*)/,
+		pattern: /@(?:doc|moduledoc)\s+(?:("""|''')(?:\\[\s\S]|(?!\1)[^\\])+\1|.*)/,
 		alias: 'doc-comment'
 	},
 	'comment': /#.*/m,
@@ -40,10 +40,10 @@ Prism.languages.elixir = {
 		lookbehind: true,
 		alias: 'symbol'
 	},
-  'atom-module': {
-    pattern: /\b[A-Z]\w*\b/,
-    alias: 'class-name'
-  },
+	'atom-module': {
+		pattern: /\b[A-Z]\w*\b/,
+		alias: 'class-name'
+	},
 	// Look-ahead prevents bad highlighting of the :: operator
 	'attr-name': /\w+\??:(?!:)/,
 	'capture': {
@@ -52,10 +52,6 @@ Prism.languages.elixir = {
 		lookbehind: true,
 		alias: 'function'
 	},
-  'function-call': {
-    pattern: /[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?:\?|!)?(?:(?=\s*(?:\.\s*)?\()|\/\d+)/,
-    alias: 'function'
-  },
 	'argument': {
 		// Look-behind prevents bad highlighting of the && operator
 		pattern: /(^|[^&])&\d+/,
@@ -68,6 +64,10 @@ Prism.languages.elixir = {
 	},
 	'number': /\b(?:0[box][a-f\d_]+|\d[\d_]*)(?:\.[\d_]+)?(?:e[+-]?[\d_]+)?\b/i,
 	'keyword': /\b(?:after|alias|and|case|catch|cond|def(?:callback|exception|impl|module|p|protocol|struct|delegate)?|do|else|end|fn|for|if|import|not|or|raise|require|rescue|try|unless|use|when)\b/,
+	'function-call': {
+		pattern: /\b[_a-zA-Z]\w*[?!]?(?:(?=\s*(?:\.\s*)?\()|\/\d+)/,
+		alias: 'function'
+	},
 	'boolean': /\b(?:true|false|nil)\b/,
 	'operator': [
 		/\bin\b|&&?|\|[|>]?|\\\\|::|\.\.\.?|\+\+?|-[->]?|<[-=>]|>=|!==?|\B!|=(?:==?|[>~])?|[*\/^]/,
@@ -82,7 +82,7 @@ Prism.languages.elixir = {
 			lookbehind: true
 		}
 	],
-	'punctuation': /<<|>>|[.,%\[\]{}()]/,
+	'punctuation': /<<|>>|[.,%\[\]{}()]/
 };
 
 Prism.languages.insertBefore('elixir', 'keyword', {

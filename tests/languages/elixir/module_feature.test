@@ -10,7 +10,7 @@ end
 	["keyword", "defmodule"], ["atom-module", "Math"], ["keyword", "do"],
 
     ["keyword", "def"],
-    ["function-call", "sum"],
+    ["function", "sum"],
     ["punctuation", "("],
     "a",
     ["punctuation", ","],
