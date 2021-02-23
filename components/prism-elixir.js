@@ -1,14 +1,9 @@
 Prism.languages.elixir = {
-	'comment': /#.*/m,
 	'doc': {
-    pattern: /@doc.*/,
+    pattern: /@(?:doc|moduledoc)\s+(?:("""|''')(?:\\[\s\S]|(?!\1)[^\\])+\1|.*)/,
 		alias: 'doc-comment'
 	},
-	'moduledoc': {
-    pattern: /@moduledoc\s+("""|''')[\s\S]*\1/,
-    greedy: true,
-		alias: 'doc-comment'
-	},
+	'comment': /#.*/m,
 	// ~r"""foo""" (multi-line), ~r'''foo''' (multi-line), ~r/foo/, ~r|foo|, ~r"foo", ~r'foo', ~r(foo), ~r[foo], ~r{foo}, ~r<foo>
 	'regex': {
 		pattern: /~[rR](?:("""|''')(?:\\[\s\S]|(?!\1)[^\\])+\1|([\/|"'])(?:\\.|(?!\2)[^\\\r\n])+\2|\((?:\\.|[^\\)\r\n])+\)|\[(?:\\.|[^\\\]\r\n])+\]|\{(?:\\.|[^\\}\r\n])+\}|<(?:\\.|[^\\>\r\n])+>)[uismxfr]*/,
