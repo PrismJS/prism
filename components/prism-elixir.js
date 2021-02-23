@@ -41,7 +41,7 @@ Prism.languages.elixir = {
 		alias: 'symbol'
 	},
   'atom-module': {
-    pattern: /\b[A-Z][A-Z_a-z0-9]*\b/,
+    pattern: /\b[A-Z]\w*\b/,
     alias: 'class-name'
   },
 	// Look-ahead prevents bad highlighting of the :: operator
