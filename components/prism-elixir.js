@@ -40,8 +40,9 @@ Prism.languages.elixir = {
 		lookbehind: true,
 		alias: 'symbol'
 	},
-  'class-name': {
-    pattern: /\b[A-Z](?:[A-Z_a-z]|\dx?)*\b/
+  'atom-module': {
+    pattern: /\b[A-Z][A-Z_a-z0-9]*\b/,
+    alias: 'class-name'
   },
 	// Look-ahead prevents bad highlighting of the :: operator
 	'attr-name': /\w+\??:(?!:)/,
@@ -52,7 +53,7 @@ Prism.languages.elixir = {
 		alias: 'function'
 	},
   'function-call': {
-    pattern: /#?(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(\?|!)?(?=\s*(?:\.\s*\s*)?\()/,
+    pattern: /[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?:\?|!)?(?:(?=\s*(?:\.\s*)?\()|\/\d+)/,
     alias: 'function'
   },
 	'argument': {
@@ -81,7 +82,7 @@ Prism.languages.elixir = {
 			lookbehind: true
 		}
 	],
-	'punctuation': /<<|>>|[.,%\[\]{}()]/
+	'punctuation': /<<|>>|[.,%\[\]{}()]/,
 };
 
 Prism.languages.insertBefore('elixir', 'keyword', {
