@@ -60,6 +60,7 @@
 		"handlebars": "markup-templating",
 		"haxe": "clike",
 		"hlsl": "c",
+		"idris": "haskell",
 		"java": "clike",
 		"javadoc": [
 			"markup",
@@ -186,6 +187,7 @@
 		"xls": "excel-formula",
 		"gamemakerlanguage": "gml",
 		"hs": "haskell",
+		"idr": "idris",
 		"gitignore": "ignore",
 		"hgignore": "ignore",
 		"npmignore": "ignore",

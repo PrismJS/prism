@@ -528,6 +528,12 @@
 			"title": "Icon",
 			"owner": "Golmote"
 		},
+		"idris": {
+			"title": "Idris",
+			"alias": "idr",
+			"owner": "KeenS",
+			"require": "haskell"
+		},
 		"ignore": {
 			"title": ".ignore",
 			"owner": "osipxd",
