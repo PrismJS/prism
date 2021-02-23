@@ -7,7 +7,10 @@ fun = &(&1 + 1)
 
 [
 	"fun ", ["operator", "="],
-	["capture", "&Math.zero?/1"],
+	["operator", "&"],
+	["atom-module", "Math"],
+	["punctuation", "."],
+	["function-call", "zero?/1"],
 	["punctuation", "("],
 	["capture", "&is_function/1"],
 	["punctuation", ")"],
@@ -17,7 +20,9 @@ fun = &(&1 + 1)
 	["capture", "&"],
 	["punctuation", "("], ["argument", "&1"],
 	["operator", "+"], ["number", "1"], ["punctuation", ")"],
-	["capture", "&List.flatten"],
+	["operator", "&"],
+	["atom-module", "List"],
+	["punctuation", "."], ["function-call", "flatten"],
 	["punctuation", "("], ["argument", "&1"],
 	["punctuation", ","], ["argument", "&2"],
 	["punctuation", ")"]
