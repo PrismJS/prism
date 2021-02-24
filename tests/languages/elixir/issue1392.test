@@ -3,9 +3,9 @@ String.upcase(@fixed)
 ----------------------------------------------------
 
 [
-	["atom-module", "String"],
+	["module", "String"],
 	["punctuation", "."],
-	["function-call", "upcase"],
+	["function", "upcase"],
 	["punctuation", "("],
 	["attribute", "@fixed"],
 	["punctuation", ")"]

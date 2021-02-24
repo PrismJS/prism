@@ -8,7 +8,7 @@ fun = &(&1 + 1)
 [
 	"fun ", ["operator", "="],
 	["operator", "&"],
-	["atom-module", "Math"],
+	["module", "Math"],
 	["punctuation", "."],
 	"zero?",
 	["operator", "/"],
@@ -23,8 +23,8 @@ fun = &(&1 + 1)
 	["punctuation", "("], ["argument", "&1"],
 	["operator", "+"], ["number", "1"], ["punctuation", ")"],
 	["operator", "&"],
-	["atom-module", "List"],
-	["punctuation", "."], ["function-call", "flatten"],
+	["module", "List"],
+	["punctuation", "."], ["function", "flatten"],
 	["punctuation", "("], ["argument", "&1"],
 	["punctuation", ","], ["argument", "&2"],
 	["punctuation", ")"]

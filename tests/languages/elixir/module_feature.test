@@ -7,7 +7,7 @@ end
 ----------------------------------------------------
 
 [
-	["keyword", "defmodule"], ["atom-module", "Math"], ["keyword", "do"],
+	["keyword", "defmodule"], ["module", "Math"], ["keyword", "do"],
 
     ["keyword", "def"],
     ["function", "sum"],

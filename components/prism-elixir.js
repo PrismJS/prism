@@ -40,7 +40,7 @@ Prism.languages.elixir = {
 		lookbehind: true,
 		alias: 'symbol'
 	},
-	'atom-module': {
+	'module': {
 		pattern: /\b[A-Z]\w*\b/,
 		alias: 'class-name'
 	},
@@ -64,9 +64,8 @@ Prism.languages.elixir = {
 	},
 	'number': /\b(?:0[box][a-f\d_]+|\d[\d_]*)(?:\.[\d_]+)?(?:e[+-]?[\d_]+)?\b/i,
 	'keyword': /\b(?:after|alias|and|case|catch|cond|def(?:callback|exception|impl|module|p|protocol|struct|delegate)?|do|else|end|fn|for|if|import|not|or|raise|require|rescue|try|unless|use|when)\b/,
-	'function-call': {
-		pattern: /\b[_a-zA-Z]\w*[?!]?(?:(?=\s*(?:\.\s*)?\()|\/\d+)/,
-		alias: 'function'
+	'function': {
+		pattern: /\b[_a-zA-Z]\w*[?!]?(?:(?=\s*(?:\.\s*)?\()|\/\d+)/
 	},
 	'boolean': /\b(?:true|false|nil)\b/,
 	'operator': [
@@ -84,18 +83,6 @@ Prism.languages.elixir = {
 	],
 	'punctuation': /<<|>>|[.,%\[\]{}()]/
 };
-
-Prism.languages.insertBefore('elixir', 'keyword', {
-	'module': {
-		pattern: /\b(defmodule\s)[A-Z][\w.\\]+/,
-		lookbehind: true,
-		alias: 'class-name'
-	},
-	'function': {
-		pattern: /\b(defp?\s)[\w.\\]+/,
-		lookbehind: true
-	}
-});
 
 Prism.languages.elixir.string.forEach(function(o) {
 	o.inside = {
