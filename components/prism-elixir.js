@@ -1,6 +1,6 @@
 Prism.languages.elixir = {
 	'doc': {
-		pattern: /@(?:doc|moduledoc)\s+("|'|"""|''')(?:\\[\s\S]|(?!\1)[^\\])+\1/,
+		pattern: /@(?:doc|moduledoc)\s+(?:("""|''')[\s\S]*?\1|("|')(?:\\(?:\r\n|[\s\S])|(?!\2)[^\\\r\n])*\2)/,
 		inside: {
 			'attribute': /^@\w+/,
 			'string': /['"][\s\S]+/
