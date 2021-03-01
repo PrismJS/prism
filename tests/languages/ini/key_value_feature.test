@@ -1,21 +1,57 @@
-foo=Bar Baz
-foobar=42
+	bar1	=
+ "bar2" =
+ 'bar3' =
+ bar4 =
+" bar5 "=
+"bar6"=
+' bar7 '=
+'bar8'=
+=	baz9	
+= "baz10" 
+= 'baz11' 
+= baz12 
+=" baz13 "
+="baz14"
+=' baz15 '
+='baz16'
+=baz17
+bar18
+bar19 baz19=qux19
+bar20=
+bar21==baz21
+bar22=baz22
+bar23=baz23 qux23
+bar24=baz24=qux24
 
 ----------------------------------------------------
 
 [
-	["constant", "foo"],
-	["attr-value", [
-		["punctuation", "="],
-		"Bar Baz"
-	]],
-	["constant", "foobar"],
-	["attr-value", [
-		["punctuation", "="],
-		"42"
-	]]
+	["key", "bar1"], ["punctuation", "="],
+	["key", "\"bar2\""], ["punctuation", "="],
+	["key", "'bar3'"], ["punctuation", "="],
+	["key", "bar4"], ["punctuation", "="],
+	["key", "\" bar5 \""], ["punctuation", "="],
+	["key", "\"bar6\""], ["punctuation", "="],
+	["key", "' bar7 '"], ["punctuation", "="],
+	["key", "'bar8'"], ["punctuation", "="],
+	["punctuation", "="], ["value", ["baz9"]],
+	["punctuation", "="], ["value", ["\"", ["inner-value", "baz10"], "\""]],
+	["punctuation", "="], ["value", ["'", ["inner-value", "baz11"], "'"]],
+	["punctuation", "="], ["value", ["baz12"]],
+	["punctuation", "="], ["value", ["\"", ["inner-value", " baz13 "], "\""]],
+	["punctuation", "="], ["value", ["\"", ["inner-value", "baz14"], "\""]],
+	["punctuation", "="], ["value", ["'", ["inner-value", " baz15 "], "'"]],
+	["punctuation", "="], ["value", ["'", ["inner-value", "baz16"], "'"]],
+	["punctuation", "="], ["value", ["baz17"]],
+	"\nbar18\n",
+	["key", "bar19 baz19"], ["punctuation", "="], ["value", ["qux19"]],
+	["key", "bar20"], ["punctuation", "="],
+	["key", "bar21"], ["punctuation", "="], ["value", ["=baz21"]],
+	["key", "bar22"], ["punctuation", "="], ["value", ["baz22"]],
+	["key", "bar23"], ["punctuation", "="], ["value", ["baz23 qux23"]],
+	["key", "bar24"], ["punctuation", "="], ["value", ["baz24=qux24"]]
 ]
 
 ----------------------------------------------------
 
-Checks for key/value pairs.
+Checks for key-value pairs.
