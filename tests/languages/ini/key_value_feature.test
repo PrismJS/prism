@@ -11,17 +11,23 @@
 = 'baz11' 
 = baz12 
 =" baz13 "
-="baz14"
-=' baz15 '
-='baz16'
-=baz17
-bar18
-bar19 baz19=qux19
-bar20=
-bar21==baz21
-bar22=baz22
-bar23=baz23 qux23
-bar24=baz24=qux24
+="b14"a14"z14"
+="baz15"
+="baz16
+=' baz17 '
+='baz18'
+=b19"a19"z19
+=b20"az20
+=ba21"z21
+=baz22
+=baz23"
+bar24
+bar25 baz25=qux25
+bar26=
+bar27==baz27
+bar28=baz28
+bar29=baz29 qux29
+bar30=baz30=qux30
 
 ----------------------------------------------------
 
@@ -39,17 +45,23 @@ bar24=baz24=qux24
 	["punctuation", "="], ["value", ["'", ["inner-value", "baz11"], "'"]],
 	["punctuation", "="], ["value", ["baz12"]],
 	["punctuation", "="], ["value", ["\"", ["inner-value", " baz13 "], "\""]],
-	["punctuation", "="], ["value", ["\"", ["inner-value", "baz14"], "\""]],
-	["punctuation", "="], ["value", ["'", ["inner-value", " baz15 "], "'"]],
-	["punctuation", "="], ["value", ["'", ["inner-value", "baz16"], "'"]],
-	["punctuation", "="], ["value", ["baz17"]],
-	"\nbar18\n",
-	["key", "bar19 baz19"], ["punctuation", "="], ["value", ["qux19"]],
-	["key", "bar20"], ["punctuation", "="],
-	["key", "bar21"], ["punctuation", "="], ["value", ["=baz21"]],
-	["key", "bar22"], ["punctuation", "="], ["value", ["baz22"]],
-	["key", "bar23"], ["punctuation", "="], ["value", ["baz23 qux23"]],
-	["key", "bar24"], ["punctuation", "="], ["value", ["baz24=qux24"]]
+	["punctuation", "="], ["value", ["\"", ["inner-value", "b14\"a14\"z14"], "\""]],
+	["punctuation", "="], ["value", ["\"", ["inner-value", "baz15"], "\""]],
+	["punctuation", "="], ["value", ["\"baz16"]],
+	["punctuation", "="], ["value", ["'", ["inner-value", " baz17 "], "'"]],
+	["punctuation", "="], ["value", ["'", ["inner-value", "baz18"], "'"]],
+	["punctuation", "="], ["value", ["b19\"a19\"z19"]],
+	["punctuation", "="], ["value", ["b20\"az20"]],
+	["punctuation", "="], ["value", ["ba21\"z21"]],
+	["punctuation", "="], ["value", ["baz22"]],
+	["punctuation", "="], ["value", ["baz23\""]],
+	"\nbar24\n",
+	["key", "bar25 baz25"], ["punctuation", "="], ["value", ["qux25"]],
+	["key", "bar26"], ["punctuation", "="],
+	["key", "bar27"], ["punctuation", "="], ["value", ["=baz27"]],
+	["key", "bar28"], ["punctuation", "="], ["value", ["baz28"]],
+	["key", "bar29"], ["punctuation", "="], ["value", ["baz29 qux29"]],
+	["key", "bar30"], ["punctuation", "="], ["value", ["baz30=qux30"]]
 ]
 
 ----------------------------------------------------

@@ -1,4 +1,8 @@
 Prism.languages.ini= {
+
+	// Mimics the behavior of Win32 API.
+	// Comparison: https://github.com/PrismJS/prism/issues/2775#issuecomment-787477723
+
 	'comment': {
 		pattern: /(^[ \f\t\v]*)[#;][^\n\r]*/m,
 		lookbehind: true
@@ -8,13 +12,11 @@ Prism.languages.ini= {
 		lookbehind: true,
 		inside: {
 			'section-name': {
-				pattern: /(\[[ \f\t\v]*)[^ \f\n\r\t\v\]]+(?:[ \f\t\v]+[^ \f\n\r\t\v\]]+)*/,
+				pattern: /(^\[[ \f\t\v]*)[^ \f\t\v\]]+(?:[ \f\t\v]+[^ \f\t\v\]]+)*/,
 				lookbehind: true,
 				alias: 'selector'
 			},
-			rest: {
-				'punctuation': /\[|\]/
-			}
+			'punctuation': /\[|\]/
 		}
 	},
 	'key': {
@@ -28,7 +30,7 @@ Prism.languages.ini= {
 		alias: 'attr-value',
 		inside: {
 			'inner-value': {
-				pattern: /("|').+(?=\1)/,
+				pattern: /^("|').+(?=\1$)/,
 				lookbehind: true
 			}
 		}
