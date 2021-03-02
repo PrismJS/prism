@@ -1,7 +1,10 @@
 Prism.languages.ini= {
 
-	// Mimics the behavior of Win32 API.
-	// Comparison: https://github.com/PrismJS/prism/issues/2775#issuecomment-787477723
+	/**
+	 * The component mimics the behavior of the Win32 API parser.
+	 *
+	 * @see {@link https://github.com/PrismJS/prism/issues/2775#issuecomment-787477723}
+	 */
 
 	'comment': {
 		pattern: /(^[ \f\t\v]*)[#;][^\n\r]*/m,
