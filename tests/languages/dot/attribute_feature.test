@@ -1,0 +1,53 @@
+[foo=bar]
+
+[
+	foo = 123;
+	"graph" = "
+some
+value", 123 = bar baz = 123
+]
+
+[label=<
+<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+  <TR><TD>left</TD><TD PORT="f1">mid dle</TD><TD PORT="f2">right</TD></TR>
+</TABLE>>]
+
+----------------------------------------------------
+
+[
+	["punctuation", "["],
+	["attr-name", ["foo"]],
+	["operator", "="],
+	["attr-value", ["bar"]],
+	["punctuation", "]"],
+
+	["punctuation", "["],
+
+	["attr-name", ["foo"]],
+	["operator", "="],
+	["attr-value", ["123"]],
+	["punctuation", ";"],
+
+	["attr-name", ["\"graph\""]],
+	["operator", "="],
+	["attr-value", ["\"\r\nsome\r\nvalue\""]],
+	["punctuation", ","],
+	["attr-name", ["123"]],
+	["operator", "="],
+	["attr-value", ["bar"]],
+	["attr-name", ["baz"]],
+	["operator", "="],
+	["attr-value", ["123"]],
+
+	["punctuation", "]"],
+
+	["punctuation", "["],
+	["attr-name", ["label"]],
+	["operator", "="],
+	["attr-value", [
+		"<",
+		["markup", "\r\n<TABLE BORDER=\"0\" CELLBORDER=\"1\" CELLSPACING=\"0\">\r\n  <TR><TD>left</TD><TD PORT=\"f1\">mid dle</TD><TD PORT=\"f2\">right</TD></TR>\r\n</TABLE>"],
+		">"
+	]],
+	["punctuation", "]"]
+]

@@ -92,7 +92,7 @@
 			}
 		],
 		'quantifier': {
-			pattern: /(?:[+*?]|\{(?:\d+,?\d*)\})[?+]?/,
+			pattern: /(?:[+*?]|\{\d+(?:,\d*)?\})[?+]?/,
 			alias: 'number'
 		},
 		'alternation': {

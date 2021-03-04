@@ -1,0 +1,23 @@
+# Comment
+# This is not a "string"
+# This is not a <<<HERE_DOC document HERE_DOC
+### Comment
+"string # with hash"#comment
+        # Indented comment
+				# Tab-indented comment
+
+----------------------------------------------------
+
+[
+	["comment", "# Comment"],
+	["comment", "# This is not a \"string\""],
+	["comment", "# This is not a <<<HERE_DOC document HERE_DOC"],
+	["comment", "### Comment"],
+	["string", ["\"string # with hash\""]], ["comment", "#comment"],
+	["comment", "# Indented comment"],
+	["comment", "# Tab-indented comment"]
+]
+
+----------------------------------------------------
+
+Test for comments

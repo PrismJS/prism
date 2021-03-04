@@ -1,0 +1,44 @@
+function abc(a,b,c) {}
+function(a,b,c) {}
+local myexp = @(a,b) a + b;
+
+----------------------------------------------------
+
+[
+	["keyword", "function"],
+	["function", "abc"],
+	["punctuation", "("],
+	"a",
+	["punctuation", ","],
+	"b",
+	["punctuation", ","],
+	"c",
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "function"],
+	["punctuation", "("],
+	"a",
+	["punctuation", ","],
+	"b",
+	["punctuation", ","],
+	"c",
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "local"],
+	" myexp ",
+	["operator", "="],
+	["lambda", "@"],
+	["punctuation", "("],
+	"a",
+	["punctuation", ","],
+	"b",
+	["punctuation", ")"],
+	" a ",
+	["operator", "+"],
+	" b",
+	["punctuation", ";"]
+]

@@ -40,14 +40,15 @@ class Test extends Component {
 		]],
 		["attr-name", ["someProperty"]],
 		["script", [
-			 ["script-punctuation", "="],
-			 ["punctuation", "{"],
-			 ["boolean", "true"],
-			 ["punctuation", "}"]
+			["script-punctuation", "="],
+			["punctuation", "{"],
+			["boolean", "true"],
+			["punctuation", "}"]
 		]],
 		["punctuation", "/>"]
 	]],
 	["punctuation", ";"],
+
 	["tag", [
 		["tag", [
 			["punctuation", "<"],
@@ -55,8 +56,8 @@ class Test extends Component {
 		]],
 		["spread", [
 			["punctuation", "{"],
-			["punctuation", "..."],
-			["attr-value", "foo"],
+			["operator", "..."],
+			"foo",
 			["punctuation", "}"]
 		]],
 		["punctuation", "/>"]
@@ -69,10 +70,10 @@ class Test extends Component {
 		]],
 		["attr-name", ["leaf"]],
 		["script", [
-			 ["script-punctuation", "="],
-			 ["punctuation", "{"],
-			 ["boolean", "true"],
-			 ["punctuation", "}"]
+			["script-punctuation", "="],
+			["punctuation", "{"],
+			["boolean", "true"],
+			["punctuation", "}"]
 		]],
 		["punctuation", ">"]
 	]],
@@ -84,16 +85,18 @@ class Test extends Component {
 		["punctuation", ">"]
 	]],
 
-	["keyword",  "class"],
+	["keyword", "class"],
 	["class-name", ["Test"]],
 	["keyword", "extends"],
 	["class-name", ["Component"]],
 	["punctuation", "{"],
+
 	["function", "render"],
 	["punctuation", "("],
 	["punctuation", ")"],
 	["punctuation", "{"],
-	["keyword","return"],
+
+	["keyword", "return"],
 	["tag", [
 		["tag", [
 			["punctuation", "<"],
@@ -119,8 +122,10 @@ class Test extends Component {
 		["punctuation", ">"]
 	]],
 	["punctuation", ";"],
+
 	["punctuation", "}"],
-	["punctuation","}"]
+
+	["punctuation", "}"]
 ]
 
 ----------------------------------------------------

@@ -112,6 +112,11 @@
 			"title": "Apache Configuration",
 			"owner": "GuiTeK"
 		},
+		"apex": {
+			"title": "Apex",
+			"require": ["clike", "sql"],
+			"owner": "RunDevelopment"
+		},
 		"apl": {
 			"title": "APL",
 			"owner": "ngn"
@@ -233,6 +238,17 @@
 			"require": "c",
 			"owner": "zeitgeist87"
 		},
+		"cfscript": {
+			"title": "CFScript",
+			"require": "clike",
+			"alias": "cfc",
+			"owner": "mjclemente"
+		},
+		"chaiscript": {
+			"title": "ChaiScript",
+			"require": ["clike", "cpp"],
+			"owner": "RunDevelopment"
+		},
 		"cil": {
 			"title": "CIL",
 			"owner": "sbrl"
@@ -285,6 +301,10 @@
 			"require": "clike",
 			"owner": "Golmote"
 		},
+		"dataweave": {
+			"title": "DataWeave",
+			"owner": "machaval"
+		},
 		"dax": {
 			"title": "DAX",
 			"owner": "peterbud"
@@ -312,6 +332,12 @@
 			"title": "Docker",
 			"alias": "dockerfile",
 			"owner": "JustinBeckwith"
+		},
+		"dot": {
+			"title": "DOT (Graphviz)",
+			"alias": "gv",
+			"optional": "markup",
+			"owner": "RunDevelopment"
 		},
 		"ebnf": {
 			"title": "EBNF",
@@ -481,7 +507,8 @@
 				"css",
 				"javascript",
 				"json",
-				"markup"
+				"markup",
+				"uri"
 			],
 			"owner": "danielgtaylor"
 		},
@@ -500,6 +527,12 @@
 		"icon": {
 			"title": "Icon",
 			"owner": "Golmote"
+		},
+		"idris": {
+			"title": "Idris",
+			"alias": "idr",
+			"owner": "KeenS",
+			"require": "haskell"
 		},
 		"ignore": {
 			"title": ".ignore",
@@ -640,6 +673,11 @@
 			"require": "clike",
 			"owner": "Golmote"
 		},
+		"kumir": {
+			"title": "KuMir (КуМир)",
+			"alias": "kum",
+			"owner": "edukisto"
+		},
 		"latex": {
 			"title": "LaTeX",
 			"alias": ["tex", "context"],
@@ -698,6 +736,7 @@
 		"markdown": {
 			"title": "Markdown",
 			"require": "markup",
+			"optional": "yaml",
 			"alias": "md",
 			"owner": "Golmote"
 		},
@@ -821,6 +860,10 @@
 			"title": "Pascaligo",
 			"owner": "DefinitelyNotAGoat"
 		},
+		"psl": {
+			"title": "PATROL Scripting Language",
+			"owner": "bertysentry"
+		},
 		"pcaxis": {
 			"title": "PC-Axis",
 			"alias": "px",
@@ -874,6 +917,10 @@
 		"prolog": {
 			"title": "Prolog",
 			"owner": "Golmote"
+		},
+		"promql": {
+			"title": "PromQL",
+			"owner": "arendjr"
 		},
 		"properties": {
 			"title": ".properties",
@@ -1100,6 +1147,11 @@
 			"title": "SQL",
 			"owner": "multipetros"
 		},
+		"squirrel": {
+			"title": "Squirrel",
+			"require": "clike",
+			"owner": "RunDevelopment"
+		},
 		"stan": {
 			"title": "Stan",
 			"owner": "RunDevelopment"
@@ -1188,6 +1240,19 @@
 			"title": "UnrealScript",
 			"alias": ["uscript", "uc"],
 			"owner": "RunDevelopment"
+		},
+		"uri": {
+			"title": "URI",
+			"alias": "url",
+			"aliasTitles": {
+				"url": "URL"
+			},
+			"owner": "RunDevelopment"
+		},
+		"v": {
+			"title": "V",
+			"require": "clike",
+			"owner": "taggon"
 		},
 		"vala": {
 			"title": "Vala",

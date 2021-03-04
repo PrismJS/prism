@@ -1,6 +1,6 @@
 Prism.languages.lolcode = {
 	'comment': [
-		/\bOBTW\s+[\s\S]*?\s+TLDR\b/,
+		/\bOBTW\s[\s\S]*?\sTLDR\b/,
 		/\bBTW.+/
 	],
 	'string': {
@@ -15,7 +15,7 @@ Prism.languages.lolcode = {
 		},
 		greedy: true
 	},
-	'number': /(?:\B-)?(?:\b\d+\.?\d*|\B\.\d+)/,
+	'number': /(?:\B-)?(?:\b\d+(?:\.\d*)?|\B\.\d+)/,
 	'symbol': {
 		pattern: /(^|\s)(?:A )?(?:YARN|NUMBR|NUMBAR|TROOF|BUKKIT|NOOB)(?=\s|,|$)/,
 		lookbehind: true,

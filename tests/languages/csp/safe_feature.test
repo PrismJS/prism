@@ -1,10 +1,11 @@
-default-src 'none'; style-src 'self' 'strict-dynamic' 'nonce-yeah' 'sha256-EpOpN/ahUF6jhWShDUdy+NvvtaGcu5F7qM6+x2mfkh4=';
+default-src 'none' 'report-sample'; style-src 'self' 'strict-dynamic' 'nonce-yeah' 'sha256-EpOpN/ahUF6jhWShDUdy+NvvtaGcu5F7qM6+x2mfkh4=';
 
 ----------------------------------------------------
 
 [
 	["directive", "default-src"],
 	["safe", "'none'"],
+	["safe", "'report-sample'"],
 	"; ",
 	["directive", "style-src"],
 	["safe", "'self'"],

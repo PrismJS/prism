@@ -7,20 +7,24 @@ HTTP/1.0 418 I'm a teapot
 
 [
 	["response-status", [
-		"HTTP/1.0 ",
-		["property", "200 OK"]
+		["http-version", "HTTP/1.0"],
+		["status-code", "200"],
+		["reason-phrase", "OK"]
 	]],
 	["response-status", [
-		"HTTP/1.1 ",
-		["property", "403 Forbidden"]
+		["http-version", "HTTP/1.1"],
+		["status-code", "403"],
+		["reason-phrase", "Forbidden"]
 	]],
 	["response-status", [
-		"HTTP/1.1 ",
-		["property", "404 Not Found"]
+		["http-version", "HTTP/1.1"],
+		["status-code", "404"],
+		["reason-phrase", "Not Found"]
 	]],
 	["response-status", [
-		"HTTP/1.0 ",
-		["property", "418 I'm a teapot"]
+		["http-version", "HTTP/1.0"],
+		["status-code", "418"],
+		["reason-phrase", "I'm a teapot"]
 	]]
 ]
 

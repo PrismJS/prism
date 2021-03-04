@@ -14,26 +14,24 @@
 	].join('|');
 
 	Prism.languages['shell-session'] = {
-		'info': {
-			// foo@bar:~/files$ exit
-			// foo@bar$ exit
-			pattern: /^[^\r\n$#*!]+(?=[$#])/m,
-			alias: 'punctuation',
-			inside: {
-				'path': {
-					pattern: /(:)[\s\S]+/,
-					lookbehind: true
-				},
-				'user': /^[^\s@:$#*!/\\]+@[^\s@:$#*!/\\]+(?=:|$)/,
-				'punctuation': /:/
-			}
-		},
 		'command': {
-			pattern: RegExp(/[$#](?:[^\\\r\n'"<]|\\.|<<str>>)+/.source.replace(/<<str>>/g, function () { return strings; })),
+			pattern: RegExp(/^(?:[^\s@:$#*!/\\]+@[^\s@:$#*!/\\]+(?::[^\0-\x1F$#*?"<>:;|]+)?|[^\0-\x1F$#*?"<>:;|]+)?[$#](?:[^\\\r\n'"<]|\\.|<<str>>)+/.source.replace(/<<str>>/g, function () { return strings; }), 'm'),
 			greedy: true,
 			inside: {
+				'info': {
+					// foo@bar:~/files$ exit
+					// foo@bar$ exit
+					// ~/files$ exit
+					pattern: /^[^#$]+/,
+					alias: 'punctuation',
+					inside: {
+						'user': /^[^\s@:$#*!/\\]+@[^\s@:$#*!/\\]+/,
+						'punctuation': /:/,
+						'path': /[\s\S]+/
+					}
+				},
 				'bash': {
-					pattern: /(^[$#]\s*)[\s\S]+/,
+					pattern: /(^[$#]\s*)\S[\s\S]*/,
 					lookbehind: true,
 					alias: 'language-bash',
 					inside: Prism.languages.bash

@@ -21,20 +21,20 @@
 						alias: 'keyword'
 					},
 					'namespace': {
-						pattern: /^(\s*)[-*\w\xA0-\uFFFF]*\|(?!=)/,
+						pattern: /^(\s*)(?:(?!\s)[-*\w\xA0-\uFFFF])*\|(?!=)/,
 						lookbehind: true,
 						inside: {
 							'punctuation': /\|$/
 						}
 					},
 					'attr-name': {
-						pattern: /^(\s*)[-\w\xA0-\uFFFF]+/,
+						pattern: /^(\s*)(?:(?!\s)[-\w\xA0-\uFFFF])+/,
 						lookbehind: true
 					},
 					'attr-value': [
 						string,
 						{
-							pattern: /(=\s*)[-\w\xA0-\uFFFF]+(?=\s*$)/,
+							pattern: /(=\s*)(?:(?!\s)[-\w\xA0-\uFFFF])+(?=\s*$)/,
 							lookbehind: true
 						}
 					],
@@ -69,7 +69,7 @@
 
 	Prism.languages.insertBefore('css', 'property', {
 		'variable': {
-			pattern: /(^|[^-\w\xA0-\uFFFF])--[-_a-z\xA0-\uFFFF][-\w\xA0-\uFFFF]*/i,
+			pattern: /(^|[^-\w\xA0-\uFFFF])--(?!\s)[-_a-z\xA0-\uFFFF](?:(?!\s)[-\w\xA0-\uFFFF])*/i,
 			lookbehind: true
 		}
 	});
@@ -80,7 +80,7 @@
 	};
 	// 123 -123 .123 -.123 12.3 -12.3
 	var number = {
-		pattern: /(^|[^\w.-])-?\d*\.?\d+/,
+		pattern: /(^|[^\w.-])-?(?:\d+(?:\.\d+)?|\.\d+)/,
 		lookbehind: true
 	};
 

@@ -1,21 +1,47 @@
 (function (Prism) {
 	Prism.languages.http = {
 		'request-line': {
-			pattern: /^(?:POST|GET|PUT|DELETE|OPTIONS|PATCH|TRACE|CONNECT)\s(?:https?:\/\/|\/)\S+\sHTTP\/[0-9.]+/m,
+			pattern: /^(?:GET|HEAD|POST|PUT|DELETE|CONNECT|OPTIONS|TRACE|PATCH|PRI|SEARCH)\s(?:https?:\/\/|\/)\S*\sHTTP\/[0-9.]+/m,
 			inside: {
-				// HTTP Verb
-				'property': /^(?:POST|GET|PUT|DELETE|OPTIONS|PATCH|TRACE|CONNECT)\b/,
-				// Path or query argument
-				'attr-name': /:\w+/
+				// HTTP Method
+				'method': {
+					pattern: /^[A-Z]+\b/,
+					alias: 'property'
+				},
+				// Request Target e.g. http://example.com, /path/to/file
+				'request-target': {
+					pattern: /^(\s)(?:https?:\/\/|\/)\S*(?=\s)/,
+					lookbehind: true,
+					alias: 'url',
+					inside: Prism.languages.uri
+				},
+				// HTTP Version
+				'http-version': {
+					pattern: /^(\s)HTTP\/[0-9.]+/,
+					lookbehind: true,
+					alias: 'property'
+				},
 			}
 		},
 		'response-status': {
-			pattern: /^HTTP\/1.[01] \d+.*/m,
+			pattern: /^HTTP\/[0-9.]+ \d+ .+/m,
 			inside: {
-				// Status, e.g. 200 OK
-				'property': {
-					pattern: /(^HTTP\/1.[01] )\d+.*/i,
-					lookbehind: true
+				// HTTP Version
+				'http-version': {
+					pattern: /^HTTP\/[0-9.]+/,
+					alias: 'property'
+				},
+				// Status Code
+				'status-code': {
+					pattern: /^(\s)\d+(?=\s)/,
+					lookbehind: true,
+					alias: 'number'
+				},
+				// Reason Phrase
+				'reason-phrase': {
+					pattern: /^(\s).+/,
+					lookbehind: true,
+					alias: 'string'
 				}
 			}
 		},
@@ -64,7 +90,7 @@
 
 			var pattern = suffixTypes[contentType] ? getSuffixPattern(contentType) : contentType;
 			options[contentType.replace(/\//g, '-')] = {
-				pattern: RegExp('(content-type:\\s*' + pattern + '[\\s\\S]*?)(?:\\r?\\n|\\r){2}[\\s\\S]*', 'i'),
+				pattern: RegExp('(content-type:\\s*' + pattern + '(?:(?:\\r\\n?|\\n).+)*)(?:\\r?\\n|\\r){2}[\\s\\S]*', 'i'),
 				lookbehind: true,
 				inside: httpLanguages[contentType]
 			};

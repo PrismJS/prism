@@ -1,0 +1,47 @@
+attr;
+auto;
+break;
+case;
+catch;
+class;
+continue;
+def;
+default;
+else;
+finally;
+for;
+fun;
+global;
+if;
+return;
+switch;
+this;
+try;
+var;
+while;
+
+----------------------------------------------------
+
+[
+	["keyword", "attr"], ["punctuation", ";"],
+	["keyword", "auto"], ["punctuation", ";"],
+	["keyword", "break"], ["punctuation", ";"],
+	["keyword", "case"], ["punctuation", ";"],
+	["keyword", "catch"], ["punctuation", ";"],
+	["keyword", "class"], ["punctuation", ";"],
+	["keyword", "continue"], ["punctuation", ";"],
+	["keyword", "def"], ["punctuation", ";"],
+	["keyword", "default"], ["punctuation", ";"],
+	["keyword", "else"], ["punctuation", ";"],
+	["keyword", "finally"], ["punctuation", ";"],
+	["keyword", "for"], ["punctuation", ";"],
+	["keyword", "fun"], ["punctuation", ";"],
+	["keyword", "global"], ["punctuation", ";"],
+	["keyword", "if"], ["punctuation", ";"],
+	["keyword", "return"], ["punctuation", ";"],
+	["keyword", "switch"], ["punctuation", ";"],
+	["keyword", "this"], ["punctuation", ";"],
+	["keyword", "try"], ["punctuation", ";"],
+	["keyword", "var"], ["punctuation", ";"],
+	["keyword", "while"], ["punctuation", ";"]
+]
