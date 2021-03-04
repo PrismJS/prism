@@ -7,6 +7,7 @@ Prism.languages.nevod = {
 			modifiers: /!?\*?$/,
 		},
 	},
+	'keyword': /@(require|inside|outside|having|search|pattern|where)\b/,
 	'namespace': {
 		pattern: /@namespace(\s+[a-zA-Z0-9\-.]*)?\s*{/,
 		inside: {
@@ -32,7 +33,6 @@ Prism.languages.nevod = {
 		},
 	},
 	'search': /#[a-zA-Z0-9\-.]+(\.\*)?\s*(?=;)/,
-	'keyword': /@(require|inside|outside|having|search|pattern|where)\b/,
 	'basic-reference': {
 		pattern: /\b(Word|Punct|Symbol|Space|LineBreak|Start|End|Alpha|AlphaNum|Num|NumAlpha|Blank|WordBreak|Any)(\(.*\)|\b)/,
 		inside: {
