@@ -1,13 +1,33 @@
-:= = == !=
-< <= > >=
-+ - / *
+:= = :
+== != < <= > >=
++ - / * %
+& |
+_
 
 ----------------------------------------------------
 
 [
-	["operator", ":="], ["operator", "="], ["operator", "=="], ["operator", "!="],
-	["operator", "<"], ["operator", "<="], ["operator", ">"], ["operator", ">="],
-	["operator", "+"], ["operator", "-"], ["operator", "/"], ["operator", "*"]
+	["operator", ":="],
+	["operator", "="],
+	["operator", ":"],
+
+	["operator", "=="],
+	["operator", "!="],
+	["operator", "<"],
+	["operator", "<="],
+	["operator", ">"],
+	["operator", ">="],
+
+	["operator", "+"],
+	["operator", "-"],
+	["operator", "/"],
+	["operator", "*"],
+	["operator", "%"],
+
+	["operator", "&"],
+	["operator", "|"],
+
+	["operator", "_"]
 ]
 
 ----------------------------------------------------
