@@ -2,27 +2,46 @@
 
 var javascript = Prism.util.clone(Prism.languages.javascript);
 
+var space = /(?:\s|\/\/.*(?!.)|\/\*(?:[^*]|\*(?!\/))\*\/)/.source;
+var braces = /(?:\{(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])*\})/.source;
+var spread = /(?:\{<S>*\.{3}(?:[^{}]|<BRACES>)*\})/.source;
+
+/**
+ * @param {string} source
+ * @param {string} [flags]
+ */
+function re(source, flags) {
+	source = source
+		.replace(/<S>/g, function () { return space; })
+		.replace(/<BRACES>/g, function () { return braces; })
+		.replace(/<SPREAD>/g, function () { return spread; });
+	return RegExp(source, flags);
+}
+
+spread = re(spread).source;
+
+
 Prism.languages.jsx = Prism.languages.extend('markup', javascript);
-Prism.languages.jsx.tag.pattern = /<\/?(?:[\w.:-]+(?:\s+(?:[\w.:$-]+(?:=(?:"(?:\\[^]|[^\\"])*"|'(?:\\[^]|[^\\'])*'|[^\s{'">=]+|\{(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])+\}))?|\{\s*\.{3}\s*[a-z_$][\w$]*(?:\.[a-z_$][\w$]*)*\s*\}))*\s*\/?)?>/i;
+Prism.languages.jsx.tag.pattern = re(
+	/<\/?(?:[\w.:-]+(?:<S>+(?:[\w.:$-]+(?:=(?:"(?:\\[^]|[^\\"])*"|'(?:\\[^]|[^\\'])*'|[^\s{'"/>=]+|<BRACES>))?|<SPREAD>))*<S>*\/?)?>/.source
+);
 
 Prism.languages.jsx.tag.inside['tag'].pattern = /^<\/?[^\s>\/]*/i;
 Prism.languages.jsx.tag.inside['attr-value'].pattern = /=(?!\{)(?:"(?:\\[^]|[^\\"])*"|'(?:\\[^]|[^\\'])*'|[^\s'">]+)/i;
 Prism.languages.jsx.tag.inside['tag'].inside['class-name'] = /^[A-Z]\w*(?:\.[A-Z]\w*)*$/;
+Prism.languages.jsx.tag.inside['comment'] = javascript['comment'];
 
 Prism.languages.insertBefore('inside', 'attr-name', {
 	'spread': {
-		pattern: /\{\s*\.{3}\s*[a-z_$][\w$]*(?:\.[a-z_$][\w$]*)*\s*\}/,
-		inside: {
-			'punctuation': /\.{3}|[{}.]/,
-			'attr-value': /\w+/
-		}
+		pattern: re(/<SPREAD>/.source),
+		inside: Prism.languages.jsx
 	}
 }, Prism.languages.jsx.tag);
 
 Prism.languages.insertBefore('inside', 'attr-value',{
 	'script': {
 		// Allow for two levels of nesting
-		pattern: /=(?:\{(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])+\})/i,
+		pattern: re(/=<BRACES>/.source),
 		inside: {
 			'script-punctuation': {
 				pattern: /^=(?={)/,

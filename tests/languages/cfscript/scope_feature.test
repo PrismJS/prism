@@ -1,0 +1,29 @@
+application
+arguments
+cgi
+client
+cookie
+local
+session
+super
+this
+variables
+
+----------------------------------------------------
+
+[
+	["scope", "application"],
+	["scope", "arguments"],
+	["scope", "cgi"],
+	["scope", "client"],
+	["scope", "cookie"],
+	["scope", "local"],
+	["scope", "session"],
+	["scope", "super"],
+	["scope", "this"],
+	["scope", "variables"]
+]
+
+----------------------------------------------------
+
+Checks for all scopes.

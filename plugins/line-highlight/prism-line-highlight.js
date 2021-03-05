@@ -4,6 +4,9 @@
 		return;
 	}
 
+	var LINE_NUMBERS_CLASS = 'line-numbers';
+	var LINKABLE_LINE_NUMBERS_CLASS = 'linkable-line-numbers';
+
 	/**
 	 * @param {string} selector
 	 * @param {ParentNode} [container]
@@ -21,8 +24,7 @@
 	 * @returns {boolean}
 	 */
 	function hasClass(element, className) {
-		className = " " + className + " ";
-		return (" " + element.className + " ").replace(/[\n\t]/g, " ").indexOf(className) > -1
+		return element.classList.contains(className);
 	}
 
 	/**
@@ -83,6 +85,32 @@
 	}
 
 	/**
+	 * Returns whether the Line Highlight plugin is active for the given element.
+	 *
+	 * If this function returns `false`, do not call `highlightLines` for the given element.
+	 *
+	 * @param {HTMLElement | null | undefined} pre
+	 * @returns {boolean}
+	 */
+	function isActiveFor(pre) {
+		if (!pre || !/pre/i.test(pre.nodeName)) {
+			return false;
+		}
+
+		if (pre.hasAttribute('data-line')) {
+			return true;
+		}
+
+		if (pre.id && Prism.util.isActive(pre, LINKABLE_LINE_NUMBERS_CLASS)) {
+			// Technically, the line numbers plugin is also necessary but this plugin doesn't control the classes of
+			// the line numbers plugin, so we can't assume that they are present.
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
 	 * Highlights the lines of the given pre.
 	 *
 	 * This function is split into a DOM measuring and mutate phase to improve performance.
@@ -94,14 +122,14 @@
 	 * @returns {() => void}
 	 */
 	function highlightLines(pre, lines, classes) {
-		lines = typeof lines === 'string' ? lines : pre.getAttribute('data-line');
+		lines = typeof lines === 'string' ? lines : (pre.getAttribute('data-line') || '');
 
 		var ranges = lines.replace(/\s+/g, '').split(',').filter(Boolean);
 		var offset = +pre.getAttribute('data-line-offset') || 0;
 
 		var parseMethod = isLineHeightRounded() ? parseInt : parseFloat;
 		var lineHeight = parseMethod(getComputedStyle(pre).lineHeight);
-		var hasLineNumbers = hasClass(pre, 'line-numbers');
+		var hasLineNumbers = Prism.util.isActive(pre, LINE_NUMBERS_CLASS);
 		var codeElement = pre.querySelector('code');
 		var parentElement = hasLineNumbers ? pre : codeElement || pre;
 		var mutateActions = /** @type {(() => void)[]} */ ([]);
@@ -173,49 +201,36 @@
 		});
 
 		var id = pre.id;
-		if (hasLineNumbers && id) {
+		if (hasLineNumbers && Prism.util.isActive(pre, LINKABLE_LINE_NUMBERS_CLASS) && id) {
 			// This implements linkable line numbers. Linkable line numbers use Line Highlight to create a link to a
 			// specific line. For this to work, the pre element has to:
 			//  1) have line numbers,
 			//  2) have the `linkable-line-numbers` class or an ascendant that has that class, and
 			//  3) have an id.
 
-			var linkableLineNumbersClass = 'linkable-line-numbers';
-			var linkableLineNumbers = false;
-			var node = pre;
-			while (node) {
-				if (hasClass(node, linkableLineNumbersClass)) {
-					linkableLineNumbers = true;
-					break;
-				}
-				node = node.parentElement;
-			}
-
-			if (linkableLineNumbers) {
-				if (!hasClass(pre, linkableLineNumbersClass)) {
-					// add class to pre
-					mutateActions.push(function () {
-						pre.className = (pre.className + ' ' + linkableLineNumbersClass).trim();
-					});
-				}
-
-				var start = parseInt(pre.getAttribute('data-start') || '1');
-
-				// iterate all line number spans
-				$$('.line-numbers-rows > span', pre).forEach(function (lineSpan, i) {
-					var lineNumber = i + start;
-					lineSpan.onclick = function () {
-						var hash = id + '.' + lineNumber;
-
-						// this will prevent scrolling since the span is obviously in view
-						scrollIntoView = false;
-						location.hash = hash;
-						setTimeout(function () {
-							scrollIntoView = true;
-						}, 1);
-					};
+			if (!hasClass(pre, LINKABLE_LINE_NUMBERS_CLASS)) {
+				// add class to pre
+				mutateActions.push(function () {
+					pre.classList.add(LINKABLE_LINE_NUMBERS_CLASS);
 				});
 			}
+
+			var start = parseInt(pre.getAttribute('data-start') || '1');
+
+			// iterate all line number spans
+			$$('.line-numbers-rows > span', pre).forEach(function (lineSpan, i) {
+				var lineNumber = i + start;
+				lineSpan.onclick = function () {
+					var hash = id + '.' + lineNumber;
+
+					// this will prevent scrolling since the span is obviously in view
+					scrollIntoView = false;
+					location.hash = hash;
+					setTimeout(function () {
+						scrollIntoView = true;
+					}, 1);
+				};
+			});
 		}
 
 		return function () {
@@ -261,9 +276,7 @@
 
 	Prism.hooks.add('before-sanity-check', function (env) {
 		var pre = env.element.parentElement;
-		var lines = pre && pre.getAttribute('data-line');
-
-		if (!pre || !lines || !/pre/i.test(pre.nodeName)) {
+		if (!isActiveFor(pre)) {
 			return;
 		}
 
@@ -287,9 +300,7 @@
 
 	Prism.hooks.add('complete', function completeHook(env) {
 		var pre = env.element.parentElement;
-		var lines = pre && pre.getAttribute('data-line');
-
-		if (!pre || !lines || !/pre/i.test(pre.nodeName)) {
+		if (!isActiveFor(pre)) {
 			return;
 		}
 
@@ -298,10 +309,10 @@
 		var hasLineNumbers = Prism.plugins.lineNumbers;
 		var isLineNumbersLoaded = env.plugins && env.plugins.lineNumbers;
 
-		if (hasClass(pre, 'line-numbers') && hasLineNumbers && !isLineNumbersLoaded) {
+		if (hasClass(pre, LINE_NUMBERS_CLASS) && hasLineNumbers && !isLineNumbersLoaded) {
 			Prism.hooks.add('line-numbers', completeHook);
 		} else {
-			var mutateDom = highlightLines(pre, lines);
+			var mutateDom = highlightLines(pre);
 			mutateDom();
 			fakeTimer = setTimeout(applyHash, 1);
 		}
@@ -309,9 +320,11 @@
 
 	window.addEventListener('hashchange', applyHash);
 	window.addEventListener('resize', function () {
-		var actions = $$('pre[data-line]').map(function (pre) {
-			return highlightLines(pre);
-		});
+		var actions = $$('pre')
+			.filter(isActiveFor)
+			.map(function (pre) {
+				return highlightLines(pre);
+			});
 		actions.forEach(callFunction);
 	});
 

@@ -238,6 +238,12 @@
 			"require": "c",
 			"owner": "zeitgeist87"
 		},
+		"cfscript": {
+			"title": "CFScript",
+			"require": "clike",
+			"alias": "cfc",
+			"owner": "mjclemente"
+		},
 		"chaiscript": {
 			"title": "ChaiScript",
 			"require": ["clike", "cpp"],
@@ -522,6 +528,16 @@
 			"title": "Icon",
 			"owner": "Golmote"
 		},
+		"icu-message-format": {
+			"title": "ICU Message Format",
+			"owner": "RunDevelopment"
+		},
+		"idris": {
+			"title": "Idris",
+			"alias": "idr",
+			"owner": "KeenS",
+			"require": "haskell"
+		},
 		"ignore": {
 			"title": ".ignore",
 			"owner": "osipxd",
@@ -660,6 +676,11 @@
 			},
 			"require": "clike",
 			"owner": "Golmote"
+		},
+		"kumir": {
+			"title": "KuMir (КуМир)",
+			"alias": "kum",
+			"owner": "edukisto"
 		},
 		"latex": {
 			"title": "LaTeX",
@@ -842,6 +863,10 @@
 		"pascaligo": {
 			"title": "Pascaligo",
 			"owner": "DefinitelyNotAGoat"
+		},
+		"psl": {
+			"title": "PATROL Scripting Language",
+			"owner": "bertysentry"
 		},
 		"pcaxis": {
 			"title": "PC-Axis",
@@ -1121,6 +1146,11 @@
 		"sql": {
 			"title": "SQL",
 			"owner": "multipetros"
+		},
+		"squirrel": {
+			"title": "Squirrel",
+			"require": "clike",
+			"owner": "RunDevelopment"
 		},
 		"stan": {
 			"title": "Stan",

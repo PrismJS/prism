@@ -9,7 +9,7 @@ defdelegate
 defstruct do else
 end fn for if
 import not or
-require rescue try
+raise require rescue try
 unless use when
 
 ----------------------------------------------------
@@ -26,7 +26,7 @@ unless use when
 	["keyword", "defstruct"], ["keyword", "do"], ["keyword", "else"],
 	["keyword", "end"], ["keyword", "fn"], ["keyword", "for"], ["keyword", "if"],
 	["keyword", "import"], ["keyword", "not"], ["keyword", "or"],
-	["keyword", "require"], ["keyword", "rescue"], ["keyword", "try"],
+	["keyword", "raise"], ["keyword", "require"], ["keyword", "rescue"], ["keyword", "try"],
 	["keyword", "unless"], ["keyword", "use"], ["keyword", "when"]
 ]
 

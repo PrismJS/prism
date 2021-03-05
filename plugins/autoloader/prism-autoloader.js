@@ -25,6 +25,7 @@
 		"c": "clike",
 		"csharp": "clike",
 		"cpp": "c",
+		"cfscript": "clike",
 		"chaiscript": [
 			"clike",
 			"cpp"
@@ -59,6 +60,7 @@
 		"handlebars": "markup-templating",
 		"haxe": "clike",
 		"hlsl": "c",
+		"idris": "haskell",
 		"java": "clike",
 		"javadoc": [
 			"markup",
@@ -128,6 +130,7 @@
 		"soy": "markup-templating",
 		"sparql": "turtle",
 		"sqf": "clike",
+		"squirrel": "clike",
 		"swift": "clike",
 		"t4-cs": [
 			"t4-templating",
@@ -172,6 +175,7 @@
 		"oscript": "bsl",
 		"cs": "csharp",
 		"dotnet": "csharp",
+		"cfc": "cfscript",
 		"coffee": "coffeescript",
 		"conc": "concurnas",
 		"jinja2": "django",
@@ -183,12 +187,14 @@
 		"xls": "excel-formula",
 		"gamemakerlanguage": "gml",
 		"hs": "haskell",
+		"idr": "idris",
 		"gitignore": "ignore",
 		"hgignore": "ignore",
 		"npmignore": "ignore",
 		"webmanifest": "json",
 		"kt": "kotlin",
 		"kts": "kotlin",
+		"kum": "kumir",
 		"tex": "latex",
 		"context": "latex",
 		"ly": "lilypond",
