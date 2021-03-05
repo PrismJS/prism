@@ -29,4 +29,4 @@ Thank you so much for contributing!!
 
 ## Translations
 
-* [简体中文](https://www.awesomes.cn/repo/PrismJS/prism) (temporarily unavailable; see copy [here](https://deepmind.t-salon.cc/article/113))
+* [简体中文](https://www.awesomes.cn/repo/PrismJS/prism) (if unavailable, see [here](https://deepmind.t-salon.cc/article/113))

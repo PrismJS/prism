@@ -1,0 +1,37 @@
+*
+**
++
+-
+/
+<
+<=
+<>
+=
+>
+>=
+и
+или
+не
+
+----------------------------------------------------
+
+[
+	["operator-char", "*"],
+	["operator-char", "**"],
+	["operator-char", "+"],
+	["operator-char", "-"],
+	["operator-char", "/"],
+	["operator-char", "<"],
+	["operator-char", "<="],
+	["operator-char", "<>"],
+	["operator-char", "="],
+	["operator-char", ">"],
+	["operator-char", ">="],
+	["operator-word", "и"],
+	["operator-word", "или"],
+	["operator-word", "не"]
+]
+
+----------------------------------------------------
+
+Checks for operators.

@@ -15,7 +15,7 @@
 	["tag", [["tag", [["punctuation", "<"], "a"]],
 	["attr-name", ["href"]], ["attr-value", [["punctuation", "="], ["punctuation", "\""],
 	["latte", [["ld", [["punctuation", "{"], ["tag", "link"]]],
-	["php", [["argument-name", "Post"], ["punctuation", ":"], ["class-name", "show"], ["variable", "$post"], ["operator", "->"], ["property", "id"]]],
+	["php", ["Post", ["punctuation", ":"], ["class-name", "show"], ["variable", "$post"], ["operator", "->"], ["property", "id"]]],
 	["rd", [["punctuation", "}"]]]]],
 	["punctuation", "\""]]], ["punctuation", ">"]]],
 	["latte", [["ld", [["punctuation", "{"]]], ["php", [["variable", "$post"], ["operator", "->"], ["property", "title"]]], ["rd", [["punctuation", "}"]]]]],
