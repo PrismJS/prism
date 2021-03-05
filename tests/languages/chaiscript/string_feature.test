@@ -1,0 +1,71 @@
+"string"
+"lhs: ${lhs}, rhs: ${rhs}"
+"${3 + 5} is 8"
+"method_missing(${i}, ${name}), ${v.size()} params"
+
+'f'
+
+----------------------------------------------------
+
+[
+	["string-interpolation", [
+		["string", "\"string\""]
+	]],
+	["string-interpolation", [
+		["string", "\"lhs: "],
+		["interpolation", [
+			["interpolation-punctuation", "${"],
+			["interpolation-expression", ["lhs"]],
+			["interpolation-punctuation", "}"]
+		]],
+		["string", ", rhs: "],
+		["interpolation", [
+			["interpolation-punctuation", "${"],
+			["interpolation-expression", ["rhs"]],
+			["interpolation-punctuation", "}"]
+		]],
+		["string", "\""]
+	]],
+	["string-interpolation", [
+		["string", "\""],
+		["interpolation", [
+			["interpolation-punctuation", "${"],
+			["interpolation-expression", [
+				["number", "3"],
+				["operator", "+"],
+				["number", "5"]
+			]],
+			["interpolation-punctuation", "}"]
+		]],
+		["string", " is 8\""]
+	]],
+	["string-interpolation", [
+		["string", "\"method_missing("],
+		["interpolation", [
+			["interpolation-punctuation", "${"],
+			["interpolation-expression", ["i"]],
+			["interpolation-punctuation", "}"]
+		]],
+		["string", ", "],
+		["interpolation", [
+			["interpolation-punctuation", "${"],
+			["interpolation-expression", ["name"]],
+			["interpolation-punctuation", "}"]
+		]],
+		["string", "), "],
+		["interpolation", [
+			["interpolation-punctuation", "${"],
+			["interpolation-expression", [
+				"v",
+				["punctuation", "."],
+				["function", "size"],
+				["punctuation", "("],
+				["punctuation", ")"]
+			]],
+			["interpolation-punctuation", "}"]
+		]],
+		["string", " params\""]
+	]],
+
+	["string", "'f'"]
+]

@@ -1,0 +1,34 @@
+struct1:f1 -> struct2:f0;
+struct1:f2 -> struct3:here;
+
+A:ne -> B:sw
+
+----------------------------------------------------
+
+[
+	["node", ["struct1"]],
+	["operator", ":"],
+	["node", ["f1"]],
+	["operator", "->"],
+	["node", ["struct2"]],
+	["operator", ":"],
+	["node", ["f0"]],
+	["punctuation", ";"],
+
+	["node", ["struct1"]],
+	["operator", ":"],
+	["node", ["f2"]],
+	["operator", "->"],
+	["node", ["struct3"]],
+	["operator", ":"],
+	["node", ["here"]],
+	["punctuation", ";"],
+
+	["node", ["A"]],
+	["operator", ":"],
+	["compass-point", "ne"],
+	["operator", "->"],
+	["node", ["B"]],
+	["operator", ":"],
+	["compass-point", "sw"]
+]

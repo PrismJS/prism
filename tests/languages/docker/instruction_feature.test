@@ -1,0 +1,186 @@
+RUN apt-get \
+update && apt-get \
+#comment
+#
+\
+\
+
+
+install git -y #not-a-comment \
+something
+
+RUN echo hello \
+# comment
+world
+
+        # this is a comment-line
+    RUN echo hello
+RUN echo world
+
+RUN echo "\
+     hello\
+     world"
+
+LABEL multi.label1="value1" \
+      multi.label2="value2" \
+      other="value3"
+
+EXPOSE 80/udp
+
+ENV MY_NAME="John Doe"
+ENV MY_NAME="John Doe" MY_DOG=Rex\ The\ Dog \
+    MY_CAT=fluffy
+
+ADD hom?.txt /mydir/
+
+ENTRYPOINT ["executable", "param1", "param2"]
+
+FROM debian:stable
+RUN apt-get update && apt-get install -y --force-yes apache2
+EXPOSE 80 443
+VOLUME ["/var/www", "/var/log/apache2", "/etc/apache2"]
+ENTRYPOINT ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
+
+ENTRYPOINT [ "/path/myprocess", \
+             "arg1",            \
+             "arg2"             \
+]
+
+----------------------------------------------------
+
+[
+	["instruction", [
+		["keyword", "RUN"], " apt-get ", ["operator", "\\"],
+		"\r\nupdate && apt-get ", ["operator", "\\"],
+		["comment", "#comment"],
+		["comment", "#"],
+		["operator", "\\"],
+		["operator", "\\"],
+
+		"\r\n\r\n\r\ninstall git -y #not-a-comment ", ["operator", "\\"],
+		"\r\nsomething"
+	]],
+
+	["instruction", [
+		["keyword", "RUN"], " echo hello ", ["operator", "\\"],
+		["comment", "# comment"],
+		"\r\nworld"
+	]],
+
+	["comment", "# this is a comment-line"],
+	["instruction", [
+		["keyword", "RUN"],
+		" echo hello"
+	]],
+	["instruction", [
+		["keyword", "RUN"],
+		" echo world"
+	]],
+
+	["instruction", [
+		["keyword", "RUN"],
+		" echo ",
+		["string", "\"\\\r\n     hello\\\r\n     world\""]
+	]],
+
+	["instruction", [
+		["keyword", "LABEL"],
+		" multi.label1=",
+		["string", "\"value1\""],
+		["operator", "\\"],
+
+		"\r\n      multi.label2=",
+		["string", "\"value2\""],
+		["operator", "\\"],
+
+		"\r\n      other=",
+		["string", "\"value3\""]
+	]],
+
+	["instruction", [
+		["keyword", "EXPOSE"],
+		" 80/udp"
+	]],
+
+	["instruction", [
+		["keyword", "ENV"],
+		" MY_NAME=",
+		["string", "\"John Doe\""]
+	]],
+
+	["instruction", [
+		["keyword", "ENV"],
+		" MY_NAME=",
+		["string", "\"John Doe\""],
+		" MY_DOG=Rex\\ The\\ Dog ",
+		["operator", "\\"],
+
+		"\r\n    MY_CAT=fluffy"
+	]],
+
+	["instruction", [
+		["keyword", "ADD"],
+		" hom?.txt /mydir/"
+	]],
+
+	["instruction", [
+		["keyword", "ENTRYPOINT"],
+		" [",
+		["string", "\"executable\""],
+		", ",
+		["string", "\"param1\""],
+		", ",
+		["string", "\"param2\""],
+		"]"
+	]],
+
+	["instruction", [
+		["keyword", "FROM"],
+		" debian:stable"
+	]],
+	["instruction", [
+		["keyword", "RUN"],
+		" apt-get update && apt-get install -y --force-yes apache2"
+	]],
+	["instruction", [
+		["keyword", "EXPOSE"],
+		" 80 443"
+	]],
+	["instruction", [
+		["keyword", "VOLUME"],
+		" [",
+		["string", "\"/var/www\""],
+		", ",
+		["string", "\"/var/log/apache2\""],
+		", ",
+		["string", "\"/etc/apache2\""],
+		"]"
+	]],
+	["instruction", [
+		["keyword", "ENTRYPOINT"],
+		" [",
+		["string", "\"/usr/sbin/apache2ctl\""],
+		", ",
+		["string", "\"-D\""],
+		", ",
+		["string", "\"FOREGROUND\""],
+		"]"
+	]],
+
+	["instruction", [
+		["keyword", "ENTRYPOINT"],
+		" [ ",
+		["string", "\"/path/myprocess\""],
+		", ",
+		["operator", "\\"],
+
+		["string", "\"arg1\""],
+		",            ",
+		["operator", "\\"],
+
+		["string", "\"arg2\""],
+		["operator", "\\"],
+
+		"\r\n]"
+	]]
+]
