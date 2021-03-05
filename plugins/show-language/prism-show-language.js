@@ -89,6 +89,7 @@
 		"hpkp": "HTTP Public-Key-Pins",
 		"hsts": "HTTP Strict-Transport-Security",
 		"ichigojam": "IchigoJam",
+		"icu-message-format": "ICU Message Format",
 		"idr": "Idris",
 		"ignore": ".ignore",
 		"gitignore": ".gitignore",

@@ -528,6 +528,10 @@
 			"title": "Icon",
 			"owner": "Golmote"
 		},
+		"icu-message-format": {
+			"title": "ICU Message Format",
+			"owner": "RunDevelopment"
+		},
 		"idris": {
 			"title": "Idris",
 			"alias": "idr",

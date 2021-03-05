@@ -5,7 +5,7 @@ const PrismLoader = require('./helper/prism-loader');
 const { BFS, parseRegex } = require('./helper/util');
 const { languages } = require('../components.json');
 const { visitRegExpAST } = require('regexpp');
-const { JS, Words, NFA } = require('refa');
+const { transform, combineTransformers, JS, Words, NFA, Transformers } = require('refa');
 const scslre = require('scslre');
 
 /**
@@ -383,6 +383,22 @@ function testPatterns(Prism) {
 	});
 
 	it('- should not cause exponential backtracking', function () {
+		/** @type {Transformers.CreationOptions} */
+		const options = {
+			ignoreOrder: true,
+			ignoreAmbiguity: true
+		};
+		const transformer = combineTransformers([
+			Transformers.inline(options),
+			Transformers.removeDeadBranches(options),
+			Transformers.unionCharacters(options),
+			Transformers.moveUpEmpty(options),
+			Transformers.nestedQuantifiers(options),
+			Transformers.sortAssertions(options),
+			Transformers.removeUnnecessaryAssertions(options),
+			Transformers.applyAssertions(options),
+		]);
+
 		forEachPattern(({ pattern, ast, tokenPath }) => {
 			const patternStr = String(pattern);
 			if (expoSafeRegexes.has(patternStr)) {
@@ -398,11 +414,15 @@ function testPatterns(Prism) {
 			 * @returns {NFA}
 			 */
 			function toNFA(element) {
-				const { expression, maxCharacter } = parser.parseElement(element, {
-					backreferences: "resolve",
-					lookarounds: "disable",
+				let { expression, maxCharacter } = parser.parseElement(element, {
+					maxBackreferenceWords: 1000,
+					backreferences: "disable"
 				});
-				return NFA.fromRegex(expression, { maxCharacter });
+
+				// try to remove assertions
+				expression = transform(transformer, expression);
+
+				return NFA.fromRegex(expression, { maxCharacter }, { assertions: "disable" });
 			}
 
 			/**
