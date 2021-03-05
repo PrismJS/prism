@@ -1360,8 +1360,7 @@ Object.defineProperty(Prism.languages.markup.tag, 'addAttribute', {
 	value: function (attrName, lang) {
 		Prism.languages.markup.tag.inside['special-attr'].push({
 			pattern: RegExp(
-				/(^|["'\s])(?:__)\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+(?=[\s>]))/.source
-					.replace(/__/, function () { return attrName; }),
+				/(^|["'\s])/.source + '(?:' + attrName + ')' + /\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+(?=[\s>]))/.source,
 				'i'
 			),
 			lookbehind: true,
