@@ -1,0 +1,29 @@
+, + _ 
+.. ...
+0-5
+&
+~
+?
+()
+[]
+{}
+;
+
+----------------------------------------------------
+
+[
+	["punctuation", ","], ["punctuation", "+"], ["punctuation", "_"], 
+	["punctuation", ".."], ["punctuation", "..."],
+	["quantifier", "0-5"],
+	["conjunction", "&"], 
+	["exception", "~"],
+	["optionality", "?"], 
+	["bracket", "()"], 
+	["repetition", "[]"],
+	["variation", "{}"], 
+	["semi-colon", ";"]
+]
+
+----------------------------------------------------
+
+Checks for operators.
