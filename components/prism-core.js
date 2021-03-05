@@ -22,6 +22,17 @@ var Prism = (function (_self){
 var lang = /\blang(?:uage)?-([\w-]+)\b/i;
 var uniqueId = 0;
 
+/**
+ * Sets the `language-xxxx` of the given element.
+ *
+ * @param {Element} element
+ * @param {string} language
+ * @returns {void}
+ */
+function setLanguage(element, language) {
+	element.className = element.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language;
+}
+
 
 var _ = {
 	/**
@@ -486,12 +497,13 @@ var _ = {
 	 * Highlights the code inside a single element.
 	 *
 	 * The following hooks will be run:
-	 * 1. `before-sanity-check`
-	 * 2. `before-highlight`
-	 * 3. All hooks of {@link Prism.highlight}. These hooks will be run by an asynchronous worker if `async` is `true`.
-	 * 4. `before-insert`
-	 * 5. `after-highlight`
-	 * 6. `complete`
+	 * 1. `before-set-language`
+	 * 2. `before-sanity-check`
+	 * 3. `before-highlight`
+	 * 4. All hooks of {@link Prism.highlight}. These hooks will be run by an asynchronous worker if `async` is `true`.
+	 * 5. `before-insert`
+	 * 6. `after-highlight`
+	 * 7. `complete`
 	 *
 	 * Some the above hooks will be skipped if the element doesn't contain any text or there is no grammar loaded for
 	 * the element's language.
@@ -514,16 +526,6 @@ var _ = {
 		// Find language
 		var language = _.util.getLanguage(element);
 		var grammar = _.languages[language];
-
-		// Set language on the element, if not present
-		element.className = element.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language;
-
-		// Set language on the parent, for styling
-		var parent = element.parentElement;
-		if (parent && parent.nodeName.toLowerCase() === 'pre') {
-			parent.className = parent.className.replace(lang, '').replace(/\s+/g, ' ') + ' language-' + language;
-		}
-
 		var code = element.textContent;
 
 		var env = {
@@ -532,6 +534,17 @@ var _ = {
 			grammar: grammar,
 			code: code
 		};
+
+		_.hooks.run('before-set-language', env);
+
+		// Set language on the element
+		setLanguage(env.element, env.language);
+
+		// Set language on the parent, for styling
+		var parent = env.element.parentElement;
+		if (parent && parent.nodeName.toLowerCase() === 'pre') {
+			setLanguage(parent, env.language);
+		}
 
 		function insertHighlightedCode(highlightedCode) {
 			env.highlightedCode = highlightedCode;
