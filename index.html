@@ -165,6 +165,8 @@
 
 	<p>If you want to opt-out of highlighting a <code>&lt;code></code> element that inherits its language, you can add the <code>language-none</code> class to it. The <code>none</code> language can also be inherited to disable highlighting for the element with the class and all of its descendants.</p>
 
+	<p>If you want to opt-out of highlighting but still use plugins like <a href="plugins/show-invisibles/">Show Invisibles</a>, add use <code>language-plain</code> class instead.</p>
+
 	<h3>Manual highlighting</h3>
 
 	<p>If you want to prevent any elements from being automatically highlighted and instead use the <a href="extending.html#api">API</a>, you can set <a href="docs/Prism.html#.manual"><code class="language-javascript">Prism.manual</code></a> to <code class="language-javascript">true</code> before the <code>DOMContentLoaded</code> event is fired. By setting the <code>data-manual</code> attribute on the <code>&lt;script></code> element containing Prism core, this will be done automatically.

@@ -27,6 +27,9 @@ var Prism = (function (_self){
 var lang = /\blang(?:uage)?-([\w-]+)\b/i;
 var uniqueId = 0;
 
+// The grammar object for plaintext
+var plainTextGrammar = {};
+
 
 var _ = {
 	/**
@@ -260,6 +263,14 @@ var _ = {
 	 * @public
 	 */
 	languages: {
+		/**
+		 * The grammar for plain, unformatted text.
+		 */
+		plain: plainTextGrammar,
+		plaintext: plainTextGrammar,
+		text: plainTextGrammar,
+		txt: plainTextGrammar,
+
 		/**
 		 * Creates a deep copy of the language with the given id and appends the given tokens.
 		 *
