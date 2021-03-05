@@ -1,20 +1,30 @@
+// https://www.openpolicyagent.org/docs/latest/policy-reference/
+
 Prism.languages.rego = {
-	'comment': /[#].*$/m,
-	'keyword': /\b(?:input|default)\b/,
-	'string': /("|')(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,
-	'boolean': /\b(?:true|false|allow|deny)\b/,
-	'operator': /&&?|\|\|?|\*\*?|>>>?|<<|[:=<>!~]=?|[-/%^]|\+!?|\b(?:not)\b/,
-	'function': [
-		{
-			pattern: /\b(?:package|some)\b/
-		},
-		{
-			pattern: /\b(?:round|abs|count|sum|product|max|min|sort|all|any)\b/,
-			inside: {
-				builtin: /(?:[^(])/,
-			}
-		},
-	],
-	'constant': /[^\[]+(?=\])/m,
-	
+	'comment': /#.*/,
+	'property': {
+		pattern: /(^|[^\\.])(?:"(?:\\.|[^\\"\r\n])*"|`[^`]*`|\b[a-z_]\w*\b)(?=\s*:(?!=))/i,
+		lookbehind: true,
+		greedy: true
+	},
+	'string': {
+		pattern: /(^|[^\\])"(?:\\.|[^\\"\r\n])*"|`[^`]*`/,
+		lookbehind: true,
+		greedy: true
+	},
+
+	'keyword': /\b(?:as|default|else|import|package|not|null|some|with|set(?=\s*\())\b/,
+	'boolean': /\b(?:true|false)\b/,
+
+	'function': {
+		pattern: /\b[a-z_]\w*\b(?:\s*\.\s*\b[a-z_]\w*\b)*(?=\s*\()/i,
+		inside: {
+			'namespace': /\b\w+\b(?=\s*\.)/,
+			'punctuation': /\./
+		}
+	},
+
+	'number': /-?\b\d+(?:\.\d+)?(?:e[+-]?\d+)?\b/i,
+	'operator': /[-+*/%|&]|[<>:=]=?|!=|\b_\b/,
+	'punctuation': /[,;.\[\]{}()]/
 };
