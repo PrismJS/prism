@@ -1,9 +1,6 @@
 (function() {
 
-	if (
-		typeof self !== 'undefined' && !self.Prism ||
-		!self.document || !Function.prototype.bind
-	) {
+	if (typeof Prism === 'undefined' || typeof document === 'undefined' || !Function.prototype.bind) {
 		return;
 	}
 

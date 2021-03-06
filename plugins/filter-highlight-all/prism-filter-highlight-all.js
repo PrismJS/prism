@@ -1,6 +1,6 @@
 (function () {
 
-	if (typeof self !== 'undefined' && !self.Prism) {
+	if (typeof Prism === 'undefined' || typeof document === 'undefined') {
 		return;
 	}
 
