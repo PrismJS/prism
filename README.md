@@ -27,6 +27,11 @@ Prism depends on community contributions to expand and cover a wider array of us
 
 Thank you so much for contributing!!
 
+### Software requirements
+
+- Node.js >= 10.x
+- npm >= 6.x
+
 ## Translations
 
 * [简体中文](https://www.awesomes.cn/repo/PrismJS/prism) (if unavailable, see [here](https://deepmind.t-salon.cc/article/113))
