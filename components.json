@@ -805,8 +805,7 @@
 		},
 		"nginx": {
 			"title": "nginx",
-			"owner": "westonganger",
-			"require": "clike"
+			"owner": "volado"
 		},
 		"nim": {
 			"title": "Nim",
