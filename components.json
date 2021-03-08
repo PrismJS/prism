@@ -434,7 +434,7 @@
 			"owner": "Golmote"
 		},
 		"log": {
-			"title": "Generic log files",
+			"title": "Log file",
 			"owner": "RunDevelopment"
 		},
 		"gherkin": {
