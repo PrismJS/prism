@@ -84,6 +84,7 @@
 		"gcode": "G-code",
 		"gdscript": "GDScript",
 		"gedcom": "GEDCOM",
+		"log": "Generic log files",
 		"glsl": "GLSL",
 		"graphql": "GraphQL",
 		"hs": "Haskell",

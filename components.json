@@ -433,6 +433,10 @@
 			"title": "GEDCOM",
 			"owner": "Golmote"
 		},
+		"log": {
+			"title": "Generic log files",
+			"owner": "RunDevelopment"
+		},
 		"gherkin": {
 			"title": "Gherkin",
 			"owner": "hason"
