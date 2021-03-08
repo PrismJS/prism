@@ -433,10 +433,6 @@
 			"title": "GEDCOM",
 			"owner": "Golmote"
 		},
-		"log": {
-			"title": "Log file",
-			"owner": "RunDevelopment"
-		},
 		"gherkin": {
 			"title": "Gherkin",
 			"owner": "hason"
@@ -728,6 +724,10 @@
 		"llvm": {
 			"title": "LLVM IR",
 			"owner": "porglezomp"
+		},
+		"log": {
+			"title": "Log file",
+			"owner": "RunDevelopment"
 		},
 		"lolcode": {
 			"title": "LOLCODE",
