@@ -12,14 +12,14 @@
 
 [
 	["string", ["\"text in double quotes\"", ["modifiers", ""]]],
-	["string", "\"\""], ["modifiers", ""],
-	["string", "'text in single quotes'"], ["modifiers", ""],
-	["string", "'case-sensitive text'!"], ["modifiers", "!"],
-	["string", "'text ''Nevod'' in quotes'"], ["modifiers", ""],
-	["string", "\"text \"\"Nevod\"\" in double quotes\""], ["modifiers", ""],
-	["string", "'text prefix'*"], ["modifiers", "*"],
-	["string", "'case-sensitive text prefix'!*"], ["modifiers", "!*"],
-	["string", "''"], ["modifiers", ""]
+	["string", ["\"\"", ["modifiers", ""]]],
+	["string", ["'text in single quotes'", ["modifiers", ""]]],
+	["string", ["'case-sensitive text'!", ["modifiers", "!"]]],
+	["string", ["'text ''Nevod'' in quotes'", ["modifiers", ""]]],
+	["string", ["\"text \"\"Nevod\"\" in double quotes\"", ["modifiers", ""]]],
+	["string", ["'text prefix'*", ["modifiers", "*"]]],
+	["string", ["'case-sensitive text prefix'!*", ["modifiers", "!*"]]],
+	["string", ["''", ["modifiers", ""]]]
 ]
 
 ----------------------------------------------------
