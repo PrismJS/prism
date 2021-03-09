@@ -18,9 +18,12 @@
 	["conjunction", "&"], 
 	["exception", "~"],
 	["optionality", "?"], 
-	["bracket", "()"], 
-	["repetition", "[]"],
-	["variation", "{}"], 
+	["bracket", "("], 
+	["bracket", ")"], 
+	["repetition", "["],
+	["repetition", "]"],
+	["variation", "{"], 
+	["variation", "}"], 
 	["semi-colon", ";"]
 ]
 
