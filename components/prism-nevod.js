@@ -7,23 +7,15 @@ Prism.languages.nevod = {
 			'modifiers': /!$|!\*$|\*$/,
 		},
 	},
-	'keyword': /@(?:inside|outside|having|search|where)\b/,
-	'require': /@require\b/,
 	'namespace': {
-		pattern: /@namespace\s+[a-zA-Z0-9\-.]+\s*{/,
-		inside: {
-			'keyword': /@namespace\b/,
-			'name': /\b[a-zA-Z0-9\-.]+/
-		},
+		pattern: /(@namespace\s+)[a-zA-Z0-9\-.]+(?=\s*{)/,
+		lookbehind: true,
 	},
 	'pattern': {
-		pattern: /(?:@pattern\s+)?#?[a-zA-Z0-9\-.]+\s*(?:(?:[(]\s*(?:(?:~\s*)?[a-zA-Z0-9\-.]+\s*(?:,\s*(?:(?:~\s*)?[a-zA-Z0-9\-.]*))*)[)])\s*)?=/,
+		pattern: /(@pattern\s+)?#?[a-zA-Z0-9\-.]+\s*(?:(?:[(]\s*(?:(?:~\s*)?[a-zA-Z0-9\-.]+\s*(?:,\s*(?:(?:~\s*)?[a-zA-Z0-9\-.]*))*)[)])\s*)?=/,
+		lookbehind: true,
 		inside: {
-			'keyword': /@pattern\b/,
-			'name': {
-				pattern: /^(\s+)?#?[a-zA-Z0-9\-.]+/,
-				lookbehind: true
-			},
+			'name': /#?[a-zA-Z0-9\-.]+/,
 			'equal': /=/,
 			'attributes': {
 				pattern: /\(.*\)/,
@@ -43,10 +35,11 @@ Prism.languages.nevod = {
 			'name': /#?.*(?=;)/
 		}
 	},
+	'keyword': /@(?:require|namespace|pattern|inside|outside|having|search|where)\b/,
 	'basic-reference': {
 		pattern: /\b(?:Word|Punct|Symbol|Space|LineBreak|Start|End|Alpha|AlphaNum|Num|NumAlpha|Blank|WordBreak|Any)(?:\(.*\)|\b)/,
 		inside: {
-			'name': /.+(?=[(\b])/,
+			'name': /.+\b/,
 			'params': /\(.*\)/,
 		},
 	},
