@@ -1,23 +1,32 @@
 Prism.languages.nevod = {
 	'comment': /(?:\/\/.*)|(?:\/\*[\s\S]*?(?:\*\/|$))/,
-	'string': {
-		pattern: /("|')[\s\S]*?\1!?\*?/,
-		greedy: true,
-		inside: {
-			'modifiers': /!?\*?$/,
+	'string': [
+		{
+			pattern: /"(?:""|[^"])*"(?!")!?\*?/,
+			greedy: true,
+			inside: {
+				'modifiers': /!$|!\*$|\*$/,
+			},
 		},
-	},
-	'keyword': /@(inside|outside|having|search|where)\b/,
+		{
+			pattern: /'(?:''|[^'])*'(?!')!?\*?/,
+			greedy: true,
+			inside: {
+				'modifiers': /!$|!\*$|\*$/,
+			},
+		}
+	],
+	'keyword': /@(?:inside|outside|having|search|where)\b/,
 	'require': /@require\b/,
 	'namespace': {
-		pattern: /@namespace(\s+[a-zA-Z0-9\-.]*)?\s*{/,
+		pattern: /@namespace\s+[a-zA-Z0-9\-.]+\s*{/,
 		inside: {
 			'keyword': /@namespace\b/,
 			'name': /\b[a-zA-Z0-9\-.]+/
 		},
 	},
 	'pattern': {
-		pattern: /(@pattern\s+)?(?:#?[a-zA-Z0-9\-.]+)\s*(?:[(]\s*(?:(?:~\s*)?[a-zA-Z0-9\-.]*\s*(?:,\s*(?:(?:~\s*)?[a-zA-Z0-9\-.]*))*)[)])?\s*=/,
+		pattern: /(?:@pattern\s+)?#?[a-zA-Z0-9\-.]+\s*(?:(?:[(]\s*(?:(?:~\s*)?[a-zA-Z0-9\-.]+\s*(?:,\s*(?:(?:~\s*)?[a-zA-Z0-9\-.]*))*)[)])\s*)?=/,
 		inside: {
 			'keyword': /@pattern\b/,
 			'name': {
@@ -37,20 +46,20 @@ Prism.languages.nevod = {
 		},
 	},
 	'search': {
-		pattern: /(@search\s+|#)[a-zA-Z0-9\-.]+(\.\*)?\s*(?=;)/,
+		pattern: /(?:@search\s+|#)[a-zA-Z0-9\-.]+(?:\.\*)?\s*(?=;)/,
 		inside: {
 			'keyword': /@search\b/,
 			'name': /#?.*(?=;)/
 		}
 	},
 	'basic-reference': {
-		pattern: /\b(Word|Punct|Symbol|Space|LineBreak|Start|End|Alpha|AlphaNum|Num|NumAlpha|Blank|WordBreak|Any)(\(.*\)|\b)/,
+		pattern: /\b(?:Word|Punct|Symbol|Space|LineBreak|Start|End|Alpha|AlphaNum|Num|NumAlpha|Blank|WordBreak|Any)(?:\(.*\)|\b)/,
 		inside: {
 			'name': /.+(?=[(\b])/,
 			'params': /\(.*\)/,
 		},
 	},
-	'quantifier': /\b\d+(\+|-\d+)?\b/,
+	'quantifier': /\b\d+(?:\+|-\d+)?\b/,
 	'conjunction': /&/,
 	'exception': /~/,
 	'optionality': /\?/,
