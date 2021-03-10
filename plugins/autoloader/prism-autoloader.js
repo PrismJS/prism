@@ -206,6 +206,7 @@
 		"n4jsd": "n4js",
 		"nani": "naniscript",
 		"objc": "objectivec",
+		"qasm": "openqasm",
 		"objectpascal": "pascal",
 		"px": "pcaxis",
 		"pcode": "peoplecode",

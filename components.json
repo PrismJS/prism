@@ -839,6 +839,11 @@
 			],
 			"owner": "Milania1"
 		},
+		"openqasm": {
+			"title": "OpenQasm",
+			"alias": "qasm",
+			"owner": "RunDevelopment"
+		},
 		"oz": {
 			"title": "Oz",
 			"owner": "Golmote"
