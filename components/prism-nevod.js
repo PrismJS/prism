@@ -29,13 +29,13 @@ Prism.languages.nevod = {
 		},
 	},
 	'search': {
-		pattern: /(?:@search\s+|#)[a-zA-Z0-9\-.]+(?:\.\*)?\s*(?=;)/,
+		pattern: /(@search\s+|#)[a-zA-Z0-9\-.]+(?:\.\*)?\s*(?=;)/,
+		lookbehind: true,
 		inside: {
-			'keyword': /@search\b/,
-			'name': /#?.*(?=;)/
+			'name': /.*(?=;)/
 		}
 	},
-	'keyword': /@(?:require|namespace|pattern|inside|outside|having|search|where)\b/,
+	'keyword': /@(?:require|namespace|pattern|search|inside|outside|having|where)\b/,
 	'basic-reference': {
 		pattern: /\b(?:Word|Punct|Symbol|Space|LineBreak|Start|End|Alpha|AlphaNum|Num|NumAlpha|Blank|WordBreak|Any)(?:\(.*\)|\b)/,
 		inside: {
