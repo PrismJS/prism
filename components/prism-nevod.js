@@ -1,21 +1,12 @@
 Prism.languages.nevod = {
 	'comment': /\/\/.*|(?:\/\*[\s\S]*?(?:\*\/|$))/,
-	'string': [
-		{
-			pattern: /"(?:""|[^"])*"(?!")!?\*?/,
-			greedy: true,
-			inside: {
-				'modifiers': /!$|!\*$|\*$/,
-			},
+	'string': {
+		pattern: /(?:"(?:""|[^"])*"(?!")|'(?:''|[^'])*'(?!'))!?\*?/,
+		greedy: true,
+		inside: {
+			'modifiers': /!$|!\*$|\*$/,
 		},
-		{
-			pattern: /'(?:''|[^'])*'(?!')!?\*?/,
-			greedy: true,
-			inside: {
-				'modifiers': /!$|!\*$|\*$/,
-			},
-		}
-	],
+	},
 	'keyword': /@(?:inside|outside|having|search|where)\b/,
 	'require': /@require\b/,
 	'namespace': {
