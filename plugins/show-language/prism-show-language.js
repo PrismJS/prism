@@ -55,6 +55,7 @@
 		"cfc": "CFScript",
 		"cil": "CIL",
 		"cmake": "CMake",
+		"cobol": "COBOL",
 		"coffee": "CoffeeScript",
 		"conc": "Concurnas",
 		"csp": "Content-Security-Policy",
