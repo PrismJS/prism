@@ -1,30 +1,23 @@
-, + _ 
+( , ) ;
++ _
 .. ...
-0-5
+[ 0-5 ]
 &
 ~
 ?
-()
-[]
 {}
-;
 
 ----------------------------------------------------
 
 [
-	["punctuation", ","], ["punctuation", "+"], ["punctuation", "_"], 
-	["punctuation", ".."], ["punctuation", "..."],
-	["quantifier", "0-5"],
-	["conjunction", "&"], 
-	["exception", "~"],
-	["optionality", "?"], 
-	["bracket", "("], 
-	["bracket", ")"], 
-	["repetition", "["],
-	["repetition", "]"],
-	["variation", "{"], 
-	["variation", "}"], 
-	["semi-colon", ";"]
+	["punctuation", "("], ["punctuation", ","], ["punctuation", ")"], ["punctuation", ";"],
+	["operator", "+"], ["operator", "_"],
+	["operator", ".."], ["operator", "..."],
+	["operator", "["], ["quantifier", "0-5"], ["operator", "]"],
+	["operator", "&"],
+	["operator", "~"],
+	["operator", "?"],
+	["operator", "{"], ["operator", "}"]
 ]
 
 ----------------------------------------------------

@@ -12,11 +12,11 @@ Prism.languages.nevod = {
 		lookbehind: true,
 	},
 	'pattern': {
-		pattern: /(@pattern\s+)?#?[a-zA-Z0-9\-.]+\s*(?:(?:[(]\s*(?:(?:~\s*)?[a-zA-Z0-9\-.]+\s*(?:,\s*(?:(?:~\s*)?[a-zA-Z0-9\-.]*))*)[)])\s*)?=/,
+		pattern: /(@pattern\s+)?#?[a-zA-Z0-9\-.]+\s*(?:(?:[(]\s*(?:(?:~\s*)?[a-zA-Z0-9\-.]+\s*(?:,\s*(?:(?:~\s*)?[a-zA-Z0-9\-.]*))*)[)])\s*)?(?:=)/,
+		alias: 'class-name',
 		lookbehind: true,
 		inside: {
 			'name': /#?[a-zA-Z0-9\-.]+/,
-			'equal': /=/,
 			'attributes': {
 				pattern: /\(.*\)/,
 				inside: {
@@ -29,28 +29,52 @@ Prism.languages.nevod = {
 		},
 	},
 	'search': {
-		pattern: /(@search\s+|#)[a-zA-Z0-9\-.]+(?:\.\*)?\s*(?=;)/,
+		pattern: /(@search\s+|#)[a-zA-Z0-9\-.]+\s*(?:\.\*\s*)?(?:;)/,
+		alias: 'function',
 		lookbehind: true,
-		inside: {
-			'name': /.*(?=;)/
-		}
 	},
 	'keyword': /@(?:require|namespace|pattern|search|inside|outside|having|where)\b/,
-	'basic-reference': {
+	'builtin': {
 		pattern: /\b(?:Word|Punct|Symbol|Space|LineBreak|Start|End|Alpha|AlphaNum|Num|NumAlpha|Blank|WordBreak|Any)(?:\(.*\)|\b)/,
 		inside: {
 			'name': /.+\b/,
 			'params': /\(.*\)/,
 		},
 	},
-	'quantifier': /\b\d+(?:\+|-\d+)?\b/,
-	'conjunction': /&/,
-	'exception': /~/,
-	'optionality': /\?/,
-	'bracket': /[()]/,
-	'repetition': /[[\]]/,
-	'variation': /[{}]/,
-	'semi-colon': /;/,
+	'quantifier': {
+		pattern: /\b\d+(?:\+|-\d+)?\b/,
+		alias: 'number',
+	},
+	'operator': [
+		{
+			pattern: /&/,
+			alias: 'conjunction',
+		},
+		{
+			pattern: /~/,
+			alias: 'exception',
+		},
+		{
+			pattern: /\?/,
+			alias: 'optionality',
+		},
+		{
+			pattern: /[[\]]/,
+			alias: 'repetition',
+		},
+		{
+			pattern: /[{}]/,
+			alias: 'variation',
+		},
+		{
+			pattern: /[+_]/,
+			alias: 'sequence',
+		},
+		{
+			pattern: /\.{2,3}/,
+			alias: 'span',
+		},
+	],
 	'attr-capture': {
 		pattern: /[a-zA-Z0-9\-.]+\s*:/,
 		inside: {
@@ -58,6 +82,6 @@ Prism.languages.nevod = {
 			'colon': /:/,
 		},
 	},
-	'punctuation': /[,+_]|\.{2,3}/,
+	'punctuation': /[:;,()=]/,
 	'name': /\S+/
 }
