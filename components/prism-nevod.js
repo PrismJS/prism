@@ -4,7 +4,7 @@ Prism.languages.nevod = {
 		pattern: /(?:"(?:""|[^"])*"(?!")|'(?:''|[^'])*'(?!'))!?\*?/,
 		greedy: true,
 		inside: {
-			'modifiers': /!$|!\*$|\*$/,
+			'string-attrs': /!$|!\*$|\*$/,
 		},
 	},
 	'namespace': {
@@ -12,11 +12,13 @@ Prism.languages.nevod = {
 		lookbehind: true,
 	},
 	'pattern': {
-		pattern: /(@pattern\s+)?#?[a-zA-Z0-9\-.]+\s*(?:(?:[(]\s*(?:(?:~\s*)?[a-zA-Z0-9\-.]+\s*(?:,\s*(?:(?:~\s*)?[a-zA-Z0-9\-.]*))*)[)])\s*)?(?:=)/,
-		alias: 'class-name',
+		pattern: /(@pattern\s+)?#?[a-zA-Z0-9\-.]+(?:\s*(?:[(]\s*(?:(?:~\s*)?[a-zA-Z0-9\-.]+\s*(?:,\s*(?:(?:~\s*)?[a-zA-Z0-9\-.]*))*)[)]))?(?=\s*=)/,
 		lookbehind: true,
 		inside: {
-			'name': /#?[a-zA-Z0-9\-.]+/,
+			'pattern-name': {
+				pattern: /#?[a-zA-Z0-9\-.]+/,
+				alias: 'class-name',
+			},
 			'attributes': {
 				pattern: /\(.*\)/,
 				inside: {
