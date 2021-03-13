@@ -27,106 +27,31 @@ _
 ----------------------------------------------------
 
 [
-	[
-		"operator",
-		"!"
-	],
-	[
-		"operator",
-		"#"
-	],
-	[
-		"operator",
-		"$"
-	],
-	[
-		"operator",
-		"%"
-	],
-	[
-		"operator",
-		"&"
-	],
-	[
-		"operator",
-		"*"
-	],
-	[
-		"operator",
-		"+"
-	],
-	[
-		"operator",
-		","
-	],
-	[
-		"operator",
-		"-"
-	],
-	[
-		"operator",
-		"."
-	],
-	[
-		"operator",
-		"/"
-	],
-	[
-		"operator",
-		":"
-	],
-	[
-		"operator",
-		";"
-	],
-	[
-		"operator",
-		"="
-	],
-	[
-		"operator",
-		">"
-	],
-	[
-		"operator",
-		"?"
-	],
-	[
-		"operator",
-		"@"
-	],
-	[
-		"operator",
-		"\\"
-	],
-	[
-		"operator",
-		"^"
-	],
-	[
-		"operator",
-		"_"
-	],
-	[
-		"operator",
-		"`"
-	],
-	[
-		"operator",
-		"|"
-	],
-	[
-		"operator",
-		"~"
-	],
-	[
-		"operator",
-		"ß"
-	],
-	[
-		"operator",
-		"ø"
-	]
+	["operator", "!"],
+	["operator", "#"],
+	["operator", "$"],
+	["operator", "%"],
+	["operator", "&"],
+	["operator", "*"],
+	["operator", "+"],
+	["operator", ","],
+	["operator", "-"],
+	["operator", "."],
+	["operator", "/"],
+	["operator", ":"],
+	["operator", ";"],
+	["operator", "="],
+	["operator", ">"],
+	["operator", "?"],
+	["operator", "@"],
+	["operator", "\\"],
+	["operator", "^"],
+	["operator", "_"],
+	["operator", "`"],
+	["operator", "|"],
+	["operator", "~"],
+	["operator", "ß"],
+	["operator", "ø"]
 ]
 
 ----------------------------------------------------
