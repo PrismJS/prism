@@ -35,6 +35,11 @@ const testOptions = {
 		template: false
 	},
 
+	'false': {
+		word: false,
+		template: false
+	},
+
 	// LilyPond doesn't tokenize based on words
 	'lilypond': {
 		word: false,

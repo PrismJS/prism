@@ -396,6 +396,10 @@
 			"title": "Factor",
 			"owner": "catb0t"
 		},
+		"false": {
+			"title": "False",
+			"owner": "edukisto"
+		},
 		"firestore-security-rules": {
 			"title": "Firestore security rules",
 			"require": "clike",
