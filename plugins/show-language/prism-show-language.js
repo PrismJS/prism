@@ -170,6 +170,8 @@
 		"py": "Python",
 		"q": "Q (kdb+ database)",
 		"qml": "QML",
+		"qsharp": "Q#",
+		"qs": "Q#",
 		"rkt": "Racket",
 		"jsx": "React JSX",
 		"tsx": "React TSX",

@@ -110,6 +110,7 @@
 		"purescript": "haskell",
 		"qml": "javascript",
 		"qore": "clike",
+		"qsharp": "clike",
 		"racket": "scheme",
 		"jsx": [
 			"markup",
@@ -214,6 +215,7 @@
 		"pbfasm": "purebasic",
 		"purs": "purescript",
 		"py": "python",
+		"qs": "qsharp",
 		"rkt": "racket",
 		"rpy": "renpy",
 		"robot": "robotframework",
