@@ -36,7 +36,7 @@ Prism.languages.nevod = {
 		},
 	},
 	'search': {
-		pattern: /(@search\s+|#)[a-zA-Z0-9\-.]+\s*(?:\.\*\s*)?(?:;)/,
+		pattern: /(@search\s+|#)[a-zA-Z0-9\-.]+(?:\.\*)?(?=\s*;)/,
 		alias: 'function',
 		lookbehind: true,
 	},
