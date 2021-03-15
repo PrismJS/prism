@@ -12,7 +12,7 @@ Prism.languages.nevod = {
 		lookbehind: true,
 	},
 	'pattern': {
-		pattern: /(@pattern\s+)?#?[a-zA-Z0-9\-.]+(?:\s*(?:[(]\s*(?:(?:~\s*)?[a-zA-Z0-9\-.]+\s*(?:,\s*(?:(?:~\s*)?[a-zA-Z0-9\-.]*))*)[)]))?(?=\s*=)/,
+		pattern: /(@pattern\s+)?#?[a-zA-Z0-9\-.]+(?:\s*[(]\s*(?:~\s*)?[a-zA-Z0-9\-.]+\s*(?:,\s*(?:~\s*)?[a-zA-Z0-9\-.]*)*[)])?(?=\s*=)/,
 		lookbehind: true,
 		inside: {
 			'pattern-name': {
@@ -49,7 +49,7 @@ Prism.languages.nevod = {
 				alias: 'builtin',
 			},
 			'quantifier': {
-				pattern: /\b\d+\s*(?:\+|-\s*\d+)?(?=\W)/,
+				pattern: /\b\d+(?:\s*\+|\s*-\s*\d+)?(?!\w)/,
 				alias: 'number',
 			},
 			'standard-pattern-attr': {
@@ -60,7 +60,7 @@ Prism.languages.nevod = {
 		},
 	},
 	'quantifier': {
-		pattern: /\b\d+\s*(?:\+|-\s*\d+)?(?=\W)/,
+		pattern: /\b\d+(?:\s*\+|\s*-\s*\d+)?(?!\w)/,
 		alias: 'number',
 	},
 	'operator': [

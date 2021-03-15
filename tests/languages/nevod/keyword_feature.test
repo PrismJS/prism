@@ -1,11 +1,13 @@
+@require @namespace @pattern @search
 @inside @outside @having
-@search @where
+@where
 
 ----------------------------------------------------
 
 [
+	["keyword", "@require"], ["keyword", "@namespace"], ["keyword", "@pattern"], ["keyword", "@search"], 
 	["keyword", "@inside"], ["keyword", "@outside"], ["keyword", "@having"],
-	["keyword", "@search"], ["keyword", "@where"]
+	["keyword", "@where"]
 ]
 
 ----------------------------------------------------
