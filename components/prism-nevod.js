@@ -97,16 +97,29 @@ Prism.languages.nevod = {
 			alias: 'span',
 		},
 	],
-	'attr-capture': {
-		pattern: /[a-zA-Z0-9\-.]+\s*:/,
-		inside: {
-			'attr-name': {
-				pattern: /[a-zA-Z0-9\-.]+/,
-				alias: 'variable',
+	'attr-capture': [
+		{
+			pattern: /([a-zA-Z0-9\-.]+\s*\()\s*[a-zA-Z0-9\-.]+\s*:\s*[a-zA-Z0-9\-.]+(?:\s*,\s*[a-zA-Z0-9\-.]+\s*:\s*[a-zA-Z0-9\-.]+)*(?=\s*\))/,
+			lookbehind: true,
+			inside: {
+				'attr-name': {
+					pattern: /[a-zA-Z0-9\-.]+/,
+					alias: 'variable',
+				},
+				'colon': /:/,
 			},
-			'colon': /:/,
 		},
-	},
+		{
+			pattern: /[a-zA-Z0-9\-.]+\s*:/,
+			inside: {
+				'attr-name': {
+					pattern: /[a-zA-Z0-9\-.]+/,
+					alias: 'variable',
+				},
+				'colon': /:/,
+			},
+		},
+	],
 	'punctuation': /[:;,()]/,
 	'name': /[a-zA-Z0-9\-.]+/
 }
