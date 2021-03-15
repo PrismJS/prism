@@ -19,17 +19,17 @@ Prism.languages.nevod = {
 				pattern: /^#?[a-zA-Z0-9\-.]+/,
 				alias: 'class-name',
 			},
-			'attributes': {
+			'fields': {
 				pattern: /\(.*\)/,
 				inside: {
-					'attr-name': {
+					'field-name': {
 						pattern: /[a-zA-Z0-9\-.]+/,
 						alias: 'variable',
 					},
 					'punctuation': /[,()]/,
 					'operator': {
 						pattern: /~/,
-						alias: 'attr-hidden-mark',
+						alias: 'field-hidden-mark',
 					},
 				},
 			},
@@ -97,12 +97,12 @@ Prism.languages.nevod = {
 			alias: 'span',
 		},
 	],
-	'attr-capture': [
+	'field-capture': [
 		{
 			pattern: /([a-zA-Z0-9\-.]+\s*\()\s*[a-zA-Z0-9\-.]+\s*:\s*[a-zA-Z0-9\-.]+(?:\s*,\s*[a-zA-Z0-9\-.]+\s*:\s*[a-zA-Z0-9\-.]+)*(?=\s*\))/,
 			lookbehind: true,
 			inside: {
-				'attr-name': {
+				'field-name': {
 					pattern: /[a-zA-Z0-9\-.]+/,
 					alias: 'variable',
 				},
@@ -112,7 +112,7 @@ Prism.languages.nevod = {
 		{
 			pattern: /[a-zA-Z0-9\-.]+\s*:/,
 			inside: {
-				'attr-name': {
+				'field-name': {
 					pattern: /[a-zA-Z0-9\-.]+/,
 					alias: 'variable',
 				},
