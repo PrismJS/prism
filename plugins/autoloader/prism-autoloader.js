@@ -108,9 +108,9 @@
 		],
 		"purebasic": "clike",
 		"purescript": "haskell",
+		"qsharp": "clike",
 		"qml": "javascript",
 		"qore": "clike",
-		"qsharp": "clike",
 		"racket": "scheme",
 		"jsx": [
 			"markup",
