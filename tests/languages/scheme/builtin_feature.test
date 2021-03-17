@@ -194,6 +194,10 @@
 (write-u8
 (zero?
 
+; with brackets
+[map
+[max
+
 ----------------------------------------------------
 
 [
@@ -391,7 +395,11 @@
 	["punctuation", "("], ["builtin", "write-char"],
 	["punctuation", "("], ["builtin", "write-string"],
 	["punctuation", "("], ["builtin", "write-u8"],
-	["punctuation", "("], ["builtin", "zero?"]
+	["punctuation", "("], ["builtin", "zero?"],
+
+	["comment", "; with brackets"],
+	["punctuation", "["], ["builtin", "map"],
+	["punctuation", "["], ["builtin", "max"]
 ]
 
 ----------------------------------------------------
