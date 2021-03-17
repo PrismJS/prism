@@ -75,6 +75,7 @@ Rem
 RemoveHandler
 Return
 Select
+Selector
 Self
 Set
 Single
@@ -186,6 +187,7 @@ WString
 	["keyword", "RemoveHandler"],
 	["keyword", "Return"],
 	["keyword", "Select"],
+	["keyword", "Selector"],
 	["keyword", "Self"],
 	["keyword", "Set"],
 	["keyword", "Single"],
