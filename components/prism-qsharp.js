@@ -85,7 +85,7 @@
 	Prism.languages.qsharp = Prism.languages.extend('clike', {
 		'string': [
 			{
-				pattern: re(/(^|[^@$\\])<<0>>/.source, [regularString]),
+				pattern: re(/(^|[^$\\])<<0>>/.source, [regularString]),
 				lookbehind: true,
 				greedy: true
 			},
@@ -110,7 +110,7 @@
 			},
 		],
 		'keyword': keywords,
-		'number': /(?:\b(?:0(?:x[\da-f]+|b[01]+|o[0-7]+)|\d+)L?|(?:\B\.\d+(?:_+\d+)*|\b\d+(?:_+\d+)*(?:\.\d+(?:_+\d+)*)?)(?:e[-+]?\d+(?:_+\d+)*)?)\b/i,
+		'number': /(?:0(?:x[\da-f_]*[\da-f]|b[01_]*[01]|o[0-7]*[0-7])|(?:\B\.\d*|\b\d+(?:\.\d*)?)(?:e[-+]?\d+)?)l?\b/i,
 		'operator': /and=|or=|<[-=]|[-=]>|[*^=\-!+\/%=]=?|>>>=?|<<<=?|\^\^\^=?|\|\|\|=?|&&&=?|w\/=?|\.\.\.|~~~/,
 		'punctuation': /::|[{}[\];(),.:]/
 	});
