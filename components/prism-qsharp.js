@@ -124,9 +124,7 @@
 
 	// string interpolation
 	var formatString = /:[^}\r\n]+/.source;
-	// multi line
-	var mInterpolationRound = nested(replace(/[^"'/()]|<<0>>|\(<<self>>*\)/.source, [regularStringCharacterOrComment]), 2)
-	var mInterpolation = replace(/\{(?!\{)(?:(?![}:])<<0>>)*<<1>>?\}/.source, [mInterpolationRound, formatString]);
+
 	// single line
 	var sInterpolationRound = nested(replace(/[^"'/()]|\/(?!\*)|\/\*(?:[^*]|\*(?!\/))*\*\/|<<0>>|\(<<self>>*\)/.source, [regularStringOrCharacter]), 2)
 	var sInterpolation = replace(/\{(?!\{)(?:(?![}:])<<0>>)*<<1>>?\}/.source, [sInterpolationRound, formatString]);
@@ -157,20 +155,12 @@
 	}
 
 	Prism.languages.insertBefore('qsharp', 'string', {
-		'interpolation-string': [
-			{
-				pattern: re(/(^|[^\\])(?:\$@|@\$)"(?:""|\\[\s\S]|\{\{|<<0>>|[^\\{"])*"/.source, [mInterpolation]),
-				lookbehind: true,
-				greedy: true,
-				inside: createInterpolationInside(mInterpolation, mInterpolationRound),
-			},
-			{
-				pattern: re(/(^|[^@\\])\$"(?:\\.|\{\{|<<0>>|[^\\"{])*"/.source, [sInterpolation]),
-				lookbehind: true,
-				greedy: true,
-				inside: createInterpolationInside(sInterpolation, sInterpolationRound),
-			}
-		]
+		'interpolation-string': {
+			pattern: re(/(^|[^@\\])\$"(?:\\.|\{\{|<<0>>|[^\\"{])*"/.source, [sInterpolation]),
+			lookbehind: true,
+			greedy: true,
+			inside: createInterpolationInside(sInterpolation, sInterpolationRound),
+		}
 	});
 
 }(Prism));
