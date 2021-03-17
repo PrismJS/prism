@@ -40,6 +40,7 @@
 	}
 
 	// https://docs.microsoft.com/en-us/azure/quantum/user-guide/language/typesystem/
+	// https://github.com/microsoft/qsharp-language/tree/main/Specifications/Language/5_Grammar
 	var keywordKinds = {
 		// keywords which represent a return or variable type
 		type: 'Unit Int BigInt Double Bool String Qubit Result Range true false Zero One Pauli PauliI PauliX PauliY PauliZ Adj Ctl',
@@ -76,20 +77,13 @@
 	// strings & characters
 	var character = /'(?:[^\r\n'\\]|\\.|\\[Uux][\da-fA-F]{1,8})'/.source; // simplified pattern
 	var regularString = /"(?:\\.|[^\\"\r\n])*"/.source;
-	var verbatimString = /@"(?:""|\\[\s\S]|[^\\"])*"(?!")/.source;
 
     // attributes
 	var regularStringOrCharacter = regularString + '|' + character;
     var regularStringCharacterOrComment = replace(/\/(?![*/])|\/\/[^\r\n]*[\r\n]|\/\*(?:[^*]|\*(?!\/))*\*\/|<<0>>/.source, [regularStringOrCharacter]);
-    var roundExpression = nested(replace(/[^"'/()]|<<0>>|\(<<self>>*\)/.source, [regularStringCharacterOrComment]), 2);
 
 	Prism.languages.qsharp = Prism.languages.extend('clike', {
 		'string': [
-			{
-				pattern: re(/(^|[^$\\])<<0>>/.source, [verbatimString]),
-				lookbehind: true,
-				greedy: true
-			},
 			{
 				pattern: re(/(^|[^@$\\])<<0>>/.source, [regularString]),
 				lookbehind: true,
@@ -116,7 +110,6 @@
 			},
 		],
 		'keyword': keywords,
-		// https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/lexical-structure#literals
 		'number': /(?:\b(?:0(?:x[\da-f]+|b[01]+|o[0-7]+)|\d+)L?|(?:\B\.\d+(?:_+\d+)*|\b\d+(?:_+\d+)*(?:\.\d+(?:_+\d+)*)?)(?:e[-+]?\d+(?:_+\d+)*)?)\b/i,
 		'operator': /and=|or=|<[-=]|[-=]>|[*^=\-!+\/%=]=?|>>>=?|<<<=?|\^\^\^=?|\|\|\|=?|&&&=?|w\/=?|\.\.\.|~~~/,
 		'punctuation': /::|[{}[\];(),.:]/
