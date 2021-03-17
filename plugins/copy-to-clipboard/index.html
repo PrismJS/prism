@@ -14,7 +14,7 @@
 	<script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
 	<script src="https://www.google-analytics.com/ga.js" async></script>
 </head>
-<body>
+<body class="language-text">
 
 <header data-plugin-header="copy-to-clipboard"></header>
 
@@ -39,6 +39,26 @@
 	<p>The plugin traverses up the DOM tree to find each of these attributes. The search starts at every <code class="token tag">pre code</code> element and stops at the closest ancestor element that has a desired attribute or at the worst case, at the <code class="token tag">html</code> element.</p>
 
 	<p><strong>Warning!</strong> Although possible, you definitely shouldn't add these attributes to the <code class="token tag">html</code> element, because a human-readable text should be placed <em>after</em> the character encoding declaration (<code>&lt;meta charset=&quot;...&quot;&gt;</code>), and the latter <a href="https://html.spec.whatwg.org/multipage/semantics.html#charset">must be</a> serialized completely within the first 512 (in older browsers) or 1024 bytes of the document. Consider using the <code class="token tag">body</code> element or one of its descendants.</p>
+</section>
+
+<section>
+	<h1>Styling</h1>
+
+	<p>This plugin supports customizing the style of the copy button. To understand how this is done, let's look at the HTML structure of the copy button:</p>
+
+	<pre><code class="language-markup">&lt;button class="copy-to-clipboard-button" type="button" data-copy-state="copy">
+	&lt;span>Copy&lt;/span>
+&lt;/button></code></pre>
+
+	<p>The <code>copy-to-clipboard-button</code> class can be used to select the button. The <code>data-copy-state</code> attribute indicates the current state of the plugin with the 3 possible states being:</p>
+
+	<ul>
+		<li><code>data-copy-state="copy"</code> — default state;</li>
+		<li><code>data-copy-state="copy-error"</code> — the state after failing copying;</li>
+		<li><code>data-copy-state="copy-success"</code> — the state after successful copying;</li>
+	</ul>
+
+	<p>These 3 states should be conveyed to the user either by different styling or displaying the button text.</p>
 </section>
 
 <section>

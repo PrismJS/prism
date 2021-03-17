@@ -114,20 +114,24 @@
 		var settings = getSettings(element);
 
 		var linkCopy = document.createElement('button');
-		linkCopy.textContent = settings['copy'];
+		linkCopy.className = 'copy-to-clipboard-button';
 		linkCopy.setAttribute('type', 'button');
+		var linkSpan = document.createElement('span');
+		linkCopy.appendChild(linkSpan);
+
+		setState('copy');
 
 		registerClipboard(linkCopy, {
 			getText: function () {
 				return element.textContent;
 			},
 			success: function () {
-				linkCopy.textContent = settings['copy-success'];
+				setState('copy-success');
 
 				resetText();
 			},
 			error: function () {
-				linkCopy.textContent = settings['copy-error'];
+				setState('copy-error');
 
 				setTimeout(function () {
 					selectElementText(element);
@@ -140,9 +144,13 @@
 		return linkCopy;
 
 		function resetText() {
-			setTimeout(function () {
-				linkCopy.textContent = settings['copy'];
-			}, settings['copy-timeout']);
+			setTimeout(function () { setState('copy'); }, settings['copy-timeout']);
+		}
+
+		/** @param {"copy" | "copy-error" | "copy-success"} state */
+		function setState(state) {
+			linkSpan.textContent = settings[state];
+			linkCopy.setAttribute('data-copy-state', state);
 		}
 	});
 })();
