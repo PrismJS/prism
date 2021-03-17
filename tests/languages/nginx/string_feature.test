@@ -1,0 +1,116 @@
+foo "";
+foo '';
+foo "foo
+bar";
+foo 'foo
+bar';
+
+foo " \" \' \\ \r \n \t";
+foo ' \" \' \\ \r \n \t';
+
+foo "$foo";
+foo "${foo}bar";
+foo "$arg_;";
+
+# not escaped
+foo "\$foo";
+
+----------------------------------------------------
+
+[
+	["directive", [
+		["keyword", "foo"],
+		["string", ["\"\""]]
+	]],
+	["punctuation", ";"],
+
+	["directive", [
+		["keyword", "foo"],
+		["string", ["''"]]
+	]],
+	["punctuation", ";"],
+
+	["directive", [
+		["keyword", "foo"],
+		["string", ["\"foo\r\nbar\""]]
+	]],
+	["punctuation", ";"],
+
+	["directive", [
+		["keyword", "foo"],
+		["string", ["'foo\r\nbar'"]]
+	]],
+	["punctuation", ";"],
+
+	["directive", [
+		["keyword", "foo"],
+		["string", [
+			"\" ",
+			["escape", "\\\""],
+			["escape", "\\'"],
+			["escape", "\\\\"],
+			["escape", "\\r"],
+			["escape", "\\n"],
+			["escape", "\\t"],
+			"\""
+		]]
+	]],
+	["punctuation", ";"],
+
+	["directive", [
+		["keyword", "foo"],
+		["string", [
+			"' ",
+			["escape", "\\\""],
+			["escape", "\\'"],
+			["escape", "\\\\"],
+			["escape", "\\r"],
+			["escape", "\\n"],
+			["escape", "\\t"],
+			"'"
+		]]
+	]],
+	["punctuation", ";"],
+
+	["directive", [
+		["keyword", "foo"],
+		["string", [
+			"\"",
+			["variable", "$foo"],
+			"\""
+		]]
+	]],
+	["punctuation", ";"],
+
+	["directive", [
+		["keyword", "foo"],
+		["string", [
+			"\"",
+			["variable", "${foo}"],
+			"bar\""
+		]]
+	]],
+	["punctuation", ";"],
+
+	["directive", [
+		["keyword", "foo"],
+		["string", [
+			"\"",
+			["variable", "$arg_;"],
+			"\""
+		]]
+	]],
+	["punctuation", ";"],
+
+	["comment", "# not escaped"],
+
+	["directive", [
+		["keyword", "foo"],
+		["string", [
+			"\"\\",
+			["variable", "$foo"],
+			"\""
+		]]
+	]],
+	["punctuation", ";"]
+]
