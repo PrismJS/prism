@@ -457,7 +457,7 @@
 		},
 		"graphql": {
 			"title": "GraphQL",
-			"optional": ["markdown"],
+			"optional": "markdown",
 			"owner": "Golmote"
 		},
 		"groovy": {
@@ -809,8 +809,7 @@
 		},
 		"nginx": {
 			"title": "nginx",
-			"owner": "westonganger",
-			"require": "clike"
+			"owner": "volado"
 		},
 		"nim": {
 			"title": "Nim",
