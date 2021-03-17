@@ -120,7 +120,7 @@
 		'keyword': keywords,
 		// https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/lexical-structure#literals
 		'number': /(?:\b(?:0(?:x[\da-f]+|b[01]+|o[0-7]+)|\d+)L?|(?:\B\.\d+(?:_+\d+)*|\b\d+(?:_+\d+)*(?:\.\d+(?:_+\d+)*)?)(?:e[-+]?\d+(?:_+\d+)*)?)\b/i,
-		'operator': />>=?|<<=?|[-=]>|([-+&|])\1|~|\?\?=?|[-+*/%&|^!=<>]=?/,
+		'operator': /and=|or=|<[-=]|[-=]>|[*^=\-!+\/%=]=?|>>>=?|<<<=?|\^\^\^=?|\|\|\|=?|&&&=?|w\/=?|\.\.\.|~~~/g,
 		'punctuation': /\?\.?|::|[{}[\];(),.:]/
 	});
 
