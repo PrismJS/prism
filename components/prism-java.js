@@ -62,7 +62,7 @@
 			alias: 'punctuation'
 		},
 		'generics': {
-			pattern: /<(?:[\w\s,.&?]|<(?:[\w\s,.&?]|<(?:[\w\s,.&?]|<[\w\s,.&?]*>)*>)*>)*>/,
+			pattern: /<(?:[a-z\s,.?]|\B\d|&(?!&)|<(?:[a-z\s,.?]|\B\d|&(?!&)|<(?:[a-z\s,.?]|\B\d|&(?!&)|<(?:[a-z\s,.?]|\B\d|&(?!&))*>)*>)*>)*>/i,
 			inside: {
 				'class-name': className,
 				'keyword': keywords,
