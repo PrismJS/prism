@@ -42,11 +42,11 @@
 	// https://docs.microsoft.com/en-us/azure/quantum/user-guide/language/typesystem/
 	var keywordKinds = {
 		// keywords which represent a return or variable type
-		type: 'Unit Int BigInt Double Bool String Qubit Result Pauli Range true false Zero One PauliI PauliX PauliY PauliZ Adj Ctl',
+		type: 'Unit Int BigInt Double Bool String Qubit Result Range true false Zero One Pauli PauliI PauliX PauliY PauliZ Adj Ctl',
 		// keywords which are used to declare a type
 		typeDeclaration: 'newtype',
 		// all other keywords
-        other: 'operation function is namespace open as newtype let mutable set body adjoint controlled self auto if elif else return fail for in new use borrow repeat until fixup while within apply'
+        other: 'Adjoint adjoint and apply as auto body borrow borrowing Controlled controlled distribute elif else fail fixup for function if in internal intrinsic invert is let mutable namespace new not open operation or repeat return self set until use using while within'
     } 
 	// keywords
 	function keywordsToPattern(words) {
@@ -74,8 +74,6 @@
 	};
 
 	// strings & characters
-	// https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/lexical-structure#character-literals
-	// https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/lexical-structure#string-literals
 	var character = /'(?:[^\r\n'\\]|\\.|\\[Uux][\da-fA-F]{1,8})'/.source; // simplified pattern
 	var regularString = /"(?:\\.|[^\\"\r\n])*"/.source;
 	var verbatimString = /@"(?:""|\\[\s\S]|[^\\"])*"(?!")/.source;
@@ -120,8 +118,8 @@
 		'keyword': keywords,
 		// https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/lexical-structure#literals
 		'number': /(?:\b(?:0(?:x[\da-f]+|b[01]+|o[0-7]+)|\d+)L?|(?:\B\.\d+(?:_+\d+)*|\b\d+(?:_+\d+)*(?:\.\d+(?:_+\d+)*)?)(?:e[-+]?\d+(?:_+\d+)*)?)\b/i,
-		'operator': /and=|or=|<[-=]|[-=]>|[*^=\-!+\/%=]=?|>>>=?|<<<=?|\^\^\^=?|\|\|\|=?|&&&=?|w\/=?|\.\.\.|~~~/g,
-		'punctuation': /\?\.?|::|[{}[\];(),.:]/
+		'operator': /and=|or=|<[-=]|[-=]>|[*^=\-!+\/%=]=?|>>>=?|<<<=?|\^\^\^=?|\|\|\|=?|&&&=?|w\/=?|\.\.\.|~~~/,
+		'punctuation': /::|[{}[\];(),.:]/
 	});
 
 	Prism.languages.insertBefore('qsharp', 'number', {
