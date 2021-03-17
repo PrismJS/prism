@@ -1,0 +1,24 @@
+echo $'module.exports = {\n  extends: [\n    // add more generic rulesets here, such as:\n    // 'eslint:recommended',\n    "plugin:vue/vue3-recommended",\n    "prettier",\n    "prettier/vue",\n  ],\n  rules: {\n    // override/add rules settings here, such as:\n    // 'vue/no-unused-vars': 'error'\n  },\n};' > .eslintrc.js
+
+----------------------------------------------------
+
+[
+	["builtin", "echo"],
+	["string", [
+		"$'module.exports = {",
+		["entity", "\\n"],
+		"  extends: [",
+		["entity", "\\n"],
+		"    // add more generic rulesets here, such as:",
+		["entity", "\\n"],
+		"    // '"
+	]],
+	"eslint:recommended",
+	["string", "',\\n    \"plugin:vue/vue3-recommended\",\\n    \"prettier\",\\n    \"prettier/vue\",\\n  ],\\n  rules: {\\n    // override/add rules settings here, such as:\\n    // '"],
+	"vue/no-unused-vars",
+	["string", "': '"],
+	"error",
+	["string", "'\\n  },\\n};'"],
+	["operator", [">"]],
+	" .eslintrc.js"
+]

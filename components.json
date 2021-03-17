@@ -238,6 +238,12 @@
 			"require": "c",
 			"owner": "zeitgeist87"
 		},
+		"cfscript": {
+			"title": "CFScript",
+			"require": "clike",
+			"alias": "cfc",
+			"owner": "mjclemente"
+		},
 		"chaiscript": {
 			"title": "ChaiScript",
 			"require": ["clike", "cpp"],
@@ -390,6 +396,10 @@
 			"title": "Factor",
 			"owner": "catb0t"
 		},
+		"false": {
+			"title": "False",
+			"owner": "edukisto"
+		},
 		"firestore-security-rules": {
 			"title": "Firestore security rules",
 			"require": "clike",
@@ -521,6 +531,16 @@
 		"icon": {
 			"title": "Icon",
 			"owner": "Golmote"
+		},
+		"icu-message-format": {
+			"title": "ICU Message Format",
+			"owner": "RunDevelopment"
+		},
+		"idris": {
+			"title": "Idris",
+			"alias": "idr",
+			"owner": "KeenS",
+			"require": "haskell"
 		},
 		"ignore": {
 			"title": ".ignore",
@@ -661,6 +681,11 @@
 			"require": "clike",
 			"owner": "Golmote"
 		},
+		"kumir": {
+			"title": "KuMir (КуМир)",
+			"alias": "kum",
+			"owner": "edukisto"
+		},
 		"latex": {
 			"title": "LaTeX",
 			"alias": ["tex", "context"],
@@ -784,8 +809,7 @@
 		},
 		"nginx": {
 			"title": "nginx",
-			"owner": "westonganger",
-			"require": "clike"
+			"owner": "volado"
 		},
 		"nim": {
 			"title": "Nim",
@@ -1006,6 +1030,10 @@
 		"regex": {
 			"title": "Regex",
 			"owner": "RunDevelopment"
+		},
+		"rego": {
+			"title": "Rego",
+			"owner": "JordanSh"
 		},
 		"renpy": {
 			"title": "Ren'py",

@@ -8,12 +8,12 @@
 			["punctuation", "<"],
 			"img"
 		]],
-		["style-attr", [
+		["special-attr", [
 			["attr-name", "style"],
 			["attr-value", [
 				["punctuation", "="],
 				["punctuation", "\""],
-				["style", [
+				["value", [
 					["property", "width"],
 					["punctuation", ":"],
 					["php", [

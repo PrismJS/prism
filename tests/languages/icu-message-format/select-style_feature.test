@@ -1,0 +1,157 @@
+{0} est {1, select, female {allée} other {allé}} à {2}.
+
+{0} {1, plural,
+ one {est {2, select, female {allée} other  {allé}}}
+ other {sont {2, select, female {allées} other {allés}}}
+ }à {3}.
+
+----------------------------------------------------
+
+[
+	["argument", [
+		["argument-delimiter", "{"],
+		["content", [
+			["argument-name", "0"]
+		]],
+		["argument-delimiter", "}"]
+	]],
+	" est ",
+	["argument", [
+		["argument-delimiter", "{"],
+		["content", [
+			["argument-name", "1"],
+			["punctuation", ","],
+			["keyword", "select"],
+			["punctuation", ","],
+			["select-style", [
+				["selector", ["female"]],
+				["nested-message", [
+					["message-delimiter", "{"],
+					["message", ["allée"]],
+					["message-delimiter", "}"]
+				]],
+				["selector", [
+					["keyword", "other"]
+				]],
+				["nested-message", [
+					["message-delimiter", "{"],
+					["message", ["allé"]],
+					["message-delimiter", "}"]
+				]]
+			]]
+		]],
+		["argument-delimiter", "}"]
+	]],
+	" à ",
+	["argument", [
+		["argument-delimiter", "{"],
+		["content", [
+			["argument-name", "2"]
+		]],
+		["argument-delimiter", "}"]
+	]],
+	".\r\n\r\n",
+
+	["argument", [
+		["argument-delimiter", "{"],
+		["content", [
+			["argument-name", "0"]
+		]],
+		["argument-delimiter", "}"]
+	]],
+	["argument", [
+		["argument-delimiter", "{"],
+		["content", [
+			["argument-name", "1"],
+			["punctuation", ","],
+			["keyword", "plural"],
+			["punctuation", ","],
+
+			["plural-style", [
+				["selector", [
+					["keyword", "one"]
+				]],
+				["nested-message", [
+					["message-delimiter", "{"],
+					["message", [
+						"est ",
+						["argument", [
+							["argument-delimiter", "{"],
+							["content", [
+								["argument-name", "2"],
+								["punctuation", ","],
+								["keyword", "select"],
+								["punctuation", ","],
+								["select-style", [
+									["selector", ["female"]],
+									["nested-message", [
+										["message-delimiter", "{"],
+										["message", ["allée"]],
+										["message-delimiter", "}"]
+									]],
+									["selector", [
+										["keyword", "other"]
+									]],
+									["nested-message", [
+										["message-delimiter", "{"],
+										["message", ["allé"]],
+										["message-delimiter", "}"]
+									]]
+								]]
+							]],
+							["argument-delimiter", "}"]
+						]]
+					]],
+					["message-delimiter", "}"]
+				]],
+
+				["selector", [
+					["keyword", "other"]
+				]],
+				["nested-message", [
+					["message-delimiter", "{"],
+					["message", [
+						"sont ",
+						["argument", [
+							["argument-delimiter", "{"],
+							["content", [
+								["argument-name", "2"],
+								["punctuation", ","],
+								["keyword", "select"],
+								["punctuation", ","],
+								["select-style", [
+									["selector", ["female"]],
+									["nested-message", [
+										["message-delimiter", "{"],
+										["message", ["allées"]],
+										["message-delimiter", "}"]
+									]],
+									["selector", [
+										["keyword", "other"]
+									]],
+									["nested-message", [
+										["message-delimiter", "{"],
+										["message", ["allés"]],
+										["message-delimiter", "}"]
+									]]
+								]]
+							]],
+							["argument-delimiter", "}"]
+						]]
+					]],
+					["message-delimiter", "}"]
+				]]
+			]]
+		]],
+		["argument-delimiter", "}"]
+	]],
+	"à ",
+	["argument", [
+		["argument-delimiter", "{"],
+		["content", [
+			["argument-name", "3"]
+		]],
+		["argument-delimiter", "}"]
+	]],
+	"."
+]

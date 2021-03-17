@@ -8,9 +8,7 @@ foobar
 
 [
 	["attribute", "@vsn"], ["number", "2"],
-	["attribute", "@moduledoc"], ["string", [
-		"\"\"\"\r\nfoobar\r\n\"\"\""
-	]],
+	["doc", [ ["attribute", "@moduledoc" ], [ "string", "\"\"\"\r\nfoobar\r\n\"\"\"" ] ] ],
 	["attribute", "@tag"], ["atom", ":external"]
 ]
 

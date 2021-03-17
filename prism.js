@@ -27,6 +27,9 @@ var Prism = (function (_self){
 var lang = /\blang(?:uage)?-([\w-]+)\b/i;
 var uniqueId = 0;
 
+// The grammar object for plaintext
+var plainTextGrammar = {};
+
 
 var _ = {
 	/**
@@ -260,6 +263,14 @@ var _ = {
 	 * @public
 	 */
 	languages: {
+		/**
+		 * The grammar for plain, unformatted text.
+		 */
+		plain: plainTextGrammar,
+		plaintext: plainTextGrammar,
+		text: plainTextGrammar,
+		txt: plainTextGrammar,
+
 		/**
 		 * Creates a deep copy of the language with the given id and appends the given tokens.
 		 *
@@ -1247,6 +1258,7 @@ Prism.languages.markup = {
 					'namespace': /^[^\s>\/:]+:/
 				}
 			},
+			'special-attr': [],
 			'attr-value': {
 				pattern: /=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+)/,
 				inside: {
@@ -1333,6 +1345,49 @@ Object.defineProperty(Prism.languages.markup.tag, 'addInlined', {
 		Prism.languages.insertBefore('markup', 'cdata', def);
 	}
 });
+Object.defineProperty(Prism.languages.markup.tag, 'addAttribute', {
+	/**
+	 * Adds an pattern to highlight languages embedded in HTML attributes.
+	 *
+	 * An example of an inlined language is CSS with `style` attributes.
+	 *
+	 * @param {string} attrName The name of the tag that contains the inlined language. This name will be treated as
+	 * case insensitive.
+	 * @param {string} lang The language key.
+	 * @example
+	 * addAttribute('style', 'css');
+	 */
+	value: function (attrName, lang) {
+		Prism.languages.markup.tag.inside['special-attr'].push({
+			pattern: RegExp(
+				/(^|["'\s])/.source + '(?:' + attrName + ')' + /\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+(?=[\s>]))/.source,
+				'i'
+			),
+			lookbehind: true,
+			inside: {
+				'attr-name': /^[^\s=]+/,
+				'attr-value': {
+					pattern: /=[\s\S]+/,
+					inside: {
+						'value': {
+							pattern: /(=\s*(["']|(?!["'])))\S[\s\S]*(?=\2$)/,
+							lookbehind: true,
+							alias: [lang, 'language-' + lang],
+							inside: Prism.languages[lang]
+						},
+						'punctuation': [
+							{
+								pattern: /^=/,
+								alias: 'attr-equals'
+							},
+							/"|'/
+						]
+					}
+				}
+			}
+		});
+	}
+});
 
 Prism.languages.html = Prism.languages.markup;
 Prism.languages.mathml = Prism.languages.markup;
@@ -1399,34 +1454,7 @@ Prism.languages.rss = Prism.languages.xml;
 	var markup = Prism.languages.markup;
 	if (markup) {
 		markup.tag.addInlined('style', 'css');
-
-		Prism.languages.insertBefore('inside', 'attr-value', {
-			'style-attr': {
-				pattern: /(^|["'\s])style\s*=\s*(?:"[^"]*"|'[^']*')/i,
-				lookbehind: true,
-				inside: {
-					'attr-value': {
-						pattern: /=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+)/,
-						inside: {
-							'style': {
-								pattern: /(["'])[\s\S]+(?=["']$)/,
-								lookbehind: true,
-								alias: 'language-css',
-								inside: Prism.languages.css
-							},
-							'punctuation': [
-								{
-									pattern: /^=/,
-									alias: 'attr-equals'
-								},
-								/"|'/
-							]
-						}
-					},
-					'attr-name': /^style/i
-				}
-			}
-		}, markup.tag);
+		markup.tag.addAttribute('style', 'css');
 	}
 
 }(Prism));
@@ -1571,6 +1599,13 @@ Prism.languages.insertBefore('javascript', 'string', {
 
 if (Prism.languages.markup) {
 	Prism.languages.markup.tag.addInlined('script', 'javascript');
+
+	// add attribute support for all DOM events.
+	// https://developer.mozilla.org/en-US/docs/Web/Events#Standard_events
+	Prism.languages.markup.tag.addAttribute(
+		/on(?:abort|blur|change|click|composition(?:end|start|update)|dblclick|error|focus(?:in|out)?|key(?:down|up)|load|mouse(?:down|enter|leave|move|out|over|up)|reset|resize|scroll|select|slotchange|submit|unload|wheel)/.source,
+		'javascript'
+	);
 }
 
 Prism.languages.js = Prism.languages.javascript;

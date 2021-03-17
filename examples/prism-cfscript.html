@@ -1,0 +1,43 @@
+<h2>Comments</h2>
+<pre><code>// This is a comment
+
+/* This is a comment
+on multiple lines */
+
+/**
+* This is a Javadoc style comment
+*
+* @hint This is an annotation
+*/
+</code></pre>
+
+<h2>Functions</h2>
+<pre><code>public boolean function myFunc(required any arg) {
+  return true;
+}</code></pre>
+
+<h2>Full example</h2>
+<pre><code>component accessors="true" {
+  property type="string" name="prop1" default="";
+  property string prop2;
+  function init(){
+    this.prop3 = 12;
+    return this;
+  }
+
+  /**
+  * @hint Annotations supported
+  * @foo.hint
+  */
+  public any function build( required foo, color="blue", boolean bar=true ){
+    arguments.foo = {
+      'name' : "something",
+      test = true
+    }
+    var foobar = function( required string baz, x=true, y=false ){
+      return "bar!";
+    };
+    return foo;
+  }
+}
+</code></pre>
