@@ -13,18 +13,34 @@ void Foo<int>::bar() {}
 ----------------------------------------------------
 
 [
-	["keyword", "class"], ["class-name", "Foo"],
-	["keyword", "class"], ["class-name", "Foo_bar"],
-	["keyword", "concept"], ["class-name", "Foo_bar"],
-	["keyword", "struct"], ["class-name", "foo"],
-	["keyword", "enum"], ["class-name", "bar"],
-	["keyword", "enum"], ["keyword", "class"], ["class-name", "FooBar"],
-	["keyword", "template"], ["operator", "<"], ["keyword", "typename"], ["class-name", "FooBar"], ["operator", ">"],
+	["keyword", "class"],
+	["class-name", "Foo"],
 
+	["keyword", "class"],
+	["class-name", "Foo_bar"],
+
+	["keyword", "concept"],
+	["class-name", "Foo_bar"],
+
+	["keyword", "struct"],
+	["class-name", "foo"],
+
+	["keyword", "enum"],
+	["class-name", "bar"],
+
+	["keyword", "enum"],
+	["keyword", "class"],
+	["class-name", "FooBar"],
+
+	["keyword", "template"],
+	["operator", "<"],
+	["keyword", "typename"],
+	["class-name", "FooBar"],
+	["operator", ">"],
 
 	["keyword", "void"],
 	["class-name", "Foo"],
-	["operator", "::"],
+	["double-colon", "::"],
 	["function", "bar"],
 	["punctuation", "("],
 	["punctuation", ")"],
@@ -32,7 +48,7 @@ void Foo<int>::bar() {}
 	["punctuation", "}"],
 
 	["class-name", "Foo"],
-	["operator", "::"],
+	["double-colon", "::"],
 	["operator", "~"],
 	["function", "Foo"],
 	["punctuation", "("],
@@ -45,7 +61,7 @@ void Foo<int>::bar() {}
 	["operator", "<"],
 	["keyword", "int"],
 	["operator", ">"],
-	["operator", "::"],
+	["double-colon", "::"],
 	["function", "bar"],
 	["punctuation", "("],
 	["punctuation", ")"],
