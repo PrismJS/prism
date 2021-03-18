@@ -1575,6 +1575,7 @@ Prism.languages.insertBefore('javascript', 'keyword', {
 Prism.languages.insertBefore('javascript', 'string', {
 	'hashbang': {
 		pattern: /^#!.*/,
+		greedy: true,
 		alias: 'comment'
 	},
 	'template-string': {
