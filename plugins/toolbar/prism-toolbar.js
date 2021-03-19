@@ -7,7 +7,25 @@
 	var map = {};
 	var noop = function() {};
 
-	Prism.plugins.toolbar = {};
+	Prism.plugins.toolbar = {
+		registerButton: registerButton,
+		hook: hook,
+
+		/**
+		 * Adjusts the layout of the toolbar of the given `pre` element.
+		 *
+		 * @param {HTMLElement} pre
+		 */
+		resize: function (pre) {
+			if (!pre || !/pre/i.test(pre.nodeName)) {
+				return;
+			}
+			var toolbar = pre.parentElement;
+			if (toolbar && toolbar.classList.contains('code-toolbar')) {
+				refreshLayout(toolbar);
+			}
+		}
+	};
 
 	/**
 	 * @typedef ButtonOptions
@@ -23,7 +41,7 @@
 	 * @param {string} key
 	 * @param {ButtonOptions|Function} opts
 	 */
-	var registerButton = Prism.plugins.toolbar.registerButton = function (key, opts) {
+	function registerButton(key, opts) {
 		var callback;
 
 		if (typeof opts === 'function') {
@@ -89,8 +107,9 @@
 	 *
 	 * @param env
 	 */
-	var hook = Prism.plugins.toolbar.hook = function (env) {
+	function hook(env) {
 		// Check if inline or actual code block (credit to line-numbers plugin)
+		/** @type {HTMLPreElement} */
 		var pre = env.element.parentNode;
 		if (!pre || !/pre/i.test(pre.nodeName)) {
 			return;
@@ -106,6 +125,12 @@
 		wrapper.classList.add('code-toolbar');
 		pre.parentNode.insertBefore(wrapper, pre);
 		wrapper.appendChild(pre);
+
+		// Additional wrapper to align the toolbar properly
+		var toolbarPositioner = document.createElement('div');
+		toolbarPositioner.classList.add('toolbar-positioner');
+		wrapper.appendChild(toolbarPositioner);
+
 
 		// Setup the toolbar
 		var toolbar = document.createElement('div');
@@ -135,8 +160,32 @@
 		});
 
 		// Add our toolbar to the currently created wrapper of <pre> tag
-		wrapper.appendChild(toolbar);
+		toolbarPositioner.appendChild(toolbar);
+		refreshLayout(wrapper);
 	};
+
+
+	/**
+	 * This will adjust the width of the toolbar positioner on size changes.
+	 *
+	 * @param {HTMLElement} codeToolbar
+	 */
+	function refreshLayout(codeToolbar) {
+		/** @type {HTMLPreElement} */
+		var pre = codeToolbar.querySelector('div.code-toolbar > pre');
+		/** @type {HTMLDivElement} */
+		var toolbarWrapperElement = codeToolbar.querySelector('div.code-toolbar > div.toolbar-positioner');
+		if (toolbarWrapperElement) {
+			toolbarWrapperElement.style.marginRight = (codeToolbar.clientWidth - pre.clientWidth) + 'px';
+		}
+	}
+	window.addEventListener('resize', function () {
+		/** @type {NodeListOf<HTMLDivElement>} */
+		var codeToolbars = document.querySelectorAll('div.code-toolbar');
+		for (var i = 0; i < codeToolbars.length; i++) {
+			refreshLayout(codeToolbars[i]);
+		}
+	});
 
 	registerButton('label', function(env) {
 		var pre = env.element.parentNode;
