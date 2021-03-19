@@ -151,7 +151,7 @@ pre.show-tokens {
 		</p>
 
 		<p>Result:</p>
-		<pre><code></code></pre>
+		<pre class="language-none"><code></code></pre>
 
 		<div id="options" style="margin: 1em 0">
 			<label><input type="checkbox" id="option-show-tokens"> Show tokens</label>
@@ -159,7 +159,7 @@ pre.show-tokens {
 				<a id="share-link" href="" style="float: right;">Share</a>
 				<div class="hidden-wrapper">
 					<input id="share-link-input" type="text" readonly onClick="this.select();"/>
-					<button type="button" id="copy-share-link" onclick="copyShare();">Copy to clipboard</button>
+					<button type="button" id="copy-share-link">Copy to clipboard</button>
 				</div>
 			</div>
 		</div>
@@ -172,266 +172,260 @@ pre.show-tokens {
 <footer data-src="assets/templates/footer.html" data-type="text/html"></footer>
 
 <script src="assets/utopia.js"></script>
-<script src="components/prism-core.js"></script>
+<script src="assets/vendor/promise.js"></script>
+<script src="https://unpkg.com/@ungap/url-search-params@0.1.2/min.js"></script>
+
+<!-- code.js only uses components.themes and components.plugins -->
 <script src="components.js"></script>
 <script src="assets/code.js"></script>
-<script src="assets/vendor/promise.js"></script>
 
 <script>
 (function() {
-/** @type {HTMLFormElement} */
-var form = $('form');
-/** @type {HTMLElement} */
-var code = $('code', form);
-var languages = components.languages;
 
-function highlightCode() {
-	var newCode = document.createElement('code');
-	newCode.textContent = code.textContent;
-	newCode.className = code.className;
+(window.Prism = window.Prism || {}).manual = true;
 
-	Prism.highlightElement(newCode);
-
-	code.parentElement.replaceChild(newCode, code);
-	code = newCode;
-};
-
-function getHashParams() {
-	return parseUrlParams((location.hash || '').substr(1));
-}
-function setHashParams(params) {
-	location.hash = stringifyUrlParams(params);
-}
-function updateHashLanguage(lang) {
-	var params = getHashParams();
-	params.language = lang;
-	setHashParams(params);
-}
-function getHashLanguage() {
-	return getHashParams().language;
-}
-function getRadio(lang) {
-	return $('input[name=language][value="' + lang + '"]');
-}
-
-function copyShare() {
-	const link = $('#share-link').href;
-	try {
-		navigator.clipboard.writeText(link).then(function () {
-			$('#copy-share-link').textContent = 'Copied!';
-		}, function () {
-			$('#copy-share-link').textContent = 'Failed to copy!';
-		});
-	} catch (e) {
-		$('#copy-share-link').textContent = 'Failed to copy!';
+/** The base path from which all languages will be loaded. */
+var PrismBasePath = (function () {
+	var source = new URLSearchParams(location.search || '').get('source');
+	if (!source) {
+		return '';
+	} else {
+		return source.replace(/\/?$/, '/');
 	}
-	setTimeout(function () {
-		$('#copy-share-link').textContent = 'Copy to clipboard';
-	}, 5000);
-}
-window.copyShare = copyShare;
+})();
 
-window.onhashchange = function () {
-	var input = getRadio(getHashLanguage());
-
-	if (input && !input.checked) {
-		input.checked = true;
-		input.onclick();
-	}
-}
-
-
-for (var id in languages) {
-	if (id == 'meta') {
-		continue;
-	}
-
-	var name = languages[id].title || languages[id];
-
-	$u.element.create('label', {
-		attributes: {
-			'data-id': id
-		},
-		contents: [
-			{
-				tag: 'input',
-				properties: {
-					type: 'radio',
-					name: 'language',
-					value: id,
-					onclick: function () {
-						var lang = this.value;
-						code.className = 'language-' + lang;
-						code.textContent = code.textContent;
-						updateHashLanguage(lang);
-						updateShareLink();
-
-						// loadLanguage() returns a promise, so we use highlightCode()
-						// as resolve callback. The promise will be immediately
-						// resolved if there is nothing to load.
-						loadLanguage(lang).then(highlightCode);
-					}
-				}
-			}, name
-		],
-		inside: '#language'
+/**
+ * @param {string} src
+ * @returns {Promise<void>}
+ */
+function loadScript(src) {
+	return new Promise(function (resolve, reject) {
+		var s = document.createElement('script');
+		s.src = src;
+		s.async = true;
+		s.onload = function () {
+			document.body.removeChild(s);
+			resolve();
+		};
+		s.onerror = function () {
+			document.body.removeChild(s);
+			reject();
+		};
+		document.body.appendChild(s);
 	});
 }
-
+/**
+ * @param {string} relativePath
+ * @returns {Promise<void>}
+ */
+function loadPrismScript(relativePath) {
+	return loadScript(PrismBasePath + relativePath);
+}
 
 /**
  * Loads a language, including all dependencies
  *
  * @param {string} lang the language to load
- * @type {Promise} the promise which resolves as soon as everything is loaded
+ * @returns {Promise} the promise which resolves as soon as everything is loaded
  */
-function loadLanguage (lang)
-{
-	// at first we need to fetch all dependencies for the main language
-	// Note: we need to do this, even if the main language already is loaded (just to be sure..)
-	//
+function loadLanguage(lang) {
 	// We load an array of all dependencies and call recursively this function on each entry
 	//
 	// dependencies is now an (possibly empty) array of loading-promises
 	var dependencies = getDependenciesOfLanguage(lang).map(loadLanguage);
 
 	// We create a promise, which will resolve, as soon as all dependencies are loaded.
-	// They need to be fully loaded because the main language may extend them.
-	return Promise.all(dependencies)
-		.then(function () {
-
-			// If the main language itself isn't already loaded, load it now
-			// and return the newly created promise (we chain the promises).
-			// If the language is already loaded, just do nothing - the next .then()
-			// will immediately be called
-			if (!Prism.languages[lang]) {
-				return new Promise(function (resolve) {
-					$u.script('components/prism-' + lang + '.js', resolve);
-				});
-			}
-		});
+	return Promise.all(dependencies).then(function () {
+		// If the main language itself isn't already loaded, load it now
+		// and return the newly created promise (we chain the promises).
+		// If the language is already loaded, just do nothing - the next .then()
+		// will immediately be called
+		if (!Prism.languages[lang]) {
+			return loadPrismScript('components/prism-' + lang + '.js');
+		}
+	});
 }
-
-
 /**
  * Returns all dependencies (as identifiers) of a specific language
  *
  * @param {string} lang
- * @returns {Array.<string>} the list of dependencies. Empty if the language has none.
+ * @returns {Array<string>} the list of dependencies. Empty if the language has none.
  */
-function getDependenciesOfLanguage (lang)
-{
-	if (!components.languages[lang] || !components.languages[lang].require)
-	{
+function getDependenciesOfLanguage(lang) {
+	var require = components.languages[lang] && components.languages[lang].require;
+
+	if (!require) {
 		return [];
+	} else if (Array.isArray(require)) {
+		return require;
+	} else {
+		return [require];
+	}
+}
+
+
+
+Promise.all(['components.js', 'components/prism-core.js'].map(loadPrismScript)).then(createUI);
+
+function createUI() {
+	/** @type {HTMLFormElement} */
+	var form = $('form');
+	/** @type {HTMLElement} */
+	var code = $('code', form);
+	var languages = components.languages;
+
+	function highlightCode() {
+		if (typeof Prism === 'undefined') {
+			// Prism isn't loaded yet
+			return;
+		}
+
+		var newCode = document.createElement('code');
+		newCode.textContent = code.textContent;
+		newCode.className = code.className;
+
+		Prism.highlightElement(newCode);
+
+		code.parentElement.replaceChild(newCode, code);
+		code = newCode;
 	}
 
-	return ($u.type(components.languages[lang].require) === "array")
-		? components.languages[lang].require
-		: [components.languages[lang].require];
-}
+	function getHashParams() {
+		return new URLSearchParams((location.hash || '').substr(1));
+	}
+	function updateHashLanguage(lang) {
+		var params = getHashParams();
+		params.set('language', lang);
+		location.hash = params.toString();
+	}
+	function getRadio(lang) {
+		return $('input[name=language][value="' + lang + '"]');
+	}
 
+	window.onhashchange = function () {
+		var input = getRadio(getHashParams().get('language'));
 
-var radios = $$('input[name=language]');
-var selectedRadio = radios[0];
-
-var lastLanguageRadio = getRadio(getHashLanguage());
-if (lastLanguageRadio) {
-	selectedRadio = lastLanguageRadio;
-}
-
-selectedRadio.checked = true;
-selectedRadio.onclick();
-
-var textarea = $('textarea', form);
-
-try {
-	var hashText = getHashParams().text;
-	if (hashText) {
-		textarea.value = hashText;
-	} else {
-		var lastCode = sessionStorage.getItem('test-code');
-		if (lastCode) {
-			textarea.value = lastCode;
+		if (input && !input.checked) {
+			input.checked = true;
+			input.onclick();
 		}
 	}
-} catch (e) {
-	// ignore sessionStorage errors
-}
 
-textarea.oninput = function() {
-	var codeText = this.value || '';
-	code.textContent = codeText;
-	highlightCode();
 
-	updateShareLink();
+	for (var id in languages) {
+		if (id == 'meta') {
+			continue;
+		}
+
+		var name = languages[id].title || languages[id];
+
+		$u.element.create('label', {
+			attributes: {
+				'data-id': id
+			},
+			contents: [
+				{
+					tag: 'input',
+					properties: {
+						type: 'radio',
+						name: 'language',
+						value: id,
+						onclick: function () {
+							var lang = this.value;
+							code.className = 'language-' + lang;
+							code.textContent = code.textContent;
+							updateHashLanguage(lang);
+							updateShareLink();
+
+							// loadLanguage() returns a promise, so we use highlightCode
+							// as resolve callback. The promise will be immediately
+							// resolved if there is nothing to load.
+							loadLanguage(lang).then(highlightCode);
+						}
+					}
+				}, name
+			],
+			inside: '#language'
+		});
+	}
+
+
+	var radios = $$('input[name=language]');
+	var selectedRadio = radios[0];
+
+	var lastLanguageRadio = getRadio(getHashParams().get('language'));
+	if (lastLanguageRadio) {
+		selectedRadio = lastLanguageRadio;
+	}
+
+	selectedRadio.checked = true;
+	selectedRadio.onclick();
+
+	var textarea = $('textarea', form);
 
 	try {
-		sessionStorage.setItem('test-code', codeText);
-	} catch (error) {
-		// ignore sessionStorage errors
-	}
-}
-textarea.oninput();
-
-$('#option-show-tokens').onchange = function () {
-	var cls = 'show-tokens';
-	if (this.checked) {
-		$('pre').classList.add(cls);
-	} else {
-		$('pre').classList.remove(cls);
-	}
-};
-$('#option-show-tokens').onchange();
-
-function updateShareLink() {
-	var params = {
-		language: /\blang(?:uage)?-([\w-]+)\b/i.exec(code.className)[1],
-		text: code.textContent,
-	};
-
-	$('#share-link').href = '#' + stringifyUrlParams(params);
-	$('#share-link-input').value = $('#share-link').href;
-}
-
-
-/**
- * @param {Record<string, string | number | boolean>} params
- * @returns {string}
- */
-function stringifyUrlParams(params) {
-	var parts = [];
-	for (var name in params) {
-		if (params.hasOwnProperty(name)) {
-			var value = params[name];
-			if (typeof value === 'boolean') {
-				if (value) {
-					parts.push(name);
-				}
-			} else {
-				parts.push(name + '=' + encodeURIComponent(value));
+		var hashText = getHashParams().get('text');
+		if (hashText) {
+			textarea.value = hashText;
+		} else {
+			var lastCode = sessionStorage.getItem('test-code');
+			if (lastCode) {
+				textarea.value = lastCode;
 			}
 		}
+	} catch (e) {
+		// ignore sessionStorage errors
 	}
-	return parts.join('&');
-}
-/**
- * @param {string} str
- * @returns {Record<string, string | boolean>}
- */
-function parseUrlParams(str) {
-	/** @type {Record<string, string | boolean>} */
-	var params = {};
-	str.split(/&/g).filter(Boolean).forEach(function (part) {
-		var parts = part.split(/=/);
-		var name = parts[0];
-		if (parts.length === 1) {
-			params[name] = true;
-		} else {
-			params[name] = decodeURIComponent(parts[1]);
+
+	textarea.oninput = function () {
+		var codeText = this.value || '';
+		code.textContent = codeText;
+		highlightCode();
+
+		updateShareLink();
+
+		try {
+			sessionStorage.setItem('test-code', codeText);
+		} catch (error) {
+			// ignore sessionStorage errors
 		}
-	});
-	return params;
+	}
+	textarea.oninput();
+
+	$('#option-show-tokens').onchange = function () {
+		var cls = 'show-tokens';
+		if (this.checked) {
+			$('pre').classList.add(cls);
+		} else {
+			$('pre').classList.remove(cls);
+		}
+	};
+	$('#option-show-tokens').onchange();
+
+	function updateShareLink() {
+		var params = new URLSearchParams();
+		params.set('language', /\blang(?:uage)?-([\w-]+)\b/i.exec(code.className)[1]);
+		params.set('text', code.textContent);
+
+		$('#share-link').href = '#' + params.toString();
+		$('#share-link-input').value = $('#share-link').href;
+	}
+	function copyShare() {
+		const link = $('#share-link').href;
+		try {
+			navigator.clipboard.writeText(link).then(function () {
+				$('#copy-share-link').textContent = 'Copied!';
+			}, function () {
+				$('#copy-share-link').textContent = 'Failed to copy!';
+			});
+		} catch (e) {
+			$('#copy-share-link').textContent = 'Failed to copy!';
+		}
+		setTimeout(function () {
+			$('#copy-share-link').textContent = 'Copy to clipboard';
+		}, 5000);
+	}
+	$('#copy-share-link').onclick = copyShare;
 }
 
 })();
