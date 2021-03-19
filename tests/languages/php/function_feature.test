@@ -1,0 +1,97 @@
+class A {
+  function __call() {}
+}
+
+$a = new A();
+$a->if(); // it's allowed to call a magic method with keyword since forever in PHP
+
+class A {
+  function if() {} // error before 7.0, allowed now
+}
+
+$variable->foreach(); // this "foreach" is a method
+$variable->method();  // this is also a method
+$var->match()
+
+foreach ($list as $value) { // this "foreach" is a keyword
+}
+
+----------------------------------------------------
+
+[
+	["keyword", "class"],
+	["class-name-definition", "A"],
+	["punctuation", "{"],
+
+	["keyword", "function"],
+	["function-definition", "__call"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["punctuation", "}"],
+
+	["variable", "$a"],
+	["operator", "="],
+	["keyword", "new"],
+	["class-name", "A"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["variable", "$a"],
+	["operator", "->"],
+	["function", "if"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["comment", "// it's allowed to call a magic method with keyword since forever in PHP"],
+
+	["keyword", "class"],
+	["class-name-definition", "A"],
+	["punctuation", "{"],
+
+	["keyword", "function"],
+	["function-definition", "if"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["comment", "// error before 7.0, allowed now"],
+
+	["punctuation", "}"],
+
+	["variable", "$variable"],
+	["operator", "->"],
+	["function", "foreach"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["comment", "// this \"foreach\" is a method"],
+
+	["variable", "$variable"],
+	["operator", "->"],
+	["function", "method"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["comment", "// this is also a method"],
+
+	["variable", "$var"],
+	["operator", "->"],
+	["function", "match"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["keyword", "foreach"],
+	["punctuation", "("],
+	["variable", "$list"],
+	["keyword", "as"],
+	["variable", "$value"],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["comment", "// this \"foreach\" is a keyword"],
+
+	["punctuation", "}"]
+]
