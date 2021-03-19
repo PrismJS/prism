@@ -277,6 +277,7 @@
 	];
 
 	Prism.languages.insertBefore('php', 'variable', {
+		'string': string,
 		'attribute': {
 			pattern: /#\[(?:[^"'\/#]|\/(?![*/])|\/\/.*$|#(?!\[).*$|\/\*(?:[^*]|\*(?!\/))*\*\/|"(?:\\[\s\S]|[^\\"])*"|'(?:\\[\s\S]|[^\\'])*')+\](?=\s*[a-z$#])/mi,
 			greedy: true,
@@ -320,7 +321,6 @@
 				}
 			}
 		},
-		'string': string,
 	});
 
 	Prism.hooks.add('before-tokenize', function (env) {
