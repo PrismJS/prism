@@ -1,4 +1,4 @@
-const { markdown } = require('danger');
+const { markdown, danger } = require('danger');
 const fs = require('fs').promises;
 const gzipSize = require('gzip-size');
 const git = require('simple-git/promise')(__dirname).silent(true);
@@ -83,7 +83,7 @@ const getSummary = (rows, totalMasterFileSize, totalFileSize) => {
 	return `A total of ${numFiles} file${maybeS} have changed, with a combined diff of ${byteDiff} (${percentDiff}).`;
 }
 
-const run = async () => {
+const jsChangesSection = async () => {
 	const minified = await getChangedMinifiedFiles();
 
 	if (minified.length === 0) {
@@ -130,6 +130,39 @@ ${rows.map(row => `| ${row.join(' | ')} |`).join('\n')}
 
 </details>
 `);
+}
+
+const tryItOutSection = async () => {
+	const isLanguageFile = path => /\bcomponents\/prism-(?!core\.js)[\w-]+\.js$/.test(path);
+	const getLanguage = path => /\/prism-([\w-]+)\.js$/.exec(path)[1];
+
+	const addedLanguages = danger.git.created_files.filter(isLanguageFile).map(getLanguage);
+	const modifiedLanguages = danger.git.modified_files.filter(isLanguageFile).map(getLanguage);
+
+	if (addedLanguages.length === 0 && modifiedLanguages.length === 0) {
+		return;
+	}
+
+	const source = `https://combinatronics.com/${danger.github.pr.user.login}/prism/${danger.github.pr.head.ref}`;
+	let url = `https://prismjs.com/test.html?source=${encodeURIComponent(source)}`;
+
+	// try to select the correct language
+	if (addedLanguages.length === 1) {
+		url += `#language=${addedLanguages[0]}`;
+	} else if (modifiedLanguages.length === 1) {
+		url += `#language=${modifiedLanguages[0]}`;
+	}
+
+	markdown(`## Try out the changes
+
+I detect that you ${added ? 'added' : 'changed'} languages. Everyone can [try out the changes here](${url}).
+<sub>(The link will stop working once the PR branch was deleted.)</sub>
+`);
+}
+
+const run = async () => {
+	await jsChangesSection();
+	await tryItOutSection();
 }
 
 run().catch(err => {
