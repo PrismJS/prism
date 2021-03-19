@@ -1,14 +1,14 @@
 Prism.languages.rest = {
 	'table': [
 		{
-			pattern: /(\s*)(?:\+[=-]+)+\+(?:\r?\n|\r)(?:\1(?:[+|].+)+[+|](?:\r?\n|\r))+\1(?:\+[=-]+)+\+/,
+			pattern: /(\s*)(?:\+[=-]+)+\+(?:\r?\n|\r)(?:\1[+|].+[+|](?:\r?\n|\r))+\1(?:\+[=-]+)+\+/,
 			lookbehind: true,
 			inside: {
 				'punctuation': /\||(?:\+[=-]+)+\+/
 			}
 		},
 		{
-			pattern: /(\s*)(?:=+ +)+=+(?:(?:\r?\n|\r)\1.+)+(?:\r?\n|\r)\1(?:=+ +)+=+(?=(?:\r?\n|\r){2}|\s*$)/,
+			pattern: /(\s*)=+ [ =]*=(?:(?:\r?\n|\r)\1.+)+(?:\r?\n|\r)\1=+ [ =]*=(?=(?:\r?\n|\r){2}|\s*$)/,
 			lookbehind: true,
 			inside: {
 				'punctuation': /[=-]+/
@@ -30,7 +30,7 @@ Prism.languages.rest = {
 				}
 			},
 			'directive': {
-				pattern: /( +)[^:]+::/,
+				pattern: /( +)(?! )[^:]+::/,
 				lookbehind: true,
 				alias: 'function',
 				inside: {
@@ -107,7 +107,7 @@ Prism.languages.rest = {
 		alias: 'symbol'
 	},
 	'literal-block': {
-		pattern: /::(?:\r?\n|\r){2}([ \t]+).+(?:(?:\r?\n|\r)\1.+)*/,
+		pattern: /::(?:\r?\n|\r){2}([ \t]+)(?![ \t]).+(?:(?:\r?\n|\r)\1.+)*/,
 		inside: {
 			'literal-block-punctuation': {
 				pattern: /^::/,

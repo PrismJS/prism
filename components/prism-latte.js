@@ -57,7 +57,7 @@
 		if (env.language !== 'latte') {
 			return;
 		}
-		var lattePattern = /\{\*[\s\S]*?\*\}|\{[^'"\s{}*](?:[^"'/{}]|\/(?![*/])|("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|\/\*[\s\S]*?\*\/)*?\}/g;
+		var lattePattern = /\{\*[\s\S]*?\*\}|\{[^'"\s{}*](?:[^"'/{}]|\/(?![*/])|("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|\/\*(?:[^*]|\*(?!\/))*\*\/)*?\}/g;
 		Prism.languages['markup-templating'].buildPlaceholders(env, 'latte', lattePattern);
 		env.grammar = markupLatte;
 	});

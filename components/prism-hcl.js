@@ -1,7 +1,7 @@
 Prism.languages.hcl = {
 	'comment': /(?:\/\/|#).*|\/\*[\s\S]*?(?:\*\/|$)/,
 	'heredoc': {
-		pattern: /<<-?(\w+)[\s\S]*?^\s*\1/m,
+		pattern: /<<-?(\w+\b)[\s\S]*?^[ \t]*\1/m,
 		greedy: true,
 		alias: 'string'
 	},
@@ -26,16 +26,14 @@ Prism.languages.hcl = {
 				}
 			}
 		},
-		{
-			pattern: /[\w-]+(?=\s+{)/
-		}
+		/[\w-]+(?=\s+{)/
 	],
 	'property': [
 		/[\w-\.]+(?=\s*=(?!=))/,
 		/"(?:\\[\s\S]|[^\\"])+"(?=\s*[:=])/,
 	],
 	'string': {
-		pattern: /"(?:[^\\$"]|\\[\s\S]|\$(?:(?=")|\$+|[^"${])|\$\{(?:[^{}"]|"(?:[^\\"]|\\[\s\S])*")*\})*"/,
+		pattern: /"(?:[^\\$"]|\\[\s\S]|\$(?:(?=")|\$+(?!\$)|[^"${])|\$\{(?:[^{}"]|"(?:[^\\"]|\\[\s\S])*")*\})*"/,
 		greedy: true,
 		inside: {
 			'interpolation': {
@@ -53,13 +51,13 @@ Prism.languages.hcl = {
 						pattern: /"(?:\\[\s\S]|[^\\"])*"/,
 						greedy: true,
 					},
-					'number': /\b0x[\da-f]+|\d+\.?\d*(?:e[+-]?\d+)?/i,
+					'number': /\b0x[\da-f]+\b|\b\d+(?:\.\d*)?(?:e[+-]?\d+)?/i,
 					'punctuation': /[!\$#%&'()*+,.\/;<=>@\[\\\]^`{|}~?:]/,
 				}
 			},
 		}
 	},
-	'number': /\b0x[\da-f]+|\d+\.?\d*(?:e[+-]?\d+)?/i,
+	'number': /\b0x[\da-f]+\b|\b\d+(?:\.\d*)?(?:e[+-]?\d+)?/i,
 	'boolean': /\b(?:true|false)\b/i,
 	'punctuation': /[=\[\]{}]/,
 };

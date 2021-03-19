@@ -8,13 +8,15 @@ foo+=('xyz')
 	["assign-left", ["foo"]],
 	["operator", ["="]],
 	["number", "12"],
+
 	["assign-left", ["bar"]],
 	["operator", ["+="]],
-	["string", ["'xyz'"]],
+	["string", "'xyz'"],
+
 	["assign-left", ["foo"]],
 	["operator", ["+="]],
 	["punctuation", "("],
-	["string", ["'xyz'"]],
+	["string", "'xyz'"],
 	["punctuation", ")"]
 ]
 

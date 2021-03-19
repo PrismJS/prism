@@ -1,6 +1,9 @@
 <div {...foo}></div>
 <div { ...foo }></div>
 <div { ... foo }></div>
+<div {...{onClick, disabled}}></div>
+<div {...foo()}></div>
+<div {...(foo ?? bar)}></div>
 
 ----------------------------------------------------
 
@@ -12,8 +15,8 @@
 		]],
 		["spread", [
 			["punctuation", "{"],
-			["punctuation", "..."],
-			["attr-value", "foo"],
+			["operator", "..."],
+			"foo",
 			["punctuation", "}"]
 		]],
 		["punctuation", ">"]
@@ -25,6 +28,7 @@
 		]],
 		["punctuation", ">"]
 	]],
+
 	["tag", [
 		["tag", [
 			["punctuation", "<"],
@@ -32,8 +36,8 @@
 		]],
 		["spread", [
 			["punctuation", "{"],
-			["punctuation", "..."],
-			["attr-value", "foo"],
+			["operator", "..."],
+			"foo ",
 			["punctuation", "}"]
 		]],
 		["punctuation", ">"]
@@ -45,6 +49,7 @@
 		]],
 		["punctuation", ">"]
 	]],
+
 	["tag", [
 		["tag", [
 			["punctuation", "<"],
@@ -52,8 +57,81 @@
 		]],
 		["spread", [
 			["punctuation", "{"],
-			["punctuation", "..."],
-			["attr-value", "foo"],
+			["operator", "..."],
+			" foo ",
+			["punctuation", "}"]
+		]],
+		["punctuation", ">"]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"div"
+		]],
+		["punctuation", ">"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"div"
+		]],
+		["spread", [
+			["punctuation", "{"],
+			["operator", "..."],
+			["punctuation", "{"],
+			"onClick",
+			["punctuation", ","],
+			" disabled",
+			["punctuation", "}"],
+			["punctuation", "}"]
+		]],
+		["punctuation", ">"]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"div"
+		]],
+		["punctuation", ">"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"div"
+		]],
+		["spread", [
+			["punctuation", "{"],
+			["operator", "..."],
+			["function", "foo"],
+			["punctuation", "("],
+			["punctuation", ")"],
+			["punctuation", "}"]
+		]],
+		["punctuation", ">"]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"div"
+		]],
+		["punctuation", ">"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"div"
+		]],
+		["spread", [
+			["punctuation", "{"],
+			["operator", "..."],
+			["punctuation", "("],
+			"foo ",
+			["operator", "??"],
+			" bar",
+			["punctuation", ")"],
 			["punctuation", "}"]
 		]],
 		["punctuation", ">"]

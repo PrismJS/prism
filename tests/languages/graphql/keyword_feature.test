@@ -1,31 +1,55 @@
-enum
-fragment
-implements
-input
-interface
-mutation
-on
-query
-scalar
-schema
-type
-union
+directive,
+enum,
+extend,
+fragment,
+implements,
+input,
+interface,
+mutation,
+on,
+query,
+repeatable,
+scalar,
+schema,
+subscription,
+type,
+union,
 
 ----------------------------------------------------
 
 [
+	["keyword", "directive"],
+	["punctuation", ","],
 	["keyword", "enum"],
-	["class-name", "fragment"],
+	["punctuation", ","],
+	["keyword", "extend"],
+	["punctuation", ","],
+	["keyword", "fragment"],
+	["punctuation", ","],
 	["keyword", "implements"],
-	["class-name", "input"],
+	["punctuation", ","],
+	["keyword", "input"],
+	["punctuation", ","],
 	["keyword", "interface"],
-	["class-name", "mutation"],
+	["punctuation", ","],
+	["keyword", "mutation"],
+	["punctuation", ","],
 	["keyword", "on"],
-	["class-name", "query"],
+	["punctuation", ","],
+	["keyword", "query"],
+	["punctuation", ","],
+	["keyword", "repeatable"],
+	["punctuation", ","],
 	["keyword", "scalar"],
-	["class-name", "schema"],
+	["punctuation", ","],
+	["keyword", "schema"],
+	["punctuation", ","],
+	["keyword", "subscription"],
+	["punctuation", ","],
 	["keyword", "type"],
-	["class-name", "union"]
+	["punctuation", ","],
+	["keyword", "union"],
+	["punctuation", ","]
 ]
 
 ----------------------------------------------------

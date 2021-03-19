@@ -24,7 +24,7 @@ Prism.languages.rip = {
 		pattern: /("|')(?:\\.|(?!\1)[^\\\r\n])*\1/,
 		greedy: true
 	},
-	'number': /[+-]?(?:(?:\d+\.\d+)|(?:\d+))/,
+	'number': /[+-]?\b(?:\d+\.\d+|\d+)\b/,
 
 	'punctuation': /(?:\.{2,3})|[`,.:;=\/\\()<>\[\]{}]/,
 

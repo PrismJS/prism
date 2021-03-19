@@ -1,0 +1,11 @@
+default-src-is-a-fake; fake-default-src;
+
+----------------------------------------------------
+
+[
+	"default-src-is-a-fake; fake-default-src;"
+]
+
+----------------------------------------------------
+
+Checks for directive names with adjacent hyphens.

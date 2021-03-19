@@ -5,39 +5,34 @@
 
 	var strings = [
 		// normal string
-		// 1 capturing group
-		/(["'])(?:\\[\s\S]|\$\([^)]+\)|`[^`]+`|(?!\1)[^\\])*\1/.source,
+		/"(?:\\[\s\S]|\$\([^)]+\)|\$(?!\()|`[^`]+`|[^"\\`$])*"/.source,
+		/'[^']*'/.source,
+		/\$'(?:[^'\\]|\\[\s\S])*'/.source,
 
 		// here doc
-		// 1 capturing group
-		/<<-?\s*(\w+?)[ \t]*(?!.)[\s\S]*?[\r\n]\2/.source,
-
-		// here doc quoted
-		// 2 capturing group
-		/<<-?\s*(["'])(\w+)\3[ \t]*(?!.)[\s\S]*?[\r\n]\4/.source
+		// 2 capturing groups
+		/<<-?\s*(["']?)(\w+)\1\s[\s\S]*?[\r\n]\2/.source
 	].join('|');
 
 	Prism.languages['shell-session'] = {
-		'info': {
-			// foo@bar:~/files$ exit
-			// foo@bar$ exit
-			pattern: /^[^\r\n$#*!]+(?=[$#])/m,
-			alias: 'punctuation',
-			inside: {
-				'path': {
-					pattern: /(:)[\s\S]+/,
-					lookbehind: true
-				},
-				'user': /^[^\s@:$#*!/\\]+@[^\s@:$#*!/\\]+(?=:|$)/,
-				'punctuation': /:/
-			}
-		},
 		'command': {
-			pattern: RegExp(/[$#](?:[^\\\r\n'"<]|\\.|<<str>>)+/.source.replace(/<<str>>/g, function () { return strings; })),
+			pattern: RegExp(/^(?:[^\s@:$#*!/\\]+@[^\s@:$#*!/\\]+(?::[^\0-\x1F$#*?"<>:;|]+)?|[^\0-\x1F$#*?"<>:;|]+)?[$#](?:[^\\\r\n'"<$]|\\.|\$(?!')|<<str>>)+/.source.replace(/<<str>>/g, function () { return strings; }), 'm'),
 			greedy: true,
 			inside: {
+				'info': {
+					// foo@bar:~/files$ exit
+					// foo@bar$ exit
+					// ~/files$ exit
+					pattern: /^[^#$]+/,
+					alias: 'punctuation',
+					inside: {
+						'user': /^[^\s@:$#*!/\\]+@[^\s@:$#*!/\\]+/,
+						'punctuation': /:/,
+						'path': /[\s\S]+/
+					}
+				},
 				'bash': {
-					pattern: /(^[$#]\s*)[\s\S]+/,
+					pattern: /(^[$#]\s*)\S[\s\S]*/,
 					lookbehind: true,
 					alias: 'language-bash',
 					inside: Prism.languages.bash
@@ -50,5 +45,7 @@
 		},
 		'output': /.(?:.*(?:[\r\n]|.$))*/
 	};
+
+	Prism.languages['sh-session'] = Prism.languages['shellsession'] = Prism.languages['shell-session'];
 
 }(Prism));

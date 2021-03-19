@@ -1,0 +1,36 @@
+record Fin (n : Nat) : Set where
+	constructor _[_]
+	field
+		⟦_⟧   : Nat
+		proof : suc ⟦_⟧ ≤ n
+open Fin
+
+----------------------------------------------------
+
+[
+	["keyword", "record"],
+	["class-name", "Fin"],
+	["punctuation", "("],
+	["function", "n "],
+	["operator", ":"],
+	" Nat",
+	["punctuation", ")"],
+	["operator", ":"],
+	["keyword", "Set"],
+	["keyword", "where"],
+	["keyword", "constructor"],
+	" _[_]\n\t",
+	["keyword", "field"],
+	["function", "⟦_⟧   "],
+	["operator", ":"],
+	" Nat\n\t\t",
+	["function", "proof "],
+	["operator", ":"],
+	" suc ⟦_⟧ ≤ n\n",
+	["keyword", "open"],
+	" Fin"
+]
+
+----------------------------------------------------
+
+Agda's record is like objects, but different in many aspects and much more powerful.

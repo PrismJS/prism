@@ -32,10 +32,41 @@
 		]
 	});
 
+	/**
+	 * Replaces the `<ID>` placeholder in the given pattern with a pattern for general JS identifiers.
+	 *
+	 * @param {string} source
+	 * @param {string} [flags]
+	 * @returns {RegExp}
+	 */
+	function withId(source, flags) {
+		return RegExp(
+			source.replace(/<ID>/g, function () { return /(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*/.source; }),
+			flags);
+	}
+	Prism.languages.insertBefore('javascript', 'keyword', {
+		'imports': {
+			// https://tc39.es/ecma262/#sec-imports
+			pattern: withId(/(\bimport\b\s*)(?:<ID>(?:\s*,\s*(?:\*\s*as\s+<ID>|\{[^{}]*\}))?|\*\s*as\s+<ID>|\{[^{}]*\})(?=\s*\bfrom\b)/.source),
+			lookbehind: true,
+			inside: Prism.languages.javascript
+		},
+		'exports': {
+			// https://tc39.es/ecma262/#sec-exports
+			pattern: withId(/(\bexport\b\s*)(?:\*(?:\s*as\s+<ID>)?(?=\s*\bfrom\b)|\{[^{}]*\})/.source),
+			lookbehind: true,
+			inside: Prism.languages.javascript
+		}
+	});
+
 	Prism.languages.javascript['keyword'].unshift(
 		{
 			pattern: /\b(?:as|default|export|from|import)\b/,
 			alias: 'module'
+		},
+		{
+			pattern: /\b(?:await|break|catch|continue|do|else|for|finally|if|return|switch|throw|try|while|yield)\b/,
+			alias: 'control-flow'
 		},
 		{
 			pattern: /\bnull\b/,
@@ -60,7 +91,7 @@
 
 	Prism.languages.insertBefore('javascript', 'punctuation', {
 		'property-access': {
-			pattern: /(\.\s*)#?[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*/,
+			pattern: withId(/(\.\s*)#?<ID>/.source),
 			lookbehind: true
 		},
 		'maybe-class-name': {

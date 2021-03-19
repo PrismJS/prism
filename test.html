@@ -3,9 +3,9 @@
 <head>
 
 <meta charset="utf-8" />
-<link rel="icon" href="favicon.png" />
+<link rel="icon" href="assets/favicon.png" />
 <title>Test drive ▲ Prism</title>
-<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="assets/style.css" />
 <link rel="stylesheet" href="themes/prism.css" data-noprefix />
 <style>
 #theme {
@@ -91,15 +91,46 @@ pre.show-tokens {
 	margin: 0 1px;
 }
 
-details[open] {
-	padding-bottom: 1em;
+#options {
+	position: relative;
 }
-details[open] > summary {
-	margin-bottom: 1em;
+
+.link-wrapper {
+	position: absolute;
+	top: 0;
+	right: 0;
+	background-color: white;
+}
+.link-wrapper .hidden-wrapper {
+	display: none;
+}
+
+.link-wrapper:hover {
+	top: -.5em;
+	right: -1em;
+	width: 300px;
+	padding: .5em 1em;
+	outline: 1px solid #888;
+}
+.link-wrapper:hover .hidden-wrapper {
+	display: block;
+}
+
+.link-wrapper input {
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.link-wrapper button {
+	border: none;
+	background: none;
+	font: inherit;
+	text-decoration: underline;
+	cursor: pointer;
 }
 
 </style>
-<script src="scripts/prefixfree.min.js"></script>
+<script src="assets/prefixfree.min.js"></script>
 
 <script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
 <script src="https://www.google-analytics.com/ga.js" async></script>
@@ -107,7 +138,7 @@ details[open] > summary {
 <body>
 
 <header>
-	<div class="intro" data-src="templates/header-main.html" data-type="text/html"></div>
+	<div class="intro" data-src="assets/templates/header-main.html" data-type="text/html"></div>
 
 	<h2>Test drive</h2>
 	<p>Take Prism for a spin!</p>
@@ -120,380 +151,290 @@ details[open] > summary {
 		</p>
 
 		<p>Result:</p>
-		<pre class="language-xxxx"><code></code></pre>
+		<pre><code></code></pre>
 
-		<p id="options">
+		<div id="options" style="margin: 1em 0">
 			<label><input type="checkbox" id="option-show-tokens"> Show tokens</label>
-		</p>
-		<details>
-			<summary>Source options</summary>
-			<div>
-				<p>
-					All languages are loaded from the following URL:
-					<code class="language-none" id="text-prism-base-url"></code>
-				</p>
+			<div class="link-wrapper">
+				<a id="share-link" href="" style="float: right;">Share</a>
+				<div class="hidden-wrapper">
+					<input id="share-link-input" type="text" readonly onClick="this.select();"/>
+					<button type="button" id="copy-share-link" onclick="copyShare();">Copy to clipboard</button>
+				</div>
 			</div>
-			<div>
-				<button type="button" id="button-reset">Reset</button>
-				<button type="button" id="button-from-url">From URL</button>
-				<button type="button" id="button-from-github">From GitHub</button>
-			</div>
-		</details>
+		</div>
 		<p id="language">
 			<strong>Language:</strong>
 		</p>
 	</form>
 </section>
 
-<footer data-src="templates/footer.html" data-type="text/html"></footer>
+<footer data-src="assets/templates/footer.html" data-type="text/html"></footer>
 
-<script src="scripts/vendor/promise.js"></script>
-<script src="https://unpkg.com/@ungap/url-search-params@0.1.2/min.js"></script>
-<script src="scripts/utopia.js"></script>
-
+<script src="assets/utopia.js"></script>
+<script src="components/prism-core.js"></script>
 <script src="components.js"></script>
-<!-- code.js only uses components.themes and components.plugins -->
-<script src="scripts/code.js"></script>
+<script src="assets/code.js"></script>
+<script src="assets/vendor/promise.js"></script>
 
 <script>
 (function() {
+/** @type {HTMLFormElement} */
+var form = $('form');
+/** @type {HTMLElement} */
+var code = $('code', form);
+var languages = components.languages;
 
-(window.Prism = window.Prism || {}).manual = true;
+function highlightCode() {
+	var newCode = document.createElement('code');
+	newCode.textContent = code.textContent;
+	newCode.className = code.className;
 
-/**
- * Adds a trailing `/` to the given path if necessary.
- *
- * @param {string | null | undefined} path
- * @returns {string}
- */
-function toDir(path) {
-	return path ? path.replace(/\/?$/, '/') : '';
+	Prism.highlightElement(newCode);
+
+	code.parentElement.replaceChild(newCode, code);
+	code = newCode;
+};
+
+function getHashParams() {
+	return parseUrlParams((location.hash || '').substr(1));
+}
+function setHashParams(params) {
+	location.hash = stringifyUrlParams(params);
+}
+function updateHashLanguage(lang) {
+	var params = getHashParams();
+	params.language = lang;
+	setHashParams(params);
+}
+function getHashLanguage() {
+	return getHashParams().language;
+}
+function getRadio(lang) {
+	return $('input[name=language][value="' + lang + '"]');
 }
 
-/** The base path of the current document. */
-var basePath = (function () {
-	var a = document.createElement('a');
-	a.href = ".";
-	return toDir(a.href);
-})();
-
-/** The base path from which all languages will be loaded. */
-var PrismBasePath = (function () {
-	var search = location.search;
-	if (!search) {
-		return '';
-	}
-	return toDir(new URLSearchParams(search).get('source'));
-})();
-
-$('#text-prism-base-url').textContent = (PrismBasePath || basePath) + 'components/prism-{id}.js';
-
-function setPrismBasePath(url) {
-	var search = new URLSearchParams(location.search);
-	if (url) {
-		search.set('source', url);
-	} else {
-		search.delete('source');
-	}
-	var newSearch = search.toString();
-	if (newSearch !== location.search) {
-		if (newSearch) {
-			location.search = newSearch;
-		} else {
-			location.href = location.origin + location.pathname + location.hash;
-		}
-	}
-}
-
-/**
- * @param {string} src
- * @returns {Promise<void>}
- */
-function loadScript(src) {
-	return new Promise(function (resolve, reject) {
-		var s = document.createElement('script');
-		s.src = src;
-		s.async = true;
-		s.onload = function () {
-			document.body.removeChild(s);
-			resolve();
-		};
-		s.onerror = function () {
-			document.body.removeChild(s);
-			reject();
-		};
-		document.body.appendChild(s);
-	});
-}
-
-/**
- * @param {string} relativePath
- * @returns {Promise<void>}
- */
-function loadPrismScript(relativePath) {
-	return loadScript(PrismBasePath + relativePath);
-}
-
-/**
- *
- * @param {string} query
- * @returns {Promise<any>}
- */
-function githubApi(query) {
-	return new Promise(function(resolve, reject) {
-		$u.xhr({
-			url: 'https://api.github.com/' + query,
-			callback: function(xhr) {
-				if (xhr.status < 400) {
-					resolve(JSON.parse(xhr.responseText).tree);
-				} else {
-					reject();
-				}
-			}
+function copyShare() {
+	const link = $('#share-link').href;
+	try {
+		navigator.clipboard.writeText(link).then(function () {
+			$('#copy-share-link').textContent = 'Copied!';
+		}, function () {
+			$('#copy-share-link').textContent = 'Failed to copy!';
 		});
-	});
+	} catch (e) {
+		$('#copy-share-link').textContent = 'Failed to copy!';
+	}
+	setTimeout(function () {
+		$('#copy-share-link').textContent = 'Copy to clipboard';
+	}, 5000);
+}
+window.copyShare = copyShare;
+
+window.onhashchange = function () {
+	var input = getRadio(getHashLanguage());
+
+	if (input && !input.checked) {
+		input.checked = true;
+		input.onclick();
+	}
 }
 
 
-function createUI() {
-	/** @type {HTMLFormElement} */
-	var form = $('form');
-	/** @type {HTMLElement} */
-	var code = $('pre > code', form);
-	var languages = components.languages;
-
-	function highlightCode() {
-		var newCode = document.createElement('code');
-		newCode.textContent = code.textContent;
-		newCode.className = code.className;
-
-		Prism.highlightElement(newCode);
-
-		code.parentElement.replaceChild(newCode, code);
-		code = newCode;
-	};
-
-	function updateHashLanguage(lang) {
-		location.hash = lang ? 'language=' + lang : '';
-	}
-	function getHashLanguage() {
-		var match = /[#&]language=([^&]+)/.exec(location.hash);
-		return match ? match[1] : null;
-	}
-	function getRadio(lang) {
-		return $('input[name=language][value="' + lang + '"]');
+for (var id in languages) {
+	if (id == 'meta') {
+		continue;
 	}
 
-	window.onhashchange = function () {
-		var input = getRadio(getHashLanguage());
+	var name = languages[id].title || languages[id];
 
-		if (input && !input.checked) {
-			input.checked = true;
-			input.onclick();
-		}
-	}
+	$u.element.create('label', {
+		attributes: {
+			'data-id': id
+		},
+		contents: [
+			{
+				tag: 'input',
+				properties: {
+					type: 'radio',
+					name: 'language',
+					value: id,
+					onclick: function () {
+						var lang = this.value;
+						code.className = 'language-' + lang;
+						code.textContent = code.textContent;
+						updateHashLanguage(lang);
+						updateShareLink();
 
-
-	for (var id in languages) {
-		if (id == 'meta') {
-			continue;
-		}
-
-		var name = languages[id].title || languages[id];
-
-		$u.element.create('label', {
-			attributes: {
-				'data-id': id
-			},
-			contents: [
-				{
-					tag: 'input',
-					properties: {
-						type: 'radio',
-						name: 'language',
-						value: id,
-						onclick: function () {
-							var lang = this.value;
-							code.className = 'language-' + lang;
-							code.textContent = code.textContent;
-							updateHashLanguage(lang);
-
-							// loadLanguage() returns a promise, so we use highlightCode()
-							// as resolve callback. The promise will be immediately
-							// resolved if there is nothing to load.
-							loadLanguage(lang).then(highlightCode);
-						}
+						// loadLanguage() returns a promise, so we use highlightCode()
+						// as resolve callback. The promise will be immediately
+						// resolved if there is nothing to load.
+						loadLanguage(lang).then(highlightCode);
 					}
-				}, name
-			],
-			inside: '#language'
-		});
-	}
+				}
+			}, name
+		],
+		inside: '#language'
+	});
+}
 
 
-	/**
-	 * Loads a language, including all dependencies
-	 *
-	 * @param {string} lang the language to load
-	 * @returns {Promise<void>} the promise which resolves as soon as everything is loaded
-	 */
-	function loadLanguage(lang) {
-		// at first we need to fetch all dependencies for the main language
-		// Note: we need to do this, even if the main language already is loaded (just to be sure..)
-		//
-		// We load an array of all dependencies and call recursively this function on each entry
-		//
-		// dependencies is now an (possibly empty) array of loading-promises
-		var dependencies = getDependenciesOfLanguage(lang).map(loadLanguage);
+/**
+ * Loads a language, including all dependencies
+ *
+ * @param {string} lang the language to load
+ * @type {Promise} the promise which resolves as soon as everything is loaded
+ */
+function loadLanguage (lang)
+{
+	// at first we need to fetch all dependencies for the main language
+	// Note: we need to do this, even if the main language already is loaded (just to be sure..)
+	//
+	// We load an array of all dependencies and call recursively this function on each entry
+	//
+	// dependencies is now an (possibly empty) array of loading-promises
+	var dependencies = getDependenciesOfLanguage(lang).map(loadLanguage);
 
-		// We create a promise, which will resolve, as soon as all dependencies are loaded.
-		// They need to be fully loaded because the main language may extend them.
-		return Promise.all(dependencies).then(function () {
+	// We create a promise, which will resolve, as soon as all dependencies are loaded.
+	// They need to be fully loaded because the main language may extend them.
+	return Promise.all(dependencies)
+		.then(function () {
+
 			// If the main language itself isn't already loaded, load it now
 			// and return the newly created promise (we chain the promises).
 			// If the language is already loaded, just do nothing - the next .then()
 			// will immediately be called
 			if (!Prism.languages[lang]) {
-				return loadPrismScript('components/prism-' + lang + '.js');
+				return new Promise(function (resolve) {
+					$u.script('components/prism-' + lang + '.js', resolve);
+				});
 			}
 		});
+}
+
+
+/**
+ * Returns all dependencies (as identifiers) of a specific language
+ *
+ * @param {string} lang
+ * @returns {Array.<string>} the list of dependencies. Empty if the language has none.
+ */
+function getDependenciesOfLanguage (lang)
+{
+	if (!components.languages[lang] || !components.languages[lang].require)
+	{
+		return [];
 	}
 
-
-	/**
-	 * Returns all dependencies (as identifiers) of a specific language
-	 *
-	 * @param {string} lang
-	 * @returns {string[]} the list of dependencies. Empty if the language has none.
-	 */
-	function getDependenciesOfLanguage(lang) {
-		var require = components.languages[lang] && components.languages[lang].require;
-		if (Array.isArray(require)) {
-			return require;
-		} else if (require) {
-			return [require];
-		} else {
-			return [];
-		}
-	}
+	return ($u.type(components.languages[lang].require) === "array")
+		? components.languages[lang].require
+		: [components.languages[lang].require];
+}
 
 
-	var radios = $$('input[name=language]');
-	var selectedRadio = radios[0];
+var radios = $$('input[name=language]');
+var selectedRadio = radios[0];
 
-	var lastLanguageRadio = getRadio(getHashLanguage());
-	if (lastLanguageRadio) {
-		selectedRadio = lastLanguageRadio;
-	}
+var lastLanguageRadio = getRadio(getHashLanguage());
+if (lastLanguageRadio) {
+	selectedRadio = lastLanguageRadio;
+}
 
-	selectedRadio.checked = true;
-	selectedRadio.onclick();
+selectedRadio.checked = true;
+selectedRadio.onclick();
 
-	var textarea = $('textarea', form);
+var textarea = $('textarea', form);
 
-	try {
+try {
+	var hashText = getHashParams().text;
+	if (hashText) {
+		textarea.value = hashText;
+	} else {
 		var lastCode = sessionStorage.getItem('test-code');
 		if (lastCode) {
 			textarea.value = lastCode;
 		}
-	} catch (e) {
-		// ignore sessionStorage errors
 	}
-
-	textarea.oninput = function () {
-		var codeText = this.value || '';
-		code.textContent = codeText;
-		highlightCode();
-
-		try {
-			sessionStorage.setItem('test-code', codeText);
-		} catch (error) {
-			// ignore sessionStorage errors
-		}
-	}
-	textarea.oninput();
-
-	// show tokens
-
-	$('#option-show-tokens').onchange = function () {
-		var cls = 'show-tokens';
-		if (this.checked) {
-			$('pre').classList.add(cls);
-		} else {
-			$('pre').classList.remove(cls);
-		}
-	};
-	$('#option-show-tokens').onchange();
-
-	// source options
-
-	$('#button-reset').onclick = function () {
-		if (PrismBasePath) {
-			if (confirm('The URL will be reset. Languages will then be loaded from "' + basePath + '".\n\nContinue?')) {
-				setPrismBasePath('');
-			}
-		} else {
-			alert('The current URL is already unset, so there is nothing to reset.')
-		}
-	};
-	$('#button-from-url').onclick = function () {
-		var desc = 'Sets the URL from which this test page will load all languages.\n\n'
-			+ 'The given URL has to be the path of a Prism directory.\n'
-			+ 'The path "<your URL>/prism.js" has to refer to the main Prism file.';
-		var url = prompt(desc, 'https://example.com/path/to/prism-dir/');
-		if (url) {
-			setPrismBasePath(url);
-		}
-	};
-	$('#button-from-github').onclick = function () {
-		var desc = 'Load all languages from a GitHub branch.\n\n'
-			+ 'The user name and a branch in the "prism" repo of the user.';
-		var input = prompt(desc, '<GitHub user name>:<prism branch name>');
-		var m = /^([^:/+?*\s<>]+):([^<>]+)$/.exec(input);
-		if (input && m) {
-			var user = m[1];
-			var branch = m[2];
-
-			// https://developer.github.com/v3/repos/branches/#get-branch
-			var hasBranch = githubApi('repos/' + user + '/prism/branches/' + branch);
-
-			hasBranch.then(function () {
-				// the given branch exists
-				setPrismBasePath('https://combinatronics.com/' + user + '/prism/' + branch + '/');
-			}, function () {
-				// not a valid branch, project, or user
-				alert('The branch "' + branch + '" does not exist in the "prism" repo of user ' + user + '.');
-			});
-		} else if (input && !m) {
-			alert('Invalid GitUb user name or branch name.')
-		}
-	};
+} catch (e) {
+	// ignore sessionStorage errors
 }
 
-Promise.all(['components/prism-core.js', 'components.js'].map(loadPrismScript)).then(function () {
-	if (!window.Prism || !window.components) {
-		// somehow, the components were not loaded correctly
-		return Promise.reject('Failed to load "prism.js" or "components.js".');
+textarea.oninput = function() {
+	var codeText = this.value || '';
+	code.textContent = codeText;
+	highlightCode();
+
+	updateShareLink();
+
+	try {
+		sessionStorage.setItem('test-code', codeText);
+	} catch (error) {
+		// ignore sessionStorage errors
 	}
-}).then(function () {
-	// everything is loaded correctly, so we can finally create the UI
-	createUI();
-}).catch(function (e) {
-	console.error(e);
+}
+textarea.oninput();
 
-	var section = $('section');
-	section.innerHTML = '';
-	$u.element.create('h1', {
-		contents: 'Oops!',
-		inside: section
-	});
-	$u.element.create('p', {
-		contents: 'Something went wrong while setting up the test page. For more details, see the developer console for your browser.',
-		inside: section
-	});
-});
+$('#option-show-tokens').onchange = function () {
+	var cls = 'show-tokens';
+	if (this.checked) {
+		$('pre').classList.add(cls);
+	} else {
+		$('pre').classList.remove(cls);
+	}
+};
+$('#option-show-tokens').onchange();
 
-}());
+function updateShareLink() {
+	var params = {
+		language: /\blang(?:uage)?-([\w-]+)\b/i.exec(code.className)[1],
+		text: code.textContent,
+	};
+
+	$('#share-link').href = '#' + stringifyUrlParams(params);
+	$('#share-link-input').value = $('#share-link').href;
+}
+
+
+/**
+ * @param {Record<string, string | number | boolean>} params
+ * @returns {string}
+ */
+function stringifyUrlParams(params) {
+	var parts = [];
+	for (var name in params) {
+		if (params.hasOwnProperty(name)) {
+			var value = params[name];
+			if (typeof value === 'boolean') {
+				if (value) {
+					parts.push(name);
+				}
+			} else {
+				parts.push(name + '=' + encodeURIComponent(value));
+			}
+		}
+	}
+	return parts.join('&');
+}
+/**
+ * @param {string} str
+ * @returns {Record<string, string | boolean>}
+ */
+function parseUrlParams(str) {
+	/** @type {Record<string, string | boolean>} */
+	var params = {};
+	str.split(/&/g).filter(Boolean).forEach(function (part) {
+		var parts = part.split(/=/);
+		var name = parts[0];
+		if (parts.length === 1) {
+			params[name] = true;
+		} else {
+			params[name] = decodeURIComponent(parts[1]);
+		}
+	});
+	return params;
+}
+
+})();
 </script>
 
 </body>

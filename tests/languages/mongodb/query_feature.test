@@ -1,0 +1,71 @@
+db.users.find({
+	_id: { $nin: ObjectId('5ec72ffe00316be87cab3927') },
+	age: { $gte: 18, $lte: 99 },
+	field: { $exists: true }
+})
+
+----------------------------------------------------
+
+[
+	"db",
+	["punctuation", "."],
+	"users",
+	["punctuation", "."],
+	["function", "find"],
+	["punctuation", "("],
+	["punctuation", "{"],
+	["property", [
+		"_id"
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["property", [
+		["keyword", "$nin"]
+	]],
+	["operator", ":"],
+	["builtin", "ObjectId"],
+	["punctuation", "("],
+	["string", [
+		"'5ec72ffe00316be87cab3927'"
+	]],
+	["punctuation", ")"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		"age"
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["property", [
+		["keyword", "$gte"]
+	]],
+	["operator", ":"],
+	["number", "18"],
+	["punctuation", ","],
+	["property", [
+		["keyword", "$lte"]
+	]],
+	["operator", ":"],
+	["number", "99"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", [
+		"field"
+	]],
+	["operator", ":"],
+	["punctuation", "{"],
+	["property", [
+		["keyword", "$exists"]
+	]],
+	["operator", ":"],
+	["boolean", "true"],
+	["punctuation", "}"],
+	["punctuation", "}"],
+	["punctuation", ")"]
+]
+
+
+
+----------------------------------------------------
+
+Common query.

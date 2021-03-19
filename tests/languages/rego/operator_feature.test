@@ -1,0 +1,35 @@
+:= = :
+== != < <= > >=
++ - / * %
+& |
+_
+
+----------------------------------------------------
+
+[
+	["operator", ":="],
+	["operator", "="],
+	["operator", ":"],
+
+	["operator", "=="],
+	["operator", "!="],
+	["operator", "<"],
+	["operator", "<="],
+	["operator", ">"],
+	["operator", ">="],
+
+	["operator", "+"],
+	["operator", "-"],
+	["operator", "/"],
+	["operator", "*"],
+	["operator", "%"],
+
+	["operator", "&"],
+	["operator", "|"],
+
+	["operator", "_"]
+]
+
+----------------------------------------------------
+
+Checks for operators.

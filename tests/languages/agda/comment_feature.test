@@ -1,0 +1,18 @@
+{-
+	This is a
+	multiline comment
+-}
+-- This is a singleline comment
+
+----------------------------------------------------
+
+[
+	["comment", "{-\n\tThis is a\n\tmultiline comment\n-}"],
+	["comment", "-- This is a singleline comment"]
+]
+
+----------------------------------------------------
+
+In agda there are two kinds of comments:
+	- Multiline comments wrapped by {- -}
+	- Singleline comments leading by --

@@ -1,0 +1,15 @@
+@import 'foo'
+@import "bar"
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:baz.typoscript">
+
+----------------------------------------------------
+
+[
+	["function", ["@import ", ["string", "'foo'"]]],
+	["function", ["@import ", ["string", "\"bar\""]]],
+	["function", ["<", ["keyword", "INCLUDE_TYPOSCRIPT"], ": source=", ["string", ["\"", ["keyword", "FILE"], ":", ["keyword", "EXT"], ":baz.typoscript\""]], ">"]]
+]
+
+----------------------------------------------------
+
+Checks for import functions.

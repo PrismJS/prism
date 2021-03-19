@@ -6,7 +6,7 @@ Prism.languages.apacheconf = {
 		alias: 'property'
 	},
 	'directive-block': {
-		pattern: /<\/?\b(?:Auth[nz]ProviderAlias|Directory|DirectoryMatch|Else|ElseIf|Files|FilesMatch|If|IfDefine|IfModule|IfVersion|Limit|LimitExcept|Location|LocationMatch|Macro|Proxy|Require(?:All|Any|None)|VirtualHost)\b *.*>/i,
+		pattern: /<\/?\b(?:Auth[nz]ProviderAlias|Directory|DirectoryMatch|Else|ElseIf|Files|FilesMatch|If|IfDefine|IfModule|IfVersion|Limit|LimitExcept|Location|LocationMatch|Macro|Proxy|Require(?:All|Any|None)|VirtualHost)\b.*>/i,
 		inside: {
 			'directive-block': {
 				pattern: /^<\/?\w+/,
@@ -33,7 +33,7 @@ Prism.languages.apacheconf = {
 		alias: 'tag'
 	},
 	'directive-flags': {
-		pattern: /\[(?:\w,?)+\]/,
+		pattern: /\[(?:[\w=],?)+\]/,
 		alias: 'keyword'
 	},
 	'string': {

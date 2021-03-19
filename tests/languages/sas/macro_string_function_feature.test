@@ -1,0 +1,95 @@
+%let a=%bquote(' ");
+%let b=%nrbquote(' ");
+%let c=%nrquote(%' %");
+%let d=%nrstr(%' %");
+%let e=%quote(%' %");
+%let f=%str(%' %");
+%let char1 = %bquote(%substr(&infile,1,1));
+
+----------------------------------------------------
+
+[
+    ["macro-keyword", "%let"],
+    " a",
+    ["operator", "="],
+    ["macro-string-functions", [
+        ["function", "%bquote"],
+        ["punctuation", "("],
+        "' \"",
+        ["punctuation", ")"]
+    ]],
+    ["punctuation", ";"],
+    ["macro-keyword", "%let"],
+    " b",
+    ["operator", "="],
+    ["macro-string-functions", [
+        ["function", "%nrbquote"],
+        ["punctuation", "("],
+        "' \"",
+        ["punctuation", ")"]
+    ]],
+    ["punctuation", ";"],
+    ["macro-keyword", "%let"],
+    " c",
+    ["operator", "="],
+    ["macro-string-functions", [
+        ["function", "%nrquote"],
+        ["punctuation", "("],
+        ["escaped-char", "%'"],
+        ["escaped-char", "%\""],
+        ["punctuation", ")"]
+    ]],
+    ["punctuation", ";"],
+    ["macro-keyword", "%let"],
+    " d",
+    ["operator", "="],
+    ["macro-string-functions", [
+        ["function", "%nrstr"],
+        ["punctuation", "("],
+        ["escaped-char", "%'"],
+        ["escaped-char", "%\""],
+        ["punctuation", ")"]
+    ]],
+    ["punctuation", ";"],
+    ["macro-keyword", "%let"],
+    " e",
+    ["operator", "="],
+    ["macro-string-functions", [
+        ["function", "%quote"],
+        ["punctuation", "("],
+        ["escaped-char", "%'"],
+        ["escaped-char", "%\""],
+        ["punctuation", ")"]
+    ]],
+    ["punctuation", ";"],
+    ["macro-keyword", "%let"],
+    " f",
+    ["operator", "="],
+    ["macro-string-functions", [
+        ["function", "%str"],
+        ["punctuation", "("],
+        ["escaped-char", "%'"],
+        ["escaped-char", "%\""],
+        ["punctuation", ")"]
+    ]],
+    ["punctuation", ";"],
+	["macro-keyword", "%let"],
+    " char1 ",
+    ["operator", "="],
+    ["function", "%bquote"],
+    ["punctuation", "("],
+    ["macro-keyword", "%substr"],
+    ["punctuation", "("],
+    ["macro-variable", "&infile"],
+    ["punctuation", ","],
+    ["number", "1"],
+    ["punctuation", ","],
+    ["number", "1"],
+    ["punctuation", ")"],
+    ["punctuation", ")"],
+    ["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for all macro string functions.

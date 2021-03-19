@@ -9,25 +9,24 @@ foo@bar$ exit
 ----------------------------------------------------
 
 [
-	["info", [
-		["user", "foo@bar"],
-		["punctuation", ":"],
-		["path", "/var/local"]
-	]],
 	["command", [
+		["info", [
+			["user", "foo@bar"],
+			["punctuation", ":"],
+			["path", "/var/local"]
+		]],
 		["shell-symbol", "$"],
 		["bash", [
 			["builtin", "cd"],
 			" ~"
 		]]
 	]],
-
-	["info", [
-		["user", "foo@bar"],
-		["punctuation", ":"],
-		["path", "~"]
-	]],
 	["command", [
+		["info", [
+			["user", "foo@bar"],
+			["punctuation", ":"],
+			["path", "~"]
+		]],
 		["shell-symbol", "$"],
 		["bash", [
 			["function", "sudo"],
@@ -35,13 +34,12 @@ foo@bar$ exit
 		]]
 	]],
 	["output", "[sudo] password for foo:\r\n"],
-
-	["info", [
-		["user", "root@bar"],
-		["punctuation", ":"],
-		["path", "~"]
-	]],
 	["command", [
+		["info", [
+			["user", "root@bar"],
+			["punctuation", ":"],
+			["path", "~"]
+		]],
 		["shell-symbol", "#"],
 		["bash", [
 			["builtin", "echo"],
@@ -51,11 +49,10 @@ foo@bar$ exit
 		]]
 	]],
 	["output", "hello!\r\n\r\n"],
-
-	["info", [
-		["user", "foo@bar"]
-	]],
 	["command", [
+		["info", [
+			["user", "foo@bar"]
+		]],
 		["shell-symbol", "$"],
 		["bash", [
 			["builtin", "exit"]

@@ -58,7 +58,11 @@ Prism.languages.insertBefore('coffeescript', 'string', {
 				pattern: /^`|`$/,
 				alias: 'punctuation'
 			},
-			rest: Prism.languages.javascript
+			'script': {
+				pattern: /[\s\S]+/,
+				alias: 'language-javascript',
+				inside: Prism.languages.javascript
+			}
 		}
 	},
 

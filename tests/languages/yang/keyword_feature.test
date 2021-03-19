@@ -1,0 +1,53 @@
+submodule execd-ntp {
+
+	key name;
+
+	leaf stratum { type ntpStratum; default 10; }
+
+	leaf version { type int8 { range "1..4"; } default 4; }
+
+}
+
+----------------------------------------------------
+
+[
+	["keyword", "submodule"],
+	" execd-ntp ",
+	["punctuation", "{"],
+
+	["keyword", "key"],
+	" name",
+	["punctuation", ";"],
+
+	["keyword", "leaf"],
+	" stratum ",
+	["punctuation", "{"],
+	["keyword", "type"],
+	" ntpStratum",
+	["punctuation", ";"],
+	["keyword", "default"],
+	" 10",
+	["punctuation", ";"],
+	["punctuation", "}"],
+
+	["keyword", "leaf"],
+	" version ",
+	["punctuation", "{"],
+	["keyword", "type"],
+	" int8 ",
+	["punctuation", "{"],
+	["keyword", "range"],
+	["string", "\"1..4\""],
+	["punctuation", ";"],
+	["punctuation", "}"],
+	["keyword", "default"],
+	" 4",
+	["punctuation", ";"],
+	["punctuation", "}"],
+
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for keywords.

@@ -21,9 +21,11 @@ Prism.languages.renpy= {
 
 	'boolean' : /\b(?:[Tt]rue|[Ff]alse)\b/,
 
-	'number' : /(?:\b(?:0[bo])?(?:(?:\d|0x[\da-f])[\da-f]*\.?\d*)|\B\.\d+)(?:e[+-]?\d+)?j?/i,
+	'number' : /(?:\b(?:0[bo])?(?:(?:\d|0x[\da-f])[\da-f]*(?:\.\d*)?)|\B\.\d+)(?:e[+-]?\d+)?j?/i,
 
 	'operator' : /[-+%=]=?|!=|\*\*?=?|\/\/?=?|<[<=>]?|>[=>]?|[&|^~]|\b(?:or|and|not|with|at)\b/,
 
 	'punctuation' : /[{}[\];(),.:]/
 };
+
+Prism.languages.rpy = Prism.languages.renpy;

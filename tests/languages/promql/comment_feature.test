@@ -1,0 +1,11 @@
+# These examples are taken from ...
+
+----------------------------------------------------
+
+[
+	["comment", "# These examples are taken from ..."]
+]
+
+----------------------------------------------------
+
+Checks for comments.

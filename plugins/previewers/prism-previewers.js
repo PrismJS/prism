@@ -26,7 +26,7 @@
 					// Default value for angle
 					var angle = '180deg';
 
-					if (/^(?:-?\d*\.?\d+(?:deg|rad)|to\b|top|right|bottom|left)/.test(values[0])) {
+					if (/^(?:-?(?:\d+(?:\.\d+)?|\.\d+)(?:deg|rad)|to\b|top|right|bottom|left)/.test(values[0])) {
 						angle = values.shift();
 						if (angle.indexOf('to ') < 0) {
 							// Angle uses old keywords
@@ -224,7 +224,7 @@
 				});
 			},
 			tokens: {
-				'angle': /(?:\b|\B-|(?=\B\.))\d*\.?\d+(?:deg|g?rad|turn)\b/i
+				'angle': /(?:\b|\B-|(?=\B\.))(?:\d+(?:\.\d+)?|\.\d+)(?:deg|g?rad|turn)\b/i
 			},
 			languages: {
 				'css': true,
@@ -328,7 +328,7 @@
 						'ease-in-out':'.42,0,.58,1'
 					}[value] || value;
 
-					var p = value.match(/-?\d*\.?\d+/g);
+					var p = value.match(/-?(?:\d+(?:\.\d+)?|\.\d+)/g);
 
 					if(p.length === 4) {
 						p = p.map(function(p, i) { return (i % 2? 1 - p : p) * 100; });
@@ -353,14 +353,14 @@
 						'</marker>' +
 						'</defs>' +
 						'<path d="M0,100 C20,50, 40,30, 100,0" />' +
-						'<line x1="0" y1="100" x2="20" y2="50" marker-start="url(' + location.href + '#prism-previewer-easing-marker)" marker-end="url(' + location.href + '#prism-previewer-easing-marker)" />' +
-						'<line x1="100" y1="0" x2="40" y2="30" marker-start="url(' + location.href + '#prism-previewer-easing-marker)" marker-end="url(' + location.href + '#prism-previewer-easing-marker)" />' +
+						'<line x1="0" y1="100" x2="20" y2="50" marker-start="url(#prism-previewer-easing-marker)" marker-end="url(#prism-previewer-easing-marker)" />' +
+						'<line x1="100" y1="0" x2="40" y2="30" marker-start="url(#prism-previewer-easing-marker)" marker-end="url(#prism-previewer-easing-marker)" />' +
 						'</svg>';
 				});
 			},
 			tokens: {
 				'easing': {
-					pattern: /\bcubic-bezier\((?:-?\d*\.?\d+,\s*){3}-?\d*\.?\d+\)\B|\b(?:linear|ease(?:-in)?(?:-out)?)(?=\s|[;}]|$)/i,
+					pattern: /\bcubic-bezier\((?:-?(?:\d+(?:\.\d+)?|\.\d+),\s*){3}-?(?:\d+(?:\.\d+)?|\.\d+)\)\B|\b(?:linear|ease(?:-in)?(?:-out)?)(?=\s|[;}]|$)/i,
 					inside: {
 						'function': /[\w-]+(?=\()/,
 						'punctuation': /[(),]/
@@ -419,7 +419,7 @@
 				});
 			},
 			tokens: {
-				'time': /(?:\b|\B-|(?=\B\.))\d*\.?\d+m?s\b/i
+				'time': /(?:\b|\B-|(?=\B\.))(?:\d+(?:\.\d+)?|\.\d+)m?s\b/i
 			},
 			languages: {
 				'css': true,
@@ -485,9 +485,9 @@
 		};
 	};
 
-	var tokenRegexp = /(?:^|\s)token(?=$|\s)/;
-	var activeRegexp = /(?:^|\s)active(?=$|\s)/g;
-	var flippedRegexp = /(?:^|\s)flipped(?=$|\s)/g;
+	var TOKEN_CLASS = 'token';
+	var ACTIVE_CLASS = 'active';
+	var FLIPPED_CLASS = 'flipped';
 
 	/**
 	 * Previewer constructor
@@ -500,7 +500,6 @@
 	var Previewer = function (type, updater, supportedLanguages, initializer) {
 		this._elt = null;
 		this._type = type;
-		this._clsRegexp = RegExp('(?:^|\\s)' + type + '(?=$|\\s)');
 		this._token = null;
 		this.updater = updater;
 		this._mouseout = this.mouseout.bind(this);
@@ -543,6 +542,10 @@
 		}
 	};
 
+	/**
+	 * @param {Element} token
+	 * @returns {boolean}
+	 */
 	Previewer.prototype.isDisabled = function (token) {
 		do {
 			if (token.hasAttribute && token.hasAttribute('data-previewers')) {
@@ -555,14 +558,14 @@
 
 	/**
 	 * Checks the class name of each hovered element
-	 * @param token
+	 * @param {Element} token
 	 */
 	Previewer.prototype.check = function (token) {
-		if (tokenRegexp.test(token.className) && this.isDisabled(token)) {
+		if (token.classList.contains(TOKEN_CLASS) && this.isDisabled(token)) {
 			return;
 		}
 		do {
-			if (tokenRegexp.test(token.className) && this._clsRegexp.test(token.className)) {
+			if (token.classList && token.classList.contains(TOKEN_CLASS) && token.classList.contains(this._type)) {
 				break;
 			}
 		} while(token = token.parentNode);
@@ -597,14 +600,14 @@
 			this._token.addEventListener('mouseout', this._mouseout, false);
 
 			var offset = getOffset(this._token);
-			this._elt.className += ' active';
+			this._elt.classList.add(ACTIVE_CLASS);
 
 			if (offset.top - this._elt.offsetHeight > 0) {
-				this._elt.className = this._elt.className.replace(flippedRegexp, '');
+				this._elt.classList.remove(FLIPPED_CLASS);
 				this._elt.style.top = offset.top + 'px';
 				this._elt.style.bottom = '';
 			} else {
-				this._elt.className +=  ' flipped';
+				this._elt.classList.add(FLIPPED_CLASS);
 				this._elt.style.bottom = offset.bottom + 'px';
 				this._elt.style.top = '';
 			}
@@ -619,7 +622,7 @@
 	 * Hides the previewer.
 	 */
 	Previewer.prototype.hide = function () {
-		this._elt.className = this._elt.className.replace(activeRegexp, '');
+		this._elt.classList.remove(ACTIVE_CLASS);
 	};
 
 	/**

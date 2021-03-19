@@ -11,19 +11,19 @@
 		// Multiline stuff should appear before the rest
 
 		'multiline-comment': {
-			pattern: /((?:^|\r?\n|\r)([\t ]*))(?:\/|-#).*(?:(?:\r?\n|\r)\2[\t ]+.+)*/,
+			pattern: /((?:^|\r?\n|\r)([\t ]*))(?:\/|-#).*(?:(?:\r?\n|\r)\2[\t ].+)*/,
 			lookbehind: true,
 			alias: 'comment'
 		},
 
 		'multiline-code': [
 			{
-				pattern: /((?:^|\r?\n|\r)([\t ]*)(?:[~-]|[&!]?=)).*,[\t ]*(?:(?:\r?\n|\r)\2[\t ]+.*,[\t ]*)*(?:(?:\r?\n|\r)\2[\t ]+.+)/,
+				pattern: /((?:^|\r?\n|\r)([\t ]*)(?:[~-]|[&!]?=)).*,[\t ]*(?:(?:\r?\n|\r)\2[\t ].*,[\t ]*)*(?:(?:\r?\n|\r)\2[\t ].+)/,
 				lookbehind: true,
 				inside: Prism.languages.ruby
 			},
 			{
-				pattern: /((?:^|\r?\n|\r)([\t ]*)(?:[~-]|[&!]?=)).*\|[\t ]*(?:(?:\r?\n|\r)\2[\t ]+.*\|[\t ]*)*/,
+				pattern: /((?:^|\r?\n|\r)([\t ]*)(?:[~-]|[&!]?=)).*\|[\t ]*(?:(?:\r?\n|\r)\2[\t ].*\|[\t ]*)*/,
 				lookbehind: true,
 				inside: Prism.languages.ruby
 			}
@@ -31,7 +31,7 @@
 
 		// See at the end of the file for known filters
 		'filter': {
-			pattern: /((?:^|\r?\n|\r)([\t ]*)):[\w-]+(?:(?:\r?\n|\r)(?:\2[\t ]+.+|\s*?(?=\r?\n|\r)))+/,
+			pattern: /((?:^|\r?\n|\r)([\t ]*)):[\w-]+(?:(?:\r?\n|\r)(?:\2[\t ].+|\s*?(?=\r?\n|\r)))+/,
 			lookbehind: true,
 			inside: {
 				'filter-name': {
@@ -52,14 +52,14 @@
 		},
 		'tag': {
 			// Allows for one nested group of braces
-			pattern: /((?:^|\r?\n|\r)[\t ]*)[%.#][\w\-#.]*[\w\-](?:\([^)]+\)|\{(?:\{[^}]+\}|[^}])+\}|\[[^\]]+\])*[\/<>]*/,
+			pattern: /((?:^|\r?\n|\r)[\t ]*)[%.#][\w\-#.]*[\w\-](?:\([^)]+\)|\{(?:\{[^}]+\}|[^{}])+\}|\[[^\]]+\])*[\/<>]*/,
 			lookbehind: true,
 			inside: {
 				'attributes': [
 					{
 						// Lookbehind tries to prevent interpolations from breaking it all
 						// Allows for one nested group of braces
-						pattern: /(^|[^#])\{(?:\{[^}]+\}|[^}])+\}/,
+						pattern: /(^|[^#])\{(?:\{[^}]+\}|[^{}])+\}/,
 						lookbehind: true,
 						inside: Prism.languages.ruby
 					},
@@ -104,7 +104,7 @@
 		}
 	};
 
-	var filter_pattern = '((?:^|\\r?\\n|\\r)([\\t ]*)):{{filter_name}}(?:(?:\\r?\\n|\\r)(?:\\2[\\t ]+.+|\\s*?(?=\\r?\\n|\\r)))+';
+	var filter_pattern = '((?:^|\\r?\\n|\\r)([\\t ]*)):{{filter_name}}(?:(?:\\r?\\n|\\r)(?:\\2[\\t ].+|\\s*?(?=\\r?\\n|\\r)))+';
 
 	// Non exhaustive list of available filters and associated languages
 	var filters = [

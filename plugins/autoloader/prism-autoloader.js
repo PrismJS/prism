@@ -11,15 +11,25 @@
 	var lang_dependencies = /*dependencies_placeholder[*/{
 		"javascript": "clike",
 		"actionscript": "javascript",
+		"apex": [
+			"clike",
+			"sql"
+		],
 		"arduino": "cpp",
 		"aspnet": [
 			"markup",
 			"csharp"
 		],
+		"birb": "clike",
 		"bison": "c",
 		"c": "clike",
 		"csharp": "clike",
 		"cpp": "c",
+		"cfscript": "clike",
+		"chaiscript": [
+			"clike",
+			"cpp"
+		],
 		"coffeescript": "javascript",
 		"crystal": "ruby",
 		"css-extras": "css",
@@ -42,13 +52,15 @@
 		"firestore-security-rules": "clike",
 		"flow": "javascript",
 		"ftl": "markup-templating",
-		"glsl": "clike",
 		"gml": "clike",
+		"glsl": "c",
 		"go": "clike",
 		"groovy": "clike",
 		"haml": "ruby",
 		"handlebars": "markup-templating",
 		"haxe": "clike",
+		"hlsl": "c",
+		"idris": "haskell",
 		"java": "clike",
 		"javadoc": [
 			"markup",
@@ -58,12 +70,13 @@
 		"jolie": "clike",
 		"jsdoc": [
 			"javascript",
-			"javadoclike"
+			"javadoclike",
+			"typescript"
 		],
 		"js-extras": "javascript",
-		"js-templates": "javascript",
-		"jsonp": "json",
 		"json5": "json",
+		"jsonp": "json",
+		"js-templates": "javascript",
 		"kotlin": "clike",
 		"latte": [
 			"clike",
@@ -74,15 +87,12 @@
 		"lilypond": "scheme",
 		"markdown": "markup",
 		"markup-templating": "markup",
+		"mongodb": "javascript",
 		"n4js": "javascript",
-		"nginx": "clike",
 		"objectivec": "c",
 		"opencl": "c",
 		"parser": "markup",
-		"php": [
-			"clike",
-			"markup-templating"
-		],
+		"php": "markup-templating",
 		"phpdoc": [
 			"php",
 			"javadoclike"
@@ -95,8 +105,11 @@
 			"markup",
 			"javascript"
 		],
+		"purebasic": "clike",
+		"purescript": "haskell",
 		"qml": "javascript",
 		"qore": "clike",
+		"racket": "scheme",
 		"jsx": [
 			"markup",
 			"javascript"
@@ -116,28 +129,31 @@
 		"soy": "markup-templating",
 		"sparql": "turtle",
 		"sqf": "clike",
+		"squirrel": "clike",
 		"swift": "clike",
-		"tap": "yaml",
-		"textile": "markup",
-		"tt2": [
-			"clike",
-			"markup-templating"
-		],
-		"twig": "markup",
-		"typescript": "javascript",
 		"t4-cs": [
 			"t4-templating",
 			"csharp"
 		],
 		"t4-vb": [
 			"t4-templating",
-			"visual-basic"
+			"vbnet"
 		],
+		"tap": "yaml",
+		"tt2": [
+			"clike",
+			"markup-templating"
+		],
+		"textile": "markup",
+		"twig": "markup",
+		"typescript": "javascript",
+		"v": "clike",
 		"vala": "clike",
 		"vbnet": "basic",
 		"velocity": "markup",
 		"wiki": "markup",
 		"xeora": "markup",
+		"xml-doc": "markup",
 		"xquery": "markup"
 	}/*]*/;
 
@@ -146,24 +162,38 @@
 		"xml": "markup",
 		"svg": "markup",
 		"mathml": "markup",
+		"ssml": "markup",
+		"atom": "markup",
+		"rss": "markup",
 		"js": "javascript",
 		"g4": "antlr4",
 		"adoc": "asciidoc",
 		"shell": "bash",
 		"shortcode": "bbcode",
 		"rbnf": "bnf",
-		"conc": "concurnas",
+		"oscript": "bsl",
 		"cs": "csharp",
 		"dotnet": "csharp",
+		"cfc": "cfscript",
 		"coffee": "coffeescript",
+		"conc": "concurnas",
 		"jinja2": "django",
 		"dns-zone": "dns-zone-file",
 		"dockerfile": "docker",
+		"gv": "dot",
 		"eta": "ejs",
 		"xlsx": "excel-formula",
 		"xls": "excel-formula",
 		"gamemakerlanguage": "gml",
 		"hs": "haskell",
+		"idr": "idris",
+		"gitignore": "ignore",
+		"hgignore": "ignore",
+		"npmignore": "ignore",
+		"webmanifest": "json",
+		"kt": "kotlin",
+		"kts": "kotlin",
+		"kum": "kumir",
 		"tex": "latex",
 		"context": "latex",
 		"ly": "lilypond",
@@ -173,20 +203,35 @@
 		"md": "markdown",
 		"moon": "moonscript",
 		"n4jsd": "n4js",
+		"nani": "naniscript",
 		"objc": "objectivec",
 		"objectpascal": "pascal",
 		"px": "pcaxis",
+		"pcode": "peoplecode",
 		"pq": "powerquery",
 		"mscript": "powerquery",
+		"pbfasm": "purebasic",
+		"purs": "purescript",
 		"py": "python",
+		"rkt": "racket",
+		"rpy": "renpy",
 		"robot": "robotframework",
 		"rb": "ruby",
+		"sh-session": "shell-session",
+		"shellsession": "shell-session",
+		"smlnj": "sml",
+		"sol": "solidity",
 		"sln": "solution-file",
 		"rq": "sparql",
+		"t4": "t4-cs",
 		"trig": "turtle",
 		"ts": "typescript",
-		"t4": "t4-cs",
+		"tsconfig": "typoscript",
+		"uscript": "unrealscript",
+		"uc": "unrealscript",
+		"url": "uri",
 		"vb": "visual-basic",
+		"vba": "visual-basic",
 		"xeoracube": "xeora",
 		"yml": "yaml"
 	}/*]*/;
@@ -205,8 +250,8 @@
 
 	var script = Prism.util.currentScript();
 	if (script) {
-		var autoloaderFile = /\bplugins\/autoloader\/prism-autoloader\.(?:min\.)js(?:\?[^\r\n/]*)?$/i;
-		var prismFile = /(^|\/)[\w-]+\.(?:min\.)js(?:\?[^\r\n/]*)?$/i;
+		var autoloaderFile = /\bplugins\/autoloader\/prism-autoloader\.(?:min\.)?js(?:\?[^\r\n/]*)?$/i;
+		var prismFile = /(^|\/)[\w-]+\.(?:min\.)?js(?:\?[^\r\n/]*)?$/i;
 
 		var autoloaderPath = script.getAttribute('data-autoloader-path');
 		if (autoloaderPath != null) {
@@ -254,42 +299,54 @@
 	}
 
 	/**
+	 * Returns all additional dependencies of the given element defined by the `data-dependencies` attribute.
+	 *
+	 * @param {Element} element
+	 * @returns {string[]}
+	 */
+	function getDependencies(element) {
+		var deps = (element.getAttribute('data-dependencies') || '').trim();
+		if (!deps) {
+			var parent = element.parentElement;
+			if (parent && parent.tagName.toLowerCase() === 'pre') {
+				deps = (parent.getAttribute('data-dependencies') || '').trim();
+			}
+		}
+		return deps ? deps.split(/\s*,\s*/g) : [];
+	}
+
+	/**
+	 * Returns whether the given language is currently loaded.
+	 *
+	 * @param {string} lang
+	 * @returns {boolean}
+	 */
+	function isLoaded(lang) {
+		if (lang.indexOf('!') >= 0) {
+			// forced reload
+			return false;
+		}
+
+		lang = lang_aliases[lang] || lang; // resolve alias
+
+		if (lang in Prism.languages) {
+			// the given language is already loaded
+			return true;
+		}
+
+		// this will catch extensions like CSS extras that don't add a grammar to Prism.languages
+		var data = lang_data[lang];
+		return data && !data.error && data.loading === false;
+	}
+
+	/**
 	 * Returns the path to a grammar, using the language_path and use_minified config keys.
 	 *
 	 * @param {string} lang
 	 * @returns {string}
 	 */
 	function getLanguagePath(lang) {
-		return config.languages_path +
-			'prism-' + lang
-			+ (config.use_minified ? '.min' : '') + '.js'
-	}
-
-	/**
-	 * Tries to load the grammar(s) and once loaded, highlights the given element again.
-	 *
-	 * @param {string} lang
-	 * @param {HTMLElement} elt
-	 */
-	function registerElement(lang, elt) {
-		if (lang in lang_aliases) {
-			lang = lang_aliases[lang];
-		}
-
-		// Look for additional dependencies defined on the <code> or <pre> tags
-		var deps = (elt.getAttribute('data-dependencies') || '').trim();
-		if (!deps) {
-			var parent = elt.parentElement;
-			if (parent && parent.tagName.toLowerCase() === 'pre') {
-				deps = (parent.getAttribute('data-dependencies') || '').trim();
-			}
-		}
-
-		loadLanguages(deps ? deps.split(/\s*,\s*/g) : [], function () {
-			loadLanguage(lang, function () {
-				Prism.highlightElement(elt);
-			});
-		});
+		return config.languages_path + 'prism-' + lang + (config.use_minified ? '.min' : '') + '.js'
 	}
 
 	/**
@@ -349,7 +406,7 @@
 		lang = lang.replace('!', '');
 		lang = lang_aliases[lang] || lang;
 
-		var load = function () {
+		function load() {
 			var data = lang_data[lang];
 			if (!data) {
 				data = lang_data[lang] = {
@@ -361,21 +418,25 @@
 				error: error
 			});
 
-			if (!force && Prism.languages[lang]) {
-				languageCallback(lang, "success");
+			if (!force && isLoaded(lang)) {
+				// the language is already loaded and we aren't forced to reload
+				languageCallback(lang, 'success');
 			} else if (!force && data.error) {
-				languageCallback(lang, "error");
+				// the language failed to load before and we don't reload
+				languageCallback(lang, 'error');
 			} else if (force || !data.loading) {
+				// the language isn't currently loading and/or we are forced to reload
 				data.loading = true;
-				var src = getLanguagePath(lang);
-				addScript(src, function () {
+				data.error = false;
+
+				addScript(getLanguagePath(lang), function () {
 					data.loading = false;
-					languageCallback(lang, "success");
+					languageCallback(lang, 'success');
 
 				}, function () {
 					data.loading = false;
 					data.error = true;
-					languageCallback(lang, "error");
+					languageCallback(lang, 'error');
 				});
 			}
 		};
@@ -408,10 +469,26 @@
 	}
 
 	Prism.hooks.add('complete', function (env) {
-		if (env.element && env.language && !env.grammar) {
-			if (env.language !== ignored_language) {
-				registerElement(env.language, env.element);
-			}
+		var element = env.element;
+		var language = env.language;
+		if (!element || !language || language === ignored_language) {
+			return;
+		}
+
+		var deps = getDependencies(element);
+		if (/^diff-./i.test(language)) {
+			// the "diff-xxxx" format is used by the Diff Highlight plugin
+			deps.push('diff');
+			deps.push(language.substr('diff-'.length));
+		} else {
+			deps.push(language);
+		}
+
+		if (!deps.every(isLoaded)) {
+			// the language or some dependencies aren't loaded
+			loadLanguages(deps, function () {
+				Prism.highlightElement(element);
+			});
 		}
 	});
 

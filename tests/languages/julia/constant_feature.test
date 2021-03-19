@@ -1,6 +1,10 @@
 NaN NaN16 NaN32 NaN64
 Inf Inf16 Inf32 Inf64
 
+im
+pi π
+ℯ
+
 ----------------------------------------------------
 
 [
@@ -11,7 +15,12 @@ Inf Inf16 Inf32 Inf64
 	["constant", "Inf"],
 	["constant", "Inf16"],
 	["constant", "Inf32"],
-	["constant", "Inf64"]
+	["constant", "Inf64"],
+
+	["constant", "im"],
+	["constant", "pi"],
+	["constant", "π"],
+	["constant", "ℯ"]
 ]
 
 ----------------------------------------------------
