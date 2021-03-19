@@ -153,7 +153,7 @@ const tryItOutSection = async () => {
 		url += `#language=${modifiedLanguages[0]}`;
 	}
 
-	markdown(`## Try out the changes
+	markdown(`## Try it out
 
 I detect that you ${added ? 'added' : 'changed'} languages. Everyone can [try out the changes here](${url}).
 <sub>(The link will stop working once the PR branch was deleted.)</sub>
