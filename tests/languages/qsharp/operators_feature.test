@@ -1,0 +1,30 @@
+and= or=
+<- <= -> =>
+* / + - = ^ ! %
+*= /= += -= == ^= != %=
+>>> >>>= <<< <<<= 
+^^^ ^^^= 
+||| |||=
+&&& &&&=
+w/ w/=
+~~~
+
+----------------------------------------------------
+
+[
+	["andOrEqual", "and="], ["andOrEqual", "or="],
+	["operator", "<-"], ["operator", "<="], ["operator", "->"], ["operator", "=>"],
+	["operator", "*"], ["operator", "/"], ["operator", "+"], ["operator", "-"], ["operator", "="], ["operator", "^"], ["operator", "!"], ["operator", "%"],
+	["operator", "*="], ["operator", "/="], ["operator", "+="], ["operator", "-="], ["operator", "=="], ["operator", "^="], ["operator", "!="], ["operator", "%="],
+	["operator", ">>>"], ["operator", ">>>="], ["operator", "<<<"], ["operator", "<<<="],
+	["operator", "^^^"], ["operator", "^^^="],
+	["operator", "|||"], ["operator", "|||="],
+	["operator", "&&&"], ["operator", "&&&="],
+	["operator", "w/"], ["operator", "w/="],
+	["operator", "~~~"]
+]
+
+
+----------------------------------------------------
+
+Checks for if, equality and function

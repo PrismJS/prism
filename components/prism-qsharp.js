@@ -52,28 +52,29 @@
 		return '\\b(?:' + words.trim().replace(/ /g, '|') + ')\\b';
 	}
 	var keywords = RegExp(keywordsToPattern(keywordKinds.type + ' ' + keywordKinds.other));
-	var nonTypeKeywords = keywordsToPattern(keywordKinds.other);
 
 	// types
 	var generic = nested(/<(?:[^<>;=+\-*/%&|^]|<<self>>)*>/.source, 2);
 	var name = /@?\b[A-Za-z_]\w*\b/.source;
 	var genericName = replace(/<<0>>(?:\s*<<1>>)?/.source, [name, generic]);
-	var identifier = replace(/(?!<<0>>)<<1>>(?:\s*\.\s*<<1>>)*/.source, [nonTypeKeywords, genericName]);
+	var identifier = replace(/(?!<<0>>)<<1>>(?:\s*\.\s*<<1>>)*/.source, [keywordKinds.other, genericName]);
 
 	var typeInside = {
 		'keyword': keywords,
 		'punctuation': /[<>()?,.:[\]]/
 	};
 
-	// strings & characters
+	// strings
 	var regularString = /"(?:\\.|[^\\"\r\n])*"/.source;
 
 	Prism.languages.qsharp = Prism.languages.extend('clike', {
-		'string': {
-			pattern: re(/(^|[^$\\])<<0>>/.source, [regularString]),
-			lookbehind: true,
-			greedy: true
-		},
+		'string': [
+			{
+				pattern: re(/(^|[^$\\])<<0>>/.source, [regularString]),
+				lookbehind: true,
+				greedy: true
+			}
+		],
 		'class-name': [
 			{
 				// open Microsoft.Quantum.Canon;
@@ -90,13 +91,20 @@
 		],
 		'keyword': keywords,
 		'number': /(?:\b0(?:x[\da-f]+|b[01]+|o[0-7]+)|(?:\B\.\d+|\b\d+(?:\.\d*)?)(?:e[-+]?\d+)?)l?\b/i,
-		'operator': /and=|or=|<[-=]|[-=]>|[*^=\-!+\/%=]=?|>>>=?|<<<=?|\^\^\^=?|\|\|\|=?|&&&=?|w\/=?|\.\.\.|~~~/,
+		'operator': /<[-=]|[-=]>|>>>=?|<<<=?|\^\^\^=?|\|\|\|=?|&&&=?|w\/=?|~~~|[*\/+\-^=!%]=?/,
 		'punctuation': /::|[{}[\];(),.:]/
 	});
 
 	Prism.languages.insertBefore('qsharp', 'number', {
 		'range': {
 			pattern: /\.\./,
+			alias: 'operator'
+		}
+	});
+	
+	Prism.languages.insertBefore('qsharp', 'keyword', {
+		'andOrEqual': {
+			pattern: /and=|or=/,
 			alias: 'operator'
 		}
 	});
