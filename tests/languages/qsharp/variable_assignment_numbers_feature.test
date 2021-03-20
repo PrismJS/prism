@@ -27,4 +27,4 @@ set var2 = var2 + 1.5;
 
 ----------------------------------------------------
 
-Checks for if, equality and function
+Checks for variable assignment and numbers
