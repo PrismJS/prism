@@ -611,6 +611,12 @@ var _ = {
 
 		_.hooks.run('before-sanity-check', env);
 
+		// plugins may change/add the parent/element
+		parent = env.element.parentElement;
+		if (parent &amp;&amp; parent.nodeName.toLowerCase() === 'pre' &amp;&amp; !parent.hasAttribute('tabindex')) {
+			parent.setAttribute('tabindex', '0');
+		}
+
 		if (!env.code) {
 			_.hooks.run('complete', env);
 			callback &amp;&amp; callback.call(env.element);

@@ -1,0 +1,20 @@
+/* Comment */
+/* Multi-line
+comment */
+/**/
+//
+// Single-line comment
+
+----------------------------------------------------
+
+[
+	["comment", "/* Comment */"],
+	["comment", "/* Multi-line\r\ncomment */"],
+	["comment", "/**/"],
+	["comment", "//"],
+	["comment", "// Single-line comment"]
+]
+
+----------------------------------------------------
+
+Checks for comments.
