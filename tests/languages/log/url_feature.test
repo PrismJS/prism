@@ -1,0 +1,30 @@
+http://66.140.25.157:802/
+file://c:/repository
+
+Foo <https://foo.bar/contact.html>
+
+- Mapping virtual host: http://download.spinetix.com/spxjslibs
+
+Failed to transfer file: http://repo.xxxx.com/foo/bar.pom. Return code is
+
+----------------------------------------------------
+
+[
+	["url", "http://66.140.25.157:802/"],
+	["url", "file://c:/repository"],
+
+	"\r\n\r\nFoo ",
+	["operator", "<"],
+	["url", "https://foo.bar/contact.html"],
+	["operator", ">"],
+
+	["operator", "-"],
+	" Mapping virtual host",
+	["operator", ":"],
+	["url", "http://download.spinetix.com/spxjslibs"],
+
+	["property", "Failed to transfer file:"],
+	["url", "http://repo.xxxx.com/foo/bar.pom"],
+	["punctuation", "."],
+	" Return code is"
+]

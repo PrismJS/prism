@@ -28,9 +28,7 @@ EOF
 		["shell-symbol", "$"],
 		["bash", [
 			["builtin", "echo"],
-			["string", [
-				"'Foo\r\n> Bar'"
-			]]
+			["string", "'Foo\r\n> Bar'"]
 		]]
 	]],
 
@@ -38,9 +36,7 @@ EOF
 		["shell-symbol", "$"],
 		["bash", [
 			["builtin", "echo"],
-			["string", [
-				"\"Foo\r\n> Bar\""
-			]]
+			["string", ["\"Foo\r\n> Bar\""]]
 		]]
 	]],
 
@@ -48,12 +44,8 @@ EOF
 		["shell-symbol", "$"],
 		["bash", [
 			["builtin", "echo"],
-			["operator", [
-				"<<-"
-			]],
-			["string", [
-				"STRING_END\r\nfoo\r\nbar\r\nSTRING_END"
-			]]
+			["operator", ["<<-"]],
+			["string", ["STRING_END\r\nfoo\r\nbar\r\nSTRING_END"]]
 		]]
 	]],
 
@@ -61,12 +53,8 @@ EOF
 		["shell-symbol", "$"],
 		["bash", [
 			["builtin", "echo"],
-			["operator", [
-				"<<-"
-			]],
-			["string", [
-				"\"STRING_END\"\r\nfoo\r\nbar\r\nSTRING_END"
-			]]
+			["operator", ["<<-"]],
+			["string", ["\"STRING_END\"\r\nfoo\r\nbar\r\nSTRING_END"]]
 		]]
 	]],
 
@@ -84,17 +72,14 @@ EOF
 		["shell-symbol", "$"],
 		["bash", [
 			["function", "cat"],
-			["operator", [
-				"<<"
-			]],
+			["operator", ["<<"]],
 			["string", [
 				"\"EOF\"",
 				["bash", [
-					["operator", [
-						">"
-					]],
+					["operator", [">"]],
 					" /etc/ipsec.secrets"
 				]],
+
 				"\r\n: RSA vpn-server-a.key\r\n# : RSA vpn-server-b.key\r\nEOF"
 			]]
 		]]

@@ -5,17 +5,18 @@
 
 	var strings = [
 		// normal string
-		// 1 capturing group
-		/(["'])(?:\\[\s\S]|\$\([^)]+\)|\$(?!\()|`[^`]+`|(?!\1)[^\\`$])*\1/.source,
+		/"(?:\\[\s\S]|\$\([^)]+\)|\$(?!\()|`[^`]+`|[^"\\`$])*"/.source,
+		/'[^']*'/.source,
+		/\$'(?:[^'\\]|\\[\s\S])*'/.source,
 
 		// here doc
 		// 2 capturing groups
-		/<<-?\s*(["']?)(\w+)\2\s[\s\S]*?[\r\n]\3/.source
+		/<<-?\s*(["']?)(\w+)\1\s[\s\S]*?[\r\n]\2/.source
 	].join('|');
 
 	Prism.languages['shell-session'] = {
 		'command': {
-			pattern: RegExp(/^(?:[^\s@:$#*!/\\]+@[^\s@:$#*!/\\]+(?::[^\0-\x1F$#*?"<>:;|]+)?|[^\0-\x1F$#*?"<>:;|]+)?[$#](?:[^\\\r\n'"<]|\\.|<<str>>)+/.source.replace(/<<str>>/g, function () { return strings; }), 'm'),
+			pattern: RegExp(/^(?:[^\s@:$#*!/\\]+@[^\s@:$#*!/\\]+(?::[^\0-\x1F$#*?"<>:;|]+)?|[^\0-\x1F$#*?"<>:;|]+)?[$#](?:[^\\\r\n'"<$]|\\.|\$(?!')|<<str>>)+/.source.replace(/<<str>>/g, function () { return strings; }), 'm'),
 			greedy: true,
 			inside: {
 				'info': {
