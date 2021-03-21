@@ -1,0 +1,78 @@
+worker_connections  4096;
+expires 30d;
+
+client_max_body_size    10m;
+client_body_buffer_size 128k;
+proxy_connect_timeout   90;
+proxy_send_timeout      90;
+proxy_read_timeout      90;
+proxy_buffers           32 4k;
+
+keepalive_timeout  75 20;
+return 404;
+
+----------------------------------------------------
+
+[
+	["directive", [
+		["keyword", "worker_connections"],
+		["number", "4096"]
+	]],
+	["punctuation", ";"],
+
+	["directive", [
+		["keyword", "expires"],
+		["number", "30d"]
+	]],
+	["punctuation", ";"],
+
+	["directive", [
+		["keyword", "client_max_body_size"],
+		["number", "10m"]
+	]],
+	["punctuation", ";"],
+
+	["directive", [
+		["keyword", "client_body_buffer_size"],
+		["number", "128k"]
+	]],
+	["punctuation", ";"],
+
+	["directive", [
+		["keyword", "proxy_connect_timeout"],
+		["number", "90"]
+	]],
+	["punctuation", ";"],
+
+	["directive", [
+		["keyword", "proxy_send_timeout"],
+		["number", "90"]
+	]],
+	["punctuation", ";"],
+
+	["directive", [
+		["keyword", "proxy_read_timeout"],
+		["number", "90"]
+	]],
+	["punctuation", ";"],
+
+	["directive", [
+		["keyword", "proxy_buffers"],
+		["number", "32"],
+		["number", "4k"]
+	]],
+	["punctuation", ";"],
+
+	["directive", [
+		["keyword", "keepalive_timeout"],
+		["number", "75"],
+		["number", "20"]
+	]],
+	["punctuation", ";"],
+
+	["directive", [
+		["keyword", "return"],
+		["number", "404"]
+	]],
+	["punctuation", ";"]
+]

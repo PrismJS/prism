@@ -1,0 +1,17 @@
+Dim x = "hello
+world"
+
+Console.WriteLine("Message: {0}", message)
+
+----------------------------------------------------
+
+[
+	["keyword", "Dim"], " x ", ["operator", "="], ["string", "\"hello\nworld\""],
+
+	"\n\nConsole.WriteLine",
+	["punctuation", "("],
+	["string", "\"Message: {0}\""],
+	["punctuation", ","],
+	" message",
+	["punctuation", ")"]
+]
