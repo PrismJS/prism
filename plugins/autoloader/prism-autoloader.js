@@ -1,5 +1,6 @@
 (function () {
-	if (typeof self === 'undefined' || !self.Prism || !self.document || !document.createElement) {
+
+	if (typeof Prism === 'undefined' || typeof document === 'undefined') {
 		return;
 	}
 
