@@ -605,6 +605,10 @@
 			"title": "Java stack trace",
 			"owner": "RunDevelopment"
 		},
+		"jexl": {
+			"title": "Jexl",
+			"owner": "czosel"
+		},
 		"jolie": {
 			"title": "Jolie",
 			"require": "clike",
