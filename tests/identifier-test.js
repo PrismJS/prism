@@ -35,10 +35,21 @@ const testOptions = {
 		template: false
 	},
 
+	'false': {
+		word: false,
+		template: false
+	},
+
 	// LilyPond doesn't tokenize based on words
 	'lilypond': {
 		word: false,
 		number: false,
+		template: false,
+	},
+
+	// Nevod uses underscore symbol as operator and allows hyphen to be part of identifier
+	'nevod': {
+		word: false,
 		template: false,
 	},
 };
