@@ -29,6 +29,8 @@ Thank you so much for contributing!!
 
 ### Software requirements
 
+Prism will run on [almost any browser](https://prismjs.com/#features-full) and Node.js version but you need the following software to contribute:
+
 - Node.js >= 10.x
 - npm >= 6.x
 
