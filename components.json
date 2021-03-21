@@ -733,6 +733,10 @@
 			"title": "LLVM IR",
 			"owner": "porglezomp"
 		},
+		"log": {
+			"title": "Log file",
+			"owner": "RunDevelopment"
+		},
 		"lolcode": {
 			"title": "LOLCODE",
 			"owner": "Golmote"

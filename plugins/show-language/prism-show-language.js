@@ -126,6 +126,7 @@
 		"elisp": "Lisp",
 		"emacs-lisp": "Lisp",
 		"llvm": "LLVM IR",
+		"log": "Log file",
 		"lolcode": "LOLCODE",
 		"md": "Markdown",
 		"markup-templating": "Markup templating",
