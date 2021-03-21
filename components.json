@@ -261,6 +261,10 @@
 			"title": "CMake",
 			"owner": "mjrogozinski"
 		},
+		"cobol": {
+			"title": "COBOL",
+			"owner": "RunDevelopment"
+		},
 		"coffeescript": {
 			"title": "CoffeeScript",
 			"require": "javascript",

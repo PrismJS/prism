@@ -1,0 +1,26 @@
+<h2>Full example</h2>
+<pre><code>       *> https://en.wikipedia.org/w/index.php?title=COBOL&oldid=1011483106
+       RD  sales-report
+           PAGE LIMITS 60 LINES
+           FIRST DETAIL 3
+           CONTROLS seller-name.
+
+       01  TYPE PAGE HEADING.
+           03  COL 1                    VALUE "Sales Report".
+           03  COL 74                   VALUE "Page".
+           03  COL 79                   PIC Z9 SOURCE PAGE-COUNTER.
+
+       01  sales-on-day TYPE DETAIL, LINE + 1.
+           03  COL 3                    VALUE "Sales on".
+           03  COL 12                   PIC 99/99/9999 SOURCE sales-date.
+           03  COL 21                   VALUE "were".
+           03  COL 26                   PIC $$$$9.99 SOURCE sales-amount.
+
+       01  invalid-sales TYPE DETAIL, LINE + 1.
+           03  COL 3                    VALUE "INVALID RECORD:".
+           03  COL 19                   PIC X(34) SOURCE sales-record.
+
+       01  TYPE CONTROL HEADING seller-name, LINE + 2.
+           03  COL 1                    VALUE "Seller:".
+           03  COL 9                    PIC X(30) SOURCE seller-name.
+</code></pre>
