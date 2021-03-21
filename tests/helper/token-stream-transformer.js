@@ -78,9 +78,10 @@ class GlueItem { }
 
 /**
  * @param {TokenStream} tokenStream
+ * @param {number} [level]
  * @returns {PrettyTokenStream}
  */
-function toPrettyTokenStream(tokenStream) {
+function toPrettyTokenStream(tokenStream, level = 0) {
 	/** @type {PrettyTokenStream} */
 	const prettyStream = [];
 	for (const token of tokenStream) {
@@ -115,26 +116,27 @@ function toPrettyTokenStream(tokenStream) {
 	 */
 	function innerSimple(value) {
 		if (Array.isArray(value.content)) {
-			return [value.type, toPrettyTokenStream(value.content)];
+			return [value.type, toPrettyTokenStream(value.content, level + 1)];
 		} else {
 			return [value.type, value.content];
 		}
 	}
 
-	prettyFormat(prettyStream);
+	prettyFormat(prettyStream, (level + 1) * 4);
 	return prettyStream;
 }
 
 /**
  * @param {PrettyTokenStream} prettyStream
+ * @param {number} indentationWidth
  * @returns {void}
  */
-function prettyFormat(prettyStream) {
+function prettyFormat(prettyStream, indentationWidth) {
 	// The maximum number of (glued) tokens per line
 	const MAX_TOKEN_PER_LINE = 5;
 	// The maximum number of characters per line
 	// (this is based on an estimation. The actual output might be longer.)
-	const MAX_PRINT_WIDTH = 80;
+	const MAX_PRINT_WIDTH = 80 - indentationWidth;
 
 	prettyTrimLineBreaks(prettyStream);
 	// enable all line breaks with >=2 breaks in the source token stream
@@ -180,7 +182,17 @@ function prettyFormat(prettyStream) {
 				return lines.map(g => {
 					if (g.length > 1) {
 						return g
-							.map(item => isToken(item) ? ", ".length + JSON.stringify(item).length : 0)
+							.map(item => {
+								if (isToken(item)) {
+									if (typeof item === "string") {
+										return ", ".length + JSON.stringify(item).length;
+									} else {
+										return ", ".length + JSON.stringify(item).length + " ".length;
+									}
+								} else {
+									return 0;
+								}
+							})
 							.reduce((a, b) => a + b, 0) - ", ".length;
 					} else {
 						// we don't really care about the print width of a single-token line
