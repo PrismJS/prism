@@ -613,7 +613,7 @@ var _ = {
 
 		// plugins may change/add the parent/element
 		parent = env.element.parentElement;
-		if (parent &amp;&amp; parent.nodeName.toLowerCase() === 'pre') {
+		if (parent &amp;&amp; parent.nodeName.toLowerCase() === 'pre' &amp;&amp; !parent.hasAttribute('tabindex')) {
 			parent.setAttribute('tabindex', '0');
 		}
 
