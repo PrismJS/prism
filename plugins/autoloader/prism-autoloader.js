@@ -89,7 +89,6 @@
 		"markup-templating": "markup",
 		"mongodb": "javascript",
 		"n4js": "javascript",
-		"nginx": "clike",
 		"objectivec": "c",
 		"opencl": "c",
 		"parser": "markup",
