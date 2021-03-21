@@ -147,6 +147,8 @@
 		"objc": "Objective-C",
 		"ocaml": "OCaml",
 		"opencl": "OpenCL",
+		"openqasm": "OpenQasm",
+		"qasm": "OpenQasm",
 		"parigp": "PARI/GP",
 		"objectpascal": "Object Pascal",
 		"psl": "PATROL Scripting Language",
