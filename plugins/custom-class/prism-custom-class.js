@@ -1,9 +1,6 @@
 (function () {
 
-	if (
-		(typeof self === 'undefined' || !self.Prism) &&
-		(typeof global === 'undefined' || !global.Prism)
-	) {
+	if (typeof Prism === 'undefined') {
 		return;
 	}
 

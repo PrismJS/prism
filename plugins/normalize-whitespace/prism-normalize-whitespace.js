@@ -1,5 +1,9 @@
 (function() {
 
+if (typeof Prism === 'undefined' || typeof document === 'undefined') {
+	return;
+}
+
 var assign = Object.assign || function (obj1, obj2) {
 	for (var name in obj2) {
 		if (obj2.hasOwnProperty(name))

@@ -1,0 +1,126 @@
+01 ServiceRecord.
+   05 SSN                        pic 9(9).
+   05 Name.
+      10 GivenName               pic a(20).
+      10 FamilyName              pic a(20).
+   05 Rank.
+      10 RankType                pic a(1)
+         88 ValidRankType        value 'O' 'E' 'W'.
+         88 Enlisted             value 'E'.
+         88 WarrantOfficer       value 'W'.
+         88 CommissionedOfficer  value 'W'.
+      10 Grade                   pic x(2)
+         88 ValidGrade           value '1' '2' '3' '4' '5' '6' '7' '8' '9' '10' '1E' '2E' '3E'.
+
+----------------------------------------------------
+
+[
+	["level", "01"],
+	" ServiceRecord",
+	["punctuation", "."],
+
+	["level", "05"],
+	" SSN                        ",
+	["keyword", "pic"],
+	["class-name", [
+		"9",
+		["punctuation", "("],
+		["number", "9"],
+		["punctuation", ")"]
+	]],
+	["punctuation", "."],
+
+	["level", "05"],
+	" Name",
+	["punctuation", "."],
+
+	["level", "10"],
+	" GivenName               ",
+	["keyword", "pic"],
+	["class-name", [
+		"a",
+		["punctuation", "("],
+		["number", "20"],
+		["punctuation", ")"]
+	]],
+	["punctuation", "."],
+
+	["level", "10"],
+	" FamilyName              ",
+	["keyword", "pic"],
+	["class-name", [
+		"a",
+		["punctuation", "("],
+		["number", "20"],
+		["punctuation", ")"]
+	]],
+	["punctuation", "."],
+
+	["level", "05"],
+	" Rank",
+	["punctuation", "."],
+
+	["level", "10"],
+	" RankType                ",
+	["keyword", "pic"],
+	["class-name", [
+		"a",
+		["punctuation", "("],
+		["number", "1"],
+		["punctuation", ")"]
+	]],
+
+	["level", "88"],
+	" ValidRankType        ",
+	["keyword", "value"],
+	["string", "'O'"],
+	["string", "'E'"],
+	["string", "'W'"],
+	["punctuation", "."],
+
+	["level", "88"],
+	" Enlisted             ",
+	["keyword", "value"],
+	["string", "'E'"],
+	["punctuation", "."],
+
+	["level", "88"],
+	" WarrantOfficer       ",
+	["keyword", "value"],
+	["string", "'W'"],
+	["punctuation", "."],
+
+	["level", "88"],
+	" CommissionedOfficer  ",
+	["keyword", "value"],
+	["string", "'W'"],
+	["punctuation", "."],
+
+	["level", "10"],
+	" Grade                   ",
+	["keyword", "pic"],
+	["class-name", [
+		"x",
+		["punctuation", "("],
+		["number", "2"],
+		["punctuation", ")"]
+	]],
+
+	["level", "88"],
+	" ValidGrade           ",
+	["keyword", "value"],
+	["string", "'1'"],
+	["string", "'2'"],
+	["string", "'3'"],
+	["string", "'4'"],
+	["string", "'5'"],
+	["string", "'6'"],
+	["string", "'7'"],
+	["string", "'8'"],
+	["string", "'9'"],
+	["string", "'10'"],
+	["string", "'1E'"],
+	["string", "'2E'"],
+	["string", "'3E'"],
+	["punctuation", "."]
+]
