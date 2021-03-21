@@ -287,6 +287,10 @@
 			"modify": "css",
 			"owner": "milesj"
 		},
+		"csv": {
+			"title": "CSV",
+			"owner": "RunDevelopment"
+		},
 		"cypher": {
 			"title": "Cypher",
 			"owner": "RunDevelopment"
@@ -396,6 +400,10 @@
 			"title": "Factor",
 			"owner": "catb0t"
 		},
+		"false": {
+			"title": "False",
+			"owner": "edukisto"
+		},
 		"firestore-security-rules": {
 			"title": "Firestore security rules",
 			"require": "clike",
@@ -453,7 +461,7 @@
 		},
 		"graphql": {
 			"title": "GraphQL",
-			"optional": ["markdown"],
+			"optional": "markdown",
 			"owner": "Golmote"
 		},
 		"groovy": {
@@ -807,10 +815,13 @@
 			"title": "NEON",
 			"owner": "nette"
 		},
+		"nevod": {
+			"title": "Nevod",
+			"owner": "nezaboodka"
+		},
 		"nginx": {
 			"title": "nginx",
-			"owner": "westonganger",
-			"require": "clike"
+			"owner": "volado"
 		},
 		"nim": {
 			"title": "Nim",
@@ -842,6 +853,11 @@
 				"cpp"
 			],
 			"owner": "Milania1"
+		},
+		"openqasm": {
+			"title": "OpenQasm",
+			"alias": "qasm",
+			"owner": "RunDevelopment"
 		},
 		"oz": {
 			"title": "Oz",
