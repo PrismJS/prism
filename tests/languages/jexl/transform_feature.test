@@ -15,20 +15,23 @@ foo|bar(
 ----------------------------------------------------
 
 [
-	["string", "\"foo\""], ["transform", "|bar"],
-	["string", "\"foo\""], ["transform", "| bar"],
+	["string", "\"foo\""], ["operator", "|"], ["transform", "bar"],
+	["string", "\"foo\""], ["operator", "|"], ["transform", "bar"],
 	["string", "\"foo\""],
-	["transform", "|   \r\nbar"],
+	["operator", "|"],
+	["transform", "bar"],
 
-	"\r\n\r\nfoo", ["transform", "|Ý"],
+	"\r\n\r\nfoo", ["operator", "|"], ["transform", "Ý"],
 
 	"\r\n\r\nfoo",
-	["transform", "|bar"],
+	["operator", "|"],
+	["transform", "bar"],
 	["punctuation", "("],
 	["punctuation", ")"],
 
 	"\r\nfoo",
-	["transform", "|bar"],
+	["operator", "|"],
+	["transform", "bar"],
 	["punctuation", "("],
 	["number", "1"],
 	["punctuation", ","],
@@ -36,7 +39,8 @@ foo|bar(
 	["punctuation", ")"],
 
 	"\r\nfoo",
-	["transform", "|bar"],
+	["operator", "|"],
+	["transform", "bar"],
 	["punctuation", "("],
 
 	["number", "1"],
