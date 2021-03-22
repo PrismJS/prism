@@ -55,7 +55,7 @@
 
 	// types
 	var generic = nested(/<(?:[^<>;=+\-*/%&|^]|<<self>>)*>/.source, 2);
-	var name = /@?\b[A-Za-z_]\w*\b/.source;
+	var name = /\b[A-Za-z_]\w*\b/.source;
 	var genericName = replace(/<<0>>(?:\s*<<1>>)?/.source, [name, generic]);
 	var identifier = replace(/(?!<<0>>)<<1>>(?:\s*\.\s*<<1>>)*/.source, [keywordKinds.other, genericName]);
 
@@ -68,6 +68,7 @@
 	var regularString = /"(?:\\.|[^\\"\r\n])*"/.source;
 
 	Prism.languages.qsharp = Prism.languages.extend('clike', {
+		'comment': /\/\/.*/,
 		'string': [
 			{
 				pattern: re(/(^|[^$\\])<<0>>/.source, [regularString]),
