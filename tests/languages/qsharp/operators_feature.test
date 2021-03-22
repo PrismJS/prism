@@ -1,3 +1,4 @@
+and or not
 and= or=
 <- <= -> =>
 * / + - = ^ ! %
@@ -12,7 +13,8 @@ w/ w/=
 ----------------------------------------------------
 
 [
-	["andOrEqual", "and="], ["andOrEqual", "or="],
+	["operator", "and"], ["operator", "or"], ["operator", "not"],
+	["operator", "and="], ["operator", "or="],
 	["operator", "<-"], ["operator", "<="], ["operator", "->"], ["operator", "=>"],
 	["operator", "*"], ["operator", "/"], ["operator", "+"], ["operator", "-"], ["operator", "="], ["operator", "^"], ["operator", "!"], ["operator", "%"],
 	["operator", "*="], ["operator", "/="], ["operator", "+="], ["operator", "-="], ["operator", "=="], ["operator", "^="], ["operator", "!="], ["operator", "%="],

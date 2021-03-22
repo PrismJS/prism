@@ -45,7 +45,7 @@
 		// keywords which represent a return or variable type
 		type: 'Adj BigInt Bool Ctl Double false Int One Pauli PauliI PauliX PauliY PauliZ Qubit Range Result String true Unit Zero',
 		// all other keywords
-        other: 'Adjoint adjoint and apply as auto body borrow borrowing Controlled controlled distribute elif else fail fixup for function if in internal intrinsic invert is let mutable namespace new newtype not open operation or repeat return self set until use using while within'
+        other: 'Adjoint adjoint apply as auto body borrow borrowing Controlled controlled distribute elif else fail fixup for function if in internal intrinsic invert is let mutable namespace new newtype open operation repeat return self set until use using while within'
     } 
 	// keywords
 	function keywordsToPattern(words) {
@@ -91,20 +91,13 @@
 		],
 		'keyword': keywords,
 		'number': /(?:\b0(?:x[\da-f]+|b[01]+|o[0-7]+)|(?:\B\.\d+|\b\d+(?:\.\d*)?)(?:e[-+]?\d+)?)l?\b/i,
-		'operator': /<[-=]|[-=]>|>>>=?|<<<=?|\^\^\^=?|\|\|\|=?|&&&=?|w\/=?|~~~|[*\/+\-^=!%]=?/,
+		'operator': /\band=|\bor=|\band\b|\bor\b|\bnot\b|<[-=]|[-=]>|>>>=?|<<<=?|\^\^\^=?|\|\|\|=?|&&&=?|w\/=?|~~~|[*\/+\-^=!%]=?/,
 		'punctuation': /::|[{}[\];(),.:]/
 	});
 
 	Prism.languages.insertBefore('qsharp', 'number', {
 		'range': {
 			pattern: /\.\./,
-			alias: 'operator'
-		}
-	});
-	
-	Prism.languages.insertBefore('qsharp', 'keyword', {
-		'andOrEqual': {
-			pattern: /and=|or=/,
 			alias: 'operator'
 		}
 	});
@@ -116,37 +109,33 @@
 	var sInterpolationRound = nested(replace(/[^"()]|<<0>>|\(<<self>>*\)/.source, [regularString]), 2)
 	var sInterpolation = replace(/\{(?!\{)(?:(?![}:])<<0>>)*<<1>>?\}/.source, [sInterpolationRound, formatString]);
 
-	function createInterpolationInside(interpolation, interpolationRound) {
-		return {
-			'interpolation': {
-				pattern: re(/((?:^|[^{])(?:\{\{)*)<<0>>/.source, [interpolation]),
-				lookbehind: true,
-				inside: {
-					'format-string': {
-						pattern: re(/(^\{(?:(?![}:])<<0>>)*)<<1>>(?=\}$)/.source, [interpolationRound, formatString]),
-						lookbehind: true,
-						inside: {
-							'punctuation': /^:/
-						}
-					},
-					'punctuation': /^\{|\}$/,
-					'expression': {
-						pattern: /[\s\S]+/,
-						alias: 'language-qsharp',
-						inside: Prism.languages.qsharp
-					}
-				}
-			},
-			'string': /[\s\S]+/
-		};
-	}
-
 	Prism.languages.insertBefore('qsharp', 'string', {
 		'interpolation-string': {
 			pattern: re(/(^|[^@\\])\$"(?:\\.|\{\{|<<0>>|[^\\"{])*"/.source, [sInterpolation]),
 			lookbehind: true,
 			greedy: true,
-			inside: createInterpolationInside(sInterpolation, sInterpolationRound),
+			inside: {
+				'interpolation': {
+					pattern: re(/((?:^|[^{])(?:\{\{)*)<<0>>/.source, [sInterpolation]),
+					lookbehind: true,
+					inside: {
+						'format-string': {
+							pattern: re(/(^\{(?:(?![}:])<<0>>)*)<<1>>(?=\}$)/.source, [sInterpolationRound, formatString]),
+							lookbehind: true,
+							inside: {
+								'punctuation': /^:/
+							}
+						},
+						'punctuation': /^\{|\}$/,
+						'expression': {
+							pattern: /[\s\S]+/,
+							alias: 'language-qsharp',
+							inside: Prism.languages.qsharp
+						}
+					}
+				},
+				'string': /[\s\S]+/
+			}
 		}
 	});
 
