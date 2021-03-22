@@ -113,7 +113,7 @@
 	var formatString = /:[^}\r\n]+/.source;
 
 	// single line
-	var sInterpolationRound = nested(replace(/[^"'/()]|\/(?!\*)|\/\*(?:[^*]|\*(?!\/))*\*\/|<<0>>|\(<<self>>*\)/.source, [regularString]), 2)
+	var sInterpolationRound = nested(replace(/[^"()]|<<0>>|\(<<self>>*\)/.source, [regularString]), 2)
 	var sInterpolation = replace(/\{(?!\{)(?:(?![}:])<<0>>)*<<1>>?\}/.source, [sInterpolationRound, formatString]);
 
 	function createInterpolationInside(interpolation, interpolationRound) {
