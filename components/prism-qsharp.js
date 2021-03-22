@@ -57,7 +57,7 @@
 	var generic = nested(/<(?:[^<>;=+\-*/%&|^]|<<self>>)*>/.source, 2);
 	var name = /\b[A-Za-z_]\w*\b/.source;
 	var genericName = replace(/<<0>>(?:\s*<<1>>)?/.source, [name, generic]);
-	var identifier = replace(/(?!<<0>>)<<1>>(?:\s*\.\s*<<1>>)*/.source, [keywordKinds.other, genericName]);
+	var identifier = replace(/(?!<<0>>)<<1>>(?:\s*\.\s*<<1>>)*/.source, [keywordsToPattern(keywordKinds.other), genericName]);
 
 	var typeInside = {
 		'keyword': keywords,
