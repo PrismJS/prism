@@ -45,8 +45,8 @@
 		// keywords which represent a return or variable type
 		type: 'Adj BigInt Bool Ctl Double false Int One Pauli PauliI PauliX PauliY PauliZ Qubit Range Result String true Unit Zero',
 		// all other keywords
-        other: 'Adjoint adjoint apply as auto body borrow borrowing Controlled controlled distribute elif else fail fixup for function if in internal intrinsic invert is let mutable namespace new newtype open operation repeat return self set until use using while within'
-    } 
+		other: 'Adjoint adjoint apply as auto body borrow borrowing Controlled controlled distribute elif else fail fixup for function if in internal intrinsic invert is let mutable namespace new newtype open operation repeat return self set until use using while within'
+	} 
 	// keywords
 	function keywordsToPattern(words) {
 		return '\\b(?:' + words.trim().replace(/ /g, '|') + ')\\b';
@@ -82,7 +82,7 @@
 				lookbehind: true,
 				inside: typeInside
 			},
-            {
+			{
 				// namespace Quantum.App1;
 				pattern: re(/(\bnamespace\s+)<<0>>(?=\s*{)/.source, [identifier]),
 				lookbehind: true,
