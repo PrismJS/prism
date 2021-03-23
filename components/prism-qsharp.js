@@ -65,7 +65,7 @@
 	};
 
 	// strings
-	var regularString = /"(?:\\.|[^\\"\r\n])*"/.source;
+	var regularString = /"(?:\\.|[^\\"])*"/.source;
 
 	Prism.languages.qsharp = Prism.languages.extend('clike', {
 		'comment': /\/\/.*/,
