@@ -1,0 +1,32 @@
+and or not
+and= or=
+<- <= -> =>
+* / + - = ^ ! %
+*= /= += -= == ^= != %=
+>>> >>>= <<< <<<= 
+^^^ ^^^= 
+||| |||=
+&&& &&&=
+w/ w/=
+~~~
+
+----------------------------------------------------
+
+[
+	["operator", "and"], ["operator", "or"], ["operator", "not"],
+	["operator", "and="], ["operator", "or="],
+	["operator", "<-"], ["operator", "<="], ["operator", "->"], ["operator", "=>"],
+	["operator", "*"], ["operator", "/"], ["operator", "+"], ["operator", "-"], ["operator", "="], ["operator", "^"], ["operator", "!"], ["operator", "%"],
+	["operator", "*="], ["operator", "/="], ["operator", "+="], ["operator", "-="], ["operator", "=="], ["operator", "^="], ["operator", "!="], ["operator", "%="],
+	["operator", ">>>"], ["operator", ">>>="], ["operator", "<<<"], ["operator", "<<<="],
+	["operator", "^^^"], ["operator", "^^^="],
+	["operator", "|||"], ["operator", "|||="],
+	["operator", "&&&"], ["operator", "&&&="],
+	["operator", "w/"], ["operator", "w/="],
+	["operator", "~~~"]
+]
+
+
+----------------------------------------------------
+
+Checks for opertors

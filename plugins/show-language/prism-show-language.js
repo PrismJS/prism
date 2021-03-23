@@ -173,6 +173,8 @@
 		"pbfasm": "PureBasic",
 		"purs": "PureScript",
 		"py": "Python",
+		"qsharp": "Q#",
+		"qs": "Q#",
 		"q": "Q (kdb+ database)",
 		"qml": "QML",
 		"rkt": "Racket",

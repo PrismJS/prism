@@ -1009,6 +1009,12 @@
 			"alias": "py",
 			"owner": "multipetros"
 		},
+		"qsharp": {
+			"title": "Q#",
+			"require": "clike",
+			"alias": "qs",
+			"owner": "fedonman"
+		},
 		"q": {
 			"title": "Q (kdb+ database)",
 			"owner": "Golmote"
