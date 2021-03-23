@@ -1,0 +1,27 @@
+"text in double quotes"
+""
+'text in single quotes'
+'case-sensitive text'!
+'text ''Nevod'' in quotes'
+"text ""Nevod"" in double quotes"
+'text prefix'*
+'case-sensitive text prefix'!*
+''
+
+----------------------------------------------------
+
+[
+	["string", ["\"text in double quotes\""]],
+	["string", ["\"\""]],
+	["string", ["'text in single quotes'"]],
+	["string", ["'case-sensitive text'", ["string-attrs", "!"]]],
+	["string", ["'text ''Nevod'' in quotes'"]],
+	["string", ["\"text \"\"Nevod\"\" in double quotes\""]],
+	["string", ["'text prefix'", ["string-attrs", "*"]]],
+	["string", ["'case-sensitive text prefix'", ["string-attrs", "!*"]]],
+	["string", ["''"]]
+]
+
+----------------------------------------------------
+
+Checks for various text strings.

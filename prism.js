@@ -563,6 +563,12 @@ var _ = {
 
 		_.hooks.run('before-sanity-check', env);
 
+		// plugins may change/add the parent/element
+		parent = env.element.parentElement;
+		if (parent && parent.nodeName.toLowerCase() === 'pre' && !parent.hasAttribute('tabindex')) {
+			parent.setAttribute('tabindex', '0');
+		}
+
 		if (!env.code) {
 			_.hooks.run('complete', env);
 			callback && callback.call(env.element);
@@ -1616,7 +1622,8 @@ Prism.languages.js = Prism.languages.javascript;
 ********************************************** */
 
 (function () {
-	if (typeof self === 'undefined' || !self.Prism || !self.document) {
+
+	if (typeof Prism === 'undefined' || typeof document === 'undefined') {
 		return;
 	}
 

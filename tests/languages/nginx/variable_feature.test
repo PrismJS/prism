@@ -1,11 +1,149 @@
-$foobar
-$foo_bar
+foo $host;
+foo $geoip_city_country_code3
+set $0 foo;
+set $_ foo;
+set $arg_? foo;
+
+# real example
+
+log_format main      '$remote_addr - $remote_user [$time_local]  '
+  '"$request" $status $bytes_sent '
+  '"$http_referer" "$http_user_agent" '
+  '"$gzip_ratio"';
+
+location / {
+    ssi on;
+    set $inc $request_uri;
+    if (!-f $request_filename) {
+        rewrite ^ /index.html last;
+    }
+    if (!-f $document_root$inc.html) {
+        return 404;
+    }
+}
 
 ----------------------------------------------------
 
 [
-	["variable", "$foobar"],
-	["variable", "$foo_bar"]
+	["directive", [
+		["keyword", "foo"],
+		["variable", "$host"]
+	]],
+	["punctuation", ";"],
+
+	["directive", [
+		["keyword", "foo"], ["variable", "$geoip_city_country_code3"],
+		"\r\nset ", ["variable", "$0"], " foo"
+	]],
+	["punctuation", ";"],
+
+	["directive", [
+		["keyword", "set"],
+		["variable", "$_"],
+		" foo"
+	]],
+	["punctuation", ";"],
+
+	["directive", [
+		["keyword", "set"],
+		["variable", "$arg_?"],
+		" foo"
+	]],
+	["punctuation", ";"],
+
+	["comment", "# real example"],
+
+	["directive", [
+		["keyword", "log_format"],
+		" main      ",
+		["string", [
+			"'",
+			["variable", "$remote_addr"],
+			" - ",
+			["variable", "$remote_user"],
+			" [",
+			["variable", "$time_local]"],
+			"  '"
+		]],
+
+		["string", [
+			"'\"",
+			["variable", "$request"],
+			"\" ",
+			["variable", "$status"],
+			["variable", "$bytes_sent"],
+			" '"
+		]],
+
+		["string", [
+			"'\"",
+			["variable", "$http_referer"],
+			"\" \"",
+			["variable", "$http_user_agent"],
+			"\" '"
+		]],
+
+		["string", [
+			"'\"",
+			["variable", "$gzip_ratio"],
+			"\"'"
+		]]
+	]],
+	["punctuation", ";"],
+
+	["directive", [
+		["keyword", "location"],
+		" /"
+	]],
+	["punctuation", "{"],
+
+	["directive", [
+		["keyword", "ssi"],
+		["boolean", "on"]
+	]],
+	["punctuation", ";"],
+
+	["directive", [
+		["keyword", "set"],
+		["variable", "$inc"],
+		["variable", "$request_uri"]
+	]],
+	["punctuation", ";"],
+
+	["directive", [
+		["keyword", "if"],
+		" (!-f ",
+		["variable", "$request_filename"],
+		")"
+	]],
+	["punctuation", "{"],
+
+	["directive", [
+		["keyword", "rewrite"],
+		" ^ /index.html last"
+	]],
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+
+	["directive", [
+		["keyword", "if"],
+		" (!-f ",
+		["variable", "$document_root"],
+		["variable", "$inc"],
+		".html)"
+	]],
+	["punctuation", "{"],
+
+	["directive", [
+		["keyword", "return"],
+		["number", "404"]
+	]],
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+
+	["punctuation", "}"]
 ]
 
 ----------------------------------------------------

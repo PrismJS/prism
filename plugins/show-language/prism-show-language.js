@@ -1,6 +1,6 @@
 (function () {
 
-	if (typeof self === 'undefined' || !self.Prism || !self.document) {
+	if (typeof Prism === 'undefined' || typeof document === 'undefined') {
 		return;
 	}
 
@@ -55,10 +55,12 @@
 		"cfc": "CFScript",
 		"cil": "CIL",
 		"cmake": "CMake",
+		"cobol": "COBOL",
 		"coffee": "CoffeeScript",
 		"conc": "Concurnas",
 		"csp": "Content-Security-Policy",
 		"css-extras": "CSS Extras",
+		"csv": "CSV",
 		"dataweave": "DataWeave",
 		"dax": "DAX",
 		"django": "Django/Jinja2",
@@ -125,6 +127,7 @@
 		"elisp": "Lisp",
 		"emacs-lisp": "Lisp",
 		"llvm": "LLVM IR",
+		"log": "Log file",
 		"lolcode": "LOLCODE",
 		"md": "Markdown",
 		"markup-templating": "Markup templating",
@@ -146,6 +149,8 @@
 		"objc": "Objective-C",
 		"ocaml": "OCaml",
 		"opencl": "OpenCL",
+		"openqasm": "OpenQasm",
+		"qasm": "OpenQasm",
 		"parigp": "PARI/GP",
 		"objectpascal": "Object Pascal",
 		"psl": "PATROL Scripting Language",

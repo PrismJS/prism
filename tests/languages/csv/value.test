@@ -1,0 +1,99 @@
+aaa,bbb,ccc
+zzz,yyy,xxx
+
+"aaa","bbb","ccc"
+
+"aaa","b
+bb","ccc"
+
+"aaa","b""bb","ccc"
+
+Year,Make,Model,Description,Price
+1997,Ford,E350,"ac, abs, moon",3000.00
+1999,Chevy,"Venture ""Extended Edition""","",4900.00
+1999,Chevy,"Venture ""Extended Edition, Very Large""",,5000.00
+1996,Jeep,Grand Cherokee,"MUST SELL!
+air, moon roof, loaded",4799.00
+
+----------------------------------------------------
+
+[
+	["value", "aaa"],
+	["punctuation", ","],
+	["value", "bbb"],
+	["punctuation", ","],
+	["value", "ccc"],
+
+	["value", "zzz"],
+	["punctuation", ","],
+	["value", "yyy"],
+	["punctuation", ","],
+	["value", "xxx"],
+
+	["value", "\"aaa\""],
+	["punctuation", ","],
+	["value", "\"bbb\""],
+	["punctuation", ","],
+	["value", "\"ccc\""],
+
+	["value", "\"aaa\""],
+	["punctuation", ","],
+	["value", "\"b\r\nbb\""],
+	["punctuation", ","],
+	["value", "\"ccc\""],
+
+	["value", "\"aaa\""],
+	["punctuation", ","],
+	["value", "\"b\"\"bb\""],
+	["punctuation", ","],
+	["value", "\"ccc\""],
+
+	["value", "Year"],
+	["punctuation", ","],
+	["value", "Make"],
+	["punctuation", ","],
+	["value", "Model"],
+	["punctuation", ","],
+	["value", "Description"],
+	["punctuation", ","],
+	["value", "Price"],
+
+	["value", "1997"],
+	["punctuation", ","],
+	["value", "Ford"],
+	["punctuation", ","],
+	["value", "E350"],
+	["punctuation", ","],
+	["value", "\"ac, abs, moon\""],
+	["punctuation", ","],
+	["value", "3000.00"],
+
+	["value", "1999"],
+	["punctuation", ","],
+	["value", "Chevy"],
+	["punctuation", ","],
+	["value", "\"Venture \"\"Extended Edition\"\"\""],
+	["punctuation", ","],
+	["value", "\"\""],
+	["punctuation", ","],
+	["value", "4900.00"],
+
+	["value", "1999"],
+	["punctuation", ","],
+	["value", "Chevy"],
+	["punctuation", ","],
+	["value", "\"Venture \"\"Extended Edition, Very Large\"\"\""],
+	["punctuation", ","],
+	["punctuation", ","],
+	["value", "5000.00"],
+
+	["value", "1996"],
+	["punctuation", ","],
+	["value", "Jeep"],
+	["punctuation", ","],
+	["value", "Grand Cherokee"],
+	["punctuation", ","],
+	["value", "\"MUST SELL!\r\nair, moon roof, loaded\""],
+	["punctuation", ","],
+	["value", "4799.00"]
+]
