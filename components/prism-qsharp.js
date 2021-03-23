@@ -103,30 +103,18 @@
 		}
 	});
 
-	// string interpolation
-	var formatString = /:[^}\r\n]+/.source;
-
 	// single line
-	var sInterpolationRound = nested(replace(/[^"()]|<<0>>|\(<<self>>*\)/.source, [regularString]), 2)
-	var sInterpolation = replace(/\{(?!\{)(?:(?![}:])<<0>>)*<<1>>?\}/.source, [sInterpolationRound, formatString]);
+	var interpolationExpr = nested(replace(/\{(?:[^"{}]|<<0>>|<<self>>)*\}/.source, [regularString]), 2);
 
 	Prism.languages.insertBefore('qsharp', 'string', {
 		'interpolation-string': {
-			pattern: re(/(^|[^@\\])\$"(?:\\.|\{\{|<<0>>|[^\\"{])*"/.source, [sInterpolation]),
-			lookbehind: true,
+			pattern: re(/\$"(?:\\.|<<0>>|[^\\"{])*"/.source, [interpolationExpr]),
 			greedy: true,
 			inside: {
 				'interpolation': {
-					pattern: re(/((?:^|[^{])(?:\{\{)*)<<0>>/.source, [sInterpolation]),
+					pattern: re(/((?:^|[^\\])(?:\\\\)*)<<0>>/.source, [interpolationExpr]),
 					lookbehind: true,
 					inside: {
-						'format-string': {
-							pattern: re(/(^\{(?:(?![}:])<<0>>)*)<<1>>(?=\}$)/.source, [sInterpolationRound, formatString]),
-							lookbehind: true,
-							inside: {
-								'punctuation': /^:/
-							}
-						},
 						'punctuation': /^\{|\}$/,
 						'expression': {
 							pattern: /[\s\S]+/,
