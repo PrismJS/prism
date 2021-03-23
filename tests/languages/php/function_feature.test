@@ -16,6 +16,9 @@ $var->match()
 foreach ($list as $value) { // this "foreach" is a keyword
 }
 
+Test::foreach(); // this is "foreach" static method
+Test::method();  // this is "method" static method
+
 ----------------------------------------------------
 
 [
@@ -93,5 +96,21 @@ foreach ($list as $value) { // this "foreach" is a keyword
 	["punctuation", "{"],
 	["comment", "// this \"foreach\" is a keyword"],
 
-	["punctuation", "}"]
+	["punctuation", "}"],
+
+	["class-name", "Test"],
+	["operator", "::"],
+	["function", "foreach"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["comment", "// this is \"foreach\" static method"],
+
+	["class-name", "Test"],
+	["operator", "::"],
+	["function", "method"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["comment", "// this is \"method\" static method"]
 ]
