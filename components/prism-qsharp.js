@@ -54,10 +54,8 @@
 	var keywords = RegExp(keywordsToPattern(keywordKinds.type + ' ' + keywordKinds.other));
 
 	// types
-	var generic = nested(/<(?:[^<>;=+\-*/%&|^]|<<self>>)*>/.source, 2);
-	var name = /\b[A-Za-z_]\w*\b/.source;
-	var genericName = replace(/<<0>>(?:\s*<<1>>)?/.source, [name, generic]);
-	var identifier = replace(/(?!<<0>>)<<1>>(?:\s*\.\s*<<1>>)*/.source, [keywordsToPattern(keywordKinds.other), genericName]);
+	var identifier = /\b[A-Za-z_]\w*\b/.source;
+	var qualifiedName = replace(/<<0>>(?:\s*\.\s*<<0>>)*/.source, [identifier]);
 
 	var typeInside = {
 		'keyword': keywords,
@@ -79,13 +77,14 @@
 		'class-name': [
 			{
 				// open Microsoft.Quantum.Canon;
-				pattern: re(/(\b(?:as|open)\s+)<<0>>(?=\s*(?:;|as\b))/.source, [identifier]),
+				// open Microsoft.Quantum.Canon as CN;
+				pattern: re(/(\b(?:as|open)\s+)<<0>>(?=\s*(?:;|as\b))/.source, [qualifiedName]),
 				lookbehind: true,
 				inside: typeInside
 			},
 			{
 				// namespace Quantum.App1;
-				pattern: re(/(\bnamespace\s+)<<0>>(?=\s*{)/.source, [identifier]),
+				pattern: re(/(\bnamespace\s+)<<0>>(?=\s*{)/.source, [qualifiedName]),
 				lookbehind: true,
 				inside: typeInside
 			},
