@@ -19,6 +19,10 @@ foreach ($list as $value) { // this "foreach" is a keyword
 Test::foreach(); // this is "foreach" static method
 Test::method();  // this is "method" static method
 
+// The only exception: class
+$variable->class(); // this "class" should be interpreted as "keyword"
+Test::class; // This "class" should still be a keyword
+
 ----------------------------------------------------
 
 [
@@ -112,5 +116,21 @@ Test::method();  // this is "method" static method
 	["punctuation", "("],
 	["punctuation", ")"],
 	["punctuation", ";"],
-	["comment", "// this is \"method\" static method"]
+	["comment", "// this is \"method\" static method"],
+
+	["comment", "// The only exception: class"],
+
+	["variable", "$variable"],
+	["operator", "->"],
+	["keyword", "class"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["comment", "// this \"class\" should be interpreted as \"keyword\""],
+
+	["class-name", "Test"],
+	["operator", "::"],
+	["keyword", "class"],
+	["punctuation", ";"],
+	["comment", "// This \"class\" should still be a keyword"]
 ]
