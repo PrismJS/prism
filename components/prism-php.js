@@ -105,11 +105,8 @@
 				pattern: /(\byield\s+)from\b/i,
 				lookbehind: true
 			},
-			{
-				// `class` is always a keyword unlike other keywords
-				pattern: /\bclass\b/i,
-				lookbehind: true
-			},
+			// `class` is always a keyword unlike other keywords
+			/\bclass\b/i,
 			{
 				// https://www.php.net/manual/en/reserved.keywords.php
 				//
