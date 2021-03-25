@@ -14,7 +14,7 @@
 						alias: 'line-h'
 					},
 					{
-						pattern: /\|   |│   /,
+						pattern: /\| {3}|│ {3}/,
 						alias: 'line-v'
 					},
 					{

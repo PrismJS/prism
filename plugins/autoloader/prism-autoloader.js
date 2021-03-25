@@ -443,7 +443,7 @@
 					languageCallback(lang, 'error');
 				});
 			}
-		};
+		}
 
 		var dependencies = lang_dependencies[lang];
 		if (dependencies && dependencies.length) {

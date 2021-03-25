@@ -41,6 +41,7 @@
 				break;
 
 			default: // 'Object'
+				// eslint-disable-next-line no-redeclare
 				var inside = value.inside || (value.inside = {});
 				addInvisibles(inside);
 				break;
@@ -64,6 +65,7 @@
 			}
 		}
 
+		// eslint-disable-next-line no-redeclare
 		for (var name in grammar) {
 			if (grammar.hasOwnProperty(name) && !invisibles[name]) {
 				if (name === 'rest') {

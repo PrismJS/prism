@@ -50,6 +50,7 @@
 			}
 		}
 		else if (typeof adapter === "string") {
+			// eslint-disable-next-line no-redeclare
 			for (var i = 0, item; item = adapters[i++];) {
 				if (item.name === adapter) {
 					return item.adapter;
@@ -78,7 +79,7 @@
 		}
 	}
 
-	registerAdapter(function github(rsp, el) {
+	registerAdapter(function github(rsp) {
 		if (rsp && rsp.meta && rsp.data) {
 			if (rsp.meta.status && rsp.meta.status >= 400) {
 				return "Error: " + (rsp.data.message || rsp.meta.status);
@@ -118,7 +119,7 @@
 		}
 		return null;
 	}, 'gist');
-	registerAdapter(function bitbucket(rsp, el) {
+	registerAdapter(function bitbucket(rsp) {
 		if (rsp && rsp.node && typeof (rsp.data) === "string") {
 			return rsp.data;
 		}
