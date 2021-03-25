@@ -280,6 +280,10 @@
 			"title": "Content-Security-Policy",
 			"owner": "ScottHelme"
 		},
+		"coq": {
+			"title": "Coq",
+			"owner": "RunDevelopment"
+		},
 		"crystal": {
 			"title": "Crystal",
 			"require": "ruby",
