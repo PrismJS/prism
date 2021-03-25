@@ -1,0 +1,79 @@
+barrier
+boxas
+boxto
+break
+const
+continue
+ctrl
+def
+defcal
+defcalgrammar
+delay
+else
+end
+for
+gate
+gphase
+if
+in
+include
+inv
+kernel
+lengthof
+let
+measure
+pow
+reset
+return
+rotary
+stretchinf
+while
+
+OPENQASM
+
+CX
+U
+
+#pragma
+
+----------------------------------------------------
+
+[
+	["keyword", "barrier"],
+	["keyword", "boxas"],
+	["keyword", "boxto"],
+	["keyword", "break"],
+	["keyword", "const"],
+	["keyword", "continue"],
+	["keyword", "ctrl"],
+	["keyword", "def"],
+	["keyword", "defcal"],
+	["keyword", "defcalgrammar"],
+	["keyword", "delay"],
+	["keyword", "else"],
+	["keyword", "end"],
+	["keyword", "for"],
+	["keyword", "gate"],
+	["keyword", "gphase"],
+	["keyword", "if"],
+	["keyword", "in"],
+	["keyword", "include"],
+	["keyword", "inv"],
+	["keyword", "kernel"],
+	["keyword", "lengthof"],
+	["keyword", "let"],
+	["keyword", "measure"],
+	["keyword", "pow"],
+	["keyword", "reset"],
+	["keyword", "return"],
+	["keyword", "rotary"],
+	["keyword", "stretchinf"],
+	["keyword", "while"],
+
+	["keyword", "OPENQASM"],
+
+	["keyword", "CX"],
+	["keyword", "U"],
+
+	["keyword", "#pragma"]
+]

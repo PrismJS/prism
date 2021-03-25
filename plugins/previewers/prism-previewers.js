@@ -1,9 +1,6 @@
 (function() {
 
-	if (
-		typeof self !== 'undefined' && !self.Prism ||
-		!self.document || !Function.prototype.bind
-	) {
+	if (typeof Prism === 'undefined' || typeof document === 'undefined' || !Function.prototype.bind) {
 		return;
 	}
 
@@ -485,9 +482,9 @@
 		};
 	};
 
-	var tokenRegexp = /(?:^|\s)token(?=$|\s)/;
-	var activeRegexp = /(?:^|\s)active(?=$|\s)/g;
-	var flippedRegexp = /(?:^|\s)flipped(?=$|\s)/g;
+	var TOKEN_CLASS = 'token';
+	var ACTIVE_CLASS = 'active';
+	var FLIPPED_CLASS = 'flipped';
 
 	/**
 	 * Previewer constructor
@@ -500,7 +497,6 @@
 	var Previewer = function (type, updater, supportedLanguages, initializer) {
 		this._elt = null;
 		this._type = type;
-		this._clsRegexp = RegExp('(?:^|\\s)' + type + '(?=$|\\s)');
 		this._token = null;
 		this.updater = updater;
 		this._mouseout = this.mouseout.bind(this);
@@ -543,6 +539,10 @@
 		}
 	};
 
+	/**
+	 * @param {Element} token
+	 * @returns {boolean}
+	 */
 	Previewer.prototype.isDisabled = function (token) {
 		do {
 			if (token.hasAttribute && token.hasAttribute('data-previewers')) {
@@ -555,14 +555,14 @@
 
 	/**
 	 * Checks the class name of each hovered element
-	 * @param token
+	 * @param {Element} token
 	 */
 	Previewer.prototype.check = function (token) {
-		if (tokenRegexp.test(token.className) && this.isDisabled(token)) {
+		if (token.classList.contains(TOKEN_CLASS) && this.isDisabled(token)) {
 			return;
 		}
 		do {
-			if (tokenRegexp.test(token.className) && this._clsRegexp.test(token.className)) {
+			if (token.classList && token.classList.contains(TOKEN_CLASS) && token.classList.contains(this._type)) {
 				break;
 			}
 		} while(token = token.parentNode);
@@ -597,14 +597,14 @@
 			this._token.addEventListener('mouseout', this._mouseout, false);
 
 			var offset = getOffset(this._token);
-			this._elt.className += ' active';
+			this._elt.classList.add(ACTIVE_CLASS);
 
 			if (offset.top - this._elt.offsetHeight > 0) {
-				this._elt.className = this._elt.className.replace(flippedRegexp, '');
+				this._elt.classList.remove(FLIPPED_CLASS);
 				this._elt.style.top = offset.top + 'px';
 				this._elt.style.bottom = '';
 			} else {
-				this._elt.className +=  ' flipped';
+				this._elt.classList.add(FLIPPED_CLASS);
 				this._elt.style.bottom = offset.bottom + 'px';
 				this._elt.style.top = '';
 			}
@@ -619,7 +619,7 @@
 	 * Hides the previewer.
 	 */
 	Previewer.prototype.hide = function () {
-		this._elt.className = this._elt.className.replace(activeRegexp, '');
+		this._elt.classList.remove(ACTIVE_CLASS);
 	};
 
 	/**

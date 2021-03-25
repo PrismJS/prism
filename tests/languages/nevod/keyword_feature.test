@@ -1,0 +1,15 @@
+@require @namespace @pattern @search
+@inside @outside @having
+@where
+
+----------------------------------------------------
+
+[
+	["keyword", "@require"], ["keyword", "@namespace"], ["keyword", "@pattern"], ["keyword", "@search"], 
+	["keyword", "@inside"], ["keyword", "@outside"], ["keyword", "@having"],
+	["keyword", "@where"]
+]
+
+----------------------------------------------------
+
+Checks for all keywords.

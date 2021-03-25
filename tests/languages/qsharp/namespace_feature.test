@@ -1,0 +1,30 @@
+namespace Quantum.App1 {
+    open Microsoft.Quantum.Canon;
+}
+
+----------------------------------------------------
+
+[
+	["keyword", "namespace"],
+	["class-name", [
+		"Quantum",
+		["punctuation", "."],
+		"App1"
+	]],
+	["punctuation", "{"],
+	["keyword", "open"],
+	["class-name", [
+		"Microsoft",
+		["punctuation", "."],
+		"Quantum",
+		["punctuation", "."],
+		"Canon"
+	]],
+	["punctuation", ";"],
+	["punctuation", "}"]
+]
+
+
+----------------------------------------------------
+
+Checks for namespace declaration and import

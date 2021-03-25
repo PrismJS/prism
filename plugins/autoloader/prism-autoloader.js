@@ -1,5 +1,6 @@
 (function () {
-	if (typeof self === 'undefined' || !self.Prism || !self.document || !document.createElement) {
+
+	if (typeof Prism === 'undefined' || typeof document === 'undefined') {
 		return;
 	}
 
@@ -89,7 +90,6 @@
 		"markup-templating": "markup",
 		"mongodb": "javascript",
 		"n4js": "javascript",
-		"nginx": "clike",
 		"objectivec": "c",
 		"opencl": "c",
 		"parser": "markup",
@@ -108,6 +108,7 @@
 		],
 		"purebasic": "clike",
 		"purescript": "haskell",
+		"qsharp": "clike",
 		"qml": "javascript",
 		"qore": "clike",
 		"racket": "scheme",
@@ -206,6 +207,7 @@
 		"n4jsd": "n4js",
 		"nani": "naniscript",
 		"objc": "objectivec",
+		"qasm": "openqasm",
 		"objectpascal": "pascal",
 		"px": "pcaxis",
 		"pcode": "peoplecode",
@@ -214,6 +216,7 @@
 		"pbfasm": "purebasic",
 		"purs": "purescript",
 		"py": "python",
+		"qs": "qsharp",
 		"rkt": "racket",
 		"rpy": "renpy",
 		"robot": "robotframework",
