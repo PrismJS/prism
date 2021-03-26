@@ -2,6 +2,8 @@
 module.exports = {
 	extends: 'eslint:recommended',
 	rules: {
+		'no-var': 'error',
+
 		// I turned this rule off because we use `hasOwnProperty` in a lot of places
 		// TODO: Think about re-enabling this rule
 		'no-prototype-builtins': 'off',
@@ -43,6 +45,9 @@ module.exports = {
 			},
 			globals: {
 				'Prism': true
+			},
+			rules: {
+				'no-var': 'off'
 			}
 		},
 		{
@@ -65,6 +70,9 @@ module.exports = {
 			env: {
 				browser: true,
 				node: true
+			},
+			rules: {
+				'no-var': 'off'
 			}
 		},
 		{
@@ -83,6 +91,9 @@ module.exports = {
 				'$': true,
 				'$$': true,
 				'$u': true
+			},
+			rules: {
+				'no-var': 'off'
 			}
 		},
 		{
