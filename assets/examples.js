@@ -160,7 +160,7 @@ function buildContentsHeader(id) {
 			header += ':';
 			header += '<ul>';
 			deps.forEach(function (text) {
-				header += '<li>' + text + '.</li>'
+				header += '<li>' + text + '.</li>';
 			});
 			header += '</ul>';
 		}

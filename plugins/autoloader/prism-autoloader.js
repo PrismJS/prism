@@ -350,7 +350,7 @@
 	 * @returns {string}
 	 */
 	function getLanguagePath(lang) {
-		return config.languages_path + 'prism-' + lang + (config.use_minified ? '.min' : '') + '.js'
+		return config.languages_path + 'prism-' + lang + (config.use_minified ? '.min' : '') + '.js';
 	}
 
 	/**

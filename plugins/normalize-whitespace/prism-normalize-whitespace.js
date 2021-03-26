@@ -10,7 +10,7 @@ var assign = Object.assign || function (obj1, obj2) {
 			obj1[name] = obj2[name];
 	}
 	return obj1;
-}
+};
 
 function NormalizeWhitespace(defaults) {
 	this.defaults = assign({}, defaults);

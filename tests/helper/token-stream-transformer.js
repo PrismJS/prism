@@ -274,8 +274,8 @@ function printPrettyTokenStream(prettyStream, indentationLevel = 1) {
 			const lineEnd = (i === prettyStream.length - 1) ? '\n' : ',\n';
 			out += lineEnd;
 		}
-	})
-	out += indentation.substr(indentChar.length) + ']'
+	});
+	out += indentation.substr(indentChar.length) + ']';
 	return out;
 }
 

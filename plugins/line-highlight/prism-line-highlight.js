@@ -56,7 +56,7 @@
 				document.body.removeChild(d);
 			}
 			return res;
-		}
+		};
 	}());
 
 	/**

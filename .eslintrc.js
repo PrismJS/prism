@@ -2,6 +2,8 @@
 module.exports = {
 	extends: 'eslint:recommended',
 	rules: {
+		'semi': 'error',
+
 		// I turned this rule off because we use `hasOwnProperty` in a lot of places
 		// TODO: Think about re-enabling this rule
 		'no-prototype-builtins': 'off',

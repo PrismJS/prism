@@ -318,12 +318,12 @@ describe('components.json', function () {
 
 			for (const modifyId of toArray(entry.modify)) {
 				if (optional.has(modifyId)) {
-					assert.fail(`The component "${id}" has declared "${modifyId}" as both optional and modify.`)
+					assert.fail(`The component "${id}" has declared "${modifyId}" as both optional and modify.`);
 				}
 			}
 			for (const requireId of toArray(entry.require)) {
 				if (optional.has(requireId)) {
-					assert.fail(`The component "${id}" has declared "${requireId}" as both optional and require.`)
+					assert.fail(`The component "${id}" has declared "${requireId}" as both optional and require.`);
 				}
 			}
 		});
