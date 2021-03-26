@@ -1764,6 +1764,6 @@ Prism.languages.js = Prism.languages.javascript;
 			logged = true;
 		}
 		Prism.plugins.fileHighlight.highlight.apply(this, arguments);
-	}
+	};
 
 })();
