@@ -154,7 +154,7 @@
 		try {
 			// Any normal text will blow up this selector.
 			template = document.querySelector('template#' + text);
-		} catch (e) {}
+		} catch (e) { /* noop */ }
 
 		if (template) {
 			element = template.content;

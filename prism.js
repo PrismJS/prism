@@ -431,8 +431,8 @@ var _ = {
 				if (o.hasOwnProperty(i)) {
 					callback.call(o, i, o[i], type || i);
 
-					var property = o[i],
-					    propertyType = _.util.type(property);
+					var property = o[i];
+					var propertyType = _.util.type(property);
 
 					if (propertyType === 'Object' && !visited[objId(property)]) {
 						visited[objId(property)] = true;
@@ -977,6 +977,7 @@ function matchGrammar(text, tokenList, grammar, startNode, startPos, rematch) {
 					}
 				}
 
+				// eslint-disable-next-line no-redeclare
 				var from = match.index,
 					matchStr = match[0],
 					before = str.slice(0, from),

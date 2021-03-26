@@ -1,7 +1,6 @@
 "use strict";
 
 const fs = require("fs");
-const { getAllFiles } = require("./test-discovery");
 const components = require("../../components.json");
 const getLoader = require("../../dependencies");
 const languagesCatalog = components.languages;

@@ -40,9 +40,9 @@ function toArray(value) {
 var hstr = window.location.hash.match(/(?:languages|plugins)=[-+\w]+|themes=[-\w]+/g);
 if (hstr) {
 	hstr.forEach(function(str) {
-		var kv = str.split('=', 2),
-		    category = kv[0],
-		    ids = kv[1].split('+');
+		var kv = str.split('=', 2);
+		var category = kv[0];
+		var ids = kv[1].split('+');
 		if (category !== 'meta' && category !== 'core' && components[category]) {
 			for (var id in components[category]) {
 				if (components[category][id].option) {
@@ -54,6 +54,7 @@ if (hstr) {
 				if (themeInput) {
 					themeInput.checked = true;
 				}
+				// eslint-disable-next-line no-undef
 				setTheme(ids[0]);
 			}
 			var makeDefault = function (id) {
@@ -314,8 +315,8 @@ function getFilesSizes() {
 				continue;
 			}
 
-			var distro = all[id].files[minified? 'minified' : 'dev'],
-			    files = distro.paths;
+			var distro = all[id].files[minified? 'minified' : 'dev'];
+			var files = distro.paths;
 
 			files.forEach(function (filepath) {
 				var file = cache[filepath] = cache[filepath] || {};
@@ -380,8 +381,8 @@ function update(updatedCategory, updatedId){
 					if (cache[path]) {
 						var file = cache[path];
 
-						var type = path.match(/\.(\w+)$/)[1],
-						    size = file.size || 0;
+						var type = path.match(/\.(\w+)$/)[1];
+						var size = file.size || 0;
 
 						if (info.enabled) {
 
@@ -408,6 +409,7 @@ function update(updatedCategory, updatedId){
 				if (themeInput) {
 					themeInput.checked = true;
 				}
+				// eslint-disable-next-line no-undef
 				setTheme(updatedId);
 			}
 		}
@@ -581,8 +583,8 @@ function buildCode(promises) {
 	promises = finalPromises;
 
 	// build
-	var i = 0,
-	    l = promises.length;
+	var i = 0;
+	var l = promises.length;
 	var code = {js: '', css: ''};
 	var errors = [];
 

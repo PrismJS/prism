@@ -40,8 +40,8 @@ Prism.languages.abap = {
 		lookbehind: true,
 		alias: "punctuation"
 	}, {
-	    /* Special tokens used do delimit string templates */
-	    pattern: /[|{}]/,
+		/* Special tokens used do delimit string templates */
+		pattern: /[|{}]/,
 		alias: "punctuation"
 	}],
 	'punctuation' : /[,.:()]/
