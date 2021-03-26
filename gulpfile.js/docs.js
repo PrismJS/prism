@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const { src, dest, series } = require('gulp');
 const replace = require('gulp-replace');

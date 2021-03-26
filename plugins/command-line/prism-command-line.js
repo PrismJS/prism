@@ -8,7 +8,7 @@
 	var PROMPT_CLASS = 'command-line-prompt';
 
 	/** @type {(str: string, prefix: string) => boolean} */
-	var startsWith = "".startsWith
+	var startsWith = ''.startsWith
 		? function (s, p) { return s.startsWith(p); }
 		: function (s, p) { return s.indexOf(p) === 0; };
 
@@ -22,7 +22,7 @@
 	 * @returns {string}
 	 */
 	function repeat(str, times) {
-		var s = "";
+		var s = '';
 		for (var i = 0; i < times; i++) {
 			s += str;
 		}

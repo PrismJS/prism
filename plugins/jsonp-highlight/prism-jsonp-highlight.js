@@ -29,7 +29,7 @@
 	 */
 	function registerAdapter(adapter, name) {
 		name = name || adapter.name;
-		if (typeof adapter === "function" && !getAdapter(adapter) && !getAdapter(name)) {
+		if (typeof adapter === 'function' && !getAdapter(adapter) && !getAdapter(name)) {
 			adapters.push({ adapter: adapter, name: name });
 		}
 	}
@@ -42,14 +42,14 @@
 	 * @returns {Adapter} A registered adapter or `null`.
 	 */
 	function getAdapter(adapter) {
-		if (typeof adapter === "function") {
+		if (typeof adapter === 'function') {
 			for (var i = 0, item; item = adapters[i++];) {
 				if (item.adapter.valueOf() === adapter.valueOf()) {
 					return item.adapter;
 				}
 			}
 		}
-		else if (typeof adapter === "string") {
+		else if (typeof adapter === 'string') {
 			// eslint-disable-next-line no-redeclare
 			for (var i = 0, item; item = adapters[i++];) {
 				if (item.name === adapter) {
@@ -66,10 +66,10 @@
 	 * @param {string|Function} adapter The adapter itself or the name of an adapter.
 	 */
 	function removeAdapter(adapter) {
-		if (typeof adapter === "string") {
+		if (typeof adapter === 'string') {
 			adapter = getAdapter(adapter);
 		}
-		if (typeof adapter === "function") {
+		if (typeof adapter === 'function') {
 			var index = adapters.findIndex(function (item) {
 				return item.adapter === adapter;
 			});
@@ -82,12 +82,12 @@
 	registerAdapter(function github(rsp) {
 		if (rsp && rsp.meta && rsp.data) {
 			if (rsp.meta.status && rsp.meta.status >= 400) {
-				return "Error: " + (rsp.data.message || rsp.meta.status);
+				return 'Error: ' + (rsp.data.message || rsp.meta.status);
 			}
-			else if (typeof (rsp.data.content) === "string") {
-				return typeof (atob) === "function"
-					? atob(rsp.data.content.replace(/\s/g, ""))
-					: "Your browser cannot decode base64";
+			else if (typeof (rsp.data.content) === 'string') {
+				return typeof (atob) === 'function'
+					? atob(rsp.data.content.replace(/\s/g, ''))
+					: 'Your browser cannot decode base64';
 			}
 		}
 		return null;
@@ -95,11 +95,11 @@
 	registerAdapter(function gist(rsp, el) {
 		if (rsp && rsp.meta && rsp.data && rsp.data.files) {
 			if (rsp.meta.status && rsp.meta.status >= 400) {
-				return "Error: " + (rsp.data.message || rsp.meta.status);
+				return 'Error: ' + (rsp.data.message || rsp.meta.status);
 			}
 
 			var files = rsp.data.files;
-			var filename = el.getAttribute("data-filename");
+			var filename = el.getAttribute('data-filename');
 			if (filename == null) {
 				// Maybe in the future we can somehow render all files
 				// But the standard <script> include for gists does that nicely already,
@@ -115,12 +115,12 @@
 			if (files[filename] !== undefined) {
 				return files[filename].content;
 			}
-			return "Error: unknown or missing gist file " + filename;
+			return 'Error: unknown or missing gist file ' + filename;
 		}
 		return null;
 	}, 'gist');
 	registerAdapter(function bitbucket(rsp) {
-		if (rsp && rsp.node && typeof (rsp.data) === "string") {
+		if (rsp && rsp.node && typeof (rsp.data) === 'string') {
 			return rsp.data;
 		}
 		return null;

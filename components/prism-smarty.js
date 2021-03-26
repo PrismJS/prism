@@ -37,11 +37,11 @@
 			// Value is made optional because it may have already been tokenized
 			pattern: /\w+\s*=\s*(?:(?!\d)\w+)?/,
 			inside: {
-				"variable": {
+				'variable': {
 					pattern: /(=\s*)(?!\d)\w+/,
 					lookbehind: true
 				},
-				"operator": /=/
+				'operator': /=/
 			}
 		},
 		'punctuation': [

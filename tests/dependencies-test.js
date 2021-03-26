@@ -283,18 +283,18 @@ describe('components.json', function () {
 	}
 
 	const entryProperties = [
-		"title",
-		"description",
-		"alias",
-		"aliasTitles",
-		"owner",
+		'title',
+		'description',
+		'alias',
+		'aliasTitles',
+		'owner',
 
-		"require",
-		"optional",
-		"modify",
+		'require',
+		'optional',
+		'modify',
 
-		"noCSS",
-		"option"
+		'noCSS',
+		'option'
 	];
 
 	it('- should be valid', function () {
@@ -363,7 +363,7 @@ describe('components.json', function () {
 
 	it('- should not have single-element or empty arrays', function () {
 		/** @type {keyof import("../dependencies").ComponentEntry} */
-		const properties = ["alias", "optional", "require", "modify"];
+		const properties = ['alias', 'optional', 'require', 'modify'];
 
 		forEachEntry((entry, id) => {
 			for (const prop of properties) {

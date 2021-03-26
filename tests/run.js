@@ -1,16 +1,16 @@
 // @ts-check
-"use strict";
+'use strict';
 
-const TestDiscovery = require("./helper/test-discovery");
-const TestCase = require("./helper/test-case");
-const path = require("path");
-const { argv } = require("yargs");
+const TestDiscovery = require('./helper/test-discovery');
+const TestCase = require('./helper/test-case');
+const path = require('path');
+const { argv } = require('yargs');
 
 const testSuite =
 	(argv.language)
-		? TestDiscovery.loadSomeTests(__dirname + "/languages", argv.language)
+		? TestDiscovery.loadSomeTests(__dirname + '/languages', argv.language)
 		// load complete test suite
-		: TestDiscovery.loadAllTests(__dirname + "/languages");
+		: TestDiscovery.loadAllTests(__dirname + '/languages');
 
 const accept = !!argv.accept;
 

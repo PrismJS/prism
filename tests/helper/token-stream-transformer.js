@@ -180,8 +180,8 @@ function prettyFormat(prettyStream) {
 				return lines.map(g => {
 					if (g.length > 1) {
 						return g
-							.map(item => isToken(item) ? ", ".length + JSON.stringify(item).length : 0)
-							.reduce((a, b) => a + b, 0) - ", ".length;
+							.map(item => isToken(item) ? ', '.length + JSON.stringify(item).length : 0)
+							.reduce((a, b) => a + b, 0) - ', '.length;
 					} else {
 						// we don't really care about the print width of a single-token line
 						return 1;
@@ -421,7 +421,7 @@ function prettyCountTokens(prettyStream, recursive) {
  */
 function prettyGlueTogether(prettyStream, prev, next) {
 	// strings may appear more than once in the stream, so we have to search for tokens.
-	if (typeof prev !== "string") {
+	if (typeof prev !== 'string') {
 		let index = prettyStream.indexOf(prev);
 		if (index === -1 || prettyStream[index + 1] !== next) {
 			throw new Error('Cannot glue: At least one of the tokens is not part of the given token stream.');

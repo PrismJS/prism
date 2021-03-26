@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const { src, dest, series, parallel, watch } = require('gulp');
 
@@ -45,7 +45,7 @@ function inlineRegexSource() {
 					}
 					return '\\\\' + g1;
 				} else {
-					return "[^]";
+					return '[^]';
 				}
 			});
 			// escape single quotes

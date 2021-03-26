@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const { assert } = require('chai');
 const PrismLoader = require('./helper/prism-loader');
@@ -157,7 +157,7 @@ function getOptions(lang) {
  * @property {string | Token | (string | Token)[]} content
  */
 function isNotBroken(token) {
-	if (typeof token === "string") {
+	if (typeof token === 'string') {
 		return true;
 	} else if (Array.isArray(token)) {
 		return token.length === 1 && isNotBroken(token[0]);

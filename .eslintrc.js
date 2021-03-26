@@ -2,6 +2,8 @@
 module.exports = {
 	extends: 'eslint:recommended',
 	rules: {
+		'quotes': ['error', 'single', { avoidEscape: true, allowTemplateLiterals: true }],
+
 		// I turned this rule off because we use `hasOwnProperty` in a lot of places
 		// TODO: Think about re-enabling this rule
 		'no-prototype-builtins': 'off',
