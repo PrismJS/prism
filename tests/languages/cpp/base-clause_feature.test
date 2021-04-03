@@ -67,7 +67,7 @@ class service : private Transport // comment
 	["operator", ":"],
 	["base-clause", [
 		["keyword", "virtual"],
-		["class-name", "baz"],
+		" baz",
 		["double-colon", "::"],
 		["class-name", "B"]
 	]],
@@ -82,7 +82,7 @@ class service : private Transport // comment
 		["keyword", "public"],
 		["class-name", "B"],
 		["operator", "<"],
-		["class-name", "foo"],
+		"foo",
 		["double-colon", "::"],
 		["class-name", "T"],
 		["operator", ">"]
@@ -97,9 +97,9 @@ class service : private Transport // comment
 		["punctuation", ","],
 		["class-name", "Y"],
 		["punctuation", ","],
-		["class-name", "foo"],
+		" foo",
 		["double-colon", "::"],
-		["class-name", "bar"],
+		"bar",
 		["double-colon", "::"],
 		["class-name", "Z"]
 	]],

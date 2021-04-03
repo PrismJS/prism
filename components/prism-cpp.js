@@ -91,7 +91,7 @@
 		}
 	});
 
-	Prism.languages.insertBefore('inside', 'operator', {
+	Prism.languages.insertBefore('inside', 'double-colon', {
 		// All untokenized words that are not namespaces should be class names
 		'class-name': /\b[a-z_]\w*\b(?!\s*::)/i
 	}, Prism.languages.cpp['base-clause']);
