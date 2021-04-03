@@ -3,7 +3,8 @@ module.exports = {
 	root: true,
 	extends: 'eslint:recommended',
 	rules: {
-		'semi': 'error',
+		// stylistic rules
+		'semi': 'warn',
 
 		// I turned this rule off because we use `hasOwnProperty` in a lot of places
 		// TODO: Think about re-enabling this rule
