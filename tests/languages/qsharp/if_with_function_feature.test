@@ -1,0 +1,24 @@
+if result == One { 
+	X(qubit); 
+}
+
+----------------------------------------------------
+
+[
+	["keyword", "if"],
+	" result ",
+	["operator", "=="],
+	["keyword", "One"],
+	["punctuation", "{"],
+	["function", "X"],
+	["punctuation", "("],
+	"qubit",
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["punctuation", "}"]
+]
+
+
+----------------------------------------------------
+
+Checks for if, equality and function

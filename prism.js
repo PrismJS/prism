@@ -431,8 +431,8 @@ var _ = {
 				if (o.hasOwnProperty(i)) {
 					callback.call(o, i, o[i], type || i);
 
-					var property = o[i],
-					    propertyType = _.util.type(property);
+					var property = o[i];
+					var propertyType = _.util.type(property);
 
 					if (propertyType === 'Object' && !visited[objId(property)]) {
 						visited[objId(property)] = true;
@@ -562,6 +562,12 @@ var _ = {
 		}
 
 		_.hooks.run('before-sanity-check', env);
+
+		// plugins may change/add the parent/element
+		parent = env.element.parentElement;
+		if (parent && parent.nodeName.toLowerCase() === 'pre' && !parent.hasAttribute('tabindex')) {
+			parent.setAttribute('tabindex', '0');
+		}
 
 		if (!env.code) {
 			_.hooks.run('complete', env);
@@ -971,6 +977,7 @@ function matchGrammar(text, tokenList, grammar, startNode, startPos, rematch) {
 					}
 				}
 
+				// eslint-disable-next-line no-redeclare
 				var from = match.index,
 					matchStr = match[0],
 					before = str.slice(0, from),
@@ -1515,7 +1522,7 @@ Prism.languages.javascript = Prism.languages.extend('clike', {
 			lookbehind: true
 		},
 		{
-			pattern: /(^|[^.]|\.\.\.\s*)\b(?:as|async(?=\s*(?:function\b|\(|[$\w\xA0-\uFFFF]|$))|await|break|case|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally(?=\s*(?:\{|$))|for|from(?=\s*(?:['"]|$))|function|(?:get|set)(?=\s*(?:[\[$\w\xA0-\uFFFF]|$))|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|static|super|switch|this|throw|try|typeof|undefined|var|void|while|with|yield)\b/,
+			pattern: /(^|[^.]|\.\.\.\s*)\b(?:as|async(?=\s*(?:function\b|\(|[$\w\xA0-\uFFFF]|$))|await|break|case|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally(?=\s*(?:\{|$))|for|from(?=\s*(?:['"]|$))|function|(?:get|set)(?=\s*(?:[#\[$\w\xA0-\uFFFF]|$))|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|static|super|switch|this|throw|try|typeof|undefined|var|void|while|with|yield)\b/,
 			lookbehind: true
 		},
 	],
@@ -1573,6 +1580,11 @@ Prism.languages.insertBefore('javascript', 'keyword', {
 });
 
 Prism.languages.insertBefore('javascript', 'string', {
+	'hashbang': {
+		pattern: /^#!.*/,
+		greedy: true,
+		alias: 'comment'
+	},
 	'template-string': {
 		pattern: /`(?:\\[\s\S]|\${(?:[^{}]|{(?:[^{}]|{[^}]*})*})+}|(?!\${)[^\\`])*`/,
 		greedy: true,
@@ -1616,7 +1628,8 @@ Prism.languages.js = Prism.languages.javascript;
 ********************************************** */
 
 (function () {
-	if (typeof self === 'undefined' || !self.Prism || !self.document) {
+
+	if (typeof Prism === 'undefined' || typeof document === 'undefined') {
 		return;
 	}
 
@@ -1624,8 +1637,6 @@ Prism.languages.js = Prism.languages.javascript;
 	if (!Element.prototype.matches) {
 		Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
 	}
-
-	var Prism = window.Prism;
 
 	var LOADING_MESSAGE = 'Loading…';
 	var FAILURE_MESSAGE = function (status, message) {

@@ -7,7 +7,7 @@ continue covariant default deferred
 do dynamic else enum
 export extension external
 extends;
-factory final finally for Function
+factory final finally for
 get hide if
 implements;
 interface;
@@ -34,7 +34,7 @@ void while with yield
 	["keyword", "do"], ["keyword", "dynamic"], ["keyword", "else"], ["keyword", "enum"],
 	["keyword", "export"], ["keyword", "extension"], ["keyword", "external"],
 	["keyword", "extends"], ["punctuation", ";"],
-	["keyword", "factory"], ["keyword", "final"], ["keyword", "finally"], ["keyword", "for"], ["keyword", "Function"],
+	["keyword", "factory"], ["keyword", "final"], ["keyword", "finally"], ["keyword", "for"],
 	["keyword", "get"], ["keyword", "hide"], ["keyword", "if"],
 	["keyword", "implements"], ["punctuation", ";"],
 	["keyword", "interface"], ["punctuation", ";"],

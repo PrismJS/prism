@@ -46,6 +46,12 @@ const testOptions = {
 		number: false,
 		template: false,
 	},
+
+	// Nevod uses underscore symbol as operator and allows hyphen to be part of identifier
+	'nevod': {
+		word: false,
+		template: false,
+	},
 };
 
 /** @type {Record<keyof IdentifierTestOptions, string[]>} */
