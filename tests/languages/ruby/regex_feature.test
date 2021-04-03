@@ -2,6 +2,7 @@
 /[bar]/,
 /./i;
 /foo#{bar}/;
+/ab+c/ix
 %r!foo?bar#{39+3}!
 %r(foo?bar#{39+3})
 %r{foo?bar#{39+3}}
@@ -10,6 +11,17 @@
 
 /foo/ # comment
 /foo#{bar}/ # comment
+
+# flags
+/abc/e
+/abc/g
+/abc/i
+/abc/m
+/abc/n
+/abc/o
+/abc/s
+/abc/u
+/abc/x
 
 ----------------------------------------------------
 
@@ -32,6 +44,8 @@
 		"/"
 	]],
 	["punctuation", ";"],
+
+	["regex", ["/ab+c/ix"]],
 
 	["regex", [
 		"%r!foo?bar",
@@ -105,7 +119,18 @@
 		]],
 		"/"
 	]],
-	["comment", "# comment"]
+	["comment", "# comment"],
+
+	["comment", "# flags"],
+	["regex", ["/abc/e"]],
+	["regex", ["/abc/g"]],
+	["regex", ["/abc/i"]],
+	["regex", ["/abc/m"]],
+	["regex", ["/abc/n"]],
+	["regex", ["/abc/o"]],
+	["regex", ["/abc/s"]],
+	["regex", ["/abc/u"]],
+	["regex", ["/abc/x"]]
 ]
 
 ----------------------------------------------------
