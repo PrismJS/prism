@@ -1,5 +1,6 @@
 /** @type {import('eslint').Linter.Config} */
 module.exports = {
+	root: true,
 	extends: 'eslint:recommended',
 	rules: {
 		// I turned this rule off because we use `hasOwnProperty` in a lot of places
