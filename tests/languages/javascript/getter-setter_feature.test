@@ -5,6 +5,7 @@ const obj = {
 	set name(val) { },
 	set [expr](val) { },
 	async set [expr](val) { },
+	get #x() { return #xValue; },
 };
 
 // not keywords
@@ -58,9 +59,7 @@ set(foo);
 	["keyword", "set"],
 	["function", "name"],
 	["punctuation", "("],
-	["parameter", [
-		"val"
-	]],
+	["parameter", ["val"]],
 	["punctuation", ")"],
 	["punctuation", "{"],
 	["punctuation", "}"],
@@ -71,9 +70,7 @@ set(foo);
 	"expr",
 	["punctuation", "]"],
 	["punctuation", "("],
-	["parameter", [
-		"val"
-	]],
+	["parameter", ["val"]],
 	["punctuation", ")"],
 	["punctuation", "{"],
 	["punctuation", "}"],
@@ -85,11 +82,20 @@ set(foo);
 	"expr",
 	["punctuation", "]"],
 	["punctuation", "("],
-	["parameter", [
-		"val"
-	]],
+	["parameter", ["val"]],
 	["punctuation", ")"],
 	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+
+	["keyword", "get"],
+	["function", "#x"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["keyword", "return"],
+	" #xValue",
+	["punctuation", ";"],
 	["punctuation", "}"],
 	["punctuation", ","],
 

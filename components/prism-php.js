@@ -48,6 +48,11 @@
 			lookbehind: true,
 			alias: 'class-name'
 		},
+		'function-definition': {
+			pattern: /(\bfunction\s+)[a-z_]\w*(?=\s*\()/i,
+			lookbehind: true,
+			alias: 'function'
+		},
 		'keyword': [
 			{
 				pattern: /(\(\s*)\b(?:bool|boolean|int|integer|float|string|object|array)\b(?=\s*\))/i,
@@ -95,7 +100,21 @@
 				alias: 'static-context',
 				greedy: true
 			},
-			/\b(?:__halt_compiler|abstract|and|array|as|break|callable|case|catch|class|clone|const|continue|declare|default|die|do|echo|else|elseif|empty|enddeclare|endfor|endforeach|endif|endswitch|endwhile|enum|eval|exit|extends|final|finally|for|foreach|function|global|goto|if|implements|include|include_once|instanceof|insteadof|interface|isset|list|namespace|match|new|or|parent|print|private|protected|public|require|require_once|return|self|static|switch|throw|trait|try|unset|use|var|while|xor|yield)\b/i
+			{
+				// yield from
+				pattern: /(\byield\s+)from\b/i,
+				lookbehind: true
+			},
+			// `class` is always a keyword unlike other keywords
+			/\bclass\b/i,
+			{
+				// https://www.php.net/manual/en/reserved.keywords.php
+				//
+				// keywords cannot be preceded by "->"
+				// the complex lookbehind means `(?<!(?:->|::)\s*)`
+				pattern: /((?:^|[^\s>:]|(?:^|[^-])>|(?:^|[^:]):)\s*)\b(?:__halt_compiler|abstract|and|array|as|break|callable|case|catch|clone|const|continue|declare|default|die|do|echo|else|elseif|empty|enddeclare|endfor|endforeach|endif|endswitch|endwhile|enum|eval|exit|extends|final|finally|for|foreach|function|global|goto|if|implements|include|include_once|instanceof|insteadof|interface|isset|list|namespace|match|new|or|parent|print|private|protected|public|require|require_once|return|self|static|switch|throw|trait|try|unset|use|var|while|xor|yield)\b/i,
+				lookbehind: true
+			}
 		],
 		'argument-name': {
 			pattern: /([(,]\s+)\b[a-z_]\w*(?=\s*:(?!:))/i,
@@ -200,9 +219,9 @@
 			}
 		],
 		'constant': constant,
-		'function': /\w+\s*(?=\()/,
+		'function': /\b\w+(?=\s*\()/,
 		'property': {
-			pattern: /(->)[\w]+/,
+			pattern: /(->\s*)\w+/,
 			lookbehind: true
 		},
 		'number': number,
@@ -243,7 +262,7 @@
 						'punctuation': /^<<<"?|[";]$/
 					}
 				},
-				'interpolation': string_interpolation // See below
+				'interpolation': string_interpolation
 			}
 		},
 		{
@@ -261,16 +280,13 @@
 			alias: 'double-quoted-string',
 			greedy: true,
 			inside: {
-				'interpolation': string_interpolation // See below
+				'interpolation': string_interpolation
 			}
 		}
 	];
 
 	Prism.languages.insertBefore('php', 'variable', {
 		'string': string,
-	});
-
-	Prism.languages.insertBefore('php', 'variable', {
 		'attribute': {
 			pattern: /#\[(?:[^"'\/#]|\/(?![*/])|\/\/.*$|#(?!\[).*$|\/\*(?:[^*]|\*(?!\/))*\*\/|"(?:\\[\s\S]|[^\\"])*"|'(?:\\[\s\S]|[^\\'])*')+\](?=\s*[a-z$#])/mi,
 			greedy: true,
@@ -316,7 +332,7 @@
 		},
 	});
 
-	Prism.hooks.add('before-tokenize', function(env) {
+	Prism.hooks.add('before-tokenize', function (env) {
 		if (!/<\?/.test(env.code)) {
 			return;
 		}
@@ -325,7 +341,7 @@
 		Prism.languages['markup-templating'].buildPlaceholders(env, 'php', phpPattern);
 	});
 
-	Prism.hooks.add('after-tokenize', function(env) {
+	Prism.hooks.add('after-tokenize', function (env) {
 		Prism.languages['markup-templating'].tokenizePlaceholders(env, 'php');
 	});
 

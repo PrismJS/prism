@@ -63,7 +63,10 @@
 	/** @param {CopyInfo} copyInfo */
 	function copyTextToClipboard(copyInfo) {
 		if (navigator.clipboard) {
-			navigator.clipboard.writeText(copyInfo.getText()).then(copyInfo.success, copyInfo.error);
+			navigator.clipboard.writeText(copyInfo.getText()).then(copyInfo.success, function() {
+				// try the fallback in case `writeText` didn't work
+				fallbackCopyTextToClipboard(copyInfo);
+			});
 		} else {
 			fallbackCopyTextToClipboard(copyInfo);
 		}
