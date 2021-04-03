@@ -53,9 +53,9 @@ module.exports = {
 	 *
 	 * @param {string} languageIdentifier
 	 * @param {string} filePath
-	 * @param {boolean} acceptEmpty
+	 * @param {"none" | "insert" | "update"} updateMode
 	 */
-	runTestCase(languageIdentifier, filePath, acceptEmpty) {
+	runTestCase(languageIdentifier, filePath, updateMode) {
 		const testCase = this.parseTestCaseFile(filePath);
 		const usedLanguages = this.parseLanguageNames(languageIdentifier);
 
@@ -64,30 +64,31 @@ module.exports = {
 		// the first language is the main language to highlight
 		const tokenStream = this.tokenize(Prism, testCase.code, usedLanguages.mainLanguage);
 
-		if (testCase.expectedTokenStream === null) {
-			// the test case doesn't have an expected value
-			if (!acceptEmpty) {
-				throw new Error('This test case doesn\'t have an expected toke n stream.'
-					+ ' Either add the JSON of a token stream or run \`npm run test:languages -- --accept\`'
-					+ ' to automatically add the current token stream.');
-			}
-
+		function updateFile() {
 			// change the file
 			const lineEnd = (/\r\n/.test(testCase.code) || !/\n/.test(testCase.code)) ? '\r\n' : '\n';
 			const separator = '\n\n----------------------------------------------------\n\n';
-			const pretty = TokenStreamTransformer.prettyprint(tokenStream)
-				.replace(/^( +)/gm, m => {
-					return '\t'.repeat(m.length / 4);
-				});
+			const pretty = TokenStreamTransformer.prettyprint(tokenStream, '\t');
 
 			let content = testCase.code + separator + pretty;
-			if (testCase.comment) {
-				content += separator + testCase.comment;
+			if (testCase.comment.trim()) {
+				content += separator + testCase.comment.trim();
 			}
-			//content += '\n'
+			content += '\n'
 			content = content.replace(/\r?\n/g, lineEnd);
 
 			fs.writeFileSync(filePath, content, 'utf-8');
+		}
+
+		if (testCase.expectedTokenStream === null) {
+			// the test case doesn't have an expected value
+			if (updateMode === 'none') {
+				throw new Error('This test case doesn\'t have an expected token stream.'
+					+ ' Either add the JSON of a token stream or run \`npm run test:languages -- --insert\`'
+					+ ' to automatically add the current token stream.');
+			}
+
+			updateFile();
 		} else {
 			// there is an expected value
 			const simplifiedTokenStream = TokenStreamTransformer.simplify(tokenStream);
@@ -100,6 +101,11 @@ module.exports = {
 				return;
 			}
 
+			if (updateMode === 'update') {
+				updateFile();
+				return;
+			}
+
 			// The index of the first difference between the expected token stream and the actual token stream.
 			// The index is in the raw expected token stream JSON of the test case.
 			const diffIndex = translateIndexIgnoreSpaces(testCase.expectedJson, expected, firstDiff(expected, actual));
@@ -108,11 +114,14 @@ module.exports = {
 			const lineNumber = testCase.expectedLineOffset + expectedJsonLines.length;
 
 			const tokenStreamStr = TokenStreamTransformer.prettyprint(tokenStream);
-			const message = '\n\nActual Token Stream:' +
-				'\n-----------------------------------------\n' +
+			const message = `\nThe expected token stream differs from the actual token stream.` +
+				` Either change the ${usedLanguages.mainLanguage} language or update the expected token stream.` +
+				` Run \`npm run test:languages -- --update\` to update all missing or incorrect expected token streams.` +
+				`\n\n\nActual Token Stream:` +
+				`\n-----------------------------------------\n` +
 				tokenStreamStr +
-				'\n-----------------------------------------\n' +
-				'File: ' + filePath + ':' + lineNumber + ':' + columnNumber + '\n\n';
+				`\n-----------------------------------------\n` +
+				`File: ${filePath}:${lineNumber}:${columnNumber}\n\n`;
 
 			assert.deepEqual(simplifiedTokenStream, testCase.expectedTokenStream, testCase.comment + message);
 		}

@@ -1,0 +1,93 @@
+foo();
+line.substr(0, separator_index);
+boost::trim(key);
+bpo::value<std::string>()
+bpo::value<std::vector<std::string>>()->multitoken()
+std::make_unique<service::UniqueMap>(std::move(entries));
+
+----------------------------------------------------
+
+[
+	["function", "foo"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	"\r\nline",
+	["punctuation", "."],
+	["function", "substr"],
+	["punctuation", "("],
+	["number", "0"],
+	["punctuation", ","],
+	" separator_index",
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	"\r\nboost",
+	["double-colon", "::"],
+	["function", "trim"],
+	["punctuation", "("],
+	"key",
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	"\r\nbpo",
+	["double-colon", "::"],
+	["generic-function", [
+		["function", "value"],
+		["generic", [
+			["operator", "<"],
+			"std",
+			["double-colon", "::"],
+			"string",
+			["operator", ">"]
+		]]
+	]],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	"\r\nbpo",
+	["double-colon", "::"],
+	["generic-function", [
+		["function", "value"],
+		["generic", [
+			["operator", "<"],
+			"std",
+			["double-colon", "::"],
+			"vector",
+			["operator", "<"],
+			"std",
+			["double-colon", "::"],
+			"string",
+			["operator", ">>"]
+		]]
+	]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["operator", "->"],
+	["function", "multitoken"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	"\r\nstd",
+	["double-colon", "::"],
+	["generic-function", [
+		["function", "make_unique"],
+		["generic", [
+			["operator", "<"],
+			"service",
+			["double-colon", "::"],
+			"UniqueMap",
+			["operator", ">"]
+		]]
+	]],
+	["punctuation", "("],
+	"std",
+	["double-colon", "::"],
+	["function", "move"],
+	["punctuation", "("],
+	"entries",
+	["punctuation", ")"],
+	["punctuation", ")"],
+	["punctuation", ";"]
+]

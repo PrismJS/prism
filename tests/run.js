@@ -12,7 +12,8 @@ const testSuite =
 		// load complete test suite
 		: TestDiscovery.loadAllTests(__dirname + '/languages');
 
-const accept = !!argv.accept;
+const insert = !!argv.accept || !!argv.insert;
+const update = !!argv.update;
 
 // define tests for all tests in all languages in the test suite
 for (const language in testSuite) {
@@ -29,7 +30,7 @@ for (const language in testSuite) {
 
 				it("– should pass test case '" + fileName + "'", function () {
 					if (path.extname(filePath) === '.test') {
-						TestCase.runTestCase(language, filePath, accept);
+						TestCase.runTestCase(language, filePath, update ? "update" : insert ? "insert" : "none");
 					} else {
 						TestCase.runTestsWithHooks(language, require(filePath));
 					}
