@@ -1,5 +1,6 @@
 (function () {
-	if (typeof self === 'undefined' || !self.Prism || !self.document) {
+
+	if (typeof Prism === 'undefined' || typeof document === 'undefined') {
 		return;
 	}
 
@@ -62,7 +63,10 @@
 	/** @param {CopyInfo} copyInfo */
 	function copyTextToClipboard(copyInfo) {
 		if (navigator.clipboard) {
-			navigator.clipboard.writeText(copyInfo.getText()).then(copyInfo.success, copyInfo.error);
+			navigator.clipboard.writeText(copyInfo.getText()).then(copyInfo.success, function() {
+				// try the fallback in case `writeText` didn't work
+				fallbackCopyTextToClipboard(copyInfo);
+			});
 		} else {
 			fallbackCopyTextToClipboard(copyInfo);
 		}

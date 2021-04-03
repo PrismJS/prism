@@ -10,6 +10,10 @@
 (=
 (=>
 
+; with brackets
+[=
+[=>
+
 ----------------------------------------------------
 
 [
@@ -23,7 +27,11 @@
 	["punctuation", "("], ["operator", ">"],
 	["punctuation", "("], ["operator", ">="],
 	["punctuation", "("], ["operator", "="],
-	["punctuation", "("], ["operator", "=>"]
+	["punctuation", "("], ["operator", "=>"],
+
+	["comment", "; with brackets"],
+	["punctuation", "["], ["operator", "="],
+	["punctuation", "["], ["operator", "=>"]
 ]
 
 ----------------------------------------------------
