@@ -8,6 +8,9 @@
 %r[foo?bar#{39+3}]
 %r<foo?bar#{39+3}>
 
+/foo/ # comment
+/foo#{bar}/ # comment
+
 ----------------------------------------------------
 
 [
@@ -88,7 +91,21 @@
 			["delimiter", "}"]
 		]],
 		">"
-	]]
+	]],
+
+	["regex", ["/foo/"]],
+	["comment", "# comment"],
+
+	["regex", [
+		"/foo",
+		["interpolation", [
+			["delimiter", "#{"],
+			"bar",
+			["delimiter", "}"]
+		]],
+		"/"
+	]],
+	["comment", "# comment"]
 ]
 
 ----------------------------------------------------
