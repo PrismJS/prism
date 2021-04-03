@@ -12,6 +12,8 @@
 (list #xBAD #b1110011 #o777)
 (list #i#x10 #i#x10+10i #b10+10i)
 
+[list 123]
+
 10+i
 10+.1i
 10+1.i
@@ -93,11 +95,14 @@
 	["number", "#b10+10i"],
 	["punctuation", ")"],
 
+	["punctuation", "["], ["builtin", "list"], ["number", "123"], ["punctuation", "]"],
+
 	["number", "10+i"],
 	["number", "10+.1i"],
 	["number", "10+1.i"],
 
 	["comment", "; not a number but a symbol"],
+
 	["punctuation", "("],
 	["keyword", "define"],
 	" 1+2 ",

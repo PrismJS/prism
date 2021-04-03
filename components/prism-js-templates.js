@@ -170,7 +170,7 @@
 				var interpolationExpression = token.content;
 
 				var placeholder;
-				while (code.indexOf(placeholder = getPlaceholder(placeholderCounter++, language)) !== -1) { }
+				while (code.indexOf(placeholder = getPlaceholder(placeholderCounter++, language)) !== -1) { /* noop */ }
 				placeholderMap[placeholder] = interpolationExpression;
 				return placeholder;
 			}

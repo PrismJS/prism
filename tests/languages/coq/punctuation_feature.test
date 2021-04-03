@@ -1,0 +1,35 @@
+, ; .
+( ) .( `(
+{ } @{ } `{ } {| }
+[ ] [= ]
+
+: :>
+
+----------------------------------------------------
+
+[
+	["punctuation", ","],
+	["punctuation", ";"],
+	["punctuation", "."],
+
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ".("],
+	["punctuation", "`("],
+
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punct", "@{"],
+	["punctuation", "}"],
+	["punctuation", "`{"],
+	["punctuation", "}"],
+	["punct", "{|"],
+	["punctuation", "}"],
+
+	["punctuation", "["],
+	["punctuation", "]"],
+	["punct", "[="],
+	["punctuation", "]"],
+
+	["punctuation", ":"], ["punct", ":>"]
+]

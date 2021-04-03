@@ -261,6 +261,10 @@
 			"title": "CMake",
 			"owner": "mjrogozinski"
 		},
+		"cobol": {
+			"title": "COBOL",
+			"owner": "RunDevelopment"
+		},
 		"coffeescript": {
 			"title": "CoffeeScript",
 			"require": "javascript",
@@ -276,6 +280,10 @@
 			"title": "Content-Security-Policy",
 			"owner": "ScottHelme"
 		},
+		"coq": {
+			"title": "Coq",
+			"owner": "RunDevelopment"
+		},
 		"crystal": {
 			"title": "Crystal",
 			"require": "ruby",
@@ -286,6 +294,10 @@
 			"require": "css",
 			"modify": "css",
 			"owner": "milesj"
+		},
+		"csv": {
+			"title": "CSV",
+			"owner": "RunDevelopment"
 		},
 		"cypher": {
 			"title": "Cypher",
@@ -597,6 +609,10 @@
 			"title": "Java stack trace",
 			"owner": "RunDevelopment"
 		},
+		"jexl": {
+			"title": "Jexl",
+			"owner": "czosel"
+		},
 		"jolie": {
 			"title": "Jolie",
 			"require": "clike",
@@ -729,6 +745,10 @@
 			"title": "LLVM IR",
 			"owner": "porglezomp"
 		},
+		"log": {
+			"title": "Log file",
+			"owner": "RunDevelopment"
+		},
 		"lolcode": {
 			"title": "LOLCODE",
 			"owner": "Golmote"
@@ -807,6 +827,10 @@
 			"title": "NEON",
 			"owner": "nette"
 		},
+		"nevod": {
+			"title": "Nevod",
+			"owner": "nezaboodka"
+		},
 		"nginx": {
 			"title": "nginx",
 			"owner": "volado"
@@ -841,6 +865,11 @@
 				"cpp"
 			],
 			"owner": "Milania1"
+		},
+		"openqasm": {
+			"title": "OpenQasm",
+			"alias": "qasm",
+			"owner": "RunDevelopment"
 		},
 		"oz": {
 			"title": "Oz",
@@ -983,6 +1012,12 @@
 			"title": "Python",
 			"alias": "py",
 			"owner": "multipetros"
+		},
+		"qsharp": {
+			"title": "Q#",
+			"require": "clike",
+			"alias": "qs",
+			"owner": "fedonman"
 		},
 		"q": {
 			"title": "Q (kdb+ database)",

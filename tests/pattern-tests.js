@@ -199,7 +199,7 @@ function testPatterns(Prism) {
 	function isFirstMatch(element) {
 		const parent = element.parent;
 		switch (parent.type) {
-			case 'Alternative':
+			case 'Alternative': {
 				// all elements before this element have to of zero length
 				if (!parent.elements.slice(0, parent.elements.indexOf(element)).every(isAlwaysZeroWidth)) {
 					return false;
@@ -210,6 +210,7 @@ function testPatterns(Prism) {
 				} else {
 					return isFirstMatch(grandParent);
 				}
+			}
 
 			case 'Quantifier':
 				if (parent.max >= 2) {

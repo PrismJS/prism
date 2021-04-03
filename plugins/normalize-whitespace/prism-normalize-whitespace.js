@@ -1,5 +1,9 @@
 (function() {
 
+if (typeof Prism === 'undefined' || typeof document === 'undefined') {
+	return;
+}
+
 var assign = Object.assign || function (obj1, obj2) {
 	for (var name in obj2) {
 		if (obj2.hasOwnProperty(name))
@@ -93,8 +97,8 @@ NormalizeWhitespace.prototype = {
 			if (tabLen(lines[i]) <= characters)
 				continue;
 
-			var line = lines[i].split(/(\s+)/g),
-			    len = 0;
+			var line = lines[i].split(/(\s+)/g);
+			var len = 0;
 
 			for (var j = 0; j < line.length; ++j) {
 				var tl = tabLen(line[j]);
@@ -157,10 +161,10 @@ Prism.hooks.add('before-sanity-check', function (env) {
 		return;
 	}
 
-	var children = pre.childNodes,
-	    before = '',
-	    after = '',
-	    codeFound = false;
+	var children = pre.childNodes;
+	var before = '';
+	var after = '';
+	var codeFound = false;
 
 	// Move surrounding whitespace from the <pre> tag into the <code> tag
 	for (var i = 0; i < children.length; ++i) {

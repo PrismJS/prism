@@ -151,7 +151,7 @@
 			}
 		}
 		return stack.length === 0;
-	};
+	}
 
 	/**
 	 * @param {string | Token | (string | Token)[]} token

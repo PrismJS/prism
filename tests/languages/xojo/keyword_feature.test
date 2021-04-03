@@ -71,10 +71,10 @@ Ptr
 Raise
 RaiseEvent
 ReDim
-Rem
 RemoveHandler
 Return
 Select
+Selector
 Self
 Set
 Single
@@ -182,10 +182,10 @@ WString
 	["keyword", "Raise"],
 	["keyword", "RaiseEvent"],
 	["keyword", "ReDim"],
-	["keyword", "Rem"],
 	["keyword", "RemoveHandler"],
 	["keyword", "Return"],
 	["keyword", "Select"],
+	["keyword", "Selector"],
 	["keyword", "Self"],
 	["keyword", "Set"],
 	["keyword", "Single"],

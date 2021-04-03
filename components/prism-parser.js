@@ -58,7 +58,7 @@
 		}
 	});
 
-	parser = Prism.languages.insertBefore('inside', 'punctuation', {
+	Prism.languages.insertBefore('inside', 'punctuation', {
 		'expression': parser.expression,
 		'keyword': parser.keyword,
 		'variable': parser.variable,

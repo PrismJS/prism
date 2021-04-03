@@ -426,8 +426,8 @@ var _ = {
 				if (o.hasOwnProperty(i)) {
 					callback.call(o, i, o[i], type || i);
 
-					var property = o[i],
-					    propertyType = _.util.type(property);
+					var property = o[i];
+					var propertyType = _.util.type(property);
 
 					if (propertyType === 'Object' && !visited[objId(property)]) {
 						visited[objId(property)] = true;
@@ -557,6 +557,12 @@ var _ = {
 		}
 
 		_.hooks.run('before-sanity-check', env);
+
+		// plugins may change/add the parent/element
+		parent = env.element.parentElement;
+		if (parent && parent.nodeName.toLowerCase() === 'pre' && !parent.hasAttribute('tabindex')) {
+			parent.setAttribute('tabindex', '0');
+		}
 
 		if (!env.code) {
 			_.hooks.run('complete', env);
@@ -966,6 +972,7 @@ function matchGrammar(text, tokenList, grammar, startNode, startPos, rematch) {
 					}
 				}
 
+				// eslint-disable-next-line no-redeclare
 				var from = match.index,
 					matchStr = match[0],
 					before = str.slice(0, from),
