@@ -49,7 +49,7 @@ match
 new;
 or
 parent
-parent::
+parent::;
 print
 private
 protected
@@ -59,9 +59,9 @@ require_once
 return
 self
 new self
-self::
+self::;
 static
-static::
+static::;
 switch
 throw
 trait;
@@ -72,6 +72,7 @@ var
 while
 xor
 yield
+yield from
 
 ----------------------------------------------------
 
@@ -127,7 +128,7 @@ yield
 	["keyword", "new"], ["punctuation", ";"],
 	["keyword", "or"],
 	["keyword", "parent"],
-	["keyword", "parent"], ["operator", "::"],
+	["keyword", "parent"], ["operator", "::"], ["punctuation", ";"],
 	["keyword", "print"],
 	["keyword", "private"],
 	["keyword", "protected"],
@@ -137,9 +138,9 @@ yield
 	["keyword", "return"],
 	["keyword", "self"],
 	["keyword", "new"], ["keyword", "self"],
-	["keyword", "self"], ["operator", "::"],
+	["keyword", "self"], ["operator", "::"], ["punctuation", ";"],
 	["keyword", "static"],
-	["keyword", "static"], ["operator", "::"],
+	["keyword", "static"], ["operator", "::"], ["punctuation", ";"],
 	["keyword", "switch"],
 	["keyword", "throw"],
 	["keyword", "trait"], ["punctuation", ";"],
@@ -149,9 +150,10 @@ yield
 	["keyword", "var"],
 	["keyword", "while"],
 	["keyword", "xor"],
-	["keyword", "yield"]
+	["keyword", "yield"],
+	["keyword", "yield"], ["keyword", "from"]
 ]
 
 ----------------------------------------------------
 
-Checks for comments.
+Checks for keywords.

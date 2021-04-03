@@ -3,6 +3,8 @@
 
 #;(foo bar)
 #; (foo)
+#;[foo bar]
+#; [foo]
 
 #|
  comment
@@ -17,6 +19,8 @@
 
 	["comment", "#;(foo bar)"],
 	["comment", "#; (foo)"],
+	["comment", "#;[foo bar]"],
+	["comment", "#; [foo]"],
 
 	["comment", "#|\r\n comment\r\n #| nested comment |#\r\n|#"]
 ]

@@ -1,4 +1,5 @@
 function foo { :; }
+function foo-bar { :; }
 bar() { :; }
 function foo() { :; }
 # Not a function:
@@ -9,6 +10,12 @@ bar { :; }
 [
 	["keyword", "function"],
 	["function-name", "foo"],
+	["punctuation", "{"],
+	["builtin", ":"],
+	["punctuation", ";"],
+	["punctuation", "}"],
+	["keyword", "function"],
+	["function-name", "foo-bar"],
 	["punctuation", "{"],
 	["builtin", ":"],
 	["punctuation", ";"],

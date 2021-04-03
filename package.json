@@ -7,6 +7,8 @@
   "scripts": {
     "build": "gulp",
     "start": "http-server -c-1",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "test:aliases": "mocha tests/aliases-test.js",
     "test:core": "mocha tests/core/**/*.js",
     "test:dependencies": "mocha tests/dependencies-test.js",
@@ -34,6 +36,7 @@
     "danger": "^10.5.0",
     "del": "^4.1.1",
     "docdash": "^1.2.0",
+    "eslint": "^7.22.0",
     "gulp": "^4.0.2",
     "gulp-concat": "^2.3.4",
     "gulp-header": "^2.0.7",

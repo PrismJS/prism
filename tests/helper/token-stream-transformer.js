@@ -50,10 +50,11 @@ module.exports = {
 
 	/**
 	 * @param {TokenStream} tokenStream
+	 * @param {string} [indentation]
 	 * @returns {string}
 	 */
-	prettyprint(tokenStream) {
-		return printPrettyTokenStream(toPrettyTokenStream(tokenStream));
+	prettyprint(tokenStream, indentation) {
+		return printPrettyTokenStream(toPrettyTokenStream(tokenStream), undefined, indentation);
 	}
 };
 
@@ -219,13 +220,12 @@ function prettyFormat(prettyStream) {
 /**
  * @param {PrettyTokenStream} prettyStream
  * @param {number} [indentationLevel]
+ * @param {string} [indentationChar]
  * @returns {string}
  */
-function printPrettyTokenStream(prettyStream, indentationLevel = 1) {
-	const indentChar = '    ';
-
+function printPrettyTokenStream(prettyStream, indentationLevel = 1, indentationChar = '    ') {
 	// can't use tabs because the console will convert one tab to four spaces
-	const indentation = new Array(indentationLevel + 1).join(indentChar);
+	const indentation = new Array(indentationLevel + 1).join(indentationChar);
 
 	let out = '';
 	out += '[\n';
@@ -265,7 +265,7 @@ function printPrettyTokenStream(prettyStream, indentationLevel = 1) {
 					out += JSON.stringify(content);
 				} else {
 					// token stream
-					out += printPrettyTokenStream(content, indentationLevel + 1);
+					out += printPrettyTokenStream(content, indentationLevel + 1, indentationChar);
 				}
 
 				out += ']';
@@ -275,7 +275,7 @@ function printPrettyTokenStream(prettyStream, indentationLevel = 1) {
 			out += lineEnd;
 		}
 	})
-	out += indentation.substr(indentChar.length) + ']'
+	out += indentation.substr(indentationChar.length) + ']'
 	return out;
 }
 

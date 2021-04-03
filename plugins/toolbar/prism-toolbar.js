@@ -1,5 +1,6 @@
 (function(){
-	if (typeof self === 'undefined' || !self.Prism || !self.document) {
+
+	if (typeof Prism === 'undefined' || typeof document === 'undefined') {
 		return;
 	}
 
@@ -153,7 +154,7 @@
 		try {
 			// Any normal text will blow up this selector.
 			template = document.querySelector('template#' + text);
-		} catch (e) {}
+		} catch (e) { /* noop */ }
 
 		if (template) {
 			element = template.content;

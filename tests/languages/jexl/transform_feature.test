@@ -1,0 +1,55 @@
+"foo"|bar
+"foo"| bar
+"foo"
+|   
+bar
+
+foo|Ý
+
+foo|bar()
+foo|bar(1,2)
+foo|bar(
+1,2
+)
+
+----------------------------------------------------
+
+[
+	["string", "\"foo\""], ["operator", "|"], ["transform", "bar"],
+	["string", "\"foo\""], ["operator", "|"], ["transform", "bar"],
+	["string", "\"foo\""],
+	["operator", "|"],
+	["transform", "bar"],
+
+	"\r\n\r\nfoo", ["operator", "|"], ["transform", "Ý"],
+
+	"\r\n\r\nfoo",
+	["operator", "|"],
+	["transform", "bar"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	"\r\nfoo",
+	["operator", "|"],
+	["transform", "bar"],
+	["punctuation", "("],
+	["number", "1"],
+	["punctuation", ","],
+	["number", "2"],
+	["punctuation", ")"],
+
+	"\r\nfoo",
+	["operator", "|"],
+	["transform", "bar"],
+	["punctuation", "("],
+
+	["number", "1"],
+	["punctuation", ","],
+	["number", "2"],
+
+	["punctuation", ")"]
+]
+
+----------------------------------------------------
+
+Checks for transforms. Transforms follow the same naming rules as functions.

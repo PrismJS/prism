@@ -71,7 +71,6 @@ Ptr
 Raise
 RaiseEvent
 ReDim
-Rem
 RemoveHandler
 Return
 Select
@@ -183,7 +182,6 @@ WString
 	["keyword", "Raise"],
 	["keyword", "RaiseEvent"],
 	["keyword", "ReDim"],
-	["keyword", "Rem"],
 	["keyword", "RemoveHandler"],
 	["keyword", "Return"],
 	["keyword", "Select"],

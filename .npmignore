@@ -19,3 +19,4 @@ gulpfile.js
 .editorconfig
 .gitattributes
 .travis.yml
+.eslintrc.js

@@ -16,6 +16,7 @@ IN
 INBOUND
 INSERT
 INTO
+K_PATHS
 K_SHORTEST_PATHS
 LET
 LIKE
@@ -32,6 +33,7 @@ SHORTEST_PATH
 SORT
 UPDATE
 UPSERT
+WINDOW
 WITH
 
 KEEP
@@ -69,6 +71,7 @@ OPTIONS
 	["keyword", "INBOUND"],
 	["keyword", "INSERT"],
 	["keyword", "INTO"],
+	["keyword", "K_PATHS"],
 	["keyword", "K_SHORTEST_PATHS"],
 	["keyword", "LET"],
 	["keyword", "LIKE"],
@@ -85,6 +88,7 @@ OPTIONS
 	["keyword", "SORT"],
 	["keyword", "UPDATE"],
 	["keyword", "UPSERT"],
+	["keyword", "WINDOW"],
 	["keyword", "WITH"],
 
 	["keyword", "KEEP"],
