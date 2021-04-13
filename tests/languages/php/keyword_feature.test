@@ -30,6 +30,7 @@ exit
 extends;
 final
 finally
+fn
 for
 foreach
 function
@@ -109,6 +110,7 @@ yield from
 	["keyword", "extends"], ["punctuation", ";"],
 	["keyword", "final"],
 	["keyword", "finally"],
+	["keyword", "fn"],
 	["keyword", "for"],
 	["keyword", "foreach"],
 	["keyword", "function"],
