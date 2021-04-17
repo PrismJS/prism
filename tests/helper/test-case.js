@@ -74,7 +74,7 @@ module.exports = {
 			if (testCase.comment.trim()) {
 				content += separator + testCase.comment.trim();
 			}
-			content += '\n'
+			content += '\n';
 			content = content.replace(/\r?\n/g, lineEnd);
 
 			fs.writeFileSync(filePath, content, 'utf-8');

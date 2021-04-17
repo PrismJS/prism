@@ -122,4 +122,4 @@ Prism.languages.nevod = {
 	],
 	'punctuation': /[:;,()]/,
 	'name': /[a-zA-Z0-9\-.]+/
-}
+};

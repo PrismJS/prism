@@ -124,7 +124,7 @@ if (toc.children.length > 0) {
 
 	if (PrefixFree.functions.indexOf('calc') == -1) {
 		var style = document.createElement('_').style;
-		style.width = 'calc(1px + 1%)'
+		style.width = 'calc(1px + 1%)';
 
 		if(!style.width) {
 			// calc not supported

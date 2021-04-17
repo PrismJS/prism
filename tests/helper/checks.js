@@ -110,7 +110,7 @@ module.exports = (Prism) => {
 				} else {
 					elementStr = String(element);
 				}
-				redefStr += `\t'${key}': ${elementStr},\n`
+				redefStr += `\t'${key}': ${elementStr},\n`;
 			}
 			redefStr += '}';
 		} else {

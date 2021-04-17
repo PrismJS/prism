@@ -65,7 +65,7 @@ module.exports = {
 			// error if used. So we just replace the "function" with some literal that JSDoc will interpret as a
 			// namespace. Not pretty but it works.
 			comment.comment = comment.comment
-				.replace(/\bimport\s*\(\s*(?:"(?:[^"\r\n\\]|\\.)*"|'(?:[^'\r\n\\]|\\.)*')\s*\)/g, '__dyn_import__')
+				.replace(/\bimport\s*\(\s*(?:"(?:[^"\r\n\\]|\\.)*"|'(?:[^'\r\n\\]|\\.)*')\s*\)/g, '__dyn_import__');
 		}
 	}
 };

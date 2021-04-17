@@ -45,4 +45,4 @@ Prism.languages.jsstacktrace = {
 
 		}
 	}
-}
+};

@@ -79,7 +79,7 @@
 	 */
 	function selectElementText(element) {
 		// https://stackoverflow.com/a/20079910/7595472
-		window.getSelection().selectAllChildren(element)
+		window.getSelection().selectAllChildren(element);
 	}
 
 	/**

@@ -369,7 +369,7 @@ async function changes() {
 		for (const subCategory of Object.keys(category).sort(strCompare)) {
 			if (subCategory) {
 				md += `${indentation}* __${subCategory}__\n`;
-				printCategory(category[subCategory], indentation + '    ')
+				printCategory(category[subCategory], indentation + '    ');
 			} else {
 				for (const info of category['']) {
 					md += `${indentation}* ${infoToString(info)}\n`;

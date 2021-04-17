@@ -44,7 +44,7 @@ if (Prism.languages.markup) {
 			'hkern': 1, 'vkern': 1
 		},
 		MathML: {}
-	}
+	};
 }
 
 var language;

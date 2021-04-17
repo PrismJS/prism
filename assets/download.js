@@ -62,7 +62,7 @@ if (hstr) {
 					if (components[category][id]) {
 						if (components[category][id].option !== 'default') {
 							if (typeof components[category][id] === 'string') {
-								components[category][id] = { title: components[category][id] }
+								components[category][id] = { title: components[category][id] };
 							}
 							components[category][id].option = 'default';
 						}

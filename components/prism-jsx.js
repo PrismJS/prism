@@ -105,7 +105,7 @@ var walkTokens = function (tokens) {
 				openedTags[openedTags.length - 1].openedBraces--;
 
 			} else {
-				notTagNorBrace = true
+				notTagNorBrace = true;
 			}
 		}
 		if (notTagNorBrace || typeof token === 'string') {
