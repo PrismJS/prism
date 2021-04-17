@@ -16,19 +16,19 @@ Prism.languages.log = {
 			alias: ['error', 'important']
 		},
 		{
-			pattern: /\b(?:WARN|WARNING)\b/,
+			pattern: /\b(?:WARN|WARNING|WRN)\b/,
 			alias: ['warning', 'important']
 		},
 		{
-			pattern: /\b(?:DISPLAY|INFO|NOTICE|STATUS)\b/,
+			pattern: /\b(?:DISPLAY|INF|INFO|NOTICE|STATUS)\b/,
 			alias: ['info', 'keyword']
 		},
 		{
-			pattern: /\b(?:DEBUG|FINE)\b/,
+			pattern: /\b(?:DBG|DEBUG|FINE)\b/,
 			alias: ['debug', 'keyword']
 		},
 		{
-			pattern: /\b(?:FINER|FINEST|TRACE|VERBOSE)\b/,
+			pattern: /\b(?:FINER|FINEST|TRACE|TRC|VERBOSE|VRB)\b/,
 			alias: ['trace', 'comment']
 		}
 	],
@@ -66,7 +66,7 @@ Prism.languages.log = {
 	},
 
 	'uuid': {
-		pattern: /\b\w{8}-\w{4}-\w{4}-\w{4}-\w{12}\b/,
+		pattern: /\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b/i,
 		alias: 'constant'
 	},
 	'hash': {
@@ -83,7 +83,7 @@ Prism.languages.log = {
 
 	'date': {
 		pattern: RegExp(
-			/\b\d{4}[-/]\d{2}[-/]\d{2}T(?=\d{1,2}:)/.source +
+			/\b\d{4}[-/]\d{2}[-/]\d{2}(?:T(?=\d{1,2}:)|(?=\s\d{1,2}:))/.source +
 			'|' +
 			/\b\d{1,4}[-/ ](?:\d{1,2}|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[-/ ]\d{2,4}T?\b/.source +
 			'|' +
@@ -93,7 +93,7 @@ Prism.languages.log = {
 		alias: 'number'
 	},
 	'time': {
-		pattern: /\b\d{1,2}:\d{1,2}:\d{1,2}(?:[.,:]\d+)?(?:\s?[+-]\d{2,4}|Z)?\b/,
+		pattern: /\b\d{1,2}:\d{1,2}:\d{1,2}(?:[.,:]\d+)?(?:\s?[+-]\d{2}:?\d{2}|Z)?\b/,
 		alias: 'number'
 	},
 
