@@ -186,7 +186,7 @@ for (var id in themes) {
 	$u.element.create('input', {
 		properties: {
 			type: 'radio',
-			name: "theme",
+			name: 'theme',
 			id: 'theme=' + id,
 			checked: current === id,
 			value: id,
@@ -261,7 +261,7 @@ Prism && Prism.hooks.add('complete', function (env) {
 
 		// transfer margin of pre to wrapper
 		wrapper.style.margin = window.getComputedStyle(pre).margin;
-		pre.style.margin = "0";
+		pre.style.margin = '0';
 
 	});
 });

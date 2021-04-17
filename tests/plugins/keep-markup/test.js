@@ -42,7 +42,7 @@ describe('Prism Keep Markup Plugin', function () {
 		const afterHighlight = Prism.hooks.all['after-highlight'][0];
 		const env = {
 			element: new JSDOM(code).window.document.getElementsByTagName('code')[0],
-			language: "javascript"
+			language: 'javascript'
 		};
 		beforeHighlight(env);
 		afterHighlight(env);

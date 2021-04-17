@@ -4,6 +4,8 @@
 		return;
 	}
 
+	/* eslint-disable */
+
 	/**
 	 * The dependencies map is built automatically with gulp.
 	 *
@@ -239,6 +241,8 @@
 		"xeoracube": "xeora",
 		"yml": "yaml"
 	}/*]*/;
+
+	/* eslint-enable */
 
 	/**
 	 * @typedef LangDataItem

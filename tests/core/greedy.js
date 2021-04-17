@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const { assert } = require('chai');
 const PrismLoader = require('../helper/prism-loader');
@@ -30,8 +30,8 @@ describe('Greedy matching', function () {
 			},
 			code: '// /*\n/* comment */',
 			expected: [
-				["comment", "// /*"],
-				["comment", "/* comment */"]
+				['comment', '// /*'],
+				['comment', '/* comment */']
 			]
 		});
 	});
@@ -49,9 +49,9 @@ describe('Greedy matching', function () {
 			},
 			code: 'foo "bar" \'baz\'',
 			expected: [
-				["b", "foo"],
-				["b", "\"bar\""],
-				["a", "'baz'"]
+				['b', 'foo'],
+				['b', '"bar"'],
+				['a', "'baz'"]
 			]
 		});
 	});
@@ -73,14 +73,14 @@ describe('Greedy matching', function () {
 			},
 			code: `<'> '' ''\n<"> "" ""`,
 			expected: [
-				["c", "<'>"],
+				['c', "<'>"],
 				" '",
-				["a", "' '"],
+				['a', "' '"],
 				"'\n",
 
-				["c", "<\">"],
-				["b", "\"\""],
-				["b", "\"\""],
+				['c', '<">'],
+				['b', '""'],
+				['b', '""'],
 			]
 		});
 	});
@@ -98,9 +98,9 @@ describe('Greedy matching', function () {
 			},
 			code: 'bab',
 			expected: [
-				["b", "b"],
-				["a", "a"],
-				"b"
+				['b', 'b'],
+				['a', 'a'],
+				'b'
 			]
 		});
 	});

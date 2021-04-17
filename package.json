@@ -9,6 +9,7 @@
     "start": "http-server -c-1",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "lint:ci": "eslint . --max-warnings 0",
     "test:aliases": "mocha tests/aliases-test.js",
     "test:core": "mocha tests/core/**/*.js",
     "test:dependencies": "mocha tests/dependencies-test.js",

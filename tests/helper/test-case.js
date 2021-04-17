@@ -1,9 +1,9 @@
-"use strict";
+'use strict';
 
-const fs = require("fs");
-const { assert } = require("chai");
-const PrismLoader = require("./prism-loader");
-const TokenStreamTransformer = require("./token-stream-transformer");
+const fs = require('fs');
+const { assert } = require('chai');
+const PrismLoader = require('./prism-loader');
+const TokenStreamTransformer = require('./token-stream-transformer');
 
 /**
  * @typedef {import("./token-stream-transformer").TokenStream} TokenStream
@@ -163,19 +163,19 @@ module.exports = {
 	 * @returns {{languages: string[], mainLanguage: string}}
 	 */
 	parseLanguageNames(languageIdentifier) {
-		let languages = languageIdentifier.split("+");
+		let languages = languageIdentifier.split('+');
 		let mainLanguage = null;
 
 		languages = languages.map(
 			function (language) {
-				const pos = language.indexOf("!");
+				const pos = language.indexOf('!');
 
 				if (-1 < pos) {
 					if (mainLanguage) {
-						throw "There are multiple main languages defined.";
+						throw 'There are multiple main languages defined.';
 					}
 
-					mainLanguage = language.replace("!", "");
+					mainLanguage = language.replace('!', '');
 					return mainLanguage;
 				}
 
@@ -209,11 +209,11 @@ module.exports = {
 	 * @property {string} comment
 	 */
 	parseTestCaseFile(filePath) {
-		const testCaseSource = fs.readFileSync(filePath, "utf8");
+		const testCaseSource = fs.readFileSync(filePath, 'utf8');
 		const testCaseParts = testCaseSource.split(/^-{10,}[ \t]*$/m);
 
 		if (testCaseParts.length > 3) {
-			throw new Error("Invalid test case format: Too many sections.");
+			throw new Error('Invalid test case format: Too many sections.');
 		}
 
 		const code = testCaseParts[0].trim();

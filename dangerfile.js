@@ -56,7 +56,7 @@ const formatBytes = (bytes, decimals = 2) => {
 	return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
 };
 
-const maybePlus = (from, to) => from < to ? "+" : "";
+const maybePlus = (from, to) => from < to ? '+' : '';
 
 const absDiff = (from, to) => {
 	if (from === to) {

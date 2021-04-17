@@ -4,6 +4,7 @@ module.exports = {
 	extends: 'eslint:recommended',
 	rules: {
 		// stylistic rules
+		'quotes': ['warn', 'single', { avoidEscape: true, allowTemplateLiterals: true }],
 		'semi': 'warn',
 
 		// I turned this rule off because we use `hasOwnProperty` in a lot of places

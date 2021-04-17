@@ -232,7 +232,7 @@ function getDependenciesOfLanguage(lang) {
 		return [];
 	}
 
-	return ($u.type(components.languages[lang].require) === "array")
+	return ($u.type(components.languages[lang].require) === 'array')
 		? components.languages[lang].require
 		: [components.languages[lang].require];
 }

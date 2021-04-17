@@ -40,7 +40,7 @@ NormalizeWhitespace.prototype = {
 
 		for (var name in settings) {
 			var methodName = toCamelCase(name);
-			if (name !== "normalize" && methodName !== 'setDefaults' &&
+			if (name !== 'normalize' && methodName !== 'setDefaults' &&
 					settings[name] && this[methodName]) {
 				input = this[methodName].call(this, input, settings[name]);
 			}
@@ -172,7 +172,7 @@ Prism.hooks.add('before-sanity-check', function (env) {
 
 		if (node == env.element) {
 			codeFound = true;
-		} else if (node.nodeName === "#text") {
+		} else if (node.nodeName === '#text') {
 			if (codeFound) {
 				after += node.nodeValue;
 			} else {
