@@ -194,7 +194,7 @@ for (var category in components) {
 			for (var alias in lang.aliasTitles)
 				if (lang.aliasTitles.hasOwnProperty(alias))
 					titles.push(lang.aliasTitles[alias]);
-			return titles.join(" + ");
+			return titles.join(' + ');
 		}
 
 		var label = $u.element.create('label', {
@@ -506,18 +506,18 @@ function generateCode(){
 			$u.element.contents(error, errors);
 		}
 
-		var redownloadUrl = window.location.href.split("#")[0] + "#";
+		var redownloadUrl = window.location.href.split('#')[0] + '#';
 		for (var category in redownload) {
-			redownloadUrl += category + "=" + redownload[category].join('+') + "&";
+			redownloadUrl += category + '=' + redownload[category].join('+') + '&';
 		}
-		redownloadUrl = redownloadUrl.replace(/&$/,"");
+		redownloadUrl = redownloadUrl.replace(/&$/,'');
 		window.location.replace(redownloadUrl);
 
-		var versionComment = "/* PrismJS " + version + "\n" + redownloadUrl + " */";
+		var versionComment = '/* PrismJS ' + version + '\n' + redownloadUrl + ' */';
 
 		for (var type in code) {
 			(function (type) {
-				var text = versionComment + "\n" + code[type];
+				var text = versionComment + '\n' + code[type];
 				var fileName = 'prism.' + type;
 
 				var codeElement = $('#download-' + type + ' code');
@@ -533,7 +533,7 @@ function generateCode(){
 
 
 				$('#download-' + type + ' .download-button').onclick = function () {
-					saveAs(new Blob([text], { type: "application/octet-stream;charset=utf-8" }), fileName);
+					saveAs(new Blob([text], { type: 'application/octet-stream;charset=utf-8' }), fileName);
 				};
 			})(type);
 		}
@@ -562,7 +562,7 @@ function buildCode(promises) {
 	var toSortMap = {};
 
 	promises.forEach(function (p) {
-		if (p.category == "core" || p.category == "themes") {
+		if (p.category == 'core' || p.category == 'themes') {
 			finalPromises.push(p);
 		} else {
 			var infos = toSortMap[p.id];
@@ -576,7 +576,7 @@ function buildCode(promises) {
 	// this assumes that the ids in `toSortMap` are complete under transitive requirements
 	getLoader(components, Object.keys(toSortMap)).getIds().forEach(function (id) {
 		if (!toSortMap[id]) {
-			console.error(id + " not found.");
+			console.error(id + ' not found.');
 		}
 		finalPromises.push.apply(finalPromises, toSortMap[id]);
 	});

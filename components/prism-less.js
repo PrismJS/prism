@@ -39,7 +39,7 @@ Prism.languages.insertBefore('less', 'property', {
 		{
 			pattern: /@[\w-]+\s*:/,
 			inside: {
-				"punctuation": /:/
+				'punctuation': /:/
 			}
 		},
 

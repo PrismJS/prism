@@ -185,16 +185,16 @@ function prettyFormat(prettyStream, indentationWidth) {
 						return g
 							.map(item => {
 								if (isToken(item)) {
-									if (typeof item === "string") {
-										return ", ".length + JSON.stringify(item).length;
+									if (typeof item === 'string') {
+										return ', '.length + JSON.stringify(item).length;
 									} else {
-										return ", ".length + JSON.stringify(item).length + " ".length;
+										return ', '.length + JSON.stringify(item).length + ' '.length;
 									}
 								} else {
 									return 0;
 								}
 							})
-							.reduce((a, b) => a + b, 0) - ", ".length;
+							.reduce((a, b) => a + b, 0) - ', '.length;
 					} else {
 						// we don't really care about the print width of a single-token line
 						return 1;
@@ -433,7 +433,7 @@ function prettyCountTokens(prettyStream, recursive) {
  */
 function prettyGlueTogether(prettyStream, prev, next) {
 	// strings may appear more than once in the stream, so we have to search for tokens.
-	if (typeof prev !== "string") {
+	if (typeof prev !== 'string') {
 		let index = prettyStream.indexOf(prev);
 		if (index === -1 || prettyStream[index + 1] !== next) {
 			throw new Error('Cannot glue: At least one of the tokens is not part of the given token stream.');
