@@ -4,6 +4,8 @@
 		return;
 	}
 
+	/* eslint-disable */
+
 	/**
 	 * The dependencies map is built automatically with gulp.
 	 *
@@ -240,6 +242,8 @@
 		"yml": "yaml"
 	}/*]*/;
 
+	/* eslint-enable */
+
 	/**
 	 * @typedef LangDataItem
 	 * @property {{ success?: () => void, error?: () => void }[]} callbacks
@@ -350,7 +354,7 @@
 	 * @returns {string}
 	 */
 	function getLanguagePath(lang) {
-		return config.languages_path + 'prism-' + lang + (config.use_minified ? '.min' : '') + '.js'
+		return config.languages_path + 'prism-' + lang + (config.use_minified ? '.min' : '') + '.js';
 	}
 
 	/**

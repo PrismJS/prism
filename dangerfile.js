@@ -54,9 +54,9 @@ const formatBytes = (bytes, decimals = 2) => {
 	const i = Math.floor(Math.log(Math.abs(bytes)) / Math.log(k));
 
 	return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
-}
+};
 
-const maybePlus = (from, to) => from < to ? "+" : "";
+const maybePlus = (from, to) => from < to ? '+' : '';
 
 const absDiff = (from, to) => {
 	if (from === to) {
@@ -64,7 +64,7 @@ const absDiff = (from, to) => {
 	}
 
 	return `${maybePlus(from, to)}${formatBytes(to - from)}`;
-}
+};
 
 const percDiff = (from, to) => {
 	if (from === to) {
@@ -72,7 +72,7 @@ const percDiff = (from, to) => {
 	}
 
 	return `${maybePlus(from, to)}${(100 * (to - from) / (from || to)).toFixed(1)}%`;
-}
+};
 
 const getSummary = (rows, totalMasterFileSize, totalFileSize) => {
 	const numFiles = rows.length;
@@ -81,7 +81,7 @@ const getSummary = (rows, totalMasterFileSize, totalFileSize) => {
 	const percentDiff = percDiff(totalMasterFileSize, totalFileSize);
 
 	return `A total of ${numFiles} file${maybeS} have changed, with a combined diff of ${byteDiff} (${percentDiff}).`;
-}
+};
 
 const run = async () => {
 	const minified = await getChangedMinifiedFiles();
@@ -107,7 +107,7 @@ const run = async () => {
 		]);
 
 		totalFileSize += fileSize;
-		totalMasterFileSize += fileMasterSize
+		totalMasterFileSize += fileMasterSize;
 
 		rows.push([
 			file,
@@ -130,7 +130,7 @@ ${rows.map(row => `| ${row.join(' | ')} |`).join('\n')}
 
 </details>
 `);
-}
+};
 
 run().catch(err => {
 	console.error(err);

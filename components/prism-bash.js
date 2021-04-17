@@ -15,7 +15,7 @@
 	var insideString = {
 		'bash': commandAfterHeredoc,
 		'environment': {
-			pattern: RegExp("\\$" + envVars),
+			pattern: RegExp('\\$' + envVars),
 			alias: 'constant'
 		},
 		'variable': [
@@ -55,7 +55,7 @@
 					'operator': /:[-=?+]?|[!\/]|##?|%%?|\^\^?|,,?/,
 					'punctuation': /[\[\]]/,
 					'environment': {
-						pattern: RegExp("(\\{)" + envVars),
+						pattern: RegExp('(\\{)' + envVars),
 						lookbehind: true,
 						alias: 'constant'
 					}
@@ -105,7 +105,7 @@
 			pattern: /(^|[\s;|&]|[<>]\()\w+(?=\+?=)/,
 			inside: {
 				'environment': {
-					pattern: RegExp("(^|[\\s;|&]|[<>]\\()" + envVars),
+					pattern: RegExp('(^|[\\s;|&]|[<>]\\()' + envVars),
 					lookbehind: true,
 					alias: 'constant'
 				}
@@ -155,7 +155,7 @@
 			}
 		],
 		'environment': {
-			pattern: RegExp("\\$?" + envVars),
+			pattern: RegExp('\\$?' + envVars),
 			alias: 'constant'
 		},
 		'variable': insideString.variable,

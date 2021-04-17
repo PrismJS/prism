@@ -25,7 +25,7 @@
 		flags = (flags || '').replace(/m/g, '') + 'm'; // add m flag
 		var pattern = /([:\-,[{]\s*(?:\s<<prop>>[ \t]+)?)(?:<<value>>)(?=[ \t]*(?:$|,|]|}|(?:[\r\n]\s*)?#))/.source
 			.replace(/<<prop>>/g, function () { return properties; }).replace(/<<value>>/g, function () { return value; });
-		return RegExp(pattern, flags)
+		return RegExp(pattern, flags);
 	}
 
 	Prism.languages.yaml = {

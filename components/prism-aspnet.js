@@ -28,7 +28,7 @@ Prism.languages.aspnet.tag.pattern = /<(?!%)\/?[^\s>\/]+(?:\s+[^\s>\/=]+(?:=(?:(
 // match directives of attribute value foo="<% Bar %>"
 Prism.languages.insertBefore('inside', 'punctuation', {
 	'directive': Prism.languages.aspnet['directive']
-}, Prism.languages.aspnet.tag.inside["attr-value"]);
+}, Prism.languages.aspnet.tag.inside['attr-value']);
 
 Prism.languages.insertBefore('aspnet', 'comment', {
 	'asp-comment': {

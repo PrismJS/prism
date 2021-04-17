@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const { src, dest } = require('gulp');
 
@@ -230,7 +230,7 @@ async function changes() {
 					if (change.mode === 'A' && change.file.startsWith('components/prism-')) {
 						const lang = change.file.match(/prism-([\w-]+)\.js$/)[1];
 						const entry = languages[lang] || {
-							title: "REMOVED LANGUAGE " + lang,
+							title: 'REMOVED LANGUAGE ' + lang,
 						};
 						const titles = [entry.title];
 						if (entry.aliasTitles) {
@@ -369,7 +369,7 @@ async function changes() {
 		for (const subCategory of Object.keys(category).sort(strCompare)) {
 			if (subCategory) {
 				md += `${indentation}* __${subCategory}__\n`;
-				printCategory(category[subCategory], indentation + '    ')
+				printCategory(category[subCategory], indentation + '    ');
 			} else {
 				for (const info of category['']) {
 					md += `${indentation}* ${infoToString(info)}\n`;

@@ -35,8 +35,8 @@
 		if (!/^\w+$/.test(name)) { // "deleted-sign" -> "deleted"
 			alias.push(/\w+/.exec(name)[0]);
 		}
-		if (name === "diff") {
-			alias.push("bold");
+		if (name === 'diff') {
+			alias.push('bold');
 		}
 
 		Prism.languages.diff[name] = {
