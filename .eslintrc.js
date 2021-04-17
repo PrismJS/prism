@@ -8,6 +8,30 @@ module.exports = {
 		'quotes': ['warn', 'single', { avoidEscape: true, allowTemplateLiterals: true }],
 		'semi': 'warn',
 
+		// spaces
+		'arrow-spacing': 'warn',
+		'block-spacing': 'warn',
+		'comma-spacing': 'warn',
+		'computed-property-spacing': 'warn',
+		'func-call-spacing': 'warn',
+		'generator-star-spacing': 'warn',
+		'key-spacing': 'warn',
+		'keyword-spacing': 'warn',
+		'no-multi-spaces': ['warn', { ignoreEOLComments: true }],
+		'no-trailing-spaces': 'warn',
+		'no-whitespace-before-property': 'warn',
+		'object-curly-spacing': ['warn', 'always'],
+		'rest-spread-spacing': 'warn',
+		'semi-spacing': 'warn',
+		'space-before-blocks': 'warn',
+		'space-before-function-paren': ['warn', { named: 'never' }],
+		'space-in-parens': 'warn',
+		'space-infix-ops': ['warn', { int32Hint: true }],
+		'space-unary-ops': 'warn',
+		'switch-colon-spacing': 'warn',
+		'template-curly-spacing': 'warn',
+		'yield-star-spacing': 'warn',
+
 		// I turned this rule off because we use `hasOwnProperty` in a lot of places
 		// TODO: Think about re-enabling this rule
 		'no-prototype-builtins': 'off',

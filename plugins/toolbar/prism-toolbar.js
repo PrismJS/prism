@@ -1,4 +1,4 @@
-(function(){
+(function () {
 
 	if (typeof Prism === 'undefined' || typeof document === 'undefined') {
 		return;
@@ -6,7 +6,7 @@
 
 	var callbacks = [];
 	var map = {};
-	var noop = function() {};
+	var noop = function () {};
 
 	Prism.plugins.toolbar = {};
 
@@ -121,7 +121,7 @@
 			});
 		}
 
-		elementCallbacks.forEach(function(callback) {
+		elementCallbacks.forEach(function (callback) {
 			var element = callback(env);
 
 			if (!element) {
@@ -139,7 +139,7 @@
 		wrapper.appendChild(toolbar);
 	};
 
-	registerButton('label', function(env) {
+	registerButton('label', function (env) {
 		var pre = env.element.parentNode;
 		if (!pre || !/pre/i.test(pre.nodeName)) {
 			return;
