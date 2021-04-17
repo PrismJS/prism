@@ -4,6 +4,7 @@ module.exports = {
 	extends: 'eslint:recommended',
 	rules: {
 		// stylistic rules
+		'no-var': 'error',
 		'quotes': ['warn', 'single', { avoidEscape: true, allowTemplateLiterals: true }],
 		'semi': 'warn',
 
@@ -48,6 +49,9 @@ module.exports = {
 			},
 			globals: {
 				'Prism': true
+			},
+			rules: {
+				'no-var': 'off'
 			}
 		},
 		{
@@ -70,6 +74,9 @@ module.exports = {
 			env: {
 				browser: true,
 				node: true
+			},
+			rules: {
+				'no-var': 'off'
 			}
 		},
 		{
@@ -88,6 +95,9 @@ module.exports = {
 				'$': true,
 				'$$': true,
 				'$u': true
+			},
+			rules: {
+				'no-var': 'off'
 			}
 		},
 		{

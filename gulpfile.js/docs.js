@@ -25,8 +25,8 @@ function docsClean() {
 }
 
 function docsCreate(cb) {
-	var config = require(jsDoc.config);
-	var files = [jsDoc.readme].concat(jsDoc.files);
+	let config = require(jsDoc.config);
+	let files = [jsDoc.readme].concat(jsDoc.files);
 	src(files, { read: false }).pipe(jsdoc(config, cb));
 }
 

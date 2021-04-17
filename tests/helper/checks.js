@@ -199,7 +199,7 @@ module.exports = (Prism) => {
 
 
 		root = root || Prism.languages;
-		var grammar = root[inside];
+		let grammar = root[inside];
 
 		if (typeof grammar !== 'object') {
 			throw new Error(`The grammar "${inside}" has to be an 'object' not '${typeof grammar}'.`);
