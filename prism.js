@@ -1165,7 +1165,7 @@ if (!_.manual) {
 
 return _;
 
-})(_self);
+}(_self));
 
 if (typeof module !== 'undefined' && module.exports) {
 	module.exports = Prism;
@@ -1771,4 +1771,4 @@ Prism.languages.js = Prism.languages.javascript;
 		Prism.plugins.fileHighlight.highlight.apply(this, arguments);
 	};
 
-})();
+}());

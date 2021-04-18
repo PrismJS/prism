@@ -11,4 +11,4 @@ Prism.hooks.add('wrap', function(env) {
 	env.classes.push('keyword-' + env.content);
 });
 
-})();
+}());

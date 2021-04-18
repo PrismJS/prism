@@ -328,4 +328,4 @@
 		actions.forEach(callFunction);
 	});
 
-})();
+}());

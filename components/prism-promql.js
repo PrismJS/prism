@@ -96,4 +96,4 @@
 		'operator': /[\^*/%+-]|==|!=|<=|<|>=|>|\b(?:and|unless|or)\b/i,
 		'punctuation': /[{};()`,.[\]]/,
 	};
-})(Prism);
+}(Prism));

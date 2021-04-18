@@ -1160,7 +1160,7 @@ if (!_.manual) {
 
 return _;
 
-})(_self);
+}(_self));
 
 if (typeof module !== 'undefined' && module.exports) {
 	module.exports = Prism;

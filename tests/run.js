@@ -37,5 +37,5 @@ for (const language in testSuite) {
 				});
 			}
 		});
-	})(language, testSuite[language]);
+	}(language, testSuite[language]));
 }

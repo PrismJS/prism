@@ -75,4 +75,4 @@ Prism.hooks.add('wrap', function(env) {
 	}
 });
 
-})();
+}());

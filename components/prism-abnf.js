@@ -51,4 +51,4 @@
 		'punctuation': /[()\[\]]/
 	};
 
-})(Prism);
+}(Prism));

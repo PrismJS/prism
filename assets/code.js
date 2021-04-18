@@ -34,7 +34,7 @@ $$('[data-src][data-type="text/html"]').forEach(function(element) {
 	});
 });
 
-})();
+}());
 
 /**
  * Table of contents
@@ -98,7 +98,7 @@ if (toc.children.length > 0) {
 	});
 }
 
-})();
+}());
 
 /**
  * Linkify h2
@@ -116,7 +116,7 @@ if (toc.children.length > 0) {
 			inside: h2
 		});
 	});
-})();
+}());
 
 // calc()
 (function(){
@@ -140,7 +140,7 @@ if (toc.children.length > 0) {
 			calculatePadding();
 		}
 	}
-})();
+}());
 
 // setTheme is intentionally global,
 // so it can be accessed from download.js
@@ -207,7 +207,7 @@ for (var id in themes) {
 }
 
 setTheme(current);
-})();
+}());
 
 (function(){
 
@@ -266,4 +266,4 @@ Prism && Prism.hooks.add('complete', function (env) {
 	});
 });
 
-})();
+}());

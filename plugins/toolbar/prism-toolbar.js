@@ -176,4 +176,4 @@
 	 * Register the toolbar with Prism.
 	 */
 	Prism.hooks.add('complete', hook);
-})();
+}());
