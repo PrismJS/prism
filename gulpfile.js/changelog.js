@@ -353,6 +353,8 @@ async function changes() {
 	}
 
 
+	let md = '';
+
 	/**
 	 * Stringifies the given commit info.
 	 *
@@ -378,7 +380,6 @@ async function changes() {
 		}
 	}
 
-	let md = '';
 	for (const category of Object.keys(entries)) {
 		md += `\n### ${category}\n\n`;
 		printCategory(entries[category]);

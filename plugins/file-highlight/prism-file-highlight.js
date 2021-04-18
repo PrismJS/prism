@@ -142,4 +142,4 @@
 		Prism.plugins.fileHighlight.highlight.apply(this, arguments);
 	};
 
-})();
+}());

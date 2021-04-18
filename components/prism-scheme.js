@@ -118,4 +118,4 @@
 		return grammar[key];
 	}
 
-})(Prism);
+}(Prism));
