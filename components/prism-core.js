@@ -432,8 +432,7 @@ var _ = {
 					if (propertyType === 'Object' && !visited[objId(property)]) {
 						visited[objId(property)] = true;
 						DFS(property, callback, null, visited);
-					}
-					else if (propertyType === 'Array' && !visited[objId(property)]) {
+					} else if (propertyType === 'Array' && !visited[objId(property)]) {
 						visited[objId(property)] = true;
 						DFS(property, callback, i, visited);
 					}
@@ -589,8 +588,7 @@ var _ = {
 				code: env.code,
 				immediateClose: true
 			}));
-		}
-		else {
+		} else {
 			insertHighlightedCode(_.highlight(env.code, env.grammar, env.language));
 		}
 	},

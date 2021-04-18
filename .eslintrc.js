@@ -4,6 +4,7 @@ module.exports = {
 	extends: 'eslint:recommended',
 	rules: {
 		// stylistic rules
+		'brace-style': ['warn', '1tbs', { allowSingleLine: true }],
 		'no-var': 'error',
 		'quotes': ['warn', 'single', { avoidEscape: true, allowTemplateLiterals: true }],
 		'semi': 'warn',
