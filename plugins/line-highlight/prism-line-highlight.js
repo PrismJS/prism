@@ -110,6 +110,8 @@
 		return false;
 	}
 
+	var scrollIntoView = true;
+
 	/**
 	 * Highlights the lines of the given pre.
 	 *
@@ -238,7 +240,6 @@
 		};
 	}
 
-	var scrollIntoView = true;
 	function applyHash() {
 		var hash = location.hash.slice(1);
 

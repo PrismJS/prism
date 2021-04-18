@@ -3,6 +3,8 @@ module.exports = {
 	root: true,
 	extends: 'eslint:recommended',
 	rules: {
+		'no-use-before-define': ['error', { 'functions': false, 'classes': false }],
+
 		// stylistic rules
 		'no-var': 'error',
 		'quotes': ['warn', 'single', { avoidEscape: true, allowTemplateLiterals: true }],
