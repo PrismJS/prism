@@ -80,4 +80,4 @@
 	Prism.hooks.add('before-highlight', function (env) {
 		addInvisibles(env.grammar);
 	});
-})();
+}());

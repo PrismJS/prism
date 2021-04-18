@@ -400,4 +400,4 @@
 
 	Prism.languages.factor = factor;
 
-})(Prism);
+}(Prism));

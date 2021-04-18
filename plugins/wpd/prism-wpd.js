@@ -163,4 +163,4 @@ function getLanguage(tag) {
 	return null;
 }
 
-})();
+}());

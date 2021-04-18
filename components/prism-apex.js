@@ -62,4 +62,4 @@
 		'punctuation': /[()\[\]{};,.]/
 	};
 
-})(Prism);
+}(Prism));

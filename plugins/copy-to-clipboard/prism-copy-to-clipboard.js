@@ -157,4 +157,4 @@
 			linkCopy.setAttribute('data-copy-state', state);
 		}
 	});
-})();
+}());
