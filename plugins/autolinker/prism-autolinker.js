@@ -32,8 +32,7 @@ Prism.plugins.autolinker = {
 				}
 				if (type == 'attr-value') {
 					Prism.languages.insertBefore('inside', 'punctuation', { 'url-link': url }, def);
-				}
-				else {
+				} else {
 					def.inside['url-link'] = url;
 				}
 
@@ -57,8 +56,7 @@ Prism.hooks.add('wrap', function(env) {
 
 		if (env.type == 'email-link' && href.indexOf('mailto:') != 0) {
 			href = 'mailto:' + href;
-		}
-		else if (env.type == 'md-link') {
+		} else if (env.type == 'md-link') {
 			// Markdown
 			var match = env.content.match(linkMd);
 

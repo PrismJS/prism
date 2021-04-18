@@ -333,8 +333,7 @@ function getFilesSizes() {
 						}
 					});
 					}(category, id));
-				}
-				else {
+				} else {
 					update(category, id);
 				}
 			});

@@ -6,13 +6,10 @@ if (typeof Prism === 'undefined') {
 
 if (Prism.languages.css) {
 	// check whether the selector is an advanced pattern before extending it
-	if (Prism.languages.css.selector.pattern)
-	{
+	if (Prism.languages.css.selector.pattern) {
 		Prism.languages.css.selector.inside['pseudo-class'] = /:[\w-]+/;
 		Prism.languages.css.selector.inside['pseudo-element'] = /::[\w-]+/;
-	}
-	else
-	{
+	} else {
 		Prism.languages.css.selector = {
 			pattern: Prism.languages.css.selector,
 			inside: {
@@ -70,37 +67,30 @@ Prism.hooks.add('wrap', function(env) {
 
 				if (env.type == 'property') {
 					href += 'properties/';
-				}
-				else if (env.type == 'rule') {
+				} else if (env.type == 'rule') {
 					href += 'atrules/';
 					content = content.substring(1);
-				}
-				else if (env.type == 'pseudo-class') {
+				} else if (env.type == 'pseudo-class') {
 					href += 'selectors/pseudo-classes/';
 					content = content.substring(1);
-				}
-				else if (env.type == 'pseudo-element') {
+				} else if (env.type == 'pseudo-element') {
 					href += 'selectors/pseudo-elements/';
 					content = content.substring(2);
 				}
-			}
-			else if (env.language == 'markup') {
+			} else if (env.language == 'markup') {
 				if (env.type == 'tag-id') {
 					// Check language
 					language = getLanguage(env.content) || language;
 
 					if (language) {
 						href += language + '/elements/';
-					}
-					else {
+					} else {
 						return; // Abort
 					}
-				}
-				else if (env.type == 'attr-name') {
+				} else if (env.type == 'attr-name') {
 					if (language) {
 						href += language + '/attributes/';
-					}
-					else {
+					} else {
 						return; // Abort
 					}
 				}
@@ -119,11 +109,9 @@ function getLanguage(tag) {
 
 	if (Tags.HTML[tagL]) {
 		return 'html';
-	}
-	else if (Tags.SVG[tag]) {
+	} else if (Tags.SVG[tag]) {
 		return 'svg';
-	}
-	else if (Tags.MathML[tag]) {
+	} else if (Tags.MathML[tag]) {
 		return 'mathml';
 	}
 

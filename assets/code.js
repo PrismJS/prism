@@ -28,8 +28,7 @@ $$('[data-src][data-type="text/html"]').forEach(function(element) {
 					parent.removeChild(script);
 					document.head.appendChild(script);
 				});
-			}
-			catch (e) { /* noop */ }
+			} catch (e) { /* noop */ }
 		}
 	});
 });

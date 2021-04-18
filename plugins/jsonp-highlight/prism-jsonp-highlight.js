@@ -48,8 +48,7 @@
 					return item.adapter;
 				}
 			}
-		}
-		else if (typeof adapter === 'string') {
+		} else if (typeof adapter === 'string') {
 			// eslint-disable-next-line no-redeclare
 			for (var i = 0, item; item = adapters[i++];) {
 				if (item.name === adapter) {
@@ -83,8 +82,7 @@
 		if (rsp && rsp.meta && rsp.data) {
 			if (rsp.meta.status && rsp.meta.status >= 400) {
 				return 'Error: ' + (rsp.data.message || rsp.meta.status);
-			}
-			else if (typeof (rsp.data.content) === 'string') {
+			} else if (typeof (rsp.data.content) === 'string') {
 				return typeof (atob) === 'function'
 					? atob(rsp.data.content.replace(/\s/g, ''))
 					: 'Your browser cannot decode base64';
