@@ -224,4 +224,4 @@
 	}
 
 	Prism.languages.shell = Prism.languages.bash;
-})(Prism);
+}(Prism));

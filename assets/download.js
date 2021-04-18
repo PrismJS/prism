@@ -120,7 +120,7 @@ for (var category in components) {
 
 								update(category);
 							};
-						})(category, all)
+						}(category, all))
 					}
 				},
 				'Select/unselect all'
@@ -236,7 +236,7 @@ for (var category in components) {
 
 								update(category, id);
 							};
-						})(id, category, all)
+						}(id, category, all))
 					}
 				},
 				all.meta.link? {
@@ -333,8 +333,7 @@ function getFilesSizes() {
 						}
 					});
 					}(category, id));
-				}
-				else {
+				} else {
 					update(category, id);
 				}
 			});
@@ -535,7 +534,7 @@ function generateCode(){
 				$('#download-' + type + ' .download-button').onclick = function () {
 					saveAs(new Blob([text], { type: 'application/octet-stream;charset=utf-8' }), fileName);
 				};
-			})(type);
+			}(type));
 		}
 	});
 }
@@ -623,4 +622,4 @@ function getVersion() {
 	});
 }
 
-})();
+}());

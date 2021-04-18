@@ -3,11 +3,15 @@ module.exports = {
 	root: true,
 	extends: 'eslint:recommended',
 	rules: {
+		'no-use-before-define': ['error', { 'functions': false, 'classes': false }],
+
 		// stylistic rules
+		'brace-style': ['warn', '1tbs', { allowSingleLine: true }],
 		'no-tabs': ['warn', { allowIndentationTabs: true }],
 		'no-var': 'error',
 		'quotes': ['warn', 'single', { avoidEscape: true, allowTemplateLiterals: true }],
 		'semi': 'warn',
+		'wrap-iife': 'warn',
 
 		// I turned this rule off because we use `hasOwnProperty` in a lot of places
 		// TODO: Think about re-enabling this rule
