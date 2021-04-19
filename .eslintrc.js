@@ -16,8 +16,6 @@ module.exports = {
 		// TODO: Think about re-enabling this rule
 		'no-prototype-builtins': 'off',
 		// TODO: Think about re-enabling this rule
-		'no-cond-assign': 'off',
-		// TODO: Think about re-enabling this rule
 		'no-inner-declarations': 'off',
 		// TODO: Think about re-enabling this rule
 		'no-sparse-arrays': 'off',
