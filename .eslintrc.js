@@ -13,16 +13,6 @@ module.exports = {
 		'semi': 'warn',
 		'wrap-iife': 'warn',
 
-		// I turned this rule off because we use `hasOwnProperty` in a lot of places
-		// TODO: Think about re-enabling this rule
-		'no-prototype-builtins': 'off',
-		// TODO: Think about re-enabling this rule
-		'no-cond-assign': 'off',
-		// TODO: Think about re-enabling this rule
-		'no-inner-declarations': 'off',
-		// TODO: Think about re-enabling this rule
-		'no-sparse-arrays': 'off',
-
 		// JSDoc
 		'jsdoc/check-alignment': 'warn',
 		'jsdoc/check-syntax': 'warn',
@@ -35,6 +25,15 @@ module.exports = {
 		'jsdoc/require-param-name': 'warn',
 		'jsdoc/require-property-name': 'warn',
 
+		// I turned this rule off because we use `hasOwnProperty` in a lot of places
+		// TODO: Think about re-enabling this rule
+		'no-prototype-builtins': 'off',
+		// TODO: Think about re-enabling this rule
+		'no-cond-assign': 'off',
+		// TODO: Think about re-enabling this rule
+		'no-inner-declarations': 'off',
+		// TODO: Think about re-enabling this rule
+		'no-sparse-arrays': 'off',
 
 		// turning off some regex rules
 		// these are supposed to protect against accidental use but we need those quite often
