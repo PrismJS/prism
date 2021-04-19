@@ -1,0 +1,29 @@
+<MyComponent>
+</MyComponent>
+<InlineComponent />
+
+----------------------------------------------------
+
+[
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			["class-name", "MyComponent"]
+		]],
+		["punctuation", ">"]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			["class-name", "MyComponent"]
+		]],
+		["punctuation", ">"]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			["class-name", "InlineComponent"]
+		]],
+		["punctuation", "/>"]
+	]]
+]

@@ -1,0 +1,15 @@
+{{this.someLocalHelper}}
+
+----------------------------------------------------
+
+[
+	["mustache", [
+		["punctuation", "{{"],
+		["this-expression", [
+			["namespace", "this"],
+			["punctuation", "."],
+			["property", "someLocalHelper"],
+			["punctuation", "}}"]
+		]]
+	]]
+]

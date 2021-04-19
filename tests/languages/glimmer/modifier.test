@@ -1,0 +1,18 @@
+<div {{resize}}>
+
+----------------------------------------------------
+
+[
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			["class-name", "div"]
+		]],
+		["mustache", [
+			["punctuation", "{{"],
+			["variable", "resize"],
+			["punctuation", "}}"]
+		]],
+		["punctuation", ">"]
+	]]
+]

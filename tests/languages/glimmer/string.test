@@ -1,0 +1,37 @@
+<div class="true">
+<div class="{{foo "strig-> true <-string"}}"
+
+----------------------------------------------------
+
+[
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			["class-name", "div"]
+		]],
+		["attr-name", [
+			"class",
+			["punctuation", "="]
+		]],
+		["string", ["\"true"]],
+		["string", ["\""]],
+		["punctuation", ">"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			["class-name", "div"]
+		]],
+		["attr-name", [
+			"class",
+			["punctuation", "="]
+		]],
+		["string", ["\""]],
+		["punctuation", "{{"],
+		"foo ",
+		["string", ["\"strig-"]],
+		["punctuation", ">"]
+	]],
+	" true <-string\"}}\""
+]

@@ -1,0 +1,27 @@
+{{global-helper (fn this.function "sub expression")}}
+
+----------------------------------------------------
+
+[
+	["mustache", [
+		["punctuation", "{{"],
+		["variable", "global"],
+		"-",
+		["keyword", "helper"],
+		["sub-expression", [
+			["function", [
+				["punctuation", "("],
+				["keyword", "fn"]
+			]],
+			["this-expression", [
+				["namespace", "this"],
+				["punctuation", "."],
+				["property", "function"]
+			]],
+			["string", ["\"sub expression"]],
+			["string", ["\""]],
+			["punctuation", ")"]
+		]],
+		["punctuation", "}}"]
+	]]
+]

@@ -1,0 +1,15 @@
+<Namespace::Component />
+
+----------------------------------------------------
+
+[
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			["class-name", "Namespace"],
+			["punctuation", "::"],
+			["class-name", "Component"]
+		]],
+		["punctuation", "/>"]
+	]]
+]

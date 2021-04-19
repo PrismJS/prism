@@ -1,0 +1,26 @@
+{{global-helper (super (fun "sub expression"))}}
+
+----------------------------------------------------
+
+[
+	["mustache", [
+		["punctuation", "{{"],
+		["variable", "global"],
+		"-",
+		["keyword", "helper"],
+		["sub-expression", [
+			["function", [
+				["punctuation", "("],
+				"super"
+			]],
+			["function", [
+				["punctuation", "("],
+				"fun"
+			]],
+			["string", ["\"sub expression"]],
+			["string", ["\""]],
+			["punctuation", ")"]
+		]],
+		["punctuation", ")}}"]
+	]]
+]

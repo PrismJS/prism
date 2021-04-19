@@ -1,0 +1,71 @@
+<a
+  href="#"
+  class="{{if inside 'still highlight'}}"
+  {{on 'click' (action this.foo)}}
+>
+  text!
+</a>
+
+----------------------------------------------------
+
+[
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			["class-name", "a"]
+		]],
+
+		["attr-name", [
+			"href",
+			["punctuation", "="]
+		]],
+		["string", ["\""]],
+		["punctuation", "#"],
+		["string", ["\"\r\n  "]],
+		["attr-name", [
+			"class",
+			["punctuation", "="]
+		]],
+		["string", ["\""]],
+		["mustache", [
+			["punctuation", "{{"],
+			["builtin", "if"],
+			["variable", "inside"],
+			["string", "'still highlight"],
+			["string", "'"],
+			["punctuation", "}}"]
+		]],
+		["string", ["\"\r\n  "]],
+		["mustache", [
+			["punctuation", "{{"],
+			["builtin", "on"],
+			["string", "'click"],
+			["string", "' "],
+			["sub-expression", [
+				["function", [
+					["punctuation", "("],
+					["builtin", "action"]
+				]],
+				["this-expression", [
+					["namespace", "this"],
+					["punctuation", "."],
+					["property", "foo"],
+					["punctuation", ")"]
+				]]
+			]],
+			["punctuation", "}}"]
+		]],
+
+		["punctuation", ">"]
+	]],
+
+	"\r\n  text!\r\n",
+
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			["class-name", "a"]
+		]],
+		["punctuation", ">"]
+	]]
+]

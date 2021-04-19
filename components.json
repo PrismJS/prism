@@ -457,6 +457,23 @@
 			"title": "Git",
 			"owner": "lgiraudel"
 		},
+		"glimmer": {
+			"title": "Glimmer / Ember",
+			"require": "markup-templating",
+			"owner": "NullVoxPopuli",
+			"alias": ["hbs", "handlebars", "htmlbars"],
+			"aliasTitles": {
+				"hbs": "Handlebars",
+				"handlebars": "Handlebars",
+				"htmlbars": "HTMLBars"
+			},
+			"optional": [
+				"javascript"
+			],
+			"modify": [
+				"javascript"
+			]
+		},
 		"glsl": {
 			"title": "GLSL",
 			"require": "c",

@@ -1,0 +1,13 @@
+@namedArg
+{{@namedArg}}
+
+----------------------------------------------------
+
+[
+	"@namedArg\r\n",
+	["mustache", [
+		["punctuation", "{{"],
+		["parameter argument property", "@namedArg"],
+		["punctuation", "}}"]
+	]]
+]

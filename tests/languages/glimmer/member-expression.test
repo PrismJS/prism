@@ -1,0 +1,26 @@
+{{object.property}}
+{{helper object.property}}
+
+----------------------------------------------------
+
+[
+	["mustache", [
+		["punctuation", "{{"],
+		["member-expression", [
+			["constant", "object"],
+			["punctuation", "."],
+			["constant", "property"],
+			["punctuation", "}}"]
+		]]
+	]],
+	["mustache", [
+		["punctuation", "{{"],
+		["keyword", "helper"],
+		["member-expression", [
+			["constant", "object"],
+			["punctuation", "."],
+			["constant", "property"],
+			["punctuation", "}}"]
+		]]
+	]]
+]

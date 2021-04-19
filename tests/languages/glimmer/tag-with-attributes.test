@@ -1,0 +1,19 @@
+<div data-name="string" />
+
+----------------------------------------------------
+
+[
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			["class-name", "div"]
+		]],
+		["attr-name", [
+			"data-name",
+			["punctuation", "="]
+		]],
+		["string", ["\"string"]],
+		["string", ["\" "]],
+		["punctuation", "/>"]
+	]]
+]

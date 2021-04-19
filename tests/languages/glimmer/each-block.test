@@ -1,0 +1,27 @@
+{{#each this.foo as |item|}}
+
+{{/each}}
+
+----------------------------------------------------
+
+[
+	["mustache", [
+		["punctuation", "{{#"],
+		["builtin", "each"],
+		["this-expression", [
+			["namespace", "this"],
+			["punctuation", "."],
+			["property", "foo"]
+		]],
+		["operator", "as"],
+		["punctuation", "|"],
+		["variable", "item"],
+		["punctuation", "|}}"]
+	]],
+
+	["mustache", [
+		["punctuation", "{{/"],
+		["builtin", "each"],
+		["punctuation", "}}"]
+	]]
+]

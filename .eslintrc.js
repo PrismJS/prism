@@ -51,6 +51,9 @@ module.exports = {
 				node: true,
 				worker: true
 			},
+			parserOptions: {
+				ecmaVersion: 2020
+			},
 			globals: {
 				'Prism': true
 			},
