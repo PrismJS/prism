@@ -1,6 +1,7 @@
 /** @type {import('eslint').Linter.Config} */
 module.exports = {
 	root: true,
+	plugins: ['jsdoc'],
 	extends: 'eslint:recommended',
 	rules: {
 		'no-use-before-define': ['error', { 'functions': false, 'classes': false }],
@@ -22,11 +23,27 @@ module.exports = {
 		// TODO: Think about re-enabling this rule
 		'no-sparse-arrays': 'off',
 
+		// JSDoc
+		'jsdoc/check-alignment': 'warn',
+		'jsdoc/check-syntax': 'warn',
+		'jsdoc/check-param-names': 'warn',
+		'jsdoc/require-hyphen-before-param-description': ['warn', 'never'],
+		'jsdoc/check-tag-names': 'warn',
+		'jsdoc/check-types': 'warn',
+		'jsdoc/empty-tags': 'warn',
+		'jsdoc/newline-after-description': 'warn',
+		'jsdoc/require-param-name': 'warn',
+		'jsdoc/require-property-name': 'warn',
+
+
 		// turning off some regex rules
 		// these are supposed to protect against accidental use but we need those quite often
 		'no-control-regex': 'off',
 		'no-empty-character-class': 'off',
 		'no-useless-escape': 'off'
+	},
+	settings: {
+		jsdoc: { mode: 'typescript' }
 	},
 	ignorePatterns: [
 		'*.min.js',

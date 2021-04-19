@@ -71,6 +71,7 @@ module.exports = {
 
 	/**
 	 * Returns whether a directory matches one of the given languages.
+	 *
 	 * @param {string} directory
 	 * @param {string|string[]} languages
 	 */

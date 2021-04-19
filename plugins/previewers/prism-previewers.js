@@ -15,6 +15,7 @@
 
 				/**
 				 * Returns a W3C-valid linear gradient
+				 *
 				 * @param {string} prefix Vendor prefix if any ("-moz-", "-webkit-", etc.)
 				 * @param {string} func Gradient function name ("linear-gradient")
 				 * @param {string[]} values Array of the gradient function parameters (["0deg", "red 0%", "blue 100%"])
@@ -64,6 +65,7 @@
 
 				/**
 				 * Returns a W3C-valid radial gradient
+				 *
 				 * @param {string} prefix Vendor prefix if any ("-moz-", "-webkit-", etc.)
 				 * @param {string} func Gradient function name ("linear-gradient")
 				 * @param {string[]} values Array of the gradient function parameters (["0deg", "red 0%", "blue 100%"])
@@ -108,6 +110,7 @@
 				/**
 				 * Converts a gradient to a W3C-valid one
 				 * Does not support old webkit syntax (-webkit-gradient(linear...) and -webkit-gradient(radial...))
+				 *
 				 * @param {string} gradient The CSS gradient
 				 */
 				var convertToW3CGradient = function(gradient) {
@@ -461,6 +464,7 @@
 
 	/**
 	 * Returns the absolute X, Y offsets for an element
+	 *
 	 * @param {HTMLElement} element
 	 * @returns {{top: number, right: number, bottom: number, left: number, width: number, height: number}}
 	 */
@@ -488,11 +492,12 @@
 
 	/**
 	 * Previewer constructor
+	 *
 	 * @param {string} type Unique previewer type
-	 * @param {function} updater Function that will be called on mouseover.
-	 * @param {string[]|string=} supportedLanguages Aliases of the languages this previewer must be enabled for. Defaults to "*", all languages.
-	 * @param {function=} initializer Function that will be called on initialization.
-	 * @constructor
+	 * @param {Function} updater Function that will be called on mouseover.
+	 * @param {string[]|string} [supportedLanguages] Aliases of the languages this previewer must be enabled for. Defaults to "*", all languages.
+	 * @param {Function} [initializer] Function that will be called on initialization.
+	 * @class
 	 */
 	var Previewer = function (type, updater, supportedLanguages, initializer) {
 		this._elt = null;
@@ -555,6 +560,7 @@
 
 	/**
 	 * Checks the class name of each hovered element
+	 *
 	 * @param {Element} token
 	 */
 	Previewer.prototype.check = function (token) {
@@ -624,18 +630,21 @@
 
 	/**
 	 * Map of all registered previewers by language
+	 *
 	 * @type {{}}
 	 */
 	Previewer.byLanguages = {};
 
 	/**
 	 * Map of all registered previewers by type
+	 *
 	 * @type {{}}
 	 */
 	Previewer.byType = {};
 
 	/**
 	 * Initializes the mouseover event on the code block.
+	 *
 	 * @param {HTMLElement} elt The code block (env.element)
 	 * @param {string} lang The language (env.language)
 	 */

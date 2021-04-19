@@ -232,6 +232,7 @@ var getLoader = (function () {
 
 		/**
 		 * A set of ids of nodes which are not depended upon by any other node in the graph.
+		 *
 		 * @type {StringSet}
 		 */
 		var ends = {};
@@ -261,6 +262,7 @@ var getLoader = (function () {
 
 			/**
 			 * The value to be returned.
+			 *
 			 * @type {T}
 			 */
 			var value;
