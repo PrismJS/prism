@@ -171,13 +171,13 @@
 	 * Returns style declarations for the element
 	 * @param {Element} element
 	 */
-	var getStyles = function (element) {
+	function getStyles(element) {
 		if (!element) {
 			return null;
 		}
 
 		return window.getComputedStyle ? getComputedStyle(element) : (element.currentStyle || null);
-	};
+	}
 
 	var lastWidth = undefined;
 	window.addEventListener('resize', function () {

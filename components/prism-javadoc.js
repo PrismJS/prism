@@ -3,7 +3,7 @@
 	var codeLinePattern = /(^(?:\s*(?:\*\s*)*))[^*\s].*$/m;
 
 	var memberReference = /#\s*\w+(?:\s*\([^()]*\))?/.source;
-	var reference = /(?:[a-zA-Z]\w+\s*\.\s*)*[A-Z]\w*(?:\s*<mem>)?|<mem>/.source.replace(/<mem>/g, function () { return memberReference });
+	var reference = /(?:[a-zA-Z]\w+\s*\.\s*)*[A-Z]\w*(?:\s*<mem>)?|<mem>/.source.replace(/<mem>/g, function () { return memberReference; });
 
 	Prism.languages.javadoc = Prism.languages.extend('javadoclike', {});
 	Prism.languages.insertBefore('javadoc', 'keyword', {

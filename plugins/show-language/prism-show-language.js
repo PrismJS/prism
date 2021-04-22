@@ -10,6 +10,8 @@
 		return;
 	}
 
+	/* eslint-disable */
+
 	// The languages map is built automatically with gulp
 	var Languages = /*languages_placeholder[*/{
 		"none": "Plain text",
@@ -236,6 +238,8 @@
 		"yang": "YANG"
 	}/*]*/;
 
+	/* eslint-enable */
+
 	Prism.plugins.toolbar.registerButton('show-language', function (env) {
 		var pre = env.element.parentNode;
 		if (!pre || !/pre/i.test(pre.nodeName)) {
@@ -266,4 +270,4 @@
 		return element;
 	});
 
-})();
+}());

@@ -1,3 +1,5 @@
+/* eslint-disable no-misleading-character-class */
+
 // 1C:Enterprise
 // https://github.com/Diversus23/
 //

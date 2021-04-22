@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const { assert } = require('chai');
 const PrismLoader = require('./helper/prism-loader');
@@ -199,7 +199,7 @@ function testPatterns(Prism) {
 	function isFirstMatch(element) {
 		const parent = element.parent;
 		switch (parent.type) {
-			case 'Alternative':
+			case 'Alternative': {
 				// all elements before this element have to of zero length
 				if (!parent.elements.slice(0, parent.elements.indexOf(element)).every(isAlwaysZeroWidth)) {
 					return false;
@@ -210,6 +210,7 @@ function testPatterns(Prism) {
 				} else {
 					return isFirstMatch(grandParent);
 				}
+			}
 
 			case 'Quantifier':
 				if (parent.max >= 2) {
@@ -230,7 +231,7 @@ function testPatterns(Prism) {
 	 * @returns {boolean}
 	 */
 	function underAStar(node) {
-		if (node.type === "Quantifier" && node.max > 10) {
+		if (node.type === 'Quantifier' && node.max > 10) {
 			return true;
 		} else if (node.parent) {
 			return underAStar(node.parent);
@@ -416,13 +417,13 @@ function testPatterns(Prism) {
 			function toNFA(element) {
 				let { expression, maxCharacter } = parser.parseElement(element, {
 					maxBackreferenceWords: 1000,
-					backreferences: "disable"
+					backreferences: 'disable'
 				});
 
 				// try to remove assertions
 				expression = transform(transformer, expression);
 
-				return NFA.fromRegex(expression, { maxCharacter }, { assertions: "disable" });
+				return NFA.fromRegex(expression, { maxCharacter }, { assertions: 'disable' });
 			}
 
 			/**
@@ -469,7 +470,7 @@ function testPatterns(Prism) {
 				onCapturingGroupLeave: checkDisjointAlternatives,
 				onGroupLeave: checkDisjointAlternatives,
 				onAssertionLeave(node) {
-					if (node.kind === "lookahead" || node.kind === "lookbehind") {
+					if (node.kind === 'lookahead' || node.kind === 'lookbehind') {
 						checkDisjointAlternatives(node);
 					}
 				},
@@ -478,7 +479,7 @@ function testPatterns(Prism) {
 					if (node.max < 10) {
 						return; // not a star
 					}
-					if (node.element.type !== "CapturingGroup" && node.element.type !== "Group") {
+					if (node.element.type !== 'CapturingGroup' && node.element.type !== 'Group') {
 						return; // not a group
 					}
 
@@ -588,7 +589,7 @@ function testPatterns(Prism) {
 					+ `\n`
 					+ `\nFull pattern:`
 					+ `\n${patternStr}`
-					+ `\n${indent(rangeHighlight, " ".repeat(rangeOffset))}`
+					+ `\n${indent(rangeHighlight, ' '.repeat(rangeOffset))}`
 					+ `\n`
 					+ `\n` + (fixed ? `Fixed:\n/${fixed.source}/${fixed.flags}` : `Fix not available.`)
 				);

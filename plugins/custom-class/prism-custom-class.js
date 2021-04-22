@@ -63,7 +63,7 @@
 		prefix: function prefix(string) {
 			prefixString = string || '';
 		}
-	}
+	};
 
 	Prism.hooks.add('wrap', function (env) {
 		if (adder) {
@@ -89,4 +89,4 @@
 		});
 	});
 
-})();
+}());

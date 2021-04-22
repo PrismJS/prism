@@ -11,7 +11,7 @@ Prism.languages.openqasm = {
 	'class-name': /\b(?:angle|bit|bool|creg|fixed|float|int|length|qreg|qubit|stretch|uint)\b/,
 	'function': /\b(?:sin|cos|tan|exp|ln|sqrt|rotl|rotr|popcount)\b(?=\s*\()/,
 
-	'constant': /\b(?:pi|tau|euler)\b|[π𝜏ℇ]/,
+	'constant': /\b(?:pi|tau|euler)\b|π|𝜏|ℇ/,
 	'number': {
 		pattern: /(^|[^.\w$])(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?(?:dt|ns|us|µs|ms|s)?/i,
 		lookbehind: true

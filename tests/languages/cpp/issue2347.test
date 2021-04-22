@@ -40,7 +40,7 @@ void MainWindow::changeWindowTitle()
 
 	["keyword", "void"],
 	["class-name", "MainWindow"],
-	["operator", "::"],
+	["double-colon", "::"],
 	["function", "changeWindowTitle"],
 	["punctuation", "("],
 	["punctuation", ")"],
@@ -68,5 +68,3 @@ void MainWindow::changeWindowTitle()
 
 	["punctuation", "}"]
 ]
-
-----------------------------------------------------

@@ -40,9 +40,9 @@ function toArray(value) {
 var hstr = window.location.hash.match(/(?:languages|plugins)=[-+\w]+|themes=[-\w]+/g);
 if (hstr) {
 	hstr.forEach(function(str) {
-		var kv = str.split('=', 2),
-		    category = kv[0],
-		    ids = kv[1].split('+');
+		var kv = str.split('=', 2);
+		var category = kv[0];
+		var ids = kv[1].split('+');
 		if (category !== 'meta' && category !== 'core' && components[category]) {
 			for (var id in components[category]) {
 				if (components[category][id].option) {
@@ -54,6 +54,7 @@ if (hstr) {
 				if (themeInput) {
 					themeInput.checked = true;
 				}
+				// eslint-disable-next-line no-undef
 				setTheme(ids[0]);
 			}
 			var makeDefault = function (id) {
@@ -61,7 +62,7 @@ if (hstr) {
 					if (components[category][id]) {
 						if (components[category][id].option !== 'default') {
 							if (typeof components[category][id] === 'string') {
-								components[category][id] = { title: components[category][id] }
+								components[category][id] = { title: components[category][id] };
 							}
 							components[category][id].option = 'default';
 						}
@@ -119,7 +120,7 @@ for (var category in components) {
 
 								update(category);
 							};
-						})(category, all)
+						}(category, all))
 					}
 				},
 				'Select/unselect all'
@@ -193,7 +194,7 @@ for (var category in components) {
 			for (var alias in lang.aliasTitles)
 				if (lang.aliasTitles.hasOwnProperty(alias))
 					titles.push(lang.aliasTitles[alias]);
-			return titles.join(" + ");
+			return titles.join(' + ');
 		}
 
 		var label = $u.element.create('label', {
@@ -235,7 +236,7 @@ for (var category in components) {
 
 								update(category, id);
 							};
-						})(id, category, all)
+						}(id, category, all))
 					}
 				},
 				all.meta.link? {
@@ -314,8 +315,8 @@ function getFilesSizes() {
 				continue;
 			}
 
-			var distro = all[id].files[minified? 'minified' : 'dev'],
-			    files = distro.paths;
+			var distro = all[id].files[minified? 'minified' : 'dev'];
+			var files = distro.paths;
 
 			files.forEach(function (filepath) {
 				var file = cache[filepath] = cache[filepath] || {};
@@ -332,8 +333,7 @@ function getFilesSizes() {
 						}
 					});
 					}(category, id));
-				}
-				else {
+				} else {
 					update(category, id);
 				}
 			});
@@ -380,8 +380,8 @@ function update(updatedCategory, updatedId){
 					if (cache[path]) {
 						var file = cache[path];
 
-						var type = path.match(/\.(\w+)$/)[1],
-						    size = file.size || 0;
+						var type = path.match(/\.(\w+)$/)[1];
+						var size = file.size || 0;
 
 						if (info.enabled) {
 
@@ -408,6 +408,7 @@ function update(updatedCategory, updatedId){
 				if (themeInput) {
 					themeInput.checked = true;
 				}
+				// eslint-disable-next-line no-undef
 				setTheme(updatedId);
 			}
 		}
@@ -504,18 +505,18 @@ function generateCode(){
 			$u.element.contents(error, errors);
 		}
 
-		var redownloadUrl = window.location.href.split("#")[0] + "#";
+		var redownloadUrl = window.location.href.split('#')[0] + '#';
 		for (var category in redownload) {
-			redownloadUrl += category + "=" + redownload[category].join('+') + "&";
+			redownloadUrl += category + '=' + redownload[category].join('+') + '&';
 		}
-		redownloadUrl = redownloadUrl.replace(/&$/,"");
+		redownloadUrl = redownloadUrl.replace(/&$/,'');
 		window.location.replace(redownloadUrl);
 
-		var versionComment = "/* PrismJS " + version + "\n" + redownloadUrl + " */";
+		var versionComment = '/* PrismJS ' + version + '\n' + redownloadUrl + ' */';
 
 		for (var type in code) {
 			(function (type) {
-				var text = versionComment + "\n" + code[type];
+				var text = versionComment + '\n' + code[type];
 				var fileName = 'prism.' + type;
 
 				var codeElement = $('#download-' + type + ' code');
@@ -531,9 +532,9 @@ function generateCode(){
 
 
 				$('#download-' + type + ' .download-button').onclick = function () {
-					saveAs(new Blob([text], { type: "application/octet-stream;charset=utf-8" }), fileName);
+					saveAs(new Blob([text], { type: 'application/octet-stream;charset=utf-8' }), fileName);
 				};
-			})(type);
+			}(type));
 		}
 	});
 }
@@ -560,7 +561,7 @@ function buildCode(promises) {
 	var toSortMap = {};
 
 	promises.forEach(function (p) {
-		if (p.category == "core" || p.category == "themes") {
+		if (p.category == 'core' || p.category == 'themes') {
 			finalPromises.push(p);
 		} else {
 			var infos = toSortMap[p.id];
@@ -574,15 +575,15 @@ function buildCode(promises) {
 	// this assumes that the ids in `toSortMap` are complete under transitive requirements
 	getLoader(components, Object.keys(toSortMap)).getIds().forEach(function (id) {
 		if (!toSortMap[id]) {
-			console.error(id + " not found.");
+			console.error(id + ' not found.');
 		}
 		finalPromises.push.apply(finalPromises, toSortMap[id]);
 	});
 	promises = finalPromises;
 
 	// build
-	var i = 0,
-	    l = promises.length;
+	var i = 0;
+	var l = promises.length;
 	var code = {js: '', css: ''};
 	var errors = [];
 
@@ -621,4 +622,4 @@ function getVersion() {
 	});
 }
 
-})();
+}());

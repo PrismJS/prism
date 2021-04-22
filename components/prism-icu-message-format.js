@@ -12,7 +12,7 @@
 		if (level <= 0) {
 			return /[]/.source;
 		} else {
-			return source.replace(/<SELF>/g, function () { return nested(source, level - 1) });
+			return source.replace(/<SELF>/g, function () { return nested(source, level - 1); });
 		}
 	}
 

@@ -15,7 +15,7 @@
 	var insideString = {
 		'bash': commandAfterHeredoc,
 		'environment': {
-			pattern: RegExp("\\$" + envVars),
+			pattern: RegExp('\\$' + envVars),
 			alias: 'constant'
 		},
 		'variable': [
@@ -55,7 +55,7 @@
 					'operator': /:[-=?+]?|[!\/]|##?|%%?|\^\^?|,,?/,
 					'punctuation': /[\[\]]/,
 					'environment': {
-						pattern: RegExp("(\\{)" + envVars),
+						pattern: RegExp('(\\{)' + envVars),
 						lookbehind: true,
 						alias: 'constant'
 					}
@@ -83,13 +83,13 @@
 			// but not “foo {”
 			{
 				// a) and c)
-				pattern: /(\bfunction\s+)\w+(?=(?:\s*\(?:\s*\))?\s*\{)/,
+				pattern: /(\bfunction\s+)[\w-]+(?=(?:\s*\(?:\s*\))?\s*\{)/,
 				lookbehind: true,
 				alias: 'function'
 			},
 			{
 				// b)
-				pattern: /\b\w+(?=\s*\(\s*\)\s*\{)/,
+				pattern: /\b[\w-]+(?=\s*\(\s*\)\s*\{)/,
 				alias: 'function'
 			}
 		],
@@ -105,7 +105,7 @@
 			pattern: /(^|[\s;|&]|[<>]\()\w+(?=\+?=)/,
 			inside: {
 				'environment': {
-					pattern: RegExp("(^|[\\s;|&]|[<>]\\()" + envVars),
+					pattern: RegExp('(^|[\\s;|&]|[<>]\\()' + envVars),
 					lookbehind: true,
 					alias: 'constant'
 				}
@@ -155,7 +155,7 @@
 			}
 		],
 		'environment': {
-			pattern: RegExp("\\$?" + envVars),
+			pattern: RegExp('\\$?' + envVars),
 			alias: 'constant'
 		},
 		'variable': insideString.variable,
@@ -224,4 +224,4 @@
 	}
 
 	Prism.languages.shell = Prism.languages.bash;
-})(Prism);
+}(Prism));
