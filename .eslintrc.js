@@ -31,7 +31,6 @@ module.exports = {
 	ignorePatterns: [
 		'*.min.js',
 		'vendor/',
-		'utopia.js',
 		'docs/',
 		'components.js',
 		'prism.js',
