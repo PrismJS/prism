@@ -44,7 +44,7 @@
     "gulp-jsdoc3": "^3.0.0",
     "gulp-rename": "^1.2.0",
     "gulp-replace": "^1.0.0",
-    "gulp-uglify": "^3.0.1",
+    "gulp-terser": "^2.0.1",
     "gzip-size": "^5.1.1",
     "htmlparser2": "^4.0.0",
     "http-server": "^0.12.3",

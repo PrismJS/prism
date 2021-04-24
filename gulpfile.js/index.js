@@ -3,7 +3,7 @@
 const { src, dest, series, parallel, watch } = require('gulp');
 
 const rename = require('gulp-rename');
-const uglify = require('gulp-uglify');
+const uglify = require('gulp-terser');
 const header = require('gulp-header');
 const concat = require('gulp-concat');
 const replace = require('gulp-replace');
