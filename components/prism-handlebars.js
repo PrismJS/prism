@@ -34,4 +34,6 @@
 		Prism.languages['markup-templating'].tokenizePlaceholders(env, 'handlebars');
 	});
 
+	Prism.languages.hbs = Prism.languages.handlebars;
+
 }(Prism));

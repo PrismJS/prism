@@ -496,6 +496,7 @@
 		"handlebars": {
 			"title": "Handlebars",
 			"require": "markup-templating",
+			"alias": "hbs",
 			"owner": "Golmote"
 		},
 		"haskell": {
