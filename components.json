@@ -459,7 +459,7 @@
 		},
 		"glimmer": {
 			"title": "Glimmer / Ember",
-			"require": "markup-templating",
+			"require": ["markup", "markup-templating"],
 			"owner": "NullVoxPopuli",
 			"alias": ["hbs", "handlebars", "htmlbars"],
 			"aliasTitles": {
