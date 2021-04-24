@@ -219,18 +219,9 @@ function setup(Prism) {
 	};
 
 
-	// if (Prism.languages.markup) {
-
-	// }
-
-	// if (Prism.languages.javascript) {
-	// 	Prism.languages.gjs = Prism.languages.javascript;
-	// }
-
-	// if (Prism.languages.markdown) {
-
-	// }
-
+	// TODO: extend Prism.languages.javascript (for gjs)
+	// TODO: extend Prism.languages.typescript (for gts)
+	// TODO: extend Prism.languages.markdown (for glimdown)
 }
 
 
