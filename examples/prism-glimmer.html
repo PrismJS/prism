@@ -1,0 +1,76 @@
+<h2>Full Example</h2>
+<pre><code>&lt;Nested::Component
+  class=&quot;some classes
+    {{if (this.someHelper this.foo 12)
+       &quot;classes when true&quot;
+       &quot;classes when false&quot;
+    }}
+  &quot;
+  @doAction={{fn this.someAction 120}}
+  @argB={{hash
+    foo=&quot;string&quot;
+    bar=true
+    baz=120
+    yolo=(array 12 &quot;string&quot; (hash foo=this.something))
+    bax=(fn this.someAction 120)
+  }}
+  {{resize this.handleResize (fn this.idk 2 &quot;str&quot;)}}
+  as |foo|
+&gt;
+  &lt;:block as |foo, baz|&gt;
+    {{foo}}
+
+    {{#let foo.bar 12 as |fooBar num|}}
+      &lt;fooBar @num={{num}} @arg={{12}} /&gt;
+    {{/let}}
+
+    {{! comment }}
+    {{!-- block }}
+      TODO: Indentation is broken after that
+      comment --}}
+
+    &lt;baz.component /&gt;
+  &lt;/:block&gt;
+&lt;/Nested::Component&gt;
+
+&lt;input {{on 'input' (fn this.doSomething 12 &quot;string&quot;)}}
+
+{{#each-in this.keyedCollection as |key value|}}
+  {{this.localHelper (global-helper key value)}}
+{{/each-in}}
+
+{{#each this.listCollection as |value|}}
+  &lt;button
+    type=&quot;button&quot;
+    {{on &quot;click&quot; (fn this.handleClick value)}}
+  &gt;
+    {{value}}
+  &lt;/button&gt;
+{{/each}}
+
+{{#block-component
+    property=@value
+    prop-erty=this.value
+    string=&quot;testing&quot;
+    onClick=(action &quot;someAction&quot; withParam)
+    as |returnValue|
+}}
+  {{#if foo}}
+    {{escaped handlebars}}
+  {{else}}
+    &lt;a
+      href=&quot;#&quot;
+      class=&quot;{{if inside 'still highlight'}}&quot;
+      onclick={{action foo}}
+    &gt;
+
+      {{escaped}}
+      {{{unescaped}}}
+
+    &lt;/a&gt;
+    {{textarea}}
+  {{/if}}
+{{/block-component}}
+
+
+</code></pre>
