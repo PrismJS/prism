@@ -467,12 +467,7 @@
 				"handlebars": "Handlebars",
 				"htmlbars": "HTMLBars"
 			},
-			"optional": [
-				"javascript"
-			],
-			"modify": [
-				"javascript"
-			]
+			"modify": "javascript"
 		},
 		"glsl": {
 			"title": "GLSL",
