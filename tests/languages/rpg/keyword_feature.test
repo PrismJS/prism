@@ -1,0 +1,64 @@
+*empty; *blanks; *zero; *nopass; *omit;
+eval; like; eval-corr; likeds; read;
+dpsly; if; dcl-f; endif; write; const;
+actgrp; dftactgrp; extproc; extpgm; options;
+val; value; class; select; where;
+include; exec sql; iter; else; not;
+while; do; dow; for; endfor;
+leave; return; dcl-pi; end-ds; end-pi;
+null; break; inz; switch; case; 
+
+----------------------------------------------------
+
+[
+	["keyword", "*empty"], ["punctuation", ";"],
+	["keyword", "*blanks"], ["punctuation", ";"],
+	["keyword", "*zero"], ["punctuation", ";"],
+	["keyword", "*nopass"], ["punctuation", ";"],
+	["keyword", "*omit"], ["punctuation", ";"],
+	["keyword", "eval"], ["punctuation", ";"],
+	["keyword", "like"], ["punctuation", ";"],
+	["keyword", "eval-corr"], ["punctuation", ";"],
+	["keyword", "likeds"], ["punctuation", ";"],
+	["keyword", "read"], ["punctuation", ";"],
+	["keyword", "dpsly"], ["punctuation", ";"],
+	["keyword", "if"], ["punctuation", ";"],
+	["keyword", "dcl-f"], ["punctuation", ";"],
+	["keyword", "endif"], ["punctuation", ";"],
+	["keyword", "write"], ["punctuation", ";"],
+	["keyword", "const"], ["punctuation", ";"],
+	["keyword", "actgrp"], ["punctuation", ";"],
+	["keyword", "dftactgrp"], ["punctuation", ";"],
+	["keyword", "extproc"], ["punctuation", ";"],
+	["keyword", "extpgm"], ["punctuation", ";"],
+	["keyword", "options"], ["punctuation", ";"],
+	["keyword", "val"], ["punctuation", ";"],
+	["keyword", "value"], ["punctuation", ";"],
+	["keyword", "class"], ["punctuation", ";"],
+	["keyword", "select"], ["punctuation", ";"],
+	["keyword", "where"], ["punctuation", ";"],
+	["keyword", "include"], ["punctuation", ";"],
+	["keyword", "exec sql"], ["punctuation", ";"],
+	["keyword", "iter"], ["punctuation", ";"],
+	["keyword", "else"], ["punctuation", ";"],
+	["keyword", "not"], ["punctuation", ";"],
+	["keyword", "while"], ["punctuation", ";"],
+	["keyword", "do"], ["punctuation", ";"],
+	["keyword", "dow"], ["punctuation", ";"],
+	["keyword", "for"], ["punctuation", ";"],
+	["keyword", "endfor"], ["punctuation", ";"],
+	["keyword", "leave"], ["punctuation", ";"],
+	["keyword", "return"], ["punctuation", ";"],
+	["keyword", "dcl-pi"], ["punctuation", ";"],
+	["keyword", "end-ds"], ["punctuation", ";"],
+	["keyword", "end-pi"], ["punctuation", ";"],
+	["keyword", "null"], ["punctuation", ";"],
+	["keyword", "break"], ["punctuation", ";"],
+	["keyword", "inz"], ["punctuation", ";"],
+	["keyword", "switch"], ["punctuation", ";"],
+	["keyword", "case"], ["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for all keywords.

@@ -1,0 +1,31 @@
+dcl-proc;
+end-proc;
+%abs;
+%addr;
+%alloc;
+
+
+
+
+----------------------------------------------------
+
+[
+	["function", "dcl-proc"],
+	["punctuation", ";"],
+
+	["function", "end-proc"],
+	["punctuation", ";"],
+
+	["function", "%abs"],
+	["punctuation", ";"],
+
+	["function", "%addr"],
+	["punctuation", ";"],
+
+	["function", "%alloc"],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for functions.

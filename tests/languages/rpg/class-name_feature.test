@@ -1,0 +1,32 @@
+varchar;
+date;
+packed;
+graph; 
+vargraph; 
+char;
+ucs2;
+varucs2;
+float;
+indicator;
+byte;
+bindec;
+pointer;
+
+----------------------------------------------------
+
+[
+	["class-name", "varchar"], ["punctuation", ";"],
+	["class-name", "date"], ["punctuation", ";"],
+	["class-name", "packed"], ["punctuation", ";"],
+	["class-name", "graph"], ["punctuation", ";"],
+	["class-name", "vargraph"], ["punctuation", ";"],
+	["class-name", "char"], ["punctuation", ";"],
+	["class-name", "ucs2"], ["punctuation", ";"],
+	["class-name", "varucs2"], ["punctuation", ";"],
+	["class-name", "float"], ["punctuation", ";"],
+	["class-name", "indicator"], ["punctuation", ";"],
+	["class-name", "byte"], ["punctuation", ";"],
+	["class-name", "bindec"], ["punctuation", ";"],
+	["class-name", "pointer"], ["punctuation", ";"]
+
+]
