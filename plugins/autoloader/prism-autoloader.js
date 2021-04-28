@@ -222,6 +222,7 @@
 		"rkt": "racket",
 		"rpy": "renpy",
 		"robot": "robotframework",
+		"RPG": "rpg",
 		"rb": "ruby",
 		"sh-session": "shell-session",
 		"shellsession": "shell-session",

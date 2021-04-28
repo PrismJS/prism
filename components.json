@@ -1092,6 +1092,11 @@
 			"alias": "robot",
 			"owner": "RunDevelopment"
 		},
+		"rpg": {
+			"title": "RPG fully free",
+			"alias": "RPG",
+			"owner": "gianluca1606"
+		},
 		"ruby": {
 			"title": "Ruby",
 			"require": "clike",

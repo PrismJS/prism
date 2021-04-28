@@ -187,6 +187,8 @@
 		"rest": "reST (reStructuredText)",
 		"robotframework": "Robot Framework",
 		"robot": "Robot Framework",
+		"rpg": "RPG fully free",
+		"RPG": "RPG fully free",
 		"rb": "Ruby",
 		"sas": "SAS",
 		"sass": "Sass (Sass)",
