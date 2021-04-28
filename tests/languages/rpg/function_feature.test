@@ -1,11 +1,6 @@
-dcl-proc;
-end-proc;
-%abs;
-%addr;
-%alloc;
-
-
-
+dcl-proc; end-proc; dcl-sr; end-sr; 
+%abs; %addr; %alloc; %bitand; 
+%bitor; %bitxor; %checkr; %check;
 
 ----------------------------------------------------
 
@@ -16,13 +11,34 @@ end-proc;
 	["function", "end-proc"],
 	["punctuation", ";"],
 
+	["function", "dcl-sr"],
+	["punctuation", ";"],							
+										
+	["function", "end-sr"],
+	["punctuation", ";"],
+
 	["function", "%abs"],
 	["punctuation", ";"],
 
-	["function", "%addr"],
+	["function", "%addr"],						
 	["punctuation", ";"],
 
 	["function", "%alloc"],
+	["punctuation", ";"],
+
+	["function", "%bitand"],
+	["punctuation", ";"],
+
+	["function", "%bitor"],
+	["punctuation", ";"],
+
+	["function", "%bitxor"],
+	["punctuation", ";"],
+
+	["function", "%checkr"],
+	["punctuation", ";"],
+
+	["function", "%check"],
 	["punctuation", ";"]
 ]
 

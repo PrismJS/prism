@@ -3,9 +3,9 @@ eval; like; eval-corr; likeds; read;
 dpsly; if; dcl-f; endif; write; const;
 actgrp; dftactgrp; extproc; extpgm; options;
 val; value; class; select; where;
-include; exec sql; iter; else; not;
+include; exec; sql; iter; else; not;
 while; do; dow; for; endfor;
-leave; return; dcl-pi; end-ds; end-pi;
+leave; return; dcl-pi; end-pi;
 null; break; inz; switch; case; 
 
 ----------------------------------------------------
@@ -38,7 +38,8 @@ null; break; inz; switch; case;
 	["keyword", "select"], ["punctuation", ";"],
 	["keyword", "where"], ["punctuation", ";"],
 	["keyword", "include"], ["punctuation", ";"],
-	["keyword", "exec sql"], ["punctuation", ";"],
+	["keyword", "exec"], ["punctuation", ";"],
+	["keyword", "sql"], ["punctuation", ";"],
 	["keyword", "iter"], ["punctuation", ";"],
 	["keyword", "else"], ["punctuation", ";"],
 	["keyword", "not"], ["punctuation", ";"],
@@ -50,7 +51,6 @@ null; break; inz; switch; case;
 	["keyword", "leave"], ["punctuation", ";"],
 	["keyword", "return"], ["punctuation", ";"],
 	["keyword", "dcl-pi"], ["punctuation", ";"],
-	["keyword", "end-ds"], ["punctuation", ";"],
 	["keyword", "end-pi"], ["punctuation", ";"],
 	["keyword", "null"], ["punctuation", ";"],
 	["keyword", "break"], ["punctuation", ";"],

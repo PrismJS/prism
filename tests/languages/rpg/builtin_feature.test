@@ -1,0 +1,18 @@
+dcl-s;
+dcl-c;
+end-ds;
+dcl-ds; 
+
+----------------------------------------------------
+
+[
+	["builtin", "dcl-s"], ["punctuation", ";"],
+	["builtin", "dcl-c"], ["punctuation", ";"],
+	["builtin", "end-ds"], ["punctuation", ";"],
+	["builtin", "dcl-ds"], ["punctuation", ";"]
+]
+
+
+----------------------------------------------------
+
+Checks for builtins.
