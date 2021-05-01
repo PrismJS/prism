@@ -564,7 +564,7 @@ function testPatterns(Prism) {
 					case 'Self': {
 						rangeOffset = report.parentQuant.start + 1;
 						rangeStr = patternStr.substring(report.parentQuant.start + 1, report.parentQuant.end + 1);
-						rangeHighlight = highlight([{...report.quant, label: 'self'}], -report.parentQuant.start);
+						rangeHighlight = highlight([{ ...report.quant, label: 'self' }], -report.parentQuant.start);
 						break;
 					}
 					case 'Move': {

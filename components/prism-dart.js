@@ -46,14 +46,14 @@
 		'operator': /\bis!|\b(?:as|is)\b|\+\+|--|&&|\|\||<<=?|>>=?|~(?:\/=?)?|[+\-*\/%&^|=!<>]=?|\?/
 	});
 
-	Prism.languages.insertBefore('dart','function',{
+	Prism.languages.insertBefore('dart', 'function', {
 		'metadata': {
 			pattern: /@\w+/,
 			alias: 'symbol'
 		}
 	});
 
-	Prism.languages.insertBefore('dart','class-name',{
+	Prism.languages.insertBefore('dart', 'class-name', {
 		'generics': {
 			pattern: /<(?:[\w\s,.&?]|<(?:[\w\s,.&?]|<(?:[\w\s,.&?]|<[\w\s,.&?]*>)*>)*>)*>/,
 			inside: {

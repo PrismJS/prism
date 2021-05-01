@@ -1,4 +1,4 @@
-(function(Prism) {
+(function (Prism) {
 	var interpolationExpr = {
 		pattern: /[\s\S]+/,
 		inside: null
@@ -44,7 +44,7 @@
 	});
 
 	interpolationExpr.inside = Prism.languages.v;
-	
+
 	Prism.languages.insertBefore('v', 'operator', {
 		'attribute': {
 			pattern: /^\s*\[(?:deprecated|unsafe_fn|typedef|live|inline|flag|ref_only|windows_stdcall|direct_array_access)\]/m,
@@ -62,7 +62,7 @@
 			}
 		}
 	});
-	
+
 	Prism.languages.insertBefore('v', 'function', {
 		'generic-function': {
 			// e.g. foo<T>( ...

@@ -346,7 +346,7 @@
 	};
 
 	var escape = function (str) {
-		return (str+'').replace(/([.?*+\^$\[\]\\(){}|\-])/g, '\\$1');
+		return (str + '').replace(/([.?*+\^$\[\]\\(){}|\-])/g, '\\$1');
 	};
 
 	var arrToWordsRegExp = function (arr) {
@@ -375,7 +375,7 @@
 	};
 
 	Object.keys(builtins).forEach(function (k) {
-		factor[k].pattern = arrToWordsRegExp( builtins[k] );
+		factor[k].pattern = arrToWordsRegExp(builtins[k]);
 	});
 
 	var combinators = [
