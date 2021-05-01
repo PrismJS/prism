@@ -492,7 +492,7 @@ var _ = {
 
 		_.hooks.run('before-all-elements-highlight', env);
 
-		for (var i = 0, element; element = env.elements[i++];) {
+		for (var i = 0, element; (element = env.elements[i++]);) {
 			_.highlightElement(element, async === true, env.callback);
 		}
 	},
@@ -716,7 +716,7 @@ var _ = {
 				return;
 			}
 
-			for (var i=0, callback; callback = callbacks[i++];) {
+			for (var i=0, callback; (callback = callbacks[i++]);) {
 				callback(env);
 			}
 		}
@@ -1753,7 +1753,7 @@ Prism.languages.js = Prism.languages.javascript;
 		highlight: function highlight(container) {
 			var elements = (container || document).querySelectorAll(SELECTOR);
 
-			for (var i = 0, element; element = elements[i++];) {
+			for (var i = 0, element; (element = elements[i++]);) {
 				Prism.highlightElement(element);
 			}
 		}
