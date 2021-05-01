@@ -66,7 +66,7 @@
 		if (Prism.languages[alias]) {
 			var o = {};
 			o['inline-lang-' + alias] = {
-				pattern: RegExp(inlineLanguageRe.replace('{lang}', lang.replace(/([.+*?\/\\(){}\[\]])/g,'\\$1')), 'i'),
+				pattern: RegExp(inlineLanguageRe.replace('{lang}', lang.replace(/([.+*?\/\\(){}\[\]])/g, '\\$1')), 'i'),
 				inside: Prism.util.clone(Prism.languages.pure['inline-lang'].inside)
 			};
 			o['inline-lang-' + alias].inside.rest = Prism.util.clone(Prism.languages[alias]);

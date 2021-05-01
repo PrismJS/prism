@@ -21,7 +21,7 @@ var _self = (typeof window !== 'undefined')
  * @namespace
  * @public
  */
-var Prism = (function (_self){
+var Prism = (function (_self) {
 
 // Private helper vars
 var lang = /\blang(?:uage)?-([\w-]+)\b/i;
@@ -412,7 +412,7 @@ var _ = {
 			root[inside] = ret;
 
 			// Update references in other language definitions
-			_.languages.DFS(_.languages, function(key, value) {
+			_.languages.DFS(_.languages, function (key, value) {
 				if (value === old && key != inside) {
 					this[key] = ret;
 				}
@@ -460,7 +460,7 @@ var _ = {
 	 * @memberof Prism
 	 * @public
 	 */
-	highlightAll: function(async, callback) {
+	highlightAll: function (async, callback) {
 		_.highlightAllUnder(document, async, callback);
 	},
 
@@ -479,7 +479,7 @@ var _ = {
 	 * @memberof Prism
 	 * @public
 	 */
-	highlightAllUnder: function(container, async, callback) {
+	highlightAllUnder: function (container, async, callback) {
 		var env = {
 			callback: callback,
 			container: container,
@@ -525,7 +525,7 @@ var _ = {
 	 * @memberof Prism
 	 * @public
 	 */
-	highlightElement: function(element, async, callback) {
+	highlightElement: function (element, async, callback) {
 		// Find language
 		var language = _.util.getLanguage(element);
 		var grammar = _.languages[language];
@@ -584,7 +584,7 @@ var _ = {
 		if (async && _self.Worker) {
 			var worker = new Worker(_.filename);
 
-			worker.onmessage = function(evt) {
+			worker.onmessage = function (evt) {
 				insertHighlightedCode(evt.data);
 			};
 
@@ -654,7 +654,7 @@ var _ = {
 	 *     }
 	 * });
 	 */
-	tokenize: function(text, grammar) {
+	tokenize: function (text, grammar) {
 		var rest = grammar.rest;
 		if (rest) {
 			for (var token in rest) {
@@ -716,7 +716,7 @@ var _ = {
 				return;
 			}
 
-			for (var i=0, callback; (callback = callbacks[i++]);) {
+			for (var i = 0, callback; (callback = callbacks[i++]);) {
 				callback(env);
 			}
 		}

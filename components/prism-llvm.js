@@ -1,4 +1,4 @@
-(function(Prism) {
+(function (Prism) {
 	Prism.languages.llvm = {
 		'comment': /;.*/,
 		'string': {

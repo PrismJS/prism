@@ -16,7 +16,7 @@ require('../../../plugins/keep-markup/prism-keep-markup');
 
 describe('Prism Keep Markup Plugin', function () {
 
-	function execute (code) {
+	function execute(code) {
 		const start = [];
 		const end = [];
 		const nodes = [];

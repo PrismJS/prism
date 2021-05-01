@@ -41,7 +41,7 @@ Prism.languages.vala = Prism.languages.extend('clike', {
 	'constant': /\b[A-Z0-9_]+\b/
 });
 
-Prism.languages.insertBefore('vala','string', {
+Prism.languages.insertBefore('vala', 'string', {
 	'raw-string': {
 		pattern: /"""[\s\S]*?"""/,
 		greedy: true,

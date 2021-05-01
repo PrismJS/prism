@@ -53,7 +53,7 @@
 		},
 	}, markupLatte.tag);
 
-	Prism.hooks.add('before-tokenize', function(env) {
+	Prism.hooks.add('before-tokenize', function (env) {
 		if (env.language !== 'latte') {
 			return;
 		}
@@ -62,7 +62,7 @@
 		env.grammar = markupLatte;
 	});
 
-	Prism.hooks.add('after-tokenize', function(env) {
+	Prism.hooks.add('after-tokenize', function (env) {
 		Prism.languages['markup-templating'].tokenizePlaceholders(env, 'latte');
 	});
 

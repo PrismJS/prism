@@ -11,4 +11,4 @@ Prism.languages.insertBefore('n4js', 'constant', {
 	}
 });
 
-Prism.languages.n4jsd=Prism.languages.n4js;
+Prism.languages.n4jsd = Prism.languages.n4js;

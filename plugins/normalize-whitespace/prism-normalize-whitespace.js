@@ -1,4 +1,4 @@
-(function() {
+(function () {
 
 if (typeof Prism === 'undefined' || typeof document === 'undefined') {
 	return;
@@ -17,7 +17,7 @@ function NormalizeWhitespace(defaults) {
 }
 
 function toCamelCase(value) {
-	return value.replace(/-(\w)/g, function(match, firstChar) {
+	return value.replace(/-(\w)/g, function (match, firstChar) {
 		return firstChar.toUpperCase();
 	});
 }
@@ -79,7 +79,7 @@ NormalizeWhitespace.prototype = {
 		if (!indents || !indents[0].length)
 			return input;
 
-		indents.sort(function(a, b){return a.length - b.length; });
+		indents.sort(function (a, b) { return a.length - b.length; });
 
 		if (!indents[0].length)
 			return input;
