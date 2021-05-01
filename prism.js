@@ -716,7 +716,7 @@ var _ = {
 				return;
 			}
 
-			for (var i=0, callback; (callback = callbacks[i++]);) {
+			for (var i = 0, callback; (callback = callbacks[i++]);) {
 				callback(env);
 			}
 		}
