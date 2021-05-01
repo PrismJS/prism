@@ -191,7 +191,7 @@
 				new Prism.plugins.Previewer('angle', function (value) {
 					var num = parseFloat(value);
 					var unit = value.match(/[a-z]+$/i);
-					var max, percentage;
+					var max; var percentage;
 					if (!num || !unit) {
 						return false;
 					}
@@ -674,7 +674,7 @@
 					lang = [lang];
 				}
 				lang.forEach(function (lang) {
-					var before, inside, root, skip;
+					var before; var inside; var root; var skip;
 					if (lang === true) {
 						before = 'important';
 						inside = env.language;

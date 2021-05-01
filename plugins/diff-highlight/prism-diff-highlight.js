@@ -32,7 +32,7 @@
 	});
 
 	Prism.hooks.add('wrap', function (env) {
-		var diffLanguage, diffGrammar;
+		var diffLanguage; var diffGrammar;
 
 		if (env.language !== 'diff') {
 			var langMatch = LANGUAGE_REGEX.exec(env.language);
@@ -70,7 +70,7 @@
 			var prefix = Prism.Token.stringify(prefixToken, env.language);
 
 			// add prefix
-			var lines = [], m;
+			var lines = []; var m;
 			HTML_LINE.lastIndex = 0;
 			while ((m = HTML_LINE.exec(highlighted))) {
 				lines.push(prefix + m[0]);
