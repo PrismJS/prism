@@ -1,6 +1,6 @@
 (function () {
 
-	if (typeof self === 'undefined' || !self.Prism || !self.document || !document.createRange) {
+	if (typeof Prism === 'undefined' || typeof document === 'undefined' || !document.createRange) {
 		return;
 	}
 
@@ -29,7 +29,7 @@
 				var child = elt.childNodes[i];
 				if (child.nodeType === 1) { // element
 					f(child);
-				} else if(child.nodeType === 3) { // text
+				} else if (child.nodeType === 3) { // text
 					pos += child.data.length;
 				}
 			}
@@ -46,7 +46,7 @@
 	});
 
 	Prism.hooks.add('after-highlight', function (env) {
-		if(env.keepMarkup && env.keepMarkup.length) {
+		if (env.keepMarkup && env.keepMarkup.length) {
 
 			var walk = function (elt, nodeState) {
 				for (var i = 0, l = elt.childNodes.length; i < l; i++) {
@@ -59,12 +59,12 @@
 						}
 
 					} else if (child.nodeType === 3) { // text
-						if(!nodeState.nodeStart && nodeState.pos + child.data.length > nodeState.node.posOpen) {
+						if (!nodeState.nodeStart && nodeState.pos + child.data.length > nodeState.node.posOpen) {
 							// We found the start position
 							nodeState.nodeStart = child;
 							nodeState.nodeStartPos = nodeState.node.posOpen - nodeState.pos;
 						}
-						if(nodeState.nodeStart && nodeState.pos + child.data.length >= nodeState.node.posClose) {
+						if (nodeState.nodeStart && nodeState.pos + child.data.length >= nodeState.node.posClose) {
 							// We found the end position
 							nodeState.nodeEnd = child;
 							nodeState.nodeEndPos = nodeState.node.posClose - nodeState.pos;

@@ -21,4 +21,4 @@ Prism.languages['splunk-spl'] = {
 	'boolean': /\b(?:f|false|t|true)\b/i,
 	'operator': /[<>=]=?|[-+*/%|]/,
 	'punctuation': /[()[\],]/
-}
+};

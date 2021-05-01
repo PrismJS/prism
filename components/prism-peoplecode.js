@@ -8,7 +8,7 @@ Prism.languages.peoplecode = {
 		/<\*(?:[^<*]|\*(?!>)|<(?!\*)|<\*(?:(?!\*>)[\s\S])*\*>)*\*>/.source,
 		// /+ +/ comments
 		/\/\+[\s\S]*?\+\//.source,
-	].join("|")),
+	].join('|')),
 	'string': {
 		pattern: /'(?:''|[^'\r\n])*'(?!')|"(?:""|[^"\r\n])*"(?!")/,
 		greedy: true

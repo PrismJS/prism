@@ -24,4 +24,4 @@ Prism.languages.cil = {
 	'number': /\b-?(?:0x[0-9a-fA-F]+|[0-9]+)(?:\.[0-9a-fA-F]+)?\b/i,
 
 	'punctuation': /[{}[\];(),:=]|IL_[0-9A-Za-z]+/
-}
+};

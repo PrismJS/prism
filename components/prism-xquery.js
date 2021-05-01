@@ -4,7 +4,7 @@
 		'xquery-comment': {
 			pattern: /\(:[\s\S]*?:\)/,
 			greedy: true,
-			alias: "comment"
+			alias: 'comment'
 		},
 		'string': {
 			pattern: /(["'])(?:\1\1|(?!\1)[\s\S])*\1/,
@@ -118,7 +118,7 @@
 					openedTags[openedTags.length - 1].openedBraces--;
 
 				} else if (token.type !== 'comment') {
-					notTagNorBrace = true
+					notTagNorBrace = true;
 				}
 			}
 			if (notTagNorBrace || typeof token === 'string') {

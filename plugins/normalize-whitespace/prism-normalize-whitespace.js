@@ -1,4 +1,8 @@
-(function() {
+(function () {
+
+if (typeof Prism === 'undefined' || typeof document === 'undefined') {
+	return;
+}
 
 var assign = Object.assign || function (obj1, obj2) {
 	for (var name in obj2) {
@@ -6,14 +10,14 @@ var assign = Object.assign || function (obj1, obj2) {
 			obj1[name] = obj2[name];
 	}
 	return obj1;
-}
+};
 
 function NormalizeWhitespace(defaults) {
 	this.defaults = assign({}, defaults);
 }
 
 function toCamelCase(value) {
-	return value.replace(/-(\w)/g, function(match, firstChar) {
+	return value.replace(/-(\w)/g, function (match, firstChar) {
 		return firstChar.toUpperCase();
 	});
 }
@@ -36,7 +40,7 @@ NormalizeWhitespace.prototype = {
 
 		for (var name in settings) {
 			var methodName = toCamelCase(name);
-			if (name !== "normalize" && methodName !== 'setDefaults' &&
+			if (name !== 'normalize' && methodName !== 'setDefaults' &&
 					settings[name] && this[methodName]) {
 				input = this[methodName].call(this, input, settings[name]);
 			}
@@ -75,7 +79,7 @@ NormalizeWhitespace.prototype = {
 		if (!indents || !indents[0].length)
 			return input;
 
-		indents.sort(function(a, b){return a.length - b.length; });
+		indents.sort(function (a, b) { return a.length - b.length; });
 
 		if (!indents[0].length)
 			return input;
@@ -93,8 +97,8 @@ NormalizeWhitespace.prototype = {
 			if (tabLen(lines[i]) <= characters)
 				continue;
 
-			var line = lines[i].split(/(\s+)/g),
-			    len = 0;
+			var line = lines[i].split(/(\s+)/g);
+			var len = 0;
 
 			for (var j = 0; j < line.length; ++j) {
 				var tl = tabLen(line[j]);
@@ -157,10 +161,10 @@ Prism.hooks.add('before-sanity-check', function (env) {
 		return;
 	}
 
-	var children = pre.childNodes,
-	    before = '',
-	    after = '',
-	    codeFound = false;
+	var children = pre.childNodes;
+	var before = '';
+	var after = '';
+	var codeFound = false;
 
 	// Move surrounding whitespace from the <pre> tag into the <code> tag
 	for (var i = 0; i < children.length; ++i) {
@@ -168,7 +172,7 @@ Prism.hooks.add('before-sanity-check', function (env) {
 
 		if (node == env.element) {
 			codeFound = true;
-		} else if (node.nodeName === "#text") {
+		} else if (node.nodeName === '#text') {
 			if (codeFound) {
 				after += node.nodeValue;
 			} else {

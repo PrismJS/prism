@@ -2,7 +2,7 @@
  * Manage examples
  */
 
-(function() {
+(function () {
 
 var examples = {};
 
@@ -160,7 +160,7 @@ function buildContentsHeader(id) {
 			header += ':';
 			header += '<ul>';
 			deps.forEach(function (text) {
-				header += '<li>' + text + '.</li>'
+				header += '<li>' + text + '.</li>';
 			});
 			header += '</ul>';
 		}
@@ -232,7 +232,7 @@ function getDependenciesOfLanguage(lang) {
 		return [];
 	}
 
-	return ($u.type(components.languages[lang].require) === "array")
+	return ($u.type(components.languages[lang].require) === 'array')
 		? components.languages[lang].require
 		: [components.languages[lang].require];
 }

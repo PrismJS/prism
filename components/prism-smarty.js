@@ -3,7 +3,7 @@
 	Add support for {php}
 */
 
-(function(Prism) {
+(function (Prism) {
 
 	Prism.languages.smarty = {
 		'comment': /\{\*[\s\S]*?\*\}/,
@@ -37,11 +37,11 @@
 			// Value is made optional because it may have already been tokenized
 			pattern: /\w+\s*=\s*(?:(?!\d)\w+)?/,
 			inside: {
-				"variable": {
+				'variable': {
 					pattern: /(=\s*)(?!\d)\w+/,
 					lookbehind: true
 				},
-				"operator": /=/
+				'operator': /=/
 			}
 		},
 		'punctuation': [
@@ -56,7 +56,7 @@
 	};
 
 	// Tokenize all inline Smarty expressions
-	Prism.hooks.add('before-tokenize', function(env) {
+	Prism.hooks.add('before-tokenize', function (env) {
 		var smartyPattern = /\{\*[\s\S]*?\*\}|\{[\s\S]+?\}/g;
 		var smartyLitteralStart = '{literal}';
 		var smartyLitteralEnd = '{/literal}';
@@ -64,12 +64,12 @@
 
 		Prism.languages['markup-templating'].buildPlaceholders(env, 'smarty', smartyPattern, function (match) {
 			// Smarty tags inside {literal} block are ignored
-			if(match === smartyLitteralEnd) {
+			if (match === smartyLitteralEnd) {
 				smartyLitteralMode = false;
 			}
 
-			if(!smartyLitteralMode) {
-				if(match === smartyLitteralStart) {
+			if (!smartyLitteralMode) {
+				if (match === smartyLitteralStart) {
 					smartyLitteralMode = true;
 				}
 
@@ -80,7 +80,7 @@
 	});
 
 	// Re-insert the tokens after tokenizing
-	Prism.hooks.add('after-tokenize', function(env) {
+	Prism.hooks.add('after-tokenize', function (env) {
 		Prism.languages['markup-templating'].tokenizePlaceholders(env, 'smarty');
 	});
 

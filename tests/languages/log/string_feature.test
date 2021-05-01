@@ -1,0 +1,39 @@
+"GET /history/apollo/images/apollo-log01.gif HTTP/1.0"
+"{[/],methods=[GET]}"
+
+TLSv1.2 ECDHE-RSA-AES128-GCM-SHA256 2.2.2.2 "Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1"
+
+13 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "start"
+
+This isn't a string but this is: 'string'
+
+----------------------------------------------------
+
+[
+	["string", "\"GET /history/apollo/images/apollo-log01.gif HTTP/1.0\""],
+	["string", "\"{[/],methods=[GET]}\""],
+
+	"\r\n\r\nTLSv1",
+	["punctuation", "."],
+	"2 ECDHE",
+	["operator", "-"],
+	"RSA",
+	["operator", "-"],
+	"AES128",
+	["operator", "-"],
+	"GCM",
+	["operator", "-"],
+	"SHA256 ",
+	["ip-address", "2.2.2.2"],
+	["string", "\"Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1\""],
+
+	["number", "13"],
+	" error argv ",
+	["string", "\"/usr/local/bin/node\""],
+	["string", "\"/usr/local/bin/npm\""],
+	["string", "\"start\""],
+
+	"\r\n\r\nThis isn't a string but this is",
+	["operator", ":"],
+	["string", "'string'"]
+]

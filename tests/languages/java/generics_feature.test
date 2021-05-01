@@ -2,19 +2,30 @@ public class Solo<T extends com.foo.Foo.Bar> {}
 Solo<Integer> val = new Solo<>();
 Duo<Double, Character> dual = new Duo<Double, Character>(12.2585, 'C');
 
+List<?> list
+List<? extends Number> nums = ints;
+List<? super Integer> list
+Entry<String, String> pair = Entry.<String>twice("Hello");
+
+public class Entry<KeyType, ValueType> {}
+class D <T extends A & B & C> {}
+
+public <T extends Throwable> void throwMeConditional(boolean conditional, T exception) throws T {}
+
+<T> T instantiateElementType(List<T> arg) {}
+
+// not generics
+if (a<6&&b>6){}
+
 ----------------------------------------------------
 
 [
 	["keyword", "public"],
 	["keyword", "class"],
-	["class-name", [
-		"Solo"
-	]],
+	["class-name", ["Solo"]],
 	["generics", [
 		["punctuation", "<"],
-		["class-name", [
-			"T"
-		]],
+		["class-name", ["T"]],
 		["keyword", "extends"],
 		["class-name", [
 			["namespace", [
@@ -32,22 +43,16 @@ Duo<Double, Character> dual = new Duo<Double, Character>(12.2585, 'C');
 	["punctuation", "{"],
 	["punctuation", "}"],
 
-	["class-name", [
-		"Solo"
-	]],
+	["class-name", ["Solo"]],
 	["generics", [
 		["punctuation", "<"],
-		["class-name", [
-			"Integer"
-		]],
+		["class-name", ["Integer"]],
 		["punctuation", ">"]
 	]],
 	" val ",
 	["operator", "="],
 	["keyword", "new"],
-	["class-name", [
-		"Solo"
-	]],
+	["class-name", ["Solo"]],
 	["generics", [
 		["punctuation", "<"],
 		["punctuation", ">"]
@@ -56,35 +61,23 @@ Duo<Double, Character> dual = new Duo<Double, Character>(12.2585, 'C');
 	["punctuation", ")"],
 	["punctuation", ";"],
 
-	["class-name", [
-		"Duo"
-	]],
+	["class-name", ["Duo"]],
 	["generics", [
 		["punctuation", "<"],
-		["class-name", [
-			"Double"
-		]],
+		["class-name", ["Double"]],
 		["punctuation", ","],
-		["class-name", [
-			"Character"
-		]],
+		["class-name", ["Character"]],
 		["punctuation", ">"]
 	]],
 	" dual ",
 	["operator", "="],
 	["keyword", "new"],
-	["class-name", [
-		"Duo"
-	]],
+	["class-name", ["Duo"]],
 	["generics", [
 		["punctuation", "<"],
-		["class-name", [
-			"Double"
-		]],
+		["class-name", ["Double"]],
 		["punctuation", ","],
-		["class-name", [
-			"Character"
-		]],
+		["class-name", ["Character"]],
 		["punctuation", ">"]
 	]],
 	["punctuation", "("],
@@ -92,7 +85,146 @@ Duo<Double, Character> dual = new Duo<Double, Character>(12.2585, 'C');
 	["punctuation", ","],
 	["string", "'C'"],
 	["punctuation", ")"],
-	["punctuation", ";"]
+	["punctuation", ";"],
+
+	["class-name", ["List"]],
+	["generics", [
+		["punctuation", "<"],
+		["operator", "?"],
+		["punctuation", ">"]
+	]],
+	" list\r\n",
+
+	["class-name", ["List"]],
+	["generics", [
+		["punctuation", "<"],
+		["operator", "?"],
+		["keyword", "extends"],
+		["class-name", ["Number"]],
+		["punctuation", ">"]
+	]],
+	" nums ",
+	["operator", "="],
+	" ints",
+	["punctuation", ";"],
+
+	["class-name", ["List"]],
+	["generics", [
+		["punctuation", "<"],
+		["operator", "?"],
+		["keyword", "super"],
+		["class-name", ["Integer"]],
+		["punctuation", ">"]
+	]],
+	" list\r\n",
+
+	["class-name", ["Entry"]],
+	["generics", [
+		["punctuation", "<"],
+		["class-name", ["String"]],
+		["punctuation", ","],
+		["class-name", ["String"]],
+		["punctuation", ">"]
+	]],
+	" pair ",
+	["operator", "="],
+	["class-name", ["Entry"]],
+	["punctuation", "."],
+	["generics", [
+		["punctuation", "<"],
+		["class-name", ["String"]],
+		["punctuation", ">"]
+	]],
+	["function", "twice"],
+	["punctuation", "("],
+	["string", "\"Hello\""],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "public"],
+	["keyword", "class"],
+	["class-name", ["Entry"]],
+	["generics", [
+		["punctuation", "<"],
+		["class-name", ["KeyType"]],
+		["punctuation", ","],
+		["class-name", ["ValueType"]],
+		["punctuation", ">"]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "class"],
+	["class-name", ["D"]],
+	["generics", [
+		["punctuation", "<"],
+		["class-name", ["T"]],
+		["keyword", "extends"],
+		["class-name", ["A"]],
+		["operator", "&"],
+		["class-name", ["B"]],
+		["operator", "&"],
+		["class-name", ["C"]],
+		["punctuation", ">"]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "public"],
+	["generics", [
+		["punctuation", "<"],
+		["class-name", ["T"]],
+		["keyword", "extends"],
+		["class-name", ["Throwable"]],
+		["punctuation", ">"]
+	]],
+	["keyword", "void"],
+	["function", "throwMeConditional"],
+	["punctuation", "("],
+	["keyword", "boolean"],
+	" conditional",
+	["punctuation", ","],
+	["class-name", ["T"]],
+	" exception",
+	["punctuation", ")"],
+	["keyword", "throws"],
+	["class-name", ["T"]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["generics", [
+		["punctuation", "<"],
+		["class-name", ["T"]],
+		["punctuation", ">"]
+	]],
+	["class-name", ["T"]],
+	["function", "instantiateElementType"],
+	["punctuation", "("],
+	["class-name", ["List"]],
+	["generics", [
+		["punctuation", "<"],
+		["class-name", ["T"]],
+		["punctuation", ">"]
+	]],
+	" arg",
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["comment", "// not generics"],
+
+	["keyword", "if"],
+	["punctuation", "("],
+	"a",
+	["operator", "<"],
+	["number", "6"],
+	["operator", "&&"],
+	"b",
+	["operator", ">"],
+	["number", "6"],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"]
 ]
 
 ----------------------------------------------------

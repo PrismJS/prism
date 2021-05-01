@@ -5,7 +5,7 @@
 			code |
 */
 
-(function(Prism) {
+(function (Prism) {
 
 	Prism.languages.haml = {
 		// Multiline stuff should appear before the rest
@@ -109,7 +109,7 @@
 	// Non exhaustive list of available filters and associated languages
 	var filters = [
 		'css',
-		{filter:'coffee',language:'coffeescript'},
+		{ filter: 'coffee', language: 'coffeescript' },
 		'erb',
 		'javascript',
 		'less',
@@ -121,7 +121,7 @@
 	var all_filters = {};
 	for (var i = 0, l = filters.length; i < l; i++) {
 		var filter = filters[i];
-		filter = typeof filter === 'string' ? {filter: filter, language: filter} : filter;
+		filter = typeof filter === 'string' ? { filter: filter, language: filter } : filter;
 		if (Prism.languages[filter.language]) {
 			all_filters['filter-' + filter.filter] = {
 				pattern: RegExp(filter_pattern.replace('{{filter_name}}', function () { return filter.filter; })),
@@ -133,7 +133,7 @@
 					},
 					rest: Prism.languages[filter.language]
 				}
-			}
+			};
 		}
 	}
 

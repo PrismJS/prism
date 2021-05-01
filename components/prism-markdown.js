@@ -297,7 +297,7 @@
 					// this might be a language that Prism does not support
 
 					// do some replacements to support C++, C#, and F#
-					var lang = codeLang.content.replace(/\b#/g, 'sharp').replace(/\b\+\+/g, 'pp')
+					var lang = codeLang.content.replace(/\b#/g, 'sharp').replace(/\b\+\+/g, 'pp');
 					// only use the first word
 					lang = (/[a-z][\w-]*/i.exec(lang) || [''])[0].toLowerCase();
 					var alias = 'language-' + lang;
@@ -347,8 +347,10 @@
 				});
 			}
 		} else {
-			// reverse Prism.util.encode
-			var code = env.content.replace(/&lt;/g, '<').replace(/&amp;/g, '&');
+			// get the textContent of the given env HTML
+			var tempContainer = document.createElement('div');
+			tempContainer.innerHTML = env.content;
+			var code = tempContainer.textContent;
 
 			env.content = Prism.highlight(code, grammar, codeLang);
 		}

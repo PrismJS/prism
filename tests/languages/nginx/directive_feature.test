@@ -1,0 +1,186 @@
+name parameter1;
+name "parameter1";
+name parameter1 parameter2;
+name parameter1 "parameter2";
+name "parameter1" parameter2;
+name para\;meter1;
+name "para;meter1";
+name "para\;meter1";
+internal;
+internal    ;
+
+# A multiline parameter
+name "para
+
+meter1";
+
+name {
+    name parameter1  'parameter2' \; par#ameter3;
+    name parameter1 \" 'he"llo' par#ameter2;
+    name parameter1; name parameter1;
+    name parameter1 \{ 'hello';
+    name {
+        internal;
+        name parameter1 parameter2;
+    }
+}
+
+name "#foo"; name; #bar
+name " #foo"; #bar
+name ';oh no' parameter;
+
+----------------------------------------------------
+
+[
+	["directive", [
+		["keyword", "name"],
+		" parameter1"
+	]],
+	["punctuation", ";"],
+
+	["directive", [
+		["keyword", "name"],
+		["string", ["\"parameter1\""]]
+	]],
+	["punctuation", ";"],
+
+	["directive", [
+		["keyword", "name"],
+		" parameter1 parameter2"
+	]],
+	["punctuation", ";"],
+
+	["directive", [
+		["keyword", "name"],
+		" parameter1 ",
+		["string", ["\"parameter2\""]]
+	]],
+	["punctuation", ";"],
+
+	["directive", [
+		["keyword", "name"],
+		["string", ["\"parameter1\""]],
+		" parameter2"
+	]],
+	["punctuation", ";"],
+
+	["directive", [
+		["keyword", "name"],
+		" para\\;meter1"
+	]],
+	["punctuation", ";"],
+
+	["directive", [
+		["keyword", "name"],
+		["string", ["\"para;meter1\""]]
+	]],
+	["punctuation", ";"],
+
+	["directive", [
+		["keyword", "name"],
+		["string", ["\"para\\;meter1\""]]
+	]],
+	["punctuation", ";"],
+
+	["directive", [
+		["keyword", "internal"]
+	]],
+	["punctuation", ";"],
+
+	["directive", [
+		["keyword", "internal"]
+	]],
+	["punctuation", ";"],
+
+	["comment", "# A multiline parameter"],
+
+	["directive", [
+		["keyword", "name"],
+		["string", ["\"para\r\n\r\nmeter1\""]]
+	]],
+	["punctuation", ";"],
+
+	["directive", [
+		["keyword", "name"]
+	]],
+	["punctuation", "{"],
+
+	["directive", [
+		["keyword", "name"],
+		" parameter1  ",
+		["string", ["'parameter2'"]],
+		" \\; par#ameter3"
+	]],
+	["punctuation", ";"],
+
+	["directive", [
+		["keyword", "name"],
+		" parameter1 \\\" ",
+		["string", ["'he\"llo'"]],
+		" par#ameter2"
+	]],
+	["punctuation", ";"],
+
+	["directive", [
+		["keyword", "name"],
+		" parameter1"
+	]],
+	["punctuation", ";"],
+	["directive", [
+		["keyword", "name"],
+		" parameter1"
+	]],
+	["punctuation", ";"],
+
+	["directive", [
+		["keyword", "name"],
+		" parameter1 \\{ ",
+		["string", ["'hello'"]]
+	]],
+	["punctuation", ";"],
+
+	["directive", [
+		["keyword", "name"]
+	]],
+	["punctuation", "{"],
+
+	["directive", [
+		["keyword", "internal"]
+	]],
+	["punctuation", ";"],
+
+	["directive", [
+		["keyword", "name"],
+		" parameter1 parameter2"
+	]],
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+
+	["punctuation", "}"],
+
+	["directive", [
+		["keyword", "name"],
+		["string", ["\"#foo\""]]
+	]],
+	["punctuation", ";"],
+	["directive", [
+		["keyword", "name"]
+	]],
+	["punctuation", ";"],
+	["comment", "#bar"],
+
+	["directive", [
+		["keyword", "name"],
+		["string", ["\" #foo\""]]
+	]],
+	["punctuation", ";"],
+	["comment", "#bar"],
+
+	["directive", [
+		["keyword", "name"],
+		["string", ["';oh no'"]],
+		" parameter"
+	]],
+	["punctuation", ";"]
+]

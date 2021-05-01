@@ -4,7 +4,7 @@ Prism.languages.bro = {
 		pattern: /(^|[^\\$])#.*/,
 		lookbehind: true,
 			inside: {
-				'italic':  /\b(?:TODO|FIXME|XXX)\b/
+				'italic': /\b(?:TODO|FIXME|XXX)\b/
 		}
 	},
 
@@ -22,7 +22,7 @@ Prism.languages.bro = {
 		}
 	},
 
-	'variable':	{
+	'variable': {
 		pattern: /(?:global|local) \w+/i,
 		inside: {
 			keyword: /(?:global|local)/

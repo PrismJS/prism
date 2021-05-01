@@ -151,7 +151,7 @@ function parseHTML(html) {
 
 		const p = new Parser({
 			onerror(err) {
-				reject(err)
+				reject(err);
 			},
 			onend() {
 				resolve(tree);

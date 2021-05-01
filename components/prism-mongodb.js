@@ -13,7 +13,7 @@
 
 		// aggregation pipeline stages
 		'$addFields', '$bucket', '$bucketAuto', '$collStats', '$count', '$currentOp', '$facet', '$geoNear',
-		'$graphLookup', '$group','$indexStats', '$limit', '$listLocalSessions', '$listSessions', '$lookup',
+		'$graphLookup', '$group', '$indexStats', '$limit', '$listLocalSessions', '$listSessions', '$lookup',
 		'$match', '$merge', '$out', '$planCacheStats', '$project', '$redact', '$replaceRoot', '$replaceWith',
 		'$sample', '$set', '$skip', '$sort', '$sortByCount', '$unionWith', '$unset', '$unwind',
 
@@ -55,7 +55,7 @@
 		'UUID',
 	];
 
-	operators = operators.map(function(operator) {
+	operators = operators.map(function (operator) {
 		return operator.replace('$', '\\$');
 	});
 

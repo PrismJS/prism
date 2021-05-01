@@ -5,9 +5,9 @@ Rem Foobar
 ----------------------------------------------------
 
 [
-	["comment", ["' Foobar"]],
-	["comment", ["// Foobar"]],
-	["comment", [["keyword", "Rem"], " Foobar"]]
+	["comment", "' Foobar"],
+	["comment", "// Foobar"],
+	["comment", "Rem Foobar"]
 ]
 
 ----------------------------------------------------

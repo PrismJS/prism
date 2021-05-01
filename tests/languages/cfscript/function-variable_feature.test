@@ -1,0 +1,137 @@
+foo = function (  ) {}
+foo = function ( x, y) {}
+{foo: function () {}}
+fooBar = x => x
+fooBar = ( x, y ) => x
+ಠ_ಠ = () => {}
+d = function Example({ props: { a: _A, b} } = Props) {}
+f = function (x = fun()) {}
+l = (x = fun(), y) => {}
+a = function () {}, b = () => {}
+
+----------------------------------------------------
+
+[
+	["function-variable", "foo"],
+	["operator", "="],
+	["keyword", "function"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["function-variable", "foo"],
+	["operator", "="],
+	["keyword", "function"],
+	["punctuation", "("],
+	" x",
+	["punctuation", ","],
+	" y",
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["punctuation", "{"],
+	["function-variable", "foo"],
+	["operator", ":"],
+	["keyword", "function"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", "}"],
+
+	["function-variable", "fooBar"],
+	["operator", "="],
+	" x ",
+	["operator", "=>"],
+	" x\r\n",
+
+	["function-variable", "fooBar"],
+	["operator", "="],
+	["punctuation", "("],
+	" x",
+	["punctuation", ","],
+	" y ",
+	["punctuation", ")"],
+	["operator", "=>"],
+	" x\r\n",
+
+	["function-variable", "ಠ_ಠ"],
+	["operator", "="],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["operator", "=>"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["function-variable", "d"],
+	["operator", "="],
+	["keyword", "function"],
+	["function", "Example"],
+	["punctuation", "("],
+	["punctuation", "{"],
+	" props",
+	["operator", ":"],
+	["punctuation", "{"],
+	" a",
+	["operator", ":"],
+	" _A",
+	["punctuation", ","],
+	" b",
+	["punctuation", "}"],
+	["punctuation", "}"],
+	["operator", "="],
+	" Props",
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["function-variable", "f"],
+	["operator", "="],
+	["keyword", "function"],
+	["punctuation", "("],
+	"x ",
+	["operator", "="],
+	["function", "fun"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["function-variable", "l"],
+	["operator", "="],
+	["punctuation", "("],
+	"x ",
+	["operator", "="],
+	["function", "fun"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ","],
+	" y",
+	["punctuation", ")"],
+	["operator", "=>"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["function-variable", "a"],
+	["operator", "="],
+	["keyword", "function"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["function-variable", "b"],
+	["operator", "="],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["operator", "=>"],
+	["punctuation", "{"],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for variables obviously containing functions.

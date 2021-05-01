@@ -1,7 +1,7 @@
-"use strict";
+'use strict';
 
-const fs = require("fs");
-const path = require("path");
+const fs = require('fs');
+const path = require('path');
 
 
 module.exports = {
@@ -71,6 +71,7 @@ module.exports = {
 
 	/**
 	 * Returns whether a directory matches one of the given languages.
+	 *
 	 * @param {string} directory
 	 * @param {string|string[]} languages
 	 */

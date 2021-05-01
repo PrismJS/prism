@@ -67,12 +67,12 @@ baz
 	["punctuation", "{|"],
 	["punctuation", "!"],
 	["table-tag", [
-		["style-attr", [
+		["special-attr", [
 			["attr-name", "style"],
 			["attr-value", [
 				["punctuation", "="],
 				["punctuation", "\""],
-				["style", [
+				["value", [
 					["property", "text-align"],
 					["punctuation", ":"],
 					"left",
@@ -94,12 +94,12 @@ baz
 	["punctuation", "{|"],
 	["punctuation", "!"],
 	["table-tag", [
-		["style-attr", [
+		["special-attr", [
 			["attr-name", "style"],
 			["attr-value", [
 				["punctuation", "="],
 				["punctuation", "\""],
-				["style", [
+				["value", [
 					["property", "color"],
 					["punctuation", ":"],
 					"red",
@@ -112,12 +112,12 @@ baz
 	]], " Foo ",
 	["punctuation", "!!"],
 	["table-tag", [
-		["style-attr", [
+		["special-attr", [
 			["attr-name", "style"],
 			["attr-value", [
 				["punctuation", "="],
 				["punctuation", "\""],
-				["style", [
+				["value", [
 					["property", "color"],
 					["punctuation", ":"],
 					"blue",
@@ -133,12 +133,12 @@ baz
 	["punctuation", "|"], " foo ",
 	["punctuation", "||"],
 	["table-tag", [
-		["style-attr", [
+		["special-attr", [
 			["attr-name", "style"],
 			["attr-value", [
 				["punctuation", "="],
 				["punctuation", "\""],
-				["style", [
+				["value", [
 					["property", "font-weight"],
 					["punctuation", ":"],
 					"bold",

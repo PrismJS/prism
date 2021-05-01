@@ -1,0 +1,116 @@
+export module speech;
+
+export const char* get_phrase_en() {
+    return "Hello, world!";
+}
+
+export module speech;
+
+export import :english;
+export import :spanish;
+
+export module speech:english;
+
+import speech;
+import :PrivWidget;
+
+import <iostream>;
+import <cstdlib>;
+import "foo.h";
+import <baz.h>;
+
+module : private;
+
+----------------------------------------------------
+
+[
+	["keyword", "export"],
+	["keyword", "module"],
+	["module", ["speech"]],
+	["punctuation", ";"],
+
+	["keyword", "export"],
+	["keyword", "const"],
+	["keyword", "char"],
+	["operator", "*"],
+	["function", "get_phrase_en"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+
+	["keyword", "return"],
+	["string", "\"Hello, world!\""],
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+
+	["keyword", "export"],
+	["keyword", "module"],
+	["module", ["speech"]],
+	["punctuation", ";"],
+
+	["keyword", "export"],
+	["keyword", "import"],
+	["module", [
+		["operator", ":"],
+		"english"
+	]],
+	["punctuation", ";"],
+
+	["keyword", "export"],
+	["keyword", "import"],
+	["module", [
+		["operator", ":"],
+		"spanish"
+	]],
+	["punctuation", ";"],
+
+	["keyword", "export"],
+	["keyword", "module"],
+	["module", [
+		"speech",
+		["operator", ":"],
+		"english"
+	]],
+	["punctuation", ";"],
+
+	["keyword", "import"],
+	["module", ["speech"]],
+	["punctuation", ";"],
+
+	["keyword", "import"],
+	["module", [
+		["operator", ":"],
+		"PrivWidget"
+	]],
+	["punctuation", ";"],
+
+	["keyword", "import"],
+	["module", [
+		["string", "<iostream>"]
+	]],
+	["punctuation", ";"],
+
+	["keyword", "import"],
+	["module", [
+		["string", "<cstdlib>"]
+	]],
+	["punctuation", ";"],
+
+	["keyword", "import"],
+	["module", [
+		["string", "\"foo.h\""]
+	]],
+	["punctuation", ";"],
+
+	["keyword", "import"],
+	["module", [
+		["string", "<baz.h>"]
+	]],
+	["punctuation", ";"],
+
+	["keyword", "module"],
+	["operator", ":"],
+	["keyword", "private"],
+	["punctuation", ";"]
+]

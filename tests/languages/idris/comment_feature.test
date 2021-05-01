@@ -1,0 +1,19 @@
+--
+-- foo
+{- foo
+bar -}
+{--}
+||| doc comment
+----------------------------------------------------
+
+[
+	["comment", "--"],
+	["comment", "-- foo"],
+	["comment", "{- foo\r\nbar -}"],
+	["comment", "{--}"],
+	["comment", "||| doc comment"]
+]
+
+----------------------------------------------------
+
+Checks for single-line, multi-line and doc comments.

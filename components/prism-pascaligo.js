@@ -55,7 +55,7 @@
 		return accum;
 	}, {});
 
-	pascaligo["class-name"].forEach(function (p) {
+	pascaligo['class-name'].forEach(function (p) {
 		p.inside = classNameInside;
 	});
 

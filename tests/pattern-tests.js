@@ -1,5 +1,5 @@
 // @ts-check
-"use strict";
+'use strict';
 
 const { assert } = require('chai');
 const PrismLoader = require('./helper/prism-loader');
@@ -8,7 +8,7 @@ const TestCase = require('./helper/test-case');
 const { BFS, parseRegex } = require('./helper/util');
 const { languages } = require('../components.json');
 const { visitRegExpAST } = require('regexpp');
-const { JS, Words, NFA } = require('refa');
+const { transform, combineTransformers, JS, Words, NFA, Transformers } = require('refa');
 const scslre = require('scslre');
 const path = require('path');
 
@@ -18,7 +18,7 @@ const path = require('path');
  * @type {Map<string, string[]>}
  */
 const testSnippets = new Map();
-const testSuite = TestDiscovery.loadAllTests(__dirname + '/languages')
+const testSuite = TestDiscovery.loadAllTests(__dirname + '/languages');
 for (const languageIdentifier in testSuite) {
 	const lang = TestCase.parseLanguageNames(languageIdentifier).mainLanguage;
 	let snippets = testSnippets.get(lang);
@@ -424,7 +424,7 @@ function isAlwaysZeroWidth(element) {
 function isFirstMatch(element) {
 	const parent = element.parent;
 	switch (parent.type) {
-		case 'Alternative':
+		case 'Alternative': {
 			// all elements before this element have to of zero length
 			if (!parent.elements.slice(0, parent.elements.indexOf(element)).every(isAlwaysZeroWidth)) {
 				return false;
@@ -435,6 +435,7 @@ function isFirstMatch(element) {
 			} else {
 				return isFirstMatch(grandParent);
 			}
+		}
 
 		case 'Quantifier':
 			if (parent.max >= 2) {
@@ -455,7 +456,7 @@ function isFirstMatch(element) {
  * @returns {boolean}
  */
 function underAStar(node) {
-	if (node.type === "Quantifier" && node.max > 10) {
+	if (node.type === 'Quantifier' && node.max > 10) {
 		return true;
 	} else if (node.parent) {
 		return underAStar(node.parent);
@@ -480,6 +481,24 @@ function firstOf(iter) {
  * @type {Set<string | RegExp>}
  */
 const expoSafeRegexes = new Set();
+
+/** @type {Transformers.CreationOptions} */
+const options = {
+	ignoreOrder: true,
+	ignoreAmbiguity: true
+};
+const transformer = combineTransformers([
+	Transformers.inline(options),
+	Transformers.removeDeadBranches(options),
+	Transformers.unionCharacters(options),
+	Transformers.moveUpEmpty(options),
+	Transformers.nestedQuantifiers(options),
+	Transformers.sortAssertions(options),
+	Transformers.removeUnnecessaryAssertions(options),
+	Transformers.applyAssertions(options),
+]);
+
+
 /**
  * @param {string} path
  * @param {RegExp} pattern
@@ -509,11 +528,12 @@ function checkExponentialBacktracking(path, pattern, ast) {
 	 * @returns {NFA}
 	 */
 	function toNFA(element) {
-		const { expression, maxCharacter } = parser.parseElement(element, {
-			backreferences: "resolve",
-			lookarounds: "disable",
+		let { expression, maxCharacter } = parser.parseElement(element, {
+			maxBackreferenceWords: 1000,
+			backreferences: 'disable'
 		});
-		return NFA.fromRegex(expression, { maxCharacter });
+
+		return NFA.fromRegex(transform(transformer, expression), { maxCharacter }, { assertions: 'disable' });
 	}
 
 	/**
@@ -560,7 +580,7 @@ function checkExponentialBacktracking(path, pattern, ast) {
 		onCapturingGroupLeave: checkDisjointAlternatives,
 		onGroupLeave: checkDisjointAlternatives,
 		onAssertionLeave(node) {
-			if (node.kind === "lookahead" || node.kind === "lookbehind") {
+			if (node.kind === 'lookahead' || node.kind === 'lookbehind') {
 				checkDisjointAlternatives(node);
 			}
 		},
@@ -569,7 +589,7 @@ function checkExponentialBacktracking(path, pattern, ast) {
 			if (node.max < 10) {
 				return; // not a star
 			}
-			if (node.element.type !== "CapturingGroup" && node.element.type !== "Group") {
+			if (node.element.type !== 'CapturingGroup' && node.element.type !== 'Group') {
 				return; // not a group
 			}
 
@@ -698,7 +718,7 @@ function checkPolynomialBacktracking(path, pattern, ast) {
 			+ `\n`
 			+ `\nFull pattern:`
 			+ `\n${patternStr}`
-			+ `\n${indent(rangeHighlight, " ".repeat(rangeOffset))}`
+			+ `\n${indent(rangeHighlight, ' '.repeat(rangeOffset))}`
 			+ `\n`
 			+ `\n` + (fixed ? `Fixed:\n/${fixed.source}/${fixed.flags}` : `Fix not available.`)
 		);

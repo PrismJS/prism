@@ -1,5 +1,5 @@
-(function (Prism) {    
-    Prism.languages.dataweave = {	
+(function (Prism) {
+    Prism.languages.dataweave = {
         'url': /\b[A-Za-z]+:\/\/[\w/:.?=&-]+|\burn:[\w:.?=&-]+/,
         'property': {
             pattern: /(?:\w+#)?(?:"(?:\\.|[^\\"\r\n])*"|\w+)(?=\s*[:@])/,
@@ -9,7 +9,7 @@
             pattern: /(["'`])(?:\\[\s\S]|(?!\1)[^\\])*\1/,
             greedy: true
         },
-        'mime-type':  /\b(?:text|audio|video|application|multipart|image)\/[\w+-]+/,       
+        'mime-type': /\b(?:text|audio|video|application|multipart|image)\/[\w+-]+/,
         'date': {
             pattern: /\|[\w:+-]+\|/,
             greedy: true
@@ -32,10 +32,10 @@
         },
         'function': /\b[A-Za-z_]\w*(?=\s*\()/i,
         'number': /-?\b\d+(?:\.\d+)?(?:e[+-]?\d+)?\b/i,
-        'punctuation': /[{}[\];(),.:@]/,        
+        'punctuation': /[{}[\];(),.:@]/,
         'operator': /<<|>>|->|[<>~=]=?|!=|--?-?|\+\+?|\!|\?/,
         'boolean': /\b(?:true|false)\b/,
         'keyword': /\b(?:match|input|output|ns|type|update|null|if|else|using|unless|at|is|as|case|do|fun|var|not|and|or)\b/
     };
-    
+
 }(Prism));

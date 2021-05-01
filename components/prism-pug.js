@@ -1,4 +1,4 @@
-(function(Prism) {
+(function (Prism) {
 	// TODO:
 	// - Add CSS highlighting inside <style> tags
 	// - Add support for multi-line code blocks
@@ -149,20 +149,20 @@
 
 	// Non exhaustive list of available filters and associated languages
 	var filters = [
-		{filter:'atpl',language:'twig'},
-		{filter:'coffee',language:'coffeescript'},
+		{ filter: 'atpl', language: 'twig' },
+		{ filter: 'coffee', language: 'coffeescript' },
 		'ejs',
 		'handlebars',
 		'less',
 		'livescript',
 		'markdown',
-		{filter:'sass',language:'scss'},
+		{ filter: 'sass', language: 'scss' },
 		'stylus'
 	];
 	var all_filters = {};
 	for (var i = 0, l = filters.length; i < l; i++) {
 		var filter = filters[i];
-		filter = typeof filter === 'string' ? {filter: filter, language: filter} : filter;
+		filter = typeof filter === 'string' ? { filter: filter, language: filter } : filter;
 		if (Prism.languages[filter.language]) {
 			all_filters['filter-' + filter.filter] = {
 				pattern: RegExp(filter_pattern.replace('{{filter_name}}', function () { return filter.filter; }), 'm'),
@@ -174,7 +174,7 @@
 					},
 					rest: Prism.languages[filter.language]
 				}
-			}
+			};
 		}
 	}
 

@@ -1,0 +1,23 @@
+#!/usr/bin/env node
+// in the Script Goal
+'use strict';
+console.log(1);
+
+----------------------------------------------------
+
+[
+	["hashbang", "#!/usr/bin/env node"],
+
+	["comment", "// in the Script Goal"],
+
+	["string", "'use strict'"],
+	["punctuation", ";"],
+
+	"\r\nconsole",
+	["punctuation", "."],
+	["function", "log"],
+	["punctuation", "("],
+	["number", "1"],
+	["punctuation", ")"],
+	["punctuation", ";"]
+]

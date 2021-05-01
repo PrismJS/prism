@@ -1,0 +1,45 @@
+class Foo {}
+class FakeNamespace.Utils.SuperClass {}
+class SuperFoo extends Foo {}
+log(b instanceof Kid);
+enum Stuff {}
+
+----------------------------------------------------
+
+[
+	["keyword", "class"],
+	["class-name", ["Foo"]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "class"],
+	["class-name", [
+		"FakeNamespace",
+		["punctuation", "."],
+		"Utils",
+		["punctuation", "."],
+		"SuperClass"
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "class"],
+	["class-name", ["SuperFoo"]],
+	["keyword", "extends"],
+	["class-name", ["Foo"]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["function", "log"],
+	["punctuation", "("],
+	"b ",
+	["keyword", "instanceof"],
+	["class-name", ["Kid"]],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "enum"],
+	["class-name", ["Stuff"]],
+	["punctuation", "{"],
+	["punctuation", "}"]
+]

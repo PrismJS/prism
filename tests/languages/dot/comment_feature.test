@@ -1,0 +1,15 @@
+// comment
+/*
+comment
+*/
+
+# not really a comment but ignored
+
+----------------------------------------------------
+
+[
+	["comment", "// comment"],
+	["comment", "/*\r\ncomment\r\n*/"],
+
+	["comment", "# not really a comment but ignored"]
+]

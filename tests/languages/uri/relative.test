@@ -1,0 +1,54 @@
+//example.com/path/resource.txt
+/path/resource.txt
+path/resource.txt
+../resource.txt
+./resource.txt
+resource.txt
+#fragment
+
+----------------------------------------------------
+
+[
+	["authority", [
+		["authority-delimiter", "//"],
+		["host", ["example.com"]]
+	]],
+	["path", [
+		["path-separator", "/"],
+		"path",
+		["path-separator", "/"],
+		"resource.txt"
+	]],
+
+	["path", [
+		["path-separator", "/"],
+		"path",
+		["path-separator", "/"],
+		"resource.txt"
+	]],
+
+	["path", [
+		"path",
+		["path-separator", "/"],
+		"resource.txt"
+	]],
+
+	["path", [
+		"..",
+		["path-separator", "/"],
+		"resource.txt"
+	]],
+
+	["path", [
+		".",
+		["path-separator", "/"],
+		"resource.txt"
+	]],
+
+	["path", ["resource.txt"]],
+
+	["fragment", [
+		["fragment-delimiter", "#"],
+		"fragment"
+	]]
+]

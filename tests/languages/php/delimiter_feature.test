@@ -27,6 +27,7 @@ function main() {}
 
 	["php", [
 		["delimiter", "<?php"],
+
 		["attribute", [
 			["delimiter", "#["],
 			["attribute-content", [
@@ -37,14 +38,17 @@ function main() {}
 			]],
 			["delimiter", "]"]
 		]],
+
 		["keyword", "function"],
-		["function", "main"],
+		["function-definition", "main"],
 		["punctuation", "("],
 		["punctuation", ")"],
 		["punctuation", "{"],
 		["punctuation", "}"],
+
 		["comment", "// php is not ended yet"],
-   		["delimiter", "?>"]
+
+		["delimiter", "?>"]
 	]]
 ]
 

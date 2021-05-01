@@ -7,17 +7,95 @@
 (defined foo)
 (|some name| foo)
 
+[fl= 1 2]
+[flmin 2 3]
+[inexact->exact 3]
+[!fact]
+[** 10]
+[**
+[defined foo]
+[|some name| foo]
+
 ----------------------------------------------------
 
 [
-	["punctuation", "("], ["function", "fl="], ["number", "1"], ["number", "2"], ["punctuation", ")"],
-	["punctuation", "("], ["function", "flmin"], ["number", "2"], ["number", "3"], ["punctuation", ")"],
-	["punctuation", "("], ["function", "inexact->exact"], ["number", "3"], ["punctuation", ")"],
-	["punctuation", "("], ["function", "!fact"], ["punctuation", ")"],
-	["punctuation", "("], ["function", "**"], ["number", "10"], ["punctuation", ")"],
-	["punctuation", "("], ["function", "**"],
-	["punctuation", "("], ["function", "defined"], " foo", ["punctuation", ")"],
-	["punctuation", "("], ["function", "|some name|"], " foo", ["punctuation", ")"]
+	["punctuation", "("],
+	["function", "fl="],
+	["number", "1"],
+	["number", "2"],
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "flmin"],
+	["number", "2"],
+	["number", "3"],
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "inexact->exact"],
+	["number", "3"],
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "!fact"],
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "**"],
+	["number", "10"],
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "**"],
+
+	["punctuation", "("],
+	["function", "defined"],
+	" foo",
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "|some name|"],
+	" foo",
+	["punctuation", ")"],
+
+	["punctuation", "["],
+	["function", "fl="],
+	["number", "1"],
+	["number", "2"],
+	["punctuation", "]"],
+
+	["punctuation", "["],
+	["function", "flmin"],
+	["number", "2"],
+	["number", "3"],
+	["punctuation", "]"],
+
+	["punctuation", "["],
+	["function", "inexact->exact"],
+	["number", "3"],
+	["punctuation", "]"],
+
+	["punctuation", "["],
+	["function", "!fact"],
+	["punctuation", "]"],
+
+	["punctuation", "["],
+	["function", "**"],
+	["number", "10"],
+	["punctuation", "]"],
+
+	["punctuation", "["],
+	["function", "**"],
+
+	["punctuation", "["],
+	["function", "defined"],
+	" foo",
+	["punctuation", "]"],
+
+	["punctuation", "["],
+	["function", "|some name|"],
+	" foo",
+	["punctuation", "]"]
 ]
 
 ----------------------------------------------------

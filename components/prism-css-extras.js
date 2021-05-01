@@ -113,4 +113,4 @@
 		'number': number
 	});
 
-})(Prism);
+}(Prism));
