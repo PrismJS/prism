@@ -1,6 +1,7 @@
 /** @type {import('eslint').Linter.Config} */
 module.exports = {
 	root: true,
+	plugins: ['jsdoc'],
 	extends: 'eslint:recommended',
 	rules: {
 		'no-use-before-define': ['error', { 'functions': false, 'classes': false }],
@@ -12,6 +13,18 @@ module.exports = {
 		'quotes': ['warn', 'single', { avoidEscape: true, allowTemplateLiterals: true }],
 		'semi': 'warn',
 		'wrap-iife': 'warn',
+
+		// JSDoc
+		'jsdoc/check-alignment': 'warn',
+		'jsdoc/check-syntax': 'warn',
+		'jsdoc/check-param-names': 'warn',
+		'jsdoc/require-hyphen-before-param-description': ['warn', 'never'],
+		'jsdoc/check-tag-names': 'warn',
+		'jsdoc/check-types': 'warn',
+		'jsdoc/empty-tags': 'warn',
+		'jsdoc/newline-after-description': 'warn',
+		'jsdoc/require-param-name': 'warn',
+		'jsdoc/require-property-name': 'warn',
 
 		// I turned this rule off because we use `hasOwnProperty` in a lot of places
 		// TODO: Think about re-enabling this rule
@@ -26,6 +39,9 @@ module.exports = {
 		'no-control-regex': 'off',
 		'no-empty-character-class': 'off',
 		'no-useless-escape': 'off'
+	},
+	settings: {
+		jsdoc: { mode: 'typescript' }
 	},
 	ignorePatterns: [
 		'*.min.js',

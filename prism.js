@@ -1052,6 +1052,7 @@ function LinkedList() {
 
 /**
  * Adds a new node with the given value to the list.
+ *
  * @param {LinkedList<T>} list
  * @param {LinkedListNode<T>} node
  * @param {T} value
@@ -1071,6 +1072,7 @@ function addAfter(list, node, value) {
 }
 /**
  * Removes `count` nodes after the given node. The given node will not be removed.
+ *
  * @param {LinkedList<T>} list
  * @param {LinkedListNode<T>} node
  * @param {number} count
@@ -1195,7 +1197,7 @@ if (typeof global !== 'undefined') {
  * each another.
  * @global
  * @public
-*/
+ */
 
 /**
  * @typedef Grammar
@@ -1213,7 +1215,7 @@ if (typeof global !== 'undefined') {
  * @returns {void}
  * @global
  * @public
-*/
+ */
 
 /**
  * @callback HookCallback
