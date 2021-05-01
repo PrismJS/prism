@@ -554,7 +554,7 @@
 				var previewers = token.getAttribute('data-previewers');
 				return (previewers || '').split(/\s+/).indexOf(this._type) === -1;
 			}
-		} while(token = token.parentNode);
+		} while((token = token.parentNode));
 		return false;
 	};
 
@@ -571,7 +571,7 @@
 			if (token.classList && token.classList.contains(TOKEN_CLASS) && token.classList.contains(this._type)) {
 				break;
 			}
-		} while(token = token.parentNode);
+		} while((token = token.parentNode));
 
 		if (token && token !== this._token) {
 			this._token = token;

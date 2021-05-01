@@ -8,6 +8,7 @@ module.exports = {
 
 		// stylistic rules
 		'brace-style': ['warn', '1tbs', { allowSingleLine: true }],
+		'no-tabs': ['warn', { allowIndentationTabs: true }],
 		'no-var': 'error',
 		'quotes': ['warn', 'single', { avoidEscape: true, allowTemplateLiterals: true }],
 		'semi': 'warn',
@@ -28,8 +29,6 @@ module.exports = {
 		// I turned this rule off because we use `hasOwnProperty` in a lot of places
 		// TODO: Think about re-enabling this rule
 		'no-prototype-builtins': 'off',
-		// TODO: Think about re-enabling this rule
-		'no-cond-assign': 'off',
 		// TODO: Think about re-enabling this rule
 		'no-inner-declarations': 'off',
 		// TODO: Think about re-enabling this rule
