@@ -7,6 +7,7 @@ module.exports = {
 
 		// stylistic rules
 		'brace-style': ['warn', '1tbs', { allowSingleLine: true }],
+		'no-tabs': ['warn', { allowIndentationTabs: true }],
 		'no-var': 'error',
 		'quotes': ['warn', 'single', { avoidEscape: true, allowTemplateLiterals: true }],
 		'semi': 'warn',

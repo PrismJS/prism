@@ -1,5 +1,5 @@
 (function (Prism) {    
-    Prism.languages.dataweave = {	
+    Prism.languages.dataweave = {
         'url': /\b[A-Za-z]+:\/\/[\w/:.?=&-]+|\burn:[\w:.?=&-]+/,
         'property': {
             pattern: /(?:\w+#)?(?:"(?:\\.|[^\\"\r\n])*"|\w+)(?=\s*[:@])/,
