@@ -43,14 +43,14 @@
 	 */
 	function getAdapter(adapter) {
 		if (typeof adapter === 'function') {
-			for (var i = 0, item; item = adapters[i++];) {
+			for (var i = 0, item; (item = adapters[i++]);) {
 				if (item.adapter.valueOf() === adapter.valueOf()) {
 					return item.adapter;
 				}
 			}
 		} else if (typeof adapter === 'string') {
 			// eslint-disable-next-line no-redeclare
-			for (var i = 0, item; item = adapters[i++];) {
+			for (var i = 0, item; (item = adapters[i++]);) {
 				if (item.name === adapter) {
 					return item.adapter;
 				}
@@ -267,7 +267,7 @@
 		highlight: function (container) {
 			var elements = (container || document).querySelectorAll(SELECTOR);
 
-			for (var i = 0, element; element = elements[i++];) {
+			for (var i = 0, element; (element = elements[i++]);) {
 				Prism.highlightElement(element);
 			}
 		}

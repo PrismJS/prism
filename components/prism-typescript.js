@@ -15,7 +15,7 @@
 		/\b(?:abstract|as|declare|implements|is|keyof|readonly|require)\b/,
 		// keywords that have to be followed by an identifier
 		/\b(?:asserts|infer|interface|module|namespace|type)(?!\s*[^\s_${}*a-zA-Z\xA0-\uFFFF])/
-	)
+	);
 
 	// doesn't work with TS because TS is too complex
 	delete Prism.languages.typescript['parameter'];

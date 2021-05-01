@@ -72,7 +72,7 @@
 			// add prefix
 			var lines = [], m;
 			HTML_LINE.lastIndex = 0;
-			while (m = HTML_LINE.exec(highlighted)) {
+			while ((m = HTML_LINE.exec(highlighted))) {
 				lines.push(prefix + m[0]);
 			}
 			if (/(?:^|[\r\n]).$/.test(decoded)) {
