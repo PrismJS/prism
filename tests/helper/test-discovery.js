@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 
+const SUPPORTED_TEST_FILE_EXT = new Set('.js', '.test');
 
 module.exports = {
 
@@ -94,7 +95,8 @@ module.exports = {
 	getAllFiles(src) {
 		return fs.readdirSync(src)
 			.filter(fileName => {
-				return fs.statSync(path.join(src, fileName)).isFile();
+				return SUPPORTED_TEST_FILE_EXT.has(path.extname(fileName))
+					&& fs.statSync(path.join(src, fileName)).isFile();
 			})
 			.map(fileName => {
 				return path.join(src, fileName);
