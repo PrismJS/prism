@@ -1,4 +1,4 @@
-(function(){
+(function () {
 
 if (typeof Prism === 'undefined') {
 	return;
@@ -44,11 +44,11 @@ Prism.plugins.autolinker = {
 	}
 };
 
-Prism.hooks.add('before-highlight', function(env) {
+Prism.hooks.add('before-highlight', function (env) {
 	Prism.plugins.autolinker.processGrammar(env.grammar);
 });
 
-Prism.hooks.add('wrap', function(env) {
+Prism.hooks.add('wrap', function (env) {
 	if (/-link$/.test(env.type)) {
 		env.tag = 'a';
 
@@ -69,7 +69,7 @@ Prism.hooks.add('wrap', function(env) {
 		// Silently catch any error thrown by decodeURIComponent (#1186)
 		try {
 			env.content = decodeURIComponent(env.content);
-		} catch(e) { /* noop */ }
+		} catch (e) { /* noop */ }
 	}
 });
 

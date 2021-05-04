@@ -2,7 +2,7 @@
  * Manage downloads
  */
 
-(function() {
+(function () {
 
 var cache = {};
 var form = $('form');
@@ -11,10 +11,10 @@ var minified = true;
 var dependencies = {};
 
 var treeURL = 'https://api.github.com/repos/PrismJS/prism/git/trees/master?recursive=1';
-var treePromise = new Promise(function(resolve) {
+var treePromise = new Promise(function (resolve) {
 	$u.xhr({
 		url: treeURL,
-		callback: function(xhr) {
+		callback: function (xhr) {
 			if (xhr.status < 400) {
 				resolve(JSON.parse(xhr.responseText).tree);
 			}
@@ -39,7 +39,7 @@ function toArray(value) {
 
 var hstr = window.location.hash.match(/(?:languages|plugins)=[-+\w]+|themes=[-\w]+/g);
 if (hstr) {
-	hstr.forEach(function(str) {
+	hstr.forEach(function (str) {
 		var kv = str.split('=', 2);
 		var category = kv[0];
 		var ids = kv[1].split('+');
@@ -111,10 +111,10 @@ for (var category in components) {
 						name: 'check-all-' + category,
 						value: '',
 						checked: false,
-						onclick: (function(category, all){
+						onclick: (function (category, all) {
 							return function () {
 								var checkAll = this;
-								$$('input[name="download-' + category + '"]').forEach(function(input) {
+								$$('input[name="download-' + category + '"]').forEach(function (input) {
 									all[input.value].enabled = input.checked = checkAll.checked;
 								});
 
@@ -130,7 +130,7 @@ for (var category in components) {
 	}
 
 	for (var id in all) {
-		if(id === 'meta') {
+		if (id === 'meta') {
 			continue;
 		}
 
@@ -205,19 +205,19 @@ for (var category in components) {
 				{
 					tag: 'input',
 					properties: {
-						type: all.meta.exclusive? 'radio' : 'checkbox',
+						type: all.meta.exclusive ? 'radio' : 'checkbox',
 						name: 'download-' + category,
 						value: id,
 						checked: checked,
 						disabled: disabled,
-						onclick: (function(id, category, all){
+						onclick: (function (id, category, all) {
 							return function () {
-								$$('input[name="' + this.name + '"]').forEach(function(input) {
+								$$('input[name="' + this.name + '"]').forEach(function (input) {
 									all[input.value].enabled = input.checked;
 								});
 
 								if (all[id].require && this.checked) {
-									all[id].require.forEach(function(v) {
+									all[id].require.forEach(function (v) {
 										var input = $('label[data-id="' + v + '"] > input');
 										input.checked = true;
 
@@ -226,7 +226,7 @@ for (var category in components) {
 								}
 
 								if (dependencies[id] && !this.checked) { // It’s required by others
-									dependencies[id].forEach(function(dependent) {
+									dependencies[id].forEach(function (dependent) {
 										var input = $('label[data-id="' + dependent + '"] > input');
 										input.checked = false;
 
@@ -239,7 +239,7 @@ for (var category in components) {
 						}(id, category, all))
 					}
 				},
-				all.meta.link? {
+				all.meta.link ? {
 					tag: 'a',
 					properties: {
 						href: all.meta.link.replace(/\{id}/g, id),
@@ -254,7 +254,7 @@ for (var category in components) {
 					contents: getLanguageTitle(info)
 				},
 				' ',
-				all[id].owner? {
+				all[id].owner ? {
 					tag: 'a',
 					properties: {
 						href: 'https://github.com/' + all[id].owner,
@@ -290,16 +290,16 @@ for (var category in components) {
 }
 
 form.elements.compression[0].onclick =
-form.elements.compression[1].onclick = function() {
+form.elements.compression[1].onclick = function () {
 	minified = !!+this.value;
 
 	getFilesSizes();
 };
 
 function getFileSize(filepath) {
-	return treePromise.then(function(tree) {
-		for(var i=0, l=tree.length; i<l; i++) {
-			if(tree[i].path === filepath) {
+	return treePromise.then(function (tree) {
+		for (var i = 0, l = tree.length; i < l; i++) {
+			if (tree[i].path === filepath) {
 				return tree[i].size;
 			}
 		}
@@ -311,21 +311,21 @@ function getFilesSizes() {
 		var all = components[category];
 
 		for (var id in all) {
-			if(id === 'meta') {
+			if (id === 'meta') {
 				continue;
 			}
 
-			var distro = all[id].files[minified? 'minified' : 'dev'];
+			var distro = all[id].files[minified ? 'minified' : 'dev'];
 			var files = distro.paths;
 
 			files.forEach(function (filepath) {
 				var file = cache[filepath] = cache[filepath] || {};
 
-				if(!file.size) {
+				if (!file.size) {
 
-					(function(category, id) {
-					getFileSize(filepath).then(function(size) {
-						if(size) {
+					(function (category, id) {
+					getFileSize(filepath).then(function (size) {
+						if (size) {
 							file.size = size;
 							distro.size += file.size;
 
@@ -344,10 +344,10 @@ function getFilesSizes() {
 getFilesSizes();
 
 function getFileContents(filepath) {
-	return new Promise(function(resolve, reject) {
+	return new Promise(function (resolve, reject) {
 		$u.xhr({
 			url: filepath,
-			callback: function(xhr) {
+			callback: function (xhr) {
 				if (xhr.status < 400 && xhr.responseText) {
 					resolve(xhr.responseText);
 				} else {
@@ -359,12 +359,12 @@ function getFileContents(filepath) {
 }
 
 function prettySize(size) {
-	return Math.round(100 * size / 1024)/100 + 'KB';
+	return Math.round(100 * size / 1024) / 100 + 'KB';
 }
 
-function update(updatedCategory, updatedId){
+function update(updatedCategory, updatedId) {
 	// Update total size
-	var total = {js: 0, css: 0}, updated = {js: 0, css: 0};
+	var total = { js: 0, css: 0 }, updated = { js: 0, css: 0 };
 
 	for (var category in components) {
 		var all = components[category];
@@ -374,9 +374,9 @@ function update(updatedCategory, updatedId){
 			var info = all[id];
 
 			if (info.enabled || id == updatedId) {
-				var distro = info.files[minified? 'minified' : 'dev'];
+				var distro = info.files[minified ? 'minified' : 'dev'];
 
-				distro.paths.forEach(function(path) {
+				distro.paths.forEach(function (path) {
 					if (cache[path]) {
 						var file = cache[path];
 
@@ -448,14 +448,14 @@ function update(updatedCategory, updatedId){
 
 var timerId = 0;
 // "debounce" multiple rapid requests to generate and highlight code
-function delayedGenerateCode(){
-	if ( timerId !== 0 ) {
+function delayedGenerateCode() {
+	if (timerId !== 0) {
 		clearTimeout(timerId);
 	}
 	timerId = setTimeout(generateCode, 500);
 }
 
-function generateCode(){
+function generateCode() {
 	/** @type {CodePromiseInfo[]} */
 	var promises = [];
 	var redownload = {};
@@ -493,7 +493,7 @@ function generateCode(){
 	var error = $('#download .error');
 	error.style.display = '';
 
-	Promise.all([buildCode(promises), getVersion()]).then(function(arr) {
+	Promise.all([buildCode(promises), getVersion()]).then(function (arr) {
 		var res = arr[0];
 		var version = arr[1];
 		var code = res.code;
@@ -509,7 +509,7 @@ function generateCode(){
 		for (var category in redownload) {
 			redownloadUrl += category + '=' + redownload[category].join('+') + '&';
 		}
-		redownloadUrl = redownloadUrl.replace(/&$/,'');
+		redownloadUrl = redownloadUrl.replace(/&$/, '');
 		window.location.replace(redownloadUrl);
 
 		var versionComment = '/* PrismJS ' + version + '\n' + redownloadUrl + ' */';
@@ -584,18 +584,18 @@ function buildCode(promises) {
 	// build
 	var i = 0;
 	var l = promises.length;
-	var code = {js: '', css: ''};
+	var code = { js: '', css: '' };
 	var errors = [];
 
-	var f = function(resolve) {
-		if(i < l) {
+	var f = function (resolve) {
+		if (i < l) {
 			var p = promises[i];
-			p.contentsPromise.then(function(contents) {
+			p.contentsPromise.then(function (contents) {
 				code[p.type] += contents + (p.type === 'js' && !/;\s*$/.test(contents) ? ';' : '') + '\n';
 				i++;
 				f(resolve);
 			});
-			p.contentsPromise['catch'](function() {
+			p.contentsPromise['catch'](function () {
 				errors.push($u.element.create({
 					tag: 'p',
 					prop: {
@@ -606,7 +606,7 @@ function buildCode(promises) {
 				f(resolve);
 			});
 		} else {
-			resolve({code: code, errors: errors});
+			resolve({ code: code, errors: errors });
 		}
 	};
 

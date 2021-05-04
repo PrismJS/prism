@@ -2,7 +2,7 @@
  * Manage examples
  */
 
-(function() {
+(function () {
 
 var examples = {};
 

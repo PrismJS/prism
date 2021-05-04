@@ -1,23 +1,23 @@
-(function(){
+(function () {
 
-if(!document.body.addEventListener) {
+if (!document.body.addEventListener) {
 	return;
 }
 
 $$('[data-plugin-header]').forEach(function (element) {
 	var plugin = components.plugins[element.getAttribute('data-plugin-header')];
 	element.innerHTML = '<div class="intro" data-src="assets/templates/header-plugins.html" data-type="text/html"></div>\n'
-	+ '<h2>' + plugin.title  + '</h2>\n<p>' + plugin.description + '</p>';
+	+ '<h2>' + plugin.title + '</h2>\n<p>' + plugin.description + '</p>';
 });
 
-$$('[data-src][data-type="text/html"]').forEach(function(element) {
+$$('[data-src][data-type="text/html"]').forEach(function (element) {
 	var src = element.getAttribute('data-src');
 	var html = element.getAttribute('data-type') === 'text/html';
 	var contentProperty = html ? 'innerHTML' : 'textContent';
 
 	$u.xhr({
 		url: src,
-		callback: function(xhr) {
+		callback: function (xhr) {
 			try {
 				element[contentProperty] = xhr.responseText;
 
@@ -38,10 +38,10 @@ $$('[data-src][data-type="text/html"]').forEach(function(element) {
 /**
  * Table of contents
  */
-(function(){
+(function () {
 var toc = document.createElement('ol');
 
-$$('body > section > h1').forEach(function(h1) {
+$$('body > section > h1').forEach(function (h1) {
 	var section = h1.parentNode;
 	var text = h1.textContent;
 	var id = h1.id || section.id;
@@ -118,21 +118,21 @@ if (toc.children.length > 0) {
 }());
 
 // calc()
-(function(){
-	if(!window.PrefixFree) return;
+(function () {
+	if (!window.PrefixFree) return;
 
 	if (PrefixFree.functions.indexOf('calc') == -1) {
 		var style = document.createElement('_').style;
 		style.width = 'calc(1px + 1%)';
 
-		if(!style.width) {
+		if (!style.width) {
 			// calc not supported
 			var header = $('header');
 			var footer = $('footer');
 
 			function calculatePadding() {
 				header.style.padding =
-				footer.style.padding = '30px ' + (innerWidth/2 - 450) + 'px';
+				footer.style.padding = '30px ' + (innerWidth / 2 - 450) + 'px';
 			}
 
 			addEventListener('resize', calculatePadding);
@@ -144,7 +144,7 @@ if (toc.children.length > 0) {
 // setTheme is intentionally global,
 // so it can be accessed from download.js
 var setTheme;
-(function() {
+(function () {
 var p = $u.element.create('p', {
 	properties: {
 		id: 'theme'
@@ -166,7 +166,7 @@ if (!(current in themes)) {
 if (current === undefined) {
 	var stored = localStorage.getItem('theme');
 
-	current = stored in themes? stored : 'prism';
+	current = stored in themes ? stored : 'prism';
 }
 
 setTheme = function (id) {
@@ -208,7 +208,7 @@ for (var id in themes) {
 setTheme(current);
 }());
 
-(function(){
+(function () {
 
 function listPlugins(ul) {
 	for (var id in components.plugins) {

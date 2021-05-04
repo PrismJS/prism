@@ -170,7 +170,7 @@ function isNotBroken(token) {
  * Tests all patterns in the given Prism instance.
  *
  * @param {any} Prism
- * @param {lang} Prism
+ * @param {string} lang
  */
 function testLiterals(Prism, lang) {
 

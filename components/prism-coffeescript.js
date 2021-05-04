@@ -1,4 +1,4 @@
-(function(Prism) {
+(function (Prism) {
 
 // Ignore comments starting with { to privilege string interpolation highlighting
 var comment = /#(?!\{).+/;
