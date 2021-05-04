@@ -57,4 +57,4 @@
 		markupTemplating.tokenizePlaceholders(env, 'jinja2');
 	});
 
-})(Prism);
+}(Prism));

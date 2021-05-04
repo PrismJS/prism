@@ -1,9 +1,6 @@
-(function(){
+(function () {
 
-if (
-	typeof self !== 'undefined' && !self.Prism ||
-	typeof global !== 'undefined' && !global.Prism
-) {
+if (typeof Prism === 'undefined') {
 	return;
 }
 
@@ -35,8 +32,7 @@ Prism.plugins.autolinker = {
 				}
 				if (type == 'attr-value') {
 					Prism.languages.insertBefore('inside', 'punctuation', { 'url-link': url }, def);
-				}
-				else {
+				} else {
 					def.inside['url-link'] = url;
 				}
 
@@ -48,11 +44,11 @@ Prism.plugins.autolinker = {
 	}
 };
 
-Prism.hooks.add('before-highlight', function(env) {
+Prism.hooks.add('before-highlight', function (env) {
 	Prism.plugins.autolinker.processGrammar(env.grammar);
 });
 
-Prism.hooks.add('wrap', function(env) {
+Prism.hooks.add('wrap', function (env) {
 	if (/-link$/.test(env.type)) {
 		env.tag = 'a';
 
@@ -60,8 +56,7 @@ Prism.hooks.add('wrap', function(env) {
 
 		if (env.type == 'email-link' && href.indexOf('mailto:') != 0) {
 			href = 'mailto:' + href;
-		}
-		else if (env.type == 'md-link') {
+		} else if (env.type == 'md-link') {
 			// Markdown
 			var match = env.content.match(linkMd);
 
@@ -74,8 +69,8 @@ Prism.hooks.add('wrap', function(env) {
 		// Silently catch any error thrown by decodeURIComponent (#1186)
 		try {
 			env.content = decodeURIComponent(env.content);
-		} catch(e) {}
+		} catch (e) { /* noop */ }
 	}
 });
 
-})();
+}());

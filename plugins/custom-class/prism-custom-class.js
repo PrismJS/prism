@@ -1,9 +1,6 @@
 (function () {
 
-	if (
-		(typeof self === 'undefined' || !self.Prism) &&
-		(typeof global === 'undefined' || !global.Prism)
-	) {
+	if (typeof Prism === 'undefined') {
 		return;
 	}
 
@@ -66,7 +63,7 @@
 		prefix: function prefix(string) {
 			prefixString = string || '';
 		}
-	}
+	};
 
 	Prism.hooks.add('wrap', function (env) {
 		if (adder) {
@@ -92,4 +89,4 @@
 		});
 	});
 
-})();
+}());

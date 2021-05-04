@@ -1,4 +1,4 @@
-(function(Prism) {
+(function (Prism) {
 	Prism.languages.xeora = Prism.languages.extend('markup', {
 		'constant': {
 			pattern: /\$(?:DomainContents|PageRenderDuration)\$/,
@@ -107,7 +107,7 @@
 
 	Prism.languages.insertBefore('inside', 'punctuation', {
 		'variable': Prism.languages.xeora['function-inline'].inside['variable']
-	}, Prism.languages.xeora["function-block"]);
+	}, Prism.languages.xeora['function-block']);
 
 	Prism.languages.xeoracube = Prism.languages.xeora;
 

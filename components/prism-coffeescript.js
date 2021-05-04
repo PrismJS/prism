@@ -1,11 +1,11 @@
-(function(Prism) {
+(function (Prism) {
 
 // Ignore comments starting with { to privilege string interpolation highlighting
-var comment = /#(?!\{).+/,
-    interpolation = {
-    	pattern: /#\{[^}]+\}/,
-    	alias: 'variable'
-    };
+var comment = /#(?!\{).+/;
+var interpolation = {
+	pattern: /#\{[^}]+\}/,
+	alias: 'variable'
+};
 
 Prism.languages.coffeescript = Prism.languages.extend('javascript', {
 	'comment': comment,
@@ -58,7 +58,11 @@ Prism.languages.insertBefore('coffeescript', 'string', {
 				pattern: /^`|`$/,
 				alias: 'punctuation'
 			},
-			rest: Prism.languages.javascript
+			'script': {
+				pattern: /[\s\S]+/,
+				alias: 'language-javascript',
+				inside: Prism.languages.javascript
+			}
 		}
 	},
 

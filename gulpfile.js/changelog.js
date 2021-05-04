@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const { src, dest } = require('gulp');
 
@@ -100,14 +100,16 @@ async function getLog(range) {
 }
 
 const revisionRanges = {
-	nextRelease: git.raw(['describe', '--abbrev=0', '--tags']).then(res => `${res.trim()}..HEAD`)
+	nextRelease() {
+		return git.raw(['describe', '--abbrev=0', '--tags']).then(res => `${res.trim()}..HEAD`);
+	}
 };
 const strCompare = (a, b) => a.localeCompare(b, 'en');
 
 async function changes() {
 	const { languages, plugins } = require('../components.js');
 
-	const infos = await getLog(revisionRanges.nextRelease);
+	const infos = await getLog(revisionRanges.nextRelease());
 
 	const entries = {
 		'TODO:': {},
@@ -228,7 +230,7 @@ async function changes() {
 					if (change.mode === 'A' && change.file.startsWith('components/prism-')) {
 						const lang = change.file.match(/prism-([\w-]+)\.js$/)[1];
 						const entry = languages[lang] || {
-							title: "REMOVED LANGUAGE " + lang,
+							title: 'REMOVED LANGUAGE ' + lang,
 						};
 						const titles = [entry.title];
 						if (entry.aliasTitles) {
@@ -351,6 +353,8 @@ async function changes() {
 	}
 
 
+	let md = '';
+
 	/**
 	 * Stringifies the given commit info.
 	 *
@@ -367,7 +371,7 @@ async function changes() {
 		for (const subCategory of Object.keys(category).sort(strCompare)) {
 			if (subCategory) {
 				md += `${indentation}* __${subCategory}__\n`;
-				printCategory(category[subCategory], indentation + '    ')
+				printCategory(category[subCategory], indentation + '    ');
 			} else {
 				for (const info of category['']) {
 					md += `${indentation}* ${infoToString(info)}\n`;
@@ -376,7 +380,6 @@ async function changes() {
 		}
 	}
 
-	let md = '';
 	for (const category of Object.keys(entries)) {
 		md += `\n### ${category}\n\n`;
 		printCategory(entries[category]);

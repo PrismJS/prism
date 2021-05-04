@@ -66,7 +66,7 @@
 				},
 				'punctuation': /^<\/?|\/?>$/,
 				'content': {
-					pattern: /[\s\S]*\S[\s\S]*/,
+					pattern: /\s*\S[\s\S]*/,
 					alias: 'ftl',
 					inside: ftl
 				}
@@ -77,7 +77,7 @@
 			inside: {
 				'punctuation': /^\$\{|\}$/,
 				'content': {
-					pattern: /[\s\S]*\S[\s\S]*/,
+					pattern: /\s*\S[\s\S]*/,
 					alias: 'ftl',
 					inside: ftl
 				}

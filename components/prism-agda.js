@@ -12,7 +12,7 @@
 			lookbehind: true,
 		},
 		'function': {
-			pattern: /(^[ \t]*)[^:\r\n]+?(?=:)/m,
+			pattern: /(^[ \t]*)(?!\s)[^:\r\n]+(?=:)/m,
 			lookbehind: true,
 		},
 		'operator': {

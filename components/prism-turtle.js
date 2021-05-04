@@ -37,7 +37,7 @@ Prism.languages.turtle = {
 			}
 		}
 	},
-	'number': /[+-]?\b\d+\.?\d*(?:e[+-]?\d+)?/i,
+	'number': /[+-]?\b\d+(?:\.\d*)?(?:e[+-]?\d+)?/i,
 	'punctuation': /[{}.,;()[\]]|\^\^/,
 	'boolean': /\b(?:true|false)\b/,
 	'keyword': [

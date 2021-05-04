@@ -20,7 +20,7 @@
 
 
 	var tableCell = /(?:\\.|``(?:[^`\r\n]|`(?!`))+``|`[^`\r\n]+`|[^\\|\r\n`])+/.source;
-	var tableRow = /\|?__(?:\|__)+\|?(?:(?:\n|\r\n?)|$)/.source.replace(/__/g, function () { return tableCell; });
+	var tableRow = /\|?__(?:\|__)+\|?(?:(?:\n|\r\n?)|(?![\s\S]))/.source.replace(/__/g, function () { return tableCell; });
 	var tableLine = /\|?[ \t]*:?-{3,}:?[ \t]*(?:\|[ \t]*:?-{3,}:?[ \t]*)+\|?(?:\n|\r\n?)/.source;
 
 
@@ -126,7 +126,7 @@
 			{
 				// # title 1
 				// ###### title 6
-				pattern: /(^\s*)#+.+/m,
+				pattern: /(^\s*)#.+/m,
 				lookbehind: true,
 				alias: 'important',
 				inside: {
@@ -221,21 +221,27 @@
 			// [example](http://example.com "Optional title")
 			// [example][id]
 			// [example] [id]
-			pattern: createInline(/!?\[(?:(?!\])<inner>)+\](?:\([^\s)]+(?:[\t ]+"(?:\\.|[^"\\])*")?\)| ?\[(?:(?!\])<inner>)+\])/.source),
+			pattern: createInline(/!?\[(?:(?!\])<inner>)+\](?:\([^\s)]+(?:[\t ]+"(?:\\.|[^"\\])*")?\)|[ \t]?\[(?:(?!\])<inner>)+\])/.source),
 			lookbehind: true,
 			greedy: true,
 			inside: {
-				'variable': {
-					pattern: /(\[)[^\]]+(?=\]$)/,
-					lookbehind: true
-				},
+				'operator': /^!/,
 				'content': {
-					pattern: /(^!?\[)[^\]]+(?=\])/,
+					pattern: /(^\[)[^\]]+(?=\])/,
 					lookbehind: true,
 					inside: {} // see below
 				},
+				'variable': {
+					pattern: /(^\][ \t]?\[)[^\]]+(?=\]$)/,
+					lookbehind: true
+				},
+				'url': {
+					pattern: /(^\]\()[^\s)]+/,
+					lookbehind: true
+				},
 				'string': {
-					pattern: /"(?:\\.|[^"\\])*"(?=\)$)/
+					pattern: /(^[ \t]+)"(?:\\.|[^"\\])*"(?=\)$)/,
+					lookbehind: true
 				}
 			}
 		}
@@ -291,7 +297,7 @@
 					// this might be a language that Prism does not support
 
 					// do some replacements to support C++, C#, and F#
-					var lang = codeLang.content.replace(/\b#/g, 'sharp').replace(/\b\+\+/g, 'pp')
+					var lang = codeLang.content.replace(/\b#/g, 'sharp').replace(/\b\+\+/g, 'pp');
 					// only use the first word
 					lang = (/[a-z][\w-]*/i.exec(lang) || [''])[0].toLowerCase();
 					var alias = 'language-' + lang;
@@ -341,8 +347,10 @@
 				});
 			}
 		} else {
-			// reverse Prism.util.encode
-			var code = env.content.replace(/&lt;/g, '<').replace(/&amp;/g, '&');
+			// get the textContent of the given env HTML
+			var tempContainer = document.createElement('div');
+			tempContainer.innerHTML = env.content;
+			var code = tempContainer.textContent;
 
 			env.content = Prism.highlight(code, grammar, codeLang);
 		}

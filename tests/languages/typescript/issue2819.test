@@ -1,0 +1,38 @@
+@Component({
+  selector: 'my-app',
+  template: `<div>Hello World!</div>`
+})
+export class AppComponent {}
+
+----------------------------------------------------
+
+[
+	["decorator", [
+		["at", "@"],
+		["function", "Component"]
+	]],
+	["punctuation", "("],
+	["punctuation", "{"],
+
+	"\r\n  selector",
+	["operator", ":"],
+	["string", "'my-app'"],
+	["punctuation", ","],
+
+	"\r\n  template",
+	["operator", ":"],
+	["template-string", [
+		["template-punctuation", "`"],
+		["string", "<div>Hello World!</div>"],
+		["template-punctuation", "`"]
+	]],
+
+	["punctuation", "}"],
+	["punctuation", ")"],
+
+	["keyword", "export"],
+	["keyword", "class"],
+	["class-name", ["AppComponent"]],
+	["punctuation", "{"],
+	["punctuation", "}"]
+]

@@ -62,10 +62,11 @@ module.exports = {
 	 * value (e.g. `Prism.languages.xml.tag.pattern`).
 	 *
 	 * @param {readonly{ key: string, value: any }[]} path
+	 * @param {string} [root]
 	 * @returns {string}
 	 */
-	BFSPathToPrismTokenPath(path) {
-		let tokenPath = 'Prism.languages';
+	BFSPathToPrismTokenPath(path, root = 'Prism.languages') {
+		let tokenPath = root;
 		for (const { key } of path) {
 			if (!key) {
 				// do nothing

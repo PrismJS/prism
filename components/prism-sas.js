@@ -127,7 +127,7 @@
 
 	Prism.languages.sas = {
 		'datalines': {
-			pattern: /^(\s*)(?:(?:data)?lines|cards);[\s\S]+?^\s*;/im,
+			pattern: /^(\s*)(?:(?:data)?lines|cards);[\s\S]+?^[ \t]*;/im,
 			lookbehind: true,
 			alias: 'string',
 			inside: {
@@ -208,9 +208,10 @@
 			inside: {
 				'comment': comment,
 				'statement-var': {
-					pattern: /((?:^|\s)=?)saveresult\s+[^;]+/im,
+					pattern: /((?:^|\s)=?)saveresult\s[^;]+/im,
 					lookbehind: true,
 					inside: {
+
 						'statement': {
 							pattern: /^saveresult\s+\S+/i,
 							inside: {
@@ -281,7 +282,7 @@
 			alias: 'keyword'
 		},
 		'input': {
-			pattern: /\binput\s+[-\w\s/*.$&]+;/i,
+			pattern: /\binput\s[-\w\s/*.$&]+;/i,
 			inside: {
 				'input': {
 					alias: 'keyword',

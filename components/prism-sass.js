@@ -1,8 +1,8 @@
-(function(Prism) {
+(function (Prism) {
 	Prism.languages.sass = Prism.languages.extend('css', {
 		// Sass comments don't need to be closed, only indented
 		'comment': {
-			pattern: /^([ \t]*)\/[\/*].*(?:(?:\r?\n|\r)\1[ \t]+.+)*/m,
+			pattern: /^([ \t]*)\/[\/*].*(?:(?:\r?\n|\r)\1[ \t].+)*/m,
 			lookbehind: true
 		}
 	});
@@ -41,7 +41,7 @@
 		},
 		// We want to consume the whole line
 		'property-line': {
-			pattern: /^[ \t]*(?:[^:\s]+ *:.*|:[^:\s]+.*)/m,
+			pattern: /^[ \t]*(?:[^:\s]+ *:.*|:[^:\s].*)/m,
 			inside: {
 				'property': [
 					/[^:\s]+(?=\s*:)/,

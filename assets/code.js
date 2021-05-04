@@ -1,51 +1,50 @@
-(function(){
+(function () {
 
-if(!document.body.addEventListener) {
+if (!document.body.addEventListener) {
 	return;
 }
 
 $$('[data-plugin-header]').forEach(function (element) {
 	var plugin = components.plugins[element.getAttribute('data-plugin-header')];
 	element.innerHTML = '<div class="intro" data-src="assets/templates/header-plugins.html" data-type="text/html"></div>\n'
-	+ '<h2>' + plugin.title  + '</h2>\n<p>' + plugin.description + '</p>';
+	+ '<h2>' + plugin.title + '</h2>\n<p>' + plugin.description + '</p>';
 });
 
-$$('[data-src][data-type="text/html"]').forEach(function(element) {
-	var src = element.getAttribute('data-src'),
-	    html = element.getAttribute('data-type') === 'text/html',
-	    contentProperty = html ? 'innerHTML' : 'textContent';
+$$('[data-src][data-type="text/html"]').forEach(function (element) {
+	var src = element.getAttribute('data-src');
+	var html = element.getAttribute('data-type') === 'text/html';
+	var contentProperty = html ? 'innerHTML' : 'textContent';
 
 	$u.xhr({
 		url: src,
-		callback: function(xhr) {
+		callback: function (xhr) {
 			try {
 				element[contentProperty] = xhr.responseText;
 
 				// Run JS
 
 				$$('script', element).forEach(function (script) {
-					var after = script.nextSibling, parent = script.parentNode;
+					var parent = script.parentNode;
 					parent.removeChild(script);
 					document.head.appendChild(script);
 				});
-			}
-			catch (e) {}
+			} catch (e) { /* noop */ }
 		}
 	});
 });
 
-})();
+}());
 
 /**
  * Table of contents
  */
-(function(){
+(function () {
 var toc = document.createElement('ol');
 
-$$('body > section > h1').forEach(function(h1) {
-	var section = h1.parentNode,
-	    text = h1.textContent,
-	    id = h1.id || section.id;
+$$('body > section > h1').forEach(function (h1) {
+	var section = h1.parentNode;
+	var text = h1.textContent;
+	var id = h1.id || section.id;
 
 	// Assign id if one does not exist
 	if (!id) {
@@ -98,7 +97,7 @@ if (toc.children.length > 0) {
 	});
 }
 
-})();
+}());
 
 /**
  * Linkify h2
@@ -116,36 +115,36 @@ if (toc.children.length > 0) {
 			inside: h2
 		});
 	});
-})();
+}());
 
 // calc()
-(function(){
-	if(!window.PrefixFree) return;
+(function () {
+	if (!window.PrefixFree) return;
 
 	if (PrefixFree.functions.indexOf('calc') == -1) {
 		var style = document.createElement('_').style;
-		style.width = 'calc(1px + 1%)'
+		style.width = 'calc(1px + 1%)';
 
-		if(!style.width) {
+		if (!style.width) {
 			// calc not supported
-			var header = $('header'),
-			    footer = $('footer');
+			var header = $('header');
+			var footer = $('footer');
 
 			function calculatePadding() {
 				header.style.padding =
-				footer.style.padding = '30px ' + (innerWidth/2 - 450) + 'px';
+				footer.style.padding = '30px ' + (innerWidth / 2 - 450) + 'px';
 			}
 
 			addEventListener('resize', calculatePadding);
 			calculatePadding();
 		}
 	}
-})();
+}());
 
 // setTheme is intentionally global,
 // so it can be accessed from download.js
 var setTheme;
-(function() {
+(function () {
 var p = $u.element.create('p', {
 	properties: {
 		id: 'theme'
@@ -167,7 +166,7 @@ if (!(current in themes)) {
 if (current === undefined) {
 	var stored = localStorage.getItem('theme');
 
-	current = stored in themes? stored : 'prism';
+	current = stored in themes ? stored : 'prism';
 }
 
 setTheme = function (id) {
@@ -186,7 +185,7 @@ for (var id in themes) {
 	$u.element.create('input', {
 		properties: {
 			type: 'radio',
-			name: "theme",
+			name: 'theme',
 			id: 'theme=' + id,
 			checked: current === id,
 			value: id,
@@ -207,9 +206,9 @@ for (var id in themes) {
 }
 
 setTheme(current);
-})();
+}());
 
-(function(){
+(function () {
 
 function listPlugins(ul) {
 	for (var id in components.plugins) {
@@ -261,9 +260,9 @@ Prism && Prism.hooks.add('complete', function (env) {
 
 		// transfer margin of pre to wrapper
 		wrapper.style.margin = window.getComputedStyle(pre).margin;
-		pre.style.margin = "0";
+		pre.style.margin = '0';
 
 	});
 });
 
-})();
+}());

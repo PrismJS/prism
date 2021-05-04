@@ -1,11 +1,15 @@
 {
   "name": "prismjs",
-  "version": "1.22.0",
+  "version": "1.23.0",
   "description": "Lightweight, robust, elegant syntax highlighting. A spin-off project from Dabblet.",
   "main": "prism.js",
   "style": "themes/prism.css",
   "scripts": {
     "build": "gulp",
+    "start": "http-server -c-1",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "lint:ci": "eslint . --max-warnings 0",
     "test:aliases": "mocha tests/aliases-test.js",
     "test:core": "mocha tests/core/**/*.js",
     "test:coverage": "mocha tests/coverage.js",
@@ -29,14 +33,13 @@
   "author": "Lea Verou",
   "license": "MIT",
   "readmeFilename": "README.md",
-  "optionalDependencies": {
-    "clipboard": "^2.0.0"
-  },
   "devDependencies": {
     "chai": "^4.2.0",
     "danger": "^10.5.0",
     "del": "^4.1.1",
     "docdash": "^1.2.0",
+    "eslint": "^7.22.0",
+    "eslint-plugin-jsdoc": "^32.3.0",
     "gulp": "^4.0.2",
     "gulp-concat": "^2.3.4",
     "gulp-header": "^2.0.7",
@@ -46,12 +49,15 @@
     "gulp-uglify": "^3.0.1",
     "gzip-size": "^5.1.1",
     "htmlparser2": "^4.0.0",
+    "http-server": "^0.12.3",
     "jsdom": "^13.0.0",
     "mocha": "^6.2.0",
     "pump": "^3.0.0",
-    "refa": "0.5.0",
+    "refa": "^0.7.0",
     "regexpp": "^2.0.1",
+    "scslre": "^0.1.1",
     "simple-git": "^1.107.0",
+    "webfont": "^9.0.0",
     "yargs": "^13.2.2"
   },
   "jspm": {

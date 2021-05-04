@@ -1,6 +1,6 @@
 (function () {
 
-	if (typeof self === 'undefined' || !self.Prism || !self.document) {
+	if (typeof Prism === 'undefined' || typeof document === 'undefined') {
 		return;
 	}
 
@@ -10,9 +10,15 @@
 		return;
 	}
 
+	/* eslint-disable */
+
 	// The languages map is built automatically with gulp
 	var Languages = /*languages_placeholder[*/{
 		"none": "Plain text",
+		"plain": "Plain text",
+		"plaintext": "Plain text",
+		"text": "Plain text",
+		"txt": "Plain text",
 		"html": "HTML",
 		"xml": "XML",
 		"svg": "SVG",
@@ -47,12 +53,16 @@
 		"cs": "C#",
 		"dotnet": "C#",
 		"cpp": "C++",
+		"cfscript": "CFScript",
+		"cfc": "CFScript",
 		"cil": "CIL",
 		"cmake": "CMake",
+		"cobol": "COBOL",
 		"coffee": "CoffeeScript",
 		"conc": "Concurnas",
 		"csp": "Content-Security-Policy",
 		"css-extras": "CSS Extras",
+		"csv": "CSV",
 		"dataweave": "DataWeave",
 		"dax": "DAX",
 		"django": "Django/Jinja2",
@@ -60,6 +70,8 @@
 		"dns-zone-file": "DNS zone file",
 		"dns-zone": "DNS zone file",
 		"dockerfile": "Docker",
+		"dot": "DOT (Graphviz)",
+		"gv": "DOT (Graphviz)",
 		"ebnf": "EBNF",
 		"editorconfig": "EditorConfig",
 		"ejs": "EJS",
@@ -85,6 +97,8 @@
 		"hpkp": "HTTP Public-Key-Pins",
 		"hsts": "HTTP Strict-Transport-Security",
 		"ichigojam": "IchigoJam",
+		"icu-message-format": "ICU Message Format",
+		"idr": "Idris",
 		"ignore": ".ignore",
 		"gitignore": ".gitignore",
 		"hgignore": ".hgignore",
@@ -104,6 +118,8 @@
 		"js-templates": "JS Templates",
 		"kts": "Kotlin Script",
 		"kt": "Kotlin",
+		"kumir": "KuMir (КуМир)",
+		"kum": "KuMir (КуМир)",
 		"latex": "LaTeX",
 		"tex": "TeX",
 		"context": "ConTeXt",
@@ -113,6 +129,7 @@
 		"elisp": "Lisp",
 		"emacs-lisp": "Lisp",
 		"llvm": "LLVM IR",
+		"log": "Log file",
 		"lolcode": "LOLCODE",
 		"md": "Markdown",
 		"markup-templating": "Markup templating",
@@ -134,8 +151,11 @@
 		"objc": "Objective-C",
 		"ocaml": "OCaml",
 		"opencl": "OpenCL",
+		"openqasm": "OpenQasm",
+		"qasm": "OpenQasm",
 		"parigp": "PARI/GP",
 		"objectpascal": "Object Pascal",
+		"psl": "PATROL Scripting Language",
 		"pcaxis": "PC-Axis",
 		"px": "PC-Axis",
 		"peoplecode": "PeopleCode",
@@ -155,6 +175,8 @@
 		"pbfasm": "PureBasic",
 		"purs": "PureScript",
 		"py": "Python",
+		"qsharp": "Q#",
+		"qs": "Q#",
 		"q": "Q (kdb+ database)",
 		"qml": "QML",
 		"rkt": "Racket",
@@ -197,6 +219,8 @@
 		"tsconfig": "TSConfig",
 		"uscript": "UnrealScript",
 		"uc": "UnrealScript",
+		"uri": "URI",
+		"url": "URL",
 		"vbnet": "VB.Net",
 		"vhdl": "VHDL",
 		"vim": "vim",
@@ -213,6 +237,8 @@
 		"yml": "YAML",
 		"yang": "YANG"
 	}/*]*/;
+
+	/* eslint-enable */
 
 	Prism.plugins.toolbar.registerButton('show-language', function (env) {
 		var pre = env.element.parentNode;
@@ -244,4 +270,4 @@
 		return element;
 	});
 
-})();
+}());

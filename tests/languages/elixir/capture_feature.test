@@ -1,26 +1,54 @@
+&Math.zero?(0)
 fun = &Math.zero?/1
 (&is_function/1).(fun)
 fun = &(&1 + 1)
 &List.flatten(&1, &2)
 
+fun = &Math.zero?/invalid
+
 ----------------------------------------------------
 
 [
-	"fun ", ["operator", "="],
-	["capture", "&Math.zero?/1"],
+	["operator", "&"],
+	["module", "Math"],
+	["punctuation", "."],
+	["function", "zero?" ],
 	["punctuation", "("],
-	["capture", "&is_function/1"],
+	["number", "0"],
+	["punctuation", ")"],
+	"\r\nfun ", ["operator", "="],
+	["operator", "&"],
+	["module", "Math"],
+	["punctuation", "."],
+	["function", "zero?" ],
+	["operator", "/"],
+	["number", "1"],
+	["punctuation", "("],
+	["operator", "&"],
+	["function", "is_function"],
+	["operator", "/"],
+	["number", "1"],
 	["punctuation", ")"],
 	["punctuation", "."],
 	["punctuation", "("], "fun", ["punctuation", ")"],
 	"\r\nfun ", ["operator", "="],
-	["capture", "&"],
+	["operator", "&"],
 	["punctuation", "("], ["argument", "&1"],
 	["operator", "+"], ["number", "1"], ["punctuation", ")"],
-	["capture", "&List.flatten"],
+	["operator", "&"],
+	["module", "List"],
+	["punctuation", "."], ["function", "flatten"],
 	["punctuation", "("], ["argument", "&1"],
 	["punctuation", ","], ["argument", "&2"],
-	["punctuation", ")"]
+	["punctuation", ")"],
+	"\r\n\r\nfun ",
+	[ "operator", "=" ],
+	[ "operator", "&" ],
+	[ "module", "Math" ],
+	[ "punctuation", "." ],
+	"zero?",
+	[ "operator", "/" ],
+	"invalid"
 ]
 
 ----------------------------------------------------

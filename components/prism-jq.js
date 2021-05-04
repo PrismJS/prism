@@ -60,7 +60,7 @@
 			pattern: /\./,
 			alias: 'important'
 		}
-	}
+	};
 
 	stringInterpolation.interpolation.inside.content.inside = jq;
 

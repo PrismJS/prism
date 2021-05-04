@@ -1,0 +1,162 @@
+POST http://example.com HTTP/1.0
+GET http://localhost:9999/foo.html HTTP/1.1
+PUT http://www.example.com HTTP/2.0
+DELETE https://example.com HTTP/1.1
+OPTIONS https://www.example.com HTTP/1.1
+PATCH http://example.com HTTP/1.0
+TRACE http://example.com HTTP/1.0
+CONNECT http://example.com HTTP/1.0
+GET /path/to/foo.html HTTP/1.1
+GET / HTTP/1.1
+
+----------------------------------------------------
+
+[
+	["request-line", [
+		["method", "POST"],
+		["request-target", [
+			["scheme", [
+				"http",
+				["scheme-delimiter", ":"]
+			]],
+			["authority", [
+				["authority-delimiter", "//"],
+				["host", ["example.com"]]
+			]]
+		]],
+		["http-version", "HTTP/1.0"]
+	]],
+	["request-line", [
+		["method", "GET"],
+		["request-target", [
+			["scheme", [
+				"http",
+				["scheme-delimiter", ":"]
+			]],
+			["authority", [
+				["authority-delimiter", "//"],
+				["host", ["localhost"]],
+				["port-segment", [
+					["port-delimiter", ":"],
+					["port", "9999"]
+				]]
+			]],
+			["path", [
+				["path-separator", "/"],
+				"foo.html"
+			]]
+		]],
+		["http-version", "HTTP/1.1"]
+	]],
+	["request-line", [
+		["method", "PUT"],
+		["request-target", [
+			["scheme", [
+				"http",
+				["scheme-delimiter", ":"]
+			]],
+			["authority", [
+				["authority-delimiter", "//"],
+				["host", ["www.example.com"]]
+			]]
+		]],
+		["http-version", "HTTP/2.0"]
+	]],
+	["request-line", [
+		["method", "DELETE"],
+		["request-target", [
+			["scheme", [
+				"https",
+				["scheme-delimiter", ":"]
+			]],
+			["authority", [
+				["authority-delimiter", "//"],
+				["host", ["example.com"]]
+			]]
+		]],
+		["http-version", "HTTP/1.1"]
+	]],
+	["request-line", [
+		["method", "OPTIONS"],
+		["request-target", [
+			["scheme", [
+				"https",
+				["scheme-delimiter", ":"]
+			]],
+			["authority", [
+				["authority-delimiter", "//"],
+				["host", ["www.example.com"]]
+			]]
+		]],
+		["http-version", "HTTP/1.1"]
+	]],
+	["request-line", [
+		["method", "PATCH"],
+		["request-target", [
+			["scheme", [
+				"http",
+				["scheme-delimiter", ":"]
+			]],
+			["authority", [
+				["authority-delimiter", "//"],
+				["host", ["example.com"]]
+			]]
+		]],
+		["http-version", "HTTP/1.0"]
+	]],
+	["request-line", [
+		["method", "TRACE"],
+		["request-target", [
+			["scheme", [
+				"http",
+				["scheme-delimiter", ":"]
+			]],
+			["authority", [
+				["authority-delimiter", "//"],
+				["host", ["example.com"]]
+			]]
+		]],
+		["http-version", "HTTP/1.0"]
+	]],
+	["request-line", [
+		["method", "CONNECT"],
+		["request-target", [
+			["scheme", [
+				"http",
+				["scheme-delimiter", ":"]
+			]],
+			["authority", [
+				["authority-delimiter", "//"],
+				["host", ["example.com"]]
+			]]
+		]],
+		["http-version", "HTTP/1.0"]
+	]],
+	["request-line", [
+		["method", "GET"],
+		["request-target", [
+			["path", [
+				["path-separator", "/"],
+				"path",
+				["path-separator", "/"],
+				"to",
+				["path-separator", "/"],
+				"foo.html"
+			]]
+		]],
+		["http-version", "HTTP/1.1"]
+	]],
+	["request-line", [
+		["method", "GET"],
+		["request-target", [
+			["path", [
+				["path-separator", "/"]
+			]]
+		]],
+		["http-version", "HTTP/1.1"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for request lines.

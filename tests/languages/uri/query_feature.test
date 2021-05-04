@@ -1,0 +1,78 @@
+?tag=networking&order=newest#top
+?objectClass?one
+?title=Query_string&action=edit
+http://example.com/kb/index.php?cat=1;id=23
+
+----------------------------------------------------
+
+[
+	["query", [
+		["query-delimiter", "?"],
+		["pair", [
+			["key", "tag"],
+			"=",
+			["value", "networking"]
+		]],
+		["pair-delimiter", "&"],
+		["pair", [
+			["key", "order"],
+			"=",
+			["value", "newest"]
+		]]
+	]],
+	["fragment", [
+		["fragment-delimiter", "#"],
+		"top"
+	]],
+
+	["query", [
+		["query-delimiter", "?"],
+		["pair", [
+			["key", "objectClass?one"]
+		]]
+	]],
+
+	["query", [
+		["query-delimiter", "?"],
+		["pair", [
+			["key", "title"],
+			"=",
+			["value", "Query_string"]
+		]],
+		["pair-delimiter", "&"],
+		["pair", [
+			["key", "action"],
+			"=",
+			["value", "edit"]
+		]]
+	]],
+
+	["scheme", [
+		"http",
+		["scheme-delimiter", ":"]
+	]],
+	["authority", [
+		["authority-delimiter", "//"],
+		["host", ["example.com"]]
+	]],
+	["path", [
+		["path-separator", "/"],
+		"kb",
+		["path-separator", "/"],
+		"index.php"
+	]],
+	["query", [
+		["query-delimiter", "?"],
+		["pair", [
+			["key", "cat"],
+			"=",
+			["value", "1"]
+		]],
+		["pair-delimiter", ";"],
+		["pair", [
+			["key", "id"],
+			"=",
+			["value", "23"]
+		]]
+	]]
+]

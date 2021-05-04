@@ -1,3 +1,5 @@
+/* eslint-disable no-misleading-character-class */
+
 // 1C:Enterprise
 // https://github.com/Diversus23/
 //
@@ -28,7 +30,7 @@ Prism.languages.bsl = {
 		}
 	],
 	'number': {
-		pattern: /(^(?=\d)|[^\w\u0400-\u0484\u0487-\u052f\u1c80-\u1c88\u1d2b\u1d78\u2de0-\u2dff\ua640-\ua69f\ufe2e\ufe2f])(?:\d+\.?\d*|\.\d+)(?:E[+-]?\d+)?/i,
+		pattern: /(^(?=\d)|[^\w\u0400-\u0484\u0487-\u052f\u1c80-\u1c88\u1d2b\u1d78\u2de0-\u2dff\ua640-\ua69f\ufe2e\ufe2f])(?:\d+(?:\.\d*)?|\.\d+)(?:E[+-]?\d+)?/i,
 		lookbehind: true
 	},
 	'operator': [

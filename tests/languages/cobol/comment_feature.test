@@ -1,0 +1,11 @@
+*> comment
+
+* temporary variables in computational usage.
+
+----------------------------------------------------
+
+[
+	["comment", "*> comment"],
+
+	["comment", "* temporary variables in computational usage."]
+]

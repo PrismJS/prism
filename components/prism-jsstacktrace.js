@@ -5,21 +5,21 @@ Prism.languages.jsstacktrace = {
 	},
 
 	'stack-frame': {
-		pattern: /^[ \t]+at[ \t]+.*/m,
+		pattern: /^[ \t]+at[ \t].*/m,
 		inside: {
 			'not-my-code': {
-				pattern: /[ \t]+at[ \t]+(?:node\.js|\<unknown\>|.*(?:node_modules|\(\<anonymous\>\)|\(\<unknown\>|\<anonymous\>$|\(internal\/|\(node\.js)).*/m,
+				pattern: /[ \t]+at[ \t]+(?!\s)(?:node\.js|\<unknown\>|.*(?:node_modules|\(\<anonymous\>\)|\(\<unknown\>|\<anonymous\>$|\(internal\/|\(node\.js)).*/m,
 				alias: 'comment'
 			},
 
 			'filename': {
-				pattern: /(\bat\s+|\()(?:[a-zA-Z]:)?[^():]+(?=:)/,
+				pattern: /(\bat\s+(?!\s)|\()(?:[a-zA-Z]:)?[^():]+(?=:)/,
 				lookbehind: true,
 				alias: 'url'
 			},
 
 			'function': {
-				pattern: /(\bat\s+(?:new\s+)?)[_$a-zA-Z\xA0-\uFFFF<][.$\w\xA0-\uFFFF<>]*/,
+				pattern: /(\bat\s+(?:new\s+)?)(?!\s)[_$a-zA-Z\xA0-\uFFFF<][.$\w\xA0-\uFFFF<>]*/,
 				lookbehind: true,
 				inside: {
 					'punctuation': /\./
@@ -31,7 +31,7 @@ Prism.languages.jsstacktrace = {
 			'keyword': /\b(?:at|new)\b/,
 
 			'alias': {
-				pattern: /\[(?:as\s+)?[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*\]/,
+				pattern: /\[(?:as\s+)?(?!\s)[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*\]/,
 				alias: 'variable'
 			},
 
@@ -45,4 +45,4 @@ Prism.languages.jsstacktrace = {
 
 		}
 	}
-}
+};

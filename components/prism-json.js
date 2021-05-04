@@ -1,11 +1,13 @@
 // https://www.json.org/json-en.html
 Prism.languages.json = {
 	'property': {
-		pattern: /"(?:\\.|[^\\"\r\n])*"(?=\s*:)/,
+		pattern: /(^|[^\\])"(?:\\.|[^\\"\r\n])*"(?=\s*:)/,
+		lookbehind: true,
 		greedy: true
 	},
 	'string': {
-		pattern: /"(?:\\.|[^\\"\r\n])*"(?!\s*:)/,
+		pattern: /(^|[^\\])"(?:\\.|[^\\"\r\n])*"(?!\s*:)/,
+		lookbehind: true,
 		greedy: true
 	},
 	'comment': {

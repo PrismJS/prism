@@ -1,10 +1,10 @@
 // @ts-check
-"use strict";
+'use strict';
 
-const TestDiscovery = require("./helper/test-discovery");
-const TestCase = require("./helper/test-case");
-const path = require("path");
-const { argv } = require("yargs");
+const TestDiscovery = require('./helper/test-discovery');
+const TestCase = require('./helper/test-case');
+const path = require('path');
+const { argv } = require('yargs');
 
 const testSuite =
 	(argv.language)
@@ -12,7 +12,8 @@ const testSuite =
 		// load complete test suite
 		: TestDiscovery.loadAllTests();
 
-const acceptEmpty = !!argv.accept;
+const insert = !!argv.accept || !!argv.insert;
+const update = !!argv.update;
 
 // define tests for all tests in all languages in the test suite
 for (const [languageIdentifier, files] of testSuite) {
@@ -23,7 +24,7 @@ for (const [languageIdentifier, files] of testSuite) {
 			const fileName = path.basename(filePath, path.extname(filePath));
 
 			it("– should pass test case '" + fileName + "'", function () {
-				TestCase.run({ languageIdentifier, filePath, acceptEmpty });
+				TestCase.run({ languageIdentifier, filePath, updateMode: update ? 'update' : insert ? 'insert' : 'none' });
 			});
 		}
 	});
