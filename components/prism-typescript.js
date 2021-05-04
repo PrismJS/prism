@@ -12,7 +12,7 @@
 
 	// The keywords TypeScript adds to JavaScript
 	Prism.languages.typescript.keyword.push(
-		/\b(?:abstract|as|declare|implements|is|keyof|readonly|require)\b/,
+		/\b(?:abstract|declare|is|keyof|readonly|require)\b/,
 		// keywords that have to be followed by an identifier
 		/\b(?:asserts|infer|interface|module|namespace|type)(?!\s*[^\s_${}*a-zA-Z\xA0-\uFFFF])/
 	);
