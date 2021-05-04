@@ -2,6 +2,7 @@
 	/**
 	 * Functions to construct regular expressions
 	 * e.g. (interactive ... or (interactive)
+	 *
 	 * @param {string} name
 	 * @returns {RegExp}
 	 */
@@ -10,6 +11,7 @@
 	}
 	/**
 	 * booleans and numbers
+	 *
 	 * @param {string} pattern
 	 * @returns {RegExp}
 	 */

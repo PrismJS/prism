@@ -1,11 +1,11 @@
-"use strict";
+'use strict';
 
-const TestDiscovery = require("./helper/test-discovery");
-const TestCase = require("./helper/test-case");
-const PrismLoader = require("./helper/prism-loader");
-const { BFS, BFSPathToPrismTokenPath } = require("./helper/util");
-const { assert } = require("chai");
-const components = require("../components.json");
+const TestDiscovery = require('./helper/test-discovery');
+const TestCase = require('./helper/test-case');
+const PrismLoader = require('./helper/prism-loader');
+const { BFS, BFSPathToPrismTokenPath } = require('./helper/util');
+const { assert } = require('chai');
+const components = require('../components.json');
 const ALL_LANGUAGES = [...Object.keys(components.languages).filter(k => k !== 'meta')];
 
 
