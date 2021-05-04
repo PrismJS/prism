@@ -1,0 +1,95 @@
+@namespace Basic
+{
+  @search @pattern GUID-in-Braces = '{' + GUID + '}';
+}
+
+@search Basic.GUID;
+@search Basic.GUID-in-Braces;
+
+@namespace Basic
+{
+  @pattern GUID-in-Braces = '{' + GUID + '}';
+}
+
+@require "GUID.np";
+
+@search Basic.*;
+
+@namespace Basic
+{
+  @pattern GUID-in-Braces = '{' + GUID + '}';
+}
+
+----------------------------------------------------
+
+[
+	["keyword", "@namespace"],
+	["namespace", "Basic"],
+
+	["operator", "{"],
+
+	["keyword", "@search"],
+	["keyword", "@pattern"],
+	["pattern", [
+		["pattern-name", "GUID-in-Braces"]
+	]],
+	["operator", "="],
+	["string", ["'{'"]],
+	["operator", "+"],
+	["name", "GUID"],
+	["operator", "+"],
+	["string", ["'}'"]],
+	["punctuation", ";"],
+
+	["operator", "}"],
+
+	["keyword", "@search"],
+	["search", "Basic.GUID"],
+	["punctuation", ";"],
+
+	["keyword", "@search"],
+	["search", "Basic.GUID-in-Braces"],
+	["punctuation", ";"],
+
+	["keyword", "@namespace"],
+	["namespace", "Basic"],
+
+	["operator", "{"],
+
+	["keyword", "@pattern"],
+	["pattern", [
+		["pattern-name", "GUID-in-Braces"]
+	]],
+	["operator", "="],
+	["string", ["'{'"]],
+	["operator", "+"],
+	["name", "GUID"],
+	["operator", "+"],
+	["string", ["'}'"]],
+	["punctuation", ";"],
+
+	["operator", "}"],
+
+	["keyword", "@require"], ["string", ["\"GUID.np\""]], ["punctuation", ";"],
+
+	["keyword", "@search"], ["search", "Basic.*"], ["punctuation", ";"],
+
+	["keyword", "@namespace"],
+	["namespace", "Basic"],
+
+	["operator", "{"],
+
+	["keyword", "@pattern"],
+	["pattern", [
+		["pattern-name", "GUID-in-Braces"]
+	]],
+	["operator", "="],
+	["string", ["'{'"]],
+	["operator", "+"],
+	["name", "GUID"],
+	["operator", "+"],
+	["string", ["'}'"]],
+	["punctuation", ";"],
+
+	["operator", "}"]
+]
