@@ -63,7 +63,7 @@ class Foo extends \Package\Bar implements App\Baz {}
 	["punctuation", ";"],
 
 	["keyword", "function"],
-	["function", "f"],
+	["function-definition", "f"],
 	["punctuation", "("],
 	["class-name", "Foo"],
 	["variable", "$variable"],
@@ -74,7 +74,7 @@ class Foo extends \Package\Bar implements App\Baz {}
 	["punctuation", "}"],
 
 	["keyword", "function"],
-	["function", "f"],
+	["function-definition", "f"],
 	["punctuation", "("],
 	["class-name", [
 		["punctuation", "\\"],
@@ -91,7 +91,7 @@ class Foo extends \Package\Bar implements App\Baz {}
 	["punctuation", "}"],
 
 	["keyword", "function"],
-	["function", "f"],
+	["function-definition", "f"],
 	["punctuation", "("],
 	["class-name", [
 		["punctuation", "\\"],
@@ -112,7 +112,7 @@ class Foo extends \Package\Bar implements App\Baz {}
 	["punctuation", "}"],
 
 	["keyword", "function"],
-	["function", "f"],
+	["function-definition", "f"],
 	["punctuation", "("],
 	["variable", "$variable"],
 	["punctuation", ")"],
@@ -123,7 +123,7 @@ class Foo extends \Package\Bar implements App\Baz {}
 	["punctuation", "}"],
 
 	["keyword", "function"],
-	["function", "f"],
+	["function-definition", "f"],
 	["punctuation", "("],
 	["class-name", "Foo"],
 	["operator", "|"],
@@ -138,7 +138,7 @@ class Foo extends \Package\Bar implements App\Baz {}
 	["punctuation", "}"],
 
 	["keyword", "function"],
-	["function", "f"],
+	["function-definition", "f"],
 	["punctuation", "("],
 	["class-name", "Foo"],
 	["operator", "|"],
@@ -151,8 +151,9 @@ class Foo extends \Package\Bar implements App\Baz {}
 	["class-name", "Bar"],
 	["punctuation", "{"],
 	["punctuation", "}"],
+
 	["keyword", "function"],
-	["function", "f"],
+	["function-definition", "f"],
 	["punctuation", "("],
 	["class-name", "Foo"],
 	["operator", "|"],
@@ -167,7 +168,7 @@ class Foo extends \Package\Bar implements App\Baz {}
 	["punctuation", "}"],
 
 	["keyword", "function"],
-	["function", "f"],
+	["function-definition", "f"],
 	["punctuation", "("],
 	["class-name", [
 		["punctuation", "\\"],
@@ -202,7 +203,7 @@ class Foo extends \Package\Bar implements App\Baz {}
 	["punctuation", "}"],
 
 	["keyword", "class"],
-	["class-name", "Foo"],
+	["class-name-definition", "Foo"],
 	["keyword", "extends"],
 	["class-name", "Bar"],
 	["keyword", "implements"],
@@ -211,7 +212,7 @@ class Foo extends \Package\Bar implements App\Baz {}
 	["punctuation", "}"],
 
 	["keyword", "class"],
-	["class-name", "Foo"],
+	["class-name-definition", "Foo"],
 	["keyword", "extends"],
 	["class-name", [
 		["punctuation", "\\"],
