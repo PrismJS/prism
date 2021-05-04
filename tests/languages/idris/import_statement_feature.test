@@ -1,10 +1,11 @@
 import Foo
+import Maths.NumOps
 
 ----------------------------------------------------
 
 [
-	["keyword", "import"],
-	["constant", "Foo"]
+	["keyword", "import"], ["import-statement", "Foo"],
+	["keyword", "import"], ["import-statement", "Maths.NumOps"]
 ]
 
 ----------------------------------------------------
