@@ -189,6 +189,7 @@
 		"xlsx": "excel-formula",
 		"xls": "excel-formula",
 		"gamemakerlanguage": "gml",
+		"hbs": "handlebars",
 		"hs": "haskell",
 		"idr": "idris",
 		"gitignore": "ignore",
