@@ -187,13 +187,16 @@
 			}
 
 			function getLanguageTitle(lang) {
-				if (!lang.aliasTitles)
+				if (!lang.aliasTitles) {
 					return lang.title;
+				}
 
 				var titles = [lang.title];
-				for (var alias in lang.aliasTitles)
-					if (lang.aliasTitles.hasOwnProperty(alias))
+				for (var alias in lang.aliasTitles) {
+					if (lang.aliasTitles.hasOwnProperty(alias)) {
 						titles.push(lang.aliasTitles[alias]);
+					}
+				}
 				return titles.join(' + ');
 			}
 

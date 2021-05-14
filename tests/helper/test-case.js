@@ -306,7 +306,9 @@ function translateIndexIgnoreSpaces(spacey, withoutSpaces, withoutSpaceIndex) {
 	let i = 0;
 	let j = 0;
 	while (i < spacey.length && j < withoutSpaces.length) {
-		while (spacey[i] !== withoutSpaces[j]) i++;
+		while (spacey[i] !== withoutSpaces[j]) {
+			i++;
+		}
 		if (j === withoutSpaceIndex) {
 			return i;
 		}
