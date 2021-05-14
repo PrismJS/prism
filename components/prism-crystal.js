@@ -25,26 +25,26 @@
 		},
 
 		expansion: [
-		{
-			pattern: /\{\{.+?\}\}/,
-			inside: {
-				delimiter: {
-					pattern: /^\{\{|\}\}$/,
-					alias: 'tag'
-				},
-				rest: Prism.languages.crystal
+			{
+				pattern: /\{\{.+?\}\}/,
+				inside: {
+					delimiter: {
+						pattern: /^\{\{|\}\}$/,
+						alias: 'tag'
+					},
+					rest: Prism.languages.crystal
+				}
+			},
+			{
+				pattern: /\{%.+?%\}/,
+				inside: {
+					delimiter: {
+						pattern: /^\{%|%\}$/,
+						alias: 'tag'
+					},
+					rest: Prism.languages.crystal
+				}
 			}
-		},
-		{
-			pattern: /\{%.+?%\}/,
-			inside: {
-				delimiter: {
-					pattern: /^\{%|%\}$/,
-					alias: 'tag'
-				},
-				rest: Prism.languages.crystal
-			}
-		}
 		]
 	});
 

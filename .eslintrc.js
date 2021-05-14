@@ -10,17 +10,19 @@ module.exports = {
 		'brace-style': ['warn', '1tbs', { allowSingleLine: true }],
 		'no-tabs': ['warn', { allowIndentationTabs: true }],
 		'no-var': 'error',
+		'one-var': ['warn', 'never'],
 		'quotes': ['warn', 'single', { avoidEscape: true, allowTemplateLiterals: true }],
 		'semi': 'warn',
 		'wrap-iife': 'warn',
 
-		// spaces
+		// spaces and indentation
 		'arrow-spacing': 'warn',
 		'block-spacing': 'warn',
 		'comma-spacing': 'warn',
 		'computed-property-spacing': 'warn',
 		'func-call-spacing': 'warn',
 		'generator-star-spacing': 'warn',
+		'indent': ['warn', 'tab', { SwitchCase: 1 }],
 		'key-spacing': 'warn',
 		'keyword-spacing': 'warn',
 		'no-multi-spaces': ['warn', { ignoreEOLComments: true }],
