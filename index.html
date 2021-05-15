@@ -193,15 +193,17 @@ window.Prism.manual = true;
 &lt;html>
 &lt;head>
 	...</code>
-	<code class="highlight">&lt;link href="https://my.cdn/prism@v1.x/themes/prism.css" rel="stylesheet" /></code>
+	<code class="highlight">&lt;link href="https://{{cdn}}/prism@v1.x/themes/prism.css" rel="stylesheet" /></code>
 <code>&lt;/head>
 &lt;body>
 	...</code>
-<code class="highlight" style="display: inline-block; outline-offset: .2em; margin-bottom: .2em;">	&lt;script src="https://my.cdn/prism@v1.x/components/prism-core.min.js"&gt;&lt;/script&gt;
-	&lt;script src="https://my.cdn/prism@v1.x/plugins/autoloader/prism-autoloader.min.js"&gt;&lt;/script&gt;</code>
+<code class="highlight" style="display: inline-block; outline-offset: .2em; margin-bottom: .2em;">	&lt;script src="https://{{cdn}}/prism@v1.x/components/prism-core.min.js"&gt;&lt;/script&gt;
+	&lt;script src="https://{{cdn}}/prism@v1.x/plugins/autoloader/prism-autoloader.min.js"&gt;&lt;/script&gt;</code>
 <code>&lt;/body>
 &lt;/html></code></pre>
 
+	<p>Please note that links in the above code sample serve as placeholders. You have to replace them with valid links to the CDN of your choice.</p>
+	
 	<p>CDNs which provide PrismJS are e.g. <a href="https://cdnjs.com/libraries/prism">cdnjs</a>, <a href="https://www.jsdelivr.com/package/npm/prismjs">jsDelivr</a>, and <a href="https://unpkg.com/browse/prismjs@1/">UNPKG</a>.</p>
 
 	<h2 id="basic-usage-bundlers">Usage with Webpack, Browserify, & Other Bundlers</h2>
