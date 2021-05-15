@@ -188,20 +188,20 @@ window.Prism.manual = true;
 	<p>In combination with CDNs, we recommend using the <a href="plugins/autoloader">Autoloader plugin</a> which automatically loads languages when necessary.</p>
 
 	<p>The setup of the Autoloader, will look like the following. You can also add your own themes of course.</p>
-		
+
 	<pre><code>&lt;!DOCTYPE html>
 &lt;html>
 &lt;head>
 	...</code>
-	<code class="highlight">&lt;link href="https://example.com/prism@v1.x/themes/prism.css" rel="stylesheet" /></code>
+	<code class="highlight">&lt;link href="https://{{cdn}}/prism@v1.x/themes/prism.css" rel="stylesheet" /></code>
 <code>&lt;/head>
 &lt;body>
 	...</code>
-<code class="highlight" style="display: inline-block; outline-offset: .2em; margin-bottom: .2em;">	&lt;script src="https://example.com/prism@v1.x/components/prism-core.min.js"&gt;&lt;/script&gt;
-	&lt;script src="https://example.com/prism@v1.x/plugins/autoloader/prism-autoloader.min.js"&gt;&lt;/script&gt;</code>
+<code class="highlight" style="display: inline-block; outline-offset: .2em; margin-bottom: .2em;">	&lt;script src="https://{{cdn}}/prism@v1.x/components/prism-core.min.js"&gt;&lt;/script&gt;
+	&lt;script src="https://{{cdn}}/prism@v1.x/plugins/autoloader/prism-autoloader.min.js"&gt;&lt;/script&gt;</code>
 <code>&lt;/body>
 &lt;/html></code></pre>
-	
+
 	<p>Please note that links in the above code sample serves as a placeholder. You would have to replace them with valid links to CDNs of your choice.</p>
 	
 	<p>CDNs which provide PrismJS are e.g. <a href="https://cdnjs.com/libraries/prism">cdnjs</a>, <a href="https://www.jsdelivr.com/package/npm/prismjs">jsDelivr</a>, and <a href="https://unpkg.com/browse/prismjs@1/">UNPKG</a>.</p>
