@@ -9,17 +9,25 @@ parent::baz()
 		["keyword", "static"],
 		["punctuation", "::"]
 	]],
-	["function", "foo"], ["punctuation", "("], ["punctuation", ")"],
+	["function", ["foo"]],
+	["punctuation", "("],
+	["punctuation", ")"],
+
 	["scope", [
 		["keyword", "self"],
 		["punctuation", "::"]
 	]],
-	["function", "bar"], ["punctuation", "("], ["punctuation", ")"],
+	["function", ["bar"]],
+	["punctuation", "("],
+	["punctuation", ")"],
+
 	["scope", [
 		["keyword", "parent"],
 		["punctuation", "::"]
 	]],
-	["function", "baz"], ["punctuation", "("], ["punctuation", ")"]
+	["function", ["baz"]],
+	["punctuation", "("],
+	["punctuation", ")"]
 ]
 
 ----------------------------------------------------

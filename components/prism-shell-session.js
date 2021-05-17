@@ -16,7 +16,15 @@
 
 	Prism.languages['shell-session'] = {
 		'command': {
-			pattern: RegExp(/^(?:[^\s@:$#*!/\\]+@[^\s@:$#*!/\\]+(?::[^\0-\x1F$#*?"<>:;|]+)?|[^\0-\x1F$#*?"<>:;|]+)?[$#](?:[^\\\r\n'"<$]|\\.|\$(?!')|<<str>>)+/.source.replace(/<<str>>/g, function () { return strings; }), 'm'),
+			pattern: RegExp(
+				// user info
+				/^(?:[^\s@:$#*!/\\]+@[^\s@:$#*!/\\]+(?::[^\0-\x1F$#*?"<>:;|]+)?|[^\0-\x1F$#*?"<>:;|]+)?/.source +
+				// shell symbol
+				/[$#]/.source +
+				// bash command
+				/(?:[^\\\r\n'"<$]|\\(?:[^\r]|\r\n?)|\$(?!')|<<str>>)+/.source.replace(/<<str>>/g, function () { return strings; }),
+				'm'
+			),
 			greedy: true,
 			inside: {
 				'info': {

@@ -102,6 +102,35 @@
 			inside: {
 				'interpolation': interpolation
 			}
+		},
+		{
+			pattern: /<<[-~]?([a-z_]\w*)[\r\n](?:.*[\r\n])*?[\t ]*\1/i,
+			alias: 'heredoc-string',
+			greedy: true,
+			inside: {
+				'delimiter': {
+					pattern: /^<<[-~]?[a-z_]\w*|[a-z_]\w*$/i,
+					alias: 'symbol',
+					inside: {
+						'punctuation': /^<<[-~]?/
+					}
+				},
+				'interpolation': interpolation
+			}
+		},
+		{
+			pattern: /<<[-~]?'([a-z_]\w*)'[\r\n](?:.*[\r\n])*?[\t ]*\1/i,
+			alias: 'heredoc-string',
+			greedy: true,
+			inside: {
+				'delimiter': {
+					pattern: /^<<[-~]?'[a-z_]\w*'|[a-z_]\w*$/i,
+					alias: 'symbol',
+					inside: {
+						'punctuation': /^<<[-~]?'|'$/,
+					}
+				}
+			}
 		}
 	];
 

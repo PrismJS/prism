@@ -9,7 +9,7 @@ const { RegExpParser } = require('regexpp');
  */
 
 
-const parser = new RegExpParser({ strict: false, ecmaVersion: 5 });
+const parser = new RegExpParser();
 /** @type {Map<string, LiteralAST>} */
 const astCache = new Map();
 

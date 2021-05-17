@@ -254,8 +254,8 @@
 			return;
 		}
 
-		var id = hash.slice(0, hash.lastIndexOf('.')),
-			pre = document.getElementById(id);
+		var id = hash.slice(0, hash.lastIndexOf('.'));
+		var pre = document.getElementById(id);
 
 		if (!pre) {
 			return;
