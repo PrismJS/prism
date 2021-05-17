@@ -22,7 +22,7 @@
 						["punctuation", "("],
 						["number", "80"],
 						["operator", "/"],
-						["function", "count"],
+						["function", ["count"]],
 						["punctuation", "("],
 						["variable", "$images"],
 						["punctuation", ")"],
