@@ -149,7 +149,7 @@
 			return;
 		}
 
-		var element, template;
+		var element; var template;
 		var text = pre.getAttribute('data-label');
 		try {
 			// Any normal text will blow up this selector.

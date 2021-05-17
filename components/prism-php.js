@@ -207,7 +207,13 @@
 			}
 		],
 		'constant': constant,
-		'function': /\b\w+(?=\s*\()/,
+		'function': {
+			pattern: /(^|[^\\\w])\\?[a-z_](?:[\w\\]*\w)?(?=\s*\()/i,
+			lookbehind: true,
+			inside: {
+				'punctuation': /\\/
+			}
+		},
 		'property': {
 			pattern: /(->\s*)\w+/,
 			lookbehind: true

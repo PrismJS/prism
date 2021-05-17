@@ -90,6 +90,7 @@
 		"gedcom": "GEDCOM",
 		"glsl": "GLSL",
 		"graphql": "GraphQL",
+		"hbs": "Handlebars",
 		"hs": "Haskell",
 		"hcl": "HCL",
 		"hlsl": "HLSL",
