@@ -35,7 +35,7 @@ class Foo extends \Package\Bar implements App\Baz {}
 
 	["class-name", "Foo"],
 	["operator", "::"],
-	["function", "bar"],
+	["function", ["bar"]],
 	["punctuation", "("],
 	["punctuation", ")"],
 	["punctuation", ";"],
@@ -45,7 +45,7 @@ class Foo extends \Package\Bar implements App\Baz {}
 		"Foo"
 	]],
 	["operator", "::"],
-	["function", "bar"],
+	["function", ["bar"]],
 	["punctuation", "("],
 	["punctuation", ")"],
 	["punctuation", ";"],
@@ -57,7 +57,7 @@ class Foo extends \Package\Bar implements App\Baz {}
 		"Foo"
 	]],
 	["operator", "::"],
-	["function", "bar"],
+	["function", ["bar"]],
 	["punctuation", "("],
 	["punctuation", ")"],
 	["punctuation", ";"],
