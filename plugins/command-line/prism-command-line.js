@@ -30,6 +30,16 @@
 	}
 
 	/**
+	 * Returns whether the given hook environment has a command line info object.
+	 *
+	 * @param {any} env
+	 * @returns {boolean}
+	 */
+	function hasCommandLineInfo(env) {
+		var vars = env.vars = env.vars || {};
+		return 'command-line' in vars;
+	}
+	/**
 	 * Returns the command line info object from the given hook environment.
 	 *
 	 * @param {any} env
@@ -129,6 +139,11 @@
 	});
 
 	Prism.hooks.add('complete', function (env) {
+		if (!hasCommandLineInfo(env)) {
+			// the previous hooks never ran
+			return;
+		}
+
 		var commandLine = getCommandLineInfo(env);
 
 		if (commandLine.complete) {

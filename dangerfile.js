@@ -45,7 +45,9 @@ const getChangedMinifiedFiles = async () => {
 
 // https://stackoverflow.com/questions/15900485/correct-way-to-convert-size-in-bytes-to-kb-mb-gb-in-javascript
 const formatBytes = (bytes, decimals = 2) => {
-	if (bytes === 0) return '0 Bytes';
+	if (bytes === 0) {
+		return '0 Bytes';
+	}
 
 	const k = 1000;
 	const dm = decimals < 0 ? 0 : decimals;
