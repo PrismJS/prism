@@ -23,6 +23,10 @@ Test::method();  // this is "method" static method
 $variable->class(); // this "class" should be interpreted as "keyword"
 Test::class; // This "class" should still be a keyword
 
+mb_string(); // call to a global function
+\mb_string(); // namespace \ is global
+\a\b\c\mb_string(); // function in \a\b\c namespace
+
 ----------------------------------------------------
 
 [
@@ -49,7 +53,7 @@ Test::class; // This "class" should still be a keyword
 
 	["variable", "$a"],
 	["operator", "->"],
-	["function", "if"],
+	["function", ["if"]],
 	["punctuation", "("],
 	["punctuation", ")"],
 	["punctuation", ";"],
@@ -71,7 +75,7 @@ Test::class; // This "class" should still be a keyword
 
 	["variable", "$variable"],
 	["operator", "->"],
-	["function", "foreach"],
+	["function", ["foreach"]],
 	["punctuation", "("],
 	["punctuation", ")"],
 	["punctuation", ";"],
@@ -79,7 +83,7 @@ Test::class; // This "class" should still be a keyword
 
 	["variable", "$variable"],
 	["operator", "->"],
-	["function", "method"],
+	["function", ["method"]],
 	["punctuation", "("],
 	["punctuation", ")"],
 	["punctuation", ";"],
@@ -87,7 +91,7 @@ Test::class; // This "class" should still be a keyword
 
 	["variable", "$var"],
 	["operator", "->"],
-	["function", "match"],
+	["function", ["match"]],
 	["punctuation", "("],
 	["punctuation", ")"],
 
@@ -104,7 +108,7 @@ Test::class; // This "class" should still be a keyword
 
 	["class-name", "Test"],
 	["operator", "::"],
-	["function", "foreach"],
+	["function", ["foreach"]],
 	["punctuation", "("],
 	["punctuation", ")"],
 	["punctuation", ";"],
@@ -112,7 +116,7 @@ Test::class; // This "class" should still be a keyword
 
 	["class-name", "Test"],
 	["operator", "::"],
-	["function", "method"],
+	["function", ["method"]],
 	["punctuation", "("],
 	["punctuation", ")"],
 	["punctuation", ";"],
@@ -132,5 +136,35 @@ Test::class; // This "class" should still be a keyword
 	["operator", "::"],
 	["keyword", "class"],
 	["punctuation", ";"],
-	["comment", "// This \"class\" should still be a keyword"]
+	["comment", "// This \"class\" should still be a keyword"],
+
+	["function", ["mb_string"]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["comment", "// call to a global function"],
+
+	["function", [
+		["punctuation", "\\"],
+		"mb_string"
+	]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["comment", "// namespace \\ is global"],
+
+	["function", [
+		["punctuation", "\\"],
+		"a",
+		["punctuation", "\\"],
+		"b",
+		["punctuation", "\\"],
+		"c",
+		["punctuation", "\\"],
+		"mb_string"
+	]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["comment", "// function in \\a\\b\\c namespace"]
 ]
