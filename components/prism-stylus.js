@@ -117,7 +117,6 @@
 		},
 
 
-
 		// A selector can contain parentheses only as part of a pseudo-element
 		// It can span multiple lines.
 		// It must end with a comma or an accolade or have indented content.
