@@ -11,8 +11,12 @@ Prism.languages.autohotkey = {
 			greedy: true
 		}
 	],
+	'tag': {
+		// labels
+		pattern: /^([ \t]*)[^\s,`":]+(?=:[ \t]*$)/m,
+		lookbehind: true
+	},
 	'string': /"(?:[^"\n\r]|"")*"/m,
-	'tag': /^[ \t]*[^\s:]+?(?=:(?:[^:]|$))/m, //labels
 	'variable': /%\w+%/,
 	'number': /\b0x[\dA-Fa-f]+\b|(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:[Ee]-?\d+)?/,
 	'operator': /\?|\/\/?=?|:=|\|[=|]?|&[=&]?|\+[=+]?|-[=-]?|\*[=*]?|<(?:<=?|>|=)?|>>?=?|[.^!=~]=?|\b(?:AND|NOT|OR)\b/,
