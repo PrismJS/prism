@@ -1346,6 +1346,14 @@
 			"require": "markup",
 			"owner": "Golmote"
 		},
+		"wolfram": {
+			"title": "Wolfram language",
+			"alias": "wl",
+			"aliasTitles": {
+				"wl": "Mathematica"
+			},
+			"owner": "msollami"
+		},
 		"xeora": {
 			"title": "Xeora",
 			"require": "markup",

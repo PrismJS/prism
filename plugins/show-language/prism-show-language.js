@@ -230,6 +230,8 @@
 		"vb": "Visual Basic",
 		"wasm": "WebAssembly",
 		"wiki": "Wiki markup",
+		"wolfram": "Wolfram language",
+		"wl": "Mathematica",
 		"xeoracube": "XeoraCube",
 		"xml-doc": "XML doc (.net)",
 		"xojo": "Xojo (REALbasic)",

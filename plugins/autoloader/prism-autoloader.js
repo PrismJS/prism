@@ -239,6 +239,7 @@
 		"url": "uri",
 		"vb": "visual-basic",
 		"vba": "visual-basic",
+		"wl": "wolfram",
 		"xeoracube": "xeora",
 		"yml": "yaml"
 	}/*]*/;
