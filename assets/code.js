@@ -119,7 +119,9 @@
 
 // calc()
 (function () {
-	if (!window.PrefixFree) return;
+	if (!window.PrefixFree) {
+		return;
+	}
 
 	if (PrefixFree.functions.indexOf('calc') == -1) {
 		var style = document.createElement('_').style;
