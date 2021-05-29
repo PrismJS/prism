@@ -7,7 +7,7 @@ Prism.languages.markup = {
 		greedy: true,
 		inside: {
 			'internal-subset': {
-				pattern: /(\[)[\s\S]+(?=\]>$)/,
+				pattern: /(^[^\[]*\[)[\s\S]+(?=\]>$)/,
 				lookbehind: true,
 				greedy: true,
 				inside: null // see below
@@ -145,7 +145,7 @@ Object.defineProperty(Prism.languages.markup.tag, 'addAttribute', {
 					pattern: /=[\s\S]+/,
 					inside: {
 						'value': {
-							pattern: /(=\s*(["']|(?!["'])))\S[\s\S]*(?=\2$)/,
+							pattern: /(^=\s*(["']|(?!["'])))\S[\s\S]*(?=\2$)/,
 							lookbehind: true,
 							alias: [lang, 'language-' + lang],
 							inside: Prism.languages[lang]

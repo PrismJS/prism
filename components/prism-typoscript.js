@@ -60,7 +60,7 @@
 		'keyword': keywords,
 		'number': {
 			// special highlighting for indexes of arrays in tags
-			pattern: /[0-9]+\s*[.{=]/,
+			pattern: /\b[0-9]+\s*[.{=]/,
 			inside: {
 				'operator': /[.{=]/,
 			}

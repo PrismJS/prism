@@ -43,7 +43,7 @@ Prism.languages.insertBefore('scss', 'atrule', {
 	'keyword': [
 		/@(?:if|else(?: if)?|forward|for|each|while|import|use|extend|debug|warn|mixin|include|function|return|content)\b/i,
 		{
-			pattern: /( +)(?:from|through)(?= )/,
+			pattern: /( )(?:from|through)(?= )/,
 			lookbehind: true
 		}
 	]

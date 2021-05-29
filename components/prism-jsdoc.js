@@ -64,7 +64,7 @@
 			lookbehind: true,
 			inside: {
 				'code': {
-					pattern: /^(\s*(?:\*\s*)?)\S.*$/m,
+					pattern: /^([\t ]*(?:\*\s*)?)\S.*$/m,
 					lookbehind: true,
 					inside: javascript,
 					alias: 'language-javascript'

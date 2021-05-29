@@ -3,7 +3,7 @@ Prism.languages.inform7 = {
 		pattern: /"[^"]*"/,
 		inside: {
 			'substitution': {
-				pattern: /\[[^\]]+\]/,
+				pattern: /\[[^\[\]]+\]/,
 				inside: {
 					'delimiter': {
 						pattern: /\[|\]/,
@@ -15,7 +15,7 @@ Prism.languages.inform7 = {
 		}
 	},
 	'comment': {
-		pattern: /\[[^\]]+\]/,
+		pattern: /\[[^\[\]]+\]/,
 		greedy: true
 	},
 	'title': {

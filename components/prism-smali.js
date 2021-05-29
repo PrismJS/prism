@@ -9,7 +9,8 @@ Prism.languages.smali = {
 	},
 
 	'class-name': {
-		pattern: /L(?:(?:\w+|`[^`\r\n]*`)\/)*(?:[\w$]+|`[^`\r\n]*`)(?=\s*;)/,
+		pattern: /(^|[^L])L(?:(?:\w+|`[^`\r\n]*`)\/)*(?:[\w$]+|`[^`\r\n]*`)(?=\s*;)/,
+		lookbehind: true,
 		inside: {
 			'class-name': {
 				pattern: /(^L|\/)(?:[\w$]+|`[^`\r\n]*`)$/,

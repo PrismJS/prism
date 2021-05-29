@@ -103,7 +103,7 @@
 		// https://doc.rust-lang.org/1.0.0/style/style/naming/README.html
 		'function': /\b[a-z_]\w*(?=\s*(?:::\s*<|\())/,
 		'macro': {
-			pattern: /\w+!/,
+			pattern: /\b\w+!/,
 			alias: 'property'
 		},
 		'constant': /\b[A-Z_][A-Z_\d]+\b/,
