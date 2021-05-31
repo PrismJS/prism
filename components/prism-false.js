@@ -13,7 +13,7 @@
 			greedy: true
 		},
 		'character-code': {
-			pattern: /'[\S\s]/,
+			pattern: /'[\s\S]/,
 			alias: 'number'
 		},
 		'assembler-code': {

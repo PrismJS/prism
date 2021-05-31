@@ -92,7 +92,7 @@
 		// CAREFUL!
 		// Previewers and Inline color use hexcode and color.
 		'hexcode': {
-			pattern: /\B#(?:[\da-f]{1,2}){3,4}\b/i,
+			pattern: /\B#[\da-f]{3,8}\b/i,
 			alias: 'color'
 		},
 		'color': [

@@ -9,7 +9,7 @@
 	};
 
 	var macroVariable = {
-		pattern: /&[a-z_][a-z_0-9]*/i
+		pattern: /&[a-z_]\w*/i
 	};
 
 	var macroKeyword = {
@@ -86,7 +86,7 @@
 	};
 
 	var globalStatements = {
-		pattern: /((?:^|[\s])=?)(?:catname|checkpoint execute_always|dm|endsas|filename|footnote|%include|libname|%list|lock|missing|options|page|resetline|%run|sasfile|skip|sysecho|title\d?)\b/i,
+		pattern: /((?:^|\s)=?)(?:catname|checkpoint execute_always|dm|endsas|filename|footnote|%include|libname|%list|lock|missing|options|page|resetline|%run|sasfile|skip|sysecho|title\d?)\b/i,
 		lookbehind: true,
 		alias: 'keyword'
 	};

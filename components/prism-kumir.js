@@ -1,3 +1,4 @@
+/* eslint-disable regexp/no-dupe-characters-character-class */
 (function (Prism) {
 
 	/**

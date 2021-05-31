@@ -1,7 +1,7 @@
 /** @type {import('eslint').Linter.Config} */
 module.exports = {
 	root: true,
-	plugins: ['jsdoc'],
+	plugins: ['jsdoc', 'regexp'],
 	extends: 'eslint:recommended',
 	rules: {
 		'no-use-before-define': ['error', { 'functions': false, 'classes': false }],
@@ -55,6 +55,29 @@ module.exports = {
 		'jsdoc/require-param-name': 'warn',
 		'jsdoc/require-property-name': 'warn',
 
+		// regexp
+		'regexp/no-assertion-capturing-group': 'error',
+		// 'regexp/no-dupe-disjunctions': 'error',
+		'regexp/no-empty-alternative': 'error',
+		'regexp/no-empty-lookarounds-assertion': 'error',
+		'regexp/no-lazy-ends': 'error',
+		'regexp/no-obscure-range': 'error',
+		'regexp/no-optional-assertion': 'error',
+		'regexp/no-standalone-backslash': 'error',
+		'regexp/no-zero-quantifier': 'error',
+		'regexp/optimal-lookaround-quantifier': 'error',
+		'regexp/no-unused-capturing-group': 'error',
+
+		'regexp/match-any': 'warn',
+		'regexp/negation': 'warn',
+		'regexp/no-dupe-characters-character-class': 'warn',
+		'regexp/no-trivially-nested-assertion': 'warn',
+		'regexp/no-trivially-nested-quantifier': 'warn',
+		'regexp/no-useless-character-class': 'warn',
+		'regexp/no-useless-lazy': 'warn',
+		'regexp/prefer-w': 'warn',
+		'regexp/sort-flags': 'warn',
+
 		// I turned this rule off because we use `hasOwnProperty` in a lot of places
 		// TODO: Think about re-enabling this rule
 		'no-prototype-builtins': 'off',
@@ -70,7 +93,11 @@ module.exports = {
 		'no-useless-escape': 'off'
 	},
 	settings: {
-		jsdoc: { mode: 'typescript' }
+		jsdoc: { mode: 'typescript' },
+		regexp: {
+			// allow alphanumeric and cyrillic ranges
+			allowedCharacterRanges: ['alphanumeric', 'а-я', 'А-Я']
+		}
 	},
 	ignorePatterns: [
 		'*.min.js',

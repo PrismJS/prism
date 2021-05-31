@@ -12,7 +12,7 @@ Prism.languages.nevod = {
 		lookbehind: true,
 	},
 	'pattern': {
-		pattern: /(@pattern\s+)?#?[a-zA-Z0-9\-.]+(?:\s*[(]\s*(?:~\s*)?[a-zA-Z0-9\-.]+\s*(?:,\s*(?:~\s*)?[a-zA-Z0-9\-.]*)*[)])?(?=\s*=)/,
+		pattern: /(@pattern\s+)?#?[a-zA-Z0-9\-.]+(?:\s*\(\s*(?:~\s*)?[a-zA-Z0-9\-.]+\s*(?:,\s*(?:~\s*)?[a-zA-Z0-9\-.]*)*\))?(?=\s*=)/,
 		lookbehind: true,
 		inside: {
 			'pattern-name': {

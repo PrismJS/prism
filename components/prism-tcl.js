@@ -22,7 +22,7 @@ Prism.languages.tcl = {
 		}
 	],
 	'function': {
-		pattern: /(^\s*proc[ \t]+)[^\s]+/m,
+		pattern: /(^\s*proc[ \t]+)\S+/m,
 		lookbehind: true
 	},
 	'builtin': [
