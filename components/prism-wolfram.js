@@ -11,9 +11,13 @@ Prism.languages.wolfram = {
 		alias: 'class-name'
 	},
 	'blank': {
-		pattern: /\b\w+\_{1,3}\b/,
+		pattern: /\b\w+_\b/,
 		alias: 'regex'
 	},
+	'global-variable': {
+		pattern: /\$\w+/,
+		alias: 'variable'
+	},	
 	'boolean': /\b(?:True|False)\b/,
 	'number': /(?:\b(?=\d)|\B(?=\.))(?:0[bo])?(?:(?:\d|0x[\da-f])[\da-f]*(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?j?\b/i,
 	'operator': /\/\.|\;|\=\.|\^\=|\^\:\=|\:\=|\<\<|\>\>|\<\||\|\>|\:\>|\|\-\>|\-\>|\<\-|\@\@\@|\@\@|\@|\/\@|\=\!\=|\=\=\=|\=\=|\=|\+|\-|\^|\*|\[\/-+%=]=?|\!\=|\*\*?=?|\/\/?=?|<[<=>]?|>[=>]?|[&|^~]/,
