@@ -240,6 +240,7 @@
 		"vb": "visual-basic",
 		"vba": "visual-basic",
 		"wl": "wolfram",
+		"mathematica": "wolfram",
 		"xeoracube": "xeora",
 		"yml": "yaml"
 	}/*]*/;
