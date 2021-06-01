@@ -1348,10 +1348,7 @@
 		},
 		"wolfram": {
 			"title": "Wolfram language",
-			"alias": "wl",
-			"aliasTitles": {
-				"wl": "Mathematica"
-			},
+			"alias": ["wl", "mathematica"],
 			"owner": "msollami"
 		},
 		"xeora": {
