@@ -1351,7 +1351,6 @@
 			"alias": ["mathematica", "nb", "wl"],
 			"aliasTitles": {
 				"mathematica": "Mathematica",
-				"wl": "Wolfram Language",
 				"nb": "Mathematica Notebook"
 			},
 			"owner": "msollami"
