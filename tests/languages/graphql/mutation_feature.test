@@ -1,0 +1,57 @@
+mutation orderUpdate($input: OrderInput!) {
+	orderUpdate(input: $input) {
+		order {
+			# Order fields
+		}
+		userErrors {
+			field
+			message
+		}
+	}
+}
+
+----------------------------------------------------
+
+[
+	["keyword", "mutation"],
+	["definition-mutation", "orderUpdate"],
+	["punctuation", "("],
+	["variable-input", "$input"],
+	["punctuation", ":"],
+	["atom-input", "OrderInput"],
+	["operator", "!"],
+	["punctuation", ")"],
+	["punctuation", "{"],
+
+	["property-mutation", "orderUpdate"],
+	["punctuation", "("],
+	["attr-name", "input"],
+	["punctuation", ":"],
+	["variable", "$input"],
+	["punctuation", ")"],
+	["punctuation", "{"],
+
+	["object", "order"],
+	["punctuation", "{"],
+
+	["comment", "# Order fields"],
+
+	["punctuation", "}"],
+
+	["object", "userErrors"],
+	["punctuation", "{"],
+
+	["property", "field"],
+
+	["property", "message"],
+
+	["punctuation", "}"],
+
+	["punctuation", "}"],
+
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Integration test for an example mutation.

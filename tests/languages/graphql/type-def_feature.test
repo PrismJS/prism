@@ -1,0 +1,99 @@
+type Human implements Character {
+	id: ID!
+	name: String!
+	friends: [Character]
+	appearsIn: [Episode]!
+	starships: [Starship]
+	totalCredits: Int
+}
+type Droid implements Character {
+	id: ID!
+	name: String!
+	friends: [Character]
+	appearsIn: [Episode]!
+	primaryFunction: String
+}
+
+----------------------------------------------------
+
+[
+	["keyword", "type"],
+	["class-name", "Human"],
+	["keyword", "implements"],
+	["class-name", "Character"],
+	["punctuation", "{"],
+
+	["attr-name", "id"],
+	["punctuation", ":"],
+	["scalar", "ID"],
+	["operator", "!"],
+
+	["attr-name", "name"],
+	["punctuation", ":"],
+	["scalar", "String"],
+	["operator", "!"],
+
+	["attr-name", "friends"],
+	["punctuation", ":"],
+	["punctuation", "["],
+	["class-name", "Character"],
+	["punctuation", "]"],
+
+	["attr-name", "appearsIn"],
+	["punctuation", ":"],
+	["punctuation", "["],
+	["class-name", "Episode"],
+	["punctuation", "]"],
+	["operator", "!"],
+
+	["attr-name", "starships"],
+	["punctuation", ":"],
+	["punctuation", "["],
+	["class-name", "Starship"],
+	["punctuation", "]"],
+
+	["attr-name", "totalCredits"],
+	["punctuation", ":"],
+	["scalar", "Int"],
+
+	["punctuation", "}"],
+
+	["keyword", "type"],
+	["class-name", "Droid"],
+	["keyword", "implements"],
+	["class-name", "Character"],
+	["punctuation", "{"],
+
+	["attr-name", "id"],
+	["punctuation", ":"],
+	["scalar", "ID"],
+	["operator", "!"],
+
+	["attr-name", "name"],
+	["punctuation", ":"],
+	["scalar", "String"],
+	["operator", "!"],
+
+	["attr-name", "friends"],
+	["punctuation", ":"],
+	["punctuation", "["],
+	["class-name", "Character"],
+	["punctuation", "]"],
+
+	["attr-name", "appearsIn"],
+	["punctuation", ":"],
+	["punctuation", "["],
+	["class-name", "Episode"],
+	["punctuation", "]"],
+	["operator", "!"],
+
+	["attr-name", "primaryFunction"],
+	["punctuation", ":"],
+	["scalar", "String"],
+
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Integration test for GraphQL schema typedef code sample.

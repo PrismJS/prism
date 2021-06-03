@@ -1,0 +1,43 @@
+query getProductById($id: ID!) {
+	product(id: $id) {
+		title
+		handle
+		createdAt
+	}
+}
+
+----------------------------------------------------
+
+[
+	["keyword", "query"],
+	["definition-query", "getProductById"],
+	["punctuation", "("],
+	["variable", "$id"],
+	["punctuation", ":"],
+	["scalar", "ID"],
+	["operator", "!"],
+	["punctuation", ")"],
+	["punctuation", "{"],
+
+	["property-query", "product"],
+	["punctuation", "("],
+	["attr-name", "id"],
+	["punctuation", ":"],
+	["variable", "$id"],
+	["punctuation", ")"],
+	["punctuation", "{"],
+
+	["property", "title"],
+
+	["property", "handle"],
+
+	["property", "createdAt"],
+
+	["punctuation", "}"],
+
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Providing a token for the query property from the global Query object.
