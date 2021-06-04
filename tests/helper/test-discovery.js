@@ -3,7 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const SUPPORTED_TEST_FILE_EXT = new Set(['.js', '.test']);
+const SUPPORTED_TEST_FILE_EXT = new Set(['.test', '.testhtml']);
 
 module.exports = {
 
