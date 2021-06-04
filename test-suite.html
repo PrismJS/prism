@@ -50,7 +50,7 @@
 	<h2 id="writing-tests-directories">Language directories</h2>
 
 	<p>All tests are sorted into directories in the <code>tests/languages</code> directory. Each directory name encodes, which language you are currently testing.</p>
-	<p><strong>All language names must match the names from the definition in <code>components.js</code>.</strong></p>
+	<p><strong>All language names must match the names from the definition in <code>components.json</code>.</strong></p>
 
 	<h3>Example 1: testing a language in isolation (default use case)</h3>
 	<p>Just put your test file into the directory of the language you want to test.</p>
@@ -177,14 +177,17 @@ This is a comment explaining this test case.</code></pre>
 <section id="writing-specific-tests">
 	<h1>Writing specific tests</h1>
 
-	<p>Sometimes, using the token stream tests is not powerful enough. By creating a test file with the file extension <code>.js</code> instead of <code>.test</code>, you can make Prism highlight arbitrary pieces of code and check their HTML results.</p>
-	<p>The language is determined by the folder containing the test file lies, as explained in the previous section.</p>
-	<p>The structure of your test file will look like this, for example:</p>
-	<pre><code>module.exports = {
-	'&amp;#x278a;': '&lt;span class="token entity" title="&amp;#x278a;">&amp;amp;#x278a;&lt;/span>',
-	'&amp;#182;': '&lt;span class="token entity" title="&amp;#182;">&amp;amp;#182;&lt;/span>',
-};</code></pre>
-	<p>The keys are the codes which will be highlighted by Prism. The values are the expected results, as HTML.</p>
+	<p>Sometimes, using the token stream tests is not powerful enough. By creating a test file with the file extension <code>.testhtml</code> instead of <code>.test</code>, you can make Prism highlight arbitrary pieces of code and check their HTML results.</p>
+	<p>The difference between the formats is that the expected token stream is HTML in <code>.testhtml</code> files. All of the above mentioned commands also work for <code>.testhtml</code> files.</p>
+	<p>Example:</p>
+	<pre><code class="language-html">&amp;#x278a;
+&amp;#182;
+
+----------------------------------------------------
+
+&lt;span class="token entity" title="&amp;#x278a;">&amp;amp;#x278a;&lt;/span>
+&lt;span class="token entity" title="&amp;#182;">&amp;amp;#182;&lt;/span></code></pre>
+	<p>Note: Only use <code>.testhtml</code> files if you need to test aliases, tag attributes, or language plugins that cannot be tested with regular <code>.test</code> files.</p>
 </section>
 
 <section id="test-runner-tests">
