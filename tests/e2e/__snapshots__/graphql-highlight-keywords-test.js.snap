@@ -1,0 +1,541 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`graphql + highlight keywords > Prism#highlight is correct Input Type definition ex. 1 1`] = `
+<span class="token keyword keyword-input">
+  input
+</span>
+<span class="token atom-input class-name">
+  OrderInput
+</span>
+<span class="token punctuation">
+  {
+</span>
+<span class="token attr-name">
+  id
+</span>
+<span class="token punctuation">
+  :
+</span>
+<span class="token scalar">
+  ID
+</span>
+<span class="token operator">
+  !
+</span>
+<span class="token attr-name">
+  customAttributes
+</span>
+<span class="token punctuation">
+  :
+</span>
+<span class="token punctuation">
+  [
+</span>
+<span class="token atom-input class-name">
+  AttributeInput
+</span>
+<span class="token operator">
+  !
+</span>
+<span class="token punctuation">
+  ]
+</span>
+<span class="token attr-name">
+  customer
+</span>
+<span class="token punctuation">
+  :
+</span>
+<span class="token class-name">
+  Customer
+</span>
+<span class="token attr-name">
+  localizationExtensions
+</span>
+<span class="token punctuation">
+  :
+</span>
+<span class="token punctuation">
+  [
+</span>
+<span class="token atom-input class-name">
+  LocalizationExtensionInput
+</span>
+<span class="token operator">
+  !
+</span>
+<span class="token punctuation">
+  ]
+</span>
+<span class="token attr-name">
+  metafields
+</span>
+<span class="token punctuation">
+  :
+</span>
+<span class="token punctuation">
+  [
+</span>
+<span class="token atom-input class-name">
+  MetafieldInput
+</span>
+<span class="token operator">
+  !
+</span>
+<span class="token punctuation">
+  ]
+</span>
+<span class="token attr-name">
+  note
+</span>
+<span class="token punctuation">
+  :
+</span>
+<span class="token scalar">
+  String
+</span>
+<span class="token operator">
+  !
+</span>
+<span class="token attr-name">
+  shippingAddress
+</span>
+<span class="token punctuation">
+  :
+</span>
+<span class="token atom-input class-name">
+  MailingAddressInput
+</span>
+<span class="token attr-name">
+  tags
+</span>
+<span class="token punctuation">
+  :
+</span>
+<span class="token punctuation">
+  [
+</span>
+<span class="token scalar">
+  String
+</span>
+<span class="token operator">
+  !
+</span>
+<span class="token punctuation">
+  ]
+</span>
+<span class="token punctuation">
+  }
+</span>
+`;
+
+exports[`graphql + highlight keywords > Prism#highlight is correct mutation ex. 1 1`] = `
+<span class="token keyword keyword-mutation">
+  mutation
+</span>
+<span class="token definition-mutation function">
+  orderUpdate
+</span>
+<span class="token punctuation">
+  (
+</span>
+<span class="token variable-input variable">
+  $input
+</span>
+<span class="token punctuation">
+  :
+</span>
+<span class="token atom-input class-name">
+  OrderInput
+</span>
+<span class="token operator">
+  !
+</span>
+<span class="token punctuation">
+  )
+</span>
+<span class="token punctuation">
+  {
+</span>
+<span class="token property-mutation">
+  orderUpdate
+</span>
+<span class="token punctuation">
+  (
+</span>
+<span class="token attr-name">
+  input
+</span>
+<span class="token punctuation">
+  :
+</span>
+<span class="token variable">
+  $input
+</span>
+<span class="token punctuation">
+  )
+</span>
+<span class="token punctuation">
+  {
+</span>
+<span class="token object">
+  order
+</span>
+<span class="token punctuation">
+  {
+</span>
+<span class="token comment">
+  # Order fields
+</span>
+<span class="token punctuation">
+  }
+</span>
+<span class="token object">
+  userErrors
+</span>
+<span class="token punctuation">
+  {
+</span>
+<span class="token property">
+  field
+</span>
+<span class="token property">
+  message
+</span>
+<span class="token punctuation">
+  }
+</span>
+<span class="token punctuation">
+  }
+</span>
+<span class="token punctuation">
+  }
+</span>
+`;
+
+exports[`graphql + highlight keywords > Prism#highlight is correct query ex. 1 1`] = `
+<span class="token keyword keyword-query">
+  query
+</span>
+<span class="token definition-query function">
+  getProductById
+</span>
+<span class="token punctuation">
+  (
+</span>
+<span class="token variable">
+  $id
+</span>
+<span class="token punctuation">
+  :
+</span>
+<span class="token scalar">
+  ID
+</span>
+<span class="token operator">
+  !
+</span>
+<span class="token punctuation">
+  )
+</span>
+<span class="token punctuation">
+  {
+</span>
+<span class="token property-query">
+  product
+</span>
+<span class="token punctuation">
+  (
+</span>
+<span class="token attr-name">
+  id
+</span>
+<span class="token punctuation">
+  :
+</span>
+<span class="token variable">
+  $id
+</span>
+<span class="token punctuation">
+  )
+</span>
+<span class="token punctuation">
+  {
+</span>
+<span class="token property">
+  title
+</span>
+<span class="token property">
+  handle
+</span>
+<span class="token property">
+  createdAt
+</span>
+<span class="token punctuation">
+  }
+</span>
+<span class="token punctuation">
+  }
+</span>
+`;
+
+exports[`graphql + highlight keywords > Prism#highlight is correct query shorthand ex. 1 1`] = `
+<span class="token punctuation">
+  {
+</span>
+<span class="token property-query">
+  orders
+</span>
+<span class="token punctuation">
+  (
+</span>
+<span class="token attr-name">
+  id
+</span>
+<span class="token punctuation">
+  :
+</span>
+<span class="token number">
+  4
+</span>
+<span class="token punctuation">
+  )
+</span>
+<span class="token punctuation">
+  {
+</span>
+<span class="token object">
+  edges
+</span>
+<span class="token punctuation">
+  {
+</span>
+<span class="token object">
+  node
+</span>
+<span class="token punctuation">
+  {
+</span>
+<span class="token comment">
+  # Order fields
+</span>
+<span class="token comment">
+  # Query fields
+</span>
+<span class="token punctuation">
+  }
+</span>
+<span class="token property">
+  cursor
+</span>
+<span class="token punctuation">
+  }
+</span>
+<span class="token object">
+  pageInfo
+</span>
+<span class="token punctuation">
+  {
+</span>
+<span class="token property">
+  hasNextPage
+</span>
+<span class="token property">
+  hasPreviousPage
+</span>
+<span class="token punctuation">
+  }
+</span>
+<span class="token punctuation">
+  }
+</span>
+<span class="token punctuation">
+  }
+</span>
+`;
+
+exports[`graphql + highlight keywords > Prism#highlight is correct schema definition ex. 1 1`] = `
+<span class="token keyword keyword-type">
+  type
+</span>
+<span class="token class-name">
+  Human
+</span>
+<span class="token keyword keyword-implements">
+  implements
+</span>
+<span class="token class-name">
+  Character
+</span>
+<span class="token punctuation">
+  {
+</span>
+<span class="token attr-name">
+  id
+</span>
+<span class="token punctuation">
+  :
+</span>
+<span class="token scalar">
+  ID
+</span>
+<span class="token operator">
+  !
+</span>
+<span class="token attr-name">
+  name
+</span>
+<span class="token punctuation">
+  :
+</span>
+<span class="token scalar">
+  String
+</span>
+<span class="token operator">
+  !
+</span>
+<span class="token attr-name">
+  friends
+</span>
+<span class="token punctuation">
+  :
+</span>
+<span class="token punctuation">
+  [
+</span>
+<span class="token class-name">
+  Character
+</span>
+<span class="token punctuation">
+  ]
+</span>
+<span class="token attr-name">
+  appearsIn
+</span>
+<span class="token punctuation">
+  :
+</span>
+<span class="token punctuation">
+  [
+</span>
+<span class="token class-name">
+  Episode
+</span>
+<span class="token punctuation">
+  ]
+</span>
+<span class="token operator">
+  !
+</span>
+<span class="token attr-name">
+  starships
+</span>
+<span class="token punctuation">
+  :
+</span>
+<span class="token punctuation">
+  [
+</span>
+<span class="token class-name">
+  Starship
+</span>
+<span class="token punctuation">
+  ]
+</span>
+<span class="token attr-name">
+  totalCredits
+</span>
+<span class="token punctuation">
+  :
+</span>
+<span class="token scalar">
+  Int
+</span>
+<span class="token punctuation">
+  }
+</span>
+<span class="token keyword keyword-type">
+  type
+</span>
+<span class="token class-name">
+  Droid
+</span>
+<span class="token keyword keyword-implements">
+  implements
+</span>
+<span class="token class-name">
+  Character
+</span>
+<span class="token punctuation">
+  {
+</span>
+<span class="token attr-name">
+  id
+</span>
+<span class="token punctuation">
+  :
+</span>
+<span class="token scalar">
+  ID
+</span>
+<span class="token operator">
+  !
+</span>
+<span class="token attr-name">
+  name
+</span>
+<span class="token punctuation">
+  :
+</span>
+<span class="token scalar">
+  String
+</span>
+<span class="token operator">
+  !
+</span>
+<span class="token attr-name">
+  friends
+</span>
+<span class="token punctuation">
+  :
+</span>
+<span class="token punctuation">
+  [
+</span>
+<span class="token class-name">
+  Character
+</span>
+<span class="token punctuation">
+  ]
+</span>
+<span class="token attr-name">
+  appearsIn
+</span>
+<span class="token punctuation">
+  :
+</span>
+<span class="token punctuation">
+  [
+</span>
+<span class="token class-name">
+  Episode
+</span>
+<span class="token punctuation">
+  ]
+</span>
+<span class="token operator">
+  !
+</span>
+<span class="token attr-name">
+  primaryFunction
+</span>
+<span class="token punctuation">
+  :
+</span>
+<span class="token scalar">
+  String
+</span>
+<span class="token punctuation">
+  }
+</span>
+`;
