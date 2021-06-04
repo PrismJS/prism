@@ -3,7 +3,6 @@
 const fs = require('fs');
 const components = require('../../components.json');
 const getLoader = require('../../dependencies');
-const languagesCatalog = components.languages;
 const coreChecks = require('./checks');
 
 
@@ -53,7 +52,7 @@ module.exports = {
 		}
 
 		getLoader(components, languages, [...context.loaded]).load(id => {
-			if (!languagesCatalog[id]) {
+			if (!components.languages[id]) {
 				throw new Error(`Language '${id}' not found.`);
 			}
 
@@ -109,7 +108,13 @@ module.exports = {
 	 * @returns {string}
 	 */
 	loadComponentSource(name) {
-		return this.loadFileSource(__dirname + '/../../components/prism-' + name + '.js');
+		let src = __dirname + '/../../';
+		if (name in components.plugins) {
+			src += `plugins/${name}/prism-${name}.js`;
+		} else {
+			src += `components/prism-${name}.js`;
+		}
+		return this.loadFileSource(src);
 	},
 
 	/**
