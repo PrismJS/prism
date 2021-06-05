@@ -76,7 +76,7 @@ module.exports = {
 			content += '\n';
 
 			// convert line ends to the line ends of the file
-			content = content.replace(/\r\n?|\n/g, testCase.nativeLineEnd);
+			content = content.replace(/\r\n?|\n/g, testCase.lineEndOnDisk);
 
 			fs.writeFileSync(filePath, content, 'utf-8');
 		}
@@ -203,7 +203,7 @@ module.exports = {
 	 * @returns {ParsedTestCase}
 	 *
 	 * @typedef ParsedTestCase
-	 * @property {string} nativeLineEnd
+	 * @property {string} lineEndOnDisk The EOL format used by the parsed file.
 	 * @property {string} code
 	 * @property {string} expectedJson
 	 * @property {number} expectedLineOffset
@@ -212,7 +212,7 @@ module.exports = {
 	 */
 	parseTestCaseFile(filePath) {
 		let testCaseSource = fs.readFileSync(filePath, 'utf8');
-		const nativeLineEnd = (/\r\n?|\n/.exec(testCaseSource) || ['\n'])[0];
+		const lineEndOnDisk = (/\r\n?|\n/.exec(testCaseSource) || ['\n'])[0];
 		// normalize line ends to \r\n
 		testCaseSource = testCaseSource.replace(/\r\n?|\n/g, '\r\n');
 
@@ -227,7 +227,7 @@ module.exports = {
 		const comment = (testCaseParts[2] || '').trimStart();
 
 		const testCase = {
-			nativeLineEnd,
+			lineEndOnDisk,
 			code,
 			expectedJson: expected,
 			expectedLineOffset: code.split(/\r\n/g).length,
