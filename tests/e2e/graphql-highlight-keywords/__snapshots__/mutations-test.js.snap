@@ -1,0 +1,85 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`E2E test - Prism#highlights mutations correctly ex. 1 1`] = `
+<span class="token keyword keyword-mutation">
+  mutation
+</span>
+<span class="token definition-mutation function">
+  orderUpdate
+</span>
+<span class="token punctuation">
+  (
+</span>
+<span class="token variable variable-input">
+  $input
+</span>
+<span class="token punctuation">
+  :
+</span>
+<span class="token class-name atom-input">
+  OrderInput
+</span>
+<span class="token operator">
+  !
+</span>
+<span class="token punctuation">
+  )
+</span>
+<span class="token punctuation">
+  {
+</span>
+<span class="token property-query property-mutation">
+  orderUpdate
+</span>
+<span class="token punctuation">
+  (
+</span>
+<span class="token attr-name">
+  input
+</span>
+<span class="token punctuation">
+  :
+</span>
+<span class="token variable variable-input">
+  $input
+</span>
+<span class="token punctuation">
+  )
+</span>
+<span class="token punctuation">
+  {
+</span>
+<span class="token object">
+  order
+</span>
+<span class="token punctuation">
+  {
+</span>
+<span class="token comment">
+  # Order fields
+</span>
+<span class="token punctuation">
+  }
+</span>
+<span class="token object">
+  userErrors
+</span>
+<span class="token punctuation">
+  {
+</span>
+<span class="token property">
+  field
+</span>
+<span class="token property">
+  message
+</span>
+<span class="token punctuation">
+  }
+</span>
+<span class="token punctuation">
+  }
+</span>
+<span class="token punctuation">
+  }
+</span>
+`;

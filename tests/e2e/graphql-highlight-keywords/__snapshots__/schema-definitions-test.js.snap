@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`graphql + highlight keywords > Prism#highlight is correct Input Type definition ex. 1 1`] = `
+exports[`E2E test - Prism#highlights schema def'ns correctly Input Type definition ex. 1 1`] = `
 <span class="token keyword keyword-input">
   input
 </span>
-<span class="token atom-input class-name">
+<span class="token class-name atom-input">
   OrderInput
 </span>
 <span class="token punctuation">
@@ -31,7 +31,7 @@ exports[`graphql + highlight keywords > Prism#highlight is correct Input Type de
 <span class="token punctuation">
   [
 </span>
-<span class="token atom-input class-name">
+<span class="token class-name atom-input">
   AttributeInput
 </span>
 <span class="token operator">
@@ -58,7 +58,7 @@ exports[`graphql + highlight keywords > Prism#highlight is correct Input Type de
 <span class="token punctuation">
   [
 </span>
-<span class="token atom-input class-name">
+<span class="token class-name atom-input">
   LocalizationExtensionInput
 </span>
 <span class="token operator">
@@ -76,7 +76,7 @@ exports[`graphql + highlight keywords > Prism#highlight is correct Input Type de
 <span class="token punctuation">
   [
 </span>
-<span class="token atom-input class-name">
+<span class="token class-name atom-input">
   MetafieldInput
 </span>
 <span class="token operator">
@@ -103,7 +103,7 @@ exports[`graphql + highlight keywords > Prism#highlight is correct Input Type de
 <span class="token punctuation">
   :
 </span>
-<span class="token atom-input class-name">
+<span class="token class-name atom-input">
   MailingAddressInput
 </span>
 <span class="token attr-name">
@@ -129,232 +129,7 @@ exports[`graphql + highlight keywords > Prism#highlight is correct Input Type de
 </span>
 `;
 
-exports[`graphql + highlight keywords > Prism#highlight is correct mutation ex. 1 1`] = `
-<span class="token keyword keyword-mutation">
-  mutation
-</span>
-<span class="token definition-mutation function">
-  orderUpdate
-</span>
-<span class="token punctuation">
-  (
-</span>
-<span class="token variable-input variable">
-  $input
-</span>
-<span class="token punctuation">
-  :
-</span>
-<span class="token atom-input class-name">
-  OrderInput
-</span>
-<span class="token operator">
-  !
-</span>
-<span class="token punctuation">
-  )
-</span>
-<span class="token punctuation">
-  {
-</span>
-<span class="token property-mutation">
-  orderUpdate
-</span>
-<span class="token punctuation">
-  (
-</span>
-<span class="token attr-name">
-  input
-</span>
-<span class="token punctuation">
-  :
-</span>
-<span class="token variable">
-  $input
-</span>
-<span class="token punctuation">
-  )
-</span>
-<span class="token punctuation">
-  {
-</span>
-<span class="token object">
-  order
-</span>
-<span class="token punctuation">
-  {
-</span>
-<span class="token comment">
-  # Order fields
-</span>
-<span class="token punctuation">
-  }
-</span>
-<span class="token object">
-  userErrors
-</span>
-<span class="token punctuation">
-  {
-</span>
-<span class="token property">
-  field
-</span>
-<span class="token property">
-  message
-</span>
-<span class="token punctuation">
-  }
-</span>
-<span class="token punctuation">
-  }
-</span>
-<span class="token punctuation">
-  }
-</span>
-`;
-
-exports[`graphql + highlight keywords > Prism#highlight is correct query ex. 1 1`] = `
-<span class="token keyword keyword-query">
-  query
-</span>
-<span class="token definition-query function">
-  getProductById
-</span>
-<span class="token punctuation">
-  (
-</span>
-<span class="token variable">
-  $id
-</span>
-<span class="token punctuation">
-  :
-</span>
-<span class="token scalar">
-  ID
-</span>
-<span class="token operator">
-  !
-</span>
-<span class="token punctuation">
-  )
-</span>
-<span class="token punctuation">
-  {
-</span>
-<span class="token property-query">
-  product
-</span>
-<span class="token punctuation">
-  (
-</span>
-<span class="token attr-name">
-  id
-</span>
-<span class="token punctuation">
-  :
-</span>
-<span class="token variable">
-  $id
-</span>
-<span class="token punctuation">
-  )
-</span>
-<span class="token punctuation">
-  {
-</span>
-<span class="token property">
-  title
-</span>
-<span class="token property">
-  handle
-</span>
-<span class="token property">
-  createdAt
-</span>
-<span class="token punctuation">
-  }
-</span>
-<span class="token punctuation">
-  }
-</span>
-`;
-
-exports[`graphql + highlight keywords > Prism#highlight is correct query shorthand ex. 1 1`] = `
-<span class="token punctuation">
-  {
-</span>
-<span class="token property-query">
-  orders
-</span>
-<span class="token punctuation">
-  (
-</span>
-<span class="token attr-name">
-  id
-</span>
-<span class="token punctuation">
-  :
-</span>
-<span class="token number">
-  4
-</span>
-<span class="token punctuation">
-  )
-</span>
-<span class="token punctuation">
-  {
-</span>
-<span class="token object">
-  edges
-</span>
-<span class="token punctuation">
-  {
-</span>
-<span class="token object">
-  node
-</span>
-<span class="token punctuation">
-  {
-</span>
-<span class="token comment">
-  # Order fields
-</span>
-<span class="token comment">
-  # Query fields
-</span>
-<span class="token punctuation">
-  }
-</span>
-<span class="token property">
-  cursor
-</span>
-<span class="token punctuation">
-  }
-</span>
-<span class="token object">
-  pageInfo
-</span>
-<span class="token punctuation">
-  {
-</span>
-<span class="token property">
-  hasNextPage
-</span>
-<span class="token property">
-  hasPreviousPage
-</span>
-<span class="token punctuation">
-  }
-</span>
-<span class="token punctuation">
-  }
-</span>
-<span class="token punctuation">
-  }
-</span>
-`;
-
-exports[`graphql + highlight keywords > Prism#highlight is correct schema definition ex. 1 1`] = `
+exports[`E2E test - Prism#highlights schema def'ns correctly schema def ex. 1 1`] = `
 <span class="token keyword keyword-type">
   type
 </span>
