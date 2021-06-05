@@ -29,6 +29,7 @@ enum Foo {
 	["punctuation", ":"],
 	["class-name", "CStr"],
 	["punctuation", ";"],
+
 	["keyword", "let"],
 	" foo",
 	["punctuation", ":"],
@@ -36,6 +37,7 @@ enum Foo {
 	["lifetime-annotation", "'a"],
 	["class-name", "CStr"],
 	["punctuation", ";"],
+
 	["keyword", "let"],
 	" foo",
 	["punctuation", ":"],
@@ -47,6 +49,7 @@ enum Foo {
 	["class-name", "Bar"],
 	["operator", ">"],
 	["punctuation", ";"],
+
 	["class-name", "Option"],
 	["punctuation", "::"],
 	["class-name", "Some"],
@@ -54,18 +57,23 @@ enum Foo {
 	"foo",
 	["punctuation", ")"],
 	["punctuation", ";"],
+
 	["class-name", "Option"],
 	["punctuation", "::"],
 	["class-name", "None"],
 	["punctuation", ";"],
 
 	["comment", "// we can differentiate between enum variants and class names"],
+
 	["comment", "// so let's make the bug a feature!"],
+
 	["keyword", "enum"],
 	["type-definition", "Foo"],
 	["punctuation", "{"],
+
 	["class-name", "Const"],
 	["punctuation", ","],
+
 	["class-name", "Tuple"],
 	["punctuation", "("],
 	["keyword", "i8"],
@@ -73,12 +81,16 @@ enum Foo {
 	["keyword", "i8"],
 	["punctuation", ")"],
 	["punctuation", ","],
+
 	["class-name", "Struct"],
 	["punctuation", "{"],
-	"\n\t\tfoo",
+
+	"\r\n\t\tfoo",
 	["punctuation", ":"],
 	["keyword", "u8"],
+
 	["punctuation", "}"],
+
 	["punctuation", "}"]
 ]
 

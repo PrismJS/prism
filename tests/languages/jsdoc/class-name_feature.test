@@ -28,14 +28,15 @@
 ----------------------------------------------------
 
 [
-	"/**\n * ",
+	"/**\r\n * ",
 	["keyword", "@param"],
 	["class-name", [
 		["punctuation", "{"],
 		"number",
 		["punctuation", "}"]
 	]],
-	"\n * ",
+
+	"\r\n * ",
 	["keyword", "@param"],
 	["class-name", [
 		["punctuation", "{"],
@@ -44,7 +45,8 @@
 		" string",
 		["punctuation", "}"]
 	]],
-	"\n * ",
+
+	"\r\n * ",
 	["keyword", "@param"],
 	["class-name", [
 		["punctuation", "{"],
@@ -63,7 +65,8 @@
 		["punctuation", ">"],
 		["punctuation", "}"]
 	]],
-	"\n * ",
+
+	"\r\n * ",
 	["keyword", "@param"],
 	["class-name", [
 		["punctuation", "{"],
@@ -87,7 +90,8 @@
 		["punctuation", "}"],
 		["punctuation", "}"]
 	]],
-	"\n * ",
+
+	"\r\n * ",
 	["keyword", "@param"],
 	["class-name", [
 		["punctuation", "{"],
@@ -110,7 +114,8 @@
 		["punctuation", "]"],
 		["punctuation", "}"]
 	]],
-	"\n * ",
+
+	"\r\n * ",
 	["keyword", "@param"],
 	["class-name", [
 		["punctuation", "{"],
@@ -121,7 +126,8 @@
 		["number", "2"],
 		["punctuation", "}"]
 	]],
-	"\n * ",
+
+	"\r\n * ",
 	["keyword", "@param"],
 	["class-name", [
 		["punctuation", "{"],
@@ -130,7 +136,8 @@
 		" string",
 		["punctuation", "}"]
 	]],
-	"\n * ",
+
+	"\r\n * ",
 	["keyword", "@param"],
 	["class-name", [
 		["punctuation", "{"],
@@ -139,7 +146,8 @@
 		" Type2",
 		["punctuation", "}"]
 	]],
-	"\n * ",
+
+	"\r\n * ",
 	["keyword", "@param"],
 	["class-name", [
 		["punctuation", "{"],
@@ -152,7 +160,8 @@
 		"Bar",
 		["punctuation", "}"]
 	]],
-	"\n * ",
+
+	"\r\n * ",
 	["keyword", "@param"],
 	["class-name", [
 		["punctuation", "{"],
@@ -162,14 +171,16 @@
 		["punctuation", "]"],
 		["punctuation", "}"]
 	]],
-	"\n * ",
+
+	"\r\n * ",
 	["keyword", "@param"],
 	["class-name", [
 		["punctuation", "{"],
 		["operator", "*"],
 		["punctuation", "}"]
 	]],
-	"\n * ",
+
+	"\r\n * ",
 	["keyword", "@param"],
 	["class-name", [
 		["punctuation", "{"],
@@ -179,73 +190,63 @@
 		["keyword", "void"],
 		["punctuation", "}"]
 	]],
-	"\n *\n * ",
+
+	"\r\n *\r\n * ",
 	["keyword", "@typedef"],
-	["class-name", [
-		"Foo"
-	]],
-	"\n * ",
+	["class-name", ["Foo"]],
+
+	"\r\n * ",
 	["keyword", "@typedef"],
 	["class-name", [
 		["punctuation", "{"],
 		"Bar",
 		["punctuation", "}"]
 	]],
-	["class-name", [
-		"Foo"
-	]],
-	"\n * ",
+	["class-name", ["Foo"]],
+
+	"\r\n * ",
 	["keyword", "@template"],
-	["class-name", [
-		"Foo"
-	]],
-	"\n * ",
+	["class-name", ["Foo"]],
+
+	"\r\n * ",
 	["keyword", "@template"],
 	["class-name", [
 		["punctuation", "{"],
 		"Bar",
 		["punctuation", "}"]
 	]],
-	["class-name", [
-		"Foo"
-	]],
-	"\n * ",
+	["class-name", ["Foo"]],
+
+	"\r\n * ",
 	["keyword", "@augments"],
-	["class-name", [
-		"Foo"
-	]],
-	"\n * ",
+	["class-name", ["Foo"]],
+
+	"\r\n * ",
 	["keyword", "@extends"],
-	["class-name", [
-		"Foo"
-	]],
-	"\n * ",
+	["class-name", ["Foo"]],
+
+	"\r\n * ",
 	["keyword", "@class"],
-	["class-name", [
-		"Foo"
-	]],
-	"\n * ",
+	["class-name", ["Foo"]],
+
+	"\r\n * ",
 	["keyword", "@interface"],
-	["class-name", [
-		"Foo"
-	]],
-	"\n * ",
+	["class-name", ["Foo"]],
+
+	"\r\n * ",
 	["keyword", "@memberof"],
-	["class-name", [
-		"Foo"
-	]],
-	"\n * ",
+	["class-name", ["Foo"]],
+
+	"\r\n * ",
 	["keyword", "@memberof"],
 	"! ",
-	["class-name", [
-		"Foo"
-	]],
-	"\n * ",
+	["class-name", ["Foo"]],
+
+	"\r\n * ",
 	["keyword", "@this"],
-	["class-name", [
-		"Foo"
-	]],
-	"\n */"
+	["class-name", ["Foo"]],
+
+	"\r\n */"
 ]
 
 ----------------------------------------------------

@@ -7,7 +7,7 @@
 ----------------------------------------------------
 
 [
-	["comment", "{-\n\tThis is a\n\tmultiline comment\n-}"],
+	["comment", "{-\r\n\tThis is a\r\n\tmultiline comment\r\n-}"],
 	["comment", "-- This is a singleline comment"]
 ]
 

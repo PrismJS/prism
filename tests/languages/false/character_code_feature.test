@@ -6,7 +6,7 @@
 ----------------------------------------------------
 
 [
-	["character-code", "'\n"], ["character-code", "'\t"],
+	["character-code", "'\r\n"], ["character-code", "'\t"],
 	["character-code", "' "],
 	["character-code", "''"]
 ]

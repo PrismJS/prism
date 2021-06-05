@@ -18,6 +18,7 @@ println @ Console( "none" )()
 			" Third"
 		]]
 	]],
+
 	["keyword", "Redirects"],
 	["operator", ":"],
 	["redirects", [
@@ -29,19 +30,22 @@ println @ Console( "none" )()
 		["symbol", "=>"],
 		["function", "Fourth"]
 	]],
+
 	["keyword", "Jolie"],
 	["operator", ":"],
 	["string", "\"logger.ol\""],
 	["keyword", "in"],
 	["function", "LoggerService"],
-	"\nlog",
+
+	"\r\nlog",
 	["symbol", "@"],
 	["function", "LoggerService"],
 	"( ",
 	["keyword", "new"],
 	" )()",
 	["symbol", ";"],
-	"\nprintln ",
+
+	"\r\nprintln ",
 	["symbol", "@"],
 	["function", "Console"],
 	"( ",

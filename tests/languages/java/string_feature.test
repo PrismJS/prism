@@ -23,26 +23,24 @@ String empty = """
 	["string", "\"foo\""],
 	["string", "\"\\\"foo\\\"\""],
 
-	["triple-quoted-string", "\"\"\"\nfoo\n\"\"\""],
+	["triple-quoted-string", "\"\"\"\r\nfoo\r\n\"\"\""],
 
 	["keyword", "var"],
 	" a ",
 	["operator", "="],
-	["triple-quoted-string", "\"\"\"\n\\\"\"\"\nfoo\"\"\""],
+	["triple-quoted-string", "\"\"\"\r\n\\\"\"\"\r\nfoo\"\"\""],
 	["punctuation", ";"],
 
-	["triple-quoted-string", "\"\"\"\nThe quick brown fox\"\"\""],
+	["triple-quoted-string", "\"\"\"\r\nThe quick brown fox\"\"\""],
 	["operator", "+"],
 	["string", "\"  \\n\""],
 	["operator", "+"],
-	["triple-quoted-string", "\"\"\"\njumps over the lazy dog\n\"\"\""],
+	["triple-quoted-string", "\"\"\"\r\njumps over the lazy dog\r\n\"\"\""],
 
-	["class-name", [
-		"String"
-	]],
+	["class-name", ["String"]],
 	" empty ",
 	["operator", "="],
-	["triple-quoted-string", "\"\"\"\n\"\"\""],
+	["triple-quoted-string", "\"\"\"\r\n\"\"\""],
 	["punctuation", ";"]
 ]
 

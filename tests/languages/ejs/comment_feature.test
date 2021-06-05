@@ -6,7 +6,7 @@ bar%>
 [
 	["ejs", [
 		["delimiter", "<%"],
-		["comment", "#foo\nbar"],
+		["comment", "#foo\r\nbar"],
 		["delimiter", "%>"]
 	]]
 ]

@@ -18,12 +18,12 @@ var b = new int[] { <#=
 			["delimiter", "#>"]
 		]]
 	]],
-	";\nvar b = new int[] { ",
+	";\r\nvar b = new int[] { ",
 	["block", [
 		["expression", [
 			["delimiter", "<#="],
 			["content", [
-				"\n\tString",
+				"\r\n\tString",
 				["punctuation", "."],
 				["function", "Join"],
 				["punctuation", "("],
