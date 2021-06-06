@@ -211,7 +211,7 @@ exports[`prism-graphql E2E tests - graphql+highlight-keywords #highlights mutati
 <span class="token punctuation">
   {
 </span>
-<span class="token property-mutation">
+<span class="token property-query property-mutation">
   customerCreate
 </span>
 <span class="token punctuation">

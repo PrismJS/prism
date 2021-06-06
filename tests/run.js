@@ -31,7 +31,8 @@ for (const language in testSuite) {
 				it("– should pass test case '" + fileName + "'", function () {
 					if (path.extname(filePath) === '.test') {
 						TestCase.runTestCase(language, filePath, update ? 'update' : insert ? 'insert' : 'none');
-					} else {
+					// follow up after #2927
+					} else if (fileName !== 'fixtures') {
 						TestCase.runTestsWithHooks(language, require(filePath));
 					}
 				});
