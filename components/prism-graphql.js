@@ -27,6 +27,10 @@ Prism.languages.graphql = {
 		pattern: /[a-z_]\w*(?=\s*(?:\((?:[^()"]|"(?:\\.|[^\\"\r\n])*")*\))?:)/i,
 		greedy: true
 	},
+	'atom-input': {
+		pattern: /[A-Z]\w*Input(?=!?.*$)/m,
+		alias: 'class-name'
+	},
 	'scalar': /\b(?:Boolean|Float|ID|Int|String)\b/,
 	'constant': /\b[A-Z][A-Z_\d]*\b/,
 	'class-name': {

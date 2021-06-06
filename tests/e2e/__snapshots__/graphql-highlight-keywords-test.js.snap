@@ -106,7 +106,7 @@ exports[`prism-graphql E2E tests - graphql+highlight-keywords #highlights input 
 <span class="token punctuation">
   [
 </span>
-<span class="token class-name atom-input">
+<span class="token atom-input class-name">
   AttributeInput
 </span>
 <span class="token operator">
@@ -133,7 +133,7 @@ exports[`prism-graphql E2E tests - graphql+highlight-keywords #highlights input 
 <span class="token punctuation">
   [
 </span>
-<span class="token class-name atom-input">
+<span class="token atom-input class-name">
   LocalizationExtensionInput
 </span>
 <span class="token operator">
@@ -151,7 +151,7 @@ exports[`prism-graphql E2E tests - graphql+highlight-keywords #highlights input 
 <span class="token punctuation">
   [
 </span>
-<span class="token class-name atom-input">
+<span class="token atom-input class-name">
   MetafieldInput
 </span>
 <span class="token operator">
@@ -178,7 +178,7 @@ exports[`prism-graphql E2E tests - graphql+highlight-keywords #highlights input 
 <span class="token punctuation">
   :
 </span>
-<span class="token class-name atom-input">
+<span class="token atom-input class-name">
   MailingAddressInput
 </span>
 <span class="token attr-name">
@@ -433,7 +433,7 @@ exports[`prism-graphql E2E tests - graphql+highlight-keywords #highlights mutati
 <span class="token punctuation">
   :
 </span>
-<span class="token class-name atom-input">
+<span class="token atom-input class-name">
   OrderInput
 </span>
 <span class="token operator">
