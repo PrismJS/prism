@@ -13,7 +13,7 @@
     "test:aliases": "mocha tests/aliases-test.js",
     "test:core": "mocha tests/core/**/*.js",
     "test:dependencies": "mocha tests/dependencies-test.js",
-    "test:e2e": "mocha tests/e2e/**/*.js",
+    "test:e2e": "mocha tests/e2e/*.js",
     "test:examples": "mocha tests/examples-test.js",
     "test:identifiers": "mocha tests/identifier-test.js",
     "test:languages": "mocha tests/run.js",
