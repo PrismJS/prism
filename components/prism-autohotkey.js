@@ -6,7 +6,7 @@ Prism.languages.autohotkey = {
 			lookbehind: true
 		},
 		{
-			pattern: /(^\s*)\/\*(?:[\r\n](?![ \t]*\*\/)|[^\r\n])*(?:[\r\n][ \t]*\*\/)?/m,
+			pattern: /(^[\t ]*)\/\*(?:[\r\n](?![ \t]*\*\/)|[^\r\n])*(?:[\r\n][ \t]*\*\/)?/m,
 			lookbehind: true,
 			greedy: true
 		}

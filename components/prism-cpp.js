@@ -20,7 +20,7 @@
 			/\b[A-Z_]\w*(?=\s*::\s*~\w+\s*\()/i,
 			// This also intends to capture the class name of method implementations but here the class has template
 			// parameters, so it can't be a namespace (until C++ adds generic namespaces).
-			/\w+(?=\s*<(?:[^<>]|<(?:[^<>]|<[^<>]*>)*>)*>\s*::\s*\w+\s*\()/
+			/\b\w+(?=\s*<(?:[^<>]|<(?:[^<>]|<[^<>]*>)*>)*>\s*::\s*\w+\s*\()/
 		],
 		'keyword': keyword,
 		'number': {

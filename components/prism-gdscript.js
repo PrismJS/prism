@@ -14,7 +14,7 @@ Prism.languages.gdscript = {
 		lookbehind: true
 	},
 	'keyword': /\b(?:and|as|assert|break|breakpoint|class|class_name|const|continue|elif|else|enum|export|extends|for|func|if|in|is|master|mastersync|match|not|null|onready|or|pass|preload|puppet|puppetsync|remote|remotesync|return|self|setget|signal|static|tool|var|while|yield)\b/,
-	'function': /[a-z_]\w*(?=[ \t]*\()/i,
+	'function': /\b[a-z_]\w*(?=[ \t]*\()/i,
 	'variable': /\$\w+/,
 	'number': [
 		/\b0b[01_]+\b|\b0x[\da-fA-F_]+\b|(?:\b\d[\d_]*(?:\.[\d_]*)?|\B\.[\d_]+)(?:e[+-]?[\d_]+)?\b/,

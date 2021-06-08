@@ -36,8 +36,8 @@ Prism.languages.insertBefore('javascript', 'keyword', {
 				alias: 'language-regex',
 				inside: Prism.languages.regex
 			},
-			'regex-flags': /[a-z]+$/,
-			'regex-delimiter': /^\/|\/$/
+			'regex-delimiter': /^\/|\/$/,
+			'regex-flags': /^[a-z]+$/,
 		}
 	},
 	// This must be declared before keyword because we use "function" inside the look-forward
@@ -52,7 +52,8 @@ Prism.languages.insertBefore('javascript', 'keyword', {
 			inside: Prism.languages.javascript
 		},
 		{
-			pattern: /(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*=>)/i,
+			pattern: /(^|[^$\w\xA0-\uFFFF])(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*=>)/i,
+			lookbehind: true,
 			inside: Prism.languages.javascript
 		},
 		{

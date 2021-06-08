@@ -4,7 +4,8 @@
 	var selectorInside;
 
 	Prism.languages.css.selector = {
-		pattern: Prism.languages.css.selector,
+		pattern: Prism.languages.css.selector.pattern,
+		lookbehind: true,
 		inside: selectorInside = {
 			'pseudo-element': /:(?:after|before|first-letter|first-line|selection)|::[-\w]+/,
 			'pseudo-class': /:[-\w]+/,

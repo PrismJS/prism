@@ -15,7 +15,7 @@
 			lookbehind: true
 		},
 		'url': {
-			pattern: /url\((["']?).*?\1\)/i,
+			pattern: /\burl\((["']?).*?\1\)/i,
 			greedy: true
 		},
 		'string': {
@@ -75,7 +75,7 @@
 
 	Prism.languages.stylus = {
 		'atrule-declaration': {
-			pattern: /(^\s*)@.+/m,
+			pattern: /(^[ \t]*)@.+/m,
 			lookbehind: true,
 			inside: {
 				'atrule': /^@[\w-]+/,
