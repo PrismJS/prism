@@ -239,6 +239,9 @@
 		"url": "uri",
 		"vb": "visual-basic",
 		"vba": "visual-basic",
+		"mathematica": "wolfram",
+		"nb": "wolfram",
+		"wl": "wolfram",
 		"xeoracube": "xeora",
 		"yml": "yaml"
 	}/*]*/;

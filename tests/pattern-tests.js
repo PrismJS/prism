@@ -8,9 +8,10 @@ const TestCase = require('./helper/test-case');
 const { BFS, parseRegex } = require('./helper/util');
 const { languages } = require('../components.json');
 const { visitRegExpAST } = require('regexpp');
-const { transform, combineTransformers, JS, Words, NFA, Transformers } = require('refa');
+const { transform, combineTransformers, getIntersectionWordSets, JS, Words, NFA, Transformers } = require('refa');
 const scslre = require('scslre');
 const path = require('path');
+const { argv } = require('yargs');
 
 /**
  * A map from language id to a list of code snippets in that language.
@@ -38,7 +39,7 @@ for (const languageIdentifier in testSuite) {
 
 
 for (const lang in languages) {
-	if (lang === 'meta') {
+	if (lang === 'meta' || (!!argv.language && lang !== argv.language)) {
 		continue;
 	}
 
@@ -613,7 +614,7 @@ function checkExponentialBacktracking(path, pattern, ast) {
 			twoStar.quantify(2, Infinity);
 
 			if (!nfa.isDisjointWith(twoStar)) {
-				const word = Words.pickMostReadableWord(firstOf(nfa.intersectionWordSets(twoStar)));
+				const word = Words.pickMostReadableWord(firstOf(getIntersectionWordSets(nfa, twoStar)));
 				const example = Words.fromUnicodeToString(word);
 				assert.fail(`${path}: The quantifier \`${node.raw}\` ambiguous for all words ${JSON.stringify(example)}.repeat(n) for any n>1.`
 					+ ` This will cause exponential backtracking.`
