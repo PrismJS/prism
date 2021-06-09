@@ -4,7 +4,7 @@ const prismFactory = require('../helper/prism-loader');
 const components = ['graphql', 'highlight-keywords'];
 const Prism = prismFactory.createInstance(components);
 
-describe(`prism-graphql E2E tests - ${components.join('+')}`, () => {
+describe(`${components.join('+')} integration test`, () => {
 	require('../languages/graphql/fixtures').forEach((code) => {
 		const [title] = code.trim().split('\n');
 		it(`#highlights ${title} correctly`, () => {

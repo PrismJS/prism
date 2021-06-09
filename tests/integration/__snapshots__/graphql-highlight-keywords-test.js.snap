@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`prism-graphql E2E tests - graphql+highlight-keywords #highlights { correctly 1`] = `
+exports[`graphql+highlight-keywords integration test #highlights { correctly 1`] = `
 <span class="token punctuation">
   {
 </span>
@@ -75,7 +75,7 @@ exports[`prism-graphql E2E tests - graphql+highlight-keywords #highlights { corr
 </span>
 `;
 
-exports[`prism-graphql E2E tests - graphql+highlight-keywords #highlights input OrderInput { correctly 1`] = `
+exports[`graphql+highlight-keywords integration test #highlights input OrderInput { correctly 1`] = `
 <span class="token keyword keyword-input">
   input
 </span>
@@ -204,7 +204,7 @@ exports[`prism-graphql E2E tests - graphql+highlight-keywords #highlights input 
 </span>
 `;
 
-exports[`prism-graphql E2E tests - graphql+highlight-keywords #highlights mutation { correctly 1`] = `
+exports[`graphql+highlight-keywords integration test #highlights mutation { correctly 1`] = `
 <span class="token keyword keyword-mutation">
   mutation
 </span>
@@ -288,7 +288,7 @@ exports[`prism-graphql E2E tests - graphql+highlight-keywords #highlights mutati
 </span>
 `;
 
-exports[`prism-graphql E2E tests - graphql+highlight-keywords #highlights mutation BookTrip($id:ID!) { correctly 1`] = `
+exports[`graphql+highlight-keywords integration test #highlights mutation BookTrip($id:ID!) { correctly 1`] = `
 <span class="token keyword keyword-mutation">
   mutation
 </span>
@@ -369,7 +369,7 @@ exports[`prism-graphql E2E tests - graphql+highlight-keywords #highlights mutati
 </span>
 `;
 
-exports[`prism-graphql E2E tests - graphql+highlight-keywords #highlights mutation Login($email: String) { correctly 1`] = `
+exports[`graphql+highlight-keywords integration test #highlights mutation Login($email: String) { correctly 1`] = `
 <span class="token keyword keyword-mutation">
   mutation
 </span>
@@ -417,7 +417,7 @@ exports[`prism-graphql E2E tests - graphql+highlight-keywords #highlights mutati
 </span>
 `;
 
-exports[`prism-graphql E2E tests - graphql+highlight-keywords #highlights mutation orderUpdate($input: OrderInput!) { correctly 1`] = `
+exports[`graphql+highlight-keywords integration test #highlights mutation orderUpdate($input: OrderInput!) { correctly 1`] = `
 <span class="token keyword keyword-mutation">
   mutation
 </span>
@@ -501,7 +501,7 @@ exports[`prism-graphql E2E tests - graphql+highlight-keywords #highlights mutati
 </span>
 `;
 
-exports[`prism-graphql E2E tests - graphql+highlight-keywords #highlights query getProductById($id: ID!) { correctly 1`] = `
+exports[`graphql+highlight-keywords integration test #highlights query getProductById($id: ID!) { correctly 1`] = `
 <span class="token keyword keyword-query">
   query
 </span>
@@ -567,7 +567,7 @@ exports[`prism-graphql E2E tests - graphql+highlight-keywords #highlights query 
 </span>
 `;
 
-exports[`prism-graphql E2E tests - graphql+highlight-keywords #highlights type Human implements Character { correctly 1`] = `
+exports[`graphql+highlight-keywords integration test #highlights type Human implements Character { correctly 1`] = `
 <span class="token keyword keyword-type">
   type
 </span>
