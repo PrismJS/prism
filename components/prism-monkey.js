@@ -15,7 +15,7 @@ Prism.languages.monkey = {
 		lookbehind: true,
 		alias: 'comment'
 	},
-	'function': /\w+(?=\()/,
+	'function': /\b\w+(?=\()/,
 	'type-char': {
 		pattern: /(\w)[?%#$]/,
 		lookbehind: true,

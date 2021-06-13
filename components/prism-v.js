@@ -34,7 +34,7 @@
 			}
 		],
 		'class-name': {
-			pattern: /(\b(?:enum|interface|struct|type)\s+)(?:C\.)?[\w]+/,
+			pattern: /(\b(?:enum|interface|struct|type)\s+)(?:C\.)?\w+/,
 			lookbehind: true
 		},
 		'keyword': /(?:\b(?:as|asm|assert|atomic|break|chan|const|continue|defer|else|embed|enum|fn|for|__global|go(?:to)?|if|import|in|interface|is|lock|match|module|mut|none|or|pub|return|rlock|select|shared|sizeof|static|struct|type(?:of)?|union|unsafe)|\$(?:if|else|for)|#(?:include|flag))\b/,
@@ -47,7 +47,8 @@
 
 	Prism.languages.insertBefore('v', 'operator', {
 		'attribute': {
-			pattern: /^\s*\[(?:deprecated|unsafe_fn|typedef|live|inline|flag|ref_only|windows_stdcall|direct_array_access)\]/m,
+			pattern: /(^[\t ]*)\[(?:deprecated|unsafe_fn|typedef|live|inline|flag|ref_only|windows_stdcall|direct_array_access)\]/m,
+			lookbehind: true,
 			alias: 'annotation',
 			inside: {
 				'punctuation': /[\[\]]/,
@@ -66,7 +67,7 @@
 	Prism.languages.insertBefore('v', 'function', {
 		'generic-function': {
 			// e.g. foo<T>( ...
-			pattern: /\w+\s*<\w+>(?=\()/,
+			pattern: /\b\w+\s*<\w+>(?=\()/,
 			inside: {
 				'function': /^\w+/,
 				'generic': {

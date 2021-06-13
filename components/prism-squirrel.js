@@ -14,7 +14,7 @@ Prism.languages.squirrel = Prism.languages.extend('clike', {
 			greedy: true
 		},
 		{
-			pattern: /(^|[^\\"'])'(?:[^\\']|\\(?:[xuU][0-9a-fA-F]{0,8}|[^]))'/,
+			pattern: /(^|[^\\"'])'(?:[^\\']|\\(?:[xuU][0-9a-fA-F]{0,8}|[\s\S]))'/,
 			lookbehind: true,
 			greedy: true
 		}

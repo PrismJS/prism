@@ -9,7 +9,7 @@ Prism.languages.nasm = {
 	'keyword': [
 		/\[?BITS (?:16|32|64)\]?/,
 		{
-			pattern: /(^\s*)section\s*[a-zA-Z.]+:?/im,
+			pattern: /(^\s*)section\s*[a-z.]+:?/im,
 			lookbehind: true
 		},
 		/(?:extern|global)[^;\r\n]*/i,

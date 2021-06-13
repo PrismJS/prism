@@ -1,12 +1,22 @@
 foo:
 foo_bar:
 
+validLabel: ; a comment
+/* multiline comment
+*/ validLabel:
+
 ----------------------------------------------------
 
 [
-	["tag", "foo"],
+	["tag", "foo"], ["punctuation", ":"],
+	["tag", "foo_bar"], ["punctuation", ":"],
+
+	["tag", "validLabel"],
 	["punctuation", ":"],
-	["tag", "foo_bar"],
+	["comment", "; a comment"],
+
+	["comment", "/* multiline comment\r\n*/"],
+	["tag", "validLabel"],
 	["punctuation", ":"]
 ]
 

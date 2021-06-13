@@ -80,7 +80,7 @@
 				'punctuation': /::/
 			}
 		},
-		'attr-name': /(?:\w+|\*)(?=\s*=>)/,
+		'attr-name': /(?:\b\w+|\*)(?=\s*=>)/,
 		'function': [
 			{
 				pattern: /(\.)(?!\d)\w+/,

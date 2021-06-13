@@ -294,7 +294,7 @@
 			line.parentNode.removeChild(line);
 		});
 		// Remove extra whitespace
-		if (num && /^( \n)+$/.test(env.code.slice(-num))) {
+		if (num && /^(?: \n)+$/.test(env.code.slice(-num))) {
 			env.code = env.code.slice(0, -num);
 		}
 	});

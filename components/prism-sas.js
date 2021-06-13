@@ -9,7 +9,7 @@
 	};
 
 	var macroVariable = {
-		pattern: /&[a-z_][a-z_0-9]*/i
+		pattern: /&[a-z_]\w*/i
 	};
 
 	var macroKeyword = {
@@ -19,7 +19,7 @@
 	};
 
 	var step = {
-		pattern: /(^|\s+)(?:proc\s+\w+|quit|run|data(?!\=))\b/i,
+		pattern: /(^|\s)(?:proc\s+\w+|quit|run|data(?!\=))\b/i,
 		alias: 'keyword',
 		lookbehind: true
 	};
@@ -27,7 +27,7 @@
 	var comment = [
 		/\/\*[\s\S]*?\*\//,
 		{
-			pattern: /(^\s*|;\s*)\*[^;]*;/m,
+			pattern: /(^[ \t]*|;\s*)\*[^;]*;/m,
 			lookbehind: true
 		}
 	];
@@ -40,14 +40,14 @@
 	var punctuation = /[$%@.(){}\[\];,\\]/;
 
 	var func = {
-		pattern: /%?\w+(?=\()/,
+		pattern: /%?\b\w+(?=\()/,
 		alias: 'keyword'
 	};
 
 	var args = {
 		'function': func,
 		'arg-value': {
-			pattern: /(\s*=\s*)[A-Z\.]+/i,
+			pattern: /(=\s*)[A-Z\.]+/i,
 			lookbehind: true
 		},
 		'operator': /=/,
@@ -86,7 +86,7 @@
 	};
 
 	var globalStatements = {
-		pattern: /((?:^|[\s])=?)(?:catname|checkpoint execute_always|dm|endsas|filename|footnote|%include|libname|%list|lock|missing|options|page|resetline|%run|sasfile|skip|sysecho|title\d?)\b/i,
+		pattern: /((?:^|\s)=?)(?:catname|checkpoint execute_always|dm|endsas|filename|footnote|%include|libname|%list|lock|missing|options|page|resetline|%run|sasfile|skip|sysecho|title\d?)\b/i,
 		lookbehind: true,
 		alias: 'keyword'
 	};
@@ -127,7 +127,7 @@
 
 	Prism.languages.sas = {
 		'datalines': {
-			pattern: /^(\s*)(?:(?:data)?lines|cards);[\s\S]+?^[ \t]*;/im,
+			pattern: /^([ \t]*)(?:(?:data)?lines|cards);[\s\S]+?^[ \t]*;/im,
 			lookbehind: true,
 			alias: 'string',
 			inside: {
