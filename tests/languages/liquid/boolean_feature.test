@@ -1,0 +1,18 @@
+{% if true and false and false or true %}
+
+----------------------------------------------------
+
+[
+	["liquid", [
+		["delimiter", "{%"],
+		["keyword", "if"],
+		["boolean", "true"],
+		["operator", "and"],
+		["boolean", "false"],
+		["operator", "and"],
+		["boolean", "false"],
+		["operator", "or"],
+		["boolean", "true"],
+		["delimiter", "%}"]
+	]]
+]

@@ -1,3 +1,5 @@
+{%
+
 + ++ +=
 - -- -=
 ! !=
@@ -10,22 +12,67 @@
 * *=
 / /=
 % %=
+..
+
+%}
 
 ----------------------------------------------------
 
 [
-	["operator", "+"], ["operator", "++"], ["operator", "+="],
-	["operator", "-"], ["operator", "--"], ["operator", "-="],
-	["operator", "!"], ["operator", "!="],
-	["operator", "<"], ["operator", "<<"], ["operator", "<="], ["operator", "<<="],
-	["operator", ">"], ["operator", ">>"], ["operator", ">>>"], ["operator", ">="], ["operator", ">>="], ["operator", ">>>="],
-	["operator", "="], ["operator", "=="],
-	["operator", "&"], ["operator", "&&"], ["operator", "&="],
-	["operator", "|"], ["operator", "||"], ["operator", "|="],
-	["operator", "?"], ["operator", ":"], ["operator", "~"],
-	["operator", "*"], ["operator", "*="],
-	["operator", "/"], ["operator", "/="],
-	["operator", "%"], ["operator", "%="]
+	["liquid", [
+		["delimiter", "{%"],
+
+		["operator", "+"],
+		["operator", "++"],
+		["operator", "+="],
+
+		["operator", "-"],
+		["operator", "--"],
+		["operator", "-="],
+
+		["operator", "!"],
+		["operator", "!="],
+
+		["operator", "<"],
+		["operator", "<<"],
+		["operator", "<="],
+		["operator", "<<="],
+
+		["operator", ">"],
+		["operator", ">>"],
+		["operator", ">>>"],
+		["operator", ">="],
+		["operator", ">>="],
+		["operator", ">>>="],
+
+		["operator", "="],
+		["operator", "=="],
+
+		["operator", "&"],
+		["operator", "&&"],
+		["operator", "&="],
+
+		["operator", "|"],
+		["operator", "||"],
+		["operator", "|="],
+
+		["operator", "?"],
+		["operator", ":"],
+		["operator", "~"],
+
+		["operator", "*"],
+		["operator", "*="],
+
+		["operator", "/"],
+		["operator", "/="],
+
+		["operator", "%"],
+		["operator", "%="],
+
+		["range", ".."],
+
+		["delimiter", "%}"]
+	]]
 ]
 
 ----------------------------------------------------

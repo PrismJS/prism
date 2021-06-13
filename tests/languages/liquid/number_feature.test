@@ -1,3 +1,5 @@
+{%
+
 0b11110000
 0xBadFace
 0x1.8p1
@@ -8,18 +10,26 @@
 0.1E-4f
 0.2e+1f
 
+%}
+
 ----------------------------------------------------
 
 [
-	["number", "0b11110000"],
-	["number", "0xBadFace"],
-	["number", "0x1.8p1"],
-	["number", "0xa.fp-2"],
-	["number", "42"],
-	["number", "42d"],
-	["number", "1.2e3f"],
-	["number", "0.1E-4f"],
-	["number", "0.2e+1f"]
+	["liquid", [
+		["delimiter", "{%"],
+
+		["number", "0b11110000"],
+		["number", "0xBadFace"],
+		["number", "0x1.8p1"],
+		["number", "0xa.fp-2"],
+		["number", "42"],
+		["number", "42d"],
+		["number", "1.2e3f"],
+		["number", "0.1E-4f"],
+		["number", "0.2e+1f"],
+
+		["delimiter", "%}"]
+	]]
 ]
 
 ----------------------------------------------------

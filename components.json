@@ -731,6 +731,7 @@
 		},
 		"liquid": {
 			"title": "Liquid",
+			"require": "markup-templating",
 			"owner": "cinhtau"
 		},
 		"lisp": {
