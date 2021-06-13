@@ -11,6 +11,7 @@ const { visitRegExpAST } = require('regexpp');
 const { transform, combineTransformers, getIntersectionWordSets, JS, Words, NFA, Transformers } = require('refa');
 const scslre = require('scslre');
 const path = require('path');
+const { argv } = require('yargs');
 
 /**
  * A map from language id to a list of code snippets in that language.
@@ -38,7 +39,7 @@ for (const languageIdentifier in testSuite) {
 
 
 for (const lang in languages) {
-	if (lang === 'meta') {
+	if (lang === 'meta' || (!!argv.language && lang !== argv.language)) {
 		continue;
 	}
 

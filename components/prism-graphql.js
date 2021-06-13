@@ -24,7 +24,7 @@ Prism.languages.graphql = {
 		alias: 'function'
 	},
 	'attr-name': {
-		pattern: /[a-z_]\w*(?=\s*(?:\((?:[^()"]|"(?:\\.|[^\\"\r\n])*")*\))?:)/i,
+		pattern: /\b[a-z_]\w*(?=\s*(?:\((?:[^()"]|"(?:\\.|[^\\"\r\n])*")*\))?:)/i,
 		greedy: true
 	},
 	'class-name': {

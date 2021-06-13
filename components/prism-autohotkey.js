@@ -6,13 +6,17 @@ Prism.languages.autohotkey = {
 			lookbehind: true
 		},
 		{
-			pattern: /(^\s*)\/\*(?:[\r\n](?![ \t]*\*\/)|[^\r\n])*(?:[\r\n][ \t]*\*\/)?/m,
+			pattern: /(^[\t ]*)\/\*(?:[\r\n](?![ \t]*\*\/)|[^\r\n])*(?:[\r\n][ \t]*\*\/)?/m,
 			lookbehind: true,
 			greedy: true
 		}
 	],
+	'tag': {
+		// labels
+		pattern: /^([ \t]*)[^\s,`":]+(?=:[ \t]*$)/m,
+		lookbehind: true
+	},
 	'string': /"(?:[^"\n\r]|"")*"/m,
-	'tag': /^[ \t]*[^\s:]+(?=:(?:[^:]|$))/m, //labels
 	'variable': /%\w+%/,
 	'number': /\b0x[\dA-Fa-f]+\b|(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:[Ee]-?\d+)?/,
 	'operator': /\?|\/\/?=?|:=|\|[=|]?|&[=&]?|\+[=+]?|-[=-]?|\*[=*]?|<(?:<=?|>|=)?|>>?=?|[.^!=~]=?|\b(?:AND|NOT|OR)\b/,

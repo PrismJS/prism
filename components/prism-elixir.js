@@ -51,7 +51,7 @@ Prism.languages.elixir = {
 		alias: 'class-name'
 	},
 	// Look-ahead prevents bad highlighting of the :: operator
-	'attr-name': /\w+\??:(?!:)/,
+	'attr-name': /\b\w+\??:(?!:)/,
 	'argument': {
 		// Look-behind prevents bad highlighting of the && operator
 		pattern: /(^|[^&])&\d+/,

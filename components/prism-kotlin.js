@@ -7,7 +7,7 @@
 		},
 		'function': [
 			{
-				pattern: /(?:`[^\r\n`]+`|\w+)(?=\s*\()/,
+				pattern: /(?:`[^\r\n`]+`|\b\w+)(?=\s*\()/,
 				greedy: true
 			},
 			{
@@ -37,7 +37,7 @@
 	});
 	Prism.languages.insertBefore('kotlin', 'function', {
 		'label': {
-			pattern: /\w+@|@\w+/,
+			pattern: /\b\w+@|@\w+\b/,
 			alias: 'symbol'
 		}
 	});
