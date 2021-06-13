@@ -6,16 +6,16 @@
 ----------------------------------------------------
 
 [
-	"/**\n * ",
+	"/**\r\n * ",
 	["keyword", "@param"],
 	["class-name", [
 		["keyword", "string"]
 	]],
 	["parameter", "$parameter"],
-	" a parameter\n * ",
+	" a parameter\r\n * ",
 	["keyword", "@param"],
 	["parameter", "$arg2"],
-	" a second parameter\n */"
+	" a second parameter\r\n */"
 ]
 
 ----------------------------------------------------

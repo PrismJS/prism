@@ -29,16 +29,13 @@ var c = new (int, int)[Count];
 [
 	["punctuation", "["],
 	["attribute", [
-		["class-name", [
-			"Foo"
-		]]
+		["class-name", ["Foo"]]
 	]],
 	["punctuation", "]"],
+
 	["punctuation", "["],
 	["attribute", [
-		["class-name", [
-			"Foo"
-		]],
+		["class-name", ["Foo"]],
 		["attribute-arguments", [
 			["punctuation", "("],
 			["number", "1"],
@@ -48,11 +45,10 @@ var c = new (int, int)[Count];
 		]]
 	]],
 	["punctuation", "]"],
+
 	["punctuation", "["],
 	["attribute", [
-		["class-name", [
-			"Foo"
-		]],
+		["class-name", ["Foo"]],
 		["attribute-arguments", [
 			["punctuation", "("],
 			["number", "1"],
@@ -66,58 +62,48 @@ var c = new (int, int)[Count];
 		]]
 	]],
 	["punctuation", "]"],
+
 	["punctuation", "["],
 	["attribute", [
-		["class-name", [
-			"Foo"
-		]],
+		["class-name", ["Foo"]],
 		["punctuation", ","],
-		["class-name", [
-			"Bar"
-		]]
+		["class-name", ["Bar"]]
 	]],
 	["punctuation", "]"],
+
 	["punctuation", "["],
 	["attribute", [
-		["class-name", [
-			"Foo"
-		]],
+		["class-name", ["Foo"]],
 		["attribute-arguments", [
 			["punctuation", "("],
 			["string", "\"()\""],
 			["punctuation", ")"]
 		]],
 		["punctuation", ","],
-		["class-name", [
-			"Bar"
-		]],
+		["class-name", ["Bar"]],
 		["attribute-arguments", [
 			["punctuation", "("],
 			["string", "\"[]\""],
 			["punctuation", ")"]
 		]],
 		["punctuation", ","],
-		["class-name", [
-			"Baz"
-		]]
+		["class-name", ["Baz"]]
 	]],
 	["punctuation", "]"],
+
 	["punctuation", "["],
 	["attribute", [
 		["target", "return"],
 		["punctuation", ":"],
-		["class-name", [
-			"MaybeNull"
-		]]
+		["class-name", ["MaybeNull"]]
 	]],
 	["punctuation", "]"],
+
 	["punctuation", "["],
 	["attribute", [
 		["target", "assembly"],
 		["punctuation", ":"],
-		["class-name", [
-			"InternalsVisibleTo"
-		]],
+		["class-name", ["InternalsVisibleTo"]],
 		["attribute-arguments", [
 			["punctuation", "("],
 			["string", "\"Tests\""],
@@ -125,98 +111,93 @@ var c = new (int, int)[Count];
 		]]
 	]],
 	["punctuation", "]"],
+
 	["punctuation", "["],
 	["attribute", [
 		["target", "assembly"],
 		["punctuation", ":"],
-		["class-name", [
-			"Foo"
-		]]
+		["class-name", ["Foo"]]
 	]],
 	["punctuation", "]"],
+
 	["punctuation", "["],
 	["attribute", [
 		["target", "module"],
 		["punctuation", ":"],
-		["class-name", [
-			"Foo"
-		]]
+		["class-name", ["Foo"]]
 	]],
 	["punctuation", "]"],
+
 	["punctuation", "["],
 	["attribute", [
 		["target", "field"],
 		["punctuation", ":"],
-		["class-name", [
-			"Foo"
-		]]
+		["class-name", ["Foo"]]
 	]],
 	["punctuation", "]"],
+
 	["punctuation", "["],
 	["attribute", [
 		["target", "event"],
 		["punctuation", ":"],
-		["class-name", [
-			"Foo"
-		]]
+		["class-name", ["Foo"]]
 	]],
 	["punctuation", "]"],
+
 	["punctuation", "["],
 	["attribute", [
 		["target", "method"],
 		["punctuation", ":"],
-		["class-name", [
-			"Foo"
-		]]
+		["class-name", ["Foo"]]
 	]],
 	["punctuation", "]"],
+
 	["punctuation", "["],
 	["attribute", [
 		["target", "param"],
 		["punctuation", ":"],
-		["class-name", [
-			"Foo"
-		]]
+		["class-name", ["Foo"]]
 	]],
 	["punctuation", "]"],
+
 	["punctuation", "["],
 	["attribute", [
 		["target", "property"],
 		["punctuation", ":"],
-		["class-name", [
-			"Foo"
-		]]
+		["class-name", ["Foo"]]
 	]],
 	["punctuation", "]"],
+
 	["punctuation", "["],
 	["attribute", [
 		["target", "return"],
 		["punctuation", ":"],
-		["class-name", [
-			"Foo"
-		]]
+		["class-name", ["Foo"]]
 	]],
 	["punctuation", "]"],
+
 	["punctuation", "["],
 	["attribute", [
 		["target", "type"],
 		["punctuation", ":"],
-		["class-name", [
-			"Foo"
-		]]
+		["class-name", ["Foo"]]
 	]],
 	["punctuation", "]"],
+
 	["comment", "// not attributes"],
+
 	["class-name", [
 		["keyword", "var"]
 	]],
 	" a ",
 	["operator", "="],
-	" d\n",
+	" d\r\n",
+
 	["punctuation", "["],
 	"Foo",
 	["punctuation", "]"],
 	["punctuation", ";"],
+
 	["class-name", [
 		["keyword", "var"]
 	]],
@@ -234,6 +215,7 @@ var c = new (int, int)[Count];
 	"Count",
 	["punctuation", "]"],
 	["punctuation", ";"],
+
 	["class-name", [
 		["keyword", "var"]
 	]],

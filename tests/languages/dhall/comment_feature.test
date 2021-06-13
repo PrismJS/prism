@@ -12,7 +12,7 @@
 [
 	["comment", "-- comment"],
 
-	["comment", "{-\n\tcomment\n\t{-\n\t\tnested comment\n\t-}\n-}"]
+	["comment", "{-\r\n\tcomment\r\n\t{-\r\n\t\tnested comment\r\n\t-}\r\n-}"]
 ]
 
 ----------------------------------------------------

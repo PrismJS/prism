@@ -69,7 +69,7 @@ greeting pic x(12) value is "Hello World".
 	]],
 	["punctuation", "."],
 
-	"\n\ngreeting ",
+	"\r\n\r\ngreeting ",
 	["keyword", "pic"],
 	["class-name", [
 		"x",

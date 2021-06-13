@@ -51,28 +51,25 @@ public static RGBColor FromRainbow(Rainbow colorBand) =>
 
 	["keyword", "public"],
 	["keyword", "static"],
-	["return-type", [
-		"RGBColor"
-	]],
+	["return-type", ["RGBColor"]],
 	["function", "FromRainbow"],
 	["punctuation", "("],
-	["class-name", [
-		"Rainbow"
-	]],
+	["class-name", ["Rainbow"]],
 	" colorBand",
 	["punctuation", ")"],
 	["operator", "=>"],
-	"\n\tcolorBand ",
+
+	"\r\n\tcolorBand ",
 	["keyword", "switch"],
+
 	["punctuation", "{"],
-	"\n\t\tRainbow",
+
+	"\r\n\t\tRainbow",
 	["punctuation", "."],
 	"Red ",
 	["operator", "=>"],
 	["keyword", "new"],
-	["constructor-invocation", [
-		"RGBColor"
-	]],
+	["constructor-invocation", ["RGBColor"]],
 	["punctuation", "("],
 	["number", "0xFF"],
 	["punctuation", ","],
@@ -81,13 +78,12 @@ public static RGBColor FromRainbow(Rainbow colorBand) =>
 	["number", "0x00"],
 	["punctuation", ")"],
 	["punctuation", ","],
-	"\n\t\t_           ",
+
+	"\r\n\t\t_           ",
 	["operator", "=>"],
 	["keyword", "throw"],
 	["keyword", "new"],
-	["constructor-invocation", [
-		"ArgumentException"
-	]],
+	["constructor-invocation", ["ArgumentException"]],
 	["punctuation", "("],
 	["named-parameter", "message"],
 	["punctuation", ":"],
@@ -101,6 +97,7 @@ public static RGBColor FromRainbow(Rainbow colorBand) =>
 	["punctuation", ")"],
 	["punctuation", ")"],
 	["punctuation", ","],
+
 	["punctuation", "}"],
 	["punctuation", ";"]
 ]

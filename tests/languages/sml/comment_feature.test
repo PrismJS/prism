@@ -7,5 +7,5 @@
 
 [
 	["comment", "(* comment *)"],
-	["comment", "(*\n (* nested comment *)\n*)"]
+	["comment", "(*\r\n (* nested comment *)\r\n*)"]
 ]

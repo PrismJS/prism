@@ -27,30 +27,79 @@ multiline
 ----------------------------------------------------
 
 [
-  [ "doc", [ [ "attribute", "@doc" ], [ "string", "\"single\"" ] ] ],
-  [ "doc", [ [ "attribute", "@doc" ], [ "string", "'single'" ] ] ],
-  [ "doc", [ [ "attribute", "@doc" ], [ "string", "\"\"\"triple\"\"\"" ] ] ],
-  [ "doc", [ [ "attribute", "@doc" ], [ "string", "'''triple'''" ] ] ],
-  [ "doc", [ [ "attribute", "@doc" ], [ "string", "'''\nmultiline\n'''" ] ] ],
-  [ "doc", [ [ "attribute", "@doc" ], [ "string", "\"\"\"\nmultiline\n\"\"\"" ] ] ],
-  [ "attribute", "@doc" ],
-  [ "attr-name", "since:" ],
-  [ "string", [ "\"1.3.0\"" ] ],
-  [ "attribute", "@doc" ],
-  [ "attr-name", "deprecated:" ],
-  [ "string", [ "\"phased out\"" ] ],
-  [ "doc", [ [ "attribute", "@moduledoc" ], [ "string", "\"single\"" ] ] ],
-  [ "doc", [ [ "attribute", "@moduledoc" ], [ "string", "'single'" ] ] ],
-  [ "doc", [ [ "attribute", "@moduledoc" ], [ "string", "\"\"\"triple\"\"\"" ] ] ],
-  [ "doc", [ [ "attribute", "@moduledoc" ], [ "string", "'''triple'''" ] ] ],
-  [ "doc", [ [ "attribute", "@moduledoc" ], [ "string", "'''\nmultiline\n'''" ] ] ],
-  [ "doc", [ [ "attribute", "@moduledoc" ], [ "string", "\"\"\"\nmultiline\n\"\"\"" ] ] ],
-  [ "attribute", "@moduledoc" ],
-  [ "attr-name", "since:" ],
-  [ "string", [ "\"1.3.0\"" ] ],
-  [ "attribute", "@moduledoc" ],
-  [ "attr-name", "deprecated:" ],
-  [ "string", [ "\"phased out\"" ] ]
-]
+	["doc", [
+		["attribute", "@doc"],
+		["string", "\"single\""]
+	]],
 
-----------------------------------------------------
+	["doc", [
+		["attribute", "@doc"],
+		["string", "'single'"]
+	]],
+
+	["doc", [
+		["attribute", "@doc"],
+		["string", "\"\"\"triple\"\"\""]
+	]],
+
+	["doc", [
+		["attribute", "@doc"],
+		["string", "'''triple'''"]
+	]],
+
+	["doc", [
+		["attribute", "@doc"],
+		["string", "'''\r\nmultiline\r\n'''"]
+	]],
+
+	["doc", [
+		["attribute", "@doc"],
+		["string", "\"\"\"\r\nmultiline\r\n\"\"\""]
+	]],
+
+	["attribute", "@doc"],
+	["attr-name", "since:"],
+	["string", ["\"1.3.0\""]],
+
+	["attribute", "@doc"],
+	["attr-name", "deprecated:"],
+	["string", ["\"phased out\""]],
+
+	["doc", [
+		["attribute", "@moduledoc"],
+		["string", "\"single\""]
+	]],
+
+	["doc", [
+		["attribute", "@moduledoc"],
+		["string", "'single'"]
+	]],
+
+	["doc", [
+		["attribute", "@moduledoc"],
+		["string", "\"\"\"triple\"\"\""]
+	]],
+
+	["doc", [
+		["attribute", "@moduledoc"],
+		["string", "'''triple'''"]
+	]],
+
+	["doc", [
+		["attribute", "@moduledoc"],
+		["string", "'''\r\nmultiline\r\n'''"]
+	]],
+
+	["doc", [
+		["attribute", "@moduledoc"],
+		["string", "\"\"\"\r\nmultiline\r\n\"\"\""]
+	]],
+
+	["attribute", "@moduledoc"],
+	["attr-name", "since:"],
+	["string", ["\"1.3.0\""]],
+
+	["attribute", "@moduledoc"],
+	["attr-name", "deprecated:"],
+	["string", ["\"phased out\""]]
+]

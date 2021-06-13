@@ -11,7 +11,7 @@ comment
 	["comment", "//"],
 	["comment", "// Foobar"],
 	["comment", "#!/usr/bin/env io"],
-	["comment", "/* multiline\ncomment\n*/"]
+	["comment", "/* multiline\r\ncomment\r\n*/"]
 ]
 
 ----------------------------------------------------

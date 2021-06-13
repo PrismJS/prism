@@ -18,15 +18,20 @@ open Fin
 	["operator", ":"],
 	["keyword", "Set"],
 	["keyword", "where"],
+
 	["keyword", "constructor"],
-	" _[_]\n\t",
+	" _[_]\r\n\t",
+
 	["keyword", "field"],
+
 	["function", "⟦_⟧   "],
 	["operator", ":"],
-	" Nat\n\t\t",
+	" Nat\r\n\t\t",
+
 	["function", "proof "],
 	["operator", ":"],
-	" suc ⟦_⟧ ≤ n\n",
+	" suc ⟦_⟧ ≤ n\r\n",
+
 	["keyword", "open"],
 	" Fin"
 ]
