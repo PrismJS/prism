@@ -89,7 +89,7 @@ Prism.languages.javastacktrace = {
 					pattern: /(\()[^()]*(?=\))/,
 					lookbehind: true,
 					inside: {
-						'keyword': /^(?:Unknown Source|Native Method)$/
+						'keyword': /^(?:Native Method|Unknown Source)$/
 					}
 				}
 			],

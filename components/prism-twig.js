@@ -23,7 +23,7 @@ Prism.languages.twig = {
 				}
 			},
 			'keyword': /\b(?:even|if|odd)\b/,
-			'boolean': /\b(?:true|false|null)\b/,
+			'boolean': /\b(?:false|null|true)\b/,
 			'number': /\b0x[\dA-Fa-f]+|(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:[Ee][-+]?\d+)?/,
 			'operator': [
 				{

@@ -17,7 +17,7 @@ Prism.languages.lolcode = {
 	},
 	'number': /(?:\B-)?(?:\b\d+(?:\.\d*)?|\B\.\d+)/,
 	'symbol': {
-		pattern: /(^|\s)(?:A )?(?:YARN|NUMBR|NUMBAR|TROOF|BUKKIT|NOOB)(?=\s|,|$)/,
+		pattern: /(^|\s)(?:A )?(?:BUKKIT|NOOB|NUMBAR|NUMBR|TROOF|YARN)(?=\s|,|$)/,
 		lookbehind: true,
 		inside: {
 			'keyword': /A(?=\s)/
@@ -40,7 +40,7 @@ Prism.languages.lolcode = {
 		/'Z(?=\s|,|$)/
 	],
 	'boolean': {
-		pattern: /(^|\s)(?:WIN|FAIL)(?=\s|,|$)/,
+		pattern: /(^|\s)(?:FAIL|WIN)(?=\s|,|$)/,
 		lookbehind: true
 	},
 	'variable': {
@@ -48,7 +48,7 @@ Prism.languages.lolcode = {
 		lookbehind: true
 	},
 	'operator': {
-		pattern: /(^|\s)(?:NOT|BOTH SAEM|DIFFRINT|(?:SUM|DIFF|PRODUKT|QUOSHUNT|MOD|BIGGR|SMALLR|BOTH|EITHER|WON|ALL|ANY) OF)(?=\s|,|$)/,
+		pattern: /(^|\s)(?:NOT|BOTH SAEM|DIFFRINT|(?:ALL|ANY|BIGGR|BOTH|DIFF|EITHER|MOD|PRODUKT|QUOSHUNT|SMALLR|SUM|WON) OF)(?=\s|,|$)/,
 		lookbehind: true
 	},
 	'punctuation': /\.{3}|…|,|!/

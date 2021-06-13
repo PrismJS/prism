@@ -50,9 +50,9 @@
 		'operator': [
 			/[+\-*\/%]|==?=?|[!<>]=?|&&|\|\|?/,
 			/\bis\s+(?:not\s+)?(?:div|even|odd)(?:\s+by)?\b/,
-			/\b(?:eq|neq?|gt|lt|gt?e|lt?e|not|mod|or|and)\b/
+			/\b(?:and|eq|gt|gt?e|lt|lt?e|mod|neq?|not|or)\b/
 		],
-		'keyword': /\b(?:false|off|on|no|true|yes)\b/
+		'keyword': /\b(?:false|no|off|on|true|yes)\b/
 	};
 
 	// Tokenize all inline Smarty expressions

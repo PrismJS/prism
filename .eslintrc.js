@@ -76,6 +76,7 @@ module.exports = {
 		'regexp/no-useless-character-class': 'warn',
 		'regexp/no-useless-lazy': 'warn',
 		'regexp/prefer-w': 'warn',
+		'regexp/sort-alternatives': 'warn',
 		'regexp/sort-flags': 'warn',
 
 		// I turned this rule off because we use `hasOwnProperty` in a lot of places

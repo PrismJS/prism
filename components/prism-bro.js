@@ -4,7 +4,7 @@ Prism.languages.bro = {
 		pattern: /(^|[^\\$])#.*/,
 		lookbehind: true,
 		inside: {
-			'italic': /\b(?:TODO|FIXME|XXX)\b/
+			'italic': /\b(?:FIXME|TODO|XXX)\b/
 		}
 	},
 
@@ -38,7 +38,7 @@ Prism.languages.bro = {
 		}
 	},
 
-	'keyword': /\b(?:break|next|continue|alarm|using|of|add|delete|export|print|return|schedule|when|timeout|addr|any|bool|count|double|enum|file|int|interval|pattern|opaque|port|record|set|string|subnet|table|time|vector|for|if|else|in|module|function)\b/,
+	'keyword': /\b(?:add|addr|alarm|any|bool|break|continue|count|delete|double|else|enum|export|file|for|function|if|in|int|interval|module|next|of|opaque|pattern|port|print|record|return|schedule|set|string|subnet|table|time|timeout|using|vector|when)\b/,
 
 	'operator': /--?|\+\+?|!=?=?|<=?|>=?|==?=?|&&|\|\|?|\?|\*|\/|~|\^|%/,
 

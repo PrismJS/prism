@@ -56,7 +56,7 @@ Prism.languages.insertBefore('scss', 'important', {
 
 Prism.languages.insertBefore('scss', 'function', {
 	'module-modifier': {
-		pattern: /\b(?:as|with|show|hide)\b/i,
+		pattern: /\b(?:as|hide|show|with)\b/i,
 		alias: 'keyword'
 	},
 	'placeholder': {
@@ -67,7 +67,7 @@ Prism.languages.insertBefore('scss', 'function', {
 		pattern: /\B!(?:default|optional)\b/i,
 		alias: 'keyword'
 	},
-	'boolean': /\b(?:true|false)\b/,
+	'boolean': /\b(?:false|true)\b/,
 	'null': {
 		pattern: /\bnull\b/,
 		alias: 'keyword'

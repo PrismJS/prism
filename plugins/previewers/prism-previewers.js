@@ -82,7 +82,7 @@
 						if (/\bcenter|top|right|bottom|left\b|^\d+/.test(values[0])) {
 							// Found a position
 							// Remove angle value, if any
-							position = values.shift().replace(/\s*-?\d+(?:rad|deg)\s*/, '');
+							position = values.shift().replace(/\s*-?\d+(?:deg|rad)\s*/, '');
 						}
 						if (/\bcircle|ellipse|closest|farthest|contain|cover\b/.test(values[0])) {
 							// Found a shape and/or size
@@ -145,7 +145,7 @@
 			}()),
 			tokens: {
 				'gradient': {
-					pattern: /(?:\b|\B-[a-z]{1,10}-)(?:repeating-)?(?:linear|radial)-gradient\((?:(?:rgb|hsl)a?\(.+?\)|[^\)])+\)/gi,
+					pattern: /(?:\b|\B-[a-z]{1,10}-)(?:repeating-)?(?:linear|radial)-gradient\((?:(?:hsl|rgb)a?\(.+?\)|[^\)])+\)/gi,
 					inside: {
 						'function': /[\w-]+(?=\()/,
 						'punctuation': /[(),]/

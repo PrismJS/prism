@@ -28,7 +28,7 @@
 				pattern: /((?:^|[&(])[ \t]*)for(?: \/[a-z?](?:[ :](?:"[^"]*"|[^\s"/]\S*))?)* \S+ in \([^)]+\) do/im,
 				lookbehind: true,
 				inside: {
-					'keyword': /^for\b|\b(?:in|do)\b/i,
+					'keyword': /^for\b|\b(?:do|in)\b/i,
 					'string': string,
 					'parameter': parameter,
 					'variable': variable,
@@ -38,15 +38,15 @@
 			},
 			{
 				// IF command
-				pattern: /((?:^|[&(])[ \t]*)if(?: \/[a-z?](?:[ :](?:"[^"]*"|[^\s"/]\S*))?)* (?:not )?(?:cmdextversion \d+|defined \w+|errorlevel \d+|exist \S+|(?:"[^"]*"|(?!")(?:(?!==)\S)+)?(?:==| (?:equ|neq|lss|leq|gtr|geq) )(?:"[^"]*"|[^\s"]\S*))/im,
+				pattern: /((?:^|[&(])[ \t]*)if(?: \/[a-z?](?:[ :](?:"[^"]*"|[^\s"/]\S*))?)* (?:not )?(?:cmdextversion \d+|defined \w+|errorlevel \d+|exist \S+|(?:"[^"]*"|(?!")(?:(?!==)\S)+)?(?:==| (?:equ|geq|gtr|leq|lss|neq) )(?:"[^"]*"|[^\s"]\S*))/im,
 				lookbehind: true,
 				inside: {
-					'keyword': /^if\b|\b(?:not|cmdextversion|defined|errorlevel|exist)\b/i,
+					'keyword': /^if\b|\b(?:cmdextversion|defined|errorlevel|exist|not)\b/i,
 					'string': string,
 					'parameter': parameter,
 					'variable': variable,
 					'number': number,
-					'operator': /\^|==|\b(?:equ|neq|lss|leq|gtr|geq)\b/i
+					'operator': /\^|==|\b(?:equ|geq|gtr|leq|lss|neq)\b/i
 				}
 			},
 			{

@@ -81,7 +81,7 @@
 			}
 		],
 		'builtin-types': {
-			pattern: /\b(?:anyerror|bool|c_u?(?:short|int|long|longlong)|c_longdouble|c_void|comptime_(?:float|int)|[iu](?:8|16|32|64|128|size)|f(?:16|32|64|128)|noreturn|type|void)\b/,
+			pattern: /\b(?:anyerror|bool|c_longdouble|c_u?(?:int|long|longlong|short)|c_void|comptime_(?:float|int)|f(?:16|32|64|128)|[iu](?:8|16|32|64|128|size)|noreturn|type|void)\b/,
 			alias: 'keyword'
 		},
 		'keyword': keyword,

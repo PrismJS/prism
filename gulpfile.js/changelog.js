@@ -267,7 +267,7 @@ async function changes() {
 		},
 
 		function changedPlugin(info) {
-			let relevantChanges = info.changes.filter(and(notGenerated, notTests, notExamples, c => !/\.(?:html|css)$/.test(c.file)));
+			let relevantChanges = info.changes.filter(and(notGenerated, notTests, notExamples, c => !/\.(?:css|html)$/.test(c.file)));
 
 			if (relevantChanges.length > 0 &&
 				relevantChanges.every(c => c.mode === 'M' && /^plugins\/.*\.js$/.test(c.file))) {

@@ -41,11 +41,11 @@ Prism.languages.hcl = {
 				lookbehind: true,
 				inside: {
 					'type': {
-						pattern: /(\b(?:terraform|var|self|count|module|path|data|local)\b\.)[\w\*]+/i,
+						pattern: /(\b(?:count|data|local|module|path|self|terraform|var)\b\.)[\w\*]+/i,
 						lookbehind: true,
 						alias: 'variable'
 					},
-					'keyword': /\b(?:terraform|var|self|count|module|path|data|local)\b/i,
+					'keyword': /\b(?:count|data|local|module|path|self|terraform|var)\b/i,
 					'function': /\w+(?=\()/,
 					'string': {
 						pattern: /"(?:\\[\s\S]|[^\\"])*"/,
@@ -58,6 +58,6 @@ Prism.languages.hcl = {
 		}
 	},
 	'number': /\b0x[\da-f]+\b|\b\d+(?:\.\d*)?(?:e[+-]?\d+)?/i,
-	'boolean': /\b(?:true|false)\b/i,
+	'boolean': /\b(?:false|true)\b/i,
 	'punctuation': /[=\[\]{}]/,
 };

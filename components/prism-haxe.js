@@ -18,7 +18,7 @@ Prism.languages.haxe = Prism.languages.extend('clike', {
 		}
 	},
 	// The final look-ahead prevents highlighting of keywords if expressions such as "haxe.macro.Expr"
-	'keyword': /\bthis\b|\b(?:abstract|as|break|case|cast|catch|class|continue|default|do|dynamic|else|enum|extends|extern|from|for|function|if|implements|import|in|inline|interface|macro|new|null|override|public|private|return|static|super|switch|throw|to|try|typedef|using|var|while)(?!\.)\b/,
+	'keyword': /\bthis\b|\b(?:abstract|as|break|case|cast|catch|class|continue|default|do|dynamic|else|enum|extends|extern|for|from|function|if|implements|import|in|inline|interface|macro|new|null|override|private|public|return|static|super|switch|throw|to|try|typedef|using|var|while)(?!\.)\b/,
 	'operator': /\.{3}|\+\+?|-[->]?|[=!]=?|&&?|\|\|?|<[<=]?|>[>=]?|[*\/%~^]/
 });
 Prism.languages.insertBefore('haxe', 'class-name', {

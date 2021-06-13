@@ -30,7 +30,7 @@ Prism.languages.aql = {
 		}
 	],
 	'function': /\b(?!\d)\w+(?=\s*\()/,
-	'boolean': /\b(?:true|false)\b/i,
+	'boolean': /\b(?:false|true)\b/i,
 	'range': {
 		pattern: /\.\./,
 		alias: 'operator'

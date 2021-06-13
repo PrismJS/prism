@@ -19,7 +19,7 @@ Prism.languages.haskell = {
 		pattern: /(^[\t ]*)import\s+(?:qualified\s+)?(?:[A-Z][\w']*)(?:\.[A-Z][\w']*)*(?:\s+as\s+(?:[A-Z][\w']*)(?:\.[A-Z][\w']*)*)?(?:\s+hiding\b)?/m,
 		lookbehind: true,
 		inside: {
-			'keyword': /\b(?:import|qualified|as|hiding)\b/
+			'keyword': /\b(?:as|hiding|import|qualified)\b/
 		}
 	},
 	// These are builtin variables only. Constructors are highlighted later as a constant.

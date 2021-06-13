@@ -12,7 +12,7 @@
 			greedy: true
 		},
 		'number': /\b\d+\b/,
-		'boolean': /\b(?:true|false)\b/,
+		'boolean': /\b(?:false|true)\b/,
 		'operator': /[=!<>]=?|[+*/%-]|&&|\|\||\.\.|\b(?:eq|g[et]|l[et]|n(?:e|ot))\b/,
 		'punctuation': /[(){}[\]:,.]/
 	};
