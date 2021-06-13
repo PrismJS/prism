@@ -62,6 +62,17 @@
 		 */
 		prefix: function prefix(string) {
 			prefixString = string || '';
+		},
+		/**
+		 * Applies the current mapping and prefix to the given class name.
+		 *
+		 * @param {string} className A single class name.
+		 * @param {string} language The language of the code that contains this class name.
+		 *
+		 * If the language is unknown, pass `"none"`.
+		 */
+		apply: function (className, language) {
+			return prefixString + (mapper ? mapper(className, language) : className);
 		}
 	};
 
