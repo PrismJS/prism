@@ -2,10 +2,9 @@
 
 abs append at_least at_most
 capitalize ceil cols compact concat cycle
-date decrement default divided_by downcase
+date default divided_by downcase
 escape escape_once
 first floor
-include increment
 join
 last lstrip
 map minus modulo
@@ -37,7 +36,6 @@ uniq upcase url_decode url_encode
 		["function", "cycle"],
 
 		["function", "date"],
-		["keyword", "decrement"],
 		["function", "default"],
 		["function", "divided_by"],
 		["function", "downcase"],
@@ -47,9 +45,6 @@ uniq upcase url_decode url_encode
 
 		["function", "first"],
 		["function", "floor"],
-
-		["keyword", "include"],
-		["keyword", "increment"],
 
 		["function", "join"],
 
