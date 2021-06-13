@@ -21,7 +21,7 @@ Prism.languages.scss = Prism.languages.extend('css', {
 	// this one was hard to do, so please be careful if you edit this one :)
 	'selector': {
 		// Initial look-ahead is used to prevent matching of blank selectors
-		pattern: /(?=\S)[^@;{}()]?(?:[^@;{}()\s]|\s+(?!\s)|#\{\$[-\w]+\})+(?=\s*\{(?:\}|\s|[^}][^:{}]*[:{][^}]+))/m,
+		pattern: /(?=\S)[^@;{}()]?(?:[^@;{}()\s]|\s+(?!\s)|#\{\$[-\w]+\})+(?=\s*\{(?:\}|\s|[^}][^:{}]*[:{][^}]))/m,
 		inside: {
 			'parent': {
 				pattern: /&/,
@@ -43,7 +43,7 @@ Prism.languages.insertBefore('scss', 'atrule', {
 	'keyword': [
 		/@(?:if|else(?: if)?|forward|for|each|while|import|use|extend|debug|warn|mixin|include|function|return|content)\b/i,
 		{
-			pattern: /( +)(?:from|through)(?= )/,
+			pattern: /( )(?:from|through)(?= )/,
 			lookbehind: true
 		}
 	]

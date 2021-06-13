@@ -19,7 +19,7 @@ Prism.languages.parigp = {
 		}).join('|');
 		return RegExp('\\b(?:' + keywords + ')\\b');
 	}()),
-	'function': /\w(?:[\w ]*\w)?(?= *\()/,
+	'function': /\b\w(?:[\w ]*\w)?(?= *\()/,
 	'number': {
 		// The lookbehind and the negative lookahead prevent from breaking the .. operator
 		pattern: /((?:\. *\. *)?)(?:\b\d(?: *\d)*(?: *(?!\. *\.)\.(?: *\d)*)?|\. *\d(?: *\d)*)(?: *e *(?:[+-] *)?\d(?: *\d)*)?/i,

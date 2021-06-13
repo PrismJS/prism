@@ -4,7 +4,8 @@
 	var selectorInside;
 
 	Prism.languages.css.selector = {
-		pattern: Prism.languages.css.selector,
+		pattern: Prism.languages.css.selector.pattern,
+		lookbehind: true,
 		inside: selectorInside = {
 			'pseudo-element': /:(?:after|before|first-letter|first-line|selection)|::[-\w]+/,
 			'pseudo-class': /:[-\w]+/,
@@ -92,7 +93,7 @@
 		// CAREFUL!
 		// Previewers and Inline color use hexcode and color.
 		'hexcode': {
-			pattern: /\B#(?:[\da-f]{1,2}){3,4}\b/i,
+			pattern: /\B#[\da-f]{3,8}\b/i,
 			alias: 'color'
 		},
 		'color': [

@@ -43,7 +43,7 @@
 			lookbehind: true,
 			inside: {
 				'outline': {
-					pattern: /<[^>]+?>/,
+					pattern: /<[^>]+>/,
 					alias: 'variable'
 				},
 				'td': {
@@ -71,13 +71,13 @@
 			pattern: /"(?:\\.|[^"\\\r\n])*"|'(?:\\.|[^'\\\r\n])*'/,
 			inside: {
 				'outline': {
-					pattern: /<[^>]+?>/,
+					pattern: /<[^>]+>/,
 					alias: 'variable'
 				}
 			}
 		},
 		'outline': {
-			pattern: /<[^>]+?>/,
+			pattern: /<[^>]+>/,
 			alias: 'variable'
 		}
 	};

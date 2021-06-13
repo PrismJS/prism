@@ -254,13 +254,13 @@
 			}
 		},
 		'preprocessor': {
-			pattern: /(^\s*)#.*/m,
+			pattern: /(^[\t ]*)#.*/m,
 			lookbehind: true,
 			alias: 'property',
 			inside: {
 				// highlight preprocessor directives as keywords
 				'directive': {
-					pattern: /(\s*#)\b(?:define|elif|else|endif|endregion|error|if|line|pragma|region|undef|warning)\b/,
+					pattern: /(#)\b(?:define|elif|else|endif|endregion|error|if|line|pragma|region|undef|warning)\b/,
 					lookbehind: true,
 					alias: 'keyword'
 				}

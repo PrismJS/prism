@@ -12,7 +12,7 @@ Prism.languages.insertBefore('processing', 'number', {
 });
 
 // Spaces are allowed between function name and parenthesis
-Prism.languages.processing['function'] = /\w+(?=\s*\()/;
+Prism.languages.processing['function'] = /\b\w+(?=\s*\()/;
 
 // Class-names is not styled by default
 Prism.languages.processing['class-name'].alias = 'variable';

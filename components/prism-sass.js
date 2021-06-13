@@ -24,7 +24,7 @@
 	var operator = [
 		/[+*\/%]|[=!]=|<=?|>=?|\b(?:and|or|not)\b/,
 		{
-			pattern: /(\s+)-(?=\s)/,
+			pattern: /(\s)-(?=\s)/,
 			lookbehind: true
 		}
 	];

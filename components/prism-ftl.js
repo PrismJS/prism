@@ -42,8 +42,8 @@
 			lookbehind: true,
 			alias: 'function'
 		},
-		'function': /\w+(?=\s*\()/,
-		'number': /\d+(?:\.\d+)?/,
+		'function': /\b\w+(?=\s*\()/,
+		'number': /\b\d+(?:\.\d+)?\b/,
 		'operator': /\.\.[<*!]?|->|--|\+\+|&&|\|\||\?{1,2}|[-+*/%!=<>]=?|\b(?:gt|gte|lt|lte)\b/,
 		'punctuation': /[,;.:()[\]{}]/
 	};

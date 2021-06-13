@@ -11,7 +11,7 @@ Prism.languages.concurnas = {
 		}
 	],
 	'langext': {
-		pattern: /\w+\s*\|\|[\s\S]+?\|\|/,
+		pattern: /\b\w+\s*\|\|[\s\S]+?\|\|/,
 		greedy: true,
 		alias: 'string'
 	},

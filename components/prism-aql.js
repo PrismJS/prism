@@ -29,8 +29,8 @@ Prism.languages.aql = {
 			pattern: /\bOPTIONS(?=\s*{)/i
 		}
 	],
-	'function': /(?!\d)\w+(?=\s*\()/,
-	'boolean': /(?:true|false)/i,
+	'function': /\b(?!\d)\w+(?=\s*\()/,
+	'boolean': /\b(?:true|false)\b/i,
 	'range': {
 		pattern: /\.\./,
 		alias: 'operator'

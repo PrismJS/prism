@@ -2,7 +2,7 @@
 	Prism.languages.dataweave = {
 		'url': /\b[A-Za-z]+:\/\/[\w/:.?=&-]+|\burn:[\w:.?=&-]+/,
 		'property': {
-			pattern: /(?:\w+#)?(?:"(?:\\.|[^\\"\r\n])*"|\w+)(?=\s*[:@])/,
+			pattern: /(?:\b\w+#)?(?:"(?:\\.|[^\\"\r\n])*"|\b\w+)(?=\s*[:@])/,
 			greedy: true
 		},
 		'string': {
@@ -30,7 +30,7 @@
 			pattern: /\/(?:[^\\\/\r\n]|\\[^\r\n])+\//,
 			greedy: true
 		},
-		'function': /\b[A-Za-z_]\w*(?=\s*\()/i,
+		'function': /\b[A-Z_]\w*(?=\s*\()/i,
 		'number': /-?\b\d+(?:\.\d+)?(?:e[+-]?\d+)?\b/i,
 		'punctuation': /[{}[\];(),.:@]/,
 		'operator': /<<|>>|->|[<>~=]=?|!=|--?-?|\+\+?|\!|\?/,
