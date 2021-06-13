@@ -30,7 +30,7 @@
 			pattern: /\/(?:[^\\\/\r\n]|\\[^\r\n])+\//,
 			greedy: true
 		},
-		'function': /\b[A-Za-z_]\w*(?=\s*\()/i,
+		'function': /\b[A-Z_]\w*(?=\s*\()/i,
 		'number': /-?\b\d+(?:\.\d+)?(?:e[+-]?\d+)?\b/i,
 		'punctuation': /[{}[\];(),.:@]/,
 		'operator': /<<|>>|->|[<>~=]=?|!=|--?-?|\+\+?|\!|\?/,

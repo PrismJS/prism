@@ -33,7 +33,9 @@ The number <#= i #> is even.
 				" i",
 				["operator", "++"],
 				["punctuation", ")"],
+
 				["punctuation", "{"],
+
 				["keyword", "if"],
 				["punctuation", "("],
 				"i ",
@@ -42,23 +44,22 @@ The number <#= i #> is even.
 				["operator", "=="],
 				["number", "0"],
 				["punctuation", ")"],
+
 				["punctuation", "{"]
 			]],
 			["delimiter", "#>"]
 		]]
 	]],
 
-	"\nThe number ",
+	"\r\nThe number ",
 	["block", [
 		["expression", [
 			["delimiter", "<#="],
-			["content", [
-				" i "
-			]],
+			["content", [" i "]],
 			["delimiter", "#>"]
 		]]
 	]],
-	" is even.\n",
+	" is even.\r\n",
 
 	["block", [
 		["standard", [

@@ -18,9 +18,7 @@ $@"{
 		["string", "$\"Hello, {{ "],
 		["interpolation", [
 			["punctuation", "{"],
-			["expression", [
-				"name"
-			]],
+			["expression", ["name"]],
 			["punctuation", "}"]
 		]],
 		["string", " }}! Today is "],
@@ -36,9 +34,7 @@ $@"{
 		["string", ", it's "],
 		["interpolation", [
 			["punctuation", "{"],
-			["expression", [
-				"date"
-			]],
+			["expression", ["date"]],
 			["format-string", [
 				["punctuation", ":"],
 				"HH:mm"
@@ -113,12 +109,14 @@ $@"{
 		]],
 		["string", "\""]
 	]],
+
 	["interpolation-string", [
-		["string", "@$\"\n\""]
+		["string", "@$\"\r\n\""]
 	]],
 	["interpolation-string", [
-		["string", "$@\"\n\""]
+		["string", "$@\"\r\n\""]
 	]],
+
 	["interpolation-string", [
 		["string", "$@\""],
 		["interpolation", [

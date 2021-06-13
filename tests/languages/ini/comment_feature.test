@@ -1,4 +1,4 @@
-	#
+#
 	;
  #
  ;
@@ -42,7 +42,7 @@ foobar;
 	["comment", ";[foo]"],
 	["comment", ";foo=bar"],
 	["comment", ";foobar"],
-	"\nfoo#bar\nfoobar#\nfoo;bar\nfoobar;"
+	"\r\nfoo#bar\r\nfoobar#\r\nfoo;bar\r\nfoobar;"
 ]
 
 ----------------------------------------------------

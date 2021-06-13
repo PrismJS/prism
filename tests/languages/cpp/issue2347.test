@@ -23,7 +23,7 @@ void MainWindow::changeWindowTitle()
 
 	["punctuation", "{"],
 
-	"\n  Q_OBJECT\n\n ",
+	"\r\n  Q_OBJECT\r\n\r\n ",
 
 	["keyword", "private"],
 	" slots",

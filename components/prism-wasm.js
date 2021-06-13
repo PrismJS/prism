@@ -25,7 +25,7 @@ Prism.languages.wasm = {
 		},
 		/\b(?:anyfunc|block|br(?:_if|_table)?|call(?:_indirect)?|data|drop|elem|else|end|export|func|get_(?:global|local)|global|if|import|local|loop|memory|module|mut|nop|offset|param|result|return|select|set_(?:global|local)|start|table|tee_local|then|type|unreachable)\b/
 	],
-	'variable': /\$[\w!#$%&'*+\-./:<=>?@\\^_`|~]+/i,
+	'variable': /\$[\w!#$%&'*+\-./:<=>?@\\^`|~]+/i,
 	'number': /[+-]?\b(?:\d(?:_?\d)*(?:\.\d(?:_?\d)*)?(?:[eE][+-]?\d(?:_?\d)*)?|0x[\da-fA-F](?:_?[\da-fA-F])*(?:\.[\da-fA-F](?:_?[\da-fA-D])*)?(?:[pP][+-]?\d(?:_?\d)*)?)\b|\binf\b|\bnan(?::0x[\da-fA-F](?:_?[\da-fA-D])*)?\b/,
 	'punctuation': /[()]/
 };

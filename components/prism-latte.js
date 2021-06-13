@@ -2,7 +2,7 @@
 	Prism.languages.latte = {
 		'comment': /^\{\*[\s\S]*/,
 		'ld': {
-			pattern: /^\{(?:[=_]|\/?(?!\d|\w+\()\w+|)/,
+			pattern: /^\{(?:[=_]|\/?(?!\d|\w+\()\w+)?/,
 			inside: {
 				'punctuation': /^\{\/?/,
 				'tag': {

@@ -39,6 +39,7 @@
     "docdash": "^1.2.0",
     "eslint": "^7.22.0",
     "eslint-plugin-jsdoc": "^32.3.0",
+    "eslint-plugin-regexp": "^0.12.1",
     "gulp": "^4.0.2",
     "gulp-concat": "^2.3.4",
     "gulp-header": "^2.0.7",

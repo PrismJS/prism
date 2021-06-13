@@ -35,7 +35,7 @@ Prism.languages.javastacktrace = {
 				lookbehind: true,
 				alias: 'string'
 			},
-			'punctuation': /[:]/
+			'punctuation': /:/
 		}
 	},
 

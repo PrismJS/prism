@@ -6,9 +6,12 @@ Console.WriteLine("Message: {0}", message)
 ----------------------------------------------------
 
 [
-	["keyword", "Dim"], " x ", ["operator", "="], ["string", "\"hello\nworld\""],
+	["keyword", "Dim"],
+	" x ",
+	["operator", "="],
+	["string", "\"hello\r\nworld\""],
 
-	"\n\nConsole.WriteLine",
+	"\r\n\r\nConsole.WriteLine",
 	["punctuation", "("],
 	["string", "\"Message: {0}\""],
 	["punctuation", ","],

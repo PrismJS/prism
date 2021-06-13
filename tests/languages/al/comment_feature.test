@@ -9,7 +9,7 @@
 [
 	["comment", "// comment"],
 	["comment", "/**/"],
-	["comment", "/*\n comment\n*/"]
+	["comment", "/*\r\n comment\r\n*/"]
 ]
 
 ----------------------------------------------------

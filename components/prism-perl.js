@@ -179,7 +179,7 @@ Prism.languages.perl = {
 		alias: 'string'
 	},
 	'function': {
-		pattern: /sub [a-z0-9_]+/i,
+		pattern: /sub \w+/i,
 		inside: {
 			keyword: /sub/
 		}
