@@ -21,7 +21,7 @@ enum Color {
 
 	["punctuation", "{"],
 
-	"\r\n\tfoo",
+	["property-query", "foo"],
 	["punctuation", "("],
 	["attr-name", "bar"],
 	["punctuation", ":"],
@@ -29,7 +29,7 @@ enum Color {
 	["punctuation", ")"],
 	["punctuation", "{"],
 
-	"\r\n\t\tbaz\r\n\t",
+	["property", "baz"],
 
 	["punctuation", "}"],
 
