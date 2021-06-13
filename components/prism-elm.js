@@ -1,5 +1,5 @@
 Prism.languages.elm = {
-	'comment': /--.*|{-[\s\S]*?-}/,
+	'comment': /--.*|\{-[\s\S]*?-\}/,
 	'char': {
 		pattern: /'(?:[^\\'\r\n]|\\(?:[abfnrtv\\']|\d+|x[0-9a-fA-F]+))'/,
 		greedy: true

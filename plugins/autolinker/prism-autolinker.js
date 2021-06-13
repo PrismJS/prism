@@ -6,7 +6,7 @@
 
 	var url = /\b([a-z]{3,7}:\/\/|tel:)[\w\-+%~/.:=&@]+(?:\?[\w\-+%~/.:=?&!$'()*,;@]*)?(?:#[\w\-+%~/.:#=?&!$'()*,;@]*)?/;
 	var email = /\b\S+@[\w.]+[a-z]{2}/;
-	var linkMd = /\[([^\]]+)]\(([^)]+)\)/;
+	var linkMd = /\[([^\]]+)\]\(([^)]+)\)/;
 
 	// Tokens that may contain URLs and emails
 	var candidates = ['comment', 'url', 'attr-value', 'string'];

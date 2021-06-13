@@ -8,7 +8,7 @@ Prism.languages.javascript = Prism.languages.extend('clike', {
 	],
 	'keyword': [
 		{
-			pattern: /((?:^|})\s*)catch\b/,
+			pattern: /((?:^|\})\s*)catch\b/,
 			lookbehind: true
 		},
 		{
@@ -27,7 +27,7 @@ Prism.languages.javascript['class-name'][0].pattern = /(\b(?:class|interface|ext
 Prism.languages.insertBefore('javascript', 'keyword', {
 	'regex': {
 		// eslint-disable-next-line regexp/no-dupe-characters-character-class
-		pattern: /((?:^|[^$\w\xA0-\uFFFF."'\])\s]|\b(?:return|yield))\s*)\/(?:\[(?:[^\]\\\r\n]|\\.)*]|\\.|[^/\\\[\r\n])+\/[dgimyus]{0,7}(?=(?:\s|\/\*(?:[^*]|\*(?!\/))*\*\/)*(?:$|[\r\n,.;:})\]]|\/\/))/,
+		pattern: /((?:^|[^$\w\xA0-\uFFFF."'\])\s]|\b(?:return|yield))\s*)\/(?:\[(?:[^\]\\\r\n]|\\.)*\]|\\.|[^/\\\[\r\n])+\/[dgimyus]{0,7}(?=(?:\s|\/\*(?:[^*]|\*(?!\/))*\*\/)*(?:$|[\r\n,.;:})\]]|\/\/))/,
 		lookbehind: true,
 		greedy: true,
 		inside: {
@@ -78,7 +78,7 @@ Prism.languages.insertBefore('javascript', 'string', {
 		alias: 'comment'
 	},
 	'template-string': {
-		pattern: /`(?:\\[\s\S]|\${(?:[^{}]|{(?:[^{}]|{[^}]*})*})+}|(?!\${)[^\\`])*`/,
+		pattern: /`(?:\\[\s\S]|\$\{(?:[^{}]|\{(?:[^{}]|\{[^}]*\})*\})+\}|(?!\$\{)[^\\`])*`/,
 		greedy: true,
 		inside: {
 			'template-punctuation': {
@@ -86,11 +86,11 @@ Prism.languages.insertBefore('javascript', 'string', {
 				alias: 'string'
 			},
 			'interpolation': {
-				pattern: /((?:^|[^\\])(?:\\{2})*)\${(?:[^{}]|{(?:[^{}]|{[^}]*})*})+}/,
+				pattern: /((?:^|[^\\])(?:\\{2})*)\$\{(?:[^{}]|\{(?:[^{}]|\{[^}]*\})*\})+\}/,
 				lookbehind: true,
 				inside: {
 					'interpolation-punctuation': {
-						pattern: /^\${|}$/,
+						pattern: /^\$\{|\}$/,
 						alias: 'punctuation'
 					},
 					rest: Prism.languages.javascript

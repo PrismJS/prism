@@ -44,7 +44,7 @@
 			pattern: re(/=<BRACES>/.source),
 			inside: {
 				'script-punctuation': {
-					pattern: /^=(?={)/,
+					pattern: /^=(?=\{)/,
 					alias: 'punctuation'
 				},
 				rest: Prism.languages.jsx

@@ -48,10 +48,10 @@
 			}
 		],
 		'string': {
-			pattern: /^([^=]*=[< ]?)(?:(?!]\n).)*/,
+			pattern: /^([^=]*=[< ]?)(?:(?!\]\n).)*/,
 			lookbehind: true,
 			inside: {
-				'function': /{\$.*}/, // constants include
+				'function': /\{\$.*\}/, // constants include
 				'keyword': keywords,
 				'number': /^[0-9]+$/,
 				'punctuation': /[,|:]/,
@@ -66,7 +66,7 @@
 			}
 		},
 		'tag': {
-			pattern: /\.?[\w-\\]+\.?/,
+			pattern: /\.?[-\w\\]+\.?/,
 			inside: {
 				'punctuation': /\./,
 			}

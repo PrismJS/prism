@@ -2,7 +2,7 @@
 
 	var javascript = Prism.languages.javascript;
 
-	var type = /{(?:[^{}]|{(?:[^{}]|{[^{}]*})*})+}/.source;
+	var type = /\{(?:[^{}]|\{(?:[^{}]|\{[^{}]*\})*\})+\}/.source;
 	var parameterPrefix = '(@(?:param|arg|argument|property)\\s+(?:' + type + '\\s+)?)';
 
 	Prism.languages.jsdoc = Prism.languages.extend('javadoclike', {

@@ -59,7 +59,7 @@
 		alias: 'variable',
 		inside: {
 			'delimiter': {
-				pattern: /^{|}$/,
+				pattern: /^\{|\}$/,
 				alias: 'punctuation'
 			},
 			rest: inside
