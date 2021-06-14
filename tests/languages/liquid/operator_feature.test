@@ -14,6 +14,9 @@
 % %=
 ..
 
+and or
+contains foo
+
 %}
 
 ----------------------------------------------------
@@ -70,6 +73,9 @@
 		["operator", "%="],
 
 		["range", ".."],
+
+		["operator", "and"], ["operator", "or"],
+		["operator", "contains"], " foo\r\n\r\n",
 
 		["delimiter", "%}"]
 	]]

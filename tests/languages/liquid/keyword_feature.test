@@ -6,8 +6,8 @@ break
 capture
 case
 comment
-contains
 continue
+cycle
 decrement
 echo
 else
@@ -51,8 +51,8 @@ with
 		["keyword", "capture"],
 		["keyword", "case"],
 		["keyword", "comment"],
-		["keyword", "contains"],
 		["keyword", "continue"],
+		["keyword", "cycle"],
 		["keyword", "decrement"],
 		["keyword", "echo"],
 		["keyword", "else"],

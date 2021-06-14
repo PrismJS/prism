@@ -1,7 +1,7 @@
 {%
 
 abs append at_least at_most
-capitalize ceil cols compact concat cycle
+capitalize ceil cols compact concat
 date default divided_by downcase
 escape escape_once
 first floor
@@ -33,7 +33,6 @@ uniq upcase url_decode url_encode
 		["function", "cols"],
 		["function", "compact"],
 		["function", "concat"],
-		["function", "cycle"],
 
 		["function", "date"],
 		["function", "default"],
