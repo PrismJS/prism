@@ -17,7 +17,3 @@
 		["delimiter", "%}"]
 	]]
 ]
-
-----------------------------------------------------
-
-Checks for binary, hexadecimal and decimal numbers.
