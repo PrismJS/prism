@@ -12,7 +12,7 @@ Prism.languages.liquid = {
 		pattern: /(^|[\s;|&])(?:append|prepend|capitalize|cols|abs|at_least|at_most|ceil|compact|concat|date|default|divided_by|downcase|escape|escape_once|first|floor|join|last|lstrip|map|minus|modulo|newline_to_br|plus|remove|remove_first|replace|replace_first|reverse|round|rstrip|size|slice|sort|sort_natural|split|strip|strip_html|strip_newlines|times|truncate|truncatewords|uniq|upcase|url_decode|url_encode)(?=$|[\s;:|&])/,
 		lookbehind: true
 	},
-	'boolean': /\b(?:true|false)\b/,
+	'boolean': /\b(?:true|false|nil)\b/,
 	'range': {
 		pattern: /\.\./,
 		alias: 'operator'

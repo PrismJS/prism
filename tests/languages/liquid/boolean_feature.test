@@ -1,5 +1,7 @@
 {% if true and false and false or true %}
 
+{% nil %}
+
 ----------------------------------------------------
 
 [
@@ -13,6 +15,12 @@
 		["boolean", "false"],
 		["operator", "or"],
 		["boolean", "true"],
+		["delimiter", "%}"]
+	]],
+
+	["liquid", [
+		["delimiter", "{%"],
+		["boolean", "nil"],
 		["delimiter", "%}"]
 	]]
 ]
