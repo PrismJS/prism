@@ -12,10 +12,18 @@ Prism.languages.liquid = {
 		greedy: true
 	},
 	'keyword': /\b(?:as|assign|break|continue|cycle|decrement|echo|else|elsif|(?:end)?(?:capture|case|comment|for|form|if|paginate|style|raw|tablerow|unless)|in|include|increment|limit|liquid|offset|range|render|reversed|section|when|with)\b/,
-	'function': {
-		pattern: /(^|[\s;|&])(?:append|prepend|capitalize|cols|abs|at_least|at_most|ceil|compact|concat|date|default|divided_by|downcase|escape|escape_once|first|floor|join|last|lstrip|map|minus|modulo|newline_to_br|plus|remove|remove_first|replace|replace_first|reverse|round|rstrip|size|slice|sort|sort_natural|split|strip|strip_html|strip_newlines|times|truncate|truncatewords|uniq|upcase|url_decode|url_encode)(?=$|[\s;:|&])/,
-		lookbehind: true
-	},
+	'function': [
+		{
+			pattern: /(\|\s*)\w+/,
+			lookbehind: true,
+			alias: 'filter'
+		},
+		{
+			// array functions
+			pattern: /(\.\s*)(?:first|last|size)/,
+			lookbehind: true
+		}
+	],
 	'boolean': /\b(?:true|false|nil)\b/,
 	'range': {
 		pattern: /\.\./,

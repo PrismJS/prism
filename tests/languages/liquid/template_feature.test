@@ -82,7 +82,7 @@
 		["operator", "and"],
 		" username",
 		["punctuation", "."],
-		"size ",
+		["function", "size"],
 		["operator", ">"],
 		["number", "10"],
 		["delimiter", "-%}"]
