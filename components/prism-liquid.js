@@ -1,4 +1,8 @@
 Prism.languages.liquid = {
+	'comment': {
+		pattern: /(^\{%\s*comment\s*%\})[\s\S]+(?=\{%\s*endcomment\s*%\}$)/,
+		lookbehind: true
+	},
 	'delimiter': {
 		pattern: /^\{(?:\{\{|[%\{])-?|-?(?:\}\}|[%\}])\}$/,
 		alias: 'punctuation'
@@ -24,7 +28,7 @@ Prism.languages.liquid = {
 };
 
 Prism.hooks.add('before-tokenize', function (env) {
-	var liquidPattern = /\{(?:%[\s\S]*?%|\{\{[\s\S]*?\}\}|\{[\s\S]*?\})\}/g;
+	var liquidPattern = /\{%\s*comment\s*%\}[\s\S]*?\{%\s*endcomment\s*%\}|\{(?:%[\s\S]*?%|\{\{[\s\S]*?\}\}|\{[\s\S]*?\})\}/g;
 	Prism.languages['markup-templating'].buildPlaceholders(env, 'liquid', liquidPattern);
 });
 
