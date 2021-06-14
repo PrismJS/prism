@@ -9,7 +9,7 @@ join
 last lstrip
 map minus modulo
 newline_to_br
-paginate plus prepend
+plus prepend
 remove remove_first replace replace_first reverse round rstrip
 size slice sort sort_natural split strip strip_html strip_newlines
 times truncate truncatewords
@@ -56,7 +56,6 @@ uniq upcase url_decode url_encode
 
 		["function", "newline_to_br"],
 
-		["function", "paginate"],
 		["function", "plus"],
 		["function", "prepend"],
 

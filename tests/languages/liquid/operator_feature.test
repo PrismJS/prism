@@ -1,17 +1,7 @@
 {%
 
-+ ++ +=
-- -- -=
-! !=
-< << <= <<=
-> >> >>> >= >>= >>>=
-= ==
-& && &=
-| || |=
-? : ~
-* *=
-/ /=
-% %=
+== != <> < <= > >=
+| : ? - =
 ..
 
 and or
@@ -25,52 +15,19 @@ contains foo
 	["liquid", [
 		["delimiter", "{%"],
 
-		["operator", "+"],
-		["operator", "++"],
-		["operator", "+="],
-
-		["operator", "-"],
-		["operator", "--"],
-		["operator", "-="],
-
-		["operator", "!"],
-		["operator", "!="],
-
-		["operator", "<"],
-		["operator", "<<"],
-		["operator", "<="],
-		["operator", "<<="],
-
-		["operator", ">"],
-		["operator", ">>"],
-		["operator", ">>>"],
-		["operator", ">="],
-		["operator", ">>="],
-		["operator", ">>>="],
-
-		["operator", "="],
 		["operator", "=="],
-
-		["operator", "&"],
-		["operator", "&&"],
-		["operator", "&="],
+		["operator", "!="],
+		["operator", "<>"],
+		["operator", "<"],
+		["operator", "<="],
+		["operator", ">"],
+		["operator", ">="],
 
 		["operator", "|"],
-		["operator", "||"],
-		["operator", "|="],
-
-		["operator", "?"],
 		["operator", ":"],
-		["operator", "~"],
-
-		["operator", "*"],
-		["operator", "*="],
-
-		["operator", "/"],
-		["operator", "/="],
-
-		["operator", "%"],
-		["operator", "%="],
+		["operator", "?"],
+		["operator", "-"],
+		["operator", "="],
 
 		["range", ".."],
 

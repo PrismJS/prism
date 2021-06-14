@@ -16,11 +16,14 @@ endcapture
 endcase
 endcomment
 endfor
+endform
 endif
+endpaginate
 endraw
 endtablerow
 endunless
 for
+form
 if
 in
 include
@@ -28,6 +31,7 @@ increment
 limit
 liquid
 offset
+paginate
 range
 raw
 render
@@ -61,11 +65,14 @@ with
 		["keyword", "endcase"],
 		["keyword", "endcomment"],
 		["keyword", "endfor"],
+		["keyword", "endform"],
 		["keyword", "endif"],
+		["keyword", "endpaginate"],
 		["keyword", "endraw"],
 		["keyword", "endtablerow"],
 		["keyword", "endunless"],
 		["keyword", "for"],
+		["keyword", "form"],
 		["keyword", "if"],
 		["keyword", "in"],
 		["keyword", "include"],
@@ -73,6 +80,7 @@ with
 		["keyword", "limit"],
 		["keyword", "liquid"],
 		["keyword", "offset"],
+		["keyword", "paginate"],
 		["keyword", "range"],
 		["keyword", "raw"],
 		["keyword", "render"],
