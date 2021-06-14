@@ -677,7 +677,8 @@
 				"css-extras",
 				"graphql",
 				"markdown",
-				"markup"
+				"markup",
+				"sql"
 			],
 			"owner": "RunDevelopment"
 		},
