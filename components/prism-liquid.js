@@ -29,7 +29,23 @@ Prism.languages.liquid = {
 
 Prism.hooks.add('before-tokenize', function (env) {
 	var liquidPattern = /\{%\s*comment\s*%\}[\s\S]*?\{%\s*endcomment\s*%\}|\{(?:%[\s\S]*?%|\{\{[\s\S]*?\}\}|\{[\s\S]*?\})\}/g;
-	Prism.languages['markup-templating'].buildPlaceholders(env, 'liquid', liquidPattern);
+	var insideRaw = false;
+
+	Prism.languages['markup-templating'].buildPlaceholders(env, 'liquid', liquidPattern, function (match) {
+		var tagMatch = /^\{%-?\s*(\w+)/.exec(match);
+		if (tagMatch) {
+			var tag = tagMatch[1];
+			if (tag === 'raw' && !insideRaw) {
+				insideRaw = true;
+				return true;
+			} else if (tag === 'endraw') {
+				insideRaw = false;
+				return true;
+			}
+		}
+
+		return !insideRaw;
+	});
 });
 
 Prism.hooks.add('after-tokenize', function (env) {
