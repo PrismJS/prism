@@ -88,6 +88,7 @@
 		],
 		"less": "css",
 		"lilypond": "scheme",
+		"liquid": "markup-templating",
 		"markdown": "markup",
 		"markup-templating": "markup",
 		"mongodb": "javascript",

@@ -1,0 +1,31 @@
+{{ this }}
+{% raw %}
+In Handlebars, {{ this }} will be HTML-escaped, but {{{ that }}} will not.
+{% endraw %}
+{{ this }}
+
+----------------------------------------------------
+
+[
+	["liquid", [
+		["delimiter", "{{"],
+		" this ",
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{%"],
+		["keyword", "raw"],
+		["delimiter", "%}"]
+	]],
+	"\r\nIn Handlebars, {{ this }} will be HTML-escaped, but {{{ that }}} will not.\r\n",
+	["liquid", [
+		["delimiter", "{%"],
+		["keyword", "endraw"],
+		["delimiter", "%}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		" this ",
+		["delimiter", "}}"]
+	]]
+]
