@@ -55,7 +55,7 @@ Prism.languages.graphql = {
 	'keyword': /\b(?:directive|enum|extend|fragment|implements|input|interface|mutation|on|query|repeatable|scalar|schema|subscription|type|union)\b/,
 	'operator': /[!=|&]|\.{3}/,
 	'property-query': /\w+(?=\s*\()/,
-	'object': /\w+(?=\s*{)/,
+	'object': /\w+(?=\s*\{)/,
 	'punctuation': /[!(){}\[\]:=,]/,
 	'property': /\w+/
 };
@@ -192,7 +192,7 @@ Prism.hooks.add('after-tokenize', function afterTokenizeGraphql(env) {
 				addAlias(getToken(0), 'property-mutation');
 
 				if (inputVariables.length > 0) {
-					var mutationEnd = findClosingBracket(/^{$/, /^}$/);
+					var mutationEnd = findClosingBracket(/^\{$/, /^\}$/);
 					if (mutationEnd === -1) {
 						continue;
 					}
