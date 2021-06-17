@@ -66,7 +66,6 @@ module.exports = {
 
 		function updateFile() {
 			// change the file
-			const lineEnd = (/\r\n/.test(testCase.code) || !/\n/.test(testCase.code)) ? '\r\n' : '\n';
 			const separator = '\n\n----------------------------------------------------\n\n';
 			const pretty = TokenStreamTransformer.prettyprint(tokenStream, '\t');
 
@@ -75,7 +74,9 @@ module.exports = {
 				content += separator + testCase.comment.trim();
 			}
 			content += '\n';
-			content = content.replace(/\r?\n/g, lineEnd);
+
+			// convert line ends to the line ends of the file
+			content = content.replace(/\r\n?|\n/g, testCase.lineEndOnDisk);
 
 			fs.writeFileSync(filePath, content, 'utf-8');
 		}
@@ -202,6 +203,7 @@ module.exports = {
 	 * @returns {ParsedTestCase}
 	 *
 	 * @typedef ParsedTestCase
+	 * @property {string} lineEndOnDisk The EOL format used by the parsed file.
 	 * @property {string} code
 	 * @property {string} expectedJson
 	 * @property {number} expectedLineOffset
@@ -209,7 +211,11 @@ module.exports = {
 	 * @property {string} comment
 	 */
 	parseTestCaseFile(filePath) {
-		const testCaseSource = fs.readFileSync(filePath, 'utf8');
+		let testCaseSource = fs.readFileSync(filePath, 'utf8');
+		const lineEndOnDisk = (/\r\n?|\n/.exec(testCaseSource) || ['\n'])[0];
+		// normalize line ends to \r\n
+		testCaseSource = testCaseSource.replace(/\r\n?|\n/g, '\r\n');
+
 		const testCaseParts = testCaseSource.split(/^-{10,}[ \t]*$/m);
 
 		if (testCaseParts.length > 3) {
@@ -221,9 +227,10 @@ module.exports = {
 		const comment = (testCaseParts[2] || '').trimStart();
 
 		const testCase = {
+			lineEndOnDisk,
 			code,
 			expectedJson: expected,
-			expectedLineOffset: code.split(/\r\n?|\n/g).length,
+			expectedLineOffset: code.split(/\r\n/g).length,
 			expectedTokenStream: expected ? JSON.parse(expected) : null,
 			comment
 		};

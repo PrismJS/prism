@@ -4,15 +4,15 @@
 """this is a "test".
 This is only a test."""
 
--------------------------------------------------------------------------
+----------------------------------------------------
 
 [
 	["string", "\"\""],
 	["triple-quoted-string", "\"\"\"\"\"\""],
 	["string", "\"this is a \\\"test\\\".\\nThis is only a test.\""],
-	["triple-quoted-string", "\"\"\"this is a \"test\".\nThis is only a test.\"\"\""]
+	["triple-quoted-string", "\"\"\"this is a \"test\".\r\nThis is only a test.\"\"\""]
 ]
 
--------------------------------------------------------------------------
+----------------------------------------------------
 
 Check strings.

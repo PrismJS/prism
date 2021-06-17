@@ -8,7 +8,7 @@
 ----------------------------------------------------
 
 [
-	"/**\n * ",
+	"/**\r\n * ",
 	["keyword", "@param"],
 	["class-name", [
 		["keyword", "string"],
@@ -16,12 +16,13 @@
 		["keyword", "null"]
 	]],
 	["parameter", "$parameter"],
-	" a parameter\n * ",
+	" a parameter\r\n * ",
 	["keyword", "@return"],
 	["class-name", [
 		["keyword", "self"]
 	]],
-	"\n * ",
+
+	"\r\n * ",
 	["keyword", "@var"],
 	["class-name", [
 		"MyClass",
@@ -29,7 +30,8 @@
 		["keyword", "int"],
 		["punctuation", "]"]
 	]],
-	"\n * ",
+
+	"\r\n * ",
 	["keyword", "@throws"],
 	["class-name", [
 		["punctuation", "\\"],
@@ -37,7 +39,7 @@
 		["punctuation", "\\"],
 		"MyException"
 	]],
-	" if something bad happens\n */"
+	" if something bad happens\r\n */"
 ]
 
 ----------------------------------------------------

@@ -7,21 +7,26 @@ end
 ----------------------------------------------------
 
 [
-	["keyword", "defmodule"], ["module", "Math"], ["keyword", "do"],
+	["keyword", "defmodule"],
+	["module", "Math"],
+	["keyword", "do"],
 
-    ["keyword", "def"],
-    ["function", "sum"],
-    ["punctuation", "("],
-    "a",
-    ["punctuation", ","],
-    " b",
-    ["punctuation", ")"],
-    ["keyword", "do"],
+	["keyword", "def"],
+	["function", "sum"],
+	["punctuation", "("],
+	"a",
+	["punctuation", ","],
+	" b",
+	["punctuation", ")"],
+	["keyword", "do"],
 
-    "\n    a ", ["operator", "+"], " b\n  ",
+	"\r\n    a ",
+	["operator", "+"],
+	" b\r\n  ",
 
-    ["keyword", "end"],
-  ["keyword", "end"]
+	["keyword", "end"],
+
+	["keyword", "end"]
 ]
 
 ----------------------------------------------------

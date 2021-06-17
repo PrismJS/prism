@@ -13,7 +13,7 @@ payload.myFunction(1,2,3)
 	["number", "123"],
 	["punctuation", ")"],
 
-	"\npayload",
+	"\r\npayload",
 	["punctuation", "."],
 	["function", "myFunction"],
 	["punctuation", "("],
@@ -24,5 +24,7 @@ payload.myFunction(1,2,3)
 	["number", "3"],
 	["punctuation", ")"]
 ]
+
 ----------------------------------------------------
+
 Check for functions

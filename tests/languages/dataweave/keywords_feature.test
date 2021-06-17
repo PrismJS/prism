@@ -42,7 +42,7 @@ payload match {
 	["keyword", "type"],
 	" T ",
 	["operator", "="],
-	" String\n",
+	" String\r\n",
 
 	["keyword", "fun"],
 	["function", "test"],
@@ -73,7 +73,7 @@ payload match {
 	["operator", "->"],
 	" x ",
 	["keyword", "as"],
-	" String\n",
+	" String\r\n",
 
 	["punctuation", "}"],
 
@@ -105,7 +105,7 @@ payload match {
 
 	["keyword", "else"],
 
-	" \npayload ",
+	" \r\npayload ",
 	["keyword", "match"],
 	["punctuation", "{"],
 
@@ -116,9 +116,11 @@ payload match {
 	["operator", "->"],
 	"  x ",
 	["keyword", "as"],
-	" String\n",
+	" String\r\n",
 
 	["punctuation", "}"]
 ]
+
 ----------------------------------------------------
+
 Check for keywords

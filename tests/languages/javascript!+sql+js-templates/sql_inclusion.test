@@ -1,0 +1,36 @@
+const users = await sql`
+  SELECT * FROM users WHERE id = ${id}
+`;
+
+----------------------------------------------------
+
+[
+	["keyword", "const"],
+	" users ",
+	["operator", "="],
+	["keyword", "await"],
+	" sql",
+	["template-string", [
+		["template-punctuation", "`"],
+		["sql", [
+			["keyword", "SELECT"],
+			["operator", "*"],
+			["keyword", "FROM"],
+			" users ",
+			["keyword", "WHERE"],
+			" id ",
+			["operator", "="],
+			["interpolation", [
+				["interpolation-punctuation", "${"],
+				"id",
+				["interpolation-punctuation", "}"]
+			]]
+		]],
+		["template-punctuation", "`"]
+	]],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for tagged template literals containing SQL code.
