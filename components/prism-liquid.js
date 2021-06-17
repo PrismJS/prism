@@ -1,12 +1,61 @@
 Prism.languages.liquid = {
-	'keyword': /\b(?:assign|break|capture|case|comment|continue|else|elsif|endcapture|endcase|endcomment|endfor|endif|endraw|endtablerow|endunless|for|if|in|limit|offset|range|raw|reversed|tablerow|unless|when)\b/,
-	'number': /\b0b[01]+\b|\b0x(?:\.[\da-fp-]+|[\da-f]+(?:\.[\da-fp-]+)?)\b|(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:e[+-]?\d+)?[df]?/i,
-	'operator': {
-		pattern: /(^|[^.])(?:\+[+=]?|-[-=]?|!=?|<<?=?|>>?>?=?|==?|&[&=]?|\|[|=]?|\*=?|\/=?|%=?|\^=?|[?:~])/m,
+	'comment': {
+		pattern: /(^\{%\s*comment\s*%\})[\s\S]+(?=\{%\s*endcomment\s*%\}$)/,
 		lookbehind: true
 	},
-	'function': {
-		pattern: /(^|[\s;|&])(?:abs|append|at_least|at_most|capitalize|ceil|cols|compact|concat|cycle|date|decrement|default|divided_by|downcase|escape|escape_once|first|floor|include|increment|join|last|lstrip|map|minus|modulo|newline_to_br|paginate|plus|prepend|remove|remove_first|replace|replace_first|reverse|round|rstrip|size|slice|sort|sort_natural|split|strip|strip_html|strip_newlines|times|truncate|truncatewords|uniq|upcase|url_decode|url_encode)(?=$|[\s;|&])/,
-		lookbehind: true
-	}
+	'delimiter': {
+		pattern: /^\{(?:\{\{|[%\{])-?|-?(?:\}\}|[%\}])\}$/,
+		alias: 'punctuation'
+	},
+	'string': {
+		pattern: /"[^"]*"|'[^']*'/,
+		greedy: true
+	},
+	'keyword': /\b(?:as|assign|break|(?:end)?(?:capture|case|comment|for|form|if|paginate|raw|style|tablerow|unless)|continue|cycle|decrement|echo|else|elsif|in|include|increment|limit|liquid|offset|range|render|reversed|section|when|with)\b/,
+	'function': [
+		{
+			pattern: /(\|\s*)\w+/,
+			lookbehind: true,
+			alias: 'filter'
+		},
+		{
+			// array functions
+			pattern: /(\.\s*)(?:first|last|size)/,
+			lookbehind: true
+		}
+	],
+	'boolean': /\b(?:false|nil|true)\b/,
+	'range': {
+		pattern: /\.\./,
+		alias: 'operator'
+	},
+	// https://github.com/Shopify/liquid/blob/698f5e0d967423e013f6169d9111bd969bd78337/lib/liquid/lexer.rb#L21
+	'number': /\b\d+(?:\.\d+)?\b/,
+	'operator': /[!=]=|<>|[<>]=?|[|?:=-]|\b(?:and|contains(?=\s)|or)\b/,
+	'punctuation': /[.,\[\]()]/
 };
+
+Prism.hooks.add('before-tokenize', function (env) {
+	var liquidPattern = /\{%\s*comment\s*%\}[\s\S]*?\{%\s*endcomment\s*%\}|\{(?:%[\s\S]*?%|\{\{[\s\S]*?\}\}|\{[\s\S]*?\})\}/g;
+	var insideRaw = false;
+
+	Prism.languages['markup-templating'].buildPlaceholders(env, 'liquid', liquidPattern, function (match) {
+		var tagMatch = /^\{%-?\s*(\w+)/.exec(match);
+		if (tagMatch) {
+			var tag = tagMatch[1];
+			if (tag === 'raw' && !insideRaw) {
+				insideRaw = true;
+				return true;
+			} else if (tag === 'endraw') {
+				insideRaw = false;
+				return true;
+			}
+		}
+
+		return !insideRaw;
+	});
+});
+
+Prism.hooks.add('after-tokenize', function (env) {
+	Prism.languages['markup-templating'].tokenizePlaceholders(env, 'liquid');
+});

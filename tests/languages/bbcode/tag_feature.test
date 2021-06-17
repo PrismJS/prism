@@ -29,6 +29,7 @@
 		]],
 		["punctuation", "]"]
 	]],
+
 	["tag", [
 		["tag", [
 			["punctuation", "["],
@@ -36,7 +37,8 @@
 		]],
 		["punctuation", "]"]
 	]],
-	"Entry A\n  ",
+	"Entry A\r\n  ",
+
 	["tag", [
 		["tag", [
 			["punctuation", "["],
@@ -44,7 +46,8 @@
 		]],
 		["punctuation", "]"]
 	]],
-	"Entry B\n",
+	"Entry B\r\n",
+
 	["tag", [
 		["tag", [
 			["punctuation", "[/"],
@@ -64,6 +67,7 @@
 		]],
 		["punctuation", "]"]
 	]],
+
 	["tag", [
 		["tag", [
 			["punctuation", "["],
@@ -71,7 +75,8 @@
 		]],
 		["punctuation", "]"]
 	]],
-	"Entry 1\n  ",
+	"Entry 1\r\n  ",
+
 	["tag", [
 		["tag", [
 			["punctuation", "["],
@@ -79,7 +84,8 @@
 		]],
 		["punctuation", "]"]
 	]],
-	"Entry 2\n",
+	"Entry 2\r\n",
+
 	["tag", [
 		["tag", [
 			["punctuation", "[/"],
@@ -110,7 +116,8 @@
 		]],
 		["punctuation", "]"]
 	]],
-	" or\n",
+	" or\r\n",
+
 	["tag", [
 		["tag", [
 			["punctuation", "["],
@@ -131,7 +138,8 @@
 		]],
 		["punctuation", "]"]
 	]],
-	" or\n",
+	" or\r\n",
+
 	["tag", [
 		["tag", [
 			["punctuation", "["],
@@ -151,6 +159,7 @@
 		]],
 		["punctuation", "]"]
 	]],
+
 	["tag", [
 		["tag", [
 			["punctuation", "["],
@@ -166,6 +175,7 @@
 		]],
 		["punctuation", "]"]
 	]],
+
 	["tag", [
 		["tag", [
 			["punctuation", "["],
@@ -211,6 +221,7 @@
 		]],
 		["punctuation", "]"]
 	]],
+
 	["tag", [
 		["tag", [
 			["punctuation", "["],

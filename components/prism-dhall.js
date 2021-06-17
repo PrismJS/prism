@@ -59,7 +59,7 @@ Prism.languages.dhall = {
 
 	'boolean': /\b(?:False|True)\b/,
 	'number': /\bNaN\b|-?\bInfinity\b|[+-]?\b(?:0x[\da-fA-F]+|\d+(?:\.\d+)?(?:e[+-]?\d+)?)\b/,
-	'operator': /\/\\|\/\/\\\\|&&|\|\||[!=]=|===|\/\/|->|\+\+|::|[+*#@=:?<>|\\\u2227\u2a53\u2261\u2afd\u03bb\u2192]/,
+	'operator': /\/\\|\/\/\\\\|&&|\|\||===|[!=]=|\/\/|->|\+\+|::|[+*#@=:?<>|\\\u2227\u2a53\u2261\u2afd\u03bb\u2192]/,
 	'punctuation': /\.\.|[{}\[\](),./]/,
 
 	// we'll just assume that every capital word left is a type name

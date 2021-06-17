@@ -6,7 +6,8 @@ END_VAR
 
 [
 	["class-name", "VAR"],
-	"\n    varname ",
+
+	"\r\n    varname ",
 	["keyword", "AT"],
 	["symbol", "%QX1.0.0"],
 	["operator", ":"],
@@ -14,6 +15,7 @@ END_VAR
 	["operator", ":="],
 	["boolean", "TRUE"],
 	["punctuation", ";"],
+
 	["class-name", "END_VAR"]
 ]
 

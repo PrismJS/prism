@@ -63,6 +63,9 @@
 		// gql`...`, graphql`...`, graphql.experimental`...`
 		createTemplate('graphql', /\b(?:gql|graphql(?:\s*\.\s*experimental)?)/.source),
 
+		// sql`...`
+		createTemplate('sql', /\bsql/.source),
+
 		// vanilla template string
 		templateString
 	].filter(Boolean);

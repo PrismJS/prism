@@ -25,9 +25,7 @@ foo.Bar = function() {};
 
 	["maybe-class-name", "Baz"],
 	["punctuation", "."],
-	["method", [
-		"foo"
-	]],
+	["method", ["foo"]],
 	["punctuation", "("],
 	["punctuation", ")"],
 	["punctuation", ";"],
@@ -44,7 +42,7 @@ foo.Bar = function() {};
 	["punctuation", "}"],
 	["punctuation", ";"],
 
-	"\nfoo",
+	"\r\nfoo",
 	["punctuation", "."],
 	["method-variable", [
 		["maybe-class-name", "Bar"]

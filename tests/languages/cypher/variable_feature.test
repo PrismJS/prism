@@ -5,9 +5,7 @@ a.$name
 
 [
 	["variable", "$name"],
-	"\na",
-	["punctuation", "."],
-	["variable", "$name"]
+	"\r\na", ["punctuation", "."], ["variable", "$name"]
 ]
 
 ----------------------------------------------------

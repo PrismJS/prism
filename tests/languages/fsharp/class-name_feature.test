@@ -34,51 +34,172 @@ exception Error2 of string * int
 ----------------------------------------------------
 
 [
-	["keyword", "let"], " func ",
-	["punctuation", ":"], ["class-name", ["HttpFunc"]],
-	["operator", "="], " handler ", ["punctuation", "("],
-	"Some ", ["operator", ">>"], " Task", ["punctuation", "."], "FromResult",
+	["keyword", "let"],
+	" func ",
+	["punctuation", ":"],
+	["class-name", ["HttpFunc"]],
+	["operator", "="],
+	" handler ",
+	["punctuation", "("],
+	"Some ",
+	["operator", ">>"],
+	" Task",
+	["punctuation", "."],
+	"FromResult",
 	["punctuation", ")"],
 
-	["keyword", "type"], ["class-name", ["Base1"]], ["punctuation", "("], ["punctuation", ")"], ["operator", "="],
-	["keyword", "abstract"], ["keyword", "member"], " F ", ["punctuation", ":"],
+	["keyword", "type"],
+	["class-name", ["Base1"]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["operator", "="],
+
+	["keyword", "abstract"],
+	["keyword", "member"],
+	" F ",
+	["punctuation", ":"],
 	["class-name", [
-		"unit ", ["operator", "->"], " unit"]
-	],
-	["keyword", "default"], " u", ["punctuation", "."], ["function", "F"], ["punctuation", "("], ["punctuation", ")"],
-	["operator", "="], "\n        printfn ", ["string", "\"F Base1\""],
+		"unit ",
+		["operator", "->"],
+		" unit"
+	]],
 
-	["keyword", "type"], ["class-name", ["Derived1"]], ["punctuation", "("], ["punctuation", ")"], ["operator", "="],
-	["keyword", "inherit"], ["class-name", ["Base1"]], ["punctuation", "("], ["punctuation", ")"],
-	["keyword", "override"], " u", ["punctuation", "."], ["function", "F"], ["punctuation", "("], ["punctuation", ")"], ["operator", "="],
-	"\n        printfn ", ["string", "\"F Derived1\""],
+	["keyword", "default"],
+	" u",
+	["punctuation", "."],
+	["function", "F"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["operator", "="],
 
-	["keyword", "let"], " d1 ", ["punctuation", ":"], ["class-name", ["Derived1"]], ["operator", "="],
-	["function", "Derived1"], ["punctuation", "("], ["punctuation", ")"],
+	"\r\n        printfn ",
+	["string", "\"F Base1\""],
 
-	["keyword", "let"], " base1 ", ["operator", "="], " d1 ", ["operator", ":>"], ["class-name", ["Base1"]],
+	["keyword", "type"],
+	["class-name", ["Derived1"]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["operator", "="],
 
-	["keyword", "let"], " derived1 ", ["operator", "="], " base1 ", ["operator", ":?>"], ["class-name", ["Derived1"]],
+	["keyword", "inherit"],
+	["class-name", ["Base1"]],
+	["punctuation", "("],
+	["punctuation", ")"],
 
-	["keyword", "type"], ["class-name", ["PersonName"]], ["operator", "="],
-	["operator", "|"], " FirstOnly ", ["keyword", "of"], ["class-name", ["string"]],
-	["operator", "|"], " LastOnly ", ["keyword", "of"], ["class-name", ["string"]],
-	["operator", "|"], " FirstLast ", ["keyword", "of"], ["class-name", ["string ", ["operator", "*"], " string"]],
+	["keyword", "override"],
+	" u",
+	["punctuation", "."],
+	["function", "F"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["operator", "="],
 
-	["keyword", "type"], ["class-name", ["Shape"]], ["operator", "="],
-	["operator", "|"], " Rectangle ", ["keyword", "of"],
-	" height ", ["punctuation", ":"], ["class-name", ["float"]], ["operator", "*"],
-	" width ", ["punctuation", ":"], ["class-name", ["float"]],
-	["operator", "|"], " Circle ", ["keyword", "of"], " radius ", ["punctuation", ":"], ["class-name", ["float"]],
+	"\r\n        printfn ",
+	["string", "\"F Derived1\""],
 
-	["keyword", "type"], ["class-name", ["MyInterface"]], ["operator", "="],
-	["keyword", "abstract"], ["keyword", "member"], " Add", ["punctuation", ":"],
-	["class-name", ["int ", ["operator", "->"], " int ", ["operator", "->"], " int"]],
-	["keyword", "abstract"], ["keyword", "member"], " Pi ", ["punctuation", ":"], ["class-name", ["float"]],
+	["keyword", "let"],
+	" d1 ",
+	["punctuation", ":"],
+	["class-name", ["Derived1"]],
+	["operator", "="],
+	["function", "Derived1"],
+	["punctuation", "("],
+	["punctuation", ")"],
 
-	["keyword", "exception"], ["class-name", ["Error1"]], ["keyword", "of"], ["class-name", ["string"]],
+	["keyword", "let"],
+	" base1 ",
+	["operator", "="],
+	" d1 ",
+	["operator", ":>"],
+	["class-name", ["Base1"]],
 
-	["keyword", "exception"], ["class-name", ["Error2"]], ["keyword", "of"], ["class-name", ["string ", ["operator", "*"], " int"]]
+	["keyword", "let"],
+	" derived1 ",
+	["operator", "="],
+	" base1 ",
+	["operator", ":?>"],
+	["class-name", ["Derived1"]],
+
+	["keyword", "type"],
+	["class-name", ["PersonName"]],
+	["operator", "="],
+
+	["operator", "|"],
+	" FirstOnly ",
+	["keyword", "of"],
+	["class-name", ["string"]],
+
+	["operator", "|"],
+	" LastOnly ",
+	["keyword", "of"],
+	["class-name", ["string"]],
+
+	["operator", "|"],
+	" FirstLast ",
+	["keyword", "of"],
+	["class-name", [
+		"string ",
+		["operator", "*"],
+		" string"
+	]],
+
+	["keyword", "type"],
+	["class-name", ["Shape"]],
+	["operator", "="],
+
+	["operator", "|"],
+	" Rectangle ",
+	["keyword", "of"],
+	" height ",
+	["punctuation", ":"],
+	["class-name", ["float"]],
+	["operator", "*"],
+	" width ",
+	["punctuation", ":"],
+	["class-name", ["float"]],
+
+	["operator", "|"],
+	" Circle ",
+	["keyword", "of"],
+	" radius ",
+	["punctuation", ":"],
+	["class-name", ["float"]],
+
+	["keyword", "type"],
+	["class-name", ["MyInterface"]],
+	["operator", "="],
+
+	["keyword", "abstract"],
+	["keyword", "member"],
+	" Add",
+	["punctuation", ":"],
+	["class-name", [
+		"int ",
+		["operator", "->"],
+		" int ",
+		["operator", "->"],
+		" int"
+	]],
+
+	["keyword", "abstract"],
+	["keyword", "member"],
+	" Pi ",
+	["punctuation", ":"],
+	["class-name", ["float"]],
+
+	["keyword", "exception"],
+	["class-name", ["Error1"]],
+	["keyword", "of"],
+	["class-name", ["string"]],
+
+	["keyword", "exception"],
+	["class-name", ["Error2"]],
+	["keyword", "of"],
+	["class-name", [
+		"string ",
+		["operator", "*"],
+		" int"
+	]]
 ]
 
 ----------------------------------------------------
