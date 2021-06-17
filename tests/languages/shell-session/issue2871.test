@@ -9,8 +9,7 @@ hello
 [
 	["command", [
 		["info", [
-			["user", "fyu@home"],
-			["path", " "]
+			["user", "fyu@home "]
 		]],
 		["shell-symbol", "$"],
 		["bash", [
