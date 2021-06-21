@@ -6,6 +6,8 @@ defimpl defmodule
 defp
 defprotocol
 defdelegate
+defmacro quote unquote
+defn defnp
 defstruct do else
 end fn for if
 import not or
