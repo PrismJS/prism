@@ -7,8 +7,8 @@
   "scripts": {
     "build": "gulp",
     "start": "http-server -c-1",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "lint": "eslint . --cache",
+    "lint:fix": "npm run lint -- --fix",
     "lint:ci": "eslint . --max-warnings 0",
     "test:aliases": "mocha tests/aliases-test.js",
     "test:core": "mocha tests/core/**/*.js",
