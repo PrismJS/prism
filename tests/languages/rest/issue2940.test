@@ -24,7 +24,7 @@ or ``ALTER_ROLE``
 		["punctuation", "`_"]
 	]],
 
-	"\nor ",
+	"\r\nor ",
 	["inline", [
 		["punctuation", "``"],
 		["inline-literal", "ALTER_ROLE"],
