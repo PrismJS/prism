@@ -43,12 +43,12 @@ Prism.languages.graphql = {
 		alias: 'function'
 	},
 	'definition-mutation': {
-		pattern: /(\bmutation\s+|\.{3}\s*)[a-zA-Z_]\w*/,
+		pattern: /(\bmutation\s+)[a-zA-Z_]\w*/,
 		lookbehind: true,
 		alias: 'function'
 	},
 	'definition-query': {
-		pattern: /(\bquery\s+|\.{3}\s*)[a-zA-Z_]\w*/,
+		pattern: /(\bquery\s+)[a-zA-Z_]\w*/,
 		lookbehind: true,
 		alias: 'function'
 	},
