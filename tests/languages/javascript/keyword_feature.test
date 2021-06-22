@@ -54,10 +54,14 @@ import {} from "foo"
 import {} from 'foo'
 class { get foo(){} set baz(){} get [value](){} }
 
+// import assertion
+import json from "./foo.json" assert { type: "json" };
+
 // variables, not keywords
 
 const { async, from, to } = bar;
 promise.catch(foo).finally(bar);
+assert.equal(foo, bar);
 
 ----------------------------------------------------
 
@@ -195,6 +199,20 @@ promise.catch(foo).finally(bar);
 	["punctuation", "}"],
 	["punctuation", "}"],
 
+	["comment", "// import assertion"],
+
+	["keyword", "import"],
+	" json ",
+	["keyword", "from"],
+	["string", "\"./foo.json\""],
+	["keyword", "assert"],
+	["punctuation", "{"],
+	" type",
+	["operator", ":"],
+	["string", "\"json\""],
+	["punctuation", "}"],
+	["punctuation", ";"],
+
 	["comment", "// variables, not keywords"],
 
 	["keyword", "const"],
@@ -219,6 +237,16 @@ promise.catch(foo).finally(bar);
 	["function", "finally"],
 	["punctuation", "("],
 	"bar",
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	"\r\nassert",
+	["punctuation", "."],
+	["function", "equal"],
+	["punctuation", "("],
+	"foo",
+	["punctuation", ","],
+	" bar",
 	["punctuation", ")"],
 	["punctuation", ";"]
 ]

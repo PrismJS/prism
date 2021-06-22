@@ -57,7 +57,7 @@ module.exports = {
 
 		// regexp
 		'regexp/no-assertion-capturing-group': 'error',
-		// 'regexp/no-dupe-disjunctions': 'error',
+		'regexp/no-dupe-disjunctions': 'error',
 		'regexp/no-empty-alternative': 'error',
 		'regexp/no-empty-lookarounds-assertion': 'error',
 		'regexp/no-lazy-ends': 'error',

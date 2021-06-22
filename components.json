@@ -677,7 +677,8 @@
 				"css-extras",
 				"graphql",
 				"markdown",
-				"markup"
+				"markup",
+				"sql"
 			],
 			"owner": "RunDevelopment"
 		},
@@ -731,6 +732,7 @@
 		},
 		"liquid": {
 			"title": "Liquid",
+			"require": "markup-templating",
 			"owner": "cinhtau"
 		},
 		"lisp": {

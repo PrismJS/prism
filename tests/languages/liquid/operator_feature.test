@@ -1,31 +1,41 @@
-+ ++ +=
-- -- -=
-! !=
-< << <= <<=
-> >> >>> >= >>= >>>=
-= ==
-& && &=
-| || |=
-? : ~
-* *=
-/ /=
-% %=
+{%
+
+== != <> < <= > >=
+| : ? - =
+..
+
+and or
+contains foo
+
+%}
 
 ----------------------------------------------------
 
 [
-	["operator", "+"], ["operator", "++"], ["operator", "+="],
-	["operator", "-"], ["operator", "--"], ["operator", "-="],
-	["operator", "!"], ["operator", "!="],
-	["operator", "<"], ["operator", "<<"], ["operator", "<="], ["operator", "<<="],
-	["operator", ">"], ["operator", ">>"], ["operator", ">>>"], ["operator", ">="], ["operator", ">>="], ["operator", ">>>="],
-	["operator", "="], ["operator", "=="],
-	["operator", "&"], ["operator", "&&"], ["operator", "&="],
-	["operator", "|"], ["operator", "||"], ["operator", "|="],
-	["operator", "?"], ["operator", ":"], ["operator", "~"],
-	["operator", "*"], ["operator", "*="],
-	["operator", "/"], ["operator", "/="],
-	["operator", "%"], ["operator", "%="]
+	["liquid", [
+		["delimiter", "{%"],
+
+		["operator", "=="],
+		["operator", "!="],
+		["operator", "<>"],
+		["operator", "<"],
+		["operator", "<="],
+		["operator", ">"],
+		["operator", ">="],
+
+		["operator", "|"],
+		["operator", ":"],
+		["operator", "?"],
+		["operator", "-"],
+		["operator", "="],
+
+		["range", ".."],
+
+		["operator", "and"], ["operator", "or"],
+		["operator", "contains"], " foo\r\n\r\n",
+
+		["delimiter", "%}"]
+	]]
 ]
 
 ----------------------------------------------------
