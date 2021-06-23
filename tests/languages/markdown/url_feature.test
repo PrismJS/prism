@@ -12,6 +12,8 @@ bar](http://prismjs.com)
 [foo __bar__ baz](http://prismjs.com)
 [foo ~bar~ baz](http://prismjs.com)
 [foo ~~bar~~ baz](http://prismjs.com)
+[foo `bar` baz](http://prismjs.com)
+[`bar`](http://prismjs.com)
 
 ----------------------------------------------------
 
@@ -140,6 +142,26 @@ bar](http://prismjs.com)
 				["punctuation", "~~"]
 			]],
 			" baz"
+		]],
+		"](",
+		["url", "http://prismjs.com"],
+		")"
+	]],
+	["url", [
+		"[",
+		["content", [
+			"foo ",
+			["code-snippet", "`bar`"],
+			" baz"
+		]],
+		"](",
+		["url", "http://prismjs.com"],
+		")"
+	]],
+	["url", [
+		"[",
+		["content", [
+			["code-snippet", "`bar`"]
 		]],
 		"](",
 		["url", "http://prismjs.com"],
