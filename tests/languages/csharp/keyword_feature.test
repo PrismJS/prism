@@ -35,7 +35,7 @@ fixed
 float
 for
 foreach
-from
+from foo;
 get
 global
 goto
@@ -146,7 +146,7 @@ yield
 	["keyword", "float"],
 	["keyword", "for"],
 	["keyword", "foreach"],
-	["keyword", "from"],
+	["keyword", "from"], " foo", ["punctuation", ";"],
 	["keyword", "get"],
 	["keyword", "global"],
 	["keyword", "goto"],
