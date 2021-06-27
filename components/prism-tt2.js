@@ -15,7 +15,7 @@
 
 	Prism.languages.insertBefore('tt2', 'keyword', {
 		'delimiter': {
-			pattern: /^(?:\[%|%%)-?|-?%]$/,
+			pattern: /^(?:\[%|%%)-?|-?%\]$/,
 			alias: 'punctuation'
 		}
 	});

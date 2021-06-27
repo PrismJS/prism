@@ -9,7 +9,7 @@ Prism.languages.jsstacktrace = {
 		lookbehind: true,
 		inside: {
 			'not-my-code': {
-				pattern: /^at[ \t]+(?!\s)(?:node\.js|\<unknown\>|.*(?:node_modules|\(\<anonymous\>\)|\(\<unknown\>|\<anonymous\>$|\(internal\/|\(node\.js)).*/m,
+				pattern: /^at[ \t]+(?!\s)(?:node\.js|<unknown>|.*(?:node_modules|\(<anonymous>\)|\(<unknown>|<anonymous>$|\(internal\/|\(node\.js)).*/m,
 				alias: 'comment'
 			},
 

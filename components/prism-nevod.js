@@ -8,7 +8,7 @@ Prism.languages.nevod = {
 		},
 	},
 	'namespace': {
-		pattern: /(@namespace\s+)[a-zA-Z0-9\-.]+(?=\s*{)/,
+		pattern: /(@namespace\s+)[a-zA-Z0-9\-.]+(?=\s*\{)/,
 		lookbehind: true,
 	},
 	'pattern': {

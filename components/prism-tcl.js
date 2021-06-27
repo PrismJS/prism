@@ -13,7 +13,7 @@ Prism.languages.tcl = {
 			lookbehind: true
 		},
 		{
-			pattern: /(\$){[^}]+}/,
+			pattern: /(\$)\{[^}]+\}/,
 			lookbehind: true
 		},
 		{

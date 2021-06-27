@@ -77,6 +77,7 @@ module.exports = {
 		'regexp/no-useless-lazy': 'warn',
 		'regexp/prefer-w': 'warn',
 		'regexp/sort-flags': 'warn',
+		'regexp/strict': 'warn',
 
 		// I turned this rule off because we use `hasOwnProperty` in a lot of places
 		// TODO: Think about re-enabling this rule

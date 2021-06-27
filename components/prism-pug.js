@@ -145,7 +145,7 @@
 		'punctuation': /[.\-!=|]+/
 	};
 
-	var filter_pattern = /(^([\t ]*)):{{filter_name}}(?:(?:\r?\n|\r(?!\n))(?:\2[\t ].+|\s*?(?=\r?\n|\r)))+/.source;
+	var filter_pattern = /(^([\t ]*)):<filter_name>(?:(?:\r?\n|\r(?!\n))(?:\2[\t ].+|\s*?(?=\r?\n|\r)))+/.source;
 
 	// Non exhaustive list of available filters and associated languages
 	var filters = [
@@ -165,7 +165,7 @@
 		filter = typeof filter === 'string' ? { filter: filter, language: filter } : filter;
 		if (Prism.languages[filter.language]) {
 			all_filters['filter-' + filter.filter] = {
-				pattern: RegExp(filter_pattern.replace('{{filter_name}}', function () { return filter.filter; }), 'm'),
+				pattern: RegExp(filter_pattern.replace('<filter_name>', function () { return filter.filter; }), 'm'),
 				lookbehind: true,
 				inside: {
 					'filter-name': {

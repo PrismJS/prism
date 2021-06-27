@@ -7,7 +7,7 @@
 	Prism.languages.v = Prism.languages.extend('clike', {
 		'string': [
 			{
-				pattern: /`(?:\\\`|\\?[^\`]{1,2})`/, // using {1,2} instead of `u` flag for compatibility
+				pattern: /`(?:\\`|\\?[^`]{1,2})`/, // using {1,2} instead of `u` flag for compatibility
 				alias: 'rune'
 			},
 			{
@@ -24,7 +24,7 @@
 								alias: 'variable'
 							},
 							'interpolation-punctuation': {
-								pattern: /^\${|}$/,
+								pattern: /^\$\{|\}$/,
 								alias: 'punctuation'
 							},
 							'interpolation-expression': interpolationExpr
@@ -56,7 +56,7 @@
 			}
 		},
 		'generic': {
-			pattern: /\<\w+\>(?=\s*[\)\{])/,
+			pattern: /<\w+>(?=\s*[\)\{])/,
 			inside: {
 				'punctuation': /[<>]/,
 				'class-name': /\w+/

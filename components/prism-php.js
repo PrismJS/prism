@@ -35,7 +35,7 @@
 			alias: 'important'
 		},
 		'comment': comment,
-		'variable': /\$+(?:\w+\b|(?={))/i,
+		'variable': /\$+(?:\w+\b|(?=\{))/i,
 		'package': {
 			pattern: /(namespace\s+|use\s+(?:function\s+)?)(?:\\?\b[a-z_]\w*)+\b(?!\\)/i,
 			lookbehind: true,
@@ -236,7 +236,7 @@
 	};
 
 	var string_interpolation = {
-		pattern: /{\$(?:{(?:{[^{}]+}|[^{}]+)}|[^{}])+}|(^|[^\\{])\$+(?:\w+(?:\[[^\r\n\[\]]+\]|->\w+)?)/,
+		pattern: /\{\$(?:\{(?:\{[^{}]+\}|[^{}]+)\}|[^{}])+\}|(^|[^\\{])\$+(?:\w+(?:\[[^\r\n\[\]]+\]|->\w+)?)/,
 		lookbehind: true,
 		inside: Prism.languages.php
 	};
@@ -298,7 +298,7 @@
 			greedy: true,
 			inside: {
 				'attribute-content': {
-					pattern: /^(#\[)[\s\S]+(?=]$)/,
+					pattern: /^(#\[)[\s\S]+(?=\]$)/,
 					lookbehind: true,
 					// inside can appear subset of php
 					inside: {
@@ -331,7 +331,7 @@
 					}
 				},
 				'delimiter': {
-					pattern: /^#\[|]$/,
+					pattern: /^#\[|\]$/,
 					alias: 'punctuation'
 				}
 			}

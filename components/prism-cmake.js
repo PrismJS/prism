@@ -5,9 +5,9 @@ Prism.languages.cmake = {
 		greedy: true,
 		inside: {
 			'interpolation': {
-				pattern: /\${(?:[^{}$]|\${[^{}$]*})*}/,
+				pattern: /\$\{(?:[^{}$]|\$\{[^{}$]*\})*\}/,
 				inside: {
-					'punctuation': /\${|}/,
+					'punctuation': /\$\{|\}/,
 					'variable': /\w+/
 				}
 			}

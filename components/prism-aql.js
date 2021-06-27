@@ -26,7 +26,7 @@ Prism.languages.aql = {
 			lookbehind: true
 		},
 		{
-			pattern: /\bOPTIONS(?=\s*{)/i
+			pattern: /\bOPTIONS(?=\s*\{)/i
 		}
 	],
 	'function': /\b(?!\d)\w+(?=\s*\()/,

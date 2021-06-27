@@ -4,14 +4,14 @@
 (function (Prism) {
 
 	Prism.languages.django = {
-		'comment': /^{#[\s\S]*?#}$/,
+		'comment': /^\{#[\s\S]*?#\}$/,
 		'tag': {
-			pattern: /(^{%[+-]?\s*)\w+/,
+			pattern: /(^\{%[+-]?\s*)\w+/,
 			lookbehind: true,
 			alias: 'keyword'
 		},
 		'delimiter': {
-			pattern: /^{[{%][+-]?|[+-]?[}%]}$/,
+			pattern: /^\{[{%][+-]?|[+-]?[}%]\}$/,
 			alias: 'punctuation'
 		},
 		'string': {
@@ -38,7 +38,7 @@
 	};
 
 
-	var pattern = /{{[\s\S]*?}}|{%[\s\S]*?%}|{#[\s\S]*?#}/g;
+	var pattern = /\{\{[\s\S]*?\}\}|\{%[\s\S]*?%\}|\{#[\s\S]*?#\}/g;
 	var markupTemplating = Prism.languages['markup-templating'];
 
 	Prism.hooks.add('before-tokenize', function (env) {

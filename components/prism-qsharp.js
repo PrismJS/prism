@@ -84,7 +84,7 @@
 			},
 			{
 				// namespace Quantum.App1;
-				pattern: re(/(\bnamespace\s+)<<0>>(?=\s*{)/.source, [qualifiedName]),
+				pattern: re(/(\bnamespace\s+)<<0>>(?=\s*\{)/.source, [qualifiedName]),
 				lookbehind: true,
 				inside: typeInside
 			},

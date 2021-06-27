@@ -145,7 +145,7 @@
 				checked = id === storedTheme;
 			}
 
-			var filepath = all.meta.path.replace(/\{id}/g, id);
+			var filepath = all.meta.path.replace(/\{id\}/g, id);
 
 			var info = all[id] = {
 				title: all[id].title || all[id],
@@ -245,7 +245,7 @@
 					all.meta.link ? {
 						tag: 'a',
 						properties: {
-							href: all.meta.link.replace(/\{id}/g, id),
+							href: all.meta.link.replace(/\{id\}/g, id),
 							className: 'name'
 						},
 						contents: info.title

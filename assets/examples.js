@@ -24,8 +24,8 @@
 		var language = languages[id];
 
 		language.enabled = language.option === 'default';
-		language.path = languages.meta.path.replace(/\{id}/g, id) + '.js';
-		language.examplesPath = languages.meta.examplesPath.replace(/\{id}/g, id) + '.html';
+		language.path = languages.meta.path.replace(/\{id\}/g, id) + '.js';
+		language.examplesPath = languages.meta.examplesPath.replace(/\{id\}/g, id) + '.html';
 
 		return fileExists(language.examplesPath).then(function (exists) {
 			return { id: id, exists: exists };
