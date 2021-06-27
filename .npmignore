@@ -20,3 +20,5 @@ gulpfile.js
 .gitattributes
 .travis.yml
 .eslintrc.js
+.eslintcache
+.jsdoc.json
