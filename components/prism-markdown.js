@@ -214,7 +214,7 @@
 		'code-snippet': {
 			// `code`
 			// ``code``
-			pattern: createInline(/``[^`\r\n]+(?:`[^`\r\n]+)*``(?!`)|`[^`\r\n]+`(?!`)/.source),
+			pattern: /(^|[^\\`])(?:``[^`\r\n]+(?:`[^`\r\n]+)*``(?!`)|`[^`\r\n]+`(?!`))/,
 			lookbehind: true,
 			greedy: true,
 			alias: ['code', 'keyword']
