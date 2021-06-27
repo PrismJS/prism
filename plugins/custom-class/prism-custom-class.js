@@ -30,6 +30,15 @@
 	var prefixString = '';
 
 
+	/**
+	 * @param {string} className
+	 * @param {string} language
+	 */
+	function apply(className, language) {
+		return prefixString + (mapper ? mapper(className, language) : className);
+	}
+
+
 	Prism.plugins.customClass = {
 		/**
 		 * Sets the function which can be used to add custom aliases to any token.
@@ -62,7 +71,16 @@
 		 */
 		prefix: function prefix(string) {
 			prefixString = string || '';
-		}
+		},
+		/**
+		 * Applies the current mapping and prefix to the given class name.
+		 *
+		 * @param {string} className A single class name.
+		 * @param {string} language The language of the code that contains this class name.
+		 *
+		 * If the language is unknown, pass `"none"`.
+		 */
+		apply: apply
 	};
 
 	Prism.hooks.add('wrap', function (env) {
@@ -85,7 +103,7 @@
 		}
 
 		env.classes = env.classes.map(function (c) {
-			return prefixString + (mapper ? mapper(c, env.language) : c);
+			return apply(c, env.language);
 		});
 	});
 
