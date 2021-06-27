@@ -1,7 +1,7 @@
 # Prism Changelog
 
 
-## 1.24.0 (**TBD**)
+## 1.24.0 (2021-06-27)
 
 ### New components
 
@@ -79,6 +79,7 @@
 * __Log file__
     * Minor improvements ([#2851](https://github.com/PrismJS/prism/issues/2851)) [`45ec4a88`](https://github.com/PrismJS/prism/commit/45ec4a88)
 * __Markdown__
+    * Improved code snippets ([#2967](https://github.com/PrismJS/prism/issues/2967)) [`e9477d83`](https://github.com/PrismJS/prism/commit/e9477d83)
     * Workaround for incorrect highlighting due to double `wrap` hook ([#2719](https://github.com/PrismJS/prism/issues/2719)) [`2b355c98`](https://github.com/PrismJS/prism/commit/2b355c98)
 * __Markup__
     * Added support for DOM event attributes ([#2702](https://github.com/PrismJS/prism/issues/2702)) [`8dbbbb35`](https://github.com/PrismJS/prism/commit/8dbbbb35)
@@ -124,6 +125,7 @@
 
 ### Updated plugins
 
+* Made Match Braces and Custom Class compatible ([#2947](https://github.com/PrismJS/prism/issues/2947)) [`4b55bd6a`](https://github.com/PrismJS/prism/commit/4b55bd6a)
 * Consistent Prism check ([#2788](https://github.com/PrismJS/prism/issues/2788)) [`96335642`](https://github.com/PrismJS/prism/commit/96335642)
 * __Command Line__
     * Don't modify empty code blocks ([#2896](https://github.com/PrismJS/prism/issues/2896)) [`c81c3319`](https://github.com/PrismJS/prism/commit/c81c3319)
