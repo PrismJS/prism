@@ -350,14 +350,65 @@
 				});
 			}
 		} else {
-			// get the textContent of the given env HTML
-			var tempContainer = document.createElement('div');
-			tempContainer.innerHTML = env.content;
-			var code = tempContainer.textContent;
-
-			env.content = Prism.highlight(code, grammar, codeLang);
+			env.content = Prism.highlight(textContent(env.content), grammar, codeLang);
 		}
 	});
+
+	var tagPattern = RegExp(Prism.languages.markup.tag.pattern.source, 'gi');
+
+	/**
+	 * A list of known entity names.
+	 *
+	 * This will always be incomplete to save space. The current list is the one used by lowdash's unescape function.
+	 *
+	 * @see {@link https://github.com/lodash/lodash/blob/2da024c3b4f9947a48517639de7560457cd4ec6c/unescape.js#L2}
+	 */
+	var KNOWN_ENTITY_NAMES = {
+		'amp': '&',
+		'lt': '<',
+		'gt': '>',
+		'quot': '"',
+	};
+
+	// IE 11 doesn't support `String.fromCodePoint`
+	var fromCodePoint = String.fromCodePoint || String.fromCharCode;
+
+	/**
+	 * Returns the text content of a given HTML source code string.
+	 *
+	 * @param {string} html
+	 * @returns {string}
+	 */
+	function textContent(html) {
+		// remove all tags
+		var text = html.replace(tagPattern, '');
+
+		// decode known entities
+		text = text.replace(/&(\w{1,8}|#x?[\da-f]{1,8});/gi, function (m, code) {
+			code = code.toLowerCase();
+
+			if (code[0] === '#') {
+				var value;
+				if (code[1] === 'x') {
+					value = parseInt(code.slice(2), 16);
+				} else {
+					value = Number(code.slice(1));
+				}
+
+				return fromCodePoint(value);
+			} else {
+				var known = KNOWN_ENTITY_NAMES[code];
+				if (known) {
+					return known;
+				}
+
+				// unable to decode
+				return m;
+			}
+		});
+
+		return text;
+	}
 
 	Prism.languages.md = Prism.languages.markdown;
 
