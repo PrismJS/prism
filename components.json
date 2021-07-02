@@ -529,6 +529,10 @@
 			],
 			"owner": "danielgtaylor"
 		},
+    "hoon": {
+      "title": "Hoon",
+      "owner": "matildepark"
+    },
 		"hpkp": {
 			"title": "HTTP Public-Key-Pins",
 			"owner": "ScottHelme"
