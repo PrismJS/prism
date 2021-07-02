@@ -518,6 +518,10 @@
 			"require": "c",
 			"owner": "RunDevelopment"
 		},
+		"hoon": {
+			"title": "Hoon",
+			"owner": "matildepark"
+		},
 		"http": {
 			"title": "HTTP",
 			"optional": [
@@ -528,10 +532,6 @@
 				"uri"
 			],
 			"owner": "danielgtaylor"
-		},
-		"hoon": {
-			"title": "Hoon",
-			"owner": "matildepark"
 		},
 		"hpkp": {
 			"title": "HTTP Public-Key-Pins",
