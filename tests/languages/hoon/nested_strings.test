@@ -1,0 +1,122 @@
+|=  [a=@ b=tape]
+^-  tape
+?:  (gth a 25)
+  $(a (sub a 26))
+%+  turn  b
+|=  c=@tD
+?:  &((gte c 'A') (lte c 'Z'))
+  =.  c  (add c a)
+  ?.  (gth c 'Z')  c
+  (sub c 26)
+?:  &((gte c 'a') (lte c 'z'))
+  =.  c  (add c a)
+  ?.  (gth c 'z')  c
+  (sub c 26)
+c
+
+----------------------------------------------------
+
+[
+	["keyword", "|="],
+	"  [",
+	["function-name", "a"],
+	"=",
+	["class-name", "@"],
+	["function-name", "b"],
+	"=",
+	["function-name", "tape"],
+	"]\r\n",
+
+	["keyword", "^-"],
+	["function-name", "tape"],
+
+	["keyword", "?:"],
+	"  (",
+	["function-name", "gth"],
+	["function-name", "a"],
+	" 25)\r\n  $(",
+	["function-name", "a"],
+	" (",
+	["function-name", "sub"],
+	["function-name", "a"],
+	" 26))\r\n",
+
+	["keyword", "%+"],
+	["function-name", "turn"],
+	["function-name", "b"],
+
+	["keyword", "|="],
+	["function-name", "c"],
+	"=",
+	["class-name", "@tD"],
+
+	["keyword", "?:"],
+	"  &((",
+	["function-name", "gte"],
+	["function-name", "c"],
+	["string", "'A'"],
+	") (",
+	["function-name", "lte"],
+	["function-name", "c"],
+	["string", "'Z'"],
+	"))\r\n  ",
+
+	["keyword", "=."],
+	["function-name", "c"],
+	"  (",
+	["function-name", "add"],
+	["function-name", "c"],
+	["function-name", "a"],
+	")\r\n  ",
+
+	["keyword", "?."],
+	"  (",
+	["function-name", "gth"],
+	["function-name", "c"],
+	["string", "'Z'"],
+	")  ",
+	["function-name", "c"],
+
+	"\r\n  (",
+	["function-name", "sub"],
+	["function-name", "c"],
+	" 26)\r\n",
+
+	["keyword", "?:"],
+	"  &((",
+	["function-name", "gte"],
+	["function-name", "c"],
+	["string", "'a'"],
+	") (",
+	["function-name", "lte"],
+	["function-name", "c"],
+	["string", "'z'"],
+	"))\r\n  ",
+
+	["keyword", "=."],
+	["function-name", "c"],
+	"  (",
+	["function-name", "add"],
+	["function-name", "c"],
+	["function-name", "a"],
+	")\r\n  ",
+
+	["keyword", "?."],
+	"  (",
+	["function-name", "gth"],
+	["function-name", "c"],
+	["string", "'z'"],
+	")  ",
+	["function-name", "c"],
+
+	"\r\n  (",
+	["function-name", "sub"],
+	["function-name", "c"],
+	" 26)\r\n",
+
+	["function-name", "c"]
+]
+
+----------------------------------------------------
+
+Tests using the Caesar cipher to demonstrate multiple occasions of cords and tapes on the same line, correcting avoiding clobbering two cord and tape definitions into one.

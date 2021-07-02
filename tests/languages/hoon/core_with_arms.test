@@ -1,0 +1,83 @@
+|%
+::  #  %math
+::    unsigned arithmetic
++|  %math
+++  add
+  ~/  %add
+  ::  unsigned addition
+  ::
+  ::  a: augend
+  ::  b: addend
+  |=  [a=@ b=@]
+  ::  sum
+  ^-  @
+  ?:  =(0 a)  b
+  $(a (dec a), b +(b))
+::
+++  dec
+
+----------------------------------------------------
+
+[
+	["keyword", "|%"],
+
+	["comment", "::  #  %math"],
+
+	["comment", "::    unsigned arithmetic"],
+
+	["keyword", "+|"],
+	["constant", "%math"],
+
+	["function-name", "++  add"],
+
+	["keyword", "~/"],
+	["constant", "%add"],
+
+	["comment", "::  unsigned addition"],
+
+	["comment", "::"],
+
+	["comment", "::  a: augend"],
+
+	["comment", "::  b: addend"],
+
+	["keyword", "|="],
+	"  [",
+	["function-name", "a"],
+	"=",
+	["class-name", "@"],
+	["function-name", "b"],
+	"=",
+	["class-name", "@"],
+	"]\r\n  ",
+
+	["comment", "::  sum"],
+
+	["keyword", "^-"],
+	["class-name", "@"],
+
+	["keyword", "?:"],
+	"  =(0 ",
+	["function-name", "a"],
+	")  ",
+	["function-name", "b"],
+
+	"\r\n  $(",
+	["function-name", "a"],
+	" (",
+	["function-name", "dec"],
+	["function-name", "a"],
+	"), ",
+	["function-name", "b"],
+	" +(",
+	["function-name", "b"],
+	"))\r\n",
+
+	["comment", "::"],
+
+	["function-name", "++  dec"]
+]
+
+----------------------------------------------------
+
+Tests for a sample definition of a core with an arm.
