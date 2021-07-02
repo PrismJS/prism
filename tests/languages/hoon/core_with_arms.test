@@ -28,7 +28,7 @@
 	["keyword", "+|"],
 	["constant", "%math"],
 
-	["function-name", "++  add"],
+	["function", "++  add"],
 
 	["keyword", "~/"],
 	["constant", "%add"],
@@ -43,10 +43,10 @@
 
 	["keyword", "|="],
 	"  [",
-	["function-name", "a"],
+	["function", "a"],
 	"=",
 	["class-name", "@"],
-	["function-name", "b"],
+	["function", "b"],
 	"=",
 	["class-name", "@"],
 	"]\r\n  ",
@@ -58,24 +58,24 @@
 
 	["keyword", "?:"],
 	"  =(0 ",
-	["function-name", "a"],
+	["function", "a"],
 	")  ",
-	["function-name", "b"],
+	["function", "b"],
 
 	"\r\n  $(",
-	["function-name", "a"],
+	["function", "a"],
 	" (",
-	["function-name", "dec"],
-	["function-name", "a"],
+	["function", "dec"],
+	["function", "a"],
 	"), ",
-	["function-name", "b"],
+	["function", "b"],
 	" +(",
-	["function-name", "b"],
+	["function", "b"],
 	"))\r\n",
 
 	["comment", "::"],
 
-	["function-name", "++  dec"]
+	["function", "++  dec"]
 ]
 
 ----------------------------------------------------

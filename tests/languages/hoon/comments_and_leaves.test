@@ -29,10 +29,11 @@
 
 	["keyword", "|="],
 	"  [",
-	["function-name", "now"],
+	["function", "now"],
 	"=",
-	["class-name", "@da"],
-	["function-name", "ovo"],
+	["class-name", "@"],
+	["function", "da"],
+	["function", "ovo"],
 	"=",
 	["class-name", "*"],
 	"]\r\n    ",
@@ -43,13 +44,13 @@
 	["keyword", "~>"],
 	["constant", "%slog"],
 	".[0 ",
-	["function-name", "leaf"],
+	["function", "leaf"],
 	"+",
 	["string", "\"arvo-event\""],
 	"]\r\n    .(+> +:(",
-	["function-name", "poke"],
-	["function-name", "now"],
-	["function-name", "ovo"],
+	["function", "poke"],
+	["function", "now"],
+	["function", "ovo"],
 	"))"
 ]
 
