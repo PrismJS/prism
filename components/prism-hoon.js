@@ -1,5 +1,5 @@
 Prism.languages.hoon = {
-	constant: /(?:%\.n)|(?:%\.y)|(?:%[\w-]+\w?)/,
+	constant: /%(?:\.[ny])|[\w-]+)/,
 	comment: {
 		pattern: /::.*/,
 		lookahead: true,
