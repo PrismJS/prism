@@ -1,6 +1,6 @@
 {
   "name": "prismjs",
-  "version": "1.24.0",
+  "version": "1.24.1",
   "description": "Lightweight, robust, elegant syntax highlighting. A spin-off project from Dabblet.",
   "main": "prism.js",
   "style": "themes/prism.css",
