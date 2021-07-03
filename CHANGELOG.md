@@ -1,6 +1,19 @@
 # Prism Changelog
 
 
+## 1.24.1 (2021-07-03)
+
+### Updated components
+
+* __Markdown__
+    * Fixed Markdown not working in NodeJS ([#2977](https://github.com/PrismJS/prism/issues/2977)) [`151121cd`](https://github.com/PrismJS/prism/commit/151121cd)
+
+### Updated plugins
+
+* __Toolbar__
+    * Fixed styles being applies to nested elements ([#2980](https://github.com/PrismJS/prism/issues/2980)) [`748ecddc`](https://github.com/PrismJS/prism/commit/748ecddc)
+
+
 ## 1.24.0 (2021-06-27)
 
 ### New components
