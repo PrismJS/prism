@@ -39,6 +39,11 @@ const testOptions = {
 		word: false,
 		template: false
 	},
+	// Hoon uses _ in its keywords
+	'hoon': {
+		word: false,
+		template: false
+	},
 
 	// LilyPond doesn't tokenize based on words
 	'lilypond': {

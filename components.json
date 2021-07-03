@@ -518,6 +518,10 @@
 			"require": "c",
 			"owner": "RunDevelopment"
 		},
+		"hoon": {
+			"title": "Hoon",
+			"owner": "matildepark"
+		},
 		"http": {
 			"title": "HTTP",
 			"optional": [
