@@ -1,3 +1,4 @@
+actor
 as
 associativity
 async
@@ -83,6 +84,7 @@ __LINE__
 ----------------------------------------------------
 
 [
+	["keyword", "actor"],
 	["keyword", "as"],
 	["keyword", "associativity"],
 	["keyword", "async"],
