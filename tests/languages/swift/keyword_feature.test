@@ -39,6 +39,7 @@ let
 mutating
 new;
 none
+nonisolated
 nonmutating
 operator
 optional
@@ -125,6 +126,7 @@ __LINE__
 	["keyword", "mutating"],
 	["keyword", "new"], ["punctuation", ";"],
 	["keyword", "none"],
+	["keyword", "nonisolated"],
 	["keyword", "nonmutating"],
 	["keyword", "operator"],
 	["keyword", "optional"],
