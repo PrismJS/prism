@@ -1,5 +1,7 @@
 as
 associativity
+async
+await
 break
 case
 catch
@@ -83,6 +85,8 @@ __LINE__
 [
 	["keyword", "as"],
 	["keyword", "associativity"],
+	["keyword", "async"],
+	["keyword", "await"],
 	["keyword", "break"],
 	["keyword", "case"],
 	["keyword", "catch"],
