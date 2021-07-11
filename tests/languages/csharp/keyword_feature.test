@@ -108,6 +108,9 @@ where;
 while
 yield
 
+// very contextual keywords:
+Person person2 = person1 with { FirstName = "John" };
+
 ----------------------------------------------------
 
 [
@@ -219,7 +222,21 @@ yield
 	["keyword", "when"],
 	["keyword", "where"], ["punctuation", ";"],
 	["keyword", "while"],
-	["keyword", "yield"]
+	["keyword", "yield"],
+
+	["comment", "// very contextual keywords:"],
+
+	["class-name", ["Person"]],
+	" person2 ",
+	["operator", "="],
+	" person1 ",
+	["keyword", "with"],
+	["punctuation", "{"],
+	" FirstName ",
+	["operator", "="],
+	["string", "\"John\""],
+	["punctuation", "}"],
+	["punctuation", ";"]
 ]
 
 ----------------------------------------------------

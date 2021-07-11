@@ -47,7 +47,7 @@
 		typeDeclaration: 'class enum interface record struct',
 		// contextual keywords
 		// ("var" and "dynamic" are missing because they are used like types)
-		contextual: 'add alias and ascending async await by descending from(?=\\s*(?:\\w|$)) get global group into init(?=\\s*;) join let nameof not notnull on or orderby partial remove select set unmanaged value when where',
+		contextual: 'add alias and ascending async await by descending from(?=\\s*(?:\\w|$)) get global group into init(?=\\s*;) join let nameof not notnull on or orderby partial remove select set unmanaged value when where with(?=\\s*{)',
 		// all other keywords
 		other: 'abstract as base break case catch checked const continue default delegate do else event explicit extern finally fixed for foreach goto if implicit in internal is lock namespace new null operator out override params private protected public readonly ref return sealed sizeof stackalloc static switch this throw try typeof unchecked unsafe using virtual volatile while yield'
 	};
@@ -158,7 +158,7 @@
 			{
 				// Variable, field and parameter declaration
 				// (Foo bar, Bar baz, Foo[,,] bay, Foo<Bar, FooBar<Bar>> bax)
-				pattern: re(/\b<<0>>(?=\s+(?!<<1>>)<<2>>(?:\s*[=,;:{)\]]|\s+(?:in|when)\b))/.source, [typeExpression, nonContextualKeywords, name]),
+				pattern: re(/\b<<0>>(?=\s+(?!<<1>>|with\s*\{)<<2>>(?:\s*[=,;:{)\]]|\s+(?:in|when)\b))/.source, [typeExpression, nonContextualKeywords, name]),
 				inside: typeInside
 			}
 		],
@@ -239,18 +239,24 @@
 			// class Foo<F> : Bar, IList<FooBar>
 			// where F : Bar, IList<int>
 			pattern: re(
-				/\b((?:<<0>>\s+<<1>>|where\s+<<2>>)\s*:\s*)(?:<<3>>|<<4>>)(?:\s*,\s*(?:<<3>>|<<4>>))*(?=\s*(?:where|[{;]|=>|$))/.source,
-				[typeDeclarationKeywords, genericName, name, typeExpression, keywords.source]
+				/\b((?:<<0>>\s+<<1>>|record\s+<<1>>\s*<<5>>|where\s+<<2>>)\s*:\s*)(?:<<3>>|<<4>>|<<1>>\s*<<5>>|<<6>>)(?:\s*,\s*(?:<<3>>|<<4>>|<<6>>))*(?=\s*(?:where|[{;]|=>|$))/.source,
+				[typeDeclarationKeywords, genericName, name, typeExpression, keywords.source, nestedRound, /\bnew\s*\(\s*\)/.source]
 			),
 			lookbehind: true,
 			inside: {
+				'record-arguments': {
+					pattern: re(/(^(?!new\s*\()<<0>>\s*)<<1>>/.source, [genericName, nestedRound]),
+					lookbehind: true,
+					greedy: true,
+					inside: Prism.languages.csharp
+				},
 				'keyword': keywords,
 				'class-name': {
 					pattern: RegExp(typeExpression),
 					greedy: true,
 					inside: typeInside
 				},
-				'punctuation': /,/
+				'punctuation': /[,()]/
 			}
 		},
 		'preprocessor': {

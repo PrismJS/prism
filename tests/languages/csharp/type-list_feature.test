@@ -7,6 +7,18 @@ public delegate ErrorCode GetInfoMethod<H, A, I>(H handle, A value, I paramName,
 	Size_t paramValueSize, IntPtr paramValue, out Size_t paramValueSizeRet)
 	where H : unmanaged, IInfoHandle<A, I> where A : unmanaged where I : unmanaged, Enum;
 
+// the "new()" constraint
+void Foo<A, B>()
+	where A : IFoo, new()
+	where B : new(), IFoo;
+
+// records are kinda difficult to handle
+public abstract record Person(string FirstName, string LastName);
+public record Teacher(string FirstName, string LastName, int Grade)
+	: Person(FirstName, LastName), IFoo<int>;
+public record Student(string FirstName, string LastName, int Grade)
+	: Person(FirstName, LastName);
+
 ----------------------------------------------------
 
 [
@@ -40,10 +52,9 @@ public delegate ErrorCode GetInfoMethod<H, A, I>(H handle, A value, I paramName,
 			["punctuation", ">"]
 		]],
 		["punctuation", ","],
-		["class-name", [
-			"IFoo"
-		]]
+		["class-name", ["IFoo"]]
 	]],
+
 	["keyword", "where"],
 	["class-name", "T"],
 	["punctuation", ":"],
@@ -69,9 +80,7 @@ public delegate ErrorCode GetInfoMethod<H, A, I>(H handle, A value, I paramName,
 
 	["keyword", "public"],
 	["keyword", "class"],
-	["class-name", [
-		"Foo"
-	]],
+	["class-name", ["Foo"]],
 	["punctuation", ":"],
 	["type-list", [
 		["class-name", [
@@ -86,9 +95,7 @@ public delegate ErrorCode GetInfoMethod<H, A, I>(H handle, A value, I paramName,
 
 	["keyword", "public"],
 	["keyword", "delegate"],
-	["return-type", [
-		"ErrorCode"
-	]],
+	["return-type", ["ErrorCode"]],
 	["generic-method", [
 		["function", "GetInfoMethod"],
 		["generic", [
@@ -102,37 +109,27 @@ public delegate ErrorCode GetInfoMethod<H, A, I>(H handle, A value, I paramName,
 		]]
 	]],
 	["punctuation", "("],
-	["class-name", [
-		"H"
-	]],
+	["class-name", ["H"]],
 	" handle",
 	["punctuation", ","],
-	["class-name", [
-		"A"
-	]],
+	["class-name", ["A"]],
 	["keyword", "value"],
 	["punctuation", ","],
-	["class-name", [
-		"I"
-	]],
+	["class-name", ["I"]],
 	" paramName",
 	["punctuation", ","],
-	["class-name", [
-		"Size_t"
-	]],
+
+	["class-name", ["Size_t"]],
 	" paramValueSize",
 	["punctuation", ","],
-	["class-name", [
-		"IntPtr"
-	]],
+	["class-name", ["IntPtr"]],
 	" paramValue",
 	["punctuation", ","],
 	["keyword", "out"],
-	["class-name", [
-		"Size_t"
-	]],
+	["class-name", ["Size_t"]],
 	" paramValueSizeRet",
 	["punctuation", ")"],
+
 	["keyword", "where"],
 	["class-name", "H"],
 	["punctuation", ":"],
@@ -160,8 +157,139 @@ public delegate ErrorCode GetInfoMethod<H, A, I>(H handle, A value, I paramName,
 	["type-list", [
 		["keyword", "unmanaged"],
 		["punctuation", ","],
+		["class-name", ["Enum"]]
+	]],
+	["punctuation", ";"],
+
+	["comment", "// the \"new()\" constraint"],
+
+	["return-type", [
+		["keyword", "void"]
+	]],
+	["generic-method", [
+		["function", "Foo"],
+		["generic", [
+			["punctuation", "<"],
+			"A",
+			["punctuation", ","],
+			" B",
+			["punctuation", ">"]
+		]]
+	]],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["keyword", "where"],
+	["class-name", "A"],
+	["punctuation", ":"],
+	["type-list", [
+		["class-name", ["IFoo"]],
+		["punctuation", ","],
+		["keyword", "new"],
+		["punctuation", "("],
+		["punctuation", ")"]
+	]],
+
+	["keyword", "where"],
+	["class-name", "B"],
+	["punctuation", ":"],
+	["type-list", [
+		["keyword", "new"],
+		["punctuation", "("],
+		["punctuation", ")"],
+		["punctuation", ","],
+		["class-name", ["IFoo"]]
+	]],
+	["punctuation", ";"],
+
+	["comment", "// records are kinda difficult to handle"],
+
+	["keyword", "public"],
+	["keyword", "abstract"],
+	["keyword", "record"],
+	["class-name", ["Person"]],
+	["punctuation", "("],
+	["class-name", [
+		["keyword", "string"]
+	]],
+	" FirstName",
+	["punctuation", ","],
+	["class-name", [
+		["keyword", "string"]
+	]],
+	" LastName",
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "public"],
+	["keyword", "record"],
+	["class-name", ["Teacher"]],
+	["punctuation", "("],
+	["class-name", [
+		["keyword", "string"]
+	]],
+	" FirstName",
+	["punctuation", ","],
+	["class-name", [
+		["keyword", "string"]
+	]],
+	" LastName",
+	["punctuation", ","],
+	["class-name", [
+		["keyword", "int"]
+	]],
+	" Grade",
+	["punctuation", ")"],
+
+	["punctuation", ":"],
+	["type-list", [
+		["class-name", ["Person"]],
+		["record-arguments", [
+			["punctuation", "("],
+			"FirstName",
+			["punctuation", ","],
+			" LastName",
+			["punctuation", ")"]
+		]],
+		["punctuation", ","],
 		["class-name", [
-			"Enum"
+			"IFoo",
+			["punctuation", "<"],
+			["keyword", "int"],
+			["punctuation", ">"]
+		]]
+	]],
+	["punctuation", ";"],
+
+	["keyword", "public"],
+	["keyword", "record"],
+	["class-name", ["Student"]],
+	["punctuation", "("],
+	["class-name", [
+		["keyword", "string"]
+	]],
+	" FirstName",
+	["punctuation", ","],
+	["class-name", [
+		["keyword", "string"]
+	]],
+	" LastName",
+	["punctuation", ","],
+	["class-name", [
+		["keyword", "int"]
+	]],
+	" Grade",
+	["punctuation", ")"],
+
+	["punctuation", ":"],
+	["type-list", [
+		["class-name", ["Person"]],
+		["record-arguments", [
+			["punctuation", "("],
+			"FirstName",
+			["punctuation", ","],
+			" LastName",
+			["punctuation", ")"]
 		]]
 	]],
 	["punctuation", ";"]
