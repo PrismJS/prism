@@ -43,6 +43,7 @@ group
 if
 implicit
 in
+init;
 int;
 interface;
 internal
@@ -71,6 +72,7 @@ private
 protected
 public
 readonly
+record;
 ref
 remove
 return
@@ -154,6 +156,7 @@ yield
 	["keyword", "if"],
 	["keyword", "implicit"],
 	["keyword", "in"],
+	["keyword", "init"], ["punctuation", ";"],
 	["keyword", "int"], ["punctuation", ";"],
 	["keyword", "interface"], ["punctuation", ";"],
 	["keyword", "internal"],
@@ -182,6 +185,7 @@ yield
 	["keyword", "protected"],
 	["keyword", "public"],
 	["keyword", "readonly"],
+	["keyword", "record"], ["punctuation", ";"],
 	["keyword", "ref"],
 	["keyword", "remove"],
 	["keyword", "return"],
