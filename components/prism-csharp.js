@@ -44,10 +44,10 @@
 		// keywords which represent a return or variable type
 		type: 'bool byte char decimal double dynamic float int long object sbyte short string uint ulong ushort var void',
 		// keywords which are used to declare a type
-		typeDeclaration: 'class enum interface struct',
+		typeDeclaration: 'class enum interface record struct',
 		// contextual keywords
 		// ("var" and "dynamic" are missing because they are used like types)
-		contextual: 'add alias and ascending async await by descending from(?=\\s*(?:\\w|$)) get global group into join let nameof not notnull on or orderby partial remove select set unmanaged value when where',
+		contextual: 'add alias and ascending async await by descending from(?=\\s*(?:\\w|$)) get global group into init(?=\\s*;) join let nameof not notnull on or orderby partial remove select set unmanaged value when where',
 		// all other keywords
 		other: 'abstract as base break case catch checked const continue default delegate do else event explicit extern finally fixed for foreach goto if implicit in internal is lock namespace new null operator out override params private protected public readonly ref return sealed sizeof stackalloc static switch this throw try typeof unchecked unsafe using virtual volatile while yield'
 	};
@@ -260,7 +260,7 @@
 			inside: {
 				// highlight preprocessor directives as keywords
 				'directive': {
-					pattern: /(#)\b(?:define|elif|else|endif|endregion|error|if|line|pragma|region|undef|warning)\b/,
+					pattern: /(#)\b(?:define|elif|else|endif|endregion|error|if|line|nullable|pragma|region|undef|warning)\b/,
 					lookbehind: true,
 					alias: 'keyword'
 				}
