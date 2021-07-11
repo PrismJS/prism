@@ -50,7 +50,7 @@
 	<h2 id="writing-tests-directories">Language directories</h2>
 
 	<p>All tests are sorted into directories in the <code>tests/languages</code> directory. Each directory name encodes, which language you are currently testing.</p>
-	<p><strong>All language names must match the names from the definition in <code>components.js</code>.</strong></p>
+	<p><strong>All language names must match the names from the definition in <code>components.json</code>.</strong></p>
 
 	<h3>Example 1: testing a language in isolation (default use case)</h3>
 	<p>Just put your test file into the directory of the language you want to test.</p>
@@ -92,8 +92,8 @@
 		<li>Your language snippet. The code you want to tokenize using Prism. (<strong>required</strong>)</li>
 		<li>
 			The simplified token stream you expect. Needs to be valid JSON. (<em>optional</em>) <br>
-			Instead of manually inserting the expected token stream yourself, prefer using the <code class="language-bash">npm run test:languages -- --insert</code> command. You can read more about this and related commands <a href="#writing-tests-insert-and-update">here</a>. <br>
-			If there no token stream defined, the test case will fail unless the <code>--insert</code> or <code>--update</code> flag is present when running the test command.
+			The test runner will automatically insert this if not present. <strong>Carefully check</strong> that the inserted token stream is what you expected. <br>
+			If the test case fails because the JSON is present but incorrect, then you can use the <a href="#writing-tests-update"><code>--update</code> flag</a> to overwrite it.
 		</li>
 		<li>A brief comment explaining the test case. (<em>optional</em>)</li>
 	</ol>
@@ -122,7 +122,7 @@ This is a comment explaining this test case.</code></pre>
 		<li>Create a new test case file <code class="language-none">tests/languages/{language}/{test-case}.test</code>.</li>
 		<li>Insert the code you want to test (and nothing more).</li>
 		<li>Repeat the first two steps for as many test cases as you want.</li>
-		<li>Run <code class="language-bash">npm run test:languages -- --insert</code>.</li>
+		<li>Run <code class="language-bash">npm run test:languages</code>.</li>
 		<li>Done.</li>
 	</ol>
 
@@ -135,28 +135,16 @@ This is a comment explaining this test case.</code></pre>
 
 	<p>This works by making the test runner insert the actual token stream of you test code as the expected token stream. <strong>Carefully check that the inserted token stream is actually what you expect or else the test is meaningless!</strong></p>
 
-	<p>More details about the command can be found <a href="#writing-tests-insert-and-update">here</a>.</p>
 
-	<h2 id="writing-tests-insert-and-update">Insert and update expected token streams</h2>
+	<h2 id="writing-tests-update">Updating tests</h2>
 
-	<p>When creating and changing languages, their test files have to be updated to properly test the language. The rather tedious task of updating test files can be automated using the following commands:</p>
+	<p>When creating and changing languages, their test files have to be updated to properly test the language. The rather tedious task of updating test files can be automated using the following command:</p>
 
-	<ul>
-		<li>
-			<pre><code class="language-bash">npm run test:languages -- --insert</code></pre>
+	<pre><code class="language-bash">npm run test:languages -- --update</code></pre>
 
-			<p>This will insert the current actual token stream into all test files without an expected token stream. Test files that have an expected token stream are not affected.</p>
+	<p>Updates (overwrites) the expected token stream of all failing test files. The language tests are guaranteed to pass after running this command.</p>
 
-			<p>This command is intended to be used when you want to create new test files while not updating existing ones.</p>
-		</li>
-		<li>
-			<pre><code class="language-bash">npm run test:languages -- --update</code></pre>
-
-			<p>Updates (overwrites) the expected token stream of all failing test files and all test files that do not have an expected token stream. The language tests are guaranteed to pass after running this command.</p>
-		</li>
-	</ul>
-
-	<p><em>Keep in mind:</em> Both commands make it easy to create/update test files but this doesn't mean that the tests will be correct. <strong>Always carefully check the inserted/updated token streams!</strong></p>
+	<p><em>Keep in mind:</em> This command makes it easy to create/update test files but this doesn't mean that the tests will be correct. <strong>Always carefully check the inserted/updated token streams!</strong></p>
 
 	<h2 id="writing-tests-explaining-the-simplified-token-stream">Explaining the simplified token stream</h2>
 
@@ -169,7 +157,7 @@ This is a comment explaining this test case.</code></pre>
 		<li>All empty structures are removed.</li>
 	</ul>
 
-	<p>Note: The pretty-printed simplified token stream is indented using 4 spaces. You have to convert these to tabs after you copy-pasted the JSON. (Most editors today have an option that handles the conversion for you.)</p>
+	<p>The simplified token stream does not contain the aliases of a token.</p>
 
 	<p>For further information: reading the tests of the test runner (<code>tests/testrunner-tests.js</code>) will help you understand the transformation.</p>
 </section>
