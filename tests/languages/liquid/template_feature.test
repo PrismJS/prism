@@ -16,7 +16,7 @@
 [
 	["liquid", [
 		["delimiter", "{{"],
-		" page",
+		["object", "page"],
 		["punctuation", "."],
 		"title ",
 		["delimiter", "}}"]
