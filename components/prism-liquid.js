@@ -32,7 +32,11 @@ Prism.languages.liquid = {
 	// https://github.com/Shopify/liquid/blob/698f5e0d967423e013f6169d9111bd969bd78337/lib/liquid/lexer.rb#L21
 	'number': /\b\d+(?:\.\d+)?\b/,
 	'operator': /[!=]=|<>|[<>]=?|[|?:=-]|\b(?:and|or|contains(?=\s))\b/,
-	'punctuation': /[.,\[\]()]/
+	'punctuation': /[.,\[\]()]/,
+	'empty': {
+		pattern: /\bempty\b/,
+		alias: 'keyword'
+	},
 };
 
 Prism.hooks.add('before-tokenize', function (env) {
