@@ -8,6 +8,7 @@ Prism.languages.hoon = {
 	'class-name': [
 		{
 			pattern: /@(?:[A-Za-z0-9-]*[A-Za-z0-9])?/,
+			greedy: true
 		},
 		/\*/
 	],
