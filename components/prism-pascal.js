@@ -5,9 +5,17 @@
 */
 
 Prism.languages.pascal = {
+	'asm': {
+		pattern: /(asm)([\s\S]+?)(end)/i,
+		lookbehind: true,
+		inside:{keyword:/end/i,punctuation:/;$/i}
+	},	
+	'directive': [
+		/\{\$[\s\S]+?\}/
+	],	
 	'comment': [
 		/\(\*[\s\S]+?\*\)/,
-		/\{[\s\S]+?\}/,
+		/\{[^$][\s\S]+?\}/,
 		/\/\/.*/
 	],
 	'string': {
