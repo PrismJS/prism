@@ -606,7 +606,7 @@ Caused by: java.lang.RuntimeException: Job failed.
 	["number", "0"],
 
 	["exception", [
-		"\njava",
+		"java",
 		["punctuation", "."],
 		"lang",
 		["punctuation", "."],

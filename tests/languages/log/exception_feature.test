@@ -30,7 +30,7 @@ Caused by: java.lang.RuntimeException: Job failed.
 	["punctuation", "]"],
 	["level", "ERR"],
 	["exception", [
-		" java",
+		"java",
 		["punctuation", "."],
 		"lang",
 		["punctuation", "."],

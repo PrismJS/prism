@@ -152,7 +152,7 @@ Caused by: org.apache.maven.wagon.TransferFailedException: Failed to transfer fi
 	]],
 
 	["exception", [
-		"\norg",
+		"org",
 		["punctuation", "."],
 		"apache",
 		["punctuation", "."],

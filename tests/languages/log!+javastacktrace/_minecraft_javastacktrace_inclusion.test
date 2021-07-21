@@ -217,7 +217,7 @@ net.minecraftforge.fml.common.MissingModsException: Mod thaumcraft (Thaumcraft) 
 	"MinecraftServer",
 	["punctuation", "]"],
 	["operator", ":"],
-	" Encountered an unexpected exception\r",
+	" Encountered an unexpected exception\r\n",
 
 	["exception", [
 		["summary", [

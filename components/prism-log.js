@@ -12,6 +12,7 @@ Prism.languages.log = {
 
 	'exception': {
 		pattern: /(^|[^\w.])[a-z][\w.]*(?:Exception|Error):.*(?:(?:\r\n?|\n)[ \t]*(?:at[ \t].+|\.{3}.*|Caused by:.*))+(?:(?:\r\n?|\n)[ \t]*\.\.\. .*)?/,
+		lookbehind: true,
 		greedy: true,
 		alias: ['javastacktrace', 'language-javastacktrace'],
 		inside: Prism.languages['javastacktrace'] || {
