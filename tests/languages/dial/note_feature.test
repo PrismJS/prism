@@ -1,0 +1,34 @@
+@fo.o: bar
+
+  @foo ~ baz: |
+	Lorem ipsum
+	Dolor sit
+
+----------------------------------------------------
+
+[
+	["note", [
+		"@",
+		["module", [
+			"fo",
+			["punctuation", "."],
+			"o"
+		]],
+		["punctuation", ":"],
+		["module", ["bar"]]
+	]],
+
+	["note", [
+		"@",
+		["module", ["foo"]],
+		["punctuation", "~"],
+		["module", ["baz"]],
+		["punctuation", ":"],
+		" |"
+	]],
+	"\r\n\tLorem ipsum\r\n\tDolor sit"
+]
+
+----------------------------------------------------
+
+Visible notes on sequence diagram.

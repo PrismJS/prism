@@ -1,0 +1,53 @@
+<h2>Comments</h2>
+<pre><code># This is a comment
+</code></pre>
+
+<h2>Call</h2>
+<pre><code>foo -> bar
+  bar -> baz
+</code></pre>
+
+<h2>Condition</h2>
+<pre><code>if: condition
+  foo -> bar
+</code></pre>
+
+<h2>Note</h2>
+<pre><code>@foo: note
+@foo ~ bar: note
+@foo: |
+  This is a multiline note
+  This is the seconds line of multiline note
+</code></pre>
+
+<h2>Loop</h2>
+<pre><code>for: every foo
+  foo -> bar
+  while: true
+    bar -> baz
+</code></pre>
+
+<h2>Full example</h2>
+<pre><code>diagram: Foo Bar
+version: 1.0
+author: Alice
+
+sequence:
+# Foo Bar mechanism
+
+foo -> bar: init()
+  if: baz
+    bar -> baz
+  
+  @foo: |
+    Lorem
+    Ipsum
+
+  # Start qux 5 times
+  while: true
+    @bar ~ qux: i++
+    bar -> qux: start(i)
+    if: i > 5
+      @bar: berak
+      bar -> qux: final(i)
+</code></pre>

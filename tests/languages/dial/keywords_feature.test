@@ -1,0 +1,21 @@
+diagram version author sequence
+if for while else elif
+
+----------------------------------------------------
+
+[
+	["keyword", "diagram"],
+	["keyword", "version"],
+	["keyword", "author"],
+	["keyword", "sequence"],
+
+	["keyword", "if"],
+	["keyword", "for"],
+	["keyword", "while"],
+	["keyword", "else"],
+	["keyword", "elif"]
+]
+
+----------------------------------------------------
+
+Dial keywords.

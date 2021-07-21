@@ -1,0 +1,18 @@
+-> -> ->->
+
+----------------------------------------------------
+
+[
+	["operator", "-"],
+	["operator", ">"],
+	["operator", "-"],
+	["operator", ">"],
+	["operator", "-"],
+	["operator", ">"],
+	["operator", "-"],
+	["operator", ">"]
+]
+
+----------------------------------------------------
+
+The only operator of the Dial: Right Arrow.

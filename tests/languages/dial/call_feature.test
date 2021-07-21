@@ -1,0 +1,31 @@
+foo.bar -> bar.foo
+  bar -> baz:
+
+----------------------------------------------------
+
+[
+	["call", [
+		["module", [
+			"foo",
+			["punctuation", "."],
+			"bar"
+		]],
+		["operator", "->"],
+		["module", [
+			"bar",
+			["punctuation", "."],
+			"foo"
+		]]
+	]],
+
+	["call", [
+		["module", ["bar"]],
+		["operator", "->"],
+		["module", ["baz"]]
+	]],
+	["punctuation", ":"]
+]
+
+----------------------------------------------------
+
+Represents the sequence diagram entry.
