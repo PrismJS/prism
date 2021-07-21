@@ -754,6 +754,7 @@
 		},
 		"log": {
 			"title": "Log file",
+			"optional": "javastacktrace",
 			"owner": "RunDevelopment"
 		},
 		"lolcode": {
