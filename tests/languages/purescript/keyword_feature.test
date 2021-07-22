@@ -18,30 +18,32 @@ primitive
 then
 type
 where
+∀
 
 ----------------------------------------------------
 
 [
-  ["keyword", "ado"],
-  ["keyword", "case"],
-  ["keyword", "class"],
-  ["keyword", "data"],
-  ["keyword", "derive"],
-  ["keyword", "do"],
-  ["keyword", "else"],
-  ["keyword", "if"],
-  ["keyword", "in"],
-  ["keyword", "infixl"],
-  ["keyword", "infixr"],
-  ["keyword", "instance"],
-  ["keyword", "let"],
-  ["keyword", "module"],
-  ["keyword", "newtype"],
-  ["keyword", "of"],
-  ["keyword", "primitive"],
-  ["keyword", "then"],
-  ["keyword", "type"],
-  ["keyword", "where"]
+	["keyword", "ado"],
+	["keyword", "case"],
+	["keyword", "class"],
+	["keyword", "data"],
+	["keyword", "derive"],
+	["keyword", "do"],
+	["keyword", "else"],
+	["keyword", "if"],
+	["keyword", "in"],
+	["keyword", "infixl"],
+	["keyword", "infixr"],
+	["keyword", "instance"],
+	["keyword", "let"],
+	["keyword", "module"],
+	["keyword", "newtype"],
+	["keyword", "of"],
+	["keyword", "primitive"],
+	["keyword", "then"],
+	["keyword", "type"],
+	["keyword", "where"],
+	["keyword", "∀"]
 ]
 
 ----------------------------------------------------
