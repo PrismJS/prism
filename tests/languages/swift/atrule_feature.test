@@ -4,10 +4,13 @@
 @IBInspectable
 @class_protocol
 @exported
+@globalActor
+@MainActor
 @noreturn
 @NSCopying
 @NSManaged
 @objc
+@propertyWrapper
 @UIApplicationMain
 @auto_closure
 
@@ -20,10 +23,13 @@
 	["atrule", "@IBInspectable"],
 	["atrule", "@class_protocol"],
 	["atrule", "@exported"],
+	["atrule", "@globalActor"],
+	["atrule", "@MainActor"],
 	["atrule", "@noreturn"],
 	["atrule", "@NSCopying"],
 	["atrule", "@NSManaged"],
 	["atrule", "@objc"],
+	["atrule", "@propertyWrapper"],
 	["atrule", "@UIApplicationMain"],
 	["atrule", "@auto_closure"]
 ]
