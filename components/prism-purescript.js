@@ -1,5 +1,5 @@
 Prism.languages.purescript = Prism.languages.extend('haskell', {
-	'keyword': /\b(?:ado|case|class|data|derive|do|else|forall|if|in|infixl|infixr|instance|let|module|newtype|of|primitive|then|type|where)\b/,
+	'keyword': /\b(?:ado|case|class|data|derive|do|else|forall|if|in|infixl|infixr|instance|let|module|newtype|of|primitive|then|type|where)\b|∀/,
 
 	'import-statement': {
 		// The imported or hidden names are not included in this import

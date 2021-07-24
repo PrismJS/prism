@@ -48,9 +48,7 @@ c
 	["keyword", "|="],
 	["function", "c"],
 	"=",
-	["class-name", "@"],
-	["function", "t"],
-	"D\r\n",
+	["class-name", "@tD"],
 
 	["keyword", "?:"],
 	"  &((",
