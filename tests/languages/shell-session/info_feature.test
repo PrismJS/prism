@@ -4,7 +4,8 @@ foo@bar:~$ sudo -i
 root@bar:~# echo "hello!"
 hello!
 
-foo@bar$ exit
+foo@bar$ zsh
+foo@bar% exit
 
 ----------------------------------------------------
 
@@ -54,6 +55,15 @@ foo@bar$ exit
 			["user", "foo@bar"]
 		]],
 		["shell-symbol", "$"],
+		["bash", [
+			["function", "zsh"]
+		]]
+	]],
+	["command", [
+		["info", [
+			["user", "foo@bar"]
+		]],
+		["shell-symbol", "%"],
 		["bash", [
 			["builtin", "exit"]
 		]]
