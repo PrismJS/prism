@@ -18,9 +18,9 @@
 		'command': {
 			pattern: RegExp(
 				// user info
-				/^(?:[^\s@:$#*!/\\]+@[^\r\n@:$#*!/\\]+(?::[^\0-\x1F$#*?"<>:;|]+)?|[^\0-\x1F$#*?"<>@:;|]+)?/.source +
+				/^(?:[^\s@:$#%*!/\\]+@[^\r\n@:$#%*!/\\]+(?::[^\0-\x1F$#%*?"<>:;|]+)?|[^\0-\x1F$#%*?"<>@:;|]+)?/.source +
 				// shell symbol
-				/[$#]/.source +
+				/[$#%]/.source +
 				// bash command
 				/(?:[^\\\r\n'"<$]|\\(?:[^\r]|\r\n?)|\$(?!')|<<str>>)+/.source.replace(/<<str>>/g, function () { return strings; }),
 				'm'
@@ -31,22 +31,22 @@
 					// foo@bar:~/files$ exit
 					// foo@bar$ exit
 					// ~/files$ exit
-					pattern: /^[^#$]+/,
+					pattern: /^[^#$%]+/,
 					alias: 'punctuation',
 					inside: {
-						'user': /^[^\s@:$#*!/\\]+@[^\r\n@:$#*!/\\]+/,
+						'user': /^[^\s@:$#%*!/\\]+@[^\r\n@:$#%*!/\\]+/,
 						'punctuation': /:/,
 						'path': /[\s\S]+/
 					}
 				},
 				'bash': {
-					pattern: /(^[$#]\s*)\S[\s\S]*/,
+					pattern: /(^[$#%]\s*)\S[\s\S]*/,
 					lookbehind: true,
 					alias: 'language-bash',
 					inside: Prism.languages.bash
 				},
 				'shell-symbol': {
-					pattern: /^[$#]/,
+					pattern: /^[$#%]/,
 					alias: 'important'
 				}
 			}
