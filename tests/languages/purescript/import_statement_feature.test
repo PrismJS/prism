@@ -10,25 +10,36 @@ import Foo.Bar (test)
 		["keyword", "import"],
 		" Foo"
 	]],
+
 	["import-statement", [
 		["keyword", "import"],
-		" Foo_42.Bar ",
+		" Foo_42",
+		["punctuation", "."],
+		"Bar ",
 		["keyword", "as"],
 		" Foobar"
 	]],
+
 	["import-statement", [
 		["keyword", "import"],
-		" Foo.Bar ",
+		" Foo",
+		["punctuation", "."],
+		"Bar ",
 		["keyword", "as"],
-		" Foo.Baz ",
+		" Foo",
+		["punctuation", "."],
+		"Baz ",
 		["keyword", "hiding"]
 	]],
+
 	["import-statement", [
-	    ["keyword", "import"],
-	    " Foo.Bar"
+		["keyword", "import"],
+		" Foo",
+		["punctuation", "."],
+		"Bar"
 	]],
 	["punctuation", "("],
-	["hvariable", "test"],
+	["hvariable", ["test"]],
 	["punctuation", ")"]
 ]
 

@@ -17,19 +17,56 @@ reverse . sort
 
 [
 	["operator", ".."],
-	["builtin", "reverse"], ["operator", " . "], ["builtin", "sort"],
+
+	["builtin", "reverse"],
+	["operator", "."],
+	["builtin", "sort"],
+
 	["operator", "`foo`"],
+
 	["operator", "`Foo.bar`"],
-	["operator", "+"], ["operator", "-"], ["operator", "*"], ["operator", "/"],
-	["operator", "^"], ["operator", "^^"], ["operator", "**"],
-	["operator", "&&"], ["operator", "||"],
-	["operator", "<"], ["operator", "<="], ["operator", "=="], ["operator", "/="],
-	["operator", ">="], ["operator", ">"], ["operator", "\\"], ["operator", "|"],
-	["operator", "++"], ["operator", ":"], ["operator", "!!"],
-	["operator", "\\\\"], ["operator", "<-"], ["operator", "->"],
-	["operator", "="], ["operator", "::"], ["operator", "=>"],
-	["operator", ">>"], ["operator", ">>="], ["operator", ">@>"],
-	["operator", "~"], ["operator", "!"], ["operator", "@"]
+
+	["operator", "+"],
+	["operator", "-"],
+	["operator", "*"],
+	["operator", "/"],
+
+	["operator", "^"],
+	["operator", "^^"],
+	["operator", "**"],
+
+	["operator", "&&"],
+	["operator", "||"],
+
+	["operator", "<"],
+	["operator", "<="],
+	["operator", "=="],
+	["operator", "/="],
+
+	["operator", ">="],
+	["operator", ">"],
+	["operator", "\\"],
+	["operator", "|"],
+
+	["operator", "++"],
+	["operator", ":"],
+	["operator", "!!"],
+
+	["operator", "\\\\"],
+	["operator", "<-"],
+	["operator", "->"],
+
+	["operator", "="],
+	["operator", "::"],
+	["operator", "=>"],
+
+	["operator", ">>"],
+	["operator", ">>="],
+	["operator", ">@>"],
+
+	["operator", "~"],
+	["operator", "!"],
+	["operator", "@"]
 ]
 
 ----------------------------------------------------
