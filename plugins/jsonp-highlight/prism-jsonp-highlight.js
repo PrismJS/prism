@@ -126,6 +126,49 @@
 
 
 	var jsonpCallbackCounter = 0;
+	/**
+	 * Makes a JSONP request.
+	 *
+	 * @param {string} src The URL of the resource to request.
+	 * @param {string | undefined | null} callbackParameter The name of the callback parameter. If falsy, `"callback"`
+	 * will be used.
+	 * @param {(data: unknown) => void} onSuccess
+	 * @param {(reason: "timeout" | "network") => void} onError
+	 * @returns {void}
+	 */
+	function jsonp(src, callbackParameter, onSuccess, onError) {
+		var callbackName = 'prismjsonp' + jsonpCallbackCounter++;
+
+		var uri = document.createElement('a');
+		uri.href = src;
+		uri.href += (uri.search ? '&' : '?') + (callbackParameter || 'callback') + '=' + callbackName;
+
+		var script = document.createElement('script');
+		script.src = uri.href;
+		script.onerror = function () {
+			cleanup();
+			onError('network');
+		};
+
+		var timeoutId = setTimeout(function () {
+			cleanup();
+			onError('timeout');
+		}, Prism.plugins.jsonphighlight.timeout);
+
+		function cleanup() {
+			clearTimeout(timeoutId);
+			document.head.removeChild(script);
+			delete window[callbackName];
+		}
+
+		// the JSONP callback function
+		window[callbackName] = function (response) {
+			cleanup();
+			onSuccess(response);
+		};
+
+		document.head.appendChild(script);
+	}
 
 	var LOADING_MESSAGE = 'Loading…';
 	var MISSING_ADAPTER_MESSAGE = function (name) {
@@ -185,61 +228,45 @@
 				}
 			}
 
-			var callbackName = 'prismjsonp' + jsonpCallbackCounter++;
+			var src = pre.getAttribute('data-jsonp');
 
-			var uri = document.createElement('a');
-			var src = uri.href = pre.getAttribute('data-jsonp');
-			uri.href += (uri.search ? '&' : '?') + (pre.getAttribute('data-callback') || 'callback') + '=' + callbackName;
-
-
-			var timeout = setTimeout(function () {
-				// we could clean up window[cb], but if the request finally succeeds, keeping it around is a good thing
-
-				// mark as failed
-				pre.setAttribute(STATUS_ATTR, STATUS_FAILED);
-
-				code.textContent = TIMEOUT_MESSAGE(src);
-			}, Prism.plugins.jsonphighlight.timeout);
-
-
-			var script = document.createElement('script');
-			script.src = uri.href;
-
-			// the JSONP callback function
-			window[callbackName] = function (response) {
-				// clean up
-				document.head.removeChild(script);
-				clearTimeout(timeout);
-				delete window[callbackName];
-
-				// interpret the received data using the adapter(s)
-				var data = null;
-				if (adapter) {
-					data = adapter(response, pre);
-				} else {
-					for (var i = 0, l = adapters.length; i < l; i++) {
-						data = adapters[i].adapter(response, pre);
-						if (data !== null) {
-							break;
+			jsonp(
+				src,
+				pre.getAttribute('data-callback'),
+				function (response) {
+					// interpret the received data using the adapter(s)
+					var data = null;
+					if (adapter) {
+						data = adapter(response, pre);
+					} else {
+						for (var i = 0, l = adapters.length; i < l; i++) {
+							data = adapters[i].adapter(response, pre);
+							if (data !== null) {
+								break;
+							}
 						}
 					}
-				}
 
-				if (data === null) {
+					if (data === null) {
+						// mark as failed
+						pre.setAttribute(STATUS_ATTR, STATUS_FAILED);
+
+						code.textContent = UNKNOWN_FAILURE_MESSAGE;
+					} else {
+						// mark as loaded
+						pre.setAttribute(STATUS_ATTR, STATUS_LOADED);
+
+						code.textContent = data;
+						Prism.highlightElement(code);
+					}
+				},
+				function () {
 					// mark as failed
 					pre.setAttribute(STATUS_ATTR, STATUS_FAILED);
 
-					code.textContent = UNKNOWN_FAILURE_MESSAGE;
-				} else {
-					// mark as loaded
-					pre.setAttribute(STATUS_ATTR, STATUS_LOADED);
-
-					code.textContent = data;
-					Prism.highlightElement(code);
+					code.textContent = TIMEOUT_MESSAGE(src);
 				}
-			};
-
-			document.head.appendChild(script);
+			);
 		}
 	});
 
