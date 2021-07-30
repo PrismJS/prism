@@ -4,7 +4,7 @@ import Foo
 
 [
 	["keyword", "import"],
-	["constant", "Foo"]
+	["constant", ["Foo"]]
 ]
 
 ----------------------------------------------------

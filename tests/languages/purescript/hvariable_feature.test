@@ -5,9 +5,17 @@ Baz.foobar_42
 ----------------------------------------------------
 
 [
-	["hvariable", "foo"],
-	["hvariable", "Foo.bar"],
-	["hvariable", "Baz.foobar_42"]
+	["hvariable", ["foo"]],
+	["hvariable", [
+		"Foo",
+		["punctuation", "."],
+		"bar"
+	]],
+	["hvariable", [
+		"Baz",
+		["punctuation", "."],
+		"foobar_42"
+	]]
 ]
 
 ----------------------------------------------------
