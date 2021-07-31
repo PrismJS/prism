@@ -3,11 +3,11 @@ as
 associativity
 async
 await
-break
+break;
 case
 catch
 class;
-continue
+continue;
 convenience
 default
 defer
@@ -22,7 +22,7 @@ extension
 fallthrough
 final
 for
-func
+func;
 get
 guard
 if
@@ -90,11 +90,11 @@ __LINE__
 	["keyword", "associativity"],
 	["keyword", "async"],
 	["keyword", "await"],
-	["keyword", "break"],
+	["keyword", "break"], ["punctuation", ";"],
 	["keyword", "case"],
 	["keyword", "catch"],
 	["keyword", "class"], ["punctuation", ";"],
-	["keyword", "continue"],
+	["keyword", "continue"], ["punctuation", ";"],
 	["keyword", "convenience"],
 	["keyword", "default"],
 	["keyword", "defer"],
@@ -109,7 +109,7 @@ __LINE__
 	["keyword", "fallthrough"],
 	["keyword", "final"],
 	["keyword", "for"],
-	["keyword", "func"],
+	["keyword", "func"], ["punctuation", ";"],
 	["keyword", "get"],
 	["keyword", "guard"],
 	["keyword", "if"],

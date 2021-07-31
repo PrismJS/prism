@@ -135,7 +135,6 @@
 		"sparql": "turtle",
 		"sqf": "clike",
 		"squirrel": "clike",
-		"swift": "clike",
 		"t4-cs": [
 			"t4-templating",
 			"csharp"
