@@ -64,6 +64,42 @@ Prism.languages.swift = {
 		},
 	],
 
+	'directive': {
+		// directives with conditions
+		pattern: RegExp(
+			/#/.source
+			+ '(?:'
+			+ (
+				/(?:elseif|if)\b/.source
+				+ '(?:[ \t]*'
+				// This regex is a little complex. It's equivalent to this:
+				//   (?:![ \t]*)?(?:\b\w+\b(?:[ \t]*<round>)?|<round>)(?:[ \t]*(?:&&|\|\|))?
+				// where <round> is a general parentheses expression.
+				+ /(?:![ \t]*)?(?:\b\w+\b(?:[ \t]*\((?:[^()]|\((?:[^()]|\((?:[^()])*\))*\))*\))?|\((?:[^()]|\((?:[^()]|\((?:[^()])*\))*\))*\))(?:[ \t]*(?:&&|\|\|))?/.source
+				+ ')+'
+			)
+			+ '|'
+			+ /(?:else|endif)\b/.source
+			+ ')'
+		),
+		alias: 'property',
+		inside: {
+			'directive-name': /^#\w+/,
+			'boolean': /\b(?:true|false)\b/,
+			'number': /\b\d+(?:\.\d+)*\b/,
+			'operator': /!|&&|\|\||[<>]=?/,
+			'punctuation': /[(),]/
+		}
+	},
+	'literal': {
+		pattern: /#(?:colorLiteral|column|dsohandle|file(?:ID|Literal|Path)?|function|imageLiteral|line)\b/,
+		alias: 'constant'
+	},
+	'other-directive': {
+		pattern: /#\w+\b/,
+		alias: 'property'
+	},
+
 	'atrule': /@\b(?:IB(?:Outlet|Designable|Action|Inspectable)|class_protocol|exported|globalActor|MainActor|noreturn|NS(?:Copying|Managed)|objc|propertyWrapper|UIApplicationMain|auto_closure)\b/,
 
 	'function-definition': {
