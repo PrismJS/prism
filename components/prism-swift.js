@@ -80,6 +80,10 @@ Prism.languages.swift = {
 
 	'keyword': /\b(?:actor|as|associativity|async|await|break|case|catch|class|continue|convenience|default|defer|deinit|didSet|do|dynamic(?:Type)?|else|enum|extension|fallthrough|final|for|func|get|guard|if|import|in|infix|init|inout|internal|is|lazy|left|let|mutating|new|none|nonisolated|nonmutating|operator|optional|override|postfix|precedence|prefix|private|protocol|public|repeat|required|rethrows|return|right|safe|self|Self|set|some|static|struct|subscript|super|switch|throws?|try|Type|typealias|unowned|unsafe|var|weak|where|while|willSet|__(?:COLUMN__|FILE__|FUNCTION__|LINE__))\b/,
 	'boolean': /\b(?:true|false)\b/,
+	'nil': {
+		pattern: /\bnil\b/,
+		alias: 'constant'
+	},
 
 	'short-argument': /\$\d+\b/,
 	'omit': {
@@ -91,10 +95,13 @@ Prism.languages.swift = {
 	// A class name must start with an upper-case letter and be either 1 letter long or contain a lower-case letter.
 	'class-name': /\b[A-Z](?:[A-Z_\d]*[a-z]\w*)?\b/,
 	'function': /\b[a-z_]\w*(?=\s*\()/i,
-	'constant': /\b(?:nil|[A-Z_]{2,}|k[A-Z][A-Za-z_]+)\b/,
+	'constant': /\b(?:[A-Z_]{2,}|k[A-Z][A-Za-z_]+)\b/,
 
-	'operator': /[!=]={0,2}|&(?:[-+*]|<<|>>)=?|&&|\|\||->|\.\.[<.]|\?[?.]|(?:[-+*/%~&|^]|<<?|>>?)=?/,
-	'punctuation': /[{}[\]();,.:?]/
+	// Operators are generic in Swift. Developers can even create new operators (e.g. +++).
+	// https://docs.swift.org/swift-book/ReferenceManual/zzSummaryOfTheGrammar.html#ID481
+	// This regex only supports ASCII operators.
+	'operator': /[-+*/%=!<>&|^~?]+|\.[.\-+*/%=!<>&|^~?]+/,
+	'punctuation': /[{}[\]();,.:]/
 };
 
 Prism.languages.swift['string-literal'].forEach(function (rule) {
