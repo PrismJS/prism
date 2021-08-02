@@ -100,7 +100,10 @@ Prism.languages.swift = {
 		alias: 'property'
 	},
 
-	'atrule': /@\b(?:IB(?:Outlet|Designable|Action|Inspectable)|class_protocol|exported|globalActor|MainActor|noreturn|NS(?:Copying|Managed)|objc|propertyWrapper|UIApplicationMain|auto_closure)\b/,
+	'attribute': {
+		pattern: /@\w+/,
+		alias: 'atrule'
+	},
 
 	'function-definition': {
 		pattern: /(\bfunc\s+)\w+/,
