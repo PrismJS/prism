@@ -140,7 +140,7 @@ Prism.languages.swift = {
 	// https://docs.swift.org/swift-book/ReferenceManual/zzSummaryOfTheGrammar.html#ID481
 	// This regex only supports ASCII operators.
 	'operator': /[-+*/%=!<>&|^~?]+|\.[.\-+*/%=!<>&|^~?]+/,
-	'punctuation': /[{}[\]();,.:]/
+	'punctuation': /[{}[\]();,.:\\]/
 };
 
 Prism.languages.swift['string-literal'].forEach(function (rule) {
