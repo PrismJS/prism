@@ -196,6 +196,10 @@
 			}
 
 			mutateActions.push(function () {
+				line.style.width = pre.scrollWidth + 'px';
+			});
+
+			mutateActions.push(function () {
 				// allow this to play nicely with the line-numbers plugin
 				// need to attack to pre as when line-numbers is enabled, the code tag is relatively which screws up the positioning
 				parentElement.appendChild(line);
