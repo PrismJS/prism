@@ -184,15 +184,14 @@
 			},
 			"owner": "RunDevelopment"
 		},
+		"bicep": {
+			"title": "Bicep",
+			"owner": "johnnyreilly"
+		},
 		"birb": {
 			"title": "Birb",
 			"require": "clike",
 			"owner": "Calamity210"
-		},
-		"bicep": {
-			"title": "Bicep",
-			"alias": "bicep",
-			"owner": "johnnyreilly"
 		},
 		"bison": {
 			"title": "Bison",
