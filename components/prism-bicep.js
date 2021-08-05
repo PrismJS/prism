@@ -16,7 +16,7 @@ Prism.languages.bicep = {
 	],
 	'string': {
 		// this doesn't handle string interpolalation or multiline strings as yet
-		pattern: /(')(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,
+		pattern: /'(?:\\.|[^'\\\r\n])*'/,
 		greedy: true
 	},
 	'number': /(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:E[+-]?\d+)?/i,
