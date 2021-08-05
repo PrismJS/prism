@@ -21,8 +21,8 @@ Prism.languages.bicep = {
 	},
 	'number': /(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:E[+-]?\d+)?/i,
 	'boolean': /\b(?:true|false)\b/,
-	'keyword': /\b(?:targetScope|resource|module|param|var|output|for|in|if|existing|null)\b/i, // https://github.com/Azure/bicep/blob/114a3251b4e6e30082a58729f19a8cc4e374ffa6/src/textmate/bicep.tmlanguage#L184
-	'function': /\b(?:array|concat|contains|createArray|empty|first|intersection|last|length|max|min|range|skip|take|union)(?:\$|\b)/i, // https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/template-functions-array
+	'keyword': /\b(?:targetScope|resource|module|param|var|output|for|in|if|existing|null)\b/, // https://github.com/Azure/bicep/blob/114a3251b4e6e30082a58729f19a8cc4e374ffa6/src/textmate/bicep.tmlanguage#L184
+	'function': /\b(?:array|concat|contains|createArray|empty|first|intersection|last|length|max|min|range|skip|take|union)(?:\$|\b)/, // https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/template-functions-array
 	'operator': /--|\+\+|\*\*=?|=>|&&=?|\|\|=?|[!=]==|<<=?|>>>?=?|[-+*/%&|^!=<>]=?|\.{3}|\?\?=?|\?\.?|[~:]/,
 	'punctuation': /[{}[\];(),.:]/,
 	'decorator': /@\w+\b/
