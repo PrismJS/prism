@@ -12,6 +12,7 @@ for item in cosmosdbAllowedIpAddresses: {
 	ipAddressOrRange: item
 }
 if
+null
 
 ----------------------------------------------------
 
@@ -74,7 +75,9 @@ if
 
 	["punctuation", "}"],
 
-	["keyword", "if"]
+	["keyword", "if"],
+
+	["keyword", "null"]
 ]
 
 ----------------------------------------------------
