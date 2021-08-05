@@ -1,5 +1,4 @@
 // based loosely upon: https://github.com/Azure/bicep/blob/main/src/textmate/bicep.tmlanguage
-// npm run test:languages -- --language=bicep --update
 Prism.languages.bicep = {
 	'comment': [
 		{
