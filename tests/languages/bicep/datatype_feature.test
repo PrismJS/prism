@@ -1,0 +1,47 @@
+param myString string
+param myInt int
+param myBool bool
+param myObject object
+param myArray array
+
+output myHardcodedOutput int = 42
+output myLoopyOutput array = [for myItem in myArray: {
+  myProperty: myItem.myOtherProperty
+}]
+
+----------------------------------------------------
+
+[
+	["keyword", "param"], " myString ", ["datatype", "string"],
+	["keyword", "param"], " myInt ", ["datatype", "int"],
+	["keyword", "param"], " myBool ", ["datatype", "bool"],
+	["keyword", "param"], " myObject ", ["datatype", "object"],
+	["keyword", "param"], " myArray ", ["datatype", "array"],
+
+	["keyword", "output"],
+	" myHardcodedOutput ",
+	["datatype", "int"],
+	["operator", "="],
+	["number", "42"],
+
+	["keyword", "output"],
+	" myLoopyOutput ",
+	["datatype", "array"],
+	["operator", "="],
+	["punctuation", "["],
+	["keyword", "for"],
+	" myItem ",
+	["keyword", "in"],
+	" myArray",
+	["operator", ":"],
+	["punctuation", "{"],
+
+	["property", "myProperty"],
+	["operator", ":"],
+	" myItem",
+	["punctuation", "."],
+	"myOtherProperty\r\n",
+
+	["punctuation", "}"],
+	["punctuation", "]"]
+]

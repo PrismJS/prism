@@ -1,37 +1,60 @@
-array
-concat
-contains
-createArray
-empty
-first
-intersection
-last
-length
-max
-min
-range
-skip
-take
-union
+param location string = resourceGroup().location
+var hostingPlanName = 'hostingplan${uniqueString(resourceGroup().id)}'
+
+array(parameters('stringToConvert'))
+createArray(1, 2, 3)
 
 ----------------------------------------------------
 
 [
+	["keyword", "param"],
+	" location ",
+	["datatype", "string"],
+	["operator", "="],
+	["function", "resourceGroup"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "."],
+	"location\r\n",
+
+	["keyword", "var"],
+	" hostingPlanName ",
+	["operator", "="],
+	["interpolated-string", [
+		["string", "'hostingplan"],
+		["interpolation", [
+			["punctuation", "${"],
+			["expression", [
+				["function", "uniqueString"],
+				["punctuation", "("],
+				["function", "resourceGroup"],
+				["punctuation", "("],
+				["punctuation", ")"],
+				["punctuation", "."],
+				"id",
+				["punctuation", ")"]
+			]],
+			["punctuation", "}"]
+		]],
+		["string", "'"]
+	]],
+
 	["function", "array"],
-	["function", "concat"],
-	["function", "contains"],
+	["punctuation", "("],
+	["function", "parameters"],
+	["punctuation", "("],
+	["string", "'stringToConvert'"],
+	["punctuation", ")"],
+	["punctuation", ")"],
+
 	["function", "createArray"],
-	["function", "empty"],
-	["function", "first"],
-	["function", "intersection"],
-	["function", "last"],
-	["function", "length"],
-	["function", "max"],
-	["function", "min"],
-	["function", "range"],
-	["function", "skip"],
-	["function", "take"],
-	["function", "union"]
+	["punctuation", "("],
+	["number", "1"],
+	["punctuation", ","],
+	["number", "2"],
+	["punctuation", ","],
+	["number", "3"],
+	["punctuation", ")"]
 ]
 
 ----------------------------------------------------
