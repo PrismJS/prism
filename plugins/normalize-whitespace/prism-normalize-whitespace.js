@@ -1,6 +1,6 @@
 (function () {
 
-	if (typeof Prism === 'undefined' || typeof document === 'undefined') {
+	if (typeof Prism === 'undefined') {
 		return;
 	}
 
@@ -122,11 +122,6 @@
 	// Support node modules
 	if (typeof module !== 'undefined' && module.exports) {
 		module.exports = NormalizeWhitespace;
-	}
-
-	// Exit if prism is not loaded
-	if (typeof Prism === 'undefined') {
-		return;
 	}
 
 	Prism.plugins.NormalizeWhitespace = new NormalizeWhitespace({

@@ -1,0 +1,23 @@
+@secure()
+param demoPassword string
+@allowed([
+  'one'
+  'two'
+])
+param demoEnum string
+
+----------------------------------------------------
+
+[
+	["decorator", "@secure"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "param"], " demoPassword string\r\n",
+	["decorator", "@allowed"], ["punctuation", "("], ["punctuation", "["],
+	["string", "'one'"],
+	["string", "'two'"],
+	["punctuation", "]"], ["punctuation", ")"],
+	["keyword", "param"], " demoEnum string"
+]
+
+----------------------------------------------------
+
+Checks for functions. Also checks for unicode characters in identifiers.

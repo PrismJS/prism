@@ -1,0 +1,13 @@
+'Microsoft.Web/sites/config@2020-12-01'
+'https://${frontDoorName}.azurefd.net/.auth/login/aad/callback'
+
+----------------------------------------------------
+
+[
+	["string", "'Microsoft.Web/sites/config@2020-12-01'"],
+	["string", "'https://${frontDoorName}.azurefd.net/.auth/login/aad/callback'"]
+]
+
+----------------------------------------------------
+
+Checks for strings.
