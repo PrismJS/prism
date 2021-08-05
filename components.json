@@ -184,6 +184,10 @@
 			},
 			"owner": "RunDevelopment"
 		},
+		"bicep": {
+			"title": "Bicep",
+			"owner": "johnnyreilly"
+		},
 		"birb": {
 			"title": "Birb",
 			"require": "clike",

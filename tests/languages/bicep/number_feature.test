@@ -1,0 +1,73 @@
+42
+3.14159
+4e10
+3.2E+6
+2.1e-10
+0b1101
+0o571
+0xbabe
+0xBABE
+
+NaN
+Infinity
+
+123n
+0x123n
+
+1_000_000_000_000
+1_000_000.220_720
+0b0101_0110_0011_1000
+0o12_34_56
+0x40_76_38_6A_73
+4_642_473_943_484_686_707n
+0.000_001
+1e10_000
+
+----------------------------------------------------
+
+[
+	["number", "42"],
+	["number", "3.14159"],
+	["number", "4e10"],
+	["number", "3.2E+6"],
+	["number", "2.1e-10"],
+	["number", "0"], "b1101\r\n",
+	["number", "0"], "o571\r\n",
+	["number", "0"], "xbabe\r\n",
+	["number", "0"], "xBABE\r\n\r\nNaN\r\nInfinity\r\n\r\n",
+
+	["number", "123"], "n\r\n",
+	["number", "0"], "x123n\r\n\r\n",
+
+	["number", "1"],
+	"_000_000_000_000\r\n",
+
+	["number", "1"],
+	"_000_000",
+	["punctuation", "."],
+	["number", "220"],
+	"_720\r\n",
+
+	["number", "0"],
+	"b0101_0110_0011_1000\r\n",
+
+	["number", "0"],
+	"o12_34_56\r\n",
+
+	["number", "0"],
+	"x40_76_38_6A_73\r\n",
+
+	["number", "4"],
+	"_642_473_943_484_686_707n\r\n",
+
+	["number", "0.000"],
+	"_001\r\n",
+
+	["number", "1e10"],
+	"_000"
+]
+
+----------------------------------------------------
+
+Checks for decimal numbers, binary numbers, octal numbers, hexadecimal numbers.
+Also checks for keywords representing numbers.

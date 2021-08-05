@@ -1,0 +1,39 @@
+array
+concat
+contains
+createArray
+empty
+first
+intersection
+last
+length
+max
+min
+range
+skip
+take
+union
+
+----------------------------------------------------
+
+[
+	["function", "array"],
+	["function", "concat"],
+	["function", "contains"],
+	["function", "createArray"],
+	["function", "empty"],
+	["function", "first"],
+	["function", "intersection"],
+	["function", "last"],
+	["function", "length"],
+	["function", "max"],
+	["function", "min"],
+	["function", "range"],
+	["function", "skip"],
+	["function", "take"],
+	["function", "union"]
+]
+
+----------------------------------------------------
+
+Checks for functions. Based upon https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/template-functions-array
