@@ -21,7 +21,7 @@ Prism.languages.bicep = {
 			lookbehind: true
 		},
 		{
-			pattern: /([\r\n][ \t]*)'(?:\\.|\$(?!\{)|[^'\\\r\n$])*'(?=[ \t]*:)/i,
+			pattern: /([\r\n][ \t]*)'(?:\\.|\$(?!\{)|[^'\\\r\n$])*'(?=[ \t]*:)/,
 			lookbehind: true,
 			greedy: true
 		}
