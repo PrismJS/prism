@@ -66,9 +66,9 @@ Prism.languages.bicep = {
 	'keyword': /\b(?:targetScope|resource|module|param|var|output|for|in|if|existing|null)\b/,
 
 	'decorator': /@\w+\b/,
-	// https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/template-functions-array
 	'function': [
 		/\b[a-z_]\w*(?=[ \t]*\()/i,
+		// https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/template-functions-array
 		/\b(?:array|concat|contains|createArray|empty|first|intersection|last|length|max|min|range|skip|take|union)(?:\$|\b)/
 	],
 
