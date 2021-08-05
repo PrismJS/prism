@@ -14,6 +14,9 @@ skip
 take
 union
 
+param location string = resourceGroup().location
+var hostingPlanName = 'hostingplan${uniqueString(resourceGroup().id)}'
+
 ----------------------------------------------------
 
 [
@@ -31,7 +34,39 @@ union
 	["function", "range"],
 	["function", "skip"],
 	["function", "take"],
-	["function", "union"]
+	["function", "union"],
+
+	["keyword", "param"],
+	" location ",
+	["class-name", "string"],
+	["operator", "="],
+	["function", "resourceGroup"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "."],
+	"location\r\n",
+
+	["keyword", "var"],
+	" hostingPlanName ",
+	["operator", "="],
+	["interpolated-string", [
+		["string", "'hostingplan"],
+		["interpolation", [
+			["punctuation", "${"],
+			["expression", [
+				["function", "uniqueString"],
+				["punctuation", "("],
+				["function", "resourceGroup"],
+				["punctuation", "("],
+				["punctuation", ")"],
+				["punctuation", "."],
+				"id",
+				["punctuation", ")"]
+			]],
+			["punctuation", "}"]
+		]],
+		["string", "'"]
+	]]
 ]
 
 ----------------------------------------------------

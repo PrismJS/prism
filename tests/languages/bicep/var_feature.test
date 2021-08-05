@@ -16,7 +16,7 @@ var oneObject = {
 	["number", "123"],
 	["punctuation", "]"],
 	["keyword", "var"], " oneObject ", ["operator", "="], ["punctuation", "{"],
-	"\r\n\tabc", ["operator", ":"], ["number", "123"],
+	["property", "abc"], ["operator", ":"], ["number", "123"],
 	["punctuation", "}"]
 ]
 

@@ -31,7 +31,7 @@ null
 	["punctuation", ")"],
 	["punctuation", "{"],
 
-	"\r\n  name",
+	["property", "name"],
 	["operator", ":"],
 	" logAnalyticsWsName\r\n",
 
@@ -43,14 +43,15 @@ null
 	["operator", "="],
 	["punctuation", "{"],
 
-	"\r\n  name",
+	["property", "name"],
 	["operator", ":"],
 	["string", "'cosmosDbDeploy'"],
 
 	["punctuation", "}"],
 
 	["keyword", "param"],
-	" env string\r\n",
+	" env ",
+	["class-name", "string"],
 
 	["keyword", "var"],
 	" oneNumber ",
@@ -58,7 +59,8 @@ null
 	["number", "123"],
 
 	["keyword", "output"],
-	" databaseName string ",
+	" databaseName ",
+	["class-name", "string"],
 	["operator", "="],
 	" cosmosdbDatabaseName\r\n",
 
@@ -69,7 +71,7 @@ null
 	["operator", ":"],
 	["punctuation", "{"],
 
-	"\r\n\tipAddressOrRange",
+	["property", "ipAddressOrRange"],
 	["operator", ":"],
 	" item\r\n",
 
