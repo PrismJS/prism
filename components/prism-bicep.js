@@ -25,5 +25,5 @@ Prism.languages.bicep = {
 	'function': /\b(?:array|concat|contains|createArray|empty|first|intersection|last|length|max|min|range|skip|take|union)(?:\$|\b)/i, // https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/template-functions-array
 	'operator': /--|\+\+|\*\*=?|=>|&&=?|\|\|=?|[!=]==|<<=?|>>>?=?|[-+*/%&|^!=<>]=?|\.{3}|\?\?=?|\?\.?|[~:]/,
 	'punctuation': /[{}[\];(),.:]/,
-	'decorator': /@\w*\b/
+	'decorator': /@\w+\b/
 };
