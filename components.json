@@ -189,6 +189,11 @@
 			"require": "clike",
 			"owner": "Calamity210"
 		},
+		"bicep": {
+			"title": "Bicep",
+			"alias": "bicep",
+			"owner": "johnnyreilly"
+		},
 		"bison": {
 			"title": "Bison",
 			"require": "c",

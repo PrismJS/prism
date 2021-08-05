@@ -175,6 +175,7 @@
 		"adoc": "asciidoc",
 		"shell": "bash",
 		"shortcode": "bbcode",
+		"bicep": "bicep",
 		"rbnf": "bnf",
 		"oscript": "bsl",
 		"cs": "csharp",
