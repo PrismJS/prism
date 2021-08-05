@@ -56,9 +56,10 @@ Prism.languages.bicep = {
 		}
 	},
 
-	'class-name': {
+	'datatype': {
 		pattern: /(\b(?:output|param)\b[ \t]+\w+[ \t]+)\w+\b/,
-		lookbehind: true
+		lookbehind: true,
+		alias: 'class-name'
 	},
 
 	'boolean': /\b(?:true|false)\b/,
@@ -66,11 +67,7 @@ Prism.languages.bicep = {
 	'keyword': /\b(?:targetScope|resource|module|param|var|output|for|in|if|existing|null)\b/,
 
 	'decorator': /@\w+\b/,
-	'function': [
-		/\b[a-z_]\w*(?=[ \t]*\()/i,
-		// https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/template-functions-array
-		/\b(?:array|concat|contains|createArray|empty|first|intersection|last|length|max|min|range|skip|take|union)(?:\$|\b)/
-	],
+	'function': /\b[a-z_]\w*(?=[ \t]*\()/i,
 
 	'number': /(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:E[+-]?\d+)?/i,
 	'operator': /--|\+\+|\*\*=?|=>|&&=?|\|\|=?|[!=]==|<<=?|>>>?=?|[-+*/%&|^!=<>]=?|\.{3}|\?\?=?|\?\.?|[~:]/,

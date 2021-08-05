@@ -51,7 +51,7 @@ null
 
 	["keyword", "param"],
 	" env ",
-	["class-name", "string"],
+	["datatype", "string"],
 
 	["keyword", "var"],
 	" oneNumber ",
@@ -60,7 +60,7 @@ null
 
 	["keyword", "output"],
 	" databaseName ",
-	["class-name", "string"],
+	["datatype", "string"],
 	["operator", "="],
 	" cosmosdbDatabaseName\r\n",
 

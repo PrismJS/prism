@@ -1,44 +1,15 @@
-array
-concat
-contains
-createArray
-empty
-first
-intersection
-last
-length
-max
-min
-range
-skip
-take
-union
-
 param location string = resourceGroup().location
 var hostingPlanName = 'hostingplan${uniqueString(resourceGroup().id)}'
+
+array(parameters('stringToConvert'))
+createArray(1, 2, 3)
 
 ----------------------------------------------------
 
 [
-	["function", "array"],
-	["function", "concat"],
-	["function", "contains"],
-	["function", "createArray"],
-	["function", "empty"],
-	["function", "first"],
-	["function", "intersection"],
-	["function", "last"],
-	["function", "length"],
-	["function", "max"],
-	["function", "min"],
-	["function", "range"],
-	["function", "skip"],
-	["function", "take"],
-	["function", "union"],
-
 	["keyword", "param"],
 	" location ",
-	["class-name", "string"],
+	["datatype", "string"],
 	["operator", "="],
 	["function", "resourceGroup"],
 	["punctuation", "("],
@@ -66,7 +37,24 @@ var hostingPlanName = 'hostingplan${uniqueString(resourceGroup().id)}'
 			["punctuation", "}"]
 		]],
 		["string", "'"]
-	]]
+	]],
+
+	["function", "array"],
+	["punctuation", "("],
+	["function", "parameters"],
+	["punctuation", "("],
+	["string", "'stringToConvert'"],
+	["punctuation", ")"],
+	["punctuation", ")"],
+
+	["function", "createArray"],
+	["punctuation", "("],
+	["number", "1"],
+	["punctuation", ","],
+	["number", "2"],
+	["punctuation", ","],
+	["number", "3"],
+	["punctuation", ")"]
 ]
 
 ----------------------------------------------------

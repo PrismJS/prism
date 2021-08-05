@@ -15,12 +15,12 @@ param storageAccountName string = concat(uniqueString(resourceGroup().id), 'sa')
 
 [
 	["decorator", "@secure"], ["punctuation", "("], ["punctuation", ")"],
-	["keyword", "param"], " demoPassword ", ["class-name", "string"],
+	["keyword", "param"], " demoPassword ", ["datatype", "string"],
 	["decorator", "@allowed"], ["punctuation", "("], ["punctuation", "["],
 	["string", "'one'"],
 	["string", "'two'"],
 	["punctuation", "]"], ["punctuation", ")"],
-	["keyword", "param"], " demoEnum ", ["class-name", "string"],
+	["keyword", "param"], " demoEnum ", ["datatype", "string"],
 
 	["decorator", "@minLength"],
 	["punctuation", "("],
@@ -39,7 +39,7 @@ param storageAccountName string = concat(uniqueString(resourceGroup().id), 'sa')
 
 	["keyword", "param"],
 	" storageAccountName ",
-	["class-name", "string"],
+	["datatype", "string"],
 	["operator", "="],
 	["function", "concat"],
 	["punctuation", "("],
