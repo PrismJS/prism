@@ -59,7 +59,7 @@ const config = {
 				'https://cdnjs.cloudflare.com/ajax/libs/prism/1.20.0/prism.min.js',
 				'https://code.jquery.com/jquery-3.4.1.js',
 				'https://code.jquery.com/jquery-3.4.1.min.js',
-				'../assets/utopia.js'
+				'../assets/vendor/utopia.js'
 			]
 		},
 		'json': {
