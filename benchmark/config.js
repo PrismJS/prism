@@ -21,7 +21,7 @@
  * @typedef ConfigCase
  * @property {string | string[]} [extends]
  * @property {string | string[]} [files]
-*/
+ */
 const config = {
 	options: {
 		testFunction: 'tokenize',
@@ -39,10 +39,10 @@ const config = {
 		{
 			repo: 'https://github.com/PrismJS/prism.git'
 		},
-		// {
-		// 	repo: 'https://github.com/<Your user name>/prism.git',
-		// 	branch: 'some-brach-you-want-to-test'
-		// },
+		/*{
+			repo: 'https://github.com/<Your user name>/prism.git',
+			branch: 'some-brach-you-want-to-test'
+		},*/
 	],
 
 	cases: {
