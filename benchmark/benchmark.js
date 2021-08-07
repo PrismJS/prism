@@ -79,7 +79,7 @@ async function runBenchmark(config) {
 			results.forEach((r, index) => {
 				const name = r.name.padEnd(maxCandidateNameLength, ' ');
 				const mean = (r.stats.mean * 1000).toFixed(2).padStart(8) + 'ms';
-				const r_moe = (100 * r.stats.moe / r.stats.mean).toFixed(0).padStart(3) + '%'
+				const r_moe = (100 * r.stats.moe / r.stats.mean).toFixed(0).padStart(3) + '%';
 				const smp = r.stats.sample.length.toString().padStart(4) + 'smp';
 
 				const relativeMean = r.stats.mean / min;
@@ -118,18 +118,20 @@ async function runBenchmark(config) {
 function getConfig() {
 	const base = require('./config.js');
 
-	if (typeof argv.testFunction === 'string') {
+	const args = /** @type {Record<string, unknown>} */(argv);
+
+	if (typeof args.testFunction === 'string') {
 		// @ts-ignore
-		base.options.testFunction = argv.testFunction;
+		base.options.testFunction = args.testFunction;
 	}
-	if (typeof argv.maxTime === 'number') {
-		base.options.maxTime = argv.maxTime;
+	if (typeof args.maxTime === 'number') {
+		base.options.maxTime = args.maxTime;
 	}
-	if (typeof argv.language === 'string') {
-		base.options.language = argv.language;
+	if (typeof args.language === 'string') {
+		base.options.language = args.language;
 	}
-	if (typeof argv.remotesOnly === 'boolean') {
-		base.options.remotesOnly = argv.remotesOnly;
+	if (typeof args.remotesOnly === 'boolean') {
+		base.options.remotesOnly = args.remotesOnly;
 	}
 
 	return base;
@@ -170,7 +172,7 @@ async function getCases(config) {
 		caseFileCache.set(id, files);
 
 		await Promise.all(toArray(caseEntry.files).map(async uri => {
-			files.add(await getFileInfo(uri))
+			files.add(await getFileInfo(uri));
 		}));
 		for (const extendId of toArray(caseEntry.extends)) {
 			(await getCaseFiles(extendId)).forEach(info => files.add(info));
@@ -209,7 +211,7 @@ async function getCases(config) {
 			language: parsed.mainLanguage,
 			languages: parsed.languages,
 			files: [...await getCaseFiles(id)].sort((a, b) => a.uri.localeCompare(b.uri)),
-		})
+		});
 	}
 
 	cases.sort((a, b) => a.id.localeCompare(b.id));
@@ -441,7 +443,7 @@ function toArray(value) {
 	if (Array.isArray(value)) {
 		return value;
 	} else if (value != undefined) {
-		return [value]
+		return [value];
 	} else {
 		return [];
 	}
