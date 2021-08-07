@@ -19,37 +19,37 @@ payload.name?
 [
 	"a ",
 	["operator", ">"],
-	" b\nc ",
+	" b\r\nc ",
 	["operator", "<"],
-	" d\na ",
+	" d\r\na ",
 	["operator", "="],
 	["number", "1"],
 
-	"\na ",
+	"\r\na ",
 	["operator", "<<"],
 	["number", "1"],
 
-	"\nb ",
+	"\r\nb ",
 	["operator", ">>"],
 	["number", "2"],
 
-	"\nd ",
+	"\r\nd ",
 	["operator", "<="],
 	["number", "2"],
 
-	"\ne ",
+	"\r\ne ",
 	["operator", ">="],
 	["number", "3"],
 
-	"\nf ",
+	"\r\nf ",
 	["operator", "!="],
 	["number", "4"],
 
-	"\ng ",
+	"\r\ng ",
 	["operator", "~="],
 	["number", "4"],
 
-	"\nh ",
+	"\r\nh ",
 	["operator", "=="],
 	["number", "1"],
 
@@ -59,19 +59,21 @@ payload.name?
 	["operator", "->"],
 	["number", "1"],
 
-	"\na ",
+	"\r\na ",
 	["operator", "++"],
-	" b\nc ",
+	" b\r\nc ",
 	["operator", "--"],
-	" d\npayload",
+	" d\r\npayload",
 	["punctuation", "."],
 	"name",
 	["operator", "!"],
 
-	"\npayload",
+	"\r\npayload",
 	["punctuation", "."],
 	"name",
 	["operator", "?"]
 ]
+
 ----------------------------------------------------
+
 Check for operators

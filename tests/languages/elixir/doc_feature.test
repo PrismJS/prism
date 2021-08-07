@@ -1,0 +1,105 @@
+@doc "single"
+@doc 'single'
+@doc """triple"""
+@doc '''triple'''
+@doc '''
+multiline
+'''
+@doc """
+multiline
+"""
+@doc since: "1.3.0"
+@doc deprecated: "phased out"
+
+@moduledoc "single"
+@moduledoc 'single'
+@moduledoc """triple"""
+@moduledoc '''triple'''
+@moduledoc '''
+multiline
+'''
+@moduledoc """
+multiline
+"""
+@moduledoc since: "1.3.0"
+@moduledoc deprecated: "phased out"
+
+----------------------------------------------------
+
+[
+	["doc", [
+		["attribute", "@doc"],
+		["string", "\"single\""]
+	]],
+
+	["doc", [
+		["attribute", "@doc"],
+		["string", "'single'"]
+	]],
+
+	["doc", [
+		["attribute", "@doc"],
+		["string", "\"\"\"triple\"\"\""]
+	]],
+
+	["doc", [
+		["attribute", "@doc"],
+		["string", "'''triple'''"]
+	]],
+
+	["doc", [
+		["attribute", "@doc"],
+		["string", "'''\r\nmultiline\r\n'''"]
+	]],
+
+	["doc", [
+		["attribute", "@doc"],
+		["string", "\"\"\"\r\nmultiline\r\n\"\"\""]
+	]],
+
+	["attribute", "@doc"],
+	["attr-name", "since:"],
+	["string", ["\"1.3.0\""]],
+
+	["attribute", "@doc"],
+	["attr-name", "deprecated:"],
+	["string", ["\"phased out\""]],
+
+	["doc", [
+		["attribute", "@moduledoc"],
+		["string", "\"single\""]
+	]],
+
+	["doc", [
+		["attribute", "@moduledoc"],
+		["string", "'single'"]
+	]],
+
+	["doc", [
+		["attribute", "@moduledoc"],
+		["string", "\"\"\"triple\"\"\""]
+	]],
+
+	["doc", [
+		["attribute", "@moduledoc"],
+		["string", "'''triple'''"]
+	]],
+
+	["doc", [
+		["attribute", "@moduledoc"],
+		["string", "'''\r\nmultiline\r\n'''"]
+	]],
+
+	["doc", [
+		["attribute", "@moduledoc"],
+		["string", "\"\"\"\r\nmultiline\r\n\"\"\""]
+	]],
+
+	["attribute", "@moduledoc"],
+	["attr-name", "since:"],
+	["string", ["\"1.3.0\""]],
+
+	["attribute", "@moduledoc"],
+	["attr-name", "deprecated:"],
+	["string", ["\"phased out\""]]
+]

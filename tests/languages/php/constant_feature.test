@@ -5,6 +5,22 @@ AZ
 PRISM
 FOOBAR_42
 
+class Foo{
+	const BAR = 1;
+	const baz = 2;
+}
+
+Foo::BAR;
+Foo::baz;
+
+
+switch ($i) {
+	case NULL:
+		break;
+	case X:
+		break;
+}
+
 ----------------------------------------------------
 
 [
@@ -13,7 +29,43 @@ FOOBAR_42
 	["constant", "X"],
 	["constant", "AZ"],
 	["constant", "PRISM"],
-	["constant", "FOOBAR_42"]
+	["constant", "FOOBAR_42"],
+
+	["keyword", "class"],
+	["class-name-definition", "Foo"],
+	["punctuation", "{"],
+	["keyword", "const"],
+	["constant", "BAR"],
+	["operator", "="],
+	["number", "1"],
+	["punctuation", ";"],
+	["keyword", "const"],
+	["constant", "baz"],
+	["operator", "="],
+	["number", "2"],
+	["punctuation", ";"],
+	["punctuation", "}"],
+
+	["class-name", "Foo"], ["operator", "::"], ["constant", "BAR"], ["punctuation", ";"],
+	["class-name", "Foo"], ["operator", "::"], ["constant", "baz"], ["punctuation", ";"],
+
+	["keyword", "switch"],
+	["punctuation", "("],
+	["variable", "$i"],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["keyword", "case"],
+	["constant", "NULL"],
+	["punctuation", ":"],
+	["keyword", "break"],
+	["punctuation", ";"],
+	["keyword", "case"],
+	["constant", "X"],
+	["punctuation", ":"],
+	["keyword", "break"],
+	["punctuation", ";"],
+	["punctuation", "}"]
+
 ]
 
 ----------------------------------------------------

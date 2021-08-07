@@ -122,7 +122,7 @@
 		/** @type {(Token | string)[]} */
 		var tokens = env.tokens;
 		tokens.forEach(function (token) {
-			if (typeof token !== "string" && token.type === 'generic-text') {
+			if (typeof token !== 'string' && token.type === 'generic-text') {
 				var content = getTextContent(token);
 				if (!isBracketsBalanced(content)) {
 					token.type = 'bad-line';
@@ -137,7 +137,7 @@
 	 * @returns {boolean}
 	 */
 	function isBracketsBalanced(input) {
-		var brackets = "[]{}";
+		var brackets = '[]{}';
 		var stack = [];
 		for (var i = 0; i < input.length; i++) {
 			var bracket = input[i];
@@ -151,7 +151,7 @@
 			}
 		}
 		return stack.length === 0;
-	};
+	}
 
 	/**
 	 * @param {string | Token | (string | Token)[]} token
@@ -167,4 +167,4 @@
 		}
 	}
 
-})(Prism);
+}(Prism));

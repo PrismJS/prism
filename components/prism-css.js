@@ -1,6 +1,6 @@
 (function (Prism) {
 
-	var string = /("|')(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/;
+	var string = /(?:"(?:\\(?:\r\n|[\s\S])|[^"\\\r\n])*"|'(?:\\(?:\r\n|[\s\S])|[^'\\\r\n])*')/;
 
 	Prism.languages.css = {
 		'comment': /\/\*[\s\S]*?\*\//,
@@ -33,14 +33,23 @@
 				}
 			}
 		},
-		'selector': RegExp('[^{}\\s](?:[^{};"\'\\s]|\\s+(?![\\s{])|' + string.source + ')*(?=\\s*\\{)'),
+		'selector': {
+			pattern: RegExp('(^|[{}\\s])[^{}\\s](?:[^{};"\'\\s]|\\s+(?![\\s{])|' + string.source + ')*(?=\\s*\\{)'),
+			lookbehind: true
+		},
 		'string': {
 			pattern: string,
 			greedy: true
 		},
-		'property': /(?!\s)[-_a-z\xA0-\uFFFF](?:(?!\s)[-\w\xA0-\uFFFF])*(?=\s*:)/i,
+		'property': {
+			pattern: /(^|[^-\w\xA0-\uFFFF])(?!\s)[-_a-z\xA0-\uFFFF](?:(?!\s)[-\w\xA0-\uFFFF])*(?=\s*:)/i,
+			lookbehind: true
+		},
 		'important': /!important\b/i,
-		'function': /[-a-z0-9]+(?=\()/i,
+		'function': {
+			pattern: /(^|[^-a-z0-9])[-a-z0-9]+(?=\()/i,
+			lookbehind: true
+		},
 		'punctuation': /[(){};:,]/
 	};
 
@@ -49,34 +58,7 @@
 	var markup = Prism.languages.markup;
 	if (markup) {
 		markup.tag.addInlined('style', 'css');
-
-		Prism.languages.insertBefore('inside', 'attr-value', {
-			'style-attr': {
-				pattern: /(^|["'\s])style\s*=\s*(?:"[^"]*"|'[^']*')/i,
-				lookbehind: true,
-				inside: {
-					'attr-value': {
-						pattern: /=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+)/,
-						inside: {
-							'style': {
-								pattern: /(["'])[\s\S]+(?=["']$)/,
-								lookbehind: true,
-								alias: 'language-css',
-								inside: Prism.languages.css
-							},
-							'punctuation': [
-								{
-									pattern: /^=/,
-									alias: 'attr-equals'
-								},
-								/"|'/
-							]
-						}
-					},
-					'attr-name': /^style/i
-				}
-			}
-		}, markup.tag);
+		markup.tag.addAttribute('style', 'css');
 	}
 
 }(Prism));

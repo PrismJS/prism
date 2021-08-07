@@ -1,5 +1,8 @@
+actor
 as
 associativity
+async
+await
 break
 case
 catch
@@ -36,6 +39,7 @@ let
 mutating
 new;
 none
+nonisolated
 nonmutating
 operator
 optional
@@ -55,6 +59,7 @@ safe
 self
 Self
 set
+some
 static
 struct
 subscript
@@ -80,8 +85,11 @@ __LINE__
 ----------------------------------------------------
 
 [
+	["keyword", "actor"],
 	["keyword", "as"],
 	["keyword", "associativity"],
+	["keyword", "async"],
+	["keyword", "await"],
 	["keyword", "break"],
 	["keyword", "case"],
 	["keyword", "catch"],
@@ -118,6 +126,7 @@ __LINE__
 	["keyword", "mutating"],
 	["keyword", "new"], ["punctuation", ";"],
 	["keyword", "none"],
+	["keyword", "nonisolated"],
 	["keyword", "nonmutating"],
 	["keyword", "operator"],
 	["keyword", "optional"],
@@ -137,6 +146,7 @@ __LINE__
 	["keyword", "self"],
 	["keyword", "Self"],
 	["keyword", "set"],
+	["keyword", "some"],
 	["keyword", "static"],
 	["keyword", "struct"],
 	["keyword", "subscript"],

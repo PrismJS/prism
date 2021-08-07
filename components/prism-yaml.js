@@ -23,9 +23,9 @@
 	 */
 	function createValuePattern(value, flags) {
 		flags = (flags || '').replace(/m/g, '') + 'm'; // add m flag
-		var pattern = /([:\-,[{]\s*(?:\s<<prop>>[ \t]+)?)(?:<<value>>)(?=[ \t]*(?:$|,|]|}|(?:[\r\n]\s*)?#))/.source
+		var pattern = /([:\-,[{]\s*(?:\s<<prop>>[ \t]+)?)(?:<<value>>)(?=[ \t]*(?:$|,|\]|\}|(?:[\r\n]\s*)?#))/.source
 			.replace(/<<prop>>/g, function () { return properties; }).replace(/<<value>>/g, function () { return value; });
-		return RegExp(pattern, flags)
+		return RegExp(pattern, flags);
 	}
 
 	Prism.languages.yaml = {
@@ -70,7 +70,7 @@
 			greedy: true
 		},
 		'number': {
-			pattern: createValuePattern(/[+-]?(?:0x[\da-f]+|0o[0-7]+|(?:\d+(?:\.\d*)?|\.?\d+)(?:e[+-]?\d+)?|\.inf|\.nan)/.source, 'i'),
+			pattern: createValuePattern(/[+-]?(?:0x[\da-f]+|0o[0-7]+|(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?|\.inf|\.nan)/.source, 'i'),
 			lookbehind: true
 		},
 		'tag': tag,

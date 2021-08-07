@@ -18,6 +18,7 @@ class service : private Transport // comment
 	["punctuation", "{"],
 	["punctuation", "}"],
 	["punctuation", ";"],
+
 	["keyword", "struct"],
 	["class-name", "Derived"],
 	["operator", ":"],
@@ -27,6 +28,7 @@ class service : private Transport // comment
 	["punctuation", "{"],
 	["punctuation", "}"],
 	["punctuation", ";"],
+
 	["keyword", "struct"],
 	["class-name", "Derived"],
 	["operator", ":"],
@@ -35,6 +37,7 @@ class service : private Transport // comment
 		["class-name", "Base"]
 	]],
 	["punctuation", ";"],
+
 	["keyword", "class"],
 	["class-name", "X"],
 	["operator", ":"],
@@ -46,6 +49,7 @@ class service : private Transport // comment
 	["punctuation", "{"],
 	["punctuation", "}"],
 	["punctuation", ";"],
+
 	["keyword", "class"],
 	["class-name", "Y"],
 	["operator", ":"],
@@ -57,18 +61,20 @@ class service : private Transport // comment
 	["punctuation", "{"],
 	["punctuation", "}"],
 	["punctuation", ";"],
+
 	["keyword", "class"],
 	["class-name", "Y"],
 	["operator", ":"],
 	["base-clause", [
 		["keyword", "virtual"],
 		" baz",
-		["operator", "::"],
+		["double-colon", "::"],
 		["class-name", "B"]
 	]],
 	["punctuation", "{"],
 	["punctuation", "}"],
 	["punctuation", ";"],
+
 	["keyword", "class"],
 	["class-name", "Z"],
 	["operator", ":"],
@@ -77,11 +83,12 @@ class service : private Transport // comment
 		["class-name", "B"],
 		["operator", "<"],
 		"foo",
-		["operator", "::"],
+		["double-colon", "::"],
 		["class-name", "T"],
 		["operator", ">"]
 	]],
 	["punctuation", ";"],
+
 	["keyword", "struct"],
 	["class-name", "AA"],
 	["operator", ":"],
@@ -91,14 +98,15 @@ class service : private Transport // comment
 		["class-name", "Y"],
 		["punctuation", ","],
 		" foo",
-		["operator", "::"],
+		["double-colon", "::"],
 		"bar",
-		["operator", "::"],
+		["double-colon", "::"],
 		["class-name", "Z"]
 	]],
 	["punctuation", "{"],
 	["punctuation", "}"],
 	["punctuation", ";"],
+
 	["keyword", "class"],
 	["class-name", "service"],
 	["operator", ":"],
@@ -107,6 +115,7 @@ class service : private Transport // comment
 		["class-name", "Transport"],
 		["comment", "// comment"]
 	]],
+
 	["punctuation", "{"],
 	["punctuation", "}"],
 	["punctuation", ";"]

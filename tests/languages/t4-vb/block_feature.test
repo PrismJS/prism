@@ -53,11 +53,8 @@ The number <#= i #> is even.
 		["class-feature", [
 			["delimiter", "<#+"],
 			["content", [
-				["keyword", "Public"],
-				["keyword", "Class"],
-				" Bar\n",
-				["keyword", "End"],
-				["keyword", "Class"]
+				["keyword", "Public"], ["keyword", "Class"], " Bar\r\n",
+				["keyword", "End"], ["keyword", "Class"]
 			]],
 			["delimiter", "#>"]
 		]]
@@ -75,6 +72,7 @@ The number <#= i #> is even.
 				["number", "0"],
 				["keyword", "To"],
 				["number", "9"],
+
 				["keyword", "If"],
 				" i ",
 				["keyword", "Mod"],
@@ -87,26 +85,22 @@ The number <#= i #> is even.
 		]]
 	]],
 
-	"\nThe number ",
+	"\r\nThe number ",
 	["block", [
 		["expression", [
 			["delimiter", "<#="],
-			["content", [
-				" i "
-			]],
+			["content", [" i "]],
 			["delimiter", "#>"]
 		]]
 	]],
-	" is even.\n",
+	" is even.\r\n",
 
 	["block", [
 		["standard", [
 			["delimiter", "<#"],
 			["content", [
-				["keyword", "End"],
-				["keyword", "If"],
-				["keyword", "Next"],
-				" i\n"
+				["keyword", "End"], ["keyword", "If"],
+				["keyword", "Next"], " i\r\n"
 			]],
 			["delimiter", "#>"]
 		]]

@@ -48,7 +48,7 @@
 		 * they stand out more
 		 */
 		'headline': {
-			pattern: /(\\(?:part|chapter|section|subsection|frametitle|subsubsection|paragraph|subparagraph|subsubparagraph|subsubsubparagraph)\*?(?:\[[^\]]+\])?\{)[^}]+(?=\}(?:\[[^\]]+\])?)/,
+			pattern: /(\\(?:part|chapter|section|subsection|frametitle|subsubsection|paragraph|subparagraph|subsubparagraph|subsubsubparagraph)\*?(?:\[[^\]]+\])?\{)[^}]+(?=\})/,
 			lookbehind: true,
 			alias: 'class-name'
 		},
@@ -61,4 +61,4 @@
 
 	Prism.languages.tex = Prism.languages.latex;
 	Prism.languages.context = Prism.languages.latex;
-})(Prism);
+}(Prism));

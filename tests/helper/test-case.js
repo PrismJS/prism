@@ -1,9 +1,9 @@
-"use strict";
+'use strict';
 
-const fs = require("fs");
-const { assert } = require("chai");
-const PrismLoader = require("./prism-loader");
-const TokenStreamTransformer = require("./token-stream-transformer");
+const fs = require('fs');
+const { assert } = require('chai');
+const PrismLoader = require('./prism-loader');
+const TokenStreamTransformer = require('./token-stream-transformer');
 
 /**
  * @typedef {import("./token-stream-transformer").TokenStream} TokenStream
@@ -53,9 +53,9 @@ module.exports = {
 	 *
 	 * @param {string} languageIdentifier
 	 * @param {string} filePath
-	 * @param {boolean} acceptEmpty
+	 * @param {"none" | "insert" | "update"} updateMode
 	 */
-	runTestCase(languageIdentifier, filePath, acceptEmpty) {
+	runTestCase(languageIdentifier, filePath, updateMode) {
 		const testCase = this.parseTestCaseFile(filePath);
 		const usedLanguages = this.parseLanguageNames(languageIdentifier);
 
@@ -64,30 +64,32 @@ module.exports = {
 		// the first language is the main language to highlight
 		const tokenStream = this.tokenize(Prism, testCase.code, usedLanguages.mainLanguage);
 
+		function updateFile() {
+			// change the file
+			const separator = '\n\n----------------------------------------------------\n\n';
+			const pretty = TokenStreamTransformer.prettyprint(tokenStream, '\t');
+
+			let content = testCase.code + separator + pretty;
+			if (testCase.comment.trim()) {
+				content += separator + testCase.comment.trim();
+			}
+			content += '\n';
+
+			// convert line ends to the line ends of the file
+			content = content.replace(/\r\n?|\n/g, testCase.lineEndOnDisk);
+
+			fs.writeFileSync(filePath, content, 'utf-8');
+		}
+
 		if (testCase.expectedTokenStream === null) {
 			// the test case doesn't have an expected value
-			if (!acceptEmpty) {
-				throw new Error('This test case doesn\'t have an expected toke n stream.'
-					+ ' Either add the JSON of a token stream or run \`npm run test:languages -- --accept\`'
+			if (updateMode === 'none') {
+				throw new Error('This test case doesn\'t have an expected token stream.'
+					+ ' Either add the JSON of a token stream or run \`npm run test:languages -- --insert\`'
 					+ ' to automatically add the current token stream.');
 			}
 
-			// change the file
-			const lineEnd = (/\r\n/.test(testCase.code) || !/\n/.test(testCase.code)) ? '\r\n' : '\n';
-			const separator = "\n\n----------------------------------------------------\n\n";
-			const pretty = TokenStreamTransformer.prettyprint(tokenStream)
-				.replace(/^( +)/gm, m => {
-					return "\t".repeat(m.length / 4);
-				});
-
-			let content = testCase.code + separator + pretty;
-			if (testCase.comment) {
-				content += separator + testCase.comment;
-			}
-			//content += '\n'
-			content = content.replace(/\r?\n/g, lineEnd);
-
-			fs.writeFileSync(filePath, content, "utf-8");
+			updateFile();
 		} else {
 			// there is an expected value
 			const simplifiedTokenStream = TokenStreamTransformer.simplify(tokenStream);
@@ -100,6 +102,11 @@ module.exports = {
 				return;
 			}
 
+			if (updateMode === 'update') {
+				updateFile();
+				return;
+			}
+
 			// The index of the first difference between the expected token stream and the actual token stream.
 			// The index is in the raw expected token stream JSON of the test case.
 			const diffIndex = translateIndexIgnoreSpaces(testCase.expectedJson, expected, firstDiff(expected, actual));
@@ -108,11 +115,14 @@ module.exports = {
 			const lineNumber = testCase.expectedLineOffset + expectedJsonLines.length;
 
 			const tokenStreamStr = TokenStreamTransformer.prettyprint(tokenStream);
-			const message = "\n\nActual Token Stream:" +
-				"\n-----------------------------------------\n" +
+			const message = `\nThe expected token stream differs from the actual token stream.` +
+				` Either change the ${usedLanguages.mainLanguage} language or update the expected token stream.` +
+				` Run \`npm run test:languages -- --update\` to update all missing or incorrect expected token streams.` +
+				`\n\n\nActual Token Stream:` +
+				`\n-----------------------------------------\n` +
 				tokenStreamStr +
-				"\n-----------------------------------------\n" +
-				"File: " + filePath + ":" + lineNumber + ":" + columnNumber + "\n\n";
+				`\n-----------------------------------------\n` +
+				`File: ${filePath}:${lineNumber}:${columnNumber}\n\n`;
 
 			assert.deepEqual(simplifiedTokenStream, testCase.expectedTokenStream, testCase.comment + message);
 		}
@@ -154,19 +164,19 @@ module.exports = {
 	 * @returns {{languages: string[], mainLanguage: string}}
 	 */
 	parseLanguageNames(languageIdentifier) {
-		let languages = languageIdentifier.split("+");
+		let languages = languageIdentifier.split('+');
 		let mainLanguage = null;
 
 		languages = languages.map(
 			function (language) {
-				const pos = language.indexOf("!");
+				const pos = language.indexOf('!');
 
 				if (-1 < pos) {
 					if (mainLanguage) {
-						throw "There are multiple main languages defined.";
+						throw 'There are multiple main languages defined.';
 					}
 
-					mainLanguage = language.replace("!", "");
+					mainLanguage = language.replace('!', '');
 					return mainLanguage;
 				}
 
@@ -193,6 +203,7 @@ module.exports = {
 	 * @returns {ParsedTestCase}
 	 *
 	 * @typedef ParsedTestCase
+	 * @property {string} lineEndOnDisk The EOL format used by the parsed file.
 	 * @property {string} code
 	 * @property {string} expectedJson
 	 * @property {number} expectedLineOffset
@@ -200,11 +211,15 @@ module.exports = {
 	 * @property {string} comment
 	 */
 	parseTestCaseFile(filePath) {
-		const testCaseSource = fs.readFileSync(filePath, "utf8");
+		let testCaseSource = fs.readFileSync(filePath, 'utf8');
+		const lineEndOnDisk = (/\r\n?|\n/.exec(testCaseSource) || ['\n'])[0];
+		// normalize line ends to \r\n
+		testCaseSource = testCaseSource.replace(/\r\n?|\n/g, '\r\n');
+
 		const testCaseParts = testCaseSource.split(/^-{10,}[ \t]*$/m);
 
 		if (testCaseParts.length > 3) {
-			throw new Error("Invalid test case format: Too many sections.");
+			throw new Error('Invalid test case format: Too many sections.');
 		}
 
 		const code = testCaseParts[0].trim();
@@ -212,9 +227,10 @@ module.exports = {
 		const comment = (testCaseParts[2] || '').trimStart();
 
 		const testCase = {
+			lineEndOnDisk,
 			code,
 			expectedJson: expected,
-			expectedLineOffset: code.split(/\r\n?|\n/g).length,
+			expectedLineOffset: code.split(/\r\n/g).length,
 			expectedTokenStream: expected ? JSON.parse(expected) : null,
 			comment
 		};
@@ -297,7 +313,9 @@ function translateIndexIgnoreSpaces(spacey, withoutSpaces, withoutSpaceIndex) {
 	let i = 0;
 	let j = 0;
 	while (i < spacey.length && j < withoutSpaces.length) {
-		while (spacey[i] !== withoutSpaces[j]) i++;
+		while (spacey[i] !== withoutSpaces[j]) {
+			i++;
+		}
 		if (j === withoutSpaceIndex) {
 			return i;
 		}

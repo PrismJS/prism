@@ -7,7 +7,7 @@ Prism.languages.hcl = {
 	},
 	'keyword': [
 		{
-			pattern: /(?:resource|data)\s+(?:"(?:\\[\s\S]|[^\\"])*")(?=\s+"[\w-]+"\s+{)/i,
+			pattern: /(?:resource|data)\s+(?:"(?:\\[\s\S]|[^\\"])*")(?=\s+"[\w-]+"\s+\{)/i,
 			inside: {
 				'type': {
 					pattern: /(resource|data|\s+)(?:"(?:\\[\s\S]|[^\\"])*")/i,
@@ -17,7 +17,7 @@ Prism.languages.hcl = {
 			}
 		},
 		{
-			pattern: /(?:provider|provisioner|variable|output|module|backend)\s+(?:[\w-]+|"(?:\\[\s\S]|[^\\"])*")\s+(?={)/i,
+			pattern: /(?:provider|provisioner|variable|output|module|backend)\s+(?:[\w-]+|"(?:\\[\s\S]|[^\\"])*")\s+(?=\{)/i,
 			inside: {
 				'type': {
 					pattern: /(provider|provisioner|variable|output|module|backend)\s+(?:[\w-]+|"(?:\\[\s\S]|[^\\"])*")\s+/i,
@@ -26,10 +26,10 @@ Prism.languages.hcl = {
 				}
 			}
 		},
-		/[\w-]+(?=\s+{)/
+		/[\w-]+(?=\s+\{)/
 	],
 	'property': [
-		/[\w-\.]+(?=\s*=(?!=))/,
+		/[-\w\.]+(?=\s*=(?!=))/,
 		/"(?:\\[\s\S]|[^\\"])+"(?=\s*[:=])/,
 	],
 	'string': {

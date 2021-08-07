@@ -11,7 +11,7 @@ Prism.languages.concurnas = {
 		}
 	],
 	'langext': {
-		pattern: /\w+\s*\|\|[\s\S]+?\|\|/,
+		pattern: /\b\w+\s*\|\|[\s\S]+?\|\|/,
 		greedy: true,
 		alias: 'string'
 	},
@@ -23,9 +23,9 @@ Prism.languages.concurnas = {
 	'boolean': /\b(?:false|true)\b/,
 	'number': /\b0b[01][01_]*L?\b|\b0x(?:[\da-f_]*\.)?[\da-f_p+-]+\b|(?:\b\d[\d_]*(?:\.[\d_]*)?|\B\.\d[\d_]*)(?:e[+-]?\d[\d_]*)?[dfls]?/i,
 	'punctuation': /[{}[\];(),.:]/,
-	'operator': /<==|>==|=>|->|<-|<>|\^|&==|&<>|!|\?|\?:|\.\?|\+\+|--|[-+*/=<>]=?|\b(?:and|as|band|bor|bxor|comp|is|isnot|mod|or)\b=?/,
+	'operator': /<==|>==|=>|->|<-|<>|\^|&==|&<>|!|\?:?|\.\?|\+\+|--|[-+*/=<>]=?|\b(?:and|as|band|bor|bxor|comp|is|isnot|mod|or)\b=?/,
 	'annotation': {
-		pattern: /@(?:\w+:)?(?:\w*|\[[^\]]+\])/,
+		pattern: /@(?:\w+:)?(?:\w+|\[[^\]]+\])?/,
 		alias: 'builtin'
 	}
 };
@@ -36,7 +36,7 @@ Prism.languages.insertBefore('concurnas', 'langext', {
 		greedy: true,
 		inside: {
 			'interpolation': {
-				pattern: /((?:^|[^\\])(?:\\{2})*){(?:[^{}]|{(?:[^{}]|{[^}]*})*})+}/,
+				pattern: /((?:^|[^\\])(?:\\{2})*)\{(?:[^{}]|\{(?:[^{}]|\{[^}]*\})*\})+\}/,
 				lookbehind: true,
 				inside: Prism.languages.concurnas
 			},

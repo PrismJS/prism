@@ -1,14 +1,13 @@
 ++ --
 * / % ~/
 + - ! ~
-<< >> ?
-& ^ |
->= > <= <
+< << <= <<=
+> >> >= >>=
+& ^ | ?
 as is is!
 == != && ||
 = *= /= ~/=
 %= += -=
-<<= >>=
 &= ^= |=
 
 ----------------------------------------------------
@@ -17,14 +16,13 @@ as is is!
 	["operator", "++"], ["operator", "--"],
 	["operator", "*"], ["operator", "/"], ["operator", "%"], ["operator", "~/"],
 	["operator", "+"], ["operator", "-"], ["operator", "!"], ["operator", "~"],
-	["operator", "<<"], ["operator", ">>"], ["operator", "?"],
-	["operator", "&"], ["operator", "^"], ["operator", "|"],
-	["operator", ">="], ["operator", ">"], ["operator", "<="], ["operator", "<"],
+	["operator", "<"], ["operator", "<<"], ["operator", "<="], ["operator", "<<="],
+	["operator", ">"], ["operator", ">>"], ["operator", ">="], ["operator", ">>="],
+	["operator", "&"], ["operator", "^"], ["operator", "|"], ["operator", "?"],
 	["operator", "as"], ["operator", "is"], ["operator", "is!"],
 	["operator", "=="], ["operator", "!="], ["operator", "&&"], ["operator", "||"],
 	["operator", "="], ["operator", "*="], ["operator", "/="], ["operator", "~/="],
 	["operator", "%="], ["operator", "+="], ["operator", "-="],
-	["operator", "<<="], ["operator", ">>="],
 	["operator", "&="], ["operator", "^="], ["operator", "|="]
 ]
 

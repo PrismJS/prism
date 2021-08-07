@@ -1,4 +1,4 @@
-(function(Prism) {
+(function (Prism) {
 	// $ set | grep '^[A-Z][^[:space:]]*=' | cut -d= -f1 | tr '\n' '|'
 	// + LC_ALL, RANDOM, REPLY, SECONDS.
 	// + make sure PS1..4 are here as they are not always set,
@@ -15,7 +15,7 @@
 	var insideString = {
 		'bash': commandAfterHeredoc,
 		'environment': {
-			pattern: RegExp("\\$" + envVars),
+			pattern: RegExp('\\$' + envVars),
 			alias: 'constant'
 		},
 		'variable': [
@@ -34,7 +34,7 @@
 					],
 					'number': /\b0x[\dA-Fa-f]+\b|(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:[Ee]-?\d+)?/,
 					// Operators according to https://www.gnu.org/software/bash/manual/bashref.html#Shell-Arithmetic
-					'operator': /--?|-=|\+\+?|\+=|!=?|~|\*\*?|\*=|\/=?|%=?|<<=?|>>=?|<=?|>=?|==?|&&?|&=|\^=?|\|\|?|\|=|\?|:/,
+					'operator': /--|\+\+|\*\*=?|<<=?|>>=?|&&|\|\||[=!+\-*/%<>^&|]=?|[?~:]/,
 					// If there is no $ sign at the beginning highlight (( and )) as punctuation
 					'punctuation': /\(\(?|\)\)?|,|;/
 				}
@@ -55,7 +55,7 @@
 					'operator': /:[-=?+]?|[!\/]|##?|%%?|\^\^?|,,?/,
 					'punctuation': /[\[\]]/,
 					'environment': {
-						pattern: RegExp("(\\{)" + envVars),
+						pattern: RegExp('(\\{)' + envVars),
 						lookbehind: true,
 						alias: 'constant'
 					}
@@ -83,13 +83,13 @@
 			// but not “foo {”
 			{
 				// a) and c)
-				pattern: /(\bfunction\s+)\w+(?=(?:\s*\(?:\s*\))?\s*\{)/,
+				pattern: /(\bfunction\s+)[\w-]+(?=(?:\s*\(?:\s*\))?\s*\{)/,
 				lookbehind: true,
 				alias: 'function'
 			},
 			{
 				// b)
-				pattern: /\b\w+(?=\s*\(\s*\)\s*\{)/,
+				pattern: /\b[\w-]+(?=\s*\(\s*\)\s*\{)/,
 				alias: 'function'
 			}
 		],
@@ -105,7 +105,7 @@
 			pattern: /(^|[\s;|&]|[<>]\()\w+(?=\+?=)/,
 			inside: {
 				'environment': {
-					pattern: RegExp("(^|[\\s;|&]|[<>]\\()" + envVars),
+					pattern: RegExp('(^|[\\s;|&]|[<>]\\()' + envVars),
 					lookbehind: true,
 					alias: 'constant'
 				}
@@ -116,7 +116,7 @@
 		'string': [
 			// Support for Here-documents https://en.wikipedia.org/wiki/Here_document
 			{
-				pattern: /((?:^|[^<])<<-?\s*)(\w+?)\s[\s\S]*?(?:\r?\n|\r)\2/,
+				pattern: /((?:^|[^<])<<-?\s*)(\w+)\s[\s\S]*?(?:\r?\n|\r)\2/,
 				lookbehind: true,
 				greedy: true,
 				inside: insideString
@@ -133,14 +133,29 @@
 			},
 			// “Normal” string
 			{
-				pattern: /(^|[^\\](?:\\\\)*)(["'])(?:\\[\s\S]|\$\([^)]+\)|\$(?!\()|`[^`]+`|(?!\2)[^\\`$])*\2/,
+				// https://www.gnu.org/software/bash/manual/html_node/Double-Quotes.html
+				pattern: /(^|[^\\](?:\\\\)*)"(?:\\[\s\S]|\$\([^)]+\)|\$(?!\()|`[^`]+`|[^"\\`$])*"/,
 				lookbehind: true,
 				greedy: true,
 				inside: insideString
+			},
+			{
+				// https://www.gnu.org/software/bash/manual/html_node/Single-Quotes.html
+				pattern: /(^|[^$\\])'[^']*'/,
+				lookbehind: true,
+				greedy: true
+			},
+			{
+				// https://www.gnu.org/software/bash/manual/html_node/ANSI_002dC-Quoting.html
+				pattern: /\$'(?:[^'\\]|\\[\s\S])*'/,
+				greedy: true,
+				inside: {
+					'entity': insideString.entity
+				}
 			}
 		],
 		'environment': {
-			pattern: RegExp("\\$?" + envVars),
+			pattern: RegExp('\\$?' + envVars),
 			alias: 'constant'
 		},
 		'variable': insideString.variable,
@@ -169,7 +184,7 @@
 		},
 		'operator': {
 			// Lots of redirections here, but not just that.
-			pattern: /\d?<>|>\||\+=|==?|!=?|=~|<<[<-]?|[&\d]?>>|\d?[<>]&?|&[>&]?|\|[&|]?|<=?|>=?/,
+			pattern: /\d?<>|>\||\+=|=[=~]?|!=?|<<[<-]?|[&\d]?>>|\d[<>]&?|[<>][&=]?|&[>&]?|\|[&|]?/,
 			inside: {
 				'file-descriptor': {
 					pattern: /^\d/,
@@ -204,9 +219,9 @@
 		'number'
 	];
 	var inside = insideString.variable[1].inside;
-	for(var i = 0; i < toBeCopied.length; i++) {
+	for (var i = 0; i < toBeCopied.length; i++) {
 		inside[toBeCopied[i]] = Prism.languages.bash[toBeCopied[i]];
 	}
 
 	Prism.languages.shell = Prism.languages.bash;
-})(Prism);
+}(Prism));

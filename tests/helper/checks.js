@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 function testFunction(name, object, tester) {
 	const func = object[name];
@@ -87,7 +87,7 @@ module.exports = (Prism) => {
 	const oldClone = Prism.util.clone;
 	Prism.util.clone = obj => {
 		const clone = oldClone(obj);
-		if (clone && typeof clone === "object") {
+		if (clone && typeof clone === 'object') {
 			Object.defineProperty(clone, '__cloned', { value: true });
 		}
 		return clone;
@@ -97,7 +97,7 @@ module.exports = (Prism) => {
 	function extendTest(id, redef) {
 		let redefStr;
 		if (Prism.util.type(redef) === 'Object') {
-			redefStr = "{\n";
+			redefStr = '{\n';
 			for (const key in redef) {
 				const element = redef[key];
 				let elementStr;
@@ -110,7 +110,7 @@ module.exports = (Prism) => {
 				} else {
 					elementStr = String(element);
 				}
-				redefStr += `\t'${key}': ${elementStr},\n`
+				redefStr += `\t'${key}': ${elementStr},\n`;
 			}
 			redefStr += '}';
 		} else {
@@ -134,7 +134,7 @@ module.exports = (Prism) => {
 		}
 
 		// rest property check
-		if ("rest" in redef) {
+		if ('rest' in redef) {
 			throw new Error(`The redef object is not allowed to contain a "rest" property.` + details);
 		}
 
@@ -199,7 +199,7 @@ module.exports = (Prism) => {
 
 
 		root = root || Prism.languages;
-		var grammar = root[inside];
+		let grammar = root[inside];
 
 		if (typeof grammar !== 'object') {
 			throw new Error(`The grammar "${inside}" has to be an 'object' not '${typeof grammar}'.`);

@@ -1,9 +1,8 @@
-"use strict";
+'use strict';
 
-const fs = require("fs");
-const { getAllFiles } = require("./test-discovery");
-const components = require("../../components.json");
-const getLoader = require("../../dependencies");
+const fs = require('fs');
+const components = require('../../components.json');
+const getLoader = require('../../dependencies');
 const languagesCatalog = components.languages;
 const coreChecks = require('./checks');
 
@@ -83,7 +82,7 @@ module.exports = {
 	 */
 	createEmptyPrism() {
 		if (!coreSupplierFunction) {
-			const source = this.loadComponentSource("core");
+			const source = this.loadComponentSource('core');
 			// Core exports itself in 2 ways:
 			//  1) it uses `module.exports = Prism` which what we'll use
 			//  2) it uses `global.Prism = Prism` which we want to sabotage to prevent leaking
@@ -110,7 +109,7 @@ module.exports = {
 	 * @returns {string}
 	 */
 	loadComponentSource(name) {
-		return this.loadFileSource(__dirname + "/../../components/prism-" + name + ".js");
+		return this.loadFileSource(__dirname + '/../../components/prism-' + name + '.js');
 	},
 
 	/**
@@ -123,7 +122,7 @@ module.exports = {
 	loadFileSource(src) {
 		let content = fileSourceCache.get(src);
 		if (content === undefined) {
-			fileSourceCache.set(src, content = fs.readFileSync(src, "utf8"));
+			fileSourceCache.set(src, content = fs.readFileSync(src, 'utf8'));
 		}
 		return content;
 	}

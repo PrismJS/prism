@@ -1,7 +1,7 @@
 (function (Prism) {
 
 	// Allow only one line break
-	var inner = /(?:\\.|[^\\\n\r]|(?:\n|\r\n?)(?!\n|\r\n?))/.source;
+	var inner = /(?:\\.|[^\\\n\r]|(?:\n|\r\n?)(?![\r\n]))/.source;
 
 	/**
 	 * This function is intended for the creation of the bold or italic pattern.
@@ -83,12 +83,6 @@
 				// Prefixed by 4 spaces or 1 tab and preceded by an empty line
 				pattern: /((?:^|\n)[ \t]*\n|(?:^|\r\n?)[ \t]*\r\n?)(?: {4}|\t).+(?:(?:\n|\r\n?)(?: {4}|\t).+)*/,
 				lookbehind: true,
-				alias: 'keyword'
-			},
-			{
-				// `code`
-				// ``code``
-				pattern: /``.+?``|`[^`\r\n]+`/,
 				alias: 'keyword'
 			},
 			{
@@ -205,7 +199,8 @@
 		'strike': {
 			// ~~strike through~~
 			// ~strike~
-			pattern: createInline(/(~~?)(?:(?!~)<inner>)+?\2/.source),
+			// eslint-disable-next-line regexp/strict
+			pattern: createInline(/(~~?)(?:(?!~)<inner>)+\2/.source),
 			lookbehind: true,
 			greedy: true,
 			inside: {
@@ -216,6 +211,14 @@
 				},
 				'punctuation': /~~?/
 			}
+		},
+		'code-snippet': {
+			// `code`
+			// ``code``
+			pattern: /(^|[^\\`])(?:``[^`\r\n]+(?:`[^`\r\n]+)*``(?!`)|`[^`\r\n]+`(?!`))/,
+			lookbehind: true,
+			greedy: true,
+			alias: ['code', 'keyword']
 		},
 		'url': {
 			// [example](http://example.com "Optional title")
@@ -248,7 +251,7 @@
 	});
 
 	['url', 'bold', 'italic', 'strike'].forEach(function (token) {
-		['url', 'bold', 'italic', 'strike'].forEach(function (inside) {
+		['url', 'bold', 'italic', 'strike', 'code-snippet'].forEach(function (inside) {
 			if (token !== inside) {
 				Prism.languages.markdown[token].inside.content.inside[inside] = Prism.languages.markdown[inside];
 			}
@@ -297,7 +300,7 @@
 					// this might be a language that Prism does not support
 
 					// do some replacements to support C++, C#, and F#
-					var lang = codeLang.content.replace(/\b#/g, 'sharp').replace(/\b\+\+/g, 'pp')
+					var lang = codeLang.content.replace(/\b#/g, 'sharp').replace(/\b\+\+/g, 'pp');
 					// only use the first word
 					lang = (/[a-z][\w-]*/i.exec(lang) || [''])[0].toLowerCase();
 					var alias = 'language-' + lang;
@@ -347,12 +350,65 @@
 				});
 			}
 		} else {
-			// reverse Prism.util.encode
-			var code = env.content.replace(/&lt;/g, '<').replace(/&amp;/g, '&');
-
-			env.content = Prism.highlight(code, grammar, codeLang);
+			env.content = Prism.highlight(textContent(env.content), grammar, codeLang);
 		}
 	});
+
+	var tagPattern = RegExp(Prism.languages.markup.tag.pattern.source, 'gi');
+
+	/**
+	 * A list of known entity names.
+	 *
+	 * This will always be incomplete to save space. The current list is the one used by lowdash's unescape function.
+	 *
+	 * @see {@link https://github.com/lodash/lodash/blob/2da024c3b4f9947a48517639de7560457cd4ec6c/unescape.js#L2}
+	 */
+	var KNOWN_ENTITY_NAMES = {
+		'amp': '&',
+		'lt': '<',
+		'gt': '>',
+		'quot': '"',
+	};
+
+	// IE 11 doesn't support `String.fromCodePoint`
+	var fromCodePoint = String.fromCodePoint || String.fromCharCode;
+
+	/**
+	 * Returns the text content of a given HTML source code string.
+	 *
+	 * @param {string} html
+	 * @returns {string}
+	 */
+	function textContent(html) {
+		// remove all tags
+		var text = html.replace(tagPattern, '');
+
+		// decode known entities
+		text = text.replace(/&(\w{1,8}|#x?[\da-f]{1,8});/gi, function (m, code) {
+			code = code.toLowerCase();
+
+			if (code[0] === '#') {
+				var value;
+				if (code[1] === 'x') {
+					value = parseInt(code.slice(2), 16);
+				} else {
+					value = Number(code.slice(1));
+				}
+
+				return fromCodePoint(value);
+			} else {
+				var known = KNOWN_ENTITY_NAMES[code];
+				if (known) {
+					return known;
+				}
+
+				// unable to decode
+				return m;
+			}
+		});
+
+		return text;
+	}
 
 	Prism.languages.md = Prism.languages.markdown;
 

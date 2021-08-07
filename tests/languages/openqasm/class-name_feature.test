@@ -1,0 +1,29 @@
+angle
+bit
+bool
+creg
+fixed
+float
+int
+length
+qreg
+qubit
+stretch
+uint
+
+----------------------------------------------------
+
+[
+	["class-name", "angle"],
+	["class-name", "bit"],
+	["class-name", "bool"],
+	["class-name", "creg"],
+	["class-name", "fixed"],
+	["class-name", "float"],
+	["class-name", "int"],
+	["class-name", "length"],
+	["class-name", "qreg"],
+	["class-name", "qubit"],
+	["class-name", "stretch"],
+	["class-name", "uint"]
+]

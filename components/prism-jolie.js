@@ -13,7 +13,7 @@ Prism.languages.jolie = Prism.languages.extend('clike', {
 
 delete Prism.languages.jolie['class-name'];
 
-Prism.languages.insertBefore( 'jolie', 'keyword', {
+Prism.languages.insertBefore('jolie', 'keyword', {
 	'function':
 	{
 		pattern: /((?:\b(?:outputPort|inputPort|in|service|courier)\b|@)\s*)\w+/,
@@ -26,7 +26,7 @@ Prism.languages.insertBefore( 'jolie', 'keyword', {
 			'with-extension': {
 				pattern: /\bwith\s+\w+/,
 				inside: {
-					'keyword' : /\bwith\b/
+					'keyword': /\bwith\b/
 				}
 			},
 			'function': {

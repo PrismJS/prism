@@ -9,33 +9,200 @@
 	<link rel="stylesheet" href="assets/style.css" />
 	<link rel="stylesheet" href="themes/prism.css" data-noprefix />
 	<link rel="stylesheet" href="plugins/toolbar/prism-toolbar.css" data-noprefix />
-	<script src="assets/prefixfree.min.js"></script>
+	<script src="assets/vendor/prefixfree.min.js"></script>
 
 	<script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
 	<script src="https://www.google-analytics.com/ga.js" async></script>
 </head>
-<body class="language-markup">
+<body class="language-text">
 
 <header data-plugin-header="copy-to-clipboard"></header>
 
 <section>
 	<h1>How to use</h1>
-	<p>In addition to including the plugin file with your PrismJS build, ensure <a href="https://clipboardjs.com/">Clipboard.js</a> is loaded before the plugin.</p>
 
-	<p>The simplest way to include Clipboard.js is to use any of the
-		<a href="https://github.com/zenorocha/clipboard.js/wiki/CDN-Providers">recommended CDNs</a>. If you're using Browserify, Clipboard.js will be loaded automatically
-		if it's included in your <code>package.json</code>.
-		If you don't load Clipboard.js yourself, the plugin will load it from a CDN for you.</p>
+	<p>The plugin depends on the Prism <a href="https://prismjs.com/plugins/toolbar/">Toolbar</a> plugin. In addition to including the plugin file with your PrismJS build, ensure it is loaded before the plugin.</p>
+</section>
 
-	<pre data-src="plugins/copy-to-clipboard/prism-copy-to-clipboard.js"></pre>
+<section>
+	<h1>Settings</h1>
+
+	<p>By default, the plugin shows messages in English and sets a 5-second timeout after a click. You can use the following HTML5 data attributes to override the default settings:</p>
+
+	<ul>
+		<li><code class="token attr-name">data-prismjs-copy</code> — default message displayed by Copy to Clipboard;</li>
+		<li><code class="token attr-name">data-prismjs-copy-error</code> — a message displayed after failing copying, prompting the user to press <code>Ctrl+C</code>;</li>
+		<li><code class="token attr-name">data-prismjs-copy-success</code> — a message displayed after a successful copying;</li>
+		<li><code class="token attr-name">data-prismjs-copy-timeout</code> — a timeout (in milliseconds) after copying. Once the timeout passed, the success or error message will revert back to the default message. The value should be a non-negative integer.</li>
+	</ul>
+
+	<p>The plugin traverses up the DOM tree to find each of these attributes. The search starts at every <code class="token tag">pre code</code> element and stops at the closest ancestor element that has a desired attribute or at the worst case, at the <code class="token tag">html</code> element.</p>
+
+	<p><strong>Warning!</strong> Although possible, you definitely shouldn't add these attributes to the <code class="token tag">html</code> element, because a human-readable text should be placed <em>after</em> the character encoding declaration (<code>&lt;meta charset=&quot;...&quot;&gt;</code>), and the latter <a href="https://html.spec.whatwg.org/multipage/semantics.html#charset">must be</a> serialized completely within the first 512 (in older browsers) or 1024 bytes of the document. Consider using the <code class="token tag">body</code> element or one of its descendants.</p>
+</section>
+
+<section>
+	<h1>Styling</h1>
+
+	<p>This plugin supports customizing the style of the copy button. To understand how this is done, let's look at the HTML structure of the copy button:</p>
+
+	<pre><code class="language-markup">&lt;button class="copy-to-clipboard-button" type="button" data-copy-state="copy">
+	&lt;span>Copy&lt;/span>
+&lt;/button></code></pre>
+
+	<p>The <code>copy-to-clipboard-button</code> class can be used to select the button. The <code>data-copy-state</code> attribute indicates the current state of the plugin with the 3 possible states being:</p>
+
+	<ul>
+		<li><code>data-copy-state="copy"</code> — default state;</li>
+		<li><code>data-copy-state="copy-error"</code> — the state after failing copying;</li>
+		<li><code>data-copy-state="copy-success"</code> — the state after successful copying;</li>
+	</ul>
+
+	<p>These 3 states should be conveyed to the user either by different styling or displaying the button text.</p>
+</section>
+
+<section>
+	<h1>Examples</h1>
+
+	<h2>Sharing</h2>
+
+	<p>The following code blocks show modified messages and both use a half-second timeout. The other settings are set to default.</p>
+
+	<p>Source code:</p>
+
+	<pre><code class="language-html">&lt;body data-prismjs-copy-timeout=&quot;500&quot;&gt;
+	&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-prismjs-copy=&quot;Copy the JavaScript snippet!&quot;&gt;console.log('Hello, world!');&lt;/code&gt;&lt;/pre&gt;
+
+	&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-prismjs-copy=&quot;Copy the C snippet!&quot;&gt;int main() {
+	return 0;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/body&gt;</code></pre>
+
+	<p>Output:</p>
+
+	<div data-prismjs-copy-timeout="500">
+		<pre><code class="language-js" data-prismjs-copy="Copy the JavaScript snippet!">console.log('Hello, world!');</code></pre>
+
+		<pre><code class="language-c" data-prismjs-copy="Copy the C snippet!">int main() {
+	return 0;
+}</code></pre>
+	</div>
+
+	<h2>Inheritance</h2>
+
+	<p>The plugin always use the closest ancestor element that has a desired attribute, so it's possible to override any setting on any descendant. In the following example, the <code class="token attr-value">baz</code> message is used. The other settings are set to default.</p>
+
+	<p>Source code:</p>
+
+	<pre><code class="language-html">&lt;body data-prismjs-copy=&quot;foo&quot;&gt;
+	&lt;main data-prismjs-copy=&quot;bar&quot;&gt;
+		&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-prismjs-copy=&quot;baz&quot;&gt;int main() {
+	return 0;
+}&lt;/code&gt;&lt;/pre&gt;
+	&lt;/main&gt;
+&lt;/body&gt;</code></pre>
+
+	<p>Output:</p>
+
+	<div data-prismjs-copy="foo">
+		<div data-prismjs-copy="bar">
+			<pre><code class="language-c" data-prismjs-copy="baz">int main() {
+	return 0;
+}</code></pre>
+		</div>
+	</div>
+
+	<h2>i18n</h2>
+
+	<p>You can use the data attributes for internationalization.</p>
+
+	<p>The following code blocks use shared messages in Russian and the default 5-second timeout.</p>
+
+	<p>Source code:</p>
+
+	<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;ru&quot;&gt;
+&lt;!-- The head is omitted. --&gt;
+&lt;body
+	data-prismjs-copy=&quot;Скопировать&quot;
+	data-prismjs-copy-error=&quot;Нажмите Ctrl+C, чтобы скопировать&quot;
+	data-prismjs-copy-success=&quot;Скопировано!&quot;
+&gt;
+	&lt;pre&gt;&lt;code class=&quot;language-c&quot;&gt;int main() {
+	return 0;
+}&lt;/code&gt;&lt;/pre&gt;
+
+	&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;console.log('Hello, world!');&lt;/code&gt;&lt;/pre&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+	<p>Output:</p>
+
+	<div
+		data-prismjs-copy="Скопировать"
+		data-prismjs-copy-error="Нажмите Ctrl+C, чтобы скопировать"
+		data-prismjs-copy-success="Скопировано!"
+	>
+		<pre><code class="language-c">int main() {
+	return 0;
+}</code></pre>
+
+		<pre><code class="language-js">console.log('Hello, world!');</code></pre>
+	</div>
+
+	<p>The next HTML document is in English, but some code blocks show messages in Russian and simplified Mainland Chinese. The other settings are set to default.</p>
+
+	<p>Source code:</p>
+
+	<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;&lt;!-- The head is omitted. --&gt;
+&lt;body&gt;
+	&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;console.log('Hello, world!');&lt;/code&gt;&lt;/pre&gt;
+
+	&lt;pre
+		lang=&quot;ru&quot;
+		data-prismjs-copy=&quot;Скопировать&quot;
+		data-prismjs-copy-error=&quot;Нажмите Ctrl+C, чтобы скопировать&quot;
+		data-prismjs-copy-success=&quot;Скопировано!&quot;
+	&gt;&lt;code class=&quot;language-js&quot;&gt;console.log('Привет, мир!');&lt;/code&gt;&lt;/pre&gt;
+
+	&lt;pre
+		lang=&quot;zh-Hans-CN&quot;
+		data-prismjs-copy=&quot;复制文本&quot;
+		data-prismjs-copy-error=&quot;按Ctrl+C复制&quot;
+		data-prismjs-copy-success=&quot;文本已复制！&quot;
+	&gt;&lt;code class=&quot;language-js&quot;&gt;console.log('你好，世界！');&lt;/code&gt;&lt;/pre&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+	<p>Output:</p>
+
+	<div>
+		<pre><code class="language-js">console.log('Hello, world!');</code></pre>
+
+		<pre
+			lang="ru"
+			data-prismjs-copy="Скопировать"
+			data-prismjs-copy-error="Нажмите Ctrl+C, чтобы скопировать"
+			data-prismjs-copy-success="Скопировано!"
+		><code class="language-js">console.log('Привет, мир!');</code></pre>
+
+		<pre
+			lang="zh-Hans-CN"
+			data-prismjs-copy="复制文本"
+			data-prismjs-copy-error="按Ctrl+C复制"
+			data-prismjs-copy-success="文本已复制！"
+		><code class="language-js">console.log('你好，世界！');</code></pre>
+	</div>
 </section>
 
 <footer data-src="assets/templates/footer.html" data-type="text/html"></footer>
 
 <script src="prism.js"></script>
+<script src="plugins/autoloader/prism-autoloader.js" data-autoloader-path="components/"></script>
 <script src="plugins/toolbar/prism-toolbar.js"></script>
 <script src="plugins/copy-to-clipboard/prism-copy-to-clipboard.js"></script>
-<script src="assets/utopia.js"></script>
+<script src="assets/vendor/utopia.js"></script>
 <script src="components.js"></script>
 <script src="assets/code.js"></script>
 

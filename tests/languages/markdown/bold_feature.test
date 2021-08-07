@@ -10,12 +10,14 @@ __foo _bar_ baz__
 __foo ~bar~ baz__
 __foo ~~bar~~ baz__
 __foo[bar](baz)__
+__foo `bar`__
 
 **foo *bar* baz**
 **foo _bar_ baz**
 **foo ~bar~ baz**
 **foo ~~bar~~ baz**
 **foo[bar](baz)**
+**foo `bar`**
 
 not__bold__ __this__either
 
@@ -109,6 +111,14 @@ not__bold__ __this__either
 		]],
 		["punctuation", "__"]
 	]],
+	["bold", [
+		["punctuation", "__"],
+		["content", [
+			"foo ",
+			["code-snippet", "`bar`"]
+		]],
+		["punctuation", "__"]
+	]],
 
 	["bold", [
 		["punctuation", "**"],
@@ -173,6 +183,14 @@ not__bold__ __this__either
 				["url", "baz"],
 				")"
 			]]
+		]],
+		["punctuation", "**"]
+	]],
+	["bold", [
+		["punctuation", "**"],
+		["content", [
+			"foo ",
+			["code-snippet", "`bar`"]
 		]],
 		["punctuation", "**"]
 	]],

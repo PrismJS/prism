@@ -5,10 +5,11 @@ Prism.languages.jsstacktrace = {
 	},
 
 	'stack-frame': {
-		pattern: /^[ \t]+at[ \t].*/m,
+		pattern: /(^[ \t]+)at[ \t].*/m,
+		lookbehind: true,
 		inside: {
 			'not-my-code': {
-				pattern: /[ \t]+at[ \t]+(?!\s)(?:node\.js|\<unknown\>|.*(?:node_modules|\(\<anonymous\>\)|\(\<unknown\>|\<anonymous\>$|\(internal\/|\(node\.js)).*/m,
+				pattern: /^at[ \t]+(?!\s)(?:node\.js|<unknown>|.*(?:node_modules|\(<anonymous>\)|\(<unknown>|<anonymous>$|\(internal\/|\(node\.js)).*/m,
 				alias: 'comment'
 			},
 
@@ -45,4 +46,4 @@ Prism.languages.jsstacktrace = {
 
 		}
 	}
-}
+};

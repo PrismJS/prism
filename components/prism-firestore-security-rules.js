@@ -20,7 +20,7 @@ Prism.languages.insertBefore('firestore-security-rules', 'keyword', {
 					'punctuation': /[.$(){}]/
 				}
 			},
-			'punctuation': /[/]/
+			'punctuation': /\//
 		}
 	},
 	'method': {

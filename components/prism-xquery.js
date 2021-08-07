@@ -4,7 +4,7 @@
 		'xquery-comment': {
 			pattern: /\(:[\s\S]*?:\)/,
 			greedy: true,
-			alias: "comment"
+			alias: 'comment'
 		},
 		'string': {
 			pattern: /(["'])(?:\1\1|(?!\1)[\s\S])*\1/,
@@ -14,7 +14,7 @@
 			pattern: /\(#.+?#\)/,
 			alias: 'symbol'
 		},
-		'variable': /\$[\w-:]+/,
+		'variable': /\$[-\w:]+/,
 		'axis': {
 			pattern: /(^|[^-])(?:ancestor(?:-or-self)?|attribute|child|descendant(?:-or-self)?|following(?:-sibling)?|parent|preceding(?:-sibling)?|self)(?=::)/,
 			lookbehind: true,
@@ -55,12 +55,12 @@
 		'punctuation': /[[\](){},;:/]/
 	});
 
-	Prism.languages.xquery.tag.pattern = /<\/?(?!\d)[^\s>\/=$<%]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|{(?!{)(?:{(?:{[^{}]*}|[^{}])*}|[^{}])+}|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/i;
-	Prism.languages.xquery['tag'].inside['attr-value'].pattern = /=(?:("|')(?:\\[\s\S]|{(?!{)(?:{(?:{[^{}]*}|[^{}])*}|[^{}])+}|(?!\1)[^\\])*\1|[^\s'">=]+)/i;
+	Prism.languages.xquery.tag.pattern = /<\/?(?!\d)[^\s>\/=$<%]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|\{(?!\{)(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])+\}|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/i;
+	Prism.languages.xquery['tag'].inside['attr-value'].pattern = /=(?:("|')(?:\\[\s\S]|\{(?!\{)(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])+\}|(?!\1)[^\\])*\1|[^\s'">=]+)/i;
 	Prism.languages.xquery['tag'].inside['attr-value'].inside['punctuation'] = /^="|"$/;
 	Prism.languages.xquery['tag'].inside['attr-value'].inside['expression'] = {
 		// Allow for two levels of nesting
-		pattern: /{(?!{)(?:{(?:{[^{}]*}|[^{}])*}|[^{}])+}/,
+		pattern: /\{(?!\{)(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])+\}/,
 		inside: Prism.languages.xquery,
 		alias: 'language-xquery'
 	};
@@ -118,7 +118,7 @@
 					openedTags[openedTags.length - 1].openedBraces--;
 
 				} else if (token.type !== 'comment') {
-					notTagNorBrace = true
+					notTagNorBrace = true;
 				}
 			}
 			if (notTagNorBrace || typeof token === 'string') {

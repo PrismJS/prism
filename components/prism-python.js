@@ -9,11 +9,11 @@ Prism.languages.python = {
 		inside: {
 			'interpolation': {
 				// "{" <expression> <optional "!s", "!r", or "!a"> <optional ":" format specifier> "}"
-				pattern: /((?:^|[^{])(?:{{)*){(?!{)(?:[^{}]|{(?!{)(?:[^{}]|{(?!{)(?:[^{}])+})+})+}/,
+				pattern: /((?:^|[^{])(?:\{\{)*)\{(?!\{)(?:[^{}]|\{(?!\{)(?:[^{}]|\{(?!\{)(?:[^{}])+\})+\})+\}/,
 				lookbehind: true,
 				inside: {
 					'format-spec': {
-						pattern: /(:)[^:(){}]+(?=}$)/,
+						pattern: /(:)[^:(){}]+(?=\}$)/,
 						lookbehind: true
 					},
 					'conversion-option': {
@@ -44,7 +44,7 @@ Prism.languages.python = {
 		lookbehind: true
 	},
 	'decorator': {
-		pattern: /(^\s*)@\w+(?:\.\w+)*/im,
+		pattern: /(^[\t ]*)@\w+(?:\.\w+)*/im,
 		lookbehind: true,
 		alias: ['annotation', 'punctuation'],
 		inside: {

@@ -10,12 +10,14 @@ bar~
 ~foo **bar** baz~
 ~foo __bar__ baz~
 ~foo[bar](baz)~
+~foo `bar`~
 
 ~~foo *bar* baz~~
 ~~foo _bar_ baz~~
 ~~foo **bar** baz~~
 ~~foo __bar__ baz~~
 ~~foo[bar](baz)~~
+~~foo `bar`~~
 
 ----------------------------------------------------
 
@@ -107,6 +109,14 @@ bar~
 		]],
 		["punctuation", "~"]
 	]],
+	["strike", [
+		["punctuation", "~"],
+		["content", [
+			"foo ",
+			["code-snippet", "`bar`"]
+		]],
+		["punctuation", "~"]
+	]],
 
 	["strike", [
 		["punctuation", "~~"],
@@ -171,6 +181,14 @@ bar~
 				["url", "baz"],
 				")"
 			]]
+		]],
+		["punctuation", "~~"]
+	]],
+	["strike", [
+		["punctuation", "~~"],
+		["content", [
+			"foo ",
+			["code-snippet", "`bar`"]
 		]],
 		["punctuation", "~~"]
 	]]

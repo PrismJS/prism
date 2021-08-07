@@ -6,11 +6,11 @@
 	};
 	var escape = /\\(?:x[\da-fA-F]{2}|u[\da-fA-F]{4}|u\{[\da-fA-F]+\}|c[a-zA-Z]|0[0-7]{0,2}|[123][0-7]{2}|.)/;
 	var charClass = {
-		pattern: /\.|\\[wsd]|\\p{[^{}]+}/i,
+		pattern: /\.|\\[wsd]|\\p\{[^{}]+\}/i,
 		alias: 'class-name'
 	};
 	var charClassWithoutDot = {
-		pattern: /\\[wsd]|\\p{[^{}]+}/i,
+		pattern: /\\[wsd]|\\p\{[^{}]+\}/i,
 		alias: 'class-name'
 	};
 
@@ -101,4 +101,4 @@
 		}
 	};
 
-}(Prism))
+}(Prism));

@@ -42,7 +42,7 @@ at at.foo.bar.Main$FooBar.main(Native Method)
 		]],
 		["punctuation", ")"]
 	]],
-	" Same but with some additional notes\n",
+	" Same but with some additional notes\r\n",
 
 	["stack-frame", [
 		["keyword", "at"],
@@ -233,7 +233,7 @@ at at.foo.bar.Main$FooBar.main(Native Method)
 		["punctuation", ")"]
 	]],
 
-	"\n\n// not to forget our swiss friends\n",
+	"\r\n\r\n// not to forget our swiss friends\r\n",
 	["stack-frame", [
 		["keyword", "at"],
 		["namespace", [

@@ -21,12 +21,14 @@ from LexerAdaptor import LexerAdaptor
 		["content", " superClass = LexerAdaptor; "],
 		["punctuation", "}"]
 	]],
+
 	["annotation", "@lexer::header"],
 	["action", [
 		["punctuation", "{"],
-		["content", "\n  import { Token } from 'antlr4ts/Token';\n  import { CommonToken } from 'antlr4ts/CommonToken';\n  import { Python3Parser } from './Python3Parser';\n"],
+		["content", "\r\n  import { Token } from 'antlr4ts/Token';\r\n  import { CommonToken } from 'antlr4ts/CommonToken';\r\n  import { Python3Parser } from './Python3Parser';\r\n"],
 		["punctuation", "}"]
 	]],
+
 	["definition", "END"],
 	["punctuation", ":"],
 	["string", "'end'"],
@@ -36,10 +38,11 @@ from LexerAdaptor import LexerAdaptor
 		["punctuation", "}"]
 	]],
 	["punctuation", ";"],
+
 	["annotation", "@header"],
 	["action", [
 		["punctuation", "{"],
-		["content", "\nfrom LexerAdaptor import LexerAdaptor\n"],
+		["content", "\r\nfrom LexerAdaptor import LexerAdaptor\r\n"],
 		["punctuation", "}"]
 	]]
 ]

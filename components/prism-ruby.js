@@ -40,22 +40,25 @@
 		'regex': [
 			{
 				pattern: RegExp(/%r/.source + '(?:' + [
-					/([^a-zA-Z0-9\s{(\[<])(?:(?!\1)[^\\]|\\[\s\S])*\1[gim]{0,3}/.source,
-					/\((?:[^()\\]|\\[\s\S])*\)[gim]{0,3}/.source,
+					/([^a-zA-Z0-9\s{(\[<])(?:(?!\1)[^\\]|\\[\s\S])*\1/.source,
+					/\((?:[^()\\]|\\[\s\S])*\)/.source,
 					// Here we need to specifically allow interpolation
-					/\{(?:[^#{}\\]|#(?:\{[^}]+\})?|\\[\s\S])*\}[gim]{0,3}/.source,
-					/\[(?:[^\[\]\\]|\\[\s\S])*\][gim]{0,3}/.source,
-					/<(?:[^<>\\]|\\[\s\S])*>[gim]{0,3}/.source
-				].join('|') + ')'),
+					/\{(?:[^#{}\\]|#(?:\{[^}]+\})?|\\[\s\S])*\}/.source,
+					/\[(?:[^\[\]\\]|\\[\s\S])*\]/.source,
+					/<(?:[^<>\\]|\\[\s\S])*>/.source
+				].join('|') + ')' + /[egimnosux]{0,6}/.source),
 				greedy: true,
 				inside: {
 					'interpolation': interpolation
 				}
 			},
 			{
-				pattern: /(^|[^/])\/(?!\/)(?:\[[^\r\n\]]+\]|\\.|[^[/\\\r\n])+\/[gim]{0,3}(?=\s*(?:$|[\r\n,.;})]))/,
+				pattern: /(^|[^/])\/(?!\/)(?:\[[^\r\n\]]+\]|\\.|[^[/\\\r\n])+\/[egimnosux]{0,6}(?=\s*(?:$|[\r\n,.;})#]))/,
 				lookbehind: true,
-				greedy: true
+				greedy: true,
+				inside: {
+					'interpolation': interpolation
+				}
 			}
 		],
 		'variable': /[@$]+[a-zA-Z_]\w*(?:[?!]|\b)/,
@@ -98,6 +101,35 @@
 			greedy: true,
 			inside: {
 				'interpolation': interpolation
+			}
+		},
+		{
+			pattern: /<<[-~]?([a-z_]\w*)[\r\n](?:.*[\r\n])*?[\t ]*\1/i,
+			alias: 'heredoc-string',
+			greedy: true,
+			inside: {
+				'delimiter': {
+					pattern: /^<<[-~]?[a-z_]\w*|[a-z_]\w*$/i,
+					alias: 'symbol',
+					inside: {
+						'punctuation': /^<<[-~]?/
+					}
+				},
+				'interpolation': interpolation
+			}
+		},
+		{
+			pattern: /<<[-~]?'([a-z_]\w*)'[\r\n](?:.*[\r\n])*?[\t ]*\1/i,
+			alias: 'heredoc-string',
+			greedy: true,
+			inside: {
+				'delimiter': {
+					pattern: /^<<[-~]?'[a-z_]\w*'|[a-z_]\w*$/i,
+					alias: 'symbol',
+					inside: {
+						'punctuation': /^<<[-~]?'|'$/,
+					}
+				}
 			}
 		}
 	];

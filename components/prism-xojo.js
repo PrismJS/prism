@@ -1,9 +1,6 @@
 Prism.languages.xojo = {
 	'comment': {
-		pattern: /(?:'|\/\/|Rem\b).+/i,
-		inside: {
-			'keyword': /^Rem/i
-		}
+		pattern: /(?:'|\/\/|Rem\b).+/i
 	},
 	'string': {
 		pattern: /"(?:""|[^"])*"/,
@@ -14,7 +11,7 @@ Prism.languages.xojo = {
 		/&[bchou][a-z\d]+/i
 	],
 	'symbol': /#(?:If|Else|ElseIf|Endif|Pragma)\b/i,
-	'keyword': /\b(?:AddHandler|App|Array|As(?:signs)?|By(?:Ref|Val)|Break|Call|Case|Catch|Const|Continue|CurrentMethodName|Declare|Dim|Do(?:wnTo)?|Each|Else(?:If)?|End|Exit|Extends|False|Finally|For|Global|If|In|Lib|Loop|Me|Next|Nil|Optional|ParamArray|Raise(?:Event)?|ReDim|Rem|RemoveHandler|Return|Select|Self|Soft|Static|Step|Super|Then|To|True|Try|Ubound|Until|Using|Wend|While)\b/i,
+	'keyword': /\b(?:AddHandler|App|Array|As(?:signs)?|Auto|By(?:Ref|Val)|Boolean|Break|Byte|Call|Case|Catch|CFStringRef|CGFloat|Class|Color|Const|Continue|CString|Currency|CurrentMethodName|Declare|Delegate|Dim|Do(?:uble|wnTo)?|Each|Else(?:If)?|End|Enumeration|Event|Exception|Exit|Extends|False|Finally|For|Function|Get|GetTypeInfo|Global|GOTO|If|Implements|In|Inherits|Int(?:erface|eger|8|16|32|64)?|Lib|Loop|Me|Module|Next|Nil|Object|Optional|OSType|ParamArray|Private|Property|Protected|PString|Ptr|Raise(?:Event)?|ReDim|RemoveHandler|Return|Select(?:or)?|Self|Set|Single|Shared|Short|Soft|Static|Step|String|Sub|Super|Text|Then|To|True|Try|Ubound|UInt(?:eger|8|16|32|64)?|Until|Using|Var(?:iant)?|Wend|While|WindowPtr|WString)\b/i,
 	'operator': /<[=>]?|>=?|[+\-*\/\\^=]|\b(?:AddressOf|And|Ctype|IsA?|Mod|New|Not|Or|Xor|WeakAddressOf)\b/i,
 	'punctuation': /[.,;:()]/
 };

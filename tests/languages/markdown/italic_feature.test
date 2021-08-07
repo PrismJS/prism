@@ -10,12 +10,14 @@ _foo **bar** baz_
 _foo ~bar~ baz_
 _foo ~~bar~~ baz_
 _foo[bar](baz)_
+_foo `bar`_
 
 *foo __bar__ baz*
 *foo **bar** baz*
 *foo ~bar~ baz*
 *foo ~~bar~~ baz*
 *foo[bar](baz)*
+*foo `bar`*
 
 not_italic_ _this_either
 
@@ -109,6 +111,14 @@ not_italic_ _this_either
 		]],
 		["punctuation", "_"]
 	]],
+	["italic", [
+		["punctuation", "_"],
+		["content", [
+			"foo ",
+			["code-snippet", "`bar`"]
+		]],
+		["punctuation", "_"]
+	]],
 
 	["italic", [
 		["punctuation", "*"],
@@ -173,6 +183,14 @@ not_italic_ _this_either
 				["url", "baz"],
 				")"
 			]]
+		]],
+		["punctuation", "*"]
+	]],
+	["italic", [
+		["punctuation", "*"],
+		["content", [
+			"foo ",
+			["code-snippet", "`bar`"]
 		]],
 		["punctuation", "*"]
 	]],

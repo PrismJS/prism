@@ -3,8 +3,8 @@ Prism.languages.bro = {
 	'comment': {
 		pattern: /(^|[^\\$])#.*/,
 		lookbehind: true,
-			inside: {
-				'italic':  /\b(?:TODO|FIXME|XXX)\b/
+		inside: {
+			'italic': /\b(?:TODO|FIXME|XXX)\b/
 		}
 	},
 
@@ -22,7 +22,7 @@ Prism.languages.bro = {
 		}
 	},
 
-	'variable':	{
+	'variable': {
 		pattern: /(?:global|local) \w+/i,
 		inside: {
 			keyword: /(?:global|local)/

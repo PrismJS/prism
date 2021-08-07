@@ -1,0 +1,25 @@
+( , ) ;
++ _
+.. ...
+[ 0-5 ]
+&
+~
+?
+{}
+
+----------------------------------------------------
+
+[
+	["punctuation", "("], ["punctuation", ","], ["punctuation", ")"], ["punctuation", ";"],
+	["operator", "+"], ["operator", "_"],
+	["operator", ".."], ["operator", "..."],
+	["operator", "["], ["quantifier", "0-5"], ["operator", "]"],
+	["operator", "&"],
+	["operator", "~"],
+	["operator", "?"],
+	["operator", "{"], ["operator", "}"]
+]
+
+----------------------------------------------------
+
+Checks for operators.

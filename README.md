@@ -17,6 +17,7 @@ Prism depends on community contributions to expand and cover a wider array of us
 
 - Read the [documentation](https://prismjs.com/extending.html). Prism was designed to be extensible.
 - Do not edit `prism.js`, it’s just the version of Prism used by the Prism website and is built automatically. Limit your changes to the unminified files in the `components/` folder. `prism.js` and all minified files are also generated automatically by our build system.
+- Use `npm ci` to install Prism's dependencies. Do not use `npm install` because it will cause non-deterministic builds.
 - The build system uses [gulp](https://github.com/gulpjs/gulp) to minify the files and build `prism.js`. With all of Prism's dependencies installed, you just need to run the command `npm run build`.
 - Please follow the code conventions used in the files already. For example, I use [tabs for indentation and spaces for alignment](http://lea.verou.me/2012/01/why-tabs-are-clearly-superior/). Opening braces are on the same line, closing braces on their own line regardless of construct. There is a space before the opening brace. etc etc.
 - Please try to err towards more smaller PRs rather than a few huge PRs. If a PR includes changes that I want to merge and also changes that I don't, handling it becomes difficult.
@@ -27,6 +28,13 @@ Prism depends on community contributions to expand and cover a wider array of us
 
 Thank you so much for contributing!!
 
+### Software requirements
+
+Prism will run on [almost any browser](https://prismjs.com/#features-full) and Node.js version but you need the following software to contribute:
+
+- Node.js >= 10.x
+- npm >= 6.x
+
 ## Translations
 
-* [简体中文](https://www.awesomes.cn/repo/PrismJS/prism) (temporarily unavailable; see copy [here](https://deepmind.t-salon.cc/article/113))
+* [简体中文](https://www.awesomes.cn/repo/PrismJS/prism) (if unavailable, see [here](https://deepmind.t-salon.cc/article/113))

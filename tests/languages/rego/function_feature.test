@@ -1,0 +1,173 @@
+object.remove({"a": {"b": {"c": 2}}, "x": 123}, {"a": 1}) == {"x": 123}
+
+output := is_set(x)
+output := intersection(set[set])
+output := regex.match(pattern, value)
+output := glob.match("*.github.com", [], "api.github.com")
+output := bits.rsh(x, s)
+output := io.jwt.verify_ps384(string, certificate)
+
+io.jwt.encode_sign({
+    "typ": "JWT",
+    "alg": "HS256"},
+    {}, {
+    "kty": "oct",
+    "k": "AyM1SysPpbyDfgZld3umj1qzKObwVMkoqQ-EstJQLr_T-1qS0gZH75aKtMN3Yj0iPS4hcgUuTwjAzZr1Z9CAow"
+})
+
+----------------------------------------------------
+
+[
+	["function", [
+		["namespace", "object"],
+		["punctuation", "."],
+		"remove"
+	]],
+	["punctuation", "("],
+	["punctuation", "{"],
+	["property", "\"a\""],
+	["operator", ":"],
+	["punctuation", "{"],
+	["property", "\"b\""],
+	["operator", ":"],
+	["punctuation", "{"],
+	["property", "\"c\""],
+	["operator", ":"],
+	["number", "2"],
+	["punctuation", "}"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["property", "\"x\""],
+	["operator", ":"],
+	["number", "123"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["punctuation", "{"],
+	["property", "\"a\""],
+	["operator", ":"],
+	["number", "1"],
+	["punctuation", "}"],
+	["punctuation", ")"],
+	["operator", "=="],
+	["punctuation", "{"],
+	["property", "\"x\""],
+	["operator", ":"],
+	["number", "123"],
+	["punctuation", "}"],
+
+	"\r\n\r\noutput ",
+	["operator", ":="],
+	["function", ["is_set"]],
+	["punctuation", "("],
+	"x",
+	["punctuation", ")"],
+
+	"\r\noutput ",
+	["operator", ":="],
+	["function", ["intersection"]],
+	["punctuation", "("],
+	"set",
+	["punctuation", "["],
+	"set",
+	["punctuation", "]"],
+	["punctuation", ")"],
+
+	"\r\noutput ",
+	["operator", ":="],
+	["function", [
+		["namespace", "regex"],
+		["punctuation", "."],
+		"match"
+	]],
+	["punctuation", "("],
+	"pattern",
+	["punctuation", ","],
+	" value",
+	["punctuation", ")"],
+
+	"\r\noutput ",
+	["operator", ":="],
+	["function", [
+		["namespace", "glob"],
+		["punctuation", "."],
+		"match"
+	]],
+	["punctuation", "("],
+	["string", "\"*.github.com\""],
+	["punctuation", ","],
+	["punctuation", "["],
+	["punctuation", "]"],
+	["punctuation", ","],
+	["string", "\"api.github.com\""],
+	["punctuation", ")"],
+
+	"\r\noutput ",
+	["operator", ":="],
+	["function", [
+		["namespace", "bits"],
+		["punctuation", "."],
+		"rsh"
+	]],
+	["punctuation", "("],
+	"x",
+	["punctuation", ","],
+	" s",
+	["punctuation", ")"],
+
+	"\r\noutput ",
+	["operator", ":="],
+	["function", [
+		["namespace", "io"],
+		["punctuation", "."],
+		["namespace", "jwt"],
+		["punctuation", "."],
+		"verify_ps384"
+	]],
+	["punctuation", "("],
+	"string",
+	["punctuation", ","],
+	" certificate",
+	["punctuation", ")"],
+
+	["function", [
+		["namespace", "io"],
+		["punctuation", "."],
+		["namespace", "jwt"],
+		["punctuation", "."],
+		"encode_sign"
+	]],
+	["punctuation", "("],
+	["punctuation", "{"],
+
+	["property", "\"typ\""],
+	["operator", ":"],
+	["string", "\"JWT\""],
+	["punctuation", ","],
+
+	["property", "\"alg\""],
+	["operator", ":"],
+	["string", "\"HS256\""],
+	["punctuation", "}"],
+	["punctuation", ","],
+
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["punctuation", "{"],
+
+	["property", "\"kty\""],
+	["operator", ":"],
+	["string", "\"oct\""],
+	["punctuation", ","],
+
+	["property", "\"k\""],
+	["operator", ":"],
+	["string", "\"AyM1SysPpbyDfgZld3umj1qzKObwVMkoqQ-EstJQLr_T-1qS0gZH75aKtMN3Yj0iPS4hcgUuTwjAzZr1Z9CAow\""],
+
+	["punctuation", "}"],
+	["punctuation", ")"]
+]
+
+----------------------------------------------------
+
+Checks for all functions.

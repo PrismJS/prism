@@ -1,5 +1,5 @@
 Prism.languages.elm = {
-	'comment': /--.*|{-[\s\S]*?-}/,
+	'comment': /--.*|\{-[\s\S]*?-\}/,
 	'char': {
 		pattern: /'(?:[^\\'\r\n]|\\(?:[abfnrtv\\']|\d+|x[0-9a-fA-F]+))'/,
 		greedy: true
@@ -19,7 +19,8 @@ Prism.languages.elm = {
 		// The imported or hidden names are not included in this import
 		// statement. This is because we want to highlight those exactly like
 		// we do for the names in the program.
-		pattern: /^\s*import\s+[A-Z]\w*(?:\.[A-Z]\w*)*(?:\s+as\s+(?:[A-Z]\w*)(?:\.[A-Z]\w*)*)?(?:\s+exposing\s+)?/m,
+		pattern: /(^[\t ]*)import\s+[A-Z]\w*(?:\.[A-Z]\w*)*(?:\s+as\s+(?:[A-Z]\w*)(?:\.[A-Z]\w*)*)?(?:\s+exposing\s+)?/m,
+		lookbehind: true,
 		inside: {
 			'keyword': /\b(?:import|as|exposing)\b/
 		}

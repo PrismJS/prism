@@ -3,12 +3,24 @@
 (* foo
 bar *)
 
+// the next one is not a comment
+(*) (*)
+
 ----------------------------------------------------
 
 [
 	["comment", "// foobar"],
 	["comment", "(**)"],
-	["comment", "(* foo\r\nbar *)"]
+	["comment", "(* foo\r\nbar *)"],
+
+	["comment", "// the next one is not a comment"],
+
+	["punctuation", "("],
+	["operator", "*"],
+	["punctuation", ")"],
+	["punctuation", "("],
+	["operator", "*"],
+	["punctuation", ")"]
 ]
 
 ----------------------------------------------------

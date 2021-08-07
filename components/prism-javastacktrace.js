@@ -9,7 +9,7 @@ Prism.languages.javastacktrace = {
 	// Caused by: MidLevelException: LowLevelException
 	// Suppressed: Resource$CloseFailException: Resource ID = 0
 	'summary': {
-		pattern: /^[\t ]*(?:(?:Caused by:|Suppressed:|Exception in thread "[^"]*")[\t ]+)?[\w$.]+(?:\:.*)?$/m,
+		pattern: /^[\t ]*(?:(?:Caused by:|Suppressed:|Exception in thread "[^"]*")[\t ]+)?[\w$.]+(?::.*)?$/m,
 		inside: {
 			'keyword': {
 				pattern: /^(\s*)(?:(?:Caused by|Suppressed)(?=:)|Exception in thread)/m,
@@ -35,7 +35,7 @@ Prism.languages.javastacktrace = {
 				lookbehind: true,
 				alias: 'string'
 			},
-			'punctuation': /[:]/
+			'punctuation': /:/
 		}
 	},
 

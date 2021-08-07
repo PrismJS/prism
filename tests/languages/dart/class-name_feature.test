@@ -1,0 +1,91 @@
+class Foo with ns.Bar {
+    const Foo(this.bar);
+
+    final Bar bar;
+
+    Baz<ns.Bat> baz(ns.Bat bat) {
+        return Baz<ns.Bat>(bat);
+    }
+
+}
+
+----------------------------------------------------
+
+[
+	["keyword", "class"],
+	["class-name", ["Foo"]],
+	["keyword", "with"],
+	["class-name", [
+		["namespace", [
+			"ns",
+			["punctuation", "."]
+		]],
+		"Bar"
+	]],
+	["punctuation", "{"],
+
+	["keyword", "const"],
+	["class-name", ["Foo"]],
+	["punctuation", "("],
+	["keyword", "this"],
+	["punctuation", "."],
+	"bar",
+    ["punctuation", ")"],
+    ["punctuation", ";"],
+
+	["keyword", "final"],
+	["class-name", ["Bar"]],
+	" bar",
+    ["punctuation", ";"],
+
+	["class-name", ["Baz"]],
+	["generics", [
+		["punctuation", "<"],
+		["class-name", [
+			["namespace", [
+				"ns",
+				["punctuation", "."]
+			]],
+			"Bat"
+		]],
+		["punctuation", ">"]
+	]],
+	["function", "baz"],
+	["punctuation", "("],
+	["class-name", [
+		["namespace", [
+			"ns",
+			["punctuation", "."]
+		]],
+		"Bat"
+	]],
+	" bat",
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["keyword", "return"],
+	["class-name", [
+		"Baz"
+	]],
+    ["generics", [
+        ["punctuation", "<"],
+        ["class-name", [
+            ["namespace", [
+                "ns",
+                ["punctuation", "."]
+            ]],
+            "Bat"
+        ]],
+        ["punctuation", ">"]
+    ]],
+	["punctuation", "("],
+	"bat",
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["punctuation", "}"],
+
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks class names and generics

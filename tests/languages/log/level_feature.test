@@ -1,0 +1,57 @@
+ALERT
+CRIT
+CRITICAL
+EMERG
+EMERGENCY
+ERR
+ERROR
+FAILURE
+FATAL
+SEVERE
+
+WARN
+WARNING
+
+DISPLAY
+INFO
+NOTICE
+STATUS
+
+DEBUG
+FINE
+
+FINER
+FINEST
+TRACE
+VERBOSE
+
+----------------------------------------------------
+
+[
+	["level", "ALERT"],
+	["level", "CRIT"],
+	["level", "CRITICAL"],
+	["level", "EMERG"],
+	["level", "EMERGENCY"],
+	["level", "ERR"],
+	["level", "ERROR"],
+	["level", "FAILURE"],
+	["level", "FATAL"],
+	["level", "SEVERE"],
+
+	["level", "WARN"],
+	["level", "WARNING"],
+
+	["level", "DISPLAY"],
+	["level", "INFO"],
+	["level", "NOTICE"],
+	["level", "STATUS"],
+
+	["level", "DEBUG"],
+	["level", "FINE"],
+
+	["level", "FINER"],
+	["level", "FINEST"],
+	["level", "TRACE"],
+	["level", "VERBOSE"]
+]

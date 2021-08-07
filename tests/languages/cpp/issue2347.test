@@ -23,7 +23,7 @@ void MainWindow::changeWindowTitle()
 
 	["punctuation", "{"],
 
-	"\n  Q_OBJECT\n\n ",
+	"\r\n  Q_OBJECT\r\n\r\n ",
 
 	["keyword", "private"],
 	" slots",
@@ -40,7 +40,7 @@ void MainWindow::changeWindowTitle()
 
 	["keyword", "void"],
 	["class-name", "MainWindow"],
-	["operator", "::"],
+	["double-colon", "::"],
 	["function", "changeWindowTitle"],
 	["punctuation", "("],
 	["punctuation", ")"],
@@ -68,5 +68,3 @@ void MainWindow::changeWindowTitle()
 
 	["punctuation", "}"]
 ]
-
-----------------------------------------------------
