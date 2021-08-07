@@ -1,4 +1,5 @@
-/** @type {Config}
+/**
+ * @type {Config}
  *
  * @typedef Config
  * @property {ConfigOptions} options
@@ -38,10 +39,10 @@ const config = {
 		{
 			repo: 'https://github.com/PrismJS/prism.git'
 		},
-		/*{
-			repo: 'https://github.com/<Your user name>/prism.git',
-			branch: 'some-brach-you-want-to-compare-to'
-		}*/
+		// {
+		// 	repo: 'https://github.com/<Your user name>/prism.git',
+		// 	branch: 'some-brach-you-want-to-test'
+		// },
 	],
 
 	cases: {

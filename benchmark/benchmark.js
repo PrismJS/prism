@@ -1,3 +1,5 @@
+// @ts-check
+
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
@@ -8,21 +10,19 @@ const simpleGit = require('simple-git/promise');
 const { parseLanguageNames } = require('../tests/helper/test-case');
 
 
-doBenchmark(getConfig());
-
 /**
  * @param {import("./config").Config} config
  */
-async function doBenchmark(config) {
+async function runBenchmark(config) {
 	const cases = await getCases(config);
-	const totalNumberOfCaseFiles = cases.reduce((a, c) => a + c.files.length, 0);
 	const candidates = await getCandidates(config);
 	const maxCandidateNameLength = candidates.reduce((a, c) => Math.max(a, c.name.length), 0);
 
+	const totalNumberOfCaseFiles = cases.reduce((a, c) => a + c.files.length, 0);
 	console.log(`Found ${cases.length} cases with ${totalNumberOfCaseFiles} files in total.`);
 	console.log(`Test ${candidates.length} candidates with Prism.${config.options.testFunction}`);
-	const ert = candidates.length * totalNumberOfCaseFiles * config.options.maxTime;
-	console.log(`Estimated duration: ${Math.floor(ert / 60)}m ${Math.floor(ert % 60)}s`);
+	const estimate = candidates.length * totalNumberOfCaseFiles * config.options.maxTime;
+	console.log(`Estimated duration: ${Math.floor(estimate / 60)}m ${Math.floor(estimate % 60)}s`);
 
 	/**
 	 * @type {Summary[]}
@@ -55,7 +55,7 @@ async function doBenchmark(config) {
 
 		// bench all files
 		for (const caseFile of $case.files) {
-			console.log(`  ${caseFile.name} \x1b[90m(${Math.round(caseFile.size / 1024)} kB)\x1b[0m`);
+			console.log(`  ${caseFile.uri} \x1b[90m(${Math.round(caseFile.size / 1024)} kB)\x1b[0m`);
 
 			const code = await fs.promises.readFile(caseFile.path, 'utf8');
 
@@ -135,120 +135,150 @@ function getConfig() {
 	return base;
 }
 
-
 /**
  * @param {import("./config").Config} config
+ * @returns {Promise<Case[]>}
+ *
+ * @typedef Case
+ * @property {string} id
+ * @property {string} language The main language.
+ * @property {string[]} languages All languages that have to be loaded.
+ * @property {FileInfo[]} files
  */
 async function getCases(config) {
+	/** @type {Map<string, ReadonlySet<FileInfo>>} */
+	const caseFileCache = new Map();
+
 	/**
-	 * @type {Map<string, FileInfo>}
+	 * Returns all files of the test case with the given id.
 	 *
-	 * @typedef {{ name: string, path: string, size: number }} FileInfo
-	 * */
-	const filesMap = new Map();
-	async function getFileInfo(name) {
-		let fi = filesMap.get(name);
-		if (fi === undefined) {
-			let p;
-			if (/^https:\/\//.test(name)) {
-				const downloadDir = path.join(__dirname, 'downloads');
-				await fs.promises.mkdir(downloadDir, { recursive: true });
-				// file path
-				const hash = crypto.createHash('md5').update(name).digest('hex');
-				p = path.resolve(downloadDir, hash + '-' + /[-\w\.]*$/.exec(name)[0]);
-				if (!fs.existsSync(p)) {
-					// download file
-					console.log(`Downloading ${name}...`);
-					await fs.promises.writeFile(p, await fetch(name).then(r => r.text()), 'utf8');
-				}
-			} else {
-				p = path.resolve(__dirname, name);
-			}
-			const stat = await fs.promises.stat(p);
-			if (stat.isFile()) {
-				filesMap.set(name, fi = {
-					name: name,
-					path: p,
-					size: stat.size
-				});
-			} else {
-				throw new Error(`Unknown file "${name}"`);
-			}
-		}
-		return fi;
-	}
-
-	/** @type {Map<string, Set<FileInfo>>} */
-	const map = new Map();
-
-	/**
-	 * @param {T[] | T | undefined | null} value
-	 * @returns {readonly T[]}
-	 * @template T
+	 * @param {string} id
+	 * @returns {Promise<ReadonlySet<FileInfo>>}
 	 */
-	function toArray(value) {
-		if (Array.isArray(value)) {
-			return value;
-		} else if (value != undefined) {
-			return [value]
-		} else {
-			return [];
-		}
-	}
-
-	async function addToMap(id) {
-		if (map.has(id)) {
-			return;
-		}
-		if (!(id in config.cases)) {
-			throw new Error(`Unknown case "${id}"`);
+	async function getCaseFiles(id) {
+		if (caseFileCache.has(id)) {
+			return caseFileCache.get(id);
 		}
 
 		const caseEntry = config.cases[id];
+		if (!caseEntry) {
+			throw new Error(`Unknown case "${id}"`);
+		}
 
 		/** @type {Set<FileInfo>} */
-		const caseFiles = new Set();
+		const files = new Set();
+		caseFileCache.set(id, files);
 
-		for (const extId of toArray(caseEntry.extends)) {
-			await addToMap(extId);
-			map.get(extId).forEach(fi => caseFiles.add(fi));
-		}
-		for (const file of toArray(caseEntry.files)) {
-			caseFiles.add(await getFileInfo(file))
+		await Promise.all(toArray(caseEntry.files).map(async uri => {
+			files.add(await getFileInfo(uri))
+		}));
+		for (const extendId of toArray(caseEntry.extends)) {
+			(await getCaseFiles(extendId)).forEach(info => files.add(info));
 		}
 
-		map.set(id, caseFiles);
+		return files;
 	}
+
+	/**
+	 * Returns whether the case is enabled by the options provided by the user.
+	 *
+	 * @param {string[]} languages
+	 * @returns {boolean}
+	 */
+	function isEnabled(languages) {
+		if (config.options.language) {
+			// test whether the given languages contain any of the required languages
+			const required = new Set(config.options.language.split(/,/g).filter(Boolean));
+			return languages.some(l => required.has(l));
+		}
+
+		return true;
+	}
+
+	/** @type {Case[]} */
+	const cases = [];
 	for (const id of Object.keys(config.cases)) {
-		await addToMap(id);
-	}
-
-	let cases = [...map].map(([id, files]) => {
 		const parsed = parseLanguageNames(id);
-		return {
+
+		if (!isEnabled(parsed.languages)) {
+			continue;
+		}
+
+		cases.push({
+			id,
 			language: parsed.mainLanguage,
 			languages: parsed.languages,
-			id,
-			files: [...files].sort((a, b) => a.name.localeCompare(b.name))
-		};
-	}).filter(c => {
-		const language = config.options.language;
-		if (!language) {
-			return true; // no language(s) defined
-		}
-		const languages = Array.isArray(language) ? language : language.split(/,/g);
-
-		return languages.some(l => c.languages.indexOf(l) >= 0);
-	});
-
-	if (config.options.language) {
-		const set = new Set(config.options.language.split(/,/g));
-		cases = cases.filter(c => {
-			return c.languages.some(l => set.has(l));
-		});
+			files: [...await getCaseFiles(id)].sort((a, b) => a.uri.localeCompare(b.uri)),
+		})
 	}
 
-	return cases.sort((a, b) => a.id.localeCompare(b.id));
+	cases.sort((a, b) => a.id.localeCompare(b.id));
+
+	return cases;
+}
+
+/** @type {Map<string, Promise<FileInfo>>} */
+const fileInfoCache = new Map();
+/**
+ * Returns the path and other information for the given file identifier.
+ *
+ * @param {string} uri
+ * @returns {Promise<FileInfo>}
+ *
+ * @typedef {{ uri: string, path: string, size: number }} FileInfo
+ */
+function getFileInfo(uri) {
+	let info = fileInfoCache.get(uri);
+	if (info === undefined) {
+		info = getFileInfoUncached(uri);
+		fileInfoCache.set(uri, info);
+	}
+	return info;
+}
+/**
+ * @param {string} uri
+ * @returns {Promise<FileInfo>}
+ */
+async function getFileInfoUncached(uri) {
+	const p = await getFilePath(uri);
+	const stat = await fs.promises.stat(p);
+	if (stat.isFile()) {
+		return {
+			uri,
+			path: p,
+			size: stat.size
+		};
+	} else {
+		throw new Error(`Unknown file "${uri}"`);
+	}
+}
+/**
+ * Returns the local path of the given file identifier.
+ *
+ * @param {string} uri
+ * @returns {Promise<string>}
+ */
+async function getFilePath(uri) {
+	if (/^https:\/\//.test(uri)) {
+		// it's a URL, so let's download the file (if not downloaded already)
+		const downloadDir = path.join(__dirname, 'downloads');
+		await fs.promises.mkdir(downloadDir, { recursive: true });
+
+		// file path
+		const hash = crypto.createHash('md5').update(uri).digest('hex');
+		const localPath = path.resolve(downloadDir, hash + '-' + /[-\w\.]*$/.exec(uri)[0]);
+
+		if (!fs.existsSync(localPath)) {
+			// download file
+			console.log(`Downloading ${uri}...`);
+			await fs.promises.writeFile(localPath, await fetch(uri).then(r => r.text()), 'utf8');
+		}
+
+		return localPath;
+	}
+
+	// assume that it's a local file
+	return path.resolve(__dirname, uri);
 }
 
 /**
@@ -399,3 +429,23 @@ async function getCandidates(config) {
 
 	return candidates;
 }
+
+/**
+ * A utility function that converts the given optional array-like value into an array.
+ *
+ * @param {T[] | T | undefined | null} value
+ * @returns {readonly T[]}
+ * @template T
+ */
+function toArray(value) {
+	if (Array.isArray(value)) {
+		return value;
+	} else if (value != undefined) {
+		return [value]
+	} else {
+		return [];
+	}
+}
+
+
+runBenchmark(getConfig());
