@@ -1,0 +1,25 @@
+var oneString = 'abc'
+var oneNumber = 123
+var numbers = [
+  123
+]
+var oneObject = {
+	abc: 123
+}
+
+----------------------------------------------------
+
+[
+	["keyword", "var"], " oneString ", ["operator", "="], ["string", "'abc'"],
+	["keyword", "var"], " oneNumber ", ["operator", "="], ["number", "123"],
+	["keyword", "var"], " numbers ", ["operator", "="], ["punctuation", "["],
+	["number", "123"],
+	["punctuation", "]"],
+	["keyword", "var"], " oneObject ", ["operator", "="], ["punctuation", "{"],
+	["property", "abc"], ["operator", ":"], ["number", "123"],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for vars.

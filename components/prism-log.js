@@ -10,6 +10,18 @@ Prism.languages.log = {
 		greedy: true,
 	},
 
+	'exception': {
+		pattern: /(^|[^\w.])[a-z][\w.]*(?:Exception|Error):.*(?:(?:\r\n?|\n)[ \t]*(?:at[ \t].+|\.{3}.*|Caused by:.*))+(?:(?:\r\n?|\n)[ \t]*\.\.\. .*)?/,
+		lookbehind: true,
+		greedy: true,
+		alias: ['javastacktrace', 'language-javastacktrace'],
+		inside: Prism.languages['javastacktrace'] || {
+			'keyword': /\bat\b/,
+			'function': /[a-z_][\w$]*(?=\()/,
+			'punctuation': /[.:()]/
+		}
+	},
+
 	'level': [
 		{
 			pattern: /\b(?:ALERT|CRIT|CRITICAL|EMERG|EMERGENCY|ERR|ERROR|FAILURE|FATAL|SEVERE)\b/,
