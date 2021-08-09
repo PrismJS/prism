@@ -1221,7 +1221,6 @@
 		},
 		"swift": {
 			"title": "Swift",
-			"require": "clike",
 			"owner": "chrischares"
 		},
 		"t4-templating": {
