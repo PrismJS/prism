@@ -29,7 +29,7 @@ async function runBenchmark(config) {
 	 *
 	 * @typedef {{ best: number; worst: number, relative: number[], avgRelative?: number }} Summary
 	 */
-	const totalSummary = Array.from({ length: candidates.length }).map(() => ({ best: 0, worst: 0, relative: [] }));
+	const totalSummary = Array.from({ length: candidates.length }, () => ({ best: 0, worst: 0, relative: [] }));
 
 	for (const $case of cases) {
 
