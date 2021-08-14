@@ -14,7 +14,7 @@
 
 	// Symbol name. See https://www.gnu.org/software/emacs/manual/html_node/elisp/Symbol-Type.html
 	// & and : are excluded as they are usually used for special purposes
-	var symbol = '[-+*/_~!@$%^=<>{}\\w]+';
+	var symbol = '[-+*/~!@$%^=<>{}\\w]+';
 	// symbol starting with & used in function arguments
 	var marker = '&' + symbol;
 	// Open parenthesis for look-behind
