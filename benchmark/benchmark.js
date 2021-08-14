@@ -339,6 +339,7 @@ function getWorst(results) {
 		const secondWorst = sorted[1].stats;
 
 		// basically, it's only the best if the two means plus their moe are disjoint
+		// (moe = margin of error; https://benchmarkjs.com/docs#stats_moe)
 		if (worst.mean - worst.moe - secondWorst.moe > secondWorst.mean) {
 			return sorted[0];
 		}
