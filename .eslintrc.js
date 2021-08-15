@@ -56,7 +56,7 @@ module.exports = {
 		'jsdoc/require-property-name': 'warn',
 
 		// regexp
-		'regexp/no-assertion-capturing-group': 'error',
+		'regexp/no-empty-capturing-group': 'error',
 		'regexp/no-dupe-disjunctions': 'error',
 		'regexp/no-empty-alternative': 'error',
 		'regexp/no-empty-lookarounds-assertion': 'error',
