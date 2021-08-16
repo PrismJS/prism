@@ -5,6 +5,7 @@ hide-*.js
 .DS_Store
 CNAME
 .github/
+benchmark/
 assets/
 docs/
 examples/
