@@ -56,17 +56,18 @@ module.exports = {
 		'jsdoc/require-property-name': 'warn',
 
 		// regexp
-		'regexp/no-empty-capturing-group': 'error',
 		'regexp/no-dupe-disjunctions': 'error',
 		'regexp/no-empty-alternative': 'error',
+		'regexp/no-empty-capturing-group': 'error',
 		'regexp/no-empty-lookarounds-assertion': 'error',
 		'regexp/no-lazy-ends': 'error',
 		'regexp/no-obscure-range': 'error',
 		'regexp/no-optional-assertion': 'error',
 		'regexp/no-standalone-backslash': 'error',
+		'regexp/no-super-linear-backtracking': 'error',
+		'regexp/no-unused-capturing-group': 'error',
 		'regexp/no-zero-quantifier': 'error',
 		'regexp/optimal-lookaround-quantifier': 'error',
-		'regexp/no-unused-capturing-group': 'error',
 
 		'regexp/match-any': 'warn',
 		'regexp/negation': 'warn',
