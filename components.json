@@ -1460,7 +1460,7 @@
 		},
 		"highlight-keywords": {
 			"title": "Highlight Keywords",
-			"description": "Adds special CSS classes for each keyword in the code.",
+			"description": "Adds special CSS classes for each keyword for fine-grained highlighting.",
 			"owner": "vkbansal",
 			"noCSS": true
 		},
