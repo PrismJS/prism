@@ -33,7 +33,7 @@
 				// shell symbol
 				/[$#%](?=\s)/.source +
 				// bash command
-				/(?:[^\\\r\n'"<$]|\\(?:[^\r]|\r\n?)|\$(?!')|<<str>>)+/.source.replace(/<<str>>/g, function () { return strings; }),
+				/(?:[^\\\r\n \t'"<$]|[ \t](?:(?!#)|#.*$)|\\(?:[^\r]|\r\n?)|\$(?!')|<(?!<)|<<str>>)+/.source.replace(/<<str>>/g, function () { return strings; }),
 				'm'
 			),
 			greedy: true,
