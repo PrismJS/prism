@@ -189,10 +189,11 @@ module.exports = {
 			}
 		},
 		{
-			// Gulp and Danger
+			// Gulp, Danger, and benchmark
 			files: [
 				'gulpfile.js/**',
-				'dangerfile.js'
+				'dangerfile.js',
+				'benchmark/**',
 			],
 			env: {
 				es6: true,
