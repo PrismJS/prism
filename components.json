@@ -160,6 +160,11 @@
 			"title": "AutoIt",
 			"owner": "Golmote"
 		},
+		"avro-idl": {
+			"title":"Avro IDL",
+			"alias": "avdl",
+			"owner": "RunDevelopment"
+		},
 		"bash": {
 			"title": "Bash",
 			"alias": "shell",

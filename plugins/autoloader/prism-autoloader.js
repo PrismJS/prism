@@ -172,6 +172,7 @@
 		"js": "javascript",
 		"g4": "antlr4",
 		"adoc": "asciidoc",
+		"avdl": "avro-idl",
 		"shell": "bash",
 		"shortcode": "bbcode",
 		"rbnf": "bnf",
