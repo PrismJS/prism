@@ -22,7 +22,7 @@ Prism.languages['avro-idl'] = {
 	'annotation': {
 		pattern: /@(?:[$\w.-]|`[^\r\n`]+`)+/,
 		greedy: true,
-		alias: 'punctuation'
+		alias: 'function'
 	},
 	'function-identifier': {
 		pattern: /`[^\r\n`]+`(?=\s*\()/,
