@@ -37,10 +37,10 @@ Prism.languages.mermaid = {
 
 	'arrow': [
 		// This might look complex but it really isn't.
-		// There are many possible arrows (see tests) and it's too impossible to fit all of them into one pattern.
-		// The problem is that we only have one lookbehind per pattern. However, we cannot disallow allow possible
-		// arrow characters in the one lookbehind because that would create too many false negatives. So we have to
-		// split the arrows into different patterns.
+		// There are many possible arrows (see tests) and it's impossible to fit all of them into one pattern. The
+		// problem is that we only have one lookbehind per pattern. However, we cannot disallow too many arrow
+		// characters in the one lookbehind because that would create too many false negatives. So we have to split the
+		// arrows into different patterns.
 		{
 			// ER diagram
 			pattern: /(^|[^{}|o.-])[|}][|o](?:--|\.\.)[|o][|{](?![{}|o.-])/,
