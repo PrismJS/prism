@@ -58,6 +58,7 @@ function createSortedArray(compareFn) {
  * @typedef {"A" | "C" | "D" | "M" | "R" | "T" | "U" | "X" | "B"} ChangeMode
  */
 async function getCommitInfo(line) {
+	// eslint-disable-next-line regexp/no-super-linear-backtracking
 	const [, hash, message] = /^([a-f\d]+)\s+(.*)$/i.exec(line);
 
 	/* The output looks like this:
