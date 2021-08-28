@@ -769,6 +769,10 @@
 			"title": "Lua",
 			"owner": "Golmote"
 		},
+		"magma": {
+			"title": "Magma (CAS)",
+			"owner": "RunDevelopment"
+		},
 		"makefile": {
 			"title": "Makefile",
 			"owner": "Golmote"

@@ -132,6 +132,7 @@
 		"llvm": "LLVM IR",
 		"log": "Log file",
 		"lolcode": "LOLCODE",
+		"magma": "Magma (CAS)",
 		"md": "Markdown",
 		"markup-templating": "Markup templating",
 		"matlab": "MATLAB",
