@@ -85,6 +85,7 @@
 		"ftl": "FreeMarker Template Language",
 		"gml": "GameMaker Language",
 		"gamemakerlanguage": "GameMaker Language",
+		"gap": "GAP (CAS)",
 		"gcode": "G-code",
 		"gdscript": "GDScript",
 		"gedcom": "GEDCOM",
