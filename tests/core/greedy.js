@@ -105,4 +105,19 @@ describe('Greedy matching', function () {
 		});
 	});
 
+	it('issue3052', function () {
+		// this is to test for a bug where greedy tokens where matched like non-greedy ones if the token stream ended on
+		// a string
+		testTokens({
+			grammar: {
+				'oh-no': {
+					pattern: /$/,
+					greedy: true
+				}
+			},
+			code: 'foo',
+			expected: ['foo']
+		});
+	});
+
 });
