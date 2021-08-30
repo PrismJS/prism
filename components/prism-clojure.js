@@ -9,10 +9,8 @@ Prism.languages.clojure = {
 			pattern: /"(?:[^"\\]|\\.)*"/,
 			greedy: true
 		},
-		{
-			// characters
-			pattern: /\\\w+/
-		}
+		// characters
+		/\\\w+/
 	],
 	'symbol': {
 		pattern: /(^|[\s()\[\]{},])::?[\w*+!?'<>=/.-]+/,
