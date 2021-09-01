@@ -1,6 +1,5 @@
 // https://wren.io/
 
-
 Prism.languages.wren = {
 	// Multiline comments in Wren can have nested multiline comments
 	// Comments: // and /* */
