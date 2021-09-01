@@ -38,6 +38,7 @@ Prism.languages.gn = {
 		alias: 'keyword'
 	},
 	'function': /\b[a-z_]\w*(?=\s*\()/i,
+	'constant': /\b(?:current_cpu|current_os|current_toolchain|default_toolchain|host_cpu|host_os|root_build_dir|root_gen_dir|root_out_dir|target_cpu|target_gen_dir|target_out_dir|target_os)\b/,
 
 	'number': /-?\b\d+\b/,
 
