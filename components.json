@@ -789,6 +789,10 @@
 			"title": "MATLAB",
 			"owner": "Golmote"
 		},
+		"maxscript": {
+			"title": "MAXScript",
+			"owner": "RunDevelopment"
+		},
 		"mel": {
 			"title": "MEL",
 			"owner": "Golmote"

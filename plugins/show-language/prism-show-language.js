@@ -135,6 +135,7 @@
 		"md": "Markdown",
 		"markup-templating": "Markup templating",
 		"matlab": "MATLAB",
+		"maxscript": "MAXScript",
 		"mel": "MEL",
 		"mongodb": "MongoDB",
 		"moon": "MoonScript",
