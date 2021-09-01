@@ -106,8 +106,7 @@ describe('Greedy matching', function () {
 	});
 
 	it('issue3052', function () {
-		// this is to test for a bug where greedy tokens where matched like non-greedy ones if the token stream ended on
-		// a string
+		// If a greedy pattern creates an empty token at the end of the string, then this token should be discarded
 		testTokens({
 			grammar: {
 				'oh-no': {
