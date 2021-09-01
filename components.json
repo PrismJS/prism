@@ -1371,6 +1371,10 @@
 			},
 			"owner": "msollami"
 		},
+		"wren": {
+			"title": "Wren",
+			"owner": "clsource"
+		},
 		"xeora": {
 			"title": "Xeora",
 			"require": "markup",
