@@ -27,10 +27,6 @@
 		"bison": "c",
 		"c": "clike",
 		"csharp": "clike",
-		"cshtml": [
-			"markup",
-			"csharp"
-		],
 		"cpp": "c",
 		"cfscript": "clike",
 		"chaiscript": [
@@ -119,6 +115,10 @@
 		"qml": "javascript",
 		"qore": "clike",
 		"racket": "scheme",
+		"cshtml": [
+			"markup",
+			"csharp"
+		],
 		"jsx": [
 			"markup",
 			"javascript"
@@ -182,7 +182,6 @@
 		"oscript": "bsl",
 		"cs": "csharp",
 		"dotnet": "csharp",
-		"razor": "cshtml",
 		"cfc": "cfscript",
 		"coffee": "coffeescript",
 		"conc": "concurnas",
@@ -227,6 +226,7 @@
 		"py": "python",
 		"qs": "qsharp",
 		"rkt": "racket",
+		"razor": "cshtml",
 		"rpy": "renpy",
 		"robot": "robotframework",
 		"rb": "ruby",
