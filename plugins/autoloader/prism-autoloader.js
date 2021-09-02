@@ -27,6 +27,10 @@
 		"bison": "c",
 		"c": "clike",
 		"csharp": "clike",
+		"cshtml": [
+			"markup",
+			"csharp"
+		],
 		"cpp": "c",
 		"cfscript": "clike",
 		"chaiscript": [
@@ -178,6 +182,7 @@
 		"oscript": "bsl",
 		"cs": "csharp",
 		"dotnet": "csharp",
+		"razor": "cshtml",
 		"cfc": "cfscript",
 		"coffee": "coffeescript",
 		"conc": "concurnas",

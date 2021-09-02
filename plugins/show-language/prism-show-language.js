@@ -52,6 +52,8 @@
 		"csharp": "C#",
 		"cs": "C#",
 		"dotnet": "C#",
+		"cshtml": "Razor C#",
+		"razor": "Razor C#",
 		"cpp": "C++",
 		"cfscript": "CFScript",
 		"cfc": "CFScript",

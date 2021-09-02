@@ -237,6 +237,18 @@
 			"alias": ["cs", "dotnet"],
 			"owner": "mvalipour"
 		},
+		"cshtml": {
+			"title": "Razor C#",
+			"alias": "razor",
+			"require": ["markup", "csharp"],
+			"optional":[
+				"css",
+				"css-extras",
+				"javascript",
+				"js-extras"
+			],
+			"owner": "RunDevelopment"
+		},
 		"cpp": {
 			"title": "C++",
 			"require": "c",
