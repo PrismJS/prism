@@ -1,0 +1,96 @@
+$ diskutil list
+/dev/disk0 (internal, physical):
+   #:                       TYPE NAME                    SIZE       IDENTIFIER
+   0:      GUID_partition_scheme                        *500.3 GB   disk0
+   1:                        EFI EFI                     209.7 MB   disk0s1
+   2:                 Apple_APFS Container disk1         500.1 GB   disk0s2
+
+/dev/disk1 (synthesized):
+   #:                       TYPE NAME                    SIZE       IDENTIFIER
+   0:      APFS Container Scheme -                      +500.1 GB   disk1
+                                 Physical Store disk0s2
+   1:                APFS Volume Macintosh HD - Data     340.9 GB   disk1s1
+   2:                APFS Volume Preboot                 85.9 MB    disk1s2
+   3:                APFS Volume Recovery                529.0 MB   disk1s3
+   4:                APFS Volume VM                      3.2 GB     disk1s4
+   5:                APFS Volume Macintosh HD            11.3 GB    disk1s5
+
+/dev/disk2 (internal, physical):
+   #:                       TYPE NAME                    SIZE       IDENTIFIER
+   0:     FDisk_partition_scheme                        *15.9 GB    disk2
+   1:             Windows_FAT_32 boot                    268.4 MB   disk2s1
+   2:                      Linux                         15.7 GB    disk2s2
+
+$ sudo diskutil unmount /dev/diskn
+disk2 was already unmounted or it has a partitioning scheme so use "diskutil unmountDisk" instead
+
+$ sudo diskutil unmountDisk /dev/diskn (if previous step fails)
+Unmount of all volumes on disk2 was successful
+
+$ sudo dd bs=1m if=$HOME/Downloads/tails-amd64-4.18.img of=/dev/rdiskn
+1131+0 records in
+1131+0 records out
+1185939456 bytes transferred in 44.708618 secs (26525970 bytes/sec)
+
+$ sudo diskutil unmountDisk /dev/diskn
+Unmount of all volumes on disk2 was successful
+
+----------------------------------------------------
+
+[
+	["command", [
+		["shell-symbol", "$"],
+		["bash", ["diskutil list"]]
+	]],
+
+	["output", "/dev/disk0 (internal, physical):\r\n   #:                       TYPE NAME                    SIZE       IDENTIFIER\r\n   0:      GUID_partition_scheme                        *500.3 GB   disk0\r\n   1:                        EFI EFI                     209.7 MB   disk0s1\r\n   2:                 Apple_APFS Container disk1         500.1 GB   disk0s2\r\n\r\n/dev/disk1 (synthesized):\r\n   #:                       TYPE NAME                    SIZE       IDENTIFIER\r\n   0:      APFS Container Scheme -                      +500.1 GB   disk1\r\n                                 Physical Store disk0s2\r\n   1:                APFS Volume Macintosh HD - Data     340.9 GB   disk1s1\r\n   2:                APFS Volume Preboot                 85.9 MB    disk1s2\r\n   3:                APFS Volume Recovery                529.0 MB   disk1s3\r\n   4:                APFS Volume VM                      3.2 GB     disk1s4\r\n   5:                APFS Volume Macintosh HD            11.3 GB    disk1s5\r\n\r\n/dev/disk2 (internal, physical):\r\n   #:                       TYPE NAME                    SIZE       IDENTIFIER\r\n   0:     FDisk_partition_scheme                        *15.9 GB    disk2\r\n   1:             Windows_FAT_32 boot                    268.4 MB   disk2s1\r\n   2:                      Linux                         15.7 GB    disk2s2\r\n\r\n"],
+	["command", [
+		["shell-symbol", "$"],
+		["bash", [
+			["function", "sudo"],
+			" diskutil unmount /dev/diskn"
+		]]
+	]],
+
+	["output", "disk2 was already unmounted or it has a partitioning scheme so use \"diskutil unmountDisk\" instead\r\n\r\n"],
+	["command", [
+		["shell-symbol", "$"],
+		["bash", [
+			["function", "sudo"],
+			" diskutil unmountDisk /dev/diskn ",
+			["punctuation", "("],
+			"if previous step fails",
+			["punctuation", ")"]
+		]]
+	]],
+
+	["output", "Unmount of all volumes on disk2 was successful\r\n\r\n"],
+	["command", [
+		["shell-symbol", "$"],
+		["bash", [
+			["function", "sudo"],
+			["function", "dd"],
+			["assign-left", ["bs"]],
+			["operator", ["="]],
+			"1m ",
+			["assign-left", ["if"]],
+			["operator", ["="]],
+			["environment", "$HOME"],
+			"/Downloads/tails-amd64-4.18.img ",
+			["assign-left", ["of"]],
+			["operator", ["="]],
+			"/dev/rdiskn"
+		]]
+	]],
+
+	["output", "1131+0 records in\r\n1131+0 records out\r\n1185939456 bytes transferred in 44.708618 secs (26525970 bytes/sec)\r\n\r\n"],
+	["command", [
+		["shell-symbol", "$"],
+		["bash", [
+			["function", "sudo"],
+			" diskutil unmountDisk /dev/diskn"
+		]]
+	]],
+
+	["output", "Unmount of all volumes on disk2 was successful"]
+]
