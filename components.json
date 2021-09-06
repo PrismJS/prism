@@ -160,6 +160,11 @@
 			"title": "AutoIt",
 			"owner": "Golmote"
 		},
+		"avro-idl": {
+			"title":"Avro IDL",
+			"alias": "avdl",
+			"owner": "RunDevelopment"
+		},
 		"bash": {
 			"title": "Bash",
 			"alias": "shell",
@@ -465,6 +470,11 @@
 			"title": "GLSL",
 			"require": "c",
 			"owner": "Golmote"
+		},
+		"gn": {
+			"title": "GN",
+			"alias": "gni",
+			"owner": "RunDevelopment"
 		},
 		"go": {
 			"title": "Go",
@@ -1227,6 +1237,10 @@
 			"title": "Swift",
 			"owner": "chrischares"
 		},
+		"systemd": {
+			"title": "Systemd configuration file",
+			"owner": "RunDevelopment"
+		},
 		"t4-templating": {
 			"title": "T4 templating",
 			"owner": "RunDevelopment"
@@ -1464,7 +1478,7 @@
 		},
 		"highlight-keywords": {
 			"title": "Highlight Keywords",
-			"description": "Adds special CSS classes for each keyword matched in the code. For example, the keyword <code>if</code> will have the class <code>keyword-if</code> as well. You can have fine grained control over the appearance of each keyword by providing your own CSS rules.",
+			"description": "Adds special CSS classes for each keyword for fine-grained highlighting.",
 			"owner": "vkbansal",
 			"noCSS": true
 		},

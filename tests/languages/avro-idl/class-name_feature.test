@@ -1,0 +1,52 @@
+protocol MyProto {
+  @namespace("org.apache.avro.someOtherNamespace")
+  record Foo {}
+
+  record Bar {}
+
+  enum Kind {
+    FOO,
+    BAR, // the bar enum value
+    BAZ
+  }
+
+  error TestError {
+    string message;
+  }
+
+}
+
+----------------------------------------------------
+
+[
+	["keyword", "protocol"],
+	["class-name", "MyProto"],
+	["punctuation", "{"],
+
+	["annotation", "@namespace"],
+	["punctuation", "("],
+	["string", "\"org.apache.avro.someOtherNamespace\""],
+	["punctuation", ")"],
+
+	["keyword", "record"],
+	["class-name", "Foo"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "record"],
+	["class-name", "Bar"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "enum"], ["class-name", "Kind"], ["punctuation", "{"],
+	"\r\n    FOO", ["punctuation", ","],
+	"\r\n    BAR", ["punctuation", ","], ["comment", "// the bar enum value"],
+	"\r\n    BAZ\r\n  ",
+	["punctuation", "}"],
+
+	["keyword", "error"], ["class-name", "TestError"], ["punctuation", "{"],
+	["keyword", "string"], " message", ["punctuation", ";"],
+	["punctuation", "}"],
+
+	["punctuation", "}"]
+]
