@@ -717,6 +717,10 @@
 			"alias": "kum",
 			"owner": "edukisto"
 		},
+		"kusto": {
+			"title": "Kusto",
+			"owner": "RunDevelopment"
+		},
 		"latex": {
 			"title": "LaTeX",
 			"alias": ["tex", "context"],
