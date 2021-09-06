@@ -1,0 +1,24 @@
+<h2>Full example</h2>
+<pre><code># Source: https://gn.googlesource.com/gn/+/main/docs/cross_compiles.md
+
+declare_args() {
+  # Applies only to toolchains targeting target_cpu.
+  sysroot = ""
+}
+
+config("my_config") {
+  # Uses current_cpu because compile flags are toolchain-dependent.
+  if (current_cpu == "arm") {
+    defines = [ "CPU_IS_32_BIT" ]
+  } else {
+    defines = [ "CPU_IS_64_BIT" ]
+  }
+  # Compares current_cpu with target_cpu to see whether current_toolchain
+  # has the same architecture as target_toolchain.
+  if (sysroot != "" && current_cpu == target_cpu) {
+    cflags = [
+      "-isysroot",
+      sysroot,
+    ]
+  }
+}</code></pre>

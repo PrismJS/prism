@@ -76,6 +76,7 @@
 
 		/** Should be performed after searching for reserved words. */
 		'name': {
+			// eslint-disable-next-line regexp/no-super-linear-backtracking
 			pattern: wrapId(/(^|[<nonId>])[^\d<nonId>][^<nonId>]*(?:\x20+[^<nonId>]+)*(?=[<nonId>]|$)/.source),
 			lookbehind: true
 		},

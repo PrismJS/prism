@@ -89,6 +89,8 @@
 		"gdscript": "GDScript",
 		"gedcom": "GEDCOM",
 		"glsl": "GLSL",
+		"gn": "GN",
+		"gni": "GN",
 		"graphql": "GraphQL",
 		"hbs": "Handlebars",
 		"hs": "Haskell",

@@ -466,6 +466,11 @@
 			"require": "c",
 			"owner": "Golmote"
 		},
+		"gn": {
+			"title": "GN",
+			"alias": "gni",
+			"owner": "RunDevelopment"
+		},
 		"go": {
 			"title": "Go",
 			"require": "clike",
