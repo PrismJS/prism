@@ -451,6 +451,10 @@
 			"require": "clike",
 			"owner": "LiarOnce"
 		},
+		"gap": {
+			"title": "GAP (CAS)",
+			"owner": "RunDevelopment"
+		},
 		"gcode": {
 			"title": "G-code",
 			"owner": "RunDevelopment"
@@ -783,6 +787,10 @@
 		"lua": {
 			"title": "Lua",
 			"owner": "Golmote"
+		},
+		"magma": {
+			"title": "Magma (CAS)",
+			"owner": "RunDevelopment"
 		},
 		"makefile": {
 			"title": "Makefile",
