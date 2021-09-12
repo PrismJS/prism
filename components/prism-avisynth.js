@@ -131,9 +131,6 @@
 
 		'constant': re(/\b<<0>>\b/.source, [constants]),
 
-		// AviSynth's internal functions and filters.
-		'builtin': re(/\b(?:<<0>>)(?=\s*\()/.source, [internals], 'i'),
-
 		'builtin':  [
 			{ // AviSynth's internal clip properties.
 				pattern: re(/(\b\.)(?:<<0>>)\b(?=[^\.])/.source, [properties], 'i'),
