@@ -14,6 +14,7 @@ module.exports = {
 		'plugins/file-highlight/prism-file-highlight.js'
 	],
 	plugins: ['plugins/**/*.js', '!plugins/**/*.min.js'],
+	pluginsCSS: ['plugins/**/*.css', '!plugins/**/*.min.css'],
 	showLanguagePlugin: 'plugins/show-language/prism-show-language.js',
 	autoloaderPlugin: 'plugins/autoloader/prism-autoloader.js',
 	changelog: 'CHANGELOG.md'

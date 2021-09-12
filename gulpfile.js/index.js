@@ -71,16 +71,11 @@ function minifyComponents(cb) {
 function minifyPlugins(cb) {
 	pump([src(paths.plugins), ...minifyJS(), rename({ suffix: '.min' }), dest('plugins')], cb);
 }
+function minifyPluginCSS(cb) {
+	pump([src(paths.pluginsCSS), cleanCSS(), rename({ suffix: '.min' }), dest('plugins')], cb);
+}
 function minifyThemes(cb) {
-	pump(
-		[
-			src(paths.themes),
-			cleanCSS(),
-			rename({ suffix: '.min' }),
-			dest('themes')
-		],
-		cb
-	);
+	pump([src(paths.themes), cleanCSS(), rename({ suffix: '.min' }), dest('themes')], cb);
 }
 function build(cb) {
 	pump([src(paths.main), header(`
@@ -290,7 +285,7 @@ async function treeviewIconFont() {
 }
 
 const components = minifyComponents;
-const plugins = series(languagePlugins, treeviewIconFont, minifyPlugins);
+const plugins = series(languagePlugins, treeviewIconFont, minifyPlugins, minifyPluginCSS);
 
 module.exports = {
 	watch: watchComponentsAndPlugins,
