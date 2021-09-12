@@ -1,0 +1,46 @@
+foo=on
+foo=true
+foo=yes
+foo=off
+foo=false
+foo=no
+
+----------------------------------------------------
+
+[
+	["key", "foo"],
+	["operator", "="],
+	["value", [
+		["boolean", "on"]
+	]],
+
+	["key", "foo"],
+	["operator", "="],
+	["value", [
+		["boolean", "true"]
+	]],
+
+	["key", "foo"],
+	["operator", "="],
+	["value", [
+		["boolean", "yes"]
+	]],
+
+	["key", "foo"],
+	["operator", "="],
+	["value", [
+		["boolean", "off"]
+	]],
+
+	["key", "foo"],
+	["operator", "="],
+	["value", [
+		["boolean", "false"]
+	]],
+
+	["key", "foo"],
+	["operator", "="],
+	["value", [
+		["boolean", "no"]
+	]]
+]

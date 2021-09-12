@@ -1,0 +1,25 @@
+<h2>Full example</h2>
+<pre><code>%% https://github.com/mermaid-js/mermaid/blob/develop/docs/examples.md#larger-flowchart-with-some-styling
+
+graph TB
+	sq[Square shape] --> ci((Circle shape))
+
+	subgraph A
+		od>Odd shape]-- Two line&lt;br/>edge comment --> ro
+		di{Diamond with &lt;br/> line break} -.-> ro(Rounded&lt;br>square&lt;br>shape)
+		di==>ro2(Rounded square shape)
+	end
+
+	%% Notice that no text in shape are added here instead that is appended further down
+	e --> od3>Really long text with linebreak&lt;br>in an Odd shape]
+
+	%% Comments after double percent signs
+	e((Inner / circle&lt;br>and some odd &lt;br>special characters)) --> f(,.?!+-*ز)
+
+	cyr[Cyrillic]-->cyr2((Circle shape Начало));
+
+	classDef green fill:#9f6,stroke:#333,stroke-width:2px;
+	classDef orange fill:#f96,stroke:#333,stroke-width:4px;
+	class sq,e green
+	class di orange
+</code></pre>
