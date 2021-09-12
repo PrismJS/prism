@@ -1,0 +1,430 @@
+stateDiagram-v2
+    [*] --> Still
+    Still --> [*]
+
+    Still --> Moving
+    Moving --> Still
+    Moving --> Crash
+    Crash --> [*]
+
+stateDiagram-v2
+    s1 --> s2
+
+stateDiagram-v2
+    s1 --> s2: A transition
+
+stateDiagram-v2
+    [*] --> s1
+    s1 --> [*]
+
+stateDiagram-v2
+    [*] --> First
+    state First {
+        [*] --> second
+        second --> [*]
+    }
+
+stateDiagram-v2
+    [*] --> First
+
+    state First {
+        [*] --> Second
+
+        state Second {
+            [*] --> second
+            second --> Third
+
+            state Third {
+                [*] --> third
+                third --> [*]
+            }
+        }
+    }
+
+stateDiagram-v2
+    [*] --> First
+    First --> Second
+    First --> Third
+
+    state First {
+        [*] --> fir
+        fir --> [*]
+    }
+    state Second {
+        [*] --> sec
+        sec --> [*]
+    }
+    state Third {
+        [*] --> thi
+        thi --> [*]
+    }
+
+stateDiagram-v2
+    state if_state <<choice>>
+    [*] --> IsPositive
+    IsPositive --> if_state
+    if_state --> False: if n < 0
+    if_state --> True : if n >= 0
+
+stateDiagram-v2
+    state fork_state <<fork>>
+      [*] --> fork_state
+      fork_state --> State2
+      fork_state --> State3
+
+      state join_state <<join>>
+      State2 --> join_state
+      State3 --> join_state
+      join_state --> State4
+      State4 --> [*]
+
+stateDiagram-v2
+        State1: The state with a note
+        note right of State1
+            Important information! You can write
+            notes.
+        end note
+        State1 --> State2
+        note left of State2 : This is the note to the left.
+
+stateDiagram-v2
+    [*] --> Active
+
+    state Active {
+        [*] --> NumLockOff
+        NumLockOff --> NumLockOn : EvNumLockPressed
+        NumLockOn --> NumLockOff : EvNumLockPressed
+        --
+        [*] --> CapsLockOff
+        CapsLockOff --> CapsLockOn : EvCapsLockPressed
+        CapsLockOn --> CapsLockOff : EvCapsLockPressed
+        --
+        [*] --> ScrollLockOff
+        ScrollLockOff --> ScrollLockOn : EvScrollLockPressed
+        ScrollLockOn --> ScrollLockOff : EvScrollLockPressed
+    }
+
+stateDiagram
+    direction LR
+    [*] --> A
+    A --> B
+    B --> C
+    state B {
+      direction LR
+      a --> b
+    }
+    B --> D
+
+stateDiagram-v2
+    [*] --> Still
+    Still --> [*]
+%% this is a comment
+    Still --> Moving
+    Moving --> Still %% another comment
+    Moving --> Crash
+    Crash --> [*]
+
+----------------------------------------------------
+
+[
+	["keyword", "stateDiagram-v2"],
+
+	["text", "[*]"],
+	["arrow", "-->"],
+	" Still\r\n    Still ",
+	["arrow", "-->"],
+	["text", "[*]"],
+
+	"\r\n\r\n    Still ",
+	["arrow", "-->"],
+	" Moving\r\n    Moving ",
+	["arrow", "-->"],
+	" Still\r\n    Moving ",
+	["arrow", "-->"],
+	" Crash\r\n    Crash ",
+	["arrow", "-->"],
+	["text", "[*]"],
+
+	["keyword", "stateDiagram-v2"],
+	"\r\n    s1 ", ["arrow", "-->"], " s2\r\n\r\n",
+
+	["keyword", "stateDiagram-v2"],
+
+	"\r\n    s1 ",
+	["arrow", "-->"],
+	" s2",
+	["operator", ":"],
+	" A transition\r\n\r\n",
+
+	["keyword", "stateDiagram-v2"],
+
+	["text", "[*]"],
+	["arrow", "-->"],
+	" s1\r\n    s1 ",
+	["arrow", "-->"],
+	["text", "[*]"],
+
+	["keyword", "stateDiagram-v2"],
+
+	["text", "[*]"],
+	["arrow", "-->"],
+	" First\r\n    ",
+
+	["keyword", "state"],
+	" First ",
+	["punctuation", "{"],
+
+	["text", "[*]"],
+	["arrow", "-->"],
+	" second\r\n        second ",
+	["arrow", "-->"],
+	["text", "[*]"],
+
+	["punctuation", "}"],
+
+	["keyword", "stateDiagram-v2"],
+	["text", "[*]"], ["arrow", "-->"], " First\r\n\r\n    ",
+
+	["keyword", "state"], " First ", ["punctuation", "{"],
+	["text", "[*]"], ["arrow", "-->"], " Second\r\n\r\n        ",
+
+	["keyword", "state"],
+	" Second ",
+	["punctuation", "{"],
+
+	["text", "[*]"],
+	["arrow", "-->"],
+	" second\r\n            second ",
+	["arrow", "-->"],
+	" Third\r\n\r\n            ",
+
+	["keyword", "state"],
+	" Third ",
+	["punctuation", "{"],
+
+	["text", "[*]"],
+	["arrow", "-->"],
+	" third\r\n                third ",
+	["arrow", "-->"],
+	["text", "[*]"],
+
+	["punctuation", "}"],
+
+	["punctuation", "}"],
+
+	["punctuation", "}"],
+
+	["keyword", "stateDiagram-v2"],
+
+	["text", "[*]"],
+	["arrow", "-->"],
+	" First\r\n    First ",
+	["arrow", "-->"],
+	" Second\r\n    First ",
+	["arrow", "-->"],
+	" Third\r\n\r\n    ",
+
+	["keyword", "state"],
+	" First ",
+	["punctuation", "{"],
+
+	["text", "[*]"],
+	["arrow", "-->"],
+	" fir\r\n        fir ",
+	["arrow", "-->"],
+	["text", "[*]"],
+
+	["punctuation", "}"],
+
+	["keyword", "state"],
+	" Second ",
+	["punctuation", "{"],
+
+	["text", "[*]"],
+	["arrow", "-->"],
+	" sec\r\n        sec ",
+	["arrow", "-->"],
+	["text", "[*]"],
+
+	["punctuation", "}"],
+
+	["keyword", "state"],
+	" Third ",
+	["punctuation", "{"],
+
+	["text", "[*]"],
+	["arrow", "-->"],
+	" thi\r\n        thi ",
+	["arrow", "-->"],
+	["text", "[*]"],
+
+	["punctuation", "}"],
+
+	["keyword", "stateDiagram-v2"],
+
+	["keyword", "state"],
+	" if_state ",
+	["annotation", "<<choice>>"],
+
+	["text", "[*]"],
+	["arrow", "-->"],
+	" IsPositive\r\n    IsPositive ",
+	["arrow", "-->"],
+	" if_state\r\n    if_state ",
+	["arrow", "-->"],
+	" False",
+	["operator", ":"],
+	" if n < 0\r\n    if_state ",
+	["arrow", "-->"],
+	" True ",
+	["operator", ":"],
+	" if n >= 0\r\n\r\n",
+
+	["keyword", "stateDiagram-v2"],
+
+	["keyword", "state"],
+	" fork_state ",
+	["annotation", "<<fork>>"],
+
+	["text", "[*]"],
+	["arrow", "-->"],
+	" fork_state\r\n      fork_state ",
+	["arrow", "-->"],
+	" State2\r\n      fork_state ",
+	["arrow", "-->"],
+	" State3\r\n\r\n      ",
+
+	["keyword", "state"],
+	" join_state ",
+	["annotation", "<<join>>"],
+
+	"\r\n      State2 ",
+	["arrow", "-->"],
+	" join_state\r\n      State3 ",
+	["arrow", "-->"],
+	" join_state\r\n      join_state ",
+	["arrow", "-->"],
+	" State4\r\n      State4 ",
+	["arrow", "-->"],
+	["text", "[*]"],
+
+	["keyword", "stateDiagram-v2"],
+
+	"\r\n        State1",
+	["operator", ":"],
+	" The state with a note\r\n        ",
+
+	["keyword", "note right of"],
+	" State1\r\n            Important information! You can write\r\n            notes.\r\n        ",
+
+	["keyword", "end note"],
+
+	"\r\n        State1 ",
+	["arrow", "-->"],
+	" State2\r\n        ",
+
+	["keyword", "note left of"],
+	" State2 ",
+	["operator", ":"],
+	" This is the note to the left.\r\n\r\n",
+
+	["keyword", "stateDiagram-v2"],
+	["text", "[*]"], ["arrow", "-->"], " Active\r\n\r\n    ",
+
+	["keyword", "state"],
+	" Active ",
+	["punctuation", "{"],
+
+	["text", "[*]"],
+	["arrow", "-->"],
+	" NumLockOff\r\n        NumLockOff ",
+	["arrow", "-->"],
+	" NumLockOn ",
+	["operator", ":"],
+	" EvNumLockPressed\r\n        NumLockOn ",
+	["arrow", "-->"],
+	" NumLockOff ",
+	["operator", ":"],
+	" EvNumLockPressed\r\n        ",
+
+	["arrow", "--"],
+
+	["text", "[*]"],
+	["arrow", "-->"],
+	" CapsLockOff\r\n        CapsLockOff ",
+	["arrow", "-->"],
+	" CapsLockOn ",
+	["operator", ":"],
+	" EvCapsLockPressed\r\n        CapsLockOn ",
+	["arrow", "-->"],
+	" CapsLockOff ",
+	["operator", ":"],
+	" EvCapsLockPressed\r\n        ",
+
+	["arrow", "--"],
+
+	["text", "[*]"],
+	["arrow", "-->"],
+	" ScrollLockOff\r\n        ScrollLockOff ",
+	["arrow", "-->"],
+	" ScrollLockOn ",
+	["operator", ":"],
+	" EvScrollLockPressed\r\n        ScrollLockOn ",
+	["arrow", "-->"],
+	" ScrollLockOff ",
+	["operator", ":"],
+	" EvScrollLockPressed\r\n    ",
+
+	["punctuation", "}"],
+
+	["keyword", "stateDiagram"],
+
+	["keyword", "direction"],
+	" LR\r\n    ",
+
+	["text", "[*]"],
+	["arrow", "-->"],
+	" A\r\n    A ",
+	["arrow", "-->"],
+	" B\r\n    B ",
+	["arrow", "-->"],
+	" C\r\n    ",
+
+	["keyword", "state"],
+	" B ",
+	["punctuation", "{"],
+
+	["keyword", "direction"],
+	" LR\r\n      a ",
+	["arrow", "-->"],
+	" b\r\n    ",
+
+	["punctuation", "}"],
+
+	"\r\n    B ",
+	["arrow", "-->"],
+	" D\r\n\r\n",
+
+	["keyword", "stateDiagram-v2"],
+
+	["text", "[*]"],
+	["arrow", "-->"],
+	" Still\r\n    Still ",
+	["arrow", "-->"],
+	["text", "[*]"],
+
+	["comment", "%% this is a comment"],
+
+	"\r\n    Still ",
+	["arrow", "-->"],
+	" Moving\r\n    Moving ",
+	["arrow", "-->"],
+	" Still ",
+	["comment", "%% another comment"],
+
+	"\r\n    Moving ",
+	["arrow", "-->"],
+	" Crash\r\n    Crash ",
+	["arrow", "-->"],
+	["text", "[*]"]
+]
