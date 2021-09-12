@@ -1,0 +1,90 @@
+function
+ global
+{return
+\ try
+catch
+if
+else
+while
+for
+__END__
+try { return }
+
+}global
+global}
+
+MT_NICE_FILTER
+MT_MULTI_INSTANCE
+MT_SERIALIZED
+MT_SPECIAL_MT
+
+mt_nice_filter
+mt_multi_instance
+mt_serialized
+mt_special_mt
+
+TEXTMT_NICE_FILTERTEXT
+
+true
+FALSE
+yEs
+no
+
+knot
+
+laST
+
+blasted
+
+----------------------------------------------------
+
+[
+	["keyword", "function"],
+	["keyword", "global"],
+	["punctuation", "{"],
+	["keyword", "return"],
+	["line-continuation", "\\"],
+	["keyword", "try"],
+	["keyword", "catch"],
+	["keyword", "if"],
+	["keyword", "else"],
+	["keyword", "while"],
+	["keyword", "for"],
+	["keyword", "__END__"],
+	["keyword", "try"],
+	["punctuation", "{"],
+	["keyword", "return"],
+	["punctuation", "}"],
+
+	["punctuation", "}"], "global\r\nglobal", ["punctuation", "}"],
+
+	["constant", "MT_NICE_FILTER"],
+	["constant", "MT_MULTI_INSTANCE"],
+	["constant", "MT_SERIALIZED"],
+	["constant", "MT_SPECIAL_MT"],
+
+	"\r\n\r\nmt_nice_filter\r\nmt_multi_instance\r\nmt_serialized\r\nmt_special_mt\r\n\r\nTEXTMT_NICE_FILTERTEXT\r\n\r\n",
+
+	["boolean", "true"],
+	["boolean", "FALSE"],
+	["boolean", "yEs"],
+	["boolean", "no"],
+
+	"\r\n\r\nknot\r\n\r\n",
+
+	["variable", "laST"],
+
+	"\r\n\r\nblasted"
+]
+
+----------------------------------------------------
+
+Keywords must proceed the start of the line and optional space, a line continuation and optional space, or an open brace (code block) and optional space.
+Keywords must preceed at least one space.
+Keywords can not be bounded by any other punctuation.
+
+Constants are case sensitive, and must not appear within other words.
+
+Bools are case insensitive, come in 4 flavors, and must not appear within other words.
+
+The Last special variable is case insensitive, and must not appear within other words.

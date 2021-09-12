@@ -1,0 +1,25 @@
+function CustomUserFunction() {
+
+
+}
+
+QTGMC()
+
+----------------------------------------------------
+
+[
+	["keyword", "function"],
+	["function", ["CustomUserFunction"]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+
+	["punctuation", "}"],
+
+	["function", ["QTGMC"]], ["punctuation", "("], ["punctuation", ")"]
+]
+
+----------------------------------------------------
+
+Identifiers after the function keyword are user-defined functions.
+Identifiers preceeding an opening parenthesis that are not an internal function or filter are a user/external function/filter.

@@ -1,0 +1,359 @@
+c.hasaudio hasaudio(
+c.hasvideo hasvideo(
+c.width width(
+c.height height(
+c.framecount framecount(
+c.framerate framerate(
+c.frameratenumerator frameratenumerator(
+c.frameratedenominator frameratedenominator(
+c.isfieldbased isfieldbased(
+c.isframebased isframebased(
+c.getparity getparity(
+
+c.pixeltype pixeltype(
+c.isplanar isplanar(
+c.isinterleaved isinterleaved(
+c.isrgb isrgb(
+c.isrgb24 isrgb24(
+c.isrgb32 isrgb32(
+c.isyuv isyuv(
+c.isyuy2 isyuy2(
+c.isy8 isy8(
+c.isyv12 isyv12(
+c.isyv16 isyv16(
+c.isyv24 isyv24(
+c.isyv411 isyv411(
+c.is420 is420(
+c.is422 is422(
+c.is444 is444(
+c.isy isy(
+c.isyuva isyuva(
+c.isrgb48 isrgb48(
+c.isrgb64 isrgb64(
+c.ispackedrgb ispackedrgb(
+c.isplanarrgb isplanarrgb(
+c.isplanarrgba isplanarrgba(
+c.hasalpha hasalpha(
+c.componentsize componentsize(
+c.numcomponents numcomponents(
+c.bitspercomponent bitspercomponent(
+
+c.audiorate audiorate(
+c.audioduration audioduration(
+c.audiolength audiolength(
+c.audiolengthf audiolengthf(
+c.audiolengths audiolengths(
+c.audiolengthlo audiolengthlo(
+c.audiolengthhi audiolengthhi(
+c.audiochannels audiochannels(
+c.audiobits audiobits(
+c.isaudiofloat isaudiofloat(
+c.isaudioint isaudioint(
+
+.audiobits
+
+----------------------------------------------------
+
+[
+	"c",
+	["punctuation", "."],
+	["builtin", "hasaudio"],
+	["builtin", "hasaudio"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "hasvideo"],
+	["builtin", "hasvideo"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "width"],
+	["builtin", "width"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "height"],
+	["builtin", "height"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "framecount"],
+	["builtin", "framecount"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "framerate"],
+	["builtin", "framerate"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "frameratenumerator"],
+	["builtin", "frameratenumerator"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "frameratedenominator"],
+	["builtin", "frameratedenominator"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "isfieldbased"],
+	["builtin", "isfieldbased"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "isframebased"],
+	["builtin", "isframebased"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "getparity"],
+	["builtin", "getparity"],
+	["punctuation", "("],
+
+	"\r\n\r\nc",
+	["punctuation", "."],
+	["builtin", "pixeltype"],
+	["builtin", "pixeltype"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "isplanar"],
+	["builtin", "isplanar"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "isinterleaved"],
+	["builtin", "isinterleaved"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "isrgb"],
+	["builtin", "isrgb"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "isrgb24"],
+	["builtin", "isrgb24"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "isrgb32"],
+	["builtin", "isrgb32"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "isyuv"],
+	["builtin", "isyuv"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "isyuy2"],
+	["builtin", "isyuy2"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "isy8"],
+	["builtin", "isy8"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "isyv12"],
+	["builtin", "isyv12"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "isyv16"],
+	["builtin", "isyv16"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "isyv24"],
+	["builtin", "isyv24"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "isyv411"],
+	["builtin", "isyv411"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "is420"],
+	["builtin", "is420"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "is422"],
+	["builtin", "is422"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "is444"],
+	["builtin", "is444"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "isy"],
+	["builtin", "isy"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "isyuva"],
+	["builtin", "isyuva"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "isrgb48"],
+	["builtin", "isrgb48"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "isrgb64"],
+	["builtin", "isrgb64"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "ispackedrgb"],
+	["builtin", "ispackedrgb"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "isplanarrgb"],
+	["builtin", "isplanarrgb"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "isplanarrgba"],
+	["builtin", "isplanarrgba"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "hasalpha"],
+	["builtin", "hasalpha"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "componentsize"],
+	["builtin", "componentsize"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "numcomponents"],
+	["builtin", "numcomponents"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "bitspercomponent"],
+	["builtin", "bitspercomponent"],
+	["punctuation", "("],
+
+	"\r\n\r\nc",
+	["punctuation", "."],
+	["builtin", "audiorate"],
+	["builtin", "audiorate"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "audioduration"],
+	["builtin", "audioduration"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "audiolength"],
+	["builtin", "audiolength"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "audiolengthf"],
+	["builtin", "audiolengthf"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "audiolengths"],
+	["builtin", "audiolengths"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "audiolengthlo"],
+	["builtin", "audiolengthlo"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "audiolengthhi"],
+	["builtin", "audiolengthhi"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "audiochannels"],
+	["builtin", "audiochannels"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "audiobits"],
+	["builtin", "audiobits"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "isaudiofloat"],
+	["builtin", "isaudiofloat"],
+	["punctuation", "("],
+
+	"\r\nc",
+	["punctuation", "."],
+	["builtin", "isaudioint"],
+	["builtin", "isaudioint"],
+	["punctuation", "("],
+
+	["punctuation", "."], "audiobits"
+]
+
+----------------------------------------------------
+
+Internal clip properties can appear after a . character following an identifier.
+Internal clip properties can also be used like functions.
+The . character before a clip property must immediately proceed an identifier.

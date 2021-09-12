@@ -1,0 +1,431 @@
+avisource (
+avifilesource (
+opendmlsource (
+directshowsource (
+imagereader (
+imagesource (
+imagesourceanim (
+segmentedavisource (
+segmenteddirectshowsource (
+wavsource (
+ 
+coloryuv (
+convertbacktoyuy2 (
+converttorgb (
+converttorgb24 (
+converttorgb32 (
+converttorgb48 (
+converttorgb64 (
+converttoplanarrgb (
+converttoplanarrgba (
+converttoyuy2 (
+converttoyv24 (
+converttoyv16 (
+converttoyv12 (
+converttoy8 (
+converttoyuv444 (
+converttoyuv422 (
+converttoyuv420 (
+converttoyuva444 (
+converttoyuva422 (
+converttoyuva420 (
+converttoyuv411 (
+fixluminance (
+greyscale (
+grayscale (
+invert (
+levels (
+limiter (
+mergergb (
+mergeargb (
+mergeluma (
+mergechroma (
+rgbadjust (
+showred (
+showgreen (
+showblue (
+showalpha (
+swapuv (
+tweak (
+utoy (
+utoy8 (
+vtoy (
+vtoy8 (
+ytouv (
+ 
+colorkeymask (
+layer (
+mask (
+maskhs (
+merge (
+overlay (
+resetmask (
+subtract (
+ 
+addborders (
+crop (
+cropbottom (
+fliphorizontal (
+flipvertical (
+letterbox (
+horizontalreduceby2 (
+verticalreduceby2 (
+reduceby2 (
+bicubicresize (
+bilinearresize (
+blackmanresize (
+gaussresize (
+lanczosresize (
+lanczos4resize (
+pointresize (
+sincresize (
+spline16resize (
+spline36resize (
+spline64resize (
+ (
+skewrows (
+turnleft (
+turnright (
+turn180 (
+ 
+blur (
+sharpen (
+generalconvolution (
+spatialsoften (
+temporalsoften (
+fixbrokenchromaupsampling (
+ 
+alignedsplice (
+unalignedsplice (
+assumefps (
+assumescaledfps (
+changefps (
+convertfps (
+deleteframe (
+dissolve (
+duplicateframe (
+fadein0 (
+fadein (
+fadein2 (
+fadeout0 (
+fadeout (
+fadeout2 (
+fadeio0 (
+fadeio (
+fadeio2 (
+freezeframe (
+interleave (
+loop (
+reverse (
+selecteven (
+selectodd (
+selectevery (
+selectrangeevery (
+trim (
+ 
+assumeframebased (
+assumefieldbased (
+assumebff (
+assumetff (
+bob (
+complementparity (
+doubleweave (
+peculiarblend (
+pulldown (
+separatecolumns (
+separaterows (
+separatefields (
+swapfields (
+weave (
+weavecolumns (
+weaverows (
+ 
+amplify (
+amplifydb (
+assumesamplerate (
+audiodub (
+audiodubex (
+audiotrim (
+convertaudioto8bit (
+convertaudioto16bit (
+convertaudioto24bit (
+convertaudioto32bit (
+convertaudiotofloat (
+converttomono (
+delayaudio (
+ensurevbrmp3sync (
+getchannel (
+getleftchannel (
+getrightchannel (
+killaudio (
+killvideo (
+mergechannels (
+mixaudio (
+monotostereo (
+normalize (
+resampleaudio (
+supereq (
+ssrc (
+timestretch (
+ (
+conditionalfilter (
+frameevaluate (
+scriptclip (
+conditionalselect (
+conditionalreader (
+writefile (
+writefileif (
+writefilestart (
+writefileend (
+animate (
+applyrange (
+tcpserver (
+tcpsource (
+ 
+imagewriter (
+ 
+blankclip (
+blackness (
+colorbars (
+colorbarshd (
+compare (
+dumpfiltergraph (
+setgraphanalysis (
+echo (
+histogram (
+info (
+messageclip (
+preroll (
+showfiveversions (
+showframenumber (
+showsmpte (
+showtime (
+stackhorizontal (
+stackvertical (
+subtitle (
+tone (
+version (
+
+tone
+tone.(
+pantone (
+
+----------------------------------------------------
+
+[
+	["builtin", "avisource"], ["punctuation", "("],
+	["builtin", "avifilesource"], ["punctuation", "("],
+	["builtin", "opendmlsource"], ["punctuation", "("],
+	["builtin", "directshowsource"], ["punctuation", "("],
+	["builtin", "imagereader"], ["punctuation", "("],
+	["builtin", "imagesource"], ["punctuation", "("],
+	["builtin", "imagesourceanim"], ["punctuation", "("],
+	["builtin", "segmentedavisource"], ["punctuation", "("],
+	["builtin", "segmenteddirectshowsource"], ["punctuation", "("],
+	["builtin", "wavsource"], ["punctuation", "("],
+
+	["builtin", "coloryuv"], ["punctuation", "("],
+	["builtin", "convertbacktoyuy2"], ["punctuation", "("],
+	["builtin", "converttorgb"], ["punctuation", "("],
+	["builtin", "converttorgb24"], ["punctuation", "("],
+	["builtin", "converttorgb32"], ["punctuation", "("],
+	["builtin", "converttorgb48"], ["punctuation", "("],
+	["builtin", "converttorgb64"], ["punctuation", "("],
+	["builtin", "converttoplanarrgb"], ["punctuation", "("],
+	["builtin", "converttoplanarrgba"], ["punctuation", "("],
+	["builtin", "converttoyuy2"], ["punctuation", "("],
+	["builtin", "converttoyv24"], ["punctuation", "("],
+	["builtin", "converttoyv16"], ["punctuation", "("],
+	["builtin", "converttoyv12"], ["punctuation", "("],
+	["builtin", "converttoy8"], ["punctuation", "("],
+	["builtin", "converttoyuv444"], ["punctuation", "("],
+	["builtin", "converttoyuv422"], ["punctuation", "("],
+	["builtin", "converttoyuv420"], ["punctuation", "("],
+	["builtin", "converttoyuva444"], ["punctuation", "("],
+	["builtin", "converttoyuva422"], ["punctuation", "("],
+	["builtin", "converttoyuva420"], ["punctuation", "("],
+	["builtin", "converttoyuv411"], ["punctuation", "("],
+	["builtin", "fixluminance"], ["punctuation", "("],
+	["builtin", "greyscale"], ["punctuation", "("],
+	["builtin", "grayscale"], ["punctuation", "("],
+	["builtin", "invert"], ["punctuation", "("],
+	["builtin", "levels"], ["punctuation", "("],
+	["builtin", "limiter"], ["punctuation", "("],
+	["builtin", "mergergb"], ["punctuation", "("],
+	["builtin", "mergeargb"], ["punctuation", "("],
+	["builtin", "mergeluma"], ["punctuation", "("],
+	["builtin", "mergechroma"], ["punctuation", "("],
+	["builtin", "rgbadjust"], ["punctuation", "("],
+	["builtin", "showred"], ["punctuation", "("],
+	["builtin", "showgreen"], ["punctuation", "("],
+	["builtin", "showblue"], ["punctuation", "("],
+	["builtin", "showalpha"], ["punctuation", "("],
+	["builtin", "swapuv"], ["punctuation", "("],
+	["builtin", "tweak"], ["punctuation", "("],
+	["builtin", "utoy"], ["punctuation", "("],
+	["builtin", "utoy8"], ["punctuation", "("],
+	["builtin", "vtoy"], ["punctuation", "("],
+	["builtin", "vtoy8"], ["punctuation", "("],
+	["builtin", "ytouv"], ["punctuation", "("],
+
+	["builtin", "colorkeymask"], ["punctuation", "("],
+	["builtin", "layer"], ["punctuation", "("],
+	["builtin", "mask"], ["punctuation", "("],
+	["builtin", "maskhs"], ["punctuation", "("],
+	["builtin", "merge"], ["punctuation", "("],
+	["builtin", "overlay"], ["punctuation", "("],
+	["builtin", "resetmask"], ["punctuation", "("],
+	["builtin", "subtract"], ["punctuation", "("],
+
+	["builtin", "addborders"], ["punctuation", "("],
+	["builtin", "crop"], ["punctuation", "("],
+	["builtin", "cropbottom"], ["punctuation", "("],
+	["builtin", "fliphorizontal"], ["punctuation", "("],
+	["builtin", "flipvertical"], ["punctuation", "("],
+	["builtin", "letterbox"], ["punctuation", "("],
+	["builtin", "horizontalreduceby2"], ["punctuation", "("],
+	["builtin", "verticalreduceby2"], ["punctuation", "("],
+	["builtin", "reduceby2"], ["punctuation", "("],
+	["builtin", "bicubicresize"], ["punctuation", "("],
+	["builtin", "bilinearresize"], ["punctuation", "("],
+	["builtin", "blackmanresize"], ["punctuation", "("],
+	["builtin", "gaussresize"], ["punctuation", "("],
+	["builtin", "lanczosresize"], ["punctuation", "("],
+	["builtin", "lanczos4resize"], ["punctuation", "("],
+	["builtin", "pointresize"], ["punctuation", "("],
+	["builtin", "sincresize"], ["punctuation", "("],
+	["builtin", "spline16resize"], ["punctuation", "("],
+	["builtin", "spline36resize"], ["punctuation", "("],
+	["builtin", "spline64resize"], ["punctuation", "("],
+	["punctuation", "("],
+	["builtin", "skewrows"], ["punctuation", "("],
+	["builtin", "turnleft"], ["punctuation", "("],
+	["builtin", "turnright"], ["punctuation", "("],
+	["builtin", "turn180"], ["punctuation", "("],
+
+	["builtin", "blur"], ["punctuation", "("],
+	["builtin", "sharpen"], ["punctuation", "("],
+	["builtin", "generalconvolution"], ["punctuation", "("],
+	["builtin", "spatialsoften"], ["punctuation", "("],
+	["builtin", "temporalsoften"], ["punctuation", "("],
+	["builtin", "fixbrokenchromaupsampling"], ["punctuation", "("],
+
+	["builtin", "alignedsplice"], ["punctuation", "("],
+	["builtin", "unalignedsplice"], ["punctuation", "("],
+	["builtin", "assumefps"], ["punctuation", "("],
+	["builtin", "assumescaledfps"], ["punctuation", "("],
+	["builtin", "changefps"], ["punctuation", "("],
+	["builtin", "convertfps"], ["punctuation", "("],
+	["builtin", "deleteframe"], ["punctuation", "("],
+	["builtin", "dissolve"], ["punctuation", "("],
+	["builtin", "duplicateframe"], ["punctuation", "("],
+	["builtin", "fadein0"], ["punctuation", "("],
+	["builtin", "fadein"], ["punctuation", "("],
+	["builtin", "fadein2"], ["punctuation", "("],
+	["builtin", "fadeout0"], ["punctuation", "("],
+	["builtin", "fadeout"], ["punctuation", "("],
+	["builtin", "fadeout2"], ["punctuation", "("],
+	["builtin", "fadeio0"], ["punctuation", "("],
+	["builtin", "fadeio"], ["punctuation", "("],
+	["builtin", "fadeio2"], ["punctuation", "("],
+	["builtin", "freezeframe"], ["punctuation", "("],
+	["builtin", "interleave"], ["punctuation", "("],
+	["builtin", "loop"], ["punctuation", "("],
+	["builtin", "reverse"], ["punctuation", "("],
+	["builtin", "selecteven"], ["punctuation", "("],
+	["builtin", "selectodd"], ["punctuation", "("],
+	["builtin", "selectevery"], ["punctuation", "("],
+	["builtin", "selectrangeevery"], ["punctuation", "("],
+	["builtin", "trim"], ["punctuation", "("],
+
+	["builtin", "assumeframebased"], ["punctuation", "("],
+	["builtin", "assumefieldbased"], ["punctuation", "("],
+	["builtin", "assumebff"], ["punctuation", "("],
+	["builtin", "assumetff"], ["punctuation", "("],
+	["builtin", "bob"], ["punctuation", "("],
+	["builtin", "complementparity"], ["punctuation", "("],
+	["builtin", "doubleweave"], ["punctuation", "("],
+	["builtin", "peculiarblend"], ["punctuation", "("],
+	["builtin", "pulldown"], ["punctuation", "("],
+	["builtin", "separatecolumns"], ["punctuation", "("],
+	["builtin", "separaterows"], ["punctuation", "("],
+	["builtin", "separatefields"], ["punctuation", "("],
+	["builtin", "swapfields"], ["punctuation", "("],
+	["builtin", "weave"], ["punctuation", "("],
+	["builtin", "weavecolumns"], ["punctuation", "("],
+	["builtin", "weaverows"], ["punctuation", "("],
+
+	["builtin", "amplify"], ["punctuation", "("],
+	["builtin", "amplifydb"], ["punctuation", "("],
+	["builtin", "assumesamplerate"], ["punctuation", "("],
+	["builtin", "audiodub"], ["punctuation", "("],
+	["builtin", "audiodubex"], ["punctuation", "("],
+	["builtin", "audiotrim"], ["punctuation", "("],
+	["builtin", "convertaudioto8bit"], ["punctuation", "("],
+	["builtin", "convertaudioto16bit"], ["punctuation", "("],
+	["builtin", "convertaudioto24bit"], ["punctuation", "("],
+	["builtin", "convertaudioto32bit"], ["punctuation", "("],
+	["builtin", "convertaudiotofloat"], ["punctuation", "("],
+	["builtin", "converttomono"], ["punctuation", "("],
+	["builtin", "delayaudio"], ["punctuation", "("],
+	["builtin", "ensurevbrmp3sync"], ["punctuation", "("],
+	["builtin", "getchannel"], ["punctuation", "("],
+	["builtin", "getleftchannel"], ["punctuation", "("],
+	["builtin", "getrightchannel"], ["punctuation", "("],
+	["builtin", "killaudio"], ["punctuation", "("],
+	["builtin", "killvideo"], ["punctuation", "("],
+	["builtin", "mergechannels"], ["punctuation", "("],
+	["builtin", "mixaudio"], ["punctuation", "("],
+	["builtin", "monotostereo"], ["punctuation", "("],
+	["builtin", "normalize"], ["punctuation", "("],
+	["builtin", "resampleaudio"], ["punctuation", "("],
+	["builtin", "supereq"], ["punctuation", "("],
+	["builtin", "ssrc"], ["punctuation", "("],
+	["builtin", "timestretch"], ["punctuation", "("],
+	["punctuation", "("],
+	["builtin", "conditionalfilter"], ["punctuation", "("],
+	["builtin", "frameevaluate"], ["punctuation", "("],
+	["builtin", "scriptclip"], ["punctuation", "("],
+	["builtin", "conditionalselect"], ["punctuation", "("],
+	["builtin", "conditionalreader"], ["punctuation", "("],
+	["builtin", "writefile"], ["punctuation", "("],
+	["builtin", "writefileif"], ["punctuation", "("],
+	["builtin", "writefilestart"], ["punctuation", "("],
+	["builtin", "writefileend"], ["punctuation", "("],
+	["builtin", "animate"], ["punctuation", "("],
+	["builtin", "applyrange"], ["punctuation", "("],
+	["builtin", "tcpserver"], ["punctuation", "("],
+	["builtin", "tcpsource"], ["punctuation", "("],
+
+	["builtin", "imagewriter"], ["punctuation", "("],
+
+	["builtin", "blankclip"], ["punctuation", "("],
+	["builtin", "blackness"], ["punctuation", "("],
+	["builtin", "colorbars"], ["punctuation", "("],
+	["builtin", "colorbarshd"], ["punctuation", "("],
+	["builtin", "compare"], ["punctuation", "("],
+	["builtin", "dumpfiltergraph"], ["punctuation", "("],
+	["builtin", "setgraphanalysis"], ["punctuation", "("],
+	["builtin", "echo"], ["punctuation", "("],
+	["builtin", "histogram"], ["punctuation", "("],
+	["builtin", "info"], ["punctuation", "("],
+	["builtin", "messageclip"], ["punctuation", "("],
+	["builtin", "preroll"], ["punctuation", "("],
+	["builtin", "showfiveversions"], ["punctuation", "("],
+	["builtin", "showframenumber"], ["punctuation", "("],
+	["builtin", "showsmpte"], ["punctuation", "("],
+	["builtin", "showtime"], ["punctuation", "("],
+	["builtin", "stackhorizontal"], ["punctuation", "("],
+	["builtin", "stackvertical"], ["punctuation", "("],
+	["builtin", "subtitle"], ["punctuation", "("],
+	["builtin", "tone"], ["punctuation", "("],
+	["builtin", "version"], ["punctuation", "("],
+
+	"\r\n\r\ntone\r\ntone", ["punctuation", "."], ["punctuation", "("],
+	["function", ["pantone"]], ["punctuation", "("]
+]
+
+----------------------------------------------------
+
+Internal filters must simply preceed optional whitespace followed by an opening parenthesis.
+They must not be inside of another word.

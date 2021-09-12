@@ -160,6 +160,11 @@
 			"title": "AutoIt",
 			"owner": "Golmote"
 		},
+		"avisynth": {
+			"title": "AviSynth",
+			"alias": "avs",
+			"owner": "Zinfidel"
+		},
 		"avro-idl": {
 			"title":"Avro IDL",
 			"alias": "avdl",

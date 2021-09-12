@@ -1,0 +1,116 @@
+function test(clip input, int interleavedFields, float precision, string "floatingDesync", bool "useQTGMC", val "chromaNoise")
+{
+	castTest = clip(chromaNoise)
+	castTest = int(chromaNoise)
+	castTest = float(chromaNoise)
+	castTest = string(chromaNoise)
+	castTest = bool(chromaNoise)
+	castTest = val(chromaNoise)
+
+	return interleavedClip
+}
+
+----------------------------------------------------
+
+[
+	["keyword", "function"],
+	["function", ["test"]],
+	["punctuation", "("],
+	["argument", [
+		["keyword", "clip"],
+		" input"
+	]],
+	["punctuation", ","],
+	["argument", [
+		["keyword", "int"],
+		" interleavedFields"
+	]],
+	["punctuation", ","],
+	["argument", [
+		["keyword", "float"],
+		" precision"
+	]],
+	["punctuation", ","],
+	["argument", [
+		["keyword", "string"],
+		" \"floatingDesync\""
+	]],
+	["punctuation", ","],
+	["argument", [
+		["keyword", "bool"],
+		" \"useQTGMC\""
+	]],
+	["punctuation", ","],
+	["argument", [
+		["keyword", "val"],
+		" \"chromaNoise\""
+	]],
+	["punctuation", ")"],
+
+	["punctuation", "{"],
+
+	"\r\n\tcastTest ",
+	["operator", "="],
+	["function", [
+		["keyword", "clip"]
+	]],
+	["punctuation", "("],
+	"chromaNoise",
+	["punctuation", ")"],
+
+	"\r\n\tcastTest ",
+	["operator", "="],
+	["function", [
+		["keyword", "int"]
+	]],
+	["punctuation", "("],
+	"chromaNoise",
+	["punctuation", ")"],
+
+	"\r\n\tcastTest ",
+	["operator", "="],
+	["function", [
+		["keyword", "float"]
+	]],
+	["punctuation", "("],
+	"chromaNoise",
+	["punctuation", ")"],
+
+	"\r\n\tcastTest ",
+	["operator", "="],
+	["function", [
+		["keyword", "string"]
+	]],
+	["punctuation", "("],
+	"chromaNoise",
+	["punctuation", ")"],
+
+	"\r\n\tcastTest ",
+	["operator", "="],
+	["function", [
+		["keyword", "bool"]
+	]],
+	["punctuation", "("],
+	"chromaNoise",
+	["punctuation", ")"],
+
+	"\r\n\tcastTest ",
+	["operator", "="],
+	["function", [
+		["keyword", "val"]
+	]],
+	["punctuation", "("],
+	"chromaNoise",
+	["punctuation", ")"],
+
+	["keyword", "return"], " interleavedClip\r\n",
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Test types and optional arguments.
+Optional arguments check for preceeding types to match before getting matched as a string, and should not be matched as strings.
+Incidental names of types in an arguments list (such as "interleavedFields" containing "int") should not get highlighted.
+Types can be used as casts, and should not be highlighted as user-functions.
+Incidental names of types elsewhere (such as "interleavedClip" in a function body) should not get highlighted.
