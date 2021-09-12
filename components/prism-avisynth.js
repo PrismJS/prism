@@ -24,7 +24,7 @@
 	var wordLists = {
 		types: 'clip int float string bool val',
 		keywords: 'function global return try catch if else while for __END__', // includes avs+ native gscript constructs
-		predefined: 'DEFAULT_MT_MODE (?:SCRIPT|MAINSCRIPT|PROGRAM)DIR (?:USER|MACHINE)_(?:PLUS|CLASSIC)_PLUGINS',
+		predefined: /DEFAULT_MT_MODE|(?:SCRIPT|MAINSCRIPT|PROGRAM)DIR|(?:USER|MACHINE)_(?:PLUS|CLASSIC)_PLUGINS/.source,
 		constants: 'MT_(?:NICE_FILTER|MULTI_INSTANCE|SERIALIZED|SPECIAL_MT)',
 		internals: {
 			bools: 'is(?:bool|clip|float|int|string) defined (?:var|(?:internal)?function)?exists?',
@@ -68,10 +68,23 @@
 	var keywords = toAlternation([wordLists.keywords]);
 	var predefined = toAlternation([wordLists.predefined]);
 	var constants = toAlternation([wordLists.constants]);
-	var properties = toAlternation(Object.values(wordLists.properties));
+	var properties = [
+		// content
+		/has(?:audio|video)/.source,
+		// resolution
+		/width|height/.source,
+		// framerate
+		/frame(?:count|rate)|framerate(?:numerator|denominator)/.source,
+		// interlacing
+		/is(?:field|frame)based|getparity/.source,
+		// color format
+		/pixeltype|is(?:planar(?:rgba?)?|interleaved|rgb(?:24|32|48|64)?|y(?:8|u(?:y2|va?))?|yv(?:12|16|24|411)|420|422|444|packedrgb)|hasalpha|componentsize|numcomponents|bitspercomponent/.source,
+		// audio
+		/audio(?:rate|duration|length(?:[fs]|lo|hi)?|channels|bits)|isaudio(?:float|int)/.source
+	].join('|');
 	var intfuncs = toAlternation(Object.values(wordLists.internals));
 	var intfilters = toAlternation(Object.values(wordLists.filters));
-	var internals = cat(intfuncs, cat(properties, intfilters));
+	var internals = intfuncs + '|' + properties + '|' + intfilters;
 
 	Prism.languages.avisynth = {
 
@@ -109,7 +122,7 @@
 				greedy: true,
 			},
 			{ // single double-quoted
-				pattern: /"(?:\\(?:\r\n|[\s\S])|(?!")[^\\\r\n])*"/,
+				pattern: /"(?:\\(?:\r\n|[\s\S])|[^"\\\r\n])*"/,
 				greedy: true,
 				inside: {
 					'constant': {
@@ -120,7 +133,7 @@
 		],
 
 		// The special "last" variable that takes the value of the last implicitly returned clip.
-		'variable': /\b(last)\b/i,
+		'variable': /\b(?:last)\b/i,
 
 		'boolean': /\b(?:true|false|yes|no)\b/i,
 
