@@ -47,7 +47,7 @@
 			lookbehind: true,
 			inside: {
 				'label-key': {
-					pattern: /\b[^,]*\b/,
+					pattern: /\b[^,]+\b/,
 					alias: 'attr-name',
 				},
 				'punctuation': /[(),]/
