@@ -11,10 +11,10 @@
 		return RegExp(replace(pattern, replacements), flags || '');
 	}
 
-	var types = /clip|int|float|string|bool|val/.source
-	var keywords = /function|global|return|try|catch|if|else|while|for|__END__/.source // includes avs+ native gscript constructs
-	var predefined = /DEFAULT_MT_MODE|(?:SCRIPT|MAINSCRIPT|PROGRAM)DIR|(?:USER|MACHINE)_(?:PLUS|CLASSIC)_PLUGINS/.source
-	var constants = /MT_(?:NICE_FILTER|MULTI_INSTANCE|SERIALIZED|SPECIAL_MT)/.source
+	var types = /clip|int|float|string|bool|val/.source;
+	var keywords = /function|global|return|try|catch|if|else|while|for|__END__/.source; // includes avs+ native gscript constructs
+	var predefined = /DEFAULT_MT_MODE|(?:SCRIPT|MAINSCRIPT|PROGRAM)DIR|(?:USER|MACHINE)_(?:PLUS|CLASSIC)_PLUGINS/.source;
+	var constants = /MT_(?:NICE_FILTER|MULTI_INSTANCE|SERIALIZED|SPECIAL_MT)/.source;
 	var internals = [
 		// bools
 		/is(?:bool|clip|float|int|string)|defined|(?:var|(?:internal)?function)?exists?/.source,
@@ -42,7 +42,7 @@
 		/buildpixeltype|colorspacenametopixeltype/.source,
 		// avsplus
 		/setfiltermtmode|prefetch|addautoloaddir|on(?:cpu|cuda)/.source
-	].join('|')
+	].join('|');
 	var properties = [
 		// content
 		/has(?:audio|video)/.source,
@@ -56,7 +56,7 @@
 		/pixeltype|is(?:planar(?:rgba?)?|interleaved|rgb(?:24|32|48|64)?|y(?:8|u(?:y2|va?))?|yv(?:12|16|24|411)|420|422|444|packedrgb)|hasalpha|componentsize|numcomponents|bitspercomponent/.source,
 		// audio
 		/audio(?:rate|duration|length(?:[fs]|lo|hi)?|channels|bits)|isaudio(?:float|int)/.source
-	].join('|')
+	].join('|');
 	var filters = [
 		// source
 		/avi(?:file)?source|opendmlsource|directshowsource|image(?:reader|source|sourceanim)|segmented(?:avisource|directshowsource)|wavsource/.source,
@@ -80,9 +80,8 @@
 		/imagewriter/.source,
 		// debug
 		/subtitle|blankclip|blackness|colorbars(?:hd)?|compare|dumpfiltergraph|setgraphanalysis|echo|histogram|info|messageclip|preroll|showfiveversions|show(?:framenumber|smpte|time)|stack(?:horizontal|vertical)|tone|version/.source
-	].join('|')
-
-	var internals = [internals, properties, filters].join('|')
+	].join('|');
+	var allinternals = [internals, properties, filters].join('|');
 
 	Prism.languages.avisynth = {
 		'comment': [
@@ -146,15 +145,17 @@
 
 		'constant': re(/\b<<0>>\b/.source, [constants]),
 
-		'builtin': [
+		'builtin-function': [
 			{
 				// AviSynth's internal clip properties.
 				pattern: re(/(\b\.)(?:<<0>>)\b(?=[^\.])/.source, [properties], 'i'),
-				lookbehind: true
+				lookbehind: true,
+				alias: 'function'
 			},
 			{
 				// AviSynth's internal functions and filters, including properties used as functions.
-				pattern: re(/\b(?:<<0>>)(?=\s*\()/.source, [internals], 'i')
+				pattern: re(/\b(?:<<0>>)(?=\s*\()/.source, [allinternals], 'i'),
+				alias: 'function'
 			}
 		],
 
@@ -184,4 +185,4 @@
 	};
 }(Prism));
 
-Prism.languages.avs = Prism.languages.avisynth
+Prism.languages.avs = Prism.languages.avisynth;
