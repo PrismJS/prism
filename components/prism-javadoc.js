@@ -1,9 +1,9 @@
 (function (Prism) {
 
-	var codeLinePattern = /(^(?:\s*(?:\*\s*)*)).*[^*\s].*$/m;
+	var codeLinePattern = /(^(?:[\t ]*(?:\*\s*)*))[^*\s].*$/m;
 
 	var memberReference = /#\s*\w+(?:\s*\([^()]*\))?/.source;
-	var reference = /(?:[a-zA-Z]\w+\s*\.\s*)*[A-Z]\w*(?:\s*<mem>)?|<mem>/.source.replace(/<mem>/g, function () { return memberReference });
+	var reference = /(?:\b[a-zA-Z]\w+\s*\.\s*)*\b[A-Z]\w*(?:\s*<mem>)?|<mem>/.source.replace(/<mem>/g, function () { return memberReference; });
 
 	Prism.languages.javadoc = Prism.languages.extend('javadoclike', {});
 	Prism.languages.insertBefore('javadoc', 'keyword', {
@@ -40,7 +40,7 @@
 		},
 		'code-section': [
 			{
-				pattern: /(\{@code\s+)(?:[^{}]|\{(?:[^{}]|\{(?:[^{}]|\{(?:[^{}]|\{[^{}]*\})*\})*\})*\})+?(?=\s*\})/,
+				pattern: /(\{@code\s+(?!\s))(?:[^\s{}]|\s+(?![\s}])|\{(?:[^{}]|\{(?:[^{}]|\{(?:[^{}]|\{[^{}]*\})*\})*\})*\})+(?=\s*\})/,
 				lookbehind: true,
 				inside: {
 					'code': {
@@ -53,7 +53,7 @@
 				}
 			},
 			{
-				pattern: /(<(code|pre|tt)>(?!<code>)\s*)[\s\S]+?(?=\s*<\/\2>)/,
+				pattern: /(<(code|pre|tt)>(?!<code>)\s*)\S(?:\S|\s+\S)*?(?=\s*<\/\2>)/,
 				lookbehind: true,
 				inside: {
 					'line': {

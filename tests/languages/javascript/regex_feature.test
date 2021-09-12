@@ -1,5 +1,5 @@
 /foo bar/;
-/foo/gimyus,
+/foo/dgimyus,
 /[\[\]]{2,4}(?:foo)*/;
 /foo"test"bar/;
 /foo\//;
@@ -23,54 +23,63 @@ yield /regex/;
 		["regex-delimiter", "/"]
 	]],
 	["punctuation", ";"],
+
 	["regex", [
 		["regex-delimiter", "/"],
 		["regex-source", "foo"],
 		["regex-delimiter", "/"],
-		["regex-flags", "gimyus"]
+		["regex-flags", "dgimyus"]
 	]],
 	["punctuation", ","],
+
 	["regex", [
 		["regex-delimiter", "/"],
 		["regex-source", "[\\[\\]]{2,4}(?:foo)*"],
 		["regex-delimiter", "/"]
 	]],
 	["punctuation", ";"],
+
 	["regex", [
 		["regex-delimiter", "/"],
 		["regex-source", "foo\"test\"bar"],
 		["regex-delimiter", "/"]
 	]],
 	["punctuation", ";"],
+
 	["regex", [
 		["regex-delimiter", "/"],
 		["regex-source", "foo\\/"],
 		["regex-delimiter", "/"]
 	]],
 	["punctuation", ";"],
+
 	["regex", [
 		["regex-delimiter", "/"],
 		["regex-source", "[]"],
 		["regex-delimiter", "/"]
 	]],
 	["punctuation", ";"],
+
 	["regex", [
 		["regex-delimiter", "/"],
 		["regex-source", "[\\]/]"],
 		["regex-delimiter", "/"]
 	]],
 	["punctuation", ";"],
+
 	["number", "1"],
 	["operator", "/"],
 	["number", "4"],
 	["operator", "+"],
 	["string", "\"/, not a regex\""],
 	["punctuation", ";"],
+
 	["regex", [
 		["regex-delimiter", "/"],
 		["regex-source", " '1' '2' '3' '4' '5' "],
 		["regex-delimiter", "/"]
 	]],
+
 	["punctuation", "["],
 	["regex", [
 		["regex-delimiter", "/"],
@@ -89,6 +98,7 @@ yield /regex/;
 		["regex-flags", "m"]
 	]],
 	["comment", "// comment"],
+
 	["keyword", "let"],
 	" b ",
 	["operator", "="],
@@ -105,6 +115,7 @@ yield /regex/;
 		["regex-source", "another one"],
 		["regex-delimiter", "/"]
 	]],
+
 	["keyword", "return"],
 	["regex", [
 		["regex-delimiter", "/"],
@@ -112,6 +123,7 @@ yield /regex/;
 		["regex-delimiter", "/"]
 	]],
 	["punctuation", ";"],
+
 	["keyword", "yield"],
 	["regex", [
 		["regex-delimiter", "/"],

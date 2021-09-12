@@ -1,0 +1,138 @@
+#if os(tvOS)
+#if !DEBUG && ENABLE_INTERNAL_TOOLS
+#if SWIFTUI_PROFILE
+#if compiler(>=5)
+#if compiler(>=5) && swift(<5)
+
+#elseif compiler(>=5)
+#else
+#endif
+
+#sourceLocation(file: "foo", line: 42)
+#sourceLocation()
+
+#error("error message")
+#warning("warning message")
+
+#available(iOS 13, *)
+
+#selector(SomeClass.doSomething(_:))
+
+#keyPath(SomeClass.someProperty)
+
+----------------------------------------------------
+
+[
+	["directive", [
+		["directive-name", "#if"],
+		" os",
+		["punctuation", "("],
+		"tvOS",
+		["punctuation", ")"]
+	]],
+	["directive", [
+		["directive-name", "#if"],
+		["operator", "!"],
+		"DEBUG ",
+		["operator", "&&"],
+		" ENABLE_INTERNAL_TOOLS"
+	]],
+	["directive", [
+		["directive-name", "#if"],
+		" SWIFTUI_PROFILE"
+	]],
+	["directive", [
+		["directive-name", "#if"],
+		" compiler",
+		["punctuation", "("],
+		["operator", ">="],
+		["number", "5"],
+		["punctuation", ")"]
+	]],
+	["directive", [
+		["directive-name", "#if"],
+		" compiler",
+		["punctuation", "("],
+		["operator", ">="],
+		["number", "5"],
+		["punctuation", ")"],
+		["operator", "&&"],
+		" swift",
+		["punctuation", "("],
+		["operator", "<"],
+		["number", "5"],
+		["punctuation", ")"]
+	]],
+
+	["directive", [
+		["directive-name", "#elseif"],
+		" compiler",
+		["punctuation", "("],
+		["operator", ">="],
+		["number", "5"],
+		["punctuation", ")"]
+	]],
+	["directive", [
+		["directive-name", "#else"]
+	]],
+	["directive", [
+		["directive-name", "#endif"]
+	]],
+
+	["other-directive", "#sourceLocation"],
+	["punctuation", "("],
+	"file",
+	["punctuation", ":"],
+	["string-literal", [
+		["string", "\"foo\""]
+	]],
+	["punctuation", ","],
+	" line",
+	["punctuation", ":"],
+	["number", "42"],
+	["punctuation", ")"],
+
+	["other-directive", "#sourceLocation"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["other-directive", "#error"],
+	["punctuation", "("],
+	["string-literal", [
+		["string", "\"error message\""]
+	]],
+	["punctuation", ")"],
+
+	["other-directive", "#warning"],
+	["punctuation", "("],
+	["string-literal", [
+		["string", "\"warning message\""]
+	]],
+	["punctuation", ")"],
+
+	["other-directive", "#available"],
+	["punctuation", "("],
+	"iOS ",
+	["number", "13"],
+	["punctuation", ","],
+	["operator", "*"],
+	["punctuation", ")"],
+
+	["other-directive", "#selector"],
+	["punctuation", "("],
+	["class-name", "SomeClass"],
+	["punctuation", "."],
+	["function", "doSomething"],
+	["punctuation", "("],
+	["omit", "_"],
+	["punctuation", ":"],
+	["punctuation", ")"],
+	["punctuation", ")"],
+
+	["other-directive", "#keyPath"],
+	["punctuation", "("],
+	["class-name", "SomeClass"],
+	["punctuation", "."],
+	"someProperty",
+	["punctuation", ")"]
+]

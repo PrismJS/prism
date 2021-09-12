@@ -1,0 +1,11 @@
+(* comment *)
+(*
+ (* nested comment *)
+*)
+
+----------------------------------------------------
+
+[
+	["comment", "(* comment *)"],
+	["comment", "(*\r\n (* nested comment *)\r\n*)"]
+]

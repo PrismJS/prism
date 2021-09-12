@@ -1,0 +1,17 @@
+* foo
+* `asd` afsdfsdfsdf
+* foo
+    * foo
+    * `REM`
+    * foo
+
+----------------------------------------------------
+
+[
+	["list", "*"], " foo\r\n",
+	["list", "*"], ["code-snippet", "`asd`"], " afsdfsdfsdf\r\n",
+	["list", "*"], " foo\r\n    ",
+	["list", "*"], " foo\r\n    ",
+	["list", "*"], ["code-snippet", "`REM`"],
+	["list", "*"], " foo"
+]

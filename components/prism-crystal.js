@@ -1,4 +1,4 @@
-(function(Prism) {
+(function (Prism) {
 	Prism.languages.crystal = Prism.languages.extend('ruby', {
 		keyword: [
 			/\b(?:abstract|alias|as|asm|begin|break|case|class|def|do|else|elsif|end|ensure|enum|extend|for|fun|if|include|instance_sizeof|lib|macro|module|next|of|out|pointerof|private|protected|rescue|return|require|select|self|sizeof|struct|super|then|type|typeof|uninitialized|union|unless|until|when|while|with|yield|__DIR__|__END_LINE__|__FILE__|__LINE__)\b/,
@@ -25,26 +25,26 @@
 		},
 
 		expansion: [
-		{
-			pattern: /\{\{.+?\}\}/,
-			inside: {
-				delimiter: {
-					pattern: /^\{\{|\}\}$/,
-					alias: 'tag'
-				},
-				rest: Prism.languages.crystal
+			{
+				pattern: /\{\{.+?\}\}/,
+				inside: {
+					delimiter: {
+						pattern: /^\{\{|\}\}$/,
+						alias: 'tag'
+					},
+					rest: Prism.languages.crystal
+				}
+			},
+			{
+				pattern: /\{%.+?%\}/,
+				inside: {
+					delimiter: {
+						pattern: /^\{%|%\}$/,
+						alias: 'tag'
+					},
+					rest: Prism.languages.crystal
+				}
 			}
-		},
-		{
-			pattern: /\{%.+?%\}/,
-			inside: {
-				delimiter: {
-					pattern: /^\{%|%\}$/,
-					alias: 'tag'
-				},
-				rest: Prism.languages.crystal
-			}
-		}
 		]
 	});
 

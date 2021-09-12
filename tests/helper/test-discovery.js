@@ -1,8 +1,9 @@
-"use strict";
+'use strict';
 
-const fs = require("fs");
-const path = require("path");
+const fs = require('fs');
+const path = require('path');
 
+const SUPPORTED_TEST_FILE_EXT = new Set(['.js', '.test']);
 
 module.exports = {
 
@@ -71,6 +72,7 @@ module.exports = {
 
 	/**
 	 * Returns whether a directory matches one of the given languages.
+	 *
 	 * @param {string} directory
 	 * @param {string|string[]} languages
 	 */
@@ -93,7 +95,8 @@ module.exports = {
 	getAllFiles(src) {
 		return fs.readdirSync(src)
 			.filter(fileName => {
-				return fs.statSync(path.join(src, fileName)).isFile();
+				return SUPPORTED_TEST_FILE_EXT.has(path.extname(fileName))
+					&& fs.statSync(path.join(src, fileName)).isFile();
 			})
 			.map(fileName => {
 				return path.join(src, fileName);

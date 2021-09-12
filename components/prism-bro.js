@@ -3,8 +3,8 @@ Prism.languages.bro = {
 	'comment': {
 		pattern: /(^|[^\\$])#.*/,
 		lookbehind: true,
-			inside: {
-				'italic':  /\b(?:TODO|FIXME|XXX)\b/
+		inside: {
+			'italic': /\b(?:TODO|FIXME|XXX)\b/
 		}
 	},
 
@@ -22,7 +22,7 @@ Prism.languages.bro = {
 		}
 	},
 
-	'variable':	{
+	'variable': {
 		pattern: /(?:global|local) \w+/i,
 		inside: {
 			keyword: /(?:global|local)/
@@ -42,7 +42,7 @@ Prism.languages.bro = {
 
 	'operator': /--?|\+\+?|!=?=?|<=?|>=?|==?=?|&&|\|\|?|\?|\*|\/|~|\^|%/,
 
-	'number': /\b0x[\da-f]+\b|(?:\b\d+\.?\d*|\B\.\d+)(?:e[+-]?\d+)?/i,
+	'number': /\b0x[\da-f]+\b|(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:e[+-]?\d+)?/i,
 
 	'punctuation': /[{}[\];(),.:]/
 };

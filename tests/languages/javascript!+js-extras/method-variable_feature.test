@@ -7,9 +7,7 @@ this.bar = () => {};
 [
 	"foo",
 	["punctuation", "."],
-	["method-variable", [
-		"bar"
-	]],
+	["method-variable", ["bar"]],
 	["operator", "="],
 	["keyword", "function"],
 	["punctuation", "("],
@@ -18,11 +16,9 @@ this.bar = () => {};
 	["punctuation", "}"],
 	["punctuation", ";"],
 
-	"\nfoo",
+	"\r\nfoo",
 	["punctuation", "."],
-	["method-variable", [
-		"bar"
-	]],
+	["method-variable", ["bar"]],
 	["operator", "="],
 	["keyword", "async"],
 	["punctuation", "("],
@@ -34,9 +30,7 @@ this.bar = () => {};
 
 	["keyword", "this"],
 	["punctuation", "."],
-	["method-variable", [
-		"bar"
-	]],
+	["method-variable", ["bar"]],
 	["operator", "="],
 	["punctuation", "("],
 	["punctuation", ")"],

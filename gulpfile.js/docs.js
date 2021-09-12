@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const { src, dest, series } = require('gulp');
 const replace = require('gulp-replace');
@@ -25,8 +25,8 @@ function docsClean() {
 }
 
 function docsCreate(cb) {
-	var config = require(jsDoc.config);
-	var files = [jsDoc.readme].concat(jsDoc.files);
+	let config = require(jsDoc.config);
+	let files = [jsDoc.readme].concat(jsDoc.files);
 	src(files, { read: false }).pipe(jsdoc(config, cb));
 }
 
@@ -65,7 +65,7 @@ module.exports = {
 			// error if used. So we just replace the "function" with some literal that JSDoc will interpret as a
 			// namespace. Not pretty but it works.
 			comment.comment = comment.comment
-				.replace(/\bimport\s*\(\s*(?:"(?:[^"\r\n\\]|\\.)*"|'(?:[^'\r\n\\]|\\.)*')\s*\)/g, '__dyn_import__')
+				.replace(/\bimport\s*\(\s*(?:"(?:[^"\r\n\\]|\\.)*"|'(?:[^'\r\n\\]|\\.)*')\s*\)/g, '__dyn_import__');
 		}
 	}
 };

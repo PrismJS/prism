@@ -1,6 +1,6 @@
 (function () {
 
-	if (typeof self === 'undefined' || !self.Prism || !self.document) {
+	if (typeof Prism === 'undefined' || typeof document === 'undefined') {
 		return;
 	}
 
@@ -8,7 +8,7 @@
 	var PROMPT_CLASS = 'command-line-prompt';
 
 	/** @type {(str: string, prefix: string) => boolean} */
-	var startsWith = "".startsWith
+	var startsWith = ''.startsWith
 		? function (s, p) { return s.startsWith(p); }
 		: function (s, p) { return s.indexOf(p) === 0; };
 
@@ -22,13 +22,23 @@
 	 * @returns {string}
 	 */
 	function repeat(str, times) {
-		var s = "";
+		var s = '';
 		for (var i = 0; i < times; i++) {
 			s += str;
 		}
 		return s;
 	}
 
+	/**
+	 * Returns whether the given hook environment has a command line info object.
+	 *
+	 * @param {any} env
+	 * @returns {boolean}
+	 */
+	function hasCommandLineInfo(env) {
+		var vars = env.vars = env.vars || {};
+		return 'command-line' in vars;
+	}
 	/**
 	 * Returns the command line info object from the given hook environment.
 	 *
@@ -129,6 +139,11 @@
 	});
 
 	Prism.hooks.add('complete', function (env) {
+		if (!hasCommandLineInfo(env)) {
+			// the previous hooks never ran
+			return;
+		}
+
 		var commandLine = getCommandLineInfo(env);
 
 		if (commandLine.complete) {

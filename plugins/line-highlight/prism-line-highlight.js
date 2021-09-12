@@ -1,8 +1,11 @@
 (function () {
 
-	if (typeof self === 'undefined' || !self.Prism || !self.document || !document.querySelector) {
+	if (typeof Prism === 'undefined' || typeof document === 'undefined' || !document.querySelector) {
 		return;
 	}
+
+	var LINE_NUMBERS_CLASS = 'line-numbers';
+	var LINKABLE_LINE_NUMBERS_CLASS = 'linkable-line-numbers';
 
 	/**
 	 * @param {string} selector
@@ -21,8 +24,7 @@
 	 * @returns {boolean}
 	 */
 	function hasClass(element, className) {
-		className = " " + className + " ";
-		return (" " + element.className + " ").replace(/[\n\t]/g, " ").indexOf(className) > -1
+		return element.classList.contains(className);
 	}
 
 	/**
@@ -54,8 +56,61 @@
 				document.body.removeChild(d);
 			}
 			return res;
-		}
+		};
 	}());
+
+	/**
+	 * Returns the top offset of the content box of the given parent and the content box of one of its children.
+	 *
+	 * @param {HTMLElement} parent
+	 * @param {HTMLElement} child
+	 */
+	function getContentBoxTopOffset(parent, child) {
+		var parentStyle = getComputedStyle(parent);
+		var childStyle = getComputedStyle(child);
+
+		/**
+		 * Returns the numeric value of the given pixel value.
+		 *
+		 * @param {string} px
+		 */
+		function pxToNumber(px) {
+			return +px.substr(0, px.length - 2);
+		}
+
+		return child.offsetTop
+			+ pxToNumber(childStyle.borderTopWidth)
+			+ pxToNumber(childStyle.paddingTop)
+			- pxToNumber(parentStyle.paddingTop);
+	}
+
+	/**
+	 * Returns whether the Line Highlight plugin is active for the given element.
+	 *
+	 * If this function returns `false`, do not call `highlightLines` for the given element.
+	 *
+	 * @param {HTMLElement | null | undefined} pre
+	 * @returns {boolean}
+	 */
+	function isActiveFor(pre) {
+		if (!pre || !/pre/i.test(pre.nodeName)) {
+			return false;
+		}
+
+		if (pre.hasAttribute('data-line')) {
+			return true;
+		}
+
+		if (pre.id && Prism.util.isActive(pre, LINKABLE_LINE_NUMBERS_CLASS)) {
+			// Technically, the line numbers plugin is also necessary but this plugin doesn't control the classes of
+			// the line numbers plugin, so we can't assume that they are present.
+			return true;
+		}
+
+		return false;
+	}
+
+	var scrollIntoView = true;
 
 	/**
 	 * Highlights the lines of the given pre.
@@ -64,21 +119,34 @@
 	 * The returned function mutates the DOM when called.
 	 *
 	 * @param {HTMLElement} pre
-	 * @param {string} [lines]
+	 * @param {string | null} [lines]
 	 * @param {string} [classes='']
 	 * @returns {() => void}
 	 */
 	function highlightLines(pre, lines, classes) {
-		lines = typeof lines === 'string' ? lines : pre.getAttribute('data-line');
+		lines = typeof lines === 'string' ? lines : (pre.getAttribute('data-line') || '');
 
 		var ranges = lines.replace(/\s+/g, '').split(',').filter(Boolean);
 		var offset = +pre.getAttribute('data-line-offset') || 0;
 
 		var parseMethod = isLineHeightRounded() ? parseInt : parseFloat;
 		var lineHeight = parseMethod(getComputedStyle(pre).lineHeight);
-		var hasLineNumbers = hasClass(pre, 'line-numbers');
-		var parentElement = hasLineNumbers ? pre : pre.querySelector('code') || pre;
+		var hasLineNumbers = Prism.util.isActive(pre, LINE_NUMBERS_CLASS);
+		var codeElement = pre.querySelector('code');
+		var parentElement = hasLineNumbers ? pre : codeElement || pre;
 		var mutateActions = /** @type {(() => void)[]} */ ([]);
+
+		/**
+		 * The top offset between the content box of the <code> element and the content box of the parent element of
+		 * the line highlight element (either `<pre>` or `<code>`).
+		 *
+		 * This offset might not be zero for some themes where the <code> element has a top margin. Some plugins
+		 * (or users) might also add element above the <code> element. Because the line highlight is aligned relative
+		 * to the <pre> element, we have to take this into account.
+		 *
+		 * This offset will be 0 if the parent element of the line highlight element is the `<code>` element.
+		 */
+		var codePreOffset = !codeElement || parentElement == codeElement ? 0 : getContentBoxTopOffset(pre, codeElement);
 
 		ranges.forEach(function (currentRange) {
 			var range = currentRange.split('-');
@@ -101,7 +169,7 @@
 				var endNode = Prism.plugins.lineNumbers.getLine(pre, end);
 
 				if (startNode) {
-					var top = startNode.offsetTop + 'px';
+					var top = startNode.offsetTop + codePreOffset + 'px';
 					mutateActions.push(function () {
 						line.style.top = top;
 					});
@@ -115,17 +183,21 @@
 				}
 			} else {
 				mutateActions.push(function () {
-					line.setAttribute('data-start', start);
+					line.setAttribute('data-start', String(start));
 
 					if (end > start) {
-						line.setAttribute('data-end', end);
+						line.setAttribute('data-end', String(end));
 					}
 
-					line.style.top = (start - offset - 1) * lineHeight + 'px';
+					line.style.top = (start - offset - 1) * lineHeight + codePreOffset + 'px';
 
 					line.textContent = new Array(end - start + 2).join(' \n');
 				});
 			}
+
+			mutateActions.push(function () {
+				line.style.width = pre.scrollWidth + 'px';
+			});
 
 			mutateActions.push(function () {
 				// allow this to play nicely with the line-numbers plugin
@@ -135,49 +207,36 @@
 		});
 
 		var id = pre.id;
-		if (hasLineNumbers && id) {
+		if (hasLineNumbers && Prism.util.isActive(pre, LINKABLE_LINE_NUMBERS_CLASS) && id) {
 			// This implements linkable line numbers. Linkable line numbers use Line Highlight to create a link to a
 			// specific line. For this to work, the pre element has to:
 			//  1) have line numbers,
 			//  2) have the `linkable-line-numbers` class or an ascendant that has that class, and
 			//  3) have an id.
 
-			var linkableLineNumbersClass = 'linkable-line-numbers';
-			var linkableLineNumbers = false;
-			var node = pre;
-			while (node) {
-				if (hasClass(node, linkableLineNumbersClass)) {
-					linkableLineNumbers = true;
-					break;
-				}
-				node = node.parentElement;
-			}
-
-			if (linkableLineNumbers) {
-				if (!hasClass(pre, linkableLineNumbersClass)) {
-					// add class to pre
-					mutateActions.push(function () {
-						pre.className = (pre.className + ' ' + linkableLineNumbersClass).trim();
-					});
-				}
-
-				var start = parseInt(pre.getAttribute('data-start') || '1');
-
-				// iterate all line number spans
-				$$('.line-numbers-rows > span', pre).forEach(function (lineSpan, i) {
-					var lineNumber = i + start;
-					lineSpan.onclick = function () {
-						var hash = id + '.' + lineNumber;
-
-						// this will prevent scrolling since the span is obviously in view
-						scrollIntoView = false;
-						location.hash = hash;
-						setTimeout(function () {
-							scrollIntoView = true;
-						}, 1);
-					};
+			if (!hasClass(pre, LINKABLE_LINE_NUMBERS_CLASS)) {
+				// add class to pre
+				mutateActions.push(function () {
+					pre.classList.add(LINKABLE_LINE_NUMBERS_CLASS);
 				});
 			}
+
+			var start = parseInt(pre.getAttribute('data-start') || '1');
+
+			// iterate all line number spans
+			$$('.line-numbers-rows > span', pre).forEach(function (lineSpan, i) {
+				var lineNumber = i + start;
+				lineSpan.onclick = function () {
+					var hash = id + '.' + lineNumber;
+
+					// this will prevent scrolling since the span is obviously in view
+					scrollIntoView = false;
+					location.hash = hash;
+					setTimeout(function () {
+						scrollIntoView = true;
+					}, 1);
+				};
+			});
 		}
 
 		return function () {
@@ -185,7 +244,6 @@
 		};
 	}
 
-	var scrollIntoView = true;
 	function applyHash() {
 		var hash = location.hash.slice(1);
 
@@ -200,8 +258,8 @@
 			return;
 		}
 
-		var id = hash.slice(0, hash.lastIndexOf('.')),
-			pre = document.getElementById(id);
+		var id = hash.slice(0, hash.lastIndexOf('.'));
+		var pre = document.getElementById(id);
 
 		if (!pre) {
 			return;
@@ -222,10 +280,8 @@
 	var fakeTimer = 0; // Hack to limit the number of times applyHash() runs
 
 	Prism.hooks.add('before-sanity-check', function (env) {
-		var pre = env.element.parentNode;
-		var lines = pre && pre.getAttribute('data-line');
-
-		if (!pre || !lines || !/pre/i.test(pre.nodeName)) {
+		var pre = env.element.parentElement;
+		if (!isActiveFor(pre)) {
 			return;
 		}
 
@@ -242,16 +298,14 @@
 			line.parentNode.removeChild(line);
 		});
 		// Remove extra whitespace
-		if (num && /^( \n)+$/.test(env.code.slice(-num))) {
+		if (num && /^(?: \n)+$/.test(env.code.slice(-num))) {
 			env.code = env.code.slice(0, -num);
 		}
 	});
 
 	Prism.hooks.add('complete', function completeHook(env) {
-		var pre = env.element.parentNode;
-		var lines = pre && pre.getAttribute('data-line');
-
-		if (!pre || !lines || !/pre/i.test(pre.nodeName)) {
+		var pre = env.element.parentElement;
+		if (!isActiveFor(pre)) {
 			return;
 		}
 
@@ -260,10 +314,10 @@
 		var hasLineNumbers = Prism.plugins.lineNumbers;
 		var isLineNumbersLoaded = env.plugins && env.plugins.lineNumbers;
 
-		if (hasClass(pre, 'line-numbers') && hasLineNumbers && !isLineNumbersLoaded) {
+		if (hasClass(pre, LINE_NUMBERS_CLASS) && hasLineNumbers && !isLineNumbersLoaded) {
 			Prism.hooks.add('line-numbers', completeHook);
 		} else {
-			var mutateDom = highlightLines(pre, lines);
+			var mutateDom = highlightLines(pre);
 			mutateDom();
 			fakeTimer = setTimeout(applyHash, 1);
 		}
@@ -271,10 +325,12 @@
 
 	window.addEventListener('hashchange', applyHash);
 	window.addEventListener('resize', function () {
-		var actions = $$('pre[data-line]').map(function (pre) {
-			return highlightLines(pre);
-		});
+		var actions = $$('pre')
+			.filter(isActiveFor)
+			.map(function (pre) {
+				return highlightLines(pre);
+			});
 		actions.forEach(callFunction);
 	});
 
-})();
+}());

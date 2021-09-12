@@ -1,0 +1,50 @@
+-----
+
+sysadm.bda.nasa.gov - - [28/Jul/1995:13:30:20 -0400] "GET /elv/endba11.gif HTTP/1.0" 200 306
+
+2017-05-11 15:05:28.889  INFO 30284 --- [ost-staItStop-1] o.s.web.context.ContextLoadeI            : Root WebApplicationContext: initialization completed in 911 ms
+
+----------------------------------------------------
+
+[
+	["separator", "-----"],
+
+	["domain", "sysadm.bda.nasa.gov"],
+	["separator", "- - "],
+	["punctuation", "["],
+	["date", "28/Jul/1995"],
+	["operator", ":"],
+	["time", "13:30:20 -0400"],
+	["punctuation", "]"],
+	["string", "\"GET /elv/endba11.gif HTTP/1.0\""],
+	["number", "200"],
+	["number", "306"],
+
+	["date", "2017-05-11"],
+	["time", "15:05:28.889"],
+	["level", "INFO"],
+	["number", "30284"],
+	["separator", "---"],
+	["punctuation", "["],
+	"ost",
+	["operator", "-"],
+	"staItStop",
+	["operator", "-"],
+	["number", "1"],
+	["punctuation", "]"],
+	" o",
+	["punctuation", "."],
+	"s",
+	["punctuation", "."],
+	"web",
+	["punctuation", "."],
+	"context",
+	["punctuation", "."],
+	"ContextLoadeI            ",
+	["operator", ":"],
+	" Root WebApplicationContext",
+	["operator", ":"],
+	" initialization completed in ",
+	["number", "911"],
+	" ms"
+]

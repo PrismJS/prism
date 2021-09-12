@@ -3,10 +3,10 @@ Prism.languages.inform7 = {
 		pattern: /"[^"]*"/,
 		inside: {
 			'substitution': {
-				pattern: /\[[^\]]+\]/,
+				pattern: /\[[^\[\]]+\]/,
 				inside: {
 					'delimiter': {
-						pattern:/\[|\]/,
+						pattern: /\[|\]/,
 						alias: 'punctuation'
 					}
 					// See rest below
@@ -15,7 +15,7 @@ Prism.languages.inform7 = {
 		}
 	},
 	'comment': {
-		pattern: /\[[^\]]+\]/,
+		pattern: /\[[^\[\]]+\]/,
 		greedy: true
 	},
 	'title': {
@@ -23,7 +23,7 @@ Prism.languages.inform7 = {
 		alias: 'important'
 	},
 	'number': {
-		pattern: /(^|[^-])(?:\b\d+(?:\.\d+)?(?:\^\d+)?\w*|\b(?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve))\b(?!-)/i,
+		pattern: /(^|[^-])(?:\b\d+(?:\.\d+)?(?:\^\d+)?(?:(?!\d)\w+)?|\b(?:one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve))\b(?!-)/i,
 		lookbehind: true
 	},
 	'verb': {

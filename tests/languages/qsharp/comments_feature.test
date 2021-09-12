@@ -1,0 +1,23 @@
+// The following using block creates a fresh qubit and initializes it
+// in the |0> state.
+
+use qubit = Qubit();
+
+----------------------------------------------------
+
+[
+	["comment", "// The following using block creates a fresh qubit and initializes it"],
+	["comment", "// in the |0> state."],
+	["keyword", "use"],
+	" qubit ",
+	["operator", "="],
+	["keyword", "Qubit"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"]
+]
+
+
+----------------------------------------------------
+
+Checks for comments

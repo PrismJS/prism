@@ -1,7 +1,7 @@
 Prism.languages.fsharp = Prism.languages.extend('clike', {
 	'comment': [
 		{
-			pattern: /(^|[^\\])\(\*[\s\S]*?\*\)/,
+			pattern: /(^|[^\\])\(\*(?!\))[\s\S]*?\*\)/,
 			lookbehind: true
 		},
 		{
@@ -25,18 +25,19 @@ Prism.languages.fsharp = Prism.languages.extend('clike', {
 	'number': [
 		/\b0x[\da-fA-F]+(?:un|lf|LF)?\b/,
 		/\b0b[01]+(?:y|uy)?\b/,
-		/(?:\b\d+\.?\d*|\B\.\d+)(?:[fm]|e[+-]?\d+)?\b/i,
+		/(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:[fm]|e[+-]?\d+)?\b/i,
 		/\b\d+(?:[IlLsy]|u[lsy]?|UL)?\b/
 	],
 	'operator': /([<>~&^])\1\1|([*.:<>&])\2|<-|->|[!=:]=|<?\|{1,3}>?|\??(?:<=|>=|<>|[-+*/%=<>])\??|[!?^&]|~[+~-]|:>|:\?>?/
 });
 Prism.languages.insertBefore('fsharp', 'keyword', {
 	'preprocessor': {
-		pattern: /^[^\r\n\S]*#.*/m,
+		pattern: /(^[\t ]*)#.*/m,
+		lookbehind: true,
 		alias: 'property',
 		inside: {
 			'directive': {
-				pattern: /(\s*#)\b(?:else|endif|if|light|line|nowarn)\b/,
+				pattern: /(^#)\b(?:else|endif|if|light|line|nowarn)\b/,
 				lookbehind: true,
 				alias: 'keyword'
 			}
@@ -45,7 +46,7 @@ Prism.languages.insertBefore('fsharp', 'keyword', {
 });
 Prism.languages.insertBefore('fsharp', 'punctuation', {
 	'computation-expression': {
-		pattern: /[_a-z]\w*(?=\s*\{)/i,
+		pattern: /\b[_a-z]\w*(?=\s*\{)/i,
 		alias: 'keyword'
 	}
 });

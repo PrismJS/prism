@@ -62,9 +62,7 @@ UnclosedExpression{ab{cndum dui dolor tincidu{nt [s[fa]sdf [
 	["command", [
 		["command-name", "@commandAndGenericTextOnNewLine"]
 	]],
-	["generic-text", [
-		"Massa ut elementum."
-	]],
+	["generic-text", ["Massa ut elementum."]],
 
 	["command", [
 		["command-name", "@commandWithParameterAndGenericTextOnNewLine"],
@@ -72,9 +70,7 @@ UnclosedExpression{ab{cndum dui dolor tincidu{nt [s[fa]sdf [
 			["command-param-value", "WideParam"]
 		]]
 	]],
-	["generic-text", [
-		"Integer"
-	]],
+	["generic-text", ["Integer"]],
 
 	["generic-text", [
 		"Escaped braces inside generic text",
@@ -89,7 +85,7 @@ UnclosedExpression{ab{cndum dui dolor tincidu{nt [s[fa]sdf [
 
 	["bad-line", "UnclosedExpression{ab{cndum dui dolor tincidu{nt [s[fa]sdf ["],
 	["bad-line", "\"Integer: a = {a} malesuada a + b = {a + b}\", Random(a, b) = {Random(a, b)}, Random(\"foo\", \"bar\", \"foobar\") = {Random(\"foo\", \"bar\", \"foobar\")},}"],
-	"\n#\n>\n@"
+	"\r\n#\r\n>\r\n@"
 ]
 
 ----------------------------------------------------

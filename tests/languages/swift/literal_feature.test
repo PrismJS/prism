@@ -1,0 +1,60 @@
+#file
+#fileID
+#filePath
+#line
+#column
+#function
+#dsohandle
+
+#colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+#fileLiteral(resourceName: "foo")
+#imageLiteral(resourceName: "foo")
+
+----------------------------------------------------
+
+[
+	["literal", "#file"],
+	["literal", "#fileID"],
+	["literal", "#filePath"],
+	["literal", "#line"],
+	["literal", "#column"],
+	["literal", "#function"],
+	["literal", "#dsohandle"],
+
+	["literal", "#colorLiteral"],
+	["punctuation", "("],
+	"red",
+	["punctuation", ":"],
+	["number", "1.0"],
+	["punctuation", ","],
+	" green",
+	["punctuation", ":"],
+	["number", "1.0"],
+	["punctuation", ","],
+	" blue",
+	["punctuation", ":"],
+	["number", "1.0"],
+	["punctuation", ","],
+	" alpha",
+	["punctuation", ":"],
+	["number", "1.0"],
+	["punctuation", ")"],
+
+	["literal", "#fileLiteral"],
+	["punctuation", "("],
+	"resourceName",
+	["punctuation", ":"],
+	["string-literal", [
+		["string", "\"foo\""]
+	]],
+	["punctuation", ")"],
+
+	["literal", "#imageLiteral"],
+	["punctuation", "("],
+	"resourceName",
+	["punctuation", ":"],
+	["string-literal", [
+		["string", "\"foo\""]
+	]],
+	["punctuation", ")"]
+]

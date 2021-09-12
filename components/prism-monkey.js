@@ -2,7 +2,7 @@ Prism.languages.monkey = {
 	'string': /"[^"\r\n]*"/,
 	'comment': [
 		{
-			pattern: /^#Rem\s+[\s\S]*?^#End/im,
+			pattern: /^#Rem\s[\s\S]*?^#End/im,
 			greedy: true
 		},
 		{
@@ -15,7 +15,7 @@ Prism.languages.monkey = {
 		lookbehind: true,
 		alias: 'comment'
 	},
-	'function': /\w+(?=\()/,
+	'function': /\b\w+(?=\()/,
 	'type-char': {
 		pattern: /(\w)[?%#$]/,
 		lookbehind: true,

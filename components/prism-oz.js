@@ -17,9 +17,9 @@ Prism.languages.oz = {
 			lookbehind: true
 		}
 	],
-	'number': /\b(?:0[bx][\da-f]+|\d+\.?\d*(?:e~?\d+)?)\b|&(?:[^\\]|\\(?:\d{3}|.))/i,
+	'number': /\b(?:0[bx][\da-f]+|\d+(?:\.\d*)?(?:e~?\d+)?)\b|&(?:[^\\]|\\(?:\d{3}|.))/i,
 	'variable': /\b[A-Z][A-Za-z\d]*|`(?:[^`\\]|\\.)+`/,
-	'attr-name': /\w+(?=:)/,
+	'attr-name': /\b\w+(?=:)/,
 	'operator': /:(?:=|::?)|<[-:=]?|=(?:=|<?:?)|>=?:?|\\=:?|!!?|[|#+\-*\/,~^@]|\b(?:andthen|div|mod|orelse)\b/,
 	'punctuation': /[\[\](){}.:;?]/
 };

@@ -2,7 +2,7 @@ Prism.languages.perl = {
 	'comment': [
 		{
 			// POD
-			pattern: /(^\s*)=\w+[\s\S]*?=cut.*/m,
+			pattern: /(^\s*)=\w[\s\S]*?=cut.*/m,
 			lookbehind: true
 		},
 		{
@@ -161,7 +161,7 @@ Prism.languages.perl = {
 		// ${...}
 		/[&*$@%]#?(?=\{)/,
 		// $foo
-		/[&*$@%]#?(?:(?:::)*'?(?!\d)[\w$]+)+(?:::)*/i,
+		/[&*$@%]#?(?:(?:::)*'?(?!\d)[\w$]+(?![\w$]))+(?:::)*/i,
 		// $1
 		/[&*$@%]\d+/,
 		// $_, @_, %!
@@ -179,13 +179,13 @@ Prism.languages.perl = {
 		alias: 'string'
 	},
 	'function': {
-		pattern: /sub [a-z0-9_]+/i,
+		pattern: /sub \w+/i,
 		inside: {
 			keyword: /sub/
 		}
 	},
 	'keyword': /\b(?:any|break|continue|default|delete|die|do|else|elsif|eval|for|foreach|given|goto|if|last|local|my|next|our|package|print|redo|require|return|say|state|sub|switch|undef|unless|until|use|when|while)\b/,
-	'number': /\b(?:0x[\dA-Fa-f](?:_?[\dA-Fa-f])*|0b[01](?:_?[01])*|(?:\d(?:_?\d)*)?\.?\d(?:_?\d)*(?:[Ee][+-]?\d+)?)\b/,
+	'number': /\b(?:0x[\dA-Fa-f](?:_?[\dA-Fa-f])*|0b[01](?:_?[01])*|(?:(?:\d(?:_?\d)*)?\.)?\d(?:_?\d)*(?:[Ee][+-]?\d+)?)\b/,
 	'operator': /-[rwxoRWXOezsfdlpSbctugkTBMAC]\b|\+[+=]?|-[-=>]?|\*\*?=?|\/\/?=?|=[=~>]?|~[~=]?|\|\|?=?|&&?=?|<(?:=>?|<=?)?|>>?=?|![~=]?|[%^]=?|\.(?:=|\.\.?)?|[\\?]|\bx(?:=|\b)|\b(?:lt|gt|le|ge|eq|ne|cmp|not|and|or|xor)\b/,
 	'punctuation': /[{}[\];(),:]/
 };

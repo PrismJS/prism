@@ -1,7 +1,10 @@
 (function () {
-	if (typeof self === 'undefined' || !self.Prism || !self.document || !document.createElement) {
+
+	if (typeof Prism === 'undefined' || typeof document === 'undefined') {
 		return;
 	}
+
+	/* eslint-disable */
 
 	/**
 	 * The dependencies map is built automatically with gulp.
@@ -11,6 +14,10 @@
 	var lang_dependencies = /*dependencies_placeholder[*/{
 		"javascript": "clike",
 		"actionscript": "javascript",
+		"apex": [
+			"clike",
+			"sql"
+		],
 		"arduino": "cpp",
 		"aspnet": [
 			"markup",
@@ -21,6 +28,11 @@
 		"c": "clike",
 		"csharp": "clike",
 		"cpp": "c",
+		"cfscript": "clike",
+		"chaiscript": [
+			"clike",
+			"cpp"
+		],
 		"coffeescript": "javascript",
 		"crystal": "ruby",
 		"css-extras": "css",
@@ -51,6 +63,7 @@
 		"handlebars": "markup-templating",
 		"haxe": "clike",
 		"hlsl": "c",
+		"idris": "haskell",
 		"java": "clike",
 		"javadoc": [
 			"markup",
@@ -75,18 +88,15 @@
 		],
 		"less": "css",
 		"lilypond": "scheme",
+		"liquid": "markup-templating",
 		"markdown": "markup",
 		"markup-templating": "markup",
 		"mongodb": "javascript",
 		"n4js": "javascript",
-		"nginx": "clike",
 		"objectivec": "c",
 		"opencl": "c",
 		"parser": "markup",
-		"php": [
-			"clike",
-			"markup-templating"
-		],
+		"php": "markup-templating",
 		"phpdoc": [
 			"php",
 			"javadoclike"
@@ -101,6 +111,7 @@
 		],
 		"purebasic": "clike",
 		"purescript": "haskell",
+		"qsharp": "clike",
 		"qml": "javascript",
 		"qore": "clike",
 		"racket": "scheme",
@@ -123,7 +134,7 @@
 		"soy": "markup-templating",
 		"sparql": "turtle",
 		"sqf": "clike",
-		"swift": "clike",
+		"squirrel": "clike",
 		"t4-cs": [
 			"t4-templating",
 			"csharp"
@@ -140,6 +151,7 @@
 		"textile": "markup",
 		"twig": "markup",
 		"typescript": "javascript",
+		"v": "clike",
 		"vala": "clike",
 		"vbnet": "basic",
 		"velocity": "markup",
@@ -160,28 +172,35 @@
 		"js": "javascript",
 		"g4": "antlr4",
 		"adoc": "asciidoc",
+		"avdl": "avro-idl",
 		"shell": "bash",
 		"shortcode": "bbcode",
 		"rbnf": "bnf",
 		"oscript": "bsl",
 		"cs": "csharp",
 		"dotnet": "csharp",
+		"cfc": "cfscript",
 		"coffee": "coffeescript",
 		"conc": "concurnas",
 		"jinja2": "django",
 		"dns-zone": "dns-zone-file",
 		"dockerfile": "docker",
+		"gv": "dot",
 		"eta": "ejs",
 		"xlsx": "excel-formula",
 		"xls": "excel-formula",
 		"gamemakerlanguage": "gml",
+		"gni": "gn",
+		"hbs": "handlebars",
 		"hs": "haskell",
+		"idr": "idris",
 		"gitignore": "ignore",
 		"hgignore": "ignore",
 		"npmignore": "ignore",
 		"webmanifest": "json",
 		"kt": "kotlin",
 		"kts": "kotlin",
+		"kum": "kumir",
 		"tex": "latex",
 		"context": "latex",
 		"ly": "lilypond",
@@ -193,6 +212,7 @@
 		"n4jsd": "n4js",
 		"nani": "naniscript",
 		"objc": "objectivec",
+		"qasm": "openqasm",
 		"objectpascal": "pascal",
 		"px": "pcaxis",
 		"pcode": "peoplecode",
@@ -201,12 +221,14 @@
 		"pbfasm": "purebasic",
 		"purs": "purescript",
 		"py": "python",
+		"qs": "qsharp",
 		"rkt": "racket",
 		"rpy": "renpy",
 		"robot": "robotframework",
 		"rb": "ruby",
 		"sh-session": "shell-session",
 		"shellsession": "shell-session",
+		"smlnj": "sml",
 		"sol": "solidity",
 		"sln": "solution-file",
 		"rq": "sparql",
@@ -216,11 +238,17 @@
 		"tsconfig": "typoscript",
 		"uscript": "unrealscript",
 		"uc": "unrealscript",
+		"url": "uri",
 		"vb": "visual-basic",
 		"vba": "visual-basic",
+		"mathematica": "wolfram",
+		"nb": "wolfram",
+		"wl": "wolfram",
 		"xeoracube": "xeora",
 		"yml": "yaml"
 	}/*]*/;
+
+	/* eslint-enable */
 
 	/**
 	 * @typedef LangDataItem
@@ -332,7 +360,7 @@
 	 * @returns {string}
 	 */
 	function getLanguagePath(lang) {
-		return config.languages_path + 'prism-' + lang + (config.use_minified ? '.min' : '') + '.js'
+		return config.languages_path + 'prism-' + lang + (config.use_minified ? '.min' : '') + '.js';
 	}
 
 	/**
@@ -425,7 +453,7 @@
 					languageCallback(lang, 'error');
 				});
 			}
-		};
+		}
 
 		var dependencies = lang_dependencies[lang];
 		if (dependencies && dependencies.length) {
@@ -462,7 +490,13 @@
 		}
 
 		var deps = getDependencies(element);
-		deps.push(language);
+		if (/^diff-./i.test(language)) {
+			// the "diff-xxxx" format is used by the Diff Highlight plugin
+			deps.push('diff');
+			deps.push(language.substr('diff-'.length));
+		} else {
+			deps.push(language);
+		}
 
 		if (!deps.every(isLoaded)) {
 			// the language or some dependencies aren't loaded

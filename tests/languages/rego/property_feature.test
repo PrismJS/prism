@@ -1,0 +1,208 @@
+instances[instance] {
+    server := sites[_].servers[_]
+    instance := {"address": server.hostname, "name": server.name}
+} {
+    container := containers[_]
+    instance := {"address": container.ipaddress, "name": container.name}
+}
+
+apps := [
+    {
+        "name": "web",
+        "servers": ["web-0", "web-1", "web-1000", "web-1001", "web-dev"]
+    },
+    {
+        "name": "mysql",
+        "servers": ["db-0", "db-1000"]
+    },
+    {
+        "name": "mongodb",
+        "servers": ["db-dev"]
+    }
+]
+
+not allow with input as {"user": "charlie", "method": "GET"} with data.roles as {"dev": ["bob"]}
+
+allow with input as {"user": "charlie", "method": "GET"} with data.roles as {"dev": ["charlie"]}
+
+----------------------------------------------------
+
+[
+	"instances",
+	["punctuation", "["],
+	"instance",
+	["punctuation", "]"],
+	["punctuation", "{"],
+
+	"\r\n    server ",
+	["operator", ":="],
+	" sites",
+	["punctuation", "["],
+	["operator", "_"],
+	["punctuation", "]"],
+	["punctuation", "."],
+	"servers",
+	["punctuation", "["],
+	["operator", "_"],
+	["punctuation", "]"],
+
+	"\r\n    instance ",
+	["operator", ":="],
+	["punctuation", "{"],
+	["property", "\"address\""],
+	["operator", ":"],
+	" server",
+	["punctuation", "."],
+	"hostname",
+	["punctuation", ","],
+	["property", "\"name\""],
+	["operator", ":"],
+	" server",
+	["punctuation", "."],
+	"name",
+	["punctuation", "}"],
+
+	["punctuation", "}"],
+	["punctuation", "{"],
+
+	"\r\n    container ",
+	["operator", ":="],
+	" containers",
+	["punctuation", "["],
+	["operator", "_"],
+	["punctuation", "]"],
+
+	"\r\n    instance ",
+	["operator", ":="],
+	["punctuation", "{"],
+	["property", "\"address\""],
+	["operator", ":"],
+	" container",
+	["punctuation", "."],
+	"ipaddress",
+	["punctuation", ","],
+	["property", "\"name\""],
+	["operator", ":"],
+	" container",
+	["punctuation", "."],
+	"name",
+	["punctuation", "}"],
+
+	["punctuation", "}"],
+
+	"\r\n\r\napps ",
+	["operator", ":="],
+	["punctuation", "["],
+
+	["punctuation", "{"],
+
+	["property", "\"name\""],
+	["operator", ":"],
+	["string", "\"web\""],
+	["punctuation", ","],
+
+	["property", "\"servers\""],
+	["operator", ":"],
+	["punctuation", "["],
+	["string", "\"web-0\""],
+	["punctuation", ","],
+	["string", "\"web-1\""],
+	["punctuation", ","],
+	["string", "\"web-1000\""],
+	["punctuation", ","],
+	["string", "\"web-1001\""],
+	["punctuation", ","],
+	["string", "\"web-dev\""],
+	["punctuation", "]"],
+
+	["punctuation", "}"],
+	["punctuation", ","],
+
+	["punctuation", "{"],
+
+	["property", "\"name\""],
+	["operator", ":"],
+	["string", "\"mysql\""],
+	["punctuation", ","],
+
+	["property", "\"servers\""],
+	["operator", ":"],
+	["punctuation", "["],
+	["string", "\"db-0\""],
+	["punctuation", ","],
+	["string", "\"db-1000\""],
+	["punctuation", "]"],
+
+	["punctuation", "}"],
+	["punctuation", ","],
+
+	["punctuation", "{"],
+
+	["property", "\"name\""],
+	["operator", ":"],
+	["string", "\"mongodb\""],
+	["punctuation", ","],
+
+	["property", "\"servers\""],
+	["operator", ":"],
+	["punctuation", "["],
+	["string", "\"db-dev\""],
+	["punctuation", "]"],
+
+	["punctuation", "}"],
+
+	["punctuation", "]"],
+
+	["keyword", "not"],
+	" allow ",
+	["keyword", "with"],
+	" input ",
+	["keyword", "as"],
+	["punctuation", "{"],
+	["property", "\"user\""],
+	["operator", ":"],
+	["string", "\"charlie\""],
+	["punctuation", ","],
+	["property", "\"method\""],
+	["operator", ":"],
+	["string", "\"GET\""],
+	["punctuation", "}"],
+	["keyword", "with"],
+	" data",
+	["punctuation", "."],
+	"roles ",
+	["keyword", "as"],
+	["punctuation", "{"],
+	["property", "\"dev\""],
+	["operator", ":"],
+	["punctuation", "["],
+	["string", "\"bob\""],
+	["punctuation", "]"],
+	["punctuation", "}"],
+
+	"\r\n\r\nallow ",
+	["keyword", "with"],
+	" input ",
+	["keyword", "as"],
+	["punctuation", "{"],
+	["property", "\"user\""],
+	["operator", ":"],
+	["string", "\"charlie\""],
+	["punctuation", ","],
+	["property", "\"method\""],
+	["operator", ":"],
+	["string", "\"GET\""],
+	["punctuation", "}"],
+	["keyword", "with"],
+	" data",
+	["punctuation", "."],
+	"roles ",
+	["keyword", "as"],
+	["punctuation", "{"],
+	["property", "\"dev\""],
+	["operator", ":"],
+	["punctuation", "["],
+	["string", "\"charlie\""],
+	["punctuation", "]"],
+	["punctuation", "}"]
+]

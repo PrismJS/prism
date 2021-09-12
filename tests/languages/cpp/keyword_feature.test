@@ -33,20 +33,24 @@ enum;
 explicit
 export
 extern
+final
 float
 for
 friend
 goto
 if
+import;
 inline
 int
 long
+module;
 mutable
 namespace
 new
 noexcept
 nullptr
 operator
+override
 private
 protected
 public
@@ -125,20 +129,24 @@ uint64_t
 	["keyword", "explicit"],
 	["keyword", "export"],
 	["keyword", "extern"],
+	["keyword", "final"],
 	["keyword", "float"],
 	["keyword", "for"],
 	["keyword", "friend"],
 	["keyword", "goto"],
 	["keyword", "if"],
+	["keyword", "import"], ["punctuation", ";"],
 	["keyword", "inline"],
 	["keyword", "int"],
 	["keyword", "long"],
+	["keyword", "module"], ["punctuation", ";"],
 	["keyword", "mutable"],
 	["keyword", "namespace"],
 	["keyword", "new"],
 	["keyword", "noexcept"],
 	["keyword", "nullptr"],
 	["keyword", "operator"],
+	["keyword", "override"],
 	["keyword", "private"],
 	["keyword", "protected"],
 	["keyword", "public"],

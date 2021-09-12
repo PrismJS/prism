@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-const { assert } = require("chai");
+const { assert } = require('chai');
 const PrismLoader = require('./helper/prism-loader');
 const { languages } = require('./../components.json');
 
@@ -27,7 +27,7 @@ for (const lang in languages) {
 
 		if (languages[lang].aliasTitles) {
 			it('- should have all alias titles registered as alias', function () {
-				var aliases = new Set(toArray(languages[lang].alias));
+				let aliases = new Set(toArray(languages[lang].alias));
 
 				Object.keys(languages[lang].aliasTitles).forEach(id => {
 					if (!aliases.has(id)) {
@@ -40,7 +40,7 @@ for (const lang in languages) {
 
 		it('- should known all aliases', function () {
 
-			var loadedLanguages = new Set(Object.keys(PrismLoader.createInstance(lang).languages));
+			let loadedLanguages = new Set(Object.keys(PrismLoader.createInstance(lang).languages));
 
 			// check that all aliases are defined
 			toArray(languages[lang].alias).forEach(alias => {

@@ -13,47 +13,86 @@ reverse <<< sort
 >> >>= >@>
 ~ ! @
 
+∷
+→ ←
+⇒ ⇐
+∘
+
+∘ × ÷ ≡ ≠ ⫽ ⩓ ⩔ ∧ ∨ ↝ ⨁ ⊹
+
 ----------------------------------------------------
 
 [
-    ["operator", ".."],
-    ["hvariable", "reverse"],
-    ["operator", "<<<"],
-    ["hvariable", "sort"],
-    ["operator", "`foo`"],
-    ["operator", "`Foo.bar`"],
-    ["operator", "+"],
-    ["operator", "-"],
-    ["operator", "*"],
-    ["operator", "/"],
-    ["operator", "^"],
-    ["operator", "^^"],
-    ["operator", "**"],
-    ["operator", "&&"],
-    ["operator", "||"],
-    ["operator", "<"],
-    ["operator", "<="],
-    ["operator", "=="],
-    ["operator", "/="],
-    ["operator", ">="],
-    ["operator", ">"],
-    ["operator", "\\"],
-    ["operator", "|"],
-    ["operator", "++"],
-    ["operator", ":"],
-    ["operator", "!!"],
-    ["operator", "\\\\"],
-    ["operator", "<-"],
-    ["operator", "->"],
-    ["operator", "="],
-    ["operator", "::"],
-    ["operator", "=>"],
-    ["operator", ">>"],
-    ["operator", ">>="],
-    ["operator", ">@>"],
-    ["operator", "~"],
-    ["operator", "!"],
-    ["operator", "@"]
+	["operator", ".."],
+
+	["hvariable", ["reverse"]],
+	["operator", "<<<"],
+	["hvariable", ["sort"]],
+
+	["operator", "`foo`"],
+
+	["operator", "`Foo.bar`"],
+
+	["operator", "+"],
+	["operator", "-"],
+	["operator", "*"],
+	["operator", "/"],
+
+	["operator", "^"],
+	["operator", "^^"],
+	["operator", "**"],
+
+	["operator", "&&"],
+	["operator", "||"],
+
+	["operator", "<"],
+	["operator", "<="],
+	["operator", "=="],
+	["operator", "/="],
+
+	["operator", ">="],
+	["operator", ">"],
+	["operator", "\\"],
+	["operator", "|"],
+
+	["operator", "++"],
+	["operator", ":"],
+	["operator", "!!"],
+
+	["operator", "\\\\"],
+	["operator", "<-"],
+	["operator", "->"],
+
+	["operator", "="],
+	["operator", "::"],
+	["operator", "=>"],
+
+	["operator", ">>"],
+	["operator", ">>="],
+	["operator", ">@>"],
+
+	["operator", "~"],
+	["operator", "!"],
+	["operator", "@"],
+
+	["operator", "∷"],
+	["operator", "→"], ["operator", "←"],
+	["operator", "⇒"], ["operator", "⇐"],
+	["operator", "∘"],
+
+	["operator", "∘"],
+	["operator", "×"],
+	["operator", "÷"],
+	["operator", "≡"],
+	["operator", "≠"],
+	["operator", "⫽"],
+	["operator", "⩓"],
+	["operator", "⩔"],
+	["operator", "∧"],
+	["operator", "∨"],
+	["operator", "↝"],
+	["operator", "⨁"],
+	["operator", "⊹"]
 ]
 
 ----------------------------------------------------

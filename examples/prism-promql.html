@@ -1,0 +1,17 @@
+<h2>Examples</h2>
+<pre><code># These examples are taken from: https://prometheus.io/docs/prometheus/latest/querying/examples/
+
+http_requests_total{job="apiserver", handler="/api/comments"}[5m]
+
+http_requests_total{job=~".*server"}
+
+max_over_time(deriv(rate(distance_covered_total[5s])[30s:5s])[10m:])
+
+sum by (job) (
+  rate(http_requests_total[5m])
+)
+
+sum by (app, proc) (
+  instance_memory_limit_bytes - instance_memory_usage_bytes
+) / 1024 / 1024
+</code></pre>

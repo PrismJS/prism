@@ -1,0 +1,96 @@
+foo()
+foo ()
+foo
+()
+foo . bar ()
+foo_bar()
+foo_bar ( )
+f42()
+_()
+$()
+ä()
+Ý()
+foo({ x: 1 })
+foo({ y: fun() })
+foo(bar())
+
+----------------------------------------------------
+
+[
+	["function", "foo"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["function", "foo "],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["function", "foo\r\n"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	"\r\nfoo ",
+	["punctuation", "."],
+	["function", "bar "],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["function", "foo_bar"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["function", "foo_bar "],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["function", "f42"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["function", "_"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["function", "$"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["function", "ä"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["function", "Ý"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["function", "foo"],
+	["punctuation", "("],
+	["punctuation", "{"],
+	" x",
+	["operator", ":"],
+	["number", "1"],
+	["punctuation", "}"],
+	["punctuation", ")"],
+
+	["function", "foo"],
+	["punctuation", "("],
+	["punctuation", "{"],
+	" y",
+	["operator", ":"],
+	["function", "fun"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "}"],
+	["punctuation", ")"],
+
+	["function", "foo"],
+	["punctuation", "("],
+	["function", "bar"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ")"]
+]
+
+----------------------------------------------------
+
+Checks for functions. Also checks for unicode characters in identifiers.

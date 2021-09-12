@@ -10,27 +10,37 @@ string"
 
 [
 	["string", ["\"This is a string\""]],
-	["string", ["\"This is \nmulti\nline\nstring\""]],
+	["string", ["\"This is \r\nmulti\r\nline\r\nstring\""]],
 	["string", [
 		"\"",
 		["interpolation", [
-			["punctuation", "${"], ["variable", "VAR"], ["punctuation", "}"]]
-		],
+			["punctuation", "${"],
+			["variable", "VAR"],
+			["punctuation", "}"]
+		]],
 		"with",
 		["interpolation", [
-			["punctuation", "${"], ["variable", "BAR"], ["punctuation", "}"]]
-		], "\""]
-	],
+			["punctuation", "${"],
+			["variable", "BAR"],
+			["punctuation", "}"]
+		]],
+		"\""
+	]],
 	["string", [
 		"\"",
 		["interpolation", [
-			["punctuation", "${"], ["variable", "FOO"], ["punctuation", "}"]]
-		],
+			["punctuation", "${"],
+			["variable", "FOO"],
+			["punctuation", "}"]
+		]],
 		" with ",
 		["interpolation", [
-			["punctuation", "${"], ["variable", "BAR"], ["punctuation", "}"]]
-		], "\""]
-	]
+			["punctuation", "${"],
+			["variable", "BAR"],
+			["punctuation", "}"]
+		]],
+		"\""
+	]]
 ]
 
 ----------------------------------------------------

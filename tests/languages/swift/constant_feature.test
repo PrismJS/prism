@@ -7,7 +7,7 @@ kFoo_bar
 ----------------------------------------------------
 
 [
-	["constant", "nil"],
+	["nil", "nil"],
 	["constant", "AB"],
 	["constant", "FOO_BAR"],
 	["constant", "kAb"],

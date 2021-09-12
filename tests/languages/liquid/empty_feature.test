@@ -1,0 +1,78 @@
+{% unless pages == empty %}
+  <!-- This will only print if the page with handle "about" is not empty -->
+  <h1>{{ pages.frontpage.not_empty_title }}</h1>
+  <div>{{ pages.frontpage.content }}</div>
+{% endunless %}
+
+----------------------------------------------------
+
+[
+	["liquid", [
+		["delimiter", "{%"],
+		["keyword", "unless"],
+		" pages ",
+		["operator", "=="],
+		["empty", "empty"],
+		["delimiter", "%}"]
+	]],
+
+	["comment", "<!-- This will only print if the page with handle \"about\" is not empty -->"],
+
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"h1"
+		]],
+		["punctuation", ">"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		" pages",
+		["punctuation", "."],
+		"frontpage",
+		["punctuation", "."],
+		"not_empty_title ",
+		["delimiter", "}}"]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"h1"
+		]],
+		["punctuation", ">"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"div"
+		]],
+		["punctuation", ">"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		" pages",
+		["punctuation", "."],
+		"frontpage",
+		["punctuation", "."],
+		"content ",
+		["delimiter", "}}"]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"div"
+		]],
+		["punctuation", ">"]
+	]],
+
+	["liquid", [
+		["delimiter", "{%"],
+		["keyword", "endunless"],
+		["delimiter", "%}"]
+	]]
+]
+
+----------------------------------------------------
+
+Test for the 'empty' keyword / special thing.

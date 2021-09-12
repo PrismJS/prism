@@ -1,0 +1,438 @@
+[2021-07-21 14:07:48.633] ERR java.lang.RuntimeException: java.lang.RuntimeException: Job failed.
+        at org.netspeak.usage.Cli.run(Cli.java:272)
+        at picocli.CommandLine.executeUserObject(CommandLine.java:1919)
+        at picocli.CommandLine.access$1200(CommandLine.java:145)
+        at picocli.CommandLine$RunLast.executeUserObjectOfLastSubcommandWithSameParent(CommandLine.java:2332)
+        at picocli.CommandLine$RunLast.handle(CommandLine.java:2326)
+        at picocli.CommandLine$RunLast.handle(CommandLine.java:2291)
+        at picocli.CommandLine$AbstractParseResultHandler.execute(CommandLine.java:2159)
+        at picocli.CommandLine.execute(CommandLine.java:2058)
+        at org.netspeak.usage.Cli.main(Cli.java:292)
+        at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+        at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+        at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+        at java.lang.reflect.Method.invoke(Method.java:498)
+        at org.apache.hadoop.util.RunJar.run(RunJar.java:239)
+        at org.apache.hadoop.util.RunJar.main(RunJar.java:153)
+Caused by: java.lang.RuntimeException: Job failed.
+        at org.netspeak.hadoop.Merge.run(Merge.java:124)
+        at org.netspeak.usage.Cli.runHadoop(Cli.java:239)
+        at org.netspeak.usage.Cli.runWithExecption(Cli.java:259)
+        at org.netspeak.usage.Cli.run(Cli.java:270)
+        ... 14 more
+
+----------------------------------------------------
+
+[
+	["punctuation", "["],
+	["date", "2021-07-21"],
+	["time", "14:07:48.633"],
+	["punctuation", "]"],
+	["level", "ERR"],
+	["exception", [
+		["summary", [
+			["exceptions", [
+				["namespace", "java"],
+				["punctuation", "."],
+				["namespace", "lang"],
+				["punctuation", "."],
+				["class-name", "RuntimeException"]
+			]],
+			["punctuation", ":"],
+			["exceptions", [
+				["namespace", "java"],
+				["punctuation", "."],
+				["namespace", "lang"],
+				["punctuation", "."],
+				["class-name", "RuntimeException"]
+			]],
+			["punctuation", ":"],
+			["message", "Job failed."]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"org",
+				["punctuation", "."],
+				"netspeak",
+				["punctuation", "."],
+				"usage",
+				["punctuation", "."]
+			]],
+			["class-name", "Cli"],
+			["punctuation", "."],
+			["function", "run"],
+			["punctuation", "("],
+			["source", [
+				["file", "Cli.java"],
+				["punctuation", ":"],
+				["line-number", "272"]
+			]],
+			["punctuation", ")"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"picocli",
+				["punctuation", "."]
+			]],
+			["class-name", "CommandLine"],
+			["punctuation", "."],
+			["function", "executeUserObject"],
+			["punctuation", "("],
+			["source", [
+				["file", "CommandLine.java"],
+				["punctuation", ":"],
+				["line-number", "1919"]
+			]],
+			["punctuation", ")"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"picocli",
+				["punctuation", "."]
+			]],
+			["class-name", "CommandLine"],
+			["punctuation", "."],
+			["function", "access$1200"],
+			["punctuation", "("],
+			["source", [
+				["file", "CommandLine.java"],
+				["punctuation", ":"],
+				["line-number", "145"]
+			]],
+			["punctuation", ")"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"picocli",
+				["punctuation", "."]
+			]],
+			["class-name", "CommandLine$RunLast"],
+			["punctuation", "."],
+			["function", "executeUserObjectOfLastSubcommandWithSameParent"],
+			["punctuation", "("],
+			["source", [
+				["file", "CommandLine.java"],
+				["punctuation", ":"],
+				["line-number", "2332"]
+			]],
+			["punctuation", ")"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"picocli",
+				["punctuation", "."]
+			]],
+			["class-name", "CommandLine$RunLast"],
+			["punctuation", "."],
+			["function", "handle"],
+			["punctuation", "("],
+			["source", [
+				["file", "CommandLine.java"],
+				["punctuation", ":"],
+				["line-number", "2326"]
+			]],
+			["punctuation", ")"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"picocli",
+				["punctuation", "."]
+			]],
+			["class-name", "CommandLine$RunLast"],
+			["punctuation", "."],
+			["function", "handle"],
+			["punctuation", "("],
+			["source", [
+				["file", "CommandLine.java"],
+				["punctuation", ":"],
+				["line-number", "2291"]
+			]],
+			["punctuation", ")"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"picocli",
+				["punctuation", "."]
+			]],
+			["class-name", "CommandLine$AbstractParseResultHandler"],
+			["punctuation", "."],
+			["function", "execute"],
+			["punctuation", "("],
+			["source", [
+				["file", "CommandLine.java"],
+				["punctuation", ":"],
+				["line-number", "2159"]
+			]],
+			["punctuation", ")"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"picocli",
+				["punctuation", "."]
+			]],
+			["class-name", "CommandLine"],
+			["punctuation", "."],
+			["function", "execute"],
+			["punctuation", "("],
+			["source", [
+				["file", "CommandLine.java"],
+				["punctuation", ":"],
+				["line-number", "2058"]
+			]],
+			["punctuation", ")"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"org",
+				["punctuation", "."],
+				"netspeak",
+				["punctuation", "."],
+				"usage",
+				["punctuation", "."]
+			]],
+			["class-name", "Cli"],
+			["punctuation", "."],
+			["function", "main"],
+			["punctuation", "("],
+			["source", [
+				["file", "Cli.java"],
+				["punctuation", ":"],
+				["line-number", "292"]
+			]],
+			["punctuation", ")"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"sun",
+				["punctuation", "."],
+				"reflect",
+				["punctuation", "."]
+			]],
+			["class-name", "NativeMethodAccessorImpl"],
+			["punctuation", "."],
+			["function", "invoke0"],
+			["punctuation", "("],
+			["source", [
+				["keyword", "Native Method"]
+			]],
+			["punctuation", ")"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"sun",
+				["punctuation", "."],
+				"reflect",
+				["punctuation", "."]
+			]],
+			["class-name", "NativeMethodAccessorImpl"],
+			["punctuation", "."],
+			["function", "invoke"],
+			["punctuation", "("],
+			["source", [
+				["file", "NativeMethodAccessorImpl.java"],
+				["punctuation", ":"],
+				["line-number", "62"]
+			]],
+			["punctuation", ")"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"sun",
+				["punctuation", "."],
+				"reflect",
+				["punctuation", "."]
+			]],
+			["class-name", "DelegatingMethodAccessorImpl"],
+			["punctuation", "."],
+			["function", "invoke"],
+			["punctuation", "("],
+			["source", [
+				["file", "DelegatingMethodAccessorImpl.java"],
+				["punctuation", ":"],
+				["line-number", "43"]
+			]],
+			["punctuation", ")"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"java",
+				["punctuation", "."],
+				"lang",
+				["punctuation", "."],
+				"reflect",
+				["punctuation", "."]
+			]],
+			["class-name", "Method"],
+			["punctuation", "."],
+			["function", "invoke"],
+			["punctuation", "("],
+			["source", [
+				["file", "Method.java"],
+				["punctuation", ":"],
+				["line-number", "498"]
+			]],
+			["punctuation", ")"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"org",
+				["punctuation", "."],
+				"apache",
+				["punctuation", "."],
+				"hadoop",
+				["punctuation", "."],
+				"util",
+				["punctuation", "."]
+			]],
+			["class-name", "RunJar"],
+			["punctuation", "."],
+			["function", "run"],
+			["punctuation", "("],
+			["source", [
+				["file", "RunJar.java"],
+				["punctuation", ":"],
+				["line-number", "239"]
+			]],
+			["punctuation", ")"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"org",
+				["punctuation", "."],
+				"apache",
+				["punctuation", "."],
+				"hadoop",
+				["punctuation", "."],
+				"util",
+				["punctuation", "."]
+			]],
+			["class-name", "RunJar"],
+			["punctuation", "."],
+			["function", "main"],
+			["punctuation", "("],
+			["source", [
+				["file", "RunJar.java"],
+				["punctuation", ":"],
+				["line-number", "153"]
+			]],
+			["punctuation", ")"]
+		]],
+		["summary", [
+			["keyword", "Caused by"],
+			["punctuation", ":"],
+			["exceptions", [
+				["namespace", "java"],
+				["punctuation", "."],
+				["namespace", "lang"],
+				["punctuation", "."],
+				["class-name", "RuntimeException"]
+			]],
+			["punctuation", ":"],
+			["message", "Job failed."]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"org",
+				["punctuation", "."],
+				"netspeak",
+				["punctuation", "."],
+				"hadoop",
+				["punctuation", "."]
+			]],
+			["class-name", "Merge"],
+			["punctuation", "."],
+			["function", "run"],
+			["punctuation", "("],
+			["source", [
+				["file", "Merge.java"],
+				["punctuation", ":"],
+				["line-number", "124"]
+			]],
+			["punctuation", ")"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"org",
+				["punctuation", "."],
+				"netspeak",
+				["punctuation", "."],
+				"usage",
+				["punctuation", "."]
+			]],
+			["class-name", "Cli"],
+			["punctuation", "."],
+			["function", "runHadoop"],
+			["punctuation", "("],
+			["source", [
+				["file", "Cli.java"],
+				["punctuation", ":"],
+				["line-number", "239"]
+			]],
+			["punctuation", ")"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"org",
+				["punctuation", "."],
+				"netspeak",
+				["punctuation", "."],
+				"usage",
+				["punctuation", "."]
+			]],
+			["class-name", "Cli"],
+			["punctuation", "."],
+			["function", "runWithExecption"],
+			["punctuation", "("],
+			["source", [
+				["file", "Cli.java"],
+				["punctuation", ":"],
+				["line-number", "259"]
+			]],
+			["punctuation", ")"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"org",
+				["punctuation", "."],
+				"netspeak",
+				["punctuation", "."],
+				"usage",
+				["punctuation", "."]
+			]],
+			["class-name", "Cli"],
+			["punctuation", "."],
+			["function", "run"],
+			["punctuation", "("],
+			["source", [
+				["file", "Cli.java"],
+				["punctuation", ":"],
+				["line-number", "270"]
+			]],
+			["punctuation", ")"]
+		]],
+		["more", [
+			["punctuation", "..."],
+			["number", "14"],
+			["keyword", "more"]
+		]]
+	]]
+]

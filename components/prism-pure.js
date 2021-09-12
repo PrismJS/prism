@@ -34,7 +34,7 @@
 		},
 		'number': {
 			// The look-behind prevents wrong highlighting of the .. operator
-			pattern: /((?:\.\.)?)(?:\b(?:inf|nan)\b|\b0x[\da-f]+|(?:\b(?:0b)?\d+(?:\.\d)?|\B\.\d)\d*(?:e[+-]?\d+)?L?)/i,
+			pattern: /((?:\.\.)?)(?:\b(?:inf|nan)\b|\b0x[\da-f]+|(?:\b(?:0b)?\d+(?:\.\d+)?|\B\.\d+)(?:e[+-]?\d+)?L?)/i,
 			lookbehind: true
 		},
 		'keyword': /\b(?:ans|break|bt|case|catch|cd|clear|const|def|del|dump|else|end|exit|extern|false|force|help|if|infix[lr]?|interface|let|ls|mem|namespace|nonfix|NULL|of|otherwise|outfix|override|postfix|prefix|private|public|pwd|quit|run|save|show|stats|then|throw|trace|true|type|underride|using|when|with)\b/,
@@ -44,6 +44,7 @@
 			alias: 'builtin'
 		},
 		// Any combination of operator chars can be an operator
+		// eslint-disable-next-line no-misleading-character-class
 		'operator': /(?:[!"#$%&'*+,\-.\/:<=>?@\\^`|~\u00a1-\u00bf\u00d7-\u00f7\u20d0-\u2bff]|\b_+\b)+|\b(?:and|div|mod|not|or)\b/,
 		// FIXME: How can we prevent | and , to be highlighted as operator when they are used alone?
 		'punctuation': /[(){}\[\];,|]/
@@ -54,7 +55,7 @@
 		{ lang: 'c++', alias: 'cpp' },
 		'fortran'
 	];
-	var inlineLanguageRe = /%< *-\*- *{lang}\d* *-\*-[\s\S]+?%>/.source;
+	var inlineLanguageRe = /%< *-\*- *<lang>\d* *-\*-[\s\S]+?%>/.source;
 
 	inlineLanguages.forEach(function (lang) {
 		var alias = lang;
@@ -65,7 +66,7 @@
 		if (Prism.languages[alias]) {
 			var o = {};
 			o['inline-lang-' + alias] = {
-				pattern: RegExp(inlineLanguageRe.replace('{lang}', lang.replace(/([.+*?\/\\(){}\[\]])/g,'\\$1')), 'i'),
+				pattern: RegExp(inlineLanguageRe.replace('<lang>', lang.replace(/([.+*?\/\\(){}\[\]])/g, '\\$1')), 'i'),
 				inside: Prism.util.clone(Prism.languages.pure['inline-lang'].inside)
 			};
 			o['inline-lang-' + alias].inside.rest = Prism.util.clone(Prism.languages[alias]);

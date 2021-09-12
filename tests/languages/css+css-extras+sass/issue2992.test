@@ -1,0 +1,31 @@
+.lucidagrande-normal-black-14px
+  color: var(--black)
+  font-family: var(--font-family-lucidagrande)
+  font-size: var(--font-size-m)
+  --foo: black
+
+----------------------------------------------------
+
+[
+	["selector", ".lucidagrande-normal-black-14px"],
+	["property-line", [
+		["property", "color"],
+		["punctuation", ":"],
+		" var(--black)"
+	]],
+	["property-line", [
+		["property", "font-family"],
+		["punctuation", ":"],
+		" var(--font-family-lucidagrande)"
+	]],
+	["property-line", [
+		["property", "font-size"],
+		["punctuation", ":"],
+		" var(--font-size-m)"
+	]],
+	["property-line", [
+		["property", "--foo"],
+		["punctuation", ":"],
+		" black"
+	]]
+]

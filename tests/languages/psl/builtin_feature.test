@@ -1,0 +1,369 @@
+acos
+add_diary
+annotate
+annotate_get
+asctime
+asin
+atan
+atexit
+ascii_to_ebcdic
+batch_set
+blackout
+cat
+ceil
+chan_exists
+change_state
+close
+code_cvt
+cond_signal
+cond_wait
+console_type
+convert_base
+convert_date
+convert_locale_date
+cos
+cosh
+create
+destroy_lock
+dump_hist
+date
+destroy
+difference
+dget_text
+dcget_text
+ebcdic_to_ascii
+encrypt
+event_archive
+event_catalog_get
+event_check
+event_query
+event_range_manage
+event_range_query
+event_report
+event_schedule
+event_trigger
+event_trigger2
+execute
+exists
+exp
+fabs
+floor
+fmod
+full_discovery
+file
+fopen
+ftell
+fseek
+grep
+get_vars
+getenv
+get
+get_chan_info
+get_ranges
+get_text
+gethostinfo
+getpid
+getpname
+history_get_retention
+history
+index
+int
+is_var
+intersection
+isnumber
+internal
+in_transition
+join
+kill
+length
+lines
+lock
+lock_info
+log
+loge
+log10
+matchline
+msg_check
+msg_get_format
+msg_get_severity
+msg_printf
+msg_sprintf
+ntharg
+num_consoles
+nthargf
+nthline
+nthlinef
+num_bytes
+print
+proc_exists
+process
+popen
+printf
+pconfig
+poplines
+pow
+PslExecute
+PslFunctionCall
+PslFunctionExists
+PslSetOptions
+random
+read
+readln
+refresh_parameters
+remote_check
+remote_close
+remote_event_query
+remote_event_trigger
+remote_file_send
+remote_open
+remove
+replace
+rindex
+sec_check_priv
+sec_store_get
+sec_store_set
+set_alarm_ranges
+set_locale
+share
+sin
+sinh
+sleep
+sopen
+sqrt
+srandom
+subset
+set
+substr
+system
+sprintf
+sort
+subset
+snmp_agent_config
+_snmp_debug
+snmp_agent_stop
+snmp_agent_start
+snmp_h_set
+snmp_h_get_next
+snmp_h_get
+snmp_set
+snmp_walk
+snmp_get_next
+snmp_get
+snmp_config
+snmp_close
+snmp_open
+snmp_trap_receive
+snmp_trap_ignore
+snmp_trap_listen
+snmp_trap_send
+snmp_trap_raise_std_trap
+snmp_trap_register_im
+splitline
+strcasecmp
+str_repeat
+trim
+tail
+tan
+tanh
+time
+tmpnam
+tolower
+toupper
+trace_psl_process
+text_domain
+unlock
+unique
+union
+unset
+va_arg
+va_start
+write
+
+----------------------------------------------------
+
+[
+	["builtin", "acos"],
+	["builtin", "add_diary"],
+	["builtin", "annotate"],
+	["builtin", "annotate_get"],
+	["builtin", "asctime"],
+	["builtin", "asin"],
+	["builtin", "atan"],
+	["builtin", "atexit"],
+	["builtin", "ascii_to_ebcdic"],
+	["builtin", "batch_set"],
+	["builtin", "blackout"],
+	["builtin", "cat"],
+	["builtin", "ceil"],
+	["builtin", "chan_exists"],
+	["builtin", "change_state"],
+	["builtin", "close"],
+	["builtin", "code_cvt"],
+	["builtin", "cond_signal"],
+	["builtin", "cond_wait"],
+	["builtin", "console_type"],
+	["builtin", "convert_base"],
+	["builtin", "convert_date"],
+	["builtin", "convert_locale_date"],
+	["builtin", "cos"],
+	["builtin", "cosh"],
+	["builtin", "create"],
+	["builtin", "destroy_lock"],
+	["builtin", "dump_hist"],
+	["builtin", "date"],
+	["builtin", "destroy"],
+	["builtin", "difference"],
+	["builtin", "dget_text"],
+	["builtin", "dcget_text"],
+	["builtin", "ebcdic_to_ascii"],
+	["builtin", "encrypt"],
+	["builtin", "event_archive"],
+	["builtin", "event_catalog_get"],
+	["builtin", "event_check"],
+	["builtin", "event_query"],
+	["builtin", "event_range_manage"],
+	["builtin", "event_range_query"],
+	["builtin", "event_report"],
+	["builtin", "event_schedule"],
+	["builtin", "event_trigger"],
+	["builtin", "event_trigger2"],
+	["builtin", "execute"],
+	["builtin", "exists"],
+	["builtin", "exp"],
+	["builtin", "fabs"],
+	["builtin", "floor"],
+	["builtin", "fmod"],
+	["builtin", "full_discovery"],
+	["builtin", "file"],
+	["builtin", "fopen"],
+	["builtin", "ftell"],
+	["builtin", "fseek"],
+	["builtin", "grep"],
+	["builtin", "get_vars"],
+	["builtin", "getenv"],
+	["builtin", "get"],
+	["builtin", "get_chan_info"],
+	["builtin", "get_ranges"],
+	["builtin", "get_text"],
+	["builtin", "gethostinfo"],
+	["builtin", "getpid"],
+	["builtin", "getpname"],
+	["builtin", "history_get_retention"],
+	["builtin", "history"],
+	["builtin", "index"],
+	["builtin", "int"],
+	["builtin", "is_var"],
+	["builtin", "intersection"],
+	["builtin", "isnumber"],
+	["builtin", "internal"],
+	["builtin", "in_transition"],
+	["builtin", "join"],
+	["builtin", "kill"],
+	["builtin", "length"],
+	["builtin", "lines"],
+	["builtin", "lock"],
+	["builtin", "lock_info"],
+	["builtin", "log"],
+	["builtin", "loge"],
+	["builtin", "log10"],
+	["builtin", "matchline"],
+	["builtin", "msg_check"],
+	["builtin", "msg_get_format"],
+	["builtin", "msg_get_severity"],
+	["builtin", "msg_printf"],
+	["builtin", "msg_sprintf"],
+	["builtin", "ntharg"],
+	["builtin", "num_consoles"],
+	["builtin", "nthargf"],
+	["builtin", "nthline"],
+	["builtin", "nthlinef"],
+	["builtin", "num_bytes"],
+	["builtin", "print"],
+	["builtin", "proc_exists"],
+	["builtin", "process"],
+	["builtin", "popen"],
+	["builtin", "printf"],
+	["builtin", "pconfig"],
+	["builtin", "poplines"],
+	["builtin", "pow"],
+	["builtin", "PslExecute"],
+	["builtin", "PslFunctionCall"],
+	["builtin", "PslFunctionExists"],
+	["builtin", "PslSetOptions"],
+	["builtin", "random"],
+	["builtin", "read"],
+	["builtin", "readln"],
+	["builtin", "refresh_parameters"],
+	["builtin", "remote_check"],
+	["builtin", "remote_close"],
+	["builtin", "remote_event_query"],
+	["builtin", "remote_event_trigger"],
+	["builtin", "remote_file_send"],
+	["builtin", "remote_open"],
+	["builtin", "remove"],
+	["builtin", "replace"],
+	["builtin", "rindex"],
+	["builtin", "sec_check_priv"],
+	["builtin", "sec_store_get"],
+	["builtin", "sec_store_set"],
+	["builtin", "set_alarm_ranges"],
+	["builtin", "set_locale"],
+	["builtin", "share"],
+	["builtin", "sin"],
+	["builtin", "sinh"],
+	["builtin", "sleep"],
+	["builtin", "sopen"],
+	["builtin", "sqrt"],
+	["builtin", "srandom"],
+	["builtin", "subset"],
+	["builtin", "set"],
+	["builtin", "substr"],
+	["builtin", "system"],
+	["builtin", "sprintf"],
+	["builtin", "sort"],
+	["builtin", "subset"],
+	["builtin", "snmp_agent_config"],
+	["builtin", "_snmp_debug"],
+	["builtin", "snmp_agent_stop"],
+	["builtin", "snmp_agent_start"],
+	["builtin", "snmp_h_set"],
+	["builtin", "snmp_h_get_next"],
+	["builtin", "snmp_h_get"],
+	["builtin", "snmp_set"],
+	["builtin", "snmp_walk"],
+	["builtin", "snmp_get_next"],
+	["builtin", "snmp_get"],
+	["builtin", "snmp_config"],
+	["builtin", "snmp_close"],
+	["builtin", "snmp_open"],
+	["builtin", "snmp_trap_receive"],
+	["builtin", "snmp_trap_ignore"],
+	["builtin", "snmp_trap_listen"],
+	["builtin", "snmp_trap_send"],
+	["builtin", "snmp_trap_raise_std_trap"],
+	["builtin", "snmp_trap_register_im"],
+	["builtin", "splitline"],
+	["builtin", "strcasecmp"],
+	["builtin", "str_repeat"],
+	["builtin", "trim"],
+	["builtin", "tail"],
+	["builtin", "tan"],
+	["builtin", "tanh"],
+	["builtin", "time"],
+	["builtin", "tmpnam"],
+	["builtin", "tolower"],
+	["builtin", "toupper"],
+	["builtin", "trace_psl_process"],
+	["builtin", "text_domain"],
+	["builtin", "unlock"],
+	["builtin", "unique"],
+	["builtin", "union"],
+	["builtin", "unset"],
+	["builtin", "va_arg"],
+	["builtin", "va_start"],
+	["builtin", "write"]
+]
+
+----------------------------------------------------
+
+Test for PSL built-in functions

@@ -1,0 +1,105 @@
+The disk {1} contains {0,choice,0#no files|1#one file|1<{0,number,integer} files}
+
+{3, choice, -1#is negative| 0#is zero or fraction | 1#is one |1.0<is 1+ |2#is two |2<is more than 2.}
+
+----------------------------------------------------
+
+[
+	"The disk ",
+	["argument", [
+		["argument-delimiter", "{"],
+		["content", [
+			["argument-name", "1"]
+		]],
+		["argument-delimiter", "}"]
+	]],
+	" contains ",
+	["argument", [
+		["argument-delimiter", "{"],
+		["content", [
+			["argument-name", "0"],
+			["punctuation", ","],
+			["keyword", "choice"],
+			["punctuation", ","],
+			["choice-style", [
+				["range", [
+					["number", "0"],
+					["operator", "#"]
+				]],
+				"no files",
+				["punctuation", "|"],
+				["range", [
+					["number", "1"],
+					["operator", "#"]
+				]],
+				"one file",
+				["punctuation", "|"],
+				["range", [
+					["number", "1"],
+					["operator", "<"]
+				]],
+				["argument", [
+					["argument-delimiter", "{"],
+					["content", [
+						["argument-name", "0"],
+						["punctuation", ","],
+						["arg-type", "number"],
+						["punctuation", ","],
+						["arg-style", "integer"]
+					]],
+					["argument-delimiter", "}"]
+				]],
+				" files"
+			]]
+		]],
+		["argument-delimiter", "}"]
+	]],
+
+	["argument", [
+		["argument-delimiter", "{"],
+		["content", [
+			["argument-name", "3"],
+			["punctuation", ","],
+			["keyword", "choice"],
+			["punctuation", ","],
+			["choice-style", [
+				["range", [
+					["number", "-1"],
+					["operator", "#"]
+				]],
+				"is negative",
+				["punctuation", "|"],
+				["range", [
+					["number", "0"],
+					["operator", "#"]
+				]],
+				"is zero or fraction ",
+				["punctuation", "|"],
+				["range", [
+					["number", "1"],
+					["operator", "#"]
+				]],
+				"is one ",
+				["punctuation", "|"],
+				["range", [
+					["number", "1.0"],
+					["operator", "<"]
+				]],
+				"is 1+ ",
+				["punctuation", "|"],
+				["range", [
+					["number", "2"],
+					["operator", "#"]
+				]],
+				"is two ",
+				["punctuation", "|"],
+				["range", [
+					["number", "2"],
+					["operator", "<"]
+				]],
+				"is more than 2."
+			]]
+		]],
+		["argument-delimiter", "}"]
+	]]
+]
