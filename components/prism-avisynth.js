@@ -86,8 +86,9 @@
 	Prism.languages.avisynth = {
 		'comment': [
 			{
-				// Matches [* *] nestable block comments, but can not handle nested comments correctly (recursion)
-				pattern: /(^|[^\\])\[\*[\s\S]*?(?:\*\]|$)/,
+				// Matches [* *] nestable block comments, but only supports 1 level of nested comments
+				// /\[\*(?:[^\[*]|\[(?!\*)|\*(?!\])|<self>)*\*\]/
+				pattern: /(^|[^\\])\[\*(?:[^\[*]|\[(?!\*)|\*(?!\])|\[\*(?:[^\[*]|\[(?!\*)|\*(?!\]))*\*\])*\*\]/,
 				lookbehind: true,
 				greedy: true
 			},
@@ -109,16 +110,14 @@
 		'argument': {
 			pattern: re(/\b(?:<<0>>)\s+("?)\w+\1/.source, [types], 'i'),
 			inside: {
-				'keyword': {
-					pattern: re(/\b(?:<<0>>)\b/.source, [types], 'i')
-				}
+				'keyword': /^\w+/
 			}
 		},
 
 		'string': [
 			{
 				// triple double-quoted
-				pattern: /"""[\s\S]*?"""/i,
+				pattern: /"""[\s\S]*?"""/,
 				greedy: true,
 			},
 			{
@@ -127,7 +126,8 @@
 				greedy: true,
 				inside: {
 					'constant': {
-						pattern: re(/<<0>>/.source, [predefined]) // These *are* case-sensitive!
+						// These *are* case-sensitive!
+						pattern: /\b(?:DEFAULT_MT_MODE|(?:SCRIPT|MAINSCRIPT|PROGRAM)DIR|(?:USER|MACHINE)_(?:PLUS|CLASSIC)_PLUGINS)\b/
 					}
 				}
 			}
@@ -143,7 +143,7 @@
 			lookbehind: true
 		},
 
-		'constant': re(/\b<<0>>\b/.source, [constants]),
+		'constant': /\bMT_(?:NICE_FILTER|MULTI_INSTANCE|SERIALIZED|SPECIAL_MT)\b/,
 
 		'builtin-function': [
 			{
@@ -172,7 +172,7 @@
 
 		// Matches a \ as the first or last character on a line
 		'line-continuation': {
-			pattern: /(^\s*)\\|\\(?=\s*$)/m,
+			pattern: /(^[ \t]*)\\|\\(?=[ \t]*$)/m,
 			lookbehind: true,
 			alias: 'punctuation'
 		},
@@ -181,7 +181,7 @@
 
 		'number': /\B\$(?:[\da-f]{6}|[\da-f]{8})\b|(?:(?:\b|\B-)\d+(?:\.\d*)?\b|\B\.\d+\b)/i,
 
-		'punctuation': /[{};(),.]/
+		'punctuation': /[{}\[\]();,.]/
 	};
 }(Prism));
 
