@@ -13,8 +13,6 @@
 
 	var types = /clip|int|float|string|bool|val/.source;
 	var keywords = /function|global|return|try|catch|if|else|while|for|__END__/.source; // includes avs+ native gscript constructs
-	var predefined = /DEFAULT_MT_MODE|(?:SCRIPT|MAINSCRIPT|PROGRAM)DIR|(?:USER|MACHINE)_(?:PLUS|CLASSIC)_PLUGINS/.source;
-	var constants = /MT_(?:NICE_FILTER|MULTI_INSTANCE|SERIALIZED|SPECIAL_MT)/.source;
 	var internals = [
 		// bools
 		/is(?:bool|clip|float|int|string)|defined|(?:var|(?:internal)?function)?exists?/.source,
@@ -114,6 +112,19 @@
 			}
 		},
 
+		// Optional argument assignment
+		'argument-label': {
+			pattern: /([,(][\s\\]*)\w+\s*=(?!=)/,
+			lookbehind: true,
+			inside: {
+				'argument-name': {
+					pattern: /^\w+/,
+					alias: 'punctuation'
+				},
+				'punctuation': /=$/
+			}
+		},
+
 		'string': [
 			{
 				// triple double-quoted
@@ -145,23 +156,16 @@
 
 		'constant': /\bMT_(?:NICE_FILTER|MULTI_INSTANCE|SERIALIZED|SPECIAL_MT)\b/,
 
-		'builtin-function': [
-			{
-				// AviSynth's internal clip properties.
-				pattern: re(/(\b\.)(?:<<0>>)\b(?=[^\.])/.source, [properties], 'i'),
-				lookbehind: true,
-				alias: 'function'
-			},
-			{
-				// AviSynth's internal functions and filters, including properties used as functions.
-				pattern: re(/\b(?:<<0>>)(?=\s*\()/.source, [allinternals], 'i'),
-				alias: 'function'
-			}
-		],
+		// AviSynth's internal functions, filters, and properties
+		'builtin-function': {
+			pattern: re(/\b(?:<<0>>)\b(?!\s*=)/.source, [allinternals], 'i'),
+			alias: 'function'
+		},
 
-		// External filters, and user-defined filters.
+		// External/user-defined filters, and type casts.
 		'function': {
-			pattern: /\b[a-z_]\w*(?=\s*\()/i,
+			pattern: /\b[a-z_]\w*(?=\s*\()|(\.)[a-z_]\w*\b/i,
+			lookbehind: true,
 			inside: {
 				'keyword': {
 					// type casts
@@ -183,6 +187,7 @@
 
 		'punctuation': /[{}\[\]();,.]/
 	};
-}(Prism));
 
-Prism.languages.avs = Prism.languages.avisynth;
+	Prism.languages.avs = Prism.languages.avisynth;
+
+}(Prism));

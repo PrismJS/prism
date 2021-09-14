@@ -50,7 +50,7 @@ c.audiobits audiobits(
 c.isaudiofloat isaudiofloat(
 c.isaudioint isaudioint(
 
-.audiobits
+xyzisaudiointxyz
 
 ----------------------------------------------------
 
@@ -349,11 +349,11 @@ c.isaudioint isaudioint(
 	["builtin-function", "isaudioint"],
 	["punctuation", "("],
 
-	["punctuation", "."], "audiobits"
+	"\r\n\r\nxyzisaudiointxyz"
 ]
 
 ----------------------------------------------------
 
-Internal clip properties can appear after a . character following an identifier.
-Internal clip properties can also be used like functions.
-The . character before a clip property must immediately proceed an identifier.
+All internal functions, filters, and properties can be used in the following formats:
+intFunc == intFunc() == last.intFunc == last.intFunc()
+They must not appear within other words.

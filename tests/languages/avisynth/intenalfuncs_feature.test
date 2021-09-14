@@ -1,393 +1,391 @@
-isbool (
-isclip (
-isfloat (
-isint (
-isstring (
-exist (
-defined (
-functionexists (
-internalfunctionexists (
-varexist (
-
-apply (
-eval (
-import (
-select (
-default (
-assert (
-nop (
-undefined (
-
-setmemorymax (
-setcachemode (
-setmaxcpu (
-setworkingdir (
-setplanarlegacyalignment (
-opt_allowfloataudio (
-opt_usewaveextensible (
-opt_dwchannelmask (
-opt_avipadscanlines (
-opt_vdubplanarhack (
-opt_enable_v210 (
-opt_enable_y3_10_10 (
-opt_enable_y3_10_16 (
-opt_enable_b64a (
-opt_enable_planartopackedrgb (
-
-value (
-hexvalue (
-hex (
- 
-max (
-min (
-muldiv (
-floor (
-ceil (
-round (
-fmod (
-pi (
-exp (
-log (
-log10 (
-pow (
-sqrt (
-abs (
-sign (
-frac (
-rand (
-spline (
-continuednumerator (
-continueddenominator (
-
-sin (
-cos (
-tan (
-asin (
-acos (
-atan (
-atan2 (
-sinh (
-cosh (
-tanh (
- 
-bitand (
-bitnot (
-bitor (
-bitxor (
-bitlshift (
-bitshl (
-bitsal (
-bitrshifta (
-bitrshifts (
-bitsar (
-bitrshiftl (
-bitrshiftu (
-bitshr (
-bitlrotate (
-bitrol (
-bitrrotatel (
-bitror (
-bittest (
-bittst (
-bitset (
-bitsetcount (
-bitclear (
-bitclr (
-bitchange (
-bitchg (
- 
-averageluma (
-averagechromau (
-averagechromav (
-averageb (
-averageg (
-averager (
-lumadifference (
-chromaudifference (
-chromavdifference (
-rgbdifference (
-bdifference (
-gdifference (
-rdifference (
-ydifferencefromprevious (
-udifferencefromprevious (
-vdifferencefromprevious (
-rgbdifferencefromprevious (
-bdifferencefromprevious (
-gdifferencefromprevious (
-rdifferencefromprevious (
-ydifferencetonext (
-udifferencetonext (
-vdifferencetonext (
-rgbdifferencetonext (
-rdifferencetonext (
-gdifferencetonext (
-bdifferencetonext (
-yplanemedian (
-uplanemedian (
-vplanemedian (
-bplanemedian (
-gplanemedian (
-rplanemedian (
-yplanemin (
-uplanemin (
-vplanemin (
-bplanemin (
-gplanemin (
-rplanemin (
-yplanemax (
-uplanemax (
-vplanemax (
-bplanemax (
-gplanemax (
-rplanemax (
-yplaneminmaxdifference (
-uplaneminmaxdifference (
-vplaneminmaxdifference (
-bplaneminmaxdifference (
-gplaneminmaxdifference (
-rplaneminmaxdifference (
-
-scriptname (
-scriptnameutf8 (
-scriptfile (
-scriptfileutf8 (
-scriptdir (
-scriptdirutf8 (
-setlogparams (
-logmsg (
-getprocessinfo (
-
-lcase (
-ucase (
-strtoutf8 (
-strfromutf8 (
-strlen (
-revstr (
-leftstr (
-rightstr (
-midstr (
-findstr (
-replacestr (
-format (
-fillstr (
-strcmp (
-strcmpi (
-trimleft (
-trimright (
-trimall (
-chr (
-ord (
-time (
-
-versionnumber (
-versionstring (
-isversionorgreater (
-
-buildpixeltype (
-colorspacenametopixeltype (
-
 isbool
-isbool.(
+isclip
+isfloat
+isint
+isstring
+exist
+defined
+functionexists
+internalfunctionexists
+varexist
+
+apply
+eval
+import
+select
+default
+assert
+nop
+undefined
+
+setmemorymax
+setcachemode
+setmaxcpu
+setworkingdir
+setplanarlegacyalignment
+opt_allowfloataudio
+opt_usewaveextensible
+opt_dwchannelmask
+opt_avipadscanlines
+opt_vdubplanarhack
+opt_enable_v210
+opt_enable_y3_10_10
+opt_enable_y3_10_16
+opt_enable_b64a
+opt_enable_planartopackedrgb
+
+value
+hexvalue
+hex
+
+max
+min
+muldiv
+floor
+ceil
+round
+fmod
+pi
+exp
+log
+log10
+pow
+sqrt
+abs
+sign
+frac
+rand
+spline
+continuednumerator
+continueddenominator
+
+sin
+cos
+tan
+asin
+acos
+atan
+atan2
+sinh
+cosh
+tanh
+
+bitand
+bitnot
+bitor
+bitxor
+bitlshift
+bitshl
+bitsal
+bitrshifta
+bitrshifts
+bitsar
+bitrshiftl
+bitrshiftu
+bitshr
+bitlrotate
+bitrol
+bitrrotatel
+bitror
+bittest
+bittst
+bitset
+bitsetcount
+bitclear
+bitclr
+bitchange
+bitchg
+
+averageluma
+averagechromau
+averagechromav
+averageb
+averageg
+averager
+lumadifference
+chromaudifference
+chromavdifference
+rgbdifference
+bdifference
+gdifference
+rdifference
+ydifferencefromprevious
+udifferencefromprevious
+vdifferencefromprevious
+rgbdifferencefromprevious
+bdifferencefromprevious
+gdifferencefromprevious
+rdifferencefromprevious
+ydifferencetonext
+udifferencetonext
+vdifferencetonext
+rgbdifferencetonext
+rdifferencetonext
+gdifferencetonext
+bdifferencetonext
+yplanemedian
+uplanemedian
+vplanemedian
+bplanemedian
+gplanemedian
+rplanemedian
+yplanemin
+uplanemin
+vplanemin
+bplanemin
+gplanemin
+rplanemin
+yplanemax
+uplanemax
+vplanemax
+bplanemax
+gplanemax
+rplanemax
+yplaneminmaxdifference
+uplaneminmaxdifference
+vplaneminmaxdifference
+bplaneminmaxdifference
+gplaneminmaxdifference
+rplaneminmaxdifference
+
+scriptname
+scriptnameutf8
+scriptfile
+scriptfileutf8
+scriptdir
+scriptdirutf8
+setlogparams
+logmsg
+getprocessinfo
+
+lcase
+ucase
+strtoutf8
+strfromutf8
+strlen
+revstr
+leftstr
+rightstr
+midstr
+findstr
+replacestr
+format
+fillstr
+strcmp
+strcmpi
+trimleft
+trimright
+trimall
+chr
+ord
+time
+
+versionnumber
+versionstring
+isversionorgreater
+
+buildpixeltype
+colorspacenametopixeltype
+
 kevincosner
 
 ----------------------------------------------------
 
 [
-	["builtin-function", "isbool"], ["punctuation", "("],
-	["builtin-function", "isclip"], ["punctuation", "("],
-	["builtin-function", "isfloat"], ["punctuation", "("],
-	["builtin-function", "isint"], ["punctuation", "("],
-	["builtin-function", "isstring"], ["punctuation", "("],
-	["builtin-function", "exist"], ["punctuation", "("],
-	["builtin-function", "defined"], ["punctuation", "("],
-	["builtin-function", "functionexists"], ["punctuation", "("],
-	["builtin-function", "internalfunctionexists"], ["punctuation", "("],
-	["builtin-function", "varexist"], ["punctuation", "("],
+	["builtin-function", "isbool"],
+	["builtin-function", "isclip"],
+	["builtin-function", "isfloat"],
+	["builtin-function", "isint"],
+	["builtin-function", "isstring"],
+	["builtin-function", "exist"],
+	["builtin-function", "defined"],
+	["builtin-function", "functionexists"],
+	["builtin-function", "internalfunctionexists"],
+	["builtin-function", "varexist"],
 
-	["builtin-function", "apply"], ["punctuation", "("],
-	["builtin-function", "eval"], ["punctuation", "("],
-	["builtin-function", "import"], ["punctuation", "("],
-	["builtin-function", "select"], ["punctuation", "("],
-	["builtin-function", "default"], ["punctuation", "("],
-	["builtin-function", "assert"], ["punctuation", "("],
-	["builtin-function", "nop"], ["punctuation", "("],
-	["builtin-function", "undefined"], ["punctuation", "("],
+	["builtin-function", "apply"],
+	["builtin-function", "eval"],
+	["builtin-function", "import"],
+	["builtin-function", "select"],
+	["builtin-function", "default"],
+	["builtin-function", "assert"],
+	["builtin-function", "nop"],
+	["builtin-function", "undefined"],
 
-	["builtin-function", "setmemorymax"], ["punctuation", "("],
-	["builtin-function", "setcachemode"], ["punctuation", "("],
-	["builtin-function", "setmaxcpu"], ["punctuation", "("],
-	["builtin-function", "setworkingdir"], ["punctuation", "("],
-	["builtin-function", "setplanarlegacyalignment"], ["punctuation", "("],
-	["builtin-function", "opt_allowfloataudio"], ["punctuation", "("],
-	["builtin-function", "opt_usewaveextensible"], ["punctuation", "("],
-	["builtin-function", "opt_dwchannelmask"], ["punctuation", "("],
-	["builtin-function", "opt_avipadscanlines"], ["punctuation", "("],
-	["builtin-function", "opt_vdubplanarhack"], ["punctuation", "("],
-	["builtin-function", "opt_enable_v210"], ["punctuation", "("],
-	["builtin-function", "opt_enable_y3_10_10"], ["punctuation", "("],
-	["builtin-function", "opt_enable_y3_10_16"], ["punctuation", "("],
-	["builtin-function", "opt_enable_b64a"], ["punctuation", "("],
-	["builtin-function", "opt_enable_planartopackedrgb"], ["punctuation", "("],
+	["builtin-function", "setmemorymax"],
+	["builtin-function", "setcachemode"],
+	["builtin-function", "setmaxcpu"],
+	["builtin-function", "setworkingdir"],
+	["builtin-function", "setplanarlegacyalignment"],
+	["builtin-function", "opt_allowfloataudio"],
+	["builtin-function", "opt_usewaveextensible"],
+	["builtin-function", "opt_dwchannelmask"],
+	["builtin-function", "opt_avipadscanlines"],
+	["builtin-function", "opt_vdubplanarhack"],
+	["builtin-function", "opt_enable_v210"],
+	["builtin-function", "opt_enable_y3_10_10"],
+	["builtin-function", "opt_enable_y3_10_16"],
+	["builtin-function", "opt_enable_b64a"],
+	["builtin-function", "opt_enable_planartopackedrgb"],
 
-	["builtin-function", "value"], ["punctuation", "("],
-	["builtin-function", "hexvalue"], ["punctuation", "("],
-	["builtin-function", "hex"], ["punctuation", "("],
+	["builtin-function", "value"],
+	["builtin-function", "hexvalue"],
+	["builtin-function", "hex"],
 
-	["builtin-function", "max"], ["punctuation", "("],
-	["builtin-function", "min"], ["punctuation", "("],
-	["builtin-function", "muldiv"], ["punctuation", "("],
-	["builtin-function", "floor"], ["punctuation", "("],
-	["builtin-function", "ceil"], ["punctuation", "("],
-	["builtin-function", "round"], ["punctuation", "("],
-	["builtin-function", "fmod"], ["punctuation", "("],
-	["builtin-function", "pi"], ["punctuation", "("],
-	["builtin-function", "exp"], ["punctuation", "("],
-	["builtin-function", "log"], ["punctuation", "("],
-	["builtin-function", "log10"], ["punctuation", "("],
-	["builtin-function", "pow"], ["punctuation", "("],
-	["builtin-function", "sqrt"], ["punctuation", "("],
-	["builtin-function", "abs"], ["punctuation", "("],
-	["builtin-function", "sign"], ["punctuation", "("],
-	["builtin-function", "frac"], ["punctuation", "("],
-	["builtin-function", "rand"], ["punctuation", "("],
-	["builtin-function", "spline"], ["punctuation", "("],
-	["builtin-function", "continuednumerator"], ["punctuation", "("],
-	["builtin-function", "continueddenominator"], ["punctuation", "("],
+	["builtin-function", "max"],
+	["builtin-function", "min"],
+	["builtin-function", "muldiv"],
+	["builtin-function", "floor"],
+	["builtin-function", "ceil"],
+	["builtin-function", "round"],
+	["builtin-function", "fmod"],
+	["builtin-function", "pi"],
+	["builtin-function", "exp"],
+	["builtin-function", "log"],
+	["builtin-function", "log10"],
+	["builtin-function", "pow"],
+	["builtin-function", "sqrt"],
+	["builtin-function", "abs"],
+	["builtin-function", "sign"],
+	["builtin-function", "frac"],
+	["builtin-function", "rand"],
+	["builtin-function", "spline"],
+	["builtin-function", "continuednumerator"],
+	["builtin-function", "continueddenominator"],
 
-	["builtin-function", "sin"], ["punctuation", "("],
-	["builtin-function", "cos"], ["punctuation", "("],
-	["builtin-function", "tan"], ["punctuation", "("],
-	["builtin-function", "asin"], ["punctuation", "("],
-	["builtin-function", "acos"], ["punctuation", "("],
-	["builtin-function", "atan"], ["punctuation", "("],
-	["builtin-function", "atan2"], ["punctuation", "("],
-	["builtin-function", "sinh"], ["punctuation", "("],
-	["builtin-function", "cosh"], ["punctuation", "("],
-	["builtin-function", "tanh"], ["punctuation", "("],
+	["builtin-function", "sin"],
+	["builtin-function", "cos"],
+	["builtin-function", "tan"],
+	["builtin-function", "asin"],
+	["builtin-function", "acos"],
+	["builtin-function", "atan"],
+	["builtin-function", "atan2"],
+	["builtin-function", "sinh"],
+	["builtin-function", "cosh"],
+	["builtin-function", "tanh"],
 
-	["builtin-function", "bitand"], ["punctuation", "("],
-	["builtin-function", "bitnot"], ["punctuation", "("],
-	["builtin-function", "bitor"], ["punctuation", "("],
-	["builtin-function", "bitxor"], ["punctuation", "("],
-	["builtin-function", "bitlshift"], ["punctuation", "("],
-	["builtin-function", "bitshl"], ["punctuation", "("],
-	["builtin-function", "bitsal"], ["punctuation", "("],
-	["builtin-function", "bitrshifta"], ["punctuation", "("],
-	["builtin-function", "bitrshifts"], ["punctuation", "("],
-	["builtin-function", "bitsar"], ["punctuation", "("],
-	["builtin-function", "bitrshiftl"], ["punctuation", "("],
-	["builtin-function", "bitrshiftu"], ["punctuation", "("],
-	["builtin-function", "bitshr"], ["punctuation", "("],
-	["builtin-function", "bitlrotate"], ["punctuation", "("],
-	["builtin-function", "bitrol"], ["punctuation", "("],
-	["builtin-function", "bitrrotatel"], ["punctuation", "("],
-	["builtin-function", "bitror"], ["punctuation", "("],
-	["builtin-function", "bittest"], ["punctuation", "("],
-	["builtin-function", "bittst"], ["punctuation", "("],
-	["builtin-function", "bitset"], ["punctuation", "("],
-	["builtin-function", "bitsetcount"], ["punctuation", "("],
-	["builtin-function", "bitclear"], ["punctuation", "("],
-	["builtin-function", "bitclr"], ["punctuation", "("],
-	["builtin-function", "bitchange"], ["punctuation", "("],
-	["builtin-function", "bitchg"], ["punctuation", "("],
+	["builtin-function", "bitand"],
+	["builtin-function", "bitnot"],
+	["builtin-function", "bitor"],
+	["builtin-function", "bitxor"],
+	["builtin-function", "bitlshift"],
+	["builtin-function", "bitshl"],
+	["builtin-function", "bitsal"],
+	["builtin-function", "bitrshifta"],
+	["builtin-function", "bitrshifts"],
+	["builtin-function", "bitsar"],
+	["builtin-function", "bitrshiftl"],
+	["builtin-function", "bitrshiftu"],
+	["builtin-function", "bitshr"],
+	["builtin-function", "bitlrotate"],
+	["builtin-function", "bitrol"],
+	["builtin-function", "bitrrotatel"],
+	["builtin-function", "bitror"],
+	["builtin-function", "bittest"],
+	["builtin-function", "bittst"],
+	["builtin-function", "bitset"],
+	["builtin-function", "bitsetcount"],
+	["builtin-function", "bitclear"],
+	["builtin-function", "bitclr"],
+	["builtin-function", "bitchange"],
+	["builtin-function", "bitchg"],
 
-	["builtin-function", "averageluma"], ["punctuation", "("],
-	["builtin-function", "averagechromau"], ["punctuation", "("],
-	["builtin-function", "averagechromav"], ["punctuation", "("],
-	["builtin-function", "averageb"], ["punctuation", "("],
-	["builtin-function", "averageg"], ["punctuation", "("],
-	["builtin-function", "averager"], ["punctuation", "("],
-	["builtin-function", "lumadifference"], ["punctuation", "("],
-	["builtin-function", "chromaudifference"], ["punctuation", "("],
-	["builtin-function", "chromavdifference"], ["punctuation", "("],
-	["builtin-function", "rgbdifference"], ["punctuation", "("],
-	["builtin-function", "bdifference"], ["punctuation", "("],
-	["builtin-function", "gdifference"], ["punctuation", "("],
-	["builtin-function", "rdifference"], ["punctuation", "("],
-	["builtin-function", "ydifferencefromprevious"], ["punctuation", "("],
-	["builtin-function", "udifferencefromprevious"], ["punctuation", "("],
-	["builtin-function", "vdifferencefromprevious"], ["punctuation", "("],
-	["builtin-function", "rgbdifferencefromprevious"], ["punctuation", "("],
-	["builtin-function", "bdifferencefromprevious"], ["punctuation", "("],
-	["builtin-function", "gdifferencefromprevious"], ["punctuation", "("],
-	["builtin-function", "rdifferencefromprevious"], ["punctuation", "("],
-	["builtin-function", "ydifferencetonext"], ["punctuation", "("],
-	["builtin-function", "udifferencetonext"], ["punctuation", "("],
-	["builtin-function", "vdifferencetonext"], ["punctuation", "("],
-	["builtin-function", "rgbdifferencetonext"], ["punctuation", "("],
-	["builtin-function", "rdifferencetonext"], ["punctuation", "("],
-	["builtin-function", "gdifferencetonext"], ["punctuation", "("],
-	["builtin-function", "bdifferencetonext"], ["punctuation", "("],
-	["builtin-function", "yplanemedian"], ["punctuation", "("],
-	["builtin-function", "uplanemedian"], ["punctuation", "("],
-	["builtin-function", "vplanemedian"], ["punctuation", "("],
-	["builtin-function", "bplanemedian"], ["punctuation", "("],
-	["builtin-function", "gplanemedian"], ["punctuation", "("],
-	["builtin-function", "rplanemedian"], ["punctuation", "("],
-	["builtin-function", "yplanemin"], ["punctuation", "("],
-	["builtin-function", "uplanemin"], ["punctuation", "("],
-	["builtin-function", "vplanemin"], ["punctuation", "("],
-	["builtin-function", "bplanemin"], ["punctuation", "("],
-	["builtin-function", "gplanemin"], ["punctuation", "("],
-	["builtin-function", "rplanemin"], ["punctuation", "("],
-	["builtin-function", "yplanemax"], ["punctuation", "("],
-	["builtin-function", "uplanemax"], ["punctuation", "("],
-	["builtin-function", "vplanemax"], ["punctuation", "("],
-	["builtin-function", "bplanemax"], ["punctuation", "("],
-	["builtin-function", "gplanemax"], ["punctuation", "("],
-	["builtin-function", "rplanemax"], ["punctuation", "("],
-	["builtin-function", "yplaneminmaxdifference"], ["punctuation", "("],
-	["builtin-function", "uplaneminmaxdifference"], ["punctuation", "("],
-	["builtin-function", "vplaneminmaxdifference"], ["punctuation", "("],
-	["builtin-function", "bplaneminmaxdifference"], ["punctuation", "("],
-	["builtin-function", "gplaneminmaxdifference"], ["punctuation", "("],
-	["builtin-function", "rplaneminmaxdifference"], ["punctuation", "("],
+	["builtin-function", "averageluma"],
+	["builtin-function", "averagechromau"],
+	["builtin-function", "averagechromav"],
+	["builtin-function", "averageb"],
+	["builtin-function", "averageg"],
+	["builtin-function", "averager"],
+	["builtin-function", "lumadifference"],
+	["builtin-function", "chromaudifference"],
+	["builtin-function", "chromavdifference"],
+	["builtin-function", "rgbdifference"],
+	["builtin-function", "bdifference"],
+	["builtin-function", "gdifference"],
+	["builtin-function", "rdifference"],
+	["builtin-function", "ydifferencefromprevious"],
+	["builtin-function", "udifferencefromprevious"],
+	["builtin-function", "vdifferencefromprevious"],
+	["builtin-function", "rgbdifferencefromprevious"],
+	["builtin-function", "bdifferencefromprevious"],
+	["builtin-function", "gdifferencefromprevious"],
+	["builtin-function", "rdifferencefromprevious"],
+	["builtin-function", "ydifferencetonext"],
+	["builtin-function", "udifferencetonext"],
+	["builtin-function", "vdifferencetonext"],
+	["builtin-function", "rgbdifferencetonext"],
+	["builtin-function", "rdifferencetonext"],
+	["builtin-function", "gdifferencetonext"],
+	["builtin-function", "bdifferencetonext"],
+	["builtin-function", "yplanemedian"],
+	["builtin-function", "uplanemedian"],
+	["builtin-function", "vplanemedian"],
+	["builtin-function", "bplanemedian"],
+	["builtin-function", "gplanemedian"],
+	["builtin-function", "rplanemedian"],
+	["builtin-function", "yplanemin"],
+	["builtin-function", "uplanemin"],
+	["builtin-function", "vplanemin"],
+	["builtin-function", "bplanemin"],
+	["builtin-function", "gplanemin"],
+	["builtin-function", "rplanemin"],
+	["builtin-function", "yplanemax"],
+	["builtin-function", "uplanemax"],
+	["builtin-function", "vplanemax"],
+	["builtin-function", "bplanemax"],
+	["builtin-function", "gplanemax"],
+	["builtin-function", "rplanemax"],
+	["builtin-function", "yplaneminmaxdifference"],
+	["builtin-function", "uplaneminmaxdifference"],
+	["builtin-function", "vplaneminmaxdifference"],
+	["builtin-function", "bplaneminmaxdifference"],
+	["builtin-function", "gplaneminmaxdifference"],
+	["builtin-function", "rplaneminmaxdifference"],
 
-	["builtin-function", "scriptname"], ["punctuation", "("],
-	["builtin-function", "scriptnameutf8"], ["punctuation", "("],
-	["builtin-function", "scriptfile"], ["punctuation", "("],
-	["builtin-function", "scriptfileutf8"], ["punctuation", "("],
-	["builtin-function", "scriptdir"], ["punctuation", "("],
-	["builtin-function", "scriptdirutf8"], ["punctuation", "("],
-	["builtin-function", "setlogparams"], ["punctuation", "("],
-	["builtin-function", "logmsg"], ["punctuation", "("],
-	["builtin-function", "getprocessinfo"], ["punctuation", "("],
+	["builtin-function", "scriptname"],
+	["builtin-function", "scriptnameutf8"],
+	["builtin-function", "scriptfile"],
+	["builtin-function", "scriptfileutf8"],
+	["builtin-function", "scriptdir"],
+	["builtin-function", "scriptdirutf8"],
+	["builtin-function", "setlogparams"],
+	["builtin-function", "logmsg"],
+	["builtin-function", "getprocessinfo"],
 
-	["builtin-function", "lcase"], ["punctuation", "("],
-	["builtin-function", "ucase"], ["punctuation", "("],
-	["builtin-function", "strtoutf8"], ["punctuation", "("],
-	["builtin-function", "strfromutf8"], ["punctuation", "("],
-	["builtin-function", "strlen"], ["punctuation", "("],
-	["builtin-function", "revstr"], ["punctuation", "("],
-	["builtin-function", "leftstr"], ["punctuation", "("],
-	["builtin-function", "rightstr"], ["punctuation", "("],
-	["builtin-function", "midstr"], ["punctuation", "("],
-	["builtin-function", "findstr"], ["punctuation", "("],
-	["builtin-function", "replacestr"], ["punctuation", "("],
-	["builtin-function", "format"], ["punctuation", "("],
-	["builtin-function", "fillstr"], ["punctuation", "("],
-	["builtin-function", "strcmp"], ["punctuation", "("],
-	["builtin-function", "strcmpi"], ["punctuation", "("],
-	["builtin-function", "trimleft"], ["punctuation", "("],
-	["builtin-function", "trimright"], ["punctuation", "("],
-	["builtin-function", "trimall"], ["punctuation", "("],
-	["builtin-function", "chr"], ["punctuation", "("],
-	["builtin-function", "ord"], ["punctuation", "("],
-	["builtin-function", "time"], ["punctuation", "("],
+	["builtin-function", "lcase"],
+	["builtin-function", "ucase"],
+	["builtin-function", "strtoutf8"],
+	["builtin-function", "strfromutf8"],
+	["builtin-function", "strlen"],
+	["builtin-function", "revstr"],
+	["builtin-function", "leftstr"],
+	["builtin-function", "rightstr"],
+	["builtin-function", "midstr"],
+	["builtin-function", "findstr"],
+	["builtin-function", "replacestr"],
+	["builtin-function", "format"],
+	["builtin-function", "fillstr"],
+	["builtin-function", "strcmp"],
+	["builtin-function", "strcmpi"],
+	["builtin-function", "trimleft"],
+	["builtin-function", "trimright"],
+	["builtin-function", "trimall"],
+	["builtin-function", "chr"],
+	["builtin-function", "ord"],
+	["builtin-function", "time"],
 
-	["builtin-function", "versionnumber"], ["punctuation", "("],
-	["builtin-function", "versionstring"], ["punctuation", "("],
-	["builtin-function", "isversionorgreater"], ["punctuation", "("],
+	["builtin-function", "versionnumber"],
+	["builtin-function", "versionstring"],
+	["builtin-function", "isversionorgreater"],
 
-	["builtin-function", "buildpixeltype"], ["punctuation", "("],
-	["builtin-function", "colorspacenametopixeltype"], ["punctuation", "("],
+	["builtin-function", "buildpixeltype"],
+	["builtin-function", "colorspacenametopixeltype"],
 
-	"\r\n\r\nisbool\r\nisbool", ["punctuation", "."], ["punctuation", "("],
-	"\r\nkevincosner"
+	"\r\n\r\nkevincosner"
 ]
 
 ----------------------------------------------------
 
-Internal functions must simply preceed optional whitespace followed by an opening parenthesis.
-They must not be inside of another word.
+All internal functions, filters, and properties can be used in the following formats:
+intFunc == intFunc() == last.intFunc == last.intFunc()
+They must not appear within other words.

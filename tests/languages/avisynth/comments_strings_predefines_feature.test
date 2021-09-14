@@ -1,4 +1,4 @@
-[* comment global DEFAULT_MT_MODE *]
+[* comment [* global *] DEFAULT_MT_MODE *]
 
 notacomment
 
@@ -37,7 +37,7 @@ string"""
 "machine_classic_plugins"
 
 DEFAULT_MT_MODE
-SCRIPTDIR
+# SCRIPTDIR is also an internal function
 MAINSCRIPTDIR
 PROGRAMDIR
 USER_PLUS_PLUGINS
@@ -48,7 +48,7 @@ MACHINE_CLASSIC_PLUGINS
 ----------------------------------------------------
 
 [
-	["comment", "[* comment global DEFAULT_MT_MODE *]"],
+	["comment", "[* comment [* global *] DEFAULT_MT_MODE *]"],
 
 	"\r\n\r\nnotacomment\r\n\r\n",
 
@@ -114,7 +114,9 @@ MACHINE_CLASSIC_PLUGINS
 	["string", ["\"user_classic_plugins\""]],
 	["string", ["\"machine_classic_plugins\""]],
 
-	"\r\n\r\nDEFAULT_MT_MODE\r\nSCRIPTDIR\r\nMAINSCRIPTDIR\r\nPROGRAMDIR\r\nUSER_PLUS_PLUGINS\r\nMACHINE_PLUS_PLUGINS\r\nUSER_CLASSIC_PLUGINS\r\nMACHINE_CLASSIC_PLUGINS"
+	"\r\n\r\nDEFAULT_MT_MODE\r\n",
+	["comment", "# SCRIPTDIR is also an internal function"],
+	"\r\nMAINSCRIPTDIR\r\nPROGRAMDIR\r\nUSER_PLUS_PLUGINS\r\nMACHINE_PLUS_PLUGINS\r\nUSER_CLASSIC_PLUGINS\r\nMACHINE_CLASSIC_PLUGINS"
 ]
 
 ----------------------------------------------------
