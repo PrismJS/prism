@@ -158,20 +158,19 @@
 
 		// AviSynth's internal functions, filters, and properties
 		'builtin-function': {
-			pattern: re(/\b(?:<<0>>)\b(?!\s*=)/.source, [allinternals], 'i'),
+			pattern: re(/\b(?:<<0>>)\b/.source, [allinternals], 'i'),
 			alias: 'function'
+		},
+
+		'type-cast': {
+			pattern: re(/\b(?:<<0>>)(?=\s*\()/.source, [types], 'i'),
+			alias: 'keyword'
 		},
 
 		// External/user-defined filters, and type casts.
 		'function': {
 			pattern: /\b[a-z_]\w*(?=\s*\()|(\.)[a-z_]\w*\b/i,
-			lookbehind: true,
-			inside: {
-				'keyword': {
-					// type casts
-					pattern: re(/\b(?:<<0>>)\b/.source, [types], 'i')
-				}
-			}
+			lookbehind: true
 		},
 
 		// Matches a \ as the first or last character on a line
