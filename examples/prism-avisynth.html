@@ -1,0 +1,24 @@
+<h2>Full Example</h2>
+<pre><code>/*
+ * Example AviSynth script for PrismJS demonstration.
+ * By Zinfidel
+ */
+
+SetFilterMTMode("DEFAULT_MT_MODE", MT_MULTI_INSTANCE)
+AddAutoloadDir("MAINSCRIPTDIR/programs/plugins")
+
+# Multiplies clip size and changes aspect ratio to 4:3
+function CorrectAspectRatio(clip c, int scaleFactor, bool "useNearestNeighbor") {
+    useNearestNeighbor = default(useNearestNeighbor, false)
+    stretchFactor = (c.Height * (4 / 3)) / c.Width
+
+    return useNearestNeighbor \
+        ? c.PointResize(c.Width * scaleFactor * stretchFactor, c.Height * scaleFactor) \
+        : c.Lanczos4Resize(c.Width * scaleFactor * stretchFactor, c.Height * scaleFactor)
+}
+
+AviSource("myclip.avi")
+last.CorrectAspectRatio(3, yes)
+
+
+Prefetch(4)</code></pre>

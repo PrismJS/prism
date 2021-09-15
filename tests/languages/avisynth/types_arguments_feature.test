@@ -1,0 +1,119 @@
+function test(clip input, int interleavedFields, float precision, string "floatingDesync", bool "useQTGMC", val "chromaNoise")
+{
+	castTest = clip(chromaNoise)
+	castTest = int(chromaNoise)
+	castTest = float(chromaNoise)
+	castTest = string(chromaNoise)
+	castTest = bool(chromaNoise)
+	castTest = val(chromaNoise)
+
+	return interleavedClip
+}
+
+test(5, 0.5, floatingDesync="progressive")
+
+----------------------------------------------------
+
+[
+	["keyword", "function"],
+	["function", "test"],
+	["punctuation", "("],
+	["argument", [
+		["keyword", "clip"],
+		" input"
+	]],
+	["punctuation", ","],
+	["argument", [
+		["keyword", "int"],
+		" interleavedFields"
+	]],
+	["punctuation", ","],
+	["argument", [
+		["keyword", "float"],
+		" precision"
+	]],
+	["punctuation", ","],
+	["argument", [
+		["keyword", "string"],
+		" \"floatingDesync\""
+	]],
+	["punctuation", ","],
+	["argument", [
+		["keyword", "bool"],
+		" \"useQTGMC\""
+	]],
+	["punctuation", ","],
+	["argument", [
+		["keyword", "val"],
+		" \"chromaNoise\""
+	]],
+	["punctuation", ")"],
+
+	["punctuation", "{"],
+
+	"\r\n\tcastTest ",
+	["operator", "="],
+	["type-cast", "clip"],
+	["punctuation", "("],
+	"chromaNoise",
+	["punctuation", ")"],
+
+	"\r\n\tcastTest ",
+	["operator", "="],
+	["type-cast", "int"],
+	["punctuation", "("],
+	"chromaNoise",
+	["punctuation", ")"],
+
+	"\r\n\tcastTest ",
+	["operator", "="],
+	["type-cast", "float"],
+	["punctuation", "("],
+	"chromaNoise",
+	["punctuation", ")"],
+
+	"\r\n\tcastTest ",
+	["operator", "="],
+	["type-cast", "string"],
+	["punctuation", "("],
+	"chromaNoise",
+	["punctuation", ")"],
+
+	"\r\n\tcastTest ",
+	["operator", "="],
+	["type-cast", "bool"],
+	["punctuation", "("],
+	"chromaNoise",
+	["punctuation", ")"],
+
+	"\r\n\tcastTest ",
+	["operator", "="],
+	["type-cast", "val"],
+	["punctuation", "("],
+	"chromaNoise",
+	["punctuation", ")"],
+
+	["keyword", "return"], " interleavedClip\r\n",
+	["punctuation", "}"],
+
+	["function", "test"],
+	["punctuation", "("],
+	["number", "5"],
+	["punctuation", ","],
+	["number", "0.5"],
+	["punctuation", ","],
+	["argument-label", [
+		["argument-name", "floatingDesync"],
+		["punctuation", "="]
+	]],
+	["string", ["\"progressive\""]],
+	["punctuation", ")"]
+]
+
+----------------------------------------------------
+
+Optional arguments check for preceeding types to match before getting matched as a string, and should not be matched as strings.
+Incidental names of types in an arguments list (such as "interleavedFields" containing "int") should not get highlighted.
+Types can be used as casts, and should not be highlighted as user-functions.
+Incidental names of types elsewhere (such as "interleavedClip" in a function body) should not get highlighted.
+Explicitly-named optional arguments in function calls get lowlighted (including the '=').

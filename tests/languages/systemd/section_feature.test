@@ -1,0 +1,11 @@
+[Section Foo]
+
+----------------------------------------------------
+
+[
+	["section", [
+		["punctuation", "["],
+		["section-name", "Section Foo"],
+		["punctuation", "]"]
+	]]
+]
