@@ -190,6 +190,8 @@
 		"q": "Q (kdb+ database)",
 		"qml": "QML",
 		"rkt": "Racket",
+		"cshtml": "Razor C#",
+		"razor": "Razor C#",
 		"jsx": "React JSX",
 		"tsx": "React TSX",
 		"renpy": "Ren'py",

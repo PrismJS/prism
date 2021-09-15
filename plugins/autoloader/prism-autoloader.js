@@ -115,6 +115,10 @@
 		"qml": "javascript",
 		"qore": "clike",
 		"racket": "scheme",
+		"cshtml": [
+			"markup",
+			"csharp"
+		],
 		"jsx": [
 			"markup",
 			"javascript"
@@ -224,6 +228,7 @@
 		"py": "python",
 		"qs": "qsharp",
 		"rkt": "racket",
+		"razor": "cshtml",
 		"rpy": "renpy",
 		"robot": "robotframework",
 		"rb": "ruby",
