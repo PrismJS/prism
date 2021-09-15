@@ -12,7 +12,6 @@
 	}
 
 	var types = /clip|int|float|string|bool|val/.source;
-	var keywords = /function|global|return|try|catch|if|else|while|for|__END__/.source; // includes avs+ native gscript constructs
 	var internals = [
 		// bools
 		/is(?:bool|clip|float|int|string)|defined|(?:var|(?:internal)?function)?exists?/.source,
@@ -150,7 +149,7 @@
 		'boolean': /\b(?:true|false|yes|no)\b/i,
 
 		'keyword': {
-			pattern: re(/((?:^|[\\{])\s*)(?:<<0>>)(?=\s)/.source, [keywords], 'im'),
+			pattern: /((?:^|[\\{])\s*)(?:function|global|return|try|catch|if|else|while|for|__END__)(?=\s)/im,
 			lookbehind: true
 		},
 
