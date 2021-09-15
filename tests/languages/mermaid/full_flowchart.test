@@ -1,0 +1,930 @@
+flowchart LR
+    id
+
+flowchart LR
+    id1[This is the text in the box]
+
+flowchart TD
+    Start --> Stop
+
+flowchart LR
+    Start --> Stop
+
+flowchart LR
+    id1(This is the text in the box)
+
+flowchart LR
+    id1([This is the text in the box])
+
+flowchart LR
+    id1[[This is the text in the box]]
+
+flowchart LR
+    id1[(Database)]
+
+flowchart LR
+    id1((This is the text in the circle))
+
+flowchart LR
+    id1>This is the text in the box]
+
+flowchart LR
+    id1{This is the text in the box}
+
+flowchart LR
+    id1{{This is the text in the box}}
+
+flowchart TD
+    id1[/This is the text in the box/]
+
+flowchart TD
+    id1[\This is the text in the box\]
+
+flowchart TD
+    A[/Christmas\]
+
+flowchart TD
+    B[\Go shopping/]
+
+flowchart LR
+    A-->B
+
+flowchart LR
+    A --- B
+
+flowchart LR
+    A-- This is the text! ---B
+
+flowchart LR
+    A---|This is the text|B
+
+flowchart LR
+    A-->|text|B
+
+flowchart LR
+    A-- text -->B
+
+flowchart LR;
+   A-.->B;
+
+flowchart LR
+   A-. text .-> B
+
+flowchart LR
+   A ==> B
+
+flowchart LR
+   A == text ==> B
+
+flowchart LR
+   A -- text --> B -- text2 --> C
+
+flowchart LR
+   a --> b & c--> d
+
+flowchart TB
+    A & B--> C & D
+
+flowchart TB
+    A --> C
+    A --> D
+    B --> C
+    B --> D
+
+flowchart LR
+    A --o B
+    B --x C
+
+flowchart LR
+    A o--o B
+    B <--> C
+    C x--x D
+
+flowchart TD
+    A[Start] --> B{Is it?};
+    B -->|Yes| C[OK];
+    C --> D[Rethink];
+    D --> B;
+    B ---->|No| E[End];
+
+flowchart TD
+    A[Start] --> B{Is it?};
+    B -- Yes --> C[OK];
+    C --> D[Rethink];
+    D --> B;
+    B -- No ----> E[End];
+
+flowchart LR
+    id1["This is the (text) in the box"]
+
+flowchart LR
+        A["A double quote:#quot;"] -->B["A dec char:#9829;"]
+
+subgraph title
+    graph definition
+end
+
+flowchart TB
+    c1-->a2
+    subgraph one
+    a1-->a2
+    end
+    subgraph two
+    b1-->b2
+    end
+    subgraph three
+    c1-->c2
+    end
+
+flowchart TB
+    c1-->a2
+    subgraph ide1 [one]
+    a1-->a2
+    end
+
+flowchart TB
+    c1-->a2
+    subgraph one
+    a1-->a2
+    end
+    subgraph two
+    b1-->b2
+    end
+    subgraph three
+    c1-->c2
+    end
+    one --> two
+    three --> two
+    two --> c2
+
+flowchart LR
+  subgraph TOP
+    direction TB
+    subgraph B1
+        direction RL
+        i1 -->f1
+    end
+    subgraph B2
+        direction BT
+        i2 -->f2
+    end
+  end
+  A --> TOP --> B
+  B1 --> B2
+
+click nodeId callback
+click nodeId call callback()
+
+flowchart LR;
+    A-->B;
+    B-->C;
+    C-->D;
+    click A callback "Tooltip for a callback"
+    click B "http://www.github.com" "This is a tooltip for a link"
+    click A call callback() "Tooltip for a callback"
+    click B href "http://www.github.com" "This is a tooltip for a link"
+
+flowchart LR;
+    A-->B;
+    B-->C;
+    C-->D;
+    D-->E;
+    click A "http://www.github.com" _blank
+    click B "http://www.github.com" "Open this in a new tab" _blank
+    click C href "http://www.github.com" _blank
+    click D href "http://www.github.com" "Open this in a new tab" _blank
+
+flowchart LR
+%% this is a comment A -- text --> B{node}
+   A -- text --> B -- text2 --> C
+
+linkStyle 3 stroke:#ff3,stroke-width:4px,color:red;
+
+flowchart LR
+    id1(Start)-->id2(Stop)
+    style id1 fill:#f9f,stroke:#333,stroke-width:4px
+    style id2 fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
+
+classDef className fill:#f9f,stroke:#333,stroke-width:4px;
+
+class nodeId1 className;
+
+class nodeId1,nodeId2 className;
+
+flowchart LR
+    A:::someclass --> B
+    classDef someclass fill:#f96;
+
+flowchart LR;
+    A-->B[AAA<span>BBB</span>];
+    B-->D;
+    class A cssClass;
+
+classDef default fill:#f9f,stroke:#333,stroke-width:4px;
+
+flowchart TD
+    B["fa:fa-twitter for peace"]
+    B-->C[fa:fa-ban forbidden]
+    B-->D(fa:fa-spinner);
+    B-->E(A fa:fa-camera-retro perhaps?);
+
+flowchart LR
+    A[Hard edge] -->|Link text| B(Round edge)
+    B --> C{Decision}
+    C -->|One| D[Result one]
+    C -->|Two| E[Result two]
+
+    flowchart LR;
+        A-->B;
+        B-->C;
+        C-->D;
+        click A callback "Tooltip"
+        click B "http://www.github.com" "This is a link"
+        click C call callback() "Tooltip"
+        click D href "http://www.github.com" "This is a link"
+
+----------------------------------------------------
+
+[
+	["keyword", "flowchart"], " LR\r\n    id\r\n\r\n",
+
+	["keyword", "flowchart"],
+	" LR\r\n    id1",
+	["text", "[This is the text in the box]"],
+
+	["keyword", "flowchart"],
+	" TD\r\n    Start ",
+	["arrow", "-->"],
+	" Stop\r\n\r\n",
+
+	["keyword", "flowchart"],
+	" LR\r\n    Start ",
+	["arrow", "-->"],
+	" Stop\r\n\r\n",
+
+	["keyword", "flowchart"],
+	" LR\r\n    id1",
+	["text", "(This is the text in the box)"],
+
+	["keyword", "flowchart"],
+	" LR\r\n    id1",
+	["text", "([This is the text in the box])"],
+
+	["keyword", "flowchart"],
+	" LR\r\n    id1",
+	["text", "[[This is the text in the box]]"],
+
+	["keyword", "flowchart"], " LR\r\n    id1", ["text", "[(Database)]"],
+
+	["keyword", "flowchart"],
+	" LR\r\n    id1",
+	["text", "((This is the text in the circle))"],
+
+	["keyword", "flowchart"],
+	" LR\r\n    id1",
+	["text", ">This is the text in the box]"],
+
+	["keyword", "flowchart"],
+	" LR\r\n    id1",
+	["text", "{This is the text in the box}"],
+
+	["keyword", "flowchart"],
+	" LR\r\n    id1",
+	["text", "{{This is the text in the box}}"],
+
+	["keyword", "flowchart"],
+	" TD\r\n    id1",
+	["text", "[/This is the text in the box/]"],
+
+	["keyword", "flowchart"],
+	" TD\r\n    id1",
+	["text", "[\\This is the text in the box\\]"],
+
+	["keyword", "flowchart"], " TD\r\n    A", ["text", "[/Christmas\\]"],
+
+	["keyword", "flowchart"], " TD\r\n    B", ["text", "[\\Go shopping/]"],
+
+	["keyword", "flowchart"], " LR\r\n    A", ["arrow", "-->"], "B\r\n\r\n",
+
+	["keyword", "flowchart"], " LR\r\n    A ", ["arrow", "---"], " B\r\n\r\n",
+
+	["keyword", "flowchart"],
+	" LR\r\n    A",
+	["inter-arrow-label", [
+		["arrow-head", "--"],
+		["label", "This is the text!"],
+		["arrow", "---"]
+	]],
+	"B\r\n\r\n",
+
+	["keyword", "flowchart"],
+	" LR\r\n    A",
+	["arrow", "---"],
+	["label", "|This is the text|"],
+	"B\r\n\r\n",
+
+	["keyword", "flowchart"],
+	" LR\r\n    A",
+	["arrow", "-->"],
+	["label", "|text|"],
+	"B\r\n\r\n",
+
+	["keyword", "flowchart"],
+	" LR\r\n    A",
+	["inter-arrow-label", [
+		["arrow-head", "--"],
+		["label", "text"],
+		["arrow", "-->"]
+	]],
+	"B\r\n\r\n",
+
+	["keyword", "flowchart"], " LR", ["punctuation", ";"],
+	"\r\n   A", ["arrow", "-.->"], "B", ["punctuation", ";"],
+
+	["keyword", "flowchart"],
+	" LR\r\n   A",
+	["inter-arrow-label", [
+		["arrow-head", "-."],
+		["label", "text"],
+		["arrow", ".->"]
+	]],
+	" B\r\n\r\n",
+
+	["keyword", "flowchart"], " LR\r\n   A ", ["arrow", "==>"], " B\r\n\r\n",
+
+	["keyword", "flowchart"],
+	" LR\r\n   A ",
+	["inter-arrow-label", [
+		["arrow-head", "=="],
+		["label", "text"],
+		["arrow", "==>"]
+	]],
+	" B\r\n\r\n",
+
+	["keyword", "flowchart"],
+	" LR\r\n   A ",
+	["inter-arrow-label", [
+		["arrow-head", "--"],
+		["label", "text"],
+		["arrow", "-->"]
+	]],
+	" B ",
+	["inter-arrow-label", [
+		["arrow-head", "--"],
+		["label", "text2"],
+		["arrow", "-->"]
+	]],
+	" C\r\n\r\n",
+
+	["keyword", "flowchart"],
+	" LR\r\n   a ",
+	["arrow", "-->"],
+	" b ",
+	["operator", "&"],
+	" c",
+	["arrow", "-->"],
+	" d\r\n\r\n",
+
+	["keyword", "flowchart"],
+	" TB\r\n    A ",
+	["operator", "&"],
+	" B",
+	["arrow", "-->"],
+	" C ",
+	["operator", "&"],
+	" D\r\n\r\n",
+
+	["keyword", "flowchart"],
+	" TB\r\n    A ",
+	["arrow", "-->"],
+	" C\r\n    A ",
+	["arrow", "-->"],
+	" D\r\n    B ",
+	["arrow", "-->"],
+	" C\r\n    B ",
+	["arrow", "-->"],
+	" D\r\n\r\n",
+
+	["keyword", "flowchart"],
+	" LR\r\n    A ",
+	["arrow", "--o"],
+	" B\r\n    B ",
+	["arrow", "--x"],
+	" C\r\n\r\n",
+
+	["keyword", "flowchart"],
+	" LR\r\n    A ",
+	["arrow", "o--o"],
+	" B\r\n    B ",
+	["arrow", "<-->"],
+	" C\r\n    C ",
+	["arrow", "x--x"],
+	" D\r\n\r\n",
+
+	["keyword", "flowchart"],
+	" TD\r\n    A",
+	["text", "[Start]"],
+	["arrow", "-->"],
+	" B",
+	["text", "{Is it?}"],
+	["punctuation", ";"],
+
+	"\r\n    B ",
+	["arrow", "-->"],
+	["label", "|Yes|"],
+	" C",
+	["text", "[OK]"],
+	["punctuation", ";"],
+
+	"\r\n    C ",
+	["arrow", "-->"],
+	" D",
+	["text", "[Rethink]"],
+	["punctuation", ";"],
+
+	"\r\n    D ",
+	["arrow", "-->"],
+	" B",
+	["punctuation", ";"],
+
+	"\r\n    B ",
+	["arrow", "---->"],
+	["label", "|No|"],
+	" E",
+	["text", "[End]"],
+	["punctuation", ";"],
+
+	["keyword", "flowchart"],
+	" TD\r\n    A",
+	["text", "[Start]"],
+	["arrow", "-->"],
+	" B",
+	["text", "{Is it?}"],
+	["punctuation", ";"],
+
+	"\r\n    B ",
+	["inter-arrow-label", [
+		["arrow-head", "--"],
+		["label", "Yes"],
+		["arrow", "-->"]
+	]],
+	" C",
+	["text", "[OK]"],
+	["punctuation", ";"],
+
+	"\r\n    C ",
+	["arrow", "-->"],
+	" D",
+	["text", "[Rethink]"],
+	["punctuation", ";"],
+
+	"\r\n    D ",
+	["arrow", "-->"],
+	" B",
+	["punctuation", ";"],
+
+	"\r\n    B ",
+	["inter-arrow-label", [
+		["arrow-head", "--"],
+		["label", "No"],
+		["arrow", "---->"]
+	]],
+	" E",
+	["text", "[End]"],
+	["punctuation", ";"],
+
+	["keyword", "flowchart"],
+	" LR\r\n    id1",
+	["text", "[\"This is the (text) in the box\"]"],
+
+	["keyword", "flowchart"],
+	" LR\r\n        A",
+	["text", "[\"A double quote:#quot;\"]"],
+	["arrow", "-->"],
+	"B",
+	["text", "[\"A dec char:#9829;\"]"],
+
+	["keyword", "subgraph"], " title\r\n    ",
+	["keyword", "graph"], " definition\r\n",
+	["keyword", "end"],
+
+	["keyword", "flowchart"], " TB\r\n    c1", ["arrow", "-->"], "a2\r\n    ",
+	["keyword", "subgraph"], " one\r\n    a1", ["arrow", "-->"], "a2\r\n    ",
+	["keyword", "end"],
+	["keyword", "subgraph"], " two\r\n    b1", ["arrow", "-->"], "b2\r\n    ",
+	["keyword", "end"],
+	["keyword", "subgraph"], " three\r\n    c1", ["arrow", "-->"], "c2\r\n    ",
+	["keyword", "end"],
+
+	["keyword", "flowchart"], " TB\r\n    c1", ["arrow", "-->"], "a2\r\n    ",
+	["keyword", "subgraph"], " ide1 ", ["text", "[one]"],
+	"\r\n    a1", ["arrow", "-->"], "a2\r\n    ",
+	["keyword", "end"],
+
+	["keyword", "flowchart"],
+	" TB\r\n    c1",
+	["arrow", "-->"],
+	"a2\r\n    ",
+
+	["keyword", "subgraph"],
+	" one\r\n    a1",
+	["arrow", "-->"],
+	"a2\r\n    ",
+
+	["keyword", "end"],
+
+	["keyword", "subgraph"],
+	" two\r\n    b1",
+	["arrow", "-->"],
+	"b2\r\n    ",
+
+	["keyword", "end"],
+
+	["keyword", "subgraph"],
+	" three\r\n    c1",
+	["arrow", "-->"],
+	"c2\r\n    ",
+
+	["keyword", "end"],
+
+	"\r\n    one ",
+	["arrow", "-->"],
+	" two\r\n    three ",
+	["arrow", "-->"],
+	" two\r\n    two ",
+	["arrow", "-->"],
+	" c2\r\n\r\n",
+
+	["keyword", "flowchart"],
+	" LR\r\n  ",
+
+	["keyword", "subgraph"],
+	" TOP\r\n    ",
+
+	["keyword", "direction"],
+	" TB\r\n    ",
+
+	["keyword", "subgraph"],
+	" B1\r\n        ",
+
+	["keyword", "direction"],
+	" RL\r\n        i1 ",
+	["arrow", "-->"],
+	"f1\r\n    ",
+
+	["keyword", "end"],
+
+	["keyword", "subgraph"],
+	" B2\r\n        ",
+
+	["keyword", "direction"],
+	" BT\r\n        i2 ",
+	["arrow", "-->"],
+	"f2\r\n    ",
+
+	["keyword", "end"],
+
+	["keyword", "end"],
+
+	"\r\n  A ",
+	["arrow", "-->"],
+	" TOP ",
+	["arrow", "-->"],
+	" B\r\n  B1 ",
+	["arrow", "-->"],
+	" B2\r\n\r\n",
+
+	["keyword", "click"],
+	" nodeId callback\r\n",
+
+	["keyword", "click"],
+	" nodeId call callback",
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["keyword", "flowchart"],
+	" LR",
+	["punctuation", ";"],
+
+	"\r\n    A",
+	["arrow", "-->"],
+	"B",
+	["punctuation", ";"],
+
+	"\r\n    B",
+	["arrow", "-->"],
+	"C",
+	["punctuation", ";"],
+
+	"\r\n    C",
+	["arrow", "-->"],
+	"D",
+	["punctuation", ";"],
+
+	["keyword", "click"],
+	" A callback ",
+	["string", "\"Tooltip for a callback\""],
+
+	["keyword", "click"],
+	" B ",
+	["string", "\"http://www.github.com\""],
+	["string", "\"This is a tooltip for a link\""],
+
+	["keyword", "click"],
+	" A call callback",
+	["punctuation", "("],
+	["punctuation", ")"],
+	["string", "\"Tooltip for a callback\""],
+
+	["keyword", "click"],
+	" B href ",
+	["string", "\"http://www.github.com\""],
+	["string", "\"This is a tooltip for a link\""],
+
+	["keyword", "flowchart"],
+	" LR",
+	["punctuation", ";"],
+
+	"\r\n    A",
+	["arrow", "-->"],
+	"B",
+	["punctuation", ";"],
+
+	"\r\n    B",
+	["arrow", "-->"],
+	"C",
+	["punctuation", ";"],
+
+	"\r\n    C",
+	["arrow", "-->"],
+	"D",
+	["punctuation", ";"],
+
+	"\r\n    D",
+	["arrow", "-->"],
+	"E",
+	["punctuation", ";"],
+
+	["keyword", "click"],
+	" A ",
+	["string", "\"http://www.github.com\""],
+	" _blank\r\n    ",
+
+	["keyword", "click"],
+	" B ",
+	["string", "\"http://www.github.com\""],
+	["string", "\"Open this in a new tab\""],
+	" _blank\r\n    ",
+
+	["keyword", "click"],
+	" C href ",
+	["string", "\"http://www.github.com\""],
+	" _blank\r\n    ",
+
+	["keyword", "click"],
+	" D href ",
+	["string", "\"http://www.github.com\""],
+	["string", "\"Open this in a new tab\""],
+	" _blank\r\n\r\n",
+
+	["keyword", "flowchart"],
+	" LR\r\n",
+
+	["comment", "%% this is a comment A -- text --> B{node}"],
+
+	"\r\n   A ",
+	["inter-arrow-label", [
+		["arrow-head", "--"],
+		["label", "text"],
+		["arrow", "-->"]
+	]],
+	" B ",
+	["inter-arrow-label", [
+		["arrow-head", "--"],
+		["label", "text2"],
+		["arrow", "-->"]
+	]],
+	" C\r\n\r\n",
+
+	["keyword", "linkStyle"],
+	" 3 ",
+	["style", [
+		["property", "stroke"],
+		["operator", ":"],
+		"#ff3",
+		["punctuation", ","],
+		["property", "stroke-width"],
+		["operator", ":"],
+		"4px",
+		["punctuation", ","],
+		["property", "color"],
+		["operator", ":"],
+		"red"
+	]],
+	["punctuation", ";"],
+
+	["keyword", "flowchart"],
+	" LR\r\n    id1",
+	["text", "(Start)"],
+	["arrow", "-->"],
+	"id2",
+	["text", "(Stop)"],
+
+	["keyword", "style"],
+	" id1 ",
+	["style", [
+		["property", "fill"],
+		["operator", ":"],
+		"#f9f",
+		["punctuation", ","],
+		["property", "stroke"],
+		["operator", ":"],
+		"#333",
+		["punctuation", ","],
+		["property", "stroke-width"],
+		["operator", ":"],
+		"4px"
+	]],
+
+	["keyword", "style"],
+	" id2 ",
+	["style", [
+		["property", "fill"],
+		["operator", ":"],
+		"#bbf",
+		["punctuation", ","],
+		["property", "stroke"],
+		["operator", ":"],
+		"#f66",
+		["punctuation", ","],
+		["property", "stroke-width"],
+		["operator", ":"],
+		"2px",
+		["punctuation", ","],
+		["property", "color"],
+		["operator", ":"],
+		"#fff",
+		["punctuation", ","],
+		["property", "stroke-dasharray"],
+		["operator", ":"],
+		" 5 5"
+	]],
+
+	["keyword", "classDef"],
+	" className ",
+	["style", [
+		["property", "fill"],
+		["operator", ":"],
+		"#f9f",
+		["punctuation", ","],
+		["property", "stroke"],
+		["operator", ":"],
+		"#333",
+		["punctuation", ","],
+		["property", "stroke-width"],
+		["operator", ":"],
+		"4px"
+	]],
+	["punctuation", ";"],
+
+	["keyword", "class"], " nodeId1 className", ["punctuation", ";"],
+
+	["keyword", "class"], " nodeId1,nodeId2 className", ["punctuation", ";"],
+
+	["keyword", "flowchart"],
+	" LR\r\n    A",
+	["operator", ":::"],
+	"someclass ",
+	["arrow", "-->"],
+	" B\r\n    ",
+
+	["keyword", "classDef"],
+	" someclass ",
+	["style", [
+		["property", "fill"],
+		["operator", ":"],
+		"#f96"
+	]],
+	["punctuation", ";"],
+
+	["keyword", "flowchart"],
+	" LR",
+	["punctuation", ";"],
+
+	"\r\n    A",
+	["arrow", "-->"],
+	"B",
+	["text", "[AAA<span>BBB</span>]"],
+	["punctuation", ";"],
+
+	"\r\n    B",
+	["arrow", "-->"],
+	"D",
+	["punctuation", ";"],
+
+	["keyword", "class"],
+	" A cssClass",
+	["punctuation", ";"],
+
+	["keyword", "classDef"],
+	" default ",
+	["style", [
+		["property", "fill"],
+		["operator", ":"],
+		"#f9f",
+		["punctuation", ","],
+		["property", "stroke"],
+		["operator", ":"],
+		"#333",
+		["punctuation", ","],
+		["property", "stroke-width"],
+		["operator", ":"],
+		"4px"
+	]],
+	["punctuation", ";"],
+
+	["keyword", "flowchart"],
+	" TD\r\n    B",
+	["text", "[\"fa:fa-twitter for peace\"]"],
+
+	"\r\n    B",
+	["arrow", "-->"],
+	"C",
+	["text", "[fa:fa-ban forbidden]"],
+
+	"\r\n    B",
+	["arrow", "-->"],
+	"D",
+	["text", "(fa:fa-spinner)"],
+	["punctuation", ";"],
+
+	"\r\n    B",
+	["arrow", "-->"],
+	"E",
+	["text", "(A fa:fa-camera-retro perhaps?)"],
+	["punctuation", ";"],
+
+	["keyword", "flowchart"],
+	" LR\r\n    A",
+	["text", "[Hard edge]"],
+	["arrow", "-->"],
+	["label", "|Link text|"],
+	" B",
+	["text", "(Round edge)"],
+
+	"\r\n    B ",
+	["arrow", "-->"],
+	" C",
+	["text", "{Decision}"],
+
+	"\r\n    C ",
+	["arrow", "-->"],
+	["label", "|One|"],
+	" D",
+	["text", "[Result one]"],
+
+	"\r\n    C ",
+	["arrow", "-->"],
+	["label", "|Two|"],
+	" E",
+	["text", "[Result two]"],
+
+	["keyword", "flowchart"],
+	" LR",
+	["punctuation", ";"],
+
+	"\r\n        A",
+	["arrow", "-->"],
+	"B",
+	["punctuation", ";"],
+
+	"\r\n        B",
+	["arrow", "-->"],
+	"C",
+	["punctuation", ";"],
+
+	"\r\n        C",
+	["arrow", "-->"],
+	"D",
+	["punctuation", ";"],
+
+	["keyword", "click"],
+	" A callback ",
+	["string", "\"Tooltip\""],
+
+	["keyword", "click"],
+	" B ",
+	["string", "\"http://www.github.com\""],
+	["string", "\"This is a link\""],
+
+	["keyword", "click"],
+	" C call callback",
+	["punctuation", "("],
+	["punctuation", ")"],
+	["string", "\"Tooltip\""],
+
+	["keyword", "click"],
+	" D href ",
+	["string", "\"http://www.github.com\""],
+	["string", "\"This is a link\""]
+]

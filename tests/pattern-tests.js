@@ -12,6 +12,7 @@ const { transform, combineTransformers, getIntersectionWordSets, JS, Words, NFA,
 const scslre = require('scslre');
 const path = require('path');
 const { argv } = require('yargs');
+const RAA = require('regexp-ast-analysis');
 
 /**
  * A map from language id to a list of code snippets in that language.
@@ -130,6 +131,7 @@ function testPatterns(Prism, mainLanguage) {
 	 * @property {string} name
 	 * @property {any} parent
 	 * @property {boolean} lookbehind Whether the first capturing group of the pattern is a Prism lookbehind group.
+	 * @property {CapturingGroup | undefined} lookbehindGroup
 	 * @property {{ key: string, value: any }[]} path
 	 * @property {(message: string) => void} reportError
 	 */
@@ -163,6 +165,8 @@ function testPatterns(Prism, mainLanguage) {
 						}
 
 						const parent = path.length > 1 ? path[path.length - 2].value : undefined;
+						const lookbehind = key === 'pattern' && parent && !!parent.lookbehind;
+						const lookbehindGroup = lookbehind ? getFirstCapturingGroup(ast.pattern) : undefined;
 						callback({
 							pattern: value,
 							ast,
@@ -170,7 +174,8 @@ function testPatterns(Prism, mainLanguage) {
 							name: key,
 							parent,
 							path,
-							lookbehind: key === 'pattern' && parent && !!parent.lookbehind,
+							lookbehind,
+							lookbehindGroup,
 							reportError: message => errors.push(message)
 						});
 					} catch (error) {
@@ -231,9 +236,10 @@ function testPatterns(Prism, mainLanguage) {
 
 
 	it('- should not match the empty string', function () {
-		forEachPattern(({ pattern, tokenPath }) => {
+		forEachPattern(({ ast, pattern, tokenPath }) => {
 			// test for empty string
-			assert.notMatch('', pattern, `${tokenPath}: ${pattern} should not match the empty string.\n\n`
+			const empty = RAA.isPotentiallyZeroLength(ast.pattern.alternatives);
+			assert.isFalse(empty, `${tokenPath}: ${pattern} should not match the empty string.\n\n`
 				+ `Patterns that do match the empty string can potentially cause infinitely many empty tokens. `
 				+ `Make sure that all patterns always consume at least one character.`);
 		});
@@ -256,47 +262,37 @@ function testPatterns(Prism, mainLanguage) {
 	});
 
 	it('- should not have lookbehind groups that can be preceded by other some characters', function () {
-		forEachPattern(({ ast, tokenPath, lookbehind }) => {
-			if (!lookbehind) {
-				return;
+		forEachPattern(({ tokenPath, lookbehindGroup }) => {
+			if (lookbehindGroup && !isFirstMatch(lookbehindGroup)) {
+				assert.fail(`${tokenPath}: The lookbehind group ${lookbehindGroup.raw} might be preceded by some characters.\n\n`
+					+ `Prism assumes that the lookbehind group, if captured, is the first thing matched by the regex. `
+					+ `If characters might precede the lookbehind group (e.g. /a?(b)c/), then Prism cannot correctly apply the lookbehind correctly in all cases.\n`
+					+ `To fix this, either remove the preceding characters or include them in the lookbehind group.`);
 			}
-			forEachCapturingGroup(ast.pattern, ({ group, number }) => {
-				if (number === 1 && !isFirstMatch(group)) {
-					assert.fail(`${tokenPath}: The lookbehind group ${group.raw} might be preceded by some characters.\n\n`
-						+ `Prism assumes that the lookbehind group, if captured, is the first thing matched by the regex. `
-						+ `If characters might precede the lookbehind group (e.g. /a?(b)c/), then Prism cannot correctly apply the lookbehind correctly in all cases.\n`
-						+ `To fix this, either remove the preceding characters or include them in the lookbehind group.`);
-				}
-			});
 		});
 	});
 
 	it('- should not have lookbehind groups that only have zero-width alternatives', function () {
-		forEachPattern(({ ast, tokenPath, lookbehind, reportError }) => {
-			if (!lookbehind) {
-				return;
+		forEachPattern(({ tokenPath, lookbehindGroup, reportError }) => {
+			if (lookbehindGroup && RAA.isZeroLength(lookbehindGroup)) {
+				const groupContent = lookbehindGroup.raw.substr(1, lookbehindGroup.raw.length - 2);
+				const replacement = lookbehindGroup.alternatives.length === 1 ? groupContent : `(?:${groupContent})`;
+				reportError(`${tokenPath}: The lookbehind group ${lookbehindGroup.raw} does not consume characters.\n\n`
+					+ `Therefor it is not necessary to use a lookbehind group.\n`
+					+ `To fix this, replace the lookbehind group with ${replacement} and remove the 'lookbehind' property.`);
 			}
-			forEachCapturingGroup(ast.pattern, ({ group, number }) => {
-				if (number === 1 && isAlwaysZeroWidth(group)) {
-					const groupContent = group.raw.substr(1, group.raw.length - 2);
-					const replacement = group.alternatives.length === 1 ? groupContent : `(?:${groupContent})`;
-					reportError(`${tokenPath}: The lookbehind group ${group.raw} does not consume characters.\n\n`
-						+ `Therefor it is not necessary to use a lookbehind group.\n`
-						+ `To fix this, replace the lookbehind group with ${replacement} and remove the 'lookbehind' property.`);
-				}
-			});
 		});
 	});
 
 	it('- should not have unused capturing groups', function () {
-		forEachPattern(({ ast, tokenPath, lookbehind, reportError }) => {
+		forEachPattern(({ ast, tokenPath, lookbehindGroup, reportError }) => {
 			forEachCapturingGroup(ast.pattern, ({ group, number }) => {
-				const isLookbehindGroup = lookbehind && number === 1;
+				const isLookbehindGroup = group === lookbehindGroup;
 				if (group.references.length === 0 && !isLookbehindGroup) {
 					const fixes = [];
 					fixes.push(`Make this group a non-capturing group ('(?:...)' instead of '(...)'). (It's usually this option.)`);
 					fixes.push(`Reference this group with a backreference (use '\\${number}' for this).`);
-					if (number === 1 && !lookbehind) {
+					if (number === 1 && !lookbehindGroup) {
 						if (isFirstMatch(group)) {
 							fixes.push(`Add a 'lookbehind: true' declaration.`);
 						} else {
@@ -392,28 +388,26 @@ function testPatterns(Prism, mainLanguage) {
 
 
 /**
- * Returns whether the given element will always have zero width meaning that it doesn't consume characters.
+ * Returns the first capturing group in the given pattern.
  *
- * @param {Element} element
- * @returns {boolean}
+ * @param {Pattern} pattern
+ * @returns {CapturingGroup | undefined}
  */
-function isAlwaysZeroWidth(element) {
-	switch (element.type) {
-		case 'Assertion':
-			// assertions == ^, $, \b, lookarounds
-			return true;
-		case 'Quantifier':
-			return element.max === 0 || isAlwaysZeroWidth(element.element);
-		case 'CapturingGroup':
-		case 'Group':
-			// every element in every alternative has to be of zero length
-			return element.alternatives.every(alt => alt.elements.every(isAlwaysZeroWidth));
-		case 'Backreference':
-			// on if the group referred to is of zero length
-			return isAlwaysZeroWidth(element.resolved);
-		default:
-			return false; // what's left are characters
+function getFirstCapturingGroup(pattern) {
+	let cap = undefined;
+
+	try {
+		visitRegExpAST(pattern, {
+			onCapturingGroupEnter(node) {
+				cap = node;
+				throw new Error('stop');
+			}
+		});
+	} catch (error) {
+		// ignore errors
 	}
+
+	return cap;
 }
 
 /**
@@ -427,7 +421,7 @@ function isFirstMatch(element) {
 	switch (parent.type) {
 		case 'Alternative': {
 			// all elements before this element have to of zero length
-			if (!parent.elements.slice(0, parent.elements.indexOf(element)).every(isAlwaysZeroWidth)) {
+			if (!parent.elements.slice(0, parent.elements.indexOf(element)).every(RAA.isZeroLength)) {
 				return false;
 			}
 			const grandParent = parent.parent;
@@ -457,13 +451,7 @@ function isFirstMatch(element) {
  * @returns {boolean}
  */
 function underAStar(node) {
-	if (node.type === 'Quantifier' && node.max > 10) {
-		return true;
-	} else if (node.parent) {
-		return underAStar(node.parent);
-	} else {
-		return false;
-	}
+	return RAA.getEffectiveMaximumRepetition(node) > 10;
 }
 
 /**

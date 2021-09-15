@@ -1,0 +1,23 @@
+black
+blue
+brown
+gray
+green
+orange
+red
+white
+yellow
+
+----------------------------------------------------
+
+[
+	["constant", "black"],
+	["constant", "blue"],
+	["constant", "brown"],
+	["constant", "gray"],
+	["constant", "green"],
+	["constant", "orange"],
+	["constant", "red"],
+	["constant", "white"],
+	["constant", "yellow"]
+]

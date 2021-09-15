@@ -1,0 +1,346 @@
+<p>@@Username</p>
+<p>@Username</p>
+
+<p>@DateTime.Now</p>
+<p>@DateTime.IsLeapYear(2016)</p>
+
+<p>@await DoSomething("hello", "world")</p>
+
+<p>@GenericMethod<int>()</p>
+
+<p>Last week this time: @(DateTime.Now - TimeSpan.FromDays(7))</p>
+<p>Last week: @DateTime.Now - TimeSpan.FromDays(7)</p>
+<p>Last week: 7/7/2016 4:39:52 PM - TimeSpan.FromDays(7)</p>
+
+@{
+    var joe = new Person("Joe", 33);
+}
+
+<p>Age@(joe.Age)</p>
+
+<p>@(GenericMethod<int>())</p>
+
+@("<span>Hello World</span>")
+
+@Html.Raw("<span>Hello World</span>")
+
+----------------------------------------------------
+
+[
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"p"
+		]],
+		["punctuation", ">"]
+	]],
+	"@@Username",
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"p"
+		]],
+		["punctuation", ">"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"p"
+		]],
+		["punctuation", ">"]
+	]],
+	["value", [
+		["keyword", "@"],
+		["csharp", ["Username"]]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"p"
+		]],
+		["punctuation", ">"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"p"
+		]],
+		["punctuation", ">"]
+	]],
+	["value", [
+		["keyword", "@"],
+		["csharp", [
+			"DateTime",
+			["punctuation", "."],
+			"Now"
+		]]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"p"
+		]],
+		["punctuation", ">"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"p"
+		]],
+		["punctuation", ">"]
+	]],
+	["value", [
+		["keyword", "@"],
+		["csharp", [
+			"DateTime",
+			["punctuation", "."],
+			["function", "IsLeapYear"],
+			["punctuation", "("],
+			["number", "2016"],
+			["punctuation", ")"]
+		]]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"p"
+		]],
+		["punctuation", ">"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"p"
+		]],
+		["punctuation", ">"]
+	]],
+	["value", [
+		["keyword", "@"],
+		["csharp", [
+			["keyword", "await"],
+			["function", "DoSomething"],
+			["punctuation", "("],
+			["string", "\"hello\""],
+			["punctuation", ","],
+			["string", "\"world\""],
+			["punctuation", ")"]
+		]]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"p"
+		]],
+		["punctuation", ">"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"p"
+		]],
+		["punctuation", ">"]
+	]],
+	["value", [
+		["keyword", "@"],
+		["csharp", [
+			["generic-method", [
+				["function", "GenericMethod"],
+				["generic", [
+					["punctuation", "<"],
+					["keyword", "int"],
+					["punctuation", ">"]
+				]]
+			]],
+			["punctuation", "("],
+			["punctuation", ")"]
+		]]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"p"
+		]],
+		["punctuation", ">"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"p"
+		]],
+		["punctuation", ">"]
+	]],
+	"Last week this time: ",
+	["value", [
+		["keyword", "@"],
+		["csharp", [
+			["punctuation", "("],
+			"DateTime",
+			["punctuation", "."],
+			"Now ",
+			["operator", "-"],
+			" TimeSpan",
+			["punctuation", "."],
+			["function", "FromDays"],
+			["punctuation", "("],
+			["number", "7"],
+			["punctuation", ")"],
+			["punctuation", ")"]
+		]]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"p"
+		]],
+		["punctuation", ">"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"p"
+		]],
+		["punctuation", ">"]
+	]],
+	"Last week: ",
+	["value", [
+		["keyword", "@"],
+		["csharp", [
+			"DateTime",
+			["punctuation", "."],
+			"Now"
+		]]
+	]],
+	" - TimeSpan.FromDays(7)",
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"p"
+		]],
+		["punctuation", ">"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"p"
+		]],
+		["punctuation", ">"]
+	]],
+	"Last week: 7/7/2016 4:39:52 PM - TimeSpan.FromDays(7)",
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"p"
+		]],
+		["punctuation", ">"]
+	]],
+
+	["block", [
+		["keyword", "@"],
+		["csharp", [
+			["punctuation", "{"],
+
+			["class-name", [
+				["keyword", "var"]
+			]],
+			" joe ",
+			["operator", "="],
+			["keyword", "new"],
+			["constructor-invocation", ["Person"]],
+			["punctuation", "("],
+			["string", "\"Joe\""],
+			["punctuation", ","],
+			["number", "33"],
+			["punctuation", ")"],
+			["punctuation", ";"],
+
+			["punctuation", "}"]
+		]]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"p"
+		]],
+		["punctuation", ">"]
+	]],
+	"Age",
+	["value", [
+		["keyword", "@"],
+		["csharp", [
+			["punctuation", "("],
+			"joe",
+			["punctuation", "."],
+			"Age",
+			["punctuation", ")"]
+		]]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"p"
+		]],
+		["punctuation", ">"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"p"
+		]],
+		["punctuation", ">"]
+	]],
+	["value", [
+		["keyword", "@"],
+		["csharp", [
+			["punctuation", "("],
+			["generic-method", [
+				["function", "GenericMethod"],
+				["generic", [
+					["punctuation", "<"],
+					["keyword", "int"],
+					["punctuation", ">"]
+				]]
+			]],
+			["punctuation", "("],
+			["punctuation", ")"],
+			["punctuation", ")"]
+		]]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"p"
+		]],
+		["punctuation", ">"]
+	]],
+
+	["value", [
+		["keyword", "@"],
+		["csharp", [
+			["punctuation", "("],
+			["string", "\"<span>Hello World</span>\""],
+			["punctuation", ")"]
+		]]
+	]],
+
+	["value", [
+		["keyword", "@"],
+		["csharp", [
+			"Html",
+			["punctuation", "."],
+			["function", "Raw"],
+			["punctuation", "("],
+			["string", "\"<span>Hello World</span>\""],
+			["punctuation", ")"]
+		]]
+	]]
+]
