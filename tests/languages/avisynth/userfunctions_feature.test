@@ -13,22 +13,22 @@ last.1func()
 
 [
 	["keyword", "function"],
-	["function", ["CustomUserFunction"]],
+	["function", "CustomUserFunction"],
 	["punctuation", "("],
 	["punctuation", ")"],
 	["punctuation", "{"],
 
-	["function", ["QTGMC"]],
+	["function", "QTGMC"],
 	["punctuation", "("],
 	["punctuation", ")"],
 
 	["variable", "last"],
 	["punctuation", "."],
-	["function", ["QTGMC"]],
+	["function", "QTGMC"],
 
 	["variable", "last"],
 	["punctuation", "."],
-	["function", ["QTGMC"]],
+	["function", "QTGMC"],
 	["punctuation", "("],
 	["punctuation", ")"],
 

@@ -10,11 +10,13 @@ function test(clip input, int interleavedFields, float precision, string "floati
 	return interleavedClip
 }
 
+test(5, 0.5, floatingDesync="progressive")
+
 ----------------------------------------------------
 
 [
 	["keyword", "function"],
-	["function", ["test"]],
+	["function", "test"],
 	["punctuation", "("],
 	["argument", [
 		["keyword", "clip"],
@@ -51,66 +53,67 @@ function test(clip input, int interleavedFields, float precision, string "floati
 
 	"\r\n\tcastTest ",
 	["operator", "="],
-	["function", [
-		["keyword", "clip"]
-	]],
+	["type-cast", "clip"],
 	["punctuation", "("],
 	"chromaNoise",
 	["punctuation", ")"],
 
 	"\r\n\tcastTest ",
 	["operator", "="],
-	["function", [
-		["keyword", "int"]
-	]],
+	["type-cast", "int"],
 	["punctuation", "("],
 	"chromaNoise",
 	["punctuation", ")"],
 
 	"\r\n\tcastTest ",
 	["operator", "="],
-	["function", [
-		["keyword", "float"]
-	]],
+	["type-cast", "float"],
 	["punctuation", "("],
 	"chromaNoise",
 	["punctuation", ")"],
 
 	"\r\n\tcastTest ",
 	["operator", "="],
-	["function", [
-		["keyword", "string"]
-	]],
+	["type-cast", "string"],
 	["punctuation", "("],
 	"chromaNoise",
 	["punctuation", ")"],
 
 	"\r\n\tcastTest ",
 	["operator", "="],
-	["function", [
-		["keyword", "bool"]
-	]],
+	["type-cast", "bool"],
 	["punctuation", "("],
 	"chromaNoise",
 	["punctuation", ")"],
 
 	"\r\n\tcastTest ",
 	["operator", "="],
-	["function", [
-		["keyword", "val"]
-	]],
+	["type-cast", "val"],
 	["punctuation", "("],
 	"chromaNoise",
 	["punctuation", ")"],
 
 	["keyword", "return"], " interleavedClip\r\n",
-	["punctuation", "}"]
+	["punctuation", "}"],
+
+	["function", "test"],
+	["punctuation", "("],
+	["number", "5"],
+	["punctuation", ","],
+	["number", "0.5"],
+	["punctuation", ","],
+	["argument-label", [
+		["argument-name", "floatingDesync"],
+		["punctuation", "="]
+	]],
+	["string", ["\"progressive\""]],
+	["punctuation", ")"]
 ]
 
 ----------------------------------------------------
 
-Test types and optional arguments.
 Optional arguments check for preceeding types to match before getting matched as a string, and should not be matched as strings.
 Incidental names of types in an arguments list (such as "interleavedFields" containing "int") should not get highlighted.
 Types can be used as casts, and should not be highlighted as user-functions.
 Incidental names of types elsewhere (such as "interleavedClip" in a function body) should not get highlighted.
+Explicitly-named optional arguments in function calls get lowlighted (including the '=').

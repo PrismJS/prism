@@ -1,17 +1,14 @@
 function
- global
-{return
-\ try
+global
+return
+try
 catch
 if
 else
 while
 for
 __END__
-try { return }
 
-}global
-global}
 
 MT_NICE_FILTER
 MT_MULTI_INSTANCE
@@ -41,9 +38,7 @@ blasted
 [
 	["keyword", "function"],
 	["keyword", "global"],
-	["punctuation", "{"],
 	["keyword", "return"],
-	["line-continuation", "\\"],
 	["keyword", "try"],
 	["keyword", "catch"],
 	["keyword", "if"],
@@ -51,12 +46,6 @@ blasted
 	["keyword", "while"],
 	["keyword", "for"],
 	["keyword", "__END__"],
-	["keyword", "try"],
-	["punctuation", "{"],
-	["keyword", "return"],
-	["punctuation", "}"],
-
-	["punctuation", "}"], "global\r\nglobal", ["punctuation", "}"],
 
 	["constant", "MT_NICE_FILTER"],
 	["constant", "MT_MULTI_INSTANCE"],
@@ -79,9 +68,8 @@ blasted
 
 ----------------------------------------------------
 
-Keywords must proceed the start of the line and optional space, a line continuation and optional space, or an open brace (code block) and optional space.
-Keywords must preceed at least one space.
-Keywords can not be bounded by any other punctuation.
+Keywords just have word boundaries. Keywords can actually be used as parameter names in functions, but this
+scenario is an extreme edge and we do not bother handling it.
 
 Constants are case sensitive, and must not appear within other words.
 
