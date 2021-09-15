@@ -140,11 +140,6 @@ code[class*="language-"]::selection, code[class*="language-"] ::selection {
 	cursor: help;
 }
 
-pre[data-line] {
-	padding: 1em 0 1em 3em;
-	position: relative;
-}
-
 /* Markup */
 .language-markup .token.tag,
 .language-markup .token.attr-name,
