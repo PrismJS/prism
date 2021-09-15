@@ -1,0 +1,43 @@
+0
+123
+0xFFF
+-0
+-123
+-0xFF
+12343324234L
+0xFFFFFFFFFl
+
+0.342e4
+0.342e-4f
+0.342e-4d
+.324
+123.
+0x.2Fp+323f
+0x234.p+323d
+
+NaN
+Infinity
+
+----------------------------------------------------
+
+[
+	["number", "0"],
+	["number", "123"],
+	["number", "0xFFF"],
+	["number", "-0"],
+	["number", "-123"],
+	["number", "-0xFF"],
+	["number", "12343324234L"],
+	["number", "0xFFFFFFFFFl"],
+
+	["number", "0.342e4"],
+	["number", "0.342e-4f"],
+	["number", "0.342e-4d"],
+	["number", ".324"],
+	["number", "123."],
+	["number", "0x.2Fp+323f"],
+	["number", "0x234.p+323d"],
+
+	["number", "NaN"],
+	["number", "Infinity"]
+]

@@ -1,0 +1,429 @@
+avisource
+avifilesource
+opendmlsource
+directshowsource
+imagereader
+imagesource
+imagesourceanim
+segmentedavisource
+segmenteddirectshowsource
+wavsource
+
+coloryuv
+convertbacktoyuy2
+converttorgb
+converttorgb24
+converttorgb32
+converttorgb48
+converttorgb64
+converttoplanarrgb
+converttoplanarrgba
+converttoyuy2
+converttoyv24
+converttoyv16
+converttoyv12
+converttoy8
+converttoyuv444
+converttoyuv422
+converttoyuv420
+converttoyuva444
+converttoyuva422
+converttoyuva420
+converttoyuv411
+fixluminance
+greyscale
+grayscale
+invert
+levels
+limiter
+mergergb
+mergeargb
+mergeluma
+mergechroma
+rgbadjust
+showred
+showgreen
+showblue
+showalpha
+swapuv
+tweak
+utoy
+utoy8
+vtoy
+vtoy8
+ytouv
+
+colorkeymask
+layer
+mask
+maskhs
+merge
+overlay
+resetmask
+subtract
+
+addborders
+crop
+cropbottom
+fliphorizontal
+flipvertical
+letterbox
+horizontalreduceby2
+verticalreduceby2
+reduceby2
+bicubicresize
+bilinearresize
+blackmanresize
+gaussresize
+lanczosresize
+lanczos4resize
+pointresize
+sincresize
+spline16resize
+spline36resize
+spline64resize
+
+skewrows
+turnleft
+turnright
+turn180
+
+blur
+sharpen
+generalconvolution
+spatialsoften
+temporalsoften
+fixbrokenchromaupsampling
+
+alignedsplice
+unalignedsplice
+assumefps
+assumescaledfps
+changefps
+convertfps
+deleteframe
+dissolve
+duplicateframe
+fadein0
+fadein
+fadein2
+fadeout0
+fadeout
+fadeout2
+fadeio0
+fadeio
+fadeio2
+freezeframe
+interleave
+loop
+reverse
+selecteven
+selectodd
+selectevery
+selectrangeevery
+trim
+
+assumeframebased
+assumefieldbased
+assumebff
+assumetff
+bob
+complementparity
+doubleweave
+peculiarblend
+pulldown
+separatecolumns
+separaterows
+separatefields
+swapfields
+weave
+weavecolumns
+weaverows
+
+amplify
+amplifydb
+assumesamplerate
+audiodub
+audiodubex
+audiotrim
+convertaudioto8bit
+convertaudioto16bit
+convertaudioto24bit
+convertaudioto32bit
+convertaudiotofloat
+converttomono
+delayaudio
+ensurevbrmp3sync
+getchannel
+getleftchannel
+getrightchannel
+killaudio
+killvideo
+mergechannels
+mixaudio
+monotostereo
+normalize
+resampleaudio
+supereq
+ssrc
+timestretch
+
+conditionalfilter
+frameevaluate
+scriptclip
+conditionalselect
+conditionalreader
+writefile
+writefileif
+writefilestart
+writefileend
+animate
+applyrange
+tcpserver
+tcpsource
+
+imagewriter
+
+blankclip
+blackness
+colorbars
+colorbarshd
+compare
+dumpfiltergraph
+setgraphanalysis
+echo
+histogram
+info
+messageclip
+preroll
+showfiveversions
+showframenumber
+showsmpte
+showtime
+stackhorizontal
+stackvertical
+subtitle
+tone
+version
+
+pantone
+
+----------------------------------------------------
+
+[
+	["builtin-function", "avisource"],
+	["builtin-function", "avifilesource"],
+	["builtin-function", "opendmlsource"],
+	["builtin-function", "directshowsource"],
+	["builtin-function", "imagereader"],
+	["builtin-function", "imagesource"],
+	["builtin-function", "imagesourceanim"],
+	["builtin-function", "segmentedavisource"],
+	["builtin-function", "segmenteddirectshowsource"],
+	["builtin-function", "wavsource"],
+
+	["builtin-function", "coloryuv"],
+	["builtin-function", "convertbacktoyuy2"],
+	["builtin-function", "converttorgb"],
+	["builtin-function", "converttorgb24"],
+	["builtin-function", "converttorgb32"],
+	["builtin-function", "converttorgb48"],
+	["builtin-function", "converttorgb64"],
+	["builtin-function", "converttoplanarrgb"],
+	["builtin-function", "converttoplanarrgba"],
+	["builtin-function", "converttoyuy2"],
+	["builtin-function", "converttoyv24"],
+	["builtin-function", "converttoyv16"],
+	["builtin-function", "converttoyv12"],
+	["builtin-function", "converttoy8"],
+	["builtin-function", "converttoyuv444"],
+	["builtin-function", "converttoyuv422"],
+	["builtin-function", "converttoyuv420"],
+	["builtin-function", "converttoyuva444"],
+	["builtin-function", "converttoyuva422"],
+	["builtin-function", "converttoyuva420"],
+	["builtin-function", "converttoyuv411"],
+	["builtin-function", "fixluminance"],
+	["builtin-function", "greyscale"],
+	["builtin-function", "grayscale"],
+	["builtin-function", "invert"],
+	["builtin-function", "levels"],
+	["builtin-function", "limiter"],
+	["builtin-function", "mergergb"],
+	["builtin-function", "mergeargb"],
+	["builtin-function", "mergeluma"],
+	["builtin-function", "mergechroma"],
+	["builtin-function", "rgbadjust"],
+	["builtin-function", "showred"],
+	["builtin-function", "showgreen"],
+	["builtin-function", "showblue"],
+	["builtin-function", "showalpha"],
+	["builtin-function", "swapuv"],
+	["builtin-function", "tweak"],
+	["builtin-function", "utoy"],
+	["builtin-function", "utoy8"],
+	["builtin-function", "vtoy"],
+	["builtin-function", "vtoy8"],
+	["builtin-function", "ytouv"],
+
+	["builtin-function", "colorkeymask"],
+	["builtin-function", "layer"],
+	["builtin-function", "mask"],
+	["builtin-function", "maskhs"],
+	["builtin-function", "merge"],
+	["builtin-function", "overlay"],
+	["builtin-function", "resetmask"],
+	["builtin-function", "subtract"],
+
+	["builtin-function", "addborders"],
+	["builtin-function", "crop"],
+	["builtin-function", "cropbottom"],
+	["builtin-function", "fliphorizontal"],
+	["builtin-function", "flipvertical"],
+	["builtin-function", "letterbox"],
+	["builtin-function", "horizontalreduceby2"],
+	["builtin-function", "verticalreduceby2"],
+	["builtin-function", "reduceby2"],
+	["builtin-function", "bicubicresize"],
+	["builtin-function", "bilinearresize"],
+	["builtin-function", "blackmanresize"],
+	["builtin-function", "gaussresize"],
+	["builtin-function", "lanczosresize"],
+	["builtin-function", "lanczos4resize"],
+	["builtin-function", "pointresize"],
+	["builtin-function", "sincresize"],
+	["builtin-function", "spline16resize"],
+	["builtin-function", "spline36resize"],
+	["builtin-function", "spline64resize"],
+
+	["builtin-function", "skewrows"],
+	["builtin-function", "turnleft"],
+	["builtin-function", "turnright"],
+	["builtin-function", "turn180"],
+
+	["builtin-function", "blur"],
+	["builtin-function", "sharpen"],
+	["builtin-function", "generalconvolution"],
+	["builtin-function", "spatialsoften"],
+	["builtin-function", "temporalsoften"],
+	["builtin-function", "fixbrokenchromaupsampling"],
+
+	["builtin-function", "alignedsplice"],
+	["builtin-function", "unalignedsplice"],
+	["builtin-function", "assumefps"],
+	["builtin-function", "assumescaledfps"],
+	["builtin-function", "changefps"],
+	["builtin-function", "convertfps"],
+	["builtin-function", "deleteframe"],
+	["builtin-function", "dissolve"],
+	["builtin-function", "duplicateframe"],
+	["builtin-function", "fadein0"],
+	["builtin-function", "fadein"],
+	["builtin-function", "fadein2"],
+	["builtin-function", "fadeout0"],
+	["builtin-function", "fadeout"],
+	["builtin-function", "fadeout2"],
+	["builtin-function", "fadeio0"],
+	["builtin-function", "fadeio"],
+	["builtin-function", "fadeio2"],
+	["builtin-function", "freezeframe"],
+	["builtin-function", "interleave"],
+	["builtin-function", "loop"],
+	["builtin-function", "reverse"],
+	["builtin-function", "selecteven"],
+	["builtin-function", "selectodd"],
+	["builtin-function", "selectevery"],
+	["builtin-function", "selectrangeevery"],
+	["builtin-function", "trim"],
+
+	["builtin-function", "assumeframebased"],
+	["builtin-function", "assumefieldbased"],
+	["builtin-function", "assumebff"],
+	["builtin-function", "assumetff"],
+	["builtin-function", "bob"],
+	["builtin-function", "complementparity"],
+	["builtin-function", "doubleweave"],
+	["builtin-function", "peculiarblend"],
+	["builtin-function", "pulldown"],
+	["builtin-function", "separatecolumns"],
+	["builtin-function", "separaterows"],
+	["builtin-function", "separatefields"],
+	["builtin-function", "swapfields"],
+	["builtin-function", "weave"],
+	["builtin-function", "weavecolumns"],
+	["builtin-function", "weaverows"],
+
+	["builtin-function", "amplify"],
+	["builtin-function", "amplifydb"],
+	["builtin-function", "assumesamplerate"],
+	["builtin-function", "audiodub"],
+	["builtin-function", "audiodubex"],
+	["builtin-function", "audiotrim"],
+	["builtin-function", "convertaudioto8bit"],
+	["builtin-function", "convertaudioto16bit"],
+	["builtin-function", "convertaudioto24bit"],
+	["builtin-function", "convertaudioto32bit"],
+	["builtin-function", "convertaudiotofloat"],
+	["builtin-function", "converttomono"],
+	["builtin-function", "delayaudio"],
+	["builtin-function", "ensurevbrmp3sync"],
+	["builtin-function", "getchannel"],
+	["builtin-function", "getleftchannel"],
+	["builtin-function", "getrightchannel"],
+	["builtin-function", "killaudio"],
+	["builtin-function", "killvideo"],
+	["builtin-function", "mergechannels"],
+	["builtin-function", "mixaudio"],
+	["builtin-function", "monotostereo"],
+	["builtin-function", "normalize"],
+	["builtin-function", "resampleaudio"],
+	["builtin-function", "supereq"],
+	["builtin-function", "ssrc"],
+	["builtin-function", "timestretch"],
+
+	["builtin-function", "conditionalfilter"],
+	["builtin-function", "frameevaluate"],
+	["builtin-function", "scriptclip"],
+	["builtin-function", "conditionalselect"],
+	["builtin-function", "conditionalreader"],
+	["builtin-function", "writefile"],
+	["builtin-function", "writefileif"],
+	["builtin-function", "writefilestart"],
+	["builtin-function", "writefileend"],
+	["builtin-function", "animate"],
+	["builtin-function", "applyrange"],
+	["builtin-function", "tcpserver"],
+	["builtin-function", "tcpsource"],
+
+	["builtin-function", "imagewriter"],
+
+	["builtin-function", "blankclip"],
+	["builtin-function", "blackness"],
+	["builtin-function", "colorbars"],
+	["builtin-function", "colorbarshd"],
+	["builtin-function", "compare"],
+	["builtin-function", "dumpfiltergraph"],
+	["builtin-function", "setgraphanalysis"],
+	["builtin-function", "echo"],
+	["builtin-function", "histogram"],
+	["builtin-function", "info"],
+	["builtin-function", "messageclip"],
+	["builtin-function", "preroll"],
+	["builtin-function", "showfiveversions"],
+	["builtin-function", "showframenumber"],
+	["builtin-function", "showsmpte"],
+	["builtin-function", "showtime"],
+	["builtin-function", "stackhorizontal"],
+	["builtin-function", "stackvertical"],
+	["builtin-function", "subtitle"],
+	["builtin-function", "tone"],
+	["builtin-function", "version"],
+
+	"\r\n\r\npantone"
+]
+
+----------------------------------------------------
+
+All internal functions, filters, and properties can be used in the following formats:
+intFunc == intFunc() == last.intFunc == last.intFunc()
+They must not appear within other words.
