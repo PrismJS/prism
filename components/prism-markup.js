@@ -1,6 +1,6 @@
 Prism.languages.markup = {
 	'comment': {
-		pattern: /<!--[\s\S]*?-->/,
+		pattern: /<!--(?:(?!<!--)[\s\S])*?-->/,
 		greedy: true
 	},
 	'prolog': {

@@ -1,0 +1,65 @@
+array;
+boolean;
+bytes;
+date;
+decimal;
+double;
+enum;
+error;
+false;
+fixed;
+float;
+idl;
+import;
+int;
+local_timestamp_ms;
+long;
+map;
+null;
+oneway;
+protocol;
+record;
+schema;
+string;
+throws;
+time_ms;
+timestamp_ms;
+true;
+union;
+uuid;
+void;
+
+----------------------------------------------------
+
+[
+	["keyword", "array"], ["punctuation", ";"],
+	["keyword", "boolean"], ["punctuation", ";"],
+	["keyword", "bytes"], ["punctuation", ";"],
+	["keyword", "date"], ["punctuation", ";"],
+	["keyword", "decimal"], ["punctuation", ";"],
+	["keyword", "double"], ["punctuation", ";"],
+	["keyword", "enum"], ["punctuation", ";"],
+	["keyword", "error"], ["punctuation", ";"],
+	["keyword", "false"], ["punctuation", ";"],
+	["keyword", "fixed"], ["punctuation", ";"],
+	["keyword", "float"], ["punctuation", ";"],
+	["keyword", "idl"], ["punctuation", ";"],
+	["keyword", "import"], ["punctuation", ";"],
+	["keyword", "int"], ["punctuation", ";"],
+	["keyword", "local_timestamp_ms"], ["punctuation", ";"],
+	["keyword", "long"], ["punctuation", ";"],
+	["keyword", "map"], ["punctuation", ";"],
+	["keyword", "null"], ["punctuation", ";"],
+	["keyword", "oneway"], ["punctuation", ";"],
+	["keyword", "protocol"], ["punctuation", ";"],
+	["keyword", "record"], ["punctuation", ";"],
+	["keyword", "schema"], ["punctuation", ";"],
+	["keyword", "string"], ["punctuation", ";"],
+	["keyword", "throws"], ["punctuation", ";"],
+	["keyword", "time_ms"], ["punctuation", ";"],
+	["keyword", "timestamp_ms"], ["punctuation", ";"],
+	["keyword", "true"], ["punctuation", ";"],
+	["keyword", "union"], ["punctuation", ";"],
+	["keyword", "uuid"], ["punctuation", ";"],
+	["keyword", "void"], ["punctuation", ";"]
+]

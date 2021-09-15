@@ -1,0 +1,36 @@
+G<a, b> := Group<a, b | a^2 = b^3 = a^b*b^2>;
+
+----------------------------------------------------
+
+[
+	["generator", "G"],
+	["punctuation", "<"],
+	"a",
+	["punctuation", ","],
+	" b",
+	["punctuation", ">"],
+	["operator", ":="],
+	["generator", "Group"],
+	["punctuation", "<"],
+	"a",
+	["punctuation", ","],
+	" b ",
+	["operator", "|"],
+	" a",
+	["operator", "^"],
+	["number", "2"],
+	["operator", "="],
+	" b",
+	["operator", "^"],
+	["number", "3"],
+	["operator", "="],
+	" a",
+	["operator", "^"],
+	"b",
+	["operator", "*"],
+	"b",
+	["operator", "^"],
+	["number", "2"],
+	["punctuation", ">"],
+	["punctuation", ";"]
+]

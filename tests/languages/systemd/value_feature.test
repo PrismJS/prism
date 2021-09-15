@@ -1,0 +1,49 @@
+foo=  value 2
+
+foo="something" "some thing" "…"
+foo=  "something" "some thing" "…"
+foo=value 2 \
+    value 2 continued
+
+foo=value 3\
+# this line is ignored
+; this line is ignored too
+       value 3 continued
+
+----------------------------------------------------
+
+[
+	["key", "foo"], ["operator", "="], ["value", ["value 2"]],
+
+	["key", "foo"],
+	["operator", "="],
+	["value", [
+		["quoted", "\"something\""],
+		["quoted", "\"some thing\""],
+		["quoted", "\"…\""]
+	]],
+
+	["key", "foo"],
+	["operator", "="],
+	["value", [
+		["quoted", "\"something\""],
+		["quoted", "\"some thing\""],
+		["quoted", "\"…\""]
+	]],
+
+	["key", "foo"],
+	["operator", "="],
+	["value", [
+		"value 2 ", ["punctuation", "\\"],
+		"\r\n    value 2 continued"
+	]],
+
+	["key", "foo"],
+	["operator", "="],
+	["value", [
+		"value 3", ["punctuation", "\\"],
+		["comment", "# this line is ignored"],
+		["comment", "; this line is ignored too"],
+		"\r\n       value 3 continued"
+	]]
+]

@@ -1,0 +1,177 @@
+_;
+adj;
+and;
+assert;
+assert2;
+assert3;
+assigned;
+break;
+by;
+case;
+cat;
+catch;
+clear;
+cmpeq;
+cmpne;
+continue;
+declare;
+default;
+delete;
+diff;
+div;
+do;
+elif;
+else;
+end;
+eq;
+error;
+eval;
+exists;
+exit;
+for;
+forall;
+forward;
+fprintf;
+freeze;
+function;
+ge;
+gt;
+if;
+iload;
+import;
+in;
+intrinsic;
+is;
+join;
+le;
+load;
+local;
+lt;
+meet;
+mod;
+ne;
+not;
+notadj;
+notin;
+notsubset;
+or;
+print;
+printf;
+procedure;
+quit;
+random;
+read;
+readi;
+repeat;
+require;
+requirege;
+requirerange;
+restore;
+return;
+save;
+sdiff;
+select;
+subset;
+then;
+time;
+to;
+try;
+until;
+vprint;
+vprintf;
+vtime;
+when;
+where;
+while;
+xor;
+
+----------------------------------------------------
+
+[
+	["keyword", "_"], ["punctuation", ";"],
+	["keyword", "adj"], ["punctuation", ";"],
+	["keyword", "and"], ["punctuation", ";"],
+	["keyword", "assert"], ["punctuation", ";"],
+	["keyword", "assert2"], ["punctuation", ";"],
+	["keyword", "assert3"], ["punctuation", ";"],
+	["keyword", "assigned"], ["punctuation", ";"],
+	["keyword", "break"], ["punctuation", ";"],
+	["keyword", "by"], ["punctuation", ";"],
+	["keyword", "case"], ["punctuation", ";"],
+	["keyword", "cat"], ["punctuation", ";"],
+	["keyword", "catch"], ["punctuation", ";"],
+	["keyword", "clear"], ["punctuation", ";"],
+	["keyword", "cmpeq"], ["punctuation", ";"],
+	["keyword", "cmpne"], ["punctuation", ";"],
+	["keyword", "continue"], ["punctuation", ";"],
+	["keyword", "declare"], ["punctuation", ";"],
+	["keyword", "default"], ["punctuation", ";"],
+	["keyword", "delete"], ["punctuation", ";"],
+	["keyword", "diff"], ["punctuation", ";"],
+	["keyword", "div"], ["punctuation", ";"],
+	["keyword", "do"], ["punctuation", ";"],
+	["keyword", "elif"], ["punctuation", ";"],
+	["keyword", "else"], ["punctuation", ";"],
+	["keyword", "end"], ["punctuation", ";"],
+	["keyword", "eq"], ["punctuation", ";"],
+	["keyword", "error"], ["punctuation", ";"],
+	["keyword", "eval"], ["punctuation", ";"],
+	["keyword", "exists"], ["punctuation", ";"],
+	["keyword", "exit"], ["punctuation", ";"],
+	["keyword", "for"], ["punctuation", ";"],
+	["keyword", "forall"], ["punctuation", ";"],
+	["keyword", "forward"], ["punctuation", ";"],
+	["keyword", "fprintf"], ["punctuation", ";"],
+	["keyword", "freeze"], ["punctuation", ";"],
+	["keyword", "function"], ["punctuation", ";"],
+	["keyword", "ge"], ["punctuation", ";"],
+	["keyword", "gt"], ["punctuation", ";"],
+	["keyword", "if"], ["punctuation", ";"],
+	["keyword", "iload"], ["punctuation", ";"],
+	["keyword", "import"], ["punctuation", ";"],
+	["keyword", "in"], ["punctuation", ";"],
+	["keyword", "intrinsic"], ["punctuation", ";"],
+	["keyword", "is"], ["punctuation", ";"],
+	["keyword", "join"], ["punctuation", ";"],
+	["keyword", "le"], ["punctuation", ";"],
+	["keyword", "load"], ["punctuation", ";"],
+	["keyword", "local"], ["punctuation", ";"],
+	["keyword", "lt"], ["punctuation", ";"],
+	["keyword", "meet"], ["punctuation", ";"],
+	["keyword", "mod"], ["punctuation", ";"],
+	["keyword", "ne"], ["punctuation", ";"],
+	["keyword", "not"], ["punctuation", ";"],
+	["keyword", "notadj"], ["punctuation", ";"],
+	["keyword", "notin"], ["punctuation", ";"],
+	["keyword", "notsubset"], ["punctuation", ";"],
+	["keyword", "or"], ["punctuation", ";"],
+	["keyword", "print"], ["punctuation", ";"],
+	["keyword", "printf"], ["punctuation", ";"],
+	["keyword", "procedure"], ["punctuation", ";"],
+	["keyword", "quit"], ["punctuation", ";"],
+	["keyword", "random"], ["punctuation", ";"],
+	["keyword", "read"], ["punctuation", ";"],
+	["keyword", "readi"], ["punctuation", ";"],
+	["keyword", "repeat"], ["punctuation", ";"],
+	["keyword", "require"], ["punctuation", ";"],
+	["keyword", "requirege"], ["punctuation", ";"],
+	["keyword", "requirerange"], ["punctuation", ";"],
+	["keyword", "restore"], ["punctuation", ";"],
+	["keyword", "return"], ["punctuation", ";"],
+	["keyword", "save"], ["punctuation", ";"],
+	["keyword", "sdiff"], ["punctuation", ";"],
+	["keyword", "select"], ["punctuation", ";"],
+	["keyword", "subset"], ["punctuation", ";"],
+	["keyword", "then"], ["punctuation", ";"],
+	["keyword", "time"], ["punctuation", ";"],
+	["keyword", "to"], ["punctuation", ";"],
+	["keyword", "try"], ["punctuation", ";"],
+	["keyword", "until"], ["punctuation", ";"],
+	["keyword", "vprint"], ["punctuation", ";"],
+	["keyword", "vprintf"], ["punctuation", ";"],
+	["keyword", "vtime"], ["punctuation", ";"],
+	["keyword", "when"], ["punctuation", ";"],
+	["keyword", "where"], ["punctuation", ";"],
+	["keyword", "while"], ["punctuation", ";"],
+	["keyword", "xor"], ["punctuation", ";"]
+]

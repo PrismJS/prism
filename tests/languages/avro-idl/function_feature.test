@@ -1,0 +1,57 @@
+int add(int foo, int bar = 0);
+
+void logMessage(string message);
+
+void goKaboom() throws Kaboom;
+
+void fireAndForget(string message) oneway;
+
+void `error`();
+
+----------------------------------------------------
+
+[
+	["keyword", "int"],
+	["function", "add"],
+	["punctuation", "("],
+	["keyword", "int"],
+	" foo",
+	["punctuation", ","],
+	["keyword", "int"],
+	" bar ",
+	["operator", "="],
+	["number", "0"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "void"],
+	["function", "logMessage"],
+	["punctuation", "("],
+	["keyword", "string"],
+	" message",
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "void"],
+	["function", "goKaboom"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["keyword", "throws"],
+	["class-name", "Kaboom"],
+	["punctuation", ";"],
+
+	["keyword", "void"],
+	["function", "fireAndForget"],
+	["punctuation", "("],
+	["keyword", "string"],
+	" message",
+	["punctuation", ")"],
+	["keyword", "oneway"],
+	["punctuation", ";"],
+
+	["keyword", "void"],
+	["function-identifier", "`error`"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"]
+]
