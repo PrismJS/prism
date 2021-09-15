@@ -103,7 +103,7 @@
 			}
 		],
 
-		// Handle before strings because optional arguments are surrounded by double quotes.
+		// Handle before strings because optional arguments are surrounded by double quotes
 		'argument': {
 			pattern: re(/\b(?:<<0>>)\s+("?)\w+\1/.source, [types], 'i'),
 			inside: {
@@ -143,15 +143,12 @@
 			}
 		],
 
-		// The special "last" variable that takes the value of the last implicitly returned clip.
+		// The special "last" variable that takes the value of the last implicitly returned clip
 		'variable': /\b(?:last)\b/i,
 
 		'boolean': /\b(?:true|false|yes|no)\b/i,
 
-		'keyword': {
-			pattern: /((?:^|[\\{])\s*)(?:function|global|return|try|catch|if|else|while|for|__END__)(?=\s)/im,
-			lookbehind: true
-		},
+		'keyword': /\b(?:function|global|return|try|catch|if|else|while|for|__END__)\b/i,
 
 		'constant': /\bMT_(?:NICE_FILTER|MULTI_INSTANCE|SERIALIZED|SPECIAL_MT)\b/,
 
@@ -166,7 +163,7 @@
 			alias: 'keyword'
 		},
 
-		// External/user-defined filters, and type casts.
+		// External/user-defined filters
 		'function': {
 			pattern: /\b[a-z_]\w*(?=\s*\()|(\.)[a-z_]\w*\b/i,
 			lookbehind: true
