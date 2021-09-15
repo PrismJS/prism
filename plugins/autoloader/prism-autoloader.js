@@ -176,6 +176,8 @@
 		"js": "javascript",
 		"g4": "antlr4",
 		"adoc": "asciidoc",
+		"avs": "avisynth",
+		"avdl": "avro-idl",
 		"shell": "bash",
 		"shortcode": "bbcode",
 		"rbnf": "bnf",

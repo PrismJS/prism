@@ -1,0 +1,60 @@
+""
+"\"\\"
+"foo
+bar"
+
+""""""
+"""
+foo
+bar
+"""
+"""
+  {
+    "hello": "wren",
+    "from" : "json"
+  }
+"""
+
+"foo %(bar)"
+"foo * %(1 + 2) ~= bar"
+
+----------------------------------------------------
+
+[
+	["string-literal", [
+		["string", "\"\""]
+	]],
+	["string-literal", [
+		["string", "\"\\\"\\\\\""]
+	]],
+	["string-literal", [
+		["string", "\"foo\r\nbar\""]
+	]],
+
+	["triple-quoted-string", "\"\"\"\"\"\""],
+	["triple-quoted-string", "\"\"\"\r\nfoo\r\nbar\r\n\"\"\""],
+	["triple-quoted-string", "\"\"\"\r\n  {\r\n    \"hello\": \"wren\",\r\n    \"from\" : \"json\"\r\n  }\r\n\"\"\""],
+
+	["string-literal", [
+		["string", "\"foo "],
+		["interpolation", [
+			["interpolation-punctuation", "%("],
+			["expression", ["bar"]],
+			["interpolation-punctuation", ")"]
+		]],
+		["string", "\""]
+	]],
+	["string-literal", [
+		["string", "\"foo * "],
+		["interpolation", [
+			["interpolation-punctuation", "%("],
+			["expression", [
+				["number", "1"],
+				["operator", "+"],
+				["number", "2"]
+			]],
+			["interpolation-punctuation", ")"]
+		]],
+		["string", " ~= bar\""]
+	]]
+]

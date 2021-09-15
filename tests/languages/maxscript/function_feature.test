@@ -1,0 +1,96 @@
+function my_add a b = a + b
+
+fn factorial n = if n <= 0 then 1 else n * factorial (n - 1)
+
+mapped function rand_color x =
+   x.wireColor = random (color 0 0 0) (color 255 255 255)
+
+fn starfield count extent:[200,200,200] pos:[0,0,0] =
+   (
+   -- something
+   )
+
+----------------------------------------------------
+
+[
+	["keyword", "function"],
+	["function-definition", "my_add"],
+	" a b ",
+	["operator", "="],
+	" a ",
+	["operator", "+"],
+	" b\r\n\r\n",
+
+	["keyword", "fn"],
+	["function-definition", "factorial"],
+	" n ",
+	["operator", "="],
+	["keyword", "if"],
+	" n ",
+	["operator", "<="],
+	["number", "0"],
+	["keyword", "then"],
+	["number", "1"],
+	["keyword", "else"],
+	" n ",
+	["operator", "*"],
+	" factorial ",
+	["punctuation", "("],
+	"n ",
+	["operator", "-"],
+	["number", "1"],
+	["punctuation", ")"],
+
+	["keyword", "mapped"],
+	["keyword", "function"],
+	["function-definition", "rand_color"],
+	" x ",
+	["operator", "="],
+
+	"\r\n   x",
+	["punctuation", "."],
+	"wireColor ",
+	["operator", "="],
+	" random ",
+	["punctuation", "("],
+	"color ",
+	["number", "0"],
+	["number", "0"],
+	["number", "0"],
+	["punctuation", ")"],
+	["punctuation", "("],
+	"color ",
+	["number", "255"],
+	["number", "255"],
+	["number", "255"],
+	["punctuation", ")"],
+
+	["keyword", "fn"],
+	["function-definition", "starfield"],
+	" count ",
+	["argument", "extent"],
+	["punctuation", ":"],
+	["punctuation", "["],
+	["number", "200"],
+	["punctuation", ","],
+	["number", "200"],
+	["punctuation", ","],
+	["number", "200"],
+	["punctuation", "]"],
+	["argument", "pos"],
+	["punctuation", ":"],
+	["punctuation", "["],
+	["number", "0"],
+	["punctuation", ","],
+	["number", "0"],
+	["punctuation", ","],
+	["number", "0"],
+	["punctuation", "]"],
+	["operator", "="],
+
+	["punctuation", "("],
+
+	["comment", "-- something"],
+
+	["punctuation", ")"]
+]

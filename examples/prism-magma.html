@@ -1,0 +1,34 @@
+<h2>Full example</h2>
+<pre><code>// Source: http://magma.maths.usyd.edu.au/magma/handbook/text/115#963
+> D := Denominator;
+> N := Numerator;
+> farey := function(n)
+>    f := [ RationalField() | 0, 1/n ];
+>    p := 0;
+>    q := 1;
+>    while p/q lt 1 do
+>       p := ( D(f[#f-1]) + n) div D(f[#f]) * N(f[#f])  - N(f[#f-1]);
+>       q := ( D(f[#f-1]) + n) div D(f[#f]) * D(f[#f])  - D(f[#f-1]);
+>       Append(~f, p/q);
+>    end while;
+>    return f;
+> end function;
+> function farey(n)
+>    if n eq 1 then
+>       return [RationalField() | 0, 1 ];
+>    else
+>       f := farey(n-1);
+>       i := 0;
+>       while i lt #f-1 do
+>          i +:= 1;
+>          if D(f[i]) + D(f[i+1]) eq n then
+>             Insert( ~f, i+1, (N(f[i]) + N(f[i+1]))/(D(f[i]) + D(f[i+1])));
+>          end if;
+>       end while;
+>       return f;
+>    end if;
+> end function;
+> farey := func&lt; n |
+>               Sort(Setseq({ a/b : a in { 0..n }, b in { 1..n } | a le b }))>;
+> farey(6);
+[ 0, 1/6, 1/5, 1/4, 1/3, 2/5, 1/2, 3/5, 2/3, 3/4, 4/5, 5/6, 1 ]</code></pre>
