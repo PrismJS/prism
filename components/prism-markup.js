@@ -1,5 +1,5 @@
 Prism.languages.markup = {
-	'comment': /<!--[\s\S]*?-->/,
+	'comment': /<!--(?:(?!<!--)[\s\S])*?-->/,
 	'prolog': /<\?[\s\S]+?\?>/,
 	'doctype': {
 		// https://www.w3.org/TR/xml/#NT-doctypedecl
