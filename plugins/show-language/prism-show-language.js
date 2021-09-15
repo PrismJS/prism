@@ -43,6 +43,8 @@
 		"asm6502": "6502 Assembly",
 		"autohotkey": "AutoHotkey",
 		"autoit": "AutoIt",
+		"avisynth": "AviSynth",
+		"avs": "AviSynth",
 		"avro-idl": "Avro IDL",
 		"avdl": "Avro IDL",
 		"basic": "BASIC",

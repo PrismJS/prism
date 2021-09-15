@@ -1,0 +1,391 @@
+isbool
+isclip
+isfloat
+isint
+isstring
+exist
+defined
+functionexists
+internalfunctionexists
+varexist
+
+apply
+eval
+import
+select
+default
+assert
+nop
+undefined
+
+setmemorymax
+setcachemode
+setmaxcpu
+setworkingdir
+setplanarlegacyalignment
+opt_allowfloataudio
+opt_usewaveextensible
+opt_dwchannelmask
+opt_avipadscanlines
+opt_vdubplanarhack
+opt_enable_v210
+opt_enable_y3_10_10
+opt_enable_y3_10_16
+opt_enable_b64a
+opt_enable_planartopackedrgb
+
+value
+hexvalue
+hex
+
+max
+min
+muldiv
+floor
+ceil
+round
+fmod
+pi
+exp
+log
+log10
+pow
+sqrt
+abs
+sign
+frac
+rand
+spline
+continuednumerator
+continueddenominator
+
+sin
+cos
+tan
+asin
+acos
+atan
+atan2
+sinh
+cosh
+tanh
+
+bitand
+bitnot
+bitor
+bitxor
+bitlshift
+bitshl
+bitsal
+bitrshifta
+bitrshifts
+bitsar
+bitrshiftl
+bitrshiftu
+bitshr
+bitlrotate
+bitrol
+bitrrotatel
+bitror
+bittest
+bittst
+bitset
+bitsetcount
+bitclear
+bitclr
+bitchange
+bitchg
+
+averageluma
+averagechromau
+averagechromav
+averageb
+averageg
+averager
+lumadifference
+chromaudifference
+chromavdifference
+rgbdifference
+bdifference
+gdifference
+rdifference
+ydifferencefromprevious
+udifferencefromprevious
+vdifferencefromprevious
+rgbdifferencefromprevious
+bdifferencefromprevious
+gdifferencefromprevious
+rdifferencefromprevious
+ydifferencetonext
+udifferencetonext
+vdifferencetonext
+rgbdifferencetonext
+rdifferencetonext
+gdifferencetonext
+bdifferencetonext
+yplanemedian
+uplanemedian
+vplanemedian
+bplanemedian
+gplanemedian
+rplanemedian
+yplanemin
+uplanemin
+vplanemin
+bplanemin
+gplanemin
+rplanemin
+yplanemax
+uplanemax
+vplanemax
+bplanemax
+gplanemax
+rplanemax
+yplaneminmaxdifference
+uplaneminmaxdifference
+vplaneminmaxdifference
+bplaneminmaxdifference
+gplaneminmaxdifference
+rplaneminmaxdifference
+
+scriptname
+scriptnameutf8
+scriptfile
+scriptfileutf8
+scriptdir
+scriptdirutf8
+setlogparams
+logmsg
+getprocessinfo
+
+lcase
+ucase
+strtoutf8
+strfromutf8
+strlen
+revstr
+leftstr
+rightstr
+midstr
+findstr
+replacestr
+format
+fillstr
+strcmp
+strcmpi
+trimleft
+trimright
+trimall
+chr
+ord
+time
+
+versionnumber
+versionstring
+isversionorgreater
+
+buildpixeltype
+colorspacenametopixeltype
+
+kevincosner
+
+----------------------------------------------------
+
+[
+	["builtin-function", "isbool"],
+	["builtin-function", "isclip"],
+	["builtin-function", "isfloat"],
+	["builtin-function", "isint"],
+	["builtin-function", "isstring"],
+	["builtin-function", "exist"],
+	["builtin-function", "defined"],
+	["builtin-function", "functionexists"],
+	["builtin-function", "internalfunctionexists"],
+	["builtin-function", "varexist"],
+
+	["builtin-function", "apply"],
+	["builtin-function", "eval"],
+	["builtin-function", "import"],
+	["builtin-function", "select"],
+	["builtin-function", "default"],
+	["builtin-function", "assert"],
+	["builtin-function", "nop"],
+	["builtin-function", "undefined"],
+
+	["builtin-function", "setmemorymax"],
+	["builtin-function", "setcachemode"],
+	["builtin-function", "setmaxcpu"],
+	["builtin-function", "setworkingdir"],
+	["builtin-function", "setplanarlegacyalignment"],
+	["builtin-function", "opt_allowfloataudio"],
+	["builtin-function", "opt_usewaveextensible"],
+	["builtin-function", "opt_dwchannelmask"],
+	["builtin-function", "opt_avipadscanlines"],
+	["builtin-function", "opt_vdubplanarhack"],
+	["builtin-function", "opt_enable_v210"],
+	["builtin-function", "opt_enable_y3_10_10"],
+	["builtin-function", "opt_enable_y3_10_16"],
+	["builtin-function", "opt_enable_b64a"],
+	["builtin-function", "opt_enable_planartopackedrgb"],
+
+	["builtin-function", "value"],
+	["builtin-function", "hexvalue"],
+	["builtin-function", "hex"],
+
+	["builtin-function", "max"],
+	["builtin-function", "min"],
+	["builtin-function", "muldiv"],
+	["builtin-function", "floor"],
+	["builtin-function", "ceil"],
+	["builtin-function", "round"],
+	["builtin-function", "fmod"],
+	["builtin-function", "pi"],
+	["builtin-function", "exp"],
+	["builtin-function", "log"],
+	["builtin-function", "log10"],
+	["builtin-function", "pow"],
+	["builtin-function", "sqrt"],
+	["builtin-function", "abs"],
+	["builtin-function", "sign"],
+	["builtin-function", "frac"],
+	["builtin-function", "rand"],
+	["builtin-function", "spline"],
+	["builtin-function", "continuednumerator"],
+	["builtin-function", "continueddenominator"],
+
+	["builtin-function", "sin"],
+	["builtin-function", "cos"],
+	["builtin-function", "tan"],
+	["builtin-function", "asin"],
+	["builtin-function", "acos"],
+	["builtin-function", "atan"],
+	["builtin-function", "atan2"],
+	["builtin-function", "sinh"],
+	["builtin-function", "cosh"],
+	["builtin-function", "tanh"],
+
+	["builtin-function", "bitand"],
+	["builtin-function", "bitnot"],
+	["builtin-function", "bitor"],
+	["builtin-function", "bitxor"],
+	["builtin-function", "bitlshift"],
+	["builtin-function", "bitshl"],
+	["builtin-function", "bitsal"],
+	["builtin-function", "bitrshifta"],
+	["builtin-function", "bitrshifts"],
+	["builtin-function", "bitsar"],
+	["builtin-function", "bitrshiftl"],
+	["builtin-function", "bitrshiftu"],
+	["builtin-function", "bitshr"],
+	["builtin-function", "bitlrotate"],
+	["builtin-function", "bitrol"],
+	["builtin-function", "bitrrotatel"],
+	["builtin-function", "bitror"],
+	["builtin-function", "bittest"],
+	["builtin-function", "bittst"],
+	["builtin-function", "bitset"],
+	["builtin-function", "bitsetcount"],
+	["builtin-function", "bitclear"],
+	["builtin-function", "bitclr"],
+	["builtin-function", "bitchange"],
+	["builtin-function", "bitchg"],
+
+	["builtin-function", "averageluma"],
+	["builtin-function", "averagechromau"],
+	["builtin-function", "averagechromav"],
+	["builtin-function", "averageb"],
+	["builtin-function", "averageg"],
+	["builtin-function", "averager"],
+	["builtin-function", "lumadifference"],
+	["builtin-function", "chromaudifference"],
+	["builtin-function", "chromavdifference"],
+	["builtin-function", "rgbdifference"],
+	["builtin-function", "bdifference"],
+	["builtin-function", "gdifference"],
+	["builtin-function", "rdifference"],
+	["builtin-function", "ydifferencefromprevious"],
+	["builtin-function", "udifferencefromprevious"],
+	["builtin-function", "vdifferencefromprevious"],
+	["builtin-function", "rgbdifferencefromprevious"],
+	["builtin-function", "bdifferencefromprevious"],
+	["builtin-function", "gdifferencefromprevious"],
+	["builtin-function", "rdifferencefromprevious"],
+	["builtin-function", "ydifferencetonext"],
+	["builtin-function", "udifferencetonext"],
+	["builtin-function", "vdifferencetonext"],
+	["builtin-function", "rgbdifferencetonext"],
+	["builtin-function", "rdifferencetonext"],
+	["builtin-function", "gdifferencetonext"],
+	["builtin-function", "bdifferencetonext"],
+	["builtin-function", "yplanemedian"],
+	["builtin-function", "uplanemedian"],
+	["builtin-function", "vplanemedian"],
+	["builtin-function", "bplanemedian"],
+	["builtin-function", "gplanemedian"],
+	["builtin-function", "rplanemedian"],
+	["builtin-function", "yplanemin"],
+	["builtin-function", "uplanemin"],
+	["builtin-function", "vplanemin"],
+	["builtin-function", "bplanemin"],
+	["builtin-function", "gplanemin"],
+	["builtin-function", "rplanemin"],
+	["builtin-function", "yplanemax"],
+	["builtin-function", "uplanemax"],
+	["builtin-function", "vplanemax"],
+	["builtin-function", "bplanemax"],
+	["builtin-function", "gplanemax"],
+	["builtin-function", "rplanemax"],
+	["builtin-function", "yplaneminmaxdifference"],
+	["builtin-function", "uplaneminmaxdifference"],
+	["builtin-function", "vplaneminmaxdifference"],
+	["builtin-function", "bplaneminmaxdifference"],
+	["builtin-function", "gplaneminmaxdifference"],
+	["builtin-function", "rplaneminmaxdifference"],
+
+	["builtin-function", "scriptname"],
+	["builtin-function", "scriptnameutf8"],
+	["builtin-function", "scriptfile"],
+	["builtin-function", "scriptfileutf8"],
+	["builtin-function", "scriptdir"],
+	["builtin-function", "scriptdirutf8"],
+	["builtin-function", "setlogparams"],
+	["builtin-function", "logmsg"],
+	["builtin-function", "getprocessinfo"],
+
+	["builtin-function", "lcase"],
+	["builtin-function", "ucase"],
+	["builtin-function", "strtoutf8"],
+	["builtin-function", "strfromutf8"],
+	["builtin-function", "strlen"],
+	["builtin-function", "revstr"],
+	["builtin-function", "leftstr"],
+	["builtin-function", "rightstr"],
+	["builtin-function", "midstr"],
+	["builtin-function", "findstr"],
+	["builtin-function", "replacestr"],
+	["builtin-function", "format"],
+	["builtin-function", "fillstr"],
+	["builtin-function", "strcmp"],
+	["builtin-function", "strcmpi"],
+	["builtin-function", "trimleft"],
+	["builtin-function", "trimright"],
+	["builtin-function", "trimall"],
+	["builtin-function", "chr"],
+	["builtin-function", "ord"],
+	["builtin-function", "time"],
+
+	["builtin-function", "versionnumber"],
+	["builtin-function", "versionstring"],
+	["builtin-function", "isversionorgreater"],
+
+	["builtin-function", "buildpixeltype"],
+	["builtin-function", "colorspacenametopixeltype"],
+
+	"\r\n\r\nkevincosner"
+]
+
+----------------------------------------------------
+
+All internal functions, filters, and properties can be used in the following formats:
+intFunc == intFunc() == last.intFunc == last.intFunc()
+They must not appear within other words.
