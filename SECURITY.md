@@ -2,9 +2,9 @@
 
 ## What is considered a vulnerability?
 
-There are some types of low-severity vulnerabilities that we will not acknowledge as CVE and treat as bugs instead. All vulnerabilities with a severity of medium and above will of course be acknowledged and fixed.
+There are some types of [low-severity][severity] vulnerabilities that we will not acknowledge as CVE and treat as bugs instead. All vulnerabilities with a severity of medium and above will of course be acknowledged and fixed.
 
-Please see the below section on how we treat ReDoS vulnerabilities.
+Please see the below section on how we treat [ReDoS] vulnerabilities.
 
 If you are unsure whether a vulnerability you found qualifies, please report it as a vulnerability via email (see below).
 
