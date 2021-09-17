@@ -17,7 +17,7 @@
 		'attribute': [
 			{
 				pattern: RegExp(
-					/#\[(?:[^\]("]|"(?:[^"]|"")*"(?!")|\((?!\*)|<comment>)*\]/.source
+					/#\[(?:[^\[\]("]|"(?:[^"]|"")*"(?!")|\((?!\*)|<comment>)*\]/.source
 						.replace(/<comment>/g, function () { return commentSource; })
 				),
 				greedy: true,
