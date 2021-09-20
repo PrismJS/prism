@@ -22,7 +22,7 @@ Prism.languages.tremor = {
 	'keyword': /\b(?:event|state|select|create|define|deploy|operator|script|connector|pipeline|flow|config|links|connect|to|from|into|with|group|by|args|window|stream|tumbling|sliding|where|having|set|each|emit|drop|const|let|for|match|of|case|when|default|end|patch|insert|update|erase|move|copy|merge|fn|intrinsic|recur|use|as|mod)\b/,
 	'boolean': /\b(?:true|false|null)\b/i,
     'variable': {
-        pattern: /(`[^`]*`)|\b([_a-z][_a-zA-Z0-9]*\b)/,
+        pattern: /`[^`]*`|\b[_a-z]\w*\b/,
         greedy: true
     },
 	'number': /\b(0b[0-1_]*)|(0x[0-9a-fA-F_]*)|(([0-9][0-9_]*)(\.[0-9][0-9_]*)?((e|E)(\+|-)?[0-9_]+)?)\b/,
