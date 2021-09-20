@@ -6,10 +6,10 @@ foo_bar_42
 ----------------------------------------------------
 
 [
-	["variable", "foo"],
-	["variable", "foo_bar_42"],
-	["variable", "`foo`"],
-	["variable", "`bar`"]
+	["variable", ["foo"]],
+	["variable", ["foo_bar_42"]],
+	["variable", ["`foo`"]],
+	["variable", ["`bar`"]]
 ]
 
 ----------------------------------------------------

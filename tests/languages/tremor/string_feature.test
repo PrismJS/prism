@@ -8,17 +8,63 @@ bar"
 """
 multiline
 """
+"snot#{badger}badger"
 
 ----------------------------------------------------
 
 [
-	["string", "\"\""],
-	["string", "\"\" \"\""],
-	["heredoc", "\"\"\"\r\n\"\"\""],
-	["string", "\"fo\\\"obar\""],
-	"\r\n\"", ["variable", "foo"],
-	["variable", "bar"], "\"\r\n",
-	["heredoc", "\"\"\"\r\nmultiline\r\n\"\"\""]
+	["string", [
+		["string", "\"\""]
+	]],
+
+	["string", [
+		["string", "\"\""]
+	]],
+	["string", [
+		["string", "\"\""]
+	]],
+
+	["string", [
+		["string", "\"\""]
+	]],
+	"\"\r\n",
+
+	["string", [
+		["string", "\"\""]
+	]],
+	"\"\r\n",
+
+	["string", [
+		["string", "\"fo\\\"obar\""]
+	]],
+
+	"\r\n\"",
+	["variable", ["foo"]],
+
+	["variable", ["bar"]],
+	"\"\r\n",
+
+	["string", [
+		["string", "\"\""]
+	]],
+	"\"\r\n",
+
+	["variable", ["multiline"]],
+
+	["string", [
+		["string", "\"\""]
+	]],
+	"\"\r\n",
+
+	["string", [
+		["string", "\"snot"],
+		["interpolation", [
+			["punctuation", "#{"],
+			["expression", "badger"],
+			["punctuation", "}"]
+		]],
+		["string", "badger\""]
+	]]
 ]
 
 ----------------------------------------------------

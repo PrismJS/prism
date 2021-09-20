@@ -1,0 +1,57 @@
+a + b
+a - b
+a / b
+a * b
+a % b
+a += b
+a -= b
+a /= b
+a *= b
+a %= b
+a = b
+a == b
+a < b
+a <= b
+a >= b
+a << b
+a >> b
+a >>> b
+not a
+a and b
+a or b
+a xor b
+present a
+absent a
+
+----------------------------------------------------
+
+[
+	["variable", ["a"]], ["operator", "+"], ["variable", ["b"]],
+	["variable", ["a"]], ["operator", "-"], ["variable", ["b"]],
+	["variable", ["a"]], ["operator", "/"], ["variable", ["b"]],
+	["variable", ["a"]], ["operator", "*"], ["variable", ["b"]],
+	["variable", ["a"]], ["operator", "%"], ["variable", ["b"]],
+	["variable", ["a"]], ["operator", "+="], ["variable", ["b"]],
+	["variable", ["a"]], ["operator", "-="], ["variable", ["b"]],
+	["variable", ["a"]], ["operator", "/="], ["variable", ["b"]],
+	["variable", ["a"]], ["operator", "*="], ["variable", ["b"]],
+	["variable", ["a"]], ["operator", "%="], ["variable", ["b"]],
+	["variable", ["a"]], ["operator", "="], ["variable", ["b"]],
+	["variable", ["a"]], ["operator", "=="], ["variable", ["b"]],
+	["variable", ["a"]], ["operator", "<"], ["variable", ["b"]],
+	["variable", ["a"]], ["operator", "<="], ["variable", ["b"]],
+	["variable", ["a"]], ["operator", ">="], ["variable", ["b"]],
+	["variable", ["a"]], ["operator", "<<"], ["variable", ["b"]],
+	["variable", ["a"]], ["operator", ">>"], ["variable", ["b"]],
+	["variable", ["a"]], ["operator", ">>>"], ["variable", ["b"]],
+	["operator", "not"], ["variable", ["a"]],
+	["variable", ["a"]], ["operator", "and"], ["variable", ["b"]],
+	["variable", ["a"]], ["operator", "or"], ["variable", ["b"]],
+	["variable", ["a"]], ["operator", "xor"], ["variable", ["b"]],
+	["operator", "present"], ["variable", ["a"]],
+	["operator", "absent"], ["variable", ["a"]]
+]
+
+----------------------------------------------------
+
+Checks for operators

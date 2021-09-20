@@ -1,0 +1,43 @@
+foo
+foo::bar
+foo::bar::baz
+`foo`::bar::`baz`
+`foo`
+`foo`::`bar`::`baz`
+
+----------------------------------------------------
+
+[
+	["variable", ["foo"]],
+	["variable", [
+		"foo",
+		["punctuation", "::"],
+		"bar"
+	]],
+	["variable", [
+		"foo",
+		["punctuation", "::"],
+		"bar",
+		["punctuation", "::"],
+		"baz"
+	]],
+	["variable", [
+		"`foo`",
+		["punctuation", "::"],
+		"bar",
+		["punctuation", "::"],
+		"`baz`"
+	]],
+	["variable", ["`foo`"]],
+	["variable", [
+		"`foo`",
+		["punctuation", "::"],
+		"`bar`",
+		["punctuation", "::"],
+		"`baz`"
+	]]
+]
+
+----------------------------------------------------
+
+Checks modularity and references for bare/namespaced variables
