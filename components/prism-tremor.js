@@ -8,7 +8,7 @@ Prism.languages.tremor = {
 		lookbehind: true
 	},
    	'heredoc': {
-        pattern: /"""(?:[^"]|("[^"])|(""[^"]))+"""/,
+        pattern: /"""(?:[^"]|"(?!""))+"""/,
         greedy: true,
         alias: "string"
 	},
