@@ -25,7 +25,7 @@ Prism.languages.tremor = {
         pattern: /`[^`]*`|\b[_a-z]\w*\b/,
         greedy: true
     },
-	'number': /\b(0b[0-1_]*)|(0x[0-9a-fA-F_]*)|(([0-9][0-9_]*)(\.[0-9][0-9_]*)?((e|E)(\+|-)?[0-9_]+)?)\b/,
+	'number': /\b(?:0b[0-1_]*|0x[0-9a-fA-F_]*|\d[0-9_]*(?:\.\d[0-9_]*)?(?:[Ee][+-]?[0-9_]+)?)\b/,
     'operator': /\b[-+*\/%!^]=?|=[=>]?|&[&=]?|\|[|=]?|<<?=?|>>?=?|\b(?:not|and|or|xor|present|absent)\b/,
 	'punctuation': /[;\[\]()\{\},.]/,
     'namespace': {
