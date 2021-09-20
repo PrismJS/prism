@@ -13,7 +13,8 @@ Prism.languages.tremor = {
         alias: "string"
 	},
    	'string': {
-        pattern: /"(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])+"|""/,
+        pattern: /(^|[^\\])"(?:\\(?:\r\n|[\s\S])|[^"\\\r\n])*"/,
+        lookbehind: true
         greedy: true,
         alias: "string"
 	},
