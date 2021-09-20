@@ -1,0 +1,115 @@
+`args`
+`as`
+`by`
+`case`
+`config`
+`connect`
+`connector`
+`const`
+`copy`
+`create`
+`default`
+`define`
+`deploy`
+`drop`
+`each`
+`emit`
+`end`
+`erase`
+`event`
+`flow`
+`fn`
+`for`
+`from`
+`group`
+`having`
+`insert`
+`into`
+`intrinsic`
+`let`
+`links`
+`match`
+`merge`
+`mod`
+`move`
+`of`
+`operator`
+`patch`
+`pipeline`
+`recur`
+`script`
+`select`
+`set`
+`sliding`
+`state`
+`stream`
+`to`
+`tumbling`
+`update`
+`use`
+`when`
+`where`
+`window`
+`with`
+
+----------------------------------------------------
+
+[
+	["variable", "`args`"],
+	["variable", "`as`"],
+	["variable", "`by`"],
+	["variable", "`case`"],
+	["variable", "`config`"],
+	["variable", "`connect`"],
+	["variable", "`connector`"],
+	["variable", "`const`"],
+	["variable", "`copy`"],
+	["variable", "`create`"],
+	["variable", "`default`"],
+	["variable", "`define`"],
+	["variable", "`deploy`"],
+	["variable", "`drop`"],
+	["variable", "`each`"],
+	["variable", "`emit`"],
+	["variable", "`end`"],
+	["variable", "`erase`"],
+	["variable", "`event`"],
+	["variable", "`flow`"],
+	["variable", "`fn`"],
+	["variable", "`for`"],
+	["variable", "`from`"],
+	["variable", "`group`"],
+	["variable", "`having`"],
+	["variable", "`insert`"],
+	["variable", "`into`"],
+	["variable", "`intrinsic`"],
+	["variable", "`let`"],
+	["variable", "`links`"],
+	["variable", "`match`"],
+	["variable", "`merge`"],
+	["variable", "`mod`"],
+	["variable", "`move`"],
+	["variable", "`of`"],
+	["variable", "`operator`"],
+	["variable", "`patch`"],
+	["variable", "`pipeline`"],
+	["variable", "`recur`"],
+	["variable", "`script`"],
+	["variable", "`select`"],
+	["variable", "`set`"],
+	["variable", "`sliding`"],
+	["variable", "`state`"],
+	["variable", "`stream`"],
+	["variable", "`to`"],
+	["variable", "`tumbling`"],
+	["variable", "`update`"],
+	["variable", "`use`"],
+	["variable", "`when`"],
+	["variable", "`where`"],
+	["variable", "`window`"],
+	["variable", "`with`"]
+]
+
+----------------------------------------------------
+
+Checks for variables.

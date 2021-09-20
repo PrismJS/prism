@@ -1,0 +1,82 @@
+<h2>Comments</h2>
+<pre><code># Single line comment
+### Module level documentation comment
+## Statement level documentation comment
+# Regular code comment
+</code></pre>
+
+<h2>Strings</h2>
+<pre><code>
+# double quote single line strings
+"foo \"bar\" baz"
+
+# heredocs or multiline strings
+"""
+{ "snot": "badger" }
+"""
+</code></pre>
+
+<h2>Variables</h2>
+<pre><code>
+# Immutable constants
+const snot = "fleek";
+
+# Mutable variables
+let badger = "flook";
+</code></pre>
+
+<h2>Operators</h2>
+<pre><code>
+merge {} of
+  { "snot": "badger" }
+end;
+
+patch {} of
+  insert snot = "badger"
+end;
+</code></pre>
+
+<h2>Functions and keywords</h2>
+<pre><code>
+fn fib_(a, b, n) of
+case (a, b, n) when n > 0 => recur(b, a + b, n - 1)
+default => a
+end;
+
+fn fib(n) with
+fib_(0, 1, n)
+end;
+
+fib(event)
+</code></pre>
+
+<h2>Queries</h2>
+<pre><code>
+	define script fib
+	script
+        fn fib_(a, b, n) of
+            case (a, b, n) when n > 0 => recur(b, a + b, n - 1)
+            default => a
+        end;
+
+        fn fib(n) with
+            fib_(0, 1, n)
+        end;
+
+		{ "fib": fib(event.n) }
+	end;
+
+	create script fib;
+	select event.n from in into fib;
+	select event from fib into out;
+</code></pre>
+
+<h2>Deployments</h2>
+<pre><code>
+define pipeline passthrough
+pipeline
+  select event from in into out;
+end;
+
+deploy pipeline passthrough;
+</code></pre>

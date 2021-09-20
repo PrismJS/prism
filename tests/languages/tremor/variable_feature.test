@@ -1,0 +1,17 @@
+foo
+foo_bar_42
+`foo`
+`bar`
+
+----------------------------------------------------
+
+[
+	["variable", "foo"],
+	["variable", "foo_bar_42"],
+	["variable", "`foo`"],
+	["variable", "`bar`"]
+]
+
+----------------------------------------------------
+
+Checks for variables.
