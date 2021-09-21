@@ -227,6 +227,8 @@
 		"tap": "TAP",
 		"tt2": "Template Toolkit 2",
 		"toml": "TOML",
+		"trickle": "trickle",
+		"troy": "troy",
 		"trig": "TriG",
 		"ts": "TypeScript",
 		"tsconfig": "TSConfig",
