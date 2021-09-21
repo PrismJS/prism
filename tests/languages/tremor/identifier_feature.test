@@ -1,0 +1,12 @@
+foo
+foo_bar_42
+`foo`
+`bar`
+
+----------------------------------------------------
+
+[
+	"foo\r\nfoo_bar_42\r\n",
+	["identifier", "`foo`"],
+	["identifier", "`bar`"]
+]
