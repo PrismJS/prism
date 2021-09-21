@@ -8,34 +8,27 @@ foo::bar::baz
 ----------------------------------------------------
 
 [
-	["variable", ["foo"]],
-	["variable", [
-		"foo",
-		["punctuation", "::"],
-		"bar"
-	]],
-	["variable", [
-		"foo",
-		["punctuation", "::"],
-		"bar",
-		["punctuation", "::"],
-		"baz"
-	]],
-	["variable", [
-		"`foo`",
-		["punctuation", "::"],
-		"bar",
-		["punctuation", "::"],
-		"`baz`"
-	]],
-	["variable", ["`foo`"]],
-	["variable", [
-		"`foo`",
-		["punctuation", "::"],
-		"`bar`",
-		["punctuation", "::"],
-		"`baz`"
-	]]
+	"foo\r\nfoo",
+	["punctuation", "::"],
+	"bar\r\nfoo",
+	["punctuation", "::"],
+	"bar",
+	["punctuation", "::"],
+	"baz\r\n",
+
+	["identifier", "`foo`"],
+	["punctuation", "::"],
+	"bar",
+	["punctuation", "::"],
+	["identifier", "`baz`"],
+
+	["identifier", "`foo`"],
+
+	["identifier", "`foo`"],
+	["punctuation", "::"],
+	["identifier", "`bar`"],
+	["punctuation", "::"],
+	["identifier", "`baz`"]
 ]
 
 ----------------------------------------------------
