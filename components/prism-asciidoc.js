@@ -109,7 +109,7 @@
 			alias: 'punctuation'
 		},
 		'admonition': {
-			pattern: /^(?:TIP|NOTE|IMPORTANT|WARNING|CAUTION):/m,
+			pattern: /^(?:CAUTION|IMPORTANT|NOTE|TIP|WARNING):/m,
 			alias: 'keyword'
 		},
 		'callout': [
@@ -186,7 +186,7 @@
 			}
 		},
 		'replacement': {
-			pattern: /\((?:C|TM|R)\)/,
+			pattern: /\((?:C|R|TM)\)/,
 			alias: 'builtin'
 		},
 		'entity': /&#?[\da-z]{1,8};/i,
