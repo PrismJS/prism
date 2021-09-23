@@ -50,7 +50,7 @@ var Prism = (function (_self) {
 		 */
 		manual: _self.Prism && _self.Prism.manual,
 		/**
-		 * By default, if Prism is in a web worker, it assumes its in a worker it created itself, so it uses
+		 * By default, if Prism is in a web worker, it assumes that it is in a worker it created itself, so it uses
 		 * `addEventListener` to communicate with its parent instance. However, if you're using Prism manually in your
 		 * own worker, you don't want it to do this.
 		 * 
