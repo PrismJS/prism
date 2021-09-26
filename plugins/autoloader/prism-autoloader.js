@@ -239,6 +239,8 @@
 		"sln": "solution-file",
 		"rq": "sparql",
 		"t4": "t4-cs",
+		"trickle": "tremor",
+		"troy": "tremor",
 		"trig": "turtle",
 		"ts": "typescript",
 		"tsconfig": "typoscript",

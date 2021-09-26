@@ -1,7 +1,7 @@
 (function (Prism) {
 
 	var comment_inside = {
-		'function': /\b(?:TODOS?|FIX(?:MES?)?|NOTES?|BUGS?|XX+|HACKS?|WARN(?:ING)?|\?{2,}|!{2,})\b/
+		'function': /\b(?:BUGS?|FIX(?:MES?)?|NOTES?|TODOS?|XX+|HACKS?|WARN(?:ING)?|\?{2,}|!{2,})\b/
 	};
 	var string_inside = {
 		'number': /\\[^\s']|%\w/
@@ -182,7 +182,7 @@
 		'stack-effect-delimiter': [
 			{
 				// opening parenthesis
-				pattern: /(^|\s)(?:call|execute|eval)?\((?=\s)/,
+				pattern: /(^|\s)(?:call|eval|execute)?\((?=\s)/,
 				lookbehind: true,
 				alias: 'operator'
 			},
@@ -265,7 +265,7 @@
 			see <https://docs.factorcode.org/content/article-conventions.html>
 		*/
 		'conventionally-named-word': {
-			pattern: /(^|\s)(?!")(?:(?:set|change|with|new)-\S+|\$\S+|>[^>\s]+|[^:>\s]+>|[^>\s]+>[^>\s]+|\+[^+\s]+\+|[^?\s]+\?|\?[^?\s]+|[^>\s]+>>|>>[^>\s]+|[^<\s]+<<|\([^()\s]+\)|[^!\s]+!|[^*\s]\S*\*|[^.\s]\S*\.)(?=\s|$)/,
+			pattern: /(^|\s)(?!")(?:(?:change|new|set|with)-\S+|\$\S+|>[^>\s]+|[^:>\s]+>|[^>\s]+>[^>\s]+|\+[^+\s]+\+|[^?\s]+\?|\?[^?\s]+|[^>\s]+>>|>>[^>\s]+|[^<\s]+<<|\([^()\s]+\)|[^!\s]+!|[^*\s]\S*\*|[^.\s]\S*\.)(?=\s|$)/,
 			lookbehind: true,
 			alias: 'keyword'
 		},
