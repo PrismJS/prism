@@ -15,7 +15,7 @@ Prism.languages.maxscript = {
 	},
 
 	'function-definition': {
-		pattern: /(\b(?:function|fn)\s+)\w+\b/,
+		pattern: /(\b(?:fn|function)\s+)\w+\b/,
 		lookbehind: true,
 		alias: 'function'
 	},
@@ -26,7 +26,7 @@ Prism.languages.maxscript = {
 	},
 
 	'keyword': /\b(?:about|and|animate|as|at|attributes|by|case|catch|collect|continue|coordsys|do|else|exit|fn|for|from|function|global|if|in|local|macroscript|mapped|max|not|of|off|on|or|parameters|persistent|plugin|rcmenu|return|rollout|set|struct|then|throw|to|tool|try|undo|utility|when|where|while|with)\b/i,
-	'boolean': /\b(?:true|false|on|off)\b/,
+	'boolean': /\b(?:false|off|on|true)\b/,
 
 	'time': {
 		pattern: /(^|[^\w.])(?:(?:(?:\d+(?:\.\d*)?|\.\d+)(?:[eEdD][+-]\d+|[LP])?[msft])+|\d+:\d+(?:\.\d*)?)(?![\w.:])/,

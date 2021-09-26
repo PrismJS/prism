@@ -62,9 +62,9 @@ Prism.languages.bicep = {
 		alias: 'class-name'
 	},
 
-	'boolean': /\b(?:true|false)\b/,
+	'boolean': /\b(?:false|true)\b/,
 	// https://github.com/Azure/bicep/blob/114a3251b4e6e30082a58729f19a8cc4e374ffa6/src/textmate/bicep.tmlanguage#L184
-	'keyword': /\b(?:targetScope|resource|module|param|var|output|for|in|if|existing|null)\b/,
+	'keyword': /\b(?:existing|for|if|in|module|null|output|param|resource|targetScope|var)\b/,
 
 	'decorator': /@\w+\b/,
 	'function': /\b[a-z_]\w*(?=[ \t]*\()/i,

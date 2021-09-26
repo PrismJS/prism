@@ -11,72 +11,72 @@
 		return RegExp(replace(pattern, replacements), flags || '');
 	}
 
-	var types = /clip|int|float|string|bool|val/.source;
+	var types = /bool|clip|float|int|string|val/.source;
 	var internals = [
 		// bools
-		/is(?:bool|clip|float|int|string)|defined|(?:var|(?:internal)?function)?exists?/.source,
+		/is(?:bool|clip|float|int|string)|defined|(?:(?:internal)?function|var)?exists?/.source,
 		// control
-		/apply|assert|default|eval|import|select|nop|undefined/.source,
+		/apply|assert|default|eval|import|nop|select|undefined/.source,
 		// global
-		/set(?:memorymax|cachemode|maxcpu|workingdir|planarlegacyalignment)|opt_(?:allowfloataudio|usewaveextensible|dwchannelmask|avipadscanlines|vdubplanarhack|enable_(?:v210|y3_10_10|y3_10_16|b64a|planartopackedrgb))/.source,
+		/opt_(?:allowfloataudio|avipadscanlines|dwchannelmask|enable_(?:b64a|planartopackedrgb|v210|y3_10_10|y3_10_16)|usewaveextensible|vdubplanarhack)|set(?:cachemode|maxcpu|memorymax|planarlegacyalignment|workingdir)/.source,
 		// conv
 		/hex(?:value)?|value/.source,
 		// numeric
-		/max|min|muldiv|floor|ceil|round|fmod|pi|exp|log(?:10)?|pow|sqrt|abs|sign|frac|rand|spline|continued(?:numerator|denominator)?/.source,
+		/abs|ceil|continued(?:denominator|numerator)?|exp|floor|fmod|frac|log(?:10)?|max|min|muldiv|pi|pow|rand|round|sign|spline|sqrt/.source,
 		// trig
 		/a?sinh?|a?cosh?|a?tan[2h]?/.source,
 		// bit
 		/(?:bit(?:and|not|x?or|[lr]?shift[aslu]?|sh[lr]|sa[lr]|[lr]rotatel?|ro[rl]|te?st|set(?:count)?|cl(?:ea)?r|ch(?:an)?ge?))/.source,
 		// runtime
-		/average(?:luma|chroma[uv]|[bgr])|(?:luma|chroma[uv]|rgb|[rgb]|[yuv](?=difference(?:fromprevious|tonext)))difference(?:fromprevious|tonext)?|[yuvrgb]plane(?:median|min|max|minmaxdifference)/.source,
+		/average(?:[bgr]|chroma[uv]|luma)|(?:[rgb]|chroma[uv]|luma|rgb|[yuv](?=difference(?:fromprevious|tonext)))difference(?:fromprevious|tonext)?|[yuvrgb]plane(?:median|min|max|minmaxdifference)/.source,
 		// script
-		/script(?:name(?:utf8)?|file(?:utf8)?|dir(?:utf8)?)|setlogparams|logmsg|getprocessinfo/.source,
+		/getprocessinfo|logmsg|script(?:dir(?:utf8)?|file(?:utf8)?|name(?:utf8)?)|setlogparams/.source,
 		// string
-		/[lu]case|str(?:toutf8|fromutf8|len|cmpi?)|(?:rev|left|right|mid|find|replace|fill)str|format|trim(?:left|right|all)|chr|ord|time/.source,
+		/chr|(?:fill|find|left|mid|replace|rev|right)str|format|[lu]case|ord|str(?:cmpi?|fromutf8|len|toutf8)|time|trim(?:all|left|right)/.source,
 		// version
-		/version(?:number|string)|isversionorgreater/.source,
+		/isversionorgreater|version(?:number|string)/.source,
 		// helper
 		/buildpixeltype|colorspacenametopixeltype/.source,
 		// avsplus
-		/setfiltermtmode|prefetch|addautoloaddir|on(?:cpu|cuda)/.source
+		/addautoloaddir|on(?:cpu|cuda)|prefetch|setfiltermtmode/.source
 	].join('|');
 	var properties = [
 		// content
 		/has(?:audio|video)/.source,
 		// resolution
-		/width|height/.source,
+		/height|width/.source,
 		// framerate
-		/frame(?:count|rate)|framerate(?:numerator|denominator)/.source,
+		/frame(?:count|rate)|framerate(?:denominator|numerator)/.source,
 		// interlacing
-		/is(?:field|frame)based|getparity/.source,
+		/getparity|is(?:field|frame)based/.source,
 		// color format
-		/pixeltype|is(?:planar(?:rgba?)?|interleaved|rgb(?:24|32|48|64)?|y(?:8|u(?:y2|va?))?|yv(?:12|16|24|411)|420|422|444|packedrgb)|hasalpha|componentsize|numcomponents|bitspercomponent/.source,
+		/bitspercomponent|componentsize|hasalpha|is(?:planar(?:rgba?)?|interleaved|rgb(?:24|32|48|64)?|y(?:8|u(?:va?|y2))?|yv(?:12|16|24|411)|420|422|444|packedrgb)|numcomponents|pixeltype/.source,
 		// audio
-		/audio(?:rate|duration|length(?:[fs]|lo|hi)?|channels|bits)|isaudio(?:float|int)/.source
+		/audio(?:bits|channels|duration|length(?:[fs]|hi|lo)?|rate)|isaudio(?:float|int)/.source
 	].join('|');
 	var filters = [
 		// source
-		/avi(?:file)?source|opendmlsource|directshowsource|image(?:reader|source|sourceanim)|segmented(?:avisource|directshowsource)|wavsource/.source,
+		/avi(?:file)?source|directshowsource|image(?:reader|source|sourceanim)|opendmlsource|segmented(?:avisource|directshowsource)|wavsource/.source,
 		// color
-		/coloryuv|convertto(?:RGB(?:24|32|48|64)|(?:planar)?RGBA?|Y8?|YV(?:12|16|24|411)|YUVA?(?:444|422|420|411)|YUY2)|convertbacktoyuy2|fixluminance|gr[ae]yscale|invert|levels|limiter|mergea?rgb|merge(?:luma|chroma)|rgbadjust|show(?:red|green|blue|alpha)|swapuv|tweak|[uv]toy8?|ytouv/.source,
+		/coloryuv|convertbacktoyuy2|convertto(?:RGB(?:24|32|48|64)|(?:planar)?RGBA?|Y8?|YV(?:12|16|24|411)|YUVA?(?:411|420|422|444)|YUY2)|fixluminance|gr[ae]yscale|invert|levels|limiter|mergea?rgb|merge(?:chroma|luma)|rgbadjust|show(?:alpha|blue|green|red)|swapuv|tweak|[uv]toy8?|ytouv/.source,
 		// overlay
-		/(?:colorkey|reset)mask|mask(?:hs)?|layer|merge|overlay|subtract/.source,
+		/(?:colorkey|reset)mask|layer|mask(?:hs)?|merge|overlay|subtract/.source,
 		// geometry
-		/addborders|crop(?:bottom)?|flip(?:horizontal|vertical)|letterbox|(?:horizontal|vertical)?reduceby2|(?:bicubic|bilinear|blackman|gauss|lanczos|lanczos4|point|sinc|spline(?:16|36|64))resize|skewrows|turn(?:left|right|180)/.source,
+		/addborders|(?:bicubic|bilinear|blackman|gauss|lanczos4|lanczos|point|sinc|spline(?:16|36|64))resize|crop(?:bottom)?|flip(?:horizontal|vertical)|(?:horizontal|vertical)?reduceby2|letterbox|skewrows|turn(?:180|left|right)/.source,
 		// pixel
-		/blur|sharpen|generalconvolution|(?:spatial|temporal)soften|fixbrokenchromaupsampling/.source,
+		/blur|fixbrokenchromaupsampling|generalconvolution|(?:spatial|temporal)soften|sharpen/.source,
 		// timeline
-		/trim|(?:un)?alignedsplice|(?:assume|assumescaled|change|convert)FPS|(?:delete|duplicate)frame|dissolve|fade(?:in|out|io)[02]?|freezeframe|interleave|loop|reverse|select(?:even|odd|(?:range)?every)/.source,
+		/trim|(?:un)?alignedsplice|(?:assume|assumescaled|change|convert)FPS|(?:delete|duplicate)frame|dissolve|fade(?:in|io|out)[02]?|freezeframe|interleave|loop|reverse|select(?:even|odd|(?:range)?every)/.source,
 		// interlace
-		/assume(?:frame|field)based|assume[bt]ff|bob|complementparity|doubleweave|peculiarblend|pulldown|separate(?:columns|rows|fields)|swapfields|weave(?:columns|rows)?/.source,
+		/assume[bt]ff|assume(?:field|frame)based|bob|complementparity|doubleweave|peculiarblend|pulldown|separate(?:columns|fields|rows)|swapfields|weave(?:columns|rows)?/.source,
 		// audio
-		/amplify(?:db)?|assumesamplerate|audiodub(?:ex)?|audiotrim|convertaudioto(?:(?:8|16|24|32)bit|float)|converttomono|delayaudio|ensurevbrmp3sync|get(?:left|right)?channel|kill(?:audio|video)|mergechannels|mixaudio|monotostereo|normalize|resampleaudio|supereq|ssrc|timestretch/.source,
+		/amplify(?:db)?|assumesamplerate|audiodub(?:ex)?|audiotrim|convertaudioto(?:(?:8|16|24|32)bit|float)|converttomono|delayaudio|ensurevbrmp3sync|get(?:left|right)?channel|kill(?:audio|video)|mergechannels|mixaudio|monotostereo|normalize|resampleaudio|ssrc|supereq|timestretch/.source,
 		// conditional
-		/conditional(?:filter|select|reader)|frameevaluate|scriptclip|writefile(?:if|start|end)?|animate|applyrange|tcp(?:server|source)/.source,
+		/animate|applyrange|conditional(?:filter|reader|select)|frameevaluate|scriptclip|tcp(?:server|source)|writefile(?:end|if|start)?/.source,
 		// export
 		/imagewriter/.source,
 		// debug
-		/subtitle|blankclip|blackness|colorbars(?:hd)?|compare|dumpfiltergraph|setgraphanalysis|echo|histogram|info|messageclip|preroll|showfiveversions|show(?:framenumber|smpte|time)|stack(?:horizontal|vertical)|tone|version/.source
+		/blackness|blankclip|colorbars(?:hd)?|compare|dumpfiltergraph|echo|histogram|info|messageclip|preroll|setgraphanalysis|show(?:framenumber|smpte|time)|showfiveversions|stack(?:horizontal|vertical)|subtitle|tone|version/.source
 	].join('|');
 	var allinternals = [internals, properties, filters].join('|');
 
@@ -137,7 +137,7 @@
 				inside: {
 					'constant': {
 						// These *are* case-sensitive!
-						pattern: /\b(?:DEFAULT_MT_MODE|(?:SCRIPT|MAINSCRIPT|PROGRAM)DIR|(?:USER|MACHINE)_(?:PLUS|CLASSIC)_PLUGINS)\b/
+						pattern: /\b(?:DEFAULT_MT_MODE|(?:MAINSCRIPT|PROGRAM|SCRIPT)DIR|(?:MACHINE|USER)_(?:CLASSIC|PLUS)_PLUGINS)\b/
 					}
 				}
 			}
@@ -146,11 +146,11 @@
 		// The special "last" variable that takes the value of the last implicitly returned clip
 		'variable': /\b(?:last)\b/i,
 
-		'boolean': /\b(?:true|false|yes|no)\b/i,
+		'boolean': /\b(?:false|no|true|yes)\b/i,
 
-		'keyword': /\b(?:function|global|return|try|catch|if|else|while|for|__END__)\b/i,
+		'keyword': /\b(?:catch|else|for|function|global|if|return|try|while|__END__)\b/i,
 
-		'constant': /\bMT_(?:NICE_FILTER|MULTI_INSTANCE|SERIALIZED|SPECIAL_MT)\b/,
+		'constant': /\bMT_(?:MULTI_INSTANCE|NICE_FILTER|SERIALIZED|SPECIAL_MT)\b/,
 
 		// AviSynth's internal functions, filters, and properties
 		'builtin-function': {

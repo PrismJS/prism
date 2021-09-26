@@ -53,7 +53,7 @@
 
 		// This handle all conditional and loop keywords
 		'flow-control': {
-			pattern: /(^[\t ]*)(?:if|unless|else|case|when|default|each|while)\b(?: .+)?/m,
+			pattern: /(^[\t ]*)(?:case|default|each|else|if|unless|when|while)\b(?: .+)?/m,
 			lookbehind: true,
 			inside: {
 				'each': {
@@ -64,14 +64,14 @@
 					}
 				},
 				'branch': {
-					pattern: /^(?:if|unless|else|case|when|default|while)\b/,
+					pattern: /^(?:case|default|else|if|unless|when|while)\b/,
 					alias: 'keyword'
 				},
 				rest: Prism.languages.javascript
 			}
 		},
 		'keyword': {
-			pattern: /(^[\t ]*)(?:block|extends|include|append|prepend)\b.+/m,
+			pattern: /(^[\t ]*)(?:append|block|extends|include|prepend)\b.+/m,
 			lookbehind: true
 		},
 		'mixin': [

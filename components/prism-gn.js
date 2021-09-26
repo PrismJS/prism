@@ -31,14 +31,14 @@ Prism.languages.gn = {
 	},
 
 	'keyword': /\b(?:else|if)\b/,
-	'boolean': /\b(?:true|false)\b/,
+	'boolean': /\b(?:false|true)\b/,
 	'builtin-function': {
 		// a few functions get special highlighting to improve readability
 		pattern: /\b(?:assert|defined|foreach|import|pool|print|template|tool|toolchain)(?=\s*\()/i,
 		alias: 'keyword'
 	},
 	'function': /\b[a-z_]\w*(?=\s*\()/i,
-	'constant': /\b(?:current_cpu|current_os|current_toolchain|default_toolchain|host_cpu|host_os|root_build_dir|root_gen_dir|root_out_dir|target_cpu|target_gen_dir|target_out_dir|target_os)\b/,
+	'constant': /\b(?:current_cpu|current_os|current_toolchain|default_toolchain|host_cpu|host_os|root_build_dir|root_gen_dir|root_out_dir|target_cpu|target_gen_dir|target_os|target_out_dir)\b/,
 
 	'number': /-?\b\d+\b/,
 

@@ -21,8 +21,8 @@
 
 		'function': /\b[a-z_]\w*(?=\s*(?:::\s*<|\())\b/,
 
-		'keyword': /\b(?:event|state|select|create|define|deploy|operator|script|connector|pipeline|flow|config|links|connect|to|from|into|with|group|by|args|window|stream|tumbling|sliding|where|having|set|each|emit|drop|const|let|for|match|of|case|when|default|end|patch|insert|update|erase|move|copy|merge|fn|intrinsic|recur|use|as|mod)\b/,
-		'boolean': /\b(?:true|false|null)\b/i,
+		'keyword': /\b(?:args|as|by|case|config|connect|connector|const|copy|create|default|define|deploy|drop|each|emit|end|erase|event|flow|fn|for|from|group|having|insert|into|intrinsic|let|links|match|merge|mod|move|of|operator|patch|pipeline|recur|script|select|set|sliding|state|stream|to|tumbling|update|use|when|where|window|with)\b/,
+		'boolean': /\b(?:false|null|true)\b/i,
 
 		'number': /\b(?:0b[0-1_]*|0x[0-9a-fA-F_]*|\d[0-9_]*(?:\.\d[0-9_]*)?(?:[Ee][+-]?[0-9_]+)?)\b/,
 
@@ -30,7 +30,7 @@
 			pattern: /%(?=[({[])/,
 			alias: 'punctuation'
 		},
-		'operator': /[-+*\/%~!^]=?|=[=>]?|&[&=]?|\|[|=]?|<<?=?|>>?>?=?|(?:not|and|or|xor|present|absent)\b/,
+		'operator': /[-+*\/%~!^]=?|=[=>]?|&[&=]?|\|[|=]?|<<?=?|>>?>?=?|(?:absent|and|not|or|present|xor)\b/,
 		'punctuation': /::|[;\[\]()\{\},.:]/,
 	};
 

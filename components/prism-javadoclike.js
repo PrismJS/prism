@@ -2,7 +2,7 @@
 
 	var javaDocLike = Prism.languages.javadoclike = {
 		'parameter': {
-			pattern: /(^[\t ]*(?:\/{3}|\*|\/\*\*)\s*@(?:param|arg|arguments)\s+)\w+/m,
+			pattern: /(^[\t ]*(?:\/{3}|\*|\/\*\*)\s*@(?:arg|arguments|param)\s+)\w+/m,
 			lookbehind: true
 		},
 		'keyword': {

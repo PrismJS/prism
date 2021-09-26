@@ -24,7 +24,7 @@
 
 	var variable = /\$[-\w]+|#\{\$[-\w]+\}/;
 	var operator = [
-		/[+*\/%]|[=!]=|<=?|>=?|\b(?:and|or|not)\b/,
+		/[+*\/%]|[=!]=|<=?|>=?|\b(?:and|not|or)\b/,
 		{
 			pattern: /(\s)-(?=\s)/,
 			lookbehind: true
