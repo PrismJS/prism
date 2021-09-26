@@ -1,0 +1,899 @@
+@for (var i = 0; i < people.Length; i++)
+{
+    var person = people[i];
+    <text>Name: @person.Name</text>
+}
+
+@if (value % 2 == 0)
+{
+    <p>The value was even.</p>
+}
+
+@if (value % 2 == 0)
+{
+    <p>The value was even.</p>
+}
+else if (value >= 1337)
+{
+    <p>The value is large.</p>
+}
+else
+{
+    <p>The value is odd and small.</p>
+}
+
+@switch (value)
+{
+    case 1:
+        <p>The value is 1!</p>
+        break;
+    case 1337:
+        <p>Your number is 1337!</p>
+        break;
+    default:
+        <p>Your number wasn't 1 or 1337.</p>
+        break;
+}
+
+@for (var i = 0; i < people.Length; i++)
+{
+    var person = people[i];
+    <p>Name: @person.Name</p>
+    <p>Age: @person.Age</p>
+}
+
+@foreach (var person in people)
+{
+    <p>Name: @person.Name</p>
+    <p>Age: @person.Age</p>
+}
+
+@{ var i = 0; }
+@while (i < people.Length)
+{
+    var person = people[i];
+    <p>Name: @person.Name</p>
+    <p>Age: @person.Age</p>
+
+    i++;
+}
+
+@{ var i = 0; }
+@do
+{
+    var person = people[i];
+    <p>Name: @person.Name</p>
+    <p>Age: @person.Age</p>
+
+    i++;
+} while (i < people.Length);
+
+@using (Html.BeginForm())
+{
+    <div>
+        Email: <input type="email" id="Email" value="">
+        <button>Register</button>
+    </div>
+}
+
+@try
+{
+    throw new InvalidOperationException("You did something invalid.");
+}
+catch (Exception ex)
+{
+    <p>The exception message: @ex.Message</p>
+}
+finally
+{
+    <p>The finally statement.</p>
+}
+
+@lock (SomeLock)
+{
+    // Do critical section work
+}
+
+----------------------------------------------------
+
+[
+	["block", [
+		["keyword", "@for"],
+		["csharp", [
+			["punctuation", "("],
+			["class-name", [
+				["keyword", "var"]
+			]],
+			" i ",
+			["operator", "="],
+			["number", "0"],
+			["punctuation", ";"],
+			" i ",
+			["operator", "<"],
+			" people",
+			["punctuation", "."],
+			"Length",
+			["punctuation", ";"],
+			" i",
+			["operator", "++"],
+			["punctuation", ")"],
+
+			["punctuation", "{"],
+
+			["class-name", [
+				["keyword", "var"]
+			]],
+			" person ",
+			["operator", "="],
+			" people",
+			["punctuation", "["],
+			"i",
+			["punctuation", "]"],
+			["punctuation", ";"],
+
+			["html", [
+				["tag", [
+					["tag", [
+						["punctuation", "<"],
+						"text"
+					]],
+					["punctuation", ">"]
+				]],
+				"Name: ",
+				["value", [
+					["keyword", "@"],
+					["csharp", [
+						"person",
+						["punctuation", "."],
+						"Name"
+					]]
+				]],
+				["tag", [
+					["tag", [
+						["punctuation", "</"],
+						"text"
+					]],
+					["punctuation", ">"]
+				]]
+			]],
+
+			["punctuation", "}"]
+		]]
+	]],
+
+	["block", [
+		["keyword", "@if"],
+		["csharp", [
+			["punctuation", "("],
+			["keyword", "value"],
+			["operator", "%"],
+			["number", "2"],
+			["operator", "=="],
+			["number", "0"],
+			["punctuation", ")"],
+
+			["punctuation", "{"],
+
+			["html", [
+				["tag", [
+					["tag", [
+						["punctuation", "<"],
+						"p"
+					]],
+					["punctuation", ">"]
+				]],
+				"The value was even.",
+				["tag", [
+					["tag", [
+						["punctuation", "</"],
+						"p"
+					]],
+					["punctuation", ">"]
+				]]
+			]],
+
+			["punctuation", "}"]
+		]]
+	]],
+
+	["block", [
+		["keyword", "@if"],
+		["csharp", [
+			["punctuation", "("],
+			["keyword", "value"],
+			["operator", "%"],
+			["number", "2"],
+			["operator", "=="],
+			["number", "0"],
+			["punctuation", ")"],
+
+			["punctuation", "{"],
+
+			["html", [
+				["tag", [
+					["tag", [
+						["punctuation", "<"],
+						"p"
+					]],
+					["punctuation", ">"]
+				]],
+				"The value was even.",
+				["tag", [
+					["tag", [
+						["punctuation", "</"],
+						"p"
+					]],
+					["punctuation", ">"]
+				]]
+			]],
+
+			["punctuation", "}"],
+
+			["keyword", "else"],
+			["keyword", "if"],
+			["punctuation", "("],
+			["keyword", "value"],
+			["operator", ">="],
+			["number", "1337"],
+			["punctuation", ")"],
+
+			["punctuation", "{"],
+
+			["html", [
+				["tag", [
+					["tag", [
+						["punctuation", "<"],
+						"p"
+					]],
+					["punctuation", ">"]
+				]],
+				"The value is large.",
+				["tag", [
+					["tag", [
+						["punctuation", "</"],
+						"p"
+					]],
+					["punctuation", ">"]
+				]]
+			]],
+
+			["punctuation", "}"],
+
+			["keyword", "else"],
+
+			["punctuation", "{"],
+
+			["html", [
+				["tag", [
+					["tag", [
+						["punctuation", "<"],
+						"p"
+					]],
+					["punctuation", ">"]
+				]],
+				"The value is odd and small.",
+				["tag", [
+					["tag", [
+						["punctuation", "</"],
+						"p"
+					]],
+					["punctuation", ">"]
+				]]
+			]],
+
+			["punctuation", "}"]
+		]]
+	]],
+
+	["block", [
+		["keyword", "@switch"],
+		["csharp", [
+			["punctuation", "("],
+			["keyword", "value"],
+			["punctuation", ")"],
+
+			["punctuation", "{"],
+
+			["keyword", "case"],
+			["number", "1"],
+			["punctuation", ":"],
+
+			["html", [
+				["tag", [
+					["tag", [
+						["punctuation", "<"],
+						"p"
+					]],
+					["punctuation", ">"]
+				]],
+				"The value is 1!",
+				["tag", [
+					["tag", [
+						["punctuation", "</"],
+						"p"
+					]],
+					["punctuation", ">"]
+				]]
+			]],
+
+			["keyword", "break"],
+			["punctuation", ";"],
+
+			["keyword", "case"],
+			["number", "1337"],
+			["punctuation", ":"],
+
+			["html", [
+				["tag", [
+					["tag", [
+						["punctuation", "<"],
+						"p"
+					]],
+					["punctuation", ">"]
+				]],
+				"Your number is 1337!",
+				["tag", [
+					["tag", [
+						["punctuation", "</"],
+						"p"
+					]],
+					["punctuation", ">"]
+				]]
+			]],
+
+			["keyword", "break"],
+			["punctuation", ";"],
+
+			["keyword", "default"],
+			["punctuation", ":"],
+
+			["html", [
+				["tag", [
+					["tag", [
+						["punctuation", "<"],
+						"p"
+					]],
+					["punctuation", ">"]
+				]],
+				"Your number wasn't 1 or 1337.",
+				["tag", [
+					["tag", [
+						["punctuation", "</"],
+						"p"
+					]],
+					["punctuation", ">"]
+				]]
+			]],
+
+			["keyword", "break"],
+			["punctuation", ";"],
+
+			["punctuation", "}"]
+		]]
+	]],
+
+	["block", [
+		["keyword", "@for"],
+		["csharp", [
+			["punctuation", "("],
+			["class-name", [
+				["keyword", "var"]
+			]],
+			" i ",
+			["operator", "="],
+			["number", "0"],
+			["punctuation", ";"],
+			" i ",
+			["operator", "<"],
+			" people",
+			["punctuation", "."],
+			"Length",
+			["punctuation", ";"],
+			" i",
+			["operator", "++"],
+			["punctuation", ")"],
+
+			["punctuation", "{"],
+
+			["class-name", [
+				["keyword", "var"]
+			]],
+			" person ",
+			["operator", "="],
+			" people",
+			["punctuation", "["],
+			"i",
+			["punctuation", "]"],
+			["punctuation", ";"],
+
+			["html", [
+				["tag", [
+					["tag", [
+						["punctuation", "<"],
+						"p"
+					]],
+					["punctuation", ">"]
+				]],
+				"Name: ",
+				["value", [
+					["keyword", "@"],
+					["csharp", [
+						"person",
+						["punctuation", "."],
+						"Name"
+					]]
+				]],
+				["tag", [
+					["tag", [
+						["punctuation", "</"],
+						"p"
+					]],
+					["punctuation", ">"]
+				]]
+			]],
+
+			["html", [
+				["tag", [
+					["tag", [
+						["punctuation", "<"],
+						"p"
+					]],
+					["punctuation", ">"]
+				]],
+				"Age: ",
+				["value", [
+					["keyword", "@"],
+					["csharp", [
+						"person",
+						["punctuation", "."],
+						"Age"
+					]]
+				]],
+				["tag", [
+					["tag", [
+						["punctuation", "</"],
+						"p"
+					]],
+					["punctuation", ">"]
+				]]
+			]],
+
+			["punctuation", "}"]
+		]]
+	]],
+
+	["block", [
+		["keyword", "@foreach"],
+		["csharp", [
+			["punctuation", "("],
+			["class-name", [
+				["keyword", "var"]
+			]],
+			" person ",
+			["keyword", "in"],
+			" people",
+			["punctuation", ")"],
+
+			["punctuation", "{"],
+
+			["html", [
+				["tag", [
+					["tag", [
+						["punctuation", "<"],
+						"p"
+					]],
+					["punctuation", ">"]
+				]],
+				"Name: ",
+				["value", [
+					["keyword", "@"],
+					["csharp", [
+						"person",
+						["punctuation", "."],
+						"Name"
+					]]
+				]],
+				["tag", [
+					["tag", [
+						["punctuation", "</"],
+						"p"
+					]],
+					["punctuation", ">"]
+				]]
+			]],
+
+			["html", [
+				["tag", [
+					["tag", [
+						["punctuation", "<"],
+						"p"
+					]],
+					["punctuation", ">"]
+				]],
+				"Age: ",
+				["value", [
+					["keyword", "@"],
+					["csharp", [
+						"person",
+						["punctuation", "."],
+						"Age"
+					]]
+				]],
+				["tag", [
+					["tag", [
+						["punctuation", "</"],
+						"p"
+					]],
+					["punctuation", ">"]
+				]]
+			]],
+
+			["punctuation", "}"]
+		]]
+	]],
+
+	["block", [
+		["keyword", "@"],
+		["csharp", [
+			["punctuation", "{"],
+			["class-name", [
+				["keyword", "var"]
+			]],
+			" i ",
+			["operator", "="],
+			["number", "0"],
+			["punctuation", ";"],
+			["punctuation", "}"]
+		]]
+	]],
+
+	["block", [
+		["keyword", "@while"],
+		["csharp", [
+			["punctuation", "("],
+			"i ",
+			["operator", "<"],
+			" people",
+			["punctuation", "."],
+			"Length",
+			["punctuation", ")"],
+
+			["punctuation", "{"],
+
+			["class-name", [
+				["keyword", "var"]
+			]],
+			" person ",
+			["operator", "="],
+			" people",
+			["punctuation", "["],
+			"i",
+			["punctuation", "]"],
+			["punctuation", ";"],
+
+			["html", [
+				["tag", [
+					["tag", [
+						["punctuation", "<"],
+						"p"
+					]],
+					["punctuation", ">"]
+				]],
+				"Name: ",
+				["value", [
+					["keyword", "@"],
+					["csharp", [
+						"person",
+						["punctuation", "."],
+						"Name"
+					]]
+				]],
+				["tag", [
+					["tag", [
+						["punctuation", "</"],
+						"p"
+					]],
+					["punctuation", ">"]
+				]]
+			]],
+
+			["html", [
+				["tag", [
+					["tag", [
+						["punctuation", "<"],
+						"p"
+					]],
+					["punctuation", ">"]
+				]],
+				"Age: ",
+				["value", [
+					["keyword", "@"],
+					["csharp", [
+						"person",
+						["punctuation", "."],
+						"Age"
+					]]
+				]],
+				["tag", [
+					["tag", [
+						["punctuation", "</"],
+						"p"
+					]],
+					["punctuation", ">"]
+				]]
+			]],
+
+			"\r\n\r\n    i", ["operator", "++"], ["punctuation", ";"],
+			["punctuation", "}"]
+		]]
+	]],
+
+	["block", [
+		["keyword", "@"],
+		["csharp", [
+			["punctuation", "{"],
+			["class-name", [
+				["keyword", "var"]
+			]],
+			" i ",
+			["operator", "="],
+			["number", "0"],
+			["punctuation", ";"],
+			["punctuation", "}"]
+		]]
+	]],
+
+	["block", [
+		["keyword", "@do"],
+
+		["csharp", [
+			["punctuation", "{"],
+
+			["class-name", [
+				["keyword", "var"]
+			]],
+			" person ",
+			["operator", "="],
+			" people",
+			["punctuation", "["],
+			"i",
+			["punctuation", "]"],
+			["punctuation", ";"],
+
+			["html", [
+				["tag", [
+					["tag", [
+						["punctuation", "<"],
+						"p"
+					]],
+					["punctuation", ">"]
+				]],
+				"Name: ",
+				["value", [
+					["keyword", "@"],
+					["csharp", [
+						"person",
+						["punctuation", "."],
+						"Name"
+					]]
+				]],
+				["tag", [
+					["tag", [
+						["punctuation", "</"],
+						"p"
+					]],
+					["punctuation", ">"]
+				]]
+			]],
+
+			["html", [
+				["tag", [
+					["tag", [
+						["punctuation", "<"],
+						"p"
+					]],
+					["punctuation", ">"]
+				]],
+				"Age: ",
+				["value", [
+					["keyword", "@"],
+					["csharp", [
+						"person",
+						["punctuation", "."],
+						"Age"
+					]]
+				]],
+				["tag", [
+					["tag", [
+						["punctuation", "</"],
+						"p"
+					]],
+					["punctuation", ">"]
+				]]
+			]],
+
+			"\r\n\r\n    i",
+			["operator", "++"],
+			["punctuation", ";"],
+
+			["punctuation", "}"],
+			["keyword", "while"],
+			["punctuation", "("],
+			"i ",
+			["operator", "<"],
+			" people",
+			["punctuation", "."],
+			"Length",
+			["punctuation", ")"],
+			["punctuation", ";"]
+		]]
+	]],
+
+	["block", [
+		["keyword", "@using"],
+		["csharp", [
+			["punctuation", "("],
+			"Html",
+			["punctuation", "."],
+			["function", "BeginForm"],
+			["punctuation", "("],
+			["punctuation", ")"],
+			["punctuation", ")"],
+
+			["punctuation", "{"],
+
+			["html", [
+				["tag", [
+					["tag", [
+						["punctuation", "<"],
+						"div"
+					]],
+					["punctuation", ">"]
+				]],
+
+				"\r\n        Email: ",
+				["tag", [
+					["tag", [
+						["punctuation", "<"],
+						"input"
+					]],
+					["attr-name", ["type"]],
+					["attr-value", [
+						["punctuation", "="],
+						["punctuation", "\""],
+						"email",
+						["punctuation", "\""]
+					]],
+					["attr-name", ["id"]],
+					["attr-value", [
+						["punctuation", "="],
+						["punctuation", "\""],
+						"Email",
+						["punctuation", "\""]
+					]],
+					["attr-name", ["value"]],
+					["attr-value", [
+						["punctuation", "="],
+						["punctuation", "\""],
+						["punctuation", "\""]
+					]],
+					["punctuation", ">"]
+				]],
+
+				["tag", [
+					["tag", [
+						["punctuation", "<"],
+						"button"
+					]],
+					["punctuation", ">"]
+				]],
+				"Register",
+				["tag", [
+					["tag", [
+						["punctuation", "</"],
+						"button"
+					]],
+					["punctuation", ">"]
+				]],
+
+				["tag", [
+					["tag", [
+						["punctuation", "</"],
+						"div"
+					]],
+					["punctuation", ">"]
+				]]
+			]],
+
+			["punctuation", "}"]
+		]]
+	]],
+
+	["block", [
+		["keyword", "@try"],
+
+		["csharp", [
+			["punctuation", "{"],
+
+			["keyword", "throw"],
+			["keyword", "new"],
+			["constructor-invocation", ["InvalidOperationException"]],
+			["punctuation", "("],
+			["string", "\"You did something invalid.\""],
+			["punctuation", ")"],
+			["punctuation", ";"],
+
+			["punctuation", "}"],
+
+			["keyword", "catch"],
+			["punctuation", "("],
+			["class-name", ["Exception"]],
+			" ex",
+			["punctuation", ")"],
+
+			["punctuation", "{"],
+
+			["html", [
+				["tag", [
+					["tag", [
+						["punctuation", "<"],
+						"p"
+					]],
+					["punctuation", ">"]
+				]],
+				"The exception message: ",
+				["value", [
+					["keyword", "@"],
+					["csharp", [
+						"ex",
+						["punctuation", "."],
+						"Message"
+					]]
+				]],
+				["tag", [
+					["tag", [
+						["punctuation", "</"],
+						"p"
+					]],
+					["punctuation", ">"]
+				]]
+			]],
+
+			["punctuation", "}"],
+
+			["keyword", "finally"],
+
+			["punctuation", "{"],
+
+			["html", [
+				["tag", [
+					["tag", [
+						["punctuation", "<"],
+						"p"
+					]],
+					["punctuation", ">"]
+				]],
+				"The finally statement.",
+				["tag", [
+					["tag", [
+						["punctuation", "</"],
+						"p"
+					]],
+					["punctuation", ">"]
+				]]
+			]],
+
+			["punctuation", "}"]
+		]]
+	]],
+
+	["block", [
+		["keyword", "@lock"],
+		["csharp", [
+			["punctuation", "("], "SomeLock", ["punctuation", ")"],
+			["punctuation", "{"],
+			["comment", "// Do critical section work"],
+			["punctuation", "}"]
+		]]
+	]]
+]

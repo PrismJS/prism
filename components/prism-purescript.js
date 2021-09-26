@@ -8,7 +8,7 @@ Prism.languages.purescript = Prism.languages.extend('haskell', {
 		pattern: /(^[\t ]*)import\s+[A-Z][\w']*(?:\.[A-Z][\w']*)*(?:\s+as\s+[A-Z][\w']*(?:\.[A-Z][\w']*)*)?(?:\s+hiding\b)?/m,
 		lookbehind: true,
 		inside: {
-			'keyword': /\b(?:import|as|hiding)\b/,
+			'keyword': /\b(?:as|hiding|import)\b/,
 			'punctuation': /\./
 		}
 	},

@@ -17,7 +17,7 @@ Prism.languages.graphql = {
 		greedy: true
 	},
 	'number': /(?:\B-|\b)\d+(?:\.\d+)?(?:e[+-]?\d+)?\b/i,
-	'boolean': /\b(?:true|false)\b/,
+	'boolean': /\b(?:false|true)\b/,
 	'variable': /\$[a-z_]\w*/i,
 	'directive': {
 		pattern: /@[a-z_]\w*/i,

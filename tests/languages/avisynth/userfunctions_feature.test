@@ -1,0 +1,53 @@
+function CustomUserFunction() {
+
+QTGMC()
+last.QTGMC
+last.QTGMC()
+
+QTGMC
+1func()
+last.1func
+last.1func()
+
+----------------------------------------------------
+
+[
+	["keyword", "function"],
+	["function", "CustomUserFunction"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+
+	["function", "QTGMC"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["variable", "last"],
+	["punctuation", "."],
+	["function", "QTGMC"],
+
+	["variable", "last"],
+	["punctuation", "."],
+	["function", "QTGMC"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	"\r\n\r\nQTGMC\r\n1func",
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["variable", "last"],
+	["punctuation", "."],
+	"1func\r\n",
+
+	["variable", "last"],
+	["punctuation", "."],
+	"1func",
+	["punctuation", "("],
+	["punctuation", ")"]
+]
+
+----------------------------------------------------
+
+Valid identifiers (starts with [a-zA-Z_]) proceeding a '.', preceeding a '(', or both are user/external functions.
+User/external functions that don't match the above are technically valid but indistinguisable from variables.

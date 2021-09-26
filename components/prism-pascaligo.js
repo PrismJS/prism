@@ -32,7 +32,7 @@
 			lookbehind: true
 		},
 		'boolean': {
-			pattern: /(^|[^&])\b(?:True|False)\b/i,
+			pattern: /(^|[^&])\b(?:False|True)\b/i,
 			lookbehind: true
 		},
 		'builtin': {

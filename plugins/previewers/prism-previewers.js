@@ -79,12 +79,12 @@
 						var shape = 'ellipse';
 						var size = 'farthest-corner';
 
-						if (/\bcenter|top|right|bottom|left\b|^\d+/.test(values[0])) {
+						if (/\b(?:bottom|center|left|right|top)\b|^\d+/.test(values[0])) {
 							// Found a position
 							// Remove angle value, if any
-							position = values.shift().replace(/\s*-?\d+(?:rad|deg)\s*/, '');
+							position = values.shift().replace(/\s*-?\d+(?:deg|rad)\s*/, '');
 						}
-						if (/\bcircle|ellipse|closest|farthest|contain|cover\b/.test(values[0])) {
+						if (/\b(?:circle|closest|contain|cover|ellipse|farthest)\b/.test(values[0])) {
 							// Found a shape and/or size
 							var shapeSizeParts = values.shift().split(/\s+/);
 							if (shapeSizeParts[0] && (shapeSizeParts[0] === 'circle' || shapeSizeParts[0] === 'ellipse')) {
@@ -145,7 +145,7 @@
 			}()),
 			tokens: {
 				'gradient': {
-					pattern: /(?:\b|\B-[a-z]{1,10}-)(?:repeating-)?(?:linear|radial)-gradient\((?:(?:rgb|hsl)a?\(.+?\)|[^\)])+\)/gi,
+					pattern: /(?:\b|\B-[a-z]{1,10}-)(?:repeating-)?(?:linear|radial)-gradient\((?:(?:hsl|rgb)a?\(.+?\)|[^\)])+\)/gi,
 					inside: {
 						'function': /[\w-]+(?=\()/,
 						'punctuation': /[(),]/
@@ -360,7 +360,7 @@
 			},
 			tokens: {
 				'easing': {
-					pattern: /\bcubic-bezier\((?:-?(?:\d+(?:\.\d+)?|\.\d+),\s*){3}-?(?:\d+(?:\.\d+)?|\.\d+)\)\B|\b(?:linear|ease(?:-in)?(?:-out)?)(?=\s|[;}]|$)/i,
+					pattern: /\bcubic-bezier\((?:-?(?:\d+(?:\.\d+)?|\.\d+),\s*){3}-?(?:\d+(?:\.\d+)?|\.\d+)\)\B|\b(?:ease(?:-in)?(?:-out)?|linear)(?=\s|[;}]|$)/i,
 					inside: {
 						'function': /[\w-]+(?=\()/,
 						'punctuation': /[(),]/

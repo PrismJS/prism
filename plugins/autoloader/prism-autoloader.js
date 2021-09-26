@@ -115,6 +115,10 @@
 		"qml": "javascript",
 		"qore": "clike",
 		"racket": "scheme",
+		"cshtml": [
+			"markup",
+			"csharp"
+		],
 		"jsx": [
 			"markup",
 			"javascript"
@@ -172,6 +176,7 @@
 		"js": "javascript",
 		"g4": "antlr4",
 		"adoc": "asciidoc",
+		"avs": "avisynth",
 		"avdl": "avro-idl",
 		"shell": "bash",
 		"shortcode": "bbcode",
@@ -223,6 +228,7 @@
 		"py": "python",
 		"qs": "qsharp",
 		"rkt": "racket",
+		"razor": "cshtml",
 		"rpy": "renpy",
 		"robot": "robotframework",
 		"rb": "ruby",
@@ -233,6 +239,8 @@
 		"sln": "solution-file",
 		"rq": "sparql",
 		"t4": "t4-cs",
+		"trickle": "tremor",
+		"troy": "tremor",
 		"trig": "turtle",
 		"ts": "typescript",
 		"tsconfig": "typoscript",

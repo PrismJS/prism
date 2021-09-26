@@ -1,0 +1,36 @@
+foo
+foo::bar
+foo::bar::baz
+`foo`::bar::`baz`
+`foo`
+`foo`::`bar`::`baz`
+
+----------------------------------------------------
+
+[
+	"foo\r\nfoo",
+	["punctuation", "::"],
+	"bar\r\nfoo",
+	["punctuation", "::"],
+	"bar",
+	["punctuation", "::"],
+	"baz\r\n",
+
+	["identifier", "`foo`"],
+	["punctuation", "::"],
+	"bar",
+	["punctuation", "::"],
+	["identifier", "`baz`"],
+
+	["identifier", "`foo`"],
+
+	["identifier", "`foo`"],
+	["punctuation", "::"],
+	["identifier", "`bar`"],
+	["punctuation", "::"],
+	["identifier", "`baz`"]
+]
+
+----------------------------------------------------
+
+Checks modularity and references for bare/namespaced variables

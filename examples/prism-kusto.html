@@ -1,0 +1,8 @@
+<h2>Full example</h2>
+<pre><code>// Source: https://docs.microsoft.com/en-us/azure/data-explorer/kusto/query/tutorial?pivots=azuredataexplorer
+
+StormEvents
+| where StartTime > datetime(2007-02-01) and StartTime &lt; datetime(2007-03-01)
+| where EventType == 'Flood' and State == 'CALIFORNIA'
+| project StartTime, EndTime , State , EventType , EpisodeNarrative
+</code></pre>

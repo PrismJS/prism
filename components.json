@@ -160,6 +160,11 @@
 			"title": "AutoIt",
 			"owner": "Golmote"
 		},
+		"avisynth": {
+			"title": "AviSynth",
+			"alias": "avs",
+			"owner": "Zinfidel"
+		},
 		"avro-idl": {
 			"title":"Avro IDL",
 			"alias": "avdl",
@@ -446,6 +451,10 @@
 			"require": "clike",
 			"owner": "LiarOnce"
 		},
+		"gap": {
+			"title": "GAP (CAS)",
+			"owner": "RunDevelopment"
+		},
 		"gcode": {
 			"title": "G-code",
 			"owner": "RunDevelopment"
@@ -722,6 +731,10 @@
 			"alias": "kum",
 			"owner": "edukisto"
 		},
+		"kusto": {
+			"title": "Kusto",
+			"owner": "RunDevelopment"
+		},
 		"latex": {
 			"title": "LaTeX",
 			"alias": ["tex", "context"],
@@ -779,6 +792,10 @@
 			"title": "Lua",
 			"owner": "Golmote"
 		},
+		"magma": {
+			"title": "Magma (CAS)",
+			"owner": "RunDevelopment"
+		},
 		"makefile": {
 			"title": "Makefile",
 			"owner": "Golmote"
@@ -798,6 +815,10 @@
 		"matlab": {
 			"title": "MATLAB",
 			"owner": "Golmote"
+		},
+		"maxscript": {
+			"title": "MAXScript",
+			"owner": "RunDevelopment"
 		},
 		"mel": {
 			"title": "MEL",
@@ -1069,6 +1090,18 @@
 			"alias": "rkt",
 			"owner": "RunDevelopment"
 		},
+		"cshtml": {
+			"title": "Razor C#",
+			"alias": "razor",
+			"require": ["markup", "csharp"],
+			"optional":[
+				"css",
+				"css-extras",
+				"javascript",
+				"js-extras"
+			],
+			"owner": "RunDevelopment"
+		},
 		"jsx": {
 			"title": "React JSX",
 			"require": ["markup", "javascript"],
@@ -1280,6 +1313,18 @@
 			"title": "TOML",
 			"owner": "RunDevelopment"
 		},
+		"tremor": {
+			"title": "Tremor",
+			"alias": [
+				"trickle",
+				"troy"
+			],
+			"owner": "darach",
+			"aliasTitles": {
+				"trickle": "trickle",
+				"troy": "troy"
+			}
+		},
 		"turtle": {
 			"title": "Turtle",
 			"alias": "trig",
@@ -1383,6 +1428,10 @@
 				"nb": "Mathematica Notebook"
 			},
 			"owner": "msollami"
+		},
+		"wren": {
+			"title": "Wren",
+			"owner": "clsource"
 		},
 		"xeora": {
 			"title": "Xeora",

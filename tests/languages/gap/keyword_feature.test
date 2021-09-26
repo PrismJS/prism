@@ -1,0 +1,71 @@
+Assert;
+Info;
+IsBound;
+QUIT;
+TryNextMethod;
+Unbind;
+and;
+atomic;
+break;
+continue;
+do;
+elif;
+else;
+end;
+fi;
+for;
+function;
+if;
+in;
+local;
+mod;
+not;
+od;
+or;
+quit;
+readonly;
+readwrite;
+rec;
+repeat;
+return;
+then;
+until;
+while;
+
+----------------------------------------------------
+
+[
+	["keyword", "Assert"], ["punctuation", ";"],
+	["keyword", "Info"], ["punctuation", ";"],
+	["keyword", "IsBound"], ["punctuation", ";"],
+	["keyword", "QUIT"], ["punctuation", ";"],
+	["keyword", "TryNextMethod"], ["punctuation", ";"],
+	["keyword", "Unbind"], ["punctuation", ";"],
+	["keyword", "and"], ["punctuation", ";"],
+	["keyword", "atomic"], ["punctuation", ";"],
+	["keyword", "break"], ["punctuation", ";"],
+	["keyword", "continue"], ["punctuation", ";"],
+	["keyword", "do"], ["punctuation", ";"],
+	["keyword", "elif"], ["punctuation", ";"],
+	["keyword", "else"], ["punctuation", ";"],
+	["keyword", "end"], ["punctuation", ";"],
+	["keyword", "fi"], ["punctuation", ";"],
+	["keyword", "for"], ["punctuation", ";"],
+	["keyword", "function"], ["punctuation", ";"],
+	["keyword", "if"], ["punctuation", ";"],
+	["keyword", "in"], ["punctuation", ";"],
+	["keyword", "local"], ["punctuation", ";"],
+	["keyword", "mod"], ["punctuation", ";"],
+	["keyword", "not"], ["punctuation", ";"],
+	["keyword", "od"], ["punctuation", ";"],
+	["keyword", "or"], ["punctuation", ";"],
+	["keyword", "quit"], ["punctuation", ";"],
+	["keyword", "readonly"], ["punctuation", ";"],
+	["keyword", "readwrite"], ["punctuation", ";"],
+	["keyword", "rec"], ["punctuation", ";"],
+	["keyword", "repeat"], ["punctuation", ";"],
+	["keyword", "return"], ["punctuation", ";"],
+	["keyword", "then"], ["punctuation", ";"],
+	["keyword", "until"], ["punctuation", ";"],
+	["keyword", "while"], ["punctuation", ";"]
+]
