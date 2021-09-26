@@ -58,7 +58,7 @@
 		createTemplate('svg', /\bsvg/.source),
 
 		// md`# h1`, markdown`## h2`
-		createTemplate('markdown', /\b(?:md|markdown)/.source),
+		createTemplate('markdown', /\b(?:markdown|md)/.source),
 
 		// gql`...`, graphql`...`, graphql.experimental`...`
 		createTemplate('graphql', /\b(?:gql|graphql(?:\s*\.\s*experimental)?)/.source),

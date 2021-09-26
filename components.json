@@ -1313,6 +1313,18 @@
 			"title": "TOML",
 			"owner": "RunDevelopment"
 		},
+		"tremor": {
+			"title": "Tremor",
+			"alias": [
+				"trickle",
+				"troy"
+			],
+			"owner": "darach",
+			"aliasTitles": {
+				"trickle": "trickle",
+				"troy": "troy"
+			}
+		},
 		"turtle": {
 			"title": "Turtle",
 			"alias": "trig",

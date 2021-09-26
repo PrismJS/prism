@@ -40,9 +40,9 @@ Prism.languages.nevod = {
 		alias: 'function',
 		lookbehind: true,
 	},
-	'keyword': /@(?:require|namespace|pattern|search|inside|outside|having|where)\b/,
+	'keyword': /@(?:having|inside|namespace|outside|pattern|require|search|where)\b/,
 	'standard-pattern': {
-		pattern: /\b(?:Word|Punct|Symbol|Space|LineBreak|Start|End|Alpha|AlphaNum|Num|NumAlpha|Blank|WordBreak|Any)(?:\([a-zA-Z0-9\-.,\s+]*\))?/,
+		pattern: /\b(?:Alpha|AlphaNum|Any|Blank|End|LineBreak|Num|NumAlpha|Punct|Space|Start|Symbol|Word|WordBreak)\b(?:\([a-zA-Z0-9\-.,\s+]*\))?/,
 		inside: {
 			'standard-pattern-name': {
 				pattern: /^[a-zA-Z0-9\-.]+/,

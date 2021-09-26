@@ -38,7 +38,7 @@
 
 	var pairIdCounter = 0;
 
-	var BRACE_ID_PATTERN = /^(pair-\d+-)(open|close)$/;
+	var BRACE_ID_PATTERN = /^(pair-\d+-)(close|open)$/;
 
 	/**
 	 * Returns the brace partner given one brace of a brace pair.
