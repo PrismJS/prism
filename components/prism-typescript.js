@@ -7,7 +7,7 @@
 			greedy: true,
 			inside: null // see below
 		},
-		'builtin': /\b(?:string|Function|any|number|boolean|Array|symbol|console|Promise|unknown|never)\b/,
+		'builtin': /\b(?:Array|Function|Promise|any|boolean|console|never|number|string|symbol|unknown)\b/,
 	});
 
 	// The keywords TypeScript adds to JavaScript

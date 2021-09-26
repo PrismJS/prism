@@ -1,0 +1,35 @@
+Foo.bar()
+
+import "beverages" for Coffee, Tea
+
+class Foo {}
+class foo {}
+
+----------------------------------------------------
+
+[
+	["class-name", "Foo"],
+	["punctuation", "."],
+	["function", "bar"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["keyword", "import"],
+	["string-literal", [
+		["string", "\"beverages\""]
+	]],
+	["keyword", "for"],
+	["class-name", "Coffee"],
+	["punctuation", ","],
+	["class-name", "Tea"],
+
+	["keyword", "class"],
+	["class-name", "Foo"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "class"],
+	["class-name", "foo"],
+	["punctuation", "{"],
+	["punctuation", "}"]
+]

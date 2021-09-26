@@ -77,6 +77,7 @@ module.exports = {
 		'regexp/no-useless-character-class': 'warn',
 		'regexp/no-useless-lazy': 'warn',
 		'regexp/prefer-w': 'warn',
+		'regexp/sort-alternatives': 'warn',
 		'regexp/sort-flags': 'warn',
 		'regexp/strict': 'warn',
 
