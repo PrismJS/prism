@@ -29,7 +29,7 @@ a: span
 			["function", "attributes"],
 			["punctuation", "("],
 			["punctuation", "{"],
-			["property", "'data-foo'"],
+			["string-property", "'data-foo'"],
 			["operator", ":"],
 			["string", "'bar'"],
 			["punctuation", "}"],

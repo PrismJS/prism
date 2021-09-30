@@ -99,10 +99,11 @@ Prism.languages.insertBefore('javascript', 'string', {
 			'string': /[\s\S]+/
 		}
 	},
-	'property': {
+	'string-property': {
 		pattern: /((?:^|[,{])[ \t]*)(["'])(?:\\(?:\r\n|[\s\S])|(?!\2)[^\\\r\n])*\2(?=\s*:)/m,
 		lookbehind: true,
-		greedy: true
+		greedy: true,
+		alias: 'property'
 	}
 });
 

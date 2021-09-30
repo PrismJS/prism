@@ -47,61 +47,61 @@ transfer-encoding: chunked
 	["application-json", [
 		["punctuation", "{"],
 
-		["property", "\"id\""],
+		["string-property", "\"id\""],
 		["operator", ":"],
 		["number", "1"],
 		["punctuation", ","],
 
-		["property", "\"name\""],
+		["string-property", "\"name\""],
 		["operator", ":"],
 		["string", "\"John Doe\""],
 		["punctuation", ","],
 
-		["property", "\"userName\""],
+		["string-property", "\"userName\""],
 		["operator", ":"],
 		["string", "\"jdoe\""],
 		["punctuation", ","],
 
-		["property", "\"email\""],
+		["string-property", "\"email\""],
 		["operator", ":"],
 		["string", "\"whatever@something.zzz\""],
 		["punctuation", ","],
 
-		["property", "\"phone\""],
+		["string-property", "\"phone\""],
 		["operator", ":"],
 		["string", "\"1234567890\""],
 		["punctuation", ","],
 
-		["property", "\"birthDate\""],
+		["string-property", "\"birthDate\""],
 		["operator", ":"],
 		["string", "\"1878-05-06\""],
 		["punctuation", ","],
 
-		["property", "\"address\""],
+		["string-property", "\"address\""],
 		["operator", ":"],
 		["punctuation", "{"],
 
-		["property", "\"street\""],
+		["string-property", "\"street\""],
 		["operator", ":"],
 		["string", "\"Fake St\""],
 		["punctuation", ","],
 
-		["property", "\"street2\""],
+		["string-property", "\"street2\""],
 		["operator", ":"],
 		["string", "\"Apt. 556\""],
 		["punctuation", ","],
 
-		["property", "\"city\""],
+		["string-property", "\"city\""],
 		["operator", ":"],
 		["string", "\"Gwenborough\""],
 		["punctuation", ","],
 
-		["property", "\"state\""],
+		["string-property", "\"state\""],
 		["operator", ":"],
 		["string", "\"ZZ\""],
 		["punctuation", ","],
 
-		["property", "\"zip\""],
+		["string-property", "\"zip\""],
 		["operator", ":"],
 		["string", "\"12345\""],
 

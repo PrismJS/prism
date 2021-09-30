@@ -41,11 +41,11 @@ switch(foo) {
 	["punctuation", ";"],
 
 	["punctuation", "{"],
-	["property", "'foo'"],
+	["string-property", "'foo'"],
 	["operator", ":"],
 	["number", "0"],
 	["punctuation", ","],
-	["property", "\"bar\""],
+	["string-property", "\"bar\""],
 	["operator", ":"],
 	["number", "0"],
 	["punctuation", "}"],
@@ -62,7 +62,7 @@ switch(foo) {
 
 	["comment", "// comment"],
 
-	["property", "\"bar\""],
+	["string-property", "\"bar\""],
 	["operator", ":"],
 	["number", "0"],
 
