@@ -8,14 +8,12 @@
 			["punctuation", "<"],
 			"div"
 		]],
-		["attr-name", [
-			"style"
-		]],
+		["attr-name", ["style"]],
 		["script", [
 			["script-punctuation", "="],
 			["punctuation", "{"],
 			["punctuation", "{"],
-			" marginLeft",
+			["literal-property", "marginLeft"],
 			["operator", ":"],
 			["template-string", [
 				["template-punctuation", "`"],

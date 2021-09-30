@@ -18,11 +18,13 @@ console.log(`This is ${it.with({ type: false })}!`)
 		["string", "foo bar"],
 		["template-punctuation", "`"]
 	]],
+
 	["template-string", [
 		["template-punctuation", "`"],
 		["string", "foo\r\nbar"],
 		["template-punctuation", "`"]
 	]],
+
 	["template-string", [
 		["template-punctuation", "`"],
 		["string", "40+2="],
@@ -35,6 +37,7 @@ console.log(`This is ${it.with({ type: false })}!`)
 		]],
 		["template-punctuation", "`"]
 	]],
+
 	["template-string", [
 		["template-punctuation", "`"],
 		["interpolation", [
@@ -46,6 +49,7 @@ console.log(`This is ${it.with({ type: false })}!`)
 		]],
 		["template-punctuation", "`"]
 	]],
+
 	["template-string", [
 		["template-punctuation", "`"],
 		["string", "\\${foo}"],
@@ -56,13 +60,16 @@ console.log(`This is ${it.with({ type: false })}!`)
 		]],
 		["template-punctuation", "`"]
 	]],
+
 	["string", "\"foo `a` `b` `c` `d` bar\""],
+
 	["string", "\"test // test\""],
 	["template-string", [
 		["template-punctuation", "`"],
 		["string", "template"],
 		["template-punctuation", "`"]
 	]],
+
 	"\r\n\r\nconsole",
 	["punctuation", "."],
 	["function", "log"],
@@ -77,7 +84,7 @@ console.log(`This is ${it.with({ type: false })}!`)
 			["function", "with"],
 			["punctuation", "("],
 			["punctuation", "{"],
-			" type",
+			["literal-property", "type"],
 			["operator", ":"],
 			["boolean", "false"],
 			["punctuation", "}"],
@@ -88,12 +95,13 @@ console.log(`This is ${it.with({ type: false })}!`)
 		["template-punctuation", "`"]
 	]],
 	["punctuation", ")"],
+
 	["template-string", [
 		["template-punctuation", "`"],
 		["interpolation", [
 			["interpolation-punctuation", "${"],
 			["punctuation", "{"],
-			"foo",
+			["literal-property", "foo"],
 			["operator", ":"],
 			["string", "'bar'"],
 			["punctuation", "}"],

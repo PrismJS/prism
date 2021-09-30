@@ -21,6 +21,7 @@
 
 	// doesn't work with TS because TS is too complex
 	delete Prism.languages.typescript['parameter'];
+	delete Prism.languages.typescript['literal-property'];
 
 	// a version of typescript specifically for highlighting types
 	var typeInside = Prism.languages.extend('typescript', {});
