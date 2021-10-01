@@ -1,4 +1,3 @@
-// @ts-check
 'use strict';
 const fs = require('fs');
 const { JSDOM } = require('jsdom');
@@ -24,6 +23,8 @@ const { languages: languagesCatalog, plugins: pluginsCatalog } = components;
  * @typedef PrismDOM
  * @property {JSDOM} dom
  * @property {PrismWindow} window
+ * @property {Document} document
+ * @property {Prism} Prism
  * @property {(languages: string | string[]) => void} loadLanguages
  * @property {(plugins: string | string[]) => void} loadPlugins
  */
@@ -95,6 +96,8 @@ module.exports = {
 		return {
 			dom,
 			window: /** @type {PrismWindow} */ (window),
+			document: window.document,
+			Prism: window.Prism,
 			loadLanguages: load,
 			loadPlugins: load,
 		};
