@@ -3,10 +3,9 @@ const { reusablePrismDom } = require('../../helper/prism-dom-util');
 
 
 describe('Keep Markup', function () {
-	const { Prism, document } = reusablePrismDom(this, {
-		plugins: 'keep-markup'
-	});
+	const { Prism, document, loadPlugins } = reusablePrismDom(this);
 	document.createRange = function () { }; // fake createRange for Keep Markup
+	loadPlugins('keep-markup');
 
 
 	function execute(code) {

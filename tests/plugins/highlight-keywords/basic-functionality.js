@@ -4,7 +4,7 @@ const { createUtil, reusablePrismDom } = require('../../helper/prism-dom-util');
 describe('Highlight Keywords', function () {
 	const { window } = reusablePrismDom(this, {
 		languages: 'javascript',
-		plugins: 'custom-class'
+		plugins: 'highlight-keywords'
 	});
 	const util = createUtil(window);
 
