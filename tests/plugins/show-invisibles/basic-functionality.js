@@ -12,7 +12,7 @@ describe('Show Invisibles', function () {
 	it('should show invisible characters', function () {
 		util.assert.highlightElement({
 			language: 'javascript',
-			code: `  	\n\r\n		`,
+			code: `  \t\n\r\n\t\t`,
 			expected: `<span class="token space"> </span><span class="token space"> </span><span class="token tab">\t</span><span class="token lf">\n</span><span class="token crlf">\n</span><span class="token tab">\t</span><span class="token tab">\t</span>`
 		});
 	});
