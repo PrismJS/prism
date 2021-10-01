@@ -1,0 +1,236 @@
+public bool $a;
+public int $a;
+public float $a;
+public string $a;
+public object $a;
+public array $a;
+public mixed $a;
+public int|null $a;
+public int|false $a;
+public false | int $a;
+
+(int) $a;
+(string) $a;
+(object) $a;
+(array) $a;
+(boolean) $a;
+(integer) $a;
+
+function f(): int {}
+function f() :string {}
+function f() : object {}
+function f(): ?array {}
+function f(): self {}
+function f(): static {}
+function f(): int|null {}
+function f(): int|false {}
+
+function foo(int $a,  string $b, ? object $c, ?array $d, self $e, static $f, int|null $g) {}
+
+----------------------------------------------------
+
+[
+	["keyword", "public"],
+	["keyword", "bool"],
+	["variable", "$a"],
+	["punctuation", ";"],
+
+	["keyword", "public"],
+	["keyword", "int"],
+	["variable", "$a"],
+	["punctuation", ";"],
+
+	["keyword", "public"],
+	["keyword", "float"],
+	["variable", "$a"],
+	["punctuation", ";"],
+
+	["keyword", "public"],
+	["keyword", "string"],
+	["variable", "$a"],
+	["punctuation", ";"],
+
+	["keyword", "public"],
+	["keyword", "object"],
+	["variable", "$a"],
+	["punctuation", ";"],
+
+	["keyword", "public"],
+	["keyword", "array"],
+	["variable", "$a"],
+	["punctuation", ";"],
+
+	["keyword", "public"],
+	["keyword", "mixed"],
+	["variable", "$a"],
+	["punctuation", ";"],
+
+	["keyword", "public"],
+	["keyword", "int"],
+	["operator", "|"],
+	["keyword", "null"],
+	["variable", "$a"],
+	["punctuation", ";"],
+
+	["keyword", "public"],
+	["keyword", "int"],
+	["operator", "|"],
+	["keyword", "false"],
+	["variable", "$a"],
+	["punctuation", ";"],
+
+	["keyword", "public"],
+	["keyword", "false"],
+	["operator", "|"],
+	["keyword", "int"],
+	["variable", "$a"],
+	["punctuation", ";"],
+
+	["punctuation", "("],
+	["keyword", "int"],
+	["punctuation", ")"],
+	["variable", "$a"],
+	["punctuation", ";"],
+
+	["punctuation", "("],
+	["keyword", "string"],
+	["punctuation", ")"],
+	["variable", "$a"],
+	["punctuation", ";"],
+
+	["punctuation", "("],
+	["keyword", "object"],
+	["punctuation", ")"],
+	["variable", "$a"],
+	["punctuation", ";"],
+
+	["punctuation", "("],
+	["keyword", "array"],
+	["punctuation", ")"],
+	["variable", "$a"],
+	["punctuation", ";"],
+
+	["punctuation", "("],
+	["keyword", "boolean"],
+	["punctuation", ")"],
+	["variable", "$a"],
+	["punctuation", ";"],
+
+	["punctuation", "("],
+	["keyword", "integer"],
+	["punctuation", ")"],
+	["variable", "$a"],
+	["punctuation", ";"],
+
+	["keyword", "function"],
+	["function-definition", "f"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ":"],
+	["keyword", "int"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "function"],
+	["function-definition", "f"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ":"],
+	["keyword", "string"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "function"],
+	["function-definition", "f"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ":"],
+	["keyword", "object"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "function"],
+	["function-definition", "f"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ":"],
+	["operator", "?"],
+	["keyword", "array"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "function"],
+	["function-definition", "f"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ":"],
+	["keyword", "self"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "function"],
+	["function-definition", "f"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ":"],
+	["keyword", "static"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "function"],
+	["function-definition", "f"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ":"],
+	["keyword", "int"],
+	["operator", "|"],
+	["keyword", "null"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "function"],
+	["function-definition", "f"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ":"],
+	["keyword", "int"],
+	["operator", "|"],
+	["keyword", "false"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "function"],
+	["function-definition", "foo"],
+	["punctuation", "("],
+	["keyword", "int"],
+	["variable", "$a"],
+	["punctuation", ","],
+	["keyword", "string"],
+	["variable", "$b"],
+	["punctuation", ","],
+	["operator", "?"],
+	["keyword", "object"],
+	["variable", "$c"],
+	["punctuation", ","],
+	["operator", "?"],
+	["keyword", "array"],
+	["variable", "$d"],
+	["punctuation", ","],
+	["keyword", "self"],
+	["variable", "$e"],
+	["punctuation", ","],
+	["keyword", "static"],
+	["variable", "$f"],
+	["punctuation", ","],
+	["keyword", "int"],
+	["operator", "|"],
+	["keyword", "null"],
+	["variable", "$g"],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for types.

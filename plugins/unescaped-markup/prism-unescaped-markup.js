@@ -1,45 +1,62 @@
 (function () {
 
-	if (typeof self === 'undefined' || !self.Prism || !self.document) {
+	if (typeof Prism === 'undefined' || typeof document === 'undefined') {
 		return;
 	}
+
+	// https://developer.mozilla.org/en-US/docs/Web/API/Element/matches#Polyfill
+	if (!Element.prototype.matches) {
+		Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
+	}
+
 
 	Prism.plugins.UnescapedMarkup = true;
 
 	Prism.hooks.add('before-highlightall', function (env) {
-		env.selector += ', [class*="lang-"] script[type="text/plain"], [class*="language-"] script[type="text/plain"]' +
-			', script[type="text/plain"][class*="lang-"], script[type="text/plain"][class*="language-"]';
+		env.selector += ', [class*="lang-"] script[type="text/plain"]'
+			+ ', [class*="language-"] script[type="text/plain"]'
+			+ ', script[type="text/plain"][class*="lang-"]'
+			+ ', script[type="text/plain"][class*="language-"]';
 	});
 
 	Prism.hooks.add('before-sanity-check', function (env) {
 		/** @type {HTMLElement} */
 		var element = env.element;
 
-		if ((element.matches || element.msMatchesSelector).call(element, 'script[type="text/plain"]')) {
+		if (element.matches('script[type="text/plain"]')) {
+			// found a <script type="text/plain" ...> element
+			// we convert this element to a regular <pre><code> code block
+
 			var code = document.createElement('code');
 			var pre = document.createElement('pre');
 
+			// copy class name
 			pre.className = code.className = element.className;
 
-			if (element.dataset) {
-				Object.keys(element.dataset).forEach(function (key) {
-					if (Object.prototype.hasOwnProperty.call(element.dataset, key)) {
-						pre.dataset[key] = element.dataset[key];
-					}
-				});
-			}
+			// copy all "data-" attributes
+			var dataset = element.dataset;
+			Object.keys(dataset || {}).forEach(function (key) {
+				if (Object.prototype.hasOwnProperty.call(dataset, key)) {
+					pre.dataset[key] = dataset[key];
+				}
+			});
 
-			code.textContent = env.code = env.code.replace(/&lt;\/script(>|&gt;)/gi, '</scri' + 'pt>');
+			code.textContent = env.code = env.code.replace(/&lt;\/script(?:>|&gt;)/gi, '</scri' + 'pt>');
 
+			// change DOM
 			pre.appendChild(code);
 			element.parentNode.replaceChild(pre, element);
 			env.element = code;
-
-		} else if (!env.code && (element.matches || element.msMatchesSelector).call(element, 'pre > code') &&
-			element.firstChild && element.firstChild.nodeName == '#comment') {
-			// <pre><code><!-- actual code --></code></pre>
-			element.textContent = env.code = element.firstChild.textContent;
+			return;
 		}
 
+		if (!env.code) {
+			// no code
+			var childNodes = element.childNodes;
+			if (childNodes.length === 1 && childNodes[0].nodeName == '#comment') {
+				// the only child is a comment -> use the comment's text
+				element.textContent = env.code = childNodes[0].textContent;
+			}
+		}
 	});
 }());

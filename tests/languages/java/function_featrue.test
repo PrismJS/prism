@@ -20,9 +20,10 @@ Bar::foo;
 	["punctuation", ")"],
 	["punctuation", ";"],
 
-	["class-name", "Bar"],
-	["operator", ":"],
-	["operator", ":"],
+	["class-name", [
+		"Bar"
+	]],
+	["operator", "::"],
 	["function", "foo"],
 	["punctuation", ";"]
 ]

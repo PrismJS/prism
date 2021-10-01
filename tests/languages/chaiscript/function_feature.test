@@ -1,0 +1,190 @@
+attr Rectangle::height
+attr Rectangle::width
+def Rectangle::Rectangle() { this.height = 10; this.width = 20 }
+def Rectangle::area() { this.height * this.width }
+var rect = Rectangle()
+rect.height = 30
+print(rect.area())
+
+class Rectangle {
+  attr height
+  attr width
+  def Rectangle() { this.height = 10; this.width = 20 }
+  def area() { this.height * this.width }
+}
+var rect = Rectangle()
+rect.height = 30
+print(rect.area())
+
+def update(dt) {
+  x = x + 20.0f * dt
+}
+
+def foo(int x, Vector y) {}
+
+----------------------------------------------------
+
+[
+	["keyword", "attr"],
+	["class-name", "Rectangle"],
+	["operator", "::"],
+	"height\r\n",
+
+	["keyword", "attr"],
+	["class-name", "Rectangle"],
+	["operator", "::"],
+	"width\r\n",
+
+	["keyword", "def"],
+	["class-name", "Rectangle"],
+	["operator", "::"],
+	["function", "Rectangle"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["keyword", "this"],
+	["punctuation", "."],
+	"height ",
+	["operator", "="],
+	["number", "10"],
+	["punctuation", ";"],
+	["keyword", "this"],
+	["punctuation", "."],
+	"width ",
+	["operator", "="],
+	["number", "20"],
+	["punctuation", "}"],
+
+	["keyword", "def"],
+	["class-name", "Rectangle"],
+	["operator", "::"],
+	["function", "area"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["keyword", "this"],
+	["punctuation", "."],
+	"height ",
+	["operator", "*"],
+	["keyword", "this"],
+	["punctuation", "."],
+	"width ",
+	["punctuation", "}"],
+
+	["keyword", "var"],
+	" rect ",
+	["operator", "="],
+	["function", "Rectangle"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	"\r\nrect",
+	["punctuation", "."],
+	"height ",
+	["operator", "="],
+	["number", "30"],
+
+	["function", "print"],
+	["punctuation", "("],
+	"rect",
+	["punctuation", "."],
+	["function", "area"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ")"],
+
+	["keyword", "class"],
+	["class-name", "Rectangle"],
+	["punctuation", "{"],
+
+	["keyword", "attr"],
+	" height\r\n  ",
+
+	["keyword", "attr"],
+	" width\r\n  ",
+
+	["keyword", "def"],
+	["function", "Rectangle"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["keyword", "this"],
+	["punctuation", "."],
+	"height ",
+	["operator", "="],
+	["number", "10"],
+	["punctuation", ";"],
+	["keyword", "this"],
+	["punctuation", "."],
+	"width ",
+	["operator", "="],
+	["number", "20"],
+	["punctuation", "}"],
+
+	["keyword", "def"],
+	["function", "area"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["keyword", "this"],
+	["punctuation", "."],
+	"height ",
+	["operator", "*"],
+	["keyword", "this"],
+	["punctuation", "."],
+	"width ",
+	["punctuation", "}"],
+
+	["punctuation", "}"],
+
+	["keyword", "var"],
+	" rect ",
+	["operator", "="],
+	["function", "Rectangle"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	"\r\nrect",
+	["punctuation", "."],
+	"height ",
+	["operator", "="],
+	["number", "30"],
+
+	["function", "print"],
+	["punctuation", "("],
+	"rect",
+	["punctuation", "."],
+	["function", "area"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ")"],
+
+	["keyword", "def"],
+	["function", "update"],
+	["punctuation", "("],
+	"dt",
+	["punctuation", ")"],
+	["punctuation", "{"],
+
+	"\r\n  x ",
+	["operator", "="],
+	" x ",
+	["operator", "+"],
+	["number", "20.0f"],
+	["operator", "*"],
+	" dt\r\n",
+
+	["punctuation", "}"],
+
+	["keyword", "def"],
+	["function", "foo"],
+	["punctuation", "("],
+	["parameter-type", "int"],
+	" x",
+	["punctuation", ","],
+	["parameter-type", "Vector"],
+	" y",
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"]
+]

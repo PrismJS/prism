@@ -20,6 +20,7 @@ a_detecthiddenwindows
 a_endchar
 a_eventinfo
 a_exitreason
+a_fileencoding
 a_formatfloat
 a_formatinteger
 a_gui
@@ -40,6 +41,7 @@ a_ipaddress1
 a_ipaddress2
 a_ipaddress3
 a_ipaddress4
+a_is64bitos
 a_isadmin
 a_iscompiled
 a_iscritical
@@ -87,11 +89,16 @@ a_numbatchlines
 a_ostype
 a_osversion
 a_priorhotkey
+a_priorkey
 programfiles
 a_programfiles
 a_programs
 a_programscommon
+a_ptrsize
+a_regview
+a_screendpi
 a_screenheight
+a_scripthwnd
 a_screenwidth
 a_scriptdir
 a_scriptfullpath
@@ -157,6 +164,7 @@ errorlevel
 	["constant", "a_endchar"],
 	["constant", "a_eventinfo"],
 	["constant", "a_exitreason"],
+	["constant", "a_fileencoding"],
 	["constant", "a_formatfloat"],
 	["constant", "a_formatinteger"],
 	["constant", "a_gui"],
@@ -177,6 +185,7 @@ errorlevel
 	["constant", "a_ipaddress2"],
 	["constant", "a_ipaddress3"],
 	["constant", "a_ipaddress4"],
+	["constant", "a_is64bitos"],
 	["constant", "a_isadmin"],
 	["constant", "a_iscompiled"],
 	["constant", "a_iscritical"],
@@ -224,11 +233,16 @@ errorlevel
 	["constant", "a_ostype"],
 	["constant", "a_osversion"],
 	["constant", "a_priorhotkey"],
+	["constant", "a_priorkey"],
 	["constant", "programfiles"],
 	["constant", "a_programfiles"],
 	["constant", "a_programs"],
 	["constant", "a_programscommon"],
+	["constant", "a_ptrsize"],
+	["constant", "a_regview"],
+	["constant", "a_screendpi"],
 	["constant", "a_screenheight"],
+	["constant", "a_scripthwnd"],
 	["constant", "a_screenwidth"],
 	["constant", "a_scriptdir"],
 	["constant", "a_scriptfullpath"],

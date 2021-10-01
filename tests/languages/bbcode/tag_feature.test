@@ -1,0 +1,248 @@
+[list]
+  [*]Entry A
+  [*]Entry B
+[/list]
+
+[list=1]
+  [*]Entry 1
+  [*]Entry 2
+[/list]
+
+[style color="fuchsia"]Text in fuchsia[/style] or
+[style color=#FF00FF]Text in fuchsia[/style] or
+[color=#FF00FF]Text in fuchsia[/color]
+[quote]quoted text[/quote]
+[quote="author"]quoted text[/quote]
+
+[:-)]
+
+[url]https://en.wikipedia.org[/url]
+[url=https://en.wikipedia.org]English Wikipedia[/url]
+
+----------------------------------------------------
+
+[
+	["tag", [
+		["tag", [
+			["punctuation", "["],
+			"list"
+		]],
+		["punctuation", "]"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "["],
+			"*"
+		]],
+		["punctuation", "]"]
+	]],
+	"Entry A\r\n  ",
+
+	["tag", [
+		["tag", [
+			["punctuation", "["],
+			"*"
+		]],
+		["punctuation", "]"]
+	]],
+	"Entry B\r\n",
+
+	["tag", [
+		["tag", [
+			["punctuation", "[/"],
+			"list"
+		]],
+		["punctuation", "]"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "["],
+			"list"
+		]],
+		["attr-value", [
+			["punctuation", "="],
+			"1"
+		]],
+		["punctuation", "]"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "["],
+			"*"
+		]],
+		["punctuation", "]"]
+	]],
+	"Entry 1\r\n  ",
+
+	["tag", [
+		["tag", [
+			["punctuation", "["],
+			"*"
+		]],
+		["punctuation", "]"]
+	]],
+	"Entry 2\r\n",
+
+	["tag", [
+		["tag", [
+			["punctuation", "[/"],
+			"list"
+		]],
+		["punctuation", "]"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "["],
+			"style"
+		]],
+		["attr-name", "color"],
+		["attr-value", [
+			["punctuation", "="],
+			["punctuation", "\""],
+			"fuchsia",
+			["punctuation", "\""]
+		]],
+		["punctuation", "]"]
+	]],
+	"Text in fuchsia",
+	["tag", [
+		["tag", [
+			["punctuation", "[/"],
+			"style"
+		]],
+		["punctuation", "]"]
+	]],
+	" or\r\n",
+
+	["tag", [
+		["tag", [
+			["punctuation", "["],
+			"style"
+		]],
+		["attr-name", "color"],
+		["attr-value", [
+			["punctuation", "="],
+			"#FF00FF"
+		]],
+		["punctuation", "]"]
+	]],
+	"Text in fuchsia",
+	["tag", [
+		["tag", [
+			["punctuation", "[/"],
+			"style"
+		]],
+		["punctuation", "]"]
+	]],
+	" or\r\n",
+
+	["tag", [
+		["tag", [
+			["punctuation", "["],
+			"color"
+		]],
+		["attr-value", [
+			["punctuation", "="],
+			"#FF00FF"
+		]],
+		["punctuation", "]"]
+	]],
+	"Text in fuchsia",
+	["tag", [
+		["tag", [
+			["punctuation", "[/"],
+			"color"
+		]],
+		["punctuation", "]"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "["],
+			"quote"
+		]],
+		["punctuation", "]"]
+	]],
+	"quoted text",
+	["tag", [
+		["tag", [
+			["punctuation", "[/"],
+			"quote"
+		]],
+		["punctuation", "]"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "["],
+			"quote"
+		]],
+		["attr-value", [
+			["punctuation", "="],
+			["punctuation", "\""],
+			"author",
+			["punctuation", "\""]
+		]],
+		["punctuation", "]"]
+	]],
+	"quoted text",
+	["tag", [
+		["tag", [
+			["punctuation", "[/"],
+			"quote"
+		]],
+		["punctuation", "]"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "["],
+			":-)"
+		]],
+		["punctuation", "]"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "["],
+			"url"
+		]],
+		["punctuation", "]"]
+	]],
+	"https://en.wikipedia.org",
+	["tag", [
+		["tag", [
+			["punctuation", "[/"],
+			"url"
+		]],
+		["punctuation", "]"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "["],
+			"url"
+		]],
+		["attr-value", [
+			["punctuation", "="],
+			"https://en.wikipedia.org"
+		]],
+		["punctuation", "]"]
+	]],
+	"English Wikipedia",
+	["tag", [
+		["tag", [
+			["punctuation", "[/"],
+			"url"
+		]],
+		["punctuation", "]"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for tags.

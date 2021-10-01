@@ -6,10 +6,10 @@ true
 ----------------------------------------------------
 
 [
-	["boolean", "FALSE"],
-	["boolean", "false"],
-	["boolean", "TRUE"],
-	["boolean", "true"]
+	["constant", "FALSE"],
+	["constant", "false"],
+	["constant", "TRUE"],
+	["constant", "true"]
 ]
 
 ----------------------------------------------------

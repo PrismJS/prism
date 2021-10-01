@@ -1,7 +1,7 @@
 (function (Prism) {
 
 	// Allow only one line break
-	var inner = /\\.|[^\\\n\r_]|(?:\r?\n|\r)(?!\r?\n|\r)/.source;
+	var inner = /(?:\\.|[^\\\n\r]|(?:\n|\r\n?)(?![\r\n]))/.source;
 
 	/**
 	 * This function is intended for the creation of the bold or italic pattern.
@@ -11,35 +11,78 @@
 	 * _Note:_ Keep in mind that this adds a capturing group.
 	 *
 	 * @param {string} pattern
-	 * @param {boolean} starAlternative Whether to also add an alternative where all `_`s are replaced with `*`s.
 	 * @returns {RegExp}
 	 */
-	function createInline(pattern, starAlternative) {
-		pattern = pattern.replace(/<inner>/g, inner);
-		if (starAlternative) {
-			pattern = pattern + '|' + pattern.replace(/_/g, '\\*');
-		}
+	function createInline(pattern) {
+		pattern = pattern.replace(/<inner>/g, function () { return inner; });
 		return RegExp(/((?:^|[^\\])(?:\\{2})*)/.source + '(?:' + pattern + ')');
 	}
 
 
+	var tableCell = /(?:\\.|``(?:[^`\r\n]|`(?!`))+``|`[^`\r\n]+`|[^\\|\r\n`])+/.source;
+	var tableRow = /\|?__(?:\|__)+\|?(?:(?:\n|\r\n?)|(?![\s\S]))/.source.replace(/__/g, function () { return tableCell; });
+	var tableLine = /\|?[ \t]*:?-{3,}:?[ \t]*(?:\|[ \t]*:?-{3,}:?[ \t]*)+\|?(?:\n|\r\n?)/.source;
+
+
 	Prism.languages.markdown = Prism.languages.extend('markup', {});
 	Prism.languages.insertBefore('markdown', 'prolog', {
+		'front-matter-block': {
+			pattern: /(^(?:\s*[\r\n])?)---(?!.)[\s\S]*?[\r\n]---(?!.)/,
+			lookbehind: true,
+			greedy: true,
+			inside: {
+				'punctuation': /^---|---$/,
+				'font-matter': {
+					pattern: /\S+(?:\s+\S+)*/,
+					alias: ['yaml', 'language-yaml'],
+					inside: Prism.languages.yaml
+				}
+			}
+		},
 		'blockquote': {
 			// > ...
 			pattern: /^>(?:[\t ]*>)*/m,
 			alias: 'punctuation'
 		},
+		'table': {
+			pattern: RegExp('^' + tableRow + tableLine + '(?:' + tableRow + ')*', 'm'),
+			inside: {
+				'table-data-rows': {
+					pattern: RegExp('^(' + tableRow + tableLine + ')(?:' + tableRow + ')*$'),
+					lookbehind: true,
+					inside: {
+						'table-data': {
+							pattern: RegExp(tableCell),
+							inside: Prism.languages.markdown
+						},
+						'punctuation': /\|/
+					}
+				},
+				'table-line': {
+					pattern: RegExp('^(' + tableRow + ')' + tableLine + '$'),
+					lookbehind: true,
+					inside: {
+						'punctuation': /\||:?-{3,}:?/
+					}
+				},
+				'table-header-row': {
+					pattern: RegExp('^' + tableRow + '$'),
+					inside: {
+						'table-header': {
+							pattern: RegExp(tableCell),
+							alias: 'important',
+							inside: Prism.languages.markdown
+						},
+						'punctuation': /\|/
+					}
+				}
+			}
+		},
 		'code': [
 			{
-				// Prefixed by 4 spaces or 1 tab
-				pattern: /^(?: {4}|\t).+/m,
-				alias: 'keyword'
-			},
-			{
-				// `code`
-				// ``code``
-				pattern: /``.+?``|`[^`\n]+`/,
+				// Prefixed by 4 spaces or 1 tab and preceded by an empty line
+				pattern: /((?:^|\n)[ \t]*\n|(?:^|\r\n?)[ \t]*\r\n?)(?: {4}|\t).+(?:(?:\n|\r\n?)(?: {4}|\t).+)*/,
+				lookbehind: true,
 				alias: 'keyword'
 			},
 			{
@@ -50,7 +93,7 @@
 				greedy: true,
 				inside: {
 					'code-block': {
-						pattern: /^(```.*(?:\r?\n|\r))[\s\S]+?(?=(?:\r?\n|\r)^```$)/m,
+						pattern: /^(```.*(?:\n|\r\n?))[\s\S]+?(?=(?:\n|\r\n?)^```$)/m,
 						lookbehind: true
 					},
 					'code-language': {
@@ -68,7 +111,7 @@
 
 				// title 2
 				// -------
-				pattern: /\S.*(?:\r?\n|\r)(?:==+|--+)/,
+				pattern: /\S.*(?:\n|\r\n?)(?:==+|--+)(?=[ \t]*$)/m,
 				alias: 'important',
 				inside: {
 					punctuation: /==+$|--+$/
@@ -77,7 +120,7 @@
 			{
 				// # title 1
 				// ###### title 6
-				pattern: /(^\s*)#+.+/m,
+				pattern: /(^\s*)#.+/m,
 				lookbehind: true,
 				alias: 'important',
 				inside: {
@@ -124,7 +167,7 @@
 			// __strong__
 
 			// allow one nested instance of italic text using the same delimiter
-			pattern: createInline(/__(?:<inner>|_(?:<inner>)+_)+__/.source, true),
+			pattern: createInline(/\b__(?:(?!_)<inner>|_(?:(?!_)<inner>)+_)+__\b|\*\*(?:(?!\*)<inner>|\*(?:(?!\*)<inner>)+\*)+\*\*/.source),
 			lookbehind: true,
 			greedy: true,
 			inside: {
@@ -141,7 +184,7 @@
 			// _em_
 
 			// allow one nested instance of bold text using the same delimiter
-			pattern: createInline(/_(?:<inner>|__(?:<inner>)+__)+_/.source, true),
+			pattern: createInline(/\b_(?:(?!_)<inner>|__(?:(?!_)<inner>)+__)+_\b|\*(?:(?!\*)<inner>|\*\*(?:(?!\*)<inner>)+\*\*)+\*/.source),
 			lookbehind: true,
 			greedy: true,
 			inside: {
@@ -156,9 +199,8 @@
 		'strike': {
 			// ~~strike through~~
 			// ~strike~
-
-			// extra _ is because the inner pattern intentionally doesn't include it because of bold and italic
-			pattern: createInline(/(~~?)(?:<inner>|_)+?\2/.source, false),
+			// eslint-disable-next-line regexp/strict
+			pattern: createInline(/(~~?)(?:(?!~)<inner>)+\2/.source),
 			lookbehind: true,
 			greedy: true,
 			inside: {
@@ -170,24 +212,46 @@
 				'punctuation': /~~?/
 			}
 		},
+		'code-snippet': {
+			// `code`
+			// ``code``
+			pattern: /(^|[^\\`])(?:``[^`\r\n]+(?:`[^`\r\n]+)*``(?!`)|`[^`\r\n]+`(?!`))/,
+			lookbehind: true,
+			greedy: true,
+			alias: ['code', 'keyword']
+		},
 		'url': {
 			// [example](http://example.com "Optional title")
+			// [example][id]
 			// [example] [id]
-			pattern: /!?\[[^\]]+\](?:\([^\s)]+(?:[\t ]+"(?:\\.|[^"\\])*")?\)| ?\[[^\]\n]*\])/,
+			pattern: createInline(/!?\[(?:(?!\])<inner>)+\](?:\([^\s)]+(?:[\t ]+"(?:\\.|[^"\\])*")?\)|[ \t]?\[(?:(?!\])<inner>)+\])/.source),
+			lookbehind: true,
+			greedy: true,
 			inside: {
+				'operator': /^!/,
+				'content': {
+					pattern: /(^\[)[^\]]+(?=\])/,
+					lookbehind: true,
+					inside: {} // see below
+				},
 				'variable': {
-					pattern: /(!?\[)[^\]]+(?=\]$)/,
+					pattern: /(^\][ \t]?\[)[^\]]+(?=\]$)/,
+					lookbehind: true
+				},
+				'url': {
+					pattern: /(^\]\()[^\s)]+/,
 					lookbehind: true
 				},
 				'string': {
-					pattern: /"(?:\\.|[^"\\])*"(?=\)$)/
+					pattern: /(^[ \t]+)"(?:\\.|[^"\\])*"(?=\)$)/,
+					lookbehind: true
 				}
 			}
 		}
 	});
 
-	['bold', 'italic', 'strike'].forEach(function (token) {
-		['url', 'bold', 'italic', 'strike'].forEach(function (inside) {
+	['url', 'bold', 'italic', 'strike'].forEach(function (token) {
+		['url', 'bold', 'italic', 'strike', 'code-snippet'].forEach(function (inside) {
 			if (token !== inside) {
 				Prism.languages.markdown[token].inside.content.inside[inside] = Prism.languages.markdown[inside];
 			}
@@ -234,7 +298,12 @@
 					typeof codeLang.content === 'string') {
 
 					// this might be a language that Prism does not support
-					var alias = 'language-' + codeLang.content.trim().split(/\s+/)[0].toLowerCase();
+
+					// do some replacements to support C++, C#, and F#
+					var lang = codeLang.content.replace(/\b#/g, 'sharp').replace(/\b\+\+/g, 'pp');
+					// only use the first word
+					lang = (/[a-z][\w-]*/i.exec(lang) || [''])[0].toLowerCase();
+					var alias = 'language-' + lang;
 
 					// add alias
 					if (!codeBlock.alias) {
@@ -269,14 +338,77 @@
 		var grammar = Prism.languages[codeLang];
 
 		if (!grammar) {
-			return;
+			if (codeLang && codeLang !== 'none' && Prism.plugins.autoloader) {
+				var id = 'md-' + new Date().valueOf() + '-' + Math.floor(Math.random() * 1e16);
+				env.attributes['id'] = id;
+
+				Prism.plugins.autoloader.loadLanguages(codeLang, function () {
+					var ele = document.getElementById(id);
+					if (ele) {
+						ele.innerHTML = Prism.highlight(ele.textContent, Prism.languages[codeLang], codeLang);
+					}
+				});
+			}
+		} else {
+			env.content = Prism.highlight(textContent(env.content), grammar, codeLang);
 		}
-
-		// reverse Prism.util.encode
-		var code = env.content.replace(/&lt;/g, '<').replace(/&amp;/g, '&');
-
-		env.content = Prism.highlight(code, grammar, codeLang);
 	});
+
+	var tagPattern = RegExp(Prism.languages.markup.tag.pattern.source, 'gi');
+
+	/**
+	 * A list of known entity names.
+	 *
+	 * This will always be incomplete to save space. The current list is the one used by lowdash's unescape function.
+	 *
+	 * @see {@link https://github.com/lodash/lodash/blob/2da024c3b4f9947a48517639de7560457cd4ec6c/unescape.js#L2}
+	 */
+	var KNOWN_ENTITY_NAMES = {
+		'amp': '&',
+		'lt': '<',
+		'gt': '>',
+		'quot': '"',
+	};
+
+	// IE 11 doesn't support `String.fromCodePoint`
+	var fromCodePoint = String.fromCodePoint || String.fromCharCode;
+
+	/**
+	 * Returns the text content of a given HTML source code string.
+	 *
+	 * @param {string} html
+	 * @returns {string}
+	 */
+	function textContent(html) {
+		// remove all tags
+		var text = html.replace(tagPattern, '');
+
+		// decode known entities
+		text = text.replace(/&(\w{1,8}|#x?[\da-f]{1,8});/gi, function (m, code) {
+			code = code.toLowerCase();
+
+			if (code[0] === '#') {
+				var value;
+				if (code[1] === 'x') {
+					value = parseInt(code.slice(2), 16);
+				} else {
+					value = Number(code.slice(1));
+				}
+
+				return fromCodePoint(value);
+			} else {
+				var known = KNOWN_ENTITY_NAMES[code];
+				if (known) {
+					return known;
+				}
+
+				// unable to decode
+				return m;
+			}
+		});
+
+		return text;
+	}
 
 	Prism.languages.md = Prism.languages.markdown;
 

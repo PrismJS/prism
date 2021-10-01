@@ -1,0 +1,90 @@
+{{ page.title }}
+
+{% if user %}
+  Hello {{ user.name }}!
+{% endif %}
+
+{{ "/my/fancy/url" | append: ".html" }}
+{{ "adam!" | capitalize | prepend: "Hello " }}
+
+{% assign my_variable = "tomato" -%}
+
+{%- if username and username.size > 10 -%}
+
+----------------------------------------------------
+
+[
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "page"],
+		["punctuation", "."],
+		"title ",
+		["delimiter", "}}"]
+	]],
+
+	["liquid", [
+		["delimiter", "{%"],
+		["keyword", "if"],
+		" user ",
+		["delimiter", "%}"]
+	]],
+
+	"\r\n  Hello ",
+	["liquid", [
+		["delimiter", "{{"],
+		" user",
+		["punctuation", "."],
+		"name ",
+		["delimiter", "}}"]
+	]],
+	"!\r\n",
+
+	["liquid", [
+		["delimiter", "{%"],
+		["keyword", "endif"],
+		["delimiter", "%}"]
+	]],
+
+	["liquid", [
+		["delimiter", "{{"],
+		["string", "\"/my/fancy/url\""],
+		["operator", "|"],
+		["function", "append"],
+		["operator", ":"],
+		["string", "\".html\""],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["string", "\"adam!\""],
+		["operator", "|"],
+		["function", "capitalize"],
+		["operator", "|"],
+		["function", "prepend"],
+		["operator", ":"],
+		["string", "\"Hello \""],
+		["delimiter", "}}"]
+	]],
+
+	["liquid", [
+		["delimiter", "{%"],
+		["keyword", "assign"],
+		" my_variable ",
+		["operator", "="],
+		["string", "\"tomato\""],
+		["delimiter", "-%}"]
+	]],
+
+	["liquid", [
+		["delimiter", "{%-"],
+		["keyword", "if"],
+		" username ",
+		["operator", "and"],
+		" username",
+		["punctuation", "."],
+		["function", "size"],
+		["operator", ">"],
+		["number", "10"],
+		["delimiter", "-%}"]
+	]]
+]

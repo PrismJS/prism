@@ -1,0 +1,73 @@
+''
+'hello!'
+'what\'s up?'
+'steve'
+'hello ${name}!'
+'😁\u{1F642}'
+'Microsoft.Web/sites/config@2020-12-01'
+'https://${frontDoorName}.azurefd.net/.auth/login/aad/callback'
+
+'''hello!'''
+var myVar2 = '''
+hello!'''
+'''
+hello!
+'''
+'''
+  this
+    is
+      indented
+'''
+
+'''
+comments // are included
+/* because everything is read as-is */
+'''
+
+'''interpolation
+is ${blocked}'''
+
+----------------------------------------------------
+
+[
+	["string", "''"],
+	["string", "'hello!'"],
+	["string", "'what\\'s up?'"],
+	["string", "'steve'"],
+	["interpolated-string", [
+		["string", "'hello "],
+		["interpolation", [
+			["punctuation", "${"],
+			["expression", ["name"]],
+			["punctuation", "}"]
+		]],
+		["string", "!'"]
+	]],
+	["string", "'😁\\u{1F642}'"],
+	["string", "'Microsoft.Web/sites/config@2020-12-01'"],
+	["interpolated-string", [
+		["string", "'https://"],
+		["interpolation", [
+			["punctuation", "${"],
+			["expression", ["frontDoorName"]],
+			["punctuation", "}"]
+		]],
+		["string", ".azurefd.net/.auth/login/aad/callback'"]
+	]],
+
+	["string", "'''hello!'''"],
+	["keyword", "var"],
+	" myVar2 ",
+	["operator", "="],
+	["string", "'''\r\nhello!'''"],
+	["string", "'''\r\nhello!\r\n'''"],
+	["string", "'''\r\n  this\r\n    is\r\n      indented\r\n'''"],
+
+	["string", "'''\r\ncomments // are included\r\n/* because everything is read as-is */\r\n'''"],
+
+	["string", "'''interpolation\r\nis ${blocked}'''"]
+]
+
+----------------------------------------------------
+
+Checks for strings.

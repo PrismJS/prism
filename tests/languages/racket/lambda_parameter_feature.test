@@ -1,0 +1,35 @@
+(lambda (foo bar) (concat foo bar))
+
+(lambda [foo bar] [concat foo bar])
+
+----------------------------------------------------
+
+[
+	["punctuation", "("],
+	["keyword", "lambda"],
+	["punctuation", "("],
+	["lambda-parameter", "foo"],
+	" bar",
+	["punctuation", ")"],
+	["punctuation", "("],
+	["function", "concat"],
+	" foo bar",
+	["punctuation", ")"],
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["keyword", "lambda"],
+	["punctuation", "["],
+	["lambda-parameter", "foo"],
+	" bar",
+	["punctuation", "]"],
+	["punctuation", "["],
+	["function", "concat"],
+	" foo bar",
+	["punctuation", "]"],
+	["punctuation", ")"]
+]
+
+----------------------------------------------------
+
+Checks for lambda parameters.

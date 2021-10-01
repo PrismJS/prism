@@ -6,26 +6,32 @@ import Foo.Bar as Foo.Baz hiding
 ----------------------------------------------------
 
 [
-	["import_statement", [
+	["import-statement", [
 		["keyword", "import"],
 		" Foo"
 	]],
-	["import_statement", [
+	["import-statement", [
 		["keyword", "import"],
 		["keyword", "qualified"],
 		" Foobar"
 	]],
-	["import_statement", [
+	["import-statement", [
 		["keyword", "import"],
-		" Foo_42.Bar ",
+		" Foo_42",
+		["punctuation", "."],
+		"Bar ",
 		["keyword", "as"],
 		" Foobar"
 	]],
-	["import_statement", [
+	["import-statement", [
 		["keyword", "import"],
-		" Foo.Bar ",
+		" Foo",
+		["punctuation", "."],
+		"Bar ",
 		["keyword", "as"],
-		" Foo.Baz ",
+		" Foo",
+		["punctuation", "."],
+		"Baz ",
 		["keyword", "hiding"]
 	]]
 ]

@@ -1,0 +1,41 @@
+any
+anynonnull
+binary
+date
+datetime
+datetimezone
+duration
+function
+list
+logical
+none
+number
+record
+table
+text
+time
+
+----------------------------------------------------
+
+[
+	["data-type", "any"],
+	["data-type", "anynonnull"],
+	["data-type", "binary"],
+	["data-type", "date"],
+	["data-type", "datetime"],
+	["data-type", "datetimezone"],
+	["data-type", "duration"],
+	["data-type", "function"],
+	["data-type", "list"],
+	["data-type", "logical"],
+	["data-type", "none"],
+	["data-type", "number"],
+	["data-type", "record"],
+	["data-type", "table"],
+	["data-type", "text"],
+	["data-type", "time"]
+]
+
+----------------------------------------------------
+
+Checks for data-type.

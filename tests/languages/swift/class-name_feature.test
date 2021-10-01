@@ -1,0 +1,41 @@
+struct SomeStructure {}
+enum SomeEnumeration {}
+class SomeClass: SomeSuperclass {
+    class var overrideableComputedTypeProperty: Int {
+        return 107
+    }
+}
+
+----------------------------------------------------
+
+[
+	["keyword", "struct"],
+	["class-name", "SomeStructure"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "enum"],
+	["class-name", "SomeEnumeration"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "class"],
+	["class-name", "SomeClass"],
+	["punctuation", ":"],
+	["class-name", "SomeSuperclass"],
+	["punctuation", "{"],
+
+	["keyword", "class"],
+	["keyword", "var"],
+	" overrideableComputedTypeProperty",
+	["punctuation", ":"],
+	["class-name", "Int"],
+	["punctuation", "{"],
+
+	["keyword", "return"],
+	["number", "107"],
+
+	["punctuation", "}"],
+
+	["punctuation", "}"]
+]

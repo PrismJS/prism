@@ -1,0 +1,115 @@
++ - * / %
++= -= *= /= %=
+
+~ & | ^ << >>
+~= &= |= ^= <<= >>=
+
+&+ &- &* &<< &>>
+&+= &-= &*= &<<= &>>=
+
+=
+== != === !== <= >= < >
+! && ||
+
+..< ...
+
+->
+
+??
+
+// custom operators
++++
+prefix func +++ (vector: inout Vector2D) -> Vector2D {}
+
+// dot operators (SIMD)
+.!= .== .< .> .<= .>=
+
+----------------------------------------------------
+
+[
+	["operator", "+"],
+	["operator", "-"],
+	["operator", "*"],
+	["operator", "/"],
+	["operator", "%"],
+
+	["operator", "+="],
+	["operator", "-="],
+	["operator", "*="],
+	["operator", "/="],
+	["operator", "%="],
+
+	["operator", "~"],
+	["operator", "&"],
+	["operator", "|"],
+	["operator", "^"],
+	["operator", "<<"],
+	["operator", ">>"],
+
+	["operator", "~="],
+	["operator", "&="],
+	["operator", "|="],
+	["operator", "^="],
+	["operator", "<<="],
+	["operator", ">>="],
+
+	["operator", "&+"],
+	["operator", "&-"],
+	["operator", "&*"],
+	["operator", "&<<"],
+	["operator", "&>>"],
+
+	["operator", "&+="],
+	["operator", "&-="],
+	["operator", "&*="],
+	["operator", "&<<="],
+	["operator", "&>>="],
+
+	["operator", "="],
+
+	["operator", "=="],
+	["operator", "!="],
+	["operator", "==="],
+	["operator", "!=="],
+	["operator", "<="],
+	["operator", ">="],
+	["operator", "<"],
+	["operator", ">"],
+
+	["operator", "!"],
+	["operator", "&&"],
+	["operator", "||"],
+
+	["operator", "..<"], ["operator", "..."],
+
+	["operator", "->"],
+
+	["operator", "??"],
+
+	["comment", "// custom operators"],
+
+	["operator", "+++"],
+
+	["keyword", "prefix"],
+	["keyword", "func"],
+	["operator", "+++"],
+	["punctuation", "("],
+	"vector",
+	["punctuation", ":"],
+	["keyword", "inout"],
+	["class-name", "Vector2D"],
+	["punctuation", ")"],
+	["operator", "->"],
+	["class-name", "Vector2D"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["comment", "// dot operators (SIMD)"],
+
+	["operator", ".!="],
+	["operator", ".=="],
+	["operator", ".<"],
+	["operator", ".>"],
+	["operator", ".<="],
+	["operator", ".>="]
+]

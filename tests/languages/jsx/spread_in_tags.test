@@ -1,0 +1,150 @@
+<div {...foo}></div>
+<div { ...foo }></div>
+<div { ... foo }></div>
+<div {...{onClick, disabled}}></div>
+<div {...foo()}></div>
+<div {...(foo ?? bar)}></div>
+
+----------------------------------------------------
+
+[
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"div"
+		]],
+		["spread", [
+			["punctuation", "{"],
+			["operator", "..."],
+			"foo",
+			["punctuation", "}"]
+		]],
+		["punctuation", ">"]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"div"
+		]],
+		["punctuation", ">"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"div"
+		]],
+		["spread", [
+			["punctuation", "{"],
+			["operator", "..."],
+			"foo ",
+			["punctuation", "}"]
+		]],
+		["punctuation", ">"]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"div"
+		]],
+		["punctuation", ">"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"div"
+		]],
+		["spread", [
+			["punctuation", "{"],
+			["operator", "..."],
+			" foo ",
+			["punctuation", "}"]
+		]],
+		["punctuation", ">"]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"div"
+		]],
+		["punctuation", ">"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"div"
+		]],
+		["spread", [
+			["punctuation", "{"],
+			["operator", "..."],
+			["punctuation", "{"],
+			"onClick",
+			["punctuation", ","],
+			" disabled",
+			["punctuation", "}"],
+			["punctuation", "}"]
+		]],
+		["punctuation", ">"]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"div"
+		]],
+		["punctuation", ">"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"div"
+		]],
+		["spread", [
+			["punctuation", "{"],
+			["operator", "..."],
+			["function", "foo"],
+			["punctuation", "("],
+			["punctuation", ")"],
+			["punctuation", "}"]
+		]],
+		["punctuation", ">"]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"div"
+		]],
+		["punctuation", ">"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"div"
+		]],
+		["spread", [
+			["punctuation", "{"],
+			["operator", "..."],
+			["punctuation", "("],
+			"foo ",
+			["operator", "??"],
+			" bar",
+			["punctuation", ")"],
+			["punctuation", "}"]
+		]],
+		["punctuation", ">"]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"div"
+		]],
+		["punctuation", ">"]
+	]]
+]
+
+----------------------------------------------------
+
+Allow spaces in spread operator brackets in JSX tags.

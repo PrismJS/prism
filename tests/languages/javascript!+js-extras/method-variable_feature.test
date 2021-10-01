@@ -1,14 +1,13 @@
 foo.bar = function() {};
 foo.bar = async () => {};
+this.bar = () => {};
 
 ----------------------------------------------------
 
 [
 	"foo",
 	["punctuation", "."],
-	["method-variable", [
-		"bar"
-	]],
+	["method-variable", ["bar"]],
 	["operator", "="],
 	["keyword", "function"],
 	["punctuation", "("],
@@ -17,13 +16,22 @@ foo.bar = async () => {};
 	["punctuation", "}"],
 	["punctuation", ";"],
 
-	"\nfoo",
+	"\r\nfoo",
 	["punctuation", "."],
-	["method-variable", [
-		"bar"
-	]],
+	["method-variable", ["bar"]],
 	["operator", "="],
 	["keyword", "async"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["arrow", "=>"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["keyword", "this"],
+	["punctuation", "."],
+	["method-variable", ["bar"]],
+	["operator", "="],
 	["punctuation", "("],
 	["punctuation", ")"],
 	["arrow", "=>"],

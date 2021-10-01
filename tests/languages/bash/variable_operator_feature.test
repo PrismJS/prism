@@ -1,0 +1,70 @@
+"$((
+
++ - * / % ^ & |
++= -= *= /= %= ^= &= |=
+-- ++ ** && ||
+
+>> >>= << <<=
+
+== != > >= < <=
+= ! ~ ? :
+
+
+
+))"
+
+----------------------------------------------------
+
+[
+	["string", [
+		"\"",
+		["variable", [
+			["variable", "$(("],
+
+			["operator", "+"],
+			["operator", "-"],
+			["operator", "*"],
+			["operator", "/"],
+			["operator", "%"],
+			["operator", "^"],
+			["operator", "&"],
+			["operator", "|"],
+
+			["operator", "+="],
+			["operator", "-="],
+			["operator", "*="],
+			["operator", "/="],
+			["operator", "%="],
+			["operator", "^="],
+			["operator", "&="],
+			["operator", "|="],
+
+			["operator", "--"],
+			["operator", "++"],
+			["operator", "**"],
+			["operator", "&&"],
+			["operator", "||"],
+
+			["operator", ">>"],
+			["operator", ">>="],
+			["operator", "<<"],
+			["operator", "<<="],
+
+			["operator", "=="],
+			["operator", "!="],
+			["operator", ">"],
+			["operator", ">="],
+			["operator", "<"],
+			["operator", "<="],
+
+			["operator", "="],
+			["operator", "!"],
+			["operator", "~"],
+			["operator", "?"],
+			["operator", ":"],
+
+			["variable", "))"]
+		]],
+		"\""
+	]]
+]

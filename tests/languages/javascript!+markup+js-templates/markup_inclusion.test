@@ -1,0 +1,192 @@
+html`
+<p>
+	Foo.
+</p>`;
+
+div.innerHTML = `<p></p>`;
+div.outerHTML = `<p></p>`;
+div.innerHTML += `<p></p>`;
+
+svg`<path fill="#fff" d="M55.37 ..."/>`
+
+html`<img src="${host}${path}" alt="\${foo}"/>`
+
+----------------------------------------------------
+
+[
+	"html",
+	["template-string", [
+		["template-punctuation", "`"],
+		["html", [
+			["tag", [
+				["tag", [
+					["punctuation", "<"],
+					"p"
+				]],
+				["punctuation", ">"]
+			]],
+			"\r\n\tFoo.\r\n",
+			["tag", [
+				["tag", [
+					["punctuation", "</"],
+					"p"
+				]],
+				["punctuation", ">"]
+			]]
+		]],
+		["template-punctuation", "`"]
+	]],
+	["punctuation", ";"],
+	"\r\n\r\ndiv",
+	["punctuation", "."],
+	"innerHTML ",
+	["operator", "="],
+	["template-string", [
+		["template-punctuation", "`"],
+		["html", [
+			["tag", [
+				["tag", [
+					["punctuation", "<"],
+					"p"
+				]],
+				["punctuation", ">"]
+			]],
+			["tag", [
+				["tag", [
+					["punctuation", "</"],
+					"p"
+				]],
+				["punctuation", ">"]
+			]]
+		]],
+		["template-punctuation", "`"]
+	]],
+	["punctuation", ";"],
+	"\r\ndiv",
+	["punctuation", "."],
+	"outerHTML ",
+	["operator", "="],
+	["template-string", [
+		["template-punctuation", "`"],
+		["html", [
+			["tag", [
+				["tag", [
+					["punctuation", "<"],
+					"p"
+				]],
+				["punctuation", ">"]
+			]],
+			["tag", [
+				["tag", [
+					["punctuation", "</"],
+					"p"
+				]],
+				["punctuation", ">"]
+			]]
+		]],
+		["template-punctuation", "`"]
+	]],
+	["punctuation", ";"],
+	"\r\ndiv",
+	["punctuation", "."],
+	"innerHTML ",
+	["operator", "+="],
+	["template-string", [
+		["template-punctuation", "`"],
+		["html", [
+			["tag", [
+				["tag", [
+					["punctuation", "<"],
+					"p"
+				]],
+				["punctuation", ">"]
+			]],
+			["tag", [
+				["tag", [
+					["punctuation", "</"],
+					"p"
+				]],
+				["punctuation", ">"]
+			]]
+		]],
+		["template-punctuation", "`"]
+	]],
+	["punctuation", ";"],
+	"\r\n\r\nsvg",
+	["template-string", [
+		["template-punctuation", "`"],
+		["svg", [
+			["tag", [
+				["tag", [
+					["punctuation", "<"],
+					"path"
+				]],
+				["attr-name", [
+					"fill"
+				]],
+				["attr-value", [
+					["punctuation", "="],
+					["punctuation", "\""],
+					"#fff",
+					["punctuation", "\""]
+				]],
+				["attr-name", [
+					"d"
+				]],
+				["attr-value", [
+					["punctuation", "="],
+					["punctuation", "\""],
+					"M55.37 ...",
+					["punctuation", "\""]
+				]],
+				["punctuation", "/>"]
+			]]
+		]],
+		["template-punctuation", "`"]
+	]],
+	"\r\n\r\nhtml",
+	["template-string", [
+		["template-punctuation", "`"],
+		["html", [
+			["tag", [
+				["tag", [
+					["punctuation", "<"],
+					"img"
+				]],
+				["attr-name", [
+					"src"
+				]],
+				["attr-value", [
+					["punctuation", "="],
+					["punctuation", "\""],
+					["interpolation", [
+						["interpolation-punctuation", "${"],
+						"host",
+						["interpolation-punctuation", "}"]
+					]],
+					["interpolation", [
+						["interpolation-punctuation", "${"],
+						"path",
+						["interpolation-punctuation", "}"]
+					]],
+					["punctuation", "\""]
+				]],
+				["attr-name", [
+					"alt"
+				]],
+				["attr-value", [
+					["punctuation", "="],
+					["punctuation", "\""],
+					"\\${foo}",
+					["punctuation", "\""]
+				]],
+				["punctuation", "/>"]
+			]]
+		]],
+		["template-punctuation", "`"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for tagged template literals containing HTML/XML code.

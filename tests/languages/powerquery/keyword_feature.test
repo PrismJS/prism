@@ -1,0 +1,67 @@
+and
+as
+each
+else
+error
+if
+in
+is
+let
+meta
+not
+otherwise
+or
+section
+shared
+then
+try
+type
+#binary
+#date
+#datetime
+#datetimezone
+#duration
+#infinity
+#nan
+#sections
+#shared
+#table
+#time
+
+----------------------------------------------------
+
+[
+	["keyword", "and"],
+	["keyword", "as"],
+	["keyword", "each"],
+	["keyword", "else"],
+	["keyword", "error"],
+	["keyword", "if"],
+	["keyword", "in"],
+	["keyword", "is"],
+	["keyword", "let"],
+	["keyword", "meta"],
+	["keyword", "not"],
+	["keyword", "otherwise"],
+	["keyword", "or"],
+	["keyword", "section"],
+	["keyword", "shared"],
+	["keyword", "then"],
+	["keyword", "try"],
+	["keyword", "type"],
+	["keyword", "#binary"],
+	["keyword", "#date"],
+	["keyword", "#datetime"],
+	["keyword", "#datetimezone"],
+	["keyword", "#duration"],
+	["keyword", "#infinity"],
+	["keyword", "#nan"],
+	["keyword", "#sections"],
+	["keyword", "#shared"],
+	["keyword", "#table"],
+	["keyword", "#time"]
+]
+
+----------------------------------------------------
+
+Checks for all keywords.

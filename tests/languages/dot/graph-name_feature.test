@@ -1,0 +1,22 @@
+graph ethane {}
+digraph foo {}
+subgraph bar {}
+
+----------------------------------------------------
+
+[
+	["keyword", "graph"],
+	["graph-name", ["ethane"]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "digraph"],
+	["graph-name", ["foo"]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "subgraph"],
+	["graph-name", ["bar"]],
+	["punctuation", "{"],
+	["punctuation", "}"]
+]

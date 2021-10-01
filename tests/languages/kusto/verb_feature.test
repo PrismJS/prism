@@ -1,0 +1,39 @@
+Logs
+| where Timestamp > ago(1d)
+| join
+(
+    Events
+    | where continent == 'Europe'
+) on RequestId
+
+----------------------------------------------------
+
+[
+	"Logs\r\n",
+
+	["operator", "|"],
+	["verb", "where"],
+	" Timestamp ",
+	["operator", ">"],
+	["function", "ago"],
+	["punctuation", "("],
+	["number", "1d"],
+	["punctuation", ")"],
+
+	["operator", "|"],
+	["verb", "join"],
+
+	["punctuation", "("],
+
+	"\r\n    Events\r\n    ",
+
+	["operator", "|"],
+	["verb", "where"],
+	" continent ",
+	["operator", "=="],
+	["string", "'Europe'"],
+
+	["punctuation", ")"],
+	["keyword", "on"],
+	" RequestId"
+]

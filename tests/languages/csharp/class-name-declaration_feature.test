@@ -1,0 +1,134 @@
+class Foo
+interface BarBaz
+struct Foo
+enum Foo
+record Foo
+class Foo<A, B>
+interface Bar<out T>
+record Foo<A, B>
+
+record TestData(string Name);
+
+// not variables
+public static RGBColor FromRainbow(Rainbow colorBand) =>
+	colorBand switch
+	{
+		Rainbow.Red => new RGBColor(0xFF, 0x00, 0x00),
+		_           => throw new ArgumentException(message: "invalid enum value", paramName: nameof(colorBand)),
+	};
+
+----------------------------------------------------
+
+[
+	["keyword", "class"],
+	["class-name", ["Foo"]],
+
+	["keyword", "interface"],
+	["class-name", ["BarBaz"]],
+
+	["keyword", "struct"],
+	["class-name", ["Foo"]],
+
+	["keyword", "enum"],
+	["class-name", ["Foo"]],
+
+	["keyword", "record"],
+	["class-name", ["Foo"]],
+
+	["keyword", "class"],
+	["class-name", [
+		"Foo",
+		["punctuation", "<"],
+		"A",
+		["punctuation", ","],
+		" B",
+		["punctuation", ">"]
+	]],
+
+	["keyword", "interface"],
+	["class-name", [
+		"Bar",
+		["punctuation", "<"],
+		["keyword", "out"],
+		" T",
+		["punctuation", ">"]
+	]],
+
+	["keyword", "record"],
+	["class-name", [
+		"Foo",
+		["punctuation", "<"],
+		"A",
+		["punctuation", ","],
+		" B",
+		["punctuation", ">"]
+	]],
+
+	["keyword", "record"],
+	["class-name", ["TestData"]],
+	["punctuation", "("],
+	["class-name", [
+		["keyword", "string"]
+	]],
+	" Name",
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["comment", "// not variables"],
+
+	["keyword", "public"],
+	["keyword", "static"],
+	["return-type", ["RGBColor"]],
+	["function", "FromRainbow"],
+	["punctuation", "("],
+	["class-name", ["Rainbow"]],
+	" colorBand",
+	["punctuation", ")"],
+	["operator", "=>"],
+
+	"\r\n\tcolorBand ",
+	["keyword", "switch"],
+
+	["punctuation", "{"],
+
+	"\r\n\t\tRainbow",
+	["punctuation", "."],
+	"Red ",
+	["operator", "=>"],
+	["keyword", "new"],
+	["constructor-invocation", ["RGBColor"]],
+	["punctuation", "("],
+	["number", "0xFF"],
+	["punctuation", ","],
+	["number", "0x00"],
+	["punctuation", ","],
+	["number", "0x00"],
+	["punctuation", ")"],
+	["punctuation", ","],
+
+	"\r\n\t\t_           ",
+	["operator", "=>"],
+	["keyword", "throw"],
+	["keyword", "new"],
+	["constructor-invocation", ["ArgumentException"]],
+	["punctuation", "("],
+	["named-parameter", "message"],
+	["punctuation", ":"],
+	["string", "\"invalid enum value\""],
+	["punctuation", ","],
+	["named-parameter", "paramName"],
+	["punctuation", ":"],
+	["keyword", "nameof"],
+	["punctuation", "("],
+	"colorBand",
+	["punctuation", ")"],
+	["punctuation", ")"],
+	["punctuation", ","],
+
+	["punctuation", "}"],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for class names at the class declaration.

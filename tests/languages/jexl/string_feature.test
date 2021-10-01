@@ -1,0 +1,35 @@
+'a'
+'ä'
+'本'
+'À'
+'\''
+'""'
+'Hello,
+world!'
+
+"\n"
+"\""
+"Hello,
+world!"
+"日本語"
+
+----------------------------------------------------
+
+[
+	["string", "'a'"],
+	["string", "'ä'"],
+	["string", "'本'"],
+	["string", "'À'"],
+	["string", "'\\''"],
+	["string", "'\"\"'"],
+	["string", "'Hello,\r\nworld!'"],
+
+	["string", "\"\\n\""],
+	["string", "\"\\\"\""],
+	["string", "\"Hello,\r\nworld!\""],
+	["string", "\"日本語\""]
+]
+
+----------------------------------------------------
+
+Jexl strings can contain special characters, and even linebreaks.

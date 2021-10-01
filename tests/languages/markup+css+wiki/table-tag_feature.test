@@ -67,16 +67,19 @@ baz
 	["punctuation", "{|"],
 	["punctuation", "!"],
 	["table-tag", [
-		["style-attr", [
-			["attr-name", [["attr-name", ["style"]]]],
-			["punctuation", "=\""],
+		["special-attr", [
+			["attr-name", "style"],
 			["attr-value", [
-				["property", "text-align"],
-				["punctuation", ":"],
-				"left",
-				["punctuation", ";"]
-			]],
-			["punctuation", "\""]
+				["punctuation", "="],
+				["punctuation", "\""],
+				["value", [
+					["property", "text-align"],
+					["punctuation", ":"],
+					"left",
+					["punctuation", ";"]
+				]],
+				["punctuation", "\""]
+			]]
 		]],
 		["table-bar", "|"]
 	]], " Foo\r\n",
@@ -91,31 +94,37 @@ baz
 	["punctuation", "{|"],
 	["punctuation", "!"],
 	["table-tag", [
-		["style-attr", [
-			["attr-name", [["attr-name", ["style"]]]],
-			["punctuation", "=\""],
+		["special-attr", [
+			["attr-name", "style"],
 			["attr-value", [
-				["property", "color"],
-				["punctuation", ":"],
-				"red",
-				["punctuation", ";"]
-			]],
-			["punctuation", "\""]
+				["punctuation", "="],
+				["punctuation", "\""],
+				["value", [
+					["property", "color"],
+					["punctuation", ":"],
+					"red",
+					["punctuation", ";"]
+				]],
+				["punctuation", "\""]
+			]]
 		]],
 		["table-bar", "|"]
 	]], " Foo ",
 	["punctuation", "!!"],
 	["table-tag", [
-		["style-attr", [
-			["attr-name", [["attr-name", ["style"]]]],
-			["punctuation", "=\""],
+		["special-attr", [
+			["attr-name", "style"],
 			["attr-value", [
-				["property", "color"],
-				["punctuation", ":"],
-				"blue",
-				["punctuation", ";"]
-			]],
-			["punctuation", "\""]
+				["punctuation", "="],
+				["punctuation", "\""],
+				["value", [
+					["property", "color"],
+					["punctuation", ":"],
+					"blue",
+					["punctuation", ";"]
+				]],
+				["punctuation", "\""]
+			]]
 		]],
 		["table-bar", "|"]
 	]], " Bar ",
@@ -124,16 +133,19 @@ baz
 	["punctuation", "|"], " foo ",
 	["punctuation", "||"],
 	["table-tag", [
-		["style-attr", [
-			["attr-name", [["attr-name", ["style"]]]],
-			["punctuation", "=\""],
+		["special-attr", [
+			["attr-name", "style"],
 			["attr-value", [
-				["property", "font-weight"],
-				["punctuation", ":"],
-				"bold",
-				["punctuation", ";"]
-			]],
-			["punctuation", "\""]
+				["punctuation", "="],
+				["punctuation", "\""],
+				["value", [
+					["property", "font-weight"],
+					["punctuation", ":"],
+					"bold",
+					["punctuation", ";"]
+				]],
+				["punctuation", "\""]
+			]]
 		]],
 		["table-bar", "|"]
 	]], " bar ",

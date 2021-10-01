@@ -1,0 +1,38 @@
+\new \set
+\center-column
+5\mm
+h\fermata
+
+----------------------------------------------------
+
+[
+	["keyword", [
+		["punctuation", "\\"],
+		"new"
+	]],
+	["keyword", [
+		["punctuation", "\\"],
+		"set"
+	]],
+
+	["keyword", [
+		["punctuation", "\\"],
+		"center-column"
+	]],
+
+	["number", "5"],
+	["keyword", [
+		["punctuation", "\\"],
+		"mm"
+	]],
+
+	"\r\nh",
+	["keyword", [
+		["punctuation", "\\"],
+		"fermata"
+	]]
+]
+
+----------------------------------------------------
+
+Checks for keywords.

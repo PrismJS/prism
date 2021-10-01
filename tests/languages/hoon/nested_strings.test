@@ -1,0 +1,122 @@
+|=  [a=@ b=tape]
+^-  tape
+?:  (gth a 25)
+  $(a (sub a 26))
+%+  turn  b
+|=  c=@tD
+?:  &((gte c 'A') (lte c 'Z'))
+  =.  c  (add c a)
+  ?.  (gth c 'Z')  c
+  (sub c 26)
+?:  &((gte c 'a') (lte c 'z'))
+  =.  c  (add c a)
+  ?.  (gth c 'z')  c
+  (sub c 26)
+c
+
+----------------------------------------------------
+
+[
+	["keyword", "|="],
+	"  [",
+	["function", "a"],
+	"=",
+	["class-name", "@"],
+	["function", "b"],
+	"=",
+	["function", "tape"],
+	"]\r\n",
+
+	["keyword", "^-"],
+	["function", "tape"],
+
+	["keyword", "?:"],
+	"  (",
+	["function", "gth"],
+	["function", "a"],
+	" 25)\r\n  $(",
+	["function", "a"],
+	" (",
+	["function", "sub"],
+	["function", "a"],
+	" 26))\r\n",
+
+	["keyword", "%+"],
+	["function", "turn"],
+	["function", "b"],
+
+	["keyword", "|="],
+	["function", "c"],
+	"=",
+	["class-name", "@tD"],
+
+	["keyword", "?:"],
+	"  &((",
+	["function", "gte"],
+	["function", "c"],
+	["string", "'A'"],
+	") (",
+	["function", "lte"],
+	["function", "c"],
+	["string", "'Z'"],
+	"))\r\n  ",
+
+	["keyword", "=."],
+	["function", "c"],
+	"  (",
+	["function", "add"],
+	["function", "c"],
+	["function", "a"],
+	")\r\n  ",
+
+	["keyword", "?."],
+	"  (",
+	["function", "gth"],
+	["function", "c"],
+	["string", "'Z'"],
+	")  ",
+	["function", "c"],
+
+	"\r\n  (",
+	["function", "sub"],
+	["function", "c"],
+	" 26)\r\n",
+
+	["keyword", "?:"],
+	"  &((",
+	["function", "gte"],
+	["function", "c"],
+	["string", "'a'"],
+	") (",
+	["function", "lte"],
+	["function", "c"],
+	["string", "'z'"],
+	"))\r\n  ",
+
+	["keyword", "=."],
+	["function", "c"],
+	"  (",
+	["function", "add"],
+	["function", "c"],
+	["function", "a"],
+	")\r\n  ",
+
+	["keyword", "?."],
+	"  (",
+	["function", "gth"],
+	["function", "c"],
+	["string", "'z'"],
+	")  ",
+	["function", "c"],
+
+	"\r\n  (",
+	["function", "sub"],
+	["function", "c"],
+	" 26)\r\n",
+
+	["function", "c"]
+]
+
+----------------------------------------------------
+
+Tests using the Caesar cipher to demonstrate multiple occasions of cords and tapes on the same line, correcting avoiding clobbering two cord and tape definitions into one.

@@ -1,0 +1,271 @@
+A
+ADD
+ALL
+AS
+ASC
+ASK
+BNODE
+BY
+CLEAR
+CONSTRUCT
+COPY
+CREATE
+DATA
+DEFAULT
+DELETE
+DESC
+DESCRIBE
+DISTINCT
+DROP
+EXISTS
+FILTER
+FROM
+GROUP
+HAVING
+INSERT
+INTO
+LIMIT
+LOAD
+MINUS
+MOVE
+NAMED
+NOT
+NOW
+OFFSET
+OPTIONAL
+ORDER
+RAND
+REDUCED
+SELECT
+SEPARATOR
+SERVICE
+SILENT
+STRUUID
+UNION
+USING
+UUID
+VALUES
+WHERE
+ABS(
+AVG(
+BIND(
+BOUND(
+CEIL(
+COALESCE(
+CONCAT(
+CONTAINS(
+COUNT(
+DATATYPE(
+DAY(
+ENCODE_FOR_URI(
+FLOOR(
+GROUP_CONCAT(
+HOURS(
+IF(
+IRI(
+isBLANK(
+isIRI(
+isLITERAL(
+isNUMERIC(
+isURI(
+LANG(
+LANGMATCHES(
+LCASE(
+MAX(
+MD5(
+MIN(
+MINUTES(
+MONTH(
+ROUND(
+REGEX(
+REPLACE(
+sameTerm(
+SAMPLE(
+SECONDS(
+SHA1(
+SHA256(
+SHA384(
+SHA512(
+STR(
+STRAFTER(
+STRBEFORE(
+STRDT(
+STRENDS(
+STRLANG(
+STRLEN(
+STRSTARTS(
+SUBSTR(
+SUM(
+TIMEZONE(
+TZ(
+UCASE(
+URI(
+YEAR(
+
+----------------------------------------------------
+
+[
+	["keyword", "A"],
+	["keyword", "ADD"],
+	["keyword", "ALL"],
+	["keyword", "AS"],
+	["keyword", "ASC"],
+	["keyword", "ASK"],
+	["keyword", "BNODE"],
+	["keyword", "BY"],
+	["keyword", "CLEAR"],
+	["keyword", "CONSTRUCT"],
+	["keyword", "COPY"],
+	["keyword", "CREATE"],
+	["keyword", "DATA"],
+	["keyword", "DEFAULT"],
+	["keyword", "DELETE"],
+	["keyword", "DESC"],
+	["keyword", "DESCRIBE"],
+	["keyword", "DISTINCT"],
+	["keyword", "DROP"],
+	["keyword", "EXISTS"],
+	["keyword", "FILTER"],
+	["keyword", "FROM"],
+	["keyword", "GROUP"],
+	["keyword", "HAVING"],
+	["keyword", "INSERT"],
+	["keyword", "INTO"],
+	["keyword", "LIMIT"],
+	["keyword", "LOAD"],
+	["keyword", "MINUS"],
+	["keyword", "MOVE"],
+	["keyword", "NAMED"],
+	["keyword", "NOT"],
+	["keyword", "NOW"],
+	["keyword", "OFFSET"],
+	["keyword", "OPTIONAL"],
+	["keyword", "ORDER"],
+	["keyword", "RAND"],
+	["keyword", "REDUCED"],
+	["keyword", "SELECT"],
+	["keyword", "SEPARATOR"],
+	["keyword", "SERVICE"],
+	["keyword", "SILENT"],
+	["keyword", "STRUUID"],
+	["keyword", "UNION"],
+	["keyword", "USING"],
+	["keyword", "UUID"],
+	["keyword", "VALUES"],
+	["keyword", "WHERE"],
+	["keyword", "ABS"],
+	["punctuation", "("],
+	["keyword", "AVG"],
+	["punctuation", "("],
+	["keyword", "BIND"],
+	["punctuation", "("],
+	["keyword", "BOUND"],
+	["punctuation", "("],
+	["keyword", "CEIL"],
+	["punctuation", "("],
+	["keyword", "COALESCE"],
+	["punctuation", "("],
+	["keyword", "CONCAT"],
+	["punctuation", "("],
+	["keyword", "CONTAINS"],
+	["punctuation", "("],
+	["keyword", "COUNT"],
+	["punctuation", "("],
+	["keyword", "DATATYPE"],
+	["punctuation", "("],
+	["keyword", "DAY"],
+	["punctuation", "("],
+	["keyword", "ENCODE_FOR_URI"],
+	["punctuation", "("],
+	["keyword", "FLOOR"],
+	["punctuation", "("],
+	["keyword", "GROUP_CONCAT"],
+	["punctuation", "("],
+	["keyword", "HOURS"],
+	["punctuation", "("],
+	["keyword", "IF"],
+	["punctuation", "("],
+	["keyword", "IRI"],
+	["punctuation", "("],
+	["keyword", "isBLANK"],
+	["punctuation", "("],
+	["keyword", "isIRI"],
+	["punctuation", "("],
+	["keyword", "isLITERAL"],
+	["punctuation", "("],
+	["keyword", "isNUMERIC"],
+	["punctuation", "("],
+	["keyword", "isURI"],
+	["punctuation", "("],
+	["keyword", "LANG"],
+	["punctuation", "("],
+	["keyword", "LANGMATCHES"],
+	["punctuation", "("],
+	["keyword", "LCASE"],
+	["punctuation", "("],
+	["keyword", "MAX"],
+	["punctuation", "("],
+	["keyword", "MD5"],
+	["punctuation", "("],
+	["keyword", "MIN"],
+	["punctuation", "("],
+	["keyword", "MINUTES"],
+	["punctuation", "("],
+	["keyword", "MONTH"],
+	["punctuation", "("],
+	["keyword", "ROUND"],
+	["punctuation", "("],
+	["keyword", "REGEX"],
+	["punctuation", "("],
+	["keyword", "REPLACE"],
+	["punctuation", "("],
+	["keyword", "sameTerm"],
+	["punctuation", "("],
+	["keyword", "SAMPLE"],
+	["punctuation", "("],
+	["keyword", "SECONDS"],
+	["punctuation", "("],
+	["keyword", "SHA1"],
+	["punctuation", "("],
+	["keyword", "SHA256"],
+	["punctuation", "("],
+	["keyword", "SHA384"],
+	["punctuation", "("],
+	["keyword", "SHA512"],
+	["punctuation", "("],
+	["keyword", "STR"],
+	["punctuation", "("],
+	["keyword", "STRAFTER"],
+	["punctuation", "("],
+	["keyword", "STRBEFORE"],
+	["punctuation", "("],
+	["keyword", "STRDT"],
+	["punctuation", "("],
+	["keyword", "STRENDS"],
+	["punctuation", "("],
+	["keyword", "STRLANG"],
+	["punctuation", "("],
+	["keyword", "STRLEN"],
+	["punctuation", "("],
+	["keyword", "STRSTARTS"],
+	["punctuation", "("],
+	["keyword", "SUBSTR"],
+	["punctuation", "("],
+	["keyword", "SUM"],
+	["punctuation", "("],
+	["keyword", "TIMEZONE"],
+	["punctuation", "("],
+	["keyword", "TZ"],
+	["punctuation", "("],
+	["keyword", "UCASE"],
+	["punctuation", "("],
+	["keyword", "URI"],
+	["punctuation", "("],
+	["keyword", "YEAR"],
+	["punctuation", "("]
+]
+
+
+----------------------------------------------------
+
+Checks for all keywords.

@@ -1,11 +1,36 @@
 ;foo
 ; bar
 
+nota;comment
+
+; comments break strings
+" ;"
+
+/*
+0
+*/
+/*1*/
+	  */
+/*
+1 ;
+2 */
+foo
+
 ----------------------------------------------------
 
 [
 	["comment", ";foo"],
-	["comment", "; bar"]
+	["comment", "; bar"],
+
+	"\r\n\r\nnota;comment\r\n\r\n",
+
+	["comment", "; comments break strings"],
+	"\r\n\" ",
+	["comment", ";\""],
+
+	["comment", "/*\r\n0\r\n*/"],
+	["comment", "/*1*/\r\n\t  */"],
+	["comment", "/*\r\n1 ;\r\n2 */\r\nfoo"]
 ]
 
 ----------------------------------------------------

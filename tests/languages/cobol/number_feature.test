@@ -1,0 +1,23 @@
+zero Zero ZERO
+
+= 0
+= 123
+= .4e-5
+= +3e5
+= -43
+
+x"ff"
+
+----------------------------------------------------
+
+[
+	["number", "zero"], ["number", "Zero"], ["number", "ZERO"],
+
+	["operator", "="], ["number", "0"],
+	["operator", "="], ["number", "123"],
+	["operator", "="], ["number", ".4e-5"],
+	["operator", "="], ["number", "+3e5"],
+	["operator", "="], ["number", "-43"],
+
+	["string", "x\"ff\""]
+]

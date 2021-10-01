@@ -1,0 +1,35 @@
+{
+	foo: 4
+	"bar": 5
+}
+
+a = { foo: 5, bar: 6, "foo bar": 7 }
+
+----------------------------------------------------
+
+[
+	["punctuation", "{"],
+	["property", "foo"], ["operator", ":"], ["number", "4"],
+	["property", "\"bar\""], ["operator", ":"], ["number", "5"],
+	["punctuation", "}"],
+
+	"\r\n\r\na ",
+	["operator", "="],
+	["punctuation", "{"],
+	["property", "foo"],
+	["operator", ":"],
+	["number", "5"],
+	["punctuation", ","],
+	["property", "bar"],
+	["operator", ":"],
+	["number", "6"],
+	["punctuation", ","],
+	["property", "\"foo bar\""],
+	["operator", ":"],
+	["number", "7"],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for properties.

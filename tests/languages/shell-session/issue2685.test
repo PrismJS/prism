@@ -1,0 +1,29 @@
+/home/user$ echo "Hello World"
+Hello World
+/home/user$ exit
+
+----------------------------------------------------
+
+[
+	["command", [
+		["info", [
+			["path", "/home/user"]
+		]],
+		["shell-symbol", "$"],
+		["bash", [
+			["builtin", "echo"],
+			["string", ["\"Hello World\""]]
+		]]
+	]],
+
+	["output", "Hello World\r\n"],
+	["command", [
+		["info", [
+			["path", "/home/user"]
+		]],
+		["shell-symbol", "$"],
+		["bash", [
+			["builtin", "exit"]
+		]]
+	]]
+]

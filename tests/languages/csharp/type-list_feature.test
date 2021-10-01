@@ -1,0 +1,300 @@
+class Foo<T> : Bar<IList<Bar>, T>, IBar<Bar, T>, IFoo
+	where T : class, IBar<IFoo>, IFoo<Bar> {}
+
+public class Foo : IBar<int> {}
+
+public delegate ErrorCode GetInfoMethod<H, A, I>(H handle, A value, I paramName,
+	Size_t paramValueSize, IntPtr paramValue, out Size_t paramValueSizeRet)
+	where H : unmanaged, IInfoHandle<A, I> where A : unmanaged where I : unmanaged, Enum;
+
+// the "new()" constraint
+void Foo<A, B>()
+	where A : IFoo, new()
+	where B : new(), IFoo;
+
+// records are kinda difficult to handle
+public abstract record Person(string FirstName, string LastName);
+public record Teacher(string FirstName, string LastName, int Grade)
+	: Person(FirstName, LastName), IFoo<int>;
+public record Student(string FirstName, string LastName, int Grade)
+	: Person(FirstName, LastName);
+
+----------------------------------------------------
+
+[
+	["keyword", "class"],
+	["class-name", [
+		"Foo",
+		["punctuation", "<"],
+		"T",
+		["punctuation", ">"]
+	]],
+	["punctuation", ":"],
+	["type-list", [
+		["class-name", [
+			"Bar",
+			["punctuation", "<"],
+			"IList",
+			["punctuation", "<"],
+			"Bar",
+			["punctuation", ">"],
+			["punctuation", ","],
+			" T",
+			["punctuation", ">"]
+		]],
+		["punctuation", ","],
+		["class-name", [
+			"IBar",
+			["punctuation", "<"],
+			"Bar",
+			["punctuation", ","],
+			" T",
+			["punctuation", ">"]
+		]],
+		["punctuation", ","],
+		["class-name", ["IFoo"]]
+	]],
+
+	["keyword", "where"],
+	["class-name", "T"],
+	["punctuation", ":"],
+	["type-list", [
+		["keyword", "class"],
+		["punctuation", ","],
+		["class-name", [
+			"IBar",
+			["punctuation", "<"],
+			"IFoo",
+			["punctuation", ">"]
+		]],
+		["punctuation", ","],
+		["class-name", [
+			"IFoo",
+			["punctuation", "<"],
+			"Bar",
+			["punctuation", ">"]
+		]]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "public"],
+	["keyword", "class"],
+	["class-name", ["Foo"]],
+	["punctuation", ":"],
+	["type-list", [
+		["class-name", [
+			"IBar",
+			["punctuation", "<"],
+			["keyword", "int"],
+			["punctuation", ">"]
+		]]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "public"],
+	["keyword", "delegate"],
+	["return-type", ["ErrorCode"]],
+	["generic-method", [
+		["function", "GetInfoMethod"],
+		["generic", [
+			["punctuation", "<"],
+			"H",
+			["punctuation", ","],
+			" A",
+			["punctuation", ","],
+			" I",
+			["punctuation", ">"]
+		]]
+	]],
+	["punctuation", "("],
+	["class-name", ["H"]],
+	" handle",
+	["punctuation", ","],
+	["class-name", ["A"]],
+	["keyword", "value"],
+	["punctuation", ","],
+	["class-name", ["I"]],
+	" paramName",
+	["punctuation", ","],
+
+	["class-name", ["Size_t"]],
+	" paramValueSize",
+	["punctuation", ","],
+	["class-name", ["IntPtr"]],
+	" paramValue",
+	["punctuation", ","],
+	["keyword", "out"],
+	["class-name", ["Size_t"]],
+	" paramValueSizeRet",
+	["punctuation", ")"],
+
+	["keyword", "where"],
+	["class-name", "H"],
+	["punctuation", ":"],
+	["type-list", [
+		["keyword", "unmanaged"],
+		["punctuation", ","],
+		["class-name", [
+			"IInfoHandle",
+			["punctuation", "<"],
+			"A",
+			["punctuation", ","],
+			" I",
+			["punctuation", ">"]
+		]]
+	]],
+	["keyword", "where"],
+	["class-name", "A"],
+	["punctuation", ":"],
+	["type-list", [
+		["keyword", "unmanaged"]
+	]],
+	["keyword", "where"],
+	["class-name", "I"],
+	["punctuation", ":"],
+	["type-list", [
+		["keyword", "unmanaged"],
+		["punctuation", ","],
+		["class-name", ["Enum"]]
+	]],
+	["punctuation", ";"],
+
+	["comment", "// the \"new()\" constraint"],
+
+	["return-type", [
+		["keyword", "void"]
+	]],
+	["generic-method", [
+		["function", "Foo"],
+		["generic", [
+			["punctuation", "<"],
+			"A",
+			["punctuation", ","],
+			" B",
+			["punctuation", ">"]
+		]]
+	]],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["keyword", "where"],
+	["class-name", "A"],
+	["punctuation", ":"],
+	["type-list", [
+		["class-name", ["IFoo"]],
+		["punctuation", ","],
+		["keyword", "new"],
+		["punctuation", "("],
+		["punctuation", ")"]
+	]],
+
+	["keyword", "where"],
+	["class-name", "B"],
+	["punctuation", ":"],
+	["type-list", [
+		["keyword", "new"],
+		["punctuation", "("],
+		["punctuation", ")"],
+		["punctuation", ","],
+		["class-name", ["IFoo"]]
+	]],
+	["punctuation", ";"],
+
+	["comment", "// records are kinda difficult to handle"],
+
+	["keyword", "public"],
+	["keyword", "abstract"],
+	["keyword", "record"],
+	["class-name", ["Person"]],
+	["punctuation", "("],
+	["class-name", [
+		["keyword", "string"]
+	]],
+	" FirstName",
+	["punctuation", ","],
+	["class-name", [
+		["keyword", "string"]
+	]],
+	" LastName",
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "public"],
+	["keyword", "record"],
+	["class-name", ["Teacher"]],
+	["punctuation", "("],
+	["class-name", [
+		["keyword", "string"]
+	]],
+	" FirstName",
+	["punctuation", ","],
+	["class-name", [
+		["keyword", "string"]
+	]],
+	" LastName",
+	["punctuation", ","],
+	["class-name", [
+		["keyword", "int"]
+	]],
+	" Grade",
+	["punctuation", ")"],
+
+	["punctuation", ":"],
+	["type-list", [
+		["class-name", ["Person"]],
+		["record-arguments", [
+			["punctuation", "("],
+			"FirstName",
+			["punctuation", ","],
+			" LastName",
+			["punctuation", ")"]
+		]],
+		["punctuation", ","],
+		["class-name", [
+			"IFoo",
+			["punctuation", "<"],
+			["keyword", "int"],
+			["punctuation", ">"]
+		]]
+	]],
+	["punctuation", ";"],
+
+	["keyword", "public"],
+	["keyword", "record"],
+	["class-name", ["Student"]],
+	["punctuation", "("],
+	["class-name", [
+		["keyword", "string"]
+	]],
+	" FirstName",
+	["punctuation", ","],
+	["class-name", [
+		["keyword", "string"]
+	]],
+	" LastName",
+	["punctuation", ","],
+	["class-name", [
+		["keyword", "int"]
+	]],
+	" Grade",
+	["punctuation", ")"],
+
+	["punctuation", ":"],
+	["type-list", [
+		["class-name", ["Person"]],
+		["record-arguments", [
+			["punctuation", "("],
+			"FirstName",
+			["punctuation", ","],
+			" LastName",
+			["punctuation", ")"]
+		]]
+	]],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for type lists of inheritance or generic constraints.

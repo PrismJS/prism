@@ -1,0 +1,37 @@
+<a n:href="Post:show $post->id">link</a>
+<a n:href = "Post:show $post->id">link</a>
+<div n:if=$items>
+<div n:tag-if='$a > $b'>
+<script n:nonce>
+
+----------------------------------------------------
+
+[
+	["tag", [["tag", [["punctuation", "<"], "a"]],
+	["n-attr", [["attr-name", "n:href"],
+		["attr-value", [["punctuation", "="], ["punctuation", "\""], ["php", ["Post", ["punctuation", ":"], ["class-name", "show"], ["variable", "$post"], ["operator", "->"], ["property", "id"]]], ["punctuation", "\""]]]]],
+	["punctuation", ">"]]],
+	"link", ["tag", [["tag", [["punctuation", "</"], "a"]], ["punctuation", ">"]]],
+
+	["tag", [["tag", [["punctuation", "<"], "a"]],
+	["n-attr", [["attr-name", "n:href"],
+		["attr-value", [["punctuation", "="], ["punctuation", "\""], ["php", ["Post", ["punctuation", ":"], ["class-name", "show"], ["variable", "$post"], ["operator", "->"], ["property", "id"]]], ["punctuation", "\""]]]]],
+	["punctuation", ">"]]],
+	"link", ["tag", [["tag", [["punctuation", "</"], "a"]], ["punctuation", ">"]]],
+
+	["tag", [["tag", [["punctuation", "<"], "div"]],
+	["n-attr", [["attr-name", "n:if"],
+		["attr-value", [["punctuation", "="], ["php", [["variable", "$items"]]]]]]],
+	["punctuation", ">"]]],
+
+	["tag", [["tag", [["punctuation", "<"], "div"]],
+	["n-attr", [["attr-name", "n:tag-if"],
+		["attr-value", [["punctuation", "="], ["punctuation", "'"], ["php", [["variable", "$a"], ["operator", ">"], ["variable", "$b"]]], ["punctuation", "'"]]]]],
+	["punctuation", ">"]]],
+
+	["tag", [["tag", [["punctuation", "<"], "script"]], ["n-attr", [["attr-name", "n:nonce"]]], ["punctuation", ">"]]]
+]
+
+----------------------------------------------------
+
+Checks for operators.

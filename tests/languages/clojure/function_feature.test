@@ -1,0 +1,13 @@
+(foo args)
+
+; not a function
+'(a b c)
+
+----------------------------------------------------
+
+[
+	["punctuation", "("], ["function", "foo"], " args", ["punctuation", ")"],
+
+	["comment", "; not a function"],
+	"\r\n'", ["punctuation", "("], "a b c", ["punctuation", ")"]
+]
