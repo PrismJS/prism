@@ -34,34 +34,23 @@ module.exports = {
 	},
 
 	/**
-	 * Creates a new Prism DOM that is automatically cleaned up.
-	 *
-	 * @param {Options} param0
-	 * @returns {Promise<void>}
-	 *
-	 * @typedef Options
-	 * @property {string | string[]} [languages]
-	 * @property {string | string[]} [plugins]
-	 * @property {(dom: PrismDOM) => Promise<unknown>} use
+	 * @param {ReturnType<typeof import('mocha')["suite"]>} suite
+	 * @param {Partial<Record<"languages" | "plugins", string | string[]>>} options
 	 */
-	async usePrismDom({ languages, plugins, use }) {
+	reusablePrismDom(suite, options = {}) {
 		const dom = PrismLoader.createPrismDOM();
 
-		if (languages) {
-			dom.loadLanguages(languages);
-		}
-		if (plugins) {
-			dom.loadPlugins(plugins);
-		}
-
-		try {
-			await use(dom);
-
+		suite.afterAll(function () {
 			dom.window.close();
-		} catch (e) {
-			dom.window.close();
+		});
 
-			throw e;
+		if (options.languages) {
+			dom.loadLanguages(options.languages);
 		}
+		if (options.plugins) {
+			dom.loadPlugins(options.plugins);
+		}
+
+		return dom;
 	}
 };

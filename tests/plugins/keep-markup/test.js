@@ -1,13 +1,13 @@
 const { expect } = require('chai');
-const dom = require('../../helper/prism-loader').createPrismDOM();
-
-const { Prism, document } = dom.window;
-
-document.createRange = function () { }; // fake createRange for Keep Markup
-dom.loadPlugins('keep-markup');
+const { reusablePrismDom } = require('../../helper/prism-dom-util');
 
 
 describe('Keep Markup', function () {
+	const { Prism, document } = reusablePrismDom(this, {
+		plugins: 'keep-markup'
+	});
+	document.createRange = function () { }; // fake createRange for Keep Markup
+
 
 	function execute(code) {
 		const start = [];
@@ -89,8 +89,4 @@ describe('Keep Markup', function () {
 		expect(result.nodes[0].nodeName).to.equal('A')
 	})
 	*/
-});
-
-after(() => {
-	dom.window.close();
 });

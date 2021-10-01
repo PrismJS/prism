@@ -1,5 +1,6 @@
 const { assert } = require('chai');
-const { usePrismDom } = require('../../helper/prism-dom-util');
+const { reusablePrismDom } = require('../../helper/prism-dom-util');
+
 
 class DummyClipboard {
 	constructor() {
@@ -16,61 +17,55 @@ class DummyClipboard {
 }
 
 describe('Copy to Clipboard', function () {
+	const { Prism, document, window } = reusablePrismDom(this, {
+		languages: 'javascript',
+		plugins: 'copy-to-clipboard',
+	});
+
 
 	it('should work', function () {
-		return usePrismDom({
-			languages: 'javascript',
-			plugins: 'copy-to-clipboard',
-			async use({ Prism, document, window }) {
-				const clipboard = new DummyClipboard();
-				window.navigator.clipboard = clipboard;
+		const clipboard = new DummyClipboard();
+		window.navigator.clipboard = clipboard;
 
-				document.body.innerHTML = `<pre class="language-none"><code>foo</code></pre>`;
-				Prism.highlightAll();
+		document.body.innerHTML = `<pre class="language-none"><code>foo</code></pre>`;
+		Prism.highlightAll();
 
-				const button = document.querySelector('button');
-				assert.notStrictEqual(button, null);
+		const button = document.querySelector('button');
+		assert.notStrictEqual(button, null);
 
-				button.click();
+		button.click();
 
-				assert.strictEqual(clipboard.text, 'foo');
-			}
-		});
+		assert.strictEqual(clipboard.text, 'foo');
 	});
 
 	it('should copy the current text even after the code block changes its text', function () {
-		return usePrismDom({
-			languages: 'javascript',
-			plugins: 'copy-to-clipboard',
-			async use({ Prism, document, window }) {
-				const clipboard = new DummyClipboard();
-				window.navigator.clipboard = clipboard;
+		const clipboard = new DummyClipboard();
+		window.navigator.clipboard = clipboard;
 
-				document.body.innerHTML = `<pre class="language-none"><code>foo</code></pre>`;
-				Prism.highlightAll();
+		document.body.innerHTML = `<pre class="language-none"><code>foo</code></pre>`;
+		Prism.highlightAll();
 
-				const button = document.querySelector('button');
-				assert.notStrictEqual(button, null);
+		const button = document.querySelector('button');
+		assert.notStrictEqual(button, null);
 
-				button.click();
+		button.click();
 
-				assert.strictEqual(clipboard.text, 'foo');
+		assert.strictEqual(clipboard.text, 'foo');
 
-				// change text
-				document.querySelector('code').textContent = 'bar';
-				// and click
-				button.click();
+		// change text
+		document.querySelector('code').textContent = 'bar';
+		// and click
+		button.click();
 
-				assert.strictEqual(clipboard.text, 'bar');
+		assert.strictEqual(clipboard.text, 'bar');
 
-				// change text
-				document.querySelector('code').textContent = 'baz';
-				Prism.highlightAll();
-				// and click
-				button.click();
+		// change text
+		document.querySelector('code').textContent = 'baz';
+		Prism.highlightAll();
+		// and click
+		button.click();
 
-				assert.strictEqual(clipboard.text, 'baz');
-			}
-		});
+		assert.strictEqual(clipboard.text, 'baz');
 	});
+
 });

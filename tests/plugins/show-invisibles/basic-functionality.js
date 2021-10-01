@@ -1,11 +1,13 @@
-const dom = require('../../helper/prism-loader').createPrismDOM();
-const util = require('../../helper/prism-dom-util').createUtil(dom.window);
-
-dom.loadLanguages('javascript');
-dom.loadPlugins('show-invisibles');
+const { createUtil, reusablePrismDom } = require('../../helper/prism-dom-util');
 
 
 describe('Show Invisibles', function () {
+	const { window } = reusablePrismDom(this, {
+		languages: 'javascript',
+		plugins: 'show-invisibles'
+	});
+	const util = createUtil(window);
+
 
 	it('should show invisible characters', function () {
 		util.assert.highlightElement({
@@ -23,8 +25,4 @@ describe('Show Invisibles', function () {
 		});
 	});
 
-});
-
-after(() => {
-	dom.window.close();
 });

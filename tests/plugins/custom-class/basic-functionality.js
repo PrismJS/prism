@@ -1,13 +1,13 @@
-const dom = require('../../helper/prism-loader').createPrismDOM();
-const util = require('../../helper/prism-dom-util').createUtil(dom.window);
-
-const { Prism } = dom.window;
-
-dom.loadLanguages('javascript');
-dom.loadPlugins('custom-class');
+const { createUtil, reusablePrismDom } = require('../../helper/prism-dom-util');
 
 
 describe('Custom class', function () {
+	const { Prism, window } = reusablePrismDom(this, {
+		languages: 'javascript',
+		plugins: 'custom-class'
+	});
+	const util = createUtil(window);
+
 
 	it('should set prefix', function () {
 		Prism.plugins.customClass.prefix('prism-');
@@ -66,8 +66,4 @@ describe('Custom class', function () {
 		});
 	});
 
-});
-
-after(() => {
-	dom.window.close();
 });

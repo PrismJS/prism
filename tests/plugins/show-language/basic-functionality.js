@@ -1,14 +1,13 @@
 const { assert } = require('chai');
-
-const dom = require('../../helper/prism-loader').createPrismDOM();
-
-const { Prism, document } = dom.window;
-
-dom.loadLanguages(['markup', 'javascript']);
-dom.loadPlugins('show-language');
+const { reusablePrismDom } = require('../../helper/prism-dom-util');
 
 
 describe('Show language', function () {
+	const { Prism, document } = reusablePrismDom(this, {
+		languages: ['markup', 'javascript'],
+		plugins: 'show-language'
+	});
+
 
 	function test(expectedLanguage, code) {
 		document.body.innerHTML = code;
@@ -34,8 +33,4 @@ describe('Show language', function () {
 		test('Foo', `<pre class="language-javascript" data-language="Foo"><code>foo</code></pre>`);
 	});
 
-});
-
-after(() => {
-	dom.window.close();
 });

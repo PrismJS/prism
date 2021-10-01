@@ -1,14 +1,13 @@
 const { assert } = require('chai');
-
-const dom = require('../../helper/prism-loader').createPrismDOM();
-
-const { Prism, document } = dom.window;
-
-dom.loadLanguages('markup');
-dom.loadPlugins('unescaped-markup');
+const { reusablePrismDom } = require('../../helper/prism-dom-util');
 
 
 describe('Show language', function () {
+	const { Prism, document } = reusablePrismDom(this, {
+		languages: 'markup',
+		plugins: 'unescaped-markup'
+	});
+
 
 	function test(expectedText, code) {
 		document.body.innerHTML = code;
@@ -34,8 +33,4 @@ describe('Show language', function () {
 		test('<p>Example 2</p>', `<div class="language-javascript"><script type="text/plain"><p>Example 2</p></script></div>`);
 	});
 
-});
-
-after(() => {
-	dom.window.close();
 });

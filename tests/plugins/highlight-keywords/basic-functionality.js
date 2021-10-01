@@ -1,11 +1,13 @@
-const dom = require('../../helper/prism-loader').createPrismDOM();
-const util = require('../../helper/prism-dom-util').createUtil(dom.window);
-
-dom.loadLanguages('javascript');
-dom.loadPlugins('highlight-keywords');
+const { createUtil, reusablePrismDom } = require('../../helper/prism-dom-util');
 
 
 describe('Highlight Keywords', function () {
+	const { window } = reusablePrismDom(this, {
+		languages: 'javascript',
+		plugins: 'custom-class'
+	});
+	const util = createUtil(window);
+
 
 	it('should highlight keywords', function () {
 		util.assert.highlightElement({
@@ -15,8 +17,4 @@ describe('Highlight Keywords', function () {
 		});
 	});
 
-});
-
-after(() => {
-	dom.window.close();
 });
