@@ -1,103 +1,76 @@
 const { assert } = require('chai');
+const { usePrismDom } = require('../../helper/prism-dom-util');
 
-const dom = require('../../helper/prism-loader').createPrismDOM();
-
-const { Prism, document } = dom.window;
-
-// A very simple class pretending to by ClipboardJS v2.
-// This is our "virtual clipboard".
-let ClipboardText = null;
-let ClipboardCopyWillSucceed = true;
-dom.window.ClipboardJS = class {
-	/**
-	 *
-	 * @param {Element} element
-	 * @param {Object} options
-	 * @param {() => string} options.text
-	 */
-	constructor(element, options) {
-		this.element = element;
-		this.options = options;
-		element.addEventListener('click', () => this.fire());
-		this.onSuccess = [];
-		this.onError = [];
+class DummyClipboard {
+	constructor() {
+		this.text = '';
 	}
-
-	on(event, callback) {
-		switch (event) {
-			case 'success':
-				this.onSuccess.push(callback);
-				break;
-			case 'error':
-				this.onError.push(callback);
-				break;
-
-			default:
-				throw new Error(`Unknown event. Please fix this make-believe.`);
-		}
+	async readText() {
+		return this.text;
 	}
-
-	fire() {
-		if (ClipboardCopyWillSucceed) {
-			ClipboardText = this.options.text();
-			this.onSuccess.forEach(c => c());
-		} else {
-			this.onError.forEach(c => c());
-		}
+	/** @param {string} data */
+	writeText(data) {
+		this.text = data;
+		return Promise.resolve();
 	}
-};
-
-dom.loadLanguages('javascript');
-dom.loadPlugins('copy-to-clipboard');
-
+}
 
 describe('Copy to Clipboard', function () {
 
 	it('should work', function () {
-		document.body.innerHTML = `<pre class="language-none"><code>foo</code></pre>`;
-		Prism.highlightAll();
+		return usePrismDom({
+			languages: 'javascript',
+			plugins: 'copy-to-clipboard',
+			async use({ Prism, document, window }) {
+				const clipboard = new DummyClipboard();
+				window.navigator.clipboard = clipboard;
 
-		const button = document.querySelector('button');
-		assert.notStrictEqual(button, null);
+				document.body.innerHTML = `<pre class="language-none"><code>foo</code></pre>`;
+				Prism.highlightAll();
 
-		ClipboardText = null;
-		ClipboardCopyWillSucceed = true;
-		button.click();
+				const button = document.querySelector('button');
+				assert.notStrictEqual(button, null);
 
-		assert.strictEqual(ClipboardText, 'foo');
+				button.click();
+
+				assert.strictEqual(clipboard.text, 'foo');
+			}
+		});
 	});
 
 	it('should copy the current text even after the code block changes its text', function () {
-		document.body.innerHTML = `<pre class="language-none"><code>foo</code></pre>`;
-		Prism.highlightAll();
+		return usePrismDom({
+			languages: 'javascript',
+			plugins: 'copy-to-clipboard',
+			async use({ Prism, document, window }) {
+				const clipboard = new DummyClipboard();
+				window.navigator.clipboard = clipboard;
 
-		const button = document.querySelector('button');
-		assert.notStrictEqual(button, null);
+				document.body.innerHTML = `<pre class="language-none"><code>foo</code></pre>`;
+				Prism.highlightAll();
 
-		ClipboardText = null;
-		ClipboardCopyWillSucceed = true;
-		button.click();
+				const button = document.querySelector('button');
+				assert.notStrictEqual(button, null);
 
-		assert.strictEqual(ClipboardText, 'foo');
+				button.click();
 
-		// change text
-		document.querySelector('code').textContent = "bar";
-		// and click
-		button.click();
+				assert.strictEqual(clipboard.text, 'foo');
 
-		assert.strictEqual(ClipboardText, 'bar');
+				// change text
+				document.querySelector('code').textContent = 'bar';
+				// and click
+				button.click();
 
-		// change text
-		document.querySelector('code').textContent = "baz";
-		Prism.highlightAll();
-		// and click
-		button.click();
+				assert.strictEqual(clipboard.text, 'bar');
 
-		assert.strictEqual(ClipboardText, 'baz');
+				// change text
+				document.querySelector('code').textContent = 'baz';
+				Prism.highlightAll();
+				// and click
+				button.click();
+
+				assert.strictEqual(clipboard.text, 'baz');
+			}
+		});
 	});
-
-});
-
-after(() => {
-	dom.window.close();
 });
