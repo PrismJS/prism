@@ -1,5 +1,5 @@
 const dom = require('../../helper/prism-loader').createPrismDOM();
-const util = require('../../helper/prism-dom-util').createUtil(dom);
+const util = require('../../helper/prism-dom-util').createUtil(dom.window);
 
 dom.loadLanguages('javascript');
 dom.loadPlugins('highlight-keywords');

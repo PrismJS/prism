@@ -3,23 +3,21 @@ const PrismLoader = require('./prism-loader');
 
 /**
  * @typedef {import("./prism-loader").PrismDOM} PrismDOM
+ * @typedef {import("./prism-loader").PrismWindow} PrismWindow
  */
 
 module.exports = {
 	/**
-	 * @param {PrismDOM} dom
+	 * @param {PrismWindow} window
 	 */
-	createUtil(dom) {
-		const { Prism, document } = dom.window;
+	createUtil(window) {
+		const { Prism, document } = window;
 
 		const util = {
-
 			assert: {
-
 				highlight({ language = 'none', code, expected }) {
 					assert.strictEqual(Prism.highlight(code, Prism.languages[language], language), expected);
 				},
-
 				highlightElement({ language = 'none', code, expected }) {
 					const element = document.createElement('CODE');
 					element.classList.add('language-' + language);
@@ -29,9 +27,7 @@ module.exports = {
 
 					assert.strictEqual(element.innerHTML, expected);
 				}
-
 			},
-
 		};
 
 		return util;
