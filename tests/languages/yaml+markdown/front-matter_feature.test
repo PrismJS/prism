@@ -10,7 +10,7 @@ title: Blogging Like a Hacker
 [
 	["front-matter-block", [
 		["punctuation", "---"],
-		["font-matter", [
+		["front-matter", [
 			["key", "layout"], ["punctuation", ":"], " post\r\n",
 			["key", "title"], ["punctuation", ":"], " Blogging Like a Hacker"
 		]],
