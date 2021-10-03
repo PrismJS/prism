@@ -1,7 +1,7 @@
 Prism.languages.elm = {
 	'comment': /--.*|\{-[\s\S]*?-\}/,
 	'char': {
-		pattern: /'(?:[^\\'\r\n]|\\(?:[abfnrtv\\']|\d+|x[0-9a-fA-F]+))'/,
+		pattern: /'(?:[^\\'\r\n]|\\(?:[abfnrtv\\']|\d+|x[0-9a-fA-F]+|u\{(?:[A-F0-9]{4,5}|10[0-9A-F]{4})\}))'/,
 		greedy: true
 	},
 	'string': [
