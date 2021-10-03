@@ -249,6 +249,7 @@
 		"url": "uri",
 		"vb": "visual-basic",
 		"vba": "visual-basic",
+		"webidl": "web-idl",
 		"mathematica": "wolfram",
 		"nb": "wolfram",
 		"wl": "wolfram",
