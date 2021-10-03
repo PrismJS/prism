@@ -182,15 +182,23 @@ z ? x : y</code></pre></dd>
 // Here's yet another comment
 &lt;/script&gt;</code></pre></dd>
 
-		<dt><code>inserted</code></dt>
-		<dd>Added or modified line, mainly for diffs. In general, also the idea of something being increased.
-		<pre><code class="language-diff">+		// Calculate the area of the circle
-		let area = PI * (radius ** 2);</code></pre></dd>
-
-		<dt><code>deleted</code></dt>
-		<dd>Deleted line, mainly for diffs. In general, also the idea of something being decreased/removed.
-		<pre><code class="language-diff">-		// TODO: Remove this comment
-		let foo = 'bar';</code></pre></dd>
+		<dt><code>inserted</code> and <code>deleted</code></dt>
+		<dd>Added or modified line and deleted line respectively, mainly for diffs. In general, also the idea of something being increased and decreased/removed respectively.
+		<pre><code class="language-diff">7c7
+< qt: core
+---
+> qt: core quick</code></pre>
+		<pre><code class="language-diff">--- qcli.yml	2014-12-16 11:43:41.000000000 +0800
++++ /Users/uranusjr/Desktop/qcli.yml	2014-12-31 11:28:08.000000000 +0800
+@@ -4,5 +4,5 @@
+project:
+	sources: "src/*.cpp"
+	headers: "src/*.h"
+-    qt: core
++    qt: core gui
+public_headers: "src/*.h"</code></pre>
+		<pre><code class="language-git">- Some deleted line
++ Some added line</code></pre></dd>
 
 		<dt><code>bold</code></dt>
 		<dd>Bolded text. Mostly found in document-markup languages.
@@ -204,15 +212,12 @@ z ? x : y</code></pre></dd>
 		<dd>A markup tag (e.g. HTML and XML tags).
 		<pre><code class="language-markup">&lt;p&gt;Hello World!&lt;/p&gt;</code></pre></dd>
 
-		<dt><code>attr-name</code></dt>
-		<dd>Kind of like a property of a markup tag.
-		<pre><code class="language-markup">&lt;video allowfullscreen controls&gt;
+		<dt><code>attr-name</code> and <code>attr-value</code></dt>
+		<dd>Kind of like a property of a markup tag and its value/argument respectively.
+		<pre><code class="language-markup">&lt;p id="greeting"&gt;Hello World!&lt;/p&gt;
+&lt;video width="1280" height="720" allowfullscreen controls&gt;
 	&lt;source src="hello_world.mp4" type="video/mp4" /&gt;
 &lt;/video&gt;</code></pre></dd>
-
-		<dt><code>attr-value</code></dt>
-		<dd>The value or argument that is passed to a property in a markup tag.
-		<pre><code class="language-markup">&lt;p id="greeting"&gt;Hello World!&lt;/p&gt;</code></pre></dd>
 
 		<dt><code>namespace</code></dt>
 		<dd>Used to provide uniquely named elements and attributes in XML documents. Outside of markup languages, it is used to tokenize the package/namespace part of identifiers.
