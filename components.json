@@ -713,13 +713,13 @@
 			"title": "Julia",
 			"owner": "cdagnino"
 		},
-		"keyman": {
-			"title": "Keyman",
-			"owner": "mcdurdin"
-		},
 		"keepalived": {
 			"title": "Keepalived Configure",
 			"owner": "dev-itsheng"
+		},
+		"keyman": {
+			"title": "Keyman",
+			"owner": "mcdurdin"
 		},
 		"kotlin": {
 			"title": "Kotlin",
