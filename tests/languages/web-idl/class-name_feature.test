@@ -56,6 +56,10 @@ enum MealType { "rice", "noodles", "other" };
 
 typedef sequence<Point> Points;
 
+// includes and implements
+Foo includes Bar;
+Foo implements Bar;
+
 ----------------------------------------------------
 
 [
@@ -376,5 +380,17 @@ typedef sequence<Point> Points;
 		["operator", ">"]
 	]],
 	" Points",
+	["punctuation", ";"],
+
+	["comment", "// includes and implements"],
+
+	["class-name", "Foo"],
+	["keyword", "includes"],
+	["class-name", "Bar"],
+	["punctuation", ";"],
+
+	["class-name", "Foo"],
+	["keyword", "implements"],
+	["class-name", "Bar"],
 	["punctuation", ";"]
 ]

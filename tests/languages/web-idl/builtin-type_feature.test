@@ -16,6 +16,7 @@ short
 symbol
 undefined
 unsigned
+void
 
 ----------------------------------------------------
 
@@ -37,5 +38,6 @@ unsigned
 	["keyword", "short"],
 	["keyword", "symbol"],
 	["keyword", "undefined"],
-	["keyword", "unsigned"]
+	["keyword", "unsigned"],
+	["keyword", "void"]
 ]
