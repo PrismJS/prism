@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8" />
+<link rel="icon" href="assets/favicon.png" />
+<title>Prism Tokens ▲ Prism</title>
+<link rel="stylesheet" href="assets/style.css" />
+<link rel="stylesheet" href="themes/prism.css" data-noprefix />
+<link rel="stylesheet" href="plugins/line-highlight/prism-line-highlight.css" data-noprefix />
+<link rel="stylesheet" href="plugins/toolbar/prism-toolbar.css" data-noprefix />
+<link rel="stylesheet" href="plugins/show-language/prism-show-language.css" data-noprefix />
+<script src="assets/vendor/prefixfree.min.js"></script>
+
+<script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
+<script src="https://www.google-analytics.com/ga.js" async></script>
+</head>
+<body class="language-none">
+
+<header>
+	<div class="intro" data-src="assets/templates/header-main.html" data-type="text/html"></div>
+
+	<h2>Prism tokens</h2>
+	<p>Prism identifies tokens in your code, which are in turn styled by CSS to produce the syntax highlighting. This page provides an overview of the standard tokens and corresponding examples.</p>
+</header>
+
+<section id="standard-tokens">
+	<h1>Standard tokens</h1>
+
+	<p>When defining a new language, you will need to provide token names for each 'type' of code, such as keywords and operators, so Prism can highlight code accordingly. It is recommended to make use of the following standard tokens to ensure that highlight code will be highlighted, as Prism's themes (both official and non-official) only guarantee coverage for these standard tokens.</p>
+
+	<dl>
+		<dt><code>keyword</code></dt>
+		<dd>Pre-defined and reserved words.
+		<pre><code class="language-javascript">for (let x of y) {
+	// Code here
+	return z;
+}</code></pre></dd>
+
+		<dt><code>builtin</code></dt>
+		<dd>Functions/Methods that are available out of the box.
+		<pre><code class="language-python">pi = round(float('3.14159'), 2)</code></pre></dd>
+
+		<dt><code>class-name</code></dt>
+		<dd>The name of a class.
+		<pre><code class="language-javascript">class Rectangle extends Square {
+	constructor(length, breadth) {
+		super(length);
+		this.breadth = breadth;
+	}
+}</code></pre></dd>
+
+		<dt><code>function</code></dt>
+		<dd>The name of a function.
+		<pre><code class="language-javascript">function isEven(number) {
+	return Number(number) % 2 === 0;
+}
+
+function isOdd(number) {
+	return !isEven(number);
+}</code></pre></dd>
+
+		<dt><code>boolean</code></dt>
+		<dd>True and false, and pairs with similar concepts.
+		<pre><code class="language-javascript">console.log(true === false); // prints false
+console.log(true === !false); // prints true</code></pre></dd>
+
+		<dt><code>number</code></dt>
+		<dd>A numerical value, regardless of base and order, and no matter real or imaginary.
+		<pre><code class="language-python">7
+2147483647
+0o177
+0b100110111
+3
+79228162514264337593543950336
+0o377
+0x100000000
+0xdeadbeef
+3.14
+10.
+.001
+1e100
+3.14e-10
+0e0
+3.14j
+10.j
+10j
+.001j
+1e100j
+3.14e-10j</code></pre></dd>
+
+		<dt><code>string</code></dt>
+		<dd>Literal text, including numbers and symbols and maybe even more special characters.
+		<pre><code class="language-javascript">let greeting = 'Hello World!';</code></pre></dd>
+
+		<dt><code>char</code></dt>
+		<dd>A string that can comprise only a single character, enforced by the language.
+		<pre><code class="language-elm">'A'
+'z'
+'0'
+'-'
+'\t'
+'\u{2728}'</code></pre></dd>
+
+		<dt><code>symbol</code></dt>
+		<dd>A primitive data type found in some languages, can be thought of as an identifier.
+		<pre><code class="language-smalltalk">#myFirstSymbol "#myFirstSymbol is a symbol in Smalltalk and is the same object as all other #myFirstSymbol symbols"</code></pre></dd>
+
+		<dt><code>regex</code></dt>
+		<dd>A regular expression.
+		<pre><code class="language-javascript">let regexPattern = /((?:^|[^$\w\xA0-\uFFFF."'\])\s]|\b(?:return|yield))\s*)\/(?:\[(?:[^\]\\\r\n]|\\.)*\]|\\.|[^/\\\[\r\n])+\/[dgimyus]{0,7}(?=(?:\s|\/\*(?:[^*]|\*(?!\/))*\*\/)*(?:$|[\r\n,.;:})\]]|\/\/))/;</code></pre></dd>
+
+		<dt><code>url</code></dt>
+		<dd>A link to another page or resource.
+		<pre><code class="language-css">body {
+	background: url(foo.png);
+}</code></pre>
+		<pre><code class="language-markdown">[Prism](https://prismjs.com) is a cool syntax highlighter.</code></pre></dd>
+
+		<dt><code>operator</code></dt>
+		<dd>A symbol that represents an action or process, whether it's a mathematical operation, logical operation, and so on.
+		<pre><code class="language-javascript">x = y
+x *= y
+x !== y
+x++
+-y
+x &gt;&gt;&gt; y
+x || y
+z ? x : y</code></pre></dd>
+
+		<dt><code>variable</code></dt>
+		<dd>An object that is assigned and holds a specific value.
+		<pre><code class="language-less">@nice-blue: #5B83AD;
+@light-blue: lighten(@nice-blue, 20%);</code></pre></dd>
+
+		<dt><code>constant</code></dt>
+		<dd>The name of a a variable that cannot be modified later on.
+		<pre><code class="language-javascript">const PI = 3.14159;</code></pre></dd>
+
+		<dt><code>property</code></dt>
+		<dd>An attribute/characteristic.
+		<pre><code class="language-css">body {
+	color: red;
+	line-height: normal;
+}</code></pre>
+		<pre><code class="language-json">{
+	"data": {
+		"labels": [
+			"foo",
+			"bar"
+		],
+		"series": [
+			[ 0, 1, 2, 3 ],
+			[ 0, -4, -8, -12 ]
+		]
+	},
+	// we even support comments
+	"error": null,
+	"status": "Ok"
+}</code></pre></dd>
+
+		<dt><code>punctuation</code></dt>
+		<dd>Punctuation that is not contained within a string, such as brackets.
+		<pre><code class="language-python">def median(pool):
+	'''Statistical median to demonstrate doctest.
+	>>> median([2, 9, 9, 7, 9, 2, 4, 5, 8])
+	7
+	'''
+	copy = sorted(pool)
+	size = len(copy)
+	if size % 2 == 1:
+		return copy[(size - 1) / 2]
+	else:
+		return (copy[size/2 - 1] + copy[size/2]) / 2</code></pre></dd>
+
+		<dt><code>important</code></dt>
+		<dd>Anything that is important.
+		<pre><code class="language-css">body {
+	color: red !important;
+}</code></pre>
+		<pre><code class="language-markdown"># This is a heading. Headings are important.</code></pre></dd>
+
+		<dt><code>comment</code></dt>
+		<dd>Code comments.
+		<pre><code class="language-markup">&lt;!-- Here's a comment --&gt;
+&lt;style&gt;
+	/* Here's another comment */
+&lt;/style&gt;
+&lt;script&gt;
+// Here's yet another comment
+&lt;/script&gt;</code></pre></dd>
+
+		<dt><code>inserted</code></dt>
+		<dd>Added or modified line, mainly for diffs. In general, also the idea of something being increased.
+		<pre><code class="language-diff">+		// Calculate the area of the circle
+		let area = PI * (radius ** 2);</code></pre></dd>
+
+		<dt><code>deleted</code></dt>
+		<dd>Deleted line, mainly for diffs. In general, also the idea of something being decreased/removed.
+		<pre><code class="language-diff">-		// TODO: Remove this comment
+		let foo = 'bar';</code></pre></dd>
+
+		<dt><code>bold</code></dt>
+		<dd>Bolded text. Mostly found in document-markup languages.
+		<pre><code class="language-markdown">**I am bolded text!**</code></pre></dd>
+
+		<dt><code>italic</code></dt>
+		<dd>Italicised text. Mostly found in document-markup languages.
+		<pre><code class="language-markdown">*I am italicised text!*</code></pre></dd>
+
+		<dt><code>tag</code></dt>
+		<dd>The markup version of a keyword, to indicate when an element begins and ends.
+		<pre><code class="language-markup">&lt;p&gt;Hello World!&lt;/p&gt;</code></pre></dd>
+
+		<dt><code>attr-name</code></dt>
+		<dd>Kind of like a property of a markup tag.
+		<pre><code class="language-markup">&lt;video allowfullscreen controls&gt;
+	&lt;source src="hello_world.mp4" type="video/mp4" /&gt;
+&lt;/video&gt;</code></pre></dd>
+
+		<dt><code>attr-value</code></dt>
+		<dd>The value or argument that is passed to a property in a markup tag.
+		<pre><code class="language-markup">&lt;p id="greeting"&gt;Hello World!&lt;/p&gt;</code></pre></dd>
+
+		<dt><code>namespace</code></dt>
+		<dd>Used to provide uniquely named elements and attributes in XML documents.
+		<pre><code class="language-markup">&lt;html:p foo:bar="baz" foo:weee&gt;&lt;/html:p&gt;</code></pre></dd>
+
+		<dt><code>prolog</code></dt>
+		<dd>The first part of an XML document.
+		<pre><code class="language-markup">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;svg&gt;&lt;/svg&gt;</code></pre></dd>
+
+		<dt><code>doctype</code></dt>
+		<dd>Document type declaration, specific to markup languages.
+		<pre><code class="language-markup">&lt;!DOCTYPE html&gt;
+&lt;html&gt;&lt;/html&gt;</code></pre></dd>
+
+		<dt><code>cdata</code></dt>
+		<dd>Character data, specific to markup languages. Deprecated as of DOM4.
+		<pre><code class="language-markup">&lt;ns1:description&gt;&lt;![CDATA[
+  CDATA is &lt;not&gt; magical.
+]]>&lt;/ns1:description&gt;</code></pre></dd>
+
+		<dt><code>entity</code></dt>
+		<dd>Code used to display reserved characters in markup languages.
+		<pre><code class="language-markup">&amp;amp; &amp;#x2665; &amp;#160; &amp;#x152;</code></pre></dd>
+
+		<dt><code>atrule</code></dt>
+		<dd>Literally <code>@</code> rules (statements) in stylesheets.
+		<pre><code class="language-css">@font-family {
+	font-family: Questrial;
+	src: url(questrial.otf);
+}
+
+@media screen and (min-width: 768px) {
+	/* rules here */
+}</code></pre></dd>
+
+		<dt><code>selector</code></dt>
+		<dd>Code that identifies or picks something out of a group to operate on, such as the names of HTML elements in stylesheets.
+		<pre><code class="language-css">section h1,
+#features li strong,
+header h2,
+footer p {
+	/* styles here */
+}</code></pre></dd>
+	</dl>
+</section>
+
+<section id="embedded-languages">
+	<h1>Embedded languages</h1>
+
+	<p>In addition to the standard tokens above, Prism also has a token for languages that are embedded in another language, such as CSS in HTML, JS in HTML, Bash in Shell-session, and CSS in JS, allowing Prism to highlight the tokens in the embedded languages more accurately. All embedded languages are wrapped in their own special token, which includes a CSS class <code>language-xxxx</code> corresponding to the embedded language.</p>
+
+	<p>Open your browser's developer tools and check out the example below to see it in action!</p>
+
+	<pre data-line="6-10,14-18"><code class="language-markup">&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+	&lt;meta charset="utf-8" /&gt;
+	&lt;title>I can haz embedded CSS and JS&lt;/title&gt;
+	&lt;style&gt;
+		@media print {
+			p { color: red !important; }
+		}
+	&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;h1&gt;I can haz embedded CSS and JS&lt;/h1&gt;
+	&lt;script&gt;
+	if (true) {
+		console.log('foo');
+	}
+	&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</section>
+
+<footer data-src="assets/templates/footer.html" data-type="text/html"></footer>
+
+<script src="assets/vendor/utopia.js"></script>
+<script src="prism.js"></script>
+<script src="plugins/autoloader/prism-autoloader.js"></script>
+<script src="plugins/line-highlight/prism-line-highlight.js"></script>
+<script src="plugins/toolbar/prism-toolbar.js"></script>
+<script src="plugins/show-language/prism-show-language.js"></script>
+<script src="components.js"></script>
+<script src="assets/code.js"></script>
+
+</body>
+</html>
