@@ -7,13 +7,13 @@ import "componentCreation.js" as MyScript
 
 [
 	["keyword", "import"],
-	" QtQuick 2.9\n",
+	" QtQuick 2.9\r\n",
 
 	["keyword", "import"],
-	" QtQml.Models 2.2\n",
+	" QtQml.Models 2.2\r\n",
 
 	["keyword", "import"],
-	" Person 1.0\n",
+	" Person 1.0\r\n",
 
 	["keyword", "import"],
 	["string", "\"componentCreation.js\""],

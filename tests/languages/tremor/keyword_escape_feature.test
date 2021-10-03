@@ -1,0 +1,115 @@
+`args`
+`as`
+`by`
+`case`
+`config`
+`connect`
+`connector`
+`const`
+`copy`
+`create`
+`default`
+`define`
+`deploy`
+`drop`
+`each`
+`emit`
+`end`
+`erase`
+`event`
+`flow`
+`fn`
+`for`
+`from`
+`group`
+`having`
+`insert`
+`into`
+`intrinsic`
+`let`
+`links`
+`match`
+`merge`
+`mod`
+`move`
+`of`
+`operator`
+`patch`
+`pipeline`
+`recur`
+`script`
+`select`
+`set`
+`sliding`
+`state`
+`stream`
+`to`
+`tumbling`
+`update`
+`use`
+`when`
+`where`
+`window`
+`with`
+
+----------------------------------------------------
+
+[
+	["identifier", "`args`"],
+	["identifier", "`as`"],
+	["identifier", "`by`"],
+	["identifier", "`case`"],
+	["identifier", "`config`"],
+	["identifier", "`connect`"],
+	["identifier", "`connector`"],
+	["identifier", "`const`"],
+	["identifier", "`copy`"],
+	["identifier", "`create`"],
+	["identifier", "`default`"],
+	["identifier", "`define`"],
+	["identifier", "`deploy`"],
+	["identifier", "`drop`"],
+	["identifier", "`each`"],
+	["identifier", "`emit`"],
+	["identifier", "`end`"],
+	["identifier", "`erase`"],
+	["identifier", "`event`"],
+	["identifier", "`flow`"],
+	["identifier", "`fn`"],
+	["identifier", "`for`"],
+	["identifier", "`from`"],
+	["identifier", "`group`"],
+	["identifier", "`having`"],
+	["identifier", "`insert`"],
+	["identifier", "`into`"],
+	["identifier", "`intrinsic`"],
+	["identifier", "`let`"],
+	["identifier", "`links`"],
+	["identifier", "`match`"],
+	["identifier", "`merge`"],
+	["identifier", "`mod`"],
+	["identifier", "`move`"],
+	["identifier", "`of`"],
+	["identifier", "`operator`"],
+	["identifier", "`patch`"],
+	["identifier", "`pipeline`"],
+	["identifier", "`recur`"],
+	["identifier", "`script`"],
+	["identifier", "`select`"],
+	["identifier", "`set`"],
+	["identifier", "`sliding`"],
+	["identifier", "`state`"],
+	["identifier", "`stream`"],
+	["identifier", "`to`"],
+	["identifier", "`tumbling`"],
+	["identifier", "`update`"],
+	["identifier", "`use`"],
+	["identifier", "`when`"],
+	["identifier", "`where`"],
+	["identifier", "`window`"],
+	["identifier", "`with`"]
+]
+
+----------------------------------------------------
+
+Checks for variables.

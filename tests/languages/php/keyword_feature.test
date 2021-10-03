@@ -1,7 +1,7 @@
 __halt_compiler
 abstract
 and
-array
+array()
 as
 break
 callable
@@ -30,6 +30,7 @@ exit
 extends;
 final
 finally
+fn
 for
 foreach
 function
@@ -45,9 +46,11 @@ interface;
 isset
 list
 namespace;
+match
 new;
 or
 parent
+parent::;
 print
 private
 protected
@@ -55,7 +58,11 @@ public
 require
 require_once
 return
+self
+new self
+self::;
 static
+static::;
 switch
 throw
 trait;
@@ -66,6 +73,7 @@ var
 while
 xor
 yield
+yield from
 
 ----------------------------------------------------
 
@@ -73,7 +81,7 @@ yield
 	["keyword", "__halt_compiler"],
 	["keyword", "abstract"],
 	["keyword", "and"],
-	["keyword", "array"],
+	["keyword", "array"], ["punctuation", "("], ["punctuation", ")"],
 	["keyword", "as"],
 	["keyword", "break"],
 	["keyword", "callable"],
@@ -102,6 +110,7 @@ yield
 	["keyword", "extends"], ["punctuation", ";"],
 	["keyword", "final"],
 	["keyword", "finally"],
+	["keyword", "fn"],
 	["keyword", "for"],
 	["keyword", "foreach"],
 	["keyword", "function"],
@@ -117,9 +126,11 @@ yield
 	["keyword", "isset"],
 	["keyword", "list"],
 	["keyword", "namespace"], ["punctuation", ";"],
+	["keyword", "match"],
 	["keyword", "new"], ["punctuation", ";"],
 	["keyword", "or"],
 	["keyword", "parent"],
+	["keyword", "parent"], ["operator", "::"], ["punctuation", ";"],
 	["keyword", "print"],
 	["keyword", "private"],
 	["keyword", "protected"],
@@ -127,19 +138,24 @@ yield
 	["keyword", "require"],
 	["keyword", "require_once"],
 	["keyword", "return"],
+	["keyword", "self"],
+	["keyword", "new"], ["keyword", "self"],
+	["keyword", "self"], ["operator", "::"], ["punctuation", ";"],
 	["keyword", "static"],
+	["keyword", "static"], ["operator", "::"], ["punctuation", ";"],
 	["keyword", "switch"],
 	["keyword", "throw"],
-	["keyword", "trait"],  ["punctuation", ";"],
+	["keyword", "trait"], ["punctuation", ";"],
 	["keyword", "try"],
 	["keyword", "unset"],
 	["keyword", "use"], ["punctuation", ";"],
 	["keyword", "var"],
 	["keyword", "while"],
 	["keyword", "xor"],
-	["keyword", "yield"]
+	["keyword", "yield"],
+	["keyword", "yield"], ["keyword", "from"]
 ]
 
 ----------------------------------------------------
 
-Checks for comments.
+Checks for keywords.

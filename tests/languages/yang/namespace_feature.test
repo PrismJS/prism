@@ -1,0 +1,20 @@
+type foo:type
+type _foo.-bar:type
+
+----------------------------------------------------
+
+[
+	["keyword", "type"],
+	["namespace", "foo"],
+	["punctuation", ":"],
+	"type\r\n",
+
+	["keyword", "type"],
+	["namespace", "_foo.-bar"],
+	["punctuation", ":"],
+	"type"
+]
+
+----------------------------------------------------
+
+Checks for namespace prefixes.

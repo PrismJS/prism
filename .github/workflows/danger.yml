@@ -1,0 +1,24 @@
+name: Danger
+
+on:
+  pull_request_target:
+
+jobs:
+  run:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 0
+      # create a new branch called pr from the remote PR branch
+      - run: git remote add pr_repo $PR_URL && git fetch pr_repo $PR_REF && git branch pr pr_repo/$PR_REF
+        env:
+          PR_URL: ${{github.event.pull_request.head.repo.clone_url}}
+          PR_REF: ${{github.event.pull_request.head.ref}}
+      - run: npm ci
+      - name: Danger
+        run: npx danger ci
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

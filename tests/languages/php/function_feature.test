@@ -1,0 +1,170 @@
+class A {
+  function __call() {}
+}
+
+$a = new A();
+$a->if(); // it's allowed to call a magic method with keyword since forever in PHP
+
+class A {
+  function if() {} // error before 7.0, allowed now
+}
+
+$variable->foreach(); // this "foreach" is a method
+$variable->method();  // this is also a method
+$var->match()
+
+foreach ($list as $value) { // this "foreach" is a keyword
+}
+
+Test::foreach(); // this is "foreach" static method
+Test::method();  // this is "method" static method
+
+// The only exception: class
+$variable->class(); // this "class" should be interpreted as "keyword"
+Test::class; // This "class" should still be a keyword
+
+mb_string(); // call to a global function
+\mb_string(); // namespace \ is global
+\a\b\c\mb_string(); // function in \a\b\c namespace
+
+----------------------------------------------------
+
+[
+	["keyword", "class"],
+	["class-name-definition", "A"],
+	["punctuation", "{"],
+
+	["keyword", "function"],
+	["function-definition", "__call"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["punctuation", "}"],
+
+	["variable", "$a"],
+	["operator", "="],
+	["keyword", "new"],
+	["class-name", "A"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["variable", "$a"],
+	["operator", "->"],
+	["function", ["if"]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["comment", "// it's allowed to call a magic method with keyword since forever in PHP"],
+
+	["keyword", "class"],
+	["class-name-definition", "A"],
+	["punctuation", "{"],
+
+	["keyword", "function"],
+	["function-definition", "if"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["comment", "// error before 7.0, allowed now"],
+
+	["punctuation", "}"],
+
+	["variable", "$variable"],
+	["operator", "->"],
+	["function", ["foreach"]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["comment", "// this \"foreach\" is a method"],
+
+	["variable", "$variable"],
+	["operator", "->"],
+	["function", ["method"]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["comment", "// this is also a method"],
+
+	["variable", "$var"],
+	["operator", "->"],
+	["function", ["match"]],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["keyword", "foreach"],
+	["punctuation", "("],
+	["variable", "$list"],
+	["keyword", "as"],
+	["variable", "$value"],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["comment", "// this \"foreach\" is a keyword"],
+
+	["punctuation", "}"],
+
+	["class-name", "Test"],
+	["operator", "::"],
+	["function", ["foreach"]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["comment", "// this is \"foreach\" static method"],
+
+	["class-name", "Test"],
+	["operator", "::"],
+	["function", ["method"]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["comment", "// this is \"method\" static method"],
+
+	["comment", "// The only exception: class"],
+
+	["variable", "$variable"],
+	["operator", "->"],
+	["keyword", "class"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["comment", "// this \"class\" should be interpreted as \"keyword\""],
+
+	["class-name", "Test"],
+	["operator", "::"],
+	["keyword", "class"],
+	["punctuation", ";"],
+	["comment", "// This \"class\" should still be a keyword"],
+
+	["function", ["mb_string"]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["comment", "// call to a global function"],
+
+	["function", [
+		["punctuation", "\\"],
+		"mb_string"
+	]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["comment", "// namespace \\ is global"],
+
+	["function", [
+		["punctuation", "\\"],
+		"a",
+		["punctuation", "\\"],
+		"b",
+		["punctuation", "\\"],
+		"c",
+		["punctuation", "\\"],
+		"mb_string"
+	]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["comment", "// function in \\a\\b\\c namespace"]
+]

@@ -1,0 +1,52 @@
+<h2>Hello, world!</h2>
+
+<pre><code>"Hello, world!"</code></pre>
+
+<h2>Lambda functions</h2>
+
+<h3>Increment</h3>
+
+<pre><code>5 [7+]! . {Outputs 12.}</code></pre>
+
+<h3>Square numbers</h3>
+
+<pre><code>[$*] s: 7s;! . {Outputs 49.}</code></pre>
+
+<h2>Conditions</h2>
+
+<h3>Equal, less, or greater than</h3>
+
+<pre><code>5x:
+7y:
+x;y;=
+$
+x;
+.
+[" equals "]?
+~[
+    x;y;>
+    $
+    [" is greater than "]?
+    ~[" is less than "]?
+]?
+y;
+.</code></pre>
+
+<h2>Loops</h2>
+
+<h3>English alphabet</h3>
+
+<pre><code>'Ai: 'Zm: 1m;+ m: [m;i;>][i;, 1i;+ i:]#</code></pre>
+
+<h3>Ten Green Bottles</h3>
+
+<pre><code>[$ . " green bottle" 1> ["s"]? ".
+"] f:
+10n: [n;0>][n;f;! n;1- n:]#</code></pre>
+
+<h2>User input</h2>
+
+<h3>Reverse a string</h3>
+
+<pre><code>"Enter the string character by character (or a space to finish):
+"0i: [ß ^ $ 32=~][i;1+ i:]# % "Reverse: " [i;0>][, i;1- i:]#</code></pre>

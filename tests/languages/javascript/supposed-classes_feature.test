@@ -17,7 +17,7 @@ fooBar.prototype.bar;
 	"constructor",
 	["punctuation", ";"],
 
-	"\nfooBar",
+	"\r\nfooBar",
 	["punctuation", "."],
 	"prototype",
 	["punctuation", "."],

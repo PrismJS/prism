@@ -1,0 +1,60 @@
+function test(limit) {
+	for (i = 0 ; i < limit ; i++) {
+		s = s + i; # s has not been initialized!
+	}
+	print(s."\n");
+}
+
+----------------------------------------------------
+
+[
+	["keyword", "function"],
+	["function", "test"],
+	["punctuation", "("],
+	"limit",
+	["punctuation", ")"],
+	["punctuation", "{"],
+
+	["keyword", "for"],
+	["punctuation", "("],
+	"i ",
+	["operator", "="],
+	["number", "0"],
+	["punctuation", ";"],
+	" i ",
+	["operator", "<"],
+	" limit ",
+	["punctuation", ";"],
+	" i",
+	["operator", "++"],
+	["punctuation", ")"],
+	["punctuation", "{"],
+
+	"\r\n\t\ts ",
+	["operator", "="],
+	" s ",
+	["operator", "+"],
+	" i",
+	["punctuation", ";"],
+	["comment", "# s has not been initialized!"],
+
+	["punctuation", "}"],
+
+	["builtin", "print"],
+	["punctuation", "("],
+	"s",
+	["operator", "."],
+	["string", [
+		"\"",
+		["symbol", "\\n"],
+		"\""
+	]],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+General test for the most common PSL statements, all mixed together

@@ -71,7 +71,7 @@ tagb: !!tagb *tag-b
 	["punctuation", ":"],
 	["important", "&sca-lar"],
 	["punctuation", "|"],
-	["scalar", "\n\tfoo\n\tbar"],
+	["scalar", "\r\n\tfoo\r\n\tbar"],
 
 	["key", "x-utf8"],
 	["punctuation", ":"],
@@ -113,7 +113,7 @@ tagb: !!tagb *tag-b
 	["important", "&tag-scalar"],
 	["tag", "!!tag-scalar"],
 	["punctuation", "|"],
-	["scalar", "\n\tfoo\n\tbar"],
+	["scalar", "\r\n\tfoo\r\n\tbar"],
 
 	["key", "x-tag-string"],
 	["punctuation", ":"],
@@ -150,7 +150,7 @@ tagb: !!tagb *tag-b
 	["tag", "!!tag-scalar"],
 	["important", "&tag-scalar"],
 	["punctuation", "|"],
-	["scalar", "\n\tfoo\n\tbar"],
+	["scalar", "\r\n\tfoo\r\n\tbar"],
 
 	["key", "foobar"],
 	["punctuation", ":"],
@@ -182,7 +182,7 @@ tagb: !!tagb *tag-b
 	["punctuation", ":"],
 
 	["tag", "!!str"],
-	" bar\n",
+	" bar\r\n",
 
 	["important", "&a2"],
 	["key", "baz"],

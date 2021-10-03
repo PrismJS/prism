@@ -6,17 +6,21 @@
 			lookbehind: true
 		},
 		'function': [
-			/\w+(?=\s*\()/,
 			{
-				pattern: /(\.)\w+(?=\s*\{)/,
-				lookbehind: true
+				pattern: /(?:`[^\r\n`]+`|\b\w+)(?=\s*\()/,
+				greedy: true
+			},
+			{
+				pattern: /(\.)(?:`[^\r\n`]+`|\w+)(?=\s*\{)/,
+				lookbehind: true,
+				greedy: true
 			}
 		],
 		'number': /\b(?:0[xX][\da-fA-F]+(?:_[\da-fA-F]+)*|0[bB][01]+(?:_[01]+)*|\d+(?:_\d+)*(?:\.\d+(?:_\d+)*)?(?:[eE][+-]?\d+(?:_\d+)*)?[fFL]?)\b/,
 		'operator': /\+[+=]?|-[-=>]?|==?=?|!(?:!|==?)?|[\/*%<>]=?|[?:]:?|\.\.|&&|\|\||\b(?:and|inv|or|shl|shr|ushr|xor)\b/
 	});
 
-	delete Prism.languages.kotlin["class-name"];
+	delete Prism.languages.kotlin['class-name'];
 
 	Prism.languages.insertBefore('kotlin', 'string', {
 		'raw-string': {
@@ -33,7 +37,7 @@
 	});
 	Prism.languages.insertBefore('kotlin', 'function', {
 		'label': {
-			pattern: /\w+@|@\w+/,
+			pattern: /\b\w+@|@\w+\b/,
 			alias: 'symbol'
 		}
 	});
@@ -59,4 +63,6 @@
 		interpolation: interpolation
 	};
 
+	Prism.languages.kt = Prism.languages.kotlin;
+	Prism.languages.kts = Prism.languages.kotlin;
 }(Prism));

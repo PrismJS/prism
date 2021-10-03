@@ -2,44 +2,131 @@
 "fo\"o"
 "foo\
 bar"
+
+"foo /* not a comment */ bar"
+"foo\
+/* not a comment */\
+bar"
+
+let softWrappedQuotation = """
+The White Rabbit put on his spectacles.  "Where shall I begin, \
+please your Majesty?" he asked.
+
+"Begin at the beginning," the King said gravely, "and go on \
+till you come to the end; then stop."
+"""
+
+let threeMoreDoubleQuotationMarks = #"""
+Here are three more double quotes: """
+"""#
+#"Write an interpolated string in Swift using \(multiplier)."#
+
+
 "foo \(42)"
 "foo \(f("bar"))"
-"foo /* comment */ bar"
-'foo // bar'
-"foo\
-/* comment */\
-bar"
+"\(multiplier) times 2.5 is \(Double(multiplier) * 2.5)"
+#"6 times 7 is \#(6 * 7)."#
 
 ----------------------------------------------------
 
 [
-	["string", ["\"\""]],
-	["string", ["\"fo\\\"o\""]],
-	["string", ["\"foo\\\r\nbar\""]],
-	["string", [
-		"\"foo ",
-		["interpolation", [
-			["delimiter", "\\("],
-			["number", "42"],
-			["delimiter", ")"]
-		]],
-		"\""
+	["string-literal", [
+		["string", "\"\""]
 	]],
-	["string", [
-		"\"foo ",
+	["string-literal", [
+		["string", "\"fo\\\"o\""]
+	]],
+	["string-literal", [
+		["string", "\"foo"],
+		["punctuation", "\\"],
+		["string", "\r\nbar\""]
+	]],
+
+	["string-literal", [
+		["string", "\"foo /* not a comment */ bar\""]
+	]],
+	["string-literal", [
+		["string", "\"foo"],
+		["punctuation", "\\"],
+		["string", "\r\n/* not a comment */"],
+		["punctuation", "\\"],
+		["string", "\r\nbar\""]
+	]],
+
+	["keyword", "let"],
+	" softWrappedQuotation ",
+	["operator", "="],
+	["string-literal", [
+		["string", "\"\"\"\r\nThe White Rabbit put on his spectacles.  \"Where shall I begin, "],
+		["punctuation", "\\"],
+		["string", "\r\nplease your Majesty?\" he asked.\r\n\r\n\"Begin at the beginning,\" the King said gravely, \"and go on "],
+		["punctuation", "\\"],
+		["string", "\r\ntill you come to the end; then stop.\"\r\n\"\"\""]
+	]],
+
+	["keyword", "let"],
+	" threeMoreDoubleQuotationMarks ",
+	["operator", "="],
+	["string-literal", [
+		["string", "#\"\"\"\r\nHere are three more double quotes: \"\"\"\r\n\"\"\"#"]
+	]],
+
+	["string-literal", [
+		["string", "#\"Write an interpolated string in Swift using \\(multiplier).\"#"]
+	]],
+
+	["string-literal", [
+		["string", "\"foo "],
+		["interpolation-punctuation", "\\("],
 		["interpolation", [
-			["delimiter", "\\("],
+			["number", "42"]
+		]],
+		["interpolation-punctuation", ")"],
+		["string", "\""]
+	]],
+	["string-literal", [
+		["string", "\"foo "],
+		["interpolation-punctuation", "\\("],
+		["interpolation", [
 			["function", "f"],
 			["punctuation", "("],
-			["string", ["\"bar\""]],
-			["punctuation", ")"],
-			["delimiter", ")"]
+			["string-literal", [
+				["string", "\"bar\""]
+			]],
+			["punctuation", ")"]
 		]],
-		"\""
+		["interpolation-punctuation", ")"],
+		["string", "\""]
 	]],
-	["string", ["\"foo /* comment */ bar\""]],
-	["string", ["'foo // bar'"]],
-	["string", ["\"foo\\\r\n/* comment */\\\r\nbar\""]]
+	["string-literal", [
+		["string", "\""],
+		["interpolation-punctuation", "\\("],
+		["interpolation", ["multiplier"]],
+		["interpolation-punctuation", ")"],
+		["string", " times 2.5 is "],
+		["interpolation-punctuation", "\\("],
+		["interpolation", [
+			["class-name", "Double"],
+			["punctuation", "("],
+			"multiplier",
+			["punctuation", ")"],
+			["operator", "*"],
+			["number", "2.5"]
+		]],
+		["interpolation-punctuation", ")"],
+		["string", "\""]
+	]],
+	["string-literal", [
+		["string", "#\"6 times 7 is "],
+		["interpolation-punctuation", "\\#("],
+		["interpolation", [
+			["number", "6"],
+			["operator", "*"],
+			["number", "7"]
+		]],
+		["interpolation-punctuation", ")"],
+		["string", ".\"#"]
+	]]
 ]
 
 ----------------------------------------------------

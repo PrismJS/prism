@@ -1,0 +1,61 @@
+// ISO 8601
+2014-05-25T08:20:03.123456Z
+2014-05-25T08:20:03.123456
+2014-05-25T08:20
+2014-11-08 15:55:55.123456Z
+2014-11-08 15:55:55
+2014-11-08 15:55
+2014-11-08
+
+// RFC 822
+Sat, 8 Nov 14 15:05:02 GMT
+Sat, 8 Nov 14 15:05:02
+Sat, 8 Nov 14 15:05
+Sat, 8 Nov 14 15:05 GMT
+8 Nov 14 15:05:02 GMT
+8 Nov 14 15:05:02
+8 Nov 14 15:05
+8 Nov 14 15:05 GMT
+
+// RFC 850
+Saturday, 08-Nov-14 15:05:02 GMT
+Saturday, 08-Nov-14 15:05:02
+Saturday, 08-Nov-14 15:05 GMT
+Saturday, 08-Nov-14 15:05
+08-Nov-14 15:05:02 GMT
+08-Nov-14 15:05:02
+08-Nov-14 15:05 GMT
+08-Nov-14 15:05
+
+----------------------------------------------------
+
+[
+	["comment", "// ISO 8601"],
+	["datetime", "2014-05-25T08:20:03.123456Z"],
+	["datetime", "2014-05-25T08:20:03.123456"],
+	["datetime", "2014-05-25T08:20"],
+	["datetime", "2014-11-08 15:55:55.123456Z"],
+	["datetime", "2014-11-08 15:55:55"],
+	["datetime", "2014-11-08 15:55"],
+	["datetime", "2014-11-08"],
+
+	["comment", "// RFC 822"],
+	["datetime", "Sat, 8 Nov 14 15:05:02 GMT"],
+	["datetime", "Sat, 8 Nov 14 15:05:02"],
+	["datetime", "Sat, 8 Nov 14 15:05"],
+	["datetime", "Sat, 8 Nov 14 15:05 GMT"],
+	["datetime", "8 Nov 14 15:05:02 GMT"],
+	["datetime", "8 Nov 14 15:05:02"],
+	["datetime", "8 Nov 14 15:05"],
+	["datetime", "8 Nov 14 15:05 GMT"],
+
+	["comment", "// RFC 850"],
+	["datetime", "Saturday, 08-Nov-14 15:05:02 GMT"],
+	["datetime", "Saturday, 08-Nov-14 15:05:02"],
+	["datetime", "Saturday, 08-Nov-14 15:05 GMT"],
+	["datetime", "Saturday, 08-Nov-14 15:05"],
+	["datetime", "08-Nov-14 15:05:02 GMT"],
+	["datetime", "08-Nov-14 15:05:02"],
+	["datetime", "08-Nov-14 15:05 GMT"],
+	["datetime", "08-Nov-14 15:05"]
+]

@@ -1,0 +1,15 @@
+42
+3.14159
+-5.7
+
+----------------------------------------------------
+
+[
+	["number", "42"],
+	["number", "3.14159"],
+	["operator", "-"], ["number", "5.7"]
+]
+
+----------------------------------------------------
+
+Checks for integers and floats. Negative numbers are handled differently than in Jexl for simplicity: In Jexl, the minus sign in "-1" is parsed as an operator in "1-1" and as part of the number literal in ("-1").

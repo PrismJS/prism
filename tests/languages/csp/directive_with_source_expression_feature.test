@@ -1,10 +1,24 @@
-script-src example.com;
+input-protection tolerance=50; input-protection-clip before=60; input-protection-selectors div; policy-uri https://example.com; script-src example.com; script-src-attr 'none'; style-src-elem 'none';
 
 ----------------------------------------------------
 
 [
-	["directive", "script-src "],
-	"example.com;"
+	["directive", "input-protection"],
+	" tolerance=50; ",
+	["directive", "input-protection-clip"],
+	" before=60; ",
+	["directive", "input-protection-selectors"],
+	" div; ",
+	["directive", "policy-uri"],
+	" https://example.com; ",
+	["directive", "script-src"],
+	" example.com; ",
+	["directive", "script-src-attr"],
+	["safe", "'none'"],
+	"; ",
+	["directive", "style-src-elem"],
+	["safe", "'none'"],
+	";"
 ]
 
 ----------------------------------------------------

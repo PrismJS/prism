@@ -9,15 +9,11 @@ a = { foo: 5, bar: 6, "foo bar": 7 }
 
 [
 	["punctuation", "{"],
-	["property", "foo"],
-	["operator", ":"],
-	["number", "4"],
-	["property", "\"bar\""],
-	["operator", ":"],
-	["number", "5"],
+	["property", "foo"], ["operator", ":"], ["number", "4"],
+	["property", "\"bar\""], ["operator", ":"], ["number", "5"],
 	["punctuation", "}"],
 
-	"\n\na ",
+	"\r\n\r\na ",
 	["operator", "="],
 	["punctuation", "{"],
 	["property", "foo"],

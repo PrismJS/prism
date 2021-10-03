@@ -15,7 +15,7 @@ list[..];
 	["punctuation", "]"],
 	["punctuation", ";"],
 
-	"\nlist",
+	"\r\nlist",
 	["punctuation", "["],
 	["range", ".."],
 	["operator", "^"],
@@ -23,14 +23,14 @@ list[..];
 	["punctuation", "]"],
 	["punctuation", ";"],
 
-	"\nlist",
+	"\r\nlist",
 	["punctuation", "["],
 	["number", "2"],
 	["range", ".."],
 	["punctuation", "]"],
 	["punctuation", ";"],
 
-	"\nlist",
+	"\r\nlist",
 	["punctuation", "["],
 	["range", ".."],
 	["punctuation", "]"],

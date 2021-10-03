@@ -14,16 +14,19 @@ h\fermata
 		["punctuation", "\\"],
 		"set"
 	]],
+
 	["keyword", [
 		["punctuation", "\\"],
 		"center-column"
 	]],
+
 	["number", "5"],
 	["keyword", [
 		["punctuation", "\\"],
 		"mm"
 	]],
-	"\nh",
+
+	"\r\nh",
 	["keyword", [
 		["punctuation", "\\"],
 		"fermata"

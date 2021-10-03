@@ -81,12 +81,12 @@
 			}
 		],
 		'builtin-types': {
-			pattern: /\b(?:anyerror|bool|c_u?(?:short|int|long|longlong)|c_longdouble|c_void|comptime_(?:float|int)|[iu](?:8|16|32|64|128|size)|f(?:16|32|64|128)|noreturn|type|void)\b/,
+			pattern: /\b(?:anyerror|bool|c_u?(?:int|long|longlong|short)|c_longdouble|c_void|comptime_(?:float|int)|f(?:16|32|64|128)|[iu](?:8|16|32|64|128|size)|noreturn|type|void)\b/,
 			alias: 'keyword'
 		},
 		'keyword': keyword,
 		'function': /\b(?!\d)\w+(?=\s*\()/,
-		'number': /\b(?:0b[01]+|0o[0-7]+|0x[a-fA-F\d]+\.?[a-fA-F\d]*(?:[pP][+-]?[a-fA-F\d]+)?|\d+\.?\d*(?:[eE][+-]?\d+)?)\b/,
+		'number': /\b(?:0b[01]+|0o[0-7]+|0x[a-fA-F\d]+(?:\.[a-fA-F\d]*)?(?:[pP][+-]?[a-fA-F\d]+)?|\d+(?:\.\d*)?(?:[eE][+-]?\d+)?)\b/,
 		'boolean': /\b(?:false|true)\b/,
 		'operator': /\.[*?]|\.{2,3}|[-=]>|\*\*|\+\+|\|\||(?:<<|>>|[-+*]%|[-+*/%^&|<>!=])=?|[?~]/,
 		'punctuation': /[.:,;(){}[\]]/

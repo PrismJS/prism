@@ -1,0 +1,20 @@
+reversedNames = names.sorted(by: { $0 > $1 } )
+
+----------------------------------------------------
+
+[
+	"reversedNames ",
+	["operator", "="],
+	" names",
+	["punctuation", "."],
+	["function", "sorted"],
+	["punctuation", "("],
+	"by",
+	["punctuation", ":"],
+	["punctuation", "{"],
+	["short-argument", "$0"],
+	["operator", ">"],
+	["short-argument", "$1"],
+	["punctuation", "}"],
+	["punctuation", ")"]
+]

@@ -10,7 +10,7 @@ Prism.languages.ocaml = {
 			greedy: true
 		}
 	],
-	'number': /\b(?:0x[\da-f][\da-f_]+|(?:0[bo])?\d[\d_]*\.?[\d_]*(?:e[+-]?[\d_]+)?)/i,
+	'number': /\b(?:0x[\da-f][\da-f_]+|(?:0[bo])?\d[\d_]*(?:\.[\d_]*)?(?:e[+-]?[\d_]+)?)/i,
 	'directive': {
 		pattern: /\B#\w+/,
 		alias: 'important'
@@ -19,7 +19,7 @@ Prism.languages.ocaml = {
 		pattern: /\B~\w+/,
 		alias: 'function'
 	},
-	'type_variable': {
+	'type-variable': {
 		pattern: /\B'\w+/,
 		alias: 'function'
 	},
@@ -37,5 +37,5 @@ Prism.languages.ocaml = {
 	'boolean': /\b(?:false|true)\b/,
 	// Custom operators are allowed
 	'operator': /:=|[=<>@^|&+\-*\/$%!?~][!$%&*+\-.\/:<=>?@^|~]*|\b(?:and|asr|land|lor|lsl|lsr|lxor|mod|or)\b/,
-	'punctuation': /[(){}\[\]|_.,:;]/
+	'punctuation': /[(){}\[\]|.,:;]|\b_\b/
 };

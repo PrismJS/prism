@@ -1,0 +1,91 @@
+{}
+{ Abs(a, d) + 12 - 1 / -230.0 + "Lol ipsum" }
+Expressions inside a generic text line: Loreim ipsu,{ Abs(a, d) + 12 - 1 / -230.0 + "Lol ipsum" } doler sit amen {¯\_(ツ)_/¯}.
+@ExpressionInsteadOfNamelessParameterValue {x > 0}
+@ExpressionBlendedWithNamelessParameterValue sdf{x > 0}df
+@ExpressionsInsideNamedParameterValueWrappedInQuotes text:"{a} < {b}"
+@ExpressionsBlendedWithNamedParameterValue param:32r2f,df{x > 0},d.{Abs(0) + 12.24 > 0}ff
+@ExpressionsInsteadOfNamelessParameterAndQuotedParameter {remark} if:remark=="Saying \\"Stop { "the" } car\\" was a mistake."
+
+----------------------------------------------------
+
+[
+	["generic-text", [
+		["expression", "{}"]
+	]],
+	["generic-text", [
+		["expression", "{ Abs(a, d) + 12 - 1 / -230.0 + \"Lol ipsum\" }"]
+	]],
+	["generic-text", [
+		"Expressions inside a generic text line: Loreim ipsu,",
+		["expression", "{ Abs(a, d) + 12 - 1 / -230.0 + \"Lol ipsum\" }"],
+		" doler sit amen ",
+		["expression", "{¯\\_(ツ)_/¯}"],
+		"."
+	]],
+	["command", [
+		["command-name", "@ExpressionInsteadOfNamelessParameterValue"],
+		["expression", "{x > 0}"]
+	]],
+	["command", [
+		["command-name", "@ExpressionBlendedWithNamelessParameterValue"],
+		["command-params", [
+			["command-param-value", "sdf"]
+		]],
+		["expression", "{x > 0}"],
+		["command-params", [
+			["command-param-value", "df"]
+		]]
+	]],
+	["command", [
+		["command-name", "@ExpressionsInsideNamedParameterValueWrappedInQuotes"],
+		["command-params", [
+			["command-param-id", "text:"],
+			["command-param-value", "\""]
+		]],
+		["expression", "{a}"],
+		["command-params", [
+			["command-param-value", "<"]
+		]],
+		["expression", "{b}"],
+		["command-params", [
+			["command-param-value", "\""]
+		]]
+	]],
+	["command", [
+		["command-name", "@ExpressionsBlendedWithNamedParameterValue"],
+		["command-params", [
+			["command-param-id", "param:"],
+			["command-param-value", "32r2f,df"]
+		]],
+		["expression", "{x > 0}"],
+		["command-params", [
+			["command-param-value", ",d."]
+		]],
+		["expression", "{Abs(0) + 12.24 > 0}"],
+		["command-params", [
+			["command-param-value", "ff"]
+		]]
+	]],
+	["command", [
+		["command-name", "@ExpressionsInsteadOfNamelessParameterAndQuotedParameter"],
+		["expression", "{remark}"],
+		["command-params", [
+			["command-param-id", "if:"],
+			["command-param-value", "remark=="],
+			["quoted-string", "\"Saying \\\\\""],
+			["command-param-value", "Stop"]
+		]],
+		["expression", "{ \"the\" }"],
+		["command-params", [
+			["command-param-value", "car\\\\\""],
+			["command-param-value", "was"],
+			["command-param-value", "a"],
+			["command-param-value", "mistake.\""]
+		]]
+	]]
+]
+
+----------------------------------------------------
+
+Expressions tests.

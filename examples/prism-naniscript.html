@@ -1,0 +1,72 @@
+
+<h2>Comments</h2>
+<pre><code>;Text of Comment
+		;		Comment with tabs before
+</code></pre>
+
+<h2>Define</h2>
+<pre><code>
+&gt;DefineKey define 12 super usefull lines
+</code></pre>
+
+<h2>Label</h2>
+<pre><code># Section
+#Section without whitespace
+ # Section with whitespace
+	# SectionWithTab	
+</code></pre>
+
+<h2>Command</h2>
+<pre><code>
+@
+@ cmdWithWhiteSpaceBefore
+@cmdWithTrailingSemicolon:
+@paramlessCmd
+ @cmdWithNoParamsAndWhitespaceBefore
+		@cmdWithNoParamsAndTabBefore
+					 @cmdWithNoParamsAndTabAndSpacesBefore
+           @cmdWithNoParamsWrappedInWhitespaces             
+@cmdWithNoParamWithTrailingSpace 
+@cmdWithNoParamWithMultipleTrailingSpaces   
+@cmdWithNoParamWithTrailingTab	
+@cmdWithNoParamWithTrailingTabAndSpaces	  
+@cmdWithPositiveIntParam 1
+@cmdWithNegativeIntParam -1
+@cmdWithPositiveFloatParamAndNoFraction 1.
+@cmdWithPositiveFloatParamAndFraction 1.10
+@cmdWithPositiveHegativeFloatParamAndNoFraction -1.
+@cmdWithPositiveHegativeFloatParamAndFraction -1.10
+@cmdWithBoolParamAndPositive true
+@cmdWithBoolParamAndNegative false
+@cmdWithStringParam hello$co\:mma"d"
+@cmdWithQuotedStringNamelessParameter "hello grizzly"
+@cmdWithQuotedStringNamelessParameterWithEscapedQuotesInTheValue "hello \"grizzly\""
+@set choice="moe"
+@command hello.grizzly
+@command one,two,three
+@command 1,2,3
+@command true,false,true
+@command hi:grizzly
+@command hi:1
+@command hi:true
+@command 1 in:forest danger:true
+@char 1 pos:0.25,-0.75 look:right
+</code></pre>
+
+<h2>Generic Text</h2>
+<pre><code>Generic text with inlined commands[i] example[command 1 danger:true] more text here [act danger:false true:false]
+"Integer: a = {a} malesuada a + b = {a + b}", Random(a, b) = {Random(a, b)}, Random("foo", "bar", "foobar") = {Random("foo", "bar", "foobar")}
+UnclosedExpression{ab{cndum dui dolor tincidu{nt [s[fa]sdf [
+"Integer: a = {a} malesuada a + b = {a + b}", Random(a, b) = {Random(a, b)}, Random("foo", "bar", "foobar") = {Random("foo", "bar", "foobar")},}
+</code></pre>
+
+<h2>Expressions</h2>
+<pre><code>{}
+{ Abs(a, d) + 12 - 1 / -230.0 + "Lol ipsum" }
+Expressions inside a generic text line: Loreim ipsu,{ Abs(a, d) + 12 - 1 / -230.0 + "Lol ipsum" } doler sit amen {¯\_(ツ)_/¯}.
+@ExpressionInsteadOfNamelessParameterValue {x > 0}
+@ExpressionBlendedWithNamelessParameterValue sdf{x > 0}df
+@ExpressionsInsideNamedParameterValueWrappedInQuotes text:"{a} &lt; {b}"
+@ExpressionsBlendedWithNamedParameterValue param:32r2f,df{x > 0},d.{Abs(0) + 12.24 > 0}ff
+@ExpressionsInsteadOfNamelessParameterAndQuotedParameter {remark} if:remark=="Saying \\"Stop { "the" } car\\" was a mistake."
+</code></pre>

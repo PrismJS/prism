@@ -24,105 +24,176 @@
 */ 1
 
 #define FOO 1 // trailing comment
+#define FOO (1 + 1)
 
 #define MAX(a, b) \
 	((a) < (b) ? (b) : (a))
+
+#define BAR(s) no_##s
 
 ----------------------------------------------------
 
 [
 	["macro", [
-		"# ",
+		["directive-hash", "#"],
 		["directive", "include"],
 		["string", "<stdio.h>"]
 	]],
 	["macro", [
-		"# ",
+		["directive-hash", "#"],
 		["directive", "include"],
 		["string", "\"stdio.h\""]
 	]],
 	["macro", [
-		"#",
+		["directive-hash", "#"],
 		["directive", "define"],
-		" PG_locked 0"
+		["macro-name", "PG_locked"],
+		["expression", [
+			["number", "0"]
+		]]
 	]],
+
 	["macro", [
-		"#",
+		["directive-hash", "#"],
 		["directive", "defined"]
 	]],
 	["macro", [
-		"#",
+		["directive-hash", "#"],
 		["directive", "elif"]
 	]],
 	["macro", [
-		"#",
+		["directive-hash", "#"],
 		["directive", "else"]
 	]],
 	["macro", [
-		"#",
+		["directive-hash", "#"],
 		["directive", "endif"]
 	]],
 	["macro", [
-		"#",
+		["directive-hash", "#"],
 		["directive", "error"]
 	]],
 	["macro", [
-		"#",
+		["directive-hash", "#"],
 		["directive", "ifdef"]
 	]],
 	["macro", [
-		"#",
+		["directive-hash", "#"],
 		["directive", "ifndef"]
 	]],
 	["macro", [
-		"#",
+		["directive-hash", "#"],
 		["directive", "if"]
 	]],
 	["macro", [
-		"#",
+		["directive-hash", "#"],
 		["directive", "import"]
 	]],
 	["macro", [
-		"#",
+		["directive-hash", "#"],
 		["directive", "include"]
 	]],
 	["macro", [
-		"#",
+		["directive-hash", "#"],
 		["directive", "line"]
 	]],
 	["macro", [
-		"#",
+		["directive-hash", "#"],
 		["directive", "pragma"]
 	]],
 	["macro", [
-		"#",
+		["directive-hash", "#"],
 		["directive", "undef"]
 	]],
 	["macro", [
-		"#",
+		["directive-hash", "#"],
 		["directive", "using"]
 	]],
+
 	["macro", [
-		"#",
+		["directive-hash", "#"],
 		["directive", "somethingunknown"]
 	]],
+
 	["macro", [
-		"#",
+		["directive-hash", "#"],
 		["directive", "define"],
-		" FOO ",
+		["macro-name", "FOO"],
 		["comment", "/*\r\n comment\r\n*/"],
-		" 1"
+		["expression", [
+			["number", "1"]
+		]]
 	]],
+
 	["macro", [
-		"#",
+		["directive-hash", "#"],
 		["directive", "define"],
-		" FOO 1 ",
+		["macro-name", "FOO"],
+		["expression", [
+			["number", "1"]
+		]],
 		["comment", "// trailing comment"]
 	]],
 	["macro", [
-		"#",
+		["directive-hash", "#"],
 		["directive", "define"],
-		" MAX(a, b) \\\r\n\t((a) < (b) ? (b) : (a))"
+		["macro-name", "FOO"],
+		["expression", [
+			["punctuation", "("],
+			["number", "1"],
+			["operator", "+"],
+			["number", "1"],
+			["punctuation", ")"]
+		]]
+	]],
+
+	["macro", [
+		["directive-hash", "#"],
+		["directive", "define"],
+		["macro-name", "MAX"],
+		["expression", [
+			["punctuation", "("],
+			"a",
+			["punctuation", ","],
+			" b",
+			["punctuation", ")"]
+		]],
+		["punctuation", "\\"],
+		["expression", [
+			["punctuation", "("],
+			["punctuation", "("],
+			"a",
+			["punctuation", ")"],
+			["operator", "<"],
+			["punctuation", "("],
+			"b",
+			["punctuation", ")"],
+			["operator", "?"],
+			["punctuation", "("],
+			"b",
+			["punctuation", ")"],
+			["operator", ":"],
+			["punctuation", "("],
+			"a",
+			["punctuation", ")"],
+			["punctuation", ")"]
+		]]
+	]],
+
+	["macro", [
+		["directive-hash", "#"],
+		["directive", "define"],
+		["macro-name", "BAR"],
+		["expression", [
+			["punctuation", "("],
+			"s",
+			["punctuation", ")"],
+			" no_"
+		]],
+		["punctuation", "##"],
+		["expression", [
+			"s"
+		]]
 	]]
 ]
 

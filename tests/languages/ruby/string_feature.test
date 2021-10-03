@@ -36,6 +36,25 @@ bar"
 %x[foo #{ 42 }]
 %x<foo #{ 42 }>
 
+<<STRING
+  foo #{42} bar
+STRING
+  <<-STRING
+    foo #{42} bar
+  STRING
+  <<~STRING
+    foo #{42} bar
+  STRING
+<<'STRING'
+  foo #{42} bar
+STRING
+  <<-'STRING'
+    foo #{42} bar
+  STRING
+  <<~'STRING'
+    foo #{42} bar
+  STRING
+
 ----------------------------------------------------
 
 [
@@ -279,6 +298,75 @@ bar"
             ["delimiter", "}"]
         ]],
         ">"
+    ]],
+    ["string", [
+      ["delimiter", [
+        ["punctuation", "<<"], 
+        "STRING"
+      ]],
+      "\r\n  foo ",
+      ["interpolation", [
+        ["delimiter", "#{"],
+        ["number", "42"],
+        ["delimiter", "}"]
+      ]],
+      " bar\r\n",
+      ["delimiter", ["STRING"]]
+    ]],
+    ["string", [
+      ["delimiter", [
+        ["punctuation", "<<-"], 
+        "STRING"
+      ]],
+      "\r\n    foo ",
+      ["interpolation", [
+        ["delimiter", "#{"],
+        ["number", "42"],
+        ["delimiter", "}"]
+      ]],
+      " bar\r\n  ",
+      ["delimiter", ["STRING"]]
+    ]],
+    ["string", [
+      ["delimiter", [
+        ["punctuation", "<<~"], 
+        "STRING"
+      ]],
+      "\r\n    foo ",
+      ["interpolation", [
+        ["delimiter", "#{"],
+        ["number", "42"],
+        ["delimiter", "}"]
+      ]],
+      " bar\r\n  ",
+      ["delimiter", ["STRING"]]
+    ]],
+    ["string", [
+      ["delimiter", [
+        ["punctuation", "<<'"],
+        "STRING",
+        ["punctuation", "'"]
+      ]],
+      "\r\n  foo #{42} bar\r\n",
+      ["delimiter", ["STRING"]]
+    ]],
+    ["string", [
+      ["delimiter", [
+        ["punctuation", "<<-'"],
+        "STRING",
+        ["punctuation", "'"]
+      ]],
+      "\r\n    foo #{42} bar\r\n  ",
+      ["delimiter", ["STRING"]]
+    ]],
+    ["string", [
+      ["delimiter", [
+        ["punctuation", "<<~'"],
+        "STRING",
+        ["punctuation", "'"]
+      ]],
+      "\r\n    foo #{42} bar\r\n  ",
+      ["delimiter", ["STRING"]]
     ]]
 ]
 

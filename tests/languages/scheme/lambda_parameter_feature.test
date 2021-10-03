@@ -1,6 +1,11 @@
 (lambda x x)
+
+(lambda |some name| |some name|)
+
 (lambda (x) x)
+
 (lambda (foo bar) (concat foo bar))
+(lambda [foo bar] (concat foo bar))
 
 ----------------------------------------------------
 
@@ -10,6 +15,13 @@
 	["lambda-parameter", "x"],
 	" x",
 	["punctuation", ")"],
+
+	["punctuation", "("],
+	["keyword", "lambda"],
+	["lambda-parameter", "|some name|"],
+	["identifier", "|some name|"],
+	["punctuation", ")"],
+
 	["punctuation", "("],
 	["keyword", "lambda"],
 	["punctuation", "("],
@@ -17,11 +29,23 @@
 	["punctuation", ")"],
 	" x",
 	["punctuation", ")"],
+
 	["punctuation", "("],
 	["keyword", "lambda"],
 	["punctuation", "("],
 	["lambda-parameter", "foo bar"],
 	["punctuation", ")"],
+	["punctuation", "("],
+	["function", "concat"],
+	" foo bar",
+	["punctuation", ")"],
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["keyword", "lambda"],
+	["punctuation", "["],
+	["lambda-parameter", "foo bar"],
+	["punctuation", "]"],
 	["punctuation", "("],
 	["function", "concat"],
 	" foo bar",
