@@ -124,6 +124,7 @@
 		"jsonp": "JSONP",
 		"jsstacktrace": "JS stack trace",
 		"js-templates": "JS Templates",
+		"keepalived": "Keepalived Configure",
 		"kts": "Kotlin Script",
 		"kt": "Kotlin",
 		"kumir": "KuMir (КуМир)",
