@@ -42,7 +42,7 @@
 		<pre><code class="language-python">pi = round(float('3.14159'), 2)</code></pre></dd>
 
 		<dt><code>class-name</code></dt>
-		<dd>The name of a class.
+		<dd>The name of a class, interface, trait, or type.
 		<pre><code class="language-javascript">class Rectangle extends Square {
 	constructor(length, breadth) {
 		super(length);
@@ -51,7 +51,7 @@
 }</code></pre></dd>
 
 		<dt><code>function</code></dt>
-		<dd>The name of a function.
+		<dd>The name of a function or method.
 		<pre><code class="language-javascript">function isEven(number) {
 	return Number(number) % 2 === 0;
 }
@@ -61,7 +61,7 @@ function isOdd(number) {
 }</code></pre></dd>
 
 		<dt><code>boolean</code></dt>
-		<dd>True and false, and pairs with similar concepts.
+		<dd>True and false, and pairs with similar concepts (e.g. yes and no).
 		<pre><code class="language-javascript">console.log(true === false); // prints false
 console.log(true === !false); // prints true</code></pre></dd>
 
@@ -129,32 +129,24 @@ x || y
 z ? x : y</code></pre></dd>
 
 		<dt><code>variable</code></dt>
-		<dd>An object that is assigned and holds a specific value.
+		<dd>The name of a variable. This token is intended to be used sparingly. It's generally used on special variables (e.g. Less or Bash), not general variables from imperative and procedural programming languages (e.g. C, JavaScript, Python).
 		<pre><code class="language-less">@nice-blue: #5B83AD;
 @light-blue: lighten(@nice-blue, 20%);</code></pre></dd>
 
 		<dt><code>constant</code></dt>
-		<dd>The name of a a variable that cannot be modified later on.
+		<dd>The name of a constant.
 		<pre><code class="language-javascript">const PI = 3.14159;</code></pre></dd>
 
 		<dt><code>property</code></dt>
-		<dd>An attribute/characteristic.
+		<dd>An attribute/characteristic or object/map key.
 		<pre><code class="language-css">body {
 	color: red;
 	line-height: normal;
 }</code></pre>
 		<pre><code class="language-json">{
 	"data": {
-		"labels": [
-			"foo",
-			"bar"
-		],
-		"series": [
-			[ 0, 1, 2, 3 ],
-			[ 0, -4, -8, -12 ]
-		]
+		"labels": ["foo", "bar"],
 	},
-	// we even support comments
 	"error": null,
 	"status": "Ok"
 }</code></pre></dd>
@@ -174,7 +166,7 @@ z ? x : y</code></pre></dd>
 		return (copy[size/2 - 1] + copy[size/2]) / 2</code></pre></dd>
 
 		<dt><code>important</code></dt>
-		<dd>Anything that is important.
+		<dd>Anything that is important and needs special highlighting.
 		<pre><code class="language-css">body {
 	color: red !important;
 }</code></pre>
@@ -209,7 +201,7 @@ z ? x : y</code></pre></dd>
 		<pre><code class="language-markdown">*I am italicised text!*</code></pre></dd>
 
 		<dt><code>tag</code></dt>
-		<dd>The markup version of a keyword, to indicate when an element begins and ends.
+		<dd>A markup tag (e.g. HTML and XML tags).
 		<pre><code class="language-markup">&lt;p&gt;Hello World!&lt;/p&gt;</code></pre></dd>
 
 		<dt><code>attr-name</code></dt>
@@ -223,7 +215,7 @@ z ? x : y</code></pre></dd>
 		<pre><code class="language-markup">&lt;p id="greeting"&gt;Hello World!&lt;/p&gt;</code></pre></dd>
 
 		<dt><code>namespace</code></dt>
-		<dd>Used to provide uniquely named elements and attributes in XML documents.
+		<dd>Used to provide uniquely named elements and attributes in XML documents. Outside of markup languages, it is used to tokenize the package/namespace part of identifiers.
 		<pre><code class="language-markup">&lt;html:p foo:bar="baz" foo:weee&gt;&lt;/html:p&gt;</code></pre></dd>
 
 		<dt><code>prolog</code></dt>
@@ -237,7 +229,7 @@ z ? x : y</code></pre></dd>
 &lt;html&gt;&lt;/html&gt;</code></pre></dd>
 
 		<dt><code>cdata</code></dt>
-		<dd>Character data, specific to markup languages. Deprecated as of DOM4.
+		<dd>Character data, specific to markup languages.
 		<pre><code class="language-markup">&lt;ns1:description&gt;&lt;![CDATA[
   CDATA is &lt;not&gt; magical.
 ]]>&lt;/ns1:description&gt;</code></pre></dd>
