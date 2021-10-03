@@ -60,10 +60,10 @@
 				lookbehind: true,
 			},
 
-			// includes
-			RegExp(id + /(?=\s+includes\b)/.source),
+			// includes and implements
+			RegExp(id + /(?=\s+(?:implements|includes)\b)/.source),
 			{
-				pattern: RegExp(/(\bincludes\s+)/.source + id),
+				pattern: RegExp(/(\b(?:implements|includes)\s+)/.source + id),
 				lookbehind: true,
 			},
 
@@ -75,9 +75,9 @@
 		],
 
 		'keyword': [
-			/\b(?:async|attribute|callback|const|constructor|deleter|dictionary|enum|getter|includes|inherit|interface|mixin|namespace|null|optional|or|partial|readonly|required|setter|static|stringifier|typedef|unrestricted)\b/,
+			/\b(?:async|attribute|callback|const|constructor|deleter|dictionary|enum|getter|implements|includes|inherit|interface|mixin|namespace|null|optional|or|partial|readonly|required|setter|static|stringifier|typedef|unrestricted)\b/,
 			// type keywords
-			/\b(?:any|bigint|boolean|byte|double|float|iterable|long|maplike|object|octet|record|sequence|setlike|short|symbol|undefined|unsigned)\b/
+			/\b(?:any|bigint|boolean|byte|double|float|iterable|long|maplike|object|octet|record|sequence|setlike|short|symbol|undefined|unsigned|void)\b/
 		],
 		'boolean': /\b(?:false|true)\b/,
 
