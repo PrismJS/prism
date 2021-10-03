@@ -222,24 +222,34 @@ Foo implements Bar;
 	]],
 	" y",
 	["punctuation", ","],
-	["class-name", ["DOMString"]],
+	["class-name", [
+		["builtin", "DOMString"]
+	]],
 	" text",
 	["punctuation", ")"],
 	["punctuation", ";"],
 
 	["keyword", "getter"],
-	["class-name", ["DOMString"]],
+	["class-name", [
+		["builtin", "DOMString"]
+	]],
 	["punctuation", "("],
-	["class-name", ["DOMString"]],
+	["class-name", [
+		["builtin", "DOMString"]
+	]],
 	" keyName",
 	["punctuation", ")"],
 	["punctuation", ";"],
 
 	["keyword", "getter"],
-	["class-name", ["DOMString"]],
+	["class-name", [
+		["builtin", "DOMString"]
+	]],
 	" foo",
 	["punctuation", "("],
-	["class-name", ["DOMString"]],
+	["class-name", [
+		["builtin", "DOMString"]
+	]],
 	" keyName",
 	["punctuation", ")"],
 	["punctuation", ";"],
@@ -249,7 +259,9 @@ Foo implements Bar;
 	]],
 	" hasAddressForName",
 	["punctuation", "("],
-	["class-name", ["USVString"]],
+	["class-name", [
+		["builtin", "USVString"]
+	]],
 	" name",
 	["punctuation", ","],
 	["keyword", "optional"],
@@ -274,7 +286,7 @@ Foo implements Bar;
 	["class-name", [
 		["keyword", "iterable"],
 		["operator", "<"],
-		"DOMString",
+		["builtin", "DOMString"],
 		["punctuation", ","],
 		" Session",
 		["operator", ">"]
@@ -352,7 +364,9 @@ Foo implements Bar;
 		["keyword", "undefined"]
 	]],
 	["punctuation", "("],
-	["class-name", ["DOMString"]],
+	["class-name", [
+		["builtin", "DOMString"]
+	]],
 	" status",
 	["punctuation", ")"],
 	["punctuation", ";"],
