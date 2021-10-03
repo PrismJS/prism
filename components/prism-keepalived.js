@@ -4,7 +4,8 @@ Prism.languages.keepalived = {
 		greedy: true
 	},
 	'string': {
-		pattern: /("|')(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,
+		pattern: /(^|[^\\])(?:"(?:\\(?:\r\n|[\s\S])|[^"\\\r\n])*"|'(?:\\(?:\r\n|[\s\S])|[^'\\\r\n])*')/,
+		lookbehind: true,
 		greedy: true
 	},
 
