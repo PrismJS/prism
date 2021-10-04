@@ -175,6 +175,7 @@
 		"rss": "markup",
 		"js": "javascript",
 		"g4": "antlr4",
+		"ino": "arduino",
 		"adoc": "asciidoc",
 		"avs": "avisynth",
 		"avdl": "avro-idl",
