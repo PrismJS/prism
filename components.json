@@ -132,6 +132,7 @@
 		"arduino": {
 			"title": "Arduino",
 			"require": "cpp",
+			"alias": "ino",
 			"owner": "dkern"
 		},
 		"arff": {
@@ -712,6 +713,10 @@
 		"julia": {
 			"title": "Julia",
 			"owner": "cdagnino"
+		},
+		"keepalived": {
+			"title": "Keepalived Configure",
+			"owner": "dev-itsheng"
 		},
 		"keyman": {
 			"title": "Keyman",
