@@ -1,0 +1,117 @@
+{aa}
+{/aa}
+{/}
+{{aa}}
+{10}
+{=10}
+{test()}
+{'no'}
+{"no"}
+{ no }
+{multi
+line}
+
+----------------------------------------------------
+
+[
+	["latte", [
+		["ld", [
+			["punctuation", "{"],
+			["tag", "aa"]
+		]],
+		["rd", [
+			["punctuation", "}"]
+		]]
+	]],
+
+	["latte", [
+		["ld", [
+			["punctuation", "{/"],
+			["tag", "aa"]
+		]],
+		["rd", [
+			["punctuation", "}"]
+		]]
+	]],
+
+	["latte", [
+		["ld", [
+			["punctuation", "{"]
+		]],
+		["php", [
+			["operator", "/"]
+		]],
+		["rd", [
+			["punctuation", "}"]
+		]]
+	]],
+
+	"\r\n{",
+	["latte", [
+		["ld", [
+			["punctuation", "{"],
+			["tag", "aa"]
+		]],
+		["rd", [
+			["punctuation", "}"]
+		]]
+	]],
+	"}\r\n",
+
+	["latte", [
+		["ld", [
+			["punctuation", "{"]
+		]],
+		["php", [
+			["number", "10"]
+		]],
+		["rd", [
+			["punctuation", "}"]
+		]]
+	]],
+
+	["latte", [
+		["ld", [
+			["punctuation", "{"],
+			["tag", "="]
+		]],
+		["php", [
+			["number", "10"]
+		]],
+		["rd", [
+			["punctuation", "}"]
+		]]
+	]],
+
+	["latte", [
+		["ld", [
+			["punctuation", "{"]
+		]],
+		["php", [
+			["function", ["test"]],
+			["punctuation", "("],
+			["punctuation", ")"]
+		]],
+		["rd", [
+			["punctuation", "}"]
+		]]
+	]],
+
+	"\r\n{'no'}\r\n{\"no\"}\r\n{ no }\r\n",
+
+	["latte", [
+		["ld", [
+			["punctuation", "{"],
+			["tag", "multi"]
+		]],
+
+		["php", ["line"]],
+		["rd", [
+			["punctuation", "}"]
+		]]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for delimiters.

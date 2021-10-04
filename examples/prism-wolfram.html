@@ -1,0 +1,31 @@
+<h2>Comments</h2>
+<pre><code>
+(* This is a comment *)
+</code></pre>
+
+<h2>Strings</h2>
+<pre><code>
+"foo bar baz"
+</code></pre>
+
+<h2>Numbers</h2>
+<pre><code>
+7
+3.14
+10.
+.001
+1e100
+3.14e-10
+2147483647
+</code></pre>
+
+<h2>Full example</h2>
+<pre><code>
+(* Most operators are supported *)
+f /@ {1, 2, 3};
+f @@ Range[10];
+f @@@ y;
+Module[{x=1}, 
+    Return @ $Failed
+]
+</code></pre>

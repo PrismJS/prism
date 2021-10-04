@@ -1,0 +1,52 @@
+module Test.test where
+import Relation.Binary.PropositionalEquality as Eq
+open Eq hiding (_≡_; refl)
+open Eq.≡-Reasoning using (begin_; _≡⟨⟩_; _∎) renaming (begin_ to start_)
+
+----------------------------------------------------
+
+[
+	["keyword", "module"],
+	" Test",
+	["punctuation", "."],
+	"test ",
+	["keyword", "where"],
+
+	["keyword", "import"],
+	" Relation",
+	["punctuation", "."],
+	"Binary",
+	["punctuation", "."],
+	"PropositionalEquality as Eq\r\n",
+
+	["keyword", "open"],
+	" Eq ",
+	["keyword", "hiding"],
+	["punctuation", "("],
+	"_≡_",
+	["punctuation", ";"],
+	" refl",
+	["punctuation", ")"],
+
+	["keyword", "open"],
+	" Eq",
+	["punctuation", "."],
+	"≡-Reasoning ",
+	["keyword", "using"],
+	["punctuation", "("],
+	"begin_",
+	["punctuation", ";"],
+	" _≡⟨⟩_",
+	["punctuation", ";"],
+	" _∎",
+	["punctuation", ")"],
+	["keyword", "renaming"],
+	["punctuation", "("],
+	"begin_ to start_",
+	["punctuation", ")"]
+]
+
+----------------------------------------------------
+
+Agda's module system is one based on namespaces and corresponding to file structure.
+It supports namespace importing, open importing, partial hiding/using and renaming.

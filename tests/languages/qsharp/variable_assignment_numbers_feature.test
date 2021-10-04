@@ -1,0 +1,30 @@
+let var1 = 3; 
+mutable var2 = 5L; 
+set var2 = var2 + 1.5;
+
+----------------------------------------------------
+
+[
+	["keyword", "let"],
+	" var1 ",
+	["operator", "="],
+	["number", "3"],
+	["punctuation", ";"],
+	["keyword", "mutable"],
+	" var2 ",
+	["operator", "="],
+	["number", "5L"],
+	["punctuation", ";"],
+	["keyword", "set"],
+	" var2 ",
+	["operator", "="],
+	" var2 ",
+	["operator", "+"],
+	["number", "1.5"],
+	["punctuation", ";"]
+]
+
+
+----------------------------------------------------
+
+Checks for variable assignment and numbers

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<link rel="icon" href="assets/favicon.png" />
+	<title>Diff Highlight ▲ Prism plugins</title>
+	<base href="../.." />
+	<link rel="stylesheet" href="assets/style.css" />
+	<link rel="stylesheet" href="themes/prism.css" data-noprefix />
+	<link rel="stylesheet" href="plugins/diff-highlight/prism-diff-highlight.css" data-noprefix />
+	<script src="assets/vendor/prefixfree.min.js"></script>
+
+	<script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
+	<script src="https://www.google-analytics.com/ga.js" async></script>
+</head>
+
+<body class="language-none">
+
+	<header data-plugin-header="diff-highlight"></header>
+
+	<section>
+		<h1>How to use</h1>
+
+		<p>Replace the <code>language-diff</code> of your code block with a <code>language-diff-xxxx</code> class to enable syntax highlighting for diff blocks.</p>
+
+		<p>
+			Optional:<br>
+			You can add the <code>diff-highlight</code> class to your code block to indicate changes using the background color of a line rather than the color of the text.
+		</p>
+
+		<h2>Autoloader</h2>
+
+		<p>The <a href="plugins/autoloader">Autoloader plugin</a> understands the <code>language-diff-xxxx</code> format and will ensure that the language definitions for both Diff and the code language are loaded.</p>
+	</section>
+
+	<section>
+		<h1>Example</h1>
+
+		<p>Using <code>class="language-diff"</code>:</p>
+
+		<pre><code class="language-diff">@@ -4,6 +4,5 @@
+-    let foo = bar.baz([1, 2, 3]);
+-    foo = foo + 1;
++    const foo = bar.baz([1, 2, 3]) + 1;
+     console.log(`foo: ${foo}`);</code></pre>
+
+		<p>Using <code>class="language-diff diff-highlight"</code>:</p>
+
+		<pre><code class="language-diff diff-highlight">@@ -4,6 +4,5 @@
+-    let foo = bar.baz([1, 2, 3]);
+-    foo = foo + 1;
++    const foo = bar.baz([1, 2, 3]) + 1;
+     console.log(`foo: ${foo}`);</code></pre>
+
+		<p>Using <code>class="language-diff-javascript"</code>:</p>
+
+		<pre><code class="language-diff-javascript">@@ -4,6 +4,5 @@
+-    let foo = bar.baz([1, 2, 3]);
+-    foo = foo + 1;
++    const foo = bar.baz([1, 2, 3]) + 1;
+     console.log(`foo: ${foo}`);</code></pre>
+
+		<p>Using <code>class="language-diff-javascript diff-highlight"</code>:</p>
+
+		<pre><code class="language-diff-javascript diff-highlight">@@ -4,6 +4,5 @@
+-    let foo = bar.baz([1, 2, 3]);
+-    foo = foo + 1;
++    const foo = bar.baz([1, 2, 3]) + 1;
+     console.log(`foo: ${foo}`);</code></pre>
+
+		<p>
+			Using <code>class="language-diff-rust diff-highlight"</code>:<br>
+			(Autoloader is used to load the Rust language definition.)
+		</p>
+
+		<pre><code class="language-diff-rust diff-highlight">@@ -111,6 +114,9 @@
+         nasty_btree_map.insert(i, MyLeafNode(i));
+     }
+
++    let mut zst_btree_map: BTreeMap&lt;(), ()> = BTreeMap::new();
++    zst_btree_map.insert((), ());
++
+     // VecDeque
+     let mut vec_deque = VecDeque::new();
+     vec_deque.push_back(5);</code></pre>
+	</section>
+
+	<footer data-src="assets/templates/footer.html" data-type="text/html"></footer>
+
+	<script src="prism.js"></script>
+	<script src="plugins/autoloader/prism-autoloader.js"></script>
+	<script src="plugins/diff-highlight/prism-diff-highlight.js"></script>
+	<script src="assets/vendor/utopia.js"></script>
+	<script src="components.js"></script>
+	<script src="assets/code.js"></script>
+
+</body>
+
+</html>

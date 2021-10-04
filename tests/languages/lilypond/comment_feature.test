@@ -1,0 +1,17 @@
+% single line
+
+%{
+multiple lines
+%}
+
+----------------------------------------------------
+
+[
+	["comment", "% single line"],
+
+	["comment", "%{\r\nmultiple lines\r\n%}"]
+]
+
+----------------------------------------------------
+
+Checks for comments.

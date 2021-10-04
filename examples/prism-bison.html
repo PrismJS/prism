@@ -50,7 +50,7 @@ int yylex(void);
   string*	op_val;
 }
 
-%start	input 
+%start	input
 
 %token	&lt;int_val>	INTEGER_LITERAL
 %type	&lt;int_val>	exp
@@ -74,7 +74,7 @@ int yyerror(string s)
 {
   extern int yylineno;	// defined and maintained in lex.c
   extern char *yytext;	// defined and maintained in lex.c
-  
+
   cerr &lt;&lt; "ERROR: " &lt;&lt; s &lt;&lt; " at symbol \"" &lt;&lt; yytext;
   cerr &lt;&lt; "\" on line " &lt;&lt; yylineno &lt;&lt; endl;
   exit(1);
@@ -84,21 +84,3 @@ int yyerror(char *s)
 {
   return yyerror(string(s));
 }</code></pre>
-
-<h2>Known failures</h2>
-<p>There are certain edge cases where Prism will fail.
-	There are always such cases in every regex-based syntax highlighter.
-	However, Prism dares to be open and honest about them.
-	If a failure is listed here, it doesn’t mean it will never be fixed. This is more of a “known bugs” list, just with a certain type of bug.
-</p>
-
-<h3>Two levels of nesting inside C section</h3>
-<pre><code>{
-	if($1) {
-		if($2) {
-
-		}
-	}
-} // <- Broken
-%%
-%%</code></pre>

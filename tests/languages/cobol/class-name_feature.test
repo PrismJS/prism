@@ -1,0 +1,84 @@
+PIC 99/99/9999 SOURCE sales-date.
+PIC $$$$9.99 SOURCE sales-amount.
+PIC X(34) SOURCE sales-record.
+
+pic 9 usage computational value is 5.
+pic 99 value is 10.
+
+pic x(2)
+pic a(20).
+
+greeting pic x(12) value is "Hello World".
+
+----------------------------------------------------
+
+[
+	["keyword", "PIC"],
+	["class-name", ["99/99/9999"]],
+	["keyword", "SOURCE"],
+	" sales-date",
+	["punctuation", "."],
+
+	["keyword", "PIC"],
+	["class-name", ["$$$$9.99"]],
+	["keyword", "SOURCE"],
+	" sales-amount",
+	["punctuation", "."],
+
+	["keyword", "PIC"],
+	["class-name", [
+		"X",
+		["punctuation", "("],
+		["number", "34"],
+		["punctuation", ")"]
+	]],
+	["keyword", "SOURCE"],
+	" sales-record",
+	["punctuation", "."],
+
+	["keyword", "pic"],
+	["class-name", ["9"]],
+	["keyword", "usage"],
+	["keyword", "computational"],
+	["keyword", "value"],
+	["keyword", "is"],
+	["number", "5"],
+	["punctuation", "."],
+
+	["keyword", "pic"],
+	["class-name", ["99"]],
+	["keyword", "value"],
+	["keyword", "is"],
+	["number", "10"],
+	["punctuation", "."],
+
+	["keyword", "pic"],
+	["class-name", [
+		"x",
+		["punctuation", "("],
+		["number", "2"],
+		["punctuation", ")"]
+	]],
+
+	["keyword", "pic"],
+	["class-name", [
+		"a",
+		["punctuation", "("],
+		["number", "20"],
+		["punctuation", ")"]
+	]],
+	["punctuation", "."],
+
+	"\r\n\r\ngreeting ",
+	["keyword", "pic"],
+	["class-name", [
+		"x",
+		["punctuation", "("],
+		["number", "12"],
+		["punctuation", ")"]
+	]],
+	["keyword", "value"],
+	["keyword", "is"],
+	["string", "\"Hello World\""],
+	["punctuation", "."]
+]

@@ -7,6 +7,7 @@
 #endregion
 #error
 #line
+#nullable
 #pragma
 #region
 #undef
@@ -18,16 +19,17 @@
 	["preprocessor", ["#", ["directive", "define"], " DEBUG"]],
 	["preprocessor", ["#", ["directive", "if"], " DEBUG"]],
 	["preprocessor", ["#", ["directive", "endif"]]],
-	
+
 	["preprocessor", ["#", ["directive", "elif"]]],
-    ["preprocessor", ["#", ["directive", "else"]]],
-    ["preprocessor", ["#", ["directive", "endregion"]]],
-    ["preprocessor", ["#", ["directive", "error"]]],
-    ["preprocessor", ["#", ["directive", "line"]]],
-    ["preprocessor", ["#", ["directive", "pragma"]]],
-    ["preprocessor", ["#", ["directive", "region"]]],
-    ["preprocessor", ["#", ["directive", "undef"]]],
-    ["preprocessor", ["#", ["directive", "warning"]]]
+	["preprocessor", ["#", ["directive", "else"]]],
+	["preprocessor", ["#", ["directive", "endregion"]]],
+	["preprocessor", ["#", ["directive", "error"]]],
+	["preprocessor", ["#", ["directive", "line"]]],
+	["preprocessor", ["#", ["directive", "nullable"]]],
+	["preprocessor", ["#", ["directive", "pragma"]]],
+	["preprocessor", ["#", ["directive", "region"]]],
+	["preprocessor", ["#", ["directive", "undef"]]],
+	["preprocessor", ["#", ["directive", "warning"]]]
 ]
 
 ----------------------------------------------------

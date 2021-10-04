@@ -7,47 +7,60 @@ PATCH http://example.com HTTP/1.0
 TRACE http://example.com HTTP/1.0
 CONNECT http://example.com HTTP/1.0
 GET /path/to/foo.html HTTP/1.1
+GET / HTTP/1.1
 
 ----------------------------------------------------
 
 [
 	["request-line", [
-		["property", "POST"],
-		" http://example.com HTTP/1.0"
+		["method", "POST"],
+		["request-target", "http://example.com"],
+		["http-version", "HTTP/1.0"]
 	]],
 	["request-line", [
-		["property", "GET"],
-		" http://localhost",
-		["attr-name", ":9999"],
-		"/foo.html HTTP/1.1"
+		["method", "GET"],
+		["request-target", "http://localhost:9999/foo.html"],
+		["http-version", "HTTP/1.1"]
 	]],
 	["request-line", [
-		["property", "PUT"],
-		" http://www.example.com HTTP/2.0"
+		["method", "PUT"],
+		["request-target", "http://www.example.com"],
+		["http-version", "HTTP/2.0"]
 	]],
 	["request-line", [
-		["property", "DELETE"],
-		" https://example.com HTTP/1.1"
+		["method", "DELETE"],
+		["request-target", "https://example.com"],
+		["http-version", "HTTP/1.1"]
 	]],
 	["request-line", [
-		["property", "OPTIONS"],
-		" https://www.example.com HTTP/1.1"
+		["method", "OPTIONS"],
+		["request-target", "https://www.example.com"],
+		["http-version", "HTTP/1.1"]
 	]],
 	["request-line", [
-		["property", "PATCH"],
-		" http://example.com HTTP/1.0"
+		["method", "PATCH"],
+		["request-target", "http://example.com"],
+		["http-version", "HTTP/1.0"]
 	]],
 	["request-line", [
-		["property", "TRACE"],
-		" http://example.com HTTP/1.0"
+		["method", "TRACE"],
+		["request-target", "http://example.com"],
+		["http-version", "HTTP/1.0"]
 	]],
 	["request-line", [
-		["property", "CONNECT"],
-		" http://example.com HTTP/1.0"
+		["method", "CONNECT"],
+		["request-target", "http://example.com"],
+		["http-version", "HTTP/1.0"]
 	]],
 	["request-line", [
-		["property", "GET"],
-		" /path/to/foo.html HTTP/1.1"
+		["method", "GET"],
+		["request-target", "/path/to/foo.html"],
+		["http-version", "HTTP/1.1"]
+	]],
+	["request-line", [
+		["method", "GET"],
+		["request-target", "/"],
+		["http-version", "HTTP/1.1"]
 	]]
 ]
 

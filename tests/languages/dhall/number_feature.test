@@ -1,0 +1,35 @@
+0
+123
+123e-5
+-123e+2
+123.456
++123.456e-7
+0xFF
+-0xFF
++0xFF
+
+Infinity
+-Infinity
+NaN
+
+----------------------------------------------------
+
+[
+	["number", "0"],
+	["number", "123"],
+	["number", "123e-5"],
+	["number", "-123e+2"],
+	["number", "123.456"],
+	["number", "+123.456e-7"],
+	["number", "0xFF"],
+	["number", "-0xFF"],
+	["number", "+0xFF"],
+
+	["number", "Infinity"],
+	["number", "-Infinity"],
+	["number", "NaN"]
+]
+
+----------------------------------------------------
+
+Checks for numeric literals.

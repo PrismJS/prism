@@ -1,0 +1,43 @@
+<h2>Full example</h2>
+<pre><code>(* source: https://github.com/HarrisonGrodin/ml-numbers/blob/ba35c763092052e391871edf224f17474c6231b1/src/Rational.sml *)
+
+structure Rational :> RATIONAL =
+  struct
+    type t = int * int  (* (a,b) invariant: a,b coprime; b nonnegative *)
+
+    local
+      val rec gcd = fn
+        (m,0) => m
+      | (m,n) => gcd (n, m mod n)
+    in
+      infix 8 //
+      val op // = fn (x,y) => (
+        let
+          val gcd = gcd (x,y)
+        in
+          (x div gcd, y div gcd)
+        end
+      )
+    end
+
+    val show = Fn.id
+
+    val zero = (0,1)
+    val one  = (1,1)
+
+    val eq : t * t -> bool = (op =)
+    val compare = fn ((a,b),(x,y)) => Int.compare (a * y, b * x)
+    val toString = fn (x,y) => Int.toString x ^ " // " ^ Int.toString y
+    val percent =
+      Fn.curry (Fn.flip (op ^)) "%"
+      o Int.toString
+      o (fn (a,b) => (100 * a) div b)
+
+    val op + = fn ((a,b),(x,y)) => (a * y + b * x) // (b * y)
+    val ~ = fn (a,b) => (~a,b)
+    val op - = fn (r1,r2) => r1 + ~r2
+
+    val op * = fn ((a,b),(x,y)) => (a * x) // (b * y)
+    val inv = Fn.flip (op //)
+    val op / = fn (r1,r2) => r1 * inv r2
+  end</code></pre>

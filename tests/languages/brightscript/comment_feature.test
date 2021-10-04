@@ -1,0 +1,13 @@
+REM I'm a comment
+' me too!
+
+----------------------------------------------------
+
+[
+	["comment", "REM I'm a comment"],
+	["comment", "' me too!"]
+]
+
+----------------------------------------------------
+
+Checks for comments.

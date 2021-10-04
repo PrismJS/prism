@@ -1,0 +1,111 @@
+WITH COUNT INTO
+COUNT
+
+AGGREGATE
+ALL
+AND
+ANY
+ASC
+COLLECT
+DESC
+DISTINCT
+FILTER
+FOR
+GRAPH
+IN
+INBOUND
+INSERT
+INTO
+K_PATHS
+K_SHORTEST_PATHS
+LET
+LIKE
+LIMIT
+NONE
+NOT
+NULL
+OR
+OUTBOUND
+REMOVE
+REPLACE
+RETURN
+SHORTEST_PATH
+SORT
+UPDATE
+UPSERT
+WINDOW
+WITH
+
+KEEP
+PRUNE
+SEARCH
+TO
+
+CURRENT
+NEW
+OLD
+
+OPTIONS {}
+OPTIONS
+
+----------------------------------------------------
+
+[
+	["keyword", "WITH"],
+	["keyword", "COUNT"],
+	["keyword", "INTO"],
+	"\r\nCOUNT\r\n\r\n",
+
+	["keyword", "AGGREGATE"],
+	["keyword", "ALL"],
+	["keyword", "AND"],
+	["keyword", "ANY"],
+	["keyword", "ASC"],
+	["keyword", "COLLECT"],
+	["keyword", "DESC"],
+	["keyword", "DISTINCT"],
+	["keyword", "FILTER"],
+	["keyword", "FOR"],
+	["keyword", "GRAPH"],
+	["keyword", "IN"],
+	["keyword", "INBOUND"],
+	["keyword", "INSERT"],
+	["keyword", "INTO"],
+	["keyword", "K_PATHS"],
+	["keyword", "K_SHORTEST_PATHS"],
+	["keyword", "LET"],
+	["keyword", "LIKE"],
+	["keyword", "LIMIT"],
+	["keyword", "NONE"],
+	["keyword", "NOT"],
+	["keyword", "NULL"],
+	["keyword", "OR"],
+	["keyword", "OUTBOUND"],
+	["keyword", "REMOVE"],
+	["keyword", "REPLACE"],
+	["keyword", "RETURN"],
+	["keyword", "SHORTEST_PATH"],
+	["keyword", "SORT"],
+	["keyword", "UPDATE"],
+	["keyword", "UPSERT"],
+	["keyword", "WINDOW"],
+	["keyword", "WITH"],
+
+	["keyword", "KEEP"],
+	["keyword", "PRUNE"],
+	["keyword", "SEARCH"],
+	["keyword", "TO"],
+
+	["keyword", "CURRENT"],
+	["keyword", "NEW"],
+	["keyword", "OLD"],
+
+	["keyword", "OPTIONS"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	"\r\nOPTIONS"
+]
+
+----------------------------------------------------
+
+Checks for keywords.

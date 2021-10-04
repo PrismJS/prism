@@ -1,31 +1,31 @@
-(function(Prism) {
-	var funcPattern = /\\(?:[^a-z()[\]]|[a-z*]+)/i,
-	    insideEqu = {
-		    'equation-command': {
-			    pattern: funcPattern,
-			    alias: 'regex'
-		    }
-	    };
+(function (Prism) {
+	var funcPattern = /\\(?:[^a-z()[\]]|[a-z*]+)/i;
+	var insideEqu = {
+		'equation-command': {
+			pattern: funcPattern,
+			alias: 'regex'
+		}
+	};
 
 	Prism.languages.latex = {
 		'comment': /%.*/m,
 		// the verbatim environment prints whitespace to the document
-		'cdata':  {
-			pattern: /(\\begin\{((?:verbatim|lstlisting)\*?)\})[\s\S]*?(?=\\end\{\2\})/,
+		'cdata': {
+			pattern: /(\\begin\{((?:lstlisting|verbatim)\*?)\})[\s\S]*?(?=\\end\{\2\})/,
 			lookbehind: true
 		},
 		/*
-		 * equations can be between $ $ or \( \) or \[ \]
+		 * equations can be between $$ $$ or $ $ or \( \) or \[ \]
 		 * (all are multiline)
 		 */
 		'equation': [
 			{
-				pattern: /\$(?:\\[\s\S]|[^\\$])*\$|\\\([\s\S]*?\\\)|\\\[[\s\S]*?\\\]/,
+				pattern: /\$\$(?:\\[\s\S]|[^\\$])+\$\$|\$(?:\\[\s\S]|[^\\$])+\$|\\\([\s\S]*?\\\)|\\\[[\s\S]*?\\\]/,
 				inside: insideEqu,
 				alias: 'string'
 			},
 			{
-				pattern: /(\\begin\{((?:equation|math|eqnarray|align|multline|gather)\*?)\})[\s\S]*?(?=\\end\{\2\})/,
+				pattern: /(\\begin\{((?:align|eqnarray|equation|gather|math|multline)\*?)\})[\s\S]*?(?=\\end\{\2\})/,
 				lookbehind: true,
 				inside: insideEqu,
 				alias: 'string'
@@ -36,7 +36,7 @@
 		 * as keywords
 		 */
 		'keyword': {
-			pattern: /(\\(?:begin|end|ref|cite|label|usepackage|documentclass)(?:\[[^\]]+\])?\{)[^}]+(?=\})/,
+			pattern: /(\\(?:begin|cite|documentclass|end|label|ref|usepackage)(?:\[[^\]]+\])?\{)[^}]+(?=\})/,
 			lookbehind: true
 		},
 		'url': {
@@ -48,7 +48,7 @@
 		 * they stand out more
 		 */
 		'headline': {
-			pattern: /(\\(?:part|chapter|section|subsection|frametitle|subsubsection|paragraph|subparagraph|subsubparagraph|subsubsubparagraph)\*?(?:\[[^\]]+\])?\{)[^}]+(?=\}(?:\[[^\]]+\])?)/,
+			pattern: /(\\(?:chapter|frametitle|paragraph|part|section|subparagraph|subsection|subsubparagraph|subsubsection|subsubsubparagraph)\*?(?:\[[^\]]+\])?\{)[^}]+(?=\})/,
 			lookbehind: true,
 			alias: 'class-name'
 		},
@@ -58,4 +58,7 @@
 		},
 		'punctuation': /[[\]{}&]/
 	};
-})(Prism);
+
+	Prism.languages.tex = Prism.languages.latex;
+	Prism.languages.context = Prism.languages.latex;
+}(Prism));

@@ -1,0 +1,37 @@
+NOT
+AND
+OR
+MATCHES
+LESS
+GREATER
+EQUAL
+STRLESS
+STRGREATER
+STREQUAL
+VERSION_LESS
+VERSION_EQUAL
+VERSION_GREATER
+DEFINED
+
+----------------------------------------------------
+
+[
+	["operator", "NOT"],
+	["operator", "AND"],
+	["operator", "OR"],
+	["operator", "MATCHES"],
+	["operator", "LESS"],
+	["operator", "GREATER"],
+	["operator", "EQUAL"],
+	["operator", "STRLESS"],
+	["operator", "STRGREATER"],
+	["operator", "STREQUAL"],
+	["operator", "VERSION_LESS"],
+	["operator", "VERSION_EQUAL"],
+	["operator", "VERSION_GREATER"],
+	["operator", "DEFINED"]
+]
+
+----------------------------------------------------
+
+Checks for all operator.

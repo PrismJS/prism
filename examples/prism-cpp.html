@@ -32,7 +32,7 @@ vector&lt;int> pick_vector_with_biggest_fifth_element(
     vector&lt;int> left,
     vector&lt;int> right
 ){
-    if( (left[5]) < (right[5]) ){
+    if( (left[5]) &lt; (right[5]) ){
         return( right );
     };
     // else
@@ -40,18 +40,18 @@ vector&lt;int> pick_vector_with_biggest_fifth_element(
 }
 
 int vector_demo(void){
-    cout << "vector demo" << endl;
+    cout &lt;&lt; "vector demo" &lt;&lt; endl;
     vector&lt;int> left(7);
     vector&lt;int> right(7);
 
     left[5] = 7;
     right[5] = 8;
-    cout << left[5] << endl;
-    cout << right[5] << endl;
+    cout &lt;&lt; left[5] &lt;&lt; endl;
+    cout &lt;&lt; right[5] &lt;&lt; endl;
     vector&lt;int> biggest(
         pick_vector_with_biggest_fifth_element( left, right )
     );
-    cout << biggest[5] << endl;
+    cout &lt;&lt; biggest[5] &lt;&lt; endl;
 
     return 0;
 }

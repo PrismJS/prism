@@ -1,0 +1,37 @@
+export interface R<T> {
+  data: T;
+  total: number;
+  type?: string;
+}
+
+----------------------------------------------------
+
+[
+	["keyword", "export"],
+	["keyword", "interface"],
+	["class-name", [
+		["constant", "R"],
+		["operator", "<"],
+		["constant", "T"],
+		["operator", ">"]
+	]],
+	["punctuation", "{"],
+
+	"\r\n  data",
+	["operator", ":"],
+	["constant", "T"],
+	["punctuation", ";"],
+
+	"\r\n  total",
+	["operator", ":"],
+	["builtin", "number"],
+	["punctuation", ";"],
+
+	"\r\n  type",
+	["operator", "?"],
+	["operator", ":"],
+	["builtin", "string"],
+	["punctuation", ";"],
+
+	["punctuation", "}"]
+]

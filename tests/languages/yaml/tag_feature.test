@@ -2,12 +2,89 @@
 !!str
 !!seq
 
+# https://yaml.org/spec/1.2/spec.html#c-ns-tag-property
+
+!<tag:yaml.org,2002:str> foo : !<!bar> baz
+
+- !local foo
+- !!str bar
+- !e!tag%21 baz
+
+!!seq [
+  !<!local> "foo",
+  !<tag:yaml.org,2002:str> "bar",
+  !<tag:example.com,2000:app/tag!> "baz"
+]
+
+# Assuming conventional resolution:
+- "12"
+- 12
+- ! 12
+
+!!seq [
+  !<tag:yaml.org,2002:str> "12",
+  !<tag:yaml.org,2002:int> "12",
+  !<tag:yaml.org,2002:str> "12",
+]
+
 ----------------------------------------------------
 
 [
 	["tag", "!!map"],
 	["tag", "!!str"],
-	["tag", "!!seq"]
+	["tag", "!!seq"],
+
+	["comment", "# https://yaml.org/spec/1.2/spec.html#c-ns-tag-property"],
+
+	["tag", "!<tag:yaml.org,2002:str>"],
+	["key", "foo"],
+	["punctuation", ":"],
+	["tag", "!<!bar>"],
+	" baz\r\n\r\n",
+
+	["punctuation", "-"],
+	["tag", "!local"],
+	" foo\r\n",
+	["punctuation", "-"],
+	["tag", "!!str"],
+	" bar\r\n",
+	["punctuation", "-"],
+	["tag", "!e!tag%21"],
+	" baz\r\n\r\n",
+
+	["tag", "!!seq"],
+	["punctuation", "["],
+	["tag", "!<!local>"],
+	["string", "\"foo\""],
+	["punctuation", ","],
+	["tag", "!<tag:yaml.org,2002:str>"],
+	["string", "\"bar\""],
+	["punctuation", ","],
+	["tag", "!<tag:example.com,2000:app/tag!>"],
+	["string", "\"baz\""],
+	["punctuation", "]"],
+
+	["comment", "# Assuming conventional resolution:"],
+	["punctuation", "-"],
+	["string", "\"12\""],
+	["punctuation", "-"],
+	["number", "12"],
+	["punctuation", "-"],
+	["tag", "!"],
+	["number", "12"],
+
+	["tag", "!!seq"],
+	["punctuation", "["],
+	["tag", "!<tag:yaml.org,2002:str>"],
+	["string", "\"12\""],
+	["punctuation", ","],
+	["tag", "!<tag:yaml.org,2002:int>"],
+	["string", "\"12\""],
+	["punctuation", ","],
+	["tag", "!<tag:yaml.org,2002:str>"],
+	["string", "\"12\""],
+	["punctuation", ","],
+	["punctuation", "]"]
 ]
 
 ----------------------------------------------------

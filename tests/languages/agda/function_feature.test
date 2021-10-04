@@ -1,0 +1,57 @@
+merge : {A : Set} (_<_ : A → A → Bool) → List A → List A → List A
+merge xs [] = xs
+merge [] ys = ys
+merge xs@(x ∷ xs₁) ys@(y ∷ ys₁) =
+	if x < y then x ∷ merge xs₁ ys
+					 else y ∷ merge xs ys₁
+
+----------------------------------------------------
+
+[
+	["function", "merge "],
+	["operator", ":"],
+	["punctuation", "{"],
+	["function", "A "],
+	["operator", ":"],
+	["keyword", "Set"],
+	["punctuation", "}"],
+	["punctuation", "("],
+	["function", "_<_ "],
+	["operator", ":"],
+	" A ",
+	["operator", "→"],
+	" A ",
+	["operator", "→"],
+	" Bool",
+	["punctuation", ")"],
+	["operator", "→"],
+	" List A ",
+	["operator", "→"],
+	" List A ",
+	["operator", "→"],
+	" List A\r\nmerge xs [] ",
+	["operator", "="],
+	" xs\r\nmerge [] ys ",
+	["operator", "="],
+	" ys\r\nmerge xs",
+	["punctuation", "@"],
+	["punctuation", "("],
+	"x ∷ xs₁",
+	["punctuation", ")"],
+	" ys",
+	["punctuation", "@"],
+	["punctuation", "("],
+	"y ∷ ys₁",
+	["punctuation", ")"],
+	["operator", "="],
+
+	"\r\n\tif x < y then x ∷ merge xs₁ ys\r\n\t\t\t\t\t else y ∷ merge xs ys₁"
+]
+
+----------------------------------------------------
+
+Functions in Agda are PURE and TOTAL.
+Different from Haskell, they can be *dependent* and they can receive implicit arguments.
+Functions can be infix, or even mixfix, and they become operators.
+So it is generally not possible to highlight all the "operators" as they are functions.
+(Also, types are functions too, so it is generally impossible to highlight types.)

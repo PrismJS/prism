@@ -1,0 +1,11 @@
+https://prelude.dhall-lang.org/Natural/sum
+
+----------------------------------------------------
+
+[
+	["url", "https://prelude.dhall-lang.org/Natural/sum"]
+]
+
+----------------------------------------------------
+
+Checks for URL literals.

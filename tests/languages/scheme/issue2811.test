@@ -1,0 +1,27 @@
+(let ([x 10]
+      [y 20])
+  (+ x y))
+
+----------------------------------------------------
+
+[
+	["punctuation", "("],
+	["keyword", "let"],
+	["punctuation", "("],
+	["punctuation", "["],
+	["function", "x"],
+	["number", "10"],
+	["punctuation", "]"],
+
+	["punctuation", "["],
+	["function", "y"],
+	["number", "20"],
+	["punctuation", "]"],
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["operator", "+"],
+	" x y",
+	["punctuation", ")"],
+	["punctuation", ")"]
+]

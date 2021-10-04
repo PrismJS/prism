@@ -5,13 +5,13 @@ bar = () : string => {}
 
 [
 	["function-variable", "foo"], ["operator", "="],
-	["punctuation", "("], "a", ["punctuation", ":"],
+	["punctuation", "("], "a", ["operator", ":"],
 	["type", "number"], ["punctuation", ")"],
-	["punctuation", ":"], ["type", "number"],
+	["operator", ":"], ["type", "number"],
 	["operator", "=>"], ["punctuation", "{"], ["punctuation", "}"],
 	["function-variable", "bar"], ["operator", "="],
 	["punctuation", "("], ["punctuation", ")"],
-	["punctuation", ":"], ["type", "string"],
+	["operator", ":"], ["type", "string"],
 	["operator", "=>"], ["punctuation", "{"], ["punctuation", "}"]
 ]
 

@@ -4,15 +4,17 @@
 
 [
 	["template-string", [
-		["string", "`"],
+		["template-punctuation", "`"],
 		["interpolation", [
 			["interpolation-punctuation", "${"],
 			["template-string", [
-				["string", "`a string`"]
+				["template-punctuation", "`"],
+				["string", "a string"],
+				["template-punctuation", "`"]
 			]],
 			["interpolation-punctuation", "}"]
 		]],
-		["string", "`"]
+		["template-punctuation", "`"]
 	]]
 ]
 

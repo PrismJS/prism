@@ -12,8 +12,11 @@ newline"
 
 [
 	["string", "\"\""],
+
 	["string", "\"foo\""],
+
 	["string", "\"foo\\\"bar\\\"baz\""],
+
 	["string", "\"\\u2642\\\\ \""],
 
 	["punctuation", "{"],
@@ -27,8 +30,10 @@ newline"
 	["punctuation", "}"],
 
 	["string", "'foo\"bar\"baz'"],
+
 	["string", "'\\u0001'"],
-	["string", "\"\\\nnewline\""]
+
+	["string", "\"\\\r\nnewline\""]
 ]
 
 ----------------------------------------------------

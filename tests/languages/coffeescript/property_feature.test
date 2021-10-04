@@ -5,9 +5,9 @@ foo_bar :
 
 [
 	["property", "foo"],
-	["punctuation", ":"],
+	["operator", ":"],
 	["property", "foo_bar"],
-	["punctuation", ":"]
+	["operator", ":"]
 ]
 
 ----------------------------------------------------

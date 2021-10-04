@@ -1,0 +1,55 @@
+__multi
+__single
+case
+default
+do
+else
+elsif
+exit
+export
+for
+foreach
+function
+if
+last
+line
+local
+next
+requires
+return
+switch
+until
+while
+word
+
+----------------------------------------------------
+
+[
+	["keyword", "__multi"],
+	["keyword", "__single"],
+	["keyword", "case"],
+	["keyword", "default"],
+	["keyword", "do"],
+	["keyword", "else"],
+	["keyword", "elsif"],
+	["keyword", "exit"],
+	["keyword", "export"],
+	["keyword", "for"],
+	["keyword", "foreach"],
+	["keyword", "function"],
+	["keyword", "if"],
+	["keyword", "last"],
+	["keyword", "line"],
+	["keyword", "local"],
+	["keyword", "next"],
+	["keyword", "requires"],
+	["keyword", "return"],
+	["keyword", "switch"],
+	["keyword", "until"],
+	["keyword", "while"],
+	["keyword", "word"]
+]
+
+----------------------------------------------------
+
+Test for keywords

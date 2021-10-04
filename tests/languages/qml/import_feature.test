@@ -1,0 +1,26 @@
+import QtQuick 2.9
+import QtQml.Models 2.2
+import Person 1.0
+import "componentCreation.js" as MyScript
+
+----------------------------------------------------
+
+[
+	["keyword", "import"],
+	" QtQuick 2.9\r\n",
+
+	["keyword", "import"],
+	" QtQml.Models 2.2\r\n",
+
+	["keyword", "import"],
+	" Person 1.0\r\n",
+
+	["keyword", "import"],
+	["string", "\"componentCreation.js\""],
+	["keyword", "as"],
+	" MyScript"
+]
+
+----------------------------------------------------
+
+Checks for imports.

@@ -1,11 +1,151 @@
 #
 # Foobar
 
+http {# This must be recognized as a comment
+}
+
+events # A comment
+{
+    worker_connections 512;
+}
+
+# A comment
+
+http# This is not a comment. There is no space
+{
+    server {# A comment
+        listen 80;# A comment
+
+        location = "/example1" # This is a comment. There is a space
+        {# This is a comment after "{". No spaces required
+            return 200 "Hello, world!";# This is a comment after ";". No spaces required
+        }# This is a comment after "}". No spaces required
+
+        location = /example2 # This is a comment. There is a space
+        {}
+
+        location = "/example3"# This is not a comment. There is no space
+        {}
+
+        location = /example4# This is not a comment. There is no space
+        {}
+    }# A comment
+}
+
+location = "/example"# This is NOT a comment. There is no space
+{}
+
+location = /example# This is NOT a comment. There is no space
+{}
+
 ----------------------------------------------------
 
 [
 	["comment", "#"],
-	["comment", "# Foobar"]
+	["comment", "# Foobar"],
+
+	["directive", [
+		["keyword", "http"]
+	]],
+	["punctuation", "{"],
+	["comment", "# This must be recognized as a comment"],
+
+	["punctuation", "}"],
+
+	["directive", [
+		["keyword", "events"],
+		["comment", "# A comment"]
+	]],
+
+	["punctuation", "{"],
+
+	["directive", [
+		["keyword", "worker_connections"],
+		["number", "512"]
+	]],
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+
+	["comment", "# A comment"],
+
+	["directive", [
+		["keyword", "http#"],
+		" This is not a comment. There is no space"
+	]],
+
+	["punctuation", "{"],
+
+	["directive", [
+		["keyword", "server"]
+	]],
+	["punctuation", "{"],
+	["comment", "# A comment"],
+
+	["directive", [
+		["keyword", "listen"],
+		["number", "80"]
+	]],
+	["punctuation", ";"],
+	["comment", "# A comment"],
+
+	["directive", [
+		["keyword", "location"],
+		" = ",
+		["string", ["\"/example1\""]],
+		["comment", "# This is a comment. There is a space"]
+	]],
+
+	["punctuation", "{"],
+	["comment", "# This is a comment after \"{\". No spaces required"],
+
+	["directive", [
+		["keyword", "return"],
+		["number", "200"],
+		["string", ["\"Hello, world!\""]]
+	]],
+	["punctuation", ";"],
+	["comment", "# This is a comment after \";\". No spaces required"],
+
+	["punctuation", "}"],
+	["comment", "# This is a comment after \"}\". No spaces required"],
+
+	["directive", [
+		["keyword", "location"],
+		" = /example2 ",
+		["comment", "# This is a comment. There is a space"]
+	]],
+	["punctuation", "{"], ["punctuation", "}"],
+
+	["directive", [
+		["keyword", "location"],
+		" = ",
+		["string", ["\"/example3\""]],
+		"# This is not a comment. There is no space"
+	]],
+	["punctuation", "{"], ["punctuation", "}"],
+
+	["directive", [
+		["keyword", "location"],
+		" = /example4# This is not a comment. There is no space"
+	]],
+	["punctuation", "{"], ["punctuation", "}"],
+	["punctuation", "}"], ["comment", "# A comment"],
+	["punctuation", "}"],
+
+	["directive", [
+		["keyword", "location"],
+		" = ",
+		["string", ["\"/example\""]],
+		"# This is NOT a comment. There is no space"
+	]],
+	["punctuation", "{"], ["punctuation", "}"],
+
+	["directive", [
+		["keyword", "location"],
+		" = /example# This is NOT a comment. There is no space"
+	]],
+	["punctuation", "{"], ["punctuation", "}"]
 ]
 
 ----------------------------------------------------

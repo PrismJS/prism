@@ -1,13 +1,48 @@
+#
+	;
+ #
+ ;
+#
+#	
+# 
+#;
+#[foo]
+#foo=bar
+#foobar
 ;
-; foobar
-# foobar
+;	
+; 
+;#
+;[foo]
+;foo=bar
+;foobar
+foo#bar
+foobar#
+foo;bar
+foobar;
 
 ----------------------------------------------------
 
 [
+	["comment", "#"],
 	["comment", ";"],
-	["comment", "; foobar"],
-	["comment", "# foobar"]
+	["comment", "#"],
+	["comment", ";"],
+	["comment", "#"],
+	["comment", "#\t"],
+	["comment", "# "],
+	["comment", "#;"],
+	["comment", "#[foo]"],
+	["comment", "#foo=bar"],
+	["comment", "#foobar"],
+	["comment", ";"],
+	["comment", ";\t"],
+	["comment", "; "],
+	["comment", ";#"],
+	["comment", ";[foo]"],
+	["comment", ";foo=bar"],
+	["comment", ";foobar"],
+	"\r\nfoo#bar\r\nfoobar#\r\nfoo;bar\r\nfoobar;"
 ]
 
 ----------------------------------------------------

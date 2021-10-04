@@ -1,0 +1,211 @@
+DECLARECDLL
+DECLAREDLL
+COMPILERSELECT
+COMPILERCASE
+COMPILERDEFAULT
+COMPILERENDSELECT
+COMPILERERROR
+ENABLEEXPLICIT
+DISABLEEXPLICIT
+NOT
+AND
+OR
+XOR
+CALLDEBUGGER
+DEBUGLEVEL
+ENABLEDEBUGGER
+DISABLEDEBUGGER
+RESTORE
+READ
+INCLUDEPATH
+INCLUDEBINARY
+THREADED
+RUNTIME
+WITH
+ENDWITH
+STRUCTUREUNION
+ENDSTRUCTUREUNION
+ALIGN
+NEWLIST
+NEWMAP
+INTERFACE
+ENDINTERFACE
+EXTENDS
+ENUMERATION
+ENDENUMERATION
+SWAP
+FOREACH
+CONTINUE
+FAKERETURN
+GOTO
+GOSUB
+RETURN
+BREAK
+MODULE
+ENDMODULE
+DECLAREMODULE
+ENDDECLAREMODULE
+DECLARE
+DECLAREC
+PROTOTYPE
+PROTOTYPEC
+ENABLEASM
+DISABLEASM
+DIM
+REDIM
+DATA
+DATASECTION
+ENDDATASECTION
+TO
+PROCEDURERETURN
+DEBUG
+DEFAULT
+CASE
+SELECT
+ENDSELECT
+AS
+IMPORT
+ENDIMPORT
+IMPORTC
+COMPILERIF
+COMPILERELSE
+COMPILERENDIF
+COMPILERELSEIF
+END
+STRUCTURE
+ENDSTRUCTURE
+WHILE
+WEND
+FOR
+NEXT
+STEP
+IF
+ELSE
+ELSEIF
+ENDIF
+REPEAT
+UNTIL
+PROCEDURE
+PROCEDUREDLL
+PROCEDUREC
+PROCEDURECDLL
+ENDPROCEDURE
+PROTECTED
+SHARED
+STATIC
+GLOBAL
+DEFINE
+INCLUDEFILE
+XINCLUDEFILE
+MACRO
+ENDMACRO
+
+----------------------------------------------------
+
+[
+ 	["keyword", "DECLARECDLL"],
+	["keyword", "DECLAREDLL"],
+	["keyword", "COMPILERSELECT"],
+	["keyword", "COMPILERCASE"],
+	["keyword", "COMPILERDEFAULT"],
+	["keyword", "COMPILERENDSELECT"],
+	["keyword", "COMPILERERROR"],
+	["keyword", "ENABLEEXPLICIT"],
+	["keyword", "DISABLEEXPLICIT"],
+	["keyword", "NOT"],
+	["keyword", "AND"],
+	["keyword", "OR"],
+	["keyword", "XOR"],
+	["keyword", "CALLDEBUGGER"],
+	["keyword", "DEBUGLEVEL"],
+	["keyword", "ENABLEDEBUGGER"],
+	["keyword", "DISABLEDEBUGGER"],
+	["keyword", "RESTORE"],
+	["keyword", "READ"],
+	["keyword", "INCLUDEPATH"],
+	["keyword", "INCLUDEBINARY"],
+	["keyword", "THREADED"],
+	["keyword", "RUNTIME"],
+	["keyword", "WITH"],
+	["keyword", "ENDWITH"],
+	["keyword", "STRUCTUREUNION"],
+	["keyword", "ENDSTRUCTUREUNION"],
+	["keyword", "ALIGN"],
+	["keyword", "NEWLIST"],
+	["keyword", "NEWMAP"],
+	["keyword", "INTERFACE"],
+  ["keyword", "ENDINTERFACE"],
+	["keyword", "EXTENDS"],
+	["keyword", "ENUMERATION"],
+	["keyword", "ENDENUMERATION"],
+	["keyword", "SWAP"],
+	["keyword", "FOREACH"],
+	["keyword", "CONTINUE"],
+	["keyword", "FAKERETURN"],
+	["keyword", "GOTO"],
+	["keyword", "GOSUB"],
+	["keyword", "RETURN"],
+	["keyword", "BREAK"],
+	["keyword", "MODULE"],
+	["keyword", "ENDMODULE"],
+	["keyword", "DECLAREMODULE"],
+	["keyword", "ENDDECLAREMODULE"],
+	["keyword", "DECLARE"],
+	["keyword", "DECLAREC"],
+	["keyword", "PROTOTYPE"],
+	["keyword", "PROTOTYPEC"],
+	["keyword", "ENABLEASM"],
+	["keyword", "DISABLEASM"],
+	["keyword", "DIM"],
+	["keyword", "REDIM"],
+	["keyword", "DATA"],
+	["keyword", "DATASECTION"],
+	["keyword", "ENDDATASECTION"],
+	["keyword", "TO"],
+	["keyword", "PROCEDURERETURN"],
+	["keyword", "DEBUG"],
+	["keyword", "DEFAULT"],
+	["keyword", "CASE"],
+  ["keyword", "SELECT"],
+	["keyword", "ENDSELECT"],
+	["keyword", "AS"],
+	["keyword", "IMPORT"],
+	["keyword", "ENDIMPORT"],
+	["keyword", "IMPORTC"],
+	["keyword", "COMPILERIF"],
+	["keyword", "COMPILERELSE"],
+	["keyword", "COMPILERENDIF"],
+	["keyword", "COMPILERELSEIF"],
+	["keyword", "END"],
+	["keyword", "STRUCTURE"],
+	["keyword", "ENDSTRUCTURE"],
+	["keyword", "WHILE"],
+	["keyword", "WEND"],
+	["keyword", "FOR"],
+	["keyword", "NEXT"],
+	["keyword", "STEP"],
+	["keyword", "IF"],
+	["keyword", "ELSE"],
+	["keyword", "ELSEIF"],
+	["keyword", "ENDIF"],
+  ["keyword", "REPEAT"],
+	["keyword", "UNTIL"],
+	["keyword", "PROCEDURE"],
+	["keyword", "PROCEDUREDLL"],
+	["keyword", "PROCEDUREC"],
+	["keyword", "PROCEDURECDLL"],
+	["keyword", "ENDPROCEDURE"],
+	["keyword", "PROTECTED"],
+	["keyword", "SHARED"],
+	["keyword", "STATIC"],
+	["keyword", "GLOBAL"],
+	["keyword", "DEFINE"],
+	["keyword", "INCLUDEFILE"],
+	["keyword", "XINCLUDEFILE"],
+	["keyword", "MACRO"],
+	["keyword", "ENDMACRO"]
+]
+
+----------------------------------------------------
+
+Checks for keywords.

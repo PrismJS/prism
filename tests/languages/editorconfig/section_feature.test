@@ -1,0 +1,38 @@
+[*]
+[**.kt]
+[{**.kt, **.kts}]
+[?[!seq].log.{0..9}]
+[\\**.log]
+  [Section with indent]
+
+----------------------------------------------------
+
+[
+	["section", [
+		["punctuation", "["], ["operator", "*"], ["punctuation", "]"]
+	]],
+	["section", [
+		["punctuation", "["], ["operator", "**"], ".kt", ["punctuation", "]"]
+	]],
+	["section", [
+		["punctuation", "["],  ["punctuation", "{"],
+		["operator", "**"], ".kt", ["punctuation", ","], ["operator", "**"], ".kts",
+		["punctuation", "}"], ["punctuation", "]"]
+	]],
+	["section", [
+		["punctuation", "["], ["operator", "?"],
+		["punctuation", "["], ["operator", "!"], "seq", ["punctuation", "]"],
+		".log.", ["punctuation", "{"], "0", ["operator", ".."], "9", ["punctuation", "}"],
+		["punctuation", "]"]
+	]],
+	["section", [
+    	["punctuation", "["], ["regex", "\\\\*"], ["operator", "*"], ".log", ["punctuation", "]"]
+    ]],
+	["section", [
+    	["punctuation", "["], "Section with indent", ["punctuation", "]"]
+    ]]
+]
+
+----------------------------------------------------
+
+Checks for section titles.

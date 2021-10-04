@@ -1,0 +1,111 @@
+%macro prnt(var,sum);
+	proc print data=srhigh;
+		var &var;
+		sum &sum;
+	run;
+%mend prnt;
+
+%macro printz/parmbuff;
+	%let num=1;
+	%let dsname=%scan(&syspbuff,&num);
+	%do %while(&dsname ne);
+		proc print data=&dsname;
+		run;
+		%let num=%eval(&num+1);
+		%let dsname=%scan(&syspbuff,&num);
+	%end;
+%mend printz;
+
+----------------------------------------------------
+
+[
+    ["macro-declaration", [
+        ["keyword", "%macro"],
+        " prnt(var,sum)"
+    ]],
+    ["punctuation", ";"],
+    ["step", "proc print"],
+    ["keyword", "data"],
+    ["operator", "="],
+    "srhigh",
+    ["punctuation", ";"],
+    ["keyword", "var"],
+    ["macro-variable", "&var"],
+    ["punctuation", ";"],
+    ["keyword", "sum"],
+    ["macro-variable", "&sum"],
+    ["punctuation", ";"],
+    ["step", "run"],
+    ["punctuation", ";"],
+    ["macro-end", [
+        ["keyword", "%mend"],
+        " prnt"
+    ]],
+    ["punctuation", ";"],
+
+    ["macro-declaration", [
+        ["keyword", "%macro"],
+        " printz/parmbuff"
+    ]],
+    ["punctuation", ";"],
+    ["macro-keyword", "%let"],
+    " num",
+    ["operator", "="],
+    ["number", "1"],
+    ["punctuation", ";"],
+    ["macro-keyword", "%let"],
+    " dsname",
+    ["operator", "="],
+    ["macro-keyword", "%scan"],
+    ["punctuation", "("],
+    ["macro-variable", "&syspbuff"],
+    ["punctuation", ","],
+    ["macro-variable", "&num"],
+    ["punctuation", ")"],
+    ["punctuation", ";"],
+    ["macro-keyword", "%do"],
+    ["macro-keyword", "%while"],
+    ["punctuation", "("],
+    ["macro-variable", "&dsname"],
+    ["operator-keyword", "ne"],
+    ["punctuation", ")"],
+    ["punctuation", ";"],
+    ["step", "proc print"],
+    ["keyword", "data"],
+    ["operator", "="],
+    ["macro-variable", "&dsname"],
+    ["punctuation", ";"],
+    ["step", "run"],
+    ["punctuation", ";"],
+    ["macro-keyword", "%let"],
+    " num",
+    ["operator", "="],
+    ["macro-keyword", "%eval"],
+    ["punctuation", "("],
+    ["macro-variable", "&num"],
+    ["operator", "+"],
+    ["number", "1"],
+    ["punctuation", ")"],
+    ["punctuation", ";"],
+    ["macro-keyword", "%let"],
+    " dsname",
+    ["operator", "="],
+    ["macro-keyword", "%scan"],
+    ["punctuation", "("],
+    ["macro-variable", "&syspbuff"],
+    ["punctuation", ","],
+    ["macro-variable", "&num"],
+    ["punctuation", ")"],
+    ["punctuation", ";"],
+    ["macro-keyword", "%end"],
+    ["punctuation", ";"],
+    ["macro-end", [
+        ["keyword", "%mend"],
+        " printz"
+    ]],
+    ["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Check that macro definition correctly recognizes %macro and %mend.

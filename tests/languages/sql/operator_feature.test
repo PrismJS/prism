@@ -9,6 +9,7 @@
 AND
 BETWEEN
 IN
+ILIKE
 LIKE
 NOT
 OR
@@ -33,6 +34,7 @@ XOR
 	["operator", "AND"],
 	["operator", "BETWEEN"],
 	["operator", "IN"],
+	["operator", "ILIKE"],
 	["operator", "LIKE"],
 	["operator", "NOT"],
 	["operator", "OR"],

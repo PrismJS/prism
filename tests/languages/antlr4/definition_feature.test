@@ -1,0 +1,25 @@
+foo : FOO ;
+FOO : BAR ;
+fragment BAR : 'bar' ;
+
+----------------------------------------------------
+
+[
+	["definition", "foo"],
+	["punctuation", ":"],
+	["constant", "FOO"],
+	["punctuation", ";"],
+	["definition", "FOO"],
+	["punctuation", ":"],
+	["constant", "BAR"],
+	["punctuation", ";"],
+	["keyword", "fragment"],
+	["definition", "BAR"],
+	["punctuation", ":"],
+	["string", "'bar'"],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for token and rule definitions.

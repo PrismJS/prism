@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8" />
+<link rel="icon" href="assets/favicon.png" />
+<title>Known failures ▲ Prism</title>
+<link rel="stylesheet" href="assets/style.css" />
+<link rel="stylesheet" href="themes/prism.css" data-noprefix />
+<style>
+#toc {
+	display: block;
+	position: static;
+	max-width: 900px;
+	font-size: 100%;
+	color: black;
+}
+#toc > ol {
+	columns: 4;
+}
+</style>
+<script src="assets/vendor/prefixfree.min.js"></script>
+
+<script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
+<script src="https://www.google-analytics.com/ga.js" async></script>
+</head>
+<body class="language-none">
+
+<header>
+	<div class="intro" data-src="assets/templates/header-main.html" data-type="text/html"></div>
+
+	<h2>Known failures</h2>
+	<p>A list of rare edge cases where Prism highlights code incorrectly.</p>
+</header>
+
+<section>
+	<p>There are certain edge cases where Prism will fail. There are always such cases in every regex-based syntax highlighter. <br>
+	However, Prism dares to be open and honest about them. If a failure is listed here, it doesn’t mean it will never be fixed. This is more of a “known bugs” list, just with a certain type of bug.</p>
+</section>
+
+
+<section class="language-applescript">
+
+<h3>Comments only support one level of nesting</h3>
+<pre><code>(* Nested block
+	(* comments
+		(* on more than
+		2 levels *)
+	are *)
+not supported *)</code></pre>
+
+</section>
+
+
+<section class="language-autoit">
+
+<h3>Nested block comments</h3>
+<pre><code>#cs
+	#cs
+		foo()
+	#ce
+#ce</code></pre>
+
+</section>
+
+
+<section class="language-bison">
+
+<h3>Two levels of nesting inside C section</h3>
+<pre><code>{
+	if($1) {
+		if($2) {
+
+		}
+	}
+} // &lt;- Broken
+%%
+%%</code></pre>
+
+</section>
+
+
+<section class="language-d">
+
+<h3>Comments only support one level of nesting</h3>
+<pre><code>/+ /+ /+ this does not work +/ +/ +/</code></pre>
+
+<h3>Token strings only support one level of nesting</h3>
+<pre><code>q{ q{ q{ this does not work } } }</code></pre>
+
+</section>
+
+
+<section class="language-elixir">
+
+<h3>String interpolation in single-quoted strings</h3>
+<pre><code>'#{:atom} &lt;- this should not be highligted'</code></pre>
+
+</section>
+
+
+<section class="language-groovy">
+
+<h3>Two divisions on the same line</h3>
+<pre><code>2 / 3 / 4</code></pre>
+
+</section>
+
+
+<section class="language-inform7">
+
+<h3>Names starting with a number</h3>
+<pre><code>The box 1A is a container</code></pre>
+
+</section>
+
+
+<section class="language-javascript">
+
+<h3>String interpolation containing a closing brace</h3>
+<pre><code>`${ /* } */ a + b }`
+`${ '}' }`</code></pre>
+
+<h3>String interpolation with deeply nested braces</h3>
+<pre><code>`${foo({ a: { b: { c: true } } })}`</code></pre>
+
+</section>
+
+
+<section class="language-less">
+
+<h3>At-rules looking like variables</h3>
+<pre><code>@import "some file.less";</code></pre>
+
+<h3>At-rules containing interpolation</h3>
+<pre><code>@import "@{themes}/tidal-wave.less";</code></pre>
+
+<h3>extend is not highlighted consistently</h3>
+<pre><code>nav ul {
+  &:extend(.inline);
+  background: blue;
+}
+.a:extend(.b) {}</code></pre>
+
+</section>
+
+
+<section class="language-lua">
+
+<h3>Functions with a single string parameter not using parentheses are not highlighted</h3>
+<pre><code>foobar"param";</code></pre>
+
+</section>
+
+
+<section class="language-nasm">
+
+<h3>Numbers with underscores</h3>
+<pre><code>mov     ax,1100_1000b
+mov     ax,1100_1000y
+mov     ax,0b1100_1000
+mov     ax,0y1100_1000
+
+dd    1.222_222_222</code></pre>
+
+</section>
+
+
+<section class="language-parser">
+
+<h3>Code block starting with a comment</h3>
+<pre><code># Doesn't work
+# Does work</code></pre>
+<pre><code> # Does work when prefixed with a space</code></pre>
+
+<h3>Comments inside expressions break literals and operators</h3>
+<pre><code>^if(
+    $age>=4  # not too young
+    && $age&lt;=80  # and not too old
+)</code></pre>
+
+</section>
+
+
+<section class="language-prolog">
+
+<h3>Null-ary predicates are not highlighted</h3>
+<pre><code>halt.
+trace.
+
+:- if(test1).
+section_1.
+:- elif(test2).
+section_2.
+:- elif(test3).
+section_3.
+:- else.
+section_else.
+:- endif.</code></pre>
+
+</section>
+
+
+<section class="language-puppet">
+
+<h3>More than one level of nested braces inside interpolation</h3>
+<pre><code>"Foobar ${foo({
+    bar => {baz => 42}
+    baz => 42
+})} &lt;- broken"</code></pre>
+
+</section>
+
+
+<section class="language-python">
+
+<h3>Interpolation expressions containing strings with <code>{</code> or <code>}</code></h3>
+<pre><code>f"{'}'}"</code></pre>
+
+</section>
+
+
+<section class="language-q">
+
+<h3>The global context is highlighted as a verb</h3>
+<pre><code>\d .</code></pre>
+
+</section>
+
+
+<section class="language-rest">
+
+<h3>Nothing is highlighted inside table cells</h3>
+<pre><code>+---------------+----------+
+| column 1     | column 2  |
++--------------+-----------+
+| **bold**?    | *italic*? |
++--------------+-----------+</code></pre>
+
+<h3>The inline markup recognition rules are not as strict as they are in the spec</h3>
+<p>No inline markup should be highlighted in the following code.</p>
+<pre><code>2 * x a ** b (* BOM32_* ` `` _ __ |
+"*" '|' (*) [*] {*} &lt;*> ‘*’ ‚*‘ ‘*‚ ’*’ ‚*’ “*” „*“ “*„ ”*” „*” »*« ›*‹ «*» »*» ›*›</code></pre>
+
+</section>
+
+
+<section class="language-rust">
+
+<h3>Nested block comments</h3>
+<pre><code>/* Nested block
+	/* comments
+	are */
+not supported */</code></pre>
+
+<h3>Delimiters of parameters for closures that don't use braces</h3>
+<pre><code>|x| x + 1i;</code></pre>
+
+</section>
+
+
+<section class="language-sass">
+
+<h3>Deprecated Sass syntax is not supported</h3>
+<pre><code>.page
+  color = 5px + 9px
+
+!width = 13px
+.icon
+  width = !width</code></pre>
+
+<h3>Selectors with pseudo classes are highlighted as property/value pairs</h3>
+<pre><code>a:hover
+  text-decoration: underline</code></pre>
+
+</section>
+
+
+<section class="language-scala">
+
+<h3>Nested block comments</h3>
+<pre><code>/* Nested block
+	/* comments
+	are */
+not supported */</code></pre>
+
+</section>
+
+
+<section class="language-scheme">
+
+<h3>The first argument of <code>case-lambda</code> argument lists are highlighted as functions</h3>
+<pre><code>(define plus
+	(case-lambda
+		(() 0)
+		((x) x)
+		((x y) (+ x y))
+		((x y z) (+ (+ x y) z))
+		(args (apply + args))))</code></pre>
+
+</section>
+
+
+<section class="language-swift">
+
+<h3>Nested block comments</h3>
+<pre><code>/* Nested block
+	/* comments
+	are */
+not supported */</code></pre>
+
+</section>
+
+
+<section class="language-textile">
+
+<h3>HTML inside Textile is not supported</h3>
+
+<p>But Textile inside HTML should be just fine.</p>
+
+<pre><code>&lt;strong>This _should_ work properly.&lt;/strong>
+*But this is &lt;em>definitely&lt;/em> broken.*</code></pre>
+
+</section>
+
+
+<section class="language-twig">
+
+<h3>Tag containing Twig is not highlighted</h3>
+<pre><code>&lt;div{% if foo %} class="bar"{% endif %}>&lt;/div></code></pre>
+
+</section>
+
+
+<section class="language-wiki">
+
+<h3>Nested magic words are not supported</h3>
+
+<pre><code>{{#switch:{{PAGENAME}}
+| L'Aquila = No translation
+| L = Not OK
+| L&apos;Aquila = Entity escaping
+| L&#39;Aquila = Numeric char encoding
+}}</code></pre>
+
+<h3>Nesting of bold and italic is not supported</h3>
+<pre><code>''Italic with '''bold''' inside''</code></pre>
+
+</section>
+
+
+<section>
+
+<h1 id="themes">Themes</h1>
+
+<p>Some of our themes are not compatible with certain layouts.</p>
+
+<h2>Coy</h2>
+
+<p>Coy's shadows and background might not wrap around the code correctly if combined with float of flexbox layouts.</p>
+
+<img src="assets/img/failures/coy-overlap.png"/>
+
+<h3>Workarounds</h3>
+
+<p>There are 2 possible workarounds:</p>
+
+<p>The first workaround is setting <code>display: flex-root;</code> for the <code>pre</code> element. This will fix the issue but <code>flex-root</code> has <a href="https://caniuse.com/#feat=flow-root">limited browser support</a>.</p>
+
+<p>The second is adding <code>clear: both;</code> to the style of the <code>pre</code> element. This will fix the issue but it will change the way code blocks behave when overlapping with other elements.</p>
+
+</section>
+
+
+<footer data-src="assets/templates/footer.html" data-type="text/html"></footer>
+
+<script src="assets/vendor/utopia.js"></script>
+<script src="prism.js"></script>
+<script src="plugins/autoloader/prism-autoloader.js" data-autoloader-path="components"></script>
+<script src="components.js"></script>
+<script>
+	$$('section[class*=language-]').forEach(function (section) {
+		var lang = /(?:^|\s)language-([\w-]+)(?:$|\s)/.exec(section.className)[1];
+		var title = components.languages[lang].title;
+
+		$u.element.create('h1', {
+			contents: title,
+			id: lang,
+			before: section.firstChild
+		});
+	});
+
+	$$('section > h1').forEach(function (h1) {
+		$u.element.create('p', {
+			contents: {
+				tag: 'a',
+				properties: {
+					href: '#toc'
+				},
+				contents: '↑ Back to top'
+			},
+			inside: h1.parentNode
+		});
+	});
+</script>
+<script src="assets/code.js"></script>
+
+</body>
+</html>

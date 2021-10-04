@@ -1,0 +1,121 @@
+@f @g x
+
+@f
+@g
+x
+
+@sealed
+class ExampleClass {
+
+  @first()
+  @second()
+  method() {}
+
+  @enumerable(false)
+  greet() {
+    return "Hello, " + this.greeting;
+  }
+
+  @configurable(false)
+  get y() {
+    return this._y;
+  }
+
+}
+
+----------------------------------------------------
+
+[
+	["decorator", [
+		["at", "@"],
+		["function", "f"]
+	]],
+	["decorator", [
+		["at", "@"],
+		["function", "g"]
+	]],
+	" x\r\n\r\n",
+
+	["decorator", [
+		["at", "@"],
+		["function", "f"]
+	]],
+	["decorator", [
+		["at", "@"],
+		["function", "g"]
+	]],
+	"\r\nx\r\n\r\n",
+
+	["decorator", [
+		["at", "@"],
+		["function", "sealed"]
+	]],
+	["keyword", "class"], ["class-name", ["ExampleClass"]], ["punctuation", "{"],
+
+	["decorator", [
+		["at", "@"],
+		["function", "first"]
+	]],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["decorator", [
+		["at", "@"],
+		["function", "second"]
+	]],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["function", "method"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["decorator", [
+		["at", "@"],
+		["function", "enumerable"]
+	]],
+	["punctuation", "("],
+	["boolean", "false"],
+	["punctuation", ")"],
+
+	["function", "greet"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+
+	["keyword", "return"],
+	["string", "\"Hello, \""],
+	["operator", "+"],
+	["keyword", "this"],
+	["punctuation", "."],
+	"greeting",
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+
+	["decorator", [
+		["at", "@"],
+		["function", "configurable"]
+	]],
+	["punctuation", "("],
+	["boolean", "false"],
+	["punctuation", ")"],
+
+	["keyword", "get"],
+	["function", "y"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+
+	["keyword", "return"],
+	["keyword", "this"],
+	["punctuation", "."],
+	"_y",
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+
+	["punctuation", "}"]
+]

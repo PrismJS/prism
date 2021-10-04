@@ -1,0 +1,195 @@
+x-number: &num-ber 13
+x-string: &stri_ng "good"
+x-null: &nu-ll null
+x-boolean: &boo-lean true
+x-datetime: &date-time 2001-12-15T02:59:43.1Z
+x-scalar: &sca-lar |
+	foo
+	bar
+
+x-utf8: &アンカー "japanese anchor"
+
+x-tag-string: &tag-string !!tag-string "13"
+x-tag-number: &tag-number !!tag-number 42
+x-tag-null: &tag-null !!tag-null null
+x-tag-boolean: &tag-bool !!tag-bool true
+x-tag-datetime: &tag-date !!tag-date 2001-12-15T02:59:43.1Z
+x-tag-scalar: &tag-scalar !!tag-scalar |
+	foo
+	bar
+
+x-tag-string: !!tag-string &tag-string "13"
+x-tag-number: !!tag-number &tag-number 42
+x-tag-null: !!tag-null &tag-null null
+x-tag-boolean: !!tag-bool &tag-bool true
+x-tag-datetime: !!tag-date &tag-date 2001-12-15T02:59:43.1Z
+x-tag-scalar: !!tag-scalar &tag-scalar |
+	foo
+	bar
+
+foobar: *num-ber
+fubar: *stri_ng
+japanese: *アンカー
+taga: *tag-a !!taga
+tagb: !!tagb *tag-b
+
+# https://yaml.org/spec/1.2/spec.html#id2783797
+
+!!str &a1 "foo":
+	!!str bar
+&a2 baz : *a1
+
+----------------------------------------------------
+
+[
+	["key", "x-number"],
+	["punctuation", ":"],
+	["important", "&num-ber"],
+	["number", "13"],
+
+	["key", "x-string"],
+	["punctuation", ":"],
+	["important", "&stri_ng"],
+	["string", "\"good\""],
+
+	["key", "x-null"],
+	["punctuation", ":"],
+	["important", "&nu-ll"],
+	["null", "null"],
+
+	["key", "x-boolean"],
+	["punctuation", ":"],
+	["important", "&boo-lean"],
+	["boolean", "true"],
+
+	["key", "x-datetime"],
+	["punctuation", ":"],
+	["important", "&date-time"],
+	["datetime", "2001-12-15T02:59:43.1Z"],
+
+	["key", "x-scalar"],
+	["punctuation", ":"],
+	["important", "&sca-lar"],
+	["punctuation", "|"],
+	["scalar", "\r\n\tfoo\r\n\tbar"],
+
+	["key", "x-utf8"],
+	["punctuation", ":"],
+	["important", "&アンカー"],
+	["string", "\"japanese anchor\""],
+
+	["key", "x-tag-string"],
+	["punctuation", ":"],
+	["important", "&tag-string"],
+	["tag", "!!tag-string"],
+	["string", "\"13\""],
+
+	["key", "x-tag-number"],
+	["punctuation", ":"],
+	["important", "&tag-number"],
+	["tag", "!!tag-number"],
+	["number", "42"],
+
+	["key", "x-tag-null"],
+	["punctuation", ":"],
+	["important", "&tag-null"],
+	["tag", "!!tag-null"],
+	["null", "null"],
+
+	["key", "x-tag-boolean"],
+	["punctuation", ":"],
+	["important", "&tag-bool"],
+	["tag", "!!tag-bool"],
+	["boolean", "true"],
+
+	["key", "x-tag-datetime"],
+	["punctuation", ":"],
+	["important", "&tag-date"],
+	["tag", "!!tag-date"],
+	["datetime", "2001-12-15T02:59:43.1Z"],
+
+	["key", "x-tag-scalar"],
+	["punctuation", ":"],
+	["important", "&tag-scalar"],
+	["tag", "!!tag-scalar"],
+	["punctuation", "|"],
+	["scalar", "\r\n\tfoo\r\n\tbar"],
+
+	["key", "x-tag-string"],
+	["punctuation", ":"],
+	["tag", "!!tag-string"],
+	["important", "&tag-string"],
+	["string", "\"13\""],
+
+	["key", "x-tag-number"],
+	["punctuation", ":"],
+	["tag", "!!tag-number"],
+	["important", "&tag-number"],
+	["number", "42"],
+
+	["key", "x-tag-null"],
+	["punctuation", ":"],
+	["tag", "!!tag-null"],
+	["important", "&tag-null"],
+	["null", "null"],
+
+	["key", "x-tag-boolean"],
+	["punctuation", ":"],
+	["tag", "!!tag-bool"],
+	["important", "&tag-bool"],
+	["boolean", "true"],
+
+	["key", "x-tag-datetime"],
+	["punctuation", ":"],
+	["tag", "!!tag-date"],
+	["important", "&tag-date"],
+	["datetime", "2001-12-15T02:59:43.1Z"],
+
+	["key", "x-tag-scalar"],
+	["punctuation", ":"],
+	["tag", "!!tag-scalar"],
+	["important", "&tag-scalar"],
+	["punctuation", "|"],
+	["scalar", "\r\n\tfoo\r\n\tbar"],
+
+	["key", "foobar"],
+	["punctuation", ":"],
+	["important", "*num-ber"],
+
+	["key", "fubar"],
+	["punctuation", ":"],
+	["important", "*stri_ng"],
+
+	["key", "japanese"],
+	["punctuation", ":"],
+	["important", "*アンカー"],
+
+	["key", "taga"],
+	["punctuation", ":"],
+	["important", "*tag-a"],
+	["tag", "!!taga"],
+
+	["key", "tagb"],
+	["punctuation", ":"],
+	["tag", "!!tagb"],
+	["important", "*tag-b"],
+
+	["comment", "# https://yaml.org/spec/1.2/spec.html#id2783797"],
+
+	["tag", "!!str"],
+	["important", "&a1"],
+	["key", "\"foo\""],
+	["punctuation", ":"],
+
+	["tag", "!!str"],
+	" bar\r\n",
+
+	["important", "&a2"],
+	["key", "baz"],
+	["punctuation", ":"],
+	["important", "*a1"]
+]
+
+----------------------------------------------------
+
+Checks for anchors and aliases.

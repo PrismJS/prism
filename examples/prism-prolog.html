@@ -21,24 +21,3 @@ fibo(N, F) :-
 N >= 2, N1 is N - 1, N2 is N - 2,
 fibo(N1, F1), fibo(N2, F2), F is F1 + F2,
 assert(fibo(N,F):-!). % assert as first clause</code></pre>
-
-<h2>Known failures</h2>
-<p>There are certain edge cases where Prism will fail.
-	There are always such cases in every regex-based syntax highlighter.
-	However, Prism dares to be open and honest about them.
-	If a failure is listed here, it doesn’t mean it will never be fixed. This is more of a “known bugs” list, just with a certain type of bug.
-</p>
-
-<h3>Null-ary predicates are not highlighted</h3>
-<pre><code>halt.
-trace.
-
-:- if(test1).
-section_1.
-:- elif(test2).
-section_2.
-:- elif(test3).
-section_3.
-:- else.
-section_else.
-:- endif.</code></pre>

@@ -1,0 +1,240 @@
+[Foo]
+[Foo(1, 2)]
+[Foo(1, 2, Name = "bar")]
+[Foo, Bar]
+[Foo("()"), Bar("[]"), Baz]
+
+[return: MaybeNull]
+[assembly: InternalsVisibleTo("Tests")]
+
+[assembly: Foo]
+[module: Foo]
+[field: Foo]
+[event: Foo]
+[method: Foo]
+[param: Foo]
+[property: Foo]
+[return: Foo]
+[type: Foo]
+
+// not attributes
+
+var a = d
+[Foo];
+var b = new Foo<int>?[Count];
+var c = new (int, int)[Count];
+
+----------------------------------------------------
+
+[
+	["punctuation", "["],
+	["attribute", [
+		["class-name", ["Foo"]]
+	]],
+	["punctuation", "]"],
+
+	["punctuation", "["],
+	["attribute", [
+		["class-name", ["Foo"]],
+		["attribute-arguments", [
+			["punctuation", "("],
+			["number", "1"],
+			["punctuation", ","],
+			["number", "2"],
+			["punctuation", ")"]
+		]]
+	]],
+	["punctuation", "]"],
+
+	["punctuation", "["],
+	["attribute", [
+		["class-name", ["Foo"]],
+		["attribute-arguments", [
+			["punctuation", "("],
+			["number", "1"],
+			["punctuation", ","],
+			["number", "2"],
+			["punctuation", ","],
+			" Name ",
+			["operator", "="],
+			["string", "\"bar\""],
+			["punctuation", ")"]
+		]]
+	]],
+	["punctuation", "]"],
+
+	["punctuation", "["],
+	["attribute", [
+		["class-name", ["Foo"]],
+		["punctuation", ","],
+		["class-name", ["Bar"]]
+	]],
+	["punctuation", "]"],
+
+	["punctuation", "["],
+	["attribute", [
+		["class-name", ["Foo"]],
+		["attribute-arguments", [
+			["punctuation", "("],
+			["string", "\"()\""],
+			["punctuation", ")"]
+		]],
+		["punctuation", ","],
+		["class-name", ["Bar"]],
+		["attribute-arguments", [
+			["punctuation", "("],
+			["string", "\"[]\""],
+			["punctuation", ")"]
+		]],
+		["punctuation", ","],
+		["class-name", ["Baz"]]
+	]],
+	["punctuation", "]"],
+
+	["punctuation", "["],
+	["attribute", [
+		["target", "return"],
+		["punctuation", ":"],
+		["class-name", ["MaybeNull"]]
+	]],
+	["punctuation", "]"],
+
+	["punctuation", "["],
+	["attribute", [
+		["target", "assembly"],
+		["punctuation", ":"],
+		["class-name", ["InternalsVisibleTo"]],
+		["attribute-arguments", [
+			["punctuation", "("],
+			["string", "\"Tests\""],
+			["punctuation", ")"]
+		]]
+	]],
+	["punctuation", "]"],
+
+	["punctuation", "["],
+	["attribute", [
+		["target", "assembly"],
+		["punctuation", ":"],
+		["class-name", ["Foo"]]
+	]],
+	["punctuation", "]"],
+
+	["punctuation", "["],
+	["attribute", [
+		["target", "module"],
+		["punctuation", ":"],
+		["class-name", ["Foo"]]
+	]],
+	["punctuation", "]"],
+
+	["punctuation", "["],
+	["attribute", [
+		["target", "field"],
+		["punctuation", ":"],
+		["class-name", ["Foo"]]
+	]],
+	["punctuation", "]"],
+
+	["punctuation", "["],
+	["attribute", [
+		["target", "event"],
+		["punctuation", ":"],
+		["class-name", ["Foo"]]
+	]],
+	["punctuation", "]"],
+
+	["punctuation", "["],
+	["attribute", [
+		["target", "method"],
+		["punctuation", ":"],
+		["class-name", ["Foo"]]
+	]],
+	["punctuation", "]"],
+
+	["punctuation", "["],
+	["attribute", [
+		["target", "param"],
+		["punctuation", ":"],
+		["class-name", ["Foo"]]
+	]],
+	["punctuation", "]"],
+
+	["punctuation", "["],
+	["attribute", [
+		["target", "property"],
+		["punctuation", ":"],
+		["class-name", ["Foo"]]
+	]],
+	["punctuation", "]"],
+
+	["punctuation", "["],
+	["attribute", [
+		["target", "return"],
+		["punctuation", ":"],
+		["class-name", ["Foo"]]
+	]],
+	["punctuation", "]"],
+
+	["punctuation", "["],
+	["attribute", [
+		["target", "type"],
+		["punctuation", ":"],
+		["class-name", ["Foo"]]
+	]],
+	["punctuation", "]"],
+
+	["comment", "// not attributes"],
+
+	["class-name", [
+		["keyword", "var"]
+	]],
+	" a ",
+	["operator", "="],
+	" d\r\n",
+
+	["punctuation", "["],
+	"Foo",
+	["punctuation", "]"],
+	["punctuation", ";"],
+
+	["class-name", [
+		["keyword", "var"]
+	]],
+	" b ",
+	["operator", "="],
+	["keyword", "new"],
+	["constructor-invocation", [
+		"Foo",
+		["punctuation", "<"],
+		["keyword", "int"],
+		["punctuation", ">"],
+		["punctuation", "?"]
+	]],
+	["punctuation", "["],
+	"Count",
+	["punctuation", "]"],
+	["punctuation", ";"],
+
+	["class-name", [
+		["keyword", "var"]
+	]],
+	" c ",
+	["operator", "="],
+	["keyword", "new"],
+	["constructor-invocation", [
+		["punctuation", "("],
+		["keyword", "int"],
+		["punctuation", ","],
+		["keyword", "int"],
+		["punctuation", ")"]
+	]],
+	["punctuation", "["],
+	"Count",
+	["punctuation", "]"],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for class names of attributes.

@@ -1,0 +1,15 @@
+foo: hello:abc
+bar: @test\x\b
+
+----------------------------------------------------
+
+[
+	["key", "foo"], ["punctuation", ":"],
+	["literal","hello:abc"],
+	["key", "bar"], ["punctuation", ":"],
+	["literal","@test\\x\\b"]
+]
+
+----------------------------------------------------
+
+Checks for literals.

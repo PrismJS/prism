@@ -1,0 +1,117 @@
+hasaudio
+hasvideo
+width
+height
+framecount
+framerate
+frameratenumerator
+frameratedenominator
+isfieldbased
+isframebased
+getparity
+
+pixeltype
+isplanar
+isinterleaved
+isrgb
+isrgb24
+isrgb32
+isyuv
+isyuy2
+isy8
+isyv12
+isyv16
+isyv24
+isyv411
+is420
+is422
+is444
+isy
+isyuva
+isrgb48
+isrgb64
+ispackedrgb
+isplanarrgb
+isplanarrgba
+hasalpha
+componentsize
+numcomponents
+bitspercomponent
+
+audiorate
+audioduration
+audiolength
+audiolengthf
+audiolengths
+audiolengthlo
+audiolengthhi
+audiochannels
+audiobits
+isaudiofloat
+isaudioint
+
+xyzisaudiointxyz
+
+----------------------------------------------------
+
+[
+	["builtin-function", "hasaudio"],
+	["builtin-function", "hasvideo"],
+	["builtin-function", "width"],
+	["builtin-function", "height"],
+	["builtin-function", "framecount"],
+	["builtin-function", "framerate"],
+	["builtin-function", "frameratenumerator"],
+	["builtin-function", "frameratedenominator"],
+	["builtin-function", "isfieldbased"],
+	["builtin-function", "isframebased"],
+	["builtin-function", "getparity"],
+
+	["builtin-function", "pixeltype"],
+	["builtin-function", "isplanar"],
+	["builtin-function", "isinterleaved"],
+	["builtin-function", "isrgb"],
+	["builtin-function", "isrgb24"],
+	["builtin-function", "isrgb32"],
+	["builtin-function", "isyuv"],
+	["builtin-function", "isyuy2"],
+	["builtin-function", "isy8"],
+	["builtin-function", "isyv12"],
+	["builtin-function", "isyv16"],
+	["builtin-function", "isyv24"],
+	["builtin-function", "isyv411"],
+	["builtin-function", "is420"],
+	["builtin-function", "is422"],
+	["builtin-function", "is444"],
+	["builtin-function", "isy"],
+	["builtin-function", "isyuva"],
+	["builtin-function", "isrgb48"],
+	["builtin-function", "isrgb64"],
+	["builtin-function", "ispackedrgb"],
+	["builtin-function", "isplanarrgb"],
+	["builtin-function", "isplanarrgba"],
+	["builtin-function", "hasalpha"],
+	["builtin-function", "componentsize"],
+	["builtin-function", "numcomponents"],
+	["builtin-function", "bitspercomponent"],
+
+	["builtin-function", "audiorate"],
+	["builtin-function", "audioduration"],
+	["builtin-function", "audiolength"],
+	["builtin-function", "audiolengthf"],
+	["builtin-function", "audiolengths"],
+	["builtin-function", "audiolengthlo"],
+	["builtin-function", "audiolengthhi"],
+	["builtin-function", "audiochannels"],
+	["builtin-function", "audiobits"],
+	["builtin-function", "isaudiofloat"],
+	["builtin-function", "isaudioint"],
+
+	"\r\n\r\nxyzisaudiointxyz"
+]
+
+----------------------------------------------------
+
+All internal functions, filters, and properties can be used in the following formats:
+intFunc == intFunc() == last.intFunc == last.intFunc()
+They must not appear within other words.

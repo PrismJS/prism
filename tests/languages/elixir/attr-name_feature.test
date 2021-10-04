@@ -1,7 +1,8 @@
 [a: 1, b: 2]
 do: :this, else: :that
 where: foo,
-select: bar
+select: bar,
+attr?: a
 
 ----------------------------------------------------
 
@@ -16,7 +17,8 @@ select: bar
 	["punctuation", ","],
 	["attr-name", "else:"], ["atom", ":that"],
 	["attr-name", "where:"], " foo", ["punctuation", ","],
-	["attr-name", "select:"], " bar"
+	["attr-name", "select:"], " bar", ["punctuation", ","],
+	["attr-name", "attr?:"], " a"
 ]
 
 ----------------------------------------------------

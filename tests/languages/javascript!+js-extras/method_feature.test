@@ -1,27 +1,29 @@
 foo.bar();
 foo.bar.call();
+this.#bar();
 
 ----------------------------------------------------
 
 [
 	"foo",
 	["punctuation", "."],
-	["method", [
-		"bar"
-	]],
+	["method", ["bar"]],
 	["punctuation", "("],
 	["punctuation", ")"],
 	["punctuation", ";"],
 
-	"\nfoo",
+	"\r\nfoo",
 	["punctuation", "."],
-	["method", [
-		"bar"
-	]],
+	["method", ["bar"]],
 	["punctuation", "."],
-	["method", [
-		"call"
-	]],
+	["method", ["call"]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "this"],
+	["punctuation", "."],
+	["method", ["#bar"]],
 	["punctuation", "("],
 	["punctuation", ")"],
 	["punctuation", ";"]

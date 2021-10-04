@@ -1,0 +1,210 @@
+array
+asserterror
+begin
+break
+case
+do
+downto
+else
+end
+event
+exit
+for
+foreach
+function
+if
+implements
+in
+indataset
+interface
+internal
+local
+of
+procedure
+program
+protected
+repeat
+runonclient
+securityfiltering
+suppressdispose
+temporary
+then
+to
+trigger
+until
+var
+while
+with
+withevents
+
+action
+actions
+addafter
+addbefore
+addfirst
+addlast
+area
+assembly
+chartpart
+codeunit
+column
+controladdin
+cuegroup
+customizes
+dataitem
+dataset
+dotnet
+elements
+enum
+enumextension
+extends
+field
+fieldattribute
+fieldelement
+fieldgroup
+fieldgroups
+fields
+filter
+fixed
+grid
+group
+key
+keys
+label
+labels
+layout
+modify
+moveafter
+movebefore
+movefirst
+movelast
+page
+pagecustomization
+pageextension
+part
+profile
+query
+repeater
+report
+requestpage
+schema
+separator
+systempart
+table
+tableelement
+tableextension
+textattribute
+textelement
+type
+usercontrol
+value
+xmlport
+
+----------------------------------------------------
+
+[
+	["keyword", "array"],
+	["keyword", "asserterror"],
+	["keyword", "begin"],
+	["keyword", "break"],
+	["keyword", "case"],
+	["keyword", "do"],
+	["keyword", "downto"],
+	["keyword", "else"],
+	["keyword", "end"],
+	["keyword", "event"],
+	["keyword", "exit"],
+	["keyword", "for"],
+	["keyword", "foreach"],
+	["keyword", "function"],
+	["keyword", "if"],
+	["keyword", "implements"],
+	["keyword", "in"],
+	["keyword", "indataset"],
+	["keyword", "interface"],
+	["keyword", "internal"],
+	["keyword", "local"],
+	["keyword", "of"],
+	["keyword", "procedure"],
+	["keyword", "program"],
+	["keyword", "protected"],
+	["keyword", "repeat"],
+	["keyword", "runonclient"],
+	["keyword", "securityfiltering"],
+	["keyword", "suppressdispose"],
+	["keyword", "temporary"],
+	["keyword", "then"],
+	["keyword", "to"],
+	["keyword", "trigger"],
+	["keyword", "until"],
+	["keyword", "var"],
+	["keyword", "while"],
+	["keyword", "with"],
+	["keyword", "withevents"],
+	["keyword", "action"],
+	["keyword", "actions"],
+	["keyword", "addafter"],
+	["keyword", "addbefore"],
+	["keyword", "addfirst"],
+	["keyword", "addlast"],
+	["keyword", "area"],
+	["keyword", "assembly"],
+	["keyword", "chartpart"],
+	["keyword", "codeunit"],
+	["keyword", "column"],
+	["keyword", "controladdin"],
+	["keyword", "cuegroup"],
+	["keyword", "customizes"],
+	["keyword", "dataitem"],
+	["keyword", "dataset"],
+	["keyword", "dotnet"],
+	["keyword", "elements"],
+	["keyword", "enum"],
+	["keyword", "enumextension"],
+	["keyword", "extends"],
+	["keyword", "field"],
+	["keyword", "fieldattribute"],
+	["keyword", "fieldelement"],
+	["keyword", "fieldgroup"],
+	["keyword", "fieldgroups"],
+	["keyword", "fields"],
+	["keyword", "filter"],
+	["keyword", "fixed"],
+	["keyword", "grid"],
+	["keyword", "group"],
+	["keyword", "key"],
+	["keyword", "keys"],
+	["keyword", "label"],
+	["keyword", "labels"],
+	["keyword", "layout"],
+	["keyword", "modify"],
+	["keyword", "moveafter"],
+	["keyword", "movebefore"],
+	["keyword", "movefirst"],
+	["keyword", "movelast"],
+	["keyword", "page"],
+	["keyword", "pagecustomization"],
+	["keyword", "pageextension"],
+	["keyword", "part"],
+	["keyword", "profile"],
+	["keyword", "query"],
+	["keyword", "repeater"],
+	["keyword", "report"],
+	["keyword", "requestpage"],
+	["keyword", "schema"],
+	["keyword", "separator"],
+	["keyword", "systempart"],
+	["keyword", "table"],
+	["keyword", "tableelement"],
+	["keyword", "tableextension"],
+	["keyword", "textattribute"],
+	["keyword", "textelement"],
+	["keyword", "type"],
+	["keyword", "usercontrol"],
+	["keyword", "value"],
+	["keyword", "xmlport"]
+]
+
+----------------------------------------------------
+
+Checks for keywords and other literals which behave like keywords.

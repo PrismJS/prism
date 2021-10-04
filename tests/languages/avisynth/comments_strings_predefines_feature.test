@@ -1,0 +1,131 @@
+[* comment [* global *] DEFAULT_MT_MODE *]
+
+notacomment
+
+/* comment
+global "a string"
+DEFAULT_MT_MODE */
+
+notacomment
+
+# comment global DEFAULT_MT_MODE
+
+notacomment
+
+"a simple string"
+
+"""a
+complex
+string"""
+
+"DEFAULT_MT_MODE"
+"SCRIPTDIR"
+"MAINSCRIPTDIR"
+"PROGRAMDIR"
+"USER_PLUS_PLUGINS"
+"MACHINE_PLUS_PLUGINS"
+"USER_CLASSIC_PLUGINS"
+"MACHINE_CLASSIC_PLUGINS"
+
+"default_mt_mode"
+"scriptdir"
+"mainscriptdir"
+"programdir"
+"user_plus_plugins"
+"machine_plus_plugins"
+"user_classic_plugins"
+"machine_classic_plugins"
+
+DEFAULT_MT_MODE
+# SCRIPTDIR is also an internal function
+MAINSCRIPTDIR
+PROGRAMDIR
+USER_PLUS_PLUGINS
+MACHINE_PLUS_PLUGINS
+USER_CLASSIC_PLUGINS
+MACHINE_CLASSIC_PLUGINS
+
+----------------------------------------------------
+
+[
+	["comment", "[* comment [* global *] DEFAULT_MT_MODE *]"],
+
+	"\r\n\r\nnotacomment\r\n\r\n",
+
+	["comment", "/* comment\r\nglobal \"a string\"\r\nDEFAULT_MT_MODE */"],
+
+	"\r\n\r\nnotacomment\r\n\r\n",
+
+	["comment", "# comment global DEFAULT_MT_MODE"],
+
+	"\r\n\r\nnotacomment\r\n\r\n",
+
+	["string", ["\"a simple string\""]],
+
+	["string", "\"\"\"a\r\ncomplex\r\nstring\"\"\""],
+
+	["string", [
+		"\"",
+		["constant", "DEFAULT_MT_MODE"],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["constant", "SCRIPTDIR"],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["constant", "MAINSCRIPTDIR"],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["constant", "PROGRAMDIR"],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["constant", "USER_PLUS_PLUGINS"],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["constant", "MACHINE_PLUS_PLUGINS"],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["constant", "USER_CLASSIC_PLUGINS"],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["constant", "MACHINE_CLASSIC_PLUGINS"],
+		"\""
+	]],
+
+	["string", ["\"default_mt_mode\""]],
+	["string", ["\"scriptdir\""]],
+	["string", ["\"mainscriptdir\""]],
+	["string", ["\"programdir\""]],
+	["string", ["\"user_plus_plugins\""]],
+	["string", ["\"machine_plus_plugins\""]],
+	["string", ["\"user_classic_plugins\""]],
+	["string", ["\"machine_classic_plugins\""]],
+
+	"\r\n\r\nDEFAULT_MT_MODE\r\n",
+	["comment", "# SCRIPTDIR is also an internal function"],
+	"\r\nMAINSCRIPTDIR\r\nPROGRAMDIR\r\nUSER_PLUS_PLUGINS\r\nMACHINE_PLUS_PLUGINS\r\nUSER_CLASSIC_PLUGINS\r\nMACHINE_CLASSIC_PLUGINS"
+]
+
+----------------------------------------------------
+
+Block comments should not allow any other tokens within them, and should work over multiple lines.
+Single line comments are the same, but just one line.
+Known issue: square bracket block comments can be nested, but regular languages can't do that.
+
+Single line strings should be surrounded by double quotes, and allow no tokens within them except for predefined symbols.
+Triple quote strings can span multiple lines and allow no tokens within them.
+
+Predefined symbols must appear within single line strings. They are case sensitive.

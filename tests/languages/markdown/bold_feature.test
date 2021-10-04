@@ -5,76 +5,197 @@ __foobar__
 __foo
 bar__
 
-__foo*bar*baz__
-__foo_bar_baz__
-__foo~bar~baz__
+__foo *bar* baz__
+__foo _bar_ baz__
+__foo ~bar~ baz__
+__foo ~~bar~~ baz__
 __foo[bar](baz)__
+__foo `bar`__
+
+**foo *bar* baz**
+**foo _bar_ baz**
+**foo ~bar~ baz**
+**foo ~~bar~~ baz**
+**foo[bar](baz)**
+**foo `bar`**
+
+not__bold__ __this__either
 
 ----------------------------------------------------
 
 [
 	["bold", [
 		["punctuation", "**"],
-		"foobar",
+		["content", ["foobar"]],
 		["punctuation", "**"]
 	]],
 	["bold", [
 		["punctuation", "**"],
-		"foo\r\nbar",
+		["content", ["foo\r\nbar"]],
 		["punctuation", "**"]
 	]],
 	["bold", [
 		["punctuation", "__"],
-		"foobar",
+		["content", ["foobar"]],
 		["punctuation", "__"]
 	]],
 	["bold", [
 		["punctuation", "__"],
-		"foo\r\nbar",
+		["content", ["foo\r\nbar"]],
 		["punctuation", "__"]
 	]],
 
 	["bold", [
 		["punctuation", "__"],
-		"foo",
-		["italic", [
-			["punctuation", "*"],
-			"bar",
-			["punctuation", "*"]
+		["content", [
+			"foo ",
+			["italic", [
+				["punctuation", "*"],
+				["content", ["bar"]],
+				["punctuation", "*"]
+			]],
+			" baz"
 		]],
-		"baz",
 		["punctuation", "__"]
 	]],
 	["bold", [
 		["punctuation", "__"],
-		"foo",
-		["italic", [
-			["punctuation", "_"],
-			"bar",
-			["punctuation", "_"]
+		["content", [
+			"foo ",
+			["italic", [
+				["punctuation", "_"],
+				["content", ["bar"]],
+				["punctuation", "_"]
+			]],
+			" baz"
 		]],
-		"baz",
 		["punctuation", "__"]
 	]],
 	["bold", [
 		["punctuation", "__"],
-		"foo",
-		["strike", [
-			["punctuation", "~"],
-			"bar",
-			["punctuation", "~"]
+		["content", [
+			"foo ",
+			["strike", [
+				["punctuation", "~"],
+				["content", ["bar"]],
+				["punctuation", "~"]
+			]],
+			" baz"
 		]],
-		"baz",
 		["punctuation", "__"]
 	]],
 	["bold", [
 		["punctuation", "__"],
-		"foo",
-		["url", [
-			"[bar](baz)"
+		["content", [
+			"foo ",
+			["strike", [
+				["punctuation", "~~"],
+				["content", ["bar"]],
+				["punctuation", "~~"]
+			]],
+			" baz"
 		]],
 		["punctuation", "__"]
-	]]
+	]],
+	["bold", [
+		["punctuation", "__"],
+		["content", [
+			"foo",
+			["url", [
+				"[",
+				["content", ["bar"]],
+				"](",
+				["url", "baz"],
+				")"
+			]]
+		]],
+		["punctuation", "__"]
+	]],
+	["bold", [
+		["punctuation", "__"],
+		["content", [
+			"foo ",
+			["code-snippet", "`bar`"]
+		]],
+		["punctuation", "__"]
+	]],
+
+	["bold", [
+		["punctuation", "**"],
+		["content", [
+			"foo ",
+			["italic", [
+				["punctuation", "*"],
+				["content", ["bar"]],
+				["punctuation", "*"]
+			]],
+			" baz"
+		]],
+		["punctuation", "**"]
+	]],
+	["bold", [
+		["punctuation", "**"],
+		["content", [
+			"foo ",
+			["italic", [
+				["punctuation", "_"],
+				["content", ["bar"]],
+				["punctuation", "_"]
+			]],
+			" baz"
+		]],
+		["punctuation", "**"]
+	]],
+	["bold", [
+		["punctuation", "**"],
+		["content", [
+			"foo ",
+			["strike", [
+				["punctuation", "~"],
+				["content", ["bar"]],
+				["punctuation", "~"]
+			]],
+			" baz"
+		]],
+		["punctuation", "**"]
+	]],
+	["bold", [
+		["punctuation", "**"],
+		["content", [
+			"foo ",
+			["strike", [
+				["punctuation", "~~"],
+				["content", ["bar"]],
+				["punctuation", "~~"]
+			]],
+			" baz"
+		]],
+		["punctuation", "**"]
+	]],
+	["bold", [
+		["punctuation", "**"],
+		["content", [
+			"foo",
+			["url", [
+				"[",
+				["content", ["bar"]],
+				"](",
+				["url", "baz"],
+				")"
+			]]
+		]],
+		["punctuation", "**"]
+	]],
+	["bold", [
+		["punctuation", "**"],
+		["content", [
+			"foo ",
+			["code-snippet", "`bar`"]
+		]],
+		["punctuation", "**"]
+	]],
+
+	"\r\n\r\nnot__bold__ __this__either"
 ]
 
 ----------------------------------------------------

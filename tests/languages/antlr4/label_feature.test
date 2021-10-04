@@ -1,0 +1,43 @@
+stat: 'return' e ';' # Return
+	| 'break' ';' # Break
+	;
+e   : e '*' e # Mult
+	| e '+' e # Add
+	| INT # Int
+	;
+
+----------------------------------------------------
+
+[
+	["definition", "stat"],
+	["punctuation", ":"],
+	["string", "'return'"],
+	" e ",
+	["string", "';'"],
+	["label", "# Return"],
+	["operator", "|"],
+	["string", "'break'"],
+	["string", "';'"],
+	["label", "# Break"],
+	["punctuation", ";"],
+
+	["definition", "e"],
+	["punctuation", ":"],
+	" e ",
+	["string", "'*'"],
+	" e ",
+	["label", "# Mult"],
+	["operator", "|"],
+	" e ",
+	["string", "'+'"],
+	" e ",
+	["label", "# Add"],
+	["operator", "|"],
+	["constant", "INT"],
+	["label", "# Int"],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for labels.

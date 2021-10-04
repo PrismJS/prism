@@ -1,0 +1,43 @@
+""
+"foo\"bar"
+`raw-string`
+
+jwks = `{
+    "keys": [{
+        "kty":"EC",
+        "crv":"P-256",
+        "x":"z8J91ghFy5o6f2xZ4g8LsLH7u2wEpT2ntj8loahnlsE",
+        "y":"7bdeXLH61KrGWRdh7ilnbcGQACxykaPKfmBccTHIOUo"
+    }]
+}`
+
+cert = `-----BEGIN CERTIFICATE-----
+MIIBcDCCARagAwIBAgIJAMZmuGSIfvgzMAoGCCqGSM49BAMCMBMxETAPBgNVBAMM
+CHdoYXRldmVyMB4XDTE4MDgxMDE0Mjg1NFoXDTE4MDkwOTE0Mjg1NFowEzERMA8G
+A1UEAwwId2hhdGV2ZXIwWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAATPwn3WCEXL
+mjp/bFniDwuwsfu7bASlPae2PyWhqGeWwe23Xlyx+tSqxlkXYe4pZ23BkAAscpGj
+yn5gXHExyDlKo1MwUTAdBgNVHQ4EFgQUElRjSoVgKjUqY5AXz2o74cLzzS8wHwYD
+VR0jBBgwFoAUElRjSoVgKjUqY5AXz2o74cLzzS8wDwYDVR0TAQH/BAUwAwEB/zAK
+BggqhkjOPQQDAgNIADBFAiEA4yQ/88ZrUX68c6kOe9G11u8NUaUzd8pLOtkKhniN
+OHoCIHmNX37JOqTcTzGn2u9+c8NlnvZ0uDvsd1BmKPaUmjmm
+-----END CERTIFICATE-----`
+
+----------------------------------------------------
+
+[
+	["string", "\"\""],
+	["string", "\"foo\\\"bar\""],
+	["string", "`raw-string`"],
+
+	"\r\n\r\njwks ",
+	["operator", "="],
+	["string", "`{\r\n    \"keys\": [{\r\n        \"kty\":\"EC\",\r\n        \"crv\":\"P-256\",\r\n        \"x\":\"z8J91ghFy5o6f2xZ4g8LsLH7u2wEpT2ntj8loahnlsE\",\r\n        \"y\":\"7bdeXLH61KrGWRdh7ilnbcGQACxykaPKfmBccTHIOUo\"\r\n    }]\r\n}`"],
+
+	"\r\n\r\ncert ",
+	["operator", "="],
+	["string", "`-----BEGIN CERTIFICATE-----\r\nMIIBcDCCARagAwIBAgIJAMZmuGSIfvgzMAoGCCqGSM49BAMCMBMxETAPBgNVBAMM\r\nCHdoYXRldmVyMB4XDTE4MDgxMDE0Mjg1NFoXDTE4MDkwOTE0Mjg1NFowEzERMA8G\r\nA1UEAwwId2hhdGV2ZXIwWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAATPwn3WCEXL\r\nmjp/bFniDwuwsfu7bASlPae2PyWhqGeWwe23Xlyx+tSqxlkXYe4pZ23BkAAscpGj\r\nyn5gXHExyDlKo1MwUTAdBgNVHQ4EFgQUElRjSoVgKjUqY5AXz2o74cLzzS8wHwYD\r\nVR0jBBgwFoAUElRjSoVgKjUqY5AXz2o74cLzzS8wDwYDVR0TAQH/BAUwAwEB/zAK\r\nBggqhkjOPQQDAgNIADBFAiEA4yQ/88ZrUX68c6kOe9G11u8NUaUzd8pLOtkKhniN\r\nOHoCIHmNX37JOqTcTzGn2u9+c8NlnvZ0uDvsd1BmKPaUmjmm\r\n-----END CERTIFICATE-----`"]
+]
+
+----------------------------------------------------
+
+Checks for strings.

@@ -1,0 +1,74 @@
+class_name Foo
+extends Bar
+
+class InnerClass:
+
+export(int) var baz
+export(int, 0) var i
+
+return foo as Node
+
+const FOO: int = 9
+var bar: bool = true
+
+func add(reference: Item, amount: int) -> Item:
+
+----------------------------------------------------
+
+[
+	["keyword", "class_name"], ["class-name", "Foo"],
+	["keyword", "extends"], ["class-name", "Bar"],
+
+	["keyword", "class"], ["class-name", "InnerClass"], ["punctuation", ":"],
+
+	["keyword", "export"],
+	["punctuation", "("],
+	["class-name", "int"],
+	["punctuation", ")"],
+	["keyword", "var"],
+	" baz\r\n",
+
+	["keyword", "export"],
+	["punctuation", "("],
+	["class-name", "int"],
+	["punctuation", ","],
+	["number", "0"],
+	["punctuation", ")"],
+	["keyword", "var"],
+	" i\r\n\r\n",
+
+	["keyword", "return"], " foo ", ["keyword", "as"], ["class-name", "Node"],
+
+	["keyword", "const"],
+	["constant", "FOO"],
+	["punctuation", ":"],
+	["class-name", "int"],
+	["operator", "="],
+	["number", "9"],
+
+	["keyword", "var"],
+	" bar",
+	["punctuation", ":"],
+	["class-name", "bool"],
+	["operator", "="],
+	["boolean", "true"],
+
+	["keyword", "func"],
+	["function", "add"],
+	["punctuation", "("],
+	"reference",
+	["punctuation", ":"],
+	["class-name", "Item"],
+	["punctuation", ","],
+	" amount",
+	["punctuation", ":"],
+	["class-name", "int"],
+	["punctuation", ")"],
+	["operator", "->"],
+	["class-name", "Item"],
+	["punctuation", ":"]
+]
+
+----------------------------------------------------
+
+Checks for class names.

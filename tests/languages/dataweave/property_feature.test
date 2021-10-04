@@ -1,0 +1,53 @@
+{
+	a: 123,
+	"My Name": true,
+	t#test : true,
+	"test" @(a: true): 2,
+	test#"test" @(a: true): 3
+}
+
+----------------------------------------------------
+
+[
+	["punctuation", "{"],
+
+	["property", "a"],
+	["punctuation", ":"],
+	["number", "123"],
+	["punctuation", ","],
+
+	["property", "\"My Name\""],
+	["punctuation", ":"],
+	["boolean", "true"],
+	["punctuation", ","],
+
+	["property", "t#test"],
+	["punctuation", ":"],
+	["boolean", "true"],
+	["punctuation", ","],
+
+	["property", "\"test\""],
+	["punctuation", "@"],
+	["punctuation", "("],
+	["property", "a"],
+	["punctuation", ":"],
+	["boolean", "true"],
+	["punctuation", ")"],
+	["punctuation", ":"],
+	["number", "2"],
+	["punctuation", ","],
+
+	["property", "test#\"test\""],
+	["punctuation", "@"],
+	["punctuation", "("],
+	["property", "a"],
+	["punctuation", ":"],
+	["boolean", "true"],
+	["punctuation", ")"],
+	["punctuation", ":"],
+	["number", "3"],
+
+	["punctuation", "}"]
+]
+----------------------------------------------------
+Check for properties

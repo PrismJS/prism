@@ -3,59 +3,108 @@ App
 Array
 As
 Assigns
+Auto
+Boolean
 ByRef
+Byte
 ByVal
 Break
 Call
 Case
 Catch
+CFStringRef
+CGFloat
+Class
+Color
 Const
 Continue
+CString
+Currency
 CurrentMethodName
 Declare
+Delegate
 Dim
 Do
+Double
 DownTo
 Each
 Else
 ElseIf
 End
+Enumeration
+Event
+Exception
 Exit
 Extends
 False
 Finally
 For
+Function
+Get
+GetTypeInfo
 Global
+GOTO
 If
+Implements
 In
+Inherits
+Integer
+Interface
+Int8
+Int16
+Int32
+Int64
 Lib
 Loop
 Me
+Module
 Next
 Nil
+Object
 Optional
 ParamArray
+Private
+Property
+Protected
+PString
+Ptr
 Raise
 RaiseEvent
 ReDim
-Rem
 RemoveHandler
 Return
 Select
+Selector
 Self
+Set
+Single
+Shared
+Short
 Soft
 Static
 Step
+String
+Sub
 Super
+Text
 Then
 To
 True
 Try
 Ubound
+UInteger
+UInt8
+UInt16
+UInt32
+UInt64
 Until
 Using
+Var
+Variant
 Wend
 While
+WindowPtr
+WString
 
 ----------------------------------------------------
 
@@ -65,59 +114,108 @@ While
 	["keyword", "Array"],
 	["keyword", "As"],
 	["keyword", "Assigns"],
+	["keyword", "Auto"],
+	["keyword", "Boolean"],
 	["keyword", "ByRef"],
+	["keyword", "Byte"],
 	["keyword", "ByVal"],
 	["keyword", "Break"],
 	["keyword", "Call"],
 	["keyword", "Case"],
 	["keyword", "Catch"],
+	["keyword", "CFStringRef"],
+	["keyword", "CGFloat"],
+	["keyword", "Class"],
+	["keyword", "Color"],
 	["keyword", "Const"],
 	["keyword", "Continue"],
+	["keyword", "CString"],
+	["keyword", "Currency"],
 	["keyword", "CurrentMethodName"],
 	["keyword", "Declare"],
+	["keyword", "Delegate"],
 	["keyword", "Dim"],
 	["keyword", "Do"],
+	["keyword", "Double"],
 	["keyword", "DownTo"],
 	["keyword", "Each"],
 	["keyword", "Else"],
 	["keyword", "ElseIf"],
 	["keyword", "End"],
+	["keyword", "Enumeration"],
+	["keyword", "Event"],
+	["keyword", "Exception"],
 	["keyword", "Exit"],
 	["keyword", "Extends"],
 	["keyword", "False"],
 	["keyword", "Finally"],
 	["keyword", "For"],
+	["keyword", "Function"],
+	["keyword", "Get"],
+	["keyword", "GetTypeInfo"],
 	["keyword", "Global"],
+	["keyword", "GOTO"],
 	["keyword", "If"],
+	["keyword", "Implements"],
 	["keyword", "In"],
+	["keyword", "Inherits"],
+	["keyword", "Integer"],
+	["keyword", "Interface"],
+	["keyword", "Int8"],
+	["keyword", "Int16"],
+	["keyword", "Int32"],
+	["keyword", "Int64"],
 	["keyword", "Lib"],
 	["keyword", "Loop"],
 	["keyword", "Me"],
+	["keyword", "Module"],
 	["keyword", "Next"],
 	["keyword", "Nil"],
+	["keyword", "Object"],
 	["keyword", "Optional"],
 	["keyword", "ParamArray"],
+	["keyword", "Private"],
+	["keyword", "Property"],
+	["keyword", "Protected"],
+	["keyword", "PString"],
+	["keyword", "Ptr"],
 	["keyword", "Raise"],
 	["keyword", "RaiseEvent"],
 	["keyword", "ReDim"],
-	["keyword", "Rem"],
 	["keyword", "RemoveHandler"],
 	["keyword", "Return"],
 	["keyword", "Select"],
+	["keyword", "Selector"],
 	["keyword", "Self"],
+	["keyword", "Set"],
+	["keyword", "Single"],
+	["keyword", "Shared"],
+	["keyword", "Short"],
 	["keyword", "Soft"],
 	["keyword", "Static"],
 	["keyword", "Step"],
+	["keyword", "String"],
+	["keyword", "Sub"],
 	["keyword", "Super"],
+	["keyword", "Text"],
 	["keyword", "Then"],
 	["keyword", "To"],
 	["keyword", "True"],
 	["keyword", "Try"],
 	["keyword", "Ubound"],
+	["keyword", "UInteger"],
+	["keyword", "UInt8"],
+	["keyword", "UInt16"],
+	["keyword", "UInt32"],
+	["keyword", "UInt64"],
 	["keyword", "Until"],
 	["keyword", "Using"],
+	["keyword", "Var"],
+	["keyword", "Variant"],
 	["keyword", "Wend"],
-	["keyword", "While"]
+	["keyword", "While"],
+	["keyword", "WindowPtr"],
+	["keyword", "WString"]
 ]
 
 ----------------------------------------------------

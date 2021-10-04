@@ -1,0 +1,24 @@
+bob = new SqlCommand("Select * from test Where Code=@Code");
+bob = new SqlCommand("Select * from test Where Code=Code");
+
+----------------------------------------------------
+
+[
+	"bob ",
+	["operator", "="],
+	["keyword", "new"],
+	" SqlCommand",
+	["punctuation", "("],
+	["string", "\"Select * from test Where Code=@Code\""],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	"\r\nbob ",
+	["operator", "="],
+	["keyword", "new"],
+	" SqlCommand",
+	["punctuation", "("],
+	["string", "\"Select * from test Where Code=Code\""],
+	["punctuation", ")"],
+	["punctuation", ";"]
+]

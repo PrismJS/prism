@@ -1,0 +1,166 @@
+Foo Bar();
+Foo<IFoo> Bar<A>();
+Foo<IFoo>[,] Bar<A>();
+new Foo<IFoo>[,] Bar<A>();
+(int, long)? Foo<int>();
+(int, long)? Foo => null;
+Baz?[,]? Foo { get; set } = null;
+int[]? this[int index] => null;
+int[]? IInterface.this[int index] => null;
+
+----------------------------------------------------
+
+[
+	["return-type", [
+		"Foo"
+	]],
+	["function", "Bar"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["return-type", [
+		"Foo",
+		["punctuation", "<"],
+		"IFoo",
+		["punctuation", ">"]
+	]],
+	["generic-method", [
+		["function", "Bar"],
+		["generic", [
+			["punctuation", "<"],
+			"A",
+			["punctuation", ">"]
+		]]
+	]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["return-type", [
+		"Foo",
+		["punctuation", "<"],
+		"IFoo",
+		["punctuation", ">"],
+		["punctuation", "["],
+		["punctuation", ","],
+		["punctuation", "]"]
+	]],
+	["generic-method", [
+		["function", "Bar"],
+		["generic", [
+			["punctuation", "<"],
+			"A",
+			["punctuation", ">"]
+		]]
+	]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["keyword", "new"],
+	["return-type", [
+		"Foo",
+		["punctuation", "<"],
+		"IFoo",
+		["punctuation", ">"],
+		["punctuation", "["],
+		["punctuation", ","],
+		["punctuation", "]"]
+	]],
+	["generic-method", [
+		["function", "Bar"],
+		["generic", [
+			["punctuation", "<"],
+			"A",
+			["punctuation", ">"]
+		]]
+	]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["return-type", [
+		["punctuation", "("],
+		["keyword", "int"],
+		["punctuation", ","],
+		["keyword", "long"],
+		["punctuation", ")"],
+		["punctuation", "?"]
+	]],
+	["generic-method", [
+		["function", "Foo"],
+		["generic", [
+			["punctuation", "<"],
+			["keyword", "int"],
+			["punctuation", ">"]
+		]]
+	]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["return-type", [
+		["punctuation", "("],
+		["keyword", "int"],
+		["punctuation", ","],
+		["keyword", "long"],
+		["punctuation", ")"],
+		["punctuation", "?"]
+	]],
+	" Foo ",
+	["operator", "=>"],
+	["keyword", "null"],
+	["punctuation", ";"],
+	["return-type", [
+		"Baz",
+		["punctuation", "?"],
+		["punctuation", "["],
+		["punctuation", ","],
+		["punctuation", "]"],
+		["punctuation", "?"]
+	]],
+	" Foo ",
+	["punctuation", "{"],
+	["keyword", "get"],
+	["punctuation", ";"],
+	["keyword", "set"],
+	["punctuation", "}"],
+	["operator", "="],
+	["keyword", "null"],
+	["punctuation", ";"],
+	["return-type", [
+		["keyword", "int"],
+		["punctuation", "["],
+		["punctuation", "]"],
+		["punctuation", "?"]
+	]],
+	["keyword", "this"],
+	["punctuation", "["],
+	["class-name", [
+		["keyword", "int"]
+	]],
+	" index",
+	["punctuation", "]"],
+	["operator", "=>"],
+	["keyword", "null"],
+	["punctuation", ";"],
+	["return-type", [
+		["keyword", "int"],
+		["punctuation", "["],
+		["punctuation", "]"],
+		["punctuation", "?"]
+	]],
+	" IInterface",
+	["punctuation", "."],
+	["keyword", "this"],
+	["punctuation", "["],
+	["class-name", [
+		["keyword", "int"]
+	]],
+	" index",
+	["punctuation", "]"],
+	["operator", "=>"],
+	["keyword", "null"],
+	["punctuation", ";"]
+]
+
+
+----------------------------------------------------
+
+Checks for the return type.

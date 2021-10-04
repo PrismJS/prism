@@ -89,15 +89,15 @@ uimage1DArray uimage2DArray
 imageCubeArray iimageCubeArray uimageCubeArray
 image2DMS iimage2DMS uimage2DMS
 image2DMSArray iimage2DMSArray uimage2DMSArray
-struct
+struct;
 common
 partition
 active
 asm
 class;
 union
-enum
-typedef
+enum;
+typedef;
 template
 this
 resource
@@ -220,15 +220,15 @@ using
 	["keyword", "imageCubeArray"], ["keyword", "iimageCubeArray"], ["keyword", "uimageCubeArray"],
 	["keyword", "image2DMS"], ["keyword", "iimage2DMS"], ["keyword", "uimage2DMS"],
 	["keyword", "image2DMSArray"], ["keyword", "iimage2DMSArray"], ["keyword", "uimage2DMSArray"],
-	["keyword", "struct"],
+	["keyword", "struct"], ["punctuation", ";"],
 	["keyword", "common"],
 	["keyword", "partition"],
 	["keyword", "active"],
 	["keyword", "asm"],
 	["keyword", "class"], ["punctuation", ";"],
 	["keyword", "union"],
-	["keyword", "enum"],
-	["keyword", "typedef"],
+	["keyword", "enum"], ["punctuation", ";"],
+	["keyword", "typedef"], ["punctuation", ";"],
 	["keyword", "template"],
 	["keyword", "this"],
 	["keyword", "resource"],

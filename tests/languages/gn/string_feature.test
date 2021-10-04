@@ -1,0 +1,70 @@
+""
+"foo"
+".$output_extension"
+"$0xFF"
+"$var_one/$var_two"
+"${var_one}"
+"$root_out_dir/lib${_output_name}${_shlib_extension}"
+
+----------------------------------------------------
+
+[
+	["string-literal", [
+		["string", "\"\""]
+	]],
+	["string-literal", [
+		["string", "\"foo\""]
+	]],
+	["string-literal", [
+		["string", "\"."],
+		["interpolation", [
+			["variable", "$output_extension"]
+		]],
+		["string", "\""]
+	]],
+	["string-literal", [
+		["string", "\""],
+		["interpolation", [
+			["number", "$0xFF"]
+		]],
+		["string", "\""]
+	]],
+	["string-literal", [
+		["string", "\""],
+		["interpolation", [
+			["variable", "$var_one"]
+		]],
+		["string", "/"],
+		["interpolation", [
+			["variable", "$var_two"]
+		]],
+		["string", "\""]
+	]],
+	["string-literal", [
+		["string", "\""],
+		["interpolation", [
+			["interpolation-punctuation", "${"],
+			["expression", ["var_one"]],
+			["interpolation-punctuation", "}"]
+		]],
+		["string", "\""]
+	]],
+	["string-literal", [
+		["string", "\""],
+		["interpolation", [
+			["variable", "$root_out_dir"]
+		]],
+		["string", "/lib"],
+		["interpolation", [
+			["interpolation-punctuation", "${"],
+			["expression", ["_output_name"]],
+			["interpolation-punctuation", "}"]
+		]],
+		["interpolation", [
+			["interpolation-punctuation", "${"],
+			["expression", ["_shlib_extension"]],
+			["interpolation-punctuation", "}"]
+		]],
+		["string", "\""]
+	]]
+]

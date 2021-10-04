@@ -1,0 +1,34 @@
+defmodule Math do
+  def sum(a, b) do
+    a + b
+  end
+end
+
+----------------------------------------------------
+
+[
+	["keyword", "defmodule"],
+	["module", "Math"],
+	["keyword", "do"],
+
+	["keyword", "def"],
+	["function", "sum"],
+	["punctuation", "("],
+	"a",
+	["punctuation", ","],
+	" b",
+	["punctuation", ")"],
+	["keyword", "do"],
+
+	"\r\n    a ",
+	["operator", "+"],
+	" b\r\n  ",
+
+	["keyword", "end"],
+
+	["keyword", "end"]
+]
+
+----------------------------------------------------
+
+Checks for all keywords.

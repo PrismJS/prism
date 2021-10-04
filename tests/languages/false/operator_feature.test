@@ -1,0 +1,59 @@
+!
+#
+$
+%
+&
+*
++
+,
+-
+.
+/
+:
+;
+=
+>
+?
+@
+\
+^
+_
+`
+|
+~
+ß
+ø
+
+----------------------------------------------------
+
+[
+	["operator", "!"],
+	["operator", "#"],
+	["operator", "$"],
+	["operator", "%"],
+	["operator", "&"],
+	["operator", "*"],
+	["operator", "+"],
+	["operator", ","],
+	["operator", "-"],
+	["operator", "."],
+	["operator", "/"],
+	["operator", ":"],
+	["operator", ";"],
+	["operator", "="],
+	["operator", ">"],
+	["operator", "?"],
+	["operator", "@"],
+	["operator", "\\"],
+	["operator", "^"],
+	["operator", "_"],
+	["operator", "`"],
+	["operator", "|"],
+	["operator", "~"],
+	["operator", "ß"],
+	["operator", "ø"]
+]
+
+----------------------------------------------------
+
+Checks for operators.

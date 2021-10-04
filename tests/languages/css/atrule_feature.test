@@ -10,7 +10,12 @@
 [
 	["atrule", [
 		["rule", "@import"],
-		["url", "url(foo.css)"],
+		["url", [
+			["function", "url"],
+			["punctuation", "("],
+			"foo.css",
+			["punctuation", ")"]
+		]],
 		["punctuation", ";"]
 	]],
 	["atrule", [
@@ -26,7 +31,7 @@
 		["punctuation", ":"],
 		" 640px",
 		["punctuation", ")"],
-		" and ",
+		["keyword", "and"],
 		["punctuation", "("],
 		["property", "min-height"],
 		["punctuation", ":"],
@@ -42,7 +47,7 @@
 		["punctuation", ":"],
 		" 50vmax",
 		["punctuation", ")"],
-		"\r\n\tor ",
+		["keyword", "or"],
 		["punctuation", "("],
 		["property", "top"],
 		["punctuation", ":"],

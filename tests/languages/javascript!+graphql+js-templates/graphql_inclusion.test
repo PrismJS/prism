@@ -1,0 +1,46 @@
+gql`{ foo }`
+graphql`{ foo }`
+graphql.experimental`{ foo }`
+
+----------------------------------------------------
+
+[
+	"gql",
+	["template-string", [
+		["template-punctuation", "`"],
+		["graphql", [
+			["punctuation", "{"],
+			["property", "foo"],
+			["punctuation", "}"]
+		]],
+		["template-punctuation", "`"]
+	]],
+
+	"\r\ngraphql",
+	["template-string", [
+		["template-punctuation", "`"],
+		["graphql", [
+			["punctuation", "{"],
+			["property", "foo"],
+			["punctuation", "}"]
+		]],
+		["template-punctuation", "`"]
+	]],
+
+	"\r\ngraphql",
+	["punctuation", "."],
+	"experimental",
+	["template-string", [
+		["template-punctuation", "`"],
+		["graphql", [
+			["punctuation", "{"],
+			["property", "foo"],
+			["punctuation", "}"]
+		]],
+		["template-punctuation", "`"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for tagged template literals containing GraphQL code.

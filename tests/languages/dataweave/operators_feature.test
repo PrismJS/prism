@@ -1,0 +1,79 @@
+a > b
+c < d
+a = 1
+a << 1
+b >> 2
+d <= 2
+e >= 3
+f != 4
+g ~= 4
+h == 1
+(a) -> 1
+a ++ b
+c -- d
+payload.name!
+payload.name?
+
+----------------------------------------------------
+
+[
+	"a ",
+	["operator", ">"],
+	" b\r\nc ",
+	["operator", "<"],
+	" d\r\na ",
+	["operator", "="],
+	["number", "1"],
+
+	"\r\na ",
+	["operator", "<<"],
+	["number", "1"],
+
+	"\r\nb ",
+	["operator", ">>"],
+	["number", "2"],
+
+	"\r\nd ",
+	["operator", "<="],
+	["number", "2"],
+
+	"\r\ne ",
+	["operator", ">="],
+	["number", "3"],
+
+	"\r\nf ",
+	["operator", "!="],
+	["number", "4"],
+
+	"\r\ng ",
+	["operator", "~="],
+	["number", "4"],
+
+	"\r\nh ",
+	["operator", "=="],
+	["number", "1"],
+
+	["punctuation", "("],
+	"a",
+	["punctuation", ")"],
+	["operator", "->"],
+	["number", "1"],
+
+	"\r\na ",
+	["operator", "++"],
+	" b\r\nc ",
+	["operator", "--"],
+	" d\r\npayload",
+	["punctuation", "."],
+	"name",
+	["operator", "!"],
+
+	"\r\npayload",
+	["punctuation", "."],
+	"name",
+	["operator", "?"]
+]
+
+----------------------------------------------------
+
+Check for operators

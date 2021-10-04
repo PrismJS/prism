@@ -1,10 +1,19 @@
 (function () {
-	if (typeof self === 'undefined' || !self.Prism || !self.document || !document.querySelector) {
+
+	if (typeof Prism === 'undefined' || typeof document === 'undefined') {
 		return;
 	}
 
-	var NEW_LINE = /\r\n?|\n/g;
-	var LANG = /\blang(?:uage)?-([\w-]+)\b/i;
+	// https://developer.mozilla.org/en-US/docs/Web/API/Element/matches#Polyfill
+	if (!Element.prototype.matches) {
+		Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
+	}
+
+	var LOADING_MESSAGE = 'Loading…';
+	var FAILURE_MESSAGE = function (status, message) {
+		return '✖ Error ' + status + ' while fetching file: ' + message;
+	};
+	var FAILURE_EMPTY_MESSAGE = '✖ Error: File does not exist or is empty';
 
 	var EXTENSIONS = {
 		'js': 'javascript',
@@ -18,21 +27,37 @@
 		'tex': 'latex'
 	};
 
+	var STATUS_ATTR = 'data-src-status';
+	var STATUS_LOADING = 'loading';
+	var STATUS_LOADED = 'loaded';
+	var STATUS_FAILED = 'failed';
+
+	var SELECTOR = 'pre[data-src]:not([' + STATUS_ATTR + '="' + STATUS_LOADED + '"])'
+		+ ':not([' + STATUS_ATTR + '="' + STATUS_LOADING + '"])';
+
+	var lang = /\blang(?:uage)?-([\w-]+)\b/i;
 
 	/**
-	 * @typedef LoadResult
-	 * @property {string} source The URL or relative path of the loaded file.
-	 * @property {string} text The text of the file loaded or an error message.
-	 * @property {boolean} failed Whether an error occurred during loading.
+	 * Sets the Prism `language-xxxx` or `lang-xxxx` class to the given language.
+	 *
+	 * @param {HTMLElement} element
+	 * @param {string} language
+	 * @returns {void}
 	 */
+	function setLanguageClass(element, language) {
+		var className = element.className;
+		className = className.replace(lang, ' ') + ' language-' + language;
+		element.className = className.replace(/\s+/g, ' ').trim();
+	}
 
 	/**
 	 * Loads the given file.
 	 *
 	 * @param {string} src The URL or path of the source file to load.
-	 * @param {(result: Readonly<LoadResult>) => void} cb A callback function to process the response.
+	 * @param {(result: string) => void} success
+	 * @param {(reason: string) => void} error
 	 */
-	function loadFile(src, cb) {
+	function loadFile(src, success, error) {
 		var xhr = new XMLHttpRequest();
 		xhr.open('GET', src, true);
 		xhr.onreadystatechange = function () {
@@ -45,159 +70,149 @@
 				};
 
 				if (xhr.status < 400 && xhr.responseText) {
-					result.text = xhr.responseText;
+					success(xhr.responseText);
 				} else {
 					result.failed = true;
 					if (xhr.status >= 400) {
-						result.text = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+						error(FAILURE_MESSAGE(xhr.status, xhr.statusText));
 					} else {
-						result.text = '✖ Error: File does not exist or is empty';
+						error(FAILURE_EMPTY_MESSAGE);
 					}
 				}
-
-				return cb(result);
 			}
 		};
 		xhr.send(null);
 	}
 
 	/**
-	 * Inserts the text content of a loaded file into the given `pre` and highlights the code.
+	 * Parses the given range.
 	 *
-	 * @param {HTMLPreElement} pre
-	 * @param {Readonly<LoadResult>} result
+	 * This returns a range with inclusive ends.
+	 *
+	 * @param {string | null | undefined} range
+	 * @returns {[number, number | undefined] | undefined}
 	 */
-	function processElement(pre, result) {
-		// check <pre> for a language-xxxx class
-		var language = (LANG.exec(pre.className) || [, ''])[1];
+	function parseRange(range) {
+		var m = /^\s*(\d+)\s*(?:(,)\s*(?:(\d+)\s*)?)?$/.exec(range || '');
+		if (m) {
+			var start = Number(m[1]);
+			var comma = m[2];
+			var end = m[3];
 
-		// no language found -> use the file extension
-		if (!language) {
-			var extension = (result.source.match(/\.(\w+)$/) || [, ''])[1];
-			language = EXTENSIONS[extension] || extension;
-		}
-
-		var text = result.text;
-
-		var range = pre.getAttribute('data-range');
-		if (!result.failed && range) {
-			var parts = range.split(',', 2);
-			var start = parseInt(parts[0], 10);
-			var end;
-			if (parts[1] === undefined) {
-				// e.g. data-range="2"
-				end = start;
-			} else if (parts[1] === '') {
-				// e.g. data-range="2,"
-				end = -1;
-			} else {
-				// e.g. data-range="1,5"
-				end = parseInt(parts[1], 10);
+			if (!comma) {
+				return [start, start];
 			}
-
-			// only if both are valid
-			if (!isNaN(start) && !isNaN(end)) {
-				var lines = text.split(NEW_LINE);
-
-				if (start > 0) {
-					start--;
-				} else if (start < 0) {
-					start += lines.length; // slice can handle negatives but data-start cannot.
-				}
-				if (end === -1) {
-					end = lines.length;
-				} else if (end < 0) {
-					end++;
-				}
-
-				text = lines.slice(start, end).join('\n');
-
-				// add data-start for line numbers
-				if (!pre.hasAttribute('data-start')) {
-					pre.setAttribute('data-start', String(start + 1));
-				}
+			if (!end) {
+				return [start, undefined];
 			}
+			return [start, Number(end)];
 		}
-
-		// create <code class="language-xxxx">
-		var code = document.createElement('code');
-		code.className = 'language-' + language;
-		code.textContent = text;
-
-		// set <pre> class
-		pre.className = pre.className.replace(LANG, ' ').replace(/\s+/g, ' ') + ' language-' + language;
-
-		// empty <pre> and append <code>
-		while (pre.firstChild) {
-			pre.removeChild(pre.firstChild);
-		}
-		pre.appendChild(code);
-
-		if (!result.failed) {
-			// highlight <code>
-			Prism.highlightElement(code);
-		}
-
-		// mark as loaded
-		pre.setAttribute('data-src-loaded', '');
+		return undefined;
 	}
 
-	/**
-	 * @param {ParentNode} [container=document]
-	 */
-	Prism.fileHighlight = function (container) {
-		container = container || document;
-		var preElements = Array.prototype.slice.call(container.querySelectorAll('pre[data-src]'));
+	Prism.hooks.add('before-highlightall', function (env) {
+		env.selector += ', ' + SELECTOR;
+	});
 
-		/**
-		 * A map from file source to `pre` elements with that source.
-		 *
-		 * This is to make only one request per file.
-		 *
-		 * @type {Object<string, HTMLPreElement[]>}
-		 */
-		var map = {};
-		preElements.forEach(function (pre) {
-			// ignore if already loaded
-			if (pre.hasAttribute('data-src-loaded')) {
-				return;
-			}
+	Prism.hooks.add('before-sanity-check', function (env) {
+		var pre = /** @type {HTMLPreElement} */ (env.element);
+		if (pre.matches(SELECTOR)) {
+			env.code = ''; // fast-path the whole thing and go to complete
 
-			pre.textContent = 'Loading…';
+			pre.setAttribute(STATUS_ATTR, STATUS_LOADING); // mark as loading
+
+			// add code element with loading message
+			var code = pre.appendChild(document.createElement('CODE'));
+			code.textContent = LOADING_MESSAGE;
 
 			var src = pre.getAttribute('data-src');
-			(map[src] = map[src] || []).push(pre);
-		});
 
-		Object.keys(map).forEach(function (src) {
-			loadFile(src, function (result) {
-				map[src].forEach(function (pre) {
-					processElement(pre, result);
-				});
-			});
-		});
+			var language = env.language;
+			if (language === 'none') {
+				// the language might be 'none' because there is no language set;
+				// in this case, we want to use the extension as the language
+				var extension = (/\.(\w+)$/.exec(src) || [, 'none'])[1];
+				language = EXTENSIONS[extension] || extension;
+			}
 
-		// download toolbar button
-		if (Prism.plugins.toolbar) {
-			Prism.plugins.toolbar.registerButton('download-file', function (env) {
-				var pre = env.element.parentNode;
-				if (!pre || !/pre/i.test(pre.nodeName) || !pre.hasAttribute('data-src') || !pre.hasAttribute('data-download-link')) {
-					return;
+			// set language classes
+			setLanguageClass(code, language);
+			setLanguageClass(pre, language);
+
+			// preload the language
+			var autoloader = Prism.plugins.autoloader;
+			if (autoloader) {
+				autoloader.loadLanguages(language);
+			}
+
+			// load file
+			loadFile(
+				src,
+				function (text) {
+					// mark as loaded
+					pre.setAttribute(STATUS_ATTR, STATUS_LOADED);
+
+					// handle data-range
+					var range = parseRange(pre.getAttribute('data-range'));
+					if (range) {
+						var lines = text.split(/\r\n?|\n/g);
+
+						// the range is one-based and inclusive on both ends
+						var start = range[0];
+						var end = range[1] == null ? lines.length : range[1];
+
+						if (start < 0) { start += lines.length; }
+						start = Math.max(0, Math.min(start - 1, lines.length));
+						if (end < 0) { end += lines.length; }
+						end = Math.max(0, Math.min(end, lines.length));
+
+						text = lines.slice(start, end).join('\n');
+
+						// add data-start for line numbers
+						if (!pre.hasAttribute('data-start')) {
+							pre.setAttribute('data-start', String(start + 1));
+						}
+					}
+
+					// highlight code
+					code.textContent = text;
+					Prism.highlightElement(code);
+				},
+				function (error) {
+					// mark as failed
+					pre.setAttribute(STATUS_ATTR, STATUS_FAILED);
+
+					code.textContent = error;
 				}
-				var src = pre.getAttribute('data-src');
-				var a = document.createElement('a');
-				a.textContent = pre.getAttribute('data-download-link-label') || 'Download';
-				a.setAttribute('download', '');
-				a.href = src;
-				return a;
-			});
+			);
+		}
+	});
+
+	Prism.plugins.fileHighlight = {
+		/**
+		 * Executes the File Highlight plugin for all matching `pre` elements under the given container.
+		 *
+		 * Note: Elements which are already loaded or currently loading will not be touched by this method.
+		 *
+		 * @param {ParentNode} [container=document]
+		 */
+		highlight: function highlight(container) {
+			var elements = (container || document).querySelectorAll(SELECTOR);
+
+			for (var i = 0, element; (element = elements[i++]);) {
+				Prism.highlightElement(element);
+			}
 		}
 	};
 
-	if (document.readyState === 'loading') {
-		// Loading hasn't finished yet
-		document.addEventListener('DOMContentLoaded', function () { Prism.fileHighlight(); });
-	} else {
-		Prism.fileHighlight();
-	}
-})();
+	var logged = false;
+	/** @deprecated Use `Prism.plugins.fileHighlight.highlight` instead. */
+	Prism.fileHighlight = function () {
+		if (!logged) {
+			console.warn('Prism.fileHighlight is deprecated. Use `Prism.plugins.fileHighlight.highlight` instead.');
+			logged = true;
+		}
+		Prism.plugins.fileHighlight.highlight.apply(this, arguments);
+	};
+
+}());

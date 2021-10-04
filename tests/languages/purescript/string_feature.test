@@ -1,0 +1,19 @@
+""
+"fo\"o"
+"foo \
+  \ bar"
+"foo -- comment lookalike \
+  \ bar"
+
+----------------------------------------------------
+
+[
+	["string", "\"\""],
+	["string", "\"fo\\\"o\""],
+	["string", "\"foo \\\r\n  \\ bar\""],
+	["string", "\"foo -- comment lookalike \\\r\n  \\ bar\""]
+]
+
+----------------------------------------------------
+
+Checks for strings.

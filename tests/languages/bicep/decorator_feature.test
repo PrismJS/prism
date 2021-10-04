@@ -1,0 +1,61 @@
+@secure()
+param demoPassword string
+@allowed([
+  'one'
+  'two'
+])
+param demoEnum string
+
+@minLength(3)
+@maxLength(24)
+@description('Name of the storage account')
+param storageAccountName string = concat(uniqueString(resourceGroup().id), 'sa')
+
+----------------------------------------------------
+
+[
+	["decorator", "@secure"], ["punctuation", "("], ["punctuation", ")"],
+	["keyword", "param"], " demoPassword ", ["datatype", "string"],
+	["decorator", "@allowed"], ["punctuation", "("], ["punctuation", "["],
+	["string", "'one'"],
+	["string", "'two'"],
+	["punctuation", "]"], ["punctuation", ")"],
+	["keyword", "param"], " demoEnum ", ["datatype", "string"],
+
+	["decorator", "@minLength"],
+	["punctuation", "("],
+	["number", "3"],
+	["punctuation", ")"],
+
+	["decorator", "@maxLength"],
+	["punctuation", "("],
+	["number", "24"],
+	["punctuation", ")"],
+
+	["decorator", "@description"],
+	["punctuation", "("],
+	["string", "'Name of the storage account'"],
+	["punctuation", ")"],
+
+	["keyword", "param"],
+	" storageAccountName ",
+	["datatype", "string"],
+	["operator", "="],
+	["function", "concat"],
+	["punctuation", "("],
+	["function", "uniqueString"],
+	["punctuation", "("],
+	["function", "resourceGroup"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "."],
+	"id",
+	["punctuation", ")"],
+	["punctuation", ","],
+	["string", "'sa'"],
+	["punctuation", ")"]
+]
+
+----------------------------------------------------
+
+Checks for functions. Also checks for unicode characters in identifiers.
