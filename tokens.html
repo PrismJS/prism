@@ -32,14 +32,24 @@
 	<dl>
 		<dt><code>keyword</code></dt>
 		<dd>Pre-defined and reserved words.
-		<pre><code class="language-javascript">for (let x of y) {
-	// Code here
-	return z;
-}</code></pre></dd>
+		<pre><code class="language-javascript">for (const foo of bar) {
+	console.log(foo);
+	if (foo === 'foobar') {
+		break;
+	}
+}</code></pre>
+		<pre><code class="language-bash">if [ -d $directory ]; then
+	echo "Directory exists"
+else
+	echo "Directory does not exists"
+fi</code></pre></dd>
 
 		<dt><code>builtin</code></dt>
 		<dd>Functions/Methods/Classes/Types that are available out of the box.
-		<pre><code class="language-python">pi = round(float('3.14159'), 2)</code></pre></dd>
+		<pre><code class="language-python">pi = round(float('3.14159'), 2)</code></pre>
+		<pre><code class="language-typescript">interface SearchFunc {
+	(source: string, subString: string): boolean;
+}</code></pre></dd>
 
 		<dt><code>class-name</code></dt>
 		<dd>The name of a class, interface, trait, or type.
@@ -48,6 +58,10 @@
 		super(length);
 		this.breadth = breadth;
 	}
+}</code></pre>
+		<pre><code class="language-csharp">public class CameraController : MonoBehaviour
+{
+	// TODO: Control camera
 }</code></pre></dd>
 
 		<dt><code>function</code></dt>
@@ -115,11 +129,16 @@ z ? x : y</code></pre></dd>
 		<dt><code>variable</code></dt>
 		<dd>The name of a variable. This token is intended to be used sparingly. It's generally used on special variables (e.g. Less or Bash), not general variables from imperative and procedural programming languages (e.g. C, JavaScript, Python).
 		<pre><code class="language-less">@nice-blue: #5B83AD;
-@light-blue: lighten(@nice-blue, 20%);</code></pre></dd>
+@light-blue: lighten(@nice-blue, 20%);</code></pre>
+		<pre><code class="language-bash">echo $STRING
+args=("$@")
+echo ${args[0]} ${args[1]} ${args[2]}</code></pre></dd>
 
 		<dt><code>constant</code></dt>
 		<dd>The name of a constant.
-		<pre><code class="language-javascript">const PI = 3.14159;</code></pre></dd>
+		<pre><code class="language-javascript">const PI = 3.14159;</code></pre>
+		<pre><code class="language-rust">const THING: u32 = 0xABAD1DEA;</code></pre>
+		<pre><code class="language-c">fprintf( stdout, "hello world\n" );</code></pre></dd>
 
 		<dt><code>property</code></dt>
 		<dd>An attribute/characteristic or object/map key.
@@ -168,10 +187,6 @@ z ? x : y</code></pre></dd>
 
 		<dt><code>inserted</code> and <code>deleted</code></dt>
 		<dd>Added or modified line and deleted line respectively, mainly for diffs. In general, also the idea of something being increased and decreased/removed respectively.
-		<pre><code class="language-diff">7c7
-< qt: core
----
-> qt: core quick</code></pre>
 		<pre><code class="language-diff">--- qcli.yml	2014-12-16 11:43:41.000000000 +0800
 +++ /Users/uranusjr/Desktop/qcli.yml	2014-12-31 11:28:08.000000000 +0800
 @@ -4,5 +4,5 @@
@@ -180,9 +195,7 @@ project:
 	headers: "src/*.h"
 -    qt: core
 +    qt: core gui
-public_headers: "src/*.h"</code></pre>
-		<pre><code class="language-git">- Some deleted line
-+ Some added line</code></pre></dd>
+public_headers: "src/*.h"</code></pre></dd>
 
 		<dt><code>bold</code></dt>
 		<dd>Bolded text. Mostly found in document-markup languages.
@@ -205,7 +218,33 @@ public_headers: "src/*.h"</code></pre>
 
 		<dt><code>namespace</code></dt>
 		<dd>Used to provide uniquely named elements and attributes in XML documents. Outside of markup languages, it is used to tokenize the package/namespace part of identifiers.
-		<pre><code class="language-markup">&lt;html:p foo:bar="baz" foo:weee&gt;&lt;/html:p&gt;</code></pre></dd>
+		<pre><code class="language-markup">&lt;html:p foo:bar="baz" foo:weee&gt;&lt;/html:p&gt;</code></pre>
+		<pre><code class="language-csharp">namespace Foo.Bar {}
+using Foo.Bar;</code></pre>
+		<pre><code class="language-java">class Foo extends foo.bar.Foo {
+	java.util.List<foo.bar.Foo.Bar> bar(foo.bar.Baz bat) throws java.lang.IOException {
+		throw new java.lang.UnsupportedOperationException("Not implemented");
+	}
+}</code></pre>
+		<pre><code class="language-rust">use std::collections::HashMap;
+use std::fmt;
+use std::iter;
+use std::result;
+use std::sync::Arc;
+
+use regex_syntax::hir::{self, Hir};
+use regex_syntax::is_word_byte;
+use regex_syntax::utf8::{Utf8Range, Utf8Sequence, Utf8Sequences};
+
+use crate::prog::{
+		EmptyLook, Inst, InstBytes, InstChar, InstEmptyLook, InstPtr, InstRanges,
+		InstSave, InstSplit, Program,
+};
+
+use crate::Error;
+
+type Result = result::Result<Patch, Error>;
+type ResultOrEmpty = result::Result<Option<Patch>, Error>;</code></pre></dd>
 
 		<dt><code>prolog</code></dt>
 		<dd>The first part of an XML document.
