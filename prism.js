@@ -1732,17 +1732,9 @@ Prism.languages.js = Prism.languages.javascript;
 		xhr.open('GET', src, true);
 		xhr.onreadystatechange = function () {
 			if (xhr.readyState == 4) {
-				/** @type {LoadResult} */
-				var result = {
-					source: src,
-					text: '',
-					failed: false
-				};
-
 				if (xhr.status < 400 && xhr.responseText) {
 					success(xhr.responseText);
 				} else {
-					result.failed = true;
 					if (xhr.status >= 400) {
 						error(FAILURE_MESSAGE(xhr.status, xhr.statusText));
 					} else {
