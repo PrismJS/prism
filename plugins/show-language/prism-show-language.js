@@ -36,6 +36,7 @@
 		"apacheconf": "Apache Configuration",
 		"apl": "APL",
 		"aql": "AQL",
+		"ino": "Arduino",
 		"arff": "ARFF",
 		"asciidoc": "AsciiDoc",
 		"adoc": "AsciiDoc",
