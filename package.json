@@ -4,6 +4,9 @@
 	"description": "Lightweight, robust, elegant syntax highlighting. A spin-off project from Dabblet.",
 	"main": "prism.js",
 	"style": "themes/prism.css",
+	"engines": {
+		"node": ">=6"
+	},
 	"scripts": {
 		"benchmark": "node benchmark/benchmark.js",
 		"build": "gulp",
