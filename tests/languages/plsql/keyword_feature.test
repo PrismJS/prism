@@ -1,4 +1,5 @@
 A
+ACCESSIBLE
 ADD
 AGENT
 AGGREGATE
@@ -38,6 +39,7 @@ CHARSETFORM
 CHARSETID
 CHECK
 CLOB_BASE
+CLONE
 CLOSE
 CLUSTER
 CLUSTERS
@@ -58,6 +60,7 @@ CONVERT
 COUNT
 CRASH
 CREATE
+CREDENTIAL
 CURRENT
 CURSOR
 CUSTOMDATUM
@@ -72,6 +75,7 @@ DEFINE
 DELETE
 DESC
 DETERMINISTIC
+DIRECTORY
 DISTINCT
 DOUBLE
 DROP
@@ -92,6 +96,7 @@ EXIT
 EXTERNAL
 FETCH
 FINAL
+FIRST
 FIXED
 FLOAT
 FOR
@@ -111,6 +116,7 @@ HOUR
 IDENTIFIED
 IF
 IMMEDIATE
+IMMUTABLE
 IN
 INCLUDING
 INDEX
@@ -158,6 +164,7 @@ MODE
 MODIFY
 MONTH
 MULTISET
+MUTABLE
 NAME
 NAN
 NATIONAL
@@ -210,8 +217,11 @@ PARAMETERS
 PARENT
 PARTITION
 PASCAL
+PERSISTABLE
 PIPE
 PIPELINED
+PLUGGABLE
+POLYMORPHIC
 PRAGMA
 PRECISION
 PRIOR
@@ -300,6 +310,7 @@ UB4
 UNDER
 UNION
 UNIQUE
+UNPLUG
 UNSIGNED
 UNTRUSTED
 UPDATE
@@ -329,6 +340,7 @@ ZONE
 
 [
 	["keyword", "A"],
+	["keyword", "ACCESSIBLE"],
 	["keyword", "ADD"],
 	["keyword", "AGENT"],
 	["keyword", "AGGREGATE"],
@@ -368,6 +380,7 @@ ZONE
 	["keyword", "CHARSETID"],
 	["keyword", "CHECK"],
 	["keyword", "CLOB_BASE"],
+	["keyword", "CLONE"],
 	["keyword", "CLOSE"],
 	["keyword", "CLUSTER"],
 	["keyword", "CLUSTERS"],
@@ -388,6 +401,7 @@ ZONE
 	["keyword", "COUNT"],
 	["keyword", "CRASH"],
 	["keyword", "CREATE"],
+	["keyword", "CREDENTIAL"],
 	["keyword", "CURRENT"],
 	["keyword", "CURSOR"],
 	["keyword", "CUSTOMDATUM"],
@@ -402,6 +416,7 @@ ZONE
 	["keyword", "DELETE"],
 	["keyword", "DESC"],
 	["keyword", "DETERMINISTIC"],
+	["keyword", "DIRECTORY"],
 	["keyword", "DISTINCT"],
 	["keyword", "DOUBLE"],
 	["keyword", "DROP"],
@@ -422,6 +437,7 @@ ZONE
 	["keyword", "EXTERNAL"],
 	["keyword", "FETCH"],
 	["keyword", "FINAL"],
+	["keyword", "FIRST"],
 	["keyword", "FIXED"],
 	["keyword", "FLOAT"],
 	["keyword", "FOR"],
@@ -441,6 +457,7 @@ ZONE
 	["keyword", "IDENTIFIED"],
 	["keyword", "IF"],
 	["keyword", "IMMEDIATE"],
+	["keyword", "IMMUTABLE"],
 	["keyword", "IN"],
 	["keyword", "INCLUDING"],
 	["keyword", "INDEX"],
@@ -488,6 +505,7 @@ ZONE
 	["keyword", "MODIFY"],
 	["keyword", "MONTH"],
 	["keyword", "MULTISET"],
+	["keyword", "MUTABLE"],
 	["keyword", "NAME"],
 	["keyword", "NAN"],
 	["keyword", "NATIONAL"],
@@ -540,8 +558,11 @@ ZONE
 	["keyword", "PARENT"],
 	["keyword", "PARTITION"],
 	["keyword", "PASCAL"],
+	["keyword", "PERSISTABLE"],
 	["keyword", "PIPE"],
 	["keyword", "PIPELINED"],
+	["keyword", "PLUGGABLE"],
+	["keyword", "POLYMORPHIC"],
 	["keyword", "PRAGMA"],
 	["keyword", "PRECISION"],
 	["keyword", "PRIOR"],
@@ -630,6 +651,7 @@ ZONE
 	["keyword", "UNDER"],
 	["keyword", "UNION"],
 	["keyword", "UNIQUE"],
+	["keyword", "UNPLUG"],
 	["keyword", "UNSIGNED"],
 	["keyword", "UNTRUSTED"],
 	["keyword", "UPDATE"],
