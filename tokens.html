@@ -27,7 +27,7 @@
 <section id="standard-tokens">
 	<h1>Standard tokens</h1>
 
-	<p>When defining a new language, you will need to provide token names for each 'type' of code, such as keywords and operators, so Prism can highlight code accordingly. It is recommended to make use of the following standard tokens to ensure that highlight code will be highlighted, as Prism's themes (both official and non-official) only guarantee coverage for these standard tokens.</p>
+	<p>When defining a new language, you will need to provide token names for each 'type' of code, such as keywords and operators, so Prism's themes can assign colors (and other styles) accordingly. Prism's themes (both official and non-official) only guarantee coverage for these standard tokens, so it is recommended to make use of the following standard tokens to ensure that code will be highlighted.</p>
 
 	<p>Sometimes, a language might use a particular name to refer to certain pieces of code, but which is not one of Prism's standard token names, such as <code>function-defintion</code>. Since <code>function-definition</code> is not a standard token, you might want to alias it with a standard token such as <code>function</code>, which is semantically similar in meaning, and will ensure that Prism's themes will highlight it.</p>
 
@@ -224,29 +224,13 @@ public_headers: "src/*.h"</code></pre></dd>
 		<pre><code class="language-csharp">namespace Foo.Bar {}
 using Foo.Bar;</code></pre>
 		<pre><code class="language-java">class Foo extends foo.bar.Foo {
-	java.util.List<foo.bar.Foo.Bar> bar(foo.bar.Baz bat) throws java.lang.IOException {
+	java.util.List&lt;foo.bar.Foo.Bar> bar(foo.bar.Baz bat) throws java.lang.IOException {
 		throw new java.lang.UnsupportedOperationException("Not implemented");
 	}
 }</code></pre>
 		<pre><code class="language-rust">use std::collections::HashMap;
 use std::fmt;
-use std::iter;
-use std::result;
-use std::sync::Arc;
-
-use regex_syntax::hir::{self, Hir};
-use regex_syntax::is_word_byte;
-use regex_syntax::utf8::{Utf8Range, Utf8Sequence, Utf8Sequences};
-
-use crate::prog::{
-		EmptyLook, Inst, InstBytes, InstChar, InstEmptyLook, InstPtr, InstRanges,
-		InstSave, InstSplit, Program,
-};
-
-use crate::Error;
-
-type Result = result::Result<Patch, Error>;
-type ResultOrEmpty = result::Result<Option<Patch>, Error>;</code></pre></dd>
+use std::sync::Arc;</pre></dd>
 
 		<dt><code>prolog</code></dt>
 		<dd>The first part of an XML document.
