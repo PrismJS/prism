@@ -1,9 +1,9 @@
 const { assert } = require('chai');
-const { reusablePrismDom } = require('../../helper/prism-dom-util');
+const { createScopedPrismDom } = require('../../helper/prism-dom-util');
 
 
 describe('Show language', function () {
-	const { Prism, document } = reusablePrismDom(this, {
+	const { Prism, document } = createScopedPrismDom(this, {
 		languages: ['markup', 'javascript'],
 		plugins: 'show-language'
 	});

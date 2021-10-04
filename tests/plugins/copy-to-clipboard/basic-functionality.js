@@ -1,5 +1,5 @@
 const { assert } = require('chai');
-const { reusablePrismDom } = require('../../helper/prism-dom-util');
+const { createScopedPrismDom } = require('../../helper/prism-dom-util');
 
 
 class DummyClipboard {
@@ -17,7 +17,7 @@ class DummyClipboard {
 }
 
 describe('Copy to Clipboard', function () {
-	const { Prism, document, window } = reusablePrismDom(this, {
+	const { Prism, document, window } = createScopedPrismDom(this, {
 		languages: 'javascript',
 		plugins: 'copy-to-clipboard',
 	});

@@ -34,10 +34,12 @@ module.exports = {
 	},
 
 	/**
+	 * Creates a Prism DOM instance that will be automatically cleaned up after the given test suite finished.
+	 *
 	 * @param {ReturnType<typeof import('mocha')["suite"]>} suite
 	 * @param {Partial<Record<"languages" | "plugins", string | string[]>>} options
 	 */
-	reusablePrismDom(suite, options = {}) {
+	createScopedPrismDom(suite, options = {}) {
 		const dom = PrismLoader.createPrismDOM();
 
 		suite.afterAll(function () {

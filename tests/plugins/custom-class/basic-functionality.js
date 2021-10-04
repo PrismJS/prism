@@ -1,8 +1,8 @@
-const { createUtil, reusablePrismDom } = require('../../helper/prism-dom-util');
+const { createUtil, createScopedPrismDom } = require('../../helper/prism-dom-util');
 
 
 describe('Custom class', function () {
-	const { Prism, window } = reusablePrismDom(this, {
+	const { Prism, window } = createScopedPrismDom(this, {
 		languages: 'javascript',
 		plugins: 'custom-class'
 	});

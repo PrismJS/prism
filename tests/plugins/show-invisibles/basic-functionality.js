@@ -1,8 +1,8 @@
-const { createUtil, reusablePrismDom } = require('../../helper/prism-dom-util');
+const { createUtil, createScopedPrismDom } = require('../../helper/prism-dom-util');
 
 
 describe('Show Invisibles', function () {
-	const { window } = reusablePrismDom(this, {
+	const { window } = createScopedPrismDom(this, {
 		languages: 'javascript',
 		plugins: 'show-invisibles'
 	});
