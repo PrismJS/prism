@@ -4,7 +4,7 @@
 
 <meta charset="utf-8" />
 <link rel="icon" href="assets/favicon.png" />
-<title>Prism Tokens ▲ Prism</title>
+<title>Prism tokens ▲ Prism</title>
 <link rel="stylesheet" href="assets/style.css" />
 <link rel="stylesheet" href="themes/prism.css" data-noprefix />
 <link rel="stylesheet" href="plugins/line-highlight/prism-line-highlight.css" data-noprefix />
@@ -28,6 +28,8 @@
 	<h1>Standard tokens</h1>
 
 	<p>When defining a new language, you will need to provide token names for each 'type' of code, such as keywords and operators, so Prism can highlight code accordingly. It is recommended to make use of the following standard tokens to ensure that highlight code will be highlighted, as Prism's themes (both official and non-official) only guarantee coverage for these standard tokens.</p>
+
+	<p>Sometimes, a language might use a particular name to refer to certain pieces of code, but which is not one of Prism's standard token names, such as <code>function-defintion</code>. Since <code>function-definition</code> is not a standard token, you might want to alias it with a standard token such as <code>function</code>, which is semantically similar in meaning, and will ensure that Prism's themes will highlight it.</p>
 
 	<dl>
 		<dt><code>keyword</code></dt>
