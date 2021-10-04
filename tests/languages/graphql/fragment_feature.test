@@ -11,8 +11,7 @@ fragment frag on FooBar {
 
 [
 	["punctuation", "{"],
-	["operator", "..."],
-	["fragment", "frag"],
+	["operator", "..."], ["fragment", "frag"],
 	["punctuation", "}"],
 
 	["keyword", "fragment"],
@@ -20,7 +19,11 @@ fragment frag on FooBar {
 	["keyword", "on"],
 	["class-name", "FooBar"],
 	["punctuation", "{"],
-	"\r\n\tfoo\r\n\tbar\r\n",
+
+	["property", "foo"],
+
+	["property", "bar"],
+
 	["punctuation", "}"]
 ]
 

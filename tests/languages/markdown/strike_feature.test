@@ -10,53 +10,46 @@ bar~
 ~foo **bar** baz~
 ~foo __bar__ baz~
 ~foo[bar](baz)~
+~foo `bar`~
 
 ~~foo *bar* baz~~
 ~~foo _bar_ baz~~
 ~~foo **bar** baz~~
 ~~foo __bar__ baz~~
 ~~foo[bar](baz)~~
+~~foo `bar`~~
 
 ----------------------------------------------------
 
 [
 	["strike", [
 		["punctuation", "~~"],
-		["content", [
-			"foobar"
-		]],
+		["content", ["foobar"]],
 		["punctuation", "~~"]
 	]],
 	["strike", [
 		["punctuation", "~~"],
-		["content", [
-			"foo\r\nbar"
-		]],
+		["content", ["foo\r\nbar"]],
 		["punctuation", "~~"]
 	]],
 	["strike", [
 		["punctuation", "~"],
-		["content", [
-			"foobar"
-		]],
+		["content", ["foobar"]],
 		["punctuation", "~"]
 	]],
 	["strike", [
 		["punctuation", "~"],
-		["content", [
-			"foo\r\nbar"
-		]],
+		["content", ["foo\r\nbar"]],
 		["punctuation", "~"]
 	]],
+
 	["strike", [
 		["punctuation", "~"],
 		["content", [
 			"foo ",
 			["italic", [
 				["punctuation", "*"],
-				["content", [
-					"bar"
-				]],
+				["content", ["bar"]],
 				["punctuation", "*"]
 			]],
 			" baz"
@@ -69,9 +62,7 @@ bar~
 			"foo ",
 			["italic", [
 				["punctuation", "_"],
-				["content", [
-					"bar"
-				]],
+				["content", ["bar"]],
 				["punctuation", "_"]
 			]],
 			" baz"
@@ -84,9 +75,7 @@ bar~
 			"foo ",
 			["bold", [
 				["punctuation", "**"],
-				["content", [
-					"bar"
-				]],
+				["content", ["bar"]],
 				["punctuation", "**"]
 			]],
 			" baz"
@@ -99,9 +88,7 @@ bar~
 			"foo ",
 			["bold", [
 				["punctuation", "__"],
-				["content", [
-					"bar"
-				]],
+				["content", ["bar"]],
 				["punctuation", "__"]
 			]],
 			" baz"
@@ -114,23 +101,30 @@ bar~
 			"foo",
 			["url", [
 				"[",
-				["content", [
-					"bar"
-				]],
-				"](baz)"
+				["content", ["bar"]],
+				"](",
+				["url", "baz"],
+				")"
 			]]
 		]],
 		["punctuation", "~"]
 	]],
+	["strike", [
+		["punctuation", "~"],
+		["content", [
+			"foo ",
+			["code-snippet", "`bar`"]
+		]],
+		["punctuation", "~"]
+	]],
+
 	["strike", [
 		["punctuation", "~~"],
 		["content", [
 			"foo ",
 			["italic", [
 				["punctuation", "*"],
-				["content", [
-					"bar"
-				]],
+				["content", ["bar"]],
 				["punctuation", "*"]
 			]],
 			" baz"
@@ -143,9 +137,7 @@ bar~
 			"foo ",
 			["italic", [
 				["punctuation", "_"],
-				["content", [
-					"bar"
-				]],
+				["content", ["bar"]],
 				["punctuation", "_"]
 			]],
 			" baz"
@@ -158,9 +150,7 @@ bar~
 			"foo ",
 			["bold", [
 				["punctuation", "**"],
-				["content", [
-					"bar"
-				]],
+				["content", ["bar"]],
 				["punctuation", "**"]
 			]],
 			" baz"
@@ -173,9 +163,7 @@ bar~
 			"foo ",
 			["bold", [
 				["punctuation", "__"],
-				["content", [
-					"bar"
-				]],
+				["content", ["bar"]],
 				["punctuation", "__"]
 			]],
 			" baz"
@@ -188,11 +176,19 @@ bar~
 			"foo",
 			["url", [
 				"[",
-				["content", [
-					"bar"
-				]],
-				"](baz)"
+				["content", ["bar"]],
+				"](",
+				["url", "baz"],
+				")"
 			]]
+		]],
+		["punctuation", "~~"]
+	]],
+	["strike", [
+		["punctuation", "~~"],
+		["content", [
+			"foo ",
+			["code-snippet", "`bar`"]
 		]],
 		["punctuation", "~~"]
 	]]

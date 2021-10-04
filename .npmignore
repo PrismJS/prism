@@ -5,12 +5,14 @@ hide-*.js
 .DS_Store
 CNAME
 .github/
+benchmark/
 assets/
 docs/
 examples/
 tests/
 *.tgz
 *.html
+*.svg
 bower.json
 composer.json
 dangerfile.js
@@ -18,3 +20,6 @@ gulpfile.js
 .editorconfig
 .gitattributes
 .travis.yml
+.eslintrc.js
+.eslintcache
+.jsdoc.json

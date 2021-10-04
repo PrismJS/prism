@@ -7,6 +7,7 @@
 #endregion
 #error
 #line
+#nullable
 #pragma
 #region
 #undef
@@ -24,6 +25,7 @@
 	["preprocessor", ["#", ["directive", "endregion"]]],
 	["preprocessor", ["#", ["directive", "error"]]],
 	["preprocessor", ["#", ["directive", "line"]]],
+	["preprocessor", ["#", ["directive", "nullable"]]],
 	["preprocessor", ["#", ["directive", "pragma"]]],
 	["preprocessor", ["#", ["directive", "region"]]],
 	["preprocessor", ["#", ["directive", "undef"]]],

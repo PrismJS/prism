@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const { assert } = require('chai');
 const PrismLoader = require('../helper/prism-loader');
@@ -30,8 +30,8 @@ describe('Greedy matching', function () {
 			},
 			code: '// /*\n/* comment */',
 			expected: [
-				["comment", "// /*"],
-				["comment", "/* comment */"]
+				['comment', '// /*'],
+				['comment', '/* comment */']
 			]
 		});
 	});
@@ -49,9 +49,9 @@ describe('Greedy matching', function () {
 			},
 			code: 'foo "bar" \'baz\'',
 			expected: [
-				["b", "foo"],
-				["b", "\"bar\""],
-				["a", "'baz'"]
+				['b', 'foo'],
+				['b', '"bar"'],
+				['a', "'baz'"]
 			]
 		});
 	});
@@ -73,15 +73,50 @@ describe('Greedy matching', function () {
 			},
 			code: `<'> '' ''\n<"> "" ""`,
 			expected: [
-				["c", "<'>"],
+				['c', "<'>"],
 				" '",
-				["a", "' '"],
+				['a', "' '"],
 				"'\n",
 
-				["c", "<\">"],
-				["b", "\"\""],
-				["b", "\"\""],
+				['c', '<">'],
+				['b', '""'],
+				['b', '""'],
 			]
 		});
 	});
+
+	it('should always match tokens against the whole text', function () {
+		// this is to test for a bug where greedy tokens where matched like non-greedy ones if the token stream ended on
+		// a string
+		testTokens({
+			grammar: {
+				'a': /a/,
+				'b': {
+					pattern: /^b/,
+					greedy: true
+				}
+			},
+			code: 'bab',
+			expected: [
+				['b', 'b'],
+				['a', 'a'],
+				'b'
+			]
+		});
+	});
+
+	it('issue3052', function () {
+		// If a greedy pattern creates an empty token at the end of the string, then this token should be discarded
+		testTokens({
+			grammar: {
+				'oh-no': {
+					pattern: /$/,
+					greedy: true
+				}
+			},
+			code: 'foo',
+			expected: ['foo']
+		});
+	});
+
 });

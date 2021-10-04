@@ -29,7 +29,7 @@ Prism.languages.cypher = {
 
 	'function': /\b\w+\b(?=\s*\()/,
 
-	'boolean': /\b(?:true|false|null)\b/i,
+	'boolean': /\b(?:false|null|true)\b/i,
 	'number': /\b(?:0x[\da-fA-F]+|\d+(?:\.\d+)?(?:[eE][+-]?\d+)?)\b/,
 	// https://neo4j.com/docs/cypher-manual/current/syntax/operators/
 	'operator': /:|<--?|--?>?|<>|=~?|[<>]=?|[+*/%^|]|\.\.\.?/,

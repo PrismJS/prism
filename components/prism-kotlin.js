@@ -7,7 +7,7 @@
 		},
 		'function': [
 			{
-				pattern: /(?:`[^\r\n`]+`|\w+)(?=\s*\()/,
+				pattern: /(?:`[^\r\n`]+`|\b\w+)(?=\s*\()/,
 				greedy: true
 			},
 			{
@@ -20,7 +20,7 @@
 		'operator': /\+[+=]?|-[-=>]?|==?=?|!(?:!|==?)?|[\/*%<>]=?|[?:]:?|\.\.|&&|\|\||\b(?:and|inv|or|shl|shr|ushr|xor)\b/
 	});
 
-	delete Prism.languages.kotlin["class-name"];
+	delete Prism.languages.kotlin['class-name'];
 
 	Prism.languages.insertBefore('kotlin', 'string', {
 		'raw-string': {
@@ -37,7 +37,7 @@
 	});
 	Prism.languages.insertBefore('kotlin', 'function', {
 		'label': {
-			pattern: /\w+@|@\w+/,
+			pattern: /\b\w+@|@\w+\b/,
 			alias: 'symbol'
 		}
 	});

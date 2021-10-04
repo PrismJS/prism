@@ -1,7 +1,16 @@
 (function () {
 
-	if (typeof self === 'undefined' || !self.Prism || !self.document) {
+	if (typeof Prism === 'undefined' || typeof document === 'undefined') {
 		return;
+	}
+
+	function mapClassName(name) {
+		var customClass = Prism.plugins.customClass;
+		if (customClass) {
+			return customClass.apply(name, 'none');
+		} else {
+			return name;
+		}
 	}
 
 	var PARTNER = {
@@ -29,7 +38,7 @@
 
 	var pairIdCounter = 0;
 
-	var BRACE_ID_PATTERN = /^(pair-\d+-)(open|close)$/;
+	var BRACE_ID_PATTERN = /^(pair-\d+-)(close|open)$/;
 
 	/**
 	 * Returns the brace partner given one brace of a brace pair.
@@ -51,7 +60,7 @@
 		}
 
 		[this, getPartnerBrace(this)].forEach(function (e) {
-			e.classList.add('brace-hover');
+			e.classList.add(mapClassName('brace-hover'));
 		});
 	}
 	/**
@@ -59,7 +68,7 @@
 	 */
 	function leaveBrace() {
 		[this, getPartnerBrace(this)].forEach(function (e) {
-			e.classList.remove('brace-hover');
+			e.classList.remove(mapClassName('brace-hover'));
 		});
 	}
 	/**
@@ -71,7 +80,7 @@
 		}
 
 		[this, getPartnerBrace(this)].forEach(function (e) {
-			e.classList.add('brace-selected');
+			e.classList.add(mapClassName('brace-selected'));
 		});
 	}
 
@@ -102,22 +111,25 @@
 			pre.addEventListener('mousedown', function removeBraceSelected() {
 				// the code element might have been replaced
 				var code = pre.querySelector('code');
-				Array.prototype.slice.call(code.querySelectorAll('.brace-selected')).forEach(function (e) {
-					e.classList.remove('brace-selected');
+				var className = mapClassName('brace-selected');
+				Array.prototype.slice.call(code.querySelectorAll('.' + className)).forEach(function (e) {
+					e.classList.remove(className);
 				});
 			});
 			Object.defineProperty(pre, '__listenerAdded', { value: true });
 		}
 
 		/** @type {HTMLSpanElement[]} */
-		var punctuation = Array.prototype.slice.call(code.querySelectorAll('span.token.punctuation'));
+		var punctuation = Array.prototype.slice.call(
+			code.querySelectorAll('span.' + mapClassName('token') + '.' + mapClassName('punctuation'))
+		);
 
 		/** @type {{ index: number, open: boolean, element: HTMLElement }[]} */
 		var allBraces = [];
 
 		toMatch.forEach(function (open) {
 			var close = PARTNER[open];
-			var name = NAMES[open];
+			var name = mapClassName(NAMES[open]);
 
 			/** @type {[number, number][]} */
 			var pairs = [];
@@ -132,12 +144,12 @@
 					if (text === open) {
 						allBraces.push({ index: i, open: true, element: element });
 						element.classList.add(name);
-						element.classList.add('brace-open');
+						element.classList.add(mapClassName('brace-open'));
 						openStack.push(i);
 					} else if (text === close) {
 						allBraces.push({ index: i, open: false, element: element });
 						element.classList.add(name);
-						element.classList.add('brace-close');
+						element.classList.add(mapClassName('brace-close'));
 						if (openStack.length) {
 							pairs.push([i, openStack.pop()]);
 						}
@@ -166,11 +178,11 @@
 		allBraces.sort(function (a, b) { return a.index - b.index; });
 		allBraces.forEach(function (brace) {
 			if (brace.open) {
-				brace.element.classList.add('brace-level-' + (level % LEVEL_WARP + 1));
+				brace.element.classList.add(mapClassName('brace-level-' + (level % LEVEL_WARP + 1)));
 				level++;
 			} else {
 				level = Math.max(0, level - 1);
-				brace.element.classList.add('brace-level-' + (level % LEVEL_WARP + 1));
+				brace.element.classList.add(mapClassName('brace-level-' + (level % LEVEL_WARP + 1)));
 			}
 		});
 	});

@@ -1,0 +1,87 @@
+targetScope
+resource appServicePlan 'Microsoft.Web/serverfarms@2020-09-01' existing =  = if (diagnosticsEnabled) {
+  name: logAnalyticsWsName
+}
+module cosmosDb './cosmosdb.bicep' = {
+  name: 'cosmosDbDeploy'
+}
+param env string
+var oneNumber = 123
+output databaseName string = cosmosdbDatabaseName
+for item in cosmosdbAllowedIpAddresses: {
+	ipAddressOrRange: item
+}
+if
+null
+
+----------------------------------------------------
+
+[
+	["keyword", "targetScope"],
+
+	["keyword", "resource"],
+	" appServicePlan ",
+	["string", "'Microsoft.Web/serverfarms@2020-09-01'"],
+	["keyword", "existing"],
+	["operator", "="],
+	["operator", "="],
+	["keyword", "if"],
+	["punctuation", "("],
+	"diagnosticsEnabled",
+	["punctuation", ")"],
+	["punctuation", "{"],
+
+	["property", "name"],
+	["operator", ":"],
+	" logAnalyticsWsName\r\n",
+
+	["punctuation", "}"],
+
+	["keyword", "module"],
+	" cosmosDb ",
+	["string", "'./cosmosdb.bicep'"],
+	["operator", "="],
+	["punctuation", "{"],
+
+	["property", "name"],
+	["operator", ":"],
+	["string", "'cosmosDbDeploy'"],
+
+	["punctuation", "}"],
+
+	["keyword", "param"],
+	" env ",
+	["datatype", "string"],
+
+	["keyword", "var"],
+	" oneNumber ",
+	["operator", "="],
+	["number", "123"],
+
+	["keyword", "output"],
+	" databaseName ",
+	["datatype", "string"],
+	["operator", "="],
+	" cosmosdbDatabaseName\r\n",
+
+	["keyword", "for"],
+	" item ",
+	["keyword", "in"],
+	" cosmosdbAllowedIpAddresses",
+	["operator", ":"],
+	["punctuation", "{"],
+
+	["property", "ipAddressOrRange"],
+	["operator", ":"],
+	" item\r\n",
+
+	["punctuation", "}"],
+
+	["keyword", "if"],
+
+	["keyword", "null"]
+]
+
+----------------------------------------------------
+
+Checks for all keywords.

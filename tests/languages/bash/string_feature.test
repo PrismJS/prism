@@ -47,30 +47,14 @@ STRING_END
 ----------------------------------------------------
 
 [
-	["string", [
-		"\"\""
-	]],
-	["string", [
-		"''"
-	]],
-	["string", [
-		"\"foo\""
-	]],
-	["string", [
-		"'foo'"
-	]],
-	["string", [
-		"\"foo\r\nbar\""
-	]],
-	["string", [
-		"'foo\r\nbar'"
-	]],
-	["string", [
-		"\"'foo'\""
-	]],
-	["string", [
-		"'\"bar\"'"
-	]],
+	["string", ["\"\""]],
+	["string", "''"],
+	["string", ["\"foo\""]],
+	["string", "'foo'"],
+	["string", ["\"foo\r\nbar\""]],
+	["string", "'foo\r\nbar'"],
+	["string", ["\"'foo'\""]],
+	["string", "'\"bar\"'"],
 	["string", [
 		"\"",
 		["variable", "$@"],
@@ -78,67 +62,30 @@ STRING_END
 	]],
 	["string", [
 		"\"",
-		["variable", [
-			"${foo}"
-		]],
+		["variable", ["${foo}"]],
 		"\""
 	]],
-	["punctuation", "\\"],
-	["punctuation", "\\"],
-	["string", [
-		"\"foo\""
-	]],
-	["punctuation", "\\"],
-	"'a ",
-	["comment", "# ' not a string"],
+	["punctuation", "\\"], ["punctuation", "\\"], ["string", ["\"foo\""]],
+	["punctuation", "\\"], "'a ", ["comment", "# ' not a string"],
 
-	["operator", [
-		"<<"
-	]],
-	["string", [
-		"STRING_END\r\nfoo\r\nbar\r\nSTRING_END"
-	]],
+	["operator", ["<<"]], ["string", ["STRING_END\r\nfoo\r\nbar\r\nSTRING_END"]],
 
-	["operator", [
-		"<<-"
-	]],
-	["string", [
-		"STRING_END\r\nfoo\r\nbar\r\nSTRING_END"
-	]],
+	["operator", ["<<-"]], ["string", ["STRING_END\r\nfoo\r\nbar\r\nSTRING_END"]],
 
-	["operator", [
-		"<<"
-	]],
+	["operator", ["<<"]],
 	["string", [
-		"EOF\r\nfoo ",
-		["variable", "$@"],
+		"EOF\r\nfoo ", ["variable", "$@"],
 		"\r\nbar\r\nEOF"
 	]],
 
-	["operator", [
-		"<<"
-	]],
-	["string", [
-		"'EOF'\r\n'single quoted string'\r\n\"double quoted string\"\r\nEOF"
-	]],
+	["operator", ["<<"]],
+	["string", ["'EOF'\r\n'single quoted string'\r\n\"double quoted string\"\r\nEOF"]],
 
-	["operator", [
-		"<<"
-	]],
-	["string", [
-		"\"EOF\"\r\nfoo\r\n$bar\r\nEOF"
-	]],
+	["operator", ["<<"]], ["string", ["\"EOF\"\r\nfoo\r\n$bar\r\nEOF"]],
 
-	["operator", [
-		"<<"
-	]],
-	["string", [
-		"STRING_END\r\n# comment\r\nSTRING_END"
-	]],
+	["operator", ["<<"]], ["string", ["STRING_END\r\n# comment\r\nSTRING_END"]],
 
-	["string", [
-		"\"  # comment  \""
-	]]
+	["string", ["\"  # comment  \""]]
 ]
 
 ----------------------------------------------------

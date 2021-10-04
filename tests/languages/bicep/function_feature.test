@@ -1,0 +1,62 @@
+param location string = resourceGroup().location
+var hostingPlanName = 'hostingplan${uniqueString(resourceGroup().id)}'
+
+array(parameters('stringToConvert'))
+createArray(1, 2, 3)
+
+----------------------------------------------------
+
+[
+	["keyword", "param"],
+	" location ",
+	["datatype", "string"],
+	["operator", "="],
+	["function", "resourceGroup"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "."],
+	"location\r\n",
+
+	["keyword", "var"],
+	" hostingPlanName ",
+	["operator", "="],
+	["interpolated-string", [
+		["string", "'hostingplan"],
+		["interpolation", [
+			["punctuation", "${"],
+			["expression", [
+				["function", "uniqueString"],
+				["punctuation", "("],
+				["function", "resourceGroup"],
+				["punctuation", "("],
+				["punctuation", ")"],
+				["punctuation", "."],
+				"id",
+				["punctuation", ")"]
+			]],
+			["punctuation", "}"]
+		]],
+		["string", "'"]
+	]],
+
+	["function", "array"],
+	["punctuation", "("],
+	["function", "parameters"],
+	["punctuation", "("],
+	["string", "'stringToConvert'"],
+	["punctuation", ")"],
+	["punctuation", ")"],
+
+	["function", "createArray"],
+	["punctuation", "("],
+	["number", "1"],
+	["punctuation", ","],
+	["number", "2"],
+	["punctuation", ","],
+	["number", "3"],
+	["punctuation", ")"]
+]
+
+----------------------------------------------------
+
+Checks for functions. Based upon https://docs.microsoft.com/en-us/azure/azure-resource-manager/templates/template-functions-array

@@ -50,10 +50,11 @@ module.exports = {
 
 	/**
 	 * @param {TokenStream} tokenStream
+	 * @param {string} [indentation]
 	 * @returns {string}
 	 */
-	prettyprint(tokenStream) {
-		return printPrettyTokenStream(toPrettyTokenStream(tokenStream));
+	prettyprint(tokenStream, indentation) {
+		return printPrettyTokenStream(toPrettyTokenStream(tokenStream), undefined, indentation);
 	}
 };
 
@@ -78,9 +79,10 @@ class GlueItem { }
 
 /**
  * @param {TokenStream} tokenStream
+ * @param {number} [level]
  * @returns {PrettyTokenStream}
  */
-function toPrettyTokenStream(tokenStream) {
+function toPrettyTokenStream(tokenStream, level = 0) {
 	/** @type {PrettyTokenStream} */
 	const prettyStream = [];
 	for (const token of tokenStream) {
@@ -115,26 +117,27 @@ function toPrettyTokenStream(tokenStream) {
 	 */
 	function innerSimple(value) {
 		if (Array.isArray(value.content)) {
-			return [value.type, toPrettyTokenStream(value.content)];
+			return [value.type, toPrettyTokenStream(value.content, level + 1)];
 		} else {
 			return [value.type, value.content];
 		}
 	}
 
-	prettyFormat(prettyStream);
+	prettyFormat(prettyStream, (level + 1) * 4);
 	return prettyStream;
 }
 
 /**
  * @param {PrettyTokenStream} prettyStream
+ * @param {number} indentationWidth
  * @returns {void}
  */
-function prettyFormat(prettyStream) {
+function prettyFormat(prettyStream, indentationWidth) {
 	// The maximum number of (glued) tokens per line
 	const MAX_TOKEN_PER_LINE = 5;
 	// The maximum number of characters per line
 	// (this is based on an estimation. The actual output might be longer.)
-	const MAX_PRINT_WIDTH = 80;
+	const MAX_PRINT_WIDTH = 80 - indentationWidth;
 
 	prettyTrimLineBreaks(prettyStream);
 	// enable all line breaks with >=2 breaks in the source token stream
@@ -180,8 +183,18 @@ function prettyFormat(prettyStream) {
 				return lines.map(g => {
 					if (g.length > 1) {
 						return g
-							.map(item => isToken(item) ? ", ".length + JSON.stringify(item).length : 0)
-							.reduce((a, b) => a + b, 0) - ", ".length;
+							.map(item => {
+								if (isToken(item)) {
+									if (typeof item === 'string') {
+										return ', '.length + JSON.stringify(item).length;
+									} else {
+										return ', '.length + JSON.stringify(item).length + ' '.length;
+									}
+								} else {
+									return 0;
+								}
+							})
+							.reduce((a, b) => a + b, 0) - ', '.length;
 					} else {
 						// we don't really care about the print width of a single-token line
 						return 1;
@@ -219,13 +232,12 @@ function prettyFormat(prettyStream) {
 /**
  * @param {PrettyTokenStream} prettyStream
  * @param {number} [indentationLevel]
+ * @param {string} [indentationChar]
  * @returns {string}
  */
-function printPrettyTokenStream(prettyStream, indentationLevel = 1) {
-	const indentChar = '    ';
-
+function printPrettyTokenStream(prettyStream, indentationLevel = 1, indentationChar = '    ') {
 	// can't use tabs because the console will convert one tab to four spaces
-	const indentation = new Array(indentationLevel + 1).join(indentChar);
+	const indentation = new Array(indentationLevel + 1).join(indentationChar);
 
 	let out = '';
 	out += '[\n';
@@ -265,7 +277,7 @@ function printPrettyTokenStream(prettyStream, indentationLevel = 1) {
 					out += JSON.stringify(content);
 				} else {
 					// token stream
-					out += printPrettyTokenStream(content, indentationLevel + 1);
+					out += printPrettyTokenStream(content, indentationLevel + 1, indentationChar);
 				}
 
 				out += ']';
@@ -274,8 +286,8 @@ function printPrettyTokenStream(prettyStream, indentationLevel = 1) {
 			const lineEnd = (i === prettyStream.length - 1) ? '\n' : ',\n';
 			out += lineEnd;
 		}
-	})
-	out += indentation.substr(indentChar.length) + ']'
+	});
+	out += indentation.substr(indentationChar.length) + ']';
 	return out;
 }
 
@@ -421,7 +433,7 @@ function prettyCountTokens(prettyStream, recursive) {
  */
 function prettyGlueTogether(prettyStream, prev, next) {
 	// strings may appear more than once in the stream, so we have to search for tokens.
-	if (typeof prev !== "string") {
+	if (typeof prev !== 'string') {
 		let index = prettyStream.indexOf(prev);
 		if (index === -1 || prettyStream[index + 1] !== next) {
 			throw new Error('Cannot glue: At least one of the tokens is not part of the given token stream.');

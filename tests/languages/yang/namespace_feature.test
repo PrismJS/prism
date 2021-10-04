@@ -7,7 +7,8 @@ type _foo.-bar:type
 	["keyword", "type"],
 	["namespace", "foo"],
 	["punctuation", ":"],
-	"type\n",
+	"type\r\n",
+
 	["keyword", "type"],
 	["namespace", "_foo.-bar"],
 	["punctuation", ":"],

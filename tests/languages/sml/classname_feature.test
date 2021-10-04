@@ -43,6 +43,7 @@ val systemStanzas: string -> string list list
 		["punctuation", ")"],
 		" token"
 	]],
+
 	["keyword", "val"],
 	" FOO",
 	["punctuation", ":"],
@@ -62,6 +63,7 @@ val systemStanzas: string -> string list list
 		["punctuation", ")"],
 		" token"
 	]],
+
 	["keyword", "val"],
 	" FOO",
 	["punctuation", ":"],
@@ -81,6 +83,7 @@ val systemStanzas: string -> string list list
 		["punctuation", ")"],
 		" token"
 	]],
+
 	["keyword", "val"],
 	" FOO",
 	["punctuation", ":"],
@@ -100,6 +103,7 @@ val systemStanzas: string -> string list list
 		["punctuation", ")"],
 		" token"
 	]],
+
 	["keyword", "val"],
 	" FOO",
 	["punctuation", ":"],
@@ -124,59 +128,54 @@ val systemStanzas: string -> string list list
 	["punctuation", "{"],
 	"head ",
 	["punctuation", ":"],
-	["class-name", [
-		"string list"
-	]],
+	["class-name", ["string list"]],
 	["punctuation", ","],
-	"\n                             decls ",
+
+	"\r\n                             decls ",
 	["punctuation", ":"],
-	["class-name", [
-		"decl_ast list"
-	]],
+	["class-name", ["decl_ast list"]],
 	["punctuation", ","],
-	"\n                             rules ",
+
+	"\r\n                             rules ",
 	["punctuation", ":"],
-	["class-name", [
-		"rule_ast list"
-	]],
+	["class-name", ["rule_ast list"]],
 	["punctuation", ","],
-	"\n                             tail ",
+
+	"\r\n                             tail ",
 	["punctuation", ":"],
-	["class-name", [
-		"string list"
-	]],
+	["class-name", ["string list"]],
 	["punctuation", "}"],
 
 	["keyword", "type"],
 	["class-name", "out_state"],
 	["operator", "="],
 	["punctuation", "{"],
-	"\ntout ",
+
+	"\r\ntout ",
 	["punctuation", ":"],
-	["class-name", [
-		"real"
-	]],
+	["class-name", ["real"]],
 	["punctuation", ","],
-	"\ndtout ",
+
+	"\r\ndtout ",
 	["punctuation", ":"],
-	["class-name", [
-		"real"
-	]],
+	["class-name", ["real"]],
 	["punctuation", ","],
-	"\ndtime ",
+
+	"\r\ndtime ",
 	["punctuation", ":"],
-	["class-name", [
-		"real"
-	]],
+	["class-name", ["real"]],
 	["punctuation", ","],
-	"\nstrm ",
+
+	"\r\nstrm ",
 	["punctuation", ":"],
 	["class-name", [
 		"TextIO",
 		["punctuation", "."],
 		"outstream"
 	]],
+
 	["punctuation", "}"],
+
 	["keyword", "val"],
 	" outState ",
 	["operator", "="],
@@ -184,9 +183,7 @@ val systemStanzas: string -> string list list
 	["punctuation", "("],
 	"NONE ",
 	["punctuation", ":"],
-	["class-name", [
-		"out_state option"
-	]],
+	["class-name", ["out_state option"]],
 	["punctuation", ")"],
 
 	["keyword", "val"],
@@ -197,6 +194,7 @@ val systemStanzas: string -> string list list
 		["operator", "->"],
 		" string list"
 	]],
+
 	["keyword", "val"],
 	" systemCleanLines",
 	["punctuation", ":"],
@@ -205,6 +203,7 @@ val systemStanzas: string -> string list list
 		["operator", "->"],
 		" string list"
 	]],
+
 	["keyword", "val"],
 	" systemStanzas",
 	["punctuation", ":"],

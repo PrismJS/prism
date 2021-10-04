@@ -1,0 +1,223 @@
+import React from 'react';
+import gql from 'graphql-tag';
+import { Query } from 'react-apollo';
+import {
+  Card,
+  ResourceList,
+  Stack,
+  TextStyle,
+  Thumbnail,
+} from '@shopify/polaris';
+import store from 'store-js';
+import { Redirect } from '@shopify/app-bridge/actions';
+import { Context } from '@shopify/app-bridge-react';
+
+// GraphQL query to retrieve products by IDs.
+// The price field belongs to the variants object because
+// variations of a product can have different prices.
+const GET_PRODUCTS_BY_ID = gql`
+  query getProducts($ids: [ID!]!) {
+    nodes(ids: $ids) {
+      ... on Product {
+        title
+        handle
+        descriptionHtml
+        id
+        images(first: 1) {
+          edges {
+            node {
+              originalSrc
+              altText
+            }
+          }
+        }
+        variants(first: 1) {
+          edges {
+            node {
+              price
+              id
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+----------------------------------------------------
+
+[
+	["keyword", "import"],
+	" React ",
+	["keyword", "from"],
+	["string", "'react'"],
+	["punctuation", ";"],
+
+	["keyword", "import"],
+	" gql ",
+	["keyword", "from"],
+	["string", "'graphql-tag'"],
+	["punctuation", ";"],
+
+	["keyword", "import"],
+	["punctuation", "{"],
+	" Query ",
+	["punctuation", "}"],
+	["keyword", "from"],
+	["string", "'react-apollo'"],
+	["punctuation", ";"],
+
+	["keyword", "import"],
+	["punctuation", "{"],
+
+	"\r\n  Card",
+	["punctuation", ","],
+
+	"\r\n  ResourceList",
+	["punctuation", ","],
+
+	"\r\n  Stack",
+	["punctuation", ","],
+
+	"\r\n  TextStyle",
+	["punctuation", ","],
+
+	"\r\n  Thumbnail",
+	["punctuation", ","],
+
+	["punctuation", "}"],
+	["keyword", "from"],
+	["string", "'@shopify/polaris'"],
+	["punctuation", ";"],
+
+	["keyword", "import"],
+	" store ",
+	["keyword", "from"],
+	["string", "'store-js'"],
+	["punctuation", ";"],
+
+	["keyword", "import"],
+	["punctuation", "{"],
+	" Redirect ",
+	["punctuation", "}"],
+	["keyword", "from"],
+	["string", "'@shopify/app-bridge/actions'"],
+	["punctuation", ";"],
+
+	["keyword", "import"],
+	["punctuation", "{"],
+	" Context ",
+	["punctuation", "}"],
+	["keyword", "from"],
+	["string", "'@shopify/app-bridge-react'"],
+	["punctuation", ";"],
+
+	["comment", "// GraphQL query to retrieve products by IDs."],
+
+	["comment", "// The price field belongs to the variants object because"],
+
+	["comment", "// variations of a product can have different prices."],
+
+	["keyword", "const"],
+	["constant", "GET_PRODUCTS_BY_ID"],
+	["operator", "="],
+	" gql",
+	["template-string", [
+		["template-punctuation", "`"],
+		["graphql", [
+			["keyword", "query"],
+			["definition-query", "getProducts"],
+			["punctuation", "("],
+			["variable", "$ids"],
+			["punctuation", ":"],
+			["punctuation", "["],
+			["scalar", "ID"],
+			["operator", "!"],
+			["punctuation", "]"],
+			["operator", "!"],
+			["punctuation", ")"],
+			["punctuation", "{"],
+
+			["property-query", "nodes"],
+			["punctuation", "("],
+			["attr-name", "ids"],
+			["punctuation", ":"],
+			["variable", "$ids"],
+			["punctuation", ")"],
+			["punctuation", "{"],
+
+			["operator", "..."],
+			["keyword", "on"],
+			["class-name", "Product"],
+			["punctuation", "{"],
+
+			["property", "title"],
+
+			["property", "handle"],
+
+			["property", "descriptionHtml"],
+
+			["property", "id"],
+
+			["property-query", "images"],
+			["punctuation", "("],
+			["attr-name", "first"],
+			["punctuation", ":"],
+			["number", "1"],
+			["punctuation", ")"],
+			["punctuation", "{"],
+
+			["object", "edges"],
+			["punctuation", "{"],
+
+			["object", "node"],
+			["punctuation", "{"],
+
+			["property", "originalSrc"],
+
+			["property", "altText"],
+
+			["punctuation", "}"],
+
+			["punctuation", "}"],
+
+			["punctuation", "}"],
+
+			["property-query", "variants"],
+			["punctuation", "("],
+			["attr-name", "first"],
+			["punctuation", ":"],
+			["number", "1"],
+			["punctuation", ")"],
+			["punctuation", "{"],
+
+			["object", "edges"],
+			["punctuation", "{"],
+
+			["object", "node"],
+			["punctuation", "{"],
+
+			["property", "price"],
+
+			["property", "id"],
+
+			["punctuation", "}"],
+
+			["punctuation", "}"],
+
+			["punctuation", "}"],
+
+			["punctuation", "}"],
+
+			["punctuation", "}"],
+
+			["punctuation", "}"]
+		]],
+		["template-punctuation", "`"]
+	]],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for tagged template literals containing GraphQL code.

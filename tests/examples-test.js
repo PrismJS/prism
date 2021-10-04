@@ -100,7 +100,7 @@ async function validateHTML(html) {
 			assert.isEmpty(node.rawText.trim(), 'All non-whitespace text has to be in <p> tags.');
 		} else {
 			// only known tags
-			assert.match(node.tagName, /^(?:h2|h3|p|pre|ul|ol)$/, 'Only some tags are allowed as top level tags.');
+			assert.match(node.tagName, /^(?:h2|h3|ol|p|pre|ul)$/, 'Only some tags are allowed as top level tags.');
 
 			// <pre> elements must have only one child, a <code> element
 			if (node.tagName === 'pre') {
@@ -151,7 +151,7 @@ function parseHTML(html) {
 
 		const p = new Parser({
 			onerror(err) {
-				reject(err)
+				reject(err);
 			},
 			onend() {
 				resolve(tree);

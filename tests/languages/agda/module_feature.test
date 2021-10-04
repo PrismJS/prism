@@ -11,12 +11,14 @@ open Eq.≡-Reasoning using (begin_; _≡⟨⟩_; _∎) renaming (begin_ to star
 	["punctuation", "."],
 	"test ",
 	["keyword", "where"],
+
 	["keyword", "import"],
 	" Relation",
 	["punctuation", "."],
 	"Binary",
 	["punctuation", "."],
-	"PropositionalEquality as Eq\n",
+	"PropositionalEquality as Eq\r\n",
+
 	["keyword", "open"],
 	" Eq ",
 	["keyword", "hiding"],
@@ -25,6 +27,7 @@ open Eq.≡-Reasoning using (begin_; _≡⟨⟩_; _∎) renaming (begin_ to star
 	["punctuation", ";"],
 	" refl",
 	["punctuation", ")"],
+
 	["keyword", "open"],
 	" Eq",
 	["punctuation", "."],

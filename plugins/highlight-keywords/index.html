@@ -8,24 +8,39 @@
 <base href="../.." />
 <link rel="stylesheet" href="assets/style.css" />
 <link rel="stylesheet" href="themes/prism.css" data-noprefix />
-<script src="assets/prefixfree.min.js"></script>
+<script src="assets/vendor/prefixfree.min.js"></script>
 <style>
 	/*
 	 * Custom keyword styles
 	 */
-	.token.keyword.keyword-return, .token.keyword.keyword-if{
+	.token.keyword.keyword-return, .token.keyword.keyword-if {
+		/* Set the color to a nice red. */
 		color: #f92672;
 	}
 </style>
 <script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
 <script src="https://www.google-analytics.com/ga.js" async></script>
 </head>
-<body>
+<body class="language-none">
 
 <header data-plugin-header="highlight-keywords"></header>
 
 <section>
+	<h1>How to use</h1>
+
+	<p>This plugin adds a special class for every keyword, so keyword-specific styles can be applied. These special classes allow for fine-grained control over the appearance of keywords using your own CSS rules.</p>
+
+	<p>For example, the keyword <code>if</code> will have the class <code>keyword-if</code> added. A CSS rule used to apply special highlighting could look like this:</p>
+
+	<pre><code class="language-css">.token.keyword.keyword-if { /* styles for 'if' */ }</code></pre>
+
+	<p><strong>Note:</strong> This plugin does not come with CSS styles. You have to define the keyword-specific CSS rules yourself.</p>
+</section>
+
+<section>
 	<h1>Examples</h1>
+
+	<p>This example shows the plugin in action. The keywords <code>if</code> and <code>return</code> will be highlighted in red. The color of all other keywords will be determined by the current theme. The CSS rules used to implement the keyword-specific highlighting can be seen in the HTML file below.</p>
 
 	<h2>JavaScript</h2>
 	<pre data-src="plugins/highlight-keywords/prism-highlight-keywords.js"></pre>
@@ -37,7 +52,7 @@
 
 <script src="prism.js"></script>
 <script src="plugins/highlight-keywords/prism-highlight-keywords.js"></script>
-<script src="assets/utopia.js"></script>
+<script src="assets/vendor/utopia.js"></script>
 <script src="components.js"></script>
 <script src="assets/code.js"></script>
 

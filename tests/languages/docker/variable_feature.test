@@ -1,0 +1,62 @@
+FROM busybox
+USER ${user:-some_user}
+ARG user
+USER $user
+RUN echo $CONT_IMG_VER
+
+ARG  CODE_VERSION=latest
+FROM base:${CODE_VERSION}
+CMD  /code/run-app
+
+FROM extras:${CODE_VERSION}
+CMD  /code/run-extras
+
+----------------------------------------------------
+
+[
+	["instruction", [
+		["keyword", "FROM"],
+		" busybox"
+	]],
+	["instruction", [
+		["keyword", "USER"],
+		["variable", "${user:-some_user}"]
+	]],
+	["instruction", [
+		["keyword", "ARG"],
+		" user"
+	]],
+	["instruction", [
+		["keyword", "USER"],
+		["variable", "$user"]
+	]],
+	["instruction", [
+		["keyword", "RUN"],
+		" echo ",
+		["variable", "$CONT_IMG_VER"]
+	]],
+
+	["instruction", [
+		["keyword", "ARG"],
+		"  CODE_VERSION=latest"
+	]],
+	["instruction", [
+		["keyword", "FROM"],
+		" base:",
+		["variable", "${CODE_VERSION}"]
+	]],
+	["instruction", [
+		["keyword", "CMD"],
+		"  /code/run-app"
+	]],
+
+	["instruction", [
+		["keyword", "FROM"],
+		" extras:",
+		["variable", "${CODE_VERSION}"]
+	]],
+	["instruction", [
+		["keyword", "CMD"],
+		"  /code/run-extras"
+	]]
+]

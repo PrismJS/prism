@@ -1,0 +1,25 @@
+bool
+datetime
+decimal
+dynamic
+guid
+int
+long
+real
+string
+timespan
+
+----------------------------------------------------
+
+[
+	["class-name", "bool"],
+	["class-name", "datetime"],
+	["class-name", "decimal"],
+	["class-name", "dynamic"],
+	["class-name", "guid"],
+	["class-name", "int"],
+	["class-name", "long"],
+	["class-name", "real"],
+	["class-name", "string"],
+	["class-name", "timespan"]
+]

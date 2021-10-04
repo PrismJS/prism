@@ -1,0 +1,31 @@
+// react tsx
+function log(msg: string): void {
+  console.log(msg);
+}
+
+----------------------------------------------------
+
+[
+	["comment", "// react tsx"],
+
+	["keyword", "function"],
+	["function", "log"],
+	["punctuation", "("],
+	"msg",
+	["operator", ":"],
+	["builtin", "string"],
+	["punctuation", ")"],
+	["operator", ":"],
+	["keyword", "void"],
+	["punctuation", "{"],
+
+	["builtin", "console"],
+	["punctuation", "."],
+	["function", "log"],
+	["punctuation", "("],
+	"msg",
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["punctuation", "}"]
+]

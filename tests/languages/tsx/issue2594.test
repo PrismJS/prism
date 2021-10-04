@@ -31,11 +31,9 @@ export default function Form() {
 	["keyword", "function"],
 	["function", "Add1"],
 	["punctuation", "("],
-	["parameter", [
-		"a",
-		["punctuation", ","],
-		" b"
-	]],
+	"a",
+	["punctuation", ","],
+	" b",
 	["punctuation", ")"],
 	["punctuation", "{"],
 	["keyword", "return"],
@@ -57,9 +55,7 @@ export default function Form() {
 	["punctuation", "}"],
 
 	["keyword", "type"],
-	["class-name", [
-		"Bar"
-	]],
+	["class-name", ["Bar"]],
 	["operator", "="],
 	" Foo",
 	["operator", "<"],
@@ -70,11 +66,9 @@ export default function Form() {
 	["keyword", "function"],
 	["function", "Add2"],
 	["punctuation", "("],
-	["parameter", [
-		"a",
-		["punctuation", ","],
-		" b"
-	]],
+	"a",
+	["punctuation", ","],
+	" b",
 	["punctuation", ")"],
 	["punctuation", "{"],
 	["keyword", "return"],
@@ -98,37 +92,36 @@ export default function Form() {
 	["keyword", "function"],
 	["function", "handleSubmit"],
 	["punctuation", "("],
-	["parameter", [
-		"event",
-		["operator", ":"],
-		" FormEvent",
-		["operator", "<"],
-		"HTMLFormElement",
-		["operator", ">"]
-	]],
+	"event",
+	["operator", ":"],
+	" FormEvent",
+	["operator", "<"],
+	"HTMLFormElement",
+	["operator", ">"],
 	["punctuation", ")"],
 	["punctuation", "{"],
+
 	"\r\n  event",
 	["punctuation", "."],
 	["function", "preventDefault"],
 	["punctuation", "("],
 	["punctuation", ")"],
 	["punctuation", ";"],
+
 	["punctuation", "}"],
 
 	["keyword", "function"],
 	["function", "handleChange"],
 	["punctuation", "("],
-	["parameter", [
-		"event",
-		["operator", ":"],
-		" ChangeEvent",
-		["operator", "<"],
-		"HTMLInputElement",
-		["operator", ">"]
-	]],
+	"event",
+	["operator", ":"],
+	" ChangeEvent",
+	["operator", "<"],
+	"HTMLInputElement",
+	["operator", ">"],
 	["punctuation", ")"],
 	["punctuation", "{"],
+
 	["builtin", "console"],
 	["punctuation", "."],
 	["function", "log"],
@@ -140,18 +133,18 @@ export default function Form() {
 	"value",
 	["punctuation", ")"],
 	["punctuation", ";"],
+
 	["punctuation", "}"],
 
 	["keyword", "function"],
 	["function", "handleClick"],
 	["punctuation", "("],
-	["parameter", [
-		"event",
-		["operator", ":"],
-		" MouseEvent"
-	]],
+	"event",
+	["operator", ":"],
+	" MouseEvent",
 	["punctuation", ")"],
 	["punctuation", "{"],
+
 	["builtin", "console"],
 	["punctuation", "."],
 	["function", "log"],
@@ -161,6 +154,7 @@ export default function Form() {
 	"button",
 	["punctuation", ")"],
 	["punctuation", ";"],
+
 	["punctuation", "}"],
 
 	["keyword", "export"],
@@ -170,16 +164,16 @@ export default function Form() {
 	["punctuation", "("],
 	["punctuation", ")"],
 	["punctuation", "{"],
+
 	["keyword", "return"],
 	["punctuation", "("],
+
 	["tag", [
 		["tag", [
 			["punctuation", "<"],
 			"form"
 		]],
-		["attr-name", [
-			"onSubmit"
-		]],
+		["attr-name", ["onSubmit"]],
 		["script", [
 			["script-punctuation", "="],
 			["punctuation", "{"],
@@ -194,18 +188,14 @@ export default function Form() {
 			["punctuation", "<"],
 			"input"
 		]],
-		["attr-name", [
-			"onChange"
-		]],
+		["attr-name", ["onChange"]],
 		["script", [
 			["script-punctuation", "="],
 			["punctuation", "{"],
 			"handleChange",
 			["punctuation", "}"]
 		]],
-		["attr-name", [
-			"placeholder"
-		]],
+		["attr-name", ["placeholder"]],
 		["attr-value", [
 			["punctuation", "="],
 			["punctuation", "\""],
@@ -220,9 +210,7 @@ export default function Form() {
 			["punctuation", "<"],
 			"button"
 		]],
-		["attr-name", [
-			"onClick"
-		]],
+		["attr-name", ["onClick"]],
 		["script", [
 			["script-punctuation", "="],
 			["punctuation", "{"],
@@ -246,7 +234,9 @@ export default function Form() {
 		]],
 		["punctuation", ">"]
 	]],
+
 	["punctuation", ")"],
 	["punctuation", ";"],
+
 	["punctuation", "}"]
 ]

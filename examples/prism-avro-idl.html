@@ -1,0 +1,44 @@
+<h2>Full example</h2>
+<pre><code>// Source: https://avro.apache.org/docs/current/idl.html#example
+
+/**
+ * An example protocol in Avro IDL
+ */
+@namespace("org.apache.avro.test")
+protocol Simple {
+
+	@aliases(["org.foo.KindOf"])
+	enum Kind {
+		FOO,
+		BAR, // the bar enum value
+		BAZ
+	}
+
+	fixed MD5(16);
+
+	record TestRecord {
+		@order("ignore")
+		string name;
+
+		@order("descending")
+		Kind kind;
+
+		MD5 hash;
+
+		union { MD5, null} @aliases(["hash"]) nullableHash;
+
+		array&lt;long> arrayOfLongs;
+	}
+
+	error TestError {
+		string message;
+	}
+
+	string hello(string greeting);
+	TestRecord echo(TestRecord `record`);
+	int add(int arg1, int arg2);
+	bytes echoBytes(bytes data);
+	void `error`() throws TestError;
+	void ping() oneway;
+}
+</code></pre>

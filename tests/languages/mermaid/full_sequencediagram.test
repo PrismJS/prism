@@ -1,0 +1,389 @@
+sequenceDiagram
+    Alice->>John: Hello John, how are you?
+    John-->>Alice: Great!
+    Alice-)John: See you later!
+
+sequenceDiagram
+    participant John
+    participant Alice
+    Alice->>John: Hello John, how are you?
+    John-->>Alice: Great!
+
+sequenceDiagram
+    participant A as Alice
+    participant J as John
+    A->>J: Hello John, how are you?
+    J->>A: Great!
+
+[Actor][Arrow][Actor]:Message text
+
+sequenceDiagram
+    Alice->>John: Hello John, how are you?
+    activate John
+    John-->>Alice: Great!
+    deactivate John
+
+sequenceDiagram
+    Alice->>+John: Hello John, how are you?
+    John-->>-Alice: Great!
+
+sequenceDiagram
+    Alice->>+John: Hello John, how are you?
+    Alice->>+John: John, can you hear me?
+    John-->>-Alice: Hi Alice, I can hear you!
+    John-->>-Alice: I feel great!
+
+sequenceDiagram
+    participant John
+    Note right of John: Text in note
+
+sequenceDiagram
+    Alice->John: Hello John, how are you?
+    Note over Alice,John: A typical interaction
+
+loop Loop text
+... statements ...
+end
+
+sequenceDiagram
+    Alice->John: Hello John, how are you?
+    loop Every minute
+        John-->Alice: Great!
+    end
+
+alt Describing text
+... statements ...
+else
+... statements ...
+end
+
+opt Describing text
+... statements ...
+end
+
+sequenceDiagram
+    Alice->>Bob: Hello Bob, how are you?
+    alt is sick
+        Bob->>Alice: Not so good :(
+    else is well
+        Bob->>Alice: Feeling fresh like a daisy
+    end
+    opt Extra response
+        Bob->>Alice: Thanks for asking
+    end
+
+par [Action 1]
+... statements ...
+and [Action 2]
+... statements ...
+and [Action N]
+... statements ...
+end
+
+rect rgb(0, 255, 0)
+... content ...
+end
+
+rect rgba(0, 0, 255, .1)
+... content ...
+end
+
+sequenceDiagram
+    Alice->>John: Hello John, how are you?
+    %% this is a comment
+    John-->>Alice: Great!
+
+sequenceDiagram
+    A->>B: I #9829; you!
+    B->>A: I #9829; you #infin; times more!
+
+sequenceDiagram
+    autonumber
+    Alice->>John: Hello John, how are you?
+    loop Healthcheck
+        John->>John: Fight against hypochondria
+    end
+    Note right of John: Rational thoughts!
+    John-->>Alice: Great!
+    John->>Bob: How about you?
+    Bob-->>John: Jolly good!
+
+----------------------------------------------------
+
+[
+	["keyword", "sequenceDiagram"],
+
+	"\r\n    Alice",
+	["arrow", "->>"],
+	"John",
+	["operator", ":"],
+	" Hello John, how are you?\r\n    John",
+	["arrow", "-->>"],
+	"Alice",
+	["operator", ":"],
+	" Great!\r\n    Alice",
+	["arrow", "-)"],
+	"John",
+	["operator", ":"],
+	" See you later!\r\n\r\n",
+
+	["keyword", "sequenceDiagram"],
+
+	["keyword", "participant"],
+	" John\r\n    ",
+
+	["keyword", "participant"],
+	" Alice\r\n    Alice",
+	["arrow", "->>"],
+	"John",
+	["operator", ":"],
+	" Hello John, how are you?\r\n    John",
+	["arrow", "-->>"],
+	"Alice",
+	["operator", ":"],
+	" Great!\r\n\r\n",
+
+	["keyword", "sequenceDiagram"],
+
+	["keyword", "participant"],
+	" A as Alice\r\n    ",
+
+	["keyword", "participant"],
+	" J as John\r\n    A",
+	["arrow", "->>"],
+	"J",
+	["operator", ":"],
+	" Hello John, how are you?\r\n    J",
+	["arrow", "->>"],
+	"A",
+	["operator", ":"],
+	" Great!\r\n\r\n",
+
+	["text", "[Actor]"],
+	["text", "[Arrow]"],
+	["text", "[Actor]"],
+	["operator", ":"],
+	"Message text\r\n\r\n",
+
+	["keyword", "sequenceDiagram"],
+
+	"\r\n    Alice",
+	["arrow", "->>"],
+	"John",
+	["operator", ":"],
+	" Hello John, how are you?\r\n    ",
+
+	["keyword", "activate"],
+	" John\r\n    John",
+	["arrow", "-->>"],
+	"Alice",
+	["operator", ":"],
+	" Great!\r\n    ",
+
+	["keyword", "deactivate"],
+	" John\r\n\r\n",
+
+	["keyword", "sequenceDiagram"],
+
+	"\r\n    Alice",
+	["arrow", "->>"],
+	"+John",
+	["operator", ":"],
+	" Hello John, how are you?\r\n    John",
+	["arrow", "-->>"],
+	"-Alice",
+	["operator", ":"],
+	" Great!\r\n\r\n",
+
+	["keyword", "sequenceDiagram"],
+
+	"\r\n    Alice",
+	["arrow", "->>"],
+	"+John",
+	["operator", ":"],
+	" Hello John, how are you?\r\n    Alice",
+	["arrow", "->>"],
+	"+John",
+	["operator", ":"],
+	" John, can you hear me?\r\n    John",
+	["arrow", "-->>"],
+	"-Alice",
+	["operator", ":"],
+	" Hi Alice, I can hear you!\r\n    John",
+	["arrow", "-->>"],
+	"-Alice",
+	["operator", ":"],
+	" I feel great!\r\n\r\n",
+
+	["keyword", "sequenceDiagram"],
+
+	["keyword", "participant"],
+	" John\r\n    ",
+
+	["keyword", "Note right of"],
+	" John",
+	["operator", ":"],
+	" Text in note\r\n\r\n",
+
+	["keyword", "sequenceDiagram"],
+
+	"\r\n    Alice",
+	["arrow", "->"],
+	"John",
+	["operator", ":"],
+	" Hello John, how are you?\r\n    ",
+
+	["keyword", "Note over"],
+	" Alice,John",
+	["operator", ":"],
+	" A typical interaction\r\n\r\n",
+
+	["keyword", "loop"], " Loop text\r\n... statements ...\r\n",
+	["keyword", "end"],
+
+	["keyword", "sequenceDiagram"],
+
+	"\r\n    Alice",
+	["arrow", "->"],
+	"John",
+	["operator", ":"],
+	" Hello John, how are you?\r\n    ",
+
+	["keyword", "loop"],
+	" Every minute\r\n        John",
+	["arrow", "-->"],
+	"Alice",
+	["operator", ":"],
+	" Great!\r\n    ",
+
+	["keyword", "end"],
+
+	["keyword", "alt"], " Describing text\r\n... statements ...\r\n",
+	["keyword", "else"],
+	"\r\n... statements ...\r\n",
+	["keyword", "end"],
+
+	["keyword", "opt"], " Describing text\r\n... statements ...\r\n",
+	["keyword", "end"],
+
+	["keyword", "sequenceDiagram"],
+
+	"\r\n    Alice",
+	["arrow", "->>"],
+	"Bob",
+	["operator", ":"],
+	" Hello Bob, how are you?\r\n    ",
+
+	["keyword", "alt"],
+	" is sick\r\n        Bob",
+	["arrow", "->>"],
+	"Alice",
+	["operator", ":"],
+	" Not so good ",
+	["operator", ":"],
+	["punctuation", "("],
+
+	["keyword", "else"],
+	" is well\r\n        Bob",
+	["arrow", "->>"],
+	"Alice",
+	["operator", ":"],
+	" Feeling fresh like a daisy\r\n    ",
+
+	["keyword", "end"],
+
+	["keyword", "opt"],
+	" Extra response\r\n        Bob",
+	["arrow", "->>"],
+	"Alice",
+	["operator", ":"],
+	" Thanks for asking\r\n    ",
+
+	["keyword", "end"],
+
+	["keyword", "par"], ["text", "[Action 1]"],
+	"\r\n... statements ...\r\n",
+	["keyword", "and"], ["text", "[Action 2]"],
+	"\r\n... statements ...\r\n",
+	["keyword", "and"], ["text", "[Action N]"],
+	"\r\n... statements ...\r\n",
+	["keyword", "end"],
+
+	["keyword", "rect"], " rgb", ["text", "(0, 255, 0)"],
+	"\r\n... content ...\r\n",
+	["keyword", "end"],
+
+	["keyword", "rect"], " rgba", ["text", "(0, 0, 255, .1)"],
+	"\r\n... content ...\r\n",
+	["keyword", "end"],
+
+	["keyword", "sequenceDiagram"],
+
+	"\r\n    Alice",
+	["arrow", "->>"],
+	"John",
+	["operator", ":"],
+	" Hello John, how are you?\r\n    ",
+
+	["comment", "%% this is a comment"],
+
+	"\r\n    John",
+	["arrow", "-->>"],
+	"Alice",
+	["operator", ":"],
+	" Great!\r\n\r\n",
+
+	["keyword", "sequenceDiagram"],
+
+	"\r\n    A",
+	["arrow", "->>"],
+	"B",
+	["operator", ":"],
+	" I ",
+	["entity", "#9829;"],
+	" you!\r\n    B",
+	["arrow", "->>"],
+	"A",
+	["operator", ":"],
+	" I ",
+	["entity", "#9829;"],
+	" you ",
+	["entity", "#infin;"],
+	" times more!\r\n\r\n",
+
+	["keyword", "sequenceDiagram"],
+
+	["keyword", "autonumber"],
+
+	"\r\n    Alice",
+	["arrow", "->>"],
+	"John",
+	["operator", ":"],
+	" Hello John, how are you?\r\n    ",
+
+	["keyword", "loop"],
+	" Healthcheck\r\n        John",
+	["arrow", "->>"],
+	"John",
+	["operator", ":"],
+	" Fight against hypochondria\r\n    ",
+
+	["keyword", "end"],
+
+	["keyword", "Note right of"],
+	" John",
+	["operator", ":"],
+	" Rational thoughts!\r\n    John",
+	["arrow", "-->>"],
+	"Alice",
+	["operator", ":"],
+	" Great!\r\n    John",
+	["arrow", "->>"],
+	"Bob",
+	["operator", ":"],
+	" How about you?\r\n    Bob",
+	["arrow", "-->>"],
+	"John",
+	["operator", ":"],
+	" Jolly good!"
+]

@@ -35,7 +35,7 @@ fixed
 float
 for
 foreach
-from
+from foo;
 get
 global
 goto
@@ -43,6 +43,7 @@ group
 if
 implicit
 in
+init;
 int;
 interface;
 internal
@@ -71,6 +72,7 @@ private
 protected
 public
 readonly
+record;
 ref
 remove
 return
@@ -105,6 +107,9 @@ when
 where;
 while
 yield
+
+// very contextual keywords:
+Person person2 = person1 with { FirstName = "John" };
 
 ----------------------------------------------------
 
@@ -146,7 +151,7 @@ yield
 	["keyword", "float"],
 	["keyword", "for"],
 	["keyword", "foreach"],
-	["keyword", "from"],
+	["keyword", "from"], " foo", ["punctuation", ";"],
 	["keyword", "get"],
 	["keyword", "global"],
 	["keyword", "goto"],
@@ -154,6 +159,7 @@ yield
 	["keyword", "if"],
 	["keyword", "implicit"],
 	["keyword", "in"],
+	["keyword", "init"], ["punctuation", ";"],
 	["keyword", "int"], ["punctuation", ";"],
 	["keyword", "interface"], ["punctuation", ";"],
 	["keyword", "internal"],
@@ -182,6 +188,7 @@ yield
 	["keyword", "protected"],
 	["keyword", "public"],
 	["keyword", "readonly"],
+	["keyword", "record"], ["punctuation", ";"],
 	["keyword", "ref"],
 	["keyword", "remove"],
 	["keyword", "return"],
@@ -215,7 +222,21 @@ yield
 	["keyword", "when"],
 	["keyword", "where"], ["punctuation", ";"],
 	["keyword", "while"],
-	["keyword", "yield"]
+	["keyword", "yield"],
+
+	["comment", "// very contextual keywords:"],
+
+	["class-name", ["Person"]],
+	" person2 ",
+	["operator", "="],
+	" person1 ",
+	["keyword", "with"],
+	["punctuation", "{"],
+	" FirstName ",
+	["operator", "="],
+	["string", "\"John\""],
+	["punctuation", "}"],
+	["punctuation", ";"]
 ]
 
 ----------------------------------------------------

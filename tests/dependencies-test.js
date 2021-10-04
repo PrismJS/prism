@@ -246,6 +246,57 @@ describe('Dependency logic', function () {
 
 describe('components.json', function () {
 
+	/**
+	 * @param {T | T[] | undefined | null} value
+	 * @returns {T[]}
+	 * @template T
+	 */
+	function toArray(value) {
+		if (Array.isArray(value)) {
+			return value;
+		} else if (value == undefined) {
+			return [];
+		} else {
+			return [value];
+		}
+	}
+
+	/**
+	 * @param {(entry: import("../dependencies").ComponentEntry, id: string, entries: Object<string, import("../dependencies").ComponentEntry>) => void} consumeFn
+	 */
+	function forEachEntry(consumeFn) {
+		/** @type {Object<string, import("../dependencies").ComponentEntry>} */
+		const entries = {};
+
+		for (const category in components) {
+			for (const id in components[category]) {
+				const entry = components[category][id];
+				if (id !== 'meta' && entry && typeof entry === 'object') {
+					entries[id] = entry;
+				}
+			}
+		}
+
+		for (const id in entries) {
+			consumeFn(entries[id], id, entries);
+		}
+	}
+
+	const entryProperties = [
+		'title',
+		'description',
+		'alias',
+		'aliasTitles',
+		'owner',
+
+		'require',
+		'optional',
+		'modify',
+
+		'noCSS',
+		'option'
+	];
+
 	it('- should be valid', function () {
 		try {
 			const allIds = [];
@@ -262,43 +313,20 @@ describe('components.json', function () {
 	});
 
 	it('- should not have redundant optional dependencies', function () {
-		/** @type {Object<string, import("../dependencies").ComponentEntry>} */
-		const entries = {};
-
-		for (const category in components) {
-			for (const id in components[category]) {
-				const entry = components[category][id];
-				if (id !== 'meta' && entry && typeof entry === 'object') {
-					entries[id] = entry;
-				}
-			}
-		}
-
-		function toArray(value) {
-			if (Array.isArray(value)) {
-				return value;
-			} else if (value == undefined) {
-				return [];
-			} else {
-				return [value];
-			}
-		}
-
-		for (const id in entries) {
-			const entry = entries[id];
+		forEachEntry((entry, id) => {
 			const optional = new Set(toArray(entry.optional));
 
 			for (const modifyId of toArray(entry.modify)) {
 				if (optional.has(modifyId)) {
-					assert.fail(`The component "${id}" has declared "${modifyId}" as both optional and modify.`)
+					assert.fail(`The component "${id}" has declared "${modifyId}" as both optional and modify.`);
 				}
 			}
 			for (const requireId of toArray(entry.require)) {
 				if (optional.has(requireId)) {
-					assert.fail(`The component "${id}" has declared "${requireId}" as both optional and require.`)
+					assert.fail(`The component "${id}" has declared "${requireId}" as both optional and require.`);
 				}
 			}
-		}
+		});
 	});
 
 	it('- should have a sorted language list', function () {
@@ -331,6 +359,70 @@ describe('components.json', function () {
 		});
 
 		assert.sameOrderedMembers(languages, sorted);
+	});
+
+	it('- should not have single-element or empty arrays', function () {
+		/** @type {keyof import("../dependencies").ComponentEntry} */
+		const properties = ['alias', 'optional', 'require', 'modify'];
+
+		forEachEntry((entry, id) => {
+			for (const prop of properties) {
+				const value = entry[prop];
+				if (Array.isArray(value)) {
+					if (value.length === 0) {
+						assert.fail(
+							`The component "${id}" defines an empty array for "${prop}".` +
+							` Please remove the "${prop}" property.`
+						);
+					} else if (value.length === 1) {
+						assert.fail(
+							`The component "${id}" defines a single-empty array for "${prop}".` +
+							` Please replace the array with its element.` +
+							`\n\t${JSON.stringify(prop)}: ${JSON.stringify(value[0])}`
+						);
+					}
+				}
+			}
+		});
+	});
+
+	it('- should only have alias titles for valid aliases', function () {
+		forEachEntry((entry, id) => {
+			const title = entry.title;
+			const alias = toArray(entry.alias);
+			const aliasTitles = entry.aliasTitles;
+
+			for (const key in aliasTitles) {
+				if (alias.indexOf(key) === -1) {
+					assert.fail(
+						`Component "${id}":` +
+						` The alias ${JSON.stringify(key)} in "aliasTitles" is not defined in "alias".`
+					);
+				}
+				if (aliasTitles[key] === title) {
+					assert.fail(
+						`Component "${id}":` +
+						` The alias title for ${JSON.stringify(key)} is the same as the normal title.` +
+						` Remove the alias title or choose a different alias title.`
+					);
+				}
+			}
+		});
+	});
+
+	it('- should not have unknown properties', function () {
+		const knownProperties = new Set(entryProperties);
+
+		forEachEntry((entry, id) => {
+			for (const prop in entry) {
+				if (!knownProperties.has(prop)) {
+					assert.fail(
+						`Component "${id}":` +
+						` The property ${JSON.stringify(prop)} is not supported by Prism.`
+					);
+				}
+			}
+		});
 	});
 
 });

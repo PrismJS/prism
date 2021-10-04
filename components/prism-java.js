@@ -7,7 +7,7 @@
 
 	// based on the java naming conventions
 	var className = {
-		pattern: RegExp(classNamePrefix + /[A-Z](?:\w*[a-z]\w*)?\b/.source),
+		pattern: RegExp(classNamePrefix + /[A-Z](?:[\d_A-Z]*[a-z]\w*)?\b/.source),
 		lookbehind: true,
 		inside: {
 			'namespace': {
@@ -26,7 +26,7 @@
 			{
 				// variables and parameters
 				// this to support class names (or generic parameters) which do not contain a lower case letter (also works for methods)
-				pattern: RegExp(classNamePrefix + /[A-Z]\w*(?=\s+\w+\s*[;,=())])/.source),
+				pattern: RegExp(classNamePrefix + /[A-Z]\w*(?=\s+\w+\s*[;,=()])/.source),
 				lookbehind: true,
 				inside: className.inside
 			}
@@ -35,11 +35,11 @@
 		'function': [
 			Prism.languages.clike.function,
 			{
-				pattern: /(\:\:\s*)[a-z_]\w*/,
+				pattern: /(::\s*)[a-z_]\w*/,
 				lookbehind: true
 			}
 		],
-		'number': /\b0b[01][01_]*L?\b|\b0x[\da-f_]*\.?[\da-f_p+-]+\b|(?:\b\d[\d_]*\.?[\d_]*|\B\.\d[\d_]*)(?:e[+-]?\d[\d_]*)?[dfl]?/i,
+		'number': /\b0b[01][01_]*L?\b|\b0x(?:\.[\da-f_p+-]+|[\da-f_]+(?:\.[\da-f_p+-]+)?)\b|(?:\b\d[\d_]*(?:\.[\d_]*)?|\B\.\d[\d_]*)(?:e[+-]?\d[\d_]*)?[dfl]?/i,
 		'operator': {
 			pattern: /(^|[^.])(?:<<=?|>>>?=?|->|--|\+\+|&&|\|\||::|[?:~]|[-+*/%&|^!=<>]=?)/m,
 			lookbehind: true
@@ -62,7 +62,7 @@
 			alias: 'punctuation'
 		},
 		'generics': {
-			pattern: /<(?:[\w\s,.&?]|<(?:[\w\s,.&?]|<(?:[\w\s,.&?]|<[\w\s,.&?]*>)*>)*>)*>/,
+			pattern: /<(?:[\w\s,.?]|&(?!&)|<(?:[\w\s,.?]|&(?!&)|<(?:[\w\s,.?]|&(?!&)|<(?:[\w\s,.?]|&(?!&))*>)*>)*>)*>/,
 			inside: {
 				'class-name': className,
 				'keyword': keywords,

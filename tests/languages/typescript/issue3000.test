@@ -1,0 +1,51 @@
+import { infer, inference, infer } from 'module'
+//              ~~~~~ ✅
+
+import { type, typeDefs, type } from 'module'
+//             ~~~~ ✅
+
+import { const, constants, const } from 'module'
+//              ~~~~~ ✅
+
+----------------------------------------------------
+
+[
+	["keyword", "import"],
+	["punctuation", "{"],
+	" infer",
+	["punctuation", ","],
+	" inference",
+	["punctuation", ","],
+	" infer ",
+	["punctuation", "}"],
+	["keyword", "from"],
+	["string", "'module'"],
+
+	["comment", "//              ~~~~~ ✅"],
+
+	["keyword", "import"],
+	["punctuation", "{"],
+	" type",
+	["punctuation", ","],
+	" typeDefs",
+	["punctuation", ","],
+	" type ",
+	["punctuation", "}"],
+	["keyword", "from"],
+	["string", "'module'"],
+
+	["comment", "//             ~~~~ ✅"],
+
+	["keyword", "import"],
+	["punctuation", "{"],
+	["keyword", "const"],
+	["punctuation", ","],
+	" constants",
+	["punctuation", ","],
+	["keyword", "const"],
+	["punctuation", "}"],
+	["keyword", "from"],
+	["string", "'module'"],
+
+	["comment", "//              ~~~~~ ✅"]
+]

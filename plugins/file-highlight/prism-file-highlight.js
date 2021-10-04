@@ -1,9 +1,13 @@
 (function () {
-	if (typeof self === 'undefined' || !self.Prism || !self.document) {
+
+	if (typeof Prism === 'undefined' || typeof document === 'undefined') {
 		return;
 	}
 
-	var Prism = window.Prism;
+	// https://developer.mozilla.org/en-US/docs/Web/API/Element/matches#Polyfill
+	if (!Element.prototype.matches) {
+		Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
+	}
 
 	var LOADING_MESSAGE = 'Loading…';
 	var FAILURE_MESSAGE = function (status, message) {
@@ -122,7 +126,7 @@
 		highlight: function highlight(container) {
 			var elements = (container || document).querySelectorAll(SELECTOR);
 
-			for (var i = 0, element; element = elements[i++];) {
+			for (var i = 0, element; (element = elements[i++]);) {
 				Prism.highlightElement(element);
 			}
 		}
@@ -136,6 +140,6 @@
 			logged = true;
 		}
 		Prism.plugins.fileHighlight.highlight.apply(this, arguments);
-	}
+	};
 
-})();
+}());

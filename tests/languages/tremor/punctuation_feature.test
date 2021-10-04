@@ -1,0 +1,29 @@
+( ) [ ] { }
+, ; . :
+%( ) %[ ] %{ }
+
+----------------------------------------------------
+
+[
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "["],
+	["punctuation", "]"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["punctuation", ","],
+	["punctuation", ";"],
+	["punctuation", "."],
+	["punctuation", ":"],
+
+	["pattern-punctuation", "%"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["pattern-punctuation", "%"],
+	["punctuation", "["],
+	["punctuation", "]"],
+	["pattern-punctuation", "%"],
+	["punctuation", "{"],
+	["punctuation", "}"]
+]

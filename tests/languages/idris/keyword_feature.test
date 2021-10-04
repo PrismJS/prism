@@ -1,0 +1,17 @@
+case data do else if implementation
+in infixl infixr interface let
+module of then where
+
+----------------------------------------------------
+
+[
+	["keyword", "case"], ["keyword", "data"], ["keyword", "do"],
+        ["keyword", "else"], ["keyword", "if"], ["keyword", "implementation"],
+        ["keyword", "in"], ["keyword", "infixl"], ["keyword", "infixr"],
+        ["keyword", "interface"], ["keyword", "let"], ["keyword", "module"],
+        ["keyword", "of"], ["keyword", "then"], ["keyword", "where"]
+]
+
+----------------------------------------------------
+
+Checks for some keywords.

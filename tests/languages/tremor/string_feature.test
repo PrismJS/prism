@@ -1,0 +1,87 @@
+""
+"" ""
+"""
+"""
+"fo\"obar"
+"foo\
+bar"
+"""
+multiline
+"""
+"snot#{badger}badger"
+"""
+    I am
+   a
+    long
+    multi-line
+    string with #{ "#{a+1} interpolation" }
+"""
+
+----------------------------------------------------
+
+[
+	["interpolated-string", [
+		["string", "\"\""]
+	]],
+
+	["interpolated-string", [
+		["string", "\"\""]
+	]],
+	["interpolated-string", [
+		["string", "\"\""]
+	]],
+
+	["interpolated-string", [
+		["string", "\"\"\"\r\n\"\"\""]
+	]],
+
+	["interpolated-string", [
+		["string", "\"fo\\\"obar\""]
+	]],
+
+	["interpolated-string", [
+		["string", "\"foo\\\r\nbar\""]
+	]],
+
+	["interpolated-string", [
+		["string", "\"\"\"\r\nmultiline\r\n\"\"\""]
+	]],
+
+	["interpolated-string", [
+		["string", "\"snot"],
+		["interpolation", [
+			["punctuation", "#{"],
+			["expression", ["badger"]],
+			["punctuation", "}"]
+		]],
+		["string", "badger\""]
+	]],
+
+	["interpolated-string", [
+		["string", "\"\"\"\r\n    I am\r\n   a\r\n    long\r\n    multi-line\r\n    string with "],
+		["interpolation", [
+			["punctuation", "#{"],
+			["expression", [
+				["interpolated-string", [
+					["string", "\""],
+					["interpolation", [
+						["punctuation", "#{"],
+						["expression", [
+							"a",
+							["operator", "+"],
+							["number", "1"]
+						]],
+						["punctuation", "}"]
+					]],
+					["string", " interpolation\""]
+				]]
+			]],
+			["punctuation", "}"]
+		]],
+		["string", "\r\n\"\"\""]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for strings.

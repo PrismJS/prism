@@ -1,0 +1,21 @@
+class First {}
+class Second {}
+
+----------------------------------------------------
+
+[
+	["keyword", "class"],
+	["class-name-definition", "First"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "class"],
+	["class-name-definition", "Second"],
+	["punctuation", "{"],
+	["punctuation", "}"]
+]
+
+
+----------------------------------------------------
+
+Checks for issue #2614.

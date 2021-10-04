@@ -1,6 +1,6 @@
 (function () {
 
-	if (typeof self === 'undefined' || !self.Prism || !self.document) {
+	if (typeof Prism === 'undefined' || typeof document === 'undefined') {
 		return;
 	}
 
@@ -10,9 +10,15 @@
 		return;
 	}
 
+	/* eslint-disable */
+
 	// The languages map is built automatically with gulp
 	var Languages = /*languages_placeholder[*/{
 		"none": "Plain text",
+		"plain": "Plain text",
+		"plaintext": "Plain text",
+		"text": "Plain text",
+		"txt": "Plain text",
 		"html": "HTML",
 		"xml": "XML",
 		"svg": "SVG",
@@ -30,6 +36,7 @@
 		"apacheconf": "Apache Configuration",
 		"apl": "APL",
 		"aql": "AQL",
+		"ino": "Arduino",
 		"arff": "ARFF",
 		"asciidoc": "AsciiDoc",
 		"adoc": "AsciiDoc",
@@ -37,6 +44,10 @@
 		"asm6502": "6502 Assembly",
 		"autohotkey": "AutoHotkey",
 		"autoit": "AutoIt",
+		"avisynth": "AviSynth",
+		"avs": "AviSynth",
+		"avro-idl": "Avro IDL",
+		"avdl": "Avro IDL",
 		"basic": "BASIC",
 		"bbcode": "BBcode",
 		"bnf": "BNF",
@@ -47,18 +58,25 @@
 		"cs": "C#",
 		"dotnet": "C#",
 		"cpp": "C++",
+		"cfscript": "CFScript",
+		"cfc": "CFScript",
 		"cil": "CIL",
 		"cmake": "CMake",
+		"cobol": "COBOL",
 		"coffee": "CoffeeScript",
 		"conc": "Concurnas",
 		"csp": "Content-Security-Policy",
 		"css-extras": "CSS Extras",
+		"csv": "CSV",
+		"dataweave": "DataWeave",
 		"dax": "DAX",
 		"django": "Django/Jinja2",
 		"jinja2": "Django/Jinja2",
 		"dns-zone-file": "DNS zone file",
 		"dns-zone": "DNS zone file",
 		"dockerfile": "Docker",
+		"dot": "DOT (Graphviz)",
+		"gv": "DOT (Graphviz)",
 		"ebnf": "EBNF",
 		"editorconfig": "EditorConfig",
 		"ejs": "EJS",
@@ -72,11 +90,15 @@
 		"ftl": "FreeMarker Template Language",
 		"gml": "GameMaker Language",
 		"gamemakerlanguage": "GameMaker Language",
+		"gap": "GAP (CAS)",
 		"gcode": "G-code",
 		"gdscript": "GDScript",
 		"gedcom": "GEDCOM",
 		"glsl": "GLSL",
+		"gn": "GN",
+		"gni": "GN",
 		"graphql": "GraphQL",
+		"hbs": "Handlebars",
 		"hs": "Haskell",
 		"hcl": "HCL",
 		"hlsl": "HLSL",
@@ -84,6 +106,8 @@
 		"hpkp": "HTTP Public-Key-Pins",
 		"hsts": "HTTP Strict-Transport-Security",
 		"ichigojam": "IchigoJam",
+		"icu-message-format": "ICU Message Format",
+		"idr": "Idris",
 		"ignore": ".ignore",
 		"gitignore": ".gitignore",
 		"hgignore": ".hgignore",
@@ -101,8 +125,11 @@
 		"jsonp": "JSONP",
 		"jsstacktrace": "JS stack trace",
 		"js-templates": "JS Templates",
+		"keepalived": "Keepalived Configure",
 		"kts": "Kotlin Script",
 		"kt": "Kotlin",
+		"kumir": "KuMir (КуМир)",
+		"kum": "KuMir (КуМир)",
 		"latex": "LaTeX",
 		"tex": "TeX",
 		"context": "ConTeXt",
@@ -112,10 +139,13 @@
 		"elisp": "Lisp",
 		"emacs-lisp": "Lisp",
 		"llvm": "LLVM IR",
+		"log": "Log file",
 		"lolcode": "LOLCODE",
+		"magma": "Magma (CAS)",
 		"md": "Markdown",
 		"markup-templating": "Markup templating",
 		"matlab": "MATLAB",
+		"maxscript": "MAXScript",
 		"mel": "MEL",
 		"mongodb": "MongoDB",
 		"moon": "MoonScript",
@@ -133,8 +163,11 @@
 		"objc": "Objective-C",
 		"ocaml": "OCaml",
 		"opencl": "OpenCL",
+		"openqasm": "OpenQasm",
+		"qasm": "OpenQasm",
 		"parigp": "PARI/GP",
 		"objectpascal": "Object Pascal",
+		"psl": "PATROL Scripting Language",
 		"pcaxis": "PC-Axis",
 		"px": "PC-Axis",
 		"peoplecode": "PeopleCode",
@@ -154,9 +187,13 @@
 		"pbfasm": "PureBasic",
 		"purs": "PureScript",
 		"py": "Python",
+		"qsharp": "Q#",
+		"qs": "Q#",
 		"q": "Q (kdb+ database)",
 		"qml": "QML",
 		"rkt": "Racket",
+		"cshtml": "Razor C#",
+		"razor": "Razor C#",
 		"jsx": "React JSX",
 		"tsx": "React TSX",
 		"renpy": "Ren'py",
@@ -184,6 +221,7 @@
 		"sqf": "SQF: Status Quo Function (Arma 3)",
 		"sql": "SQL",
 		"iecst": "Structured Text (IEC 61131-3)",
+		"systemd": "Systemd configuration file",
 		"t4-templating": "T4 templating",
 		"t4-cs": "T4 Text Templates (C#)",
 		"t4": "T4 Text Templates (C#)",
@@ -191,11 +229,15 @@
 		"tap": "TAP",
 		"tt2": "Template Toolkit 2",
 		"toml": "TOML",
+		"trickle": "trickle",
+		"troy": "troy",
 		"trig": "TriG",
 		"ts": "TypeScript",
 		"tsconfig": "TSConfig",
 		"uscript": "UnrealScript",
 		"uc": "UnrealScript",
+		"uri": "URI",
+		"url": "URL",
 		"vbnet": "VB.Net",
 		"vhdl": "VHDL",
 		"vim": "vim",
@@ -204,6 +246,9 @@
 		"vb": "Visual Basic",
 		"wasm": "WebAssembly",
 		"wiki": "Wiki markup",
+		"wolfram": "Wolfram language",
+		"nb": "Mathematica Notebook",
+		"wl": "Wolfram language",
 		"xeoracube": "XeoraCube",
 		"xml-doc": "XML doc (.net)",
 		"xojo": "Xojo (REALbasic)",
@@ -212,6 +257,8 @@
 		"yml": "YAML",
 		"yang": "YANG"
 	}/*]*/;
+
+	/* eslint-enable */
 
 	Prism.plugins.toolbar.registerButton('show-language', function (env) {
 		var pre = env.element.parentNode;
@@ -243,4 +290,4 @@
 		return element;
 	});
 
-})();
+}());

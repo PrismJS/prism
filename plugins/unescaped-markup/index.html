@@ -10,7 +10,7 @@
 	<link rel="stylesheet" href="themes/prism.css" data-noprefix />
 	<link rel="stylesheet" href="plugins/unescaped-markup/prism-unescaped-markup.css" data-noprefix />
 
-	<script src="assets/prefixfree.min.js"></script>
+	<script src="assets/vendor/prefixfree.min.js"></script>
 
 	<script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
 	<script src="https://www.google-analytics.com/ga.js" async></script>
@@ -24,15 +24,23 @@
 	<p>This plugin provides several methods of achieving the same thing:</p>
 
 	<ul>
-		<li>Instead of using <code>&lt;pre>&lt;code></code> elements, use <code>&lt;script type="text/plain"></code>
-		<pre><code>&lt;script type="text/plain" class="language-markup">
+		<li>
+			Instead of using <code>&lt;pre>&lt;code></code> elements, use <code>&lt;script type="text/plain"></code>:
+
+			<pre><code>&lt;script type="text/plain" class="language-markup">
 &lt;p>Example&lt;/p>
 &lt;/script></code></pre>
 		</li>
-		<li>Use a HTML-comment to escape your code
-		<pre><code>&lt;pre class="language-markup">&lt;code>&lt;!--
+		<li>
+			Use an HTML-comment to escape your code:
+
+			<pre><code>&lt;pre class="language-markup">&lt;code>&lt;!--
 &lt;p>Example&lt;/p>
--->&lt;/code>&lt;/pre></code></pre></li>
+-->&lt;/code>&lt;/pre></code></pre>
+
+			This will only work if the <code>code</code> element contains exactly one comment and nothing else (not even spaces).
+			E.g. <code>&lt;code>  &lt;!-- some text -->&lt;/code></code> and <code>&lt;code>text&lt;!-- more text -->&lt;/code></code> will not work.
+		</li>
 	</ul>
 </section>
 
@@ -52,7 +60,7 @@
 		<link rel="stylesheet" href="assets/style.css" />
 		<link rel="stylesheet" href="themes/prism.css" data-noprefix />
 
-		<script src="assets/prefixfree.min.js">&lt;/script>
+		<script src="assets/vendor/prefixfree.min.js">&lt;/script>
 	</head>
 	<body class="language-markup">
 
@@ -94,7 +102,7 @@
 
 	<script src="prism.js">&lt;/script>
 	<script src="plugins/unescaped-markup/prism-unescaped-markup.js">&lt;/script>
-	<script src="assets/utopia.js">&lt;/script>
+	<script src="assets/vendor/utopia.js">&lt;/script>
 	<script src="components.js">&lt;/script>
 	<script src="assets/code.js">&lt;/script>
 
@@ -114,7 +122,7 @@
 	<link rel="stylesheet" href="assets/style.css" />
 	<link rel="stylesheet" href="themes/prism.css" data-noprefix />
 
-	<script src="assets/prefixfree.min.js"></script>
+	<script src="assets/vendor/prefixfree.min.js"></script>
 </head>
 <body class="language-markup">
 
@@ -156,7 +164,7 @@
 
 <script src="prism.js"></script>
 <script src="plugins/unescaped-markup/prism-unescaped-markup.js"></script>
-<script src="assets/utopia.js"></script>
+<script src="assets/vendor/utopia.js"></script>
 <script src="components.js"></script>
 <script src="assets/code.js"></script>
 
@@ -182,7 +190,7 @@
 
 <script src="prism.js"></script>
 <script src="plugins/unescaped-markup/prism-unescaped-markup.js"></script>
-<script src="assets/utopia.js"></script>
+<script src="assets/vendor/utopia.js"></script>
 <script src="components.js"></script>
 <script src="assets/code.js"></script>
 

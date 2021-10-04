@@ -21,7 +21,7 @@
 			{
 				// standard built-ins
 				// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
-				pattern: /\b(?:(?:(?:Uint|Int)(?:8|16|32)|Uint8Clamped|Float(?:32|64))?Array|ArrayBuffer|BigInt|Boolean|DataView|Date|Error|Function|Intl|JSON|Math|Number|Object|Promise|Proxy|Reflect|RegExp|String|Symbol|(?:Weak)?(?:Set|Map)|WebAssembly)\b/,
+				pattern: /\b(?:(?:Float(?:32|64)|(?:Int|Uint)(?:8|16|32)|Uint8Clamped)?Array|ArrayBuffer|BigInt|Boolean|DataView|Date|Error|Function|Intl|JSON|(?:Weak)?(?:Map|Set)|Math|Number|Object|Promise|Proxy|Reflect|RegExp|String|Symbol|WebAssembly)\b/,
 				alias: 'class-name'
 			},
 			{
@@ -41,7 +41,7 @@
 	 */
 	function withId(source, flags) {
 		return RegExp(
-			source.replace(/<ID>/g, function () { return /[_$a-zA-Z\xA0-\uFFFF][$\w\xA0-\uFFFF]*/.source; }),
+			source.replace(/<ID>/g, function () { return /(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*/.source; }),
 			flags);
 	}
 	Prism.languages.insertBefore('javascript', 'keyword', {
@@ -65,7 +65,7 @@
 			alias: 'module'
 		},
 		{
-			pattern: /\b(?:await|break|catch|continue|do|else|for|finally|if|return|switch|throw|try|while|yield)\b/,
+			pattern: /\b(?:await|break|catch|continue|do|else|finally|for|if|return|switch|throw|try|while|yield)\b/,
 			alias: 'control-flow'
 		},
 		{
@@ -100,7 +100,7 @@
 		},
 		'dom': {
 			// this contains only a few commonly used DOM variables
-			pattern: /\b(?:document|location|navigator|performance|(?:local|session)Storage|window)\b/,
+			pattern: /\b(?:document|(?:local|session)Storage|location|navigator|performance|window)\b/,
 			alias: 'variable'
 		},
 		'console': {

@@ -14,7 +14,7 @@
 
 	// Symbol name. See https://www.gnu.org/software/emacs/manual/html_node/elisp/Symbol-Type.html
 	// & and : are excluded as they are usually used for special purposes
-	var symbol = '[-+*/_~!@$%^=<>{}\\w]+';
+	var symbol = '[-+*/~!@$%^=<>{}\\w]+';
 	// symbol starting with & used in function arguments
 	var marker = '&' + symbol;
 	// Open parenthesis for look-behind
@@ -55,14 +55,14 @@
 			{
 				pattern: RegExp(
 					par +
-						'(?:(?:lexical-)?let\\*?|(?:cl-)?letf|if|when|while|unless|cons|cl-loop|and|or|not|cond|setq|error|message|null|require|provide|use-package)' +
+						'(?:and|(?:cl-)?letf|cl-loop|cond|cons|error|if|(?:lexical-)?let\\*?|message|not|null|or|provide|require|setq|unless|use-package|when|while)' +
 						space
 				),
 				lookbehind: true
 			},
 			{
 				pattern: RegExp(
-					par + '(?:for|do|collect|return|finally|append|concat|in|by)' + space
+					par + '(?:append|by|collect|concat|do|finally|for|in|return)' + space
 				),
 				lookbehind: true
 			},
@@ -86,7 +86,7 @@
 			lookbehind: true
 		},
 		defvar: {
-			pattern: RegExp(par + 'def(?:var|const|custom|group)\\s+' + symbol),
+			pattern: RegExp(par + 'def(?:const|custom|group|var)\\s+' + symbol),
 			lookbehind: true,
 			inside: {
 				keyword: /^def[a-z]+/,
@@ -96,7 +96,7 @@
 		defun: {
 			pattern: RegExp(
 				par +
-					'(?:cl-)?(?:defun\\*?|defmacro)\\s+' +
+					'(?:cl-)?(?:defmacro|defun\\*?)\\s+' +
 					symbol +
 					'\\s+\\([\\s\\S]*?\\)'
 			),
@@ -167,11 +167,11 @@
 		lookbehind: true,
 		inside: {
 			'rest-vars': {
-				pattern: RegExp('&(?:rest|body)\\s+' + forms),
+				pattern: RegExp('&(?:body|rest)\\s+' + forms),
 				inside: arg
 			},
 			'other-marker-vars': {
-				pattern: RegExp('&(?:optional|aux)\\s+' + forms),
+				pattern: RegExp('&(?:aux|optional)\\s+' + forms),
 				inside: arg
 			},
 			keys: {
