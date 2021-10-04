@@ -181,8 +181,9 @@
 
 			if ((!all[id].noCSS && !/\.js$/.test(filepath)) || /\.css$/.test(filepath)) {
 				var cssFile = filepath.replace(/(\.css)?$/, '.css');
+				var minCSSFile = cssFile.replace(/(?:\.css)$/, '.min.css');
 
-				info.files.minified.paths.push(cssFile);
+				info.files.minified.paths.push(minCSSFile);
 				info.files.dev.paths.push(cssFile);
 			}
 
