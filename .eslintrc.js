@@ -56,17 +56,18 @@ module.exports = {
 		'jsdoc/require-property-name': 'warn',
 
 		// regexp
-		'regexp/no-assertion-capturing-group': 'error',
 		'regexp/no-dupe-disjunctions': 'error',
 		'regexp/no-empty-alternative': 'error',
+		'regexp/no-empty-capturing-group': 'error',
 		'regexp/no-empty-lookarounds-assertion': 'error',
 		'regexp/no-lazy-ends': 'error',
 		'regexp/no-obscure-range': 'error',
 		'regexp/no-optional-assertion': 'error',
 		'regexp/no-standalone-backslash': 'error',
+		'regexp/no-super-linear-backtracking': 'error',
+		'regexp/no-unused-capturing-group': 'error',
 		'regexp/no-zero-quantifier': 'error',
 		'regexp/optimal-lookaround-quantifier': 'error',
-		'regexp/no-unused-capturing-group': 'error',
 
 		'regexp/match-any': 'warn',
 		'regexp/negation': 'warn',
@@ -76,6 +77,7 @@ module.exports = {
 		'regexp/no-useless-character-class': 'warn',
 		'regexp/no-useless-lazy': 'warn',
 		'regexp/prefer-w': 'warn',
+		'regexp/sort-alternatives': 'warn',
 		'regexp/sort-flags': 'warn',
 		'regexp/strict': 'warn',
 
@@ -188,10 +190,11 @@ module.exports = {
 			}
 		},
 		{
-			// Gulp and Danger
+			// Gulp, Danger, and benchmark
 			files: [
 				'gulpfile.js/**',
-				'dangerfile.js'
+				'dangerfile.js',
+				'benchmark/**',
 			],
 			env: {
 				es6: true,

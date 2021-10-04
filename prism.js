@@ -54,6 +54,27 @@ var Prism = (function (_self) {
 		 * @public
 		 */
 		manual: _self.Prism && _self.Prism.manual,
+		/**
+		 * By default, if Prism is in a web worker, it assumes that it is in a worker it created itself, so it uses
+		 * `addEventListener` to communicate with its parent instance. However, if you're using Prism manually in your
+		 * own worker, you don't want it to do this.
+		 *
+		 * By setting this value to `true`, Prism will not add its own listeners to the worker.
+		 *
+		 * You obviously have to change this value before Prism executes. To do this, you can add an
+		 * empty Prism object into the global scope before loading the Prism script like this:
+		 *
+		 * ```js
+		 * window.Prism = window.Prism || {};
+		 * Prism.disableWorkerMessageHandler = true;
+		 * // Load Prism's script
+		 * ```
+		 *
+		 * @default false
+		 * @type {boolean}
+		 * @memberof Prism
+		 * @public
+		 */
 		disableWorkerMessageHandler: _self.Prism && _self.Prism.disableWorkerMessageHandler,
 
 		/**
@@ -206,7 +227,7 @@ var Prism = (function (_self) {
 					//    at _.util.currentScript (http://localhost/components/prism-core.js:119:5)
 					//    at Global code (http://localhost/components/prism-core.js:606:1)
 
-					var src = (/at [^(\r\n]*\((.*):.+:.+\)$/i.exec(err.stack) || [])[1];
+					var src = (/at [^(\r\n]*\((.*):[^:]+:[^:]+\)$/i.exec(err.stack) || [])[1];
 					if (src) {
 						var scripts = document.getElementsByTagName('script');
 						for (var i in scripts) {
@@ -931,7 +952,7 @@ var Prism = (function (_self) {
 
 					if (greedy) {
 						match = matchPattern(pattern, pos, text, lookbehind);
-						if (!match) {
+						if (!match || match.index >= text.length) {
 							break;
 						}
 
@@ -1231,8 +1252,14 @@ if (typeof global !== 'undefined') {
 ********************************************** */
 
 Prism.languages.markup = {
-	'comment': /<!--[\s\S]*?-->/,
-	'prolog': /<\?[\s\S]+?\?>/,
+	'comment': {
+		pattern: /<!--(?:(?!<!--)[\s\S])*?-->/,
+		greedy: true
+	},
+	'prolog': {
+		pattern: /<\?[\s\S]+?\?>/,
+		greedy: true
+	},
 	'doctype': {
 		// https://www.w3.org/TR/xml/#NT-doctypedecl
 		pattern: /<!DOCTYPE(?:[^>"'[\]]|"[^"]*"|'[^']*')+(?:\[(?:[^<"'\]]|"[^"]*"|'[^']*'|<(?!!--)|<!--(?:[^-]|-(?!->))*-->)*\]\s*)?>/i,
@@ -1249,11 +1276,14 @@ Prism.languages.markup = {
 				greedy: true
 			},
 			'punctuation': /^<!|>$|[[\]]/,
-			'doctype-tag': /^DOCTYPE/,
+			'doctype-tag': /^DOCTYPE/i,
 			'name': /[^\s<>'"]+/
 		}
 	},
-	'cdata': /<!\[CDATA\[[\s\S]*?\]\]>/i,
+	'cdata': {
+		pattern: /<!\[CDATA\[[\s\S]*?\]\]>/i,
+		greedy: true
+	},
 	'tag': {
 		pattern: /<\/?(?!\d)[^\s>\/=$<%]+(?:\s(?:\s*[^\s>\/=]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+(?=[\s>]))|(?=[\s/>])))+)?\s*\/?>/,
 		greedy: true,
@@ -1498,14 +1528,14 @@ Prism.languages.clike = {
 		greedy: true
 	},
 	'class-name': {
-		pattern: /(\b(?:class|interface|extends|implements|trait|instanceof|new)\s+|\bcatch\s+\()[\w.\\]+/i,
+		pattern: /(\b(?:class|extends|implements|instanceof|interface|new|trait)\s+|\bcatch\s+\()[\w.\\]+/i,
 		lookbehind: true,
 		inside: {
 			'punctuation': /[.\\]/
 		}
 	},
-	'keyword': /\b(?:if|else|while|do|for|return|in|instanceof|function|new|try|throw|catch|finally|null|break|continue)\b/,
-	'boolean': /\b(?:true|false)\b/,
+	'keyword': /\b(?:break|catch|continue|do|else|finally|for|function|if|in|instanceof|new|null|return|throw|try|while)\b/,
+	'boolean': /\b(?:false|true)\b/,
 	'function': /\b\w+(?=\()/,
 	'number': /\b0x[\da-f]+\b|(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:e[+-]?\d+)?/i,
 	'operator': /[<>]=?|[!=]=?=?|--?|\+\+?|&&?|\|\|?|[?*/~^%]/,
@@ -1521,7 +1551,7 @@ Prism.languages.javascript = Prism.languages.extend('clike', {
 	'class-name': [
 		Prism.languages.clike['class-name'],
 		{
-			pattern: /(^|[^$\w\xA0-\uFFFF])(?!\s)[_$A-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\.(?:prototype|constructor))/,
+			pattern: /(^|[^$\w\xA0-\uFFFF])(?!\s)[_$A-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\.(?:constructor|prototype))/,
 			lookbehind: true
 		}
 	],
@@ -1541,7 +1571,7 @@ Prism.languages.javascript = Prism.languages.extend('clike', {
 	'operator': /--|\+\+|\*\*=?|=>|&&=?|\|\|=?|[!=]==|<<=?|>>>?=?|[-+*/%&|^!=<>]=?|\.{3}|\?\?=?|\?\.?|[~:]/
 });
 
-Prism.languages.javascript['class-name'][0].pattern = /(\b(?:class|interface|extends|implements|instanceof|new)\s+)[\w.\\]+/;
+Prism.languages.javascript['class-name'][0].pattern = /(\b(?:class|extends|implements|instanceof|interface|new)\s+)[\w.\\]+/;
 
 Prism.languages.insertBefore('javascript', 'keyword', {
 	'regex': {

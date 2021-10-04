@@ -1,6 +1,89 @@
 # Prism Changelog
 
 
+## 1.25.0 (2021-09-16)
+
+### New components
+
+* __AviSynth__ ([#3071](https://github.com/PrismJS/prism/issues/3071)) [`746a4b1a`](https://github.com/PrismJS/prism/commit/746a4b1a)
+* __Avro IDL__ ([#3051](https://github.com/PrismJS/prism/issues/3051)) [`87e5a376`](https://github.com/PrismJS/prism/commit/87e5a376)
+* __Bicep__ ([#3027](https://github.com/PrismJS/prism/issues/3027)) [`c1dce998`](https://github.com/PrismJS/prism/commit/c1dce998)
+* __GAP (CAS)__ ([#3054](https://github.com/PrismJS/prism/issues/3054)) [`23cd9b65`](https://github.com/PrismJS/prism/commit/23cd9b65)
+* __GN__ ([#3062](https://github.com/PrismJS/prism/issues/3062)) [`4f97b82b`](https://github.com/PrismJS/prism/commit/4f97b82b)
+* __Hoon__ ([#2978](https://github.com/PrismJS/prism/issues/2978)) [`ea776756`](https://github.com/PrismJS/prism/commit/ea776756)
+* __Kusto__ ([#3068](https://github.com/PrismJS/prism/issues/3068)) [`e008ea05`](https://github.com/PrismJS/prism/commit/e008ea05)
+* __Magma (CAS)__ ([#3055](https://github.com/PrismJS/prism/issues/3055)) [`a1b67ce3`](https://github.com/PrismJS/prism/commit/a1b67ce3)
+* __MAXScript__ ([#3060](https://github.com/PrismJS/prism/issues/3060)) [`4fbdd2f8`](https://github.com/PrismJS/prism/commit/4fbdd2f8)
+* __Mermaid__ ([#3050](https://github.com/PrismJS/prism/issues/3050)) [`148c1eca`](https://github.com/PrismJS/prism/commit/148c1eca)
+* __Razor C#__ ([#3064](https://github.com/PrismJS/prism/issues/3064)) [`4433ccfc`](https://github.com/PrismJS/prism/commit/4433ccfc)
+* __Systemd configuration file__ ([#3053](https://github.com/PrismJS/prism/issues/3053)) [`8df825e0`](https://github.com/PrismJS/prism/commit/8df825e0)
+* __Wren__ ([#3063](https://github.com/PrismJS/prism/issues/3063)) [`6a356d25`](https://github.com/PrismJS/prism/commit/6a356d25)
+
+### Updated components
+
+* __Bicep__
+    * Added support for multiline and interpolated strings and other improvements ([#3028](https://github.com/PrismJS/prism/issues/3028)) [`748bb9ac`](https://github.com/PrismJS/prism/commit/748bb9ac)
+* __C#__
+    * Added `with` keyword & improved record support ([#2993](https://github.com/PrismJS/prism/issues/2993)) [`fdd291c0`](https://github.com/PrismJS/prism/commit/fdd291c0)
+    * Added `record`, `init`, and `nullable` keyword ([#2991](https://github.com/PrismJS/prism/issues/2991)) [`9b561565`](https://github.com/PrismJS/prism/commit/9b561565)
+    * Added context check for `from` keyword ([#2970](https://github.com/PrismJS/prism/issues/2970)) [`158f25d4`](https://github.com/PrismJS/prism/commit/158f25d4)
+* __C++__
+    * Fixed generic function false positive ([#3043](https://github.com/PrismJS/prism/issues/3043)) [`5de8947f`](https://github.com/PrismJS/prism/commit/5de8947f)
+* __Clojure__
+    * Improved tokenization ([#3056](https://github.com/PrismJS/prism/issues/3056)) [`8d0b74b5`](https://github.com/PrismJS/prism/commit/8d0b74b5)
+* __Hoon__
+    * Fixed mixed-case aura tokenization ([#3002](https://github.com/PrismJS/prism/issues/3002)) [`9c8911bd`](https://github.com/PrismJS/prism/commit/9c8911bd)
+* __Liquid__
+    * Added all objects from Shopify reference ([#2998](https://github.com/PrismJS/prism/issues/2998)) [`693b7433`](https://github.com/PrismJS/prism/commit/693b7433)
+    * Added `empty` keyword ([#2997](https://github.com/PrismJS/prism/issues/2997)) [`fe3bc526`](https://github.com/PrismJS/prism/commit/fe3bc526)
+* __Log file__
+    * Added support for Java stack traces ([#3003](https://github.com/PrismJS/prism/issues/3003)) [`b0365e70`](https://github.com/PrismJS/prism/commit/b0365e70)
+* __Markup__
+    * Made most patterns greedy ([#3065](https://github.com/PrismJS/prism/issues/3065)) [`52e8cee9`](https://github.com/PrismJS/prism/commit/52e8cee9)
+    * Fixed ReDoS ([#3078](https://github.com/PrismJS/prism/issues/3078)) [`0ff371bb`](https://github.com/PrismJS/prism/commit/0ff371bb)
+* __PureScript__
+    * Made `∀` a keyword (alias for `forall`) ([#3005](https://github.com/PrismJS/prism/issues/3005)) [`b38fc89a`](https://github.com/PrismJS/prism/commit/b38fc89a)
+    * Improved Haskell and PureScript ([#3020](https://github.com/PrismJS/prism/issues/3020)) [`679539ec`](https://github.com/PrismJS/prism/commit/679539ec)
+* __Python__
+    * Support for underscores in numbers ([#3039](https://github.com/PrismJS/prism/issues/3039)) [`6f5d68f7`](https://github.com/PrismJS/prism/commit/6f5d68f7)
+* __Sass__
+    * Fixed issues with CSS Extras ([#2994](https://github.com/PrismJS/prism/issues/2994)) [`14fdfe32`](https://github.com/PrismJS/prism/commit/14fdfe32)
+* __Shell session__
+    * Fixed command false positives ([#3048](https://github.com/PrismJS/prism/issues/3048)) [`35b88fcf`](https://github.com/PrismJS/prism/commit/35b88fcf)
+    * Added support for the percent sign as shell symbol ([#3010](https://github.com/PrismJS/prism/issues/3010)) [`4492b62b`](https://github.com/PrismJS/prism/commit/4492b62b)
+* __Swift__
+    * Major improvements ([#3022](https://github.com/PrismJS/prism/issues/3022)) [`8541db2e`](https://github.com/PrismJS/prism/commit/8541db2e)
+    * Added support for `@propertyWrapper`, `@MainActor`, and `@globalActor` ([#3009](https://github.com/PrismJS/prism/issues/3009)) [`ce5e0f01`](https://github.com/PrismJS/prism/commit/ce5e0f01)
+    * Added support for new Swift 5.5 keywords ([#2988](https://github.com/PrismJS/prism/issues/2988)) [`bb93fac0`](https://github.com/PrismJS/prism/commit/bb93fac0)
+* __TypeScript__
+    * Fixed keyword false positives ([#3001](https://github.com/PrismJS/prism/issues/3001)) [`212e0ef2`](https://github.com/PrismJS/prism/commit/212e0ef2)
+
+### Updated plugins
+
+* __JSONP Highlight__
+    * Refactored JSONP logic ([#3018](https://github.com/PrismJS/prism/issues/3018)) [`5126d1e1`](https://github.com/PrismJS/prism/commit/5126d1e1)
+* __Line Highlight__
+    * Extend highlight to full line width inside scroll container ([#3011](https://github.com/PrismJS/prism/issues/3011)) [`e289ec60`](https://github.com/PrismJS/prism/commit/e289ec60)
+* __Normalize Whitespace__
+    * Removed unnecessary checks ([#3017](https://github.com/PrismJS/prism/issues/3017)) [`63edf14c`](https://github.com/PrismJS/prism/commit/63edf14c)
+* __Previewers__
+    * Ensure popup is visible across themes ([#3080](https://github.com/PrismJS/prism/issues/3080)) [`c7b6a7f6`](https://github.com/PrismJS/prism/commit/c7b6a7f6)
+
+### Updated themes
+
+* __Twilight__
+    * Increase selector specificities of plugin overrides ([#3081](https://github.com/PrismJS/prism/issues/3081)) [`ffb20439`](https://github.com/PrismJS/prism/commit/ffb20439)
+
+### Other
+
+* __Infrastructure__
+    * Added benchmark suite ([#2153](https://github.com/PrismJS/prism/issues/2153)) [`44456b21`](https://github.com/PrismJS/prism/commit/44456b21)
+    * Tests: Insert expected JSON by Default ([#2960](https://github.com/PrismJS/prism/issues/2960)) [`e997dd35`](https://github.com/PrismJS/prism/commit/e997dd35)
+    * Tests: Improved dection of empty patterns ([#3058](https://github.com/PrismJS/prism/issues/3058)) [`d216e602`](https://github.com/PrismJS/prism/commit/d216e602)
+* __Website__
+    * Highlight Keywords: More documentation ([#3049](https://github.com/PrismJS/prism/issues/3049)) [`247fd9a3`](https://github.com/PrismJS/prism/commit/247fd9a3)
+
+
 ## 1.24.1 (2021-07-03)
 
 ### Updated components

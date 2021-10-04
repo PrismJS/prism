@@ -58,6 +58,7 @@ function createSortedArray(compareFn) {
  * @typedef {"A" | "C" | "D" | "M" | "R" | "T" | "U" | "X" | "B"} ChangeMode
  */
 async function getCommitInfo(line) {
+	// eslint-disable-next-line regexp/no-super-linear-backtracking
 	const [, hash, message] = /^([a-f\d]+)\s+(.*)$/i.exec(line);
 
 	/* The output looks like this:
@@ -267,7 +268,7 @@ async function changes() {
 		},
 
 		function changedPlugin(info) {
-			let relevantChanges = info.changes.filter(and(notGenerated, notTests, notExamples, c => !/\.(?:html|css)$/.test(c.file)));
+			let relevantChanges = info.changes.filter(and(notGenerated, notTests, notExamples, c => !/\.(?:css|html)$/.test(c.file)));
 
 			if (relevantChanges.length > 0 &&
 				relevantChanges.every(c => c.mode === 'M' && /^plugins\/.*\.js$/.test(c.file))) {

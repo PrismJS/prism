@@ -1,0 +1,88 @@
++
+++
+-
+!
+!=
+<
+<=
+>
+>=
+=
+==
+&&
+||
+?
+:
+%
+/
+*
+
+$abcdef
+$89abcdef
+123.89032
+.902834
+
+$9abcdef
+a$123456a
+
+()
+{}
+[]
+;
+,
+.
+\
+
+\ 1.0 \
+
+1.0 \ 1.0
+
+----------------------------------------------------
+
+[
+	["operator", "+"],
+	["operator", "++"],
+	["operator", "-"],
+	["operator", "!"],
+	["operator", "!="],
+	["operator", "<"],
+	["operator", "<="],
+	["operator", ">"],
+	["operator", ">="],
+	["operator", "="],
+	["operator", "=="],
+	["operator", "&&"],
+	["operator", "||"],
+	["operator", "?"],
+	["operator", ":"],
+	["operator", "%"],
+	["operator", "/"],
+	["operator", "*"],
+
+	["number", "$abcdef"],
+	["number", "$89abcdef"],
+	["number", "123.89032"],
+	["number", ".902834"],
+
+	"\r\n\r\n$9abcdef\r\na$123456a\r\n\r\n",
+
+	["punctuation", "("], ["punctuation", ")"],
+	["punctuation", "{"], ["punctuation", "}"],
+	["punctuation", "["], ["punctuation", "]"],
+	["punctuation", ";"],
+	["punctuation", ","],
+	["punctuation", "."],
+	["line-continuation", "\\"],
+
+	["line-continuation", "\\"], ["number", "1.0"], ["line-continuation", "\\"],
+
+	["number", "1.0"], " \\ ", ["number", "1.0"]
+]
+
+----------------------------------------------------
+
+Numbers can be specified in decimal form, with or without a leading value. So 0.0 and .0 both work.
+Numbers can also be specified as 6- or 8- digit hexadecimal strings for colors. They begin with a $.
+Numbers can not be bounded by words.
+
+Line continuations must be either the first or last character in a line, less some whitespace.

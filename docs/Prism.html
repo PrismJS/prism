@@ -36,7 +36,7 @@
     
     <input type="text" id="nav-search" placeholder="Search" />
     
-    <h2><a href="index.html">Home</a></h2><h2><a href="https://prismjs.com" class="menu-item" id="website_link" >PrismJS</a></h2><h2><a href="https://github.com/PrismJS/prism" target="_blank" class="menu-item" id="github_link" >GitHub</a></h2><h3>Classes</h3><ul><li><a href="Token.html">Token</a></li></ul><h3>Namespaces</h3><ul><li><a href="Prism.html">Prism</a><ul class='members'><li data-type='member'><a href="Prism.html#.manual">manual</a></li></ul><ul class='methods'><li data-type='method'><a href="Prism.html#.highlight">highlight</a></li><li data-type='method'><a href="Prism.html#.highlightAll">highlightAll</a></li><li data-type='method'><a href="Prism.html#.highlightAllUnder">highlightAllUnder</a></li><li data-type='method'><a href="Prism.html#.highlightElement">highlightElement</a></li><li data-type='method'><a href="Prism.html#.tokenize">tokenize</a></li></ul></li><li><a href="Prism.hooks.html">hooks</a><ul class='methods'><li data-type='method'><a href="Prism.hooks.html#.add">add</a></li><li data-type='method'><a href="Prism.hooks.html#.run">run</a></li></ul></li><li><a href="Prism.languages.html">languages</a><ul class='methods'><li data-type='method'><a href="Prism.languages.html#.extend">extend</a></li><li data-type='method'><a href="Prism.languages.html#.insertBefore">insertBefore</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#Grammar">Grammar</a></li><li><a href="global.html#GrammarToken">GrammarToken</a></li><li><a href="global.html#HighlightCallback">HighlightCallback</a></li><li><a href="global.html#HookCallback">HookCallback</a></li><li><a href="global.html#TokenStream">TokenStream</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h2><a href="https://prismjs.com" class="menu-item" id="website_link" >PrismJS</a></h2><h2><a href="https://github.com/PrismJS/prism" target="_blank" class="menu-item" id="github_link" >GitHub</a></h2><h3>Classes</h3><ul><li><a href="Token.html">Token</a></li></ul><h3>Namespaces</h3><ul><li><a href="Prism.html">Prism</a><ul class='members'><li data-type='member'><a href="Prism.html#.disableWorkerMessageHandler">disableWorkerMessageHandler</a></li><li data-type='member'><a href="Prism.html#.manual">manual</a></li></ul><ul class='methods'><li data-type='method'><a href="Prism.html#.highlight">highlight</a></li><li data-type='method'><a href="Prism.html#.highlightAll">highlightAll</a></li><li data-type='method'><a href="Prism.html#.highlightAllUnder">highlightAllUnder</a></li><li data-type='method'><a href="Prism.html#.highlightElement">highlightElement</a></li><li data-type='method'><a href="Prism.html#.tokenize">tokenize</a></li></ul></li><li><a href="Prism.hooks.html">hooks</a><ul class='methods'><li data-type='method'><a href="Prism.hooks.html#.add">add</a></li><li data-type='method'><a href="Prism.hooks.html#.run">run</a></li></ul></li><li><a href="Prism.languages.html">languages</a><ul class='methods'><li data-type='method'><a href="Prism.languages.html#.extend">extend</a></li><li data-type='method'><a href="Prism.languages.html#.insertBefore">insertBefore</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#Grammar">Grammar</a></li><li><a href="global.html#GrammarToken">GrammarToken</a></li><li><a href="global.html#HighlightCallback">HighlightCallback</a></li><li><a href="global.html#HookCallback">HookCallback</a></li><li><a href="global.html#TokenStream">TokenStream</a></li></ul>
 </nav>
 
 <div id="main">
@@ -155,6 +155,93 @@
 
         
             
+<h4 class="name" id=".disableWorkerMessageHandler"><span class="type-signature">(static) </span>disableWorkerMessageHandler<span class="type-signature"> :boolean</span></h4>
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line73">line 73</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-default">Default Value:</dt>
+    <dd class="tag-default"><ul class="dummy">
+            <li>false</li>
+        </ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description usertext">
+    <p>By default, if Prism is in a web worker, it assumes that it is in a worker it created itself, so it uses
+<code>addEventListener</code> to communicate with its parent instance. However, if you're using Prism manually in your
+own worker, you don't want it to do this.</p>
+<p>By setting this value to <code>true</code>, Prism will not add its own listeners to the worker.</p>
+<p>You obviously have to change this value before Prism executes. To do this, you can add an
+empty Prism object into the global scope before loading the Prism script like this:</p>
+<pre class="prettyprint source lang-js"><code>window.Prism = window.Prism || {};
+Prism.disableWorkerMessageHandler = true;
+// Load Prism's script
+</code></pre>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">boolean</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+
+        
+            
 <h4 class="name" id=".manual"><span class="type-signature">(static) </span>manual<span class="type-signature"> :boolean</span></h4>
 
 
@@ -263,7 +350,7 @@ Prism.manual = true;
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line616">line 616</a>
+        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line637">line 637</a>
     </li></ul></dd>
     
 
@@ -480,7 +567,7 @@ and the language definitions to use, and returns a string with the HTML produced
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line458">line 458</a>
+        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line479">line 479</a>
     </li></ul></dd>
     
 
@@ -676,7 +763,7 @@ each one of them.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line477">line 477</a>
+        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line498">line 498</a>
     </li></ul></dd>
     
 
@@ -911,7 +998,7 @@ each one of them.</p>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line523">line 523</a>
+        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line544">line 544</a>
     </li></ul></dd>
     
 
@@ -1157,7 +1244,7 @@ Mostly useful when <code>async</code> is <code>true</code>, since in that case, 
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line652">line 652</a>
+        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line673">line 673</a>
     </li></ul></dd>
     
 

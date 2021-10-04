@@ -35,7 +35,7 @@
 			pattern: /^\|={3,}(?:(?:\r?\n|\r(?!\n)).*)*?(?:\r?\n|\r)\|={3,}$/m,
 			inside: {
 				'specifiers': {
-					pattern: /(?!\|)(?:(?:(?:\d+(?:\.\d+)?|\.\d+)[+*])?(?:[<^>](?:\.[<^>])?|\.[<^>])?[a-z]*)(?=\|)/,
+					pattern: /(?:(?:(?:\d+(?:\.\d+)?|\.\d+)[+*](?:[<^>](?:\.[<^>])?|\.[<^>])?|[<^>](?:\.[<^>])?|\.[<^>])[a-z]*|[a-z]+)(?=\|)/,
 					alias: 'attr-value'
 				},
 				'punctuation': {
@@ -109,7 +109,7 @@
 			alias: 'punctuation'
 		},
 		'admonition': {
-			pattern: /^(?:TIP|NOTE|IMPORTANT|WARNING|CAUTION):/m,
+			pattern: /^(?:CAUTION|IMPORTANT|NOTE|TIP|WARNING):/m,
 			alias: 'keyword'
 		},
 		'callout': [
@@ -186,7 +186,7 @@
 			}
 		},
 		'replacement': {
-			pattern: /\((?:C|TM|R)\)/,
+			pattern: /\((?:C|R|TM)\)/,
 			alias: 'builtin'
 		},
 		'entity': /&#?[\da-z]{1,8};/i,

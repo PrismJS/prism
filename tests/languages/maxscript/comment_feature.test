@@ -1,0 +1,29 @@
+/* this is a long comment
+blah blah
+print "debug 1" -- code commented out
+more comments
+*/
+
+for i in 1 to 10 do(/* messageBox "in loop"; */frabulate i )
+
+-- comment
+
+----------------------------------------------------
+
+[
+	["comment", "/* this is a long comment\r\nblah blah\r\nprint \"debug 1\" -- code commented out\r\nmore comments\r\n*/"],
+
+	["keyword", "for"],
+	" i ",
+	["keyword", "in"],
+	["number", "1"],
+	["keyword", "to"],
+	["number", "10"],
+	["keyword", "do"],
+	["punctuation", "("],
+	["comment", "/* messageBox \"in loop\"; */"],
+	"frabulate i ",
+	["punctuation", ")"],
+
+	["comment", "-- comment"]
+]

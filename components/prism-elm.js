@@ -1,7 +1,7 @@
 Prism.languages.elm = {
 	'comment': /--.*|\{-[\s\S]*?-\}/,
 	'char': {
-		pattern: /'(?:[^\\'\r\n]|\\(?:[abfnrtv\\']|\d+|x[0-9a-fA-F]+))'/,
+		pattern: /'(?:[^\\'\r\n]|\\(?:[abfnrtv\\']|\d+|x[0-9a-fA-F]+|u\{[0-9a-fA-F]+\}))'/,
 		greedy: true
 	},
 	'string': [
@@ -22,7 +22,7 @@ Prism.languages.elm = {
 		pattern: /(^[\t ]*)import\s+[A-Z]\w*(?:\.[A-Z]\w*)*(?:\s+as\s+(?:[A-Z]\w*)(?:\.[A-Z]\w*)*)?(?:\s+exposing\s+)?/m,
 		lookbehind: true,
 		inside: {
-			'keyword': /\b(?:import|as|exposing)\b/
+			'keyword': /\b(?:as|exposing|import)\b/
 		}
 	},
 	'keyword': /\b(?:alias|as|case|else|exposing|if|in|infixl|infixr|let|module|of|then|type)\b/,

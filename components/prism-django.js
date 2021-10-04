@@ -32,7 +32,7 @@
 		'keyword': /\b(?:and|as|by|else|for|if|import|in|is|loop|not|or|recursive|with|without)\b/,
 		'operator': /[-+%=]=?|!=|\*\*?=?|\/\/?=?|<[<=>]?|>[=>]?|[&|^~]/,
 		'number': /\b\d+(?:\.\d+)?\b/,
-		'boolean': /[Tt]rue|[Ff]alse|[Nn]one/,
+		'boolean': /[Ff]alse|[Nn]one|[Tt]rue/,
 		'variable': /\b\w+?\b/,
 		'punctuation': /[{}[\](),.:;]/
 	};

@@ -1,0 +1,36 @@
+<h2>Full example</h2>
+<pre><code>@* Source: https://docs.microsoft.com/en-us/aspnet/core/razor-pages/?view=aspnetcore-5.0&amp;tabs=visual-studio#the-home-page *@
+
+@page
+@model RazorPagesContacts.Pages.Customers.IndexModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+&lt;h1>Contacts home page&lt;/h1>
+&lt;form method="post">
+	&lt;table class="table">
+		&lt;thead>
+			&lt;tr>
+				&lt;th>ID&lt;/th>
+				&lt;th>Name&lt;/th>
+				&lt;th>&lt;/th>
+			&lt;/tr>
+		&lt;/thead>
+		&lt;tbody>
+			@foreach (var contact in Model.Customer)
+			{
+				&lt;tr>
+					&lt;td> @contact.Id  &lt;/td>
+					&lt;td>@contact.Name&lt;/td>
+					&lt;td>
+						&lt;a asp-page="./Edit" asp-route-id="@contact.Id">Edit&lt;/a> |
+						&lt;button type="submit" asp-page-handler="delete"
+								asp-route-id="@contact.Id">delete
+						&lt;/button>
+					&lt;/td>
+				&lt;/tr>
+			}
+		&lt;/tbody>
+	&lt;/table>
+	&lt;a asp-page="Create">Create New&lt;/a>
+&lt;/form>
+</code></pre>

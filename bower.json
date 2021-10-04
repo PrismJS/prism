@@ -17,6 +17,7 @@
     "assets",
     "docs",
     "tests",
+    "benchmark",
     "CNAME",
     "*.html",
     "*.svg"

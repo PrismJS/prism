@@ -55,7 +55,7 @@ Prism.languages.dhall = {
 
 	// https://github.com/dhall-lang/dhall-lang/blob/5fde8ef1bead6fb4e999d3c1ffe7044cd019d63a/standard/dhall.abnf#L359
 	'keyword': /\b(?:as|assert|else|forall|if|in|let|merge|missing|then|toMap|using|with)\b|\u2200/,
-	'builtin': /\b(?:Some|None)\b/,
+	'builtin': /\b(?:None|Some)\b/,
 
 	'boolean': /\b(?:False|True)\b/,
 	'number': /\bNaN\b|-?\bInfinity\b|[+-]?\b(?:0x[\da-fA-F]+|\d+(?:\.\d+)?(?:e[+-]?\d+)?)\b/,

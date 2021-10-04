@@ -8,7 +8,7 @@
 	Prism.languages.javadoc = Prism.languages.extend('javadoclike', {});
 	Prism.languages.insertBefore('javadoc', 'keyword', {
 		'reference': {
-			pattern: RegExp(/(@(?:exception|throws|see|link|linkplain|value)\s+(?:\*\s*)?)/.source + '(?:' + reference + ')'),
+			pattern: RegExp(/(@(?:exception|link|linkplain|see|throws|value)\s+(?:\*\s*)?)/.source + '(?:' + reference + ')'),
 			lookbehind: true,
 			inside: {
 				'function': {

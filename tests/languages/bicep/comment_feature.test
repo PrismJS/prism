@@ -1,0 +1,18 @@
+// this is a comment
+
+/* this
+is a
+multi line comment */
+
+/* so is
+this */
+
+----------------------------------------------------
+
+[
+	["comment", "// this is a comment"],
+
+	["comment", "/* this\r\nis a\r\nmulti line comment */"],
+
+	["comment", "/* so is\r\nthis */"]
+]

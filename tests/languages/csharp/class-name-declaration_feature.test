@@ -2,8 +2,12 @@ class Foo
 interface BarBaz
 struct Foo
 enum Foo
+record Foo
 class Foo<A, B>
 interface Bar<out T>
+record Foo<A, B>
+
+record TestData(string Name);
 
 // not variables
 public static RGBColor FromRainbow(Rainbow colorBand) =>
@@ -28,6 +32,9 @@ public static RGBColor FromRainbow(Rainbow colorBand) =>
 	["keyword", "enum"],
 	["class-name", ["Foo"]],
 
+	["keyword", "record"],
+	["class-name", ["Foo"]],
+
 	["keyword", "class"],
 	["class-name", [
 		"Foo",
@@ -46,6 +53,26 @@ public static RGBColor FromRainbow(Rainbow colorBand) =>
 		" T",
 		["punctuation", ">"]
 	]],
+
+	["keyword", "record"],
+	["class-name", [
+		"Foo",
+		["punctuation", "<"],
+		"A",
+		["punctuation", ","],
+		" B",
+		["punctuation", ">"]
+	]],
+
+	["keyword", "record"],
+	["class-name", ["TestData"]],
+	["punctuation", "("],
+	["class-name", [
+		["keyword", "string"]
+	]],
+	" Name",
+	["punctuation", ")"],
+	["punctuation", ";"],
 
 	["comment", "// not variables"],
 

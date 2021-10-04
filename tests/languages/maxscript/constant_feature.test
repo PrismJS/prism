@@ -1,0 +1,15 @@
+dontcollect
+ok
+silentValue
+undefined
+unsupplied
+
+----------------------------------------------------
+
+[
+	["color", "dontcollect"],
+	["color", "ok"],
+	["color", "silentValue"],
+	["color", "undefined"],
+	["color", "unsupplied"]
+]

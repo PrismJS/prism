@@ -1,0 +1,55 @@
+! ~ -
+* / % + -
+.. ...
+<< >>
+< <= > >= == !=
+& ^ |
+=
+
+&& ||
+? :
+
+1..2 1...3
+
+----------------------------------------------------
+
+[
+	["operator", "!"],
+	["operator", "~"],
+	["operator", "-"],
+
+	["operator", "*"],
+	["operator", "/"],
+	["operator", "%"],
+	["operator", "+"],
+	["operator", "-"],
+
+	["operator", ".."],
+	["operator", "..."],
+
+	["operator", "<<"],
+	["operator", ">>"],
+
+	["operator", "<"],
+	["operator", "<="],
+	["operator", ">"],
+	["operator", ">="],
+	["operator", "=="],
+	["operator", "!="],
+
+	["operator", "&"],
+	["operator", "^"],
+	["operator", "|"],
+
+	["operator", "="],
+
+	["operator", "&&"], ["operator", "||"],
+	["operator", "?"], ["operator", ":"],
+
+	["number", "1"],
+	["operator", ".."],
+	["number", "2"],
+	["number", "1"],
+	["operator", "..."],
+	["number", "3"]
+]

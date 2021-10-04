@@ -1,0 +1,24 @@
+gameLoop: while square != finalSquare {
+    break gameLoop
+    continue gameLoop
+}
+
+----------------------------------------------------
+
+[
+	["label", "gameLoop"],
+	["punctuation", ":"],
+	["keyword", "while"],
+	" square ",
+	["operator", "!="],
+	" finalSquare ",
+	["punctuation", "{"],
+
+	["keyword", "break"],
+	["label", " gameLoop"],
+
+	["keyword", "continue"],
+	["label", " gameLoop"],
+
+	["punctuation", "}"]
+]

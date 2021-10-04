@@ -115,6 +115,10 @@
 		"qml": "javascript",
 		"qore": "clike",
 		"racket": "scheme",
+		"cshtml": [
+			"markup",
+			"csharp"
+		],
 		"jsx": [
 			"markup",
 			"javascript"
@@ -135,7 +139,6 @@
 		"sparql": "turtle",
 		"sqf": "clike",
 		"squirrel": "clike",
-		"swift": "clike",
 		"t4-cs": [
 			"t4-templating",
 			"csharp"
@@ -173,6 +176,8 @@
 		"js": "javascript",
 		"g4": "antlr4",
 		"adoc": "asciidoc",
+		"avs": "avisynth",
+		"avdl": "avro-idl",
 		"shell": "bash",
 		"shortcode": "bbcode",
 		"rbnf": "bnf",
@@ -190,6 +195,7 @@
 		"xlsx": "excel-formula",
 		"xls": "excel-formula",
 		"gamemakerlanguage": "gml",
+		"gni": "gn",
 		"hbs": "handlebars",
 		"hs": "haskell",
 		"idr": "idris",
@@ -222,6 +228,7 @@
 		"py": "python",
 		"qs": "qsharp",
 		"rkt": "racket",
+		"razor": "cshtml",
 		"rpy": "renpy",
 		"robot": "robotframework",
 		"rb": "ruby",
@@ -232,6 +239,8 @@
 		"sln": "solution-file",
 		"rq": "sparql",
 		"t4": "t4-cs",
+		"trickle": "tremor",
+		"troy": "tremor",
 		"trig": "turtle",
 		"ts": "typescript",
 		"tsconfig": "typoscript",

@@ -1,0 +1,19 @@
+foo()
+
+foo {|x| x * 2}
+
+----------------------------------------------------
+
+[
+	["function", "foo"], ["punctuation", "("], ["punctuation", ")"],
+
+	["function", "foo"],
+	["punctuation", "{"],
+	["operator", "|"],
+	"x",
+	["operator", "|"],
+	" x ",
+	["operator", "*"],
+	["number", "2"],
+	["punctuation", "}"]
+]
