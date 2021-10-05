@@ -24,11 +24,11 @@ Prism.languages.graphql = {
 		alias: 'function'
 	},
 	'attr-name': {
-		pattern: /[a-z_]\w*(?=\s*(?:\((?:[^()"]|"(?:\\.|[^\\"\r\n])*")*\))?:)/i,
+		pattern: /\b[a-z_]\w*(?=\s*(?:\((?:[^()"]|"(?:\\.|[^\\"\r\n])*")*\))?:)/i,
 		greedy: true
 	},
 	'atom-input': {
-		pattern: /[A-Z]\w*Input(?=!?.*$)/m,
+		pattern: /\b[A-Z]\w*Input\b/,
 		alias: 'class-name'
 	},
 	'scalar': /\b(?:Boolean|Float|ID|Int|String)\b/,
