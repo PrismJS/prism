@@ -415,7 +415,12 @@ public_headers: "src/*.h"</code></pre>
 <section id="non-standard-tokens">
 	<h1>Non-standard tokens</h1>
 
-	<p>Sometimes, a language might use a particular name to refer to certain pieces of code, but which is not one of Prism's standard token names, such as <code>function-defintion</code>. Since <code>function-definition</code> is not a standard token, you might want to alias it with a standard token such as <code>function</code>, which is semantically similar, and will ensure that Prism's themes will highlight it.</p>
+	<p>Sometimes, a language might use a particular name to refer to certain pieces of code, but which is not one of Prism's standard token names, such as <code>function-defintion</code>. Since <code>function-definition</code> is not a standard token, you might want to alias it with a standard token such as <code>function</code>, which is semantically similar, and will ensure that Prism's themes will highlight it. Here's an example:</p>
+
+	<pre><code class="language-rust">fn main() {
+	println!("Hello World");
+	another_function();
+}</code></pre>
 </section>
 
 <footer data-src="assets/templates/footer.html" data-type="text/html"></footer>
