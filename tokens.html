@@ -50,8 +50,6 @@ table.styled tr > th {
 
 	<p>When defining a new language, you will need to provide token names for each 'type' of code, such as keywords and operators, so Prism's themes can assign colors (and other styles) accordingly. Prism's themes (both official and non-official) only guarantee coverage for these standard tokens, so it is recommended to make use of the following standard tokens to ensure that code will be highlighted.</p>
 
-	<p>Sometimes, a language might use a particular name to refer to certain pieces of code, but which is not one of Prism's standard token names, such as <code>function-defintion</code>. Since <code>function-definition</code> is not a standard token, you might want to alias it with a standard token such as <code>function</code>, which is semantically similar in meaning, and will ensure that Prism's themes will highlight it.</p>
-
 	<table class="styled">
 		<tbody>
 			<tr>
@@ -412,6 +410,12 @@ public_headers: "src/*.h"</code></pre>
 
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
+</section>
+
+<section id="non-standard-tokens">
+	<h1>Non-standard tokens</h1>
+
+	<p>Sometimes, a language might use a particular name to refer to certain pieces of code, but which is not one of Prism's standard token names, such as <code>function-defintion</code>. Since <code>function-definition</code> is not a standard token, you might want to alias it with a standard token such as <code>function</code>, which is semantically similar, and will ensure that Prism's themes will highlight it.</p>
 </section>
 
 <footer data-src="assets/templates/footer.html" data-type="text/html"></footer>
