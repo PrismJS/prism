@@ -15,7 +15,7 @@ normal paragraph
 [
 	["front-matter-block", [
 		["punctuation", "---"],
-		["font-matter", "layout: post\r\ntitle: Blogging Like a Hacker"],
+		["front-matter", "layout: post\r\ntitle: Blogging Like a Hacker"],
 		["punctuation", "---"]
 	]],
 
