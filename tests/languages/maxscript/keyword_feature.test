@@ -26,8 +26,6 @@ mapped;
 max;
 not;
 of;
-off;
-on;
 or;
 parameters;
 persistent;
@@ -80,8 +78,6 @@ with;
 	["keyword", "max"], ["punctuation", ";"],
 	["keyword", "not"], ["punctuation", ";"],
 	["keyword", "of"], ["punctuation", ";"],
-	["keyword", "off"], ["punctuation", ";"],
-	["keyword", "on"], ["punctuation", ";"],
 	["keyword", "or"], ["punctuation", ";"],
 	["keyword", "parameters"], ["punctuation", ";"],
 	["keyword", "persistent"], ["punctuation", ";"],
