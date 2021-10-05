@@ -10,7 +10,7 @@ string
 struct
 uuid
 void
-xml
+xml=
 
 ----------------------------------------------------
 
@@ -27,7 +27,7 @@ xml
 	["type", "struct"],
 	["type", "uuid"],
 	["type", "void"],
-	["keyword", "xml"]
+	["type", "xml"], ["operator", "="]
 ]
 
 ----------------------------------------------------

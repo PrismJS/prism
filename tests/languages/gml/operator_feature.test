@@ -1,0 +1,62 @@
++  -  %  *  **  /
++= -= %= *= **= /=
+>> << ++ --
+
+=
+== != <>
+< <= => >
+
+& | ^ ~
+&& || ^^
+
+or
+and
+not
+with
+at
+xor
+
+----------------------------------------------------
+
+[
+	["operator", "+"],
+	["operator", "-"],
+	["operator", "%"],
+	["operator", "*"],
+	["operator", "**"],
+	["operator", "/"],
+
+	["operator", "+="],
+	["operator", "-="],
+	["operator", "%="],
+	["operator", "*="],
+	["operator", "**="],
+	["operator", "/="],
+
+	["operator", ">>"],
+	["operator", "<<"],
+	["operator", "++"],
+	["operator", "--"],
+
+	["operator", "="],
+
+	["operator", "=="],
+	["operator", "!="],
+	["operator", "<>"],
+
+	["operator", "<"],
+	["operator", "<="],
+	["operator", "="],
+	["operator", ">"],
+	["operator", ">"],
+
+	["operator", "&"], ["operator", "|"], ["operator", "^"], ["operator", "~"],
+	["operator", "&&"], ["operator", "||"], ["operator", "^^"],
+
+	["operator", "or"],
+	["operator", "and"],
+	["operator", "not"],
+	["operator", "with"],
+	["operator", "at"],
+	["operator", "xor"]
+]

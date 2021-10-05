@@ -1,0 +1,39 @@
+""
+"foo"
+"foo\"\n"
+
+$""
+$"foo"
+$"\""
+$"foo{1+1}baz"
+
+----------------------------------------------------
+
+[
+	["string", "\"\""],
+	["string", "\"foo\""],
+	["string", "\"foo\\\"\\n\""],
+
+	["interpolation-string", [
+		["string", "$\"\""]
+	]],
+	["interpolation-string", [
+		["string", "$\"foo\""]
+	]],
+	["interpolation-string", [
+		["string", "$\"\\\"\""]
+	]],
+	["interpolation-string", [
+		["string", "$\"foo"],
+		["interpolation", [
+			["punctuation", "{"],
+			["expression", [
+				["number", "1"],
+				["operator", "+"],
+				["number", "1"]
+			]],
+			["punctuation", "}"]
+		]],
+		["string", "baz\""]
+	]]
+]

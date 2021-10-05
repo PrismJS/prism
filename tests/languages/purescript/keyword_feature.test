@@ -5,6 +5,7 @@ data
 derive
 do
 else
+forall
 if
 in
 infixl
@@ -30,6 +31,7 @@ where
 	["keyword", "derive"],
 	["keyword", "do"],
 	["keyword", "else"],
+	["keyword", "forall"],
 	["keyword", "if"],
 	["keyword", "in"],
 	["keyword", "infixl"],

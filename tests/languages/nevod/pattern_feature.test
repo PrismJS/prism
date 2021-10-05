@@ -1,0 +1,282 @@
+P = "text";
+P = Alpha;
+P2 = P1; P1 = Word;
+P = A + B;
+P = {A, B};
+P = [1+ A];
+
+#P = "text";
+
+@pattern P = Alpha;
+@search @pattern P = Alpha;
+@pattern P = W @where { @pattern W = Word; };
+@pattern #P = W + S @where { @pattern #W = Word; @pattern S = Space; };
+
+#P(X, Y) = X: A ... Y: B;
+#P(X) = A .. X .. B;
+#P1(X, Y) = P2(X: Q, Y: S);
+#P(X) = X: Word ... X;
+#P(X, Y) = {X: Punct + X, Y: Symbol + Y};
+
+----------------------------------------------------
+
+[
+	["pattern", [
+		["pattern-name", "P"]
+	]],
+	["operator", "="],
+	["string", ["\"text\""]],
+	["punctuation", ";"],
+
+	["pattern", [
+		["pattern-name", "P"]
+	]],
+	["operator", "="],
+	["standard-pattern", [
+		["standard-pattern-name", "Alpha"]
+	]],
+	["punctuation", ";"],
+
+	["pattern", [
+		["pattern-name", "P2"]
+	]],
+	["operator", "="],
+	["name", "P1"],
+	["punctuation", ";"],
+	["pattern", [
+		["pattern-name", "P1"]
+	]],
+	["operator", "="],
+	["standard-pattern", [
+		["standard-pattern-name", "Word"]
+	]],
+	["punctuation", ";"],
+
+	["pattern", [
+		["pattern-name", "P"]
+	]],
+	["operator", "="],
+	["name", "A"],
+	["operator", "+"],
+	["name", "B"],
+	["punctuation", ";"],
+
+	["pattern", [
+		["pattern-name", "P"]
+	]],
+	["operator", "="],
+	["operator", "{"],
+	["name", "A"],
+	["punctuation", ","],
+	["name", "B"],
+	["operator", "}"],
+	["punctuation", ";"],
+
+	["pattern", [
+		["pattern-name", "P"]
+	]],
+	["operator", "="],
+	["operator", "["],
+	["quantifier", "1+"],
+	["name", "A"],
+	["operator", "]"],
+	["punctuation", ";"],
+
+	["pattern", [
+		["pattern-name", "#P"]
+	]],
+	["operator", "="],
+	["string", ["\"text\""]],
+	["punctuation", ";"],
+
+	["keyword", "@pattern"],
+	["pattern", [
+		["pattern-name", "P"]
+	]],
+	["operator", "="],
+	["standard-pattern", [
+		["standard-pattern-name", "Alpha"]
+	]],
+	["punctuation", ";"],
+
+	["keyword", "@search"],
+	["keyword", "@pattern"],
+	["pattern", [
+		["pattern-name", "P"]
+	]],
+	["operator", "="],
+	["standard-pattern", [
+		["standard-pattern-name", "Alpha"]
+	]],
+	["punctuation", ";"],
+
+	["keyword", "@pattern"],
+	["pattern", [
+		["pattern-name", "P"]
+	]],
+	["operator", "="],
+	["name", "W"],
+	["keyword", "@where"],
+	["operator", "{"],
+	["keyword", "@pattern"],
+	["pattern", [
+		["pattern-name", "W"]
+	]],
+	["operator", "="],
+	["standard-pattern", [
+		["standard-pattern-name", "Word"]
+	]],
+	["punctuation", ";"],
+	["operator", "}"],
+	["punctuation", ";"],
+
+	["keyword", "@pattern"],
+	["pattern", [
+		["pattern-name", "#P"]
+	]],
+	["operator", "="],
+	["name", "W"],
+	["operator", "+"],
+	["name", "S"],
+	["keyword", "@where"],
+	["operator", "{"],
+	["keyword", "@pattern"],
+	["pattern", [
+		["pattern-name", "#W"]
+	]],
+	["operator", "="],
+	["standard-pattern", [
+		["standard-pattern-name", "Word"]
+	]],
+	["punctuation", ";"],
+	["keyword", "@pattern"],
+	["pattern", [
+		["pattern-name", "S"]
+	]],
+	["operator", "="],
+	["standard-pattern", [
+		["standard-pattern-name", "Space"]
+	]],
+	["punctuation", ";"],
+	["operator", "}"],
+	["punctuation", ";"],
+
+	["pattern", [
+		["pattern-name", "#P"],
+		["fields", [
+			["punctuation", "("],
+			["field-name", "X"],
+			["punctuation", ","],
+			["field-name", "Y"],
+			["punctuation", ")"]
+		]]
+	]],
+	["operator", "="],
+	["field-capture", [
+		["field-name", "X"],
+		["colon", ":"]
+	]],
+	["name", "A"],
+	["operator", "..."],
+	["field-capture", [
+		["field-name", "Y"],
+		["colon", ":"]
+	]],
+	["name", "B"],
+	["punctuation", ";"],
+
+	["pattern", [
+		["pattern-name", "#P"],
+		["fields", [
+			["punctuation", "("],
+			["field-name", "X"],
+			["punctuation", ")"]
+		]]
+	]],
+	["operator", "="],
+	["name", "A"],
+	["operator", ".."],
+	["name", "X"],
+	["operator", ".."],
+	["name", "B"],
+	["punctuation", ";"],
+
+	["pattern", [
+		["pattern-name", "#P1"],
+		["fields", [
+			["punctuation", "("],
+			["field-name", "X"],
+			["punctuation", ","],
+			["field-name", "Y"],
+			["punctuation", ")"]
+		]]
+	]],
+	["operator", "="],
+	["name", "P2"],
+	["punctuation", "("],
+	["field-capture", [
+		["field-name", "X"],
+		["colon", ":"],
+		["field-name", "Q"],
+		", ",
+		["field-name", "Y"],
+		["colon", ":"],
+		["field-name", "S"]
+	]],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["pattern", [
+		["pattern-name", "#P"],
+		["fields", [
+			["punctuation", "("],
+			["field-name", "X"],
+			["punctuation", ")"]
+		]]
+	]],
+	["operator", "="],
+	["field-capture", [
+		["field-name", "X"],
+		["colon", ":"]
+	]],
+	["standard-pattern", [
+		["standard-pattern-name", "Word"]
+	]],
+	["operator", "..."],
+	["name", "X"],
+	["punctuation", ";"],
+
+	["pattern", [
+		["pattern-name", "#P"],
+		["fields", [
+			["punctuation", "("],
+			["field-name", "X"],
+			["punctuation", ","],
+			["field-name", "Y"],
+			["punctuation", ")"]
+		]]
+	]],
+	["operator", "="],
+	["operator", "{"],
+	["field-capture", [
+		["field-name", "X"],
+		["colon", ":"]
+	]],
+	["standard-pattern", [
+		["standard-pattern-name", "Punct"]
+	]],
+	["operator", "+"],
+	["name", "X"],
+	["punctuation", ","],
+	["field-capture", [
+		["field-name", "Y"],
+		["colon", ":"]
+	]],
+	["standard-pattern", [
+		["standard-pattern-name", "Symbol"]
+	]],
+	["operator", "+"],
+	["name", "Y"],
+	["operator", "}"],
+	["punctuation", ";"]
+]
