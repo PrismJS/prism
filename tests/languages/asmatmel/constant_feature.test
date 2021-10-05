@@ -6,59 +6,65 @@ ldi	r19,(1<<DDL10)
 ldi	r19,(1<<DDZ05)
 ldi	r19,(1<<PD7)
 
--------------------------
+----------------------------------------------------
 
 [
-	["opcode", "OUT"],
+	["op-code", "OUT"],
 	["constant", "PORTD"],
 	["punctuation", ","],
 	["register", "x"],
-	["opcode", "ldi"],
-	["rregister", "r17"],
+
+	["op-code", "ldi"],
+	["r-register", "r17"],
 	["punctuation", ","],
 	["constant", "PD06"],
-	["opcode", "ldi"],
-	["rregister", "r19"],
+
+	["op-code", "ldi"],
+	["r-register", "r19"],
 	["punctuation", ","],
 	["punctuation", "("],
-	["decimalnumber", "1"],
+	["decimal-number", "1"],
 	["operator", "<<"],
 	["constant", "DDB31"],
 	["punctuation", ")"],
-	["opcode", "ldi"],
-	["rregister", "r19"],
+
+	["op-code", "ldi"],
+	["r-register", "r19"],
 	["punctuation", ","],
 	["punctuation", "("],
-	["decimalnumber", "1"],
+	["decimal-number", "1"],
 	["operator", "<<"],
 	["constant", "DDA30"],
 	["punctuation", ")"],
-	["opcode", "ldi"],
-	["rregister", "r19"],
+
+	["op-code", "ldi"],
+	["r-register", "r19"],
 	["punctuation", ","],
 	["punctuation", "("],
-	["decimalnumber", "1"],
+	["decimal-number", "1"],
 	["operator", "<<"],
 	["constant", "DDL10"],
 	["punctuation", ")"],
-	["opcode", "ldi"],
-	["rregister", "r19"],
+
+	["op-code", "ldi"],
+	["r-register", "r19"],
 	["punctuation", ","],
 	["punctuation", "("],
-	["decimalnumber", "1"],
+	["decimal-number", "1"],
 	["operator", "<<"],
 	["constant", "DDZ05"],
 	["punctuation", ")"],
-	["opcode", "ldi"],
-	["rregister", "r19"],
+
+	["op-code", "ldi"],
+	["r-register", "r19"],
 	["punctuation", ","],
 	["punctuation", "("],
-	["decimalnumber", "1"],
+	["decimal-number", "1"],
 	["operator", "<<"],
 	["constant", "PD7"],
 	["punctuation", ")"]
 ]
 
--------------------------
+----------------------------------------------------
 
 Check for constants

@@ -4,35 +4,39 @@ OUT PORTD,r31
 OUT PORTB,A
 OUT PORTL,r10
 
--------------------------
+----------------------------------------------------
 
 [
-	["opcode", "OUT"],
+	["op-code", "OUT"],
 	["constant", "PORTB"],
 	["punctuation", ","],
 	["register", "x"],
-	["opcode", "ldi"],
-	["rregister", "r17"],
+
+	["op-code", "ldi"],
+	["r-register", "r17"],
 	["punctuation", ","],
 	["punctuation", "("],
-	["decimalnumber", "1"],
+	["decimal-number", "1"],
 	["operator", "<<"],
 	["constant", "PD07"],
 	["punctuation", ")"],
-	["opcode","OUT"],
+
+	["op-code", "OUT"],
 	["constant", "PORTD"],
 	["punctuation", ","],
-	["rregister", "r31"],
-	["opcode","OUT"],
+	["r-register", "r31"],
+
+	["op-code", "OUT"],
 	["constant", "PORTB"],
 	["punctuation", ","],
 	["register", "A"],
-	["opcode","OUT"],
+
+	["op-code", "OUT"],
 	["constant", "PORTL"],
 	["punctuation", ","],
-	["rregister", "r10"]
+	["r-register", "r10"]
 ]
 
--------------------------
+----------------------------------------------------
 
 Check for registers
