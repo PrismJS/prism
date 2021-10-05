@@ -1,0 +1,75 @@
+label
+image
+menu
+hbox
+vbox
+frame
+text
+imagemap
+imagebutton
+bar
+vbar
+screen
+textbutton
+buttoscreenn
+fixed
+grid
+input
+key
+mousearea
+side
+timer
+viewport
+window
+hotspot
+hotbar
+self
+button
+drag
+draggroup
+tag
+mm_menu_frame
+nvl
+block
+
+$
+
+----------------------------------------------------
+
+[
+	["tag", "label"],
+	["tag", "image"],
+	["tag", "menu"],
+	["tag", "hbox"],
+	["tag", "vbox"],
+	["tag", "frame"],
+	["tag", "text"],
+	["tag", "imagemap"],
+	["tag", "imagebutton"],
+	["tag", "bar"],
+	["tag", "vbar"],
+	["tag", "screen"],
+	["tag", "textbutton"],
+	["tag", "buttoscreenn"],
+	["tag", "fixed"],
+	["tag", "grid"],
+	["tag", "input"],
+	["tag", "key"],
+	["tag", "mousearea"],
+	["tag", "side"],
+	["tag", "timer"],
+	["tag", "viewport"],
+	["tag", "window"],
+	["tag", "hotspot"],
+	["tag", "hotbar"],
+	["tag", "self"],
+	["tag", "button"],
+	["tag", "drag"],
+	["tag", "draggroup"],
+	["tag", "tag"],
+	["tag", "mm_menu_frame"],
+	["tag", "nvl"],
+	["tag", "block"],
+
+	["tag", "$"]
+]
