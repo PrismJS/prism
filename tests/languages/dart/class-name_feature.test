@@ -9,6 +9,18 @@ class Foo with ns.Bar {
 
 }
 
+class MyWidget extends SingleChildStatelessWidget {
+  MyWidget({Key key, Widget child}): super(key: key, child: child);
+
+  @override
+  Widget buildWithChild(BuildContext context, Widget child) {
+    return SomethingWidget(child: child);
+  }
+}
+
+var copy = Foo.Bar.from(foo);
+ID foo = something();
+
 ----------------------------------------------------
 
 [
@@ -30,13 +42,10 @@ class Foo with ns.Bar {
 	["keyword", "this"],
 	["punctuation", "."],
 	"bar",
-    ["punctuation", ")"],
-    ["punctuation", ";"],
+	["punctuation", ")"],
+	["punctuation", ";"],
 
-	["keyword", "final"],
-	["class-name", ["Bar"]],
-	" bar",
-    ["punctuation", ";"],
+	["keyword", "final"], ["class-name", ["Bar"]], " bar", ["punctuation", ";"],
 
 	["class-name", ["Baz"]],
 	["generics", [
@@ -62,28 +71,102 @@ class Foo with ns.Bar {
 	" bat",
 	["punctuation", ")"],
 	["punctuation", "{"],
+
 	["keyword", "return"],
-	["class-name", [
-		"Baz"
+	["class-name", ["Baz"]],
+	["generics", [
+		["punctuation", "<"],
+		["class-name", [
+			["namespace", [
+				"ns",
+				["punctuation", "."]
+			]],
+			"Bat"
+		]],
+		["punctuation", ">"]
 	]],
-    ["generics", [
-        ["punctuation", "<"],
-        ["class-name", [
-            ["namespace", [
-                "ns",
-                ["punctuation", "."]
-            ]],
-            "Bat"
-        ]],
-        ["punctuation", ">"]
-    ]],
 	["punctuation", "("],
 	"bat",
 	["punctuation", ")"],
 	["punctuation", ";"],
+
 	["punctuation", "}"],
 
-	["punctuation", "}"]
+	["punctuation", "}"],
+
+	["keyword", "class"],
+	["class-name", ["MyWidget"]],
+	["keyword", "extends"],
+	["class-name", ["SingleChildStatelessWidget"]],
+	["punctuation", "{"],
+
+	["class-name", ["MyWidget"]],
+	["punctuation", "("],
+	["punctuation", "{"],
+	["class-name", ["Key"]],
+	" key",
+	["punctuation", ","],
+	["class-name", ["Widget"]],
+	" child",
+	["punctuation", "}"],
+	["punctuation", ")"],
+	["punctuation", ":"],
+	["keyword", "super"],
+	["punctuation", "("],
+	"key",
+	["punctuation", ":"],
+	" key",
+	["punctuation", ","],
+	" child",
+	["punctuation", ":"],
+	" child",
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["metadata", "@override"],
+
+	["class-name", ["Widget"]],
+	["function", "buildWithChild"],
+	["punctuation", "("],
+	["class-name", ["BuildContext"]],
+	" context",
+	["punctuation", ","],
+	["class-name", ["Widget"]],
+	" child",
+	["punctuation", ")"],
+	["punctuation", "{"],
+
+	["keyword", "return"],
+	["class-name", ["SomethingWidget"]],
+	["punctuation", "("],
+	"child",
+	["punctuation", ":"],
+	" child",
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+
+	["punctuation", "}"],
+
+	["keyword", "var"],
+	" copy ",
+	["operator", "="],
+	["class-name", ["Foo.Bar"]],
+	["punctuation", "."],
+	["function", "from"],
+	["punctuation", "("],
+	"foo",
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["class-name", ["ID"]],
+	" foo ",
+	["operator", "="],
+	["function", "something"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"]
 ]
 
 ----------------------------------------------------
