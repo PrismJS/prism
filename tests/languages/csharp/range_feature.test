@@ -1,0 +1,42 @@
+list[2..^3];
+list[..^3];
+list[2..];
+list[..];
+
+----------------------------------------------------
+
+[
+	"list",
+	["punctuation", "["],
+	["number", "2"],
+	["range", ".."],
+	["operator", "^"],
+	["number", "3"],
+	["punctuation", "]"],
+	["punctuation", ";"],
+
+	"\r\nlist",
+	["punctuation", "["],
+	["range", ".."],
+	["operator", "^"],
+	["number", "3"],
+	["punctuation", "]"],
+	["punctuation", ";"],
+
+	"\r\nlist",
+	["punctuation", "["],
+	["number", "2"],
+	["range", ".."],
+	["punctuation", "]"],
+	["punctuation", ";"],
+
+	"\r\nlist",
+	["punctuation", "["],
+	["range", ".."],
+	["punctuation", "]"],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for ranges.

@@ -1,21 +1,160 @@
-foo=Bar Baz
-foobar=42
+bar1	=
+ "bar2" =
+ 'bar3' =
+ bar4 =
+" bar5 "=
+"bar6"=
+' bar7 '=
+'bar8'=
+=	baz9	
+= "baz10" 
+= 'baz11' 
+= baz12 
+=" baz13 "
+="b14"a14"z14"
+="baz15"
+="baz16
+=' baz17 '
+='baz18'
+=b19"a19"z19
+=b20"az20
+=ba21"z21
+=baz22
+=baz23"
+bar24
+bar25 baz25=qux25
+bar26=
+bar27==baz27
+bar28=baz28
+bar29=baz29 qux29
+bar30=baz30=qux30
 
 ----------------------------------------------------
 
 [
-	["constant", "foo"],
-	["attr-value", [
-		["punctuation", "="],
-		"Bar Baz"
+	["key", "bar1"],
+	["punctuation", "="],
+
+	["key", "\"bar2\""],
+	["punctuation", "="],
+
+	["key", "'bar3'"],
+	["punctuation", "="],
+
+	["key", "bar4"],
+	["punctuation", "="],
+
+	["key", "\" bar5 \""],
+	["punctuation", "="],
+
+	["key", "\"bar6\""],
+	["punctuation", "="],
+
+	["key", "' bar7 '"],
+	["punctuation", "="],
+
+	["key", "'bar8'"],
+	["punctuation", "="],
+
+	["punctuation", "="],
+	["value", ["baz9"]],
+
+	["punctuation", "="],
+	["value", [
+		"\"",
+		["inner-value", "baz10"],
+		"\""
 	]],
-	["constant", "foobar"],
-	["attr-value", [
-		["punctuation", "="],
-		"42"
-	]]
+
+	["punctuation", "="],
+	["value", [
+		"'",
+		["inner-value", "baz11"],
+		"'"
+	]],
+
+	["punctuation", "="],
+	["value", ["baz12"]],
+
+	["punctuation", "="],
+	["value", [
+		"\"",
+		["inner-value", " baz13 "],
+		"\""
+	]],
+
+	["punctuation", "="],
+	["value", [
+		"\"",
+		["inner-value", "b14\"a14\"z14"],
+		"\""
+	]],
+
+	["punctuation", "="],
+	["value", [
+		"\"",
+		["inner-value", "baz15"],
+		"\""
+	]],
+
+	["punctuation", "="],
+	["value", ["\"baz16"]],
+
+	["punctuation", "="],
+	["value", [
+		"'",
+		["inner-value", " baz17 "],
+		"'"
+	]],
+
+	["punctuation", "="],
+	["value", [
+		"'",
+		["inner-value", "baz18"],
+		"'"
+	]],
+
+	["punctuation", "="],
+	["value", ["b19\"a19\"z19"]],
+
+	["punctuation", "="],
+	["value", ["b20\"az20"]],
+
+	["punctuation", "="],
+	["value", ["ba21\"z21"]],
+
+	["punctuation", "="],
+	["value", ["baz22"]],
+
+	["punctuation", "="],
+	["value", ["baz23\""]],
+
+	"\r\nbar24\r\n",
+
+	["key", "bar25 baz25"],
+	["punctuation", "="],
+	["value", ["qux25"]],
+
+	["key", "bar26"],
+	["punctuation", "="],
+
+	["key", "bar27"],
+	["punctuation", "="],
+	["value", ["=baz27"]],
+
+	["key", "bar28"],
+	["punctuation", "="],
+	["value", ["baz28"]],
+
+	["key", "bar29"],
+	["punctuation", "="],
+	["value", ["baz29 qux29"]],
+
+	["key", "bar30"],
+	["punctuation", "="],
+	["value", ["baz30=qux30"]]
 ]
 
 ----------------------------------------------------
 
-Checks for key/value pairs.
+Checks for key-value pairs.

@@ -1,0 +1,94 @@
+abstype
+and
+andalso
+as
+case
+datatype;
+do
+else
+end
+eqtype
+exception;
+fn
+fun;
+functor;
+handle
+if
+in
+include
+infix
+infixr
+let
+local
+nonfix
+of
+op
+open
+orelse
+raise
+rec
+sharing
+sig
+signature;
+struct
+structure;
+then
+type;
+val
+where
+while
+with
+withtype
+
+----------------------------------------------------
+
+[
+	["keyword", "abstype"],
+	["keyword", "and"],
+	["keyword", "andalso"],
+	["keyword", "as"],
+	["keyword", "case"],
+	["keyword", "datatype"],
+	["punctuation", ";"],
+	["keyword", "do"],
+	["keyword", "else"],
+	["keyword", "end"],
+	["keyword", "eqtype"],
+	["keyword", "exception"],
+	["punctuation", ";"],
+	["keyword", "fn"],
+	["keyword", "fun"],
+	["punctuation", ";"],
+	["keyword", "functor"],
+	["punctuation", ";"],
+	["keyword", "handle"],
+	["keyword", "if"],
+	["keyword", "in"],
+	["keyword", "include"],
+	["keyword", "infix"],
+	["keyword", "infixr"],
+	["keyword", "let"],
+	["keyword", "local"],
+	["keyword", "nonfix"],
+	["keyword", "of"],
+	["keyword", "op"],
+	["keyword", "open"],
+	["keyword", "orelse"],
+	["keyword", "raise"],
+	["keyword", "rec"],
+	["keyword", "sharing"],
+	["keyword", "sig"],
+	["keyword", "signature"],
+	["punctuation", ";"],
+	["keyword", "struct"],
+	["keyword", "structure"],
+	["punctuation", ";"],
+	["keyword", "then"],
+	["keyword", "type"],
+	["punctuation", ";"],
+	["keyword", "val"],
+	["keyword", "where"],
+	["keyword", "while"],
+	["keyword", "with"],
+	["keyword", "withtype"]
+]

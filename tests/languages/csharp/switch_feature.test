@@ -1,0 +1,651 @@
+public static decimal CalculateToll(object vehicle) =>
+	vehicle switch
+	{
+		DeliveryTruck t when t.GrossWeightClass > 5000 => 10.00m + 5.00m,
+		DeliveryTruck t when t.GrossWeightClass < 3000 => 10.00m - 2.00m,
+		DeliveryTruck _ => 10.00m,
+		_ => throw new ArgumentException("Not a known vehicle type", nameof(vehicle))
+	};
+
+DeliveryTruck t when t.GrossWeightClass switch
+{
+	> 5000 => 10.00m + 5.00m,
+	< 3000 => 10.00m - 2.00m,
+	_ => 10.00m,
+},
+DeliveryTruck t when t.GrossWeightClass switch
+{
+	< 3000 => 10.00m - 2.00m,
+	>= 3000 and <= 5000 => 10.00m,
+	> 5000 => 10.00m + 5.00m,
+},
+
+switch (DateTime.Now.DayOfWeek)
+{
+	case DayOfWeek.Sunday:
+	case DayOfWeek.Saturday:
+		Console.WriteLine("The weekend");
+		break;
+	case DayOfWeek.Monday:
+		Console.WriteLine("The first day of the work week.");
+		break;
+	case DayOfWeek.Friday:
+		Console.WriteLine("The last day of the work week.");
+		break;
+	default:
+		Console.WriteLine("The middle of the work week.");
+		break;
+}
+
+switch (str)
+{
+	case "1":
+	case "small":
+		cost += 25;
+		break;
+	case "2":
+	case "medium":
+		cost += 25;
+		goto case "1";
+	case "3":
+	case "large":
+		cost += 50;
+		goto case "1";
+	default:
+		Console.WriteLine("Invalid selection. Please select 1, 2, or 3.");
+		break;
+}
+
+switch (sh)
+{
+	// Note that this code never evaluates to true.
+	case Shape shape when shape == null:
+		break;
+	case null:
+		break;
+	case Rectangle r when r.Length == r.Width && r.Area > 0:
+		break;
+	default:
+		break;
+}
+
+switch (coll)
+{
+	case Array arr:
+		break;
+	case IEnumerable<int> ieInt:
+		break;
+	case object o:
+		break;
+	default:
+		break;
+}
+
+bool IsValidPercentage(object x) => x is
+	>= 0 and <= 100 or    // integer tests
+	>= 0F and <= 100F or  // float tests
+	>= 0D and <= 100D;    // double tests
+
+bool isSmallByte(object o) => o is byte and < 100;
+
+case (0, int x):
+case (int x, 0):
+	Console.WriteLine(x);
+
+case < 2: break;
+case 0 or 1 or 2 or 3 or 4 or 5: break;
+
+int x = b switch { <100 => 0, 100 => 1, 101 => 2, >101 => 3 };
+
+----------------------------------------------------
+
+[
+	["keyword", "public"],
+	["keyword", "static"],
+	["return-type", [
+		["keyword", "decimal"]
+	]],
+	["function", "CalculateToll"],
+	["punctuation", "("],
+	["class-name", [
+		["keyword", "object"]
+	]],
+	" vehicle",
+	["punctuation", ")"],
+	["operator", "=>"],
+
+	"\r\n\tvehicle ",
+	["keyword", "switch"],
+
+	["punctuation", "{"],
+
+	["class-name", ["DeliveryTruck"]],
+	" t ",
+	["keyword", "when"],
+	" t",
+	["punctuation", "."],
+	"GrossWeightClass ",
+	["operator", ">"],
+	["number", "5000"],
+	["operator", "=>"],
+	["number", "10.00m"],
+	["operator", "+"],
+	["number", "5.00m"],
+	["punctuation", ","],
+
+	["class-name", ["DeliveryTruck"]],
+	" t ",
+	["keyword", "when"],
+	" t",
+	["punctuation", "."],
+	"GrossWeightClass ",
+	["operator", "<"],
+	["number", "3000"],
+	["operator", "=>"],
+	["number", "10.00m"],
+	["operator", "-"],
+	["number", "2.00m"],
+	["punctuation", ","],
+
+	["return-type", ["DeliveryTruck"]],
+	" _ ",
+	["operator", "=>"],
+	["number", "10.00m"],
+	["punctuation", ","],
+
+	"\r\n\t\t_ ",
+	["operator", "=>"],
+	["keyword", "throw"],
+	["keyword", "new"],
+	["constructor-invocation", ["ArgumentException"]],
+	["punctuation", "("],
+	["string", "\"Not a known vehicle type\""],
+	["punctuation", ","],
+	["keyword", "nameof"],
+	["punctuation", "("],
+	"vehicle",
+	["punctuation", ")"],
+	["punctuation", ")"],
+
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["class-name", ["DeliveryTruck"]],
+	" t ",
+	["keyword", "when"],
+	" t",
+	["punctuation", "."],
+	"GrossWeightClass ",
+	["keyword", "switch"],
+
+	["punctuation", "{"],
+
+	["operator", ">"],
+	["number", "5000"],
+	["operator", "=>"],
+	["number", "10.00m"],
+	["operator", "+"],
+	["number", "5.00m"],
+	["punctuation", ","],
+
+	["operator", "<"],
+	["number", "3000"],
+	["operator", "=>"],
+	["number", "10.00m"],
+	["operator", "-"],
+	["number", "2.00m"],
+	["punctuation", ","],
+
+	"\r\n\t_ ",
+	["operator", "=>"],
+	["number", "10.00m"],
+	["punctuation", ","],
+
+	["punctuation", "}"],
+	["punctuation", ","],
+
+	["class-name", ["DeliveryTruck"]],
+	" t ",
+	["keyword", "when"],
+	" t",
+	["punctuation", "."],
+	"GrossWeightClass ",
+	["keyword", "switch"],
+
+	["punctuation", "{"],
+
+	["operator", "<"],
+	["number", "3000"],
+	["operator", "=>"],
+	["number", "10.00m"],
+	["operator", "-"],
+	["number", "2.00m"],
+	["punctuation", ","],
+
+	["operator", ">="],
+	["number", "3000"],
+	["keyword", "and"],
+	["operator", "<="],
+	["number", "5000"],
+	["operator", "=>"],
+	["number", "10.00m"],
+	["punctuation", ","],
+
+	["operator", ">"],
+	["number", "5000"],
+	["operator", "=>"],
+	["number", "10.00m"],
+	["operator", "+"],
+	["number", "5.00m"],
+	["punctuation", ","],
+
+	["punctuation", "}"],
+	["punctuation", ","],
+
+	["keyword", "switch"],
+	["punctuation", "("],
+	"DateTime",
+	["punctuation", "."],
+	"Now",
+	["punctuation", "."],
+	"DayOfWeek",
+	["punctuation", ")"],
+
+	["punctuation", "{"],
+
+	["keyword", "case"],
+	" DayOfWeek",
+	["punctuation", "."],
+	"Sunday",
+	["punctuation", ":"],
+
+	["keyword", "case"],
+	" DayOfWeek",
+	["punctuation", "."],
+	"Saturday",
+	["punctuation", ":"],
+
+	"\r\n\t\tConsole",
+	["punctuation", "."],
+	["function", "WriteLine"],
+	["punctuation", "("],
+	["string", "\"The weekend\""],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "break"],
+	["punctuation", ";"],
+
+	["keyword", "case"],
+	" DayOfWeek",
+	["punctuation", "."],
+	"Monday",
+	["punctuation", ":"],
+
+	"\r\n\t\tConsole",
+	["punctuation", "."],
+	["function", "WriteLine"],
+	["punctuation", "("],
+	["string", "\"The first day of the work week.\""],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "break"],
+	["punctuation", ";"],
+
+	["keyword", "case"],
+	" DayOfWeek",
+	["punctuation", "."],
+	"Friday",
+	["punctuation", ":"],
+
+	"\r\n\t\tConsole",
+	["punctuation", "."],
+	["function", "WriteLine"],
+	["punctuation", "("],
+	["string", "\"The last day of the work week.\""],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "break"],
+	["punctuation", ";"],
+
+	["keyword", "default"],
+	["punctuation", ":"],
+
+	"\r\n\t\tConsole",
+	["punctuation", "."],
+	["function", "WriteLine"],
+	["punctuation", "("],
+	["string", "\"The middle of the work week.\""],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "break"],
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+
+	["keyword", "switch"],
+	["punctuation", "("],
+	"str",
+	["punctuation", ")"],
+
+	["punctuation", "{"],
+
+	["keyword", "case"],
+	["string", "\"1\""],
+	["punctuation", ":"],
+
+	["keyword", "case"],
+	["string", "\"small\""],
+	["punctuation", ":"],
+
+	"\r\n\t\tcost ",
+	["operator", "+="],
+	["number", "25"],
+	["punctuation", ";"],
+
+	["keyword", "break"],
+	["punctuation", ";"],
+
+	["keyword", "case"],
+	["string", "\"2\""],
+	["punctuation", ":"],
+
+	["keyword", "case"],
+	["string", "\"medium\""],
+	["punctuation", ":"],
+
+	"\r\n\t\tcost ",
+	["operator", "+="],
+	["number", "25"],
+	["punctuation", ";"],
+
+	["keyword", "goto"],
+	["keyword", "case"],
+	["string", "\"1\""],
+	["punctuation", ";"],
+
+	["keyword", "case"],
+	["string", "\"3\""],
+	["punctuation", ":"],
+
+	["keyword", "case"],
+	["string", "\"large\""],
+	["punctuation", ":"],
+
+	"\r\n\t\tcost ",
+	["operator", "+="],
+	["number", "50"],
+	["punctuation", ";"],
+
+	["keyword", "goto"],
+	["keyword", "case"],
+	["string", "\"1\""],
+	["punctuation", ";"],
+
+	["keyword", "default"],
+	["punctuation", ":"],
+
+	"\r\n\t\tConsole",
+	["punctuation", "."],
+	["function", "WriteLine"],
+	["punctuation", "("],
+	["string", "\"Invalid selection. Please select 1, 2, or 3.\""],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "break"],
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+
+	["keyword", "switch"],
+	["punctuation", "("],
+	"sh",
+	["punctuation", ")"],
+
+	["punctuation", "{"],
+
+	["comment", "// Note that this code never evaluates to true."],
+
+	["keyword", "case"],
+	["class-name", ["Shape"]],
+	" shape ",
+	["keyword", "when"],
+	" shape ",
+	["operator", "=="],
+	["keyword", "null"],
+	["punctuation", ":"],
+
+	["keyword", "break"],
+	["punctuation", ";"],
+
+	["keyword", "case"],
+	["keyword", "null"],
+	["punctuation", ":"],
+
+	["keyword", "break"],
+	["punctuation", ";"],
+
+	["keyword", "case"],
+	["class-name", ["Rectangle"]],
+	" r ",
+	["keyword", "when"],
+	" r",
+	["punctuation", "."],
+	"Length ",
+	["operator", "=="],
+	" r",
+	["punctuation", "."],
+	"Width ",
+	["operator", "&&"],
+	" r",
+	["punctuation", "."],
+	"Area ",
+	["operator", ">"],
+	["number", "0"],
+	["punctuation", ":"],
+
+	["keyword", "break"],
+	["punctuation", ";"],
+
+	["keyword", "default"],
+	["punctuation", ":"],
+
+	["keyword", "break"],
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+
+	["keyword", "switch"],
+	["punctuation", "("],
+	"coll",
+	["punctuation", ")"],
+
+	["punctuation", "{"],
+
+	["keyword", "case"],
+	["class-name", ["Array"]],
+	" arr",
+	["punctuation", ":"],
+
+	["keyword", "break"],
+	["punctuation", ";"],
+
+	["keyword", "case"],
+	["class-name", [
+		"IEnumerable",
+		["punctuation", "<"],
+		["keyword", "int"],
+		["punctuation", ">"]
+	]],
+	" ieInt",
+	["punctuation", ":"],
+
+	["keyword", "break"],
+	["punctuation", ";"],
+
+	["keyword", "case"],
+	["class-name", [
+		["keyword", "object"]
+	]],
+	" o",
+	["punctuation", ":"],
+
+	["keyword", "break"],
+	["punctuation", ";"],
+
+	["keyword", "default"],
+	["punctuation", ":"],
+
+	["keyword", "break"],
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+
+	["return-type", [
+		["keyword", "bool"]
+	]],
+	["function", "IsValidPercentage"],
+	["punctuation", "("],
+	["class-name", [
+		["keyword", "object"]
+	]],
+	" x",
+	["punctuation", ")"],
+	["operator", "=>"],
+	" x ",
+	["keyword", "is"],
+
+	["operator", ">="],
+	["number", "0"],
+	["keyword", "and"],
+	["operator", "<="],
+	["number", "100"],
+	["keyword", "or"],
+	["comment", "// integer tests"],
+
+	["operator", ">="],
+	["number", "0F"],
+	["keyword", "and"],
+	["operator", "<="],
+	["number", "100F"],
+	["keyword", "or"],
+	["comment", "// float tests"],
+
+	["operator", ">="],
+	["number", "0D"],
+	["keyword", "and"],
+	["operator", "<="],
+	["number", "100D"],
+	["punctuation", ";"],
+	["comment", "// double tests"],
+
+	["return-type", [
+		["keyword", "bool"]
+	]],
+	["function", "isSmallByte"],
+	["punctuation", "("],
+	["class-name", [
+		["keyword", "object"]
+	]],
+	" o",
+	["punctuation", ")"],
+	["operator", "=>"],
+	" o ",
+	["keyword", "is"],
+	["class-name", [
+		["keyword", "byte"]
+	]],
+	["keyword", "and"],
+	["operator", "<"],
+	["number", "100"],
+	["punctuation", ";"],
+
+	["keyword", "case"],
+	["punctuation", "("],
+	["number", "0"],
+	["punctuation", ","],
+	["class-name", [
+		["keyword", "int"]
+	]],
+	" x",
+	["punctuation", ")"],
+	["punctuation", ":"],
+
+	["keyword", "case"],
+	["punctuation", "("],
+	["class-name", [
+		["keyword", "int"]
+	]],
+	" x",
+	["punctuation", ","],
+	["number", "0"],
+	["punctuation", ")"],
+	["punctuation", ":"],
+
+	"\r\n\tConsole",
+	["punctuation", "."],
+	["function", "WriteLine"],
+	["punctuation", "("],
+	"x",
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "case"],
+	["operator", "<"],
+	["number", "2"],
+	["punctuation", ":"],
+	["keyword", "break"],
+	["punctuation", ";"],
+
+	["keyword", "case"],
+	["number", "0"],
+	["keyword", "or"],
+	["number", "1"],
+	["keyword", "or"],
+	["number", "2"],
+	["keyword", "or"],
+	["number", "3"],
+	["keyword", "or"],
+	["number", "4"],
+	["keyword", "or"],
+	["number", "5"],
+	["punctuation", ":"],
+	["keyword", "break"],
+	["punctuation", ";"],
+
+	["class-name", [
+		["keyword", "int"]
+	]],
+	" x ",
+	["operator", "="],
+	" b ",
+	["keyword", "switch"],
+	["punctuation", "{"],
+	["operator", "<"],
+	["number", "100"],
+	["operator", "=>"],
+	["number", "0"],
+	["punctuation", ","],
+	["number", "100"],
+	["operator", "=>"],
+	["number", "1"],
+	["punctuation", ","],
+	["number", "101"],
+	["operator", "=>"],
+	["number", "2"],
+	["punctuation", ","],
+	["operator", ">"],
+	["number", "101"],
+	["operator", "=>"],
+	["number", "3"],
+	["punctuation", "}"],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for switch statements and expressions.

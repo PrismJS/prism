@@ -1,0 +1,43 @@
+<h2>Strings</h2>
+<pre><code># PSL Strings are properly rendered
+print("Hello, World!");
+
+# Escaped sequences are highlighted too
+print("Goodbye \H\H\H\H\H\H\H\HHello, World!\n");
+
+# Multi-line strings are supported
+print("multi
+line");
+</code></pre>
+
+<h2>Numbers</h2>
+<pre><code>a = 1;
+b = 2.5;
+c = 0xff;
+</code></pre>
+
+<h2>PSL Built-in Functions</h2>
+<pre><code>p = nthargf(process(".*"), 1, " \t", "\n");
+lock("test");
+execute("OS", "pwd");
+</code></pre>
+
+<h2>PSL Keywords</h2>
+<pre><code>foreach entry (["aaa", "bbb", "ccc"]) {
+	if (grep("[bc]", entry)) {
+		last;
+	}
+}
+</code></pre>
+
+<h2>PSL Constants</h2>
+<pre><code>set("/CLASS/inst/paramA/state", WARN);
+if (true) {
+	PslDebug = -1;
+}
+output = execute("OS", "echo test");
+if (errno) {
+	print(ALARM." with errno=".errno."\n");
+}
+print(trim(output, "\n\r\t ", TRIM_LEADING_AND_TRAILING));
+</code></pre>

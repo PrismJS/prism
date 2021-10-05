@@ -1,0 +1,126 @@
+struct Base {};
+struct Derived : Base {};
+struct Derived : private Base;
+class X : public virtual B {};
+class Y : virtual public B {};
+class Y : virtual baz::B {};
+class Z : public B<foo::T>;
+struct AA : X, Y, foo::bar::Z {};
+
+class service : private Transport // comment
+{};
+
+----------------------------------------------------
+
+[
+	["keyword", "struct"],
+	["class-name", "Base"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["keyword", "struct"],
+	["class-name", "Derived"],
+	["operator", ":"],
+	["base-clause", [
+		["class-name", "Base"]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["keyword", "struct"],
+	["class-name", "Derived"],
+	["operator", ":"],
+	["base-clause", [
+		["keyword", "private"],
+		["class-name", "Base"]
+	]],
+	["punctuation", ";"],
+
+	["keyword", "class"],
+	["class-name", "X"],
+	["operator", ":"],
+	["base-clause", [
+		["keyword", "public"],
+		["keyword", "virtual"],
+		["class-name", "B"]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["keyword", "class"],
+	["class-name", "Y"],
+	["operator", ":"],
+	["base-clause", [
+		["keyword", "virtual"],
+		["keyword", "public"],
+		["class-name", "B"]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["keyword", "class"],
+	["class-name", "Y"],
+	["operator", ":"],
+	["base-clause", [
+		["keyword", "virtual"],
+		" baz",
+		["double-colon", "::"],
+		["class-name", "B"]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["keyword", "class"],
+	["class-name", "Z"],
+	["operator", ":"],
+	["base-clause", [
+		["keyword", "public"],
+		["class-name", "B"],
+		["operator", "<"],
+		"foo",
+		["double-colon", "::"],
+		["class-name", "T"],
+		["operator", ">"]
+	]],
+	["punctuation", ";"],
+
+	["keyword", "struct"],
+	["class-name", "AA"],
+	["operator", ":"],
+	["base-clause", [
+		["class-name", "X"],
+		["punctuation", ","],
+		["class-name", "Y"],
+		["punctuation", ","],
+		" foo",
+		["double-colon", "::"],
+		"bar",
+		["double-colon", "::"],
+		["class-name", "Z"]
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["keyword", "class"],
+	["class-name", "service"],
+	["operator", ":"],
+	["base-clause", [
+		["keyword", "private"],
+		["class-name", "Transport"],
+		["comment", "// comment"]
+	]],
+
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for the base clauses of classes and structs.

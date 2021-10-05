@@ -1,0 +1,39 @@
+@IBOutlet
+@IBDesignable
+@IBAction
+@IBInspectable
+@class_protocol
+@exported
+@globalActor
+@MainActor
+@noreturn
+@NSCopying
+@NSManaged
+@objc
+@propertyWrapper
+@UIApplicationMain
+@auto_closure
+
+@SomeCustomName
+
+----------------------------------------------------
+
+[
+	["attribute", "@IBOutlet"],
+	["attribute", "@IBDesignable"],
+	["attribute", "@IBAction"],
+	["attribute", "@IBInspectable"],
+	["attribute", "@class_protocol"],
+	["attribute", "@exported"],
+	["attribute", "@globalActor"],
+	["attribute", "@MainActor"],
+	["attribute", "@noreturn"],
+	["attribute", "@NSCopying"],
+	["attribute", "@NSManaged"],
+	["attribute", "@objc"],
+	["attribute", "@propertyWrapper"],
+	["attribute", "@UIApplicationMain"],
+	["attribute", "@auto_closure"],
+
+	["attribute", "@SomeCustomName"]
+]

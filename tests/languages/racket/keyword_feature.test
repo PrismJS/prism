@@ -1,0 +1,13 @@
+(define)
+[define]
+
+----------------------------------------------------
+
+[
+	["punctuation", "("], ["keyword", "define"], ["punctuation", ")"],
+	["punctuation", "["], ["keyword", "define"], ["punctuation", "]"]
+]
+
+----------------------------------------------------
+
+Checks for keywords.

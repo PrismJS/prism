@@ -1,0 +1,189 @@
+1=2
+1+=2
+1-=2
+1<<=2
+1>>=2
+1^=2
+1*=2
+1/=2
+1%=2
+1|=2
+1&=2
+1||2
+1&&2
+1|2
+1^2
+1&2
+1!=2
+1==2
+1=~2
+1!~2
+1<2
+1<=2
+1>2
+1>=2
+1<<2
+1>>2
+1+2
+1*2
+1/2
+1%2
+"a"."b"
+1-2
+!1
+1++2
+1--2
+1?2:3
+
+----------------------------------------------------
+
+[
+	["number", "1"],
+	["operator", "="],
+	["number", "2"],
+
+	["number", "1"],
+	["operator", "+="],
+	["number", "2"],
+
+	["number", "1"],
+	["operator", "-="],
+	["number", "2"],
+
+	["number", "1"],
+	["operator", "<<="],
+	["number", "2"],
+
+	["number", "1"],
+	["operator", ">>="],
+	["number", "2"],
+
+	["number", "1"],
+	["operator", "^="],
+	["number", "2"],
+
+	["number", "1"],
+	["operator", "*="],
+	["number", "2"],
+
+	["number", "1"],
+	["operator", "/="],
+	["number", "2"],
+
+	["number", "1"],
+	["operator", "%="],
+	["number", "2"],
+
+	["number", "1"],
+	["operator", "|="],
+	["number", "2"],
+
+	["number", "1"],
+	["operator", "&="],
+	["number", "2"],
+
+	["number", "1"],
+	["operator", "||"],
+	["number", "2"],
+
+	["number", "1"],
+	["operator", "&&"],
+	["number", "2"],
+
+	["number", "1"],
+	["operator", "|"],
+	["number", "2"],
+
+	["number", "1"],
+	["operator", "^"],
+	["number", "2"],
+
+	["number", "1"],
+	["operator", "&"],
+	["number", "2"],
+
+	["number", "1"],
+	["operator", "!="],
+	["number", "2"],
+
+	["number", "1"],
+	["operator", "=="],
+	["number", "2"],
+
+	["number", "1"],
+	["operator", "=~"],
+	["number", "2"],
+
+	["number", "1"],
+	["operator", "!~"],
+	["number", "2"],
+
+	["number", "1"],
+	["operator", "<"],
+	["number", "2"],
+
+	["number", "1"],
+	["operator", "<="],
+	["number", "2"],
+
+	["number", "1"],
+	["operator", ">"],
+	["number", "2"],
+
+	["number", "1"],
+	["operator", ">="],
+	["number", "2"],
+
+	["number", "1"],
+	["operator", "<<"],
+	["number", "2"],
+
+	["number", "1"],
+	["operator", ">>"],
+	["number", "2"],
+
+	["number", "1"],
+	["operator", "+"],
+	["number", "2"],
+
+	["number", "1"],
+	["operator", "*"],
+	["number", "2"],
+
+	["number", "1"],
+	["operator", "/"],
+	["number", "2"],
+
+	["number", "1"],
+	["operator", "%"],
+	["number", "2"],
+
+	["string", ["\"a\""]],
+	["operator", "."],
+	["string", ["\"b\""]],
+
+	["number", "1"],
+	["operator", "-"],
+	["number", "2"],
+
+	["operator", "!"],
+	["number", "1"],
+
+	["number", "1"],
+	["operator", "++"],
+	["number", "2"],
+
+	["number", "1"],
+	["operator", "--"],
+	["number", "2"],
+
+	["number", "1"],
+	["operator", "?"],
+	["number", "2"],
+	["operator", ":"],
+	["number", "3"]
+]
+
+----------------------------------------------------
+
+Test for oper1tors

@@ -1,0 +1,61 @@
++ - / * % ~ ^ & |
++= -= /= *= %= ~= ^= &= |=
+== != < > <= >=
+= =>
+
+! && ||
+
+<< >> >>>
+<<= >>= >>>=
+
+not and or xor present absent
+
+----------------------------------------------------
+
+[
+	["operator", "+"],
+	["operator", "-"],
+	["operator", "/"],
+	["operator", "*"],
+	["operator", "%"],
+	["operator", "~"],
+	["operator", "^"],
+	["operator", "&"],
+	["operator", "|"],
+
+	["operator", "+="],
+	["operator", "-="],
+	["operator", "/="],
+	["operator", "*="],
+	["operator", "%="],
+	["operator", "~="],
+	["operator", "^="],
+	["operator", "&="],
+	["operator", "|="],
+
+	["operator", "=="],
+	["operator", "!="],
+	["operator", "<"],
+	["operator", ">"],
+	["operator", "<="],
+	["operator", ">="],
+
+	["operator", "="],
+	["operator", "=>"],
+
+	["operator", "!"], ["operator", "&&"], ["operator", "||"],
+
+	["operator", "<<"], ["operator", ">>"], ["operator", ">>>"],
+	["operator", "<<="], ["operator", ">>="], ["operator", ">>>="],
+
+	["operator", "not"],
+	["operator", "and"],
+	["operator", "or"],
+	["operator", "xor"],
+	["operator", "present"],
+	["operator", "absent"]
+]
+
+----------------------------------------------------
+
+Checks for operators

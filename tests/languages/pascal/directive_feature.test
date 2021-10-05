@@ -1,0 +1,12 @@
+{$ASSERTIONS}
+{$asmMode intel}
+{$ifDef CPUx86_64} // ============= optimized implementation
+
+----------------------------------------------------
+
+[
+	["directive", "{$ASSERTIONS}"],
+	["directive", "{$asmMode intel}"],
+	["directive", "{$ifDef CPUx86_64}"],
+	["comment", "// ============= optimized implementation"]
+]

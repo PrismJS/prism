@@ -5,106 +5,95 @@ _foobar_
 _foo
 bar_
 
-_foo__bar__baz_
-_foo**bar**baz_
-_foo~bar~baz_
-_foo~~bar~~baz_
+_foo __bar__ baz_
+_foo **bar** baz_
+_foo ~bar~ baz_
+_foo ~~bar~~ baz_
 _foo[bar](baz)_
+_foo `bar`_
 
-*foo__bar__baz*
-*foo**bar**baz*
-*foo~bar~baz*
-*foo~~bar~~baz*
+*foo __bar__ baz*
+*foo **bar** baz*
+*foo ~bar~ baz*
+*foo ~~bar~~ baz*
 *foo[bar](baz)*
+*foo `bar`*
+
+not_italic_ _this_either
 
 ----------------------------------------------------
 
 [
 	["italic", [
 		["punctuation", "*"],
-		["content", [
-			"foobar"
-		]],
+		["content", ["foobar"]],
 		["punctuation", "*"]
 	]],
 	["italic", [
 		["punctuation", "*"],
-		["content", [
-			"foo\r\nbar"
-		]],
+		["content", ["foo\r\nbar"]],
 		["punctuation", "*"]
 	]],
 	["italic", [
 		["punctuation", "_"],
-		["content", [
-			"foobar"
-		]],
+		["content", ["foobar"]],
 		["punctuation", "_"]
 	]],
 	["italic", [
 		["punctuation", "_"],
-		["content", [
-			"foo\r\nbar"
-		]],
+		["content", ["foo\r\nbar"]],
 		["punctuation", "_"]
 	]],
+
 	["italic", [
 		["punctuation", "_"],
 		["content", [
-			"foo",
+			"foo ",
 			["bold", [
 				["punctuation", "__"],
-				["content", [
-					"bar"
-				]],
+				["content", ["bar"]],
 				["punctuation", "__"]
 			]],
-			"baz"
+			" baz"
 		]],
 		["punctuation", "_"]
 	]],
 	["italic", [
 		["punctuation", "_"],
 		["content", [
-			"foo",
+			"foo ",
 			["bold", [
 				["punctuation", "**"],
-				["content", [
-					"bar"
-				]],
+				["content", ["bar"]],
 				["punctuation", "**"]
 			]],
-			"baz"
+			" baz"
 		]],
 		["punctuation", "_"]
 	]],
 	["italic", [
 		["punctuation", "_"],
 		["content", [
-			"foo",
+			"foo ",
 			["strike", [
 				["punctuation", "~"],
-				["content", [
-					"bar"
-				]],
+				["content", ["bar"]],
 				["punctuation", "~"]
 			]],
-			"baz"
+			" baz"
 		]],
 		["punctuation", "_"]
 	]],
 	["italic", [
 		["punctuation", "_"],
 		["content", [
-			"foo",
+			"foo ",
 			["strike", [
 				["punctuation", "~~"],
-				["content", [
-					"bar"
-				]],
+				["content", ["bar"]],
 				["punctuation", "~~"]
 			]],
-			"baz"
+			" baz"
 		]],
 		["punctuation", "_"]
 	]],
@@ -114,71 +103,72 @@ _foo[bar](baz)_
 			"foo",
 			["url", [
 				"[",
-				["content", [
-					"bar"
-				]],
-				"](baz)"
+				["content", ["bar"]],
+				"](",
+				["url", "baz"],
+				")"
 			]]
 		]],
 		["punctuation", "_"]
 	]],
 	["italic", [
+		["punctuation", "_"],
+		["content", [
+			"foo ",
+			["code-snippet", "`bar`"]
+		]],
+		["punctuation", "_"]
+	]],
+
+	["italic", [
 		["punctuation", "*"],
 		["content", [
-			"foo",
+			"foo ",
 			["bold", [
 				["punctuation", "__"],
-				["content", [
-					"bar"
-				]],
+				["content", ["bar"]],
 				["punctuation", "__"]
 			]],
-			"baz"
+			" baz"
 		]],
 		["punctuation", "*"]
 	]],
 	["italic", [
 		["punctuation", "*"],
 		["content", [
-			"foo",
+			"foo ",
 			["bold", [
 				["punctuation", "**"],
-				["content", [
-					"bar"
-				]],
+				["content", ["bar"]],
 				["punctuation", "**"]
 			]],
-			"baz"
+			" baz"
 		]],
 		["punctuation", "*"]
 	]],
 	["italic", [
 		["punctuation", "*"],
 		["content", [
-			"foo",
+			"foo ",
 			["strike", [
 				["punctuation", "~"],
-				["content", [
-					"bar"
-				]],
+				["content", ["bar"]],
 				["punctuation", "~"]
 			]],
-			"baz"
+			" baz"
 		]],
 		["punctuation", "*"]
 	]],
 	["italic", [
 		["punctuation", "*"],
 		["content", [
-			"foo",
+			"foo ",
 			["strike", [
 				["punctuation", "~~"],
-				["content", [
-					"bar"
-				]],
+				["content", ["bar"]],
 				["punctuation", "~~"]
 			]],
-			"baz"
+			" baz"
 		]],
 		["punctuation", "*"]
 	]],
@@ -188,14 +178,24 @@ _foo[bar](baz)_
 			"foo",
 			["url", [
 				"[",
-				["content", [
-					"bar"
-				]],
-				"](baz)"
+				["content", ["bar"]],
+				"](",
+				["url", "baz"],
+				")"
 			]]
 		]],
 		["punctuation", "*"]
-	]]
+	]],
+	["italic", [
+		["punctuation", "*"],
+		["content", [
+			"foo ",
+			["code-snippet", "`bar`"]
+		]],
+		["punctuation", "*"]
+	]],
+
+	"\r\n\r\nnot_italic_ _this_either"
 ]
 
 ----------------------------------------------------

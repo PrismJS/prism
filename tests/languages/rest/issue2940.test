@@ -1,0 +1,33 @@
+`ALTER ROLE <https://www.postgresql.org/docs/12/sql-alterrole.html>`_ or ``ALTER_ROLE``
+
+`ALTER ROLE <https://www.postgresql.org/docs/12/sql-alterrole.html>`_
+or ``ALTER_ROLE``
+
+----------------------------------------------------
+
+[
+	["link", [
+		["punctuation", "`"],
+		"ALTER ROLE <https://www.postgresql.org/docs/12/sql-alterrole.html>",
+		["punctuation", "`_"]
+	]],
+	" or ",
+	["inline", [
+		["punctuation", "``"],
+		["inline-literal", "ALTER_ROLE"],
+		["punctuation", "``"]
+	]],
+
+	["link", [
+		["punctuation", "`"],
+		"ALTER ROLE <https://www.postgresql.org/docs/12/sql-alterrole.html>",
+		["punctuation", "`_"]
+	]],
+
+	"\r\nor ",
+	["inline", [
+		["punctuation", "``"],
+		["inline-literal", "ALTER_ROLE"],
+		["punctuation", "``"]
+	]]
+]

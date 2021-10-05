@@ -1,0 +1,47 @@
+; Target-independent attributes:
+attributes #0 = { alwaysinline alignstack=4 }
+
+; Target-dependent attributes:
+attributes #1 = { "no-sse" }
+
+; Function @f has attributes: alwaysinline, alignstack=4, and "no-sse".
+define void @f() #0 #1 { ... }
+
+----------------------------------------------------
+
+[
+	["comment", "; Target-independent attributes:"],
+	["keyword", "attributes"],
+	["variable", "#0"],
+	["punctuation", "="],
+	["punctuation", "{"],
+	["keyword", "alwaysinline"],
+	["keyword", "alignstack"],
+	["punctuation", "="],
+	["number", "4"],
+	["punctuation", "}"],
+	["comment", "; Target-dependent attributes:"],
+	["keyword", "attributes"],
+	["variable", "#1"],
+	["punctuation", "="],
+	["punctuation", "{"],
+	["string", "\"no-sse\""],
+	["punctuation", "}"],
+	["comment", "; Function @f has attributes: alwaysinline, alignstack=4, and \"no-sse\"."],
+	["keyword", "define"],
+	["type", "void"],
+	["variable", "@f"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["variable", "#0"],
+	["variable", "#1"],
+	["punctuation", "{"],
+	["punctuation", "."],
+	["punctuation", "."],
+	["punctuation", "."],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Tests the attribute "#id" syntax.

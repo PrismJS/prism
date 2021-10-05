@@ -1,0 +1,19 @@
+foo/bar/
+foo/file[1-3].txt
+  !unignore
+\!foo/**
+notes\[1\].txt
+
+----------------------------------------------------
+
+[
+	["entry", ["foo", ["punctuation", "/"], "bar", ["punctuation", "/"]]],
+	["entry", ["foo", ["punctuation", "/"], "file", ["regex", "[1-3]"], ".txt"]],
+	["entry", [["operator", "!"], "unignore"]],
+	["entry", ["\\!foo", ["punctuation", "/"], ["operator", "**"]]],
+	["entry", ["notes\\[1\\].txt"]]
+]
+
+----------------------------------------------------
+
+Checks for comments.

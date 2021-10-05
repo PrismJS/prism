@@ -1,0 +1,43 @@
+A.invert({1:"a", 2:"A"})
+; => {"a":2}
+
+NormalLabel:
+; do something
+return
+	TabbedLabel:
+	; do something
+	return
+Sus{}//[]Label:
+; do something
+return
+
+----------------------------------------------------
+
+[
+	"A",
+	["operator", "."],
+	["function", "invert"],
+	["punctuation", "("],
+	["punctuation", "{"],
+	["number", "1"],
+	["punctuation", ":"],
+	["string", "\"a\""],
+	["punctuation", ","],
+	["number", "2"],
+	["punctuation", ":"],
+	["string", "\"A\""],
+	["punctuation", "}"],
+	["punctuation", ")"],
+
+	["comment", "; => {\"a\":2}"],
+
+	["tag", "NormalLabel"], ["punctuation", ":"],
+	["comment", "; do something"],
+	["selector", "return"],
+	["tag", "TabbedLabel"], ["punctuation", ":"],
+	["comment", "; do something"],
+	["selector", "return"],
+	["tag", "Sus{}//[]Label"], ["punctuation", ":"],
+	["comment", "; do something"],
+	["selector", "return"]
+]

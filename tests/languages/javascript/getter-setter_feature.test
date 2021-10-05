@@ -1,0 +1,121 @@
+const obj = {
+	get name() { return 'bar'; },
+	get [expr]() { return 'bar'; },
+	async get name() { return 'bar'; },
+	set name(val) { },
+	set [expr](val) { },
+	async set [expr](val) { },
+	get #x() { return #xValue; },
+};
+
+// not keywords
+get();
+set(foo);
+
+----------------------------------------------------
+
+[
+	["keyword", "const"],
+	" obj ",
+	["operator", "="],
+	["punctuation", "{"],
+
+	["keyword", "get"],
+	["function", "name"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["keyword", "return"],
+	["string", "'bar'"],
+	["punctuation", ";"],
+	["punctuation", "}"],
+	["punctuation", ","],
+
+	["keyword", "get"],
+	["punctuation", "["],
+	"expr",
+	["punctuation", "]"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["keyword", "return"],
+	["string", "'bar'"],
+	["punctuation", ";"],
+	["punctuation", "}"],
+	["punctuation", ","],
+
+	["keyword", "async"],
+	["keyword", "get"],
+	["function", "name"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["keyword", "return"],
+	["string", "'bar'"],
+	["punctuation", ";"],
+	["punctuation", "}"],
+	["punctuation", ","],
+
+	["keyword", "set"],
+	["function", "name"],
+	["punctuation", "("],
+	["parameter", ["val"]],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+
+	["keyword", "set"],
+	["punctuation", "["],
+	"expr",
+	["punctuation", "]"],
+	["punctuation", "("],
+	["parameter", ["val"]],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+
+	["keyword", "async"],
+	["keyword", "set"],
+	["punctuation", "["],
+	"expr",
+	["punctuation", "]"],
+	["punctuation", "("],
+	["parameter", ["val"]],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ","],
+
+	["keyword", "get"],
+	["function", "#x"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["keyword", "return"],
+	" #xValue",
+	["punctuation", ";"],
+	["punctuation", "}"],
+	["punctuation", ","],
+
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["comment", "// not keywords"],
+
+	["function", "get"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["function", "set"],
+	["punctuation", "("],
+	"foo",
+	["punctuation", ")"],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for getters and setters.

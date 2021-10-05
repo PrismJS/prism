@@ -1,0 +1,11 @@
+(node:16843) UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'tick' of undefined
+
+----------------------------------------------------
+
+[
+	["error-message", "(node:16843) UnhandledPromiseRejectionWarning: TypeError: Cannot read property 'tick' of undefined"]
+]
+
+----------------------------------------------------
+
+Checks basic a basic error message.

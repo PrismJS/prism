@@ -1,0 +1,24 @@
+VAR
+    varname AT %QX1.0.0: BOOL := TRUE;
+END_VAR
+
+----------------------------------------------------
+
+[
+	["class-name", "VAR"],
+
+	"\r\n    varname ",
+	["keyword", "AT"],
+	["symbol", "%QX1.0.0"],
+	["operator", ":"],
+	["variable", "BOOL"],
+	["operator", ":="],
+	["boolean", "TRUE"],
+	["punctuation", ";"],
+
+	["class-name", "END_VAR"]
+]
+
+----------------------------------------------------
+
+Checks symbols.

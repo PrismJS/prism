@@ -1,8 +1,11 @@
+package java;
 package java.lang;
 
+import foo.Bar;
 import java.lang.Math;
 import java.lang.*;
 
+import static foo.Bar.BAZ;
 import static java.lang.Math.PI;
 import static java.lang.Math.sin;
 import static java.lang.Math.*;
@@ -10,6 +13,11 @@ import static java.lang.Math.*;
 ----------------------------------------------------
 
 [
+	["keyword", "package"],
+	["namespace", [
+		"java"
+	]],
+	["punctuation", ";"],
 	["keyword", "package"],
 	["namespace", [
 		"java",
@@ -20,46 +28,71 @@ import static java.lang.Math.*;
 
 	["keyword", "import"],
 	["namespace", [
-		"java",
-		["punctuation", "."],
-		"lang"
+		"foo",
+		["punctuation", "."]
 	]],
-	["punctuation", "."],
-	["class-name", "Math"],
+	["class-name", [
+		"Bar"
+	]],
 	["punctuation", ";"],
-
 	["keyword", "import"],
 	["namespace", [
 		"java",
 		["punctuation", "."],
-		"lang"
+		"lang",
+		["punctuation", "."]
 	]],
-	["punctuation", "."],
-	"*",
+	["class-name", [
+		"Math"
+	]],
+	["punctuation", ";"],
+	["keyword", "import"],
+	["namespace", [
+		"java",
+		["punctuation", "."],
+		"lang",
+		["punctuation", "."]
+	]],
+	["operator", "*"],
 	["punctuation", ";"],
 
 	["keyword", "import"],
 	["keyword", "static"],
 	["namespace", [
-		"java",
-		["punctuation", "."],
-		"lang"
+		"foo",
+		["punctuation", "."]
+	]],
+	["class-name", [
+		"Bar"
 	]],
 	["punctuation", "."],
-	["class-name", "Math"],
+	"BAZ",
+	["punctuation", ";"],
+	["keyword", "import"],
+	["keyword", "static"],
+	["namespace", [
+		"java",
+		["punctuation", "."],
+		"lang",
+		["punctuation", "."]
+	]],
+	["class-name", [
+		"Math"
+	]],
 	["punctuation", "."],
 	"PI",
 	["punctuation", ";"],
-
 	["keyword", "import"],
 	["keyword", "static"],
 	["namespace", [
 		"java",
 		["punctuation", "."],
-		"lang"
+		"lang",
+		["punctuation", "."]
 	]],
-	["punctuation", "."],
-	["class-name", "Math"],
+	["class-name", [
+		"Math"
+	]],
 	["punctuation", "."],
 	"sin",
 	["punctuation", ";"],
@@ -67,9 +100,13 @@ import static java.lang.Math.*;
 	["keyword", "static"],
 	["namespace", [
 		"java",
-		["punctuation", "."], "lang"
-	]], ["punctuation", "."],
-	["class-name", "Math"],
+		["punctuation", "."],
+		"lang",
+		["punctuation", "."]
+	]],
+	["class-name", [
+		"Math"
+	]],
 	["punctuation", "."],
 	"*",
 	["punctuation", ";"]

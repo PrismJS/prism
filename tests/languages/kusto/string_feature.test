@@ -1,0 +1,82 @@
+""
+''
+@""
+@''
+"foo\""
+'bar\''
+@"\"
+@'\'
+
+```
+multiline
+```
+
+// Obfuscated string literals
+h'hello'
+h@'world'
+h"hello"
+
+// string concatenation
+
+print strlen("Hello"', '@"world!"); // Nothing between them
+
+print strlen("Hello" ', ' @"world!"); // Separated by whitespace only
+
+print strlen("Hello"
+  // Comment
+  ', '@"world!"); // Separated by whitespace and a comment
+
+----------------------------------------------------
+
+[
+	["string", "\"\""],
+	["string", "''"],
+	["string", "@\"\""],
+	["string", "@''"],
+	["string", "\"foo\\\"\""],
+	["string", "'bar\\''"],
+	["string", "@\"\\\""],
+	["string", "@'\\'"],
+
+	["string", "```\r\nmultiline\r\n```"],
+
+	["comment", "// Obfuscated string literals"],
+	["string", "h'hello'"],
+	["string", "h@'world'"],
+	["string", "h\"hello\""],
+
+	["comment", "// string concatenation"],
+
+	["keyword", "print"],
+	["function", "strlen"],
+	["punctuation", "("],
+	["string", "\"Hello\""],
+	["string", "', '"],
+	["string", "@\"world!\""],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["comment", "// Nothing between them"],
+
+	["keyword", "print"],
+	["function", "strlen"],
+	["punctuation", "("],
+	["string", "\"Hello\""],
+	["string", "', '"],
+	["string", "@\"world!\""],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["comment", "// Separated by whitespace only"],
+
+	["keyword", "print"],
+	["function", "strlen"],
+	["punctuation", "("],
+	["string", "\"Hello\""],
+
+	["comment", "// Comment"],
+
+	["string", "', '"],
+	["string", "@\"world!\""],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["comment", "// Separated by whitespace and a comment"]
+]

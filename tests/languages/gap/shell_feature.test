@@ -1,0 +1,216 @@
+gap> i := 0;; s := 0;;
+gap> while s <= 200 do
+>    i := i + 1; s := s + i^2;
+>  od;
+gap> s;
+204
+gap> l := [ 1, 2, 3, 4, 5, 6 ];;
+gap> for i in l do
+>    Print( i, " " );
+>    l := [];
+> od; Print( "\n" );
+1 2 3 4 5 6
+gap> g := Group((1,2,3),(1,2));
+Group([ (1,2,3), (1,2) ])
+gap> for x in g do
+> if Order(x) = 3 then
+> continue;
+> fi; Print(x,"\n"); od;
+()
+(2,3)
+(1,3)
+(1,2)
+gap> continue;
+Syntax error: 'continue' statement not enclosed in a loop
+
+----------------------------------------------------
+
+[
+	["shell", [
+		["punctuation", "gap>"],
+		["gap", [
+			" i ",
+			["operator", ":="],
+			["number", "0"],
+			["punctuation", ";"],
+			["punctuation", ";"],
+			" s ",
+			["operator", ":="],
+			["number", "0"],
+			["punctuation", ";"],
+			["punctuation", ";"]
+		]]
+	]],
+	["shell", [
+		["punctuation", "gap>"],
+		["gap", [
+			["keyword", "while"],
+			" s ",
+			["operator", "<="],
+			["number", "200"],
+			["keyword", "do"],
+
+			["continuation", ">"],
+			"    i ",
+			["operator", ":="],
+			" i ",
+			["operator", "+"],
+			["number", "1"],
+			["punctuation", ";"],
+			" s ",
+			["operator", ":="],
+			" s ",
+			["operator", "+"],
+			" i",
+			["operator", "^"],
+			["number", "2"],
+			["punctuation", ";"],
+
+			["continuation", ">"],
+			["keyword", "od"],
+			["punctuation", ";"]
+		]]
+	]],
+	["shell", [
+		["punctuation", "gap>"],
+		["gap", [
+			" s",
+			["punctuation", ";"]
+		]],
+
+		"\r\n204\r\n"
+	]],
+	["shell", [
+		["punctuation", "gap>"],
+		["gap", [
+			" l ",
+			["operator", ":="],
+			["punctuation", "["],
+			["number", "1"],
+			["punctuation", ","],
+			["number", "2"],
+			["punctuation", ","],
+			["number", "3"],
+			["punctuation", ","],
+			["number", "4"],
+			["punctuation", ","],
+			["number", "5"],
+			["punctuation", ","],
+			["number", "6"],
+			["punctuation", "]"],
+			["punctuation", ";"],
+			["punctuation", ";"]
+		]]
+	]],
+	["shell", [
+		["punctuation", "gap>"],
+		["gap", [
+			["keyword", "for"],
+			" i ",
+			["keyword", "in"],
+			" l ",
+			["keyword", "do"],
+
+			["continuation", ">"],
+			["function", "Print"],
+			["punctuation", "("],
+			" i",
+			["punctuation", ","],
+			["string", ["\" \""]],
+			["punctuation", ")"],
+			["punctuation", ";"],
+
+			["continuation", ">"],
+			"    l ",
+			["operator", ":="],
+			["punctuation", "["],
+			["punctuation", "]"],
+			["punctuation", ";"],
+
+			["continuation", ">"],
+			["keyword", "od"],
+			["punctuation", ";"],
+			["function", "Print"],
+			["punctuation", "("],
+			["string", ["\"\\n\""]],
+			["punctuation", ")"],
+			["punctuation", ";"]
+		]],
+
+		"\r\n1 2 3 4 5 6\r\n"
+	]],
+	["shell", [
+		["punctuation", "gap>"],
+		["gap", [
+			" g ",
+			["operator", ":="],
+			["function", "Group"],
+			["punctuation", "("],
+			["punctuation", "("],
+			["number", "1"],
+			["punctuation", ","],
+			["number", "2"],
+			["punctuation", ","],
+			["number", "3"],
+			["punctuation", ")"],
+			["punctuation", ","],
+			["punctuation", "("],
+			["number", "1"],
+			["punctuation", ","],
+			["number", "2"],
+			["punctuation", ")"],
+			["punctuation", ")"],
+			["punctuation", ";"]
+		]],
+
+		"\r\nGroup([ (1,2,3), (1,2) ])\r\n"
+	]],
+	["shell", [
+		["punctuation", "gap>"],
+		["gap", [
+			["keyword", "for"],
+			" x ",
+			["keyword", "in"],
+			" g ",
+			["keyword", "do"],
+
+			["continuation", ">"],
+			["keyword", "if"],
+			["function", "Order"],
+			["punctuation", "("],
+			"x",
+			["punctuation", ")"],
+			["operator", "="],
+			["number", "3"],
+			["keyword", "then"],
+
+			["continuation", ">"],
+			["keyword", "continue"],
+			["punctuation", ";"],
+
+			["continuation", ">"],
+			["keyword", "fi"],
+			["punctuation", ";"],
+			["function", "Print"],
+			["punctuation", "("],
+			"x",
+			["punctuation", ","],
+			["string", ["\"\\n\""]],
+			["punctuation", ")"],
+			["punctuation", ";"],
+			["keyword", "od"],
+			["punctuation", ";"]
+		]],
+
+		"\r\n()\r\n(2,3)\r\n(1,3)\r\n(1,2)\r\n"
+	]],
+	["shell", [
+		["punctuation", "gap>"],
+		["gap", [
+			["keyword", "continue"],
+			["punctuation", ";"]
+		]],
+
+		"\r\nSyntax error: 'continue' statement not enclosed in a loop"
+	]]
+]

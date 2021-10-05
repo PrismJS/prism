@@ -16,21 +16,18 @@ func add(reference: Item, amount: int) -> Item:
 ----------------------------------------------------
 
 [
-	["keyword", "class_name"],
-	["class-name", "Foo"],
-	["keyword", "extends"],
-	["class-name", "Bar"],
+	["keyword", "class_name"], ["class-name", "Foo"],
+	["keyword", "extends"], ["class-name", "Bar"],
 
-	["keyword", "class"],
-	["class-name", "InnerClass"],
-	["punctuation", ":"],
+	["keyword", "class"], ["class-name", "InnerClass"], ["punctuation", ":"],
 
 	["keyword", "export"],
 	["punctuation", "("],
 	["class-name", "int"],
 	["punctuation", ")"],
 	["keyword", "var"],
-	" baz\n",
+	" baz\r\n",
+
 	["keyword", "export"],
 	["punctuation", "("],
 	["class-name", "int"],
@@ -38,12 +35,9 @@ func add(reference: Item, amount: int) -> Item:
 	["number", "0"],
 	["punctuation", ")"],
 	["keyword", "var"],
-	" i\n\n",
+	" i\r\n\r\n",
 
-	["keyword", "return"],
-	" foo ",
-	["keyword", "as"],
-	["class-name", "Node"],
+	["keyword", "return"], " foo ", ["keyword", "as"], ["class-name", "Node"],
 
 	["keyword", "const"],
 	["constant", "FOO"],
@@ -51,6 +45,7 @@ func add(reference: Item, amount: int) -> Item:
 	["class-name", "int"],
 	["operator", "="],
 	["number", "9"],
+
 	["keyword", "var"],
 	" bar",
 	["punctuation", ":"],

@@ -1,0 +1,153 @@
+Foo {
+	bar: 4
+	a: 0; b: 1; c: 2
+	Components.foo: 2
+
+	Bar { a: 0; b: Baz {}; c: 2 }
+
+	property Component mycomponent: comp1
+	property color color: "green"
+
+	// produces warning: "Unable to assign [undefined] to double value"
+	value: if (mouse.pressed) mouse.mouseX
+}
+
+BirthdayParty {
+	guests: [
+		Person { name: "Leo Hodges" },
+		Person { name: "Jack Smith" },
+		Person { name: "Anne Brown" }
+	]
+}
+
+----------------------------------------------------
+
+[
+	["class-name", "Foo"],
+	["punctuation", "{"],
+
+	["property", "bar"],
+	["punctuation", ":"],
+	["javascript-expression", [
+		["number", "4"]
+	]],
+	["property", "a"],
+	["punctuation", ":"],
+	["javascript-expression", [
+		["number", "0"]
+	]],
+	["punctuation", ";"],
+	["property", "b"],
+	["punctuation", ":"],
+	["javascript-expression", [
+		["number", "1"]
+	]],
+	["punctuation", ";"],
+	["property", "c"],
+	["punctuation", ":"],
+	["javascript-expression", [
+		["number", "2"]
+	]],
+	["property", "Components.foo"],
+	["punctuation", ":"],
+	["javascript-expression", [
+		["number", "2"]
+	]],
+
+	["class-name", "Bar"],
+	["punctuation", "{"],
+	["property", "a"],
+	["punctuation", ":"],
+	["javascript-expression", [
+		["number", "0"]
+	]],
+	["punctuation", ";"],
+	["property", "b"],
+	["punctuation", ":"],
+	["class-name", "Baz"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+	["property", "c"],
+	["punctuation", ":"],
+	["javascript-expression", [
+		["number", "2"]
+	]],
+	["punctuation", "}"],
+
+	["property", [
+		["keyword", "property"],
+		["property", "Component"],
+		["property", "mycomponent"]
+	]],
+	["punctuation", ":"],
+	["javascript-expression", [
+		"comp1"
+	]],
+	["property", [
+		["keyword", "property"],
+		["property", "color"],
+		["property", "color"]
+	]],
+	["punctuation", ":"],
+	["javascript-expression", [
+		["string", "\"green\""]
+	]],
+
+	["comment", "// produces warning: \"Unable to assign [undefined] to double value\""],
+	["property", "value"],
+	["punctuation", ":"],
+	["javascript-expression", [
+		["keyword", "if"],
+		["punctuation", "("],
+		"mouse",
+		["punctuation", "."],
+		"pressed",
+		["punctuation", ")"],
+		" mouse",
+		["punctuation", "."],
+		"mouseX"
+	]],
+	["punctuation", "}"],
+
+
+	["class-name", "BirthdayParty"],
+	["punctuation", "{"],
+
+	["property", "guests"],
+	["punctuation", ":"],
+	["punctuation", "["],
+	["class-name", "Person"],
+	["punctuation", "{"],
+	["property", "name"],
+	["punctuation", ":"],
+	["javascript-expression", [
+		["string", "\"Leo Hodges\""]
+	]],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["class-name", "Person"],
+	["punctuation", "{"],
+	["property", "name"],
+	["punctuation", ":"],
+	["javascript-expression", [
+		["string", "\"Jack Smith\""]
+	]],
+	["punctuation", "}"],
+	["punctuation", ","],
+	["class-name", "Person"],
+	["punctuation", "{"],
+	["property", "name"],
+	["punctuation", ":"],
+	["javascript-expression", [
+		["string", "\"Anne Brown\""]
+	]],
+	["punctuation", "}"],
+	["punctuation", "]"],
+
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for properties.

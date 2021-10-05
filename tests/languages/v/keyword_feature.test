@@ -1,0 +1,93 @@
+as;
+asm;
+assert;
+atomic;
+break;
+const;
+continue;
+defer;
+else;
+embed;
+enum;;
+fn;
+for;
+__global;
+go;
+goto;
+if;
+import;
+in;
+interface;
+is;
+lock;
+match;
+module;
+mut;
+none;
+or;
+pub;
+return;
+rlock;
+select;
+shared;
+sizeof;
+static;
+struct;
+type;;
+typeof;
+union;
+unsafe;
+$if;
+$else;
+$for;
+#include;
+#flag;
+
+----------------------------------------------------
+
+[
+	["keyword", "as"], ["punctuation", ";"],
+	["keyword", "asm"], ["punctuation", ";"],
+	["keyword", "assert"], ["punctuation", ";"],
+	["keyword", "atomic"], ["punctuation", ";"],
+	["keyword", "break"], ["punctuation", ";"],
+	["keyword", "const"], ["punctuation", ";"],
+	["keyword", "continue"], ["punctuation", ";"],
+	["keyword", "defer"], ["punctuation", ";"],
+	["keyword", "else"], ["punctuation", ";"],
+	["keyword", "embed"], ["punctuation", ";"],
+	["keyword", "enum"], ["punctuation", ";"], ["punctuation", ";"],
+	["keyword", "fn"], ["punctuation", ";"],
+	["keyword", "for"], ["punctuation", ";"],
+	["keyword", "__global"], ["punctuation", ";"],
+	["keyword", "go"], ["punctuation", ";"],
+	["keyword", "goto"], ["punctuation", ";"],
+	["keyword", "if"], ["punctuation", ";"],
+	["keyword", "import"], ["punctuation", ";"],
+	["keyword", "in"], ["punctuation", ";"],
+	["keyword", "interface"], ["punctuation", ";"],
+	["keyword", "is"], ["punctuation", ";"],
+	["keyword", "lock"], ["punctuation", ";"],
+	["keyword", "match"], ["punctuation", ";"],
+	["keyword", "module"], ["punctuation", ";"],
+	["keyword", "mut"], ["punctuation", ";"],
+	["keyword", "none"], ["punctuation", ";"],
+	["keyword", "or"], ["punctuation", ";"],
+	["keyword", "pub"], ["punctuation", ";"],
+	["keyword", "return"], ["punctuation", ";"],
+	["keyword", "rlock"], ["punctuation", ";"],
+	["keyword", "select"], ["punctuation", ";"],
+	["keyword", "shared"], ["punctuation", ";"],
+	["keyword", "sizeof"], ["punctuation", ";"],
+	["keyword", "static"], ["punctuation", ";"],
+	["keyword", "struct"], ["punctuation", ";"],
+	["keyword", "type"], ["punctuation", ";"], ["punctuation", ";"],
+	["keyword", "typeof"], ["punctuation", ";"],
+	["keyword", "union"], ["punctuation", ";"],
+	["keyword", "unsafe"], ["punctuation", ";"],
+	["keyword", "$if"], ["punctuation", ";"],
+	["keyword", "$else"], ["punctuation", ";"],
+	["keyword", "$for"], ["punctuation", ";"],
+	["keyword", "#include"], ["punctuation", ";"],
+	["keyword", "#flag"], ["punctuation", ";"]
+]

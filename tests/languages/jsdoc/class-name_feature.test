@@ -3,28 +3,50 @@
  * @param {number | string}
  * @param {Array.<number> | Object.<string, number>}
  * @param {{[x: string]: {start: number, end?: number}}}
+ * @param {readonly { min?: number; max: number | null | undefined }[]}
+ * @param {null | 1 | 2}
+ * @param {true | string}
+ * @param {Type1 & Type2}
+ * @param {typeof import("./foo").Bar}
+ * @param {...any[]}
+ * @param {*}
+ * @param {() => void}
+ *
+ * @typedef Foo
+ * @typedef {Bar} Foo
+ * @template Foo
+ * @template {Bar} Foo
+ * @augments Foo
+ * @extends Foo
+ * @class Foo
+ * @interface Foo
+ * @memberof Foo
+ * @memberof! Foo
+ * @this Foo
  */
 
 ----------------------------------------------------
 
 [
-	"/**\n * ",
+	"/**\r\n * ",
 	["keyword", "@param"],
 	["class-name", [
 		["punctuation", "{"],
 		"number",
 		["punctuation", "}"]
 	]],
-	"\n * ",
+
+	"\r\n * ",
 	["keyword", "@param"],
 	["class-name", [
 		["punctuation", "{"],
 		"number ",
-		["punctuation", "|"],
+		["operator", "|"],
 		" string",
 		["punctuation", "}"]
 	]],
-	"\n * ",
+
+	"\r\n * ",
 	["keyword", "@param"],
 	["class-name", [
 		["punctuation", "{"],
@@ -33,7 +55,7 @@
 		["punctuation", "<"],
 		"number",
 		["punctuation", ">"],
-		["punctuation", "|"],
+		["operator", "|"],
 		" Object",
 		["punctuation", "."],
 		["punctuation", "<"],
@@ -43,31 +65,188 @@
 		["punctuation", ">"],
 		["punctuation", "}"]
 	]],
-	"\n * ",
+
+	"\r\n * ",
 	["keyword", "@param"],
 	["class-name", [
 		["punctuation", "{"],
 		["punctuation", "{"],
 		["punctuation", "["],
 		"x",
-		["punctuation", ":"],
+		["operator", ":"],
 		" string",
 		["punctuation", "]"],
-		["punctuation", ":"],
+		["operator", ":"],
 		["punctuation", "{"],
 		"start",
-		["punctuation", ":"],
+		["operator", ":"],
 		" number",
 		["punctuation", ","],
 		" end",
-		["punctuation", "?"],
-		["punctuation", ":"],
+		["operator", "?"],
+		["operator", ":"],
 		" number",
 		["punctuation", "}"],
 		["punctuation", "}"],
 		["punctuation", "}"]
 	]],
-	"\n */"
+
+	"\r\n * ",
+	["keyword", "@param"],
+	["class-name", [
+		["punctuation", "{"],
+		["keyword", "readonly"],
+		["punctuation", "{"],
+		" min",
+		["operator", "?"],
+		["operator", ":"],
+		" number",
+		["punctuation", ";"],
+		" max",
+		["operator", ":"],
+		" number ",
+		["operator", "|"],
+		["keyword", "null"],
+		["operator", "|"],
+		["keyword", "undefined"],
+		["punctuation", "}"],
+		["punctuation", "["],
+		["punctuation", "]"],
+		["punctuation", "}"]
+	]],
+
+	"\r\n * ",
+	["keyword", "@param"],
+	["class-name", [
+		["punctuation", "{"],
+		["keyword", "null"],
+		["operator", "|"],
+		["number", "1"],
+		["operator", "|"],
+		["number", "2"],
+		["punctuation", "}"]
+	]],
+
+	"\r\n * ",
+	["keyword", "@param"],
+	["class-name", [
+		["punctuation", "{"],
+		["boolean", "true"],
+		["operator", "|"],
+		" string",
+		["punctuation", "}"]
+	]],
+
+	"\r\n * ",
+	["keyword", "@param"],
+	["class-name", [
+		["punctuation", "{"],
+		"Type1 ",
+		["operator", "&"],
+		" Type2",
+		["punctuation", "}"]
+	]],
+
+	"\r\n * ",
+	["keyword", "@param"],
+	["class-name", [
+		["punctuation", "{"],
+		["keyword", "typeof"],
+		["keyword", "import"],
+		["punctuation", "("],
+		["string", "\"./foo\""],
+		["punctuation", ")"],
+		["punctuation", "."],
+		"Bar",
+		["punctuation", "}"]
+	]],
+
+	"\r\n * ",
+	["keyword", "@param"],
+	["class-name", [
+		["punctuation", "{"],
+		["operator", "..."],
+		"any",
+		["punctuation", "["],
+		["punctuation", "]"],
+		["punctuation", "}"]
+	]],
+
+	"\r\n * ",
+	["keyword", "@param"],
+	["class-name", [
+		["punctuation", "{"],
+		["operator", "*"],
+		["punctuation", "}"]
+	]],
+
+	"\r\n * ",
+	["keyword", "@param"],
+	["class-name", [
+		["punctuation", "{"],
+		["punctuation", "("],
+		["punctuation", ")"],
+		["operator", "=>"],
+		["keyword", "void"],
+		["punctuation", "}"]
+	]],
+
+	"\r\n *\r\n * ",
+	["keyword", "@typedef"],
+	["class-name", ["Foo"]],
+
+	"\r\n * ",
+	["keyword", "@typedef"],
+	["class-name", [
+		["punctuation", "{"],
+		"Bar",
+		["punctuation", "}"]
+	]],
+	["class-name", ["Foo"]],
+
+	"\r\n * ",
+	["keyword", "@template"],
+	["class-name", ["Foo"]],
+
+	"\r\n * ",
+	["keyword", "@template"],
+	["class-name", [
+		["punctuation", "{"],
+		"Bar",
+		["punctuation", "}"]
+	]],
+	["class-name", ["Foo"]],
+
+	"\r\n * ",
+	["keyword", "@augments"],
+	["class-name", ["Foo"]],
+
+	"\r\n * ",
+	["keyword", "@extends"],
+	["class-name", ["Foo"]],
+
+	"\r\n * ",
+	["keyword", "@class"],
+	["class-name", ["Foo"]],
+
+	"\r\n * ",
+	["keyword", "@interface"],
+	["class-name", ["Foo"]],
+
+	"\r\n * ",
+	["keyword", "@memberof"],
+	["class-name", ["Foo"]],
+
+	"\r\n * ",
+	["keyword", "@memberof"],
+	"! ",
+	["class-name", ["Foo"]],
+
+	"\r\n * ",
+	["keyword", "@this"],
+	["class-name", ["Foo"]],
+
+	"\r\n */"
 ]
 
 ----------------------------------------------------

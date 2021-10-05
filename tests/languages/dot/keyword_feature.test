@@ -1,0 +1,17 @@
+digraph;
+edge;
+graph;
+node;
+strict;
+subgraph;
+
+----------------------------------------------------
+
+[
+	["keyword", "digraph"], ["punctuation", ";"],
+	["keyword", "edge"], ["punctuation", ";"],
+	["keyword", "graph"], ["punctuation", ";"],
+	["keyword", "node"], ["punctuation", ";"],
+	["keyword", "strict"], ["punctuation", ";"],
+	["keyword", "subgraph"], ["punctuation", ";"]
+]

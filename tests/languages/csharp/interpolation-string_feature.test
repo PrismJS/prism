@@ -1,0 +1,138 @@
+$"Hello, {{ {name} }}! Today is {date.DayOfWeek}, it's {date:HH:mm} now."
+$"{a,5} and {b + "" /* foo ":} */:format} {h(a, b)}"
+$"{1}{2}{3}"
+
+@$"
+"
+$@"
+"
+
+$@"{
+	1 + 2 // some comment ":}{}
+}"
+
+----------------------------------------------------
+
+[
+	["interpolation-string", [
+		["string", "$\"Hello, {{ "],
+		["interpolation", [
+			["punctuation", "{"],
+			["expression", ["name"]],
+			["punctuation", "}"]
+		]],
+		["string", " }}! Today is "],
+		["interpolation", [
+			["punctuation", "{"],
+			["expression", [
+				"date",
+				["punctuation", "."],
+				"DayOfWeek"
+			]],
+			["punctuation", "}"]
+		]],
+		["string", ", it's "],
+		["interpolation", [
+			["punctuation", "{"],
+			["expression", ["date"]],
+			["format-string", [
+				["punctuation", ":"],
+				"HH:mm"
+			]],
+			["punctuation", "}"]
+		]],
+		["string", " now.\""]
+	]],
+	["interpolation-string", [
+		["string", "$\""],
+		["interpolation", [
+			["punctuation", "{"],
+			["expression", [
+				"a",
+				["punctuation", ","],
+				["number", "5"]
+			]],
+			["punctuation", "}"]
+		]],
+		["string", " and "],
+		["interpolation", [
+			["punctuation", "{"],
+			["expression", [
+				"b ",
+				["operator", "+"],
+				["string", "\"\""],
+				["comment", "/* foo \":} */"]
+			]],
+			["format-string", [
+				["punctuation", ":"],
+				"format"
+			]],
+			["punctuation", "}"]
+		]],
+		["string", " "],
+		["interpolation", [
+			["punctuation", "{"],
+			["expression", [
+				["function", "h"],
+				["punctuation", "("],
+				"a",
+				["punctuation", ","],
+				" b",
+				["punctuation", ")"]
+			]],
+			["punctuation", "}"]
+		]],
+		["string", "\""]
+	]],
+	["interpolation-string", [
+		["string", "$\""],
+		["interpolation", [
+			["punctuation", "{"],
+			["expression", [
+				["number", "1"]
+			]],
+			["punctuation", "}"]
+		]],
+		["interpolation", [
+			["punctuation", "{"],
+			["expression", [
+				["number", "2"]
+			]],
+			["punctuation", "}"]
+		]],
+		["interpolation", [
+			["punctuation", "{"],
+			["expression", [
+				["number", "3"]
+			]],
+			["punctuation", "}"]
+		]],
+		["string", "\""]
+	]],
+
+	["interpolation-string", [
+		["string", "@$\"\r\n\""]
+	]],
+	["interpolation-string", [
+		["string", "$@\"\r\n\""]
+	]],
+
+	["interpolation-string", [
+		["string", "$@\""],
+		["interpolation", [
+			["punctuation", "{"],
+			["expression", [
+				["number", "1"],
+				["operator", "+"],
+				["number", "2"],
+				["comment", "// some comment \":}{}"]
+			]],
+			["punctuation", "}"]
+		]],
+		["string", "\""]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for string interpolation.

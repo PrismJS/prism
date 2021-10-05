@@ -1,0 +1,37 @@
+global_defs {
+   @main   router_id main_router
+}
+
+vrrp_instance VRRP {
+   @main    unicast_src_ip 1.2.3.4
+   unicast_peer {
+	   @^main    1.2.3.4
+   }
+}
+
+----------------------------------------------------
+
+[
+	["property", "global_defs"],
+	["punctuation", "{"],
+	["conditional-configuration", "@main"],
+	["property", "router_id"],
+	" main_router\r\n",
+	["punctuation", "}"],
+	["property", "vrrp_instance"],
+	" VRRP ",
+	["punctuation", "{"],
+	["conditional-configuration", "@main"],
+	["property", "unicast_src_ip"],
+	["ip", "1.2.3.4"],
+	["property", "unicast_peer"],
+	["punctuation", "{"],
+	["conditional-configuration", "@^main"],
+	["ip", "1.2.3.4"],
+	["punctuation", "}"],
+	["punctuation", "}"]
+]
+
+
+
+

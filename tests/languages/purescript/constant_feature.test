@@ -1,0 +1,23 @@
+Foo
+Foo.Bar
+Baz.Foobar_42
+
+----------------------------------------------------
+
+[
+	["constant", ["Foo"]],
+	["constant", [
+		"Foo",
+		["punctuation", "."],
+		"Bar"
+	]],
+	["constant", [
+		"Baz",
+		["punctuation", "."],
+		"Foobar_42"
+	]]
+]
+
+----------------------------------------------------
+
+Checks for constants.

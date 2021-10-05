@@ -15,32 +15,43 @@ ok
 
 [
 	["pass", "ok"],
+
 	["yamlish", [
 		["punctuation", "---"],
+
 		["key", "message"],
 		["punctuation", ":"],
 		["string", "\"Failed with error 'hostname peebles.example.com not found'\""],
+
 		["key", "severity"],
 		["punctuation", ":"],
-		" fail\n    ",
+		" fail\r\n    ",
+
 		["key", "data"],
 		["punctuation", ":"],
+
 		["key", "got"],
 		["punctuation", ":"],
+
 		["key", "hostname"],
 		["punctuation", ":"],
 		["string", "'peebles.example.com'"],
+
 		["key", "address"],
 		["punctuation", ":"],
 		["null", "~"],
+
 		["key", "expected"],
 		["punctuation", ":"],
+
 		["key", "hostname"],
 		["punctuation", ":"],
 		["string", "'peebles.example.com'"],
+
 		["key", "address"],
 		["punctuation", ":"],
 		["string", "'85.193.201.85'"],
+
 		["punctuation", "..."]
 	]]
 ]

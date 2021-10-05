@@ -1,15 +1,57 @@
-struct foo
-enum bar
+struct foo;
+enum bar;
 
 struct foo var;
+struct __attribute__ ((aligned (8))) S { short f[3]; };
+
+// by name
+uint32_t foo;
+static dtrace_helptrace_t *bar;
 
 ----------------------------------------------------
 
 [
-	["keyword", "struct"], ["class-name", "foo"],
-	["keyword", "enum"], ["class-name", "bar"],
+	["keyword", "struct"],
+	["class-name", "foo"],
+	["punctuation", ";"],
+	["keyword", "enum"],
+	["class-name", "bar"],
+	["punctuation", ";"],
 
-	["keyword", "struct"], ["class-name", "foo"], " var", ["punctuation", ";"]
+	["keyword", "struct"],
+	["class-name", "foo"],
+	" var",
+	["punctuation", ";"],
+	["keyword", "struct"],
+	["keyword", "__attribute__"],
+	["punctuation", "("],
+	["punctuation", "("],
+	["function", "aligned"],
+	["punctuation", "("],
+	["number", "8"],
+	["punctuation", ")"],
+	["punctuation", ")"],
+	["punctuation", ")"],
+	["class-name", "S"],
+	["punctuation", "{"],
+	["keyword", "short"],
+	" f",
+	["punctuation", "["],
+	["number", "3"],
+	["punctuation", "]"],
+	["punctuation", ";"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["comment", "// by name"],
+	["class-name", "uint32_t"],
+	" foo",
+	["punctuation", ";"],
+	["keyword", "static"],
+	["class-name", "dtrace_helptrace_t"],
+	["operator", "*"],
+	"bar",
+	["punctuation", ";"]
 ]
 
 ----------------------------------------------------

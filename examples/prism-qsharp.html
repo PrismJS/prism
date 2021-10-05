@@ -1,0 +1,33 @@
+<h2>Full example</h2>
+<pre><code>namespace Bell {
+  open Microsoft.Quantum.Canon;
+  open Microsoft.Quantum.Intrinsic;
+
+  operation SetQubitState(desired : Result, target : Qubit) : Unit {
+      if desired != M(target) {
+          X(target);
+      }
+  }
+
+  @EntryPoint()
+  operation TestBellState(count : Int, initial : Result) : (Int, Int) {
+
+      mutable numOnes = 0;
+      use qubit = Qubit();
+      for test in 1..count {
+          SetQubitState(initial, qubit);
+          let res = M(qubit);        
+
+          // Count the number of ones we saw:
+          if res == One {
+                set numOnes += 1;
+          }
+      }
+
+      SetQubitState(Zero, qubit); 
+
+  // Return number of times we saw a |0> and number of times we saw a |1>
+  Message("Test results (# of 0s, # of 1s): ");
+  return (count - numOnes, numOnes);
+  }
+}</code></pre>

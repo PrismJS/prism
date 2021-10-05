@@ -18,7 +18,9 @@
 	["string", "'bar'"],
 	["string", "\"\\\"'foo'\\\"\""],
 	["string", "'\"\\'bar\\'\"'"],
-	["string", "\"\"\"\n\"baz\"\n\"\"\""],
+
+	["string", "\"\"\"\r\n\"baz\"\r\n\"\"\""],
+
 	["string", "@\"foo\""],
 	["string", "@'bar'"],
 	["string", "@\"\"\"baz\"\"\""]

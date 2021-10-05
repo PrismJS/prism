@@ -1,0 +1,596 @@
+ABS (
+ABS(
+ACOS(
+ACOSH(
+ACOT(
+ACOTH(
+ADDCOLUMNS(
+ADDMISSINGITEMS(
+ALL(
+ALLCROSSFILTERED(
+ALLEXCEPT(
+ALLNOBLANKROW(
+ALLSELECTED(
+AND(
+APPROXIMATEDISTINCTCOUNT(
+ASIN(
+ASINH(
+ATAN(
+ATANH(
+AVERAGE(
+AVERAGEA(
+AVERAGEX(
+BETA.DIST(
+BETA.INV(
+BLANK(
+CALCULATE(
+CALCULATETABLE(
+CALENDAR(
+CALENDARAUTO(
+CEILING(
+CHISQ.DIST(
+CHISQ.DIST.RT(
+CHISQ.INV(
+CHISQ.INV.RT(
+CLOSINGBALANCEMONTH(
+CLOSINGBALANCEQUARTER(
+CLOSINGBALANCEYEAR(
+COALESCE(
+COMBIN(
+COMBINA(
+COMBINEVALUES(
+CONCATENATE(
+CONCATENATEX(
+CONFIDENCE.NORM(
+CONFIDENCE.T(
+CONTAINS(
+CONTAINSROW(
+CONTAINSSTRING(
+CONTAINSSTRINGEXACT(
+CONVERT(
+COS(
+COSH(
+COT(
+COTH(
+COUNT(
+COUNTA(
+COUNTAX(
+COUNTBLANK(
+COUNTROWS(
+COUNTX(
+CROSSFILTER(
+CROSSJOIN(
+CURRENCY(
+CURRENTGROUP(
+CUSTOMDATA(
+DATATABLE(
+DATE(
+DATEADD(
+DATEDIFF(
+DATESBETWEEN(
+DATESINPERIOD(
+DATESMTD(
+DATESQTD(
+DATESYTD(
+DATEVALUE(
+DAY(
+DEGREES(
+DETAILROWS(
+DISTINCT(
+DISTINCTCOUNT(
+DISTINCTCOUNTNOBLANK(
+DIVIDE(
+EARLIER(
+EARLIEST(
+EDATE(
+ENDOFMONTH(
+ENDOFQUARTER(
+ENDOFYEAR(
+EOMONTH(
+ERROR(
+EVEN(
+EXACT(
+EXCEPT(
+EXP(
+EXPON.DIST(
+FACT(
+FALSE(
+FILTER(
+FILTERS(
+FIND(
+FIRSTDATE(
+FIRSTNONBLANK(
+FIRSTNONBLANKVALUE(
+FIXED(
+FLOOR(
+FORMAT(
+GCD(
+GENERATE(
+GENERATEALL(
+GENERATESERIES(
+GEOMEAN(
+GEOMEANX(
+GROUPBY(
+HASONEFILTER(
+HASONEVALUE(
+HOUR(
+IF(
+IF.EAGER(
+IFERROR(
+IGNORE(
+INT(
+INTERSECT(
+ISBLANK(
+ISCROSSFILTERED(
+ISEMPTY(
+ISERROR(
+ISEVEN(
+ISFILTERED(
+ISINSCOPE(
+ISLOGICAL(
+ISNONTEXT(
+ISNUMBER(
+ISO.CEILING(
+ISODD(
+ISONORAFTER(
+ISSELECTEDMEASURE(
+ISSUBTOTAL(
+ISTEXT(
+KEEPFILTERS(
+KEYWORDMATCH(
+LASTDATE(
+LASTNONBLANK(
+LASTNONBLANKVALUE(
+LCM(
+LEFT(
+LEN(
+LN(
+LOG(
+LOG10(
+LOOKUPVALUE(
+LOWER(
+MAX(
+MAXA(
+MAXX(
+MEDIAN(
+MEDIANX(
+MID(
+MIN(
+MINA(
+MINUTE(
+MINX(
+MOD(
+MONTH(
+MROUND(
+NATURALINNERJOIN(
+NATURALLEFTOUTERJOIN(
+NEXTDAY(
+NEXTMONTH(
+NEXTQUARTER(
+NEXTYEAR(
+NONVISUAL(
+NORM.DIST(
+NORM.INV(
+NORM.S.DIST(
+NORM.S.INV(
+NOT(
+NOW(
+ODD(
+OPENINGBALANCEMONTH(
+OPENINGBALANCEQUARTER(
+OPENINGBALANCEYEAR(
+OR(
+PARALLELPERIOD(
+PATH(
+PATHCONTAINS(
+PATHITEM(
+PATHITEMREVERSE(
+PATHLENGTH(
+PERCENTILE.EXC(
+PERCENTILE.INC(
+PERCENTILEX.EXC(
+PERCENTILEX.INC(
+PERMUT(
+PI(
+POISSON.DIST(
+POWER(
+PREVIOUSDAY(
+PREVIOUSMONTH(
+PREVIOUSQUARTER(
+PREVIOUSYEAR(
+PRODUCT(
+PRODUCTX(
+QUARTER(
+QUOTIENT(
+RADIANS(
+RAND(
+RANDBETWEEN(
+RANK.EQ(
+RANKX(
+RELATED(
+RELATEDTABLE(
+REMOVEFILTERS(
+REPLACE(
+REPT(
+RIGHT(
+ROLLUP(
+ROLLUPADDISSUBTOTAL(
+ROLLUPGROUP(
+ROLLUPISSUBTOTAL(
+ROUND(
+ROUNDDOWN(
+ROUNDUP(
+ROW(
+SAMEPERIODLASTYEAR(
+SAMPLE(
+SEARCH(
+SECOND(
+SELECTCOLUMNS(
+SELECTEDMEASURE(
+SELECTEDMEASUREFORMATSTRING(
+SELECTEDMEASURENAME(
+SELECTEDVALUE(
+SIGN(
+SIN(
+SINH(
+SQRT(
+SQRTPI(
+STARTOFMONTH(
+STARTOFQUARTER(
+STARTOFYEAR(
+STDEV.P(
+STDEV.S(
+STDEVX.P(
+STDEVX.S(
+SUBSTITUTE(
+SUBSTITUTEWITHINDEX(
+SUM(
+SUMMARIZE(
+SUMMARIZECOLUMNS(
+SUMX(
+SWITCH(
+T.DIST(
+T.DIST.2T(
+T.DIST.RT(
+T.INV(
+T.INV.2T(
+TAN(
+TANH(
+TIME(
+TIMEVALUE(
+TODAY(
+TOPN(
+TOPNPERLEVEL(
+TOPNSKIP(
+TOTALMTD(
+TOTALQTD(
+TOTALYTD(
+TREATAS(
+TRIM(
+TRUE(
+TRUNC(
+UNICHAR(
+UNICODE(
+UNION(
+UPPER(
+USERELATIONSHIP(
+USERNAME(
+USEROBJECTID(
+USERPRINCIPALNAME(
+UTCNOW(
+UTCTODAY(
+VALUE(
+VALUES(
+VAR.P(
+VAR.S(
+VARX.P(
+VARX.S(
+WEEKDAY(
+WEEKNUM(
+XIRR(
+XNPV(
+YEAR(
+YEARFRAC(
+
+
+----------------------------------------------------
+
+[
+	["function", "ABS"], ["punctuation", "("],
+	["function", "ABS"], ["punctuation","("],
+	["function", "ACOS"], ["punctuation","("],
+	["function", "ACOSH"], ["punctuation","("],
+	["function", "ACOT"], ["punctuation","("],
+	["function", "ACOTH"], ["punctuation","("],
+	["function", "ADDCOLUMNS"], ["punctuation","("],
+	["function", "ADDMISSINGITEMS"], ["punctuation","("],
+	["function", "ALL"], ["punctuation","("],
+	["function", "ALLCROSSFILTERED"], ["punctuation","("],
+	["function", "ALLEXCEPT"], ["punctuation","("],
+	["function", "ALLNOBLANKROW"], ["punctuation","("],
+	["function", "ALLSELECTED"], ["punctuation","("],
+	["function", "AND"], ["punctuation","("],
+	["function", "APPROXIMATEDISTINCTCOUNT"], ["punctuation","("],
+	["function", "ASIN"], ["punctuation","("],
+	["function", "ASINH"], ["punctuation","("],
+	["function", "ATAN"], ["punctuation","("],
+	["function", "ATANH"], ["punctuation","("],
+	["function", "AVERAGE"], ["punctuation","("],
+	["function", "AVERAGEA"], ["punctuation","("],
+	["function", "AVERAGEX"], ["punctuation","("],
+	["function", "BETA.DIST"], ["punctuation","("],
+	["function", "BETA.INV"], ["punctuation","("],
+	["function", "BLANK"], ["punctuation","("],
+	["function", "CALCULATE"], ["punctuation","("],
+	["function", "CALCULATETABLE"], ["punctuation","("],
+	["function", "CALENDAR"], ["punctuation","("],
+	["function", "CALENDARAUTO"], ["punctuation","("],
+	["function", "CEILING"], ["punctuation","("],
+	["function", "CHISQ.DIST"], ["punctuation","("],
+	["function", "CHISQ.DIST.RT"], ["punctuation","("],
+	["function", "CHISQ.INV"], ["punctuation","("],
+	["function", "CHISQ.INV.RT"], ["punctuation","("],
+	["function", "CLOSINGBALANCEMONTH"], ["punctuation","("],
+	["function", "CLOSINGBALANCEQUARTER"], ["punctuation","("],
+	["function", "CLOSINGBALANCEYEAR"], ["punctuation","("],
+	["function", "COALESCE"], ["punctuation","("],
+	["function", "COMBIN"], ["punctuation","("],
+	["function", "COMBINA"], ["punctuation","("],
+	["function", "COMBINEVALUES"], ["punctuation","("],
+	["function", "CONCATENATE"], ["punctuation","("],
+	["function", "CONCATENATEX"], ["punctuation","("],
+	["function", "CONFIDENCE.NORM"], ["punctuation","("],
+	["function", "CONFIDENCE.T"], ["punctuation","("],
+	["function", "CONTAINS"], ["punctuation","("],
+	["function", "CONTAINSROW"], ["punctuation","("],
+	["function", "CONTAINSSTRING"], ["punctuation","("],
+	["function", "CONTAINSSTRINGEXACT"], ["punctuation","("],
+	["function", "CONVERT"], ["punctuation","("],
+	["function", "COS"], ["punctuation","("],
+	["function", "COSH"], ["punctuation","("],
+	["function", "COT"], ["punctuation","("],
+	["function", "COTH"], ["punctuation","("],
+	["function", "COUNT"], ["punctuation","("],
+	["function", "COUNTA"], ["punctuation","("],
+	["function", "COUNTAX"], ["punctuation","("],
+	["function", "COUNTBLANK"], ["punctuation","("],
+	["function", "COUNTROWS"], ["punctuation","("],
+	["function", "COUNTX"], ["punctuation","("],
+	["function", "CROSSFILTER"], ["punctuation","("],
+	["function", "CROSSJOIN"], ["punctuation","("],
+	["function", "CURRENCY"], ["punctuation","("],
+	["function", "CURRENTGROUP"], ["punctuation","("],
+	["function", "CUSTOMDATA"], ["punctuation","("],
+	["function", "DATATABLE"], ["punctuation","("],
+	["function", "DATE"], ["punctuation","("],
+	["function", "DATEADD"], ["punctuation","("],
+	["function", "DATEDIFF"], ["punctuation","("],
+	["function", "DATESBETWEEN"], ["punctuation","("],
+	["function", "DATESINPERIOD"], ["punctuation","("],
+	["function", "DATESMTD"], ["punctuation","("],
+	["function", "DATESQTD"], ["punctuation","("],
+	["function", "DATESYTD"], ["punctuation","("],
+	["function", "DATEVALUE"], ["punctuation","("],
+	["function", "DAY"], ["punctuation","("],
+	["function", "DEGREES"], ["punctuation","("],
+	["function", "DETAILROWS"], ["punctuation","("],
+	["function", "DISTINCT"], ["punctuation","("],
+	["function", "DISTINCTCOUNT"], ["punctuation","("],
+	["function", "DISTINCTCOUNTNOBLANK"], ["punctuation","("],
+	["function", "DIVIDE"], ["punctuation","("],
+	["function", "EARLIER"], ["punctuation","("],
+	["function", "EARLIEST"], ["punctuation","("],
+	["function", "EDATE"], ["punctuation","("],
+	["function", "ENDOFMONTH"], ["punctuation","("],
+	["function", "ENDOFQUARTER"], ["punctuation","("],
+	["function", "ENDOFYEAR"], ["punctuation","("],
+	["function", "EOMONTH"], ["punctuation","("],
+	["function", "ERROR"], ["punctuation","("],
+	["function", "EVEN"], ["punctuation","("],
+	["function", "EXACT"], ["punctuation","("],
+	["function", "EXCEPT"], ["punctuation","("],
+	["function", "EXP"], ["punctuation","("],
+	["function", "EXPON.DIST"], ["punctuation","("],
+	["function", "FACT"], ["punctuation","("],
+	["function", "FALSE"], ["punctuation","("],
+	["function", "FILTER"], ["punctuation","("],
+	["function", "FILTERS"], ["punctuation","("],
+	["function", "FIND"], ["punctuation","("],
+	["function", "FIRSTDATE"], ["punctuation","("],
+	["function", "FIRSTNONBLANK"], ["punctuation","("],
+	["function", "FIRSTNONBLANKVALUE"], ["punctuation","("],
+	["function", "FIXED"], ["punctuation","("],
+	["function", "FLOOR"], ["punctuation","("],
+	["function", "FORMAT"], ["punctuation","("],
+	["function", "GCD"], ["punctuation","("],
+	["function", "GENERATE"], ["punctuation","("],
+	["function", "GENERATEALL"], ["punctuation","("],
+	["function", "GENERATESERIES"], ["punctuation","("],
+	["function", "GEOMEAN"], ["punctuation","("],
+	["function", "GEOMEANX"], ["punctuation","("],
+	["function", "GROUPBY"], ["punctuation","("],
+	["function", "HASONEFILTER"], ["punctuation","("],
+	["function", "HASONEVALUE"], ["punctuation","("],
+	["function", "HOUR"], ["punctuation","("],
+	["function", "IF"], ["punctuation","("],
+	["function", "IF.EAGER"], ["punctuation","("],
+	["function", "IFERROR"], ["punctuation","("],
+	["function", "IGNORE"], ["punctuation","("],
+	["function", "INT"], ["punctuation","("],
+	["function", "INTERSECT"], ["punctuation","("],
+	["function", "ISBLANK"], ["punctuation","("],
+	["function", "ISCROSSFILTERED"], ["punctuation","("],
+	["function", "ISEMPTY"], ["punctuation","("],
+	["function", "ISERROR"], ["punctuation","("],
+	["function", "ISEVEN"], ["punctuation","("],
+	["function", "ISFILTERED"], ["punctuation","("],
+	["function", "ISINSCOPE"], ["punctuation","("],
+	["function", "ISLOGICAL"], ["punctuation","("],
+	["function", "ISNONTEXT"], ["punctuation","("],
+	["function", "ISNUMBER"], ["punctuation","("],
+	["function", "ISO.CEILING"], ["punctuation","("],
+	["function", "ISODD"], ["punctuation","("],
+	["function", "ISONORAFTER"], ["punctuation","("],
+	["function", "ISSELECTEDMEASURE"], ["punctuation","("],
+	["function", "ISSUBTOTAL"], ["punctuation","("],
+	["function", "ISTEXT"], ["punctuation","("],
+	["function", "KEEPFILTERS"], ["punctuation","("],
+	["function", "KEYWORDMATCH"], ["punctuation","("],
+	["function", "LASTDATE"], ["punctuation","("],
+	["function", "LASTNONBLANK"], ["punctuation","("],
+	["function", "LASTNONBLANKVALUE"], ["punctuation","("],
+	["function", "LCM"], ["punctuation","("],
+	["function", "LEFT"], ["punctuation","("],
+	["function", "LEN"], ["punctuation","("],
+	["function", "LN"], ["punctuation","("],
+	["function", "LOG"], ["punctuation","("],
+	["function", "LOG10"], ["punctuation","("],
+	["function", "LOOKUPVALUE"], ["punctuation","("],
+	["function", "LOWER"], ["punctuation","("],
+	["function", "MAX"], ["punctuation","("],
+	["function", "MAXA"], ["punctuation","("],
+	["function", "MAXX"], ["punctuation","("],
+	["function", "MEDIAN"], ["punctuation","("],
+	["function", "MEDIANX"], ["punctuation","("],
+	["function", "MID"], ["punctuation","("],
+	["function", "MIN"], ["punctuation","("],
+	["function", "MINA"], ["punctuation","("],
+	["function", "MINUTE"], ["punctuation","("],
+	["function", "MINX"], ["punctuation","("],
+	["function", "MOD"], ["punctuation","("],
+	["function", "MONTH"], ["punctuation","("],
+	["function", "MROUND"], ["punctuation","("],
+	["function", "NATURALINNERJOIN"], ["punctuation","("],
+	["function", "NATURALLEFTOUTERJOIN"], ["punctuation","("],
+	["function", "NEXTDAY"], ["punctuation","("],
+	["function", "NEXTMONTH"], ["punctuation","("],
+	["function", "NEXTQUARTER"], ["punctuation","("],
+	["function", "NEXTYEAR"], ["punctuation","("],
+	["function", "NONVISUAL"], ["punctuation","("],
+	["function", "NORM.DIST"], ["punctuation","("],
+	["function", "NORM.INV"], ["punctuation","("],
+	["function", "NORM.S.DIST"], ["punctuation","("],
+	["function", "NORM.S.INV"], ["punctuation","("],
+	["function", "NOT"], ["punctuation","("],
+	["function", "NOW"], ["punctuation","("],
+	["function", "ODD"], ["punctuation","("],
+	["function", "OPENINGBALANCEMONTH"], ["punctuation","("],
+	["function", "OPENINGBALANCEQUARTER"], ["punctuation","("],
+	["function", "OPENINGBALANCEYEAR"], ["punctuation","("],
+	["function", "OR"], ["punctuation","("],
+	["function", "PARALLELPERIOD"], ["punctuation","("],
+	["function", "PATH"], ["punctuation","("],
+	["function", "PATHCONTAINS"], ["punctuation","("],
+	["function", "PATHITEM"], ["punctuation","("],
+	["function", "PATHITEMREVERSE"], ["punctuation","("],
+	["function", "PATHLENGTH"], ["punctuation","("],
+	["function", "PERCENTILE.EXC"], ["punctuation","("],
+	["function", "PERCENTILE.INC"], ["punctuation","("],
+	["function", "PERCENTILEX.EXC"], ["punctuation","("],
+	["function", "PERCENTILEX.INC"], ["punctuation","("],
+	["function", "PERMUT"], ["punctuation","("],
+	["function", "PI"], ["punctuation","("],
+	["function", "POISSON.DIST"], ["punctuation","("],
+	["function", "POWER"], ["punctuation","("],
+	["function", "PREVIOUSDAY"], ["punctuation","("],
+	["function", "PREVIOUSMONTH"], ["punctuation","("],
+	["function", "PREVIOUSQUARTER"], ["punctuation","("],
+	["function", "PREVIOUSYEAR"], ["punctuation","("],
+	["function", "PRODUCT"], ["punctuation","("],
+	["function", "PRODUCTX"], ["punctuation","("],
+	["function", "QUARTER"], ["punctuation","("],
+	["function", "QUOTIENT"], ["punctuation","("],
+	["function", "RADIANS"], ["punctuation","("],
+	["function", "RAND"], ["punctuation","("],
+	["function", "RANDBETWEEN"], ["punctuation","("],
+	["function", "RANK.EQ"], ["punctuation","("],
+	["function", "RANKX"], ["punctuation","("],
+	["function", "RELATED"], ["punctuation","("],
+	["function", "RELATEDTABLE"], ["punctuation","("],
+	["function", "REMOVEFILTERS"], ["punctuation","("],
+	["function", "REPLACE"], ["punctuation","("],
+	["function", "REPT"], ["punctuation","("],
+	["function", "RIGHT"], ["punctuation","("],
+	["function", "ROLLUP"], ["punctuation","("],
+	["function", "ROLLUPADDISSUBTOTAL"], ["punctuation","("],
+	["function", "ROLLUPGROUP"], ["punctuation","("],
+	["function", "ROLLUPISSUBTOTAL"], ["punctuation","("],
+	["function", "ROUND"], ["punctuation","("],
+	["function", "ROUNDDOWN"], ["punctuation","("],
+	["function", "ROUNDUP"], ["punctuation","("],
+	["function", "ROW"], ["punctuation","("],
+	["function", "SAMEPERIODLASTYEAR"], ["punctuation","("],
+	["function", "SAMPLE"], ["punctuation","("],
+	["function", "SEARCH"], ["punctuation","("],
+	["function", "SECOND"], ["punctuation","("],
+	["function", "SELECTCOLUMNS"], ["punctuation","("],
+	["function", "SELECTEDMEASURE"], ["punctuation","("],
+	["function", "SELECTEDMEASUREFORMATSTRING"], ["punctuation","("],
+	["function", "SELECTEDMEASURENAME"], ["punctuation","("],
+	["function", "SELECTEDVALUE"], ["punctuation","("],
+	["function", "SIGN"], ["punctuation","("],
+	["function", "SIN"], ["punctuation","("],
+	["function", "SINH"], ["punctuation","("],
+	["function", "SQRT"], ["punctuation","("],
+	["function", "SQRTPI"], ["punctuation","("],
+	["function", "STARTOFMONTH"], ["punctuation","("],
+	["function", "STARTOFQUARTER"], ["punctuation","("],
+	["function", "STARTOFYEAR"], ["punctuation","("],
+	["function", "STDEV.P"], ["punctuation","("],
+	["function", "STDEV.S"], ["punctuation","("],
+	["function", "STDEVX.P"], ["punctuation","("],
+	["function", "STDEVX.S"], ["punctuation","("],
+	["function", "SUBSTITUTE"], ["punctuation","("],
+	["function", "SUBSTITUTEWITHINDEX"], ["punctuation","("],
+	["function", "SUM"], ["punctuation","("],
+	["function", "SUMMARIZE"], ["punctuation","("],
+	["function", "SUMMARIZECOLUMNS"], ["punctuation","("],
+	["function", "SUMX"], ["punctuation","("],
+	["function", "SWITCH"], ["punctuation","("],
+	["function", "T.DIST"], ["punctuation","("],
+	["function", "T.DIST.2T"], ["punctuation","("],
+	["function", "T.DIST.RT"], ["punctuation","("],
+	["function", "T.INV"], ["punctuation","("],
+	["function", "T.INV.2T"], ["punctuation","("],
+	["function", "TAN"], ["punctuation","("],
+	["function", "TANH"], ["punctuation","("],
+	["function", "TIME"], ["punctuation","("],
+	["function", "TIMEVALUE"], ["punctuation","("],
+	["function", "TODAY"], ["punctuation","("],
+	["function", "TOPN"], ["punctuation","("],
+	["function", "TOPNPERLEVEL"], ["punctuation","("],
+	["function", "TOPNSKIP"], ["punctuation","("],
+	["function", "TOTALMTD"], ["punctuation","("],
+	["function", "TOTALQTD"], ["punctuation","("],
+	["function", "TOTALYTD"], ["punctuation","("],
+	["function", "TREATAS"], ["punctuation","("],
+	["function", "TRIM"], ["punctuation","("],
+	["function", "TRUE"], ["punctuation","("],
+	["function", "TRUNC"], ["punctuation","("],
+	["function", "UNICHAR"], ["punctuation","("],
+	["function", "UNICODE"], ["punctuation","("],
+	["function", "UNION"], ["punctuation","("],
+	["function", "UPPER"], ["punctuation","("],
+	["function", "USERELATIONSHIP"], ["punctuation","("],
+	["function", "USERNAME"], ["punctuation","("],
+	["function", "USEROBJECTID"], ["punctuation","("],
+	["function", "USERPRINCIPALNAME"], ["punctuation","("],
+	["function", "UTCNOW"], ["punctuation","("],
+	["function", "UTCTODAY"], ["punctuation","("],
+	["function", "VALUE"], ["punctuation","("],
+	["function", "VALUES"], ["punctuation","("],
+	["function", "VAR.P"], ["punctuation","("],
+	["function", "VAR.S"], ["punctuation","("],
+	["function", "VARX.P"], ["punctuation","("],
+	["function", "VARX.S"], ["punctuation","("],
+	["function", "WEEKDAY"], ["punctuation","("],
+	["function", "WEEKNUM"], ["punctuation","("],
+	["function", "XIRR"], ["punctuation","("],
+	["function", "XNPV"], ["punctuation","("],
+	["function", "YEAR"], ["punctuation","("],
+	["function", "YEARFRAC"], ["punctuation","("]
+]
+
+----------------------------------------------------
+
+Checks for functions.

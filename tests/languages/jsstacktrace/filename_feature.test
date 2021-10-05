@@ -1,0 +1,30 @@
+Some text
+	at (foo/bar.baz:123:98)
+
+----------------------------------------------------
+
+[
+	["error-message", "Some text"],
+	[
+		"stack-frame",
+		[
+			["keyword", "at"],
+			["punctuation", "("],
+			["filename", "foo/bar.baz"],
+			[
+				"line-number",
+				[
+					["punctuation", ":"],
+					"123",
+					["punctuation", ":"],
+					"98"
+				]
+			],
+			["punctuation", ")"]
+		]
+	]
+]
+
+----------------------------------------------------
+
+Checks basic a basic error message.

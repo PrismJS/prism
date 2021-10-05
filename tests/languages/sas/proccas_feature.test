@@ -1,0 +1,143 @@
+proc cas;
+   session casauto;
+   builtins.actionSetInfo result=results;
+   print results.setinfo[,{'actionset', 'label'}];
+run;
+quit;
+
+proc cas;
+  /* Testing a comment */
+  session casauto;
+  output log;
+  table.loadTable / path="iris.sashdat";
+  simple.summary result=iris / table={name="iris"};
+  tableIris=findtable(iris);
+  saveresult tableIris csv="sum.csv";
+run;
+quit;
+
+proc cas;
+  action table.fileinfo / path="%.csv";
+run;
+quit;
+
+----------------------------------------------------
+
+[
+	["step", "proc cas"],
+	["punctuation", ";"],
+	["proc-cas",
+		[
+			["keyword", "session"],
+			" casauto",
+			["punctuation", ";"],
+			["cas-actions", [
+					["keyword", "builtins.actionSetInfo"],
+					["argument", "result"],
+					["operator", "="],
+				["arg-value", "results"]
+				]
+			],
+			["punctuation", ";"],
+			["keyword", "print"],
+			" results",
+			["punctuation", "."],
+			"setinfo",
+			["punctuation", "["],
+			["punctuation", ","],
+			["punctuation", "{"],
+			["string", "'actionset'"],
+			["punctuation", ","],
+			["string", "'label'"],
+			["punctuation", "}"],
+			["punctuation", "]"],
+			["punctuation", ";"],
+			["step", "run"],
+			["punctuation", ";"]
+		]
+	],
+	["step", "quit"],
+	["punctuation", ";"],
+	["step", "proc cas"],
+	["punctuation", ";"],
+	["proc-cas",
+		[
+			["comment", "/* Testing a comment */"],
+			["keyword", "session"],
+			" casauto",
+			["punctuation", ";"],
+			["statement", [
+				["arg", "output"],
+				["arg", "log"]
+			]],
+			["punctuation", ";"],
+			["cas-actions", [
+					["keyword", "table.loadTable"],
+					" / ",
+					["argument", "path"],
+					["operator", "="],
+					["string", "\"iris.sashdat\""]
+					]
+		],
+		["punctuation", ";"],
+		["cas-actions", [
+				["keyword", "simple.summary"],
+				["argument", "result"],
+				["operator", "="],
+				["arg-value", "iris"],
+				" / ",
+				["argument", "table"],
+				["operator", "="],
+				["punctuation", "{"],
+				["argument", "name"],
+				["operator", "="],
+				["string", "\"iris\""],
+				["punctuation", "}"]
+			]
+		],
+		["punctuation", ";"],
+		"\r\n  tableIris=",
+		["function", "findtable"],
+		["punctuation", "("],
+		"iris",
+		["punctuation", ")"],
+		["punctuation", ";"],
+		["statement-var", [
+			[ "statement", [
+					["keyword", "saveresult"],
+					" tableIris"
+				]
+			],
+			["arg", "csv"],
+			["operator", "="],
+			["string", "\"sum.csv\""]
+		]],
+		["punctuation", ";"],
+		["step", "run"],
+		["punctuation", ";"]
+		]
+	],
+	["step", "quit"],
+	["punctuation", ";"],
+	["step", "proc cas"],
+	["punctuation", ";"],
+	["proc-cas",
+		[
+			["cas-actions",
+					[
+					["action", "action"],
+					["keyword", "table.fileinfo"],
+					" / ",
+					["argument", "path"],
+					["operator", "="],
+					["string", "\"%.csv\""]
+				]
+			],
+			["punctuation", ";"],
+			["step", "run"],
+			["punctuation", ";"]
+		]
+	],
+	["step", "quit"],
+	["punctuation", ";"]
+]

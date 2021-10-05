@@ -1,0 +1,547 @@
+_
+Abort
+About
+Add
+Admit
+Admitted
+All
+apply
+Arguments
+as
+As
+Assumptions
+at
+Axiom
+Axioms
+Back
+BackTo
+Backtrace
+Bind
+BinOp
+BinOpSpec
+BinRel
+Blacklist
+by
+Canonical
+Case
+Cd
+Check
+Class
+Classes
+Close
+Coercion
+Coercions
+cofix
+CoFixpoint
+CoInductive
+Collection
+Combined
+Compute
+Conjecture
+Conjectures
+Constant
+Constants
+Constraint
+Constructors
+Context
+Corollary
+Create
+CstOp
+Custom
+Cut
+Debug
+Declare
+Defined
+Definition
+Delimit
+Dependencies
+Dependent
+Derive
+Diffs
+Drop
+Elimination
+else
+end
+End
+Entry
+Equality
+Eval
+Example
+Existential
+Existentials
+Existing
+exists
+exists2
+Export
+Extern
+Extraction
+Fact
+Fail
+Field
+File
+Firstorder
+fix
+Fixpoint
+Flags
+Focus
+for
+forall
+From
+fun
+Funclass
+Function
+Functional
+GC
+Generalizable
+Goal
+Grab
+Grammar
+Graph
+Guarded
+Haskell
+Heap
+Hide
+Hint
+HintDb
+Hints
+Hypotheses
+Hypothesis
+Identity
+if
+IF
+Immediate
+Implicit
+Implicits
+Import
+in
+Include
+Induction
+Inductive
+Infix
+Info
+Initial
+InjTyp
+Inline
+Inspect
+Instance
+Instances
+Intro
+Intros
+Inversion
+Inversion_clear
+JSON
+Language
+Left
+Lemma
+let
+Let
+Lia
+Libraries
+Library
+Load
+LoadPath
+Locate
+Ltac
+Ltac2
+match
+Match
+measure
+Method
+Minimality
+ML
+Module
+Modules
+Morphism
+move
+Next
+NoInline
+Notation
+Number
+Obligation
+Obligations
+OCaml
+Opaque
+Open
+Optimize
+Parameter
+Parameters
+Parametric
+Path
+Paths
+Prenex
+Preterm
+Primitive
+Print
+Profile
+Projections
+Proof
+Prop
+PropBinOp
+Property
+PropOp
+Proposition
+PropUOp
+Pwd
+Qed
+Quit
+Rec
+Record
+Recursive
+Redirect
+Reduction
+Register
+Relation
+Remark
+Remove
+removed
+Require
+Reserved
+Reset
+Resolve
+Restart
+return
+Rewrite
+Right
+Ring
+Rings
+Saturate
+Save
+Scheme
+Scope
+Scopes
+Search
+SearchHead
+SearchPattern
+SearchRewrite
+Section
+Separate
+Set
+Setoid
+Show
+Signatures
+Solve
+Solver
+Sort
+Sortclass
+Sorted
+Spec
+SProp
+Step
+Strategies
+Strategy
+String
+struct
+Structure
+SubClass
+Subgraph
+SuchThat
+Tactic
+Term
+TestCompile
+then
+Theorem
+Time
+Timeout
+To
+Transparent
+Type
+Typeclasses
+Types
+Typing
+Undelimit
+Undo
+Unfocus
+Unfocused
+Unfold
+Universe
+Universes
+UnOp
+UnOpSpec
+Unshelve
+using
+Variable
+Variables
+Variant
+Verbose
+View
+Visibility
+wf
+where
+with
+Zify
+
+----------------------------------------------------
+
+[
+	["keyword", "_"],
+	["keyword", "Abort"],
+	["keyword", "About"],
+	["keyword", "Add"],
+	["keyword", "Admit"],
+	["keyword", "Admitted"],
+	["keyword", "All"],
+	["keyword", "apply"],
+	["keyword", "Arguments"],
+	["keyword", "as"],
+	["keyword", "As"],
+	["keyword", "Assumptions"],
+	["keyword", "at"],
+	["keyword", "Axiom"],
+	["keyword", "Axioms"],
+	["keyword", "Back"],
+	["keyword", "BackTo"],
+	["keyword", "Backtrace"],
+	["keyword", "Bind"],
+	["keyword", "BinOp"],
+	["keyword", "BinOpSpec"],
+	["keyword", "BinRel"],
+	["keyword", "Blacklist"],
+	["keyword", "by"],
+	["keyword", "Canonical"],
+	["keyword", "Case"],
+	["keyword", "Cd"],
+	["keyword", "Check"],
+	["keyword", "Class"],
+	["keyword", "Classes"],
+	["keyword", "Close"],
+	["keyword", "Coercion"],
+	["keyword", "Coercions"],
+	["keyword", "cofix"],
+	["keyword", "CoFixpoint"],
+	["keyword", "CoInductive"],
+	["keyword", "Collection"],
+	["keyword", "Combined"],
+	["keyword", "Compute"],
+	["keyword", "Conjecture"],
+	["keyword", "Conjectures"],
+	["keyword", "Constant"],
+	["keyword", "Constants"],
+	["keyword", "Constraint"],
+	["keyword", "Constructors"],
+	["keyword", "Context"],
+	["keyword", "Corollary"],
+	["keyword", "Create"],
+	["keyword", "CstOp"],
+	["keyword", "Custom"],
+	["keyword", "Cut"],
+	["keyword", "Debug"],
+	["keyword", "Declare"],
+	["keyword", "Defined"],
+	["keyword", "Definition"],
+	["keyword", "Delimit"],
+	["keyword", "Dependencies"],
+	["keyword", "Dependent"],
+	["keyword", "Derive"],
+	["keyword", "Diffs"],
+	["keyword", "Drop"],
+	["keyword", "Elimination"],
+	["keyword", "else"],
+	["keyword", "end"],
+	["keyword", "End"],
+	["keyword", "Entry"],
+	["keyword", "Equality"],
+	["keyword", "Eval"],
+	["keyword", "Example"],
+	["keyword", "Existential"],
+	["keyword", "Existentials"],
+	["keyword", "Existing"],
+	["keyword", "exists"],
+	["keyword", "exists2"],
+	["keyword", "Export"],
+	["keyword", "Extern"],
+	["keyword", "Extraction"],
+	["keyword", "Fact"],
+	["keyword", "Fail"],
+	["keyword", "Field"],
+	["keyword", "File"],
+	["keyword", "Firstorder"],
+	["keyword", "fix"],
+	["keyword", "Fixpoint"],
+	["keyword", "Flags"],
+	["keyword", "Focus"],
+	["keyword", "for"],
+	["keyword", "forall"],
+	["keyword", "From"],
+	["keyword", "fun"],
+	["keyword", "Funclass"],
+	["keyword", "Function"],
+	["keyword", "Functional"],
+	["keyword", "GC"],
+	["keyword", "Generalizable"],
+	["keyword", "Goal"],
+	["keyword", "Grab"],
+	["keyword", "Grammar"],
+	["keyword", "Graph"],
+	["keyword", "Guarded"],
+	["keyword", "Haskell"],
+	["keyword", "Heap"],
+	["keyword", "Hide"],
+	["keyword", "Hint"],
+	["keyword", "HintDb"],
+	["keyword", "Hints"],
+	["keyword", "Hypotheses"],
+	["keyword", "Hypothesis"],
+	["keyword", "Identity"],
+	["keyword", "if"],
+	["keyword", "IF"],
+	["keyword", "Immediate"],
+	["keyword", "Implicit"],
+	["keyword", "Implicits"],
+	["keyword", "Import"],
+	["keyword", "in"],
+	["keyword", "Include"],
+	["keyword", "Induction"],
+	["keyword", "Inductive"],
+	["keyword", "Infix"],
+	["keyword", "Info"],
+	["keyword", "Initial"],
+	["keyword", "InjTyp"],
+	["keyword", "Inline"],
+	["keyword", "Inspect"],
+	["keyword", "Instance"],
+	["keyword", "Instances"],
+	["keyword", "Intro"],
+	["keyword", "Intros"],
+	["keyword", "Inversion"],
+	["keyword", "Inversion_clear"],
+	["keyword", "JSON"],
+	["keyword", "Language"],
+	["keyword", "Left"],
+	["keyword", "Lemma"],
+	["keyword", "let"],
+	["keyword", "Let"],
+	["keyword", "Lia"],
+	["keyword", "Libraries"],
+	["keyword", "Library"],
+	["keyword", "Load"],
+	["keyword", "LoadPath"],
+	["keyword", "Locate"],
+	["keyword", "Ltac"],
+	["keyword", "Ltac2"],
+	["keyword", "match"],
+	["keyword", "Match"],
+	["keyword", "measure"],
+	["keyword", "Method"],
+	["keyword", "Minimality"],
+	["keyword", "ML"],
+	["keyword", "Module"],
+	["keyword", "Modules"],
+	["keyword", "Morphism"],
+	["keyword", "move"],
+	["keyword", "Next"],
+	["keyword", "NoInline"],
+	["keyword", "Notation"],
+	["keyword", "Number"],
+	["keyword", "Obligation"],
+	["keyword", "Obligations"],
+	["keyword", "OCaml"],
+	["keyword", "Opaque"],
+	["keyword", "Open"],
+	["keyword", "Optimize"],
+	["keyword", "Parameter"],
+	["keyword", "Parameters"],
+	["keyword", "Parametric"],
+	["keyword", "Path"],
+	["keyword", "Paths"],
+	["keyword", "Prenex"],
+	["keyword", "Preterm"],
+	["keyword", "Primitive"],
+	["keyword", "Print"],
+	["keyword", "Profile"],
+	["keyword", "Projections"],
+	["keyword", "Proof"],
+	["keyword", "Prop"],
+	["keyword", "PropBinOp"],
+	["keyword", "Property"],
+	["keyword", "PropOp"],
+	["keyword", "Proposition"],
+	["keyword", "PropUOp"],
+	["keyword", "Pwd"],
+	["keyword", "Qed"],
+	["keyword", "Quit"],
+	["keyword", "Rec"],
+	["keyword", "Record"],
+	["keyword", "Recursive"],
+	["keyword", "Redirect"],
+	["keyword", "Reduction"],
+	["keyword", "Register"],
+	["keyword", "Relation"],
+	["keyword", "Remark"],
+	["keyword", "Remove"],
+	["keyword", "removed"],
+	["keyword", "Require"],
+	["keyword", "Reserved"],
+	["keyword", "Reset"],
+	["keyword", "Resolve"],
+	["keyword", "Restart"],
+	["keyword", "return"],
+	["keyword", "Rewrite"],
+	["keyword", "Right"],
+	["keyword", "Ring"],
+	["keyword", "Rings"],
+	["keyword", "Saturate"],
+	["keyword", "Save"],
+	["keyword", "Scheme"],
+	["keyword", "Scope"],
+	["keyword", "Scopes"],
+	["keyword", "Search"],
+	["keyword", "SearchHead"],
+	["keyword", "SearchPattern"],
+	["keyword", "SearchRewrite"],
+	["keyword", "Section"],
+	["keyword", "Separate"],
+	["keyword", "Set"],
+	["keyword", "Setoid"],
+	["keyword", "Show"],
+	["keyword", "Signatures"],
+	["keyword", "Solve"],
+	["keyword", "Solver"],
+	["keyword", "Sort"],
+	["keyword", "Sortclass"],
+	["keyword", "Sorted"],
+	["keyword", "Spec"],
+	["keyword", "SProp"],
+	["keyword", "Step"],
+	["keyword", "Strategies"],
+	["keyword", "Strategy"],
+	["keyword", "String"],
+	["keyword", "struct"],
+	["keyword", "Structure"],
+	["keyword", "SubClass"],
+	["keyword", "Subgraph"],
+	["keyword", "SuchThat"],
+	["keyword", "Tactic"],
+	["keyword", "Term"],
+	["keyword", "TestCompile"],
+	["keyword", "then"],
+	["keyword", "Theorem"],
+	["keyword", "Time"],
+	["keyword", "Timeout"],
+	["keyword", "To"],
+	["keyword", "Transparent"],
+	["keyword", "Type"],
+	["keyword", "Typeclasses"],
+	["keyword", "Types"],
+	["keyword", "Typing"],
+	["keyword", "Undelimit"],
+	["keyword", "Undo"],
+	["keyword", "Unfocus"],
+	["keyword", "Unfocused"],
+	["keyword", "Unfold"],
+	["keyword", "Universe"],
+	["keyword", "Universes"],
+	["keyword", "UnOp"],
+	["keyword", "UnOpSpec"],
+	["keyword", "Unshelve"],
+	["keyword", "using"],
+	["keyword", "Variable"],
+	["keyword", "Variables"],
+	["keyword", "Variant"],
+	["keyword", "Verbose"],
+	["keyword", "View"],
+	["keyword", "Visibility"],
+	["keyword", "wf"],
+	["keyword", "where"],
+	["keyword", "with"],
+	["keyword", "Zify"]
+]

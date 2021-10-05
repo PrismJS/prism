@@ -1,6 +1,7 @@
 abstract
 add
 alias
+and
 as
 ascending
 async
@@ -8,6 +9,7 @@ await
 base
 bool
 break
+by
 byte
 case
 catch
@@ -24,17 +26,16 @@ do
 double
 dynamic
 else
-enum
+enum;
 event
 explicit
 extern
-false
 finally
 fixed
 float
 for
 foreach
-from
+from foo;
 get
 global
 goto
@@ -42,7 +43,8 @@ group
 if
 implicit
 in
-int
+init;
+int;
 interface;
 internal
 into
@@ -51,11 +53,16 @@ join
 let
 lock
 long
-namespace
+nameof
+namespace;
 new;
+not
+notnull
 null
 object
+on
 operator
+or
 orderby
 out
 override
@@ -65,6 +72,7 @@ private
 protected
 public
 readonly
+record;
 ref
 remove
 return
@@ -76,17 +84,17 @@ short
 sizeof
 stackalloc
 static
-string
-struct
+string;
+struct;
 switch
 this
 throw
-true
 try
 typeof
 uint
 ulong
 unchecked
+unmanaged
 unsafe
 ushort
 using
@@ -95,9 +103,13 @@ var
 virtual
 void
 volatile
-where
+when
+where;
 while
 yield
+
+// very contextual keywords:
+Person person2 = person1 with { FirstName = "John" };
 
 ----------------------------------------------------
 
@@ -105,6 +117,7 @@ yield
 	["keyword", "abstract"],
 	["keyword", "add"],
 	["keyword", "alias"],
+	["keyword", "and"],
 	["keyword", "as"],
 	["keyword", "ascending"],
 	["keyword", "async"],
@@ -112,6 +125,7 @@ yield
 	["keyword", "base"],
 	["keyword", "bool"],
 	["keyword", "break"],
+	["keyword", "by"],
 	["keyword", "byte"],
 	["keyword", "case"],
 	["keyword", "catch"],
@@ -128,17 +142,16 @@ yield
 	["keyword", "double"],
 	["keyword", "dynamic"],
 	["keyword", "else"],
-	["keyword", "enum"],
+	["keyword", "enum"], ["punctuation", ";"],
 	["keyword", "event"],
 	["keyword", "explicit"],
 	["keyword", "extern"],
-	["keyword", "false"],
 	["keyword", "finally"],
 	["keyword", "fixed"],
 	["keyword", "float"],
 	["keyword", "for"],
 	["keyword", "foreach"],
-	["keyword", "from"],
+	["keyword", "from"], " foo", ["punctuation", ";"],
 	["keyword", "get"],
 	["keyword", "global"],
 	["keyword", "goto"],
@@ -146,7 +159,8 @@ yield
 	["keyword", "if"],
 	["keyword", "implicit"],
 	["keyword", "in"],
-	["keyword", "int"],
+	["keyword", "init"], ["punctuation", ";"],
+	["keyword", "int"], ["punctuation", ";"],
 	["keyword", "interface"], ["punctuation", ";"],
 	["keyword", "internal"],
 	["keyword", "into"],
@@ -155,11 +169,16 @@ yield
 	["keyword", "let"],
 	["keyword", "lock"],
 	["keyword", "long"],
-	["keyword", "namespace"],
+	["keyword", "nameof"],
+	["keyword", "namespace"], ["punctuation", ";"],
 	["keyword", "new"], ["punctuation", ";"],
+	["keyword", "not"],
+	["keyword", "notnull"],
 	["keyword", "null"],
 	["keyword", "object"],
+	["keyword", "on"],
 	["keyword", "operator"],
+	["keyword", "or"],
 	["keyword", "orderby"],
 	["keyword", "out"],
 	["keyword", "override"],
@@ -169,6 +188,7 @@ yield
 	["keyword", "protected"],
 	["keyword", "public"],
 	["keyword", "readonly"],
+	["keyword", "record"], ["punctuation", ";"],
 	["keyword", "ref"],
 	["keyword", "remove"],
 	["keyword", "return"],
@@ -180,17 +200,17 @@ yield
 	["keyword", "sizeof"],
 	["keyword", "stackalloc"],
 	["keyword", "static"],
-	["keyword", "string"],
-	["keyword", "struct"],
+	["keyword", "string"], ["punctuation", ";"],
+	["keyword", "struct"], ["punctuation", ";"],
 	["keyword", "switch"],
 	["keyword", "this"],
 	["keyword", "throw"],
-	["keyword", "true"],
 	["keyword", "try"],
 	["keyword", "typeof"],
 	["keyword", "uint"],
 	["keyword", "ulong"],
 	["keyword", "unchecked"],
+	["keyword", "unmanaged"],
 	["keyword", "unsafe"],
 	["keyword", "ushort"],
 	["keyword", "using"],
@@ -199,9 +219,24 @@ yield
 	["keyword", "virtual"],
 	["keyword", "void"],
 	["keyword", "volatile"],
-	["keyword", "where"],
+	["keyword", "when"],
+	["keyword", "where"], ["punctuation", ";"],
 	["keyword", "while"],
-	["keyword", "yield"]
+	["keyword", "yield"],
+
+	["comment", "// very contextual keywords:"],
+
+	["class-name", ["Person"]],
+	" person2 ",
+	["operator", "="],
+	" person1 ",
+	["keyword", "with"],
+	["punctuation", "{"],
+	" FirstName ",
+	["operator", "="],
+	["string", "\"John\""],
+	["punctuation", "}"],
+	["punctuation", ";"]
 ]
 
 ----------------------------------------------------

@@ -1,0 +1,21 @@
+<h2>Full example</h2>
+<pre><code>&lt;html>
+&lt;head>
+	&lt;title>Welcome!&lt;/title>
+&lt;/head>
+&lt;body>
+	&lt;h1>
+		Welcome ${user}&lt;#if user == "Big Joe">, our beloved leader&lt;/#if>!
+	&lt;/h1>
+	&lt;p>Our latest product:
+	&lt;a href="${latestProduct.url}">${latestProduct.name}&lt;/a>!
+	&lt;p>See what our happy customers have to say!&lt;/p>
+	&lt;ul>
+	&lt;#list userStories as story>
+		&lt;li>
+			&lt;p>${story.text?esc} - by &lt;span>${story.user.name}&lt;/span>
+		&lt;li>
+	&lt;/#list>
+	&lt;/ul>
+&lt;/body>
+&lt;/html></code></pre>

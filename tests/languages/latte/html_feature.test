@@ -1,0 +1,53 @@
+<a href="{link Post:show $post->id}">{$post->title}</a>
+<a {if $post->id}title="ahoj"{/if}>{$post->title}</a>
+
+{tag $a = true ? 10 * 5}
+<div n:attr="$a = true ? 10 * 5">
+{php '' }
+{php "" }
+{php "ba\"r" }
+{php 'ba\'z' }
+{php /* " */ }
+
+----------------------------------------------------
+
+[
+	["tag", [["tag", [["punctuation", "<"], "a"]],
+	["attr-name", ["href"]], ["attr-value", [["punctuation", "="], ["punctuation", "\""],
+	["latte", [["ld", [["punctuation", "{"], ["tag", "link"]]],
+	["php", ["Post", ["punctuation", ":"], ["class-name", "show"], ["variable", "$post"], ["operator", "->"], ["property", "id"]]],
+	["rd", [["punctuation", "}"]]]]],
+	["punctuation", "\""]]], ["punctuation", ">"]]],
+	["latte", [["ld", [["punctuation", "{"]]], ["php", [["variable", "$post"], ["operator", "->"], ["property", "title"]]], ["rd", [["punctuation", "}"]]]]],
+	["tag", [["tag", [["punctuation", "</"], "a"]], ["punctuation", ">"]]],
+
+	["tag", [["tag", [["punctuation", "<"], "a"]],
+	["attr-name",
+		[["latte", [["ld", [["punctuation", "{"], ["tag", "if"]]], ["php", [["variable", "$post"], ["operator", "->"], ["property", "id"]]], ["rd", [["punctuation", "}"]]]]], "title"]
+	],
+	["attr-value", [["punctuation", "="], ["punctuation", "\""], "ahoj", ["punctuation", "\""]]],
+	["attr-name", [["latte", [["ld", [["punctuation", "{/"], ["tag", "if"]]], ["rd", [["punctuation", "}"]]]]]]],
+	["punctuation", ">"]]],
+	["latte", [["ld", [["punctuation", "{"]]], ["php", [["variable", "$post"], ["operator", "->"], ["property", "title"]]], ["rd", [["punctuation", "}"]]]]],
+	["tag", [["tag", [["punctuation", "</"], "a"]], ["punctuation", ">"]]],
+
+	["latte", [["ld", [["punctuation", "{"], ["tag", "tag"]]], ["php", [["variable", "$a"], ["operator", "="], ["constant", "true"], ["operator", "?"], ["number", "10"], ["operator", "*"], ["number", "5"]]], ["rd", [["punctuation", "}"]]]]],
+
+	["tag", [["tag", [["punctuation", "<"], "div"]],
+	["n-attr", [["attr-name", "n:attr"], ["attr-value", [["punctuation", "="], ["punctuation", "\""], ["php", [["variable", "$a"], ["operator", "="], ["constant", "true"], ["operator", "?"], ["number", "10"], ["operator", "*"], ["number", "5"]]], ["punctuation", "\""]]]]],
+	["punctuation", ">"]]],
+
+	["latte", [["ld", [["punctuation", "{"], ["tag", "php"]]], ["php", [["string", "''"]]], ["rd", [["punctuation", "}"]]]]],
+
+	["latte", [["ld", [["punctuation", "{"], ["tag", "php"]]], ["php", [["string", ["\"\""]]]], ["rd", [["punctuation", "}"]]]]],
+
+	["latte", [["ld", [["punctuation", "{"], ["tag", "php"]]], ["php", [["string", ["\"ba\\\"r\""]]]], ["rd", [["punctuation", "}"]]]]],
+
+	["latte", [["ld", [["punctuation", "{"], ["tag", "php"]]], ["php", [["string", "'ba\\'z'"]]], ["rd", [["punctuation", "}"]]]]],
+
+	["latte", [["ld", [["punctuation", "{"], ["tag", "php"]]], ["php", [["comment", "/* \" */"]]], ["rd", [["punctuation", "}"]]]]]
+]
+
+----------------------------------------------------
+
+Checks for operators.

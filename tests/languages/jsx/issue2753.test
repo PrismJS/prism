@@ -1,0 +1,103 @@
+const Test = () => {
+    return (
+       <div>
+           <Button {...{onClick, disabled}}>
+               Click (Wrong Highlighting)
+           </Button>
+           <Button onClick={onClick} disabled={disabled}>
+               Click (Correct highlighting)
+           </Button>
+       </div>
+    )
+}
+
+----------------------------------------------------
+
+[
+	["keyword", "const"],
+	["function-variable", "Test"],
+	["operator", "="],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["operator", "=>"],
+	["punctuation", "{"],
+
+	["keyword", "return"],
+	["punctuation", "("],
+
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"div"
+		]],
+		["punctuation", ">"]
+	]],
+	["plain-text", "\r\n           "],
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			["class-name", "Button"]
+		]],
+		["spread", [
+			["punctuation", "{"],
+			["operator", "..."],
+			["punctuation", "{"],
+			"onClick",
+			["punctuation", ","],
+			" disabled",
+			["punctuation", "}"],
+			["punctuation", "}"]
+		]],
+		["punctuation", ">"]
+	]],
+	["plain-text", "\r\n               Click (Wrong Highlighting)\r\n           "],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			["class-name", "Button"]
+		]],
+		["punctuation", ">"]
+	]],
+	["plain-text", "\r\n           "],
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			["class-name", "Button"]
+		]],
+		["attr-name", ["onClick"]],
+		["script", [
+			["script-punctuation", "="],
+			["punctuation", "{"],
+			"onClick",
+			["punctuation", "}"]
+		]],
+		["attr-name", ["disabled"]],
+		["script", [
+			["script-punctuation", "="],
+			["punctuation", "{"],
+			"disabled",
+			["punctuation", "}"]
+		]],
+		["punctuation", ">"]
+	]],
+	["plain-text", "\r\n               Click (Correct highlighting)\r\n           "],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			["class-name", "Button"]
+		]],
+		["punctuation", ">"]
+	]],
+	["plain-text", "\r\n       "],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"div"
+		]],
+		["punctuation", ">"]
+	]],
+
+	["punctuation", ")"],
+
+	["punctuation", "}"]
+]

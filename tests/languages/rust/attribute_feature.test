@@ -1,11 +1,33 @@
 #[test]
 #![warn(unstable)]
+#[doc(hidden)]
+#[unstable(
+	feature = "thread_local_internals",
+	reason = "recently added to create a key",
+	issue = "none"
+)]
 
 ----------------------------------------------------
 
 [
-	["attribute", "#[test]"],
-	["attribute", "#![warn(unstable)]"]
+	["attribute", [
+		"#[test]"
+	]],
+	["attribute", [
+		"#![warn(unstable)]"
+	]],
+	["attribute", [
+		"#[doc(hidden)]"
+	]],
+	["attribute", [
+		"#[unstable(\r\n\tfeature = ",
+		["string", "\"thread_local_internals\""],
+		",\r\n\treason = ",
+		["string", "\"recently added to create a key\""],
+		",\r\n\tissue = ",
+		["string", "\"none\""],
+		"\r\n)]"
+	]]
 ]
 
 ----------------------------------------------------

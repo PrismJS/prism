@@ -13,24 +13,26 @@ enum Color {
 ----------------------------------------------------
 
 [
-	["keyword", "enum"],
-	["class-name", "Color"],
-	["punctuation", "{"],
+	["keyword", "enum"], ["class-name", "Color"], ["punctuation", "{"],
 	["constant", "RED"],
 	["constant", "GREEN"],
 	["constant", "BLUE"],
 	["punctuation", "}"],
 
 	["punctuation", "{"],
-	"\n\tfoo",
+
+	["property-query", "foo"],
 	["punctuation", "("],
 	["attr-name", "bar"],
 	["punctuation", ":"],
 	["constant", "RED"],
 	["punctuation", ")"],
 	["punctuation", "{"],
-	"\n\t\tbaz\n\t",
+
+	["property", "baz"],
+
 	["punctuation", "}"],
+
 	["punctuation", "}"]
 ]
 

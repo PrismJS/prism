@@ -1,0 +1,126 @@
+class Foo
+{
+public:
+
+	friend bool operator== (const Foo& f1, const Foo& f2);
+	friend bool operator!= (const Foo& f1, const Foo& f2);
+
+	friend bool operator< (const Foo& f1, const Foo& f2);
+	friend bool operator> (const Foo& f1, const Foo& f2);
+
+	friend bool operator<= (const Foo& f1, const Foo& f2);
+	friend bool operator>= (const Foo& f1, const Foo& f2);
+};
+
+----------------------------------------------------
+
+[
+	["keyword", "class"], ["class-name", "Foo"],
+	["punctuation", "{"],
+	["keyword", "public"], ["operator", ":"],
+
+	["keyword", "friend"],
+	["keyword", "bool"],
+	["keyword", "operator"],
+	["operator", "=="],
+	["punctuation", "("],
+	["keyword", "const"],
+	" Foo",
+	["operator", "&"],
+	" f1",
+	["punctuation", ","],
+	["keyword", "const"],
+	" Foo",
+	["operator", "&"],
+	" f2",
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "friend"],
+	["keyword", "bool"],
+	["keyword", "operator"],
+	["operator", "!="],
+	["punctuation", "("],
+	["keyword", "const"],
+	" Foo",
+	["operator", "&"],
+	" f1",
+	["punctuation", ","],
+	["keyword", "const"],
+	" Foo",
+	["operator", "&"],
+	" f2",
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "friend"],
+	["keyword", "bool"],
+	["keyword", "operator"],
+	["operator", "<"],
+	["punctuation", "("],
+	["keyword", "const"],
+	" Foo",
+	["operator", "&"],
+	" f1",
+	["punctuation", ","],
+	["keyword", "const"],
+	" Foo",
+	["operator", "&"],
+	" f2",
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "friend"],
+	["keyword", "bool"],
+	["keyword", "operator"],
+	["operator", ">"],
+	["punctuation", "("],
+	["keyword", "const"],
+	" Foo",
+	["operator", "&"],
+	" f1",
+	["punctuation", ","],
+	["keyword", "const"],
+	" Foo",
+	["operator", "&"],
+	" f2",
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "friend"],
+	["keyword", "bool"],
+	["keyword", "operator"],
+	["operator", "<="],
+	["punctuation", "("],
+	["keyword", "const"],
+	" Foo",
+	["operator", "&"],
+	" f1",
+	["punctuation", ","],
+	["keyword", "const"],
+	" Foo",
+	["operator", "&"],
+	" f2",
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "friend"],
+	["keyword", "bool"],
+	["keyword", "operator"],
+	["operator", ">="],
+	["punctuation", "("],
+	["keyword", "const"],
+	" Foo",
+	["operator", "&"],
+	" f1",
+	["punctuation", ","],
+	["keyword", "const"],
+	" Foo",
+	["operator", "&"],
+	" f2",
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+	["punctuation", ";"]
+]

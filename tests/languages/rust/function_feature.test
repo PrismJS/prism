@@ -2,20 +2,87 @@ foo (
 foobar(
 foo_bar_42(
 
-foo! (
-foobar![
-foo_bar_42!(
+foo_generic::<T, Option<T>>()
+
+mem::transmute::<Box<dyn FnOnce() + 'a>, Box<dyn FnOnce() + 'static>>()
+
+fn apply<F>(f: F) where F: FnOnce() {
+	f();
+}
 
 ----------------------------------------------------
 
 [
-	["function", "foo"], ["punctuation", "("],
-	["function", "foobar"], ["punctuation", "("],
-	["function", "foo_bar_42"], ["punctuation", "("],
+	["function", "foo"],
+	["punctuation", "("],
+	["function", "foobar"],
+	["punctuation", "("],
+	["function", "foo_bar_42"],
+	["punctuation", "("],
 
-	["function", "foo!"], ["punctuation", "("],
-	["function", "foobar!"], ["punctuation", "["],
-	["function", "foo_bar_42!"], ["punctuation", "("]
+	["function", "foo_generic"],
+	["punctuation", "::"],
+	["operator", "<"],
+	["class-name", "T"],
+	["punctuation", ","],
+	["class-name", "Option"],
+	["operator", "<"],
+	["class-name", "T"],
+	["operator", ">>"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["namespace", [
+		"mem",
+		["punctuation", "::"]
+	]],
+	["function", "transmute"],
+	["punctuation", "::"],
+	["operator", "<"],
+	["class-name", "Box"],
+	["operator", "<"],
+	["keyword", "dyn"],
+	["class-name", "FnOnce"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["operator", "+"],
+	["lifetime-annotation", "'a"],
+	["operator", ">"],
+	["punctuation", ","],
+	["class-name", "Box"],
+	["operator", "<"],
+	["keyword", "dyn"],
+	["class-name", "FnOnce"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["operator", "+"],
+	["lifetime-annotation", "'static"],
+	["operator", ">>"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["keyword", "fn"],
+	["function-definition", "apply"],
+	["operator", "<"],
+	["class-name", "F"],
+	["operator", ">"],
+	["punctuation", "("],
+	"f",
+	["punctuation", ":"],
+	["class-name", "F"],
+	["punctuation", ")"],
+	["keyword", "where"],
+	["class-name", "F"],
+	["punctuation", ":"],
+	["class-name", "FnOnce"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["function", "f"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["punctuation", "}"]
 ]
 
 ----------------------------------------------------

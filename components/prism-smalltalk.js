@@ -21,7 +21,8 @@ Prism.languages.smalltalk = {
 			'punctuation': /\|/
 		}
 	},
-	'keyword': /\b(?:nil|true|false|self|super|new)\b/,
+	'keyword': /\b(?:new|nil|self|super)\b/,
+	'boolean': /\b(?:false|true)\b/,
 	'number': [
 		/\d+r-?[\dA-Z]+(?:\.[\dA-Z]+)?(?:e-?\d+)?/,
 		/\b\d+(?:\.\d+)?(?:e-?\d+)?/
