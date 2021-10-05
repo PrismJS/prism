@@ -67,30 +67,18 @@
 				lookbehind: true
 			},
 			{
-				pattern: /([(,?]\s*[\w|]\|\s*)(?:false|null)\b(?=\s*\$)/i,
-				alias: 'type-hint',
-				greedy: true,
-				lookbehind: true
-			},
-			{
 				pattern: /(\)\s*:\s*(?:\?\s*)?)\b(?:array(?!\s*\()|bool|callable|(?:false|null)(?=\s*\|)|float|int|iterable|mixed|object|self|static|string|void)\b/i,
 				alias: 'return-type',
 				greedy: true,
 				lookbehind: true
 			},
 			{
-				pattern: /(\)\s*:\s*(?:\?\s*)?[\w|]\|\s*)(?:false|null)\b/i,
-				alias: 'return-type',
-				greedy: true,
-				lookbehind: true
-			},
-			{
-				pattern: /\b(?:array(?!\s*\()|bool|(?:false|null)(?=\s*\|)|float|int|iterable|mixed|object|string|void)\b/i,
+				pattern: /\b(?:array(?!\s*\()|bool|float|int|iterable|mixed|object|string|void)\b/i,
 				alias: 'type-declaration',
 				greedy: true
 			},
 			{
-				pattern: /(\|\s*)(?:false|null)\b/i,
+				pattern: /(\|\s*)(?:false|null)\b|\b(?:false|null)(?=\s*\|)/i,
 				alias: 'type-declaration',
 				greedy: true,
 				lookbehind: true
