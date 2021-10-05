@@ -1,0 +1,55 @@
+buff = buffer_create(16384, buffer_grow, 2);
+ini_open("Save.ini");
+var str = ini_read_string("Save", "Slot1", "");
+buffer_base64_decode_ext(buff, str, 0);
+ini_close();
+
+----------------------------------------------------
+
+[
+	"buff ",
+	["operator", "="],
+	["function", "buffer_create"],
+	["punctuation", "("],
+	["number", "16384"],
+	["punctuation", ","],
+	["constant", "buffer_grow"],
+	["punctuation", ","],
+	["number", "2"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["function", "ini_open"],
+	["punctuation", "("],
+	["string", "\"Save.ini\""],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "var"],
+	" str ",
+	["operator", "="],
+	["function", "ini_read_string"],
+	["punctuation", "("],
+	["string", "\"Save\""],
+	["punctuation", ","],
+	["string", "\"Slot1\""],
+	["punctuation", ","],
+	["string", "\"\""],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["function", "buffer_base64_decode_ext"],
+	["punctuation", "("],
+	"buff",
+	["punctuation", ","],
+	" str",
+	["punctuation", ","],
+	["number", "0"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["function", "ini_close"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"]
+]

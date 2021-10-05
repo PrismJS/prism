@@ -1,0 +1,129 @@
+// type
+Adj
+BigInt
+Bool
+Ctl
+Double
+false
+Int
+One
+Pauli
+PauliI
+PauliX
+PauliY
+PauliZ
+Qubit
+Range
+Result
+String
+true
+Unit
+Zero
+
+// other
+Adjoint
+adjoint
+apply
+as
+auto
+body
+borrow
+borrowing
+Controlled
+controlled
+distribute
+elif
+else
+fail
+fixup
+for
+function
+if
+in
+internal
+intrinsic
+invert
+is
+let
+mutable
+namespace
+new
+newtype
+open
+operation
+repeat
+return
+self
+set
+until
+use
+using
+while
+within
+
+----------------------------------------------------
+
+[
+	["comment", "// type"],
+	["keyword", "Adj"],
+	["keyword", "BigInt"],
+	["keyword", "Bool"],
+	["keyword", "Ctl"],
+	["keyword", "Double"],
+	["keyword", "false"],
+	["keyword", "Int"],
+	["keyword", "One"],
+	["keyword", "Pauli"],
+	["keyword", "PauliI"],
+	["keyword", "PauliX"],
+	["keyword", "PauliY"],
+	["keyword", "PauliZ"],
+	["keyword", "Qubit"],
+	["keyword", "Range"],
+	["keyword", "Result"],
+	["keyword", "String"],
+	["keyword", "true"],
+	["keyword", "Unit"],
+	["keyword", "Zero"],
+
+	["comment", "// other"],
+	["keyword", "Adjoint"],
+	["keyword", "adjoint"],
+	["keyword", "apply"],
+	["keyword", "as"],
+	["keyword", "auto"],
+	["keyword", "body"],
+	["keyword", "borrow"],
+	["keyword", "borrowing"],
+	["keyword", "Controlled"],
+	["keyword", "controlled"],
+	["keyword", "distribute"],
+	["keyword", "elif"],
+	["keyword", "else"],
+	["keyword", "fail"],
+	["keyword", "fixup"],
+	["keyword", "for"],
+	["keyword", "function"],
+	["keyword", "if"],
+	["keyword", "in"],
+	["keyword", "internal"],
+	["keyword", "intrinsic"],
+	["keyword", "invert"],
+	["keyword", "is"],
+	["keyword", "let"],
+	["keyword", "mutable"],
+	["keyword", "namespace"],
+	["keyword", "new"],
+	["keyword", "newtype"],
+	["keyword", "open"],
+	["keyword", "operation"],
+	["keyword", "repeat"],
+	["keyword", "return"],
+	["keyword", "self"],
+	["keyword", "set"],
+	["keyword", "until"],
+	["keyword", "use"],
+	["keyword", "using"],
+	["keyword", "while"],
+	["keyword", "within"]
+]

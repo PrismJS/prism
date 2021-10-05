@@ -1,0 +1,59 @@
+[deprecated]
+[unsafe_fn]
+[typedef]
+[live]
+[inline]
+[flag]
+[ref_only]
+[windows_stdcall]
+[direct_array_access]
+
+----------------------------------------------------
+
+[
+	["attribute", [
+		["punctuation", "["],
+		["keyword", "deprecated"],
+		["punctuation", "]"]
+	]],
+	["attribute", [
+		["punctuation", "["],
+		["keyword", "unsafe_fn"],
+		["punctuation", "]"]
+	]],
+	["attribute", [
+		["punctuation", "["],
+		["keyword", "typedef"],
+		["punctuation", "]"]
+	]],
+	["attribute", [
+		["punctuation", "["],
+		["keyword", "live"],
+		["punctuation", "]"]
+	]],
+	["attribute", [
+		["punctuation", "["],
+		["keyword", "inline"],
+		["punctuation", "]"]
+	]],
+	["attribute", [
+		["punctuation", "["],
+		["keyword", "flag"],
+		["punctuation", "]"]
+	]],
+	["attribute", [
+		["punctuation", "["],
+		["keyword", "ref_only"],
+		["punctuation", "]"]
+	]],
+	["attribute", [
+		["punctuation", "["],
+		["keyword", "windows_stdcall"],
+		["punctuation", "]"]
+	]],
+	["attribute", [
+		["punctuation", "["],
+		["keyword", "direct_array_access"],
+		["punctuation", "]"]
+	]]
+]

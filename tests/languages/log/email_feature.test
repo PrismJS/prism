@@ -1,0 +1,10 @@
+foo.bar@mail.com ...
+
+----------------------------------------------------
+
+[
+	["email", "foo.bar@mail.com"],
+	["punctuation", "."],
+	["punctuation", "."],
+	["punctuation", "."]
+]
