@@ -16,6 +16,7 @@
 		"lint:ci": "eslint . --max-warnings 0",
 		"test:aliases": "mocha tests/aliases-test.js",
 		"test:core": "mocha tests/core/**/*.js",
+		"test:coverage": "mocha tests/coverage.js",
 		"test:dependencies": "mocha tests/dependencies-test.js",
 		"test:examples": "mocha tests/examples-test.js",
 		"test:identifiers": "mocha tests/identifier-test.js",

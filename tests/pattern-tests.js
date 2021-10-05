@@ -5,7 +5,7 @@ const { assert } = require('chai');
 const PrismLoader = require('./helper/prism-loader');
 const TestDiscovery = require('./helper/test-discovery');
 const TestCase = require('./helper/test-case');
-const { BFS, parseRegex } = require('./helper/util');
+const { BFS, BFSPathToPrismTokenPath, parseRegex } = require('./helper/util');
 const { languages } = require('../components.json');
 const { visitRegExpAST } = require('regexpp');
 const { transform, combineTransformers, getIntersectionWordSets, JS, Words, NFA, Transformers } = require('refa');
@@ -20,8 +20,8 @@ const RAA = require('regexp-ast-analysis');
  * @type {Map<string, string[]>}
  */
 const testSnippets = new Map();
-const testSuite = TestDiscovery.loadAllTests(__dirname + '/languages');
-for (const languageIdentifier in testSuite) {
+const testSuite = TestDiscovery.loadAllTests();
+for (const [languageIdentifier, files] of testSuite) {
 	const lang = TestCase.parseLanguageNames(languageIdentifier).mainLanguage;
 	let snippets = testSnippets.get(lang);
 	if (snippets === undefined) {
@@ -29,7 +29,7 @@ for (const languageIdentifier in testSuite) {
 		testSnippets.set(lang, snippets);
 	}
 
-	for (const file of testSuite[languageIdentifier]) {
+	for (const file of files) {
 		if (path.extname(file) === '.test') {
 			snippets.push(TestCase.parseTestCaseFile(file).code);
 		} else {
@@ -96,27 +96,6 @@ function testPatterns(Prism, mainLanguage) {
 	}
 
 	/**
-	 * @param {string} root
-	 * @param {Parameters<Parameters<typeof BFS>[1]>[0]} path
-	 * @returns {string}
-	 */
-	function BFSPathToString(root, path) {
-		let pathStr = root;
-		for (const { key } of path) {
-			if (!key) {
-				// do nothing
-			} else if (/^\d+$/.test(key)) {
-				pathStr += `[${key}]`;
-			} else if (/^[a-z]\w*$/i.test(key)) {
-				pathStr += `.${key}`;
-			} else {
-				pathStr += `[${JSON.stringify(key)}]`;
-			}
-		}
-		return pathStr;
-	}
-
-	/**
 	 * Invokes the given function on every pattern in `Prism.languages`.
 	 *
 	 * _Note:_ This will aggregate all errors thrown by the given callback and throw an aggregated error at the end
@@ -151,9 +130,8 @@ function testPatterns(Prism, mainLanguage) {
 
 			BFS(root, path => {
 				const { key, value } = path[path.length - 1];
+				const tokenPath = BFSPathToPrismTokenPath(path, rootStr);
 				visited.add(value);
-
-				const tokenPath = BFSPathToString(rootStr, path);
 
 				if (Object.prototype.toString.call(value) == '[object RegExp]') {
 					try {
