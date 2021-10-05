@@ -1,5 +1,3 @@
-// @ts-check
-
 const { RegExpParser } = require('regexpp');
 
 

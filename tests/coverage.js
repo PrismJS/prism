@@ -1,5 +1,3 @@
-//@ts-check
-
 'use strict';
 
 const TestDiscovery = require('./helper/test-discovery');
