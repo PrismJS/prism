@@ -1,0 +1,375 @@
+Procedure.i XorTwoBlocks2(*buffer1, *buffer2, length)
+  ; move all the required data to source reg, destination reg and counter reg
+  !mov esi, [p.p_buffer1]           ; read 32-bit integer from p.p_buffer1 and move to esi
+  !mov edi, [p.p_buffer2]           ; read 32-bit integer from p.p_buffer2 and move to edi
+  !mov ecx, [p.v_length]            ; read 32-bit integer from p.v_length and move to ecx
+
+  !@@:                              ; anonymous label, can be reached by @b (back) or @f (forward)
+    !mov al, byte [edi + ecx - 1]   ; read byte from destination
+    !xor byte [esi + ecx - 1], al   ; xor source with destination (i.e. xor bytes from both blocks)
+    !dec ecx                        ; decrease counter
+  !jne @b                           ; jumb back to first anonymous label behind
+  ProcedureReturn 0
+EndProcedure
+
+!jne label1
+!jmp @b
+!EXTERN printf
+!DEFAULT rel
+
+; source: http://www.jose.it-berater.org/smfforum/index.php?topic=5091.0
+Procedure PopCount64(x.q)
+  !mov rax, [p.v_x]
+  !mov rdx, rax
+  !shr rdx, 1
+  !and rdx, [popcount64_v55]
+  !sub rax, rdx
+  ;x = (x & $3333333333333333) + ((x >> 2) & $3333333333333333)
+  !mov rdx, rax       ;x
+  !and rax, [popcount64_v33]
+  !shr rdx, 2
+  !and rdx, [popcount64_v33]
+  !add rax, rdx
+  ;x = (x + (x >> 4)) & $0f0f0f0f0f0f0f0f0f0f
+  !mov rdx, rax
+  !shr rdx, 4
+  !add rax, rdx
+  !and rax, [popcount64_v0f]
+  ;x * $0101010101010101 >> 56
+  !imul rax, [popcount64_v01]
+  !shr rax, 56
+  ProcedureReturn
+  !popcount64_v01: dq 0x0101010101010101
+  !popcount64_v0f: dq 0x0f0f0f0f0f0f0f0f
+  !popcount64_v33: dq 0x3333333333333333
+  !popcount64_v55: dq 0x5555555555555555
+EndProcedure
+
+----------------------------------------------------
+
+[
+	["keyword", "Procedure"],
+	["punctuation", "."],
+	"i ",
+	["function", "XorTwoBlocks2"],
+	["punctuation", "("],
+	["operator", "*buffer1"],
+	["punctuation", ","],
+	["operator", "*buffer2"],
+	["punctuation", ","],
+	" length",
+	["punctuation", ")"],
+
+	["comment", "; move all the required data to source reg, destination reg and counter reg"],
+
+	["asm", [
+		["operator", "!"],
+		["function", "mov"],
+		["register", "esi"],
+		["operator", ","],
+		["operator", "["],
+		"p",
+		["operator", "."],
+		"p_buffer1",
+		["operator", "]"]
+	]],
+	["comment", "; read 32-bit integer from p.p_buffer1 and move to esi"],
+
+	["asm", [
+		["operator", "!"],
+		["function", "mov"],
+		["register", "edi"],
+		["operator", ","],
+		["operator", "["],
+		"p",
+		["operator", "."],
+		"p_buffer2",
+		["operator", "]"]
+	]],
+	["comment", "; read 32-bit integer from p.p_buffer2 and move to edi"],
+
+	["asm", [
+		["operator", "!"],
+		["function", "mov"],
+		["register", "ecx"],
+		["operator", ","],
+		["operator", "["],
+		"p",
+		["operator", "."],
+		"v_length",
+		["operator", "]"]
+	]],
+	["comment", "; read 32-bit integer from p.v_length and move to ecx"],
+
+	["asm", [
+		["operator", "!"],
+		["label", "@@"],
+		["operator", ":"]
+	]],
+	["comment", "; anonymous label, can be reached by @b (back) or @f (forward)"],
+
+	["asm", [
+		["operator", "!"],
+		["function", "mov"],
+		["register", "al"],
+		["operator", ","],
+		" byte ",
+		["operator", "["],
+		["register", "edi"],
+		["operator", "+"],
+		["register", "ecx"],
+		["operator", "-"],
+		["number", "1"],
+		["operator", "]"]
+	]],
+	["comment", "; read byte from destination"],
+
+	["asm", [
+		["operator", "!"],
+		["function", "xor"],
+		" byte ",
+		["operator", "["],
+		["register", "esi"],
+		["operator", "+"],
+		["register", "ecx"],
+		["operator", "-"],
+		["number", "1"],
+		["operator", "]"],
+		["operator", ","],
+		["register", "al"]
+	]],
+	["comment", "; xor source with destination (i.e. xor bytes from both blocks)"],
+
+	["asm", [
+		["operator", "!"],
+		["function", "dec"],
+		["register", "ecx"]
+	]],
+	["comment", "; decrease counter"],
+
+	["asm", [
+		["operator", "!"],
+		["function", "jne"],
+		["label-reference-anonymous", "@b"]
+	]],
+	["comment", "; jumb back to first anonymous label behind"],
+
+	["keyword", "ProcedureReturn"],
+	["number", "0"],
+
+	["keyword", "EndProcedure"],
+
+	["asm", [
+		["operator", "!"],
+		["function", "jne"],
+		["label-reference-addressed", "label1"]
+	]],
+	["asm", [
+		["operator", "!"],
+		["function", "jmp"],
+		["label-reference-anonymous", "@b"]
+	]],
+	["asm", [
+		["operator", "!"],
+		["keyword", "EXTERN printf"]
+	]],
+	["asm", [
+		["operator", "!"],
+		["keyword", "DEFAULT rel"]
+	]],
+
+	["comment", "; source: http://www.jose.it-berater.org/smfforum/index.php?topic=5091.0"],
+
+	["keyword", "Procedure"],
+	["function", "PopCount64"],
+	["punctuation", "("],
+	"x",
+	["punctuation", "."],
+	"q",
+	["punctuation", ")"],
+
+	["asm", [
+		["operator", "!"],
+		["function", "mov"],
+		["register", "rax"],
+		["operator", ","],
+		["operator", "["],
+		"p",
+		["operator", "."],
+		"v_x",
+		["operator", "]"]
+	]],
+
+	["asm", [
+		["operator", "!"],
+		["function", "mov"],
+		["register", "rdx"],
+		["operator", ","],
+		["register", "rax"]
+	]],
+
+	["asm", [
+		["operator", "!"],
+		["function", "shr"],
+		["register", "rdx"],
+		["operator", ","],
+		["number", "1"]
+	]],
+
+	["asm", [
+		["operator", "!"],
+		["function", "and"],
+		["register", "rdx"],
+		["operator", ","],
+		["operator", "["],
+		"popcount64_v55",
+		["operator", "]"]
+	]],
+
+	["asm", [
+		["operator", "!"],
+		["function", "sub"],
+		["register", "rax"],
+		["operator", ","],
+		["register", "rdx"]
+	]],
+
+	["comment", ";x = (x & $3333333333333333) + ((x >> 2) & $3333333333333333)"],
+
+	["asm", [
+		["operator", "!"],
+		["function", "mov"],
+		["register", "rdx"],
+		["operator", ","],
+		["register", "rax"]
+	]],
+	["comment", ";x"],
+
+	["asm", [
+		["operator", "!"],
+		["function", "and"],
+		["register", "rax"],
+		["operator", ","],
+		["operator", "["],
+		"popcount64_v33",
+		["operator", "]"]
+	]],
+
+	["asm", [
+		["operator", "!"],
+		["function", "shr"],
+		["register", "rdx"],
+		["operator", ","],
+		["number", "2"]
+	]],
+
+	["asm", [
+		["operator", "!"],
+		["function", "and"],
+		["register", "rdx"],
+		["operator", ","],
+		["operator", "["],
+		"popcount64_v33",
+		["operator", "]"]
+	]],
+
+	["asm", [
+		["operator", "!"],
+		["function", "add"],
+		["register", "rax"],
+		["operator", ","],
+		["register", "rdx"]
+	]],
+
+	["comment", ";x = (x + (x >> 4)) & $0f0f0f0f0f0f0f0f0f0f"],
+
+	["asm", [
+		["operator", "!"],
+		["function", "mov"],
+		["register", "rdx"],
+		["operator", ","],
+		["register", "rax"]
+	]],
+
+	["asm", [
+		["operator", "!"],
+		["function", "shr"],
+		["register", "rdx"],
+		["operator", ","],
+		["number", "4"]
+	]],
+
+	["asm", [
+		["operator", "!"],
+		["function", "add"],
+		["register", "rax"],
+		["operator", ","],
+		["register", "rdx"]
+	]],
+
+	["asm", [
+		["operator", "!"],
+		["function", "and"],
+		["register", "rax"],
+		["operator", ","],
+		["operator", "["],
+		"popcount64_v0f",
+		["operator", "]"]
+	]],
+
+	["comment", ";x * $0101010101010101 >> 56"],
+
+	["asm", [
+		["operator", "!"],
+		["function", "imul"],
+		["register", "rax"],
+		["operator", ","],
+		["operator", "["],
+		"popcount64_v01",
+		["operator", "]"]
+	]],
+
+	["asm", [
+		["operator", "!"],
+		["function", "shr"],
+		["register", "rax"],
+		["operator", ","],
+		["number", "56"]
+	]],
+
+	["keyword", "ProcedureReturn"],
+
+	["asm", [
+		["operator", "!"],
+		["label", "popcount64_v01"],
+		["operator", ":"],
+		["function-inline", "dq"],
+		["number", "0x0101010101010101"]
+	]],
+
+	["asm", [
+		["operator", "!"],
+		["label", "popcount64_v0f"],
+		["operator", ":"],
+		["function-inline", "dq"],
+		["number", "0x0f0f0f0f0f0f0f0f"]
+	]],
+
+	["asm", [
+		["operator", "!"],
+		["label", "popcount64_v33"],
+		["operator", ":"],
+		["function-inline", "dq"],
+		["number", "0x3333333333333333"]
+	]],
+
+	["asm", [
+		["operator", "!"],
+		["label", "popcount64_v55"],
+		["operator", ":"],
+		["function-inline", "dq"],
+		["number", "0x5555555555555555"]
+	]],
+
+	["keyword", "EndProcedure"]
+]
