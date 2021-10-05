@@ -1,0 +1,667 @@
+KeyboardController
+MouseController
+SoftwareSerial
+EthernetServer
+EthernetClient
+LiquidCrystal
+LiquidCrystal_I2C
+RobotControl
+GSMVoiceCall
+EthernetUDP
+EsploraTFT
+HttpClient
+RobotMotor
+WiFiClient
+GSMScanner
+FileSystem
+Scheduler
+GSMServer
+YunClient
+YunServer
+IPAddress
+GSMClient
+GSMModem
+Keyboard
+Ethernet
+Console
+GSMBand
+Esplora
+Stepper
+Process
+WiFiUDP
+GSM_SMS
+Mailbox
+USBHost
+Firmata
+PImage
+Client
+Server
+GSMPIN
+FileIO
+Bridge
+Serial
+EEPROM
+Stream
+Mouse
+Audio
+Servo
+File
+Task
+GPRS
+WiFi
+Wire
+TFT
+GSM
+SPI
+SD
+runShellCommandAsynchronously
+analogWriteResolution
+retrieveCallingNumber
+printFirmwareVersion
+analogReadResolution
+sendDigitalPortPair
+noListenOnLocalhost
+readJoystickButton
+setFirmwareVersion
+readJoystickSwitch
+scrollDisplayRight
+getVoiceCallStatus
+scrollDisplayLeft
+writeMicroseconds
+delayMicroseconds
+beginTransmission
+getSignalStrength
+runAsynchronously
+getAsynchronously
+listenOnLocalhost
+getCurrentCarrier
+readAccelerometer
+messageAvailable
+sendDigitalPorts
+lineFollowConfig
+countryNameWrite
+runShellCommand
+readStringUntil
+rewindDirectory
+readTemperature
+setClockDivider
+readLightSensor
+endTransmission
+analogReference
+detachInterrupt
+countryNameRead
+attachInterrupt
+encryptionType
+readBytesUntil
+robotNameWrite
+readMicrophone
+robotNameRead
+cityNameWrite
+userNameWrite
+readJoystickY
+readJoystickX
+mouseReleased
+openNextFile
+scanNetworks
+noInterrupts
+digitalWrite
+beginSpeaker
+mousePressed
+isActionDone
+mouseDragged
+displayLogos
+noAutoscroll
+addParameter
+remoteNumber
+getModifiers
+keyboardRead
+userNameRead
+waitContinue
+processInput
+parseCommand
+printVersion
+readNetworks
+writeMessage
+blinkVersion
+cityNameRead
+readMessage
+setDataMode
+parsePacket
+isListening
+setBitOrder
+beginPacket
+isDirectory
+motorsWrite
+drawCompass
+digitalRead
+clearScreen
+serialEvent
+rightToLeft
+setTextSize
+leftToRight
+requestFrom
+keyReleased
+compassRead
+analogWrite
+interrupts
+WiFiServer
+disconnect
+playMelody
+parseFloat
+autoscroll
+getPINUsed
+setPINUsed
+setTimeout
+sendAnalog
+readSlider
+analogRead
+beginWrite
+createChar
+motorsStop
+keyPressed
+tempoWrite
+readButton
+subnetMask
+debugPrint
+macAddress
+writeGreen
+randomSeed
+attachGPRS
+readString
+sendString
+remotePort
+releaseAll
+mouseMoved
+background
+getXChange
+getYChange
+answerCall
+getResult
+voiceCall
+endPacket
+constrain
+getSocket
+writeJSON
+getButton
+available
+connected
+findUntil
+readBytes
+exitValue
+readGreen
+writeBlue
+startLoop
+isPressed
+sendSysex
+pauseMode
+gatewayIP
+setCursor
+getOemKey
+tuneWrite
+noDisplay
+loadImage
+switchPIN
+onRequest
+onReceive
+changePIN
+playFile
+noBuffer
+parseInt
+overflow
+checkPIN
+knobRead
+beginTFT
+bitClear
+updateIR
+bitWrite
+position
+writeRGB
+highByte
+writeRed
+setSpeed
+readBlue
+noStroke
+remoteIP
+transfer
+shutdown
+hangCall
+beginSMS
+endWrite
+attached
+maintain
+noCursor
+checkReg
+checkPUK
+shiftOut
+isValid
+shiftIn
+pulseIn
+connect
+println
+localIP
+pinMode
+getIMEI
+display
+noBlink
+process
+getBand
+running
+beginSD
+drawBMP
+lowByte
+setBand
+release
+bitRead
+prepare
+pointTo
+readRed
+setMode
+noFill
+remove
+listen
+stroke
+detach
+attach
+noTone
+exists
+buffer
+height
+bitSet
+circle
+config
+cursor
+random
+IRread
+setDNS
+endSMS
+getKey
+micros
+millis
+begin
+print
+write
+ready
+flush
+width
+isPIN
+blink
+clear
+press
+mkdir
+rmdir
+close
+point
+yield
+image
+BSSID
+click
+delay
+read
+text
+move
+peek
+beep
+rect
+line
+open
+seek
+fill
+size
+turn
+stop
+home
+find
+step
+tone
+sqrt
+RSSI
+SSID
+end
+bit
+tan
+cos
+sin
+pow
+map
+abs
+max
+min
+get
+run
+put
+
+----------------------------------------------------
+
+[
+	["builtin", "KeyboardController"],
+	["builtin", "MouseController"],
+	["builtin", "SoftwareSerial"],
+	["builtin", "EthernetServer"],
+	["builtin", "EthernetClient"],
+	["builtin", "LiquidCrystal"],
+	["builtin", "LiquidCrystal_I2C"],
+	["builtin", "RobotControl"],
+	["builtin", "GSMVoiceCall"],
+	["builtin", "EthernetUDP"],
+	["builtin", "EsploraTFT"],
+	["builtin", "HttpClient"],
+	["builtin", "RobotMotor"],
+	["builtin", "WiFiClient"],
+	["builtin", "GSMScanner"],
+	["builtin", "FileSystem"],
+	["builtin", "Scheduler"],
+	["builtin", "GSMServer"],
+	["builtin", "YunClient"],
+	["builtin", "YunServer"],
+	["builtin", "IPAddress"],
+	["builtin", "GSMClient"],
+	["builtin", "GSMModem"],
+	["builtin", "Keyboard"],
+	["builtin", "Ethernet"],
+	["builtin", "Console"],
+	["builtin", "GSMBand"],
+	["builtin", "Esplora"],
+	["builtin", "Stepper"],
+	["builtin", "Process"],
+	["builtin", "WiFiUDP"],
+	["builtin", "GSM_SMS"],
+	["builtin", "Mailbox"],
+	["builtin", "USBHost"],
+	["builtin", "Firmata"],
+	["builtin", "PImage"],
+	["builtin", "Client"],
+	["builtin", "Server"],
+	["builtin", "GSMPIN"],
+	["builtin", "FileIO"],
+	["builtin", "Bridge"],
+	["builtin", "Serial"],
+	["builtin", "EEPROM"],
+	["builtin", "Stream"],
+	["builtin", "Mouse"],
+	["builtin", "Audio"],
+	["builtin", "Servo"],
+	["builtin", "File"],
+	["builtin", "Task"],
+	["builtin", "GPRS"],
+	["builtin", "WiFi"],
+	["builtin", "Wire"],
+	["builtin", "TFT"],
+	["builtin", "GSM"],
+	["builtin", "SPI"],
+	["builtin", "SD"],
+	["builtin", "runShellCommandAsynchronously"],
+	["builtin", "analogWriteResolution"],
+	["builtin", "retrieveCallingNumber"],
+	["builtin", "printFirmwareVersion"],
+	["builtin", "analogReadResolution"],
+	["builtin", "sendDigitalPortPair"],
+	["builtin", "noListenOnLocalhost"],
+	["builtin", "readJoystickButton"],
+	["builtin", "setFirmwareVersion"],
+	["builtin", "readJoystickSwitch"],
+	["builtin", "scrollDisplayRight"],
+	["builtin", "getVoiceCallStatus"],
+	["builtin", "scrollDisplayLeft"],
+	["builtin", "writeMicroseconds"],
+	["builtin", "delayMicroseconds"],
+	["builtin", "beginTransmission"],
+	["builtin", "getSignalStrength"],
+	["builtin", "runAsynchronously"],
+	["builtin", "getAsynchronously"],
+	["builtin", "listenOnLocalhost"],
+	["builtin", "getCurrentCarrier"],
+	["builtin", "readAccelerometer"],
+	["builtin", "messageAvailable"],
+	["builtin", "sendDigitalPorts"],
+	["builtin", "lineFollowConfig"],
+	["builtin", "countryNameWrite"],
+	["builtin", "runShellCommand"],
+	["builtin", "readStringUntil"],
+	["builtin", "rewindDirectory"],
+	["builtin", "readTemperature"],
+	["builtin", "setClockDivider"],
+	["builtin", "readLightSensor"],
+	["builtin", "endTransmission"],
+	["builtin", "analogReference"],
+	["builtin", "detachInterrupt"],
+	["builtin", "countryNameRead"],
+	["builtin", "attachInterrupt"],
+	["builtin", "encryptionType"],
+	["builtin", "readBytesUntil"],
+	["builtin", "robotNameWrite"],
+	["builtin", "readMicrophone"],
+	["builtin", "robotNameRead"],
+	["builtin", "cityNameWrite"],
+	["builtin", "userNameWrite"],
+	["builtin", "readJoystickY"],
+	["builtin", "readJoystickX"],
+	["builtin", "mouseReleased"],
+	["builtin", "openNextFile"],
+	["builtin", "scanNetworks"],
+	["builtin", "noInterrupts"],
+	["builtin", "digitalWrite"],
+	["builtin", "beginSpeaker"],
+	["builtin", "mousePressed"],
+	["builtin", "isActionDone"],
+	["builtin", "mouseDragged"],
+	["builtin", "displayLogos"],
+	["builtin", "noAutoscroll"],
+	["builtin", "addParameter"],
+	["builtin", "remoteNumber"],
+	["builtin", "getModifiers"],
+	["builtin", "keyboardRead"],
+	["builtin", "userNameRead"],
+	["builtin", "waitContinue"],
+	["builtin", "processInput"],
+	["builtin", "parseCommand"],
+	["builtin", "printVersion"],
+	["builtin", "readNetworks"],
+	["builtin", "writeMessage"],
+	["builtin", "blinkVersion"],
+	["builtin", "cityNameRead"],
+	["builtin", "readMessage"],
+	["builtin", "setDataMode"],
+	["builtin", "parsePacket"],
+	["builtin", "isListening"],
+	["builtin", "setBitOrder"],
+	["builtin", "beginPacket"],
+	["builtin", "isDirectory"],
+	["builtin", "motorsWrite"],
+	["builtin", "drawCompass"],
+	["builtin", "digitalRead"],
+	["builtin", "clearScreen"],
+	["builtin", "serialEvent"],
+	["builtin", "rightToLeft"],
+	["builtin", "setTextSize"],
+	["builtin", "leftToRight"],
+	["builtin", "requestFrom"],
+	["builtin", "keyReleased"],
+	["builtin", "compassRead"],
+	["builtin", "analogWrite"],
+	["builtin", "interrupts"],
+	["builtin", "WiFiServer"],
+	["builtin", "disconnect"],
+	["builtin", "playMelody"],
+	["builtin", "parseFloat"],
+	["builtin", "autoscroll"],
+	["builtin", "getPINUsed"],
+	["builtin", "setPINUsed"],
+	["builtin", "setTimeout"],
+	["builtin", "sendAnalog"],
+	["builtin", "readSlider"],
+	["builtin", "analogRead"],
+	["builtin", "beginWrite"],
+	["builtin", "createChar"],
+	["builtin", "motorsStop"],
+	["builtin", "keyPressed"],
+	["builtin", "tempoWrite"],
+	["builtin", "readButton"],
+	["builtin", "subnetMask"],
+	["builtin", "debugPrint"],
+	["builtin", "macAddress"],
+	["builtin", "writeGreen"],
+	["builtin", "randomSeed"],
+	["builtin", "attachGPRS"],
+	["builtin", "readString"],
+	["builtin", "sendString"],
+	["builtin", "remotePort"],
+	["builtin", "releaseAll"],
+	["builtin", "mouseMoved"],
+	["builtin", "background"],
+	["builtin", "getXChange"],
+	["builtin", "getYChange"],
+	["builtin", "answerCall"],
+	["builtin", "getResult"],
+	["builtin", "voiceCall"],
+	["builtin", "endPacket"],
+	["builtin", "constrain"],
+	["builtin", "getSocket"],
+	["builtin", "writeJSON"],
+	["builtin", "getButton"],
+	["builtin", "available"],
+	["builtin", "connected"],
+	["builtin", "findUntil"],
+	["builtin", "readBytes"],
+	["builtin", "exitValue"],
+	["builtin", "readGreen"],
+	["builtin", "writeBlue"],
+	["builtin", "startLoop"],
+	["builtin", "isPressed"],
+	["builtin", "sendSysex"],
+	["builtin", "pauseMode"],
+	["builtin", "gatewayIP"],
+	["builtin", "setCursor"],
+	["builtin", "getOemKey"],
+	["builtin", "tuneWrite"],
+	["builtin", "noDisplay"],
+	["builtin", "loadImage"],
+	["builtin", "switchPIN"],
+	["builtin", "onRequest"],
+	["builtin", "onReceive"],
+	["builtin", "changePIN"],
+	["builtin", "playFile"],
+	["builtin", "noBuffer"],
+	["builtin", "parseInt"],
+	["builtin", "overflow"],
+	["builtin", "checkPIN"],
+	["builtin", "knobRead"],
+	["builtin", "beginTFT"],
+	["builtin", "bitClear"],
+	["builtin", "updateIR"],
+	["builtin", "bitWrite"],
+	["builtin", "position"],
+	["builtin", "writeRGB"],
+	["builtin", "highByte"],
+	["builtin", "writeRed"],
+	["builtin", "setSpeed"],
+	["builtin", "readBlue"],
+	["builtin", "noStroke"],
+	["builtin", "remoteIP"],
+	["builtin", "transfer"],
+	["builtin", "shutdown"],
+	["builtin", "hangCall"],
+	["builtin", "beginSMS"],
+	["builtin", "endWrite"],
+	["builtin", "attached"],
+	["builtin", "maintain"],
+	["builtin", "noCursor"],
+	["builtin", "checkReg"],
+	["builtin", "checkPUK"],
+	["builtin", "shiftOut"],
+	["builtin", "isValid"],
+	["builtin", "shiftIn"],
+	["builtin", "pulseIn"],
+	["builtin", "connect"],
+	["builtin", "println"],
+	["builtin", "localIP"],
+	["builtin", "pinMode"],
+	["builtin", "getIMEI"],
+	["builtin", "display"],
+	["builtin", "noBlink"],
+	["builtin", "process"],
+	["builtin", "getBand"],
+	["builtin", "running"],
+	["builtin", "beginSD"],
+	["builtin", "drawBMP"],
+	["builtin", "lowByte"],
+	["builtin", "setBand"],
+	["builtin", "release"],
+	["builtin", "bitRead"],
+	["builtin", "prepare"],
+	["builtin", "pointTo"],
+	["builtin", "readRed"],
+	["builtin", "setMode"],
+	["builtin", "noFill"],
+	["builtin", "remove"],
+	["builtin", "listen"],
+	["builtin", "stroke"],
+	["builtin", "detach"],
+	["builtin", "attach"],
+	["builtin", "noTone"],
+	["builtin", "exists"],
+	["builtin", "buffer"],
+	["builtin", "height"],
+	["builtin", "bitSet"],
+	["builtin", "circle"],
+	["builtin", "config"],
+	["builtin", "cursor"],
+	["builtin", "random"],
+	["builtin", "IRread"],
+	["builtin", "setDNS"],
+	["builtin", "endSMS"],
+	["builtin", "getKey"],
+	["builtin", "micros"],
+	["builtin", "millis"],
+	["builtin", "begin"],
+	["builtin", "print"],
+	["builtin", "write"],
+	["builtin", "ready"],
+	["builtin", "flush"],
+	["builtin", "width"],
+	["builtin", "isPIN"],
+	["builtin", "blink"],
+	["builtin", "clear"],
+	["builtin", "press"],
+	["builtin", "mkdir"],
+	["builtin", "rmdir"],
+	["builtin", "close"],
+	["builtin", "point"],
+	["builtin", "yield"],
+	["builtin", "image"],
+	["builtin", "BSSID"],
+	["builtin", "click"],
+	["builtin", "delay"],
+	["builtin", "read"],
+	["builtin", "text"],
+	["builtin", "move"],
+	["builtin", "peek"],
+	["builtin", "beep"],
+	["builtin", "rect"],
+	["builtin", "line"],
+	["builtin", "open"],
+	["builtin", "seek"],
+	["builtin", "fill"],
+	["builtin", "size"],
+	["builtin", "turn"],
+	["builtin", "stop"],
+	["builtin", "home"],
+	["builtin", "find"],
+	["builtin", "step"],
+	["builtin", "tone"],
+	["builtin", "sqrt"],
+	["builtin", "RSSI"],
+	["builtin", "SSID"],
+	["builtin", "end"],
+	["builtin", "bit"],
+	["builtin", "tan"],
+	["builtin", "cos"],
+	["builtin", "sin"],
+	["builtin", "pow"],
+	["builtin", "map"],
+	["builtin", "abs"],
+	["builtin", "max"],
+	["builtin", "min"],
+	["builtin", "get"],
+	["builtin", "run"],
+	["builtin", "put"]
+]

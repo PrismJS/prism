@@ -11,19 +11,24 @@ SEVERE
 
 WARN
 WARNING
+WRN
 
 DISPLAY
 INFO
+INF
 NOTICE
 STATUS
 
+DBG
 DEBUG
 FINE
 
 FINER
 FINEST
 TRACE
+TRC
 VERBOSE
+VRB
 
 ----------------------------------------------------
 
@@ -41,17 +46,22 @@ VERBOSE
 
 	["level", "WARN"],
 	["level", "WARNING"],
+	["level", "WRN"],
 
 	["level", "DISPLAY"],
 	["level", "INFO"],
+	["level", "INF"],
 	["level", "NOTICE"],
 	["level", "STATUS"],
 
+	["level", "DBG"],
 	["level", "DEBUG"],
 	["level", "FINE"],
 
 	["level", "FINER"],
 	["level", "FINEST"],
 	["level", "TRACE"],
-	["level", "VERBOSE"]
+	["level", "TRC"],
+	["level", "VERBOSE"],
+	["level", "VRB"]
 ]
