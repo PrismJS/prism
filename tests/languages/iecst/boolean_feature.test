@@ -1,0 +1,11 @@
+TRUE
+FALSE
+NULL
+
+----------------------------------------------------
+
+[
+	["boolean", "TRUE"],
+	["boolean", "FALSE"],
+	["boolean", "NULL"]
+]

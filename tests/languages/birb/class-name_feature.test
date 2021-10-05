@@ -1,0 +1,63 @@
+class Birb {
+	String name = "Birb";
+	int age = 5;
+	bool isMale = true;
+
+	String getName() {
+		return name;
+	}
+}
+
+List list = ["Seeb", 10, false];
+
+----------------------------------------------------
+
+[
+	["keyword", "class"],
+	["class-name", "Birb"],
+	["punctuation", "{"],
+
+	["class-name", "String"],
+	["variable", "name"],
+	["operator", "="],
+	["string", "\"Birb\""],
+	["punctuation", ";"],
+
+	["class-name", "int"],
+	["variable", "age"],
+	["operator", "="],
+	["number", "5"],
+	["punctuation", ";"],
+
+	["class-name", "bool"],
+	["variable", "isMale"],
+	["operator", "="],
+	["boolean", "true"],
+	["punctuation", ";"],
+
+	["class-name", "String"],
+	["function", "getName"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+
+	["class-name", "return"],
+	["variable", "name"],
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+
+	["punctuation", "}"],
+
+	["class-name", "List"],
+	["variable", "list"],
+	["operator", "="],
+	["punctuation", "["],
+	["string", "\"Seeb\""],
+	["punctuation", ","],
+	["number", "10"],
+	["punctuation", ","],
+	["boolean", "false"],
+	["punctuation", "]"],
+	["punctuation", ";"]
+]

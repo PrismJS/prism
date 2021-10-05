@@ -6,6 +6,8 @@ Foo
 bar "baz"
 \
 
+`john / an atom of type symbol
+
 \
 Foo
 Bar "baz"
@@ -15,7 +17,11 @@ Bar "baz"
 [
 	["comment", "#!/usr/bin/env q"],
 	["comment", "/ Foobar \"baz\""],
+
 	["comment", "/\r\nFoo\r\nbar \"baz\"\r\n\\"],
+
+	["symbol", "`john"], ["comment", "/ an atom of type symbol"],
+
 	["comment", "\\\r\nFoo\r\nBar \"baz\""]
 ]
 

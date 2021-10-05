@@ -1,35 +1,55 @@
-assert break case
+assert;
+break;
+case;
 class;
-const default
-else enum
-final
+const;
+default;
+else;
+enum;
+final;
 follows;
-for grab
-if nest
+for;
+grab;
+if;
+nest;
 next;
 new;
-noSeeb return
-static switch
-throw var
-void while
+noSeeb;
+return;
+static;
+switch;
+throw;
+var;
+void;
+while;
 
 ----------------------------------------------------
 
 [
-	["keyword", "assert"], ["keyword", "break"], ["keyword", "case"],
+	["keyword", "assert"], ["punctuation", ";"],
+	["keyword", "break"], ["punctuation", ";"],
+	["keyword", "case"], ["punctuation", ";"],
 	["keyword", "class"], ["punctuation", ";"],
-	["keyword", "const"], ["keyword", "default"],
-	["keyword", "else"], ["keyword", "enum"],
-	["keyword", "final"],
+	["keyword", "const"], ["punctuation", ";"],
+	["keyword", "default"], ["punctuation", ";"],
+	["keyword", "else"], ["punctuation", ";"],
+	["keyword", "enum"], ["punctuation", ";"],
+	["keyword", "final"], ["punctuation", ";"],
 	["keyword", "follows"], ["punctuation", ";"],
-	["keyword", "for"], ["keyword", "grab"],
-	["keyword", "if"], ["keyword", "nest"],
+	["keyword", "for"], ["punctuation", ";"],
+	["keyword", "grab"], ["punctuation", ";"],
+	["keyword", "if"], ["punctuation", ";"],
+	["keyword", "nest"], ["punctuation", ";"],
 	["keyword", "next"], ["punctuation", ";"],
 	["keyword", "new"], ["punctuation", ";"],
-	["keyword", "noSeeb"], ["keyword", "return"],
-	["keyword", "static"], ["keyword", "switch"],
-	["keyword", "throw"], ["keyword", "var"],
-	["keyword", "void"], ["keyword", "while"]
+	["keyword", "noSeeb"], ["punctuation", ";"],
+	["keyword", "return"], ["punctuation", ";"],
+	["keyword", "static"], ["punctuation", ";"],
+	["keyword", "switch"], ["punctuation", ";"],
+	["keyword", "throw"], ["punctuation", ";"],
+	["keyword", "var"], ["punctuation", ";"],
+	["keyword", "void"], ["punctuation", ";"],
+	["keyword", "while"], ["punctuation", ";"]
 ]
 
 ----------------------------------------------------
