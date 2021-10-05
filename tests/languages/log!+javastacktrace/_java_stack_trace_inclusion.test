@@ -77,7 +77,7 @@ Caused by: org.apache.maven.wagon.TransferFailedException: Failed to transfer fi
 			]],
 			["punctuation", ")"]
 		]],
-		" ~[na:1.8.0_171]\r\n",
+		" ~[na:1.8.0_171]\r\n\t",
 
 		["stack-frame", [
 			["keyword", "at"],
@@ -100,7 +100,7 @@ Caused by: org.apache.maven.wagon.TransferFailedException: Failed to transfer fi
 			]],
 			["punctuation", ")"]
 		]],
-		" ~[na:1.8.0_171]\r\n",
+		" ~[na:1.8.0_171]\r\n\t",
 
 		["stack-frame", [
 			["keyword", "at"],
@@ -123,7 +123,7 @@ Caused by: org.apache.maven.wagon.TransferFailedException: Failed to transfer fi
 			]],
 			["punctuation", ")"]
 		]],
-		" ~[na:1.8.0_171]\r\n",
+		" ~[na:1.8.0_171]\r\n\t",
 
 		["stack-frame", [
 			["keyword", "at"],
