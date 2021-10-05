@@ -1,7 +1,7 @@
 (function (Prism) {
 	Prism.languages.http = {
 		'request-line': {
-			pattern: /^(?:CONNECT|DELETE|GET|HEAD|OPTIONS|PATCH|POST|PRI|PUT|SEARCH|TRACE)\s(?:https?:\/\/|\/)\S*\sHTTP\/[0-9.]+/m,
+			pattern: /^(?:CONNECT|DELETE|GET|HEAD|OPTIONS|PATCH|POST|PRI|PUT|SEARCH|TRACE)\s(?:https?:\/\/|\/)\S*\sHTTP\/[\d.]+/m,
 			inside: {
 				// HTTP Method
 				'method': {
@@ -17,18 +17,18 @@
 				},
 				// HTTP Version
 				'http-version': {
-					pattern: /^(\s)HTTP\/[0-9.]+/,
+					pattern: /^(\s)HTTP\/[\d.]+/,
 					lookbehind: true,
 					alias: 'property'
 				},
 			}
 		},
 		'response-status': {
-			pattern: /^HTTP\/[0-9.]+ \d+ .+/m,
+			pattern: /^HTTP\/[\d.]+ \d+ .+/m,
 			inside: {
 				// HTTP Version
 				'http-version': {
-					pattern: /^HTTP\/[0-9.]+/,
+					pattern: /^HTTP\/[\d.]+/,
 					alias: 'property'
 				},
 				// Status Code

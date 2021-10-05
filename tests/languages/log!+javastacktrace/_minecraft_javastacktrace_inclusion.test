@@ -259,7 +259,7 @@ net.minecraftforge.fml.common.MissingModsException: Mod thaumcraft (Thaumcraft) 
 			]],
 			["punctuation", ")"]
 		]],
-		" ~[Loader.class:?]\r\n",
+		" ~[Loader.class:?]\r\n\t",
 
 		["stack-frame", [
 			["keyword", "at"],
@@ -284,7 +284,7 @@ net.minecraftforge.fml.common.MissingModsException: Mod thaumcraft (Thaumcraft) 
 			]],
 			["punctuation", ")"]
 		]],
-		" ~[Loader.class:?]\r\n",
+		" ~[Loader.class:?]\r\n\t",
 
 		["stack-frame", [
 			["keyword", "at"],
@@ -309,7 +309,7 @@ net.minecraftforge.fml.common.MissingModsException: Mod thaumcraft (Thaumcraft) 
 			]],
 			["punctuation", ")"]
 		]],
-		" ~[FMLServerHandler.class:?]\r\n",
+		" ~[FMLServerHandler.class:?]\r\n\t",
 
 		["stack-frame", [
 			["keyword", "at"],
@@ -334,7 +334,7 @@ net.minecraftforge.fml.common.MissingModsException: Mod thaumcraft (Thaumcraft) 
 			]],
 			["punctuation", ")"]
 		]],
-		" ~[FMLCommonHandler.class:?]\r\n",
+		" ~[FMLCommonHandler.class:?]\r\n\t",
 
 		["stack-frame", [
 			["keyword", "at"],
@@ -359,7 +359,7 @@ net.minecraftforge.fml.common.MissingModsException: Mod thaumcraft (Thaumcraft) 
 			]],
 			["punctuation", ")"]
 		]],
-		" ~[nz.class:?]\r\n",
+		" ~[nz.class:?]\r\n\t",
 
 		["stack-frame", [
 			["keyword", "at"],
@@ -382,7 +382,7 @@ net.minecraftforge.fml.common.MissingModsException: Mod thaumcraft (Thaumcraft) 
 			]],
 			["punctuation", ")"]
 		]],
-		" [MinecraftServer.class:?]\r\n",
+		" [MinecraftServer.class:?]\r\n\t",
 
 		["stack-frame", [
 			["keyword", "at"],

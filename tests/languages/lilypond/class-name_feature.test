@@ -1,0 +1,15 @@
+\new Staff \hornNotes
+
+----------------------------------------------------
+
+[
+	["keyword", [
+		["punctuation", "\\"],
+		"new"
+	]],
+	["class-name", "Staff"],
+	["keyword", [
+		["punctuation", "\\"],
+		"hornNotes"
+	]]
+]

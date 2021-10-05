@@ -1,4 +1,5 @@
 "hi"
+"addition result: {1+2}"
 'hi'
 r'say'
 r"hello"
@@ -9,11 +10,32 @@ myAPL || x[⍋x←6?40] ||
 ----------------------------------------------------
 
 [
-    ["string", [["string", "\"hi\""]]],
-    ["string", [["string", "'hi'"]]],
-    ["string", [["string", "r'say'"]]],
-    ["string", [["string", "r\"hello\""]]],
-    ["string", [["string", "'contains: \"'"]]],
+	["string", [
+		["string", "\"hi\""]
+	]],
+	["string", [
+		["string", "\"addition result: "],
+		["interpolation", [
+			["punctuation", "{"],
+			["number", "1"],
+			["operator", "+"],
+			["number", "2"],
+			["punctuation", "}"]
+		]],
+		["string", "\""]
+	]],
+	["string", [
+		["string", "'hi'"]
+	]],
+	["string", [
+		["string", "r'say'"]
+	]],
+	["string", [
+		["string", "r\"hello\""]
+	]],
+	["string", [
+		["string", "'contains: \"'"]
+	]],
 	["langext", "myAPL || x[⍋x←6?40] ||"],
 	"\r\n || invalid ||"
 ]

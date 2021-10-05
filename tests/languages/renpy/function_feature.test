@@ -1,0 +1,43 @@
+renpy.register_bmfont("bmfont", 22, filename="bmfont.fnt")
+
+# Resize the background of the text window if it's too small.
+init python:
+    style.window.background = Frame("frame.png", 10, 10)
+
+----------------------------------------------------
+
+[
+	["keyword", "renpy"],
+	["punctuation", "."],
+	["function", "register_bmfont"],
+	["punctuation", "("],
+	["string", "\"bmfont\""],
+	["punctuation", ","],
+	["number", "22"],
+	["punctuation", ","],
+	" filename",
+	["operator", "="],
+	["string", "\"bmfont.fnt\""],
+	["punctuation", ")"],
+
+	["comment", "# Resize the background of the text window if it's too small."],
+
+	["keyword", "init"],
+	["keyword", "python"],
+	["punctuation", ":"],
+
+	["keyword", "style"],
+	["punctuation", "."],
+	["tag", "window"],
+	["punctuation", "."],
+	["property", "background"],
+	["operator", "="],
+	["function", "Frame"],
+	["punctuation", "("],
+	["string", "\"frame.png\""],
+	["punctuation", ","],
+	["number", "10"],
+	["punctuation", ","],
+	["number", "10"],
+	["punctuation", ")"]
+]

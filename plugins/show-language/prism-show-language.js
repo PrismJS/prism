@@ -42,6 +42,7 @@
 		"adoc": "AsciiDoc",
 		"aspnet": "ASP.NET (C#)",
 		"asm6502": "6502 Assembly",
+		"asmatmel": "Atmel AVR Assembly",
 		"autohotkey": "AutoHotkey",
 		"autoit": "AutoIt",
 		"avisynth": "AviSynth",

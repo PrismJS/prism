@@ -1,5 +1,9 @@
 At {1,time,::jmm} on {1,date,::dMMMM}, there was {2} on planet {3,number,integer}.
 
+{foo,spellout}
+{foo,ordinal}
+{foo,duration}
+
 ----------------------------------------------------
 
 [
@@ -47,5 +51,33 @@ At {1,time,::jmm} on {1,date,::dMMMM}, there was {2} on planet {3,number,integer
 		]],
 		["argument-delimiter", "}"]
 	]],
-	"."
+	".\r\n\r\n",
+
+	["argument", [
+		["argument-delimiter", "{"],
+		["content", [
+			["argument-name", "foo"],
+			["punctuation", ","],
+			["arg-type", "spellout"]
+		]],
+		["argument-delimiter", "}"]
+	]],
+	["argument", [
+		["argument-delimiter", "{"],
+		["content", [
+			["argument-name", "foo"],
+			["punctuation", ","],
+			["arg-type", "ordinal"]
+		]],
+		["argument-delimiter", "}"]
+	]],
+	["argument", [
+		["argument-delimiter", "{"],
+		["content", [
+			["argument-name", "foo"],
+			["punctuation", ","],
+			["arg-type", "duration"]
+		]],
+		["argument-delimiter", "}"]
+	]]
 ]
