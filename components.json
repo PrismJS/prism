@@ -153,6 +153,10 @@
 			"title": "6502 Assembly",
 			"owner": "kzurawel"
 		},
+		"asmatmel": {
+			"title": "Atmel AVR Assembly",
+			"owner": "cerkit"
+		},
 		"autohotkey": {
 			"title": "AutoHotkey",
 			"owner": "aviaryan"
