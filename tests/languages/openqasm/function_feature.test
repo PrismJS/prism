@@ -1,0 +1,23 @@
+sin(
+cos(
+tan(
+exp(
+ln(
+sqrt(
+rotl(
+rotr(
+popcount(
+
+----------------------------------------------------
+
+[
+	["function", "sin"], ["punctuation", "("],
+	["function", "cos"], ["punctuation", "("],
+	["function", "tan"], ["punctuation", "("],
+	["function", "exp"], ["punctuation", "("],
+	["function", "ln"], ["punctuation", "("],
+	["function", "sqrt"], ["punctuation", "("],
+	["function", "rotl"], ["punctuation", "("],
+	["function", "rotr"], ["punctuation", "("],
+	["function", "popcount"], ["punctuation", "("]
+]

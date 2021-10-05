@@ -1,0 +1,715 @@
+_G
+_VERSION
+assert
+collectgarbage
+coroutine.create
+coroutine.resume
+coroutine.running
+coroutine.status
+coroutine.wrap
+coroutine.yield
+debug.debug
+debug.getfenv
+debug.gethook
+debug.getinfo
+debug.getlocal
+debug.getmetatable
+debug.getregistry
+debug.getupvalue
+debug.setfenv
+debug.sethook
+debug.setlocal
+debug.setmetatable
+debug.setupvalue
+debug.traceback
+dofile
+error
+getfenv
+getmetatable
+io.close
+io.flush
+io.input
+io.lines
+io.open
+io.output
+io.popen
+io.read
+io.stderr
+io.stdin
+io.stdout
+io.tmpfile
+io.type
+io.write
+ipairs
+load
+loadfile
+loadstring
+math.abs
+math.acos
+math.asin
+math.atan
+math.atan2
+math.ceil
+math.cos
+math.cosh
+math.deg
+math.exp
+math.floor
+math.fmod
+math.frexp
+math.ldexp
+math.log
+math.log10
+math.max
+math.min
+math.modf
+math.pi
+math.pow
+math.rad
+math.random
+math.randomseed
+math.sin
+math.sinh
+math.sqrt
+math.tan
+math.tanh
+module
+next
+os.clock
+os.date
+os.difftime
+os.execute
+os.exit
+os.getenv
+os.remove
+os.rename
+os.setlocale
+os.time
+os.tmpname
+package.cpath
+package.loaded
+package.loadlib
+package.path
+package.preload
+package.seeall
+pairs
+pcall
+print
+rawequal
+rawget
+rawset
+require
+select
+setfenv
+setmetatable
+string.byte
+string.char
+string.dump
+string.find
+string.format
+string.gmatch
+string.gsub
+string.len
+string.lower
+string.match
+string.rep
+string.reverse
+string.sub
+string.upper
+table.concat
+table.insert
+table.maxn
+table.remove
+table.sort
+tonumber
+tostring
+type
+unpack
+xpcall
+
+----------------------------------------------------
+
+[
+	["function", [
+		"_G"
+	]],
+	["function", [
+		"_VERSION"
+	]],
+	["function", [
+		"assert"
+	]],
+	["function", [
+		"collectgarbage"
+	]],
+	["function", [
+		"coroutine",
+		["punctuation", "."],
+		"create"
+	]],
+	["function", [
+		"coroutine",
+		["punctuation", "."],
+		"resume"
+	]],
+	["function", [
+		"coroutine",
+		["punctuation", "."],
+		"running"
+	]],
+	["function", [
+		"coroutine",
+		["punctuation", "."],
+		"status"
+	]],
+	["function", [
+		"coroutine",
+		["punctuation", "."],
+		"wrap"
+	]],
+	["function", [
+		"coroutine",
+		["punctuation", "."],
+		"yield"
+	]],
+	["function", [
+		"debug",
+		["punctuation", "."],
+		"debug"
+	]],
+	["function", [
+		"debug",
+		["punctuation", "."],
+		"getfenv"
+	]],
+	["function", [
+		"debug",
+		["punctuation", "."],
+		"gethook"
+	]],
+	["function", [
+		"debug",
+		["punctuation", "."],
+		"getinfo"
+	]],
+	["function", [
+		"debug",
+		["punctuation", "."],
+		"getlocal"
+	]],
+	["function", [
+		"debug",
+		["punctuation", "."],
+		"getmetatable"
+	]],
+	["function", [
+		"debug",
+		["punctuation", "."],
+		"getregistry"
+	]],
+	["function", [
+		"debug",
+		["punctuation", "."],
+		"getupvalue"
+	]],
+	["function", [
+		"debug",
+		["punctuation", "."],
+		"setfenv"
+	]],
+	["function", [
+		"debug",
+		["punctuation", "."],
+		"sethook"
+	]],
+	["function", [
+		"debug",
+		["punctuation", "."],
+		"setlocal"
+	]],
+	["function", [
+		"debug",
+		["punctuation", "."],
+		"setmetatable"
+	]],
+	["function", [
+		"debug",
+		["punctuation", "."],
+		"setupvalue"
+	]],
+	["function", [
+		"debug",
+		["punctuation", "."],
+		"traceback"
+	]],
+	["function", [
+		"dofile"
+	]],
+	["function", [
+		"error"
+	]],
+	["function", [
+		"getfenv"
+	]],
+	["function", [
+		"getmetatable"
+	]],
+	["function", [
+		"io",
+		["punctuation", "."],
+		"close"
+	]],
+	["function", [
+		"io",
+		["punctuation", "."],
+		"flush"
+	]],
+	["function", [
+		"io",
+		["punctuation", "."],
+		"input"
+	]],
+	["function", [
+		"io",
+		["punctuation", "."],
+		"lines"
+	]],
+	["function", [
+		"io",
+		["punctuation", "."],
+		"open"
+	]],
+	["function", [
+		"io",
+		["punctuation", "."],
+		"output"
+	]],
+	["function", [
+		"io",
+		["punctuation", "."],
+		"popen"
+	]],
+	["function", [
+		"io",
+		["punctuation", "."],
+		"read"
+	]],
+	["function", [
+		"io",
+		["punctuation", "."],
+		"stderr"
+	]],
+	["function", [
+		"io",
+		["punctuation", "."],
+		"stdin"
+	]],
+	["function", [
+		"io",
+		["punctuation", "."],
+		"stdout"
+	]],
+	["function", [
+		"io",
+		["punctuation", "."],
+		"tmpfile"
+	]],
+	["function", [
+		"io",
+		["punctuation", "."],
+		"type"
+	]],
+	["function", [
+		"io",
+		["punctuation", "."],
+		"write"
+	]],
+	["function", [
+		"ipairs"
+	]],
+	["function", [
+		"load"
+	]],
+	["function", [
+		"loadfile"
+	]],
+	["function", [
+		"loadstring"
+	]],
+	["function", [
+		"math",
+		["punctuation", "."],
+		"abs"
+	]],
+	["function", [
+		"math",
+		["punctuation", "."],
+		"acos"
+	]],
+	["function", [
+		"math",
+		["punctuation", "."],
+		"asin"
+	]],
+	["function", [
+		"math",
+		["punctuation", "."],
+		"atan"
+	]],
+	["function", [
+		"math",
+		["punctuation", "."],
+		"atan2"
+	]],
+	["function", [
+		"math",
+		["punctuation", "."],
+		"ceil"
+	]],
+	["function", [
+		"math",
+		["punctuation", "."],
+		"cos"
+	]],
+	["function", [
+		"math",
+		["punctuation", "."],
+		"cosh"
+	]],
+	["function", [
+		"math",
+		["punctuation", "."],
+		"deg"
+	]],
+	["function", [
+		"math",
+		["punctuation", "."],
+		"exp"
+	]],
+	["function", [
+		"math",
+		["punctuation", "."],
+		"floor"
+	]],
+	["function", [
+		"math",
+		["punctuation", "."],
+		"fmod"
+	]],
+	["function", [
+		"math",
+		["punctuation", "."],
+		"frexp"
+	]],
+	["function", [
+		"math",
+		["punctuation", "."],
+		"ldexp"
+	]],
+	["function", [
+		"math",
+		["punctuation", "."],
+		"log"
+	]],
+	["function", [
+		"math",
+		["punctuation", "."],
+		"log10"
+	]],
+	["function", [
+		"math",
+		["punctuation", "."],
+		"max"
+	]],
+	["function", [
+		"math",
+		["punctuation", "."],
+		"min"
+	]],
+	["function", [
+		"math",
+		["punctuation", "."],
+		"modf"
+	]],
+	["function", [
+		"math",
+		["punctuation", "."],
+		"pi"
+	]],
+	["function", [
+		"math",
+		["punctuation", "."],
+		"pow"
+	]],
+	["function", [
+		"math",
+		["punctuation", "."],
+		"rad"
+	]],
+	["function", [
+		"math",
+		["punctuation", "."],
+		"random"
+	]],
+	["function", [
+		"math",
+		["punctuation", "."],
+		"randomseed"
+	]],
+	["function", [
+		"math",
+		["punctuation", "."],
+		"sin"
+	]],
+	["function", [
+		"math",
+		["punctuation", "."],
+		"sinh"
+	]],
+	["function", [
+		"math",
+		["punctuation", "."],
+		"sqrt"
+	]],
+	["function", [
+		"math",
+		["punctuation", "."],
+		"tan"
+	]],
+	["function", [
+		"math",
+		["punctuation", "."],
+		"tanh"
+	]],
+	["function", [
+		"module"
+	]],
+	["function", [
+		"next"
+	]],
+	["function", [
+		"os",
+		["punctuation", "."],
+		"clock"
+	]],
+	["function", [
+		"os",
+		["punctuation", "."],
+		"date"
+	]],
+	["function", [
+		"os",
+		["punctuation", "."],
+		"difftime"
+	]],
+	["function", [
+		"os",
+		["punctuation", "."],
+		"execute"
+	]],
+	["function", [
+		"os",
+		["punctuation", "."],
+		"exit"
+	]],
+	["function", [
+		"os",
+		["punctuation", "."],
+		"getenv"
+	]],
+	["function", [
+		"os",
+		["punctuation", "."],
+		"remove"
+	]],
+	["function", [
+		"os",
+		["punctuation", "."],
+		"rename"
+	]],
+	["function", [
+		"os",
+		["punctuation", "."],
+		"setlocale"
+	]],
+	["function", [
+		"os",
+		["punctuation", "."],
+		"time"
+	]],
+	["function", [
+		"os",
+		["punctuation", "."],
+		"tmpname"
+	]],
+	["function", [
+		"package",
+		["punctuation", "."],
+		"cpath"
+	]],
+	["function", [
+		"package",
+		["punctuation", "."],
+		"loaded"
+	]],
+	["function", [
+		"package",
+		["punctuation", "."],
+		"loadlib"
+	]],
+	["function", [
+		"package",
+		["punctuation", "."],
+		"path"
+	]],
+	["function", [
+		"package",
+		["punctuation", "."],
+		"preload"
+	]],
+	["function", [
+		"package",
+		["punctuation", "."],
+		"seeall"
+	]],
+	["function", [
+		"pairs"
+	]],
+	["function", [
+		"pcall"
+	]],
+	["function", [
+		"print"
+	]],
+	["function", [
+		"rawequal"
+	]],
+	["function", [
+		"rawget"
+	]],
+	["function", [
+		"rawset"
+	]],
+	["function", [
+		"require"
+	]],
+	["function", [
+		"select"
+	]],
+	["function", [
+		"setfenv"
+	]],
+	["function", [
+		"setmetatable"
+	]],
+	["function", [
+		"string",
+		["punctuation", "."],
+		"byte"
+	]],
+	["function", [
+		"string",
+		["punctuation", "."],
+		"char"
+	]],
+	["function", [
+		"string",
+		["punctuation", "."],
+		"dump"
+	]],
+	["function", [
+		"string",
+		["punctuation", "."],
+		"find"
+	]],
+	["function", [
+		"string",
+		["punctuation", "."],
+		"format"
+	]],
+	["function", [
+		"string",
+		["punctuation", "."],
+		"gmatch"
+	]],
+	["function", [
+		"string",
+		["punctuation", "."],
+		"gsub"
+	]],
+	["function", [
+		"string",
+		["punctuation", "."],
+		"len"
+	]],
+	["function", [
+		"string",
+		["punctuation", "."],
+		"lower"
+	]],
+	["function", [
+		"string",
+		["punctuation", "."],
+		"match"
+	]],
+	["function", [
+		"string",
+		["punctuation", "."],
+		"rep"
+	]],
+	["function", [
+		"string",
+		["punctuation", "."],
+		"reverse"
+	]],
+	["function", [
+		"string",
+		["punctuation", "."],
+		"sub"
+	]],
+	["function", [
+		"string",
+		["punctuation", "."],
+		"upper"
+	]],
+	["function", [
+		"table",
+		["punctuation", "."],
+		"concat"
+	]],
+	["function", [
+		"table",
+		["punctuation", "."],
+		"insert"
+	]],
+	["function", [
+		"table",
+		["punctuation", "."],
+		"maxn"
+	]],
+	["function", [
+		"table",
+		["punctuation", "."],
+		"remove"
+	]],
+	["function", [
+		"table",
+		["punctuation", "."],
+		"sort"
+	]],
+	["function", [
+		"tonumber"
+	]],
+	["function", [
+		"tostring"
+	]],
+	["function", [
+		"type"
+	]],
+	["function", [
+		"unpack"
+	]],
+	["function", [
+		"xpcall"
+	]]
+]

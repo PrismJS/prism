@@ -16,6 +16,9 @@ function f($variable): ?Foo {}
 
 function f(Foo|Bar $variable): Foo|Bar {}
 
+function f(Foo|false $variable): Foo|Bar {}
+function f(Foo|null $variable): Foo|Bar {}
+
 function f(\Package\Foo|\Package\Bar $variable): \Package\Foo|\Package\Bar {}
 
 class Foo extends Bar implements Baz {}
@@ -125,6 +128,36 @@ class Foo extends \Package\Bar implements App\Baz {}
 	["class-name", "Foo"],
 	["operator", "|"],
 	["class-name", "Bar"],
+	["variable", "$variable"],
+	["punctuation", ")"],
+	["punctuation", ":"],
+	["class-name", "Foo"],
+	["operator", "|"],
+	["class-name", "Bar"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "function"],
+	["function-definition", "f"],
+	["punctuation", "("],
+	["class-name", "Foo"],
+	["operator", "|"],
+	["keyword", "false"],
+	["variable", "$variable"],
+	["punctuation", ")"],
+	["punctuation", ":"],
+	["class-name", "Foo"],
+	["operator", "|"],
+	["class-name", "Bar"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "function"],
+	["function-definition", "f"],
+	["punctuation", "("],
+	["class-name", "Foo"],
+	["operator", "|"],
+	["keyword", "null"],
 	["variable", "$variable"],
 	["punctuation", ")"],
 	["punctuation", ":"],
