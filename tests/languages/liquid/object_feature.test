@@ -7,7 +7,6 @@
 {{ checkout }}
 {{ collection }}
 {{ color }}
-{{ comment }}
 {{ country }}
 {{ country_option_tags }}
 {{ currency }}
@@ -23,7 +22,6 @@
 {{ filter_value }}
 {{ font }}
 {{ forloop }}
-{{ form }}
 {{ fulfillment }}
 {{ generic_file }}
 {{ gift_card }}
@@ -45,7 +43,6 @@
 {{ page_description }}
 {{ page_image }}
 {{ page_title }}
-{{ paginate }}
 {{ part }}
 {{ policy }}
 {{ product }}
@@ -57,7 +54,6 @@
 {{ rule }}
 {{ script }}
 {{ search }}
-{{ section }}
 {{ selling_plan }}
 {{ selling_plan_allocation }}
 {{ selling_plan_group }}
@@ -66,7 +62,6 @@
 {{ shop_locale }}
 {{ sitemap }}
 {{ store_availability }}
-{{ tablerow }}
 {{ tax_line }}
 {{ template }}
 {{ theme }}
@@ -123,11 +118,6 @@
 	["liquid", [
 		["delimiter", "{{"],
 		["object", "color"],
-		["delimiter", "}}"]
-	]],
-	["liquid", [
-		["delimiter", "{{"],
-		["keyword", "comment"],
 		["delimiter", "}}"]
 	]],
 	["liquid", [
@@ -203,11 +193,6 @@
 	["liquid", [
 		["delimiter", "{{"],
 		["object", "forloop"],
-		["delimiter", "}}"]
-	]],
-	["liquid", [
-		["delimiter", "{{"],
-		["keyword", "form"],
 		["delimiter", "}}"]
 	]],
 	["liquid", [
@@ -317,11 +302,6 @@
 	]],
 	["liquid", [
 		["delimiter", "{{"],
-		["keyword", "paginate"],
-		["delimiter", "}}"]
-	]],
-	["liquid", [
-		["delimiter", "{{"],
 		["object", "part"],
 		["delimiter", "}}"]
 	]],
@@ -377,11 +357,6 @@
 	]],
 	["liquid", [
 		["delimiter", "{{"],
-		["keyword", "section"],
-		["delimiter", "}}"]
-	]],
-	["liquid", [
-		["delimiter", "{{"],
 		["object", "selling_plan"],
 		["delimiter", "}}"]
 	]],
@@ -418,11 +393,6 @@
 	["liquid", [
 		["delimiter", "{{"],
 		["object", "store_availability"],
-		["delimiter", "}}"]
-	]],
-	["liquid", [
-		["delimiter", "{{"],
-		["keyword", "tablerow"],
 		["delimiter", "}}"]
 	]],
 	["liquid", [
