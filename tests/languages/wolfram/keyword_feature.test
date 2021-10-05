@@ -1,0 +1,41 @@
+Abs
+AbsArg
+Accuracy
+Block
+Do
+For
+Function
+If
+Manipulate
+Module
+Nest
+NestList
+None
+Return
+Switch
+Table
+Which
+While
+
+----------------------------------------------------
+
+[
+	["keyword", "Abs"],
+	["keyword", "AbsArg"],
+	["keyword", "Accuracy"],
+	["keyword", "Block"],
+	["keyword", "Do"],
+	["keyword", "For"],
+	["keyword", "Function"],
+	["keyword", "If"],
+	["keyword", "Manipulate"],
+	["keyword", "Module"],
+	["keyword", "Nest"],
+	["keyword", "NestList"],
+	["keyword", "None"],
+	["keyword", "Return"],
+	["keyword", "Switch"],
+	["keyword", "Table"],
+	["keyword", "Which"],
+	["keyword", "While"]
+]

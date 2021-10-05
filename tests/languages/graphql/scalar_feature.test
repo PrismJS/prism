@@ -1,0 +1,15 @@
+Boolean
+Float
+ID
+Int
+String
+
+----------------------------------------------------
+
+[
+	["scalar", "Boolean"],
+	["scalar", "Float"],
+	["scalar", "ID"],
+	["scalar", "Int"],
+	["scalar", "String"]
+]
