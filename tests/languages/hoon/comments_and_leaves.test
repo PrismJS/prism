@@ -1,0 +1,58 @@
+::  Arvo formal interface
+    ::
+    ::    this lifecycle wrapper makes the arvo door (multi-armed core)
+    ::    look like a gate (function or single-armed core), to fit
+    ::    urbit's formal lifecycle function. a practical interpreter
+    ::    can ignore it.
+    ::
+    |=  [now=@da ovo=*]
+    ^-  *
+    ~>  %slog.[0 leaf+"arvo-event"]
+    .(+> +:(poke now ovo))
+
+----------------------------------------------------
+
+[
+	["comment", "::  Arvo formal interface"],
+
+	["comment", "::"],
+
+	["comment", "::    this lifecycle wrapper makes the arvo door (multi-armed core)"],
+
+	["comment", "::    look like a gate (function or single-armed core), to fit"],
+
+	["comment", "::    urbit's formal lifecycle function. a practical interpreter"],
+
+	["comment", "::    can ignore it."],
+
+	["comment", "::"],
+
+	["keyword", "|="],
+	"  [",
+	["function", "now"],
+	"=",
+	["class-name", "@da"],
+	["function", "ovo"],
+	"=",
+	["class-name", "*"],
+	"]\r\n    ",
+
+	["keyword", "^-"],
+	["class-name", "*"],
+
+	["keyword", "~>"],
+	["constant", "%slog"],
+	".[0 ",
+	["function", "leaf"],
+	"+",
+	["string", "\"arvo-event\""],
+	"]\r\n    .(+> +:(",
+	["function", "poke"],
+	["function", "now"],
+	["function", "ovo"],
+	"))"
+]
+
+----------------------------------------------------
+
+Tests for block comments and the inclusion of tapes and leaves inline in cells.

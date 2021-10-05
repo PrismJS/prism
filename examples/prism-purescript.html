@@ -1,0 +1,57 @@
+<h2>Comments</h2>
+<pre><code>-- Single line comment
+{- Multi-line
+comment -}</code></pre>
+
+<h2>Strings and characters</h2>
+<pre><code>'a'
+'\n'
+'\^A'
+'\^]'
+'\NUL'
+'\23'
+'\o75'
+'\xFE'
+"Here is a backslant \\ as well as \137, \
+    \a numeric escape character, and \^X, a control character."</code></pre>
+
+<h2>Numbers</h2>
+<pre><code>42
+123.456
+123.456e-789
+1e+3
+0o74
+0XAF</code></pre>
+
+<h2>Full example</h2>
+<pre><code>module Codewars.Kata.SumFracts (sumFracts) where
+
+import Prelude
+
+import Data.Foldable (foldl)
+import Data.BigInt (BigInt, fromInt, toString)
+import Data.List (List, length)
+import Data.Tuple (Tuple(..))
+import Data.Maybe (Maybe(..))
+import Data.Ord (abs, signum)
+
+reduce :: Tuple BigInt BigInt -&gt; Tuple BigInt BigInt
+reduce (Tuple num den) =
+  let gcd' = gcd num den
+      den' = den / gcd'
+   in Tuple (num / gcd' * (signum den')) (abs den')
+   
+sumFracts :: List (Tuple Int Int) -&gt; Maybe String
+sumFracts fracts =
+  let fracts' = fracts &lt;#&gt; (\(Tuple n d) -&gt; Tuple (fromInt n) (fromInt d)) &gt;&gt;&gt; reduce
+      
+      den = foldl (\acc (Tuple _ d) -&gt; lcm acc d) one fracts'
+      num = foldl (\acc (Tuple n d) -&gt; acc + n * (den / d)) zero fracts'
+      
+      Tuple n d = reduce $ Tuple num den
+      
+   in if length fracts == 0
+        then Nothing
+        else if d == one
+                then Just $ toString n
+                else Just $ (toString n) &gt;&lt; " " &gt;&lt; (toString d)</code></pre>

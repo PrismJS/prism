@@ -1,0 +1,260 @@
+{
+	'_id': ObjectId('5ec72ffe00316be87cab3927'),
+	'code': Code('function () { return 22; }'),
+	'binary': BinData(1, '232sa3d323sd232a32sda3s2d3a2s1d23s21d3sa'),
+	'dbref': DBRef('namespace', ObjectId('5ec72f4200316be87cab3926'), 'db'),
+	'timestamp': Timestamp(0, 0),
+	'long': NumberLong(9223372036854775807),
+	'decimal': NumberDecimal('1000.55'),
+	'integer': 100,
+	'maxkey': MaxKey(),
+	'minkey': MinKey(),
+	'isodate': ISODate('2012-01-01T00:00:00.000Z'),
+	'regexp': RegExp('prism(js)?', 'i'),
+	'string': 'Hello World',
+	'numberArray': [1, 2, 3],
+	'stringArray': ['1','2','3'],
+	'randomKey': null,
+	'object': { 'a': 1, 'b': 2 },
+	'max_key2': MaxKey(),
+	'number': 1234,
+	'invalid-key': 123,
+	noQuotesKey: 'value',
+}
+
+----------------------------------------------------
+
+[
+    ["punctuation", "{"],
+    ["property", [
+        "'_id'"
+    ]],
+    ["operator", ":"],
+    ["builtin", "ObjectId"],
+    ["punctuation", "("],
+    ["string", [
+        "'5ec72ffe00316be87cab3927'"
+    ]],
+    ["punctuation", ")"],
+    ["punctuation", ","],
+    ["property", [
+        "'code'"
+    ]],
+    ["operator", ":"],
+    ["builtin", "Code"],
+    ["punctuation", "("],
+    ["string", [
+        "'function () { return 22; }'"
+    ]],
+    ["punctuation", ")"],
+    ["punctuation", ","],
+    ["property", [
+        "'binary'"
+    ]],
+    ["operator", ":"],
+    ["builtin", "BinData"],
+    ["punctuation", "("],
+    ["number", "1"],
+    ["punctuation", ","],
+    ["string", [
+        "'232sa3d323sd232a32sda3s2d3a2s1d23s21d3sa'"
+    ]],
+    ["punctuation", ")"],
+    ["punctuation", ","],
+    ["property", [
+        "'dbref'"
+    ]],
+    ["operator", ":"],
+    ["builtin", "DBRef"],
+    ["punctuation", "("],
+    ["string", [
+        "'namespace'"
+    ]],
+    ["punctuation", ","],
+    ["builtin", "ObjectId"],
+    ["punctuation", "("],
+    ["string", [
+        "'5ec72f4200316be87cab3926'"
+    ]],
+    ["punctuation", ")"],
+    ["punctuation", ","],
+    ["string", [
+        "'db'"
+    ]],
+    ["punctuation", ")"],
+    ["punctuation", ","],
+    ["property", [
+        "'timestamp'"
+    ]],
+    ["operator", ":"],
+    ["builtin", "Timestamp"],
+    ["punctuation", "("],
+    ["number", "0"],
+    ["punctuation", ","],
+    ["number", "0"],
+    ["punctuation", ")"],
+    ["punctuation", ","],
+    ["property", [
+        "'long'"
+    ]],
+    ["operator", ":"],
+    ["builtin", "NumberLong"],
+    ["punctuation", "("],
+    ["number", "9223372036854775807"],
+    ["punctuation", ")"],
+    ["punctuation", ","],
+    ["property", [
+        "'decimal'"
+    ]],
+    ["operator", ":"],
+    ["builtin", "NumberDecimal"],
+    ["punctuation", "("],
+    ["string", [
+        "'1000.55'"
+    ]],
+    ["punctuation", ")"],
+    ["punctuation", ","],
+    ["property", [
+        "'integer'"
+    ]],
+    ["operator", ":"],
+    ["number", "100"],
+    ["punctuation", ","],
+    ["property", [
+        "'maxkey'"
+    ]],
+    ["operator", ":"],
+    ["builtin", "MaxKey"],
+    ["punctuation", "("],
+    ["punctuation", ")"],
+    ["punctuation", ","],
+    ["property", [
+        "'minkey'"
+    ]],
+    ["operator", ":"],
+    ["builtin", "MinKey"],
+    ["punctuation", "("],
+    ["punctuation", ")"],
+    ["punctuation", ","],
+    ["property", [
+        "'isodate'"
+    ]],
+    ["operator", ":"],
+    ["builtin", "ISODate"],
+    ["punctuation", "("],
+    ["string", [
+        "'2012-01-01T00:00:00.000Z'"
+    ]],
+    ["punctuation", ")"],
+    ["punctuation", ","],
+    ["property", [
+        "'regexp'"
+    ]],
+    ["operator", ":"],
+    ["builtin", "RegExp"],
+    ["punctuation", "("],
+    ["string", [
+        "'prism(js)?'"
+    ]],
+    ["punctuation", ","],
+    ["string", [
+        "'i'"
+    ]],
+    ["punctuation", ")"],
+    ["punctuation", ","],
+    ["property", [
+        "'string'"
+    ]],
+    ["operator", ":"],
+    ["string", [
+        "'Hello World'"
+    ]],
+    ["punctuation", ","],
+    ["property", [
+        "'numberArray'"
+    ]],
+    ["operator", ":"],
+    ["punctuation", "["],
+    ["number", "1"],
+    ["punctuation", ","],
+    ["number", "2"],
+    ["punctuation", ","],
+    ["number", "3"],
+    ["punctuation", "]"],
+    ["punctuation", ","],
+    ["property", [
+        "'stringArray'"
+    ]],
+    ["operator", ":"],
+    ["punctuation", "["],
+    ["string", [
+        "'1'"
+    ]],
+    ["punctuation", ","],
+    ["string", [
+        "'2'"
+    ]],
+    ["punctuation", ","],
+    ["string", [
+        "'3'"
+    ]],
+    ["punctuation", "]"],
+    ["punctuation", ","],
+    ["property", [
+        "'randomKey'"
+    ]],
+    ["operator", ":"],
+    ["keyword", "null"],
+    ["punctuation", ","],
+    ["property", [
+        "'object'"
+    ]],
+    ["operator", ":"],
+    ["punctuation", "{"],
+    ["property", [
+        "'a'"
+    ]],
+    ["operator", ":"],
+    ["number", "1"],
+    ["punctuation", ","],
+    ["property", [
+        "'b'"
+    ]],
+    ["operator", ":"],
+    ["number", "2"],
+    ["punctuation", "}"],
+    ["punctuation", ","],
+    ["property", [
+        "'max_key2'"
+    ]],
+    ["operator", ":"],
+    ["builtin", "MaxKey"],
+    ["punctuation", "("],
+    ["punctuation", ")"],
+    ["punctuation", ","],
+    ["property", [
+        "'number'"
+    ]],
+    ["operator", ":"],
+    ["number", "1234"],
+    ["punctuation", ","],
+    ["property", [
+        "'invalid-key'"
+    ]],
+    ["operator", ":"],
+    ["number", "123"],
+    ["punctuation", ","],
+    ["property", [
+        "noQuotesKey"
+    ]],
+    ["operator", ":"],
+    ["string", [
+        "'value'"
+    ]],
+    ["punctuation", ","],
+    ["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Common document.

@@ -1,0 +1,99 @@
+struct foo {}
+
+let foo: CStr;
+let foo: &'a CStr;
+let foo: &'a Foo<dyn Bar>;
+Option::Some(foo);
+Option::None;
+
+// we can differentiate between enum variants and class names
+// so let's make the bug a feature!
+enum Foo {
+	Const,
+	Tuple(i8,i8),
+	Struct {
+		foo: u8
+	}
+}
+
+----------------------------------------------------
+
+[
+	["keyword", "struct"],
+	["type-definition", "foo"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "let"],
+	" foo",
+	["punctuation", ":"],
+	["class-name", "CStr"],
+	["punctuation", ";"],
+
+	["keyword", "let"],
+	" foo",
+	["punctuation", ":"],
+	["operator", "&"],
+	["lifetime-annotation", "'a"],
+	["class-name", "CStr"],
+	["punctuation", ";"],
+
+	["keyword", "let"],
+	" foo",
+	["punctuation", ":"],
+	["operator", "&"],
+	["lifetime-annotation", "'a"],
+	["class-name", "Foo"],
+	["operator", "<"],
+	["keyword", "dyn"],
+	["class-name", "Bar"],
+	["operator", ">"],
+	["punctuation", ";"],
+
+	["class-name", "Option"],
+	["punctuation", "::"],
+	["class-name", "Some"],
+	["punctuation", "("],
+	"foo",
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["class-name", "Option"],
+	["punctuation", "::"],
+	["class-name", "None"],
+	["punctuation", ";"],
+
+	["comment", "// we can differentiate between enum variants and class names"],
+
+	["comment", "// so let's make the bug a feature!"],
+
+	["keyword", "enum"],
+	["type-definition", "Foo"],
+	["punctuation", "{"],
+
+	["class-name", "Const"],
+	["punctuation", ","],
+
+	["class-name", "Tuple"],
+	["punctuation", "("],
+	["keyword", "i8"],
+	["punctuation", ","],
+	["keyword", "i8"],
+	["punctuation", ")"],
+	["punctuation", ","],
+
+	["class-name", "Struct"],
+	["punctuation", "{"],
+
+	"\r\n\t\tfoo",
+	["punctuation", ":"],
+	["keyword", "u8"],
+
+	["punctuation", "}"],
+
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for class names and enum variants.

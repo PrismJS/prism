@@ -6,10 +6,22 @@ gl.FLOAT_MAT2x4;
 ----------------------------------------------------
 
 [
-	["keyword", "var"], ["constant", "FOO"], ["punctuation", ";"],
-	["keyword", "const"], ["constant", "FOO_BAR"], ["punctuation", ";"],
-	["keyword", "const"], ["constant", "BAZ42"], ["punctuation", ";"],
-	"\ngl", ["punctuation", "."], ["constant", "FLOAT_MAT2x4"], ["punctuation", ";"]
+	["keyword", "var"],
+	["constant", "FOO"],
+	["punctuation", ";"],
+
+	["keyword", "const"],
+	["constant", "FOO_BAR"],
+	["punctuation", ";"],
+
+	["keyword", "const"],
+	["constant", "BAZ42"],
+	["punctuation", ";"],
+
+	"\r\ngl",
+	["punctuation", "."],
+	["constant", "FLOAT_MAT2x4"],
+	["punctuation", ";"]
 ]
 
 ----------------------------------------------------

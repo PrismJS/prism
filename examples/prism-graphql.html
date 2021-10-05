@@ -3,7 +3,10 @@
 
 <h2>Strings</h2>
 <pre><code>""
-"foo \"bar\" baz"</code></pre>
+"foo \"bar\" baz"
+""" "Multi-line" strings
+are supported."""
+</code></pre>
 
 <h2>Numbers</h2>
 <pre><code>0
@@ -29,3 +32,31 @@ fragment friendFields on User {
   name
   profilePic(size: 50)
 }</code></pre>
+
+<p>Markdown inside of descriptions require markdown to be loaded.
+On this page, checking Markdown <strong>before</strong> checking GraphQL should
+make the example below work properly.</p>
+
+<h2>Descriptions</h2>
+<pre><code>"""
+This is a multiline description
+# Heading
+[Prism](http://www.prismjs.com)
+
+It can contain **Markdown
+	on multiple lines**
+"""
+type Example {
+	id: ID!
+}
+
+type Sample {
+	"""
+	Simple multiline description
+	"""
+	name(
+		"This is a single line description"
+		first: Int
+	): String
+}
+</code></pre>

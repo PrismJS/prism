@@ -1,0 +1,21 @@
+<<<ABC_1
+Text "not a string"
+# not a comment "not a string"
+ABC_1;
+
+<<<ABC_2
+2nd here_doc \n\t
+ABC_2;
+
+----------------------------------------------------
+
+[
+	["heredoc-string", "<<<ABC_1\r\nText \"not a string\"\r\n# not a comment \"not a string\"\r\nABC_1"],
+	["punctuation", ";"],
+
+	["heredoc-string", "<<<ABC_2\r\n2nd here_doc \\n\\t\r\nABC_2"], ["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Test for "here_documents"

@@ -1,0 +1,38 @@
+foo: ""
+bar: "fo\"obar"
+foo: ''
+foo: "foo" # bar
+bar: 'bar' # foo
+multi: '''
+	one line
+	second line
+	third line
+'''
+multi: """
+	one line
+	second line
+	third line
+"""
+
+----------------------------------------------------
+
+[
+	["key", "foo"], ["punctuation", ":"],
+	["string", "\"\""],
+	["key", "bar"], ["punctuation", ":"],
+	["string", "\"fo\\\"obar\""],
+	["key", "foo"], ["punctuation", ":"],
+	["string", "''"],
+	["key", "foo"], ["punctuation", ":"],
+	["string", "\"foo\""], ["comment", "# bar"],
+	["key", "bar"], ["punctuation", ":"],
+	["string", "'bar'"], ["comment", "# foo"],
+	["key", "multi"], ["punctuation", ":"],
+	["string", "'''\r\n\tone line\r\n\tsecond line\r\n\tthird line\r\n'''"],
+	["key", "multi"], ["punctuation", ":"],
+	["string", "\"\"\"\r\n\tone line\r\n\tsecond line\r\n\tthird line\r\n\"\"\""]
+]
+
+----------------------------------------------------
+
+Checks for strings.

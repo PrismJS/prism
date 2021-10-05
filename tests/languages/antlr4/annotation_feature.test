@@ -1,0 +1,21 @@
+@header {}
+@lexer::header {}
+
+----------------------------------------------------
+
+[
+	["annotation", "@header"],
+	["action", [
+		["punctuation", "{"],
+		["punctuation", "}"]
+	]],
+	["annotation", "@lexer::header"],
+	["action", [
+		["punctuation", "{"],
+		["punctuation", "}"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for annotations.

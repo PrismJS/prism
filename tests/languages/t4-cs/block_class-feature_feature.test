@@ -6,7 +6,7 @@ public class Bar {}
 ----------------------------------------------------
 
 [
-	"Foo\n",
+	"Foo\r\n",
 	["block", [
 		["class-feature", [
 			["delimiter", "<#+"],

@@ -1,0 +1,63 @@
+a
+b
+c
+d
+e
+f
+g
+h
+i
+j
+k
+l
+m
+n
+o
+p
+q
+r
+s
+t
+u
+v
+w
+x
+y
+z
+zzz
+
+----------------------------------------------------
+
+[
+	["variable", "a"],
+	["variable", "b"],
+	["variable", "c"],
+	["variable", "d"],
+	["variable", "e"],
+	["variable", "f"],
+	["variable", "g"],
+	["variable", "h"],
+	["variable", "i"],
+	["variable", "j"],
+	["variable", "k"],
+	["variable", "l"],
+	["variable", "m"],
+	["variable", "n"],
+	["variable", "o"],
+	["variable", "p"],
+	["variable", "q"],
+	["variable", "r"],
+	["variable", "s"],
+	["variable", "t"],
+	["variable", "u"],
+	["variable", "v"],
+	["variable", "w"],
+	["variable", "x"],
+	["variable", "y"],
+	["variable", "z"],
+	["variable", "z"], ["variable", "z"], ["variable", "z"]
+]
+
+----------------------------------------------------
+
+Checks for variables.

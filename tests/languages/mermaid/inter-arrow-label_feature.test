@@ -1,0 +1,62 @@
+A -.s .- C
+A -. s .- C
+A -. "asdasd" .- C
+A -- "asdasd" --> C
+A -- "asdasd" --> C
+A -- "asdasd" .- C
+A -- "asdasd" === C
+A -- "asdasd" ==> C
+
+----------------------------------------------------
+
+[
+	"A ",
+	["inter-arrow-label", [
+		["arrow-head", "-."],
+		["label", "s"],
+		["arrow", ".-"]
+	]],
+	" C\r\nA ",
+	["inter-arrow-label", [
+		["arrow-head", "-."],
+		["label", "s"],
+		["arrow", ".-"]
+	]],
+	" C\r\nA ",
+	["inter-arrow-label", [
+		["arrow-head", "-."],
+		["label", "\"asdasd\""],
+		["arrow", ".-"]
+	]],
+	" C\r\nA ",
+	["inter-arrow-label", [
+		["arrow-head", "--"],
+		["label", "\"asdasd\""],
+		["arrow", "-->"]
+	]],
+	" C\r\nA ",
+	["inter-arrow-label", [
+		["arrow-head", "--"],
+		["label", "\"asdasd\""],
+		["arrow", "-->"]
+	]],
+	" C\r\nA ",
+	["inter-arrow-label", [
+		["arrow-head", "--"],
+		["label", "\"asdasd\""],
+		["arrow", ".-"]
+	]],
+	" C\r\nA ",
+	["inter-arrow-label", [
+		["arrow-head", "--"],
+		["label", "\"asdasd\""],
+		["arrow", "==="]
+	]],
+	" C\r\nA ",
+	["inter-arrow-label", [
+		["arrow-head", "--"],
+		["label", "\"asdasd\""],
+		["arrow", "==>"]
+	]],
+	" C"
+]

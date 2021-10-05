@@ -1,0 +1,93 @@
+Generic text with inlined commands[i] example[command 1 danger:true] more text here [act danger:false true:false]
+
+@action1ForTwoLinesWithCommands
+@action2ForTwoLinesWithCommands
+
+@commandAndGenericTextOnNewLine
+Massa ut elementum.
+
+@commandWithParameterAndGenericTextOnNewLine WideParam
+Integer
+
+Escaped braces inside generic text\{abu\}nt @ >ip#s;um< @ \[sdff j9dj\]
+
+UnclosedExpression{ab{cndum dui dolor tincidu{nt [s[fa]sdf [
+"Integer: a = {a} malesuada a + b = {a + b}", Random(a, b) = {Random(a, b)}, Random("foo", "bar", "foobar") = {Random("foo", "bar", "foobar")},}
+#
+>
+@
+
+----------------------------------------------------
+
+[
+	["generic-text", [
+		"Generic text with inlined commands",
+		["inline-command", [
+			["start-stop-char", "["],
+			["command-param-name", "i"],
+			["start-stop-char", "]"]
+		]],
+		" example",
+		["inline-command", [
+			["start-stop-char", "["],
+			["command-param-name", "command"],
+			["command-params", [
+				["command-param-value", "1"],
+				["command-param-id", "danger:"],
+				["command-param-value", "true"]
+			]],
+			["start-stop-char", "]"]
+		]],
+		" more text here ",
+		["inline-command", [
+			["start-stop-char", "["],
+			["command-param-name", "act"],
+			["command-params", [
+				["command-param-id", "danger:"],
+				["command-param-value", "false"],
+				["command-param-id", "true:"],
+				["command-param-value", "false"]
+			]],
+			["start-stop-char", "]"]
+		]]
+	]],
+
+	["command", [
+		["command-name", "@action1ForTwoLinesWithCommands"]
+	]],
+	["command", [
+		["command-name", "@action2ForTwoLinesWithCommands"]
+	]],
+
+	["command", [
+		["command-name", "@commandAndGenericTextOnNewLine"]
+	]],
+	["generic-text", ["Massa ut elementum."]],
+
+	["command", [
+		["command-name", "@commandWithParameterAndGenericTextOnNewLine"],
+		["command-params", [
+			["command-param-value", "WideParam"]
+		]]
+	]],
+	["generic-text", ["Integer"]],
+
+	["generic-text", [
+		"Escaped braces inside generic text",
+		["escaped-char", "\\{"],
+		"abu",
+		["escaped-char", "\\}"],
+		"nt @ >ip#s;um< @ ",
+		["escaped-char", "\\["],
+		"sdff j9dj",
+		["escaped-char", "\\]"]
+	]],
+
+	["bad-line", "UnclosedExpression{ab{cndum dui dolor tincidu{nt [s[fa]sdf ["],
+	["bad-line", "\"Integer: a = {a} malesuada a + b = {a + b}\", Random(a, b) = {Random(a, b)}, Random(\"foo\", \"bar\", \"foobar\") = {Random(\"foo\", \"bar\", \"foobar\")},}"],
+	"\r\n#\r\n>\r\n@"
+]
+
+----------------------------------------------------
+
+Mixed tests of Generic Text, Commands, Inline Commands.

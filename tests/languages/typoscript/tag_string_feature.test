@@ -1,0 +1,37 @@
+foo.bar.baz = HMENU
+foo.bar.baz {
+	baz.foo = bar
+	bar = {$const.foo}
+	foo = LLL:EXT:str
+	IFSUB < .NO
+	IFSUB = 1
+	IFSUB {
+		foo = bar
+	}
+}
+Namespace\Classes\Test {
+	baz.foo = bar
+}
+
+----------------------------------------------------
+
+[
+	["tag", ["foo",["punctuation", "."]]], ["tag", ["bar", ["punctuation", "."]]],["tag", ["baz"]], ["operator", "="], ["string", [["keyword", "HMENU"]]],
+	["tag", ["foo", ["punctuation", "."]]], ["tag", ["bar", ["punctuation", "."]]], ["tag", ["baz"]], ["punctuation", "{"],
+	["tag", ["baz", ["punctuation", "."]]], ["tag", ["foo"]], ["operator", "="], ["string", ["bar"]],
+	["tag", ["bar"]], ["operator", "="], ["string", [["function", "{$const.foo}"]]],
+	["tag", ["foo"]],["operator", "="], ["string", [["keyword", "LLL"], ["punctuation", ":"], ["keyword", "EXT"], ["punctuation", ":"], "str"]],
+	["keyword", "IFSUB"], ["operator", "<"], ["punctuation", "."],["keyword", "NO"],
+	["keyword", "IFSUB"], ["operator", "="], ["string", [["number", "1"]]],
+	["keyword", "IFSUB"], ["punctuation", "{"],
+	["tag", ["foo"]], ["operator", "="], ["string", ["bar"]],
+	["punctuation", "}"],
+	["punctuation", "}"],
+	["tag", ["Namespace\\Classes\\Test"]], ["punctuation", "{"],
+	["tag", ["baz", ["punctuation", "."]]], ["tag", ["foo"]], ["operator", "="], ["string", ["bar"]],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for tags and string.

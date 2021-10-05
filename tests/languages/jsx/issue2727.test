@@ -1,0 +1,820 @@
+import React from 'react'
+
+import * as MaxMSP from 'maxmsp-gui'
+import 'maxmsp-gui/dist/index.css'
+
+export default function App() {
+    return (
+        <React.Fragment>
+
+            <MaxMSP.Bang
+                ariaLabel='set the aria-label tag' // defaults to the object name
+                ariaPressed={true || false} // default null
+                onClick={() => console.log('bang')}
+            />
+
+            <MaxMSP.Ezdac
+                ariaLabel='set the aria-label tag' // defaults to the object name
+                value={true || false} // default false
+                onClick={(bool) => console.log(bool)} // true or false
+            />
+
+            <MaxMSP.Message
+                ariaLabel='set the aria-label tag' // defaults to the object name
+                ariaPressed={true || false} // default null
+                text='What does the message say?'
+                onClick={() => console.log('bang')}
+            />
+
+            <MaxMSP.Object
+                inactive={true || false} // default false
+                text='What is the object called?'
+            />
+
+            <MaxMSP.Playbar
+                ariaLabel='set the aria-label tag' // defaults to the object name
+                fidelity={100} // max output of slider, default 100
+                inactive={true || false} // diable user interaction, default false
+                setPlaying={true || false} // set isPlaying externally
+                value={50} // inital/updated state, 0 to this.props.fidelity, default 0
+                width={200} // width of the slider in pixels, default 200
+                isPlaying={(bool) => console.log(bool)}
+                onChange={(i) => console.log(`My value is ${i}`)} // 0 - this.props.fidelity
+            />
+
+            <MaxMSP.RadioGroup
+                ariaLabel='set the aria-label tag' // defaults to the object name
+                items={['array', 'of', 'items']} // this sets the amount of radiobuttons, strings create text alongside each button
+                spacing={24} // the height of each button in pixels, defualt 20
+                value={i} // this.props.items[i], default 0
+                onClick={(i) => console.log(`My value is ${i}`)}
+            />
+
+            <MaxMSP.Slider
+                ariaLabel='set the aria-label tag' // defaults to the object name
+                fidelity={100} // max output of slider, default 100
+                length={200} // width of the slider in pixels, default 200
+                value={50} // inital/updated state, 0 to this.props.fidelity, default 0
+                onChange={(i) => console.log(`My value is ${i}`)} // 0 - this.props.fidelity
+            />
+
+            <MaxMSP.TextButton
+                ariaLabel='set the aria-label tag' // defaults to the object name
+                ariaPressed={true || false} // default null, for mode 'false' only
+                inactive={true || false} // diable user interaction, default false
+                mode={true || false} // true for toggle, false for bang, default false
+                text='What does the textbutton say?'
+                toggleText='What does the toggled textbutton say?'
+                value={true || false} // default false, for mode 'true' only
+                // mode 0 onClick
+                onClick={() => console.log('bang')}
+                // mode 1 onClick
+                onClick={(bool) => console.log(bool)}
+            />
+
+            <MaxMSP.Toggle
+                ariaLabel='set the aria-label tag' // defaults to the object name
+                value={true || false} // default false
+                onClick={(bool) => console.log(bool)}
+            />
+
+            <MaxMSP.Umenu
+                ariaLabel='set the aria-label tag' // defaults to the object name
+                items={['array', 'of', 'items']}
+                outputSymbol={true || false} // true for symbol false for int, default false
+                value={i} // this.props.items[i], default 0
+                width={200} // width of the umenu in pixels, default 100
+                onChange={(x) => console.log(`My index/item is ${x}`)}
+            />
+
+        </React.Fragment>
+    )
+}
+
+----------------------------------------------------
+
+[
+	["keyword", "import"], " React ", ["keyword", "from"], ["string", "'react'"],
+
+	["keyword", "import"],
+	["operator", "*"],
+	["keyword", "as"],
+	" MaxMSP ",
+	["keyword", "from"],
+	["string", "'maxmsp-gui'"],
+
+	["keyword", "import"],
+	["string", "'maxmsp-gui/dist/index.css'"],
+
+	["keyword", "export"],
+	["keyword", "default"],
+	["keyword", "function"],
+	["function", "App"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+
+	["keyword", "return"],
+	["punctuation", "("],
+
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			["class-name", "React.Fragment"]
+		]],
+		["punctuation", ">"]
+	]],
+	["plain-text", "\r\n\r\n            "],
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			["class-name", "MaxMSP.Bang"]
+		]],
+
+		["attr-name", ["ariaLabel"]],
+		["attr-value", [
+			["punctuation", "="],
+			["punctuation", "'"],
+			"set the aria-label tag",
+			["punctuation", "'"]
+		]],
+		["comment", "// defaults to the object name"],
+
+		["attr-name", ["ariaPressed"]],
+		["script", [
+			["script-punctuation", "="],
+			["punctuation", "{"],
+			["boolean", "true"],
+			["operator", "||"],
+			["boolean", "false"],
+			["punctuation", "}"]
+		]],
+		["comment", "// default null"],
+
+		["attr-name", ["onClick"]],
+		["script", [
+			["script-punctuation", "="],
+			["punctuation", "{"],
+			["punctuation", "("],
+			["punctuation", ")"],
+			["operator", "=>"],
+			" console",
+			["punctuation", "."],
+			["function", "log"],
+			["punctuation", "("],
+			["string", "'bang'"],
+			["punctuation", ")"],
+			["punctuation", "}"]
+		]],
+
+		["punctuation", "/>"]
+	]],
+	["plain-text", "\r\n\r\n            "],
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			["class-name", "MaxMSP.Ezdac"]
+		]],
+
+		["attr-name", ["ariaLabel"]],
+		["attr-value", [
+			["punctuation", "="],
+			["punctuation", "'"],
+			"set the aria-label tag",
+			["punctuation", "'"]
+		]],
+		["comment", "// defaults to the object name"],
+
+		["attr-name", ["value"]],
+		["script", [
+			["script-punctuation", "="],
+			["punctuation", "{"],
+			["boolean", "true"],
+			["operator", "||"],
+			["boolean", "false"],
+			["punctuation", "}"]
+		]],
+		["comment", "// default false"],
+
+		["attr-name", ["onClick"]],
+		["script", [
+			["script-punctuation", "="],
+			["punctuation", "{"],
+			["punctuation", "("],
+			["parameter", ["bool"]],
+			["punctuation", ")"],
+			["operator", "=>"],
+			" console",
+			["punctuation", "."],
+			["function", "log"],
+			["punctuation", "("],
+			"bool",
+			["punctuation", ")"],
+			["punctuation", "}"]
+		]],
+		["comment", "// true or false"],
+
+		["punctuation", "/>"]
+	]],
+	["plain-text", "\r\n\r\n            "],
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			["class-name", "MaxMSP.Message"]
+		]],
+
+		["attr-name", ["ariaLabel"]],
+		["attr-value", [
+			["punctuation", "="],
+			["punctuation", "'"],
+			"set the aria-label tag",
+			["punctuation", "'"]
+		]],
+		["comment", "// defaults to the object name"],
+
+		["attr-name", ["ariaPressed"]],
+		["script", [
+			["script-punctuation", "="],
+			["punctuation", "{"],
+			["boolean", "true"],
+			["operator", "||"],
+			["boolean", "false"],
+			["punctuation", "}"]
+		]],
+		["comment", "// default null"],
+
+		["attr-name", ["text"]],
+		["attr-value", [
+			["punctuation", "="],
+			["punctuation", "'"],
+			"What does the message say?",
+			["punctuation", "'"]
+		]],
+
+		["attr-name", ["onClick"]],
+		["script", [
+			["script-punctuation", "="],
+			["punctuation", "{"],
+			["punctuation", "("],
+			["punctuation", ")"],
+			["operator", "=>"],
+			" console",
+			["punctuation", "."],
+			["function", "log"],
+			["punctuation", "("],
+			["string", "'bang'"],
+			["punctuation", ")"],
+			["punctuation", "}"]
+		]],
+
+		["punctuation", "/>"]
+	]],
+	["plain-text", "\r\n\r\n            "],
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			["class-name", "MaxMSP.Object"]
+		]],
+
+		["attr-name", ["inactive"]],
+		["script", [
+			["script-punctuation", "="],
+			["punctuation", "{"],
+			["boolean", "true"],
+			["operator", "||"],
+			["boolean", "false"],
+			["punctuation", "}"]
+		]],
+		["comment", "// default false"],
+
+		["attr-name", ["text"]],
+		["attr-value", [
+			["punctuation", "="],
+			["punctuation", "'"],
+			"What is the object called?",
+			["punctuation", "'"]
+		]],
+
+		["punctuation", "/>"]
+	]],
+	["plain-text", "\r\n\r\n            "],
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			["class-name", "MaxMSP.Playbar"]
+		]],
+
+		["attr-name", ["ariaLabel"]],
+		["attr-value", [
+			["punctuation", "="],
+			["punctuation", "'"],
+			"set the aria-label tag",
+			["punctuation", "'"]
+		]],
+		["comment", "// defaults to the object name"],
+
+		["attr-name", ["fidelity"]],
+		["script", [
+			["script-punctuation", "="],
+			["punctuation", "{"],
+			["number", "100"],
+			["punctuation", "}"]
+		]],
+		["comment", "// max output of slider, default 100"],
+
+		["attr-name", ["inactive"]],
+		["script", [
+			["script-punctuation", "="],
+			["punctuation", "{"],
+			["boolean", "true"],
+			["operator", "||"],
+			["boolean", "false"],
+			["punctuation", "}"]
+		]],
+		["comment", "// diable user interaction, default false"],
+
+		["attr-name", ["setPlaying"]],
+		["script", [
+			["script-punctuation", "="],
+			["punctuation", "{"],
+			["boolean", "true"],
+			["operator", "||"],
+			["boolean", "false"],
+			["punctuation", "}"]
+		]],
+		["comment", "// set isPlaying externally"],
+
+		["attr-name", ["value"]],
+		["script", [
+			["script-punctuation", "="],
+			["punctuation", "{"],
+			["number", "50"],
+			["punctuation", "}"]
+		]],
+		["comment", "// inital/updated state, 0 to this.props.fidelity, default 0"],
+
+		["attr-name", ["width"]],
+		["script", [
+			["script-punctuation", "="],
+			["punctuation", "{"],
+			["number", "200"],
+			["punctuation", "}"]
+		]],
+		["comment", "// width of the slider in pixels, default 200"],
+
+		["attr-name", ["isPlaying"]],
+		["script", [
+			["script-punctuation", "="],
+			["punctuation", "{"],
+			["punctuation", "("],
+			["parameter", ["bool"]],
+			["punctuation", ")"],
+			["operator", "=>"],
+			" console",
+			["punctuation", "."],
+			["function", "log"],
+			["punctuation", "("],
+			"bool",
+			["punctuation", ")"],
+			["punctuation", "}"]
+		]],
+
+		["attr-name", ["onChange"]],
+		["script", [
+			["script-punctuation", "="],
+			["punctuation", "{"],
+			["punctuation", "("],
+			["parameter", ["i"]],
+			["punctuation", ")"],
+			["operator", "=>"],
+			" console",
+			["punctuation", "."],
+			["function", "log"],
+			["punctuation", "("],
+			["template-string", [
+				["template-punctuation", "`"],
+				["string", "My value is "],
+				["interpolation", [
+					["interpolation-punctuation", "${"],
+					"i",
+					["interpolation-punctuation", "}"]
+				]],
+				["template-punctuation", "`"]
+			]],
+			["punctuation", ")"],
+			["punctuation", "}"]
+		]],
+		["comment", "// 0 - this.props.fidelity"],
+
+		["punctuation", "/>"]
+	]],
+	["plain-text", "\r\n\r\n            "],
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			["class-name", "MaxMSP.RadioGroup"]
+		]],
+
+		["attr-name", ["ariaLabel"]],
+		["attr-value", [
+			["punctuation", "="],
+			["punctuation", "'"],
+			"set the aria-label tag",
+			["punctuation", "'"]
+		]],
+		["comment", "// defaults to the object name"],
+
+		["attr-name", ["items"]],
+		["script", [
+			["script-punctuation", "="],
+			["punctuation", "{"],
+			["punctuation", "["],
+			["string", "'array'"],
+			["punctuation", ","],
+			["string", "'of'"],
+			["punctuation", ","],
+			["string", "'items'"],
+			["punctuation", "]"],
+			["punctuation", "}"]
+		]],
+		["comment", "// this sets the amount of radiobuttons, strings create text alongside each button"],
+
+		["attr-name", ["spacing"]],
+		["script", [
+			["script-punctuation", "="],
+			["punctuation", "{"],
+			["number", "24"],
+			["punctuation", "}"]
+		]],
+		["comment", "// the height of each button in pixels, defualt 20"],
+
+		["attr-name", ["value"]],
+		["script", [
+			["script-punctuation", "="],
+			["punctuation", "{"],
+			"i",
+			["punctuation", "}"]
+		]],
+		["comment", "// this.props.items[i], default 0"],
+
+		["attr-name", ["onClick"]],
+		["script", [
+			["script-punctuation", "="],
+			["punctuation", "{"],
+			["punctuation", "("],
+			["parameter", ["i"]],
+			["punctuation", ")"],
+			["operator", "=>"],
+			" console",
+			["punctuation", "."],
+			["function", "log"],
+			["punctuation", "("],
+			["template-string", [
+				["template-punctuation", "`"],
+				["string", "My value is "],
+				["interpolation", [
+					["interpolation-punctuation", "${"],
+					"i",
+					["interpolation-punctuation", "}"]
+				]],
+				["template-punctuation", "`"]
+			]],
+			["punctuation", ")"],
+			["punctuation", "}"]
+		]],
+
+		["punctuation", "/>"]
+	]],
+	["plain-text", "\r\n\r\n            "],
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			["class-name", "MaxMSP.Slider"]
+		]],
+
+		["attr-name", ["ariaLabel"]],
+		["attr-value", [
+			["punctuation", "="],
+			["punctuation", "'"],
+			"set the aria-label tag",
+			["punctuation", "'"]
+		]],
+		["comment", "// defaults to the object name"],
+
+		["attr-name", ["fidelity"]],
+		["script", [
+			["script-punctuation", "="],
+			["punctuation", "{"],
+			["number", "100"],
+			["punctuation", "}"]
+		]],
+		["comment", "// max output of slider, default 100"],
+
+		["attr-name", ["length"]],
+		["script", [
+			["script-punctuation", "="],
+			["punctuation", "{"],
+			["number", "200"],
+			["punctuation", "}"]
+		]],
+		["comment", "// width of the slider in pixels, default 200"],
+
+		["attr-name", ["value"]],
+		["script", [
+			["script-punctuation", "="],
+			["punctuation", "{"],
+			["number", "50"],
+			["punctuation", "}"]
+		]],
+		["comment", "// inital/updated state, 0 to this.props.fidelity, default 0"],
+
+		["attr-name", ["onChange"]],
+		["script", [
+			["script-punctuation", "="],
+			["punctuation", "{"],
+			["punctuation", "("],
+			["parameter", ["i"]],
+			["punctuation", ")"],
+			["operator", "=>"],
+			" console",
+			["punctuation", "."],
+			["function", "log"],
+			["punctuation", "("],
+			["template-string", [
+				["template-punctuation", "`"],
+				["string", "My value is "],
+				["interpolation", [
+					["interpolation-punctuation", "${"],
+					"i",
+					["interpolation-punctuation", "}"]
+				]],
+				["template-punctuation", "`"]
+			]],
+			["punctuation", ")"],
+			["punctuation", "}"]
+		]],
+		["comment", "// 0 - this.props.fidelity"],
+
+		["punctuation", "/>"]
+	]],
+	["plain-text", "\r\n\r\n            "],
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			["class-name", "MaxMSP.TextButton"]
+		]],
+
+		["attr-name", ["ariaLabel"]],
+		["attr-value", [
+			["punctuation", "="],
+			["punctuation", "'"],
+			"set the aria-label tag",
+			["punctuation", "'"]
+		]],
+		["comment", "// defaults to the object name"],
+
+		["attr-name", ["ariaPressed"]],
+		["script", [
+			["script-punctuation", "="],
+			["punctuation", "{"],
+			["boolean", "true"],
+			["operator", "||"],
+			["boolean", "false"],
+			["punctuation", "}"]
+		]],
+		["comment", "// default null, for mode 'false' only"],
+
+		["attr-name", ["inactive"]],
+		["script", [
+			["script-punctuation", "="],
+			["punctuation", "{"],
+			["boolean", "true"],
+			["operator", "||"],
+			["boolean", "false"],
+			["punctuation", "}"]
+		]],
+		["comment", "// diable user interaction, default false"],
+
+		["attr-name", ["mode"]],
+		["script", [
+			["script-punctuation", "="],
+			["punctuation", "{"],
+			["boolean", "true"],
+			["operator", "||"],
+			["boolean", "false"],
+			["punctuation", "}"]
+		]],
+		["comment", "// true for toggle, false for bang, default false"],
+
+		["attr-name", ["text"]],
+		["attr-value", [
+			["punctuation", "="],
+			["punctuation", "'"],
+			"What does the textbutton say?",
+			["punctuation", "'"]
+		]],
+
+		["attr-name", ["toggleText"]],
+		["attr-value", [
+			["punctuation", "="],
+			["punctuation", "'"],
+			"What does the toggled textbutton say?",
+			["punctuation", "'"]
+		]],
+
+		["attr-name", ["value"]],
+		["script", [
+			["script-punctuation", "="],
+			["punctuation", "{"],
+			["boolean", "true"],
+			["operator", "||"],
+			["boolean", "false"],
+			["punctuation", "}"]
+		]],
+		["comment", "// default false, for mode 'true' only"],
+
+		["comment", "// mode 0 onClick"],
+
+		["attr-name", ["onClick"]],
+		["script", [
+			["script-punctuation", "="],
+			["punctuation", "{"],
+			["punctuation", "("],
+			["punctuation", ")"],
+			["operator", "=>"],
+			" console",
+			["punctuation", "."],
+			["function", "log"],
+			["punctuation", "("],
+			["string", "'bang'"],
+			["punctuation", ")"],
+			["punctuation", "}"]
+		]],
+
+		["comment", "// mode 1 onClick"],
+
+		["attr-name", ["onClick"]],
+		["script", [
+			["script-punctuation", "="],
+			["punctuation", "{"],
+			["punctuation", "("],
+			["parameter", ["bool"]],
+			["punctuation", ")"],
+			["operator", "=>"],
+			" console",
+			["punctuation", "."],
+			["function", "log"],
+			["punctuation", "("],
+			"bool",
+			["punctuation", ")"],
+			["punctuation", "}"]
+		]],
+
+		["punctuation", "/>"]
+	]],
+	["plain-text", "\r\n\r\n            "],
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			["class-name", "MaxMSP.Toggle"]
+		]],
+
+		["attr-name", ["ariaLabel"]],
+		["attr-value", [
+			["punctuation", "="],
+			["punctuation", "'"],
+			"set the aria-label tag",
+			["punctuation", "'"]
+		]],
+		["comment", "// defaults to the object name"],
+
+		["attr-name", ["value"]],
+		["script", [
+			["script-punctuation", "="],
+			["punctuation", "{"],
+			["boolean", "true"],
+			["operator", "||"],
+			["boolean", "false"],
+			["punctuation", "}"]
+		]],
+		["comment", "// default false"],
+
+		["attr-name", ["onClick"]],
+		["script", [
+			["script-punctuation", "="],
+			["punctuation", "{"],
+			["punctuation", "("],
+			["parameter", ["bool"]],
+			["punctuation", ")"],
+			["operator", "=>"],
+			" console",
+			["punctuation", "."],
+			["function", "log"],
+			["punctuation", "("],
+			"bool",
+			["punctuation", ")"],
+			["punctuation", "}"]
+		]],
+
+		["punctuation", "/>"]
+	]],
+	["plain-text", "\r\n\r\n            "],
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			["class-name", "MaxMSP.Umenu"]
+		]],
+
+		["attr-name", ["ariaLabel"]],
+		["attr-value", [
+			["punctuation", "="],
+			["punctuation", "'"],
+			"set the aria-label tag",
+			["punctuation", "'"]
+		]],
+		["comment", "// defaults to the object name"],
+
+		["attr-name", ["items"]],
+		["script", [
+			["script-punctuation", "="],
+			["punctuation", "{"],
+			["punctuation", "["],
+			["string", "'array'"],
+			["punctuation", ","],
+			["string", "'of'"],
+			["punctuation", ","],
+			["string", "'items'"],
+			["punctuation", "]"],
+			["punctuation", "}"]
+		]],
+
+		["attr-name", ["outputSymbol"]],
+		["script", [
+			["script-punctuation", "="],
+			["punctuation", "{"],
+			["boolean", "true"],
+			["operator", "||"],
+			["boolean", "false"],
+			["punctuation", "}"]
+		]],
+		["comment", "// true for symbol false for int, default false"],
+
+		["attr-name", ["value"]],
+		["script", [
+			["script-punctuation", "="],
+			["punctuation", "{"],
+			"i",
+			["punctuation", "}"]
+		]],
+		["comment", "// this.props.items[i], default 0"],
+
+		["attr-name", ["width"]],
+		["script", [
+			["script-punctuation", "="],
+			["punctuation", "{"],
+			["number", "200"],
+			["punctuation", "}"]
+		]],
+		["comment", "// width of the umenu in pixels, default 100"],
+
+		["attr-name", ["onChange"]],
+		["script", [
+			["script-punctuation", "="],
+			["punctuation", "{"],
+			["punctuation", "("],
+			["parameter", ["x"]],
+			["punctuation", ")"],
+			["operator", "=>"],
+			" console",
+			["punctuation", "."],
+			["function", "log"],
+			["punctuation", "("],
+			["template-string", [
+				["template-punctuation", "`"],
+				["string", "My index/item is "],
+				["interpolation", [
+					["interpolation-punctuation", "${"],
+					"x",
+					["interpolation-punctuation", "}"]
+				]],
+				["template-punctuation", "`"]
+			]],
+			["punctuation", ")"],
+			["punctuation", "}"]
+		]],
+
+		["punctuation", "/>"]
+	]],
+	["plain-text", "\r\n\r\n        "],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			["class-name", "React.Fragment"]
+		]],
+		["punctuation", ">"]
+	]],
+
+	["punctuation", ")"],
+
+	["punctuation", "}"]
+]

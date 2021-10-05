@@ -3,19 +3,22 @@ abstract assert async await
 break case catch
 class;
 const
-continue default deferred
+continue covariant default deferred
 do dynamic else enum
-export external
+export extension external
 extends;
 factory final finally for
-get if
+get hide if
 implements;
+interface;
 import
-in library
+in
+library
+mixin
 new;
 null
-operator part rethrow return
-set static super switch this
+on operator part rethrow return
+set show static super switch sync this
 throw try typedef var
 void while with yield
 
@@ -27,19 +30,21 @@ void while with yield
 	["keyword", "break"], ["keyword", "case"], ["keyword", "catch"],
 	["keyword", "class"], ["punctuation", ";"],
 	["keyword", "const"],
-	["keyword", "continue"], ["keyword", "default"], ["keyword", "deferred"],
+	["keyword", "continue"], ["keyword", "covariant"], ["keyword", "default"], ["keyword", "deferred"],
 	["keyword", "do"], ["keyword", "dynamic"], ["keyword", "else"], ["keyword", "enum"],
-	["keyword", "export"], ["keyword", "external"],
+	["keyword", "export"], ["keyword", "extension"], ["keyword", "external"],
 	["keyword", "extends"], ["punctuation", ";"],
 	["keyword", "factory"], ["keyword", "final"], ["keyword", "finally"], ["keyword", "for"],
-	["keyword", "get"], ["keyword", "if"],
+	["keyword", "get"], ["keyword", "hide"], ["keyword", "if"],
 	["keyword", "implements"], ["punctuation", ";"],
+	["keyword", "interface"], ["punctuation", ";"],
 	["keyword", "import"],
 	["keyword", "in"], ["keyword", "library"],
+	["keyword", "mixin"],
 	["keyword", "new"], ["punctuation", ";"],
 	["keyword", "null"],
-	["keyword", "operator"], ["keyword", "part"], ["keyword", "rethrow"], ["keyword", "return"],
-	["keyword", "set"], ["keyword", "static"], ["keyword", "super"], ["keyword", "switch"], ["keyword", "this"],
+	["keyword", "on"], ["keyword", "operator"], ["keyword", "part"], ["keyword", "rethrow"], ["keyword", "return"],
+	["keyword", "set"], ["keyword", "show"], ["keyword", "static"], ["keyword", "super"], ["keyword", "switch"],  ["keyword", "sync"], ["keyword", "this"],
 	["keyword", "throw"], ["keyword", "try"], ["keyword", "typedef"], ["keyword", "var"],
 	["keyword", "void"], ["keyword", "while"], ["keyword", "with"], ["keyword", "yield"]
 ]

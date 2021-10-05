@@ -1,0 +1,127 @@
+<h2>Comments</h2>
+<pre><code>! FIXME: a comment
+
+USE: multiline
+
+![[ comment ]]
+/* comment */</code></pre>
+
+<h2>Strings</h2>
+<pre><code>"a string" "\"" "\x8" "%s"
+
+SBUF" asbdef"
+
+USE: multiline
+
+STRING: name
+content
+;
+
+HEREDOC: marker
+text
+marker
+
+[==[
+	str
+	ing
+]==]
+</code></pre>
+
+<h2>Numbers</h2>
+<pre><code>5 1/5 +9 -9 +1/5 -1/5 -1/5. 23+1/5 -23-1/5 23-1/5 ! NOTE: last one = word
+
++12.13 0.01 0e0 3E4 3e-4 3E-4 030 0xd 0o30 0b1100
+-12.13 -0 -0.01 -0e0 -3E4 -3E-4 -030 -0xd -0o30 -0b1100
+
+348756424956392657834385437598743583648756332457
+-348756424956392657834385437598743583648756332457
+
+NAN: a
+NAN: 80000deadbeef
+
+0b1.010p2 0x1.0p3 0x1.p1 0b1.111111p1111 ...</code></pre>
+
+<h2>Sequences</h2>
+<pre><code>{ 1 2 3 4 }
+{ a b c d e t f }
+{ "a" "b" "c" }
+
+{ { a b } { c d } }
+H{ { a b } { c d } }
+H{ { "a" "b" } { "c" "d" } }
+V{ 1 2 3 4 }
+V{ "1" "2" "3" "4" }
+BV{ 1 2 3 4 }</code></pre>
+
+<h2>Regular Expressions</h2>
+<pre><code>USE: regexp
+R/ abcde?.*+\?\.\*\+\/\\\/idmsr-idmsr/idmsr-idmsr</code></pre>
+
+<h2>Colon parsing words</h2>
+<pre><code>: a ( -- ) ;
+:: ; ! ; is not a word name
+:: ;a ! ;a is a word name
+USING: a b c ;
+USE: a
+IN: a.b
+CHAR: a
+GENERIC#: x 1 ( x: integer quot: ( x -- y ) -- )</code></pre>
+
+<h2>Special words (builtins, conventions)</h2>
+<pre><code>and not with map filter
+
+new last-index + - neg
+
+&lt;array&gt; &lt;=> SYNTAX: x $[ xyz ]
+
+set-x change-x with-variable ?of if* (gensym) hex. $description reader>> >>setter writer&lt;&lt;
+
+string>number >hex base> mutater!
+</code></pre>
+
+<h2>Full example</h2>
+<pre><code>USING: accessors arrays assocs combinators
+combinators.short-circuit effects io kernel sequences
+sequences.deep splitting strings vocabs words ;
+IN: prism
+
+: make-prism-syntax ( syntax-vocab -- seq )
+ 	vocab-words [
+		dup name>> ">>" = [ drop t ] [
+			{
+				[ "delimiter" word-prop ]
+				[ name>> last { CHAR: : CHAR: { CHAR: [ CHAR: ( CHAR: ) CHAR: ? CHAR: " } member? ]
+				[ name>> { "t" "f" } member? ]
+			} 1|| not
+		] if
+	] filter ;
+
+: combinator? ( word -- ? )
+	[ "declared-effect" word-prop in>> flatten
+		[
+			[ effect? ] [ { "quots" "quot" } member? ] bi or
+		] any?
+	] [
+		"help" word-prop ?first flatten [ dup word? [ name>> ] when "quot" swap subseq? ] any?
+	] bi or ;
+
+: classify ( vocab-spec -- seq )
+	vocab-words [
+		dup {
+			{ [ dup combinator? ] [ drop "combinator" ] }
+			{ [ dup "macro" word-prop ] [ drop "macro" ] }
+			[ drop "ordinary" ]
+		} cond 2array
+	] map ;
+
+: print-strings ( strs -- )
+	[ name>> "'" dup surround ] map ", " join print ; recursive ! WARN: not recursive
+
+: combinators. ( vocab-spec -- )
+	classify [ nip "combinator" = ] assoc-filter keys print-strings ; flushable
+
+: ordinaries. ( vocab-spec -- )
+	classify [ nip "ordinary" = ] assoc-filter keys print-strings ; foldable
+
+: macros. ( vocab-spec -- )
+	classify [ nip "macro" = ] assoc-filter keys print-strings ; inline</code></pre>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8" />
+<link rel="icon" href="assets/favicon.png" />
+<title>Download Button ▲ Prism plugins</title>
+<base href="../.." />
+<link rel="stylesheet" href="assets/style.css" />
+<link rel="stylesheet" href="themes/prism.css" data-noprefix />
+<link rel="stylesheet" href="plugins/toolbar/prism-toolbar.css" data-noprefix />
+<script src="assets/vendor/prefixfree.min.js"></script>
+
+<script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
+<script src="https://www.google-analytics.com/ga.js" async></script>
+</head>
+<body>
+
+<header data-plugin-header="download-button"></header>
+
+<section class="language-markup">
+	<h1>How to use</h1>
+
+	<p>Use the <code>data-src</code> and <code>data-download-link</code> attribute on a <code>&lt;pre></code> elements similar to <a href="plugins/autoloader/">Autoloader</a>, like so:</p>
+
+	<pre><code>&lt;pre data-src="myfile.js" data-download-link>&lt;/pre></code></pre>
+
+	<p>Optionally, the text of the button can also be customized by using a <code>data-download-link-label</code> attribute.</p>
+	<pre><code>&lt;pre data-src="myfile.js" data-download-link data-download-link-label="Download this file">&lt;/pre></code></pre>
+</section>
+
+<section>
+	<h1>Examples</h1>
+
+	<p>The plugin’s JS code:</p>
+	<pre data-src="plugins/download-button/prism-download-button.js" data-download-link data-download-link-label="Download the code!"></pre>
+
+	<p>This page:</p>
+	<pre data-src="plugins/file-highlight/index.html" data-download-link></pre>
+</section>
+
+<footer data-src="assets/templates/footer.html" data-type="text/html"></footer>
+
+<script src="prism.js"></script>
+<script src="plugins/toolbar/prism-toolbar.js"></script>
+<script src="plugins/download-button/prism-download-button.js"></script>
+<script src="assets/vendor/utopia.js"></script>
+<script src="components.js"></script>
+<script src="assets/code.js"></script>
+
+
+</body>
+</html>

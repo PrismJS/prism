@@ -1,0 +1,75 @@
+base;
+break;
+case;
+catch;
+class;
+clone;
+const;
+constructor;
+continue;
+default;
+delete;
+else;
+enum;
+extends;
+for;
+foreach;
+function;
+if;
+in;
+instanceof;
+local;
+null;
+resume;
+return;
+static;
+switch;
+this;
+throw;
+try;
+typeof;
+while;
+yield;
+
+__LINE__
+__FILE__
+
+----------------------------------------------------
+
+[
+	["keyword", "base"], ["punctuation", ";"],
+	["keyword", "break"], ["punctuation", ";"],
+	["keyword", "case"], ["punctuation", ";"],
+	["keyword", "catch"], ["punctuation", ";"],
+	["keyword", "class"], ["punctuation", ";"],
+	["keyword", "clone"], ["punctuation", ";"],
+	["keyword", "const"], ["punctuation", ";"],
+	["keyword", "constructor"], ["punctuation", ";"],
+	["keyword", "continue"], ["punctuation", ";"],
+	["keyword", "default"], ["punctuation", ";"],
+	["keyword", "delete"], ["punctuation", ";"],
+	["keyword", "else"], ["punctuation", ";"],
+	["keyword", "enum"], ["punctuation", ";"],
+	["keyword", "extends"], ["punctuation", ";"],
+	["keyword", "for"], ["punctuation", ";"],
+	["keyword", "foreach"], ["punctuation", ";"],
+	["keyword", "function"], ["punctuation", ";"],
+	["keyword", "if"], ["punctuation", ";"],
+	["keyword", "in"], ["punctuation", ";"],
+	["keyword", "instanceof"], ["punctuation", ";"],
+	["keyword", "local"], ["punctuation", ";"],
+	["keyword", "null"], ["punctuation", ";"],
+	["keyword", "resume"], ["punctuation", ";"],
+	["keyword", "return"], ["punctuation", ";"],
+	["keyword", "static"], ["punctuation", ";"],
+	["keyword", "switch"], ["punctuation", ";"],
+	["keyword", "this"], ["punctuation", ";"],
+	["keyword", "throw"], ["punctuation", ";"],
+	["keyword", "try"], ["punctuation", ";"],
+	["keyword", "typeof"], ["punctuation", ";"],
+	["keyword", "while"], ["punctuation", ";"],
+	["keyword", "yield"], ["punctuation", ";"],
+
+	["keyword", "__LINE__"],
+	["keyword", "__FILE__"]
+]

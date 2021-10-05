@@ -1,0 +1,56 @@
+<h2>Full example</h2>
+<pre><code>// http://chaiscript.com/examples.html#ChaiScript_Language_Examples
+// Source: https://gist.github.com/lefticus/cf058f2927fef68d58e0#file-chaiscript_overview-chai
+
+// ChaiScript supports the normal kind of control blocks you've come to expect from
+// C++ and JavaScript
+
+
+if (5 > 2) {
+  print("Yup, 5 > 2");
+} else if (2 > 5) {
+  // never gonna happen
+} else {
+  // really not going to happen
+}
+
+var x = true;
+
+while (x)
+{
+  print("x was true")
+  x = false;
+}
+
+for (var i = 1; i &lt; 10; ++i)
+{
+  print(i); // prints 1 through 9
+}
+
+
+// function definition
+
+def myFunc(x) {
+  print(x);
+}
+
+// function definition with function guards
+def myFunc(x) : x > 2 && x &lt; 5 {
+  print(to_string(x) + " is between 2 and 5")
+}
+
+def myFunc(x) : x >= 5 {
+  print(t_string(x) + " is greater than or equal to 5")
+}
+
+myFunc(3)
+
+// ChaiScript also supports in string evaluation, which C++ does not
+
+print("${3 + 5} is 8");
+
+// And dynamic code evaluation
+
+var value = eval("4 + 2 + 12");
+
+// value is equal to 18</code></pre>

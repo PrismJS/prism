@@ -1,0 +1,32 @@
+@Override
+@Documented
+@java.long.annotation.Documented
+
+@Retention(value=SOURCE)
+@Target(value={PACKAGE,TYPE})
+
+----------------------------------------------------
+
+[
+	["annotation", "@Override"],
+	["annotation", "@Documented"],
+	["annotation", "@java.long.annotation.Documented"],
+
+	["annotation", "@Retention"],
+	["punctuation", "("],
+	"value",
+	["operator", "="],
+	"SOURCE",
+	["punctuation", ")"],
+
+	["annotation", "@Target"],
+	["punctuation", "("],
+	"value",
+	["operator", "="],
+	["punctuation", "{"],
+	"PACKAGE",
+	["punctuation", ","],
+	"TYPE",
+	["punctuation", "}"],
+	["punctuation", ")"]
+]

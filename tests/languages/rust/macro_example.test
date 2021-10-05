@@ -1,0 +1,144 @@
+macro_rules! write_html {
+	($w:expr, ) => (());
+
+	($w:expr, $e:tt) => (write!($w, "{}", $e));
+
+	($w:expr, $tag:ident [ $($inner:tt)* ] $($rest:tt)*) => {{
+		write!($w, "<{}>", stringify!($tag));
+		write_html!($w, $($inner)*);
+		write!($w, "</{}>", stringify!($tag));
+		write_html!($w, $($rest)*);
+	}};
+}
+
+----------------------------------------------------
+
+[
+	["macro", "macro_rules!"],
+	" write_html ",
+	["punctuation", "{"],
+
+	["punctuation", "("],
+	["variable", "$w"],
+	["punctuation", ":"],
+	["fragment-specifier", "expr"],
+	["punctuation", ","],
+	["punctuation", ")"],
+	["operator", "=>"],
+	["punctuation", "("],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["punctuation", "("],
+	["variable", "$w"],
+	["punctuation", ":"],
+	["fragment-specifier", "expr"],
+	["punctuation", ","],
+	["variable", "$e"],
+	["punctuation", ":"],
+	["fragment-specifier", "tt"],
+	["punctuation", ")"],
+	["operator", "=>"],
+	["punctuation", "("],
+	["macro", "write!"],
+	["punctuation", "("],
+	["variable", "$w"],
+	["punctuation", ","],
+	["string", "\"{}\""],
+	["punctuation", ","],
+	["variable", "$e"],
+	["punctuation", ")"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["punctuation", "("],
+	["variable", "$w"],
+	["punctuation", ":"],
+	["fragment-specifier", "expr"],
+	["punctuation", ","],
+	["variable", "$tag"],
+	["punctuation", ":"],
+	["fragment-specifier", "ident"],
+	["punctuation", "["],
+	" $",
+	["punctuation", "("],
+	["variable", "$inner"],
+	["punctuation", ":"],
+	["fragment-specifier", "tt"],
+	["punctuation", ")"],
+	["operator", "*"],
+	["punctuation", "]"],
+	" $",
+	["punctuation", "("],
+	["variable", "$rest"],
+	["punctuation", ":"],
+	["fragment-specifier", "tt"],
+	["punctuation", ")"],
+	["operator", "*"],
+	["punctuation", ")"],
+	["operator", "=>"],
+	["punctuation", "{"],
+	["punctuation", "{"],
+
+	["macro", "write!"],
+	["punctuation", "("],
+	["variable", "$w"],
+	["punctuation", ","],
+	["string", "\"<{}>\""],
+	["punctuation", ","],
+	["macro", "stringify!"],
+	["punctuation", "("],
+	["variable", "$tag"],
+	["punctuation", ")"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["macro", "write_html!"],
+	["punctuation", "("],
+	["variable", "$w"],
+	["punctuation", ","],
+	" $",
+	["punctuation", "("],
+	["variable", "$inner"],
+	["punctuation", ")"],
+	["operator", "*"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["macro", "write!"],
+	["punctuation", "("],
+	["variable", "$w"],
+	["punctuation", ","],
+	["string", "\"</{}>\""],
+	["punctuation", ","],
+	["macro", "stringify!"],
+	["punctuation", "("],
+	["variable", "$tag"],
+	["punctuation", ")"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["macro", "write_html!"],
+	["punctuation", "("],
+	["variable", "$w"],
+	["punctuation", ","],
+	" $",
+	["punctuation", "("],
+	["variable", "$rest"],
+	["punctuation", ")"],
+	["operator", "*"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks this macro example.

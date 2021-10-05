@@ -1,0 +1,39 @@
+<h2>Full example</h2>
+<pre><code>
+%dw 2.0
+input payalod application/json
+ns ns0 http://localhost.com
+var a = 123
+type T = String
+fun test(a: Number) = a + 123
+output application/json
+---
+{
+    // This is a comment
+    /**
+    This is a multiline comment
+    **/
+    name: payload.name,
+    string: "this",
+    'another string': true,
+    "regex": /123/,
+    fc: test(1),
+    "dates": |12-12-2020-T12:00:00|,
+    number: 123,
+    "null": null,
+
+    a: {} match {
+        case  is {} -> foo.name
+    },
+    b: {} update {
+    case name at .user.name ->  "123"
+    },
+    stringMultiLine: "This is a multiline
+        string
+    ",
+    a: if( !true > 2) a else 2,
+    b: do {
+            {}
+        }
+}
+</code></pre>

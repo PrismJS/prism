@@ -1,21 +1,47 @@
-""
-"fo\"obar"
-"foo\
+RUN echo ""
+RUN echo "fo\"obar"
+RUN echo "foo\
 bar"
-''
-'fo\'obar'
-'foo\
+
+RUN echo ''
+RUN echo 'fo\'obar'
+RUN echo 'foo\
 bar'
 
 ----------------------------------------------------
 
 [
-	["string", "\"\""],
-	["string", "\"fo\\\"obar\""],
-	["string", "\"foo\\\r\nbar\""],
-	["string", "''"],
-	["string", "'fo\\'obar'"],
-	["string", "'foo\\\r\nbar'"]
+	["instruction", [
+		["keyword", "RUN"],
+		" echo ",
+		["string", "\"\""]
+	]],
+	["instruction", [
+		["keyword", "RUN"],
+		" echo ",
+		["string", "\"fo\\\"obar\""]
+	]],
+	["instruction", [
+		["keyword", "RUN"],
+		" echo ",
+		["string", "\"foo\\\r\nbar\""]
+	]],
+
+	["instruction", [
+		["keyword", "RUN"],
+		" echo ",
+		["string", "''"]
+	]],
+	["instruction", [
+		["keyword", "RUN"],
+		" echo ",
+		["string", "'fo\\'obar'"]
+	]],
+	["instruction", [
+		["keyword", "RUN"],
+		" echo ",
+		["string", "'foo\\\r\nbar'"]
+	]]
 ]
 
 ----------------------------------------------------

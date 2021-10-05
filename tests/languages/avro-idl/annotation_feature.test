@@ -1,0 +1,76 @@
+record MyRecord {
+  string @order("ascending") myAscendingSortField;
+  string @order("descending")  myDescendingField;
+  string @order("ignore") myIgnoredField;
+}
+
+@java-class("java.util.ArrayList") array<string> myStrings;
+
+@namespace("org.apache.avro.firstNamespace")
+
+union { MD5, null} @aliases(["hash"]) nullableHash;
+
+----------------------------------------------------
+
+[
+	["keyword", "record"],
+	["class-name", "MyRecord"],
+	["punctuation", "{"],
+
+	["keyword", "string"],
+	["annotation", "@order"],
+	["punctuation", "("],
+	["string", "\"ascending\""],
+	["punctuation", ")"],
+	" myAscendingSortField",
+	["punctuation", ";"],
+
+	["keyword", "string"],
+	["annotation", "@order"],
+	["punctuation", "("],
+	["string", "\"descending\""],
+	["punctuation", ")"],
+	"  myDescendingField",
+	["punctuation", ";"],
+
+	["keyword", "string"],
+	["annotation", "@order"],
+	["punctuation", "("],
+	["string", "\"ignore\""],
+	["punctuation", ")"],
+	" myIgnoredField",
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+
+	["annotation", "@java-class"],
+	["punctuation", "("],
+	["string", "\"java.util.ArrayList\""],
+	["punctuation", ")"],
+	["keyword", "array"],
+	["punctuation", "<"],
+	["keyword", "string"],
+	["punctuation", ">"],
+	" myStrings",
+	["punctuation", ";"],
+
+	["annotation", "@namespace"],
+	["punctuation", "("],
+	["string", "\"org.apache.avro.firstNamespace\""],
+	["punctuation", ")"],
+
+	["keyword", "union"],
+	["punctuation", "{"],
+	" MD5",
+	["punctuation", ","],
+	["keyword", "null"],
+	["punctuation", "}"],
+	["annotation", "@aliases"],
+	["punctuation", "("],
+	["punctuation", "["],
+	["string", "\"hash\""],
+	["punctuation", "]"],
+	["punctuation", ")"],
+	" nullableHash",
+	["punctuation", ";"]
+]

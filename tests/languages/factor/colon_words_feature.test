@@ -1,0 +1,47 @@
+: a ( -- ) ;
+:: ; ! ; is not a word name
+:: ;a ! ;a is a word name
+USING: a b c ;
+USE: a
+IN: a.b
+CHAR: a
+#: a
+GENERIC#: a
+
+----------------------------------------------------
+
+[
+	[ "colon-syntax", ": a" ],
+
+	[ "stack-effect-delimiter", "(" ],
+	[ "stack-effect-delimiter", "--" ],
+	[ "stack-effect-delimiter", ")" ],
+
+	[ "semicolon-or-setlocal", ";" ],
+
+	[ "normal-word", "::" ],
+	[ "semicolon-or-setlocal", ";" ],
+	[ "comment", [ "! ; is not a word name" ] ],
+
+	[ "colon-syntax", ":: ;a" ],
+	[ "comment", [ "! ;a is a word name" ] ],
+
+	[ "special-using",
+		[ "USING: ",
+			[ "string", "a" ],
+			[ "string", "b" ],
+			[ "string", "c" ]
+		]
+	],
+	[ "semicolon-or-setlocal", ";" ],
+	[ "colon-syntax", "USE: a" ],
+	[ "colon-syntax", "IN: a.b" ],
+	[ "colon-syntax", "CHAR: a" ],
+	[ "normal-word", "#:" ],
+	[ "normal-word", "a" ],
+	[ "colon-syntax", "GENERIC#: a" ]
+]
+
+----------------------------------------------------
+
+colon-ended parsing words

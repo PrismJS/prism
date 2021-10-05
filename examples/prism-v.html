@@ -1,0 +1,91 @@
+<h2>Comments</h2>
+<pre><code>// This is a comment
+/* This is a comment
+on multiple lines */</code></pre>
+
+<h2>Numbers</h2>
+<pre><code>123
+0x7B
+0b01111011
+0o173
+170141183460469231731687303715884105727
+1_000_000
+0b0_11
+3_122.55
+0xF_F
+0o17_3
+72.40
+072.40
+2.71828
+</code></pre>
+
+<h2>Runes and strings</h2>
+<pre><code>'\t'
+'\000'
+'\x07'
+'\u12e4'
+'\U00101234'
+`abc`
+`multi-line
+string`
+"Hello, world!"
+"multi-line
+string"</code></pre>
+
+<h2>String interpolation</h2>
+<pre><code>'Hello, $name!'
+"age = $user.age"
+'can register = ${user.age > 13}'
+'x = ${x:4.2f}'
+'[${x:10}]'
+'[${int(x):-10}]'
+</code></pre>
+
+<h2>Struct</h2>
+<pre><code>struct Foo {
+	a int   // private immutable (default)
+mut:
+	b int   // private mutable
+	c int   // (you can list multiple fields with the same access modifier)
+pub:
+	d int   // public immutable (readonly)
+pub mut:
+	e int   // public, but mutable only in parent module
+__global:
+	f int   // public and mutable both inside and outside parent module
+}           // (not recommended to use, that's why the 'global' keyword
+			// starts with __)
+</code></pre>
+
+<h2>Functions</h2>
+<pre><code>func(a, b int, z float64) bool { return a*b &lt; int(z) }</code></pre>
+
+<h2>Full example</h2>
+<pre><code>
+module mymodule
+
+import external_module
+
+fn sqr(n int) int {
+	return n * n
+}
+
+fn run(value int, op fn (int) int) int {
+	return op(value)
+}
+
+fn main() {
+	println(run(5, sqr)) // "25"
+	// Anonymous functions can be declared inside other functions:
+	double_fn := fn (n int) int {
+		return n + n
+	}
+	println(run(5, double_fn)) // "10"
+	// Functions can be passed around without assigning them to variables:
+	res := run(5, fn (n int) int {
+		return n + n
+	})
+
+	external_module.say_hi()
+}
+</code></pre>

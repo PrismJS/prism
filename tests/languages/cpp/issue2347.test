@@ -1,0 +1,70 @@
+class MainWindow : public QMainWindow
+{
+  Q_OBJECT
+
+ private slots:
+  void changeWindowTitle();
+};
+void MainWindow::changeWindowTitle()
+{
+  setWindowTitle(plainTextEdit->currentFile.split("/").last() + " - Notepanda");
+}
+
+----------------------------------------------------
+
+[
+	["keyword", "class"],
+	["class-name", "MainWindow"],
+	["operator", ":"],
+	["base-clause", [
+		["keyword", "public"],
+		["class-name", "QMainWindow"]
+	]],
+
+	["punctuation", "{"],
+
+	"\r\n  Q_OBJECT\r\n\r\n ",
+
+	["keyword", "private"],
+	" slots",
+	["operator", ":"],
+
+	["keyword", "void"],
+	["function", "changeWindowTitle"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["keyword", "void"],
+	["class-name", "MainWindow"],
+	["double-colon", "::"],
+	["function", "changeWindowTitle"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["punctuation", "{"],
+
+	["function", "setWindowTitle"],
+	["punctuation", "("],
+	"plainTextEdit",
+	["operator", "->"],
+	"currentFile",
+	["punctuation", "."],
+	["function", "split"],
+	["punctuation", "("],
+	["string", "\"/\""],
+	["punctuation", ")"],
+	["punctuation", "."],
+	["function", "last"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["operator", "+"],
+	["string", "\" - Notepanda\""],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["punctuation", "}"]
+]

@@ -1,0 +1,41 @@
+0
+123
+123.456
+123.456e-7
+
+0xfF
+
++inf
+-inf
+
+// time
+12d
+12h
+12m
+12min
+12s
+12sec
+12ms
+
+----------------------------------------------------
+
+[
+	["number", "0"],
+	["number", "123"],
+	["number", "123.456"],
+	["number", "123.456e-7"],
+
+	["number", "0xfF"],
+
+	["number", "+inf"],
+	["number", "-inf"],
+
+	["comment", "// time"],
+	["number", "12d"],
+	["number", "12h"],
+	["number", "12m"],
+	["number", "12min"],
+	["number", "12s"],
+	["number", "12sec"],
+	["number", "12ms"]
+]

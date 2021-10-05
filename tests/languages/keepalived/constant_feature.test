@@ -1,0 +1,127 @@
+virtual_server 192.168.1.200 3306 {
+	lvs_sched rr
+	lvs_sched wrr
+	lvs_sched lc
+	lvs_sched wlc
+	lvs_sched lblc
+	lvs_sched sh
+	lvs_sched mh
+	lvs_sched dh
+	lvs_sched fo
+	lvs_sched ovf
+	lvs_sched lblcr
+	lvs_sched sed
+	lvs_sched nq
+
+    lvs_method NAT
+    lvs_method DR
+    lvs_method TUN
+
+    protocol TCP
+    protocol UDP
+    protocol SCTP
+}
+
+vrrp_instance test {
+    state MASTER
+    state BACKUP
+
+    authentication {
+        auth_type PASS
+        auth_type AH
+    }
+}
+
+DNS_CHECK {
+	type A
+	type NS
+	type CNAME
+	type SOA
+	type MX
+	type TXT
+	type AAAA
+}
+
+----------------------------------------------------
+
+[
+	["property", "virtual_server"],
+	["ip", "192.168.1.200"],
+	["number", "3306"],
+	["punctuation", "{"],
+	["property", "lvs_sched"],
+	["constant", "rr"],
+	["property", "lvs_sched"],
+	["constant", "wrr"],
+	["property", "lvs_sched"],
+	["constant", "lc"],
+	["property", "lvs_sched"],
+	["constant", "wlc"],
+	["property", "lvs_sched"],
+	["constant", "lblc"],
+	["property", "lvs_sched"],
+	["constant", "sh"],
+	["property", "lvs_sched"],
+	["constant", "mh"],
+	["property", "lvs_sched"],
+	["constant", "dh"],
+	["property", "lvs_sched"],
+	["constant", "fo"],
+	["property", "lvs_sched"],
+	["constant", "ovf"],
+	["property", "lvs_sched"],
+	["constant", "lblcr"],
+	["property", "lvs_sched"],
+	["constant", "sed"],
+	["property", "lvs_sched"],
+	["constant", "nq"],
+	["property", "lvs_method"],
+	["constant", "NAT"],
+	["property", "lvs_method"],
+	["constant", "DR"],
+	["property", "lvs_method"],
+	["constant", "TUN"],
+	["property", "protocol"],
+	["constant", "TCP"],
+	["property", "protocol"],
+	["constant", "UDP"],
+	["property", "protocol"],
+	["constant", "SCTP"],
+	["punctuation", "}"],
+	["property", "vrrp_instance"],
+	" test ",
+	["punctuation", "{"],
+	["property", "state"],
+	["constant", "MASTER"],
+	["property", "state"],
+	["constant", "BACKUP"],
+	["property", "authentication"],
+	["punctuation", "{"],
+	["property", "auth_type"],
+	["constant", "PASS"],
+	["property", "auth_type"],
+	["constant", "AH"],
+	["punctuation", "}"],
+	["punctuation", "}"],
+	["property", "DNS_CHECK"],
+	["punctuation", "{"],
+	["property", "type"],
+	["constant", "A"],
+	["property", "type"],
+	["constant", "NS"],
+	["property", "type"],
+	["constant", "CNAME"],
+	["property", "type"],
+	["constant", "SOA"],
+	["property", "type"],
+	["constant", "MX"],
+	["property", "type"],
+	["constant", "TXT"],
+	["property", "type"],
+	["constant", "AAAA"],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for constants, number, punctuations.

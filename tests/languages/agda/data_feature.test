@@ -1,0 +1,36 @@
+data _≐_ {ℓ} {A : Set ℓ} (x : A) : A → Prop ℓ where
+	refl : x ≐ x
+
+----------------------------------------------------
+
+[
+	["keyword", "data"],
+	["class-name", "_≐_"],
+	["punctuation", "{"],
+	"ℓ",
+	["punctuation", "}"],
+	["punctuation", "{"],
+	["function", "A "],
+	["operator", ":"],
+	["keyword", "Set"],
+	" ℓ",
+	["punctuation", "}"],
+	["punctuation", "("],
+	["function", "x "],
+	["operator", ":"],
+	" A",
+	["punctuation", ")"],
+	["operator", ":"],
+	" A ",
+	["operator", "→"],
+	" Prop ℓ ",
+	["keyword", "where"],
+	["function", "refl "],
+	["operator", ":"],
+	" x ≐ x"
+]
+
+----------------------------------------------------
+
+The `data` keyword in Agda is used to declare a type (of course it can be dependent)
+in a fashion like Haskell's GADTs.

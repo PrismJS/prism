@@ -1,0 +1,61 @@
+ObjectId()
+ObjectId ()
+Code()
+BinData()
+DBRef()
+Timestamp()
+NumberLong()
+NumberDecimal()
+MaxKey()
+MinKey()
+RegExp()
+ISODate()
+UUID()
+
+----------------------------------------------------
+
+[
+	["builtin", "ObjectId"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "ObjectId"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "Code"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "BinData"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "DBRef"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "Timestamp"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "NumberLong"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "NumberDecimal"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "MaxKey"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "MinKey"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "RegExp"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "ISODate"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "UUID"],
+	["punctuation", "("],
+	["punctuation", ")"]
+]
+
+----------------------------------------------------
+
+Checks for built-in functions.

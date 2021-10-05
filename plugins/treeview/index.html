@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+	<meta charset="utf-8" />
+	<link rel="icon" href="assets/favicon.png" />
+	<title>Treeview ▲ Prism plugins</title>
+	<base href="../.." />
+	<link rel="stylesheet" href="assets/style.css" />
+	<link rel="stylesheet" href="themes/prism.css" data-noprefix />
+	<link rel="stylesheet" href="plugins/treeview/prism-treeview.css" data-noprefix />
+	<script src="assets/vendor/prefixfree.min.js"></script>
+
+	<script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
+	<script src="https://www.google-analytics.com/ga.js" async></script>
+</head>
+<body class="language-none">
+
+<header data-plugin-header="treeview"></header>
+
+<section>
+	<h1>How to use</h1>
+	<p>You may use <code>tree -F</code> to get a compatible text structure.</p>
+
+	<pre><code class="language-treeview">root_folder/
+|-- a first folder/
+|   |-- holidays.mov
+|   |-- javascript-file.js
+|   `-- some_picture.jpg
+|-- documents/
+|   |-- spreadsheet.xls
+|   |-- manual.pdf
+|   |-- document.docx
+|   `-- presentation.ppt
+|       `-- test
+|-- empty_folder/
+|-- going deeper/
+|   |-- going deeper/
+|   |   `-- going deeper/
+|   |        `-- going deeper/
+|   |            `-- .secret_file
+|   |-- style.css
+|   `-- index.html
+|-- music and movies/
+|   |-- great-song.mp3
+|   |-- S01E02.new.episode.avi
+|   |-- S01E02.new.episode.nfo
+|   `-- track 1.cda
+|-- .gitignore
+|-- .htaccess
+|-- .npmignore
+|-- archive 1.zip
+|-- archive 2.tar.gz
+|-- logo.svg
+`-- README.md</code></pre>
+
+	<p>You can also use the following box-drawing characters to represent the tree:</p>
+
+	<pre><code class="language-treeview">root_folder/
+├── a first folder/
+|   ├── holidays.mov
+|   ├── javascript-file.js
+|   └── some_picture.jpg
+├── documents/
+|   ├── spreadsheet.xls
+|   ├── manual.pdf
+|   ├── document.docx
+|   └── presentation.ppt
+└── etc.
+</code></pre>
+
+</section>
+
+<footer data-src="assets/templates/footer.html" data-type="text/html"></footer>
+
+<script src="prism.js"></script>
+<script src="plugins/treeview/prism-treeview.js"></script>
+<script src="assets/vendor/utopia.js"></script>
+<script src="components.js"></script>
+<script src="assets/code.js"></script>
+
+</body>
+</html>

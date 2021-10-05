@@ -12,6 +12,9 @@ let foo = '</script>';
 "foo"
 </script>
 
+<foo onclick="this.textContent='Clicked!'">
+<foo mouseover="this.textContent='Over!'">
+
 ----------------------------------------------------
 
 [
@@ -105,6 +108,46 @@ let foo = '</script>';
 		["tag", [
 			["punctuation", "</"],
 			"script"
+		]],
+		["punctuation", ">"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"foo"
+		]],
+		["special-attr", [
+			["attr-name", "onclick"],
+			["attr-value", [
+				["punctuation", "="],
+				["punctuation", "\""],
+				["value", [
+					["keyword", "this"],
+					["punctuation", "."],
+					"textContent",
+					["operator", "="],
+					["string", "'Clicked!'"]
+				]],
+				["punctuation", "\""]
+			]]
+		]],
+		["punctuation", ">"]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"foo"
+		]],
+		["attr-name", ["mouseover"]],
+		["attr-value", [
+			["punctuation", "="],
+			["punctuation", "\""],
+			"this.textContent=",
+			["punctuation", "'"],
+			"Over!",
+			["punctuation", "'"],
+			["punctuation", "\""]
 		]],
 		["punctuation", ">"]
 	]]

@@ -1,0 +1,75 @@
+foo@bar:/var/local$ cd ~
+foo@bar:~$ sudo -i
+[sudo] password for foo:
+root@bar:~# echo "hello!"
+hello!
+
+foo@bar$ zsh
+foo@bar% exit
+
+----------------------------------------------------
+
+[
+	["command", [
+		["info", [
+			["user", "foo@bar"],
+			["punctuation", ":"],
+			["path", "/var/local"]
+		]],
+		["shell-symbol", "$"],
+		["bash", [
+			["builtin", "cd"],
+			" ~"
+		]]
+	]],
+	["command", [
+		["info", [
+			["user", "foo@bar"],
+			["punctuation", ":"],
+			["path", "~"]
+		]],
+		["shell-symbol", "$"],
+		["bash", [
+			["function", "sudo"],
+			" -i"
+		]]
+	]],
+	["output", "[sudo] password for foo:\r\n"],
+	["command", [
+		["info", [
+			["user", "root@bar"],
+			["punctuation", ":"],
+			["path", "~"]
+		]],
+		["shell-symbol", "#"],
+		["bash", [
+			["builtin", "echo"],
+			["string", [
+				"\"hello!\""
+			]]
+		]]
+	]],
+	["output", "hello!\r\n\r\n"],
+	["command", [
+		["info", [
+			["user", "foo@bar"]
+		]],
+		["shell-symbol", "$"],
+		["bash", [
+			["function", "zsh"]
+		]]
+	]],
+	["command", [
+		["info", [
+			["user", "foo@bar"]
+		]],
+		["shell-symbol", "%"],
+		["bash", [
+			["builtin", "exit"]
+		]]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for the info bash outputs.

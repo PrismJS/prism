@@ -1,0 +1,29 @@
+fyu@home $ sudo ls -l ~/.config 's' && \
+  echo 'hello'
+drwxr-xr-x     - franklinyu 26 Sep  2020  asciinema
+drwxr-xr-x     - franklinyu 26 Jan  2020  'bash'
+hello
+
+----------------------------------------------------
+
+[
+	["command", [
+		["info", [
+			["user", "fyu@home "]
+		]],
+		["shell-symbol", "$"],
+		["bash", [
+			["function", "sudo"],
+			["function", "ls"],
+			" -l ~/.config ",
+			["string", "'s'"],
+			["operator", ["&&"]],
+			["punctuation", "\\"],
+
+			["builtin", "echo"],
+			["string", "'hello'"]
+		]]
+	]],
+
+	["output", "drwxr-xr-x     - franklinyu 26 Sep  2020  asciinema\r\ndrwxr-xr-x     - franklinyu 26 Jan  2020  'bash'\r\nhello"]
+]

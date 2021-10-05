@@ -1,11 +1,12 @@
-(function(){
-	if (typeof self === 'undefined' || !self.Prism || !self.document) {
+(function () {
+
+	if (typeof Prism === 'undefined' || typeof document === 'undefined') {
 		return;
 	}
 
 	var callbacks = [];
 	var map = {};
-	var noop = function() {};
+	var noop = function () {};
 
 	Prism.plugins.toolbar = {};
 
@@ -64,6 +65,27 @@
 	};
 
 	/**
+	 * Returns the callback order of the given element.
+	 *
+	 * @param {HTMLElement} element
+	 * @returns {string[] | undefined}
+	 */
+	function getOrder(element) {
+		while (element) {
+			var order = element.getAttribute('data-toolbar-order');
+			if (order != null) {
+				order = order.trim();
+				if (order.length) {
+					return order.split(/\s*,\s*/g);
+				} else {
+					return [];
+				}
+			}
+			element = element.parentElement;
+		}
+	}
+
+	/**
 	 * Post-highlight Prism hook callback.
 	 *
 	 * @param env
@@ -81,8 +103,8 @@
 		}
 
 		// Create wrapper for <pre> to prevent scrolling toolbar with content
-		var wrapper = document.createElement("div");
-		wrapper.classList.add("code-toolbar");
+		var wrapper = document.createElement('div');
+		wrapper.classList.add('code-toolbar');
 		pre.parentNode.insertBefore(wrapper, pre);
 		wrapper.appendChild(pre);
 
@@ -90,13 +112,16 @@
 		var toolbar = document.createElement('div');
 		toolbar.classList.add('toolbar');
 
-		if (document.body.hasAttribute('data-toolbar-order')) {
-			callbacks = document.body.getAttribute('data-toolbar-order').split(',').map(function(key) {
+		// order callbacks
+		var elementCallbacks = callbacks;
+		var order = getOrder(env.element);
+		if (order) {
+			elementCallbacks = order.map(function (key) {
 				return map[key] || noop;
 			});
 		}
 
-		callbacks.forEach(function(callback) {
+		elementCallbacks.forEach(function (callback) {
 			var element = callback(env);
 
 			if (!element) {
@@ -114,7 +139,7 @@
 		wrapper.appendChild(toolbar);
 	};
 
-	registerButton('label', function(env) {
+	registerButton('label', function (env) {
 		var pre = env.element.parentNode;
 		if (!pre || !/pre/i.test(pre.nodeName)) {
 			return;
@@ -124,12 +149,12 @@
 			return;
 		}
 
-		var element, template;
+		var element; var template;
 		var text = pre.getAttribute('data-label');
 		try {
 			// Any normal text will blow up this selector.
 			template = document.querySelector('template#' + text);
-		} catch (e) {}
+		} catch (e) { /* noop */ }
 
 		if (template) {
 			element = template.content;
@@ -151,4 +176,4 @@
 	 * Register the toolbar with Prism.
 	 */
 	Prism.hooks.add('complete', hook);
-})();
+}());

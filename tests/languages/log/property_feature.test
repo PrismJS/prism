@@ -1,0 +1,100 @@
+[1119/000645.591:ERROR:process_info.cc(329)] VirtualQueryEx: Zugriff verweigert (0x5)
+
+Video:
+  Renderer: Vulkan
+  Resolution: 1280x720
+  Aspect ratio: 16:9
+  Frame limit: Auto
+  Vulkan:
+    Adapter: GeForce GTX 1080 Ti
+    Force FIFO present mode: false
+    Force primitive restart flag: false
+    Force Disable Exclusive Fullscreen Mode: false
+  Performance Overlay:
+    Enabled: false
+    Enable Framerate Graph: false
+    Enable Frametime Graph: false
+    Detail level: Medium
+    Metrics update interval (ms): 350
+    Font size (px): 10
+    Body Color (hex): "#FFE138FF"
+    Body Background (hex): "#002339FF"
+    Title Color (hex): "#F26C24FF"
+    Title Background (hex): "#00000000"
+  Shader Compilation Hint:
+    Position X (px): 20
+    Position Y (px): 690
+
+[2020-06-11 16:12:02.642] [DISPLAY] [Main ] [main] Build type: FMB
+
+Min/Max Sample Rate: 100, 200000
+
+----------------------------------------------------
+
+[
+	["punctuation", "["],
+	["number", "1119"],
+	["operator", "/"],
+	["number", "000645.591"],
+	["operator", ":"],
+	["level", "ERROR"],
+	["operator", ":"],
+	"process_info",
+	["punctuation", "."],
+	"cc",
+	["operator", "("],
+	["number", "329"],
+	["operator", ")"],
+	["punctuation", "]"],
+	["property", "VirtualQueryEx:"],
+	" Zugriff verweigert ",
+	["operator", "("],
+	["number", "0x5"],
+	["operator", ")"],
+
+	["property", "Video:"],
+	["property", "Renderer:"], " Vulkan\r\n  ",
+	["property", "Resolution:"], " 1280x720\r\n  ",
+	["property", "Aspect ratio:"], ["number", "16"], ["operator", ":"], ["number", "9"],
+	["property", "Frame limit:"], " Auto\r\n  ",
+	["property", "Vulkan:"],
+	["property", "Adapter:"], " GeForce GTX ", ["number", "1080"], " Ti\r\n    ",
+	["property", "Force FIFO present mode:"], ["boolean", "false"],
+	["property", "Force primitive restart flag:"], ["boolean", "false"],
+	["property", "Force Disable Exclusive Fullscreen Mode:"], ["boolean", "false"],
+	["property", "Performance Overlay:"],
+	["property", "Enabled:"], ["boolean", "false"],
+	["property", "Enable Framerate Graph:"], ["boolean", "false"],
+	["property", "Enable Frametime Graph:"], ["boolean", "false"],
+	["property", "Detail level:"], " Medium\r\n    ",
+	["property", "Metrics update interval (ms):"], ["number", "350"],
+	["property", "Font size (px):"], ["number", "10"],
+	["property", "Body Color (hex):"], ["string", "\"#FFE138FF\""],
+	["property", "Body Background (hex):"], ["string", "\"#002339FF\""],
+	["property", "Title Color (hex):"], ["string", "\"#F26C24FF\""],
+	["property", "Title Background (hex):"], ["string", "\"#00000000\""],
+	["property", "Shader Compilation Hint:"],
+	["property", "Position X (px):"], ["number", "20"],
+	["property", "Position Y (px):"], ["number", "690"],
+
+	["punctuation", "["],
+	["date", "2020-06-11"],
+	["time", "16:12:02.642"],
+	["punctuation", "]"],
+	["punctuation", "["],
+	["level", "DISPLAY"],
+	["punctuation", "]"],
+	["punctuation", "["],
+	"Main ",
+	["punctuation", "]"],
+	["punctuation", "["],
+	"main",
+	["punctuation", "]"],
+	["property", "Build type:"],
+	" FMB\r\n\r\n",
+
+	["property", "Min/Max Sample Rate:"],
+	["number", "100"],
+	["punctuation", ","],
+	["number", "200000"]
+]

@@ -1,0 +1,19 @@
+/*
+ * This file contains specific fixes and changes from some parts of the theme.
+ *
+ * This file is part of Prism and not of the theme!
+ */
+
+pre.prettyprint > ol.linenums {
+	/* I don't know why but this fixes the extra little scroll bar some code block have. */
+	margin-bottom: 1em;
+}
+
+.description > *:not(pre) {
+	/*
+	 * Text will span across the whole width of the page by default.
+	 * This makes is really hard to read, so this will put a max width to the elements (except code block) of all
+	 * description blocks, so text breaks after some width.
+	 */
+	max-width: 60em;
+}

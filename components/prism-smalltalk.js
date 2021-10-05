@@ -1,5 +1,9 @@
 Prism.languages.smalltalk = {
 	'comment': /"(?:""|[^"])*"/,
+	'character': {
+		pattern: /\$./,
+		alias: 'string'
+	},
 	'string': /'(?:''|[^'])*'/,
 	'symbol': /#[\da-z]+|#(?:-|([+\/\\*~<>=@%|&?!])\1?)|#(?=\()/i,
 	'block-arguments': {
@@ -17,11 +21,8 @@ Prism.languages.smalltalk = {
 			'punctuation': /\|/
 		}
 	},
-	'keyword': /\b(?:nil|true|false|self|super|new)\b/,
-	'character': {
-		pattern: /\$./,
-		alias: 'string'
-	},
+	'keyword': /\b(?:new|nil|self|super)\b/,
+	'boolean': /\b(?:false|true)\b/,
 	'number': [
 		/\d+r-?[\dA-Z]+(?:\.[\dA-Z]+)?(?:e-?\d+)?/,
 		/\b\d+(?:\.\d+)?(?:e-?\d+)?/

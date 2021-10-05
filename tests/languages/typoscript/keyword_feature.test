@@ -1,0 +1,69 @@
+TEXT LLL EXT _GIFBUILDER CARRAY CASE CLEARGIF COA COA_INT CONSTANTS CONTENT
+EDITPANEL EFFECT FILE FORM FRAME FRAMESET FLUIDTEMPLATE GIFBUILDER
+global globalString globalVar GMENU GMENU_FOLDOUT GMENU_LAYERS GP
+HMENU HRULER HTML IENV IMAGE IMG_RESOURCE IMGMENU IMGMENUITEM IMGTEXT
+JSMENU JSMENUITEM LOAD_REGISTER PAGE RECORDS RESTORE_REGISTER TEMPLATE
+TMENU TMENU_LAYERS TMENUITEM USER USER_INT INCLUDE_TYPOSCRIPT NO ACT
+IFSUB ACTIFSUB CUR
+
+----------------------------------------------------
+
+[
+	["keyword", "TEXT"],
+	["keyword", "LLL"],
+	["keyword", "EXT"],
+	["keyword", "_GIFBUILDER"],
+	["keyword", "CARRAY"],
+	["keyword", "CASE"],
+	["keyword", "CLEARGIF"],
+	["keyword", "COA"],
+	["keyword", "COA_INT"],
+	["keyword", "CONSTANTS"],
+	["keyword", "CONTENT"],
+	["keyword", "EDITPANEL"],
+	["keyword", "EFFECT"],
+	["keyword", "FILE"],
+	["keyword", "FORM"],
+	["keyword", "FRAME"],
+	["keyword", "FRAMESET"],
+	["keyword", "FLUIDTEMPLATE"],
+	["keyword", "GIFBUILDER"],
+	["keyword", "global"],
+	["keyword", "globalString"],
+	["keyword", "globalVar"],
+	["keyword", "GMENU"],
+	["keyword", "GMENU_FOLDOUT"],
+	["keyword", "GMENU_LAYERS"],
+	["keyword", "GP"],
+	["keyword", "HMENU"],
+	["keyword", "HRULER"],
+	["keyword", "HTML"],
+	["keyword", "IENV"],
+	["keyword", "IMAGE"],
+	["keyword", "IMG_RESOURCE"],
+	["keyword", "IMGMENU"],
+	["keyword", "IMGMENUITEM"],
+	["keyword", "IMGTEXT"],
+	["keyword", "JSMENU"],
+	["keyword", "JSMENUITEM"],
+	["keyword", "LOAD_REGISTER"],
+	["keyword", "PAGE"],
+	["keyword", "RECORDS"],
+	["keyword", "RESTORE_REGISTER"],
+	["keyword", "TEMPLATE"],
+	["keyword", "TMENU"],
+	["keyword", "TMENU_LAYERS"],
+	["keyword", "TMENUITEM"],
+	["keyword", "USER"],
+	["keyword", "USER_INT"],
+	["keyword", "INCLUDE_TYPOSCRIPT"],
+	["keyword", "NO"],
+	["keyword", "ACT"],
+	["keyword", "IFSUB"],
+	["keyword", "ACTIFSUB"],
+	["keyword", "CUR"]
+]
+
+----------------------------------------------------
+
+Checks for all keywords.

@@ -10,7 +10,8 @@ foo.var.new;
 	["punctuation", "("],
 	["punctuation", ")"],
 	["punctuation", ";"],
-	"\nfoo",
+
+	"\r\nfoo",
 	["punctuation", "."],
 	"var",
 	["punctuation", "."],

@@ -1,0 +1,13 @@
+.show tables
+| count
+
+.set foo=234
+
+----------------------------------------------------
+
+[
+	["command", ".show"], ["keyword", "tables"],
+	["operator", "|"], ["verb", "count"],
+
+	["command", ".set"], " foo", ["operator", "="], ["number", "234"]
+]

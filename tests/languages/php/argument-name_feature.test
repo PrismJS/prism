@@ -1,0 +1,27 @@
+foo(
+    a: 'bar',
+    qux: 'baz'
+);
+
+----------------------------------------------------
+
+[
+	["function", ["foo"]],
+	["punctuation", "("],
+
+	["argument-name", "a"],
+	["punctuation", ":"],
+	["string", "'bar'"],
+	["punctuation", ","],
+
+	["argument-name", "qux"],
+	["punctuation", ":"],
+	["string", "'baz'"],
+
+	["punctuation", ")"],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for named arguments.

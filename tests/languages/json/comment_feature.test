@@ -1,5 +1,5 @@
 {
-	// Line comment
+	// Line comment ""
 	"//": "//",
 
 	/* Block comment */
@@ -10,7 +10,7 @@
 
 [
 	["punctuation", "{"],
-	["comment", "// Line comment"],
+	["comment", "// Line comment \"\""],
 	["property", "\"//\""],
 	["operator", ":"],
 	["string", "\"//\""],

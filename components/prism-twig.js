@@ -23,11 +23,11 @@ Prism.languages.twig = {
 				}
 			},
 			'keyword': /\b(?:even|if|odd)\b/,
-			'boolean': /\b(?:true|false|null)\b/,
-			'number': /\b0x[\dA-Fa-f]+|(?:\b\d+\.?\d*|\B\.\d+)(?:[Ee][-+]?\d+)?/,
+			'boolean': /\b(?:false|null|true)\b/,
+			'number': /\b0x[\dA-Fa-f]+|(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:[Ee][-+]?\d+)?/,
 			'operator': [
 				{
-					pattern: /(\s)(?:and|b-and|b-xor|b-or|ends with|in|is|matches|not|or|same as|starts with)(?=\s)/,
+					pattern: /(\s)(?:and|b-and|b-or|b-xor|ends with|in|is|matches|not|or|same as|starts with)(?=\s)/,
 					lookbehind: true
 				},
 				/[=<>]=?|!=|\*\*?|\/\/?|\?:?|[-+~%|]/

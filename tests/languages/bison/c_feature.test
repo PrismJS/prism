@@ -21,30 +21,74 @@ exp:
 	["bison", [
 		["c", [
 			["delimiter", "%{"],
-			["macro", ["#", ["directive", "include"], ["string", "<stdio.h>"]]],
+			["macro", [
+				["directive-hash", "#"],
+				["directive", "include"],
+				["string", "<stdio.h>"]
+			]],
 			["delimiter", "%}"]
 		]],
 		["keyword", "%code"],
 		["c", [
 			["delimiter", "{"],
-			["keyword", "if"], ["punctuation", "("], "foo", ["punctuation", ")"],
-			["punctuation", "{"], ["punctuation", "}"],
+			["keyword", "if"],
+			["punctuation", "("],
+			"foo",
+			["punctuation", ")"],
+			["punctuation", "{"],
+
+			["punctuation", "}"],
 			["delimiter", "}"]
 		]],
 		["punctuation", "%%"],
-		["property", "exp"], ["punctuation", ":"],
+		["property", "exp"],
+		["punctuation", ":"],
 		"\r\n\tNUM ",
 		["c", [
 			["delimiter", "{"],
-			["bison-variable", ["$$"]], ["operator", "="],
-			["function", "f"], ["punctuation", "("],
-			["bison-variable", ["$3"]], ["punctuation", ","],
-			["bison-variable", ["$4"]], ["punctuation", ")"], ["punctuation", ";"],
-			["bison-variable", ["@$"]], ["punctuation", "."], "first_column ", ["operator", "="],
-			["bison-variable", ["@1"]], ["punctuation", "."], "first_column", ["punctuation", ";"],
-			["bison-variable", ["$result"]], ["operator", "="],
-			["bison-variable", ["$left"]], ["operator", "+"],
-			["bison-variable", ["$", ["punctuation", "<"], "itype", ["punctuation", ">"], "1"]], ["punctuation", ";"],
+			["bison-variable", [
+				"$$"
+			]],
+			["operator", "="],
+			["function", "f"],
+			["punctuation", "("],
+			["bison-variable", [
+				"$3"
+			]],
+			["punctuation", ","],
+			["bison-variable", [
+				"$4"
+			]],
+			["punctuation", ")"],
+			["punctuation", ";"],
+			["bison-variable", [
+				"@$"
+			]],
+			["punctuation", "."],
+			"first_column ",
+			["operator", "="],
+			["bison-variable", [
+				"@1"
+			]],
+			["punctuation", "."],
+			"first_column",
+			["punctuation", ";"],
+			["bison-variable", [
+				"$result"
+			]],
+			["operator", "="],
+			["bison-variable", [
+				"$left"
+			]],
+			["operator", "+"],
+			["bison-variable", [
+				"$",
+				["punctuation", "<"],
+				"itype",
+				["punctuation", ">"],
+				"1"
+			]],
+			["punctuation", ";"],
 			["delimiter", "}"]
 		]],
 		["punctuation", "%%"]

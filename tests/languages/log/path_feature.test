@@ -1,0 +1,34 @@
+c:/texlive/texmf-dist/tex/latex/latexconfig/graphics.cfg
+C:\stuff\workspace\quickpoll\quickpollEJB\pom.xml
+C:\WINDOWS\system32\DRIVERS\storahci.sys
+
+/USR/SBIN/CRON
+/etc/ppp/ip-down
+
+/usr/share/doc/tama/examples/tama-nanny.exp 2>/dev/null >/dev/null
+
+/usr/local/lib/node_modules/npm/lib/utils/spawn.js:24:14
+
+----------------------------------------------------
+
+[
+	["file-path", "c:/texlive/texmf-dist/tex/latex/latexconfig/graphics.cfg"],
+	["file-path", "C:\\stuff\\workspace\\quickpoll\\quickpollEJB\\pom.xml"],
+	["file-path", "C:\\WINDOWS\\system32\\DRIVERS\\storahci.sys"],
+
+	["file-path", "/USR/SBIN/CRON"],
+	["file-path", "/etc/ppp/ip-down"],
+
+	["file-path", "/usr/share/doc/tama/examples/tama-nanny.exp"],
+	["number", "2"],
+	["operator", ">"],
+	["file-path", "/dev/null"],
+	["operator", ">"],
+	["file-path", "/dev/null"],
+
+	["file-path", "/usr/local/lib/node_modules/npm/lib/utils/spawn.js"],
+	["operator", ":"],
+	["number", "24"],
+	["operator", ":"],
+	["number", "14"]
+]

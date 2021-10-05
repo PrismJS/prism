@@ -1,0 +1,24 @@
+---
+layout: post
+title: Blogging Like a Hacker
+---
+
+# Title
+
+----------------------------------------------------
+
+[
+	["front-matter-block", [
+		["punctuation", "---"],
+		["front-matter", [
+			["key", "layout"], ["punctuation", ":"], " post\r\n",
+			["key", "title"], ["punctuation", ":"], " Blogging Like a Hacker"
+		]],
+		["punctuation", "---"]
+	]],
+
+	["title", [
+		["punctuation", "#"],
+		" Title"
+	]]
+]
