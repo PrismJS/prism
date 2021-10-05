@@ -37,7 +37,7 @@ Prism.languages.jsstacktrace = {
 			},
 
 			'line-number': {
-				pattern: /:[0-9]+(?::[0-9]+)?\b/,
+				pattern: /:\d+(?::\d+)?\b/,
 				alias: 'number',
 				inside: {
 					'punctuation': /:/
