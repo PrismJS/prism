@@ -1,0 +1,72 @@
+select
+   `t`.`col1`, `t`.`col2`, `t`.`col3`, `t`.`col4`
+from
+   `test_table` as `t`
+
+----------------------------------------------------
+
+[
+	["keyword", "select"],
+
+	["identifier", [
+		["punctuation", "`"],
+		"t",
+		["punctuation", "`"]
+	]],
+	["punctuation", "."],
+	["identifier", [
+		["punctuation", "`"],
+		"col1",
+		["punctuation", "`"]
+	]],
+	["punctuation", ","],
+	["identifier", [
+		["punctuation", "`"],
+		"t",
+		["punctuation", "`"]
+	]],
+	["punctuation", "."],
+	["identifier", [
+		["punctuation", "`"],
+		"col2",
+		["punctuation", "`"]
+	]],
+	["punctuation", ","],
+	["identifier", [
+		["punctuation", "`"],
+		"t",
+		["punctuation", "`"]
+	]],
+	["punctuation", "."],
+	["identifier", [
+		["punctuation", "`"],
+		"col3",
+		["punctuation", "`"]
+	]],
+	["punctuation", ","],
+	["identifier", [
+		["punctuation", "`"],
+		"t",
+		["punctuation", "`"]
+	]],
+	["punctuation", "."],
+	["identifier", [
+		["punctuation", "`"],
+		"col4",
+		["punctuation", "`"]
+	]],
+
+	["keyword", "from"],
+
+	["identifier", [
+		["punctuation", "`"],
+		"test_table",
+		["punctuation", "`"]
+	]],
+	["keyword", "as"],
+	["identifier", [
+		["punctuation", "`"],
+		"t",
+		["punctuation", "`"]
+	]]
+]
