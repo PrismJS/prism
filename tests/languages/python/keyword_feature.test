@@ -9,6 +9,7 @@ pass print raise return
 try while with yield
 nonlocal
 and not or
+match case _:
 
 ----------------------------------------------------
 
@@ -23,7 +24,8 @@ and not or
 	["keyword", "pass"], ["keyword", "print"], ["keyword", "raise"], ["keyword", "return"],
 	["keyword", "try"], ["keyword", "while"], ["keyword", "with"], ["keyword", "yield"],
 	["keyword", "nonlocal"],
-	["keyword", "and"], ["keyword", "not"], ["keyword", "or"]
+	["keyword", "and"], ["keyword", "not"], ["keyword", "or"],
+	["keyword", "match"], ["keyword", "case"], ["keyword", "_"], ["punctuation", ":"]
 ]
 
 ----------------------------------------------------
