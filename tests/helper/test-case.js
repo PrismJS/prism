@@ -1,3 +1,5 @@
+//@ts-check
+
 'use strict';
 
 const fs = require('fs');
@@ -10,34 +12,143 @@ const TokenStreamTransformer = require('./token-stream-transformer');
  */
 
 /**
- * Handles parsing of a test case file.
+ * Handles parsing and printing of a test case file.
  *
- *
- * A test case file consists of at least two parts, separated by a line of dashes.
+ * A test case file consists of at most three parts, separated by a line of at least 10 dashes.
  * This separation line must start at the beginning of the line and consist of at least three dashes.
  *
- * The test case file can either consist of two parts:
+ *     {code: the source code of the test case}
+ *     ----------
+ *     {expected: the expected value of the test case}
+ *     ----------
+ *     {description: explaining the test case}
  *
- *     {source code}
- *     ----
- *     {expected token stream}
+ * All parts are optional.
  *
- *
- * or of three parts:
- *
- *     {source code}
- *     ----
- *     {expected token stream}
- *     ----
- *     {text comment explaining the test case}
- *
- * If the file contains more than three parts, the remaining parts are just ignored.
- * If the file however does not contain at least two parts (so no expected token stream),
- * the test case will later be marked as failed.
- *
- *
+ * If the file contains more than three parts, the remaining parts are part of the description.
  */
+class TestCaseFile {
+	/**
+	 * @param {string} code
+	 * @param {string | undefined} [expected]
+	 * @param {string | undefined} [description]
+	 */
+	constructor(code, expected, description) {
+		this.code = code;
+		this.expected = expected || '';
+		this.description = description || '';
+
+		/**
+		 * The end of line sequence used when printed.
+		 *
+		 * @type {"\n" | "\r\n"}
+		 */
+		this.eol = '\n';
+
+		/**
+		 * The number of the first line of `code`.
+		 *
+		 * @type {number}
+		 */
+		this.codeLineStart = NaN;
+		/**
+		 * The number of the first line of `expected`.
+		 *
+		 * @type {number}
+		 */
+		this.expectedLineStart = NaN;
+		/**
+		 * The number of the first line of `description`.
+		 *
+		 * @type {number}
+		 */
+		this.descriptionLineStart = NaN;
+	}
+
+	/**
+	 * Returns the file content of the given test file.
+	 *
+	 * @returns {string}
+	 */
+	print() {
+		const code = this.code.trim();
+		const expected = (this.expected || '').trim();
+		const description = (this.description || '').trim();
+
+		const parts = [code];
+		if (description) {
+			parts.push(expected, description);
+		} else if (expected) {
+			parts.push(expected);
+		}
+
+		// join all parts together and normalize line ends to LF
+		const content = parts
+			.join('\n\n----------------------------------------------------\n\n')
+			.replace(/\r\n?|\n/g, this.eol);
+
+		return content + this.eol;
+	}
+
+	/**
+	 * Writes the given test case file to disk.
+	 *
+	 * @param {string} filePath
+	 */
+	writeToFile(filePath) {
+		fs.writeFileSync(filePath, this.print(), 'utf-8');
+	}
+
+	/**
+	 * Parses the given file contents into a test file.
+	 *
+	 * The line ends of the code, expected value, and description are all normalized to CRLF.
+	 *
+	 * @param {string} content
+	 * @returns {TestCaseFile}
+	 */
+	static parse(content) {
+		const eol = (/\r\n?|\n/.exec(content) || ['\n'])[0];
+
+		// normalize line ends to CRLF
+		content = content.replace(/\r\n?|\n/g, '\r\n');
+
+		const parts = content.split(/^-{10,}[ \t]*$/m, 3);
+		const code = parts[0] || '';
+		const expected = parts[1] || '';
+		const description = parts[2] || '';
+
+		const file = new TestCaseFile(code.trim(), expected.trim(), description.trim());
+		file.eol = eol;
+
+		const codeStartSpaces = /^\s*/.exec(code)[0];
+		const expectedStartSpaces = /^\s*/.exec(expected)[0];
+		const descriptionStartSpaces = /^\s*/.exec(description)[0];
+
+		const codeLineCount = code.split(/\r\n/).length;
+		const expectedLineCount = expected.split(/\r\n/).length;
+
+		file.codeLineStart = codeStartSpaces.split(/\r\n/).length;
+		file.expectedLineStart = codeLineCount + expectedStartSpaces.split(/\r\n/).length;
+		file.descriptionLineStart = codeLineCount + expectedLineCount + descriptionStartSpaces.split(/\r\n/).length;
+
+		return file;
+	}
+
+	/**
+	 * Reads the given test case file from disk.
+	 *
+	 * @param {string} filePath
+	 * @returns {TestCaseFile}
+	 */
+	static readFromFile(filePath) {
+		return TestCaseFile.parse(fs.readFileSync(filePath, 'utf8'));
+	}
+}
+
+
 module.exports = {
+	TestCaseFile,
 
 	/**
 	 * Runs the given test case file and asserts the result
@@ -56,7 +167,7 @@ module.exports = {
 	 * @param {"none" | "insert" | "update"} updateMode
 	 */
 	runTestCase(languageIdentifier, filePath, updateMode) {
-		const testCase = this.parseTestCaseFile(filePath);
+		const testCase = TestCaseFile.parse(filePath);
 		const usedLanguages = this.parseLanguageNames(languageIdentifier);
 
 		const Prism = PrismLoader.createInstance(usedLanguages.languages);
@@ -66,23 +177,13 @@ module.exports = {
 
 		function updateFile() {
 			// change the file
-			const separator = '\n\n----------------------------------------------------\n\n';
-			const pretty = TokenStreamTransformer.prettyprint(tokenStream, '\t');
-
-			let content = testCase.code + separator + pretty;
-			if (testCase.comment.trim()) {
-				content += separator + testCase.comment.trim();
-			}
-			content += '\n';
-
-			// convert line ends to the line ends of the file
-			content = content.replace(/\r\n?|\n/g, testCase.lineEndOnDisk);
-
-			fs.writeFileSync(filePath, content, 'utf-8');
+			testCase.expected = TokenStreamTransformer.prettyprint(tokenStream, '\t');
+			testCase.writeToFile(filePath);
 		}
 
-		if (testCase.expectedTokenStream === null) {
+		if (!testCase.expected) {
 			// the test case doesn't have an expected value
+
 			if (updateMode === 'none') {
 				throw new Error('This test case doesn\'t have an expected token stream.'
 					+ ' Either add the JSON of a token stream or run \`npm run test:languages -- --insert\`'
@@ -92,10 +193,12 @@ module.exports = {
 			updateFile();
 		} else {
 			// there is an expected value
+
+			const expectedTokenStream = JSON.parse(testCase.expected);
 			const simplifiedTokenStream = TokenStreamTransformer.simplify(tokenStream);
 
 			const actual = JSON.stringify(simplifiedTokenStream);
-			const expected = JSON.stringify(testCase.expectedTokenStream);
+			const expected = JSON.stringify(expectedTokenStream);
 
 			if (actual === expected) {
 				// no difference
@@ -109,10 +212,10 @@ module.exports = {
 
 			// The index of the first difference between the expected token stream and the actual token stream.
 			// The index is in the raw expected token stream JSON of the test case.
-			const diffIndex = translateIndexIgnoreSpaces(testCase.expectedJson, expected, firstDiff(expected, actual));
-			const expectedJsonLines = testCase.expectedJson.substr(0, diffIndex).split(/\r\n?|\n/g);
+			const diffIndex = translateIndexIgnoreSpaces(testCase.expected, expected, firstDiff(expected, actual));
+			const expectedJsonLines = testCase.expected.substr(0, diffIndex).split(/\r\n?|\n/g);
 			const columnNumber = expectedJsonLines.pop().length + 1;
-			const lineNumber = testCase.expectedLineOffset + expectedJsonLines.length;
+			const lineNumber = testCase.expectedLineStart + expectedJsonLines.length;
 
 			const tokenStreamStr = TokenStreamTransformer.prettyprint(tokenStream);
 			const message = `\nThe expected token stream differs from the actual token stream.` +
@@ -124,7 +227,7 @@ module.exports = {
 				`\n-----------------------------------------\n` +
 				`File: ${filePath}:${lineNumber}:${columnNumber}\n\n`;
 
-			assert.deepEqual(simplifiedTokenStream, testCase.expectedTokenStream, testCase.comment + message);
+			assert.deepEqual(simplifiedTokenStream, expectedTokenStream, testCase.description + message);
 		}
 	},
 
@@ -192,50 +295,6 @@ module.exports = {
 			languages: languages,
 			mainLanguage: mainLanguage
 		};
-	},
-
-
-	/**
-	 * Parses the test case from the given test case file
-	 *
-	 * @private
-	 * @param {string} filePath
-	 * @returns {ParsedTestCase}
-	 *
-	 * @typedef ParsedTestCase
-	 * @property {string} lineEndOnDisk The EOL format used by the parsed file.
-	 * @property {string} code
-	 * @property {string} expectedJson
-	 * @property {number} expectedLineOffset
-	 * @property {Array | null} expectedTokenStream
-	 * @property {string} comment
-	 */
-	parseTestCaseFile(filePath) {
-		let testCaseSource = fs.readFileSync(filePath, 'utf8');
-		const lineEndOnDisk = (/\r\n?|\n/.exec(testCaseSource) || ['\n'])[0];
-		// normalize line ends to \r\n
-		testCaseSource = testCaseSource.replace(/\r\n?|\n/g, '\r\n');
-
-		const testCaseParts = testCaseSource.split(/^-{10,}[ \t]*$/m);
-
-		if (testCaseParts.length > 3) {
-			throw new Error('Invalid test case format: Too many sections.');
-		}
-
-		const code = testCaseParts[0].trim();
-		const expected = (testCaseParts[1] || '').trim();
-		const comment = (testCaseParts[2] || '').trimStart();
-
-		const testCase = {
-			lineEndOnDisk,
-			code,
-			expectedJson: expected,
-			expectedLineOffset: code.split(/\r\n/g).length,
-			expectedTokenStream: expected ? JSON.parse(expected) : null,
-			comment
-		};
-
-		return testCase;
 	},
 
 	/**
