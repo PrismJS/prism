@@ -183,7 +183,12 @@ class TokenizeJSONRunner {
 	 */
 	isEqual(actual, expected) {
 		const simplifiedActual = TokenStreamTransformer.simplify(actual);
-		const simplifiedExpected = JSON.parse(expected);
+		let simplifiedExpected;
+		try {
+			simplifiedExpected = JSON.parse(expected);
+		} catch (error) {
+			return false;
+		}
 
 		return JSON.stringify(simplifiedActual) === JSON.stringify(simplifiedExpected);
 	}
@@ -196,7 +201,6 @@ class TokenizeJSONRunner {
 	assertEqual(actual, expected, message) {
 		const simplifiedActual = TokenStreamTransformer.simplify(actual);
 		const simplifiedExpected = JSON.parse(expected);
-
 
 		const actualString = JSON.stringify(simplifiedActual);
 		const expectedString = JSON.stringify(simplifiedExpected);
