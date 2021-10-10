@@ -9,6 +9,7 @@ const TokenStreamTransformer = require('./token-stream-transformer');
 
 /**
  * @typedef {import("./token-stream-transformer").TokenStream} TokenStream
+ * @typedef {import("../../components/prism-core.js")} Prism
  */
 
 /**
@@ -146,6 +147,74 @@ class TestCaseFile {
 	}
 }
 
+/**
+ * @template T
+ * @typedef Runner
+ * @property {(Prism: Prism, code: string, language: string) => T} run
+ * @property {(actual: T) => string} print
+ * @property {(actual: T, expected: string) => boolean} isEqual
+ * @property {(actual: T, expected: string, message: (firstDifference: number) => string) => void} assertEqual
+ */
+
+/**
+ * @implements {Runner<TokenStream>}
+ */
+class TokenizeJSONRunner {
+	/**
+	 * @param {Prism} Prism
+	 * @param {string} code
+	 * @param {string} language
+	 * @returns {TokenStream}
+	 */
+	run(Prism, code, language) {
+		return tokenize(Prism, code, language);
+	}
+	/**
+	 * @param {TokenStream} actual
+	 * @returns {string}
+	 */
+	print(actual) {
+		return TokenStreamTransformer.prettyprint(actual, '\t');
+	}
+	/**
+	 * @param {TokenStream} actual
+	 * @param {string} expected
+	 * @returns {boolean}
+	 */
+	isEqual(actual, expected) {
+		const simplifiedActual = TokenStreamTransformer.simplify(actual);
+		const simplifiedExpected = JSON.parse(expected);
+
+		return JSON.stringify(simplifiedActual) === JSON.stringify(simplifiedExpected);
+	}
+	/**
+	 * @param {TokenStream} actual
+	 * @param {string} expected
+	 * @param {(firstDifference: number) => string} message
+	 * @returns {void}
+	 */
+	assertEqual(actual, expected, message) {
+		const simplifiedActual = TokenStreamTransformer.simplify(actual);
+		const simplifiedExpected = JSON.parse(expected);
+
+
+		const actualString = JSON.stringify(simplifiedActual);
+		const expectedString = JSON.stringify(simplifiedExpected);
+
+		const difference = firstDiff(expectedString, actualString);
+		if (difference === undefined) {
+			// both are equal
+			return;
+		}
+
+		// The index of the first difference between the expected token stream and the actual token stream.
+		// The index is in the raw expected token stream JSON of the test case.
+		const diffIndex = translateIndexIgnoreSpaces(expected, expectedString, difference);
+
+		assert.deepEqual(simplifiedActual, simplifiedExpected, message(diffIndex));
+	}
+}
+
 
 module.exports = {
 	TestCaseFile,
@@ -167,17 +236,28 @@ module.exports = {
 	 * @param {"none" | "insert" | "update"} updateMode
 	 */
 	runTestCase(languageIdentifier, filePath, updateMode) {
+		this.runTestCaseWithRunner(languageIdentifier, filePath, updateMode, new TokenizeJSONRunner());
+	},
+
+	/**
+	 * @param {string} languageIdentifier
+	 * @param {string} filePath
+	 * @param {"none" | "insert" | "update"} updateMode
+	 * @param {Runner<T>} runner
+	 * @template T
+	 */
+	runTestCaseWithRunner(languageIdentifier, filePath, updateMode, runner) {
 		const testCase = TestCaseFile.readFromFile(filePath);
 		const usedLanguages = this.parseLanguageNames(languageIdentifier);
 
 		const Prism = PrismLoader.createInstance(usedLanguages.languages);
 
 		// the first language is the main language to highlight
-		const tokenStream = this.tokenize(Prism, testCase.code, usedLanguages.mainLanguage);
+		const actualValue = runner.run(Prism, testCase.code, usedLanguages.mainLanguage);
 
 		function updateFile() {
 			// change the file
-			testCase.expected = TokenStreamTransformer.prettyprint(tokenStream, '\t');
+			testCase.expected = runner.print(actualValue);
 			testCase.writeToFile(filePath);
 		}
 
@@ -194,13 +274,7 @@ module.exports = {
 		} else {
 			// there is an expected value
 
-			const expectedTokenStream = JSON.parse(testCase.expected);
-			const simplifiedTokenStream = TokenStreamTransformer.simplify(tokenStream);
-
-			const actual = JSON.stringify(simplifiedTokenStream);
-			const expected = JSON.stringify(expectedTokenStream);
-
-			if (actual === expected) {
+			if (runner.isEqual(actualValue, testCase.expected)) {
 				// no difference
 				return;
 			}
@@ -210,50 +284,25 @@ module.exports = {
 				return;
 			}
 
-			// The index of the first difference between the expected token stream and the actual token stream.
-			// The index is in the raw expected token stream JSON of the test case.
-			const diffIndex = translateIndexIgnoreSpaces(testCase.expected, expected, firstDiff(expected, actual));
-			const expectedJsonLines = testCase.expected.substr(0, diffIndex).split(/\r\n?|\n/g);
-			const columnNumber = expectedJsonLines.pop().length + 1;
-			const lineNumber = testCase.expectedLineStart + expectedJsonLines.length;
+			runner.assertEqual(actualValue, testCase.expected, diffIndex => {
+				const expectedLines = testCase.expected.substr(0, diffIndex).split(/\r\n?|\n/g);
+				const columnNumber = expectedLines.pop().length + 1;
+				const lineNumber = testCase.expectedLineStart + expectedLines.length;
 
-			const tokenStreamStr = TokenStreamTransformer.prettyprint(tokenStream);
-			const message = `\nThe expected token stream differs from the actual token stream.` +
-				` Either change the ${usedLanguages.mainLanguage} language or update the expected token stream.` +
-				` Run \`npm run test:languages -- --update\` to update all missing or incorrect expected token streams.` +
-				`\n\n\nActual Token Stream:` +
-				`\n-----------------------------------------\n` +
-				tokenStreamStr +
-				`\n-----------------------------------------\n` +
-				`File: ${filePath}:${lineNumber}:${columnNumber}\n\n`;
-
-			assert.deepEqual(simplifiedTokenStream, expectedTokenStream, testCase.description + message);
+				return testCase.description +
+					`\nThe expected token stream differs from the actual token stream.` +
+					` Either change the ${usedLanguages.mainLanguage} language or update the expected token stream.` +
+					` Run \`npm run test:languages -- --update\` to update all missing or incorrect expected token streams.` +
+					`\n\n\nActual Token Stream:` +
+					`\n-----------------------------------------\n` +
+					runner.print(actualValue) +
+					`\n-----------------------------------------\n` +
+					`File: ${filePath}:${lineNumber}:${columnNumber}\n\n`;
+			});
 		}
 	},
 
-	/**
-	 * Returns the token stream of the given code highlighted with `language`.
-	 *
-	 * The `before-tokenize` and `after-tokenize` hooks will also be executed.
-	 *
-	 * @param {import('../../components/prism-core')} Prism The Prism instance which will tokenize `code`.
-	 * @param {string} code The code to tokenize.
-	 * @param {string} language The language id.
-	 * @returns {TokenStream}
-	 */
-	tokenize(Prism, code, language) {
-		const env = {
-			code,
-			grammar: Prism.languages[language],
-			language
-		};
-
-		Prism.hooks.run('before-tokenize', env);
-		env.tokens = Prism.tokenize(env.code, env.grammar);
-		Prism.hooks.run('after-tokenize', env);
-
-		return env.tokens;
-	},
+	tokenize,
 
 
 	/**
@@ -329,6 +378,30 @@ module.exports = {
 		}
 	}
 };
+
+/**
+ * Returns the token stream of the given code highlighted with `language`.
+ *
+ * The `before-tokenize` and `after-tokenize` hooks will also be executed.
+ *
+ * @param {import('../../components/prism-core')} Prism The Prism instance which will tokenize `code`.
+ * @param {string} code The code to tokenize.
+ * @param {string} language The language id.
+ * @returns {TokenStream}
+ */
+function tokenize(Prism, code, language) {
+	const env = {
+		code,
+		grammar: Prism.languages[language],
+		language
+	};
+
+	Prism.hooks.run('before-tokenize', env);
+	env.tokens = Prism.tokenize(env.code, env.grammar);
+	Prism.hooks.run('after-tokenize', env);
+
+	return env.tokens;
+}
 
 /**
  * Returns the index at which the given expected string differs from the given actual string.
