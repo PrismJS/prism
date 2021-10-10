@@ -165,14 +165,21 @@ This is a comment explaining this test case.</code></pre>
 <section id="writing-specific-tests">
 	<h1>Writing specific tests</h1>
 
-	<p>Sometimes, using the token stream tests is not powerful enough. By creating a test file with the file extension <code>.js</code> instead of <code>.test</code>, you can make Prism highlight arbitrary pieces of code and check their HTML results.</p>
+	<p>Sometimes, using the token stream tests is not powerful enough. By creating a test file with the file extension <code>.html.test</code> instead of <code>.test</code>, you can make Prism highlight arbitrary pieces of code and check their HTML results.</p>
 	<p>The language is determined by the folder containing the test file lies, as explained in the previous section.</p>
 	<p>The structure of your test file will look like this, for example:</p>
-	<pre><code>module.exports = {
-	'&amp;#x278a;': '&lt;span class="token entity" title="&amp;#x278a;">&amp;amp;#x278a;&lt;/span>',
-	'&amp;#182;': '&lt;span class="token entity" title="&amp;#182;">&amp;amp;#182;&lt;/span>',
-};</code></pre>
-	<p>The keys are the codes which will be highlighted by Prism. The values are the expected results, as HTML.</p>
+	<pre><code class="language-html">&amp;amp;
+&amp;#x41;
+
+----------------------------------------------------
+
+&lt;span class="token entity named-entity" title="&amp;amp;">&amp;amp;amp;&lt;/span>
+&lt;span class="token entity" title="&amp;#x41;">&amp;amp;#x41;&lt;/span>
+
+----------------------------------------------------
+
+This is a comment explaining this test case.
+</code></pre>
 </section>
 
 <section id="test-runner-tests">
