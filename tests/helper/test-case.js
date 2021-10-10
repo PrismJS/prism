@@ -427,38 +427,6 @@ module.exports = {
 			mainLanguage: mainLanguage
 		};
 	},
-
-	/**
-	 * Runs the given pieces of codes and asserts their result.
-	 *
-	 * Code is provided as the key and expected result as the value.
-	 *
-	 * @param {string} languageIdentifier
-	 * @param {object} codes
-	 */
-	runTestsWithHooks(languageIdentifier, codes) {
-		const usedLanguages = this.parseLanguageNames(languageIdentifier);
-		const Prism = PrismLoader.createInstance(usedLanguages.languages);
-		// the first language is the main language to highlight
-
-		for (const code in codes) {
-			if (codes.hasOwnProperty(code)) {
-				const env = {
-					element: {},
-					language: usedLanguages.mainLanguage,
-					grammar: Prism.languages[usedLanguages.mainLanguage],
-					code: code
-				};
-				Prism.hooks.run('before-highlight', env);
-				env.highlightedCode = Prism.highlight(env.code, env.grammar, env.language);
-				Prism.hooks.run('before-insert', env);
-				env.element.innerHTML = env.highlightedCode;
-				Prism.hooks.run('after-highlight', env);
-				Prism.hooks.run('complete', env);
-				assert.equal(env.highlightedCode, codes[code]);
-			}
-		}
-	}
 };
 
 /**

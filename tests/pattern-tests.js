@@ -10,7 +10,6 @@ const { languages } = require('../components.json');
 const { visitRegExpAST } = require('regexpp');
 const { transform, combineTransformers, getIntersectionWordSets, JS, Words, NFA, Transformers } = require('refa');
 const scslre = require('scslre');
-const path = require('path');
 const { argv } = require('yargs');
 const RAA = require('regexp-ast-analysis');
 
@@ -30,11 +29,7 @@ for (const languageIdentifier in testSuite) {
 	}
 
 	for (const file of testSuite[languageIdentifier]) {
-		if (path.extname(file) === '.test') {
-			snippets.push(TestCase.TestCaseFile.readFromFile(file).code);
-		} else {
-			snippets.push(...Object.keys(require(file)));
-		}
+		snippets.push(TestCase.TestCaseFile.readFromFile(file).code);
 	}
 }
 
