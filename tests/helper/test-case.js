@@ -108,7 +108,7 @@ class TestCaseFile {
 	 * @returns {TestCaseFile}
 	 */
 	static parse(content) {
-		const eol = (/\r\n?|\n/.exec(content) || ['\n'])[0];
+		const eol = (/\r\n|\n/.exec(content) || ['\n'])[0];
 
 		// normalize line ends to CRLF
 		content = content.replace(/\r\n?|\n/g, '\r\n');
@@ -119,7 +119,7 @@ class TestCaseFile {
 		const description = parts[2] || '';
 
 		const file = new TestCaseFile(code.trim(), expected.trim(), description.trim());
-		file.eol = eol;
+		file.eol = /** @type {"\r\n" | "\n"} */ (eol);
 
 		const codeStartSpaces = /^\s*/.exec(code)[0];
 		const expectedStartSpaces = /^\s*/.exec(expected)[0];
