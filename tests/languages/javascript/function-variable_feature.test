@@ -43,8 +43,8 @@ a = function () {}, b = () => {}
 	["punctuation", "("],
 	["punctuation", ")"],
 	["punctuation", "{"],
-	["punctuation","}"],
-	["punctuation","}"],
+	["punctuation", "}"],
+	["punctuation", "}"],
 
 	["function-variable", "bar"],
 	["operator", "="],
@@ -52,9 +52,7 @@ a = function () {}, b = () => {}
 	["keyword", "function"],
 	["function", "baz"],
 	["punctuation", "("],
-	["parameter", [
-		"x"
-	]],
+	["parameter", ["x"]],
 	["punctuation", ")"],
 	["punctuation", "{"],
 	["punctuation", "}"],
@@ -63,18 +61,16 @@ a = function () {}, b = () => {}
 	["operator", "="],
 	["keyword", "async"],
 	["punctuation", "("],
-	["parameter", [
-		"x"
-	]],
+	["parameter", ["x"]],
 	["punctuation", ")"],
-	["operator", "=>"], " x\r\n",
+	["operator", "=>"],
+	" x\r\n",
 
 	["function-variable", "fooBar"],
 	["operator", "="],
-	["parameter", [
-		"x"
-	]],
-	["operator", "=>"], " x\r\n",
+	["parameter", ["x"]],
+	["operator", "=>"],
+	" x\r\n",
 
 	["function-variable", "fooBar"],
 	["operator", "="],
@@ -85,7 +81,8 @@ a = function () {}, b = () => {}
 		" y"
 	]],
 	["punctuation", ")"],
-	["operator", "=>"], " x\r\n",
+	["operator", "=>"],
+	" x\r\n",
 
 	["function-variable", "ಠ_ಠ"],
 	["operator", "="],
@@ -118,10 +115,10 @@ a = function () {}, b = () => {}
 	["punctuation", "("],
 	["parameter", [
 		["punctuation", "{"],
-		" props",
+		["literal-property", "props"],
 		["operator", ":"],
 		["punctuation", "{"],
-		" a",
+		["literal-property", "a"],
 		["operator", ":"],
 		" _A",
 		["punctuation", ","],
