@@ -229,7 +229,21 @@ class HighlightHTMLRunner {
 	 * @returns {string}
 	 */
 	run(Prism, code, language) {
-		return Prism.highlight(code, Prism.languages[language], language);
+		const env = {
+			element: {},
+			language,
+			grammar: Prism.languages[language],
+			code,
+		};
+
+		Prism.hooks.run('before-highlight', env);
+		env.highlightedCode = Prism.highlight(env.code, env.grammar, env.language);
+		Prism.hooks.run('before-insert', env);
+		env.element.innerHTML = env.highlightedCode;
+		Prism.hooks.run('after-highlight', env);
+		Prism.hooks.run('complete', env);
+
+		return env.highlightedCode;
 	}
 	/**
 	 * @param {string} actual
