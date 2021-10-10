@@ -1,0 +1,15 @@
+"&amp;"
+"&amp;&amp;"
+"&lt;"
+"&lt;&lt;"
+"&amp;lt;"
+"&gt;"
+
+----------------------------------------------------
+
+<span class="token string gstring">"&amp;amp;"</span>
+<span class="token string gstring">"&amp;amp;&amp;amp;"</span>
+<span class="token string gstring">"&amp;lt;"</span>
+<span class="token string gstring">"&amp;lt;&amp;lt;"</span>
+<span class="token string gstring">"&amp;amp;lt;"</span>
+<span class="token string gstring">"&amp;gt;"</span>
