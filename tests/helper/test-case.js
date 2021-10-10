@@ -167,7 +167,7 @@ module.exports = {
 	 * @param {"none" | "insert" | "update"} updateMode
 	 */
 	runTestCase(languageIdentifier, filePath, updateMode) {
-		const testCase = TestCaseFile.parse(filePath);
+		const testCase = TestCaseFile.readFromFile(filePath);
 		const usedLanguages = this.parseLanguageNames(languageIdentifier);
 
 		const Prism = PrismLoader.createInstance(usedLanguages.languages);
