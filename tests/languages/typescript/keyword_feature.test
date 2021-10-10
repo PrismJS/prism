@@ -80,6 +80,7 @@ namespace foo;
 type foo;
 
 import type { Component } from "react";
+import type *, {}
 
 ----------------------------------------------------
 
@@ -269,7 +270,14 @@ import type { Component } from "react";
 	["punctuation", "}"],
 	["keyword", "from"],
 	["string", "\"react\""],
-	["punctuation", ";"]
+	["punctuation", ";"],
+
+	["keyword", "import"],
+	["keyword", "type"],
+	["operator", "*"],
+	["punctuation", ","],
+	["punctuation", "{"],
+	["punctuation", "}"]
 ]
 
 ----------------------------------------------------

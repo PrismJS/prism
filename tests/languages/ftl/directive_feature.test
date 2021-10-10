@@ -1,3 +1,5 @@
+<#import "/libs/commons.ftl" as com>
+
 <#if a < b>
 	a is less than b
 <#elseif (a > b)>
@@ -12,6 +14,19 @@
 ----------------------------------------------------
 
 [
+	["ftl", [
+		["ftl-directive", [
+			["punctuation", "<"],
+			["directive", "#import"],
+			["content", [
+				["string", ["\"/libs/commons.ftl\""]],
+				["keyword", "as"],
+				" com"
+			]],
+			["punctuation", ">"]
+		]]
+	]],
+
 	["ftl", [
 		["ftl-directive", [
 			["punctuation", "<"],
@@ -70,6 +85,7 @@
 			["punctuation", ">"]
 		]]
 	]],
+
 	["ftl", [
 		["ftl-directive", [
 			["punctuation", "<"],

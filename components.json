@@ -132,6 +132,7 @@
 		"arduino": {
 			"title": "Arduino",
 			"require": "cpp",
+			"alias": "ino",
 			"owner": "dkern"
 		},
 		"arff": {
@@ -151,6 +152,10 @@
 		"asm6502": {
 			"title": "6502 Assembly",
 			"owner": "kzurawel"
+		},
+		"asmatmel": {
+			"title": "Atmel AVR Assembly",
+			"owner": "cerkit"
 		},
 		"autohotkey": {
 			"title": "AutoHotkey",
@@ -712,6 +717,10 @@
 		"julia": {
 			"title": "Julia",
 			"owner": "cdagnino"
+		},
+		"keepalived": {
+			"title": "Keepalived Configure",
+			"owner": "dev-itsheng"
 		},
 		"keyman": {
 			"title": "Keyman",

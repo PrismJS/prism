@@ -12,6 +12,7 @@ export {d}
 export {d,}
 export {d as Foo, b as Bar}
 export {d as Foo, b as Bar,}
+export default function() { }
 
 ----------------------------------------------------
 
@@ -23,6 +24,7 @@ export {d as Foo, b as Bar,}
 	["keyword", "from"],
 	["string", "\"mod\""],
 	["punctuation", ";"],
+
 	["keyword", "export"],
 	["exports", [
 		["operator", "*"],
@@ -32,6 +34,7 @@ export {d as Foo, b as Bar,}
 	["keyword", "from"],
 	["string", "\"mod\""],
 	["punctuation", ";"],
+
 	["keyword", "export"],
 	["exports", [
 		["punctuation", "{"],
@@ -40,6 +43,7 @@ export {d as Foo, b as Bar,}
 	["keyword", "from"],
 	["string", "\"mod\""],
 	["punctuation", ";"],
+
 	["keyword", "export"],
 	["exports", [
 		["punctuation", "{"],
@@ -49,6 +53,7 @@ export {d as Foo, b as Bar,}
 	["keyword", "from"],
 	["string", "\"mod\""],
 	["punctuation", ";"],
+
 	["keyword", "export"],
 	["exports", [
 		["punctuation", "{"],
@@ -58,6 +63,7 @@ export {d as Foo, b as Bar,}
 	["keyword", "from"],
 	["string", "\"mod\""],
 	["punctuation", ";"],
+
 	["keyword", "export"],
 	["exports", [
 		["punctuation", "{"],
@@ -68,6 +74,7 @@ export {d as Foo, b as Bar,}
 	["keyword", "from"],
 	["string", "\"mod\""],
 	["punctuation", ";"],
+
 	["keyword", "export"],
 	["exports", [
 		["punctuation", "{"],
@@ -83,6 +90,7 @@ export {d as Foo, b as Bar,}
 	["keyword", "from"],
 	["string", "\"mod\""],
 	["punctuation", ";"],
+
 	["keyword", "export"],
 	["exports", [
 		["punctuation", "{"],
@@ -99,23 +107,27 @@ export {d as Foo, b as Bar,}
 	["keyword", "from"],
 	["string", "\"mod\""],
 	["punctuation", ";"],
+
 	["keyword", "export"],
 	["exports", [
 		["punctuation", "{"],
 		["punctuation", "}"]
 	]],
+
 	["keyword", "export"],
 	["exports", [
 		["punctuation", "{"],
 		"x",
 		["punctuation", "}"]
 	]],
+
 	["keyword", "export"],
 	["exports", [
 		["punctuation", "{"],
 		"d",
 		["punctuation", "}"]
 	]],
+
 	["keyword", "export"],
 	["exports", [
 		["punctuation", "{"],
@@ -123,6 +135,7 @@ export {d as Foo, b as Bar,}
 		["punctuation", ","],
 		["punctuation", "}"]
 	]],
+
 	["keyword", "export"],
 	["exports", [
 		["punctuation", "{"],
@@ -135,6 +148,7 @@ export {d as Foo, b as Bar,}
 		["maybe-class-name", "Bar"],
 		["punctuation", "}"]
 	]],
+
 	["keyword", "export"],
 	["exports", [
 		["punctuation", "{"],
@@ -147,5 +161,13 @@ export {d as Foo, b as Bar,}
 		["maybe-class-name", "Bar"],
 		["punctuation", ","],
 		["punctuation", "}"]
-	]]
+	]],
+
+	["keyword", "export"],
+	["keyword", "default"],
+	["keyword", "function"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"]
 ]

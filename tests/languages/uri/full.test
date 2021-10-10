@@ -93,7 +93,9 @@ https://example.com/path/resource.txt#fragment
 	]],
 	["authority", [
 		["authority-delimiter", "//"],
-		["host", ["192.0.2.16"]],
+		["host", [
+			["ipv4-address", "192.0.2.16"]
+		]],
 		["port-segment", [
 			["port-delimiter", ":"],
 			["port", "80"]

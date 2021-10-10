@@ -1,0 +1,21 @@
+( ) [ ] { }
+; , : =
+
+IL_001f
+
+----------------------------------------------------
+
+[
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "["],
+	["punctuation", "]"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+	["punctuation", ","],
+	["punctuation", ":"],
+	["punctuation", "="],
+
+	["punctuation", "IL_001f"]
+]

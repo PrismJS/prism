@@ -32,7 +32,7 @@
 	Prism.languages.zig = {
 		'comment': [
 			{
-				pattern: /\/{3}.*/,
+				pattern: /\/\/[/!].*/,
 				alias: 'doc-comment'
 			},
 			/\/{2}.*/
@@ -52,7 +52,7 @@
 			},
 			{
 				// characters 'a', '\n', '\xFF', '\u{10FFFF}'
-				pattern: /(^|[^\\])'(?:[^'\\\r\n]|\\(?:.|x[a-fA-F\d]{2}|u\{[a-fA-F\d]{1,6}\}))'/,
+				pattern: /(^|[^\\])'(?:[^'\\\r\n]|[\uD800-\uDFFF]{2}|\\(?:.|x[a-fA-F\d]{2}|u\{[a-fA-F\d]{1,6}\}))'/,
 				lookbehind: true,
 				greedy: true
 			}

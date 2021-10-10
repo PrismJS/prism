@@ -1,0 +1,75 @@
+setup
+if
+else
+while
+do
+for
+return
+in
+instanceof
+default
+function
+loop
+goto
+switch
+case
+new
+try
+throw
+catch
+finally
+null
+break
+continue
+boolean
+bool
+void
+byte
+word
+string
+String
+array
+int
+long
+integer
+double
+
+----------------------------------------------------
+
+[
+	["keyword", "setup"],
+	["keyword", "if"],
+	["keyword", "else"],
+	["keyword", "while"],
+	["keyword", "do"],
+	["keyword", "for"],
+	["keyword", "return"],
+	["keyword", "in"],
+	["keyword", "instanceof"],
+	["keyword", "default"],
+	["keyword", "function"],
+	["keyword", "loop"],
+	["keyword", "goto"],
+	["keyword", "switch"],
+	["keyword", "case"],
+	["keyword", "new"],
+	["keyword", "try"],
+	["keyword", "throw"],
+	["keyword", "catch"],
+	["keyword", "finally"],
+	["keyword", "null"],
+	["keyword", "break"],
+	["keyword", "continue"],
+	["keyword", "boolean"],
+	["keyword", "bool"],
+	["keyword", "void"],
+	["keyword", "byte"],
+	["keyword", "word"],
+	["keyword", "string"],
+	["keyword", "String"],
+	["keyword", "array"],
+	["keyword", "int"],
+	["keyword", "long"],
+	["keyword", "integer"],
+	["keyword", "double"]
+]

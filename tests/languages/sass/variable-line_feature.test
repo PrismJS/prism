@@ -1,5 +1,6 @@
 $width: 5em
 $foo: $bar + $baz
+$foo: $bar - $baz
 $bar: #{$baz}
 
 ----------------------------------------------------
@@ -15,6 +16,13 @@ $bar: #{$baz}
 		["punctuation", ":"],
 		["variable", "$bar"],
 		["operator", "+"],
+		["variable", "$baz"]
+	]],
+	["variable-line", [
+		["variable", "$foo"],
+		["punctuation", ":"],
+		["variable", "$bar"],
+		["operator", "-"],
 		["variable", "$baz"]
 	]],
 	["variable-line", [

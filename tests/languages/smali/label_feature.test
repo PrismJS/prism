@@ -1,0 +1,13 @@
+.line 989
+:cond_2b
+
+goto :goto_1f
+
+----------------------------------------------------
+
+[
+	["keyword", ".line"], ["number", "989"],
+	["punctuation", ":"], ["label", "cond_2b"],
+
+	"\r\n\r\ngoto ", ["punctuation", ":"], ["label", "goto_1f"]
+]

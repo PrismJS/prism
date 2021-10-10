@@ -1,0 +1,26 @@
+Foo
+    at REPLServer.runBound [as eval] (domain.js:293:12)
+
+----------------------------------------------------
+
+[
+	["error-message", "Foo"],
+	["stack-frame", [
+		["keyword", "at"],
+		["function", [
+			"REPLServer",
+			["punctuation", "."],
+			"runBound"
+		]],
+		["alias", "[as eval]"],
+		["punctuation", "("],
+		["filename", "domain.js"],
+		["line-number", [
+			["punctuation", ":"],
+			"293",
+			["punctuation", ":"],
+			"12"
+		]],
+		["punctuation", ")"]
+	]]
+]
