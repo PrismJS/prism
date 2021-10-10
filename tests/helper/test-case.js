@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const { assert } = require('chai');
+const Prettier = require('prettier');
 const PrismLoader = require('./prism-loader');
 const TokenStreamTransformer = require('./token-stream-transformer');
 
@@ -217,6 +218,67 @@ class TokenizeJSONRunner {
 	}
 }
 
+/**
+ * @implements {Runner<string>}
+ */
+class HighlightHTMLRunner {
+	/**
+	 * @param {Prism} Prism
+	 * @param {string} code
+	 * @param {string} language
+	 * @returns {string}
+	 */
+	run(Prism, code, language) {
+		return Prism.highlight(code, Prism.languages[language], language);
+	}
+	/**
+	 * @param {string} actual
+	 * @returns {string}
+	 */
+	print(actual) {
+		return Prettier.format(actual, {
+			printWidth: 100,
+			tabWidth: 4,
+			useTabs: true,
+			htmlWhitespaceSensitivity: 'ignore',
+			filepath: 'fake.html',
+		});
+	}
+	/**
+	 * @param {string} actual
+	 * @param {string} expected
+	 * @returns {boolean}
+	 */
+	isEqual(actual, expected) {
+		return this.normalize(actual) === this.normalize(expected);
+	}
+	/**
+	 * @param {string} actual
+	 * @param {string} expected
+	 * @param {(firstDifference: number) => string} message
+	 * @returns {void}
+	 */
+	assertEqual(actual, expected, message) {
+		// We don't calculate the index of the first difference because it's difficult.
+		assert.deepEqual(this.normalize(actual), this.normalize(expected), message(0));
+	}
+
+	/**
+	 * Normalizes the given HTML by removing all leading spaces and trailing spaces. Line breaks will also be normalized
+	 * to enable good diffing.
+	 *
+	 * @param {string} html
+	 * @returns {string}
+	 */
+	normalize(html) {
+		return html
+			.replace(/</g, '\n<')
+			.replace(/>/g, '>\n')
+			.replace(/[ \t]*[\r\n]\s*/g, '\n')
+			.trim();
+	}
+}
+
 
 module.exports = {
 	TestCaseFile,
@@ -238,7 +300,11 @@ module.exports = {
 	 * @param {"none" | "insert" | "update"} updateMode
 	 */
 	runTestCase(languageIdentifier, filePath, updateMode) {
-		this.runTestCaseWithRunner(languageIdentifier, filePath, updateMode, new TokenizeJSONRunner());
+		if (/\.html\.test$/i.test(filePath)) {
+			this.runTestCaseWithRunner(languageIdentifier, filePath, updateMode, new HighlightHTMLRunner());
+		} else {
+			this.runTestCaseWithRunner(languageIdentifier, filePath, updateMode, new TokenizeJSONRunner());
+		}
 	},
 
 	/**
