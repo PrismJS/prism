@@ -8,14 +8,14 @@ Prism.languages.asmatmel = {
 		greedy: true
 	},
 
-	'constant': /\b(?:PORT[A-Z]|DDR[A-Z]|(?:DD|P)[A-Z](?:\d|[0-2]\d|3[0-1]))\b/,
+	'constant': /\b(?:PORT[A-Z]|DDR[A-Z]|(?:DD|P)[A-Z](?:\d|[0-2]\d|3[01]))\b/,
 
 	'directive': {
 		pattern: /\.\w+(?= )/,
 		alias: 'property'
 	},
 	'r-register': {
-		pattern: /\br(?:\d|[1-2]\d|3[0-1])\b/,
+		pattern: /\br(?:\d|[12]\d|3[01])\b/,
 		alias: 'variable'
 	},
 	'op-code': {
