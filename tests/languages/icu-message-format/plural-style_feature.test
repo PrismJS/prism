@@ -20,6 +20,8 @@ https://unicode-org.github.io/icu/userguide/format_parse/messages/
       =2 {{host} invites {guest} and one other person to their party.}
       other {{host} invites {guest} and # other people to their party.}}}}
 
+{num_guests, selectordinal, foo}
+
 ----------------------------------------------------
 
 [
@@ -368,6 +370,20 @@ https://unicode-org.github.io/icu/userguide/format_parse/messages/
 					]],
 					["message-delimiter", "}"]
 				]]
+			]]
+		]],
+		["argument-delimiter", "}"]
+	]],
+
+	["argument", [
+		["argument-delimiter", "{"],
+		["content", [
+			["argument-name", "num_guests"],
+			["punctuation", ","],
+			["keyword", "selectordinal"],
+			["punctuation", ","],
+			["plural-style", [
+				["selector", ["foo"]]
 			]]
 		]],
 		["argument-delimiter", "}"]

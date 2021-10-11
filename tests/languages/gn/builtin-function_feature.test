@@ -1,0 +1,49 @@
+assert()
+defined()
+foreach()
+import()
+pool()
+print()
+template()
+tool()
+toolchain()
+
+----------------------------------------------------
+
+[
+	["builtin-function", "assert"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["builtin-function", "defined"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["builtin-function", "foreach"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["builtin-function", "import"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["builtin-function", "pool"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["builtin-function", "print"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["builtin-function", "template"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["builtin-function", "tool"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["builtin-function", "toolchain"],
+	["punctuation", "("],
+	["punctuation", ")"]
+]

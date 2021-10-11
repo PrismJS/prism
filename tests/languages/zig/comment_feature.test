@@ -1,0 +1,21 @@
+// normal comment
+
+/// A structure for storing a timestamp, with nanosecond precision (this is a
+/// multiline doc comment).
+
+//! This module provides functions for retrieving the current date and
+//! time with varying degrees of precision and accuracy. It does not
+//! depend on libc, but will use functions from it if available.
+
+----------------------------------------------------
+
+[
+	["comment", "// normal comment"],
+
+	["comment", "/// A structure for storing a timestamp, with nanosecond precision (this is a"],
+	["comment", "/// multiline doc comment)."],
+
+	["comment", "//! This module provides functions for retrieving the current date and"],
+	["comment", "//! time with varying degrees of precision and accuracy. It does not"],
+	["comment", "//! depend on libc, but will use functions from it if available."]
+]

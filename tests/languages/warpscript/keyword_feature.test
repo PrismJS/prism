@@ -1,0 +1,49 @@
+BREAK
+CHECKMACRO
+CONTINUE
+CUDF
+DEFINED
+DEFINEDMACRO
+EVAL
+FAIL
+FOR
+FOREACH
+FORSTEP
+IFT
+IFTE
+MSGFAIL
+NRETURN
+RETHROW
+RETURN
+SWITCH
+TRY
+UDF
+UNTIL
+WHILE
+
+----------------------------------------------------
+
+[
+	["keyword", "BREAK"],
+	["keyword", "CHECKMACRO"],
+	["keyword", "CONTINUE"],
+	["keyword", "CUDF"],
+	["keyword", "DEFINED"],
+	["keyword", "DEFINEDMACRO"],
+	["keyword", "EVAL"],
+	["keyword", "FAIL"],
+	["keyword", "FOR"],
+	["keyword", "FOREACH"],
+	["keyword", "FORSTEP"],
+	["keyword", "IFT"],
+	["keyword", "IFTE"],
+	["keyword", "MSGFAIL"],
+	["keyword", "NRETURN"],
+	["keyword", "RETHROW"],
+	["keyword", "RETURN"],
+	["keyword", "SWITCH"],
+	["keyword", "TRY"],
+	["keyword", "UDF"],
+	["keyword", "UNTIL"],
+	["keyword", "WHILE"]
+]

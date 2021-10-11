@@ -1,0 +1,126 @@
+if browser_height > window_get_height() || browser_width > window_get_width()
+	{
+	var xx, yy;
+	if browser_width > window_get_width()
+		{
+		xx = (browser_width - window_get_width()) / 2;
+		}
+	else
+		{
+		xx = 0;
+		}
+	if browser_height > window_get_height()
+		{
+		yy = (browser_height - window_get_height()) / 2;
+		}
+	else
+		{
+		yy = 0;
+		}
+	window_set_position(xx, yy);
+	}
+
+----------------------------------------------------
+
+[
+	["keyword", "if"],
+	["variable", "browser_height"],
+	["operator", ">"],
+	["function", "window_get_height"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["operator", "||"],
+	["variable", "browser_width"],
+	["operator", ">"],
+	["function", "window_get_width"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["punctuation", "{"],
+
+	["keyword", "var"],
+	" xx",
+	["punctuation", ","],
+	" yy",
+	["punctuation", ";"],
+
+	["keyword", "if"],
+	["variable", "browser_width"],
+	["operator", ">"],
+	["function", "window_get_width"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["punctuation", "{"],
+
+	"\r\n\t\txx ",
+	["operator", "="],
+	["punctuation", "("],
+	["variable", "browser_width"],
+	["operator", "-"],
+	["function", "window_get_width"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ")"],
+	["operator", "/"],
+	["number", "2"],
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+
+	["keyword", "else"],
+
+	["punctuation", "{"],
+
+	"\r\n\t\txx ",
+	["operator", "="],
+	["number", "0"],
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+
+	["keyword", "if"],
+	["variable", "browser_height"],
+	["operator", ">"],
+	["function", "window_get_height"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["punctuation", "{"],
+
+	"\r\n\t\tyy ",
+	["operator", "="],
+	["punctuation", "("],
+	["variable", "browser_height"],
+	["operator", "-"],
+	["function", "window_get_height"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ")"],
+	["operator", "/"],
+	["number", "2"],
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+
+	["keyword", "else"],
+
+	["punctuation", "{"],
+
+	"\r\n\t\tyy ",
+	["operator", "="],
+	["number", "0"],
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+
+	["function", "window_set_position"],
+	["punctuation", "("],
+	"xx",
+	["punctuation", ","],
+	" yy",
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["punctuation", "}"]
+]

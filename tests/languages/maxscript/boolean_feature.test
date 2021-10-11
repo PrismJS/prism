@@ -1,7 +1,9 @@
 true false
+on off
 
 ----------------------------------------------------
 
 [
-	["boolean", "true"], ["boolean", "false"]
+	["boolean", "true"], ["boolean", "false"],
+	["boolean", "on"], ["boolean", "off"]
 ]

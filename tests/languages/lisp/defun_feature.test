@@ -1,25 +1,295 @@
 (defun foo ())
 (defun foo (bar))
+
 (defun foo (bar &body arg1) )
+
 (defun foo (bar &rest arg1) )
+
 (defun foo (bar &body arg1 arg2) )
+
 (defun foo (bar &key arg1) )
 (defun foo (bar &key arg1 &allow-other-keys) )
+
 (defun foo (&optional arg1) )
+
 (defun defabc ())
+
+(defun show-members (a b &rest values) (write (list a b values)))
+(cl-defun find-thing (thing &rest rest &key need &allow-other-keys)
+  (or (apply 'cl-member thing thing-list :allow-other-keys t rest)
+      (if need (error "Thing not found"))))
+
+(defun foo (a b &optional (c 3 c-supplied-p))
+  (list a b c c-supplied-p))
+
+(defun foo (&key ((:apple a)) ((:box b) 0) ((:charlie c) 0 c-supplied-p))
+  (list a b c c-supplied-p))
 
 ----------------------------------------------------
 
 [
-	["punctuation", "("], ["defun", [ ["keyword", "defun" ], ["function", "foo"], ["punctuation", "("], ["arguments", []], ["punctuation", ")"]]], ["punctuation", ")"],
-	["punctuation", "("], ["defun", [ ["keyword", "defun" ], ["function", "foo"], ["punctuation", "("], ["arguments", [[ "argument", "bar" ]]], ["punctuation", ")"]]], ["punctuation", ")"],
-	["punctuation", "("], ["defun", [ ["keyword", "defun" ], ["function", "foo"], ["punctuation", "("], ["arguments", [[ "argument", "bar" ], ["rest-vars", [["lisp-marker", "&body" ], ["argument", "arg1"]]]]], ["punctuation", ")"]] ], ["punctuation", ")"],
-	["punctuation", "("], ["defun", [ ["keyword", "defun" ], ["function", "foo"], ["punctuation", "("], ["arguments", [[ "argument", "bar" ], ["rest-vars", [["lisp-marker", "&rest" ], ["argument", "arg1"]]]]], ["punctuation", ")"]] ], ["punctuation", ")"],
-	["punctuation", "("], ["defun", [ ["keyword", "defun" ], ["function", "foo"], ["punctuation", "("], ["arguments", [[ "argument", "bar" ], ["rest-vars", [["lisp-marker", "&body" ], ["argument", "arg1"], ["argument", "arg2"]]]]], ["punctuation", ")"]] ], ["punctuation", ")"],
-	["punctuation", "("], ["defun", [ ["keyword", "defun" ], ["function", "foo"], ["punctuation", "("], ["arguments", [[ "argument", "bar" ], ["keys", [["lisp-marker", "&key" ], ["argument", "arg1"]]]]], ["punctuation", ")"]] ], ["punctuation", ")"],
-	["punctuation", "("], ["defun", [ ["keyword", "defun" ], ["function", "foo"], ["punctuation", "("], ["arguments", [[ "argument", "bar" ], ["keys", [["lisp-marker", "&key" ], ["argument", "arg1"], ["lisp-marker", "&allow-other-keys"]]]]], ["punctuation", ")"]] ], ["punctuation", ")"],
-	["punctuation", "("], ["defun", [ ["keyword", "defun" ], ["function", "foo"], ["punctuation", "("], ["arguments", [["other-marker-vars", [["lisp-marker", "&optional" ], ["argument", "arg1"]]]]], ["punctuation", ")"]] ], ["punctuation", ")"],
-	["punctuation", "("], ["defun", [ ["keyword", "defun" ], ["function", "defabc"], ["punctuation", "("], ["arguments", []], ["punctuation", ")"]]], ["punctuation", ")"]
+	["punctuation", "("],
+	["defun", [
+		["keyword", "defun"],
+		["function", "foo"],
+		["punctuation", "("],
+		["arguments", [
+		]],
+		["punctuation", ")"]
+	]],
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["defun", [
+		["keyword", "defun"],
+		["function", "foo"],
+		["punctuation", "("],
+		["arguments", [
+			["argument", "bar"]
+		]],
+		["punctuation", ")"]
+	]],
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["defun", [
+		["keyword", "defun"],
+		["function", "foo"],
+		["punctuation", "("],
+		["arguments", [
+			["argument", "bar"],
+			["rest-vars", [
+				["lisp-marker", "&body"],
+				["argument", "arg1"]
+			]]
+		]],
+		["punctuation", ")"]
+	]],
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["defun", [
+		["keyword", "defun"],
+		["function", "foo"],
+		["punctuation", "("],
+		["arguments", [
+			["argument", "bar"],
+			["rest-vars", [
+				["lisp-marker", "&rest"],
+				["argument", "arg1"]
+			]]
+		]],
+		["punctuation", ")"]
+	]],
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["defun", [
+		["keyword", "defun"],
+		["function", "foo"],
+		["punctuation", "("],
+		["arguments", [
+			["argument", "bar"],
+			["rest-vars", [
+				["lisp-marker", "&body"],
+				["argument", "arg1"],
+				["argument", "arg2"]
+			]]
+		]],
+		["punctuation", ")"]
+	]],
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["defun", [
+		["keyword", "defun"],
+		["function", "foo"],
+		["punctuation", "("],
+		["arguments", [
+			["argument", "bar"],
+			["keys", [
+				["lisp-marker", "&key"],
+				["argument", "arg1"]
+			]]
+		]],
+		["punctuation", ")"]
+	]],
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["defun", [
+		["keyword", "defun"],
+		["function", "foo"],
+		["punctuation", "("],
+		["arguments", [
+			["argument", "bar"],
+			["keys", [
+				["lisp-marker", "&key"],
+				["argument", "arg1"],
+				["lisp-marker", "&allow-other-keys"]
+			]]
+		]],
+		["punctuation", ")"]
+	]],
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["defun", [
+		["keyword", "defun"],
+		["function", "foo"],
+		["punctuation", "("],
+		["arguments", [
+			["other-marker-vars", [
+				["lisp-marker", "&optional"],
+				["argument", "arg1"]
+			]]
+		]],
+		["punctuation", ")"]
+	]],
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["defun", [
+		["keyword", "defun"],
+		["function", "defabc"],
+		["punctuation", "("],
+		["arguments", [
+		]],
+		["punctuation", ")"]
+	]],
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["defun", [
+		["keyword", "defun"],
+		["function", "show-members"],
+		["punctuation", "("],
+		["arguments", [
+			["argument", "a"],
+			["argument", "b"],
+			["rest-vars", [
+				["lisp-marker", "&rest"],
+				["argument", "values"]
+			]]
+		]],
+		["punctuation", ")"]
+	]],
+	["punctuation", "("],
+	["car", "write"],
+	["punctuation", "("],
+	["car", "list"],
+	" a b values",
+	["punctuation", ")"],
+	["punctuation", ")"],
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["defun", [
+		["keyword", "cl-defun"],
+		["function", "find-thing"],
+		["punctuation", "("],
+		["arguments", [
+			["argument", "thing"],
+			["rest-vars", [
+				["lisp-marker", "&rest"],
+				["argument", "rest"],
+				["lisp-marker", "&key"],
+				["argument", "need"],
+				["lisp-marker", "&allow-other-keys"]
+			]]
+		]],
+		["punctuation", ")"]
+	]],
+
+	["punctuation", "("],
+	["keyword", "or"],
+	["punctuation", "("],
+	["car", "apply"],
+	["quoted-symbol", "'cl-member"],
+	" thing thing-list ",
+	["lisp-property", ":allow-other-keys"],
+	["boolean", "t"],
+	" rest",
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["keyword", "if"],
+	" need ",
+	["punctuation", "("],
+	["keyword", "error"],
+	["string", ["\"Thing not found\""]],
+	["punctuation", ")"],
+	["punctuation", ")"],
+	["punctuation", ")"],
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["defun", [
+		["keyword", "defun"],
+		["function", "foo"],
+		["punctuation", "("],
+		["arguments", [
+			["argument", "a"],
+			["argument", "b"],
+			["other-marker-vars", [
+				["lisp-marker", "&optional"],
+				["varform", [
+					["punctuation", "("],
+					["car", "c"],
+					["number", "3"],
+					" c-supplied-p",
+					["punctuation", ")"]
+				]]
+			]]
+		]],
+		["punctuation", ")"]
+	]],
+
+	["punctuation", "("],
+	["car", "list"],
+	" a b c c-supplied-p",
+	["punctuation", ")"],
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["defun", [
+		["keyword", "defun"],
+		["function", "foo"],
+		["punctuation", "("],
+		["arguments", [
+			["keys", [
+				["lisp-marker", "&key"],
+				["punctuation", "("],
+				["punctuation", "("],
+				["lisp-property", ":apple"],
+				["argument", "a"],
+				["punctuation", ")"],
+				["punctuation", ")"],
+				["punctuation", "("],
+				["punctuation", "("],
+				["lisp-property", ":box"],
+				["argument", "b"],
+				["punctuation", ")"],
+				["number", "0"],
+				["punctuation", ")"],
+				["punctuation", "("],
+				["punctuation", "("],
+				["lisp-property", ":charlie"],
+				["argument", "c"],
+				["punctuation", ")"],
+				["number", "0"],
+				["argument", "c-supplied-p"],
+				["punctuation", ")"]
+			]]
+		]],
+		["punctuation", ")"]
+	]],
+
+	["punctuation", "("],
+	["car", "list"],
+	" a b c c-supplied-p",
+	["punctuation", ")"],
+	["punctuation", ")"]
 ]
 
 ----------------------------------------------------

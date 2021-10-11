@@ -1,0 +1,73 @@
+new-array v0, v0, [I
+
+.method static constructor <clinit>()V
+
+.field mWifiOnUid:I
+
+.field public static mWifiRunning:Z = false
+.field public static final PI:D = 3.141592653589793
+
+.field static final LOG_TAG:Ljava/lang/String; = "CDMA"
+
+----------------------------------------------------
+
+[
+	"new-array ",
+	["register", "v0"],
+	["punctuation", ","],
+	["register", "v0"],
+	["punctuation", ","],
+	["operator", "["],
+	["builtin", "I"],
+
+	["keyword", ".method"],
+	["keyword", "static"],
+	["keyword", "constructor"],
+	["function", "<clinit>"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["builtin", "V"],
+
+	["keyword", ".field"],
+	["field", "mWifiOnUid"],
+	["punctuation", ":"],
+	["builtin", "I"],
+
+	["keyword", ".field"],
+	["keyword", "public"],
+	["keyword", "static"],
+	["field", "mWifiRunning"],
+	["punctuation", ":"],
+	["builtin", "Z"],
+	["operator", "="],
+	["boolean", "false"],
+
+	["keyword", ".field"],
+	["keyword", "public"],
+	["keyword", "static"],
+	["keyword", "final"],
+	["field", "PI"],
+	["punctuation", ":"],
+	["builtin", "D"],
+	["operator", "="],
+	["number", "3.141592653589793"],
+
+	["keyword", ".field"],
+	["keyword", "static"],
+	["keyword", "final"],
+	["field", "LOG_TAG"],
+	["punctuation", ":"],
+	["class-name", [
+		["builtin", "L"],
+		["namespace", [
+			"java",
+			["punctuation", "/"],
+			"lang",
+			["punctuation", "/"]
+		]],
+		["class-name", "String"]
+	]],
+	["punctuation", ";"],
+	["operator", "="],
+	["string", "\"CDMA\""]
+]

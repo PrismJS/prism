@@ -1,0 +1,10 @@
+mutation foo {}
+
+----------------------------------------------------
+
+[
+	["keyword", "mutation"],
+	["definition-mutation", "foo"],
+	["punctuation", "{"],
+	["punctuation", "}"]
+]

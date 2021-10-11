@@ -1,0 +1,341 @@
+AliceBlue
+AntiqueWhite
+Aqua
+Aquamarine
+Azure
+Beige
+Bisque
+Black
+BlanchedAlmond
+Blue
+BlueViolet
+Brown
+BurlyWood
+CadetBlue
+Chartreuse
+Chocolate
+Coral
+CornflowerBlue
+Cornsilk
+Crimson
+Cyan
+DarkBlue
+DarkCyan
+DarkGoldenRod
+DarkGrey
+DarkGreen
+DarkKhaki
+DarkMagenta
+DarkOliveGreen
+DarkOrange
+DarkOrchid
+DarkRed
+DarkSalmon
+DarkSeaGreen
+DarkSlateBlue
+DarkSlateGrey
+DarkTurquoise
+DarkViolet
+DeepPink
+DeepSkyBlue
+DimGrey
+DodgerBlue
+FireBrick
+FloralWhite
+ForestGreen
+Fuchsia
+Gainsboro
+GhostWhite
+Gold
+GoldenRod
+Grey
+Green
+GreenYellow
+HoneyDew
+HotPink
+IndianRed
+Indigo
+Ivory
+Khaki
+Lavender
+LavenderBlush
+LawnGreen
+LemonChiffon
+LightBlue
+LightCoral
+LightCyan
+LightGoldenRodYellow
+LightGrey
+LightGreen
+LightPink
+LightSalmon
+LightSeaGreen
+LightSkyBlue
+LightSlateGrey
+LightSteelBlue
+LightYellow
+Lime
+LimeGreen
+Linen
+Magenta
+Maroon
+MediumAquaMarine
+MediumBlue
+MediumOrchid
+MediumPurple
+MediumSeaGreen
+MediumSlateBlue
+MediumSpringGreen
+MediumTurquoise
+MediumVioletRed
+MidnightBlue
+MintCream
+MistyRose
+Moccasin
+NavajoWhite
+Navy
+OldLace
+Olive
+OliveDrab
+Orange
+OrangeRed
+Orchid
+PaleGoldenRod
+PaleGreen
+PaleTurquoise
+PaleVioletRed
+PapayaWhip
+PeachPuff
+Peru
+Pink
+Plum
+PowderBlue
+Purple
+Red
+RosyBrown
+RoyalBlue
+SaddleBrown
+Salmon
+SandyBrown
+SeaGreen
+SeaShell
+Sienna
+Silver
+SkyBlue
+SlateBlue
+SlateGrey
+Snow
+SpringGreen
+SteelBlue
+Tan
+Teal
+Thistle
+Tomato
+Transparent
+Turquoise
+Violet
+Wheat
+White
+WhiteSmoke
+Yellow
+YellowGreen
+
+rgb(0,0,0)
+rgba(0  ,  255  ,  0,  0.123)
+hsl(170, 50%, 45%)
+hsla(120,100%,50%,0.3)
+
+----------------------------------------------------
+
+[
+	["color", "AliceBlue"],
+	["color", "AntiqueWhite"],
+	["color", "Aqua"],
+	["color", "Aquamarine"],
+	["color", "Azure"],
+	["color", "Beige"],
+	["color", "Bisque"],
+	["color", "Black"],
+	["color", "BlanchedAlmond"],
+	["color", "Blue"],
+	["color", "BlueViolet"],
+	["color", "Brown"],
+	["color", "BurlyWood"],
+	["color", "CadetBlue"],
+	["color", "Chartreuse"],
+	["color", "Chocolate"],
+	["color", "Coral"],
+	["color", "CornflowerBlue"],
+	["color", "Cornsilk"],
+	["color", "Crimson"],
+	["color", "Cyan"],
+	["color", "DarkBlue"],
+	["color", "DarkCyan"],
+	["color", "DarkGoldenRod"],
+	["color", "DarkGrey"],
+	["color", "DarkGreen"],
+	["color", "DarkKhaki"],
+	["color", "DarkMagenta"],
+	["color", "DarkOliveGreen"],
+	["color", "DarkOrange"],
+	["color", "DarkOrchid"],
+	["color", "DarkRed"],
+	["color", "DarkSalmon"],
+	["color", "DarkSeaGreen"],
+	["color", "DarkSlateBlue"],
+	["color", "DarkSlateGrey"],
+	["color", "DarkTurquoise"],
+	["color", "DarkViolet"],
+	["color", "DeepPink"],
+	["color", "DeepSkyBlue"],
+	["color", "DimGrey"],
+	["color", "DodgerBlue"],
+	["color", "FireBrick"],
+	["color", "FloralWhite"],
+	["color", "ForestGreen"],
+	["color", "Fuchsia"],
+	["color", "Gainsboro"],
+	["color", "GhostWhite"],
+	["color", "Gold"],
+	["color", "GoldenRod"],
+	["color", "Grey"],
+	["color", "Green"],
+	["color", "GreenYellow"],
+	["color", "HoneyDew"],
+	["color", "HotPink"],
+	["color", "IndianRed"],
+	["color", "Indigo"],
+	["color", "Ivory"],
+	["color", "Khaki"],
+	["color", "Lavender"],
+	["color", "LavenderBlush"],
+	["color", "LawnGreen"],
+	["color", "LemonChiffon"],
+	["color", "LightBlue"],
+	["color", "LightCoral"],
+	["color", "LightCyan"],
+	["color", "LightGoldenRodYellow"],
+	["color", "LightGrey"],
+	["color", "LightGreen"],
+	["color", "LightPink"],
+	["color", "LightSalmon"],
+	["color", "LightSeaGreen"],
+	["color", "LightSkyBlue"],
+	["color", "LightSlateGrey"],
+	["color", "LightSteelBlue"],
+	["color", "LightYellow"],
+	["color", "Lime"],
+	["color", "LimeGreen"],
+	["color", "Linen"],
+	["color", "Magenta"],
+	["color", "Maroon"],
+	["color", "MediumAquaMarine"],
+	["color", "MediumBlue"],
+	["color", "MediumOrchid"],
+	["color", "MediumPurple"],
+	["color", "MediumSeaGreen"],
+	["color", "MediumSlateBlue"],
+	["color", "MediumSpringGreen"],
+	["color", "MediumTurquoise"],
+	["color", "MediumVioletRed"],
+	["color", "MidnightBlue"],
+	["color", "MintCream"],
+	["color", "MistyRose"],
+	["color", "Moccasin"],
+	["color", "NavajoWhite"],
+	["color", "Navy"],
+	["color", "OldLace"],
+	["color", "Olive"],
+	["color", "OliveDrab"],
+	["color", "Orange"],
+	["color", "OrangeRed"],
+	["color", "Orchid"],
+	["color", "PaleGoldenRod"],
+	["color", "PaleGreen"],
+	["color", "PaleTurquoise"],
+	["color", "PaleVioletRed"],
+	["color", "PapayaWhip"],
+	["color", "PeachPuff"],
+	["color", "Peru"],
+	["color", "Pink"],
+	["color", "Plum"],
+	["color", "PowderBlue"],
+	["color", "Purple"],
+	["color", "Red"],
+	["color", "RosyBrown"],
+	["color", "RoyalBlue"],
+	["color", "SaddleBrown"],
+	["color", "Salmon"],
+	["color", "SandyBrown"],
+	["color", "SeaGreen"],
+	["color", "SeaShell"],
+	["color", "Sienna"],
+	["color", "Silver"],
+	["color", "SkyBlue"],
+	["color", "SlateBlue"],
+	["color", "SlateGrey"],
+	["color", "Snow"],
+	["color", "SpringGreen"],
+	["color", "SteelBlue"],
+	["color", "Tan"],
+	["color", "Teal"],
+	["color", "Thistle"],
+	["color", "Tomato"],
+	["color", "Transparent"],
+	["color", "Turquoise"],
+	["color", "Violet"],
+	["color", "Wheat"],
+	["color", "White"],
+	["color", "WhiteSmoke"],
+	["color", "Yellow"],
+	["color", "YellowGreen"],
+
+	["color", [
+		["function", "rgb"],
+		["punctuation", "("],
+		["number", "0"],
+		["punctuation", ","],
+		["number", "0"],
+		["punctuation", ","],
+		["number", "0"],
+		["punctuation", ")"]
+	]],
+	["color", [
+		["function", "rgba"],
+		["punctuation", "("],
+		["number", "0"],
+		["punctuation", ","],
+		["number", "255"],
+		["punctuation", ","],
+		["number", "0"],
+		["punctuation", ","],
+		["number", "0.123"],
+		["punctuation", ")"]
+	]],
+	["color", [
+		["function", "hsl"],
+		["punctuation", "("],
+		["number", "170"],
+		["punctuation", ","],
+		["number", "50"],
+		["unit", "%"],
+		["punctuation", ","],
+		["number", "45"],
+		["unit", "%"],
+		["punctuation", ")"]
+	]],
+	["color", [
+		["function", "hsla"],
+		["punctuation", "("],
+		["number", "120"],
+		["punctuation", ","],
+		["number", "100"],
+		["unit", "%"],
+		["punctuation", ","],
+		["number", "50"],
+		["unit", "%"],
+		["punctuation", ","],
+		["number", "0.3"],
+		["punctuation", ")"]
+	]]
+]

@@ -1,0 +1,27 @@
+undefined
+string
+int
+void
+long
+Byte
+bool
+double
+float
+char
+any
+
+----------------------------------------------------
+
+[
+	["builtin", "undefined"],
+	["builtin", "string"],
+	["builtin", "int"],
+	["builtin", "void"],
+	["builtin", "long"],
+	["builtin", "Byte"],
+	["builtin", "bool"],
+	["builtin", "double"],
+	["builtin", "float"],
+	["builtin", "char"],
+	["builtin", "any"]
+]

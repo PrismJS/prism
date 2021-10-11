@@ -1,0 +1,52 @@
+// MyBool is visible but not editable in UnrealEd
+var(MyCategory) editconst bool MyBool;
+
+// MyBool is visible but not editable in UnrealEd and
+// not changeable in script
+var(MyCategory) const editconst bool MyBool;
+
+// MyBool is visible and can be set in UnrealEd but
+// not changeable in script
+var(MyCategory) const bool MyBool;
+
+----------------------------------------------------
+
+[
+	["comment", "// MyBool is visible but not editable in UnrealEd"],
+
+	["keyword", "var"],
+	["punctuation", "("],
+	["category", "MyCategory"],
+	["punctuation", ")"],
+	["keyword", "editconst"],
+	["keyword", "bool"],
+	" MyBool",
+	["punctuation", ";"],
+
+	["comment", "// MyBool is visible but not editable in UnrealEd and"],
+
+	["comment", "// not changeable in script"],
+
+	["keyword", "var"],
+	["punctuation", "("],
+	["category", "MyCategory"],
+	["punctuation", ")"],
+	["keyword", "const"],
+	["keyword", "editconst"],
+	["keyword", "bool"],
+	" MyBool",
+	["punctuation", ";"],
+
+	["comment", "// MyBool is visible and can be set in UnrealEd but"],
+
+	["comment", "// not changeable in script"],
+
+	["keyword", "var"],
+	["punctuation", "("],
+	["category", "MyCategory"],
+	["punctuation", ")"],
+	["keyword", "const"],
+	["keyword", "bool"],
+	" MyBool",
+	["punctuation", ";"]
+]

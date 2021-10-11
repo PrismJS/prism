@@ -1,0 +1,29 @@
+"# This isn't a comment, since it's part of a string."
+
+"Since this line contains a string, it continues
+ even when the line ends."
+
+$ a = [ "Because of parenthesis, this line also",
+        "spans more than one line." ]
+
+'Strings can\'t contain their delimiter, unless you escape it.'
+
+----------------------------------------------------
+
+[
+	["string", "\"# This isn't a comment, since it's part of a string.\""],
+
+	["string", "\"Since this line contains a string, it continues\r\n even when the line ends.\""],
+
+	["tag", "$"],
+	" a ",
+	["operator", "="],
+	["punctuation", "["],
+	["string", "\"Because of parenthesis, this line also\""],
+	["punctuation", ","],
+
+	["string", "\"spans more than one line.\""],
+	["punctuation", "]"],
+
+	["string", "'Strings can\\'t contain their delimiter, unless you escape it.'"]
+]

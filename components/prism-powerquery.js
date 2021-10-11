@@ -40,7 +40,7 @@ Prism.languages.powerquery = {
 		lookbehind: true
 	},
 	'data-type': {
-		pattern: /\b(?:any|anynonnull|binary|date|datetime|datetimezone|duration|function|list|logical|none|number|record|table|text|time|type)\b/,
+		pattern: /\b(?:any|anynonnull|binary|date|datetime|datetimezone|duration|function|list|logical|none|number|record|table|text|time)\b/,
 		alias: 'variable'
 	},
 	'number': {

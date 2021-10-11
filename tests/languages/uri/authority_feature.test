@@ -1,6 +1,7 @@
 https://john.doe@www.example.com:123/forum/questions
 ftp://ftp.is.co.za/rfc/rfc1808.txt
 ldap://[2001:db8::7]/
+https://[v1.foo]/
 //192.0.2.16:80/
 //example.com/path/resource.txt
 
@@ -63,9 +64,29 @@ ldap://[2001:db8::7]/
 		["path-separator", "/"]
 	]],
 
+	["scheme", [
+		"https",
+		["scheme-delimiter", ":"]
+	]],
 	["authority", [
 		["authority-delimiter", "//"],
-		["host", ["192.0.2.16"]],
+		["host", [
+			["ip-literal", [
+				["ip-literal-delimiter", "["],
+				["ipv-future", "v1.foo"],
+				["ip-literal-delimiter", "]"]
+			]]
+		]]
+	]],
+	["path", [
+		["path-separator", "/"]
+	]],
+
+	["authority", [
+		["authority-delimiter", "//"],
+		["host", [
+			["ipv4-address", "192.0.2.16"]
+		]],
 		["port-segment", [
 			["port-delimiter", ":"],
 			["port", "80"]
