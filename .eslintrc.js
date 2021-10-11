@@ -76,6 +76,7 @@ module.exports = {
 		'regexp/no-trivially-nested-quantifier': 'warn',
 		'regexp/no-useless-character-class': 'warn',
 		'regexp/no-useless-lazy': 'warn',
+		'regexp/no-useless-range': 'warn',
 		'regexp/prefer-w': 'warn',
 		'regexp/sort-alternatives': 'warn',
 		'regexp/sort-flags': 'warn',
