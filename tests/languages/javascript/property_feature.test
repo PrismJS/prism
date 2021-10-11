@@ -1,0 +1,159 @@
+{ foo: 0, bar: 0 };
+{ 'foo': 0, "bar": 0 };
+{
+	// comment
+	foo: 0,
+	// comment
+	"bar": 0
+}
+
+const test = new TYPE.Application({
+  key1: viewDim.x,
+  key2: viewDim.y,
+  key3: 0x89ddff,
+  key4: window.devicePixelRatio || 1,
+  key5: resize()
+});
+
+// doesn't conflict with function properties
+{
+	foo: () => 0,
+	bar: async function () {}
+}
+
+// no problem with keywords
+switch(foo) {
+	default: return true;
+}
+
+----------------------------------------------------
+
+[
+	["punctuation", "{"],
+	["literal-property", "foo"],
+	["operator", ":"],
+	["number", "0"],
+	["punctuation", ","],
+	["literal-property", "bar"],
+	["operator", ":"],
+	["number", "0"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["punctuation", "{"],
+	["string-property", "'foo'"],
+	["operator", ":"],
+	["number", "0"],
+	["punctuation", ","],
+	["string-property", "\"bar\""],
+	["operator", ":"],
+	["number", "0"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["punctuation", "{"],
+
+	["comment", "// comment"],
+
+	["literal-property", "foo"],
+	["operator", ":"],
+	["number", "0"],
+	["punctuation", ","],
+
+	["comment", "// comment"],
+
+	["string-property", "\"bar\""],
+	["operator", ":"],
+	["number", "0"],
+
+	["punctuation", "}"],
+
+	["keyword", "const"],
+	" test ",
+	["operator", "="],
+	["keyword", "new"],
+	["class-name", [
+		"TYPE",
+		["punctuation", "."],
+		"Application"
+	]],
+	["punctuation", "("],
+	["punctuation", "{"],
+
+	["literal-property", "key1"],
+	["operator", ":"],
+	" viewDim",
+	["punctuation", "."],
+	"x",
+	["punctuation", ","],
+
+	["literal-property", "key2"],
+	["operator", ":"],
+	" viewDim",
+	["punctuation", "."],
+	"y",
+	["punctuation", ","],
+
+	["literal-property", "key3"],
+	["operator", ":"],
+	["number", "0x89ddff"],
+	["punctuation", ","],
+
+	["literal-property", "key4"],
+	["operator", ":"],
+	" window",
+	["punctuation", "."],
+	"devicePixelRatio ",
+	["operator", "||"],
+	["number", "1"],
+	["punctuation", ","],
+
+	["literal-property", "key5"],
+	["operator", ":"],
+	["function", "resize"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["punctuation", "}"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["comment", "// doesn't conflict with function properties"],
+
+	["punctuation", "{"],
+
+	["function-variable", "foo"],
+	["operator", ":"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["operator", "=>"],
+	["number", "0"],
+	["punctuation", ","],
+
+	["function-variable", "bar"],
+	["operator", ":"],
+	["keyword", "async"],
+	["keyword", "function"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["punctuation", "}"],
+
+	["comment", "// no problem with keywords"],
+
+	["keyword", "switch"],
+	["punctuation", "("],
+	"foo",
+	["punctuation", ")"],
+	["punctuation", "{"],
+
+	["keyword", "default"],
+	["operator", ":"],
+	["keyword", "return"],
+	["boolean", "true"],
+	["punctuation", ";"],
+
+	["punctuation", "}"]
+]
