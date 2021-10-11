@@ -246,6 +246,8 @@
 		"vba": "VBA",
 		"vb": "Visual Basic",
 		"wasm": "WebAssembly",
+		"web-idl": "Web IDL",
+		"webidl": "Web IDL",
 		"wiki": "Wiki markup",
 		"wolfram": "Wolfram language",
 		"nb": "Mathematica Notebook",

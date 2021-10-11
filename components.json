@@ -1424,6 +1424,11 @@
 			"title": "WebAssembly",
 			"owner": "Golmote"
 		},
+		"web-idl": {
+			"title": "Web IDL",
+			"alias": "webidl",
+			"owner": "RunDevelopment"
+		},
 		"wiki": {
 			"title": "Wiki markup",
 			"require": "markup",
