@@ -23,6 +23,39 @@ Infinity
 0.000_001
 1e10_000
 
+0xf_f_f_f_ffn
+0xf_f_f_f_f
+0b1_1_1_1
+0b0_0_1_0_1_0_1n
+0o1_1_3_2
+0o1_1_3_2n
+2.2_4_54e64_33
+2.2_4_54e+64_33
+2.2_4_54e-64_33
+3_4_5
+3_4_5n
+3_4_5.5_5_6
+
+// not numbers
+$1234;
+$0xFF;
+$0b0101;
+$1234n;
+$0xFFn;
+$0b0101n;
+_1234;
+_0xFF;
+_0b0101;
+_1234n;
+_0xFFn;
+_0b0101n;
+abc1234;
+abc0xFF;
+abc0b0101;
+abc1234n;
+abc0xFFn;
+abc0b0101n;
+
 ----------------------------------------------------
 
 [
@@ -35,10 +68,13 @@ Infinity
 	["number", "0o571"],
 	["number", "0xbabe"],
 	["number", "0xBABE"],
+
 	["number", "NaN"],
 	["number", "Infinity"],
+
 	["number", "123n"],
 	["number", "0x123n"],
+
 	["number", "1_000_000_000_000"],
 	["number", "1_000_000.220_720"],
 	["number", "0b0101_0110_0011_1000"],
@@ -46,7 +82,40 @@ Infinity
 	["number", "0x40_76_38_6A_73"],
 	["number", "4_642_473_943_484_686_707n"],
 	["number", "0.000_001"],
-	["number", "1e10_000"]
+	["number", "1e10_000"],
+
+	["number", "0xf_f_f_f_ffn"],
+	["number", "0xf_f_f_f_f"],
+	["number", "0b1_1_1_1"],
+	["number", "0b0_0_1_0_1_0_1n"],
+	["number", "0o1_1_3_2"],
+	["number", "0o1_1_3_2n"],
+	["number", "2.2_4_54e64_33"],
+	["number", "2.2_4_54e+64_33"],
+	["number", "2.2_4_54e-64_33"],
+	["number", "3_4_5"],
+	["number", "3_4_5n"],
+	["number", "3_4_5.5_5_6"],
+
+	["comment", "// not numbers"],
+	"\r\n$1234", ["punctuation", ";"],
+	"\r\n$0xFF", ["punctuation", ";"],
+	"\r\n$0b0101", ["punctuation", ";"],
+	"\r\n$1234n", ["punctuation", ";"],
+	"\r\n$0xFFn", ["punctuation", ";"],
+	"\r\n$0b0101n", ["punctuation", ";"],
+	"\r\n_1234", ["punctuation", ";"],
+	"\r\n_0xFF", ["punctuation", ";"],
+	"\r\n_0b0101", ["punctuation", ";"],
+	"\r\n_1234n", ["punctuation", ";"],
+	"\r\n_0xFFn", ["punctuation", ";"],
+	"\r\n_0b0101n", ["punctuation", ";"],
+	"\r\nabc1234", ["punctuation", ";"],
+	"\r\nabc0xFF", ["punctuation", ";"],
+	"\r\nabc0b0101", ["punctuation", ";"],
+	"\r\nabc1234n", ["punctuation", ";"],
+	"\r\nabc0xFFn", ["punctuation", ";"],
+	"\r\nabc0b0101n", ["punctuation", ";"]
 ]
 
 ----------------------------------------------------
