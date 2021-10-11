@@ -44,7 +44,7 @@ Prism.languages.python = {
 		lookbehind: true
 	},
 	'decorator': {
-		pattern: /(^[\t ]*)@\w+(?:\.\w+)*/im,
+		pattern: /(^[\t ]*)@\w+(?:\.\w+)*/m,
 		lookbehind: true,
 		alias: ['annotation', 'punctuation'],
 		inside: {
