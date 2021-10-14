@@ -53,7 +53,7 @@ Prism.languages.pascal = {
 		/\b\d+(?:\.\d+)?(?:e[+-]?\d+)?/i
 	],
 	'operator': [
-		/\.\.|\*\*|:=|<[<=>]?|>[>=]?|[+\-*\/]=?|[@^=]/i,
+		/\.\.|\*\*|:=|<[<=>]?|>[>=]?|[+\-*\/]=?|[@^=]/,
 		{
 			pattern: /(^|[^&])\b(?:and|as|div|exclude|in|include|is|mod|not|or|shl|shr|xor)\b/,
 			lookbehind: true
