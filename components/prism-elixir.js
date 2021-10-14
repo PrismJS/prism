@@ -7,7 +7,7 @@ Prism.languages.elixir = {
 		}
 	},
 	'comment': {
-		pattern: /#.*/m,
+		pattern: /#.*/,
 		greedy: true
 	},
 	// ~r"""foo""" (multi-line), ~r'''foo''' (multi-line), ~r/foo/, ~r|foo|, ~r"foo", ~r'foo', ~r(foo), ~r[foo], ~r{foo}, ~r<foo>

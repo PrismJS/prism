@@ -75,6 +75,7 @@ module.exports = {
 		'regexp/no-trivially-nested-assertion': 'warn',
 		'regexp/no-trivially-nested-quantifier': 'warn',
 		'regexp/no-useless-character-class': 'warn',
+		'regexp/no-useless-flag': 'warn',
 		'regexp/no-useless-lazy': 'warn',
 		'regexp/prefer-plus-quantifier': 'warn',
 		'regexp/prefer-question-quantifier': 'warn',
