@@ -77,6 +77,7 @@ module.exports = {
 		'regexp/no-useless-character-class': 'warn',
 		'regexp/no-useless-flag': 'warn',
 		'regexp/no-useless-lazy': 'warn',
+		'regexp/no-useless-range': 'warn',
 		'regexp/prefer-plus-quantifier': 'warn',
 		'regexp/prefer-question-quantifier': 'warn',
 		'regexp/prefer-star-quantifier': 'warn',
