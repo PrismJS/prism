@@ -61,6 +61,7 @@
 		"mocha": "^6.2.0",
 		"node-fetch": "^2.6.0",
 		"npm-run-all": "^4.1.5",
+		"prettier": "^2.4.1",
 		"pump": "^3.0.0",
 		"refa": "^0.9.1",
 		"regexp-ast-analysis": "^0.2.4",

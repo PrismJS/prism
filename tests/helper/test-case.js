@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const { assert } = require('chai');
+const Prettier = require('prettier');
 const PrismLoader = require('./prism-loader');
 const TokenStreamTransformer = require('./token-stream-transformer');
 
@@ -217,6 +218,81 @@ class TokenizeJSONRunner {
 	}
 }
 
+/**
+ * @implements {Runner<string>}
+ */
+class HighlightHTMLRunner {
+	/**
+	 * @param {Prism} Prism
+	 * @param {string} code
+	 * @param {string} language
+	 * @returns {string}
+	 */
+	run(Prism, code, language) {
+		const env = {
+			element: {},
+			language,
+			grammar: Prism.languages[language],
+			code,
+		};
+
+		Prism.hooks.run('before-highlight', env);
+		env.highlightedCode = Prism.highlight(env.code, env.grammar, env.language);
+		Prism.hooks.run('before-insert', env);
+		env.element.innerHTML = env.highlightedCode;
+		Prism.hooks.run('after-highlight', env);
+		Prism.hooks.run('complete', env);
+
+		return env.highlightedCode;
+	}
+	/**
+	 * @param {string} actual
+	 * @returns {string}
+	 */
+	print(actual) {
+		return Prettier.format(actual, {
+			printWidth: 100,
+			tabWidth: 4,
+			useTabs: true,
+			htmlWhitespaceSensitivity: 'ignore',
+			filepath: 'fake.html',
+		});
+	}
+	/**
+	 * @param {string} actual
+	 * @param {string} expected
+	 * @returns {boolean}
+	 */
+	isEqual(actual, expected) {
+		return this.normalize(actual) === this.normalize(expected);
+	}
+	/**
+	 * @param {string} actual
+	 * @param {string} expected
+	 * @param {(firstDifference: number) => string} message
+	 * @returns {void}
+	 */
+	assertEqual(actual, expected, message) {
+		// We don't calculate the index of the first difference because it's difficult.
+		assert.deepEqual(this.normalize(actual), this.normalize(expected), message(0));
+	}
+
+	/**
+	 * Normalizes the given HTML by removing all leading spaces and trailing spaces. Line breaks will also be normalized
+	 * to enable good diffing.
+	 *
+	 * @param {string} html
+	 * @returns {string}
+	 */
+	normalize(html) {
+		return html
+			.replace(/</g, '\n<')
+			.replace(/>/g, '>\n')
+			.replace(/[ \t]*[\r\n]\s*/g, '\n')
+			.trim();
+	}
+}
+
 
 module.exports = {
 	TestCaseFile,
@@ -238,7 +314,11 @@ module.exports = {
 	 * @param {"none" | "insert" | "update"} updateMode
 	 */
 	runTestCase(languageIdentifier, filePath, updateMode) {
-		this.runTestCaseWithRunner(languageIdentifier, filePath, updateMode, new TokenizeJSONRunner());
+		if (/\.html\.test$/i.test(filePath)) {
+			this.runTestCaseWithRunner(languageIdentifier, filePath, updateMode, new HighlightHTMLRunner());
+		} else {
+			this.runTestCaseWithRunner(languageIdentifier, filePath, updateMode, new TokenizeJSONRunner());
+		}
 	},
 
 	/**
@@ -347,38 +427,6 @@ module.exports = {
 			mainLanguage: mainLanguage
 		};
 	},
-
-	/**
-	 * Runs the given pieces of codes and asserts their result.
-	 *
-	 * Code is provided as the key and expected result as the value.
-	 *
-	 * @param {string} languageIdentifier
-	 * @param {object} codes
-	 */
-	runTestsWithHooks(languageIdentifier, codes) {
-		const usedLanguages = this.parseLanguageNames(languageIdentifier);
-		const Prism = PrismLoader.createInstance(usedLanguages.languages);
-		// the first language is the main language to highlight
-
-		for (const code in codes) {
-			if (codes.hasOwnProperty(code)) {
-				const env = {
-					element: {},
-					language: usedLanguages.mainLanguage,
-					grammar: Prism.languages[usedLanguages.mainLanguage],
-					code: code
-				};
-				Prism.hooks.run('before-highlight', env);
-				env.highlightedCode = Prism.highlight(env.code, env.grammar, env.language);
-				Prism.hooks.run('before-insert', env);
-				env.element.innerHTML = env.highlightedCode;
-				Prism.hooks.run('after-highlight', env);
-				Prism.hooks.run('complete', env);
-				assert.equal(env.highlightedCode, codes[code]);
-			}
-		}
-	}
 };
 
 /**
