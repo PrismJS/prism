@@ -29,7 +29,7 @@ for (const [languageIdentifier, files] of testSuite) {
 	}
 
 	for (const file of files) {
-		snippets.push(TestCase.parseTestCaseFile(file).code);
+		snippets.push(TestCase.TestCaseFile.readFromFile(file).code);
 	}
 }
 
