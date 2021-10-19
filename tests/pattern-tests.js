@@ -31,7 +31,7 @@ for (const languageIdentifier in testSuite) {
 
 	for (const file of testSuite[languageIdentifier]) {
 		if (path.extname(file) === '.test') {
-			snippets.push(TestCase.parseTestCaseFile(file).code);
+			snippets.push(TestCase.TestCaseFile.readFromFile(file).code);
 		} else {
 			snippets.push(...Object.keys(require(file)));
 		}

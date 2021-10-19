@@ -7,37 +7,219 @@ const TokenStreamTransformer = require('./token-stream-transformer');
 
 /**
  * @typedef {import("./token-stream-transformer").TokenStream} TokenStream
+ * @typedef {import("../../components/prism-core.js")} Prism
  */
 
 /**
- * Handles parsing of a test case file.
+ * Handles parsing and printing of a test case file.
  *
- *
- * A test case file consists of at least two parts, separated by a line of dashes.
+ * A test case file consists of at most three parts, separated by a line of at least 10 dashes.
  * This separation line must start at the beginning of the line and consist of at least three dashes.
  *
- * The test case file can either consist of two parts:
+ *     {code: the source code of the test case}
+ *     ----------
+ *     {expected: the expected value of the test case}
+ *     ----------
+ *     {description: explaining the test case}
  *
- *     {source code}
- *     ----
- *     {expected token stream}
+ * All parts are optional.
  *
- *
- * or of three parts:
- *
- *     {source code}
- *     ----
- *     {expected token stream}
- *     ----
- *     {text comment explaining the test case}
- *
- * If the file contains more than three parts, the remaining parts are just ignored.
- * If the file however does not contain at least two parts (so no expected token stream),
- * the test case will later be marked as failed.
- *
- *
+ * If the file contains more than three parts, the remaining parts are part of the description.
  */
+class TestCaseFile {
+	/**
+	 * @param {string} code
+	 * @param {string | undefined} [expected]
+	 * @param {string | undefined} [description]
+	 */
+	constructor(code, expected, description) {
+		this.code = code;
+		this.expected = expected || '';
+		this.description = description || '';
+
+		/**
+		 * The end of line sequence used when printed.
+		 *
+		 * @type {"\n" | "\r\n"}
+		 */
+		this.eol = '\n';
+
+		/**
+		 * The number of the first line of `code`.
+		 *
+		 * @type {number}
+		 */
+		this.codeLineStart = NaN;
+		/**
+		 * The number of the first line of `expected`.
+		 *
+		 * @type {number}
+		 */
+		this.expectedLineStart = NaN;
+		/**
+		 * The number of the first line of `description`.
+		 *
+		 * @type {number}
+		 */
+		this.descriptionLineStart = NaN;
+	}
+
+	/**
+	 * Returns the file content of the given test file.
+	 *
+	 * @returns {string}
+	 */
+	print() {
+		const code = this.code.trim();
+		const expected = (this.expected || '').trim();
+		const description = (this.description || '').trim();
+
+		const parts = [code];
+		if (description) {
+			parts.push(expected, description);
+		} else if (expected) {
+			parts.push(expected);
+		}
+
+		// join all parts together and normalize line ends to LF
+		const content = parts
+			.join('\n\n----------------------------------------------------\n\n')
+			.replace(/\r\n?|\n/g, this.eol);
+
+		return content + this.eol;
+	}
+
+	/**
+	 * Writes the given test case file to disk.
+	 *
+	 * @param {string} filePath
+	 */
+	writeToFile(filePath) {
+		fs.writeFileSync(filePath, this.print(), 'utf-8');
+	}
+
+	/**
+	 * Parses the given file contents into a test file.
+	 *
+	 * The line ends of the code, expected value, and description are all normalized to CRLF.
+	 *
+	 * @param {string} content
+	 * @returns {TestCaseFile}
+	 */
+	static parse(content) {
+		const eol = (/\r\n|\n/.exec(content) || ['\n'])[0];
+
+		// normalize line ends to CRLF
+		content = content.replace(/\r\n?|\n/g, '\r\n');
+
+		const parts = content.split(/^-{10,}[ \t]*$/m, 3);
+		const code = parts[0] || '';
+		const expected = parts[1] || '';
+		const description = parts[2] || '';
+
+		const file = new TestCaseFile(code.trim(), expected.trim(), description.trim());
+		file.eol = /** @type {"\r\n" | "\n"} */ (eol);
+
+		const codeStartSpaces = /^\s*/.exec(code)[0];
+		const expectedStartSpaces = /^\s*/.exec(expected)[0];
+		const descriptionStartSpaces = /^\s*/.exec(description)[0];
+
+		const codeLineCount = code.split(/\r\n/).length;
+		const expectedLineCount = expected.split(/\r\n/).length;
+
+		file.codeLineStart = codeStartSpaces.split(/\r\n/).length;
+		file.expectedLineStart = codeLineCount + expectedStartSpaces.split(/\r\n/).length;
+		file.descriptionLineStart = codeLineCount + expectedLineCount + descriptionStartSpaces.split(/\r\n/).length;
+
+		return file;
+	}
+
+	/**
+	 * Reads the given test case file from disk.
+	 *
+	 * @param {string} filePath
+	 * @returns {TestCaseFile}
+	 */
+	static readFromFile(filePath) {
+		return TestCaseFile.parse(fs.readFileSync(filePath, 'utf8'));
+	}
+}
+
+/**
+ * @template T
+ * @typedef Runner
+ * @property {(Prism: Prism, code: string, language: string) => T} run
+ * @property {(actual: T) => string} print
+ * @property {(actual: T, expected: string) => boolean} isEqual
+ * @property {(actual: T, expected: string, message: (firstDifference: number) => string) => void} assertEqual
+ */
+
+/**
+ * @implements {Runner<TokenStream>}
+ */
+class TokenizeJSONRunner {
+	/**
+	 * @param {Prism} Prism
+	 * @param {string} code
+	 * @param {string} language
+	 * @returns {TokenStream}
+	 */
+	run(Prism, code, language) {
+		return tokenize(Prism, code, language);
+	}
+	/**
+	 * @param {TokenStream} actual
+	 * @returns {string}
+	 */
+	print(actual) {
+		return TokenStreamTransformer.prettyprint(actual, '\t');
+	}
+	/**
+	 * @param {TokenStream} actual
+	 * @param {string} expected
+	 * @returns {boolean}
+	 */
+	isEqual(actual, expected) {
+		const simplifiedActual = TokenStreamTransformer.simplify(actual);
+		let simplifiedExpected;
+		try {
+			simplifiedExpected = JSON.parse(expected);
+		} catch (error) {
+			return false;
+		}
+
+		return JSON.stringify(simplifiedActual) === JSON.stringify(simplifiedExpected);
+	}
+	/**
+	 * @param {TokenStream} actual
+	 * @param {string} expected
+	 * @param {(firstDifference: number) => string} message
+	 * @returns {void}
+	 */
+	assertEqual(actual, expected, message) {
+		const simplifiedActual = TokenStreamTransformer.simplify(actual);
+		const simplifiedExpected = JSON.parse(expected);
+
+		const actualString = JSON.stringify(simplifiedActual);
+		const expectedString = JSON.stringify(simplifiedExpected);
+
+		const difference = firstDiff(expectedString, actualString);
+		if (difference === undefined) {
+			// both are equal
+			return;
+		}
+
+		// The index of the first difference between the expected token stream and the actual token stream.
+		// The index is in the raw expected token stream JSON of the test case.
+		const diffIndex = translateIndexIgnoreSpaces(expected, expectedString, difference);
+
+		assert.deepEqual(simplifiedActual, simplifiedExpected, message(diffIndex));
+	}
+}
+
+
 module.exports = {
+	TestCaseFile,
 
 	/**
 	 * Runs the given test case file and asserts the result
@@ -56,33 +238,34 @@ module.exports = {
 	 * @param {"none" | "insert" | "update"} updateMode
 	 */
 	runTestCase(languageIdentifier, filePath, updateMode) {
-		const testCase = this.parseTestCaseFile(filePath);
+		this.runTestCaseWithRunner(languageIdentifier, filePath, updateMode, new TokenizeJSONRunner());
+	},
+
+	/**
+	 * @param {string} languageIdentifier
+	 * @param {string} filePath
+	 * @param {"none" | "insert" | "update"} updateMode
+	 * @param {Runner<T>} runner
+	 * @template T
+	 */
+	runTestCaseWithRunner(languageIdentifier, filePath, updateMode, runner) {
+		const testCase = TestCaseFile.readFromFile(filePath);
 		const usedLanguages = this.parseLanguageNames(languageIdentifier);
 
 		const Prism = PrismLoader.createInstance(usedLanguages.languages);
 
 		// the first language is the main language to highlight
-		const tokenStream = this.tokenize(Prism, testCase.code, usedLanguages.mainLanguage);
+		const actualValue = runner.run(Prism, testCase.code, usedLanguages.mainLanguage);
 
 		function updateFile() {
 			// change the file
-			const separator = '\n\n----------------------------------------------------\n\n';
-			const pretty = TokenStreamTransformer.prettyprint(tokenStream, '\t');
-
-			let content = testCase.code + separator + pretty;
-			if (testCase.comment.trim()) {
-				content += separator + testCase.comment.trim();
-			}
-			content += '\n';
-
-			// convert line ends to the line ends of the file
-			content = content.replace(/\r\n?|\n/g, testCase.lineEndOnDisk);
-
-			fs.writeFileSync(filePath, content, 'utf-8');
+			testCase.expected = runner.print(actualValue);
+			testCase.writeToFile(filePath);
 		}
 
-		if (testCase.expectedTokenStream === null) {
+		if (!testCase.expected) {
 			// the test case doesn't have an expected value
+
 			if (updateMode === 'none') {
 				throw new Error('This test case doesn\'t have an expected token stream.'
 					+ ' Either add the JSON of a token stream or run \`npm run test:languages -- --insert\`'
@@ -92,12 +275,8 @@ module.exports = {
 			updateFile();
 		} else {
 			// there is an expected value
-			const simplifiedTokenStream = TokenStreamTransformer.simplify(tokenStream);
 
-			const actual = JSON.stringify(simplifiedTokenStream);
-			const expected = JSON.stringify(testCase.expectedTokenStream);
-
-			if (actual === expected) {
+			if (runner.isEqual(actualValue, testCase.expected)) {
 				// no difference
 				return;
 			}
@@ -107,50 +286,25 @@ module.exports = {
 				return;
 			}
 
-			// The index of the first difference between the expected token stream and the actual token stream.
-			// The index is in the raw expected token stream JSON of the test case.
-			const diffIndex = translateIndexIgnoreSpaces(testCase.expectedJson, expected, firstDiff(expected, actual));
-			const expectedJsonLines = testCase.expectedJson.substr(0, diffIndex).split(/\r\n?|\n/g);
-			const columnNumber = expectedJsonLines.pop().length + 1;
-			const lineNumber = testCase.expectedLineOffset + expectedJsonLines.length;
+			runner.assertEqual(actualValue, testCase.expected, diffIndex => {
+				const expectedLines = testCase.expected.substr(0, diffIndex).split(/\r\n?|\n/g);
+				const columnNumber = expectedLines.pop().length + 1;
+				const lineNumber = testCase.expectedLineStart + expectedLines.length;
 
-			const tokenStreamStr = TokenStreamTransformer.prettyprint(tokenStream);
-			const message = `\nThe expected token stream differs from the actual token stream.` +
-				` Either change the ${usedLanguages.mainLanguage} language or update the expected token stream.` +
-				` Run \`npm run test:languages -- --update\` to update all missing or incorrect expected token streams.` +
-				`\n\n\nActual Token Stream:` +
-				`\n-----------------------------------------\n` +
-				tokenStreamStr +
-				`\n-----------------------------------------\n` +
-				`File: ${filePath}:${lineNumber}:${columnNumber}\n\n`;
-
-			assert.deepEqual(simplifiedTokenStream, testCase.expectedTokenStream, testCase.comment + message);
+				return testCase.description +
+					`\nThe expected token stream differs from the actual token stream.` +
+					` Either change the ${usedLanguages.mainLanguage} language or update the expected token stream.` +
+					` Run \`npm run test:languages -- --update\` to update all missing or incorrect expected token streams.` +
+					`\n\n\nActual Token Stream:` +
+					`\n-----------------------------------------\n` +
+					runner.print(actualValue) +
+					`\n-----------------------------------------\n` +
+					`File: ${filePath}:${lineNumber}:${columnNumber}\n\n`;
+			});
 		}
 	},
 
-	/**
-	 * Returns the token stream of the given code highlighted with `language`.
-	 *
-	 * The `before-tokenize` and `after-tokenize` hooks will also be executed.
-	 *
-	 * @param {import('../../components/prism-core')} Prism The Prism instance which will tokenize `code`.
-	 * @param {string} code The code to tokenize.
-	 * @param {string} language The language id.
-	 * @returns {TokenStream}
-	 */
-	tokenize(Prism, code, language) {
-		const env = {
-			code,
-			grammar: Prism.languages[language],
-			language
-		};
-
-		Prism.hooks.run('before-tokenize', env);
-		env.tokens = Prism.tokenize(env.code, env.grammar);
-		Prism.hooks.run('after-tokenize', env);
-
-		return env.tokens;
-	},
+	tokenize,
 
 
 	/**
@@ -194,50 +348,6 @@ module.exports = {
 		};
 	},
 
-
-	/**
-	 * Parses the test case from the given test case file
-	 *
-	 * @private
-	 * @param {string} filePath
-	 * @returns {ParsedTestCase}
-	 *
-	 * @typedef ParsedTestCase
-	 * @property {string} lineEndOnDisk The EOL format used by the parsed file.
-	 * @property {string} code
-	 * @property {string} expectedJson
-	 * @property {number} expectedLineOffset
-	 * @property {Array | null} expectedTokenStream
-	 * @property {string} comment
-	 */
-	parseTestCaseFile(filePath) {
-		let testCaseSource = fs.readFileSync(filePath, 'utf8');
-		const lineEndOnDisk = (/\r\n?|\n/.exec(testCaseSource) || ['\n'])[0];
-		// normalize line ends to \r\n
-		testCaseSource = testCaseSource.replace(/\r\n?|\n/g, '\r\n');
-
-		const testCaseParts = testCaseSource.split(/^-{10,}[ \t]*$/m);
-
-		if (testCaseParts.length > 3) {
-			throw new Error('Invalid test case format: Too many sections.');
-		}
-
-		const code = testCaseParts[0].trim();
-		const expected = (testCaseParts[1] || '').trim();
-		const comment = (testCaseParts[2] || '').trimStart();
-
-		const testCase = {
-			lineEndOnDisk,
-			code,
-			expectedJson: expected,
-			expectedLineOffset: code.split(/\r\n/g).length,
-			expectedTokenStream: expected ? JSON.parse(expected) : null,
-			comment
-		};
-
-		return testCase;
-	},
-
 	/**
 	 * Runs the given pieces of codes and asserts their result.
 	 *
@@ -270,6 +380,30 @@ module.exports = {
 		}
 	}
 };
+
+/**
+ * Returns the token stream of the given code highlighted with `language`.
+ *
+ * The `before-tokenize` and `after-tokenize` hooks will also be executed.
+ *
+ * @param {import('../../components/prism-core')} Prism The Prism instance which will tokenize `code`.
+ * @param {string} code The code to tokenize.
+ * @param {string} language The language id.
+ * @returns {TokenStream}
+ */
+function tokenize(Prism, code, language) {
+	const env = {
+		code,
+		grammar: Prism.languages[language],
+		language
+	};
+
+	Prism.hooks.run('before-tokenize', env);
+	env.tokens = Prism.tokenize(env.code, env.grammar);
+	Prism.hooks.run('after-tokenize', env);
+
+	return env.tokens;
+}
 
 /**
  * Returns the index at which the given expected string differs from the given actual string.
