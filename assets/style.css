@@ -288,7 +288,7 @@ footer:before {
 			background: #7fab14;
 		}
 
-		@media (max-width: 1300px) and (min-width: 951px) {
+		@media (max-width: 1300px) and (min-width: 1051px) {
 			#theme {
 				position: relative;
 				z-index: 1;
@@ -301,7 +301,7 @@ footer:before {
 			}
 
 				#theme > p {
-					display: none;
+					margin-top: .5em;
 				}
 
 				#theme > label {
@@ -318,7 +318,7 @@ footer:before {
 				}
 		}
 
-		@media (max-width: 950px) {
+		@media (max-width: 1050px) {
 			#theme {
 				position: relative;
 				z-index: 1;
