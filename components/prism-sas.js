@@ -63,12 +63,12 @@
 	};
 
 	var format = {
-		pattern: /\b(?:format|put)\b=?[\w'$.]+/im,
+		pattern: /\b(?:format|put)\b=?[\w'$.]+/i,
 		inside: {
 			'keyword': /^(?:format|put)(?==)/i,
 			'equals': /=/,
 			'format': {
-				pattern: /(?:\w|\$\d)+\.\d?/i,
+				pattern: /(?:\w|\$\d)+\.\d?/,
 				alias: 'number'
 			}
 		}
@@ -259,7 +259,7 @@
 				'macro-keyword': macroKeyword,
 				'macro-variable': macroVariable,
 				'escaped-char': {
-					pattern: /%['"()<>=¬^~;,#]/i,
+					pattern: /%['"()<>=¬^~;,#]/,
 				},
 				'punctuation': punctuation
 			}
@@ -319,7 +319,7 @@
 		},
 		// Decimal (1.2e23), hexadecimal (0c1x)
 		'number': number,
-		'operator': /\*\*?|\|\|?|!!?|¦¦?|<[>=]?|>[<=]?|[-+\/=&]|[~¬^]=?/i,
+		'operator': /\*\*?|\|\|?|!!?|¦¦?|<[>=]?|>[<=]?|[-+\/=&]|[~¬^]=?/,
 		'punctuation': punctuation
 	};
 

@@ -29,7 +29,7 @@ a: span
 			["function", "attributes"],
 			["punctuation", "("],
 			["punctuation", "{"],
-			["string", "'data-foo'"],
+			["string-property", "'data-foo'"],
 			["operator", ":"],
 			["string", "'bar'"],
 			["punctuation", "}"],
@@ -43,11 +43,15 @@ a: span
 			["punctuation", "("],
 			["attr-name", "data-bar"],
 			["punctuation", "="],
-			["attr-value", [["string", "\"foo\""]]],
+			["attr-value", [
+				["string", "\"foo\""]
+			]],
 			["punctuation", ","],
 			["attr-name", "type"],
 			["punctuation", "="],
-			["attr-value", [["string", "'checkbox'"]]],
+			["attr-value", [
+				["string", "'checkbox'"]
+			]],
 			["punctuation", ","],
 			["attr-name", "checked"],
 			["punctuation", ")"]
@@ -62,11 +66,11 @@ a: span
 			["punctuation", "="],
 			["attr-value", [
 				["punctuation", "{"],
-				"color",
+				["literal-property", "color"],
 				["operator", ":"],
 				["string", "'red'"],
 				["punctuation", ","],
-				" background",
+				["literal-property", "background"],
 				["operator", ":"],
 				["string", "'green'"],
 				["punctuation", "}"]
@@ -81,30 +85,45 @@ a: span
 			["punctuation", "("],
 			["attr-name", "unescaped"],
 			["punctuation", "!="],
-			["attr-value", [["string", "\"<code>\""]]],
+			["attr-value", [
+				["string", "\"<code>\""]
+			]],
 			["punctuation", ")"]
 		]]
 	]],
 
 	["tag", [
 		"a",
-		["attr-class", ".button"]]],
-	["tag", [["attr-class", ".content"]]],
+		["attr-class", ".button"]
+	]],
+	["tag", [
+		["attr-class", ".content"]
+	]],
+
 	["tag", [
 		"a",
-		["attr-id", "#main-link"]]],
-	["tag", [["attr-id", "#content"]]],
+		["attr-id", "#main-link"]
+	]],
+	["tag", [
+		["attr-id", "#content"]
+	]],
+
 	["tag", [
 		"div",
 		["attr-id", "#test-id"],
 		["attr-class", ".test-class1"],
-		["attr-class", ".test-class2"]]],
+		["attr-class", ".test-class2"]
+	]],
 	["tag", [
 		["attr-class", ".test-class1"],
 		["attr-id", "#test-id"],
-		["attr-class", ".test-class2"]]],
+		["attr-class", ".test-class2"]
+	]],
 
-	["tag", ["a", ["punctuation", ":"]]],
+	["tag", [
+		"a",
+		["punctuation", ":"]
+	]],
 	["tag", ["span"]]
 ]
 

@@ -756,7 +756,7 @@ function highlight(highlights, offset = 0) {
  * @returns {string}
  */
 function indent(str, amount = '    ') {
-	return str.split(/\r?\n/g).map(m => m === '' ? '' : amount + m).join('\n');
+	return str.split(/\r?\n/).map(m => m === '' ? '' : amount + m).join('\n');
 }
 
 /**

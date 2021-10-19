@@ -15,7 +15,7 @@
 			pattern: /^(?:[ \t]*)[@+=].+/m,
 			greedy: true,
 			inside: {
-				'atrule': /(?:@[\w-]+|[+=])/m
+				'atrule': /(?:@[\w-]+|[+=])/
 			}
 		}
 	});

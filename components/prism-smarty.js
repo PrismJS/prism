@@ -8,7 +8,7 @@
 	Prism.languages.smarty = {
 		'comment': /\{\*[\s\S]*?\*\}/,
 		'delimiter': {
-			pattern: /^\{|\}$/i,
+			pattern: /^\{|\}$/,
 			alias: 'punctuation'
 		},
 		'string': /(["'])(?:\\.|(?!\1)[^\\\r\n])*\1/,

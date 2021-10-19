@@ -207,7 +207,7 @@ assert.equal(foo, bar);
 	["string", "\"./foo.json\""],
 	["keyword", "assert"],
 	["punctuation", "{"],
-	" type",
+	["literal-property", "type"],
 	["operator", ":"],
 	["string", "\"json\""],
 	["punctuation", "}"],
