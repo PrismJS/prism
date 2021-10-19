@@ -14,6 +14,7 @@
 		"lint": "eslint . --cache",
 		"lint:fix": "npm run lint -- --fix",
 		"lint:ci": "eslint . --max-warnings 0",
+		"regex-coverage": "mocha tests/coverage.js",
 		"test:aliases": "mocha tests/aliases-test.js",
 		"test:core": "mocha tests/core/**/*.js",
 		"test:dependencies": "mocha tests/dependencies-test.js",

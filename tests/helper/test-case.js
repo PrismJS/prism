@@ -1,6 +1,7 @@
 'use strict';
 
 const fs = require('fs');
+const path = require('path');
 const { assert } = require('chai');
 const Prettier = require('prettier');
 const PrismLoader = require('./prism-loader');
@@ -10,6 +11,12 @@ const TokenStreamTransformer = require('./token-stream-transformer');
  * @typedef {import("./token-stream-transformer").TokenStream} TokenStream
  * @typedef {import("../../components/prism-core.js")} Prism
  */
+
+/**
+ * @param {string[]} languages
+ * @returns {Prism}
+ */
+const defaultCreateInstance = (languages) => PrismLoader.createInstance(languages);
 
 /**
  * Handles parsing and printing of a test case file.
@@ -298,6 +305,29 @@ module.exports = {
 	TestCaseFile,
 
 	/**
+	 * Runs the given test file and asserts the result.
+	 *
+	 * This function will determine what kind of test files the given file is and call the appropriate method to run the
+	 * test.
+	 *
+	 * @param {RunOptions} options
+	 * @returns {void}
+	 *
+	 * @typedef RunOptions
+	 * @property {string} languageIdentifier
+	 * @property {string} filePath
+	 * @property {"none" | "insert" | "update"} updateMode
+	 * @property {(languages: string[]) => Prism} [createInstance]
+	 */
+	run(options) {
+		if (path.extname(options.filePath) === '.test') {
+			this.runTestCase(options.languageIdentifier, options.filePath, options.updateMode, options.createInstance);
+		} else {
+			this.runTestsWithHooks(options.languageIdentifier, require(options.filePath), options.createInstance);
+		}
+	},
+
+	/**
 	 * Runs the given test case file and asserts the result
 	 *
 	 * The passed language identifier can either be a language like "css" or a composed language
@@ -312,13 +342,16 @@ module.exports = {
 	 * @param {string} languageIdentifier
 	 * @param {string} filePath
 	 * @param {"none" | "insert" | "update"} updateMode
+	 * @param {(languages: string[]) => Prism} [createInstance]
 	 */
-	runTestCase(languageIdentifier, filePath, updateMode) {
+	runTestCase(languageIdentifier, filePath, updateMode, createInstance = defaultCreateInstance) {
+		let runner;
 		if (/\.html\.test$/i.test(filePath)) {
-			this.runTestCaseWithRunner(languageIdentifier, filePath, updateMode, new HighlightHTMLRunner());
+			runner = new HighlightHTMLRunner();
 		} else {
-			this.runTestCaseWithRunner(languageIdentifier, filePath, updateMode, new TokenizeJSONRunner());
+			runner = new TokenizeJSONRunner();
 		}
+		this.runTestCaseWithRunner(languageIdentifier, filePath, updateMode, runner, createInstance);
 	},
 
 	/**
@@ -326,13 +359,14 @@ module.exports = {
 	 * @param {string} filePath
 	 * @param {"none" | "insert" | "update"} updateMode
 	 * @param {Runner<T>} runner
+	 * @param {(languages: string[]) => Prism} createInstance
 	 * @template T
 	 */
-	runTestCaseWithRunner(languageIdentifier, filePath, updateMode, runner) {
+	runTestCaseWithRunner(languageIdentifier, filePath, updateMode, runner, createInstance) {
 		const testCase = TestCaseFile.readFromFile(filePath);
 		const usedLanguages = this.parseLanguageNames(languageIdentifier);
 
-		const Prism = PrismLoader.createInstance(usedLanguages.languages);
+		const Prism = createInstance(usedLanguages.languages);
 
 		// the first language is the main language to highlight
 		const actualValue = runner.run(Prism, testCase.code, usedLanguages.mainLanguage);
