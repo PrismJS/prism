@@ -1,0 +1,43 @@
+ArrayBuffer
+BigInt64Array
+BigUint64Array
+ByteString
+DOMString
+DataView
+Float32Array
+Float64Array
+FrozenArray
+Int16Array
+Int32Array
+Int8Array
+ObservableArray
+Promise
+USVString
+Uint16Array
+Uint32Array
+Uint8Array
+Uint8ClampedArray
+
+----------------------------------------------------
+
+[
+	["builtin", "ArrayBuffer"],
+	["builtin", "BigInt64Array"],
+	["builtin", "BigUint64Array"],
+	["builtin", "ByteString"],
+	["builtin", "DOMString"],
+	["builtin", "DataView"],
+	["builtin", "Float32Array"],
+	["builtin", "Float64Array"],
+	["builtin", "FrozenArray"],
+	["builtin", "Int16Array"],
+	["builtin", "Int32Array"],
+	["builtin", "Int8Array"],
+	["builtin", "ObservableArray"],
+	["builtin", "Promise"],
+	["builtin", "USVString"],
+	["builtin", "Uint16Array"],
+	["builtin", "Uint32Array"],
+	["builtin", "Uint8Array"],
+	["builtin", "Uint8ClampedArray"]
+]

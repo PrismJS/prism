@@ -6,7 +6,7 @@ Prism.languages.basic = {
 		}
 	},
 	'string': {
-		pattern: /"(?:""|[!#$%&'()*,\/:;<=>?^\w +\-.])*"/i,
+		pattern: /"(?:""|[!#$%&'()*,\/:;<=>?^\w +\-.])*"/,
 		greedy: true
 	},
 	'number': /(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:E[+-]?\d+)?/i,

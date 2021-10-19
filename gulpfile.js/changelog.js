@@ -128,7 +128,7 @@ async function changes() {
 	 * @param {string | { message: string, hash: string }} info
 	 */
 	function addEntry(category, info) {
-		const path = category.split(/\s*>>\s*/g);
+		const path = category.split(/\s*>>\s*/);
 		if (path[path.length - 1] !== '') {
 			path.push('');
 		}

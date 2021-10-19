@@ -13,7 +13,7 @@
 			["script-punctuation", "="],
 			["punctuation", "{"],
 			["punctuation", "{"],
-			" track",
+			["literal-property", "track"],
 			["operator", ":"],
 			["boolean", "true"],
 			["punctuation", "}"],
