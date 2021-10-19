@@ -104,12 +104,9 @@ describe('Pattern test coverage', function () {
 					}
 
 					const problems = untested.map(data => {
-						const { origin, otherOccurrences } = splitOccurrences(data.from);
-						return [
-							`${origin}:\n\t${short(String(data.pattern), 80)}`,
-							'This pattern is completely untested. Add test files that match this pattern.',
-							...(otherOccurrences.length ? ['Other occurrences of this pattern:', ...otherOccurrences] : [])
-						].join('\n');
+						return formatProblem(data, [
+							'This pattern is completely untested. Add test files that match this pattern.'
+						]);
 					});
 
 					assert.fail([
@@ -122,33 +119,30 @@ describe('Pattern test coverage', function () {
 				it(`- should exhaustively cover all keywords in keyword lists`, function () {
 					const problems = [];
 
-					for (const { pattern, matches, from } of getAllOf(language)) {
-						if (matches.length === 0) {
+					for (const data of getAllOf(language)) {
+						if (data.matches.length === 0) {
 							// don't report the same pattern twice
 							continue;
 						}
 
-						const keywords = getKeywordList(pattern);
+						const keywords = getKeywordList(data.pattern);
 						if (!keywords) {
 							continue;
 						}
 						const keywordCount = keywords.size;
 
-						matches.forEach(([m]) => {
-							if (pattern.ignoreCase) {
+						data.matches.forEach(([m]) => {
+							if (data.pattern.ignoreCase) {
 								m = m.toUpperCase();
 							}
 							keywords.delete(m);
 						});
 
 						if (keywords.size > 0) {
-							const { origin, otherOccurrences } = splitOccurrences(from);
-							problems.push([
-								`${origin}:\n\t${short(String(pattern), 80)}`,
+							problems.push(formatProblem(data, [
 								`Add test files to test all keywords. The following keywords (${keywords.size}/${keywordCount}) are untested:`,
-								`${[...keywords].map(k => `\t${k}`).join('\n')}`,
-								...(otherOccurrences.length ? ['Other occurrences of this pattern:', ...otherOccurrences] : [])
-							].join('\n'));
+								...[...keywords].map(k => `    ${k}`)
+							]));
 						}
 					}
 
@@ -224,6 +218,32 @@ describe('Pattern test coverage', function () {
 			origin: all[0],
 			otherOccurrences: all.slice(1),
 		};
+	}
+
+	/**
+	 * @param {PatternData} data
+	 * @param {string[]} messageLines
+	 * @returns {string}
+	 */
+	function formatProblem(data, messageLines) {
+		const { origin, otherOccurrences } = splitOccurrences(data.from);
+
+		const lines = [
+			`${origin}:`,
+			short(String(data.pattern), 100),
+			'',
+			...messageLines,
+		];
+
+		if (otherOccurrences.length) {
+			lines.push(
+				'',
+				'Other occurrences of this pattern:',
+				...otherOccurrences.map(o => `- ${o}`)
+			);
+		}
+
+		return lines.join('\n    ');
 	}
 });
 
