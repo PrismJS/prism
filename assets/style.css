@@ -364,6 +364,12 @@ footer {
 
 	#toc li {
 		list-style: none;
+		line-height: 1.2;
+		padding: .2em 0;
+	}
+
+	#toc li a {
+		padding: .2em 0;
 	}
 
 #logo:before {
