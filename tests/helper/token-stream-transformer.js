@@ -306,7 +306,7 @@ function isBlank(str) {
  * @returns {number}
  */
 function countLineBreaks(str) {
-	return str.split(/\r\n?|\n/g).length - 1;
+	return str.split(/\r\n?|\n/).length - 1;
 }
 
 /**
