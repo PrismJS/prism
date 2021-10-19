@@ -1,0 +1,43 @@
+any
+bigint
+boolean
+byte
+double
+float
+iterable
+long
+maplike
+object
+octet
+record
+sequence
+setlike
+short
+symbol
+undefined
+unsigned
+void
+
+----------------------------------------------------
+
+[
+	["keyword", "any"],
+	["keyword", "bigint"],
+	["keyword", "boolean"],
+	["keyword", "byte"],
+	["keyword", "double"],
+	["keyword", "float"],
+	["keyword", "iterable"],
+	["keyword", "long"],
+	["keyword", "maplike"],
+	["keyword", "object"],
+	["keyword", "octet"],
+	["keyword", "record"],
+	["keyword", "sequence"],
+	["keyword", "setlike"],
+	["keyword", "short"],
+	["keyword", "symbol"],
+	["keyword", "undefined"],
+	["keyword", "unsigned"],
+	["keyword", "void"]
+]

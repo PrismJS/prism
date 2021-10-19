@@ -244,27 +244,4 @@ var setTheme;
 
 	$$('.plugin-list').forEach(listPlugins);
 
-	// small polyfill for Element#matches
-	if (!Element.prototype.matches) {
-		Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
-	}
-
-	Prism && Prism.hooks.add('complete', function (env) {
-		var element = env.element;
-
-		requestAnimationFrame(function () {
-			if (!element.matches('div.code-toolbar > pre > code')) {
-				return;
-			}
-
-			var pre = element.parentElement;
-			var wrapper = pre.parentElement;
-
-			// transfer margin of pre to wrapper
-			wrapper.style.margin = window.getComputedStyle(pre).margin;
-			pre.style.margin = '0';
-
-		});
-	});
-
 }());

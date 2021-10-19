@@ -10,7 +10,6 @@ const { languages } = require('../components.json');
 const { visitRegExpAST } = require('regexpp');
 const { transform, combineTransformers, getIntersectionWordSets, JS, Words, NFA, Transformers } = require('refa');
 const scslre = require('scslre');
-const path = require('path');
 const { argv } = require('yargs');
 const RAA = require('regexp-ast-analysis');
 
@@ -30,11 +29,7 @@ for (const [languageIdentifier, files] of testSuite) {
 	}
 
 	for (const file of files) {
-		if (path.extname(file) === '.test') {
-			snippets.push(TestCase.parseTestCaseFile(file).code);
-		} else {
-			snippets.push(...Object.keys(require(file)));
-		}
+		snippets.push(TestCase.parseTestCaseFile(file).code);
 	}
 }
 
@@ -739,7 +734,7 @@ function highlight(highlights, offset = 0) {
  * @returns {string}
  */
 function indent(str, amount = '    ') {
-	return str.split(/\r?\n/g).map(m => m === '' ? '' : amount + m).join('\n');
+	return str.split(/\r?\n/).map(m => m === '' ? '' : amount + m).join('\n');
 }
 
 /**
