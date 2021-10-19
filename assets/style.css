@@ -188,7 +188,6 @@ footer:before {
 	}
 
 	#features {
-		width: 66em;
 		margin-top: 2em;
 		font-size: 80%;
 	}
@@ -197,12 +196,16 @@ footer:before {
 			margin: 0 0 2em 0;
 			list-style: none;
 			display: inline-block;
-			width: 27em;
+			width: 49%;
+			box-sizing: border-box;
 			vertical-align: top;
 		}
 
 		#features li:nth-child(odd) {
-			margin-right: 5em;
+			padding-right: 2.5em;
+		}
+		#features li:nth-child(even) {
+			padding-left: 2.5em;
 		}
 
 			#features li:before {
@@ -229,7 +232,7 @@ footer:before {
 		position: relative;
 		z-index: 1;
 		float: right;
-		margin-right: -1em;
+		margin-right: -9em;
 		text-align: center;
 		text-transform: uppercase;
 		letter-spacing: .2em;
@@ -277,12 +280,88 @@ footer:before {
 
 		#theme > input {
 			position: absolute;
+			left: 0;
 			clip: rect(0,0,0,0);
 		}
 
 		#theme > input:checked + label {
 			background: #7fab14;
 		}
+
+		@media (max-width: 1300px) and (min-width: 1051px) {
+			#theme {
+				position: relative;
+				z-index: 1;
+				float: left;
+				margin: 1em 0;
+				width: 100%;
+			}
+			#theme + * {
+				clear: both;
+			}
+
+				#theme > p {
+					margin-top: .5em;
+				}
+
+				#theme > label {
+					float: left;
+					font-size: 82.6%;
+				}
+
+				#theme > label:before {
+					display: none;
+				}
+
+				#theme > label:nth-of-type(n+2) {
+					margin-top: 0;
+				}
+		}
+
+		@media (max-width: 1050px) {
+			#theme {
+				position: relative;
+				z-index: 1;
+				float: left;
+				margin: 1em 0;
+			}
+			#theme + * {
+				clear: both;
+			}
+
+				#theme > p {
+					left: inherit;
+					right: -1em;
+				}
+
+				#theme > label {
+					float: left;
+				}
+
+				#theme > label:before {
+					display: none;
+				}
+
+				#theme > label:nth-of-type(n+2) {
+					margin-top: 0;
+				}
+				#theme > label:nth-of-type(n+5) {
+					margin-top: -2.5em;
+				}
+				#theme > label:nth-of-type(4n+1) {
+					margin-left: 12.5em;
+				}
+		}
+
+		@media (max-width: 800px) {
+			#theme > label:nth-of-type(4) {
+				margin-right: 4em;
+			}
+			#theme > label:nth-of-type(4n+1) {
+				margin-left: 4em;
+			}
+		}
+
 
 footer {
 	margin-top: 2em;
@@ -435,12 +514,3 @@ ul.plugin-list {
 	ul.plugin-list > li > div {
 		margin-bottom: .5em;
 	}
-
-/*
- * Fix for Toolbar's overflow issue
- */
-
-div.code-toolbar {
-	display: block;
-	overflow: auto;
-}
