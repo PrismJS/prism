@@ -1,0 +1,23 @@
+$ADDRESS_BASE=10.2.${ADDRESS_BASE_SUB}
+$ADDRESS_BASE_SUB=0
+${ADDRESS_BASE}.100/32
+$ADDRESS_BASE_SUB=10
+
+----------------------------------------------------
+
+[
+	["variable", "$ADDRESS_BASE"],
+	["operator", "="],
+	["number", "10.2"],
+	".",
+	["variable", "${ADDRESS_BASE_SUB}"],
+	["variable", "$ADDRESS_BASE_SUB"],
+	["operator", "="],
+	["number", "0"],
+	["variable", "${ADDRESS_BASE}"],
+	".100/",
+	["number", "32"],
+	["variable", "$ADDRESS_BASE_SUB"],
+	["operator", "="],
+	["number", "10"]
+]

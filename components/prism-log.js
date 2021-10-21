@@ -64,7 +64,7 @@ Prism.languages.log = {
 	},
 
 	'ip-address': {
-		pattern: /\b(?:\d{1,3}(?:\.\d{1,3}){3})\b/i,
+		pattern: /\b(?:\d{1,3}(?:\.\d{1,3}){3})\b/,
 		alias: 'constant'
 	},
 	'mac-address': {

@@ -1,0 +1,344 @@
+program asmDemo(input, output, stderr);
+
+// The $asmMode directive informs the compiler
+// which syntax is used in asm-blocks.
+// Alternatives are 'att' (AT&T syntax) and 'direct'.
+{$asmMode intel}
+
+var
+	n, m: longint;
+begin
+	n := 42;
+	m := -7;
+	writeLn('n = ', n, '; m = ', m);
+
+	// instead of declaring another temporary variable
+	// and writing "tmp := n; n := m; m := tmp;":
+	asm
+		mov eax, n  // eax := n
+		// xchg can only operate at most on one memory address
+		xchg eax, m // swaps values in eax and at m
+		mov n, eax  // n := eax (holding the former m value)
+	// an array of strings after the asm-block closing 'end'
+	// tells the compiler which registers have changed
+	// (you don't wanna mess with the compiler's notion
+	// which registers mean what)
+	end ['eax'];
+
+	writeLn('n = ', n, '; m = ', m);
+end.
+
+program sign(input, output, stderr);
+
+type
+	signumCodomain = -1..1;
+
+{ returns the sign of an integer }
+function signum({$ifNDef CPUx86_64} const {$endIf} x: longint): signumCodomain;
+{$ifDef CPUx86_64} // ============= optimized implementation
+assembler;
+{$asmMode intel}
+asm
+	xor rax, rax                  // ensure result is not wrong
+	                              // due to any residue
+
+	test x, x                     // x ≟ 0
+	setnz al                      // al ≔ ¬ZF
+
+	sar x, 63                     // propagate sign-bit through reg.
+	cmovs rax, x                  // if SF then rax ≔ −1
+end;
+{$else} // ========================== default implementation
+begin
+	// This is what math.sign virtually does.
+	// The compiled code requires _two_ cmp instructions, though.
+	if x > 0 then
+	begin
+		signum := 1;
+	end
+	else if x < 0 then
+	begin
+		signum := -1;
+	end
+	else
+	begin
+		signum := 0;
+	end;
+end;
+{$endIf}
+
+// M A I N =================================================
+var
+	x: longint;
+begin
+	readLn(x);
+	writeLn(signum(x));
+end.
+
+----------------------------------------------------
+
+[
+	["keyword", "program"],
+	" asmDemo",
+	["punctuation", "("],
+	"input",
+	["punctuation", ","],
+	" output",
+	["punctuation", ","],
+	" stderr",
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["comment", "// The $asmMode directive informs the compiler"],
+	["comment", "// which syntax is used in asm-blocks."],
+	["comment", "// Alternatives are 'att' (AT&T syntax) and 'direct'."],
+	["directive", "{$asmMode intel}"],
+
+	["keyword", "var"],
+
+	"\r\n\tn",
+	["punctuation", ","],
+	" m",
+	["punctuation", ":"],
+	" longint",
+	["punctuation", ";"],
+
+	["keyword", "begin"],
+
+	"\r\n\tn ",
+	["operator", ":="],
+	["number", "42"],
+	["punctuation", ";"],
+
+	"\r\n\tm ",
+	["operator", ":="],
+	["operator", "-"],
+	["number", "7"],
+	["punctuation", ";"],
+
+	"\r\n\twriteLn",
+	["punctuation", "("],
+	["string", "'n = '"],
+	["punctuation", ","],
+	" n",
+	["punctuation", ","],
+	["string", "'; m = '"],
+	["punctuation", ","],
+	" m",
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["comment", "// instead of declaring another temporary variable"],
+
+	["comment", "// and writing \"tmp := n; n := m; m := tmp;\":"],
+
+	["keyword", "asm"],
+	["asm", [
+		"\r\n\t\tmov eax",
+		["punctuation", ","],
+		" n  ",
+		["comment", "// eax := n"],
+
+		["comment", "// xchg can only operate at most on one memory address"],
+
+		"\r\n\t\txchg eax",
+		["punctuation", ","],
+		" m ",
+		["comment", "// swaps values in eax and at m"],
+
+		"\r\n\t\tmov n",
+		["punctuation", ","],
+		" eax  ",
+		["comment", "// n := eax (holding the former m value)"],
+
+		["comment", "// an array of strings after the asm-block closing 'end'"],
+
+		["comment", "// tells the compiler which registers have changed"],
+
+		["comment", "// (you don't wanna mess with the compiler's notion"],
+
+		["comment", "// which registers mean what)"]
+	]],
+	["keyword", "end"],
+	["punctuation", "["],
+	["string", "'eax'"],
+	["punctuation", "]"],
+	["punctuation", ";"],
+
+	"\r\n\r\n\twriteLn",
+	["punctuation", "("],
+	["string", "'n = '"],
+	["punctuation", ","],
+	" n",
+	["punctuation", ","],
+	["string", "'; m = '"],
+	["punctuation", ","],
+	" m",
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "end"],
+	["punctuation", "."],
+
+	["keyword", "program"],
+	" sign",
+	["punctuation", "("],
+	"input",
+	["punctuation", ","],
+	" output",
+	["punctuation", ","],
+	" stderr",
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "type"],
+
+	"\r\n\tsignumCodomain ",
+	["operator", "="],
+	["operator", "-"],
+	["number", "1"],
+	["operator", ".."],
+	["number", "1"],
+	["punctuation", ";"],
+
+	["comment", "{ returns the sign of an integer }"],
+
+	["keyword", "function"],
+	" signum",
+	["punctuation", "("],
+	["directive", "{$ifNDef CPUx86_64}"],
+	["keyword", "const"],
+	["directive", "{$endIf}"],
+	" x",
+	["punctuation", ":"],
+	" longint",
+	["punctuation", ")"],
+	["punctuation", ":"],
+	" signumCodomain",
+	["punctuation", ";"],
+
+	["directive", "{$ifDef CPUx86_64}"],
+	["comment", "// ============= optimized implementation"],
+
+	["keyword", "assembler"],
+	["punctuation", ";"],
+
+	["directive", "{$asmMode intel}"],
+
+	["keyword", "asm"],
+	["asm", [
+		"\r\n\txor rax",
+		["punctuation", ","],
+		" rax                  ",
+		["comment", "// ensure result is not wrong"],
+
+		["comment", "// due to any residue"],
+
+		"\r\n\r\n\ttest x",
+		["punctuation", ","],
+		" x                     ",
+		["comment", "// x ≟ 0"],
+
+		"\r\n\tsetnz al                      ",
+		["comment", "// al ≔ ¬ZF"],
+
+		"\r\n\r\n\tsar x",
+		["punctuation", ","],
+		["number", "63"],
+		["comment", "// propagate sign-bit through reg."],
+
+		"\r\n\tcmovs rax",
+		["punctuation", ","],
+		" x                  ",
+		["comment", "// if SF then rax ≔ −1"]
+	]],
+	["keyword", "end"],
+	["punctuation", ";"],
+
+	["directive", "{$else}"],
+	["comment", "// ========================== default implementation"],
+
+	["keyword", "begin"],
+
+	["comment", "// This is what math.sign virtually does."],
+
+	["comment", "// The compiled code requires _two_ cmp instructions, though."],
+
+	["keyword", "if"],
+	" x ",
+	["operator", ">"],
+	["number", "0"],
+	["keyword", "then"],
+
+	["keyword", "begin"],
+
+	"\r\n\t\tsignum ",
+	["operator", ":="],
+	["number", "1"],
+	["punctuation", ";"],
+
+	["keyword", "end"],
+
+	["keyword", "else"],
+	["keyword", "if"],
+	" x ",
+	["operator", "<"],
+	["number", "0"],
+	["keyword", "then"],
+
+	["keyword", "begin"],
+
+	"\r\n\t\tsignum ",
+	["operator", ":="],
+	["operator", "-"],
+	["number", "1"],
+	["punctuation", ";"],
+
+	["keyword", "end"],
+
+	["keyword", "else"],
+
+	["keyword", "begin"],
+
+	"\r\n\t\tsignum ",
+	["operator", ":="],
+	["number", "0"],
+	["punctuation", ";"],
+
+	["keyword", "end"],
+	["punctuation", ";"],
+
+	["keyword", "end"],
+	["punctuation", ";"],
+
+	["directive", "{$endIf}"],
+
+	["comment", "// M A I N ================================================="],
+
+	["keyword", "var"],
+
+	"\r\n\tx",
+	["punctuation", ":"],
+	" longint",
+	["punctuation", ";"],
+
+	["keyword", "begin"],
+
+	"\r\n\treadLn",
+	["punctuation", "("],
+	"x",
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	"\r\n\twriteLn",
+	["punctuation", "("],
+	"signum",
+	["punctuation", "("],
+	"x",
+	["punctuation", ")"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "end"],
+	["punctuation", "."]
+]

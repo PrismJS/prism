@@ -1,0 +1,410 @@
+// names
+interface interface_identifier { /* interface_members... */ };
+partial interface interface_identifier { /* interface_members... */ };
+dictionary dictionary_identifier { /* dictionary_members... */ };
+partial dictionary dictionary_identifier { /* dictionary_members... */ };
+enum enumeration_identifier { "enum", "values" /* , ... */ };
+callback callback_identifier = return_type (/* arguments... */);
+callback interface callback_interface_identifier { /* interface_members... */ };
+
+// interfaces
+
+interface interface_identifier {
+  return_type identifier([extended_attributes] type identifier, [extended_attributes] type identifier);
+};
+interface interface_identifier {
+  return_type identifier(type... identifier);
+  return_type identifier(type identifier, type... identifier);
+};
+interface SolidColor : Paint {
+  constructor(double radius);
+  attribute double red;
+  readonly attribute unsigned long width;
+  undefined drawText(double x, double y, DOMString text);
+  getter DOMString (DOMString keyName);
+  getter DOMString foo(DOMString keyName);
+  boolean hasAddressForName(USVString name, optional LookupOptions options = {});
+  const unsigned long BIT_MASK = 0x0000fc00;
+  iterable<DOMString, Session>;
+};
+
+// dictionary
+
+dictionary identifier {
+  type identifier;
+};
+dictionary identifier {
+  type identifier = "value";
+};
+dictionary identifier {
+  required type identifier;
+};
+dictionary B : A {
+  long b;
+  long a;
+};
+
+// callback
+
+callback AsyncOperationCallback = undefined (DOMString status);
+
+// enum
+
+enum MealType { "rice", "noodles", "other" };
+
+// typedef
+
+typedef sequence<Point> Points;
+
+// includes and implements
+Foo includes Bar;
+Foo implements Bar;
+
+----------------------------------------------------
+
+[
+	["comment", "// names"],
+
+	["keyword", "interface"],
+	["class-name", "interface_identifier"],
+	["punctuation", "{"],
+	["comment", "/* interface_members... */"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["keyword", "partial"],
+	["keyword", "interface"],
+	["class-name", "interface_identifier"],
+	["punctuation", "{"],
+	["comment", "/* interface_members... */"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["keyword", "dictionary"],
+	["class-name", "dictionary_identifier"],
+	["punctuation", "{"],
+	["comment", "/* dictionary_members... */"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["keyword", "partial"],
+	["keyword", "dictionary"],
+	["class-name", "dictionary_identifier"],
+	["punctuation", "{"],
+	["comment", "/* dictionary_members... */"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["keyword", "enum"],
+	["class-name", "enumeration_identifier"],
+	["punctuation", "{"],
+	["string", "\"enum\""],
+	["punctuation", ","],
+	["string", "\"values\""],
+	["comment", "/* , ... */"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["keyword", "callback"],
+	["class-name", "callback_identifier"],
+	["operator", "="],
+	["class-name", ["return_type"]],
+	["punctuation", "("],
+	["comment", "/* arguments... */"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "callback"],
+	["keyword", "interface"],
+	["class-name", "callback_interface_identifier"],
+	["punctuation", "{"],
+	["comment", "/* interface_members... */"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["comment", "// interfaces"],
+
+	["keyword", "interface"],
+	["class-name", "interface_identifier"],
+	["punctuation", "{"],
+
+	["class-name", ["return_type"]],
+	" identifier",
+	["punctuation", "("],
+	["punctuation", "["],
+	"extended_attributes",
+	["punctuation", "]"],
+	["class-name", ["type"]],
+	" identifier",
+	["punctuation", ","],
+	["punctuation", "["],
+	"extended_attributes",
+	["punctuation", "]"],
+	["class-name", ["type"]],
+	" identifier",
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["keyword", "interface"],
+	["class-name", "interface_identifier"],
+	["punctuation", "{"],
+
+	["class-name", ["return_type"]],
+	" identifier",
+	["punctuation", "("],
+	["class-name", ["type"]],
+	["operator", "..."],
+	" identifier",
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["class-name", ["return_type"]],
+	" identifier",
+	["punctuation", "("],
+	["class-name", ["type"]],
+	" identifier",
+	["punctuation", ","],
+	["class-name", ["type"]],
+	["operator", "..."],
+	" identifier",
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["keyword", "interface"],
+	["class-name", "SolidColor"],
+	["operator", ":"],
+	["class-name", "Paint"],
+	["punctuation", "{"],
+
+	["keyword", "constructor"],
+	["punctuation", "("],
+	["class-name", [
+		["keyword", "double"]
+	]],
+	" radius",
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "attribute"],
+	["class-name", [
+		["keyword", "double"]
+	]],
+	" red",
+	["punctuation", ";"],
+
+	["keyword", "readonly"],
+	["keyword", "attribute"],
+	["class-name", [
+		["keyword", "unsigned"],
+		["keyword", "long"]
+	]],
+	" width",
+	["punctuation", ";"],
+
+	["class-name", [
+		["keyword", "undefined"]
+	]],
+	" drawText",
+	["punctuation", "("],
+	["class-name", [
+		["keyword", "double"]
+	]],
+	" x",
+	["punctuation", ","],
+	["class-name", [
+		["keyword", "double"]
+	]],
+	" y",
+	["punctuation", ","],
+	["class-name", [
+		["builtin", "DOMString"]
+	]],
+	" text",
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "getter"],
+	["class-name", [
+		["builtin", "DOMString"]
+	]],
+	["punctuation", "("],
+	["class-name", [
+		["builtin", "DOMString"]
+	]],
+	" keyName",
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "getter"],
+	["class-name", [
+		["builtin", "DOMString"]
+	]],
+	" foo",
+	["punctuation", "("],
+	["class-name", [
+		["builtin", "DOMString"]
+	]],
+	" keyName",
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["class-name", [
+		["keyword", "boolean"]
+	]],
+	" hasAddressForName",
+	["punctuation", "("],
+	["class-name", [
+		["builtin", "USVString"]
+	]],
+	" name",
+	["punctuation", ","],
+	["keyword", "optional"],
+	["class-name", ["LookupOptions"]],
+	" options ",
+	["operator", "="],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "const"],
+	["class-name", [
+		["keyword", "unsigned"],
+		["keyword", "long"]
+	]],
+	" BIT_MASK ",
+	["operator", "="],
+	["number", "0x0000fc00"],
+	["punctuation", ";"],
+
+	["class-name", [
+		["keyword", "iterable"],
+		["operator", "<"],
+		["builtin", "DOMString"],
+		["punctuation", ","],
+		" Session",
+		["operator", ">"]
+	]],
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["comment", "// dictionary"],
+
+	["keyword", "dictionary"],
+	["class-name", "identifier"],
+	["punctuation", "{"],
+
+	["class-name", ["type"]],
+	" identifier",
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["keyword", "dictionary"],
+	["class-name", "identifier"],
+	["punctuation", "{"],
+
+	["class-name", ["type"]],
+	" identifier ",
+	["operator", "="],
+	["string", "\"value\""],
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["keyword", "dictionary"],
+	["class-name", "identifier"],
+	["punctuation", "{"],
+
+	["keyword", "required"],
+	["class-name", ["type"]],
+	" identifier",
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["keyword", "dictionary"],
+	["class-name", "B"],
+	["operator", ":"],
+	["class-name", "A"],
+	["punctuation", "{"],
+
+	["class-name", [
+		["keyword", "long"]
+	]],
+	" b",
+	["punctuation", ";"],
+
+	["class-name", [
+		["keyword", "long"]
+	]],
+	" a",
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["comment", "// callback"],
+
+	["keyword", "callback"],
+	["class-name", "AsyncOperationCallback"],
+	["operator", "="],
+	["class-name", [
+		["keyword", "undefined"]
+	]],
+	["punctuation", "("],
+	["class-name", [
+		["builtin", "DOMString"]
+	]],
+	" status",
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["comment", "// enum"],
+
+	["keyword", "enum"],
+	["class-name", "MealType"],
+	["punctuation", "{"],
+	["string", "\"rice\""],
+	["punctuation", ","],
+	["string", "\"noodles\""],
+	["punctuation", ","],
+	["string", "\"other\""],
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["comment", "// typedef"],
+
+	["keyword", "typedef"],
+	["class-name", [
+		["keyword", "sequence"],
+		["operator", "<"],
+		"Point",
+		["operator", ">"]
+	]],
+	" Points",
+	["punctuation", ";"],
+
+	["comment", "// includes and implements"],
+
+	["class-name", "Foo"],
+	["keyword", "includes"],
+	["class-name", "Bar"],
+	["punctuation", ";"],
+
+	["class-name", "Foo"],
+	["keyword", "implements"],
+	["class-name", "Bar"],
+	["punctuation", ";"]
+]

@@ -4,6 +4,7 @@
 
 	// doesn't work with TS because TS is too complex
 	delete Prism.languages.tsx['parameter'];
+	delete Prism.languages.tsx['literal-property'];
 
 	// This will prevent collisions between TSX tags and TS generic types.
 	// Idea by https://github.com/karlhorky

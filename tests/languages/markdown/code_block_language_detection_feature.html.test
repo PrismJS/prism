@@ -1,0 +1,45 @@
+```js
+let a = 0;
+```
+
+``` c++
+int a = 0;
+```
+
+``` c#
+var a = 0;
+```
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+----------------------------------------------------
+
+<span class="token code">
+	<span class="token punctuation">```</span>
+	<span class="token code-language">js</span>
+	<span class="token code-block language-js">let a = 0;</span>
+	<span class="token punctuation">```</span>
+</span>
+
+<span class="token code">
+	<span class="token punctuation">```</span>
+	<span class="token code-language">c++</span>
+	<span class="token code-block language-cpp">int a = 0;</span>
+	<span class="token punctuation">```</span>
+</span>
+
+<span class="token code">
+	<span class="token punctuation">```</span>
+	<span class="token code-language">c#</span>
+	<span class="token code-block language-csharp">var a = 0;</span>
+	<span class="token punctuation">```</span>
+</span>
+
+<span class="token code">
+	<span class="token punctuation">```</span>
+	<span class="token code-language">{r pressure, echo=FALSE}</span>
+	<span class="token code-block language-r">plot(pressure)</span>
+	<span class="token punctuation">```</span>
+</span>

@@ -1,0 +1,469 @@
+insensitive
+idle
+hover
+selected_idle
+selected_hover
+background
+position
+alt
+xpos
+ypos
+pos
+xanchor
+yanchor
+anchor
+xalign
+yalign
+align
+xcenter
+ycenter
+xofsset
+yoffset
+ymaximum
+maximum
+xmaximum
+xminimum
+yminimum
+minimum
+xsize
+ysizexysize
+xfill
+yfill
+area
+antialias
+black_color
+bold
+caret
+color
+first_indent
+font
+size
+italic
+justify
+kerning
+language
+layout
+line_leading
+line_overlap_split
+line_spacing
+min_width
+newline_indent
+outlines
+rest_indent
+ruby_style
+slow_cps
+slow_cps_multiplier
+strikethrough
+text_align
+underline
+hyperlink_functions
+vertical
+hinting
+foreground
+left_margin
+xmargin
+top_margin
+bottom_margin
+ymargin
+left_padding
+right_padding
+xpadding
+top_padding
+bottom_padding
+ypadding
+size_group
+child
+hover_sound
+activate_sound
+mouse
+focus_mask
+keyboard_focus
+bar_vertical
+bar_invert
+bar_resizing
+left_gutter
+right_gutter
+top_gutter
+bottom_gutter
+left_bar
+right_bar
+top_bar
+bottom_bar
+thumb
+thumb_shadow
+thumb_offset
+unscrollable
+spacing
+first_spacing
+box_reverse
+box_wrap
+order_reverse
+fit_first
+ysize
+thumbnail_width
+thumbnail_height
+help
+text_ypos
+text_xpos
+idle_color
+hover_color
+selected_idle_color
+selected_hover_color
+insensitive_color
+alpha
+insensitive_background
+hover_background
+zorder
+value
+width
+xadjustment
+xanchoraround
+xaround
+xinitial
+xoffset
+xzoom
+yadjustment
+yanchoraround
+yaround
+yinitial
+yzoom
+zoom
+ground
+height
+text_style
+text_y_fudge
+selected_insensitive
+has_sound
+has_music
+has_voice
+focus
+hovered
+image_style
+length
+minwidth
+mousewheel
+offset
+prefix
+radius
+range
+right_margin
+rotate
+rotate_pad
+developer
+screen_width
+screen_height
+window_title
+name
+version
+windows_icon
+default_fullscreen
+default_text_cps
+default_afm_time
+main_menu_music
+sample_sound
+enter_sound
+exit_sound
+save_directory
+enter_transition
+exit_transition
+intra_transition
+main_game_transition
+game_main_transition
+end_splash_transition
+end_game_transition
+after_load_transition
+window_show_transition
+window_hide_transition
+adv_nvl_transition
+nvl_adv_transition
+enter_yesno_transition
+exit_yesno_transition
+enter_replay_transition
+exit_replay_transition
+say_attribute_transition
+directory_name
+executable_name
+include_update
+window_icon
+modal
+google_play_key
+google_play_salt
+drag_name
+drag_handle
+draggable
+dragged
+droppable
+dropped
+narrator_menu
+action
+default_afm_enable
+version_name
+version_tuple
+inside
+fadeout
+fadein
+layers
+layer_clipping
+linear
+scrollbars
+side_xpos
+side_ypos
+side_spacing
+edgescroll
+drag_joined
+drag_raise
+drop_shadow
+drop_shadow_color
+subpixel
+easein
+easeout
+time
+crop
+auto
+update
+get_installed_packages
+can_update
+UpdateVersion
+Update
+overlay_functions
+translations
+window_left_padding
+show_side_image
+show_two_window
+
+----------------------------------------------------
+
+[
+	["property", "insensitive"],
+	["property", "idle"],
+	["property", "hover"],
+	["property", "selected_idle"],
+	["property", "selected_hover"],
+	["property", "background"],
+	["property", "position"],
+	["property", "alt"],
+	["property", "xpos"],
+	["property", "ypos"],
+	["property", "pos"],
+	["property", "xanchor"],
+	["property", "yanchor"],
+	["property", "anchor"],
+	["property", "xalign"],
+	["property", "yalign"],
+	["property", "align"],
+	["property", "xcenter"],
+	["property", "ycenter"],
+	["property", "xofsset"],
+	["property", "yoffset"],
+	["property", "ymaximum"],
+	["property", "maximum"],
+	["property", "xmaximum"],
+	["property", "xminimum"],
+	["property", "yminimum"],
+	["property", "minimum"],
+	["property", "xsize"],
+	["property", "ysizexysize"],
+	["property", "xfill"],
+	["property", "yfill"],
+	["property", "area"],
+	["property", "antialias"],
+	["property", "black_color"],
+	["property", "bold"],
+	["property", "caret"],
+	["property", "color"],
+	["property", "first_indent"],
+	["property", "font"],
+	["property", "size"],
+	["property", "italic"],
+	["property", "justify"],
+	["property", "kerning"],
+	["property", "language"],
+	["property", "layout"],
+	["property", "line_leading"],
+	["property", "line_overlap_split"],
+	["property", "line_spacing"],
+	["property", "min_width"],
+	["property", "newline_indent"],
+	["property", "outlines"],
+	["property", "rest_indent"],
+	["property", "ruby_style"],
+	["property", "slow_cps"],
+	["property", "slow_cps_multiplier"],
+	["property", "strikethrough"],
+	["property", "text_align"],
+	["property", "underline"],
+	["property", "hyperlink_functions"],
+	["property", "vertical"],
+	["property", "hinting"],
+	["property", "foreground"],
+	["property", "left_margin"],
+	["property", "xmargin"],
+	["property", "top_margin"],
+	["property", "bottom_margin"],
+	["property", "ymargin"],
+	["property", "left_padding"],
+	["property", "right_padding"],
+	["property", "xpadding"],
+	["property", "top_padding"],
+	["property", "bottom_padding"],
+	["property", "ypadding"],
+	["property", "size_group"],
+	["property", "child"],
+	["property", "hover_sound"],
+	["property", "activate_sound"],
+	["property", "mouse"],
+	["property", "focus_mask"],
+	["property", "keyboard_focus"],
+	["property", "bar_vertical"],
+	["property", "bar_invert"],
+	["property", "bar_resizing"],
+	["property", "left_gutter"],
+	["property", "right_gutter"],
+	["property", "top_gutter"],
+	["property", "bottom_gutter"],
+	["property", "left_bar"],
+	["property", "right_bar"],
+	["property", "top_bar"],
+	["property", "bottom_bar"],
+	["property", "thumb"],
+	["property", "thumb_shadow"],
+	["property", "thumb_offset"],
+	["property", "unscrollable"],
+	["property", "spacing"],
+	["property", "first_spacing"],
+	["property", "box_reverse"],
+	["property", "box_wrap"],
+	["property", "order_reverse"],
+	["property", "fit_first"],
+	["property", "ysize"],
+	["property", "thumbnail_width"],
+	["property", "thumbnail_height"],
+	["property", "help"],
+	["property", "text_ypos"],
+	["property", "text_xpos"],
+	["property", "idle_color"],
+	["property", "hover_color"],
+	["property", "selected_idle_color"],
+	["property", "selected_hover_color"],
+	["property", "insensitive_color"],
+	["property", "alpha"],
+	["property", "insensitive_background"],
+	["property", "hover_background"],
+	["property", "zorder"],
+	["property", "value"],
+	["property", "width"],
+	["property", "xadjustment"],
+	["property", "xanchoraround"],
+	["property", "xaround"],
+	["property", "xinitial"],
+	["property", "xoffset"],
+	["property", "xzoom"],
+	["property", "yadjustment"],
+	["property", "yanchoraround"],
+	["property", "yaround"],
+	["property", "yinitial"],
+	["property", "yzoom"],
+	["property", "zoom"],
+	["property", "ground"],
+	["property", "height"],
+	["property", "text_style"],
+	["property", "text_y_fudge"],
+	["property", "selected_insensitive"],
+	["property", "has_sound"],
+	["property", "has_music"],
+	["property", "has_voice"],
+	["property", "focus"],
+	["property", "hovered"],
+	["property", "image_style"],
+	["property", "length"],
+	["property", "minwidth"],
+	["property", "mousewheel"],
+	["property", "offset"],
+	["property", "prefix"],
+	["property", "radius"],
+	["property", "range"],
+	["property", "right_margin"],
+	["property", "rotate"],
+	["property", "rotate_pad"],
+	["property", "developer"],
+	["property", "screen_width"],
+	["property", "screen_height"],
+	["property", "window_title"],
+	["property", "name"],
+	["property", "version"],
+	["property", "windows_icon"],
+	["property", "default_fullscreen"],
+	["property", "default_text_cps"],
+	["property", "default_afm_time"],
+	["property", "main_menu_music"],
+	["property", "sample_sound"],
+	["property", "enter_sound"],
+	["property", "exit_sound"],
+	["property", "save_directory"],
+	["property", "enter_transition"],
+	["property", "exit_transition"],
+	["property", "intra_transition"],
+	["property", "main_game_transition"],
+	["property", "game_main_transition"],
+	["property", "end_splash_transition"],
+	["property", "end_game_transition"],
+	["property", "after_load_transition"],
+	["property", "window_show_transition"],
+	["property", "window_hide_transition"],
+	["property", "adv_nvl_transition"],
+	["property", "nvl_adv_transition"],
+	["property", "enter_yesno_transition"],
+	["property", "exit_yesno_transition"],
+	["property", "enter_replay_transition"],
+	["property", "exit_replay_transition"],
+	["property", "say_attribute_transition"],
+	["property", "directory_name"],
+	["property", "executable_name"],
+	["property", "include_update"],
+	["property", "window_icon"],
+	["property", "modal"],
+	["property", "google_play_key"],
+	["property", "google_play_salt"],
+	["property", "drag_name"],
+	["property", "drag_handle"],
+	["property", "draggable"],
+	["property", "dragged"],
+	["property", "droppable"],
+	["property", "dropped"],
+	["property", "narrator_menu"],
+	["property", "action"],
+	["property", "default_afm_enable"],
+	["property", "version_name"],
+	["property", "version_tuple"],
+	["property", "inside"],
+	["property", "fadeout"],
+	["property", "fadein"],
+	["property", "layers"],
+	["property", "layer_clipping"],
+	["property", "linear"],
+	["property", "scrollbars"],
+	["property", "side_xpos"],
+	["property", "side_ypos"],
+	["property", "side_spacing"],
+	["property", "edgescroll"],
+	["property", "drag_joined"],
+	["property", "drag_raise"],
+	["property", "drop_shadow"],
+	["property", "drop_shadow_color"],
+	["property", "subpixel"],
+	["property", "easein"],
+	["property", "easeout"],
+	["property", "time"],
+	["property", "crop"],
+	["property", "auto"],
+	["property", "update"],
+	["property", "get_installed_packages"],
+	["property", "can_update"],
+	["property", "UpdateVersion"],
+	["property", "Update"],
+	["property", "overlay_functions"],
+	["property", "translations"],
+	["property", "window_left_padding"],
+	["property", "show_side_image"],
+	["property", "show_two_window"]
+]

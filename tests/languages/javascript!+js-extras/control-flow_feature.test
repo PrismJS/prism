@@ -1,0 +1,35 @@
+await
+break
+catch
+continue
+do
+else
+finally
+for
+if
+return
+switch
+throw
+try
+while
+yield
+
+----------------------------------------------------
+
+[
+	["keyword", "await"],
+	["keyword", "break"],
+	["keyword", "catch"],
+	["keyword", "continue"],
+	["keyword", "do"],
+	["keyword", "else"],
+	["keyword", "finally"],
+	["keyword", "for"],
+	["keyword", "if"],
+	["keyword", "return"],
+	["keyword", "switch"],
+	["keyword", "throw"],
+	["keyword", "try"],
+	["keyword", "while"],
+	["keyword", "yield"]
+]

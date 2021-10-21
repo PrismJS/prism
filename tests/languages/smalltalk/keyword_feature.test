@@ -1,10 +1,10 @@
-nil true false
+nil
 self super new
 
 ----------------------------------------------------
 
 [
-	["keyword", "nil"], ["keyword", "true"], ["keyword", "false"],
+	["keyword", "nil"],
 	["keyword", "self"], ["keyword", "super"], ["keyword", "new"]
 ]
 

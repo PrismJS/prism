@@ -13,7 +13,7 @@ Prism.languages.vbnet = Prism.languages.extend('basic', {
 		}
 	],
 	'string': {
-		pattern: /(^|[^"])"(?:""|[^"])*"(?!")/i,
+		pattern: /(^|[^"])"(?:""|[^"])*"(?!")/,
 		lookbehind: true,
 		greedy: true
 	},

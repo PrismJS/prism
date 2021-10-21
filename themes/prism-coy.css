@@ -32,7 +32,7 @@ pre[class*="language-"] {
 	position: relative;
 	margin: .5em 0;
 	overflow: visible;
-	padding: 0;
+	padding: 1px;
 }
 pre[class*="language-"]>code {
 	position: relative;

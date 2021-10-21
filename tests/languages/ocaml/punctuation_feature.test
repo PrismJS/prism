@@ -1,0 +1,21 @@
+( ) { } [ ]
+. , : ;
+_
+
+----------------------------------------------------
+
+[
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", "["],
+	["punctuation", "]"],
+
+	["punctuation", "."],
+	["punctuation", ","],
+	["punctuation", ":"],
+	["punctuation", ";"],
+
+	["punctuation", "_"]
+]

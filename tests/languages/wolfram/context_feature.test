@@ -1,0 +1,9 @@
+Global`
+System`Foo
+
+----------------------------------------------------
+
+[
+	["context", "Global`"],
+	["context", "System`Foo"]
+]

@@ -1,24 +1,47 @@
 Some text
 	at foo.bar
+	at DenoError (deno/js/errors.ts:22:5)
+	at new <anonymous> (_http_common.js:159:16)
 
 ----------------------------------------------------
 
 [
 	["error-message", "Some text"],
-	[
-		"stack-frame",
-		[
-			["keyword", "at"],
-			[
-				"function",
-				[
-					"foo",
-					[ "punctuation", "." ],
-					"bar"
-				]
-			]
-		]
-	]
+	["stack-frame", [
+		["keyword", "at"],
+		["function", [
+			"foo",
+			["punctuation", "."],
+			"bar"
+		]]
+	]],
+	["stack-frame", [
+		["keyword", "at"],
+		["function", ["DenoError"]],
+		["punctuation", "("],
+		["filename", "deno/js/errors.ts"],
+		["line-number", [
+			["punctuation", ":"],
+			"22",
+			["punctuation", ":"],
+			"5"
+		]],
+		["punctuation", ")"]
+	]],
+	["stack-frame", [
+		["keyword", "at"],
+		["keyword", "new"],
+		["function", ["<anonymous>"]],
+		["punctuation", "("],
+		["filename", "_http_common.js"],
+		["line-number", [
+			["punctuation", ":"],
+			"159",
+			["punctuation", ":"],
+			"16"
+		]],
+		["punctuation", ")"]
+	]]
 ]
 
 ----------------------------------------------------

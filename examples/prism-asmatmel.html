@@ -1,0 +1,78 @@
+<h2>Comments</h2>
+<pre><code>; This is a comment</code></pre>
+
+<h2>Labels</h2>
+<pre><code>label1:   ; a label</code></pre>
+
+<h2>Opcodes</h2>
+<pre><code>LD
+OUT
+
+; lowercase
+ldi
+jmp label1
+</code></pre>
+
+<h2>Assembler directives</h2>
+<pre><code>.segment CODE
+.word $07d3
+</code></pre>
+
+<h2>Registers</h2>
+<pre><code>LD A  ; "A"
+LDA label1,x  ; "x"
+</code></pre>
+
+<h2>Strings</h2>
+<pre><code>.include "header.asm"
+</code></pre>
+
+<h2>Numbers</h2>
+<pre><code>ldi r24,#127
+ldi r24,$80f0
+ldi r24,#%01011000
+</code></pre>
+
+<h2>Constants</h2>
+<pre><code>ldi r16, (0&lt;&lt;PB5)|(1&lt;&lt;PB4)|(1&lt;&lt;PB3)|(1&lt;&lt;PB2)|(1&lt;&lt;PB1)|(1&lt;&lt;PB0)</code></pre>
+
+<h2>Example program to light up LEDs</h2>
+<h3>Attach an LED (through a 220 ohm resistor) to any of the pins 0-12</h3>
+<pre><code>; Pin Constant Values (Tested on Arduino UNO)
+; PD0 - 0
+; PD1 - 1
+; PD2 - 2
+; PD3 - 3
+; PD4 - 4
+; PD5 - 5
+; PD6 - 6
+; PD7 - 7
+
+; PB0 - 8
+; PB1 - 9
+; PB2 - 10
+; PB3 - 11
+; PB4 - 12
+; PB5 - 13 - System LED
+
+start:
+
+	; Set pins 0-7 to high
+	ldi		r17, (1&lt;&lt;PD7)|(1&lt;&lt;PD6)|(1&lt;&lt;PD5)|(1&lt;&lt;PD4)|(1&lt;&lt;PD3)|(1&lt;&lt;PD2)|(1&lt;&lt;PD1)|(1&lt;&lt;PD0)
+	out		PORTD, r17
+
+	; Set pins 8-13 to high
+	ldi		r16, (1&lt;&lt;PB5)|(1&lt;&lt;PB4)|(1&lt;&lt;PB3)|(1&lt;&lt;PB2)|(1&lt;&lt;PB1)|(1&lt;&lt;PB0)
+	out		PORTB, r16
+
+	; Set pins 0-7 to output mode
+	ldi		r18, (1&lt;&lt;DDD7)|(1&lt;&lt;DDD6)|(1&lt;&lt;DDD5)|(1&lt;&lt;DDD4)|(1&lt;&lt;DDD3)|(1&lt;&lt;DDD2)|(1&lt;&lt;DDD1)|(1&lt;&lt;DDD0)
+	out		DDRD, r18
+
+	; Set pins 8-13 to output mode
+	ldi		r19, (1&lt;&lt;DDB5)|(1&lt;&lt;DDB4)|(1&lt;&lt;DDB3)|(1&lt;&lt;DDB2)|(1&lt;&lt;DDB1)|(1&lt;&lt;DDB0)
+	out		DDRB, r19
+
+loop:
+	rjmp loop ; loop forever
+</code></pre>

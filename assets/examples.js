@@ -179,62 +179,22 @@
 			language.examplesPromise.then(function (contents) {
 				examples[id].innerHTML = buildContentsHeader(id) + contents;
 
-				loadLanguage(id).then(function () {
-					Prism.highlightAllUnder(examples[id]);
+				/** @type {HTMLElement} */
+				var container = examples[id];
+				container.innerHTML = buildContentsHeader(id) + contents;
+
+				// the current language might be an extension of a language
+				// so to be safe, we explicitly add a dependency to the current language
+				$$('pre', container).forEach(/** @param {HTMLElement} pre */function (pre) {
+					var dependencies = (pre.getAttribute('data-dependencies') || '').trim();
+					dependencies = dependencies ? dependencies + ',' + id : id;
+					pre.setAttribute('data-dependencies', dependencies);
 				});
+
+				Prism.highlightAllUnder(container);
 			});
 		} else {
 			examples[id].innerHTML = '';
 		}
 	}
-
-	/**
-	 * Loads a language, including all dependencies
-	 *
-	 * @param {string} lang the language to load
-	 * @returns {Promise} the promise which resolves as soon as everything is loaded
-	 */
-	function loadLanguage(lang) {
-		// at first we need to fetch all dependencies for the main language
-		// Note: we need to do this, even if the main language already is loaded (just to be sure..)
-		//
-		// We load an array of all dependencies and call recursively this function on each entry
-		//
-		// dependencies is now an (possibly empty) array of loading-promises
-		var dependencies = getDependenciesOfLanguage(lang).map(loadLanguage);
-
-		// We create a promise, which will resolve, as soon as all dependencies are loaded.
-		// They need to be fully loaded because the main language may extend them.
-		return Promise.all(dependencies)
-			.then(function () {
-
-				// If the main language itself isn't already loaded, load it now
-				// and return the newly created promise (we chain the promises).
-				// If the language is already loaded, just do nothing - the next .then()
-				// will immediately be called
-				if (!Prism.languages[lang]) {
-					return new Promise(function (resolve) {
-						$u.script('components/prism-' + lang + '.js', resolve);
-					});
-				}
-			});
-	}
-
-
-	/**
-	 * Returns all dependencies (as identifiers) of a specific language
-	 *
-	 * @param {string} lang
-	 * @returns {string[]} the list of dependencies. Empty if the language has none.
-	 */
-	function getDependenciesOfLanguage(lang) {
-		if (!components.languages[lang] || !components.languages[lang].require) {
-			return [];
-		}
-
-		return ($u.type(components.languages[lang].require) === 'array')
-			? components.languages[lang].require
-			: [components.languages[lang].require];
-	}
-
 }());

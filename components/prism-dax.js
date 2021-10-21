@@ -21,7 +21,7 @@ Prism.languages.dax = {
 		pattern: /\b(?:FALSE|NULL|TRUE)\b/i,
 		alias: 'constant'
 	},
-	'number': /\b\d+(?:\.\d*)?|\B\.\d+\b/i,
+	'number': /\b\d+(?:\.\d*)?|\B\.\d+\b/,
 	'operator': /:=|[-+*\/=^]|&&?|\|\||<(?:=>?|<|>)?|>[>=]?|\b(?:IN|NOT)\b/i,
 	'punctuation': /[;\[\](){}`,.]/
 };

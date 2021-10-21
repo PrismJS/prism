@@ -1,5 +1,7 @@
 http_requests_total{job="apiserver", handler="/api/comments"}[5m]
 
+http_requests_total offset 5m
+
 http_requests_total{job=~".*server"}
 
 ----------------------------------------------------
@@ -21,6 +23,12 @@ http_requests_total{job=~".*server"}
 		["punctuation", "["],
 		["range-duration", "5m"],
 		["punctuation", "]"]
+	]],
+
+	"\r\n\r\nhttp_requests_total ",
+	["keyword", "offset"],
+	["context-range", [
+		["range-duration", "5m"]
 	]],
 
 	"\r\n\r\nhttp_requests_total",

@@ -39,6 +39,10 @@ Prism.languages.insertBefore('purebasic', 'keyword', {
 				lookbehind: true,
 				alias: 'fasm-label'
 			},
+			'keyword': [
+				/\b(?:extern|global)\b[^;\r\n]*/i,
+				/\b(?:CPU|DEFAULT|FLOAT)\b.*/
+			],
 			'function': {
 				pattern: /^([\t ]*!\s*)[\da-z]+(?=\s|$)/im,
 				lookbehind: true
@@ -53,10 +57,6 @@ Prism.languages.insertBefore('purebasic', 'keyword', {
 				lookbehind: true,
 				alias: 'fasm-label'
 			},
-			'keyword': [
-				/\b(?:extern|global)\b[^;\r\n]*/i,
-				/\b(?:CPU|DEFAULT|FLOAT)\b.*/
-			],
 			'register': /\b(?:st\d|[xyz]mm\d\d?|[cdt]r\d|r\d\d?[bwd]?|[er]?[abcd]x|[abcd][hl]|[er]?(?:bp|di|si|sp)|[cdefgs]s|mm\d+)\b/i,
 			'number': /(?:\b|-|(?=\$))(?:0[hx](?:[\da-f]*\.)?[\da-f]+(?:p[+-]?\d+)?|\d[\da-f]+[hx]|\$\d[\da-f]*|0[oq][0-7]+|[0-7]+[oq]|0[by][01]+|[01]+[by]|0[dt]\d+|(?:\d+(?:\.\d+)?|\.\d+)(?:\.?e[+-]?\d+)?[dt]?)\b/i,
 			'operator': /[\[\]*+\-/%<>=&|$!,.:]/

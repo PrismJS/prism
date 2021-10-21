@@ -33,7 +33,7 @@
 		'operator': /[-+%=]=?|!=|\*\*?=?|\/\/?=?|<[<=>]?|>[=>]?|[&|^~]/,
 		'number': /\b\d+(?:\.\d+)?\b/,
 		'boolean': /[Ff]alse|[Nn]one|[Tt]rue/,
-		'variable': /\b\w+?\b/,
+		'variable': /\b\w+\b/,
 		'punctuation': /[{}[\](),.:;]/
 	};
 
