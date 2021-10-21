@@ -2,6 +2,10 @@
 
 	var templateString = Prism.languages.javascript['template-string'];
 
+	if (Array.isArray(Array)) {
+		templateString = templateString[templateString.length - 1]
+	}
+
 	// see the pattern in prism-javascript.js
 	var templateLiteralPattern = templateString.pattern.source;
 	var interpolationObject = templateString.inside['interpolation'];
