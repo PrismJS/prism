@@ -101,8 +101,7 @@
 	<h1>How can I use different highlighting for tokens with the same name in different languages?</h1>
 	<p>Just use a descendant selector, that includes the language class. The default <code>prism.css</code> does this, to have different colors for
 	JavaScript strings (which are very common) and CSS strings (which are relatively rare). Here’s that code, simplified to illustrate the technique:
-	<pre><code class="language-css">
-.token.string {
+	<pre><code class="language-css">.token.string {
 	color: #690;
 }
 
