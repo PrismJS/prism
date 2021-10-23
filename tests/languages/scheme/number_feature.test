@@ -18,8 +18,22 @@
 10+.1i
 10+1.i
 
+10.0E2
+10.0D2
+10.0L2
+10.0S2
+10.0F2
+
+10.0e2
+10.0d2
+10.0l2
+10.0s2
+10.0f2
+
 ; not a number but a symbol
 (define 1+2 10)
+
+(list 10.0P2 10.0g2 10.0w2)
 
 ----------------------------------------------------
 
@@ -101,13 +115,31 @@
 	["number", "10+.1i"],
 	["number", "10+1.i"],
 
+	["number", "10.0E2"],
+	["number", "10.0D2"],
+	["number", "10.0L2"],
+	["number", "10.0S2"],
+	["number", "10.0F2"],
+
+	["number", "10.0e2"],
+	["number", "10.0d2"],
+	["number", "10.0l2"],
+	["number", "10.0s2"],
+	["number", "10.0f2"],
+
 	["comment", "; not a number but a symbol"],
 
 	["punctuation", "("],
 	["keyword", "define"],
 	" 1+2 ",
 	["number", "10"],
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["builtin", "list"],
+	" 10.0P2 10.0g2 10.0w2",
 	["punctuation", ")"]
+
 ]
 
 ----------------------------------------------------

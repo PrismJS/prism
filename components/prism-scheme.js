@@ -70,7 +70,7 @@
 			// non-decimal bases together. This results in a decimal (dec) and combined binary, octal, and hexadecimal (box)
 			// pattern:
 			pattern: RegExp(SortedBNF({
-				'<ureal dec>': /\d+(?:\/\d+)|(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?/.source,
+				'<ureal dec>': /\d+(?:\/\d+)|(?:\d+(?:\.\d*)?|\.\d+)(?:[esfdl][+-]?\d+)?/.source,
 				'<real dec>': /[+-]?<ureal dec>|[+-](?:inf|nan)\.0/.source,
 				'<imaginary dec>': /[+-](?:<ureal dec>|(?:inf|nan)\.0)?i/.source,
 				'<complex dec>': /<real dec>(?:@<real dec>|<imaginary dec>)?|<imaginary dec>/.source,
