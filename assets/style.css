@@ -112,9 +112,10 @@ pre {
 	overflow: auto;
 }
 
-pre > code.highlight {
-	outline: .4em solid red;
+mark {
+	outline: .4em solid rgba(255,0,0,.7);
 	outline-offset: .4em;
+	background-color: transparent;
 }
 
 header,
