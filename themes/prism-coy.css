@@ -29,7 +29,6 @@ pre[class*="language-"] {
 
 /* Code blocks */
 pre[class*="language-"] {
-	z-index: 1;
 	position: relative;
 	margin: .5em 0;
 	overflow: visible;
@@ -38,6 +37,7 @@ pre[class*="language-"] {
 
 pre[class*="language-"] > code {
 	position: relative;
+	z-index: 1;
 	border-left: 10px solid #358ccb;
 	box-shadow: -1px 0px 0px 0px #358ccb, 0px 0px 0px 1px #dfdfdf;
 	background-color: #fdfdfd;
@@ -79,7 +79,6 @@ pre[class*="language-"] {
 pre[class*="language-"]:before,
 pre[class*="language-"]:after {
 	content: '';
-	z-index: -2;
 	display: block;
 	position: absolute;
 	bottom: 0.75em;
@@ -217,9 +216,4 @@ pre[data-line] code {
 }
 pre .line-highlight {
 	margin-top: 0;
-}
-
-/* Plugin styles: Toolbar */
-div.code-toolbar > .toolbar.toolbar {
-	z-index: 2; /* so that the toolbar sits on top of the `pre` which has a z-index of 1 */
 }
