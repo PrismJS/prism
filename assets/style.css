@@ -113,7 +113,7 @@ pre {
 }
 
 mark {
-	outline: .4em solid rgba(255,0,0,.7);
+	outline: .4em solid red;
 	outline-offset: .4em;
 	background-color: transparent;
 }
