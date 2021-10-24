@@ -4,6 +4,7 @@ div.code-toolbar {
 
 div.code-toolbar > .toolbar {
 	position: absolute;
+	z-index: 10;
 	top: .3em;
 	right: .2em;
 	transition: opacity 0.3s ease-in-out;
