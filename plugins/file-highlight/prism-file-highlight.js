@@ -35,21 +35,6 @@
 	var SELECTOR = 'pre[data-src]:not([' + STATUS_ATTR + '="' + STATUS_LOADED + '"])'
 		+ ':not([' + STATUS_ATTR + '="' + STATUS_LOADING + '"])';
 
-	var lang = /\blang(?:uage)?-([\w-]+)\b/i;
-
-	/**
-	 * Sets the Prism `language-xxxx` or `lang-xxxx` class to the given language.
-	 *
-	 * @param {HTMLElement} element
-	 * @param {string} language
-	 * @returns {void}
-	 */
-	function setLanguageClass(element, language) {
-		var className = element.className;
-		className = className.replace(lang, ' ') + ' language-' + language;
-		element.className = className.replace(/\s+/g, ' ').trim();
-	}
-
 	/**
 	 * Loads the given file.
 	 *
@@ -128,8 +113,8 @@
 			}
 
 			// set language classes
-			setLanguageClass(code, language);
-			setLanguageClass(pre, language);
+			Prism.util.setLanguage(code, language);
+			Prism.util.setLanguage(pre, language);
 
 			// preload the language
 			var autoloader = Prism.plugins.autoloader;
