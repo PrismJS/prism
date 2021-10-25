@@ -95,8 +95,8 @@
 					// This is a little interesting:
 					// The HTTP format spec required 1 empty line before the body to make everything unambiguous.
 					// However, when writing code by hand (e.g. to display on a website) people can forget about this,
-					// so we want to be liberal here. We will allow the empty to be omitted if the first line of the
-					// body does not start with a [\w-] character.
+					// so we want to be liberal here. We will allow the empty line to be omitted if the first line of
+					// the body does not start with a [\w-] character (as headers do).
 					/[^\w-][\s\S]*/.source,
 					'i'
 				),
