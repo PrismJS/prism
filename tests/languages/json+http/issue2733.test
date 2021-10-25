@@ -43,7 +43,8 @@ transfer-encoding: chunked
 	" timeout=60\r\n",
 
 	["header-name", "transfer-encoding:"],
-	" chunked",
+	" chunked\r\n",
+
 	["application-json", [
 		["punctuation", "{"],
 
