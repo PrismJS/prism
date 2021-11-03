@@ -41,6 +41,7 @@ init
 inout
 internal
 is
+isolated
 lazy
 left
 let
@@ -131,6 +132,7 @@ willSet
 	["keyword", "inout"],
 	["keyword", "internal"],
 	["keyword", "is"],
+	["keyword", "isolated"],
 	["keyword", "lazy"],
 	["keyword", "left"],
 	["keyword", "let"],

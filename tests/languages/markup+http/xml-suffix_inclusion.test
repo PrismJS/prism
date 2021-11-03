@@ -6,7 +6,8 @@ Content-type: text/x.anything+something-else+xml
 
 [
 	["header-name", "Content-type:"],
-	" text/x.anything+something-else+xml",
+	" text/x.anything+something-else+xml\r\n",
+
 	["application-xml", [
 		["tag", [
 			["tag", [

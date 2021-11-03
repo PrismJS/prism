@@ -6,7 +6,8 @@ Content-type: text/html
 
 [
 	["header-name", "Content-type:"],
-	" text/html",
+	" text/html\r\n",
+
 	["text-html", [
 		["tag", [
 			["tag", [

@@ -6,7 +6,8 @@ var a = true;
 
 [
 	["header-name", "Content-type:"],
-	" application/javascript",
+	" application/javascript\r\n",
+
 	["application-javascript", [
 		["keyword", "var"],
 		" a ",
