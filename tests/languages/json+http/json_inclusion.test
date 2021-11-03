@@ -6,7 +6,8 @@ Content-type: application/json
 
 [
 	["header-name", "Content-type:"],
-	" application/json",
+	" application/json\r\n",
+
 	["application-json", [
 		["punctuation", "{"],
 		["property", "\"foo\""],

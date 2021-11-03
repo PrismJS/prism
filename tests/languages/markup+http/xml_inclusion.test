@@ -6,7 +6,8 @@ Content-type: application/xml
 
 [
 	["header-name", "Content-type:"],
-	" application/xml",
+	" application/xml\r\n",
+
 	["application-xml", [
 		["tag", [
 			["tag", [

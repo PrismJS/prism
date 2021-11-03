@@ -6,7 +6,8 @@ Content-type: text/xml
 
 [
 	["header-name", "Content-type:"],
-	" text/xml",
+	" text/xml\r\n",
+
 	["text-xml", [
 		["tag", [
 			["tag", [
