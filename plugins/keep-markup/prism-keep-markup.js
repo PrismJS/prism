@@ -15,31 +15,53 @@
 			return;
 		}
 
+		var dropTokens = Prism.util.isActive(env.element, 'drop-tokens', false);
+		/**
+		 * Returns whether the given element should be kept.
+		 *
+		 * @param {HTMLElement} element
+		 * @returns {boolean}
+		 */
+		function shouldKeep(element) {
+			if (dropTokens && element.nodeName.toLowerCase() === 'span' && element.classList.contains('token')) {
+				return false;
+			}
+			return true;
+		}
+
 		var pos = 0;
 		var data = [];
-		var f = function (elt, baseNode) {
-			var o = {};
-			if (!baseNode) {
-				// Clone the original tag to keep all attributes
-				o.clone = elt.cloneNode(false);
-				o.posOpen = pos;
-				data.push(o);
+		function processElement(element) {
+			if (!shouldKeep(element)) {
+				// don't keep this element and just process its children
+				processChildren(element);
+				return;
 			}
-			for (var i = 0, l = elt.childNodes.length; i < l; i++) {
-				var child = elt.childNodes[i];
+
+			var o = {
+				// Clone the original tag to keep all attributes
+				clone: element.cloneNode(false),
+				posOpen: pos
+			};
+			data.push(o);
+
+			processChildren(element);
+
+			o.posClose = pos;
+		}
+		function processChildren(element) {
+			for (var i = 0, l = element.childNodes.length; i < l; i++) {
+				var child = element.childNodes[i];
 				if (child.nodeType === 1) { // element
-					f(child);
+					processElement(child);
 				} else if (child.nodeType === 3) { // text
 					pos += child.data.length;
 				}
 			}
-			if (!baseNode) {
-				o.posClose = pos;
-			}
-		};
-		f(env.element, true);
+		}
+		processChildren(env.element);
 
-		if (data && data.length) {
+		if (data.length) {
 			// data is an array of all existing tags
 			env.keepMarkup = data;
 		}

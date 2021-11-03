@@ -4,6 +4,7 @@ const { createScopedPrismDom } = require('../../helper/prism-dom-util');
 
 describe('Keep Markup', function () {
 	const { Prism, document } = createScopedPrismDom(this, {
+		languages: 'javascript',
 		plugins: 'keep-markup'
 	});
 
@@ -40,6 +41,25 @@ describe('Keep Markup', function () {
 	it('should keep last markup', function () {
 		keepMarkup(`xy<span>a</span>`);
 		keepMarkup(`xy<a>a</a>`);
+	});
+
+	it('should support double highlighting', function () {
+		const pre = document.createElement('pre');
+		pre.className = 'language-javascript drop-tokens';
+		pre.innerHTML = '<code>var <mark>a = 42</mark>;</code>';
+		const code = pre.childNodes[0];
+		const initial = code.innerHTML;
+
+		Prism.highlightElement(code);
+		const firstPass = code.innerHTML;
+
+		Prism.highlightElement(code);
+		const secondPass = code.innerHTML;
+
+		// check that we actually did some highlighting
+		assert.notStrictEqual(initial, firstPass);
+		// check that the highlighting persists
+		assert.strictEqual(firstPass, secondPass);
 	});
 
 	// The markup is removed if it's the last element and the element's name is a single letter: a(nchor), b(old), i(talic)...
