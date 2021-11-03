@@ -195,7 +195,7 @@ var Prism = (function (_self) {
 			},
 
 			/**
-			 * Sets the Prism `language-xxxx` of the given element.
+			 * Sets the Prism `language-xxxx` class of the given element.
 			 *
 			 * @param {Element} element
 			 * @param {string} language
