@@ -115,7 +115,9 @@ pre {
 mark {
 	outline: .4em solid red;
 	outline-offset: .4em;
+	margin: .4em 0;
 	background-color: transparent;
+	display: inline-block;
 }
 
 header,
