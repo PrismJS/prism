@@ -133,7 +133,7 @@ header, footer {
 	padding: 30px calc(50% - 450px);
 	color: white;
 	text-shadow: 0 -1px 2px black;
-	background: url(img/spectrum.png) fixed;
+	background: linear-gradient( transparent, rgba(0, 0, 0, 0.7) ),url(img/spectrum.png) fixed;
 }
 
 header:before,
@@ -192,7 +192,6 @@ footer:before {
 
 	#features {
 		margin-top: 2em;
-		font-size: 80%;
 	}
 
 		#features li {
@@ -223,7 +222,7 @@ footer:before {
 				#features li strong {
 					display: block;
 					margin-bottom: .1em;
-					font-size: 200%;
+					font-size: 160%;
 				}
 
 	header .download-button {
