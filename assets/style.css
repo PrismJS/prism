@@ -132,7 +132,7 @@ header, footer {
 	color: white;
 	text-shadow: 0 -1px 2px black, 0 0 4px black,
 	             0 -1px 0 black, 0 1px 0 black, -1px 0 0 black, 1px 0 0 black;
-	background: linear-gradient(transparent, rgba(0, 0, 0, 0.4)), url(img/spectrum.png) fixed;
+	background: linear-gradient(transparent, rgba(0, 0, 0, 0.6)), url(img/spectrum.png) fixed;
 }
 
 header:before,
