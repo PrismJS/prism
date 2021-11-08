@@ -132,8 +132,9 @@ header, footer {
 	padding: 30px -webkit-calc(50% - 450px); /* Workaround for bug */
 	padding: 30px calc(50% - 450px);
 	color: white;
-	text-shadow: 0 -1px 2px black;
-	background: url(img/spectrum.png) fixed;
+	text-shadow: 0 -1px 2px black, 0 0 4px black,
+	             0 -1px 0 black, 0 1px 0 black, -1px 0 0 black, 1px 0 0 black;
+	background: linear-gradient(transparent, rgba(0, 0, 0, 0.6)), url(img/spectrum.png) fixed;
 }
 
 header:before,
@@ -191,12 +192,11 @@ footer:before {
 	}
 
 	#features {
-		margin-top: 2em;
-		font-size: 80%;
+		margin-top: 1.6em;
 	}
 
 		#features li {
-			margin: 0 0 2em 0;
+			margin: 0 0 1.6em 0;
 			list-style: none;
 			display: inline-block;
 			width: 49%;
@@ -205,10 +205,10 @@ footer:before {
 		}
 
 		#features li:nth-child(odd) {
-			padding-right: 2.5em;
+			padding-right: 2em;
 		}
 		#features li:nth-child(even) {
-			padding-left: 2.5em;
+			padding-left: 2em;
 		}
 
 			#features li:before {
@@ -216,14 +216,14 @@ footer:before {
 				float: left;
 				margin-left: -.8em;
 				color: #7fab14;
-				font-size: 400%;
+				font-size: 320%;
 				line-height: 1;
 			}
 
 				#features li strong {
 					display: block;
 					margin-bottom: .1em;
-					font-size: 200%;
+					font-size: 160%;
 				}
 
 	header .download-button {
@@ -239,6 +239,7 @@ footer:before {
 		text-align: center;
 		text-transform: uppercase;
 		letter-spacing: .2em;
+		text-shadow: 0 -1px 2px black;
 	}
 
 		#theme > p {
@@ -370,7 +371,6 @@ footer {
 	margin-top: 2em;
 	background-position: bottom;
 	color: white;
-	text-shadow: 0 -1px 2px black;
 }
 
 	footer:before {
