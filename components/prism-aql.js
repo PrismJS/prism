@@ -6,7 +6,11 @@ Prism.languages.aql = {
 		greedy: true
 	},
 	'string': {
-		pattern: /(["'´`])(?:(?!\1)[^\\\r\n]|\\.)*\1/,
+		pattern: /(["'])(?:(?!\1)[^\\\r\n]|\\.)*\1/,
+		greedy: true
+	},
+	'identifier': {
+		pattern: /([´`])(?:(?!\1)[^\\\r\n]|\\.)*\1/,
 		greedy: true
 	},
 	'variable': /@@?\w+/,
