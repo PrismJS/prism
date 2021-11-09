@@ -10,7 +10,7 @@ string"
 	["string", "\"\""],
 	["string", "\"Fo\\\"obar\""],
 	["string", "\"multi-line\r\nstring\""],
-	["string", "\\NewLine"]
+	["char", "\\NewLine"]
 ]
 
 ----------------------------------------------------
