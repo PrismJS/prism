@@ -7,26 +7,32 @@
 [
 	["erb", [
 		["delimiter", "<%"],
-		["comment", "# comment "],
+		["ruby", [
+			["comment", "# comment "]
+		]],
 		["delimiter", "%>"]
 	]],
 	["erb", [
 		["delimiter", "<%="],
-		" render ",
-		["variable", "@products"],
-		["operator", "||"],
-		["string", ["\"empty_list\""]],
+		["ruby", [
+			" render ",
+			["variable", "@products"],
+			["operator", "||"],
+			["string", ["\"empty_list\""]]
+		]],
 		["delimiter", "%>"]
 	]],
 	["erb", [
 		["delimiter", "<%"],
-		["variable", "@books"],
-		["punctuation", "."],
-		["keyword", "each"],
-		["keyword", "do"],
-		["operator", "|"],
-		"book",
-		["operator", "|"],
+		["ruby", [
+			["variable", "@books"],
+			["punctuation", "."],
+			["keyword", "each"],
+			["keyword", "do"],
+			["operator", "|"],
+			"book",
+			["operator", "|"]
+		]],
 		["delimiter", "%>"]
 	]]
 ]
