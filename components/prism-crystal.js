@@ -30,7 +30,6 @@
 				},
 				'args': {
 					pattern: /\S(?:[\s\S]*\S)?/,
-					lookbehind: true,
 					inside: Prism.languages.crystal
 				},
 			}
