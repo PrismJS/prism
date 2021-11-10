@@ -85,7 +85,7 @@
 				greedy: true
 			},
 			{
-				pattern: RegExp(/([\r\n{,][ \t]*)/.source + symbolName + /(?=:(?!:))/.source),
+				pattern: RegExp(/([\r\n{(,][ \t]*)/.source + symbolName + /(?=:(?!:))/.source),
 				lookbehind: true,
 				greedy: true
 			},
