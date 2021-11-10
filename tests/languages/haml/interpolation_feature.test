@@ -6,12 +6,16 @@
 [
 	["interpolation", [
 		["delimiter", "#{"],
-		["number", "42"],
+		["ruby", [
+			["number", "42"]
+		]],
 		["delimiter", "}"]
 	]],
 	["interpolation", [
 		["delimiter", "#{"],
-		["string", ["\"foobar\""]],
+		["ruby", [
+			["string", ["\"foobar\""]]
+		]],
 		["delimiter", "}"]
 	]]
 ]

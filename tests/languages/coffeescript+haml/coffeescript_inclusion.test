@@ -10,13 +10,17 @@
 [
 	["filter-coffee", [
 		["filter-name", ":coffee"],
-		["string", "'This is coffee script'"]
+		["text", [
+			["string", "'This is coffee script'"]
+		]]
 	]],
 	["punctuation", "~"],
 	["filter-coffee", [
-        ["filter-name", ":coffee"],
-        ["string", "'This is coffee script'"]
-    ]]
+		["filter-name", ":coffee"],
+		["text", [
+			["string", "'This is coffee script'"]
+		]]
+	]]
 ]
 
 ----------------------------------------------------
