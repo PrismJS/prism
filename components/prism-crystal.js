@@ -11,7 +11,7 @@
 		number: /\b(?:0b[01_]*[01]|0o[0-7_]*[0-7]|0x[\da-fA-F_]*[\da-fA-F]|(?:\d(?:[\d_]*\d)?)(?:\.[\d_]*\d)?(?:[eE][+-]?[\d_]*\d)?)(?:_(?:[uif](?:8|16|32|64))?)?\b/
 	});
 
-	Prism.languages.insertBefore('crystal', 'string', {
+	Prism.languages.insertBefore('crystal', 'string-literal', {
 		attribute: {
 			pattern: /@\[.+?\]/,
 			alias: 'attr-name',

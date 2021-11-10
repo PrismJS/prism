@@ -1,17 +1,54 @@
 @[AlwaysInline]
 @[CallConvention("X86_StdCall")]
+@[MyAnnotation(key: "value", value: 123)]
+@[MyAnnotation("foo", 123, false)]
 
 ----------------------------------------------------
 
 [
 	["attribute", [
 		["delimiter", "@["],
-		["constant", "AlwaysInline"],
+		"AlwaysInline",
 		["delimiter", "]"]
 	]],
 	["attribute", [
 		["delimiter", "@["],
-		["constant", "CallConvention"], ["punctuation", "("], ["string", [ "\"X86_StdCall\"" ]], ["punctuation", ")"],
+		"CallConvention",
+		["punctuation", "("],
+		["string-literal", [
+			["string", "\"X86_StdCall\""]
+		]],
+		["punctuation", ")"],
+		["delimiter", "]"]
+	]],
+	["attribute", [
+		["delimiter", "@["],
+		"MyAnnotation",
+		["punctuation", "("],
+		"key",
+		["operator", ":"],
+		["string-literal", [
+			["string", "\"value\""]
+		]],
+		["punctuation", ","],
+		["symbol", "value"],
+		["operator", ":"],
+		["number", "123"],
+		["punctuation", ")"],
+		["delimiter", "]"]
+	]],
+	["attribute", [
+		["delimiter", "@["],
+		"MyAnnotation",
+		["punctuation", "("],
+		["string-literal", [
+			["string", "\"foo\""]
+		]],
+		["punctuation", ","],
+		["number", "123"],
+		["punctuation", ","],
+		["boolean", "false"],
+		["punctuation", ")"],
 		["delimiter", "]"]
 	]]
 ]
