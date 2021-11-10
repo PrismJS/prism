@@ -42,22 +42,24 @@
 		["attributes", [
 			["punctuation", "{"],
 			["symbol", ":type"],
-			["operator", "="],
-			["operator", ">"],
-			["string", ["\"text/javascript\""]],
+			["operator", "=>"],
+			["string-literal", [
+				["string", "\"text/javascript\""]
+			]],
 			["punctuation", ","],
 
 			["symbol", ":src"],
-			["operator", "="],
-			["operator", ">"],
-			["string", [
-				"\"javascripts/script_",
+			["operator", "=>"],
+			["string-literal", [
+				["string", "\"javascripts/script_"],
 				["interpolation", [
 					["delimiter", "#{"],
-					["number", "42"],
+					["content", [
+						["number", "42"]
+					]],
 					["delimiter", "}"]
 				]],
-				"\""
+				["string", "\""]
 			]],
 			["punctuation", "}"]
 		]]
@@ -68,8 +70,7 @@
 		["attributes", [
 			["punctuation", "{"],
 			["symbol", ":id"],
-			["operator", "="],
-			["operator", ">"],
+			["operator", "=>"],
 			["punctuation", "["],
 			["variable", "@item"],
 			["punctuation", "."],
@@ -111,7 +112,9 @@
 			["punctuation", "{"],
 			"html_attrs",
 			["punctuation", "("],
-			["string", ["'fr-fr'"]],
+			["string-literal", [
+				["string", "'fr-fr'"]
+			]],
 			["punctuation", ")"],
 			["punctuation", "}"]
 		]]
@@ -142,8 +145,7 @@
 		["attributes", [
 			["punctuation", "{"],
 			["symbol", ":id"],
-			["operator", "="],
-			["operator", ">"],
+			["operator", "=>"],
 			["variable", "@article"],
 			["punctuation", "."],
 			"number",

@@ -18,8 +18,7 @@
 [
 	["erb", [
 		["delimiter", "<%"],
-		["comment", "# this is a block comment "],
-		["delimiter", "%>"]
+		["comment", "# this is a block comment %>"]
 	]],
 	["erb", [
 		["delimiter", "<%"],
@@ -29,8 +28,7 @@
 
 	["erb", [
 		["delimiter", "<%"],
-		["comment", "# this is not "],
-		["delimiter", "%>"]
+		["comment", "# this is not %>"]
 	]],
 	["erb", [
 		["delimiter", "<%"],

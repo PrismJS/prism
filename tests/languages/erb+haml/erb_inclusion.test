@@ -12,12 +12,13 @@
 		["filter-name", ":erb"],
 		["text", [
 			["operator", "<"],
-			["operator", "%"],
-			["operator", "="],
+			["operator", "%="],
 			" render ",
 			["variable", "@products"],
 			["operator", "||"],
-			["string", ["\"empty_list\""]],
+			["string-literal", [
+				["string", "\"empty_list\""]
+			]],
 			["operator", "%"],
 			["operator", ">"]
 		]]
@@ -27,12 +28,13 @@
 		["filter-name", ":erb"],
 		["text", [
 			["operator", "<"],
-			["operator", "%"],
-			["operator", "="],
+			["operator", "%="],
 			" render ",
 			["variable", "@products"],
 			["operator", "||"],
-			["string", ["\"empty_list\""]],
+			["string-literal", [
+				["string", "\"empty_list\""]
+			]],
 			["delimiter", "%>"]
 		]]
 	]]

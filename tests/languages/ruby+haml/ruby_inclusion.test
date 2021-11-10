@@ -20,14 +20,12 @@
 				["function", "circumference"]
 			]],
 
-			["constant", "Math"],
-			["punctuation", ":"],
-			["punctuation", ":"],
+			"\r\n\t\tMath",
+			["double-colon", "::"],
 			["constant", "PI"],
 			["operator", "*"],
 			" radius ",
-			["operator", "*"],
-			["operator", "*"],
+			["operator", "**"],
 			["number", "2"],
 
 			["keyword", "end"]
@@ -44,14 +42,12 @@
 				["function", "circumference"]
 			]],
 
-			["constant", "Math"],
-			["punctuation", ":"],
-			["punctuation", ":"],
+			"\r\n\t\t\tMath",
+			["double-colon", "::"],
 			["constant", "PI"],
 			["operator", "*"],
 			" radius ",
-			["operator", "*"],
-			["operator", "*"],
+			["operator", "**"],
 			["number", "2"],
 
 			["keyword", "end"]

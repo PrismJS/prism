@@ -1,0 +1,80 @@
++ - * / % **
++= -= *= /= %= **=
+
+== != < > <= >= <=> ===
+!~ =~
+=
+& | ^ ~ << >>
+&= |= ^= <<= >>=
+&& || !
+&&= ||=
+
+=>
+
+&.
+
+? :
+.. ...
+
+and or not
+
+----------------------------------------------------
+
+[
+	["operator", "+"],
+	["operator", "-"],
+	["operator", "*"],
+	["operator", "/"],
+	["operator", "%"],
+	["operator", "**"],
+
+	["operator", "+="],
+	["operator", "-="],
+	["operator", "*="],
+	["operator", "/="],
+	["operator", "%="],
+	["operator", "**="],
+
+	["operator", "=="],
+	["operator", "!="],
+	["operator", "<"],
+	["operator", ">"],
+	["operator", "<="],
+	["operator", ">="],
+	["operator", "<=>"],
+	["operator", "==="],
+
+	["operator", "!~"],
+	["operator", "=~"],
+
+	["operator", "="],
+
+	["operator", "&"],
+	["operator", "|"],
+	["operator", "^"],
+	["operator", "~"],
+	["operator", "<<"],
+	["operator", ">>"],
+
+	["operator", "&="],
+	["operator", "|="],
+	["operator", "^="],
+	["operator", "<<="],
+	["operator", ">>="],
+
+	["operator", "&&"],
+	["operator", "||"],
+	["operator", "!"],
+
+	["operator", "&&="],
+	["operator", "||="],
+
+	["operator", "=>"],
+
+	["operator", "&."],
+
+	["operator", "?"], ["operator", ":"],
+	["operator", ".."], ["operator", "..."],
+
+	["keyword", "and"], ["keyword", "or"], ["keyword", "not"]
+]

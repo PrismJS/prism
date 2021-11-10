@@ -1,0 +1,105 @@
+`echo foo`
+`echo #{user_input}`
+`grep hosts /private/etc/* 2>&1`
+
+%x[ ls ]
+%x{ ls }
+%x<ls -al #{dir}>
+
+%x!foo #{ 42 }!
+%x(foo #{ 42 })
+%x{foo #{ 42 }}
+%x[foo #{ 42 }]
+%x<foo #{ 42 }>
+
+----------------------------------------------------
+
+[
+	["command-literal", [
+		["command", "`echo foo`"]
+	]],
+	["command-literal", [
+		["command", "`echo "],
+		["interpolation", [
+			["delimiter", "#{"],
+			["content", ["user_input"]],
+			["delimiter", "}"]
+		]],
+		["command", "`"]
+	]],
+	["command-literal", [
+		["command", "`grep hosts /private/etc/* 2>&1`"]
+	]],
+
+	["command-literal", [
+		["command", "%x[ ls ]"]
+	]],
+	["command-literal", [
+		["command", "%x{ ls }"]
+	]],
+	["command-literal", [
+		["command", "%x<ls -al "],
+		["interpolation", [
+			["delimiter", "#{"],
+			["content", ["dir"]],
+			["delimiter", "}"]
+		]],
+		["command", ">"]
+	]],
+
+	["command-literal", [
+		["command", "%x!foo "],
+		["interpolation", [
+			["delimiter", "#{"],
+			["content", [
+				["number", "42"]
+			]],
+			["delimiter", "}"]
+		]],
+		["command", "!"]
+	]],
+	["command-literal", [
+		["command", "%x(foo "],
+		["interpolation", [
+			["delimiter", "#{"],
+			["content", [
+				["number", "42"]
+			]],
+			["delimiter", "}"]
+		]],
+		["command", ")"]
+	]],
+	["command-literal", [
+		["command", "%x{foo "],
+		["interpolation", [
+			["delimiter", "#{"],
+			["content", [
+				["number", "42"]
+			]],
+			["delimiter", "}"]
+		]],
+		["command", "}"]
+	]],
+	["command-literal", [
+		["command", "%x[foo "],
+		["interpolation", [
+			["delimiter", "#{"],
+			["content", [
+				["number", "42"]
+			]],
+			["delimiter", "}"]
+		]],
+		["command", "]"]
+	]],
+	["command-literal", [
+		["command", "%x<foo "],
+		["interpolation", [
+			["delimiter", "#{"],
+			["content", [
+				["number", "42"]
+			]],
+			["delimiter", "}"]
+		]],
+		["command", ">"]
+	]]
+]

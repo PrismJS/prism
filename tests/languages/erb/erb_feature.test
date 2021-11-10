@@ -7,15 +7,16 @@
 [
 	["erb", [
 		["delimiter", "<%"],
-		["comment", "# comment "],
-		["delimiter", "%>"]
+		["comment", "# comment %>"]
 	]],
 	["erb", [
 		["delimiter", "<%="],
 		" render ",
 		["variable", "@products"],
 		["operator", "||"],
-		["string", ["\"empty_list\""]],
+		["string-literal", [
+			["string", "\"empty_list\""]
+		]],
 		["delimiter", "%>"]
 	]],
 	["erb", [
