@@ -95,7 +95,10 @@
 					pattern: /^#\{|\}$/,
 					alias: 'punctuation'
 				},
-				rest: Prism.languages.ruby
+				'ruby': {
+					pattern: /[\s\S]+/,
+					inside: Prism.languages.ruby
+				}
 			}
 		},
 		'punctuation': {
@@ -131,7 +134,11 @@
 						pattern: /^:[\w-]+/,
 						alias: 'variable'
 					},
-					rest: Prism.languages[filter.language]
+					'text': {
+						pattern: /[\s\S]+/,
+						alias: [filter.language, 'language-' + filter.language],
+						inside: Prism.languages[filter.language]
+					}
 				}
 			};
 		}

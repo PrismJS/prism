@@ -10,30 +10,30 @@
 [
 	["filter-erb", [
 		["filter-name", ":erb"],
-		["operator", "<"],
-		["operator", "%"],
-		["operator", "="],
-		" render ",
-		["variable", "@products"],
-		["operator", "||"],
-		["string", [
-			"\"empty_list\""
-		]],
-		["operator", "%"],
-		["operator", ">"]
+		["text", [
+			["operator", "<"],
+			["operator", "%"],
+			["operator", "="],
+			" render ",
+			["variable", "@products"],
+			["operator", "||"],
+			["string", ["\"empty_list\""]],
+			["operator", "%"],
+			["operator", ">"]
+		]]
 	]],
 	["punctuation", "~"],
 	["filter-erb", [
 		["filter-name", ":erb"],
-		["operator", "<"],
-		["operator", "%"],
-		["operator", "="],
-		" render ",
-		["variable", "@products"],
-		["operator", "||"],
-		["string", [
-			"\"empty_list\""
-		]],
-		["delimiter", "%>"]
+		["text", [
+			["operator", "<"],
+			["operator", "%"],
+			["operator", "="],
+			" render ",
+			["variable", "@products"],
+			["operator", "||"],
+			["string", ["\"empty_list\""]],
+			["delimiter", "%>"]
+		]]
 	]]
 ]

@@ -10,41 +10,41 @@
 [
 	["filter-textile", [
 		["filter-name", ":textile"],
-
-		["tag", [
+		["text", [
 			["tag", [
-				["punctuation", "<"],
-				"div"
+				["tag", [
+					["punctuation", "<"],
+					"div"
+				]],
+				["punctuation", ">"]
 			]],
-			["punctuation", ">"]
-		]],
-		["tag", [
 			["tag", [
-				["punctuation", "</"],
-				"div"
-			]],
-			["punctuation", ">"]
+				["tag", [
+					["punctuation", "</"],
+					"div"
+				]],
+				["punctuation", ">"]
+			]]
 		]]
 	]],
-
 	["punctuation", "~"],
-
 	["filter-textile", [
 		["filter-name", ":textile"],
-
-		["tag", [
+		["text", [
 			["tag", [
-				["punctuation", "<"],
-				"div"
+				["tag", [
+					["punctuation", "<"],
+					"div"
+				]],
+				["punctuation", ">"]
 			]],
-			["punctuation", ">"]
-		]],
-		["tag", [
 			["tag", [
-				["punctuation", "</"],
-				"div"
-			]],
-			["punctuation", ">"]
+				["tag", [
+					["punctuation", "</"],
+					"div"
+				]],
+				["punctuation", ">"]
+			]]
 		]]
 	]]
 ]

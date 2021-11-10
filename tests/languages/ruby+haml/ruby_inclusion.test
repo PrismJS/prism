@@ -14,45 +14,47 @@
 [
 	["filter-ruby", [
 		["filter-name", ":ruby"],
+		["text", [
+			["keyword", "def"],
+			["method-definition", [
+				["function", "circumference"]
+			]],
 
-		["keyword", "def"],
-		["method-definition", [
-			["function", "circumference"]
-		]],
+			["constant", "Math"],
+			["punctuation", ":"],
+			["punctuation", ":"],
+			["constant", "PI"],
+			["operator", "*"],
+			" radius ",
+			["operator", "*"],
+			["operator", "*"],
+			["number", "2"],
 
-		["constant", "Math"],
-		["punctuation", ":"],
-		["punctuation", ":"],
-		["constant", "PI"],
-		["operator", "*"],
-		" radius ",
-		["operator", "*"],
-		["operator", "*"],
-		["number", "2"],
-
-		["keyword", "end"]
+			["keyword", "end"]
+		]]
 	]],
 
 	["punctuation", "~"],
 
 	["filter-ruby", [
 		["filter-name", ":ruby"],
+		["text", [
+			["keyword", "def"],
+			["method-definition", [
+				["function", "circumference"]
+			]],
 
-		["keyword", "def"],
-		["method-definition", [
-			["function", "circumference"]
-		]],
+			["constant", "Math"],
+			["punctuation", ":"],
+			["punctuation", ":"],
+			["constant", "PI"],
+			["operator", "*"],
+			" radius ",
+			["operator", "*"],
+			["operator", "*"],
+			["number", "2"],
 
-		["constant", "Math"],
-		["punctuation", ":"],
-		["punctuation", ":"],
-		["constant", "PI"],
-		["operator", "*"],
-		" radius ",
-		["operator", "*"],
-		["operator", "*"],
-		["number", "2"],
-
-		["keyword", "end"]
+			["keyword", "end"]
+		]]
 	]]
 ]

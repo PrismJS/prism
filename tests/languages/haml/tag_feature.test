@@ -42,11 +42,14 @@
 		["attributes", [
 			["punctuation", "{"],
 			["symbol", ":type"],
-			["operator", "="], ["operator", ">"],
+			["operator", "="],
+			["operator", ">"],
 			["string", ["\"text/javascript\""]],
 			["punctuation", ","],
+
 			["symbol", ":src"],
-			["operator", "="], ["operator", ">"],
+			["operator", "="],
+			["operator", ">"],
 			["string", [
 				"\"javascripts/script_",
 				["interpolation", [
@@ -65,7 +68,8 @@
 		["attributes", [
 			["punctuation", "{"],
 			["symbol", ":id"],
-			["operator", "="], ["operator", ">"],
+			["operator", "="],
+			["operator", ">"],
 			["punctuation", "["],
 			["variable", "@item"],
 			["punctuation", "."],
@@ -88,8 +92,8 @@
 			["attr-value", "@title"],
 			["attr-name", "href"],
 			["punctuation", "="],
-            ["attr-value", "href"],
-            ["punctuation", ")"]
+			["attr-value", "href"],
+			["punctuation", ")"]
 		]]
 	]],
 	["tag", [
@@ -138,7 +142,8 @@
 		["attributes", [
 			["punctuation", "{"],
 			["symbol", ":id"],
-			["operator", "="], ["operator", ">"],
+			["operator", "="],
+			["operator", ">"],
 			["variable", "@article"],
 			["punctuation", "."],
 			"number",
@@ -150,8 +155,14 @@
 	["tag", [".item"]],
 
 	["tag", ["%br/"]],
-	["tag", ["%blockquote", ["punctuation", "<"]]],
-	["tag", ["%img", ["punctuation", ">"]]]
+	["tag", [
+		"%blockquote",
+		["punctuation", "<"]
+	]],
+	["tag", [
+		"%img",
+		["punctuation", ">"]
+	]]
 ]
 
 ----------------------------------------------------
