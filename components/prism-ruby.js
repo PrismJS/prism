@@ -11,7 +11,7 @@
 			greedy: true
 		},
 		'class-name': {
-			pattern: /(\b(?:class)\s+|\bcatch\s+\()[\w.\\]+|\b[A-Z_]\w*(?=\s*\.\s*new\b)/,
+			pattern: /(\b(?:class|module)\s+|\bcatch\s+\()[\w.\\]+|\b[A-Z_]\w*(?=\s*\.\s*new\b)/,
 			lookbehind: true,
 			inside: {
 				'punctuation': /[.\\]/
