@@ -2,6 +2,7 @@
 .responds_to?
 abstract
 alias
+annotation;
 as
 asm
 begin
@@ -19,6 +20,7 @@ extend
 for
 fun
 if
+ifdef
 include
 instance_sizeof
 lib
@@ -30,6 +32,7 @@ out
 pointerof
 private
 protected
+ptr
 require
 rescue
 return
@@ -41,6 +44,7 @@ super
 then
 type
 typeof
+undef
 uninitialized
 union
 unless
@@ -62,6 +66,7 @@ __LINE__
 	["punctuation", "."], ["keyword", "responds_to?"],
 	["keyword", "abstract"],
 	["keyword", "alias"],
+	["keyword", "annotation"], ["punctuation", ";"],
 	["keyword", "as"],
 	["keyword", "asm"],
 	["keyword", "begin"],
@@ -79,6 +84,7 @@ __LINE__
 	["keyword", "for"],
 	["keyword", "fun"],
 	["keyword", "if"],
+	["keyword", "ifdef"],
 	["keyword", "include"],
 	["keyword", "instance_sizeof"],
 	["keyword", "lib"],
@@ -90,6 +96,7 @@ __LINE__
 	["keyword", "pointerof"],
 	["keyword", "private"],
 	["keyword", "protected"],
+	["keyword", "ptr"],
 	["keyword", "require"],
 	["keyword", "rescue"],
 	["keyword", "return"],
@@ -101,6 +108,7 @@ __LINE__
 	["keyword", "then"],
 	["keyword", "type"],
 	["keyword", "typeof"],
+	["keyword", "undef"],
 	["keyword", "uninitialized"],
 	["keyword", "union"],
 	["keyword", "unless"],

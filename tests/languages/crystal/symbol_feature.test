@@ -1,0 +1,17 @@
+:unquoted_symbol
+:"quoted symbol"
+:"a" # identical to :a
+:あ
+:question?
+:exclamation!
+
+----------------------------------------------------
+
+[
+	["symbol", ":unquoted_symbol"],
+	["symbol", ":\"quoted symbol\""],
+	["symbol", ":\"a\""], ["comment", "# identical to :a"],
+	["symbol", ":あ"],
+	["symbol", ":question?"],
+	["symbol", ":exclamation!"]
+]

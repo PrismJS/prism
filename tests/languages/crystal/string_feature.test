@@ -1,0 +1,321 @@
+"hello world"
+
+"\""                  # double quote
+"\\"                  # backslash
+"\#"                  # hash character (to escape interpolation)
+"\a"                  # alert
+"\b"                  # backspace
+"\e"                  # escape
+"\f"                  # form feed
+"\n"                  # newline
+"\r"                  # carriage return
+"\t"                  # tab
+"\v"                  # vertical tab
+"\377"                # octal ASCII character
+"\xFF"                # hexadecimal ASCII character
+"\uFFFF"              # hexadecimal unicode character
+"\u{0}".."\u{10FFFF}" # hexadecimal unicode character
+
+"\101" # => "A"
+"\123" # => "S"
+"\12"  # => "\n"
+"\1"   # string with one character with code point 1
+
+"\u{48 45 4C 4C 4F}" # => "HELLO"
+
+"sum: #{a} + #{b} = #{a + b}"
+
+"\#{a + b}"  # => "#{a + b}"
+%q(#{a + b}) # => "#{a + b}"
+
+%(hello ("world")) # => "hello (\"world\")"
+%[hello ["world"]] # => "hello [\"world\"]"
+%{hello {"world"}} # => "hello {\"world\"}"
+%<hello <"world">> # => "hello <\"world\">"
+%|hello "world"|   # => "hello \"world\""
+
+name = "world"
+%q(hello \n #{name}) # => "hello \\n \#{name}"
+%Q(hello \n #{name}) # => "hello \n world"
+
+%w(foo bar baz)  # => ["foo", "bar", "baz"]
+%w(foo\nbar baz) # => ["foo\\nbar", "baz"]
+%w(foo(bar) baz) # => ["foo(bar)", "baz"]
+
+%w(foo\ bar baz) # => ["foo bar", "baz"]
+
+"hello " \
+"world, " \
+"no newlines" # same as "hello world, no newlines"
+
+"hello \
+     world, \
+     no newlines" # same as "hello world, no newlines"
+
+<<-XML
+<parent>
+  <child />
+</parent>
+XML
+
+----------------------------------------------------
+
+[
+	["string-literal", [
+		["string", "\"hello world\""]
+	]],
+
+	["string-literal", [
+		["string", "\"\\\"\""]
+	]],
+	["comment", "# double quote"],
+
+	["string-literal", [
+		["string", "\"\\\\\""]
+	]],
+	["comment", "# backslash"],
+
+	["string-literal", [
+		["string", "\"\\#\""]
+	]],
+	["comment", "# hash character (to escape interpolation)"],
+
+	["string-literal", [
+		["string", "\"\\a\""]
+	]],
+	["comment", "# alert"],
+
+	["string-literal", [
+		["string", "\"\\b\""]
+	]],
+	["comment", "# backspace"],
+
+	["string-literal", [
+		["string", "\"\\e\""]
+	]],
+	["comment", "# escape"],
+
+	["string-literal", [
+		["string", "\"\\f\""]
+	]],
+	["comment", "# form feed"],
+
+	["string-literal", [
+		["string", "\"\\n\""]
+	]],
+	["comment", "# newline"],
+
+	["string-literal", [
+		["string", "\"\\r\""]
+	]],
+	["comment", "# carriage return"],
+
+	["string-literal", [
+		["string", "\"\\t\""]
+	]],
+	["comment", "# tab"],
+
+	["string-literal", [
+		["string", "\"\\v\""]
+	]],
+	["comment", "# vertical tab"],
+
+	["string-literal", [
+		["string", "\"\\377\""]
+	]],
+	["comment", "# octal ASCII character"],
+
+	["string-literal", [
+		["string", "\"\\xFF\""]
+	]],
+	["comment", "# hexadecimal ASCII character"],
+
+	["string-literal", [
+		["string", "\"\\uFFFF\""]
+	]],
+	["comment", "# hexadecimal unicode character"],
+
+	["string-literal", [
+		["string", "\"\\u{0}\""]
+	]],
+	["operator", ".."],
+	["string-literal", [
+		["string", "\"\\u{10FFFF}\""]
+	]],
+	["comment", "# hexadecimal unicode character"],
+
+	["string-literal", [
+		["string", "\"\\101\""]
+	]],
+	["comment", "# => \"A\""],
+
+	["string-literal", [
+		["string", "\"\\123\""]
+	]],
+	["comment", "# => \"S\""],
+
+	["string-literal", [
+		["string", "\"\\12\""]
+	]],
+	["comment", "# => \"\\n\""],
+
+	["string-literal", [
+		["string", "\"\\1\""]
+	]],
+	["comment", "# string with one character with code point 1"],
+
+	["string-literal", [
+		["string", "\"\\u{48 45 4C 4C 4F}\""]
+	]],
+	["comment", "# => \"HELLO\""],
+
+	["string-literal", [
+		["string", "\"sum: "],
+		["interpolation", [
+			["delimiter", "#{"],
+			["content", ["a"]],
+			["delimiter", "}"]
+		]],
+		["string", " + "],
+		["interpolation", [
+			["delimiter", "#{"],
+			["content", ["b"]],
+			["delimiter", "}"]
+		]],
+		["string", " = "],
+		["interpolation", [
+			["delimiter", "#{"],
+			["content", [
+				"a ",
+				["operator", "+"],
+				" b"
+			]],
+			["delimiter", "}"]
+		]],
+		["string", "\""]
+	]],
+
+	["string-literal", [
+		["string", "\"\\#{a + b}\""]
+	]],
+	["comment", "# => \"#{a + b}\""],
+
+	["string-literal", [
+		["string", "%q("],
+		["interpolation", [
+			["delimiter", "#{"],
+			["content", [
+				"a ",
+				["operator", "+"],
+				" b"
+			]],
+			["delimiter", "}"]
+		]],
+		["string", ")"]
+	]],
+	["comment", "# => \"#{a + b}\""],
+
+	["string-literal", [
+		["string", "%(hello (\"world\"))"]
+	]],
+	["comment", "# => \"hello (\\\"world\\\")\""],
+
+	["string-literal", [
+		["string", "%[hello [\"world\"]]"]
+	]],
+	["comment", "# => \"hello [\\\"world\\\"]\""],
+
+	["string-literal", [
+		["string", "%{hello {\"world\"}}"]
+	]],
+	["comment", "# => \"hello {\\\"world\\\"}\""],
+
+	["string-literal", [
+		["string", "%<hello <\"world\">>"]
+	]],
+	["comment", "# => \"hello <\\\"world\\\">\""],
+
+	["string-literal", [
+		["string", "%|hello \"world\"|"]
+	]],
+	["comment", "# => \"hello \\\"world\\\"\""],
+
+	"\r\n\r\nname ",
+	["operator", "="],
+	["string-literal", [
+		["string", "\"world\""]
+	]],
+
+	["string-literal", [
+		["string", "%q(hello \\n "],
+		["interpolation", [
+			["delimiter", "#{"],
+			["content", ["name"]],
+			["delimiter", "}"]
+		]],
+		["string", ")"]
+	]],
+	["comment", "# => \"hello \\\\n \\#{name}\""],
+
+	["string-literal", [
+		["string", "%Q(hello \\n "],
+		["interpolation", [
+			["delimiter", "#{"],
+			["content", ["name"]],
+			["delimiter", "}"]
+		]],
+		["string", ")"]
+	]],
+	["comment", "# => \"hello \\n world\""],
+
+	["string-literal", [
+		["string", "%w(foo bar baz)"]
+	]],
+	["comment", "# => [\"foo\", \"bar\", \"baz\"]"],
+
+	["string-literal", [
+		["string", "%w(foo\\nbar baz)"]
+	]],
+	["comment", "# => [\"foo\\\\nbar\", \"baz\"]"],
+
+	["string-literal", [
+		["string", "%w(foo(bar) baz)"]
+	]],
+	["comment", "# => [\"foo(bar)\", \"baz\"]"],
+
+	["string-literal", [
+		["string", "%w(foo\\ bar baz)"]
+	]],
+	["comment", "# => [\"foo bar\", \"baz\"]"],
+
+	["string-literal", [
+		["string", "\"hello \""]
+	]],
+	["punctuation", "\\"],
+
+	["string-literal", [
+		["string", "\"world, \""]
+	]],
+	["punctuation", "\\"],
+
+	["string-literal", [
+		["string", "\"no newlines\""]
+	]],
+	["comment", "# same as \"hello world, no newlines\""],
+
+	["string-literal", [
+		["string", "\"hello \\\r\n     world, \\\r\n     no newlines\""]
+	]],
+	["comment", "# same as \"hello world, no newlines\""],
+
+	["string-literal", [
+		["delimiter", [
+			["punctuation", "<<-"],
+			["symbol", "XML"]
+		]],
+		["string", "\r\n<parent>\r\n  <child />\r\n</parent>\r\n"],
+		["delimiter", [
+			["symbol", "XML"]
+		]]
+	]]
+]
