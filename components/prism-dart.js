@@ -22,16 +22,6 @@
 	};
 
 	Prism.languages.dart = Prism.languages.extend('clike', {
-		'string': [
-			{
-				pattern: /r?("""|''')[\s\S]*?\1/,
-				greedy: true
-			},
-			{
-				pattern: /r?(["'])(?:\\.|(?!\1)[^\\\r\n])*\1/,
-				greedy: true
-			}
-		],
 		'class-name': [
 			className,
 			{
@@ -46,10 +36,32 @@
 		'operator': /\bis!|\b(?:as|is)\b|\+\+|--|&&|\|\||<<=?|>>=?|~(?:\/=?)?|[+\-*\/%&^|=!<>]=?|\?/
 	});
 
-	Prism.languages.insertBefore('dart', 'function', {
+	Prism.languages.insertBefore('dart', 'string', {
+		'string-literal': {
+			pattern: /r?(?:("""|''')[\s\S]*?\1|(["'])(?:\\.|(?!\2)[^\\\r\n])*\2(?!\2))/,
+			greedy: true,
+			inside: {
+				'interpolation': {
+					pattern: /((?:^|[^\\])(?:\\{2})*)\$(?:\w+|\{(?:[^{}]|\{[^{}]*\})*\})/,
+					lookbehind: true,
+					inside: {
+						'punctuation': /^\$\{?|\}$/,
+						'expression': {
+							pattern: /[\s\S]+/,
+							inside: Prism.languages.dart
+						}
+					}
+				},
+				'string': /[\s\S]+/
+			}
+		},
+		'string': undefined
+	});
+
+	Prism.languages.insertBefore('dart', 'class-name', {
 		'metadata': {
 			pattern: /@\w+/,
-			alias: 'symbol'
+			alias: 'function'
 		}
 	});
 
