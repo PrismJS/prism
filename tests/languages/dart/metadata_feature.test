@@ -1,18 +1,146 @@
 @deprecated
 @override
-@todo('seth', 'make this do something')
+@ToDo('seth', 'make this do something')
+
+@DataTable("sale_orders")
+class SaleOrder {
+  @DataColumn("sale_order_date")
+  DateTime date;
+}
+
+@table
+class Product {
+  @column
+  String name;
+}
+
+const DataColumn column = const DataColumn();
+
+const DataTable table = const DataTable();
+
+class DataTable {
+  final String name;
+
+  const DataTable([this.name]);
+}
+
+class DataColumn {
+  final String name;
+
+  const DataColumn([this.name]);
+}
 
 ----------------------------------------------------
 
 [
 	["metadata", "@deprecated"],
+
 	["metadata", "@override"],
-	["metadata", "@todo"],
+
+	["metadata", "@ToDo"],
 	["punctuation", "("],
-	["string", "'seth'"],
+	["string-literal", [
+		["string", "'seth'"]
+	]],
 	["punctuation", ","],
-	["string", "'make this do something'"],
-	["punctuation", ")"]
+	["string-literal", [
+		["string", "'make this do something'"]
+	]],
+	["punctuation", ")"],
+
+	["metadata", "@DataTable"],
+	["punctuation", "("],
+	["string-literal", [
+		["string", "\"sale_orders\""]
+	]],
+	["punctuation", ")"],
+
+	["keyword", "class"],
+	["class-name", ["SaleOrder"]],
+	["punctuation", "{"],
+
+	["metadata", "@DataColumn"],
+	["punctuation", "("],
+	["string-literal", [
+		["string", "\"sale_order_date\""]
+	]],
+	["punctuation", ")"],
+
+	["class-name", ["DateTime"]],
+	" date",
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+
+	["metadata", "@table"],
+	["keyword", "class"], ["class-name", ["Product"]], ["punctuation", "{"],
+	["metadata", "@column"],
+	["class-name", ["String"]], " name", ["punctuation", ";"],
+	["punctuation", "}"],
+
+	["keyword", "const"],
+	["class-name", ["DataColumn"]],
+	" column ",
+	["operator", "="],
+	["keyword", "const"],
+	["class-name", ["DataColumn"]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "const"],
+	["class-name", ["DataTable"]],
+	" table ",
+	["operator", "="],
+	["keyword", "const"],
+	["class-name", ["DataTable"]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "class"],
+	["class-name", ["DataTable"]],
+	["punctuation", "{"],
+
+	["keyword", "final"],
+	["class-name", ["String"]],
+	" name",
+	["punctuation", ";"],
+
+	["keyword", "const"],
+	["class-name", ["DataTable"]],
+	["punctuation", "("],
+	["punctuation", "["],
+	["keyword", "this"],
+	["punctuation", "."],
+	"name",
+	["punctuation", "]"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+
+	["keyword", "class"],
+	["class-name", ["DataColumn"]],
+	["punctuation", "{"],
+
+	["keyword", "final"],
+	["class-name", ["String"]],
+	" name",
+	["punctuation", ";"],
+
+	["keyword", "const"],
+	["class-name", ["DataColumn"]],
+	["punctuation", "("],
+	["punctuation", "["],
+	["keyword", "this"],
+	["punctuation", "."],
+	"name",
+	["punctuation", "]"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["punctuation", "}"]
 ]
 
 ----------------------------------------------------
