@@ -22,10 +22,7 @@ Prism.languages.eiffel = {
 	'keyword': /\b(?:across|agent|alias|all|and|as|assign|attached|attribute|check|class|convert|create|Current|debug|deferred|detachable|do|else|elseif|end|ensure|expanded|export|external|feature|from|frozen|if|implies|inherit|inspect|invariant|like|local|loop|not|note|obsolete|old|once|or|Precursor|redefine|rename|require|rescue|Result|retry|select|separate|some|then|undefine|until|variant|Void|when|xor)\b/i,
 	'boolean': /\b(?:False|True)\b/i,
 	// Convention: class-names are always all upper-case characters
-	'class-name': {
-		'pattern': /\b[A-Z][\dA-Z_]*\b/,
-		'alias': 'builtin'
-	},
+	'class-name': /\b[A-Z][\dA-Z_]*\b/,
 	'number': [
 		// hexa | octal | bin
 		/\b0[xcb][\da-f](?:_*[\da-f])*\b/i,
