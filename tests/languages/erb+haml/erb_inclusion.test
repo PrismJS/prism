@@ -11,28 +11,27 @@
 	["filter-erb", [
 		["filter-name", ":erb"],
 		["text", [
-			["operator", "<"],
-			["operator", "%"],
-			["operator", "="],
-			" render ",
-			["variable", "@products"],
-			["operator", "||"],
-			["string", ["\"empty_list\""]],
-			["operator", "%"],
-			["operator", ">"]
+			["delimiter", "<%="],
+			["ruby", [
+				" render ",
+				["variable", "@products"],
+				["operator", "||"],
+				["string", ["\"empty_list\""]]
+			]],
+			["delimiter", "%>"]
 		]]
 	]],
 	["punctuation", "~"],
 	["filter-erb", [
 		["filter-name", ":erb"],
 		["text", [
-			["operator", "<"],
-			["operator", "%"],
-			["operator", "="],
-			" render ",
-			["variable", "@products"],
-			["operator", "||"],
-			["string", ["\"empty_list\""]],
+			["delimiter", "<%="],
+			["ruby", [
+				" render ",
+				["variable", "@products"],
+				["operator", "||"],
+				["string", ["\"empty_list\""]]
+			]],
 			["delimiter", "%>"]
 		]]
 	]]
