@@ -10,6 +10,15 @@ fn starfield count extent:[200,200,200] pos:[0,0,0] =
    -- something
    )
 
+fn saddle x y = sin x * sin y
+
+print "build math mesh"
+in_name = getOpenFileName()
+val.x=random -100 100
+append vert_array (readValue in_file)
+while not eof f do
+on pressme pressed do print "Pressed!"
+
 ----------------------------------------------------
 
 [
@@ -34,7 +43,7 @@ fn starfield count extent:[200,200,200] pos:[0,0,0] =
 	["keyword", "else"],
 	" n ",
 	["operator", "*"],
-	" factorial ",
+	["function-call", "factorial"],
 	["punctuation", "("],
 	"n ",
 	["operator", "-"],
@@ -51,15 +60,15 @@ fn starfield count extent:[200,200,200] pos:[0,0,0] =
 	["punctuation", "."],
 	"wireColor ",
 	["operator", "="],
-	" random ",
+	["function-call", "random"],
 	["punctuation", "("],
-	"color ",
+	["function-call", "color"],
 	["number", "0"],
 	["number", "0"],
 	["number", "0"],
 	["punctuation", ")"],
 	["punctuation", "("],
-	"color ",
+	["function-call", "color"],
 	["number", "255"],
 	["number", "255"],
 	["number", "255"],
@@ -92,5 +101,52 @@ fn starfield count extent:[200,200,200] pos:[0,0,0] =
 
 	["comment", "-- something"],
 
-	["punctuation", ")"]
+	["punctuation", ")"],
+
+	["keyword", "fn"],
+	["function-definition", "saddle"],
+	" x y ",
+	["operator", "="],
+	["function-call", "sin"],
+	" x ",
+	["operator", "*"],
+	["function-call", "sin"],
+	" y\r\n\r\n",
+
+	["function-call", "print"],
+	["string", "\"build math mesh\""],
+
+	"\r\nin_name ",
+	["operator", "="],
+	["function-call", "getOpenFileName"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	"\r\nval",
+	["punctuation", "."],
+	"x",
+	["operator", "="],
+	["function-call", "random"],
+	["operator", "-"],
+	["number", "100"],
+	["number", "100"],
+
+	["function-call", "append"],
+	" vert_array ",
+	["punctuation", "("],
+	["function-call", "readValue"],
+	" in_file",
+	["punctuation", ")"],
+
+	["keyword", "while"],
+	["keyword", "not"],
+	["function-call", "eof"],
+	" f ",
+	["keyword", "do"],
+
+	["keyword", "on"],
+	" pressme pressed ",
+	["keyword", "do"],
+	["function-call", "print"],
+	["string", "\"Pressed!\""]
 ]

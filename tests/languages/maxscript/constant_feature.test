@@ -7,9 +7,9 @@ unsupplied
 ----------------------------------------------------
 
 [
-	["color", "dontcollect"],
-	["color", "ok"],
-	["color", "silentValue"],
-	["color", "undefined"],
-	["color", "unsupplied"]
+	["constant", "dontcollect"],
+	["constant", "ok"],
+	["constant", "silentValue"],
+	["constant", "undefined"],
+	["constant", "unsupplied"]
 ]

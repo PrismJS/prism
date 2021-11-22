@@ -1,9 +1,11 @@
-true false
-on off
+true;
+false;
 
 ----------------------------------------------------
 
 [
-	["boolean", "true"], ["boolean", "false"],
-	["boolean", "on"], ["boolean", "off"]
+	["boolean", "true"],
+	["punctuation", ";"],
+	["boolean", "false"],
+	["punctuation", ";"]
 ]
