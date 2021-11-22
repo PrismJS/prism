@@ -37,10 +37,6 @@ Prism.languages.d = Prism.languages.extend('clike', {
 				// eslint-disable-next-line regexp/strict
 				/\bq"(.)[\s\S]*?\2"/.source,
 
-				// Characters
-				// 'a', '\\', '\n', '\xFF', '\377', '\uFFFF', '\U0010FFFF', '\quot'
-				/'(?:\\(?:\W|\w+)|[^\\])'/.source,
-
 				// eslint-disable-next-line regexp/strict
 				/(["`])(?:\\[\s\S]|(?!\3)[^\\])*\3[cwd]?/.source
 			].join('|'), 'm'),
@@ -67,6 +63,12 @@ Prism.languages.d = Prism.languages.extend('clike', {
 	],
 
 	'operator': /\|[|=]?|&[&=]?|\+[+=]?|-[-=]?|\.?\.\.|=[>=]?|!(?:i[ns]\b|<>?=?|>=?|=)?|\bi[ns]\b|(?:<[<>]?|>>?>?|\^\^|[*\/%^~])=?/
+});
+
+Prism.languages.insertBefore('d', 'string', {
+	// Characters
+	// 'a', '\\', '\n', '\xFF', '\377', '\uFFFF', '\U0010FFFF', '\quot'
+	'char': /'(?:\\(?:\W|\w+)|[^\\])'/
 });
 
 Prism.languages.insertBefore('d', 'keyword', {
