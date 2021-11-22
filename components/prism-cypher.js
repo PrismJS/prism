@@ -18,8 +18,7 @@ Prism.languages.cypher = {
 	},
 	'identifier': {
 		pattern: /`(?:[^`\\\r\n])*`/,
-		greedy: true,
-		alias: 'symbol'
+		greedy: true
 	},
 
 	'variable': /\$\w+/,

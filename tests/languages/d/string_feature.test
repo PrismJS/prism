@@ -19,8 +19,6 @@ bar/"
 q"|fo"o
 bar|"
 
-'a' '\'' '\\' '\n' '\xFF' '\377' '\uFFFF' '\U0010FFFF' '\quot'
-
 ""
 "foo"c "bar"w "baz"d
 "fo\"o
@@ -50,20 +48,8 @@ q{ q{bar} }
 	["string", "q\"/fo\"o\r\nbar/\""],
 	["string", "q\"|fo\"o\r\nbar|\""],
 
-	["string", "'a'"],
-	["string", "'\\''"],
-	["string", "'\\\\'"],
-	["string", "'\\n'"],
-	["string", "'\\xFF'"],
-	["string", "'\\377'"],
-	["string", "'\\uFFFF'"],
-	["string", "'\\U0010FFFF'"],
-	["string", "'\\quot'"],
-
 	["string", "\"\""],
-	["string", "\"foo\"c"],
-	["string", "\"bar\"w"],
-	["string", "\"baz\"d"],
+	["string", "\"foo\"c"], ["string", "\"bar\"w"], ["string", "\"baz\"d"],
 	["string", "\"fo\\\"o\r\nbar\""],
 	["string", "`foo`"],
 

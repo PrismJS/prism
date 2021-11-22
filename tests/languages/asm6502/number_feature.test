@@ -1,18 +1,17 @@
 LDA #127
 STA $8000
+STA #$1
 LDX #%10001010
 
--------------------------
+----------------------------------------------------
 
 [
-  ["opcode", "LDA"],
-  ["decimalnumber", "#127"],
-  ["opcode", "STA"],
-  ["hexnumber", "$8000"],
-  ["opcode", "LDX"],
-  ["binarynumber", "#%10001010"]
+	["op-code", "LDA"], ["decimal-number", "#127"],
+	["op-code", "STA"], ["hex-number", "$8000"],
+	["op-code", "STA"], ["hex-number", "#$1"],
+	["op-code", "LDX"], ["binary-number", "#%10001010"]
 ]
 
--------------------------
+----------------------------------------------------
 
 Check for numbers
