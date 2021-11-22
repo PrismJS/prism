@@ -1,0 +1,13 @@
+r'say'
+r"hello"
+
+----------------------------------------------------
+
+[
+	["regex-literal", [
+		["regex", "r'say'"]
+	]],
+	["regex-literal", [
+		["regex", "r\"hello\""]
+	]]
+]

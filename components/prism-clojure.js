@@ -4,14 +4,11 @@ Prism.languages.clojure = {
 		pattern: /;.*/,
 		greedy: true
 	},
-	'string': [
-		{
-			pattern: /"(?:[^"\\]|\\.)*"/,
-			greedy: true
-		},
-		// characters
-		/\\\w+/
-	],
+	'string': {
+		pattern: /"(?:[^"\\]|\\.)*"/,
+		greedy: true
+	},
+	'char': /\\\w+/,
 	'symbol': {
 		pattern: /(^|[\s()\[\]{},])::?[\w*+!?'<>=/.-]+/,
 		lookbehind: true

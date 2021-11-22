@@ -11,13 +11,13 @@ yellow
 ----------------------------------------------------
 
 [
-	["constant", "black"],
-	["constant", "blue"],
-	["constant", "brown"],
-	["constant", "gray"],
-	["constant", "green"],
-	["constant", "orange"],
-	["constant", "red"],
-	["constant", "white"],
-	["constant", "yellow"]
+	["color", "black"],
+	["color", "blue"],
+	["color", "brown"],
+	["color", "gray"],
+	["color", "green"],
+	["color", "orange"],
+	["color", "red"],
+	["color", "white"],
+	["color", "yellow"]
 ]

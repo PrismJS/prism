@@ -10,9 +10,6 @@
 'this is a longer string.'
 'the path separator on Windows is \\'
 
-´filter´
-`sort`
-
 ----------------------------------------------------
 
 [
@@ -21,13 +18,12 @@
 	["string", "\"this is a \\\"quoted\\\" word\""],
 	["string", "\"this is a longer string.\""],
 	["string", "\"the path separator on Windows is \\\\\""],
+
 	["string", "'yikes!'"],
 	["string", "'don\\'t know'"],
 	["string", "'this is a \"quoted\" word'"],
 	["string", "'this is a longer string.'"],
-	["string", "'the path separator on Windows is \\\\'"],
-	["string", "´filter´"],
-	["string", "`sort`"]
+	["string", "'the path separator on Windows is \\\\'"]
 ]
 
 ----------------------------------------------------

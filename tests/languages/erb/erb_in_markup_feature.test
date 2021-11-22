@@ -15,16 +15,18 @@ ___ERB1___<%= 1 %>___ERB2___<%= 2 %>
 			["punctuation", "\""],
 			["erb", [
 				["delimiter", "<%="],
-				["builtin", "Time"],
-				["punctuation", "."],
-				"now",
-				["punctuation", "."],
-				"strftime",
-				["punctuation", "("],
-				["string-literal", [
-					["string", "'%A'"]
+				["ruby", [
+					["builtin", "Time"],
+					["punctuation", "."],
+					"now",
+					["punctuation", "."],
+					"strftime",
+					["punctuation", "("],
+					["string-literal", [
+						["string", "'%A'"]
+					]],
+					["punctuation", ")"]
 				]],
-				["punctuation", ")"],
 				["delimiter", "%>"]
 			]],
 			["punctuation", "\""]
@@ -35,13 +37,17 @@ ___ERB1___<%= 1 %>___ERB2___<%= 2 %>
 	"\r\n___ERB1___",
 	["erb", [
 		["delimiter", "<%="],
-		["number", "1"],
+		["ruby", [
+			["number", "1"]
+		]],
 		["delimiter", "%>"]
 	]],
 	"___ERB2___",
 	["erb", [
 		["delimiter", "<%="],
-		["number", "2"],
+		["ruby", [
+			["number", "2"]
+		]],
 		["delimiter", "%>"]
 	]]
 ]

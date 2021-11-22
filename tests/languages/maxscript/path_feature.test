@@ -74,10 +74,10 @@ bodyPart=$Bip01_L_UpperArm
 	["number", "0"],
 	["punctuation", "]"],
 
-	"\r\nhide ",
+	["function-call", "hide"],
 	["path", "$"],
 
-	"\r\nrotate ",
+	["function-call", "rotate"],
 	["path", "$"],
 	["number", "35"],
 	" z_axis\r\n\r\n",
