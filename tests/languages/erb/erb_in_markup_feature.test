@@ -22,7 +22,9 @@ ___ERB1___<%= 1 %>___ERB2___<%= 2 %>
 					["punctuation", "."],
 					"strftime",
 					["punctuation", "("],
-					["string", ["'%A'"]],
+					["string-literal", [
+						["string", "'%A'"]
+					]],
 					["punctuation", ")"]
 				]],
 				["delimiter", "%>"]

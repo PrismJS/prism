@@ -26,111 +26,149 @@
 ----------------------------------------------------
 
 [
-	["regex", ["/[foo]\\/bar/gim"]],
+	["regex-literal", [
+		["regex", "/[foo]\\/bar/gim"]
+	]],
 
-	["regex", ["/[bar]/"]],
+	["regex-literal", [
+		["regex", "/[bar]/"]
+	]],
 	["punctuation", ","],
 
-	["regex", ["/./i"]],
-	["punctuation", ";"],
-
-	["regex", [
-		"/foo",
-		["interpolation", [
-			["delimiter", "#{"],
-			"bar",
-			["delimiter", "}"]
-		]],
-		"/"
+	["regex-literal", [
+		["regex", "/./i"]
 	]],
 	["punctuation", ";"],
 
-	["regex", ["/ab+c/ix"]],
-
-	["regex", [
-		"%r!foo?bar",
+	["regex-literal", [
+		["regex", "/foo"],
 		["interpolation", [
 			["delimiter", "#{"],
-			["number", "39"],
-			["operator", "+"],
-			["number", "3"],
+			["content", ["bar"]],
 			["delimiter", "}"]
 		]],
-		"!"
+		["regex", "/"]
+	]],
+	["punctuation", ";"],
+
+	["regex-literal", [
+		["regex", "/ab+c/ix"]
 	]],
 
-	["regex", [
-		"%r(foo?bar",
+	["regex-literal", [
+		["regex", "%r!foo?bar"],
 		["interpolation", [
 			["delimiter", "#{"],
-			["number", "39"],
-			["operator", "+"],
-			["number", "3"],
+			["content", [
+				["number", "39"],
+				["operator", "+"],
+				["number", "3"]
+			]],
 			["delimiter", "}"]
 		]],
-		")"
+		["regex", "!"]
 	]],
 
-	["regex", [
-		"%r{foo?bar",
+	["regex-literal", [
+		["regex", "%r(foo?bar"],
 		["interpolation", [
 			["delimiter", "#{"],
-			["number", "39"],
-			["operator", "+"],
-			["number", "3"],
+			["content", [
+				["number", "39"],
+				["operator", "+"],
+				["number", "3"]
+			]],
 			["delimiter", "}"]
 		]],
-		"}"
+		["regex", ")"]
 	]],
 
-	["regex", [
-		"%r[foo?bar",
+	["regex-literal", [
+		["regex", "%r{foo?bar"],
 		["interpolation", [
 			["delimiter", "#{"],
-			["number", "39"],
-			["operator", "+"],
-			["number", "3"],
+			["content", [
+				["number", "39"],
+				["operator", "+"],
+				["number", "3"]
+			]],
 			["delimiter", "}"]
 		]],
-		"]"
+		["regex", "}"]
 	]],
 
-	["regex", [
-		"%r<foo?bar",
+	["regex-literal", [
+		["regex", "%r[foo?bar"],
 		["interpolation", [
 			["delimiter", "#{"],
-			["number", "39"],
-			["operator", "+"],
-			["number", "3"],
+			["content", [
+				["number", "39"],
+				["operator", "+"],
+				["number", "3"]
+			]],
 			["delimiter", "}"]
 		]],
-		">"
+		["regex", "]"]
 	]],
 
-	["regex", ["/foo/"]],
+	["regex-literal", [
+		["regex", "%r<foo?bar"],
+		["interpolation", [
+			["delimiter", "#{"],
+			["content", [
+				["number", "39"],
+				["operator", "+"],
+				["number", "3"]
+			]],
+			["delimiter", "}"]
+		]],
+		["regex", ">"]
+	]],
+
+	["regex-literal", [
+		["regex", "/foo/"]
+	]],
 	["comment", "# comment"],
 
-	["regex", [
-		"/foo",
+	["regex-literal", [
+		["regex", "/foo"],
 		["interpolation", [
 			["delimiter", "#{"],
-			"bar",
+			["content", ["bar"]],
 			["delimiter", "}"]
 		]],
-		"/"
+		["regex", "/"]
 	]],
 	["comment", "# comment"],
 
 	["comment", "# flags"],
-	["regex", ["/abc/e"]],
-	["regex", ["/abc/g"]],
-	["regex", ["/abc/i"]],
-	["regex", ["/abc/m"]],
-	["regex", ["/abc/n"]],
-	["regex", ["/abc/o"]],
-	["regex", ["/abc/s"]],
-	["regex", ["/abc/u"]],
-	["regex", ["/abc/x"]]
+	["regex-literal", [
+		["regex", "/abc/e"]
+	]],
+	["regex-literal", [
+		["regex", "/abc/g"]
+	]],
+	["regex-literal", [
+		["regex", "/abc/i"]
+	]],
+	["regex-literal", [
+		["regex", "/abc/m"]
+	]],
+	["regex-literal", [
+		["regex", "/abc/n"]
+	]],
+	["regex-literal", [
+		["regex", "/abc/o"]
+	]],
+	["regex-literal", [
+		["regex", "/abc/s"]
+	]],
+	["regex-literal", [
+		["regex", "/abc/u"]
+	]],
+	["regex-literal", [
+		["regex", "/abc/x"]
+	]]
 ]
 
 ----------------------------------------------------

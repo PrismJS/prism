@@ -1,4 +1,3 @@
-Foobar
 FOO_BAR_42
 F
 FOO
@@ -8,7 +7,6 @@ BAZ!
 ----------------------------------------------------
 
 [
-	["constant", "Foobar"],
 	["constant", "FOO_BAR_42"],
 	["constant", "F"],
 	["constant", "FOO"],

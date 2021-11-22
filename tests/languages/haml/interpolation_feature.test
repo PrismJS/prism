@@ -14,7 +14,9 @@
 	["interpolation", [
 		["delimiter", "#{"],
 		["ruby", [
-			["string", ["\"foobar\""]]
+			["string-literal", [
+				["string", "\"foobar\""]
+			]]
 		]],
 		["delimiter", "}"]
 	]]

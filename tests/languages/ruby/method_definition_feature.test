@@ -59,14 +59,12 @@ end
 		["function", "circumference"]
 	]],
 
-	["constant", "Math"],
-	["punctuation", ":"],
-	["punctuation", ":"],
+	"\r\n    Math",
+	["double-colon", "::"],
 	["constant", "PI"],
 	["operator", "*"],
 	" radius ",
-	["operator", "*"],
-	["operator", "*"],
+	["operator", "**"],
 	["number", "2"],
 
 	["keyword", "end"],
@@ -78,7 +76,7 @@ end
 		["function", "grow_by"]
 	]],
 	" factor",
-	["punctuation", ":"],
+	["operator", ":"],
 
 	["variable", "@radius"],
 	["operator", "="],
