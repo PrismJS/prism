@@ -1,19 +1,20 @@
 Prism.languages.concurnas = {
-	'comment': [
-		{
-			pattern: /(^|[^\\])\/\*[\s\S]*?(?:\*\/|$)/,
-			lookbehind: true
-		},
-		{
-			pattern: /(^|[^\\:])\/\/.*/,
-			lookbehind: true,
-			greedy: true
-		}
-	],
+	'comment': {
+		pattern: /(^|[^\\])(?:\/\*[\s\S]*?(?:\*\/|$)|\/\/.*)/,
+		lookbehind: true,
+		greedy: true
+	},
 	'langext': {
 		pattern: /\b\w+\s*\|\|[\s\S]+?\|\|/,
 		greedy: true,
-		alias: 'string'
+		inside: {
+			'class-name': /^\w+/,
+			'string': {
+				pattern: /(^\s*\|\|)[\s\S]+(?=\|\|$)/,
+				lookbehind: true
+			},
+			'punctuation': /\|\|/
+		}
 	},
 	'function': {
 		pattern: /((?:^|\s)def[ \t]+)[a-zA-Z_]\w*(?=\s*\()/,
@@ -23,7 +24,7 @@ Prism.languages.concurnas = {
 	'boolean': /\b(?:false|true)\b/,
 	'number': /\b0b[01][01_]*L?\b|\b0x(?:[\da-f_]*\.)?[\da-f_p+-]+\b|(?:\b\d[\d_]*(?:\.[\d_]*)?|\B\.\d[\d_]*)(?:e[+-]?\d[\d_]*)?[dfls]?/i,
 	'punctuation': /[{}[\];(),.:]/,
-	'operator': /<==|>==|=>|->|<-|<>|\^|&==|&<>|!|\?:?|\.\?|\+\+|--|[-+*/=<>]=?|\b(?:and|as|band|bor|bxor|comp|is|isnot|mod|or)\b=?/,
+	'operator': /<==|>==|=>|->|<-|<>|&==|&<>|\?:?|\.\?|\+\+|--|[-+*/=<>]=?|[!^~]|\b(?:and|as|band|bor|bxor|comp|is|isnot|mod|or)\b=?/,
 	'annotation': {
 		pattern: /@(?:\w+:)?(?:\w+|\[[^\]]+\])?/,
 		alias: 'builtin'
@@ -31,8 +32,20 @@ Prism.languages.concurnas = {
 };
 
 Prism.languages.insertBefore('concurnas', 'langext', {
-	'string': {
-		pattern: /[rs]?("|')(?:\\.|(?!\1)[^\\\r\n])*\1/,
+	'regex-literal': {
+		pattern: /\br("|')(?:\\.|(?!\1)[^\\\r\n])*\1/,
+		greedy: true,
+		inside: {
+			'interpolation': {
+				pattern: /((?:^|[^\\])(?:\\{2})*)\{(?:[^{}]|\{(?:[^{}]|\{[^}]*\})*\})+\}/,
+				lookbehind: true,
+				inside: Prism.languages.concurnas
+			},
+			'regex': /[\s\S]+/
+		}
+	},
+	'string-literal': {
+		pattern: /(?:\B|\bs)("|')(?:\\.|(?!\1)[^\\\r\n])*\1/,
 		greedy: true,
 		inside: {
 			'interpolation': {

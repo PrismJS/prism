@@ -1,0 +1,23 @@
+myAPL || x[⍋x←6?40] ||
+SimpleLisp||(+ 1 2 (* 3 3 ) )||
+
+ || invalid ||
+
+----------------------------------------------------
+
+[
+	["langext", [
+		["class-name", "myAPL"],
+		["punctuation", "||"],
+		["string", " x[⍋x←6?40] "],
+		["punctuation", "||"]
+	]],
+	["langext", [
+		["class-name", "SimpleLisp"],
+		["punctuation", "||"],
+		["string", "(+ 1 2 (* 3 3 ) )"],
+		["punctuation", "||"]
+	]],
+
+	"\r\n\r\n || invalid ||"
+]
