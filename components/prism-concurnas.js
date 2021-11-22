@@ -10,7 +10,7 @@ Prism.languages.concurnas = {
 		inside: {
 			'class-name': /^\w+/,
 			'string': {
-				pattern: /(\|\|)[\s\S]+(?=\|\|$)/,
+				pattern: /(^\s*\|\|)[\s\S]+(?=\|\|$)/,
 				lookbehind: true
 			},
 			'punctuation': /\|\|/
