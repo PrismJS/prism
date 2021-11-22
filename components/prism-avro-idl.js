@@ -6,18 +6,11 @@ Prism.languages['avro-idl'] = {
 		pattern: /\/\/.*|\/\*[\s\S]*?\*\//,
 		greedy: true
 	},
-	'string': [
-		{
-			pattern: /(^|[^\\])"(?:[^\r\n"\\]|\\.)*"/,
-			lookbehind: true,
-			greedy: true
-		},
-		{
-			pattern: /(^|[^\\])'(?:[^\r\n'\\]|\\(?:[\s\S]|\d{1,3}))'/,
-			lookbehind: true,
-			greedy: true
-		}
-	],
+	'string': {
+		pattern: /(^|[^\\])"(?:[^\r\n"\\]|\\.)*"/,
+		lookbehind: true,
+		greedy: true
+	},
 
 	'annotation': {
 		pattern: /@(?:[$\w.-]|`[^\r\n`]+`)+/,
