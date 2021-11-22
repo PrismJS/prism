@@ -8,47 +8,53 @@
 [
 	["attribute", [
 		["delimiter", "@["],
-		"AlwaysInline",
+		["attribute", "AlwaysInline"],
 		["delimiter", "]"]
 	]],
 	["attribute", [
 		["delimiter", "@["],
-		"CallConvention",
-		["punctuation", "("],
-		["string-literal", [
-			["string", "\"X86_StdCall\""]
+		["attribute", "CallConvention"],
+		["args", [
+			["punctuation", "("],
+			["string-literal", [
+				["string", "\"X86_StdCall\""]
+			]],
+			["punctuation", ")"]
 		]],
-		["punctuation", ")"],
 		["delimiter", "]"]
 	]],
 	["attribute", [
 		["delimiter", "@["],
-		"MyAnnotation",
-		["punctuation", "("],
-		["symbol", "key"],
-		["operator", ":"],
-		["string-literal", [
-			["string", "\"value\""]
+		["attribute", "MyAnnotation"],
+		["args", [
+			["punctuation", "("],
+			["symbol", "key"],
+			["operator", ":"],
+			["string-literal", [
+				["string", "\"value\""]
+			]],
+			["punctuation", ","],
+			["symbol", "value"],
+			["operator", ":"],
+			["number", "123"],
+			["punctuation", ")"]
 		]],
-		["punctuation", ","],
-		["symbol", "value"],
-		["operator", ":"],
-		["number", "123"],
-		["punctuation", ")"],
 		["delimiter", "]"]
 	]],
 	["attribute", [
 		["delimiter", "@["],
-		"MyAnnotation",
-		["punctuation", "("],
-		["string-literal", [
-			["string", "\"foo\""]
+		["attribute", "MyAnnotation"],
+		["args", [
+			["punctuation", "("],
+			["string-literal", [
+				["string", "\"foo\""]
+			]],
+			["punctuation", ","],
+			["number", "123"],
+			["punctuation", ","],
+			["boolean", "false"],
+			["punctuation", ")"]
 		]],
-		["punctuation", ","],
-		["number", "123"],
-		["punctuation", ","],
-		["boolean", "false"],
-		["punctuation", ")"],
 		["delimiter", "]"]
 	]]
 ]

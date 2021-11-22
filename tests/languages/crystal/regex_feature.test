@@ -1,0 +1,184 @@
+/foo|bar/
+/h(e+)llo/
+/\d+/
+/あ/
+
+/\//         # slash
+/\\/         # backslash
+/\b/         # backspace
+/\e/         # escape
+/\f/         # form feed
+/\n/         # newline
+/\r/         # carriage return
+/\t/         # tab
+/\v/         # vertical tab
+/\NNN/       # octal ASCII character
+/\xNN/       # hexadecimal ASCII character
+/\x{FFFF}/   # hexadecimal unicode character
+/\x{10FFFF}/ # hexadecimal unicode character
+
+/foo/i.match("FOO")         # => #<Regex::MatchData "FOO">
+/foo/m.match("bar\nfoo")    # => #<Regex::MatchData "foo">
+/foo /x.match("foo")        # => #<Regex::MatchData "foo">
+/foo /imx.match("bar\nFOO") # => #<Regex::MatchData "FOO">
+
+%r((/)) # => /(\/)/
+%r[[/]] # => /[\/]/
+%r{{/}} # => /{\/}/
+%r<</>> # => /<\/>/
+%r|/|   # => /\//
+
+----------------------------------------------------
+
+[
+	["regex-literal", [
+		["regex", "/foo|bar/"]
+	]],
+	["regex-literal", [
+		["regex", "/h(e+)llo/"]
+	]],
+	["regex-literal", [
+		["regex", "/\\d+/"]
+	]],
+	["regex-literal", [
+		["regex", "/あ/"]
+	]],
+
+	["regex-literal", [
+		["regex", "/\\//"]
+	]],
+	["comment", "# slash"],
+
+	["regex-literal", [
+		["regex", "/\\\\/"]
+	]],
+	["comment", "# backslash"],
+
+	["regex-literal", [
+		["regex", "/\\b/"]
+	]],
+	["comment", "# backspace"],
+
+	["regex-literal", [
+		["regex", "/\\e/"]
+	]],
+	["comment", "# escape"],
+
+	["regex-literal", [
+		["regex", "/\\f/"]
+	]],
+	["comment", "# form feed"],
+
+	["regex-literal", [
+		["regex", "/\\n/"]
+	]],
+	["comment", "# newline"],
+
+	["regex-literal", [
+		["regex", "/\\r/"]
+	]],
+	["comment", "# carriage return"],
+
+	["regex-literal", [
+		["regex", "/\\t/"]
+	]],
+	["comment", "# tab"],
+
+	["regex-literal", [
+		["regex", "/\\v/"]
+	]],
+	["comment", "# vertical tab"],
+
+	["regex-literal", [
+		["regex", "/\\NNN/"]
+	]],
+	["comment", "# octal ASCII character"],
+
+	["regex-literal", [
+		["regex", "/\\xNN/"]
+	]],
+	["comment", "# hexadecimal ASCII character"],
+
+	["regex-literal", [
+		["regex", "/\\x{FFFF}/"]
+	]],
+	["comment", "# hexadecimal unicode character"],
+
+	["regex-literal", [
+		["regex", "/\\x{10FFFF}/"]
+	]],
+	["comment", "# hexadecimal unicode character"],
+
+	["regex-literal", [
+		["regex", "/foo/i"]
+	]],
+	["punctuation", "."],
+	"match",
+	["punctuation", "("],
+	["string-literal", [
+		["string", "\"FOO\""]
+	]],
+	["punctuation", ")"],
+	["comment", "# => #<Regex::MatchData \"FOO\">"],
+
+	["regex-literal", [
+		["regex", "/foo/m"]
+	]],
+	["punctuation", "."],
+	"match",
+	["punctuation", "("],
+	["string-literal", [
+		["string", "\"bar\\nfoo\""]
+	]],
+	["punctuation", ")"],
+	["comment", "# => #<Regex::MatchData \"foo\">"],
+
+	["regex-literal", [
+		["regex", "/foo /x"]
+	]],
+	["punctuation", "."],
+	"match",
+	["punctuation", "("],
+	["string-literal", [
+		["string", "\"foo\""]
+	]],
+	["punctuation", ")"],
+	["comment", "# => #<Regex::MatchData \"foo\">"],
+
+	["regex-literal", [
+		["regex", "/foo /imx"]
+	]],
+	["punctuation", "."],
+	"match",
+	["punctuation", "("],
+	["string-literal", [
+		["string", "\"bar\\nFOO\""]
+	]],
+	["punctuation", ")"],
+	["comment", "# => #<Regex::MatchData \"FOO\">"],
+
+	["regex-literal", [
+		["regex", "%r((/))"]
+	]],
+	["comment", "# => /(\\/)/"],
+
+	["regex-literal", [
+		["regex", "%r[[/]]"]
+	]],
+	["comment", "# => /[\\/]/"],
+
+	["regex-literal", [
+		["regex", "%r{{/}}"]
+	]],
+	["comment", "# => /{\\/}/"],
+
+	["regex-literal", [
+		["regex", "%r<</>>"]
+	]],
+	["comment", "# => /<\\/>/"],
+
+	["regex-literal", [
+		["regex", "%r|/|"]
+	]],
+	["comment", "# => /\\//"]
+]
