@@ -11,7 +11,7 @@ Prism.languages['go-mod'] = Prism.languages['go-module'] = {
 		alias: 'number'
 	},
 	'go-version': {
-		pattern: /((^|\s)go\s+)\d+(?:\.\d+){1,2}/,
+		pattern: /((?:^|\s)go\s+)\d+(?:\.\d+){1,2}/,
 		lookbehind: true,
 		alias: 'number'
 	},
