@@ -1,8 +1,3 @@
-'a'
-'\u0041'
-'\n'
-'\t'
-
 ""
 "fo\"obar"
 
@@ -17,12 +12,9 @@ bar"""
 ----------------------------------------------------
 
 [
-	["string", "'a'"],
-	["string", "'\\u0041'"],
-	["string", "'\\n'"],
-	["string", "'\\t'"],
 	["string", "\"\""],
 	["string", "\"fo\\\"obar\""],
+
 	["triple-quoted-string", "\"\"\"fo\"o\r\nbar\"\"\""],
 	["triple-quoted-string", "\"\"\"fo\"o\r\n// comment\r\nbar\"\"\""],
 	["string", "\"foo /* comment */ bar\""],
