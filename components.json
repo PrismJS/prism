@@ -495,6 +495,11 @@
 			"require": "clike",
 			"owner": "arnehormann"
 		},
+		"go-module": {
+			"title": "Go module",
+			"alias": "go-mod",
+			"owner": "RunDevelopment"
+		},
 		"graphql": {
 			"title": "GraphQL",
 			"optional": "markdown",
