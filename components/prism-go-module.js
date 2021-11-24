@@ -10,7 +10,15 @@ Prism.languages['go-mod'] = Prism.languages['go-module'] = {
 		lookbehind: true,
 		alias: 'number'
 	},
-	'keyword': /^(?:exclude|go|module|replace|require|retract)\b/m,
+	'go-version': {
+		pattern: /((^|\s)go\s+)\d+(?:\.\d+){1,2}/,
+		lookbehind: true,
+		alias: 'number'
+	},
+	'keyword': {
+		pattern: /^([ \t]*)(?:exclude|go|module|replace|require|retract)\b/m,
+		lookbehind: true
+	},
 	'operator': /=>/,
 	'punctuation': /[()[\],]/
 };

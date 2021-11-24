@@ -42,7 +42,7 @@ retract (
 [
 	["keyword", "module"], " golang.org/x/net\r\n\r\n",
 
-	["keyword", "go"], " 1.14\r\n\r\n",
+	["keyword", "go"], ["go-version", "1.14"],
 
 	["keyword", "require"], " golang.org/x/net ", ["version", "v1.2.3"],
 
