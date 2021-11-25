@@ -11,11 +11,15 @@ Prism.languages.julia = {
 		greedy: true
 	},
 	'string': {
-		// https://docs.julialang.org/en/v1/manual/strings/#man-characters-1
 		// https://docs.julialang.org/en/v1/manual/strings/#String-Basics-1
 		// https://docs.julialang.org/en/v1/manual/strings/#non-standard-string-literals-1
 		// https://docs.julialang.org/en/v1/manual/running-external-programs/#Running-External-Programs-1
-		pattern: /"""[\s\S]+?"""|(?:\b\w+)?"(?:\\.|[^"\\\r\n])*"|(^|[^\w'])'(?:\\[^\r\n][^'\r\n]*|[^\\\r\n])'|`(?:[^\\`\r\n]|\\.)*`/,
+		pattern: /"""[\s\S]+?"""|(?:\b\w+)?"(?:\\.|[^"\\\r\n])*"|`(?:[^\\`\r\n]|\\.)*`/,
+		greedy: true
+	},
+	'char': {
+		// https://docs.julialang.org/en/v1/manual/strings/#man-characters-1
+		pattern: /(^|[^\w'])'(?:\\[^\r\n][^'\r\n]*|[^\\\r\n])'/,
 		lookbehind: true,
 		greedy: true
 	},
