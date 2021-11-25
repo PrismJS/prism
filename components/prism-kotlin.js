@@ -34,6 +34,7 @@
 	};
 
 	Prism.languages.insertBefore('kotlin', 'string', {
+		// https://kotlinlang.org/spec/expressions.html#string-interpolation-expressions
 		'string-literal': [
 			{
 				pattern: /"""(?:[^$]|\$(?:(?!\{)|\{[^{}]*\}))*?"""/,
@@ -60,6 +61,7 @@
 			}
 		],
 		'char': {
+			// https://kotlinlang.org/spec/expressions.html#character-literals
 			pattern: /'(?:[^'\\\r\n]|\\(.|u[a-fA-F0-9]{0,4}))'/,
 			greedy: true
 		}
