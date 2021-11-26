@@ -15,22 +15,22 @@ fo\x8Fo"Foobar"
 bar"""Foo
 bar"""
 
-'\''
-'\xFC'
-
 ----------------------------------------------------
 
 [
 	["string", "\"\""],
 	["string", "\"Fo\\\"obar\""],
+
 	["string", "\"\"\"\"\"\""],
 	["string", "\"\"\"Fo\"o\r\nbar\"\"\""],
+
 	["string", "R\"Raw \"\"string\""],
+
 	["string", "r\"Raw\r\n\"\"string\""],
+
 	["string", "fo\\x8Fo\"Foobar\""],
-	["string", "bar\"\"\"Foo\r\nbar\"\"\""],
-	["string", "'\\''"],
-	["string", "'\\xFC'"]
+
+	["string", "bar\"\"\"Foo\r\nbar\"\"\""]
 ]
 
 ----------------------------------------------------
