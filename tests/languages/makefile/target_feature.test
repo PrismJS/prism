@@ -1,0 +1,23 @@
+edit :
+%oo:
+$(foo):
+
+----------------------------------------------------
+
+[
+	["target", ["edit"]],
+	["punctuation", ":"],
+
+	["target", ["%oo"]],
+	["punctuation", ":"],
+
+	["target", [
+		["variable", "$"],
+		"(foo)"
+	]],
+	["punctuation", ":"]
+]
+
+----------------------------------------------------
+
+Checks for targets, optionally containing interpolation.
