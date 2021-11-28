@@ -44,7 +44,11 @@
 			}
 		},
 		'keyword': [
-			/\b(?:array|break|cholesky_factor_corr|cholesky_factor_cov|complex|continue|corr_matrix|cov_matrix|data|else|for|functions|generated|if|in|increment_log_prob|int|matrix|model|ordered|parameters|positive_ordered|print|quantities|real|reject|return|row_vector|simplex|target|transformed|unit_vector|vector|void|while)\b/,
+			{
+				pattern: /\bdata(?=\s*\{)|\b(?:functions|generated|model|parameters|quantities|transformed)\b/,
+				alias: 'program-block'
+			},
+			/\b(?:array|break|cholesky_factor_corr|cholesky_factor_cov|complex|continue|corr_matrix|cov_matrix|data|else|for|if|in|increment_log_prob|int|matrix|ordered|positive_ordered|print|real|reject|return|row_vector|simplex|target|unit_vector|vector|void|while)\b/,
 			// these are functions that are known to take another function as their first argument.
 			higherOrderFunctions
 		],
