@@ -64,6 +64,12 @@ s<foo
 bar><foo
 baz>
 
+tr()<>c
+y{foo\<bar}[ba\>a]
+s<foo
+bar>(foo
+baz)
+
 //
 /foo/gsx
 /foo\/bar/n
@@ -118,6 +124,10 @@ baz>
 	["regex", "tr<><>c"],
 	["regex", "y<foo\\<bar><ba\\>a>"],
 	["regex", "s<foo\r\nbar><foo\r\nbaz>"],
+
+	["regex", "tr()<>c"],
+	["regex", "y{foo\\<bar}[ba\\>a]"],
+	["regex", "s<foo\r\nbar>(foo\r\nbaz)"],
 
 	["regex", "//"],
 	["regex", "/foo/gsx"],
