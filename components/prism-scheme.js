@@ -14,10 +14,9 @@
 			pattern: /'[^()\[\]#'\s]+/,
 			greedy: true
 		},
-		'character': {
+		'char': {
 			pattern: /#\\(?:[ux][a-fA-F\d]+\b|[-a-zA-Z]+\b|[\uD800-\uDBFF][\uDC00-\uDFFF]|\S)/,
-			greedy: true,
-			alias: 'string'
+			greedy: true
 		},
 		'lambda-parameter': [
 			// https://www.cs.cmu.edu/Groups/AI/html/r4rs/r4rs_6.html#SEC30
