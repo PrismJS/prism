@@ -5,9 +5,6 @@ CHART_DESTROY
 CHART_LOAD
 CHART_PRINT
 EOF
-FALSE
-False
-false
 NO
 No
 no
@@ -42,9 +39,6 @@ TRIM_LEADING
 TRIM_LEADING_AND_TRAILING
 TRIM_REDUNDANT
 TRIM_TRAILING
-TRUE
-True
-true
 VOID
 WARN
 
@@ -58,9 +52,6 @@ WARN
 	["constant", "CHART_LOAD"],
 	["constant", "CHART_PRINT"],
 	["constant", "EOF"],
-	["constant", "FALSE"],
-	["constant", "False"],
-	["constant", "false"],
 	["constant", "NO"],
 	["constant", "No"],
 	["constant", "no"],
@@ -95,9 +86,6 @@ WARN
 	["constant", "TRIM_LEADING_AND_TRAILING"],
 	["constant", "TRIM_REDUNDANT"],
 	["constant", "TRIM_TRAILING"],
-	["constant", "TRUE"],
-	["constant", "True"],
-	["constant", "true"],
 	["constant", "VOID"],
 	["constant", "WARN"]
 ]
