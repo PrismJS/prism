@@ -6,9 +6,11 @@
 [
 	["filter-sass", [
 		["filter-name", ":sass"],
-		["keyword", "@extend"],
-		" .foo",
-		["punctuation", ";"]
+		["text", [
+			["keyword", "@extend"],
+			" .foo",
+			["punctuation", ";"]
+		]]
 	]]
 ]
 

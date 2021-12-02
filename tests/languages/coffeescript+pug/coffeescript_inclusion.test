@@ -6,10 +6,12 @@
 [
 	["filter-coffee", [
 		["filter-name", ":coffee"],
-		["string", [
-			"\"",
-			["interpolation", "#{foo}"],
-			"\""
+		["text", [
+			["string", [
+				"\"",
+				["interpolation", "#{foo}"],
+				"\""
+			]]
 		]]
 	]]
 ]

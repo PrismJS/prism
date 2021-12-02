@@ -6,7 +6,9 @@
 [
 	["filter-handlebars", [
 		["filter-name", ":handlebars"],
-		["comment", "{{!comment}}"]
+		["text", [
+			["comment", "{{!comment}}"]
+		]]
 	]]
 ]
 
