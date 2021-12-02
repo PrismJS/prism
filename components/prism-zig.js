@@ -49,14 +49,14 @@
 				pattern: /([\r\n])([ \t]+c?\\{2}).*(?:(?:\r\n?|\n)\2.*)*/,
 				lookbehind: true,
 				greedy: true
-			},
-			{
-				// characters 'a', '\n', '\xFF', '\u{10FFFF}'
-				pattern: /(^|[^\\])'(?:[^'\\\r\n]|[\uD800-\uDFFF]{2}|\\(?:.|x[a-fA-F\d]{2}|u\{[a-fA-F\d]{1,6}\}))'/,
-				lookbehind: true,
-				greedy: true
 			}
 		],
+		'char': {
+			// characters 'a', '\n', '\xFF', '\u{10FFFF}'
+			pattern: /(^|[^\\])'(?:[^'\\\r\n]|[\uD800-\uDFFF]{2}|\\(?:.|x[a-fA-F\d]{2}|u\{[a-fA-F\d]{1,6}\}))'/,
+			lookbehind: true,
+			greedy: true
+		},
 		'builtin': /\B@(?!\d)\w+(?=\s*\()/,
 		'label': {
 			pattern: /(\b(?:break|continue)\s*:\s*)\w+\b|\b(?!\d)\w+\b(?=\s*:\s*(?:\{|while\b))/,
@@ -80,7 +80,7 @@
 				inside: null // see below
 			}
 		],
-		'builtin-types': {
+		'builtin-type': {
 			pattern: /\b(?:anyerror|bool|c_u?(?:int|long|longlong|short)|c_longdouble|c_void|comptime_(?:float|int)|f(?:16|32|64|128)|[iu](?:8|16|32|64|128|size)|noreturn|type|void)\b/,
 			alias: 'keyword'
 		},
