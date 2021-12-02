@@ -153,7 +153,7 @@
 			"markup-templating"
 		],
 		"textile": "markup",
-		"twig": "markup",
+		"twig": "markup-templating",
 		"typescript": "javascript",
 		"v": "clike",
 		"vala": "clike",

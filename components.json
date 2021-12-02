@@ -1344,7 +1344,7 @@
 		},
 		"twig": {
 			"title": "Twig",
-			"require": "markup",
+			"require": "markup-templating",
 			"owner": "brandonkelly"
 		},
 		"typescript": {
