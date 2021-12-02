@@ -6,8 +6,8 @@ Prism.languages['visual-basic'] = {
 		}
 	},
 	'directive': {
-		pattern: /#(?:Const|Else|ElseIf|End|ExternalChecksum|ExternalSource|If|Region)(?:[^\S\r\n]_[^\S\r\n]*(?:\r\n?|\n)|.)+/i,
-		alias: 'comment',
+		pattern: /#(?:Const|Else|ElseIf|End|ExternalChecksum|ExternalSource|If|Region)(?:\b_[ \t]*(?:\r\n?|\n)|.)+/i,
+		alias: 'property',
 		greedy: true
 	},
 	'string': {
@@ -15,8 +15,8 @@ Prism.languages['visual-basic'] = {
 		greedy: true
 	},
 	'date': {
-		pattern: /#[^\S\r\n]*(?:\d+([/-])\d+\1\d+(?:[^\S\r\n]+(?:\d+[^\S\r\n]*(?:AM|PM)|\d+:\d+(?::\d+)?(?:[^\S\r\n]*(?:AM|PM))?))?|\d+[^\S\r\n]*(?:AM|PM)|\d+:\d+(?::\d+)?(?:[^\S\r\n]*(?:AM|PM))?)[^\S\r\n]*#/i,
-		alias: 'builtin'
+		pattern: /#[ \t]*(?:\d+([/-])\d+\1\d+(?:[ \t]+(?:\d+[ \t]*(?:AM|PM)|\d+:\d+(?::\d+)?(?:[ \t]*(?:AM|PM))?))?|\d+[ \t]*(?:AM|PM)|\d+:\d+(?::\d+)?(?:[ \t]*(?:AM|PM))?)[ \t]*#/i,
+		alias: 'number'
 	},
 	'number': /(?:(?:\b\d+(?:\.\d+)?|\.\d+)(?:E[+-]?\d+)?|&[HO][\dA-F]+)(?:[FRD]|U?[ILS])?/i,
 	'boolean': /\b(?:False|Nothing|True)\b/i,
@@ -24,7 +24,7 @@ Prism.languages['visual-basic'] = {
 	'operator': [
 		/[+\-*/\\^<=>&#@$%!]/,
 		{
-			pattern: /([^\S\r\n])_(?=[^\S\r\n]*[\r\n])/,
+			pattern: /\b_(?=[ \t]*[\r\n])/,
 			lookbehind: true
 		}
 	],
