@@ -27,7 +27,6 @@
 				inside: {
 					'interpolation': {
 						pattern: /\{[^{}]*\}|`[^`]*`/,
-						lookbehind: true,
 						inside: {
 							'interpolation-punctuation': {
 								pattern: /^[{`]|[`}]$/,
