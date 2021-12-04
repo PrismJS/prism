@@ -1,7 +1,7 @@
 /**
  * Original by Jan T. Sott (http://github.com/idleberg)
  *
- * Includes all commands and plug-ins shipped with NSIS 3.02
+ * Includes all commands and plug-ins shipped with NSIS 3.08
  */
 Prism.languages.nsis = {
 	'comment': {
