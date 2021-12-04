@@ -38,10 +38,6 @@
 							}
 						}
 					},
-					'interpolation-punctuation': {
-						pattern: /[{`]$|^[`}]/,
-						alias: 'punctuation'
-					},
 					'variable': /\$\w+/
 				}
 			},
