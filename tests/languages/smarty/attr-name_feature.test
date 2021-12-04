@@ -6,26 +6,20 @@
 [
 	["smarty", [
 		["delimiter", "{"],
-		["function", "assign"],
-		["attr-name", [
-			"var",
-			["operator", "="],
-			["variable", "foo"]
-		]],
-		["attr-name", [
-			"value",
-			["operator", "="]
-		]],
-		["string", "\"bar\""],
+		["keyword", "assign"],
+		["attr-name", "var"],
+		["operator", "="],
+		["variable", "foo"],
+		["attr-name", "value"],
+		["operator", "="],
+		["string", ["\"bar\""]],
 		["delimiter", "}"]
 	]],
 	["smarty", [
 		["delimiter", "{"],
-		["function", "foo"],
-		["attr-name", [
-			"bar ",
-			["operator", "="]
-		]],
+		["keyword", "foo"],
+		["attr-name", "bar"],
+		["operator", "="],
 		["number", "40"],
 		["delimiter", "}"]
 	]]
