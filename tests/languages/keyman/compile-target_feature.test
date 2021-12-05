@@ -1,0 +1,27 @@
+$keyman:
+$kmfl:
+$weaver:
+$keymanweb:
+$keymanonly:
+
+c Note: return statement is only supported in .kmx in Keyman 13
+$keymanonly: + 'a' > 'a' return
+
+----------------------------------------------------
+
+[
+	["compile-target", "$keyman:"],
+	["compile-target", "$kmfl:"],
+	["compile-target", "$weaver:"],
+	["compile-target", "$keymanweb:"],
+	["compile-target", "$keymanonly:"],
+
+	["comment", "c Note: return statement is only supported in .kmx in Keyman 13"],
+
+	["compile-target", "$keymanonly:"],
+	["operator", "+"],
+	["string", "'a'"],
+	["operator", ">"],
+	["string", "'a'"],
+	["rule-keyword", "return"]
+]
