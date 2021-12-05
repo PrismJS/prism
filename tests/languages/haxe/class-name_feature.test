@@ -1,0 +1,258 @@
+class Main {}
+
+typedef Player = { name: String, move: Move }
+
+enum Move { Rock; Paper; Scissors; }
+
+abstract MyAbstractInt(Int) from Int to Int {
+  @:op(A > B) static function gt(a:MyAbstractInt, b:MyAbstractInt):Bool;
+}
+
+new A();
+
+var b:B = a;
+
+class Game {
+  // Haxe applications have a static entry point called main
+  static function main() {
+    // Anonymous structures.
+    var playerA = { name: "Simon", move: Paper }
+    var playerB = { name: "Nicolas", move: Rock }
+
+    // Array pattern matching. A switch can return a value.
+    var result = switch [playerA.move, playerB.move] {
+      case [Rock, Scissors] |
+           [Paper, Rock] |
+           [Scissors, Paper]: Winner(playerA);
+
+      case [Rock, Paper] |
+           [Paper, Scissors] |
+           [Scissors, Rock]: Winner(playerB);
+
+      case _: Draw;
+    }
+    // Paper vs Rock, who wins?
+    trace('result: $result');
+  }
+}
+
+----------------------------------------------------
+
+[
+	["keyword", "class"],
+	["class-name", "Main"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "typedef"],
+	["class-name", "Player"],
+	["operator", "="],
+	["punctuation", "{"],
+	" name",
+	["operator", ":"],
+	["class-name", "String"],
+	["punctuation", ","],
+	" move",
+	["operator", ":"],
+	["class-name", "Move"],
+	["punctuation", "}"],
+
+	["keyword", "enum"],
+	["class-name", "Move"],
+	["punctuation", "{"],
+	["class-name", "Rock"],
+	["punctuation", ";"],
+	["class-name", "Paper"],
+	["punctuation", ";"],
+	["class-name", "Scissors"],
+	["punctuation", ";"],
+	["punctuation", "}"],
+
+	["keyword", "abstract"],
+	["class-name", "MyAbstractInt"],
+	["punctuation", "("],
+	["class-name", "Int"],
+	["punctuation", ")"],
+	["keyword", "from"],
+	["class-name", "Int"],
+	["keyword", "to"],
+	["class-name", "Int"],
+	["punctuation", "{"],
+
+	["metadata", "@:op"],
+	["punctuation", "("],
+	["class-name", "A"],
+	["operator", ">"],
+	["class-name", "B"],
+	["punctuation", ")"],
+	["keyword", "static"],
+	["keyword", "function"],
+	["function", "gt"],
+	["punctuation", "("],
+	"a",
+	["operator", ":"],
+	["class-name", "MyAbstractInt"],
+	["punctuation", ","],
+	" b",
+	["operator", ":"],
+	["class-name", "MyAbstractInt"],
+	["punctuation", ")"],
+	["operator", ":"],
+	["class-name", "Bool"],
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+
+	["keyword", "new"],
+	["class-name", "A"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "var"],
+	" b",
+	["operator", ":"],
+	["class-name", "B"],
+	["operator", "="],
+	" a",
+	["punctuation", ";"],
+
+	["keyword", "class"],
+	["class-name", "Game"],
+	["punctuation", "{"],
+
+	["comment", "// Haxe applications have a static entry point called main"],
+
+	["keyword", "static"],
+	["keyword", "function"],
+	["function", "main"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+
+	["comment", "// Anonymous structures."],
+
+	["keyword", "var"],
+	" playerA ",
+	["operator", "="],
+	["punctuation", "{"],
+	" name",
+	["operator", ":"],
+	["string", "\"Simon\""],
+	["punctuation", ","],
+	" move",
+	["operator", ":"],
+	["class-name", "Paper"],
+	["punctuation", "}"],
+
+	["keyword", "var"],
+	" playerB ",
+	["operator", "="],
+	["punctuation", "{"],
+	" name",
+	["operator", ":"],
+	["string", "\"Nicolas\""],
+	["punctuation", ","],
+	" move",
+	["operator", ":"],
+	["class-name", "Rock"],
+	["punctuation", "}"],
+
+	["comment", "// Array pattern matching. A switch can return a value."],
+
+	["keyword", "var"],
+	" result ",
+	["operator", "="],
+	["keyword", "switch"],
+	["punctuation", "["],
+	"playerA",
+	["punctuation", "."],
+	"move",
+	["punctuation", ","],
+	" playerB",
+	["punctuation", "."],
+	"move",
+	["punctuation", "]"],
+	["punctuation", "{"],
+
+	["keyword", "case"],
+	["punctuation", "["],
+	["class-name", "Rock"],
+	["punctuation", ","],
+	["class-name", "Scissors"],
+	["punctuation", "]"],
+	["operator", "|"],
+
+	["punctuation", "["],
+	["class-name", "Paper"],
+	["punctuation", ","],
+	["class-name", "Rock"],
+	["punctuation", "]"],
+	["operator", "|"],
+
+	["punctuation", "["],
+	["class-name", "Scissors"],
+	["punctuation", ","],
+	["class-name", "Paper"],
+	["punctuation", "]"],
+	["operator", ":"],
+	["class-name", "Winner"],
+	["punctuation", "("],
+	"playerA",
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "case"],
+	["punctuation", "["],
+	["class-name", "Rock"],
+	["punctuation", ","],
+	["class-name", "Paper"],
+	["punctuation", "]"],
+	["operator", "|"],
+
+	["punctuation", "["],
+	["class-name", "Paper"],
+	["punctuation", ","],
+	["class-name", "Scissors"],
+	["punctuation", "]"],
+	["operator", "|"],
+
+	["punctuation", "["],
+	["class-name", "Scissors"],
+	["punctuation", ","],
+	["class-name", "Rock"],
+	["punctuation", "]"],
+	["operator", ":"],
+	["class-name", "Winner"],
+	["punctuation", "("],
+	"playerB",
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "case"],
+	" _",
+	["operator", ":"],
+	["class-name", "Draw"],
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+
+	["comment", "// Paper vs Rock, who wins?"],
+
+	["function", "trace"],
+	["punctuation", "("],
+	["string-interpolation", [
+		["string", "'result: "],
+		["interpolation", [
+			["interpolation-punctuation", "$"],
+			["expression", ["result"]]
+		]],
+		["string", "'"]
+	]],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+
+	["punctuation", "}"]
+]

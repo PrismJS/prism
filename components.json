@@ -540,6 +540,7 @@
 		"haxe": {
 			"title": "Haxe",
 			"require": "clike",
+			"optional": "regex",
 			"owner": "Golmote"
 		},
 		"hcl": {

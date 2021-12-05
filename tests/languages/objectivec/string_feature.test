@@ -3,11 +3,6 @@
 "foo\
 bar"
 
-''
-'fo\'o'
-'foo\
-bar'
-
 @""
 @"fo\"o"
 @"foo\
@@ -19,10 +14,6 @@ bar"
 	["string", "\"\""],
 	["string", "\"fo\\\"o\""],
 	["string", "\"foo\\\r\nbar\""],
-
-	["string", "''"],
-	["string", "'fo\\'o'"],
-	["string", "'foo\\\r\nbar'"],
 
 	["string", "@\"\""],
 	["string", "@\"fo\\\"o\""],

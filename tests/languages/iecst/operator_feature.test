@@ -1,0 +1,54 @@
+= <> < <= > >=
++ - * / ** ^ & &&
+
+: :=
+#
+
+AND
+EQ
+EXPT
+GE
+GT
+LE
+LT
+MOD
+NE
+NOT
+OR
+XOR
+
+----------------------------------------------------
+
+[
+	["operator", "="],
+	["operator", "<>"],
+	["operator", "<"],
+	["operator", "<="],
+	["operator", ">"],
+	["operator", ">="],
+
+	["operator", "+"],
+	["operator", "-"],
+	["operator", "*"],
+	["operator", "/"],
+	["operator", "**"],
+	["operator", "^"],
+	["operator", "&"],
+	["operator", "&&"],
+
+	["operator", ":"], ["operator", ":="],
+	["operator", "#"],
+
+	["operator", "AND"],
+	["operator", "EQ"],
+	["operator", "EXPT"],
+	["operator", "GE"],
+	["operator", "GT"],
+	["operator", "LE"],
+	["operator", "LT"],
+	["operator", "MOD"],
+	["operator", "NE"],
+	["operator", "NOT"],
+	["operator", "OR"],
+	["operator", "XOR"]
+]
