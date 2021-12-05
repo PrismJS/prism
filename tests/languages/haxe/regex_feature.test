@@ -5,9 +5,24 @@
 ----------------------------------------------------
 
 [
-	["regex", "~/ha\\/xe/i"],
-	["regex", "~/[A-Z0-9._%-]+@[A-Z0-9.-]+.[A-Z][A-Z][A-Z]?/i"],
-	["regex", "~/(dog|fox)/igmsu"]
+	["regex", [
+		["regex-delimiter", "~/"],
+		["regex-source", "ha\\/xe"],
+		["regex-delimiter", "/"],
+		["regex-flags", "i"]
+	]],
+	["regex", [
+		["regex-delimiter", "~/"],
+		["regex-source", "[A-Z0-9._%-]+@[A-Z0-9.-]+.[A-Z][A-Z][A-Z]?"],
+		["regex-delimiter", "/"],
+		["regex-flags", "i"]
+	]],
+	["regex", [
+		["regex-delimiter", "~/"],
+		["regex-source", "(dog|fox)"],
+		["regex-delimiter", "/"],
+		["regex-flags", "igmsu"]
+	]]
 ]
 
 ----------------------------------------------------
