@@ -4,7 +4,7 @@
 < <= > >= -> <<
 = ==
 &&
-? * / % ; : | @
+? * / % | @
 
 ----------------------------------------------------
 
@@ -12,28 +12,32 @@
 	["operator", "+"],
 	["operator", "++"],
 	["operator", "+="],
+
 	["operator", "-"],
 	["operator", "--"],
 	["operator", "-="],
+
 	["operator", "!"],
 	["operator", "!="],
+
 	["operator", "<"],
 	["operator", "<="],
 	["operator", ">"],
 	["operator", ">="],
 	["operator", "->"],
 	["operator", "<<"],
+
 	["operator", "="],
 	["operator", "=="],
+
 	["operator", "&&"],
+
 	["operator", "?"],
 	["operator", "*"],
 	["operator", "/"],
 	["operator", "%"],
-	["symbol", ";"],
-	["operator", ":"],
-	["symbol", "|"],
-	["symbol", "@"]
+	["operator", "|"],
+	["operator", "@"]
 ]
 
 ----------------------------------------------------

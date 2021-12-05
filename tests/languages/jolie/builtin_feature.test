@@ -1,27 +1,35 @@
-undefined
-string
-int
-void
-long
 Byte
-bool
-double
-float
-char
 any
+bool
+char
+double
+enum
+float
+int
+length
+long
+ranges
+regex
+string
+undefined
+void
 
 ----------------------------------------------------
 
 [
-	["builtin", "undefined"],
-	["builtin", "string"],
-	["builtin", "int"],
-	["builtin", "void"],
-	["builtin", "long"],
 	["builtin", "Byte"],
+	["builtin", "any"],
 	["builtin", "bool"],
-	["builtin", "double"],
-	["builtin", "float"],
 	["builtin", "char"],
-	["builtin", "any"]
+	["builtin", "double"],
+	["builtin", "enum"],
+	["builtin", "float"],
+	["builtin", "int"],
+	["builtin", "length"],
+	["builtin", "long"],
+	["builtin", "ranges"],
+	["builtin", "regex"],
+	["builtin", "string"],
+	["builtin", "undefined"],
+	["builtin", "void"]
 ]

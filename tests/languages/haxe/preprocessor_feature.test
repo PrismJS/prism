@@ -3,13 +3,67 @@
 #else
 #end
 
+class Main {
+  public static function main() {
+    #if !debug
+    trace("ok");
+    #elseif (debug_level > 3)
+    trace(3);
+    #else
+    trace("debug level too low");
+    #end
+  }
+}
+
 ----------------------------------------------------
 
 [
 	["preprocessor", "#if"],
 	["preprocessor", "#elseif"],
 	["preprocessor", "#else"],
-	["preprocessor", "#end"]
+	["preprocessor", "#end"],
+
+	["keyword", "class"],
+	["class-name", "Main"],
+	["punctuation", "{"],
+
+	["keyword", "public"],
+	["keyword", "static"],
+	["keyword", "function"],
+	["function", "main"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+
+	["preprocessor", "#if !debug"],
+
+	["function", "trace"],
+	["punctuation", "("],
+	["string", "\"ok\""],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["preprocessor", "#elseif (debug_level > 3)"],
+
+	["function", "trace"],
+	["punctuation", "("],
+	["number", "3"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["preprocessor", "#else"],
+
+	["function", "trace"],
+	["punctuation", "("],
+	["string", "\"debug level too low\""],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["preprocessor", "#end"],
+
+	["punctuation", "}"],
+
+	["punctuation", "}"]
 ]
 
 ----------------------------------------------------

@@ -26,9 +26,9 @@ Prism.languages.javastacktrace = {
 				pattern: /^(:?\s*)[\w$.]+(?=:|$)/,
 				lookbehind: true,
 				inside: {
-					'class-name': /[\w$]+(?=$|:)/,
+					'class-name': /[\w$]+$/,
 					'namespace': /\b[a-z]\w*\b/,
-					'punctuation': /[.:]/
+					'punctuation': /\./
 				}
 			},
 			'message': {
