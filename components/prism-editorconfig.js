@@ -1,5 +1,5 @@
 Prism.languages.editorconfig = {
-	// https://editorconfig-specification.readthedocs.io/en/latest/
+	// https://editorconfig-specification.readthedocs.io
 	'comment': /[;#].*/,
 	'section': {
 		pattern: /(^[ \t]*)\[.+\]/m,
