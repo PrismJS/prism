@@ -1,0 +1,37 @@
+foo()
+foo  ()
+function identity<T>(arg:T):T {
+	return arg;
+}
+
+----------------------------------------------------
+
+[
+	["function", "foo"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["function", "foo"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["keyword", "function"],
+	["function", "identity"],
+	["operator", "<"],
+	["class-name", "T"],
+	["operator", ">"],
+	["punctuation", "("],
+	"arg",
+	["operator", ":"],
+	["class-name", "T"],
+	["punctuation", ")"],
+	["operator", ":"],
+	["class-name", "T"],
+	["punctuation", "{"],
+
+	["keyword", "return"],
+	" arg",
+	["punctuation", ";"],
+
+	["punctuation", "}"]
+]

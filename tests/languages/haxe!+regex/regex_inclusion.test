@@ -1,0 +1,99 @@
+~/ha\/xe/i
+~/[A-Z0-9._%-]+@[A-Z0-9.-]+.[A-Z][A-Z][A-Z]?/i
+~/(dog|fox)/igmsu
+
+----------------------------------------------------
+
+[
+	["regex", [
+		["regex-delimiter", "~/"],
+		["regex-source", [
+			"ha",
+			["escape", "\\/"],
+			"xe"
+		]],
+		["regex-delimiter", "/"],
+		["regex-flags", "i"]
+	]],
+	["regex", [
+		["regex-delimiter", "~/"],
+		["regex-source", [
+			["char-class", [
+				["char-class-punctuation", "["],
+				["range", [
+					"A",
+					["range-punctuation", "-"],
+					"Z"
+				]],
+				["range", [
+					"0",
+					["range-punctuation", "-"],
+					"9"
+				]],
+				"._%-",
+				["char-class-punctuation", "]"]
+			]],
+			["quantifier", "+"],
+			"@",
+			["char-class", [
+				["char-class-punctuation", "["],
+				["range", [
+					"A",
+					["range-punctuation", "-"],
+					"Z"
+				]],
+				["range", [
+					"0",
+					["range-punctuation", "-"],
+					"9"
+				]],
+				".-",
+				["char-class-punctuation", "]"]
+			]],
+			["quantifier", "+"],
+			["char-set", "."],
+			["char-class", [
+				["char-class-punctuation", "["],
+				["range", [
+					"A",
+					["range-punctuation", "-"],
+					"Z"
+				]],
+				["char-class-punctuation", "]"]
+			]],
+			["char-class", [
+				["char-class-punctuation", "["],
+				["range", [
+					"A",
+					["range-punctuation", "-"],
+					"Z"
+				]],
+				["char-class-punctuation", "]"]
+			]],
+			["char-class", [
+				["char-class-punctuation", "["],
+				["range", [
+					"A",
+					["range-punctuation", "-"],
+					"Z"
+				]],
+				["char-class-punctuation", "]"]
+			]],
+			["quantifier", "?"]
+		]],
+		["regex-delimiter", "/"],
+		["regex-flags", "i"]
+	]],
+	["regex", [
+		["regex-delimiter", "~/"],
+		["regex-source", [
+			["group", ["("]],
+			"dog",
+			["alternation", "|"],
+			"fox",
+			["group", ")"]
+		]],
+		["regex-delimiter", "/"],
+		["regex-flags", "igmsu"]
+	]]
+]

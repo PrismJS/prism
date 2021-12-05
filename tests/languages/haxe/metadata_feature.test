@@ -5,8 +5,13 @@
 ----------------------------------------------------
 
 [
-	["metadata", "@author"], ["punctuation", "("], ["string", ["\"Nicolas\""]], ["punctuation", ")"],
+	["metadata", "@author"],
+	["punctuation", "("],
+	["string", "\"Nicolas\""],
+	["punctuation", ")"],
+
 	["metadata", "@debug"],
+
 	["metadata", "@:noCompletion"]
 ]
 
