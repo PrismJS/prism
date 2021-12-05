@@ -11,13 +11,14 @@ Prism.languages.editorconfig = {
 			'punctuation': /[\[\]{},]/
 		}
 	},
-	'property': {
+	'key': {
 		pattern: /(^[ \t]*)[^\s=]+(?=[ \t]*=)/m,
-		lookbehind: true
+		lookbehind: true,
+		alias: 'attr-name'
 	},
 	'value': {
 		pattern: /=.*/,
-		alias: 'string',
+		alias: 'attr-value',
 		inside: {
 			'punctuation': /^=/
 		}
