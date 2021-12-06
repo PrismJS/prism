@@ -2,15 +2,17 @@ Prism.languages.fsharp = Prism.languages.extend('clike', {
 	'comment': [
 		{
 			pattern: /(^|[^\\])\(\*(?!\))[\s\S]*?\*\)/,
-			lookbehind: true
+			lookbehind: true,
+			greedy: true
 		},
 		{
 			pattern: /(^|[^\\:])\/\/.*/,
-			lookbehind: true
+			lookbehind: true,
+			greedy: true
 		}
 	],
 	'string': {
-		pattern: /(?:"""[\s\S]*?"""|@"(?:""|[^"])*"|"(?:\\[\s\S]|[^\\"])*")B?|'(?:[^\\']|\\(?:.|\d{3}|x[a-fA-F\d]{2}|u[a-fA-F\d]{4}|U[a-fA-F\d]{8}))'B?/,
+		pattern: /(?:"""[\s\S]*?"""|@"(?:""|[^"])*"|"(?:\\[\s\S]|[^\\"])*")B?/,
 		greedy: true
 	},
 	'class-name': {
@@ -53,6 +55,7 @@ Prism.languages.insertBefore('fsharp', 'punctuation', {
 Prism.languages.insertBefore('fsharp', 'string', {
 	'annotation': {
 		pattern: /\[<.+?>\]/,
+		greedy: true,
 		inside: {
 			'punctuation': /^\[<|>\]$/,
 			'class-name': {
@@ -64,5 +67,9 @@ Prism.languages.insertBefore('fsharp', 'string', {
 				inside: Prism.languages.fsharp
 			}
 		}
+	},
+	'char': {
+		pattern: /'(?:[^\\']|\\(?:.|\d{3}|x[a-fA-F\d]{2}|u[a-fA-F\d]{4}|U[a-fA-F\d]{8}))'B?/,
+		greedy: true
 	}
 });
