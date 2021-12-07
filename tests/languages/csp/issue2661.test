@@ -3,7 +3,10 @@ default-src-is-a-fake; fake-default-src;
 ----------------------------------------------------
 
 [
-	"default-src-is-a-fake; fake-default-src;"
+	"default-src-is-a-fake",
+	["punctuation", ";"],
+	" fake-default-src",
+	["punctuation", ";"]
 ]
 
 ----------------------------------------------------

@@ -1,0 +1,46 @@
+default-src trusted.com *.trusted.com;
+img-src *;
+media-src media1.com media2.com;
+script-src userscripts.example.com;
+frame-ancestors https://alice https://bob;
+frame-ancestors https://example.com/;
+
+sandbox allow-scripts;
+
+----------------------------------------------------
+
+[
+	["directive", "default-src"],
+	["host", ["trusted.com"]],
+	["host", [
+		["important", "*"],
+		".trusted.com"
+	]],
+	["punctuation", ";"],
+
+	["directive", "img-src"],
+	["host", [
+		["important", "*"]
+	]],
+	["punctuation", ";"],
+
+	["directive", "media-src"],
+	["host", ["media1.com"]],
+	["host", ["media2.com"]],
+	["punctuation", ";"],
+
+	["directive", "script-src"],
+	["host", ["userscripts.example.com"]],
+	["punctuation", ";"],
+
+	["directive", "frame-ancestors"],
+	["host", ["https://alice"]],
+	["host", ["https://bob"]],
+	["punctuation", ";"],
+
+	["directive", "frame-ancestors"],
+	["host", ["https://example.com/"]],
+	["punctuation", ";"],
+
+	["directive", "sandbox"], " allow-scripts", ["punctuation", ";"]
+]
