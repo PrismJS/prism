@@ -15,100 +15,62 @@ line}
 
 [
 	["latte", [
-		["ld", [
-			["punctuation", "{"],
-			["tag", "aa"]
-		]],
-		["rd", [
-			["punctuation", "}"]
-		]]
+		["delimiter", "{"],
+		["latte-tag", "aa"],
+		["delimiter", "}"]
 	]],
 
 	["latte", [
-		["ld", [
-			["punctuation", "{/"],
-			["tag", "aa"]
-		]],
-		["rd", [
-			["punctuation", "}"]
-		]]
+		["delimiter", "{/"],
+		["latte-tag", "aa"],
+		["delimiter", "}"]
 	]],
 
 	["latte", [
-		["ld", [
-			["punctuation", "{"]
-		]],
-		["php", [
-			["operator", "/"]
-		]],
-		["rd", [
-			["punctuation", "}"]
-		]]
+		["delimiter", "{/"],
+		["delimiter", "}"]
 	]],
 
 	"\r\n{",
 	["latte", [
-		["ld", [
-			["punctuation", "{"],
-			["tag", "aa"]
-		]],
-		["rd", [
-			["punctuation", "}"]
-		]]
+		["delimiter", "{"],
+		["latte-tag", "aa"],
+		["delimiter", "}"]
 	]],
 	"}\r\n",
 
 	["latte", [
-		["ld", [
-			["punctuation", "{"]
-		]],
+		["delimiter", "{"],
 		["php", [
 			["number", "10"]
 		]],
-		["rd", [
-			["punctuation", "}"]
-		]]
+		["delimiter", "}"]
 	]],
 
 	["latte", [
-		["ld", [
-			["punctuation", "{"],
-			["tag", "="]
-		]],
+		["delimiter", "{"],
+		["latte-tag", "="],
 		["php", [
 			["number", "10"]
 		]],
-		["rd", [
-			["punctuation", "}"]
-		]]
+		["delimiter", "}"]
 	]],
 
 	["latte", [
-		["ld", [
-			["punctuation", "{"]
-		]],
+		["delimiter", "{"],
 		["php", [
 			["function", ["test"]],
 			["punctuation", "("],
 			["punctuation", ")"]
 		]],
-		["rd", [
-			["punctuation", "}"]
-		]]
+		["delimiter", "}"]
 	]],
 
 	"\r\n{'no'}\r\n{\"no\"}\r\n{ no }\r\n",
 
 	["latte", [
-		["ld", [
-			["punctuation", "{"],
-			["tag", "multi"]
-		]],
-
-		["php", ["line"]],
-		["rd", [
-			["punctuation", "}"]
-		]]
+		["delimiter", "{"], ["latte-tag", "multi"],
+		["php", ["line"]], ["delimiter", "}"]
 	]]
 ]
 

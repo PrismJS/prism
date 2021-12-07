@@ -5,12 +5,12 @@
 
 [
 	["filter-atpl", [
-	    ["filter-name", ":atpl"],
-	    ["tag", [
-		    ["ld", [["punctuation", "{{"]]],
-		    ["number", "42"],
-		    ["rd", [["punctuation", "}}"]]]
-	    ]]
+		["filter-name", ":atpl"],
+
+		["punctuation", "{"],
+		["punctuation", "{"],
+		["number", "42"],
+		["delimiter", "}}"]
 	]]
 ]
 

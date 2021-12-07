@@ -83,7 +83,7 @@ if (a<6&&b>6){}
 	["punctuation", "("],
 	["number", "12.2585"],
 	["punctuation", ","],
-	["string", "'C'"],
+	["char", "'C'"],
 	["punctuation", ")"],
 	["punctuation", ";"],
 

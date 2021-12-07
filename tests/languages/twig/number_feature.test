@@ -8,35 +8,35 @@
 ----------------------------------------------------
 
 [
-	["tag", [
-		["ld", [["punctuation", "{{"]]],
+	["twig", [
+		["delimiter", "{{"],
 		["number", "0xBadFace"],
-		["rd", [["punctuation", "}}"]]]
+		["delimiter", "}}"]
 	]],
-	["tag", [
-		["ld", [["punctuation", "{{"]]],
+	["twig", [
+		["delimiter", "{{"],
 		["number", "42"],
-		["rd", [["punctuation", "}}"]]]
+		["delimiter", "}}"]
 	]],
-	["tag", [
-		["ld", [["punctuation", "{{"]]],
+	["twig", [
+		["delimiter", "{{"],
 		["number", "3.14159"],
-		["rd", [["punctuation", "}}"]]]
+		["delimiter", "}}"]
 	]],
-	["tag", [
-		["ld", [["punctuation", "{{"]]],
+	["twig", [
+		["delimiter", "{{"],
 		["number", "3e15"],
-		["rd", [["punctuation", "}}"]]]
+		["delimiter", "}}"]
 	]],
-	["tag", [
-		["ld", [["punctuation", "{{"]]],
+	["twig", [
+		["delimiter", "{{"],
 		["number", "4.5E-4"],
-		["rd", [["punctuation", "}}"]]]
+		["delimiter", "}}"]
 	]],
-	["tag", [
-		["ld", [["punctuation", "{{"]]],
+	["twig", [
+		["delimiter", "{{"],
 		["number", "0.2e+8"],
-		["rd", [["punctuation", "}}"]]]
+		["delimiter", "}}"]
 	]]
 ]
 

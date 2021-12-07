@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Webpage</title>
+    </head>
+    <body>
+        <ul id="navigation">
+        {% for item in navigation %}
+            <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
+        {% endfor %}
+        </ul>
+
+        <h1>My Webpage</h1>
+        {{ a_variable }}
+    </body>
+</html>
+
+----------------------------------------------------
+
+[
+	["doctype", [
+		["punctuation", "<!"],
+		["doctype-tag", "DOCTYPE"],
+		["name", "html"],
+		["punctuation", ">"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"html"
+		]],
+		["punctuation", ">"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"head"
+		]],
+		["punctuation", ">"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"title"
+		]],
+		["punctuation", ">"]
+	]],
+	"My Webpage",
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"title"
+		]],
+		["punctuation", ">"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"head"
+		]],
+		["punctuation", ">"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"body"
+		]],
+		["punctuation", ">"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"ul"
+		]],
+		["attr-name", ["id"]],
+		["attr-value", [
+			["punctuation", "="],
+			["punctuation", "\""],
+			"navigation",
+			["punctuation", "\""]
+		]],
+		["punctuation", ">"]
+	]],
+
+	["twig", [
+		["delimiter", "{%"],
+		["tag-name", "for"],
+		" item ",
+		["operator", "in"],
+		" navigation ",
+		["delimiter", "%}"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"li"
+		]],
+		["punctuation", ">"]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"a"
+		]],
+		["attr-name", ["href"]],
+		["attr-value", [
+			["punctuation", "="],
+			["punctuation", "\""],
+			["twig", [
+				["delimiter", "{{"],
+				" item",
+				["punctuation", "."],
+				"href ",
+				["delimiter", "}}"]
+			]],
+			["punctuation", "\""]
+		]],
+		["punctuation", ">"]
+	]],
+	["twig", [
+		["delimiter", "{{"],
+		" item",
+		["punctuation", "."],
+		"caption ",
+		["delimiter", "}}"]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"a"
+		]],
+		["punctuation", ">"]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"li"
+		]],
+		["punctuation", ">"]
+	]],
+
+	["twig", [
+		["delimiter", "{%"],
+		["tag-name", "endfor"],
+		["delimiter", "%}"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"ul"
+		]],
+		["punctuation", ">"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"h1"
+		]],
+		["punctuation", ">"]
+	]],
+	"My Webpage",
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"h1"
+		]],
+		["punctuation", ">"]
+	]],
+
+	["twig", [
+		["delimiter", "{{"],
+		" a_variable ",
+		["delimiter", "}}"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"body"
+		]],
+		["punctuation", ">"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"html"
+		]],
+		["punctuation", ">"]
+	]]
+]

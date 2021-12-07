@@ -6,45 +6,60 @@
 ----------------------------------------------------
 
 [
-	["tag", [
-		["ld", [["punctuation", "{%"], ["keyword", "for"]]],
-		["property", "foo"],
-		["operator", "in"], ["property", "bar"],
-		["keyword", "if"], ["property", "baz"],
-		["rd", [["punctuation", "%}"]]]
+	["twig", [
+		["delimiter", "{%"],
+		["tag-name", "for"],
+		" foo ",
+		["operator", "in"],
+		" bar ",
+		["keyword", "if"],
+		" baz ",
+		["delimiter", "%}"]
 	]],
-	["tag", [
-		["ld", [["punctuation", "{%"], ["keyword", "endfor"]]],
-		["rd", [["punctuation", "%}"]]]
+	["twig", [
+		["delimiter", "{%"],
+		["tag-name", "endfor"],
+		["delimiter", "%}"]
 	]],
-	["tag", [
-		["ld", [["punctuation", "{%-"], ["keyword", "if"]]],
-		["property", "foo"], ["punctuation", "("], ["punctuation", ")"],
-		["rd", [["punctuation", "-%}"]]]
+
+	["twig", [
+		["delimiter", "{%-"],
+		["tag-name", "if"],
+		" foo",
+		["punctuation", "("],
+		["punctuation", ")"],
+		["delimiter", "-%}"]
 	]],
-	["tag", [
-		["ld", [["punctuation", "{%-"], ["keyword", "endif"]]],
-		["rd", [["punctuation", "-%}"]]]
+	["twig", [
+		["delimiter", "{%-"],
+		["tag-name", "endif"],
+		["delimiter", "-%}"]
 	]],
-	["tag", [
-		["ld", [["punctuation", "{%"], ["keyword", "macro"]]],
-		["property", "foobar"], ["punctuation", "("], ["punctuation", ")"],
-		["rd", [["punctuation", "%}"]]]
+
+	["twig", [
+		["delimiter", "{%"],
+		["tag-name", "macro"],
+		" foobar",
+		["punctuation", "("],
+		["punctuation", ")"],
+		["delimiter", "%}"]
 	]],
-	["tag", [
-		["ld", [["punctuation", "{%"], ["keyword", "endmacro"]]],
-		["rd", [["punctuation", "%}"]]]
+	["twig", [
+		["delimiter", "{%"],
+		["tag-name", "endmacro"],
+		["delimiter", "%}"]
 	]],
-	["tag", [
-		["ld", [["punctuation", "{{"]]],
-		["property", "foo"],
+
+	["twig", [
+		["delimiter", "{{"],
+		" foo ",
 		["operator", "is"],
 		["keyword", "even"],
 		["operator", "or"],
-		["property", "bar"],
+		" bar ",
 		["operator", "is"],
 		["keyword", "odd"],
-		["rd", [["punctuation", "}}"]]]
+		["delimiter", "}}"]
 	]]
 ]
 

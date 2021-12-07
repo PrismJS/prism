@@ -1,0 +1,125 @@
+module golang.org/x/net
+
+go 1.14
+
+require golang.org/x/net v1.2.3
+
+require (
+    golang.org/x/crypto v1.4.5 // indirect
+    golang.org/x/text v1.6.7
+)
+
+exclude golang.org/x/net v1.2.3
+
+exclude (
+    golang.org/x/crypto v1.4.5
+    golang.org/x/text v1.6.7
+)
+
+replace golang.org/x/net v1.2.3 => example.com/fork/net v1.4.5
+
+replace (
+    golang.org/x/net v1.2.3 => example.com/fork/net v1.4.5
+    golang.org/x/net => example.com/fork/net v1.4.5
+    golang.org/x/net v1.2.3 => ./fork/net
+    golang.org/x/net => ./fork/net
+)
+
+retract (
+    v1.0.0 // Published accidentally.
+    v1.0.1 // Contains retractions only.
+)
+
+retract v1.0.0
+retract [v1.0.0, v1.9.9]
+retract (
+    v1.0.0
+    [v1.0.0, v1.9.9]
+)
+
+----------------------------------------------------
+
+[
+	["keyword", "module"], " golang.org/x/net\r\n\r\n",
+
+	["keyword", "go"], ["go-version", "1.14"],
+
+	["keyword", "require"], " golang.org/x/net ", ["version", "v1.2.3"],
+
+	["keyword", "require"],
+	["punctuation", "("],
+
+	"\r\n    golang.org/x/crypto ",
+	["version", "v1.4.5"],
+	["comment", "// indirect"],
+
+	"\r\n    golang.org/x/text ",
+	["version", "v1.6.7"],
+
+	["punctuation", ")"],
+
+	["keyword", "exclude"], " golang.org/x/net ", ["version", "v1.2.3"],
+
+	["keyword", "exclude"], ["punctuation", "("],
+	"\r\n    golang.org/x/crypto ", ["version", "v1.4.5"],
+	"\r\n    golang.org/x/text ", ["version", "v1.6.7"],
+	["punctuation", ")"],
+
+	["keyword", "replace"],
+	" golang.org/x/net ",
+	["version", "v1.2.3"],
+	["operator", "=>"],
+	" example.com/fork/net ",
+	["version", "v1.4.5"],
+
+	["keyword", "replace"],
+	["punctuation", "("],
+
+	"\r\n    golang.org/x/net ",
+	["version", "v1.2.3"],
+	["operator", "=>"],
+	" example.com/fork/net ",
+	["version", "v1.4.5"],
+
+	"\r\n    golang.org/x/net ",
+	["operator", "=>"],
+	" example.com/fork/net ",
+	["version", "v1.4.5"],
+
+	"\r\n    golang.org/x/net ",
+	["version", "v1.2.3"],
+	["operator", "=>"],
+	" ./fork/net\r\n    golang.org/x/net ",
+	["operator", "=>"],
+	" ./fork/net\r\n",
+
+	["punctuation", ")"],
+
+	["keyword", "retract"], ["punctuation", "("],
+	["version", "v1.0.0"], ["comment", "// Published accidentally."],
+	["version", "v1.0.1"], ["comment", "// Contains retractions only."],
+	["punctuation", ")"],
+
+	["keyword", "retract"],
+	["version", "v1.0.0"],
+
+	["keyword", "retract"],
+	["punctuation", "["],
+	["version", "v1.0.0"],
+	["punctuation", ","],
+	["version", "v1.9.9"],
+	["punctuation", "]"],
+
+	["keyword", "retract"],
+	["punctuation", "("],
+
+	["version", "v1.0.0"],
+
+	["punctuation", "["],
+	["version", "v1.0.0"],
+	["punctuation", ","],
+	["version", "v1.9.9"],
+	["punctuation", "]"],
+
+	["punctuation", ")"]
+]

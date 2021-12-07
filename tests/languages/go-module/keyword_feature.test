@@ -1,0 +1,17 @@
+exclude
+go
+module
+replace
+require
+retract
+
+----------------------------------------------------
+
+[
+	["keyword", "exclude"],
+	["keyword", "go"],
+	["keyword", "module"],
+	["keyword", "replace"],
+	["keyword", "require"],
+	["keyword", "retract"]
+]
