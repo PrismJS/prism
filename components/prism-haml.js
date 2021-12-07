@@ -36,7 +36,7 @@
 			inside: {
 				'filter-name': {
 					pattern: /^:[\w-]+/,
-					alias: 'variable'
+					alias: 'symbol'
 				}
 			}
 		},
@@ -132,7 +132,7 @@
 				inside: {
 					'filter-name': {
 						pattern: /^:[\w-]+/,
-						alias: 'variable'
+						alias: 'symbol'
 					},
 					'text': {
 						pattern: /[\s\S]+/,

@@ -97,11 +97,6 @@
 				pattern: re(/(^|[^@$\\])<<0>>/.source, [regularString]),
 				lookbehind: true,
 				greedy: true
-			},
-			{
-				pattern: RegExp(character),
-				greedy: true,
-				alias: 'character'
 			}
 		],
 		'class-name': [
@@ -359,7 +354,11 @@
 				greedy: true,
 				inside: createInterpolationInside(sInterpolation, sInterpolationRound),
 			}
-		]
+		],
+		'char': {
+			pattern: RegExp(character),
+			greedy: true
+		}
 	});
 
 	Prism.languages.dotnet = Prism.languages.cs = Prism.languages.csharp;

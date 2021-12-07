@@ -7,10 +7,6 @@
 @"foo
 bar"
 
-'a'
-'\''
-'\\'
-
 ----------------------------------------------------
 
 [
@@ -20,13 +16,9 @@ bar"
 	["string", "@\"\""],
 	["string", "@\"foo\""],
 	["string", "@\"fo\"\"o\""],
-	["string", "@\"foo\r\nbar\""],
-	["string", "'a'"],
-	["string", "'\\''"],
-	["string", "'\\\\'"]
+	["string", "@\"foo\r\nbar\""]
 ]
 
 ----------------------------------------------------
 
 Checks for normal and verbatim strings.
-Also checks for single quoted characters.

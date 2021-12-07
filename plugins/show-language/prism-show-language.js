@@ -98,6 +98,8 @@
 		"glsl": "GLSL",
 		"gn": "GN",
 		"gni": "GN",
+		"go-module": "Go module",
+		"go-mod": "Go module",
 		"graphql": "GraphQL",
 		"hbs": "Handlebars",
 		"hs": "Haskell",

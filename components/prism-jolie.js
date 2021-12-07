@@ -1,55 +1,41 @@
 Prism.languages.jolie = Prism.languages.extend('clike', {
 	'string': {
-		pattern: /(["'])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,
+		pattern: /(^|[^\\])"(?:\\[\s\S]|[^"\\])*"/,
+		lookbehind: true,
 		greedy: true
 	},
-	'keyword': /\b(?:Aggregates|Interfaces|Java|Javascript|Jolie|Location|OneWay|Protocol|Redirects|RequestResponse|cH|comp|concurrent|constants|courier|cset|csets|default|define|else|embedded|execution|exit|extender|for|foreach|forward|global|if|in|include|init|inputPort|install|instanceof|interface|is_defined|linkIn|linkOut|main|new|nullProcess|outputPort|over|provide|scope|sequential|service|single|spawn|synchronized|this|throw|throws|type|undef|until|while|with)\b/,
-	'number': /(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:e[+-]?\d+)?l?/i,
-	'operator': /-[-=>]?|\+[+=]?|<[<=]?|[>=*!]=?|&&|\|\||[:?\/%^]/,
-	'punctuation': /[,.]/,
-	'builtin': /\b(?:Byte|any|bool|char|double|float|int|long|string|undefined|void)\b/,
-	'symbol': /[|;@]/
-});
-
-delete Prism.languages.jolie['class-name'];
-
-Prism.languages.insertBefore('jolie', 'keyword', {
-	'function':
-	{
-		pattern: /((?:\b(?:courier|in|inputPort|outputPort|service)\b|@)\s*)\w+/,
+	'class-name': {
+		pattern: /((?:\b(?:as|courier|embed|in|inputPort|outputPort|service)\b|@)[ \t]*)\w+/,
 		lookbehind: true
 	},
+	'keyword': /\b(?:as|cH|comp|concurrent|constants|courier|cset|csets|default|define|else|embed|embedded|execution|exit|extender|for|foreach|forward|from|global|if|import|in|include|init|inputPort|install|instanceof|interface|is_defined|linkIn|linkOut|main|new|nullProcess|outputPort|over|private|provide|public|scope|sequential|service|single|spawn|synchronized|this|throw|throws|type|undef|until|while|with)\b/,
+	'function': /\b[a-z_]\w*(?=[ \t]*[@(])/i,
+	'number': /(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:e[+-]?\d+)?l?/i,
+	'operator': /-[-=>]?|\+[+=]?|<[<=]?|[>=*!]=?|&&|\|\||[?\/%^@|]/,
+	'punctuation': /[()[\]{},;.:]/,
+	'builtin': /\b(?:Byte|any|bool|char|double|enum|float|int|length|long|ranges|regex|string|undefined|void)\b/
+});
+
+Prism.languages.insertBefore('jolie', 'keyword', {
 	'aggregates': {
 		pattern: /(\bAggregates\s*:\s*)(?:\w+(?:\s+with\s+\w+)?\s*,\s*)*\w+(?:\s+with\s+\w+)?/,
 		lookbehind: true,
 		inside: {
-			'with-extension': {
-				pattern: /\bwith\s+\w+/,
-				inside: {
-					'keyword': /\bwith\b/
-				}
-			},
-			'function': {
-				pattern: /\w+/
-			},
-			'punctuation': {
-				pattern: /,/
-			}
+			'keyword': /\bwith\b/,
+			'class-name': /\w+/,
+			'punctuation': /,/
 		}
 	},
 	'redirects': {
 		pattern: /(\bRedirects\s*:\s*)(?:\w+\s*=>\s*\w+\s*,\s*)*(?:\w+\s*=>\s*\w+)/,
 		lookbehind: true,
 		inside: {
-			'punctuation': {
-				pattern: /,/
-			},
-			'function': {
-				pattern: /\w+/
-			},
-			'symbol': {
-				pattern: /=>/
-			}
+			'punctuation': /,/,
+			'class-name': /\w+/,
+			'operator': /=>/
 		}
+	},
+	'property': {
+		pattern: /\b(?:Aggregates|[Ii]nterfaces|Java|Javascript|Jolie|[Ll]ocation|OneWay|[Pp]rotocol|Redirects|RequestResponse)\b(?=[ \t]*:)/
 	}
 });

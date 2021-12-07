@@ -1,0 +1,43 @@
+['c']
+["f"]
+[K_SEL]
+[K_KANJI?15]
+[T_SCHWA]
+[U_0259]
+[CTRL 'a']
+[SHIFT "b"]
+[ALT K_C]
+[LCTRL T_D]
+[RCTRL U_E259]
+[LALT K_F]
+[RALT K_G]
+[CAPS K_H]
+[NCAPS K_I]
+[SHIFT CAPS K_A]
+[SHIFT C01]
+
+----------------------------------------------------
+
+[
+	["virtual-key", "['c']"],
+	["virtual-key", "[\"f\"]"],
+	["virtual-key", "[K_SEL]"],
+	["virtual-key", "[K_KANJI?15]"],
+	["virtual-key", "[T_SCHWA]"],
+	["virtual-key", "[U_0259]"],
+	["virtual-key", "[CTRL 'a']"],
+	["virtual-key", "[SHIFT \"b\"]"],
+	["virtual-key", "[ALT K_C]"],
+	["virtual-key", "[LCTRL T_D]"],
+	["virtual-key", "[RCTRL U_E259]"],
+	["virtual-key", "[LALT K_F]"],
+	["virtual-key", "[RALT K_G]"],
+	["virtual-key", "[CAPS K_H]"],
+	["virtual-key", "[NCAPS K_I]"],
+	["virtual-key", "[SHIFT CAPS K_A]"],
+	["virtual-key", "[SHIFT C01]"]
+]
+
+----------------------------------------------------
+
+Checks for keys, with all possible modifiers.

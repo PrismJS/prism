@@ -197,6 +197,7 @@
 		"xls": "excel-formula",
 		"gamemakerlanguage": "gml",
 		"gni": "gn",
+		"go-mod": "go-module",
 		"hbs": "handlebars",
 		"hs": "haskell",
 		"idr": "idris",

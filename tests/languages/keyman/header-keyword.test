@@ -1,0 +1,59 @@
+&baselayout
+&bitmap
+&capsononly
+&capsalwaysoff
+&shiftfreescaps
+&copyright
+&ethnologuecode
+&hotkey
+&includecodes
+&keyboardversion
+&kmw_embedcss
+&kmw_embedjs
+&kmw_helpfile
+&kmw_helptext
+&kmw_rtl
+&language
+&layer
+&layoutfile
+&message
+&mnemoniclayout
+&name
+&oldcharposmatching
+&platform
+&targets
+&version
+&visualkeyboard
+&windowslanguages
+
+----------------------------------------------------
+
+[
+	["header-keyword", "&baselayout"],
+	["header-keyword", "&bitmap"],
+	["header-keyword", "&capsononly"],
+	["header-keyword", "&capsalwaysoff"],
+	["header-keyword", "&shiftfreescaps"],
+	["header-keyword", "&copyright"],
+	["header-keyword", "&ethnologuecode"],
+	["header-keyword", "&hotkey"],
+	["header-keyword", "&includecodes"],
+	["header-keyword", "&keyboardversion"],
+	["header-keyword", "&kmw_embedcss"],
+	["header-keyword", "&kmw_embedjs"],
+	["header-keyword", "&kmw_helpfile"],
+	["header-keyword", "&kmw_helptext"],
+	["header-keyword", "&kmw_rtl"],
+	["header-keyword", "&language"],
+	["header-keyword", "&layer"],
+	["header-keyword", "&layoutfile"],
+	["header-keyword", "&message"],
+	["header-keyword", "&mnemoniclayout"],
+	["header-keyword", "&name"],
+	["header-keyword", "&oldcharposmatching"],
+	["header-keyword", "&platform"],
+	["header-keyword", "&targets"],
+	["header-keyword", "&version"],
+	["header-keyword", "&visualkeyboard"],
+	["header-keyword", "&windowslanguages"]
+]

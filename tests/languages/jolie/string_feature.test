@@ -1,0 +1,40 @@
+""
+"10"
+"
+JOLIE preserves formatting.
+    This line will be indented.
+                    This line too.
+"
+
+jsonValue = "{
+    \"int\": 123,
+    \"bool\": true,
+    \"long\": 124,
+    \"double\": 123.4,
+    \"string\": \"string\",
+    \"void\": {},
+    \"array\": [123, true,\"ciccio\",124,{}],
+    \"obj\" : {
+        \"int\": 1243,
+        \"bool\": true,
+        \"long\": 1234,
+        \"double\": 1234.4,
+        \"string\": \"string\",
+        \"void\": {}
+        }
+    }"
+;
+
+----------------------------------------------------
+
+[
+	["string", "\"\""],
+	["string", "\"10\""],
+	["string", "\"\r\nJOLIE preserves formatting.\r\n    This line will be indented.\r\n                    This line too.\r\n\""],
+
+	"\r\n\r\njsonValue ",
+	["operator", "="],
+	["string", "\"{\r\n    \\\"int\\\": 123,\r\n    \\\"bool\\\": true,\r\n    \\\"long\\\": 124,\r\n    \\\"double\\\": 123.4,\r\n    \\\"string\\\": \\\"string\\\",\r\n    \\\"void\\\": {},\r\n    \\\"array\\\": [123, true,\\\"ciccio\\\",124,{}],\r\n    \\\"obj\\\" : {\r\n        \\\"int\\\": 1243,\r\n        \\\"bool\\\": true,\r\n        \\\"long\\\": 1234,\r\n        \\\"double\\\": 1234.4,\r\n        \\\"string\\\": \\\"string\\\",\r\n        \\\"void\\\": {}\r\n        }\r\n    }\""],
+
+	["punctuation", ";"]
+]

@@ -1,6 +1,6 @@
 %%
-foo: 'foo' "foo";
-bar: '\'' "\"";
+foo: "foo";
+bar: "\"";
 %%
 
 ----------------------------------------------------
@@ -8,10 +8,17 @@ bar: '\'' "\"";
 [
 	["bison", [
 		["punctuation", "%%"],
-		["property", "foo"], ["punctuation", ":"],
-		["string", "'foo'"], ["string", "\"foo\""], ["punctuation", ";"],
-		["property", "bar"], ["punctuation", ":"],
-		["string", "'\\''"], ["string", "\"\\\"\""], ["punctuation", ";"],
+
+		["property", "foo"],
+		["punctuation", ":"],
+		["string", "\"foo\""],
+		["punctuation", ";"],
+
+		["property", "bar"],
+		["punctuation", ":"],
+		["string", "\"\\\"\""],
+		["punctuation", ";"],
+
 		["punctuation", "%%"]
 	]]
 ]
