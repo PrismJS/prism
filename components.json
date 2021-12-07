@@ -559,7 +559,10 @@
 		"http": {
 			"title": "HTTP",
 			"optional": [
+				"csp",
 				"css",
+				"hpkp",
+				"hsts",
 				"javascript",
 				"json",
 				"markup",

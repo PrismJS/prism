@@ -1,4 +1,13 @@
 (function (Prism) {
+
+	/**
+	 * @param {string} name
+	 * @returns {RegExp}
+	 */
+	function headerValueOf(name) {
+		return RegExp('(^(?:' + name + '):[ \t]*(?![ \t]))[^]+', 'i');
+	}
+
 	Prism.languages.http = {
 		'request-line': {
 			pattern: /^(?:CONNECT|DELETE|GET|HEAD|OPTIONS|PATCH|POST|PRI|PUT|SEARCH|TRACE)\s(?:https?:\/\/|\/)\S*\sHTTP\/[\d.]+/m,
@@ -45,10 +54,39 @@
 				}
 			}
 		},
-		// HTTP header name
-		'header-name': {
-			pattern: /^[\w-]+:(?=.)/m,
-			alias: 'keyword'
+		'header': {
+			pattern: /^[\w-]+:.+(?:(?:\r\n?|\n)[ \t].+)*/m,
+			inside: {
+				'header-value': [
+					{
+						pattern: headerValueOf(/Content-Security-Policy/.source),
+						lookbehind: true,
+						alias: ['csp', 'languages-csp'],
+						inside: Prism.languages.csp
+					},
+					{
+						pattern: headerValueOf(/Public-Key-Pins(?:-Report-Only)?/.source),
+						lookbehind: true,
+						alias: ['hpkp', 'languages-hpkp'],
+						inside: Prism.languages.hpkp
+					},
+					{
+						pattern: headerValueOf(/Strict-Transport-Security/.source),
+						lookbehind: true,
+						alias: ['hsts', 'languages-hsts'],
+						inside: Prism.languages.hsts
+					},
+					{
+						pattern: headerValueOf(/[^:]+/.source),
+						lookbehind: true
+					}
+				],
+				'header-name': {
+					pattern: /^[^:]+/,
+					alias: 'keyword'
+				},
+				'punctuation': /^:/
+			}
 		}
 	};
 
@@ -60,7 +98,8 @@
 		'application/xml': langs.xml,
 		'text/xml': langs.xml,
 		'text/html': langs.html,
-		'text/css': langs.css
+		'text/css': langs.css,
+		'text/plain': langs.plain
 	};
 
 	// Declare which types can also be suffixes
@@ -97,7 +136,7 @@
 					// However, when writing code by hand (e.g. to display on a website) people can forget about this,
 					// so we want to be liberal here. We will allow the empty line to be omitted if the first line of
 					// the body does not start with a [\w-] character (as headers do).
-					/[^\w-][\s\S]*/.source,
+					/[^ \t\w-][\s\S]*/.source,
 					'i'
 				),
 				lookbehind: true,
@@ -106,7 +145,7 @@
 		}
 	}
 	if (options) {
-		Prism.languages.insertBefore('http', 'header-name', options);
+		Prism.languages.insertBefore('http', 'header', options);
 	}
 
 }(Prism));

@@ -1,0 +1,19 @@
+Content-Security-Policy: default-src 'none'; style-src cdn.example.com; report-uri /_/csp-reports
+
+----------------------------------------------------
+
+[
+	["header", [
+		["header-name", "Content-Security-Policy"],
+		["punctuation", ":"],
+		["header-value", [
+			["directive", "default-src"],
+			["safe", "'none'"],
+			"; ",
+			["directive", "style-src"],
+			" cdn.example.com; ",
+			["directive", "report-uri"],
+			" /_/csp-reports"
+		]]
+	]]
+]

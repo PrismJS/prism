@@ -35,29 +35,53 @@ X-Kong-Upstream-Latency: 1
 		["reason-phrase", "OK"]
 	]],
 
-	["header-name", "Access-Control-Allow-Credentials:"],
-	" true\r\n",
+	["header", [
+		["header-name", "Access-Control-Allow-Credentials"],
+		["punctuation", ":"],
+		["header-value", "true"]
+	]],
 
-	["header-name", "Access-Control-Allow-Origin:"],
-	" *\r\n",
+	["header", [
+		["header-name", "Access-Control-Allow-Origin"],
+		["punctuation", ":"],
+		["header-value", "*"]
+	]],
 
-	["header-name", "Connection:"],
-	" keep-alive\r\n",
+	["header", [
+		["header-name", "Connection"],
+		["punctuation", ":"],
+		["header-value", "keep-alive"]
+	]],
 
-	["header-name", "Content-Length:"],
-	" 523\r\n",
+	["header", [
+		["header-name", "Content-Length"],
+		["punctuation", ":"],
+		["header-value", "523"]
+	]],
 
-	["header-name", "Content-Type:"],
-	" application/json\r\n",
+	["header", [
+		["header-name", "Content-Type"],
+		["punctuation", ":"],
+		["header-value", "application/json"]
+	]],
 
-	["header-name", "Server:"],
-	" gunicorn/19.9.0\r\n",
+	["header", [
+		["header-name", "Server"],
+		["punctuation", ":"],
+		["header-value", "gunicorn/19.9.0"]
+	]],
 
-	["header-name", "X-Kong-Proxy-Latency:"],
-	" 1\r\n",
+	["header", [
+		["header-name", "X-Kong-Proxy-Latency"],
+		["punctuation", ":"],
+		["header-value", "1"]
+	]],
 
-	["header-name", "X-Kong-Upstream-Latency:"],
-	" 1\r\n",
+	["header", [
+		["header-name", "X-Kong-Upstream-Latency"],
+		["punctuation", ":"],
+		["header-value", "1"]
+	]],
 
 	["application-json", [
 		["punctuation", "{"],
