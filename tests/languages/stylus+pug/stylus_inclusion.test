@@ -6,15 +6,17 @@
 [
 	["filter-stylus", [
 		["filter-name", ":stylus"],
-		["variable-declaration", [
-			["variable", "font-size"],
-			["operator", "="],
-			["number", "14"],
-			["unit", "px"]
+		["text", [
+			["variable-declaration", [
+				["variable", "font-size"],
+				["operator", "="],
+				["number", "14"],
+				["unit", "px"]
+			]]
 		]]
 	]]
 ]
 
 ----------------------------------------------------
 
-Checks for stylus filter in Jade.
+Checks for stylus filter in pug.
