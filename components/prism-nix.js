@@ -1,5 +1,8 @@
 Prism.languages.nix = {
-	'comment': /\/\*[\s\S]*?\*\/|#.*/,
+	'comment': {
+		pattern: /\/\*[\s\S]*?\*\/|#.*/,
+		greedy: true
+	},
 	'string': {
 		pattern: /"(?:[^"\\]|\\[\s\S])*"|''(?:(?!'')[\s\S]|''(?:'|\\|\$\{))*''/,
 		greedy: true,
@@ -21,7 +24,7 @@ Prism.languages.nix = {
 	],
 	'antiquotation': {
 		pattern: /\$(?=\{)/,
-		alias: 'variable'
+		alias: 'important'
 	},
 	'number': /\b\d+\b/,
 	'keyword': /\b(?:assert|builtins|else|if|in|inherit|let|null|or|then|with)\b/,

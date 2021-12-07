@@ -1,18 +1,9 @@
 Prism.languages.io = {
-	'comment': [
-		{
-			pattern: /(^|[^\\])\/\*[\s\S]*?(?:\*\/|$)/,
-			lookbehind: true
-		},
-		{
-			pattern: /(^|[^\\])\/\/.*/,
-			lookbehind: true
-		},
-		{
-			pattern: /(^|[^\\])#.*/,
-			lookbehind: true
-		}
-	],
+	'comment': {
+		pattern: /(^|[^\\])(?:\/\*[\s\S]*?(?:\*\/|$)|\/\/.*|#.*)/,
+		lookbehind: true,
+		greedy: true
+	},
 	'triple-quoted-string': {
 		pattern: /"""(?:\\[\s\S]|(?!""")[^\\])*"""/,
 		greedy: true,

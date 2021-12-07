@@ -5,17 +5,17 @@ foobar = 42
 ----------------------------------------------------
 
 [
-	["property", "foo"],
+	["key", "foo"],
 	["value", [
 		["punctuation", "="],
 		" Bar Baz"
 	]],
-	["property", "foobar"],
+	["key", "foobar"],
 	["value", [
 		["punctuation", "="],
 		" 42"
 	]],
-	["property", "another_value"],
+	["key", "another_value"],
 	["value", [
 		["punctuation", "="],
 		" with_indent"

@@ -28,149 +28,222 @@
 ----------------------------------------------------
 
 [
-	["tag", [
-		["ld", [["punctuation", "{%"], ["keyword", "set"]]],
-		["property", "a"], ["operator", "="], ["number", "4"],
-		["rd", [["punctuation", "%}"]]]
+	["twig", [
+		["delimiter", "{%"],
+		["tag-name", "set"],
+		" a ",
+		["operator", "="],
+		["number", "4"],
+		["delimiter", "%}"]
 	]],
-	["tag", [
-		["ld", [["punctuation", "{{"]]],
-		["property", "a"], ["operator", "=="], ["number", "4"],
-		["rd", [["punctuation", "}}"]]]
+	["twig", [
+		["delimiter", "{{"],
+		" a ",
+		["operator", "=="],
+		["number", "4"],
+		["delimiter", "}}"]
 	]],
-	["tag", [
-		["ld", [["punctuation", "{{"]]],
-		["property", "b"], ["operator", "!="], ["property", "c"],
-		["rd", [["punctuation", "}}"]]]
+	["twig", [
+		["delimiter", "{{"],
+		" b ",
+		["operator", "!="],
+		" c ",
+		["delimiter", "}}"]
 	]],
-	["tag", [
-		["ld", [["punctuation", "{{"]]],
-		["property", "c"], ["operator", "<"], ["property", "d"],
-		["rd", [["punctuation", "}}"]]]
+	["twig", [
+		["delimiter", "{{"],
+		" c ",
+		["operator", "<"],
+		" d ",
+		["delimiter", "}}"]
 	]],
-	["tag", [
-		["ld", [["punctuation", "{{"]]],
-		["property", "d"], ["operator", "<="], ["property", "e"],
-		["rd", [["punctuation", "}}"]]]
+	["twig", [
+		["delimiter", "{{"],
+		" d ",
+		["operator", "<="],
+		" e ",
+		["delimiter", "}}"]
 	]],
-	["tag", [
-		["ld", [["punctuation", "{{"]]],
-		["property", "e"], ["operator", ">"], ["property", "f"],
-		["rd", [["punctuation", "}}"]]]
+	["twig", [
+		["delimiter", "{{"],
+		" e ",
+		["operator", ">"],
+		" f ",
+		["delimiter", "}}"]
 	]],
-	["tag", [
-		["ld", [["punctuation", "{{"]]],
-		["property", "f"], ["operator", ">="], ["property", "g"],
-		["rd", [["punctuation", "}}"]]]
+	["twig", [
+		["delimiter", "{{"],
+		" f ",
+		["operator", ">="],
+		" g ",
+		["delimiter", "}}"]
 	]],
-	["tag", [
-		["ld", [["punctuation", "{{"]]],
-		["property", "g"], ["operator", "+"], ["property", "h"],
-		["rd", [["punctuation", "}}"]]]
+	["twig", [
+		["delimiter", "{{"],
+		" g ",
+		["operator", "+"],
+		" h ",
+		["delimiter", "}}"]
 	]],
-	["tag", [
-		["ld", [["punctuation", "{{"]]],
-		["property", "h"], ["operator", "-"], ["property", "i"],
-		["rd", [["punctuation", "}}"]]]
+	["twig", [
+		["delimiter", "{{"],
+		" h ",
+		["operator", "-"],
+		" i ",
+		["delimiter", "}}"]
 	]],
-	["tag", [
-		["ld", [["punctuation", "{{"]]],
-		["property", "i"], ["operator", "~"], ["property", "j"],
-		["rd", [["punctuation", "}}"]]]
+	["twig", [
+		["delimiter", "{{"],
+		" i ",
+		["operator", "~"],
+		" j ",
+		["delimiter", "}}"]
 	]],
-	["tag", [
-		["ld", [["punctuation", "{{"]]],
-		["property", "j"], ["operator", "*"], ["property", "k"],
-		["rd", [["punctuation", "}}"]]]
+	["twig", [
+		["delimiter", "{{"],
+		" j ",
+		["operator", "*"],
+		" k ",
+		["delimiter", "}}"]
 	]],
-	["tag", [
-		["ld", [["punctuation", "{{"]]],
-		["property", "k"], ["operator", "**"], ["property", "l"],
-		["rd", [["punctuation", "}}"]]]
+	["twig", [
+		["delimiter", "{{"],
+		" k ",
+		["operator", "**"],
+		" l ",
+		["delimiter", "}}"]
 	]],
-	["tag", [
-		["ld", [["punctuation", "{{"]]],
-		["property", "l"], ["operator", "/"], ["property", "m"],
-		["rd", [["punctuation", "}}"]]]
+	["twig", [
+		["delimiter", "{{"],
+		" l ",
+		["operator", "/"],
+		" m ",
+		["delimiter", "}}"]
 	]],
-	["tag", [
-		["ld", [["punctuation", "{{"]]],
-		["property", "m"], ["operator", "//"], ["property", "n"],
-		["rd", [["punctuation", "}}"]]]
+	["twig", [
+		["delimiter", "{{"],
+		" m ",
+		["operator", "//"],
+		" n ",
+		["delimiter", "}}"]
 	]],
-	["tag", [
-		["ld", [["punctuation", "{{"]]],
-		["property", "n"], ["operator", "%"], ["property", "o"],
-		["rd", [["punctuation", "}}"]]]
+	["twig", [
+		["delimiter", "{{"],
+		" n ",
+		["operator", "%"],
+		" o ",
+		["delimiter", "}}"]
 	]],
-	["tag", [
-		["ld", [["punctuation", "{{"]]],
-		["property", "o"],
+	["twig", [
+		["delimiter", "{{"],
+		" o",
 		["operator", "|"],
-		["property", "default"],
+		"default",
 		["punctuation", "("],
-		["string", [["punctuation", "'"], "foo", ["punctuation", "'"]]],
+		["string", [
+			["punctuation", "'"],
+			"foo",
+			["punctuation", "'"]
+		]],
 		["punctuation", ")"],
-		["rd", [["punctuation", "}}"]]]
+		["delimiter", "}}"]
 	]],
-	["tag", [
-		["ld", [["punctuation", "{{"]]],
-		["property", "p"], ["operator", "?"],
-		["property", "q"], ["punctuation", ":"],
-		["property", "r"],
-		["rd", [["punctuation", "}}"]]]
+	["twig", [
+		["delimiter", "{{"],
+		" p ",
+		["operator", "?"],
+		" q ",
+		["punctuation", ":"],
+		" r ",
+		["delimiter", "}}"]
 	]],
-	["tag", [
-		["ld", [["punctuation", "{{"]]],
-		["property", "s"], ["operator", "?:"], ["property", "t"],
-		["rd", [["punctuation", "}}"]]]
+	["twig", [
+		["delimiter", "{{"],
+		" s ",
+		["operator", "?:"],
+		" t ",
+		["delimiter", "}}"]
 	]],
-	["tag", [
-		["ld", [["punctuation", "{%"], ["keyword", "if"]]],
-		["property", "a"], ["operator", "and"], ["property", "b"],
-		["operator", "or"], ["operator", "not"], ["property", "c"],
-		["rd", [["punctuation", "%}"]]]
+
+	["twig", [
+		["delimiter", "{%"],
+		["tag-name", "if"],
+		" a ",
+		["operator", "and"],
+		" b ",
+		["operator", "or"],
+		["operator", "not"],
+		" c ",
+		["delimiter", "%}"]
 	]],
-	["tag", [
-		["ld", [["punctuation", "{%"], ["keyword", "for"]]],
-		["property", "p"], ["operator", "in"], ["property", "foo"],
-		["rd", [["punctuation", "%}"]]]
+	["twig", [
+		["delimiter", "{%"],
+		["tag-name", "for"],
+		" p ",
+		["operator", "in"],
+		" foo ",
+		["delimiter", "%}"]
 	]],
-	["tag", [
-		["ld", [["punctuation", "{%"], ["keyword", "if"]]],
-		["property", "d"], ["operator", "b-and"],
-		["property", "e"], ["operator", "and"],
-		["property", "f"], ["operator", "b-xor"],
-		["property", "g"], ["operator", "or"],
-		["property", "h"], ["operator", "b-or"],
-		["property", "i"],
-		["rd", [["punctuation", "%}"]]]
+	["twig", [
+		["delimiter", "{%"],
+		["tag-name", "if"],
+		" d ",
+		["operator", "b-and"],
+		" e ",
+		["operator", "and"],
+		" f ",
+		["operator", "b-xor"],
+		" g ",
+		["operator", "or"],
+		" h ",
+		["operator", "b-or"],
+		" i ",
+		["delimiter", "%}"]
 	]],
-	["tag", [
-		["ld", [["punctuation", "{%"], ["keyword", "if"]]],
-		["property", "j"],
+	["twig", [
+		["delimiter", "{%"],
+		["tag-name", "if"],
+		" j ",
 		["operator", "starts with"],
-		["string", [["punctuation", "'"], "h", ["punctuation", "'"]]],
-		["rd", [["punctuation", "%}"]]]
+		["string", [
+			["punctuation", "'"],
+			"h",
+			["punctuation", "'"]
+		]],
+		["delimiter", "%}"]
 	]],
-	["tag", [
-		["ld", [["punctuation", "{%"], ["keyword", "if"]]],
-		["property", "i"],
+	["twig", [
+		["delimiter", "{%"],
+		["tag-name", "if"],
+		" i ",
 		["operator", "ends with"],
-		["string", [["punctuation", "'"], "j", ["punctuation", "'"]]],
-		["rd", [["punctuation", "%}"]]]
+		["string", [
+			["punctuation", "'"],
+			"j",
+			["punctuation", "'"]
+		]],
+		["delimiter", "%}"]
 	]],
-	["tag", [
-		["ld", [["punctuation", "{%"], ["keyword", "if"]]],
-		["property", "k"], ["operator", "is"],
-		["operator", "same as"], ["boolean", "false"],
-		["rd", [["punctuation", "%}"]]]
+	["twig", [
+		["delimiter", "{%"],
+		["tag-name", "if"],
+		" k ",
+		["operator", "is"],
+		["operator", "same as"],
+		["boolean", "false"],
+		["delimiter", "%}"]
 	]],
-	["tag", [
-		["ld", [["punctuation", "{%"], ["keyword", "if"]]],
-		["property", "l"], ["operator", "matches"],
-		["string", [["punctuation", "'"], "/f[o]{2,}(?:bar)?", ["punctuation", "'"]]],
-		["rd", [["punctuation", "%}"]]]
+	["twig", [
+		["delimiter", "{%"],
+		["tag-name", "if"],
+		" l ",
+		["operator", "matches"],
+		["string", [
+			["punctuation", "'"],
+			"/f[o]{2,}(?:bar)?",
+			["punctuation", "'"]
+		]],
+		["delimiter", "%}"]
 	]]
 ]
 

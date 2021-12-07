@@ -1,0 +1,76 @@
+functions {
+  // ... function declarations and definitions ...
+}
+data {
+  // ... declarations ...
+}
+transformed data {
+   // ... declarations ... statements ...
+}
+parameters {
+   // ... declarations ...
+}
+transformed parameters {
+   // ... declarations ... statements ...
+}
+model {
+   // ... declarations ... statements ...
+}
+generated quantities {
+   // ... declarations ... statements ...
+}
+
+// data-only quantifiers
+real foo(data real x) {
+  return x^2;
+}
+
+----------------------------------------------------
+
+<span class="token keyword program-block">functions</span>
+<span class="token punctuation">{</span>
+<span class="token comment">// ... function declarations and definitions ...</span>
+<span class="token punctuation">}</span>
+<span class="token keyword program-block">data</span>
+<span class="token punctuation">{</span>
+<span class="token comment">// ... declarations ...</span>
+<span class="token punctuation">}</span>
+<span class="token keyword program-block">transformed</span>
+<span class="token keyword program-block">data</span>
+<span class="token punctuation">{</span>
+<span class="token comment">// ... declarations ... statements ...</span>
+<span class="token punctuation">}</span>
+<span class="token keyword program-block">parameters</span>
+<span class="token punctuation">{</span>
+<span class="token comment">// ... declarations ...</span>
+<span class="token punctuation">}</span>
+<span class="token keyword program-block">transformed</span>
+<span class="token keyword program-block">parameters</span>
+<span class="token punctuation">{</span>
+<span class="token comment">// ... declarations ... statements ...</span>
+<span class="token punctuation">}</span>
+<span class="token keyword program-block">model</span>
+<span class="token punctuation">{</span>
+<span class="token comment">// ... declarations ... statements ...</span>
+<span class="token punctuation">}</span>
+<span class="token keyword program-block">generated</span>
+<span class="token keyword program-block">quantities</span>
+<span class="token punctuation">{</span>
+<span class="token comment">// ... declarations ... statements ...</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// data-only quantifiers</span>
+<span class="token keyword">real</span>
+<span class="token function">foo</span>
+<span class="token punctuation">(</span>
+<span class="token keyword">data</span>
+<span class="token keyword">real</span>
+x
+<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+<span class="token keyword">return</span>
+x
+<span class="token operator">^</span>
+<span class="token number">2</span>
+<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>

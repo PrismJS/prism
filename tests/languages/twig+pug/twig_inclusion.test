@@ -7,15 +7,9 @@
 	["filter-atpl", [
 		["filter-name", ":atpl"],
 		["text", [
-			["tag", [
-				["ld", [
-					["punctuation", "{{"]
-				]],
-				["number", "42"],
-				["rd", [
-					["punctuation", "}}"]
-				]]
-			]]
+			["delimiter", "{{"],
+			["number", "42"],
+			["delimiter", "}}"]
 		]]
 	]]
 ]
