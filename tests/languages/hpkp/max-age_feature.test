@@ -1,0 +1,13 @@
+max-age=123;
+max-age=31536000
+
+----------------------------------------------------
+
+[
+	["directive", "max-age"], ["operator", "="], "123", ["punctuation", ";"],
+	["directive", "max-age"], ["operator", "="], "31536000"
+]
+
+----------------------------------------------------
+
+Checks for HPKP with an "unsafe" max-age.
