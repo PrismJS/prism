@@ -5,9 +5,6 @@ CHART_DESTROY
 CHART_LOAD
 CHART_PRINT
 EOF
-NO
-No
-no
 OFFLINE
 OK
 PSL_PROF_LOG
@@ -31,6 +28,8 @@ R_RADIO_VERT
 R_ROW
 R_SCALE_HORIZ
 R_SCALE_VERT
+R_SEP_HORIZ
+R_SEP_VERT
 R_SPINNER
 R_TEXT_FIELD
 R_TEXT_FIELD_LABEL
@@ -52,9 +51,6 @@ WARN
 	["constant", "CHART_LOAD"],
 	["constant", "CHART_PRINT"],
 	["constant", "EOF"],
-	["constant", "NO"],
-	["constant", "No"],
-	["constant", "no"],
 	["constant", "OFFLINE"],
 	["constant", "OK"],
 	["constant", "PSL_PROF_LOG"],
@@ -78,6 +74,8 @@ WARN
 	["constant", "R_ROW"],
 	["constant", "R_SCALE_HORIZ"],
 	["constant", "R_SCALE_VERT"],
+	["constant", "R_SEP_HORIZ"],
+	["constant", "R_SEP_VERT"],
 	["constant", "R_SPINNER"],
 	["constant", "R_TEXT_FIELD"],
 	["constant", "R_TEXT_FIELD_LABEL"],
