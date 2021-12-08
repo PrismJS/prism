@@ -1,6 +1,8 @@
+array
 break
 cholesky_factor_corr
 cholesky_factor_cov
+complex
 continue
 corr_matrix
 cov_matrix
@@ -33,18 +35,32 @@ void
 while
 
 algebra_solver
+algebra_solver_newton
 integrate_1d
 integrate_ode
 integrate_ode_bdf
 integrate_ode_rk45
 map_rect
+ode_adams
+ode_adams_tol
+ode_adjoint_tol_ctl
+ode_bdf
+ode_bdf_tol
+ode_ckrk
+ode_ckrk_tol
+ode_rk45
+ode_rk45_tol
+reduce_sum
+reduce_sum_static
 
 ----------------------------------------------------
 
 [
+	["keyword", "array"],
 	["keyword", "break"],
 	["keyword", "cholesky_factor_corr"],
 	["keyword", "cholesky_factor_cov"],
+	["keyword", "complex"],
 	["keyword", "continue"],
 	["keyword", "corr_matrix"],
 	["keyword", "cov_matrix"],
@@ -77,11 +93,23 @@ map_rect
 	["keyword", "while"],
 
 	["keyword", "algebra_solver"],
+	["keyword", "algebra_solver_newton"],
 	["keyword", "integrate_1d"],
 	["keyword", "integrate_ode"],
 	["keyword", "integrate_ode_bdf"],
 	["keyword", "integrate_ode_rk45"],
-	["keyword", "map_rect"]
+	["keyword", "map_rect"],
+	["keyword", "ode_adams"],
+	["keyword", "ode_adams_tol"],
+	["keyword", "ode_adjoint_tol_ctl"],
+	["keyword", "ode_bdf"],
+	["keyword", "ode_bdf_tol"],
+	["keyword", "ode_ckrk"],
+	["keyword", "ode_ckrk_tol"],
+	["keyword", "ode_rk45"],
+	["keyword", "ode_rk45_tol"],
+	["keyword", "reduce_sum"],
+	["keyword", "reduce_sum_static"]
 ]
 
 ----------------------------------------------------

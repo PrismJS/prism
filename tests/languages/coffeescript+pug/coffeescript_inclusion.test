@@ -6,14 +6,16 @@
 [
 	["filter-coffee", [
 		["filter-name", ":coffee"],
-		["string", [
-			"\"",
-			["interpolation", "#{foo}"],
-			"\""
+		["text", [
+			["string", [
+				"\"",
+				["interpolation", "#{foo}"],
+				"\""
+			]]
 		]]
 	]]
 ]
 
 ----------------------------------------------------
 
-Checks for coffee filter (CoffeeScript) in Jade.
+Checks for coffee filter (CoffeeScript) in pug.

@@ -6,6 +6,6 @@
 [
 	["filter", [
 		["filter-name", ":language"],
-		"\r\n\tcode"
+		["text", "code"]
 	]]
 ]

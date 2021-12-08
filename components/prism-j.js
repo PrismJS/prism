@@ -1,5 +1,8 @@
 Prism.languages.j = {
-	'comment': /\bNB\..*/,
+	'comment': {
+		pattern: /\bNB\..*/,
+		greedy: true
+	},
 	'string': {
 		pattern: /'(?:''|[^'\r\n])*'/,
 		greedy: true

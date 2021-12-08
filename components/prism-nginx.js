@@ -5,7 +5,8 @@
 	Prism.languages.nginx = {
 		'comment': {
 			pattern: /(^|[\s{};])#.*/,
-			lookbehind: true
+			lookbehind: true,
+			greedy: true
 		},
 		'directive': {
 			pattern: /(^|\s)\w(?:[^;{}"'\\\s]|\\.|"(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'|\s+(?:#.*(?!.)|(?![#\s])))*?(?=\s*[;{])/,
@@ -15,6 +16,7 @@
 				'string': {
 					pattern: /((?:^|[^\\])(?:\\\\)*)(?:"(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')/,
 					lookbehind: true,
+					greedy: true,
 					inside: {
 						'escape': {
 							pattern: /\\["'\\nrt]/,

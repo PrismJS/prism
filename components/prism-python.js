@@ -1,7 +1,8 @@
 Prism.languages.python = {
 	'comment': {
 		pattern: /(^|[^\\])#.*/,
-		lookbehind: true
+		lookbehind: true,
+		greedy: true
 	},
 	'string-interpolation': {
 		pattern: /(?:f|fr|rf)(?:("""|''')[\s\S]*?\1|("|')(?:\\.|(?!\2)[^\\\r\n])*\2)/i,

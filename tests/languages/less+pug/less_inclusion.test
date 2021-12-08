@@ -6,15 +6,17 @@
 [
 	["filter-less", [
 		["filter-name", ":less"],
-		["variable", [
-			"@foo",
-			["punctuation", ":"]
-		]],
-		" #123",
-		["punctuation", ";"]
+		["text", [
+			["variable", [
+				"@foo",
+				["punctuation", ":"]
+			]],
+			" #123",
+			["punctuation", ";"]
+		]]
 	]]
 ]
 
 ----------------------------------------------------
 
-Checks for less filter in Jade.
+Checks for less filter in pug.

@@ -42,6 +42,7 @@
 		'script': {
 			// Allow for two levels of nesting
 			pattern: re(/=<BRACES>/.source),
+			alias: 'language-javascript',
 			inside: {
 				'script-punctuation': {
 					pattern: /^=(?=\{)/,
@@ -49,7 +50,6 @@
 				},
 				rest: Prism.languages.jsx
 			},
-			'alias': 'language-javascript'
 		}
 	}, Prism.languages.jsx.tag);
 

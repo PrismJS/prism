@@ -5,20 +5,20 @@
 ----------------------------------------------------
 
 [
-	["tag", [
-		["ld", [["punctuation", "{{"]]],
+	["twig", [
+		["delimiter", "{{"],
 		["boolean", "null"],
-		["rd", [["punctuation", "}}"]]]
+		["delimiter", "}}"]
 	]],
-	["tag", [
-		["ld", [["punctuation", "{{-"]]],
+	["twig", [
+		["delimiter", "{{-"],
 		["boolean", "true"],
-		["rd", [["punctuation", "-}}"]]]
+		["delimiter", "-}}"]
 	]],
-	["tag", [
-		["ld", [["punctuation", "{{"]]],
+	["twig", [
+		["delimiter", "{{"],
 		["boolean", "false"],
-		["rd", [["punctuation", "}}"]]]
+		["delimiter", "}}"]
 	]]
 ]
 
