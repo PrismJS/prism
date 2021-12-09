@@ -61,75 +61,84 @@ var list2 = LinkedList(i32) {};
 	["operator", "="],
 	["keyword", "struct"],
 	["punctuation", "{"],
+
 	"\r\n\tseconds",
 	["punctuation", ":"],
 	["class-name", [
-		["builtin-types", "i64"]
+		["builtin-type", "i64"]
 	]],
 	["punctuation", ","],
+
 	"\r\n\tnanos",
 	["punctuation", ":"],
 	["class-name", [
-		["builtin-types", "u32"]
+		["builtin-type", "u32"]
 	]],
 	["punctuation", ","],
+
 	["keyword", "pub"],
 	["keyword", "fn"],
 	["function", "unixEpoch"],
 	["punctuation", "("],
 	["punctuation", ")"],
-	["class-name", [
-		"Timestamp"
-	]],
+	["class-name", ["Timestamp"]],
 	["punctuation", "{"],
+
 	["keyword", "return"],
-	["class-name", [
-		"Timestamp"
-	]],
+	["class-name", ["Timestamp"]],
 	["punctuation", "{"],
+
 	["punctuation", "."],
 	"seconds ",
 	["operator", "="],
 	["number", "0"],
 	["punctuation", ","],
+
 	["punctuation", "."],
 	"nanos ",
 	["operator", "="],
 	["number", "0"],
 	["punctuation", ","],
+
 	["punctuation", "}"],
 	["punctuation", ";"],
+
 	["punctuation", "}"],
+
 	["punctuation", "}"],
 	["punctuation", ";"],
+
 	["keyword", "const"],
 	" one_plus_one",
 	["punctuation", ":"],
 	["class-name", [
-		["builtin-types", "i32"]
+		["builtin-type", "i32"]
 	]],
 	["operator", "="],
 	["number", "1"],
 	["operator", "+"],
 	["number", "1"],
 	["punctuation", ";"],
+
 	["keyword", "var"],
 	" x",
 	["punctuation", ":"],
 	["class-name", [
-		["builtin-types", "i32"]
+		["builtin-type", "i32"]
 	]],
 	["punctuation", ";"],
+
 	["keyword", "const"],
 	" value",
 	["punctuation", ":"],
 	["class-name", [
 		["operator", "?"],
-		["builtin-types", "u32"]
+		["builtin-type", "u32"]
 	]],
 	["operator", "="],
 	["keyword", "null"],
 	["punctuation", ";"],
+
 	["keyword", "var"],
 	" optional_value",
 	["punctuation", ":"],
@@ -138,24 +147,26 @@ var list2 = LinkedList(i32) {};
 		["punctuation", "["],
 		["punctuation", "]"],
 		["keyword", "const"],
-		["builtin-types", "u8"]
+		["builtin-type", "u8"]
 	]],
 	["operator", "="],
 	["keyword", "null"],
 	["punctuation", ";"],
+
 	["keyword", "var"],
 	" number_or_error",
 	["punctuation", ":"],
 	["class-name", [
-		["builtin-types", "anyerror"],
+		["builtin-type", "anyerror"],
 		["operator", "!"],
-		["builtin-types", "i32"]
+		["builtin-type", "i32"]
 	]],
 	["operator", "="],
 	["keyword", "error"],
 	["punctuation", "."],
 	"ArgNotFound",
 	["punctuation", ";"],
+
 	["keyword", "const"],
 	" array1 ",
 	["operator", "="],
@@ -163,7 +174,7 @@ var list2 = LinkedList(i32) {};
 		["punctuation", "["],
 		"_",
 		["punctuation", "]"],
-		["builtin-types", "u32"]
+		["builtin-type", "u32"]
 	]],
 	["punctuation", "{"],
 	["number", "1"],
@@ -171,12 +182,11 @@ var list2 = LinkedList(i32) {};
 	["number", "2"],
 	["punctuation", "}"],
 	["punctuation", ";"],
+
 	["keyword", "var"],
 	" foo",
 	["punctuation", ":"],
-	["class-name", [
-		"S"
-	]],
+	["class-name", ["S"]],
 	["keyword", "align"],
 	["punctuation", "("],
 	["number", "4"],
@@ -184,31 +194,35 @@ var list2 = LinkedList(i32) {};
 	["operator", "="],
 	["keyword", "undefined"],
 	["punctuation", ";"],
+
 	["keyword", "fn"],
 	["function", "add"],
 	["punctuation", "("],
 	"a",
 	["punctuation", ":"],
 	["class-name", [
-		["builtin-types", "i32"]
+		["builtin-type", "i32"]
 	]],
 	["punctuation", ","],
 	" b",
 	["punctuation", ":"],
 	["class-name", [
-		["builtin-types", "i32"]
+		["builtin-type", "i32"]
 	]],
 	["punctuation", ")"],
 	["class-name", [
-		["builtin-types", "i32"]
+		["builtin-type", "i32"]
 	]],
 	["punctuation", "{"],
+
 	["keyword", "return"],
 	" a ",
 	["operator", "+"],
 	" b",
 	["punctuation", ";"],
+
 	["punctuation", "}"],
+
 	["keyword", "extern"],
 	["keyword", "fn"],
 	["function", "foo"],
@@ -216,13 +230,14 @@ var list2 = LinkedList(i32) {};
 	"x",
 	["punctuation", ":"],
 	["class-name", [
-		["builtin-types", "f64"]
+		["builtin-type", "f64"]
 	]],
 	["punctuation", ")"],
 	["class-name", [
-		["builtin-types", "f64"]
+		["builtin-type", "f64"]
 	]],
 	["punctuation", ";"],
+
 	["keyword", "fn"],
 	["function", "noop4"],
 	["punctuation", "("],
@@ -232,10 +247,11 @@ var list2 = LinkedList(i32) {};
 	["number", "4"],
 	["punctuation", ")"],
 	["class-name", [
-		["builtin-types", "void"]
+		["builtin-type", "void"]
 	]],
 	["punctuation", "{"],
 	["punctuation", "}"],
+
 	["keyword", "fn"],
 	["function", "derp"],
 	["punctuation", "("],
@@ -244,28 +260,30 @@ var list2 = LinkedList(i32) {};
 	["punctuation", "("],
 	["builtin", "@sizeOf"],
 	["punctuation", "("],
-	["builtin-types", "usize"],
+	["builtin-type", "usize"],
 	["punctuation", ")"],
 	["operator", "*"],
 	["number", "2"],
 	["punctuation", ")"],
 	["class-name", [
-		["builtin-types", "i32"]
+		["builtin-type", "i32"]
 	]],
 	["punctuation", "{"],
 	["keyword", "return"],
 	["number", "1234"],
 	["punctuation", ";"],
 	["punctuation", "}"],
+
 	["keyword", "fn"],
 	["function", "eventuallyNullSequence"],
 	["punctuation", "("],
 	["punctuation", ")"],
 	["class-name", [
 		["operator", "?"],
-		["builtin-types", "u32"]
+		["builtin-type", "u32"]
 	]],
 	["punctuation", "{"],
+
 	["keyword", "return"],
 	["keyword", "if"],
 	["punctuation", "("],
@@ -278,18 +296,23 @@ var list2 = LinkedList(i32) {};
 	["label", "blk"],
 	["punctuation", ":"],
 	["punctuation", "{"],
+
 	"\r\n\t\tnumbers_left ",
 	["operator", "-="],
 	["number", "1"],
 	["punctuation", ";"],
+
 	["keyword", "break"],
 	["punctuation", ":"],
 	["label", "blk"],
 	" numbers_left",
 	["punctuation", ";"],
+
 	["punctuation", "}"],
 	["punctuation", ";"],
+
 	["punctuation", "}"],
+
 	["keyword", "const"],
 	" message ",
 	["operator", "="],
@@ -297,20 +320,21 @@ var list2 = LinkedList(i32) {};
 		["punctuation", "["],
 		"_",
 		["punctuation", "]"],
-		["builtin-types", "u8"]
+		["builtin-type", "u8"]
 	]],
 	["punctuation", "{"],
-	["string", "'h'"],
+	["char", "'h'"],
 	["punctuation", ","],
-	["string", "'e'"],
+	["char", "'e'"],
 	["punctuation", ","],
-	["string", "'l'"],
+	["char", "'l'"],
 	["punctuation", ","],
-	["string", "'l'"],
+	["char", "'l'"],
 	["punctuation", ","],
-	["string", "'o'"],
+	["char", "'o'"],
 	["punctuation", "}"],
 	["punctuation", ";"],
+
 	["keyword", "const"],
 	" mat4x4 ",
 	["operator", "="],
@@ -321,14 +345,15 @@ var list2 = LinkedList(i32) {};
 		["punctuation", "["],
 		["number", "4"],
 		["punctuation", "]"],
-		["builtin-types", "f32"]
+		["builtin-type", "f32"]
 	]],
 	["punctuation", "{"],
+
 	["class-name", [
 		["punctuation", "["],
 		"_",
 		["punctuation", "]"],
-		["builtin-types", "f32"]
+		["builtin-type", "f32"]
 	]],
 	["punctuation", "{"],
 	["number", "1.0"],
@@ -340,11 +365,12 @@ var list2 = LinkedList(i32) {};
 	["number", "0.0"],
 	["punctuation", "}"],
 	["punctuation", ","],
+
 	["class-name", [
 		["punctuation", "["],
 		"_",
 		["punctuation", "]"],
-		["builtin-types", "f32"]
+		["builtin-type", "f32"]
 	]],
 	["punctuation", "{"],
 	["number", "0.0"],
@@ -356,11 +382,12 @@ var list2 = LinkedList(i32) {};
 	["number", "1.0"],
 	["punctuation", "}"],
 	["punctuation", ","],
+
 	["class-name", [
 		["punctuation", "["],
 		"_",
 		["punctuation", "]"],
-		["builtin-types", "f32"]
+		["builtin-type", "f32"]
 	]],
 	["punctuation", "{"],
 	["number", "0.0"],
@@ -372,11 +399,12 @@ var list2 = LinkedList(i32) {};
 	["number", "0.0"],
 	["punctuation", "}"],
 	["punctuation", ","],
+
 	["class-name", [
 		["punctuation", "["],
 		"_",
 		["punctuation", "]"],
-		["builtin-types", "f32"]
+		["builtin-type", "f32"]
 	]],
 	["punctuation", "{"],
 	["number", "0.0"],
@@ -388,8 +416,10 @@ var list2 = LinkedList(i32) {};
 	["number", "1.0"],
 	["punctuation", "}"],
 	["punctuation", ","],
+
 	["punctuation", "}"],
 	["punctuation", ";"],
+
 	["keyword", "const"],
 	["class-name", "Point"],
 	["operator", "="],
@@ -397,6 +427,7 @@ var list2 = LinkedList(i32) {};
 	["punctuation", "{"],
 	["punctuation", "}"],
 	["punctuation", ";"],
+
 	["keyword", "const"],
 	["class-name", "Point2"],
 	["operator", "="],
@@ -405,6 +436,7 @@ var list2 = LinkedList(i32) {};
 	["punctuation", "{"],
 	["punctuation", "}"],
 	["punctuation", ";"],
+
 	["keyword", "const"],
 	["class-name", "Type"],
 	["operator", "="],
@@ -412,6 +444,7 @@ var list2 = LinkedList(i32) {};
 	["punctuation", "{"],
 	["punctuation", "}"],
 	["punctuation", ";"],
+
 	["keyword", "const"],
 	["class-name", "Value"],
 	["operator", "="],
@@ -422,17 +455,19 @@ var list2 = LinkedList(i32) {};
 	["punctuation", "{"],
 	["punctuation", "}"],
 	["punctuation", ";"],
+
 	["keyword", "const"],
 	["class-name", "Number"],
 	["operator", "="],
 	["keyword", "packed"],
 	["keyword", "enum"],
 	["punctuation", "("],
-	["builtin-types", "u8"],
+	["builtin-type", "u8"],
 	["punctuation", ")"],
 	["punctuation", "{"],
 	["punctuation", "}"],
 	["punctuation", ";"],
+
 	["keyword", "const"],
 	["class-name", "Foo"],
 	["operator", "="],
@@ -446,6 +481,7 @@ var list2 = LinkedList(i32) {};
 	" C ",
 	["punctuation", "}"],
 	["punctuation", ";"],
+
 	["keyword", "const"],
 	["class-name", "Foo"],
 	["operator", "="],
@@ -459,6 +495,7 @@ var list2 = LinkedList(i32) {};
 	" C ",
 	["punctuation", "}"],
 	["punctuation", ";"],
+
 	["keyword", "const"],
 	["class-name", "Payload"],
 	["operator", "="],
@@ -466,6 +503,7 @@ var list2 = LinkedList(i32) {};
 	["punctuation", "{"],
 	["punctuation", "}"],
 	["punctuation", ";"],
+
 	["keyword", "const"],
 	["class-name", "ComplexType"],
 	["operator", "="],
@@ -476,6 +514,7 @@ var list2 = LinkedList(i32) {};
 	["punctuation", "{"],
 	["punctuation", "}"],
 	["punctuation", ";"],
+
 	["keyword", "var"],
 	" node ",
 	["operator", "="],
@@ -487,12 +526,13 @@ var list2 = LinkedList(i32) {};
 	["punctuation", "{"],
 	["punctuation", "}"],
 	["punctuation", ";"],
+
 	["keyword", "var"],
 	" list2 ",
 	["operator", "="],
 	["function", "LinkedList"],
 	["punctuation", "("],
-	["builtin-types", "i32"],
+	["builtin-type", "i32"],
 	["punctuation", ")"],
 	["punctuation", "{"],
 	["punctuation", "}"],
