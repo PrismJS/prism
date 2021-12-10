@@ -4,8 +4,8 @@ sub Foo_Bar42
 ----------------------------------------------------
 
 [
-	["function", [["keyword", "sub"], " foo"]],
-	["function", [["keyword", "sub"], " Foo_Bar42"]]
+	["keyword", "sub"], ["function", "foo"],
+	["keyword", "sub"], ["function", "Foo_Bar42"]
 ]
 
 ----------------------------------------------------
