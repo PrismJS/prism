@@ -10,8 +10,12 @@
 			pattern: /\b[a-z_]\w*\|(?:[^\r\n\\|]|\\(?:\r\n|[\s\S]))*\|/i,
 			greedy: true,
 			inside: {
+				'regex': {
+					pattern: /(^re)\|[\s\S]+/,
+					lookbehind: true
+				},
 				'function': /^\w+/,
-				'regex': /\|[\s\S]+/,
+				'value': /\|[\s\S]+/
 			}
 		},
 		'identifier': {

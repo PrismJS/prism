@@ -10,6 +10,6 @@ datetime|%Y-%m-%d %H:%M|
 	]],
 	["extractor", [
 		["function", "datetime"],
-		["regex", "|%Y-%m-%d %H:%M|"]
+		["value", "|%Y-%m-%d %H:%M|"]
 	]]
 ]
