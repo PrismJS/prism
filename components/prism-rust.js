@@ -27,8 +27,7 @@
 		},
 		'char': {
 			pattern: /b?'(?:\\(?:x[0-7][\da-fA-F]|u\{(?:[\da-fA-F]_*){1,6}\}|.)|[^\\\r\n\t'])'/,
-			greedy: true,
-			alias: 'string'
+			greedy: true
 		},
 		'attribute': {
 			pattern: /#!?\[(?:[^\[\]"]|"(?:\\[\s\S]|[^\\"])*")*\]/,
@@ -71,7 +70,7 @@
 			alias: 'function'
 		},
 		'type-definition': {
-			pattern: /(\b(?:enum|struct|union)\s+)\w+/,
+			pattern: /(\b(?:enum|struct|trait|type|union)\s+)\w+/,
 			lookbehind: true,
 			alias: 'class-name'
 		},
