@@ -11,7 +11,7 @@
 		 */
 		'comment': [
 			{
-				pattern: /\/\*[\S\s]*?(?:\*\/|$)/,
+				pattern: /\/\*[\s\S]*?(?:\*\/|$)/,
 				greedy: true
 			},
 			{
