@@ -1,0 +1,13 @@
+_
+false
+nil
+true
+
+----------------------------------------------------
+
+[
+	["boolean", "_"],
+	["boolean", "false"],
+	["boolean", "nil"],
+	["boolean", "true"]
+]

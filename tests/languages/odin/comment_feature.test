@@ -1,0 +1,90 @@
+/*
+*/
+/* A comment */
+/*!*/
+/*""*/
+/*"\a"*/
+/*#!*/
+/*' '*/
+/*'\a'*/
+/**/
+/*//*/
+/*0*/
+/*``*/
+/*`\a`*/
+/*false*/
+/*if*/
+Not a comment /* A comment */
+#!
+#! A comment
+#!!
+#!""
+#!#!
+#!' '
+#!/**/
+#!//
+#!0
+#!``
+#!false
+#!if
+Not a comment #! A comment
+//
+// A comment
+//!
+//""
+//#!
+//' '
+///**/
+////
+//0
+//``
+//false
+//if
+Not a comment // A comment
+
+----------------------------------------------------
+
+[
+	["comment", "/*\r\n*/"],
+	["comment", "/* A comment */"],
+	["comment", "/*!*/"],
+	["comment", "/*\"\"*/"],
+	["comment", "/*\"\\a\"*/"],
+	["comment", "/*#!*/"],
+	["comment", "/*' '*/"],
+	["comment", "/*'\\a'*/"],
+	["comment", "/**/"],
+	["comment", "/*//*/"],
+	["comment", "/*0*/"],
+	["comment", "/*``*/"],
+	["comment", "/*`\\a`*/"],
+	["comment", "/*false*/"],
+	["comment", "/*if*/"],
+	"\r\nNot a comment ", ["comment", "/* A comment */"],
+	["comment", "#!"],
+	["comment", "#! A comment"],
+	["comment", "#!!"],
+	["comment", "#!\"\""],
+	["comment", "#!#!"],
+	["comment", "#!' '"],
+	["comment", "#!/**/"],
+	["comment", "#!//"],
+	["comment", "#!0"],
+	["comment", "#!``"],
+	["comment", "#!false"],
+	["comment", "#!if"],
+	"\r\nNot a comment ", ["comment", "#! A comment"],
+	["comment", "//"],
+	["comment", "// A comment"],
+	["comment", "//!"],
+	["comment", "//\"\""],
+	["comment", "//#!"],
+	["comment", "//' '"],
+	["comment", "///**/"],
+	["comment", "////"],
+	["comment", "//0"],
+	["comment", "//``"],
+	["comment", "//false"],
+	["comment", "//if"],
+	"\r\nNot a comment ", ["comment", "// A comment"]
+]

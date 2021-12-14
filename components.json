@@ -919,6 +919,10 @@
 			"title": "OCaml",
 			"owner": "Golmote"
 		},
+		"odin": {
+			"title": "Odin",
+			"owner": "edukisto"
+		},
 		"opencl": {
 			"title": "OpenCL",
 			"require": "c",
