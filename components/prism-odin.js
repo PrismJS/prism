@@ -8,6 +8,7 @@
 	Prism.languages.odin = {
 		/**
 		 * The current implementation supports only 1 level of nesting.
+		 *
 		 * @author Michael Schmidt
 		 * @author edukisto
 		 */
