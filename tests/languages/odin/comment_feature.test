@@ -1,20 +1,3 @@
-/*
-*/
-/* A comment */
-/*!*/
-/*""*/
-/*"\a"*/
-/*#!*/
-/*' '*/
-/*'\a'*/
-/**/
-/*//*/
-/*0*/
-/*``*/
-/*`\a`*/
-/*false*/
-/*if*/
-Not a comment /* A comment */
 #!
 #! A comment
 #!!
@@ -27,7 +10,23 @@ Not a comment /* A comment */
 #!``
 #!false
 #!if
-Not a comment #! A comment
+/*
+*/
+/* 1 /* 2 */ 1 */
+/* A comment */
+/*!*/
+/*""*/
+/*"\a"*/
+/*#!*/
+/*' '*/
+/*'\a'*/
+/**/
+/*/**/*/
+/*0*/
+/*`\a`*/
+/*``*/
+/*false*/
+/*if*/
 //
 // A comment
 //!
@@ -40,27 +39,13 @@ Not a comment #! A comment
 //``
 //false
 //if
+Not a comment #! A comment
+Not a comment /* A comment */
 Not a comment // A comment
 
 ----------------------------------------------------
 
 [
-	["comment", "/*\r\n*/"],
-	["comment", "/* A comment */"],
-	["comment", "/*!*/"],
-	["comment", "/*\"\"*/"],
-	["comment", "/*\"\\a\"*/"],
-	["comment", "/*#!*/"],
-	["comment", "/*' '*/"],
-	["comment", "/*'\\a'*/"],
-	["comment", "/**/"],
-	["comment", "/*//*/"],
-	["comment", "/*0*/"],
-	["comment", "/*``*/"],
-	["comment", "/*`\\a`*/"],
-	["comment", "/*false*/"],
-	["comment", "/*if*/"],
-	"\r\nNot a comment ", ["comment", "/* A comment */"],
 	["comment", "#!"],
 	["comment", "#! A comment"],
 	["comment", "#!!"],
@@ -73,7 +58,22 @@ Not a comment // A comment
 	["comment", "#!``"],
 	["comment", "#!false"],
 	["comment", "#!if"],
-	"\r\nNot a comment ", ["comment", "#! A comment"],
+	["comment", "/*\r\n*/"],
+	["comment", "/* 1 /* 2 */ 1 */"],
+	["comment", "/* A comment */"],
+	["comment", "/*!*/"],
+	["comment", "/*\"\"*/"],
+	["comment", "/*\"\\a\"*/"],
+	["comment", "/*#!*/"],
+	["comment", "/*' '*/"],
+	["comment", "/*'\\a'*/"],
+	["comment", "/**/"],
+	["comment", "/*/**/*/"],
+	["comment", "/*0*/"],
+	["comment", "/*`\\a`*/"],
+	["comment", "/*``*/"],
+	["comment", "/*false*/"],
+	["comment", "/*if*/"],
 	["comment", "//"],
 	["comment", "// A comment"],
 	["comment", "//!"],
@@ -86,5 +86,7 @@ Not a comment // A comment
 	["comment", "//``"],
 	["comment", "//false"],
 	["comment", "//if"],
+	"\r\nNot a comment ", ["comment", "#! A comment"],
+	"\r\nNot a comment ", ["comment", "/* A comment */"],
 	"\r\nNot a comment ", ["comment", "// A comment"]
 ]
