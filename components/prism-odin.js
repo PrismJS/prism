@@ -7,11 +7,13 @@
 
 	Prism.languages.odin = {
 		/**
-		 * The current implementation of multiline comments doesn't support nesting.
+		 * The current implementation supports only 1 level of nesting.
+		 * @author Michael Schmidt
+		 * @author edukisto
 		 */
 		'comment': [
 			{
-				pattern: /\/\*(?:[^/*]|\/(?!\*)|\*(?!\/)|\/\*[\s\S]*?(?:\*\/|$))*(?:\*\/|$)/,
+				pattern: /\/\*(?:[^/*]|\/(?!\*)|\*(?!\/)|\/\*(?:\*(?!\/)|[^*])*(?:\*\/|$))*(?:\*\/|$)/,
 				greedy: true
 			},
 			{
