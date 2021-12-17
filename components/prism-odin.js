@@ -32,6 +32,7 @@
 		 */
 		'char': {
 			pattern: withEscapes(/'(?:<escapes>|[^\n\r'\\])'/.source),
+			greedy: true,
 			inside: {
 				'symbol': withEscapes(/<escapes>/.source)
 			}
