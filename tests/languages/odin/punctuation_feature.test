@@ -17,7 +17,7 @@
 	["punctuation", "("],
 	["punctuation", ")"],
 	["punctuation", ","],
-	["operator", "-"], ["operator", ">"],
+	["arrow", "->"],
 	["punctuation", "."],
 	["punctuation", ":"],
 	["punctuation", ";"],
