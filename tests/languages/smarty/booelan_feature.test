@@ -1,0 +1,51 @@
+{if false}
+{if off}
+{if on}
+{if no}
+{if true}
+{if yes}
+
+----------------------------------------------------
+
+[
+	["smarty", [
+		["delimiter", "{"],
+		["keyword", "if"],
+		["boolean", "false"],
+		["delimiter", "}"]
+	]],
+	["smarty", [
+		["delimiter", "{"],
+		["keyword", "if"],
+		["boolean", "off"],
+		["delimiter", "}"]
+	]],
+	["smarty", [
+		["delimiter", "{"],
+		["keyword", "if"],
+		["boolean", "on"],
+		["delimiter", "}"]
+	]],
+	["smarty", [
+		["delimiter", "{"],
+		["keyword", "if"],
+		["boolean", "no"],
+		["delimiter", "}"]
+	]],
+	["smarty", [
+		["delimiter", "{"],
+		["keyword", "if"],
+		["boolean", "true"],
+		["delimiter", "}"]
+	]],
+	["smarty", [
+		["delimiter", "{"],
+		["keyword", "if"],
+		["boolean", "yes"],
+		["delimiter", "}"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for keywords.

@@ -2,18 +2,45 @@
 {"fo\"obar"}
 {''}
 {'fo\'obar'}
+{$foo="this is message {counter}"}
+
+{func var="test $foo test"}              // sees $foo
+{func var="test $foo_bar test"}          // sees $foo_bar
+{func var="test `$foo[0]` test"}         // sees $foo[0]
+{func var="test `$foo[bar]` test"}       // sees $foo[bar]
+{func var="test $foo.bar test"}          // sees $foo (not $foo.bar)
+{func var="test `$foo.bar` test"}        // sees $foo.bar
+{func var="test `$foo.bar` test"|escape} // modifiers outside quotes!
+{func var="test {$foo|escape} test"}     // modifiers inside quotes!
+{func var="test {time()} test"}          // PHP function result
+{func var="test {counter} test"}         // plugin result
+
+{* will replace $tpl_name with value *}
+{include file="subdir/$tpl_name.tpl"}
+
+{* does NOT replace $tpl_name *}
+{include file='subdir/$tpl_name.tpl'} // vars require double quotes!
+
+{* must have backticks as it contains a dot "." *}
+{cycle values="one,two,`$smarty.config.myval`"}
+
+{* must have backticks as it contains a dot "." *}
+{include file="`$module.contact`.tpl"}
+
+{* can use variable with dot syntax *}
+{include file="`$module.$view`.tpl"}
 
 ----------------------------------------------------
 
 [
 	["smarty", [
 		["delimiter", "{"],
-		["string", "\"\""],
+		["string", ["\"\""]],
 		["delimiter", "}"]
 	]],
 	["smarty", [
 		["delimiter", "{"],
-		["string", "\"fo\\\"obar\""],
+		["string", ["\"fo\\\"obar\""]],
 		["delimiter", "}"]
 	]],
 	["smarty", [
@@ -24,6 +51,321 @@
 	["smarty", [
 		["delimiter", "{"],
 		["string", "'fo\\'obar'"],
+		["delimiter", "}"]
+	]],
+	["smarty", [
+		["delimiter", "{"],
+		["variable", "$foo"],
+		["operator", "="],
+		["string", [
+			"\"this is message ",
+			["interpolation", [
+				["interpolation-punctuation", "{"],
+				["expression", ["counter"]],
+				["interpolation-punctuation", "}"]
+			]],
+			"\""
+		]],
+		["delimiter", "}"]
+	]],
+
+	["smarty", [
+		["delimiter", "{"],
+		["keyword", "func"],
+		["attr-name", "var"],
+		["operator", "="],
+		["string", [
+			"\"test ",
+			["variable", "$foo"],
+			" test\""
+		]],
+		["delimiter", "}"]
+	]],
+	"              // sees $foo\r\n",
+
+	["smarty", [
+		["delimiter", "{"],
+		["keyword", "func"],
+		["attr-name", "var"],
+		["operator", "="],
+		["string", [
+			"\"test ",
+			["variable", "$foo_bar"],
+			" test\""
+		]],
+		["delimiter", "}"]
+	]],
+	"          // sees $foo_bar\r\n",
+
+	["smarty", [
+		["delimiter", "{"],
+		["keyword", "func"],
+		["attr-name", "var"],
+		["operator", "="],
+		["string", [
+			"\"test ",
+			["interpolation", [
+				["interpolation-punctuation", "`"],
+				["expression", [
+					["variable", "$foo"],
+					["punctuation", "["],
+					["number", "0"],
+					["punctuation", "]"]
+				]],
+				["interpolation-punctuation", "`"]
+			]],
+			" test\""
+		]],
+		["delimiter", "}"]
+	]],
+	"         // sees $foo[0]\r\n",
+
+	["smarty", [
+		["delimiter", "{"],
+		["keyword", "func"],
+		["attr-name", "var"],
+		["operator", "="],
+		["string", [
+			"\"test ",
+			["interpolation", [
+				["interpolation-punctuation", "`"],
+				["expression", [
+					["variable", "$foo"],
+					["punctuation", "["],
+					["variable", "bar"],
+					["punctuation", "]"]
+				]],
+				["interpolation-punctuation", "`"]
+			]],
+			" test\""
+		]],
+		["delimiter", "}"]
+	]],
+	"       // sees $foo[bar]\r\n",
+
+	["smarty", [
+		["delimiter", "{"],
+		["keyword", "func"],
+		["attr-name", "var"],
+		["operator", "="],
+		["string", [
+			"\"test ",
+			["variable", "$foo"],
+			".bar test\""
+		]],
+		["delimiter", "}"]
+	]],
+	"          // sees $foo (not $foo.bar)\r\n",
+
+	["smarty", [
+		["delimiter", "{"],
+		["keyword", "func"],
+		["attr-name", "var"],
+		["operator", "="],
+		["string", [
+			"\"test ",
+			["interpolation", [
+				["interpolation-punctuation", "`"],
+				["expression", [
+					["variable", "$foo"],
+					["punctuation", "."],
+					["variable", "bar"]
+				]],
+				["interpolation-punctuation", "`"]
+			]],
+			" test\""
+		]],
+		["delimiter", "}"]
+	]],
+	"        // sees $foo.bar\r\n",
+
+	["smarty", [
+		["delimiter", "{"],
+		["keyword", "func"],
+		["attr-name", "var"],
+		["operator", "="],
+		["string", [
+			"\"test ",
+			["interpolation", [
+				["interpolation-punctuation", "`"],
+				["expression", [
+					["variable", "$foo"],
+					["punctuation", "."],
+					["variable", "bar"]
+				]],
+				["interpolation-punctuation", "`"]
+			]],
+			" test\""
+		]],
+		["operator", "|"],
+		["function", "escape"],
+		["delimiter", "}"]
+	]],
+	" // modifiers outside quotes!\r\n",
+
+	["smarty", [
+		["delimiter", "{"],
+		["keyword", "func"],
+		["attr-name", "var"],
+		["operator", "="],
+		["string", [
+			"\"test ",
+			["interpolation", [
+				["interpolation-punctuation", "{"],
+				["expression", [
+					["variable", "$foo"],
+					["operator", "|"],
+					["function", "escape"]
+				]],
+				["interpolation-punctuation", "}"]
+			]],
+			" test\""
+		]],
+		["delimiter", "}"]
+	]],
+	"     // modifiers inside quotes!\r\n",
+
+	["smarty", [
+		["delimiter", "{"],
+		["keyword", "func"],
+		["attr-name", "var"],
+		["operator", "="],
+		["string", [
+			"\"test ",
+			["interpolation", [
+				["interpolation-punctuation", "{"],
+				["expression", [
+					["function", "time"],
+					["punctuation", "("],
+					["punctuation", ")"]
+				]],
+				["interpolation-punctuation", "}"]
+			]],
+			" test\""
+		]],
+		["delimiter", "}"]
+	]],
+	"          // PHP function result\r\n",
+
+	["smarty", [
+		["delimiter", "{"],
+		["keyword", "func"],
+		["attr-name", "var"],
+		["operator", "="],
+		["string", [
+			"\"test ",
+			["interpolation", [
+				["interpolation-punctuation", "{"],
+				["expression", ["counter"]],
+				["interpolation-punctuation", "}"]
+			]],
+			" test\""
+		]],
+		["delimiter", "}"]
+	]],
+	"         // plugin result\r\n\r\n",
+
+	["smarty", [
+		["comment", "{* will replace $tpl_name with value *}"]
+	]],
+	["smarty", [
+		["delimiter", "{"],
+		["keyword", "include"],
+		["attr-name", "file"],
+		["operator", "="],
+		["string", [
+			"\"subdir/",
+			["variable", "$tpl_name"],
+			".tpl\""
+		]],
+		["delimiter", "}"]
+	]],
+
+	["smarty", [
+		["comment", "{* does NOT replace $tpl_name *}"]
+	]],
+
+	["smarty", [
+		["delimiter", "{"],
+		["keyword", "include"],
+		["attr-name", "file"],
+		["operator", "="],
+		["string", "'subdir/$tpl_name.tpl'"],
+		["delimiter", "}"]
+	]],
+	" // vars require double quotes!\r\n\r\n",
+
+	["smarty", [
+		["comment", "{* must have backticks as it contains a dot \".\" *}"]
+	]],
+	["smarty", [
+		["delimiter", "{"],
+		["keyword", "cycle"],
+		["attr-name", "values"],
+		["operator", "="],
+		["string", [
+			"\"one,two,",
+			["interpolation", [
+				["interpolation-punctuation", "`"],
+				["expression", [
+					["variable", "$smarty"],
+					["punctuation", "."],
+					["variable", "config"],
+					["punctuation", "."],
+					["variable", "myval"]
+				]],
+				["interpolation-punctuation", "`"]
+			]],
+			"\""
+		]],
+		["delimiter", "}"]
+	]],
+
+	["smarty", [
+		["comment", "{* must have backticks as it contains a dot \".\" *}"]
+	]],
+	["smarty", [
+		["delimiter", "{"],
+		["keyword", "include"],
+		["attr-name", "file"],
+		["operator", "="],
+		["string", [
+			"\"",
+			["interpolation", [
+				["interpolation-punctuation", "`"],
+				["expression", [
+					["variable", "$module"],
+					["punctuation", "."],
+					["variable", "contact"]
+				]],
+				["interpolation-punctuation", "`"]
+			]],
+			".tpl\""
+		]],
+		["delimiter", "}"]
+	]],
+
+	["smarty", [
+		["comment", "{* can use variable with dot syntax *}"]
+	]],
+	["smarty", [
+		["delimiter", "{"],
+		["keyword", "include"],
+		["attr-name", "file"],
+		["operator", "="],
+		["string", [
+			"\"",
+			["interpolation", [
+				["interpolation-punctuation", "`"],
+				["expression", [
+					["variable", "$module"],
+					["punctuation", "."],
+					["variable", "$view"]
+				]],
+				["interpolation-punctuation", "`"]
+			]],
+			".tpl\""
+		]],
 		["delimiter", "}"]
 	]]
 ]

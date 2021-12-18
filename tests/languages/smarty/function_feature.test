@@ -8,7 +8,7 @@
 [
 	["smarty", [
 		["delimiter", "{"],
-		["function", "if"],
+		["keyword", "if"],
 		["function", "count"],
 		["punctuation", "("],
 		["variable", "$foo"],
@@ -30,8 +30,8 @@
 		["delimiter", "}"]
 	]],
 	["smarty", [
-		["delimiter", "{"],
-		["function", "/if"],
+		["delimiter", "{/"],
+		["keyword", "if"],
 		["delimiter", "}"]
 	]]
 ]

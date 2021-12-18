@@ -17,7 +17,7 @@
 [
 	["smarty", [
 		["delimiter", "{"],
-		["function", "if"],
+		["keyword", "if"],
 		["variable", "$a"],
 		["operator", "+"],
 		["variable", "$b"],
@@ -29,7 +29,7 @@
 	]],
 	["smarty", [
 		["delimiter", "{"],
-		["function", "if"],
+		["keyword", "if"],
 		["variable", "$e"],
 		["operator", "*"],
 		["variable", "$f"],
@@ -43,7 +43,7 @@
 	]],
 	["smarty", [
 		["delimiter", "{"],
-		["function", "if"],
+		["keyword", "if"],
 		["variable", "$j"],
 		["operator", "<"],
 		["variable", "$k"],
@@ -63,7 +63,7 @@
 	]],
 	["smarty", [
 		["delimiter", "{"],
-		["function", "if"],
+		["keyword", "if"],
 		["operator", "!"],
 		["variable", "$r"],
 		["operator", "!="],
@@ -76,7 +76,7 @@
 	]],
 	["smarty", [
 		["delimiter", "{"],
-		["function", "if"],
+		["keyword", "if"],
 		["variable", "$v"],
 		["operator", "is not even by"],
 		["number", "3"],
@@ -87,7 +87,7 @@
 	]],
 	["smarty", [
 		["delimiter", "{"],
-		["function", "if"],
+		["keyword", "if"],
 		["variable", "$w"],
 		["operator", "is div by"],
 		["number", "2"],
@@ -99,7 +99,7 @@
 	]],
 	["smarty", [
 		["delimiter", "{"],
-		["function", "if"],
+		["keyword", "if"],
 		["variable", "$x"],
 		["operator", "is not odd"],
 		["operator", "or"],
@@ -110,7 +110,7 @@
 	]],
 	["smarty", [
 		["delimiter", "{"],
-		["function", "if"],
+		["keyword", "if"],
 		["variable", "$y"],
 		["operator", "ne"],
 		["variable", "$z"],
@@ -122,7 +122,7 @@
 	]],
 	["smarty", [
 		["delimiter", "{"],
-		["function", "if"],
+		["keyword", "if"],
 		["variable", "$c"],
 		["operator", "gt"],
 		["variable", "$d"],
@@ -134,7 +134,7 @@
 	]],
 	["smarty", [
 		["delimiter", "{"],
-		["function", "if"],
+		["keyword", "if"],
 		["variable", "$g"],
 		["operator", "gte"],
 		["variable", "$h"],
@@ -154,7 +154,7 @@
 	]],
 	["smarty", [
 		["delimiter", "{"],
-		["function", "if"],
+		["keyword", "if"],
 		["operator", "not"],
 		["variable", "$o"],
 		["operator", "and"],
@@ -165,12 +165,10 @@
 	]],
 	["smarty", [
 		["delimiter", "{"],
-		["function", "foo"],
-		["attr-name", [
-			"bar",
-			["operator", "="],
-			["variable", "baz"]
-		]],
+		["keyword", "foo"],
+		["attr-name", "bar"],
+		["operator", "="],
+		["variable", "baz"],
 		["delimiter", "}"]
 	]],
 	["smarty", [
