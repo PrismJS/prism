@@ -1,25 +1,23 @@
 Prism.languages.monkey = {
-	'string': /"[^"\r\n]*"/,
-	'comment': [
-		{
-			pattern: /^#Rem\s[\s\S]*?^#End/im,
-			greedy: true
-		},
-		{
-			pattern: /'.+/,
-			greedy: true
-		}
-	],
+	'comment': {
+		pattern: /^#Rem\s[\s\S]*?^#End|'.+/im,
+		greedy: true
+	},
+	'string': {
+		pattern: /"[^"\r\n]*"/,
+		greedy: true,
+	},
 	'preprocessor': {
 		pattern: /(^[ \t]*)#.+/m,
 		lookbehind: true,
-		alias: 'comment'
+		greedy: true,
+		alias: 'property'
 	},
+
 	'function': /\b\w+(?=\()/,
 	'type-char': {
-		pattern: /(\w)[?%#$]/,
-		lookbehind: true,
-		alias: 'variable'
+		pattern: /\b[?%#$]/,
+		alias: 'class-name'
 	},
 	'number': {
 		pattern: /((?:\.\.)?)(?:(?:\b|\B-\.?|\B\.)\d+(?:(?!\.\.)\.\d*)?|\$[\da-f]+)/i,

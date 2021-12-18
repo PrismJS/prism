@@ -1,8 +1,10 @@
+ADVISE
 ALL
 ALTER
 ANALYZE
 AS
 ASC
+AT
 BEGIN
 BINARY
 BOOLEAN
@@ -16,11 +18,14 @@ CLUSTER
 COLLATE
 COLLECTION
 COMMIT
+COMMITTED
 CONNECT
 CONTINUE
 CORRELATE
+CORRELATED
 COVER
 CREATE
+CURRENT
 DATABASE
 DATASET
 DATASTORE
@@ -40,14 +45,21 @@ EXCLUDE
 EXECUTE
 EXPLAIN
 FETCH
+FILTER
 FLATTEN
+FLUSH
+FOLLOWING
 FOR
 FORCE
 FROM
+FTS
 FUNCTION
+GOLANG
 GRANT
 GROUP
+GROUPS
 GSI
+HASH
 HAVING
 IF
 IGNORE
@@ -62,15 +74,19 @@ INSERT
 INTERSECT
 INTO
 IS
+ISOLATION
+JAVASCRIPT
 JOIN
 KEY
 KEYS
 KEYSPACE
 KNOWN
+LANGUAGE
 LAST
 LEFT
 LET
 LETTING
+LEVEL
 LIMIT
 LSM
 MAP
@@ -82,13 +98,19 @@ MINUS
 MISSING
 NAMESPACE
 NEST
+NL
+NO
+NTH_VALUE
 NULL
+NULLS
 NUMBER
 OBJECT
 OFFSET
 ON
 OPTION
+OPTIONS
 ORDER
+OTHERS
 OUTER
 OVER
 PARSE
@@ -96,24 +118,32 @@ PARTITION
 PASSWORD
 PATH
 POOL
+PRECEDING
 PREPARE
 PRIMARY
 PRIVATE
 PRIVILEGE
+PROBE
 PROCEDURE
 PUBLIC
+RANGE
 RAW
 REALM
 REDUCE
 RENAME
+RESPECT
 RETURN
 RETURNING
 REVOKE
 RIGHT
 ROLE
 ROLLBACK
+ROW
+ROWS
 SATISFIES
+SAVEPOINT
 SCHEMA
+SCOPE
 SELECT
 SELF
 SEMI
@@ -124,10 +154,13 @@ START
 STATISTICS
 STRING
 SYSTEM
+TIES
 TO
+TRAN
 TRANSACTION
 TRIGGER
 TRUNCATE
+UNBOUNDED
 UNDER
 UNION
 UNIQUE
@@ -146,6 +179,7 @@ VIA
 VIEW
 WHERE
 WHILE
+WINDOW
 WITH
 WORK
 XOR
@@ -153,11 +187,13 @@ XOR
 ----------------------------------------------------
 
 [
+	["keyword", "ADVISE"],
 	["keyword", "ALL"],
 	["keyword", "ALTER"],
 	["keyword", "ANALYZE"],
 	["keyword", "AS"],
 	["keyword", "ASC"],
+	["keyword", "AT"],
 	["keyword", "BEGIN"],
 	["keyword", "BINARY"],
 	["keyword", "BOOLEAN"],
@@ -171,11 +207,14 @@ XOR
 	["keyword", "COLLATE"],
 	["keyword", "COLLECTION"],
 	["keyword", "COMMIT"],
+	["keyword", "COMMITTED"],
 	["keyword", "CONNECT"],
 	["keyword", "CONTINUE"],
 	["keyword", "CORRELATE"],
+	["keyword", "CORRELATED"],
 	["keyword", "COVER"],
 	["keyword", "CREATE"],
+	["keyword", "CURRENT"],
 	["keyword", "DATABASE"],
 	["keyword", "DATASET"],
 	["keyword", "DATASTORE"],
@@ -195,14 +234,21 @@ XOR
 	["keyword", "EXECUTE"],
 	["keyword", "EXPLAIN"],
 	["keyword", "FETCH"],
+	["keyword", "FILTER"],
 	["keyword", "FLATTEN"],
+	["keyword", "FLUSH"],
+	["keyword", "FOLLOWING"],
 	["keyword", "FOR"],
 	["keyword", "FORCE"],
 	["keyword", "FROM"],
+	["keyword", "FTS"],
 	["keyword", "FUNCTION"],
+	["keyword", "GOLANG"],
 	["keyword", "GRANT"],
 	["keyword", "GROUP"],
+	["keyword", "GROUPS"],
 	["keyword", "GSI"],
+	["keyword", "HASH"],
 	["keyword", "HAVING"],
 	["keyword", "IF"],
 	["keyword", "IGNORE"],
@@ -217,15 +263,19 @@ XOR
 	["keyword", "INTERSECT"],
 	["keyword", "INTO"],
 	["keyword", "IS"],
+	["keyword", "ISOLATION"],
+	["keyword", "JAVASCRIPT"],
 	["keyword", "JOIN"],
 	["keyword", "KEY"],
 	["keyword", "KEYS"],
 	["keyword", "KEYSPACE"],
 	["keyword", "KNOWN"],
+	["keyword", "LANGUAGE"],
 	["keyword", "LAST"],
 	["keyword", "LEFT"],
 	["keyword", "LET"],
 	["keyword", "LETTING"],
+	["keyword", "LEVEL"],
 	["keyword", "LIMIT"],
 	["keyword", "LSM"],
 	["keyword", "MAP"],
@@ -237,13 +287,19 @@ XOR
 	["keyword", "MISSING"],
 	["keyword", "NAMESPACE"],
 	["keyword", "NEST"],
+	["keyword", "NL"],
+	["keyword", "NO"],
+	["keyword", "NTH_VALUE"],
 	["keyword", "NULL"],
+	["keyword", "NULLS"],
 	["keyword", "NUMBER"],
 	["keyword", "OBJECT"],
 	["keyword", "OFFSET"],
 	["keyword", "ON"],
 	["keyword", "OPTION"],
+	["keyword", "OPTIONS"],
 	["keyword", "ORDER"],
+	["keyword", "OTHERS"],
 	["keyword", "OUTER"],
 	["keyword", "OVER"],
 	["keyword", "PARSE"],
@@ -251,24 +307,32 @@ XOR
 	["keyword", "PASSWORD"],
 	["keyword", "PATH"],
 	["keyword", "POOL"],
+	["keyword", "PRECEDING"],
 	["keyword", "PREPARE"],
 	["keyword", "PRIMARY"],
 	["keyword", "PRIVATE"],
 	["keyword", "PRIVILEGE"],
+	["keyword", "PROBE"],
 	["keyword", "PROCEDURE"],
 	["keyword", "PUBLIC"],
+	["keyword", "RANGE"],
 	["keyword", "RAW"],
 	["keyword", "REALM"],
 	["keyword", "REDUCE"],
 	["keyword", "RENAME"],
+	["keyword", "RESPECT"],
 	["keyword", "RETURN"],
 	["keyword", "RETURNING"],
 	["keyword", "REVOKE"],
 	["keyword", "RIGHT"],
 	["keyword", "ROLE"],
 	["keyword", "ROLLBACK"],
+	["keyword", "ROW"],
+	["keyword", "ROWS"],
 	["keyword", "SATISFIES"],
+	["keyword", "SAVEPOINT"],
 	["keyword", "SCHEMA"],
+	["keyword", "SCOPE"],
 	["keyword", "SELECT"],
 	["keyword", "SELF"],
 	["keyword", "SEMI"],
@@ -279,10 +343,13 @@ XOR
 	["keyword", "STATISTICS"],
 	["keyword", "STRING"],
 	["keyword", "SYSTEM"],
+	["keyword", "TIES"],
 	["keyword", "TO"],
+	["keyword", "TRAN"],
 	["keyword", "TRANSACTION"],
 	["keyword", "TRIGGER"],
 	["keyword", "TRUNCATE"],
+	["keyword", "UNBOUNDED"],
 	["keyword", "UNDER"],
 	["keyword", "UNION"],
 	["keyword", "UNIQUE"],
@@ -301,6 +368,7 @@ XOR
 	["keyword", "VIEW"],
 	["keyword", "WHERE"],
 	["keyword", "WHILE"],
+	["keyword", "WINDOW"],
 	["keyword", "WITH"],
 	["keyword", "WORK"],
 	["keyword", "XOR"]

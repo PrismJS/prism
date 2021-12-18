@@ -14,15 +14,6 @@ bar"
 bar"""
 """foo"""B
 
-'a'
-'a'B
-'\''
-'\\'
-'\231'
-'\x41'
-'\u0041'
-'\U0001F47D'
-
 ----------------------------------------------------
 
 [
@@ -38,18 +29,9 @@ bar"""
 
 	["string", "\"\"\"\"\"\""],
 	["string", "\"\"\"fo\"\"o\"\r\nbar\"\"\""],
-	["string", "\"\"\"foo\"\"\"B"],
-
-	["string", "'a'"],
-	["string", "'a'B"],
-	["string", "'\\''"],
-	["string", "'\\\\'"],
-	["string", "'\\231'"],
-	["string", "'\\x41'"],
-	["string", "'\\u0041'"],
-	["string", "'\\U0001F47D'"]
+	["string", "\"\"\"foo\"\"\"B"]
 ]
 
 ----------------------------------------------------
 
-Checks for normal strings, verbatim strings, triple-quoted strings and character literals.
+Checks for normal strings, verbatim strings, and triple-quoted strings.

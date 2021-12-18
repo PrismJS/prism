@@ -6,25 +6,39 @@
 ----------------------------------------------------
 
 [
-	["tag", [
-		["ld", [["punctuation", "{{"]]],
-		["string", [["punctuation", "'"], ["punctuation", "'"]]],
-		["rd", [["punctuation", "}}"]]]
+	["twig", [
+		["delimiter", "{{"],
+		["string", [
+			["punctuation", "'"],
+			["punctuation", "'"]
+		]],
+		["delimiter", "}}"]
 	]],
-	["tag", [
-		["ld", [["punctuation", "{{"]]],
-		["string", [["punctuation", "\""], ["punctuation", "\""]]],
-		["rd", [["punctuation", "}}"]]]
+	["twig", [
+		["delimiter", "{{"],
+		["string", [
+			["punctuation", "\""],
+			["punctuation", "\""]
+		]],
+		["delimiter", "}}"]
 	]],
-	["tag", [
-		["ld", [["punctuation", "{{"]]],
-		["string", [["punctuation", "\""], "ba\\\"r", ["punctuation", "\""]]],
-		["rd", [["punctuation", "}}"]]]
+	["twig", [
+		["delimiter", "{{"],
+		["string", [
+			["punctuation", "\""],
+			"ba\\\"r",
+			["punctuation", "\""]
+		]],
+		["delimiter", "}}"]
 	]],
-	["tag", [
-		["ld", [["punctuation", "{{"]]],
-		["string", [["punctuation", "'"], "ba\\'z", ["punctuation", "'"]]],
-		["rd", [["punctuation", "}}"]]]
+	["twig", [
+		["delimiter", "{{"],
+		["string", [
+			["punctuation", "'"],
+			"ba\\'z",
+			["punctuation", "'"]
+		]],
+		["delimiter", "}}"]
 	]]
 ]
 

@@ -33,7 +33,8 @@
 				'filter-name': {
 					pattern: /^:[\w-]+/,
 					alias: 'variable'
-				}
+				},
+				'text': /\S[\s\S]*/,
 			}
 		},
 
@@ -172,7 +173,11 @@
 						pattern: /^:[\w-]+/,
 						alias: 'variable'
 					},
-					rest: Prism.languages[filter.language]
+					'text': {
+						pattern: /\S[\s\S]*/,
+						alias: [filter.language, 'language-' + filter.language],
+						inside: Prism.languages[filter.language]
+					}
 				}
 			};
 		}

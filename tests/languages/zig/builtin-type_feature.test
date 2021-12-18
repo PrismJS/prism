@@ -1,0 +1,75 @@
+i8
+u8
+i16
+u16
+i32
+u32
+i64
+u64
+i128
+u128
+isize
+usize
+c_short
+c_ushort
+c_int
+c_uint
+c_long
+c_ulong
+c_longlong
+c_ulonglong
+c_longdouble
+c_void
+f16
+f32
+f64
+f128
+bool
+void
+noreturn
+type
+anyerror
+comptime_int
+comptime_float
+
+----------------------------------------------------
+
+[
+	["builtin-type", "i8"],
+	["builtin-type", "u8"],
+	["builtin-type", "i16"],
+	["builtin-type", "u16"],
+	["builtin-type", "i32"],
+	["builtin-type", "u32"],
+	["builtin-type", "i64"],
+	["builtin-type", "u64"],
+	["builtin-type", "i128"],
+	["builtin-type", "u128"],
+	["builtin-type", "isize"],
+	["builtin-type", "usize"],
+	["builtin-type", "c_short"],
+	["builtin-type", "c_ushort"],
+	["builtin-type", "c_int"],
+	["builtin-type", "c_uint"],
+	["builtin-type", "c_long"],
+	["builtin-type", "c_ulong"],
+	["builtin-type", "c_longlong"],
+	["builtin-type", "c_ulonglong"],
+	["builtin-type", "c_longdouble"],
+	["builtin-type", "c_void"],
+	["builtin-type", "f16"],
+	["builtin-type", "f32"],
+	["builtin-type", "f64"],
+	["builtin-type", "f128"],
+	["builtin-type", "bool"],
+	["builtin-type", "void"],
+	["builtin-type", "noreturn"],
+	["builtin-type", "type"],
+	["builtin-type", "anyerror"],
+	["builtin-type", "comptime_int"],
+	["builtin-type", "comptime_float"]
+]
+
+----------------------------------------------------
+
+Checks for builtin types.

@@ -2,16 +2,16 @@
 
 Prism.languages.powerquery = {
 	'comment': {
-		pattern: /(^|[^\\])(?:\/\*[\s\S]*?\*\/|(?:\/\/).*)/,
-		lookbehind: true
+		pattern: /(^|[^\\])(?:\/\*[\s\S]*?\*\/|\/\/.*)/,
+		lookbehind: true,
+		greedy: true
 	},
 	'quoted-identifier': {
 		pattern: /#"(?:[^"\r\n]|"")*"(?!")/,
-		greedy: true,
-		alias: 'variable'
+		greedy: true
 	},
 	'string': {
-		pattern: /"(?:[^"\r\n]|"")*"(?!")/,
+		pattern: /(?:#!)?"(?:[^"\r\n]|"")*"(?!")/,
 		greedy: true
 	},
 	'constant': [
@@ -36,12 +36,12 @@ Prism.languages.powerquery = {
 	'boolean': /\b(?:false|true)\b/,
 	'keyword': /\b(?:and|as|each|else|error|if|in|is|let|meta|not|nullable|optional|or|otherwise|section|shared|then|try|type)\b|#(?:binary|date|datetime|datetimezone|duration|infinity|nan|sections|shared|table|time)\b/,
 	'function': {
-		pattern: /(^|[^#\w.])(?!\d)[\w.]+(?=\s*\()/,
+		pattern: /(^|[^#\w.])[a-z_][\w.]*(?=\s*\()/i,
 		lookbehind: true
 	},
 	'data-type': {
 		pattern: /\b(?:any|anynonnull|binary|date|datetime|datetimezone|duration|function|list|logical|none|number|record|table|text|time)\b/,
-		alias: 'variable'
+		alias: 'class-name'
 	},
 	'number': {
 		pattern: /\b0x[\da-f]+\b|(?:[+-]?(?:\b\d+\.)?\b\d+|[+-]\.\d+|(^|[^.])\B\.\d+)(?:e[+-]?\d+)?\b/i,

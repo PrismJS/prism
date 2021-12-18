@@ -1,0 +1,226 @@
+(abspath foo)
+(addsuffix foo)
+(and foo)
+(basename foo)
+(call foo)
+(dir foo)
+(error foo)
+(eval foo)
+(file foo)
+(filter foo)
+(filter-out foo)
+(findstring foo)
+(firstword foo)
+(flavor foo)
+(foreach foo)
+(guile foo)
+(if foo)
+(info foo)
+(join foo)
+(lastword foo)
+(load foo)
+(notdir foo)
+(or foo)
+(origin foo)
+(patsubst foo)
+(realpath foo)
+(shell foo)
+(sort foo)
+(strip foo)
+(subst foo)
+(suffix foo)
+(value foo)
+(warning foo)
+(wildcard foo)
+(word foo)
+(wordlist foo)
+(words foo)
+
+----------------------------------------------------
+
+[
+	["punctuation", "("],
+	["function", "abspath"],
+	" foo",
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "addsuffix"],
+	" foo",
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "and"],
+	" foo",
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "basename"],
+	" foo",
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "call"],
+	" foo",
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "dir"],
+	" foo",
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "error"],
+	" foo",
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "eval"],
+	" foo",
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "file"],
+	" foo",
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "filter"],
+	" foo",
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "filter-out"],
+	" foo",
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "findstring"],
+	" foo",
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "firstword"],
+	" foo",
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "flavor"],
+	" foo",
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "foreach"],
+	" foo",
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "guile"],
+	" foo",
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "if"],
+	" foo",
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "info"],
+	" foo",
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "join"],
+	" foo",
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "lastword"],
+	" foo",
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "load"],
+	" foo",
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "notdir"],
+	" foo",
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "or"],
+	" foo",
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "origin"],
+	" foo",
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "patsubst"],
+	" foo",
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "realpath"],
+	" foo",
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "shell"],
+	" foo",
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "sort"],
+	" foo",
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "strip"],
+	" foo",
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "subst"],
+	" foo",
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "suffix"],
+	" foo",
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "value"],
+	" foo",
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "warning"],
+	" foo",
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "wildcard"],
+	" foo",
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "word"],
+	" foo",
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "wordlist"],
+	" foo",
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["function", "words"],
+	" foo",
+	["punctuation", ")"]
+]

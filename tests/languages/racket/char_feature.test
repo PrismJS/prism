@@ -1,0 +1,41 @@
+#\a                     ; lowercase letter
+#\A                     ; uppercase letter
+#\(                     ; left parenthesis
+#\space                 ; the space character
+#\newline               ; the newline character
+
+#\c-a                   ; Control-a
+#\meta-b                ; Meta-b
+#\c-s-m-h-a             ; Control-Meta-Super-Hyper-A
+
+#\; #\' #\"
+
+#\u0041
+#\x10FFFF
+#\λ
+#\)
+
+----------------------------------------------------
+
+[
+	["char", "#\\a"], ["comment", "; lowercase letter"],
+	["char", "#\\A"], ["comment", "; uppercase letter"],
+	["char", "#\\("], ["comment", "; left parenthesis"],
+	["char", "#\\space"], ["comment", "; the space character"],
+	["char", "#\\newline"], ["comment", "; the newline character"],
+
+	["char", "#\\c-a"], ["comment", "; Control-a"],
+	["char", "#\\meta-b"], ["comment", "; Meta-b"],
+	["char", "#\\c-s-m-h-a"], ["comment", "; Control-Meta-Super-Hyper-A"],
+
+	["char", "#\\;"], ["char", "#\\'"], ["char", "#\\\""],
+
+	["char", "#\\u0041"],
+	["char", "#\\x10FFFF"],
+	["char", "#\\λ"],
+	["char", "#\\)"]
+]
+
+----------------------------------------------------
+
+Checks for character literals.

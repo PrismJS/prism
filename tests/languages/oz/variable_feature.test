@@ -1,15 +1,7 @@
-A
-Foobar
-Foo42
+`foo`
 
 ----------------------------------------------------
 
 [
-	["variable", "A"],
-	["variable", "Foobar"],
-	["variable", "Foo42"]
+	["variable", "`foo`"]
 ]
-
-----------------------------------------------------
-
-Checks for variables.
