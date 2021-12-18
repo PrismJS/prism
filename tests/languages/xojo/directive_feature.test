@@ -1,0 +1,19 @@
+#If
+#Else
+#ElseIf
+#Endif
+#Pragma
+
+----------------------------------------------------
+
+[
+	["directive", "#If"],
+	["directive", "#Else"],
+	["directive", "#ElseIf"],
+	["directive", "#Endif"],
+	["directive", "#Pragma"]
+]
+
+----------------------------------------------------
+
+Checks for conditional compilation and pragma.
