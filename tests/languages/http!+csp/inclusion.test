@@ -8,10 +8,11 @@ Content-Security-Policy: default-src 'none'; style-src cdn.example.com; report-u
 		["punctuation", ":"],
 		["header-value", [
 			["directive", "default-src"],
-			["safe", "'none'"],
-			"; ",
+			["none", "'none'"],
+			["punctuation", ";"],
 			["directive", "style-src"],
-			" cdn.example.com; ",
+			["host", ["cdn.example.com"]],
+			["punctuation", ";"],
 			["directive", "report-uri"],
 			" /_/csp-reports"
 		]]

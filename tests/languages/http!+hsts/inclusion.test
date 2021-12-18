@@ -7,8 +7,9 @@ Strict-Transport-Security: max-age=31536000
 		["header-name", "Strict-Transport-Security"],
 		["punctuation", ":"],
 		["header-value", [
-			["directive", "max-age="],
-			["safe", "31536000"]
+			["directive", "max-age"],
+			["operator", "="],
+			"31536000"
 		]]
 	]]
 ]
