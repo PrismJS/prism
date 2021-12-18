@@ -1222,6 +1222,7 @@
 		"smarty": {
 			"title": "Smarty",
 			"require": "markup-templating",
+			"optional": "php",
 			"owner": "Golmote"
 		},
 		"sml": {

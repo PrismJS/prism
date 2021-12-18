@@ -7,18 +7,11 @@ Prism.languages.squirrel = Prism.languages.extend('clike', {
 			greedy: true
 		}
 	],
-	'string': [
-		{
-			pattern: /(^|[^\\"'@])(?:@"(?:[^"]|"")*"(?!")|"(?:[^\\\r\n"]|\\.)*")/,
-			lookbehind: true,
-			greedy: true
-		},
-		{
-			pattern: /(^|[^\\"'])'(?:[^\\']|\\(?:[xuU][0-9a-fA-F]{0,8}|[\s\S]))'/,
-			lookbehind: true,
-			greedy: true
-		}
-	],
+	'string': {
+		pattern: /(^|[^\\"'@])(?:@"(?:[^"]|"")*"(?!")|"(?:[^\\\r\n"]|\\.)*")/,
+		lookbehind: true,
+		greedy: true
+	},
 
 	'class-name': {
 		pattern: /(\b(?:class|enum|extends|instanceof)\s+)\w+(?:\.\w+)*/,
@@ -32,6 +25,14 @@ Prism.languages.squirrel = Prism.languages.extend('clike', {
 	'number': /\b(?:0x[0-9a-fA-F]+|\d+(?:\.(?:\d+|[eE][+-]?\d+))?)\b/,
 	'operator': /\+\+|--|<=>|<[-<]|>>>?|&&?|\|\|?|[-+*/%!=<>]=?|[~^]|::?/,
 	'punctuation': /[(){}\[\],;.]/
+});
+
+Prism.languages.insertBefore('squirrel', 'string', {
+	'char': {
+		pattern: /(^|[^\\"'])'(?:[^\\']|\\(?:[xuU][0-9a-fA-F]{0,8}|[\s\S]))'/,
+		lookbehind: true,
+		greedy: true
+	}
 });
 
 Prism.languages.insertBefore('squirrel', 'operator', {

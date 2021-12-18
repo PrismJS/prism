@@ -1,0 +1,121 @@
+{php}
+   // including a php script directly from the template.
+   include('/path/to/display_weather.php');
+{/php}
+
+{* this template includes a {php} block that assign's the variable $varX *}
+{php}
+   global $foo, $bar;
+   if($foo == $bar){
+     echo 'This will be sent to browser';
+   }
+  // assign a variable to Smarty
+  $this->assign('varX','Toffee');
+{/php}
+{* output the variable *}
+<strong>{$varX}</strong> is my fav ice cream :-)
+
+----------------------------------------------------
+
+[
+	["smarty", [
+		["embedded-php", [
+			["smarty", [
+				["delimiter", "{"],
+				["keyword", "php"],
+				["delimiter", "}"]
+			]],
+			["php", [
+				["comment", "// including a php script directly from the template."],
+
+				["keyword", "include"],
+				["punctuation", "("],
+				["string", "'/path/to/display_weather.php'"],
+				["punctuation", ")"],
+				["punctuation", ";"]
+			]],
+			["smarty", [
+				["delimiter", "{/"],
+				["keyword", "php"],
+				["delimiter", "}"]
+			]]
+		]]
+	]],
+
+	["smarty", [
+		["comment", "{* this template includes a {php} block that assign's the variable $varX *}"]
+	]],
+
+	["smarty", [
+		["embedded-php", [
+			["smarty", [
+				["delimiter", "{"],
+				["keyword", "php"],
+				["delimiter", "}"]
+			]],
+			["php", [
+				["keyword", "global"],
+				["variable", "$foo"],
+				["punctuation", ","],
+				["variable", "$bar"],
+				["punctuation", ";"],
+
+				["keyword", "if"],
+				["punctuation", "("],
+				["variable", "$foo"],
+				["operator", "=="],
+				["variable", "$bar"],
+				["punctuation", ")"],
+				["punctuation", "{"],
+
+				["keyword", "echo"],
+				["string", "'This will be sent to browser'"],
+				["punctuation", ";"],
+
+				["punctuation", "}"],
+
+				["comment", "// assign a variable to Smarty"],
+
+				["variable", "$this"],
+				["operator", "->"],
+				["function", ["assign"]],
+				["punctuation", "("],
+				["string", "'varX'"],
+				["punctuation", ","],
+				["string", "'Toffee'"],
+				["punctuation", ")"],
+				["punctuation", ";"]
+			]],
+			["smarty", [
+				["delimiter", "{/"],
+				["keyword", "php"],
+				["delimiter", "}"]
+			]]
+		]]
+	]],
+
+	["smarty", [
+		["comment", "{* output the variable *}"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"strong"
+		]],
+		["punctuation", ">"]
+	]],
+	["smarty", [
+		["delimiter", "{"],
+		["variable", "$varX"],
+		["delimiter", "}"]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"strong"
+		]],
+		["punctuation", ">"]
+	]],
+	" is my fav ice cream :-)"
+]

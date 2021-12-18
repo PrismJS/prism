@@ -1,0 +1,16 @@
+default-src 'report-sample';
+style-src 'self' 'strict-dynamic';
+
+----------------------------------------------------
+
+<span class="token directive property">default-src</span>
+<span class="token keyword safe">'report-sample'</span>
+<span class="token punctuation">;</span>
+<span class="token directive property">style-src</span>
+<span class="token keyword safe">'self'</span>
+<span class="token keyword safe">'strict-dynamic'</span>
+<span class="token punctuation">;</span>
+
+----------------------------------------------------
+
+Checks for source expressions classified as safe.

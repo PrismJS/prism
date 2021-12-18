@@ -1,0 +1,20 @@
+navigate-to 'unsafe-allow-redirects';
+script-src 'unsafe-dynamic' 'unsafe-eval' 'unsafe-hash-attributes' 'unsafe-hashed-attributes' 'unsafe-hashes' 'unsafe-inline';
+
+----------------------------------------------------
+
+<span class="token directive property">navigate-to</span>
+<span class="token keyword unsafe">'unsafe-allow-redirects'</span>
+<span class="token punctuation">;</span>
+<span class="token directive property">script-src</span>
+<span class="token keyword unsafe">'unsafe-dynamic'</span>
+<span class="token keyword unsafe">'unsafe-eval'</span>
+<span class="token keyword unsafe">'unsafe-hash-attributes'</span>
+<span class="token keyword unsafe">'unsafe-hashed-attributes'</span>
+<span class="token keyword unsafe">'unsafe-hashes'</span>
+<span class="token keyword unsafe">'unsafe-inline'</span>
+<span class="token punctuation">;</span>
+
+----------------------------------------------------
+
+Checks for source expressions classified as unsafe.

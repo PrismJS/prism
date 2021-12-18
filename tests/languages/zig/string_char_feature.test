@@ -1,0 +1,160 @@
+// source: https://ziglang.org/documentation/master/#String-Literals-and-Character-Literals
+
+const expect = @import("std").testing.expect;
+const mem = @import("std").mem;
+
+test "string literals" {
+    const bytes = "hello";
+    expect(@TypeOf(bytes) == *const [5:0]u8);
+    expect(bytes.len == 5);
+    expect(bytes[1] == 'e');
+    expect(bytes[5] == 0);
+    expect('e' == '\x65');
+    expect('\u{1f4a9}' == 128169);
+    expect('💯' == 128175);
+    expect(mem.eql(u8, "hello", "h\x65llo"));
+}
+
+const hello_world_in_c =
+    \\#include <stdio.h>
+    \\
+    \\int main(int argc, char **argv) {
+    \\    printf("hello world\n");
+    \\    return 0;
+    \\}
+;
+
+----------------------------------------------------
+
+[
+	["comment", "// source: https://ziglang.org/documentation/master/#String-Literals-and-Character-Literals"],
+
+	["keyword", "const"],
+	" expect ",
+	["operator", "="],
+	["builtin", "@import"],
+	["punctuation", "("],
+	["string", "\"std\""],
+	["punctuation", ")"],
+	["punctuation", "."],
+	"testing",
+	["punctuation", "."],
+	"expect",
+	["punctuation", ";"],
+
+	["keyword", "const"],
+	" mem ",
+	["operator", "="],
+	["builtin", "@import"],
+	["punctuation", "("],
+	["string", "\"std\""],
+	["punctuation", ")"],
+	["punctuation", "."],
+	"mem",
+	["punctuation", ";"],
+
+	["keyword", "test"],
+	["string", "\"string literals\""],
+	["punctuation", "{"],
+
+	["keyword", "const"],
+	" bytes ",
+	["operator", "="],
+	["string", "\"hello\""],
+	["punctuation", ";"],
+
+	["function", "expect"],
+	["punctuation", "("],
+	["builtin", "@TypeOf"],
+	["punctuation", "("],
+	"bytes",
+	["punctuation", ")"],
+	["operator", "=="],
+	["operator", "*"],
+	["keyword", "const"],
+	["punctuation", "["],
+	["number", "5"],
+	["punctuation", ":"],
+	["number", "0"],
+	["punctuation", "]"],
+	["builtin-type", "u8"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["function", "expect"],
+	["punctuation", "("],
+	"bytes",
+	["punctuation", "."],
+	"len ",
+	["operator", "=="],
+	["number", "5"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["function", "expect"],
+	["punctuation", "("],
+	"bytes",
+	["punctuation", "["],
+	["number", "1"],
+	["punctuation", "]"],
+	["operator", "=="],
+	["char", "'e'"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["function", "expect"],
+	["punctuation", "("],
+	"bytes",
+	["punctuation", "["],
+	["number", "5"],
+	["punctuation", "]"],
+	["operator", "=="],
+	["number", "0"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["function", "expect"],
+	["punctuation", "("],
+	["char", "'e'"],
+	["operator", "=="],
+	["char", "'\\x65'"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["function", "expect"],
+	["punctuation", "("],
+	["char", "'\\u{1f4a9}'"],
+	["operator", "=="],
+	["number", "128169"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["function", "expect"],
+	["punctuation", "("],
+	["char", "'💯'"],
+	["operator", "=="],
+	["number", "128175"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["function", "expect"],
+	["punctuation", "("],
+	"mem",
+	["punctuation", "."],
+	["function", "eql"],
+	["punctuation", "("],
+	["builtin-type", "u8"],
+	["punctuation", ","],
+	["string", "\"hello\""],
+	["punctuation", ","],
+	["string", "\"h\\x65llo\""],
+	["punctuation", ")"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+
+	["keyword", "const"], " hello_world_in_c ", ["operator", "="],
+	["string", "    \\\\#include <stdio.h>\r\n    \\\\\r\n    \\\\int main(int argc, char **argv) {\r\n    \\\\    printf(\"hello world\\n\");\r\n    \\\\    return 0;\r\n    \\\\}"],
+	["punctuation", ";"]
+]

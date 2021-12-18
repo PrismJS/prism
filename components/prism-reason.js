@@ -9,15 +9,12 @@ Prism.languages.reason = Prism.languages.extend('clike', {
 	'operator': /\.{3}|:[:=]|\|>|->|=(?:==?|>)?|<=?|>=?|[|^?'#!~`]|[+\-*\/]\.?|\b(?:asr|land|lor|lsl|lsr|lxor|mod)\b/
 });
 Prism.languages.insertBefore('reason', 'class-name', {
-	'character': {
+	'char': {
 		pattern: /'(?:\\x[\da-f]{2}|\\o[0-3][0-7][0-7]|\\\d{3}|\\.|[^'\\\r\n])'/,
-		alias: 'string'
+		greedy: true
 	},
-	'constructor': {
-		// Negative look-ahead prevents from matching things like String.capitalize
-		pattern: /\b[A-Z]\w*\b(?!\s*\.)/,
-		alias: 'variable'
-	},
+	// Negative look-ahead prevents from matching things like String.capitalize
+	'constructor': /\b[A-Z]\w*\b(?!\s*\.)/,
 	'label': {
 		pattern: /\b[a-z]\w*(?=::)/,
 		alias: 'symbol'

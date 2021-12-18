@@ -5,34 +5,28 @@
 	};
 
 	Prism.languages.v = Prism.languages.extend('clike', {
-		'string': [
-			{
-				pattern: /`(?:\\`|\\?[^`]{1,2})`/, // using {1,2} instead of `u` flag for compatibility
-				alias: 'rune'
-			},
-			{
-				pattern: /r?(["'])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,
-				alias: 'quoted-string',
-				greedy: true,
-				inside: {
-					'interpolation': {
-						pattern: /((?:^|[^\\])(?:\\{2})*)\$(?:\{[^{}]*\}|\w+(?:\.\w+(?:\([^\(\)]*\))?|\[[^\[\]]+\])*)/,
-						lookbehind: true,
-						inside: {
-							'interpolation-variable': {
-								pattern: /^\$\w[\s\S]*$/,
-								alias: 'variable'
-							},
-							'interpolation-punctuation': {
-								pattern: /^\$\{|\}$/,
-								alias: 'punctuation'
-							},
-							'interpolation-expression': interpolationExpr
-						}
+		'string': {
+			pattern: /r?(["'])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,
+			alias: 'quoted-string',
+			greedy: true,
+			inside: {
+				'interpolation': {
+					pattern: /((?:^|[^\\])(?:\\{2})*)\$(?:\{[^{}]*\}|\w+(?:\.\w+(?:\([^\(\)]*\))?|\[[^\[\]]+\])*)/,
+					lookbehind: true,
+					inside: {
+						'interpolation-variable': {
+							pattern: /^\$\w[\s\S]*$/,
+							alias: 'variable'
+						},
+						'interpolation-punctuation': {
+							pattern: /^\$\{|\}$/,
+							alias: 'punctuation'
+						},
+						'interpolation-expression': interpolationExpr
 					}
 				}
 			}
-		],
+		},
 		'class-name': {
 			pattern: /(\b(?:enum|interface|struct|type)\s+)(?:C\.)?\w+/,
 			lookbehind: true
@@ -44,6 +38,13 @@
 	});
 
 	interpolationExpr.inside = Prism.languages.v;
+
+	Prism.languages.insertBefore('v', 'string', {
+		'char': {
+			pattern: /`(?:\\`|\\?[^`]{1,2})`/, // using {1,2} instead of `u` flag for compatibility
+			alias: 'rune'
+		}
+	});
 
 	Prism.languages.insertBefore('v', 'operator', {
 		'attribute': {

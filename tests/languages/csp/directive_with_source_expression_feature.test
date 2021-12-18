@@ -4,21 +4,26 @@ input-protection tolerance=50; input-protection-clip before=60; input-protection
 
 [
 	["directive", "input-protection"],
-	" tolerance=50; ",
+	" tolerance=50",
+	["punctuation", ";"],
 	["directive", "input-protection-clip"],
-	" before=60; ",
+	" before=60",
+	["punctuation", ";"],
 	["directive", "input-protection-selectors"],
-	" div; ",
+	" div",
+	["punctuation", ";"],
 	["directive", "policy-uri"],
-	" https://example.com; ",
+	["host", ["https://example.com"]],
+	["punctuation", ";"],
 	["directive", "script-src"],
-	" example.com; ",
+	["host", ["example.com"]],
+	["punctuation", ";"],
 	["directive", "script-src-attr"],
-	["safe", "'none'"],
-	"; ",
+	["none", "'none'"],
+	["punctuation", ";"],
 	["directive", "style-src-elem"],
-	["safe", "'none'"],
-	";"
+	["none", "'none'"],
+	["punctuation", ";"]
 ]
 
 ----------------------------------------------------

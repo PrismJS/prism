@@ -6,10 +6,12 @@
 [
 	["filter-handlebars", [
 		["filter-name", ":handlebars"],
-		["comment", "{{!comment}}"]
+		["text", [
+			["comment", "{{!comment}}"]
+		]]
 	]]
 ]
 
 ----------------------------------------------------
 
-Checks for handlebars filter in Jade.
+Checks for handlebars filter in pug.

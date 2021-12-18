@@ -6,23 +6,25 @@
 [
 	["filter-livescript", [
 		["filter-name", ":livescript"],
-		["interpolated-string", [
-			["string", "\""],
-			["variable", "#foo"],
-			["string", " "],
-			["interpolation", [
-				["interpolation-punctuation", "#{"],
-				["keyword", "if"],
-				["regex", "/test/"],
-				["operator", "=="],
-				["string", "'test'"],
-				["keyword", "then"],
-				["number", "3"],
-				["keyword", "else"],
-				["number", "4"],
-				["interpolation-punctuation", "}"]
-			]],
-			["string", "\""]
+		["text", [
+			["interpolated-string", [
+				["string", "\""],
+				["variable", "#foo"],
+				["string", " "],
+				["interpolation", [
+					["interpolation-punctuation", "#{"],
+					["keyword", "if"],
+					["regex", "/test/"],
+					["operator", "=="],
+					["string", "'test'"],
+					["keyword", "then"],
+					["number", "3"],
+					["keyword", "else"],
+					["number", "4"],
+					["interpolation-punctuation", "}"]
+				]],
+				["string", "\""]
+			]]
 		]]
 	]]
 ]

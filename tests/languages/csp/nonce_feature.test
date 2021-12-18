@@ -1,0 +1,9 @@
+style-src 'nonce-yeah';
+
+----------------------------------------------------
+
+[
+	["directive", "style-src"],
+	["nonce", "'nonce-yeah'"],
+	["punctuation", ";"]
+]
