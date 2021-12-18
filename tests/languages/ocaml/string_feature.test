@@ -1,23 +1,29 @@
 ""
 "Fo\"obar"
-'\''
-'\123'
-'\xf4'
-`\``
-`\123`
-`\xf4`
+"Call me Ishmael. Some years ago — never mind how long \
+precisely — having little or no money in my purse, and \
+nothing particular to interest me on shore, I thought I\
+\ would sail about a little and see the watery part of t\
+he world."
+
+{|This is a quoted string, here, neither \ nor " are special characters|}
+{|"Hello, World!"|}
+{|"\\"|}
+{delimiter|the end of this|}quoted string is here|delimiter}
+{ext|hello {|world|}|ext}
 
 ----------------------------------------------------
 
 [
 	["string", "\"\""],
 	["string", "\"Fo\\\"obar\""],
-	["string", "'\\''"],
-	["string", "'\\123'"],
-	["string", "'\\xf4'"],
-	["string", "`\\``"],
-	["string", "`\\123`"],
-	["string", "`\\xf4`"]
+	["string", "\"Call me Ishmael. Some years ago — never mind how long \\\r\nprecisely — having little or no money in my purse, and \\\r\nnothing particular to interest me on shore, I thought I\\\r\n\\ would sail about a little and see the watery part of t\\\r\nhe world.\""],
+
+	["string", "{|This is a quoted string, here, neither \\ nor \" are special characters|}"],
+	["string", "{|\"Hello, World!\"|}"],
+	["string", "{|\"\\\\\"|}"],
+	["string", "{delimiter|the end of this|}quoted string is here|delimiter}"],
+	["string", "{ext|hello {|world|}|ext}"]
 ]
 
 ----------------------------------------------------

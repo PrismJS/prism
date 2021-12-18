@@ -2,11 +2,12 @@ and asr land
 lor lsl lsr
 lxor mod or
 
-:=
+:= :>
 = < > @
-^ | & ~
+^ | & ~ .~
 + - * /
 $ % ! ?
+..
 
 ~=~
 
@@ -18,10 +19,30 @@ $ % ! ?
 	["operator", "lxor"], ["operator", "mod"], ["operator", "or"],
 
 	["operator", ":="],
-	["operator", "="], ["operator", "<"], ["operator", ">"], ["operator", "@"],
-	["operator", "^"], ["operator", "|"], ["operator", "&"], ["operator", "~"],
-	["operator", "+"], ["operator", "-"], ["operator", "*"], ["operator", "/"],
-	["operator", "$"], ["operator", "%"], ["operator", "!"], ["operator", "?"],
+	["operator", ":>"],
+
+	["operator", "="],
+	["operator", "<"],
+	["operator", ">"],
+	["operator", "@"],
+
+	["operator", "^"],
+	["operator", "|"],
+	["operator", "&"],
+	["operator", "~"],
+	["operator", ".~"],
+
+	["operator", "+"],
+	["operator", "-"],
+	["operator", "*"],
+	["operator", "/"],
+
+	["operator", "$"],
+	["operator", "%"],
+	["operator", "!"],
+	["operator", "?"],
+
+	["operator", ".."],
 
 	["operator", "~=~"]
 ]

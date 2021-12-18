@@ -1,6 +1,12 @@
 ( ) { } [ ]
 . , : ;
 _
+:: ;;
+
+[< [> [| {<
+>] >} |]
+
+#
 
 ----------------------------------------------------
 
@@ -17,5 +23,19 @@ _
 	["punctuation", ":"],
 	["punctuation", ";"],
 
-	["punctuation", "_"]
+	["punctuation", "_"],
+
+	["punctuation", "::"],
+	["punctuation", ";;"],
+
+	["operator-like-punctuation", "[<"],
+	["operator-like-punctuation", "[>"],
+	["operator-like-punctuation", "[|"],
+	["operator-like-punctuation", "{<"],
+
+	["operator-like-punctuation", ">]"],
+	["operator-like-punctuation", ">}"],
+	["operator-like-punctuation", "|]"],
+
+	["punctuation", "#"]
 ]
