@@ -1,0 +1,11 @@
+do_math()
+fibonacci()
+log10()
+
+----------------------------------------------------
+
+[
+	["procedure-name", "do_math"], ["punctuation", "("], ["punctuation", ")"],
+	["procedure-name", "fibonacci"], ["punctuation", "("], ["punctuation", ")"],
+	["procedure-name", "log10"], ["punctuation", "("], ["punctuation", ")"]
+]
