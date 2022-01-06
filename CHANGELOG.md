@@ -1,6 +1,6 @@
 # Prism Changelog
 
-## 1.26.0 (2022-01- !!! TBD !!!)
+## 1.26.0 (2022-01-06)
 
 ### New components
 
