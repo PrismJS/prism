@@ -13,14 +13,15 @@ var a = 0;
 ----------------------------------------------------
 
 [
-	["code", "`foo bar baz`"],
-	["code", "``foo `bar` baz``"],
+	["code-snippet", "`foo bar baz`"],
+	["code-snippet", "``foo `bar` baz``"],
+
 	["code", "    foobar"],
+
 	["code", "\tfoobar\r\n\tcontinuous"],
 
 	["code", [
-		["punctuation", "```"],
-		["code-language", " js"],
+		["punctuation", "```"], ["code-language", " js"],
 		["code-block", "var a = 0;"],
 		["punctuation", "```"]
 	]]

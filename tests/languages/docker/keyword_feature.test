@@ -1,5 +1,6 @@
 ONBUILD ADD . /app/src
 FROM ubuntu
+FROM ubuntu AS build
 MAINTAINER SvenDowideit@home.org.au
 RUN cd /tmp
 EXPOSE 5900
@@ -9,6 +10,7 @@ VOLUME /myvol
 USER daemon
 WORKDIR /a
 HEALTHCHECK CMD echo "foo"
+HEALTHCHECK NONE
 LABEL version="1.0"
 ENTRYPOINT ["top", "-b"]
 ARG user1
@@ -18,26 +20,92 @@ STOPSIGNAL signal
 ----------------------------------------------------
 
 [
-	["keyword", "ONBUILD"], ["keyword", "ADD"], " . /app/src\r\n",
-	["keyword", "FROM"], " ubuntu\r\n",
-	["keyword", "MAINTAINER"], " SvenDowideit@home.org.au\r\n",
-	["keyword", "RUN"], " cd /tmp\r\n",
-	["keyword", "EXPOSE"], " 5900\r\n",
-	["keyword", "ENV"], " myName John Doe\r\n",
-	["keyword", "COPY"], " hom* /mydir/\r\n",
-	["keyword", "VOLUME"], " /myvol\r\n",
-	["keyword", "USER"], " daemon\r\n",
-	["keyword", "WORKDIR"], " /a\r\n",
-	["keyword", "HEALTHCHECK"], ["keyword", "CMD"], " echo ", ["string", "\"foo\""],
-	["keyword", "LABEL"], " version=", ["string", "\"1.0\""],
-	["keyword", "ENTRYPOINT"],
-	["punctuation", "["], ["string", "\"top\""], ["punctuation", ","],
-	["string", "\"-b\""], ["punctuation", "]"],
-	["keyword", "ARG"], " user1\r\n",
-    ["keyword", "SHELL"],
-    ["punctuation", "["], ["string", "\"powershell\""], ["punctuation", ","],
-    ["string", "\"-command\""], ["punctuation", "]"],
-    ["keyword", "STOPSIGNAL"], " signal"
+	["instruction", [
+		["keyword", "ONBUILD"],
+		["keyword", "ADD"],
+		" . /app/src"
+	]],
+	["instruction", [
+		["keyword", "FROM"],
+		" ubuntu"
+	]],
+	["instruction", [
+		["keyword", "FROM"],
+		" ubuntu ",
+		["keyword", "AS"],
+		" build"
+	]],
+	["instruction", [
+		["keyword", "MAINTAINER"],
+		" SvenDowideit@home.org.au"
+	]],
+	["instruction", [
+		["keyword", "RUN"],
+		" cd /tmp"
+	]],
+	["instruction", [
+		["keyword", "EXPOSE"],
+		" 5900"
+	]],
+	["instruction", [
+		["keyword", "ENV"],
+		" myName John Doe"
+	]],
+	["instruction", [
+		["keyword", "COPY"],
+		" hom* /mydir/"
+	]],
+	["instruction", [
+		["keyword", "VOLUME"],
+		" /myvol"
+	]],
+	["instruction", [
+		["keyword", "USER"],
+		" daemon"
+	]],
+	["instruction", [
+		["keyword", "WORKDIR"],
+		" /a"
+	]],
+	["instruction", [
+		["keyword", "HEALTHCHECK"],
+		["keyword", "CMD"],
+		" echo ",
+		["string", "\"foo\""]
+	]],
+	["instruction", [
+		["keyword", "HEALTHCHECK"],
+		["keyword", "NONE"]
+	]],
+	["instruction", [
+		["keyword", "LABEL"],
+		" version=",
+		["string", "\"1.0\""]
+	]],
+	["instruction", [
+		["keyword", "ENTRYPOINT"],
+		" [",
+		["string", "\"top\""],
+		", ",
+		["string", "\"-b\""],
+		"]"
+	]],
+	["instruction", [
+		["keyword", "ARG"],
+		" user1"
+	]],
+	["instruction", [
+		["keyword", "SHELL"],
+		" [",
+		["string", "\"powershell\""],
+		", ",
+		["string", "\"-command\""],
+		"]"
+	]],
+	["instruction", [
+		["keyword", "STOPSIGNAL"],
+		" signal"
+	]]
 ]
 
 ----------------------------------------------------

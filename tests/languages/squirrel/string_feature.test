@@ -1,0 +1,29 @@
+""
+"I'm a string"
+"I'm a wonderful string\n"
+
+@""
+@"I'm a verbatim string"
+@" I'm a
+multiline verbatim string
+"
+
+@"
+    this is a multiline string
+    it will ""embed"" all the new line
+    characters
+"
+
+----------------------------------------------------
+
+[
+	["string", "\"\""],
+	["string", "\"I'm a string\""],
+	["string", "\"I'm a wonderful string\\n\""],
+
+	["string", "@\"\""],
+	["string", "@\"I'm a verbatim string\""],
+	["string", "@\" I'm a\r\nmultiline verbatim string\r\n\""],
+
+	["string", "@\"\r\n    this is a multiline string\r\n    it will \"\"embed\"\" all the new line\r\n    characters\r\n\""]
+]

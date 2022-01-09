@@ -1,0 +1,49 @@
+```html
+<a href="#foo">Click me!</a> &amp;
+```
+
+```unknownLanguage
+<a href="#foo">Click me!</a> &amp;
+```
+
+----------------------------------------------------
+
+<span class="token code">
+	<span class="token punctuation">```</span>
+	<span class="token code-language">html</span>
+	<span class="token code-block language-html">
+		<span class="token tag">
+			<span class="token tag">
+				<span class="token punctuation">&lt;</span>
+				a
+			</span>
+			<span class="token attr-name">href</span>
+			<span class="token attr-value">
+				<span class="token punctuation attr-equals">=</span>
+				<span class="token punctuation">"</span>
+				#foo
+				<span class="token punctuation">"</span>
+			</span>
+			<span class="token punctuation">></span>
+		</span>
+		Click me!
+		<span class="token tag">
+			<span class="token tag">
+				<span class="token punctuation">&lt;/</span>
+				a
+			</span>
+			<span class="token punctuation">></span>
+		</span>
+		<span class="token entity named-entity" title="&amp;">&amp;amp;</span>
+	</span>
+	<span class="token punctuation">```</span>
+</span>
+
+<span class="token code">
+	<span class="token punctuation">```</span>
+	<span class="token code-language">unknownLanguage</span>
+	<span class="token code-block language-unknownlanguage">
+		&lt;a href="#foo">Click me!&lt;/a> &amp;amp;
+	</span>
+	<span class="token punctuation">```</span>
+</span>

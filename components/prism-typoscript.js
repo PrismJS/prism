@@ -1,4 +1,4 @@
-(function(Prism) {
+(function (Prism) {
 
 	var keywords = /\b(?:ACT|ACTIFSUB|CARRAY|CASE|CLEARGIF|COA|COA_INT|CONSTANTS|CONTENT|CUR|EDITPANEL|EFFECT|EXT|FILE|FLUIDTEMPLATE|FORM|FRAME|FRAMESET|GIFBUILDER|GMENU|GMENU_FOLDOUT|GMENU_LAYERS|GP|HMENU|HRULER|HTML|IENV|IFSUB|IMAGE|IMGMENU|IMGMENUITEM|IMGTEXT|IMG_RESOURCE|INCLUDE_TYPOSCRIPT|JSMENU|JSMENUITEM|LLL|LOAD_REGISTER|NO|PAGE|RECORDS|RESTORE_REGISTER|TEMPLATE|TEXT|TMENU|TMENUITEM|TMENU_LAYERS|USER|USER_INT|_GIFBUILDER|global|globalString|globalVar)\b/;
 
@@ -48,25 +48,25 @@
 			}
 		],
 		'string': {
-			pattern: /^([^=]*=[< ]?)(?:(?!]\n).)*/,
+			pattern: /^([^=]*=[< ]?)(?:(?!\]\n).)*/,
 			lookbehind: true,
 			inside: {
-				'function': /{\$.*}/, // constants include
+				'function': /\{\$.*\}/, // constants include
 				'keyword': keywords,
-				'number': /^[0-9]+$/,
+				'number': /^\d+$/,
 				'punctuation': /[,|:]/,
 			}
 		},
 		'keyword': keywords,
 		'number': {
 			// special highlighting for indexes of arrays in tags
-			pattern: /[0-9]+\s*[.{=]/,
+			pattern: /\b\d+\s*[.{=]/,
 			inside: {
 				'operator': /[.{=]/,
 			}
 		},
 		'tag': {
-			pattern: /\.?[\w-\\]+\.?/,
+			pattern: /\.?[-\w\\]+\.?/,
 			inside: {
 				'punctuation': /\./,
 			}

@@ -1,20 +1,20 @@
-as
+abstract
+actor
+also
+annotation
 assert
 async
 await
-band
 bool
 boolean
-bor
 break
-bxor
 byte
 case
 catch
 changed
 char
+class
 closed
-comp
 constant
 continue
 def
@@ -23,6 +23,7 @@ del
 double
 elif
 else
+enum
 every
 extends
 false
@@ -39,14 +40,11 @@ in
 init
 inject
 int
-is
-isnot
 lambda
 local
 long
 loop
 match
-mod
 new
 nodefault
 null
@@ -63,6 +61,7 @@ pre
 private
 protected
 provide
+provider
 public
 return
 shared
@@ -74,6 +73,7 @@ super
 sync
 this
 throw
+trait
 trans
 transient
 true
@@ -90,23 +90,23 @@ with
 ----------------------------------------------------
 
 [
-	["operator", "as"],
+	["keyword", "abstract"],
+	["keyword", "actor"],
+	["keyword", "also"],
+	["keyword", "annotation"],
 	["keyword", "assert"],
 	["keyword", "async"],
 	["keyword", "await"],
-	["operator", "band"],
 	["keyword", "bool"],
 	["keyword", "boolean"],
-	["operator", "bor"],
 	["keyword", "break"],
-	["operator", "bxor"],
 	["keyword", "byte"],
 	["keyword", "case"],
 	["keyword", "catch"],
 	["keyword", "changed"],
 	["keyword", "char"],
+	["keyword", "class"],
 	["keyword", "closed"],
-	["operator", "comp"],
 	["keyword", "constant"],
 	["keyword", "continue"],
 	["keyword", "def"],
@@ -115,6 +115,7 @@ with
 	["keyword", "double"],
 	["keyword", "elif"],
 	["keyword", "else"],
+	["keyword", "enum"],
 	["keyword", "every"],
 	["keyword", "extends"],
 	["keyword", "false"],
@@ -131,14 +132,11 @@ with
 	["keyword", "init"],
 	["keyword", "inject"],
 	["keyword", "int"],
-	["operator", "is"],
-	["operator", "isnot"],
 	["keyword", "lambda"],
 	["keyword", "local"],
 	["keyword", "long"],
 	["keyword", "loop"],
 	["keyword", "match"],
-	["operator", "mod"],
 	["keyword", "new"],
 	["keyword", "nodefault"],
 	["keyword", "null"],
@@ -155,6 +153,7 @@ with
 	["keyword", "private"],
 	["keyword", "protected"],
 	["keyword", "provide"],
+	["keyword", "provider"],
 	["keyword", "public"],
 	["keyword", "return"],
 	["keyword", "shared"],
@@ -166,6 +165,7 @@ with
 	["keyword", "sync"],
 	["keyword", "this"],
 	["keyword", "throw"],
+	["keyword", "trait"],
 	["keyword", "trans"],
 	["keyword", "transient"],
 	["keyword", "true"],

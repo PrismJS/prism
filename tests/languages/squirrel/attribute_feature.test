@@ -1,0 +1,93 @@
+class Foo </ test = "I'm a class level attribute" />{
+    </ test = "freakin attribute" /> //attributes of PrintTesty
+    function PrintTesty()
+    {
+        foreach(i,val in testy)
+        {
+            ::print("idx = "+i+" = "+val+" \n");
+        }
+    }
+    </ flippy = 10 , second = [1,2,3] /> //attributes of testy
+    testy = null;
+}
+
+----------------------------------------------------
+
+[
+	["keyword", "class"],
+	["class-name", ["Foo"]],
+	["attribute-punctuation", "</"],
+	" test ",
+	["operator", "="],
+	["string", "\"I'm a class level attribute\""],
+	["attribute-punctuation", "/>"],
+	["punctuation", "{"],
+
+	["attribute-punctuation", "</"],
+	" test ",
+	["operator", "="],
+	["string", "\"freakin attribute\""],
+	["attribute-punctuation", "/>"],
+	["comment", "//attributes of PrintTesty"],
+
+	["keyword", "function"],
+	["function", "PrintTesty"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["punctuation", "{"],
+
+	["keyword", "foreach"],
+	["punctuation", "("],
+	"i",
+	["punctuation", ","],
+	"val ",
+	["keyword", "in"],
+	" testy",
+	["punctuation", ")"],
+
+	["punctuation", "{"],
+
+	["operator", "::"],
+	["function", "print"],
+	["punctuation", "("],
+	["string", "\"idx = \""],
+	["operator", "+"],
+	"i",
+	["operator", "+"],
+	["string", "\" = \""],
+	["operator", "+"],
+	"val",
+	["operator", "+"],
+	["string", "\" \\n\""],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+
+	["punctuation", "}"],
+
+	["attribute-punctuation", "</"],
+	" flippy ",
+	["operator", "="],
+	["number", "10"],
+	["punctuation", ","],
+	" second ",
+	["operator", "="],
+	["punctuation", "["],
+	["number", "1"],
+	["punctuation", ","],
+	["number", "2"],
+	["punctuation", ","],
+	["number", "3"],
+	["punctuation", "]"],
+	["attribute-punctuation", "/>"],
+	["comment", "//attributes of testy"],
+
+	"\r\n    testy ",
+	["operator", "="],
+	["keyword", "null"],
+	["punctuation", ";"],
+
+	["punctuation", "}"]
+]

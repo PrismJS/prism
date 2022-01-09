@@ -1,0 +1,105 @@
+func greetAgain(person: String) -> String {
+    return "Hello again, " + person + "!"
+}
+print(greetAgain(person: "Anna"))
+func someFunction<T: SomeClass, U: SomeProtocol>(someT: T, someU: U) {
+    // function body goes here
+}
+
+
+// none of the below are functions
+subscript(index: Int) -> Int {
+    get {}
+    set(newValue) {}
+}
+
+----------------------------------------------------
+
+[
+	["keyword", "func"],
+	["function-definition", "greetAgain"],
+	["punctuation", "("],
+	"person",
+	["punctuation", ":"],
+	["class-name", "String"],
+	["punctuation", ")"],
+	["operator", "->"],
+	["class-name", "String"],
+	["punctuation", "{"],
+
+	["keyword", "return"],
+	["string-literal", [
+		["string", "\"Hello again, \""]
+	]],
+	["operator", "+"],
+	" person ",
+	["operator", "+"],
+	["string-literal", [
+		["string", "\"!\""]
+	]],
+
+	["punctuation", "}"],
+
+	["function", "print"],
+	["punctuation", "("],
+	["function", "greetAgain"],
+	["punctuation", "("],
+	"person",
+	["punctuation", ":"],
+	["string-literal", [
+		["string", "\"Anna\""]
+	]],
+	["punctuation", ")"],
+	["punctuation", ")"],
+
+	["keyword", "func"],
+	["function-definition", "someFunction"],
+	["operator", "<"],
+	["class-name", "T"],
+	["punctuation", ":"],
+	["class-name", "SomeClass"],
+	["punctuation", ","],
+	["class-name", "U"],
+	["punctuation", ":"],
+	["class-name", "SomeProtocol"],
+	["operator", ">"],
+	["punctuation", "("],
+	"someT",
+	["punctuation", ":"],
+	["class-name", "T"],
+	["punctuation", ","],
+	" someU",
+	["punctuation", ":"],
+	["class-name", "U"],
+	["punctuation", ")"],
+	["punctuation", "{"],
+
+	["comment", "// function body goes here"],
+
+	["punctuation", "}"],
+
+	["comment", "// none of the below are functions"],
+
+	["keyword", "subscript"],
+	["punctuation", "("],
+	"index",
+	["punctuation", ":"],
+	["class-name", "Int"],
+	["punctuation", ")"],
+	["operator", "->"],
+	["class-name", "Int"],
+	["punctuation", "{"],
+
+	["keyword", "get"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "set"],
+	["punctuation", "("],
+	"newValue",
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["punctuation", "}"]
+]

@@ -1,0 +1,109 @@
+https://john.doe@www.example.com:123/forum/questions
+ftp://ftp.is.co.za/rfc/rfc1808.txt
+ldap://[2001:db8::7]/
+https://[v1.foo]/
+//192.0.2.16:80/
+//example.com/path/resource.txt
+
+----------------------------------------------------
+
+[
+	["scheme", [
+		"https",
+		["scheme-delimiter", ":"]
+	]],
+	["authority", [
+		["authority-delimiter", "//"],
+		["user-info-segment", [
+			["user-info", "john.doe"],
+			["user-info-delimiter", "@"]
+		]],
+		["host", ["www.example.com"]],
+		["port-segment", [
+			["port-delimiter", ":"],
+			["port", "123"]
+		]]
+	]],
+	["path", [
+		["path-separator", "/"],
+		"forum",
+		["path-separator", "/"],
+		"questions"
+	]],
+
+	["scheme", [
+		"ftp",
+		["scheme-delimiter", ":"]
+	]],
+	["authority", [
+		["authority-delimiter", "//"],
+		["host", ["ftp.is.co.za"]]
+	]],
+	["path", [
+		["path-separator", "/"],
+		"rfc",
+		["path-separator", "/"],
+		"rfc1808.txt"
+	]],
+
+	["scheme", [
+		"ldap",
+		["scheme-delimiter", ":"]
+	]],
+	["authority", [
+		["authority-delimiter", "//"],
+		["host", [
+			["ip-literal", [
+				["ip-literal-delimiter", "["],
+				["ipv6-address", "2001:db8::7"],
+				["ip-literal-delimiter", "]"]
+			]]
+		]]
+	]],
+	["path", [
+		["path-separator", "/"]
+	]],
+
+	["scheme", [
+		"https",
+		["scheme-delimiter", ":"]
+	]],
+	["authority", [
+		["authority-delimiter", "//"],
+		["host", [
+			["ip-literal", [
+				["ip-literal-delimiter", "["],
+				["ipv-future", "v1.foo"],
+				["ip-literal-delimiter", "]"]
+			]]
+		]]
+	]],
+	["path", [
+		["path-separator", "/"]
+	]],
+
+	["authority", [
+		["authority-delimiter", "//"],
+		["host", [
+			["ipv4-address", "192.0.2.16"]
+		]],
+		["port-segment", [
+			["port-delimiter", ":"],
+			["port", "80"]
+		]]
+	]],
+	["path", [
+		["path-separator", "/"]
+	]],
+
+	["authority", [
+		["authority-delimiter", "//"],
+		["host", ["example.com"]]
+	]],
+	["path", [
+		["path-separator", "/"],
+		"path",
+		["path-separator", "/"],
+		"resource.txt"
+	]]
+]

@@ -4,28 +4,61 @@
 &== &<>
 isnot
 is as
+comp
 / /= * *=
 mod mod=
 < <== > >==
 and or
-bor bxor
-^
+band bor bxor
+^ ~
 
 ----------------------------------------------------
 
 [
-	["operator", "+"], ["operator", "++"], ["operator", "+="],
-	["operator", "-"], ["operator", "--"], ["operator", "-="],
-	["operator", "="], ["operator", "=="], ["operator", "<>"],
-	["operator", "&=="], ["operator", "&<>"],
+	["operator", "+"],
+	["operator", "++"],
+	["operator", "+="],
+
+	["operator", "-"],
+	["operator", "--"],
+	["operator", "-="],
+
+	["operator", "="],
+	["operator", "=="],
+	["operator", "<>"],
+
+	["operator", "&=="],
+	["operator", "&<>"],
+
 	["operator", "isnot"],
-	["operator", "is"], ["operator", "as"],
-	["operator", "/"], ["operator", "/="], ["operator", "*"], ["operator", "*="],
-	["operator", "mod"], ["operator", "mod="],
-	["operator", "<"], ["operator", "<=="], ["operator", ">"], ["operator", ">=="],
-	["operator", "and"], ["operator", "or"],
-	["operator", "bor"], ["operator", "bxor"],
-	["operator", "^"]
+
+	["operator", "is"],
+	["operator", "as"],
+
+	["operator", "comp"],
+
+	["operator", "/"],
+	["operator", "/="],
+	["operator", "*"],
+	["operator", "*="],
+
+	["operator", "mod"],
+	["operator", "mod="],
+
+	["operator", "<"],
+	["operator", "<=="],
+	["operator", ">"],
+	["operator", ">=="],
+
+	["operator", "and"],
+	["operator", "or"],
+
+	["operator", "band"],
+	["operator", "bor"],
+	["operator", "bxor"],
+
+	["operator", "^"],
+	["operator", "~"]
 ]
 
 ----------------------------------------------------

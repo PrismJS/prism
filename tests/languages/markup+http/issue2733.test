@@ -1,0 +1,101 @@
+HTTP/1.1 200 OK
+connection: keep-alive
+content-type: application/xml
+date: Sat, 23 Jan 2021 20:36:14 GMT
+keep-alive: timeout=60
+transfer-encoding: chunked
+
+<xml>
+    <one>Data</one>
+    <two>More Data</two>
+</xml>
+
+----------------------------------------------------
+
+[
+	["response-status", [
+		["http-version", "HTTP/1.1"],
+		["status-code", "200"],
+		["reason-phrase", "OK"]
+	]],
+
+	["header", [
+		["header-name", "connection"],
+		["punctuation", ":"],
+		["header-value", "keep-alive"]
+	]],
+
+	["header", [
+		["header-name", "content-type"],
+		["punctuation", ":"],
+		["header-value", "application/xml"]
+	]],
+
+	["header", [
+		["header-name", "date"],
+		["punctuation", ":"],
+		["header-value", "Sat, 23 Jan 2021 20:36:14 GMT"]
+	]],
+
+	["header", [
+		["header-name", "keep-alive"],
+		["punctuation", ":"],
+		["header-value", "timeout=60"]
+	]],
+
+	["header", [
+		["header-name", "transfer-encoding"],
+		["punctuation", ":"],
+		["header-value", "chunked"]
+	]],
+
+	["application-xml", [
+		["tag", [
+			["tag", [
+				["punctuation", "<"],
+				"xml"
+			]],
+			["punctuation", ">"]
+		]],
+
+		["tag", [
+			["tag", [
+				["punctuation", "<"],
+				"one"
+			]],
+			["punctuation", ">"]
+		]],
+		"Data",
+		["tag", [
+			["tag", [
+				["punctuation", "</"],
+				"one"
+			]],
+			["punctuation", ">"]
+		]],
+
+		["tag", [
+			["tag", [
+				["punctuation", "<"],
+				"two"
+			]],
+			["punctuation", ">"]
+		]],
+		"More Data",
+		["tag", [
+			["tag", [
+				["punctuation", "</"],
+				"two"
+			]],
+			["punctuation", ">"]
+		]],
+
+		["tag", [
+			["tag", [
+				["punctuation", "</"],
+				"xml"
+			]],
+			["punctuation", ">"]
+		]]
+	]]
+]

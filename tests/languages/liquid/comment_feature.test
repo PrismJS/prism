@@ -1,0 +1,61 @@
+My name is Wilson Abercrombie{% comment %}, esquire{% endcomment %}.
+
+{% assign verb = "turned" %}
+{% comment %}
+{% assign verb = "converted" %}
+{% endcomment %}
+Anything you put between {% comment %} and {% endcomment %} tags
+is {{ verb }} into a comment.
+
+----------------------------------------------------
+
+[
+	"My name is Wilson Abercrombie",
+	["liquid", [
+		["delimiter", "{%"],
+		["keyword", "comment"],
+		["delimiter", "%}"],
+		["comment", ", esquire"],
+		["delimiter", "{%"],
+		["keyword", "endcomment"],
+		["delimiter", "%}"]
+	]],
+	".\r\n\r\n",
+
+	["liquid", [
+		["delimiter", "{%"],
+		["keyword", "assign"],
+		" verb ",
+		["operator", "="],
+		["string", "\"turned\""],
+		["delimiter", "%}"]
+	]],
+
+	["liquid", [
+		["delimiter", "{%"],
+		["keyword", "comment"],
+		["delimiter", "%}"],
+		["comment", "\r\n{% assign verb = \"converted\" %}\r\n"],
+		["delimiter", "{%"],
+		["keyword", "endcomment"],
+		["delimiter", "%}"]
+	]],
+
+	"\r\nAnything you put between ",
+	["liquid", [
+		["delimiter", "{%"],
+		["keyword", "comment"],
+		["delimiter", "%}"],
+		["comment", " and "],
+		["delimiter", "{%"],
+		["keyword", "endcomment"],
+		["delimiter", "%}"]
+	]],
+	" tags\r\nis ",
+	["liquid", [
+		["delimiter", "{{"],
+		" verb ",
+		["delimiter", "}}"]
+	]],
+	" into a comment."
+]

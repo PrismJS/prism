@@ -1,0 +1,129 @@
+[label=<
+<TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0">
+  <TR><TD>left</TD><TD PORT="f1">mid dle</TD><TD PORT="f2">right</TD></TR>
+</TABLE>>]
+
+----------------------------------------------------
+
+[
+	["punctuation", "["],
+	["attr-name", ["label"]],
+	["operator", "="],
+	["attr-value", [
+		"<",
+		["markup", [
+			["tag", [
+				["tag", [
+					["punctuation", "<"],
+					"TABLE"
+				]],
+				["attr-name", ["BORDER"]],
+				["attr-value", [
+					["punctuation", "="],
+					["punctuation", "\""],
+					"0",
+					["punctuation", "\""]
+				]],
+				["attr-name", ["CELLBORDER"]],
+				["attr-value", [
+					["punctuation", "="],
+					["punctuation", "\""],
+					"1",
+					["punctuation", "\""]
+				]],
+				["attr-name", ["CELLSPACING"]],
+				["attr-value", [
+					["punctuation", "="],
+					["punctuation", "\""],
+					"0",
+					["punctuation", "\""]
+				]],
+				["punctuation", ">"]
+			]],
+
+			["tag", [
+				["tag", [
+					["punctuation", "<"],
+					"TR"
+				]],
+				["punctuation", ">"]
+			]],
+			["tag", [
+				["tag", [
+					["punctuation", "<"],
+					"TD"
+				]],
+				["punctuation", ">"]
+			]],
+			"left",
+			["tag", [
+				["tag", [
+					["punctuation", "</"],
+					"TD"
+				]],
+				["punctuation", ">"]
+			]],
+			["tag", [
+				["tag", [
+					["punctuation", "<"],
+					"TD"
+				]],
+				["attr-name", ["PORT"]],
+				["attr-value", [
+					["punctuation", "="],
+					["punctuation", "\""],
+					"f1",
+					["punctuation", "\""]
+				]],
+				["punctuation", ">"]
+			]],
+			"mid dle",
+			["tag", [
+				["tag", [
+					["punctuation", "</"],
+					"TD"
+				]],
+				["punctuation", ">"]
+			]],
+			["tag", [
+				["tag", [
+					["punctuation", "<"],
+					"TD"
+				]],
+				["attr-name", ["PORT"]],
+				["attr-value", [
+					["punctuation", "="],
+					["punctuation", "\""],
+					"f2",
+					["punctuation", "\""]
+				]],
+				["punctuation", ">"]
+			]],
+			"right",
+			["tag", [
+				["tag", [
+					["punctuation", "</"],
+					"TD"
+				]],
+				["punctuation", ">"]
+			]],
+			["tag", [
+				["tag", [
+					["punctuation", "</"],
+					"TR"
+				]],
+				["punctuation", ">"]
+			]],
+
+			["tag", [
+				["tag", [
+					["punctuation", "</"],
+					"TABLE"
+				]],
+				["punctuation", ">"]
+			]]
+		]],
+		">"
+	]],
+	["punctuation", "]"]
+]

@@ -1,0 +1,239 @@
+; None
+; add
+; adjustment
+; alignaround
+; allow
+; angle
+; animation
+; around
+; as
+; assert
+; behind
+; box_layout
+; break
+; build
+; cache
+; call
+; center
+; changed
+; child_size
+; choice
+; circles
+; class
+; clear
+; clicked
+; clipping
+; clockwise
+; config
+; contains
+; continue
+; corner1
+; corner2
+; counterclockwise
+; def
+; default
+; define
+; del
+; delay
+; disabled
+; disabled_text
+; dissolve
+; elif
+; else
+; event
+; except
+; exclude
+; exec
+; expression
+; fade
+; finally
+; for
+; from
+; function
+; global
+; gm_root
+; has
+; hide
+; id
+; if
+; import
+; in
+; init
+; is
+; jump
+; knot
+; lambda
+; left
+; less_rounded
+; mm_root
+; movie
+; music
+; null
+; on
+; onlayer
+; pass
+; pause
+; persistent
+; play
+; print
+; python
+; queue
+; raise
+; random
+; renpy
+; repeat
+; return
+; right
+; rounded_window
+; scene
+; scope
+; set
+; show
+; slow
+; slow_abortable
+; slow_done
+; sound
+; stop
+; store
+; style
+; style_group
+; substitute
+; suffix
+; theme
+; transform
+; transform_anchor
+; transpose
+; try
+; ui
+; unhovered
+; updater
+; use
+; voice
+; while
+; widget
+; widget_hover
+; widget_selected
+; widget_text
+; yield
+
+----------------------------------------------------
+
+[
+	["punctuation", ";"], ["keyword", "None"],
+	["punctuation", ";"], ["keyword", "add"],
+	["punctuation", ";"], ["keyword", "adjustment"],
+	["punctuation", ";"], ["keyword", "alignaround"],
+	["punctuation", ";"], ["keyword", "allow"],
+	["punctuation", ";"], ["keyword", "angle"],
+	["punctuation", ";"], ["keyword", "animation"],
+	["punctuation", ";"], ["keyword", "around"],
+	["punctuation", ";"], ["keyword", "as"],
+	["punctuation", ";"], ["keyword", "assert"],
+	["punctuation", ";"], ["keyword", "behind"],
+	["punctuation", ";"], ["keyword", "box_layout"],
+	["punctuation", ";"], ["keyword", "break"],
+	["punctuation", ";"], ["keyword", "build"],
+	["punctuation", ";"], ["keyword", "cache"],
+	["punctuation", ";"], ["keyword", "call"],
+	["punctuation", ";"], ["keyword", "center"],
+	["punctuation", ";"], ["keyword", "changed"],
+	["punctuation", ";"], ["keyword", "child_size"],
+	["punctuation", ";"], ["keyword", "choice"],
+	["punctuation", ";"], ["keyword", "circles"],
+	["punctuation", ";"], ["keyword", "class"],
+	["punctuation", ";"], ["keyword", "clear"],
+	["punctuation", ";"], ["keyword", "clicked"],
+	["punctuation", ";"], ["keyword", "clipping"],
+	["punctuation", ";"], ["keyword", "clockwise"],
+	["punctuation", ";"], ["keyword", "config"],
+	["punctuation", ";"], ["keyword", "contains"],
+	["punctuation", ";"], ["keyword", "continue"],
+	["punctuation", ";"], ["keyword", "corner1"],
+	["punctuation", ";"], ["keyword", "corner2"],
+	["punctuation", ";"], ["keyword", "counterclockwise"],
+	["punctuation", ";"], ["keyword", "def"],
+	["punctuation", ";"], ["keyword", "default"],
+	["punctuation", ";"], ["keyword", "define"],
+	["punctuation", ";"], ["keyword", "del"],
+	["punctuation", ";"], ["keyword", "delay"],
+	["punctuation", ";"], ["keyword", "disabled"],
+	["punctuation", ";"], ["keyword", "disabled_text"],
+	["punctuation", ";"], ["keyword", "dissolve"],
+	["punctuation", ";"], ["keyword", "elif"],
+	["punctuation", ";"], ["keyword", "else"],
+	["punctuation", ";"], ["keyword", "event"],
+	["punctuation", ";"], ["keyword", "except"],
+	["punctuation", ";"], ["keyword", "exclude"],
+	["punctuation", ";"], ["keyword", "exec"],
+	["punctuation", ";"], ["keyword", "expression"],
+	["punctuation", ";"], ["keyword", "fade"],
+	["punctuation", ";"], ["keyword", "finally"],
+	["punctuation", ";"], ["keyword", "for"],
+	["punctuation", ";"], ["keyword", "from"],
+	["punctuation", ";"], ["keyword", "function"],
+	["punctuation", ";"], ["keyword", "global"],
+	["punctuation", ";"], ["keyword", "gm_root"],
+	["punctuation", ";"], ["keyword", "has"],
+	["punctuation", ";"], ["keyword", "hide"],
+	["punctuation", ";"], ["keyword", "id"],
+	["punctuation", ";"], ["keyword", "if"],
+	["punctuation", ";"], ["keyword", "import"],
+	["punctuation", ";"], ["keyword", "in"],
+	["punctuation", ";"], ["keyword", "init"],
+	["punctuation", ";"], ["keyword", "is"],
+	["punctuation", ";"], ["keyword", "jump"],
+	["punctuation", ";"], ["keyword", "knot"],
+	["punctuation", ";"], ["keyword", "lambda"],
+	["punctuation", ";"], ["keyword", "left"],
+	["punctuation", ";"], ["keyword", "less_rounded"],
+	["punctuation", ";"], ["keyword", "mm_root"],
+	["punctuation", ";"], ["keyword", "movie"],
+	["punctuation", ";"], ["keyword", "music"],
+	["punctuation", ";"], ["keyword", "null"],
+	["punctuation", ";"], ["keyword", "on"],
+	["punctuation", ";"], ["keyword", "onlayer"],
+	["punctuation", ";"], ["keyword", "pass"],
+	["punctuation", ";"], ["keyword", "pause"],
+	["punctuation", ";"], ["keyword", "persistent"],
+	["punctuation", ";"], ["keyword", "play"],
+	["punctuation", ";"], ["keyword", "print"],
+	["punctuation", ";"], ["keyword", "python"],
+	["punctuation", ";"], ["keyword", "queue"],
+	["punctuation", ";"], ["keyword", "raise"],
+	["punctuation", ";"], ["keyword", "random"],
+	["punctuation", ";"], ["keyword", "renpy"],
+	["punctuation", ";"], ["keyword", "repeat"],
+	["punctuation", ";"], ["keyword", "return"],
+	["punctuation", ";"], ["keyword", "right"],
+	["punctuation", ";"], ["keyword", "rounded_window"],
+	["punctuation", ";"], ["keyword", "scene"],
+	["punctuation", ";"], ["keyword", "scope"],
+	["punctuation", ";"], ["keyword", "set"],
+	["punctuation", ";"], ["keyword", "show"],
+	["punctuation", ";"], ["keyword", "slow"],
+	["punctuation", ";"], ["keyword", "slow_abortable"],
+	["punctuation", ";"], ["keyword", "slow_done"],
+	["punctuation", ";"], ["keyword", "sound"],
+	["punctuation", ";"], ["keyword", "stop"],
+	["punctuation", ";"], ["keyword", "store"],
+	["punctuation", ";"], ["keyword", "style"],
+	["punctuation", ";"], ["keyword", "style_group"],
+	["punctuation", ";"], ["keyword", "substitute"],
+	["punctuation", ";"], ["keyword", "suffix"],
+	["punctuation", ";"], ["keyword", "theme"],
+	["punctuation", ";"], ["keyword", "transform"],
+	["punctuation", ";"], ["keyword", "transform_anchor"],
+	["punctuation", ";"], ["keyword", "transpose"],
+	["punctuation", ";"], ["keyword", "try"],
+	["punctuation", ";"], ["keyword", "ui"],
+	["punctuation", ";"], ["keyword", "unhovered"],
+	["punctuation", ";"], ["keyword", "updater"],
+	["punctuation", ";"], ["keyword", "use"],
+	["punctuation", ";"], ["keyword", "voice"],
+	["punctuation", ";"], ["keyword", "while"],
+	["punctuation", ";"], ["keyword", "widget"],
+	["punctuation", ";"], ["keyword", "widget_hover"],
+	["punctuation", ";"], ["keyword", "widget_selected"],
+	["punctuation", ";"], ["keyword", "widget_text"],
+	["punctuation", ";"], ["keyword", "yield"]
+]

@@ -1,0 +1,25 @@
+ssi on;
+sendfile      off;
+tcp_nopush    on;
+
+----------------------------------------------------
+
+[
+	["directive", [
+		["keyword", "ssi"],
+		["boolean", "on"]
+	]],
+	["punctuation", ";"],
+
+	["directive", [
+		["keyword", "sendfile"],
+		["boolean", "off"]
+	]],
+	["punctuation", ";"],
+
+	["directive", [
+		["keyword", "tcp_nopush"],
+		["boolean", "on"]
+	]],
+	["punctuation", ";"]
+]

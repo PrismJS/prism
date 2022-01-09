@@ -20,61 +20,73 @@ end
 ----------------------------------------------------
 
 [
-  ["keyword", "class"],
-  ["class-name", ["Circle"]],
-  ["keyword", "def"],
-  ["method-definition", [
-    ["keyword", "self"],
-    ["punctuation", "."],
-    ["function", "of_diameter"]
-  ]],
-  ["punctuation", "("],
-  "diameter",
-  ["punctuation", ")"],
-  ["keyword", "new"],
-  " diameter ",
-  ["operator", "/"],
-  ["number", "2"],
-  ["keyword", "end"],
-  ["keyword", "def"],
-  ["method-definition", [
-    ["function", "initialize"]
-  ]],
-  ["punctuation", "("],
-  "radius",
-  ["punctuation", ")"],
-  ["variable", "@radius"],
-  ["operator", "="],
-  " radius\n  ",
-  ["keyword", "end"],
-  ["keyword", "def"],
-  ["method-definition", [
-    ["function", "circumference"]
-  ]],
-  ["constant", "Math"],
-  ["punctuation", ":"],
-  ["punctuation", ":"],
-  ["constant", "PI"],
-  ["operator", "*"],
-  " radius ",
-  ["operator", "*"],
-  ["operator", "*"],
-  ["number", "2"],
-  ["keyword", "end"],
-  ["comment", "# Seattle style"],
-  ["keyword", "def"],
-  ["method-definition", [
-    ["function", "grow_by"]
-  ]],
-  " factor",
-  ["punctuation", ":"],
-  ["variable", "@radius"],
-  ["operator", "="],
-  ["variable", "@radius"],
-  ["operator", "*"],
-  " factor\n  ",
-  ["keyword", "end"],
-  ["keyword", "end"]
+	["keyword", "class"],
+	["class-name", ["Circle"]],
+
+	["keyword", "def"],
+	["method-definition", [
+		["keyword", "self"],
+		["punctuation", "."],
+		["function", "of_diameter"]
+	]],
+	["punctuation", "("],
+	"diameter",
+	["punctuation", ")"],
+
+	["keyword", "new"],
+	" diameter ",
+	["operator", "/"],
+	["number", "2"],
+
+	["keyword", "end"],
+
+	["keyword", "def"],
+	["method-definition", [
+		["function", "initialize"]
+	]],
+	["punctuation", "("],
+	"radius",
+	["punctuation", ")"],
+
+	["variable", "@radius"],
+	["operator", "="],
+	" radius\r\n  ",
+
+	["keyword", "end"],
+
+	["keyword", "def"],
+	["method-definition", [
+		["function", "circumference"]
+	]],
+
+	"\r\n    Math",
+	["double-colon", "::"],
+	["constant", "PI"],
+	["operator", "*"],
+	" radius ",
+	["operator", "**"],
+	["number", "2"],
+
+	["keyword", "end"],
+
+	["comment", "# Seattle style"],
+
+	["keyword", "def"],
+	["method-definition", [
+		["function", "grow_by"]
+	]],
+	" factor",
+	["operator", ":"],
+
+	["variable", "@radius"],
+	["operator", "="],
+	["variable", "@radius"],
+	["operator", "*"],
+	" factor\r\n  ",
+
+	["keyword", "end"],
+
+	["keyword", "end"]
 ]
 
 ----------------------------------------------------

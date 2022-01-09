@@ -1,0 +1,264 @@
+class FactorialClass
+	method factorial(&I as number) returns number;
+end-class;
+
+class Fruit
+	property number FruitCount;
+end-class;
+
+class Banana extends Fruit
+	property number BananaCount;
+end-class;
+
+local Banana &MyBanana = Create Banana();
+local Fruit &MyFruit = &MyBanana; /* okay, Banana is a subtype of Fruit */
+local number &Num = &MyBanana.BananaCount;
+
+/* generic building class */
+class BuildingAsset
+	method Acquire();
+	method DisasterPrep();
+end-class;
+
+method Acquire
+	%This.DisasterPrep();
+end-method;method DisasterPrep
+	PrepareForFire();
+end-method;
+
+/* building in Vancouver */
+class VancouverBuilding extends BuildingAssetmethod DisasterPrep();
+end-class;
+
+method DisasterPrep
+	PrepareForEarthquake();%Super.DisasterPrep(); /* call superclass method */
+end-method;
+
+/* building in Edmonton */
+class EdmontonBuilding extends BuildingAssetmethod DisasterPrep();
+end-class;
+
+method DisasterPrep
+	PrepareForFreezing();%Super.DisasterPrep(); /* call superclass method */
+end-method;
+
+local BuildingAsset &Building = Create VancouverBuilding();
+
+&Building.Acquire(); /* calls PrepareForEarthquake then PrepareForFire */
+
+&Building = Create EdmontonBuilding();
+
+&Building.Acquire(); /* calls PrepareForFreezing then PrepareForFire */
+
+----------------------------------------------------
+
+[
+	["keyword", "class"],
+	["class-name", ["FactorialClass"]],
+
+	["keyword", "method"],
+	["function-definition", "factorial"],
+	["punctuation", "("],
+	"&I ",
+	["keyword", "as"],
+	["class-name", ["number"]],
+	["punctuation", ")"],
+	["keyword", "returns"],
+	["class-name", ["number"]],
+	["punctuation", ";"],
+
+	["keyword", "end-class"],
+	["punctuation", ";"],
+
+	["keyword", "class"],
+	["class-name", ["Fruit"]],
+
+	["keyword", "property"],
+	["class-name", ["number"]],
+	" FruitCount",
+	["punctuation", ";"],
+
+	["keyword", "end-class"],
+	["punctuation", ";"],
+
+	["keyword", "class"],
+	["class-name", ["Banana"]],
+	["keyword", "extends"],
+	["class-name", ["Fruit"]],
+
+	["keyword", "property"],
+	["class-name", ["number"]],
+	" BananaCount",
+	["punctuation", ";"],
+
+	["keyword", "end-class"],
+	["punctuation", ";"],
+
+	["keyword", "local"],
+	["class-name", ["Banana"]],
+	" &MyBanana ",
+	["operator", "="],
+	["keyword", "Create"],
+	["class-name", ["Banana"]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "local"],
+	["class-name", ["Fruit"]],
+	" &MyFruit ",
+	["operator", "="],
+	" &MyBanana",
+	["punctuation", ";"],
+	["comment", "/* okay, Banana is a subtype of Fruit */"],
+
+	["keyword", "local"],
+	["class-name", ["number"]],
+	" &Num ",
+	["operator", "="],
+	" &MyBanana",
+	["punctuation", "."],
+	"BananaCount",
+	["punctuation", ";"],
+
+	["comment", "/* generic building class */"],
+
+	["keyword", "class"],
+	["class-name", ["BuildingAsset"]],
+
+	["keyword", "method"],
+	["function-definition", "Acquire"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "method"],
+	["function-definition", "DisasterPrep"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "end-class"],
+	["punctuation", ";"],
+
+	["keyword", "method"],
+	["function-definition", "Acquire"],
+
+	["variable", "%This"],
+	["punctuation", "."],
+	["function", "DisasterPrep"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "end-method"],
+	["punctuation", ";"],
+	["keyword", "method"],
+	["function-definition", "DisasterPrep"],
+
+	["function", "PrepareForFire"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "end-method"],
+	["punctuation", ";"],
+
+	["comment", "/* building in Vancouver */"],
+
+	["keyword", "class"],
+	["class-name", ["VancouverBuilding"]],
+	["keyword", "extends"],
+	["class-name", ["BuildingAssetmethod"]],
+	["function", "DisasterPrep"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "end-class"],
+	["punctuation", ";"],
+
+	["keyword", "method"],
+	["function-definition", "DisasterPrep"],
+
+	["function", "PrepareForEarthquake"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["variable", "%Super"],
+	["punctuation", "."],
+	["function", "DisasterPrep"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["comment", "/* call superclass method */"],
+
+	["keyword", "end-method"],
+	["punctuation", ";"],
+
+	["comment", "/* building in Edmonton */"],
+
+	["keyword", "class"],
+	["class-name", ["EdmontonBuilding"]],
+	["keyword", "extends"],
+	["class-name", ["BuildingAssetmethod"]],
+	["function", "DisasterPrep"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "end-class"],
+	["punctuation", ";"],
+
+	["keyword", "method"],
+	["function-definition", "DisasterPrep"],
+
+	["function", "PrepareForFreezing"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["variable", "%Super"],
+	["punctuation", "."],
+	["function", "DisasterPrep"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["comment", "/* call superclass method */"],
+
+	["keyword", "end-method"],
+	["punctuation", ";"],
+
+	["keyword", "local"],
+	["class-name", ["BuildingAsset"]],
+	" &Building ",
+	["operator", "="],
+	["keyword", "Create"],
+	["class-name", ["VancouverBuilding"]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	"\r\n\r\n&Building",
+	["punctuation", "."],
+	["function", "Acquire"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["comment", "/* calls PrepareForEarthquake then PrepareForFire */"],
+
+	"\r\n\r\n&Building ",
+	["operator", "="],
+	["keyword", "Create"],
+	["class-name", ["EdmontonBuilding"]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	"\r\n\r\n&Building",
+	["punctuation", "."],
+	["function", "Acquire"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["comment", "/* calls PrepareForFreezing then PrepareForFire */"]
+]

@@ -1,0 +1,35 @@
+any
+array
+binary
+boolean
+date
+guid
+numeric
+query
+string
+struct
+uuid
+void
+xml=
+
+----------------------------------------------------
+
+[
+	["type", "any"],
+	["type", "array"],
+	["type", "binary"],
+	["type", "boolean"],
+	["type", "date"],
+	["type", "guid"],
+	["type", "numeric"],
+	["type", "query"],
+	["type", "string"],
+	["type", "struct"],
+	["type", "uuid"],
+	["type", "void"],
+	["type", "xml"], ["operator", "="]
+]
+
+----------------------------------------------------
+
+Checks for all types.

@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const { assert } = require('chai');
 const PrismLoader = require('./helper/prism-loader');
@@ -35,10 +35,26 @@ const testOptions = {
 		template: false
 	},
 
+	'false': {
+		word: false,
+		template: false
+	},
+	// Hoon uses _ in its keywords
+	'hoon': {
+		word: false,
+		template: false
+	},
+
 	// LilyPond doesn't tokenize based on words
 	'lilypond': {
 		word: false,
 		number: false,
+		template: false,
+	},
+
+	// Nevod uses underscore symbol as operator and allows hyphen to be part of identifier
+	'nevod': {
+		word: false,
 		template: false,
 	},
 };
@@ -146,7 +162,7 @@ function getOptions(lang) {
  * @property {string | Token | (string | Token)[]} content
  */
 function isNotBroken(token) {
-	if (typeof token === "string") {
+	if (typeof token === 'string') {
 		return true;
 	} else if (Array.isArray(token)) {
 		return token.length === 1 && isNotBroken(token[0]);
@@ -159,7 +175,7 @@ function isNotBroken(token) {
  * Tests all patterns in the given Prism instance.
  *
  * @param {any} Prism
- * @param {lang} Prism
+ * @param {string} lang
  */
 function testLiterals(Prism, lang) {
 
@@ -186,7 +202,7 @@ function testLiterals(Prism, lang) {
 					assert.fail(
 						`${name}: Failed to tokenize the ${identifierType} '${ident}' as one or no token.\n` +
 						'Actual token stream:\n\n' +
-						TokenStreamTransformer.prettyprint(TokenStreamTransformer.simplify(tokens)) +
+						TokenStreamTransformer.prettyprint(tokens) +
 						'\n\n' +
 						'How to fix this:\n' +
 						'If your language failed any of the identifier tests then some patterns in your language can break identifiers. ' +

@@ -1,0 +1,10 @@
+default-src https: 'unsafe-inline' 'unsafe-eval'
+
+----------------------------------------------------
+
+[
+	["directive", "default-src"],
+	["scheme", "https:"],
+	["keyword", "'unsafe-inline'"],
+	["keyword", "'unsafe-eval'"]
+]

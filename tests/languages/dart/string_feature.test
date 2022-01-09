@@ -8,15 +8,86 @@ bar"""
 '''foo
 bar'''
 
+'$string has ${string.length} letters'
+"cookie has ${cookie.number_of_chips} chips"
+
 ----------------------------------------------------
 
 [
-	["string", "\"\""], ["string", "''"],
-	["string", "r\"\""], ["string", "r''"],
-	["string", "\"\"\"\"\"\""], ["string", "''''''"],
-	["string", "r\"\"\"\"\"\""], ["string", "r''''''"],
-	["string", "\"fo\\\"o\""], ["string", "'fo\\'o'"],
-	["string", "\"\"\"foo\r\nbar\"\"\""], ["string", "'''foo\r\nbar'''"]
+	["string-literal", [
+		["string", "\"\""]
+	]],
+	["string-literal", [
+		["string", "''"]
+	]],
+
+	["string-literal", [
+		["string", "r\"\""]
+	]],
+	["string-literal", [
+		["string", "r''"]
+	]],
+
+	["string-literal", [
+		["string", "\"\"\"\"\"\""]
+	]],
+	["string-literal", [
+		["string", "''''''"]
+	]],
+
+	["string-literal", [
+		["string", "r\"\"\"\"\"\""]
+	]],
+	["string-literal", [
+		["string", "r''''''"]
+	]],
+
+	["string-literal", [
+		["string", "\"fo\\\"o\""]
+	]],
+	["string-literal", [
+		["string", "'fo\\'o'"]
+	]],
+
+	["string-literal", [
+		["string", "\"\"\"foo\r\nbar\"\"\""]
+	]],
+
+	["string-literal", [
+		["string", "'''foo\r\nbar'''"]
+	]],
+
+	["string-literal", [
+		["string", "'"],
+		["interpolation", [
+			["punctuation", "$"],
+			["expression", ["string"]]
+		]],
+		["string", " has "],
+		["interpolation", [
+			["punctuation", "${"],
+			["expression", [
+				"string",
+				["punctuation", "."],
+				"length"
+			]],
+			["punctuation", "}"]
+		]],
+		["string", " letters'"]
+	]],
+	["string-literal", [
+		["string", "\"cookie has "],
+		["interpolation", [
+			["punctuation", "${"],
+			["expression", [
+				"cookie",
+				["punctuation", "."],
+				"number_of_chips"
+			]],
+			["punctuation", "}"]
+		]],
+		["string", " chips\""]
+	]]
 ]
 
 ----------------------------------------------------

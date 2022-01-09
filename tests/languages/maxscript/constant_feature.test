@@ -1,0 +1,15 @@
+dontcollect
+ok
+silentValue
+undefined
+unsupplied
+
+----------------------------------------------------
+
+[
+	["constant", "dontcollect"],
+	["constant", "ok"],
+	["constant", "silentValue"],
+	["constant", "undefined"],
+	["constant", "unsupplied"]
+]

@@ -1,0 +1,401 @@
+0 info it worked if it ends with ok
+1 verbose cli [
+1 verbose cli   'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Users\\micha\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'run',
+1 verbose cli   'test:aliases'
+1 verbose cli ]
+2 info using npm@6.14.10
+3 info using node@v14.15.4
+4 verbose run-script [ 'pretest:aliases', 'test:aliases', 'posttest:aliases' ]
+5 info lifecycle prismjs@1.23.0~pretest:aliases: prismjs@1.23.0
+6 info lifecycle prismjs@1.23.0~test:aliases: prismjs@1.23.0
+7 verbose lifecycle prismjs@1.23.0~test:aliases: unsafe-perm in lifecycle true
+8 verbose lifecycle prismjs@1.23.0~test:aliases: PATH: ...
+9 verbose lifecycle prismjs@1.23.0~test:aliases: CWD: C:\Users\micha\Git\prism
+10 silly lifecycle prismjs@1.23.0~test:aliases: Args: [ '/d /s /c', 'mocha tests/aliases-test.js' ]
+11 silly lifecycle prismjs@1.23.0~test:aliases: Returned: code: 1  signal: null
+12 info lifecycle prismjs@1.23.0~test:aliases: Failed to exec test:aliases script
+13 verbose stack Error: prismjs@1.23.0 test:aliases: `mocha tests/aliases-test.js`
+13 verbose stack Exit status 1
+13 verbose stack     at EventEmitter.<anonymous> (C:\Users\micha\AppData\Roaming\npm\node_modules\npm\node_modules\npm-lifecycle\index.js:332:16)
+13 verbose stack     at EventEmitter.emit (events.js:315:20)
+13 verbose stack     at ChildProcess.<anonymous> (C:\Users\micha\AppData\Roaming\npm\node_modules\npm\node_modules\npm-lifecycle\lib\spawn.js:55:14)
+13 verbose stack     at ChildProcess.emit (events.js:315:20)
+13 verbose stack     at maybeClose (internal/child_process.js:1048:16)
+13 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:288:5)
+14 verbose pkgid prismjs@1.23.0
+15 verbose cwd C:\Users\micha\Git\prism
+16 verbose Windows_NT 10.0.19042
+17 verbose argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Users\\micha\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js" "run" "test:aliases"
+18 verbose node v14.15.4
+19 verbose npm  v6.14.10
+20 error code ELIFECYCLE
+21 error errno 1
+22 error prismjs@1.23.0 test:aliases: `mocha tests/aliases-test.js`
+22 error Exit status 1
+23 error Failed at the prismjs@1.23.0 test:aliases script.
+23 error This is probably not a problem with npm. There is likely additional logging output above.
+24 verbose exit [ 1, true ]
+
+----------------------------------------------------
+
+[
+	["number", "0"],
+	" info it worked if it ends with ok\r\n",
+
+	["number", "1"],
+	" verbose cli ",
+	["punctuation", "["],
+
+	["number", "1"],
+	" verbose cli   ",
+	["string", "'C:\\\\Program Files\\\\nodejs\\\\node.exe'"],
+	["punctuation", ","],
+
+	["number", "1"],
+	" verbose cli   ",
+	["string", "'C:\\\\Users\\\\micha\\\\AppData\\\\Roaming\\\\npm\\\\node_modules\\\\npm\\\\bin\\\\npm-cli.js'"],
+	["punctuation", ","],
+
+	["number", "1"],
+	" verbose cli   ",
+	["string", "'run'"],
+	["punctuation", ","],
+
+	["number", "1"],
+	" verbose cli   ",
+	["string", "'test:aliases'"],
+
+	["number", "1"],
+	" verbose cli ",
+	["punctuation", "]"],
+
+	["number", "2"],
+	" info using npm",
+	["operator", "@"],
+	["number", "6.14.10"],
+
+	["number", "3"],
+	" info using node",
+	["operator", "@"],
+	["number", "v14.15.4"],
+
+	["number", "4"],
+	" verbose run",
+	["operator", "-"],
+	"script ",
+	["punctuation", "["],
+	["string", "'pretest:aliases'"],
+	["punctuation", ","],
+	["string", "'test:aliases'"],
+	["punctuation", ","],
+	["string", "'posttest:aliases'"],
+	["punctuation", "]"],
+
+	["number", "5"],
+	" info lifecycle prismjs",
+	["operator", "@"],
+	["number", "1.23.0"],
+	["operator", "~"],
+	"pretest",
+	["operator", ":"],
+	"aliases",
+	["operator", ":"],
+	" prismjs",
+	["operator", "@"],
+	["number", "1.23.0"],
+
+	["number", "6"],
+	" info lifecycle prismjs",
+	["operator", "@"],
+	["number", "1.23.0"],
+	["operator", "~"],
+	"test",
+	["operator", ":"],
+	"aliases",
+	["operator", ":"],
+	" prismjs",
+	["operator", "@"],
+	["number", "1.23.0"],
+
+	["number", "7"],
+	" verbose lifecycle prismjs",
+	["operator", "@"],
+	["number", "1.23.0"],
+	["operator", "~"],
+	"test",
+	["operator", ":"],
+	"aliases",
+	["operator", ":"],
+	" unsafe",
+	["operator", "-"],
+	"perm in lifecycle ",
+	["boolean", "true"],
+
+	["number", "8"],
+	" verbose lifecycle prismjs",
+	["operator", "@"],
+	["number", "1.23.0"],
+	["operator", "~"],
+	"test",
+	["operator", ":"],
+	"aliases",
+	["operator", ":"],
+	" PATH",
+	["operator", ":"],
+	["punctuation", "."],
+	["punctuation", "."],
+	["punctuation", "."],
+
+	["number", "9"],
+	" verbose lifecycle prismjs",
+	["operator", "@"],
+	["number", "1.23.0"],
+	["operator", "~"],
+	"test",
+	["operator", ":"],
+	"aliases",
+	["operator", ":"],
+	" CWD",
+	["operator", ":"],
+	["file-path", "C:\\Users\\micha\\Git\\prism"],
+
+	["number", "10"],
+	" silly lifecycle prismjs",
+	["operator", "@"],
+	["number", "1.23.0"],
+	["operator", "~"],
+	"test",
+	["operator", ":"],
+	"aliases",
+	["operator", ":"],
+	" Args",
+	["operator", ":"],
+	["punctuation", "["],
+	["string", "'/d /s /c'"],
+	["punctuation", ","],
+	["string", "'mocha tests/aliases-test.js'"],
+	["punctuation", "]"],
+
+	["number", "11"],
+	" silly lifecycle prismjs",
+	["operator", "@"],
+	["number", "1.23.0"],
+	["operator", "~"],
+	"test",
+	["operator", ":"],
+	"aliases",
+	["operator", ":"],
+	" Returned",
+	["operator", ":"],
+	" code",
+	["operator", ":"],
+	["number", "1"],
+	"  signal",
+	["operator", ":"],
+	["boolean", "null"],
+
+	["number", "12"],
+	" info lifecycle prismjs",
+	["operator", "@"],
+	["number", "1.23.0"],
+	["operator", "~"],
+	"test",
+	["operator", ":"],
+	"aliases",
+	["operator", ":"],
+	" Failed to exec test",
+	["operator", ":"],
+	"aliases script\r\n",
+
+	["number", "13"],
+	" verbose stack Error",
+	["operator", ":"],
+	" prismjs",
+	["operator", "@"],
+	["number", "1.23.0"],
+	" test",
+	["operator", ":"],
+	"aliases",
+	["operator", ":"],
+	" `mocha tests",
+	["operator", "/"],
+	"aliases",
+	["operator", "-"],
+	"test",
+	["punctuation", "."],
+	"js`\r\n",
+
+	["number", "13"],
+	" verbose stack Exit status ",
+	["number", "1"],
+
+	["number", "13"],
+	" verbose stack     at EventEmitter",
+	["punctuation", "."],
+	["operator", "<"],
+	"anonymous",
+	["operator", ">"],
+	["operator", "("],
+	["file-path", "C:\\Users\\micha\\AppData\\Roaming\\npm\\node_modules\\npm\\node_modules\\npm-lifecycle\\index.js"],
+	["operator", ":"],
+	["number", "332"],
+	["operator", ":"],
+	["number", "16"],
+	["operator", ")"],
+
+	["number", "13"],
+	" verbose stack     at EventEmitter",
+	["punctuation", "."],
+	"emit ",
+	["operator", "("],
+	"events",
+	["punctuation", "."],
+	"js",
+	["operator", ":"],
+	["number", "315"],
+	["operator", ":"],
+	["number", "20"],
+	["operator", ")"],
+
+	["number", "13"],
+	" verbose stack     at ChildProcess",
+	["punctuation", "."],
+	["operator", "<"],
+	"anonymous",
+	["operator", ">"],
+	["operator", "("],
+	["file-path", "C:\\Users\\micha\\AppData\\Roaming\\npm\\node_modules\\npm\\node_modules\\npm-lifecycle\\lib\\spawn.js"],
+	["operator", ":"],
+	["number", "55"],
+	["operator", ":"],
+	["number", "14"],
+	["operator", ")"],
+
+	["number", "13"],
+	" verbose stack     at ChildProcess",
+	["punctuation", "."],
+	"emit ",
+	["operator", "("],
+	"events",
+	["punctuation", "."],
+	"js",
+	["operator", ":"],
+	["number", "315"],
+	["operator", ":"],
+	["number", "20"],
+	["operator", ")"],
+
+	["number", "13"],
+	" verbose stack     at maybeClose ",
+	["operator", "("],
+	"internal",
+	["operator", "/"],
+	"child_process",
+	["punctuation", "."],
+	"js",
+	["operator", ":"],
+	["number", "1048"],
+	["operator", ":"],
+	["number", "16"],
+	["operator", ")"],
+
+	["number", "13"],
+	" verbose stack     at Process",
+	["punctuation", "."],
+	"ChildProcess",
+	["punctuation", "."],
+	"_handle",
+	["punctuation", "."],
+	"onexit ",
+	["operator", "("],
+	"internal",
+	["operator", "/"],
+	"child_process",
+	["punctuation", "."],
+	"js",
+	["operator", ":"],
+	["number", "288"],
+	["operator", ":"],
+	["number", "5"],
+	["operator", ")"],
+
+	["number", "14"],
+	" verbose pkgid prismjs",
+	["operator", "@"],
+	["number", "1.23.0"],
+
+	["number", "15"],
+	" verbose cwd ",
+	["file-path", "C:\\Users\\micha\\Git\\prism"],
+
+	["number", "16"],
+	" verbose Windows_NT ",
+	["number", "10.0.19042"],
+
+	["number", "17"],
+	" verbose argv ",
+	["string", "\"C:\\\\Program Files\\\\nodejs\\\\node.exe\""],
+	["string", "\"C:\\\\Users\\\\micha\\\\AppData\\\\Roaming\\\\npm\\\\node_modules\\\\npm\\\\bin\\\\npm-cli.js\""],
+	["string", "\"run\""],
+	["string", "\"test:aliases\""],
+
+	["number", "18"],
+	" verbose node ",
+	["number", "v14.15.4"],
+
+	["number", "19"],
+	" verbose npm  ",
+	["number", "v6.14.10"],
+
+	["number", "20"],
+	" error code ELIFECYCLE\r\n",
+
+	["number", "21"],
+	" error errno ",
+	["number", "1"],
+
+	["number", "22"],
+	" error prismjs",
+	["operator", "@"],
+	["number", "1.23.0"],
+	" test",
+	["operator", ":"],
+	"aliases",
+	["operator", ":"],
+	" `mocha tests",
+	["operator", "/"],
+	"aliases",
+	["operator", "-"],
+	"test",
+	["punctuation", "."],
+	"js`\r\n",
+
+	["number", "22"],
+	" error Exit status ",
+	["number", "1"],
+
+	["number", "23"],
+	" error Failed at the prismjs",
+	["operator", "@"],
+	["number", "1.23.0"],
+	" test",
+	["operator", ":"],
+	"aliases script",
+	["punctuation", "."],
+
+	["number", "23"],
+	" error This is probably not a problem with npm",
+	["punctuation", "."],
+	" There is likely additional logging output above",
+	["punctuation", "."],
+
+	["number", "24"],
+	" verbose exit ",
+	["punctuation", "["],
+	["number", "1"],
+	["punctuation", ","],
+	["boolean", "true"],
+	["punctuation", "]"]
+]

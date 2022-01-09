@@ -1,6 +1,8 @@
 align
 allowzero
 and
+anyframe
+anytype
 asm
 async
 await
@@ -24,6 +26,7 @@ inline
 linksection
 nakedcc
 noalias
+nosuspend
 null
 or
 orelse
@@ -53,6 +56,8 @@ while
 	["keyword", "align"],
 	["keyword", "allowzero"],
 	["keyword", "and"],
+	["keyword", "anyframe"],
+	["keyword", "anytype"],
 	["keyword", "asm"],
 	["keyword", "async"],
 	["keyword", "await"],
@@ -76,6 +81,7 @@ while
 	["keyword", "linksection"],
 	["keyword", "nakedcc"],
 	["keyword", "noalias"],
+	["keyword", "nosuspend"],
 	["keyword", "null"],
 	["keyword", "or"],
 	["keyword", "orelse"],

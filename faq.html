@@ -16,12 +16,12 @@
 	color: black;
 }
 </style>
-<script src="assets/prefixfree.min.js"></script>
+<script src="assets/vendor/prefixfree.min.js"></script>
 
 <script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
 <script src="https://www.google-analytics.com/ga.js" async></script>
 </head>
-<body>
+<body class="language-none">
 
 <header>
 	<div class="intro" data-src="assets/templates/header-main.html" data-type="text/html"></div>
@@ -95,14 +95,15 @@
 
 	<p>Language: <select id="language-select"></select></p>
 	<pre class="language-none" style="height: 30em"><code id="print-tokens-output"></code></pre>
+
+	<p>Additionally, you can find a list of standard tokens on <a href="/tokens.html">this page</a>.</p>
 </section>
 
 <section>
 	<h1>How can I use different highlighting for tokens with the same name in different languages?</h1>
 	<p>Just use a descendant selector, that includes the language class. The default <code>prism.css</code> does this, to have different colors for
 	JavaScript strings (which are very common) and CSS strings (which are relatively rare). Here’s that code, simplified to illustrate the technique:
-	<pre><code class="language-css">
-.token.string {
+	<pre><code class="language-css">.token.string {
 	color: #690;
 }
 
@@ -123,7 +124,7 @@
 
 <footer data-src="assets/templates/footer.html" data-type="text/html"></footer>
 
-<script src="assets/utopia.js"></script>
+<script src="assets/vendor/utopia.js"></script>
 <script src="prism.js"></script>
 <script src="plugins/autoloader/prism-autoloader.min.js"></script>
 <script>

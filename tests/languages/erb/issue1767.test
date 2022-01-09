@@ -18,35 +18,41 @@
 [
 	["erb", [
 		["delimiter", "<%"],
-		["comment", "# this is a block comment "],
+		["ruby", [
+			["comment", "# this is a block comment "]
+		]],
+		["delimiter", "%>"]
+	]],
+	["erb", [
+		["delimiter", "<%"],
+		["ruby", [
+			["comment", "=begin %>\r\n\tblock comment\r\n\t(both lines of both the begin and end tags must be at the start of their lines)\r\n<%\r\n=end"]
+		]],
 		["delimiter", "%>"]
 	]],
 
 	["erb", [
 		["delimiter", "<%"],
-		["comment", "=begin %>\n\tblock comment\n\t(both lines of both the begin and end tags must be at the start of their lines)\n<%\n=end"],
+		["ruby", [
+			["comment", "# this is not "]
+		]],
 		["delimiter", "%>"]
 	]],
-
 	["erb", [
 		["delimiter", "<%"],
-		["comment", "# this is not "],
+		["ruby", [
+			["operator", "="],
+			["keyword", "begin"]
+		]],
 		["delimiter", "%>"]
 	]],
-
+	"\r\n\tnot a comment\r\n\t",
 	["erb", [
 		["delimiter", "<%"],
-		["operator", "="],
-		["keyword", "begin"],
-		["delimiter", "%>"]
-	]],
-
-	"\n\tnot a comment\n\t",
-
-	["erb", [
-		["delimiter", "<%"],
-		["operator", "="],
-		["keyword", "end"],
+		["ruby", [
+			["operator", "="],
+			["keyword", "end"]
+		]],
 		["delimiter", "%>"]
 	]]
 ]

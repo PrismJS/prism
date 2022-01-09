@@ -1,0 +1,28 @@
+<h2>Full example</h2>
+<pre><code>[Exposed=Window]
+interface Paint { };
+
+[Exposed=Window]
+interface SolidColor : Paint {
+	attribute double red;
+	attribute double green;
+	attribute double blue;
+};
+
+[Exposed=Window]
+interface Pattern : Paint {
+	attribute DOMString imageURL;
+};
+
+[Exposed=Window]
+interface GraphicalWindow {
+	constructor();
+	readonly attribute unsigned long width;
+	readonly attribute unsigned long height;
+
+	attribute Paint currentPaint;
+
+	undefined drawRectangle(double x, double y, double width, double height);
+
+	undefined drawText(double x, double y, DOMString text);
+};</code></pre>

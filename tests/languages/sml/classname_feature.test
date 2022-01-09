@@ -1,0 +1,215 @@
+val FOO: (string list) * 'a * 'a -> (svalue,'a) token
+val FOO: (string) * 'a * 'a -> (svalue,'a) token
+val FOO: (int) * 'a * 'a -> (svalue,'a) token
+val FOO: (string list) * 'a * 'a -> (svalue,'a) token
+val FOO: 'a * 'a -> (svalue,'a) token
+
+datatype spec_ast = SPEC of {head : string list,
+                             decls : decl_ast list,
+                             rules : rule_ast list,
+                             tail : string list}
+
+type out_state = {
+tout : real,
+dtout : real,
+dtime : real,
+strm : TextIO.outstream
+}
+val outState = ref (NONE : out_state option)
+
+val systemLines: string -> string list
+val systemCleanLines: string -> string list
+val systemStanzas: string -> string list list
+
+----------------------------------------------------
+
+[
+	["keyword", "val"],
+	" FOO",
+	["punctuation", ":"],
+	["class-name", [
+		["punctuation", "("],
+		"string list",
+		["punctuation", ")"],
+		["operator", "*"],
+		["variable", "'a"],
+		["operator", "*"],
+		["variable", "'a"],
+		["operator", "->"],
+		["punctuation", "("],
+		"svalue",
+		["punctuation", ","],
+		["variable", "'a"],
+		["punctuation", ")"],
+		" token"
+	]],
+
+	["keyword", "val"],
+	" FOO",
+	["punctuation", ":"],
+	["class-name", [
+		["punctuation", "("],
+		"string",
+		["punctuation", ")"],
+		["operator", "*"],
+		["variable", "'a"],
+		["operator", "*"],
+		["variable", "'a"],
+		["operator", "->"],
+		["punctuation", "("],
+		"svalue",
+		["punctuation", ","],
+		["variable", "'a"],
+		["punctuation", ")"],
+		" token"
+	]],
+
+	["keyword", "val"],
+	" FOO",
+	["punctuation", ":"],
+	["class-name", [
+		["punctuation", "("],
+		"int",
+		["punctuation", ")"],
+		["operator", "*"],
+		["variable", "'a"],
+		["operator", "*"],
+		["variable", "'a"],
+		["operator", "->"],
+		["punctuation", "("],
+		"svalue",
+		["punctuation", ","],
+		["variable", "'a"],
+		["punctuation", ")"],
+		" token"
+	]],
+
+	["keyword", "val"],
+	" FOO",
+	["punctuation", ":"],
+	["class-name", [
+		["punctuation", "("],
+		"string list",
+		["punctuation", ")"],
+		["operator", "*"],
+		["variable", "'a"],
+		["operator", "*"],
+		["variable", "'a"],
+		["operator", "->"],
+		["punctuation", "("],
+		"svalue",
+		["punctuation", ","],
+		["variable", "'a"],
+		["punctuation", ")"],
+		" token"
+	]],
+
+	["keyword", "val"],
+	" FOO",
+	["punctuation", ":"],
+	["class-name", [
+		["variable", "'a"],
+		["operator", "*"],
+		["variable", "'a"],
+		["operator", "->"],
+		["punctuation", "("],
+		"svalue",
+		["punctuation", ","],
+		["variable", "'a"],
+		["punctuation", ")"],
+		" token"
+	]],
+
+	["keyword", "datatype"],
+	["class-name", "spec_ast"],
+	["operator", "="],
+	" SPEC ",
+	["keyword", "of"],
+	["punctuation", "{"],
+	"head ",
+	["punctuation", ":"],
+	["class-name", ["string list"]],
+	["punctuation", ","],
+
+	"\r\n                             decls ",
+	["punctuation", ":"],
+	["class-name", ["decl_ast list"]],
+	["punctuation", ","],
+
+	"\r\n                             rules ",
+	["punctuation", ":"],
+	["class-name", ["rule_ast list"]],
+	["punctuation", ","],
+
+	"\r\n                             tail ",
+	["punctuation", ":"],
+	["class-name", ["string list"]],
+	["punctuation", "}"],
+
+	["keyword", "type"],
+	["class-name", "out_state"],
+	["operator", "="],
+	["punctuation", "{"],
+
+	"\r\ntout ",
+	["punctuation", ":"],
+	["class-name", ["real"]],
+	["punctuation", ","],
+
+	"\r\ndtout ",
+	["punctuation", ":"],
+	["class-name", ["real"]],
+	["punctuation", ","],
+
+	"\r\ndtime ",
+	["punctuation", ":"],
+	["class-name", ["real"]],
+	["punctuation", ","],
+
+	"\r\nstrm ",
+	["punctuation", ":"],
+	["class-name", [
+		"TextIO",
+		["punctuation", "."],
+		"outstream"
+	]],
+
+	["punctuation", "}"],
+
+	["keyword", "val"],
+	" outState ",
+	["operator", "="],
+	" ref ",
+	["punctuation", "("],
+	"NONE ",
+	["punctuation", ":"],
+	["class-name", ["out_state option"]],
+	["punctuation", ")"],
+
+	["keyword", "val"],
+	" systemLines",
+	["punctuation", ":"],
+	["class-name", [
+		"string ",
+		["operator", "->"],
+		" string list"
+	]],
+
+	["keyword", "val"],
+	" systemCleanLines",
+	["punctuation", ":"],
+	["class-name", [
+		"string ",
+		["operator", "->"],
+		" string list"
+	]],
+
+	["keyword", "val"],
+	" systemStanzas",
+	["punctuation", ":"],
+	["class-name", [
+		"string ",
+		["operator", "->"],
+		" string list list"
+	]]
+]

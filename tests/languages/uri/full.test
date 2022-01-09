@@ -1,0 +1,126 @@
+https://john.doe@www.example.com:123/forum/questions/?tag=networking&order=newest#top
+ldap://[2001:db8::7]/c=GB?objectClass?one
+mailto:John.Doe@example.com
+news:comp.infosystems.www.servers.unix
+telnet://192.0.2.16:80/
+https://example.com/path/resource.txt#fragment
+
+----------------------------------------------------
+
+[
+	["scheme", [
+		"https",
+		["scheme-delimiter", ":"]
+	]],
+	["authority", [
+		["authority-delimiter", "//"],
+		["user-info-segment", [
+			["user-info", "john.doe"],
+			["user-info-delimiter", "@"]
+		]],
+		["host", ["www.example.com"]],
+		["port-segment", [
+			["port-delimiter", ":"],
+			["port", "123"]
+		]]
+	]],
+	["path", [
+		["path-separator", "/"],
+		"forum",
+		["path-separator", "/"],
+		"questions",
+		["path-separator", "/"]
+	]],
+	["query", [
+		["query-delimiter", "?"],
+		["pair", [
+			["key", "tag"],
+			"=",
+			["value", "networking"]
+		]],
+		["pair-delimiter", "&"],
+		["pair", [
+			["key", "order"],
+			"=",
+			["value", "newest"]
+		]]
+	]],
+	["fragment", [
+		["fragment-delimiter", "#"],
+		"top"
+	]],
+
+	["scheme", [
+		"ldap",
+		["scheme-delimiter", ":"]
+	]],
+	["authority", [
+		["authority-delimiter", "//"],
+		["host", [
+			["ip-literal", [
+				["ip-literal-delimiter", "["],
+				["ipv6-address", "2001:db8::7"],
+				["ip-literal-delimiter", "]"]
+			]]
+		]]
+	]],
+	["path", [
+		["path-separator", "/"],
+		"c=GB"
+	]],
+	["query", [
+		["query-delimiter", "?"],
+		["pair", [
+			["key", "objectClass?one"]
+		]]
+	]],
+
+	["scheme", [
+		"mailto",
+		["scheme-delimiter", ":"]
+	]],
+	["path", ["John.Doe@example.com"]],
+
+	["scheme", [
+		"news",
+		["scheme-delimiter", ":"]
+	]],
+	["path", ["comp.infosystems.www.servers.unix"]],
+
+	["scheme", [
+		"telnet",
+		["scheme-delimiter", ":"]
+	]],
+	["authority", [
+		["authority-delimiter", "//"],
+		["host", [
+			["ipv4-address", "192.0.2.16"]
+		]],
+		["port-segment", [
+			["port-delimiter", ":"],
+			["port", "80"]
+		]]
+	]],
+	["path", [
+		["path-separator", "/"]
+	]],
+
+	["scheme", [
+		"https",
+		["scheme-delimiter", ":"]
+	]],
+	["authority", [
+		["authority-delimiter", "//"],
+		["host", ["example.com"]]
+	]],
+	["path", [
+		["path-separator", "/"],
+		"path",
+		["path-separator", "/"],
+		"resource.txt"
+	]],
+	["fragment", [
+		["fragment-delimiter", "#"],
+		"fragment"
+	]]
+]

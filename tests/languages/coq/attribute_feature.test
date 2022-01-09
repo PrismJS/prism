@@ -1,0 +1,93 @@
+#[program]
+#[program=yes]
+#[deprecated(since="8.9.0")]
+#[local, universes(polymorphic)]
+#[universes(polymorphic(foo,bar))]
+#[canonical=yes, canonical=no]
+#[ export ]
+
+(* legacy *)
+Cumulative
+Global
+Local
+Monomorphic
+NonCumulative
+Polymorphic
+Private
+Program
+
+----------------------------------------------------
+
+[
+	["attribute", [
+		["punctuation", "#["],
+		"program",
+		["punctuation", "]"]
+	]],
+	["attribute", [
+		["punctuation", "#["],
+		"program",
+		["operator", "="],
+		"yes",
+		["punctuation", "]"]
+	]],
+	["attribute", [
+		["punctuation", "#["],
+		"deprecated",
+		["punctuation", "("],
+		"since",
+		["operator", "="],
+		["string", "\"8.9.0\""],
+		["punctuation", ")"],
+		["punctuation", "]"]
+	]],
+	["attribute", [
+		["punctuation", "#["],
+		"local",
+		["punctuation", ","],
+		" universes",
+		["punctuation", "("],
+		"polymorphic",
+		["punctuation", ")"],
+		["punctuation", "]"]
+	]],
+	["attribute", [
+		["punctuation", "#["],
+		"universes",
+		["punctuation", "("],
+		"polymorphic",
+		["punctuation", "("],
+		"foo",
+		["punctuation", ","],
+		"bar",
+		["punctuation", ")"],
+		["punctuation", ")"],
+		["punctuation", "]"]
+	]],
+	["attribute", [
+		["punctuation", "#["],
+		"canonical",
+		["operator", "="],
+		"yes",
+		["punctuation", ","],
+		" canonical",
+		["operator", "="],
+		"no",
+		["punctuation", "]"]
+	]],
+	["attribute", [
+		["punctuation", "#["],
+		" export ",
+		["punctuation", "]"]
+	]],
+
+	["comment", "(* legacy *)"],
+	["attribute", "Cumulative"],
+	["attribute", "Global"],
+	["attribute", "Local"],
+	["attribute", "Monomorphic"],
+	["attribute", "NonCumulative"],
+	["attribute", "Polymorphic"],
+	["attribute", "Private"],
+	["attribute", "Program"]
+]

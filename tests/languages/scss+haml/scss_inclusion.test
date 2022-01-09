@@ -14,24 +14,34 @@
 [
 	["filter-scss", [
 		["filter-name", ":scss"],
-		["selector", ["#main "]],
-		["punctuation", "{"],
-		["property", ["width"]],
-		["punctuation", ":"],
-		["variable", "$width"],
-		["punctuation", ";"],
-		["punctuation", "}"]
+		["text", [
+			["selector", ["#main "]],
+			["punctuation", "{"],
+
+			["property", ["width"]],
+			["punctuation", ":"],
+			["variable", "$width"],
+			["punctuation", ";"],
+
+			["punctuation", "}"]
+		]]
 	]],
+
 	["punctuation", "~"],
+
 	["filter-scss", [
 		["filter-name", ":scss"],
-		["selector", ["#main "]],
-		["punctuation", "{"],
-		["property", ["width"]],
-		["punctuation", ":"],
-		["variable", "$width"],
-		["punctuation", ";"],
-		["punctuation", "}"]
+		["text", [
+			["selector", ["#main "]],
+			["punctuation", "{"],
+
+			["property", ["width"]],
+			["punctuation", ":"],
+			["variable", "$width"],
+			["punctuation", ";"],
+
+			["punctuation", "}"]
+		]]
 	]]
 ]
 

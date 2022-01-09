@@ -1,0 +1,23 @@
+in
+"foo" in ["foo"]
+"f" in "foo"
+
+----------------------------------------------------
+
+[
+	["keyword", "in"],
+
+	["string", "\"foo\""],
+	["keyword", "in"],
+	["punctuation", "["],
+	["string", "\"foo\""],
+	["punctuation", "]"],
+
+	["string", "\"f\""],
+	["keyword", "in"],
+	["string", "\"foo\""]
+]
+
+----------------------------------------------------
+
+Checks for all keywords.

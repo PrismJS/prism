@@ -7,14 +7,23 @@ local baz = 66;
 ----------------------------------------------------
 
 [
-	["variable", [["keyword", "local"], " foo"]],
-	["variable", [["keyword", "global"], " foo"]],
-	["variable", [["keyword", "local"], " bool"]],
+	["keyword", "local"],
+	" foo\r\n",
+
+	["keyword", "global"],
+	" foo\r\n",
+
+	["keyword", "local"],
+	["keyword", "bool"],
 	["operator", "="],
 	["boolean", "T"],
 	["punctuation", ";"],
-	["constant", [["keyword", "const"], " bar"]],
-	["variable", [["keyword", "local"], " baz"]],
+
+	["keyword", "const"],
+	["constant", "bar"],
+
+	["keyword", "local"],
+	" baz ",
 	["operator", "="],
 	["number", "66"],
 	["punctuation", ";"]

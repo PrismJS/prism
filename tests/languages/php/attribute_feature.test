@@ -1,0 +1,383 @@
+// #[Foo]
+
+#[]
+
+#[
+	// something ]
+	Foo,
+	/* something
+	else #[] */
+	Bar
+	# shell comments aren't confusing at all in here
+]
+
+#[Foo([0, 1])]
+
+#[
+	Foo(
+		[
+			1 => [0, 1],
+			2 => [2, 3],
+			3 => [
+				[0, 1],
+				[2, 3]
+			]
+		]
+	)
+]
+
+#[Foo]
+#[Foo\Bar\Baz]
+#[Route(Http::POST, '/products/create', 1)]
+#[
+	Http\Route(Http::POST, '/products/create', 1),
+	Foo\Bar\Baz,
+	AttributeFoo('value')
+]
+
+#[A1(1), A1(2), A2(3)]
+class Foo {
+	public function foo(#[A1(5)] $a, #[A1(6)] $b) { }
+}
+
+$object = new #[A1(7)] class () {};
+
+function foo(
+    #[Attribute] $param1,
+    $param2
+) {}
+
+$f1 = #[ExampleAttribute] function () {};
+
+$ref = new \ReflectionFunction(#[A1] #[A2] function () { });
+
+#[DeprecationReason('reason: <https://some-website/reason?>')]
+function main() {}
+
+----------------------------------------------------
+
+[
+	["comment", "// #[Foo]"],
+
+	"\r\n\r\n#", ["punctuation", "["], ["punctuation", "]"],
+
+	["attribute", [
+		["delimiter", "#["],
+		["attribute-content", [
+			["comment", "// something ]"],
+			["attribute-class-name", "Foo"], ["punctuation", ","],
+			["comment", "/* something\r\n\telse #[] */"],
+			["attribute-class-name", "Bar"],
+			["comment", "# shell comments aren't confusing at all in here"]
+		]],
+		["delimiter", "]"]
+	]],
+
+	["attribute", [
+		["delimiter", "#["],
+		["attribute-content", [
+			["attribute-class-name", "Foo"],
+			["punctuation", "("],
+			["punctuation", "["],
+			["number", "0"],
+			["punctuation", ","],
+			["number", "1"],
+			["punctuation", "]"],
+			["punctuation", ")"]
+		]],
+		["delimiter", "]"]
+	]],
+
+	["attribute", [
+		["delimiter", "#["],
+		["attribute-content", [
+			["attribute-class-name", "Foo"],
+			["punctuation", "("],
+
+			["punctuation", "["],
+
+			["number", "1"],
+			["operator", "=>"],
+			["punctuation", "["],
+			["number", "0"],
+			["punctuation", ","],
+			["number", "1"],
+			["punctuation", "]"],
+			["punctuation", ","],
+
+			["number", "2"],
+			["operator", "=>"],
+			["punctuation", "["],
+			["number", "2"],
+			["punctuation", ","],
+			["number", "3"],
+			["punctuation", "]"],
+			["punctuation", ","],
+
+			["number", "3"],
+			["operator", "=>"],
+			["punctuation", "["],
+
+			["punctuation", "["],
+			["number", "0"],
+			["punctuation", ","],
+			["number", "1"],
+			["punctuation", "]"],
+			["punctuation", ","],
+
+			["punctuation", "["],
+			["number", "2"],
+			["punctuation", ","],
+			["number", "3"],
+			["punctuation", "]"],
+
+			["punctuation", "]"],
+
+			["punctuation", "]"],
+
+			["punctuation", ")"]
+		]],
+		["delimiter", "]"]
+	]],
+
+	["attribute", [
+		["delimiter", "#["],
+		["attribute-content", [
+			["attribute-class-name", "Foo"]
+		]],
+		["delimiter", "]"]
+	]],
+
+	["attribute", [
+		["delimiter", "#["],
+		["attribute-content", [
+			["attribute-class-name", [
+				"Foo",
+				["punctuation", "\\"],
+				"Bar",
+				["punctuation", "\\"],
+				"Baz"
+			]]
+		]],
+		["delimiter", "]"]
+	]],
+
+	["attribute", [
+		["delimiter", "#["],
+		["attribute-content", [
+			["attribute-class-name", "Route"],
+			["punctuation", "("],
+			["attribute-class-name", "Http"],
+			["operator", "::"],
+			["constant", "POST"],
+			["punctuation", ","],
+			["string", "'/products/create'"],
+			["punctuation", ","],
+			["number", "1"],
+			["punctuation", ")"]
+		]],
+		["delimiter", "]"]
+	]],
+
+	["attribute", [
+		["delimiter", "#["],
+		["attribute-content", [
+			["attribute-class-name", [
+				"Http",
+				["punctuation", "\\"],
+				"Route"
+			]],
+			["punctuation", "("],
+			["attribute-class-name", "Http"],
+			["operator", "::"],
+			["constant", "POST"],
+			["punctuation", ","],
+			["string", "'/products/create'"],
+			["punctuation", ","],
+			["number", "1"],
+			["punctuation", ")"],
+			["punctuation", ","],
+
+			["attribute-class-name", [
+				"Foo",
+				["punctuation", "\\"],
+				"Bar",
+				["punctuation", "\\"],
+				"Baz"
+			]],
+			["punctuation", ","],
+
+			["attribute-class-name", "AttributeFoo"],
+			["punctuation", "("],
+			["string", "'value'"],
+			["punctuation", ")"]
+		]],
+		["delimiter", "]"]
+	]],
+
+	["attribute", [
+		["delimiter", "#["],
+		["attribute-content", [
+			["attribute-class-name", "A1"],
+			["punctuation", "("],
+			["number", "1"],
+			["punctuation", ")"],
+			["punctuation", ","],
+			["attribute-class-name", "A1"],
+			["punctuation", "("],
+			["number", "2"],
+			["punctuation", ")"],
+			["punctuation", ","],
+			["attribute-class-name", "A2"],
+			["punctuation", "("],
+			["number", "3"],
+			["punctuation", ")"]
+		]],
+		["delimiter", "]"]
+	]],
+
+	["keyword", "class"],
+	["class-name-definition", "Foo"],
+	["punctuation", "{"],
+
+	["keyword", "public"],
+	["keyword", "function"],
+	["function-definition", "foo"],
+	["punctuation", "("],
+	["attribute", [
+		["delimiter", "#["],
+		["attribute-content", [
+			["attribute-class-name", "A1"],
+			["punctuation", "("],
+			["number", "5"],
+			["punctuation", ")"]
+		]],
+		["delimiter", "]"]
+	]],
+	["variable", "$a"],
+	["punctuation", ","],
+	["attribute", [
+		["delimiter", "#["],
+		["attribute-content", [
+			["attribute-class-name", "A1"],
+			["punctuation", "("],
+			["number", "6"],
+			["punctuation", ")"]
+		]],
+		["delimiter", "]"]
+	]],
+	["variable", "$b"],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["punctuation", "}"],
+
+	["variable", "$object"],
+	["operator", "="],
+	["keyword", "new"],
+	["attribute", [
+		["delimiter", "#["],
+		["attribute-content", [
+			["attribute-class-name", "A1"],
+			["punctuation", "("],
+			["number", "7"],
+			["punctuation", ")"]
+		]],
+		["delimiter", "]"]
+	]],
+	["keyword", "class"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["keyword", "function"],
+	["function-definition", "foo"],
+	["punctuation", "("],
+
+	["attribute", [
+		["delimiter", "#["],
+		["attribute-content", [
+			["attribute-class-name", "Attribute"]
+		]],
+		["delimiter", "]"]
+	]],
+	["variable", "$param1"],
+	["punctuation", ","],
+
+	["variable", "$param2"],
+
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["variable", "$f1"],
+	["operator", "="],
+	["attribute", [
+		["delimiter", "#["],
+		["attribute-content", [
+			["attribute-class-name", "ExampleAttribute"]
+		]],
+		["delimiter", "]"]
+	]],
+	["keyword", "function"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["variable", "$ref"],
+	["operator", "="],
+	["keyword", "new"],
+	["class-name", [
+		["punctuation", "\\"],
+		"ReflectionFunction"
+	]],
+	["punctuation", "("],
+	["attribute", [
+		["delimiter", "#["],
+		["attribute-content", [
+			["attribute-class-name", "A1"]
+		]],
+		["delimiter", "]"]
+	]],
+	["attribute", [
+		["delimiter", "#["],
+		["attribute-content", [
+			["attribute-class-name", "A2"]
+		]],
+		["delimiter", "]"]
+	]],
+	["keyword", "function"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["attribute", [
+		["delimiter", "#["],
+		["attribute-content", [
+			["attribute-class-name", "DeprecationReason"],
+			["punctuation", "("],
+			["string", "'reason: <https://some-website/reason?>'"],
+			["punctuation", ")"]
+		]],
+		["delimiter", "]"]
+	]],
+
+	["keyword", "function"],
+	["function-definition", "main"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for attributes.

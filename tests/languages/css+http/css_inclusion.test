@@ -7,15 +7,21 @@ a.link:hover {
 ----------------------------------------------------
 
 [
-	["header-name", "Content-type:"],
-	" text/css",
+	["header", [
+		["header-name", "Content-type"],
+		["punctuation", ":"],
+		["header-value", "text/css"]
+	]],
+
 	["text-css", [
 		["selector", "a.link:hover"],
 		["punctuation", "{"],
+
 		["property", "color"],
 		["punctuation", ":"],
 		" red",
 		["punctuation", ";"],
+
 		["punctuation", "}"]
 	]]
 ]

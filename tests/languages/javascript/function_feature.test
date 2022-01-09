@@ -15,19 +15,70 @@ foo({ y: fun() })
 ----------------------------------------------------
 
 [
-	["function", "foo"], ["punctuation", "("], ["punctuation", ")"],
-	["function", "foo"], ["punctuation", "("], ["punctuation", ")"],
-	["function", "foo"], ["punctuation", "."], ["function", "call"], ["punctuation", "("], ["punctuation", ")"],
-	["function", "foo_bar"], ["punctuation", "("], ["punctuation", ")"],
-	["function", "foo_bar"], ["punctuation", "("], ["punctuation", ")"],
-	["function", "f42"], ["punctuation", "("], ["punctuation", ")"],
-	["function", "_"], ["punctuation", "("], ["punctuation", ")"],
-	["function", "$"], ["punctuation", "("], ["punctuation", ")"],
-	["function", "ಠ_ಠ"], ["punctuation", "("], ["punctuation", ")"],
-	["function", "Ƞȡ_҇"], ["punctuation", "("], ["punctuation", ")"],
-	["keyword", "if"], ["punctuation", "("], "notAFunction", ["punctuation", ")"],
-	["function", "foo"], ["punctuation", "("], ["punctuation", "{"], " x ", ["punctuation", "}"], ["punctuation", ")"],
-	["function", "foo"], ["punctuation", "("], ["punctuation", "{"], " y", ["operator", ":"], ["function", "fun"], ["punctuation", "("], ["punctuation", ")"], ["punctuation", "}"], ["punctuation", ")"]
+	["function", "foo"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["function", "foo"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["function", "foo"],
+	["punctuation", "."],
+	["function", "call"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["function", "foo_bar"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["function", "foo_bar"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["function", "f42"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["function", "_"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["function", "$"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["function", "ಠ_ಠ"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["function", "Ƞȡ_҇"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["keyword", "if"],
+	["punctuation", "("],
+	"notAFunction",
+	["punctuation", ")"],
+
+	["function", "foo"],
+	["punctuation", "("],
+	["punctuation", "{"],
+	" x ",
+	["punctuation", "}"],
+	["punctuation", ")"],
+
+	["function", "foo"],
+	["punctuation", "("],
+	["punctuation", "{"],
+	["literal-property", "y"],
+	["operator", ":"],
+	["function", "fun"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "}"],
+	["punctuation", ")"]
 ]
 
 ----------------------------------------------------

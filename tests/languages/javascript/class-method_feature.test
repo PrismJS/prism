@@ -57,10 +57,10 @@ class Test {
 	["punctuation", "("],
 	["parameter", [
 		["punctuation", "{"],
-		" props",
+		["literal-property", "props"],
 		["operator", ":"],
 		["punctuation", "{"],
-		" a",
+		["literal-property", "a"],
 		["operator", ":"],
 		" _A",
 		["punctuation", ","],

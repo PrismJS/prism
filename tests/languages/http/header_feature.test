@@ -1,0 +1,59 @@
+Accept-Language: fr,fr-fr;q=0.8,en-us;q=0.5,en;q=0.3
+Accept-Encoding: gzip, deflate
+Server: GitHub.com
+Date: Mon, 22 Dec 2014 18:25:30 GMT
+Content-Type: text/html; charset=utf-8
+Content-Security-Policy: default-src 'none'; style-src cdn.example.com; report-uri /_/csp-reports
+Public-Key-Pins: max-age=3000;
+       pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM=";
+       pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g="
+Strict-Transport-Security: max-age=31536000
+
+----------------------------------------------------
+
+[
+	["header", [
+		["header-name", "Accept-Language"],
+		["punctuation", ":"],
+		["header-value", "fr,fr-fr;q=0.8,en-us;q=0.5,en;q=0.3"]
+	]],
+	["header", [
+		["header-name", "Accept-Encoding"],
+		["punctuation", ":"],
+		["header-value", "gzip, deflate"]
+	]],
+	["header", [
+		["header-name", "Server"],
+		["punctuation", ":"],
+		["header-value", "GitHub.com"]
+	]],
+	["header", [
+		["header-name", "Date"],
+		["punctuation", ":"],
+		["header-value", "Mon, 22 Dec 2014 18:25:30 GMT"]
+	]],
+	["header", [
+		["header-name", "Content-Type"],
+		["punctuation", ":"],
+		["header-value", "text/html; charset=utf-8"]
+	]],
+	["header", [
+		["header-name", "Content-Security-Policy"],
+		["punctuation", ":"],
+		["header-value", "default-src 'none'; style-src cdn.example.com; report-uri /_/csp-reports"]
+	]],
+	["header", [
+		["header-name", "Public-Key-Pins"],
+		["punctuation", ":"],
+		["header-value", "max-age=3000;\r\n       pin-sha256=\"d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM=\";\r\n       pin-sha256=\"E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g=\""]
+	]],
+	["header", [
+		["header-name", "Strict-Transport-Security"],
+		["punctuation", ":"],
+		["header-value", "max-age=31536000"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for header names.

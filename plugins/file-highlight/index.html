@@ -8,7 +8,8 @@
 <base href="../.." />
 <link rel="stylesheet" href="assets/style.css" />
 <link rel="stylesheet" href="themes/prism.css" data-noprefix />
-<script src="assets/prefixfree.min.js"></script>
+<link rel="stylesheet" href="plugins/line-numbers/prism-line-numbers.css" data-noprefix />
+<script src="assets/vendor/prefixfree.min.js"></script>
 
 <script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
 <script src="https://www.google-analytics.com/ga.js" async></script>
@@ -27,6 +28,14 @@
 	<p>You don’t need to specify the language, it’s automatically determined by the file extension.
 	If, however, the language cannot be determined from the file extension or the file extension is incorrect, you may specify a language as well (with the usual class name way).</p>
 
+	<p>Use the <code>data-range</code> attribute to display only a selected range of lines from the file, like so:</p>
+
+	<pre><code>&lt;pre data-src="myfile.js" data-range="1,5">&lt;/pre></code></pre>
+
+	<p>Lines start at 1, so <code>"1,5"</code> will display line 1 up to and including line 5. It's also possible to specify just a single line (e.g. <code>"5"</code> for just line 5) and open ranges (e.g. <code>"3,"</code> for all lines starting at line 3). Negative integers can be used to specify the n-th last line, e.g. -2 for the second last line.</p>
+
+	<p>When <code>data-range</code> is used in conjunction with the <a href="plugins/line-numbers">Line Numbers plugin</a>, this plugin will add the proper <code>data-start</code> according to the specified range. This behavior can be overridden by setting the <code>data-start</code> attribute manually.</p>
+
 	<p>Please note that the files are fetched with XMLHttpRequest. This means that if the file is on a different origin, fetching it will fail, unless CORS is enabled on that website.</p>
 </section>
 
@@ -42,6 +51,9 @@
 	<p>File that doesn’t exist:</p>
 	<pre data-src="foobar.js"></pre>
 
+	<p>With line numbers, and <code>data-range="12,111"</code>:</p>
+	<pre data-src="plugins/file-highlight/prism-file-highlight.js" data-range="12,111" class="line-numbers"></pre>
+
 	<p>For more examples, browse around the Prism website. Most large code samples are actually files fetched with this plugin.</p>
 </section>
 
@@ -49,7 +61,8 @@
 
 <script src="prism.js"></script>
 <!-- The File Highlight plugin is already included into Prism.js build -->
-<script src="assets/utopia.js"></script>
+<script src="plugins/line-numbers/prism-line-numbers.js"></script>
+<script src="assets/vendor/utopia.js"></script>
 <script src="components.js"></script>
 <script src="assets/code.js"></script>
 

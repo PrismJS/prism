@@ -1,0 +1,173 @@
+export * from "mod";
+export * as Foo from "mod";
+export {} from "mod";
+export {x} from "mod";
+export {d} from "mod";
+export {d,} from "mod";
+export {d as Foo, b as Bar} from "mod";
+export {d as Foo, b as Bar,} from "mod";
+export {}
+export {x}
+export {d}
+export {d,}
+export {d as Foo, b as Bar}
+export {d as Foo, b as Bar,}
+export default function() { }
+
+----------------------------------------------------
+
+[
+	["keyword", "export"],
+	["exports", [
+		["operator", "*"]
+	]],
+	["keyword", "from"],
+	["string", "\"mod\""],
+	["punctuation", ";"],
+
+	["keyword", "export"],
+	["exports", [
+		["operator", "*"],
+		["keyword", "as"],
+		["maybe-class-name", "Foo"]
+	]],
+	["keyword", "from"],
+	["string", "\"mod\""],
+	["punctuation", ";"],
+
+	["keyword", "export"],
+	["exports", [
+		["punctuation", "{"],
+		["punctuation", "}"]
+	]],
+	["keyword", "from"],
+	["string", "\"mod\""],
+	["punctuation", ";"],
+
+	["keyword", "export"],
+	["exports", [
+		["punctuation", "{"],
+		"x",
+		["punctuation", "}"]
+	]],
+	["keyword", "from"],
+	["string", "\"mod\""],
+	["punctuation", ";"],
+
+	["keyword", "export"],
+	["exports", [
+		["punctuation", "{"],
+		"d",
+		["punctuation", "}"]
+	]],
+	["keyword", "from"],
+	["string", "\"mod\""],
+	["punctuation", ";"],
+
+	["keyword", "export"],
+	["exports", [
+		["punctuation", "{"],
+		"d",
+		["punctuation", ","],
+		["punctuation", "}"]
+	]],
+	["keyword", "from"],
+	["string", "\"mod\""],
+	["punctuation", ";"],
+
+	["keyword", "export"],
+	["exports", [
+		["punctuation", "{"],
+		"d ",
+		["keyword", "as"],
+		["maybe-class-name", "Foo"],
+		["punctuation", ","],
+		" b ",
+		["keyword", "as"],
+		["maybe-class-name", "Bar"],
+		["punctuation", "}"]
+	]],
+	["keyword", "from"],
+	["string", "\"mod\""],
+	["punctuation", ";"],
+
+	["keyword", "export"],
+	["exports", [
+		["punctuation", "{"],
+		"d ",
+		["keyword", "as"],
+		["maybe-class-name", "Foo"],
+		["punctuation", ","],
+		" b ",
+		["keyword", "as"],
+		["maybe-class-name", "Bar"],
+		["punctuation", ","],
+		["punctuation", "}"]
+	]],
+	["keyword", "from"],
+	["string", "\"mod\""],
+	["punctuation", ";"],
+
+	["keyword", "export"],
+	["exports", [
+		["punctuation", "{"],
+		["punctuation", "}"]
+	]],
+
+	["keyword", "export"],
+	["exports", [
+		["punctuation", "{"],
+		"x",
+		["punctuation", "}"]
+	]],
+
+	["keyword", "export"],
+	["exports", [
+		["punctuation", "{"],
+		"d",
+		["punctuation", "}"]
+	]],
+
+	["keyword", "export"],
+	["exports", [
+		["punctuation", "{"],
+		"d",
+		["punctuation", ","],
+		["punctuation", "}"]
+	]],
+
+	["keyword", "export"],
+	["exports", [
+		["punctuation", "{"],
+		"d ",
+		["keyword", "as"],
+		["maybe-class-name", "Foo"],
+		["punctuation", ","],
+		" b ",
+		["keyword", "as"],
+		["maybe-class-name", "Bar"],
+		["punctuation", "}"]
+	]],
+
+	["keyword", "export"],
+	["exports", [
+		["punctuation", "{"],
+		"d ",
+		["keyword", "as"],
+		["maybe-class-name", "Foo"],
+		["punctuation", ","],
+		" b ",
+		["keyword", "as"],
+		["maybe-class-name", "Bar"],
+		["punctuation", ","],
+		["punctuation", "}"]
+	]],
+
+	["keyword", "export"],
+	["keyword", "default"],
+	["keyword", "function"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"]
+]

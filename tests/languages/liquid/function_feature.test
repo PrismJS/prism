@@ -1,39 +1,442 @@
-abs append at_least at_most
-capitalize ceil cols compact concat cycle
-date decrement default divided_by downcase
-escape escape_once
-first floor
-include increment
-join
-last lstrip
-map minus modulo
-newline_to_br
-paginate plus prepend
-remove remove_first replace replace_first reverse round rstrip
-size slice sort sort_natural split strip strip_html strip_newlines
-times truncate truncatewords
-uniq upcase url_decode url_encode
+{{ product.tags | first }}
+{% if product.tags.first == "sale" %}
+{{ product.tags | last }}
+{% if product.tags.last == "sale"%}
+
+{% assign vegetables = "broccoli, carrots, lettuce, tomatoes" | split: ", " %}
+{% assign plants = fruits | concat: vegetables %}
+{{ plants | join: ", " }}
+{{ my_array | reverse | join: ", " }}
+{% assign products = collection.products | sort: 'price' %}
+{% assign kitchen_products = collection.products | where: "type", "kitchen" %}
+
+{{ 'rgb(122, 181, 92)' | color_to_hex }}
+{{ '#7ab55c' | color_modify: 'alpha', 0.85 }}
+
+{% assign bold_italic = settings.body_font | font_modify: 'weight', 'bold' | font_modify: 'style', 'italic' %}
+
+{{ 'smirking_gnome.gif' | asset_url | img_tag }}
+{{ 'shop.js' | asset_url | script_tag }}
+{{ article.published_at | time_tag: '%a, %b %d, %Y' }}
+
+{{ -17 | abs }}
+{{ 4 | at_most: 3 }}
+{{ product.price | divided_by: 10 }}
+{{ product.price | times: 1.15 }}
+
+{{ product.featured_media | external_video_tag: class: "youtube_video" }}
+{{ product.featured_media | img_url: 500x500 }}
+{{ product.featured_media | media_tag: image_size: "1024x" }}
+
+{{ 'sales' | append: '.jpg' }}
+{{ 'capitalize me' | capitalize }}
+<img src="https://www.gravatar.com/avatar/{{ comment.email | remove: ' ' | strip_newlines | downcase | md5 }}" />
+{% assign my_secret_string = "ShopifyIsAwesome!" | hmac_sha256: "secret_key" %}
+{{ "hello" | slice: 1, 3 }}
+
+{{ 'shop.css' | asset_url }}
+{{ 'logo.png' | file_img_url: '1024x768' }}
+
+{{ article.published_at | date: "%a, %b %d, %y" }}
+{{ settings.flag | default: true, allow_false: true }}
+{{ product.variants.first.weight | weight_with_unit }}
 
 ----------------------------------------------------
 
 [
-	["function", "abs"], ["function", "append"], ["function", "at_least"], ["function", "at_most"],
-	["function", "capitalize"], ["function", "ceil"], ["function", "cols"], ["function", "compact"], ["function", "concat"], ["function", "cycle"],
-	["function", "date"], ["function", "decrement"], ["function", "default"], ["function", "divided_by"], ["function", "downcase"],
-	["function", "escape"], ["function", "escape_once"],
-	["function", "first"], ["function", "floor"],
-	["function", "include"], ["function", "increment"],
-	["function", "join"],
-	["function", "last"], ["function", "lstrip"],
-	["function", "map"], ["function", "minus"], ["function", "modulo"],
-	["function", "newline_to_br"],
-	["function", "paginate"], ["function", "plus"], ["function", "prepend"],
-	["function", "remove"], ["function", "remove_first"], ["function", "replace"], ["function", "replace_first"], ["function", "reverse"], ["function", "round"], ["function", "rstrip"],
-	["function", "size"], ["function", "slice"], ["function", "sort"], ["function", "sort_natural"], ["function", "split"], ["function", "strip"], ["function", "strip_html"], ["function", "strip_newlines"],
-	["function", "times"], ["function", "truncate"], ["function", "truncatewords"],
-	["function", "uniq"], ["function", "upcase"], ["function", "url_decode"], ["function", "url_encode"]
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "product"],
+		["punctuation", "."],
+		"tags ",
+		["operator", "|"],
+		["function", "first"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{%"],
+		["keyword", "if"],
+		["object", "product"],
+		["punctuation", "."],
+		"tags",
+		["punctuation", "."],
+		["function", "first"],
+		["operator", "=="],
+		["string", "\"sale\""],
+		["delimiter", "%}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "product"],
+		["punctuation", "."],
+		"tags ",
+		["operator", "|"],
+		["function", "last"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{%"],
+		["keyword", "if"],
+		["object", "product"],
+		["punctuation", "."],
+		"tags",
+		["punctuation", "."],
+		["function", "last"],
+		["operator", "=="],
+		["string", "\"sale\""],
+		["delimiter", "%}"]
+	]],
+
+	["liquid", [
+		["delimiter", "{%"],
+		["keyword", "assign"],
+		" vegetables ",
+		["operator", "="],
+		["string", "\"broccoli, carrots, lettuce, tomatoes\""],
+		["operator", "|"],
+		["function", "split"],
+		["operator", ":"],
+		["string", "\", \""],
+		["delimiter", "%}"]
+	]],
+	["liquid", [
+		["delimiter", "{%"],
+		["keyword", "assign"],
+		" plants ",
+		["operator", "="],
+		" fruits ",
+		["operator", "|"],
+		["function", "concat"],
+		["operator", ":"],
+		" vegetables ",
+		["delimiter", "%}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		" plants ",
+		["operator", "|"],
+		["function", "join"],
+		["operator", ":"],
+		["string", "\", \""],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		" my_array ",
+		["operator", "|"],
+		["function", "reverse"],
+		["operator", "|"],
+		["function", "join"],
+		["operator", ":"],
+		["string", "\", \""],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{%"],
+		["keyword", "assign"],
+		" products ",
+		["operator", "="],
+		["object", "collection"],
+		["punctuation", "."],
+		"products ",
+		["operator", "|"],
+		["function", "sort"],
+		["operator", ":"],
+		["string", "'price'"],
+		["delimiter", "%}"]
+	]],
+	["liquid", [
+		["delimiter", "{%"],
+		["keyword", "assign"],
+		" kitchen_products ",
+		["operator", "="],
+		["object", "collection"],
+		["punctuation", "."],
+		"products ",
+		["operator", "|"],
+		["function", "where"],
+		["operator", ":"],
+		["string", "\"type\""],
+		["punctuation", ","],
+		["string", "\"kitchen\""],
+		["delimiter", "%}"]
+	]],
+
+	["liquid", [
+		["delimiter", "{{"],
+		["string", "'rgb(122, 181, 92)'"],
+		["operator", "|"],
+		["function", "color_to_hex"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["string", "'#7ab55c'"],
+		["operator", "|"],
+		["function", "color_modify"],
+		["operator", ":"],
+		["string", "'alpha'"],
+		["punctuation", ","],
+		["number", "0.85"],
+		["delimiter", "}}"]
+	]],
+
+	["liquid", [
+		["delimiter", "{%"],
+		["keyword", "assign"],
+		" bold_italic ",
+		["operator", "="],
+		" settings",
+		["punctuation", "."],
+		"body_font ",
+		["operator", "|"],
+		["function", "font_modify"],
+		["operator", ":"],
+		["string", "'weight'"],
+		["punctuation", ","],
+		["string", "'bold'"],
+		["operator", "|"],
+		["function", "font_modify"],
+		["operator", ":"],
+		["string", "'style'"],
+		["punctuation", ","],
+		["string", "'italic'"],
+		["delimiter", "%}"]
+	]],
+
+	["liquid", [
+		["delimiter", "{{"],
+		["string", "'smirking_gnome.gif'"],
+		["operator", "|"],
+		["function", "asset_url"],
+		["operator", "|"],
+		["function", "img_tag"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["string", "'shop.js'"],
+		["operator", "|"],
+		["function", "asset_url"],
+		["operator", "|"],
+		["function", "script_tag"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "article"],
+		["punctuation", "."],
+		"published_at ",
+		["operator", "|"],
+		["function", "time_tag"],
+		["operator", ":"],
+		["string", "'%a, %b %d, %Y'"],
+		["delimiter", "}}"]
+	]],
+
+	["liquid", [
+		["delimiter", "{{"],
+		["operator", "-"],
+		["number", "17"],
+		["operator", "|"],
+		["function", "abs"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["number", "4"],
+		["operator", "|"],
+		["function", "at_most"],
+		["operator", ":"],
+		["number", "3"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "product"],
+		["punctuation", "."],
+		"price ",
+		["operator", "|"],
+		["function", "divided_by"],
+		["operator", ":"],
+		["number", "10"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "product"],
+		["punctuation", "."],
+		"price ",
+		["operator", "|"],
+		["function", "times"],
+		["operator", ":"],
+		["number", "1.15"],
+		["delimiter", "}}"]
+	]],
+
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "product"],
+		["punctuation", "."],
+		"featured_media ",
+		["operator", "|"],
+		["function", "external_video_tag"],
+		["operator", ":"],
+		" class",
+		["operator", ":"],
+		["string", "\"youtube_video\""],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "product"],
+		["punctuation", "."],
+		"featured_media ",
+		["operator", "|"],
+		["function", "img_url"],
+		["operator", ":"],
+		" 500x500 ",
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "product"],
+		["punctuation", "."],
+		"featured_media ",
+		["operator", "|"],
+		["function", "media_tag"],
+		["operator", ":"],
+		" image_size",
+		["operator", ":"],
+		["string", "\"1024x\""],
+		["delimiter", "}}"]
+	]],
+
+	["liquid", [
+		["delimiter", "{{"],
+		["string", "'sales'"],
+		["operator", "|"],
+		["function", "append"],
+		["operator", ":"],
+		["string", "'.jpg'"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["string", "'capitalize me'"],
+		["operator", "|"],
+		["function", "capitalize"],
+		["delimiter", "}}"]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"img"
+		]],
+		["attr-name", ["src"]],
+		["attr-value", [
+			["punctuation", "="],
+			["punctuation", "\""],
+			"https://www.gravatar.com/avatar/",
+			["liquid", [
+				["delimiter", "{{"],
+				["keyword", "comment"],
+				["punctuation", "."],
+				"email ",
+				["operator", "|"],
+				["function", "remove"],
+				["operator", ":"],
+				["string", "' '"],
+				["operator", "|"],
+				["function", "strip_newlines"],
+				["operator", "|"],
+				["function", "downcase"],
+				["operator", "|"],
+				["function", "md5"],
+				["delimiter", "}}"]
+			]],
+			["punctuation", "\""]
+		]],
+		["punctuation", "/>"]
+	]],
+	["liquid", [
+		["delimiter", "{%"],
+		["keyword", "assign"],
+		" my_secret_string ",
+		["operator", "="],
+		["string", "\"ShopifyIsAwesome!\""],
+		["operator", "|"],
+		["function", "hmac_sha256"],
+		["operator", ":"],
+		["string", "\"secret_key\""],
+		["delimiter", "%}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["string", "\"hello\""],
+		["operator", "|"],
+		["function", "slice"],
+		["operator", ":"],
+		["number", "1"],
+		["punctuation", ","],
+		["number", "3"],
+		["delimiter", "}}"]
+	]],
+
+	["liquid", [
+		["delimiter", "{{"],
+		["string", "'shop.css'"],
+		["operator", "|"],
+		["function", "asset_url"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["string", "'logo.png'"],
+		["operator", "|"],
+		["function", "file_img_url"],
+		["operator", ":"],
+		["string", "'1024x768'"],
+		["delimiter", "}}"]
+	]],
+
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "article"],
+		["punctuation", "."],
+		"published_at ",
+		["operator", "|"],
+		["object", "date"],
+		["operator", ":"],
+		["string", "\"%a, %b %d, %y\""],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		" settings",
+		["punctuation", "."],
+		"flag ",
+		["operator", "|"],
+		["function", "default"],
+		["operator", ":"],
+		["boolean", "true"],
+		["punctuation", ","],
+		" allow_false",
+		["operator", ":"],
+		["boolean", "true"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "product"],
+		["punctuation", "."],
+		"variants",
+		["punctuation", "."],
+		["function", "first"],
+		["punctuation", "."],
+		"weight ",
+		["operator", "|"],
+		["function", "weight_with_unit"],
+		["delimiter", "}}"]
+	]]
 ]
-
-----------------------------------------------------
-
-Checks for functions. Also checks for unicode characters in identifiers.

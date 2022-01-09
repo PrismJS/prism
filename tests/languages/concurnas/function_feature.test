@@ -4,8 +4,16 @@ myfunc()
 ----------------------------------------------------
 
 [
-	["keyword", "def"], ["function", "myfunc"], ["punctuation", "("], ["punctuation", ")"], ["operator", "=>"], ["number", "12"],
-	"\r\nmyfunc" , ["punctuation", "("], ["punctuation", ")"]
+	["keyword", "def"],
+	["function", "myfunc"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["operator", "=>"],
+	["number", "12"],
+
+	"\r\nmyfunc",
+	["punctuation", "("],
+	["punctuation", ")"]
 ]
 
 ----------------------------------------------------

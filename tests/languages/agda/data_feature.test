@@ -20,7 +20,6 @@ data _≐_ {ℓ} {A : Set ℓ} (x : A) : A → Prop ℓ where
 	["operator", ":"],
 	" A",
 	["punctuation", ")"],
-	["function", " "],
 	["operator", ":"],
 	" A ",
 	["operator", "→"],

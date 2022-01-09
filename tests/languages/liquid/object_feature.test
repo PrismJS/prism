@@ -1,0 +1,447 @@
+{{ address }}
+{{ all_country_option_tags }}
+{{ article }}
+{{ block }}
+{{ blog }}
+{{ cart }}
+{{ checkout }}
+{{ collection }}
+{{ color }}
+{{ country }}
+{{ country_option_tags }}
+{{ currency }}
+{{ current_page }}
+{{ current_tags }}
+{{ customer }}
+{{ customer_address }}
+{{ date }}
+{{ discount_allocation }}
+{{ discount_application }}
+{{ external_video }}
+{{ filter }}
+{{ filter_value }}
+{{ font }}
+{{ forloop }}
+{{ fulfillment }}
+{{ generic_file }}
+{{ gift_card }}
+{{ group }}
+{{ handle }}
+{{ image }}
+{{ line_item }}
+{{ link }}
+{{ linklist }}
+{{ localization }}
+{{ location }}
+{{ measurement }}
+{{ media }}
+{{ metafield }}
+{{ model }}
+{{ model_source }}
+{{ order }}
+{{ page }}
+{{ page_description }}
+{{ page_image }}
+{{ page_title }}
+{{ part }}
+{{ policy }}
+{{ product }}
+{{ product_option }}
+{{ recommendations }}
+{{ request }}
+{{ robots }}
+{{ routes }}
+{{ rule }}
+{{ script }}
+{{ search }}
+{{ selling_plan }}
+{{ selling_plan_allocation }}
+{{ selling_plan_group }}
+{{ shipping_method }}
+{{ shop }}
+{{ shop_locale }}
+{{ sitemap }}
+{{ store_availability }}
+{{ tax_line }}
+{{ template }}
+{{ theme }}
+{{ transaction }}
+{{ unit_price_measurement }}
+{{ user_agent }}
+{{ variant }}
+{{ video }}
+{{ video_source }}
+
+----------------------------------------------------
+
+[
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "address"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "all_country_option_tags"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "article"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "block"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "blog"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "cart"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "checkout"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "collection"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "color"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "country"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "country_option_tags"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "currency"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "current_page"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "current_tags"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "customer"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "customer_address"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "date"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "discount_allocation"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "discount_application"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "external_video"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "filter"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "filter_value"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "font"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "forloop"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "fulfillment"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "generic_file"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "gift_card"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "group"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "handle"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "image"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "line_item"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "link"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "linklist"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "localization"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "location"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "measurement"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "media"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "metafield"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "model"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "model_source"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "order"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "page"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "page_description"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "page_image"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "page_title"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "part"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "policy"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "product"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "product_option"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "recommendations"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "request"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "robots"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "routes"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "rule"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "script"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "search"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "selling_plan"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "selling_plan_allocation"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "selling_plan_group"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "shipping_method"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "shop"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "shop_locale"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "sitemap"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "store_availability"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "tax_line"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "template"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "theme"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "transaction"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "unit_price_measurement"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "user_agent"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "variant"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "video"],
+		["delimiter", "}}"]
+	]],
+	["liquid", [
+		["delimiter", "{{"],
+		["object", "video_source"],
+		["delimiter", "}}"]
+	]]
+]
+
+----------------------------------------------------
+
+Liquid objects sourced from https://shopify.dev/api/liquid/objects

@@ -5,6 +5,7 @@
 /foo/{x}/{y}/{z}/bar
 
 /foo/$(x)/$(y)/bar/$(request.auth.uid)
+/cities/{document=**}
 
 ----------------------------------------------------
 
@@ -15,6 +16,7 @@
 		["punctuation", "/"],
 		"foo"
 	]],
+
 	["path", [
 		["punctuation", "/"],
 		"foo",
@@ -61,6 +63,7 @@
 		["punctuation", "/"],
 		"bar"
 	]],
+
 	["path", [
 		["punctuation", "/"],
 		"foo",
@@ -90,6 +93,18 @@
 			["punctuation", "."],
 			"uid",
 			["punctuation", ")"]
+		]]
+	]],
+	["path", [
+		["punctuation", "/"],
+		"cities",
+		["punctuation", "/"],
+		["variable", [
+			["punctuation", "{"],
+			"document",
+			["operator", "="],
+			["keyword", "**"],
+			["punctuation", "}"]
 		]]
 	]]
 ]

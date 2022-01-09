@@ -1,0 +1,35 @@
+FALSE
+False
+false
+
+TRUE
+True
+true
+
+NO
+No
+no
+
+YES
+Yes
+yes
+
+----------------------------------------------------
+
+[
+	["boolean", "FALSE"],
+	["boolean", "False"],
+	["boolean", "false"],
+
+	["boolean", "TRUE"],
+	["boolean", "True"],
+	["boolean", "true"],
+
+	["boolean", "NO"],
+	["boolean", "No"],
+	["boolean", "no"],
+
+	["boolean", "YES"],
+	["boolean", "Yes"],
+	["boolean", "yes"]
+]

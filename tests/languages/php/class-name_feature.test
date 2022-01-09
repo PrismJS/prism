@@ -1,0 +1,235 @@
+public Foo $a;
+
+Foo::bar();
+
+\Foo::bar();
+
+\Package\Foo::bar();
+
+function f(Foo $variable): Foo {}
+
+function f(\Foo $variable): \Foo {}
+
+function f(\Package\Foo $variable): \Package\Foo {}
+
+function f($variable): ?Foo {}
+
+function f(Foo|Bar $variable): Foo|Bar {}
+
+function f(Foo|false $variable): Foo|Bar {}
+function f(Foo|null $variable): Foo|Bar {}
+
+function f(\Package\Foo|\Package\Bar $variable): \Package\Foo|\Package\Bar {}
+
+class Foo extends Bar implements Baz {}
+
+class Foo extends \Package\Bar implements App\Baz {}
+
+----------------------------------------------------
+
+[
+	["keyword", "public"],
+	["class-name", "Foo"],
+	["variable", "$a"],
+	["punctuation", ";"],
+
+	["class-name", "Foo"],
+	["operator", "::"],
+	["function", ["bar"]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["class-name", [
+		["punctuation", "\\"],
+		"Foo"
+	]],
+	["operator", "::"],
+	["function", ["bar"]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["class-name", [
+		["punctuation", "\\"],
+		"Package",
+		["punctuation", "\\"],
+		"Foo"
+	]],
+	["operator", "::"],
+	["function", ["bar"]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "function"],
+	["function-definition", "f"],
+	["punctuation", "("],
+	["class-name", "Foo"],
+	["variable", "$variable"],
+	["punctuation", ")"],
+	["punctuation", ":"],
+	["class-name", "Foo"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "function"],
+	["function-definition", "f"],
+	["punctuation", "("],
+	["class-name", [
+		["punctuation", "\\"],
+		"Foo"
+	]],
+	["variable", "$variable"],
+	["punctuation", ")"],
+	["punctuation", ":"],
+	["class-name", [
+		["punctuation", "\\"],
+		"Foo"
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "function"],
+	["function-definition", "f"],
+	["punctuation", "("],
+	["class-name", [
+		["punctuation", "\\"],
+		"Package",
+		["punctuation", "\\"],
+		"Foo"
+	]],
+	["variable", "$variable"],
+	["punctuation", ")"],
+	["punctuation", ":"],
+	["class-name", [
+		["punctuation", "\\"],
+		"Package",
+		["punctuation", "\\"],
+		"Foo"
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "function"],
+	["function-definition", "f"],
+	["punctuation", "("],
+	["variable", "$variable"],
+	["punctuation", ")"],
+	["punctuation", ":"],
+	["operator", "?"],
+	["class-name", "Foo"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "function"],
+	["function-definition", "f"],
+	["punctuation", "("],
+	["class-name", "Foo"],
+	["operator", "|"],
+	["class-name", "Bar"],
+	["variable", "$variable"],
+	["punctuation", ")"],
+	["punctuation", ":"],
+	["class-name", "Foo"],
+	["operator", "|"],
+	["class-name", "Bar"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "function"],
+	["function-definition", "f"],
+	["punctuation", "("],
+	["class-name", "Foo"],
+	["operator", "|"],
+	["keyword", "false"],
+	["variable", "$variable"],
+	["punctuation", ")"],
+	["punctuation", ":"],
+	["class-name", "Foo"],
+	["operator", "|"],
+	["class-name", "Bar"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "function"],
+	["function-definition", "f"],
+	["punctuation", "("],
+	["class-name", "Foo"],
+	["operator", "|"],
+	["keyword", "null"],
+	["variable", "$variable"],
+	["punctuation", ")"],
+	["punctuation", ":"],
+	["class-name", "Foo"],
+	["operator", "|"],
+	["class-name", "Bar"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "function"],
+	["function-definition", "f"],
+	["punctuation", "("],
+	["class-name", [
+		["punctuation", "\\"],
+		"Package",
+		["punctuation", "\\"],
+		"Foo"
+	]],
+	["operator", "|"],
+	["class-name", [
+		["punctuation", "\\"],
+		"Package",
+		["punctuation", "\\"],
+		"Bar"
+	]],
+	["variable", "$variable"],
+	["punctuation", ")"],
+	["punctuation", ":"],
+	["class-name", [
+		["punctuation", "\\"],
+		"Package",
+		["punctuation", "\\"],
+		"Foo"
+	]],
+	["operator", "|"],
+	["class-name", [
+		["punctuation", "\\"],
+		"Package",
+		["punctuation", "\\"],
+		"Bar"
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "class"],
+	["class-name-definition", "Foo"],
+	["keyword", "extends"],
+	["class-name", "Bar"],
+	["keyword", "implements"],
+	["class-name", "Baz"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "class"],
+	["class-name-definition", "Foo"],
+	["keyword", "extends"],
+	["class-name", [
+		["punctuation", "\\"],
+		"Package",
+		["punctuation", "\\"],
+		"Bar"
+	]],
+	["keyword", "implements"],
+	["class-name", [
+		"App",
+		["punctuation", "\\"],
+		"Baz"
+	]],
+	["punctuation", "{"],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for class names.

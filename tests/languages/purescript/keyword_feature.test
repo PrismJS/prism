@@ -1,0 +1,53 @@
+ado
+case
+class
+data
+derive
+do
+else
+forall
+if
+in
+infixl
+infixr
+instance
+let
+module
+newtype
+of
+primitive
+then
+type
+where
+∀
+
+----------------------------------------------------
+
+[
+	["keyword", "ado"],
+	["keyword", "case"],
+	["keyword", "class"],
+	["keyword", "data"],
+	["keyword", "derive"],
+	["keyword", "do"],
+	["keyword", "else"],
+	["keyword", "forall"],
+	["keyword", "if"],
+	["keyword", "in"],
+	["keyword", "infixl"],
+	["keyword", "infixr"],
+	["keyword", "instance"],
+	["keyword", "let"],
+	["keyword", "module"],
+	["keyword", "newtype"],
+	["keyword", "of"],
+	["keyword", "primitive"],
+	["keyword", "then"],
+	["keyword", "type"],
+	["keyword", "where"],
+	["keyword", "∀"]
+]
+
+----------------------------------------------------
+
+Checks for all keywords.

@@ -1,0 +1,134 @@
+%dw 2.0
+input payalod application/json
+ns ns0 http://localhost.com
+var a = 123
+type T = String
+fun test(a: Number) = a + 123
+output application/json
+---
+{} match {
+    case a is String -> x as String
+}
+update {
+    case a at .name ->
+}
+if(true or false and not true) do {
+
+}
+else
+payload match {
+    case a is String ->  x as String
+}
+
+null
+unless
+using
+
+----------------------------------------------------
+
+[
+	"%dw ",
+	["number", "2.0"],
+
+	["keyword", "input"],
+	" payalod ",
+	["mime-type", "application/json"],
+
+	["keyword", "ns"],
+	" ns0 ",
+	["url", "http://localhost.com"],
+
+	["keyword", "var"],
+	" a ",
+	["operator", "="],
+	["number", "123"],
+
+	["keyword", "type"],
+	" T ",
+	["operator", "="],
+	" String\r\n",
+
+	["keyword", "fun"],
+	["function", "test"],
+	["punctuation", "("],
+	["property", "a"],
+	["punctuation", ":"],
+	" Number",
+	["punctuation", ")"],
+	["operator", "="],
+	" a ",
+	["operator", "+"],
+	["number", "123"],
+
+	["keyword", "output"],
+	["mime-type", "application/json"],
+
+	["operator", "---"],
+
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["keyword", "match"],
+	["punctuation", "{"],
+
+	["keyword", "case"],
+	" a ",
+	["keyword", "is"],
+	" String ",
+	["operator", "->"],
+	" x ",
+	["keyword", "as"],
+	" String\r\n",
+
+	["punctuation", "}"],
+
+	["keyword", "update"],
+	["punctuation", "{"],
+
+	["keyword", "case"],
+	" a ",
+	["keyword", "at"],
+	["punctuation", "."],
+	"name ",
+	["operator", "->"],
+
+	["punctuation", "}"],
+
+	["keyword", "if"],
+	["punctuation", "("],
+	["boolean", "true"],
+	["keyword", "or"],
+	["boolean", "false"],
+	["keyword", "and"],
+	["keyword", "not"],
+	["boolean", "true"],
+	["punctuation", ")"],
+	["keyword", "do"],
+	["punctuation", "{"],
+
+	["punctuation", "}"],
+
+	["keyword", "else"],
+
+	"\r\npayload ",
+	["keyword", "match"],
+	["punctuation", "{"],
+
+	["keyword", "case"],
+	" a ",
+	["keyword", "is"],
+	" String ",
+	["operator", "->"],
+	"  x ",
+	["keyword", "as"],
+	" String\r\n",
+
+	["punctuation", "}"],
+
+	["keyword", "null"],
+	["keyword", "unless"],
+	["keyword", "using"]
+]
+
+----------------------------------------------------
+
+Check for keywords

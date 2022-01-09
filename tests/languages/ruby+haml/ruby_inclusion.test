@@ -1,0 +1,56 @@
+:ruby
+	def circumference
+		Math::PI * radius ** 2
+	end
+
+~
+	:ruby
+		def circumference
+			Math::PI * radius ** 2
+		end
+
+----------------------------------------------------
+
+[
+	["filter-ruby", [
+		["filter-name", ":ruby"],
+		["text", [
+			["keyword", "def"],
+			["method-definition", [
+				["function", "circumference"]
+			]],
+
+			"\r\n\t\tMath",
+			["double-colon", "::"],
+			["constant", "PI"],
+			["operator", "*"],
+			" radius ",
+			["operator", "**"],
+			["number", "2"],
+
+			["keyword", "end"]
+		]]
+	]],
+
+	["punctuation", "~"],
+
+	["filter-ruby", [
+		["filter-name", ":ruby"],
+		["text", [
+			["keyword", "def"],
+			["method-definition", [
+				["function", "circumference"]
+			]],
+
+			"\r\n\t\t\tMath",
+			["double-colon", "::"],
+			["constant", "PI"],
+			["operator", "*"],
+			" radius ",
+			["operator", "**"],
+			["number", "2"],
+
+			["keyword", "end"]
+		]]
+	]]
+]

@@ -1,0 +1,280 @@
+@namespace Basic
+{
+  @search @pattern Url(Domain, Path, Query, Anchor) =
+    Method + Domain:Url.Domain + ?Port + ?Path:Url.Path +
+    ?Query:Url.Query + ?Anchor:Url.Anchor
+  @where {
+    Method = {'http', 'https' , 'ftp', 'mailto', 'file', 'data',
+      'irc'} + '://';
+    Domain = Word + [1+ '.' + Word + [0+ {Word, '_', '-'}]];
+    Port = ':' + Num;
+    Path = ?'/' + [0+ {Word, '/', '_', '+', '-', '%', '.'}];
+
+    Query = '?' + ?(Param + [0+ '&' + Param])
+    @where
+    {
+      Param = Identifier + '=' + Identifier
+      @where
+      {
+        Identifier = {Alpha, AlphaNum, '_'} + [0+ {Word, '_'}];
+      };
+    };
+
+    Anchor(Value) = '#' + Value:{Word};
+  };
+}
+
+----------------------------------------------------
+
+[
+	["keyword", "@namespace"],
+	["namespace", "Basic"],
+
+	["operator", "{"],
+
+	["keyword", "@search"],
+	["keyword", "@pattern"],
+	["pattern", [
+		["pattern-name", "Url"],
+		["fields", [
+			["punctuation", "("],
+			["field-name", "Domain"],
+			["punctuation", ","],
+			["field-name", "Path"],
+			["punctuation", ","],
+			["field-name", "Query"],
+			["punctuation", ","],
+			["field-name", "Anchor"],
+			["punctuation", ")"]
+		]]
+	]],
+	["operator", "="],
+
+	["name", "Method"],
+	["operator", "+"],
+	["field-capture", [
+		["field-name", "Domain"],
+		["colon", ":"]
+	]],
+	["name", "Url.Domain"],
+	["operator", "+"],
+	["operator", "?"],
+	["name", "Port"],
+	["operator", "+"],
+	["operator", "?"],
+	["field-capture", [
+		["field-name", "Path"],
+		["colon", ":"]
+	]],
+	["name", "Url.Path"],
+	["operator", "+"],
+
+	["operator", "?"],
+	["field-capture", [
+		["field-name", "Query"],
+		["colon", ":"]
+	]],
+	["name", "Url.Query"],
+	["operator", "+"],
+	["operator", "?"],
+	["field-capture", [
+		["field-name", "Anchor"],
+		["colon", ":"]
+	]],
+	["name", "Url.Anchor"],
+
+	["keyword", "@where"],
+	["operator", "{"],
+
+	["pattern", [
+		["pattern-name", "Method"]
+	]],
+	["operator", "="],
+	["operator", "{"],
+	["string", ["'http'"]],
+	["punctuation", ","],
+	["string", ["'https'"]],
+	["punctuation", ","],
+	["string", ["'ftp'"]],
+	["punctuation", ","],
+	["string", ["'mailto'"]],
+	["punctuation", ","],
+	["string", ["'file'"]],
+	["punctuation", ","],
+	["string", ["'data'"]],
+	["punctuation", ","],
+
+	["string", ["'irc'"]],
+	["operator", "}"],
+	["operator", "+"],
+	["string", ["'://'"]],
+	["punctuation", ";"],
+
+	["pattern", [
+		["pattern-name", "Domain"]
+	]],
+	["operator", "="],
+	["standard-pattern", [
+		["standard-pattern-name", "Word"]
+	]],
+	["operator", "+"],
+	["operator", "["],
+	["quantifier", "1+"],
+	["string", ["'.'"]],
+	["operator", "+"],
+	["standard-pattern", [
+		["standard-pattern-name", "Word"]
+	]],
+	["operator", "+"],
+	["operator", "["],
+	["quantifier", "0+"],
+	["operator", "{"],
+	["standard-pattern", [
+		["standard-pattern-name", "Word"]
+	]],
+	["punctuation", ","],
+	["string", ["'_'"]],
+	["punctuation", ","],
+	["string", ["'-'"]],
+	["operator", "}"],
+	["operator", "]"],
+	["operator", "]"],
+	["punctuation", ";"],
+
+	["pattern", [
+		["pattern-name", "Port"]
+	]],
+	["operator", "="],
+	["string", ["':'"]],
+	["operator", "+"],
+	["standard-pattern", [
+		["standard-pattern-name", "Num"]
+	]],
+	["punctuation", ";"],
+
+	["pattern", [
+		["pattern-name", "Path"]
+	]],
+	["operator", "="],
+	["operator", "?"],
+	["string", ["'/'"]],
+	["operator", "+"],
+	["operator", "["],
+	["quantifier", "0+"],
+	["operator", "{"],
+	["standard-pattern", [
+		["standard-pattern-name", "Word"]
+	]],
+	["punctuation", ","],
+	["string", ["'/'"]],
+	["punctuation", ","],
+	["string", ["'_'"]],
+	["punctuation", ","],
+	["string", ["'+'"]],
+	["punctuation", ","],
+	["string", ["'-'"]],
+	["punctuation", ","],
+	["string", ["'%'"]],
+	["punctuation", ","],
+	["string", ["'.'"]],
+	["operator", "}"],
+	["operator", "]"],
+	["punctuation", ";"],
+
+	["pattern", [
+		["pattern-name", "Query"]
+	]],
+	["operator", "="],
+	["string", ["'?'"]],
+	["operator", "+"],
+	["operator", "?"],
+	["punctuation", "("],
+	["name", "Param"],
+	["operator", "+"],
+	["operator", "["],
+	["quantifier", "0+"],
+	["string", ["'&'"]],
+	["operator", "+"],
+	["name", "Param"],
+	["operator", "]"],
+	["punctuation", ")"],
+
+	["keyword", "@where"],
+
+	["operator", "{"],
+
+	["pattern", [
+		["pattern-name", "Param"]
+	]],
+	["operator", "="],
+	["name", "Identifier"],
+	["operator", "+"],
+	["string", ["'='"]],
+	["operator", "+"],
+	["name", "Identifier"],
+
+	["keyword", "@where"],
+
+	["operator", "{"],
+
+	["pattern", [
+		["pattern-name", "Identifier"]
+	]],
+	["operator", "="],
+	["operator", "{"],
+	["standard-pattern", [
+		["standard-pattern-name", "Alpha"]
+	]],
+	["punctuation", ","],
+	["standard-pattern", [
+		["standard-pattern-name", "AlphaNum"]
+	]],
+	["punctuation", ","],
+	["string", ["'_'"]],
+	["operator", "}"],
+	["operator", "+"],
+	["operator", "["],
+	["quantifier", "0+"],
+	["operator", "{"],
+	["standard-pattern", [
+		["standard-pattern-name", "Word"]
+	]],
+	["punctuation", ","],
+	["string", ["'_'"]],
+	["operator", "}"],
+	["operator", "]"],
+	["punctuation", ";"],
+
+	["operator", "}"],
+	["punctuation", ";"],
+
+	["operator", "}"],
+	["punctuation", ";"],
+
+	["pattern", [
+		["pattern-name", "Anchor"],
+		["fields", [
+			["punctuation", "("],
+			["field-name", "Value"],
+			["punctuation", ")"]
+		]]
+	]],
+	["operator", "="],
+	["string", ["'#'"]],
+	["operator", "+"],
+	["field-capture", [
+		["field-name", "Value"],
+		["colon", ":"]
+	]],
+	["operator", "{"],
+	["standard-pattern", [
+		["standard-pattern-name", "Word"]
+	]],
+	["operator", "}"],
+	["punctuation", ";"],
+
+	["operator", "}"],
+	["punctuation", ";"],
+
+	["operator", "}"]
+]

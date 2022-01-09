@@ -1,17 +1,233 @@
-LDA
-BNE
-inx
+adc
+and
+asl
+bcc
+bcs
+beq
+bit
+bmi
+bne
+bpl
+brk
+bvc
+bvs
 clc
+cld
+cli
+clv
+cmp
+cpx
+cpy
+dec
+dex
+dey
+eor
+inc
+inx
+iny
+jmp
+jsr
+lda
+ldx
+ldy
+lsr
+nop
+ora
+pha
+php
+pla
+plp
+rol
+ror
+rti
+rts
+sbc
+sec
+sed
+sei
+sta
+stx
+sty
+tax
+tay
+tsx
+txa
+txs
+tya
+ADC
+AND
+ASL
+BCC
+BCS
+BEQ
+BIT
+BMI
+BNE
+BPL
+BRK
+BVC
+BVS
+CLC
+CLD
+CLI
+CLV
+CMP
+CPX
+CPY
+DEC
+DEX
+DEY
+EOR
+INC
+INX
+INY
+JMP
+JSR
+LDA
+LDX
+LDY
+LSR
+NOP
+ORA
+PHA
+PHP
+PLA
+PLP
+ROL
+ROR
+RTI
+RTS
+SBC
+SEC
+SED
+SEI
+STA
+STX
+STY
+TAX
+TAY
+TSX
+TXA
+TXS
+TYA
 
--------------------------------------
+----------------------------------------------------
 
 [
-  ["opcode", "LDA"],
-  ["opcode", "BNE"],
-  ["opcode", "inx"],
-  ["opcode", "clc"]
+	["op-code", "adc"],
+	["op-code", "and"],
+	["op-code", "asl"],
+	["op-code", "bcc"],
+	["op-code", "bcs"],
+	["op-code", "beq"],
+	["op-code", "bit"],
+	["op-code", "bmi"],
+	["op-code", "bne"],
+	["op-code", "bpl"],
+	["op-code", "brk"],
+	["op-code", "bvc"],
+	["op-code", "bvs"],
+	["op-code", "clc"],
+	["op-code", "cld"],
+	["op-code", "cli"],
+	["op-code", "clv"],
+	["op-code", "cmp"],
+	["op-code", "cpx"],
+	["op-code", "cpy"],
+	["op-code", "dec"],
+	["op-code", "dex"],
+	["op-code", "dey"],
+	["op-code", "eor"],
+	["op-code", "inc"],
+	["op-code", "inx"],
+	["op-code", "iny"],
+	["op-code", "jmp"],
+	["op-code", "jsr"],
+	["op-code", "lda"],
+	["op-code", "ldx"],
+	["op-code", "ldy"],
+	["op-code", "lsr"],
+	["op-code", "nop"],
+	["op-code", "ora"],
+	["op-code", "pha"],
+	["op-code", "php"],
+	["op-code", "pla"],
+	["op-code", "plp"],
+	["op-code", "rol"],
+	["op-code", "ror"],
+	["op-code", "rti"],
+	["op-code", "rts"],
+	["op-code", "sbc"],
+	["op-code", "sec"],
+	["op-code", "sed"],
+	["op-code", "sei"],
+	["op-code", "sta"],
+	["op-code", "stx"],
+	["op-code", "sty"],
+	["op-code", "tax"],
+	["op-code", "tay"],
+	["op-code", "tsx"],
+	["op-code", "txa"],
+	["op-code", "txs"],
+	["op-code", "tya"],
+	["op-code", "ADC"],
+	["op-code", "AND"],
+	["op-code", "ASL"],
+	["op-code", "BCC"],
+	["op-code", "BCS"],
+	["op-code", "BEQ"],
+	["op-code", "BIT"],
+	["op-code", "BMI"],
+	["op-code", "BNE"],
+	["op-code", "BPL"],
+	["op-code", "BRK"],
+	["op-code", "BVC"],
+	["op-code", "BVS"],
+	["op-code", "CLC"],
+	["op-code", "CLD"],
+	["op-code", "CLI"],
+	["op-code", "CLV"],
+	["op-code", "CMP"],
+	["op-code", "CPX"],
+	["op-code", "CPY"],
+	["op-code", "DEC"],
+	["op-code", "DEX"],
+	["op-code", "DEY"],
+	["op-code", "EOR"],
+	["op-code", "INC"],
+	["op-code", "INX"],
+	["op-code", "INY"],
+	["op-code", "JMP"],
+	["op-code", "JSR"],
+	["op-code", "LDA"],
+	["op-code", "LDX"],
+	["op-code", "LDY"],
+	["op-code", "LSR"],
+	["op-code", "NOP"],
+	["op-code", "ORA"],
+	["op-code", "PHA"],
+	["op-code", "PHP"],
+	["op-code", "PLA"],
+	["op-code", "PLP"],
+	["op-code", "ROL"],
+	["op-code", "ROR"],
+	["op-code", "RTI"],
+	["op-code", "RTS"],
+	["op-code", "SBC"],
+	["op-code", "SEC"],
+	["op-code", "SED"],
+	["op-code", "SEI"],
+	["op-code", "STA"],
+	["op-code", "STX"],
+	["op-code", "STY"],
+	["op-code", "TAX"],
+	["op-code", "TAY"],
+	["op-code", "TSX"],
+	["op-code", "TXA"],
+	["op-code", "TXS"],
+	["op-code", "TYA"]
 ]
 
--------------------------------------
+----------------------------------------------------
 
 Check for opcodes

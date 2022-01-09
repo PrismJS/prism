@@ -10,17 +10,21 @@
 [
 	["filter-css", [
 		["filter-name", ":css"],
-		["selector", ".test"],
-		["punctuation", "{"],
-		["punctuation", "}"]
+		["text", [
+			["selector", ".test"],
+			["punctuation", "{"],
+			["punctuation", "}"]
+		]]
 	]],
 	["punctuation", "~"],
 	["filter-css", [
-        ["filter-name", ":css"],
-        ["selector", ".test"],
-        ["punctuation", "{"],
-        ["punctuation", "}"]
-    ]]
+		["filter-name", ":css"],
+		["text", [
+			["selector", ".test"],
+			["punctuation", "{"],
+			["punctuation", "}"]
+		]]
+	]]
 ]
 
 ----------------------------------------------------

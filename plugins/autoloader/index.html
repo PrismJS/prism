@@ -22,7 +22,7 @@
 		content: ' [Generating... ' attr(data-progress) '%]';
 	}
 </style>
-<script src="assets/prefixfree.min.js"></script>
+<script src="assets/vendor/prefixfree.min.js"></script>
 
 <script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
 <script src="https://www.google-analytics.com/ga.js" async></script>
@@ -36,11 +36,13 @@
 
 	<p>
 		The plugin will automatically handle missing grammars and load them for you.
-		To do this, you need to provide it with a directory of all the grammars you want.
+		To do this, you need to provide a URL to a directory of all the grammars you want.
+		This can be the path to a local directory with all grammars or a CDN URL.
 	</p>
 	<p>
 		You can download all the available grammars by clicking on the following link: <button class="download-grammars" type="button">download all grammars</button>.<br />
 		Alternatively, you can also clone the GitHub repo and take the <code>components</code> folder from there.
+		Read our <a href="index.html#basic-usage-cdn">usage section</a> to use a CDN.
 	</p>
 	<p>
 		You can then download Prism core and any plugins from the <a href="download.html">Download</a> page, without checking any languages (or just check the languages you want to load by default, e.g. if you're using a language a lot, then you probably want to save the extra HTTP request).
@@ -57,6 +59,10 @@
 	</p>
 
 	<pre><code>Prism.plugins.autoloader.languages_path = 'path/to/grammars/';</code></pre>
+
+	<p>
+		<em>Note:</em> Autoloader is pretty good at guessing this path. You most likely won't have to change this path.
+	</p>
 
 	<h2>Using development versions</h2>
 
@@ -141,7 +147,7 @@ a:hover {
 
 <script src="components/prism-core.js"></script>
 <script src="plugins/autoloader/prism-autoloader.js"></script>
-<script src="assets/utopia.js"></script>
+<script src="assets/vendor/utopia.js"></script>
 <script src="components.js"></script>
 <script src="assets/code.js"></script>
 

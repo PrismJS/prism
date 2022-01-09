@@ -1,0 +1,29 @@
+bitmap
+bitmaps
+caps on only
+caps always off
+shift frees caps
+copyright
+hotkey
+language
+layout
+message
+name
+version
+
+----------------------------------------------------
+
+[
+	["header-statement", "bitmap"],
+	["header-statement", "bitmaps"],
+	["header-statement", "caps on only"],
+	["header-statement", "caps always off"],
+	["header-statement", "shift frees caps"],
+	["header-statement", "copyright"],
+	["header-statement", "hotkey"],
+	["header-statement", "language"],
+	["header-statement", "layout"],
+	["header-statement", "message"],
+	["header-statement", "name"],
+	["header-statement", "version"]
+]

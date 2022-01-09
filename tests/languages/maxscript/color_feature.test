@@ -1,0 +1,23 @@
+black
+blue
+brown
+gray
+green
+orange
+red
+white
+yellow
+
+----------------------------------------------------
+
+[
+	["color", "black"],
+	["color", "blue"],
+	["color", "brown"],
+	["color", "gray"],
+	["color", "green"],
+	["color", "orange"],
+	["color", "red"],
+	["color", "white"],
+	["color", "yellow"]
+]

@@ -2,6 +2,19 @@
 :foo
 :BAR?
 :Baz_42!
+:あ
+:"name"
+:"\u{c4 d6 dc}"
+:question?
+:exclamation!
+:$;
+
+:foo.object_id
+
+# in hashes
+
+{ :one => "eins", :two => "zwei", :three => "drei" }
+{ one: "eins", two: "zwei", three: "drei" }
 
 ----------------------------------------------------
 
@@ -9,7 +22,57 @@
 	["symbol", ":_"],
 	["symbol", ":foo"],
 	["symbol", ":BAR?"],
-	["symbol", ":Baz_42!"]
+	["symbol", ":Baz_42!"],
+	["symbol", ":あ"],
+	["symbol", ":\"name\""],
+	["symbol", ":\"\\u{c4 d6 dc}\""],
+	["symbol", ":question?"],
+	["symbol", ":exclamation!"],
+	["symbol", ":$;"],
+
+	["symbol", ":foo"], ["punctuation", "."], "object_id\r\n\r\n",
+
+	["comment", "# in hashes"],
+
+	["punctuation", "{"],
+	["symbol", ":one"],
+	["operator", "=>"],
+	["string-literal", [
+		["string", "\"eins\""]
+	]],
+	["punctuation", ","],
+	["symbol", ":two"],
+	["operator", "=>"],
+	["string-literal", [
+		["string", "\"zwei\""]
+	]],
+	["punctuation", ","],
+	["symbol", ":three"],
+	["operator", "=>"],
+	["string-literal", [
+		["string", "\"drei\""]
+	]],
+	["punctuation", "}"],
+
+	["punctuation", "{"],
+	["symbol", "one"],
+	["operator", ":"],
+	["string-literal", [
+		["string", "\"eins\""]
+	]],
+	["punctuation", ","],
+	["symbol", "two"],
+	["operator", ":"],
+	["string-literal", [
+		["string", "\"zwei\""]
+	]],
+	["punctuation", ","],
+	["symbol", "three"],
+	["operator", ":"],
+	["string-literal", [
+		["string", "\"drei\""]
+	]],
+	["punctuation", "}"]
 ]
 
 ----------------------------------------------------

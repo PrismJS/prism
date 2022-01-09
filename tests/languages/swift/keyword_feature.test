@@ -1,10 +1,19 @@
+Any
+Protocol
+Self
+Type
+actor
 as
+assignment
+associatedtype
 associativity
-break
+async
+await
+break;
 case
 catch
 class;
-continue
+continue;
 convenience
 default
 defer
@@ -12,36 +21,41 @@ deinit
 didSet
 do
 dynamic
-dynamicType
 else
 enum
 extension
 fallthrough
+fileprivate
 final
 for
-func
+func;
 get
 guard
+higherThan
 if
 import
 in
+indirect
 infix
 init
 inout
 internal
 is
+isolated
 lazy
 left
 let
+lowerThan
 mutating
-new;
 none
+nonisolated
 nonmutating
+open
 operator
 optional
 override
 postfix
-precedence
+precedencegroup
 prefix
 private
 protocol
@@ -53,8 +67,8 @@ return
 right
 safe
 self
-Self
 set
+some
 static
 struct
 subscript
@@ -63,7 +77,6 @@ switch
 throw
 throws
 try
-Type
 typealias
 unowned
 unsafe
@@ -72,21 +85,26 @@ weak
 where
 while
 willSet
-__COLUMN__
-__FILE__
-__FUNCTION__
-__LINE__
 
 ----------------------------------------------------
 
 [
+	["keyword", "Any"],
+	["keyword", "Protocol"],
+	["keyword", "Self"],
+	["keyword", "Type"],
+	["keyword", "actor"],
 	["keyword", "as"],
+	["keyword", "assignment"],
+	["keyword", "associatedtype"],
 	["keyword", "associativity"],
-	["keyword", "break"],
+	["keyword", "async"],
+	["keyword", "await"],
+	["keyword", "break"], ["punctuation", ";"],
 	["keyword", "case"],
 	["keyword", "catch"],
 	["keyword", "class"], ["punctuation", ";"],
-	["keyword", "continue"],
+	["keyword", "continue"], ["punctuation", ";"],
 	["keyword", "convenience"],
 	["keyword", "default"],
 	["keyword", "defer"],
@@ -94,36 +112,41 @@ __LINE__
 	["keyword", "didSet"],
 	["keyword", "do"],
 	["keyword", "dynamic"],
-	["keyword", "dynamicType"],
 	["keyword", "else"],
 	["keyword", "enum"],
 	["keyword", "extension"],
 	["keyword", "fallthrough"],
+	["keyword", "fileprivate"],
 	["keyword", "final"],
 	["keyword", "for"],
-	["keyword", "func"],
+	["keyword", "func"], ["punctuation", ";"],
 	["keyword", "get"],
 	["keyword", "guard"],
+	["keyword", "higherThan"],
 	["keyword", "if"],
 	["keyword", "import"],
 	["keyword", "in"],
+	["keyword", "indirect"],
 	["keyword", "infix"],
 	["keyword", "init"],
 	["keyword", "inout"],
 	["keyword", "internal"],
 	["keyword", "is"],
+	["keyword", "isolated"],
 	["keyword", "lazy"],
 	["keyword", "left"],
 	["keyword", "let"],
+	["keyword", "lowerThan"],
 	["keyword", "mutating"],
-	["keyword", "new"], ["punctuation", ";"],
 	["keyword", "none"],
+	["keyword", "nonisolated"],
 	["keyword", "nonmutating"],
+	["keyword", "open"],
 	["keyword", "operator"],
 	["keyword", "optional"],
 	["keyword", "override"],
 	["keyword", "postfix"],
-	["keyword", "precedence"],
+	["keyword", "precedencegroup"],
 	["keyword", "prefix"],
 	["keyword", "private"],
 	["keyword", "protocol"],
@@ -135,8 +158,8 @@ __LINE__
 	["keyword", "right"],
 	["keyword", "safe"],
 	["keyword", "self"],
-	["keyword", "Self"],
 	["keyword", "set"],
+	["keyword", "some"],
 	["keyword", "static"],
 	["keyword", "struct"],
 	["keyword", "subscript"],
@@ -145,7 +168,6 @@ __LINE__
 	["keyword", "throw"],
 	["keyword", "throws"],
 	["keyword", "try"],
-	["keyword", "Type"],
 	["keyword", "typealias"],
 	["keyword", "unowned"],
 	["keyword", "unsafe"],
@@ -153,11 +175,7 @@ __LINE__
 	["keyword", "weak"],
 	["keyword", "where"],
 	["keyword", "while"],
-	["keyword", "willSet"],
-	["keyword", "__COLUMN__"],
-	["keyword", "__FILE__"],
-	["keyword", "__FUNCTION__"],
-	["keyword", "__LINE__"]
+	["keyword", "willSet"]
 ]
 
 ----------------------------------------------------

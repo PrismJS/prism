@@ -1,27 +1,71 @@
-catch finally;
-async function;
+as;
+await;
+break;
+case;
+class;
+const;
+continue;
+debugger;
+default;
+delete;
+do;
+else;
+enum;
+export;
+extends;
+for;
+if;
+implements;
+import;
+in;
+instanceof;
+interface;
+let;
+new;
+null;
+of;
+package;
+private;
+protected;
+public;
+return;
+static;
+super;
+switch;
+this;
+throw;
+try;
+typeof;
+undefined;
+var;
+void;
+while;
+with;
+yield;
 
-as; await; break; case;
-class; const; continue; debugger;
-default; delete; do; else; enum;
-export; extends; for;
-from; if; implements;
-import; in; instanceof; interface; let;
-new; null; of; package; private;
-protected; public; return; static;
-super; switch; this; throw; try;
-typeof; undefined; var; void; while;
-with; yield;
+// contextual keywords
+
+try {} catch {} finally {}
+try {} catch (e) {} finally {}
+async function (){}
+async a => {}
+async (a,b,c) => {}
+import {} from "foo"
+import {} from 'foo'
+class { get foo(){} set baz(){} get [value](){} }
+
+// import assertion
+import json from "./foo.json" assert { type: "json" };
+
+// variables, not keywords
+
+const { async, from, to } = bar;
+promise.catch(foo).finally(bar);
+assert.equal(foo, bar);
 
 ----------------------------------------------------
 
 [
-	["keyword", "catch"],
-	["keyword", "finally"], ["punctuation", ";"],
-
-	["keyword", "async"],
-	["keyword", "function"], ["punctuation", ";"],
-
 	["keyword", "as"], ["punctuation", ";"],
 	["keyword", "await"], ["punctuation", ";"],
 	["keyword", "break"], ["punctuation", ";"],
@@ -38,7 +82,6 @@ with; yield;
 	["keyword", "export"], ["punctuation", ";"],
 	["keyword", "extends"], ["punctuation", ";"],
 	["keyword", "for"], ["punctuation", ";"],
-	["keyword", "from"], ["punctuation", ";"],
 	["keyword", "if"], ["punctuation", ";"],
 	["keyword", "implements"], ["punctuation", ";"],
 	["keyword", "import"], ["punctuation", ";"],
@@ -66,7 +109,146 @@ with; yield;
 	["keyword", "void"], ["punctuation", ";"],
 	["keyword", "while"], ["punctuation", ";"],
 	["keyword", "with"], ["punctuation", ";"],
-	["keyword", "yield"], ["punctuation", ";"]
+	["keyword", "yield"], ["punctuation", ";"],
+
+	["comment", "// contextual keywords"],
+
+	["keyword", "try"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["keyword", "catch"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["keyword", "finally"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "try"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["keyword", "catch"],
+	["punctuation", "("],
+	"e",
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["keyword", "finally"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "async"],
+	["keyword", "function"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "async"],
+	["parameter", ["a"]],
+	["operator", "=>"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "async"],
+	["punctuation", "("],
+	["parameter", [
+		"a",
+		["punctuation", ","],
+		"b",
+		["punctuation", ","],
+		"c"
+	]],
+	["punctuation", ")"],
+	["operator", "=>"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "import"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["keyword", "from"],
+	["string", "\"foo\""],
+
+	["keyword", "import"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["keyword", "from"],
+	["string", "'foo'"],
+
+	["keyword", "class"],
+	["punctuation", "{"],
+	["keyword", "get"],
+	["function", "foo"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["keyword", "set"],
+	["function", "baz"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["keyword", "get"],
+	["punctuation", "["],
+	"value",
+	["punctuation", "]"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", "}"],
+
+	["comment", "// import assertion"],
+
+	["keyword", "import"],
+	" json ",
+	["keyword", "from"],
+	["string", "\"./foo.json\""],
+	["keyword", "assert"],
+	["punctuation", "{"],
+	["literal-property", "type"],
+	["operator", ":"],
+	["string", "\"json\""],
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["comment", "// variables, not keywords"],
+
+	["keyword", "const"],
+	["punctuation", "{"],
+	" async",
+	["punctuation", ","],
+	" from",
+	["punctuation", ","],
+	" to ",
+	["punctuation", "}"],
+	["operator", "="],
+	" bar",
+	["punctuation", ";"],
+
+	"\r\npromise",
+	["punctuation", "."],
+	["function", "catch"],
+	["punctuation", "("],
+	"foo",
+	["punctuation", ")"],
+	["punctuation", "."],
+	["function", "finally"],
+	["punctuation", "("],
+	"bar",
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	"\r\nassert",
+	["punctuation", "."],
+	["function", "equal"],
+	["punctuation", "("],
+	"foo",
+	["punctuation", ","],
+	" bar",
+	["punctuation", ")"],
+	["punctuation", ";"]
 ]
 
 ----------------------------------------------------

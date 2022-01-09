@@ -1,0 +1,46 @@
+http_requests_total{job="apiserver", handler="/api/comments"}[5m]
+
+http_requests_total offset 5m
+
+http_requests_total{job=~".*server"}
+
+----------------------------------------------------
+
+[
+	"http_requests_total",
+	["context-labels", [
+		["punctuation", "{"],
+		["label-key", "job"],
+		["punctuation", "="],
+		["label-value", "\"apiserver\""],
+		["punctuation", ","],
+		["label-key", "handler"],
+		["punctuation", "="],
+		["label-value", "\"/api/comments\""],
+		["punctuation", "}"]
+	]],
+	["context-range", [
+		["punctuation", "["],
+		["range-duration", "5m"],
+		["punctuation", "]"]
+	]],
+
+	"\r\n\r\nhttp_requests_total ",
+	["keyword", "offset"],
+	["context-range", [
+		["range-duration", "5m"]
+	]],
+
+	"\r\n\r\nhttp_requests_total",
+	["context-labels", [
+		["punctuation", "{"],
+		["label-key", "job"],
+		["punctuation", "=~"],
+		["label-value", "\".*server\""],
+		["punctuation", "}"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks simple time series queries.

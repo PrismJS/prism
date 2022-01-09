@@ -1,0 +1,25 @@
+void foo(int a) {}
+foo(0);
+
+----------------------------------------------------
+
+[
+	["keyword", "void"],
+	["function", "foo"],
+	["punctuation", "("],
+	["class-name", "int"],
+	["variable", "a"],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["function", "foo"],
+	["punctuation", "("],
+	["number", "0"],
+	["punctuation", ")"],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for functions.

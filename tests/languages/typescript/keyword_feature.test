@@ -1,131 +1,283 @@
-abstract
-as
-asserts
-async
-await
-break
-case
-catch
+as;
+await;
+break;
+case;
 class;
-const
-constructor
-continue
-debugger
-declare
-default
-delete
-do
-else
-enum
-export
+const;
+continue;
+debugger;
+default;
+delete;
+do;
+else;
+enum;
+export;
 extends;
-finally
-for
-from
-function
-get
-if
+for;
+if;
 implements;
-import
-in
+import;
+in;
 instanceof;
 interface;
-is
-keyof
-let
-module
-namespace
+let;
 new;
-null
-of
-package
-private
-protected
-public
-readonly
-return
-require
-set
-static
-super
-switch
-this
-throw
-try
-type;
-typeof
-undefined
-var
-void
-while
-with
-yield
+null;
+of;
+package;
+private;
+protected;
+public;
+return;
+static;
+super;
+switch;
+this;
+throw;
+try;
+typeof;
+undefined;
+var;
+void;
+while;
+with;
+yield;
+
+// contextual keywords
+
+try {} catch {} finally {}
+try {} catch (e) {} finally {}
+async function (){}
+async a => {}
+async (a,b,c) => {}
+import {} from "foo"
+import {} from 'foo'
+class { get foo(){} set baz(){} get [value](){} }
+
+// variables, not keywords
+
+const { async, from, to } = bar;
+promise.catch(foo).finally(bar);
+
+// TypeScript keywords
+
+abstract;
+as;
+declare;
+implements;
+is;
+keyof;
+readonly;
+require;
+
+// contextual keywords
+
+asserts foo;
+infer foo;
+interface foo;
+module foo;
+namespace foo;
+type foo;
+
+import type { Component } from "react";
+import type *, {}
 
 ----------------------------------------------------
 
 [
-	["keyword", "abstract"],
-	["keyword", "as"],
-	["keyword", "asserts"],
-	["keyword", "async"],
-	["keyword", "await"],
-	["keyword", "break"],
-	["keyword", "case"],
-	["keyword", "catch"],
+	["keyword", "as"], ["punctuation", ";"],
+	["keyword", "await"], ["punctuation", ";"],
+	["keyword", "break"], ["punctuation", ";"],
+	["keyword", "case"], ["punctuation", ";"],
 	["keyword", "class"], ["punctuation", ";"],
-	["keyword", "const"],
-	["keyword", "constructor"],
-	["keyword", "continue"],
-	["keyword", "debugger"],
-	["keyword", "declare"],
-	["keyword", "default"],
-	["keyword", "delete"],
-	["keyword", "do"],
-	["keyword", "else"],
-	["keyword", "enum"],
-	["keyword", "export"],
+	["keyword", "const"], ["punctuation", ";"],
+	["keyword", "continue"], ["punctuation", ";"],
+	["keyword", "debugger"], ["punctuation", ";"],
+	["keyword", "default"], ["punctuation", ";"],
+	["keyword", "delete"], ["punctuation", ";"],
+	["keyword", "do"], ["punctuation", ";"],
+	["keyword", "else"], ["punctuation", ";"],
+	["keyword", "enum"], ["punctuation", ";"],
+	["keyword", "export"], ["punctuation", ";"],
 	["keyword", "extends"], ["punctuation", ";"],
-	["keyword", "finally"],
-	["keyword", "for"],
-	["keyword", "from"],
-	["keyword", "function"],
-	["keyword", "get"],
-	["keyword", "if"],
+	["keyword", "for"], ["punctuation", ";"],
+	["keyword", "if"], ["punctuation", ";"],
 	["keyword", "implements"], ["punctuation", ";"],
-	["keyword", "import"],
-	["keyword", "in"],
+	["keyword", "import"], ["punctuation", ";"],
+	["keyword", "in"], ["punctuation", ";"],
 	["keyword", "instanceof"], ["punctuation", ";"],
 	["keyword", "interface"], ["punctuation", ";"],
-	["keyword", "is"],
-	["keyword", "keyof"],
-	["keyword", "let"],
-	["keyword", "module"],
-	["keyword", "namespace"],
+	["keyword", "let"], ["punctuation", ";"],
 	["keyword", "new"], ["punctuation", ";"],
-	["keyword", "null"],
-	["keyword", "of"],
-	["keyword", "package"],
-	["keyword", "private"],
-	["keyword", "protected"],
-	["keyword", "public"],
-	["keyword", "readonly"],
-	["keyword", "return"],
-	["keyword", "require"],
-	["keyword", "set"],
-	["keyword", "static"],
-	["keyword", "super"],
-	["keyword", "switch"],
-	["keyword", "this"],
-	["keyword", "throw"],
+	["keyword", "null"], ["punctuation", ";"],
+	["keyword", "of"], ["punctuation", ";"],
+	["keyword", "package"], ["punctuation", ";"],
+	["keyword", "private"], ["punctuation", ";"],
+	["keyword", "protected"], ["punctuation", ";"],
+	["keyword", "public"], ["punctuation", ";"],
+	["keyword", "return"], ["punctuation", ";"],
+	["keyword", "static"], ["punctuation", ";"],
+	["keyword", "super"], ["punctuation", ";"],
+	["keyword", "switch"], ["punctuation", ";"],
+	["keyword", "this"], ["punctuation", ";"],
+	["keyword", "throw"], ["punctuation", ";"],
+	["keyword", "try"], ["punctuation", ";"],
+	["keyword", "typeof"], ["punctuation", ";"],
+	["keyword", "undefined"], ["punctuation", ";"],
+	["keyword", "var"], ["punctuation", ";"],
+	["keyword", "void"], ["punctuation", ";"],
+	["keyword", "while"], ["punctuation", ";"],
+	["keyword", "with"], ["punctuation", ";"],
+	["keyword", "yield"], ["punctuation", ";"],
+
+	["comment", "// contextual keywords"],
+
 	["keyword", "try"],
-	["keyword", "type"], ["punctuation", ";"],
-	["keyword", "typeof"],
-	["keyword", "undefined"],
-	["keyword", "var"],
-	["keyword", "void"],
-	["keyword", "while"],
-	["keyword", "with"],
-	["keyword", "yield"]
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["keyword", "catch"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["keyword", "finally"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "try"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["keyword", "catch"],
+	["punctuation", "("],
+	"e",
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["keyword", "finally"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "async"],
+	["keyword", "function"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "async"],
+	" a ",
+	["operator", "=>"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "async"],
+	["punctuation", "("],
+	"a",
+	["punctuation", ","],
+	"b",
+	["punctuation", ","],
+	"c",
+	["punctuation", ")"],
+	["operator", "=>"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "import"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["keyword", "from"],
+	["string", "\"foo\""],
+
+	["keyword", "import"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["keyword", "from"],
+	["string", "'foo'"],
+
+	["keyword", "class"],
+	["punctuation", "{"],
+	["keyword", "get"],
+	["function", "foo"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["keyword", "set"],
+	["function", "baz"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["keyword", "get"],
+	["punctuation", "["],
+	"value",
+	["punctuation", "]"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", "}"],
+
+	["comment", "// variables, not keywords"],
+
+	["keyword", "const"],
+	["punctuation", "{"],
+	" async",
+	["punctuation", ","],
+	" from",
+	["punctuation", ","],
+	" to ",
+	["punctuation", "}"],
+	["operator", "="],
+	" bar",
+	["punctuation", ";"],
+
+	"\r\npromise",
+	["punctuation", "."],
+	["function", "catch"],
+	["punctuation", "("],
+	"foo",
+	["punctuation", ")"],
+	["punctuation", "."],
+	["function", "finally"],
+	["punctuation", "("],
+	"bar",
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["comment", "// TypeScript keywords"],
+
+	["keyword", "abstract"], ["punctuation", ";"],
+	["keyword", "as"], ["punctuation", ";"],
+	["keyword", "declare"], ["punctuation", ";"],
+	["keyword", "implements"], ["punctuation", ";"],
+	["keyword", "is"], ["punctuation", ";"],
+	["keyword", "keyof"], ["punctuation", ";"],
+	["keyword", "readonly"], ["punctuation", ";"],
+	["keyword", "require"], ["punctuation", ";"],
+
+	["comment", "// contextual keywords"],
+
+	["keyword", "asserts"], " foo", ["punctuation", ";"],
+	["keyword", "infer"], " foo", ["punctuation", ";"],
+	["keyword", "interface"], ["class-name", ["foo"]], ["punctuation", ";"],
+	["keyword", "module"], " foo", ["punctuation", ";"],
+	["keyword", "namespace"], " foo", ["punctuation", ";"],
+	["keyword", "type"], ["class-name", ["foo"]], ["punctuation", ";"],
+
+	["keyword", "import"],
+	["keyword", "type"],
+	["punctuation", "{"],
+	" Component ",
+	["punctuation", "}"],
+	["keyword", "from"],
+	["string", "\"react\""],
+	["punctuation", ";"],
+
+	["keyword", "import"],
+	["keyword", "type"],
+	["operator", "*"],
+	["punctuation", ","],
+	["punctuation", "{"],
+	["punctuation", "}"]
 ]
 
 ----------------------------------------------------

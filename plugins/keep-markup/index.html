@@ -22,12 +22,12 @@
 		}
 	</style>
 
-	<script src="assets/prefixfree.min.js"></script>
+	<script src="assets/vendor/prefixfree.min.js"></script>
 
 	<script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
 	<script src="https://www.google-analytics.com/ga.js" async></script>
 </head>
-<body>
+<body class="language-none">
 
 <header data-plugin-header="keep-markup"></header>
 
@@ -38,6 +38,12 @@
 	<p>You have nothing to do. The plugin is active by default. With this plugin loaded, all markup inside code will be kept.</p>
 
 	<p>However, you can deactivate the plugin for certain code element by adding the <code>no-keep-markup</code> class to it. You can also deactivate the plugin for the whole page by adding the <code>no-keep-markup</code> class to the body of the page and then selectively activate it again by adding the <code>keep-markup</code> class to code elements.</p>
+
+	<h2>Double highlighting</h2>
+
+	<p>Some plugins (e.g. <a href="plugins/autoloader">Autoloader</a>) need to re-highlight code blocks. This is a problem for Keep Markup because it will keep the markup of the first highlighting pass resulting in a lot of unnecessary DOM nodes and causing problems for themes and other plugins.</p>
+
+	<p>This problem can be fixed by adding a <code>drop-tokens</code> class to a code block or any of its ancestors. If <code>drop-tokens</code> is present, Keep Markup will ignore all <code class="language-css">span.token</code> elements created by Prism.</p>
 
 	<h1>Examples</h1>
 
@@ -70,7 +76,7 @@
 
 <script src="prism.js"></script>
 <script src="plugins/keep-markup/prism-keep-markup.js"></script>
-<script src="assets/utopia.js"></script>
+<script src="assets/vendor/utopia.js"></script>
 <script src="components.js"></script>
 <script src="assets/code.js"></script>
 

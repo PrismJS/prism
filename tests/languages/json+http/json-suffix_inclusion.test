@@ -5,8 +5,11 @@ Content-type: application/x.foo+bar+json
 ----------------------------------------------------
 
 [
-	["header-name", "Content-type:"],
-	" application/x.foo+bar+json",
+	["header", [
+		["header-name", "Content-type"],
+		["punctuation", ":"],
+		["header-value", "application/x.foo+bar+json"]
+	]],
 	["application-json", [
 		["punctuation", "{"],
 		["property", "\"foo\""],

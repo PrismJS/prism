@@ -5,10 +5,30 @@
  * @throws \foo\MyException if something bad happens
  */
 
+/**
+ * @param callback $parameter
+ * @param resource $parameter
+ * @param boolean $parameter
+ * @param integer $parameter
+ * @param double $parameter
+ * @param object $parameter
+ * @param string $parameter
+ * @param array $parameter
+ * @param false $parameter
+ * @param float $parameter
+ * @param mixed $parameter
+ * @param bool $parameter
+ * @param null $parameter
+ * @param self $parameter
+ * @param true $parameter
+ * @param void $parameter
+ * @param int $parameter
+ */
+
 ----------------------------------------------------
 
 [
-	"/**\n * ",
+	"/**\r\n * ",
 	["keyword", "@param"],
 	["class-name", [
 		["keyword", "string"],
@@ -16,12 +36,13 @@
 		["keyword", "null"]
 	]],
 	["parameter", "$parameter"],
-	" a parameter\n * ",
+	" a parameter\r\n * ",
 	["keyword", "@return"],
 	["class-name", [
 		["keyword", "self"]
 	]],
-	"\n * ",
+
+	"\r\n * ",
 	["keyword", "@var"],
 	["class-name", [
 		"MyClass",
@@ -29,7 +50,8 @@
 		["keyword", "int"],
 		["punctuation", "]"]
 	]],
-	"\n * ",
+
+	"\r\n * ",
 	["keyword", "@throws"],
 	["class-name", [
 		["punctuation", "\\"],
@@ -37,7 +59,126 @@
 		["punctuation", "\\"],
 		"MyException"
 	]],
-	" if something bad happens\n */"
+	" if something bad happens\r\n */\r\n\r\n/**\r\n * ",
+	["keyword", "@param"],
+	["class-name", [
+		["keyword", "callback"]
+	]],
+	["parameter", "$parameter"],
+
+	"\r\n * ",
+	["keyword", "@param"],
+	["class-name", [
+		["keyword", "resource"]
+	]],
+	["parameter", "$parameter"],
+
+	"\r\n * ",
+	["keyword", "@param"],
+	["class-name", [
+		["keyword", "boolean"]
+	]],
+	["parameter", "$parameter"],
+
+	"\r\n * ",
+	["keyword", "@param"],
+	["class-name", [
+		["keyword", "integer"]
+	]],
+	["parameter", "$parameter"],
+
+	"\r\n * ",
+	["keyword", "@param"],
+	["class-name", [
+		["keyword", "double"]
+	]],
+	["parameter", "$parameter"],
+
+	"\r\n * ",
+	["keyword", "@param"],
+	["class-name", [
+		["keyword", "object"]
+	]],
+	["parameter", "$parameter"],
+
+	"\r\n * ",
+	["keyword", "@param"],
+	["class-name", [
+		["keyword", "string"]
+	]],
+	["parameter", "$parameter"],
+
+	"\r\n * ",
+	["keyword", "@param"],
+	["class-name", [
+		["keyword", "array"]
+	]],
+	["parameter", "$parameter"],
+
+	"\r\n * ",
+	["keyword", "@param"],
+	["class-name", [
+		["keyword", "false"]
+	]],
+	["parameter", "$parameter"],
+
+	"\r\n * ",
+	["keyword", "@param"],
+	["class-name", [
+		["keyword", "float"]
+	]],
+	["parameter", "$parameter"],
+
+	"\r\n * ",
+	["keyword", "@param"],
+	["class-name", [
+		["keyword", "mixed"]
+	]],
+	["parameter", "$parameter"],
+
+	"\r\n * ",
+	["keyword", "@param"],
+	["class-name", [
+		["keyword", "bool"]
+	]],
+	["parameter", "$parameter"],
+
+	"\r\n * ",
+	["keyword", "@param"],
+	["class-name", [
+		["keyword", "null"]
+	]],
+	["parameter", "$parameter"],
+
+	"\r\n * ",
+	["keyword", "@param"],
+	["class-name", [
+		["keyword", "self"]
+	]],
+	["parameter", "$parameter"],
+
+	"\r\n * ",
+	["keyword", "@param"],
+	["class-name", [
+		["keyword", "true"]
+	]],
+	["parameter", "$parameter"],
+
+	"\r\n * ",
+	["keyword", "@param"],
+	["class-name", [
+		["keyword", "void"]
+	]],
+	["parameter", "$parameter"],
+
+	"\r\n * ",
+	["keyword", "@param"],
+	["class-name", [
+		["keyword", "int"]
+	]],
+	["parameter", "$parameter"],
+
+	"\r\n */"
 ]
 
 ----------------------------------------------------

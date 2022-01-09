@@ -14,45 +14,32 @@ foo/${bar}
 ----------------------------------------------------
 
 [
-	["string", [
-		"\"\""
-	]],
-	["string", [
-		"\"foo\""
-	]],
-	["string", [
-		"\"\\\"\""
-	]],
+	["string", ["\"\""]],
+	["string", ["\"foo\""]],
+	["string", ["\"\\\"\""]],
 
 	["string", [
 		"\"foo/",
 		["interpolation", [
 			["punctuation", "${"],
-			["expression", [
-				"bar"
-			]],
+			["expression", ["bar"]],
 			["punctuation", "}"]
 		]],
 		"\""
 	]],
 
-	["string", [
-		"''foo''"
-	]],
-	["string", [
-		"''bar'''baz''"
-	]],
+	["string", ["''foo''"]],
+	["string", ["''bar'''baz''"]],
 
 	["string", [
-		"''\nfoo/",
+		"''\r\nfoo/",
 		["interpolation", [
 			["punctuation", "${"],
-			["expression", [
-				"bar"
-			]],
+			["expression", ["bar"]],
 			["punctuation", "}"]
 		]],
-		"\n''"
+
+		"\r\n''"
 	]]
 ]
 

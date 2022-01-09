@@ -1,0 +1,122 @@
+class Foo extends foo.bar.Foo {
+
+	java.util.List<foo.bar.Foo.Bar> bar(foo.bar.Baz bat) throws java.lang.Exception {
+		var foo = new java.lang.UnsupportedOperationException("Not implemented");
+		Exception e = foo;
+		throw e;
+	}
+
+}
+
+ID id;
+
+String.valueOf(5);
+
+----------------------------------------------------
+
+[
+	["keyword", "class"],
+	["class-name", ["Foo"]],
+	["keyword", "extends"],
+	["class-name", [
+		["namespace", [
+			"foo",
+			["punctuation", "."],
+			"bar",
+			["punctuation", "."]
+		]],
+		"Foo"
+	]],
+	["punctuation", "{"],
+
+	["class-name", [
+		["namespace", [
+			"java",
+			["punctuation", "."],
+			"util",
+			["punctuation", "."]
+		]],
+		"List"
+	]],
+	["generics", [
+		["punctuation", "<"],
+		["class-name", [
+			["namespace", [
+				"foo",
+				["punctuation", "."],
+				"bar",
+				["punctuation", "."]
+			]],
+			"Foo",
+			["punctuation", "."],
+			"Bar"
+		]],
+		["punctuation", ">"]
+	]],
+	["function", "bar"],
+	["punctuation", "("],
+	["class-name", [
+		["namespace", [
+			"foo",
+			["punctuation", "."],
+			"bar",
+			["punctuation", "."]
+		]],
+		"Baz"
+	]],
+	" bat",
+	["punctuation", ")"],
+	["keyword", "throws"],
+	["class-name", [
+		["namespace", [
+			"java",
+			["punctuation", "."],
+			"lang",
+			["punctuation", "."]
+		]],
+		"Exception"
+	]],
+	["punctuation", "{"],
+
+	["keyword", "var"],
+	" foo ",
+	["operator", "="],
+	["keyword", "new"],
+	["class-name", [
+		["namespace", [
+			"java",
+			["punctuation", "."],
+			"lang",
+			["punctuation", "."]
+		]],
+		"UnsupportedOperationException"
+	]],
+	["punctuation", "("],
+	["string", "\"Not implemented\""],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["class-name", ["Exception"]],
+	" e ",
+	["operator", "="],
+	" foo",
+	["punctuation", ";"],
+
+	["keyword", "throw"],
+	" e",
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+
+	["punctuation", "}"],
+
+	["class-name", ["ID"]], " id", ["punctuation", ";"],
+
+	["class-name", ["String"]],
+	["punctuation", "."],
+	["function", "valueOf"],
+	["punctuation", "("],
+	["number", "5"],
+	["punctuation", ")"],
+	["punctuation", ";"]
+]

@@ -29,11 +29,11 @@ merge xs@(x ∷ xs₁) ys@(y ∷ ys₁) =
 	["operator", "→"],
 	" List A ",
 	["operator", "→"],
-	" List A\nmerge xs [] ",
+	" List A\r\nmerge xs [] ",
 	["operator", "="],
-	" xs\nmerge [] ys ",
+	" xs\r\nmerge [] ys ",
 	["operator", "="],
-	" ys\nmerge xs",
+	" ys\r\nmerge xs",
 	["punctuation", "@"],
 	["punctuation", "("],
 	"x ∷ xs₁",
@@ -44,7 +44,8 @@ merge xs@(x ∷ xs₁) ys@(y ∷ ys₁) =
 	"y ∷ ys₁",
 	["punctuation", ")"],
 	["operator", "="],
-	"\n\tif x < y then x ∷ merge xs₁ ys\n\t\t\t\t\t else y ∷ merge xs ys₁"
+
+	"\r\n\tif x < y then x ∷ merge xs₁ ys\r\n\t\t\t\t\t else y ∷ merge xs ys₁"
 ]
 
 ----------------------------------------------------

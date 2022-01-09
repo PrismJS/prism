@@ -1,0 +1,30 @@
+namespace SomeNamespace {
+  /* namespace_members... */
+};
+
+partial namespace SomeNamespace {
+  /* namespace_members... */
+};
+
+----------------------------------------------------
+
+[
+	["keyword", "namespace"],
+	["namespace", "SomeNamespace"],
+	["punctuation", "{"],
+
+	["comment", "/* namespace_members... */"],
+
+	["punctuation", "}"],
+	["punctuation", ";"],
+
+	["keyword", "partial"],
+	["keyword", "namespace"],
+	["namespace", "SomeNamespace"],
+	["punctuation", "{"],
+
+	["comment", "/* namespace_members... */"],
+
+	["punctuation", "}"],
+	["punctuation", ";"]
+]

@@ -1,5 +1,6 @@
 $ echo 'Foo
 > Bar'
+
 $ echo "Foo
 > Bar"
 
@@ -15,6 +16,14 @@ STRING_END
 
 $ echo \'a # '
 
+$ cat << "EOF" > /etc/ipsec.secrets
+: RSA vpn-server-a.key
+# : RSA vpn-server-b.key
+EOF
+
+$ LC_ALL=C tr -cd 'a-zA-Z0-9_-;:!?.@\\*/#%$' < /dev/random | head -c 8
+y_#!$U48
+
 ----------------------------------------------------
 
 [
@@ -22,9 +31,7 @@ $ echo \'a # '
 		["shell-symbol", "$"],
 		["bash", [
 			["builtin", "echo"],
-			["string", [
-				"'Foo\r\n> Bar'"
-			]]
+			["string", "'Foo\r\n> Bar'"]
 		]]
 	]],
 
@@ -32,9 +39,7 @@ $ echo \'a # '
 		["shell-symbol", "$"],
 		["bash", [
 			["builtin", "echo"],
-			["string", [
-				"\"Foo\r\n> Bar\""
-			]]
+			["string", ["\"Foo\r\n> Bar\""]]
 		]]
 	]],
 
@@ -42,12 +47,8 @@ $ echo \'a # '
 		["shell-symbol", "$"],
 		["bash", [
 			["builtin", "echo"],
-			["operator", [
-				"<<-"
-			]],
-			["string", [
-				"STRING_END\r\nfoo\r\nbar\r\nSTRING_END"
-			]]
+			["operator", ["<<-"]],
+			["string", ["STRING_END\r\nfoo\r\nbar\r\nSTRING_END"]]
 		]]
 	]],
 
@@ -55,10 +56,8 @@ $ echo \'a # '
 		["shell-symbol", "$"],
 		["bash", [
 			["builtin", "echo"],
-			["operator", [
-				"<<-"
-			]],
-			["string", "\"STRING_END\"\r\nfoo\r\nbar\r\nSTRING_END"]
+			["operator", ["<<-"]],
+			["string", ["\"STRING_END\"\r\nfoo\r\nbar\r\nSTRING_END"]]
 		]]
 	]],
 
@@ -68,10 +67,47 @@ $ echo \'a # '
 			["builtin", "echo"],
 			["punctuation", "\\"],
 			"'a ",
-			["comment", "# "]
+			["comment", "# '"]
 		]]
 	]],
-	["output", "'"]
+
+	["command", [
+		["shell-symbol", "$"],
+		["bash", [
+			["function", "cat"],
+			["operator", ["<<"]],
+			["string", [
+				"\"EOF\"",
+				["bash", [
+					["operator", [">"]],
+					" /etc/ipsec.secrets"
+				]],
+
+				"\r\n: RSA vpn-server-a.key\r\n# : RSA vpn-server-b.key\r\nEOF"
+			]]
+		]]
+	]],
+
+	["command", [
+		["shell-symbol", "$"],
+		["bash", [
+			["assign-left", [
+				["environment", "LC_ALL"]
+			]],
+			["operator", ["="]],
+			"C ",
+			["function", "tr"],
+			" -cd ",
+			["string", "'a-zA-Z0-9_-;:!?.@\\\\*/#%$'"],
+			["operator", ["<"]],
+			" /dev/random ",
+			["operator", ["|"]],
+			["function", "head"],
+			" -c ",
+			["number", "8"]
+		]]
+	]],
+	["output", "y_#!$U48"]
 ]
 
 ----------------------------------------------------

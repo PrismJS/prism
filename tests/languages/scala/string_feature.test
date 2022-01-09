@@ -1,8 +1,3 @@
-'a'
-'\u0041'
-'\n'
-'\t'
-
 ""
 "fo\"obar"
 
@@ -11,24 +6,85 @@ bar"""
 """fo"o
 // comment
 bar"""
+"""{"name":"James"}"""
 "foo /* comment */ bar"
-'foo // bar'
+
+s"Hello, $name"
+s"1 + 1 = ${1 + 1}"
+s"New offers starting at $$14.99"
+f"$name%s is $height%2.2f meters tall"
+json"{ name: $name, id: $id }"
 
 ----------------------------------------------------
 
 [
-	["string", "'a'"],
-	["string", "'\\u0041'"],
-	["string", "'\\n'"],
-	["string", "'\\t'"],
 	["string", "\"\""],
 	["string", "\"fo\\\"obar\""],
+
 	["triple-quoted-string", "\"\"\"fo\"o\r\nbar\"\"\""],
 	["triple-quoted-string", "\"\"\"fo\"o\r\n// comment\r\nbar\"\"\""],
+	["triple-quoted-string", "\"\"\"{\"name\":\"James\"}\"\"\""],
 	["string", "\"foo /* comment */ bar\""],
-	["string", "'foo // bar'"]
+
+	["string-interpolation", [
+		["id", "s"],
+		["string", "\"Hello, "],
+		["interpolation", [
+			["punctuation", "$"],
+			["expression", ["name"]]
+		]],
+		["string", "\""]
+	]],
+	["string-interpolation", [
+		["id", "s"],
+		["string", "\"1 + 1 = "],
+		["interpolation", [
+			["punctuation", "${"],
+			["expression", [
+				["number", "1"],
+				["operator", "+"],
+				["number", "1"]
+			]],
+			["punctuation", "}"]
+		]],
+		["string", "\""]
+	]],
+	["string-interpolation", [
+		["id", "s"],
+		["string", "\"New offers starting at "],
+		["escape", "$$"],
+		["string", "14.99\""]
+	]],
+	["string-interpolation", [
+		["id", "f"],
+		["string", "\""],
+		["interpolation", [
+			["punctuation", "$"],
+			["expression", ["name"]]
+		]],
+		["string", "%s is "],
+		["interpolation", [
+			["punctuation", "$"],
+			["expression", ["height"]]
+		]],
+		["string", "%2.2f meters tall\""]
+	]],
+	["string-interpolation", [
+		["id", "json"],
+		["string", "\"{ name: "],
+		["interpolation", [
+			["punctuation", "$"],
+			["expression", ["name"]]
+		]],
+		["string", ", id: "],
+		["interpolation", [
+			["punctuation", "$"],
+			["expression", ["id"]]
+		]],
+		["string", " }\""]
+	]]
 ]
 
 ----------------------------------------------------
 
-Checks for characters and strings.
+Checks for strings.

@@ -4,6 +4,12 @@
 {$foo.bar.baz}
 {$foo->bar->baz}
 {$foo[row]}
+{$foo[$x+$x]}
+{$foo.a.$b.c}
+{$foo.a.{$b+4}.c}
+{$foo.a.{$b.c}}
+{$foo={counter}+3}
+{$foo->bar($baz,2,$bar)}
 
 ----------------------------------------------------
 
@@ -47,6 +53,80 @@
 		["punctuation", "["],
 		["variable", "row"],
 		["punctuation", "]"],
+		["delimiter", "}"]
+	]],
+	["smarty", [
+		["delimiter", "{"],
+		["variable", "$foo"],
+		["punctuation", "["],
+		["variable", "$x"],
+		["operator", "+"],
+		["variable", "$x"],
+		["punctuation", "]"],
+		["delimiter", "}"]
+	]],
+	["smarty", [
+		["delimiter", "{"],
+		["variable", "$foo"],
+		["punctuation", "."],
+		["variable", "a"],
+		["punctuation", "."],
+		["variable", "$b"],
+		["punctuation", "."],
+		["variable", "c"],
+		["delimiter", "}"]
+	]],
+	["smarty", [
+		["delimiter", "{"],
+		["variable", "$foo"],
+		["punctuation", "."],
+		["variable", "a"],
+		["punctuation", "."],
+		["punctuation", "{"],
+		["variable", "$b"],
+		["operator", "+"],
+		["number", "4"],
+		["punctuation", "}"],
+		["punctuation", "."],
+		["variable", "c"],
+		["delimiter", "}"]
+	]],
+	["smarty", [
+		["delimiter", "{"],
+		["variable", "$foo"],
+		["punctuation", "."],
+		["variable", "a"],
+		["punctuation", "."],
+		["punctuation", "{"],
+		["variable", "$b"],
+		["punctuation", "."],
+		["variable", "c"],
+		["punctuation", "}"],
+		["delimiter", "}"]
+	]],
+	["smarty", [
+		["delimiter", "{"],
+		["variable", "$foo"],
+		["operator", "="],
+		["punctuation", "{"],
+		"counter",
+		["punctuation", "}"],
+		["operator", "+"],
+		["number", "3"],
+		["delimiter", "}"]
+	]],
+	["smarty", [
+		["delimiter", "{"],
+		["variable", "$foo"],
+		["punctuation", "->"],
+		["function", "bar"],
+		["punctuation", "("],
+		["variable", "$baz"],
+		["punctuation", ","],
+		["number", "2"],
+		["punctuation", ","],
+		["variable", "$bar"],
+		["punctuation", ")"],
 		["delimiter", "}"]
 	]]
 ]

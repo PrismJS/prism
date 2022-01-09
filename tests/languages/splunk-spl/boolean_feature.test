@@ -1,0 +1,9 @@
+T F
+true false
+
+----------------------------------------------------
+
+[
+	["boolean", "T"], ["boolean", "F"],
+	["boolean", "true"], ["boolean", "false"]
+]

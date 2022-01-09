@@ -1,0 +1,93 @@
+Type
+case
+class
+codata
+constructor
+corecord
+data
+do
+dsl
+else
+export
+if
+implementation
+implicit
+import
+impossible
+in
+infix
+infixl
+infixr
+instance
+interface
+let
+module
+mutual
+namespace
+of
+parameters
+partial
+postulate
+private
+proof
+public
+quoteGoal
+record
+rewrite
+syntax
+then
+total
+using
+where
+with
+
+----------------------------------------------------
+
+[
+	["keyword", "Type"],
+	["keyword", "case"],
+	["keyword", "class"],
+	["keyword", "codata"],
+	["keyword", "constructor"],
+	["keyword", "corecord"],
+	["keyword", "data"],
+	["keyword", "do"],
+	["keyword", "dsl"],
+	["keyword", "else"],
+	["keyword", "export"],
+	["keyword", "if"],
+	["keyword", "implementation"],
+	["keyword", "implicit"],
+	["keyword", "import"],
+	["keyword", "impossible"],
+	["keyword", "in"],
+	["keyword", "infix"],
+	["keyword", "infixl"],
+	["keyword", "infixr"],
+	["keyword", "instance"],
+	["keyword", "interface"],
+	["keyword", "let"],
+	["keyword", "module"],
+	["keyword", "mutual"],
+	["keyword", "namespace"],
+	["keyword", "of"],
+	["keyword", "parameters"],
+	["keyword", "partial"],
+	["keyword", "postulate"],
+	["keyword", "private"],
+	["keyword", "proof"],
+	["keyword", "public"],
+	["keyword", "quoteGoal"],
+	["keyword", "record"],
+	["keyword", "rewrite"],
+	["keyword", "syntax"],
+	["keyword", "then"],
+	["keyword", "total"],
+	["keyword", "using"],
+	["keyword", "where"],
+	["keyword", "with"]
+]
+
+----------------------------------------------------
+
+Checks for some keywords.

@@ -1,52 +1,152 @@
 Aggregates: First, Second with Third
+
 Redirects: First => Second, Third => Fourth
+
 Jolie: "logger.ol" in LoggerService
+
 log@LoggerService( new )();
 println @ Console( "none" )()
+
+outputPort OutputPort3 {
+    location: "socket://localhost:9002/"
+    protocol: sodep
+    interfaces: Interface3
+}
+
+interface MyInterface {
+OneWay:
+    myOW( string )
+RequestResponse:
+    myRR( string )( string )
+}
+
+private service MainService {
+    embed ConfigurationService( ) as Conf
+    main {
+        getDBConn@Conf( )( res )
+    }
+}
 
 ----------------------------------------------------
 
 [
-	["keyword", "Aggregates"],
-	["operator", ":"],
+	["property", "Aggregates"],
+	["punctuation", ":"],
 	["aggregates", [
-		["function", "First"],
+		["class-name", "First"],
 		["punctuation", ","],
-		["function", "Second"],
-		["with-extension", [
-			["keyword", "with"],
-			" Third"
-		]]
+		["class-name", "Second"],
+		["keyword", "with"],
+		["class-name", "Third"]
 	]],
-	["keyword", "Redirects"],
-	["operator", ":"],
+
+	["property", "Redirects"],
+	["punctuation", ":"],
 	["redirects", [
-		["function", "First"],
-		["symbol", "=>"],
-		["function", "Second"],
+		["class-name", "First"],
+		["operator", "=>"],
+		["class-name", "Second"],
 		["punctuation", ","],
-		["function", "Third"],
-		["symbol", "=>"],
-		["function", "Fourth"]
+		["class-name", "Third"],
+		["operator", "=>"],
+		["class-name", "Fourth"]
 	]],
-	["keyword", "Jolie"],
-	["operator", ":"],
+
+	["property", "Jolie"],
+	["punctuation", ":"],
 	["string", "\"logger.ol\""],
 	["keyword", "in"],
-	["function", "LoggerService"],
-	"\nlog",
-	["symbol", "@"],
-	["function", "LoggerService"],
-	"( ",
+	["class-name", "LoggerService"],
+
+	["function", "log"],
+	["operator", "@"],
+	["class-name", "LoggerService"],
+	["punctuation", "("],
 	["keyword", "new"],
-	" )()",
-	["symbol", ";"],
-	"\nprintln ",
-	["symbol", "@"],
-	["function", "Console"],
-	"( ",
+	["punctuation", ")"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["function", "println"],
+	["operator", "@"],
+	["class-name", "Console"],
+	["punctuation", "("],
 	["string", "\"none\""],
-	" )()"
+	["punctuation", ")"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["keyword", "outputPort"],
+	["class-name", "OutputPort3"],
+	["punctuation", "{"],
+
+	["property", "location"],
+	["punctuation", ":"],
+	["string", "\"socket://localhost:9002/\""],
+
+	["property", "protocol"],
+	["punctuation", ":"],
+	" sodep\r\n    ",
+
+	["property", "interfaces"],
+	["punctuation", ":"],
+	" Interface3\r\n",
+
+	["punctuation", "}"],
+
+	["keyword", "interface"],
+	" MyInterface ",
+	["punctuation", "{"],
+
+	["property", "OneWay"],
+	["punctuation", ":"],
+
+	["function", "myOW"],
+	["punctuation", "("],
+	["builtin", "string"],
+	["punctuation", ")"],
+
+	["property", "RequestResponse"],
+	["punctuation", ":"],
+
+	["function", "myRR"],
+	["punctuation", "("],
+	["builtin", "string"],
+	["punctuation", ")"],
+	["punctuation", "("],
+	["builtin", "string"],
+	["punctuation", ")"],
+
+	["punctuation", "}"],
+
+	["keyword", "private"],
+	["keyword", "service"],
+	["class-name", "MainService"],
+	["punctuation", "{"],
+
+	["keyword", "embed"],
+	["class-name", "ConfigurationService"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["keyword", "as"],
+	["class-name", "Conf"],
+
+	["keyword", "main"],
+	["punctuation", "{"],
+
+	["function", "getDBConn"],
+	["operator", "@"],
+	["class-name", "Conf"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "("],
+	" res ",
+	["punctuation", ")"],
+
+	["punctuation", "}"],
+
+	["punctuation", "}"]
 ]
 
 ----------------------------------------------------

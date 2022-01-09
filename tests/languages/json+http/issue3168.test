@@ -1,0 +1,169 @@
+HTTP/1.1 200 OK
+Access-Control-Allow-Credentials: true
+Access-Control-Allow-Origin: *
+Connection: keep-alive
+Content-Length: 523
+Content-Type: application/json
+Server: gunicorn/19.9.0
+X-Kong-Proxy-Latency: 1
+X-Kong-Upstream-Latency: 1
+{
+    "args": {},
+    "data": "",
+    "files": {},
+    "form": {},
+    "headers": {
+        "Accept": "*/*",
+        "Accept-Encoding": "gzip, deflate",
+        "Connection": "close",
+        "Host": "httpbin.org",
+        "User-Agent": "HTTPie/1.0.2",
+        "X-Forwarded-Host": "example.com"
+    },
+    "json": null,
+    "method": "GET",
+    "origin": "172.19.0.1, 52.201.239.166",
+    "url": "http://example.com/anything"
+}
+
+----------------------------------------------------
+
+[
+	["response-status", [
+		["http-version", "HTTP/1.1"],
+		["status-code", "200"],
+		["reason-phrase", "OK"]
+	]],
+
+	["header", [
+		["header-name", "Access-Control-Allow-Credentials"],
+		["punctuation", ":"],
+		["header-value", "true"]
+	]],
+
+	["header", [
+		["header-name", "Access-Control-Allow-Origin"],
+		["punctuation", ":"],
+		["header-value", "*"]
+	]],
+
+	["header", [
+		["header-name", "Connection"],
+		["punctuation", ":"],
+		["header-value", "keep-alive"]
+	]],
+
+	["header", [
+		["header-name", "Content-Length"],
+		["punctuation", ":"],
+		["header-value", "523"]
+	]],
+
+	["header", [
+		["header-name", "Content-Type"],
+		["punctuation", ":"],
+		["header-value", "application/json"]
+	]],
+
+	["header", [
+		["header-name", "Server"],
+		["punctuation", ":"],
+		["header-value", "gunicorn/19.9.0"]
+	]],
+
+	["header", [
+		["header-name", "X-Kong-Proxy-Latency"],
+		["punctuation", ":"],
+		["header-value", "1"]
+	]],
+
+	["header", [
+		["header-name", "X-Kong-Upstream-Latency"],
+		["punctuation", ":"],
+		["header-value", "1"]
+	]],
+
+	["application-json", [
+		["punctuation", "{"],
+
+		["property", "\"args\""],
+		["operator", ":"],
+		["punctuation", "{"],
+		["punctuation", "}"],
+		["punctuation", ","],
+
+		["property", "\"data\""],
+		["operator", ":"],
+		["string", "\"\""],
+		["punctuation", ","],
+
+		["property", "\"files\""],
+		["operator", ":"],
+		["punctuation", "{"],
+		["punctuation", "}"],
+		["punctuation", ","],
+
+		["property", "\"form\""],
+		["operator", ":"],
+		["punctuation", "{"],
+		["punctuation", "}"],
+		["punctuation", ","],
+
+		["property", "\"headers\""],
+		["operator", ":"],
+		["punctuation", "{"],
+
+		["property", "\"Accept\""],
+		["operator", ":"],
+		["string", "\"*/*\""],
+		["punctuation", ","],
+
+		["property", "\"Accept-Encoding\""],
+		["operator", ":"],
+		["string", "\"gzip, deflate\""],
+		["punctuation", ","],
+
+		["property", "\"Connection\""],
+		["operator", ":"],
+		["string", "\"close\""],
+		["punctuation", ","],
+
+		["property", "\"Host\""],
+		["operator", ":"],
+		["string", "\"httpbin.org\""],
+		["punctuation", ","],
+
+		["property", "\"User-Agent\""],
+		["operator", ":"],
+		["string", "\"HTTPie/1.0.2\""],
+		["punctuation", ","],
+
+		["property", "\"X-Forwarded-Host\""],
+		["operator", ":"],
+		["string", "\"example.com\""],
+
+		["punctuation", "}"],
+		["punctuation", ","],
+
+		["property", "\"json\""],
+		["operator", ":"],
+		["null", "null"],
+		["punctuation", ","],
+
+		["property", "\"method\""],
+		["operator", ":"],
+		["string", "\"GET\""],
+		["punctuation", ","],
+
+		["property", "\"origin\""],
+		["operator", ":"],
+		["string", "\"172.19.0.1, 52.201.239.166\""],
+		["punctuation", ","],
+
+		["property", "\"url\""],
+		["operator", ":"],
+		["string", "\"http://example.com/anything\""],
+
+		["punctuation", "}"]
+	]]
+]

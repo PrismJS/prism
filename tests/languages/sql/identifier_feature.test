@@ -1,0 +1,41 @@
+`5Customers`
+`tableName~`
+` SELECT `
+foo.`GROUP`
+`a``b`
+
+----------------------------------------------------
+
+[
+	["identifier", [
+		["punctuation", "`"],
+		"5Customers",
+		["punctuation", "`"]
+	]],
+
+	["identifier", [
+		["punctuation", "`"],
+		"tableName~",
+		["punctuation", "`"]
+	]],
+
+	["identifier", [
+		["punctuation", "`"],
+		" SELECT ",
+		["punctuation", "`"]
+	]],
+
+	"\r\nfoo",
+	["punctuation", "."],
+	["identifier", [
+		["punctuation", "`"],
+		"GROUP",
+		["punctuation", "`"]
+	]],
+
+	["identifier", [
+		["punctuation", "`"],
+		"a``b",
+		["punctuation", "`"]
+	]]
+]

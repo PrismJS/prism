@@ -1,0 +1,41 @@
+"https://example.com"
+'single quote'
+'age = $user.age'
+'[${int(x):-10}]'
+r'hello\nworld'
+
+----------------------------------------------------
+
+[
+	["string", ["\"https://example.com\""]],
+	["string", ["'single quote'"]],
+	["string", [
+		"'age = ",
+		["interpolation", [
+			["interpolation-variable", "$user.age"]
+		]],
+		"'"
+	]],
+	["string", [
+		"'[",
+		["interpolation", [
+			["interpolation-punctuation", "${"],
+			["interpolation-expression", [
+				["function", "int"],
+				["punctuation", "("],
+				"x",
+				["punctuation", ")"],
+				["punctuation", ":"],
+				["operator", "-"],
+				["number", "10"]
+			]],
+			["interpolation-punctuation", "}"]
+		]],
+		"]'"
+	]],
+	["string", ["r'hello\\nworld'"]]
+]
+
+----------------------------------------------------
+
+Check for strings and string interpolation

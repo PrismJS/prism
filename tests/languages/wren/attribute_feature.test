@@ -1,0 +1,91 @@
+#hidden = true
+class Example {}
+
+#key
+#key = value
+#group(
+  multiple,
+  lines = true,
+  lines = 0
+)
+class Example {
+  #test(skip = true, iterations = 32)
+  doStuff() {}
+}
+
+#doc = "not runtime data"
+#!runtimeAccess = true
+#!maxIterations = 16
+
+----------------------------------------------------
+
+[
+	["attribute", "#hidden"],
+	["operator", "="],
+	["boolean", "true"],
+
+	["keyword", "class"],
+	["class-name", "Example"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["attribute", "#key"],
+
+	["attribute", "#key"],
+	["operator", "="],
+	" value\r\n",
+
+	["attribute", "#group"],
+	["punctuation", "("],
+
+	"\r\n  multiple",
+	["punctuation", ","],
+
+	"\r\n  lines ",
+	["operator", "="],
+	["boolean", "true"],
+	["punctuation", ","],
+
+	"\r\n  lines ",
+	["operator", "="],
+	["number", "0"],
+
+	["punctuation", ")"],
+
+	["keyword", "class"],
+	["class-name", "Example"],
+	["punctuation", "{"],
+
+	["attribute", "#test"],
+	["punctuation", "("],
+	"skip ",
+	["operator", "="],
+	["boolean", "true"],
+	["punctuation", ","],
+	" iterations ",
+	["operator", "="],
+	["number", "32"],
+	["punctuation", ")"],
+
+	["function", "doStuff"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["punctuation", "}"],
+
+	["attribute", "#doc"],
+	["operator", "="],
+	["string-literal", [
+		["string", "\"not runtime data\""]
+	]],
+
+	["attribute", "#!runtimeAccess"],
+	["operator", "="],
+	["boolean", "true"],
+
+	["attribute", "#!maxIterations"],
+	["operator", "="],
+	["number", "16"]
+]

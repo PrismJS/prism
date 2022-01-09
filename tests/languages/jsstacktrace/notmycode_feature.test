@@ -1,16 +1,40 @@
 Some text
+	at new Foo (foo.js:3:7)
 	at processTicksAndRejections (internal/process/task_queues.js:98:32)
+
+Foo
+    at throwsA (<unknown>:1:23)
+    at <unknown>:1:13
 
 ----------------------------------------------------
 
 [
 	["error-message", "Some text"],
-	[
-		"stack-frame",
-		[
-			["not-my-code", "\tat processTicksAndRejections (internal/process/task_queues.js:98:32)"]
-		]
-	]
+	["stack-frame", [
+		["keyword", "at"],
+		["keyword", "new"],
+		["function", ["Foo"]],
+		["punctuation", "("],
+		["filename", "foo.js"],
+		["line-number", [
+			["punctuation", ":"],
+			"3",
+			["punctuation", ":"],
+			"7"
+		]],
+		["punctuation", ")"]
+	]],
+	["stack-frame", [
+		["not-my-code", "at processTicksAndRejections (internal/process/task_queues.js:98:32)"]
+	]],
+
+	["error-message", "Foo"],
+	["stack-frame", [
+		["not-my-code", "at throwsA (<unknown>:1:23)"]
+	]],
+	["stack-frame", [
+		["not-my-code", "at <unknown>:1:13"]
+	]]
 ]
 
 ----------------------------------------------------

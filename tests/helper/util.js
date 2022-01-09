@@ -1,4 +1,3 @@
-
 const { RegExpParser } = require('regexpp');
 
 
@@ -9,7 +8,7 @@ const { RegExpParser } = require('regexpp');
  */
 
 
-const parser = new RegExpParser({ strict: false, ecmaVersion: 5 });
+const parser = new RegExpParser();
 /** @type {Map<string, LiteralAST>} */
 const astCache = new Map();
 
@@ -20,7 +19,7 @@ module.exports = {
 	 * Performs a breadth-first search on the given start element.
 	 *
 	 * @param {any} start
-	 * @param {(path: { key: string, value: any }[]) => void} callback
+	 * @param {(path: { key: string, value: any }[], obj: Record<string, any>) => void} callback
 	 */
 	BFS(start, callback) {
 		const visited = new Set();
@@ -28,8 +27,6 @@ module.exports = {
 		let toVisit = [
 			[{ key: null, value: start }]
 		];
-
-		callback(toVisit[0]);
 
 		while (toVisit.length > 0) {
 			/** @type {{ key: string, value: any }[][]} */
@@ -44,7 +41,7 @@ module.exports = {
 						const value = obj[key];
 
 						path.push({ key, value });
-						callback(path);
+						callback(path, obj);
 
 						if (Array.isArray(value) || Object.prototype.toString.call(value) == '[object Object]') {
 							newToVisit.push([...path]);
@@ -57,6 +54,30 @@ module.exports = {
 
 			toVisit = newToVisit;
 		}
+	},
+
+	/**
+	 * Given the `BFS` path given to `BFS` callbacks, this will return the Prism language token path of the current
+	 * value (e.g. `Prism.languages.xml.tag.pattern`).
+	 *
+	 * @param {readonly{ key: string, value: any }[]} path
+	 * @param {string} [root]
+	 * @returns {string}
+	 */
+	BFSPathToPrismTokenPath(path, root = 'Prism.languages') {
+		let tokenPath = root;
+		for (const { key } of path) {
+			if (!key) {
+				// do nothing
+			} else if (/^\d+$/.test(key)) {
+				tokenPath += `[${key}]`;
+			} else if (/^[a-z]\w*$/i.test(key)) {
+				tokenPath += `.${key}`;
+			} else {
+				tokenPath += `[${JSON.stringify(key)}]`;
+			}
+		}
+		return tokenPath;
 	},
 
 	/**

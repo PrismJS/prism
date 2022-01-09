@@ -1,0 +1,161 @@
+readBooleanOrIntAsBoolean ∷ Foreign → Foreign.F Boolean
+readBooleanOrIntAsBoolean value =
+  Foreign.readBoolean value
+    <|> (toBool =<< Foreign.readInt value)
+  where
+  toBool ∷ Int → Foreign.F Boolean
+  toBool = case _ of
+    0 → pure false
+    1 → pure true
+    int → Foreign.fail (Foreign.ForeignError ("Invalid integer: " <> show int))
+
+isSuccessResponse ∷ ∀ a. AX.Response a → Boolean
+isSuccessResponse { status } = status >= (StatusCode 200) && status < (StatusCode 400)
+
+infix 4 eq as ≡
+
+isMempty ∷ ∀ m. Monoid m → Boolean
+isMempty = _ ≡ mempty
+
+----------------------------------------------------
+
+[
+	["hvariable", ["readBooleanOrIntAsBoolean"]],
+	["operator", "∷"],
+	["constant", ["Foreign"]],
+	["operator", "→"],
+	["constant", [
+		"Foreign",
+		["punctuation", "."],
+		"F"
+	]],
+	["constant", ["Boolean"]],
+
+	["hvariable", ["readBooleanOrIntAsBoolean"]],
+	["hvariable", ["value"]],
+	["operator", "="],
+
+	["hvariable", [
+		"Foreign",
+		["punctuation", "."],
+		"readBoolean"
+	]],
+	["hvariable", ["value"]],
+
+	["operator", "<|>"],
+	["punctuation", "("],
+	["hvariable", ["toBool"]],
+	["operator", "=<<"],
+	["hvariable", [
+		"Foreign",
+		["punctuation", "."],
+		"readInt"
+	]],
+	["hvariable", ["value"]],
+	["punctuation", ")"],
+
+	["keyword", "where"],
+
+	["hvariable", ["toBool"]],
+	["operator", "∷"],
+	["constant", ["Int"]],
+	["operator", "→"],
+	["constant", [
+		"Foreign",
+		["punctuation", "."],
+		"F"
+	]],
+	["constant", ["Boolean"]],
+
+	["hvariable", ["toBool"]],
+	["operator", "="],
+	["keyword", "case"],
+	["hvariable", ["_"]],
+	["keyword", "of"],
+
+	["number", "0"],
+	["operator", "→"],
+	["hvariable", ["pure"]],
+	["hvariable", ["false"]],
+
+	["number", "1"],
+	["operator", "→"],
+	["hvariable", ["pure"]],
+	["hvariable", ["true"]],
+
+	["hvariable", ["int"]],
+	["operator", "→"],
+	["hvariable", [
+		"Foreign",
+		["punctuation", "."],
+		"fail"
+	]],
+	["punctuation", "("],
+	["constant", [
+		"Foreign",
+		["punctuation", "."],
+		"ForeignError"
+	]],
+	["punctuation", "("],
+	["string", "\"Invalid integer: \""],
+	["operator", "<>"],
+	["builtin", "show"],
+	["hvariable", ["int"]],
+	["punctuation", ")"],
+	["punctuation", ")"],
+
+	["hvariable", ["isSuccessResponse"]],
+	["operator", "∷"],
+	["keyword", "∀"],
+	["hvariable", ["a"]],
+	["punctuation", "."],
+	["constant", [
+		"AX",
+		["punctuation", "."],
+		"Response"
+	]],
+	["hvariable", ["a"]],
+	["operator", "→"],
+	["constant", ["Boolean"]],
+
+	["hvariable", ["isSuccessResponse"]],
+	["punctuation", "{"],
+	["hvariable", ["status"]],
+	["punctuation", "}"],
+	["operator", "="],
+	["hvariable", ["status"]],
+	["operator", ">="],
+	["punctuation", "("],
+	["constant", ["StatusCode"]],
+	["number", "200"],
+	["punctuation", ")"],
+	["operator", "&&"],
+	["hvariable", ["status"]],
+	["operator", "<"],
+	["punctuation", "("],
+	["constant", ["StatusCode"]],
+	["number", "400"],
+	["punctuation", ")"],
+
+	["hvariable", ["infix"]],
+	["number", "4"],
+	["builtin", "eq"],
+	["hvariable", ["as"]],
+	["operator", "≡"],
+
+	["hvariable", ["isMempty"]],
+	["operator", "∷"],
+	["keyword", "∀"],
+	["hvariable", ["m"]],
+	["punctuation", "."],
+	["constant", ["Monoid"]],
+	["hvariable", ["m"]],
+	["operator", "→"],
+	["constant", ["Boolean"]],
+
+	["hvariable", ["isMempty"]],
+	["operator", "="],
+	["hvariable", ["_"]],
+	["operator", "≡"],
+	["builtin", "mempty"]
+]

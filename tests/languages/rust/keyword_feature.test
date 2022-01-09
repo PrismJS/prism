@@ -1,107 +1,107 @@
-abstract
-as
-async
-await
-become
-box
-break
-const
-continue
+abstract;
+as;
+async;
+await;
+become;
+box;
+break;
+const;
+continue;
 crate;
-do
-dyn
-else
+do;
+dyn;
+else;
 enum;
-extern
-final
+extern;
+final;
 fn;
-for
-if
-impl
-in
-let
-loop
-macro
-match
+for;
+if;
+impl;
+in;
+let;
+loop;
+macro;
+match;
 mod;
-move
-mut
-override
-priv
-pub
-ref
-return
-self
-Self
-static
+move;
+mut;
+override;
+priv;
+pub;
+ref;
+return;
+self;
+Self;
+static;
 struct;
-super
-trait
-try
-type
-typeof
+super;
+trait;
+try;
+type;
+typeof;
 union;
-unsafe
-unsized
-use
-virtual
-where
-while
-yield
+unsafe;
+unsized;
+use;
+virtual;
+where;
+while;
+yield;
 
 ----------------------------------------------------
 
 [
-	["keyword", "abstract"],
-	["keyword", "as"],
-	["keyword", "async"],
-	["keyword", "await"],
-	["keyword", "become"],
-	["keyword", "box"],
-	["keyword", "break"],
-	["keyword", "const"],
-	["keyword", "continue"],
+	["keyword", "abstract"], ["punctuation", ";"],
+	["keyword", "as"], ["punctuation", ";"],
+	["keyword", "async"], ["punctuation", ";"],
+	["keyword", "await"], ["punctuation", ";"],
+	["keyword", "become"], ["punctuation", ";"],
+	["keyword", "box"], ["punctuation", ";"],
+	["keyword", "break"], ["punctuation", ";"],
+	["keyword", "const"], ["punctuation", ";"],
+	["keyword", "continue"], ["punctuation", ";"],
 	["keyword", "crate"], ["punctuation", ";"],
-	["keyword", "do"],
-	["keyword", "dyn"],
-	["keyword", "else"],
+	["keyword", "do"], ["punctuation", ";"],
+	["keyword", "dyn"], ["punctuation", ";"],
+	["keyword", "else"], ["punctuation", ";"],
 	["keyword", "enum"], ["punctuation", ";"],
-	["keyword", "extern"],
-	["keyword", "final"],
+	["keyword", "extern"], ["punctuation", ";"],
+	["keyword", "final"], ["punctuation", ";"],
 	["keyword", "fn"], ["punctuation", ";"],
-	["keyword", "for"],
-	["keyword", "if"],
-	["keyword", "impl"],
-	["keyword", "in"],
-	["keyword", "let"],
-	["keyword", "loop"],
-	["keyword", "macro"],
-	["keyword", "match"],
+	["keyword", "for"], ["punctuation", ";"],
+	["keyword", "if"], ["punctuation", ";"],
+	["keyword", "impl"], ["punctuation", ";"],
+	["keyword", "in"], ["punctuation", ";"],
+	["keyword", "let"], ["punctuation", ";"],
+	["keyword", "loop"], ["punctuation", ";"],
+	["keyword", "macro"], ["punctuation", ";"],
+	["keyword", "match"], ["punctuation", ";"],
 	["keyword", "mod"], ["punctuation", ";"],
-	["keyword", "move"],
-	["keyword", "mut"],
-	["keyword", "override"],
-	["keyword", "priv"],
-	["keyword", "pub"],
-	["keyword", "ref"],
-	["keyword", "return"],
-	["keyword", "self"],
-	["keyword", "Self"],
-	["keyword", "static"],
+	["keyword", "move"], ["punctuation", ";"],
+	["keyword", "mut"], ["punctuation", ";"],
+	["keyword", "override"], ["punctuation", ";"],
+	["keyword", "priv"], ["punctuation", ";"],
+	["keyword", "pub"], ["punctuation", ";"],
+	["keyword", "ref"], ["punctuation", ";"],
+	["keyword", "return"], ["punctuation", ";"],
+	["keyword", "self"], ["punctuation", ";"],
+	["keyword", "Self"], ["punctuation", ";"],
+	["keyword", "static"], ["punctuation", ";"],
 	["keyword", "struct"], ["punctuation", ";"],
-	["keyword", "super"],
-	["keyword", "trait"],
-	["keyword", "try"],
-	["keyword", "type"],
-	["keyword", "typeof"],
+	["keyword", "super"], ["punctuation", ";"],
+	["keyword", "trait"], ["punctuation", ";"],
+	["keyword", "try"], ["punctuation", ";"],
+	["keyword", "type"], ["punctuation", ";"],
+	["keyword", "typeof"], ["punctuation", ";"],
 	["keyword", "union"], ["punctuation", ";"],
-	["keyword", "unsafe"],
-	["keyword", "unsized"],
-	["keyword", "use"],
-	["keyword", "virtual"],
-	["keyword", "where"],
-	["keyword", "while"],
-	["keyword", "yield"]
+	["keyword", "unsafe"], ["punctuation", ";"],
+	["keyword", "unsized"], ["punctuation", ";"],
+	["keyword", "use"], ["punctuation", ";"],
+	["keyword", "virtual"], ["punctuation", ";"],
+	["keyword", "where"], ["punctuation", ";"],
+	["keyword", "while"], ["punctuation", ";"],
+	["keyword", "yield"], ["punctuation", ";"]
 ]
 
 ----------------------------------------------------

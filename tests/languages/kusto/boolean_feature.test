@@ -1,0 +1,24 @@
+true bool(true)
+false bool(false)
+bool(null)
+
+----------------------------------------------------
+
+[
+	["boolean", "true"],
+	["class-name", "bool"],
+	["punctuation", "("],
+	["boolean", "true"],
+	["punctuation", ")"],
+
+	["boolean", "false"],
+	["class-name", "bool"],
+	["punctuation", "("],
+	["boolean", "false"],
+	["punctuation", ")"],
+
+	["class-name", "bool"],
+	["punctuation", "("],
+	["boolean", "null"],
+	["punctuation", ")"]
+]

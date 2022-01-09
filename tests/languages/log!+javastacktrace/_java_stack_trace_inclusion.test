@@ -1,0 +1,903 @@
+java.net.BindException: Address already in use
+	at sun.nio.ch.Net.bind0(Native Method) ~[na:1.8.0_171]
+	at sun.nio.ch.Net.bind(Net.java:433) ~[na:1.8.0_171]
+	at sun.nio.ch.Net.bind(Net.java:425) ~[na:1.8.0_171]
+	at sun.nio.ch.ServeISocketChannelImpl.bind(ServerSocketChannellmpl.java:223) ~[na:1.8.0_171]
+
+org.apache.maven.lifecycle.LifecycleExecutionException: Error installing artifact's metadata: Error while deploying metadata: Failed to transfer file: http://repo.xxxx.com/foo/bar.pom. Return code is: 500
+        at org.apache.maven.lifecycle.DefaultLifecycleExecutor.executeGoals(DefaultLifecycleExecutor.java:564)
+        at org.apache.maven.lifecycle.DefaultLifecycleExecutor.executeGoalWithLifecycle(DefaultLifecycleExecutor.java:480)
+        at org.apache.maven.lifecycle.DefaultLifecycleExecutor.executeGoal(DefaultLifecycleExecutor.java:459)
+        at org.apache.maven.lifecycle.DefaultLifecycleExecutor.executeGoalAndHandleFailures(DefaultLifecycleExecutor.java:311)
+        at org.apache.maven.lifecycle.DefaultLifecycleExecutor.executeTaskSegments(DefaultLifecycleExecutor.java:278)
+        at org.apache.maven.lifecycle.DefaultLifecycleExecutor.execute(DefaultLifecycleExecutor.java:143)
+        at org.apache.maven.DefaultMaven.doExecute(DefaultMaven.java:334)
+        at org.apache.maven.DefaultMaven.execute(DefaultMaven.java:125)
+        at org.apache.maven.cli.MavenCli.main(MavenCli.java:280)
+        at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+        at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+        at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+        at java.lang.reflect.Method.invoke(Method.java:585)
+        at org.codehaus.classworlds.Launcher.launchEnhanced(Launcher.java:315)
+        at org.codehaus.classworlds.Launcher.launch(Launcher.java:255)
+        at org.codehaus.classworlds.Launcher.mainWithExitCode(Launcher.java:430)
+        at org.codehaus.classworlds.Launcher.main(Launcher.java:375)
+Caused by: org.apache.maven.plugin.MojoExecutionException: Error installing artifact's metadata: Error while deploying metadata: Failed to transfer file: http://repo.xxxx.com/foo/bar.pom. Return code is: 500
+        at org.apache.maven.plugin.deploy.DeployMojo.execute(DeployMojo.java:174)
+        at org.apache.maven.plugin.DefaultPluginManager.executeMojo(DefaultPluginManager.java:443)
+        at org.apache.maven.lifecycle.DefaultLifecycleExecutor.executeGoals(DefaultLifecycleExecutor.java:539)
+        ... 16 more
+Caused by: org.apache.maven.artifact.deployer.ArtifactDeploymentException: Error installing artifact's metadata: Error while deploying metadata: Failed to transfer file: http://repo.xxxx.com/foo/bar.pom. Return code is: 500
+        at org.apache.maven.artifact.deployer.DefaultArtifactDeployer.deploy(DefaultArtifactDeployer.java:102)
+        at org.apache.maven.plugin.deploy.DeployMojo.execute(DeployMojo.java:162)
+        ... 18 more
+Caused by: org.apache.maven.artifact.repository.metadata.RepositoryMetadataDeploymentException: Error while deploying metadata: Failed to transfer file: http://repo.xxxx.com/foo/bar.pom. Return code is: 500
+        at org.apache.maven.artifact.repository.metadata.DefaultRepositoryMetadataManager.deploy(DefaultRepositoryMetadataManager.java:441)
+        at org.apache.maven.artifact.deployer.DefaultArtifactDeployer.deploy(DefaultArtifactDeployer.java:86)
+        ... 19 more
+Caused by: org.apache.maven.wagon.TransferFailedException: Failed to transfer file: http://repo.xxxx.com/foo/bar.pom. Return code is: 500
+        at org.apache.maven.wagon.providers.http.LightweightHttpWagon.put(LightweightHttpWagon.java:172)
+        at org.apache.maven.artifact.manager.DefaultWagonManager.putRemoteFile(DefaultWagonManager.java:237)
+        at org.apache.maven.artifact.manager.DefaultWagonManager.putArtifactMetadata(DefaultWagonManager.java:162)
+        at org.apache.maven.artifact.repository.metadata.DefaultRepositoryMetadataManager.deploy(DefaultRepositoryMetadataManager.java:437)
+        ... 20 more
+
+----------------------------------------------------
+
+[
+	["exception", [
+		["summary", [
+			["exceptions", [
+				["namespace", "java"],
+				["punctuation", "."],
+				["namespace", "net"],
+				["punctuation", "."],
+				["class-name", "BindException"]
+			]],
+			["punctuation", ":"],
+			["message", "Address already in use"]
+		]],
+
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"sun",
+				["punctuation", "."],
+				"nio",
+				["punctuation", "."],
+				"ch",
+				["punctuation", "."]
+			]],
+			["class-name", "Net"],
+			["punctuation", "."],
+			["function", "bind0"],
+			["punctuation", "("],
+			["source", [
+				["keyword", "Native Method"]
+			]],
+			["punctuation", ")"]
+		]],
+		" ~[na:1.8.0_171]\r\n\t",
+
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"sun",
+				["punctuation", "."],
+				"nio",
+				["punctuation", "."],
+				"ch",
+				["punctuation", "."]
+			]],
+			["class-name", "Net"],
+			["punctuation", "."],
+			["function", "bind"],
+			["punctuation", "("],
+			["source", [
+				["file", "Net.java"],
+				["punctuation", ":"],
+				["line-number", "433"]
+			]],
+			["punctuation", ")"]
+		]],
+		" ~[na:1.8.0_171]\r\n\t",
+
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"sun",
+				["punctuation", "."],
+				"nio",
+				["punctuation", "."],
+				"ch",
+				["punctuation", "."]
+			]],
+			["class-name", "Net"],
+			["punctuation", "."],
+			["function", "bind"],
+			["punctuation", "("],
+			["source", [
+				["file", "Net.java"],
+				["punctuation", ":"],
+				["line-number", "425"]
+			]],
+			["punctuation", ")"]
+		]],
+		" ~[na:1.8.0_171]\r\n\t",
+
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"sun",
+				["punctuation", "."],
+				"nio",
+				["punctuation", "."],
+				"ch",
+				["punctuation", "."]
+			]],
+			["class-name", "ServeISocketChannelImpl"],
+			["punctuation", "."],
+			["function", "bind"],
+			["punctuation", "("],
+			["source", [
+				["file", "ServerSocketChannellmpl.java"],
+				["punctuation", ":"],
+				["line-number", "223"]
+			]],
+			["punctuation", ")"]
+		]],
+		" ~[na:1.8.0_171]"
+	]],
+
+	["exception", [
+		["summary", [
+			["exceptions", [
+				["namespace", "org"],
+				["punctuation", "."],
+				["namespace", "apache"],
+				["punctuation", "."],
+				["namespace", "maven"],
+				["punctuation", "."],
+				["namespace", "lifecycle"],
+				["punctuation", "."],
+				["class-name", "LifecycleExecutionException"]
+			]],
+			["punctuation", ":"],
+			["message", "Error installing artifact's metadata: Error while deploying metadata: Failed to transfer file: http://repo.xxxx.com/foo/bar.pom. Return code is: 500"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"org",
+				["punctuation", "."],
+				"apache",
+				["punctuation", "."],
+				"maven",
+				["punctuation", "."],
+				"lifecycle",
+				["punctuation", "."]
+			]],
+			["class-name", "DefaultLifecycleExecutor"],
+			["punctuation", "."],
+			["function", "executeGoals"],
+			["punctuation", "("],
+			["source", [
+				["file", "DefaultLifecycleExecutor.java"],
+				["punctuation", ":"],
+				["line-number", "564"]
+			]],
+			["punctuation", ")"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"org",
+				["punctuation", "."],
+				"apache",
+				["punctuation", "."],
+				"maven",
+				["punctuation", "."],
+				"lifecycle",
+				["punctuation", "."]
+			]],
+			["class-name", "DefaultLifecycleExecutor"],
+			["punctuation", "."],
+			["function", "executeGoalWithLifecycle"],
+			["punctuation", "("],
+			["source", [
+				["file", "DefaultLifecycleExecutor.java"],
+				["punctuation", ":"],
+				["line-number", "480"]
+			]],
+			["punctuation", ")"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"org",
+				["punctuation", "."],
+				"apache",
+				["punctuation", "."],
+				"maven",
+				["punctuation", "."],
+				"lifecycle",
+				["punctuation", "."]
+			]],
+			["class-name", "DefaultLifecycleExecutor"],
+			["punctuation", "."],
+			["function", "executeGoal"],
+			["punctuation", "("],
+			["source", [
+				["file", "DefaultLifecycleExecutor.java"],
+				["punctuation", ":"],
+				["line-number", "459"]
+			]],
+			["punctuation", ")"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"org",
+				["punctuation", "."],
+				"apache",
+				["punctuation", "."],
+				"maven",
+				["punctuation", "."],
+				"lifecycle",
+				["punctuation", "."]
+			]],
+			["class-name", "DefaultLifecycleExecutor"],
+			["punctuation", "."],
+			["function", "executeGoalAndHandleFailures"],
+			["punctuation", "("],
+			["source", [
+				["file", "DefaultLifecycleExecutor.java"],
+				["punctuation", ":"],
+				["line-number", "311"]
+			]],
+			["punctuation", ")"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"org",
+				["punctuation", "."],
+				"apache",
+				["punctuation", "."],
+				"maven",
+				["punctuation", "."],
+				"lifecycle",
+				["punctuation", "."]
+			]],
+			["class-name", "DefaultLifecycleExecutor"],
+			["punctuation", "."],
+			["function", "executeTaskSegments"],
+			["punctuation", "("],
+			["source", [
+				["file", "DefaultLifecycleExecutor.java"],
+				["punctuation", ":"],
+				["line-number", "278"]
+			]],
+			["punctuation", ")"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"org",
+				["punctuation", "."],
+				"apache",
+				["punctuation", "."],
+				"maven",
+				["punctuation", "."],
+				"lifecycle",
+				["punctuation", "."]
+			]],
+			["class-name", "DefaultLifecycleExecutor"],
+			["punctuation", "."],
+			["function", "execute"],
+			["punctuation", "("],
+			["source", [
+				["file", "DefaultLifecycleExecutor.java"],
+				["punctuation", ":"],
+				["line-number", "143"]
+			]],
+			["punctuation", ")"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"org",
+				["punctuation", "."],
+				"apache",
+				["punctuation", "."],
+				"maven",
+				["punctuation", "."]
+			]],
+			["class-name", "DefaultMaven"],
+			["punctuation", "."],
+			["function", "doExecute"],
+			["punctuation", "("],
+			["source", [
+				["file", "DefaultMaven.java"],
+				["punctuation", ":"],
+				["line-number", "334"]
+			]],
+			["punctuation", ")"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"org",
+				["punctuation", "."],
+				"apache",
+				["punctuation", "."],
+				"maven",
+				["punctuation", "."]
+			]],
+			["class-name", "DefaultMaven"],
+			["punctuation", "."],
+			["function", "execute"],
+			["punctuation", "("],
+			["source", [
+				["file", "DefaultMaven.java"],
+				["punctuation", ":"],
+				["line-number", "125"]
+			]],
+			["punctuation", ")"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"org",
+				["punctuation", "."],
+				"apache",
+				["punctuation", "."],
+				"maven",
+				["punctuation", "."],
+				"cli",
+				["punctuation", "."]
+			]],
+			["class-name", "MavenCli"],
+			["punctuation", "."],
+			["function", "main"],
+			["punctuation", "("],
+			["source", [
+				["file", "MavenCli.java"],
+				["punctuation", ":"],
+				["line-number", "280"]
+			]],
+			["punctuation", ")"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"sun",
+				["punctuation", "."],
+				"reflect",
+				["punctuation", "."]
+			]],
+			["class-name", "NativeMethodAccessorImpl"],
+			["punctuation", "."],
+			["function", "invoke0"],
+			["punctuation", "("],
+			["source", [
+				["keyword", "Native Method"]
+			]],
+			["punctuation", ")"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"sun",
+				["punctuation", "."],
+				"reflect",
+				["punctuation", "."]
+			]],
+			["class-name", "NativeMethodAccessorImpl"],
+			["punctuation", "."],
+			["function", "invoke"],
+			["punctuation", "("],
+			["source", [
+				["file", "NativeMethodAccessorImpl.java"],
+				["punctuation", ":"],
+				["line-number", "39"]
+			]],
+			["punctuation", ")"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"sun",
+				["punctuation", "."],
+				"reflect",
+				["punctuation", "."]
+			]],
+			["class-name", "DelegatingMethodAccessorImpl"],
+			["punctuation", "."],
+			["function", "invoke"],
+			["punctuation", "("],
+			["source", [
+				["file", "DelegatingMethodAccessorImpl.java"],
+				["punctuation", ":"],
+				["line-number", "25"]
+			]],
+			["punctuation", ")"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"java",
+				["punctuation", "."],
+				"lang",
+				["punctuation", "."],
+				"reflect",
+				["punctuation", "."]
+			]],
+			["class-name", "Method"],
+			["punctuation", "."],
+			["function", "invoke"],
+			["punctuation", "("],
+			["source", [
+				["file", "Method.java"],
+				["punctuation", ":"],
+				["line-number", "585"]
+			]],
+			["punctuation", ")"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"org",
+				["punctuation", "."],
+				"codehaus",
+				["punctuation", "."],
+				"classworlds",
+				["punctuation", "."]
+			]],
+			["class-name", "Launcher"],
+			["punctuation", "."],
+			["function", "launchEnhanced"],
+			["punctuation", "("],
+			["source", [
+				["file", "Launcher.java"],
+				["punctuation", ":"],
+				["line-number", "315"]
+			]],
+			["punctuation", ")"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"org",
+				["punctuation", "."],
+				"codehaus",
+				["punctuation", "."],
+				"classworlds",
+				["punctuation", "."]
+			]],
+			["class-name", "Launcher"],
+			["punctuation", "."],
+			["function", "launch"],
+			["punctuation", "("],
+			["source", [
+				["file", "Launcher.java"],
+				["punctuation", ":"],
+				["line-number", "255"]
+			]],
+			["punctuation", ")"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"org",
+				["punctuation", "."],
+				"codehaus",
+				["punctuation", "."],
+				"classworlds",
+				["punctuation", "."]
+			]],
+			["class-name", "Launcher"],
+			["punctuation", "."],
+			["function", "mainWithExitCode"],
+			["punctuation", "("],
+			["source", [
+				["file", "Launcher.java"],
+				["punctuation", ":"],
+				["line-number", "430"]
+			]],
+			["punctuation", ")"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"org",
+				["punctuation", "."],
+				"codehaus",
+				["punctuation", "."],
+				"classworlds",
+				["punctuation", "."]
+			]],
+			["class-name", "Launcher"],
+			["punctuation", "."],
+			["function", "main"],
+			["punctuation", "("],
+			["source", [
+				["file", "Launcher.java"],
+				["punctuation", ":"],
+				["line-number", "375"]
+			]],
+			["punctuation", ")"]
+		]],
+		["summary", [
+			["keyword", "Caused by"],
+			["punctuation", ":"],
+			["exceptions", [
+				["namespace", "org"],
+				["punctuation", "."],
+				["namespace", "apache"],
+				["punctuation", "."],
+				["namespace", "maven"],
+				["punctuation", "."],
+				["namespace", "plugin"],
+				["punctuation", "."],
+				["class-name", "MojoExecutionException"]
+			]],
+			["punctuation", ":"],
+			["message", "Error installing artifact's metadata: Error while deploying metadata: Failed to transfer file: http://repo.xxxx.com/foo/bar.pom. Return code is: 500"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"org",
+				["punctuation", "."],
+				"apache",
+				["punctuation", "."],
+				"maven",
+				["punctuation", "."],
+				"plugin",
+				["punctuation", "."],
+				"deploy",
+				["punctuation", "."]
+			]],
+			["class-name", "DeployMojo"],
+			["punctuation", "."],
+			["function", "execute"],
+			["punctuation", "("],
+			["source", [
+				["file", "DeployMojo.java"],
+				["punctuation", ":"],
+				["line-number", "174"]
+			]],
+			["punctuation", ")"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"org",
+				["punctuation", "."],
+				"apache",
+				["punctuation", "."],
+				"maven",
+				["punctuation", "."],
+				"plugin",
+				["punctuation", "."]
+			]],
+			["class-name", "DefaultPluginManager"],
+			["punctuation", "."],
+			["function", "executeMojo"],
+			["punctuation", "("],
+			["source", [
+				["file", "DefaultPluginManager.java"],
+				["punctuation", ":"],
+				["line-number", "443"]
+			]],
+			["punctuation", ")"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"org",
+				["punctuation", "."],
+				"apache",
+				["punctuation", "."],
+				"maven",
+				["punctuation", "."],
+				"lifecycle",
+				["punctuation", "."]
+			]],
+			["class-name", "DefaultLifecycleExecutor"],
+			["punctuation", "."],
+			["function", "executeGoals"],
+			["punctuation", "("],
+			["source", [
+				["file", "DefaultLifecycleExecutor.java"],
+				["punctuation", ":"],
+				["line-number", "539"]
+			]],
+			["punctuation", ")"]
+		]],
+		["more", [
+			["punctuation", "..."],
+			["number", "16"],
+			["keyword", "more"]
+		]],
+		["summary", [
+			["keyword", "Caused by"],
+			["punctuation", ":"],
+			["exceptions", [
+				["namespace", "org"],
+				["punctuation", "."],
+				["namespace", "apache"],
+				["punctuation", "."],
+				["namespace", "maven"],
+				["punctuation", "."],
+				["namespace", "artifact"],
+				["punctuation", "."],
+				["namespace", "deployer"],
+				["punctuation", "."],
+				["class-name", "ArtifactDeploymentException"]
+			]],
+			["punctuation", ":"],
+			["message", "Error installing artifact's metadata: Error while deploying metadata: Failed to transfer file: http://repo.xxxx.com/foo/bar.pom. Return code is: 500"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"org",
+				["punctuation", "."],
+				"apache",
+				["punctuation", "."],
+				"maven",
+				["punctuation", "."],
+				"artifact",
+				["punctuation", "."],
+				"deployer",
+				["punctuation", "."]
+			]],
+			["class-name", "DefaultArtifactDeployer"],
+			["punctuation", "."],
+			["function", "deploy"],
+			["punctuation", "("],
+			["source", [
+				["file", "DefaultArtifactDeployer.java"],
+				["punctuation", ":"],
+				["line-number", "102"]
+			]],
+			["punctuation", ")"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"org",
+				["punctuation", "."],
+				"apache",
+				["punctuation", "."],
+				"maven",
+				["punctuation", "."],
+				"plugin",
+				["punctuation", "."],
+				"deploy",
+				["punctuation", "."]
+			]],
+			["class-name", "DeployMojo"],
+			["punctuation", "."],
+			["function", "execute"],
+			["punctuation", "("],
+			["source", [
+				["file", "DeployMojo.java"],
+				["punctuation", ":"],
+				["line-number", "162"]
+			]],
+			["punctuation", ")"]
+		]],
+		["more", [
+			["punctuation", "..."],
+			["number", "18"],
+			["keyword", "more"]
+		]],
+		["summary", [
+			["keyword", "Caused by"],
+			["punctuation", ":"],
+			["exceptions", [
+				["namespace", "org"],
+				["punctuation", "."],
+				["namespace", "apache"],
+				["punctuation", "."],
+				["namespace", "maven"],
+				["punctuation", "."],
+				["namespace", "artifact"],
+				["punctuation", "."],
+				["namespace", "repository"],
+				["punctuation", "."],
+				["namespace", "metadata"],
+				["punctuation", "."],
+				["class-name", "RepositoryMetadataDeploymentException"]
+			]],
+			["punctuation", ":"],
+			["message", "Error while deploying metadata: Failed to transfer file: http://repo.xxxx.com/foo/bar.pom. Return code is: 500"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"org",
+				["punctuation", "."],
+				"apache",
+				["punctuation", "."],
+				"maven",
+				["punctuation", "."],
+				"artifact",
+				["punctuation", "."],
+				"repository",
+				["punctuation", "."],
+				"metadata",
+				["punctuation", "."]
+			]],
+			["class-name", "DefaultRepositoryMetadataManager"],
+			["punctuation", "."],
+			["function", "deploy"],
+			["punctuation", "("],
+			["source", [
+				["file", "DefaultRepositoryMetadataManager.java"],
+				["punctuation", ":"],
+				["line-number", "441"]
+			]],
+			["punctuation", ")"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"org",
+				["punctuation", "."],
+				"apache",
+				["punctuation", "."],
+				"maven",
+				["punctuation", "."],
+				"artifact",
+				["punctuation", "."],
+				"deployer",
+				["punctuation", "."]
+			]],
+			["class-name", "DefaultArtifactDeployer"],
+			["punctuation", "."],
+			["function", "deploy"],
+			["punctuation", "("],
+			["source", [
+				["file", "DefaultArtifactDeployer.java"],
+				["punctuation", ":"],
+				["line-number", "86"]
+			]],
+			["punctuation", ")"]
+		]],
+		["more", [
+			["punctuation", "..."],
+			["number", "19"],
+			["keyword", "more"]
+		]],
+		["summary", [
+			["keyword", "Caused by"],
+			["punctuation", ":"],
+			["exceptions", [
+				["namespace", "org"],
+				["punctuation", "."],
+				["namespace", "apache"],
+				["punctuation", "."],
+				["namespace", "maven"],
+				["punctuation", "."],
+				["namespace", "wagon"],
+				["punctuation", "."],
+				["class-name", "TransferFailedException"]
+			]],
+			["punctuation", ":"],
+			["message", "Failed to transfer file: http://repo.xxxx.com/foo/bar.pom. Return code is: 500"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"org",
+				["punctuation", "."],
+				"apache",
+				["punctuation", "."],
+				"maven",
+				["punctuation", "."],
+				"wagon",
+				["punctuation", "."],
+				"providers",
+				["punctuation", "."],
+				"http",
+				["punctuation", "."]
+			]],
+			["class-name", "LightweightHttpWagon"],
+			["punctuation", "."],
+			["function", "put"],
+			["punctuation", "("],
+			["source", [
+				["file", "LightweightHttpWagon.java"],
+				["punctuation", ":"],
+				["line-number", "172"]
+			]],
+			["punctuation", ")"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"org",
+				["punctuation", "."],
+				"apache",
+				["punctuation", "."],
+				"maven",
+				["punctuation", "."],
+				"artifact",
+				["punctuation", "."],
+				"manager",
+				["punctuation", "."]
+			]],
+			["class-name", "DefaultWagonManager"],
+			["punctuation", "."],
+			["function", "putRemoteFile"],
+			["punctuation", "("],
+			["source", [
+				["file", "DefaultWagonManager.java"],
+				["punctuation", ":"],
+				["line-number", "237"]
+			]],
+			["punctuation", ")"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"org",
+				["punctuation", "."],
+				"apache",
+				["punctuation", "."],
+				"maven",
+				["punctuation", "."],
+				"artifact",
+				["punctuation", "."],
+				"manager",
+				["punctuation", "."]
+			]],
+			["class-name", "DefaultWagonManager"],
+			["punctuation", "."],
+			["function", "putArtifactMetadata"],
+			["punctuation", "("],
+			["source", [
+				["file", "DefaultWagonManager.java"],
+				["punctuation", ":"],
+				["line-number", "162"]
+			]],
+			["punctuation", ")"]
+		]],
+		["stack-frame", [
+			["keyword", "at"],
+			["namespace", [
+				"org",
+				["punctuation", "."],
+				"apache",
+				["punctuation", "."],
+				"maven",
+				["punctuation", "."],
+				"artifact",
+				["punctuation", "."],
+				"repository",
+				["punctuation", "."],
+				"metadata",
+				["punctuation", "."]
+			]],
+			["class-name", "DefaultRepositoryMetadataManager"],
+			["punctuation", "."],
+			["function", "deploy"],
+			["punctuation", "("],
+			["source", [
+				["file", "DefaultRepositoryMetadataManager.java"],
+				["punctuation", ":"],
+				["line-number", "437"]
+			]],
+			["punctuation", ")"]
+		]],
+		["more", [
+			["punctuation", "..."],
+			["number", "20"],
+			["keyword", "more"]
+		]]
+	]]
+]

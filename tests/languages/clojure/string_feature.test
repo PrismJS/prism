@@ -2,13 +2,15 @@
 "Fo\"obar"
 "multi-line
 string"
+\NewLine
 
 ----------------------------------------------------
 
 [
 	["string", "\"\""],
 	["string", "\"Fo\\\"obar\""],
-	["string", "\"multi-line\nstring\""]
+	["string", "\"multi-line\r\nstring\""],
+	["char", "\\NewLine"]
 ]
 
 ----------------------------------------------------

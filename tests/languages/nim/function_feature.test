@@ -6,10 +6,20 @@ takeV[T](
 ----------------------------------------------------
 
 [
-	["function", ["fo\\x9ao"]], ["punctuation", "("],
-	["function", ["class", ["operator", "*"]]], ["punctuation", "("],
-	["function", ["takeV[T]"]], ["punctuation", "("],
-	["function", ["`$`"]], ["punctuation", "("]
+	["function", ["fo\\x9ao"]],
+	["punctuation", "("],
+
+	["function", [
+		"class",
+		["operator", "*"]
+	]],
+	["punctuation", "("],
+
+	["function", ["takeV[T]"]],
+	["punctuation", "("],
+
+	["function", ["`$`"]],
+	["punctuation", "("]
 ]
 
 ----------------------------------------------------

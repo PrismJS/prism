@@ -1,0 +1,30 @@
+:livescript
+	"#foo #{ if /test/ == 'test' then 3 else 4}"
+
+----------------------------------------------------
+
+[
+	["filter-livescript", [
+		["filter-name", ":livescript"],
+		["text", [
+			["interpolated-string", [
+				["string", "\""],
+				["variable", "#foo"],
+				["string", " "],
+				["interpolation", [
+					["interpolation-punctuation", "#{"],
+					["keyword", "if"],
+					["regex", "/test/"],
+					["operator", "=="],
+					["string", "'test'"],
+					["keyword", "then"],
+					["number", "3"],
+					["keyword", "else"],
+					["number", "4"],
+					["interpolation-punctuation", "}"]
+				]],
+				["string", "\""]
+			]]
+		]]
+	]]
+]

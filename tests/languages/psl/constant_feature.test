@@ -1,0 +1,93 @@
+ALARM
+CHART_ADD_GRAPH
+CHART_DELETE_GRAPH
+CHART_DESTROY
+CHART_LOAD
+CHART_PRINT
+EOF
+OFFLINE
+OK
+PSL_PROF_LOG
+R_CHECK_HORIZ
+R_CHECK_VERT
+R_CLICKER
+R_COLUMN
+R_FRAME
+R_ICON
+R_LABEL
+R_LABEL_CENTER
+R_LIST_MULTIPLE
+R_LIST_MULTIPLE_ND
+R_LIST_SINGLE
+R_LIST_SINGLE_ND
+R_MENU
+R_POPUP
+R_POPUP_SCROLLED
+R_RADIO_HORIZ
+R_RADIO_VERT
+R_ROW
+R_SCALE_HORIZ
+R_SCALE_VERT
+R_SEP_HORIZ
+R_SEP_VERT
+R_SPINNER
+R_TEXT_FIELD
+R_TEXT_FIELD_LABEL
+R_TOGGLE
+TRIM_LEADING
+TRIM_LEADING_AND_TRAILING
+TRIM_REDUNDANT
+TRIM_TRAILING
+VOID
+WARN
+
+----------------------------------------------------
+
+[
+	["constant", "ALARM"],
+	["constant", "CHART_ADD_GRAPH"],
+	["constant", "CHART_DELETE_GRAPH"],
+	["constant", "CHART_DESTROY"],
+	["constant", "CHART_LOAD"],
+	["constant", "CHART_PRINT"],
+	["constant", "EOF"],
+	["constant", "OFFLINE"],
+	["constant", "OK"],
+	["constant", "PSL_PROF_LOG"],
+	["constant", "R_CHECK_HORIZ"],
+	["constant", "R_CHECK_VERT"],
+	["constant", "R_CLICKER"],
+	["constant", "R_COLUMN"],
+	["constant", "R_FRAME"],
+	["constant", "R_ICON"],
+	["constant", "R_LABEL"],
+	["constant", "R_LABEL_CENTER"],
+	["constant", "R_LIST_MULTIPLE"],
+	["constant", "R_LIST_MULTIPLE_ND"],
+	["constant", "R_LIST_SINGLE"],
+	["constant", "R_LIST_SINGLE_ND"],
+	["constant", "R_MENU"],
+	["constant", "R_POPUP"],
+	["constant", "R_POPUP_SCROLLED"],
+	["constant", "R_RADIO_HORIZ"],
+	["constant", "R_RADIO_VERT"],
+	["constant", "R_ROW"],
+	["constant", "R_SCALE_HORIZ"],
+	["constant", "R_SCALE_VERT"],
+	["constant", "R_SEP_HORIZ"],
+	["constant", "R_SEP_VERT"],
+	["constant", "R_SPINNER"],
+	["constant", "R_TEXT_FIELD"],
+	["constant", "R_TEXT_FIELD_LABEL"],
+	["constant", "R_TOGGLE"],
+	["constant", "TRIM_LEADING"],
+	["constant", "TRIM_LEADING_AND_TRAILING"],
+	["constant", "TRIM_REDUNDANT"],
+	["constant", "TRIM_TRAILING"],
+	["constant", "VOID"],
+	["constant", "WARN"]
+]
+
+----------------------------------------------------
+
+Test for constants

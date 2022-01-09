@@ -1,0 +1,27 @@
+func(from: "America", to: "Asia"); // Prism incorrectly highlights "from" as a keyword
+
+from element in list; // no issues here
+
+----------------------------------------------------
+
+[
+	["function", "func"],
+	["punctuation", "("],
+	["named-parameter", "from"],
+	["punctuation", ":"],
+	["string", "\"America\""],
+	["punctuation", ","],
+	["named-parameter", "to"],
+	["punctuation", ":"],
+	["string", "\"Asia\""],
+	["punctuation", ")"],
+	["punctuation", ";"],
+	["comment", "// Prism incorrectly highlights \"from\" as a keyword"],
+
+	["keyword", "from"],
+	" element ",
+	["keyword", "in"],
+	" list",
+	["punctuation", ";"],
+	["comment", "// no issues here"]
+]

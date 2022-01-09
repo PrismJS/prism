@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const { src, dest } = require('gulp');
 
@@ -58,6 +58,7 @@ function createSortedArray(compareFn) {
  * @typedef {"A" | "C" | "D" | "M" | "R" | "T" | "U" | "X" | "B"} ChangeMode
  */
 async function getCommitInfo(line) {
+	// eslint-disable-next-line regexp/no-super-linear-backtracking
 	const [, hash, message] = /^([a-f\d]+)\s+(.*)$/i.exec(line);
 
 	/* The output looks like this:
@@ -100,14 +101,16 @@ async function getLog(range) {
 }
 
 const revisionRanges = {
-	nextRelease: git.raw(['describe', '--abbrev=0', '--tags']).then(res => `${res.trim()}..HEAD`)
+	nextRelease() {
+		return git.raw(['describe', '--abbrev=0', '--tags']).then(res => `${res.trim()}..HEAD`);
+	}
 };
 const strCompare = (a, b) => a.localeCompare(b, 'en');
 
 async function changes() {
 	const { languages, plugins } = require('../components.js');
 
-	const infos = await getLog(revisionRanges.nextRelease);
+	const infos = await getLog(revisionRanges.nextRelease());
 
 	const entries = {
 		'TODO:': {},
@@ -125,7 +128,7 @@ async function changes() {
 	 * @param {string | { message: string, hash: string }} info
 	 */
 	function addEntry(category, info) {
-		const path = category.split(/\s*>>\s*/g);
+		const path = category.split(/\s*>>\s*/);
 		if (path[path.length - 1] !== '') {
 			path.push('');
 		}
@@ -228,7 +231,7 @@ async function changes() {
 					if (change.mode === 'A' && change.file.startsWith('components/prism-')) {
 						const lang = change.file.match(/prism-([\w-]+)\.js$/)[1];
 						const entry = languages[lang] || {
-							title: "REMOVED LANGUAGE " + lang,
+							title: 'REMOVED LANGUAGE ' + lang,
 						};
 						const titles = [entry.title];
 						if (entry.aliasTitles) {
@@ -265,7 +268,7 @@ async function changes() {
 		},
 
 		function changedPlugin(info) {
-			let relevantChanges = info.changes.filter(and(notGenerated, notTests, notExamples, c => !/\.(?:html|css)$/.test(c.file)));
+			let relevantChanges = info.changes.filter(and(notGenerated, notTests, notExamples, c => !/\.(?:css|html)$/.test(c.file)));
 
 			if (relevantChanges.length > 0 &&
 				relevantChanges.every(c => c.mode === 'M' && /^plugins\/.*\.js$/.test(c.file))) {
@@ -351,6 +354,8 @@ async function changes() {
 	}
 
 
+	let md = '';
+
 	/**
 	 * Stringifies the given commit info.
 	 *
@@ -367,7 +372,7 @@ async function changes() {
 		for (const subCategory of Object.keys(category).sort(strCompare)) {
 			if (subCategory) {
 				md += `${indentation}* __${subCategory}__\n`;
-				printCategory(category[subCategory], indentation + '    ')
+				printCategory(category[subCategory], indentation + '    ');
 			} else {
 				for (const info of category['']) {
 					md += `${indentation}* ${infoToString(info)}\n`;
@@ -376,7 +381,6 @@ async function changes() {
 		}
 	}
 
-	let md = '';
 	for (const category of Object.keys(entries)) {
 		md += `\n### ${category}\n\n`;
 		printCategory(entries[category]);

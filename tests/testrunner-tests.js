@@ -1,36 +1,36 @@
-"use strict";
+'use strict';
 
-const { assert } = require("chai");
-const TokenStreamTransformer = require("./helper/token-stream-transformer");
-const TestCase = require("./helper/test-case");
+const { assert } = require('chai');
+const TokenStreamTransformer = require('./helper/token-stream-transformer');
+const TestCase = require('./helper/test-case');
 
 
-describe("The token stream transformer", function () {
+describe('The token stream transformer', function () {
 
-	it("should handle all kinds of simple transformations", function () {
+	it('should handle all kinds of simple transformations', function () {
 		const tokens = [
-			{ type: "type", content: "content" },
-			"string"
+			{ type: 'type', content: 'content' },
+			'string'
 		];
 
 		const expected = [
-			["type", "content"],
-			"string"
+			['type', 'content'],
+			'string'
 		];
 
 		assert.deepEqual(TokenStreamTransformer.simplify(tokens), expected);
 	});
 
 
-	it("should handle nested structures", function () {
+	it('should handle nested structures', function () {
 		const tokens = [
 			{
-				type: "type",
+				type: 'type',
 				content: [
 					{
-						type: "insideType",
+						type: 'insideType',
 						content: [
-							{ type: "insideInsideType", content: "content" }
+							{ type: 'insideInsideType', content: 'content' }
 						]
 					}
 				]
@@ -38,9 +38,9 @@ describe("The token stream transformer", function () {
 		];
 
 		const expected = [
-			["type", [
-				["insideType", [
-					["insideInsideType", "content"]
+			['type', [
+				['insideType', [
+					['insideInsideType', 'content']
 				]]
 			]]
 		];
@@ -49,12 +49,12 @@ describe("The token stream transformer", function () {
 	});
 
 
-	it("should strip empty tokens", function () {
+	it('should strip empty tokens', function () {
 		const tokenStream = [
-			"",
-			"\r\n",
-			"\t",
-			" "
+			'',
+			'\r\n',
+			'\t',
+			' '
 		];
 
 		const expectedSimplified = [];
@@ -63,22 +63,22 @@ describe("The token stream transformer", function () {
 	});
 
 
-	it("should strip empty token tree branches", function () {
+	it('should strip empty token tree branches', function () {
 		const tokenStream = [
 			{
-				type: "type",
+				type: 'type',
 				content: [
-					"",
-					{ type: "nested", content: [""] },
-					""
+					'',
+					{ type: 'nested', content: [''] },
+					''
 				]
 			},
-			""
+			''
 		];
 
 		const expectedSimplified = [
-			["type", [
-				["nested", []]
+			['type', [
+				['nested', []]
 			]]
 		];
 
@@ -86,58 +86,58 @@ describe("The token stream transformer", function () {
 	});
 
 
-	it("should ignore all properties in tokens except value and content", function () {
+	it('should ignore all properties in tokens except value and content', function () {
 
 		const tokenStream = [
-			{ type: "type", content: "content", alias: "alias" }
+			{ type: 'type', content: 'content', alias: 'alias' }
 		];
 
 		const expectedSimplified = [
-			["type", "content"]
+			['type', 'content']
 		];
 
 		assert.deepEqual(TokenStreamTransformer.simplify(tokenStream), expectedSimplified);
 	});
 });
 
-describe("The language name parsing", function () {
+describe('The language name parsing', function () {
 
-	it("should use the last language as the main language if no language is specified", function () {
+	it('should use the last language as the main language if no language is specified', function () {
 		assert.deepEqual(
-			TestCase.parseLanguageNames("a"),
+			TestCase.parseLanguageNames('a'),
 			{
-				languages: ["a"],
-				mainLanguage: "a"
+				languages: ['a'],
+				mainLanguage: 'a'
 			}
 		);
 
 		assert.deepEqual(
-			TestCase.parseLanguageNames("a+b+c"),
+			TestCase.parseLanguageNames('a+b+c'),
 			{
-				languages: ["a", "b", "c"],
-				mainLanguage: "c"
-			}
-		);
-	});
-
-
-	it("should use the specified language as main language", function () {
-		assert.deepEqual(
-			TestCase.parseLanguageNames("a+b!+c"),
-			{
-				languages: ["a", "b", "c"],
-				mainLanguage: "b"
+				languages: ['a', 'b', 'c'],
+				mainLanguage: 'c'
 			}
 		);
 	});
 
 
-	it("should throw an error if there are multiple main languages", function () {
+	it('should use the specified language as main language', function () {
+		assert.deepEqual(
+			TestCase.parseLanguageNames('a+b!+c'),
+			{
+				languages: ['a', 'b', 'c'],
+				mainLanguage: 'b'
+			}
+		);
+	});
+
+
+	it('should throw an error if there are multiple main languages', function () {
 		assert.throw(
 			() => {
-				TestCase.parseLanguageNames("a+b!+c!");
+				TestCase.parseLanguageNames('a+b!+c!');
 			},
-			"There are multiple main languages defined."
+			'There are multiple main languages defined.'
 		);
 	});
 });

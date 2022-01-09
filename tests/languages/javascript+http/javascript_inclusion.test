@@ -5,8 +5,11 @@ var a = true;
 ----------------------------------------------------
 
 [
-	["header-name", "Content-type:"],
-	" application/javascript",
+	["header", [
+		["header-name", "Content-type"],
+		["punctuation", ":"],
+		["header-value", "application/javascript"]
+	]],
 	["application-javascript", [
 		["keyword", "var"],
 		" a ",

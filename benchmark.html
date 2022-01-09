@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8" />
+<link rel="icon" href="assets/favicon.png" />
+<title>Benchmark ▲ Prism</title>
+<link rel="stylesheet" href="assets/style.css" />
+<link rel="stylesheet" href="themes/prism.css" data-noprefix />
+<script src="assets/vendor/prefixfree.min.js"></script>
+
+<script>var _gaq = [['_setAccount', 'UA-33746269-1'], ['_trackPageview']];</script>
+<script src="https://www.google-analytics.com/ga.js" async></script>
+</head>
+<body class="language-javascript">
+
+<header>
+	<div class="intro" data-src="assets/templates/header-main.html" data-type="text/html"></div>
+
+	<h2>Benchmark</h2>
+	<p>Prism has a benchmark suite which can be run and extended similar to the test suite.</p>
+</header>
+
+<section id="running-a-benchmark">
+	<h1>Running a benchmark</h1>
+
+	<pre><code class="language-bash">npm run benchmark</code></pre>
+
+	<p>By default, the benchmark will be run for the current local version of your repository (the one which is currently checkout) and the <a href="https://github.com/PrismJS/prism/tree/master">PrismJS master branch</a>.</p>
+
+	<p>All <code>options</code> in <code>benchmark/config.json</code> can be changed by either directly editing the file or by passing arguments to the run command. I.e. you can overwrite the default <code>maxTime</code> value with 10s by running the following command:</p>
+
+	<pre><code class="language-bash">npm run benchmark -- --maxTime=10</code></pre>
+
+	<section id="running-a-benchmark-for-specific-languages">
+		<h2>Running a benchmark for specific languages</h2>
+
+		<p>To run the tests only for a certain set of languages, you can use the <code>language</code> option:</p>
+		<pre><code class="language-bash">npm run benchmark -- --language=javascript,markup</code></pre>
+	</section>
+</section>
+
+<section id="remotes">
+	<h1>Remotes</h1>
+
+	<p>Remotes all you to compare different branches from different repos or the same repo. Repos can be the PrismJS repo or any your fork.</p>
+
+	<p>All remotes are specified under the <code>remotes</code> section in <code>benchmark/config.json</code>. To add a new remote, add an object with the <code>repo</code> and <code>branch</code> properties to the array. Note: if the branch property is not specified, the <code>master</code> branch will be used. <br>
+		Example:</p>
+
+	<pre><code class="language-javascript">{
+	repo: 'https://github.com/MyUserName/prism.git',
+	branch: 'feature-1'
+}</code></pre>
+
+	<p>To remove a remote, simply remove (delete or comment out) its entry in the <code>remotes</code> array.</p>
+</section>
+
+<section id="cases">
+	<h1>Cases</h1>
+
+	<p>A case is a collection of files where each file will be benchmarked with all candidates (local + remotes) and a specific language.</p>
+
+	<p>The language of a case is determined by its key in the <code>cases</code> object in <code>benchmark/config.json</code> where the key has to have the same format as the directory names in <code class="language-text">tests/languages/</code>. Example:</p>
+	<pre><code class="language-javascript">cases: {
+	'css!+css-extras': ...
+}</code></pre>
+
+	<p>The files of a case can be specified by:</p>
+
+	<ul>
+		<li>
+			<p>Specifying the URI of files. A URI is either an HTTPS URL or a file path relative to <code>./benchmark/</code>.</p>
+			<pre><code class="language-javascript">cases: {
+	'css': {
+		files: [
+			'style.css',
+			'https://foo.com/main.css'
+		]
+	}
+}</code></pre>
+		</li>
+		<li>
+			<p>Using <code>extends</code> to copy all files from another case.</p>
+			<pre><code class="language-javascript">cases: {
+	'css': { files: [ 'style.css' ] },
+	'css!+css-extras': {
+		extends: 'css'
+	}
+}</code></pre>
+		</li>
+	</ul>
+</section>
+
+<section id="output-explained">
+	<h1>Output explained</h1>
+
+	<p>The output of a benchmark might look like this:</p>
+
+	<pre><code class="language-none">Found 1 cases with 2 files in total.
+Test 3 candidates on tokenize
+Estimated duration: 1m 0s</code></pre>
+
+	<p>The first few lines give some information on the benchmark which is about to be run. This includes the number of cases (here 1), the total number of files in all cases (here 2), the number of candidates (here 3), the test function (here <code>tokenize</code>), and a time estimate for how long the benchmark will take (here 1 minute).</p>
+
+	<p>What follows are the results for all cases and their files:</p>
+
+	<pre><code class="language-none">json
+
+  components.json (25 kB)
+  | local                         5.45ms ± 13% 138smp
+  | PrismJS@master                4.92ms ±  2% 145smp
+  | RunDevelopment@greedy-fix     5.62ms ±  4% 128smp
+  package-lock.json (189 kB)
+  | local                       117.75ms ± 27% 27smp
+  | PrismJS@master              121.40ms ± 32% 29smp
+  | RunDevelopment@greedy-fix   190.79ms ± 41% 20smp</code></pre>
+
+	<p>A case starts with its key (here <code>json</code>) and is followed by all of its files (here <code>components.json</code> and <code>package-lock.json</code>). Under each file, the results for local and all remotes are shown. To explain the meaning of the values, let's pick a single line:</p>
+
+	<code class="language-none">PrismJS@master              121.40ms ± 32% 29smp</code>
+
+	<p>First comes the name of the remote (here PrismJS@master) followed by the mean of all samples, the relative margin of error, and the number of samples.</p>
+
+	<p>The last part of the output is a small summary of all cases which simply counts how many times a candidate has been the best or worst for a file.</p>
+
+	<pre><code class="language-none">summary
+                             best  worst
+  local                         1      1
+  PrismJS@master                0      1
+  RunDevelopment@greedy-fix     1      0</code></pre>
+</section>
+
+
+<footer data-src="assets/templates/footer.html" data-type="text/html"></footer>
+
+<script src="assets/vendor/utopia.js"></script>
+<script src="prism.js"></script>
+<script src="components/prism-bash.js"></script>
+<script src="components.js"></script>
+<script src="assets/code.js"></script>
+
+</body>
+</html>

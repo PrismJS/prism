@@ -5,15 +5,35 @@
 (foo 1e+3 1e-3 3.14159 3.14159e-1)
 (foo 8/3)
 (foo 3+4i 2.5+0.0i 2.5+0.0i -2.5e4+0.0e4i 3+0i -2e-5i)
-(list 10i +10i -10i 10.10i 10+10i 10.10+10.10i 10-10i 10e+10i 10+10e+10i)
+(list +10i -10i 10+10i 10.10+10.10i 10-10i 10+10e+10i)
 
 (list #d123 #e#d123e-4 #d#i12 #i-1.234i)
 
 (list #xBAD #b1110011 #o777)
 (list #i#x10 #i#x10+10i #b10+10i)
 
+[list 123]
+
+10+i
+10+.1i
+10+1.i
+
+10.0E2
+10.0D2
+10.0L2
+10.0S2
+10.0F2
+
+10.0e2
+10.0d2
+10.0l2
+10.0s2
+10.0f2
+
 ; not a number but a symbol
 (define 1+2 10)
+
+(list 10.0P2 10.0g2 10.0w2)
 
 ----------------------------------------------------
 
@@ -59,14 +79,11 @@
 
 	["punctuation", "("],
 	["builtin", "list"],
-	["number", "10i"],
 	["number", "+10i"],
 	["number", "-10i"],
-	["number", "10.10i"],
 	["number", "10+10i"],
 	["number", "10.10+10.10i"],
 	["number", "10-10i"],
-	["number", "10e+10i"],
 	["number", "10+10e+10i"],
 	["punctuation", ")"],
 
@@ -92,8 +109,37 @@
 	["number", "#b10+10i"],
 	["punctuation", ")"],
 
+	["punctuation", "["], ["builtin", "list"], ["number", "123"], ["punctuation", "]"],
+
+	["number", "10+i"],
+	["number", "10+.1i"],
+	["number", "10+1.i"],
+
+	["number", "10.0E2"],
+	["number", "10.0D2"],
+	["number", "10.0L2"],
+	["number", "10.0S2"],
+	["number", "10.0F2"],
+
+	["number", "10.0e2"],
+	["number", "10.0d2"],
+	["number", "10.0l2"],
+	["number", "10.0s2"],
+	["number", "10.0f2"],
+
 	["comment", "; not a number but a symbol"],
-	["punctuation", "("], ["keyword", "define"], " 1+2 ", ["number", "10"], ["punctuation", ")"]
+
+	["punctuation", "("],
+	["keyword", "define"],
+	" 1+2 ",
+	["number", "10"],
+	["punctuation", ")"],
+
+	["punctuation", "("],
+	["builtin", "list"],
+	" 10.0P2 10.0g2 10.0w2",
+	["punctuation", ")"]
+
 ]
 
 ----------------------------------------------------

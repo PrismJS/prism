@@ -1,0 +1,83 @@
+At {1,time,::jmm} on {1,date,::dMMMM}, there was {2} on planet {3,number,integer}.
+
+{foo,spellout}
+{foo,ordinal}
+{foo,duration}
+
+----------------------------------------------------
+
+[
+	"At ",
+	["argument", [
+		["argument-delimiter", "{"],
+		["content", [
+			["argument-name", "1"],
+			["punctuation", ","],
+			["arg-type", "time"],
+			["punctuation", ","],
+			["arg-skeleton", "::jmm"]
+		]],
+		["argument-delimiter", "}"]
+	]],
+	" on ",
+	["argument", [
+		["argument-delimiter", "{"],
+		["content", [
+			["argument-name", "1"],
+			["punctuation", ","],
+			["arg-type", "date"],
+			["punctuation", ","],
+			["arg-skeleton", "::dMMMM"]
+		]],
+		["argument-delimiter", "}"]
+	]],
+	", there was ",
+	["argument", [
+		["argument-delimiter", "{"],
+		["content", [
+			["argument-name", "2"]
+		]],
+		["argument-delimiter", "}"]
+	]],
+	" on planet ",
+	["argument", [
+		["argument-delimiter", "{"],
+		["content", [
+			["argument-name", "3"],
+			["punctuation", ","],
+			["arg-type", "number"],
+			["punctuation", ","],
+			["arg-style", "integer"]
+		]],
+		["argument-delimiter", "}"]
+	]],
+	".\r\n\r\n",
+
+	["argument", [
+		["argument-delimiter", "{"],
+		["content", [
+			["argument-name", "foo"],
+			["punctuation", ","],
+			["arg-type", "spellout"]
+		]],
+		["argument-delimiter", "}"]
+	]],
+	["argument", [
+		["argument-delimiter", "{"],
+		["content", [
+			["argument-name", "foo"],
+			["punctuation", ","],
+			["arg-type", "ordinal"]
+		]],
+		["argument-delimiter", "}"]
+	]],
+	["argument", [
+		["argument-delimiter", "{"],
+		["content", [
+			["argument-name", "foo"],
+			["punctuation", ","],
+			["arg-type", "duration"]
+		]],
+		["argument-delimiter", "}"]
+	]]
+]

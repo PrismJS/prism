@@ -1,0 +1,30 @@
+myfunction(a, b,123)
+payload.myFunction(1,2,3)
+
+----------------------------------------------------
+
+[
+	["function", "myfunction"],
+	["punctuation", "("],
+	"a",
+	["punctuation", ","],
+	" b",
+	["punctuation", ","],
+	["number", "123"],
+	["punctuation", ")"],
+
+	"\r\npayload",
+	["punctuation", "."],
+	["function", "myFunction"],
+	["punctuation", "("],
+	["number", "1"],
+	["punctuation", ","],
+	["number", "2"],
+	["punctuation", ","],
+	["number", "3"],
+	["punctuation", ")"]
+]
+
+----------------------------------------------------
+
+Check for functions
