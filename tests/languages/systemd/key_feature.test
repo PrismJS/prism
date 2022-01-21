@@ -4,6 +4,6 @@ foo  =
 ----------------------------------------------------
 
 [
-	["key", "foo"], ["operator", "="],
-	["key", "foo"], ["operator", "="]
+	["key", "foo"], ["punctuation", "="],
+	["key", "foo"], ["punctuation", "="]
 ]

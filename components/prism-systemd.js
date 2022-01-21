@@ -68,7 +68,7 @@
 			}
 		},
 
-		'operator': /=/
+		'punctuation': /=/
 	};
 
 }(Prism));
