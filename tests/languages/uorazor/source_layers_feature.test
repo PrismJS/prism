@@ -1,0 +1,15 @@
+backpack
+gloves
+self
+
+----------------------------------------------------
+
+[
+	["source-layers", "backpack"],
+	["source-layers", "gloves"],
+	["source-layers", "self"]
+]
+
+----------------------------------------------------
+
+Checks for source layers.

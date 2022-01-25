@@ -1,0 +1,13 @@
+# This is a comment
+// so is this
+
+----------------------------------------------------
+
+[
+	["comment-hash", "# This is a comment"],
+	["comment-slash", "// so is this"]
+]
+
+----------------------------------------------------
+
+Checks for comments.
