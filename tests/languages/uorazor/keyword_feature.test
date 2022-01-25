@@ -1,0 +1,39 @@
+and
+as
+break
+continue
+else
+elseif
+endfor
+endif
+for
+if
+loop
+not
+or
+replay
+stop
+
+----------------------------------------------------
+
+[
+	["keyword", "and"],
+	["keyword", "as"],
+	["keyword", "break"],
+	["keyword", "continue"],
+	["keyword", "else"],
+	["keyword", "elseif"],
+	["keyword", "endfor"],
+	["keyword", "endif"],
+	["keyword", "for"],
+	["keyword", "if"],
+	["keyword", "loop"],
+	["keyword", "not"],
+	["keyword", "or"],
+	["keyword", "replay"],
+	["keyword", "stop"]
+]
+
+----------------------------------------------------
+
+Checks for keywords.
