@@ -17,7 +17,7 @@ endwhile
 	]],
 
 	["keyword", "while"],
-	["source-commands", "skill"],
+	["function", "skill"],
 	["string", [
 		["punctuation", "\""],
 		"anatomy",
