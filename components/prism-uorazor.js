@@ -1,19 +1,21 @@
 Prism.languages.uorazor = {
 	'comment-hash': {
-		pattern: /(?:#.*$)/gm,
-		alias: 'comment'
+		pattern: /#.*/,
+		alias: 'comment',
+		greedy: true
 	},
 	'comment-slash': {
-		pattern: /(?:\/\/.*$)/gm,
-		alias: 'comment'
+		pattern: /\/\/.*/,
+		alias: 'comment',
+		greedy: true
 	},
 	'source-layers': {
 		pattern: /\b(?:arms|backpack|blue|bracelet|cancel|clear|cloak|criminal|earrings|enemy|facialhair|friend|friendly|gloves|gray|grey|ground|hair|head|innerlegs|innertorso|innocent|lefthand|middletorso|murderer|neck|nonfriendly|onehandedsecondary|outerlegs|outertorso|pants|red|righthand|ring|self|shirt|shoes|talisman|waist)\b/i,
-		alias: 'punctuation'
+		alias: 'function'
 	},
 	'source-commands': {
 		pattern: /\b(?:alliance|attack|cast|clearall|clearignore|clearjournal|clearlist|clearsysmsg|createlist|createtimer|dclick|dclicktype|dclickvar|dress|dressconfig|drop|droprelloc|emote|getlabel|guild|gumpclose|gumpresponse|hotkey|ignore|lasttarget|lift|lifttype|menu|menuresponse|msg|org|organize|organizer|overhead|pause|poplist|potion|promptresponse|pushlist|removelist|removetimer|rename|restock|say|scav|scavenger|script|setability|setlasttarget|setskill|settimer|setvar|sysmsg|target|targetloc|targetrelloc|targettype|undress|unignore|unsetvar|useobject|useonce|useskill|usetype|virtue|wait|waitforgump|waitformenu|waitforprompt|waitforstat|waitforsysmsg|waitfortarget|walk|wfsysmsg|wft|whisper|yell)\b/,
-		alias: 'punctuation'
+		alias: 'function'
 	},
 	'tag-name': {
 		pattern: /(^\{%-?\s*)\w+/,
