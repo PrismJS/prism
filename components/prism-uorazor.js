@@ -9,6 +9,13 @@ Prism.languages.uorazor = {
 		alias: 'comment',
 		greedy: true
 	},
+	'string': {
+		pattern: /("|')(?:\\.|(?!\1)[^\\\r\n])*\1/,
+		inside: {
+			'punctuation': /^['"]|['"]$/
+		},
+		greedy: true
+	},
 	'source-layers': {
 		pattern: /\b(?:arms|backpack|blue|bracelet|cancel|clear|cloak|criminal|earrings|enemy|facialhair|friend|friendly|gloves|gray|grey|ground|hair|head|innerlegs|innertorso|innocent|lefthand|middletorso|murderer|neck|nonfriendly|onehandedsecondary|outerlegs|outertorso|pants|red|righthand|ring|self|shirt|shoes|talisman|waist)\b/i,
 		alias: 'function'
@@ -25,12 +32,6 @@ Prism.languages.uorazor = {
 	'delimiter': {
 		pattern: /^\{[{%]-?|-?[%}]\}$/,
 		alias: 'punctuation'
-	},
-	'string': {
-		pattern: /("|')(?:\\.|(?!\1)[^\\\r\n])*\1/,
-		inside: {
-			'punctuation': /^['"]|['"]$/
-		}
 	},
 	'function': /\b(?:atlist|close|closest|count|counter|counttype|dead|dex|diffhits|diffmana|diffstam|diffweight|find|findbuff|finddebuff|findlayer|findtype|findtypelist|followers|gumpexists|hidden|hits|hp|hue|human|humanoid|ingump|inlist|insysmessage|insysmsg|int|invul|lhandempty|list|listexists|mana|maxhits|maxhp|maxmana|maxstam|maxweight|monster|mounted|name|next|noto|paralyzed|poisoned|position|prev|previous|queued|rand|random|rhandempty|skill|stam|str|targetexists|timer|timerexists|varexist|warmode|weight)\b/,
 	'keyword': /\b(?:and|as|break|continue|else|elseif|endfor|endif|endwhile|for|if|loop|not|or|replay|stop|while)\b/,
