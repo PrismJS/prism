@@ -1,0 +1,151 @@
+<script>
+  // The drop is highlighted because liquid will render inside the comment.
+  // As such, it isn't a "real" comment w.r.t. liquid.
+  // comment {{ product.value }}
+  function main(arg1) {
+    if (condition) {
+      {% if condition %}
+        const foo = {{ variable | filter: arg1 | json }}
+      {% endif %}
+    }
+  }
+</script>
+
+{% javascript %}
+  // The drop is highlighted because liquid will render inside the comment.
+  // As such, it isn't a "real" comment w.r.t. liquid.
+  // comment {{ product.value }}
+  function main(arg1) {
+    if (condition) {
+      {% if condition %}
+        const foo = {{ variable | filter: arg1 | json }}
+      {% endif %}
+    }
+  }
+{% endjavascript %}
+
+----------------------------------------------------
+
+[
+	["liquid", [
+		["script", [
+			["tag", "<script>"],
+
+			["javascript", [
+				["comment", "// The drop is highlighted because liquid will render inside the comment."],
+
+				["comment", "// As such, it isn't a \"real\" comment w.r.t. liquid."],
+
+				["comment", "// comment {{ product.value }}"],
+
+				["keyword", "function"],
+				["function", "main"],
+				["punctuation", "("],
+				["parameter", ["arg1"]],
+				["punctuation", ")"],
+				["punctuation", "{"],
+
+				["keyword", "if"],
+				["punctuation", "("],
+				"condition",
+				["punctuation", ")"],
+				["punctuation", "{"],
+
+				["liquid", [
+					["delimiter", "{%"],
+					["keyword", "if"],
+					" condition ",
+					["delimiter", "%}"]
+				]],
+
+				["keyword", "const"],
+				" foo ",
+				["operator", "="],
+				["liquid", [
+					["delimiter", "{{"],
+					" variable ",
+					["operator", "|"],
+					["object", "filter"],
+					["operator", ":"],
+					" arg1 ",
+					["operator", "|"],
+					["function", "json"],
+					["delimiter", "}}"]
+				]],
+
+				["liquid", [
+					["delimiter", "{%"],
+					["keyword", "endif"],
+					["delimiter", "%}"]
+				]],
+
+				["punctuation", "}"],
+
+				["punctuation", "}"]
+			]],
+
+			["tag", "</script>"]
+		]]
+	]],
+
+	["liquid", [
+		["script", [
+			["tag", "{% javascript %}"],
+
+			["javascript", [
+				["comment", "// The drop is highlighted because liquid will render inside the comment."],
+
+				["comment", "// As such, it isn't a \"real\" comment w.r.t. liquid."],
+
+				["comment", "// comment {{ product.value }}"],
+
+				["keyword", "function"],
+				["function", "main"],
+				["punctuation", "("],
+				["parameter", ["arg1"]],
+				["punctuation", ")"],
+				["punctuation", "{"],
+
+				["keyword", "if"],
+				["punctuation", "("],
+				"condition",
+				["punctuation", ")"],
+				["punctuation", "{"],
+
+				["liquid", [
+					["delimiter", "{%"],
+					["keyword", "if"],
+					" condition ",
+					["delimiter", "%}"]
+				]],
+
+				["keyword", "const"],
+				" foo ",
+				["operator", "="],
+				["liquid", [
+					["delimiter", "{{"],
+					" variable ",
+					["operator", "|"],
+					["object", "filter"],
+					["operator", ":"],
+					" arg1 ",
+					["operator", "|"],
+					["function", "json"],
+					["delimiter", "}}"]
+				]],
+
+				["liquid", [
+					["delimiter", "{%"],
+					["keyword", "endif"],
+					["delimiter", "%}"]
+				]],
+
+				["punctuation", "}"],
+
+				["punctuation", "}"]
+			]],
+
+			["tag", "{% endjavascript %}"]
+		]]
+	]]
+]

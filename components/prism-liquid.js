@@ -1,7 +1,26 @@
-Prism.languages.liquid = {
+Prism.languages.liquid = {};
+Object.assign(Prism.languages.liquid, {
 	'comment': {
 		pattern: /(^\{%\s*comment\s*%\})[\s\S]+(?=\{%\s*endcomment\s*%\}$)/,
 		lookbehind: true
+	},
+	'script': {
+		pattern: /<script>[\s\S]*<\/script>|\{% javascript %\}[\s\S]*\{% endjavascript %\}/,
+		greedy: true,
+		inside: {
+			'tag': /<script>|<\/script>|\{% javascript %\}|\{% endjavascript %\}/,
+			'javascript': {
+				alias: ['js', 'javascript', 'language-javascript'],
+				pattern: /\S+(?:\s+\S+)*/,
+				inside: {
+					'liquid': {
+						pattern: /\{%.*%\}|\{\{.*\}\}/,
+						inside: Prism.languages.liquid,
+					},
+					rest: Prism.languages.javascript,
+				}
+			},
+		}
 	},
 	'delimiter': {
 		pattern: /^\{(?:\{\{|[%\{])-?|-?(?:\}\}|[%\}])\}$/,
@@ -38,10 +57,10 @@ Prism.languages.liquid = {
 		pattern: /\bempty\b/,
 		alias: 'keyword'
 	},
-};
+});
 
 Prism.hooks.add('before-tokenize', function (env) {
-	var liquidPattern = /\{%\s*comment\s*%\}[\s\S]*?\{%\s*endcomment\s*%\}|\{(?:%[\s\S]*?%|\{\{[\s\S]*?\}\}|\{[\s\S]*?\})\}/g;
+	var liquidPattern = /\{% javascript %\}[\s\S]*\{% endjavascript %\}|<script>[\s\S]*<\/script>|\{%\s*comment\s*%\}[\s\S]*?\{%\s*endcomment\s*%\}|\{(?:%[\s\S]*?%|\{\{[\s\S]*?\}\}|\{[\s\S]*?\})\}/g;
 	var insideRaw = false;
 
 	Prism.languages['markup-templating'].buildPlaceholders(env, 'liquid', liquidPattern, function (match) {
