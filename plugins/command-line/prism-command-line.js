@@ -133,10 +133,10 @@
 		for (var i = 0, l = codeLines.length; i < l; i++) {
 			// Add spans to allow distinction of input/output text for styling
 			if (outputLines.hasOwnProperty(i)) {
-				codeLines[i] = '<span class="command-line-output">'
+				codeLines[i] = '<span class="token output">'
 					+ outputLines[i] + '</span>';
 			} else {
-				codeLines[i] = '<span class="command-line-input">'
+				codeLines[i] = '<span class="token command">'
 					+ codeLines[i] + '</span>';
 			}
 		}
