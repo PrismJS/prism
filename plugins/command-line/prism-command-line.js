@@ -130,9 +130,14 @@
 		// Reinsert the output lines into the highlighted code. -- cwells
 		var codeLines = env.highlightedCode.split('\n');
 		var outputLines = commandLine.outputLines || [];
-		for (var i = 0, l = outputLines.length; i < l; i++) {
+		for (var i = 0, l = codeLines.length; i < l; i++) {
+			// Add spans to allow distinction of input/output text for styling
 			if (outputLines.hasOwnProperty(i)) {
-				codeLines[i] = outputLines[i];
+				codeLines[i] = '<span class="token output">'
+					+ outputLines[i] + '</span>';
+			} else {
+				codeLines[i] = '<span class="token command">'
+					+ codeLines[i] + '</span>';
 			}
 		}
 		env.highlightedCode = codeLines.join('\n');
