@@ -99,6 +99,7 @@ INCLUDEFILE
 XINCLUDEFILE
 MACRO
 ENDMACRO
+FOREVER
 
 ----------------------------------------------------
 
@@ -203,7 +204,8 @@ ENDMACRO
 	["keyword", "INCLUDEFILE"],
 	["keyword", "XINCLUDEFILE"],
 	["keyword", "MACRO"],
-	["keyword", "ENDMACRO"]
+	["keyword", "ENDMACRO"],
+  ["keyword", "FOREVER"]
 ]
 
 ----------------------------------------------------
