@@ -13,23 +13,6 @@
 		: function (s, p) { return s.indexOf(p) === 0; };
 
 	/**
-	 * Repeats the given string some number of times.
-	 *
-	 * This is just a polyfill for `String.prototype.repeat`.
-	 *
-	 * @param {string} str
-	 * @param {number} times
-	 * @returns {string}
-	 */
-	function repeat(str, times) {
-		var s = '';
-		for (var i = 0; i < times; i++) {
-			s += str;
-		}
-		return s;
-	}
-
-	/**
 	 * Returns whether the given hook environment has a command line info object.
 	 *
 	 * @param {any} env
@@ -87,9 +70,9 @@
 		// Identify code lines that are a continuation line and thus don't need
 		// a prompt
 		if (lineContinuationStr && codeLines.length > 1) {
-			for (var i = 1; i < codeLines.length; i++) {
-				if (codeLines.hasOwnProperty(i - 1) && codeLines[i - 1].endsWith(lineContinuationStr)) {
-					continuationLineIdxs.push(i);
+			for (var j = 1; j < codeLines.length; j++) {
+				if (codeLines.hasOwnProperty(j - 1) && codeLines[j - 1].endsWith(lineContinuationStr)) {
+					continuationLineIdxs.push(j);
 				}
 			}
 		}
@@ -200,11 +183,11 @@
 		var continuationPromptLine = '<span data-continuation-prompt="' + continuationPromptText + '"></span>';
 
 		// Assemble all the appropriate prompt/continuation lines
-		for (var i = 0; i < rowCount; i++) {
-			if (continuationLineIdxs.includes(i)) {
-				promptLines+=continuationPromptLine;
+		for (var j = 0; j < rowCount; j++) {
+			if (continuationLineIdxs.includes(j)) {
+				promptLines += continuationPromptLine;
 			} else {
-				promptLines+=promptLine;
+				promptLines += promptLine;
 			}
 		}
 
