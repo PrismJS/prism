@@ -79,6 +79,21 @@
 		}
 
 		var codeLines = env.code.split('\n');
+
+		/** @type {int[]} */
+		var continuationLineIdxs = commandLine.continuationLineIdxs = [];
+		var lineContinuationStr = pre.getAttribute('data-continuation-str');
+
+		// Identify code lines that are a continuation line and thus don't need
+		// a prompt
+		if (lineContinuationStr && codeLines.length > 1) {
+			for (var i = 1; i < codeLines.length; i++) {
+				if (codeLines.hasOwnProperty(i - 1) && codeLines[i - 1].endsWith(lineContinuationStr)) {
+					continuationLineIdxs.push(i);
+				}
+			}
+		}
+
 		commandLine.numberOfLines = codeLines.length;
 		/** @type {string[]} */
 		var outputLines = commandLine.outputLines = [];
@@ -168,15 +183,29 @@
 		}
 
 		// Create the "rows" that will become the command-line prompts. -- cwells
-		var promptLines;
+		var promptLines = '';
 		var rowCount = commandLine.numberOfLines || 0;
 		var promptText = getAttribute('data-prompt', '');
+		var promptLine;
 		if (promptText !== '') {
-			promptLines = repeat('<span data-prompt="' + promptText + '"></span>', rowCount);
+			promptLine = '<span data-prompt="' + promptText + '"></span>';
 		} else {
 			var user = getAttribute('data-user', 'user');
 			var host = getAttribute('data-host', 'localhost');
-			promptLines = repeat('<span data-user="' + user + '" data-host="' + host + '"></span>', rowCount);
+			promptLine = '<span data-user="' + user + '" data-host="' + host + '"></span>';
+		}
+
+		var continuationLineIdxs = commandLine.continuationLineIdxs || [];
+		var continuationPromptText = getAttribute('data-continuation-prompt', '>');
+		var continuationPromptLine = '<span data-continuation-prompt="' + continuationPromptText + '"></span>';
+
+		// Assemble all the appropriate prompt/continuation lines
+		for (var i = 0; i < rowCount; i++) {
+			if (continuationLineIdxs.includes(i)) {
+				promptLines+=continuationPromptLine;
+			} else {
+				promptLines+=promptLine;
+			}
 		}
 
 		// Create the wrapper element. -- cwells
@@ -200,3 +229,4 @@
 	});
 
 }());
+// vim: set tabstop=2 shiftwidth=2 noexpandtab:

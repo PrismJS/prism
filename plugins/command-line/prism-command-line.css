@@ -6,6 +6,7 @@
 	letter-spacing: -1px;
 	margin-right: 1em;
 	pointer-events: none;
+	text-align: right;
 
 	-webkit-user-select: none;
 	-moz-user-select: none;
@@ -30,4 +31,8 @@
 
 .command-line-prompt > span[data-prompt]:before {
 	content: attr(data-prompt);
+}
+
+.command-line-prompt > span[data-continuation-prompt]:before {
+	content: attr(data-continuation-prompt);
 }
