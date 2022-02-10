@@ -49,6 +49,14 @@
 	</dl>
 
 	<p>Optional: To automatically present some lines as output, you can prefix those lines with any string and specify the prefix using the <code class="language-markup">data-filter-output</code> attribute on the <code class="language-markup">&lt;pre></code> element. For example, <code class="language-markup">data-filter-output="(out)"</code> will treat lines beginning with <code class="language-markup">(out)</code> as output and remove the prefix.</p>
+
+	<p>Output lines are user selectable by default, so if you select the whole content of the code block, it will select the shell commands and any output lines. This may not be desireable if you want to copy/paste just the commands and not the output. If you want to make the output not user selectable then add the following to your CSS:</p>
+
+	<pre><code class="language-css">.command-line span.token.output {
+	user-select: none;
+}</code></pre>
+
+	<p>Optional: For multi-line commands you can specify the <code class="language-markup">data-continuation-str</code> attribute on the <code class="language-markup">&lt;pre></code> element. For example, <code class="language-markup">data-continuation-str="\"</code> will treat lines ending with <code class="language-markup">\</code> as being continued on the following line. Continued lines will have a prompt as set by the attribute <code class="language-markup">data-continuation-prompt</code> or a default of <code class="language-markup">&gt;</code>.</p>
 </section>
 
 <section>
@@ -89,6 +97,26 @@ d-r--        10/14/2015   5:06 PM            Pictures
 d-r--        10/14/2015   5:06 PM            Saved Games
 d-r--        10/14/2015   5:06 PM            Searches
 d-r--        10/14/2015   5:06 PM            Videos</code></pre>
+
+	<h2>Line continuation with Output (bash)</h2>
+<pre class="command-line" data-filter-output="(out)" data-continuation-str="\" ><code class="language-bash">echo "hello"
+(out)hello
+echo one \
+two \
+three
+(out)one two three
+(out)
+echo "goodbye"
+(out)goodbye</code></pre>
+
+	<h2>Line continuation with Output (PowerShell)</h2>
+<pre class="command-line" data-prompt="PS C:\Users\Chris>" data-continuation-prompt=">>" data-filter-output="(out)" data-continuation-str=" `"><code class="language-powershell">Write-Host `
+'Hello' `
+'from' `
+'PowerShell!'
+(out)Hello from PowerShell!
+Write-Host 'Goodbye from PowerShell!'
+(out)Goodbye from PowerShell!</code></pre>
 
 </section>
 

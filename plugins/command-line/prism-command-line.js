@@ -12,22 +12,16 @@
 		? function (s, p) { return s.startsWith(p); }
 		: function (s, p) { return s.indexOf(p) === 0; };
 
-	/**
-	 * Repeats the given string some number of times.
-	 *
-	 * This is just a polyfill for `String.prototype.repeat`.
-	 *
-	 * @param {string} str
-	 * @param {number} times
-	 * @returns {string}
-	 */
-	function repeat(str, times) {
-		var s = '';
-		for (var i = 0; i < times; i++) {
-			s += str;
+	// Support for IE11 that has no endsWith()
+	/** @type {(str: string, suffix: string) => boolean} */
+	var endsWith = ''.endsWith
+		? function (str, suffix) {
+			return str.endsWith(suffix);
 		}
-		return s;
-	}
+		: function (str, suffix) {
+			var len = str.length;
+			return str.substring(len - suffix.length, len) === suffix;
+		};
 
 	/**
 	 * Returns whether the given hook environment has a command line info object.
@@ -79,6 +73,22 @@
 		}
 
 		var codeLines = env.code.split('\n');
+
+		var continuationLineIndicies = commandLine.continuationLineIndicies = new Set();
+		var lineContinuationStr = pre.getAttribute('data-continuation-str');
+
+		// Identify code lines that are a continuation line and thus don't need
+		// a prompt
+		if (lineContinuationStr && codeLines.length > 1) {
+			for (var j = 1; j < codeLines.length; j++) {
+				if (codeLines.hasOwnProperty(j - 1)
+						&& endsWith(codeLines[j - 1], lineContinuationStr)) {
+					// Mark this line as being a continuation line
+					continuationLineIndicies.add(j);
+				}
+			}
+		}
+
 		commandLine.numberOfLines = codeLines.length;
 		/** @type {string[]} */
 		var outputLines = commandLine.outputLines = [];
@@ -168,15 +178,29 @@
 		}
 
 		// Create the "rows" that will become the command-line prompts. -- cwells
-		var promptLines;
+		var promptLines = '';
 		var rowCount = commandLine.numberOfLines || 0;
 		var promptText = getAttribute('data-prompt', '');
+		var promptLine;
 		if (promptText !== '') {
-			promptLines = repeat('<span data-prompt="' + promptText + '"></span>', rowCount);
+			promptLine = '<span data-prompt="' + promptText + '"></span>';
 		} else {
 			var user = getAttribute('data-user', 'user');
 			var host = getAttribute('data-host', 'localhost');
-			promptLines = repeat('<span data-user="' + user + '" data-host="' + host + '"></span>', rowCount);
+			promptLine = '<span data-user="' + user + '" data-host="' + host + '"></span>';
+		}
+
+		var continuationLineIndicies = commandLine.continuationLineIndicies || new Set();
+		var continuationPromptText = getAttribute('data-continuation-prompt', '>');
+		var continuationPromptLine = '<span data-continuation-prompt="' + continuationPromptText + '"></span>';
+
+		// Assemble all the appropriate prompt/continuation lines
+		for (var j = 0; j < rowCount; j++) {
+			if (continuationLineIndicies.has(j)) {
+				promptLines += continuationPromptLine;
+			} else {
+				promptLines += promptLine;
+			}
 		}
 
 		// Create the wrapper element. -- cwells
