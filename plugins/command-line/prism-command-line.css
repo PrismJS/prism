@@ -15,7 +15,7 @@
 }
 
 .command-line-prompt > span:before {
-	color: #999;
+	opacity: 0.4;
 	content: ' ';
 	display: block;
 	padding-right: 0.8em;
@@ -35,4 +35,11 @@
 
 .command-line-prompt > span[data-continuation-prompt]:before {
 	content: attr(data-continuation-prompt);
+}
+
+.command-line span.token.output {
+  /* Make shell output a bit lighter to distinguish them from shell commands */
+	opacity: 0.7;
+  /* Ignore shell output lines when selecting to copy/paste */
+	user-select: none;
 }
