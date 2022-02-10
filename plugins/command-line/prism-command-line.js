@@ -4,16 +4,6 @@
 		return;
 	}
 
-	// Polyfill for pre-ES6 Support, i.e. Internet Explorer
-	if (!String.prototype.endsWith) {
-		String.prototype.endsWith = function (search, this_len) {
-			if (this_len === undefined || this_len > this.length) {
-				this_len = this.length;
-			}
-			return this.substring(this_len - search.length, this_len) === search;
-		};
-	}
-
 	var CLASS_PATTERN = /(?:^|\s)command-line(?:\s|$)/;
 	var PROMPT_CLASS = 'command-line-prompt';
 
@@ -21,6 +11,17 @@
 	var startsWith = ''.startsWith
 		? function (s, p) { return s.startsWith(p); }
 		: function (s, p) { return s.indexOf(p) === 0; };
+
+	// Support for IE11 that has no endsWith()
+	/** @type {(str: string, suffix: string) => boolean} */
+	var endsWith = ''.endsWith
+		? function (str, suffix) {
+			return str.endsWith(suffix);
+		}
+		: function (str, suffix) {
+			var len = str.length;
+			return str.substring(len - suffix.length, len) === suffix;
+		};
 
 	/**
 	 * Returns whether the given hook environment has a command line info object.
@@ -81,7 +82,7 @@
 		if (lineContinuationStr && codeLines.length > 1) {
 			for (var j = 1; j < codeLines.length; j++) {
 				if (codeLines.hasOwnProperty(j - 1)
-						&& codeLines[j - 1].endsWith(lineContinuationStr)) {
+						&& endsWith(codeLines[j - 1], lineContinuationStr)) {
 					// Mark this line as being a continuation line
 					continuationLineIndicies.add(j);
 				}
