@@ -4,6 +4,16 @@
 		return;
 	}
 
+	// Polyfill for pre-ES6 Support, i.e. Internet Explorer
+	if (!String.prototype.endsWith) {
+		String.prototype.endsWith = function (search, this_len) {
+			if (this_len === undefined || this_len > this.length) {
+				this_len = this.length;
+			}
+			return this.substring(this_len - search.length, this_len) === search;
+		};
+	}
+
 	var CLASS_PATTERN = /(?:^|\s)command-line(?:\s|$)/;
 	var PROMPT_CLASS = 'command-line-prompt';
 
@@ -64,15 +74,16 @@
 		var codeLines = env.code.split('\n');
 
 		/** @type {int[]} */
-		var continuationLineIdxs = commandLine.continuationLineIdxs = [];
+		var continuationLineIndicies = commandLine.continuationLineIndicies = new Set();
 		var lineContinuationStr = pre.getAttribute('data-continuation-str');
 
 		// Identify code lines that are a continuation line and thus don't need
 		// a prompt
 		if (lineContinuationStr && codeLines.length > 1) {
 			for (var j = 1; j < codeLines.length; j++) {
-				if (codeLines.hasOwnProperty(j - 1) && codeLines[j - 1].endsWith(lineContinuationStr)) {
-					continuationLineIdxs.push(j);
+				if (codeLines.hasOwnProperty(j - 1)
+						&& codeLines[j - 1].endsWith(lineContinuationStr)) {
+					continuationLineIndicies.add(j);
 				}
 			}
 		}
@@ -178,13 +189,13 @@
 			promptLine = '<span data-user="' + user + '" data-host="' + host + '"></span>';
 		}
 
-		var continuationLineIdxs = commandLine.continuationLineIdxs || [];
+		var continuationLineIndicies = commandLine.continuationLineIndicies || new Set();
 		var continuationPromptText = getAttribute('data-continuation-prompt', '>');
 		var continuationPromptLine = '<span data-continuation-prompt="' + continuationPromptText + '"></span>';
 
 		// Assemble all the appropriate prompt/continuation lines
 		for (var j = 0; j < rowCount; j++) {
-			if (continuationLineIdxs.includes(j)) {
+			if (continuationLineIndicies.has(j)) {
 				promptLines += continuationPromptLine;
 			} else {
 				promptLines += promptLine;
