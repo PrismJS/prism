@@ -73,8 +73,9 @@
 
 		var codeLines = env.code.split('\n');
 
-		/** @type {int[]} */
-		var continuationLineIndicies = commandLine.continuationLineIndicies = new Set();
+		// Sparse array holding true if the line at that position is a continuation
+		/** @type {boolean[]} */
+		var continuationLinePositions = commandLine.continuationLinePositions = [];
 		var lineContinuationStr = pre.getAttribute('data-continuation-str');
 
 		// Identify code lines that are a continuation line and thus don't need
@@ -83,7 +84,8 @@
 			for (var j = 1; j < codeLines.length; j++) {
 				if (codeLines.hasOwnProperty(j - 1)
 						&& codeLines[j - 1].endsWith(lineContinuationStr)) {
-					continuationLineIndicies.add(j);
+					// Mark this line as being a continuation line
+					continuationLinePositions[j] = true;
 				}
 			}
 		}
@@ -189,13 +191,13 @@
 			promptLine = '<span data-user="' + user + '" data-host="' + host + '"></span>';
 		}
 
-		var continuationLineIndicies = commandLine.continuationLineIndicies || new Set();
+		var continuationLinePositions = commandLine.continuationLinePositions || [];
 		var continuationPromptText = getAttribute('data-continuation-prompt', '>');
 		var continuationPromptLine = '<span data-continuation-prompt="' + continuationPromptText + '"></span>';
 
 		// Assemble all the appropriate prompt/continuation lines
 		for (var j = 0; j < rowCount; j++) {
-			if (continuationLineIndicies.has(j)) {
+			if (continuationLinePositions.hasOwnProperty(j)) {
 				promptLines += continuationPromptLine;
 			} else {
 				promptLines += promptLine;
