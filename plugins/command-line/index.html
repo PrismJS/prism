@@ -50,7 +50,10 @@
 
 	<p>Optional: To automatically present some lines as output, you can prefix those lines with any string and specify the prefix using the <code class="language-markup">data-filter-output</code> attribute on the <code class="language-markup">&lt;pre></code> element. For example, <code class="language-markup">data-filter-output="(out)"</code> will treat lines beginning with <code class="language-markup">(out)</code> as output and remove the prefix.</p>
 
-	<p>Output lines are not user selectable so that you can select the whole content of the code block and only copy the shell commands, ignoreing any output lines. If you want the output to also be selectable then override the <code class="language-markup">user-select</code> CSS property for <code class="language-markup">.command-line span.token.output</code>.</p>
+	<p>Output lines are user selectable by default, so if you select the whole content of the code block, it will select the shell commands and any output lines. This may not be desireable if you want to copy/paste just the commands and not the output. If you want to make the output not user selectable then add the following to your CSS.</p>
+	<p><pre><code class="language-css">.command-line span.token.output {
+	user-select: none;
+}</code></pre></p>
 
 	<p>Optional: For multi-line commands you can specify the <code class="language-markup">data-continuation-str</code> attribute on the <code class="language-markup">&lt;pre></code> element. For example, <code class="language-markup">data-continuation-str="\"</code> will treat lines ending with <code class="language-markup">\</code> as being continued on the following line. Continued lines will have a prompt as set by the attribute <code class="language-markup">data-continuation-prompt</code> or a default of <code class="language-markup">&gt;</code>.</p>
 </section>

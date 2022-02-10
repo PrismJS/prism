@@ -40,6 +40,4 @@
 .command-line span.token.output {
   /* Make shell output a bit lighter to distinguish them from shell commands */
 	opacity: 0.7;
-  /* Ignore shell output lines when selecting to copy/paste */
-	user-select: none;
 }
