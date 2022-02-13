@@ -28,7 +28,7 @@
 				+ quant_unit.source  + "|"
 				+ quant_servings_unit.source
 				+ ")"
-				+ ingr_cw_suffix.source,
+				+ ingr_cw_suffix.source
 			),
 			'inside': {
 				'variable': { // some ingredient, some cookware
