@@ -1,21 +1,21 @@
 (function (Prism) {
 
-	var ingr_cw_prefix = /(?:[@#][^{@#]+)\{/
-	var ingr_cw_suffix = /\}/
-	var quant1 = /(?:[^}|*%]*[*]?)/
-	var quant_unit = /(?:[^}|*%]+[*]?%[^}]+)/
-	var quant_servings_unit = /(?:(?:[^*}%|]+[|])+[^*}%|]+(?:%[^*|%}]+)?)/
+	var ingr_cw_prefix = /(?:[@#][^{@#]+)\{/;
+	var ingr_cw_suffix = /\}/;
+	var quant1 = /(?:[^}|*%]*\*?)/;
+	var quant_unit = /(?:[^}|*%]+\*?%[^}]+)/;
+	var quant_servings_unit = /(?:(?:[^*}%|]+\|)+[^*}%|]+(?:%[^*|%}]+)?)/;
 
 	Prism.languages.cooklang = {
 		'comment': [
 			/\[-[\s\S]*?-\]/, // -- comment
-			/\-{2}[^\r\n]*/,    // [- comment -]
+			/-{2}[^\r\n]*/,    // [- comment -]
 		],
 		'meta': { // >> key: value
-			'pattern': /\>{2}.*:.*/,
+			'pattern': />{2}.*:.*/,
 			'inside': {
-				"property": { // key:
-					'pattern': /(\>{2}\s*)[^:]+/, 
+				'property': { // key:
+					'pattern': /(>{2}\s*)[^:]+/,
 					'lookbehind': true,
 				}
 			}
@@ -23,11 +23,11 @@
 		'quant': { // @some ingredient{...} #some cookware{...}
 			'pattern': new RegExp(
 				ingr_cw_prefix.source
-				+ "(?:"
-				+ quant1.source + "|"
-				+ quant_unit.source  + "|"
+				+ '(?:'
+				+ quant1.source + '|'
+				+ quant_unit.source + '|'
 				+ quant_servings_unit.source
-				+ ")"
+				+ ')'
 				+ ingr_cw_suffix.source
 			),
 			'inside': {
@@ -42,7 +42,7 @@
 						'symbol': {  // unit
 							'pattern': /(%)[^}]+/,
 							'lookbehind': true
-						}, 
+						},
 						'operator': /\*%|\*|%|\|/, // already includes not yet officially implemented servings operators
 						'number': /[^{}*%]+/, // amount
 					}
@@ -58,20 +58,20 @@
 			}
 		},
 		'timer-group': { // ~timer{...}
-			'pattern': /\~[^{}]*\{\d+%(?:minutes|hours)\}/,
+			'pattern': /~[^{}]*\{\d+%(?:hours|minutes)\}/,
 			'inside': {
 				'variable': { // timer name
 					pattern: /(~)[^{]+/,
 					lookbehind: true
 				},
 				'duration-group': { // {...}
-					'pattern': /\{[^{}]+\}/, 
+					'pattern': /\{[^{}]+\}/,
 					'inside': {
 						'punctuation': /[{}]/,
 						'symbol': { // unit
 							'pattern': /(%)(?:minutes|min|m|hours|hrs|h)/,
 							'lookbehind': true
-						}, 
+						},
 						'operator': /%/,
 						'number': /\d+/, // amount
 					}
@@ -81,4 +81,3 @@
 		}
 	};
 }(Prism));
-	
