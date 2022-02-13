@@ -1,0 +1,129 @@
+#spoon
+#spoon and more @spoon
+#more spoon{}
+#even more spoon{1}
+#spoon{1%set}
+#spoon{2*%kg}
+#spoon{3|1%set}
+#spoon{3*set} must not match
+#spoon{3|set} 
+#spoon{3%*set}
+#spoon{3%*%set}
+
+----------------------------------------------------
+
+[
+	["no-quant", [
+		["keyword", "#"],
+		["variable", "spoon"]
+	]],
+
+	["no-quant", [
+		["keyword", "#"],
+		["variable", "spoon"]
+	]],
+	" and more ",
+	["no-quant", [
+		["keyword", "@"],
+		["variable", "spoon"]
+	]],
+
+	["quant", [
+		["keyword", "#"],
+		["variable", "more spoon"],
+		["amount-group", [
+			["punctuation", "{"],
+			["punctuation", "}"]
+		]]
+	]],
+
+	["quant", [
+		["keyword", "#"],
+		["variable", "even more spoon"],
+		["amount-group", [
+			["punctuation", "{"],
+			["number", "1"],
+			["punctuation", "}"]
+		]]
+	]],
+
+	["quant", [
+		["keyword", "#"],
+		["variable", "spoon"],
+		["amount-group", [
+			["punctuation", "{"],
+			["number", "1"],
+			["operator", "%"],
+			["symbol", "set"],
+			["punctuation", "}"]
+		]]
+	]],
+
+	["quant", [
+		["keyword", "#"],
+		["variable", "spoon"],
+		["amount-group", [
+			["punctuation", "{"],
+			["number", "2"],
+			["operator", "*%"],
+			["symbol", "kg"],
+			["punctuation", "}"]
+		]]
+	]],
+
+	["quant", [
+		["keyword", "#"],
+		["variable", "spoon"],
+		["amount-group", [
+			["punctuation", "{"],
+			["number", "3"],
+			["operator", "|"],
+			["number", "1"],
+			["operator", "%"],
+			["symbol", "set"],
+			["punctuation", "}"]
+		]]
+	]],
+
+	["no-quant", [
+		["keyword", "#"],
+		["variable", "spoon"]
+	]],
+	"{3*set} must not match\r\n",
+
+	["quant", [
+		["keyword", "#"],
+		["variable", "spoon"],
+		["amount-group", [
+			["punctuation", "{"],
+			["number", "3"],
+			["operator", "|"],
+			["number", "set"],
+			["punctuation", "}"]
+		]]
+	]],
+
+	["quant", [
+		["keyword", "#"],
+		["variable", "spoon"],
+		["amount-group", [
+			["punctuation", "{"],
+			["number", "3"],
+			["operator", "%"],
+			["symbol", "*set"],
+			["punctuation", "}"]
+		]]
+	]],
+
+	["quant", [
+		["keyword", "#"],
+		["variable", "spoon"],
+		["amount-group", [
+			["punctuation", "{"],
+			["number", "3"],
+			["operator", "%"],
+			["symbol", "*%set"],
+			["punctuation", "}"]
+		]]
+	]]
+]

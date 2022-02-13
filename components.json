@@ -299,6 +299,10 @@
 			"title": "Content-Security-Policy",
 			"owner": "ScottHelme"
 		},
+		"cooklang": {
+			"title": "Cooklang",
+			"owner": "ahue"
+		},
 		"coq": {
 			"title": "Coq",
 			"owner": "RunDevelopment"

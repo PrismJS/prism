@@ -1,0 +1,42 @@
+~{25%minutes}
+~eggs{25%minutes}
+~{abc%minutes} must not match
+~eggs{2%hours}
+
+----------------------------------------------------
+
+[
+	["timer-group", [
+		["keyword", "~"],
+		["duration-group", [
+			["punctuation", "{"],
+			["number", "25"],
+			["operator", "%"],
+			["symbol", "minutes"],
+			["punctuation", "}"]
+		]]
+	]],
+	["timer-group", [
+		["keyword", "~"],
+		["variable", "eggs"],
+		["duration-group", [
+			["punctuation", "{"],
+			["number", "25"],
+			["operator", "%"],
+			["symbol", "minutes"],
+			["punctuation", "}"]
+		]]
+	]],
+	"\r\n~{abc%minutes} must not match\r\n",
+	["timer-group", [
+		["keyword", "~"],
+		["variable", "eggs"],
+		["duration-group", [
+			["punctuation", "{"],
+			["number", "2"],
+			["operator", "%"],
+			["symbol", "hours"],
+			["punctuation", "}"]
+		]]
+	]]
+]
