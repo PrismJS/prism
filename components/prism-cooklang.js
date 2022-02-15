@@ -14,8 +14,8 @@
 			greedy: true
 		},
 		'meta': { // >> key: value
-			'pattern': />{2}.*:.*/,
-			'inside': {
+			pattern: />>.*:.*/,
+			inside: {
 				'property': { // key:
 					pattern: /(>>\s*)[^\s:](?:[^:]*[^\s:])?/,
 					lookbehind: true,
