@@ -7,10 +7,12 @@
 	var quant_servings_unit = /(?:(?:[^*}%|]+\|)+[^*}%|]+(?:%[^*|%}]+)?)/;
 
 	Prism.languages.cooklang = {
-		'comment': [
-			/\[-[\s\S]*?-\]/, // -- comment
-			/-{2}[^\r\n]*/,    // [- comment -]
-		],
+		'comment': {
+			// [- comment -]
+			// -- comment
+			pattern: /\[-[\s\S]*?-\]|--.*/,
+			greedy: true
+		},
 		'meta': { // >> key: value
 			'pattern': />{2}.*:.*/,
 			'inside': {
