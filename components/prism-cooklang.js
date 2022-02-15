@@ -17,8 +17,8 @@
 			'pattern': />{2}.*:.*/,
 			'inside': {
 				'property': { // key:
-					'pattern': /(>{2}\s*)[^:]+/,
-					'lookbehind': true,
+					pattern: /(>>\s*)[^\s:](?:[^:]*[^\s:])?/,
+					lookbehind: true,
 				}
 			}
 		},
