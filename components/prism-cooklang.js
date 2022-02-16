@@ -71,7 +71,7 @@
 			),
 			inside: {
 				'cookware': {
-					pattern: new RegExp('(#)(?:'
+					pattern: new RegExp('(^#)(?:'
 						+ multi_token_infix
 						+ ')'
 					),
@@ -93,7 +93,7 @@
 				+ ')'),
 			inside: {
 				'ingredient': {
-					pattern: new RegExp('(@)(?:'
+					pattern: new RegExp('(^@)(?:'
 						+ multi_token_infix
 						+ ')'),
 					lookbehind: true,

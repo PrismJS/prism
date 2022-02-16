@@ -90,7 +90,7 @@
 		["amount-group", [
 			["punctuation", "{"],
 			["amount", "3"],
-			["servings-alternative-seperator", "|"],
+			["servings-alternative-separator", "|"],
 			["amount", "1"],
 			["unit-separator", "%"],
 			["unit", "set"],
@@ -111,7 +111,7 @@
 		["amount-group", [
 			["punctuation", "{"],
 			["amount", "3"],
-			["servings-alternative-seperator", "|"],
+			["servings-alternative-separator", "|"],
 			["amount", "set"],
 			["punctuation", "}"]
 		]]

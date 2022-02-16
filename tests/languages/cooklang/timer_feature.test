@@ -2,6 +2,7 @@
 ~eggs{25%minutes}
 ~{abc%minutes} must not match
 ~eggs{2%hours}
+~eggs{2%h}
 
 ----------------------------------------------------
 
@@ -12,8 +13,7 @@
 			["punctuation", "{"],
 			["duration", "25"],
 			["operator", "%"],
-			["unit", "m"],
-			"inutes",
+			["unit", "minutes"],
 			["punctuation", "}"]
 		]]
 	]],
@@ -24,8 +24,7 @@
 			["punctuation", "{"],
 			["duration", "25"],
 			["operator", "%"],
-			["unit", "m"],
-			"inutes",
+			["unit", "minutes"],
 			["punctuation", "}"]
 		]]
 	]],
@@ -37,8 +36,18 @@
 			["punctuation", "{"],
 			["duration", "2"],
 			["operator", "%"],
+			["unit", "hours"],
+			["punctuation", "}"]
+		]]
+	]],
+	["timer-group", [
+		["timer-keyword", "~"],
+		["timer", "eggs"],
+		["duration-group", [
+			["punctuation", "{"],
+			["duration", "2"],
+			["operator", "%"],
 			["unit", "h"],
-			"ours",
 			["punctuation", "}"]
 		]]
 	]]
