@@ -143,8 +143,10 @@
 		for (var i = 0, l = codeLines.length; i < l; i++) {
 			// Add spans to allow distinction of input/output text for styling
 			if (outputLines.hasOwnProperty(i)) {
+				// outputLines were removed from codeLines so missed out on escaping
+				// of markup so do it here.
 				codeLines[i] = '<span class="token output">'
-					+ outputLines[i] + '</span>';
+					+ Prism.util.encode(outputLines[i]) + '</span>';
 			} else {
 				codeLines[i] = '<span class="token command">'
 					+ codeLines[i] + '</span>';
