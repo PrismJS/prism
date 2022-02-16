@@ -56,7 +56,7 @@
 		'meta': { // >> key: value
 			pattern: />>.*:.*/,
 			inside: {
-				property: { // key:
+				'property': { // key:
 					pattern: /(>>\s*)[^\s:](?:[^:]*[^\s:])?/,
 					lookbehind: true,
 				}
