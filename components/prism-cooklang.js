@@ -111,7 +111,7 @@
 			pattern: new RegExp(/~[^{}]*\{\d+%/.source + timer_units + /\}/.source),
 			inside: {
 				'timer': {
-					pattern: /(~)[^{]+/,
+					pattern: /(^~)[^{]+/,
 					lookbehind: true,
 					alias: 'variable',
 				},
