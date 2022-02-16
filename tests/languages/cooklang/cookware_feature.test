@@ -1,129 +1,133 @@
 #spoon
-#spoon and more @spoon
+#spoon and more #spoon
+#spoon is good but more #spoon are better
 #more spoon{}
 #even more spoon{1}
 #spoon{1%set}
 #spoon{2*%kg}
 #spoon{3|1%set}
-#spoon{3*set} must not match
+#spoon{3*set} must not match amount-group
 #spoon{3|set} 
-#spoon{3%*set}
-#spoon{3%*%set}
+#spoon{3%*set} must noch match amount-group
+#spoon{3%*%set} must noch match amount-group
 
 ----------------------------------------------------
 
 [
-	["no-quant", [
-		["keyword", "#"],
-		["variable", "spoon"]
+	["cookware-group", [
+		["cookware-keyword", "#"],
+		["cookware", "spoon"]
 	]],
 
-	["no-quant", [
-		["keyword", "#"],
-		["variable", "spoon"]
+	["cookware-group", [
+		["cookware-keyword", "#"],
+		["cookware", "spoon"]
 	]],
 	" and more ",
-	["no-quant", [
-		["keyword", "@"],
-		["variable", "spoon"]
+	["cookware-group", [
+		["cookware-keyword", "#"],
+		["cookware", "spoon"]
 	]],
 
-	["quant", [
-		["keyword", "#"],
-		["variable", "more spoon"],
+	["cookware-group", [
+		["cookware-keyword", "#"],
+		["cookware", "spoon"]
+	]],
+	" is good but more ",
+	["cookware-group", [
+		["cookware-keyword", "#"],
+		["cookware", "spoon"]
+	]],
+	" are better\r\n",
+
+	["cookware-group", [
+		["cookware-keyword", "#"],
+		["cookware", "more spoon"],
 		["amount-group", [
 			["punctuation", "{"],
 			["punctuation", "}"]
 		]]
 	]],
 
-	["quant", [
-		["keyword", "#"],
-		["variable", "even more spoon"],
+	["cookware-group", [
+		["cookware-keyword", "#"],
+		["cookware", "even more spoon"],
 		["amount-group", [
 			["punctuation", "{"],
-			["number", "1"],
+			["amount", "1"],
 			["punctuation", "}"]
 		]]
 	]],
 
-	["quant", [
-		["keyword", "#"],
-		["variable", "spoon"],
+	["cookware-group", [
+		["cookware-keyword", "#"],
+		["cookware", "spoon"],
 		["amount-group", [
 			["punctuation", "{"],
-			["number", "1"],
-			["operator", "%"],
-			["symbol", "set"],
+			["amount", "1"],
+			["unit-separator", "%"],
+			["unit", "set"],
 			["punctuation", "}"]
 		]]
 	]],
 
-	["quant", [
-		["keyword", "#"],
-		["variable", "spoon"],
+	["cookware-group", [
+		["cookware-keyword", "#"],
+		["cookware", "spoon"],
 		["amount-group", [
 			["punctuation", "{"],
-			["number", "2"],
-			["operator", "*%"],
-			["symbol", "kg"],
+			["amount", "2"],
+			["servings-scaler", "*"],
+			["unit-separator", "%"],
+			["unit", "kg"],
 			["punctuation", "}"]
 		]]
 	]],
 
-	["quant", [
-		["keyword", "#"],
-		["variable", "spoon"],
+	["cookware-group", [
+		["cookware-keyword", "#"],
+		["cookware", "spoon"],
 		["amount-group", [
 			["punctuation", "{"],
-			["number", "3"],
-			["operator", "|"],
-			["number", "1"],
-			["operator", "%"],
-			["symbol", "set"],
+			["amount", "3"],
+			["servings-alternative-seperator", "|"],
+			["amount", "1"],
+			["unit-separator", "%"],
+			["unit", "set"],
 			["punctuation", "}"]
 		]]
 	]],
 
-	["no-quant", [
-		["keyword", "#"],
-		["variable", "spoon"]
+	["cookware-group", [
+		["cookware-keyword", "#"],
+		["cookware", "spoon"],
+		"{3*set}"
 	]],
-	"{3*set} must not match\r\n",
+	" must not match amount-group\r\n",
 
-	["quant", [
-		["keyword", "#"],
-		["variable", "spoon"],
+	["cookware-group", [
+		["cookware-keyword", "#"],
+		["cookware", "spoon"],
 		["amount-group", [
 			["punctuation", "{"],
-			["number", "3"],
-			["operator", "|"],
-			["number", "set"],
+			["amount", "3"],
+			["servings-alternative-seperator", "|"],
+			["amount", "set"],
 			["punctuation", "}"]
 		]]
 	]],
 
-	["quant", [
-		["keyword", "#"],
-		["variable", "spoon"],
-		["amount-group", [
-			["punctuation", "{"],
-			["number", "3"],
-			["operator", "%"],
-			["symbol", "*set"],
-			["punctuation", "}"]
-		]]
+	["cookware-group", [
+		["cookware-keyword", "#"],
+		["cookware", "spoon"],
+		"{3%*set}"
 	]],
+	" must noch match amount-group\r\n",
 
-	["quant", [
-		["keyword", "#"],
-		["variable", "spoon"],
-		["amount-group", [
-			["punctuation", "{"],
-			["number", "3"],
-			["operator", "%"],
-			["symbol", "*%set"],
-			["punctuation", "}"]
-		]]
-	]]
+	["cookware-group", [
+		["cookware-keyword", "#"],
+		["cookware", "spoon"],
+		"{3%*%set}"
+	]],
+	" must noch match amount-group"
 ]

@@ -7,35 +7,38 @@
 
 [
 	["timer-group", [
-		["keyword", "~"],
+		["timer-keyword", "~"],
 		["duration-group", [
 			["punctuation", "{"],
-			["number", "25"],
+			["duration", "25"],
 			["operator", "%"],
-			["symbol", "minutes"],
+			["unit", "m"],
+			"inutes",
 			["punctuation", "}"]
 		]]
 	]],
 	["timer-group", [
-		["keyword", "~"],
-		["variable", "eggs"],
+		["timer-keyword", "~"],
+		["timer", "eggs"],
 		["duration-group", [
 			["punctuation", "{"],
-			["number", "25"],
+			["duration", "25"],
 			["operator", "%"],
-			["symbol", "minutes"],
+			["unit", "m"],
+			"inutes",
 			["punctuation", "}"]
 		]]
 	]],
 	"\r\n~{abc%minutes} must not match\r\n",
 	["timer-group", [
-		["keyword", "~"],
-		["variable", "eggs"],
+		["timer-keyword", "~"],
+		["timer", "eggs"],
 		["duration-group", [
 			["punctuation", "{"],
-			["number", "2"],
+			["duration", "2"],
 			["operator", "%"],
-			["symbol", "hours"],
+			["unit", "h"],
+			"ours",
 			["punctuation", "}"]
 		]]
 	]]

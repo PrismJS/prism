@@ -1,129 +1,133 @@
 @milk
 @milk and more @milk
+@milk is good but more @milk is better
 @more milk{}
 @even more milk{1}
 @milk{1%l}
 @milk{2*%kg}
 @milk{3|1%L}
-@milk{3*L} must not match
+@milk{3*L} must not match amount-group
 @milk{3|L} 
-@milk{3%*L}
-@milk{3%*%L}
+@milk{3%*L} must noch match amount-group
+@milk{3%*%L} must noch match amount-group
 
 ----------------------------------------------------
 
 [
-	["no-quant", [
-		["keyword", "@"],
-		["variable", "milk"]
+	["ingredient-group", [
+		["ingredient-keyword", "@"],
+		["ingredient", "milk"]
 	]],
 
-	["no-quant", [
-		["keyword", "@"],
-		["variable", "milk"]
+	["ingredient-group", [
+		["ingredient-keyword", "@"],
+		["ingredient", "milk"]
 	]],
 	" and more ",
-	["no-quant", [
-		["keyword", "@"],
-		["variable", "milk"]
+	["ingredient-group", [
+		["ingredient-keyword", "@"],
+		["ingredient", "milk"]
 	]],
 
-	["quant", [
-		["keyword", "@"],
-		["variable", "more milk"],
+	["ingredient-group", [
+		["ingredient-keyword", "@"],
+		["ingredient", "milk"]
+	]],
+	" is good but more ",
+	["ingredient-group", [
+		["ingredient-keyword", "@"],
+		["ingredient", "milk"]
+	]],
+	" is better\r\n",
+
+	["ingredient-group", [
+		["ingredient-keyword", "@"],
+		["ingredient", "more milk"],
 		["amount-group", [
 			["punctuation", "{"],
 			["punctuation", "}"]
 		]]
 	]],
 
-	["quant", [
-		["keyword", "@"],
-		["variable", "even more milk"],
+	["ingredient-group", [
+		["ingredient-keyword", "@"],
+		["ingredient", "even more milk"],
 		["amount-group", [
 			["punctuation", "{"],
-			["number", "1"],
+			["amount", "1"],
 			["punctuation", "}"]
 		]]
 	]],
 
-	["quant", [
-		["keyword", "@"],
-		["variable", "milk"],
+	["ingredient-group", [
+		["ingredient-keyword", "@"],
+		["ingredient", "milk"],
 		["amount-group", [
 			["punctuation", "{"],
-			["number", "1"],
-			["operator", "%"],
-			["symbol", "l"],
+			["amount", "1"],
+			["unit-separator", "%"],
+			["unit", "l"],
 			["punctuation", "}"]
 		]]
 	]],
 
-	["quant", [
-		["keyword", "@"],
-		["variable", "milk"],
+	["ingredient-group", [
+		["ingredient-keyword", "@"],
+		["ingredient", "milk"],
 		["amount-group", [
 			["punctuation", "{"],
-			["number", "2"],
-			["operator", "*%"],
-			["symbol", "kg"],
+			["amount", "2"],
+			["servings-scaler", "*"],
+			["unit-separator", "%"],
+			["unit", "kg"],
 			["punctuation", "}"]
 		]]
 	]],
 
-	["quant", [
-		["keyword", "@"],
-		["variable", "milk"],
+	["ingredient-group", [
+		["ingredient-keyword", "@"],
+		["ingredient", "milk"],
 		["amount-group", [
 			["punctuation", "{"],
-			["number", "3"],
-			["operator", "|"],
-			["number", "1"],
-			["operator", "%"],
-			["symbol", "L"],
+			["amount", "3"],
+			["servings-alternative-seperator", "|"],
+			["amount", "1"],
+			["unit-separator", "%"],
+			["unit", "L"],
 			["punctuation", "}"]
 		]]
 	]],
 
-	["no-quant", [
-		["keyword", "@"],
-		["variable", "milk"]
+	["ingredient-group", [
+		["ingredient-keyword", "@"],
+		["ingredient", "milk"],
+		"{3*L}"
 	]],
-	"{3*L} must not match\r\n",
+	" must not match amount-group\r\n",
 
-	["quant", [
-		["keyword", "@"],
-		["variable", "milk"],
+	["ingredient-group", [
+		["ingredient-keyword", "@"],
+		["ingredient", "milk"],
 		["amount-group", [
 			["punctuation", "{"],
-			["number", "3"],
-			["operator", "|"],
-			["number", "L"],
+			["amount", "3"],
+			["servings-alternative-seperator", "|"],
+			["amount", "L"],
 			["punctuation", "}"]
 		]]
 	]],
 
-	["quant", [
-		["keyword", "@"],
-		["variable", "milk"],
-		["amount-group", [
-			["punctuation", "{"],
-			["number", "3"],
-			["operator", "%"],
-			["symbol", "*L"],
-			["punctuation", "}"]
-		]]
+	["ingredient-group", [
+		["ingredient-keyword", "@"],
+		["ingredient", "milk"],
+		"{3%*L}"
 	]],
+	" must noch match amount-group\r\n",
 
-	["quant", [
-		["keyword", "@"],
-		["variable", "milk"],
-		["amount-group", [
-			["punctuation", "{"],
-			["number", "3"],
-			["operator", "%"],
-			["symbol", "*%L"],
-			["punctuation", "}"]
-		]]
-	]]
+	["ingredient-group", [
+		["ingredient-keyword", "@"],
+		["ingredient", "milk"],
+		"{3%*%L}"
+	]],
+	" must noch match amount-group"
 ]

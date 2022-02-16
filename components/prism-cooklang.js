@@ -1,84 +1,139 @@
 (function (Prism) {
 
-	var ingr_cw_prefix = /(?:[@#][^{@#]+)\{/;
-	var ingr_cw_suffix = /\}/;
-	var quant1 = /(?:[^}|*%]*\*?)/;
-	var quant_unit = /(?:[^}|*%]+\*?%[^}]+)/;
-	var quant_servings_unit = /(?:(?:[^*}%|]+\|)+[^*}%|]+(?:%[^*|%}]+)?)/;
+	var single_token_suffix = /[^{}@#\s]+/.source;
+	var multi_token_infix = /[^{}@#]+/.source;
+	var multi_token_suffix = /\{[^}#@]*\}/.source;
+
+	var multi_token = multi_token_infix + multi_token_suffix;
+
+	var timer_units = /(?:h|hours|hrs|m|min|minutes)/.source;
+
+	var amount_group_impl = {
+		pattern: new RegExp(/\{/.source
+			+ '(?:(?:'
+			+ /(?:[^{}|*%]+\*?)/.source // optional serving scale
+			+ '|'
+			+ /(?:(?:[^{}|*%]+\|)+[^{}|*%]+)/.source // serving alternatives
+			+ ')' + /(?:%[^{}|*%]+)?/.source //optional unit
+			+ ')?'
+			+ /\}/.source
+		),
+		inside: {
+			'amount': {
+				pattern: /([\{|])[^{}|*%]+/,
+				lookbehind: true,
+				alias: 'number',
+			},
+			'unit': {
+				pattern: /(%)[^}]+/,
+				lookbehind: true,
+				alias: 'symbol',
+			},
+			'servings-scaler': {
+				pattern: /\*/,
+				alias: 'operator',
+			},
+			'servings-alternative-seperator': {
+				pattern: /\|/,
+				alias: 'operator',
+			},
+			'unit-separator': {
+				pattern: /(?:%|(\*)%)/,
+				lookbehind: true,
+				alias: 'operator',
+			},
+			'punctuation': /[{}]/,
+		}
+	};
 
 	Prism.languages.cooklang = {
 		'comment': {
 			// [- comment -]
 			// -- comment
 			pattern: /\[-[\s\S]*?-\]|--.*/,
-			greedy: true
+			greedy: true,
 		},
 		'meta': { // >> key: value
 			pattern: />>.*:.*/,
 			inside: {
-				'property': { // key:
+				property: { // key:
 					pattern: /(>>\s*)[^\s:](?:[^:]*[^\s:])?/,
 					lookbehind: true,
 				}
 			}
 		},
-		'quant': { // @some ingredient{...} #some cookware{...}
-			'pattern': new RegExp(
-				ingr_cw_prefix.source
-				+ '(?:'
-				+ quant1.source + '|'
-				+ quant_unit.source + '|'
-				+ quant_servings_unit.source
+		'cookware-group': { // #...{...}, #...
+			pattern: new RegExp('#(?:'
+				+ multi_token
+				+ '|'
+				+ single_token_suffix
 				+ ')'
-				+ ingr_cw_suffix.source
 			),
-			'inside': {
-				'variable': { // some ingredient, some cookware
-					pattern: /([@#])[^{@#]+/,
-					lookbehind: true
+			inside: {
+				'cookware': {
+					pattern: new RegExp('(#)(?:'
+						+ multi_token_infix
+						+ ')'
+					),
+					lookbehind: true,
+					alias: 'variable',
 				},
-				'amount-group': {
-					'pattern': /\{[^{}]*\}/, // {...}
-					'inside': {
-						'punctuation': /[{}]/,
-						'symbol': {  // unit
-							'pattern': /(%)[^}]+/,
-							'lookbehind': true
-						},
-						'operator': /\*%|\*|%|\|/, // already includes not yet officially implemented servings operators
-						'number': /[^{}*%]+/, // amount
-					}
+				'cookware-keyword': {
+					pattern: /^#/,
+					alias: 'keyword',
 				},
-				'keyword': /[@#]/,
-			}
+				'amount-group': amount_group_impl,
+			},
 		},
-		'no-quant': { // ingredient, cookware
-			'pattern': /[@#][^{@#\s]+/,
-			'inside': {
-				'keyword': /[@#]/,
-				'variable': /[^{@#]+/
+		'ingredient-group': { // @...{...}, @...
+			pattern: new RegExp('@(?:'
+				+ multi_token
+				+ '|'
+				+ single_token_suffix
+				+ ')'),
+			inside: {
+				'ingredient': {
+					pattern: new RegExp('(@)(?:'
+						+ multi_token_infix
+						+ ')'),
+					lookbehind: true,
+					alias: 'variable',
+				},
+				'ingredient-keyword': {
+					pattern: /^@/,
+					alias: 'keyword',
+				},
+				'amount-group': amount_group_impl
 			}
 		},
 		'timer-group': { // ~timer{...}
-			'pattern': /~[^{}]*\{\d+%(?:hours|minutes)\}/,
-			'inside': {
-				'variable': { // timer name
+			pattern: new RegExp(/~[^{}]*\{\d+%/.source + timer_units + /\}/.source),
+			inside: {
+				'timer': {
 					pattern: /(~)[^{]+/,
-					lookbehind: true
+					lookbehind: true,
+					alias: 'variable',
 				},
 				'duration-group': { // {...}
-					'pattern': /\{[^{}]+\}/,
-					'inside': {
+					pattern: /\{[^{}]+\}/,
+					inside: {
 						'punctuation': /[{}]/,
-						'symbol': { // unit
-							'pattern': /(%)(?:minutes|min|m|hours|hrs|h)/,
-							'lookbehind': true
+						'unit': {
+							pattern: new RegExp(/(%)/.source + timer_units),
+							lookbehind: true,
+							alias: 'symbol',
 						},
 						'operator': /%/,
-						'number': /\d+/, // amount
+						'duration': {
+							pattern: /\d+/,
+							alias: 'number',
+						},
 					}
 				},
-				'keyword': /~/,
+				'timer-keyword': {
+					pattern: /^~/,
+					alias: 'keyword',
+				},
 			}
 		}
 	};
