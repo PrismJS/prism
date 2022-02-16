@@ -33,7 +33,7 @@
 				pattern: /\*/,
 				alias: 'operator',
 			},
-			'servings-alternative-seperator': {
+			'servings-alternative-separator': {
 				pattern: /\|/,
 				alias: 'operator',
 			},
