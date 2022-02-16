@@ -120,8 +120,7 @@
 					inside: {
 						'punctuation': /[{}]/,
 						'unit': {
-							// eslint-disable-next-line regexp/no-dupe-disjunctions
-							pattern: new RegExp(/(%)/.source + timer_units),
+							pattern: new RegExp(/(%)/.source + timer_units + /\b/.source),
 							lookbehind: true,
 							alias: 'symbol',
 						},
