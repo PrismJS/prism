@@ -107,6 +107,7 @@
 			}
 		},
 		'timer-group': { // ~timer{...}
+			// eslint-disable-next-line regexp/sort-alternatives
 			pattern: new RegExp(/~[^{}]*\{\d+%/.source + timer_units + /\}/.source),
 			inside: {
 				'timer': {
@@ -119,6 +120,7 @@
 					inside: {
 						'punctuation': /[{}]/,
 						'unit': {
+							// eslint-disable-next-line regexp/no-dupe-disjunctions
 							pattern: new RegExp(/(%)/.source + timer_units),
 							lookbehind: true,
 							alias: 'symbol',
