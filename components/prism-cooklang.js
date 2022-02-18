@@ -1,7 +1,7 @@
 (function (Prism) {
 
-	var single_token_suffix = /[^{}@#\s]+/.source;
-	var multi_token_infix = /[^{}@#]+/.source;
+	var single_token_suffix = /(?:(?!\s)[\d$+<=a-zA-Z\x80-\uFFFF])+/.source;
+	var multi_token_infix = /[^{}@#]+/.source; // /(?:(?!\s)[\d$+<=A-Z\x80-\uFFFF])+/
 	var multi_token_suffix = /\{[^}#@]*\}/.source;
 
 	var multi_token = multi_token_infix + multi_token_suffix;
@@ -45,6 +45,7 @@
 			'punctuation': /[{}]/,
 		}
 	};
+
 
 	Prism.languages.cooklang = {
 		'comment': {
