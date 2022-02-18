@@ -73,22 +73,6 @@
 		}
 
 		var codeLines = env.code.split('\n');
-
-		var continuationLineIndicies = commandLine.continuationLineIndicies = new Set();
-		var lineContinuationStr = pre.getAttribute('data-continuation-str');
-
-		// Identify code lines that are a continuation line and thus don't need
-		// a prompt
-		if (lineContinuationStr && codeLines.length > 1) {
-			for (var j = 1; j < codeLines.length; j++) {
-				if (codeLines.hasOwnProperty(j - 1)
-						&& endsWith(codeLines[j - 1], lineContinuationStr)) {
-					// Mark this line as being a continuation line
-					continuationLineIndicies.add(j);
-				}
-			}
-		}
-
 		commandLine.numberOfLines = codeLines.length;
 		/** @type {string[]} */
 		var outputLines = commandLine.outputLines = [];
@@ -123,6 +107,38 @@
 				if (startsWith(codeLines[i], outputFilter)) { // This line is output. -- cwells
 					outputLines[i] = codeLines[i].slice(outputFilter.length);
 					codeLines[i] = '';
+				}
+			}
+		}
+
+		var continuationLineIndicies = commandLine.continuationLineIndicies = new Set();
+		var lineContinuationStr = pre.getAttribute('data-continuation-str');
+		var lineTerminationStr = pre.getAttribute('data-termination-str');
+
+		// Identify code lines that are a continuation line and thus need
+		// a different prompt. Need to do this after the output lines have been
+		// removed.
+		if (codeLines.length > 1 && (lineTerminationStr || lineContinuationStr)) {
+			for (var j = 0; j < codeLines.length; j++) {
+				var isCodeLine = codeLines.hasOwnProperty(j) && codeLines[j] !== '';
+
+				if (isCodeLine) {
+					var isCodeOnPrevLine = codeLines.hasOwnProperty(j - 1)
+						&& codeLines[j - 1] !== '';
+					var hasTerminationOnPrevLine = isCodeOnPrevLine
+						&& endsWith(codeLines[j - 1], lineTerminationStr);
+					var hasContinuationOnPrevLine = isCodeOnPrevLine
+						&& endsWith(codeLines[j - 1], lineContinuationStr);
+
+					var isFirstLineOfStatement = j === 0
+						|| !isCodeOnPrevLine
+						|| hasTerminationOnPrevLine
+						|| (lineContinuationStr && !hasContinuationOnPrevLine);
+
+					if (hasContinuationOnPrevLine
+							|| (lineTerminationStr && !isFirstLineOfStatement)) {
+						continuationLineIndicies.add(j);
+					}
 				}
 			}
 		}
