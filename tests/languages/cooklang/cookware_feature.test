@@ -6,10 +6,10 @@
 #spoon{1%set}
 #spoon{2*%kg}
 #spoon{3|1%set}
-#spoon{3*set} must not match amount-group
-#spoon{3|set} 
-#spoon{3%*set} must noch match amount-group
-#spoon{3%*%set} must noch match amount-group
+#spoon{3*set}
+#spoon{3|set}
+#spoon{3%*set}
+#spoon{3%*%set}
 
 ----------------------------------------------------
 

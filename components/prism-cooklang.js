@@ -83,7 +83,18 @@
 					pattern: /^#/,
 					alias: 'keyword',
 				},
-				'amount-group': amount_group_impl,
+				'quantity-group': {
+					pattern: new RegExp(/\{[^{}@#]*\}/),
+					inside: {
+						'quantity': {
+							pattern: new RegExp(/(^\{)/.source + multi_token_infix),
+							lookbehind: true,
+							alias: 'number',
+						},
+						'punctuation': /[{}]/,
+					}
+				}
+				
 			},
 		},
 		'ingredient-group': { // @...{...}, @...
@@ -104,7 +115,7 @@
 					pattern: /^@/,
 					alias: 'keyword',
 				},
-				'amount-group': amount_group_impl
+				'amount-group': amount_group_impl,
 			}
 		},
 		'timer-group': { // ~timer{...}
