@@ -119,7 +119,7 @@
 		},
 		'timer-group': { // ~timer{...}
 			// eslint-disable-next-line regexp/sort-alternatives
-			pattern: new RegExp(/~[^{}]*\{\d+%/.source + timer_units + /\}/.source),
+			pattern: /~(?!\s)[^@#~{}]*\{[^{}]*\}/,
 			inside: {
 				'timer': {
 					pattern: /(^~)[^{]+/,
