@@ -127,7 +127,7 @@
 					alias: 'variable',
 				},
 				'duration-group': { // {...}
-					pattern: /\{[^{}]+\}/,
+					pattern: /\{[^{}]*\}/,
 					inside: {
 						'punctuation': /[{}]/,
 						'unit': {
