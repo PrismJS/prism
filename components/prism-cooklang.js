@@ -131,7 +131,7 @@
 					inside: {
 						'punctuation': /[{}]/,
 						'unit': {
-							pattern: new RegExp(/(%)/.source + timer_units + /\b/.source),
+							pattern: new RegExp(/(%\s*)/.source + timer_units + /\b/.source),
 							lookbehind: true,
 							alias: 'symbol',
 						},
