@@ -9,15 +9,7 @@
 	var timer_units = /(?:h|hours|hrs|m|min|minutes)/.source;
 
 	var amount_group_impl = {
-		pattern: new RegExp(/\{/.source
-			+ '(?:(?:'
-			+ /(?:[^{}|*%]+\*?)/.source // optional serving scale
-			+ '|'
-			+ /(?:(?:[^{}|*%]+\|)+[^{}|*%]+)/.source // serving alternatives
-			+ ')' + /(?:%[^{}|*%]+)?/.source //optional unit
-			+ ')?'
-			+ /\}/.source
-		),
+		pattern: /\{[^{}]*\}/,
 		inside: {
 			'amount': {
 				pattern: /([\{|])[^{}|*%]+/,
