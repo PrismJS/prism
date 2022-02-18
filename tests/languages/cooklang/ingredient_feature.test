@@ -8,8 +8,8 @@
 @milk{3|1%L}
 @milk{3*L} must not match amount-group
 @milk{3|L} 
-@milk{3%*L} must noch match amount-group
-@milk{3%*%L} must noch match amount-group
+@milk{3%*L}
+@milk{3%*%L}
 
 ----------------------------------------------------
 
@@ -101,7 +101,13 @@
 	["ingredient-group", [
 		["ingredient-keyword", "@"],
 		["ingredient", "milk"],
-		"{3*L}"
+		["amount-group", [
+			["punctuation", "{"],
+			["amount", "3"],
+			["servings-scaler", "*"],
+			"L",
+			["punctuation", "}"]
+		]]
 	]],
 	" must not match amount-group\r\n",
 
@@ -120,14 +126,24 @@
 	["ingredient-group", [
 		["ingredient-keyword", "@"],
 		["ingredient", "milk"],
-		"{3%*L}"
+		["amount-group", [
+			["punctuation", "{"],
+			["amount", "3"],
+			["unit-separator", "%"],
+			["unit", "*L"],
+			["punctuation", "}"]
+		]]
 	]],
-	" must noch match amount-group\r\n",
 
 	["ingredient-group", [
 		["ingredient-keyword", "@"],
 		["ingredient", "milk"],
-		"{3%*%L}"
-	]],
-	" must noch match amount-group"
+		["amount-group", [
+			["punctuation", "{"],
+			["amount", "3"],
+			["unit-separator", "%"],
+			["unit", "*%L"],
+			["punctuation", "}"]
+		]]
+	]]
 ]

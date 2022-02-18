@@ -1,5 +1,7 @@
 (function (Prism) {
 
+	// see https://github.com/cooklang/spec/blob/main/EBNF.md
+
 	var single_token_suffix = /(?:(?!\s)[\d$+<=a-zA-Z\x80-\uFFFF])+/.source;
 	var multi_token_infix = /[^{}@#]+/.source;
 	var multi_token_suffix = /\{[^}#@]*\}/.source;

@@ -17,6 +17,7 @@
 			["punctuation", "}"]
 		]]
 	]],
+
 	["timer-group", [
 		["timer-keyword", "~"],
 		["timer", "eggs"],
@@ -28,7 +29,19 @@
 			["punctuation", "}"]
 		]]
 	]],
-	"\r\n~{abc%minutes} must not match\r\n",
+
+	["timer-group", [
+		["timer-keyword", "~"],
+		["duration-group", [
+			["punctuation", "{"],
+			"abc",
+			["operator", "%"],
+			["unit", "minutes"],
+			["punctuation", "}"]
+		]]
+	]],
+	" must not match\r\n",
+
 	["timer-group", [
 		["timer-keyword", "~"],
 		["timer", "eggs"],
@@ -40,6 +53,7 @@
 			["punctuation", "}"]
 		]]
 	]],
+
 	["timer-group", [
 		["timer-keyword", "~"],
 		["timer", "eggs"],
