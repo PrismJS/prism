@@ -66,10 +66,10 @@
 		<dd>Set this attribute to the line continuation string/character, e.g. for bash <code class="language-markup">data-continuation-str="\"</code></dd>
 
 		<dt><code class="language-markup">data-termination-str</code></dt>
-		<dd>Set this attribute to the line termination string/character, e.g. for SQL <code class="language-markup">data-termination-str=";"</code></dd>
+		<dd>Set this attribute to the command termination string/character, e.g. for SQL <code class="language-markup">data-termination-str=";"</code></dd>
 
 		<dt><code class="language-markup">data-continuation-prompt</code></dt>
-		<dd>Set this attribute to define the prompt to be displayed when the command has continued beyond the first line (whether using line continuation or line termination), e.g. for MySQL <code class="language-markup">data-continuation-prompt="-&gt;"</code>. If this attribute is not set then a default of <code class="language-markup">&gt;</code> will be used.</dd>
+		<dd>Set this attribute to define the prompt to be displayed when the command has continued beyond the first line (whether using line continuation or command termination), e.g. for MySQL <code class="language-markup">data-continuation-prompt="-&gt;"</code>. If this attribute is not set then a default of <code class="language-markup">&gt;</code> will be used.</dd>
 	</dl>
 </section>
 
@@ -170,7 +170,7 @@ echo "goodbye"
 Write-Host 'Goodbye from PowerShell!'
 (out)Goodbye from PowerShell!</code></pre>
 
-	<h2>Line termination with Output (SQL/MySQL)</h2>
+	<h2>Command termination with Output (SQL/MySQL)</h2>
 
 <pre><code class="language-html">&lt;pre class=&quot;command-line&quot;
      data-prompt=&quot;mysql&gt;&quot;
