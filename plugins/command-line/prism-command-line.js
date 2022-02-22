@@ -73,6 +73,7 @@
 		}
 
 		var codeLines = env.code.split('\n');
+
 		commandLine.numberOfLines = codeLines.length;
 		/** @type {string[]} */
 		var outputLines = commandLine.outputLines = [];
@@ -113,32 +114,26 @@
 
 		var continuationLineIndicies = commandLine.continuationLineIndicies = new Set();
 		var lineContinuationStr = pre.getAttribute('data-continuation-str');
-		var lineTerminationStr = pre.getAttribute('data-termination-str');
+		var continuationFilter = pre.getAttribute('data-filter-continuation');
 
 		// Identify code lines that are a continuation line and thus need
-		// a different prompt. Need to do this after the output lines have been
-		// removed.
-		if (codeLines.length > 1 && (lineTerminationStr || lineContinuationStr)) {
-			for (var j = 0; j < codeLines.length; j++) {
-				var isCodeLine = codeLines.hasOwnProperty(j) && codeLines[j] !== '';
-
-				if (isCodeLine) {
-					var isCodeOnPrevLine = codeLines.hasOwnProperty(j - 1)
-						&& codeLines[j - 1] !== '';
-					var hasTerminationOnPrevLine = isCodeOnPrevLine
-						&& endsWith(codeLines[j - 1], lineTerminationStr);
-					var hasContinuationOnPrevLine = isCodeOnPrevLine
-						&& endsWith(codeLines[j - 1], lineContinuationStr);
-
-					var isFirstLineOfStatement = j === 0
-						|| !isCodeOnPrevLine
-						|| hasTerminationOnPrevLine
-						|| (lineContinuationStr && !hasContinuationOnPrevLine);
-
-					if (hasContinuationOnPrevLine
-							|| (lineTerminationStr && !isFirstLineOfStatement)) {
-						continuationLineIndicies.add(j);
-					}
+		// a different prompt. Need to do this after the output lines have been removed
+		// to ensure we don't pick up a continuation string in an output line.
+		if (codeLines.length > 1) {
+			for (var j = 1; j < codeLines.length; j++) {
+				// Record lines where the previous line ended in a continuation str
+				if (lineContinuationStr
+						&& codeLines.hasOwnProperty(j - 1)
+						&& endsWith(codeLines[j - 1], lineContinuationStr)) {
+					continuationLineIndicies.add(j);
+				}
+				// Record lines explicitly marked with a continuation prefix
+				// (that we will remove)
+				if (continuationFilter
+						&& codeLines.hasOwnProperty(j)
+						&& startsWith(codeLines[j], continuationFilter)) {
+					codeLines[j] = codeLines[j].slice(continuationFilter.length);
+					continuationLineIndicies.add(j);
 				}
 			}
 		}

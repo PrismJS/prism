@@ -52,6 +52,8 @@
 	<h2>Optional: Command output (prefix)</h2>
 	<p>To automatically present some lines as output, you can prefix those lines with any string and specify the prefix using the <code class="language-markup">data-filter-output</code> attribute on the <code class="language-markup">&lt;pre></code> element. For example, <code class="language-markup">data-filter-output="(out)"</code> will treat lines beginning with <code class="language-markup">(out)</code> as output and remove the prefix.</p>
 
+	<p>A blank line will render as an empty line with a prompt. If you want an empty line without a prompt then you can use a line containing just the output prefix, e.g. <code class="language-markup">(out)</code>. See the blank lines in the examples below.</p>
+
 	<p>Output lines are user selectable by default, so if you select the whole content of the code block, it will select the shell commands and any output lines. This may not be desirable if you want to copy/paste just the commands and not the output. If you want to make the output not user selectable then add the following to your CSS:</p>
 
 	<pre><code class="language-css">.command-line span.token.output {
@@ -59,14 +61,14 @@
 }</code></pre>
 
 	<h2>Optional: Multi-line commands</h2>
-	<p>You can configure the plugin to handle multi-line commands. This can be done in two ways; a line continuation string (as in Bash); or a command termination string (as in SQL).</p>
+	<p>You can configure the plugin to handle multi-line commands. This can be done in two ways; setting a line continuation string (as in Bash); or explicitly marking continuation lines with a prefix for languages that do not have a continuation string/character, e.g. SQL, Scala, etc..</p>
 
 	<dl>
 		<dt><code class="language-markup">data-continuation-str</code></dt>
 		<dd>Set this attribute to the line continuation string/character, e.g. for bash <code class="language-markup">data-continuation-str="\"</code></dd>
 
-		<dt><code class="language-markup">data-termination-str</code></dt>
-		<dd>Set this attribute to the command termination string/character, e.g. for SQL <code class="language-markup">data-termination-str=";"</code></dd>
+		<dt><code class="language-markup">data-filter-continuation</code></dt>
+		<dd>This works in a similar way to <code class="language-markup">data-filter-output</code>. Prefix all continuation lines with the value of <code class="language-markup">data-filter-continuation</code> and they will be displayed with the prompt set in <code class="language-markup">data-continuation-prompt</code>. For example, <code class="language-markup">data-filter-continuation="(con)"</code> will treat lines beginning with <code class="language-markup">(con)</code> as continuation lines and remove the prefix.</dd>
 
 		<dt><code class="language-markup">data-continuation-prompt</code></dt>
 		<dd>Set this attribute to define the prompt to be displayed when the command has continued beyond the first line (whether using line continuation or command termination), e.g. for MySQL <code class="language-markup">data-continuation-prompt="-&gt;"</code>. If this attribute is not set then a default of <code class="language-markup">&gt;</code> will be used.</dd>
@@ -170,30 +172,30 @@ echo "goodbye"
 Write-Host 'Goodbye from PowerShell!'
 (out)Goodbye from PowerShell!</code></pre>
 
-	<h2>Command termination with Output (SQL/MySQL)</h2>
+	<h2>Line continuation using prefix (MySQL/SQL)</h2>
 
 <pre><code class="language-html">&lt;pre class=&quot;command-line&quot;
      data-prompt=&quot;mysql&gt;&quot;
      data-continuation-prompt=&quot;-&gt;&quot;
      data-filter-output=&quot;(out)&quot;
-     data-termination-str=&quot;;&quot;&gt;</code></pre>
+     data-filter-continuation=&quot;(con)&quot;&gt;</code></pre>
 
-<pre class="command-line" data-prompt="mysql>" data-continuation-prompt="->" data-filter-output="(out)" data-termination-str=";"><code class="language-sql">set @my_var = 'foo';
-(out)Query OK, 0 rows affected (0.00 sec)
+<pre class="command-line" data-prompt="mysql>" data-continuation-prompt="->" data-filter-output="(out)" data-filter-continuation="(con)"><code class="language-sql">set @my_var = 'foo';
+set @my_other_var = 'bar';
 (out)
 CREATE TABLE people (
-first_name VARCHAR(30) NOT NULL,
-last_name VARCHAR(30) NOT NULL
-);
+(con)first_name VARCHAR(30) NOT NULL,
+(con)last_name VARCHAR(30) NOT NULL
+(con));
 (out)Query OK, 0 rows affected (0.09 sec)
 (out)
 insert into people
-values ('John', 'Doe');
+(con)values ('John', 'Doe');
 (out)Query OK, 1 row affected (0.02 sec)
 (out)
 select *
-from people
-order by last_name;
+(con)from people
+(con)order by last_name;
 (out)+------------+-----------+
 (out)| first_name | last_name |
 (out)+------------+-----------+
