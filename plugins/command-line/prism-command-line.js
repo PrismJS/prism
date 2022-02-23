@@ -119,22 +119,21 @@
 		// Identify code lines that are a continuation line and thus need
 		// a different prompt. Need to do this after the output lines have been removed
 		// to ensure we don't pick up a continuation string in an output line.
-		if (codeLines.length > 1) {
-			for (var j = 1; j < codeLines.length; j++) {
-				// Record lines where the previous line ended in a continuation str
-				if (lineContinuationStr
-						&& codeLines.hasOwnProperty(j - 1)
-						&& endsWith(codeLines[j - 1], lineContinuationStr)) {
-					continuationLineIndicies.add(j);
-				}
-				// Record lines explicitly marked with a continuation prefix
-				// (that we will remove)
-				if (continuationFilter
-						&& codeLines.hasOwnProperty(j)
-						&& startsWith(codeLines[j], continuationFilter)) {
-					codeLines[j] = codeLines[j].slice(continuationFilter.length);
-					continuationLineIndicies.add(j);
-				}
+		for (var j = 0; j < codeLines.length; j++) {
+			var line = codeLines[j];
+			if (!line) {
+				continue;
+			}
+
+			// Record lines where the previous line ended in a continuation str
+			if (lineContinuationStr && endsWith(line, lineContinuationStr)) {
+				continuationLineIndicies.add(j + 1);
+			}
+			// Record lines explicitly marked with a continuation prefix
+			// (that we will remove)
+			if (j > 0 && continuationFilter && startsWith(line, continuationFilter)) {
+				codeLines[j] = line.slice(continuationFilter.length);
+				continuationLineIndicies.add(j);
 			}
 		}
 
