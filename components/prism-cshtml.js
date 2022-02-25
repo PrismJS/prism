@@ -35,7 +35,8 @@
 	var inlineCs = /@/.source +
 		/(?:await\b\s*)?/.source +
 		'(?:' + /\w+\b/.source + '|' + round + ')' +
-		'(?:' + /[?!]?\.\w+\b/.source + '|' + round + '|' + square + '|' + angle + round + ')*';
+		'(?:' + /[?!]?\.\w+\b/.source + '|' + round + '|' + square + '|' + angle + round + ')*' +
+		/(?![?!\.(\[<])/.source;
 
 	// Note about the above bracket patterns:
 	// They all ignore HTML expressions that might be in the C# code. This is a problem because HTML (like strings and
