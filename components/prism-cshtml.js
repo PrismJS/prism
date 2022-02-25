@@ -134,6 +134,8 @@
 					/try\s*/.source + curly + /\s*catch\s*/.source + round + /\s*/.source + curly + /\s*finally\s*/.source + curly,
 					// @if (...) {...} else if (...) {...} else {...}
 					/if\s*/.source + round + /\s*/.source + curly + '(?:' + /\s*else/.source + '(?:' + /\s+if\s*/.source + round + ')?' + /\s*/.source + curly + ')*',
+					// @helper Ident(params) { ... }
+					/helper\s+\w+\s*/.source + round + /\s*/.source + curly,
 				].join('|') +
 				')'
 			),
