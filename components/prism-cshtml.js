@@ -139,7 +139,6 @@
 	Prism.languages.cshtml.tag.inside['attr-value'].pattern = RegExp(/=\s*/.source + tagAttrValue);
 	Prism.languages.insertBefore('inside', 'punctuation', { 'value': inlineValue }, Prism.languages.cshtml.tag.inside['attr-value']);
 
-
 	Prism.languages.insertBefore('cshtml', 'prolog', {
 		'razor-comment': {
 			pattern: /@\*[\s\S]*?\*@/,
