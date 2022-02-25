@@ -34,8 +34,8 @@
 
 	var inlineCs = /@/.source +
 		/(?:await\b\s*)?/.source +
-		'(?:' + /\w+\b/.source + '|' + round + ')' +
-		'(?:' + /[?!]?\.\w+\b/.source + '|' + round + '|' + square + '|' + angle + round + ')*' +
+		'(?:' + /(?!await\b)\w+\b/.source + '|' + round + ')' +
+		'(?:' + /[?!]?\.\w+\b/.source + '|' + '(?:' + angle + ')?' + round + '|' + square + ')*' +
 		/(?![?!\.(\[<])/.source;
 
 	// Note about the above bracket patterns:
