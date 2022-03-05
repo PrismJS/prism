@@ -8,7 +8,11 @@ class Foo extends foo.bar.Foo {
 
 }
 
-ID id;
+import com.lib.ID;
+ID id = new ID();
+ID.Nested id;
+ID::new
+ID[]::new
 
 String.valueOf(5);
 
@@ -110,7 +114,44 @@ String.valueOf(5);
 
 	["punctuation", "}"],
 
-	["class-name", ["ID"]], " id", ["punctuation", ";"],
+	["keyword", "import"],
+	["import", [
+		["namespace", [
+			"com",
+			["punctuation", "."],
+			"lib",
+			["punctuation", "."]
+		]],
+		["class-name", "ID"]
+	]],
+	["punctuation", ";"],
+
+	["class-name", ["ID"]],
+	" id ",
+	["operator", "="],
+	["keyword", "new"],
+	["class-name", ["ID"]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["class-name", [
+		"ID",
+		["punctuation", "."],
+		"Nested"
+	]],
+	" id",
+	["punctuation", ";"],
+
+	["class-name", ["ID"]],
+	["operator", "::"],
+	["keyword", "new"],
+
+	["class-name", ["ID"]],
+	["punctuation", "["],
+	["punctuation", "]"],
+	["operator", "::"],
+	["keyword", "new"],
 
 	["class-name", ["String"]],
 	["punctuation", "."],
