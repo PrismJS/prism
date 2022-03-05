@@ -38,13 +38,6 @@
 				return;
 			}
 
-			// Replace element with a clone
-			var clone = element.cloneNode(false);
-			element.parentNode.replaceChild(clone, element);
-			while (element.firstChild) {
-				clone.appendChild(element.firstChild);
-			}
-
 			var o = {
 				// Store original element so we can restore it after highlighting
 				element: element,
@@ -52,7 +45,7 @@
 			};
 			data.push(o);
 
-			processChildren(clone);
+			processChildren(element);
 
 			o.posClose = pos;
 		}
@@ -103,10 +96,11 @@
 					}
 
 					if (nodeState.nodeStart && nodeState.nodeEnd) {
-						// Select the range and wrap it with the clone
+						// Select the range and wrap it with the element
 						var range = document.createRange();
 						range.setStart(nodeState.nodeStart, nodeState.nodeStartPos);
 						range.setEnd(nodeState.nodeEnd, nodeState.nodeEndPos);
+						nodeState.node.element.innerHTML = '';
 						nodeState.node.element.appendChild(range.extractContents());
 						range.insertNode(nodeState.node.element);
 						range.detach();
