@@ -17,57 +17,63 @@ quit;
 
 [
 	["step", "proc groovy"],
-	["proc-args",
-		[
-			["arg", "classpath"],
-			["operator", "="],
-			["arg-value", "cp"],
-			["punctuation", ";"]
-		]
-	],
-	[
-		"proc-groovy", [
-			["comment", "/* Testing a comment */"],
-			["submit-statement", "submit parseonly"],
-			[
-				"groovy", [
-					["punctuation", ";"],
-					["keyword", "class"],
-					["class-name", ["Speaker"]],
-					["punctuation", "{"],
-					["keyword", "def"],
-					["function", "say"],
-					["punctuation", "("],
-					" word ",
-					["punctuation", ")"],
-					["punctuation", "{"],
-					"\r\n        println ",
-					["string", "\"----> \\\"${word}\\\"\""],
-					["punctuation", "}"],
-					["punctuation", "}"]
-				]
-			],
-			["submit-statement", "endsubmit"],
-			["punctuation", ";"]
-		]
-	],
+	["proc-args", [
+		["arg", "classpath"],
+		["operator", "="],
+		["arg-value", "cp"],
+		["punctuation", ";"]
+	]],
+	["proc-groovy", [
+		["comment", "/* Testing a comment */"],
+
+		["submit-statement", "submit parseonly"],
+		["groovy", [
+			["punctuation", ";"],
+
+			["keyword", "class"],
+			["class-name", ["Speaker"]],
+			["punctuation", "{"],
+
+			["keyword", "def"],
+			["function", "say"],
+			["punctuation", "("],
+			" word ",
+			["punctuation", ")"],
+			["punctuation", "{"],
+
+			"\r\n        println ",
+			["interpolation-string", [
+				["string", "\"----> \\\""],
+				["interpolation", [
+					["interpolation-punctuation", "${"],
+					["expression", ["word"]],
+					["interpolation-punctuation", "}"]
+				]],
+				["string", "\\\"\""]
+			]],
+
+			["punctuation", "}"],
+
+			["punctuation", "}"]
+		]],
+		["submit-statement", "endsubmit"],
+		["punctuation", ";"]
+	]],
 	["step", "quit"],
 	["punctuation", ";"],
+
 	["step", "proc groovy"],
-	["proc-args",
-		[
-			["arg", "classpath"],
-			["operator", "="],
-			["arg-value", "cp"],
-			["punctuation", ";"]
-		]
-	],
-	["proc-groovy",[
+	["proc-args", [
+		["arg", "classpath"],
+		["operator", "="],
+		["arg-value", "cp"],
+		["punctuation", ";"]
+	]],
+	["proc-groovy", [
 		["keyword", "eval"],
 		["string", "\"s = new Speaker(); s.say( \"\"Hi\"\" )\""],
 		["punctuation", ";"]
-		]
-	],
+	]],
 	["step", "quit"],
 	["punctuation", ";"]
 ]
