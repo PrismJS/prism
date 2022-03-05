@@ -38,14 +38,21 @@
 				return;
 			}
 
+			// Replace element with a clone
+			var clone = element.cloneNode(false);
+			element.parentNode.replaceChild(clone, element);
+			while (element.firstChild) {
+				clone.appendChild(element.firstChild);
+			}
+
 			var o = {
-				// Clone the original tag to keep all attributes
-				clone: element.cloneNode(false),
+				// Store original element so we can restore it after highlighting
+				element: element,
 				posOpen: pos
 			};
 			data.push(o);
 
-			processChildren(element);
+			processChildren(clone);
 
 			o.posClose = pos;
 		}
@@ -100,8 +107,8 @@
 						var range = document.createRange();
 						range.setStart(nodeState.nodeStart, nodeState.nodeStartPos);
 						range.setEnd(nodeState.nodeEnd, nodeState.nodeEndPos);
-						nodeState.node.clone.appendChild(range.extractContents());
-						range.insertNode(nodeState.node.clone);
+						nodeState.node.element.appendChild(range.extractContents());
+						range.insertNode(nodeState.node.element);
 						range.detach();
 
 						// Process is over
