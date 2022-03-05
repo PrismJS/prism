@@ -900,6 +900,18 @@ var Prism = (function (_self) {
 	}
 
 	/**
+	 * @param {Grammar | string | undefined | null} inside
+	 * @returns {Grammar | undefined}
+	 */
+	function resolveInside(inside) {
+		if (typeof inside === 'string') {
+			return _.languages[inside];
+		} else {
+			return inside;
+		}
+	}
+
+	/**
 	 * @param {string} text
 	 * @param {LinkedList<string | Token>} tokenList
 	 * @param {any} grammar
@@ -928,7 +940,7 @@ var Prism = (function (_self) {
 				}
 
 				var patternObj = patterns[j];
-				var inside = patternObj.inside;
+				var inside = resolveInside(patternObj.inside);
 				var lookbehind = !!patternObj.lookbehind;
 				var greedy = !!patternObj.greedy;
 				var alias = patternObj.alias;
@@ -1224,9 +1236,10 @@ if (typeof global !== 'undefined') {
  * behave as a lookbehind group meaning that the captured text will not be part of the matched text of the new token.
  * @property {boolean} [greedy=false] Whether the token is greedy.
  * @property {string|string[]} [alias] An optional alias or list of aliases.
- * @property {Grammar} [inside] The nested grammar of this token.
+ * @property {Grammar | string} [inside] The nested grammar of this token.
  *
- * The `inside` grammar will be used to tokenize the text value of each token of this kind.
+ * The `inside` grammar will be used to tokenize the text value of each token of this kind. It can be either a grammar
+ * object or the language id. If `inside` is a language id, then the grammar used will be `Prism.languages[inside]`.
  *
  * This can be used to make nested and even recursive language definitions.
  *

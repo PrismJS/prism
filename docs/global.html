@@ -143,7 +143,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line1239">line 1239</a>
+        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line1252">line 1252</a>
     </li></ul></dd>
     
 
@@ -274,7 +274,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line1218">line 1218</a>
+        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line1230">line 1230</a>
     </li></ul></dd>
     
 
@@ -494,6 +494,9 @@ behave as a lookbehind group meaning that the captured text will not be part of 
             
                 
 <span class="param-type"><a href="global.html#Grammar">Grammar</a></span>
+|
+
+<span class="param-type">string</span>
 
 
             
@@ -516,7 +519,8 @@ behave as a lookbehind group meaning that the captured text will not be part of 
             
 
             <td class="description last"><p>The nested grammar of this token.</p>
-<p>The <code>inside</code> grammar will be used to tokenize the text value of each token of this kind.</p>
+<p>The <code>inside</code> grammar will be used to tokenize the text value of each token of this kind. It can be either a grammar
+object or the language id. If <code>inside</code> is a language id, then the grammar used will be <code>Prism.languages[inside]</code>.</p>
 <p>This can be used to make nested and even recursive language definitions.</p>
 <p>Note: This can cause infinite recursion. Be careful when you embed different languages or even the same language into
 each another.</p></td>
@@ -559,7 +563,7 @@ each another.</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line1247">line 1247</a>
+        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line1260">line 1260</a>
     </li></ul></dd>
     
 
@@ -713,7 +717,7 @@ each another.</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line1257">line 1257</a>
+        <a href="prism-core.js.html">prism-core.js</a>, <a href="prism-core.js.html#line1270">line 1270</a>
     </li></ul></dd>
     
 
