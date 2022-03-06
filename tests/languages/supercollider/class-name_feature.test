@@ -1,0 +1,13 @@
+Foo
+SynthDef
+Set[]
+List[]
+
+----------------------------------------------------
+
+[
+	["class-name", "Foo"],
+	["class-name", "SynthDef"],
+	["class-name", "Set"], ["punctuation", "["], ["punctuation", "]"],
+	["class-name", "List"], ["punctuation", "["], ["punctuation", "]"]
+]

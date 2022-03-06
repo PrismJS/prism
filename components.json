@@ -1289,6 +1289,11 @@
 			"title": "Stylus",
 			"owner": "vkbansal"
 		},
+		"supercollider": {
+			"title": "SuperCollider",
+			"alias": "sclang",
+			"owner": "RunDevelopment"
+		},
 		"swift": {
 			"title": "Swift",
 			"owner": "chrischares"
