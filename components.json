@@ -494,6 +494,11 @@
 			"alias": "gni",
 			"owner": "RunDevelopment"
 		},
+		"linker-script": {
+			"title": "GNU Linker Script",
+			"alias": "ld",
+			"owner": "RunDevelopment"
+		},
 		"go": {
 			"title": "Go",
 			"require": "clike",
@@ -781,11 +786,6 @@
 			"title": "LilyPond",
 			"require": "scheme",
 			"alias": "ly",
-			"owner": "RunDevelopment"
-		},
-		"linker-script": {
-			"title": "Linker Script",
-			"alias": "ld",
 			"owner": "RunDevelopment"
 		},
 		"liquid": {
