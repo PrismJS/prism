@@ -783,6 +783,11 @@
 			"alias": "ly",
 			"owner": "RunDevelopment"
 		},
+		"linker-script": {
+			"title": "Linker Script",
+			"alias": "ld",
+			"owner": "RunDevelopment"
+		},
 		"liquid": {
 			"title": "Liquid",
 			"require": "markup-templating",

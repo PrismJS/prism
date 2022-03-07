@@ -138,6 +138,8 @@
 		"context": "ConTeXt",
 		"lilypond": "LilyPond",
 		"ly": "LilyPond",
+		"linker-script": "Linker Script",
+		"ld": "Linker Script",
 		"emacs": "Lisp",
 		"elisp": "Lisp",
 		"emacs-lisp": "Lisp",

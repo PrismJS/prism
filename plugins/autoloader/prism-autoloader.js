@@ -211,6 +211,7 @@
 		"tex": "latex",
 		"context": "latex",
 		"ly": "lilypond",
+		"ld": "linker-script",
 		"emacs": "lisp",
 		"elisp": "lisp",
 		"emacs-lisp": "lisp",
