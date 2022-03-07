@@ -175,6 +175,14 @@
 			"alias": "avdl",
 			"owner": "RunDevelopment"
 		},
+		"awk": {
+			"title": "AWK",
+			"alias": "gawk",
+			"aliasTitles": {
+				"gawk": "GAWK"
+			},
+			"owner": "RunDevelopment"
+		},
 		"bash": {
 			"title": "Bash",
 			"alias": "shell",

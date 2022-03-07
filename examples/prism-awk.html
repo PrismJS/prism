@@ -1,0 +1,7 @@
+<h2>Full example</h2>
+<pre><code># Source: awklang.org
+BEGIN { ascetion = bsection = 0 }
+$2 ~ /^[aA][0-9]+/ { asection++ }
+$2 ~ /^[bB][0-9]+/ { bsection++ }
+END { print asection, bsection }
+</code></pre>
