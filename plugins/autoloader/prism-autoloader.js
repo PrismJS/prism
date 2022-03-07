@@ -223,6 +223,7 @@
 		"objectpascal": "pascal",
 		"px": "pcaxis",
 		"pcode": "peoplecode",
+		"plantuml": "plant-uml",
 		"pq": "powerquery",
 		"mscript": "powerquery",
 		"pbfasm": "purebasic",

@@ -1000,6 +1000,11 @@
 			"modify": "php",
 			"owner": "milesj"
 		},
+		"plant-uml": {
+			"title": "PlantUML",
+			"alias": "plantuml",
+			"owner": "RunDevelopment"
+		},
 		"plsql": {
 			"title": "PL/SQL",
 			"require": "sql",
