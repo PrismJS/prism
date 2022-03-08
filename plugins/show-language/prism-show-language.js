@@ -38,6 +38,8 @@
 		"aql": "AQL",
 		"ino": "Arduino",
 		"arff": "ARFF",
+		"armasm": "ARM Assembly",
+		"arm-asm": "ARM Assembly",
 		"asciidoc": "AsciiDoc",
 		"adoc": "AsciiDoc",
 		"aspnet": "ASP.NET (C#)",

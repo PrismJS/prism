@@ -1,0 +1,23 @@
+""
+"foo"
+
+"this string contains only one "" double quote"
+"this string contains only one $$ dollar symbol"
+
+"$DIV"
+
+----------------------------------------------------
+
+[
+	["string", ["\"\""]],
+	["string", ["\"foo\""]],
+
+	["string", ["\"this string contains only one \"\" double quote\""]],
+	["string", ["\"this string contains only one $$ dollar symbol\""]],
+
+	["string", [
+		"\"",
+		["variable", "$DIV"],
+		"\""
+	]]
+]

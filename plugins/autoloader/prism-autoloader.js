@@ -176,6 +176,7 @@
 		"js": "javascript",
 		"g4": "antlr4",
 		"ino": "arduino",
+		"arm-asm": "armasm",
 		"adoc": "asciidoc",
 		"avs": "avisynth",
 		"avdl": "avro-idl",

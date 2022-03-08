@@ -1,0 +1,43 @@
++ - * / %
+< <= > >= == = /= != <>
+>> << | & ^
+&& ||
+?
+#
+
+:MOD: :CHR:
+
+----------------------------------------------------
+
+[
+	["operator", "+"],
+	["operator", "-"],
+	["operator", "*"],
+	["operator", "/"],
+	["operator", "%"],
+
+	["operator", "<"],
+	["operator", "<="],
+	["operator", ">"],
+	["operator", ">="],
+	["operator", "=="],
+	["operator", "="],
+	["operator", "/="],
+	["operator", "!="],
+	["operator", "<>"],
+
+	["operator", ">>"],
+	["operator", "<<"],
+	["operator", "|"],
+	["operator", "&"],
+	["operator", "^"],
+
+	["operator", "&&"],
+	["operator", "||"],
+
+	["operator", "?"],
+
+	["operator", "#"],
+
+	["operator", ":MOD:"], ["operator", ":CHR:"]
+]
