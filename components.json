@@ -322,6 +322,10 @@
 			"title": "CSV",
 			"owner": "RunDevelopment"
 		},
+		"cue": {
+			"title": "CUE",
+			"owner": "RunDevelopment"
+		},
 		"cypher": {
 			"title": "Cypher",
 			"owner": "RunDevelopment"

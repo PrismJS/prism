@@ -69,6 +69,7 @@
 		"csp": "Content-Security-Policy",
 		"css-extras": "CSS Extras",
 		"csv": "CSV",
+		"cue": "CUE",
 		"dataweave": "DataWeave",
 		"dax": "DAX",
 		"django": "Django/Jinja2",
