@@ -834,6 +834,10 @@
 			"require": "markup",
 			"owner": "Golmote"
 		},
+		"mata": {
+			"title": "Mata",
+			"owner": "RunDevelopment"
+		},
 		"matlab": {
 			"title": "MATLAB",
 			"owner": "Golmote"
