@@ -10,7 +10,7 @@ Prism.languages.erlang = {
 	},
 	'quoted-atom': {
 		pattern: /'(?:\\.|[^\\'\r\n])+'/,
-		alias: 'atom'
+		alias: ['atom', 'symbol']
 	},
 	'boolean': /\b(?:false|true)\b/,
 	'keyword': /\b(?:after|case|catch|end|fun|if|of|receive|try|when)\b/,
@@ -38,7 +38,10 @@ Prism.languages.erlang = {
 			lookbehind: true
 		}
 	],
-	'atom': /\b[a-z][\w@]*/,
+	'atom': {
+		pattern: /\b[a-z][\w@]*/,
+		alias: 'symbol'
+	},
 	'punctuation': /[()[\]{}:;,.#|]|<<|>>/
 
 };
