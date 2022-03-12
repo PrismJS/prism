@@ -1,0 +1,175 @@
+abs
+acos
+asc
+asin
+atan
+ceil
+chr
+class
+cos
+comobjactive
+comobjarray
+comobjconnect
+comobjcreate
+comobjerror
+comobjflags
+comobjget
+comobjquery
+comobjtype
+comobjvalue
+dllcall
+exp
+fileexist
+Fileopen
+floor
+format
+il_add
+il_create
+il_destroy
+instr
+substr
+isfunc
+islabel
+IsObject
+ln
+log
+ltrim
+rtrim
+lv_add
+lv_delete
+lv_deletecol
+lv_getcount
+lv_getnext
+lv_gettext
+lv_insert
+lv_insertcol
+lv_modify
+lv_modifycol
+lv_setimagelist
+mod
+onmessage
+numget
+numput
+registercallback
+regexmatch
+regexreplace
+round
+sin
+tan
+sqrt
+strlen
+strreplace
+sb_seticon
+sb_setparts
+sb_settext
+strsplit
+tv_add
+tv_delete
+tv_getchild
+tv_getcount
+tv_getnext
+tv_get
+tv_getparent
+tv_getprev
+tv_getselection
+tv_gettext
+tv_modify
+varsetcapacity
+winactive
+winexist
+__New
+__Call
+__Get
+__Set
+
+----------------------------------------------------
+
+[
+	["builtin-function", "abs"],
+	["builtin-function", "acos"],
+	["builtin-function", "asc"],
+	["builtin-function", "asin"],
+	["builtin-function", "atan"],
+	["builtin-function", "ceil"],
+	["builtin-function", "chr"],
+	["builtin-function", "class"],
+	["builtin-function", "cos"],
+	["builtin-function", "comobjactive"],
+	["builtin-function", "comobjarray"],
+	["builtin-function", "comobjconnect"],
+	["builtin-function", "comobjcreate"],
+	["builtin-function", "comobjerror"],
+	["builtin-function", "comobjflags"],
+	["builtin-function", "comobjget"],
+	["builtin-function", "comobjquery"],
+	["builtin-function", "comobjtype"],
+	["builtin-function", "comobjvalue"],
+	["builtin-function", "dllcall"],
+	["builtin-function", "exp"],
+	["builtin-function", "fileexist"],
+	["builtin-function", "Fileopen"],
+	["builtin-function", "floor"],
+	["builtin-function", "format"],
+	["builtin-function", "il_add"],
+	["builtin-function", "il_create"],
+	["builtin-function", "il_destroy"],
+	["builtin-function", "instr"],
+	["builtin-function", "substr"],
+	["builtin-function", "isfunc"],
+	["builtin-function", "islabel"],
+	["builtin-function", "IsObject"],
+	["builtin-function", "ln"],
+	["builtin-function", "log"],
+	["builtin-function", "ltrim"],
+	["builtin-function", "rtrim"],
+	["builtin-function", "lv_add"],
+	["builtin-function", "lv_delete"],
+	["builtin-function", "lv_deletecol"],
+	["builtin-function", "lv_getcount"],
+	["builtin-function", "lv_getnext"],
+	["builtin-function", "lv_gettext"],
+	["builtin-function", "lv_insert"],
+	["builtin-function", "lv_insertcol"],
+	["builtin-function", "lv_modify"],
+	["builtin-function", "lv_modifycol"],
+	["builtin-function", "lv_setimagelist"],
+	["builtin-function", "mod"],
+	["builtin-function", "onmessage"],
+	["builtin-function", "numget"],
+	["builtin-function", "numput"],
+	["builtin-function", "registercallback"],
+	["builtin-function", "regexmatch"],
+	["builtin-function", "regexreplace"],
+	["builtin-function", "round"],
+	["builtin-function", "sin"],
+	["builtin-function", "tan"],
+	["builtin-function", "sqrt"],
+	["builtin-function", "strlen"],
+	["builtin-function", "strreplace"],
+	["builtin-function", "sb_seticon"],
+	["builtin-function", "sb_setparts"],
+	["builtin-function", "sb_settext"],
+	["builtin-function", "strsplit"],
+	["builtin-function", "tv_add"],
+	["builtin-function", "tv_delete"],
+	["builtin-function", "tv_getchild"],
+	["builtin-function", "tv_getcount"],
+	["builtin-function", "tv_getnext"],
+	["builtin-function", "tv_get"],
+	["builtin-function", "tv_getparent"],
+	["builtin-function", "tv_getprev"],
+	["builtin-function", "tv_getselection"],
+	["builtin-function", "tv_gettext"],
+	["builtin-function", "tv_modify"],
+	["builtin-function", "varsetcapacity"],
+	["builtin-function", "winactive"],
+	["builtin-function", "winexist"],
+	["builtin-function", "__New"],
+	["builtin-function", "__Call"],
+	["builtin-function", "__Get"],
+	["builtin-function", "__Set"]
+]
+
+----------------------------------------------------
+
+Checks for all builtins.
