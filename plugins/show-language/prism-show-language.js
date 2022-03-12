@@ -223,6 +223,7 @@
 		"splunk-spl": "Splunk SPL",
 		"sqf": "SQF: Status Quo Function (Arma 3)",
 		"sql": "SQL",
+		"stata": "Stata Ado",
 		"iecst": "Structured Text (IEC 61131-3)",
 		"systemd": "Systemd configuration file",
 		"t4-templating": "T4 templating",

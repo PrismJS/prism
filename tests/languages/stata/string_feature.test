@@ -1,0 +1,51 @@
+""
+"foo"
+"${datadir}householdmembers"
+"‘ins’"
+"‘mpg[one]’"
+
+`"ysc(r(0 80)) xtitle("Health Status", size(medlarge))"'
+
+----------------------------------------------------
+
+[
+	["string-literal", [
+		["string", "\"\""]
+	]],
+	["string-literal", [
+		["string", "\"foo\""]
+	]],
+	["string-literal", [
+		["string", "\""],
+		["interpolation", [
+			["punctuation", "${"],
+			["expression", [
+				["command", "datadir"]
+			]],
+			["punctuation", "}"]
+		]],
+		["string", "householdmembers\""]
+	]],
+	["string-literal", [
+		["string", "\""],
+		["interpolation", [
+			["expression", [
+				["variable", "‘ins’"]
+			]]
+		]],
+		["string", "\""]
+	]],
+	["string-literal", [
+		["string", "\""],
+		["interpolation", [
+			["expression", [
+				["variable", "‘mpg[one]’"]
+			]]
+		]],
+		["string", "\""]
+	]],
+
+	["string-literal", [
+		["string", "`\"ysc(r(0 80)) xtitle(\"Health Status\", size(medlarge))\"'"]
+	]]
+]

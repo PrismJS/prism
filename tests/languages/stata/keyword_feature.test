@@ -1,0 +1,63 @@
+foo bayes
+foo bootstrap
+foo by
+foo bysort
+foo capture
+foo clear
+foo collect
+foo fmm
+foo fp
+foo frame
+foo if
+foo in
+foo jackknife
+foo mfp
+foo mi estimate
+foo nestreg
+foo noisily
+foo of
+foo permute
+foo quietly
+foo rolling
+foo simulate
+foo sort
+foo statsby
+foo stepwise
+foo svy
+foo varlist
+foo version
+foo xi
+
+----------------------------------------------------
+
+[
+	["command", "foo"], ["keyword", "bayes"],
+	["command", "foo"], ["keyword", "bootstrap"],
+	["command", "foo"], ["keyword", "by"],
+	["command", "foo"], ["keyword", "bysort"],
+	["command", "foo"], ["keyword", "capture"],
+	["command", "foo"], ["keyword", "clear"],
+	["command", "foo"], ["keyword", "collect"],
+	["command", "foo"], ["keyword", "fmm"],
+	["command", "foo"], ["keyword", "fp"],
+	["command", "foo"], ["keyword", "frame"],
+	["command", "foo"], ["keyword", "if"],
+	["command", "foo"], ["keyword", "in"],
+	["command", "foo"], ["keyword", "jackknife"],
+	["command", "foo"], ["keyword", "mfp"],
+	["command", "foo"], ["keyword", "mi estimate"],
+	["command", "foo"], ["keyword", "nestreg"],
+	["command", "foo"], ["keyword", "noisily"],
+	["command", "foo"], ["keyword", "of"],
+	["command", "foo"], ["keyword", "permute"],
+	["command", "foo"], ["keyword", "quietly"],
+	["command", "foo"], ["keyword", "rolling"],
+	["command", "foo"], ["keyword", "simulate"],
+	["command", "foo"], ["keyword", "sort"],
+	["command", "foo"], ["keyword", "statsby"],
+	["command", "foo"], ["keyword", "stepwise"],
+	["command", "foo"], ["keyword", "svy"],
+	["command", "foo"], ["keyword", "varlist"],
+	["command", "foo"], ["keyword", "version"],
+	["command", "foo"], ["keyword", "xi"]
+]

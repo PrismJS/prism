@@ -1285,6 +1285,11 @@
 			"title": "Stan",
 			"owner": "RunDevelopment"
 		},
+		"stata": {
+			"title": "Stata Ado",
+			"require": ["mata", "java", "python"],
+			"owner": "RunDevelopment"
+		},
 		"iecst": {
 			"title": "Structured Text (IEC 61131-3)",
 			"owner": "serhioromano"
