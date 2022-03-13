@@ -30,7 +30,7 @@
 	var round = nested(/\((?:[^()'"@/]|<str>|<comment>|<self>)*\)/.source, 2);
 	var square = nested(/\[(?:[^\[\]'"@/]|<str>|<comment>|<self>)*\]/.source, 1);
 	var curly = nested(/\{(?:[^{}'"@/]|<str>|<comment>|<self>)*\}/.source, 2);
-	var angle = nested(/<(?:[^<>'"@/]|<str>|<comment>|<self>)*>/.source, 1);
+	var angle = nested(/<(?:[^<>'"@/]|<comment>|<self>)*>/.source, 1);
 
 	var inlineCs = /@/.source +
 		/(?:await\b\s*)?/.source +
@@ -52,11 +52,9 @@
 
 	var tagAttrInlineCs = /@(?![\w()])/.source + '|' + inlineCs;
 	var tagAttrValue = '(?:' +
-		'"(?:[^"@]|' + tagAttrInlineCs + ')*"' +
+		/"[^"@]*"|'[^'@]*'|[^\s'"@>=]+(?=[\s>])/.source +
 		'|' +
-		"'(?:[^'@]|" + tagAttrInlineCs + ")*'" +
-		'|' +
-		/[^\s'"@>=]+(?=[\s>])/.source +
+		'["\'][^"\'@]*(?:(?:' + tagAttrInlineCs + ')[^"\'@]*)+["\']' +
 		')';
 
 	var tagAttrs = /(?:\s(?:\s*[^\s>\/=]+(?:\s*=\s*<tagAttrValue>|(?=[\s/>])))+)?/.source.replace(/<tagAttrValue>/, tagAttrValue);
