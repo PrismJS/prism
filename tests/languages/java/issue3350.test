@@ -1,0 +1,86 @@
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.UUID;
+import java.util.regex.Pattern;
+
+----------------------------------------------------
+
+[
+	["keyword", "import"],
+	["import", [
+		["namespace", [
+			"java",
+			["punctuation", "."],
+			"nio",
+			["punctuation", "."],
+			"charset",
+			["punctuation", "."]
+		]],
+		["class-name", "StandardCharsets"]
+	]],
+	["punctuation", ";"],
+
+	["keyword", "import"],
+	["import", [
+		["namespace", [
+			"java",
+			["punctuation", "."],
+			"security",
+			["punctuation", "."]
+		]],
+		["class-name", "MessageDigest"]
+	]],
+	["punctuation", ";"],
+
+	["keyword", "import"],
+	["import", [
+		["namespace", [
+			"java",
+			["punctuation", "."],
+			"util",
+			["punctuation", "."]
+		]],
+		["class-name", "Arrays"]
+	]],
+	["punctuation", ";"],
+
+	["keyword", "import"],
+	["import", [
+		["namespace", [
+			"java",
+			["punctuation", "."],
+			"util",
+			["punctuation", "."]
+		]],
+		["class-name", "HashSet"]
+	]],
+	["punctuation", ";"],
+
+	["keyword", "import"],
+	["import", [
+		["namespace", [
+			"java",
+			["punctuation", "."],
+			"util",
+			["punctuation", "."]
+		]],
+		["class-name", "UUID"]
+	]],
+	["punctuation", ";"],
+
+	["keyword", "import"],
+	["import", [
+		["namespace", [
+			"java",
+			["punctuation", "."],
+			"util",
+			["punctuation", "."],
+			"regex",
+			["punctuation", "."]
+		]],
+		["class-name", "Pattern"]
+	]],
+	["punctuation", ";"]
+]
