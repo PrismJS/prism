@@ -8,7 +8,7 @@ const TestCase = require('./helper/test-case');
 const { BFS, BFSPathToPrismTokenPath, parseRegex } = require('./helper/util');
 const { languages } = require('../components.json');
 const { visitRegExpAST } = require('regexpp');
-const { transform, combineTransformers, getIntersectionWordSets, JS, Words, NFA, Transformers } = require('refa');
+const { transform, combineTransformers, getIntersectionWordSets, JS, Words, NFA, Transformers, isDisjointWith } = require('refa');
 const scslre = require('scslre');
 const { argv } = require('yargs');
 const RAA = require('regexp-ast-analysis');
@@ -461,6 +461,50 @@ const transformer = combineTransformers([
 ]);
 
 
+/** @type {Map<string, Map<string, Error | null>>} */
+const resultCache = new Map();
+/**
+ * @param {string} cacheName
+ * @returns {Map<string, Error | null>}
+ */
+function getResultCache(cacheName) {
+	let cache = resultCache.get(cacheName);
+	if (cache === undefined) {
+		resultCache.set(cacheName, cache = new Map());
+	}
+	return cache;
+}
+/**
+ * @param {string} cacheName
+ * @param {T} cacheKey
+ * @param {(node: T) => void} compute
+ * @returns {void}
+ * @template {import('regexpp/ast').Node} T
+ */
+function withResultCache(cacheName, cacheKey, compute) {
+	const hasBackRef = RAA.hasSomeDescendant(cacheKey, n => n.type === 'Backreference');
+	if (hasBackRef) {
+		compute(cacheKey);
+		return;
+	}
+
+	const cache = getResultCache(cacheName);
+	let cached = cache.get(cacheKey.raw);
+	if (cached === undefined) {
+		try {
+			compute(cacheKey);
+			cached = null;
+		} catch (error) {
+			cached = error;
+		}
+		cache.set(cacheKey.raw, cached);
+	}
+
+	if (cached) {
+		throw cached;
+	}
+}
+
 /**
  * @param {string} path
  * @param {RegExp} pattern
@@ -510,32 +554,34 @@ function checkExponentialBacktracking(path, pattern, ast) {
 			return;
 		}
 
-		const alternatives = node.alternatives;
+		withResultCache('disjointAlternatives', node, () => {
+			const alternatives = node.alternatives;
 
-		const total = toNFA(alternatives[0]);
-		total.withoutEmptyWord();
-		for (let i = 1, l = alternatives.length; i < l; i++) {
-			const a = alternatives[i];
-			const current = toNFA(a);
-			current.withoutEmptyWord();
+			const total = toNFA(alternatives[0]);
+			total.withoutEmptyWord();
+			for (let i = 1, l = alternatives.length; i < l; i++) {
+				const a = alternatives[i];
+				const current = toNFA(a);
+				current.withoutEmptyWord();
 
-			if (!total.isDisjointWith(current)) {
-				assert.fail(`${path}: The alternative \`${a.raw}\` is not disjoint with at least one previous alternative.`
-					+ ` This will cause exponential backtracking.`
-					+ `\n\nTo fix this issue, you have to rewrite the ${node.type} \`${node.raw}\`.`
-					+ ` The goal is that all of its alternatives are disjoint.`
-					+ ` This means that if a (sub-)string is matched by the ${node.type}, then only one of its alternatives can match the (sub-)string.`
-					+ `\n\nExample: \`(?:[ab]|\\w|::)+\``
-					+ `\nThe alternatives of the group are not disjoint because the string "a" can be matched by both \`[ab]\` and \`\\w\`.`
-					+ ` In this example, the pattern can easily be fixed because the \`[ab]\` is a subset of the \`\\w\`, so its enough to remove the \`[ab]\` alternative to get \`(?:\\w|::)+\` as the fixed pattern.`
-					+ `\nIn the real world, patterns can be a lot harder to fix.`
-					+ ` If you are trying to make the tests pass for a pull request but can\'t fix the issue yourself, then make the pull request (or commit) anyway.`
-					+ ` A maintainer will help you.`
-					+ `\n\nFull pattern:\n${pattern}`);
-			} else if (i !== l - 1) {
-				total.union(current);
+				if (!isDisjointWith(total, current)) {
+					assert.fail(`${path}: The alternative \`${a.raw}\` is not disjoint with at least one previous alternative.`
+						+ ` This will cause exponential backtracking.`
+						+ `\n\nTo fix this issue, you have to rewrite the ${node.type} \`${node.raw}\`.`
+						+ ` The goal is that all of its alternatives are disjoint.`
+						+ ` This means that if a (sub-)string is matched by the ${node.type}, then only one of its alternatives can match the (sub-)string.`
+						+ `\n\nExample: \`(?:[ab]|\\w|::)+\``
+						+ `\nThe alternatives of the group are not disjoint because the string "a" can be matched by both \`[ab]\` and \`\\w\`.`
+						+ ` In this example, the pattern can easily be fixed because the \`[ab]\` is a subset of the \`\\w\`, so its enough to remove the \`[ab]\` alternative to get \`(?:\\w|::)+\` as the fixed pattern.`
+						+ `\nIn the real world, patterns can be a lot harder to fix.`
+						+ ` If you are trying to make the tests pass for a pull request but can\'t fix the issue yourself, then make the pull request (or commit) anyway.`
+						+ ` A maintainer will help you.`
+						+ `\n\nFull pattern:\n${pattern}`);
+				} else if (i !== l - 1) {
+					total.union(current);
+				}
 			}
-		}
+		});
 	}
 
 	visitRegExpAST(ast.pattern, {
@@ -555,49 +601,51 @@ function checkExponentialBacktracking(path, pattern, ast) {
 				return; // not a group
 			}
 
-			// The idea here is the following:
-			//
-			// We have found a part `A*` of the regex (`A` is assumed to not accept the empty word). Let `I` be
-			// the intersection of `A` and `A{2,}`. If `I` is not empty, then there exists a non-empty word `w`
-			// that is accepted by both `A` and `A{2,}`. That means that there exists some `m>1` for which `w`
-			// is accepted by `A{m}`.
-			// This means that there are at least two ways `A*` can accept `w`. It can be accepted as `A` or as
-			// `A{m}`. Hence there are at least 2^n ways for `A*` to accept the word `w{n}`. This is the main
-			// requirement for exponential backtracking.
-			//
-			// This is actually only a crude approximation for the real analysis that would have to be done. We
-			// would actually have to check the intersection `A{p}` and `A{p+1,}` for all p>0. However, in most
-			// cases, the approximation is good enough.
+			withResultCache('2star', node, () => {
+				// The idea here is the following:
+				//
+				// We have found a part `A*` of the regex (`A` is assumed to not accept the empty word). Let `I` be
+				// the intersection of `A` and `A{2,}`. If `I` is not empty, then there exists a non-empty word `w`
+				// that is accepted by both `A` and `A{2,}`. That means that there exists some `m>1` for which `w`
+				// is accepted by `A{m}`.
+				// This means that there are at least two ways `A*` can accept `w`. It can be accepted as `A` or as
+				// `A{m}`. Hence there are at least 2^n ways for `A*` to accept the word `w{n}`. This is the main
+				// requirement for exponential backtracking.
+				//
+				// This is actually only a crude approximation for the real analysis that would have to be done. We
+				// would actually have to check the intersection `A{p}` and `A{p+1,}` for all p>0. However, in most
+				// cases, the approximation is good enough.
 
-			const nfa = toNFA(node.element);
-			nfa.withoutEmptyWord();
-			const twoStar = nfa.copy();
-			twoStar.quantify(2, Infinity);
+				const nfa = toNFA(node.element);
+				nfa.withoutEmptyWord();
+				const twoStar = nfa.copy();
+				twoStar.quantify(2, Infinity);
 
-			if (!nfa.isDisjointWith(twoStar)) {
-				const word = Words.pickMostReadableWord(firstOf(getIntersectionWordSets(nfa, twoStar)));
-				const example = Words.fromUnicodeToString(word);
-				assert.fail(`${path}: The quantifier \`${node.raw}\` ambiguous for all words ${JSON.stringify(example)}.repeat(n) for any n>1.`
-					+ ` This will cause exponential backtracking.`
-					+ `\n\nTo fix this issue, you have to rewrite the element (let's call it E) of the quantifier.`
-					+ ` The goal is modify E such that it is disjoint with repetitions of itself.`
-					+ ` This means that if a (sub-)string is matched by E, then it must not be possible for E{2}, E{3}, E{4}, etc. to match that (sub-)string.`
-					+ `\n\nExample 1: \`(?:\\w+|::)+\``
-					+ `\nThe problem lies in \`\\w+\` because \`\\w+\` and \`(?:\\w+){2}\` are not disjoint as the string "aa" is fully matched by both.`
-					+ ` In this example, the pattern can easily be fixed by changing \`\\w+\` to \`\\w\`.`
-					+ `\nExample 2: \`(?:\\w|Foo)+\``
-					+ `\nThe problem lies in \`\\w\` and \`Foo\` because the string "Foo" can be matched as either repeating \`\\w\` 3 times or by using the \`Foo\` alternative once.`
-					+ ` In this example, the pattern can easily be fixed because the \`Foo\` alternative is redundant can can be removed.`
-					+ `\nExample 3: \`(?:\\.\\w+(?:<.*?>)?)+\``
-					+ `\nThe problem lies in \`<.*?>\`. The string ".a<>.a<>" can be matched as either \`\\. \\w < . . . . >\` or \`\\. \\w < > \\. \\w < >\`.`
-					+ ` When it comes to exponential backtracking, it doesn't matter whether a quantifier is greedy or lazy.`
-					+ ` This means that the lazy \`.*?\` can jump over \`>\`.`
-					+ ` In this example, the pattern can easily be fixed because we just have to prevent \`.*?\` jumping over \`>\`.`
-					+ ` This can done by replacing \`<.*?>\` with \`<[^\\r\\n>]*>\`.`
-					+ `\n\nIn the real world, patterns can be a lot harder to fix.`
-					+ ` If you are trying to make this test pass for a pull request but can\'t fix the issue yourself, then make the pull request (or commit) anyway, a maintainer will help you.`
-					+ `\n\nFull pattern:\n${pattern}`);
-			}
+				if (!isDisjointWith(nfa, twoStar)) {
+					const word = Words.pickMostReadableWord(firstOf(getIntersectionWordSets(nfa, twoStar)));
+					const example = Words.fromUnicodeToString(word);
+					assert.fail(`${path}: The quantifier \`${node.raw}\` ambiguous for all words ${JSON.stringify(example)}.repeat(n) for any n>1.`
+						+ ` This will cause exponential backtracking.`
+						+ `\n\nTo fix this issue, you have to rewrite the element (let's call it E) of the quantifier.`
+						+ ` The goal is modify E such that it is disjoint with repetitions of itself.`
+						+ ` This means that if a (sub-)string is matched by E, then it must not be possible for E{2}, E{3}, E{4}, etc. to match that (sub-)string.`
+						+ `\n\nExample 1: \`(?:\\w+|::)+\``
+						+ `\nThe problem lies in \`\\w+\` because \`\\w+\` and \`(?:\\w+){2}\` are not disjoint as the string "aa" is fully matched by both.`
+						+ ` In this example, the pattern can easily be fixed by changing \`\\w+\` to \`\\w\`.`
+						+ `\nExample 2: \`(?:\\w|Foo)+\``
+						+ `\nThe problem lies in \`\\w\` and \`Foo\` because the string "Foo" can be matched as either repeating \`\\w\` 3 times or by using the \`Foo\` alternative once.`
+						+ ` In this example, the pattern can easily be fixed because the \`Foo\` alternative is redundant can can be removed.`
+						+ `\nExample 3: \`(?:\\.\\w+(?:<.*?>)?)+\``
+						+ `\nThe problem lies in \`<.*?>\`. The string ".a<>.a<>" can be matched as either \`\\. \\w < . . . . >\` or \`\\. \\w < > \\. \\w < >\`.`
+						+ ` When it comes to exponential backtracking, it doesn't matter whether a quantifier is greedy or lazy.`
+						+ ` This means that the lazy \`.*?\` can jump over \`>\`.`
+						+ ` In this example, the pattern can easily be fixed because we just have to prevent \`.*?\` jumping over \`>\`.`
+						+ ` This can done by replacing \`<.*?>\` with \`<[^\\r\\n>]*>\`.`
+						+ `\n\nIn the real world, patterns can be a lot harder to fix.`
+						+ ` If you are trying to make this test pass for a pull request but can\'t fix the issue yourself, then make the pull request (or commit) anyway, a maintainer will help you.`
+						+ `\n\nFull pattern:\n${pattern}`);
+				}
+			});
 		},
 	});
 
