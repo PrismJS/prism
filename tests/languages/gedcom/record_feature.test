@@ -1,0 +1,25 @@
+0 HEAD
+1 foo_bar
+2 _
+3 @pointer@ _Sometag42
+4 247
+
+----------------------------------------------------
+
+[
+	["level", "0"],
+	["records", "HEAD"],
+	["level", "1"],
+	["records", "foo_bar"],
+	["level", "2"],
+	["records", "_"],
+	["level", "3"],
+	["pointer", "@pointer@"],
+	["records", "_Sometag42"],
+	["level", "4"],
+	["records", "247"]
+]
+
+----------------------------------------------------
+
+Checks for tags.
