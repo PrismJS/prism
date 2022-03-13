@@ -28,9 +28,9 @@
 	}
 
 	var round = nested(/\((?:[^()'"@/]|<str>|<comment>|<self>)*\)/.source, 2);
-	var square = nested(/\[(?:[^\[\]'"@/]|<str>|<comment>|<self>)*\]/.source, 2);
+	var square = nested(/\[(?:[^\[\]'"@/]|<str>|<comment>|<self>)*\]/.source, 1);
 	var curly = nested(/\{(?:[^{}'"@/]|<str>|<comment>|<self>)*\}/.source, 2);
-	var angle = nested(/<(?:[^<>'"@/]|<str>|<comment>|<self>)*>/.source, 2);
+	var angle = nested(/<(?:[^<>'"@/]|<str>|<comment>|<self>)*>/.source, 1);
 
 	var inlineCs = /@/.source +
 		/(?:await\b\s*)?/.source +
