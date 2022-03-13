@@ -1,12 +1,12 @@
 fun when case of
-end if receive
+begin end if receive
 after try catch
 
 ----------------------------------------------------
 
 [
 	["keyword", "fun"], ["keyword", "when"], ["keyword", "case"], ["keyword", "of"],
-	["keyword", "end"], ["keyword", "if"], ["keyword", "receive"],
+	["keyword", "begin"], ["keyword", "end"], ["keyword", "if"], ["keyword", "receive"],
 	["keyword", "after"], ["keyword", "try"], ["keyword", "catch"]
 ]
 
