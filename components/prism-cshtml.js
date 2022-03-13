@@ -36,7 +36,7 @@
 		/(?:await\b\s*)?/.source +
 		'(?:' + /(?!await\b)\w+\b/.source + '|' + round + ')' +
 		'(?:' + /[?!]?\.\w+\b/.source + '|' + '(?:' + angle + ')?' + round + '|' + square + ')*' +
-		/(?![?!\.(\[<])/.source;
+		/(?![?!\.(\[]|<(?!\/))/.source;
 
 	// Note about the above bracket patterns:
 	// They all ignore HTML expressions that might be in the C# code. This is a problem because HTML (like strings and
