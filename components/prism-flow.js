@@ -5,7 +5,7 @@
 		'type': [
 			{
 				pattern: /\b(?:[Bb]oolean|Function|[Nn]umber|[Ss]tring|[Ss]ymbol|any|mixed|null|void)\b/,
-				alias: 'tag'
+				alias: 'class-name'
 			}
 		]
 	});
