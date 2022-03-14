@@ -36,6 +36,7 @@ inertial
 inout
 is
 label
+library
 linkage
 literal
 loop
@@ -73,6 +74,7 @@ type
 unaffected
 units
 until
+use
 variable
 view
 wait
@@ -121,6 +123,7 @@ with
 	["keyword", "inout"],
 	["keyword", "is"],
 	["keyword", "label"],
+	["keyword", "library"],
 	["keyword", "linkage"],
 	["keyword", "literal"],
 	["keyword", "loop"],
@@ -158,6 +161,7 @@ with
 	["keyword", "unaffected"],
 	["keyword", "units"],
 	["keyword", "until"],
+	["keyword", "use"],
 	["keyword", "variable"],
 	["keyword", "view"],
 	["keyword", "wait"],

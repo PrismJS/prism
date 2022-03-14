@@ -11,7 +11,6 @@ Prism.languages.vhdl = {
 		alias: 'function'
 	},
 	'string': /"(?:[^\\"\r\n]|\\(?:\r\n|[\s\S]))*"/,
-	'constant': /\b(?:library|use)\b/i,
 	'attribute': {
 		pattern: /\b'\w+/,
 		alias: 'attr-name'
