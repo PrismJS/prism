@@ -11,12 +11,18 @@ Prism.languages.arturo = {
 	},
 
 	'string': {
-		pattern: /"..."|».*|\{:[\s\S]*?:\}|\{[\s\S]*?\}|^-{6}$[\s\S]*/m,
+		pattern: /"(?:[^"\\\r\n]|\\.)*"/,
 		greedy: true
 	},
 
 	'regex': {
 		pattern: /\{\/.*?\/\}/, 
+		greedy: true
+	},
+
+	'multistring': {
+		pattern: /"..."|».*|\{:[\s\S]*?:\}|\{[\s\S]*?\}|^-{6}$[\s\S]*/m,
+		alias: 'string',
 		greedy: true
 	},
 
