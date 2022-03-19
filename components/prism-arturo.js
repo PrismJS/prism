@@ -1,3 +1,23 @@
+/**
+ * @param {string} lang
+ * @param {string} pattern
+ */
+ function createLanguageString(lang, pattern) {
+	return {
+		pattern: RegExp(/\{!/.source + '(?:' + (pattern || lang)+ ')' + /$[\s\S]*\}/.source, 'm'),
+		greedy: true,
+		inside: {
+			'embedded': {
+				pattern: /(^\{!\w+\b)[\s\S]+(?=\}$)/,
+				lookbehind: true,
+				alias: 'language-' + lang,
+				inside: Prism.languages[lang]
+			},
+			'string': /[\s\S]+/
+		}
+	}
+}
+
 Prism.languages.arturo = {
 	'comment': {
 		pattern: /;.*/,
@@ -19,6 +39,13 @@ Prism.languages.arturo = {
 		pattern: /\{\/.*?\/\}/,
 		greedy: true
 	},
+
+	'html-string': createLanguageString('html'),
+	'css-string': createLanguageString('css'),
+	'js-string': createLanguageString('js'),
+	'md-string': createLanguageString('md'),
+	'sql-string': createLanguageString('sql'),
+	'sh-string': createLanguageString('bash'),
 
 	'multistring': {
 		pattern: /"..."|».*|\{:[\s\S]*?:\}|\{[\s\S]*?\}|^-{6}$[\s\S]*/m,
