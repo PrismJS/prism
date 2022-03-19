@@ -7,7 +7,7 @@
 [
     ["js-string", [
             ["string", "{!js"],
-            ["embedded", "\r\n    var a = 2\r\n"],
+            ["embedded", "\r\n    var a = 2;\r\n"],
             ["string", "}"]
         ]
     ]

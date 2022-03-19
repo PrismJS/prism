@@ -6,8 +6,8 @@
 
 [
     ["sql-string", [
-            ["string", "{!js"],
-            ["embedded", "\r\n    SELECT * FROM tbl\r\n"],
+            ["string", "{!sql"],
+            ["embedded", "\r\n    SELECT * FROM tbl;\r\n"],
             ["string", "}"]
         ]
     ]
