@@ -15,6 +15,10 @@ Prism.languages.arturo = {
 		greedy: true
 	},
 
+	'number': {
+		pattern: /[0-9]+(?:\.[0-9]+(?:\.[0-9]+)?)?/,
+	},
+
 	'boolean': {
 		pattern: /\b(?:false|maybe|true)\b/
 	},
