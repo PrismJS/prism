@@ -65,7 +65,7 @@ Prism.languages.arturo = {
 	},
 
 	'number': {
-		pattern: /\b[0-9]+(?:\.[0-9]+(?:\.[0-9]+)?)?\b/,
+		pattern: /\b\d+(?:\.\d+(?:\.\d+)?)?\b/,
 	}
 };
 
