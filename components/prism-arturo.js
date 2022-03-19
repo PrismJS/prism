@@ -16,7 +16,7 @@ Prism.languages.arturo = {
 	},
 
 	'regex': {
-		pattern: /\{\/.*?\/\}/, 
+		pattern: /\{\/.*?\/\}/,
 		greedy: true
 	},
 
