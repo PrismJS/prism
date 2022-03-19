@@ -1,0 +1,157 @@
+all?
+and?
+any?
+ascii?
+attr?
+attribute?
+attributeLabel?
+binary?
+block?
+char?
+contains?
+database?
+date?
+dictionary?
+empty?
+equal?
+even?
+every?
+exists?
+false?
+floating?
+function?
+greater?
+greaterOrEqual?
+if?
+in?
+inline?
+integer?
+is?
+key?
+label?
+leap?
+less?
+lessOrEqual?
+literal?
+logical?
+lower?
+nand?
+negative?
+nor?
+not?
+notEqual?
+null?
+numeric?
+odd?
+or?
+path?
+pathLabel?
+positive?
+prefix?
+prime?
+regex?
+same?
+set?
+some?
+sorted?
+standalone?
+string?
+subset?
+suffix?
+superset?
+symbol?
+symbolLiteral?
+true?
+try?
+type?
+unless?
+upper?
+when?
+whitespace?
+word?
+xnor?
+xor?
+zero?
+
+----------------------------------------------------
+
+[
+	["keyword1", "all?"],
+    ["keyword1", "and?"],
+    ["keyword1", "any?"],
+    ["keyword1", "ascii?"],
+    ["keyword1", "attr?"],
+    ["keyword1", "attribute?"],
+    ["keyword1", "attributeLabel?"],
+    ["keyword1", "binary?"],
+    ["keyword1", "block?"],
+    ["keyword1", "char?"],
+    ["keyword1", "contains?"],
+    ["keyword1", "database?"],
+    ["keyword1", "date?"],
+    ["keyword1", "dictionary?"],
+    ["keyword1", "empty?"],
+    ["keyword1", "equal?"],
+    ["keyword1", "even?"],
+    ["keyword1", "every?"],
+    ["keyword1", "exists?"],
+    ["keyword1", "false?"],
+    ["keyword1", "floating?"],
+    ["keyword1", "function?"],
+    ["keyword1", "greater?"],
+    ["keyword1", "greaterOrEqual?"],
+    ["keyword1", "if?"],
+    ["keyword1", "in?"],
+    ["keyword1", "inline?"],
+    ["keyword1", "integer?"],
+    ["keyword1", "is?"],
+    ["keyword1", "key?"],
+    ["keyword1", "label?"],
+    ["keyword1", "leap?"],
+    ["keyword1", "less?"],
+    ["keyword1", "lessOrEqual?"],
+    ["keyword1", "literal?"],
+    ["keyword1", "logical?"],
+    ["keyword1", "lower?"],
+    ["keyword1", "nand?"],
+    ["keyword1", "negative?"],
+    ["keyword1", "nor?"],
+    ["keyword1", "not?"],
+    ["keyword1", "notEqual?"],
+    ["keyword1", "null?"],
+    ["keyword1", "numeric?"],
+    ["keyword1", "odd?"],
+    ["keyword1", "or?"],
+    ["keyword1", "path?"],
+    ["keyword1", "pathLabel?"],
+    ["keyword1", "positive?"],
+    ["keyword1", "prefix?"],
+    ["keyword1", "prime?"],
+    ["keyword1", "regex?"],
+    ["keyword1", "same?"],
+    ["keyword1", "set?"],
+    ["keyword1", "some?"],
+    ["keyword1", "sorted?"],
+    ["keyword1", "standalone?"],
+    ["keyword1", "string?"],
+    ["keyword1", "subset?"],
+    ["keyword1", "suffix?"],
+    ["keyword1", "superset?"],
+    ["keyword1", "symbol?"],
+    ["keyword1", "symbolLiteral?"],
+    ["keyword1", "true?"],
+    ["keyword1", "try?"],
+    ["keyword1", "type?"],
+    ["keyword1", "unless?"],
+    ["keyword1", "upper?"],
+    ["keyword1", "when?"],
+    ["keyword1", "whitespace?"],
+    ["keyword1", "word?"],
+    ["keyword1", "xnor?"],
+    ["keyword1", "xor?"],
+    ["keyword1", "zero?"]
+]
+
+----------------------------------------------------
+
+Checks for built-in predicates.
