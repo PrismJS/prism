@@ -11,7 +11,7 @@ Prism.languages.arturo = {
 	},
 
 	'string': {
-		pattern: /"(?:[^"\\\r\n]|\\.)*"/,
+		pattern: /"..."|».*|\{:[\s\S]*?:\}|\{[\s\S]*?\}|^-{6}$[\s\S]*/m,
 		greedy: true
 	},
 
