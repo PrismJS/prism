@@ -83,7 +83,6 @@ exp
 extend
 extract
 factors
-false
 fdiv
 filter
 first
@@ -126,7 +125,6 @@ mail
 map
 match
 max
-maybe
 median
 min
 mod
@@ -210,7 +208,6 @@ tanh
 terminal
 terminate
 to
-true
 truncate
 try
 type
@@ -324,7 +321,6 @@ zip
     ["keyword2", "extend"],
     ["keyword2", "extract"],
     ["keyword2", "factors"],
-    ["keyword2", "false"],
     ["keyword2", "fdiv"],
     ["keyword2", "filter"],
     ["keyword2", "first"],
@@ -367,7 +363,6 @@ zip
     ["keyword2", "map"],
     ["keyword2", "match"],
     ["keyword2", "max"],
-    ["keyword2", "maybe"],
     ["keyword2", "median"],
     ["keyword2", "min"],
     ["keyword2", "mod"],
@@ -451,7 +446,6 @@ zip
     ["keyword2", "terminal"],
     ["keyword2", "terminate"],
     ["keyword2", "to"],
-    ["keyword2", "true"],
     ["keyword2", "truncate"],
     ["keyword2", "try"],
     ["keyword2", "type"],
