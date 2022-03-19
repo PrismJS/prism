@@ -45,7 +45,7 @@ Prism.languages.arturo = {
 	'js-string': createLanguageString('js'),
 	'md-string': createLanguageString('md'),
 	'sql-string': createLanguageString('sql'),
-	'sh-string': createLanguageString('bash'),
+	'sh-string': createLanguageString('sh'),
 
 	'multistring': {
 		pattern: /».*|\{:[\s\S]*?:\}|\{[\s\S]*?\}|^-{6}$[\s\S]*/m,
@@ -92,7 +92,7 @@ Prism.languages.arturo = {
 	},
 
 	'number': {
-		pattern: /\b\d+(?:\.\d+(?:\.\d+)?)?\b/,
+		pattern: /\b\d+(?:\.\d+(?:\.\d+(?:-[\w+-]+)?)?)?\b/,
 	}
 };
 
