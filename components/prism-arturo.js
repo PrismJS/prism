@@ -3,18 +3,17 @@ Prism.languages.arturo = {
 
     'character': {
         pattern: /`.`/,
-        alias: 'function'
+        alias: 'char'
     },
 
     'string': {
         pattern: /"(?:[^"\\]|\\.)*"/,
-        greedy: true,
-        alias: 'function'
+        greedy: true
     },
 
     'label': {
         pattern: /[\w]+\b\??:/i,
-        alias: 'builtin'
+        alias: 'class-name'
     },
 
     'literal': {
