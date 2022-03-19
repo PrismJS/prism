@@ -1,0 +1,18 @@
+{!css
+    a { color: #ff8800; }
+}
+
+----------------------------------------------------
+
+[
+    ["css-string", [
+            ["string", "{!css"],
+            ["embedded", "\r\n    a { color: #ff8800; }\r\n"],
+            ["string", "}"]
+        ]
+    ]
+]
+
+----------------------------------------------------
+
+Checks for string literals with embedded CSS.

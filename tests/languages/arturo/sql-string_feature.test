@@ -1,0 +1,18 @@
+{!sql
+    SELECT * FROM tbl;
+}
+
+----------------------------------------------------
+
+[
+    ["sql-string", [
+            ["string", "{!js"],
+            ["embedded", "\r\n    SELECT * FROM tbl\r\n"],
+            ["string", "}"]
+        ]
+    ]
+]
+
+----------------------------------------------------
+
+Checks for string literals with embedded SQL.

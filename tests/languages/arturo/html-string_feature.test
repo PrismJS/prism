@@ -1,0 +1,18 @@
+{!html
+    <h1>Header</h1>
+}
+
+----------------------------------------------------
+
+[
+    ["html-string", [
+            ["string", "{!html"],
+            ["embedded", "\r\n    <h1>Header</h1>\r\n"],
+            ["string", "}"]
+        ]
+    ]
+]
+
+----------------------------------------------------
+
+Checks for string literals with embedded HTML.
