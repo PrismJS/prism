@@ -176,6 +176,7 @@
 		"js": "javascript",
 		"g4": "antlr4",
 		"ino": "arduino",
+		"art": "arturo",
 		"adoc": "asciidoc",
 		"avs": "avisynth",
 		"avdl": "avro-idl",
