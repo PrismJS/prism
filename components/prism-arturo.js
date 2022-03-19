@@ -12,8 +12,9 @@ Prism.languages.arturo = {
         alias: 'function'
     },
 
-    'builtin': {
-        pattern: /[\w]+\b\??:/i
+    'label': {
+        pattern: /[\w]+\b\??:/i,
+        alias: 'builtin'
     },
 
     'literal': {
@@ -40,7 +41,7 @@ Prism.languages.arturo = {
         pattern: /\->|=>|\||\:\:/,
         alias: 'important'
     },
-    
+
     'symbol': {
         pattern: /<\:|\-\:|ø|@|#|\+|\||\*|\$|\-|\%|\/|\.\.|\^|~|=|<|>|\\|\-\-\-/
     }
