@@ -1,9 +1,16 @@
 {hello}
+{:hello:}
+» hello
+------
+hello
 
 ----------------------------------------------------
 
 [
-	["multistring", "{hello}"]
+	["multistring", "{hello}"],
+    ["multistring", "{:hello:}"],
+    ["multistring", "» hello"],
+    ["multistring", "------\r\nhello"]
 ]
 
 ----------------------------------------------------
