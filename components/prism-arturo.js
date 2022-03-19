@@ -15,14 +15,6 @@ Prism.languages.arturo = {
 		greedy: true
 	},
 
-	'number': {
-		pattern: /[0-9]+(?:\.[0-9]+(?:\.[0-9]+)?)?/,
-	},
-
-	'boolean': {
-		pattern: /\b(?:false|maybe|true)\b/
-	},
-
 	'label': {
 		pattern: /\w+\b\??:/,
 		alias: 'class-name'
@@ -55,6 +47,14 @@ Prism.languages.arturo = {
 
 	'symbol': {
 		pattern: /<:|-:|ø|@|#|\+|\||\*|\$|---|-|%|\/|\.\.|\^|~|=|<|>|\\/
+	},
+
+	'boolean': {
+		pattern: /\b(?:false|maybe|true)\b/
+	},
+
+	'number': {
+		pattern: /[0-9]+(?:\.[0-9]+(?:\.[0-9]+)?)?/,
 	}
 };
 
