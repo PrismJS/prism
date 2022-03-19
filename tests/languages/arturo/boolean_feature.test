@@ -7,7 +7,7 @@ false
 [
 	["boolean", "true"],
     ["boolean", "maybe"],
-    ["boolean", "false"],
+    ["boolean", "false"]
 ]
 
 ----------------------------------------------------
