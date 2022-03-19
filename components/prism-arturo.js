@@ -21,7 +21,7 @@ Prism.languages.arturo = {
 	},
 
 	'multistring': {
-		pattern: /"..."|».*|\{:[\s\S]*?:\}|\{[\s\S]*?\}|^-{6}$[\s\S]*/m,
+		pattern: /».*|\{:[\s\S]*?:\}|\{[\s\S]*?\}|^-{6}$[\s\S]*/m,
 		alias: 'string',
 		greedy: true
 	},
