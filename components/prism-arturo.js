@@ -46,7 +46,7 @@ Prism.languages.arturo = {
 	},
 
 	'sugar': {
-		pattern: /\->|=>|\||\:\:/,
+		pattern: /->|=>|\||::/,
 		alias: 'important'
 	},
 
