@@ -15,6 +15,11 @@ Prism.languages.arturo = {
 		greedy: true
 	},
 
+	'regex': {
+		pattern: /\{\/.*?\/\}/, 
+		greedy: true
+	},
+
 	'label': {
 		pattern: /\w+\b\??:/,
 		alias: 'class-name'
