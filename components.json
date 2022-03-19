@@ -141,6 +141,7 @@
 		},
 		"arturo": {
 			"title": "Arturo",
+			"alias": "art",
 			"owner": "drkameleon"
 		},
 		"asciidoc": {
