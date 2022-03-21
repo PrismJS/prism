@@ -60,17 +60,17 @@
 
 		'label': {
 			pattern: /\w+\b\??:/,
-			alias: 'class-name'
+			alias: 'property'
 		},
 
 		'literal': {
 			pattern: /'(?:\w+\b\??:?)/,
-			alias: 'boolean'
+			alias: 'constant'
 		},
 
 		'type': {
 			pattern: /:(?:\w+\b\??:?)/,
-			alias: 'boolean'
+			alias: 'class-name'
 		},
 
 		'color': /#\w+/,
@@ -87,7 +87,7 @@
 
 		'sugar': {
 			pattern: /->|=>|\||::/,
-			alias: 'important'
+			alias: 'operator'
 		},
 
 		'punctuation': /[()[\],]/,
