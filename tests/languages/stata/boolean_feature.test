@@ -1,0 +1,9 @@
+set foo on
+set foo off
+
+----------------------------------------------------
+
+[
+	["command", "set"], " foo ", ["boolean", "on"],
+	["command", "set"], " foo ", ["boolean", "off"]
+]

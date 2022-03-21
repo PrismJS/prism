@@ -139,6 +139,11 @@
 			"title": "ARFF",
 			"owner": "Golmote"
 		},
+		"armasm": {
+			"title": "ARM Assembly",
+			"alias": "arm-asm",
+			"owner": "RunDevelopment"
+		},
 		"arturo": {
 			"title": "Arturo",
 			"alias": "art",
@@ -343,6 +348,10 @@
 			"title": "CSV",
 			"owner": "RunDevelopment"
 		},
+		"cue": {
+			"title": "CUE",
+			"owner": "RunDevelopment"
+		},
 		"cypher": {
 			"title": "Cypher",
 			"owner": "RunDevelopment"
@@ -497,6 +506,11 @@
 			"title": "GEDCOM",
 			"owner": "Golmote"
 		},
+		"gettext": {
+			"title": "gettext",
+			"alias": "po",
+			"owner": "RunDevelopment"
+		},
 		"gherkin": {
 			"title": "Gherkin",
 			"owner": "hason"
@@ -513,6 +527,11 @@
 		"gn": {
 			"title": "GN",
 			"alias": "gni",
+			"owner": "RunDevelopment"
+		},
+		"linker-script": {
+			"title": "GNU Linker Script",
+			"alias": "ld",
 			"owner": "RunDevelopment"
 		},
 		"go": {
@@ -855,6 +874,10 @@
 			"require": "markup",
 			"owner": "Golmote"
 		},
+		"mata": {
+			"title": "Mata",
+			"owner": "RunDevelopment"
+		},
 		"matlab": {
 			"title": "MATLAB",
 			"owner": "Golmote"
@@ -1020,6 +1043,11 @@
 			"require": "php",
 			"modify": "php",
 			"owner": "milesj"
+		},
+		"plant-uml": {
+			"title": "PlantUML",
+			"alias": "plantuml",
+			"owner": "RunDevelopment"
 		},
 		"plsql": {
 			"title": "PL/SQL",
@@ -1302,6 +1330,11 @@
 			"title": "Stan",
 			"owner": "RunDevelopment"
 		},
+		"stata": {
+			"title": "Stata Ado",
+			"require": ["mata", "java", "python"],
+			"owner": "RunDevelopment"
+		},
 		"iecst": {
 			"title": "Structured Text (IEC 61131-3)",
 			"owner": "serhioromano"
@@ -1309,6 +1342,11 @@
 		"stylus": {
 			"title": "Stylus",
 			"owner": "vkbansal"
+		},
+		"supercollider": {
+			"title": "SuperCollider",
+			"alias": "sclang",
+			"owner": "RunDevelopment"
 		},
 		"swift": {
 			"title": "Swift",
