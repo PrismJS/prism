@@ -3,9 +3,9 @@
 	 * @param {string} lang
 	 * @param {string} pattern
 	 */
-	var createLanguageString = function(lang, pattern) {
+	var createLanguageString = function (lang, pattern) {
 		return {
-			pattern: RegExp(/\{!/.source + '(?:' + (pattern || lang)+ ')' + /$[\s\S]*\}/.source, 'm'),
+			pattern: RegExp(/\{!/.source + '(?:' + (pattern || lang) + ')' + /$[\s\S]*\}/.source, 'm'),
 			greedy: true,
 			inside: {
 				'embedded': {
@@ -16,8 +16,8 @@
 				},
 				'string': /[\s\S]+/
 			}
-		}
-	}
+		};
+	};
 
 	Prism.languages.arturo = {
 		'comment': {
