@@ -1,0 +1,61 @@
+program java_program
+	version 17
+	java: printX();
+end
+java:
+	int x = 123;
+	void printX() {
+		System.out.println("x: " + x);
+	}
+end
+
+----------------------------------------------------
+
+[
+	["command", "program"],
+	" java_program\r\n\t",
+
+	["command", "version"],
+	["number", "17"],
+
+	["command", "java"],
+	["punctuation", ":"],
+	["java", [
+		["function", "printX"],
+		["punctuation", "("],
+		["punctuation", ")"],
+		["punctuation", ";"]
+	]],
+	["command", "end"],
+
+	["command", "java"],
+	["punctuation", ":"],
+	["java", [
+		["keyword", "int"],
+		" x ",
+		["operator", "="],
+		["number", "123"],
+		["punctuation", ";"],
+
+		["keyword", "void"],
+		["function", "printX"],
+		["punctuation", "("],
+		["punctuation", ")"],
+		["punctuation", "{"],
+
+		["class-name", ["System"]],
+		["punctuation", "."],
+		"out",
+		["punctuation", "."],
+		["function", "println"],
+		["punctuation", "("],
+		["string", "\"x: \""],
+		["operator", "+"],
+		" x",
+		["punctuation", ")"],
+		["punctuation", ";"],
+
+		["punctuation", "}"]
+	]],
+	["command", "end"]
+]

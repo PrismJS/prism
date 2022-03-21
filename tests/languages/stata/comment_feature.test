@@ -1,0 +1,49 @@
+* comment
+// comment
+/*
+comment
+*/
+
+* a sample analysis job
+version 17.0
+use census
+/* obtain the summary statistics */
+tabulate region // there are 4 regions in this dataset
+summarize marriage
+* a sample analysis job
+version 17.0
+use /* obtain the summary statistics */ census
+tabulate region
+// there are 4 regions in this dataset
+summarize marriage
+
+----------------------------------------------------
+
+[
+	["comment", "* comment"],
+	["comment", "// comment"],
+	["comment", "/*\r\ncomment\r\n*/"],
+
+	["comment", "* a sample analysis job"],
+	["command", "version"],
+	["number", "17.0"],
+	["command", "use"],
+	" census\r\n",
+	["comment", "/* obtain the summary statistics */"],
+	["command", "tabulate"],
+	" region ",
+	["comment", "// there are 4 regions in this dataset"],
+	["command", "summarize"],
+	" marriage\r\n",
+	["comment", "* a sample analysis job"],
+	["command", "version"],
+	["number", "17.0"],
+	["command", "use"],
+	["comment", "/* obtain the summary statistics */"],
+	" census\r\n",
+	["command", "tabulate"],
+	" region\r\n",
+	["comment", "// there are 4 regions in this dataset"],
+	["command", "summarize"],
+	" marriage"
+]

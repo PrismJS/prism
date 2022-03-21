@@ -861,6 +861,10 @@
 			"require": "markup",
 			"owner": "Golmote"
 		},
+		"mata": {
+			"title": "Mata",
+			"owner": "RunDevelopment"
+		},
 		"matlab": {
 			"title": "MATLAB",
 			"owner": "Golmote"
@@ -1311,6 +1315,11 @@
 		},
 		"stan": {
 			"title": "Stan",
+			"owner": "RunDevelopment"
+		},
+		"stata": {
+			"title": "Stata Ado",
+			"require": ["mata", "java", "python"],
 			"owner": "RunDevelopment"
 		},
 		"iecst": {

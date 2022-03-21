@@ -1,0 +1,64 @@
++  -  *  /  ^
+:+ :- :* :/ :^
+++ --
+
+\ :: ..
+:| | :& &
+! && ||
+
+ ==  !=  >=  >  <  <=
+:== :!= :>= :> :< :<=
+
+? :
+=
+#
+
+a’ a` a'
+
+----------------------------------------------------
+
+[
+	["operator", "+"],
+	["operator", "-"],
+	["operator", "*"],
+	["operator", "/"],
+	["operator", "^"],
+
+	["operator", ":+"],
+	["operator", ":-"],
+	["operator", ":*"],
+	["operator", ":/"],
+	["operator", ":^"],
+
+	["operator", "++"],
+	["operator", "--"],
+
+	["operator", "\\"], ["operator", "::"], ["operator", ".."],
+	["operator", ":|"], ["operator", "|"], ["operator", ":&"], ["operator", "&"],
+	["operator", "!"], ["operator", "&&"], ["operator", "||"],
+
+	["operator", "=="],
+	["operator", "!="],
+	["operator", ">="],
+	["operator", ">"],
+	["operator", "<"],
+	["operator", "<="],
+
+	["operator", ":=="],
+	["operator", ":!="],
+	["operator", ":>="],
+	["operator", ":>"],
+	["operator", ":<"],
+	["operator", ":<="],
+
+	["operator", "?"], ["operator", ":"],
+	["operator", "="],
+	["operator", "#"],
+
+	"\r\n\r\na",
+	["operator", "’"],
+	" a",
+	["operator", "`"],
+	" a",
+	["operator", "'"]
+]

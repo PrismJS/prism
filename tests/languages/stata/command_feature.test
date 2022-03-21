@@ -1,0 +1,9 @@
+quietly regress foo
+quietly: regress foo
+
+----------------------------------------------------
+
+[
+	["keyword", "quietly"], ["command", "regress"], " foo\r\n",
+	["keyword", "quietly"], ["punctuation", ":"], ["command", "regress"], " foo"
+]

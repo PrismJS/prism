@@ -234,6 +234,7 @@
 		"splunk-spl": "Splunk SPL",
 		"sqf": "SQF: Status Quo Function (Arma 3)",
 		"sql": "SQL",
+		"stata": "Stata Ado",
 		"iecst": "Structured Text (IEC 61131-3)",
 		"supercollider": "SuperCollider",
 		"sclang": "SuperCollider",

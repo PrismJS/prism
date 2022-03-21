@@ -139,6 +139,11 @@
 		"sparql": "turtle",
 		"sqf": "clike",
 		"squirrel": "clike",
+		"stata": [
+			"mata",
+			"java",
+			"python"
+		],
 		"t4-cs": [
 			"t4-templating",
 			"csharp"
