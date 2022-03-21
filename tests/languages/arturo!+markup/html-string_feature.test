@@ -5,12 +5,27 @@
 ----------------------------------------------------
 
 [
-    ["html-string", [
-            ["string", "{!html"],
-            ["embedded", "\r\n    <h1>Header</h1>\r\n"],
-            ["string", "}"]
-        ]
-    ]
+	["html-string", [
+		["string", "{!html"],
+		["embedded", [
+			["tag", [
+				["tag", [
+					["punctuation", "<"],
+					"h1"
+				]],
+				["punctuation", ">"]
+			]],
+			"Header",
+			["tag", [
+				["tag", [
+					["punctuation", "</"],
+					"h1"
+				]],
+				["punctuation", ">"]
+			]]
+		]],
+		["string", "}"]
+	]]
 ]
 
 ----------------------------------------------------

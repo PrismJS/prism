@@ -5,12 +5,19 @@
 ----------------------------------------------------
 
 [
-    ["css-string", [
-            ["string", "{!css"],
-            ["embedded", "\r\n    a { color: #ff8800; }\r\n"],
-            ["string", "}"]
-        ]
-    ]
+	["css-string", [
+		["string", "{!css"],
+		["embedded", [
+			["selector", "a"],
+			["punctuation", "{"],
+			["property", "color"],
+			["punctuation", ":"],
+			" #ff8800",
+			["punctuation", ";"],
+			["punctuation", "}"]
+		]],
+		["string", "}"]
+	]]
 ]
 
 ----------------------------------------------------
