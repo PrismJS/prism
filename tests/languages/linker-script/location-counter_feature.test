@@ -1,0 +1,58 @@
+SECTIONS
+{
+  output :
+  {
+  file1(.text)
+  . = . + 1000;
+  file2(.text)
+  . += 1000;
+  file3(.text)
+  } = 0x1234;
+}
+
+----------------------------------------------------
+
+[
+	"SECTIONS\r\n",
+
+	["punctuation", "{"],
+
+	"\r\n  output ",
+	["operator", ":"],
+
+	["punctuation", "{"],
+
+	"\r\n  file1",
+	["punctuation", "("],
+	["section", ".text"],
+	["punctuation", ")"],
+
+	["location-counter", "."],
+	["operator", "="],
+	["location-counter", "."],
+	["operator", "+"],
+	["number", "1000"],
+	["punctuation", ";"],
+
+	"\r\n  file2",
+	["punctuation", "("],
+	["section", ".text"],
+	["punctuation", ")"],
+
+	["location-counter", "."],
+	["operator", "+="],
+	["number", "1000"],
+	["punctuation", ";"],
+
+	"\r\n  file3",
+	["punctuation", "("],
+	["section", ".text"],
+	["punctuation", ")"],
+
+	["punctuation", "}"],
+	["operator", "="],
+	["number", "0x1234"],
+	["punctuation", ";"],
+
+	["punctuation", "}"]
+]

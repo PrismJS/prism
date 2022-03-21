@@ -1,0 +1,32 @@
+MACRO
+$label  TestAndBranch  $dest, $reg, $cc
+$label  CMP     $reg, #0
+        B$cc    $dest
+        MEND
+
+----------------------------------------------------
+
+[
+	["directive", "MACRO"],
+
+	["variable", "$label"],
+	"  TestAndBranch  ",
+	["variable", "$dest"],
+	["punctuation", ","],
+	["variable", "$reg"],
+	["punctuation", ","],
+	["variable", "$cc"],
+
+	["variable", "$label"],
+	"  CMP     ",
+	["variable", "$reg"],
+	["punctuation", ","],
+	["operator", "#"],
+	["number", "0"],
+
+	["instruction", "B"],
+	["variable", "$cc"],
+	["variable", "$dest"],
+
+	["directive", "MEND"]
+]

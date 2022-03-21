@@ -1,0 +1,190 @@
+'a\000\xab'
+'\007'
+'\377'
+'\xa'        // illegal: too few hexadecimal digits
+"\n"
+"\""
+'Hello, world!\n'
+"Hello, \( name )!"
+"日本語"
+"\u65e5本\U00008a9e"
+'\xff\u00FF'
+"\uD800"             // illegal: surrogate half (TODO: probably should allow)
+"\U00110000"         // illegal: invalid Unicode code point
+
+#"This is not an \(interpolation)"#
+#"This is an \#(interpolation)"#
+#"The sequence "\U0001F604" renders as \#U0001F604."#
+
+"日本語"                                 // UTF-8 input text
+'日本語'                                 // UTF-8 input text as byte sequence
+"\u65e5\u672c\u8a9e"                    // the explicit Unicode code points
+"\U000065e5\U0000672c\U00008a9e"        // the explicit Unicode code points
+'\xe6\x97\xa5\xe6\x9c\xac\xe8\xaa\x9e'  // the explicit UTF-8 bytes
+
+"""
+    lily:
+    out of the water
+    out of itself
+
+    bass
+    picking bugs
+    off the moon
+        — Nick Virgilio, Selected Haiku, 1988
+    """
+
+----------------------------------------------------
+
+[
+	["string-literal", [
+		["string", "'a"],
+		["escape", "\\000"],
+		["escape", "\\xab"],
+		["string", "'"]
+	]],
+
+	["string-literal", [
+		["string", "'"],
+		["escape", "\\007"],
+		["string", "'"]
+	]],
+
+	["string-literal", [
+		["string", "'"],
+		["escape", "\\377"],
+		["string", "'"]
+	]],
+
+	["string-literal", [
+		["string", "'"],
+		["escape", "\\xa"],
+		["string", "'"]
+	]],
+	["comment", "// illegal: too few hexadecimal digits"],
+
+	["string-literal", [
+		["string", "\""],
+		["escape", "\\n"],
+		["string", "\""]
+	]],
+
+	["string-literal", [
+		["string", "\""],
+		["escape", "\\\""],
+		["string", "\""]
+	]],
+
+	["string-literal", [
+		["string", "'Hello, world!"],
+		["escape", "\\n"],
+		["string", "'"]
+	]],
+
+	["string-literal", [
+		["string", "\"Hello, "],
+		["interpolation", [
+			["punctuation", "\\("],
+			["expression", [" name "]],
+			["punctuation", ")"]
+		]],
+		["string", "!\""]
+	]],
+
+	["string-literal", [
+		["string", "\"日本語\""]
+	]],
+
+	["string-literal", [
+		["string", "\""],
+		["escape", "\\u65e5"],
+		["string", "本"],
+		["escape", "\\U00008a9e"],
+		["string", "\""]
+	]],
+
+	["string-literal", [
+		["string", "'"],
+		["escape", "\\xff"],
+		["escape", "\\u00FF"],
+		["string", "'"]
+	]],
+
+	["string-literal", [
+		["string", "\""],
+		["escape", "\\uD800"],
+		["string", "\""]
+	]],
+	["comment", "// illegal: surrogate half (TODO: probably should allow)"],
+
+	["string-literal", [
+		["string", "\""],
+		["escape", "\\U00110000"],
+		["string", "\""]
+	]],
+	["comment", "// illegal: invalid Unicode code point"],
+
+	["string-literal", [
+		["string", "#\"This is not an \\(interpolation)\"#"]
+	]],
+	["string-literal", [
+		["string", "#\"This is an "],
+		["interpolation", [
+			["punctuation", "\\#("],
+			["expression", ["interpolation"]],
+			["punctuation", ")"]
+		]],
+		["string", "\"#"]
+	]],
+	["string-literal", [
+		["string", "#\"The sequence \"\\U0001F604\" renders as "],
+		["escape", "\\#U0001F604"],
+		["string", ".\"#"]
+	]],
+
+	["string-literal", [
+		["string", "\"日本語\""]
+	]],
+	["comment", "// UTF-8 input text"],
+
+	["string-literal", [
+		["string", "'日本語'"]
+	]],
+	["comment", "// UTF-8 input text as byte sequence"],
+
+	["string-literal", [
+		["string", "\""],
+		["escape", "\\u65e5"],
+		["escape", "\\u672c"],
+		["escape", "\\u8a9e"],
+		["string", "\""]
+	]],
+	["comment", "// the explicit Unicode code points"],
+
+	["string-literal", [
+		["string", "\""],
+		["escape", "\\U000065e5"],
+		["escape", "\\U0000672c"],
+		["escape", "\\U00008a9e"],
+		["string", "\""]
+	]],
+	["comment", "// the explicit Unicode code points"],
+
+	["string-literal", [
+		["string", "'"],
+		["escape", "\\xe6"],
+		["escape", "\\x97"],
+		["escape", "\\xa5"],
+		["escape", "\\xe6"],
+		["escape", "\\x9c"],
+		["escape", "\\xac"],
+		["escape", "\\xe8"],
+		["escape", "\\xaa"],
+		["escape", "\\x9e"],
+		["string", "'"]
+	]],
+	["comment", "// the explicit UTF-8 bytes"],
+
+	["string-literal", [
+		["string", "\"\"\"\r\n    lily:\r\n    out of the water\r\n    out of itself\r\n\r\n    bass\r\n    picking bugs\r\n    off the moon\r\n        — Nick Virgilio, Selected Haiku, 1988\r\n    \"\"\""]
+	]]
+]

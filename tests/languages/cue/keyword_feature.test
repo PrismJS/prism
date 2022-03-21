@@ -1,0 +1,19 @@
+for
+if
+import
+in
+let
+null
+package
+
+----------------------------------------------------
+
+[
+	["keyword", "for"],
+	["keyword", "if"],
+	["keyword", "import"],
+	["keyword", "in"],
+	["keyword", "let"],
+	["keyword", "null"],
+	["keyword", "package"]
+]

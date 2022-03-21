@@ -1,0 +1,22 @@
+MAX (SIZEOF (.text0), SIZEOF (.text1))
+
+FOO()
+
+----------------------------------------------------
+
+[
+	["function", "MAX"],
+	["punctuation", "("],
+	["function", "SIZEOF"],
+	["punctuation", "("],
+	["section", ".text0"],
+	["punctuation", ")"],
+	["punctuation", ","],
+	["function", "SIZEOF"],
+	["punctuation", "("],
+	["section", ".text1"],
+	["punctuation", ")"],
+	["punctuation", ")"],
+
+	["function", "FOO"], ["punctuation", "("], ["punctuation", ")"]
+]

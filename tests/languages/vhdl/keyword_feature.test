@@ -1,34 +1,3 @@
-A'active
-A'ascending
-A'base
-A'delayed
-A'driving
-A'driving_value
-A'event
-A'high
-A'image
-A'instance_name
-A'last_active
-A'last_event
-A'last_value
-A'left
-A'leftof
-A'length
-A'low
-A'path_name
-A'pos
-A'pred
-A'quiet
-A'range
-A'reverse_range
-A'right
-A'rightof
-A'simple_name
-A'stable
-A'succ
-A'transaction
-A'val
-A'value
 access
 after
 alias
@@ -67,6 +36,7 @@ inertial
 inout
 is
 label
+library
 linkage
 literal
 loop
@@ -82,6 +52,7 @@ out
 package
 port
 postponed
+private
 procedure
 process
 pure
@@ -103,7 +74,9 @@ type
 unaffected
 units
 until
+use
 variable
+view
 wait
 when
 while
@@ -112,37 +85,6 @@ with
 ----------------------------------------------------
 
 [
-	"A", ["keyword", "'active"],
-	"\r\nA", ["keyword", "'ascending"],
-	"\r\nA", ["keyword", "'base"],
-	"\r\nA", ["keyword", "'delayed"],
-	"\r\nA", ["keyword", "'driving"],
-	"\r\nA", ["keyword", "'driving_value"],
-	"\r\nA", ["keyword", "'event"],
-	"\r\nA", ["keyword", "'high"],
-	"\r\nA", ["keyword", "'image"],
-	"\r\nA", ["keyword", "'instance_name"],
-	"\r\nA", ["keyword", "'last_active"],
-	"\r\nA", ["keyword", "'last_event"],
-	"\r\nA", ["keyword", "'last_value"],
-	"\r\nA", ["keyword", "'left"],
-	"\r\nA", ["keyword", "'leftof"],
-	"\r\nA", ["keyword", "'length"],
-	"\r\nA", ["keyword", "'low"],
-	"\r\nA", ["keyword", "'path_name"],
-	"\r\nA", ["keyword", "'pos"],
-	"\r\nA", ["keyword", "'pred"],
-	"\r\nA", ["keyword", "'quiet"],
-	"\r\nA", ["keyword", "'range"],
-	"\r\nA", ["keyword", "'reverse_range"],
-	"\r\nA", ["keyword", "'right"],
-	"\r\nA", ["keyword", "'rightof"],
-	"\r\nA", ["keyword", "'simple_name"],
-	"\r\nA", ["keyword", "'stable"],
-	"\r\nA", ["keyword", "'succ"],
-	"\r\nA", ["keyword", "'transaction"],
-	"\r\nA", ["keyword", "'val"],
-	"\r\nA", ["keyword", "'value"],
 	["keyword", "access"],
 	["keyword", "after"],
 	["keyword", "alias"],
@@ -181,6 +123,7 @@ with
 	["keyword", "inout"],
 	["keyword", "is"],
 	["keyword", "label"],
+	["keyword", "library"],
 	["keyword", "linkage"],
 	["keyword", "literal"],
 	["keyword", "loop"],
@@ -196,6 +139,7 @@ with
 	["keyword", "package"],
 	["keyword", "port"],
 	["keyword", "postponed"],
+	["keyword", "private"],
 	["keyword", "procedure"],
 	["keyword", "process"],
 	["keyword", "pure"],
@@ -217,7 +161,9 @@ with
 	["keyword", "unaffected"],
 	["keyword", "units"],
 	["keyword", "until"],
+	["keyword", "use"],
 	["keyword", "variable"],
+	["keyword", "view"],
 	["keyword", "wait"],
 	["keyword", "when"],
 	["keyword", "while"],
