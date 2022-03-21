@@ -60,7 +60,12 @@ function inlineRegexSource() {
 function minifyJS() {
 	return [
 		inlineRegexSource(),
-		terser()
+		terser({
+			ecma: 5,
+			compress: {
+				passes: 3
+			}
+		})
 	];
 }
 
