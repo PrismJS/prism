@@ -1,0 +1,145 @@
+-13
+666
+2112
+96
+0xa    // 10
+-0xd   // -13
+0x29A  // 666
+0x840  // 2112
+0x60   // 96
+
+0.39
+98.6
+1.0
+-0.5
+1.2e4
+1E-4
+
+pi
+2pi
+0.5pi
+-0.25pi
+
+inf   // and beyond!
+-inf
+
+16rF // 15
+16ra9 // 169
+36rZIGZAG // 2147341480
+2r01101011
+12r4a.abc // wrong
+12r4a.ABC // works
+12r4A.ABC // better
+
+2s == 2.1  // scale degree two, sharp
+2b == 1.9  // scale degree two, flat
+2ss == 2.2 // scale degree two, double sharp
+2bb == 1.8 // scale degree two, double flat
+2ssss == 2.4
+2bbbb == 1.6
+-2s == -1.9
+-2b == -2.1
+-2ss == -1.8
+-2bb == -2.2
+
+2b50 == 1.95 // scale degree two, fifty cents flat
+2s204 == 2.204 // scale degree two, 204 cents sharp
+
+----------------------------------------------------
+
+[
+	["operator", "-"], ["number", "13"],
+	["number", "666"],
+	["number", "2112"],
+	["number", "96"],
+	["number", "0xa"], ["comment", "// 10"],
+	["operator", "-"], ["number", "0xd"], ["comment", "// -13"],
+	["number", "0x29A"], ["comment", "// 666"],
+	["number", "0x840"], ["comment", "// 2112"],
+	["number", "0x60"], ["comment", "// 96"],
+
+	["number", "0.39"],
+	["number", "98.6"],
+	["number", "1.0"],
+	["operator", "-"], ["number", "0.5"],
+	["number", "1.2e4"],
+	["number", "1E-4"],
+
+	["number", "pi"],
+	["number", "2pi"],
+	["number", "0.5pi"],
+	["operator", "-"], ["number", "0.25pi"],
+
+	["number", "inf"], ["comment", "// and beyond!"],
+	["operator", "-"], ["number", "inf"],
+
+	["number", "16rF"], ["comment", "// 15"],
+	["number", "16ra9"], ["comment", "// 169"],
+	["number", "36rZIGZAG"], ["comment", "// 2147341480"],
+	["number", "2r01101011"],
+	["number", "12r4a.abc"], ["comment", "// wrong"],
+	["number", "12r4a.ABC"], ["comment", "// works"],
+	["number", "12r4A.ABC"], ["comment", "// better"],
+
+	["number", "2s"],
+	["operator", "=="],
+	["number", "2.1"],
+	["comment", "// scale degree two, sharp"],
+
+	["number", "2b"],
+	["operator", "=="],
+	["number", "1.9"],
+	["comment", "// scale degree two, flat"],
+
+	["number", "2ss"],
+	["operator", "=="],
+	["number", "2.2"],
+	["comment", "// scale degree two, double sharp"],
+
+	["number", "2bb"],
+	["operator", "=="],
+	["number", "1.8"],
+	["comment", "// scale degree two, double flat"],
+
+	["number", "2ssss"],
+	["operator", "=="],
+	["number", "2.4"],
+
+	["number", "2bbbb"],
+	["operator", "=="],
+	["number", "1.6"],
+
+	["operator", "-"],
+	["number", "2s"],
+	["operator", "=="],
+	["operator", "-"],
+	["number", "1.9"],
+
+	["operator", "-"],
+	["number", "2b"],
+	["operator", "=="],
+	["operator", "-"],
+	["number", "2.1"],
+
+	["operator", "-"],
+	["number", "2ss"],
+	["operator", "=="],
+	["operator", "-"],
+	["number", "1.8"],
+
+	["operator", "-"],
+	["number", "2bb"],
+	["operator", "=="],
+	["operator", "-"],
+	["number", "2.2"],
+
+	["number", "2b50"],
+	["operator", "=="],
+	["number", "1.95"],
+	["comment", "// scale degree two, fifty cents flat"],
+
+	["number", "2s204"],
+	["operator", "=="],
+	["number", "2.204"],
+	["comment", "// scale degree two, 204 cents sharp"]
+]
