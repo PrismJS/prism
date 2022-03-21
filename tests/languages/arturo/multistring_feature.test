@@ -1,0 +1,18 @@
+{hello}
+{:hello:}
+» hello
+------
+hello
+
+----------------------------------------------------
+
+[
+	["multistring", "{hello}"],
+    ["multistring", "{:hello:}"],
+    ["multistring", "» hello"],
+    ["multistring", "------\r\nhello"]
+]
+
+----------------------------------------------------
+
+Checks for string literals.

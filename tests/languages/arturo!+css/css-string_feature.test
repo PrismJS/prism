@@ -1,0 +1,25 @@
+{!css
+    a { color: #ff8800; }
+}
+
+----------------------------------------------------
+
+[
+	["css-string", [
+		["string", "{!css"],
+		["embedded", [
+			["selector", "a"],
+			["punctuation", "{"],
+			["property", "color"],
+			["punctuation", ":"],
+			" #ff8800",
+			["punctuation", ";"],
+			["punctuation", "}"]
+		]],
+		["string", "}"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for string literals with embedded CSS.

@@ -40,6 +40,7 @@
 		"arff": "ARFF",
 		"armasm": "ARM Assembly",
 		"arm-asm": "ARM Assembly",
+		"art": "Arturo",
 		"asciidoc": "AsciiDoc",
 		"adoc": "AsciiDoc",
 		"aspnet": "ASP.NET (C#)",
