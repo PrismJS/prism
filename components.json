@@ -139,19 +139,6 @@
 			"title": "ARFF",
 			"owner": "Golmote"
 		},
-		"arturo": {
-			"title": "Arturo",
-			"alias": "art",
-			"optional": [
-				"css",
-				"javascript",
-				"markup",
-				"markdown",
-				"shell",
-				"sql"
-			],
-			"owner": "drkameleon"
-		},
 		"asciidoc": {
 			"alias": "adoc",
 			"title": "AsciiDoc",
