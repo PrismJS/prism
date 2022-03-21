@@ -143,11 +143,11 @@
 			"title": "Arturo",
 			"alias": "art",
 			"optional": [
-				"bash",
 				"css",
 				"javascript",
 				"markup",
 				"markdown",
+				"shell",
 				"sql"
 			],
 			"owner": "drkameleon"

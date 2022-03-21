@@ -50,7 +50,7 @@
 		'js-string': createLanguageString('js'),
 		'md-string': createLanguageString('md'),
 		'sql-string': createLanguageString('sql'),
-		'sh-string': createLanguageString('sh'),
+		'sh-string': createLanguageString('shell', 'sh'),
 
 		'multistring': {
 			pattern: /».*|\{:[\s\S]*?:\}|\{[\s\S]*?\}|^-{6}$[\s\S]*/m,
