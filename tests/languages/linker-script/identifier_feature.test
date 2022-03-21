@@ -1,0 +1,24 @@
+"SECTION" = 9;
+"with a space" = "also with a space" + 10;
+_fourk_1 = 4K;
+
+----------------------------------------------------
+
+[
+	["identifier", "\"SECTION\""],
+	["operator", "="],
+	["number", "9"],
+	["punctuation", ";"],
+
+	["identifier", "\"with a space\""],
+	["operator", "="],
+	["identifier", "\"also with a space\""],
+	["operator", "+"],
+	["number", "10"],
+	["punctuation", ";"],
+
+	"\r\n_fourk_1 ",
+	["operator", "="],
+	["number", "4K"],
+	["punctuation", ";"]
+]

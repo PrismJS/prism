@@ -139,6 +139,11 @@
 		"sparql": "turtle",
 		"sqf": "clike",
 		"squirrel": "clike",
+		"stata": [
+			"mata",
+			"java",
+			"python"
+		],
 		"t4-cs": [
 			"t4-templating",
 			"csharp"
@@ -176,7 +181,11 @@
 		"js": "javascript",
 		"g4": "antlr4",
 		"ino": "arduino",
+<<<<<<< HEAD
 		"art": "arturo",
+=======
+		"arm-asm": "armasm",
+>>>>>>> 63806d57b05a94d5657245bebc31f1c50412c585
 		"adoc": "asciidoc",
 		"avs": "avisynth",
 		"avdl": "avro-idl",
@@ -198,7 +207,9 @@
 		"xlsx": "excel-formula",
 		"xls": "excel-formula",
 		"gamemakerlanguage": "gml",
+		"po": "gettext",
 		"gni": "gn",
+		"ld": "linker-script",
 		"go-mod": "go-module",
 		"hbs": "handlebars",
 		"hs": "haskell",
@@ -225,6 +236,7 @@
 		"objectpascal": "pascal",
 		"px": "pcaxis",
 		"pcode": "peoplecode",
+		"plantuml": "plant-uml",
 		"pq": "powerquery",
 		"mscript": "powerquery",
 		"pbfasm": "purebasic",
@@ -242,6 +254,7 @@
 		"sol": "solidity",
 		"sln": "solution-file",
 		"rq": "sparql",
+		"sclang": "supercollider",
 		"t4": "t4-cs",
 		"trickle": "tremor",
 		"troy": "tremor",
