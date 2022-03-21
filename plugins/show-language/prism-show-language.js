@@ -187,6 +187,8 @@
 		"php": "PHP",
 		"phpdoc": "PHPDoc",
 		"php-extras": "PHP Extras",
+		"plant-uml": "PlantUML",
+		"plantuml": "PlantUML",
 		"plsql": "PL/SQL",
 		"powerquery": "PowerQuery",
 		"pq": "PowerQuery",
