@@ -35,96 +35,92 @@ $/$$foo $${42}/$
 ----------------------------------------------------
 
 <span class="token comment">// Double quoted: interpolation</span>
-<span class="token string gstring">
-	"
-	<span class="token expression">
-		<span class="token punctuation">$</span>
-		foo
+<span class="token interpolation-string">
+	<span class="token string">"</span>
+	<span class="token interpolation">
+		<span class="token interpolation-punctuation punctuation">$</span>
+		<span class="token expression">foo</span>
 	</span>
-	"
+	<span class="token string">"</span>
 </span>
-<span class="token string gstring">
-	"
-	<span class="token expression">
-		<span class="token punctuation">$</span>
-		<span class="token punctuation">{</span>
-		<span class="token number">42</span>
-		<span class="token punctuation">}</span>
+<span class="token interpolation-string">
+	<span class="token string">"</span>
+	<span class="token interpolation">
+		<span class="token interpolation-punctuation punctuation">${</span>
+		<span class="token expression"><span class="token number">42</span></span>
+		<span class="token interpolation-punctuation punctuation">}</span>
 	</span>
-	"
+	<span class="token string">"</span>
 </span>
 
 <span class="token comment">// Triple double quoted: interpolation</span>
-<span class="token string gstring">
-	"""
-	<span class="token expression">
-		<span class="token punctuation">$</span>
-		foo
+<span class="token interpolation-string">
+	<span class="token string">"""</span>
+	<span class="token interpolation">
+		<span class="token interpolation-punctuation punctuation">$</span>
+		<span class="token expression">foo</span>
 	</span>
-	"""
+	<span class="token string">"""</span>
 </span>
-<span class="token string gstring">
-	"""
-	<span class="token expression">
-		<span class="token punctuation">$</span>
-		<span class="token punctuation">{</span>
-		<span class="token number">42</span>
-		<span class="token punctuation">}</span>
+<span class="token interpolation-string">
+	<span class="token string">"""</span>
+	<span class="token interpolation">
+		<span class="token interpolation-punctuation punctuation">${</span>
+		<span class="token expression"><span class="token number">42</span></span>
+		<span class="token interpolation-punctuation punctuation">}</span>
 	</span>
-	"""
+	<span class="token string">"""</span>
 </span>
 
 <span class="token comment">// Slashy string: interpolation</span>
-<span class="token string regex">
-	/
-	<span class="token expression">
-		<span class="token punctuation">$</span>
-		foo
+<span class="token interpolation-string">
+	<span class="token string">/</span>
+	<span class="token interpolation">
+		<span class="token interpolation-punctuation punctuation">$</span>
+		<span class="token expression">foo</span>
 	</span>
-	/
+	<span class="token string">/</span>
 </span>
-<span class="token string regex">
-	/
-	<span class="token expression">
-		<span class="token punctuation">$</span>
-		<span class="token punctuation">{</span>
-		<span class="token number">42</span>
-		<span class="token punctuation">}</span>
+<span class="token interpolation-string">
+	<span class="token string">/</span>
+	<span class="token interpolation">
+		<span class="token interpolation-punctuation punctuation">${</span>
+		<span class="token expression"><span class="token number">42</span></span>
+		<span class="token interpolation-punctuation punctuation">}</span>
 	</span>
-	/
+	<span class="token string">/</span>
 </span>
 
 <span class="token comment">// Dollar slashy string: interpolation</span>
-<span class="token string gstring">
-	$/
-	<span class="token expression">
-		<span class="token punctuation">$</span>
-		foo
+<span class="token interpolation-string">
+	<span class="token string">$/</span>
+	<span class="token interpolation">
+		<span class="token interpolation-punctuation punctuation">$</span>
+		<span class="token expression">foo</span>
 	</span>
-	/$
+	<span class="token string">/$</span>
 </span>
-<span class="token string gstring">
-	$/
-	<span class="token expression">
-		<span class="token punctuation">$</span>
-		<span class="token punctuation">{</span>
-		<span class="token number">42</span>
-		<span class="token punctuation">}</span>
+<span class="token interpolation-string">
+	<span class="token string">$/</span>
+	<span class="token interpolation">
+		<span class="token interpolation-punctuation punctuation">${</span>
+		<span class="token expression"><span class="token number">42</span></span>
+		<span class="token interpolation-punctuation punctuation">}</span>
 	</span>
-	/$
+	<span class="token string">/$</span>
 </span>
 
 <span class="token comment">// Double quoted: no interpolation (escaped)</span>
-<span class="token string gstring">"\$foo \${42}"</span>
+<span class="token interpolation-string"><span class="token string">"\$foo \${42}"</span></span>
 
 <span class="token comment">// Triple double quoted: no interpolation (escaped)</span>
-<span class="token string gstring">"""\$foo \${42}"""</span>
+<span class="token interpolation-string"><span class="token string">"""\$foo \${42}"""</span></span>
 
 <span class="token comment">// Slashy string: no interpolation (escaped)</span>
-<span class="token string regex">/\$foo \${42}/</span>
+<span class="token interpolation-string"><span class="token string">/\$foo \${42}/</span></span>
 
 <span class="token comment">// Dollar slashy string: no interpolation (escaped)</span>
-<span class="token string gstring">$/$$foo $${42}/$</span>
+<span class="token interpolation-string"><span class="token string">$/$$foo $${42}/$</span></span>
 
 <span class="token comment">// Single quoted string: no interpolation</span>
 <span class="token string">'$foo ${42}'</span>

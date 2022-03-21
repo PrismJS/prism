@@ -179,6 +179,7 @@
 		"adoc": "asciidoc",
 		"avs": "avisynth",
 		"avdl": "avro-idl",
+		"gawk": "awk",
 		"shell": "bash",
 		"shortcode": "bbcode",
 		"rbnf": "bnf",

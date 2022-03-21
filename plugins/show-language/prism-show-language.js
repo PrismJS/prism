@@ -49,6 +49,8 @@
 		"avs": "AviSynth",
 		"avro-idl": "Avro IDL",
 		"avdl": "Avro IDL",
+		"awk": "AWK",
+		"gawk": "GAWK",
 		"basic": "BASIC",
 		"bbcode": "BBcode",
 		"bnf": "BNF",

@@ -94,6 +94,10 @@ finally
     // Do critical section work
 }
 
+@helper TrialHelper(string name) {
+    // some code
+}
+
 ----------------------------------------------------
 
 [
@@ -893,6 +897,24 @@ finally
 			["punctuation", "("], "SomeLock", ["punctuation", ")"],
 			["punctuation", "{"],
 			["comment", "// Do critical section work"],
+			["punctuation", "}"]
+		]]
+	]],
+
+	["block", [
+		["keyword", "@helper"],
+		["csharp", [
+			["function", "TrialHelper"],
+			["punctuation", "("],
+			["class-name", [
+				["keyword", "string"]
+			]],
+			" name",
+			["punctuation", ")"],
+			["punctuation", "{"],
+
+			["comment", "// some code"],
+
 			["punctuation", "}"]
 		]]
 	]]
