@@ -1,0 +1,167 @@
+ALIAS
+ALIGN
+AREA
+ARM
+ASSERT
+ATTR
+CN
+CODE
+CODE16
+CODE32
+COMMON
+CP
+DATA
+DCB
+DCD
+DCDO
+DCDU
+DCFD
+DCFDU
+DCI
+DCQ
+DCQU
+DCW
+DCWU
+DN
+ELIF
+ELSE
+END
+ENDFUNC
+ENDIF
+ENDP
+ENTRY
+EQU
+EXPORT
+EXPORTAS
+EXTERN
+FIELD
+FILL
+FN
+FUNCTION
+GBLA
+GBLL
+GBLS
+GET
+GLOBAL
+IF
+IMPORT
+INCBIN
+INCLUDE
+INFO
+KEEP
+LCLA
+LCLL
+LCLS
+LTORG
+MACRO
+MAP
+MEND
+MEXIT
+NOFP
+OPT
+PRESERVE8
+PROC
+QN
+READONLY
+RELOC
+REQUIRE
+REQUIRE8
+RLIST
+ROUT
+SETA
+SETL
+SETS
+SN
+SPACE
+SUBT
+THUMB
+THUMBX
+TTL
+WEND
+WHILE
+
+----------------------------------------------------
+
+[
+	["directive", "ALIAS"],
+	["directive", "ALIGN"],
+	["directive", "AREA"],
+	["directive", "ARM"],
+	["directive", "ASSERT"],
+	["directive", "ATTR"],
+	["directive", "CN"],
+	["directive", "CODE"],
+	["directive", "CODE16"],
+	["directive", "CODE32"],
+	["directive", "COMMON"],
+	["directive", "CP"],
+	["directive", "DATA"],
+	["directive", "DCB"],
+	["directive", "DCD"],
+	["directive", "DCDO"],
+	["directive", "DCDU"],
+	["directive", "DCFD"],
+	["directive", "DCFDU"],
+	["directive", "DCI"],
+	["directive", "DCQ"],
+	["directive", "DCQU"],
+	["directive", "DCW"],
+	["directive", "DCWU"],
+	["directive", "DN"],
+	["directive", "ELIF"],
+	["directive", "ELSE"],
+	["directive", "END"],
+	["directive", "ENDFUNC"],
+	["directive", "ENDIF"],
+	["directive", "ENDP"],
+	["directive", "ENTRY"],
+	["directive", "EQU"],
+	["directive", "EXPORT"],
+	["directive", "EXPORTAS"],
+	["directive", "EXTERN"],
+	["directive", "FIELD"],
+	["directive", "FILL"],
+	["directive", "FN"],
+	["directive", "FUNCTION"],
+	["directive", "GBLA"],
+	["directive", "GBLL"],
+	["directive", "GBLS"],
+	["directive", "GET"],
+	["directive", "GLOBAL"],
+	["directive", "IF"],
+	["directive", "IMPORT"],
+	["directive", "INCBIN"],
+	["directive", "INCLUDE"],
+	["directive", "INFO"],
+	["directive", "KEEP"],
+	["directive", "LCLA"],
+	["directive", "LCLL"],
+	["directive", "LCLS"],
+	["directive", "LTORG"],
+	["directive", "MACRO"],
+	["directive", "MAP"],
+	["directive", "MEND"],
+	["directive", "MEXIT"],
+	["directive", "NOFP"],
+	["directive", "OPT"],
+	["directive", "PRESERVE8"],
+	["directive", "PROC"],
+	["directive", "QN"],
+	["directive", "READONLY"],
+	["directive", "RELOC"],
+	["directive", "REQUIRE"],
+	["directive", "REQUIRE8"],
+	["directive", "RLIST"],
+	["directive", "ROUT"],
+	["directive", "SETA"],
+	["directive", "SETL"],
+	["directive", "SETS"],
+	["directive", "SN"],
+	["directive", "SPACE"],
+	["directive", "SUBT"],
+	["directive", "THUMB"],
+	["directive", "THUMBX"],
+	["directive", "TTL"],
+	["directive", "WEND"],
+	["directive", "WHILE"]
+]

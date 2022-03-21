@@ -139,6 +139,11 @@
 			"title": "ARFF",
 			"owner": "Golmote"
 		},
+		"armasm": {
+			"title": "ARM Assembly",
+			"alias": "arm-asm",
+			"owner": "RunDevelopment"
+		},
 		"asciidoc": {
 			"alias": "adoc",
 			"title": "AsciiDoc",
