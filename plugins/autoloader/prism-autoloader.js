@@ -181,11 +181,8 @@
 		"js": "javascript",
 		"g4": "antlr4",
 		"ino": "arduino",
-<<<<<<< HEAD
-		"art": "arturo",
-=======
 		"arm-asm": "armasm",
->>>>>>> 63806d57b05a94d5657245bebc31f1c50412c585
+		"art": "arturo",
 		"adoc": "asciidoc",
 		"avs": "avisynth",
 		"avdl": "avro-idl",

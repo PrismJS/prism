@@ -38,12 +38,9 @@
 		"aql": "AQL",
 		"ino": "Arduino",
 		"arff": "ARFF",
-<<<<<<< HEAD
-		"art": "Arturo",
-=======
 		"armasm": "ARM Assembly",
 		"arm-asm": "ARM Assembly",
->>>>>>> 63806d57b05a94d5657245bebc31f1c50412c585
+		"art": "Arturo",
 		"asciidoc": "AsciiDoc",
 		"adoc": "AsciiDoc",
 		"aspnet": "ASP.NET (C#)",

@@ -144,6 +144,19 @@
 			"alias": "arm-asm",
 			"owner": "RunDevelopment"
 		},
+		"arturo": {
+			"title": "Arturo",
+			"alias": "art",
+			"optional": [
+				"bash",
+				"css",
+				"javascript",
+				"markup",
+				"markdown",
+				"sql"
+			],
+			"owner": "drkameleon"
+		},
 		"asciidoc": {
 			"alias": "adoc",
 			"title": "AsciiDoc",
