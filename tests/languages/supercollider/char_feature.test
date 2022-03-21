@@ -1,0 +1,29 @@
+$A
+$B
+$C
+$.
+$$
+
+$\t  // tab (horizontal tab)
+$\f  // form feed
+$\v  // vertical tab
+$\n  // newline (linefeed)
+$\r  // return
+$\\  // backslash`
+
+----------------------------------------------------
+
+[
+	["char", "$A"],
+	["char", "$B"],
+	["char", "$C"],
+	["char", "$."],
+	["char", "$$"],
+
+	["char", "$\\t"], ["comment", "// tab (horizontal tab)"],
+	["char", "$\\f"], ["comment", "// form feed"],
+	["char", "$\\v"], ["comment", "// vertical tab"],
+	["char", "$\\n"], ["comment", "// newline (linefeed)"],
+	["char", "$\\r"], ["comment", "// return"],
+	["char", "$\\\\"], ["comment", "// backslash`"]
+]

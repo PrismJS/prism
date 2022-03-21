@@ -6,12 +6,12 @@
 
 [
 	["level", "0"],
-	["tag", "HEAD"],
+	["record", "HEAD"],
 	["level", "1"],
-	["tag", "CHAR"],
+	["record", "CHAR"],
 	["line-value", ["ASCII"]],
 	["level", "99"],
-	["tag", "FOO"],
+	["record", "FOO"],
 	["line-value", ["bar"]]
 ]
 

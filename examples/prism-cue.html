@@ -1,0 +1,23 @@
+<h2>Full example</h2>
+<pre><code>#Spec: {
+	kind: string
+
+	name: {
+		first:   !=""  // must be specified and non-empty
+		middle?: !=""  // optional, but must be non-empty when specified
+		last:    !=""
+	}
+
+	// The minimum must be strictly smaller than the maximum and vice versa.
+	minimum?: int & &lt;maximum
+	maximum?: int & >minimum
+}
+
+// A spec is of type #Spec
+spec: #Spec
+spec: {
+	knid: "Homo Sapiens" // error, misspelled field
+
+	name: first: "Jane"
+	name: last:  "Doe"
+}</code></pre>

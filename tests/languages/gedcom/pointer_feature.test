@@ -12,9 +12,9 @@
 	["pointer", "@_$!\"$%&'()*+,-./:;<=>?[\\]^`{|}~ #foobar@"],
 	["level", "0"],
 	["pointer", "@SUBMITTER@"],
-	["tag", "SUBM"],
+	["record", "SUBM"],
 	["level", "1"],
-	["tag", "FAMS"],
+	["record", "FAMS"],
 	["line-value", [["pointer", "@FAMILY@"]]]
 ]
 

@@ -1,0 +1,16 @@
+foo(a: 5, bar: 7)
+
+----------------------------------------------------
+
+[
+	"foo",
+	["punctuation", "("],
+	["label", "a"],
+	["punctuation", ":"],
+	["number", "5"],
+	["punctuation", ","],
+	["label", "bar"],
+	["punctuation", ":"],
+	["number", "7"],
+	["punctuation", ")"]
+]

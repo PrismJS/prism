@@ -1,0 +1,8 @@
+|my_versioned_symbol@@ver2|   ; Default version
+
+----------------------------------------------------
+
+[
+	["version-symbol", "|my_versioned_symbol@@ver2|"],
+	["comment", "; Default version"]
+]
