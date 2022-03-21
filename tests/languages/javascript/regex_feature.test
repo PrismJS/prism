@@ -9,6 +9,12 @@
 / '1' '2' '3' '4' '5' /
 [/foo/]
 
+// RegExp set notation
+;/[A--B]/v;
+/[A--[0-9]]/v;
+/[\p{Decimal_Number}--[0-9]]/v;
+/[\p{Script=Khmer}&&[\p{Letter}\p{Mark}\p{Number}]]/v;
+
 let a = /regex/m // comment
 let b = condition ? /regex/ : /another one/
 return /regex/;
@@ -87,6 +93,41 @@ yield /regex/;
 		["regex-delimiter", "/"]
 	]],
 	["punctuation", "]"],
+
+	["comment", "// RegExp set notation"],
+
+	["punctuation", ";"],
+	["regex", [
+		["regex-delimiter", "/"],
+		["regex-source", "[A--B]"],
+		["regex-delimiter", "/"],
+		["regex-flags", "v"]
+	]],
+	["punctuation", ";"],
+
+	["regex", [
+		["regex-delimiter", "/"],
+		["regex-source", "[A--[0-9]]"],
+		["regex-delimiter", "/"],
+		["regex-flags", "v"]
+	]],
+	["punctuation", ";"],
+
+	["regex", [
+		["regex-delimiter", "/"],
+		["regex-source", "[\\p{Decimal_Number}--[0-9]]"],
+		["regex-delimiter", "/"],
+		["regex-flags", "v"]
+	]],
+	["punctuation", ";"],
+
+	["regex", [
+		["regex-delimiter", "/"],
+		["regex-source", "[\\p{Script=Khmer}&&[\\p{Letter}\\p{Mark}\\p{Number}]]"],
+		["regex-delimiter", "/"],
+		["regex-flags", "v"]
+	]],
+	["punctuation", ";"],
 
 	["keyword", "let"],
 	" a ",
