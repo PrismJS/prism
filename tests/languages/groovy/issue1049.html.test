@@ -7,9 +7,11 @@
 
 ----------------------------------------------------
 
-<span class="token string gstring">"&amp;amp;"</span>
-<span class="token string gstring">"&amp;amp;&amp;amp;"</span>
-<span class="token string gstring">"&amp;lt;"</span>
-<span class="token string gstring">"&amp;lt;&amp;lt;"</span>
-<span class="token string gstring">"&amp;amp;lt;"</span>
-<span class="token string gstring">"&amp;gt;"</span>
+<span class="token interpolation-string"><span class="token string">"&amp;amp;"</span></span>
+<span class="token interpolation-string">
+	<span class="token string">"&amp;amp;&amp;amp;"</span>
+</span>
+<span class="token interpolation-string"><span class="token string">"&amp;lt;"</span></span>
+<span class="token interpolation-string"><span class="token string">"&amp;lt;&amp;lt;"</span></span>
+<span class="token interpolation-string"><span class="token string">"&amp;amp;lt;"</span></span>
+<span class="token interpolation-string"><span class="token string">"&amp;gt;"</span></span>

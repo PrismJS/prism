@@ -1,0 +1,19 @@
+_
+arg
+classvar
+const
+nil
+var
+while
+
+----------------------------------------------------
+
+[
+	["keyword", "_"],
+	["keyword", "arg"],
+	["keyword", "classvar"],
+	["keyword", "const"],
+	["keyword", "nil"],
+	["keyword", "var"],
+	["keyword", "while"]
+]
