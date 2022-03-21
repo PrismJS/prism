@@ -242,6 +242,7 @@
 		"sol": "solidity",
 		"sln": "solution-file",
 		"rq": "sparql",
+		"sclang": "supercollider",
 		"t4": "t4-cs",
 		"trickle": "tremor",
 		"troy": "tremor",

@@ -228,6 +228,8 @@
 		"sqf": "SQF: Status Quo Function (Arma 3)",
 		"sql": "SQL",
 		"iecst": "Structured Text (IEC 61131-3)",
+		"supercollider": "SuperCollider",
+		"sclang": "SuperCollider",
 		"systemd": "Systemd configuration file",
 		"t4-templating": "T4 templating",
 		"t4-cs": "T4 Text Templates (C#)",
