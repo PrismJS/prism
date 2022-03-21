@@ -143,7 +143,7 @@
 			"title": "Arturo",
 			"alias": "art",
 			"optional": [
-				"bash"
+				"bash",
 				"css",
 				"javascript",
 				"markup",
