@@ -1,6 +1,13 @@
 OUT PORTB,x
 ldi r17,(1<<PD07)
 
++ - * / ^
++= -= *= /= ^=
+>> >>= << <<=
+& && &= | || |=
+< <= > >= != ==
+! = ? ?=
+
 ----------------------------------------------------
 
 [
@@ -16,7 +23,43 @@ ldi r17,(1<<PD07)
 	["decimal-number", "1"],
 	["operator", "<<"],
 	["constant", "PD07"],
-	["punctuation", ")"]
+	["punctuation", ")"],
+
+	["operator", "+"],
+	["operator", "-"],
+	["operator", "*"],
+	["operator", "/"],
+	["operator", "^"],
+
+	["operator", "+="],
+	["operator", "-="],
+	["operator", "*="],
+	["operator", "/="],
+	["operator", "^="],
+
+	["operator", ">>"],
+	["operator", ">>="],
+	["operator", "<<"],
+	["operator", "<<="],
+
+	["operator", "&"],
+	["operator", "&&"],
+	["operator", "&="],
+	["operator", "|"],
+	["operator", "||"],
+	["operator", "|="],
+
+	["operator", "<"],
+	["operator", "<="],
+	["operator", ">"],
+	["operator", ">="],
+	["operator", "!="],
+	["operator", "=="],
+
+	["operator", "!"],
+	["operator", "="],
+	["operator", "?"],
+	["operator", "?="]
 ]
 
 ----------------------------------------------------
