@@ -6,7 +6,7 @@ const crypto = require('crypto');
 const { argv } = require('yargs');
 const fetch = require('node-fetch').default;
 const Benchmark = require('benchmark');
-const simpleGit = require('simple-git/promise');
+const simpleGit = require('simple-git');
 const { parseLanguageNames } = require('../tests/helper/test-case');
 
 
@@ -401,7 +401,7 @@ async function getCandidates(config) {
 	const remoteBaseDir = path.join(__dirname, 'remotes');
 	await fs.promises.mkdir(remoteBaseDir, { recursive: true });
 
-	const baseGit = simpleGit(remoteBaseDir);
+	const baseGit = simpleGit.gitP(remoteBaseDir);
 
 	for (const remote of config.remotes) {
 		const user = /[^/]+(?=\/prism.git)/.exec(remote.repo);
@@ -413,9 +413,9 @@ async function getCandidates(config) {
 		if (!fs.existsSync(remoteDir)) {
 			console.log(`Cloning ${remote.repo}`);
 			await baseGit.clone(remote.repo, remoteName);
-			remoteGit = simpleGit(remoteDir);
+			remoteGit = simpleGit.gitP(remoteDir);
 		} else {
-			remoteGit = simpleGit(remoteDir);
+			remoteGit = simpleGit.gitP(remoteDir);
 			await remoteGit.fetch('origin', branch); // get latest version of branch
 		}
 		await remoteGit.checkout(branch); // switch to branch
