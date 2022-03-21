@@ -8,19 +8,19 @@
 
 [
 	["level", "1"],
-	["tag", "CHIL"],
+	["record", "CHIL"],
 	["line-value", [["pointer", "@CHILD1@"]]],
 	["level", "2"],
-	["tag", "PLAC"],
+	["record", "PLAC"],
 	["line-value", ["ÁĆÉǴÍ,ḰĹḾŃÓ,ṔŔŚÚẂ,ÝŹáćé,ǵíḱĺḿ,ńóṕŕś,úẃýź"]],
 	["level", "1"],
-	["tag", "NAME"],
+	["record", "NAME"],
 	["line-value", ["code: 0313/COMMA ABOVE/"]],
 	["level", "2"],
-	["tag", "DATE"],
+	["record", "DATE"],
 	["line-value", ["@#DGREGORIAN@ 31 DEC 1997"]],
 	["level", "2"],
-	["tag", "CONT"],
+	["record", "CONT"],
 	["line-value", ["Copyright gedcom@@gedcom.org"]]
 ]
 

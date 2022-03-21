@@ -33,29 +33,59 @@ bar"""
 ----------------------------------------------------
 
 [
-	["string", "\"\"\"\"\"\""],
-	["string", "\"\"\"foo\"\"\""],
-	["string", "\"\"\"foo\r\nbar\"\"\""],
+	["interpolation-string", [
+		["string", "\"\"\"\"\"\""]
+	]],
+	["interpolation-string", [
+		["string", "\"\"\"foo\"\"\""]
+	]],
+	["interpolation-string", [
+		["string", "\"\"\"foo\r\nbar\"\"\""]
+	]],
+
 	["string", "''''''"],
 	["string", "'''foo'''"],
 	["string", "'''foo\r\nbar'''"],
 
-	["string", "\"\""],
-	["string", "\"fo\\\"o\""],
+	["interpolation-string", [
+		["string", "\"\""]
+	]],
+	["interpolation-string", [
+		["string", "\"fo\\\"o\""]
+	]],
 	["string", "''"],
 	["string", "'fo\\'o'"],
 
-	["string", "/foo/"],
-	["string", "/fo\\/o/"],
+	["interpolation-string", [
+		["string", "/foo/"]
+	]],
+	["interpolation-string", [
+		["string", "/fo\\/o/"]
+	]],
 
-	["string", "$/fo$/$o/$"],
-	["string", "$/foo\r\nbar/$"],
-	["string", "\"foo /* comment */ bar\""],
+	["interpolation-string", [
+		["string", "$/fo$/"],
+		["interpolation", [
+			["interpolation-punctuation", "$"],
+			["expression", ["o"]]
+		]],
+		["string", "/$"]
+	]],
+	["interpolation-string", [
+		["string", "$/foo\r\nbar/$"]
+	]],
+	["interpolation-string", [
+		["string", "\"foo /* comment */ bar\""]
+	]],
 	["string", "'foo // bar'"],
 	["string", "'''foo\r\n/* comment */\r\nbar'''"],
 	["string", "'''hell\\'''o'''"],
-	["string", "\"\"\"foo\r\n// comment\r\nbar\"\"\""],
-	["string", "\"\"\"hell\\\"\"\"o\"\"\""]
+	["interpolation-string", [
+		["string", "\"\"\"foo\r\n// comment\r\nbar\"\"\""]
+	]],
+	["interpolation-string", [
+		["string", "\"\"\"hell\\\"\"\"o\"\"\""]
+	]]
 ]
 
 ----------------------------------------------------

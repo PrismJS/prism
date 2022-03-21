@@ -175,6 +175,14 @@
 			"alias": "avdl",
 			"owner": "RunDevelopment"
 		},
+		"awk": {
+			"title": "AWK",
+			"alias": "gawk",
+			"aliasTitles": {
+				"gawk": "GAWK"
+			},
+			"owner": "RunDevelopment"
+		},
 		"bash": {
 			"title": "Bash",
 			"alias": "shell",
@@ -475,6 +483,11 @@
 		"gedcom": {
 			"title": "GEDCOM",
 			"owner": "Golmote"
+		},
+		"gettext": {
+			"title": "gettext",
+			"alias": "po",
+			"owner": "RunDevelopment"
 		},
 		"gherkin": {
 			"title": "Gherkin",

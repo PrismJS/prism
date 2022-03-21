@@ -5,6 +5,9 @@ group
 using keys
 match
 nomatch
+newcontext
+postkeystroke
+readonly
 
 ----------------------------------------------------
 
@@ -15,7 +18,10 @@ nomatch
 	["structural-keyword", "group"],
 	["structural-keyword", "using keys"],
 	["structural-keyword", "match"],
-	["structural-keyword", "nomatch"]
+	["structural-keyword", "nomatch"],
+	["structural-keyword", "newcontext"],
+	["structural-keyword", "postkeystroke"],
+	["structural-keyword", "readonly"]
 ]
 
 ----------------------------------------------------
