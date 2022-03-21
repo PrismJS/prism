@@ -1,0 +1,77 @@
+#AllowSameLineComments
+#ClipboardTimeout
+#CommentFlag
+#DerefChar
+#ErrorStdOut
+#EscapeChar
+#HotkeyInterval
+#HotkeyModifierTimeout
+#Hotstring
+#If
+#IfTimeout
+#IfWinActive
+#IfWinExist
+#IfWinNotActive
+#IfWinNotExist
+#Include
+#IncludeAgain
+#InputLevel
+#InstallKeybdHook
+#InstallMouseHook
+#KeyHistory
+#MaxHotkeysPerInterval
+#MaxMem
+#MaxThreads
+#MaxThreadsBuffer
+#MaxThreadsPerHotkey
+#MenuMaskKey
+#NoEnv
+#NoTrayIcon
+#Persistent
+#SingleInstance
+#UseHook
+#WinActivateForce
+#Warn
+
+----------------------------------------------------
+
+[
+	["directive", "#AllowSameLineComments"],
+	["directive", "#ClipboardTimeout"],
+	["directive", "#CommentFlag"],
+	["directive", "#DerefChar"],
+	["directive", "#ErrorStdOut"],
+	["directive", "#EscapeChar"],
+	["directive", "#HotkeyInterval"],
+	["directive", "#HotkeyModifierTimeout"],
+	["directive", "#Hotstring"],
+	["directive", "#If"],
+	["directive", "#IfTimeout"],
+	["directive", "#IfWinActive"],
+	["directive", "#IfWinExist"],
+	["directive", "#IfWinNotActive"],
+	["directive", "#IfWinNotExist"],
+	["directive", "#Include"],
+	["directive", "#IncludeAgain"],
+	["directive", "#InputLevel"],
+	["directive", "#InstallKeybdHook"],
+	["directive", "#InstallMouseHook"],
+	["directive", "#KeyHistory"],
+	["directive", "#MaxHotkeysPerInterval"],
+	["directive", "#MaxMem"],
+	["directive", "#MaxThreads"],
+	["directive", "#MaxThreadsBuffer"],
+	["directive", "#MaxThreadsPerHotkey"],
+	["directive", "#MenuMaskKey"],
+	["directive", "#NoEnv"],
+	["directive", "#NoTrayIcon"],
+	["directive", "#Persistent"],
+	["directive", "#SingleInstance"],
+	["directive", "#UseHook"],
+	["directive", "#WinActivateForce"],
+	["directive", "#Warn"]
+]
+
+----------------------------------------------------
+
+Checks for all important keywords.

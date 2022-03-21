@@ -1,0 +1,27 @@
+\x
+\aiff
+\Big_Swifty_And_Assoc
+
+'x'
+'aiff'
+'BigSwiftyAndAssoc'
+'nowhere here'
+'somewhere there'
+'.+o*o+.'
+'\'symbol_within_a_symbol\''
+
+----------------------------------------------------
+
+[
+	["symbol", "\\x"],
+	["symbol", "\\aiff"],
+	["symbol", "\\Big_Swifty_And_Assoc"],
+
+	["symbol", "'x'"],
+	["symbol", "'aiff'"],
+	["symbol", "'BigSwiftyAndAssoc'"],
+	["symbol", "'nowhere here'"],
+	["symbol", "'somewhere there'"],
+	["symbol", "'.+o*o+.'"],
+	["symbol", "'\\'symbol_within_a_symbol\\''"]
+]

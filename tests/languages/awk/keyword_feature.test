@@ -1,0 +1,59 @@
+BEGIN
+BEGINFILE
+END
+ENDFILE
+break
+case
+continue
+default
+delete
+do
+else
+exit
+for
+function
+getline
+if
+in
+next
+nextfile
+print
+printf
+return
+switch
+while
+
+@include
+@load
+
+----------------------------------------------------
+
+[
+	["keyword", "BEGIN"],
+	["keyword", "BEGINFILE"],
+	["keyword", "END"],
+	["keyword", "ENDFILE"],
+	["keyword", "break"],
+	["keyword", "case"],
+	["keyword", "continue"],
+	["keyword", "default"],
+	["keyword", "delete"],
+	["keyword", "do"],
+	["keyword", "else"],
+	["keyword", "exit"],
+	["keyword", "for"],
+	["keyword", "function"],
+	["keyword", "getline"],
+	["keyword", "if"],
+	["keyword", "in"],
+	["keyword", "next"],
+	["keyword", "nextfile"],
+	["keyword", "print"],
+	["keyword", "printf"],
+	["keyword", "return"],
+	["keyword", "switch"],
+	["keyword", "while"],
+
+	["keyword", "@include"],
+	["keyword", "@load"]
+]

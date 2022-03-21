@@ -175,6 +175,14 @@
 			"alias": "avdl",
 			"owner": "RunDevelopment"
 		},
+		"awk": {
+			"title": "AWK",
+			"alias": "gawk",
+			"aliasTitles": {
+				"gawk": "GAWK"
+			},
+			"owner": "RunDevelopment"
+		},
 		"bash": {
 			"title": "Bash",
 			"alias": "shell",
@@ -480,6 +488,11 @@
 			"title": "GEDCOM",
 			"owner": "Golmote"
 		},
+		"gettext": {
+			"title": "gettext",
+			"alias": "po",
+			"owner": "RunDevelopment"
+		},
 		"gherkin": {
 			"title": "Gherkin",
 			"owner": "hason"
@@ -496,6 +509,11 @@
 		"gn": {
 			"title": "GN",
 			"alias": "gni",
+			"owner": "RunDevelopment"
+		},
+		"linker-script": {
+			"title": "GNU Linker Script",
+			"alias": "ld",
 			"owner": "RunDevelopment"
 		},
 		"go": {
@@ -1292,6 +1310,11 @@
 		"stylus": {
 			"title": "Stylus",
 			"owner": "vkbansal"
+		},
+		"supercollider": {
+			"title": "SuperCollider",
+			"alias": "sclang",
+			"owner": "RunDevelopment"
 		},
 		"swift": {
 			"title": "Swift",
