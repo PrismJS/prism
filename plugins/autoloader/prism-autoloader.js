@@ -199,6 +199,7 @@
 		"gamemakerlanguage": "gml",
 		"po": "gettext",
 		"gni": "gn",
+		"ld": "linker-script",
 		"go-mod": "go-module",
 		"hbs": "handlebars",
 		"hs": "haskell",

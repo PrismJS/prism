@@ -507,6 +507,11 @@
 			"alias": "gni",
 			"owner": "RunDevelopment"
 		},
+		"linker-script": {
+			"title": "GNU Linker Script",
+			"alias": "ld",
+			"owner": "RunDevelopment"
+		},
 		"go": {
 			"title": "Go",
 			"require": "clike",

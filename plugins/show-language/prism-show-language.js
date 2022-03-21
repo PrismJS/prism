@@ -102,6 +102,8 @@
 		"glsl": "GLSL",
 		"gn": "GN",
 		"gni": "GN",
+		"linker-script": "GNU Linker Script",
+		"ld": "GNU Linker Script",
 		"go-module": "Go module",
 		"go-mod": "Go module",
 		"graphql": "GraphQL",
