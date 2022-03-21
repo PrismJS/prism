@@ -97,6 +97,8 @@
 		"gcode": "G-code",
 		"gdscript": "GDScript",
 		"gedcom": "GEDCOM",
+		"gettext": "gettext",
+		"po": "gettext",
 		"glsl": "GLSL",
 		"gn": "GN",
 		"gni": "GN",

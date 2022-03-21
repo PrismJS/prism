@@ -484,6 +484,11 @@
 			"title": "GEDCOM",
 			"owner": "Golmote"
 		},
+		"gettext": {
+			"title": "gettext",
+			"alias": "po",
+			"owner": "RunDevelopment"
+		},
 		"gherkin": {
 			"title": "Gherkin",
 			"owner": "hason"
