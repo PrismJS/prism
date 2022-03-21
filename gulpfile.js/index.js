@@ -64,6 +64,9 @@ function minifyJS() {
 			ecma: 5,
 			compress: {
 				passes: 3,
+			},
+			output: {
+				comments: false
 			}
 		})
 	];
