@@ -1,0 +1,102 @@
+void
+transmorphic matrix
+real matrix
+complex matrix
+string matrix
+pointer matrix
+transmorphic rowvector
+real rowvector
+complex rowvector
+string rowvector
+pointer rowvector
+transmorphic colvector
+real colvector
+complex colvector
+string colvector
+pointer colvector
+transmorphic vector
+real vector
+complex vector
+string vector
+pointer vector
+transmorphic scalar
+real scalar
+complex scalar
+string scalar
+pointer scalar
+
+pointer(real matrix) scalar example(real scalar n)
+real scalar neat(pointer(real scalar function) p)
+struct mystruct scalar y
+class rotated_coord scalar b
+
+----------------------------------------------------
+
+[
+	["type", [
+		["keyword", "void"]
+	]],
+	["type", ["transmorphic matrix"]],
+	["type", ["real matrix"]],
+	["type", ["complex matrix"]],
+	["type", ["string matrix"]],
+	["type", ["pointer matrix"]],
+	["type", ["transmorphic rowvector"]],
+	["type", ["real rowvector"]],
+	["type", ["complex rowvector"]],
+	["type", ["string rowvector"]],
+	["type", ["pointer rowvector"]],
+	["type", ["transmorphic colvector"]],
+	["type", ["real colvector"]],
+	["type", ["complex colvector"]],
+	["type", ["string colvector"]],
+	["type", ["pointer colvector"]],
+	["type", ["transmorphic vector"]],
+	["type", ["real vector"]],
+	["type", ["complex vector"]],
+	["type", ["string vector"]],
+	["type", ["pointer vector"]],
+	["type", ["transmorphic scalar"]],
+	["type", ["real scalar"]],
+	["type", ["complex scalar"]],
+	["type", ["string scalar"]],
+	["type", ["pointer scalar"]],
+
+	["type", [
+		"pointer",
+		["punctuation", "("],
+		"real matrix",
+		["punctuation", ")"],
+		" scalar"
+	]],
+	["function", "example"],
+	["punctuation", "("],
+	["type", ["real scalar"]],
+	" n",
+	["punctuation", ")"],
+
+	["type", ["real scalar"]],
+	["function", "neat"],
+	["punctuation", "("],
+	["type", [
+		"pointer",
+		["punctuation", "("],
+		"real scalar ",
+		["keyword", "function"],
+		["punctuation", ")"]
+	]],
+	" p",
+	["punctuation", ")"],
+
+	["type", [
+		["keyword", "struct"],
+		" mystruct scalar"
+	]],
+	" y\r\n",
+
+	["type", [
+		["keyword", "class"],
+		" rotated_coord scalar"
+	]],
+	" b"
+]

@@ -1,0 +1,289 @@
+AREA    subrout, CODE, READONLY     ; Name this block of code
+        ENTRY                        ; Mark first instruction to execute
+start   MOV     r0, #10              ; Set up parameters
+        MOV     r1, #3
+        BL      doadd                ; Call subroutine
+stop    MOV     r0, #0x18            ; angel_SWIreason_ReportException
+        LDR     r1, =0x20026         ; ADP_Stopped_ApplicationExit
+        SVC     #0x123456            ; ARM semihosting (formerly SWI)
+doadd   ADD     r0, r0, r1           ; Subroutine code
+        BX      lr                   ; Return from subroutine
+        END                          ; Mark end of file
+
+
+        MACRO
+$Lab    DivMod  $Div,$Top,$Bot,$Temp
+        ASSERT  $Top <> $Bot         ; Produce an error message if the
+        ASSERT  $Top <> $Temp        ; registers supplied are
+        ASSERT  $Bot <> $Temp        ; not all different
+        IF      "$Div" <> ""
+        ASSERT  $Div <> $Top         ; These three only matter if $Div
+        ASSERT  $Div <> $Bot         ; is not null ("")
+        ASSERT  $Div <> $Temp        ;
+        ENDIF
+$Lab
+        MOV     $Temp, $Bot          ; Put divisor in $Temp
+        CMP     $Temp, $Top, LSR #1  ; double it until
+90      MOVLS   $Temp, $Temp, LSL #1 ; 2 * $Temp > $Top
+        CMP     $Temp, $Top, LSR #1
+        BLS     %b90                 ; The b means search backwards
+        IF      "$Div" <> ""         ; Omit next instruction if $Div is null
+        MOV     $Div, #0             ; Initialize quotient
+        ENDIF
+91      CMP     $Top, $Temp          ; Can we subtract $Temp?
+        SUBCS   $Top, $Top,$Temp     ; If we can, do so
+        IF      "$Div" <> ""         ; Omit next instruction if $Div is null
+        ADC     $Div, $Div, $Div     ; Double $Div
+        ENDIF
+        MOV     $Temp, $Temp, LSR #1 ; Halve $Temp,
+        CMP     $Temp, $Bot          ; and loop until
+        BHS     %b91                 ; less than divisor
+        MEND
+
+----------------------------------------------------
+
+[
+	["directive", "AREA"],
+	"    subrout",
+	["punctuation", ","],
+	["directive", "CODE"],
+	["punctuation", ","],
+	["directive", "READONLY"],
+	["comment", "; Name this block of code"],
+
+	["directive", "ENTRY"],
+	["comment", "; Mark first instruction to execute"],
+
+	"\r\nstart   ",
+	["instruction", "MOV"],
+	["register", "r0"],
+	["punctuation", ","],
+	["operator", "#"],
+	["number", "10"],
+	["comment", "; Set up parameters"],
+
+	["instruction", "MOV"],
+	["register", "r1"],
+	["punctuation", ","],
+	["operator", "#"],
+	["number", "3"],
+
+	["instruction", "BL"],
+	"      doadd                ",
+	["comment", "; Call subroutine"],
+
+	"\r\nstop    ",
+	["instruction", "MOV"],
+	["register", "r0"],
+	["punctuation", ","],
+	["operator", "#"],
+	["number", "0x18"],
+	["comment", "; angel_SWIreason_ReportException"],
+
+	["instruction", "LDR"],
+	["register", "r1"],
+	["punctuation", ","],
+	["operator", "="],
+	["number", "0x20026"],
+	["comment", "; ADP_Stopped_ApplicationExit"],
+
+	["instruction", "SVC"],
+	["operator", "#"],
+	["number", "0x123456"],
+	["comment", "; ARM semihosting (formerly SWI)"],
+
+	"\r\ndoadd   ",
+	["instruction", "ADD"],
+	["register", "r0"],
+	["punctuation", ","],
+	["register", "r0"],
+	["punctuation", ","],
+	["register", "r1"],
+	["comment", "; Subroutine code"],
+
+	["instruction", "BX"],
+	["register", "lr"],
+	["comment", "; Return from subroutine"],
+
+	["directive", "END"],
+	["comment", "; Mark end of file"],
+
+	["directive", "MACRO"],
+
+	["variable", "$Lab"],
+	"    DivMod  ",
+	["variable", "$Div"],
+	["punctuation", ","],
+	["variable", "$Top"],
+	["punctuation", ","],
+	["variable", "$Bot"],
+	["punctuation", ","],
+	["variable", "$Temp"],
+
+	["directive", "ASSERT"],
+	["variable", "$Top"],
+	["operator", "<>"],
+	["variable", "$Bot"],
+	["comment", "; Produce an error message if the"],
+
+	["directive", "ASSERT"],
+	["variable", "$Top"],
+	["operator", "<>"],
+	["variable", "$Temp"],
+	["comment", "; registers supplied are"],
+
+	["directive", "ASSERT"],
+	["variable", "$Bot"],
+	["operator", "<>"],
+	["variable", "$Temp"],
+	["comment", "; not all different"],
+
+	["directive", "IF"],
+	["string", [
+		"\"",
+		["variable", "$Div"],
+		"\""
+	]],
+	["operator", "<>"],
+	["string", ["\"\""]],
+
+	["directive", "ASSERT"],
+	["variable", "$Div"],
+	["operator", "<>"],
+	["variable", "$Top"],
+	["comment", "; These three only matter if $Div"],
+
+	["directive", "ASSERT"],
+	["variable", "$Div"],
+	["operator", "<>"],
+	["variable", "$Bot"],
+	["comment", "; is not null (\"\")"],
+
+	["directive", "ASSERT"],
+	["variable", "$Div"],
+	["operator", "<>"],
+	["variable", "$Temp"],
+	["comment", ";"],
+
+	["directive", "ENDIF"],
+
+	["variable", "$Lab"],
+
+	["instruction", "MOV"],
+	["variable", "$Temp"],
+	["punctuation", ","],
+	["variable", "$Bot"],
+	["comment", "; Put divisor in $Temp"],
+
+	["instruction", "CMP"],
+	["variable", "$Temp"],
+	["punctuation", ","],
+	["variable", "$Top"],
+	["punctuation", ","],
+	" LSR ",
+	["operator", "#"],
+	["number", "1"],
+	["comment", "; double it until"],
+
+	["number", "90"],
+	["instruction", "MOVLS"],
+	["variable", "$Temp"],
+	["punctuation", ","],
+	["variable", "$Temp"],
+	["punctuation", ","],
+	" LSL ",
+	["operator", "#"],
+	["number", "1"],
+	["comment", "; 2 * $Temp > $Top"],
+
+	["instruction", "CMP"],
+	["variable", "$Temp"],
+	["punctuation", ","],
+	["variable", "$Top"],
+	["punctuation", ","],
+	" LSR ",
+	["operator", "#"],
+	["number", "1"],
+
+	["instruction", "BLS"],
+	["operator", "%"],
+	"b90                 ",
+	["comment", "; The b means search backwards"],
+
+	["directive", "IF"],
+	["string", [
+		"\"",
+		["variable", "$Div"],
+		"\""
+	]],
+	["operator", "<>"],
+	["string", ["\"\""]],
+	["comment", "; Omit next instruction if $Div is null"],
+
+	["instruction", "MOV"],
+	["variable", "$Div"],
+	["punctuation", ","],
+	["operator", "#"],
+	["number", "0"],
+	["comment", "; Initialize quotient"],
+
+	["directive", "ENDIF"],
+
+	["number", "91"],
+	["instruction", "CMP"],
+	["variable", "$Top"],
+	["punctuation", ","],
+	["variable", "$Temp"],
+	["comment", "; Can we subtract $Temp?"],
+
+	["instruction", "SUBCS"],
+	["variable", "$Top"],
+	["punctuation", ","],
+	["variable", "$Top"],
+	["punctuation", ","],
+	["variable", "$Temp"],
+	["comment", "; If we can, do so"],
+
+	["directive", "IF"],
+	["string", [
+		"\"",
+		["variable", "$Div"],
+		"\""
+	]],
+	["operator", "<>"],
+	["string", ["\"\""]],
+	["comment", "; Omit next instruction if $Div is null"],
+
+	["instruction", "ADC"],
+	["variable", "$Div"],
+	["punctuation", ","],
+	["variable", "$Div"],
+	["punctuation", ","],
+	["variable", "$Div"],
+	["comment", "; Double $Div"],
+
+	["directive", "ENDIF"],
+
+	["instruction", "MOV"],
+	["variable", "$Temp"],
+	["punctuation", ","],
+	["variable", "$Temp"],
+	["punctuation", ","],
+	" LSR ",
+	["operator", "#"],
+	["number", "1"],
+	["comment", "; Halve $Temp,"],
+
+	["instruction", "CMP"],
+	["variable", "$Temp"],
+	["punctuation", ","],
+	["variable", "$Bot"],
+	["comment", "; and loop until"],
+
+	["instruction", "BHS"],
+	["operator", "%"],
+	"b91                 ",
+	["comment", "; less than divisor"],
+
+	["directive", "MEND"]
+]

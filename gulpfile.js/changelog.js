@@ -4,7 +4,7 @@ const { src, dest } = require('gulp');
 
 const replace = require('gulp-replace');
 const pump = require('pump');
-const git = require('simple-git/promise')(__dirname);
+const git = require('simple-git').gitP(__dirname);
 
 const { changelog } = require('./paths');
 

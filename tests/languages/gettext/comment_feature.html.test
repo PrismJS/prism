@@ -1,0 +1,15 @@
+#  translator-comments
+#. extracted-comments
+#: reference…
+#, flag…
+#| msgid previous-untranslated-string
+
+----------------------------------------------------
+
+<span class="token comment translator-comment">#  translator-comments</span>
+<span class="token comment extracted-comment">#. extracted-comments</span>
+<span class="token comment reference-comment">#: reference…</span>
+<span class="token comment flag-comment">#, flag…</span>
+<span class="token comment previously-untranslated-comment">
+	#| msgid previous-untranslated-string
+</span>

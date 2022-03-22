@@ -1,0 +1,20 @@
+{!sh
+    ls -la test/*x
+}
+
+----------------------------------------------------
+
+[
+	["sh-string", [
+		["string", "{!sh"],
+		["embedded", [
+			["function", "ls"],
+			" -la test/*x\r\n"
+		]],
+		["string", "}"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for string literals with embedded Shell script.

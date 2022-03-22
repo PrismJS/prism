@@ -1,0 +1,12 @@
+math.Sin(x)
+
+----------------------------------------------------
+
+[
+	"math",
+	["punctuation", "."],
+	["function", "Sin"],
+	["punctuation", "("],
+	"x",
+	["punctuation", ")"]
+]

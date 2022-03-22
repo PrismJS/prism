@@ -4,6 +4,8 @@ String
 string
 Boolean
 boolean
+Symbol
+symbol
 Function
 any
 mixed
@@ -19,6 +21,8 @@ void
 	["type", "string"],
 	["type", "Boolean"],
 	["type", "boolean"],
+	["type", "Symbol"],
+	["type", "symbol"],
 	["type", "Function"],
 	["type", "any"],
 	["type", "mixed"],

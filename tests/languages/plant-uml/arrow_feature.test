@@ -1,0 +1,319 @@
+-> --> <- <-- <-> <-->
+->> -->> <<- <<-- <<->> <<-->>
+-/ --/ /- /-- /-/ /--/
+-// --// //- //-- //-// //--//
+-\ --\ \- \-- \-\ \--\
+-\\ --\\ \\- \\-- \\-\\ \\--\\
+
+
+@startuml
+Bob ->x Alice
+Bob -> Alice
+Bob ->> Alice
+Bob -\ Alice
+Bob \\- Alice
+Bob //-- Alice
+
+Bob ->o Alice
+Bob o\\-- Alice
+
+Bob <-> Alice
+Bob <->o Alice
+@enduml
+
+@startuml
+Bob -[#red]> Alice : hello
+Alice -[#0000FF]->Bob : ok
+@enduml
+
+@startuml
+participant Alice
+participant Bob #lightblue
+Alice -> Bob
+Bob -> Carol
+...
+[-> Bob
+[o-> Bob
+[o->o Bob
+[x-> Bob
+...
+[<- Bob
+[x<- Bob
+...
+Bob ->]
+Bob ->o]
+Bob o->o]
+Bob ->x]
+...
+Bob <-]
+Bob x<-]
+@enduml
+
+@startuml
+?-> Alice
+[-> Alice
+[-> Bob
+?-> Bob
+Alice ->]
+Alice ->?
+Alice -> Bob
+@enduml
+
+@startuml
+(Use case 1) <.. :user:
+(Use case 2) <- :user:
+@enduml
+
+@startuml
+:user: -left-> (dummyLeft)
+:user: -right-> (dummyRight)
+:user: -up-> (dummyUp)
+:user: -down-> (dummyDown)
+@enduml
+
+@startuml
+Class11 <|.. Class12
+Class13 --> Class14
+Class15 ..> Class16
+Class17 ..|> Class18
+Class19 <--* Class20
+Class21 #-- Class22
+Class23 x-- Class24
+Class25 }-- Class26
+Class27 +-- Class28
+Class29 ^-- Class30
+@enduml
+
+----------------------------------------------------
+
+[
+	["arrow", ["->"]],
+	["arrow", ["-->"]],
+	["arrow", ["<-"]],
+	["arrow", ["<--"]],
+	["arrow", ["<->"]],
+	["arrow", ["<-->"]],
+
+	["arrow", ["->>"]],
+	["arrow", ["-->>"]],
+	["arrow", ["<<-"]],
+	["arrow", ["<<--"]],
+	["arrow", ["<<->>"]],
+	["arrow", ["<<-->>"]],
+
+	["arrow", ["-/"]],
+	["arrow", ["--/"]],
+	["arrow", ["/-"]],
+	["arrow", ["/--"]],
+	["arrow", ["/-/"]],
+	["arrow", ["/--/"]],
+
+	["arrow", ["-//"]],
+	["arrow", ["--//"]],
+	["arrow", ["//-"]],
+	["arrow", ["//--"]],
+	["arrow", ["//-//"]],
+	["arrow", ["//--//"]],
+
+	["arrow", ["-\\"]],
+	["arrow", ["--\\"]],
+	["arrow", ["\\-"]],
+	["arrow", ["\\--"]],
+	["arrow", ["\\-\\"]],
+	["arrow", ["\\--\\"]],
+
+	["arrow", ["-\\\\"]],
+	["arrow", ["--\\\\"]],
+	["arrow", ["\\\\-"]],
+	["arrow", ["\\\\--"]],
+	["arrow", ["\\\\-\\\\"]],
+	["arrow", ["\\\\--\\\\"]],
+
+	["delimiter", "@startuml"],
+
+	"\r\nBob ",
+	["arrow", ["->x"]],
+	" Alice\r\nBob ",
+	["arrow", ["->"]],
+	" Alice\r\nBob ",
+	["arrow", ["->>"]],
+	" Alice\r\nBob ",
+	["arrow", ["-\\"]],
+	" Alice\r\nBob ",
+	["arrow", ["\\\\-"]],
+	" Alice\r\nBob ",
+	["arrow", ["//--"]],
+	" Alice\r\n\r\nBob ",
+	["arrow", ["->o"]],
+	" Alice\r\nBob ",
+	["arrow", ["o\\\\--"]],
+	" Alice\r\n\r\nBob ",
+	["arrow", ["<->"]],
+	" Alice\r\nBob ",
+	["arrow", ["<->o"]],
+	" Alice\r\n",
+
+	["delimiter", "@enduml"],
+
+	["delimiter", "@startuml"],
+
+	"\r\nBob ",
+	["arrow", [
+		"-",
+		["punctuation", "["],
+		["expression", [
+			["color", "#red"]
+		]],
+		["punctuation", "]"],
+		">"
+	]],
+	" Alice ",
+	["punctuation", ":"],
+	" hello\r\nAlice ",
+	["arrow", [
+		"-",
+		["punctuation", "["],
+		["expression", [
+			["color", "#0000FF"]
+		]],
+		["punctuation", "]"],
+		"->"
+	]],
+	"Bob ",
+	["punctuation", ":"],
+	" ok\r\n",
+
+	["delimiter", "@enduml"],
+
+	["delimiter", "@startuml"],
+	["keyword", "participant"],
+	" Alice\r\n",
+	["keyword", "participant"],
+	" Bob ",
+	["color", "#lightblue"],
+	"\r\nAlice ",
+	["arrow", ["->"]],
+	" Bob\r\nBob ",
+	["arrow", ["->"]],
+	" Carol\r\n",
+	["punctuation", "..."],
+	["arrow", ["[->"]],
+	" Bob\r\n",
+	["arrow", ["[o->"]],
+	" Bob\r\n",
+	["arrow", ["[o->o"]],
+	" Bob\r\n",
+	["arrow", ["[x->"]],
+	" Bob\r\n",
+	["punctuation", "..."],
+	["arrow", ["[<-"]],
+	" Bob\r\n",
+	["arrow", ["[x<-"]],
+	" Bob\r\n",
+	["punctuation", "..."],
+	"\r\nBob ",
+	["arrow", ["->]"]],
+	"\r\nBob ",
+	["arrow", ["->o]"]],
+	"\r\nBob ",
+	["arrow", ["o->o]"]],
+	"\r\nBob ",
+	["arrow", ["->x]"]],
+	["punctuation", "..."],
+	"\r\nBob ",
+	["arrow", ["<-]"]],
+	"\r\nBob ",
+	["arrow", ["x<-]"]],
+	["delimiter", "@enduml"],
+
+	["delimiter", "@startuml"],
+	["arrow", ["?->"]], " Alice\r\n",
+	["arrow", ["[->"]], " Alice\r\n",
+	["arrow", ["[->"]], " Bob\r\n",
+	["arrow", ["?->"]], " Bob\r\nAlice ", ["arrow", ["->]"]],
+	"\r\nAlice ", ["arrow", ["->?"]],
+	"\r\nAlice ", ["arrow", ["->"]], " Bob\r\n",
+	["delimiter", "@enduml"],
+
+	["delimiter", "@startuml"],
+
+	["punctuation", "("],
+	"Use case 1",
+	["punctuation", ")"],
+	["arrow", ["<.."]],
+	["punctuation", ":"],
+	"user",
+	["punctuation", ":"],
+
+	["punctuation", "("],
+	"Use case 2",
+	["punctuation", ")"],
+	["arrow", ["<-"]],
+	["punctuation", ":"],
+	"user",
+	["punctuation", ":"],
+
+	["delimiter", "@enduml"],
+
+	["delimiter", "@startuml"],
+
+	["punctuation", ":"],
+	"user",
+	["punctuation", ":"],
+	["arrow", ["-left->"]],
+	["punctuation", "("],
+	"dummyLeft",
+	["punctuation", ")"],
+
+	["punctuation", ":"],
+	"user",
+	["punctuation", ":"],
+	["arrow", ["-right->"]],
+	["punctuation", "("],
+	"dummyRight",
+	["punctuation", ")"],
+
+	["punctuation", ":"],
+	"user",
+	["punctuation", ":"],
+	["arrow", ["-up->"]],
+	["punctuation", "("],
+	"dummyUp",
+	["punctuation", ")"],
+
+	["punctuation", ":"],
+	"user",
+	["punctuation", ":"],
+	["arrow", ["-down->"]],
+	["punctuation", "("],
+	"dummyDown",
+	["punctuation", ")"],
+
+	["delimiter", "@enduml"],
+
+	["delimiter", "@startuml"],
+
+	"\r\nClass11 ",
+	["arrow", ["<|.."]],
+	" Class12\r\nClass13 ",
+	["arrow", ["-->"]],
+	" Class14\r\nClass15 ",
+	["arrow", ["..>"]],
+	" Class16\r\nClass17 ",
+	["arrow", ["..|>"]],
+	" Class18\r\nClass19 ",
+	["arrow", ["<--*"]],
+	" Class20\r\nClass21 ",
+	["arrow", ["#--"]],
+	" Class22\r\nClass23 ",
+	["arrow", ["x--"]],
+	" Class24\r\nClass25 ",
+	["arrow", ["}--"]],
+	" Class26\r\nClass27 ",
+	["arrow", ["+--"]],
+	" Class28\r\nClass29 ",
+	["arrow", ["^--"]],
+	" Class30\r\n",
+
+	["delimiter", "@enduml"]
+]

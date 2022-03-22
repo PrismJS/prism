@@ -62,6 +62,22 @@ describe('Keep Markup', function () {
 		assert.strictEqual(firstPass, secondPass);
 	});
 
+	it('should not clone markup nodes', function () {
+		const pre = document.createElement('pre');
+		pre.className = 'language-javascript drop-tokens';
+		pre.innerHTML = '<code>var <mark>a = <mark>42</mark></mark>;</code>';
+		const code = pre.childNodes[0];
+		const firstNodeRefBefore = code.querySelector('mark');
+		const secondNodeRefBefore = firstNodeRefBefore.querySelector('mark');
+
+		Prism.highlightElement(code);
+		const firstNodeRefAfter = code.querySelector('mark');
+		const secondNodeRefAfter = firstNodeRefAfter.querySelector('mark');
+
+		assert.strictEqual(firstNodeRefBefore, firstNodeRefAfter);
+		assert.strictEqual(secondNodeRefBefore, secondNodeRefAfter);
+	});
+
 	// The markup is removed if it's the last element and the element's name is a single letter: a(nchor), b(old), i(talic)...
 	// https://github.com/PrismJS/prism/issues/1618
 	/*
