@@ -3,7 +3,7 @@
 const { src, dest, series, parallel, watch } = require('gulp');
 
 const rename = require('gulp-rename');
-const uglify = require('gulp-uglify');
+const terser = require('gulp-terser');
 const header = require('gulp-header');
 const concat = require('gulp-concat');
 const replace = require('gulp-replace');
@@ -60,7 +60,15 @@ function inlineRegexSource() {
 function minifyJS() {
 	return [
 		inlineRegexSource(),
-		uglify()
+		terser({
+			ecma: 5,
+			compress: {
+				passes: 3,
+			},
+			output: {
+				comments: false
+			}
+		})
 	];
 }
 
