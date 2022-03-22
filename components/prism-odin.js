@@ -1,9 +1,5 @@
 (function (Prism) {
-	var escapes = /\\(?:["'\\abefnrtv]|0[0-7]{2}|U[\dA-Fa-f]{6}|u[\dA-Fa-f]{4}|x[\dA-Fa-f]{2})/.source;
-
-	function withEscapes(pattern, flags) {
-		return RegExp(pattern.replace(/<escapes>/g, escapes), flags);
-	}
+	var escapes = /\\(?:["'\\abefnrtv]|0[0-7]{2}|U[\dA-Fa-f]{6}|u[\dA-Fa-f]{4}|x[\dA-Fa-f]{2})/;
 
 	Prism.languages.odin = {
 		/**
@@ -31,10 +27,10 @@
 		 * Should be found before strings because of '"'"- and '`'`-like sequences.
 		 */
 		'char': {
-			pattern: withEscapes(/'(?:<escapes>|[^\n\r'\\])'/.source),
+			pattern: /'(?:\\(?:.|[0Uux][0-9A-Fa-f]{1,6})|[^\n\r'\\])'/,
 			greedy: true,
 			inside: {
-				'symbol': withEscapes(/<escapes>/.source)
+				'symbol': escapes
 			}
 		},
 
@@ -44,10 +40,10 @@
 				greedy: true
 			},
 			{
-				pattern: withEscapes(/"(?:<escapes>|[^\n\r"\\])*"/.source),
+				pattern: /"(?:\\.|[^\n\r"\\])*"/,
 				greedy: true,
 				inside: {
-					'symbol': withEscapes(/<escapes>/.source)
+					'symbol': escapes
 				}
 			}
 		],
