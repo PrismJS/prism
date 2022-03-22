@@ -55,6 +55,7 @@ print
 private
 protected
 public
+readonly
 require
 require_once
 return
@@ -135,6 +136,7 @@ yield from
 	["keyword", "private"],
 	["keyword", "protected"],
 	["keyword", "public"],
+	["keyword", "readonly"],
 	["keyword", "require"],
 	["keyword", "require_once"],
 	["keyword", "return"],
