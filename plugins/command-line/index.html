@@ -25,7 +25,8 @@
 
 	<p>Add class <strong>command-line</strong> to your <code class="language-markup">&lt;pre></code>. For a server command line, specify the user and host names using the <code class="language-markup">data-user</code> and <code class="language-markup">data-host</code> attributes. The resulting prompt displays a <strong>#</strong> for the root user and <strong>$</strong> for all other users. For any other command line, such as a Windows prompt, you may specify the entire prompt using the <code class="language-markup">data-prompt</code> attribute.</p>
 
-	<p>Optional: You may specify the lines to be presented as output (no prompt and no highlighting) through the <code class="language-markup">data-output</code> attribute on the <code class="language-markup">&lt;pre></code> element in the following simple format:</p>
+	<h2>Optional: Command output (positional)</h2>
+	<p>You may specify the lines to be presented as output (no prompt and no highlighting) through the <code class="language-markup">data-output</code> attribute on the <code class="language-markup">&lt;pre></code> element in the following simple format:</p>
 	<ul>
 		<li>A single number refers to the line with that number</li>
 		<li>Ranges are denoted by two numbers, separated with a hyphen (-)</li>
@@ -48,26 +49,60 @@
 		<dd>Lines 1 through 2, line 5, lines 9 through 20</dd>
 	</dl>
 
-	<p>Optional: To automatically present some lines as output, you can prefix those lines with any string and specify the prefix using the <code class="language-markup">data-filter-output</code> attribute on the <code class="language-markup">&lt;pre></code> element. For example, <code class="language-markup">data-filter-output="(out)"</code> will treat lines beginning with <code class="language-markup">(out)</code> as output and remove the prefix.</p>
+	<h2>Optional: Command output (prefix)</h2>
+	<p>To automatically present some lines as output, you can prefix those lines with any string and specify the prefix using the <code class="language-markup">data-filter-output</code> attribute on the <code class="language-markup">&lt;pre></code> element. For example, <code class="language-markup">data-filter-output="(out)"</code> will treat lines beginning with <code class="language-markup">(out)</code> as output and remove the prefix.</p>
 
-	<p>Output lines are user selectable by default, so if you select the whole content of the code block, it will select the shell commands and any output lines. This may not be desireable if you want to copy/paste just the commands and not the output. If you want to make the output not user selectable then add the following to your CSS:</p>
+	<p>A blank line will render as an empty line with a prompt. If you want an empty line without a prompt then you can use a line containing just the output prefix, e.g. <code class="language-markup">(out)</code>. See the blank lines in the examples below.</p>
+
+	<p>Output lines are user selectable by default, so if you select the whole content of the code block, it will select the shell commands and any output lines. This may not be desirable if you want to copy/paste just the commands and not the output. If you want to make the output not user selectable then add the following to your CSS:</p>
 
 	<pre><code class="language-css">.command-line span.token.output {
 	user-select: none;
 }</code></pre>
 
-	<p>Optional: For multi-line commands you can specify the <code class="language-markup">data-continuation-str</code> attribute on the <code class="language-markup">&lt;pre></code> element. For example, <code class="language-markup">data-continuation-str="\"</code> will treat lines ending with <code class="language-markup">\</code> as being continued on the following line. Continued lines will have a prompt as set by the attribute <code class="language-markup">data-continuation-prompt</code> or a default of <code class="language-markup">&gt;</code>.</p>
+	<h2>Optional: Multi-line commands</h2>
+	<p>You can configure the plugin to handle multi-line commands. This can be done in two ways; setting a line continuation string (as in Bash); or explicitly marking continuation lines with a prefix for languages that do not have a continuation string/character, e.g. SQL, Scala, etc..</p>
+
+	<dl>
+		<dt><code class="language-markup">data-continuation-str</code></dt>
+		<dd>Set this attribute to the line continuation string/character, e.g. for bash <code class="language-markup">data-continuation-str="\"</code></dd>
+
+		<dt><code class="language-markup">data-filter-continuation</code></dt>
+		<dd>This works in a similar way to <code class="language-markup">data-filter-output</code>. Prefix all continuation lines with the value of <code class="language-markup">data-filter-continuation</code> and they will be displayed with the prompt set in <code class="language-markup">data-continuation-prompt</code>. For example, <code class="language-markup">data-filter-continuation="(con)"</code> will treat lines beginning with <code class="language-markup">(con)</code> as continuation lines and remove the prefix.</dd>
+
+		<dt><code class="language-markup">data-continuation-prompt</code></dt>
+		<dd>Set this attribute to define the prompt to be displayed when the command has continued beyond the first line (whether using line continuation or command termination), e.g. for MySQL <code class="language-markup">data-continuation-prompt="-&gt;"</code>. If this attribute is not set then a default of <code class="language-markup">&gt;</code> will be used.</dd>
+	</dl>
 </section>
 
 <section>
 	<h1>Examples</h1>
 
+	<h2>Default Use Without Output</h2>
+
+<pre><code class="language-html">&lt;pre class=&quot;command-line&quot;&gt;</code></pre>
+
+<pre class="command-line"><code class="language-bash">cd ~/.vim
+
+vim vimrc</code></pre>
+
 	<h2>Root User Without Output</h2>
+
+<pre><code class="language-html">&lt;pre class=&quot;command-line&quot;
+     data-user=&quot;root&quot;
+     data-host=&quot;localhost&quot;&gt;</code></pre>
+
 <pre class="command-line" data-user="root" data-host="localhost"><code class="language-bash">cd /usr/local/etc
 cp php.ini php.ini.bak
 vi php.ini</code></pre>
 
 	<h2>Non-Root User With Output</h2>
+
+<pre><code class="language-html">&lt;pre class=&quot;command-line&quot;
+     data-user=&quot;chris&quot;
+     data-host=&quot;remotehost&quot;
+     data-output=&quot;2, 4-8&quot;&gt;</code></pre>
+
 <pre class="command-line" data-user="chris" data-host="remotehost" data-output="2, 4-8"><code class="language-bash">pwd
 /usr/home/chris/bin
 ls -la
@@ -78,6 +113,11 @@ drwxr--r-x  45 chris  chris     92 Feb 14 11:10 ..
 -rwxr-xr-x   1 chris  chris    642 Jan 17 14:42 deploy</code></pre>
 
 	<h2>Windows PowerShell With Output</h2>
+
+<pre><code class="language-html">&lt;pre class=&quot;command-line&quot;
+     data-prompt=&quot;PS C:\Users\Chris&gt;&quot;
+     data-output=&quot;2-19&quot;&gt;</code></pre>
+
 <pre class="command-line" data-prompt="PS C:\Users\Chris>" data-output="2-19"><code class="language-powershell">dir
 
 
@@ -99,7 +139,14 @@ d-r--        10/14/2015   5:06 PM            Searches
 d-r--        10/14/2015   5:06 PM            Videos</code></pre>
 
 	<h2>Line continuation with Output (bash)</h2>
-<pre class="command-line" data-filter-output="(out)" data-continuation-str="\" ><code class="language-bash">echo "hello"
+
+<pre><code class="language-html">&lt;pre class=&quot;command-line&quot;
+     data-filter-output=&quot;(out)&quot;
+     data-continuation-str=&quot;\&quot; &gt;</code></pre>
+
+
+<pre class="command-line" data-filter-output="(out)" data-continuation-str="\" ><code class="language-bash">export MY_VAR=123
+echo "hello"
 (out)hello
 echo one \
 two \
@@ -110,13 +157,51 @@ echo "goodbye"
 (out)goodbye</code></pre>
 
 	<h2>Line continuation with Output (PowerShell)</h2>
-<pre class="command-line" data-prompt="PS C:\Users\Chris>" data-continuation-prompt=">>" data-filter-output="(out)" data-continuation-str=" `"><code class="language-powershell">Write-Host `
+
+<pre><code class="language-html">&lt;pre class=&quot;command-line&quot;
+     data-prompt=&quot;ps c:\users\chris&gt;&quot;
+     data-continuation-prompt=&quot;&gt;&gt;&quot;
+     data-filter-output=&quot;(out)&quot;
+     data-continuation-str=&quot; `&quot;&gt;</code></pre>
+
+<pre class="command-line" data-prompt="ps c:\users\chris>" data-continuation-prompt=">>" data-filter-output="(out)" data-continuation-str=" `"><code class="language-powershell">Write-Host `
 'Hello' `
 'from' `
 'PowerShell!'
 (out)Hello from PowerShell!
 Write-Host 'Goodbye from PowerShell!'
 (out)Goodbye from PowerShell!</code></pre>
+
+	<h2>Line continuation using prefix (MySQL/SQL)</h2>
+
+<pre><code class="language-html">&lt;pre class=&quot;command-line&quot;
+     data-prompt=&quot;mysql&gt;&quot;
+     data-continuation-prompt=&quot;-&gt;&quot;
+     data-filter-output=&quot;(out)&quot;
+     data-filter-continuation=&quot;(con)&quot;&gt;</code></pre>
+
+<pre class="command-line" data-prompt="mysql>" data-continuation-prompt="->" data-filter-output="(out)" data-filter-continuation="(con)"><code class="language-sql">set @my_var = 'foo';
+set @my_other_var = 'bar';
+(out)
+CREATE TABLE people (
+(con)first_name VARCHAR(30) NOT NULL,
+(con)last_name VARCHAR(30) NOT NULL
+(con));
+(out)Query OK, 0 rows affected (0.09 sec)
+(out)
+insert into people
+(con)values ('John', 'Doe');
+(out)Query OK, 1 row affected (0.02 sec)
+(out)
+select *
+(con)from people
+(con)order by last_name;
+(out)+------------+-----------+
+(out)| first_name | last_name |
+(out)+------------+-----------+
+(out)| John       | Doe       |
+(out)+------------+-----------+
+(out)1 row in set (0.00 sec)</code></pre>
 
 </section>
 
@@ -129,6 +214,7 @@ Write-Host 'Goodbye from PowerShell!'
 <script src="assets/code.js"></script>
 <script src="components/prism-bash.js"></script>
 <script src="components/prism-powershell.js"></script>
+<script src="components/prism-sql.js"></script>
 
 </body>
 </html>

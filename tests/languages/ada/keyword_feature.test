@@ -39,6 +39,7 @@ mod
 not
 null
 of
+or
 others
 out
 overriding
@@ -115,6 +116,7 @@ xor
 	["keyword", "not"],
 	["keyword", "null"],
 	["keyword", "of"],
+	["keyword", "or"],
 	["keyword", "others"],
 	["keyword", "out"],
 	["keyword", "overriding"],

@@ -11,24 +11,24 @@ baz
 ----------------------------------------------------
 
 [
-	["attr-name", "foo"],
-	["attr-value", "bar"],
-	["attr-name", "foo\\:\\=\\ bar"],
-	["attr-value", "bar\\:\\= \\\r\nbaz"],
+	["key", "foo"],
+	["value", "bar"],
+	["key", "foo\\:\\=\\ bar"],
+	["value", "bar\\:\\= \\\r\nbaz"],
 
-	["attr-name", "foo"],
+	["key", "foo"],
 	["punctuation", "="],
-	["attr-value", "bar"],
-	["attr-name", "foo\\:\\=\\ bar"],
+	["value", "bar"],
+	["key", "foo\\:\\=\\ bar"],
 	["punctuation", "="],
-	["attr-value", "bar\\:\\= \\\r\nbaz"],
+	["value", "bar\\:\\= \\\r\nbaz"],
 
-	["attr-name", "foo"],
+	["key", "foo"],
 	["punctuation", ":"],
-	["attr-value", "bar"],
-	["attr-name", "foo\\:\\=\\ bar"],
+	["value", "bar"],
+	["key", "foo\\:\\=\\ bar"],
 	["punctuation", ":"],
-	["attr-value", "bar\\:\\= \\\r\nbaz"]
+	["value", "bar\\:\\= \\\r\nbaz"]
 ]
 
 ----------------------------------------------------

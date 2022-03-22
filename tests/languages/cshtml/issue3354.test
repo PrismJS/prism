@@ -1,0 +1,194 @@
+<input type="text" placeholder="@Localize.GetLabelHtml("PLACEHOLDER")"/>
+
+<h1>
+    @Localize.GetLabelHtml("TITLE")
+</h1>
+
+@{
+    var man = "Federico";
+    var text = string.Concat("Nice to meet you", " ", man);
+}
+
+@helper TrialHelper(string name) {
+    var text = string.Concat("Hello", " ", name);
+    <h1>
+        @(text + ", how's going?")
+    </h1>
+    <p>
+        Hello World!
+    </p>
+}
+
+----------------------------------------------------
+
+[
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"input"
+		]],
+		["attr-name", ["type"]],
+		["attr-value", [
+			["punctuation", "="],
+			["punctuation", "\""],
+			"text",
+			["punctuation", "\""]
+		]],
+		["attr-name", ["placeholder"]],
+		["attr-value", [
+			["punctuation", "="],
+			["punctuation", "\""],
+			["value", [
+				["keyword", "@"],
+				["csharp", [
+					"Localize",
+					["punctuation", "."],
+					["function", "GetLabelHtml"],
+					["punctuation", "("],
+					["string", "\"PLACEHOLDER\""],
+					["punctuation", ")"]
+				]]
+			]],
+			["punctuation", "\""]
+		]],
+		["punctuation", "/>"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"h1"
+		]],
+		["punctuation", ">"]
+	]],
+	["value", [
+		["keyword", "@"],
+		["csharp", [
+			"Localize",
+			["punctuation", "."],
+			["function", "GetLabelHtml"],
+			["punctuation", "("],
+			["string", "\"TITLE\""],
+			["punctuation", ")"]
+		]]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"h1"
+		]],
+		["punctuation", ">"]
+	]],
+
+	["block", [
+		["keyword", "@"],
+		["csharp", [
+			["punctuation", "{"],
+
+			["class-name", [
+				["keyword", "var"]
+			]],
+			" man ",
+			["operator", "="],
+			["string", "\"Federico\""],
+			["punctuation", ";"],
+
+			["class-name", [
+				["keyword", "var"]
+			]],
+			" text ",
+			["operator", "="],
+			["keyword", "string"],
+			["punctuation", "."],
+			["function", "Concat"],
+			["punctuation", "("],
+			["string", "\"Nice to meet you\""],
+			["punctuation", ","],
+			["string", "\" \""],
+			["punctuation", ","],
+			" man",
+			["punctuation", ")"],
+			["punctuation", ";"],
+
+			["punctuation", "}"]
+		]]
+	]],
+
+	["block", [
+		["keyword", "@helper"],
+		["csharp", [
+			["function", "TrialHelper"],
+			["punctuation", "("],
+			["class-name", [
+				["keyword", "string"]
+			]],
+			" name",
+			["punctuation", ")"],
+			["punctuation", "{"],
+
+			["class-name", [
+				["keyword", "var"]
+			]],
+			" text ",
+			["operator", "="],
+			["keyword", "string"],
+			["punctuation", "."],
+			["function", "Concat"],
+			["punctuation", "("],
+			["string", "\"Hello\""],
+			["punctuation", ","],
+			["string", "\" \""],
+			["punctuation", ","],
+			" name",
+			["punctuation", ")"],
+			["punctuation", ";"],
+
+			["html", [
+				["tag", [
+					["tag", [
+						["punctuation", "<"],
+						"h1"
+					]],
+					["punctuation", ">"]
+				]],
+				["value", [
+					["keyword", "@"],
+					["csharp", [
+						["punctuation", "("],
+						"text ",
+						["operator", "+"],
+						["string", "\", how's going?\""],
+						["punctuation", ")"]
+					]]
+				]],
+				["tag", [
+					["tag", [
+						["punctuation", "</"],
+						"h1"
+					]],
+					["punctuation", ">"]
+				]]
+			]],
+
+			["html", [
+				["tag", [
+					["tag", [
+						["punctuation", "<"],
+						"p"
+					]],
+					["punctuation", ">"]
+				]],
+				"\r\n        Hello World!\r\n    ",
+				["tag", [
+					["tag", [
+						["punctuation", "</"],
+						"p"
+					]],
+					["punctuation", ">"]
+				]]
+			]],
+
+			["punctuation", "}"]
+		]]
+	]]
+]

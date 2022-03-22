@@ -1,0 +1,383 @@
+AutoTrim
+BlockInput
+Break
+Click
+ClipWait
+Continue
+Control
+ControlClick
+ControlFocus
+ControlGet
+ControlGetFocus
+ControlGetPos
+ControlGetText
+ControlMove
+ControlSend
+ControlSendRaw
+ControlSetText
+CoordMode
+Critical
+DetectHiddenText
+DetectHiddenWindows
+Drive
+DriveGet
+DriveSpaceFree
+EnvAdd
+EnvDiv
+EnvGet
+EnvMult
+EnvSet
+EnvSub
+EnvUpdate
+Exit
+ExitApp
+FileAppend
+FileCopy
+FileCopyDir
+FileCreateDir
+FileCreateShortcut
+FileDelete
+FileEncoding
+FileGetAttrib
+FileGetShortcut
+FileGetSize
+FileGetTime
+FileGetVersion
+FileInstall
+FileMove
+FileMoveDir
+FileRead
+FileReadLine
+FileRecycle
+FileRecycleEmpty
+FileRemoveDir
+FileSelectFile
+FileSelectFolder
+FileSetAttrib
+FileSetTime
+FormatTime
+GetKeyState
+Gosub
+Goto
+GroupActivate
+GroupAdd
+GroupClose
+GroupDeactivate
+Gui
+GuiControl
+GuiControlGet
+Hotkey
+ImageSearch
+IniDelete
+IniRead
+IniWrite
+Input
+InputBox
+KeyWait
+ListHotkeys
+ListLines
+ListVars
+Loop
+Menu
+MouseClick
+MouseClickDrag
+MouseGetPos
+MouseMove
+MsgBox
+OnExit
+OutputDebug
+Pause
+PixelGetColor
+PixelSearch
+PostMessage
+Process
+Progress
+Random
+RegDelete
+RegRead
+RegWrite
+Reload
+Repeat
+Return
+Run
+RunAs
+RunWait
+Send
+SendEvent
+SendInput
+SendMessage
+SendMode
+SendPlay
+SendRaw
+SetBatchLines
+SetCapslockState
+SetControlDelay
+SetDefaultMouseSpeed
+SetEnv
+SetFormat
+SetKeyDelay
+SetMouseDelay
+SetNumlockState
+SetRegView
+SetScrollLockState
+SetStoreCapslockMode
+SetTimer
+SetTitleMatchMode
+SetWinDelay
+SetWorkingDir
+Shutdown
+Sleep
+Sort
+SoundBeep
+SoundGet
+SoundGetWaveVolume
+SoundPlay
+SoundSet
+SoundSetWaveVolume
+SplashImage
+SplashTextOff
+SplashTextOn
+SplitPath
+StatusBarGetText
+StatusBarWait
+StringCaseSense
+StringGetPos
+StringLeft
+StringLen
+StringLower
+StringMid
+StringReplace
+StringRight
+StringSplit
+StringTrimLeft
+StringTrimRight
+StringUpper
+Suspend
+SysGet
+Thread
+ToolTip
+Transform
+TrayTip
+URLDownloadToFile
+WinActivate
+WinActivateBottom
+WinClose
+WinGet
+WinGetActiveStats
+WinGetActiveTitle
+WinGetClass
+WinGetPos
+WinGetText
+WinGetTitle
+WinHide
+WinKill
+WinMaximize
+WinMenuSelectItem
+WinMinimize
+WinMinimizeAll
+WinMinimizeAllUndo
+WinMove
+WinRestore
+WinSet
+WinSetTitle
+WinShow
+WinWait
+WinWaitActive
+WinWaitClose
+WinWaitNotActive
+
+----------------------------------------------------
+
+[
+	["command", "AutoTrim"],
+	["command", "BlockInput"],
+	["command", "Break"],
+	["command", "Click"],
+	["command", "ClipWait"],
+	["command", "Continue"],
+	["command", "Control"],
+	["command", "ControlClick"],
+	["command", "ControlFocus"],
+	["command", "ControlGet"],
+	["command", "ControlGetFocus"],
+	["command", "ControlGetPos"],
+	["command", "ControlGetText"],
+	["command", "ControlMove"],
+	["command", "ControlSend"],
+	["command", "ControlSendRaw"],
+	["command", "ControlSetText"],
+	["command", "CoordMode"],
+	["command", "Critical"],
+	["command", "DetectHiddenText"],
+	["command", "DetectHiddenWindows"],
+	["command", "Drive"],
+	["command", "DriveGet"],
+	["command", "DriveSpaceFree"],
+	["command", "EnvAdd"],
+	["command", "EnvDiv"],
+	["command", "EnvGet"],
+	["command", "EnvMult"],
+	["command", "EnvSet"],
+	["command", "EnvSub"],
+	["command", "EnvUpdate"],
+	["command", "Exit"],
+	["command", "ExitApp"],
+	["command", "FileAppend"],
+	["command", "FileCopy"],
+	["command", "FileCopyDir"],
+	["command", "FileCreateDir"],
+	["command", "FileCreateShortcut"],
+	["command", "FileDelete"],
+	["command", "FileEncoding"],
+	["command", "FileGetAttrib"],
+	["command", "FileGetShortcut"],
+	["command", "FileGetSize"],
+	["command", "FileGetTime"],
+	["command", "FileGetVersion"],
+	["command", "FileInstall"],
+	["command", "FileMove"],
+	["command", "FileMoveDir"],
+	["command", "FileRead"],
+	["command", "FileReadLine"],
+	["command", "FileRecycle"],
+	["command", "FileRecycleEmpty"],
+	["command", "FileRemoveDir"],
+	["command", "FileSelectFile"],
+	["command", "FileSelectFolder"],
+	["command", "FileSetAttrib"],
+	["command", "FileSetTime"],
+	["command", "FormatTime"],
+	["command", "GetKeyState"],
+	["command", "Gosub"],
+	["command", "Goto"],
+	["command", "GroupActivate"],
+	["command", "GroupAdd"],
+	["command", "GroupClose"],
+	["command", "GroupDeactivate"],
+	["command", "Gui"],
+	["command", "GuiControl"],
+	["command", "GuiControlGet"],
+	["command", "Hotkey"],
+	["command", "ImageSearch"],
+	["command", "IniDelete"],
+	["command", "IniRead"],
+	["command", "IniWrite"],
+	["command", "Input"],
+	["command", "InputBox"],
+	["command", "KeyWait"],
+	["command", "ListHotkeys"],
+	["command", "ListLines"],
+	["command", "ListVars"],
+	["command", "Loop"],
+	["command", "Menu"],
+	["command", "MouseClick"],
+	["command", "MouseClickDrag"],
+	["command", "MouseGetPos"],
+	["command", "MouseMove"],
+	["command", "MsgBox"],
+	["command", "OnExit"],
+	["command", "OutputDebug"],
+	["command", "Pause"],
+	["command", "PixelGetColor"],
+	["command", "PixelSearch"],
+	["command", "PostMessage"],
+	["command", "Process"],
+	["command", "Progress"],
+	["command", "Random"],
+	["command", "RegDelete"],
+	["command", "RegRead"],
+	["command", "RegWrite"],
+	["command", "Reload"],
+	["command", "Repeat"],
+	["command", "Return"],
+	["command", "Run"],
+	["command", "RunAs"],
+	["command", "RunWait"],
+	["command", "Send"],
+	["command", "SendEvent"],
+	["command", "SendInput"],
+	["command", "SendMessage"],
+	["command", "SendMode"],
+	["command", "SendPlay"],
+	["command", "SendRaw"],
+	["command", "SetBatchLines"],
+	["command", "SetCapslockState"],
+	["command", "SetControlDelay"],
+	["command", "SetDefaultMouseSpeed"],
+	["command", "SetEnv"],
+	["command", "SetFormat"],
+	["command", "SetKeyDelay"],
+	["command", "SetMouseDelay"],
+	["command", "SetNumlockState"],
+	["command", "SetRegView"],
+	["command", "SetScrollLockState"],
+	["command", "SetStoreCapslockMode"],
+	["command", "SetTimer"],
+	["command", "SetTitleMatchMode"],
+	["command", "SetWinDelay"],
+	["command", "SetWorkingDir"],
+	["command", "Shutdown"],
+	["command", "Sleep"],
+	["command", "Sort"],
+	["command", "SoundBeep"],
+	["command", "SoundGet"],
+	["command", "SoundGetWaveVolume"],
+	["command", "SoundPlay"],
+	["command", "SoundSet"],
+	["command", "SoundSetWaveVolume"],
+	["command", "SplashImage"],
+	["command", "SplashTextOff"],
+	["command", "SplashTextOn"],
+	["command", "SplitPath"],
+	["command", "StatusBarGetText"],
+	["command", "StatusBarWait"],
+	["command", "StringCaseSense"],
+	["command", "StringGetPos"],
+	["command", "StringLeft"],
+	["command", "StringLen"],
+	["command", "StringLower"],
+	["command", "StringMid"],
+	["command", "StringReplace"],
+	["command", "StringRight"],
+	["command", "StringSplit"],
+	["command", "StringTrimLeft"],
+	["command", "StringTrimRight"],
+	["command", "StringUpper"],
+	["command", "Suspend"],
+	["command", "SysGet"],
+	["command", "Thread"],
+	["command", "ToolTip"],
+	["command", "Transform"],
+	["command", "TrayTip"],
+	["command", "URLDownloadToFile"],
+	["command", "WinActivate"],
+	["command", "WinActivateBottom"],
+	["command", "WinClose"],
+	["command", "WinGet"],
+	["command", "WinGetActiveStats"],
+	["command", "WinGetActiveTitle"],
+	["command", "WinGetClass"],
+	["command", "WinGetPos"],
+	["command", "WinGetText"],
+	["command", "WinGetTitle"],
+	["command", "WinHide"],
+	["command", "WinKill"],
+	["command", "WinMaximize"],
+	["command", "WinMenuSelectItem"],
+	["command", "WinMinimize"],
+	["command", "WinMinimizeAll"],
+	["command", "WinMinimizeAllUndo"],
+	["command", "WinMove"],
+	["command", "WinRestore"],
+	["command", "WinSet"],
+	["command", "WinSetTitle"],
+	["command", "WinShow"],
+	["command", "WinWait"],
+	["command", "WinWaitActive"],
+	["command", "WinWaitClose"],
+	["command", "WinWaitNotActive"]
+]
+
+----------------------------------------------------
+
+Checks for all selectors.

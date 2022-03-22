@@ -1,0 +1,21 @@
+""
+‘""’
+"foo"
+‘"also a string"’
+‘"The "factor" of a matrix"’
+
+// technically not correct, but commonly used on the web
+`"Hamlet said "To be, or not to be.""'
+
+----------------------------------------------------
+
+[
+	["string", "\"\""],
+	["string", "‘\"\"’"],
+	["string", "\"foo\""],
+	["string", "‘\"also a string\"’"],
+	["string", "‘\"The \"factor\" of a matrix\"’"],
+
+	["comment", "// technically not correct, but commonly used on the web"],
+	["string", "`\"Hamlet said \"To be, or not to be.\"\"'"]
+]

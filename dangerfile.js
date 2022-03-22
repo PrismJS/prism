@@ -1,7 +1,7 @@
 const { markdown } = require('danger');
 const fs = require('fs').promises;
 const gzipSize = require('gzip-size');
-const git = require('simple-git/promise')(__dirname).silent(true);
+const git = require('simple-git').gitP(__dirname);
 
 /**
  * Returns the contents of a text file in the base of the PR.

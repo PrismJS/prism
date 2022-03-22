@@ -1,0 +1,87 @@
+public class Main {
+    // "record" is used as variable name, but Prism marked it keyword
+    public static void main(String[] record) {
+        System.out.println(record);
+    }
+    // "record" is used as method name, but Prism marked it keyword
+    public void record(String aaa){
+    }
+    // "record" is keyword since java 14
+    public static record A() {
+    }
+    // it cannot be used as class name in java syntax
+    public static class record {
+    }
+}
+
+----------------------------------------------------
+
+[
+	["keyword", "public"],
+	["keyword", "class"],
+	["class-name", ["Main"]],
+	["punctuation", "{"],
+
+	["comment", "// \"record\" is used as variable name, but Prism marked it keyword"],
+
+	["keyword", "public"],
+	["keyword", "static"],
+	["keyword", "void"],
+	["function", "main"],
+	["punctuation", "("],
+	["class-name", ["String"]],
+	["punctuation", "["],
+	["punctuation", "]"],
+	" record",
+	["punctuation", ")"],
+	["punctuation", "{"],
+
+	["class-name", ["System"]],
+	["punctuation", "."],
+	"out",
+	["punctuation", "."],
+	["function", "println"],
+	["punctuation", "("],
+	"record",
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+
+	["comment", "// \"record\" is used as method name, but Prism marked it keyword"],
+
+	["keyword", "public"],
+	["keyword", "void"],
+	["function", "record"],
+	["punctuation", "("],
+	["class-name", ["String"]],
+	" aaa",
+	["punctuation", ")"],
+	["punctuation", "{"],
+
+	["punctuation", "}"],
+
+	["comment", "// \"record\" is keyword since java 14"],
+
+	["keyword", "public"],
+	["keyword", "static"],
+	["keyword", "record"],
+	["class-name", ["A"]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+
+	["punctuation", "}"],
+
+	["comment", "// it cannot be used as class name in java syntax"],
+
+	["keyword", "public"],
+	["keyword", "static"],
+	["keyword", "class"],
+	" record ",
+	["punctuation", "{"],
+
+	["punctuation", "}"],
+
+	["punctuation", "}"]
+]
