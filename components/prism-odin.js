@@ -64,28 +64,19 @@
 			alias: 'keyword'
 		},
 
-		/**
-		 * proc is defined below.
-		 */
-		'keyword': /\b(?:asm|auto_cast|bit_set|break|case|cast|context|continue|defer|distinct|do|dynamic|else|enum|fallthrough|for|foreign|if|import|in|map|matrix|not_in|or_else|or_return|package|return|struct|switch|transmute|typeid|union|using|when|where)\b/,
+		'procedure-definition': {
+			pattern: /\b\w+(?=[ \t]*(?::\s*){2}proc\b)/,
+			alias: 'function'
+		},
+
+		'keyword': /\b(?:asm|auto_cast|bit_set|break|case|cast|context|continue|defer|distinct|do|dynamic|else|enum|fallthrough|for|foreign|if|import|in|map|matrix|not_in|or_else|or_return|package|proc|return|struct|switch|transmute|typeid|union|using|when|where)\b/,
 
 		/**
 		 * false, nil, true can be used as procedure names. "_" and keywords can't.
 		 */
-		'procedure-name': [
-			{
-				pattern: /\b\w+(?=[ \t]*(?::[ \n\r\t]*){2}proc\b)/,
-				alias: 'function'
-			},
-			{
-				pattern: /\b\w+(?=[ \t]*\()/,
-				alias: 'function'
-			}
-		],
-
-		'procedure': {
-			pattern: /\bproc\b/,
-			alias: 'keyword'
+		'procedure-name': {
+			pattern: /\b\w+(?=[ \t]*\()/,
+			alias: 'function'
 		},
 
 		'boolean': /\b(?:false|nil|true)\b/,
