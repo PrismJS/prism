@@ -2,7 +2,8 @@
 
 ## What is considered a vulnerability?
 
-There are some types of [low-severity][severity] vulnerabilities that we will not acknowledge as CVE and treat as bugs instead. All vulnerabilities with a severity of medium and above will of course be acknowledged and fixed.
+There are some types of [low-severity][severity] vulnerabilities that we will not acknowledge as CVE and treat as bugs instead.
+All vulnerabilities with a severity of medium and above will of course be acknowledged and fixed.
 
 Please see the below section on how we treat [ReDoS] vulnerabilities.
 
@@ -10,12 +11,17 @@ If you are unsure whether a vulnerability you found qualifies, please report it 
 
 ### ReDoS
 
-Prism is a regex-based syntax highlighter. As such, the main types of vulnerabilities reported to us are [ReDoS] vulnerabilities ([CWE-1333](https://cwe.mitre.org/data/definitions/1333.html)), aka slow regexes.
+Prism is a regex-based syntax highlighter.
+As such, the main types of vulnerabilities reported to us are [ReDoS] vulnerabilities ([CWE-1333](https://cwe.mitre.org/data/definitions/1333.html)), aka slow regexes.
 
-However, not all ReDoS is created equal. A slow regex can be have a [worst-case time complexity](https://en.wikipedia.org/wiki/Time_complexity) anywhere from _O(n<sup>2</sup>)_ to  _2<sup>O(n)</sup>_. This matters because a worst-case time complexity _≥ O(n<sup>3</sup>)_ is a [high severity][severity] vulnerability while _O(n<sup>2</sup>)_ is low or medium severity in the context of Prism.
-Furthermore, worst-case time complexities of _O(n<sup>2</sup>)_ can have 2 different causes: backtracking or moving. Backtracking is always fixable by rewriting the slow regex but moving is not (except in special cases).
+However, not all ReDoS is created equal.
+A slow regex can be have a [worst-case time complexity](https://en.wikipedia.org/wiki/Time_complexity) anywhere from _O(n<sup>2</sup>)_ to _2<sup>O(n)</sup>_.
+This matters because a worst-case time complexity _≥ O(n<sup>3</sup>)_ is a [high severity][severity] vulnerability while _O(n<sup>2</sup>)_ is low or medium severity in the context of Prism.
+Furthermore, worst-case time complexities of _O(n<sup>2</sup>)_ can have 2 different causes: backtracking or moving.
+Backtracking is always fixable by rewriting the slow regex but moving is not (except in special cases).
 
-Because of their lower severity and the fact that moving is difficult or impossible to fix, we will treat regexes with worst-case time complexity of _O(n<sup>2</sup>)_ caused by moving as regular bugs and not as vulnerabilities. Please report them as [bugs](https://github.com/PrismJS/prism/issues/new/choose) instead of as vulnerabilities.
+Because of their lower severity and the fact that moving is difficult or impossible to fix, we will treat regexes with worst-case time complexity of _O(n<sup>2</sup>)_ caused by moving as regular bugs and not as vulnerabilities.
+Please report them as [bugs](https://github.com/PrismJS/prism/issues/new/choose) instead of as vulnerabilities.
 
 If you found a slow regex but are unsure about the worst-case time complexity or its cause, please report it as a vulnerability via email (see below).
 
