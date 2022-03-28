@@ -64,7 +64,7 @@ where
 	["keyword", "or_else"],
 	["keyword", "or_return"],
 	["keyword", "package"],
-	["procedure", "proc"],
+	["keyword", "proc"],
 	["keyword", "return"],
 	["keyword", "struct"],
 	["keyword", "switch"],
