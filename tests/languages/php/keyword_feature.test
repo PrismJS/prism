@@ -47,6 +47,7 @@ isset
 list
 namespace;
 match
+never
 new;
 or
 parent
@@ -71,6 +72,7 @@ try
 unset
 use;
 var
+void
 while
 xor
 yield
@@ -128,6 +130,7 @@ yield from
 	["keyword", "list"],
 	["keyword", "namespace"], ["punctuation", ";"],
 	["keyword", "match"],
+	["keyword", "never"],
 	["keyword", "new"], ["punctuation", ";"],
 	["keyword", "or"],
 	["keyword", "parent"],
@@ -152,6 +155,7 @@ yield from
 	["keyword", "unset"],
 	["keyword", "use"], ["punctuation", ";"],
 	["keyword", "var"],
+	["keyword", "void"],
 	["keyword", "while"],
 	["keyword", "xor"],
 	["keyword", "yield"],
