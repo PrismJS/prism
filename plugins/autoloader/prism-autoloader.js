@@ -209,6 +209,7 @@
 		"ld": "linker-script",
 		"go-mod": "go-module",
 		"hbs": "handlebars",
+		"mustache": "handlebars",
 		"hs": "haskell",
 		"idr": "idris",
 		"gitignore": "ignore",

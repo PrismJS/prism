@@ -573,7 +573,10 @@
 		"handlebars": {
 			"title": "Handlebars",
 			"require": "markup-templating",
-			"alias": "hbs",
+			"alias": ["hbs", "mustache"],
+			"aliasTitles": {
+				"mustache": "Mustache"
+			},
 			"owner": "Golmote"
 		},
 		"haskell": {
