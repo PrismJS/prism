@@ -1,0 +1,27 @@
+do_math()
+fibonacci()
+log10()
+
+cross :: proc(a, b: Vector3) -> Vector3
+
+----------------------------------------------------
+
+[
+	["procedure-name", "do_math"], ["punctuation", "("], ["punctuation", ")"],
+	["procedure-name", "fibonacci"], ["punctuation", "("], ["punctuation", ")"],
+	["procedure-name", "log10"], ["punctuation", "("], ["punctuation", ")"],
+
+	["procedure-definition", "cross"],
+	["punctuation", ":"],
+	["punctuation", ":"],
+	["keyword", "proc"],
+	["punctuation", "("],
+	"a",
+	["punctuation", ","],
+	" b",
+	["punctuation", ":"],
+	" Vector3",
+	["punctuation", ")"],
+	["arrow", "->"],
+	" Vector3"
+]

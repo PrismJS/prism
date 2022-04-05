@@ -1,0 +1,97 @@
+!
+!=
+%
+%%
+%%=
+%=
+&
+&&
+&&=
+&=
+&~
+&~=
+*
+*=
++
+++
++=
+-
+--
+-=
+..
+..<
+..=
+/
+/=
+<
+<<
+<<=
+<=
+=
+==
+>
+>=
+>>
+>>=
+?
+^
+|
+|=
+||
+||=
+~
+~=
+
+// ranges
+0..<10
+
+----------------------------------------------------
+
+[
+	["operator", "!"],
+	["operator", "!="],
+	["operator", "%"],
+	["operator", "%%"],
+	["operator", "%%="],
+	["operator", "%="],
+	["operator", "&"],
+	["operator", "&&"],
+	["operator", "&&="],
+	["operator", "&="],
+	["operator", "&~"],
+	["operator", "&~="],
+	["operator", "*"],
+	["operator", "*="],
+	["operator", "+"],
+	["operator", "++"],
+	["operator", "+="],
+	["operator", "-"],
+	["operator", "--"],
+	["operator", "-="],
+	["operator", ".."],
+	["operator", "..<"],
+	["operator", "..="],
+	["operator", "/"],
+	["operator", "/="],
+	["operator", "<"],
+	["operator", "<<"],
+	["operator", "<<="],
+	["operator", "<="],
+	["operator", "="],
+	["operator", "=="],
+	["operator", ">"],
+	["operator", ">="],
+	["operator", ">>"],
+	["operator", ">>="],
+	["operator", "?"],
+	["operator", "^"],
+	["operator", "|"],
+	["operator", "|="],
+	["operator", "||"],
+	["operator", "||="],
+	["operator", "~"],
+	["operator", "~="],
+
+	["comment", "// ranges"],
+	["number", "0"], ["operator", "..<"], ["number", "10"]
+]

@@ -1,0 +1,79 @@
+`
+`
+`!`
+`""`
+`"\a"`
+`' '`
+`'\a'`
+`/**/`
+`//`
+`0`
+`\
+`
+`\"`
+`\'`
+`\000`
+`\077`
+`\U000000`
+`\UFFFFFF`
+`\Uffffff`
+`\\`
+`\a`
+`\b`
+`\e`
+`\f`
+`\n`
+`\r`
+`\t`
+`\u0000`
+`\uFFFF`
+`\uffff`
+`\v`
+`\x00`
+`\xFF`
+`\xff`
+`A raw string.`
+``
+`false`
+`if`
+
+----------------------------------------------------
+
+[
+	["string", "`\r\n`"],
+	["string", "`!`"],
+	["string", "`\"\"`"],
+	["string", "`\"\\a\"`"],
+	["string", "`' '`"],
+	["string", "`'\\a'`"],
+	["string", "`/**/`"],
+	["string", "`//`"],
+	["string", "`0`"],
+	["string", "`\\\r\n`"],
+	["string", "`\\\"`"],
+	["string", "`\\'`"],
+	["string", "`\\000`"],
+	["string", "`\\077`"],
+	["string", "`\\U000000`"],
+	["string", "`\\UFFFFFF`"],
+	["string", "`\\Uffffff`"],
+	["string", "`\\\\`"],
+	["string", "`\\a`"],
+	["string", "`\\b`"],
+	["string", "`\\e`"],
+	["string", "`\\f`"],
+	["string", "`\\n`"],
+	["string", "`\\r`"],
+	["string", "`\\t`"],
+	["string", "`\\u0000`"],
+	["string", "`\\uFFFF`"],
+	["string", "`\\uffff`"],
+	["string", "`\\v`"],
+	["string", "`\\x00`"],
+	["string", "`\\xFF`"],
+	["string", "`\\xff`"],
+	["string", "`A raw string.`"],
+	["string", "``"],
+	["string", "`false`"],
+	["string", "`if`"]
+]

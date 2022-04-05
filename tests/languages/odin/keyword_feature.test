@@ -1,0 +1,77 @@
+asm
+auto_cast
+bit_set
+break
+case
+cast
+context
+continue
+defer
+distinct
+do
+dynamic
+else
+enum
+fallthrough
+for
+foreign
+if
+import
+in
+map
+matrix
+not_in
+or_else
+or_return
+package
+proc
+return
+struct
+switch
+transmute
+typeid
+union
+using
+when
+where
+
+----------------------------------------------------
+
+[
+	["keyword", "asm"],
+	["keyword", "auto_cast"],
+	["keyword", "bit_set"],
+	["keyword", "break"],
+	["keyword", "case"],
+	["keyword", "cast"],
+	["keyword", "context"],
+	["keyword", "continue"],
+	["keyword", "defer"],
+	["keyword", "distinct"],
+	["keyword", "do"],
+	["keyword", "dynamic"],
+	["keyword", "else"],
+	["keyword", "enum"],
+	["keyword", "fallthrough"],
+	["keyword", "for"],
+	["keyword", "foreign"],
+	["keyword", "if"],
+	["keyword", "import"],
+	["keyword", "in"],
+	["keyword", "map"],
+	["keyword", "matrix"],
+	["keyword", "not_in"],
+	["keyword", "or_else"],
+	["keyword", "or_return"],
+	["keyword", "package"],
+	["keyword", "proc"],
+	["keyword", "return"],
+	["keyword", "struct"],
+	["keyword", "switch"],
+	["keyword", "transmute"],
+	["keyword", "typeid"],
+	["keyword", "union"],
+	["keyword", "using"],
+	["keyword", "when"],
+	["keyword", "where"]
+]

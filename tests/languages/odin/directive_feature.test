@@ -1,0 +1,9 @@
+#assert
+#no_bounds_check
+
+----------------------------------------------------
+
+[
+	["directive", "#assert"],
+	["directive", "#no_bounds_check"]
+]
