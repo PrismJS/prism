@@ -95,7 +95,8 @@
 			'copy': 'Copy',
 			'copy-error': 'Press Ctrl+C to copy',
 			'copy-success': 'Copied!',
-			'copy-timeout': 5000
+			'copy-timeout': 5000,
+			'copy-text': null
 		};
 
 		var prefix = 'data-prismjs-';
@@ -125,10 +126,16 @@
 
 		setState('copy');
 
-		registerClipboard(linkCopy, {
-			getText: function () {
+		var getText = settings['copy-text']
+			? function () {
+				return settings['copy-text'];
+			}
+			: function () {
 				return element.textContent;
-			},
+			};
+
+		registerClipboard(linkCopy, {
+			getText: getText,
 			success: function () {
 				setState('copy-success');
 

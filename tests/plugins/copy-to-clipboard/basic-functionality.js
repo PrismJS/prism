@@ -68,4 +68,18 @@ describe('Copy to Clipboard', function () {
 		assert.strictEqual(clipboard.text, 'baz');
 	});
 
+	it('should copy specified text independet of code block text', function () {
+		const clipboard = new DummyClipboard();
+		window.navigator.clipboard = clipboard;
+
+		document.body.innerHTML = `<pre class="language-none" data-prismjs-copy-text="bar"><code>foo</code></pre>`;
+		Prism.highlightAll();
+
+		const button = document.querySelector('button');
+		assert.notStrictEqual(button, null);
+
+		button.click();
+
+		assert.strictEqual(clipboard.text, 'bar');
+	});
 });

@@ -34,6 +34,7 @@
 		<li><code class="token attr-name">data-prismjs-copy-error</code> — a message displayed after failing copying, prompting the user to press <code>Ctrl+C</code>;</li>
 		<li><code class="token attr-name">data-prismjs-copy-success</code> — a message displayed after a successful copying;</li>
 		<li><code class="token attr-name">data-prismjs-copy-timeout</code> — a timeout (in milliseconds) after copying. Once the timeout passed, the success or error message will revert back to the default message. The value should be a non-negative integer.</li>
+		<li><code class="token attr-name">data-prismjs-copy-text</code> — set a different string to be copied to the clipboard. This overrides the default behaviour of copying the shown text into the clipboard.</li>
 	</ul>
 
 	<p>The plugin traverses up the DOM tree to find each of these attributes. The search starts at every <code class="token tag">pre code</code> element and stops at the closest ancestor element that has a desired attribute or at the worst case, at the <code class="token tag">html</code> element.</p>
