@@ -9,37 +9,37 @@ foo=no
 
 [
 	["key", "foo"],
-	["operator", "="],
+	["punctuation", "="],
 	["value", [
 		["boolean", "on"]
 	]],
 
 	["key", "foo"],
-	["operator", "="],
+	["punctuation", "="],
 	["value", [
 		["boolean", "true"]
 	]],
 
 	["key", "foo"],
-	["operator", "="],
+	["punctuation", "="],
 	["value", [
 		["boolean", "yes"]
 	]],
 
 	["key", "foo"],
-	["operator", "="],
+	["punctuation", "="],
 	["value", [
 		["boolean", "off"]
 	]],
 
 	["key", "foo"],
-	["operator", "="],
+	["punctuation", "="],
 	["value", [
 		["boolean", "false"]
 	]],
 
 	["key", "foo"],
-	["operator", "="],
+	["punctuation", "="],
 	["value", [
 		["boolean", "no"]
 	]]

@@ -1,0 +1,54 @@
+setvar "my_training_target"
+while skill "anatomy" < 100
+    useskill "anatomy"
+    wft 500
+    target "my_training_target"
+    wait 2000
+endwhile
+
+----------------------------------------------------
+
+[
+	["source-commands", "setvar"],
+	["string", [
+		["punctuation", "\""],
+		"my_training_target",
+		["punctuation", "\""]
+	]],
+
+	["keyword", "while"],
+	["function", "skill"],
+	["string", [
+		["punctuation", "\""],
+		"anatomy",
+		["punctuation", "\""]
+	]],
+	["operator", "<"],
+	["number", "100"],
+
+	["source-commands", "useskill"],
+	["string", [
+		["punctuation", "\""],
+		"anatomy",
+		["punctuation", "\""]
+	]],
+
+	["source-commands", "wft"],
+	["number", "500"],
+
+	["source-commands", "target"],
+	["string", [
+		["punctuation", "\""],
+		"my_training_target",
+		["punctuation", "\""]
+	]],
+
+	["source-commands", "wait"],
+	["number", "2000"],
+
+	["keyword", "endwhile"]
+]
+
+----------------------------------------------------
+
+Checks for each type of syntax breakdown

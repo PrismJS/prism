@@ -5,9 +5,11 @@ Content-type: text/xml
 ----------------------------------------------------
 
 [
-	["header-name", "Content-type:"],
-	" text/xml\r\n",
-
+	["header", [
+		["header-name", "Content-type"],
+		["punctuation", ":"],
+		["header-value", "text/xml"]
+	]],
 	["text-xml", [
 		["tag", [
 			["tag", [

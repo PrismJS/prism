@@ -1,0 +1,475 @@
+print "Hello world!"
+abs
+acos
+acosh
+acsec
+acsech
+actan
+actanh
+add
+after
+alert
+alias
+and
+angle
+append
+arg
+args
+arity
+array
+as
+asec
+asech
+asin
+asinh
+atan
+atan2
+atanh
+attr
+attrs
+average
+before
+benchmark
+blend
+break
+call
+capitalize
+case
+ceil
+chop
+clear
+clip
+close
+color
+combine
+conj
+continue
+copy
+cos
+cosh
+crc
+csec
+csech
+ctan
+ctanh
+cursor
+darken
+dec
+decode
+define
+delete
+desaturate
+deviation
+dialog
+dictionary
+difference
+digest
+digits
+div
+do
+download
+drop
+dup
+e
+else
+empty
+encode
+ensure
+env
+escape
+execute
+exit
+exp
+extend
+extract
+factors
+fdiv
+filter
+first
+flatten
+floor
+fold
+from
+function
+gamma
+gcd
+get
+goto
+hash
+hypot
+if
+inc
+indent
+index
+infinity
+info
+input
+insert
+inspect
+intersection
+invert
+jaro
+join
+keys
+kurtosis
+last
+let
+levenshtein
+lighten
+list
+ln
+log
+loop
+lower
+mail
+map
+match
+max
+median
+min
+mod
+module
+mul
+nand
+neg
+new
+nor
+normalize
+not
+now
+null
+open
+or
+outdent
+pad
+palette
+panic
+path
+pause
+permissions
+permutate
+pi
+pop
+popup
+pow
+powerset
+powmod
+prefix
+prints
+process
+product
+query
+random
+range
+read
+relative
+remove
+rename
+render
+repeat
+replace
+request
+return
+reverse
+round
+sample
+saturate
+script
+sec
+sech
+select
+serve
+set
+shl
+shr
+shuffle
+sin
+sinh
+size
+skewness
+slice
+sort
+spin
+split
+sqrt
+squeeze
+stack
+strip
+sub
+suffix
+sum
+switch
+symbols
+symlink
+sys
+take
+tan
+tanh
+terminal
+terminate
+to
+truncate
+try
+type
+unclip
+union
+unique
+unless
+until
+unzip
+upper
+values
+var
+variance
+volume
+webview
+while
+with
+wordwrap
+write
+xnor
+xor
+zip
+
+----------------------------------------------------
+
+[
+	["builtin-function", "print"],
+    ["string", "\"Hello world!\""],
+
+    ["builtin-function", "abs"],
+    ["builtin-function", "acos"],
+    ["builtin-function", "acosh"],
+    ["builtin-function", "acsec"],
+    ["builtin-function", "acsech"],
+    ["builtin-function", "actan"],
+    ["builtin-function", "actanh"],
+    ["builtin-function", "add"],
+    ["builtin-function", "after"],
+    ["builtin-function", "alert"],
+    ["builtin-function", "alias"],
+    ["builtin-function", "and"],
+    ["builtin-function", "angle"],
+    ["builtin-function", "append"],
+    ["builtin-function", "arg"],
+    ["builtin-function", "args"],
+    ["builtin-function", "arity"],
+    ["builtin-function", "array"],
+    ["builtin-function", "as"],
+    ["builtin-function", "asec"],
+    ["builtin-function", "asech"],
+    ["builtin-function", "asin"],
+    ["builtin-function", "asinh"],
+    ["builtin-function", "atan"],
+    ["builtin-function", "atan2"],
+    ["builtin-function", "atanh"],
+    ["builtin-function", "attr"],
+    ["builtin-function", "attrs"],
+    ["builtin-function", "average"],
+    ["builtin-function", "before"],
+    ["builtin-function", "benchmark"],
+    ["builtin-function", "blend"],
+    ["builtin-function", "break"],
+    ["builtin-function", "call"],
+    ["builtin-function", "capitalize"],
+    ["builtin-function", "case"],
+    ["builtin-function", "ceil"],
+    ["builtin-function", "chop"],
+    ["builtin-function", "clear"],
+    ["builtin-function", "clip"],
+    ["builtin-function", "close"],
+    ["builtin-function", "color"],
+    ["builtin-function", "combine"],
+    ["builtin-function", "conj"],
+    ["builtin-function", "continue"],
+    ["builtin-function", "copy"],
+    ["builtin-function", "cos"],
+    ["builtin-function", "cosh"],
+    ["builtin-function", "crc"],
+    ["builtin-function", "csec"],
+    ["builtin-function", "csech"],
+    ["builtin-function", "ctan"],
+    ["builtin-function", "ctanh"],
+    ["builtin-function", "cursor"],
+    ["builtin-function", "darken"],
+    ["builtin-function", "dec"],
+    ["builtin-function", "decode"],
+    ["builtin-function", "define"],
+    ["builtin-function", "delete"],
+    ["builtin-function", "desaturate"],
+    ["builtin-function", "deviation"],
+    ["builtin-function", "dialog"],
+    ["builtin-function", "dictionary"],
+    ["builtin-function", "difference"],
+    ["builtin-function", "digest"],
+    ["builtin-function", "digits"],
+    ["builtin-function", "div"],
+    ["builtin-function", "do"],
+    ["builtin-function", "download"],
+    ["builtin-function", "drop"],
+    ["builtin-function", "dup"],
+    ["builtin-function", "e"],
+    ["builtin-function", "else"],
+    ["builtin-function", "empty"],
+    ["builtin-function", "encode"],
+    ["builtin-function", "ensure"],
+    ["builtin-function", "env"],
+    ["builtin-function", "escape"],
+    ["builtin-function", "execute"],
+    ["builtin-function", "exit"],
+    ["builtin-function", "exp"],
+    ["builtin-function", "extend"],
+    ["builtin-function", "extract"],
+    ["builtin-function", "factors"],
+    ["builtin-function", "fdiv"],
+    ["builtin-function", "filter"],
+    ["builtin-function", "first"],
+    ["builtin-function", "flatten"],
+    ["builtin-function", "floor"],
+    ["builtin-function", "fold"],
+    ["builtin-function", "from"],
+    ["builtin-function", "function"],
+    ["builtin-function", "gamma"],
+    ["builtin-function", "gcd"],
+    ["builtin-function", "get"],
+    ["builtin-function", "goto"],
+    ["builtin-function", "hash"],
+    ["builtin-function", "hypot"],
+    ["builtin-function", "if"],
+    ["builtin-function", "inc"],
+    ["builtin-function", "indent"],
+    ["builtin-function", "index"],
+    ["builtin-function", "infinity"],
+    ["builtin-function", "info"],
+    ["builtin-function", "input"],
+    ["builtin-function", "insert"],
+    ["builtin-function", "inspect"],
+    ["builtin-function", "intersection"],
+    ["builtin-function", "invert"],
+    ["builtin-function", "jaro"],
+    ["builtin-function", "join"],
+    ["builtin-function", "keys"],
+    ["builtin-function", "kurtosis"],
+    ["builtin-function", "last"],
+    ["builtin-function", "let"],
+    ["builtin-function", "levenshtein"],
+    ["builtin-function", "lighten"],
+    ["builtin-function", "list"],
+    ["builtin-function", "ln"],
+    ["builtin-function", "log"],
+    ["builtin-function", "loop"],
+    ["builtin-function", "lower"],
+    ["builtin-function", "mail"],
+    ["builtin-function", "map"],
+    ["builtin-function", "match"],
+    ["builtin-function", "max"],
+    ["builtin-function", "median"],
+    ["builtin-function", "min"],
+    ["builtin-function", "mod"],
+    ["builtin-function", "module"],
+    ["builtin-function", "mul"],
+    ["builtin-function", "nand"],
+    ["builtin-function", "neg"],
+    ["builtin-function", "new"],
+    ["builtin-function", "nor"],
+    ["builtin-function", "normalize"],
+    ["builtin-function", "not"],
+    ["builtin-function", "now"],
+    ["builtin-function", "null"],
+    ["builtin-function", "open"],
+    ["builtin-function", "or"],
+    ["builtin-function", "outdent"],
+    ["builtin-function", "pad"],
+    ["builtin-function", "palette"],
+    ["builtin-function", "panic"],
+    ["builtin-function", "path"],
+    ["builtin-function", "pause"],
+    ["builtin-function", "permissions"],
+    ["builtin-function", "permutate"],
+    ["builtin-function", "pi"],
+    ["builtin-function", "pop"],
+    ["builtin-function", "popup"],
+    ["builtin-function", "pow"],
+    ["builtin-function", "powerset"],
+    ["builtin-function", "powmod"],
+    ["builtin-function", "prefix"],
+    ["builtin-function", "prints"],
+    ["builtin-function", "process"],
+    ["builtin-function", "product"],
+    ["builtin-function", "query"],
+    ["builtin-function", "random"],
+    ["builtin-function", "range"],
+    ["builtin-function", "read"],
+    ["builtin-function", "relative"],
+    ["builtin-function", "remove"],
+    ["builtin-function", "rename"],
+    ["builtin-function", "render"],
+    ["builtin-function", "repeat"],
+    ["builtin-function", "replace"],
+    ["builtin-function", "request"],
+    ["builtin-function", "return"],
+    ["builtin-function", "reverse"],
+    ["builtin-function", "round"],
+    ["builtin-function", "sample"],
+    ["builtin-function", "saturate"],
+    ["builtin-function", "script"],
+    ["builtin-function", "sec"],
+    ["builtin-function", "sech"],
+    ["builtin-function", "select"],
+    ["builtin-function", "serve"],
+    ["builtin-function", "set"],
+    ["builtin-function", "shl"],
+    ["builtin-function", "shr"],
+    ["builtin-function", "shuffle"],
+    ["builtin-function", "sin"],
+    ["builtin-function", "sinh"],
+    ["builtin-function", "size"],
+    ["builtin-function", "skewness"],
+    ["builtin-function", "slice"],
+    ["builtin-function", "sort"],
+    ["builtin-function", "spin"],
+    ["builtin-function", "split"],
+    ["builtin-function", "sqrt"],
+    ["builtin-function", "squeeze"],
+    ["builtin-function", "stack"],
+    ["builtin-function", "strip"],
+    ["builtin-function", "sub"],
+    ["builtin-function", "suffix"],
+    ["builtin-function", "sum"],
+    ["builtin-function", "switch"],
+    ["builtin-function", "symbols"],
+    ["builtin-function", "symlink"],
+    ["builtin-function", "sys"],
+    ["builtin-function", "take"],
+    ["builtin-function", "tan"],
+    ["builtin-function", "tanh"],
+    ["builtin-function", "terminal"],
+    ["builtin-function", "terminate"],
+    ["builtin-function", "to"],
+    ["builtin-function", "truncate"],
+    ["builtin-function", "try"],
+    ["builtin-function", "type"],
+    ["builtin-function", "unclip"],
+    ["builtin-function", "union"],
+    ["builtin-function", "unique"],
+    ["builtin-function", "unless"],
+    ["builtin-function", "until"],
+    ["builtin-function", "unzip"],
+    ["builtin-function", "upper"],
+    ["builtin-function", "values"],
+    ["builtin-function", "var"],
+    ["builtin-function", "variance"],
+    ["builtin-function", "volume"],
+    ["builtin-function", "webview"],
+    ["builtin-function", "while"],
+    ["builtin-function", "with"],
+    ["builtin-function", "wordwrap"],
+    ["builtin-function", "write"],
+    ["builtin-function", "xnor"],
+    ["builtin-function", "xor"],
+    ["builtin-function", "zip"]
+]
+
+----------------------------------------------------
+
+Checks for built-in functions.

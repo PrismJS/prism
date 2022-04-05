@@ -1,0 +1,15 @@
+$foo
+$bar
+
+%autonumber%
+%page%
+
+----------------------------------------------------
+
+[
+	["variable", "$foo"],
+	["variable", "$bar"],
+
+	["variable", "%autonumber%"],
+	["variable", "%page%"]
+]

@@ -1,0 +1,149 @@
+@milk
+@milk and more @milk
+@milk is good but more @milk is better
+@more milk{}
+@even more milk{1}
+@milk{1%l}
+@milk{2*%kg}
+@milk{3|1%L}
+@milk{3*L} must not match amount-group
+@milk{3|L} 
+@milk{3%*L}
+@milk{3%*%L}
+
+----------------------------------------------------
+
+[
+	["ingredient-group", [
+		["ingredient-keyword", "@"],
+		["ingredient", "milk"]
+	]],
+
+	["ingredient-group", [
+		["ingredient-keyword", "@"],
+		["ingredient", "milk"]
+	]],
+	" and more ",
+	["ingredient-group", [
+		["ingredient-keyword", "@"],
+		["ingredient", "milk"]
+	]],
+
+	["ingredient-group", [
+		["ingredient-keyword", "@"],
+		["ingredient", "milk"]
+	]],
+	" is good but more ",
+	["ingredient-group", [
+		["ingredient-keyword", "@"],
+		["ingredient", "milk"]
+	]],
+	" is better\r\n",
+
+	["ingredient-group", [
+		["ingredient-keyword", "@"],
+		["ingredient", "more milk"],
+		["amount-group", [
+			["punctuation", "{"],
+			["punctuation", "}"]
+		]]
+	]],
+
+	["ingredient-group", [
+		["ingredient-keyword", "@"],
+		["ingredient", "even more milk"],
+		["amount-group", [
+			["punctuation", "{"],
+			["amount", "1"],
+			["punctuation", "}"]
+		]]
+	]],
+
+	["ingredient-group", [
+		["ingredient-keyword", "@"],
+		["ingredient", "milk"],
+		["amount-group", [
+			["punctuation", "{"],
+			["amount", "1"],
+			["unit-separator", "%"],
+			["unit", "l"],
+			["punctuation", "}"]
+		]]
+	]],
+
+	["ingredient-group", [
+		["ingredient-keyword", "@"],
+		["ingredient", "milk"],
+		["amount-group", [
+			["punctuation", "{"],
+			["amount", "2"],
+			["servings-scaler", "*"],
+			["unit-separator", "%"],
+			["unit", "kg"],
+			["punctuation", "}"]
+		]]
+	]],
+
+	["ingredient-group", [
+		["ingredient-keyword", "@"],
+		["ingredient", "milk"],
+		["amount-group", [
+			["punctuation", "{"],
+			["amount", "3"],
+			["servings-alternative-separator", "|"],
+			["amount", "1"],
+			["unit-separator", "%"],
+			["unit", "L"],
+			["punctuation", "}"]
+		]]
+	]],
+
+	["ingredient-group", [
+		["ingredient-keyword", "@"],
+		["ingredient", "milk"],
+		["amount-group", [
+			["punctuation", "{"],
+			["amount", "3"],
+			["servings-scaler", "*"],
+			"L",
+			["punctuation", "}"]
+		]]
+	]],
+	" must not match amount-group\r\n",
+
+	["ingredient-group", [
+		["ingredient-keyword", "@"],
+		["ingredient", "milk"],
+		["amount-group", [
+			["punctuation", "{"],
+			["amount", "3"],
+			["servings-alternative-separator", "|"],
+			["amount", "L"],
+			["punctuation", "}"]
+		]]
+	]],
+
+	["ingredient-group", [
+		["ingredient-keyword", "@"],
+		["ingredient", "milk"],
+		["amount-group", [
+			["punctuation", "{"],
+			["amount", "3"],
+			["unit-separator", "%"],
+			["unit", "*L"],
+			["punctuation", "}"]
+		]]
+	]],
+
+	["ingredient-group", [
+		["ingredient-keyword", "@"],
+		["ingredient", "milk"],
+		["amount-group", [
+			["punctuation", "{"],
+			["amount", "3"],
+			["unit-separator", "%"],
+			["unit", "*%L"],
+			["punctuation", "}"]
+		]]
+	]]
+]

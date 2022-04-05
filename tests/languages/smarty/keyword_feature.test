@@ -1,51 +1,35 @@
-{if false}
-{if off}
-{if on}
-{if no}
-{if true}
-{if yes}
+{if count($foo)}
+{/if}
+
+{* PHP function *}
+{time()}
 
 ----------------------------------------------------
 
 [
 	["smarty", [
 		["delimiter", "{"],
-		["function", "if"],
-		["keyword", "false"],
+		["keyword", "if"],
+		["function", "count"],
+		["punctuation", "("],
+		["variable", "$foo"],
+		["punctuation", ")"],
 		["delimiter", "}"]
 	]],
 	["smarty", [
-		["delimiter", "{"],
-		["function", "if"],
-		["keyword", "off"],
+		["delimiter", "{/"],
+		["keyword", "if"],
 		["delimiter", "}"]
+	]],
+
+	["smarty", [
+		["comment", "{* PHP function *}"]
 	]],
 	["smarty", [
 		["delimiter", "{"],
-		["function", "if"],
-		["keyword", "on"],
-		["delimiter", "}"]
-	]],
-	["smarty", [
-		["delimiter", "{"],
-		["function", "if"],
-		["keyword", "no"],
-		["delimiter", "}"]
-	]],
-	["smarty", [
-		["delimiter", "{"],
-		["function", "if"],
-		["keyword", "true"],
-		["delimiter", "}"]
-	]],
-	["smarty", [
-		["delimiter", "{"],
-		["function", "if"],
-		["keyword", "yes"],
+		["function", "time"],
+		["punctuation", "("],
+		["punctuation", ")"],
 		["delimiter", "}"]
 	]]
 ]
-
-----------------------------------------------------
-
-Checks for keywords.

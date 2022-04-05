@@ -1,0 +1,26 @@
+/* enclosed comment */
+// rest-of-line comment
+
+/* What follows uses an approximation formula: */
+/*
+We use the approximation based on sin(x) approximately
+equaling x for small x; x measure in radians
+*/
+
+/*
+for (i=1; i<=rows(x); i++) { /* normalization */
+	x[i] = x[i] :/ value[i]
+}
+*/
+
+----------------------------------------------------
+
+[
+	["comment", "/* enclosed comment */"],
+	["comment", "// rest-of-line comment"],
+
+	["comment", "/* What follows uses an approximation formula: */"],
+	["comment", "/*\r\nWe use the approximation based on sin(x) approximately\r\nequaling x for small x; x measure in radians\r\n*/"],
+
+	["comment", "/*\r\nfor (i=1; i<=rows(x); i++) { /* normalization */\r\n\tx[i] = x[i] :/ value[i]\r\n}\r\n*/"]
+]

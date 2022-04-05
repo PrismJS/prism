@@ -1,0 +1,20 @@
+-- a single line comment
+[- a multi line comment on a single line -]
+[- a multi
+line comment 1 -]
+[- a multi
+line comment 2 
+-]
+[- 
+a multi
+line comment 3 -]
+
+----------------------------------------------------
+
+[
+	["comment", "-- a single line comment"],
+	["comment", "[- a multi line comment on a single line -]"],
+	["comment", "[- a multi\r\nline comment 1 -]"],
+	["comment", "[- a multi\r\nline comment 2 \r\n-]"],
+	["comment", "[- \r\na multi\r\nline comment 3 -]"]
+]

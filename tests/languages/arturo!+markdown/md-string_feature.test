@@ -1,0 +1,19 @@
+{!md
+    ## This is a header
+}
+
+----------------------------------------------------
+
+[
+	["md-string", [
+		["string", "{!md"],
+		["embedded", [
+			["code", "    ## This is a header"]
+		]],
+		["string", "}"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for string literals with embedded Markdown.

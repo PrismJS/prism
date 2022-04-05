@@ -1,0 +1,19 @@
+>> servings: 1|2|3
+>> servings: 3
+>> meta without colon must not match
+
+----------------------------------------------------
+
+[
+	["meta", [
+		">> ",
+		["property", "servings"],
+		": 1|2|3"
+	]],
+	["meta", [
+		">> ",
+		["property", "servings"],
+		": 3"
+	]],
+	"\r\n>> meta without colon must not match"
+]

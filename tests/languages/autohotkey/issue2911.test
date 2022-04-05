@@ -33,11 +33,11 @@ return
 
 	["tag", "NormalLabel"], ["punctuation", ":"],
 	["comment", "; do something"],
-	["selector", "return"],
+	["command", "return"],
 	["tag", "TabbedLabel"], ["punctuation", ":"],
 	["comment", "; do something"],
-	["selector", "return"],
+	["command", "return"],
 	["tag", "Sus{}//[]Label"], ["punctuation", ":"],
 	["comment", "; do something"],
-	["selector", "return"]
+	["command", "return"]
 ]

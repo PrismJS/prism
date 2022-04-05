@@ -131,7 +131,10 @@ module.exports = {
 				worker: true
 			},
 			globals: {
-				'Prism': true
+				'Prism': true,
+				// Allow Set and Map. They are partially supported by IE11
+				'Set': true,
+				'Map': true
 			},
 			rules: {
 				'no-var': 'off'

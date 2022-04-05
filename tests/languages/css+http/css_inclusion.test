@@ -7,8 +7,11 @@ a.link:hover {
 ----------------------------------------------------
 
 [
-	["header-name", "Content-type:"],
-	" text/css\r\n",
+	["header", [
+		["header-name", "Content-type"],
+		["punctuation", ":"],
+		["header-value", "text/css"]
+	]],
 
 	["text-css", [
 		["selector", "a.link:hover"],

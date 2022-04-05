@@ -1,0 +1,9 @@
+<h2>Full example</h2>
+<pre><code>// Source: https://www.stata.com/manuals/m-1first.pdf page 12
+numeric matrix tanh(numeric matrix u)
+{
+	numeric matrix eu, emu
+	eu = exp(u)
+	emu = exp(-u)
+	return( (eu-emu):/(eu+emu) )
+}</code></pre>

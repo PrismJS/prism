@@ -47,6 +47,7 @@ isset
 list
 namespace;
 match
+never
 new;
 or
 parent
@@ -55,6 +56,7 @@ print
 private
 protected
 public
+readonly
 require
 require_once
 return
@@ -70,6 +72,7 @@ try
 unset
 use;
 var
+void
 while
 xor
 yield
@@ -127,6 +130,7 @@ yield from
 	["keyword", "list"],
 	["keyword", "namespace"], ["punctuation", ";"],
 	["keyword", "match"],
+	["keyword", "never"],
 	["keyword", "new"], ["punctuation", ";"],
 	["keyword", "or"],
 	["keyword", "parent"],
@@ -135,6 +139,7 @@ yield from
 	["keyword", "private"],
 	["keyword", "protected"],
 	["keyword", "public"],
+	["keyword", "readonly"],
 	["keyword", "require"],
 	["keyword", "require_once"],
 	["keyword", "return"],
@@ -150,6 +155,7 @@ yield from
 	["keyword", "unset"],
 	["keyword", "use"], ["punctuation", ";"],
 	["keyword", "var"],
+	["keyword", "void"],
 	["keyword", "while"],
 	["keyword", "xor"],
 	["keyword", "yield"],
