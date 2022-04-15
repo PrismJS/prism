@@ -33,7 +33,8 @@ let sum = (a, b) => a + b
 let sum2 = (a:int, b: int) => a + b</code></pre>
 
 <h2>Modules, JSX & Components</h2>
-<pre><code>module Button = {
+<pre><code>%%raw(``)
+module Button = {
   @react.component
   let make = (~count: int) => {
     let times = switch count {
