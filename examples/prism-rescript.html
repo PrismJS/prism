@@ -3,11 +3,13 @@
 // Another comment
 </code></pre>
 
-<h2>Strings and characters</h2>
+<h2>Let bindings</h2>
 <pre><code>let name = "Alonzo Church"
 let message = `Hello ${name}`
 let message2 = `Hello ${person.name}`
 let result = `Testing => ${Module.Another.value}`
+let value = 1
+let result = 1 + 1
 </code></pre>
 
 <h2>Type declarations & Functions</h2>
@@ -22,11 +24,15 @@ type person = {
  role: role
 }
 
+type record = {
+  "field": string
+}
+
 let sum = (a, b) => a + b
 let sum = (a:int, b: int) => a + b
 </code></pre>
 
-<h2>JSX & Components</h2>
+<h2>Modules, JSX & Components</h2>
 <pre>
 <code>
 module Button = {
