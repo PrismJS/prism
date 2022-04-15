@@ -3,6 +3,7 @@ Prism.languages.rescript = {
 		pattern: /\/\/.*|\/\*[\s\S]*?(?:\*\/|$)/,
 		greedy: true
 	},
+	'char': { pattern: /'.'/, greedy: true },
 	'string': {
 		pattern: /"(?:\\(?:\r\n|[\s\S])|[^\\\r\n"])*"/,
 		greedy: true
