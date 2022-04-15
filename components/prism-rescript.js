@@ -8,7 +8,7 @@ Prism.languages.rescript = {
 		pattern: /"(?:\\(?:\r\n|[\s\S])|[^\\\r\n"])*"/,
 		greedy: true
 	},
-	'class-name': /(\b[A-Z]\w*)|(@[a-z.]*)|#[A-Za-z]\w*|#\d/,
+	'class-name': /\b[A-Z]\w*|@[a-z.]*|#[A-Za-z]\w*|#\d/,
 	'function': /[a-zA-Z]\w*(?=\()|(\.)[a-z]\w*/,
 	'number': /(?:\b0x(?:[\da-f]+(?:\.[\da-f]*)?|\.[\da-f]+)(?:p[+-]?\d+)?|(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:e[+-]?\d+)?)[ful]{0,4}/i,
 	'attr-value': /[A-Za-z]\w*(?==)/,
