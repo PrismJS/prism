@@ -189,7 +189,7 @@
 			"owner": "Zinfidel"
 		},
 		"avro-idl": {
-			"title": "Avro IDL",
+			"title":"Avro IDL",
 			"alias": "avdl",
 			"owner": "RunDevelopment"
 		},
@@ -646,7 +646,11 @@
 		"ignore": {
 			"title": ".ignore",
 			"owner": "osipxd",
-			"alias": ["gitignore", "hgignore", "npmignore"],
+			"alias": [
+				"gitignore",
+				"hgignore",
+				"npmignore"
+			],
 			"aliasTitles": {
 				"gitignore": ".gitignore",
 				"hgignore": ".hgignore",
@@ -683,7 +687,11 @@
 		},
 		"javadoclike": {
 			"title": "JavaDoc-like",
-			"modify": ["java", "javascript", "php"],
+			"modify": [
+				"java",
+				"javascript",
+				"php"
+			],
 			"owner": "RunDevelopment"
 		},
 		"javastacktrace": {
@@ -707,7 +715,10 @@
 			"title": "JSDoc",
 			"require": ["javascript", "javadoclike", "typescript"],
 			"modify": "javascript",
-			"optional": ["actionscript", "coffeescript"],
+			"optional": [
+				"actionscript",
+				"coffeescript"
+			],
 			"owner": "RunDevelopment"
 		},
 		"js-extras": {
@@ -969,7 +980,10 @@
 		"opencl": {
 			"title": "OpenCL",
 			"require": "c",
-			"modify": ["c", "cpp"],
+			"modify": [
+				"c",
+				"cpp"
+			],
 			"owner": "Milania1"
 		},
 		"openqasm": {
@@ -1100,7 +1114,11 @@
 		},
 		"pure": {
 			"title": "Pure",
-			"optional": ["c", "cpp", "fortran"],
+			"optional": [
+				"c",
+				"cpp",
+				"fortran"
+			],
 			"owner": "Golmote"
 		},
 		"purebasic": {
@@ -1154,13 +1172,22 @@
 			"title": "Razor C#",
 			"alias": "razor",
 			"require": ["markup", "csharp"],
-			"optional": ["css", "css-extras", "javascript", "js-extras"],
+			"optional":[
+				"css",
+				"css-extras",
+				"javascript",
+				"js-extras"
+			],
 			"owner": "RunDevelopment"
 		},
 		"jsx": {
 			"title": "React JSX",
 			"require": ["markup", "javascript"],
-			"optional": ["jsdoc", "js-extras", "js-templates"],
+			"optional": [
+				"jsdoc",
+				"js-extras",
+				"js-templates"
+			],
 			"owner": "vkbansal"
 		},
 		"tsx": {
@@ -1187,6 +1214,7 @@
 		},
 		"rescript": {
 			"title": "ReScript",
+			"alias": "res",
 			"owner": "vmarcosp"
 		},
 		"rest": {
@@ -1381,7 +1409,10 @@
 		},
 		"tremor": {
 			"title": "Tremor",
-			"alias": ["trickle", "troy"],
+			"alias": [
+				"trickle",
+				"troy"
+			],
 			"owner": "darach",
 			"aliasTitles": {
 				"trickle": "trickle",
@@ -1560,7 +1591,10 @@
 		"show-invisibles": {
 			"title": "Show Invisibles",
 			"description": "Show hidden characters such as tabs and line breaks.",
-			"optional": ["autolinker", "data-uri-highlight"]
+			"optional": [
+				"autolinker",
+				"data-uri-highlight"
+			]
 		},
 		"autolinker": {
 			"title": "Autolinker",
