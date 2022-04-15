@@ -7,10 +7,13 @@ type poly = [ | #Poly | #Variant ]
 
 [
 	["class-name", "Belt"],
-	".",
+	["punctuation", "."],
 	["class-name", "Int"],
-	["function", ".toString"],
-	"(n)\r\n",
+	["punctuation", "."],
+	["function", "toString"],
+	["punctuation", "("],
+	"n",
+	["punctuation", ")"],
 
 	["operator", "<"],
 	["class-name", "Button"],
@@ -22,12 +25,12 @@ type poly = [ | #Poly | #Variant ]
 	["keyword", "type"],
 	["constant", "poly"],
 	["operator", "="],
-	" [ ",
+	["punctuation", "["],
 	["operator", "|"],
 	["class-name", "#Poly"],
 	["operator", "|"],
 	["class-name", "#Variant"],
-	" ]"
+	["punctuation", "]"]
 ]
 
 ----------------------------------------------------
