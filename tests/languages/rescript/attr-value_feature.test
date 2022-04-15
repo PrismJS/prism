@@ -1,0 +1,20 @@
+<button onClick={Js.log}>
+
+----------------------------------------------------
+
+[
+	["operator", "<"],
+	["tag", ["button"]],
+	["attr-value", "onClick"],
+	["operator", "="],
+	["punctuation", "{"],
+	["class-name", "Js"],
+	["punctuation", "."],
+	["function", "log"],
+	["punctuation", "}"],
+	["operator", ">"]
+]
+
+----------------------------------------------------
+
+Checks for attr-value.

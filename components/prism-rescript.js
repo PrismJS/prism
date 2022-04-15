@@ -3,7 +3,7 @@ Prism.languages.rescript = {
 		pattern: /\/\/.*|\/\*[\s\S]*?(?:\*\/|$)/,
 		greedy: true
 	},
-	'char': { pattern: /'(?:[^\r\n\\]|\\(?:.|\w+)')/, greedy: true },
+	'char': { pattern: /'(?:[^\r\n\\]|\\(?:.|\w+))'/, greedy: true },
 	'string': {
 		pattern: /"(?:\\(?:\r\n|[\s\S])|[^\\\r\n"])*"/,
 		greedy: true
@@ -47,7 +47,7 @@ Prism.languages.insertBefore('rescript', 'string', {
 				inside: {
 					'interpolation-punctuation': {
 						pattern: /^\$\{|\}$/,
-						alias: 'punctuation'
+						alias: 'tag'
 					},
 					rest: Prism.languages.rescript
 				}
