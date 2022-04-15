@@ -1,5 +1,4 @@
 // foobar
-// foobar \a
 /**/
 /* one line */
 /* multiline
@@ -12,7 +11,6 @@ another comment
 
 [
 	["comment", "// foobar"],
-	["comment", "// foobar \\a"],
 	["comment", "/**/"],
 	["comment", "/* one line */"],
 	["comment", "/* multiline\r\ncomment */"],
