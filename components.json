@@ -1187,7 +1187,6 @@
 		},
 		"rescript": {
 			"title": "ReScript",
-			"alias": "res",
 			"owner": "vmarcosp"
 		},
 		"rest": {
