@@ -8,7 +8,10 @@
 			pattern: /\/\/.*|\/\*[\s\S]*?(?:\*\/|$)/,
 			greedy: true
 		},
-		'string': /"(?:\\(?:\r\n|[\s\S])|[^\\\r\n"])*"/,
+		'string': {
+			pattern: /"(?:\\(?:\r\n|[\s\S])|[^\\\r\n"])*"/,
+			greedy: true
+		},
 		'class-name': className,
 		'function': /[a-zA-Z]\w*(?=\()|(\.)[a-z]\w*/,
 		'number': /(?:\b0x(?:[\da-f]+(?:\.[\da-f]*)?|\.[\da-f]+)(?:p[+-]?\d+)?|(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:e[+-]?\d+)?)[ful]{0,4}/i,
