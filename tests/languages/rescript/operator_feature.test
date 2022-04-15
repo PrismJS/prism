@@ -31,7 +31,7 @@ lsl lsr asr
 	["operator", "^"],
 	["operator", "?"],
 	["operator", "'"],
-	" :\r\n",
+	["operator", ":"],
 
 	["operator", "#"],
 	["operator", "!"],

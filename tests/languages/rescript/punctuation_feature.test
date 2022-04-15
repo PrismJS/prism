@@ -18,7 +18,8 @@ type person = { name: string }
 	["constant", "person"],
 	["operator", "="],
 	["punctuation", "{"],
-	" name: ",
+	" name",
+	["operator", ":"],
 	["keyword", "string"],
 	["punctuation", "}"]
 ]
