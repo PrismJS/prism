@@ -1,0 +1,52 @@
+<h2>Comments</h2>
+<pre><code>/* This is a comment */
+// Another comment
+</code></pre>
+
+<h2>Let bindings</h2>
+<pre><code>let name = "Alonzo Church"
+let message = `Hello ${name}`
+let message2 = `Hello ${person.name}`
+let result = `Testing => ${Module.Another.value}`
+let value = 1
+let result = 1 + 1
+let langs = ["ReScript", "JavaScript"]
+let person = ("Alonzo", 32)</code></pre>
+
+<h2>Type declarations & Functions</h2>
+<pre><code>type role = | Admin | Editor | Viewer 
+type numeric = #1 | #2 | #3
+type normal = #Poly | #Variant
+type myPolyVar = [ #"poly-variant" | #"test-chars" ]
+
+type person = {
+ name: string,
+ age: int,
+ role: role
+}
+
+type record = {
+  "field": string
+}
+
+let sum = (a, b) => a + b
+let sum2 = (a:int, b: int) => a + b</code></pre>
+
+<h2>Modules, JSX & Components</h2>
+<pre><code>%%raw(``)
+module Button = {
+  @react.component
+  let make = (~count: int) =>{
+    let times = switch count {
+    | 1 => "once"
+    | 2 => "twice"
+    | n => Belt.Int.toString(n) ++ " times"
+    }
+    let msg = "Click me " ++ times
+
+	&lt;button onClick={Js.log}>{msg->React.string}&lt;/button>;
+  }
+}
+
+@react.component
+let make = () => &lt;MyModule.Button count=1 /></code></pre>

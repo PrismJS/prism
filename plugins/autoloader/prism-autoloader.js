@@ -244,6 +244,7 @@
 		"rkt": "racket",
 		"razor": "cshtml",
 		"rpy": "renpy",
+		"res": "rescript",
 		"robot": "robotframework",
 		"rb": "ruby",
 		"sh-session": "shell-session",

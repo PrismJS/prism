@@ -1212,6 +1212,11 @@
 			"alias": "rpy",
 			"owner": "HyuchiaDiego"
 		},
+		"rescript": {
+			"title": "ReScript",
+			"alias": "res",
+			"owner": "vmarcosp"
+		},
 		"rest": {
 			"title": "reST (reStructuredText)",
 			"owner": "Golmote"

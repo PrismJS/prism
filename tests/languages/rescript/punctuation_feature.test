@@ -1,0 +1,29 @@
+type poly = [ | #Poly | #Variant ]
+type person = { name: string }
+
+----------------------------------------------------
+
+[
+	["keyword", "type"],
+	["constant", "poly"],
+	["operator", "="],
+	["punctuation", "["],
+	["operator", "|"],
+	["class-name", "#Poly"],
+	["operator", "|"],
+	["class-name", "#Variant"],
+	["punctuation", "]"],
+
+	["keyword", "type"],
+	["constant", "person"],
+	["operator", "="],
+	["punctuation", "{"],
+	" name",
+	["operator", ":"],
+	["keyword", "string"],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for punctuation.
