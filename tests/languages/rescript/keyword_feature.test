@@ -40,12 +40,10 @@ switch
 then
 to
 try
-type
-val
-virtual
 when
 while
 with
+type
 
 ----------------------------------------------------
 
@@ -92,12 +90,10 @@ with
 	["keyword", "then"],
 	["keyword", "to"],
 	["keyword", "try"],
-	["keyword", "type"],
-	["constant", "val"],
-	["keyword", "virtual"],
 	["keyword", "when"],
 	["keyword", "while"],
-	["keyword", "with"]
+	["keyword", "with"],
+	["keyword", "type"]
 ]
 
 ----------------------------------------------------
