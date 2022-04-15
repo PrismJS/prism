@@ -5,7 +5,7 @@
 
 	Prism.languages.rescript = {
 		'comment': {
-			pattern: /\/\/(?:[^\r\n\\]|\\(?:\r\n?|\n|(?![\r\n])))*|\/\*[\s\S]*?(?:\*\/|$)/,
+			pattern: /\/\/.*|\/\*[\s\S]*?(?:\*\/|$)/,
 			greedy: true
 		},
 		'string': /"(?:\\(?:\r\n|[\s\S])|[^\\\r\n"])*"/,
