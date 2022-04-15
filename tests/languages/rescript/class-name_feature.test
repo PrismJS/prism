@@ -9,7 +9,8 @@ type poly = [ | #Poly | #Variant ]
 	["class-name", "Belt"],
 	".",
 	["class-name", "Int"],
-	".toString(n)\r\n",
+	["function", ".toString"],
+	"(n)\r\n",
 
 	["operator", "<"],
 	["class-name", "Button"],
