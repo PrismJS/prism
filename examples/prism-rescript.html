@@ -11,8 +11,7 @@ let result = `Testing => ${Module.Another.value}`
 let value = 1
 let result = 1 + 1
 let langs = ["ReScript", "JavaScript"]
-let person = ("Alonzo", 32)
-</code></pre>
+let person = ("Alonzo", 32)</code></pre>
 
 <h2>Type declarations & Functions</h2>
 <pre><code>type role = | Admin | Editor | Viewer 
@@ -31,13 +30,10 @@ type record = {
 }
 
 let sum = (a, b) => a + b
-let sum2 = (a:int, b: int) => a + b
-</code></pre>
+let sum2 = (a:int, b: int) => a + b</code></pre>
 
 <h2>Modules, JSX & Components</h2>
-<pre>
-<code>
-module Button = {
+<pre><code>module Button = {
   @react.component
   let make = (~count: int) => {
     let times = switch count {
@@ -52,6 +48,4 @@ module Button = {
 }
 
 @react.component
-let make = () => &lt;MyModule.Button count=1 />
-</code>
-</pre>
+let make = () => &lt;MyModule.Button count=1 /></code></pre>
