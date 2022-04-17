@@ -34,7 +34,7 @@ ol.indent {
 	<p>Every language is defined as a set of tokens, which are expressed as <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions" target="_blank" rel="noopener noreferrer">regular expressions</a>. For example, this is the language definition for JSON:</p>
 	<pre data-src="components/prism-json.js"></pre>
 
-	<p>At its core, a language definition is just an JavaScript object, and a token is just an entry of the language definition. The simplest language definition is an empty object:</p>
+	<p>At its core, a language definition is just a JavaScript object, and a token is just an entry of the language definition. The simplest language definition is an empty object:</p>
 	<pre><code class="language-javascript">Prism.languages['some-language'] = { };</code></pre>
 
 	<p>Unfortunately, an empty language definition isn't very useful, so let's add a token. The simplest way to express a token is using a regular expression literal:</p>
@@ -61,7 +61,7 @@ ol.indent {
 
 	<p>Prism will match tokens against the input text one after the other, in order, and tokens cannot overlap with the matches of previous tokens. So in the above example, <code class="language-none">token-2</code> will not match the substring "regex" inside of matches of <code class="language-none">token-1</code>. More information about <a href="#matching-algorithm">Prism's matching algorithm </a> later.</p>
 
-	<p>Lastly, in most languages, there are multiple different ways of declaring the same constructs (e.g. comments, strings, ...) and sometimes it is difficult or unpractical to match all of them with one single regular expression. To add multiple regular expressions for one token name, an array can be used:</p>
+	<p>Lastly, in many languages, there are multiple different ways of declaring the same constructs (e.g. comments, strings, ...) and sometimes it is difficult or unpractical to match all of them with one single regular expression. To add multiple regular expressions for one token name, an array can be used:</p>
 	<pre><code class="language-javascript">Prism.languages['some-language'] = {
 	'token-name': [
 		/regex 1/,
@@ -104,9 +104,9 @@ ol.indent {
 
 		<dt id="object-notation-alias"><code>alias: string | string[]</code></dt>
 		<dd>
-			<p>This option can be used to define one or more aliases for the token. The result will be that the styles of the token and its aliases are combined. This can be useful, to combine the styling of a <a href="/tokens.html">standard token</a>, which is already supported by most of the themes, with a more precise token name. For more information on this topic, see <a href="#granular-highlighting">granular highlighting</a>.</p>
+			<p>This option can be used to define one or more aliases for the token. The result will be that the styles of the token name and the alias(es) are combined. This can be useful to combine the styling of a <a href="/tokens.html">standard token</a>, which is already supported by most of the themes, with a more precise token name. For more information on this topic, see <a href="#granular-highlighting">granular highlighting</a>.</p>
 
-			<p>The token name <code class="language-none">latex-equation</code> is not supported by most themes, but it will be highlighted the same as a string in the following example:</p>
+			<p>E.g. the token name <code class="language-none">latex-equation</code> is not supported by most themes, but it will be highlighted the same as a string in the following example:</p>
 			<pre><code class="language-javascript">Prism.languages.latex = {
 	// ...
 	'latex-equation': {
@@ -163,7 +163,7 @@ Prism.languages.javascript['template-string'].inside['interpolation'].inside['ex
 
 	<h2 id="token-names">Token names</h2>
 
-	<p>The name of a token determines the <em>semantic meaning</em> of text of the token. Tokens can capture anything from simple language constructs, like comments, to more complex ones, like template string interpolation expressions. Token names differentiate these language constructs.</p>
+	<p>The name of a token determines the <em>semantic meaning</em> of matched text of the token. Tokens can capture anything from simple language constructs, like comments, to more complex ones, like template string interpolation expressions. Token names differentiate these language constructs.</p>
 
 	<p>A token name can theoretically be any string that is a valid CSS class name. However, in practice, it makes sense for token names to follow some rules. In Prism's code, we enforce that all token names use kebab case (<code class="language-none">foo-bar</code>) and contain only lower-case ASCII letters, digits, and hyphen characters. E.g. <code class="language-none">class-name</code> is allowed but <code class="language-none">Class_name</code> is not.</p>
 
@@ -171,9 +171,9 @@ Prism.languages.javascript['template-string'].inside['interpolation'].inside['ex
 
 	<h3 id="token-names-and-themes">Themes</h3>
 
-	<p>Prism's themes assign tokens color (and other styles) based on their token name. This means that the language definition does not control the color of tokens, themes do.</p>
+	<p>Prism's themes assign color (and other styles) to tokens based on their name (and aliases). This means that the language definition does not control the color of tokens, themes do.</p>
 
-	<p>However, themes only support a limited number of <strong>known token names</strong>. If a theme does not know a particular token name, no styles will be applied. While different themes may support different token names, all themes are guaranteed to support Prism's <a href="tokens.html">standard tokens</a>. Standard tokens as special token names with specific semantic meanings. They are the common ground all language definitions and themes agree on and all must follow. Standard tokens should be preferred when choosing token names.</p>
+	<p>However, themes only support a limited number of <strong>known token names</strong>. If a theme does not know a particular token name, no styles will be applied. While different themes may support different token names, all themes are guaranteed to support Prism's <a href="tokens.html">standard tokens</a>. Standard tokens as special token names with specific semantic meanings. They are the common ground all language definitions and themes agree on and must follow. Standard tokens should be preferred when choosing token names.</p>
 
 	<h3 id="granular-highlighting">Granular highlighting</h3>
 
@@ -200,7 +200,7 @@ Prism.languages.javascript['template-string'].inside['interpolation'].inside['ex
 	},
 };</code></pre>
 
-	<p>Aliases allow themes to apply the styles of both token names to one token. This means that themes that do support the <code class="language-none">binary-number</code> token name can assign a special color, and themes don't support it will fallback to usual color for numbers.</p>
+	<p>Aliases allow themes to apply the styles of multiple names to one token. This means that themes that do support the <code class="language-none">binary-number</code> token name can assign a special color, and themes don't support it will fallback to their usual color for numbers.</p>
 
 	<p>This is granular highlighting: using a non-standard token name and a standard token as an alias.</p>
 
@@ -227,7 +227,7 @@ Prism.languages.javascript['template-string'].inside['interpolation'].inside['ex
 	"(7));"
 ]</code></pre>
 
-	<p>Next, we would tokenize numbers with the token <code>'number': /\d+(?:\.\d+)?/</code>.</p>
+	<p>Next, we would tokenize numbers with the token <code>'number': /[0-9]+/</code>.</p>
 
 	<p>FCFS matching will go through all strings in the current token stream to find matches for the number regex. The first string is <code>"(3, 5, "</code>, so the match <code>3</code> is found. A new token is created for <code>3</code> and inserted into the token stream to replace the matching text. The token stream is now:</p>
 	<pre><code>[
@@ -265,7 +265,7 @@ Prism.languages.javascript['template-string'].inside['interpolation'].inside['ex
 	"));"
 ]</code></pre>
 
-	<p>The last string to check is <code>"));"</code> and no matches are found. The number token has now been processed.</p>
+	<p>The last string to check is <code>"));"</code> and no matches are found. The number token has now been processed and the algorithm will go process the next token in the language definition.</p>
 
 	<p>Notice how FCFS matching did not find the <code>2</code> in <code>exp2</code>. Since FCFS matching completely ignores existing tokens in the token stream, the number regex cannot see already-tokenized text. This is a very useful property. In the above example, <code>2</code> is a part of the function name <code>exp2</code>, so highlighting it as a number would be incorrect.</p>
 
@@ -273,10 +273,10 @@ Prism.languages.javascript['template-string'].inside['interpolation'].inside['ex
 
 	<p>Greedy matching is very similar to FCFS matching. All tokens are matched in order and tokens cannot overlap. The defining difference is that greedy tokens <strong>can</strong> match the text of previous tokens.</p>
 
-	<p>Let's look at an example to see why greedy matching is useful and how it works conceptually. A very simplified version of JavaScript's comment and string syntax might be implemented like this:</p>
+	<p>Let's look at an example to see why greedy matching is useful and how it works <em>conceptually</em>. A very simplified version of JavaScript's comment and string syntax might be implemented like this:</p>
 	<pre><code>Prism.languages.javascript = {
 	'comment': /\/\/.*/,
-	'string': /'(?:\\.|[^"\\\r\n])*'/
+	'string': /'(?:\\.|[^\\\r\n])*'/
 };</code></pre>
 
 	<p>To understand why greedy matching is useful, let's look at how FCFS matching would tokenize the text <code>'http://example.com'</code>:</p>
@@ -287,7 +287,7 @@ Prism.languages.javascript['template-string'].inside['interpolation'].inside['ex
 	["comment", "//example.com'"]
 ]</code></pre>
 
-	<p>Then FCFS matching will search for matches for <code>'string': /'(?:\\.|[^"\\\r\n])*'/</code>. The first string of the token stream, <code>"'http:"</code>, does not match the string regex, so the token stream remains unchanged. The string token has now been processed and the above token stream is the final result.</p>
+	<p>Then FCFS matching will search for matches for <code>'string': /'(?:\\.|[^'\\\r\n])*'/</code>. The first string of the token stream, <code>"'http:"</code>, does not match the string regex, so the token stream remains unchanged. The string token has now been processed and the above token stream is the final result.</p>
 
 	<p>Obviously, this is bad. The code <code>'http://example.com'</code> is clearly just a string containing a URL, but FCFS matching doesn't understand this.</p>
 
@@ -300,7 +300,7 @@ Prism.languages.javascript['template-string'].inside['interpolation'].inside['ex
 		greedy: true
 	},
 	'string': {
-		pattern: /'(?:\\.|[^"\\\r\n])*'/,
+		pattern: /'(?:\\.|[^'\\\r\n])*'/,
 		greedy: true
 	}
 };</code></pre>
@@ -309,10 +309,10 @@ Prism.languages.javascript['template-string'].inside['interpolation'].inside['ex
 
 	<p>This means that the greedy comment and string tokens will behave like the following language definition, but the combined token will result in the correct token names of the original greedy tokens:</p>
 	<pre><code>Prism.languages.javascript = {
-	'comment-or-string': /\/\/.*|'(?:\\.|[^"\\\r\n])*'/
+	'comment-or-string': /\/\/.*|'(?:\\.|[^'\\\r\n])*'/
 };</code></pre>
 
-	<p>In the above example, <code>'http://example.com'</code> will be matched by <code>/\/\/.*|'(?:\\.|[^"\\\r\n])*'/</code> completely. Since the <code class="language-none">'(?:\\.|[^"\\\r\n])*'</code> part of the regex caused the match, a token of type <code>string</code> will be created and the following token stream will be produced:</p>
+	<p>In the above example, <code>'http://example.com'</code> will be matched by <code>/\/\/.*|'(?:\\.|[^'\\\r\n])*'/</code> completely. Since the <code class="language-none">'(?:\\.|[^'\\\r\n])*'</code> part of the regex caused the match, a token of type <code>string</code> will be created and the following token stream will be produced:</p>
 	<pre><code>[
 	["string", "'http://example.com'"]
 ]</code></pre>
