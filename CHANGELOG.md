@@ -1,7 +1,7 @@
 # Prism Changelog
 
 
-## 1.28.0 (TBD)
+## 1.28.0 (2022-04-17)
 
 ### New components
 
@@ -15,6 +15,7 @@
 * __GNU Linker Script__ ([#3373](https://github.com/PrismJS/prism/issues/3373)) [`33f2cf95`](https://github.com/PrismJS/prism/commit/33f2cf95)
 * __Odin__ ([#3424](https://github.com/PrismJS/prism/issues/3424)) [`8a3fef6d`](https://github.com/PrismJS/prism/commit/8a3fef6d)
 * __PlantUML__ ([#3372](https://github.com/PrismJS/prism/issues/3372)) [`0d49553c`](https://github.com/PrismJS/prism/commit/0d49553c)
+* __ReScript__ ([#3435](https://github.com/PrismJS/prism/issues/3435)) [`cbef9af7`](https://github.com/PrismJS/prism/commit/cbef9af7)
 * __SuperCollider__ ([#3371](https://github.com/PrismJS/prism/issues/3371)) [`1b1d6731`](https://github.com/PrismJS/prism/commit/1b1d6731)
 
 ### Updated components
@@ -86,6 +87,8 @@
 * __Infrastructure__
     * Use terser ([#3407](https://github.com/PrismJS/prism/issues/3407)) [`11c54624`](https://github.com/PrismJS/prism/commit/11c54624)
     * Tests: Cache results for exp backtracking check ([#3356](https://github.com/PrismJS/prism/issues/3356)) [`ead22e1e`](https://github.com/PrismJS/prism/commit/ead22e1e)
+* __Website__
+    * More documentation for language definitons ([#3427](https://github.com/PrismJS/prism/issues/3427)) [`333bd590`](https://github.com/PrismJS/prism/commit/333bd590)
 
 ## 1.27.0 (2022-02-17)
 
