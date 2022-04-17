@@ -31,71 +31,328 @@ ol.indent {
 <section id="language-definitions">
 	<h1>Language definitions</h1>
 
-	<p>Every language is defined as a set of tokens, which are expressed as regular expressions. For example, this is the language definition for CSS:</p>
-	<pre data-src="components/prism-css.js"></pre>
+	<p>Every language is defined as a set of tokens, which are expressed as <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions" target="_blank" rel="noopener noreferrer">regular expressions</a>. For example, this is the language definition for JSON:</p>
+	<pre data-src="components/prism-json.js"></pre>
 
-	<p>A regular expression literal is the simplest way to express a token. An alternative way, with more options, is by using an object literal. With that notation, the regular expression describing the token would be the <code>pattern</code> attribute:</p>
-	<pre><code class="language-javascript">...
-'tokenname': {
-	pattern: /regex/
-}
-...</code></pre>
-	<p>So far the functionality is exactly the same between the short and extended notations. However, the extended notation allows for additional options:</p>
+	<p>At its core, a language definition is just a JavaScript object, and a token is just an entry of the language definition. The simplest language definition is an empty object:</p>
+	<pre><code class="language-javascript">Prism.languages['some-language'] = { };</code></pre>
+
+	<p>Unfortunately, an empty language definition isn't very useful, so let's add a token. The simplest way to express a token is using a regular expression literal:</p>
+	<pre><code class="language-javascript">Prism.languages['some-language'] = {
+	'token-name': /regex/,
+};</code></pre>
+
+	<p>Alternatively, an object literal can also be used. With this notation, the regular expression describing the token is the <code>pattern</code> property of the object:</p>
+	<pre><code class="language-javascript">Prism.languages['some-language'] = {
+	'token-name': {
+		pattern: /regex/
+	},
+};</code></pre>
+
+	<p>So far, the functionality is exactly the same between the regex and object notations. However, the object notation allows for <a href="#object-notation">additional options</a>. More on that later.</p>
+
+	<p>The name of a token can theoretically be any string that is also a valid CSS class, but there are <a href="#token-names">some guidelines to follow</a>. More on that later.</p>
+
+	<p>Language definitions can have any number of tokens, but the name of each token must be unique:</p>
+	<pre><code class="language-javascript">Prism.languages['some-language'] = {
+	'token-1': /I love regexes!/,
+	'token-2': /regex/,
+};</code></pre>
+
+	<p>Prism will match tokens against the input text one after the other, in order, and tokens cannot overlap with the matches of previous tokens. So in the above example, <code class="language-none">token-2</code> will not match the substring "regex" inside of matches of <code class="language-none">token-1</code>. More information about <a href="#matching-algorithm">Prism's matching algorithm </a> later.</p>
+
+	<p>Lastly, in many languages, there are multiple different ways of declaring the same constructs (e.g. comments, strings, ...) and sometimes it is difficult or unpractical to match all of them with one single regular expression. To add multiple regular expressions for one token name, an array can be used:</p>
+	<pre><code class="language-javascript">Prism.languages['some-language'] = {
+	'token-name': [
+		/regex 1/,
+		/regex 2/,
+		{ pattern: /regex 3/ }
+	],
+};</code></pre>
+
+	<p>Note: An array <strong>cannot</strong> be used in the <code>pattern</code> property.</p>
+
+
+	<h2 id="object-notation">Object notation</h2>
+
+	<p>Instead of using just plain regular expressions, Prism also supports an object notation for tokens. This notation enables the following options:</p>
 
 	<dl>
-		<dt>inside</dt>
-		<dd>This property accepts another object literal, with tokens that are allowed to be nested in this token.
-		This makes it easier to define certain languages. However, keep in mind that they’re slower and if coded poorly, can even result in infinite recursion.
-		For an example of nested tokens, check out the Markup language definition:
-		<pre data-src="components/prism-markup.js"></pre></dd>
+		<dt id="object-notation-pattern"><code>pattern: RegExp</code></dt>
+		<dd>
+			<p>This is the only required option. It holds the regular expression of the token.</p>
+		</dd>
 
-		<dt>lookbehind</dt>
-		<dd>This option mitigates JavaScript’s lack of lookbehind. When set to <code>true</code>,
-		the first capturing group in the regex <code>pattern</code> is discarded when matching this token, so it effectively behaves
-		as if it was lookbehind. For an example of this, check out the C-like language definition, in particular the comment and class-name tokens:
-		<pre data-src="components/prism-clike.js"></pre></dd>
+		<dt id="object-notation-lookbehind"><code>lookbehind: boolean</code></dt>
+		<dd>
+			<p>This option mitigates JavaScript's poor browser support for lookbehinds. When set to <code>true</code>, the first capturing group in the <code>pattern</code> regex is discarded when matching this token, so it effectively functions as a lookbehind.</p>
 
-		<dt>rest</dt>
-		<dd>Accepts an object literal with tokens and appends them to the end of the current object literal. Useful for referring to tokens defined elsewhere. For an example where <code>rest</code> is useful, check the Markup definitions above.</dd>
+			<p>For an example of this, check out how the C-like language definition finds <code class="language-none">class-name</code> tokens:</p>
+			<pre><code>Prism.languages.clike = {
+	// ...
+	'class-name': {
+		pattern: /(\b(?:class|extends|implements|instanceof|interface|new|trait)\s+)\w+/i,
+		lookbehind: true
+	}
+};</code></pre>
+		</dd>
 
-		<dt>alias</dt>
-		<dd>This option can be used to define one or more aliases for the matched token. The result will be, that
-		the styles of the token and its aliases are combined. This can be useful, to combine the styling of a <a href="/tokens.html">standard
-		token</a>, which is already supported by most of the themes,  with a semantically correct token name. The option
-		can be set to a string literal or an array of string literals. In the following example the token
-		name <code>latex-equation</code> is not supported by any theme, but it will be highlighted the same as a string.
-		<pre><code class="language-javascript">{
+		<dt id="object-notation-greedy"><code>greedy: boolean</code></dt>
+		<dd>
+			<p>This option enables greedy matching for the token. For more information, see the section about <a href="#matching-algorithm">the matching algorithm</a>.</p>
+		</dd>
+
+		<dt id="object-notation-alias"><code>alias: string | string[]</code></dt>
+		<dd>
+			<p>This option can be used to define one or more aliases for the token. The result will be that the styles of the token name and the alias(es) are combined. This can be useful to combine the styling of a <a href="/tokens.html">standard token</a>, which is already supported by most of the themes, with a more precise token name. For more information on this topic, see <a href="#granular-highlighting">granular highlighting</a>.</p>
+
+			<p>E.g. the token name <code class="language-none">latex-equation</code> is not supported by most themes, but it will be highlighted the same as a string in the following example:</p>
+			<pre><code class="language-javascript">Prism.languages.latex = {
+	// ...
 	'latex-equation': {
-		pattern: /\$(\\?.)*?\$/g,
+		pattern: /\$.*?\$/,
 		alias: 'string'
 	}
-}</code></pre></dd>
+};</code></pre>
+		</dd>
 
-		<dt>greedy</dt>
-		<dd>This is a boolean attribute. It is intended to solve a common problem with
-		patterns that match long strings like comments, regex or string literals. For example,
-		comments are parsed first, but if the string <code class="language-javascript">/* foo */</code>
-		appears inside a string, you would not want it to be highlighted as a comment.
-		The greedy-property allows a pattern to ignore previous matches of other patterns, and
-		overwrite them when necessary. Use this flag with restraint, as it incurs a small performance overhead.
-		The following example demonstrates its usage:
-		<pre><code class="language-javascript">'string': {
-	pattern: /(["'])(\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,
-	greedy: true
-}</code></pre>
+		<dt id="object-notation-inside"><code>inside: Grammar</code></dt>
+		<dd>
+			<p>This option accepts another object literal, with tokens that are allowed to be nested in this token. All tokens in the <code>inside</code> grammar will be encapsulated by this token. This makes it easier to define certain languages.</p>
+
+			<p>For an example of nested tokens, check out the <code>url</code> token in the CSS language definition:</p>
+			<pre><code>Prism.languages.css = {
+	// ...
+	'url': {
+		// e.g. url(https://example.com)
+		pattern: /\burl\(.*?\)/i,
+		inside: {
+			'function': /^url/i,
+			'punctuation': /^\(|\)$/
+		}
+	}
+};</code></pre>
+
+			<p>The <code>inside</code> option can also be used to create recursive languages. This is useful for languages where one token can contain arbitrary expressions, e.g. languages with a string interpolation syntax.</p>
+
+			<p>For example, here is how JavaScript implements template string interpolation:</p>
+			<pre><code>Prism.languages.javascript = {
+	// ...
+	'template-string': {
+		pattern: /`(?:\\.|\$\{[^{}]*\}|(?!\$\{)[^\\`])*`/,
+		inside: {
+			'interpolation': {
+				pattern: /\$\{[^{}]*\}/,
+				inside: {
+					'punctuation': /^\$\{|\}$/,
+					'expression': {
+						pattern: /[\s\S]+/,
+						inside: null // see below
+					}
+				}
+			}
+		}
+	}
+};
+Prism.languages.javascript['template-string'].inside['interpolation'].inside['expression'].inside = Prism.languages.javascript;</code></pre>
+
+			<p>Be careful when creating recursive grammars as they might lead to infinite recursion which will cause a stack overflow.</p>
+		</dd>
 	</dl>
 
-	<p>Unless explicitly allowed through the <code>inside</code> property, each token cannot contain other tokens, so their order is significant. Although per the ECMAScript specification, objects are not required to have a specific ordering of their properties, in practice they do in every modern browser.</p>
 
-	<p>In most languages there are multiple different ways of declaring the same constructs (e.g. comments, strings, ...) and sometimes it is difficult or unpractical to match all of them with one single regular expression. To add multiple regular expressions for one token name an array can be used:</p>
+	<h2 id="token-names">Token names</h2>
 
-	<pre><code class="language-javascript">...
-'tokenname': [ /regex0/, /regex1/, { pattern: /regex2/ } ]
-...</code></pre>
+	<p>The name of a token determines the <em>semantic meaning</em> of matched text of the token. Tokens can capture anything from simple language constructs, like comments, to more complex ones, like template string interpolation expressions. Token names differentiate these language constructs.</p>
+
+	<p>A token name can theoretically be any string that is a valid CSS class name. However, in practice, it makes sense for token names to follow some rules. In Prism's code, we enforce that all token names use kebab case (<code class="language-none">foo-bar</code>) and contain only lower-case ASCII letters, digits, and hyphen characters. E.g. <code class="language-none">class-name</code> is allowed but <code class="language-none">Class_name</code> is not.</p>
+
+	<p>Prism also defines some <a href="tokens.html">standard tokens names</a> that should be used for most tokens.</p>
+
+	<h3 id="token-names-and-themes">Themes</h3>
+
+	<p>Prism's themes assign color (and other styles) to tokens based on their name (and aliases). This means that the language definition does not control the color of tokens, themes do.</p>
+
+	<p>However, themes only support a limited number of <strong>known token names</strong>. If a theme does not know a particular token name, no styles will be applied. While different themes may support different token names, all themes are guaranteed to support Prism's <a href="tokens.html">standard tokens</a>. Standard tokens as special token names with specific semantic meanings. They are the common ground all language definitions and themes agree on and must follow. Standard tokens should be preferred when choosing token names.</p>
+
+	<h3 id="granular-highlighting">Granular highlighting</h3>
+
+	<p>While standard tokens should be the preferred choice, they are also quite general. This is by design as they have to apply to a large number and variety of different languages, but sometimes more fine-grained tokenization (and subsequent highlighting) is desirable.</p>
+
+	<p>Granular highlighting is a method of choosing token names to enable fine control for themes, while also ensuring compatibility with all themes.</p>
+
+	<p>Let's look at an example. Say we had a language that supported both decimal and binary literals for numbers, and we wanted to give binary number special highlighting. We might implement it like this:</p>
+	<pre><code class="language-javascript">Prism.languages['my-language'] = {
+	// ...
+	'number': /\b\d+(?:\.\d+)?\b/,
+	'binary-number': /\b0b[01]+\b/,
+};</code></pre>
+
+	<p>But this has a problem. <code class="language-none">binary-number</code> is not a standard token, so almost no theme is going to given binary numbers any color.</p>
+
+	<p>The solution to this problem is to use an <em>alias</em>:</p>
+	<pre><code class="language-javascript">Prism.languages['my-language'] = {
+	// ...
+	'number': /\b\d+(?:\.\d+)?\b/,
+	'binary-number': {
+		pattern: /\b0b[01]+\b/,
+		alias: 'number'
+	},
+};</code></pre>
+
+	<p>Aliases allow themes to apply the styles of multiple names to one token. This means that themes that do support the <code class="language-none">binary-number</code> token name can assign a special color, and themes don't support it will fallback to their usual color for numbers.</p>
+
+	<p>This is granular highlighting: using a non-standard token name and a standard token as an alias.</p>
+
+
+	<h2 id="matching-algorithm">The matching algorithm</h2>
+
+	<p>The job of Prism's matching algorithm is to produce a token stream given a language definition and some text. A token stream is Prism's representation of (partially or fully) tokenized text and is implemented as a list of strings (representing literal text) and tokens (representing tokenized text).</p>
+
+	<p><em>Note:</em> The word "token" is ambiguous here. We use "token" to refer to both the entry of a language definition (as described in above sections) and a <a href="docs/Token.html">Token object</a> inside a token stream. Which type of "token" is meant can be inferred from context.</p>
+
+	<p>The simplified token stream notation will be used in this section. Briefly, the notation uses JSON to represent a token stream. E.g. <code>["foo ", ["keyword", "bar"], " baz"]</code> is the simplified token stream notation for the token stream that starts with the string <code class="language-none">foo </code>, is followed by a token of type <code class="language-none">keyword</code> and text <code class="language-none">bar</code>, and ends with the string <code class="language-none"> baz</code>.</p>
+
+	<p>Back to the matching algorithm: Prism's matching algorithm is a hybrid with two modes: first-come, first-served (FCFS) matching and greedy matching.</p>
+
+	<h3 id="fcfs-matching">FCFS matching</h3>
+
+	<p>This is Prism default matching mode. All tokens are matched one after the other, in order, tokens cannot overlap, and tokens cannot match text that is already matched by previous tokens.</p>
+
+	<p>The algorithm itself is quite simple. Let's say we wanted to tokenize the JS code <code>max(3, 5, exp2(7));</code> and that function tokens had already been processed. The current token stream would be:</p>
+	<pre><code>[
+	["function", "max"],
+	"(3, 5, ",
+	["function", "exp2"],
+	"(7));"
+]</code></pre>
+
+	<p>Next, we would tokenize numbers with the token <code>'number': /[0-9]+/</code>.</p>
+
+	<p>FCFS matching will go through all strings in the current token stream to find matches for the number regex. The first string is <code>"(3, 5, "</code>, so the match <code>3</code> is found. A new token is created for <code>3</code> and inserted into the token stream to replace the matching text. The token stream is now:</p>
+	<pre><code>[
+	["function", "max"],
+	"(",
+	["number", "3"],
+	", 5, ",
+	["function", "exp2"],
+	"(7));"
+]</code></pre>
+
+	<p>Now, the algorithm goes to the next string <code>", 5, "</code> and finds another match. A new token is created for <code>5</code> and the token stream is now:</p>
+	<pre><code>[
+	["function", "max"],
+	"(",
+	["number", "3"],
+	", ",
+	["number", "5"],
+	", ",
+	["function", "exp2"],
+	"(7));"
+]</code></pre>
+
+	<p>The next string is <code>", "</code> and no matches are found. The string after that is <code>"(7));"</code> and a new token is create for <code>7</code>:
+	<pre><code>[
+	["function", "max"],
+	"(",
+	["number", "3"],
+	", ",
+	["number", "5"],
+	", ",
+	["function", "exp2"],
+	"(",
+	["number", "7"],
+	"));"
+]</code></pre>
+
+	<p>The last string to check is <code>"));"</code> and no matches are found. The number token has now been processed and the algorithm will go process the next token in the language definition.</p>
+
+	<p>Notice how FCFS matching did not find the <code>2</code> in <code>exp2</code>. Since FCFS matching completely ignores existing tokens in the token stream, the number regex cannot see already-tokenized text. This is a very useful property. In the above example, <code>2</code> is a part of the function name <code>exp2</code>, so highlighting it as a number would be incorrect.</p>
+
+	<h3 id="greedy-matching">Greedy matching</h3>
+
+	<p>Greedy matching is very similar to FCFS matching. All tokens are matched in order and tokens cannot overlap. The defining difference is that greedy tokens <strong>can</strong> match the text of previous tokens.</p>
+
+	<p>Let's look at an example to see why greedy matching is useful and how it works <em>conceptually</em>. A very simplified version of JavaScript's comment and string syntax might be implemented like this:</p>
+	<pre><code>Prism.languages.javascript = {
+	'comment': /\/\/.*/,
+	'string': /'(?:\\.|[^\\\r\n])*'/
+};</code></pre>
+
+	<p>To understand why greedy matching is useful, let's look at how FCFS matching would tokenize the text <code>'http://example.com'</code>:</p>
+
+	<p>FCFS matching starts with the token stream <code>["'http://example.com'"]</code> and tries to find matches for <code>'comment': /\/\/.*/</code>. The match <code class="language-none">//example.com'</code> is found and inserted into the token stream:</p>
+	<pre><code>[
+	"'http:",
+	["comment", "//example.com'"]
+]</code></pre>
+
+	<p>Then FCFS matching will search for matches for <code>'string': /'(?:\\.|[^'\\\r\n])*'/</code>. The first string of the token stream, <code>"'http:"</code>, does not match the string regex, so the token stream remains unchanged. The string token has now been processed and the above token stream is the final result.</p>
+
+	<p>Obviously, this is bad. The code <code>'http://example.com'</code> is clearly just a string containing a URL, but FCFS matching doesn't understand this.</p>
+
+	<p>An obvious, but incorrect, fix might be to swap the order of <code>comment</code> and <code>string</code>. This would fix <code>'http://example.com'</code>. However, the problem was merely moved. Comments like <code>// it's my co-worker's code</code> (note the two single quotes) will now be tokenized incorrectly.</p>
+
+	<p>This is <strong>the problem greedy matching solves</strong>. Let's make the tokens greedy and then see how this affects the result:</p>
+	<pre><code>Prism.languages.javascript = {
+	'comment': {
+		pattern: /\/\/.*/,
+		greedy: true
+	},
+	'string': {
+		pattern: /'(?:\\.|[^'\\\r\n])*'/,
+		greedy: true
+	}
+};</code></pre>
+
+	<p>While the actual greedy matching algorithm is quite complex and littered with subtle edge cases, its effect quite simple: a list of <strong>greedy tokens will behave as if they were matched by a single regex</strong>. This is how greedy matching works <em>conceptually</em> and how you should think about greedy tokens.</p>
+
+	<p>This means that the greedy comment and string tokens will behave like the following language definition, but the combined token will result in the correct token names of the original greedy tokens:</p>
+	<pre><code>Prism.languages.javascript = {
+	'comment-or-string': /\/\/.*|'(?:\\.|[^'\\\r\n])*'/
+};</code></pre>
+
+	<p>In the above example, <code>'http://example.com'</code> will be matched by <code>/\/\/.*|'(?:\\.|[^'\\\r\n])*'/</code> completely. Since the <code class="language-none">'(?:\\.|[^'\\\r\n])*'</code> part of the regex caused the match, a token of type <code>string</code> will be created and the following token stream will be produced:</p>
+	<pre><code>[
+	["string", "'http://example.com'"]
+]</code></pre>
+
+	<p>Similarly, the tokenization will also be correct for the <code>// it's my co-worker's code</code> example.</p>
+
+	<p>When deciding whether a token should be greedy, use the following guide lines:</p>
+
+	<ol class="indent">
+		<li>
+			<p>Most tokens are not greedy.</p>
+
+			<p>Most tokens in most languages are not greedy, because they don't need to be. Typically only the comment, string, and regex literal tokens need to be greedy. All other tokens can use FCFS matching.</p>
+
+			<p>Generally, a token should only be greedy if it can contain the start of another token.</p>
+		</li>
+		<li>
+			<p>All tokens before a greedy token should also be greedy.</p>
+
+			<p>Greedy matching works subtly differently if there are non-greedy tokens before a greedy token. This typically leads to subtle and hard-to-catch bugs that sometimes take years to uncover.</p>
+
+			<p>To make sure that greedy matching works as expected, the greedy tokens should be the first tokens of a language.</p>
+		</li>
+		<li>
+			<p>Greedy tokens come in groups.</p>
+
+			<p>If a language definition contains only a single greedy token, then the greedy token shouldn't be greedy. As explained above, greedy matching conceptually combines the regexes of all greedy tokens into one. If there is only one greedy token, greedy matching will behave like FCFS matching.</p>
+		</li>
+	</ol>
 
 	<h2 id="helper-functions">Helper functions</h2>
 
 	<p>Prism also provides some useful function for creating and modifying language definitions. <a href="docs/Prism.languages.html#.insertBefore"><code>Prism.languages.insertBefore</code></a> can be used to modify existing languages definitions. <a href="docs/Prism.languages.html#.extend"><code>Prism.languages.extend</code></a> is useful for when your language is very similar to another existing language.</p>
+
+
+	<h2 id="rest">The rest property</h2>
+
+	<p>The <code>rest</code> property in language definitions is special. Prism expects this property to be another language definition instead of a token. The tokens of the grammar in the <code>rest</code> property will be appended to the end of the language definition with the <code>rest</code> property. It can be thought of as a built-in object spread operator.</p>
+
+	<p>This is useful for referring to tokens defined elsewhere. However, the <code>rest</code> property should be used sparingly. When referencing another language, it is typically better to encapsulate the text of the language into a token and use <a href="#object-notation-inside">the <code>inside</code> property</a> instead.</p>
 </section>
 
 <section id="creating-a-new-language-definition" class="language-none">
@@ -120,7 +377,7 @@ ol.indent {
 	"owner": "Your GitHub name"
 }</code></pre>
 
-			<p>If your language definition depends any other languages, you have to specify this here as well by adding a <code class="language-js">"require"</code> property. E.g. <code class="language-js">"require": "clike"</code>, or <code class="language-js">"require" : ["markup", "css"]</code>. For more information on dependencies read the <a href="#declaring-dependencies">declaring dependencies</a> section.</p>
+			<p>If your language definition depends any other languages, you have to specify this here as well by adding a <code class="language-js">"require"</code> property. E.g. <code class="language-js">"require": "clike"</code>, or <code class="language-js">"require": ["markup", "css"]</code>. For more information on dependencies read the <a href="#declaring-dependencies">declaring dependencies</a> section.</p>
 
 			<p><em>Note:</em> Any changes made to <code>components.json</code> require a rebuild (see step 3).</p>
 		</li>

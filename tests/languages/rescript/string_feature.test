@@ -1,0 +1,19 @@
+""
+"foo\"bar"
+`foo bar`
+
+----------------------------------------------------
+
+[
+	["string", "\"\""],
+	["string", "\"foo\\\"bar\""],
+	["template-string", [
+		["template-punctuation", "`"],
+		["string", "foo bar"],
+		["template-punctuation", "`"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for strings.

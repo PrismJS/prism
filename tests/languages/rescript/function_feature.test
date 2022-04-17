@@ -1,0 +1,26 @@
+sum(a, b)
+Belt.Int.toString(n)
+
+----------------------------------------------------
+
+[
+	["function", "sum"],
+	["punctuation", "("],
+	"a",
+	["punctuation", ","],
+	" b",
+	["punctuation", ")"],
+
+	["class-name", "Belt"],
+	["punctuation", "."],
+	["class-name", "Int"],
+	["punctuation", "."],
+	["function", "toString"],
+	["punctuation", "("],
+	"n",
+	["punctuation", ")"]
+]
+
+----------------------------------------------------
+
+Checks for functions.
