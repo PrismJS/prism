@@ -1,0 +1,57 @@
+<h2>Comments</h2>
+<pre><code>// Single line comment
+/* Multi-line
+comment */</code></pre>
+
+<h2>Strings</h2>
+<pre><code>"foo 'bar' baz"
+'foo "bar" baz'
+"""Multi-line
+string"""
+'''Multi-line
+string'''
+"String /containing/ slashes"
+</code></pre>
+
+<h2>Slashy strings (regex)</h2>
+<pre><code>/.*foo.*/
+/regex"containing quotes"/
+$/.*"(.*)".*/(.*)/$</code></pre>
+
+<h2>Interpolation inside GStrings and regex</h2>
+<pre><code>"The answer is ${21*2}"
+"The $foxtype ${foxcolor.join()} fox"
+/foo${21*2}baz/
+'No interpolation here : ${21*2}'</code></pre>
+
+<h2>Full example</h2>
+<pre><code>#!/usr/bin/env Gradle
+    build.gradle.kts
+    plugins {
+        id("java-library")
+    }
+    
+    val springVersion by extra("3.1.0.RELEASE")
+    val emailNotification by extra { "build@master.org" }
+    
+    sourceSets.all { extra["purpose"] = null }
+    
+    sourceSets {
+        main {
+            extra["purpose"] = "production"
+        }
+        test {
+            extra["purpose"] = "test"
+        }
+        create("plugin") {
+            extra["purpose"] = "production"
+        }
+    }
+    
+    tasks.register("printProperties") {
+        doLast {
+            println(springVersion)
+            println(emailNotification)
+            sourceSets.matching { it.extra["purpose"] == "production" }.forEach { println(it.name) }
+        }
+    }</code></pre>

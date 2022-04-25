@@ -554,6 +554,11 @@
 			"require": "clike",
 			"owner": "robfletcher"
 		},
+		"gradle": {
+			"title": "Gradle",
+			"require": "clike",
+			"owner": "zellat-boudis"
+		},
 		"haml": {
 			"title": "Haml",
 			"require": "ruby",
