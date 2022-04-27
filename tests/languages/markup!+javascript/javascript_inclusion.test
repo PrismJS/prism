@@ -143,10 +143,7 @@ let foo = '</script>';
 		["attr-value", [
 			["punctuation", "="],
 			["punctuation", "\""],
-			"this.textContent=",
-			["punctuation", "'"],
-			"Over!",
-			["punctuation", "'"],
+			"this.textContent='Over!'",
 			["punctuation", "\""]
 		]],
 		["punctuation", ">"]

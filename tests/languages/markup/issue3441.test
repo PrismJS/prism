@@ -1,0 +1,27 @@
+<google-chart data='[["Month", "Days"], ["Jan", 31]]'></google-chart>
+
+----------------------------------------------------
+
+[
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"google-chart"
+		]],
+		["attr-name", ["data"]],
+		["attr-value", [
+			["punctuation", "="],
+			["punctuation", "'"],
+			"[[\"Month\", \"Days\"], [\"Jan\", 31]]",
+			["punctuation", "'"]
+		]],
+		["punctuation", ">"]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"google-chart"
+		]],
+		["punctuation", ">"]
+	]]
+]
