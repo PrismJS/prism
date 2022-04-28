@@ -3,9 +3,9 @@
 		pattern: /((?:^|[^\\$])(?:\\{2})*)\$(?:\w+|\{[^{}]*\})/,
 		lookbehind: true,
 		inside: {
-			"interpolation-punctuation": {
+			'interpolation-punctuation': {
 				pattern: /^\$\{?|\}$/,
-				alias: "punctuation",
+				alias: 'punctuation',
 			},
 			expression: {
 				pattern: /[\s\S]+/,
@@ -14,7 +14,7 @@
 		},
 	};
 
-	Prism.languages.gradle = Prism.languages.extend("clike", {
+	Prism.languages.gradle = Prism.languages.extend('clike', {
 		string: {
 			pattern: /'''(?:[^\\]|\\[\s\S])*?'''|'(?:\\.|[^\\'\r\n])*'/,
 			greedy: true,
@@ -30,13 +30,13 @@
 		punctuation: /\.+|[{}[\];(),:$]/,
 	});
 
-	Prism.languages.insertBefore("gradle", "string", {
+	Prism.languages.insertBefore('gradle', 'string', {
 		shebang: {
 			pattern: /#!.+/,
-			alias: "comment",
+			alias: 'comment',
 			greedy: true,
 		},
-		"interpolation-string": {
+		'interpolation-string': {
 			pattern:
 				/"""(?:[^\\]|\\[\s\S])*?"""|(["/])(?:\\.|(?!\1)[^\\\r\n])*\1|\$\/(?:[^/$]|\$(?:[/$]|(?![/$]))|\/(?!\$))*\/\$/,
 			greedy: true,
@@ -47,17 +47,17 @@
 		},
 	});
 
-	Prism.languages.insertBefore("gradle", "punctuation", {
-		"spock-block": /\b(?:and|cleanup|expect|given|setup|then|when|where):/,
+	Prism.languages.insertBefore('gradle', 'punctuation', {
+		'spock-block': /\b(?:and|cleanup|expect|given|setup|then|when|where):/,
 	});
 
-	Prism.languages.insertBefore("gradle", "function", {
+	Prism.languages.insertBefore('gradle', 'function', {
 		annotation: {
 			pattern: /(^|[^.])@\w+/,
 			lookbehind: true,
-			alias: "punctuation",
+			alias: 'punctuation',
 		},
 	});
 
 	interpolation.inside.expression.inside = Prism.languages.gradle;
-})(Prism);
+}(Prism));

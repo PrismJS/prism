@@ -5,10 +5,21 @@ repository repositories apply def sourceSets import
 ----------------------------------------------------
 
 [
-	
-	["keyword", "val"], ["keyword", "tasks"], ["keyword", "dependencies"], ["keyword", "plugins"],["keyword", "repository"], ["keyword", "sourceSets"],
-	["keyword", "plugin"], ["keyword", "repositories"], ["keyword", "def"], ["keyword", "project"], ["keyword", "apply"], ["keyword", "import"]
-	
+	["keyword", "implementation"],
+
+	["keyword", "val"],
+	["keyword", "tasks"],
+	["keyword", "dependencies"],
+	["keyword", "project"],
+	["keyword", "plugin"],
+	["keyword", "plugins"],
+
+	["keyword", "repository"],
+	["keyword", "repositories"],
+	["keyword", "apply"],
+	["keyword", "def"],
+	["keyword", "sourceSets"],
+	["keyword", "import"]
 ]
 
 ----------------------------------------------------
