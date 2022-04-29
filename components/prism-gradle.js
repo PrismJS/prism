@@ -15,23 +15,23 @@
 	};
 
 	Prism.languages.gradle = Prism.languages.extend('clike', {
-		string: {
+		'string': {
 			pattern: /'''(?:[^\\]|\\[\s\S])*?'''|'(?:\\.|[^\\'\r\n])*'/,
 			greedy: true,
 		},
-		keyword:
+		'keyword':
 			/\b(?:apply|def|dependencies|else|if|implementation|import|plugin|plugins|project|repositories|repository|sourceSets|tasks|val)\b/,
-		number: /\b(?:0b[01_]+|0x[\da-f_]+(?:\.[\da-f_p\-]+)?|[\d_]+(?:\.[\d_]+)?(?:e[+-]?\d+)?)[glidf]?\b/i,
-		operator: {
+		'number': /\b(?:0b[01_]+|0x[\da-f_]+(?:\.[\da-f_p\-]+)?|[\d_]+(?:\.[\d_]+)?(?:e[+-]?\d+)?)[glidf]?\b/i,
+		'operator': {
 			pattern:
 				/(^|[^.])(?:~|==?~?|\?[.:]?|\*(?:[.=]|\*=?)?|\.[@&]|\.\.<|\.\.(?!\.)|-[-=>]?|\+[+=]?|!=?|<(?:<=?|=>?)?|>(?:>>?=?|=)?|&[&=]?|\|[|=]?|\/=?|\^=?|%=?)/,
 			lookbehind: true,
 		},
-		punctuation: /\.+|[{}[\];(),:$]/,
+		'punctuation': /\.+|[{}[\];(),:$]/,
 	});
 
 	Prism.languages.insertBefore('gradle', 'string', {
-		shebang: {
+		'shebang': {
 			pattern: /#!.+/,
 			alias: 'comment',
 			greedy: true,
@@ -52,7 +52,7 @@
 	});
 
 	Prism.languages.insertBefore('gradle', 'function', {
-		annotation: {
+		'annotation': {
 			pattern: /(^|[^.])@\w+/,
 			lookbehind: true,
 			alias: 'punctuation',
