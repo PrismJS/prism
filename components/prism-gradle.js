@@ -7,7 +7,7 @@
 				pattern: /^\$\{?|\}$/,
 				alias: 'punctuation',
 			},
-			expression: {
+			'expression': {
 				pattern: /[\s\S]+/,
 				inside: null,
 			},
@@ -41,8 +41,8 @@
 				/"""(?:[^\\]|\\[\s\S])*?"""|(["/])(?:\\.|(?!\1)[^\\\r\n])*\1|\$\/(?:[^/$]|\$(?:[/$]|(?![/$]))|\/(?!\$))*\/\$/,
 			greedy: true,
 			inside: {
-				interpolation: interpolation,
-				string: /[\s\S]+/,
+				'interpolation': interpolation,
+				'string': /[\s\S]+/,
 			},
 		},
 	});
