@@ -1325,7 +1325,10 @@ Prism.languages.markup = {
 							pattern: /^=/,
 							alias: 'attr-equals'
 						},
-						/"|'/
+						{
+							pattern: /^(\s*)["']|["']$/,
+							lookbehind: true
+						}
 					]
 				}
 			},
