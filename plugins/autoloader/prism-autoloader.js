@@ -58,6 +58,7 @@
 		"gml": "clike",
 		"glsl": "c",
 		"go": "clike",
+		"gradle": "clike",
 		"groovy": "clike",
 		"haml": "ruby",
 		"handlebars": "markup-templating",

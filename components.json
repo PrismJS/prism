@@ -544,6 +544,11 @@
 			"alias": "go-mod",
 			"owner": "RunDevelopment"
 		},
+		"gradle": {
+			"title": "Gradle",
+			"require": "clike",
+			"owner": "zeabdelkhalek-badido18"
+		},
 		"graphql": {
 			"title": "GraphQL",
 			"optional": "markdown",

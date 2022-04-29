@@ -1,0 +1,30 @@
+implementation
+val tasks dependencies project plugin plugins
+repository repositories apply def sourceSets import
+if else
+----------------------------------------------------
+
+[
+	["keyword", "implementation"],
+
+	["keyword", "val"],
+	["keyword", "tasks"],
+	["keyword", "dependencies"],
+	["keyword", "project"],
+	["keyword", "plugin"],
+	["keyword", "plugins"],
+
+	["keyword", "repository"],
+	["keyword", "repositories"],
+	["keyword", "apply"],
+	["keyword", "def"],
+	["keyword", "sourceSets"],
+	["keyword", "import"],
+
+	["keyword", "if"],
+	["keyword", "else"]
+]
+
+----------------------------------------------------
+
+Checks for all keywords.

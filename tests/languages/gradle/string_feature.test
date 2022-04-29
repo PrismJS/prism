@@ -1,0 +1,94 @@
+""""""
+"""foo"""
+"""foo
+bar"""
+
+''''''
+'''foo'''
+'''foo
+bar'''
+
+""
+"fo\"o"
+''
+'fo\'o'
+
+/foo/
+/fo\/o/
+
+$/fo$/$o/$
+$/foo
+bar/$
+"foo /* comment */ bar"
+'foo // bar'
+'''foo
+/* comment */
+bar'''
+'''hell\'''o'''
+"""foo
+// comment
+bar"""
+"""hell\"""o"""
+
+----------------------------------------------------
+
+[
+	["interpolation-string", [
+		["string", "\"\"\"\"\"\""]
+	]],
+	["interpolation-string", [
+		["string", "\"\"\"foo\"\"\""]
+	]],
+	["interpolation-string", [
+		["string", "\"\"\"foo\r\nbar\"\"\""]
+	]],
+
+	["string", "''''''"],
+	["string", "'''foo'''"],
+	["string", "'''foo\r\nbar'''"],
+
+	["interpolation-string", [
+		["string", "\"\""]
+	]],
+	["interpolation-string", [
+		["string", "\"fo\\\"o\""]
+	]],
+	["string", "''"],
+	["string", "'fo\\'o'"],
+
+	["interpolation-string", [
+		["string", "/foo/"]
+	]],
+	["interpolation-string", [
+		["string", "/fo\\/o/"]
+	]],
+
+	["interpolation-string", [
+		["string", "$/fo$/"],
+		["interpolation", [
+			["interpolation-punctuation", "$"],
+			["expression", ["o"]]
+		]],
+		["string", "/$"]
+	]],
+	["interpolation-string", [
+		["string", "$/foo\r\nbar/$"]
+	]],
+	["interpolation-string", [
+		["string", "\"foo /* comment */ bar\""]
+	]],
+	["string", "'foo // bar'"],
+	["string", "'''foo\r\n/* comment */\r\nbar'''"],
+	["string", "'''hell\\'''o'''"],
+	["interpolation-string", [
+		["string", "\"\"\"foo\r\n// comment\r\nbar\"\"\""]
+	]],
+	["interpolation-string", [
+		["string", "\"\"\"hell\\\"\"\"o\"\"\""]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for single quoted, triple single quoted, double quoted,
+triple double quoted, slashy and dollar slashy strings.
