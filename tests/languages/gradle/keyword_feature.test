@@ -1,7 +1,7 @@
 implementation
 val tasks dependencies project plugin plugins
 repository repositories apply def sourceSets import
-
+if else
 ----------------------------------------------------
 
 [
@@ -19,7 +19,10 @@ repository repositories apply def sourceSets import
 	["keyword", "apply"],
 	["keyword", "def"],
 	["keyword", "sourceSets"],
-	["keyword", "import"]
+	["keyword", "import"],
+
+	["keyword", "if"],
+	["keyword", "else"]
 ]
 
 ----------------------------------------------------
