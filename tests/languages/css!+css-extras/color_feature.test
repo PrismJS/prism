@@ -111,6 +111,7 @@ Pink
 Plum
 PowderBlue
 Purple
+RebeccaPurple
 Red
 RosyBrown
 RoyalBlue
@@ -261,6 +262,7 @@ hsla(120,100%,50%,0.3)
 	["color", "Plum"],
 	["color", "PowderBlue"],
 	["color", "Purple"],
+	["color", "RebeccaPurple"],
 	["color", "Red"],
 	["color", "RosyBrown"],
 	["color", "RoyalBlue"],
