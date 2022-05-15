@@ -1,0 +1,53 @@
+0x123
+0X123u
+1u
+123
+0
+0i
+0x3f
+
+0.e+4f
+01.
+.01
+12.34
+.0f
+0h
+1e-3
+0xa.fp+2
+0x1P+4f
+0X.3
+0x3p+2h
+0X1.fp-4
+0x3.2p+2h
+
+true
+false
+
+----------------------------------------------------
+
+[
+	["hex-int-literal", "0x123"],
+	["hex-int-literal", "0X123u"],
+	["int-literal", "1u"],
+	["int-literal", "123"],
+	["int-literal", "0"],
+	["int-literal", "0i"],
+	["hex-int-literal", "0x3f"],
+
+	["decimal-float-literal-a", "0.e+4f"],
+	["decimal-float-literal-a", "01."],
+	["decimal-float-literal-a", ".01"],
+	["decimal-float-literal-a", "12.34"],
+	["decimal-float-literal-a", ".0f"],
+	["decimal-float-literal-b", "0h"],
+	["decimal-float-literal-a", "1e-3"],
+	["hex-float-literal", "0xa.fp+2"],
+	["hex-float-literal", "0x1P+4f"],
+	["hex-float-literal", "0X.3"],
+	["hex-float-literal", "0x3p+2h"],
+	["hex-float-literal", "0X1.fp-4"],
+	["hex-float-literal", "0x3.2p+2h"],
+
+	["bool-literal", "true"],
+	["bool-literal", "false"]
+]

@@ -1,0 +1,21 @@
+fn my_function() -> bool {
+    return true;
+}
+
+----------------------------------------------------
+
+[
+	["keyword", "fn"],
+	["functions", [" my_function"]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["operator", "->"],
+	["types", "bool"],
+	["punctuation", "{"],
+
+	["keyword", "return"],
+	["bool-literal", "true"],
+	["punctuation", ";"],
+
+	["punctuation", "}"]
+]
