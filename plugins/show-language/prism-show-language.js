@@ -267,6 +267,7 @@
 		"wasm": "WebAssembly",
 		"web-idl": "Web IDL",
 		"webidl": "Web IDL",
+		"wgsl": "WGSL",
 		"wiki": "Wiki markup",
 		"wolfram": "Wolfram language",
 		"nb": "Mathematica Notebook",
