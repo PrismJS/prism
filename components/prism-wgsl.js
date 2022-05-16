@@ -14,12 +14,7 @@ Prism.languages.wgsl = {
         alias: 'function',
     },
     'keyword': [
-        { pattern: /\b(?:bitcast|block|break|case|continue|continuing|default|discard|else|elseif|enable|fallthrough|for|function|if|loop|private|read|read_write|return|storage|switch|uniform|workgroup|write)\b/ },
-        { pattern: /\b(?:asm|const|do|enum|handle|mat|premerge|regardless|typedef|unless|using|vec|void|while)\b/ },
-        { pattern: /\b(?:let|var)\b/ },
-        { pattern: /\b(?:type)\b/ },
-        { pattern: /\b(?:enum)\b/ },
-        { pattern: /\bfn\b/ },
+        { pattern: /\b(?:bitcast|break|case|const|continue|continuing|default|discard|else|enable|fallthrough|fn|for|function|if|let|loop|private|return|storage|switch|type|uniform|var|while|workgroup)\b/ },
     ],
     'function-calls': {
         pattern: /\b[_a-z]\w*(?=\()/i,
