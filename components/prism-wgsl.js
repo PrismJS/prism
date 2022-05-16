@@ -77,12 +77,5 @@ Prism.languages.wgsl = {
         { pattern: /\.(?!\.)/ },
         { pattern: /->/ },
     ],
-    'punctuation': [
-        { pattern: /,/ },
-        { pattern: /[{}]/ },
-        { pattern: /[\(\)]/ },
-        { pattern: /;/ },
-        { pattern: /[\[\]]/ },
-        { pattern: /(?<!=)[<>]/ },
-    ],
+    'punctuation': /[(){}[\],;<>]/,
 };
