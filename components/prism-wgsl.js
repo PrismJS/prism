@@ -12,7 +12,6 @@ Prism.languages.wgsl = {
         pattern: /\b(fn\s+)[_a-zA-Z]\w*(?=[(<])/,
         lookbehind: true,
         alias: 'function',
-        inside: {},
     },
     'keyword': [
         { pattern: /\b(?:bitcast|block|break|case|continue|continuing|default|discard|else|elseif|enable|fallthrough|for|function|if|loop|private|read|read_write|return|storage|switch|uniform|workgroup|write)\b/ },
@@ -25,7 +24,6 @@ Prism.languages.wgsl = {
     'function-calls': {
         pattern: /\b[_a-z]\w*(?=\()/i,
         alias: 'function',
-        inside: {},
     },
     'types': [
         { pattern: /\b(?:bool|i32|u32|f32)\b/, alias: 'builtin' },
