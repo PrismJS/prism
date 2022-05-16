@@ -37,10 +37,14 @@ Prism.languages.wgsl = {
         { pattern: /\b(?:texture_depth_2d_array|texture_depth_cube|texture_depth_cube_array|texture_depth_multisampled_2d)\b/, alias: 'builtin' },
         { pattern: /\b(?:[A-Z][A-Za-z0-9]*)\b/, alias: 'class-name' },
     ],
-    'built-in-values': [
-        { pattern: /\b(?:vertex_index|instance_index|position)\b/, alias: 'namespace' },
-        { pattern: /\b(?:front_facing|frag_depth|sample_index|sample_mask)\b/, alias: 'namespace' },
-        { pattern: /\b(?:local_invocation_id|local_invocation_index|global_invocation_id|workgroup_id|num_workgroups)\b/, alias: 'namespace' },
+    'built-in-values-vertex': [
+        { pattern: /\b(?:vertex_index|instance_index|position)\b/, alias: 'keyword' },
+    ],
+    'built-in-values-fragment': [
+        { pattern: /\b(?:front_facing|frag_depth|sample_index|sample_mask)\b/, alias: 'keyword' },
+    ],
+    'built-in-values-compute': [
+        { pattern: /\b(?:local_invocation_id|local_invocation_index|global_invocation_id|workgroup_id|num_workgroups)\b/, alias: 'keyword' },
     ],
     'bool-literal': {
         pattern: /\b(?:true|false)\b/,
