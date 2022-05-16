@@ -44,7 +44,7 @@ Prism.languages.wgsl = {
         pattern: /0[xX][0-9a-fA-F]*(?:\.[0-9a-fA-F]*)?(?:[pP][+-]?\d+[fh]?)?/, alias:'number'
     },
     'decimal-float-literal': [
-        { pattern: /[0-9]*(?:\.[0-9]*)?(?:[eE](?:\+|-)?[0-9]+)?[fh]?/, alias:'number' },
+        { pattern: /\d*(?:\.\d*)?(?:[eE](?:\+|-)?\d+)?[fh]?/, alias:'number' },
         { pattern: /\b\d+[fh]\b/, alias:'number' },
     ],
     'int-literal': { 
