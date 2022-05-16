@@ -59,10 +59,6 @@ Prism.languages.wgsl = {
         { pattern: /[0-9]+\.[0-9]*(?:[eE](?:\+|-)?[0-9]+)?[fh]?/, alias:'number' },
         { pattern: /[0-9]+[eE](?:\+|-)?[0-9]+[fh]?/, alias:'number' },
     ],
-    'variables': {
-        pattern: /\b[_a-z]\w*\b/i,
-        alias: 'variable',
-    },
     'decimal-float-literal-b': [
         { pattern: /0[fh]/, alias:'number' },
         { pattern: /[1-9][0-9]*[fh]/, alias:'number' },
