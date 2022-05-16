@@ -4,12 +4,12 @@ Prism.languages.wgsl = {
         greedy: true,
     },
     'attributes': {
-        pattern: /(@)(?:(?:[_\p{XID_Start}][\p{XID_Continue}]+)|(?:[\p{XID_Start}]))/u,
+        pattern: /(@)[_a-z]\w*/i,
         lookbehind: true,
         alias: 'symbol',
     },
     'functions': {
-        pattern: /\b(fn)\s+(?:(?:[_\p{XID_Start}][\p{XID_Continue}]+)|(?:[\p{XID_Start}]))(?=(?:\()|(?:<))/u,
+        pattern: /\b(fn\s+)[_a-zA-Z]\w*(?=[(<])/,
         lookbehind: true,
         alias: 'function',
         inside: {},
@@ -23,7 +23,7 @@ Prism.languages.wgsl = {
         { pattern: /\bfn\b/ },
     ],
     'function-calls': {
-        pattern: /(?:(?:[_\p{XID_Start}][\p{XID_Continue}]+)|(?:[\p{XID_Start}]))(?=\()/u,
+        pattern: /\b[_a-z]\w*(?=\()/i,
         alias: 'function',
         inside: {},
     },
@@ -62,7 +62,7 @@ Prism.languages.wgsl = {
         { pattern: /[0-9]+[eE](?:\+|-)?[0-9]+[fh]?/, alias:'number' },
     ],
     'variables': {
-        pattern: /\b(?:(?:[_\p{XID_Start}][\p{XID_Continue}]+)|(?:[\p{XID_Start}]))\b/u,
+        pattern: /\b[_a-z]\w*\b/i,
         alias: 'variable',
     },
     'decimal-float-literal-b': [
