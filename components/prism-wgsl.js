@@ -26,7 +26,7 @@ Prism.languages.wgsl = {
     },
     'built-in-values-fragment': {
         pattern: /\b(?:front_facing|frag_depth|sample_index|sample_mask)\b/,
-        alias: 'keyword'
+        alias: 'keyword',
     },
     'built-in-values-compute': {
         pattern: /\b(?:local_invocation_id|local_invocation_index|global_invocation_id|workgroup_id|num_workgroups)\b/,
@@ -36,9 +36,10 @@ Prism.languages.wgsl = {
         pattern: /\b(?:true|false)\b/,
         alias: 'boolean',
     },
-    'hex-int-literal': [
-        { pattern: /\b0[xX][0-9a-fA-F]+[iu]?\b(?![.pP])/, alias:'number' },
-    ],
+    'hex-int-literal': {
+        pattern: /\b0[xX][0-9a-fA-F]+[iu]?\b(?![.pP])/,
+        alias:'number',
+    },
     'hex-float-literal': {
         pattern: /0[xX][0-9a-fA-F]*(?:\.[0-9a-fA-F]*)?(?:[pP][+-]?\d+[fh]?)?/, alias:'number'
     },
@@ -48,7 +49,7 @@ Prism.languages.wgsl = {
     ],
     'int-literal': { 
         pattern: /\b\d+[iu]?\b/,
-        alias:'number'
+        alias:'number',
     },
     'operator': [
         { pattern: /(?:\^|~|\||\|\||&&|<<|>>|!)(?!=)/ },
