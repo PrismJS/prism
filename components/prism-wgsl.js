@@ -37,26 +37,19 @@ Prism.languages.wgsl = {
         alias: 'boolean',
     },
     'hex-int-literal': [
-        { pattern: /\b0[xX][0-9a-fA-F]+[iu]?(?!(?:\.|p|P))\b/, alias:'number' },
+        { pattern: /\b0[xX][0-9a-fA-F]+[iu]?\b(?![.pP])/, alias:'number' },
     ],
-    'hex-float-literal': [
-        { pattern: /0[xX][0-9a-fA-F]*\.[0-9a-fA-F]+(?:[pP](?:\+|-)?[0-9]+[fh]?)?/, alias:'number' },
-        { pattern: /0[xX][0-9a-fA-F]+\.[0-9a-fA-F]*(?:[pP](?:\+|-)?[0-9]+[fh]?)?/, alias:'number' },
-        { pattern: /0[xX][0-9a-fA-F]+[pP](?:\+|-)?[0-9]+[fh]?/, alias:'number' },
+    'hex-float-literal': {
+        pattern: /0[xX][0-9a-fA-F]*(?:\.[0-9a-fA-F]*)?(?:[pP][+-]?\d+[fh]?)?/, alias:'number'
+    },
+    'decimal-float-literal': [
+        { pattern: /[0-9]*(?:\.[0-9]*)?(?:[eE](?:\+|-)?[0-9]+)?[fh]?/, alias:'number' },
+        { pattern: /\b\d+[fh]\b/, alias:'number' },
     ],
-    'decimal-float-literal-a': [
-        { pattern: /[0-9]*\.[0-9]+(?:[eE](?:\+|-)?[0-9]+)?[fh]?/, alias:'number' },
-        { pattern: /[0-9]+\.[0-9]*(?:[eE](?:\+|-)?[0-9]+)?[fh]?/, alias:'number' },
-        { pattern: /[0-9]+[eE](?:\+|-)?[0-9]+[fh]?/, alias:'number' },
-    ],
-    'decimal-float-literal-b': [
-        { pattern: /0[fh]/, alias:'number' },
-        { pattern: /[1-9][0-9]*[fh]/, alias:'number' },
-    ],
-    'int-literal': [
-        { pattern: /0[iu]?/, alias:'number' },
-        { pattern: /[1-9][0-9]*[iu]?/, alias:'number' },
-    ],
+    'int-literal': { 
+        pattern: /\b\d+[iu]?\b/,
+        alias:'number'
+    },
     'operator': [
         { pattern: /(?:\^|~|\||\|\||&&|<<|>>|!)(?!=)/ },
         { pattern: /&(?![&=])/ },
