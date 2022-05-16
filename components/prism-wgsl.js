@@ -6,7 +6,7 @@ Prism.languages.wgsl = {
     'attributes': {
         pattern: /(@)[_a-z]\w*/i,
         lookbehind: true,
-        alias: 'symbol',
+        alias: 'important',
     },
     'functions': {
         pattern: /\b(fn\s+)[_a-zA-Z]\w*(?=[(<])/,
