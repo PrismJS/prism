@@ -13,8 +13,9 @@ Prism.languages.wgsl = {
         lookbehind: true,
         alias: 'function',
     },
-    'keyword': /\b(?:bitcast|break|case|const|continue|continuing|default|discard|else|enable|fallthrough|fn|for|function|if|let|loop|private|return|storage|switch|type|uniform|var|while|workgroup)\b/,
-    'builtin': /\b(?:array|atomic|bool|i32|u32|f32|i64|u64|f64|vec[2-4]|mat[2-4]x[2-4]|override|ptr|sampler|sampler_comparison|staticAssert|struct|texture_1d|texture_2d|texture_2d_array|texture_3d|texture_cube|texture_cube_array|texture_multisampled_2d|texture_storage_1d|texture_storage_2d|texture_storage_2d_array|texture_storage_3d|texture_depth_2d|texture_depth_2d_array|texture_depth_cube|texture_depth_cube_array|texture_depth_multisampled_2d)\b/,
+    'keyword': /\b(?:bitcast|break|case|const|continue|continuing|default|discard|else|enable|fallthrough|fn|for|function|if|let|loop|private|return|storage|struct|switch|type|uniform|var|while|workgroup)\b/,
+    'builtin': /\b(?:array|atomic|bool|i32|u32|f32|i64|u64|f64|vec[2-4]|mat[2-4]x[2-4]|override|ptr|sampler|sampler_comparison|staticAssert|texture_1d|texture_2d|texture_2d_array|texture_3d|texture_cube|texture_cube_array|texture_multisampled_2d|texture_storage_1d|texture_storage_2d|texture_storage_2d_array|texture_storage_3d|texture_depth_2d|texture_depth_2d_array|texture_depth_cube|texture_depth_cube_array|texture_depth_multisampled_2d)\b/,
+    'builtin-functions': /./,
     'function-calls': {
         pattern: /\b[_a-z]\w*(?=\()/i,
         alias: 'function',
