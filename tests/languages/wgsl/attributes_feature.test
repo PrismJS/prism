@@ -18,58 +18,63 @@
 ----------------------------------------------------
 
 [
-	"@notAnAttribute\r\n@",
+	["punctuation", "@"],
+	"notAnAttribute\r\n",
+	["punctuation", "@"],
 	["attributes", "align"],
 	["punctuation", "("],
 	["punctuation", ")"],
 
-	"\r\n@",
+	["punctuation", "@"],
 	["attributes", "binding"],
 	["punctuation", "("],
 	["punctuation", ")"],
 
-	"\r\n@",
+	["punctuation", "@"],
 	["attributes", "builtin"],
 	["punctuation", "("],
 	["punctuation", ")"],
 
-	"\r\n@",
+	["punctuation", "@"],
 	["attributes", "const"],
 
-	"\r\n@",
+	["punctuation", "@"],
 	["attributes", "group"],
 	["punctuation", "("],
 	["punctuation", ")"],
 
-	"\r\n@",
+	["punctuation", "@"],
 	["attributes", "id"],
 	["punctuation", "("],
 	["punctuation", ")"],
 
-	"\r\n@",
+	["punctuation", "@"],
 	["attributes", "interpolate"],
 	["punctuation", "("],
 	["punctuation", ")"],
 
-	"\r\n@",
+	["punctuation", "@"],
 	["attributes", "invariant"],
 
-	"\r\n@",
+	["punctuation", "@"],
 	["attributes", "location"],
 	["punctuation", "("],
 	["punctuation", ")"],
 
-	"\r\n@",
+	["punctuation", "@"],
 	["attributes", "size"],
 	["punctuation", "("],
 	["punctuation", ")"],
 
-	"\r\n@",
+	["punctuation", "@"],
 	["attributes", "workgroup_size"],
 	["punctuation", "("],
 	["punctuation", ")"],
 
-	"\r\n\r\n@", ["attributes", "vertex"],
-	"\r\n@", ["attributes", "fragment"],
-	"\r\n@", ["attributes", "compute"]
+	["punctuation", "@"],
+	["attributes", "vertex"],
+	["punctuation", "@"],
+	["attributes", "fragment"],
+	["punctuation", "@"],
+	["attributes", "compute"]
 ]

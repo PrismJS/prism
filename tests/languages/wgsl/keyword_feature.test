@@ -18,6 +18,7 @@ loop
 private
 return
 storage
+struct
 switch
 type
 uniform
@@ -48,6 +49,7 @@ workgroup
 	["keyword", "private"],
 	["keyword", "return"],
 	["keyword", "storage"],
+	["keyword", "struct"],
 	["keyword", "switch"],
 	["keyword", "type"],
 	["keyword", "uniform"],

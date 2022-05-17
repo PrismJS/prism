@@ -1,3 +1,4 @@
+@
 (
 )
 {
@@ -8,10 +9,13 @@
 ;
 <
 >
+:
+.
 
 ----------------------------------------------------
 
 [
+	["punctuation", "@"],
 	["punctuation", "("],
 	["punctuation", ")"],
 	["punctuation", "{"],
@@ -21,5 +25,7 @@
 	["punctuation", ","],
 	["punctuation", ";"],
 	["punctuation", "<"],
-	["punctuation", ">"]
+	["punctuation", ">"],
+	["punctuation", ":"],
+	["punctuation", "."]
 ]
