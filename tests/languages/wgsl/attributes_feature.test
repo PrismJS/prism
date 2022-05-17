@@ -19,6 +19,8 @@
 @builtin(workgroup_id)
 @builtin(num_workgroups)
 
+something.vertex_index;
+
 @const
 @group()
 @id()
@@ -150,6 +152,11 @@
 		["built-in-values", "num_workgroups"],
 		["punctuation", ")"]
 	]],
+
+	"\r\n\r\nsomething",
+	["punctuation", "."],
+	"vertex_index",
+	["punctuation", ";"],
 
 	["punctuation", "@"],
 	["attributes", ["const"]],
