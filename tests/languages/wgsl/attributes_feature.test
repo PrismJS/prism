@@ -1,0 +1,75 @@
+@notAnAttribute
+@align()
+@binding()
+@builtin()
+@const
+@group()
+@id()
+@interpolate()
+@invariant
+@location()
+@size()
+@workgroup_size()
+
+@vertex
+@fragment
+@compute
+
+----------------------------------------------------
+
+[
+	"@notAnAttribute\r\n@",
+	["attributes", "align"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	"\r\n@",
+	["attributes", "binding"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	"\r\n@",
+	["attributes", "builtin"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	"\r\n@",
+	["attributes", "const"],
+
+	"\r\n@",
+	["attributes", "group"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	"\r\n@",
+	["attributes", "id"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	"\r\n@",
+	["attributes", "interpolate"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	"\r\n@",
+	["attributes", "invariant"],
+
+	"\r\n@",
+	["attributes", "location"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	"\r\n@",
+	["attributes", "size"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	"\r\n@",
+	["attributes", "workgroup_size"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	"\r\n\r\n@", ["attributes", "vertex"],
+	"\r\n@", ["attributes", "fragment"],
+	"\r\n@", ["attributes", "compute"]
+]

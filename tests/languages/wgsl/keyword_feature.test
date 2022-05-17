@@ -1,6 +1,7 @@
 bitcast
 break
 case
+const
 continue
 continuing
 default
@@ -8,29 +9,21 @@ discard
 else
 enable
 fallthrough
+fn
 for
 function
 if
+let
 loop
 private
-read
-read_write
 return
 storage
 switch
+type
 uniform
-workgroup
-write
-
-const
-handle
-mat
-vec
-void
-while
-let
 var
-fn
+while
+workgroup
 
 ----------------------------------------------------
 
@@ -38,6 +31,7 @@ fn
 	["keyword", "bitcast"],
 	["keyword", "break"],
 	["keyword", "case"],
+	["keyword", "const"],
 	["keyword", "continue"],
 	["keyword", "continuing"],
 	["keyword", "default"],
@@ -45,27 +39,19 @@ fn
 	["keyword", "else"],
 	["keyword", "enable"],
 	["keyword", "fallthrough"],
+	["keyword", "fn"],
 	["keyword", "for"],
 	["keyword", "function"],
 	["keyword", "if"],
+	["keyword", "let"],
 	["keyword", "loop"],
 	["keyword", "private"],
-	["keyword", "read"],
-	["keyword", "read_write"],
 	["keyword", "return"],
 	["keyword", "storage"],
 	["keyword", "switch"],
+	["keyword", "type"],
 	["keyword", "uniform"],
-	["keyword", "workgroup"],
-	["keyword", "write"],
-
-	["keyword", "const"],
-	["keyword", "handle"],
-	["keyword", "mat"],
-	["keyword", "vec"],
-	["keyword", "void"],
-	["keyword", "while"],
-	["keyword", "let"],
 	["keyword", "var"],
-	["keyword", "fn"]
+	["keyword", "while"],
+	["keyword", "workgroup"]
 ]

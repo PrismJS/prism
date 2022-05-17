@@ -1,0 +1,99 @@
+bool
+i32
+u32
+f32
+i64
+u64
+f64
+vec2
+vec3
+vec4
+mat2x2
+mat2x3
+mat2x4
+mat3x2
+mat3x3
+mat3x4
+mat4x2
+mat4x3
+mat4x4
+
+atomic
+array
+
+override
+ptr
+
+sampler
+sampler_comparison
+staticAssert
+struct
+
+texture_1d
+texture_2d
+texture_2d_array
+texture_3d
+texture_cube
+texture_cube_array
+texture_multisampled_2d
+texture_storage_1d
+texture_storage_2d
+texture_storage_2d_array
+texture_storage_3d
+texture_depth_2d
+texture_depth_2d_array
+texture_depth_cube
+texture_depth_cube_array
+texture_depth_multisampled_2d
+
+----------------------------------------------------
+
+[
+	["builtin", "bool"],
+	["builtin", "i32"],
+	["builtin", "u32"],
+	["builtin", "f32"],
+	["builtin", "i64"],
+	["builtin", "u64"],
+	["builtin", "f64"],
+	["builtin", "vec2"],
+	["builtin", "vec3"],
+	["builtin", "vec4"],
+	["builtin", "mat2x2"],
+	["builtin", "mat2x3"],
+	["builtin", "mat2x4"],
+	["builtin", "mat3x2"],
+	["builtin", "mat3x3"],
+	["builtin", "mat3x4"],
+	["builtin", "mat4x2"],
+	["builtin", "mat4x3"],
+	["builtin", "mat4x4"],
+
+	["builtin", "atomic"],
+	["builtin", "array"],
+
+	["builtin", "override"],
+	["builtin", "ptr"],
+
+	["builtin", "sampler"],
+	["builtin", "sampler_comparison"],
+	["builtin", "staticAssert"],
+	["builtin", "struct"],
+
+	["builtin", "texture_1d"],
+	["builtin", "texture_2d"],
+	["builtin", "texture_2d_array"],
+	["builtin", "texture_3d"],
+	["builtin", "texture_cube"],
+	["builtin", "texture_cube_array"],
+	["builtin", "texture_multisampled_2d"],
+	["builtin", "texture_storage_1d"],
+	["builtin", "texture_storage_2d"],
+	["builtin", "texture_storage_2d_array"],
+	["builtin", "texture_storage_3d"],
+	["builtin", "texture_depth_2d"],
+	["builtin", "texture_depth_2d_array"],
+	["builtin", "texture_depth_cube"],
+	["builtin", "texture_depth_cube_array"],
+	["builtin", "texture_depth_multisampled_2d"]
+]

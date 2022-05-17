@@ -23,6 +23,8 @@
 true
 false
 
+notALiteral20x3f
+
 ----------------------------------------------------
 
 [
@@ -34,13 +36,13 @@ false
 	["int-literal", "0i"],
 	["hex-int-literal", "0x3f"],
 
-	["decimal-float-literal-a", "0.e+4f"],
-	["decimal-float-literal-a", "01."],
-	["decimal-float-literal-a", ".01"],
-	["decimal-float-literal-a", "12.34"],
-	["decimal-float-literal-a", ".0f"],
-	["decimal-float-literal-b", "0h"],
-	["decimal-float-literal-a", "1e-3"],
+	["decimal-float-literal", "0.e+4f"],
+	["decimal-float-literal", "01."],
+	["decimal-float-literal", ".01"],
+	["decimal-float-literal", "12.34"],
+	["decimal-float-literal", ".0f"],
+	["decimal-float-literal", "0h"],
+	["decimal-float-literal", "1e-3"],
 	["hex-float-literal", "0xa.fp+2"],
 	["hex-float-literal", "0x1P+4f"],
 	["hex-float-literal", "0X.3"],
@@ -49,5 +51,7 @@ false
 	["hex-float-literal", "0x3.2p+2h"],
 
 	["bool-literal", "true"],
-	["bool-literal", "false"]
+	["bool-literal", "false"],
+
+	"\r\n\r\nnotALiteral20x3f"
 ]

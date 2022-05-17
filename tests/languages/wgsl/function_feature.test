@@ -6,11 +6,11 @@ fn my_function() -> bool {
 
 [
 	["keyword", "fn"],
-	["functions", [" my_function"]],
+	["functions", "my_function"],
 	["punctuation", "("],
 	["punctuation", ")"],
 	["operator", "->"],
-	["types", "bool"],
+	["builtin", "bool"],
 	["punctuation", "{"],
 
 	["keyword", "return"],
