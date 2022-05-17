@@ -1,4 +1,5 @@
 fn my_function() -> bool {
+	my_function();
     return true;
 }
 
@@ -13,6 +14,10 @@ fn my_function() -> bool {
 	["builtin", "bool"],
 	["punctuation", "{"],
 
+	["function-calls", "my_function"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
 	["keyword", "return"],
 	["bool-literal", "true"],
 	["punctuation", ";"],
