@@ -4,9 +4,9 @@ Prism.languages.wgsl = {
         greedy: true,
     },
     'attributes': {
-        pattern: /(@)[_a-z]\w*/i,
+        pattern: /(@)(?:align|binding|builtin|const|group|id|interpolate|invariant|location|size|workgroup_size|vertex|fragment|compute)/i,
         lookbehind: true,
-        alias: 'important',
+        alias: 'attr-name',
     },
     'functions': {
         pattern: /\b(fn\s+)[_a-zA-Z]\w*(?=[(<])/,
@@ -22,15 +22,15 @@ Prism.languages.wgsl = {
     'class-name': /\b(?:[A-Z][A-Za-z0-9]*)\b/,
     'built-in-values-vertex': {
         pattern: /\b(?:vertex_index|instance_index|position)\b/,
-        alias: 'keyword',
+        alias: 'attr-value',
     },
     'built-in-values-fragment': {
         pattern: /\b(?:front_facing|frag_depth|sample_index|sample_mask)\b/,
-        alias: 'keyword',
+        alias: 'attr-value',
     },
     'built-in-values-compute': {
         pattern: /\b(?:local_invocation_id|local_invocation_index|global_invocation_id|workgroup_id|num_workgroups)\b/,
-        alias: 'keyword',
+        alias: 'attr-value',
     },
     'bool-literal': {
         pattern: /\b(?:true|false)\b/,
