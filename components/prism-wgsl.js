@@ -3,17 +3,25 @@ Prism.languages.wgsl = {
 		pattern: /\/\/.*|\/\*[\s\S]*?(?:\*\/|$)/,
 		greedy: true,
 	},
-	'attributes': {
-		pattern: /(@)(?:align|binding|builtin\(.*\)|compute|const|fragment|group|id|interpolate|invariant|location|size|vertex|workgroup_size)/i,
+	'builtin-attribute': {
+		pattern: /(@)builtin\(.*?\)/,
 		lookbehind: true,
-		alias: 'attr-name',
 		inside: {
+			'attribute': {
+				pattern: /^builtin/,
+				alias: 'attr-name',
+			},
+			'punctuation': /[(),]/,
 			'built-in-values': {
 				pattern: /\b(?:frag_depth|front_facing|global_invocation_id|instance_index|local_invocation_id|local_invocation_index|num_workgroups|position|sample_index|sample_mask|vertex_index|workgroup_id)\b/,
-				alias: 'attr-value'
+				alias: 'attr-value',
 			},
-			'punctuation': /[()]/,
 		},
+	},
+	'attributes': {
+		pattern: /(@)(?:align|binding|compute|const|fragment|group|id|interpolate|invariant|location|size|vertex|workgroup_size)/i,
+		lookbehind: true,
+		alias: 'attr-name',
 	},
 	'functions': {
 		pattern: /\b(fn\s+)[_a-zA-Z]\w*(?=[(<])/,

@@ -19,6 +19,7 @@
 @builtin(workgroup_id)
 @builtin(num_workgroups)
 
+@builtin(notABuiltInValue)
 something.vertex_index;
 
 @const
@@ -41,160 +42,168 @@ something.vertex_index;
 	"notAnAttribute\r\n",
 
 	["punctuation", "@"],
-	["attributes", ["align"]],
+	["attributes", "align"],
 	["punctuation", "("],
 	["punctuation", ")"],
 
 	["punctuation", "@"],
-	["attributes", ["binding"]],
+	["attributes", "binding"],
 	["punctuation", "("],
 	["punctuation", ")"],
 
 	["punctuation", "@"],
-	["attributes", [
-		"builtin",
+	["builtin-attribute", [
+		["attribute", "builtin"],
 		["punctuation", "("],
 		["punctuation", ")"]
 	]],
 
 	["punctuation", "@"],
-	["attributes", [
-		"builtin",
+	["builtin-attribute", [
+		["attribute", "builtin"],
 		["punctuation", "("],
 		["built-in-values", "vertex_index"],
 		["punctuation", ")"]
 	]],
 
 	["punctuation", "@"],
-	["attributes", [
-		"builtin",
+	["builtin-attribute", [
+		["attribute", "builtin"],
 		["punctuation", "("],
 		["built-in-values", "instance_index"],
 		["punctuation", ")"]
 	]],
 
 	["punctuation", "@"],
-	["attributes", [
-		"builtin",
+	["builtin-attribute", [
+		["attribute", "builtin"],
 		["punctuation", "("],
 		["built-in-values", "position"],
 		["punctuation", ")"]
 	]],
 
 	["punctuation", "@"],
-	["attributes", [
-		"builtin",
+	["builtin-attribute", [
+		["attribute", "builtin"],
 		["punctuation", "("],
 		["built-in-values", "front_facing"],
 		["punctuation", ")"]
 	]],
 
 	["punctuation", "@"],
-	["attributes", [
-		"builtin",
+	["builtin-attribute", [
+		["attribute", "builtin"],
 		["punctuation", "("],
 		["built-in-values", "frag_depth"],
 		["punctuation", ")"]
 	]],
 
 	["punctuation", "@"],
-	["attributes", [
-		"builtin",
+	["builtin-attribute", [
+		["attribute", "builtin"],
 		["punctuation", "("],
 		["built-in-values", "sample_index"],
 		["punctuation", ")"]
 	]],
 
 	["punctuation", "@"],
-	["attributes", [
-		"builtin",
+	["builtin-attribute", [
+		["attribute", "builtin"],
 		["punctuation", "("],
 		["built-in-values", "sample_mask"],
 		["punctuation", ")"]
 	]],
 
 	["punctuation", "@"],
-	["attributes", [
-		"builtin",
+	["builtin-attribute", [
+		["attribute", "builtin"],
 		["punctuation", "("],
 		["built-in-values", "local_invocation_id"],
 		["punctuation", ")"]
 	]],
 
 	["punctuation", "@"],
-	["attributes", [
-		"builtin",
+	["builtin-attribute", [
+		["attribute", "builtin"],
 		["punctuation", "("],
 		["built-in-values", "local_invocation_index"],
 		["punctuation", ")"]
 	]],
 
 	["punctuation", "@"],
-	["attributes", [
-		"builtin",
+	["builtin-attribute", [
+		["attribute", "builtin"],
 		["punctuation", "("],
 		["built-in-values", "global_invocation_id"],
 		["punctuation", ")"]
 	]],
 
 	["punctuation", "@"],
-	["attributes", [
-		"builtin",
+	["builtin-attribute", [
+		["attribute", "builtin"],
 		["punctuation", "("],
 		["built-in-values", "workgroup_id"],
 		["punctuation", ")"]
 	]],
 
 	["punctuation", "@"],
-	["attributes", [
-		"builtin",
+	["builtin-attribute", [
+		["attribute", "builtin"],
 		["punctuation", "("],
 		["built-in-values", "num_workgroups"],
 		["punctuation", ")"]
 	]],
 
-	"\r\n\r\nsomething",
+	["punctuation", "@"],
+	["builtin-attribute", [
+		["attribute", "builtin"],
+		["punctuation", "("],
+		"notABuiltInValue",
+		["punctuation", ")"]
+	]],
+
+	"\r\nsomething",
 	["punctuation", "."],
 	"vertex_index",
 	["punctuation", ";"],
 
 	["punctuation", "@"],
-	["attributes", ["const"]],
+	["attributes", "const"],
 
 	["punctuation", "@"],
-	["attributes", ["group"]],
+	["attributes", "group"],
 	["punctuation", "("],
 	["punctuation", ")"],
 
 	["punctuation", "@"],
-	["attributes", ["id"]],
+	["attributes", "id"],
 	["punctuation", "("],
 	["punctuation", ")"],
 
 	["punctuation", "@"],
-	["attributes", ["interpolate"]],
+	["attributes", "interpolate"],
 	["punctuation", "("],
 	["punctuation", ")"],
 
 	["punctuation", "@"],
-	["attributes", ["invariant"]],
+	["attributes", "invariant"],
 
 	["punctuation", "@"],
-	["attributes", ["location"]],
+	["attributes", "location"],
 	["punctuation", "("],
 	["punctuation", ")"],
 
 	["punctuation", "@"],
-	["attributes", ["size"]],
+	["attributes", "size"],
 	["punctuation", "("],
 	["punctuation", ")"],
 
 	["punctuation", "@"],
-	["attributes", ["workgroup_size"]],
+	["attributes", "workgroup_size"],
 	["punctuation", "("],
 	["punctuation", ")"],
 
-	["punctuation", "@"], ["attributes", ["vertex"]],
-	["punctuation", "@"], ["attributes", ["fragment"]],
-	["punctuation", "@"], ["attributes", ["compute"]]
+	["punctuation", "@"], ["attributes", "vertex"],
+	["punctuation", "@"], ["attributes", "fragment"],
+	["punctuation", "@"], ["attributes", "compute"]
 ]
