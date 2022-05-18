@@ -1,0 +1,209 @@
+@notAnAttribute
+@align()
+@binding()
+
+@builtin()
+
+@builtin(vertex_index)
+@builtin(instance_index)
+@builtin(position)
+
+@builtin(front_facing)
+@builtin(frag_depth)
+@builtin(sample_index)
+@builtin(sample_mask)
+
+@builtin(local_invocation_id)
+@builtin(local_invocation_index)
+@builtin(global_invocation_id)
+@builtin(workgroup_id)
+@builtin(num_workgroups)
+
+@builtin(notABuiltInValue)
+something.vertex_index;
+
+@const
+@group()
+@id()
+@interpolate()
+@invariant
+@location()
+@size()
+@workgroup_size()
+
+@vertex
+@fragment
+@compute
+
+----------------------------------------------------
+
+[
+	["punctuation", "@"],
+	"notAnAttribute\r\n",
+
+	["punctuation", "@"],
+	["attributes", "align"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["punctuation", "@"],
+	["attributes", "binding"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["punctuation", "@"],
+	["builtin-attribute", [
+		["attribute", "builtin"],
+		["punctuation", "("],
+		["punctuation", ")"]
+	]],
+
+	["punctuation", "@"],
+	["builtin-attribute", [
+		["attribute", "builtin"],
+		["punctuation", "("],
+		["built-in-values", "vertex_index"],
+		["punctuation", ")"]
+	]],
+
+	["punctuation", "@"],
+	["builtin-attribute", [
+		["attribute", "builtin"],
+		["punctuation", "("],
+		["built-in-values", "instance_index"],
+		["punctuation", ")"]
+	]],
+
+	["punctuation", "@"],
+	["builtin-attribute", [
+		["attribute", "builtin"],
+		["punctuation", "("],
+		["built-in-values", "position"],
+		["punctuation", ")"]
+	]],
+
+	["punctuation", "@"],
+	["builtin-attribute", [
+		["attribute", "builtin"],
+		["punctuation", "("],
+		["built-in-values", "front_facing"],
+		["punctuation", ")"]
+	]],
+
+	["punctuation", "@"],
+	["builtin-attribute", [
+		["attribute", "builtin"],
+		["punctuation", "("],
+		["built-in-values", "frag_depth"],
+		["punctuation", ")"]
+	]],
+
+	["punctuation", "@"],
+	["builtin-attribute", [
+		["attribute", "builtin"],
+		["punctuation", "("],
+		["built-in-values", "sample_index"],
+		["punctuation", ")"]
+	]],
+
+	["punctuation", "@"],
+	["builtin-attribute", [
+		["attribute", "builtin"],
+		["punctuation", "("],
+		["built-in-values", "sample_mask"],
+		["punctuation", ")"]
+	]],
+
+	["punctuation", "@"],
+	["builtin-attribute", [
+		["attribute", "builtin"],
+		["punctuation", "("],
+		["built-in-values", "local_invocation_id"],
+		["punctuation", ")"]
+	]],
+
+	["punctuation", "@"],
+	["builtin-attribute", [
+		["attribute", "builtin"],
+		["punctuation", "("],
+		["built-in-values", "local_invocation_index"],
+		["punctuation", ")"]
+	]],
+
+	["punctuation", "@"],
+	["builtin-attribute", [
+		["attribute", "builtin"],
+		["punctuation", "("],
+		["built-in-values", "global_invocation_id"],
+		["punctuation", ")"]
+	]],
+
+	["punctuation", "@"],
+	["builtin-attribute", [
+		["attribute", "builtin"],
+		["punctuation", "("],
+		["built-in-values", "workgroup_id"],
+		["punctuation", ")"]
+	]],
+
+	["punctuation", "@"],
+	["builtin-attribute", [
+		["attribute", "builtin"],
+		["punctuation", "("],
+		["built-in-values", "num_workgroups"],
+		["punctuation", ")"]
+	]],
+
+	["punctuation", "@"],
+	["builtin-attribute", [
+		["attribute", "builtin"],
+		["punctuation", "("],
+		"notABuiltInValue",
+		["punctuation", ")"]
+	]],
+
+	"\r\nsomething",
+	["punctuation", "."],
+	"vertex_index",
+	["punctuation", ";"],
+
+	["punctuation", "@"],
+	["attributes", "const"],
+
+	["punctuation", "@"],
+	["attributes", "group"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["punctuation", "@"],
+	["attributes", "id"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["punctuation", "@"],
+	["attributes", "interpolate"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["punctuation", "@"],
+	["attributes", "invariant"],
+
+	["punctuation", "@"],
+	["attributes", "location"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["punctuation", "@"],
+	["attributes", "size"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["punctuation", "@"],
+	["attributes", "workgroup_size"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["punctuation", "@"], ["attributes", "vertex"],
+	["punctuation", "@"], ["attributes", "fragment"],
+	["punctuation", "@"], ["attributes", "compute"]
+]

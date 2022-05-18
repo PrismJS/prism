@@ -1523,6 +1523,10 @@
 			"alias": "webidl",
 			"owner": "RunDevelopment"
 		},
+		"wgsl": {
+			"title": "WGSL",
+			"owner": "Dr4gonthree"
+		},
 		"wiki": {
 			"title": "Wiki markup",
 			"require": "markup",

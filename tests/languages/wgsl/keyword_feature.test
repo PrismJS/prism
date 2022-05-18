@@ -1,0 +1,59 @@
+bitcast
+break
+case
+const
+continue
+continuing
+default
+discard
+else
+enable
+fallthrough
+fn
+for
+function
+if
+let
+loop
+private
+return
+storage
+struct
+switch
+type
+uniform
+var
+while
+workgroup
+
+----------------------------------------------------
+
+[
+	["keyword", "bitcast"],
+	["keyword", "break"],
+	["keyword", "case"],
+	["keyword", "const"],
+	["keyword", "continue"],
+	["keyword", "continuing"],
+	["keyword", "default"],
+	["keyword", "discard"],
+	["keyword", "else"],
+	["keyword", "enable"],
+	["keyword", "fallthrough"],
+	["keyword", "fn"],
+	["keyword", "for"],
+	["keyword", "function"],
+	["keyword", "if"],
+	["keyword", "let"],
+	["keyword", "loop"],
+	["keyword", "private"],
+	["keyword", "return"],
+	["keyword", "storage"],
+	["keyword", "struct"],
+	["keyword", "switch"],
+	["keyword", "type"],
+	["keyword", "uniform"],
+	["keyword", "var"],
+	["keyword", "while"],
+	["keyword", "workgroup"]
+]
