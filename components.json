@@ -902,6 +902,11 @@
 			"title": "Mermaid",
 			"owner": "RunDevelopment"
 		},
+		"metafont": {
+			"title": "METAFONT",
+			"alias": "mf",
+			"owner": "LaeriExNihilo"
+		},
 		"mizar": {
 			"title": "Mizar",
 			"owner": "Golmote"

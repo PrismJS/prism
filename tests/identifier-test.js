@@ -57,6 +57,12 @@ const testOptions = {
 		word: false,
 		template: false,
 	},
+
+	// METAFONT has a special scheme for variable names with tags, suffixes and subscripts
+	'metafont': {
+		word: false,
+		template: false,
+	},
 };
 
 /** @type {Record<keyof IdentifierTestOptions, string[]>} */

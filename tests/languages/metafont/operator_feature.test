@@ -1,0 +1,71 @@
+(0,0){curl 3}..{up}(100,0)--(100,100)---(200,100)...(200,150)..tension atleast 5..cycle;
+(known p)and(path p or(p<35));
+
+----------------------------------------------------
+
+[
+	["punctuation", "("],
+	["number", "0"],
+	["punctuation", ","],
+	["number", "0"],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["keyword", "curl"],
+	["number", "3"],
+	["punctuation", "}"],
+	["operator", ".."],
+	["punctuation", "{"],
+	["constant", "up"],
+	["punctuation", "}"],
+	["punctuation", "("],
+	["number", "100"],
+	["punctuation", ","],
+	["number", "0"],
+	["punctuation", ")"],
+	["operator", "--"],
+	["punctuation", "("],
+	["number", "100"],
+	["punctuation", ","],
+	["number", "100"],
+	["punctuation", ")"],
+	["operator", "---"],
+	["punctuation", "("],
+	["number", "200"],
+	["punctuation", ","],
+	["number", "100"],
+	["punctuation", ")"],
+	["operator", "..."],
+	["punctuation", "("],
+	["number", "200"],
+	["punctuation", ","],
+	["number", "150"],
+	["punctuation", ")"],
+	["operator", ".."],
+	["keyword", "tension"],
+	["keyword", "atleast"],
+	["number", "5"],
+	["operator", ".."],
+	["keyword", "cycle"],
+	["punctuation", ";"],
+
+	["punctuation", "("],
+	["builtin", "known"],
+	" p",
+	["punctuation", ")"],
+	["operator", "and"],
+	["punctuation", "("],
+	["type", "path"],
+	" p ",
+	["operator", "or"],
+	["punctuation", "("],
+	"p",
+	["operator", "<"],
+	["number", "35"],
+	["punctuation", ")"],
+	["punctuation", ")"],
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Checks for path and boolean operators and other operator-likes.
