@@ -5,7 +5,7 @@ Prism.languages.metafont = {
         greedy: true
     },
     'string': {
-        pattern: /"[^\r\n\u2028\u2029"]*"/,
+        pattern: /"[^\r\n"]*"/,
         greedy: true
     },
     'number': /\d*\.?\d+/,
