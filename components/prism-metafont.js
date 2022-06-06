@@ -34,19 +34,19 @@ Prism.languages.metafont = {
             pattern: /(^|[^/*\\])(?:\\|\\\\)(?![/*\\])/,
             lookbehind: true
         },
-        /\b(?:blankpicture|bp|cc|cm|dd|ditto|down|eps|epsilon|fullcircle|halfcircle|identity|in|infinity|left|mm|nullpen|nullpicture|origin|pc|pencircle|penrazor|penspeck|pensquare|penstroke|proof|pt|quartercircle|relax|right|smoke|unitpixel|unitsquare|up)\b/
+        /\b(?:blankpicture|bp|cc|cm|dd|ditto|down|eps|epsilon|fullcircle|halfcircle|identity|in|infinity|left|mm|nullpen|nullpicture|origin|pc|penrazor|penspeck|pensquare|penstroke|proof|pt|quartercircle|relax|right|smoke|unitpixel|unitsquare|up|_)\b/
     ],
     'quantity': {
-        pattern: /\b(?:autorounding|blacker|boundarychar|charcode|chardp|chardx|chardy|charext|charht|charic|charwd|currentwindow|day|designsize|displaying|fillin|fontmaking|granularity|hppp|join_radius|month|o_correction|pausing|pixels_per_inch|proofing|showstopping|smoothing|time|tolerance|tracingcapsules|tracingchoices|tracingcommands|tracingedges|tracingequations|tracingmacros|tracingonline|tracingoutput|tracingpens|tracingrestores|tracingspecs|tracingstats|tracingtitles|turningcheck|vppp|warningcheck|xoffset|year|yoffset)\b/,
+        pattern: /\b(?:autorounding|blacker|boundarychar|charcode|chardp|chardx|chardy|charext|charht|charic|charwd|currentwindow|day|designsize|displaying|fillin|fontmaking|granularity|hppp|join_radius|month|o_correction|pausing|pen_(?:bot|lft|rt|top)|pixels_per_inch|proofing|showstopping|smoothing|time|tolerance|tracingcapsules|tracingchoices|tracingcommands|tracingedges|tracingequations|tracingmacros|tracingonline|tracingoutput|tracingpens|tracingrestores|tracingspecs|tracingstats|tracingtitles|turningcheck|vppp|warningcheck|xoffset|year|yoffset)\b/,
         alias: 'keyword'
     },
     'command': {
-        pattern: /\b(?:batchmode|errorstopmode|nonstopmode|scrollmode|charlist|addto|cull|display|errhelp|errmessage|message|everyjob|extensible|fontdimen|headerbyte|inner|interim|let|ligtable|newinternal|numspecial|openwindow|outer|randomseed|save|show|showdependencies|showstats|showtoken|showvariable|shipout|special)\b/,
+        pattern: /\b(?:addto|batchmode|charlist|cull|display|errhelp|errmessage|errorstopmode|everyjob|extensible|fontdimen|headerbyte|inner|interim|let|ligtable|message|newinternal|nonstopmode|numspecial|openwindow|outer|randomseed|save|scrollmode|show|showdependencies|showstats|showtoken|showvariable|shipout|special)\b/,
         alias: 'builtin'
     },
     'operator': [
         {
-            pattern: /(^|[^>=<:|])(?:<|<=|=|=:|\|=:|\|=:>|=:|=:\|>|\|=:\||\|=:\|>|\|=:\|>>|>|>=|:|:=|<>|::)(?![>=<:|])/,
+            pattern: /(^|[^>=<:|])(?:<|<=|=|=:|\|=:|\|=:>|=:\|>|=:\||\|=:\||\|=:\|>|\|=:\|>>|>|>=|:|:=|<>|::|\|\|:)(?![>=<:|])/,
             lookbehind: true
         },
         {

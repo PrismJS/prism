@@ -1,0 +1,104 @@
+also at atleast
+begingroup
+charexists contour controls curl cycle
+def delimiters doublepath dropping dump
+else elseif end enddef endfor endgroup endinput exitif exitunless expandafter
+fi for forever forsuffixes from
+if input inwindow
+keeping kern
+of
+primarydef
+quote
+readstring
+scaled scantokens secondarydef shifted skipto slanted step
+tension tertiarydef to transformed
+until
+vardef
+withpen withweight
+xscaled
+yscaled
+zscaled
+
+----------------------------------------------------
+
+[
+	["keyword", "also"],
+	["keyword", "at"],
+	["keyword", "atleast"],
+
+	["keyword", "begingroup"],
+
+	["keyword", "charexists"],
+	["keyword", "contour"],
+	["keyword", "controls"],
+	["keyword", "curl"],
+	["keyword", "cycle"],
+
+	["keyword", "def"],
+	["keyword", "delimiters"],
+	["keyword", "doublepath"],
+	["keyword", "dropping"],
+	["keyword", "dump"],
+
+	["keyword", "else"],
+	["keyword", "elseif"],
+	["keyword", "end"],
+	["keyword", "enddef"],
+	["keyword", "endfor"],
+	["keyword", "endgroup"],
+	["keyword", "endinput"],
+	["keyword", "exitif"],
+	["keyword", "exitunless"],
+	["keyword", "expandafter"],
+
+	["keyword", "fi"],
+	["keyword", "for"],
+	["keyword", "forever"],
+	["keyword", "forsuffixes"],
+	["keyword", "from"],
+
+	["keyword", "if"],
+	["keyword", "input"],
+	["keyword", "inwindow"],
+
+	["keyword", "keeping"],
+	["keyword", "kern"],
+
+	["keyword", "of"],
+
+	["keyword", "primarydef"],
+
+	["keyword", "quote"],
+
+	["keyword", "readstring"],
+
+	["keyword", "scaled"],
+	["keyword", "scantokens"],
+	["keyword", "secondarydef"],
+	["keyword", "shifted"],
+	["keyword", "skipto"],
+	["keyword", "slanted"],
+	["keyword", "step"],
+
+	["keyword", "tension"],
+	["keyword", "tertiarydef"],
+	["keyword", "to"],
+	["keyword", "transformed"],
+
+	["keyword", "until"],
+
+	["keyword", "vardef"],
+
+	["keyword", "withpen"],
+	["keyword", "withweight"],
+
+	["keyword", "xscaled"],
+
+	["keyword", "yscaled"],
+
+	["keyword", "zscaled"]
+]
+
+----------------------------------------------------
+
+Checks for keywords.

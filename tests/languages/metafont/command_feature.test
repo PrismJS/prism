@@ -1,0 +1,68 @@
+addto
+batchmode
+charlist cull
+display
+errhelp errmessage errorstopmode everyjob extensible
+fontdimen
+headerbyte
+inner interim
+let ligtable
+message
+newinternal nonstopmode numspecial
+openwindow outer
+randomseed
+save scrollmode show showdependencies showstats showtoken showvariable shipout special
+
+----------------------------------------------------
+
+[
+	["command", "addto"],
+
+	["command", "batchmode"],
+
+	["command", "charlist"],
+	["command", "cull"],
+
+	["command", "display"],
+
+	["command", "errhelp"],
+	["command", "errmessage"],
+	["command", "errorstopmode"],
+	["command", "everyjob"],
+	["command", "extensible"],
+
+	["command", "fontdimen"],
+
+	["command", "headerbyte"],
+
+	["command", "inner"],
+	["command", "interim"],
+
+	["command", "let"],
+	["command", "ligtable"],
+
+	["command", "message"],
+
+	["command", "newinternal"],
+	["command", "nonstopmode"],
+	["command", "numspecial"],
+
+	["command", "openwindow"],
+	["command", "outer"],
+
+	["command", "randomseed"],
+
+	["command", "save"],
+	["command", "scrollmode"],
+	["command", "show"],
+	["command", "showdependencies"],
+	["command", "showstats"],
+	["command", "showtoken"],
+	["command", "showvariable"],
+	["command", "shipout"],
+	["command", "special"]
+]
+
+----------------------------------------------------
+
+Checks for commands.

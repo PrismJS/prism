@@ -1,0 +1,53 @@
+% Special variables
+#@ @ @#
+whatever
+
+% Chardimen variables
+d h w
+
+% Position variables
+x y z
+
+% Output variables
+aspect_ratio localfont mag mode screen_cols screen_rows
+
+% Other variables
+currentpen currentpicture currenttransform
+extra_beginchar extra_endchar extra_setup
+
+----------------------------------------------------
+
+[
+	["comment", "% Special variables"],
+	["variable", "#@"], ["variable", "@"], ["variable", "@#"],
+	["variable", "whatever"],
+
+	["comment", "% Chardimen variables"],
+	["variable", "d"], ["variable", "h"], ["variable", "w"],
+
+	["comment", "% Position variables"],
+	["variable", "x"], ["variable", "y"], ["variable", "z"],
+
+	["comment", "% Output variables"],
+
+	["variable", "aspect_ratio"],
+	["variable", "localfont"],
+	["variable", "mag"],
+	["variable", "mode"],
+	["variable", "screen_cols"],
+	["variable", "screen_rows"],
+
+	["comment", "% Other variables"],
+
+	["variable", "currentpen"],
+	["variable", "currentpicture"],
+	["variable", "currenttransform"],
+
+	["variable", "extra_beginchar"],
+	["variable", "extra_endchar"],
+	["variable", "extra_setup"]
+]
+
+----------------------------------------------------
+
+Checks for important variables.

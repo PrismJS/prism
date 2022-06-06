@@ -227,7 +227,6 @@
 		"elisp": "lisp",
 		"emacs-lisp": "lisp",
 		"md": "markdown",
-		"mf": "metafont",
 		"moon": "moonscript",
 		"n4jsd": "n4js",
 		"nani": "naniscript",

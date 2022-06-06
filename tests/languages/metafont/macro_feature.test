@@ -1,0 +1,30 @@
+beginchar cullit decr define_pixels div draw downto endchar fill flex incr max min mod mode_setup penlabels penpos shipit showit upto
+
+----------------------------------------------------
+
+[
+	["macro", "beginchar"],
+	["macro", "cullit"],
+	["macro", "decr"],
+	["macro", "define_pixels"],
+	["macro", "div"],
+	["macro", "draw"],
+	["macro", "downto"],
+	["macro", "endchar"],
+	["macro", "fill"],
+	["macro", "flex"],
+	["macro", "incr"],
+	["macro", "max"],
+	["macro", "min"],
+	["macro", "mod"],
+	["macro", "mode_setup"],
+	["macro", "penlabels"],
+	["macro", "penpos"],
+	["macro", "shipit"],
+	["macro", "showit"],
+	["macro", "upto"]
+]
+
+----------------------------------------------------
+
+Checks for a few important macros.
