@@ -1,4 +1,4 @@
-:
+: :=
 
 % Boolean operators
 and or not <>
@@ -14,12 +14,13 @@ and or not <>
 & < <= >= > = <>
 
 % Ligature operators
-=: :: |=: |=:> =:| =:>| |=:| |=:|> |=:|>> ||:
+=: :: |=: |=:> =:| =:|> |=:| |=:|> |=:|>> ||:
 
 ----------------------------------------------------
 
 [
 	["operator", ":"],
+	["operator", ":="],
 
 	["comment", "% Boolean operators"],
 
@@ -70,7 +71,7 @@ and or not <>
 	["operator", "|=:"],
 	["operator", "|=:>"],
 	["operator", "=:|"],
-	" =:>| ",
+	["operator", "=:|>"],
 	["operator", "|=:|"],
 	["operator", "|=:|>"],
 	["operator", "|=:|>>"],
