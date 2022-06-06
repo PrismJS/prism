@@ -81,5 +81,4 @@ Prism.languages.metafont = {
         pattern: /(^|[^@#&$])(?:@#|#@|#|@)(?![@#&$])|\b(?:aspect_ratio|currentpen|currentpicture|currenttransform|d|extra_beginchar|extra_endchar|extra_setup|h|localfont|mag|mode|screen_cols|screen_rows|whatever|w|x|y|z)\b/,
         lookbehind: true
     }
-};
-Prism.languages.mf=Prism.languages['metafont'];
+}
