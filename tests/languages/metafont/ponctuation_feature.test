@@ -1,0 +1,25 @@
+{ }
+
+% Loners
+,;()
+[]
+
+----------------------------------------------------
+
+[
+	["punctuation", "{"], ["punctuation", "}"],
+
+	["comment", "% Loners"],
+
+	["punctuation", ","],
+	["punctuation", ";"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["punctuation", "["],
+	["punctuation", "]"]
+]
+
+----------------------------------------------------
+
+Checks for punctuation and delimiters.

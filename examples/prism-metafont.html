@@ -1,0 +1,21 @@
+<h2>Comments and strings</h2>
+<pre><code>%This makes a comment.
+"While this is a string."</code></pre>
+
+<h2>Numbers</h2>
+<pre><code>0 1.2 .3</code></pre>
+
+<h2>Operators</h2>
+<pre><code>eps*256>=1&lt;&gt;true
+""&ditto
+z1..z2--z3
+5+-+4=3</code></pre>
+
+<h2>Types</h2>
+<pre><code>path p[],q[]</code></pre>
+
+<h2>Concrete example</h2>
+<pre><code>% From plain.mf
+vardef penpos@#(expr b,d) =
+(x@#r-x@#l,y@#r-y@#l)=(b,0) rotated d;
+x@#=.5(x@#l+x@#r); y@#=.5(y@#l+y@#r) enddef;</code></pre>

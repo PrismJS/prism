@@ -1,0 +1,96 @@
+autorounding
+boundarychar
+charcode chardp chardx chardy charext charht charic charwd
+day designsize
+fillin fontmaking
+granularity
+hppp
+month
+pausing proofing
+showstopping smoothing
+time tracingcapsules tracingchoices tracingcommands tracingedges tracingequations tracingmacros tracingonline tracingoutput tracingpens tracingrestores tracingspecs tracingstats tracingtitles turningcheck
+vppp
+warningcheck
+xoffset
+year yoffset
+
+% From PlainMETAFONT
+blacker currentwindow displaying join_radius o_correction pen_bot pen_lft pen_rt pen_top pixels_per_inch tolerance
+
+----------------------------------------------------
+
+[
+	["quantity", "autorounding"],
+
+	["quantity", "boundarychar"],
+
+	["quantity", "charcode"],
+	["quantity", "chardp"],
+	["quantity", "chardx"],
+	["quantity", "chardy"],
+	["quantity", "charext"],
+	["quantity", "charht"],
+	["quantity", "charic"],
+	["quantity", "charwd"],
+
+	["quantity", "day"],
+	["quantity", "designsize"],
+
+	["quantity", "fillin"],
+	["quantity", "fontmaking"],
+
+	["quantity", "granularity"],
+
+	["quantity", "hppp"],
+
+	["quantity", "month"],
+
+	["quantity", "pausing"],
+	["quantity", "proofing"],
+
+	["quantity", "showstopping"],
+	["quantity", "smoothing"],
+
+	["quantity", "time"],
+	["quantity", "tracingcapsules"],
+	["quantity", "tracingchoices"],
+	["quantity", "tracingcommands"],
+	["quantity", "tracingedges"],
+	["quantity", "tracingequations"],
+	["quantity", "tracingmacros"],
+	["quantity", "tracingonline"],
+	["quantity", "tracingoutput"],
+	["quantity", "tracingpens"],
+	["quantity", "tracingrestores"],
+	["quantity", "tracingspecs"],
+	["quantity", "tracingstats"],
+	["quantity", "tracingtitles"],
+	["quantity", "turningcheck"],
+
+	["quantity", "vppp"],
+
+	["quantity", "warningcheck"],
+
+	["quantity", "xoffset"],
+
+	["quantity", "year"],
+	["quantity", "yoffset"],
+
+	["comment", "% From PlainMETAFONT"],
+
+	["quantity", "blacker"],
+	["quantity", "currentwindow"],
+	["quantity", "displaying"],
+	["quantity", "join_radius"],
+	["quantity", "o_correction"],
+	["quantity", "pen_bot"],
+	["quantity", "pen_lft"],
+	["quantity", "pen_rt"],
+	["quantity", "pen_top"],
+	["quantity", "pixels_per_inch"],
+	["quantity", "tolerance"]
+]
+
+----------------------------------------------------
+
+Checks for internal quantities.

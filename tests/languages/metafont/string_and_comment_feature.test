@@ -1,0 +1,21 @@
+%
+% comment
+""
+"string"
+"text%noncomment"
+%"not string"
+
+----------------------------------------------------
+
+[
+	["comment", "%"],
+	["comment", "% comment"],
+	["string", "\"\""],
+	["string", "\"string\""],
+	["string", "\"text%noncomment\""],
+	["comment", "%\"not string\""]
+]
+
+----------------------------------------------------
+
+Checks for strings and comments without mangling.

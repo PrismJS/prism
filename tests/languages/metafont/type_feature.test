@@ -1,0 +1,43 @@
+% Variable type
+boolean
+numeric
+pair
+path
+pen
+picture
+string
+transform
+
+% Argument type
+expr
+primary
+secondary
+suffix
+tertiary
+text
+
+----------------------------------------------------
+
+[
+	["comment", "% Variable type"],
+	["type", "boolean"],
+	["type", "numeric"],
+	["type", "pair"],
+	["type", "path"],
+	["type", "pen"],
+	["type", "picture"],
+	["type", "string"],
+	["type", "transform"],
+
+	["comment", "% Argument type"],
+	["type", "expr"],
+	["type", "primary"],
+	["type", "secondary"],
+	["type", "suffix"],
+	["type", "tertiary"],
+	["type", "text"]
+]
+
+----------------------------------------------------
+
+Checks for typing keywords.

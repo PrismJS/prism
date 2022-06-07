@@ -1,0 +1,97 @@
+% Length constants
+bp cc cm dd in mm pc pt
+
+% Pair constants
+down left origin right up
+
+% Numeric constants
+eps epsilon infinity _ % _ is -1, as per Knuth: "internal constant to make macros unreadable but shorter"
+
+% Path constants
+fullcircle halfcircle quartercircle unitsquare
+
+% Pen constant
+nullpen penrazor penspeck pensquare penstroke
+
+% Picture constants
+blankpicture nullpicture unitpixel
+
+% String constant
+ditto
+
+% Transform constant
+identity
+
+% Other constants
+proof relax smoke \ \\ ???
+
+----------------------------------------------------
+
+[
+	["comment", "% Length constants"],
+
+	["constant", "bp"],
+	["constant", "cc"],
+	["constant", "cm"],
+	["constant", "dd"],
+	["constant", "in"],
+	["constant", "mm"],
+	["constant", "pc"],
+	["constant", "pt"],
+
+	["comment", "% Pair constants"],
+
+	["constant", "down"],
+	["constant", "left"],
+	["constant", "origin"],
+	["constant", "right"],
+	["constant", "up"],
+
+	["comment", "% Numeric constants"],
+
+	["constant", "eps"],
+	["constant", "epsilon"],
+	["constant", "infinity"],
+	["constant", "_"],
+	["comment", "% _ is -1, as per Knuth: \"internal constant to make macros unreadable but shorter\""],
+
+	["comment", "% Path constants"],
+
+	["constant", "fullcircle"],
+	["constant", "halfcircle"],
+	["constant", "quartercircle"],
+	["constant", "unitsquare"],
+
+	["comment", "% Pen constant"],
+
+	["constant", "nullpen"],
+	["constant", "penrazor"],
+	["constant", "penspeck"],
+	["constant", "pensquare"],
+	["constant", "penstroke"],
+
+	["comment", "% Picture constants"],
+
+	["constant", "blankpicture"],
+	["constant", "nullpicture"],
+	["constant", "unitpixel"],
+
+	["comment", "% String constant"],
+	["constant", "ditto"],
+
+	["comment", "% Transform constant"],
+	["constant", "identity"],
+
+	["comment", "% Other constants"],
+
+	["constant", "proof"],
+	["constant", "relax"],
+	["constant", "smoke"],
+	["constant", "\\"],
+	["constant", "\\\\"],
+	["constant", "???"]
+]
+
+----------------------------------------------------
+
+Checks for constants best not to be redefined.

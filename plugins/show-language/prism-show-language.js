@@ -160,6 +160,7 @@
 		"matlab": "MATLAB",
 		"maxscript": "MAXScript",
 		"mel": "MEL",
+		"metafont": "METAFONT",
 		"mongodb": "MongoDB",
 		"moon": "MoonScript",
 		"n1ql": "N1QL",

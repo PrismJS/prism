@@ -1,0 +1,70 @@
+ASCII
+angle
+char cosd
+decimal directiontime
+floor
+hex
+intersectiontimes
+jobname
+known
+length
+makepath makepen mexp mlog
+normaldeviate
+oct odd
+pencircle penoffset point postcontrol precontrol
+reverse rotated
+sind sqrt str subpath substring
+totalweight turningnumber
+uniformdeviate unknown
+xpart xxpart xypart
+ypart yxpart yypart
+
+----------------------------------------------------
+
+[
+	["builtin", "ASCII"],
+	["builtin", "angle"],
+	["builtin", "char"],
+	["builtin", "cosd"],
+	["builtin", "decimal"],
+	["builtin", "directiontime"],
+	["builtin", "floor"],
+	["builtin", "hex"],
+	["builtin", "intersectiontimes"],
+	["builtin", "jobname"],
+	["builtin", "known"],
+	["builtin", "length"],
+	["builtin", "makepath"],
+	["builtin", "makepen"],
+	["builtin", "mexp"],
+	["builtin", "mlog"],
+	["builtin", "normaldeviate"],
+	["builtin", "oct"],
+	["builtin", "odd"],
+	["builtin", "pencircle"],
+	["builtin", "penoffset"],
+	["builtin", "point"],
+	["builtin", "postcontrol"],
+	["builtin", "precontrol"],
+	["builtin", "reverse"],
+	["builtin", "rotated"],
+	["builtin", "sind"],
+	["builtin", "sqrt"],
+	["builtin", "str"],
+	["builtin", "subpath"],
+	["builtin", "substring"],
+	["builtin", "totalweight"],
+	["builtin", "turningnumber"],
+	["builtin", "uniformdeviate"],
+	["builtin", "unknown"],
+	["builtin", "xpart"],
+	["builtin", "xxpart"],
+	["builtin", "xypart"],
+	["builtin", "ypart"],
+	["builtin", "yxpart"],
+	["builtin", "yypart"]
+]
+
+----------------------------------------------------
+
+Checks for primitive METAFONT operations.

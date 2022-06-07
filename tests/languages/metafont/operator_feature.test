@@ -1,0 +1,83 @@
+: :=
+
+% Boolean operators
+and or not <>
+
+% Numeric operators
+< <= >= > = <>
+* ** / + - ++ +-+
+
+% Path operators
+& .. ... -- ---
+
+% String operators
+& < <= >= > = <>
+
+% Ligature operators
+=: :: |=: |=:> =:| =:|> |=:| |=:|> |=:|>> ||:
+
+----------------------------------------------------
+
+[
+	["operator", ":"],
+	["operator", ":="],
+
+	["comment", "% Boolean operators"],
+
+	["operator", "and"],
+	["operator", "or"],
+	["operator", "not"],
+	["operator", "<>"],
+
+	["comment", "% Numeric operators"],
+
+	["operator", "<"],
+	["operator", "<="],
+	["operator", ">="],
+	["operator", ">"],
+	["operator", "="],
+	["operator", "<>"],
+
+	["operator", "*"],
+	["operator", "**"],
+	["operator", "/"],
+	["operator", "+"],
+	["operator", "-"],
+	["operator", "++"],
+	["operator", "+-+"],
+
+	["comment", "% Path operators"],
+
+	["operator", "&"],
+	["operator", ".."],
+	["operator", "..."],
+	["operator", "--"],
+	["operator", "---"],
+
+	["comment", "% String operators"],
+
+	["operator", "&"],
+	["operator", "<"],
+	["operator", "<="],
+	["operator", ">="],
+	["operator", ">"],
+	["operator", "="],
+	["operator", "<>"],
+
+	["comment", "% Ligature operators"],
+
+	["operator", "=:"],
+	["operator", "::"],
+	["operator", "|=:"],
+	["operator", "|=:>"],
+	["operator", "=:|"],
+	["operator", "=:|>"],
+	["operator", "|=:|"],
+	["operator", "|=:|>"],
+	["operator", "|=:|>>"],
+	["operator", "||:"]
+]
+
+----------------------------------------------------
+
+Checks for operators.
