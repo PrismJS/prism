@@ -33,6 +33,18 @@
 		return str.length + res;
 	}
 
+	var settingsConfig = {
+		'remove-trailing': 'boolean',
+		'remove-indent': 'boolean',
+		'left-trim': 'boolean',
+		'right-trim': 'boolean',
+		'break-lines': 'number',
+		'indent': 'number',
+		'remove-initial-line-feed': 'boolean',
+		'tabs-to-spaces': 'number',
+		'spaces-to-tabs': 'number',
+	};
+
 	NormalizeWhitespace.prototype = {
 		setDefaults: function (defaults) {
 			this.defaults = assign(this.defaults, defaults);
@@ -159,6 +171,27 @@
 		var pre = env.element.parentNode;
 		if (!env.code || !pre || pre.nodeName.toLowerCase() !== 'pre') {
 			return;
+		}
+
+		if (env.settings == null) { env.settings = {}; }
+
+		// Read settings from 'data-' attributes
+		for (var key in settingsConfig) {
+			if (Object.hasOwnProperty.call(settingsConfig, key)) {
+				var settingType = settingsConfig[key];
+				if (pre.hasAttribute('data-' + key)) {
+					var value = pre.getAttribute('data-' + key);
+					switch (settingType) {
+						case 'boolean':
+							value = (value === 'true');
+							break;
+						case 'number':
+							value = (isNaN(+value) ? 0 : +value);
+							break;
+					}
+					env.settings[key] = value;
+				}
+			}
 		}
 
 		var children = pre.childNodes;
