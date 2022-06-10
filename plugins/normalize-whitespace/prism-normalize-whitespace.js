@@ -181,7 +181,7 @@
 				var settingType = settingsConfig[key];
 				if (pre.hasAttribute('data-' + key)) {
 					try {
-						var value = JSON.parse(pre.getAttribute('data-' + key) || 'true')
+						var value = JSON.parse(pre.getAttribute('data-' + key) || 'true');
 						if (typeof value === settingType) {
 							env.settings[key] = value;
 						}
