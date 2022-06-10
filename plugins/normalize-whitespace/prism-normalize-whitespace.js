@@ -186,7 +186,7 @@
 							value = (value === 'true' || value === '') || (value === 'false' ? false : undefined);
 							break;
 						case 'number':
-							value = (value === '' ? undefined : (isNaN(+value) ? undefined : +value));
+							value = (value === '' || (isNaN(Number(value))) ? undefined : Number(value));
 							break;
 					}
 					if (value !== undefined) {
