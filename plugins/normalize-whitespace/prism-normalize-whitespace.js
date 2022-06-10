@@ -180,17 +180,13 @@
 			if (Object.hasOwnProperty.call(settingsConfig, key)) {
 				var settingType = settingsConfig[key];
 				if (pre.hasAttribute('data-' + key)) {
-					var value = pre.getAttribute('data-' + key);
-					switch (settingType) {
-						case 'boolean':
-							value = (value === 'true' || value === '') || (value === 'false' ? false : undefined);
-							break;
-						case 'number':
-							value = (value === '' || (isNaN(Number(value))) ? undefined : Number(value));
-							break;
-					}
-					if (value !== undefined) {
-						env.settings[key] = value;
+					try {
+						var value = JSON.parse(pre.getAttribute('data-' + key) || 'true')
+						if (typeof value === settingType) {
+							env.settings[key] = value;
+						}
+					} catch (_error) {
+						// ignore error
 					}
 				}
 			}
