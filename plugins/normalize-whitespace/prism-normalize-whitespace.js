@@ -183,13 +183,15 @@
 					var value = pre.getAttribute('data-' + key);
 					switch (settingType) {
 						case 'boolean':
-							value = (value === 'true');
+							value = (value === 'true' || value === '') || (value === 'false' ? false : undefined);
 							break;
 						case 'number':
-							value = (isNaN(+value) ? 0 : +value);
+							value = (value === '' ? undefined : (isNaN(+value) ? undefined : +value));
 							break;
 					}
-					env.settings[key] = value;
+					if (value !== undefined) {
+						env.settings[key] = value;
+					}
 				}
 			}
 		}
