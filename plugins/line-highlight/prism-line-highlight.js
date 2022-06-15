@@ -168,6 +168,13 @@
 				if (hasLineNumbers && Prism.plugins.lineNumbers) {
 					var startNode = Prism.plugins.lineNumbers.getLine(pre, start);
 					var endNode = Prism.plugins.lineNumbers.getLine(pre, end);
+					// endNode is the `nthChild` th child of its parent node
+					var nthChild = 1;
+					var element = endNode;
+					while (element.previousSibling) {
+						element = element.previousSibling;
+						nthChild++;
+					}
 
 					if (startNode) {
 						var top = startNode.offsetTop + codePreOffset + 'px';
@@ -177,10 +184,16 @@
 					}
 
 					if (endNode) {
-						var height = (endNode.offsetTop - startNode.offsetTop) + endNode.offsetHeight + 'px';
-						mutateActions.push(function () {
-							line.style.height = height;
-						});
+						// Ignore the line if it exceed range
+						if (start === end && end > nthChild) {
+							mutateActions.pop();
+							return;
+						} else {
+							var height = (endNode.offsetTop - startNode.offsetTop) + endNode.offsetHeight + 'px';
+							mutateActions.push(function () {
+								line.style.height = height;
+							});
+						}
 					}
 				} else {
 					mutateActions.push(function () {
