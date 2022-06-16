@@ -6,6 +6,7 @@
 
 	var LINE_NUMBERS_CLASS = 'line-numbers';
 	var LINKABLE_LINE_NUMBERS_CLASS = 'linkable-line-numbers';
+	var NEW_LINE_EXP = /\n(?!$)/g;
 
 	/**
 	 * @param {string} selector
@@ -136,7 +137,8 @@
 			var codeElement = pre.querySelector('code');
 			var parentElement = hasLineNumbers ? pre : codeElement || pre;
 			var mutateActions = /** @type {(() => void)[]} */ ([]);
-
+			var lineBreakMatch = codeElement.textContent.match(NEW_LINE_EXP);
+			var numberOfLines = lineBreakMatch ? lineBreakMatch.length + 1 : 1;
 			/**
 			 * The top offset between the content box of the <code> element and the content box of the parent element of
 			 * the line highlight element (either `<pre>` or `<code>`).
@@ -154,6 +156,11 @@
 
 				var start = +range[0];
 				var end = +range[1] || start;
+				end = Math.min(numberOfLines, end);
+
+				if (end < start) {
+					return;
+				}
 
 				/** @type {HTMLElement} */
 				var line = pre.querySelector('.line-highlight[data-range="' + currentRange + '"]') || document.createElement('div');
@@ -168,13 +175,6 @@
 				if (hasLineNumbers && Prism.plugins.lineNumbers) {
 					var startNode = Prism.plugins.lineNumbers.getLine(pre, start);
 					var endNode = Prism.plugins.lineNumbers.getLine(pre, end);
-					// endNode is the `nthChild` th child of its parent node
-					var nthChild = 1;
-					var element = endNode;
-					while (element.previousSibling) {
-						element = element.previousSibling;
-						nthChild++;
-					}
 
 					if (startNode) {
 						var top = startNode.offsetTop + codePreOffset + 'px';
@@ -184,16 +184,10 @@
 					}
 
 					if (endNode) {
-						// Ignore the line if it exceed range
-						if (start === end && end > nthChild) {
-							mutateActions.pop();
-							return;
-						} else {
-							var height = (endNode.offsetTop - startNode.offsetTop) + endNode.offsetHeight + 'px';
-							mutateActions.push(function () {
-								line.style.height = height;
-							});
-						}
+						var height = (endNode.offsetTop - startNode.offsetTop) + endNode.offsetHeight + 'px';
+						mutateActions.push(function () {
+							line.style.height = height;
+						});
 					}
 				} else {
 					mutateActions.push(function () {
