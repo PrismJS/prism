@@ -1,0 +1,1068 @@
+// View this document online at https://asciidoctor.org/docs/asciidoc-writers-guide/
+= AsciiDoc Writer's Guide
+Dan Allen <https://github.com/mojavelinux[@mojavelinux]>; Sarah White <https://github.com/graphitefriction[@graphitefriction]>
+:description: This guide describes the basic structure of an AsciiDoc document, how to create your first AsciiDoc document, how to add other structural elements such as lists, block quotes and source code, and how to convert an AsciiDoc document to HTML, DocBook and PDF.
+:keywords: AsciiDoc, Asciidoctor, syntax, reference, learn, how to, writers, authors
+:page-description: {description}
+:page-keywords: {keywords}
+:page-layout: docs
+ifndef::env-site[]
+:toc: left
+:icons: font
+:idprefix:
+:idseparator: -
+:sectanchors:
+:source-highlighter: highlightjs
+endif::[]
+:experimental:
+:mdash: &#8212;
+:language: asciidoc
+:source-language: {language}
+:table-caption!:
+:example-caption!:
+:figure-caption!:
+:imagesdir: ../images
+// Refs
+:url-docs-asciidoc: https://docs.asciidoctor.org/asciidoc/latest/
+:url-quickref: {url-docs-asciidoc}syntax-quick-reference/
+:user-ref: https://asciidoctor.org/docs/user-manual
+:asciidoctor-ref: https://asciidoctor.org/
+:asciidoctor-gem-ref: https://rubygems.org/gems/asciidoctor
+:uri-install: https://asciidoctor.org/docs/install-toolchain/
+:fopub-doc-ref: https://github.com/asciidoctor/asciidoctor-fopub#readme
+:docs-ref: https://asciidoctor.org/docs
+:gist-ref: https://gist.github.com
+:snippets-ref: https://gitlab.com/explore/snippets
+:publican-ref: https://fedorahosted.org/publican
+
+This guide provides a gentle introduction to AsciiDoc, a _plain text_ documentation *syntax* and *processor*.
+This introduction is intended for anyone who wants to reduce the effort required to write and publish content, whether for technical documentation, articles, web pages or good ol'-fashioned prose.
+
+TIP: If you want to know what AsciiDoc is all about, find the answer in {url-docs-asciidoc}#about-asciidoc[About AsciiDoc].
+If you're looking for a concise survey of the AsciiDoc syntax, consult the {url-quickref}[AsciiDoc Syntax Quick Reference].
+
+In this guide, you'll learn:
+
+- The basic structure of an AsciiDoc document
+- How to create your first AsciiDoc document
+- How to add other structural elements such as lists, block quotes and source code
+- How to convert an AsciiDoc document to HTML, DocBook and PDF
+
+In addition to covering the AsciiDoc basics, this guide also suggests a set of conventions to help you create more consistent documents and maximize your writing productivity.
+
+Let's dive in to AsciiDoc!
+
+== Writing in AsciiDoc
+
+The goal of this section is to teach you how to compose your first AsciiDoc document.
+Hopefully, when you look back, you'll agree it just makes sense.
+
+Your adventure with AsciiDoc begins in your favorite text editor.
+
+=== It's just text, mate.
+
+Since AsciiDoc syntax is just _plain text_, you can write an AsciiDoc document using _any_ text editor.
+You don't need complex word processing programs like Microsoft Word, OpenOffice Writer or Google Docs.
+In fact, you _shouldn't_ use these programs because they add cruft to your document (that you can't see) and makes conversion tedious.
+
+TIP: While it's true any text editor will do, I recommend selecting an editor that supports syntax highlighting for AsciiDoc.
+The *[red]##c##[green]##o##[purple]##l##[fuchsia]##o##[blue]##r##* brings contrast to the text, making it easier to read.
+The highlighting also confirms when you've entered the correct syntax for an inline or block element.
+
+The most popular application for editing plain text on macOS is *TextMate*.
+A similar choice on Linux is *GEdit*.
+On Windows, stay away from Notepad and Wordpad because they produce plain text which is not cross-platform friendly.
+Opt instead for a competent text editor like *Notepad++*.
+If you're a programmer (or a writer with an inner geek), you'll likely prefer *Vim*, *Emacs*, or *Sublime Text*, all of which are available cross-platform.
+The key feature all these editors share is syntax highlighting for AsciiDoc.
+
+Open up your favorite text editor and get ready to write some AsciiDoc!
+
+=== Content is king!
+
+The bulk of the content in a document is paragraph text.
+This is why Asciidoctor doesn't require any special markup or attributes to specify paragraph content.
+You can just start typing.
+
+In Asciidoctor, adjacent or consecutive lines of text form a paragraph element.
+To start a new paragraph after another element, such as a section title or table, hit the kbd:[RETURN] key twice to insert a blank line, and then continue typing your content.
+
+.Two paragraphs in an AsciiDoc document
+[source]
+----
+This journey begins one late Monday afternoon in Antwerp.
+Our team desperately needs coffee, but none of us dare open the office door.
+
+To leave means code dismemberment and certain death.
+----
+
+.The two paragraphs rendered using the default (html5) converter and stylesheet (asciidoctor.css)
+====
+This journey begins one late Monday afternoon in Antwerp.
+Our team desperately needs coffee, but none of us dare open the office door.
+
+To leave means code dismemberment and certain death.
+====
+
+Just like that, *you're writing in AsciiDoc!*
+As you can see, it's just like writing an e-mail.
+
+Save the file with a file extension of `.adoc`.
+
+TIP: If you want to find out how to convert the document to HTML, DocBook or PDF, skip ahead to the section on <<converting-your-document>>.
+
+==== Wrapped text and hard line breaks
+
+Since adjacent lines of text are combined into a single paragraph when Asciidoctor converts a document, that means you can wrap paragraph text or put each sentence or phrase on a separate line.
+The line breaks won't appear in the output.
+
+However, if you want the line breaks in a paragraph to be preserved, you can either use a space followed by a plus sign (`{plus}`) or set the `hardbreaks` option on the paragraph.
+This results in a visible line break (e.g., `<br>`) following each line.
+
+[source]
+.Line breaks preserved using a space followed by the plus sign ({plus})
+----
+Rubies are red, +
+Topazes are blue.
+----
+
+====
+Rubies are red, +
+Topazes are blue.
+====
+
+[source]
+.Line breaks preserved using the hardbreaks option
+----
+[%hardbreaks]
+Ruby is red.
+Java is black.
+----
+
+====
+[%hardbreaks]
+Ruby is red.
+Java is black.
+====
+
+To preserve line breaks throughout your whole document, add the `hardbreaks` attribute to the document's header.
+
+.Line breaks preserved throughout the document using the hardbreaks attribute
+[source]
+----
+= Line Break Doc Title
+:hardbreaks:
+
+Rubies are red,
+Topazes are blue.
+----
+
+=== Admonitions
+
+There are certain statements you may want to draw attention to by taking them out of the content's flow and labeling them with a priority.
+These are called admonitions.
+It's rendered style is determined by the assigned label (i.e., value).
+Asciidoctor provides five admonition style labels:
+
+* `NOTE`
+* `TIP`
+* `IMPORTANT`
+* `CAUTION`
+* `WARNING`
+
+.Caution vs. Warning
+[#caution-vs-warning]
+****
+When choosing the admonition type, you may find yourself getting confused between "caution" and "warning" as these words are often used interchangeably.
+Here's a simple rule to help you differentiate the two:
+
+* Use *CAUTION* to advise the reader to _act_ carefully (i.e., exercise care).
+* Use *WARNING* to inform the reader of danger, harm, or consequences that exist.
+
+To find a deeper analysis, see https://www.differencebetween.com/difference-between-caution-and-vs-warning/.
+****
+
+When you want to call attention to a single paragraph, start the first line of the paragraph with the label you want to use.
+The label must be uppercase and followed by a colon (`:`).
+
+.Admonition paragraph syntax
+[source]
+----
+WARNING: Wolpertingers are known to nest in server racks. <1> <2>
+Enter at your own risk.
+----
+<1> The label must be uppercase and immediately followed by a colon (`:`).
+<2> Separate the first line of the paragraph from the label by a single space.
+
+.Result: Admonition paragraph
+====
+WARNING: Wolpertingers are known to nest in server racks.
+Enter at your own risk.
+====
+
+An admonition paragraph is rendered in a callout box with the admonition label--or its corresponding icon--in the gutter.
+Icons are enabled by setting the `icons` attribute on the document.
+
+NOTE: Admonitions can also encapsulate any block content, which we'll cover later.
+
+=== Mild punctuation, strong impact
+
+Just as we emphasize certain words and phrases when we speak, we can emphasize them in text by surrounding them with punctuation.
+AsciiDoc refers to this markup as _quoted text_.
+
+==== Quoted text
+
+For instance, in an e-mail, you might "`speak`" a word louder by enclosing it in asterisks.
+
+[source]
+I can't believe it, we *won*!
+
+As you would expect, the asterisks make the text *won* bold.
+You can almost sense the emotion.
+This is one example of quoted (i.e., formatted) text.
+
+NOTE: The term "`quote`" is used liberally here to apply to any symbols that surround text in order to apply emphasis or special meaning.
+
+Here are the forms of quoted text that AsciiDoc recognizes:
+
+.Bold, italic, and monospace formatting syntax
+[source]
+----
+bold *constrained* & **un**constrained
+
+italic _constrained_ & __un__constrained
+
+bold italic *_constrained_* & **__un__**constrained
+
+monospace `constrained` & ``un``constrained
+
+monospace bold `*constrained*` & ``**un**``constrained
+
+monospace italic `_constrained_` & ``__un__``constrained
+
+monospace bold italic `*_constrained_*` & ``**__un__**``constrained
+----
+
+When you want to quote text (e.g., place emphasis) somewhere other than at the boundaries of a word, you need to double up the punctuation.
+
+.Result: Bold, italic, and monospace text
+====
+bold *constrained* & **un**constrained
+
+italic _constrained_ & __un__constrained
+
+bold italic *_constrained_* & **__un__**constrained
+
+monospace `constrained` & ``un``constrained
+
+monospace bold `*constrained*` & ``**un**``constrained
+
+monospace italic `_constrained_` & ``__un__``constrained
+
+monospace bold italic `*_constrained_*` & ``**__un__**``constrained
+====
+
+Any quoted text can be prefixed with an attribute list.
+The first positional attribute is treated as a role.
+The role can be used to apply custom styling to the text.
+For instance:
+
+[source]
+Type the word [.userinput]#asciidoc# into the search bar.
+
+When converting to HTML, the word "`asciidoc`" is wrapped in `<span>` tags and the role is used as the element's CSS class:
+
+[source,xml]
+<span class="userinput">asciidoc</span>
+
+You can apply styles to the text using CSS.
+
+You may not always want these substitutions to take place.
+In those cases, you'll need to use markup to escape the text.
+
+----------------------------------------------------
+
+[
+	["comment", "// View this document online at https://asciidoctor.org/docs/asciidoc-writers-guide/"],
+	["title", [
+		["punctuation", "="],
+		" AsciiDoc Writer's Guide"
+	]],
+	"\r\nDan Allen <",
+	["macro", [
+		["function", "https"],
+		["punctuation", ":"],
+		"//github.com/mojavelinux",
+		["attributes", [
+			["punctuation", "["],
+			["attr-value", "@mojavelinux"],
+			["punctuation", "]"]
+		]]
+	]],
+	">; Sarah White <",
+	["macro", [
+		["function", "https"],
+		["punctuation", ":"],
+		"//github.com/graphitefriction",
+		["attributes", [
+			["punctuation", "["],
+			["attr-value", "@graphitefriction"],
+			["punctuation", "]"]
+		]]
+	]],
+	">\r\n",
+	["attribute-entry", ":description: This guide describes the basic structure of an AsciiDoc document, how to create your first AsciiDoc document, how to add other structural elements such as lists, block quotes and source code, and how to convert an AsciiDoc document to HTML, DocBook and PDF."],
+	["attribute-entry", ":keywords: AsciiDoc, Asciidoctor, syntax, reference, learn, how to, writers, authors"],
+	["attribute-entry", ":page-description: {description}"],
+	["attribute-entry", ":page-keywords: {keywords}"],
+	["attribute-entry", ":page-layout: docs"],
+	["macro", [
+		["function", "ifndef"],
+		["punctuation", "::"],
+		"env-site",
+		["attributes", [
+			["punctuation", "["],
+			["punctuation", "]"]
+		]]
+	]],
+	["attribute-entry", ":toc: left"],
+	["attribute-entry", ":icons: font"],
+	["attribute-entry", ":idprefix:"],
+	["attribute-entry", ":idseparator: -"],
+	["attribute-entry", ":sectanchors:"],
+	["attribute-entry", ":source-highlighter: highlightjs"],
+	["macro", [
+		["function", "endif"],
+		["punctuation", "::"],
+		["attributes", [
+			["punctuation", "["],
+			["punctuation", "]"]
+		]]
+	]],
+	["attribute-entry", ":experimental:"],
+	["attribute-entry", ":mdash: &#8212;"],
+	["attribute-entry", ":language: asciidoc"],
+	["attribute-entry", ":source-language: {language}"],
+	["attribute-entry", ":table-caption!:"],
+	["attribute-entry", ":example-caption!:"],
+	["attribute-entry", ":figure-caption!:"],
+	["attribute-entry", ":imagesdir: ../images"],
+	["comment", "// Refs"],
+	["attribute-entry", ":url-docs-asciidoc: https://docs.asciidoctor.org/asciidoc/latest/"],
+	["attribute-entry", ":url-quickref: {url-docs-asciidoc}syntax-quick-reference/"],
+	["attribute-entry", ":user-ref: https://asciidoctor.org/docs/user-manual"],
+	["attribute-entry", ":asciidoctor-ref: https://asciidoctor.org/"],
+	["attribute-entry", ":asciidoctor-gem-ref: https://rubygems.org/gems/asciidoctor"],
+	["attribute-entry", ":uri-install: https://asciidoctor.org/docs/install-toolchain/"],
+	["attribute-entry", ":fopub-doc-ref: https://github.com/asciidoctor/asciidoctor-fopub#readme"],
+	["attribute-entry", ":docs-ref: https://asciidoctor.org/docs"],
+	["attribute-entry", ":gist-ref: https://gist.github.com"],
+	["attribute-entry", ":snippets-ref: https://gitlab.com/explore/snippets"],
+	["attribute-entry", ":publican-ref: https://fedorahosted.org/publican"],
+
+	"\r\n\r\nThis guide provides a gentle introduction to AsciiDoc, a ",
+	["inline", [
+		["italic", [
+			["punctuation", "_"],
+			"plain text",
+			["punctuation", "_"]
+		]]
+	]],
+	" documentation ",
+	["inline", [
+		["bold", [
+			["punctuation", "*"],
+			"syntax",
+			["punctuation", "*"]
+		]]
+	]],
+	" and ",
+	["inline", [
+		["bold", [
+			["punctuation", "*"],
+			"processor",
+			["punctuation", "*"]
+		]]
+	]],
+	".\r\nThis introduction is intended for anyone who wants to reduce the effort required to write and publish content, whether for technical documentation, articles, web pages or good ol'-fashioned prose.\r\n\r\n",
+
+	["admonition", "TIP:"],
+	" If you want to know what AsciiDoc is all about, find the answer in ",
+	["inline", [
+		["attribute-ref", [
+			["punctuation", "{"],
+			["variable", "url-docs-asciidoc"],
+			["punctuation", "}"]
+		]]
+	]],
+	"#about-asciidoc[About AsciiDoc].\r\nIf you're looking for a concise survey of the AsciiDoc syntax, consult the ",
+	["inline", [
+		["attribute-ref", [
+			["punctuation", "{"],
+			["variable", "url-quickref"],
+			["punctuation", "}"]
+		]]
+	]],
+	"[AsciiDoc Syntax Quick Reference].\r\n\r\nIn this guide, you'll learn:\r\n\r\n",
+
+	["list-punctuation", "-"],
+	" The basic structure of an AsciiDoc document\r\n",
+
+	["list-punctuation", "-"],
+	" How to create your first AsciiDoc document\r\n",
+
+	["list-punctuation", "-"],
+	" How to add other structural elements such as lists, block quotes and source code\r\n",
+
+	["list-punctuation", "-"],
+	" How to convert an AsciiDoc document to HTML, DocBook and PDF\r\n\r\nIn addition to covering the AsciiDoc basics, this guide also suggests a set of conventions to help you create more consistent documents and maximize your writing productivity.\r\n\r\nLet's dive in to AsciiDoc!\r\n\r\n",
+
+	["title", [
+		["punctuation", "=="],
+		" Writing in AsciiDoc"
+	]],
+
+	"\r\n\r\nThe goal of this section is to teach you how to compose your first AsciiDoc document.\r\nHopefully, when you look back, you'll agree it just makes sense.\r\n\r\nYour adventure with AsciiDoc begins in your favorite text editor.\r\n\r\n",
+
+	["title", [
+		["punctuation", "==="],
+		" It's just text, mate."
+	]],
+
+	"\r\n\r\nSince AsciiDoc syntax is just ",
+	["inline", [
+		["italic", [
+			["punctuation", "_"],
+			"plain text",
+			["punctuation", "_"]
+		]]
+	]],
+	", you can write an AsciiDoc document using ",
+	["inline", [
+		["italic", [
+			["punctuation", "_"],
+			"any",
+			["punctuation", "_"]
+		]]
+	]],
+	" text editor.\r\nYou don't need complex word processing programs like Microsoft Word, OpenOffice Writer or Google Docs.\r\nIn fact, you ",
+	["inline", [
+		["italic", [
+			["punctuation", "_"],
+			"shouldn't",
+			["punctuation", "_"]
+		]]
+	]],
+	" use these programs because they add cruft to your document (that you can't see) and makes conversion tedious.\r\n\r\n",
+
+	["admonition", "TIP:"],
+	" While it's true any text editor will do, I recommend selecting an editor that supports syntax highlighting for AsciiDoc.\r\nThe ",
+	["inline", [
+		["bold", [
+			["punctuation", "*"],
+			"[red]##c##[green]##o##[purple]##l##[fuchsia]##o##[blue]##r##",
+			["punctuation", "*"]
+		]]
+	]],
+	" brings contrast to the text, making it easier to read.\r\nThe highlighting also confirms when you've entered the correct syntax for an inline or block element.\r\n\r\nThe most popular application for editing plain text on macOS is ",
+	["inline", [
+		["bold", [
+			["punctuation", "*"],
+			"TextMate",
+			["punctuation", "*"]
+		]]
+	]],
+	".\r\nA similar choice on Linux is ",
+	["inline", [
+		["bold", [
+			["punctuation", "*"],
+			"GEdit",
+			["punctuation", "*"]
+		]]
+	]],
+	".\r\nOn Windows, stay away from Notepad and Wordpad because they produce plain text which is not cross-platform friendly.\r\nOpt instead for a competent text editor like ",
+	["inline", [
+		["bold", [
+			["punctuation", "*"],
+			"Notepad++",
+			["punctuation", "*"]
+		]]
+	]],
+	".\r\nIf you're a programmer (or a writer with an inner geek), you'll likely prefer ",
+	["inline", [
+		["bold", [
+			["punctuation", "*"],
+			"Vim",
+			["punctuation", "*"]
+		]]
+	]],
+	", ",
+	["inline", [
+		["bold", [
+			["punctuation", "*"],
+			"Emacs",
+			["punctuation", "*"]
+		]]
+	]],
+	", or ",
+	["inline", [
+		["bold", [
+			["punctuation", "*"],
+			"Sublime Text",
+			["punctuation", "*"]
+		]]
+	]],
+	", all of which are available cross-platform.\r\nThe key feature all these editors share is syntax highlighting for AsciiDoc.\r\n\r\nOpen up your favorite text editor and get ready to write some AsciiDoc!\r\n\r\n",
+
+	["title", [
+		["punctuation", "==="],
+		" Content is king!"
+	]],
+
+	"\r\n\r\nThe bulk of the content in a document is paragraph text.\r\nThis is why Asciidoctor doesn't require any special markup or attributes to specify paragraph content.\r\nYou can just start typing.\r\n\r\nIn Asciidoctor, adjacent or consecutive lines of text form a paragraph element.\r\nTo start a new paragraph after another element, such as a section title or table, hit the ",
+	["macro", [
+		["function", "kbd"],
+		["punctuation", ":"],
+		["attributes", [
+			["punctuation", "["],
+			["attr-value", "RETURN"],
+			["punctuation", "]"]
+		]]
+	]],
+	" key twice to insert a blank line, and then continue typing your content.\r\n\r\n",
+
+	["title", [
+		["punctuation", "."],
+		"Two paragraphs in an AsciiDoc document"
+	]],
+	["attributes", [
+		["punctuation", "["],
+		["attr-value", "source"],
+		["punctuation", "]"]
+	]],
+	["literal-block", [
+		["punctuation", "----"],
+		"\r\nThis journey begins one late Monday afternoon in Antwerp.\r\nOur team desperately needs coffee, but none of us dare open the office door.\r\n\r\nTo leave means code dismemberment and certain death.\r\n",
+		["punctuation", "----"]
+	]],
+
+	["title", [
+		["punctuation", "."],
+		"The two paragraphs rendered using the default (html5) converter and stylesheet (asciidoctor.css)"
+	]],
+	["other-block", [
+		["punctuation", "===="],
+		"\r\nThis journey begins one late Monday afternoon in Antwerp.\r\nOur team desperately needs coffee, but none of us dare open the office door.\r\n\r\nTo leave means code dismemberment and certain death.\r\n",
+		["punctuation", "===="]
+	]],
+
+	"\r\n\r\nJust like that, ",
+	["inline", [
+		["bold", [
+			["punctuation", "*"],
+			"you're writing in AsciiDoc!",
+			["punctuation", "*"]
+		]]
+	]],
+
+	"\r\nAs you can see, it's just like writing an e-mail.\r\n\r\nSave the file with a file extension of ",
+	["inline", [
+		["punctuation", "`"],
+		".adoc",
+		["punctuation", "`"]
+	]],
+	".\r\n\r\n",
+
+	["admonition", "TIP:"],
+	" If you want to find out how to convert the document to HTML, DocBook or PDF, skip ahead to the section on ",
+	["inline", [
+		["url", [
+			["punctuation", "<<"],
+			"converting-your-document",
+			["punctuation", ">>"]
+		]]
+	]],
+	".\r\n\r\n",
+
+	["title", [
+		["punctuation", "===="],
+		" Wrapped text and hard line breaks"
+	]],
+
+	"\r\n\r\nSince adjacent lines of text are combined into a single paragraph when Asciidoctor converts a document, that means you can wrap paragraph text or put each sentence or phrase on a separate line.\r\nThe line breaks won't appear in the output.\r\n\r\nHowever, if you want the line breaks in a paragraph to be preserved, you can either use a space followed by a plus sign (",
+	["inline", [
+		["punctuation", "`"],
+		"{plus}",
+		["punctuation", "`"]
+	]],
+	") or set the ",
+	["inline", [
+		["punctuation", "`"],
+		"hardbreaks",
+		["punctuation", "`"]
+	]],
+	" option on the paragraph.\r\nThis results in a visible line break (e.g., ",
+	["inline", [
+		["punctuation", "`"],
+		"<br>",
+		["punctuation", "`"]
+	]],
+	") following each line.\r\n\r\n",
+
+	["attributes", [
+		["punctuation", "["],
+		["attr-value", "source"],
+		["punctuation", "]"]
+	]],
+	["title", [
+		["punctuation", "."],
+		"Line breaks preserved using a space followed by the plus sign (",
+		["inline", [
+			["attribute-ref", [
+				["punctuation", "{"],
+				["variable", "plus"],
+				["punctuation", "}"]
+			]]
+		]],
+		")"
+	]],
+	["literal-block", [
+		["punctuation", "----"],
+		"\r\nRubies are red, +\r\nTopazes are blue.\r\n",
+		["punctuation", "----"]
+	]],
+
+	["other-block", [
+		["punctuation", "===="],
+		"\r\nRubies are red, ", ["line-continuation", "+"],
+		"\r\nTopazes are blue.\r\n",
+		["punctuation", "===="]
+	]],
+
+	["attributes", [
+		["punctuation", "["],
+		["attr-value", "source"],
+		["punctuation", "]"]
+	]],
+	["title", [
+		["punctuation", "."],
+		"Line breaks preserved using the hardbreaks option"
+	]],
+	["literal-block", [
+		["punctuation", "----"],
+		"\r\n[%hardbreaks]\r\nRuby is red.\r\nJava is black.\r\n",
+		["punctuation", "----"]
+	]],
+
+	["other-block", [
+		["punctuation", "===="],
+		["attributes", [
+			["punctuation", "["],
+			["attr-value", "%hardbreaks"],
+			["punctuation", "]"]
+		]],
+		"\r\nRuby is red.\r\nJava is black.\r\n",
+		["punctuation", "===="]
+	]],
+
+	"\r\n\r\nTo preserve line breaks throughout your whole document, add the ",
+	["inline", [
+		["punctuation", "`"],
+		"hardbreaks",
+		["punctuation", "`"]
+	]],
+	" attribute to the document's header.\r\n\r\n",
+
+	["title", [
+		["punctuation", "."],
+		"Line breaks preserved throughout the document using the hardbreaks attribute"
+	]],
+	["attributes", [
+		["punctuation", "["],
+		["attr-value", "source"],
+		["punctuation", "]"]
+	]],
+	["literal-block", [
+		["punctuation", "----"],
+		"\r\n= Line Break Doc Title\r\n:hardbreaks:\r\n\r\nRubies are red,\r\nTopazes are blue.\r\n",
+		["punctuation", "----"]
+	]],
+
+	["title", [
+		["punctuation", "==="],
+		" Admonitions"
+	]],
+
+	"\r\n\r\nThere are certain statements you may want to draw attention to by taking them out of the content's flow and labeling them with a priority.\r\nThese are called admonitions.\r\nIt's rendered style is determined by the assigned label (i.e., value).\r\nAsciidoctor provides five admonition style labels:\r\n\r\n",
+
+	["list-punctuation", "*"],
+	["inline", [
+		["punctuation", "`"],
+		"NOTE",
+		["punctuation", "`"]
+	]],
+
+	["list-punctuation", "*"],
+	["inline", [
+		["punctuation", "`"],
+		"TIP",
+		["punctuation", "`"]
+	]],
+
+	["list-punctuation", "*"],
+	["inline", [
+		["punctuation", "`"],
+		"IMPORTANT",
+		["punctuation", "`"]
+	]],
+
+	["list-punctuation", "*"],
+	["inline", [
+		["punctuation", "`"],
+		"CAUTION",
+		["punctuation", "`"]
+	]],
+
+	["list-punctuation", "*"],
+	["inline", [
+		["punctuation", "`"],
+		"WARNING",
+		["punctuation", "`"]
+	]],
+
+	["title", [
+		["punctuation", "."],
+		"Caution vs. Warning"
+	]],
+
+	["attributes", [
+		["punctuation", "["],
+		["attr-value", "#caution-vs-warning"],
+		["punctuation", "]"]
+	]],
+
+	["other-block", [
+		["punctuation", "****"],
+		"\r\nWhen choosing the admonition type, you may find yourself getting confused between \"caution\" and \"warning\" as these words are often used interchangeably.\r\nHere's a simple rule to help you differentiate the two:\r\n\r\n",
+
+		["list-punctuation", "*"],
+		" Use ",
+		["inline", [
+			["bold", [
+				["punctuation", "*"],
+				"CAUTION",
+				["punctuation", "*"]
+			]]
+		]],
+		" to advise the reader to ",
+		["inline", [
+			["italic", [
+				["punctuation", "_"],
+				"act",
+				["punctuation", "_"]
+			]]
+		]],
+		" carefully (i.e., exercise care).\r\n",
+
+		["list-punctuation", "*"],
+		" Use ",
+		["inline", [
+			["bold", [
+				["punctuation", "*"],
+				"WARNING",
+				["punctuation", "*"]
+			]]
+		]],
+		" to inform the reader of danger, harm, or consequences that exist.\r\n\r\nTo find a deeper analysis, see https://www.differencebetween.com/difference-between-caution-and-vs-warning/.\r\n",
+
+		["punctuation", "****"]
+	]],
+
+	"\r\n\r\nWhen you want to call attention to a single paragraph, start the first line of the paragraph with the label you want to use.\r\nThe label must be uppercase and followed by a colon (",
+	["inline", [
+		["punctuation", "`"],
+		":",
+		["punctuation", "`"]
+	]],
+	").\r\n\r\n",
+
+	["title", [
+		["punctuation", "."],
+		"Admonition paragraph syntax"
+	]],
+
+	["attributes", [
+		["punctuation", "["],
+		["attr-value", "source"],
+		["punctuation", "]"]
+	]],
+
+	["literal-block", [
+		["punctuation", "----"],
+		"\r\nWARNING: Wolpertingers are known to nest in server racks. ",
+		["callout", "<1>"],
+		["callout", "<2>"],
+		"\r\nEnter at your own risk.\r\n",
+		["punctuation", "----"]
+	]],
+
+	["callout", "<1>"],
+	" The label must be uppercase and immediately followed by a colon (",
+	["inline", [
+		["punctuation", "`"],
+		":",
+		["punctuation", "`"]
+	]],
+	").\r\n",
+
+	["callout", "<2>"],
+	" Separate the first line of the paragraph from the label by a single space.\r\n\r\n",
+
+	["title", [
+		["punctuation", "."],
+		"Result: Admonition paragraph"
+	]],
+	["other-block", [
+		["punctuation", "===="],
+		["admonition", "WARNING:"],
+		" Wolpertingers are known to nest in server racks.\r\nEnter at your own risk.\r\n",
+		["punctuation", "===="]
+	]],
+
+	"\r\n\r\nAn admonition paragraph is rendered in a callout box with the admonition label--or its corresponding icon--in the gutter.\r\nIcons are enabled by setting the ",
+	["inline", [
+		["punctuation", "`"],
+		"icons",
+		["punctuation", "`"]
+	]],
+	" attribute on the document.\r\n\r\n",
+
+	["admonition", "NOTE:"],
+	" Admonitions can also encapsulate any block content, which we'll cover later.\r\n\r\n",
+
+	["title", [
+		["punctuation", "==="],
+		" Mild punctuation, strong impact"
+	]],
+
+	"\r\n\r\nJust as we emphasize certain words and phrases when we speak, we can emphasize them in text by surrounding them with punctuation.\r\nAsciiDoc refers to this markup as ",
+	["inline", [
+		["italic", [
+			["punctuation", "_"],
+			"quoted text",
+			["punctuation", "_"]
+		]]
+	]],
+	".\r\n\r\n",
+
+	["title", [
+		["punctuation", "===="],
+		" Quoted text"
+	]],
+
+	"\r\n\r\nFor instance, in an e-mail, you might \"",
+	["inline", [
+		["punctuation", "`"],
+		"speak",
+		["punctuation", "`"]
+	]],
+	"\" a word louder by enclosing it in asterisks.\r\n\r\n",
+
+	["attributes", [
+		["punctuation", "["],
+		["attr-value", "source"],
+		["punctuation", "]"]
+	]],
+
+	"\r\nI can't believe it, we ",
+	["inline", [
+		["bold", [
+			["punctuation", "*"],
+			"won",
+			["punctuation", "*"]
+		]]
+	]],
+	"!\r\n\r\nAs you would expect, the asterisks make the text ",
+	["inline", [
+		["bold", [
+			["punctuation", "*"],
+			"won",
+			["punctuation", "*"]
+		]]
+	]],
+	" bold.\r\nYou can almost sense the emotion.\r\nThis is one example of quoted (i.e., formatted) text.\r\n\r\n",
+
+	["admonition", "NOTE:"],
+	" The term \"",
+	["inline", [
+		["punctuation", "`"],
+		"quote",
+		["punctuation", "`"]
+	]],
+	"\" is used liberally here to apply to any symbols that surround text in order to apply emphasis or special meaning.\r\n\r\nHere are the forms of quoted text that AsciiDoc recognizes:\r\n\r\n",
+
+	["title", [
+		["punctuation", "."],
+		"Bold, italic, and monospace formatting syntax"
+	]],
+	["attributes", [
+		["punctuation", "["],
+		["attr-value", "source"],
+		["punctuation", "]"]
+	]],
+	["literal-block", [
+		["punctuation", "----"],
+		"\r\nbold *constrained* & **un**constrained\r\n\r\nitalic _constrained_ & __un__constrained\r\n\r\nbold italic *_constrained_* & **__un__**constrained\r\n\r\nmonospace `constrained` & ``un``constrained\r\n\r\nmonospace bold `*constrained*` & ``**un**``constrained\r\n\r\nmonospace italic `_constrained_` & ``__un__``constrained\r\n\r\nmonospace bold italic `*_constrained_*` & ``**__un__**``constrained\r\n",
+		["punctuation", "----"]
+	]],
+
+	"\r\n\r\nWhen you want to quote text (e.g., place emphasis) somewhere other than at the boundaries of a word, you need to double up the punctuation.\r\n\r\n",
+
+	["title", [
+		["punctuation", "."],
+		"Result: Bold, italic, and monospace text"
+	]],
+
+	["other-block", [
+		["punctuation", "===="],
+
+		"\r\nbold ",
+		["inline", [
+			["bold", [
+				["punctuation", "*"],
+				"constrained",
+				["punctuation", "*"]
+			]]
+		]],
+		" & ",
+		["inline", [
+			["bold", [
+				["punctuation", "**"],
+				"un",
+				["punctuation", "**"]
+			]]
+		]],
+		"constrained\r\n\r\nitalic ",
+		["inline", [
+			["italic", [
+				["punctuation", "_"],
+				"constrained",
+				["punctuation", "_"]
+			]]
+		]],
+		" & ",
+		["inline", [
+			["italic", [
+				["punctuation", "__"],
+				"un",
+				["punctuation", "__"]
+			]]
+		]],
+		"constrained\r\n\r\nbold italic ",
+		["inline", [
+			["bold", [
+				["punctuation", "*"],
+				"_constrained_",
+				["punctuation", "*"]
+			]]
+		]],
+		" & ",
+		["inline", [
+			["bold", [
+				["punctuation", "**"],
+				"__un__",
+				["punctuation", "**"]
+			]]
+		]],
+		"constrained\r\n\r\nmonospace ",
+		["inline", [
+			["punctuation", "`"],
+			"constrained",
+			["punctuation", "`"]
+		]],
+		" & `",
+		["inline", [
+			["punctuation", "`"],
+			"un",
+			["punctuation", "`"]
+		]],
+		["inline", [
+			["punctuation", "`"],
+			"constrained\r\n\r\nmonospace bold `*constrained*",
+			["punctuation", "`"]
+		]],
+		" & `",
+		["inline", [
+			["punctuation", "`"],
+			"**un**",
+			["punctuation", "`"]
+		]],
+		["inline", [
+			["punctuation", "`"],
+			"constrained\r\n\r\nmonospace italic `_constrained_",
+			["punctuation", "`"]
+		]],
+		" & `",
+		["inline", [
+			["punctuation", "`"],
+			"__un__",
+			["punctuation", "`"]
+		]],
+		["inline", [
+			["punctuation", "`"],
+			"constrained\r\n\r\nmonospace bold italic `*_constrained_*",
+			["punctuation", "`"]
+		]],
+		" & `",
+		["inline", [
+			["punctuation", "`"],
+			"**__un__**",
+			["punctuation", "`"]
+		]],
+		"`constrained\r\n",
+
+		["punctuation", "===="]
+	]],
+
+	"\r\n\r\nAny quoted text can be prefixed with an attribute list.\r\nThe first positional attribute is treated as a role.\r\nThe role can be used to apply custom styling to the text.\r\nFor instance:\r\n\r\n",
+
+	["attributes", [
+		["punctuation", "["],
+		["attr-value", "source"],
+		["punctuation", "]"]
+	]],
+
+	"\r\nType the word ",
+	["inline", [
+		["attributes", [
+			["punctuation", "["],
+			["attr-value", ".userinput"],
+			["punctuation", "]"]
+		]],
+		["punctuation", "#"],
+		"asciidoc",
+		["punctuation", "#"]
+	]],
+	" into the search bar.\r\n\r\nWhen converting to HTML, the word \"",
+	["inline", [
+		["punctuation", "`"],
+		"asciidoc",
+		["punctuation", "`"]
+	]],
+	"\" is wrapped in ",
+	["inline", [
+		["punctuation", "`"],
+		"<span>",
+		["punctuation", "`"]
+	]],
+	" tags and the role is used as the element's CSS class:\r\n\r\n",
+
+	["attributes", [
+		["punctuation", "["],
+		["attr-value", "source"],
+		["punctuation", ","],
+		["attr-value", "xml"],
+		["punctuation", "]"]
+	]],
+	"\r\n<span class=\"userinput\">asciidoc</span>\r\n\r\nYou can apply styles to the text using CSS.\r\n\r\nYou may not always want these substitutions to take place.\r\nIn those cases, you'll need to use markup to escape the text."
+]
