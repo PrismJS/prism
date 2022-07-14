@@ -89,7 +89,9 @@ var Prism = (function (_self) {
 		util: {
 			encode: function encode(tokens) {
 				if (tokens instanceof Token) {
-					return new Token(tokens.type, encode(tokens.content), tokens.alias);
+					var newToken = new Token(tokens.type, encode(tokens.content), tokens.alias);
+					newToken.metadata = tokens.metadata;
+					return newToken;
 				} else if (Array.isArray(tokens)) {
 					return tokens.map(encode);
 				} else {
@@ -781,11 +783,12 @@ var Prism = (function (_self) {
 	 * @param {string | TokenStream} content See {@link Token#content content}
 	 * @param {string|string[]} [alias] The alias(es) of the token.
 	 * @param {string} [matchedStr=""] A copy of the full string this token was created from.
+	 * @param {object} [metadata={}] Additional data about the token that can be used in other hooks.
 	 * @class
 	 * @global
 	 * @public
 	 */
-	function Token(type, content, alias, matchedStr) {
+	function Token(type, content, alias, matchedStr, metadata) {
 		/**
 		 * The type of the token.
 		 *
@@ -815,6 +818,14 @@ var Prism = (function (_self) {
 		this.alias = alias;
 		// Copy of the full string this token was created from
 		this.length = (matchedStr || '').length | 0;
+
+		/**
+		 * Metadata, used to store any additional params of the token.
+		 *
+		 * @type {object}
+		 * @public
+		 */
+		this.metadata = metadata;
 	}
 
 	/**
@@ -863,7 +874,8 @@ var Prism = (function (_self) {
 			tag: 'span',
 			classes: ['token', o.type],
 			attributes: {},
-			language: language
+			language: language,
+			metadata: o.metadata,
 		};
 
 		var aliases = o.alias;

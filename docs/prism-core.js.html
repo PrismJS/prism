@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
+
     <meta charset="utf-8">
     <title>prism-core.js - Documentation</title>
-    
-    
+
+
     <meta property="og:title" content="Prism generated API documentation"/>
     <meta property="og:type" content="website"/>
     <meta property="og:image" content="/logo.svg"/>
     <meta property="og:site_name" content="Prism"/>
     <meta property="og:url" content="https://prismjs.com"/>
-    
+
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
     <!--[if lt IE 9]>
@@ -33,22 +33,22 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav >
-    
+
     <input type="text" id="nav-search" placeholder="Search" />
-    
+
     <h2><a href="index.html">Home</a></h2><h2><a href="https://prismjs.com" class="menu-item" id="website_link" >PrismJS</a></h2><h2><a href="https://github.com/PrismJS/prism" target="_blank" class="menu-item" id="github_link" >GitHub</a></h2><h3>Classes</h3><ul><li><a href="Token.html">Token</a></li></ul><h3>Namespaces</h3><ul><li><a href="Prism.html">Prism</a><ul class='members'><li data-type='member'><a href="Prism.html#.disableWorkerMessageHandler">disableWorkerMessageHandler</a></li><li data-type='member'><a href="Prism.html#.manual">manual</a></li></ul><ul class='methods'><li data-type='method'><a href="Prism.html#.highlight">highlight</a></li><li data-type='method'><a href="Prism.html#.highlightAll">highlightAll</a></li><li data-type='method'><a href="Prism.html#.highlightAllUnder">highlightAllUnder</a></li><li data-type='method'><a href="Prism.html#.highlightElement">highlightElement</a></li><li data-type='method'><a href="Prism.html#.tokenize">tokenize</a></li></ul></li><li><a href="Prism.hooks.html">hooks</a><ul class='methods'><li data-type='method'><a href="Prism.hooks.html#.add">add</a></li><li data-type='method'><a href="Prism.hooks.html#.run">run</a></li></ul></li><li><a href="Prism.languages.html">languages</a><ul class='methods'><li data-type='method'><a href="Prism.languages.html#.extend">extend</a></li><li data-type='method'><a href="Prism.languages.html#.insertBefore">insertBefore</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#Grammar">Grammar</a></li><li><a href="global.html#GrammarToken">GrammarToken</a></li><li><a href="global.html#HighlightCallback">HighlightCallback</a></li><li><a href="global.html#HookCallback">HookCallback</a></li><li><a href="global.html#TokenStream">TokenStream</a></li></ul>
 </nav>
 
 <div id="main">
-    
+
     <h1 class="page-title">prism-core.js</h1>
-    
-
-    
 
 
 
-    
+
+
+
+
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/// &lt;reference lib="WebWorker"/>
@@ -137,7 +137,9 @@ var Prism = (function (_self) {
 		util: {
 			encode: function encode(tokens) {
 				if (tokens instanceof Token) {
-					return new Token(tokens.type, encode(tokens.content), tokens.alias);
+					var newToken = new Token(tokens.type, encode(tokens.content), tokens.alias);
+					newToken.metadata = tokens.metadata;
+					return newToken;
 				} else if (Array.isArray(tokens)) {
 					return tokens.map(encode);
 				} else {
@@ -829,11 +831,12 @@ var Prism = (function (_self) {
 	 * @param {string | TokenStream} content See {@link Token#content content}
 	 * @param {string|string[]} [alias] The alias(es) of the token.
 	 * @param {string} [matchedStr=""] A copy of the full string this token was created from.
+	 * @param {object} [metadata={}] Additional data about the token that can be used in other hooks.
 	 * @class
 	 * @global
 	 * @public
 	 */
-	function Token(type, content, alias, matchedStr) {
+	function Token(type, content, alias, matchedStr, metadata) {
 		/**
 		 * The type of the token.
 		 *
@@ -863,6 +866,14 @@ var Prism = (function (_self) {
 		this.alias = alias;
 		// Copy of the full string this token was created from
 		this.length = (matchedStr || '').length | 0;
+
+		/**
+		 * Metadata, used to store any additional params of the token.
+		 *
+		 * @type {object}
+		 * @public
+		 */
+		this.metadata = metadata;
 	}
 
 	/**
@@ -911,7 +922,8 @@ var Prism = (function (_self) {
 			tag: 'span',
 			classes: ['token', o.type],
 			attributes: {},
-			language: language
+			language: language,
+			metadata: o.metadata,
 		};
 
 		var aliases = o.alias;
@@ -1321,8 +1333,8 @@ if (typeof global !== 'undefined') {
 
 
 
-    
-    
+
+
 </div>
 
 <br class="clear">
@@ -1340,6 +1352,6 @@ if (typeof global !== 'undefined') {
 
 
     <link type="text/css" rel="stylesheet" href="styles/overwrites.css">
-    
+
 </body>
 </html>
