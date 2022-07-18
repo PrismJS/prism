@@ -1265,7 +1265,7 @@
 			"owner": "Golmote"
 		},
 		"scss": {
-			"title": "Sass (Scss)",
+			"title": "Sass (SCSS)",
 			"require": "css",
 			"optional": "css-extras",
 			"owner": "MoOx"

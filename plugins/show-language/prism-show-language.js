@@ -221,7 +221,7 @@
 		"rb": "Ruby",
 		"sas": "SAS",
 		"sass": "Sass (Sass)",
-		"scss": "Sass (Scss)",
+		"scss": "Sass (SCSS)",
 		"shell-session": "Shell session",
 		"sh-session": "Shell session",
 		"shellsession": "Shell session",
