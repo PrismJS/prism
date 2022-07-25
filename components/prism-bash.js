@@ -102,7 +102,7 @@
 		// Highlight variable names as variables in the left-hand part
 		// of assignments (“=” and “+=”).
 		'assign-left': {
-			pattern: /(^|[\s;|&]|[<>]\()\w+(?=\+?=)/,
+			pattern: /(^|[\s;|&]|[<>]\()(\w+\.)*\w+(?=\+?=)|(-{1,2})\w+(?=(\+?=|\s+|$))/,
 			inside: {
 				'environment': {
 					pattern: RegExp('(^|[\\s;|&]|[<>]\\()' + envVars),
