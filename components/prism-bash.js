@@ -115,8 +115,9 @@
 		},
 		// Highlight parameter names as variables
 		'parameter': {
-			pattern: /[^|\s]-{1,2}(\w+:[+-]?)?\w+(?:\.\w+)*(?=[=\s]|$)/,
-			alias: 'variable'
+			pattern: /(^|\s)-{1,2}(\w+:[+-]?)?\w+(?:\.\w+)*(?=[=\s]|$)/,
+			alias: 'variable',
+			lookbehind: true
 		},
 		'string': [
 			// Support for Here-documents https://en.wikipedia.org/wiki/Here_document
