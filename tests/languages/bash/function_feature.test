@@ -93,6 +93,7 @@ ifup
 import
 install
 ip
+java
 jobs
 join
 kill
@@ -198,6 +199,7 @@ sum
 suspend
 swapon
 sync
+sysctl
 tac
 tail
 tar
@@ -283,7 +285,7 @@ zypper
 	["function", "host"], ["function", "hostname"], ["function", "htop"], 
 	["function", "iconv"], ["function", "id"], ["function", "ifconfig"], 
 	["function", "ifdown"], ["function", "ifup"], ["function", "import"], 
-	["function", "install"], ["function", "ip"], ["function", "jobs"], 
+	["function", "install"], ["function", "ip"], ["function", "java"], ["function", "jobs"],
 	["function", "join"], ["function", "kill"], ["function", "killall"], 
 	["function", "less"], ["function", "link"], ["function", "ln"], 
 	["function", "locate"], ["function", "logname"], ["function", "logrotate"], 
@@ -317,7 +319,7 @@ zypper
 	["function", "slocate"], ["function", "sort"], ["function", "split"], 
 	["function", "ssh"], ["function", "stat"], ["function", "strace"], 
 	["function", "su"], ["function", "sudo"], ["function", "sum"], ["function", 
-	"suspend"], ["function", "swapon"], ["function", "sync"], ["function", 
+	"suspend"], ["function", "swapon"], ["function", "sync"], ["function", "sysctl"], ["function",
 	"tac"], ["function", "tail"], ["function", "tar"], ["function", "tee"], 
 	["function", "time"], ["function", "timeout"], ["function", "top"], 
 	["function", "touch"], ["function", "tr"], ["function", "traceroute"], 

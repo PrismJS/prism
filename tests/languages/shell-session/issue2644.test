@@ -44,7 +44,8 @@ Write down the passphrase. Store both at safe place(s).
 	["command", [
 		["shell-symbol", "$"],
 		["bash", [
-			"borg init --encryption",
+			"borg init ",
+			["parameter", "--encryption"],
 			["operator", ["="]],
 			"keyfile-blake2 ",
 			["string", ["\"borg@1.2.3.4:backup\""]]
