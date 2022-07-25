@@ -108,8 +108,8 @@ bar](http://prismjs.com)
 			"foo ",
 			["bold", [
 				["punctuation", "__"],
-				["content", ["bar_"]],
-				"_"
+				["content", ["bar"]],
+				["punctuation", "__"]
 			]],
 			" baz"
 		]],
