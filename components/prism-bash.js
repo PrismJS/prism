@@ -116,7 +116,7 @@
 		// Highlight parameter names as variables
 		// of assignments (“=”, “:”, “:+”, “:-”).
 		'parameter': {
-			pattern: /-{1,2}(\w+:[+-]?)?\w+(?:\.\w+)*(?=[=\s]|$)/,
+			pattern: /[^|\s]-{1,2}(\w+:[+-]?)?\w+(?:\.\w+)*(?=[=\s]|$)/,
 			alias: 'variable'
 		},
 		'string': [
