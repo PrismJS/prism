@@ -9,7 +9,8 @@
 		["string", "{!sh"],
 		["embedded", [
 			["function", "ls"],
-			" -la test/*x\r\n"
+			["parameter", "-la"],
+			" test/*x\r\n"
 		]],
 		["string", "}"]
 	]]

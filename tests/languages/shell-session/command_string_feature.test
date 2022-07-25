@@ -97,13 +97,13 @@ y_#!$U48
 			["operator", ["="]],
 			"C ",
 			["function", "tr"],
-			" -cd ",
+			["parameter", "-cd"],
 			["string", "'a-zA-Z0-9_-;:!?.@\\\\*/#%$'"],
 			["operator", ["<"]],
 			" /dev/random ",
 			["operator", ["|"]],
 			["function", "head"],
-			" -c ",
+			["parameter", "-c"],
 			["number", "8"]
 		]]
 	]],
