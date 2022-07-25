@@ -76,8 +76,10 @@ GetFunction
 GetFunctionAddress
 GetFunctionEnd
 GetInstDirError
+GetKnownFolderPath
 GetLabelAddress
 GetTempFileName
+GetWinVer
 Goto
 HideWindow
 Icon
@@ -85,6 +87,8 @@ IfAbort
 IfErrors
 IfFileExists
 IfRebootFlag
+IfRtlLanguage
+IfShellVarContextAll
 IfSilent
 InitPluginsDir
 InstallButtonText
@@ -197,6 +201,7 @@ StrCpy
 StrLen
 SubCaption
 System
+Target
 Unicode
 UninstallButtonText
 UninstallCaption
@@ -303,8 +308,10 @@ XPStyle
 	["keyword", "GetFunctionAddress"],
 	["keyword", "GetFunctionEnd"],
 	["keyword", "GetInstDirError"],
+	["keyword", "GetKnownFolderPath"],
 	["keyword", "GetLabelAddress"],
 	["keyword", "GetTempFileName"],
+	["keyword", "GetWinVer"],
 	["keyword", "Goto"],
 	["keyword", "HideWindow"],
 	["keyword", "Icon"],
@@ -312,6 +319,8 @@ XPStyle
 	["keyword", "IfErrors"],
 	["keyword", "IfFileExists"],
 	["keyword", "IfRebootFlag"],
+	["keyword", "IfRtlLanguage"],
+	["keyword", "IfShellVarContextAll"],
 	["keyword", "IfSilent"],
 	["keyword", "InitPluginsDir"],
 	["keyword", "InstallButtonText"],
@@ -424,6 +433,7 @@ XPStyle
 	["keyword", "StrLen"],
 	["keyword", "SubCaption"],
 	["keyword", "System"],
+	["keyword", "Target"],
 	["keyword", "Unicode"],
 	["keyword", "UninstallButtonText"],
 	["keyword", "UninstallCaption"],
