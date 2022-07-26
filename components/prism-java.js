@@ -130,4 +130,12 @@
 			});
 		}
 	}
+	// default variable
+	if (!Prism.languages.java.variable) {
+		Prism.languages.insertBefore('java', 'string', {
+			'variable': {
+				pattern: /\b(arg[s12]|log(ger)?|[A-Z]+)\b/
+			}
+		});
+	}
 }(Prism));
