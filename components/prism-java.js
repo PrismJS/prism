@@ -122,10 +122,12 @@
 	});
 
 	// variable from config
-	var prismConfig = window.PrismConfig;
-	if (prismConfig && prismConfig.languages && prismConfig.languages.java && prismConfig.languages.java.variable) {
-		Prism.languages.insertBefore('java', 'string', {
-			'variable': prismConfig.languages.java.variable
-		});
+	if (typeof window !== 'undefined') {
+		var prismConfig = window.PrismConfig;
+		if (prismConfig && prismConfig.languages && prismConfig.languages.java && prismConfig.languages.java.variable) {
+			Prism.languages.insertBefore('java', 'string', {
+				'variable': prismConfig.languages.java.variable
+			});
+		}
 	}
 }(Prism));
