@@ -9,14 +9,14 @@ slightly changed to pass all tests
 // PureBasic support, steal stuff from ansi-c
 Prism.languages.purebasic = Prism.languages.extend('clike', {
 	'comment': /;.*/,
-	'keyword': /\b(?:declarecdll|declaredll|compilerselect|compilercase|compilerdefault|compilerendselect|compilererror|enableexplicit|disableexplicit|not|and|or|xor|calldebugger|debuglevel|enabledebugger|disabledebugger|restore|read|includepath|includebinary|threaded|runtime|with|endwith|structureunion|endstructureunion|align|newlist|newmap|interface|endinterface|extends|enumeration|endenumeration|swap|foreach|continue|fakereturn|goto|gosub|return|break|module|endmodule|declaremodule|enddeclaremodule|declare|declarec|prototype|prototypec|enableasm|disableasm|dim|redim|data|datasection|enddatasection|to|procedurereturn|debug|default|case|select|endselect|as|import|endimport|importc|compilerif|compilerelse|compilerendif|compilerelseif|end|structure|endstructure|while|wend|for|next|step|if|else|elseif|endif|repeat|until|procedure|proceduredll|procedurec|procedurecdll|endprocedure|protected|shared|static|global|define|includefile|xincludefile|macro|endmacro)\b/i,
+	'keyword': /\b(?:align|and|as|break|calldebugger|case|compilercase|compilerdefault|compilerelse|compilerelseif|compilerendif|compilerendselect|compilererror|compilerif|compilerselect|continue|data|datasection|debug|debuglevel|declare|declarec|declarecdll|declaredll|declaremodule|default|define|dim|disableasm|disabledebugger|disableexplicit|else|elseif|enableasm|enabledebugger|enableexplicit|end|enddatasection|enddeclaremodule|endenumeration|endif|endimport|endinterface|endmacro|endmodule|endprocedure|endselect|endstructure|endstructureunion|endwith|enumeration|extends|fakereturn|for|foreach|forever|global|gosub|goto|if|import|importc|includebinary|includefile|includepath|interface|macro|module|newlist|newmap|next|not|or|procedure|procedurec|procedurecdll|proceduredll|procedurereturn|protected|prototype|prototypec|read|redim|repeat|restore|return|runtime|select|shared|static|step|structure|structureunion|swap|threaded|to|until|wend|while|with|xincludefile|xor)\b/i,
 	'function': /\b\w+(?:\.\w+)?\s*(?=\()/,
 	'number': /(?:\$[\da-f]+|\b-?(?:\d+(?:\.\d+)?|\.\d+)(?:e[+-]?\d+)?)\b/i,
-	'operator': /(?:@\*?|\?|\*)\w+|-[>-]?|\+\+?|!=?|<<?=?|>>?=?|==?|&&?|\|?\||[~^%?*/@]/
+	'operator': /(?:@\*?|\?|\*)\w+\$?|-[>-]?|\+\+?|!=?|<<?=?|>>?=?|==?|&&?|\|?\||[~^%?*/@]/
 });
 
 Prism.languages.insertBefore('purebasic', 'keyword', {
-	'tag': /#\w+/,
+	'tag': /#\w+\$?/,
 	'asm': {
 		pattern: /(^[\t ]*)!.*/m,
 		lookbehind: true,
@@ -39,6 +39,10 @@ Prism.languages.insertBefore('purebasic', 'keyword', {
 				lookbehind: true,
 				alias: 'fasm-label'
 			},
+			'keyword': [
+				/\b(?:extern|global)\b[^;\r\n]*/i,
+				/\b(?:CPU|DEFAULT|FLOAT)\b.*/
+			],
 			'function': {
 				pattern: /^([\t ]*!\s*)[\da-z]+(?=\s|$)/im,
 				lookbehind: true
@@ -53,11 +57,7 @@ Prism.languages.insertBefore('purebasic', 'keyword', {
 				lookbehind: true,
 				alias: 'fasm-label'
 			},
-			'keyword': [
-				/\b(?:extern|global)\b[^;\r\n]*/i,
-				/\b(?:CPU|FLOAT|DEFAULT)\b.*/
-			],
-			'register': /\b(?:st\d|[xyz]mm\d\d?|[cdt]r\d|r\d\d?[bwd]?|[er]?[abcd]x|[abcd][hl]|[er]?(?:bp|sp|si|di)|[cdefgs]s|mm\d+)\b/i,
+			'register': /\b(?:st\d|[xyz]mm\d\d?|[cdt]r\d|r\d\d?[bwd]?|[er]?[abcd]x|[abcd][hl]|[er]?(?:bp|di|si|sp)|[cdefgs]s|mm\d+)\b/i,
 			'number': /(?:\b|-|(?=\$))(?:0[hx](?:[\da-f]*\.)?[\da-f]+(?:p[+-]?\d+)?|\d[\da-f]+[hx]|\$\d[\da-f]*|0[oq][0-7]+|[0-7]+[oq]|0[by][01]+|[01]+[by]|0[dt]\d+|(?:\d+(?:\.\d+)?|\.\d+)(?:\.?e[+-]?\d+)?[dt]?)\b/i,
 			'operator': /[\[\]*+\-/%<>=&|$!,.:]/
 		}

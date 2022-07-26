@@ -1,21 +1,31 @@
 "hi"
+"addition result: {1+2}"
 'hi'
-r'say'
-r"hello"
 'contains: "'
-myAPL || x[⍋x←6?40] ||
- || invalid ||
 
 ----------------------------------------------------
 
 [
-    ["string", [["string", "\"hi\""]]],
-    ["string", [["string", "'hi'"]]],
-    ["string", [["string", "r'say'"]]],
-    ["string", [["string", "r\"hello\""]]],
-    ["string", [["string", "'contains: \"'"]]],
-	["langext", "myAPL || x[⍋x←6?40] ||"],
-	"\r\n || invalid ||"
+	["string-literal", [
+		["string", "\"hi\""]
+	]],
+	["string-literal", [
+		["string", "\"addition result: "],
+		["interpolation", [
+			["punctuation", "{"],
+			["number", "1"],
+			["operator", "+"],
+			["number", "2"],
+			["punctuation", "}"]
+		]],
+		["string", "\""]
+	]],
+	["string-literal", [
+		["string", "'hi'"]
+	]],
+	["string-literal", [
+		["string", "'contains: \"'"]
+	]]
 ]
 
 ----------------------------------------------------

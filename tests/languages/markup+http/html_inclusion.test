@@ -5,8 +5,11 @@ Content-type: text/html
 ----------------------------------------------------
 
 [
-	["header-name", "Content-type:"],
-	" text/html",
+	["header", [
+		["header-name", "Content-type"],
+		["punctuation", ":"],
+		["header-value", "text/html"]
+	]],
 	["text-html", [
 		["tag", [
 			["tag", [

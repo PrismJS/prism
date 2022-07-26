@@ -1,0 +1,15 @@
+//test
+// test
+
+/* multi
+   line
+   comment */
+
+----------------------------------------------------
+
+[
+	["comment", "//test"],
+	["comment", "// test"],
+
+	["comment", "/* multi\r\n   line\r\n   comment */"]
+]

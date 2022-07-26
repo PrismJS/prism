@@ -1,0 +1,13 @@
+$display()
+
+----------------------------------------------------
+
+[
+	["kernel-function", "$display"],
+	["punctuation", "("],
+	["punctuation", ")"]
+]
+
+----------------------------------------------------
+
+Checks for kernel functions.

@@ -1,6 +1,6 @@
 (function (Prism) {
 
-	var builtinTypes = /\b(?:double|float|[su]?int(?:32|64)|s?fixed(?:32|64)|bool|string|bytes)\b/;
+	var builtinTypes = /\b(?:bool|bytes|double|s?fixed(?:32|64)|float|[su]?int(?:32|64)|string)\b/;
 
 	Prism.languages.protobuf = Prism.languages.extend('clike', {
 		'class-name': [

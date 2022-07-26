@@ -1,0 +1,8 @@
+style-src 'sha256-EpOpN/ahUF6jhWShDUdy+NvvtaGcu5F7qM6+x2mfkh4='
+
+----------------------------------------------------
+
+[
+	["directive", "style-src"],
+	["hash", "'sha256-EpOpN/ahUF6jhWShDUdy+NvvtaGcu5F7qM6+x2mfkh4='"]
+]

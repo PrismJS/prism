@@ -3,10 +3,11 @@
 const { src, dest, series, parallel, watch } = require('gulp');
 
 const rename = require('gulp-rename');
-const uglify = require('gulp-uglify');
+const terser = require('gulp-terser');
 const header = require('gulp-header');
 const concat = require('gulp-concat');
 const replace = require('gulp-replace');
+const cleanCSS = require('gulp-clean-css');
 const webfont = require('webfont').default;
 const pump = require('pump');
 const util = require('util');
@@ -59,7 +60,15 @@ function inlineRegexSource() {
 function minifyJS() {
 	return [
 		inlineRegexSource(),
-		uglify()
+		terser({
+			ecma: 5,
+			compress: {
+				passes: 3,
+			},
+			output: {
+				comments: false
+			}
+		})
 	];
 }
 
@@ -69,6 +78,12 @@ function minifyComponents(cb) {
 }
 function minifyPlugins(cb) {
 	pump([src(paths.plugins), ...minifyJS(), rename({ suffix: '.min' }), dest('plugins')], cb);
+}
+function minifyPluginCSS(cb) {
+	pump([src(paths.pluginsCSS), cleanCSS(), rename({ suffix: '.min' }), dest('plugins')], cb);
+}
+function minifyThemes(cb) {
+	pump([src(paths.themes), cleanCSS(), rename({ suffix: '.min' }), dest('themes')], cb);
 }
 function build(cb) {
 	pump([src(paths.main), header(`
@@ -278,12 +293,11 @@ async function treeviewIconFont() {
 }
 
 const components = minifyComponents;
-const plugins = series(languagePlugins, treeviewIconFont, minifyPlugins);
-
+const plugins = series(languagePlugins, treeviewIconFont, minifyPlugins, minifyPluginCSS);
 
 module.exports = {
 	watch: watchComponentsAndPlugins,
-	default: series(parallel(components, plugins, componentsJsonToJs, build), docs),
+	default: series(parallel(components, plugins, minifyThemes, componentsJsonToJs, build), docs),
 	linkify,
 	changes
 };

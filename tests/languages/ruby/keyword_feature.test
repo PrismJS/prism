@@ -20,7 +20,7 @@ for
 if
 in
 include
-module
+module;
 new;
 next
 nil
@@ -72,7 +72,7 @@ yield
 	["keyword", "if"],
 	["keyword", "in"],
 	["keyword", "include"],
-	["keyword", "module"],
+	["keyword", "module"], ["punctuation", ";"],
 	["keyword", "new"], ["punctuation", ";"],
 	["keyword", "next"],
 	["keyword", "nil"],

@@ -1,0 +1,23 @@
+{!js
+    var a = 2;
+}
+
+----------------------------------------------------
+
+[
+	["js-string", [
+		["string", "{!js"],
+		["embedded", [
+			["keyword", "var"],
+			" a ",
+			["operator", "="],
+			["number", "2"],
+			["punctuation", ";"]
+		]],
+		["string", "}"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for string literals with embedded JavaScript.

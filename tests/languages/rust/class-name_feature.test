@@ -16,6 +16,12 @@ enum Foo {
 	}
 }
 
+pub trait Summary {
+	fn summarize(&self) -> String;
+}
+
+type Point = (u8, u8);
+
 ----------------------------------------------------
 
 [
@@ -91,7 +97,34 @@ enum Foo {
 
 	["punctuation", "}"],
 
-	["punctuation", "}"]
+	["punctuation", "}"],
+
+	["keyword", "pub"],
+	["keyword", "trait"],
+	["type-definition", "Summary"],
+	["punctuation", "{"],
+
+	["keyword", "fn"],
+	["function-definition", "summarize"],
+	["punctuation", "("],
+	["operator", "&"],
+	["keyword", "self"],
+	["punctuation", ")"],
+	["punctuation", "->"],
+	["class-name", "String"],
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+
+	["keyword", "type"],
+	["type-definition", "Point"],
+	["operator", "="],
+	["punctuation", "("],
+	["keyword", "u8"],
+	["punctuation", ","],
+	["keyword", "u8"],
+	["punctuation", ")"],
+	["punctuation", ";"]
 ]
 
 ----------------------------------------------------

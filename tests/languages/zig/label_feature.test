@@ -21,27 +21,33 @@ fn eventuallyErrorSequence() anyerror!u32 {
 	["boolean", "true"],
 	["punctuation", ")"],
 	["punctuation", "{"],
+
 	["keyword", "while"],
 	["punctuation", "("],
 	["boolean", "true"],
 	["punctuation", ")"],
 	["punctuation", "{"],
+
 	["keyword", "break"],
 	["punctuation", ":"],
 	["label", "outer"],
 	["punctuation", ";"],
+
 	["punctuation", "}"],
+
 	["punctuation", "}"],
+
 	["keyword", "fn"],
 	["function", "eventuallyErrorSequence"],
 	["punctuation", "("],
 	["punctuation", ")"],
 	["class-name", [
-		["builtin-types", "anyerror"],
+		["builtin-type", "anyerror"],
 		["operator", "!"],
-		["builtin-types", "u32"]
+		["builtin-type", "u32"]
 	]],
 	["punctuation", "{"],
+
 	["keyword", "return"],
 	["keyword", "if"],
 	["punctuation", "("],
@@ -56,17 +62,21 @@ fn eventuallyErrorSequence() anyerror!u32 {
 	["label", "blk"],
 	["punctuation", ":"],
 	["punctuation", "{"],
+
 	"\r\n\t\tnumbers_left ",
 	["operator", "-="],
 	["number", "1"],
 	["punctuation", ";"],
+
 	["keyword", "break"],
 	["punctuation", ":"],
 	["label", "blk"],
 	" numbers_left",
 	["punctuation", ";"],
+
 	["punctuation", "}"],
 	["punctuation", ";"],
+
 	["punctuation", "}"]
 ]
 

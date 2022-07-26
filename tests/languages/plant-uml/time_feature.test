@@ -1,0 +1,92 @@
+@startuml
+clock clk with period 1
+binary "enable" as EN
+concise "dataBus" as db
+
+@0 as :start
+@5 as :en_high
+@10 as :en_low
+@:en_high-2 as :en_highMinus2
+
+@:start
+EN is low
+db is "0x0000"
+
+@:en_high
+EN is high
+
+@:en_low
+EN is low
+
+@:en_highMinus2
+db is "0xf23a"
+
+@:en_high+6
+db is "0x0000"
+@enduml
+
+@1:15:00
+@2000/12/31
+
+----------------------------------------------------
+
+[
+	["delimiter", "@startuml"],
+
+	["keyword", "clock"],
+	" clk with period 1\r\n",
+
+	["keyword", "binary"],
+	["string", "\"enable\""],
+	["keyword", "as"],
+	" EN\r\n",
+
+	["keyword", "concise"],
+	["string", "\"dataBus\""],
+	["keyword", "as"],
+	" db\r\n\r\n",
+
+	["time", "@0"],
+	["keyword", "as"],
+	["punctuation", ":"],
+	"start\r\n",
+
+	["time", "@5"],
+	["keyword", "as"],
+	["punctuation", ":"],
+	"en_high\r\n",
+
+	["time", "@10"],
+	["keyword", "as"],
+	["punctuation", ":"],
+	"en_low\r\n",
+
+	["time", "@:en_high-2"],
+	["keyword", "as"],
+	["punctuation", ":"],
+	"en_highMinus2\r\n\r\n",
+
+	["time", "@:start"],
+
+	"\r\nEN ",
+	["keyword", "is"],
+	" low\r\ndb ",
+	["keyword", "is"],
+	["string", "\"0x0000\""],
+
+	["time", "@:en_high"],
+	"\r\nEN ", ["keyword", "is"], " high\r\n\r\n",
+
+	["time", "@:en_low"],
+	"\r\nEN ", ["keyword", "is"], " low\r\n\r\n",
+
+	["time", "@:en_highMinus2"],
+	"\r\ndb ", ["keyword", "is"], ["string", "\"0xf23a\""],
+
+	["time", "@:en_high+6"],
+	"\r\ndb ", ["keyword", "is"], ["string", "\"0x0000\""],
+	["delimiter", "@enduml"],
+
+	["time", "@1:15:00"],
+	["time", "@2000/12/31"]
+]

@@ -1,0 +1,89 @@
+$box01 -- object named 'box01'
+$torso/left_up_arm/left_low_arm -- hierarchy path name
+$*box* -- all objects with 'box' in
+-- the name
+$torso/* -- all the direct children of
+-- $torso
+$helpers/d* -- all helper objects whose name starts with 'd'
+
+$dummy/head/neck
+$dummy/*
+$neck*
+$box0?
+$dummy/*/*
+$dummy/.../box*
+$dummy...*
+$*box*.position += [10, 10, 0]
+
+$.pos = [0,0,0]
+hide $
+rotate $ 35 z_axis
+
+$'a silly name!!'
+$'what the \*'
+bodyPart=$'Bip01 L UpperArm'
+bodyPart=$Bip01_L_UpperArm
+
+----------------------------------------------------
+
+[
+	["path", "$box01"],
+	["comment", "-- object named 'box01'"],
+	["path", "$torso/left_up_arm/left_low_arm"],
+	["comment", "-- hierarchy path name"],
+	["path", "$*box*"],
+	["comment", "-- all objects with 'box' in"],
+	["comment", "-- the name"],
+	["path", "$torso/*"],
+	["comment", "-- all the direct children of"],
+	["comment", "-- $torso"],
+	["path", "$helpers/d*"],
+	["comment", "-- all helper objects whose name starts with 'd'"],
+
+	["path", "$dummy/head/neck"],
+
+	["path", "$dummy/*"],
+
+	["path", "$neck*"],
+
+	["path", "$box0?"],
+
+	["path", "$dummy/*/*"],
+
+	["path", "$dummy/.../box*"],
+
+	["path", "$dummy...*"],
+
+	["path", "$*box*.position"],
+	["operator", "+="],
+	["punctuation", "["],
+	["number", "10"],
+	["punctuation", ","],
+	["number", "10"],
+	["punctuation", ","],
+	["number", "0"],
+	["punctuation", "]"],
+
+	["path", "$.pos"],
+	["operator", "="],
+	["punctuation", "["],
+	["number", "0"],
+	["punctuation", ","],
+	["number", "0"],
+	["punctuation", ","],
+	["number", "0"],
+	["punctuation", "]"],
+
+	["function-call", "hide"],
+	["path", "$"],
+
+	["function-call", "rotate"],
+	["path", "$"],
+	["number", "35"],
+	" z_axis\r\n\r\n",
+
+	["path", "$'a silly name!!'"],
+	["path", "$'what the \\*'"],
+	"\r\nbodyPart", ["operator", "="], ["path", "$'Bip01 L UpperArm'"],
+	"\r\nbodyPart", ["operator", "="], ["path", "$Bip01_L_UpperArm"]
+]

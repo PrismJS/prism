@@ -1,0 +1,34 @@
+global_defs {
+	notification_email {
+		example@163.com
+	}
+	notification_email_from example@example.com
+}
+
+vrrp_instance VI_1 {
+    notify_fault "/etc/keepalived/to_fault.sh"
+}
+
+----------------------------------------------------
+
+[
+	["property", "global_defs"],
+	["punctuation", "{"],
+	["property", "notification_email"],
+	["punctuation", "{"],
+	["email", "example@163.com"],
+	["punctuation", "}"],
+	["property", "notification_email_from"],
+	["email", "example@example.com"],
+	["punctuation", "}"],
+	["property", "vrrp_instance"],
+	" VI_1 ",
+	["punctuation", "{"],
+	["property", "notify_fault"],
+	["string", "\"/etc/keepalived/to_fault.sh\""],
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for string, email (alias string).

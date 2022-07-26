@@ -1,0 +1,23 @@
+var myObjWithSpecialChars = {
+  '$special\tchars!': true
+  normalKey: 'val'
+}
+
+----------------------------------------------------
+
+[
+	["keyword", "var"],
+	" myObjWithSpecialChars ",
+	["operator", "="],
+	["punctuation", "{"],
+
+	["property", "'$special\\tchars!'"],
+	["operator", ":"],
+	["boolean", "true"],
+
+	["property", "normalKey"],
+	["operator", ":"],
+	["string", "'val'"],
+
+	["punctuation", "}"]
+]

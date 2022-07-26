@@ -1,0 +1,23 @@
+strict_mode on
+strict_mode off
+strict_mode true
+strict_mode false
+strict_mode yes
+strict_mode no
+
+----------------------------------------------------
+
+[
+   	["property", "strict_mode"],
+	["boolean", "on"],
+	["property", "strict_mode"],
+	["boolean", "off"],
+	["property", "strict_mode"],
+	["boolean", "true"],
+	["property", "strict_mode"],
+	["boolean", "false"],
+	["property", "strict_mode"],
+	["boolean", "yes"],
+	["property", "strict_mode"],
+	["boolean", "no"]
+]

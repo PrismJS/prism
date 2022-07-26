@@ -1,0 +1,29 @@
+ansi
+begin
+unicode
+group
+using keys
+match
+nomatch
+newcontext
+postkeystroke
+readonly
+
+----------------------------------------------------
+
+[
+	["structural-keyword", "ansi"],
+	["structural-keyword", "begin"],
+	["structural-keyword", "unicode"],
+	["structural-keyword", "group"],
+	["structural-keyword", "using keys"],
+	["structural-keyword", "match"],
+	["structural-keyword", "nomatch"],
+	["structural-keyword", "newcontext"],
+	["structural-keyword", "postkeystroke"],
+	["structural-keyword", "readonly"]
+]
+
+----------------------------------------------------
+
+Checks for all structural keywords.

@@ -1,0 +1,40 @@
+docker run
+--name elk \
+-p 5601:5601 \
+--restart=always \
+--privileged \
+-dit \
+easyj/elk:7.12.1
+
+----------------------------------------------------
+
+[
+	["function", "docker"],
+	" run\r\n",
+
+	["parameter", "--name"],
+	" elk ",
+	["punctuation", "\\"],
+
+	["parameter", "-p"],
+	["number", "5601"],
+	":5601 ",
+	["punctuation", "\\"],
+
+	["parameter", "--restart"],
+	["operator", ["="]],
+	"always ",
+	["punctuation", "\\"],
+
+	["parameter", "--privileged"],
+	["punctuation", "\\"],
+
+	["parameter", "-dit"],
+	["punctuation", "\\"],
+
+	"\r\neasyj/elk:7.12.1"
+]
+
+----------------------------------------------------
+
+Checks for variable assignments.

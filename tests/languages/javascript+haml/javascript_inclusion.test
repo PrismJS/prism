@@ -10,12 +10,16 @@
 [
 	["filter-javascript", [
 		["filter-name", ":javascript"],
-		["number", "0xBadFace"]
+		["text", [
+			["number", "0xBadFace"]
+		]]
 	]],
 	["punctuation", "~"],
 	["filter-javascript", [
 		["filter-name", ":javascript"],
-		["number", "0xBadFace"]
+		["text", [
+			["number", "0xBadFace"]
+		]]
 	]]
 ]
 

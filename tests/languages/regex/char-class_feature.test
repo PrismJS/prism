@@ -1,0 +1,48 @@
+[]
+[^]
+[foo]
+[\]\b]
+[.^$\1]
+[\d\D\p{L}]
+
+----------------------------------------------------
+
+[
+	["char-class", [
+		["char-class-punctuation", "["],
+		["char-class-punctuation", "]"]
+	]],
+	["char-class", [
+		["char-class-punctuation", "["],
+		["char-class-negation", "^"],
+		["char-class-punctuation", "]"]
+	]],
+	["char-class", [
+		["char-class-punctuation", "["],
+		"foo",
+		["char-class-punctuation", "]"]
+	]],
+	["char-class", [
+		["char-class-punctuation", "["],
+		["special-escape", "\\]"],
+		["escape", "\\b"],
+		["char-class-punctuation", "]"]
+	]],
+	["char-class", [
+		["char-class-punctuation", "["],
+		".^$",
+		["escape", "\\1"],
+		["char-class-punctuation", "]"]
+	]],
+	["char-class", [
+		["char-class-punctuation", "["],
+		["char-set", "\\d"],
+		["char-set", "\\D"],
+		["char-set", "\\p{L}"],
+		["char-class-punctuation", "]"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for character sets.

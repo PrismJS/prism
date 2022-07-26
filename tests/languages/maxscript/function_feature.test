@@ -1,0 +1,152 @@
+function my_add a b = a + b
+
+fn factorial n = if n <= 0 then 1 else n * factorial (n - 1)
+
+mapped function rand_color x =
+   x.wireColor = random (color 0 0 0) (color 255 255 255)
+
+fn starfield count extent:[200,200,200] pos:[0,0,0] =
+   (
+   -- something
+   )
+
+fn saddle x y = sin x * sin y
+
+print "build math mesh"
+in_name = getOpenFileName()
+val.x=random -100 100
+append vert_array (readValue in_file)
+while not eof f do
+on pressme pressed do print "Pressed!"
+
+----------------------------------------------------
+
+[
+	["keyword", "function"],
+	["function-definition", "my_add"],
+	" a b ",
+	["operator", "="],
+	" a ",
+	["operator", "+"],
+	" b\r\n\r\n",
+
+	["keyword", "fn"],
+	["function-definition", "factorial"],
+	" n ",
+	["operator", "="],
+	["keyword", "if"],
+	" n ",
+	["operator", "<="],
+	["number", "0"],
+	["keyword", "then"],
+	["number", "1"],
+	["keyword", "else"],
+	" n ",
+	["operator", "*"],
+	["function-call", "factorial"],
+	["punctuation", "("],
+	"n ",
+	["operator", "-"],
+	["number", "1"],
+	["punctuation", ")"],
+
+	["keyword", "mapped"],
+	["keyword", "function"],
+	["function-definition", "rand_color"],
+	" x ",
+	["operator", "="],
+
+	"\r\n   x",
+	["punctuation", "."],
+	"wireColor ",
+	["operator", "="],
+	["function-call", "random"],
+	["punctuation", "("],
+	["function-call", "color"],
+	["number", "0"],
+	["number", "0"],
+	["number", "0"],
+	["punctuation", ")"],
+	["punctuation", "("],
+	["function-call", "color"],
+	["number", "255"],
+	["number", "255"],
+	["number", "255"],
+	["punctuation", ")"],
+
+	["keyword", "fn"],
+	["function-definition", "starfield"],
+	" count ",
+	["argument", "extent"],
+	["punctuation", ":"],
+	["punctuation", "["],
+	["number", "200"],
+	["punctuation", ","],
+	["number", "200"],
+	["punctuation", ","],
+	["number", "200"],
+	["punctuation", "]"],
+	["argument", "pos"],
+	["punctuation", ":"],
+	["punctuation", "["],
+	["number", "0"],
+	["punctuation", ","],
+	["number", "0"],
+	["punctuation", ","],
+	["number", "0"],
+	["punctuation", "]"],
+	["operator", "="],
+
+	["punctuation", "("],
+
+	["comment", "-- something"],
+
+	["punctuation", ")"],
+
+	["keyword", "fn"],
+	["function-definition", "saddle"],
+	" x y ",
+	["operator", "="],
+	["function-call", "sin"],
+	" x ",
+	["operator", "*"],
+	["function-call", "sin"],
+	" y\r\n\r\n",
+
+	["function-call", "print"],
+	["string", "\"build math mesh\""],
+
+	"\r\nin_name ",
+	["operator", "="],
+	["function-call", "getOpenFileName"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	"\r\nval",
+	["punctuation", "."],
+	"x",
+	["operator", "="],
+	["function-call", "random"],
+	["operator", "-"],
+	["number", "100"],
+	["number", "100"],
+
+	["function-call", "append"],
+	" vert_array ",
+	["punctuation", "("],
+	["function-call", "readValue"],
+	" in_file",
+	["punctuation", ")"],
+
+	["keyword", "while"],
+	["keyword", "not"],
+	["function-call", "eof"],
+	" f ",
+	["keyword", "do"],
+
+	["keyword", "on"],
+	" pressme pressed ",
+	["keyword", "do"],
+	["function-call", "print"],
+	["string", "\"Pressed!\""]
+]

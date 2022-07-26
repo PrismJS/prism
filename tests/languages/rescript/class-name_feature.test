@@ -1,0 +1,38 @@
+Belt.Int.toString(n)
+<Button />
+@react.component
+type poly = [ | #Poly | #Variant ]
+
+----------------------------------------------------
+
+[
+	["class-name", "Belt"],
+	["punctuation", "."],
+	["class-name", "Int"],
+	["punctuation", "."],
+	["function", "toString"],
+	["punctuation", "("],
+	"n",
+	["punctuation", ")"],
+
+	["operator", "<"],
+	["class-name", "Button"],
+	["operator", "/"],
+	["operator", ">"],
+
+	["class-name", "@react.component"],
+
+	["keyword", "type"],
+	["constant", "poly"],
+	["operator", "="],
+	["punctuation", "["],
+	["operator", "|"],
+	["class-name", "#Poly"],
+	["operator", "|"],
+	["class-name", "#Variant"],
+	["punctuation", "]"]
+]
+
+----------------------------------------------------
+
+Checks for class names.

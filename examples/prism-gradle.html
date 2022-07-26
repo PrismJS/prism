@@ -1,0 +1,54 @@
+<h2>Full example</h2>
+<pre><code>apply plugin: "java"
+apply plugin: "eclipse"
+apply plugin: "idea"
+
+group = "com.mycompany.hadoopproject"
+version = "1.0"
+
+repositories {
+    // Standard Maven 
+    mavenCentral()
+    maven {
+        url "https://repository.cloudera.com/artifactory/cloudera-repos/"
+    }
+}
+
+// Mimic Maven 'provided' configuration, as suggested in GRADLE-784
+configurations {
+    provided
+}
+sourceSets {
+    main {
+        compileClasspath += configurations.provided
+    }
+}
+
+ext.hadoopVersion = "2.0.0-mr1-cdh4.0.1"
+dependencies {
+    provided "org.apache.hadoop:hadoop-client:${hadoopVersion}"
+
+    // Example of adding a specific compile time dependency
+    compile "com.google.guava:guava:11.0.2"
+
+    testCompile "junit:junit:4.8.2"
+}
+
+// Java version selection
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+eclipse {
+    classpath {
+        // Ensure Eclipse build output appears in build directory
+        defaultOutputDir = file("${buildDir}/eclipse-classes")
+        // Ensure the provided configuration jars are available in Eclipse
+        plusConfigurations += configurations.provided
+    }
+}
+
+// Emulate Maven shade plugin with a fat jar.
+// http://docs.codehaus.org/display/GRADLE/Cookbook#Cookbook-Creatingafatjar
+jar {
+    from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+}</code></pre>

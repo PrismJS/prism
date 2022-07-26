@@ -1,0 +1,13 @@
+<h2>Full example</h2>
+<pre><code>// Source: https://blog.stata.com/2018/10/09/how-to-automate-common-tasks/
+program normalize
+	version 15.1
+
+	syntax varlist [if] [in] [ , prefix(name) suffix(name) ]
+
+	foreach var in `varlist' {
+		summarize `var' `if' `in'
+		generate `prefix'`var'`suffix' = (`var' - r(mean)) / r(sd)   `if' `in'
+	}
+end
+</code></pre>

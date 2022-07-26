@@ -1,15 +1,20 @@
 (function (Prism) {
 
-	Prism.languages.erb = Prism.languages.extend('ruby', {});
-	Prism.languages.insertBefore('erb', 'comment', {
+	Prism.languages.erb = {
 		'delimiter': {
-			pattern: /^<%=?|%>$/,
+			pattern: /^(\s*)<%=?|%>(?=\s*$)/,
+			lookbehind: true,
 			alias: 'punctuation'
+		},
+		'ruby': {
+			pattern: /\s*\S[\s\S]*/,
+			alias: 'language-ruby',
+			inside: Prism.languages.ruby
 		}
-	});
+	};
 
 	Prism.hooks.add('before-tokenize', function (env) {
-		var erbPattern = /<%=?(?:[^\r\n]|[\r\n](?!=begin)|[\r\n]=begin\s(?:[^\r\n]|[\r\n](?!=end))*[\r\n]=end)+?%>/gm;
+		var erbPattern = /<%=?(?:[^\r\n]|[\r\n](?!=begin)|[\r\n]=begin\s(?:[^\r\n]|[\r\n](?!=end))*[\r\n]=end)+?%>/g;
 		Prism.languages['markup-templating'].buildPlaceholders(env, 'erb', erbPattern);
 	});
 

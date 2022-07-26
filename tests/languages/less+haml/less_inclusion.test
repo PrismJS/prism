@@ -10,20 +10,24 @@
 [
 	["filter-less", [
 		["filter-name", ":less"],
-		["selector", [".foo"]],
-		["punctuation", "{"],
-		["mixin-usage", ".bar"],
-		["punctuation", ";"],
-		["punctuation", "}"]
+		["text", [
+			["selector", [".foo"]],
+			["punctuation", "{"],
+			["mixin-usage", ".bar"],
+			["punctuation", ";"],
+			["punctuation", "}"]
+		]]
 	]],
 	["punctuation", "~"],
 	["filter-less", [
 		["filter-name", ":less"],
-		["selector", [".foo"]],
-		["punctuation", "{"],
-		["mixin-usage", ".bar"],
-		["punctuation", ";"],
-		["punctuation", "}"]
+		["text", [
+			["selector", [".foo"]],
+			["punctuation", "{"],
+			["mixin-usage", ".bar"],
+			["punctuation", ";"],
+			["punctuation", "}"]
+		]]
 	]]
 ]
 

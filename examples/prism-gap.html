@@ -1,0 +1,15 @@
+<h2>Full example</h2>
+<pre><code># Source: https://www.gap-system.org/Manuals/doc/ref/chap4.html#X815F71EA7BC0EB6F
+gap> fib := function ( n )
+>     local f1, f2, f3, i;
+>     f1 := 1; f2 := 1;
+>     for i in [3..n] do
+>       f3 := f1 + f2;
+>       f1 := f2;
+>       f2 := f3;
+>     od;
+>     return f2;
+>   end;;
+gap> List( [1..10], fib );
+[ 1, 1, 2, 3, 5, 8, 13, 21, 34, 55 ]
+</code></pre>

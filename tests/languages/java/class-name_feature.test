@@ -1,18 +1,26 @@
 class Foo extends foo.bar.Foo {
 
-	java.util.List<foo.bar.Foo.Bar> bar(foo.bar.Baz bat) throws java.lang.IOException {
-		throw new java.lang.UnsupportedOperationException("Not implemented");
+	java.util.List<foo.bar.Foo.Bar> bar(foo.bar.Baz bat) throws java.lang.Exception {
+		var foo = new java.lang.UnsupportedOperationException("Not implemented");
+		Exception e = foo;
+		throw e;
 	}
 
 }
+
+import com.lib.ID;
+ID id = new ID();
+ID.Nested id;
+ID::new
+ID[]::new
+
+String.valueOf(5);
 
 ----------------------------------------------------
 
 [
 	["keyword", "class"],
-	["class-name", [
-		"Foo"
-	]],
+	["class-name", ["Foo"]],
 	["keyword", "extends"],
 	["class-name", [
 		["namespace", [
@@ -70,10 +78,13 @@ class Foo extends foo.bar.Foo {
 			"lang",
 			["punctuation", "."]
 		]],
-		"IOException"
+		"Exception"
 	]],
 	["punctuation", "{"],
-	["keyword", "throw"],
+
+	["keyword", "var"],
+	" foo ",
+	["operator", "="],
 	["keyword", "new"],
 	["class-name", [
 		["namespace", [
@@ -88,7 +99,65 @@ class Foo extends foo.bar.Foo {
 	["string", "\"Not implemented\""],
 	["punctuation", ")"],
 	["punctuation", ";"],
+
+	["class-name", ["Exception"]],
+	" e ",
+	["operator", "="],
+	" foo",
+	["punctuation", ";"],
+
+	["keyword", "throw"],
+	" e",
+	["punctuation", ";"],
+
 	["punctuation", "}"],
 
-	["punctuation", "}"]
+	["punctuation", "}"],
+
+	["keyword", "import"],
+	["import", [
+		["namespace", [
+			"com",
+			["punctuation", "."],
+			"lib",
+			["punctuation", "."]
+		]],
+		["class-name", "ID"]
+	]],
+	["punctuation", ";"],
+
+	["class-name", ["ID"]],
+	" id ",
+	["operator", "="],
+	["keyword", "new"],
+	["class-name", ["ID"]],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["class-name", [
+		"ID",
+		["punctuation", "."],
+		"Nested"
+	]],
+	" id",
+	["punctuation", ";"],
+
+	["class-name", ["ID"]],
+	["operator", "::"],
+	["keyword", "new"],
+
+	["class-name", ["ID"]],
+	["punctuation", "["],
+	["punctuation", "]"],
+	["operator", "::"],
+	["keyword", "new"],
+
+	["class-name", ["String"]],
+	["punctuation", "."],
+	["function", "valueOf"],
+	["punctuation", "("],
+	["number", "5"],
+	["punctuation", ")"],
+	["punctuation", ";"]
 ]

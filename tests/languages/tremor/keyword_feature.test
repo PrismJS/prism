@@ -1,0 +1,115 @@
+args
+as
+by
+case
+config
+connect
+connector
+const
+copy
+create
+default
+define
+deploy
+drop
+each
+emit
+end
+erase
+event
+flow
+fn
+for
+from
+group
+having
+insert
+into
+intrinsic
+let
+links
+match
+merge
+mod
+move
+of
+operator
+patch
+pipeline
+recur
+script
+select
+set
+sliding
+state
+stream
+to
+tumbling
+update
+use
+when
+where
+window
+with
+
+----------------------------------------------------
+
+[
+	["keyword", "args"],
+	["keyword", "as"],
+	["keyword", "by"],
+	["keyword", "case"],
+	["keyword", "config"],
+	["keyword", "connect"],
+	["keyword", "connector"],
+	["keyword", "const"],
+	["keyword", "copy"],
+	["keyword", "create"],
+	["keyword", "default"],
+	["keyword", "define"],
+	["keyword", "deploy"],
+	["keyword", "drop"],
+	["keyword", "each"],
+	["keyword", "emit"],
+	["keyword", "end"],
+	["keyword", "erase"],
+	["keyword", "event"],
+	["keyword", "flow"],
+	["keyword", "fn"],
+	["keyword", "for"],
+	["keyword", "from"],
+	["keyword", "group"],
+	["keyword", "having"],
+	["keyword", "insert"],
+	["keyword", "into"],
+	["keyword", "intrinsic"],
+	["keyword", "let"],
+	["keyword", "links"],
+	["keyword", "match"],
+	["keyword", "merge"],
+	["keyword", "mod"],
+	["keyword", "move"],
+	["keyword", "of"],
+	["keyword", "operator"],
+	["keyword", "patch"],
+	["keyword", "pipeline"],
+	["keyword", "recur"],
+	["keyword", "script"],
+	["keyword", "select"],
+	["keyword", "set"],
+	["keyword", "sliding"],
+	["keyword", "state"],
+	["keyword", "stream"],
+	["keyword", "to"],
+	["keyword", "tumbling"],
+	["keyword", "update"],
+	["keyword", "use"],
+	["keyword", "when"],
+	["keyword", "where"],
+	["keyword", "window"],
+	["keyword", "with"]
+]
+
+----------------------------------------------------
+
+Checks for keywords.

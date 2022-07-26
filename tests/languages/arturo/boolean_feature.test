@@ -1,0 +1,15 @@
+true
+maybe
+false
+
+----------------------------------------------------
+
+[
+	["boolean", "true"],
+    ["boolean", "maybe"],
+    ["boolean", "false"]
+]
+
+----------------------------------------------------
+
+Checks for boolean values.

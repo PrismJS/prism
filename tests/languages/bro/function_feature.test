@@ -8,12 +8,12 @@ event foo::bar
 ----------------------------------------------------
 
 [
-	["function", [["keyword", "function"], " foo"]],
-	["function", [["keyword", "hook"], " foo"]],
-	["function", [["keyword", "event"], " foo"]],
-	["function", [["keyword", "function"], " foo::bar"]],
-	["function", [["keyword", "hook"], " foo::bar"]],
-	["function", [["keyword", "event"], " foo::bar"]]
+	["keyword", "function"], ["function", "foo"],
+	["keyword", "hook"], ["function", "foo"],
+	["keyword", "event"], ["function", "foo"],
+	["keyword", "function"], ["function", "foo::bar"],
+	["keyword", "hook"], ["function", "foo::bar"],
+	["keyword", "event"], ["function", "foo::bar"]
 ]
 
 ----------------------------------------------------

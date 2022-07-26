@@ -1,0 +1,31 @@
+Public-Key-Pins: max-age=3000;
+       pin-sha256="d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM=";
+       pin-sha256="E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g="
+
+----------------------------------------------------
+
+[
+	["header", [
+		["header-name", "Public-Key-Pins"],
+		["punctuation", ":"],
+		["header-value", [
+			["directive", "max-age"],
+			["operator", "="],
+			"3000",
+			["punctuation", ";"],
+
+			["directive", "pin-sha256"],
+			["operator", "="],
+			"\"d6qzRu9zOECb90Uez27xWltNsj0e1Md7GkYYkVoZWmM",
+			["operator", "="],
+			"\"",
+			["punctuation", ";"],
+
+			["directive", "pin-sha256"],
+			["operator", "="],
+			"\"E9CZ9INDbd+2eRQozYqqbQ2yXLVKB9+xcprMF+44U1g",
+			["operator", "="],
+			"\""
+		]]
+	]]
+]

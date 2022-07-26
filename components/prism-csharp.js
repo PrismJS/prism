@@ -97,11 +97,6 @@
 				pattern: re(/(^|[^@$\\])<<0>>/.source, [regularString]),
 				lookbehind: true,
 				greedy: true
-			},
-			{
-				pattern: RegExp(character),
-				greedy: true,
-				alias: 'character'
 			}
 		],
 		'class-name': [
@@ -164,7 +159,7 @@
 		],
 		'keyword': keywords,
 		// https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/lexical-structure#literals
-		'number': /(?:\b0(?:x[\da-f_]*[\da-f]|b[01_]*[01])|(?:\B\.\d+(?:_+\d+)*|\b\d+(?:_+\d+)*(?:\.\d+(?:_+\d+)*)?)(?:e[-+]?\d+(?:_+\d+)*)?)(?:ul|lu|[dflmu])?\b/i,
+		'number': /(?:\b0(?:x[\da-f_]*[\da-f]|b[01_]*[01])|(?:\B\.\d+(?:_+\d+)*|\b\d+(?:_+\d+)*(?:\.\d+(?:_+\d+)*)?)(?:e[-+]?\d+(?:_+\d+)*)?)(?:[dflmu]|lu|ul)?\b/i,
 		'operator': />>=?|<<=?|[-=]>|([-+&|])\1|~|\?\?=?|[-+*/%&|^!=<>]=?/,
 		'punctuation': /\?\.?|::|[{}[\];(),.:]/
 	});
@@ -196,7 +191,7 @@
 		},
 		'type-expression': {
 			// default(Foo), typeof(Foo<Bar>), sizeof(int)
-			pattern: re(/(\b(?:default|typeof|sizeof)\s*\(\s*(?!\s))(?:[^()\s]|\s(?!\s)|<<0>>)*(?=\s*\))/.source, [nestedRound]),
+			pattern: re(/(\b(?:default|sizeof|typeof)\s*\(\s*(?!\s))(?:[^()\s]|\s(?!\s)|<<0>>)*(?=\s*\))/.source, [nestedRound]),
 			lookbehind: true,
 			alias: 'class-name',
 			inside: typeInside
@@ -359,9 +354,13 @@
 				greedy: true,
 				inside: createInterpolationInside(sInterpolation, sInterpolationRound),
 			}
-		]
+		],
+		'char': {
+			pattern: RegExp(character),
+			greedy: true
+		}
 	});
 
-}(Prism));
+	Prism.languages.dotnet = Prism.languages.cs = Prism.languages.csharp;
 
-Prism.languages.dotnet = Prism.languages.cs = Prism.languages.csharp;
+}(Prism));

@@ -1,0 +1,157 @@
+all?
+and?
+any?
+ascii?
+attr?
+attribute?
+attributeLabel?
+binary?
+block?
+char?
+contains?
+database?
+date?
+dictionary?
+empty?
+equal?
+even?
+every?
+exists?
+false?
+floating?
+function?
+greater?
+greaterOrEqual?
+if?
+in?
+inline?
+integer?
+is?
+key?
+label?
+leap?
+less?
+lessOrEqual?
+literal?
+logical?
+lower?
+nand?
+negative?
+nor?
+not?
+notEqual?
+null?
+numeric?
+odd?
+or?
+path?
+pathLabel?
+positive?
+prefix?
+prime?
+regex?
+same?
+set?
+some?
+sorted?
+standalone?
+string?
+subset?
+suffix?
+superset?
+symbol?
+symbolLiteral?
+true?
+try?
+type?
+unless?
+upper?
+when?
+whitespace?
+word?
+xnor?
+xor?
+zero?
+
+----------------------------------------------------
+
+[
+	["predicate", "all?"],
+    ["predicate", "and?"],
+    ["predicate", "any?"],
+    ["predicate", "ascii?"],
+    ["predicate", "attr?"],
+    ["predicate", "attribute?"],
+    ["predicate", "attributeLabel?"],
+    ["predicate", "binary?"],
+    ["predicate", "block?"],
+    ["predicate", "char?"],
+    ["predicate", "contains?"],
+    ["predicate", "database?"],
+    ["predicate", "date?"],
+    ["predicate", "dictionary?"],
+    ["predicate", "empty?"],
+    ["predicate", "equal?"],
+    ["predicate", "even?"],
+    ["predicate", "every?"],
+    ["predicate", "exists?"],
+    ["predicate", "false?"],
+    ["predicate", "floating?"],
+    ["predicate", "function?"],
+    ["predicate", "greater?"],
+    ["predicate", "greaterOrEqual?"],
+    ["predicate", "if?"],
+    ["predicate", "in?"],
+    ["predicate", "inline?"],
+    ["predicate", "integer?"],
+    ["predicate", "is?"],
+    ["predicate", "key?"],
+    ["predicate", "label?"],
+    ["predicate", "leap?"],
+    ["predicate", "less?"],
+    ["predicate", "lessOrEqual?"],
+    ["predicate", "literal?"],
+    ["predicate", "logical?"],
+    ["predicate", "lower?"],
+    ["predicate", "nand?"],
+    ["predicate", "negative?"],
+    ["predicate", "nor?"],
+    ["predicate", "not?"],
+    ["predicate", "notEqual?"],
+    ["predicate", "null?"],
+    ["predicate", "numeric?"],
+    ["predicate", "odd?"],
+    ["predicate", "or?"],
+    ["predicate", "path?"],
+    ["predicate", "pathLabel?"],
+    ["predicate", "positive?"],
+    ["predicate", "prefix?"],
+    ["predicate", "prime?"],
+    ["predicate", "regex?"],
+    ["predicate", "same?"],
+    ["predicate", "set?"],
+    ["predicate", "some?"],
+    ["predicate", "sorted?"],
+    ["predicate", "standalone?"],
+    ["predicate", "string?"],
+    ["predicate", "subset?"],
+    ["predicate", "suffix?"],
+    ["predicate", "superset?"],
+    ["predicate", "symbol?"],
+    ["predicate", "symbolLiteral?"],
+    ["predicate", "true?"],
+    ["predicate", "try?"],
+    ["predicate", "type?"],
+    ["predicate", "unless?"],
+    ["predicate", "upper?"],
+    ["predicate", "when?"],
+    ["predicate", "whitespace?"],
+    ["predicate", "word?"],
+    ["predicate", "xnor?"],
+    ["predicate", "xor?"],
+    ["predicate", "zero?"]
+]
+
+----------------------------------------------------
+
+Checks for built-in predicates.

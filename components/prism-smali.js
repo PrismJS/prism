@@ -68,7 +68,7 @@ Prism.languages.smali = {
 	},
 
 	'boolean': {
-		pattern: /(^|[^\w.-])(?:true|false)(?![\w.-])/,
+		pattern: /(^|[^\w.-])(?:false|true)(?![\w.-])/,
 		lookbehind: true
 	},
 	'number': {

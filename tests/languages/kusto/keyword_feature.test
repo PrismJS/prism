@@ -1,0 +1,145 @@
+access
+alias
+and
+anti
+as
+asc
+auto
+between
+by
+contains
+contains_cs
+database
+declare
+desc
+endswith
+endswith_cs
+external
+from
+fullouter
+has
+has_all
+has_cs
+hasperfix
+hasperfix_cs
+hassuffix
+hassuffix_cs
+in
+ingestion
+inline
+inner
+innerunique
+into
+left
+leftanti
+leftantisemi
+leftinner
+leftouter
+leftsemi
+let
+like
+local
+matches regex
+not
+nulls first
+nulls last
+of
+on
+or
+pattern
+print
+query_parameters
+range
+restrict
+right
+rightanti
+rightantisemi
+rightinner
+rightouter
+rightsemi
+schema
+set
+startswith
+startswith_cs
+step
+table
+tables
+to
+view
+where
+with
+
+----------------------------------------------------
+
+[
+	["keyword", "access"],
+	["keyword", "alias"],
+	["keyword", "and"],
+	["keyword", "anti"],
+	["keyword", "as"],
+	["keyword", "asc"],
+	["keyword", "auto"],
+	["keyword", "between"],
+	["keyword", "by"],
+	["keyword", "contains"],
+	["keyword", "contains_cs"],
+	["keyword", "database"],
+	["keyword", "declare"],
+	["keyword", "desc"],
+	["keyword", "endswith"],
+	["keyword", "endswith_cs"],
+	["keyword", "external"],
+	["keyword", "from"],
+	["keyword", "fullouter"],
+	["keyword", "has"],
+	["keyword", "has_all"],
+	["keyword", "has_cs"],
+	["keyword", "hasperfix"],
+	["keyword", "hasperfix_cs"],
+	["keyword", "hassuffix"],
+	["keyword", "hassuffix_cs"],
+	["keyword", "in"],
+	["keyword", "ingestion"],
+	["keyword", "inline"],
+	["keyword", "inner"],
+	["keyword", "innerunique"],
+	["keyword", "into"],
+	["keyword", "left"],
+	["keyword", "leftanti"],
+	["keyword", "leftantisemi"],
+	["keyword", "leftinner"],
+	["keyword", "leftouter"],
+	["keyword", "leftsemi"],
+	["keyword", "let"],
+	["keyword", "like"],
+	["keyword", "local"],
+	["keyword", "matches regex"],
+	["keyword", "not"],
+	["keyword", "nulls first"],
+	["keyword", "nulls last"],
+	["keyword", "of"],
+	["keyword", "on"],
+	["keyword", "or"],
+	["keyword", "pattern"],
+	["keyword", "print"],
+	["keyword", "query_parameters"],
+	["keyword", "range"],
+	["keyword", "restrict"],
+	["keyword", "right"],
+	["keyword", "rightanti"],
+	["keyword", "rightantisemi"],
+	["keyword", "rightinner"],
+	["keyword", "rightouter"],
+	["keyword", "rightsemi"],
+	["keyword", "schema"],
+	["keyword", "set"],
+	["keyword", "startswith"],
+	["keyword", "startswith_cs"],
+	["keyword", "step"],
+	["keyword", "table"],
+	["keyword", "tables"],
+	["keyword", "to"],
+	["keyword", "view"],
+	["keyword", "where"],
+	["keyword", "with"]
+]

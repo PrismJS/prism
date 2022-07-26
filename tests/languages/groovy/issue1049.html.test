@@ -1,0 +1,17 @@
+"&amp;"
+"&amp;&amp;"
+"&lt;"
+"&lt;&lt;"
+"&amp;lt;"
+"&gt;"
+
+----------------------------------------------------
+
+<span class="token interpolation-string"><span class="token string">"&amp;amp;"</span></span>
+<span class="token interpolation-string">
+	<span class="token string">"&amp;amp;&amp;amp;"</span>
+</span>
+<span class="token interpolation-string"><span class="token string">"&amp;lt;"</span></span>
+<span class="token interpolation-string"><span class="token string">"&amp;lt;&amp;lt;"</span></span>
+<span class="token interpolation-string"><span class="token string">"&amp;amp;lt;"</span></span>
+<span class="token interpolation-string"><span class="token string">"&amp;gt;"</span></span>

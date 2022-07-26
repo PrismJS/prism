@@ -1,0 +1,321 @@
+bool
+i32
+u32
+f32
+i64
+u64
+f64
+vec2
+vec3
+vec4
+mat2x2
+mat2x3
+mat2x4
+mat3x2
+mat3x3
+mat3x4
+mat4x2
+mat4x3
+mat4x4
+
+atomic
+array
+
+override
+ptr
+
+sampler
+sampler_comparison
+staticAssert
+
+texture_1d
+texture_2d
+texture_2d_array
+texture_3d
+texture_cube
+texture_cube_array
+texture_multisampled_2d
+texture_storage_1d
+texture_storage_2d
+texture_storage_2d_array
+texture_storage_3d
+texture_depth_2d
+texture_depth_2d_array
+texture_depth_cube
+texture_depth_cube_array
+texture_depth_multisampled_2d
+
+staticAssert()
+
+all
+any
+select
+abs
+acos
+acosh
+asin
+asinh
+atan
+atanh
+atan2
+ceil
+clamp
+cos
+cosh
+cross
+degrees
+distance
+exp
+exp2
+faceForward
+floor
+fma
+fract
+frexp
+inverseSqrt
+ldexp
+length
+log
+log2
+max
+min
+mix
+modf
+normalize
+pow
+quantizeToF16
+radians
+reflect
+refract
+round
+sign
+sin
+sinh
+smoothstep
+sqrt
+step
+tan
+tanh
+trunc
+countLeadingZeros
+countOneBits
+countTrailingZeros
+firstLeadingBit
+extractBits
+insertBits
+reverseBits
+shiftLeft
+shiftRight
+determinant
+transpose
+dot
+dpdx
+dpdxCoarse
+dpdxFine
+dpdy
+dpdyCoarse
+dpdyFine
+fwidth
+fwidthCoarse
+fwidthFine
+textureDimensions
+textureGather
+textureGatherCompare
+textureLoad
+textureNumLayers
+textureNumLevels
+textureNumSamples
+textureSample
+textureSampleBias
+textureSampleCompare
+textureSampleCompareLevel
+textureSampleGrad
+textureSampleLevel
+textureStore
+atomicLoad
+atomicStore
+atomicAdd
+atomicSub
+atomicMax
+atomicMin
+atomicAnd
+atomicOr
+atomicXor
+atomicExchange
+atomicCompareExchangeWeak
+pack4x8snorm
+pack4x8unorm
+pack2x16snorm
+pack2x16unorm
+pack2x16float
+unpack4x8snorm
+unpack4x8unorm
+unpack2x16snorm
+unpack2x16unorm
+unpack2x16float
+storageBarrier
+workgroupBarrier
+
+----------------------------------------------------
+
+[
+	["builtin", "bool"],
+	["builtin", "i32"],
+	["builtin", "u32"],
+	["builtin", "f32"],
+	["builtin", "i64"],
+	["builtin", "u64"],
+	["builtin", "f64"],
+	["builtin", "vec2"],
+	["builtin", "vec3"],
+	["builtin", "vec4"],
+	["builtin", "mat2x2"],
+	["builtin", "mat2x3"],
+	["builtin", "mat2x4"],
+	["builtin", "mat3x2"],
+	["builtin", "mat3x3"],
+	["builtin", "mat3x4"],
+	["builtin", "mat4x2"],
+	["builtin", "mat4x3"],
+	["builtin", "mat4x4"],
+
+	["builtin", "atomic"],
+	["builtin", "array"],
+
+	["builtin", "override"],
+	["builtin", "ptr"],
+
+	["builtin", "sampler"],
+	["builtin", "sampler_comparison"],
+	["builtin", "staticAssert"],
+
+	["builtin", "texture_1d"],
+	["builtin", "texture_2d"],
+	["builtin", "texture_2d_array"],
+	["builtin", "texture_3d"],
+	["builtin", "texture_cube"],
+	["builtin", "texture_cube_array"],
+	["builtin", "texture_multisampled_2d"],
+	["builtin", "texture_storage_1d"],
+	["builtin", "texture_storage_2d"],
+	["builtin", "texture_storage_2d_array"],
+	["builtin", "texture_storage_3d"],
+	["builtin", "texture_depth_2d"],
+	["builtin", "texture_depth_2d_array"],
+	["builtin", "texture_depth_cube"],
+	["builtin", "texture_depth_cube_array"],
+	["builtin", "texture_depth_multisampled_2d"],
+
+	["builtin", "staticAssert"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["builtin", "all"],
+	["builtin", "any"],
+	["builtin", "select"],
+	["builtin", "abs"],
+	["builtin", "acos"],
+	["builtin", "acosh"],
+	["builtin", "asin"],
+	["builtin", "asinh"],
+	["builtin", "atan"],
+	["builtin", "atanh"],
+	["builtin", "atan2"],
+	["builtin", "ceil"],
+	["builtin", "clamp"],
+	["builtin", "cos"],
+	["builtin", "cosh"],
+	["builtin", "cross"],
+	["builtin", "degrees"],
+	["builtin", "distance"],
+	["builtin", "exp"],
+	["builtin", "exp2"],
+	["builtin", "faceForward"],
+	["builtin", "floor"],
+	["builtin", "fma"],
+	["builtin", "fract"],
+	["builtin", "frexp"],
+	["builtin", "inverseSqrt"],
+	["builtin", "ldexp"],
+	["builtin", "length"],
+	["builtin", "log"],
+	["builtin", "log2"],
+	["builtin", "max"],
+	["builtin", "min"],
+	["builtin", "mix"],
+	["builtin", "modf"],
+	["builtin", "normalize"],
+	["builtin", "pow"],
+	["builtin", "quantizeToF16"],
+	["builtin", "radians"],
+	["builtin", "reflect"],
+	["builtin", "refract"],
+	["builtin", "round"],
+	["builtin", "sign"],
+	["builtin", "sin"],
+	["builtin", "sinh"],
+	["builtin", "smoothstep"],
+	["builtin", "sqrt"],
+	["builtin", "step"],
+	["builtin", "tan"],
+	["builtin", "tanh"],
+	["builtin", "trunc"],
+	["builtin", "countLeadingZeros"],
+	["builtin", "countOneBits"],
+	["builtin", "countTrailingZeros"],
+	["builtin", "firstLeadingBit"],
+	["builtin", "extractBits"],
+	["builtin", "insertBits"],
+	["builtin", "reverseBits"],
+	["builtin", "shiftLeft"],
+	["builtin", "shiftRight"],
+	["builtin", "determinant"],
+	["builtin", "transpose"],
+	["builtin", "dot"],
+	["builtin", "dpdx"],
+	["builtin", "dpdxCoarse"],
+	["builtin", "dpdxFine"],
+	["builtin", "dpdy"],
+	["builtin", "dpdyCoarse"],
+	["builtin", "dpdyFine"],
+	["builtin", "fwidth"],
+	["builtin", "fwidthCoarse"],
+	["builtin", "fwidthFine"],
+	["builtin", "textureDimensions"],
+	["builtin", "textureGather"],
+	["builtin", "textureGatherCompare"],
+	["builtin", "textureLoad"],
+	["builtin", "textureNumLayers"],
+	["builtin", "textureNumLevels"],
+	["builtin", "textureNumSamples"],
+	["builtin", "textureSample"],
+	["builtin", "textureSampleBias"],
+	["builtin", "textureSampleCompare"],
+	["builtin", "textureSampleCompareLevel"],
+	["builtin", "textureSampleGrad"],
+	["builtin", "textureSampleLevel"],
+	["builtin", "textureStore"],
+	["builtin", "atomicLoad"],
+	["builtin", "atomicStore"],
+	["builtin", "atomicAdd"],
+	["builtin", "atomicSub"],
+	["builtin", "atomicMax"],
+	["builtin", "atomicMin"],
+	["builtin", "atomicAnd"],
+	["builtin", "atomicOr"],
+	["builtin", "atomicXor"],
+	["builtin", "atomicExchange"],
+	["builtin", "atomicCompareExchangeWeak"],
+	["builtin", "pack4x8snorm"],
+	["builtin", "pack4x8unorm"],
+	["builtin", "pack2x16snorm"],
+	["builtin", "pack2x16unorm"],
+	["builtin", "pack2x16float"],
+	["builtin", "unpack4x8snorm"],
+	["builtin", "unpack4x8unorm"],
+	["builtin", "unpack2x16snorm"],
+	["builtin", "unpack2x16unorm"],
+	["builtin", "unpack2x16float"],
+	["builtin", "storageBarrier"],
+	["builtin", "workgroupBarrier"]
+]

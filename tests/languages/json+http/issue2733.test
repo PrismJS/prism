@@ -30,20 +30,36 @@ transfer-encoding: chunked
 		["reason-phrase", "OK"]
 	]],
 
-	["header-name", "connection:"],
-	" keep-alive\r\n",
+	["header", [
+		["header-name", "connection"],
+		["punctuation", ":"],
+		["header-value", "keep-alive"]
+	]],
 
-	["header-name", "content-type:"],
-	" application/json\r\n",
+	["header", [
+		["header-name", "content-type"],
+		["punctuation", ":"],
+		["header-value", "application/json"]
+	]],
 
-	["header-name", "date:"],
-	" Sat, 23 Jan 2021 20:36:14 GMT\r\n",
+	["header", [
+		["header-name", "date"],
+		["punctuation", ":"],
+		["header-value", "Sat, 23 Jan 2021 20:36:14 GMT"]
+	]],
 
-	["header-name", "keep-alive:"],
-	" timeout=60\r\n",
+	["header", [
+		["header-name", "keep-alive"],
+		["punctuation", ":"],
+		["header-value", "timeout=60"]
+	]],
 
-	["header-name", "transfer-encoding:"],
-	" chunked",
+	["header", [
+		["header-name", "transfer-encoding"],
+		["punctuation", ":"],
+		["header-value", "chunked"]
+	]],
+
 	["application-json", [
 		["punctuation", "{"],
 

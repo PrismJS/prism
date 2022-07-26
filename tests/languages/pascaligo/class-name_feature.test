@@ -1,0 +1,42 @@
+type storage is int
+
+function add (const store : storage; const delta : int) : storage is store + delta
+
+----------------------------------------------------
+
+[
+	["keyword", "type"],
+	["class-name", [
+		"storage"
+	]],
+	["keyword", "is"],
+	["class-name", [
+		["builtin", "int"]
+	]],
+
+	["keyword", "function"],
+	["function", "add"],
+	["punctuation", "("],
+	["keyword", "const"],
+	" store ",
+	["punctuation", ":"],
+	["class-name", [
+		"storage"
+	]],
+	["punctuation", ";"],
+	["keyword", "const"],
+	" delta ",
+	["punctuation", ":"],
+	["class-name", [
+		["builtin", "int"]
+	]],
+	["punctuation", ")"],
+	["punctuation", ":"],
+	["class-name", [
+		"storage"
+	]],
+	["keyword", "is"],
+	" store ",
+	["operator", "+"],
+	" delta"
+]

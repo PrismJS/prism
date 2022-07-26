@@ -12,8 +12,8 @@ Prism.languages.erlang = {
 		pattern: /'(?:\\.|[^\\'\r\n])+'/,
 		alias: 'atom'
 	},
-	'boolean': /\b(?:true|false)\b/,
-	'keyword': /\b(?:fun|when|case|of|end|if|receive|after|try|catch)\b/,
+	'boolean': /\b(?:false|true)\b/,
+	'keyword': /\b(?:after|begin|case|catch|end|fun|if|of|receive|try|when)\b/,
 	'number': [
 		/\$\\?./,
 		/\b\d+#[a-z0-9]+/i,
@@ -26,7 +26,7 @@ Prism.languages.erlang = {
 		lookbehind: true
 	},
 	'operator': [
-		/[=\/<>:]=|=[:\/]=|\+\+?|--?|[=*\/!]|\b(?:bnot|div|rem|band|bor|bxor|bsl|bsr|not|and|or|xor|orelse|andalso)\b/,
+		/[=\/<>:]=|=[:\/]=|\+\+?|--?|[=*\/!]|\b(?:and|andalso|band|bnot|bor|bsl|bsr|bxor|div|not|or|orelse|rem|xor)\b/,
 		{
 			// We don't want to match <<
 			pattern: /(^|[^<])<(?!<)/,

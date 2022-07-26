@@ -1,0 +1,248 @@
+struct mystruct {
+	real scalar n1, n2
+	real matrix X
+}
+
+class coord {
+	real scalar x, y
+	real scalar length(), angle()
+}
+real scalar coord::length()
+{
+	return(sqrt(x^2 + y^2))
+}
+real scalar coord::angle()
+{
+	return(atan2(y, x)*360/(2*pi()))
+}
+class rotated_coord extends coord {
+	real scalar theta
+	real scalar angle()
+	void new()
+}
+real scalar rotated_coord::angle()
+{
+	return(super.angle() - theta)
+}
+void rotated_coord::new()
+{
+	theta = 0
+}
+
+class V {
+public:
+	real matrix M
+	static real scalar count
+	class coord scalar c
+	real matrix inverse()
+	class coord scalar c()
+private:
+	real scalar type
+protected:
+	real scalar type()
+}
+
+class cow extends animal {}
+
+----------------------------------------------------
+
+[
+	["keyword", "struct"], ["class-name", "mystruct"], ["punctuation", "{"],
+	["type", ["real scalar"]], " n1", ["punctuation", ","], " n2\r\n\t",
+	["type", ["real matrix"]], " X\r\n",
+	["punctuation", "}"],
+
+	["keyword", "class"],
+	["class-name", "coord"],
+	["punctuation", "{"],
+
+	["type", ["real scalar"]],
+	" x",
+	["punctuation", ","],
+	" y\r\n\t",
+
+	["type", ["real scalar"]],
+	["function", "length"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ","],
+	["function", "angle"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["punctuation", "}"],
+
+	["type", ["real scalar"]],
+	" coord",
+	["operator", "::"],
+	["function", "length"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["punctuation", "{"],
+
+	["keyword", "return"],
+	["punctuation", "("],
+	["function", "sqrt"],
+	["punctuation", "("],
+	"x",
+	["operator", "^"],
+	["number", "2"],
+	["operator", "+"],
+	" y",
+	["operator", "^"],
+	["number", "2"],
+	["punctuation", ")"],
+	["punctuation", ")"],
+
+	["punctuation", "}"],
+
+	["type", ["real scalar"]],
+	" coord",
+	["operator", "::"],
+	["function", "angle"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["punctuation", "{"],
+
+	["keyword", "return"],
+	["punctuation", "("],
+	["function", "atan2"],
+	["punctuation", "("],
+	"y",
+	["punctuation", ","],
+	" x",
+	["punctuation", ")"],
+	["operator", "*"],
+	["number", "360"],
+	["operator", "/"],
+	["punctuation", "("],
+	["number", "2"],
+	["operator", "*"],
+	["function", "pi"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ")"],
+	["punctuation", ")"],
+
+	["punctuation", "}"],
+
+	["keyword", "class"],
+	["class-name", "rotated_coord"],
+	["keyword", "extends"],
+	["class-name", "coord"],
+	["punctuation", "{"],
+
+	["type", ["real scalar"]],
+	" theta\r\n\t",
+
+	["type", ["real scalar"]],
+	["function", "angle"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["type", [
+		["keyword", "void"]
+	]],
+	["function", "new"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["punctuation", "}"],
+
+	["type", ["real scalar"]],
+	" rotated_coord",
+	["operator", "::"],
+	["function", "angle"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["punctuation", "{"],
+
+	["keyword", "return"],
+	["punctuation", "("],
+	"super",
+	["punctuation", "."],
+	["function", "angle"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["operator", "-"],
+	" theta",
+	["punctuation", ")"],
+
+	["punctuation", "}"],
+
+	["type", [
+		["keyword", "void"]
+	]],
+	" rotated_coord",
+	["operator", "::"],
+	["function", "new"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["punctuation", "{"],
+
+	"\r\n\ttheta ",
+	["operator", "="],
+	["number", "0"],
+
+	["punctuation", "}"],
+
+	["keyword", "class"],
+	["class-name", "V"],
+	["punctuation", "{"],
+
+	["keyword", "public"],
+	["operator", ":"],
+
+	["type", ["real matrix"]],
+	" M\r\n\t",
+
+	["keyword", "static"],
+	["type", ["real scalar"]],
+	" count\r\n\t",
+
+	["type", [
+		["keyword", "class"],
+		" coord scalar"
+	]],
+	" c\r\n\t",
+
+	["type", ["real matrix"]],
+	["function", "inverse"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["type", [
+		["keyword", "class"],
+		" coord scalar"
+	]],
+	["function", "c"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["keyword", "private"],
+	["operator", ":"],
+
+	["type", ["real scalar"]],
+	" type\r\n",
+
+	["keyword", "protected"],
+	["operator", ":"],
+
+	["type", ["real scalar"]],
+	["function", "type"],
+	["punctuation", "("],
+	["punctuation", ")"],
+
+	["punctuation", "}"],
+
+	["keyword", "class"],
+	["class-name", "cow"],
+	["keyword", "extends"],
+	["class-name", "animal"],
+	["punctuation", "{"],
+	["punctuation", "}"]
+]

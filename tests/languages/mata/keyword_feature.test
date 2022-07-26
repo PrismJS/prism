@@ -1,0 +1,55 @@
+break;
+class;
+continue;
+do;
+else;
+end;
+extends;
+external;
+final;
+for;
+function;
+goto;
+if;
+pragma;
+private;
+protected;
+public;
+return;
+static;
+struct;
+unset;
+unused;
+version;
+virtual;
+while;
+
+----------------------------------------------------
+
+[
+	["keyword", "break"], ["punctuation", ";"],
+	["keyword", "class"], ["punctuation", ";"],
+	["keyword", "continue"], ["punctuation", ";"],
+	["keyword", "do"], ["punctuation", ";"],
+	["keyword", "else"], ["punctuation", ";"],
+	["keyword", "end"], ["punctuation", ";"],
+	["keyword", "extends"], ["punctuation", ";"],
+	["keyword", "external"], ["punctuation", ";"],
+	["keyword", "final"], ["punctuation", ";"],
+	["keyword", "for"], ["punctuation", ";"],
+	["keyword", "function"], ["punctuation", ";"],
+	["keyword", "goto"], ["punctuation", ";"],
+	["keyword", "if"], ["punctuation", ";"],
+	["keyword", "pragma"], ["punctuation", ";"],
+	["keyword", "private"], ["punctuation", ";"],
+	["keyword", "protected"], ["punctuation", ";"],
+	["keyword", "public"], ["punctuation", ";"],
+	["keyword", "return"], ["punctuation", ";"],
+	["keyword", "static"], ["punctuation", ";"],
+	["keyword", "struct"], ["punctuation", ";"],
+	["keyword", "unset"], ["punctuation", ";"],
+	["keyword", "unused"], ["punctuation", ";"],
+	["keyword", "version"], ["punctuation", ";"],
+	["keyword", "virtual"], ["punctuation", ";"],
+	["keyword", "while"], ["punctuation", ";"]
+]

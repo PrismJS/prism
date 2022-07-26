@@ -47,7 +47,7 @@
 			lookbehind: true,
 			inside: {
 				'label-key': {
-					pattern: /\b[^,]*\b/,
+					pattern: /\b[^,]+\b/,
 					alias: 'attr-name',
 				},
 				'punctuation': /[(),]/
@@ -93,7 +93,7 @@
 		'keyword': new RegExp('\\b(?:' + keywords.join('|') + ')\\b', 'i'),
 		'function': /\b[a-z_]\w*(?=\s*\()/i,
 		'number': /[-+]?(?:(?:\b\d+(?:\.\d+)?|\B\.\d+)(?:e[-+]?\d+)?\b|\b(?:0x[0-9a-f]+|nan|inf)\b)/i,
-		'operator': /[\^*/%+-]|==|!=|<=|<|>=|>|\b(?:and|unless|or)\b/i,
+		'operator': /[\^*/%+-]|==|!=|<=|<|>=|>|\b(?:and|or|unless)\b/i,
 		'punctuation': /[{};()`,.[\]]/,
 	};
 }(Prism));

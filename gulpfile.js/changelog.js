@@ -4,7 +4,7 @@ const { src, dest } = require('gulp');
 
 const replace = require('gulp-replace');
 const pump = require('pump');
-const git = require('simple-git/promise')(__dirname);
+const git = require('simple-git').gitP(__dirname);
 
 const { changelog } = require('./paths');
 
@@ -128,7 +128,7 @@ async function changes() {
 	 * @param {string | { message: string, hash: string }} info
 	 */
 	function addEntry(category, info) {
-		const path = category.split(/\s*>>\s*/g);
+		const path = category.split(/\s*>>\s*/);
 		if (path[path.length - 1] !== '') {
 			path.push('');
 		}
@@ -268,7 +268,7 @@ async function changes() {
 		},
 
 		function changedPlugin(info) {
-			let relevantChanges = info.changes.filter(and(notGenerated, notTests, notExamples, c => !/\.(?:html|css)$/.test(c.file)));
+			let relevantChanges = info.changes.filter(and(notGenerated, notTests, notExamples, c => !/\.(?:css|html)$/.test(c.file)));
 
 			if (relevantChanges.length > 0 &&
 				relevantChanges.every(c => c.mode === 'M' && /^plugins\/.*\.js$/.test(c.file))) {

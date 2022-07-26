@@ -1,0 +1,20 @@
+( ) [ ] { }
+, ;
+
+t.n1
+
+----------------------------------------------------
+
+[
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "["],
+	["punctuation", "]"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["punctuation", ","],
+	["punctuation", ";"],
+
+	"\r\n\r\nt", ["punctuation", "."], "n1"
+]

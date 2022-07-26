@@ -1,0 +1,27 @@
+max-age=0;
+max-age="0";
+max-age=31536000;
+max-age="31536000"
+
+----------------------------------------------------
+
+[
+	["directive", "max-age"],
+	["operator", "="],
+	"0",
+	["punctuation", ";"],
+
+	["directive", "max-age"],
+	["operator", "="],
+	"\"0\"",
+	["punctuation", ";"],
+
+	["directive", "max-age"],
+	["operator", "="],
+	"31536000",
+	["punctuation", ";"],
+
+	["directive", "max-age"],
+	["operator", "="],
+	"\"31536000\""
+]

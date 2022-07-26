@@ -112,9 +112,12 @@ pre {
 	overflow: auto;
 }
 
-pre > code.highlight {
+mark {
 	outline: .4em solid red;
 	outline-offset: .4em;
+	margin: .4em 0;
+	background-color: transparent;
+	display: inline-block;
 }
 
 header,
@@ -129,8 +132,9 @@ header, footer {
 	padding: 30px -webkit-calc(50% - 450px); /* Workaround for bug */
 	padding: 30px calc(50% - 450px);
 	color: white;
-	text-shadow: 0 -1px 2px black;
-	background: url(img/spectrum.png) fixed;
+	text-shadow: 0 -1px 2px black, 0 0 4px black,
+	             0 -1px 0 black, 0 1px 0 black, -1px 0 0 black, 1px 0 0 black;
+	background: linear-gradient(transparent, rgba(0, 0, 0, 0.6)), url(img/spectrum.png) fixed;
 }
 
 header:before,
@@ -188,21 +192,23 @@ footer:before {
 	}
 
 	#features {
-		width: 66em;
-		margin-top: 2em;
-		font-size: 80%;
+		margin-top: 1.6em;
 	}
 
 		#features li {
-			margin: 0 0 2em 0;
+			margin: 0 0 1.6em 0;
 			list-style: none;
 			display: inline-block;
-			width: 27em;
+			width: 49%;
+			box-sizing: border-box;
 			vertical-align: top;
 		}
 
 		#features li:nth-child(odd) {
-			margin-right: 5em;
+			padding-right: 2em;
+		}
+		#features li:nth-child(even) {
+			padding-left: 2em;
 		}
 
 			#features li:before {
@@ -210,14 +216,14 @@ footer:before {
 				float: left;
 				margin-left: -.8em;
 				color: #7fab14;
-				font-size: 400%;
+				font-size: 320%;
 				line-height: 1;
 			}
 
 				#features li strong {
 					display: block;
 					margin-bottom: .1em;
-					font-size: 200%;
+					font-size: 160%;
 				}
 
 	header .download-button {
@@ -229,10 +235,11 @@ footer:before {
 		position: relative;
 		z-index: 1;
 		float: right;
-		margin-right: -1em;
+		margin-right: -9em;
 		text-align: center;
 		text-transform: uppercase;
 		letter-spacing: .2em;
+		text-shadow: 0 -1px 2px black;
 	}
 
 		#theme > p {
@@ -277,6 +284,7 @@ footer:before {
 
 		#theme > input {
 			position: absolute;
+			left: 0;
 			clip: rect(0,0,0,0);
 		}
 
@@ -284,11 +292,85 @@ footer:before {
 			background: #7fab14;
 		}
 
+		@media (max-width: 1300px) and (min-width: 1051px) {
+			#theme {
+				position: relative;
+				z-index: 1;
+				float: left;
+				margin: 1em 0;
+				width: 100%;
+			}
+			#theme + * {
+				clear: both;
+			}
+
+				#theme > p {
+					margin-top: .5em;
+				}
+
+				#theme > label {
+					float: left;
+					font-size: 82.6%;
+				}
+
+				#theme > label:before {
+					display: none;
+				}
+
+				#theme > label:nth-of-type(n+2) {
+					margin-top: 0;
+				}
+		}
+
+		@media (max-width: 1050px) {
+			#theme {
+				position: relative;
+				z-index: 1;
+				float: left;
+				margin: 1em 0;
+			}
+			#theme + * {
+				clear: both;
+			}
+
+				#theme > p {
+					left: inherit;
+					right: -1em;
+				}
+
+				#theme > label {
+					float: left;
+				}
+
+				#theme > label:before {
+					display: none;
+				}
+
+				#theme > label:nth-of-type(n+2) {
+					margin-top: 0;
+				}
+				#theme > label:nth-of-type(n+5) {
+					margin-top: -2.5em;
+				}
+				#theme > label:nth-of-type(4n+1) {
+					margin-left: 12.5em;
+				}
+		}
+
+		@media (max-width: 800px) {
+			#theme > label:nth-of-type(4) {
+				margin-right: 4em;
+			}
+			#theme > label:nth-of-type(4n+1) {
+				margin-left: 4em;
+			}
+		}
+
+
 footer {
 	margin-top: 2em;
 	background-position: bottom;
 	color: white;
-	text-shadow: 0 -1px 2px black;
 }
 
 	footer:before {
@@ -364,6 +446,12 @@ footer {
 
 	#toc li {
 		list-style: none;
+		line-height: 1.2;
+		padding: .2em 0;
+	}
+
+	#toc li a {
+		padding: .2em 0;
 	}
 
 #logo:before {
@@ -429,12 +517,3 @@ ul.plugin-list {
 	ul.plugin-list > li > div {
 		margin-bottom: .5em;
 	}
-
-/*
- * Fix for Toolbar's overflow issue
- */
-
-div.code-toolbar {
-	display: block;
-	overflow: auto;
-}

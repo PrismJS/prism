@@ -1,0 +1,55 @@
+async;
+attribute;
+callback;
+const;
+constructor;
+deleter;
+dictionary;
+enum;
+getter;
+includes;
+inherit;
+interface;
+mixin;
+namespace;
+null;
+optional;
+or;
+partial;
+readonly;
+required;
+setter;
+static;
+stringifier;
+typedef;
+unrestricted;
+
+----------------------------------------------------
+
+[
+	["keyword", "async"], ["punctuation", ";"],
+	["keyword", "attribute"], ["punctuation", ";"],
+	["keyword", "callback"], ["punctuation", ";"],
+	["keyword", "const"], ["punctuation", ";"],
+	["keyword", "constructor"], ["punctuation", ";"],
+	["keyword", "deleter"], ["punctuation", ";"],
+	["keyword", "dictionary"], ["punctuation", ";"],
+	["keyword", "enum"], ["punctuation", ";"],
+	["keyword", "getter"], ["punctuation", ";"],
+	["keyword", "includes"], ["punctuation", ";"],
+	["keyword", "inherit"], ["punctuation", ";"],
+	["keyword", "interface"], ["punctuation", ";"],
+	["keyword", "mixin"], ["punctuation", ";"],
+	["keyword", "namespace"], ["punctuation", ";"],
+	["keyword", "null"], ["punctuation", ";"],
+	["keyword", "optional"], ["punctuation", ";"],
+	["keyword", "or"], ["punctuation", ";"],
+	["keyword", "partial"], ["punctuation", ";"],
+	["keyword", "readonly"], ["punctuation", ";"],
+	["keyword", "required"], ["punctuation", ";"],
+	["keyword", "setter"], ["punctuation", ";"],
+	["keyword", "static"], ["punctuation", ";"],
+	["keyword", "stringifier"], ["punctuation", ";"],
+	["keyword", "typedef"], ["punctuation", ";"],
+	["keyword", "unrestricted"], ["punctuation", ";"]
+]

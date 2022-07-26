@@ -4,8 +4,8 @@
 	Prism.languages.insertBefore('flow', 'keyword', {
 		'type': [
 			{
-				pattern: /\b(?:[Nn]umber|[Ss]tring|[Bb]oolean|Function|any|mixed|null|void)\b/,
-				alias: 'tag'
+				pattern: /\b(?:[Bb]oolean|Function|[Nn]umber|[Ss]tring|[Ss]ymbol|any|mixed|null|void)\b/,
+				alias: 'class-name'
 			}
 		]
 	});
@@ -24,11 +24,11 @@
 	}
 	Prism.languages.flow.keyword.unshift(
 		{
-			pattern: /(^|[^$]\b)(?:type|opaque|declare|Class)\b(?!\$)/,
+			pattern: /(^|[^$]\b)(?:Class|declare|opaque|type)\b(?!\$)/,
 			lookbehind: true
 		},
 		{
-			pattern: /(^|[^$]\B)\$(?:await|Diff|Exact|Keys|ObjMap|PropertyType|Shape|Record|Supertype|Subtype|Enum)\b(?!\$)/,
+			pattern: /(^|[^$]\B)\$(?:Diff|Enum|Exact|Keys|ObjMap|PropertyType|Record|Shape|Subtype|Supertype|await)\b(?!\$)/,
 			lookbehind: true
 		}
 	);

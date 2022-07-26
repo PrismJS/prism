@@ -1,0 +1,41 @@
+'a'
+'z'
+'0'
+'_'
+'あ'
+'\''         # single quote
+'\\'         # backslash
+'\a'         # alert
+'\b'         # backspace
+'\e'         # escape
+'\f'         # form feed
+'\n'         # newline
+'\r'         # carriage return
+'\t'         # tab
+'\v'         # vertical tab
+'\0'         # null character
+'\uFFFF'     # hexadecimal unicode character
+'\u{10FFFF}' # hexadecimal unicode character
+
+----------------------------------------------------
+
+[
+	["char", "'a'"],
+	["char", "'z'"],
+	["char", "'0'"],
+	["char", "'_'"],
+	["char", "'あ'"],
+	["char", "'\\''"], ["comment", "# single quote"],
+	["char", "'\\\\'"], ["comment", "# backslash"],
+	["char", "'\\a'"], ["comment", "# alert"],
+	["char", "'\\b'"], ["comment", "# backspace"],
+	["char", "'\\e'"], ["comment", "# escape"],
+	["char", "'\\f'"], ["comment", "# form feed"],
+	["char", "'\\n'"], ["comment", "# newline"],
+	["char", "'\\r'"], ["comment", "# carriage return"],
+	["char", "'\\t'"], ["comment", "# tab"],
+	["char", "'\\v'"], ["comment", "# vertical tab"],
+	["char", "'\\0'"], ["comment", "# null character"],
+	["char", "'\\uFFFF'"], ["comment", "# hexadecimal unicode character"],
+	["char", "'\\u{10FFFF}'"], ["comment", "# hexadecimal unicode character"]
+]

@@ -1,0 +1,60 @@
+<h2>Full example</h2>
+<pre><code>// Vertex shader
+struct CameraUniform {
+    view_proj: mat4x4&lt;f32&gt;;
+};
+[[group(1), binding(0)]]
+var&lt;uniform&gt; camera: CameraUniform;
+
+struct InstanceInput {
+    [[location(5)]] model_matrix_0: vec4&lt;f32&gt;;
+    [[location(6)]] model_matrix_1: vec4&lt;f32&gt;;
+    [[location(7)]] model_matrix_2: vec4&lt;f32&gt;;
+    [[location(8)]] model_matrix_3: vec4&lt;f32&gt;;
+};
+
+struct VertexInput {
+    [[location(0)]] position: vec3&lt;f32&gt;; 
+    [[location(1)]] tex_coords: vec2&lt;f32&gt;;
+};
+
+struct VertexOutput {
+    [[builtin(position)]] clip_position: vec4&lt;f32&gt;;
+    [[location(0)]] tex_coords: vec2&lt;f32&gt;;
+};
+
+@vertex
+[[stage(vertex)]]
+fn vs_main(
+    model: VertexInput,
+    instance: InstanceInput,
+) -&gt; VertexOutput {
+    let model_matrix = mat4x4&lt;f32&gt;(
+        instance.model_matrix_0,
+        instance.model_matrix_1,
+        instance.model_matrix_2,
+        instance.model_matrix_3,
+    );
+
+    bool mybool1 = true;
+    bool mybool2 = false;
+
+    var out: VertexOutput;
+    out.tex_coords = model.tex_coords;
+    out.clip_position = camera.view_proj * model_matrix * vec4&lt;f32&gt;(model.position, 1.0);
+    return out;
+}
+
+// Fragment shader
+
+[[group(0), binding(0)]]
+var t_diffuse: texture_2d&lt;f32&gt;;
+[[group(0), binding(1)]]
+var s_diffuse: sampler;
+
+@fragment
+[[stage(fragment)]]
+fn fs_main(in: VertexOutput) -&gt; [[location(0)]] vec4&lt;f32&gt; {
+    return textureSample(t_diffuse, s_diffuse, in.tex_coords);
+}
+</code></pre>

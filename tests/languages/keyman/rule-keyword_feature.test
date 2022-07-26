@@ -1,0 +1,49 @@
+any
+baselayout
+beep
+call
+context
+deadkey
+dk
+if
+index
+layer
+notany
+nul
+outs
+platform
+reset
+return
+save
+set
+store
+use
+
+----------------------------------------------------
+
+[
+	["rule-keyword", "any"],
+	["rule-keyword", "baselayout"],
+	["rule-keyword", "beep"],
+	["rule-keyword", "call"],
+	["rule-keyword", "context"],
+	["rule-keyword", "deadkey"],
+	["rule-keyword", "dk"],
+	["rule-keyword", "if"],
+	["rule-keyword", "index"],
+	["rule-keyword", "layer"],
+	["rule-keyword", "notany"],
+	["rule-keyword", "nul"],
+	["rule-keyword", "outs"],
+	["rule-keyword", "platform"],
+	["rule-keyword", "reset"],
+	["rule-keyword", "return"],
+	["rule-keyword", "save"],
+	["rule-keyword", "set"],
+	["rule-keyword", "store"],
+	["rule-keyword", "use"]
+]
+
+----------------------------------------------------
+
+Checks for all keywords.

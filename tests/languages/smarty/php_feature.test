@@ -1,0 +1,81 @@
+{php}
+   // including a php script directly from the template.
+   include('/path/to/display_weather.php');
+{/php}
+
+{* this template includes a {php} block that assign's the variable $varX *}
+{php}
+   global $foo, $bar;
+   if($foo == $bar){
+     echo 'This will be sent to browser';
+   }
+  // assign a variable to Smarty
+  $this->assign('varX','Toffee');
+{/php}
+{* output the variable *}
+<strong>{$varX}</strong> is my fav ice cream :-)
+
+----------------------------------------------------
+
+[
+	["smarty", [
+		["embedded-php", [
+			["smarty", [
+				["delimiter", "{"],
+				["keyword", "php"],
+				["delimiter", "}"]
+			]],
+			["php", "\r\n   // including a php script directly from the template.\r\n   include('/path/to/display_weather.php');\r\n"],
+			["smarty", [
+				["delimiter", "{/"],
+				["keyword", "php"],
+				["delimiter", "}"]
+			]]
+		]]
+	]],
+
+	["smarty", [
+		["comment", "{* this template includes a {php} block that assign's the variable $varX *}"]
+	]],
+
+	["smarty", [
+		["embedded-php", [
+			["smarty", [
+				["delimiter", "{"],
+				["keyword", "php"],
+				["delimiter", "}"]
+			]],
+			["php", "\r\n   global $foo, $bar;\r\n   if($foo == $bar){\r\n     echo 'This will be sent to browser';\r\n   }\r\n  // assign a variable to Smarty\r\n  $this->assign('varX','Toffee');\r\n"],
+			["smarty", [
+				["delimiter", "{/"],
+				["keyword", "php"],
+				["delimiter", "}"]
+			]]
+		]]
+	]],
+
+	["smarty", [
+		["comment", "{* output the variable *}"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"strong"
+		]],
+		["punctuation", ">"]
+	]],
+	["smarty", [
+		["delimiter", "{"],
+		["variable", "$varX"],
+		["delimiter", "}"]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"strong"
+		]],
+		["punctuation", ">"]
+	]],
+	" is my fav ice cream :-)"
+]

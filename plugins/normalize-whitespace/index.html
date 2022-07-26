@@ -57,7 +57,7 @@ Prism.plugins.NormalizeWhitespace.setDefaults({
 });
 </code></pre>
 
-	<p>The following settings are available:</p>
+	<p>The following settings are available and can be set via the <code>data-[setting]</code> attribute on the <code>&lt;pre&lt;</code> element:</p>
 
 	<dl>
 		<dt>remove-trailing</dt>
@@ -100,6 +100,16 @@ Prism.plugins.NormalizeWhitespace.setDefaults({
 			foo: true,
 
 			bar: false
+		};
+
+
+		var
+		there_is_a_very_very_very_very_long_line_it_can_break_it_for_you
+		 = true;
+		
+		if 
+		(there_is_a_very_very_very_very_long_line_it_can_break_it_for_you
+		 === true) {
 		};
 
 

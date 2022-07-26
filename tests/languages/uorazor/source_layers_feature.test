@@ -1,0 +1,87 @@
+backpack
+gloves
+self
+ARMS
+BLUE
+BRACELET
+CANCEL
+CLEAR
+CLOAK
+CRIMINAL
+EARRINGS
+ENEMY
+FACIALHAIR
+FRIEND
+FRIENDLY
+GRAY
+GREY
+GROUND
+HAIR
+HEAD
+INNERLEGS
+INNERTORSO
+INNOCENT
+LEFTHAND
+MIDDLETORSO
+MURDERER
+NECK
+NONFRIENDLY
+ONEHANDEDSECONDARY
+OUTERLEGS
+OUTERTORSO
+PANTS
+RED
+RIGHTHAND
+RING
+SHIRT
+SHOES
+TALISMAN
+WAIST
+
+----------------------------------------------------
+
+[
+	["source-layers", "backpack"],
+	["source-layers", "gloves"],
+	["source-layers", "self"],
+	["source-layers", "ARMS"],
+	["source-layers", "BLUE"],
+	["source-layers", "BRACELET"],
+	["source-layers", "CANCEL"],
+	["source-layers", "CLEAR"],
+	["source-layers", "CLOAK"],
+	["source-layers", "CRIMINAL"],
+	["source-layers", "EARRINGS"],
+	["source-layers", "ENEMY"],
+	["source-layers", "FACIALHAIR"],
+	["source-layers", "FRIEND"],
+	["source-layers", "FRIENDLY"],
+	["source-layers", "GRAY"],
+	["source-layers", "GREY"],
+	["source-layers", "GROUND"],
+	["source-layers", "HAIR"],
+	["source-layers", "HEAD"],
+	["source-layers", "INNERLEGS"],
+	["source-layers", "INNERTORSO"],
+	["source-layers", "INNOCENT"],
+	["source-layers", "LEFTHAND"],
+	["source-layers", "MIDDLETORSO"],
+	["source-layers", "MURDERER"],
+	["source-layers", "NECK"],
+	["source-layers", "NONFRIENDLY"],
+	["source-layers", "ONEHANDEDSECONDARY"],
+	["source-layers", "OUTERLEGS"],
+	["source-layers", "OUTERTORSO"],
+	["source-layers", "PANTS"],
+	["source-layers", "RED"],
+	["source-layers", "RIGHTHAND"],
+	["source-layers", "RING"],
+	["source-layers", "SHIRT"],
+	["source-layers", "SHOES"],
+	["source-layers", "TALISMAN"],
+	["source-layers", "WAIST"]
+]
+
+----------------------------------------------------
+
+Checks for source layers.

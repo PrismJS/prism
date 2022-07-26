@@ -1,0 +1,84 @@
+version 17.0
+include limits.matah
+mata:
+real matrix inpivot(real matrix X)
+{
+	real matrix y1, yz
+	real scalar n
+	if (rows(X)>‘MAXDIM’ | cols(X)>‘MAXDIM’) {
+		errprintf("inpivot: matrix too large\n")
+		exit(1000)
+	}
+	...
+}
+end
+
+----------------------------------------------------
+
+[
+	["command", "version"],
+	["number", "17.0"],
+
+	["command", "include"],
+	" limits.matah\r\n",
+
+	["command", "mata"],
+	["punctuation", ":"],
+
+	["mata", [
+		["type", ["real matrix"]],
+		["function", "inpivot"],
+		["punctuation", "("],
+		["type", ["real matrix"]],
+		" X",
+		["punctuation", ")"],
+
+		["punctuation", "{"],
+
+		["type", ["real matrix"]],
+		" y1",
+		["punctuation", ","],
+		" yz\r\n\t",
+
+		["type", ["real scalar"]],
+		" n\r\n\t",
+
+		["keyword", "if"],
+		["punctuation", "("],
+		["function", "rows"],
+		["punctuation", "("],
+		"X",
+		["punctuation", ")"],
+		["operator", ">"],
+		"‘MAXDIM",
+		["operator", "’"],
+		["operator", "|"],
+		["function", "cols"],
+		["punctuation", "("],
+		"X",
+		["punctuation", ")"],
+		["operator", ">"],
+		"‘MAXDIM",
+		["operator", "’"],
+		["punctuation", ")"],
+		["punctuation", "{"],
+
+		["function", "errprintf"],
+		["punctuation", "("],
+		["string", "\"inpivot: matrix too large\\n\""],
+		["punctuation", ")"],
+
+		["function", "exit"],
+		["punctuation", "("],
+		["number", "1000"],
+		["punctuation", ")"],
+
+		["punctuation", "}"],
+
+		["operator", ".."],
+		["punctuation", "."],
+
+		["punctuation", "}"]
+	]],
+	["command", "end"]
+]

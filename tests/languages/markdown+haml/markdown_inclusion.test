@@ -10,18 +10,22 @@
 [
 	["filter-markdown", [
 		["filter-name", ":markdown"],
-		["title", [
-			["punctuation", "#"],
-			" Title 1"
+		["text", [
+			["title", [
+				["punctuation", "#"],
+				" Title 1"
+			]]
 		]]
 	]],
 	["punctuation", "~"],
 	["filter-markdown", [
 		["filter-name", ":markdown"],
-		["title", [
-            ["punctuation", "#"],
-            " Title 1"
-        ]]
+		["text", [
+			["title", [
+				["punctuation", "#"],
+				" Title 1"
+			]]
+		]]
 	]]
 ]
 

@@ -1,0 +1,33 @@
+{foo
+
+( ) [ ] { }
+. : ,
+`
+->
+
+}
+
+----------------------------------------------------
+
+[
+	["smarty", [
+		["delimiter", "{"], ["keyword", "foo"],
+
+		["punctuation", "("],
+		["punctuation", ")"],
+		["punctuation", "["],
+		["punctuation", "]"],
+		["punctuation", "{"],
+		["punctuation", "}"],
+
+		["punctuation", "."],
+		["punctuation", ":"],
+		["punctuation", ","],
+
+		["punctuation", "`"],
+
+		["punctuation", "->"],
+
+		["delimiter", "}"]
+	]]
+]

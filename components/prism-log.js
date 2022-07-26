@@ -11,7 +11,7 @@ Prism.languages.log = {
 	},
 
 	'exception': {
-		pattern: /(^|[^\w.])[a-z][\w.]*(?:Exception|Error):.*(?:(?:\r\n?|\n)[ \t]*(?:at[ \t].+|\.{3}.*|Caused by:.*))+(?:(?:\r\n?|\n)[ \t]*\.\.\. .*)?/,
+		pattern: /(^|[^\w.])[a-z][\w.]*(?:Error|Exception):.*(?:(?:\r\n?|\n)[ \t]*(?:at[ \t].+|\.{3}.*|Caused by:.*))+(?:(?:\r\n?|\n)[ \t]*\.\.\. .*)?/,
 		lookbehind: true,
 		greedy: true,
 		alias: ['javastacktrace', 'language-javastacktrace'],
@@ -56,7 +56,7 @@ Prism.languages.log = {
 		alias: 'comment'
 	},
 
-	'url': /\b(?:https?|ftp|file):\/\/[^\s|,;'"]*[^\s|,;'">.]/,
+	'url': /\b(?:file|ftp|https?):\/\/[^\s|,;'"]*[^\s|,;'">.]/,
 	'email': {
 		pattern: /(^|\s)[-\w+.]+@[a-z][a-z0-9-]*(?:\.[a-z][a-z0-9-]*)+(?=\s)/,
 		lookbehind: true,
@@ -64,7 +64,7 @@ Prism.languages.log = {
 	},
 
 	'ip-address': {
-		pattern: /\b(?:\d{1,3}(?:\.\d{1,3}){3})\b/i,
+		pattern: /\b(?:\d{1,3}(?:\.\d{1,3}){3})\b/,
 		alias: 'constant'
 	},
 	'mac-address': {
@@ -97,9 +97,9 @@ Prism.languages.log = {
 		pattern: RegExp(
 			/\b\d{4}[-/]\d{2}[-/]\d{2}(?:T(?=\d{1,2}:)|(?=\s\d{1,2}:))/.source +
 			'|' +
-			/\b\d{1,4}[-/ ](?:\d{1,2}|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[-/ ]\d{2,4}T?\b/.source +
+			/\b\d{1,4}[-/ ](?:\d{1,2}|Apr|Aug|Dec|Feb|Jan|Jul|Jun|Mar|May|Nov|Oct|Sep)[-/ ]\d{2,4}T?\b/.source +
 			'|' +
-			/\b(?:(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun)(?:\s{1,2}(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec))?|Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\s{1,2}\d{1,2}\b/.source,
+			/\b(?:(?:Fri|Mon|Sat|Sun|Thu|Tue|Wed)(?:\s{1,2}(?:Apr|Aug|Dec|Feb|Jan|Jul|Jun|Mar|May|Nov|Oct|Sep))?|Apr|Aug|Dec|Feb|Jan|Jul|Jun|Mar|May|Nov|Oct|Sep)\s{1,2}\d{1,2}\b/.source,
 			'i'
 		),
 		alias: 'number'
@@ -109,7 +109,7 @@ Prism.languages.log = {
 		alias: 'number'
 	},
 
-	'boolean': /\b(?:true|false|null)\b/i,
+	'boolean': /\b(?:false|null|true)\b/i,
 	'number': {
 		pattern: /(^|[^.\w])(?:0x[a-f0-9]+|0o[0-7]+|0b[01]+|v?\d[\da-f]*(?:\.\d+)*(?:e[+-]?\d+)?[a-z]{0,3}\b)\b(?!\.\w)/i,
 		lookbehind: true

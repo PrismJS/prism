@@ -5,15 +5,15 @@
 
 [
 	["filter-atpl", [
-	    ["filter-name", ":atpl"],
-	    ["tag", [
-		    ["ld", [["punctuation", "{{"]]],
-		    ["number", "42"],
-		    ["rd", [["punctuation", "}}"]]]
-	    ]]
+		["filter-name", ":atpl"],
+		["text", [
+			["delimiter", "{{"],
+			["number", "42"],
+			["delimiter", "}}"]
+		]]
 	]]
 ]
 
 ----------------------------------------------------
 
-Checks for atpl filter (Twig) in Jade.
+Checks for atpl filter (Twig) in pug.

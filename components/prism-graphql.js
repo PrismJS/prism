@@ -17,18 +17,18 @@ Prism.languages.graphql = {
 		greedy: true
 	},
 	'number': /(?:\B-|\b)\d+(?:\.\d+)?(?:e[+-]?\d+)?\b/i,
-	'boolean': /\b(?:true|false)\b/,
+	'boolean': /\b(?:false|true)\b/,
 	'variable': /\$[a-z_]\w*/i,
 	'directive': {
 		pattern: /@[a-z_]\w*/i,
 		alias: 'function'
 	},
 	'attr-name': {
-		pattern: /[a-z_]\w*(?=\s*(?:\((?:[^()"]|"(?:\\.|[^\\"\r\n])*")*\))?:)/i,
+		pattern: /\b[a-z_]\w*(?=\s*(?:\((?:[^()"]|"(?:\\.|[^\\"\r\n])*")*\))?:)/i,
 		greedy: true
 	},
 	'atom-input': {
-		pattern: /[A-Z]\w*Input(?=!?.*$)/m,
+		pattern: /\b[A-Z]\w*Input\b/,
 		alias: 'class-name'
 	},
 	'scalar': /\b(?:Boolean|Float|ID|Int|String)\b/,

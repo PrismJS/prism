@@ -1,0 +1,73 @@
+class Customer
+   @@no_of_customers = 0
+end
+
+cust1 = Customer. new
+cust2 = Customer. new
+
+class Accounts
+   def reading_charge
+   end
+   def Accounts.return_date
+   end
+end
+
+class Salad
+  def self.buy_olive_oil
+  end
+end
+
+----------------------------------------------------
+
+[
+	["keyword", "class"], ["class-name", ["Customer"]],
+	["variable", "@@no_of_customers"], ["operator", "="], ["number", "0"],
+	["keyword", "end"],
+
+	"\r\n\r\ncust1 ",
+	["operator", "="],
+	["class-name", ["Customer"]],
+	["punctuation", "."],
+	["keyword", "new"],
+
+	"\r\ncust2 ",
+	["operator", "="],
+	["class-name", ["Customer"]],
+	["punctuation", "."],
+	["keyword", "new"],
+
+	["keyword", "class"],
+	["class-name", ["Accounts"]],
+
+	["keyword", "def"],
+	["method-definition", [
+		["function", "reading_charge"]
+	]],
+
+	["keyword", "end"],
+
+	["keyword", "def"],
+	["method-definition", [
+		["class-name", "Accounts"],
+		["punctuation", "."],
+		["function", "return_date"]
+	]],
+
+	["keyword", "end"],
+
+	["keyword", "end"],
+
+	["keyword", "class"],
+	["class-name", ["Salad"]],
+
+	["keyword", "def"],
+	["method-definition", [
+		["keyword", "self"],
+		["punctuation", "."],
+		["function", "buy_olive_oil"]
+	]],
+
+	["keyword", "end"],
+
+	["keyword", "end"]
+]

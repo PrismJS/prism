@@ -1,7 +1,7 @@
 (function (Prism) {
 	var keywords = [
 		/\b(?:async|sync|yield)\*/,
-		/\b(?:abstract|assert|async|await|break|case|catch|class|const|continue|covariant|default|deferred|do|dynamic|else|enum|export|extension|external|extends|factory|final|finally|for|get|hide|if|implements|interface|import|in|library|mixin|new|null|on|operator|part|rethrow|return|set|show|static|super|switch|sync|this|throw|try|typedef|var|void|while|with|yield)\b/
+		/\b(?:abstract|assert|async|await|break|case|catch|class|const|continue|covariant|default|deferred|do|dynamic|else|enum|export|extends|extension|external|factory|final|finally|for|get|hide|if|implements|import|in|interface|library|mixin|new|null|on|operator|part|rethrow|return|set|show|static|super|switch|sync|this|throw|try|typedef|var|void|while|with|yield)\b/
 	];
 
 	// Handles named imports, such as http.Client
@@ -22,16 +22,6 @@
 	};
 
 	Prism.languages.dart = Prism.languages.extend('clike', {
-		'string': [
-			{
-				pattern: /r?("""|''')[\s\S]*?\1/,
-				greedy: true
-			},
-			{
-				pattern: /r?(["'])(?:\\.|(?!\1)[^\\\r\n])*\1/,
-				greedy: true
-			}
-		],
 		'class-name': [
 			className,
 			{
@@ -46,10 +36,32 @@
 		'operator': /\bis!|\b(?:as|is)\b|\+\+|--|&&|\|\||<<=?|>>=?|~(?:\/=?)?|[+\-*\/%&^|=!<>]=?|\?/
 	});
 
-	Prism.languages.insertBefore('dart', 'function', {
+	Prism.languages.insertBefore('dart', 'string', {
+		'string-literal': {
+			pattern: /r?(?:("""|''')[\s\S]*?\1|(["'])(?:\\.|(?!\2)[^\\\r\n])*\2(?!\2))/,
+			greedy: true,
+			inside: {
+				'interpolation': {
+					pattern: /((?:^|[^\\])(?:\\{2})*)\$(?:\w+|\{(?:[^{}]|\{[^{}]*\})*\})/,
+					lookbehind: true,
+					inside: {
+						'punctuation': /^\$\{?|\}$/,
+						'expression': {
+							pattern: /[\s\S]+/,
+							inside: Prism.languages.dart
+						}
+					}
+				},
+				'string': /[\s\S]+/
+			}
+		},
+		'string': undefined
+	});
+
+	Prism.languages.insertBefore('dart', 'class-name', {
 		'metadata': {
 			pattern: /@\w+/,
-			alias: 'symbol'
+			alias: 'function'
 		}
 	});
 

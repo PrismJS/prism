@@ -1,0 +1,15 @@
+re|^(?P<kind>bat.*)$|
+datetime|%Y-%m-%d %H:%M|
+
+----------------------------------------------------
+
+[
+	["extractor", [
+		["function", "re"],
+		["regex", "|^(?P<kind>bat.*)$|"]
+	]],
+	["extractor", [
+		["function", "datetime"],
+		["value", "|%Y-%m-%d %H:%M|"]
+	]]
+]

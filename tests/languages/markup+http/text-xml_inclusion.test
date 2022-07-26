@@ -1,0 +1,33 @@
+Content-type: text/xml
+
+<foo></foo>
+
+----------------------------------------------------
+
+[
+	["header", [
+		["header-name", "Content-type"],
+		["punctuation", ":"],
+		["header-value", "text/xml"]
+	]],
+	["text-xml", [
+		["tag", [
+			["tag", [
+				["punctuation", "<"],
+				"foo"
+			]],
+			["punctuation", ">"]
+		]],
+		["tag", [
+			["tag", [
+				["punctuation", "</"],
+				"foo"
+			]],
+			["punctuation", ">"]
+		]]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for XML content in HTTP.

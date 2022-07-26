@@ -1,0 +1,178 @@
+"!"
+""
+"' '"
+"'\a'"
+"/**/"
+"//"
+"0"
+"\""
+"\'"
+"\000"
+"\077"
+"\U000000"
+"\UFFFFFF"
+"\Uffffff"
+"\\"
+"\a"
+"\b"
+"\e"
+"\f"
+"\n"
+"\r"
+"\t"
+"\u0000"
+"\uFFFF"
+"\uffff"
+"\v"
+"\x00"
+"\xFF"
+"\xff"
+"Not
+a
+string"
+"Not\
+a\
+string"
+"String"
+"String" Not a string"
+"`\a`"
+"``"
+"false"
+"if"
+
+----------------------------------------------------
+
+[
+	["string", ["\"!\""]],
+	["string", ["\"\""]],
+	["string", ["\"' '\""]],
+	["string", [
+		"\"'",
+		["symbol", "\\a"],
+		"'\""
+	]],
+	["string", ["\"/**/\""]],
+	["string", ["\"//\""]],
+	["string", ["\"0\""]],
+	["string", [
+		"\"",
+		["symbol", "\\\""],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["symbol", "\\'"],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["symbol", "\\000"],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["symbol", "\\077"],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["symbol", "\\U000000"],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["symbol", "\\UFFFFFF"],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["symbol", "\\Uffffff"],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["symbol", "\\\\"],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["symbol", "\\a"],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["symbol", "\\b"],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["symbol", "\\e"],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["symbol", "\\f"],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["symbol", "\\n"],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["symbol", "\\r"],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["symbol", "\\t"],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["symbol", "\\u0000"],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["symbol", "\\uFFFF"],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["symbol", "\\uffff"],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["symbol", "\\v"],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["symbol", "\\x00"],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["symbol", "\\xFF"],
+		"\""
+	]],
+	["string", [
+		"\"",
+		["symbol", "\\xff"],
+		"\""
+	]],
+	"\r\n\"Not\r\na\r\nstring\"\r\n\"Not\\\r\na\\\r\nstring\"\r\n",
+	["string", ["\"String\""]],
+	["string", ["\"String\""]], " Not a string\"\r\n",
+	["string", [
+		"\"`",
+		["symbol", "\\a"],
+		"`\""
+	]],
+	["string", ["\"``\""]],
+	["string", ["\"false\""]],
+	["string", ["\"if\""]]
+]

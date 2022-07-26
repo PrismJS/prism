@@ -32,14 +32,14 @@
 			lookbehind: true
 		},
 		'boolean': {
-			pattern: /(^|[^&])\b(?:True|False)\b/i,
+			pattern: /(^|[^&])\b(?:False|True)\b/i,
 			lookbehind: true
 		},
 		'builtin': {
 			pattern: /(^|[^&])\b(?:bool|int|list|map|nat|record|string|unit)\b/i,
 			lookbehind: true
 		},
-		'function': /\b\w+(?=\s*\()/i,
+		'function': /\b\w+(?=\s*\()/,
 		'number': [
 			// Hexadecimal, octal and binary
 			/%[01]+|&[0-7]+|\$[a-f\d]+/i,

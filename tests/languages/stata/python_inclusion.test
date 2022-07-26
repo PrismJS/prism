@@ -1,0 +1,70 @@
+version 17.0
+local a = 2
+local b = 3
+python:
+from sfi import Scalar
+def calcsum(num1, num2):
+	res = num1 + num2
+	Scalar.setValue("result", res)
+calcsum(‘a’, ‘b’)
+end
+display result
+
+----------------------------------------------------
+
+[
+	["command", "version"],
+	["number", "17.0"],
+
+	["command", "local"],
+	" a ",
+	["operator", "="],
+	["number", "2"],
+
+	["command", "local"],
+	" b ",
+	["operator", "="],
+	["number", "3"],
+
+	["command", "python"],
+	["punctuation", ":"],
+	["python", [
+		["keyword", "from"],
+		" sfi ",
+		["keyword", "import"],
+		" Scalar\r\n",
+
+		["keyword", "def"],
+		["function", "calcsum"],
+		["punctuation", "("],
+		"num1",
+		["punctuation", ","],
+		" num2",
+		["punctuation", ")"],
+		["punctuation", ":"],
+
+		"\r\n\tres ",
+		["operator", "="],
+		" num1 ",
+		["operator", "+"],
+		" num2\r\n\tScalar",
+		["punctuation", "."],
+		"setValue",
+		["punctuation", "("],
+		["string", "\"result\""],
+		["punctuation", ","],
+		" res",
+		["punctuation", ")"],
+
+		"\r\ncalcsum",
+		["punctuation", "("],
+		"‘a’",
+		["punctuation", ","],
+		" ‘b’",
+		["punctuation", ")"]
+	]],
+	["command", "end"],
+
+	["command", "display"],
+	" result"
+]

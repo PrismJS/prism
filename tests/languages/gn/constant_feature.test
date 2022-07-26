@@ -1,0 +1,31 @@
+current_cpu
+current_os
+current_toolchain
+default_toolchain
+host_cpu
+host_os
+root_build_dir
+root_gen_dir
+root_out_dir
+target_cpu
+target_gen_dir
+target_os
+target_out_dir
+
+----------------------------------------------------
+
+[
+	["constant", "current_cpu"],
+	["constant", "current_os"],
+	["constant", "current_toolchain"],
+	["constant", "default_toolchain"],
+	["constant", "host_cpu"],
+	["constant", "host_os"],
+	["constant", "root_build_dir"],
+	["constant", "root_gen_dir"],
+	["constant", "root_out_dir"],
+	["constant", "target_cpu"],
+	["constant", "target_gen_dir"],
+	["constant", "target_os"],
+	["constant", "target_out_dir"]
+]

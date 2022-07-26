@@ -1,0 +1,153 @@
+alliance
+attack
+cast
+clearall
+clearignore
+clearjournal
+clearlist
+clearsysmsg
+createlist
+createtimer
+dclick
+dclicktype
+dclickvar
+dress
+dressconfig
+drop
+droprelloc
+emote
+getlabel
+guild
+gumpclose
+gumpresponse
+hotkey
+ignore
+lasttarget
+lift
+lifttype
+menu
+menuresponse
+msg
+org
+organize
+organizer
+overhead
+pause
+poplist
+potion
+promptresponse
+pushlist
+removelist
+removetimer
+rename
+restock
+say
+scav
+scavenger
+script
+setability
+setlasttarget
+setskill
+settimer
+sysmsg
+targetloc
+targetrelloc
+targettype
+undress
+unignore
+unsetvar
+useobject
+useonce
+usetype
+virtue
+waitforgump
+waitformenu
+waitforprompt
+waitforstat
+waitforsysmsg
+waitfortarget
+walk
+wfsysmsg
+whisper
+yell
+
+----------------------------------------------------
+
+[
+	["source-commands", "alliance"],
+	["source-commands", "attack"],
+	["source-commands", "cast"],
+	["source-commands", "clearall"],
+	["source-commands", "clearignore"],
+	["source-commands", "clearjournal"],
+	["source-commands", "clearlist"],
+	["source-commands", "clearsysmsg"],
+	["source-commands", "createlist"],
+	["source-commands", "createtimer"],
+	["source-commands", "dclick"],
+	["source-commands", "dclicktype"],
+	["source-commands", "dclickvar"],
+	["source-commands", "dress"],
+	["source-commands", "dressconfig"],
+	["source-commands", "drop"],
+	["source-commands", "droprelloc"],
+	["source-commands", "emote"],
+	["source-commands", "getlabel"],
+	["source-commands", "guild"],
+	["source-commands", "gumpclose"],
+	["source-commands", "gumpresponse"],
+	["source-commands", "hotkey"],
+	["source-commands", "ignore"],
+	["source-commands", "lasttarget"],
+	["source-commands", "lift"],
+	["source-commands", "lifttype"],
+	["source-commands", "menu"],
+	["source-commands", "menuresponse"],
+	["source-commands", "msg"],
+	["source-commands", "org"],
+	["source-commands", "organize"],
+	["source-commands", "organizer"],
+	["source-commands", "overhead"],
+	["source-commands", "pause"],
+	["source-commands", "poplist"],
+	["source-commands", "potion"],
+	["source-commands", "promptresponse"],
+	["source-commands", "pushlist"],
+	["source-commands", "removelist"],
+	["source-commands", "removetimer"],
+	["source-commands", "rename"],
+	["source-commands", "restock"],
+	["source-commands", "say"],
+	["source-commands", "scav"],
+	["source-commands", "scavenger"],
+	["source-commands", "script"],
+	["source-commands", "setability"],
+	["source-commands", "setlasttarget"],
+	["source-commands", "setskill"],
+	["source-commands", "settimer"],
+	["source-commands", "sysmsg"],
+	["source-commands", "targetloc"],
+	["source-commands", "targetrelloc"],
+	["source-commands", "targettype"],
+	["source-commands", "undress"],
+	["source-commands", "unignore"],
+	["source-commands", "unsetvar"],
+	["source-commands", "useobject"],
+	["source-commands", "useonce"],
+	["source-commands", "usetype"],
+	["source-commands", "virtue"],
+	["source-commands", "waitforgump"],
+	["source-commands", "waitformenu"],
+	["source-commands", "waitforprompt"],
+	["source-commands", "waitforstat"],
+	["source-commands", "waitforsysmsg"],
+	["source-commands", "waitfortarget"],
+	["source-commands", "walk"],
+	["source-commands", "wfsysmsg"],
+	["source-commands", "whisper"],
+	["source-commands", "yell"]
+]
+
+----------------------------------------------------
+
+Checks for commands.

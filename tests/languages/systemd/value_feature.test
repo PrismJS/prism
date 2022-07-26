@@ -13,10 +13,10 @@ foo=value 3\
 ----------------------------------------------------
 
 [
-	["key", "foo"], ["operator", "="], ["value", ["value 2"]],
+	["key", "foo"], ["punctuation", "="], ["value", ["value 2"]],
 
 	["key", "foo"],
-	["operator", "="],
+	["punctuation", "="],
 	["value", [
 		["quoted", "\"something\""],
 		["quoted", "\"some thing\""],
@@ -24,7 +24,7 @@ foo=value 3\
 	]],
 
 	["key", "foo"],
-	["operator", "="],
+	["punctuation", "="],
 	["value", [
 		["quoted", "\"something\""],
 		["quoted", "\"some thing\""],
@@ -32,14 +32,14 @@ foo=value 3\
 	]],
 
 	["key", "foo"],
-	["operator", "="],
+	["punctuation", "="],
 	["value", [
 		"value 2 ", ["punctuation", "\\"],
 		"\r\n    value 2 continued"
 	]],
 
 	["key", "foo"],
-	["operator", "="],
+	["punctuation", "="],
 	["value", [
 		"value 3", ["punctuation", "\\"],
 		["comment", "# this line is ignored"],

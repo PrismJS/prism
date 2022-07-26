@@ -30,78 +30,94 @@ transfer-encoding: chunked
 		["reason-phrase", "OK"]
 	]],
 
-	["header-name", "connection:"],
-	" keep-alive\r\n",
+	["header", [
+		["header-name", "connection"],
+		["punctuation", ":"],
+		["header-value", "keep-alive"]
+	]],
 
-	["header-name", "content-type:"],
-	" application/json\r\n",
+	["header", [
+		["header-name", "content-type"],
+		["punctuation", ":"],
+		["header-value", "application/json"]
+	]],
 
-	["header-name", "date:"],
-	" Sat, 23 Jan 2021 20:36:14 GMT\r\n",
+	["header", [
+		["header-name", "date"],
+		["punctuation", ":"],
+		["header-value", "Sat, 23 Jan 2021 20:36:14 GMT"]
+	]],
 
-	["header-name", "keep-alive:"],
-	" timeout=60\r\n",
+	["header", [
+		["header-name", "keep-alive"],
+		["punctuation", ":"],
+		["header-value", "timeout=60"]
+	]],
 
-	["header-name", "transfer-encoding:"],
-	" chunked",
+	["header", [
+		["header-name", "transfer-encoding"],
+		["punctuation", ":"],
+		["header-value", "chunked"]
+	]],
+
 	["application-json", [
 		["punctuation", "{"],
 
-		["string", "\"id\""],
+		["string-property", "\"id\""],
 		["operator", ":"],
 		["number", "1"],
 		["punctuation", ","],
 
-		["string", "\"name\""],
+		["string-property", "\"name\""],
 		["operator", ":"],
 		["string", "\"John Doe\""],
 		["punctuation", ","],
 
-		["string", "\"userName\""],
+		["string-property", "\"userName\""],
 		["operator", ":"],
 		["string", "\"jdoe\""],
 		["punctuation", ","],
 
-		["string", "\"email\""],
+		["string-property", "\"email\""],
 		["operator", ":"],
 		["string", "\"whatever@something.zzz\""],
 		["punctuation", ","],
 
-		["string", "\"phone\""],
+		["string-property", "\"phone\""],
 		["operator", ":"],
 		["string", "\"1234567890\""],
 		["punctuation", ","],
 
-		["string", "\"birthDate\""],
+		["string-property", "\"birthDate\""],
 		["operator", ":"],
 		["string", "\"1878-05-06\""],
 		["punctuation", ","],
 
-		["string", "\"address\""],
+		["string-property", "\"address\""],
 		["operator", ":"],
 		["punctuation", "{"],
 
-		["string", "\"street\""],
+		["string-property", "\"street\""],
 		["operator", ":"],
 		["string", "\"Fake St\""],
 		["punctuation", ","],
 
-		["string", "\"street2\""],
+		["string-property", "\"street2\""],
 		["operator", ":"],
 		["string", "\"Apt. 556\""],
 		["punctuation", ","],
 
-		["string", "\"city\""],
+		["string-property", "\"city\""],
 		["operator", ":"],
 		["string", "\"Gwenborough\""],
 		["punctuation", ","],
 
-		["string", "\"state\""],
+		["string-property", "\"state\""],
 		["operator", ":"],
 		["string", "\"ZZ\""],
 		["punctuation", ","],
 
-		["string", "\"zip\""],
+		["string-property", "\"zip\""],
 		["operator", ":"],
 		["string", "\"12345\""],
 

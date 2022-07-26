@@ -1,0 +1,129 @@
+.0
+0
+0.
+0E
+0b0
+0b00
+0b01
+0b0_
+0b_
+0b_0
+0b_1
+0b__
+0d0
+0d00
+0d01
+0d0_
+0d_
+0d_0
+0d_1
+0d__
+0e
+0e+
+0e+0
+0e+0i
+0e+i
+0e-
+0e-0
+0e-0i
+0e-i
+0ei
+0h0000
+0h00000000
+0h0000000000000000
+0i
+0o0
+0o00
+0o01
+0o0_
+0o_
+0o_0
+0o_1
+0o__
+0x0
+0x00
+0x0_
+0x0F
+0x0f
+0x_
+0x_0
+0x__
+0x_F
+0x_f
+0z0
+0z00
+0z0_
+0z0B
+0z0b
+0z_
+0z_0
+0z__
+0z_B
+0z_b
+
+----------------------------------------------------
+
+[
+	["number", ".0"],
+	["number", "0"],
+	["number", "0."],
+	["number", "0E"],
+	["number", "0b0"],
+	["number", "0b00"],
+	["number", "0b01"],
+	["number", "0b0_"],
+	["number", "0b_"],
+	["number", "0b_0"],
+	["number", "0b_1"],
+	["number", "0b__"],
+	["number", "0d0"],
+	["number", "0d00"],
+	["number", "0d01"],
+	["number", "0d0_"],
+	["number", "0d_"],
+	["number", "0d_0"],
+	["number", "0d_1"],
+	["number", "0d__"],
+	["number", "0e"],
+	["number", "0e+"],
+	["number", "0e+0"],
+	["number", "0e+0i"],
+	["number", "0e+i"],
+	["number", "0e-"],
+	["number", "0e-0"],
+	["number", "0e-0i"],
+	["number", "0e-i"],
+	["number", "0ei"],
+	["number", "0h0000"],
+	["number", "0h00000000"],
+	["number", "0h0000000000000000"],
+	["number", "0i"],
+	["number", "0o0"],
+	["number", "0o00"],
+	["number", "0o01"],
+	["number", "0o0_"],
+	["number", "0o_"],
+	["number", "0o_0"],
+	["number", "0o_1"],
+	["number", "0o__"],
+	["number", "0x0"],
+	["number", "0x00"],
+	["number", "0x0_"],
+	["number", "0x0F"],
+	["number", "0x0f"],
+	["number", "0x_"],
+	["number", "0x_0"],
+	["number", "0x__"],
+	["number", "0x_F"],
+	["number", "0x_f"],
+	["number", "0z0"],
+	["number", "0z00"],
+	["number", "0z0_"],
+	["number", "0z0B"],
+	["number", "0z0b"],
+	["number", "0z_"],
+	["number", "0z_0"],
+	["number", "0z__"],
+	["number", "0z_B"],
+	["number", "0z_b"]
+]

@@ -5,9 +5,7 @@ Foo::Bar
 
 [
 	["symbol", ":Foo"],
-	["constant", "Foo"],
-	["punctuation", ":"], ["punctuation", ":"],
-	["constant", "Bar"]
+	"\r\nFoo", ["double-colon", "::"], "Bar"
 ]
 
 ----------------------------------------------------

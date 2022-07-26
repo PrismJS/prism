@@ -15,15 +15,7 @@
 			{
 				pattern: /"(?:`[\s\S]|[^`"])*"/,
 				greedy: true,
-				inside: {
-					'function': {
-						// Allow for one level of nesting
-						pattern: /(^|[^`])\$\((?:\$\([^\r\n()]*\)|(?!\$\()[^\r\n)])*\)/,
-						lookbehind: true,
-						// Populated at end of file
-						inside: {}
-					}
-				}
+				inside: null // see below
 			},
 			{
 				pattern: /'(?:[^']|'')*'/,
@@ -33,7 +25,7 @@
 		// Matches name spaces as well as casts, attribute decorators. Force starting with letter to avoid matching array indices
 		// Supports two levels of nested brackets (e.g. `[OutputType([System.Collections.Generic.List[int]])]`)
 		'namespace': /\[[a-z](?:\[(?:\[[^\]]*\]|[^\[\]])*\]|[^\[\]])*\]/i,
-		'boolean': /\$(?:true|false)\b/i,
+		'boolean': /\$(?:false|true)\b/i,
 		'variable': /\$\w+\b/,
 		// Cmdlets and aliases. Aliases should come last, otherwise "write" gets preferred over "write-host" for example
 		// Get-Command | ?{ $_.ModuleName -match "Microsoft.PowerShell.(Util|Core|Management)" }
@@ -45,16 +37,22 @@
 		// per http://technet.microsoft.com/en-us/library/hh847744.aspx
 		'keyword': /\b(?:Begin|Break|Catch|Class|Continue|Data|Define|Do|DynamicParam|Else|ElseIf|End|Exit|Filter|Finally|For|ForEach|From|Function|If|InlineScript|Parallel|Param|Process|Return|Sequence|Switch|Throw|Trap|Try|Until|Using|Var|While|Workflow)\b/i,
 		'operator': {
-			pattern: /(\W?)(?:!|-(?:eq|ne|gt|ge|lt|le|sh[lr]|not|b?(?:and|x?or)|(?:Not)?(?:Like|Match|Contains|In)|Replace|Join|is(?:Not)?|as)\b|-[-=]?|\+[+=]?|[*\/%]=?)/i,
+			pattern: /(^|\W)(?:!|-(?:b?(?:and|x?or)|as|(?:Not)?(?:Contains|In|Like|Match)|eq|ge|gt|is(?:Not)?|Join|le|lt|ne|not|Replace|sh[lr])\b|-[-=]?|\+[+=]?|[*\/%]=?)/i,
 			lookbehind: true
 		},
 		'punctuation': /[|{}[\];(),.]/
 	};
 
 	// Variable interpolation inside strings, and nested expressions
-	var stringInside = powershell.string[0].inside;
-	stringInside.boolean = powershell.boolean;
-	stringInside.variable = powershell.variable;
-	stringInside.function.inside = powershell;
+	powershell.string[0].inside = {
+		'function': {
+			// Allow for one level of nesting
+			pattern: /(^|[^`])\$\((?:\$\([^\r\n()]*\)|(?!\$\()[^\r\n)])*\)/,
+			lookbehind: true,
+			inside: powershell
+		},
+		'boolean': powershell.boolean,
+		'variable': powershell.variable,
+	};
 
 }(Prism));

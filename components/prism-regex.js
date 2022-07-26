@@ -4,12 +4,12 @@
 		pattern: /\\[\\(){}[\]^$+*?|.]/,
 		alias: 'escape'
 	};
-	var escape = /\\(?:x[\da-fA-F]{2}|u[\da-fA-F]{4}|u\{[\da-fA-F]+\}|c[a-zA-Z]|0[0-7]{0,2}|[123][0-7]{2}|.)/;
-	var charClass = {
+	var escape = /\\(?:x[\da-fA-F]{2}|u[\da-fA-F]{4}|u\{[\da-fA-F]+\}|0[0-7]{0,2}|[123][0-7]{2}|c[a-zA-Z]|.)/;
+	var charSet = {
 		pattern: /\.|\\[wsd]|\\p\{[^{}]+\}/i,
 		alias: 'class-name'
 	};
-	var charClassWithoutDot = {
+	var charSetWithoutDot = {
 		pattern: /\\[wsd]|\\p\{[^{}]+\}/i,
 		alias: 'class-name'
 	};
@@ -25,16 +25,16 @@
 	};
 
 	Prism.languages.regex = {
-		'charset': {
+		'char-class': {
 			pattern: /((?:^|[^\\])(?:\\\\)*)\[(?:[^\\\]]|\\[\s\S])*\]/,
 			lookbehind: true,
 			inside: {
-				'charset-negation': {
+				'char-class-negation': {
 					pattern: /(^\[)\^/,
 					lookbehind: true,
 					alias: 'operator'
 				},
-				'charset-punctuation': {
+				'char-class-punctuation': {
 					pattern: /^\[|\]$/,
 					alias: 'punctuation'
 				},
@@ -49,12 +49,12 @@
 					}
 				},
 				'special-escape': specialEscape,
-				'charclass': charClassWithoutDot,
+				'char-set': charSetWithoutDot,
 				'escape': escape
 			}
 		},
 		'special-escape': specialEscape,
-		'charclass': charClass,
+		'char-set': charSet,
 		'backreference': [
 			{
 				// a backreference which is not an octal escape

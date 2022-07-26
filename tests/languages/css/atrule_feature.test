@@ -4,6 +4,7 @@
 @supports (top: 50vmax)
 	or (top: 50vw) {}
 @main-color: red;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 ----------------------------------------------------
 
@@ -18,12 +19,14 @@
 		]],
 		["punctuation", ";"]
 	]],
+
 	["atrule", [
 		["rule", "@media"],
 		" print"
 	]],
 	["punctuation", "{"],
 	["punctuation", "}"],
+
 	["atrule", [
 		["rule", "@media"],
 		["punctuation", "("],
@@ -40,6 +43,7 @@
 	]],
 	["punctuation", "{"],
 	["punctuation", "}"],
+
 	["atrule", [
 		["rule", "@supports"],
 		["punctuation", "("],
@@ -47,6 +51,7 @@
 		["punctuation", ":"],
 		" 50vmax",
 		["punctuation", ")"],
+
 		["keyword", "or"],
 		["punctuation", "("],
 		["property", "top"],
@@ -56,10 +61,22 @@
 	]],
 	["punctuation", "{"],
 	["punctuation", "}"],
+
 	["atrule", [
 		["rule", "@main-color"],
 		["punctuation", ":"],
 		" red",
+		["punctuation", ";"]
+	]],
+
+	["atrule", [
+		["rule", "@import"],
+		["url", [
+			["function", "url"],
+			["punctuation", "("],
+			["string", "'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap'"],
+			["punctuation", ")"]
+		]],
 		["punctuation", ";"]
 	]]
 ]
