@@ -68,7 +68,7 @@ String.valueOf(5);
 		]],
 		"Baz"
 	]],
-	["variable", "bat"],
+	" bat",
 	["punctuation", ")"],
 	["keyword", "throws"],
 	["class-name", [
@@ -83,7 +83,7 @@ String.valueOf(5);
 	["punctuation", "{"],
 
 	["keyword", "var"],
-	["variable", "foo"],
+	" foo ",
 	["operator", "="],
 	["keyword", "new"],
 	["class-name", [
@@ -101,13 +101,13 @@ String.valueOf(5);
 	["punctuation", ";"],
 
 	["class-name", ["Exception"]],
-	["variable", "e"],
+	" e ",
 	["operator", "="],
-	["variable", "foo"],
+	" foo",
 	["punctuation", ";"],
 
 	["keyword", "throw"],
-	["variable", "e"],
+	" e",
 	["punctuation", ";"],
 
 	["punctuation", "}"],
@@ -127,7 +127,7 @@ String.valueOf(5);
 	["punctuation", ";"],
 
 	["class-name", ["ID"]],
-	["variable", "id"],
+	" id ",
 	["operator", "="],
 	["keyword", "new"],
 	["class-name", ["ID"]],
@@ -140,7 +140,7 @@ String.valueOf(5);
 		["punctuation", "."],
 		"Nested"
 	]],
-	["variable", "id"],
+	" id",
 	["punctuation", ";"],
 
 	["class-name", ["ID"]],

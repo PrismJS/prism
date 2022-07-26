@@ -1,5 +1,5 @@
 @Test(value = Xxxx.TYPE)
-public class Test {
+public class Test<A, BB> {
     private static final Logger LOGGER = LoggerFactory.getLogger(Test.class);
 
     private String str = "1";
@@ -17,7 +17,7 @@ public class Test {
 [
 	["annotation", "@Test"],
 	["punctuation", "("],
-	["variable", "value"],
+	"value ",
 	["operator", "="],
 	["class-name", ["Xxxx"]],
 	["punctuation", "."],
@@ -27,6 +27,13 @@ public class Test {
 	["keyword", "public"],
 	["keyword", "class"],
 	["class-name", ["Test"]],
+	["generics", [
+		["punctuation", "<"],
+		["class-name", ["A"]],
+		["punctuation", ","],
+		" BB",
+		["punctuation", ">"]
+	]],
 	["punctuation", "{"],
 
 	["keyword", "private"],
@@ -47,21 +54,21 @@ public class Test {
 
 	["keyword", "private"],
 	["class-name", ["String"]],
-	["variable", "str"],
+	" str ",
 	["operator", "="],
 	["string", "\"1\""],
 	["punctuation", ";"],
 
 	["keyword", "private"],
 	["class-name", ["String"]],
-	["variable", "arg"],
+	" arg ",
 	["operator", "="],
 	["string", "\"2\""],
 	["punctuation", ";"],
 
 	["keyword", "private"],
 	["class-name", ["String"]],
-	["variable", "var1"],
+	" var1 ",
 	["operator", "="],
 	["string", "\"3\""],
 	["punctuation", ";"],
@@ -74,7 +81,7 @@ public class Test {
 	["class-name", ["String"]],
 	["punctuation", "["],
 	["punctuation", "]"],
-	["variable", "args"],
+	" args",
 	["punctuation", ")"],
 	["punctuation", "{"],
 
@@ -85,11 +92,11 @@ public class Test {
 	["string", "\"test LOGGER: {}, {}, {}\""],
 	["punctuation", ","],
 
-	["variable", "str"],
+	"\r\n            str",
 	["punctuation", ","],
-	["variable", "arg"],
+	" arg",
 	["punctuation", ","],
-	["variable", "var1"],
+	" var1",
 	["punctuation", ")"],
 	["punctuation", ";"],
 

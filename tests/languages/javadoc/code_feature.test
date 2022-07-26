@@ -53,7 +53,7 @@
 		["code", [
 			["keyword", "this"],
 			["punctuation", "."],
-			["variable", "foo"]
+			"foo"
 		]]
 	]],
 	["punctuation", "}"],
@@ -140,17 +140,17 @@
 				["keyword", "for"],
 				["punctuation", "("],
 				["keyword", "int"],
-				["variable", "i"],
+				" i ",
 				["operator", "="],
 				["number", "0"],
 				["punctuation", ";"],
-				["variable", "i"],
+				" i ",
 				["operator", "<"],
-				["variable", "array"],
+				" array",
 				["punctuation", "."],
-				["variable", "length"],
+				"length",
 				["punctuation", ";"],
-				["variable", "i"],
+				" i",
 				["operator", "++"],
 				["punctuation", ")"],
 				["punctuation", "{"]
@@ -160,9 +160,9 @@
 		"\r\n *     ",
 		["line", [
 			["code", [
-				["variable", "array"],
+				"array",
 				["punctuation", "["],
-				["variable", "i"],
+				"i",
 				["punctuation", "]"],
 				["operator", "+="],
 				["number", "1"],
@@ -181,7 +181,7 @@
 		["line", [
 			["code", [
 				["keyword", "return"],
-				["variable", "array"],
+				" array",
 				["punctuation", ";"]
 			]]
 		]],
@@ -218,7 +218,7 @@
 		"*     ",
 		["code", [
 			["class-name", ["String"]],
-			["variable", "message"],
+			" message ",
 			["operator", "="],
 			["class-name", ["String"]],
 			["punctuation", "."],
@@ -264,12 +264,12 @@
 		"*     ",
 		["line", [
 			["code", [
-				["variable", "dstBegin"],
+				"dstBegin ",
 				["operator", "+"],
 				["punctuation", "("],
-				["variable", "srcEnd"],
+				"srcEnd",
 				["operator", "-"],
-				["variable", "srcBegin"],
+				"srcBegin",
 				["punctuation", ")"],
 				["operator", "-"],
 				["number", "1"]
@@ -312,9 +312,7 @@
 				]],
 				["punctuation", ">"]
 			]],
-			["code", [
-				["variable", "c"]
-			]],
+			["code", ["c"]],
 			["tag", [
 				["tag", [
 					["punctuation", "</"],
@@ -337,7 +335,7 @@
 				["punctuation", "("],
 				["punctuation", "("],
 				["punctuation", "("],
-				["variable", "hibyte"]
+				"hibyte "
 			]],
 			["entity", "&amp;"],
 			["code", [
@@ -372,9 +370,7 @@
 				]],
 				["punctuation", ">"]
 			]],
-			["code", [
-				["variable", "b"]
-			]],
+			["code", ["b"]],
 			["tag", [
 				["tag", [
 					["punctuation", "</"],
@@ -430,7 +426,7 @@
 			["function", "search"],
 			["punctuation", "("],
 			["class-name", ["String"]],
-			["variable", "target"],
+			" target",
 			["punctuation", ")"],
 			["punctuation", ";"],
 			["punctuation", "}"]
@@ -450,7 +446,7 @@
 			["punctuation", "("],
 			["keyword", "final"],
 			["class-name", ["String"]],
-			["variable", "target"],
+			" target",
 			["punctuation", ")"]
 		]],
 
@@ -469,13 +465,13 @@
 				["class-name", ["String"]],
 				["punctuation", ">"]
 			]],
-			["variable", "future"]
+			" future"
 		]],
 
 		"\r\n *       ",
 		["code", [
 			["operator", "="],
-			["variable", "executor"],
+			" executor",
 			["punctuation", "."],
 			["function", "submit"],
 			["punctuation", "("],
@@ -504,11 +500,11 @@
 		"\r\n *             ",
 		["code", [
 			["keyword", "return"],
-			["variable", "searcher"],
+			" searcher",
 			["punctuation", "."],
 			["function", "search"],
 			["punctuation", "("],
-			["variable", "target"],
+			"target",
 			["punctuation", ")"],
 			["punctuation", ";"]
 		]],
@@ -540,7 +536,7 @@
 		["code", [
 			["function", "displayText"],
 			["punctuation", "("],
-			["variable", "future"],
+			"future",
 			["punctuation", "."],
 			["function", "get"],
 			["punctuation", "("],
@@ -556,7 +552,7 @@
 			["keyword", "catch"],
 			["punctuation", "("],
 			["class-name", ["ExecutionException"]],
-			["variable", "ex"],
+			" ex",
 			["punctuation", ")"],
 			["punctuation", "{"],
 			["function", "cleanup"],

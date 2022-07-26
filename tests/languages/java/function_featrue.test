@@ -9,7 +9,7 @@ Bar::foo;
 	["function", "foo"],
 	["punctuation", "("],
 	["keyword", "int"],
-	["variable", "a"],
+	" a",
 	["punctuation", ")"],
 	["punctuation", "{"],
 	["punctuation", "}"],

@@ -49,7 +49,7 @@ if (a<6&&b>6){}
 		["class-name", ["Integer"]],
 		["punctuation", ">"]
 	]],
-	["variable", "val"],
+	" val ",
 	["operator", "="],
 	["keyword", "new"],
 	["class-name", ["Solo"]],
@@ -69,7 +69,7 @@ if (a<6&&b>6){}
 		["class-name", ["Character"]],
 		["punctuation", ">"]
 	]],
-	["variable", "dual"],
+	" dual ",
 	["operator", "="],
 	["keyword", "new"],
 	["class-name", ["Duo"]],
@@ -93,7 +93,7 @@ if (a<6&&b>6){}
 		["operator", "?"],
 		["punctuation", ">"]
 	]],
-	["variable", "list"],
+	" list\r\n",
 
 	["class-name", ["List"]],
 	["generics", [
@@ -103,9 +103,9 @@ if (a<6&&b>6){}
 		["class-name", ["Number"]],
 		["punctuation", ">"]
 	]],
-	["variable", "nums"],
+	" nums ",
 	["operator", "="],
-	["variable", "ints"],
+	" ints",
 	["punctuation", ";"],
 
 	["class-name", ["List"]],
@@ -116,7 +116,7 @@ if (a<6&&b>6){}
 		["class-name", ["Integer"]],
 		["punctuation", ">"]
 	]],
-	["variable", "list"],
+	" list\r\n",
 
 	["class-name", ["Entry"]],
 	["generics", [
@@ -126,7 +126,7 @@ if (a<6&&b>6){}
 		["class-name", ["String"]],
 		["punctuation", ">"]
 	]],
-	["variable", "pair"],
+	" pair ",
 	["operator", "="],
 	["class-name", ["Entry"]],
 	["punctuation", "."],
@@ -182,10 +182,10 @@ if (a<6&&b>6){}
 	["function", "throwMeConditional"],
 	["punctuation", "("],
 	["keyword", "boolean"],
-	["variable", "conditional"],
+	" conditional",
 	["punctuation", ","],
 	["class-name", ["T"]],
-	["variable", "exception"],
+	" exception",
 	["punctuation", ")"],
 	["keyword", "throws"],
 	["class-name", ["T"]],
@@ -206,7 +206,7 @@ if (a<6&&b>6){}
 		["class-name", ["T"]],
 		["punctuation", ">"]
 	]],
-	["variable", "arg"],
+	" arg",
 	["punctuation", ")"],
 	["punctuation", "{"],
 	["punctuation", "}"],
@@ -215,11 +215,11 @@ if (a<6&&b>6){}
 
 	["keyword", "if"],
 	["punctuation", "("],
-	["variable", "a"],
+	"a",
 	["operator", "<"],
 	["number", "6"],
 	["operator", "&&"],
-	["variable", "b"],
+	"b",
 	["operator", ">"],
 	["number", "6"],
 	["punctuation", ")"],

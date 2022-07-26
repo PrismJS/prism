@@ -56,8 +56,7 @@
 			pattern: /(^|[^.])(?:<<=?|>>>?=?|->|--|\+\+|&&|\|\||::|[?:~]|[-+*/%&|^!=<>]=?)/m,
 			lookbehind: true
 		},
-		'constant': /\b[A-Z][A-Z_\d]{2,}\b/,
-		'variable': /\b[a-z]\w*\b/
+		'constant': /\b[A-Z][A-Z_\d]+\b/
 	});
 
 	Prism.languages.insertBefore('java', 'string', {
