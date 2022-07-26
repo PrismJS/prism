@@ -30,12 +30,12 @@ If you found a slow regex but are unsure about the worst-case time complexity or
 
 ***DO NOT CREATE AN ISSUE*** to report a vulnerability.
 
-Instead, please send an email to at least one of Prism's maintainers.
+Instead, please send an email to at least one of [Prism's maintainers](MAINTAINERS.md).
 See [Responsible Disclosure](https://en.wikipedia.org/wiki/Responsible_disclosure) for more details.
 
 ### Procedure
 
-1.  After you send an email a maintainer, you should receive a response from the [Prism team](https://github.com/orgs/PrismJS/people) within 3 days.
+1.  After you send an email [a maintainer](MAINTAINERS.md), you should receive a response from the [Prism team](https://github.com/orgs/PrismJS/people) within 3 days.
 
     We may require further information, so please keep in touch with us until the vulnerability has been fixed.
 
