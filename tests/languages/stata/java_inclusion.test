@@ -32,7 +32,7 @@ end
 	["punctuation", ":"],
 	["java", [
 		["keyword", "int"],
-		" x ",
+		["variable", "x"],
 		["operator", "="],
 		["number", "123"],
 		["punctuation", ";"],
@@ -45,13 +45,13 @@ end
 
 		["class-name", ["System"]],
 		["punctuation", "."],
-		"out",
+		["variable", "out"],
 		["punctuation", "."],
 		["function", "println"],
 		["punctuation", "("],
 		["string", "\"x: \""],
 		["operator", "+"],
-		" x",
+		["variable", "x"],
 		["punctuation", ")"],
 		["punctuation", ";"],
 

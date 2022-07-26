@@ -9,7 +9,7 @@ Bar::foo;
 	["function", "foo"],
 	["punctuation", "("],
 	["keyword", "int"],
-	" a",
+	["variable", "a"],
 	["punctuation", ")"],
 	["punctuation", "{"],
 	["punctuation", "}"],
@@ -20,9 +20,7 @@ Bar::foo;
 	["punctuation", ")"],
 	["punctuation", ";"],
 
-	["class-name", [
-		"Bar"
-	]],
+	["class-name", ["Bar"]],
 	["operator", "::"],
 	["function", "foo"],
 	["punctuation", ";"]

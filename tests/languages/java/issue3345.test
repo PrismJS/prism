@@ -10,7 +10,7 @@ public class Main {
     public static record A() {
     }
     // it cannot be used as class name in java syntax
-    public static class record {
+    public static class Record {
     }
 }
 
@@ -32,17 +32,17 @@ public class Main {
 	["class-name", ["String"]],
 	["punctuation", "["],
 	["punctuation", "]"],
-	" record",
+	["variable", "record"],
 	["punctuation", ")"],
 	["punctuation", "{"],
 
 	["class-name", ["System"]],
 	["punctuation", "."],
-	"out",
+	["variable", "out"],
 	["punctuation", "."],
 	["function", "println"],
 	["punctuation", "("],
-	"record",
+	["variable", "record"],
 	["punctuation", ")"],
 	["punctuation", ";"],
 
@@ -55,7 +55,7 @@ public class Main {
 	["function", "record"],
 	["punctuation", "("],
 	["class-name", ["String"]],
-	" aaa",
+	["variable", "aaa"],
 	["punctuation", ")"],
 	["punctuation", "{"],
 
@@ -78,7 +78,7 @@ public class Main {
 	["keyword", "public"],
 	["keyword", "static"],
 	["keyword", "class"],
-	" record ",
+	["class-name", ["Record"]],
 	["punctuation", "{"],
 
 	["punctuation", "}"],

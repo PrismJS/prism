@@ -55,7 +55,9 @@
 		'operator': {
 			pattern: /(^|[^.])(?:<<=?|>>>?=?|->|--|\+\+|&&|\|\||::|[?:~]|[-+*/%&|^!=<>]=?)/m,
 			lookbehind: true
-		}
+		},
+		'constant': /\b[A-Z][A-Z_\d]{2,}\b/,
+		'variable': /\b[a-z]\w*\b/
 	});
 
 	Prism.languages.insertBefore('java', 'string', {
@@ -120,22 +122,4 @@
 			}
 		}
 	});
-
-	// variable from config
-	if (typeof window !== 'undefined') {
-		var prismConfig = window.PrismConfig;
-		if (prismConfig && prismConfig.languages && prismConfig.languages.java && prismConfig.languages.java.variable) {
-			Prism.languages.insertBefore('java', 'string', {
-				'variable': prismConfig.languages.java.variable
-			});
-		}
-	}
-	// default variable
-	if (!Prism.languages.java.variable) {
-		Prism.languages.insertBefore('java', 'string', {
-			'variable': {
-				pattern: /\b(arg[s12]|log(ger)?|[A-Z]+)\b/
-			}
-		});
-	}
 }(Prism));

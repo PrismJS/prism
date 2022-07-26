@@ -28,7 +28,7 @@ String empty = """
 	["triple-quoted-string", "\"\"\"\r\nfoo\r\n\"\"\""],
 
 	["keyword", "var"],
-	" a ",
+	["variable", "a"],
 	["operator", "="],
 	["triple-quoted-string", "\"\"\"\r\n\\\"\"\"\r\nfoo\"\"\""],
 	["punctuation", ";"],
@@ -40,7 +40,7 @@ String empty = """
 	["triple-quoted-string", "\"\"\"\r\njumps over the lazy dog\r\n\"\"\""],
 
 	["class-name", ["String"]],
-	" empty ",
+	["variable", "empty"],
 	["operator", "="],
 	["triple-quoted-string", "\"\"\"\r\n\"\"\""],
 	["punctuation", ";"]

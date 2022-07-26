@@ -1,0 +1,103 @@
+@Test(value = Xxxx.TYPE)
+public class Test {
+    private static final Logger LOGGER = LoggerFactory.getLogger(Test.class);
+
+    private String str = "1";
+    private String arg = "2";
+    private String var1 = "3";
+
+    public static void main(String[] args) {
+        LOGGER.info("test LOGGER: {}, {}, {}",
+            str, arg, var1);
+    }
+}
+
+----------------------------------------------------
+
+[
+	["annotation", "@Test"],
+	["punctuation", "("],
+	["variable", "value"],
+	["operator", "="],
+	["class-name", ["Xxxx"]],
+	["punctuation", "."],
+	["constant", "TYPE"],
+	["punctuation", ")"],
+
+	["keyword", "public"],
+	["keyword", "class"],
+	["class-name", ["Test"]],
+	["punctuation", "{"],
+
+	["keyword", "private"],
+	["keyword", "static"],
+	["keyword", "final"],
+	["class-name", ["Logger"]],
+	["constant", "LOGGER"],
+	["operator", "="],
+	["class-name", ["LoggerFactory"]],
+	["punctuation", "."],
+	["function", "getLogger"],
+	["punctuation", "("],
+	["class-name", ["Test"]],
+	["punctuation", "."],
+	["keyword", "class"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["keyword", "private"],
+	["class-name", ["String"]],
+	["variable", "str"],
+	["operator", "="],
+	["string", "\"1\""],
+	["punctuation", ";"],
+
+	["keyword", "private"],
+	["class-name", ["String"]],
+	["variable", "arg"],
+	["operator", "="],
+	["string", "\"2\""],
+	["punctuation", ";"],
+
+	["keyword", "private"],
+	["class-name", ["String"]],
+	["variable", "var1"],
+	["operator", "="],
+	["string", "\"3\""],
+	["punctuation", ";"],
+
+	["keyword", "public"],
+	["keyword", "static"],
+	["keyword", "void"],
+	["function", "main"],
+	["punctuation", "("],
+	["class-name", ["String"]],
+	["punctuation", "["],
+	["punctuation", "]"],
+	["variable", "args"],
+	["punctuation", ")"],
+	["punctuation", "{"],
+
+	["constant", "LOGGER"],
+	["punctuation", "."],
+	["function", "info"],
+	["punctuation", "("],
+	["string", "\"test LOGGER: {}, {}, {}\""],
+	["punctuation", ","],
+
+	["variable", "str"],
+	["punctuation", ","],
+	["variable", "arg"],
+	["punctuation", ","],
+	["variable", "var1"],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for all keywords.
