@@ -8,7 +8,7 @@ public class Test<A, BB> {
 
     public static void main(String[] args) {
         LOGGER.info("test LOGGER: {}, {}, {}",
-            str, arg, var1);
+	        str, arg, var1);
     }
 }
 
@@ -81,7 +81,7 @@ public class Test<A, BB> {
 	["class-name", ["String"]],
 	["punctuation", "["],
 	["punctuation", "]"],
-	" args",
+	["variable", "args"],
 	["punctuation", ")"],
 	["punctuation", "{"],
 

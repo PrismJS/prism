@@ -48,3 +48,4 @@ Prism.languages.insertBefore('scala', 'triple-quoted-string', {
 delete Prism.languages.scala['class-name'];
 delete Prism.languages.scala['function'];
 delete Prism.languages.scala['constant'];
+delete Prism.languages.scala['variable'];
