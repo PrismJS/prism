@@ -10,7 +10,7 @@ public class Main {
     public static record A() {
     }
     // it cannot be used as class name in java syntax
-    public static class Record {
+    public static class record {
     }
 }
 
@@ -78,7 +78,7 @@ public class Main {
 	["keyword", "public"],
 	["keyword", "static"],
 	["keyword", "class"],
-	["class-name", ["Record"]],
+	" record ",
 	["punctuation", "{"],
 
 	["punctuation", "}"],
