@@ -29,9 +29,9 @@ public class Test<A, BB> {
 	["class-name", ["Test"]],
 	["generics", [
 		["punctuation", "<"],
-		["class-name", ["A"]],
+		["generic-parameter", "A"],
 		["punctuation", ","],
-		" BB",
+		["generic-parameter", "BB"],
 		["punctuation", ">"]
 	]],
 	["punctuation", "{"],
