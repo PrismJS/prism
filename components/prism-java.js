@@ -59,7 +59,7 @@
 		'constant': /\b[A-Z][A-Z_\d]+\b/,
 		'variable': [
 			{
-				pattern: /\b(?:args|log(ger)?|value)\b/
+				pattern: /\b(?:args|log(?:ger)?|value)\b/
 			}
 		]
 	});
