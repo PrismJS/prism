@@ -14,14 +14,14 @@
 
 	["annotation", "@Retention"],
 	["punctuation", "("],
-	"value",
+	["variable", "value"],
 	["operator", "="],
 	["constant", "SOURCE"],
 	["punctuation", ")"],
 
 	["annotation", "@Target"],
 	["punctuation", "("],
-	"value",
+	["variable", "value"],
 	["operator", "="],
 	["punctuation", "{"],
 	["constant", "PACKAGE"],
