@@ -44,4 +44,4 @@ public class MyClass<T, RR> {
 
 ----------------------------------------------------
 
-Checks for generics.
+Checks for generic-parameter.
