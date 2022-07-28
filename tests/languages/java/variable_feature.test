@@ -17,7 +17,7 @@ public class Test<A, BB> {
 [
 	["annotation", "@Test"],
 	["punctuation", "("],
-	["variable", "value"],
+	"value ",
 	["operator", "="],
 	["class-name", ["Xxxx"]],
 	["punctuation", "."],
@@ -81,7 +81,7 @@ public class Test<A, BB> {
 	["class-name", ["String"]],
 	["punctuation", "["],
 	["punctuation", "]"],
-	["variable", "args"],
+	" args",
 	["punctuation", ")"],
 	["punctuation", "{"],
 

@@ -56,12 +56,7 @@
 			pattern: /(^|[^.])(?:<<=?|>>>?=?|->|--|\+\+|&&|\|\||::|[?:~]|[-+*/%&|^!=<>]=?)/m,
 			lookbehind: true
 		},
-		'constant': /\b[A-Z][A-Z_\d]+\b/,
-		'variable': [
-			{
-				pattern: /\b(?:args|log(?:ger)?|value)\b/
-			}
-		]
+		'constant': /\b[A-Z][A-Z_\d]+\b/
 	});
 
 	Prism.languages.insertBefore('java', 'string', {
@@ -127,19 +122,4 @@
 			}
 		}
 	});
-
-	// variable from window.PrismConfig
-	if (typeof window !== 'undefined') {
-		var prismConfig = window.PrismConfig;
-		if (prismConfig && prismConfig.languages && prismConfig.languages.java && prismConfig.languages.java.variable) {
-			var variableConfig = prismConfig.languages.java.variable;
-			if (variableConfig instanceof Array) {
-				if (variableConfig.length > 0) {
-					Prism.languages.java.variable = Prism.languages.java.variable.concat(variableConfig);
-				}
-			} else if (typeof variableConfig === 'object') {
-				Prism.languages.java.variable[Prism.languages.java.variable.length] = variableConfig;
-			}
-		}
-	}
 }(Prism));
