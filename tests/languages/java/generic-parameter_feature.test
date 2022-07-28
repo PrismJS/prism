@@ -1,7 +1,7 @@
 public class MyClass<T, RR> {
 
-	public RR f(T t, RR r) {
-		return r;
+	public <RR> T f(T t, RR r) {
+		return t;
 	}
 
 }
@@ -22,7 +22,12 @@ public class MyClass<T, RR> {
 	["punctuation", "{"],
 
 	["keyword", "public"],
-	["class-name", ["RR"]],
+	["generics", [
+		["punctuation", "<"],
+		["generic-parameter", "RR"],
+		["punctuation", ">"]
+	]],
+	["class-name", ["T"]],
 	["function", "f"],
 	["punctuation", "("],
 	["class-name", ["T"]],
@@ -34,7 +39,7 @@ public class MyClass<T, RR> {
 	["punctuation", "{"],
 
 	["keyword", "return"],
-	" r",
+	" t",
 	["punctuation", ";"],
 
 	["punctuation", "}"],
