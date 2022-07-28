@@ -1,0 +1,47 @@
+public class MyClass<T, RR> {
+
+	public RR f(T t, RR r) {
+		return r;
+	}
+
+}
+
+----------------------------------------------------
+
+[
+	["keyword", "public"],
+	["keyword", "class"],
+	["class-name", ["MyClass"]],
+	["generics", [
+		["punctuation", "<"],
+		["generic-parameter", "T"],
+		["punctuation", ","],
+		["generic-parameter", "RR"],
+		["punctuation", ">"]
+	]],
+	["punctuation", "{"],
+
+	["keyword", "public"],
+	["class-name", ["RR"]],
+	["function", "f"],
+	["punctuation", "("],
+	["class-name", ["T"]],
+	" t",
+	["punctuation", ","],
+	["class-name", ["RR"]],
+	" r",
+	["punctuation", ")"],
+	["punctuation", "{"],
+
+	["keyword", "return"],
+	" r",
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for generics.
