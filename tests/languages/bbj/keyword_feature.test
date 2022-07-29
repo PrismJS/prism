@@ -1,0 +1,112 @@
+abstract all argc auto begin boolean break bye case catch char chn class classend continue ctl day declare 
+delete dom double dread dsz else endif err exitto extends extends fi field field for from gosub goto if implements 
+implements interface interfaceend iol iolist let list load method methodend methodret new new next on opts 
+pfx private private process_events protected psz public read_resource remove_callback restore return rev 
+seterr setesc sqlchn sqlunt ssn start static step strictfp super swend sys then this throws tim to try 
+unt until use void volatile wend where while
+
+----------------------------------------------------
+
+[
+	["keyword", "abstract"],
+	["keyword", "all"],
+	["keyword", "argc"],
+	["keyword", "auto"],
+	["keyword", "begin"],
+	["keyword", "boolean"],
+	["keyword", "break"],
+	["keyword", "bye"],
+	["keyword", "case"],
+	["keyword", "catch"],
+	["keyword", "char"],
+	["keyword", "chn"],
+	["keyword", "class"],
+	["keyword", "classend"],
+	["keyword", "continue"],
+	["keyword", "ctl"],
+	["keyword", "day"],
+	["keyword", "declare"],
+
+	["keyword", "delete"],
+	["keyword", "dom"],
+	["keyword", "double"],
+	["keyword", "dread"],
+	["keyword", "dsz"],
+	["keyword", "else"],
+	["keyword", "endif"],
+	["keyword", "err"],
+	["keyword", "exitto"],
+	["keyword", "extends"],
+	["keyword", "extends"],
+	["keyword", "fi"],
+	["keyword", "field"],
+	["keyword", "field"],
+	["keyword", "for"],
+	["keyword", "from"],
+	["keyword", "gosub"],
+	["keyword", "goto"],
+	["keyword", "if"],
+	["keyword", "implements"],
+
+	["keyword", "implements"],
+	["keyword", "interface"],
+	["keyword", "interfaceend"],
+	["keyword", "iol"],
+	["keyword", "iolist"],
+	["keyword", "let"],
+	["keyword", "list"],
+	["keyword", "load"],
+	["keyword", "method"],
+	["keyword", "methodend"],
+	["keyword", "methodret"],
+	["keyword", "new"],
+	["keyword", "new"],
+	["keyword", "next"],
+	["keyword", "on"],
+	["keyword", "opts"],
+
+	["keyword", "pfx"],
+	["keyword", "private"],
+	["keyword", "private"],
+	["keyword", "process_events"],
+	["keyword", "protected"],
+	["keyword", "psz"],
+	["keyword", "public"],
+	["keyword", "read_resource"],
+	["keyword", "remove_callback"],
+	["keyword", "restore"],
+	["keyword", "return"],
+	["keyword", "rev"],
+
+	["keyword", "seterr"],
+	["keyword", "setesc"],
+	["keyword", "sqlchn"],
+	["keyword", "sqlunt"],
+	["keyword", "ssn"],
+	["keyword", "start"],
+	["keyword", "static"],
+	["keyword", "step"],
+	["keyword", "strictfp"],
+	["keyword", "super"],
+	["keyword", "swend"],
+	["keyword", "sys"],
+	["keyword", "then"],
+	["keyword", "this"],
+	["keyword", "throws"],
+	["keyword", "tim"],
+	["keyword", "to"],
+	["keyword", "try"],
+
+	["keyword", "unt"],
+	["keyword", "until"],
+	["keyword", "use"],
+	["keyword", "void"],
+	["keyword", "volatile"],
+	["keyword", "wend"],
+	["keyword", "where"],
+	["keyword", "while"]
+]
+
+----------------------------------------------------
+
+Checks for keywords.

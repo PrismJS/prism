@@ -225,6 +225,10 @@
 			},
 			"owner": "RunDevelopment"
 		},
+		"bbj": {
+			"title": "BBj",
+			"owner": "hyyanaf"
+		},
 		"bicep": {
 			"title": "Bicep",
 			"owner": "johnnyreilly"
@@ -266,7 +270,7 @@
 				"oscript": "OneScript"
 			},
 			"owner": "Diversus23"
-		},
+		},		
 		"c": {
 			"title": "C",
 			"require": "clike",

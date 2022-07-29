@@ -56,6 +56,7 @@
 		"gawk": "GAWK",
 		"basic": "BASIC",
 		"bbcode": "BBcode",
+		"bbj": "BBj",
 		"bnf": "BNF",
 		"rbnf": "RBNF",
 		"bsl": "BSL (1C:Enterprise)",
