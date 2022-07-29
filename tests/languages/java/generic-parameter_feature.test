@@ -1,8 +1,17 @@
-public class MyClass<T, RR> {
+public class MyGeneric<T, RR> {
 
-	public <RR> T f(T t, RR r) {
+	public <KK> T f(T t, RR r， KK k) {
 		return t;
 	}
+
+}
+
+public class MyClass extends MyGeneric<String, Object> {
+
+    @Override
+    public <KK> String f(String t, Object r, KK k) {
+        return t;
+    }
 
 }
 
@@ -11,7 +20,7 @@ public class MyClass<T, RR> {
 [
 	["keyword", "public"],
 	["keyword", "class"],
-	["class-name", ["MyClass"]],
+	["class-name", ["MyGeneric"]],
 	["generics", [
 		["punctuation", "<"],
 		["generic-parameter", "T"],
@@ -24,7 +33,7 @@ public class MyClass<T, RR> {
 	["keyword", "public"],
 	["generics", [
 		["punctuation", "<"],
-		["generic-parameter", "RR"],
+		["generic-parameter", "KK"],
 		["punctuation", ">"]
 	]],
 	["class-name", ["T"]],
@@ -33,8 +42,54 @@ public class MyClass<T, RR> {
 	["class-name", ["T"]],
 	" t",
 	["punctuation", ","],
-	["class-name", ["RR"]],
+	["constant", "RR"],
+	" r， ",
+	["class-name", ["KK"]],
+	" k",
+	["punctuation", ")"],
+	["punctuation", "{"],
+
+	["keyword", "return"],
+	" t",
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+
+	["punctuation", "}"],
+
+	["keyword", "public"],
+	["keyword", "class"],
+	["class-name", ["MyClass"]],
+	["keyword", "extends"],
+	["class-name", ["MyGeneric"]],
+	["generics", [
+		["punctuation", "<"],
+		["class-name", ["String"]],
+		["punctuation", ","],
+		["class-name", ["Object"]],
+		["punctuation", ">"]
+	]],
+	["punctuation", "{"],
+
+	["annotation", "@Override"],
+
+	["keyword", "public"],
+	["generics", [
+		["punctuation", "<"],
+		["generic-parameter", "KK"],
+		["punctuation", ">"]
+	]],
+	["class-name", ["String"]],
+	["function", "f"],
+	["punctuation", "("],
+	["class-name", ["String"]],
+	" t",
+	["punctuation", ","],
+	["class-name", ["Object"]],
 	" r",
+	["punctuation", ","],
+	["class-name", ["KK"]],
+	" k",
 	["punctuation", ")"],
 	["punctuation", "{"],
 
@@ -49,4 +104,4 @@ public class MyClass<T, RR> {
 
 ----------------------------------------------------
 
-Checks for generic-parameter.
+Checks for generic-parameters.
