@@ -1,12 +1,10 @@
 (function (Prism) {
 	Prism.languages.bbj = {
-		'comment': [
-			{
-				pattern: /(^|[^\\:])rem\s+.*/i,
-				lookbehind: true,
-				greedy: true
-			}
-		],
+		'comment': {
+			pattern: /(^|[^\\:])rem\s+.*/i,
+			lookbehind: true,
+			greedy: true
+		},
 		'string': {
 			pattern: /"(?:""|[!#$%&'()*,\/:;<=>?^\w +\-.])*"/,
 			greedy: true
