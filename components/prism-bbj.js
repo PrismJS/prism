@@ -14,6 +14,6 @@
 		'function': /\b\w+(?=\()/,
 		'boolean': /\b(?:BBjAPI\.TRUE|BBjAPI\.FALSE)\b/i,
 		'operator': /<[=>]?|>=?|[+\-*\/^=&]|\b(?:and|not|or|xor)\b/i,
-		'punctuation': /[,;:()]/
+		'punctuation': /[.,;:()]/
 	};
 }(Prism));
