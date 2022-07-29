@@ -81,7 +81,6 @@
 		'generics': {
 			pattern: /<(?:[\w\s,.?]|&(?!&)|<(?:[\w\s,.?]|&(?!&)|<(?:[\w\s,.?]|&(?!&)|<(?:[\w\s,.?]|&(?!&))*>)*>)*>)*>/,
 			inside: {
-				'generic-parameter': /\b[A-Z]+\b/,
 				'class-name': className,
 				'keyword': keywords,
 				'punctuation': /[<>(),.:]/,

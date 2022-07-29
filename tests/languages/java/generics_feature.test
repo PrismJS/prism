@@ -25,7 +25,7 @@ if (a<6&&b>6){}
 	["class-name", ["Solo"]],
 	["generics", [
 		["punctuation", "<"],
-		["generic-parameter", "T"],
+		["class-name", ["T"]],
 		["keyword", "extends"],
 		["class-name", [
 			["namespace", [
@@ -158,13 +158,13 @@ if (a<6&&b>6){}
 	["class-name", ["D"]],
 	["generics", [
 		["punctuation", "<"],
-		["generic-parameter", "T"],
+		["class-name", ["T"]],
 		["keyword", "extends"],
-		["generic-parameter", "A"],
+		["class-name", ["A"]],
 		["operator", "&"],
-		["generic-parameter", "B"],
+		["class-name", ["B"]],
 		["operator", "&"],
-		["generic-parameter", "C"],
+		["class-name", ["C"]],
 		["punctuation", ">"]
 	]],
 	["punctuation", "{"],
@@ -173,7 +173,7 @@ if (a<6&&b>6){}
 	["keyword", "public"],
 	["generics", [
 		["punctuation", "<"],
-		["generic-parameter", "T"],
+		["class-name", ["T"]],
 		["keyword", "extends"],
 		["class-name", ["Throwable"]],
 		["punctuation", ">"]
@@ -194,7 +194,7 @@ if (a<6&&b>6){}
 
 	["generics", [
 		["punctuation", "<"],
-		["generic-parameter", "T"],
+		["class-name", ["T"]],
 		["punctuation", ">"]
 	]],
 	["class-name", ["T"]],
@@ -203,7 +203,7 @@ if (a<6&&b>6){}
 	["class-name", ["List"]],
 	["generics", [
 		["punctuation", "<"],
-		["generic-parameter", "T"],
+		["class-name", ["T"]],
 		["punctuation", ">"]
 	]],
 	" arg",
