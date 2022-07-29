@@ -1,0 +1,25 @@
+rem Single line comment
+
+rem /**
+rem  * This file is part of the X plugin.
+rem  *
+rem  * For the full copyright and license information, please view the LICENSE
+rem  * file that was distributed with this source code.
+rem  */
+
+----------------------------------------------------
+
+[
+	["comment", "rem Single line comment"],
+
+	["comment", "rem /**"],
+	["comment", "rem  * This file is part of the X plugin."],
+	["comment", "rem  *"],
+	["comment", "rem  * For the full copyright and license information, please view the LICENSE"],
+	["comment", "rem  * file that was distributed with this source code."],
+	["comment", "rem  */"]
+]
+
+----------------------------------------------------
+
+Checks for comments.
