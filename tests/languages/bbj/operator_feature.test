@@ -1,0 +1,29 @@
+or 
+xor 
+not
+and
+> >=
+< <=
+!
++ 
+=
+*
+
+----------------------------------------------------
+
+[
+	["operator", "or"],
+	["operator", "xor"],
+	["operator", "not"],
+	["operator", "and"],
+	["operator", ">"], ["operator", ">="],
+	["operator", "<"], ["operator", "<="],
+	"\r\n!\r\n",
+	["operator", "+"],
+	["operator", "="],
+	["operator", "*"]
+]
+
+----------------------------------------------------
+
+Checks for operators.
