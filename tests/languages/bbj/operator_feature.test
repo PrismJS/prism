@@ -1,13 +1,4 @@
-or 
-xor 
-not
-and
-> >=
-< <=
-!
-+ 
-=
-*
+or xor not and > >= < <= + =*
 
 ----------------------------------------------------
 
@@ -16,9 +7,10 @@ and
 	["operator", "xor"],
 	["operator", "not"],
 	["operator", "and"],
-	["operator", ">"], ["operator", ">="],
-	["operator", "<"], ["operator", "<="],
-	"\r\n!\r\n",
+	["operator", ">"],
+	["operator", ">="],
+	["operator", "<"],
+	["operator", "<="],
 	["operator", "+"],
 	["operator", "="],
 	["operator", "*"]
