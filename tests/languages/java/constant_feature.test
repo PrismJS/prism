@@ -1,0 +1,61 @@
+public class Test {
+    private static final String AAAA = "aaaaaa";
+
+    private String str = "1";
+
+    public static void main(String[] args) {
+        str += AAAA + "AAAA";
+    }
+}
+
+----------------------------------------------------
+
+[
+	["keyword", "public"],
+	["keyword", "class"],
+	["class-name", ["Test"]],
+	["punctuation", "{"],
+
+	["keyword", "private"],
+	["keyword", "static"],
+	["keyword", "final"],
+	["class-name", ["String"]],
+	["constant", "AAAA"],
+	["operator", "="],
+	["string", "\"aaaaaa\""],
+	["punctuation", ";"],
+
+	["keyword", "private"],
+	["class-name", ["String"]],
+	" str ",
+	["operator", "="],
+	["string", "\"1\""],
+	["punctuation", ";"],
+
+	["keyword", "public"],
+	["keyword", "static"],
+	["keyword", "void"],
+	["function", "main"],
+	["punctuation", "("],
+	["class-name", ["String"]],
+	["punctuation", "["],
+	["punctuation", "]"],
+	" args",
+	["punctuation", ")"],
+	["punctuation", "{"],
+
+	"\r\n        str ",
+	["operator", "+="],
+	["constant", "AAAA"],
+	["operator", "+"],
+	["string", "\"AAAA\""],
+	["punctuation", ";"],
+
+	["punctuation", "}"],
+
+	["punctuation", "}"]
+]
+
+----------------------------------------------------
+
+Checks for all constants.
