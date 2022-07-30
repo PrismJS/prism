@@ -3,7 +3,7 @@ dread dsz else end endif err exitto extends fi field for from gosub goto if impl
 interface interfaceend iol iolist let list load method methodend methodret on opts pfx 
 print private process_events protected psz public read read_resource release remove_callback 
 repeat restore return rev seterr setesc sqlchn sqlunt ssn start static swend switch sys then 
-tim unt until use void wend where while
+tim unt until use void wend where while declare
 
 ----------------------------------------------------
 
@@ -89,7 +89,8 @@ tim unt until use void wend where while
 	["keyword", "void"],
 	["keyword", "wend"],
 	["keyword", "where"],
-	["keyword", "while"]
+	["keyword", "while"],
+	["keyword", "declare"]
 ]
 
 ----------------------------------------------------
