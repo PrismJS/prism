@@ -2,7 +2,7 @@
 +-×÷⋆√⌊⌈|¬∧∨<>≠=≤≥≡≢⊣⊢⥊∾≍⋈↑↓↕«»⌽⍉/⍋⍒⊏⊑⊐⊒∊⍷⊔!
 ˙˜˘¨⌜⁼´˝`
 ∘○⊸⟜⌾⊘◶⎉⚇⍟⎊
-𝕨𝕩𝕗𝕘𝕤𝕎𝕏𝔽𝔾𝕊
+𝕨𝕩𝕗𝕘𝕤𝕣𝕎𝕏𝔽𝔾𝕊 _𝕣 _𝕣_
 ←⇐↩(){}⟨⟩[]‿·⋄,.;:?
 
 ----------------------------------------------------
@@ -88,6 +88,8 @@
 	["special-name", "\ud835"],
 	["special-name", "\udd64"],
 	["special-name", "\ud835"],
+	["special-name", "\udd63"],
+	["special-name", "\ud835"],
 	["special-name", "\udd4e"],
 	["special-name", "\ud835"],
 	["special-name", "\udd4f"],
@@ -97,8 +99,28 @@
 	["special-name", "\udd3e"],
 	["special-name", "\ud835"],
 	["special-name", "\udd4a"],
+	["special-name", "_𝕣"],
+	["special-name", "_𝕣_"],
 
-	"\r\n←⇐↩(){}⟨⟩[]‿·⋄,.;:?"
+	["punctuation", "←"],
+	["punctuation", "⇐"],
+	["punctuation", "↩"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+	["punctuation", "⟨"],
+	["punctuation", "⟩"],
+	["punctuation", "["],
+	["punctuation", "]"],
+	["punctuation", "‿"],
+	["punctuation", "·"],
+	["punctuation", "⋄"],
+	["punctuation", ","],
+	["punctuation", "."],
+	["punctuation", ";"],
+	["punctuation", ":"],
+	["punctuation", "?"]
 ]
 
 ----------------------------------------------------

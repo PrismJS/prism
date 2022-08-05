@@ -9,7 +9,7 @@ example.b
 
 	["dot-notation-on-brackets", "{"],
 	["word-name", "n"],
-	"⇐",
+	["punctuation", "⇐"],
 	["word-number", "7"],
 	["dot-notation-on-brackets", "}."],
 	["word-name", "n"]

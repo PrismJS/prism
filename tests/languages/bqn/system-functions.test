@@ -41,9 +41,9 @@
 	["special-name", "\ud835"],
 	["special-name", "\udd69"],
 
-	"\r\n←",
+	["punctuation", "←"],
 	["function", "•Function"],
-	"?\r\n",
+	["punctuation", "?"],
 
 	["function", "•Function_.¯∞πCanHaveSymbols"],
 
