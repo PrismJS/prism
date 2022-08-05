@@ -35,11 +35,9 @@
 	["function", "•Function"],
 	["primitive-2-operators", "∘"],
 
-	["special-name", "\ud835"],
-	["special-name", "\udd68"],
+	["special-name", "𝕨"],
 	["function", "•Function"],
-	["special-name", "\ud835"],
-	["special-name", "\udd69"],
+	["special-name", "𝕩"],
 
 	["punctuation", "←"],
 	["function", "•Function"],

@@ -30,13 +30,11 @@ This𝕣IsNotASingleName
 	["dot-notation-on-name", "ThisIs."],
 	["word-name", "aNamespace"],
 	["function", "•System_¯∞πFunction"],
-	["special-name", "\ud835"],
-	["special-name", "\udd63"],
+	["special-name", "𝕣"],
 	["special-name", "_𝕣"],
 	["special-name", "_𝕣_"],
 	["word-name", "This"],
-	["special-name", "\ud835"],
-	["special-name", "\udd63"],
+	["special-name", "𝕣"],
 	["word-name", "IsNotASingleName"]
 ]
 

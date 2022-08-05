@@ -9,7 +9,7 @@ Prism.languages.bqn = {
 		greedy: true
 	},
 	'string-literal': {
-		pattern: /"(?:\\[\s\S]|\$(?!\()|`[^`]+`|[^"\\`$])*"/,
+		pattern: /"(?:[^"]|"")*"/,
 		greedy: true,
 		alias: 'string'
 	},

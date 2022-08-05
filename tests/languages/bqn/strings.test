@@ -36,8 +36,7 @@
 	["word-name", "String"],
 	["string-literal", "\"\""],
 
-	["string-literal", "\"\""],
-	["string-literal", "\"There is a double quote at the start of this string.\""],
+	["string-literal", "\"\"\"There is a double quote at the start of this string.\""],
 
 	["string-literal", "\"'this is a string'\""],
 
