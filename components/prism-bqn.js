@@ -26,7 +26,7 @@ Prism.languages.bqn = {
 		alias: 'namespace'
 	},
 	'special-name': {
-		pattern: /[𝕨𝕩𝕗𝕘𝕤𝕣𝕎𝕏𝔽𝔾𝕊]|_𝕣[_]?/u,
+		pattern: /(?:𝕨|𝕩|𝕗|𝕘|𝕤|𝕣|𝕎|𝕏|𝔽|𝔾|𝕊|_𝕣_|_𝕣)/,
 		alias: 'keyword'
 	},
 	'dot-notation-on-name': {
