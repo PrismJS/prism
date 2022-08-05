@@ -18,7 +18,7 @@ Prism.languages.bqn = {
 		greedy: true,
 		alias: 'char'
 	},
-	'function': /•[\w¯.∞π]+[\w¯.∞π]*/i,
+	'function': /•[\w¯.∞π]+[\w¯.∞π]*/,
 	'dot-notation-on-brackets': {
 		pattern: /\{(?=.*\}\.)|\}\./,
 		alias: 'namespace'
