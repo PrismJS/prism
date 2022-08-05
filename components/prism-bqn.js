@@ -36,11 +36,11 @@ Prism.languages.bqn = {
 		alias: 'number'
 	},
 	'word-name': {
-		pattern: /[A-Z_][\w¯∞π]*/i,
+		pattern: /[A-Za-z_][\w¯∞π]*/,
 		alias: 'symbol'
 	},
 	'word-number': {
-		pattern: /[¯∞π]?(?:\d*\.?\b\d+(?:e[+¯]?\d+)?|¯|∞|π)(?:j¯?(?:(?:\d+(?:\.\d+)?|\.\d+)(?:e[+¯]?\d+)?|¯|∞|π))?/i,
+		pattern: /[¯∞π]?(?:\d*\.?\b\d+(?:e[+¯]?\d+|E[+¯]?\d+)?|¯|∞|π)(?:j¯?(?:(?:\d+(?:\.\d+)?|\.\d+)(?:e[+¯]?\d+|E[+¯]?\d+)?|¯|∞|π))?/,
 		alias: 'number'
 	},
 	'null-literal': {
