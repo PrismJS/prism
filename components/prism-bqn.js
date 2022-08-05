@@ -14,13 +14,11 @@ Prism.languages.bqn = {
 		alias: 'string'
 	},
 	'character-literal': {
-		pattern: /'.'/,
+		pattern: /'(?:[\s\S]|[\uD800-\uDBFF][\uDC00-\uDFFF])'/,
 		greedy: true,
-		alias: 'string'
+		alias: 'char'
 	},
-	'function': {
-		pattern: /•[\w¯.∞π]+[\w¯.∞π]*/i
-	},
+	'function': /•[\w¯.∞π]+[\w¯.∞π]*/i,
 	'dot-notation-on-brackets': {
 		pattern: /\{(?=.*\}\.)|\}\./,
 		alias: 'namespace'
