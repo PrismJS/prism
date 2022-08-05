@@ -32,7 +32,7 @@ Prism.languages.bqn = {
 		alias: 'namespace'
 	},
 	'word-number-scientific': {
-		pattern: /\d+(?:\.\d+)?[e|E]¯?\d+/,
+		pattern: /\d+(?:\.\d+)?[eE]¯?\d+/,
 		alias: 'number'
 	},
 	'word-name': {
@@ -45,7 +45,7 @@ Prism.languages.bqn = {
 	},
 	'null-literal': {
 		pattern: /@/,
-		alias: 'string'
+		alias: 'char'
 	},
 	'primitive-functions': {
 		pattern: /[-+×÷⋆√⌊⌈|¬∧∨<>≠=≤≥≡≢⊣⊢⥊∾≍⋈↑↓↕«»⌽⍉/⍋⍒⊏⊑⊐⊒∊⍷⊔!]/,
