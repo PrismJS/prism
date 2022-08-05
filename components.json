@@ -306,6 +306,18 @@
 			"title": "CIL",
 			"owner": "sbrl"
 		},
+		"cilkc": {
+			"title": "Cilk/C",
+			"require": "c",
+			"alias": "cilk-c",
+			"owner": "OpenCilk"
+		},
+		"cilkcpp": {
+			"title": "Cilk/C++",
+			"require": "cpp",
+			"alias": ["cilk-cpp", "cilk"],
+			"owner": "OpenCilk"
+		},
 		"clojure": {
 			"title": "Clojure",
 			"owner": "troglotit"
