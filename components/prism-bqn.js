@@ -28,7 +28,7 @@ Prism.languages.bqn = {
 		alias: 'keyword'
 	},
 	'dot-notation-on-name': {
-		pattern: /[A-Z_][\w¯∞π]*\./i,
+		pattern: /[A-Za-z_][\w¯∞π]*\./,
 		alias: 'namespace'
 	},
 	'word-number-scientific': {
