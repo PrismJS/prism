@@ -1,0 +1,53 @@
+•Function
+ •function 
+•_function_
+@•Function@
++•Function+
+˙•Function˙
+∘•Function∘
+𝕨•Function𝕩
+←•Function?
+•Function_.¯∞πCanHaveSymbols
+•0.0.0.0
+
+----------------------------------------------------
+
+[
+	["function", "•Function"],
+
+	["function", "•function"],
+
+	["function", "•_function_"],
+
+	["null-literal", "@"],
+	["function", "•Function"],
+	["null-literal", "@"],
+
+	["primitive-functions", "+"],
+	["function", "•Function"],
+	["primitive-functions", "+"],
+
+	["primitive-1-operators", "˙"],
+	["function", "•Function"],
+	["primitive-1-operators", "˙"],
+
+	["primitive-2-operators", "∘"],
+	["function", "•Function"],
+	["primitive-2-operators", "∘"],
+
+	["special-name", "𝕨"],
+	["function", "•Function"],
+	["special-name", "𝕩"],
+
+	["punctuation", "←"],
+	["function", "•Function"],
+	["punctuation", "?"],
+
+	["function", "•Function_.¯∞πCanHaveSymbols"],
+
+	["function", "•0.0.0.0"]
+]
+
+----------------------------------------------------
+
+System Functions should be identified regardless of what is next to them.

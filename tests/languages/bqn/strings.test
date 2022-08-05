@@ -1,0 +1,61 @@
+"String Literal"
+'c'
+'not a string or character'
+""Not A String
+""Not A String""
+"""There is a double quote at the start of this string."
+"'this is a string'"
+"'c'"
+# "Comment, not String"
+"String, # Not Comment"
+"
+
+----------------------------------------------------
+
+[
+	["string-literal", "\"String Literal\""],
+
+	["character-literal", "'c'"],
+
+	"\r\n'",
+	["word-name", "not"],
+	["word-name", "a"],
+	["word-name", "string"],
+	["word-name", "or"],
+	["word-name", "character"],
+	"'\r\n",
+
+	["string-literal", "\"\""],
+	["word-name", "Not"],
+	["word-name", "A"],
+	["word-name", "String"],
+
+	["string-literal", "\"\""],
+	["word-name", "Not"],
+	["word-name", "A"],
+	["word-name", "String"],
+	["string-literal", "\"\""],
+
+	["string-literal", "\"\"\"There is a double quote at the start of this string.\""],
+
+	["string-literal", "\"'this is a string'\""],
+
+	["string-literal", "\"'c'\""],
+
+	["comment", "# \"Comment, not String\""],
+
+	["string-literal", "\"String, # Not Comment\""],
+
+	"\r\n\""
+]
+
+----------------------------------------------------
+
+Strings—lists of characters—are written with double quotes "", and characters
+with single quotes '' with a single character in between. Only one character
+ever needs to be escaped: a double quote in a string is written twice. So
+"""" is a one-character string of ", and if two string literals are next to
+each other, they have to be separated by a space. Character literals don't
+have even one escape, as the length is already known. Other than the double
+quote, character and string literals can contain any character directly:
+newlines, null characters, or other Unicode.

@@ -1,0 +1,125 @@
+<h2>Examples From Rosetta Code</h2>
+<h3>100 Doors</h3>
+<pre><code>
+swch ← ≠´{100⥊1«𝕩⥊0}¨1+↕100
+¯1↓∾{𝕩∾@+10}¨•Fmt¨⟨swch,/swch⟩
+</code></pre>
+<h3>Archimedean Spiral</h3>
+<pre><code>
+{(•math.Sin •Plot○(⊢×↕∘≠) •math.Cos) -(2×π) × 𝕩⥊(↕÷-⟜1)100}
+</code></pre>
+<h3>Damm Algorithm</h3>
+<pre><code>
+table ← >⟨ 0‿3‿1‿7‿5‿9‿8‿6‿4‿2
+	   7‿0‿9‿2‿1‿5‿4‿8‿6‿3
+	   4‿2‿0‿6‿8‿7‿1‿3‿5‿9
+	   1‿7‿5‿0‿9‿8‿3‿4‿2‿6
+	   6‿1‿2‿3‿0‿4‿5‿9‿7‿8
+	   3‿6‿7‿4‿2‿0‿9‿5‿8‿1
+	   5‿8‿6‿9‿7‿2‿0‿1‿3‿4
+	   8‿9‿4‿5‿3‿6‿2‿0‿1‿7
+	   9‿4‿3‿8‿6‿1‿7‿2‿0‿5
+	   2‿5‿8‿1‿4‿3‿6‿7‿9‿0 ⟩
+
+
+Digits ← 10{⌽𝕗|⌊∘÷⟜𝕗⍟(↕1+·⌊𝕗⋆⁼1⌈⊢)}
+
+Damm ← {0=0(table⊑˜⋈)˜´⌽Digits 𝕩}
+
+Damm¨5724‿5727‿112946
+</code></pre>
+<h3>Knuth/Fisher-Yates Shuffle</h3>
+<pre><code>
+Knuth ← {
+  𝕊 arr:
+  l ← ≠arr
+  {
+    arr ↩ ⌽⌾(⟨•rand.Range l, 𝕩⟩⊸⊏)arr
+  }¨↕l
+  arr
+}
+P ← •Show Knuth
+
+P ⟨⟩
+P ⟨10⟩
+P ⟨10, 20⟩
+P ⟨10, 20, 30⟩
+</code></pre>
+<h2>Comments</h2>
+<pre><code>#!/usr/bin/env bqn
+# Full Line Comment
+'#'  # The preceding should not be a comment.
+"BQN is #1" # The preceding should not be a comment.
+1 + 1 # Comment at End of Line.
+</code></pre>
+
+<h2>Literals</h2>
+<pre><code>
+"String Literal"
+'c'
+"""There is a double quote at the start of this string."
+"'c'"
+# "Comment, not String"
+"String, # Not Comment"
+@
+</code></pre>
+
+<h2>Tokens</h2>
+<h3>Primitive Functions</h3>
+<pre><code>
++-×÷⋆√⌊⌈|¬∧∨&lt;&gt;≠=≤≥≡≢⊣⊢⥊∾≍⋈↑↓↕«»⌽⍉/⍋⍒⊏⊑⊐⊒∊⍷⊔!
+</code></pre>
+<h3>1-Operators</h3>
+<pre><code>
+˙˜˘¨⌜⁼´˝`
+</code></pre>
+<h3>2-Operators</h3>
+<pre><code>
+∘○⊸⟜⌾⊘◶⎉⚇⍟⎊
+</code></pre>
+<h3>Special Names</h3>
+<pre><code>
+𝕨𝕩𝕗𝕘𝕤𝕎𝕏𝔽𝔾𝕊𝕣_𝕣
+_𝕣_
+</code></pre>
+<h3>Punctuation</h3>
+<pre><code>
+←⇐↩(){}⟨⟩[]‿·⋄,.;:?
+</code></pre>
+
+<h2>Words</h2>
+<h3>Numbers</h3>
+<pre><code>
+1464
+3.14159
+¯2
+∞
+π
+¯∞
+2.8e¯4
+1.618E2
+</code></pre>
+<h3>Names</h3>
+<pre><code>
+VariableName
+ThereAre4Symbols_¯∞πAllowedInNames
+</code></pre>
+<h2>Namespaces</h2>
+<pre><code>
+example.b
+{n⇐7}.n
+</code></pre>
+<h2>System Functions</h2>
+<pre><code>
+•Function
+ •function
+•_function_
+@•Function@
++•Function+
+˙•Function˙
+∘•Function∘
+𝕨•Function𝕩
+←•Function?
+•Function_.¯∞πCanHaveSymbols
+•0.0.0.0
+</code></pre>

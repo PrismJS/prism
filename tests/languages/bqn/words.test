@@ -1,0 +1,54 @@
+1464
+1.618
+1.314E1
+∞
+π
+2π
+¯∞
+TheAboveAreNumbersNotNames
+ThereAre4Symbols_¯∞πAllowedInNames
+ThisIs.aNamespace
+•System_¯∞πFunction
+𝕣
+_𝕣
+_𝕣_
+This𝕣IsNotASingleName
+
+----------------------------------------------------
+
+[
+	["word-number", "1464"],
+	["word-number", "1.618"],
+	["word-number-scientific", "1.314E1"],
+	["word-number", "∞"],
+	["word-number", "π"],
+	["word-number", "2"],
+	["word-number", "π"],
+	["word-number", "¯∞"],
+	["word-name", "TheAboveAreNumbersNotNames"],
+	["word-name", "ThereAre4Symbols_¯∞πAllowedInNames"],
+	["dot-notation-on-name", "ThisIs."],
+	["word-name", "aNamespace"],
+	["function", "•System_¯∞πFunction"],
+	["special-name", "𝕣"],
+	["special-name", "_𝕣"],
+	["special-name", "_𝕣_"],
+	["word-name", "This"],
+	["special-name", "𝕣"],
+	["word-name", "IsNotASingleName"]
+]
+
+----------------------------------------------------
+
+Numbers and variable names share a token formation rule, and are collectively
+called words. A word is a number if it starts with a digit or numeric
+character ¯∞π, and a name otherwise.
+
+Words are formed from digits, letters, and the characters _.¯∞π. All these
+characters stick together, so that you need to separate words with whitespace
+in order to write them next to each other. But . only counts if it's followed
+by a digit: otherwise it forms its own token to support namespace syntax
+ns.field. A word may be preceded by • to form a system name.
+
+The character 𝕣 also sticks with other word-forming characters, but is only
+allowed form the special names 𝕣, _𝕣, and _𝕣_.
