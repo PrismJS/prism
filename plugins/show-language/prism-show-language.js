@@ -59,6 +59,7 @@
 		"bbj": "BBj",
 		"bnf": "BNF",
 		"rbnf": "RBNF",
+		"bqn": "BQN",
 		"bsl": "BSL (1C:Enterprise)",
 		"oscript": "OneScript",
 		"csharp": "C#",

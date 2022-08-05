@@ -251,6 +251,10 @@
 			},
 			"owner": "RunDevelopment"
 		},
+		"bqn": {
+			"title": "BQN",
+			"owner": "yewscion"
+		},
 		"brainfuck": {
 			"title": "Brainfuck",
 			"owner": "Golmote"
