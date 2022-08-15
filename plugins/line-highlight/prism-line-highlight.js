@@ -156,7 +156,7 @@
 
 				var start = +range[0];
 				var end = +range[1] || start;
-				end = Math.min(numberOfLines, end);
+				end = Math.min(numberOfLines + offset, end);
 
 				if (end < start) {
 					return;
