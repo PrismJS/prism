@@ -1,0 +1,43 @@
+<h2>Cilk keywords</h2>
+<pre><code>cilk_scope {}
+cilk_spawn f();
+cilk_spawn {}
+cilk_sync;
+cilk_for () {}
+int cilk_reducer() x;</code></pre>
+
+<h2>Full example</h2>
+<pre><code>#include &lt;cilk/cilk.h>
+#include &lt;vector>
+
+int fib_cilk_scope(int n) {
+	if (n &lt; 2)
+		return;
+	int x, y;
+	cilk_scope {
+		x = cilk_spawn fib(n-1);
+		y = fib(n-2);
+	}
+	return x + y;
+
+int fib_cilk_sync(int n) {
+	if (n &lt; 2)
+		return;
+	int x = cilk_spawn fib(n-1);
+	int y = fib(n-2);
+	cilk_sync;
+	return x + y;
+}
+
+void zero(void *v) {
+	*(int *)v = 0;
+}
+void plus(void *l, void *r) {
+	*(int *)l += *(int *)r;
+}
+int array_sum_cilk_for_reducer(std::vector&lt;int> A) {
+	int cilk_reducer(zero, plus) sum = 0;
+	cilk_for (auto itr = A.cbegin(); itr != A.cend(); ++itr)
+		sum += *itr;
+	return sum;
+}</code></pre>
