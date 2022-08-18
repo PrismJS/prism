@@ -1,0 +1,63 @@
+<h2>Routines example</h2>
+<pre><code>
+use ::BBjGridExWidget/BBjGridExWidget.bbj::BBjGridExWidget
+use com.basiscomponents.db.ResultSet
+use com.basiscomponents.bc.SqlQueryBC
+
+declare auto BBjTopLevelWindow wnd!
+wnd! = BBjAPI().openSysGui("X0").addWindow(10, 10, 800, 600, "My First Grid")
+wnd!.setCallback(BBjAPI.ON_CLOSE,"byebye")
+
+gosub main
+process_events
+
+rem Retrieve the data from the database and configure the grid
+main:
+	declare SqlQueryBC sbc!
+	declare ResultSet rs!
+	declare BBjGridExWidget grid!
+
+	sbc! = new SqlQueryBC(BBjAPI().getJDBCConnection("CDStore"))
+	rs! = sbc!.retrieve("SELECT * FROM CDINVENTORY")
+
+	grid! = new BBjGridExWidget(wnd!, 100, 0, 0, 800, 600)
+	grid!.setData(rs!)
+return
+
+byebye:
+bye
+</code></pre>
+
+<h2>OOP example</h2>
+<pre><code>
+use java.util.Arrays
+use java.util.ArrayList
+use ::BBjGridExWidget/BBjGridExWidget.bbj::BBjGridExWidget
+
+rem /**
+rem  * This file is part of the MyPackage.
+rem  *
+rem  * For the full copyright and license information, please view the LICENSE
+rem  * file that was distributed with this source code.
+rem  */
+rem /**
+
+class public Employee
+  field public BBjNumber ID
+  field public BBjString Name$
+classend
+
+class public Salaried extends Employee implements Payable
+  field public BBjNumber MonthlySalary
+  method public BBjNumber pay()
+    methodret #MonthlySalary
+  methodend
+  method public void print()
+    print "Employee",#getID(),": ",#getName()
+    print #pay():"($###,###.00)"
+  methodend
+  method public BBjNumber account()
+    methodret 11111
+  methodend
+classend
+</code></pre>

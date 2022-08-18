@@ -1,0 +1,13 @@
+BBjAPI.FALSE
+BBjAPI.TRUE
+
+----------------------------------------------------
+
+[
+	["boolean", "BBjAPI.FALSE"],
+	["boolean", "BBjAPI.TRUE"]
+]
+
+----------------------------------------------------
+
+Checks for booleans.

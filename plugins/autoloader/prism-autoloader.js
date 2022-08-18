@@ -33,6 +33,8 @@
 			"clike",
 			"cpp"
 		],
+		"cilkc": "c",
+		"cilkcpp": "cpp",
 		"coffeescript": "javascript",
 		"crystal": "ruby",
 		"css-extras": "css",
@@ -195,6 +197,9 @@
 		"cs": "csharp",
 		"dotnet": "csharp",
 		"cfc": "cfscript",
+		"cilk-c": "cilkc",
+		"cilk-cpp": "cilkcpp",
+		"cilk": "cilkcpp",
 		"coffee": "coffeescript",
 		"conc": "concurnas",
 		"jinja2": "django",

@@ -1,0 +1,31 @@
+example.b
+{n⇐7}.n
+
+----------------------------------------------------
+
+[
+	["dot-notation-on-name", "example."],
+	["word-name", "b"],
+
+	["dot-notation-on-brackets", "{"],
+	["word-name", "n"],
+	["punctuation", "⇐"],
+	["word-number", "7"],
+	["dot-notation-on-brackets", "}."],
+	["word-name", "n"]
+]
+
+----------------------------------------------------
+
+A namespace is a type of value that groups together several variables
+(fields) from the same scope. A block or file returns a namespace if it
+contains any export arrows ⇐ at the top level, and fields from namespaces can
+be accessed with either dot syntax or destructuring assignment. A namespace
+can be mutable only if any of its source code uses ↩ to change the value of a
+field.
+
+There are also two ways to get values out of a namespace, such as example
+defined above. First, one field at a time can be retrieved with dot syntax:
+write the namespace, then a dot ., then another name.
+
+The second, destructuring assignments, does not require special highlighting.

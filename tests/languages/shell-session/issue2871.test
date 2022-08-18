@@ -15,7 +15,8 @@ hello
 		["bash", [
 			["function", "sudo"],
 			["function", "ls"],
-			" -l ~/.config ",
+			["parameter", "-l"],
+			" ~/.config ",
 			["string", "'s'"],
 			["operator", ["&&"]],
 			["punctuation", "\\"],
