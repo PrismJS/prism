@@ -54,6 +54,7 @@
 		"avdl": "Avro IDL",
 		"awk": "AWK",
 		"gawk": "GAWK",
+		"sh": "Shell",
 		"basic": "BASIC",
 		"bbcode": "BBcode",
 		"bbj": "BBj",

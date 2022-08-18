@@ -190,6 +190,7 @@
 		"avs": "avisynth",
 		"avdl": "avro-idl",
 		"gawk": "awk",
+		"sh": "bash",
 		"shell": "bash",
 		"shortcode": "bbcode",
 		"rbnf": "bnf",
