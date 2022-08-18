@@ -203,8 +203,9 @@
 		},
 		"bash": {
 			"title": "Bash",
-			"alias": "shell",
+			"alias": ["sh", "shell"],
 			"aliasTitles": {
+				"sh": "Shell",
 				"shell": "Shell"
 			},
 			"owner": "zeitgeist87"
