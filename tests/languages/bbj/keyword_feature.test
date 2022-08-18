@@ -1,0 +1,98 @@
+abstract all argc begin bye callback case chn class classend ctl day delete dim dom 
+dread dsz else end endif err exitto extends fi field for from gosub goto if implements 
+interface interfaceend iol iolist let list load method methodend methodret on opts pfx 
+print private process_events protected psz public read read_resource release remove_callback 
+repeat restore return rev seterr setesc sqlchn sqlunt ssn start static swend switch sys then 
+tim unt until use void wend where while declare
+
+----------------------------------------------------
+
+[
+	["keyword", "abstract"],
+	["keyword", "all"],
+	["keyword", "argc"],
+	["keyword", "begin"],
+	["keyword", "bye"],
+	["keyword", "callback"],
+	["keyword", "case"],
+	["keyword", "chn"],
+	["keyword", "class"],
+	["keyword", "classend"],
+	["keyword", "ctl"],
+	["keyword", "day"],
+	["keyword", "delete"],
+	["keyword", "dim"],
+	["keyword", "dom"],
+
+	["keyword", "dread"],
+	["keyword", "dsz"],
+	["keyword", "else"],
+	["keyword", "end"],
+	["keyword", "endif"],
+	["keyword", "err"],
+	["keyword", "exitto"],
+	["keyword", "extends"],
+	["keyword", "fi"],
+	["keyword", "field"],
+	["keyword", "for"],
+	["keyword", "from"],
+	["keyword", "gosub"],
+	["keyword", "goto"],
+	["keyword", "if"],
+	["keyword", "implements"],
+
+	["keyword", "interface"],
+	["keyword", "interfaceend"],
+	["keyword", "iol"],
+	["keyword", "iolist"],
+	["keyword", "let"],
+	["keyword", "list"],
+	["keyword", "load"],
+	["keyword", "method"],
+	["keyword", "methodend"],
+	["keyword", "methodret"],
+	["keyword", "on"],
+	["keyword", "opts"],
+	["keyword", "pfx"],
+
+	["keyword", "print"],
+	["keyword", "private"],
+	["keyword", "process_events"],
+	["keyword", "protected"],
+	["keyword", "psz"],
+	["keyword", "public"],
+	["keyword", "read"],
+	["keyword", "read_resource"],
+	["keyword", "release"],
+	["keyword", "remove_callback"],
+
+	["keyword", "repeat"],
+	["keyword", "restore"],
+	["keyword", "return"],
+	["keyword", "rev"],
+	["keyword", "seterr"],
+	["keyword", "setesc"],
+	["keyword", "sqlchn"],
+	["keyword", "sqlunt"],
+	["keyword", "ssn"],
+	["keyword", "start"],
+	["keyword", "static"],
+	["keyword", "swend"],
+	["keyword", "switch"],
+	["keyword", "sys"],
+	["keyword", "then"],
+
+	["keyword", "tim"],
+	["keyword", "unt"],
+	["keyword", "until"],
+	["keyword", "use"],
+	["keyword", "void"],
+	["keyword", "wend"],
+	["keyword", "where"],
+	["keyword", "while"],
+	["keyword", "declare"]
+]
+
+----------------------------------------------------
+
+Checks for keywords.

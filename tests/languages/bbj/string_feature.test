@@ -1,0 +1,27 @@
+""
+''
+"f\"oo"
+'b\'ar'
+
+"foo rem comment bar"
+"foo ""rem"" comment bar"
+"foo rem /* *rem comment bar"
+
+----------------------------------------------------
+
+[
+	["string", "\"\""],
+	["string", "''"],
+	["string", "\"f\\\"oo\""],
+	["string", "'b\\'ar'"],
+
+	["string", "\"foo rem comment bar\""],
+	["string", "\"foo \""],
+	["string", "\"rem\""],
+	["string", "\" comment bar\""],
+	["string", "\"foo rem /* *rem comment bar\""]
+]
+
+----------------------------------------------------
+
+Checks for strings.

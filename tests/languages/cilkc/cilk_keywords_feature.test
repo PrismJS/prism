@@ -1,0 +1,63 @@
+cilk_for()
+cilk_for ()
+
+cilk_spawn f();
+cilk_spawn {}
+cilk_spawn{}
+
+cilk_sync;
+
+cilk_scope {}
+cilk_scope{}
+
+int cilk_reducer() x;
+int cilk_reducer () x;
+
+----------------------------------------------------
+
+[
+	["parallel-keyword", "cilk_for"], ["punctuation", "("], ["punctuation", ")"],
+	["parallel-keyword", "cilk_for"], ["punctuation", "("], ["punctuation", ")"],
+
+	["parallel-keyword", "cilk_spawn"],
+	["function", "f"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	["punctuation", ";"],
+
+	["parallel-keyword", "cilk_spawn"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["parallel-keyword", "cilk_spawn"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["parallel-keyword", "cilk_sync"], ["punctuation", ";"],
+
+	["parallel-keyword", "cilk_scope"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["parallel-keyword", "cilk_scope"],
+	["punctuation", "{"],
+	["punctuation", "}"],
+
+	["keyword", "int"],
+	["parallel-keyword", "cilk_reducer"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	" x",
+	["punctuation", ";"],
+
+	["keyword", "int"],
+	["parallel-keyword", "cilk_reducer"],
+	["punctuation", "("],
+	["punctuation", ")"],
+	" x",
+	["punctuation", ";"]
+]
+
+----------------------------------------------------
+
+Check Cilk keywords.

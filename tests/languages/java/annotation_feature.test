@@ -16,7 +16,7 @@
 	["punctuation", "("],
 	"value",
 	["operator", "="],
-	"SOURCE",
+	["constant", "SOURCE"],
 	["punctuation", ")"],
 
 	["annotation", "@Target"],
@@ -24,9 +24,9 @@
 	"value",
 	["operator", "="],
 	["punctuation", "{"],
-	"PACKAGE",
+	["constant", "PACKAGE"],
 	["punctuation", ","],
-	"TYPE",
+	["constant", "TYPE"],
 	["punctuation", "}"],
 	["punctuation", ")"]
 ]

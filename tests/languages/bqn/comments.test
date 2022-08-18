@@ -1,0 +1,79 @@
+#!/usr/bin/env bqn
+# Full Line Comment. The above is a shebang.
++-×÷⋆√⌊⌈|¬∧∨<>≠=≤≥≡≢⊣⊢⥊∾≍⋈↑↓↕«»⌽⍉/⍋⍒⊏⊑⊐⊒∊⍷⊔! # Comment at End of Line.
+'#'  # The preceding should not be a comment.
+"BQN is #1" # The preceding should not be a comment.
+# Comments # Continue # To # The # EOL #
+########################################
+Symbol
+
+----------------------------------------------------
+
+[
+	["shebang", "#!/usr/bin/env bqn"],
+
+	["comment", "# Full Line Comment. The above is a shebang."],
+
+	["primitive-functions", "+"],
+	["primitive-functions", "-"],
+	["primitive-functions", "×"],
+	["primitive-functions", "÷"],
+	["primitive-functions", "⋆"],
+	["primitive-functions", "√"],
+	["primitive-functions", "⌊"],
+	["primitive-functions", "⌈"],
+	["primitive-functions", "|"],
+	["primitive-functions", "¬"],
+	["primitive-functions", "∧"],
+	["primitive-functions", "∨"],
+	["primitive-functions", "<"],
+	["primitive-functions", ">"],
+	["primitive-functions", "≠"],
+	["primitive-functions", "="],
+	["primitive-functions", "≤"],
+	["primitive-functions", "≥"],
+	["primitive-functions", "≡"],
+	["primitive-functions", "≢"],
+	["primitive-functions", "⊣"],
+	["primitive-functions", "⊢"],
+	["primitive-functions", "⥊"],
+	["primitive-functions", "∾"],
+	["primitive-functions", "≍"],
+	["primitive-functions", "⋈"],
+	["primitive-functions", "↑"],
+	["primitive-functions", "↓"],
+	["primitive-functions", "↕"],
+	["primitive-functions", "«"],
+	["primitive-functions", "»"],
+	["primitive-functions", "⌽"],
+	["primitive-functions", "⍉"],
+	["primitive-functions", "/"],
+	["primitive-functions", "⍋"],
+	["primitive-functions", "⍒"],
+	["primitive-functions", "⊏"],
+	["primitive-functions", "⊑"],
+	["primitive-functions", "⊐"],
+	["primitive-functions", "⊒"],
+	["primitive-functions", "∊"],
+	["primitive-functions", "⍷"],
+	["primitive-functions", "⊔"],
+	["primitive-functions", "!"],
+	["comment", "# Comment at End of Line."],
+
+	["character-literal", "'#'"],
+	["comment", "# The preceding should not be a comment."],
+
+	["string-literal", "\"BQN is #1\""],
+	["comment", "# The preceding should not be a comment."],
+
+	["comment", "# Comments # Continue # To # The # EOL #"],
+
+	["comment", "########################################"],
+
+	["word-name", "Symbol"]
+]
+
+----------------------------------------------------
+
+Comments follow a '#' character only, on a single line, to the end of the
+line, unless in a shebang, character literal, or string literal.

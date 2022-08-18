@@ -226,6 +226,10 @@
 			},
 			"owner": "RunDevelopment"
 		},
+		"bbj": {
+			"title": "BBj",
+			"owner": "hyyan"
+		},
 		"bicep": {
 			"title": "Bicep",
 			"owner": "johnnyreilly"
@@ -247,6 +251,10 @@
 				"rbnf": "RBNF"
 			},
 			"owner": "RunDevelopment"
+		},
+		"bqn": {
+			"title": "BQN",
+			"owner": "yewscion"
 		},
 		"brainfuck": {
 			"title": "Brainfuck",
@@ -298,6 +306,18 @@
 		"cil": {
 			"title": "CIL",
 			"owner": "sbrl"
+		},
+		"cilkc": {
+			"title": "Cilk/C",
+			"require": "c",
+			"alias": "cilk-c",
+			"owner": "OpenCilk"
+		},
+		"cilkcpp": {
+			"title": "Cilk/C++",
+			"require": "cpp",
+			"alias": ["cilk-cpp", "cilk"],
+			"owner": "OpenCilk"
 		},
 		"clojure": {
 			"title": "Clojure",
