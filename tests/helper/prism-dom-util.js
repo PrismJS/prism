@@ -1,4 +1,4 @@
-const { assert } = require('chai');
+const { UseSnapshot, assertEqual } = require('./snapshot');
 const PrismLoader = require('./prism-loader');
 
 /**
@@ -15,17 +15,55 @@ module.exports = {
 
 		const util = {
 			assert: {
-				highlight({ language = 'none', code, expected }) {
-					assert.strictEqual(Prism.highlight(code, Prism.languages[language], language), expected);
+				/**
+				 * @param {{
+				 *   language?: string,
+				 *   code: string,
+				 *   expected?: string | typeof UseSnapshot
+				 * }} param0
+				 */
+				highlight({ language = 'none', code, expected = UseSnapshot }) {
+					assertEqual(Prism.highlight(code, Prism.languages[language], language), expected);
 				},
-				highlightElement({ language = 'none', code, expected }) {
+				/**
+				 * @param {{
+				 *   language?: string,
+				 *   code: string,
+				 *   expected?: string | typeof UseSnapshot
+				 * }} param0
+				 */
+				highlightElement({ language = 'none', code, expected = UseSnapshot }) {
 					const element = document.createElement('CODE');
 					element.classList.add('language-' + language);
 					element.textContent = code;
 
 					Prism.highlightElement(element);
 
-					assert.strictEqual(element.innerHTML, expected);
+					assertEqual(element.innerHTML, expected);
+				},
+				/**
+				 * @param {{
+				 *   language?: string,
+				 *   attributes?: Record<string, string>,
+				 *   code: string,
+				 *   expected?: string | typeof UseSnapshot
+				 * }} param0
+				 */
+				highlightPreElement({ language = 'none', attributes = {}, code, expected = UseSnapshot }) {
+					const preElement = document.createElement('PRE');
+					for (const key in attributes) {
+						const value = attributes[key];
+						preElement.setAttribute(key, value);
+					}
+					preElement.classList.add('language-' + language);
+
+					const codeElement = document.createElement('CODE');
+					codeElement.textContent = code;
+					preElement.appendChild(codeElement);
+
+					Prism.highlightElement(codeElement);
+
+					assertEqual(preElement.outerHTML, expected);
 				}
 			},
 		};
