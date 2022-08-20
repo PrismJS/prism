@@ -27,6 +27,15 @@ The bundle distribution of a component will be one monolithic file with all of i
 
 For more information see #2715, #2880, and #2736.
 
+## Browser support
+
+With our move to ESM, we are also upgrading the whole code base to use ES6.
+Browsers and JavaScript runtimes that do not support ES6, will not be supported by Prism v2.
+
+This means that IE11 and NodeJS 10 will no longer be supported.
+
+For more information see #1578 and #2457.
+
 ## Public API
 
 We also plan a few other changes to the public API.
@@ -34,9 +43,11 @@ These changes will generally make the API simpler and resolve accumulated tech d
 
 For more information see #3416, #3528, #2948, #3420, #2982, and #1844.
 
-## IE11
+## Build artifacts
 
-It's time to let it go.
-Prism v2 will no longer support IE11.
+Due to the way our website works, we had to commit all build artifacts (minified files, generated files, etc.) into the repository.
+This is obviously a very ugly solution, but it was an easy and reliable one.
 
-For more information see #1578 and #2457.
+Now, we will get rid of them.
+One of the goals we have for Prism v2 is to get rid of all build artifacts in the repository.
+All build artifacts the website needs are going to be generated before it gets deployed.
