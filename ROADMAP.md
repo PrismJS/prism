@@ -1,7 +1,6 @@
 # Roadmap for v2
 
-Over the years, there have been many great suggestions that we were not able to implement due to them being a breaking change.
-Now, we are currently work on Prism v2.
+With Prism finally moving towards v2, we finally have an opportunity to revisit the many breaking changes we've received over the years. Below are some of the changes we'll be implementing, and how.
 
 ## ESM
 
