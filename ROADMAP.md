@@ -1,6 +1,7 @@
 # Roadmap for v2
 
-With Prism finally moving towards v2, we finally have an opportunity to revisit the many breaking changes we've received over the years. Below are some of the changes we'll be implementing, and how.
+With Prism finally moving towards v2, we finally have an opportunity to revisit the many breaking changes we've received over the years.
+Below are some of the changes we'll be implementing, and how.
 
 ## ESM
 
@@ -25,7 +26,7 @@ This will make importing a component as simple as importing a single file.
 Since ESM isn't supported everywhere, we will offer 2 distributions: ESM and bundled.
 The bundle distribution of a component will be one monolithic file with all of its dependencies included.
 
-For more information see #2715, #2880, and #2736.
+For more information see [#2715], [#2880], and [#2736].
 
 ## Browser support
 
@@ -34,14 +35,14 @@ Browsers and JavaScript runtimes that do not support ES6, will not be supported 
 
 This means that IE11 and NodeJS 10 will no longer be supported.
 
-For more information see #1578 and #2457.
+For more information see [#1578] and [#2457].
 
 ## Public API
 
 We also plan a few other changes to the public API.
 These changes will generally make the API simpler and resolve accumulated tech debt.
 
-For more information see #3416, #3528, #2948, #3420, #2982, and #1844.
+For more information see [#3416], [#3528], [#2948], [#3420], [#2982], and [#1844].
 
 ## Build artifacts
 
@@ -51,3 +52,15 @@ This is obviously a very ugly solution, but it was an easy and reliable one.
 Now, we will get rid of them.
 One of the goals we have for Prism v2 is to get rid of all build artifacts in the repository.
 All build artifacts the website needs are going to be generated before it gets deployed.
+
+[#1578]: https://github.com/PrismJS/prism/issues/1578
+[#1844]: https://github.com/PrismJS/prism/issues/1844
+[#2457]: https://github.com/PrismJS/prism/issues/2457
+[#2715]: https://github.com/PrismJS/prism/issues/2715
+[#2736]: https://github.com/PrismJS/prism/issues/2736
+[#2880]: https://github.com/PrismJS/prism/issues/2880
+[#2948]: https://github.com/PrismJS/prism/issues/2948
+[#2982]: https://github.com/PrismJS/prism/issues/2982
+[#3416]: https://github.com/PrismJS/prism/issues/3416
+[#3420]: https://github.com/PrismJS/prism/issues/3420
+[#3528]: https://github.com/PrismJS/prism/issues/3528
