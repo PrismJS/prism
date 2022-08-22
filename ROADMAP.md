@@ -30,12 +30,13 @@ For more information see [#2715], [#2880], and [#2736].
 
 ## Browser support
 
-With our move to ESM, we are also upgrading the whole code base to use ES6.
+With our move to ESM, we are also upgrading the whole code base to use the latest EcmaScript version.
+The current plan is to transpile features that aren't widely supported by major browsers.
 Browsers and JavaScript runtimes that do not support ES6, will not be supported by Prism v2.
 
 This means that IE11 and NodeJS 10 will no longer be supported.
 
-For more information see [#1578] and [#2457].
+For more information see [#2880], [#1578] and [#2457].
 
 ## Public API
 
