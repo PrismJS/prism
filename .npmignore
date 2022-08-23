@@ -23,3 +23,5 @@ gulpfile.js
 .eslintrc.js
 .eslintcache
 .jsdoc.json
+MAINTAINERS.md
+SECURITY.md
