@@ -38,8 +38,8 @@
 	};
 
 
-	var pattern = /\{\{[\s\S]*?\}\}|\{%[\s\S]*?%\}|\{#[\s\S]*?#\}/g;
-	var markupTemplating = Prism.languages['markup-templating'];
+	let pattern = /\{\{[\s\S]*?\}\}|\{%[\s\S]*?%\}|\{#[\s\S]*?#\}/g;
+	let markupTemplating = Prism.languages['markup-templating'];
 
 	Prism.hooks.add('before-tokenize', function (env) {
 		markupTemplating.buildPlaceholders(env, 'django', pattern);

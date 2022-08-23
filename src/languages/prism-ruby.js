@@ -29,7 +29,7 @@
 		},
 	});
 
-	var interpolation = {
+	let interpolation = {
 		pattern: /((?:^|[^\\])(?:\\{2})*)#\{(?:[^{}]|\{[^{}]*\})*\}/,
 		lookbehind: true,
 		inside: {
@@ -47,7 +47,7 @@
 
 	delete Prism.languages.ruby.function;
 
-	var percentExpression = '(?:' + [
+	let percentExpression = '(?:' + [
 		/([^a-zA-Z0-9\s{(\[<=])(?:(?!\1)[^\\]|\\[\s\S])*\1/.source,
 		/\((?:[^()\\]|\\[\s\S]|\((?:[^()\\]|\\[\s\S])*\))*\)/.source,
 		/\{(?:[^{}\\]|\\[\s\S]|\{(?:[^{}\\]|\\[\s\S])*\})*\}/.source,
@@ -55,7 +55,7 @@
 		/<(?:[^<>\\]|\\[\s\S]|<(?:[^<>\\]|\\[\s\S])*>)*>/.source
 	].join('|') + ')';
 
-	var symbolName = /(?:"(?:\\.|[^"\\\r\n])*"|(?:\b[a-zA-Z_]\w*|[^\s\0-\x7F]+)[?!]?|\$.)/.source;
+	let symbolName = /(?:"(?:\\.|[^"\\\r\n])*"|(?:\b[a-zA-Z_]\w*|[^\s\0-\x7F]+)[?!]?|\$.)/.source;
 
 	Prism.languages.insertBefore('ruby', 'keyword', {
 		'regex-literal': [

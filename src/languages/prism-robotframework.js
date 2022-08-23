@@ -1,12 +1,12 @@
 (function (Prism) {
 
-	var comment = {
+	let comment = {
 		pattern: /(^[ \t]*| {2}|\t)#.*/m,
 		lookbehind: true,
 		greedy: true
 	};
 
-	var variable = {
+	let variable = {
 		pattern: /((?:^|[^\\])(?:\\{2})*)[$@&%]\{(?:[^{}\r\n]|\{[^{}\r\n]*\})*\}/,
 		lookbehind: true,
 		inside: {
@@ -15,7 +15,7 @@
 	};
 
 	function createSection(name, inside) {
-		var extendecInside = {};
+		let extendecInside = {};
 
 		extendecInside['section-header'] = {
 			pattern: /^ ?\*{3}.+?\*{3}/,
@@ -23,7 +23,7 @@
 		};
 
 		// copy inside tokens
-		for (var token in inside) {
+		for (let token in inside) {
 			extendecInside[token] = inside[token];
 		}
 
@@ -45,13 +45,13 @@
 	}
 
 
-	var docTag = {
+	let docTag = {
 		pattern: /(\[Documentation\](?: {2}|\t)[ \t]*)(?![ \t]|#)(?:.|(?:\r\n?|\n)[ \t]*\.{3})+/,
 		lookbehind: true,
 		alias: 'string'
 	};
 
-	var testNameLike = {
+	let testNameLike = {
 		pattern: /([\r\n] ?)(?!#)(?:\S(?:[ \t]\S)*)+/,
 		lookbehind: true,
 		alias: 'function',
@@ -60,7 +60,7 @@
 		}
 	};
 
-	var testPropertyLike = {
+	let testPropertyLike = {
 		pattern: /([\r\n](?: {2}|\t)[ \t]*)(?!\[|\.{3}|#)(?:\S(?:[ \t]\S)*)+/,
 		lookbehind: true,
 		inside: {

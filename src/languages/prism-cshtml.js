@@ -4,8 +4,8 @@
 
 (function (Prism) {
 
-	var commentLike = /\/(?![/*])|\/\/.*[\r\n]|\/\*[^*]*(?:\*(?!\/)[^*]*)*\*\//.source;
-	var stringLike =
+	let commentLike = /\/(?![/*])|\/\/.*[\r\n]|\/\*[^*]*(?:\*(?!\/)[^*]*)*\*\//.source;
+	let stringLike =
 		/@(?!")|"(?:[^\r\n\\"]|\\.)*"|@"(?:[^\\"]|""|\\[\s\S])*"(?!")/.source +
 		'|' +
 		/'(?:(?:[^\r\n'\\]|\\.|\\[Uux][\da-fA-F]{1,8})'|(?=[^\\](?!')))/.source;
@@ -18,7 +18,7 @@
 	 * @returns {string}
 	 */
 	function nested(pattern, depthLog2) {
-		for (var i = 0; i < depthLog2; i++) {
+		for (let i = 0; i < depthLog2; i++) {
 			pattern = pattern.replace(/<self>/g, function () { return '(?:' + pattern + ')'; });
 		}
 		return pattern
@@ -27,12 +27,12 @@
 			.replace(/<comment>/g, '(?:' + commentLike + ')');
 	}
 
-	var round = nested(/\((?:[^()'"@/]|<str>|<comment>|<self>)*\)/.source, 2);
-	var square = nested(/\[(?:[^\[\]'"@/]|<str>|<comment>|<self>)*\]/.source, 1);
-	var curly = nested(/\{(?:[^{}'"@/]|<str>|<comment>|<self>)*\}/.source, 2);
-	var angle = nested(/<(?:[^<>'"@/]|<comment>|<self>)*>/.source, 1);
+	let round = nested(/\((?:[^()'"@/]|<str>|<comment>|<self>)*\)/.source, 2);
+	let square = nested(/\[(?:[^\[\]'"@/]|<str>|<comment>|<self>)*\]/.source, 1);
+	let curly = nested(/\{(?:[^{}'"@/]|<str>|<comment>|<self>)*\}/.source, 2);
+	let angle = nested(/<(?:[^<>'"@/]|<comment>|<self>)*>/.source, 1);
 
-	var inlineCs = /@/.source +
+	let inlineCs = /@/.source +
 		/(?:await\b\s*)?/.source +
 		'(?:' + /(?!await\b)\w+\b/.source + '|' + round + ')' +
 		'(?:' + /[?!]?\.\w+\b/.source + '|' + '(?:' + angle + ')?' + round + '|' + square + ')*' +
@@ -50,16 +50,16 @@
 	// To somewhat alleviate the problem a bit, the patterns for characters (e.g. 'a') is very permissive, it also
 	// allows invalid characters to support HTML expressions like this: <p>That's it!</p>.
 
-	var tagAttrInlineCs = /@(?![\w()])/.source + '|' + inlineCs;
-	var tagAttrValue = '(?:' +
+	let tagAttrInlineCs = /@(?![\w()])/.source + '|' + inlineCs;
+	let tagAttrValue = '(?:' +
 		/"[^"@]*"|'[^'@]*'|[^\s'"@>=]+(?=[\s>])/.source +
 		'|' +
 		'["\'][^"\'@]*(?:(?:' + tagAttrInlineCs + ')[^"\'@]*)+["\']' +
 		')';
 
-	var tagAttrs = /(?:\s(?:\s*[^\s>\/=]+(?:\s*=\s*<tagAttrValue>|(?=[\s/>])))+)?/.source.replace(/<tagAttrValue>/, tagAttrValue);
-	var tagContent = /(?!\d)[^\s>\/=$<%]+/.source + tagAttrs + /\s*\/?>/.source;
-	var tagRegion =
+	let tagAttrs = /(?:\s(?:\s*[^\s>\/=]+(?:\s*=\s*<tagAttrValue>|(?=[\s/>])))+)?/.source.replace(/<tagAttrValue>/, tagAttrValue);
+	let tagContent = /(?!\d)[^\s>\/=$<%]+/.source + tagAttrs + /\s*\/?>/.source;
+	let tagRegion =
 		/\B@?/.source +
 		'(?:' +
 		/<([a-zA-Z][\w:]*)/.source + tagAttrs + /\s*>/.source +
@@ -109,7 +109,7 @@
 
 	Prism.languages.cshtml = Prism.languages.extend('markup', {});
 
-	var csharpWithHtml = Prism.languages.insertBefore('csharp', 'string', {
+	let csharpWithHtml = Prism.languages.insertBefore('csharp', 'string', {
 		'html': {
 			pattern: RegExp(tagRegion),
 			greedy: true,
@@ -117,13 +117,13 @@
 		},
 	}, { csharp: Prism.languages.extend('csharp', {}) });
 
-	var cs = {
+	let cs = {
 		pattern: /\S[\s\S]*/,
 		alias: 'language-csharp',
 		inside: csharpWithHtml
 	};
 
-	var inlineValue = {
+	let inlineValue = {
 		pattern: RegExp(/(^|[^@])/.source + inlineCs),
 		lookbehind: true,
 		greedy: true,

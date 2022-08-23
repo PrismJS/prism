@@ -50,21 +50,21 @@
 		'punctuation': /[(){}\[\];,|]/
 	};
 
-	var inlineLanguages = [
+	let inlineLanguages = [
 		'c',
 		{ lang: 'c++', alias: 'cpp' },
 		'fortran'
 	];
-	var inlineLanguageRe = /%< *-\*- *<lang>\d* *-\*-[\s\S]+?%>/.source;
+	let inlineLanguageRe = /%< *-\*- *<lang>\d* *-\*-[\s\S]+?%>/.source;
 
 	inlineLanguages.forEach(function (lang) {
-		var alias = lang;
+		let alias = lang;
 		if (typeof lang !== 'string') {
 			alias = lang.alias;
 			lang = lang.lang;
 		}
 		if (Prism.languages[alias]) {
-			var o = {};
+			let o = {};
 			o['inline-lang-' + alias] = {
 				pattern: RegExp(inlineLanguageRe.replace('<lang>', lang.replace(/([.+*?\/\\(){}\[\]])/g, '\\$1')), 'i'),
 				inside: Prism.util.clone(Prism.languages.pure['inline-lang'].inside)

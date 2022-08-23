@@ -35,7 +35,7 @@ Prism.hooks.add('before-tokenize', function (env) {
 		return;
 	}
 
-	var pattern = /\{(?:#[\s\S]*?#|%[\s\S]*?%|\{[\s\S]*?\})\}/g;
+	let pattern = /\{(?:#[\s\S]*?#|%[\s\S]*?%|\{[\s\S]*?\})\}/g;
 	Prism.languages['markup-templating'].buildPlaceholders(env, 'twig', pattern);
 });
 

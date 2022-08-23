@@ -1,8 +1,8 @@
 (function (Prism) {
 
-	var expressionDef = /\{[^\r\n\[\]{}]*\}/;
+	let expressionDef = /\{[^\r\n\[\]{}]*\}/;
 
-	var params = {
+	let params = {
 		'quoted-string': {
 			pattern: /"(?:[^"\\]|\\.)*"/,
 			alias: 'operator'
@@ -120,10 +120,10 @@
 	 */
 	Prism.hooks.add('after-tokenize', function (env) {
 		/** @type {(Token | string)[]} */
-		var tokens = env.tokens;
+		let tokens = env.tokens;
 		tokens.forEach(function (token) {
 			if (typeof token !== 'string' && token.type === 'generic-text') {
-				var content = getTextContent(token);
+				let content = getTextContent(token);
 				if (!isBracketsBalanced(content)) {
 					token.type = 'bad-line';
 					token.content = content;
@@ -137,11 +137,11 @@
 	 * @returns {boolean}
 	 */
 	function isBracketsBalanced(input) {
-		var brackets = '[]{}';
-		var stack = [];
-		for (var i = 0; i < input.length; i++) {
-			var bracket = input[i];
-			var bracketsIndex = brackets.indexOf(bracket);
+		let brackets = '[]{}';
+		let stack = [];
+		for (let i = 0; i < input.length; i++) {
+			let bracket = input[i];
+			let bracketsIndex = brackets.indexOf(bracket);
 			if (bracketsIndex !== -1) {
 				if (bracketsIndex % 2 === 0) {
 					stack.push(bracketsIndex + 1);

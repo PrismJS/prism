@@ -4,7 +4,7 @@
 (function (Prism) {
 	// PromQL Aggregation Operators
 	// (https://prometheus.io/docs/prometheus/latest/querying/operators/#aggregation-operators)
-	var aggregations = [
+	let aggregations = [
 		'sum',
 		'min',
 		'max',
@@ -21,7 +21,7 @@
 
 	// PromQL vector matching + the by and without clauses
 	// (https://prometheus.io/docs/prometheus/latest/querying/operators/#vector-matching)
-	var vectorMatching = [
+	let vectorMatching = [
 		'on',
 		'ignoring',
 		'group_right',
@@ -32,9 +32,9 @@
 
 	// PromQL offset modifier
 	// (https://prometheus.io/docs/prometheus/latest/querying/basics/#offset-modifier)
-	var offsetModifier = ['offset'];
+	let offsetModifier = ['offset'];
 
-	var keywords = aggregations.concat(vectorMatching, offsetModifier);
+	let keywords = aggregations.concat(vectorMatching, offsetModifier);
 
 	Prism.languages.promql = {
 		'comment': {

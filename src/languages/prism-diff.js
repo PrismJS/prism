@@ -18,7 +18,7 @@
 	 *
 	 * @type {Object<string, string>}
 	 */
-	var PREFIXES = {
+	let PREFIXES = {
 		'deleted-sign': '-',
 		'deleted-arrow': '<',
 		'inserted-sign': '+',
@@ -29,9 +29,9 @@
 
 	// add a token for each prefix
 	Object.keys(PREFIXES).forEach(function (name) {
-		var prefix = PREFIXES[name];
+		let prefix = PREFIXES[name];
 
-		var alias = [];
+		let alias = [];
 		if (!/^\w+$/.test(name)) { // "deleted-sign" -> "deleted"
 			alias.push(/\w+/.exec(name)[0]);
 		}

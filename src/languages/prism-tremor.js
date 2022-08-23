@@ -38,7 +38,7 @@
 		'punctuation': /::|[;\[\]()\{\},.:]/,
 	};
 
-	var interpolationPattern = /#\{(?:[^"{}]|\{[^{}]*\}|"(?:[^"\\\r\n]|\\(?:\r\n|[\s\S]))*")*\}/.source;
+	let interpolationPattern = /#\{(?:[^"{}]|\{[^{}]*\}|"(?:[^"\\\r\n]|\\(?:\r\n|[\s\S]))*")*\}/.source;
 
 	Prism.languages.tremor['interpolated-string'] = {
 		pattern: RegExp(

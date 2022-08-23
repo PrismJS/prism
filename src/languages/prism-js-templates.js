@@ -1,12 +1,12 @@
 (function (Prism) {
 
-	var templateString = Prism.languages.javascript['template-string'];
+	let templateString = Prism.languages.javascript['template-string'];
 
 	// see the pattern in prism-javascript.js
-	var templateLiteralPattern = templateString.pattern.source;
-	var interpolationObject = templateString.inside['interpolation'];
-	var interpolationPunctuationObject = interpolationObject.inside['interpolation-punctuation'];
-	var interpolationPattern = interpolationObject.pattern.source;
+	let templateLiteralPattern = templateString.pattern.source;
+	let interpolationObject = templateString.inside['interpolation'];
+	let interpolationPunctuationObject = interpolationObject.inside['interpolation-punctuation'];
+	let interpolationPattern = interpolationObject.pattern.source;
 
 
 	/**
@@ -91,7 +91,7 @@
 	 * @returns {(string|Token)[]}
 	 */
 	function tokenizeWithHooks(code, grammar, language) {
-		var env = {
+		let env = {
 			code: code,
 			grammar: grammar,
 			language: language
@@ -109,11 +109,11 @@
 	 * @returns {Token}
 	 */
 	function tokenizeInterpolationExpression(expression) {
-		var tempGrammar = {};
+		let tempGrammar = {};
 		tempGrammar['interpolation-punctuation'] = interpolationPunctuationObject;
 
 		/** @type {Array} */
-		var tokens = Prism.tokenize(expression, tempGrammar);
+		let tokens = Prism.tokenize(expression, tempGrammar);
 		if (tokens.length === 3) {
 			/**
 			 * The token array will look like this
@@ -124,7 +124,7 @@
 			 * ]
 			 */
 
-			var args = [1, 1];
+			let args = [1, 1];
 			args.push.apply(args, tokenizeWithHooks(tokens[1], Prism.languages.javascript, 'javascript'));
 
 			tokens.splice.apply(tokens, args);
@@ -155,7 +155,7 @@
 
 		// because they might be escaped, we need a lookbehind, so we use Prism
 		/** @type {(Token|string)[]} */
-		var _tokens = Prism.tokenize(code, {
+		let _tokens = Prism.tokenize(code, {
 			'interpolation': {
 				pattern: RegExp(interpolationPattern),
 				lookbehind: true
@@ -163,16 +163,16 @@
 		});
 
 		// replace all interpolations with a placeholder which is not in the code already
-		var placeholderCounter = 0;
+		let placeholderCounter = 0;
 		/** @type {Object<string, string>} */
-		var placeholderMap = {};
-		var embeddedCode = _tokens.map(function (token) {
+		let placeholderMap = {};
+		let embeddedCode = _tokens.map(function (token) {
 			if (typeof token === 'string') {
 				return token;
 			} else {
-				var interpolationExpression = token.content;
+				let interpolationExpression = token.content;
 
-				var placeholder;
+				let placeholder;
 				while (code.indexOf(placeholder = getPlaceholder(placeholderCounter++, language)) !== -1) { /* noop */ }
 				placeholderMap[placeholder] = interpolationExpression;
 				return placeholder;
@@ -182,12 +182,12 @@
 
 		// 2. Tokenize the embedded code
 
-		var embeddedTokens = tokenizeWithHooks(embeddedCode, grammar, language);
+		let embeddedTokens = tokenizeWithHooks(embeddedCode, grammar, language);
 
 
 		// 3. Re-insert the interpolation
 
-		var placeholders = Object.keys(placeholderMap);
+		let placeholders = Object.keys(placeholderMap);
 		placeholderCounter = 0;
 
 		/**
@@ -196,32 +196,32 @@
 		 * @returns {void}
 		 */
 		function walkTokens(tokens) {
-			for (var i = 0; i < tokens.length; i++) {
+			for (let i = 0; i < tokens.length; i++) {
 				if (placeholderCounter >= placeholders.length) {
 					return;
 				}
 
-				var token = tokens[i];
+				let token = tokens[i];
 
 				if (typeof token === 'string' || typeof token.content === 'string') {
-					var placeholder = placeholders[placeholderCounter];
-					var s = typeof token === 'string' ? token : /** @type {string} */ (token.content);
+					let placeholder = placeholders[placeholderCounter];
+					let s = typeof token === 'string' ? token : /** @type {string} */ (token.content);
 
-					var index = s.indexOf(placeholder);
+					let index = s.indexOf(placeholder);
 					if (index !== -1) {
 						++placeholderCounter;
 
-						var before = s.substring(0, index);
-						var middle = tokenizeInterpolationExpression(placeholderMap[placeholder]);
-						var after = s.substring(index + placeholder.length);
+						let before = s.substring(0, index);
+						let middle = tokenizeInterpolationExpression(placeholderMap[placeholder]);
+						let after = s.substring(index + placeholder.length);
 
-						var replacement = [];
+						let replacement = [];
 						if (before) {
 							replacement.push(before);
 						}
 						replacement.push(middle);
 						if (after) {
-							var afterTokens = [after];
+							let afterTokens = [after];
 							walkTokens(afterTokens);
 							replacement.push.apply(replacement, afterTokens);
 						}
@@ -234,7 +234,7 @@
 						}
 					}
 				} else {
-					var content = token.content;
+					let content = token.content;
 					if (Array.isArray(content)) {
 						walkTokens(content);
 					} else {
@@ -253,7 +253,7 @@
 	 *
 	 * JS templating isn't active for only JavaScript but also related languages like TypeScript, JSX, and TSX.
 	 */
-	var supportedLanguages = {
+	let supportedLanguages = {
 		'javascript': true,
 		'js': true,
 		'typescript': true,
@@ -273,14 +273,14 @@
 		 * @returns {void}
 		 */
 		function findTemplateStrings(tokens) {
-			for (var i = 0, l = tokens.length; i < l; i++) {
-				var token = tokens[i];
+			for (let i = 0, l = tokens.length; i < l; i++) {
+				let token = tokens[i];
 
 				if (typeof token === 'string') {
 					continue;
 				}
 
-				var content = token.content;
+				let content = token.content;
 				if (!Array.isArray(content)) {
 					if (typeof content !== 'string') {
 						findTemplateStrings([content]);
@@ -304,15 +304,15 @@
 					 * ]]
 					 */
 
-					var embedded = content[1];
+					let embedded = content[1];
 					if (content.length === 3 && typeof embedded !== 'string' && embedded.type === 'embedded-code') {
 						// get string content
-						var code = stringContent(embedded);
+						let code = stringContent(embedded);
 
-						var alias = embedded.alias;
-						var language = Array.isArray(alias) ? alias[0] : alias;
+						let alias = embedded.alias;
+						let language = Array.isArray(alias) ? alias[0] : alias;
 
-						var grammar = Prism.languages[language];
+						let grammar = Prism.languages[language];
 						if (!grammar) {
 							// the embedded language isn't registered.
 							continue;

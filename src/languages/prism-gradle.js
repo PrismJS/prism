@@ -1,5 +1,5 @@
 (function (Prism) {
-	var interpolation = {
+	let interpolation = {
 		pattern: /((?:^|[^\\$])(?:\\{2})*)\$(?:\w+|\{[^{}]*\})/,
 		lookbehind: true,
 		inside: {

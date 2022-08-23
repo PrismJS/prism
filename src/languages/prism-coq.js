@@ -2,8 +2,8 @@
 
 	// https://github.com/coq/coq
 
-	var commentSource = /\(\*(?:[^(*]|\((?!\*)|\*(?!\))|<self>)*\*\)/.source;
-	for (var i = 0; i < 2; i++) {
+	let commentSource = /\(\*(?:[^(*]|\((?!\*)|\*(?!\))|<self>)*\*\)/.source;
+	for (let i = 0; i < 2; i++) {
 		commentSource = commentSource.replace(/<self>/g, function () { return commentSource; });
 	}
 	commentSource = commentSource.replace(/<self>/g, '[]');

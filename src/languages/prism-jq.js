@@ -1,8 +1,8 @@
 (function (Prism) {
 
-	var interpolation = /\\\((?:[^()]|\([^()]*\))*\)/.source;
-	var string = RegExp(/(^|[^\\])"(?:[^"\r\n\\]|\\[^\r\n(]|__)*"/.source.replace(/__/g, function () { return interpolation; }));
-	var stringInterpolation = {
+	let interpolation = /\\\((?:[^()]|\([^()]*\))*\)/.source;
+	let string = RegExp(/(^|[^\\])"(?:[^"\r\n\\]|\\[^\r\n(]|__)*"/.source.replace(/__/g, function () { return interpolation; }));
+	let stringInterpolation = {
 		'interpolation': {
 			pattern: RegExp(/((?:^|[^\\])(?:\\{2})*)/.source + interpolation),
 			lookbehind: true,
@@ -17,7 +17,7 @@
 		}
 	};
 
-	var jq = Prism.languages.jq = {
+	let jq = Prism.languages.jq = {
 		'comment': /#.*/,
 		'property': {
 			pattern: RegExp(string.source + /(?=\s*:(?!:))/.source),

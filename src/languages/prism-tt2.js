@@ -42,7 +42,7 @@
 	delete Prism.languages.tt2.string;
 
 	Prism.hooks.add('before-tokenize', function (env) {
-		var tt2Pattern = /\[%[\s\S]+?%\]/g;
+		let tt2Pattern = /\[%[\s\S]+?%\]/g;
 		Prism.languages['markup-templating'].buildPlaceholders(env, 'tt2', tt2Pattern);
 	});
 

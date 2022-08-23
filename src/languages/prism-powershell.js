@@ -1,6 +1,6 @@
 (function (Prism) {
 
-	var powershell = Prism.languages.powershell = {
+	let powershell = Prism.languages.powershell = {
 		'comment': [
 			{
 				pattern: /(^|[^`])<#[\s\S]*?#>/,

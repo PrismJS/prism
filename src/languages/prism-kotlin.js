@@ -22,7 +22,7 @@
 
 	delete Prism.languages.kotlin['class-name'];
 
-	var interpolationInside = {
+	let interpolationInside = {
 		'interpolation-punctuation': {
 			pattern: /^\$\{?|\}$/,
 			alias: 'punctuation'

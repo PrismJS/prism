@@ -1,24 +1,24 @@
 (function (Prism) {
 
-	var specialEscape = {
+	let specialEscape = {
 		pattern: /\\[\\(){}[\]^$+*?|.]/,
 		alias: 'escape'
 	};
-	var escape = /\\(?:x[\da-fA-F]{2}|u[\da-fA-F]{4}|u\{[\da-fA-F]+\}|0[0-7]{0,2}|[123][0-7]{2}|c[a-zA-Z]|.)/;
-	var charSet = {
+	let escape = /\\(?:x[\da-fA-F]{2}|u[\da-fA-F]{4}|u\{[\da-fA-F]+\}|0[0-7]{0,2}|[123][0-7]{2}|c[a-zA-Z]|.)/;
+	let charSet = {
 		pattern: /\.|\\[wsd]|\\p\{[^{}]+\}/i,
 		alias: 'class-name'
 	};
-	var charSetWithoutDot = {
+	let charSetWithoutDot = {
 		pattern: /\\[wsd]|\\p\{[^{}]+\}/i,
 		alias: 'class-name'
 	};
 
-	var rangeChar = '(?:[^\\\\-]|' + escape.source + ')';
-	var range = RegExp(rangeChar + '-' + rangeChar);
+	let rangeChar = '(?:[^\\\\-]|' + escape.source + ')';
+	let range = RegExp(rangeChar + '-' + rangeChar);
 
 	// the name of a capturing group
-	var groupName = {
+	let groupName = {
 		pattern: /(<|')[^<>']+(?=[>']$)/,
 		lookbehind: true,
 		alias: 'variable'

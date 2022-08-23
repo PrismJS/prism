@@ -12,7 +12,7 @@
 	};
 
 	Prism.hooks.add('before-tokenize', function (env) {
-		var pattern = /<%[\s\S]+?%>/g;
+		let pattern = /<%[\s\S]+?%>/g;
 		Prism.languages['markup-templating'].buildPlaceholders(env, 'etlua', pattern);
 	});
 

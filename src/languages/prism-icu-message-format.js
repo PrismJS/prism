@@ -16,14 +16,14 @@
 		}
 	}
 
-	var stringPattern = /'[{}:=,](?:[^']|'')*'(?!')/;
+	let stringPattern = /'[{}:=,](?:[^']|'')*'(?!')/;
 
-	var escape = {
+	let escape = {
 		pattern: /''/,
 		greedy: true,
 		alias: 'operator'
 	};
-	var string = {
+	let string = {
 		pattern: stringPattern,
 		greedy: true,
 		inside: {
@@ -31,13 +31,13 @@
 		}
 	};
 
-	var argumentSource = nested(
+	let argumentSource = nested(
 		/\{(?:[^{}']|'(?![{},'])|''|<STR>|<SELF>)*\}/.source
 			.replace(/<STR>/g, function () { return stringPattern.source; }),
 		8
 	);
 
-	var nestedMessage = {
+	let nestedMessage = {
 		pattern: RegExp(argumentSource),
 		inside: {
 			'message': {

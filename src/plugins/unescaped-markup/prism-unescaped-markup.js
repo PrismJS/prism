@@ -21,20 +21,20 @@
 
 	Prism.hooks.add('before-sanity-check', function (env) {
 		/** @type {HTMLElement} */
-		var element = env.element;
+		let element = env.element;
 
 		if (element.matches('script[type="text/plain"]')) {
 			// found a <script type="text/plain" ...> element
 			// we convert this element to a regular <pre><code> code block
 
-			var code = document.createElement('code');
-			var pre = document.createElement('pre');
+			let code = document.createElement('code');
+			let pre = document.createElement('pre');
 
 			// copy class name
 			pre.className = code.className = element.className;
 
 			// copy all "data-" attributes
-			var dataset = element.dataset;
+			let dataset = element.dataset;
 			Object.keys(dataset || {}).forEach(function (key) {
 				if (Object.prototype.hasOwnProperty.call(dataset, key)) {
 					pre.dataset[key] = dataset[key];
@@ -52,7 +52,7 @@
 
 		if (!env.code) {
 			// no code
-			var childNodes = element.childNodes;
+			let childNodes = element.childNodes;
 			if (childNodes.length === 1 && childNodes[0].nodeName == '#comment') {
 				// the only child is a comment -> use the comment's text
 				element.textContent = env.code = childNodes[0].textContent;

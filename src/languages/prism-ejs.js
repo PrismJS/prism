@@ -13,7 +13,7 @@
 	};
 
 	Prism.hooks.add('before-tokenize', function (env) {
-		var ejsPattern = /<%(?!%)[\s\S]+?%>/g;
+		let ejsPattern = /<%(?!%)[\s\S]+?%>/g;
 		Prism.languages['markup-templating'].buildPlaceholders(env, 'ejs', ejsPattern);
 	});
 

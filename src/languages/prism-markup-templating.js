@@ -29,14 +29,14 @@
 					return;
 				}
 
-				var tokenStack = env.tokenStack = [];
+				let tokenStack = env.tokenStack = [];
 
 				env.code = env.code.replace(placeholderPattern, function (match) {
 					if (typeof replaceFilter === 'function' && !replaceFilter(match)) {
 						return match;
 					}
-					var i = tokenStack.length;
-					var placeholder;
+					let i = tokenStack.length;
+					let placeholder;
 
 					// Check for existing strings
 					while (env.code.indexOf(placeholder = getPlaceholder(language, i)) !== -1) {
@@ -68,32 +68,32 @@
 				// Switch the grammar back
 				env.grammar = Prism.languages[language];
 
-				var j = 0;
-				var keys = Object.keys(env.tokenStack);
+				let j = 0;
+				let keys = Object.keys(env.tokenStack);
 
 				function walkTokens(tokens) {
-					for (var i = 0; i < tokens.length; i++) {
+					for (let i = 0; i < tokens.length; i++) {
 						// all placeholders are replaced already
 						if (j >= keys.length) {
 							break;
 						}
 
-						var token = tokens[i];
+						let token = tokens[i];
 						if (typeof token === 'string' || (token.content && typeof token.content === 'string')) {
-							var k = keys[j];
-							var t = env.tokenStack[k];
-							var s = typeof token === 'string' ? token : token.content;
-							var placeholder = getPlaceholder(language, k);
+							let k = keys[j];
+							let t = env.tokenStack[k];
+							let s = typeof token === 'string' ? token : token.content;
+							let placeholder = getPlaceholder(language, k);
 
-							var index = s.indexOf(placeholder);
+							let index = s.indexOf(placeholder);
 							if (index > -1) {
 								++j;
 
-								var before = s.substring(0, index);
-								var middle = new Prism.Token(language, Prism.tokenize(t, env.grammar), 'language-' + language, t);
-								var after = s.substring(index + placeholder.length);
+								let before = s.substring(0, index);
+								let middle = new Prism.Token(language, Prism.tokenize(t, env.grammar), 'language-' + language, t);
+								let after = s.substring(index + placeholder.length);
 
-								var replacement = [];
+								let replacement = [];
 								if (before) {
 									replacement.push.apply(replacement, walkTokens([before]));
 								}

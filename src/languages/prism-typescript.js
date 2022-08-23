@@ -24,7 +24,7 @@
 	delete Prism.languages.typescript['literal-property'];
 
 	// a version of typescript specifically for highlighting types
-	var typeInside = Prism.languages.extend('typescript', {});
+	let typeInside = Prism.languages.extend('typescript', {});
 	delete typeInside['class-name'];
 
 	Prism.languages.typescript['class-name'].inside = typeInside;

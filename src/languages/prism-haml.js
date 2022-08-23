@@ -107,10 +107,10 @@
 		}
 	};
 
-	var filter_pattern = '((?:^|\\r?\\n|\\r)([\\t ]*)):{{filter_name}}(?:(?:\\r?\\n|\\r)(?:\\2[\\t ].+|\\s*?(?=\\r?\\n|\\r)))+';
+	let filter_pattern = '((?:^|\\r?\\n|\\r)([\\t ]*)):{{filter_name}}(?:(?:\\r?\\n|\\r)(?:\\2[\\t ].+|\\s*?(?=\\r?\\n|\\r)))+';
 
 	// Non exhaustive list of available filters and associated languages
-	var filters = [
+	let filters = [
 		'css',
 		{ filter: 'coffee', language: 'coffeescript' },
 		'erb',
@@ -121,8 +121,8 @@
 		'scss',
 		'textile'
 	];
-	var all_filters = {};
-	for (var i = 0, l = filters.length; i < l; i++) {
+	let all_filters = {};
+	for (let i = 0, l = filters.length; i < l; i++) {
 		var filter = filters[i];
 		filter = typeof filter === 'string' ? { filter: filter, language: filter } : filter;
 		if (Prism.languages[filter.language]) {

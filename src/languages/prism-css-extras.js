@@ -1,7 +1,7 @@
 (function (Prism) {
 
-	var string = /("|')(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/;
-	var selectorInside;
+	let string = /("|')(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/;
+	let selectorInside;
 
 	Prism.languages.css.selector = {
 		pattern: Prism.languages.css.selector.pattern,
@@ -75,12 +75,12 @@
 		}
 	});
 
-	var unit = {
+	let unit = {
 		pattern: /(\b\d+)(?:%|[a-z]+(?![\w-]))/,
 		lookbehind: true
 	};
 	// 123 -123 .123 -.123 12.3 -12.3
-	var number = {
+	let number = {
 		pattern: /(^|[^\w.-])-?(?:\d+(?:\.\d+)?|\.\d+)/,
 		lookbehind: true
 	};

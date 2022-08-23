@@ -2,8 +2,8 @@
 
 (function (Prism) {
 
-	var orgType = /\b(?:(?:col|row)?vector|matrix|scalar)\b/.source;
-	var type = /\bvoid\b|<org>|\b(?:complex|numeric|pointer(?:\s*\([^()]*\))?|real|string|(?:class|struct)\s+\w+|transmorphic)(?:\s*<org>)?/.source
+	let orgType = /\b(?:(?:col|row)?vector|matrix|scalar)\b/.source;
+	let type = /\bvoid\b|<org>|\b(?:complex|numeric|pointer(?:\s*\([^()]*\))?|real|string|(?:class|struct)\s+\w+|transmorphic)(?:\s*<org>)?/.source
 		.replace(/<org>/g, orgType);
 
 	Prism.languages.mata = {

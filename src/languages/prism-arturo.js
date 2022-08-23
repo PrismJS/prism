@@ -3,7 +3,7 @@
 	 * @param {string} lang
 	 * @param {string} pattern
 	 */
-	var createLanguageString = function (lang, pattern) {
+	let createLanguageString = function (lang, pattern) {
 		return {
 			pattern: RegExp(/\{!/.source + '(?:' + (pattern || lang) + ')' + /$[\s\S]*\}/.source, 'm'),
 			greedy: true,

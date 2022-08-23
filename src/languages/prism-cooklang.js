@@ -2,15 +2,15 @@
 
 	// see https://github.com/cooklang/spec/blob/main/EBNF.md
 
-	var single_token_suffix = /(?:(?!\s)[\d$+<=a-zA-Z\x80-\uFFFF])+/.source;
-	var multi_token_infix = /[^{}@#]+/.source;
-	var multi_token_suffix = /\{[^}#@]*\}/.source;
+	let single_token_suffix = /(?:(?!\s)[\d$+<=a-zA-Z\x80-\uFFFF])+/.source;
+	let multi_token_infix = /[^{}@#]+/.source;
+	let multi_token_suffix = /\{[^}#@]*\}/.source;
 
-	var multi_token = multi_token_infix + multi_token_suffix;
+	let multi_token = multi_token_infix + multi_token_suffix;
 
-	var timer_units = /(?:h|hours|hrs|m|min|minutes)/.source;
+	let timer_units = /(?:h|hours|hrs|m|min|minutes)/.source;
 
-	var amount_group_impl = {
+	let amount_group_impl = {
 		pattern: /\{[^{}]*\}/,
 		inside: {
 			'amount': {

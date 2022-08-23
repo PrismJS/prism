@@ -4,14 +4,14 @@
 		return;
 	}
 
-	var previewers = {
+	let previewers = {
 		// gradient must be defined before color and angle
 		'gradient': {
 			create: (function () {
 
 				// Stores already processed gradients so that we don't
 				// make the conversion every time the previewer is shown
-				var cache = {};
+				let cache = {};
 
 				/**
 				 * Returns a W3C-valid linear gradient
@@ -20,9 +20,9 @@
 				 * @param {string} func Gradient function name ("linear-gradient")
 				 * @param {string[]} values Array of the gradient function parameters (["0deg", "red 0%", "blue 100%"])
 				 */
-				var convertToW3CLinearGradient = function (prefix, func, values) {
+				let convertToW3CLinearGradient = function (prefix, func, values) {
 					// Default value for angle
-					var angle = '180deg';
+					let angle = '180deg';
 
 					if (/^(?:-?(?:\d+(?:\.\d+)?|\.\d+)(?:deg|rad)|to\b|top|right|bottom|left)/.test(values[0])) {
 						angle = values.shift();
@@ -70,14 +70,14 @@
 				 * @param {string} func Gradient function name ("linear-gradient")
 				 * @param {string[]} values Array of the gradient function parameters (["0deg", "red 0%", "blue 100%"])
 				 */
-				var convertToW3CRadialGradient = function (prefix, func, values) {
+				let convertToW3CRadialGradient = function (prefix, func, values) {
 					if (values[0].indexOf('at') < 0) {
 						// Looks like old syntax
 
 						// Default values
-						var position = 'center';
-						var shape = 'ellipse';
-						var size = 'farthest-corner';
+						let position = 'center';
+						let shape = 'ellipse';
+						let size = 'farthest-corner';
 
 						if (/\b(?:bottom|center|left|right|top)\b|^\d+/.test(values[0])) {
 							// Found a position
@@ -86,7 +86,7 @@
 						}
 						if (/\b(?:circle|closest|contain|cover|ellipse|farthest)\b/.test(values[0])) {
 							// Found a shape and/or size
-							var shapeSizeParts = values.shift().split(/\s+/);
+							let shapeSizeParts = values.shift().split(/\s+/);
 							if (shapeSizeParts[0] && (shapeSizeParts[0] === 'circle' || shapeSizeParts[0] === 'ellipse')) {
 								shape = shapeSizeParts.shift();
 							}
@@ -113,17 +113,17 @@
 				 *
 				 * @param {string} gradient The CSS gradient
 				 */
-				var convertToW3CGradient = function (gradient) {
+				let convertToW3CGradient = function (gradient) {
 					if (cache[gradient]) {
 						return cache[gradient];
 					}
-					var parts = gradient.match(/^(\b|\B-[a-z]{1,10}-)((?:repeating-)?(?:linear|radial)-gradient)/);
+					let parts = gradient.match(/^(\b|\B-[a-z]{1,10}-)((?:repeating-)?(?:linear|radial)-gradient)/);
 					// "", "-moz-", etc.
-					var prefix = parts && parts[1];
+					let prefix = parts && parts[1];
 					// "linear-gradient", "radial-gradient", etc.
-					var func = parts && parts[2];
+					let func = parts && parts[2];
 
-					var values = gradient.replace(/^(?:\b|\B-[a-z]{1,10}-)(?:repeating-)?(?:linear|radial)-gradient\(|\)$/g, '').split(/\s*,\s*/);
+					let values = gradient.replace(/^(?:\b|\B-[a-z]{1,10}-)(?:repeating-)?(?:linear|radial)-gradient\(|\)$/g, '').split(/\s*,\s*/);
 
 					if (func.indexOf('linear') >= 0) {
 						return cache[gradient] = convertToW3CLinearGradient(prefix, func, values);
@@ -189,9 +189,9 @@
 		'angle': {
 			create: function () {
 				new Prism.plugins.Previewer('angle', function (value) {
-					var num = parseFloat(value);
-					var unit = value.match(/[a-z]+$/i);
-					var max; var percentage;
+					let num = parseFloat(value);
+					let unit = value.match(/[a-z]+$/i);
+					let max; let percentage;
 					if (!num || !unit) {
 						return false;
 					}
@@ -328,14 +328,14 @@
 						'ease-in-out': '.42,0,.58,1'
 					}[value] || value;
 
-					var p = value.match(/-?(?:\d+(?:\.\d+)?|\.\d+)/g);
+					let p = value.match(/-?(?:\d+(?:\.\d+)?|\.\d+)/g);
 
 					if (p.length === 4) {
 						p = p.map(function (p, i) { return (i % 2 ? 1 - p : p) * 100; });
 
 						this.querySelector('path').setAttribute('d', 'M0,100 C' + p[0] + ',' + p[1] + ', ' + p[2] + ',' + p[3] + ', 100,0');
 
-						var lines = this.querySelectorAll('line');
+						let lines = this.querySelectorAll('line');
 						lines[0].setAttribute('x2', p[0]);
 						lines[0].setAttribute('y2', p[1]);
 						lines[1].setAttribute('x2', p[2]);
@@ -404,8 +404,8 @@
 		'time': {
 			create: function () {
 				new Prism.plugins.Previewer('time', function (value) {
-					var num = parseFloat(value);
-					var unit = value.match(/[a-z]+$/i);
+					let num = parseFloat(value);
+					let unit = value.match(/[a-z]+$/i);
 					if (!num || !unit) {
 						return false;
 					}
@@ -468,11 +468,11 @@
 	 * @param {HTMLElement} element
 	 * @returns {{top: number, right: number, bottom: number, left: number, width: number, height: number}}
 	 */
-	var getOffset = function (element) {
-		var elementBounds = element.getBoundingClientRect();
-		var left = elementBounds.left;
-		var top = elementBounds.top;
-		var documentBounds = document.documentElement.getBoundingClientRect();
+	let getOffset = function (element) {
+		let elementBounds = element.getBoundingClientRect();
+		let left = elementBounds.left;
+		let top = elementBounds.top;
+		let documentBounds = document.documentElement.getBoundingClientRect();
 		left -= documentBounds.left;
 		top -= documentBounds.top;
 
@@ -486,9 +486,9 @@
 		};
 	};
 
-	var TOKEN_CLASS = 'token';
-	var ACTIVE_CLASS = 'active';
-	var FLIPPED_CLASS = 'flipped';
+	let TOKEN_CLASS = 'token';
+	let ACTIVE_CLASS = 'active';
+	let FLIPPED_CLASS = 'flipped';
 
 	/**
 	 * Previewer constructor
@@ -507,7 +507,7 @@
 		this._mouseout = this.mouseout.bind(this);
 		this.initializer = initializer;
 
-		var self = this;
+		let self = this;
 
 		if (!supportedLanguages) {
 			supportedLanguages = ['*'];
@@ -551,7 +551,7 @@
 	Previewer.prototype.isDisabled = function (token) {
 		do {
 			if (token.hasAttribute && token.hasAttribute('data-previewers')) {
-				var previewers = token.getAttribute('data-previewers');
+				let previewers = token.getAttribute('data-previewers');
 				return (previewers || '').split(/\s+/).indexOf(this._type) === -1;
 			}
 		} while ((token = token.parentNode));
@@ -602,7 +602,7 @@
 		if (this.updater.call(this._elt, this._token.textContent)) {
 			this._token.addEventListener('mouseout', this._mouseout, false);
 
-			var offset = getOffset(this._token);
+			let offset = getOffset(this._token);
 			this._elt.classList.add(ACTIVE_CLASS);
 
 			if (offset.top - this._elt.offsetHeight > 0) {
@@ -649,7 +649,7 @@
 	 * @param {string} lang The language (env.language)
 	 */
 	Previewer.initEvents = function (elt, lang) {
-		var previewers = [];
+		let previewers = [];
 		if (Previewer.byLanguages[lang]) {
 			previewers = previewers.concat(Previewer.byLanguages[lang]);
 		}
@@ -657,7 +657,7 @@
 			previewers = previewers.concat(Previewer.byLanguages['*']);
 		}
 		elt.addEventListener('mouseover', function (e) {
-			var target = e.target;
+			let target = e.target;
 			previewers.forEach(function (previewer) {
 				previewer.check(target);
 			});
@@ -669,12 +669,12 @@
 		for (var previewer in previewers) {
 			var languages = previewers[previewer].languages;
 			if (env.language && languages[env.language] && !languages[env.language].initialized) {
-				var lang = languages[env.language];
+				let lang = languages[env.language];
 				if (!Array.isArray(lang)) {
 					lang = [lang];
 				}
 				lang.forEach(function (lang) {
-					var before; var inside; var root; var skip;
+					let before; let inside; let root; let skip;
 					if (lang === true) {
 						before = 'important';
 						inside = env.language;
@@ -705,7 +705,7 @@
 		}
 	});
 
-	for (var previewer in previewers) {
+	for (let previewer in previewers) {
 		previewers[previewer].create();
 	}
 

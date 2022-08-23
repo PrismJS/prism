@@ -9,13 +9,13 @@
 		Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
 	}
 
-	var LOADING_MESSAGE = 'Loading…';
-	var FAILURE_MESSAGE = function (status, message) {
+	let LOADING_MESSAGE = 'Loading…';
+	let FAILURE_MESSAGE = function (status, message) {
 		return '✖ Error ' + status + ' while fetching file: ' + message;
 	};
-	var FAILURE_EMPTY_MESSAGE = '✖ Error: File does not exist or is empty';
+	let FAILURE_EMPTY_MESSAGE = '✖ Error: File does not exist or is empty';
 
-	var EXTENSIONS = {
+	let EXTENSIONS = {
 		'js': 'javascript',
 		'py': 'python',
 		'rb': 'ruby',
@@ -27,12 +27,12 @@
 		'tex': 'latex'
 	};
 
-	var STATUS_ATTR = 'data-src-status';
-	var STATUS_LOADING = 'loading';
-	var STATUS_LOADED = 'loaded';
-	var STATUS_FAILED = 'failed';
+	let STATUS_ATTR = 'data-src-status';
+	let STATUS_LOADING = 'loading';
+	let STATUS_LOADED = 'loaded';
+	let STATUS_FAILED = 'failed';
 
-	var SELECTOR = 'pre[data-src]:not([' + STATUS_ATTR + '="' + STATUS_LOADED + '"])'
+	let SELECTOR = 'pre[data-src]:not([' + STATUS_ATTR + '="' + STATUS_LOADED + '"])'
 		+ ':not([' + STATUS_ATTR + '="' + STATUS_LOADING + '"])';
 
 	/**
@@ -43,7 +43,7 @@
 	 * @param {(reason: string) => void} error
 	 */
 	function loadFile(src, success, error) {
-		var xhr = new XMLHttpRequest();
+		let xhr = new XMLHttpRequest();
 		xhr.open('GET', src, true);
 		xhr.onreadystatechange = function () {
 			if (xhr.readyState == 4) {
@@ -70,11 +70,11 @@
 	 * @returns {[number, number | undefined] | undefined}
 	 */
 	function parseRange(range) {
-		var m = /^\s*(\d+)\s*(?:(,)\s*(?:(\d+)\s*)?)?$/.exec(range || '');
+		let m = /^\s*(\d+)\s*(?:(,)\s*(?:(\d+)\s*)?)?$/.exec(range || '');
 		if (m) {
-			var start = Number(m[1]);
-			var comma = m[2];
-			var end = m[3];
+			let start = Number(m[1]);
+			let comma = m[2];
+			let end = m[3];
 
 			if (!comma) {
 				return [start, start];
@@ -92,23 +92,23 @@
 	});
 
 	Prism.hooks.add('before-sanity-check', function (env) {
-		var pre = /** @type {HTMLPreElement} */ (env.element);
+		let pre = /** @type {HTMLPreElement} */ (env.element);
 		if (pre.matches(SELECTOR)) {
 			env.code = ''; // fast-path the whole thing and go to complete
 
 			pre.setAttribute(STATUS_ATTR, STATUS_LOADING); // mark as loading
 
 			// add code element with loading message
-			var code = pre.appendChild(document.createElement('CODE'));
+			let code = pre.appendChild(document.createElement('CODE'));
 			code.textContent = LOADING_MESSAGE;
 
-			var src = pre.getAttribute('data-src');
+			let src = pre.getAttribute('data-src');
 
-			var language = env.language;
+			let language = env.language;
 			if (language === 'none') {
 				// the language might be 'none' because there is no language set;
 				// in this case, we want to use the extension as the language
-				var extension = (/\.(\w+)$/.exec(src) || [, 'none'])[1];
+				let extension = (/\.(\w+)$/.exec(src) || [, 'none'])[1];
 				language = EXTENSIONS[extension] || extension;
 			}
 
@@ -117,7 +117,7 @@
 			Prism.util.setLanguage(pre, language);
 
 			// preload the language
-			var autoloader = Prism.plugins.autoloader;
+			let autoloader = Prism.plugins.autoloader;
 			if (autoloader) {
 				autoloader.loadLanguages(language);
 			}
@@ -130,13 +130,13 @@
 					pre.setAttribute(STATUS_ATTR, STATUS_LOADED);
 
 					// handle data-range
-					var range = parseRange(pre.getAttribute('data-range'));
+					let range = parseRange(pre.getAttribute('data-range'));
 					if (range) {
-						var lines = text.split(/\r\n?|\n/g);
+						let lines = text.split(/\r\n?|\n/g);
 
 						// the range is one-based and inclusive on both ends
-						var start = range[0];
-						var end = range[1] == null ? lines.length : range[1];
+						let start = range[0];
+						let end = range[1] == null ? lines.length : range[1];
 
 						if (start < 0) { start += lines.length; }
 						start = Math.max(0, Math.min(start - 1, lines.length));
@@ -174,7 +174,7 @@
 		 * @param {ParentNode} [container=document]
 		 */
 		highlight: function highlight(container) {
-			var elements = (container || document).querySelectorAll(SELECTOR);
+			let elements = (container || document).querySelectorAll(SELECTOR);
 
 			for (var i = 0, element; (element = elements[i++]);) {
 				Prism.highlightElement(element);
@@ -182,7 +182,7 @@
 		}
 	};
 
-	var logged = false;
+	let logged = false;
 	/** @deprecated Use `Prism.plugins.fileHighlight.highlight` instead. */
 	Prism.fileHighlight = function () {
 		if (!logged) {

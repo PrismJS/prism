@@ -1,6 +1,6 @@
 (function (Prism) {
 
-	var string = /(?:"(?:\\(?:\r\n|[\s\S])|[^"\\\r\n])*"|'(?:\\(?:\r\n|[\s\S])|[^'\\\r\n])*')/;
+	let string = /(?:"(?:\\(?:\r\n|[\s\S])|[^"\\\r\n])*"|'(?:\\(?:\r\n|[\s\S])|[^'\\\r\n])*')/;
 
 	Prism.languages.css = {
 		'comment': /\/\*[\s\S]*?\*\//,
@@ -55,7 +55,7 @@
 
 	Prism.languages.css['atrule'].inside.rest = Prism.languages.css;
 
-	var markup = Prism.languages.markup;
+	let markup = Prism.languages.markup;
 	if (markup) {
 		markup.tag.addInlined('style', 'css');
 		markup.tag.addAttribute('style', 'css');

@@ -1,6 +1,6 @@
 (function (Prism) {
 
-	var operators = [
+	let operators = [
 		// query and projection
 		'$eq', '$gt', '$gte', '$in', '$lt', '$lte', '$ne', '$nin', '$and', '$not', '$nor', '$or',
 		'$exists', '$type', '$expr', '$jsonSchema', '$mod', '$regex', '$text', '$where', '$geoIntersects',
@@ -41,7 +41,7 @@
 		'$returnKey', '$showDiskLoc', '$natural',
 	];
 
-	var builtinFunctions = [
+	let builtinFunctions = [
 		'ObjectId',
 		'Code',
 		'BinData',
@@ -60,7 +60,7 @@
 		return operator.replace('$', '\\$');
 	});
 
-	var operatorsSource = '(?:' + operators.join('|') + ')\\b';
+	let operatorsSource = '(?:' + operators.join('|') + ')\\b';
 
 	Prism.languages.mongodb = Prism.languages.extend('javascript', {});
 

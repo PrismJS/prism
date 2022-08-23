@@ -1,14 +1,14 @@
 (function (Prism) {
-	var variable = /\$\w+|%[a-z]+%/;
+	let variable = /\$\w+|%[a-z]+%/;
 
-	var arrowAttr = /\[[^[\]]*\]/.source;
-	var arrowDirection = /(?:[drlu]|do|down|le|left|ri|right|up)/.source;
-	var arrowBody = '(?:-+' + arrowDirection + '-+|\\.+' + arrowDirection + '\\.+|-+(?:' + arrowAttr + '-*)?|' + arrowAttr + '-+|\\.+(?:' + arrowAttr + '\\.*)?|' + arrowAttr + '\\.+)';
-	var arrowLeft = /(?:<{1,2}|\/{1,2}|\\{1,2}|<\||[#*^+}xo])/.source;
-	var arrowRight = /(?:>{1,2}|\/{1,2}|\\{1,2}|\|>|[#*^+{xo])/.source;
-	var arrowPrefix = /[[?]?[ox]?/.source;
-	var arrowSuffix = /[ox]?[\]?]?/.source;
-	var arrow =
+	let arrowAttr = /\[[^[\]]*\]/.source;
+	let arrowDirection = /(?:[drlu]|do|down|le|left|ri|right|up)/.source;
+	let arrowBody = '(?:-+' + arrowDirection + '-+|\\.+' + arrowDirection + '\\.+|-+(?:' + arrowAttr + '-*)?|' + arrowAttr + '-+|\\.+(?:' + arrowAttr + '\\.*)?|' + arrowAttr + '\\.+)';
+	let arrowLeft = /(?:<{1,2}|\/{1,2}|\\{1,2}|<\||[#*^+}xo])/.source;
+	let arrowRight = /(?:>{1,2}|\/{1,2}|\\{1,2}|\|>|[#*^+{xo])/.source;
+	let arrowPrefix = /[[?]?[ox]?/.source;
+	let arrowSuffix = /[ox]?[\]?]?/.source;
+	let arrow =
 		arrowPrefix +
 		'(?:' +
 		arrowBody + arrowRight +

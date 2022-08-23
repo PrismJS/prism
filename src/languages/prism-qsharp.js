@@ -33,7 +33,7 @@
 	 * @returns {string}
 	 */
 	function nested(pattern, depthLog2) {
-		for (var i = 0; i < depthLog2; i++) {
+		for (let i = 0; i < depthLog2; i++) {
 			pattern = pattern.replace(/<<self>>/g, function () { return '(?:' + pattern + ')'; });
 		}
 		return pattern.replace(/<<self>>/g, '[^\\s\\S]');
@@ -41,7 +41,7 @@
 
 	// https://docs.microsoft.com/en-us/azure/quantum/user-guide/language/typesystem/
 	// https://github.com/microsoft/qsharp-language/tree/main/Specifications/Language/5_Grammar
-	var keywordKinds = {
+	let keywordKinds = {
 		// keywords which represent a return or variable type
 		type: 'Adj BigInt Bool Ctl Double false Int One Pauli PauliI PauliX PauliY PauliZ Qubit Range Result String true Unit Zero',
 		// all other keywords
@@ -51,19 +51,19 @@
 	function keywordsToPattern(words) {
 		return '\\b(?:' + words.trim().replace(/ /g, '|') + ')\\b';
 	}
-	var keywords = RegExp(keywordsToPattern(keywordKinds.type + ' ' + keywordKinds.other));
+	let keywords = RegExp(keywordsToPattern(keywordKinds.type + ' ' + keywordKinds.other));
 
 	// types
-	var identifier = /\b[A-Za-z_]\w*\b/.source;
-	var qualifiedName = replace(/<<0>>(?:\s*\.\s*<<0>>)*/.source, [identifier]);
+	let identifier = /\b[A-Za-z_]\w*\b/.source;
+	let qualifiedName = replace(/<<0>>(?:\s*\.\s*<<0>>)*/.source, [identifier]);
 
-	var typeInside = {
+	let typeInside = {
 		'keyword': keywords,
 		'punctuation': /[<>()?,.:[\]]/
 	};
 
 	// strings
-	var regularString = /"(?:\\.|[^\\"])*"/.source;
+	let regularString = /"(?:\\.|[^\\"])*"/.source;
 
 	Prism.languages.qsharp = Prism.languages.extend('clike', {
 		'comment': /\/\/.*/,
@@ -103,7 +103,7 @@
 	});
 
 	// single line
-	var interpolationExpr = nested(replace(/\{(?:[^"{}]|<<0>>|<<self>>)*\}/.source, [regularString]), 2);
+	let interpolationExpr = nested(replace(/\{(?:[^"{}]|<<0>>|<<self>>)*\}/.source, [regularString]), 2);
 
 	Prism.languages.insertBefore('qsharp', 'string', {
 		'interpolation-string': {

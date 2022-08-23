@@ -4,9 +4,9 @@
 		return;
 	}
 
-	var callbacks = [];
-	var map = {};
-	var noop = function () {};
+	let callbacks = [];
+	let map = {};
+	let noop = function () {};
 
 	Prism.plugins.toolbar = {};
 
@@ -24,14 +24,14 @@
 	 * @param {string} key
 	 * @param {ButtonOptions|Function} opts
 	 */
-	var registerButton = Prism.plugins.toolbar.registerButton = function (key, opts) {
-		var callback;
+	let registerButton = Prism.plugins.toolbar.registerButton = function (key, opts) {
+		let callback;
 
 		if (typeof opts === 'function') {
 			callback = opts;
 		} else {
 			callback = function (env) {
-				var element;
+				let element;
 
 				if (typeof opts.onClick === 'function') {
 					element = document.createElement('button');
@@ -72,7 +72,7 @@
 	 */
 	function getOrder(element) {
 		while (element) {
-			var order = element.getAttribute('data-toolbar-order');
+			let order = element.getAttribute('data-toolbar-order');
 			if (order != null) {
 				order = order.trim();
 				if (order.length) {
@@ -90,9 +90,9 @@
 	 *
 	 * @param env
 	 */
-	var hook = Prism.plugins.toolbar.hook = function (env) {
+	let hook = Prism.plugins.toolbar.hook = function (env) {
 		// Check if inline or actual code block (credit to line-numbers plugin)
-		var pre = env.element.parentNode;
+		let pre = env.element.parentNode;
 		if (!pre || !/pre/i.test(pre.nodeName)) {
 			return;
 		}
@@ -103,18 +103,18 @@
 		}
 
 		// Create wrapper for <pre> to prevent scrolling toolbar with content
-		var wrapper = document.createElement('div');
+		let wrapper = document.createElement('div');
 		wrapper.classList.add('code-toolbar');
 		pre.parentNode.insertBefore(wrapper, pre);
 		wrapper.appendChild(pre);
 
 		// Setup the toolbar
-		var toolbar = document.createElement('div');
+		let toolbar = document.createElement('div');
 		toolbar.classList.add('toolbar');
 
 		// order callbacks
-		var elementCallbacks = callbacks;
-		var order = getOrder(env.element);
+		let elementCallbacks = callbacks;
+		let order = getOrder(env.element);
 		if (order) {
 			elementCallbacks = order.map(function (key) {
 				return map[key] || noop;
@@ -122,13 +122,13 @@
 		}
 
 		elementCallbacks.forEach(function (callback) {
-			var element = callback(env);
+			let element = callback(env);
 
 			if (!element) {
 				return;
 			}
 
-			var item = document.createElement('div');
+			let item = document.createElement('div');
 			item.classList.add('toolbar-item');
 
 			item.appendChild(element);
@@ -140,7 +140,7 @@
 	};
 
 	registerButton('label', function (env) {
-		var pre = env.element.parentNode;
+		let pre = env.element.parentNode;
 		if (!pre || !/pre/i.test(pre.nodeName)) {
 			return;
 		}
@@ -149,8 +149,8 @@
 			return;
 		}
 
-		var element; var template;
-		var text = pre.getAttribute('data-label');
+		let element; let template;
+		let text = pre.getAttribute('data-label');
 		try {
 			// Any normal text will blow up this selector.
 			template = document.querySelector('template#' + text);

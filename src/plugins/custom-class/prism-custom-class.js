@@ -23,11 +23,11 @@
 	// options
 
 	/** @type {ClassAdder | undefined} */
-	var adder;
+	let adder;
 	/** @type {ClassMapper | undefined} */
-	var mapper;
+	let mapper;
 	/** @type {string} */
-	var prefixString = '';
+	let prefixString = '';
 
 
 	/**
@@ -85,7 +85,7 @@
 
 	Prism.hooks.add('wrap', function (env) {
 		if (adder) {
-			var result = adder({
+			let result = adder({
 				content: env.content,
 				type: env.type,
 				language: env.language

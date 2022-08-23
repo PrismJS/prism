@@ -1,6 +1,6 @@
 (function (Prism) {
 
-	var attributes = {
+	let attributes = {
 		pattern: /(^[ \t]*)\[(?!\[)(?:(["'$`])(?:(?!\2)[^\\]|\\.)*\2|\[(?:[^\[\]\\]|\\.)*\]|[^\[\]\\"'$`]|\\.)*\]/m,
 		lookbehind: true,
 		inside: {
@@ -26,7 +26,7 @@
 		}
 	};
 
-	var asciidoc = Prism.languages.asciidoc = {
+	let asciidoc = Prism.languages.asciidoc = {
 		'comment-block': {
 			pattern: /^(\/{4,})$[\s\S]*?^\1/m,
 			alias: 'comment'
@@ -203,8 +203,8 @@
 	function copyFromAsciiDoc(keys) {
 		keys = keys.split(' ');
 
-		var o = {};
-		for (var i = 0, l = keys.length; i < l; i++) {
+		let o = {};
+		for (let i = 0, l = keys.length; i < l; i++) {
 			o[keys[i]] = asciidoc[keys[i]];
 		}
 		return o;

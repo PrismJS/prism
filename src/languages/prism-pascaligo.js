@@ -2,10 +2,10 @@
 
 	// Pascaligo is a layer 2 smart contract language for the tezos blockchain
 
-	var braces = /\((?:[^()]|\((?:[^()]|\([^()]*\))*\))*\)/.source;
-	var type = /(?:\b\w+(?:<braces>)?|<braces>)/.source.replace(/<braces>/g, function () { return braces; });
+	let braces = /\((?:[^()]|\((?:[^()]|\([^()]*\))*\))*\)/.source;
+	let type = /(?:\b\w+(?:<braces>)?|<braces>)/.source.replace(/<braces>/g, function () { return braces; });
 
-	var pascaligo = Prism.languages.pascaligo = {
+	let pascaligo = Prism.languages.pascaligo = {
 		'comment': /\(\*[\s\S]+?\*\)|\/\/.*/,
 		'string': {
 			pattern: /(["'`])(?:\\[\s\S]|(?!\1)[^\\])*\1|\^[a-z]/i,
@@ -50,7 +50,7 @@
 		'punctuation': /\(\.|\.\)|[()\[\]:;,.{}]/
 	};
 
-	var classNameInside = ['comment', 'keyword', 'builtin', 'operator', 'punctuation'].reduce(function (accum, key) {
+	let classNameInside = ['comment', 'keyword', 'builtin', 'operator', 'punctuation'].reduce(function (accum, key) {
 		accum[key] = pascaligo[key];
 		return accum;
 	}, {});

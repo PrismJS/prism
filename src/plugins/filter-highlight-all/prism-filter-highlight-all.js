@@ -9,15 +9,15 @@
 		Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
 	}
 
-	var script = Prism.util.currentScript();
+	let script = Prism.util.currentScript();
 
 
 	/**
 	 * @type {Array<(element: HTMLElement) => boolean>}
 	 */
-	var filters = [];
+	let filters = [];
 
-	var config = Prism.plugins.filterHighlightAll = {
+	let config = Prism.plugins.filterHighlightAll = {
 
 		/**
 		 * Adds a new filter for the elements of `highlightAll` and `highlightAllUnder` such that only elements for
@@ -93,7 +93,7 @@
 	});
 
 	if (script) {
-		var attr;
+		let attr;
 		attr = script.getAttribute('data-filter-selector');
 		if (attr) {
 			config.addSelector(attr);
@@ -112,7 +112,7 @@
 	 * @returns {boolean}
 	 */
 	function combinedFilter(element) {
-		for (var i = 0, l = filters.length; i < l; i++) {
+		for (let i = 0, l = filters.length; i < l; i++) {
 			if (!filters[i](element)) {
 				return false;
 			}

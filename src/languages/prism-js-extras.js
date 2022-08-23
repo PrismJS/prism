@@ -111,11 +111,11 @@
 
 
 	// add 'maybe-class-name' to tokens which might be a class name
-	var maybeClassNameTokens = ['function', 'function-variable', 'method', 'method-variable', 'property-access'];
+	let maybeClassNameTokens = ['function', 'function-variable', 'method', 'method-variable', 'property-access'];
 
-	for (var i = 0; i < maybeClassNameTokens.length; i++) {
-		var token = maybeClassNameTokens[i];
-		var value = Prism.languages.javascript[token];
+	for (let i = 0; i < maybeClassNameTokens.length; i++) {
+		let token = maybeClassNameTokens[i];
+		let value = Prism.languages.javascript[token];
 
 		// convert regex to object
 		if (Prism.util.type(value) === 'RegExp') {
@@ -126,7 +126,7 @@
 
 		// keep in mind that we don't support arrays
 
-		var inside = value.inside || {};
+		let inside = value.inside || {};
 		value.inside = inside;
 
 		inside['maybe-class-name'] = /^[A-Z][\s\S]*/;

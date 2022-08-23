@@ -44,7 +44,7 @@
 		};
 	}
 
-	var language;
+	let language;
 
 	Prism.hooks.add('wrap', function (env) {
 		if ((env.type == 'tag-id'
@@ -59,8 +59,8 @@
 				|| env.language == 'scss'
 				|| env.language == 'markup'
 			) {
-				var href = 'https://webplatform.github.io/docs/';
-				var content = env.content;
+				let href = 'https://webplatform.github.io/docs/';
+				let content = env.content;
 
 				if (env.language == 'css' || env.language == 'scss') {
 					href += 'css/';
@@ -105,7 +105,7 @@
 	});
 
 	function getLanguage(tag) {
-		var tagL = tag.toLowerCase();
+		let tagL = tag.toLowerCase();
 
 		if (Tags.HTML[tagL]) {
 			return 'html';
@@ -117,7 +117,7 @@
 
 		// Not in dictionary, perform check
 		if (Tags.HTML[tagL] !== 0 && typeof document !== 'undefined') {
-			var htmlInterface = (document.createElement(tag).toString().match(/\[object HTML(.+)Element\]/) || [])[1];
+			let htmlInterface = (document.createElement(tag).toString().match(/\[object HTML(.+)Element\]/) || [])[1];
 
 			if (htmlInterface && htmlInterface != 'Unknown') {
 				Tags.HTML[tagL] = 1;
@@ -128,7 +128,7 @@
 		Tags.HTML[tagL] = 0;
 
 		if (Tags.SVG[tag] !== 0 && typeof document !== 'undefined') {
-			var svgInterface = (document.createElementNS('http://www.w3.org/2000/svg', tag).toString().match(/\[object SVG(.+)Element\]/) || [])[1];
+			let svgInterface = (document.createElementNS('http://www.w3.org/2000/svg', tag).toString().match(/\[object SVG(.+)Element\]/) || [])[1];
 
 			if (svgInterface && svgInterface != 'Unknown') {
 				Tags.SVG[tag] = 1;

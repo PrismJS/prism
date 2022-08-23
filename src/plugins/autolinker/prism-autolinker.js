@@ -4,12 +4,12 @@
 		return;
 	}
 
-	var url = /\b([a-z]{3,7}:\/\/|tel:)[\w\-+%~/.:=&!$'()*,;@]+(?:\?[\w\-+%~/.:=?&!$'()*,;@]*)?(?:#[\w\-+%~/.:#=?&!$'()*,;@]*)?/;
-	var email = /\b\S+@[\w.]+[a-z]{2}/;
-	var linkMd = /\[([^\]]+)\]\(([^)]+)\)/;
+	let url = /\b([a-z]{3,7}:\/\/|tel:)[\w\-+%~/.:=&!$'()*,;@]+(?:\?[\w\-+%~/.:=?&!$'()*,;@]*)?(?:#[\w\-+%~/.:#=?&!$'()*,;@]*)?/;
+	let email = /\b\S+@[\w.]+[a-z]{2}/;
+	let linkMd = /\[([^\]]+)\]\(([^)]+)\)/;
 
 	// Tokens that may contain URLs and emails
-	var candidates = ['comment', 'url', 'attr-value', 'string'];
+	let candidates = ['comment', 'url', 'attr-value', 'string'];
 
 	Prism.plugins.autolinker = {
 		processGrammar: function (grammar) {
@@ -52,13 +52,13 @@
 		if (/-link$/.test(env.type)) {
 			env.tag = 'a';
 
-			var href = env.content;
+			let href = env.content;
 
 			if (env.type == 'email-link' && href.indexOf('mailto:') != 0) {
 				href = 'mailto:' + href;
 			} else if (env.type == 'md-link') {
 				// Markdown
-				var match = env.content.match(linkMd);
+				let match = env.content.match(linkMd);
 
 				href = match[2];
 				env.content = match[1];

@@ -15,7 +15,7 @@
 			return;
 		}
 
-		var dropTokens = Prism.util.isActive(env.element, 'drop-tokens', false);
+		let dropTokens = Prism.util.isActive(env.element, 'drop-tokens', false);
 		/**
 		 * Returns whether the given element should be kept.
 		 *
@@ -29,8 +29,8 @@
 			return true;
 		}
 
-		var pos = 0;
-		var data = [];
+		let pos = 0;
+		let data = [];
 		function processElement(element) {
 			if (!shouldKeep(element)) {
 				// don't keep this element and just process its children
@@ -38,7 +38,7 @@
 				return;
 			}
 
-			var o = {
+			let o = {
 				// Store original element so we can restore it after highlighting
 				element: element,
 				posOpen: pos
@@ -50,8 +50,8 @@
 			o.posClose = pos;
 		}
 		function processChildren(element) {
-			for (var i = 0, l = element.childNodes.length; i < l; i++) {
-				var child = element.childNodes[i];
+			for (let i = 0, l = element.childNodes.length; i < l; i++) {
+				let child = element.childNodes[i];
 				if (child.nodeType === 1) { // element
 					processElement(child);
 				} else if (child.nodeType === 3) { // text
@@ -71,9 +71,9 @@
 		if (env.keepMarkup && env.keepMarkup.length) {
 
 			var walk = function (elt, nodeState) {
-				for (var i = 0, l = elt.childNodes.length; i < l; i++) {
+				for (let i = 0, l = elt.childNodes.length; i < l; i++) {
 
-					var child = elt.childNodes[i];
+					let child = elt.childNodes[i];
 
 					if (child.nodeType === 1) { // element
 						if (!walk(child, nodeState)) {
@@ -97,7 +97,7 @@
 
 					if (nodeState.nodeStart && nodeState.nodeEnd) {
 						// Select the range and wrap it with the element
-						var range = document.createRange();
+						let range = document.createRange();
 						range.setStart(nodeState.nodeStart, nodeState.nodeStartPos);
 						range.setEnd(nodeState.nodeEnd, nodeState.nodeEndPos);
 						nodeState.node.element.innerHTML = '';

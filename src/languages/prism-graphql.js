@@ -71,11 +71,11 @@ Prism.hooks.add('after-tokenize', function afterTokenizeGraphql(env) {
 	 * @typedef {InstanceType<import("./prism-core")["Token"]>} Token
 	 * @type {Token[]}
 	 */
-	var validTokens = env.tokens.filter(function (token) {
+	let validTokens = env.tokens.filter(function (token) {
 		return typeof token !== 'string' && token.type !== 'comment' && token.type !== 'scalar';
 	});
 
-	var currentIndex = 0;
+	let currentIndex = 0;
 
 	/**
 	 * Returns whether the token relative to the current index has the given type.
@@ -96,8 +96,8 @@ Prism.hooks.add('after-tokenize', function afterTokenizeGraphql(env) {
 	 */
 	function isTokenType(types, offset) {
 		offset = offset || 0;
-		for (var i = 0; i < types.length; i++) {
-			var token = getToken(i + offset);
+		for (let i = 0; i < types.length; i++) {
+			let token = getToken(i + offset);
 			if (!token || token.type !== types[i]) {
 				return false;
 			}
@@ -117,11 +117,11 @@ Prism.hooks.add('after-tokenize', function afterTokenizeGraphql(env) {
 	 * @returns {number}
 	 */
 	function findClosingBracket(open, close) {
-		var stackHeight = 1;
+		let stackHeight = 1;
 
-		for (var i = currentIndex; i < validTokens.length; i++) {
-			var token = validTokens[i];
-			var content = token.content;
+		for (let i = currentIndex; i < validTokens.length; i++) {
+			let token = validTokens[i];
+			let content = token.content;
 
 			if (token.type === 'punctuation' && typeof content === 'string') {
 				if (open.test(content)) {
@@ -147,7 +147,7 @@ Prism.hooks.add('after-tokenize', function afterTokenizeGraphql(env) {
 	 * @returns {void}
 	 */
 	function addAlias(token, alias) {
-		var aliases = token.alias;
+		let aliases = token.alias;
 		if (!aliases) {
 			token.alias = aliases = [];
 		} else if (!Array.isArray(aliases)) {
@@ -157,26 +157,26 @@ Prism.hooks.add('after-tokenize', function afterTokenizeGraphql(env) {
 	}
 
 	for (; currentIndex < validTokens.length;) {
-		var startToken = validTokens[currentIndex++];
+		let startToken = validTokens[currentIndex++];
 
 		// add special aliases for mutation tokens
 		if (startToken.type === 'keyword' && startToken.content === 'mutation') {
 			// any array of the names of all input variables (if any)
-			var inputVariables = [];
+			let inputVariables = [];
 
 			if (isTokenType(['definition-mutation', 'punctuation']) && getToken(1).content === '(') {
 				// definition
 
 				currentIndex += 2; // skip 'definition-mutation' and 'punctuation'
 
-				var definitionEnd = findClosingBracket(/^\($/, /^\)$/);
+				let definitionEnd = findClosingBracket(/^\($/, /^\)$/);
 				if (definitionEnd === -1) {
 					continue;
 				}
 
 				// find all input variables
 				for (; currentIndex < definitionEnd; currentIndex++) {
-					var t = getToken(0);
+					let t = getToken(0);
 					if (t.type === 'variable') {
 						addAlias(t, 'variable-input');
 						inputVariables.push(t.content);
@@ -192,14 +192,14 @@ Prism.hooks.add('after-tokenize', function afterTokenizeGraphql(env) {
 				addAlias(getToken(0), 'property-mutation');
 
 				if (inputVariables.length > 0) {
-					var mutationEnd = findClosingBracket(/^\{$/, /^\}$/);
+					let mutationEnd = findClosingBracket(/^\{$/, /^\}$/);
 					if (mutationEnd === -1) {
 						continue;
 					}
 
 					// give references to input variables a special alias
-					for (var i = currentIndex; i < mutationEnd; i++) {
-						var varToken = validTokens[i];
+					for (let i = currentIndex; i < mutationEnd; i++) {
+						let varToken = validTokens[i];
 						if (varToken.type === 'variable' && inputVariables.indexOf(varToken.content) >= 0) {
 							addAlias(varToken, 'variable-input');
 						}

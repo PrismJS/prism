@@ -9,20 +9,20 @@
 	 *
 	 * @type {string}
 	 */
-	var PLUGIN_NAME = 'line-numbers';
+	let PLUGIN_NAME = 'line-numbers';
 
 	/**
 	 * Regular expression used for determining line breaks
 	 *
 	 * @type {RegExp}
 	 */
-	var NEW_LINE_EXP = /\n(?!$)/g;
+	let NEW_LINE_EXP = /\n(?!$)/g;
 
 
 	/**
 	 * Global exports
 	 */
-	var config = Prism.plugins.lineNumbers = {
+	let config = Prism.plugins.lineNumbers = {
 		/**
 		 * Get node for provided line number
 		 *
@@ -35,12 +35,12 @@
 				return;
 			}
 
-			var lineNumberRows = element.querySelector('.line-numbers-rows');
+			let lineNumberRows = element.querySelector('.line-numbers-rows');
 			if (!lineNumberRows) {
 				return;
 			}
-			var lineNumberStart = parseInt(element.getAttribute('data-start'), 10) || 1;
-			var lineNumberEnd = lineNumberStart + (lineNumberRows.children.length - 1);
+			let lineNumberStart = parseInt(element.getAttribute('data-start'), 10) || 1;
+			let lineNumberEnd = lineNumberStart + (lineNumberRows.children.length - 1);
 
 			if (number < lineNumberStart) {
 				number = lineNumberStart;
@@ -49,7 +49,7 @@
 				number = lineNumberEnd;
 			}
 
-			var lineIndex = number - lineNumberStart;
+			let lineIndex = number - lineNumberStart;
 
 			return lineNumberRows.children[lineIndex];
 		},
@@ -86,8 +86,8 @@
 	 */
 	function resizeElements(elements) {
 		elements = elements.filter(function (e) {
-			var codeStyles = getStyles(e);
-			var whiteSpace = codeStyles['white-space'];
+			let codeStyles = getStyles(e);
+			let whiteSpace = codeStyles['white-space'];
 			return whiteSpace === 'pre-wrap' || whiteSpace === 'pre-line';
 		});
 
@@ -95,16 +95,16 @@
 			return;
 		}
 
-		var infos = elements.map(function (element) {
-			var codeElement = element.querySelector('code');
-			var lineNumbersWrapper = element.querySelector('.line-numbers-rows');
+		let infos = elements.map(function (element) {
+			let codeElement = element.querySelector('code');
+			let lineNumbersWrapper = element.querySelector('.line-numbers-rows');
 			if (!codeElement || !lineNumbersWrapper) {
 				return undefined;
 			}
 
 			/** @type {HTMLElement} */
-			var lineNumberSizer = element.querySelector('.line-numbers-sizer');
-			var codeLines = codeElement.textContent.split(NEW_LINE_EXP);
+			let lineNumberSizer = element.querySelector('.line-numbers-sizer');
+			let codeLines = codeElement.textContent.split(NEW_LINE_EXP);
 
 			if (!lineNumberSizer) {
 				lineNumberSizer = document.createElement('span');
@@ -116,7 +116,7 @@
 			lineNumberSizer.innerHTML = '0';
 			lineNumberSizer.style.display = 'block';
 
-			var oneLinerHeight = lineNumberSizer.getBoundingClientRect().height;
+			let oneLinerHeight = lineNumberSizer.getBoundingClientRect().height;
 			lineNumberSizer.innerHTML = '';
 
 			return {
@@ -129,15 +129,15 @@
 		}).filter(Boolean);
 
 		infos.forEach(function (info) {
-			var lineNumberSizer = info.sizer;
-			var lines = info.lines;
-			var lineHeights = info.lineHeights;
-			var oneLinerHeight = info.oneLinerHeight;
+			let lineNumberSizer = info.sizer;
+			let lines = info.lines;
+			let lineHeights = info.lineHeights;
+			let oneLinerHeight = info.oneLinerHeight;
 
 			lineHeights[lines.length - 1] = undefined;
 			lines.forEach(function (line, index) {
 				if (line && line.length > 1) {
-					var e = lineNumberSizer.appendChild(document.createElement('span'));
+					let e = lineNumberSizer.appendChild(document.createElement('span'));
 					e.style.display = 'block';
 					e.textContent = line;
 				} else {
@@ -147,11 +147,11 @@
 		});
 
 		infos.forEach(function (info) {
-			var lineNumberSizer = info.sizer;
-			var lineHeights = info.lineHeights;
+			let lineNumberSizer = info.sizer;
+			let lineHeights = info.lineHeights;
 
-			var childIndex = 0;
-			for (var i = 0; i < lineHeights.length; i++) {
+			let childIndex = 0;
+			for (let i = 0; i < lineHeights.length; i++) {
 				if (lineHeights[i] === undefined) {
 					lineHeights[i] = lineNumberSizer.children[childIndex++].getBoundingClientRect().height;
 				}
@@ -159,8 +159,8 @@
 		});
 
 		infos.forEach(function (info) {
-			var lineNumberSizer = info.sizer;
-			var wrapper = info.element.querySelector('.line-numbers-rows');
+			let lineNumberSizer = info.sizer;
+			let wrapper = info.element.querySelector('.line-numbers-rows');
 
 			lineNumberSizer.style.display = 'none';
 			lineNumberSizer.innerHTML = '';
@@ -184,7 +184,7 @@
 		return window.getComputedStyle ? getComputedStyle(element) : (element.currentStyle || null);
 	}
 
-	var lastWidth = undefined;
+	let lastWidth = undefined;
 	window.addEventListener('resize', function () {
 		if (config.assumeViewportIndependence && lastWidth === window.innerWidth) {
 			return;
@@ -199,8 +199,8 @@
 			return;
 		}
 
-		var code = /** @type {Element} */ (env.element);
-		var pre = /** @type {HTMLElement} */ (code.parentNode);
+		let code = /** @type {Element} */ (env.element);
+		let pre = /** @type {HTMLElement} */ (code.parentNode);
 
 		// works only for <code> wrapped inside <pre> (not inline)
 		if (!pre || !/pre/i.test(pre.nodeName)) {
@@ -222,11 +222,11 @@
 		// Add the class 'line-numbers' to the <pre>
 		pre.classList.add(PLUGIN_NAME);
 
-		var match = env.code.match(NEW_LINE_EXP);
-		var linesNum = match ? match.length + 1 : 1;
-		var lineNumbersWrapper;
+		let match = env.code.match(NEW_LINE_EXP);
+		let linesNum = match ? match.length + 1 : 1;
+		let lineNumbersWrapper;
 
-		var lines = new Array(linesNum + 1).join('<span></span>');
+		let lines = new Array(linesNum + 1).join('<span></span>');
 
 		lineNumbersWrapper = document.createElement('span');
 		lineNumbersWrapper.setAttribute('aria-hidden', 'true');

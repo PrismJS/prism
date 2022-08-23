@@ -1,8 +1,8 @@
 (function (Prism) {
 
 	// Ignore comments starting with { to privilege string interpolation highlighting
-	var comment = /#(?!\{).+/;
-	var interpolation = {
+	let comment = /#(?!\{).+/;
+	let interpolation = {
 		pattern: /#\{[^}]+\}/,
 		alias: 'variable'
 	};

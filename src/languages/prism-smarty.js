@@ -86,8 +86,8 @@
 	Prism.languages.smarty['embedded-php'].inside.smarty.inside = Prism.languages.smarty;
 	Prism.languages.smarty.string[0].inside.interpolation.inside.expression.inside = Prism.languages.smarty;
 
-	var string = /"(?:\\.|[^"\\\r\n])*"|'(?:\\.|[^'\\\r\n])*'/;
-	var smartyPattern = RegExp(
+	let string = /"(?:\\.|[^"\\\r\n])*"|'(?:\\.|[^'\\\r\n])*'/;
+	let smartyPattern = RegExp(
 		// comments
 		/\{\*[\s\S]*?\*\}/.source +
 		'|' +
@@ -102,9 +102,9 @@
 
 	// Tokenize all inline Smarty expressions
 	Prism.hooks.add('before-tokenize', function (env) {
-		var smartyLiteralStart = '{literal}';
-		var smartyLiteralEnd = '{/literal}';
-		var smartyLiteralMode = false;
+		let smartyLiteralStart = '{literal}';
+		let smartyLiteralEnd = '{/literal}';
+		let smartyLiteralMode = false;
 
 		Prism.languages['markup-templating'].buildPlaceholders(env, 'smarty', smartyPattern, function (match) {
 			// Smarty tags inside {literal} block are ignored

@@ -14,9 +14,9 @@
 		}
 	}
 
-	var tag = Prism.languages.markup.tag;
+	let tag = Prism.languages.markup.tag;
 
-	var slashDocComment = {
+	let slashDocComment = {
 		pattern: /\/\/\/.*/,
 		greedy: true,
 		alias: 'comment',
@@ -24,7 +24,7 @@
 			'tag': tag
 		}
 	};
-	var tickDocComment = {
+	let tickDocComment = {
 		pattern: /'''.*/,
 		greedy: true,
 		alias: 'comment',

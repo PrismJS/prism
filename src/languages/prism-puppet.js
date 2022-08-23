@@ -100,7 +100,7 @@
 		'punctuation': /[\[\]{}().,;]|:+/
 	};
 
-	var interpolation = [
+	let interpolation = [
 		{
 			// Allow for one nested level of braces inside interpolation
 			pattern: /(^|[^\\])\$\{(?:[^'"{}]|\{[^}]*\}|(["'])(?:(?!\2)[^\\]|\\[\s\S])*\2)+\}/,

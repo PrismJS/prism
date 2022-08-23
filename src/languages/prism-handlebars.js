@@ -26,7 +26,7 @@
 	};
 
 	Prism.hooks.add('before-tokenize', function (env) {
-		var handlebarsPattern = /\{\{\{[\s\S]+?\}\}\}|\{\{[\s\S]+?\}\}/g;
+		let handlebarsPattern = /\{\{\{[\s\S]+?\}\}\}|\{\{[\s\S]+?\}\}/g;
 		Prism.languages['markup-templating'].buildPlaceholders(env, 'handlebars', handlebarsPattern);
 	});
 

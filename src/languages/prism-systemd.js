@@ -2,12 +2,12 @@
 
 (function (Prism) {
 
-	var comment = {
+	let comment = {
 		pattern: /^[;#].*/m,
 		greedy: true
 	};
 
-	var quotesSource = /"(?:[^\r\n"\\]|\\(?:[^\r]|\r\n?))*"(?!\S)/.source;
+	let quotesSource = /"(?:[^\r\n"\\]|\\(?:[^\r]|\r\n?))*"(?!\S)/.source;
 
 	Prism.languages.systemd = {
 		'comment': comment,

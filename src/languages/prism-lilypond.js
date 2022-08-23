@@ -1,16 +1,16 @@
 (function (Prism) {
 
-	var schemeExpression = /\((?:[^();"#\\]|\\[\s\S]|;.*(?!.)|"(?:[^"\\]|\\.)*"|#(?:\{(?:(?!#\})[\s\S])*#\}|[^{])|<expr>)*\)/.source;
+	let schemeExpression = /\((?:[^();"#\\]|\\[\s\S]|;.*(?!.)|"(?:[^"\\]|\\.)*"|#(?:\{(?:(?!#\})[\s\S])*#\}|[^{])|<expr>)*\)/.source;
 	// allow for up to pow(2, recursivenessLog2) many levels of recursive brace expressions
 	// For some reason, this can't be 4
-	var recursivenessLog2 = 5;
-	for (var i = 0; i < recursivenessLog2; i++) {
+	let recursivenessLog2 = 5;
+	for (let i = 0; i < recursivenessLog2; i++) {
 		schemeExpression = schemeExpression.replace(/<expr>/g, function () { return schemeExpression; });
 	}
 	schemeExpression = schemeExpression.replace(/<expr>/g, /[^\s\S]/.source);
 
 
-	var lilypond = Prism.languages.lilypond = {
+	let lilypond = Prism.languages.lilypond = {
 		'comment': /%(?:(?!\{).*|\{[\s\S]*?%\})/,
 		'embedded-scheme': {
 			pattern: RegExp(/(^|[=\s])#(?:"(?:[^"\\]|\\.)*"|[^\s()"]*(?:[^\s()]|<expr>))/.source.replace(/<expr>/g, function () { return schemeExpression; }), 'm'),

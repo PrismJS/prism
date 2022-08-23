@@ -2,7 +2,7 @@
 
 (function (Prism) {
 
-	var ID = '(?:' + [
+	let ID = '(?:' + [
 		// an identifier
 		/[a-zA-Z_\x80-\uFFFF][\w\x80-\uFFFF]*/.source,
 		// a number
@@ -13,7 +13,7 @@
 		/<(?:[^<>]|(?!<!--)<(?:[^<>"']|"[^"]*"|'[^']*')+>|<!--(?:[^-]|-(?!->))*-->)*>/.source
 	].join('|') + ')';
 
-	var IDInside = {
+	let IDInside = {
 		'markup': {
 			pattern: /(^<)[\s\S]+(?=>$)/,
 			lookbehind: true,

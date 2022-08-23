@@ -1,10 +1,10 @@
 (function (Prism) {
 
-	var javascript = Prism.util.clone(Prism.languages.javascript);
+	let javascript = Prism.util.clone(Prism.languages.javascript);
 
-	var space = /(?:\s|\/\/.*(?!.)|\/\*(?:[^*]|\*(?!\/))\*\/)/.source;
-	var braces = /(?:\{(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])*\})/.source;
-	var spread = /(?:\{<S>*\.{3}(?:[^{}]|<BRACES>)*\})/.source;
+	let space = /(?:\s|\/\/.*(?!.)|\/\*(?:[^*]|\*(?!\/))\*\/)/.source;
+	let braces = /(?:\{(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])*\})/.source;
+	let spread = /(?:\{<S>*\.{3}(?:[^{}]|<BRACES>)*\})/.source;
 
 	/**
 	 * @param {string} source
@@ -68,10 +68,10 @@
 	};
 
 	var walkTokens = function (tokens) {
-		var openedTags = [];
-		for (var i = 0; i < tokens.length; i++) {
-			var token = tokens[i];
-			var notTagNorBrace = false;
+		let openedTags = [];
+		for (let i = 0; i < tokens.length; i++) {
+			let token = tokens[i];
+			let notTagNorBrace = false;
 
 			if (typeof token !== 'string') {
 				if (token.type === 'tag' && token.content[0] && token.content[0].type === 'tag') {
@@ -112,7 +112,7 @@
 				if (openedTags.length > 0 && openedTags[openedTags.length - 1].openedBraces === 0) {
 					// Here we are inside a tag, and not inside a JSX context.
 					// That's plain text: drop any tokens matched.
-					var plainText = stringifyToken(token);
+					let plainText = stringifyToken(token);
 
 					// And merge text with adjacent text
 					if (i < tokens.length - 1 && (typeof tokens[i + 1] === 'string' || tokens[i + 1].type === 'plain-text')) {

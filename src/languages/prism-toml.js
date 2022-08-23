@@ -1,6 +1,6 @@
 (function (Prism) {
 
-	var key = /(?:[\w-]+|'[^'\n\r]*'|"(?:\\.|[^\\"\r\n])*")/.source;
+	let key = /(?:[\w-]+|'[^'\n\r]*'|"(?:\\.|[^\\"\r\n])*")/.source;
 
 	/**
 	 * @param {string} pattern

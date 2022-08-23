@@ -19,8 +19,8 @@
 	}
 
 	function createT4(insideLang) {
-		var grammar = Prism.languages[insideLang];
-		var className = 'language-' + insideLang;
+		let grammar = Prism.languages[insideLang];
+		let className = 'language-' + insideLang;
 
 		return {
 			'block': {

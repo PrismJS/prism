@@ -11,8 +11,8 @@
 		return RegExp(replace(pattern, replacements), flags || '');
 	}
 
-	var types = /bool|clip|float|int|string|val/.source;
-	var internals = [
+	let types = /bool|clip|float|int|string|val/.source;
+	let internals = [
 		// bools
 		/is(?:bool|clip|float|int|string)|defined|(?:(?:internal)?function|var)?exists?/.source,
 		// control
@@ -40,7 +40,7 @@
 		// avsplus
 		/addautoloaddir|on(?:cpu|cuda)|prefetch|setfiltermtmode/.source
 	].join('|');
-	var properties = [
+	let properties = [
 		// content
 		/has(?:audio|video)/.source,
 		// resolution
@@ -54,7 +54,7 @@
 		// audio
 		/audio(?:bits|channels|duration|length(?:[fs]|hi|lo)?|rate)|isaudio(?:float|int)/.source
 	].join('|');
-	var filters = [
+	let filters = [
 		// source
 		/avi(?:file)?source|directshowsource|image(?:reader|source|sourceanim)|opendmlsource|segmented(?:avisource|directshowsource)|wavsource/.source,
 		// color
@@ -78,7 +78,7 @@
 		// debug
 		/blackness|blankclip|colorbars(?:hd)?|compare|dumpfiltergraph|echo|histogram|info|messageclip|preroll|setgraphanalysis|show(?:framenumber|smpte|time)|showfiveversions|stack(?:horizontal|vertical)|subtitle|tone|version/.source
 	].join('|');
-	var allinternals = [internals, properties, filters].join('|');
+	let allinternals = [internals, properties, filters].join('|');
 
 	Prism.languages.avisynth = {
 		'comment': [
