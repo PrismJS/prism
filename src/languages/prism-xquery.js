@@ -64,7 +64,7 @@ Prism.languages.xquery['tag'].inside['attr-value'].inside['expression'] = {
 };
 
 // The following will handle plain text inside tags
-var stringifyToken = function (token) {
+function stringifyToken(token) {
 	if (typeof token === 'string') {
 		return token;
 	}
@@ -72,9 +72,9 @@ var stringifyToken = function (token) {
 		return token.content;
 	}
 	return token.content.map(stringifyToken).join('');
-};
+}
 
-var walkTokens = function (tokens) {
+function walkTokens(tokens) {
 	let openedTags = [];
 	for (let i = 0; i < tokens.length; i++) {
 		let token = tokens[i];
@@ -148,7 +148,7 @@ var walkTokens = function (tokens) {
 			walkTokens(token.content);
 		}
 	}
-};
+}
 
 Prism.hooks.add('after-tokenize', function (env) {
 	if (env.language !== 'xquery') {

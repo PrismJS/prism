@@ -7,7 +7,8 @@ module.exports = {
 		es6: true,
 	},
 	parserOptions: {
-		ecmaVersion: 2018
+		ecmaVersion: 2018,
+		sourceType: 'module'
 	},
 	rules: {
 		'no-use-before-define': ['error', { 'functions': false, 'classes': false }],
@@ -124,6 +125,22 @@ module.exports = {
 	],
 
 	overrides: [
+		{
+			// Core
+			files: ['src/core/**/*.js'],
+			env: {
+				browser: true,
+				node: true,
+				worker: true,
+			},
+		},
+		{
+			// Plugins
+			files: ['src/plugins/**/*.js'],
+			env: {
+				browser: true,
+			},
+		},
 		{
 			// Languages and plugins
 			files: [

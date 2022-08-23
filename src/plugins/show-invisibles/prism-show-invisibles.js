@@ -25,26 +25,27 @@
 
 		let type = Prism.util.type(value);
 		switch (type) {
-			case 'RegExp':
-				var inside = {};
+			case 'RegExp': {
+				const inside = {};
 				tokens[name] = {
 					pattern: value,
 					inside: inside
 				};
 				addInvisibles(inside);
 				break;
-
-			case 'Array':
+			}
+			case 'Array': {
 				for (let i = 0, l = value.length; i < l; i++) {
 					handleToken(value, i);
 				}
 				break;
-
-			default: // 'Object'
+			}
+			default: { // 'Object'
 				// eslint-disable-next-line no-redeclare
-				var inside = value.inside || (value.inside = {});
+				const inside = value.inside || (value.inside = {});
 				addInvisibles(inside);
 				break;
+			}
 		}
 	}
 
@@ -59,14 +60,13 @@
 		}
 
 		// assign invisibles here to "mark" the grammar in case of self references
-		for (var name in invisibles) {
+		for (let name in invisibles) {
 			if (invisibles.hasOwnProperty(name)) {
 				grammar[name] = invisibles[name];
 			}
 		}
 
-		// eslint-disable-next-line no-redeclare
-		for (var name in grammar) {
+		for (let name in grammar) {
 			if (grammar.hasOwnProperty(name) && !invisibles[name]) {
 				if (name === 'rest') {
 					addInvisibles(grammar['rest']);
