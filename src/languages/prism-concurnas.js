@@ -7,6 +7,30 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			lookbehind: true,
 			greedy: true
 		},
+		'regex-literal': {
+			pattern: /\br("|')(?:\\.|(?!\1)[^\\\r\n])*\1/,
+			greedy: true,
+			inside: {
+				'interpolation': {
+					pattern: /((?:^|[^\\])(?:\\{2})*)\{(?:[^{}]|\{(?:[^{}]|\{[^}]*\})*\})+\}/,
+					lookbehind: true,
+					inside: 'concurnas'
+				},
+				'regex': /[\s\S]+/
+			}
+		},
+		'string-literal': {
+			pattern: /(?:\B|\bs)("|')(?:\\.|(?!\1)[^\\\r\n])*\1/,
+			greedy: true,
+			inside: {
+				'interpolation': {
+					pattern: /((?:^|[^\\])(?:\\{2})*)\{(?:[^{}]|\{(?:[^{}]|\{[^}]*\})*\})+\}/,
+					lookbehind: true,
+					inside: 'concurnas'
+				},
+				'string': /[\s\S]+/
+			}
+		},
 		'langext': {
 			pattern: /\b\w+\s*\|\|[\s\S]+?\|\|/,
 			greedy: true,
@@ -32,32 +56,5 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			pattern: /@(?:\w+:)?(?:\w+|\[[^\]]+\])?/,
 			alias: 'builtin'
 		}
-	};
-
-	Prism.languages.insertBefore('concurnas', 'langext', {
-		'regex-literal': {
-			pattern: /\br("|')(?:\\.|(?!\1)[^\\\r\n])*\1/,
-			greedy: true,
-			inside: {
-				'interpolation': {
-					pattern: /((?:^|[^\\])(?:\\{2})*)\{(?:[^{}]|\{(?:[^{}]|\{[^}]*\})*\})+\}/,
-					lookbehind: true,
-					inside: 'concurnas'
-				},
-				'regex': /[\s\S]+/
-			}
-		},
-		'string-literal': {
-			pattern: /(?:\B|\bs)("|')(?:\\.|(?!\1)[^\\\r\n])*\1/,
-			greedy: true,
-			inside: {
-				'interpolation': {
-					pattern: /((?:^|[^\\])(?:\\{2})*)\{(?:[^{}]|\{(?:[^{}]|\{[^}]*\})*\})+\}/,
-					lookbehind: true,
-					inside: 'concurnas'
-				},
-				'string': /[\s\S]+/
-			}
-		}
-	})
+	}
 });

@@ -1,3 +1,20 @@
+/**
+ * Given a topologically sorted BNF grammar, this will return the RegExp source of last rule of the grammar.
+ *
+ * @param {Record<string, string>} grammar
+ * @returns {string}
+ */
+function SortedBNF(grammar) {
+	let key;
+	for (key in grammar) {
+		grammar[key] = grammar[key].replace(/<[\w\s]+>/g, function (key) {
+			return '(?:' + grammar[key].trim() + ')';
+		});
+	}
+	// return the last item
+	return grammar[key];
+}
+
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'scheme',
 	grammar: {
@@ -100,21 +117,5 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			greedy: true
 		},
 		'punctuation': /[()\[\]']/
-	};
-
-	/**
-	 * Given a topologically sorted BNF grammar, this will return the RegExp source of last rule of the grammar.
-	 *
-	 * @param {Record<string, string>} grammar
-	 * @returns {string}
-	 */
-	function SortedBNF(grammar) {
-		for (var key in grammar) {
-			grammar[key] = grammar[key].replace(/<[\w\s]+>/g, function (key) {
-				return '(?:' + grammar[key].trim() + ')';
-			});
-		}
-		// return the last item
-		return grammar[key];
 	}
 });

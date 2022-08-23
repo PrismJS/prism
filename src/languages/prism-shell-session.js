@@ -3,8 +3,8 @@ import bash from './prism-bash.js';
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'shell-session',
 	require: bash,
-	alias: ['sh-session','shellsession'],
-	grammar({ getLanguage }) {
+	alias: ['sh-session', 'shellsession'],
+	grammar() {
 		// CAREFUL!
 		// The following patterns are concatenated, so the group referenced by a back reference is non-obvious!
 
@@ -19,7 +19,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			/<<-?\s*(["']?)(\w+)\1\s[\s\S]*?[\r\n]\2/.source
 		].join('|');
 
-		Prism.languages['shell-session'] = {
+		return {
 			'command': {
 				pattern: RegExp(
 					// user info
@@ -69,7 +69,5 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			},
 			'output': /.(?:.*(?:[\r\n]|.$))*/
 		};
-
-		Prism.languages['sh-session'] =
 	}
 });

@@ -1,6 +1,6 @@
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'unrealscript',
-	alias: ['uscript','uc'],
+	alias: ['uscript', 'uc'],
 	grammar: {
 		'comment': /\/\/.*|\/\*[\s\S]*?\*\//,
 		'string': {
@@ -40,7 +40,5 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		// https://docs.unrealengine.com/udk/Three/UnrealScriptExpressions.html
 		'operator': />>|<<|--|\+\+|\*\*|[-+*/~!=<>$@]=?|&&?|\|\|?|\^\^?|[?:%]|\b(?:ClockwiseFrom|Cross|Dot)\b/,
 		'punctuation': /[()[\]{};,.]/
-	};
-
-	Prism.languages.uc =
+	}
 });
