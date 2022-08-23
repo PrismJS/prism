@@ -1,11 +1,12 @@
 import markup from './prism-markup.js';
 import javascript from './prism-javascript.js';
+import { insertBefore } from '../shared/language-util.js';
+import { rest } from '../shared/symbols.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'pug',
 	require: [markup, javascript],
-	optional: ['coffeescript', 'ejs', 'handlebars', 'less', 'livescript', 'markdown', 'scss', 'stylus', 'twig'],
-	grammar({ getLanguage }) {
+	grammar() {
 		// TODO:
 		// - Add CSS highlighting inside <style> tags
 		// - Add support for multi-line code blocks
@@ -14,7 +15,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		// - Add explicit support for plain text using |
 		// - Add support for markup embedded in plain text
 
-		Prism.languages.pug = {
+		const pug = {
 
 			// Multiline stuff should appear before the rest
 
@@ -75,7 +76,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 						pattern: /^(?:case|default|else|if|unless|when|while)\b/,
 						alias: 'keyword'
 					},
-					rest: Prism.languages.javascript
+					[rest]: 'javascript'
 				}
 			},
 			'keyword': {
@@ -102,7 +103,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 							pattern: /^\+\w+/,
 							alias: 'function'
 						},
-						rest: Prism.languages.javascript
+						[rest]: 'javascript'
 					}
 				}
 			],
@@ -167,29 +168,29 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			{ filter: 'sass', language: 'scss' },
 			'stylus'
 		];
+		/** @type {import("../types").GrammarTokens} */
 		let all_filters = {};
-		for (let i = 0, l = filters.length; i < l; i++) {
-			var filter = filters[i];
-			filter = typeof filter === 'string' ? { filter: filter, language: filter } : filter;
-			if (Prism.languages[filter.language]) {
-				all_filters['filter-' + filter.filter] = {
-					pattern: RegExp(filter_pattern.replace('<filter_name>', function () { return filter.filter; }), 'm'),
-					lookbehind: true,
-					inside: {
-						'filter-name': {
-							pattern: /^:[\w-]+/,
-							alias: 'variable'
-						},
-						'text': {
-							pattern: /\S[\s\S]*/,
-							alias: [filter.language, 'language-' + filter.language],
-							inside: Prism.languages[filter.language]
-						}
+		for (const filterItem of filters) {
+			const { filter, language } = typeof filterItem === 'string' ? { filter: filterItem, language: filterItem } : filterItem;
+			all_filters['filter-' + filter] = {
+				pattern: RegExp(filter_pattern.replace('<filter_name>', () => filter), 'm'),
+				lookbehind: true,
+				inside: {
+					'filter-name': {
+						pattern: /^:[\w-]+/,
+						alias: 'variable'
+					},
+					'text': {
+						pattern: /\S[\s\S]*/,
+						alias: [language, 'language-' + language],
+						inside: language
 					}
-				};
-			}
+				}
+			};
 		}
 
-		Prism.languages.insertBefore('pug', 'filter', all_filters);
+		insertBefore(pug, 'filter', all_filters);
+
+		return pug;
 	}
 });

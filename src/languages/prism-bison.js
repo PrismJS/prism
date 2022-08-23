@@ -1,4 +1,5 @@
 import { insertBefore } from '../shared/language-util.js';
+import { rest } from '../shared/symbols.js';
 import c from './prism-c.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
@@ -30,7 +31,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 									'punctuation': /<|>/
 								}
 							},
-							rest: c
+							[rest]: c
 						}
 					},
 					'comment': c.comment,

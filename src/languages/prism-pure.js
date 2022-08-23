@@ -1,10 +1,12 @@
+import { insertBefore } from '../shared/language-util';
+import { rest } from '../shared/symbols';
+
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'pure',
-	optional: ['c', 'cpp', 'fortran'],
-	grammar({ getLanguage }) {
+	grammar() {
 		// https://agraef.github.io/pure-docs/pure.html#lexical-matters
 
-		Prism.languages.pure = {
+		const pure = {
 			'comment': [
 				{
 					pattern: /(^|[^\\])\/\*[\s\S]*?\*\//,
@@ -28,7 +30,9 @@ export default /** @type {import("../types").LanguageProto} */ ({
 					'delimiter': {
 						pattern: /^%<.*|%>$/,
 						alias: 'punctuation'
-					}
+					},
+					// C is the default inline language
+					[rest]: 'c'
 				}
 			},
 			'string': {
@@ -60,26 +64,26 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		];
 		let inlineLanguageRe = /%< *-\*- *<lang>\d* *-\*-[\s\S]+?%>/.source;
 
-		inlineLanguages.forEach(function (lang) {
-			let alias = lang;
-			if (typeof lang !== 'string') {
-				alias = lang.alias;
-				lang = lang.lang;
+		inlineLanguages.forEach(function (item) {
+			let alias; let lang;
+			if (typeof item === 'string') {
+				alias = lang = item;
+			} else {
+				alias = item.alias;
+				lang = item.lang;
 			}
-			if (Prism.languages[alias]) {
-				let o = {};
-				o['inline-lang-' + alias] = {
+
+			insertBefore(pure, 'inline-lang', {
+				['inline-lang-' + alias]: {
 					pattern: RegExp(inlineLanguageRe.replace('<lang>', lang.replace(/([.+*?\/\\(){}\[\]])/g, '\\$1')), 'i'),
-					inside: Prism.util.clone(Prism.languages.pure['inline-lang'].inside)
-				};
-				o['inline-lang-' + alias].inside.rest = Prism.util.clone(Prism.languages[alias]);
-				Prism.languages.insertBefore('pure', 'inline-lang', o);
-			}
+					inside: {
+						...pure['inline-lang'].inside,
+						[rest]: alias
+					}
+				}
+			});
 		});
 
-		// C is the default inline language
-		if (Prism.languages.c) {
-			Prism.languages.pure['inline-lang'].inside.rest = Prism.util.clone(Prism.languages.c);
-		}
+		return pure;
 	}
 });

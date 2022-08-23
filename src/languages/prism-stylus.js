@@ -1,3 +1,5 @@
+import { rest } from '../shared/symbols';
+
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'stylus',
 	grammar() {
@@ -64,14 +66,14 @@ export default /** @type {import("../types").LanguageProto} */ ({
 					pattern: /^\{|\}$/,
 					alias: 'punctuation'
 				},
-				rest: inside
+				[rest]: inside
 			}
 		};
 		inside['func'] = {
 			pattern: /[\w-]+\([^)]*\).*/,
 			inside: {
 				'function': /^[^(]+/,
-				rest: inside
+				[rest]: inside
 			}
 		};
 
@@ -81,7 +83,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				lookbehind: true,
 				inside: {
 					'atrule': /^@[\w-]+/,
-					rest: inside
+					[rest]: inside
 				}
 			},
 			'variable-declaration': {
@@ -89,7 +91,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				lookbehind: true,
 				inside: {
 					'variable': /^\S+/,
-					rest: inside
+					[rest]: inside
 				}
 			},
 
@@ -98,7 +100,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				lookbehind: true,
 				inside: {
 					'keyword': /^\S+/,
-					rest: inside
+					[rest]: inside
 				}
 			},
 
@@ -114,7 +116,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 							'interpolation': inside.interpolation
 						}
 					},
-					rest: inside
+					[rest]: inside
 				}
 			},
 

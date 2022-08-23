@@ -1,10 +1,11 @@
+import { rest } from '../shared/symbols.js';
 import scheme from './prism-scheme.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'lilypond',
 	require: scheme,
 	alias: 'ly',
-	grammar({ getLanguage }) {
+	grammar() {
 		let schemeExpression = /\((?:[^();"#\\]|\\[\s\S]|;.*(?!.)|"(?:[^"\\]|\\.)*"|#(?:\{(?:(?!#\})[\s\S])*#\}|[^{])|<expr>)*\)/.source;
 		// allow for up to pow(2, recursivenessLog2) many levels of recursive brace expressions
 		// For some reason, this can't be 4
@@ -39,7 +40,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 									}
 								}
 							},
-							rest: Prism.languages.scheme
+							[rest]: 'scheme'
 						}
 					},
 					'punctuation': /#/

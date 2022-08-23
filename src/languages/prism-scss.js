@@ -1,4 +1,5 @@
 import { insertBefore } from '../shared/language-util.js';
+import { rest } from '../shared/symbols.js';
 import css from './prism-css.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
@@ -14,8 +15,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'atrule': {
 				pattern: /@[\w-](?:\([^()]+\)|[^()\s]|\s+(?!\s))*?(?=\s+[{;])/,
 				inside: {
-					'rule': /@[\w-]+/
-					// See rest below
+					'rule': /@[\w-]+/,
+					[rest]: 'scss'
 				}
 			},
 			// url, compassified
@@ -85,8 +86,6 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				lookbehind: true
 			}
 		});
-
-		scss['atrule'].inside.rest = scss;
 
 		return scss;
 	}

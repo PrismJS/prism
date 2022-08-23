@@ -1,4 +1,5 @@
 import { insertBefore } from '../shared/language-util.js';
+import { rest } from '../shared/symbols.js';
 import markup from './prism-markup.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
@@ -71,7 +72,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 						pattern: /\|$/,
 						alias: 'punctuation'
 					},
-					rest: markup['tag'].inside
+					[rest]: markup['tag'].inside
 				}
 			},
 			'punctuation': /^(?:\{\||\|\}|\|-|[*#:;!|])|\|\||!!/m

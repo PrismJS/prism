@@ -1,9 +1,11 @@
+import { rest } from '../shared/symbols';
+
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'css',
 	grammar({ getLanguage }) {
 		let string = /(?:"(?:\\(?:\r\n|[\s\S])|[^"\\\r\n])*"|'(?:\\(?:\r\n|[\s\S])|[^'\\\r\n])*')/;
 
-		Prism.languages.css = {
+		const css = {
 			'comment': /\/\*[\s\S]*?\*\//,
 			'atrule': {
 				pattern: RegExp('@[\\w-](?:' + /[^;{\s"']|\s+(?!\s)/.source + '|' + string.source + ')*?' + /(?:;|(?=\s*\{))/.source),
@@ -17,8 +19,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 					'keyword': {
 						pattern: /(^|[^\w-])(?:and|not|only|or)(?![\w-])/,
 						lookbehind: true
-					}
-					// See rest below
+					},
+					[rest]: 'css'
 				}
 			},
 			'url': {
@@ -54,12 +56,12 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'punctuation': /[(){};:,]/
 		};
 
-		Prism.languages.css['atrule'].inside.rest = Prism.languages.css;
-
 		let markup = Prism.languages.markup;
 		if (markup) {
 			markup.tag.addInlined('style', 'css');
 			markup.tag.addAttribute('style', 'css');
 		}
+
+		return css;
 	}
 });

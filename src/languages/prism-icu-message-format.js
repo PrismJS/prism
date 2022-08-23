@@ -1,3 +1,5 @@
+import { rest } from '../shared/symbols';
+
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'icu-message-format',
 	grammar() {
@@ -81,7 +83,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 											'number': /\S+/
 										}
 									},
-									rest: null // see below
+									[rest]: 'icu-message-format'
 								}
 							},
 							'plural-style': {
@@ -143,7 +145,5 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'escape': escape,
 			'string': string
 		};
-
-		Prism.languages['icu-message-format'].argument.inside.content.inside['choice-style'].inside.rest = Prism.languages['icu-message-format'];
 	}
 });

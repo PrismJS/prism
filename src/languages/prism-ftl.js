@@ -1,3 +1,4 @@
+import { rest } from '../shared/symbols.js';
 import markupTemplating from './prism-markup-templating.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
@@ -33,7 +34,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 									pattern: /^\$\{|\}$/,
 									alias: 'punctuation'
 								},
-								rest: null
+								[rest]: null // see below
 							}
 						}
 					}
@@ -52,7 +53,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'punctuation': /[,;.:()[\]{}]/
 		};
 
-		ftl.string[1].inside.interpolation.inside.rest = ftl;
+		ftl.string[1].inside.interpolation.inside[rest] = ftl;
 
 		Prism.languages.ftl = {
 			'ftl-comment': {

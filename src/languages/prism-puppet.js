@@ -1,7 +1,41 @@
+import { rest } from '../shared/symbols';
+
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'puppet',
 	grammar() {
-		const puppet = {
+		const interpolation = [
+			{
+				// Allow for one nested level of braces inside interpolation
+				pattern: /(^|[^\\])\$\{(?:[^'"{}]|\{[^}]*\}|(["'])(?:(?!\2)[^\\]|\\[\s\S])*\2)+\}/,
+				lookbehind: true,
+				inside: {
+					'short-variable': {
+						// Negative look-ahead prevent wrong highlighting of functions
+						pattern: /(^\$\{)(?!\w+\()(?:::)?\w+(?:::\w+)*/,
+						lookbehind: true,
+						alias: 'variable',
+						inside: {
+							'punctuation': /::/
+						}
+					},
+					'delimiter': {
+						pattern: /^\$/,
+						alias: 'variable'
+					},
+					[rest]: 'puppet'
+				}
+			},
+			{
+				pattern: /(^|[^\\])\$(?:::)?\w+(?:::\w+)*/,
+				lookbehind: true,
+				alias: 'variable',
+				inside: {
+					'punctuation': /::/
+				}
+			}
+		];
+
+		return {
 			'heredoc': [
 				// Matches the content of a quoted heredoc string (subject to interpolation)
 				{
@@ -10,8 +44,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 					alias: 'string',
 					inside: {
 						// Matches the end tag
-						'punctuation': /(?=\S).*\S(?= *$)/
-						// See interpolation below
+						'punctuation': /(?=\S).*\S(?= *$)/,
+						'interpolation': interpolation
 					}
 				},
 				// Matches the content of an unquoted heredoc string (no interpolation)
@@ -71,7 +105,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 					'double-quoted': {
 						pattern: /^"[\s\S]*"$/,
 						inside: {
-							// See interpolation below
+							'interpolation': interpolation
 						}
 					}
 				}
@@ -101,41 +135,5 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'operator': /=[=~>]?|![=~]?|<(?:<\|?|[=~|-])?|>[>=]?|->?|~>|\|>?>?|[*\/%+?]|\b(?:and|in|or)\b/,
 			'punctuation': /[\[\]{}().,;]|:+/
 		};
-
-		let interpolation = [
-			{
-				// Allow for one nested level of braces inside interpolation
-				pattern: /(^|[^\\])\$\{(?:[^'"{}]|\{[^}]*\}|(["'])(?:(?!\2)[^\\]|\\[\s\S])*\2)+\}/,
-				lookbehind: true,
-				inside: {
-					'short-variable': {
-						// Negative look-ahead prevent wrong highlighting of functions
-						pattern: /(^\$\{)(?!\w+\()(?:::)?\w+(?:::\w+)*/,
-						lookbehind: true,
-						alias: 'variable',
-						inside: {
-							'punctuation': /::/
-						}
-					},
-					'delimiter': {
-						pattern: /^\$/,
-						alias: 'variable'
-					},
-					rest: puppet
-				}
-			},
-			{
-				pattern: /(^|[^\\])\$(?:::)?\w+(?:::\w+)*/,
-				lookbehind: true,
-				alias: 'variable',
-				inside: {
-					'punctuation': /::/
-				}
-			}
-		];
-		puppet['heredoc'][0].inside.interpolation = interpolation;
-		puppet['string'].inside['double-quoted'].inside.interpolation = interpolation;
-
-		return puppet;
 	}
 });

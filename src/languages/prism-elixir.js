@@ -1,7 +1,22 @@
+import { rest } from '../shared/symbols';
+
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'elixir',
 	grammar() {
-		const elixir = {
+		const stringInside = {
+			'interpolation': {
+				pattern: /#\{[^}]+\}/,
+				inside: {
+					'delimiter': {
+						pattern: /^#\{|\}$/,
+						alias: 'punctuation'
+					},
+					[rest]: 'elixir'
+				}
+			}
+		};
+
+		return {
 			'doc': {
 				pattern: /@(?:doc|moduledoc)\s+(?:("""|''')[\s\S]*?\1|("|')(?:\\(?:\r\n|[\s\S])|(?!\2)[^\\\r\n])*\2)/,
 				inside: {
@@ -23,24 +38,18 @@ export default /** @type {import("../types").LanguageProto} */ ({
 					// ~s"""foo""" (multi-line), ~s'''foo''' (multi-line), ~s/foo/, ~s|foo|, ~s"foo", ~s'foo', ~s(foo), ~s[foo], ~s{foo} (with interpolation care), ~s<foo>
 					pattern: /~[cCsSwW](?:("""|''')(?:\\[\s\S]|(?!\1)[^\\])+\1|([\/|"'])(?:\\.|(?!\2)[^\\\r\n])+\2|\((?:\\.|[^\\)\r\n])+\)|\[(?:\\.|[^\\\]\r\n])+\]|\{(?:\\.|#\{[^}]+\}|#(?!\{)|[^#\\}\r\n])+\}|<(?:\\.|[^\\>\r\n])+>)[csa]?/,
 					greedy: true,
-					inside: {
-						// See interpolation below
-					}
+					inside: stringInside
 				},
 				{
 					pattern: /("""|''')[\s\S]*?\1/,
 					greedy: true,
-					inside: {
-						// See interpolation below
-					}
+					inside: stringInside
 				},
 				{
 					// Multi-line strings are allowed
 					pattern: /("|')(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,
 					greedy: true,
-					inside: {
-						// See interpolation below
-					}
+					inside: stringInside
 				}
 			],
 			'atom': {
@@ -84,22 +93,5 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			],
 			'punctuation': /<<|>>|[.,%\[\]{}()]/
 		};
-
-		elixir.string.forEach(function (o) {
-			o.inside = {
-				'interpolation': {
-					pattern: /#\{[^}]+\}/,
-					inside: {
-						'delimiter': {
-							pattern: /^#\{|\}$/,
-							alias: 'punctuation'
-						},
-						rest: elixir
-					}
-				}
-			};
-		});
-
-		return elixir;
 	}
 });

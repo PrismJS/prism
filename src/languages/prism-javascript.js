@@ -1,3 +1,5 @@
+import { insertBefore } from '../shared/language-util.js';
+import { rest } from '../shared/symbols.js';
 import clike from './prism-clike.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
@@ -6,9 +8,15 @@ export default /** @type {import("../types").LanguageProto} */ ({
 	optional: 'regex',
 	alias: 'js',
 	grammar({ extend, getLanguage }) {
-		Prism.languages.javascript = extend('clike', {
+		const javascript = extend('clike', {
 			'class-name': [
-				Prism.languages.clike['class-name'],
+				{
+					pattern: /(\b(?:class|extends|implements|instanceof|interface|new)\s+)[\w.\\]+/,
+					lookbehind: true,
+					inside: {
+						'punctuation': /[.\\]/
+					}
+				},
 				{
 					pattern: /(^|[^$\w\xA0-\uFFFF])(?!\s)[_$A-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\.(?:constructor|prototype))/,
 					lookbehind: true
@@ -57,9 +65,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'operator': /--|\+\+|\*\*=?|=>|&&=?|\|\|=?|[!=]==|<<=?|>>>?=?|[-+*/%&|^!=<>]=?|\.{3}|\?\?=?|\?\.?|[~:]/
 		});
 
-		Prism.languages.javascript['class-name'][0].pattern = /(\b(?:class|extends|implements|instanceof|interface|new)\s+)[\w.\\]+/;
-
-		Prism.languages.insertBefore('javascript', 'keyword', {
+		insertBefore(javascript, 'keyword', {
 			'regex': {
 				pattern: RegExp(
 					// lookbehind
@@ -122,7 +128,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'constant': /\b[A-Z](?:[A-Z_]|\dx?)*\b/
 		});
 
-		Prism.languages.insertBefore('javascript', 'string', {
+		insertBefore(javascript, 'string', {
 			'hashbang': {
 				pattern: /^#!.*/,
 				greedy: true,
@@ -144,7 +150,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 								pattern: /^\$\{|\}$/,
 								alias: 'punctuation'
 							},
-							rest: Prism.languages.javascript
+							[rest]: javascript
 						}
 					},
 					'string': /[\s\S]+/
@@ -158,7 +164,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		});
 
-		Prism.languages.insertBefore('javascript', 'operator', {
+		insertBefore(javascript, 'operator', {
 			'literal-property': {
 				pattern: /((?:^|[,{])[ \t]*)(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*:)/m,
 				lookbehind: true,
@@ -176,5 +182,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				'javascript'
 			);
 		}
+
+		return javascript;
 	}
 });

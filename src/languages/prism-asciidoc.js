@@ -1,3 +1,5 @@
+import { rest } from '../shared/symbols';
+
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'asciidoc',
 	alias: 'adoc',
@@ -202,27 +204,29 @@ export default /** @type {import("../types").LanguageProto} */ ({
 
 		// Allow some nesting. There is no recursion though, so cloning should not be needed.
 
+		/**
+		 * @param {string} keys
+		 * @returns
+		 */
 		function copyFromAsciiDoc(keys) {
-			keys = keys.split(' ');
-
 			let o = {};
-			for (let i = 0, l = keys.length; i < l; i++) {
-				o[keys[i]] = asciidoc[keys[i]];
+			for (const key of keys.split(' ')) {
+				o[key] = asciidoc[key];
 			}
 			return o;
 		}
 
-		attributes.inside['interpreted'].inside.rest = copyFromAsciiDoc('macro inline replacement entity');
+		attributes.inside['interpreted'].inside[rest] = copyFromAsciiDoc('macro inline replacement entity');
 
-		asciidoc['passthrough-block'].inside.rest = copyFromAsciiDoc('macro');
+		asciidoc['passthrough-block'].inside[rest] = copyFromAsciiDoc('macro');
 
-		asciidoc['literal-block'].inside.rest = copyFromAsciiDoc('callout');
+		asciidoc['literal-block'].inside[rest] = copyFromAsciiDoc('callout');
 
-		asciidoc['table'].inside.rest = copyFromAsciiDoc('comment-block passthrough-block literal-block other-block list-punctuation indented-block comment title attribute-entry attributes hr page-break admonition list-label callout macro inline replacement entity line-continuation');
+		asciidoc['table'].inside[rest] = copyFromAsciiDoc('comment-block passthrough-block literal-block other-block list-punctuation indented-block comment title attribute-entry attributes hr page-break admonition list-label callout macro inline replacement entity line-continuation');
 
-		asciidoc['other-block'].inside.rest = copyFromAsciiDoc('table list-punctuation indented-block comment attribute-entry attributes hr page-break admonition list-label macro inline replacement entity line-continuation');
+		asciidoc['other-block'].inside[rest] = copyFromAsciiDoc('table list-punctuation indented-block comment attribute-entry attributes hr page-break admonition list-label macro inline replacement entity line-continuation');
 
-		asciidoc['title'].inside.rest = copyFromAsciiDoc('macro inline replacement entity');
+		asciidoc['title'].inside[rest] = copyFromAsciiDoc('macro inline replacement entity');
 
 
 		// Plugin to make entity title show the real entity, idea by Roman Komarov
