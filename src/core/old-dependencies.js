@@ -17,7 +17,7 @@
  * @property {string | string[]} [modify]
  */
 
-var getLoader = (function () {
+let getLoader = (function () {
 
 	/**
 	 * A function which does absolutely nothing.

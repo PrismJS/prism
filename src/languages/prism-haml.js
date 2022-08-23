@@ -3,7 +3,7 @@ import ruby from './prism-ruby.js';
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'haml',
 	require: ruby,
-	optional: ['css','css-extras','coffeescript','erb','javascript','less','markdown','scss','textile'],
+	optional: ['css', 'css-extras', 'coffeescript', 'erb', 'javascript', 'less', 'markdown', 'scss', 'textile'],
 	grammar({ getLanguage }) {
 		/* TODO
 			Handle multiline code after tag

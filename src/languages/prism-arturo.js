@@ -1,6 +1,6 @@
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'arturo',
-	optional: ['bash','css','javascript','markup','markdown','sql'],
+	optional: ['bash', 'css', 'javascript', 'markup', 'markdown', 'sql'],
 	alias: 'art',
 	grammar({ getLanguage }) {
 		/**

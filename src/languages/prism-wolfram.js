@@ -1,6 +1,6 @@
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'wolfram',
-	alias: ['mathematica','nb','wl'],
+	alias: ['mathematica', 'nb', 'wl'],
 	grammar: {
 		'comment': // Allow one level of nesting - note: regex taken from applescipt
 			/\(\*(?:\(\*(?:[^*]|\*(?!\)))*\*\)|(?!\(\*)[\s\S])*?\*\)/,

@@ -1,6 +1,6 @@
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'powerquery',
-	alias: ['pq','mscript'],
+	alias: ['pq', 'mscript'],
 	grammar() {
 		// https://docs.microsoft.com/en-us/powerquery-m/power-query-m-language-specification
 

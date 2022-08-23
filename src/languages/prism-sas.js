@@ -1,6 +1,6 @@
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'sas',
-	optional: ['groovy','lua','sql'],
+	optional: ['groovy', 'lua', 'sql'],
 	grammar({ getLanguage }) {
 		let stringPattern = /(?:"(?:""|[^"])*"(?!")|'(?:''|[^'])*'(?!'))/.source;
 

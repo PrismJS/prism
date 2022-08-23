@@ -1,6 +1,6 @@
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'pure',
-	optional: ['c','cpp','fortran'],
+	optional: ['c', 'cpp', 'fortran'],
 	grammar({ getLanguage }) {
 		// https://agraef.github.io/pure-docs/pure.html#lexical-matters
 

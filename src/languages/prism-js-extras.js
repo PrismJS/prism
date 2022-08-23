@@ -3,7 +3,7 @@ import javascript from './prism-javascript.js';
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'js-extras',
 	require: javascript,
-	optional: ['actionscript','coffeescript','flow','n4js','typescript'],
+	optional: ['actionscript', 'coffeescript', 'flow', 'n4js', 'typescript'],
 	grammar({ getLanguage }) {
 		Prism.languages.insertBefore('javascript', 'function-variable', {
 			'method-variable': {

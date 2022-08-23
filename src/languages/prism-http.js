@@ -1,6 +1,6 @@
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'http',
-	optional: ['csp','css','hpkp','hsts','javascript','json','markup','uri'],
+	optional: ['csp', 'css', 'hpkp', 'hsts', 'javascript', 'json', 'markup', 'uri'],
 	grammar({ getLanguage }) {
 		/**
 		 * @param {string} name

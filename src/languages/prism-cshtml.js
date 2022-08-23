@@ -4,7 +4,7 @@ import csharp from './prism-csharp.js';
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'cshtml',
 	require: [markup, csharp],
-	optional: ['css','css-extras','javascript','js-extras'],
+	optional: ['css', 'css-extras', 'javascript', 'js-extras'],
 	alias: 'razor',
 	grammar({ extend, getLanguage }) {
 		// Docs:

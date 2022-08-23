@@ -4,7 +4,7 @@ import javascript from './prism-javascript.js';
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'pug',
 	require: [markup, javascript],
-	optional: ['coffeescript','ejs','handlebars','less','livescript','markdown','scss','stylus','twig'],
+	optional: ['coffeescript', 'ejs', 'handlebars', 'less', 'livescript', 'markdown', 'scss', 'stylus', 'twig'],
 	grammar({ getLanguage }) {
 		// TODO:
 		// - Add CSS highlighting inside <style> tags

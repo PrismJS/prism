@@ -3,7 +3,7 @@ import javascript from './prism-javascript.js';
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'js-templates',
 	require: javascript,
-	optional: ['css','css-extras','graphql','markdown','markup','sql'],
+	optional: ['css', 'css-extras', 'graphql', 'markdown', 'markup', 'sql'],
 	grammar({ getLanguage }) {
 		let templateString = Prism.languages.javascript['template-string'];
 

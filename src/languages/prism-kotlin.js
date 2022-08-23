@@ -3,7 +3,7 @@ import clike from './prism-clike.js';
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'kotlin',
 	require: clike,
-	alias: ['kt','kts'],
+	alias: ['kt', 'kts'],
 	grammar({ extend, getLanguage }) {
 		Prism.languages.kotlin = extend('clike', {
 			'keyword': {

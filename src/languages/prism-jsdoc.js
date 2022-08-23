@@ -5,7 +5,7 @@ import typescript from './prism-typescript.js';
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'jsdoc',
 	require: [javascript, javadoclike, typescript],
-	optional: ['actionscript','coffeescript'],
+	optional: ['actionscript', 'coffeescript'],
 	grammar({ extend, getLanguage }) {
 		let javascript = Prism.languages.javascript;
 

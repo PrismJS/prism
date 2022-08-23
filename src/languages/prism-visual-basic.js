@@ -1,6 +1,6 @@
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'visual-basic',
-	alias: ['vb','vba'],
+	alias: ['vb', 'vba'],
 	grammar: {
 		'comment': {
 			pattern: /(?:['‘’]|REM\b)(?:[^\r\n_]|_(?:\r\n?|\n)?)*/i,

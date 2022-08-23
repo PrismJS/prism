@@ -1,6 +1,6 @@
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'ignore',
-	alias: ['gitignore','hgignore','npmignore'],
+	alias: ['gitignore', 'hgignore', 'npmignore'],
 	grammar: {
 		// https://git-scm.com/docs/gitignore
 		'comment': /^#.*/m,

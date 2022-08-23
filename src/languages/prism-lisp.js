@@ -1,6 +1,6 @@
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'lisp',
-	alias: ['emacs','elisp','emacs-lisp'],
+	alias: ['emacs', 'elisp', 'emacs-lisp'],
 	grammar() {
 		/**
 		 * Functions to construct regular expressions

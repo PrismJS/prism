@@ -3,7 +3,7 @@ import markupTemplating from './prism-markup-templating.js';
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'handlebars',
 	require: markupTemplating,
-	alias: ['hbs','mustache'],
+	alias: ['hbs', 'mustache'],
 	grammar({ getLanguage }) {
 		Prism.languages.handlebars = {
 			'comment': /\{\{![\s\S]*?\}\}/,

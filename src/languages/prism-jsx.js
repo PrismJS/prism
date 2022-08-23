@@ -4,7 +4,7 @@ import javascript from './prism-javascript.js';
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'jsx',
 	require: [markup, javascript],
-	optional: ['jsdoc','js-extras','js-templates'],
+	optional: ['jsdoc', 'js-extras', 'js-templates'],
 	grammar({ extend, getLanguage }) {
 		let javascript = Prism.util.clone(Prism.languages.javascript);
 
