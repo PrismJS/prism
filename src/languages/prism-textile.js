@@ -3,8 +3,7 @@ import markup from './prism-markup.js';
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'textile',
 	require: markup,
-	optional: 'css',
-	grammar({ extend, getLanguage }) {
+	grammar({ extend }) {
 		// We don't allow for pipes inside parentheses
 		// to not break table pattern |(. foo |). bar |
 		let modifierRegex = /\([^|()\n]+\)|\[[^\]\n]+\]|\{[^}\n]+\}/.source;
@@ -26,9 +25,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		let modifierTokens = {
 			'css': {
 				pattern: /\{[^{}]+\}/,
-				inside: {
-					rest: Prism.languages.css
-				}
+				inside: 'css'
 			},
 			'class-id': {
 				pattern: /(\()[^()]+(?=\))/,
@@ -45,7 +42,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		};
 
 
-		let textile = Prism.languages.textile = extend('markup', {
+		const textile = extend('markup', {
 			'phrase': {
 				pattern: /(^|\r|\n)\S[\s\S]*?(?=$|\r?\n\r?\n|\r\r)/,
 				lookbehind: true,
@@ -288,5 +285,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		phraseTableInside['footnote'] = nestedPatterns['footnote'];
 		phraseTableInside['acronym'] = nestedPatterns['acronym'];
 		phraseTableInside['mark'] = nestedPatterns['mark'];
+
+		return textile;
 	}
 });

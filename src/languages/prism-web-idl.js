@@ -14,7 +14,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 
 		let typeInside = {};
 
-		return {
+		const webIdl = {
 			'comment': {
 				pattern: /\/\/.*|\/\*[\s\S]*?\*\//,
 				greedy: true
@@ -92,10 +92,12 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'punctuation': /[(){}[\].,;]/
 		};
 
-		for (let key in Prism.languages['web-idl']) {
+		for (let key in webIdl) {
 			if (key !== 'class-name') {
-				typeInside[key] = Prism.languages['web-idl'][key];
+				typeInside[key] = webIdl[key];
 			}
 		}
+
+		return webIdl;
 	}
 });

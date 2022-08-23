@@ -3,7 +3,7 @@ import javascript from './prism-javascript.js';
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'qml',
 	require: javascript,
-	grammar({ getLanguage }) {
+	grammar() {
 		let jsString = /"(?:\\.|[^\\"\r\n])*"|'(?:\\.|[^\\'\r\n])*'/.source;
 		let jsComment = /\/\/.*(?!.)|\/\*(?:[^*]|\*(?!\/))*\*\//.source;
 
@@ -17,7 +17,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		jsExpr = jsExpr.replace(/<expr>/g, '[^\\s\\S]');
 
 
-		Prism.languages.qml = {
+		return {
 			'comment': {
 				pattern: /\/\/.*|\/\*[\s\S]*?\*\//,
 				greedy: true

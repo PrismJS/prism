@@ -9,7 +9,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		multilineComment = multilineComment.replace(/<self>/g, function () { return /[^\s\S]/.source; });
 
 
-		return {
+		const rust = {
 			'comment': [
 				{
 					pattern: RegExp(/(^|[^\\])/.source + multilineComment),
@@ -123,7 +123,9 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'operator': /[-+*\/%!^]=?|=[=>]?|&[&=]?|\|[|=]?|<<?=?|>>?=?|[@?]/
 		};
 
-		Prism.languages.rust['closure-params'].inside.rest = Prism.languages.rust;
-		Prism.languages.rust['attribute'].inside['string'] = Prism.languages.rust['string'];
+		rust['closure-params'].inside.rest = rust;
+		rust['attribute'].inside['string'] = rust['string'];
+
+		return rust;
 	}
 });

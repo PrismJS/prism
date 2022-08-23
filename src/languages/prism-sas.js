@@ -1,7 +1,6 @@
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'sas',
-	optional: ['groovy', 'lua', 'sql'],
-	grammar({ getLanguage }) {
+	grammar() {
 		let stringPattern = /(?:"(?:""|[^"])*"(?!")|'(?:''|[^'])*'(?!'))/.source;
 
 		let number = /\b(?:\d[\da-f]*x|\d+(?:\.\d+)?(?:e[+-]?\d+)?)\b/i;
@@ -127,7 +126,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			lookbehind: true,
 		};
 
-		Prism.languages.sas = {
+		return {
 			'datalines': {
 				pattern: /^([ \t]*)(?:cards|(?:data)?lines);[\s\S]+?^[ \t]*;/im,
 				lookbehind: true,
