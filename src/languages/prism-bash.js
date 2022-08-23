@@ -70,7 +70,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'entity': /\\(?:[abceEfnrtv\\"]|O?[0-7]{1,3}|U[0-9a-fA-F]{8}|u[0-9a-fA-F]{4}|x[0-9a-fA-F]{1,2})/
 		};
 
-		return {
+		const bash = {
 			'shebang': {
 				pattern: /^#!\s*\/.*/,
 				alias: 'important'
@@ -228,7 +228,9 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		];
 		let inside = insideString.variable[1].inside;
 		for (let i = 0; i < toBeCopied.length; i++) {
-			inside[toBeCopied[i]] = Prism.languages.bash[toBeCopied[i]];
+			inside[toBeCopied[i]] = bash[toBeCopied[i]];
 		}
+
+		return bash;
 	}
 });
