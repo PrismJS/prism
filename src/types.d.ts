@@ -5,3 +5,15 @@ export interface LanguageProto {
 	alias?: string | readonly string[];
 	grammar: Grammar | ((arg0: { getLanguage: (id: string) => Grammar, extend: (id: string, ref: Grammar) => Grammar }) => Grammar)
 }
+
+export interface GrammarToken {
+	pattern: RegExp
+	lookbehind?: boolean
+	greedy?: boolean
+	alias?: string | string[]
+	inside?: string | Grammar
+}
+
+export interface Grammar {
+	[string]: RegExp | GrammarToken | (RegExp | GrammarToken)[]
+}
