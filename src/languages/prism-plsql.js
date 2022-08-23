@@ -1,10 +1,11 @@
+import { insertBefore } from '../shared/language-util.js';
 import sql from './prism-sql.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'plsql',
 	require: sql,
-	grammar({ extend, getLanguage }) {
-		Prism.languages.plsql = extend('sql', {
+	grammar({ extend }) {
+		const plsql = extend('sql', {
 			'comment': {
 				pattern: /\/\*[\s\S]*?\*\/|--.*/,
 				greedy: true
@@ -15,11 +16,13 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'operator': /:=?|=>|[<>^~!]=|\.\.|\|\||\*\*|[-+*/%<>=@]/
 		});
 
-		Prism.languages.insertBefore('plsql', 'operator', {
+		insertBefore(plsql, 'operator', {
 			'label': {
 				pattern: /<<\s*\w+\s*>>/,
 				alias: 'symbol'
 			},
 		});
+
+		return plsql;
 	}
 });

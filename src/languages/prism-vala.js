@@ -1,11 +1,12 @@
+import { insertBefore } from '../shared/language-util.js';
 import clike from './prism-clike.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'vala',
 	require: clike,
 	optional: 'regex',
-	grammar({ extend, getLanguage }) {
-		Prism.languages.vala = extend('clike', {
+	grammar({ extend }) {
+		const vala = extend('clike', {
 			// Classes copied from prism-csharp
 			'class-name': [
 				{
@@ -48,7 +49,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'constant': /\b[A-Z0-9_]+\b/
 		});
 
-		Prism.languages.insertBefore('vala', 'string', {
+		insertBefore(vala, 'string', {
 			'raw-string': {
 				pattern: /"""[\s\S]*?"""/,
 				greedy: true,
@@ -65,7 +66,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 								pattern: /^\$\(?|\)$/,
 								alias: 'punctuation'
 							},
-							rest: Prism.languages.vala
+							rest: vala
 						}
 					},
 					'string': /[\s\S]+/
@@ -73,7 +74,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		});
 
-		Prism.languages.insertBefore('vala', 'keyword', {
+		insertBefore(vala, 'keyword', {
 			'regex': {
 				pattern: /\/(?:\[(?:[^\]\\\r\n]|\\.)*\]|\\.|[^/\\\[\r\n])+\/[imsx]{0,4}(?=\s*(?:$|[\r\n,.;})\]]))/,
 				greedy: true,
@@ -89,5 +90,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				}
 			}
 		});
+
+		return vala;
 	}
 });

@@ -1,10 +1,13 @@
+import { insertBefore } from '../shared/language-util.js';
 import markup from './prism-markup.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'wiki',
 	require: markup,
 	grammar({ extend, getLanguage }) {
-		Prism.languages.wiki = extend('markup', {
+		const markup = getLanguage('markup');
+
+		const wiki = extend('markup', {
 			'block-comment': {
 				pattern: /(^|[^\\])\/\*[\s\S]*?\*\//,
 				lookbehind: true,
@@ -68,23 +71,25 @@ export default /** @type {import("../types").LanguageProto} */ ({
 						pattern: /\|$/,
 						alias: 'punctuation'
 					},
-					rest: Prism.languages.markup['tag'].inside
+					rest: markup['tag'].inside
 				}
 			},
 			'punctuation': /^(?:\{\||\|\}|\|-|[*#:;!|])|\|\||!!/m
 		});
 
-		Prism.languages.insertBefore('wiki', 'tag', {
+		insertBefore(wiki, 'tag', {
 			// Prevent highlighting inside <nowiki>, <source> and <pre> tags
 			'nowiki': {
 				pattern: /<(nowiki|pre|source)\b[^>]*>[\s\S]*?<\/\1>/i,
 				inside: {
 					'tag': {
 						pattern: /<(?:nowiki|pre|source)\b[^>]*>|<\/(?:nowiki|pre|source)>/i,
-						inside: Prism.languages.markup['tag'].inside
+						inside: markup['tag'].inside
 					}
 				}
 			}
 		});
+
+		return wiki;
 	}
 });

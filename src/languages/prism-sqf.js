@@ -1,10 +1,11 @@
+import { insertBefore } from '../shared/language-util.js';
 import clike from './prism-clike.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'sqf',
 	require: clike,
-	grammar({ extend, getLanguage }) {
-		Prism.languages.sqf = extend('clike', {
+	grammar({ extend }) {
+		const sqf = extend('clike', {
 			'string': {
 				pattern: /"(?:(?:"")?[^"])*"(?!")|'(?:[^'])*'/,
 				greedy: true
@@ -21,7 +22,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'constant': /\bDIK(?:_[a-z\d]+)+\b/i
 		});
 
-		Prism.languages.insertBefore('sqf', 'string', {
+		insertBefore(sqf, 'string', {
 			'macro': {
 				pattern: /(^[ \t]*)#[a-z](?:[^\r\n\\]|\\(?:\r\n|[\s\S]))*/im,
 				lookbehind: true,
@@ -32,11 +33,13 @@ export default /** @type {import("../types").LanguageProto} */ ({
 						pattern: /#[a-z]+\b/i,
 						alias: 'keyword'
 					},
-					'comment': Prism.languages.sqf.comment
+					'comment': sqf.comment
 				}
 			}
 		});
 
-		delete Prism.languages.sqf['class-name'];
+		delete sqf['class-name'];
+
+		return sqf;
 	}
 });

@@ -1,3 +1,5 @@
+import { insertBefore } from '../shared/language-util';
+
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'rescript',
 	alias: 'res',
@@ -36,7 +38,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'punctuation': /[(){}[\],;.]/
 		};
 
-		Prism.languages.insertBefore('rescript', 'string', {
+		insertBefore(rescript, 'string', {
 			'template-string': {
 				pattern: /`(?:\\[\s\S]|\$\{(?:[^{}]|\{(?:[^{}]|\{[^}]*\})*\})+\}|(?!\$\{)[^\\`])*`/,
 				greedy: true,

@@ -3,10 +3,10 @@ import json from './prism-json.js';
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'json5',
 	require: json,
-	grammar({ extend, getLanguage }) {
+	grammar({ extend }) {
 		let string = /("|')(?:\\(?:\r\n?|\n|.)|(?!\1)[^\\\r\n])*\1/;
 
-		Prism.languages.json5 = extend('json', {
+		return extend('json', {
 			'property': [
 				{
 					pattern: RegExp(string.source + '(?=\\s*:)'),

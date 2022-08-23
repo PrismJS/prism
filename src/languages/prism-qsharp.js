@@ -1,10 +1,11 @@
+import { insertBefore } from '../shared/language-util.js';
 import clike from './prism-clike.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'qsharp',
 	require: clike,
 	alias: 'qs',
-	grammar({ extend, getLanguage }) {
+	grammar({ extend }) {
 		/**
 		 * Replaces all placeholders "<<n>>" of given pattern with the n-th replacement (zero based).
 		 *
@@ -70,7 +71,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		// strings
 		let regularString = /"(?:\\.|[^\\"])*"/.source;
 
-		Prism.languages.qsharp = extend('clike', {
+		const qsharp = extend('clike', {
 			'comment': /\/\/.*/,
 			'string': [
 				{
@@ -100,7 +101,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'punctuation': /::|[{}[\];(),.:]/
 		});
 
-		Prism.languages.insertBefore('qsharp', 'number', {
+		insertBefore(qsharp, 'number', {
 			'range': {
 				pattern: /\.\./,
 				alias: 'operator'
@@ -110,7 +111,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		// single line
 		let interpolationExpr = nested(replace(/\{(?:[^"{}]|<<0>>|<<self>>)*\}/.source, [regularString]), 2);
 
-		Prism.languages.insertBefore('qsharp', 'string', {
+		insertBefore(qsharp, 'string', {
 			'interpolation-string': {
 				pattern: re(/\$"(?:\\.|<<0>>|[^\\"{])*"/.source, [interpolationExpr]),
 				greedy: true,
@@ -131,5 +132,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				}
 			}
 		});
+
+		return qsharp;
 	}
 });

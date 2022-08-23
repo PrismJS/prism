@@ -3,8 +3,8 @@ import basic from './prism-basic.js';
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'vbnet',
 	require: basic,
-	grammar({ extend, getLanguage }) {
-		Prism.languages.vbnet = extend('basic', {
+	grammar({ extend }) {
+		return extend('basic', {
 			'comment': [
 				{
 					pattern: /(?:!|REM\b).+/i,

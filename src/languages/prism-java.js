@@ -1,3 +1,4 @@
+import { insertBefore } from '../shared/language-util.js';
 import clike from './prism-clike.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
@@ -24,7 +25,9 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		};
 
-		Prism.languages.java = extend('clike', {
+		const clike = getLanguage('clike');
+
+		const java = extend('clike', {
 			'string': {
 				pattern: /(^|[^\\])"(?:\\.|[^"\\\r\n])*"/,
 				lookbehind: true,
@@ -49,7 +52,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			],
 			'keyword': keywords,
 			'function': [
-				Prism.languages.clike.function,
+				clike.function,
 				{
 					pattern: /(::\s*)[a-z_]\w*/,
 					lookbehind: true
@@ -63,7 +66,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'constant': /\b[A-Z][A-Z_\d]+\b/
 		});
 
-		Prism.languages.insertBefore('java', 'string', {
+		insertBefore(java, 'string', {
 			'triple-quoted-string': {
 				// http://openjdk.java.net/jeps/355#Description
 				pattern: /"""[ \t]*[\r\n](?:(?:"|"")?(?:\\.|[^"\\]))*"""/,
@@ -76,7 +79,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		});
 
-		Prism.languages.insertBefore('java', 'class-name', {
+		insertBefore(java, 'class-name', {
 			'annotation': {
 				pattern: /(^|[^.])@\w+(?:\s*\.\s*\w+)*/,
 				lookbehind: true,
@@ -125,5 +128,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				}
 			}
 		});
+
+		return java;
 	}
 });

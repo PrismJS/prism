@@ -1,9 +1,10 @@
+import { insertBefore } from '../shared/language-util.js';
 import javascript from './prism-javascript.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'mongodb',
 	require: javascript,
-	grammar({ extend, getLanguage }) {
+	grammar({ extend }) {
 		let operators = [
 			// query and projection
 			'$eq', '$gt', '$gte', '$in', '$lt', '$lte', '$ne', '$nin', '$and', '$not', '$nor', '$or',
@@ -66,9 +67,9 @@ export default /** @type {import("../types").LanguageProto} */ ({
 
 		let operatorsSource = '(?:' + operators.join('|') + ')\\b';
 
-		Prism.languages.mongodb = extend('javascript', {});
+		const mongodb = extend('javascript', {});
 
-		Prism.languages.insertBefore('mongodb', 'string', {
+		insertBefore(mongodb, 'string', {
 			'property': {
 				pattern: /(?:(["'])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1|(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*)(?=\s*:)/,
 				greedy: true,
@@ -78,7 +79,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		});
 
-		Prism.languages.mongodb.string.inside = {
+		mongodb.string.inside = {
 			url: {
 				// url pattern
 				pattern: /https?:\/\/[-\w@:%.+~#=]{1,256}\.[a-z0-9()]{1,6}\b[-\w()@:%+.~#?&/=]*/i,
@@ -91,11 +92,13 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		};
 
-		Prism.languages.insertBefore('mongodb', 'constant', {
+		insertBefore(mongodb, 'constant', {
 			'builtin': {
 				pattern: RegExp('\\b(?:' + builtinFunctions.join('|') + ')\\b'),
 				alias: 'keyword'
 			}
 		});
+
+		return mongodb;
 	}
 });

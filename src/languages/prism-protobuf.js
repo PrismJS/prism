@@ -1,12 +1,13 @@
+import { insertBefore } from '../shared/language-util.js';
 import clike from './prism-clike.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'protobuf',
 	require: clike,
-	grammar({ extend, getLanguage }) {
+	grammar({ extend }) {
 		let builtinTypes = /\b(?:bool|bytes|double|s?fixed(?:32|64)|float|[su]?int(?:32|64)|string)\b/;
 
-		Prism.languages.protobuf = extend('clike', {
+		const protobuf = extend('clike', {
 			'class-name': [
 				{
 					pattern: /(\b(?:enum|extend|message|service)\s+)[A-Za-z_]\w*(?=\s*\{)/,
@@ -21,7 +22,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'function': /\b[a-z_]\w*(?=\s*\()/i
 		});
 
-		Prism.languages.insertBefore('protobuf', 'operator', {
+		insertBefore(protobuf, 'operator', {
 			'map': {
 				pattern: /\bmap<\s*[\w.]+\s*,\s*[\w.]+\s*>(?=\s+[a-z_]\w*\s*[=;])/i,
 				alias: 'class-name',
@@ -43,5 +44,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				lookbehind: true
 			}
 		});
+
+		return protobuf;
 	}
 });

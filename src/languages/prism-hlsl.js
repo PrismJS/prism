@@ -4,14 +4,15 @@ export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'hlsl',
 	require: c,
 	grammar({ extend, getLanguage }) {
-		Prism.languages.hlsl = extend('c', {
+		const c = getLanguage('c');
+		return extend('c', {
 
 			// Regarding keywords and class names:
 			// The list of all keywords was split into 'keyword' and 'class-name' tokens based on whether they are capitalized.
 			// https://docs.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-appendix-keywords
 			// https://docs.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-appendix-reserved-words
 			'class-name': [
-				Prism.languages.c['class-name'],
+				c['class-name'],
 				/\b(?:AppendStructuredBuffer|BlendState|Buffer|ByteAddressBuffer|CompileShader|ComputeShader|ConsumeStructuredBuffer|DepthStencilState|DepthStencilView|DomainShader|GeometryShader|Hullshader|InputPatch|LineStream|OutputPatch|PixelShader|PointStream|RWBuffer|RWByteAddressBuffer|RWStructuredBuffer|RWTexture(?:1D|1DArray|2D|2DArray|3D)|RasterizerState|RenderTargetView|SamplerComparisonState|SamplerState|StructuredBuffer|Texture(?:1D|1DArray|2D|2DArray|2DMS|2DMSArray|3D|Cube|CubeArray)|TriangleStream|VertexShader)\b/
 			],
 			'keyword': [

@@ -5,7 +5,9 @@ export default /** @type {import("../types").LanguageProto} */ ({
 	require: haskell,
 	alias: 'purs',
 	grammar({ extend, getLanguage }) {
-		Prism.languages.purescript = extend('haskell', {
+		const haskell = getLanguage('haskell');
+
+		return extend('haskell', {
 			'keyword': /\b(?:ado|case|class|data|derive|do|else|forall|if|in|infixl|infixr|instance|let|module|newtype|of|primitive|then|type|where)\b|∀/,
 
 			'import-statement': {
@@ -25,9 +27,9 @@ export default /** @type {import("../types").LanguageProto} */ ({
 
 			'operator': [
 				// Infix operators
-				Prism.languages.haskell.operator[0],
+				haskell.operator[0],
 				// ASCII operators
-				Prism.languages.haskell.operator[2],
+				haskell.operator[2],
 				// All UTF16 Unicode operator symbols
 				// This regex is equivalent to /(?=[\x80-\uFFFF])[\p{gc=Math_Symbol}\p{gc=Currency_Symbol}\p{Modifier_Symbol}\p{Other_Symbol}]/u
 				// See https://github.com/PrismJS/prism/issues/3006 for more details.

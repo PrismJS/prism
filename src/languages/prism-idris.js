@@ -1,11 +1,12 @@
+import { insertBefore } from '../shared/language-util.js';
 import haskell from './prism-haskell.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'idris',
 	require: haskell,
 	alias: 'idr',
-	grammar({ extend, getLanguage }) {
-		Prism.languages.idris = extend('haskell', {
+	grammar({ extend }) {
+		const idris = extend('haskell', {
 			'comment': {
 				pattern: /(?:(?:--|\|\|\|).*$|\{-[\s\S]*?-\})/m,
 			},
@@ -13,7 +14,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'builtin': undefined
 		});
 
-		Prism.languages.insertBefore('idris', 'keyword', {
+		insertBefore(idris, 'keyword', {
 			'import-statement': {
 				pattern: /(^\s*import\s+)(?:[A-Z][\w']*)(?:\.[A-Z][\w']*)*/m,
 				lookbehind: true,
@@ -22,5 +23,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				}
 			}
 		});
+
+		return idris;
 	}
 });

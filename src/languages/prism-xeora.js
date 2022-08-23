@@ -1,11 +1,12 @@
+import { insertBefore } from '../shared/language-util.js';
 import markup from './prism-markup.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'xeora',
 	require: markup,
 	alias: 'xeoracube',
-	grammar({ extend, getLanguage }) {
-		Prism.languages.xeora = extend('markup', {
+	grammar({ extend }) {
+		const xeora = extend('markup', {
 			'constant': {
 				pattern: /\$(?:DomainContents|PageRenderDuration)\$/,
 				inside: {
@@ -111,8 +112,10 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		});
 
-		Prism.languages.insertBefore('inside', 'punctuation', {
-			'variable': Prism.languages.xeora['function-inline'].inside['variable']
-		}, Prism.languages.xeora['function-block']);
+		insertBefore(xeora['function-block'].inside, 'punctuation', {
+			'variable': xeora['function-inline'].inside['variable']
+		});
+
+		return xeora;
 	}
 });

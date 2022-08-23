@@ -1,11 +1,12 @@
+import { insertBefore } from '../shared/language-util.js';
 import clike from './prism-clike.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'solidity',
 	require: clike,
 	alias: 'sol',
-	grammar({ extend, getLanguage }) {
-		Prism.languages.solidity = extend('clike', {
+	grammar({ extend }) {
+		const solidity = extend('clike', {
 			'class-name': {
 				pattern: /(\b(?:contract|enum|interface|library|new|struct|using)\s+)(?!\d)[\w$]+/,
 				lookbehind: true
@@ -14,16 +15,18 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'operator': /=>|->|:=|=:|\*\*|\+\+|--|\|\||&&|<<=?|>>=?|[-+*/%^&|<>!=]=?|[~?]/
 		});
 
-		Prism.languages.insertBefore('solidity', 'keyword', {
+		insertBefore(solidity, 'keyword', {
 			'builtin': /\b(?:address|bool|byte|u?int(?:8|16|24|32|40|48|56|64|72|80|88|96|104|112|120|128|136|144|152|160|168|176|184|192|200|208|216|224|232|240|248|256)?|string|bytes(?:[1-9]|[12]\d|3[0-2])?)\b/
 		});
 
-		Prism.languages.insertBefore('solidity', 'number', {
+		insertBefore(solidity, 'number', {
 			'version': {
 				pattern: /([<>]=?|\^)\d+\.\d+\.\d+\b/,
 				lookbehind: true,
 				alias: 'number',
 			}
 		});
+
+		return solidity;
 	}
 });

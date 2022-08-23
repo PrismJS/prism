@@ -1,11 +1,12 @@
+import { insertBefore } from '../shared/language-util.js';
 import css from './prism-css.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'sass',
 	require: css,
 	optional: 'css-extras',
-	grammar({ extend, getLanguage }) {
-		Prism.languages.sass = extend('css', {
+	grammar({ extend }) {
+		const sass = extend('css', {
 			// Sass comments don't need to be closed, only indented
 			'comment': {
 				pattern: /^([ \t]*)\/[\/*].*(?:(?:\r?\n|\r)\1[ \t].+)*/m,
@@ -14,7 +15,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		});
 
-		Prism.languages.insertBefore('sass', 'atrule', {
+		insertBefore(sass, 'atrule', {
 			// We want to consume the whole line
 			'atrule-line': {
 				// Includes support for = and + shortcuts
@@ -25,7 +26,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				}
 			}
 		});
-		delete Prism.languages.sass.atrule;
+		delete sass.atrule;
 
 
 		let variable = /\$[-\w]+|#\{\$[-\w]+\}/;
@@ -37,7 +38,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		];
 
-		Prism.languages.insertBefore('sass', 'property', {
+		insertBefore(sass, 'property', {
 			// We want to consume the whole line
 			'variable-line': {
 				pattern: /^[ \t]*\$.+/m,
@@ -63,21 +64,23 @@ export default /** @type {import("../types").LanguageProto} */ ({
 					'punctuation': /:/,
 					'variable': variable,
 					'operator': operator,
-					'important': Prism.languages.sass.important
+					'important': sass.important
 				}
 			}
 		});
-		delete Prism.languages.sass.property;
-		delete Prism.languages.sass.important;
+		delete sass.property;
+		delete sass.important;
 
 		// Now that whole lines for other patterns are consumed,
 		// what's left should be selectors
-		Prism.languages.insertBefore('sass', 'punctuation', {
+		insertBefore(sass, 'punctuation', {
 			'selector': {
 				pattern: /^([ \t]*)\S(?:,[^,\r\n]+|[^,\r\n]*)(?:,[^,\r\n]+)*(?:,(?:\r?\n|\r)\1[ \t]+\S(?:,[^,\r\n]+|[^,\r\n]*)(?:,[^,\r\n]+)*)*/m,
 				lookbehind: true,
 				greedy: true
 			}
 		});
+
+		return sass;
 	}
 });

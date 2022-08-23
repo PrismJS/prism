@@ -3,8 +3,8 @@ import clike from './prism-clike.js';
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'qore',
 	require: clike,
-	grammar({ extend, getLanguage }) {
-		Prism.languages.qore = extend('clike', {
+	grammar({ extend }) {
+		return extend('clike', {
 			'comment': {
 				pattern: /(^|[^\\])(?:\/\*[\s\S]*?\*\/|(?:\/\/|#).*)/,
 				lookbehind: true

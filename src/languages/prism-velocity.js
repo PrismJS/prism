@@ -1,12 +1,13 @@
+import { insertBefore } from '../shared/language-util.js';
 import markup from './prism-markup.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'velocity',
 	require: markup,
-	grammar({ extend, getLanguage }) {
-		Prism.languages.velocity = extend('markup', {});
+	grammar({ extend }) {
+		const velocity = extend('markup', {});
 
-		let velocity = {
+		let vel = {
 			'variable': {
 				pattern: /(^|[^\\](?:\\\\)*)\$!?(?:[a-z][\w-]*(?:\([^)]*\))?(?:\.[a-z][\w-]*(?:\([^)]*\))?|\[[^\]]+\])*|\{[^}]+\})/i,
 				lookbehind: true,
@@ -22,18 +23,18 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'punctuation': /[(){}[\]:,.]/
 		};
 
-		velocity.variable.inside = {
-			'string': velocity['string'],
+		vel.variable.inside = {
+			'string': vel['string'],
 			'function': {
 				pattern: /([^\w-])[a-z][\w-]*(?=\()/,
 				lookbehind: true
 			},
-			'number': velocity['number'],
-			'boolean': velocity['boolean'],
-			'punctuation': velocity['punctuation']
+			'number': vel['number'],
+			'boolean': vel['boolean'],
+			'punctuation': vel['punctuation']
 		};
 
-		Prism.languages.insertBefore('velocity', 'comment', {
+		insertBefore(velocity, 'comment', {
 			'unparsed': {
 				pattern: /(^|[^\\])#\[\[[\s\S]*?\]\]#/,
 				lookbehind: true,
@@ -66,12 +67,14 @@ export default /** @type {import("../types").LanguageProto} */ ({
 							'punctuation': /[{}]/
 						}
 					},
-					rest: velocity
+					rest: vel
 				}
 			},
-			'variable': velocity['variable']
+			'variable': vel['variable']
 		});
 
-		Prism.languages.velocity['tag'].inside['attr-value'].inside.rest = Prism.languages.velocity;
+		velocity['tag'].inside['attr-value'].inside.rest = velocity;
+
+		return velocity;
 	}
 });

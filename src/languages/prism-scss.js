@@ -1,11 +1,12 @@
+import { insertBefore } from '../shared/language-util.js';
 import css from './prism-css.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'scss',
 	require: css,
 	optional: 'css-extras',
-	grammar({ extend, getLanguage }) {
-		Prism.languages.scss = extend('css', {
+	grammar({ extend }) {
+		const scss = extend('css', {
 			'comment': {
 				pattern: /(^|[^\\])(?:\/\*[\s\S]*?\*\/|\/\/.*)/,
 				lookbehind: true
@@ -46,7 +47,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		});
 
-		Prism.languages.insertBefore('scss', 'atrule', {
+		insertBefore(scss, 'atrule', {
 			'keyword': [
 				/@(?:content|debug|each|else(?: if)?|extend|for|forward|function|if|import|include|mixin|return|use|warn|while)\b/i,
 				{
@@ -56,12 +57,12 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			]
 		});
 
-		Prism.languages.insertBefore('scss', 'important', {
+		insertBefore(scss, 'important', {
 			// var and interpolated vars
 			'variable': /\$[-\w]+|#\{\$[-\w]+\}/
 		});
 
-		Prism.languages.insertBefore('scss', 'function', {
+		insertBefore(scss, 'function', {
 			'module-modifier': {
 				pattern: /\b(?:as|hide|show|with)\b/i,
 				alias: 'keyword'
@@ -85,6 +86,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		});
 
-		Prism.languages.scss['atrule'].inside.rest = Prism.languages.scss;
+		scss['atrule'].inside.rest = scss;
+
+		return scss;
 	}
 });

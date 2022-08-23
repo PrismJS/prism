@@ -1,10 +1,11 @@
+import { insertBefore } from '../shared/language-util.js';
 import clike from './prism-clike.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'v',
 	require: clike,
 	grammar({ extend }) {
-		Prism.languages.v = extend('clike', {
+		const v = extend('clike', {
 			'string': {
 				pattern: /r?(["'])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,
 				alias: 'quoted-string',
@@ -40,14 +41,14 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'builtin': /\b(?:any(?:_float|_int)?|bool|byte(?:ptr)?|charptr|f(?:32|64)|i(?:8|16|64|128|nt)|rune|size_t|string|u(?:16|32|64|128)|voidptr)\b/
 		});
 
-		Prism.languages.insertBefore('v', 'string', {
+		insertBefore(v, 'string', {
 			'char': {
 				pattern: /`(?:\\`|\\?[^`]{1,2})`/, // using {1,2} instead of `u` flag for compatibility
 				alias: 'rune'
 			}
 		});
 
-		Prism.languages.insertBefore('v', 'operator', {
+		insertBefore(v, 'operator', {
 			'attribute': {
 				pattern: /(^[\t ]*)\[(?:deprecated|direct_array_access|flag|inline|live|ref_only|typedef|unsafe_fn|windows_stdcall)\]/m,
 				lookbehind: true,
@@ -66,7 +67,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		});
 
-		Prism.languages.insertBefore('v', 'function', {
+		insertBefore(v, 'function', {
 			'generic-function': {
 				// e.g. foo<T>( ...
 				pattern: /\b\w+\s*<\w+>(?=\()/,
@@ -74,10 +75,12 @@ export default /** @type {import("../types").LanguageProto} */ ({
 					'function': /^\w+/,
 					'generic': {
 						pattern: /<\w+>/,
-						inside: Prism.languages.v.generic.inside
+						inside: v.generic.inside
 					}
 				}
 			}
 		});
+
+		return v;
 	}
 });

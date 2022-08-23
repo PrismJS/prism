@@ -1,12 +1,15 @@
+import { insertBefore } from '../shared/language-util.js';
 import clike from './prism-clike.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'squirrel',
 	require: clike,
 	grammar({ extend, getLanguage }) {
-		Prism.languages.squirrel = extend('clike', {
+		const clike = getLanguage('clike');
+
+		const squirrel = extend('clike', {
 			'comment': [
-				Prism.languages.clike['comment'][0],
+				clike['comment'][0],
 				{
 					pattern: /(^|[^\\:])(?:\/\/|#).*/,
 					lookbehind: true,
@@ -33,7 +36,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'punctuation': /[(){}\[\],;.]/
 		});
 
-		Prism.languages.insertBefore('squirrel', 'string', {
+		insertBefore(squirrel, 'string', {
 			'char': {
 				pattern: /(^|[^\\"'])'(?:[^\\']|\\(?:[xuU][0-9a-fA-F]{0,8}|[\s\S]))'/,
 				lookbehind: true,
@@ -41,7 +44,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		});
 
-		Prism.languages.insertBefore('squirrel', 'operator', {
+		insertBefore(squirrel, 'operator', {
 			'attribute-punctuation': {
 				pattern: /<\/|\/>/,
 				alias: 'important'
@@ -51,5 +54,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				alias: 'operator'
 			}
 		});
+
+		return squirrel;
 	}
 });

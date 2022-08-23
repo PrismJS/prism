@@ -1,10 +1,11 @@
+import { insertBefore } from '../shared/language-util.js';
 import markup from './prism-markup.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'parser',
 	require: markup,
-	grammar({ extend, getLanguage }) {
-		let parser = Prism.languages.parser = extend('markup', {
+	grammar({ extend }) {
+		const parser = extend('markup', {
 			'keyword': {
 				pattern: /(^|[^^])(?:\^(?:case|eval|for|if|switch|throw)\b|@(?:BASE|CLASS|GET(?:_DEFAULT)?|OPTIONS|SET_DEFAULT|USE)\b)/,
 				lookbehind: true
@@ -34,7 +35,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'punctuation': /[\[\](){};]/
 		});
 
-		parser = Prism.languages.insertBefore('parser', 'keyword', {
+		insertBefore(parser, 'keyword', {
 			'parser-comment': {
 				pattern: /(\s)#.*/,
 				lookbehind: true,
@@ -62,7 +63,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		});
 
-		Prism.languages.insertBefore('inside', 'punctuation', {
+		insertBefore(parser['tag'].inside['attr-value'].inside, 'punctuation', {
 			'expression': parser.expression,
 			'keyword': parser.keyword,
 			'variable': parser.variable,
@@ -72,6 +73,6 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				pattern: parser.punctuation,
 				alias: 'punctuation'
 			}
-		}, parser['tag'].inside['attr-value']);
+		});
 	}
 });

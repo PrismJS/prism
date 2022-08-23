@@ -1,10 +1,11 @@
+import { insertBefore } from '../shared/language-util.js';
 import clike from './prism-clike.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'jolie',
 	require: clike,
-	grammar({ extend, getLanguage }) {
-		Prism.languages.jolie = extend('clike', {
+	grammar({ extend }) {
+		const jolie = extend('clike', {
 			'string': {
 				pattern: /(^|[^\\])"(?:\\[\s\S]|[^"\\])*"/,
 				lookbehind: true,
@@ -22,7 +23,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'builtin': /\b(?:Byte|any|bool|char|double|enum|float|int|length|long|ranges|regex|string|undefined|void)\b/
 		});
 
-		Prism.languages.insertBefore('jolie', 'keyword', {
+		insertBefore(jolie, 'keyword', {
 			'aggregates': {
 				pattern: /(\bAggregates\s*:\s*)(?:\w+(?:\s+with\s+\w+)?\s*,\s*)*\w+(?:\s+with\s+\w+)?/,
 				lookbehind: true,
@@ -45,5 +46,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				pattern: /\b(?:Aggregates|[Ii]nterfaces|Java|Javascript|Jolie|[Ll]ocation|OneWay|[Pp]rotocol|Redirects|RequestResponse)\b(?=[ \t]*:)/
 			}
 		});
+
+		return jolie;
 	}
 });

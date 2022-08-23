@@ -1,10 +1,11 @@
+import { insertBefore } from '../shared/language-util.js';
 import css from './prism-css.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'less',
 	require: css,
 	optional: 'css-extras',
-	grammar({ extend, getLanguage }) {
+	grammar({ extend }) {
 		/* FIXME :
 		 :extend() is not handled specifically : its highlighting is buggy.
 		 Mixin usage must be inside a ruleset to be highlighted.
@@ -13,7 +14,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		 A comment before a mixin usage prevents the latter to be properly highlighted.
 		 */
 
-		Prism.languages.less = extend('css', {
+		const less = extend('css', {
 			'comment': [
 				/\/\*[\s\S]*?\*\//,
 				{
@@ -40,7 +41,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'operator': /[+\-*\/]/
 		});
 
-		Prism.languages.insertBefore('less', 'property', {
+		insertBefore(less, 'property', {
 			'variable': [
 				// Variable declaration (the colon must be consumed!)
 				{
@@ -59,5 +60,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				alias: 'function'
 			}
 		});
+
+		return less;
 	}
 });

@@ -1,10 +1,11 @@
+import { insertBefore } from '../shared/language-util.js';
 import java from './prism-java.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'scala',
 	require: java,
-	grammar({ extend, getLanguage }) {
-		Prism.languages.scala = extend('java', {
+	grammar({ extend }) {
+		const scala = extend('java', {
 			'triple-quoted-string': {
 				pattern: /"""[\s\S]*?"""/,
 				greedy: true,
@@ -20,7 +21,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'symbol': /'[^\d\s\\]\w*/
 		});
 
-		Prism.languages.insertBefore('scala', 'triple-quoted-string', {
+		insertBefore(scala, 'triple-quoted-string', {
 			'string-interpolation': {
 				pattern: /\b[a-z]\w*(?:"""(?:[^$]|\$(?:[^{]|\{(?:[^{}]|\{[^{}]*\})*\}))*?"""|"(?:[^$"\r\n]|\$(?:[^{]|\{(?:[^{}]|\{[^{}]*\})*\}))*")/i,
 				greedy: true,
@@ -51,8 +52,10 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		});
 
-		delete Prism.languages.scala['class-name'];
-		delete Prism.languages.scala['function'];
-		delete Prism.languages.scala['constant'];
+		delete scala['class-name'];
+		delete scala['function'];
+		delete scala['constant'];
+
+		return scala;
 	}
 });

@@ -1,17 +1,18 @@
+import { insertBefore } from '../shared/language-util.js';
 import clike from './prism-clike.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'ruby',
 	require: clike,
 	alias: 'rb',
-	grammar({ extend, getLanguage }) {
+	grammar({ extend }) {
 		/**
 		 * Original by Samuel Flores
 		 *
 		 * Adds the following new token classes:
 		 *     constant, builtin, variable, symbol, regex
 		 */
-		Prism.languages.ruby = extend('clike', {
+		const ruby = extend('clike', {
 			'comment': {
 				pattern: /#.*|^=begin\s[\s\S]*?^=end/m,
 				greedy: true
@@ -28,7 +29,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'punctuation': /[(){}[\].,;]/,
 		});
 
-		Prism.languages.insertBefore('ruby', 'operator', {
+		insertBefore(ruby, 'operator', {
 			'double-colon': {
 				pattern: /::/,
 				alias: 'punctuation'
@@ -51,7 +52,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		};
 
-		delete Prism.languages.ruby.function;
+		delete ruby.function;
 
 		let percentExpression = '(?:' + [
 			/([^a-zA-Z0-9\s{(\[<=])(?:(?!\1)[^\\]|\\[\s\S])*\1/.source,
@@ -63,7 +64,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 
 		let symbolName = /(?:"(?:\\.|[^"\\\r\n])*"|(?:\b[a-zA-Z_]\w*|[^\s\0-\x7F]+)[?!]?|\$.)/.source;
 
-		Prism.languages.insertBefore('ruby', 'keyword', {
+		insertBefore(ruby, 'keyword', {
 			'regex-literal': [
 				{
 					pattern: RegExp(/%r/.source + percentExpression + /[egimnosux]{0,6}/.source),
@@ -108,7 +109,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		});
 
-		Prism.languages.insertBefore('ruby', 'string', {
+		insertBefore(ruby, 'string', {
 			'string-literal': [
 				{
 					pattern: RegExp(/%[qQiIwWs]?/.source + percentExpression),
@@ -184,11 +185,13 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			]
 		});
 
-		delete Prism.languages.ruby.string;
+		delete ruby.string;
 
-		Prism.languages.insertBefore('ruby', 'number', {
+		insertBefore(ruby, 'number', {
 			'builtin': /\b(?:Array|Bignum|Binding|Class|Continuation|Dir|Exception|FalseClass|File|Fixnum|Float|Hash|IO|Integer|MatchData|Method|Module|NilClass|Numeric|Object|Proc|Range|Regexp|Stat|String|Struct|Symbol|TMS|Thread|ThreadGroup|Time|TrueClass)\b/,
 			'constant': /\b[A-Z][A-Z0-9_]*(?:[?!]|\b)/
 		});
+
+		return ruby;
 	}
 });

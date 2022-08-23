@@ -1,10 +1,11 @@
+import { insertBefore } from '../shared/language-util.js';
 import clike from './prism-clike.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'purebasic',
 	require: clike,
 	alias: 'pbfasm',
-	grammar({ extend, getLanguage }) {
+	grammar({ extend }) {
 		/*
 		Original Code by Bas Groothedde
 		!!MANY THANKS!! I never would have made this, regex and me will never be best friends ;)
@@ -14,7 +15,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 
 
 		// PureBasic support, steal stuff from ansi-c
-		Prism.languages.purebasic = extend('clike', {
+		const purebasic = extend('clike', {
 			'comment': /;.*/,
 			'keyword': /\b(?:align|and|as|break|calldebugger|case|compilercase|compilerdefault|compilerelse|compilerelseif|compilerendif|compilerendselect|compilererror|compilerif|compilerselect|continue|data|datasection|debug|debuglevel|declare|declarec|declarecdll|declaredll|declaremodule|default|define|dim|disableasm|disabledebugger|disableexplicit|else|elseif|enableasm|enabledebugger|enableexplicit|end|enddatasection|enddeclaremodule|endenumeration|endif|endimport|endinterface|endmacro|endmodule|endprocedure|endselect|endstructure|endstructureunion|endwith|enumeration|extends|fakereturn|for|foreach|forever|global|gosub|goto|if|import|importc|includebinary|includefile|includepath|interface|macro|module|newlist|newmap|next|not|or|procedure|procedurec|procedurecdll|proceduredll|procedurereturn|protected|prototype|prototypec|read|redim|repeat|restore|return|runtime|select|shared|static|step|structure|structureunion|swap|threaded|to|until|wend|while|with|xincludefile|xor)\b/i,
 			'function': /\b\w+(?:\.\w+)?\s*(?=\()/,
@@ -22,7 +23,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'operator': /(?:@\*?|\?|\*)\w+\$?|-[>-]?|\+\+?|!=?|<<?=?|>>?=?|==?|&&?|\|?\||[~^%?*/@]/
 		});
 
-		Prism.languages.insertBefore('purebasic', 'keyword', {
+		insertBefore(purebasic, 'keyword', {
 			'tag': /#\w+\$?/,
 			'asm': {
 				pattern: /(^[\t ]*)!.*/m,
@@ -71,7 +72,9 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		});
 
-		delete Prism.languages.purebasic['class-name'];
-		delete Prism.languages.purebasic['boolean'];
+		delete purebasic['class-name'];
+		delete purebasic['boolean'];
+
+		return purebasic;
 	}
 });
