@@ -1,10 +1,11 @@
+import { insertBefore } from '../shared/language-util.js';
 import clike from './prism-clike.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'c',
 	require: clike,
-	grammar({ extend, getLanguage }) {
-		Prism.languages.c = extend('clike', {
+	grammar({ extend }) {
+		const c = extend('clike', {
 			'comment': {
 				pattern: /\/\/(?:[^\r\n\\]|\\(?:\r\n?|\n|(?![\r\n])))*|\/\*[\s\S]*?(?:\*\/|$)/,
 				greedy: true
@@ -24,7 +25,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'operator': />>=?|<<=?|->|([-+&|:])\1|[?:~]|[-+*/%&|^!=<>]=?/
 		});
 
-		Prism.languages.insertBefore('c', 'string', {
+		insertBefore(c, 'string', {
 			'char': {
 				// https://en.cppreference.com/w/c/language/character_constant
 				pattern: /'(?:\\(?:\r\n|[\s\S])|[^'\\\r\n]){0,32}'/,
@@ -32,7 +33,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		});
 
-		Prism.languages.insertBefore('c', 'string', {
+		insertBefore(c, 'string', {
 			'macro': {
 				// allow for multiline macro definitions
 				// spaces after the # character compile fine with gcc
@@ -47,10 +48,10 @@ export default /** @type {import("../types").LanguageProto} */ ({
 							pattern: /^(#\s*include\s*)<[^>]+>/,
 							lookbehind: true
 						},
-						Prism.languages.c['string']
+						c['string']
 					],
-					'char': Prism.languages.c['char'],
-					'comment': Prism.languages.c['comment'],
+					'char': c['char'],
+					'comment': c['comment'],
 					'macro-name': [
 						{
 							pattern: /(^#\s*define\s+)\w+\b(?!\()/i,
@@ -72,17 +73,19 @@ export default /** @type {import("../types").LanguageProto} */ ({
 					'punctuation': /##|\\(?=[\r\n])/,
 					'expression': {
 						pattern: /\S[\s\S]*/,
-						inside: 'c'
+						inside: c
 					}
 				}
 			}
 		});
 
-		Prism.languages.insertBefore('c', 'function', {
+		insertBefore(c, 'function', {
 			// highlight predefined macros as constants
 			'constant': /\b(?:EOF|NULL|SEEK_CUR|SEEK_END|SEEK_SET|__DATE__|__FILE__|__LINE__|__TIMESTAMP__|__TIME__|__func__|stderr|stdin|stdout)\b/
 		});
 
-		delete Prism.languages.c['boolean'];
+		delete c['boolean'];
+
+		return c;
 	}
 });

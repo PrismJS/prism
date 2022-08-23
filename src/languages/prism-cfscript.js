@@ -1,12 +1,13 @@
+import { insertBefore } from '../shared/language-util.js';
 import clike from './prism-clike.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'cfscript',
 	require: clike,
 	alias: 'cfc',
-	grammar({ extend, getLanguage }) {
+	grammar({ extend }) {
 		// https://cfdocs.org/script
-		Prism.languages.cfscript = extend('clike', {
+		const cfscript = extend('clike', {
 			'comment': [
 				{
 					pattern: /(^|[^\\])\/\*[\s\S]*?(?:\*\/|$)/,
@@ -39,7 +40,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		});
 
-		Prism.languages.insertBefore('cfscript', 'keyword', {
+		insertBefore(cfscript, 'keyword', {
 			// This must be declared before keyword because we use "function" inside the lookahead
 			'function-variable': {
 				pattern: /[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*[=:]\s*(?:\bfunction\b|(?:\((?:[^()]|\([^()]*\))*\)|(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*)\s*=>))/,
@@ -47,6 +48,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		});
 
-		delete Prism.languages.cfscript['class-name'];
+		delete cfscript['class-name'];
+
+		return cfscript;
 	}
 });

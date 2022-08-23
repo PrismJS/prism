@@ -1,10 +1,11 @@
+import { insertBefore } from '../shared/language-util.js';
 import clike from './prism-clike.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'birb',
 	require: clike,
-	grammar({ extend, getLanguage }) {
-		Prism.languages.birb = extend('clike', {
+	grammar({ extend }) {
+		const birb = extend('clike', {
 			'string': {
 				pattern: /r?("|')(?:\\.|(?!\1)[^\\])*\1/,
 				greedy: true
@@ -20,12 +21,14 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'variable': /\b[a-z_]\w*\b/,
 		});
 
-		Prism.languages.insertBefore('birb', 'function', {
+		insertBefore(birb, 'function', {
 			'metadata': {
 				pattern: /<\w+>/,
 				greedy: true,
 				alias: 'symbol'
 			}
 		});
+
+		return birb;
 	}
 });

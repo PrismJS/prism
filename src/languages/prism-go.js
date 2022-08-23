@@ -1,10 +1,11 @@
+import { insertBefore } from '../shared/language-util.js';
 import clike from './prism-clike.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'go',
 	require: clike,
-	grammar({ extend, getLanguage }) {
-		Prism.languages.go = extend('clike', {
+	grammar({ extend }) {
+		const go = extend('clike', {
 			'string': {
 				pattern: /(^|[^\\])"(?:\\.|[^"\\\r\n])*"|`[^`]*`/,
 				lookbehind: true,
@@ -24,13 +25,15 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'builtin': /\b(?:append|bool|byte|cap|close|complex|complex(?:64|128)|copy|delete|error|float(?:32|64)|u?int(?:8|16|32|64)?|imag|len|make|new|panic|print(?:ln)?|real|recover|rune|string|uintptr)\b/
 		});
 
-		Prism.languages.insertBefore('go', 'string', {
+		insertBefore(go, 'string', {
 			'char': {
 				pattern: /'(?:\\.|[^'\\\r\n]){0,10}'/,
 				greedy: true
 			}
 		});
 
-		delete Prism.languages.go['class-name'];
+		delete go['class-name'];
+
+		return go;
 	}
 });

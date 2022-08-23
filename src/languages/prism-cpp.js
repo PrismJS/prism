@@ -1,13 +1,14 @@
+import { insertBefore } from '../shared/language-util.js';
 import c from './prism-c.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'cpp',
 	require: c,
-	grammar({ extend, getLanguage }) {
+	grammar({ extend }) {
 		let keyword = /\b(?:alignas|alignof|asm|auto|bool|break|case|catch|char|char16_t|char32_t|char8_t|class|co_await|co_return|co_yield|compl|concept|const|const_cast|consteval|constexpr|constinit|continue|decltype|default|delete|do|double|dynamic_cast|else|enum|explicit|export|extern|final|float|for|friend|goto|if|import|inline|int|int16_t|int32_t|int64_t|int8_t|long|module|mutable|namespace|new|noexcept|nullptr|operator|override|private|protected|public|register|reinterpret_cast|requires|return|short|signed|sizeof|static|static_assert|static_cast|struct|switch|template|this|thread_local|throw|try|typedef|typeid|typename|uint16_t|uint32_t|uint64_t|uint8_t|union|unsigned|using|virtual|void|volatile|wchar_t|while)\b/;
 		let modName = /\b(?!<keyword>)\w+(?:\s*\.\s*\w+)*\b/.source.replace(/<keyword>/g, function () { return keyword.source; });
 
-		Prism.languages.cpp = extend('c', {
+		const cpp = extend('c', {
 			'class-name': [
 				{
 					pattern: RegExp(/(\b(?:class|concept|enum|struct|typename)\s+)(?!<keyword>)\w+/.source
@@ -35,7 +36,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'boolean': /\b(?:false|true)\b/
 		});
 
-		Prism.languages.insertBefore('cpp', 'string', {
+		insertBefore(cpp, 'string', {
 			'module': {
 				// https://en.cppreference.com/w/cpp/language/modules
 				pattern: RegExp(
@@ -63,7 +64,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		});
 
-		Prism.languages.insertBefore('cpp', 'keyword', {
+		insertBefore(cpp, 'keyword', {
 			'generic-function': {
 				pattern: /\b(?!operator\b)[a-z_]\w*\s*<(?:[^<>]|<[^<>]*>)*>(?=\s*\()/i,
 				inside: {
@@ -77,27 +78,29 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		});
 
-		Prism.languages.insertBefore('cpp', 'operator', {
+		insertBefore(cpp, 'operator', {
 			'double-colon': {
 				pattern: /::/,
 				alias: 'punctuation'
 			}
 		});
 
-		Prism.languages.insertBefore('cpp', 'class-name', {
+		insertBefore(cpp, 'class-name', {
 			// the base clause is an optional list of parent classes
 			// https://en.cppreference.com/w/cpp/language/class
 			'base-clause': {
 				pattern: /(\b(?:class|struct)\s+\w+\s*:\s*)[^;{}"'\s]+(?:\s+[^;{}"'\s]+)*(?=\s*[;{])/,
 				lookbehind: true,
 				greedy: true,
-				inside: extend('cpp', {})
+				inside: extend('cpp', {}) // TODO: fix
 			}
 		});
 
-		Prism.languages.insertBefore('inside', 'double-colon', {
+		insertBefore(cpp['base-clause'].inside, 'double-colon', {
 			// All untokenized words that are not namespaces should be class names
 			'class-name': /\b[a-z_]\w*\b(?!\s*::)/i
-		}, Prism.languages.cpp['base-clause']);
+		});
+
+		return cpp;
 	}
 });

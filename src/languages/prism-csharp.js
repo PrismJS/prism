@@ -1,49 +1,50 @@
+import { insertBefore } from '../shared/language-util.js';
 import clike from './prism-clike.js';
+
+/**
+ * Replaces all placeholders "<<n>>" of given pattern with the n-th replacement (zero based).
+ *
+ * Note: This is a simple text based replacement. Be careful when using backreferences!
+ *
+ * @param {string} pattern the given pattern.
+ * @param {string[]} replacements a list of replacement which can be inserted into the given pattern.
+ * @returns {string} the pattern with all placeholders replaced with their corresponding replacements.
+ * @example replace(/a<<0>>a/.source, [/b+/.source]) === /a(?:b+)a/.source
+ */
+function replace(pattern, replacements) {
+	return pattern.replace(/<<(\d+)>>/g, function (m, index) {
+		return '(?:' + replacements[+index] + ')';
+	});
+}
+/**
+ * @param {string} pattern
+ * @param {string[]} replacements
+ * @param {string} [flags]
+ * @returns {RegExp}
+ */
+function re(pattern, replacements, flags) {
+	return RegExp(replace(pattern, replacements), flags || '');
+}
+
+/**
+ * Creates a nested pattern where all occurrences of the string `<<self>>` are replaced with the pattern itself.
+ *
+ * @param {string} pattern
+ * @param {number} depthLog2
+ * @returns {string}
+ */
+function nested(pattern, depthLog2) {
+	for (let i = 0; i < depthLog2; i++) {
+		pattern = pattern.replace(/<<self>>/g, function () { return '(?:' + pattern + ')'; });
+	}
+	return pattern.replace(/<<self>>/g, '[^\\s\\S]');
+}
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'csharp',
 	require: clike,
-	alias: ['cs','dotnet'],
-	grammar({ extend, getLanguage }) {
-		/**
-		 * Replaces all placeholders "<<n>>" of given pattern with the n-th replacement (zero based).
-		 *
-		 * Note: This is a simple text based replacement. Be careful when using backreferences!
-		 *
-		 * @param {string} pattern the given pattern.
-		 * @param {string[]} replacements a list of replacement which can be inserted into the given pattern.
-		 * @returns {string} the pattern with all placeholders replaced with their corresponding replacements.
-		 * @example replace(/a<<0>>a/.source, [/b+/.source]) === /a(?:b+)a/.source
-		 */
-		function replace(pattern, replacements) {
-			return pattern.replace(/<<(\d+)>>/g, function (m, index) {
-				return '(?:' + replacements[+index] + ')';
-			});
-		}
-		/**
-		 * @param {string} pattern
-		 * @param {string[]} replacements
-		 * @param {string} [flags]
-		 * @returns {RegExp}
-		 */
-		function re(pattern, replacements, flags) {
-			return RegExp(replace(pattern, replacements), flags || '');
-		}
-
-		/**
-		 * Creates a nested pattern where all occurrences of the string `<<self>>` are replaced with the pattern itself.
-		 *
-		 * @param {string} pattern
-		 * @param {number} depthLog2
-		 * @returns {string}
-		 */
-		function nested(pattern, depthLog2) {
-			for (let i = 0; i < depthLog2; i++) {
-				pattern = pattern.replace(/<<self>>/g, function () { return '(?:' + pattern + ')'; });
-			}
-			return pattern.replace(/<<self>>/g, '[^\\s\\S]');
-		}
-
+	alias: ['cs', 'dotnet'],
+	grammar({ extend }) {
 		// https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/
 		let keywordKinds = {
 			// keywords which represent a return or variable type
@@ -91,7 +92,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		let verbatimString = /@"(?:""|\\[\s\S]|[^\\"])*"(?!")/.source;
 
 
-		Prism.languages.csharp = extend('clike', {
+		const csharp = extend('clike', {
 			'string': [
 				{
 					pattern: re(/(^|[^$\\])<<0>>/.source, [verbatimString]),
@@ -169,14 +170,14 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'punctuation': /\?\.?|::|[{}[\];(),.:]/
 		});
 
-		Prism.languages.insertBefore('csharp', 'number', {
+		insertBefore(csharp, 'number', {
 			'range': {
 				pattern: /\.\./,
 				alias: 'operator'
 			}
 		});
 
-		Prism.languages.insertBefore('csharp', 'punctuation', {
+		insertBefore(csharp, 'punctuation', {
 			'named-parameter': {
 				pattern: re(/([(,]\s*)<<0>>(?=\s*:)/.source, [name]),
 				lookbehind: true,
@@ -184,7 +185,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		});
 
-		Prism.languages.insertBefore('csharp', 'class-name', {
+		insertBefore(csharp, 'class-name', {
 			'namespace': {
 				// namespace Foo.Bar {}
 				// using Foo.Bar;
@@ -283,7 +284,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		let attrTarget = /\b(?:assembly|event|field|method|module|param|property|return|type)\b/.source;
 		let attr = replace(/<<0>>(?:\s*\(<<1>>*\))?/.source, [identifier, roundExpression]);
 
-		Prism.languages.insertBefore('csharp', 'class-name', {
+		insertBefore(csharp, 'class-name', {
 			'attribute': {
 				// Attributes
 				// [Foo], [Foo(1), Bar(2, Prop = "foo")], [return: Foo(1), Bar(2)], [assembly: Foo(Bar)]
@@ -345,7 +346,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			};
 		}
 
-		Prism.languages.insertBefore('csharp', 'string', {
+		insertBefore(csharp, 'string', {
 			'interpolation-string': [
 				{
 					pattern: re(/(^|[^\\])(?:\$@|@\$)"(?:""|\\[\s\S]|\{\{|<<0>>|[^\\{"])*"/.source, [mInterpolation]),
@@ -366,6 +367,6 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		});
 
-		Prism.languages.dotnet =
+		return csharp;
 	}
 });

@@ -399,6 +399,6 @@ export default /** @type {import("../types").LanguageProto} */ ({
 
 		factor.combinators.pattern = arrToWordsRegExp(combinators);
 
-		Prism.languages.factor = factor;
+		return factor;
 	}
 });

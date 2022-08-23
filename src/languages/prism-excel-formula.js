@@ -1,6 +1,6 @@
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'excel-formula',
-	alias: ['xlsx','xls'],
+	alias: ['xlsx', 'xls'],
 	grammar: {
 		'comment': {
 			pattern: /(\bN\(\s*)"(?:[^"]|"")*"(?=\s*\))/i,
@@ -64,7 +64,5 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		'boolean': /\b(?:FALSE|TRUE)\b/i,
 		'operator': /[-+*/^%=&,]|<[=>]?|>=?/,
 		'punctuation': /[[\]();{}|]/
-	};
-
-	Prism.languages['xlsx'] =
+	}
 });

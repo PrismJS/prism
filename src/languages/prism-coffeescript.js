@@ -1,10 +1,11 @@
+import { insertBefore } from '../shared/language-util.js';
 import javascript from './prism-javascript.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'coffeescript',
 	require: javascript,
 	alias: 'coffee',
-	grammar({ extend, getLanguage }) {
+	grammar({ extend }) {
 		// Ignore comments starting with { to privilege string interpolation highlighting
 		let comment = /#(?!\{).+/;
 		let interpolation = {
@@ -12,7 +13,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			alias: 'variable'
 		};
 
-		Prism.languages.coffeescript = extend('javascript', {
+		const coffeescript = extend('javascript', {
 			'comment': comment,
 			'string': [
 
@@ -38,7 +39,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		});
 
-		Prism.languages.insertBefore('coffeescript', 'comment', {
+		insertBefore(coffeescript, 'comment', {
 			'multiline-comment': {
 				pattern: /###[\s\S]+?###/,
 				alias: 'comment'
@@ -55,7 +56,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		});
 
-		Prism.languages.insertBefore('coffeescript', 'string', {
+		insertBefore(coffeescript, 'string', {
 			'inline-javascript': {
 				pattern: /`(?:\\[\s\S]|[^\\`])*`/,
 				inside: {
@@ -90,11 +91,11 @@ export default /** @type {import("../types").LanguageProto} */ ({
 
 		});
 
-		Prism.languages.insertBefore('coffeescript', 'keyword', {
+		insertBefore(coffeescript, 'keyword', {
 			// Object property
 			'property': /(?!\d)\w+(?=\s*:(?!:))/
 		});
 
-		delete Prism.languages.coffeescript['template-string'];
+		delete coffeescript['template-string'];
 	}
 });

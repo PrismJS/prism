@@ -1,7 +1,6 @@
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'graphql',
-	optional: 'markdown',
-	grammar({ getLanguage }) {
+	grammar() {
 		Prism.languages.graphql = {
 			'comment': /#.*/,
 			'description': {

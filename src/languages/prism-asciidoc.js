@@ -28,7 +28,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		};
 
-		let asciidoc = Prism.languages.asciidoc = {
+		let asciidoc = {
 			'comment-block': {
 				pattern: /^(\/{4,})$[\s\S]*?^\1/m,
 				alias: 'comment'
@@ -231,5 +231,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				env.attributes['title'] = env.content.replace(/&amp;/, '&');
 			}
 		});
+
+		return asciidoc;
 	}
 });

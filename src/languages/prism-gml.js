@@ -4,8 +4,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'gml',
 	require: clike,
 	alias: 'gamemakerlanguage',
-	grammar({ extend, getLanguage }) {
-		Prism.languages.gamemakerlanguage = Prism.languages.gml = extend('clike', {
+	grammar({ extend }) {
+		return extend('clike', {
 			'keyword': /\b(?:break|case|continue|default|do|else|enum|exit|for|globalvar|if|repeat|return|switch|until|var|while)\b/,
 			'number': /(?:\b0x[\da-f]+|(?:\b\d+(?:\.\d*)?|\B\.\d+)(?:e[+-]?\d+)?)[ulf]{0,4}/i,
 			'operator': /--|\+\+|[-+%/=]=?|!=|\*\*?=?|<[<=>]?|>[=>]?|&&?|\^\^?|\|\|?|~|\b(?:and|at|not|or|with|xor)\b/,

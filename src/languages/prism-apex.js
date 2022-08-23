@@ -19,7 +19,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'punctuation': /[()\[\]{};,:.<>]/
 		};
 
-		Prism.languages.apex = {
+		return {
 			'comment': Prism.languages.clike.comment,
 			'string': Prism.languages.clike.string,
 			'sql': {

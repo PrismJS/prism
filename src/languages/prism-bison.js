@@ -1,12 +1,14 @@
+import { insertBefore } from '../shared/language-util.js';
 import c from './prism-c.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'bison',
 	require: c,
 	grammar({ extend, getLanguage }) {
-		Prism.languages.bison = extend('c', {});
+		const c = getLanguage('c');
+		const bison = extend('c', {});
 
-		Prism.languages.insertBefore('bison', 'comment', {
+		insertBefore(bison, 'comment', {
 			'bison': {
 				// This should match all the beginning of the file
 				// including the prologue(s), the bison declarations and
@@ -28,11 +30,11 @@ export default /** @type {import("../types").LanguageProto} */ ({
 									'punctuation': /<|>/
 								}
 							},
-							rest: Prism.languages.c
+							rest: c
 						}
 					},
-					'comment': Prism.languages.c.comment,
-					'string': Prism.languages.c.string,
+					'comment': c.comment,
+					'string': c.string,
 					'property': /\S+(?=:)/,
 					'keyword': /%\w+/,
 					'number': {

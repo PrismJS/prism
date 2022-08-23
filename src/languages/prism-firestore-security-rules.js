@@ -1,18 +1,19 @@
+import { insertBefore } from '../shared/language-util.js';
 import clike from './prism-clike.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'firestore-security-rules',
 	require: clike,
-	grammar({ extend, getLanguage }) {
-		Prism.languages['firestore-security-rules'] = extend('clike', {
+	grammar({ extend }) {
+		const fsr = extend('clike', {
 			'comment': /\/\/.*/,
 			'keyword': /\b(?:allow|function|if|match|null|return|rules_version|service)\b/,
 			'operator': /&&|\|\||[<>!=]=?|[-+*/%]|\b(?:in|is)\b/,
 		});
 
-		delete Prism.languages['firestore-security-rules']['class-name'];
+		delete fsr['class-name'];
 
-		Prism.languages.insertBefore('firestore-security-rules', 'keyword', {
+		insertBefore(fsr, 'keyword', {
 			'path': {
 				pattern: /(^|[\s(),])(?:\/(?:[\w\xA0-\uFFFF]+|\{[\w\xA0-\uFFFF]+(?:=\*\*)?\}|\$\([\w\xA0-\uFFFF.]+\)))+/,
 				lookbehind: true,
@@ -39,5 +40,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				}
 			},
 		});
+
+		return fsr;
 	}
 });

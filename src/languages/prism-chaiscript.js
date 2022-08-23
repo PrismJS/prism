@@ -1,3 +1,4 @@
+import { insertBefore } from '../shared/language-util.js';
 import clike from './prism-clike.js';
 import cpp from './prism-cpp.js';
 
@@ -5,7 +6,9 @@ export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'chaiscript',
 	require: [clike, cpp],
 	grammar({ extend, getLanguage }) {
-		Prism.languages.chaiscript = extend('clike', {
+		const cpp = getLanguage('cpp');
+
+		const chaiscript = extend('clike', {
 			'string': {
 				pattern: /(^|[^\\])'(?:[^'\\]|\\[\s\S])*'/,
 				lookbehind: true,
@@ -25,13 +28,13 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			],
 			'keyword': /\b(?:attr|auto|break|case|catch|class|continue|def|default|else|finally|for|fun|global|if|return|switch|this|try|var|while)\b/,
 			'number': [
-				Prism.languages.cpp.number,
+				cpp.number,
 				/\b(?:Infinity|NaN)\b/
 			],
 			'operator': />>=?|<<=?|\|\||&&|:[:=]?|--|\+\+|[=!<>+\-*/%|&^]=?|[?~]|`[^`\r\n]{1,4}`/,
 		});
 
-		Prism.languages.insertBefore('chaiscript', 'operator', {
+		insertBefore(chaiscript, 'operator', {
 			'parameter-type': {
 				// e.g. def foo(int x, Vector y) {...}
 				pattern: /([,(]\s*)\w+(?=\s+\w)/,
@@ -40,7 +43,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			},
 		});
 
-		Prism.languages.insertBefore('chaiscript', 'string', {
+		insertBefore(chaiscript, 'string', {
 			'string-interpolation': {
 				pattern: /(^|[^\\])"(?:[^"$\\]|\\[\s\S]|\$(?!\{)|\$\{(?:[^{}]|\{(?:[^{}]|\{[^{}]*\})*\})*\})*"/,
 				lookbehind: true,

@@ -1,11 +1,11 @@
+import { insertBefore } from '../shared/language-util.js';
 import clike from './prism-clike.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'haxe',
 	require: clike,
-	optional: 'regex',
-	grammar({ extend, getLanguage }) {
-		Prism.languages.haxe = extend('clike', {
+	grammar({ extend }) {
+		const haxe = extend('clike', {
 			'string': {
 				// Strings can be multi-line
 				pattern: /"(?:[^"\\]|\\[\s\S])*"/,
@@ -28,7 +28,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'operator': /\.{3}|\+\+|--|&&|\|\||->|=>|(?:<<?|>{1,3}|[-+*/%!=&|^])=?|[?:~]/
 		});
 
-		Prism.languages.insertBefore('haxe', 'string', {
+		insertBefore(haxe, 'string', {
 			'string-interpolation': {
 				pattern: /'(?:[^'\\]|\\[\s\S])*'/,
 				greedy: true,
@@ -52,7 +52,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		});
 
-		Prism.languages.insertBefore('haxe', 'class-name', {
+		insertBefore(haxe, 'class-name', {
 			'regex': {
 				pattern: /~\/(?:[^\/\\\r\n]|\\.)+\/[a-z]*/,
 				greedy: true,
@@ -69,7 +69,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		});
 
-		Prism.languages.insertBefore('haxe', 'keyword', {
+		insertBefore(haxe, 'keyword', {
 			'preprocessor': {
 				pattern: /#(?:else|elseif|end|if)\b.*/,
 				alias: 'property'

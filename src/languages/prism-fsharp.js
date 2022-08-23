@@ -1,10 +1,11 @@
+import { insertBefore } from '../shared/language-util.js';
 import clike from './prism-clike.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'fsharp',
 	require: clike,
-	grammar({ extend, getLanguage }) {
-		Prism.languages.fsharp = extend('clike', {
+	grammar({ extend }) {
+		const fsharp = extend('clike', {
 			'comment': [
 				{
 					pattern: /(^|[^\\])\(\*(?!\))[\s\S]*?\*\)/,
@@ -38,7 +39,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			],
 			'operator': /([<>~&^])\1\1|([*.:<>&])\2|<-|->|[!=:]=|<?\|{1,3}>?|\??(?:<=|>=|<>|[-+*/%=<>])\??|[!?^&]|~[+~-]|:>|:\?>?/
 		});
-		Prism.languages.insertBefore('fsharp', 'keyword', {
+		insertBefore(fsharp, 'keyword', {
 			'preprocessor': {
 				pattern: /(^[\t ]*)#.*/m,
 				lookbehind: true,
@@ -52,13 +53,13 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				}
 			}
 		});
-		Prism.languages.insertBefore('fsharp', 'punctuation', {
+		insertBefore(fsharp, 'punctuation', {
 			'computation-expression': {
 				pattern: /\b[_a-z]\w*(?=\s*\{)/i,
 				alias: 'keyword'
 			}
 		});
-		Prism.languages.insertBefore('fsharp', 'string', {
+		insertBefore(fsharp, 'string', {
 			'annotation': {
 				pattern: /\[<.+?>\]/,
 				greedy: true,

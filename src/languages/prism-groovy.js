@@ -1,9 +1,10 @@
+import { insertBefore } from '../shared/language-util.js';
 import clike from './prism-clike.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'groovy',
 	require: clike,
-	grammar({ extend, getLanguage }) {
+	grammar({ extend }) {
 		let interpolation = {
 			pattern: /((?:^|[^\\$])(?:\\{2})*)\$(?:\w+|\{[^{}]*\})/,
 			lookbehind: true,
@@ -19,7 +20,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		};
 
-		Prism.languages.groovy = extend('clike', {
+		const groovy = extend('clike', {
 			'string': {
 				// https://groovy-lang.org/syntax.html#_dollar_slashy_string
 				pattern: /'''(?:[^\\]|\\[\s\S])*?'''|'(?:\\.|[^\\'\r\n])*'/,
@@ -34,7 +35,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'punctuation': /\.+|[{}[\];(),:$]/
 		});
 
-		Prism.languages.insertBefore('groovy', 'string', {
+		insertBefore(groovy, 'string', {
 			'shebang': {
 				pattern: /#!.+/,
 				alias: 'comment',
@@ -52,16 +53,18 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		});
 
-		Prism.languages.insertBefore('groovy', 'punctuation', {
+		insertBefore(groovy, 'punctuation', {
 			'spock-block': /\b(?:and|cleanup|expect|given|setup|then|when|where):/
 		});
 
-		Prism.languages.insertBefore('groovy', 'function', {
+		insertBefore(groovy, 'function', {
 			'annotation': {
 				pattern: /(^|[^.])@\w+/,
 				lookbehind: true,
 				alias: 'punctuation'
 			}
 		});
+
+		return groovy;
 	}
 });

@@ -1,8 +1,7 @@
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'dot',
-	optional: 'markup',
 	alias: 'gv',
-	grammar({ getLanguage }) {
+	grammar() {
 		// https://www.graphviz.org/doc/info/lang.html
 
 
@@ -35,7 +34,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			return RegExp(source.replace(/<ID>/g, function () { return ID; }), flags);
 		}
 
-		Prism.languages.dot = {
+		return {
 			'comment': {
 				pattern: /\/\/.*|\/\*[\s\S]*?\*\/|^#.*/m,
 				greedy: true

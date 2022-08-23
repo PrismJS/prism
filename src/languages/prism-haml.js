@@ -1,10 +1,10 @@
+import { insertBefore } from '../shared/language-util.js';
 import ruby from './prism-ruby.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'haml',
 	require: ruby,
-	optional: ['css', 'css-extras', 'coffeescript', 'erb', 'javascript', 'less', 'markdown', 'scss', 'textile'],
-	grammar({ getLanguage }) {
+	grammar() {
 		/* TODO
 			Handle multiline code after tag
 			    %foo= some |
@@ -13,7 +13,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		*/
 
 
-		Prism.languages.haml = {
+		const haml = {
 			// Multiline stuff should appear before the rest
 
 			'multiline-comment': {
@@ -129,27 +129,27 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		];
 		let all_filters = {};
 		for (let i = 0, l = filters.length; i < l; i++) {
-			var filter = filters[i];
+			let filter = filters[i];
 			filter = typeof filter === 'string' ? { filter: filter, language: filter } : filter;
-			if (Prism.languages[filter.language]) {
-				all_filters['filter-' + filter.filter] = {
-					pattern: RegExp(filter_pattern.replace('{{filter_name}}', function () { return filter.filter; })),
-					lookbehind: true,
-					inside: {
-						'filter-name': {
-							pattern: /^:[\w-]+/,
-							alias: 'symbol'
-						},
-						'text': {
-							pattern: /[\s\S]+/,
-							alias: [filter.language, 'language-' + filter.language],
-							inside: Prism.languages[filter.language]
-						}
+			all_filters['filter-' + filter.filter] = {
+				pattern: RegExp(filter_pattern.replace('{{filter_name}}', function () { return filter.filter; })),
+				lookbehind: true,
+				inside: {
+					'filter-name': {
+						pattern: /^:[\w-]+/,
+						alias: 'symbol'
+					},
+					'text': {
+						pattern: /[\s\S]+/,
+						alias: [filter.language, 'language-' + filter.language],
+						inside: filter.language
 					}
-				};
-			}
+				}
+			};
 		}
 
-		Prism.languages.insertBefore('haml', 'filter', all_filters);
+		insertBefore(haml, 'filter', all_filters);
+
+		return haml;
 	}
 });

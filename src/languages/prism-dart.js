@@ -1,9 +1,10 @@
+import { insertBefore } from '../shared/language-util.js';
 import clike from './prism-clike.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'dart',
 	require: clike,
-	grammar({ extend, getLanguage }) {
+	grammar({ extend }) {
 		let keywords = [
 			/\b(?:async|sync|yield)\*/,
 			/\b(?:abstract|assert|async|await|break|case|catch|class|const|continue|covariant|default|deferred|do|dynamic|else|enum|export|extends|extension|external|factory|final|finally|for|get|hide|if|implements|import|in|interface|library|mixin|new|null|on|operator|part|rethrow|return|set|show|static|super|switch|sync|this|throw|try|typedef|var|void|while|with|yield)\b/
@@ -26,7 +27,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		};
 
-		Prism.languages.dart = extend('clike', {
+		const dart = extend('clike', {
 			'class-name': [
 				className,
 				{
@@ -41,7 +42,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'operator': /\bis!|\b(?:as|is)\b|\+\+|--|&&|\|\||<<=?|>>=?|~(?:\/=?)?|[+\-*\/%&^|=!<>]=?|\?/
 		});
 
-		Prism.languages.insertBefore('dart', 'string', {
+		insertBefore(dart, 'string', {
 			'string-literal': {
 				pattern: /r?(?:("""|''')[\s\S]*?\1|(["'])(?:\\.|(?!\2)[^\\\r\n])*\2(?!\2))/,
 				greedy: true,
@@ -63,14 +64,14 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'string': undefined
 		});
 
-		Prism.languages.insertBefore('dart', 'class-name', {
+		insertBefore(dart, 'class-name', {
 			'metadata': {
 				pattern: /@\w+/,
 				alias: 'function'
 			}
 		});
 
-		Prism.languages.insertBefore('dart', 'class-name', {
+		insertBefore(dart, 'class-name', {
 			'generics': {
 				pattern: /<(?:[\w\s,.&?]|<(?:[\w\s,.&?]|<(?:[\w\s,.&?]|<[\w\s,.&?]*>)*>)*>)*>/,
 				inside: {

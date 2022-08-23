@@ -1,10 +1,11 @@
+import { insertBefore } from '../shared/language-util.js';
 import clike from './prism-clike.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'd',
 	require: clike,
-	grammar({ extend, getLanguage }) {
-		Prism.languages.d = extend('clike', {
+	grammar({ extend }) {
+		const d = extend('clike', {
 			'comment': [
 				{
 					// Shebang
@@ -71,22 +72,24 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'operator': /\|[|=]?|&[&=]?|\+[+=]?|-[-=]?|\.?\.\.|=[>=]?|!(?:i[ns]\b|<>?=?|>=?|=)?|\bi[ns]\b|(?:<[<>]?|>>?>?|\^\^|[*\/%^~])=?/
 		});
 
-		Prism.languages.insertBefore('d', 'string', {
+		insertBefore(d, 'string', {
 			// Characters
 			// 'a', '\\', '\n', '\xFF', '\377', '\uFFFF', '\U0010FFFF', '\quot'
 			'char': /'(?:\\(?:\W|\w+)|[^\\])'/
 		});
 
-		Prism.languages.insertBefore('d', 'keyword', {
+		insertBefore(d, 'keyword', {
 			'property': /\B@\w*/
 		});
 
-		Prism.languages.insertBefore('d', 'function', {
+		insertBefore(d, 'function', {
 			'register': {
 				// Iasm registers
 				pattern: /\b(?:[ABCD][LHX]|E?(?:BP|DI|SI|SP)|[BS]PL|[ECSDGF]S|CR[0234]|[DS]IL|DR[012367]|E[ABCD]X|X?MM[0-7]|R(?:1[0-5]|[89])[BWD]?|R[ABCD]X|R[BS]P|R[DS]I|TR[3-7]|XMM(?:1[0-5]|[89])|YMM(?:1[0-5]|\d))\b|\bST(?:\([0-7]\)|\b)/,
 				alias: 'variable'
 			}
 		});
+
+		return d;
 	}
 });

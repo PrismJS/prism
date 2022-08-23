@@ -1,9 +1,10 @@
+import { insertBefore } from '../shared/language-util.js';
 import clike from './prism-clike.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'gradle',
 	require: clike,
-	grammar({ extend, getLanguage }) {
+	grammar({ extend }) {
 		let interpolation = {
 			pattern: /((?:^|[^\\$])(?:\\{2})*)\$(?:\w+|\{[^{}]*\})/,
 			lookbehind: true,
@@ -19,7 +20,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			},
 		};
 
-		Prism.languages.gradle = extend('clike', {
+		const gradle = extend('clike', {
 			'string': {
 				pattern: /'''(?:[^\\]|\\[\s\S])*?'''|'(?:\\.|[^\\'\r\n])*'/,
 				greedy: true,
@@ -35,7 +36,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'punctuation': /\.+|[{}[\];(),:$]/,
 		});
 
-		Prism.languages.insertBefore('gradle', 'string', {
+		insertBefore(gradle, 'string', {
 			'shebang': {
 				pattern: /#!.+/,
 				alias: 'comment',
@@ -52,16 +53,18 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			},
 		});
 
-		Prism.languages.insertBefore('gradle', 'punctuation', {
+		insertBefore(gradle, 'punctuation', {
 			'spock-block': /\b(?:and|cleanup|expect|given|setup|then|when|where):/,
 		});
 
-		Prism.languages.insertBefore('gradle', 'function', {
+		insertBefore(gradle, 'function', {
 			'annotation': {
 				pattern: /(^|[^.])@\w+/,
 				lookbehind: true,
 				alias: 'punctuation',
 			},
 		});
+
+		return gradle;
 	}
 });
