@@ -3,6 +3,12 @@ module.exports = {
 	root: true,
 	plugins: ['jsdoc', 'regexp'],
 	extends: 'eslint:recommended',
+	env: {
+		es6: true,
+	},
+	parserOptions: {
+		ecmaVersion: 2018
+	},
 	rules: {
 		'no-use-before-define': ['error', { 'functions': false, 'classes': false }],
 
@@ -132,34 +138,6 @@ module.exports = {
 			},
 			globals: {
 				'Prism': true,
-				// Allow Set and Map. They are partially supported by IE11
-				'Set': true,
-				'Map': true
-			},
-			rules: {
-				'no-var': 'off'
-			}
-		},
-		{
-			// `loadLanguages` function for Node.js
-			files: 'components/index.js',
-			env: {
-				es6: true,
-				node: true
-			},
-			parserOptions: {
-				ecmaVersion: 6
-			},
-			globals: {
-				'Prism': true
-			}
-		},
-		{
-			// Gulp and Danger
-			files: 'dependencies.js',
-			env: {
-				browser: true,
-				node: true
 			},
 			rules: {
 				'no-var': 'off'
@@ -167,7 +145,7 @@ module.exports = {
 		},
 		{
 			// The scripts that run on our website
-			files: 'assets/*.js',
+			files: 'website/assets/*.js',
 			env: {
 				browser: true
 			},
@@ -190,13 +168,9 @@ module.exports = {
 			// Test files
 			files: 'tests/**',
 			env: {
-				es6: true,
 				mocha: true,
 				node: true
 			},
-			parserOptions: {
-				ecmaVersion: 2018
-			}
 		},
 		{
 			// Gulp, Danger, and benchmark
@@ -206,12 +180,8 @@ module.exports = {
 				'benchmark/**',
 			],
 			env: {
-				es6: true,
 				node: true
 			},
-			parserOptions: {
-				ecmaVersion: 2018
-			}
 		},
 		{
 			// This file

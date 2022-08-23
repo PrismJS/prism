@@ -24,7 +24,7 @@ var getLoader = (function () {
 	 *
 	 * @type {any}
 	 */
-	var noop = function () { };
+	let noop = function () { };
 
 	/**
 	 * Invokes the given callback for all elements of the given value.
@@ -56,8 +56,8 @@ var getLoader = (function () {
 	 */
 	function toSet(array) {
 		/** @type {StringSet} */
-		var set = {};
-		for (var i = 0, l = array.length; i < l; i++) {
+		let set = {};
+		for (let i = 0, l = array.length; i < l; i++) {
 			set[array[i]] = true;
 		}
 		return set;
@@ -73,14 +73,14 @@ var getLoader = (function () {
 	 */
 	function createEntryMap(components) {
 		/** @type {Object<string, Readonly<ComponentEntry>>} */
-		var map = {};
+		let map = {};
 
-		for (var categoryName in components) {
-			var category = components[categoryName];
-			for (var id in category) {
+		for (let categoryName in components) {
+			let category = components[categoryName];
+			for (let id in category) {
 				if (id != 'meta') {
 					/** @type {ComponentEntry | string} */
-					var entry = category[id];
+					let entry = category[id];
 					map[id] = typeof entry == 'string' ? { title: entry } : entry;
 				}
 			}
@@ -99,8 +99,8 @@ var getLoader = (function () {
 	 */
 	function createDependencyResolver(entryMap) {
 		/** @type {Object<string, StringSet>} */
-		var map = {};
-		var _stackArray = [];
+		let map = {};
+		let _stackArray = [];
 
 		/**
 		 * Adds the dependencies of the given component to the dependency map.
@@ -116,15 +116,15 @@ var getLoader = (function () {
 			stack.push(id);
 
 			// check for circular dependencies
-			var firstIndex = stack.indexOf(id);
+			let firstIndex = stack.indexOf(id);
 			if (firstIndex < stack.length - 1) {
 				throw new Error('Circular dependency: ' + stack.slice(firstIndex).join(' -> '));
 			}
 
 			/** @type {StringSet} */
-			var dependencies = {};
+			let dependencies = {};
 
-			var entry = entryMap[id];
+			let entry = entryMap[id];
 			if (entry) {
 				/**
 				 * This will add the direct dependency and all of its transitive dependencies to the set of
@@ -144,7 +144,7 @@ var getLoader = (function () {
 
 					addToMap(depId, stack);
 					dependencies[depId] = true;
-					for (var transitiveDepId in map[depId]) {
+					for (let transitiveDepId in map[depId]) {
 						dependencies[transitiveDepId] = true;
 					}
 				}
@@ -160,7 +160,7 @@ var getLoader = (function () {
 		}
 
 		return function (id) {
-			var deps = map[id];
+			let deps = map[id];
 			if (!deps) {
 				addToMap(id, _stackArray);
 				deps = map[id];
@@ -177,7 +177,7 @@ var getLoader = (function () {
 	 */
 	function createAliasResolver(entryMap) {
 		/** @type {Object<string, string> | undefined} */
-		var map;
+		let map;
 
 		return function (idOrAlias) {
 			if (idOrAlias in entryMap) {
@@ -188,7 +188,7 @@ var getLoader = (function () {
 					map = {};
 
 					for (var id in entryMap) {
-						var entry = entryMap[id];
+						let entry = entryMap[id];
 						forEach(entry && entry.alias, function (alias) {
 							if (alias in map) {
 								throw new Error(alias + ' cannot be alias for both ' + id + ' and ' + map[alias]);
@@ -224,18 +224,18 @@ var getLoader = (function () {
 	 * @template T
 	 */
 	function loadComponentsInOrder(dependencyResolver, ids, loadComponent, chainer) {
-		var series = chainer ? chainer.series : undefined;
-		var parallel = chainer ? chainer.parallel : noop;
+		let series = chainer ? chainer.series : undefined;
+		let parallel = chainer ? chainer.parallel : noop;
 
 		/** @type {Object<string, T>} */
-		var cache = {};
+		let cache = {};
 
 		/**
 		 * A set of ids of nodes which are not depended upon by any other node in the graph.
 		 *
 		 * @type {StringSet}
 		 */
-		var ends = {};
+		let ends = {};
 
 		/**
 		 * Loads the given component and its dependencies or returns the cached value.
@@ -253,8 +253,8 @@ var getLoader = (function () {
 			ends[id] = true;
 
 			// all dependencies of the component in the given ids
-			var dependsOn = [];
-			for (var depId in dependencyResolver(id)) {
+			let dependsOn = [];
+			for (let depId in dependencyResolver(id)) {
 				if (depId in ids) {
 					dependsOn.push(depId);
 				}
@@ -265,13 +265,13 @@ var getLoader = (function () {
 			 *
 			 * @type {T}
 			 */
-			var value;
+			let value;
 
 			if (dependsOn.length === 0) {
 				value = loadComponent(id);
 			} else {
-				var depsValue = parallel(dependsOn.map(function (depId) {
-					var value = handleId(depId);
+				let depsValue = parallel(dependsOn.map(function (depId) {
+					let value = handleId(depId);
 					// none of the dependencies can be ends
 					delete ends[depId];
 					return value;
@@ -289,13 +289,13 @@ var getLoader = (function () {
 			return cache[id] = value;
 		}
 
-		for (var id in ids) {
+		for (let id in ids) {
 			handleId(id);
 		}
 
 		/** @type {T[]} */
-		var endValues = [];
-		for (var endId in ends) {
+		let endValues = [];
+		for (let endId in ends) {
 			endValues.push(cache[endId]);
 		}
 		return parallel(endValues);
@@ -307,7 +307,7 @@ var getLoader = (function () {
 	 * @param {object} obj
 	 */
 	function hasKeys(obj) {
-		for (var key in obj) {
+		for (let key in obj) {
 			return true;
 		}
 		return false;
@@ -360,20 +360,20 @@ var getLoader = (function () {
 	 * );
 	 */
 	function getLoader(components, load, loaded) {
-		var entryMap = createEntryMap(components);
-		var resolveAlias = createAliasResolver(entryMap);
+		let entryMap = createEntryMap(components);
+		let resolveAlias = createAliasResolver(entryMap);
 
 		load = load.map(resolveAlias);
 		loaded = (loaded || []).map(resolveAlias);
 
-		var loadSet = toSet(load);
-		var loadedSet = toSet(loaded);
+		let loadSet = toSet(load);
+		let loadedSet = toSet(loaded);
 
 		// add requirements
 
 		load.forEach(addRequirements);
 		function addRequirements(id) {
-			var entry = entryMap[id];
+			let entry = entryMap[id];
 			forEach(entry && entry.require, function (reqId) {
 				if (!(reqId in loadedSet)) {
 					loadSet[reqId] = true;
@@ -389,18 +389,18 @@ var getLoader = (function () {
 		//  2) x depends on a component in `load`.
 		// The above two condition have to be applied until nothing changes anymore.
 
-		var dependencyResolver = createDependencyResolver(entryMap);
+		let dependencyResolver = createDependencyResolver(entryMap);
 
 		/** @type {StringSet} */
-		var loadAdditions = loadSet;
+		let loadAdditions = loadSet;
 		/** @type {StringSet} */
-		var newIds;
+		let newIds;
 		while (hasKeys(loadAdditions)) {
 			newIds = {};
 
 			// condition 1)
-			for (var loadId in loadAdditions) {
-				var entry = entryMap[loadId];
+			for (let loadId in loadAdditions) {
+				let entry = entryMap[loadId];
 				forEach(entry && entry.modify, function (modId) {
 					if (modId in loadedSet) {
 						newIds[modId] = true;
@@ -409,9 +409,9 @@ var getLoader = (function () {
 			}
 
 			// condition 2)
-			for (var loadedId in loadedSet) {
+			for (let loadedId in loadedSet) {
 				if (!(loadedId in loadSet)) {
-					for (var depId in dependencyResolver(loadedId)) {
+					for (let depId in dependencyResolver(loadedId)) {
 						if (depId in loadSet) {
 							newIds[loadedId] = true;
 							break;
@@ -421,7 +421,7 @@ var getLoader = (function () {
 			}
 
 			loadAdditions = newIds;
-			for (var newId in loadAdditions) {
+			for (let newId in loadAdditions) {
 				loadSet[newId] = true;
 			}
 		}
@@ -429,7 +429,7 @@ var getLoader = (function () {
 		/** @type {Loader} */
 		var loader = {
 			getIds: function () {
-				var ids = [];
+				let ids = [];
 				loader.load(function (id) {
 					ids.push(id);
 				});
