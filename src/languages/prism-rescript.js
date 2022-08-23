@@ -1,4 +1,5 @@
 import { insertBefore } from '../shared/language-util';
+import { rest } from '../shared/symbols';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'rescript',
@@ -55,7 +56,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 								pattern: /^\$\{|\}$/,
 								alias: 'tag'
 							},
-							rest: rescript
+							[rest]: 'rescript'
 						}
 					},
 					'string': /[\s\S]+/

@@ -1,9 +1,11 @@
+import { rest } from "./shared/symbols";
+
 export interface LanguageProto {
 	id: string;
 	require?: LanguageProto | readonly LanguageProto[];
 	optional?: string | readonly string[];
 	alias?: string | readonly string[];
-	grammar: Grammar | ((arg0: { getLanguage: (id: string) => Grammar, extend: (id: string, ref: Grammar) => Grammar }) => Grammar)
+	grammar: Grammar | ((arg0: { getLanguage: (id: string) => Grammar, extend: (id: string, ref: GrammarTokens) => Grammar }) => Grammar)
 }
 
 export interface GrammarToken {
@@ -14,4 +16,6 @@ export interface GrammarToken {
 	inside?: string | Grammar
 }
 
-export type Grammar = Record<string, RegExp | GrammarToken | (RegExp | GrammarToken)[]>
+export type GrammarTokens = Partial<Record<string, RegExp | GrammarToken | (RegExp | GrammarToken)[]>>;
+
+export type Grammar = GrammarTokens & { [rest]?: Grammar | string | null };

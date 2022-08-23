@@ -1,3 +1,5 @@
+import { rest } from '../shared/symbols';
+
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'sas',
 	grammar() {
@@ -212,14 +214,13 @@ export default /** @type {import("../types").LanguageProto} */ ({
 						pattern: /((?:^|\s)=?)saveresult\s[^;]+/im,
 						lookbehind: true,
 						inside: {
-
 							'statement': {
 								pattern: /^saveresult\s+\S+/i,
 								inside: {
 									keyword: /^(?:saveresult)/i
 								}
 							},
-							rest: args
+							[rest]: args
 						}
 					},
 					'cas-actions': casActions,

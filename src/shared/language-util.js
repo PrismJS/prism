@@ -44,7 +44,7 @@
  *
  * @param {import("../types").Grammar} grammar The grammar to be modified.
  * @param {string} before The key to insert before.
- * @param {import("../types").Grammar} insert An object containing the key-value pairs to be inserted.
+ * @param {import("../types").GrammarTokens} insert An object containing the key-value pairs to be inserted.
  */
 export function insertBefore(grammar, before, insert) {
 	const grammarEntries = Object.entries(grammar);

@@ -1,3 +1,5 @@
+import { rest } from '../shared/symbols';
+
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'rust',
 	grammar() {
@@ -8,8 +10,12 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		}
 		multilineComment = multilineComment.replace(/<self>/g, function () { return /[^\s\S]/.source; });
 
+		const string = {
+			pattern: /b?"(?:\\[\s\S]|[^\\"])*"|b?r(#*)"(?:[^"]|"(?!\1))*"\1/,
+			greedy: true
+		};
 
-		const rust = {
+		return {
 			'comment': [
 				{
 					pattern: RegExp(/(^|[^\\])/.source + multilineComment),
@@ -22,10 +28,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 					greedy: true
 				}
 			],
-			'string': {
-				pattern: /b?"(?:\\[\s\S]|[^\\"])*"|b?r(#*)"(?:[^"]|"(?!\1))*"\1/,
-				greedy: true
-			},
+			'string': string,
 			'char': {
 				pattern: /b?'(?:\\(?:x[0-7][\da-fA-F]|u\{(?:[\da-fA-F]_*){1,6}\}|.)|[^\\\r\n\t'])'/,
 				greedy: true
@@ -35,7 +38,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				greedy: true,
 				alias: 'attr-name',
 				inside: {
-					'string': null // see below
+					'string': string
 				}
 			},
 
@@ -49,7 +52,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 						pattern: /^\||\|$/,
 						alias: 'punctuation'
 					},
-					rest: null // see below
+					[rest]: 'rust'
 				}
 			},
 
@@ -122,10 +125,5 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'punctuation': /->|\.\.=|\.{1,3}|::|[{}[\];(),:]/,
 			'operator': /[-+*\/%!^]=?|=[=>]?|&[&=]?|\|[|=]?|<<?=?|>>?=?|[@?]/
 		};
-
-		rust['closure-params'].inside.rest = rust;
-		rust['attribute'].inside['string'] = rust['string'];
-
-		return rust;
 	}
 });
