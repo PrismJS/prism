@@ -27,7 +27,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 					'interpolation': {
 						pattern: /(\\\()(?:[^()]|\([^()]*\))*(?=\))/,
 						lookbehind: true,
-						inside: null // see below
+						inside: 'swift'
 					},
 					'interpolation-punctuation': {
 						pattern: /^\)|\\\($/,
@@ -55,7 +55,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 					'interpolation': {
 						pattern: /(\\#+\()(?:[^()]|\([^()]*\))*(?=\))/,
 						lookbehind: true,
-						inside: null // see below
+						inside: 'swift'
 					},
 					'interpolation-punctuation': {
 						pattern: /^\)|\\#+\($/,
@@ -143,9 +143,5 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		// This regex only supports ASCII operators.
 		'operator': /[-+*/%=!<>&|^~?]+|\.[.\-+*/%=!<>&|^~?]+/,
 		'punctuation': /[{}[\]();,.:\\]/
-	};
-
-	Prism.languages.swift['string-literal'].forEach(function (rule) {
-		rule.inside['interpolation'].inside = Prism.languages.swift;
-	})
+	}
 });

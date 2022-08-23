@@ -41,7 +41,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 							'punctuation': /^\\#*\(|\)$/,
 							'expression': {
 								pattern: /[\s\S]+/,
-								inside: null
+								inside: 'cue'
 							}
 						}
 					},
@@ -79,7 +79,5 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'operator': /\.{3}|_\|_|&&?|\|\|?|[=!]~|[<>=!]=?|[+\-*/?]/,
 			'punctuation': /[()[\]{},.:]/
 		};
-
-		Prism.languages.cue['string-literal'].inside.interpolation.inside.expression.inside = Prism.languages.cue;
 	}
 });

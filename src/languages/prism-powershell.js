@@ -1,7 +1,10 @@
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'powershell',
 	grammar() {
-		let powershell = Prism.languages.powershell = {
+		const boolean = /\$(?:false|true)\b/i;
+		const variable = /\$\w+\b/;
+
+		return {
 			'comment': [
 				{
 					pattern: /(^|[^`])<#[\s\S]*?#>/,
@@ -16,7 +19,16 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				{
 					pattern: /"(?:`[\s\S]|[^`"])*"/,
 					greedy: true,
-					inside: null // see below
+					inside: {
+						'function': {
+							// Allow for one level of nesting
+							pattern: /(^|[^`])\$\((?:\$\([^\r\n()]*\)|(?!\$\()[^\r\n)])*\)/,
+							lookbehind: true,
+							inside: 'powershell'
+						},
+						'boolean': boolean,
+						'variable': variable,
+					}
 				},
 				{
 					pattern: /'(?:[^']|'')*'/,
@@ -26,8 +38,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			// Matches name spaces as well as casts, attribute decorators. Force starting with letter to avoid matching array indices
 			// Supports two levels of nested brackets (e.g. `[OutputType([System.Collections.Generic.List[int]])]`)
 			'namespace': /\[[a-z](?:\[(?:\[[^\]]*\]|[^\[\]])*\]|[^\[\]])*\]/i,
-			'boolean': /\$(?:false|true)\b/i,
-			'variable': /\$\w+\b/,
+			'boolean': boolean,
+			'variable': variable,
 			// Cmdlets and aliases. Aliases should come last, otherwise "write" gets preferred over "write-host" for example
 			// Get-Command | ?{ $_.ModuleName -match "Microsoft.PowerShell.(Util|Core|Management)" }
 			// Get-Alias | ?{ $_.ReferencedCommand.Module.Name -match "Microsoft.PowerShell.(Util|Core|Management)" }
@@ -42,18 +54,6 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				lookbehind: true
 			},
 			'punctuation': /[|{}[\];(),.]/
-		};
-
-		// Variable interpolation inside strings, and nested expressions
-		powershell.string[0].inside = {
-			'function': {
-				// Allow for one level of nesting
-				pattern: /(^|[^`])\$\((?:\$\([^\r\n()]*\)|(?!\$\()[^\r\n)])*\)/,
-				lookbehind: true,
-				inside: powershell
-			},
-			'boolean': powershell.boolean,
-			'variable': powershell.variable,
 		};
 	}
 });

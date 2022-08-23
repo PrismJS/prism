@@ -14,7 +14,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				},
 				'expression': {
 					pattern: /[\s\S]+/,
-					inside: null,
+					inside: 'gradle',
 				},
 			},
 		};
@@ -63,7 +63,5 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				alias: 'punctuation',
 			},
 		});
-
-		interpolation.inside.expression.inside = Prism.languages.gradle;
 	}
 });

@@ -13,7 +13,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 					// The lookbehind ensures the ${} is not preceded by \ or ''
 					pattern: /(^|(?:^|(?!'').)[^\\])\$\{(?:[^{}]|\{[^}]*\})*\}/,
 					lookbehind: true,
-					inside: null // see below
+					inside: 'nix'
 				}
 			}
 		},
@@ -34,7 +34,5 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		'boolean': /\b(?:false|true)\b/,
 		'operator': /[=!<>]=?|\+\+?|\|\||&&|\/\/|->?|[?@]/,
 		'punctuation': /[{}()[\].,:;]/
-	};
-
-	Prism.languages.nix.string.inside.interpolation.inside = Prism.languages.nix
+	}
 });

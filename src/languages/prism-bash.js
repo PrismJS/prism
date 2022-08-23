@@ -1,6 +1,6 @@
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'bash',
-	alias: ['sh','shell'],
+	alias: ['sh', 'shell'],
 	grammar() {
 		// $ set | grep '^[A-Z][^[:space:]]*=' | cut -d= -f1 | tr '\n' '|'
 		// + LC_ALL, RANDOM, REPLY, SECONDS.
@@ -12,7 +12,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			pattern: /(^(["']?)\w+\2)[ \t]+\S.*/,
 			lookbehind: true,
 			alias: 'punctuation', // this looks reasonably well in all themes
-			inside: null // see below
+			inside: 'bash'
 		};
 
 		let insideString = {
@@ -207,8 +207,6 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				lookbehind: true
 			}
 		};
-
-		commandAfterHeredoc.inside = Prism.languages.bash;
 
 		/* Patterns in command substitution. */
 		let toBeCopied = [

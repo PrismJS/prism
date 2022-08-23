@@ -26,7 +26,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 							},
 							'expression': {
 								pattern: /[\s\S]+/,
-								inside: null // see below
+								inside: 'gn'
 							}
 						}
 					},
@@ -49,7 +49,5 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'operator': /[-+!=<>]=?|&&|\|\|/,
 			'punctuation': /[(){}[\],.]/
 		};
-
-		Prism.languages.gn['string-literal'].inside['interpolation'].inside['expression'].inside = Prism.languages.gn;
 	}
 });

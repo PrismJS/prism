@@ -17,7 +17,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				},
 				'expression': {
 					pattern: /[\s\S]+/,
-					inside: null // see below
+					inside: 'brightscript'
 				}
 			}
 		},
@@ -41,7 +41,5 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		'operator': /--|\+\+|>>=?|<<=?|<>|[-+*/\\<>]=?|[:^=?]|\b(?:and|mod|not|or)\b/i,
 		'punctuation': /[.,;()[\]{}]/,
 		'constant': /\b(?:LINE_NUM)\b/i
-	};
-
-	Prism.languages.brightscript['directive-statement'].inside.expression.inside = Prism.languages.brightscript
+	}
 });

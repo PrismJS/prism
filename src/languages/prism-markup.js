@@ -1,6 +1,6 @@
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'markup',
-	alias: ['html','xml','svg','mathml','ssml','atom','rss'],
+	alias: ['html', 'xml', 'svg', 'mathml', 'ssml', 'atom', 'rss'],
 	grammar({ extend }) {
 		return {
 			'comment': {
@@ -20,7 +20,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 						pattern: /(^[^\[]*\[)[\s\S]+(?=\]>$)/,
 						lookbehind: true,
 						greedy: true,
-						inside: null // see below
+						inside: 'markup'
 					},
 					'string': {
 						pattern: /"[^"]*"|'[^']*'/,
@@ -83,7 +83,6 @@ export default /** @type {import("../types").LanguageProto} */ ({
 
 		Prism.languages.markup['tag'].inside['attr-value'].inside['entity'] =
 			Prism.languages.markup['entity'];
-		Prism.languages.markup['doctype'].inside['internal-subset'].inside = Prism.languages.markup;
 
 		// Plugin to make entity title show the real entity, idea by Roman Komarov
 		Prism.hooks.add('wrap', function (env) {
@@ -179,9 +178,6 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				});
 			}
 		});
-
-
-
 
 
 		Prism.languages.xml = extend('markup', {});

@@ -20,7 +20,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 								pattern: /(^\$\{)[\s\S]+(?=\}$)/,
 								lookbehind: true,
 								alias: 'language-dhall',
-								inside: null // see blow
+								inside: 'dhall'
 							},
 							'punctuation': /\$\{|\}/
 						}
@@ -68,7 +68,5 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			// we'll just assume that every capital word left is a type name
 			'class-name': /\b[A-Z]\w*\b/
 		};
-
-		Prism.languages.dhall.string.inside.interpolation.inside.expression.inside = Prism.languages.dhall;
 	}
 });

@@ -72,13 +72,13 @@ export default /** @type {import("../types").LanguageProto} */ ({
 					// fn foo(x: bool, y: f32) void {}
 					pattern: RegExp(/(:\s*)<TYPE>(?=\s*(?:<ALIGN>\s*)?[=;,)])|<TYPE>(?=\s*(?:<ALIGN>\s*)?\{)/.source.replace(/<TYPE>/g, literal(TYPE)).replace(/<ALIGN>/g, literal(ALIGN))),
 					lookbehind: true,
-					inside: null // see below
+					inside: 'zig'
 				},
 				{
 					// extern fn foo(x: f64) f64; (optional alignment)
 					pattern: RegExp(/(\)\s*)<TYPE>(?=\s*(?:<ALIGN>\s*)?;)/.source.replace(/<TYPE>/g, literal(TYPE)).replace(/<ALIGN>/g, literal(ALIGN))),
 					lookbehind: true,
-					inside: null // see below
+					inside: 'zig'
 				}
 			],
 			'builtin-type': {
@@ -92,11 +92,5 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'operator': /\.[*?]|\.{2,3}|[-=]>|\*\*|\+\+|\|\||(?:<<|>>|[-+*]%|[-+*/%^&|<>!=])=?|[?~]/,
 			'punctuation': /[.:,;(){}[\]]/
 		};
-
-		Prism.languages.zig['class-name'].forEach(function (obj) {
-			if (obj.inside === null) {
-				obj.inside = Prism.languages.zig;
-			}
-		});
 	}
 });

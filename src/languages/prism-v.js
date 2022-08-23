@@ -3,12 +3,7 @@ import clike from './prism-clike.js';
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'v',
 	require: clike,
-	grammar({ extend, getLanguage }) {
-		let interpolationExpr = {
-			pattern: /[\s\S]+/,
-			inside: null
-		};
-
+	grammar({ extend }) {
 		Prism.languages.v = extend('clike', {
 			'string': {
 				pattern: /r?(["'])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,
@@ -27,7 +22,10 @@ export default /** @type {import("../types").LanguageProto} */ ({
 								pattern: /^\$\{|\}$/,
 								alias: 'punctuation'
 							},
-							'interpolation-expression': interpolationExpr
+							'interpolation-expression': {
+								pattern: /[\s\S]+/,
+								inside: 'v'
+							}
 						}
 					}
 				}
@@ -41,8 +39,6 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'operator': /~|\?|[*\/%^!=]=?|\+[=+]?|-[=-]?|\|[=|]?|&(?:=|&|\^=?)?|>(?:>=?|=)?|<(?:<=?|=|-)?|:=|\.\.\.?/,
 			'builtin': /\b(?:any(?:_float|_int)?|bool|byte(?:ptr)?|charptr|f(?:32|64)|i(?:8|16|64|128|nt)|rune|size_t|string|u(?:16|32|64|128)|voidptr)\b/
 		});
-
-		interpolationExpr.inside = Prism.languages.v;
 
 		Prism.languages.insertBefore('v', 'string', {
 			'char': {

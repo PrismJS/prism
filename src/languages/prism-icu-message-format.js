@@ -45,7 +45,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				'message': {
 					pattern: /^(\{)[\s\S]+(?=\}$)/,
 					lookbehind: true,
-					inside: null // see below
+					inside: 'icu-message-format'
 				},
 				'message-delimiter': {
 					pattern: /./,
@@ -144,7 +144,6 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'string': string
 		};
 
-		nestedMessage.inside.message.inside = Prism.languages['icu-message-format'];
 		Prism.languages['icu-message-format'].argument.inside.content.inside['choice-style'].inside.rest = Prism.languages['icu-message-format'];
 	}
 });

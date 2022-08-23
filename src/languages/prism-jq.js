@@ -11,14 +11,14 @@ export default /** @type {import("../types").LanguageProto} */ ({
 					'content': {
 						pattern: /^(\\\()[\s\S]+(?=\)$)/,
 						lookbehind: true,
-						inside: null // see below
+						inside: 'jq'
 					},
 					'punctuation': /^\\\(|\)$/
 				}
 			}
 		};
 
-		let jq = Prism.languages.jq = {
+		return {
 			'comment': /#.*/,
 			'property': {
 				pattern: RegExp(string.source + /(?=\s*:(?!:))/.source),
@@ -64,7 +64,5 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				alias: 'important'
 			}
 		};
-
-		stringInterpolation.interpolation.inside.content.inside = jq;
 	}
 });

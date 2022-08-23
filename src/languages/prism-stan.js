@@ -37,7 +37,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 					'expression': {
 						pattern: /(=\s*)\S(?:\S|\s+(?!\s))*?(?=\s*(?:>$|,\s*\w+\s*=))/,
 						lookbehind: true,
-						inside: null // see below
+						inside: 'stan'
 					},
 					'property': /\b[a-z]\w*(?=\s*=)/i,
 					'operator': /=/,
@@ -60,7 +60,5 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'operator': /<-|\.[*/]=?|\|\|?|&&|[!=<>+\-*/]=?|['^%~?:]/,
 			'punctuation': /[()\[\]{},;]/
 		};
-
-		Prism.languages.stan.constraint.inside.expression.inside = Prism.languages.stan;
 	}
 });

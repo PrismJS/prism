@@ -51,7 +51,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 					'expression': {
 						pattern: /(\[)[^[\]]+(?=\])/,
 						lookbehind: true,
-						inside: null // see below
+						inside: 'plant-uml'
 					},
 					'punctuation': /\[(?=$|\])|^\]/
 				}
@@ -98,7 +98,5 @@ export default /** @type {import("../types").LanguageProto} */ ({
 
 			'punctuation': /[:,;()[\]{}]|\.{3}/
 		};
-
-		Prism.languages['plant-uml'].arrow.inside.expression.inside = Prism.languages['plant-uml'];
 	}
 });

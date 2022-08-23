@@ -16,7 +16,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				},
 				'statement': {
 					pattern: /[\s\S]+/,
-					inside: null // see below
+					inside: 'mel'
 				}
 			}
 		},
@@ -43,7 +43,5 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		},
 		'operator': /\+[+=]?|-[-=]?|&&|\|\||[<>]=?|[*\/!=]=?|[%^]/,
 		'punctuation': /[.,:;?\[\](){}]/
-	};
-
-	Prism.languages.mel['code'].inside['statement'].inside = Prism.languages.mel
+	}
 });

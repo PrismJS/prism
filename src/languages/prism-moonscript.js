@@ -18,7 +18,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 							'moonscript': {
 								pattern: /(^#\{)[\s\S]+(?=\})/,
 								lookbehind: true,
-								inside: null // see beow
+								inside: 'moonscript'
 							},
 							'interpolation-punctuation': {
 								pattern: /#\{|\}/,
@@ -53,7 +53,5 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		'number': /(?:\B\.\d+|\b\d+\.\d+|\b\d+(?=[eE]))(?:[eE][-+]?\d+)?\b|\b(?:0x[a-fA-F\d]+|\d+)(?:U?LL)?\b/,
 		'operator': /\.{3}|[-=]>|~=|(?:[-+*/%<>!=]|\.\.)=?|[:#^]|\b(?:and|or)\b=?|\b(?:not)\b/,
 		'punctuation': /[.,()[\]{}\\]/
-	};
-
-	Prism.languages.moonscript.string[1].inside.interpolation.inside.moonscript.inside = Prism.languages.moonscript
+	}
 });

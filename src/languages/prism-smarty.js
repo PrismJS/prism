@@ -16,7 +16,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				inside: {
 					'smarty': {
 						pattern: /^\{php\}|\{\/php\}$/,
-						inside: null // see below
+						inside: 'smarty'
 					},
 					'php': {
 						pattern: /[\s\S]+/,
@@ -39,7 +39,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 								},
 								'expression': {
 									pattern: /[\s\S]+/,
-									inside: null // see below
+									inside: 'smarty'
 								}
 							}
 						},
@@ -87,9 +87,6 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				/\b(?:and|eq|gt?e|gt|lt?e|lt|mod|neq?|not|or)\b/
 			]
 		};
-
-		Prism.languages.smarty['embedded-php'].inside.smarty.inside = Prism.languages.smarty;
-		Prism.languages.smarty.string[0].inside.interpolation.inside.expression.inside = Prism.languages.smarty;
 
 		let string = /"(?:\\.|[^"\\\r\n])*"|'(?:\\.|[^'\\\r\n])*'/;
 		let smartyPattern = RegExp(

@@ -5,11 +5,11 @@ import python from './prism-python.js';
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'stata',
 	require: [mata, java, python],
-	grammar({ getLanguage }) {
+	grammar() {
 		// https://www.stata.com/manuals/u.pdf
 		// https://www.stata.com/manuals/p.pdf
 
-		Prism.languages.stata = {
+		return {
 			'comment': [
 				{
 					pattern: /(^[ \t]*)\*.*/m,
@@ -32,7 +32,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 							'punctuation': /^\$\{|\}$/,
 							'expression': {
 								pattern: /[\s\S]+/,
-								inside: null // see below
+								inside: 'stata'
 							}
 						}
 					},
@@ -80,7 +80,5 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'operator': /\+\+|--|##?|[<>!=~]=?|[+\-*^&|/]/,
 			'punctuation': /[(){}[\],:]/
 		};
-
-		Prism.languages.stata['string-literal'].inside.interpolation.inside.expression.inside = Prism.languages.stata;
 	}
 });

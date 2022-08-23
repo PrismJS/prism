@@ -35,7 +35,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 					),
 					lookbehind: true,
 					greedy: true,
-					inside: null // see below
+					inside: 'sml'
 				},
 				{
 					pattern: /((?:^|[^\w'])(?:datatype|exception|functor|signature|structure|type)\s+)[a-z_][\w'.]*/i,
@@ -63,7 +63,5 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'operator': /\.\.\.|:[>=:]|=>?|->|[<>]=?|[!+\-*/^#|@~]/,
 			'punctuation': /[(){}\[\].:,;]/
 		};
-
-		Prism.languages.sml['class-name'][0].inside = Prism.languages.sml;
 	}
 });

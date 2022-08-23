@@ -15,7 +15,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		schemeExpression = schemeExpression.replace(/<expr>/g, /[^\s\S]/.source);
 
 
-		let lilypond = Prism.languages.lilypond = {
+		return {
 			'comment': /%(?:(?!\{).*|\{[\s\S]*?%\})/,
 			'embedded-scheme': {
 				pattern: RegExp(/(^|[=\s])#(?:"(?:[^"\\]|\\.)*"|[^\s()"]*(?:[^\s()]|<expr>))/.source.replace(/<expr>/g, function () { return schemeExpression; }), 'm'),
@@ -35,7 +35,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 									'lilypond': {
 										pattern: /[\s\S]+/,
 										alias: 'language-lilypond',
-										inside: null // see below
+										inside: 'lilypond'
 									}
 								}
 							},
@@ -66,9 +66,5 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			},
 			'number': /\b\d+(?:\/\d+)?\b/
 		};
-
-		lilypond['embedded-scheme'].inside['scheme'].inside['embedded-lilypond'].inside['lilypond'].inside = lilypond;
-
-		Prism.languages.ly = lilypond;
 	}
 });

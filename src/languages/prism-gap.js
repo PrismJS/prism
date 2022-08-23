@@ -12,7 +12,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 					'gap': {
 						pattern: /^(gap>).+(?:(?:\r(?:\n|(?!\n))|\n)>.*)*/,
 						lookbehind: true,
-						inside: null // see below
+						inside: 'gap'
 					},
 					'punctuation': /^gap>/
 				}
@@ -53,7 +53,5 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'operator': /->|[-+*/^~=!]|<>|[<>]=?|:=|\.\./,
 			'punctuation': /[()[\]{},;.:]/
 		};
-
-		Prism.languages.gap.shell.inside.gap.inside = Prism.languages.gap;
 	}
 });

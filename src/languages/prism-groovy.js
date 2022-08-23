@@ -14,7 +14,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				},
 				'expression': {
 					pattern: /[\s\S]+/,
-					inside: null // see below
+					inside: 'groovy'
 				}
 			}
 		};
@@ -63,7 +63,5 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				alias: 'punctuation'
 			}
 		});
-
-		interpolation.inside.expression.inside = Prism.languages.groovy;
 	}
 });
