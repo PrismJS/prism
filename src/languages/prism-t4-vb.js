@@ -1,10 +1,10 @@
-import t4Templating from './prism-t4-templating.js';
+import { createT4 } from '../shared/languages/t4-templating.js';
 import vbnet from './prism-vbnet.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 't4-vb',
-	require: [t4Templating, vbnet],
-	grammar({ getLanguage }) {
-		Prism.languages['t4-vb'] = Prism.languages['t4-templating'].createT4('vbnet');
+	require: vbnet,
+	grammar() {
+		return createT4('vbnet');
 	}
 });
