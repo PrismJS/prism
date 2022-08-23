@@ -14,6 +14,4 @@ export interface GrammarToken {
 	inside?: string | Grammar
 }
 
-export interface Grammar {
-	[string]: RegExp | GrammarToken | (RegExp | GrammarToken)[]
-}
+export type Grammar = Record<string, RegExp | GrammarToken | (RegExp | GrammarToken)[]>

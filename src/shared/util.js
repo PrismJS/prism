@@ -1,22 +1,27 @@
 let uniqueId = 0;
 
+/** @type {WeakMap<object, number>} */
+const uniqueIdMap = new WeakMap();
+
 /**
  * Returns a unique number for the given object. Later calls will still return the same number.
  *
- * @param {{}} obj
+ * @param {object} obj
  * @returns {number}
  */
 function getObjectId(obj) {
-	if (!obj['__id']) {
-		Object.defineProperty(obj, '__id', { value: ++uniqueId });
+	let id = uniqueIdMap.get(obj);
+	if (id === undefined) {
+		id = ++uniqueId;
+		uniqueIdMap.set(obj, id);
 	}
-	return obj['__id'];
+	return id;
 }
 
 /**
  * Returns the name of the type of the given value.
  *
- * @param {any} obj
+ * @param {unknown} obj
  * @returns {string}
  * @example
  * type(null)      === 'Null'
@@ -33,6 +38,12 @@ function getType(obj) {
 	return Object.prototype.toString.call(obj).slice(8, -1);
 }
 
+/**
+ * @param {Record<string | number, any>} obj
+ * @param {(this: any, key: string, value: any, type: string) => void} callback
+ * @param {string | null} [type]
+ * @param {Record<number, boolean>} [visited]
+ */
 export function DFS(obj, callback, type, visited) {
 	visited = visited || {};
 
@@ -55,6 +66,10 @@ export function DFS(obj, callback, type, visited) {
 	}
 }
 
+/**
+ * @param {string} text
+ * @returns {string}
+ */
 export function htmlEncode(text) {
 	return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/\u00a0/g, ' ');
 }

@@ -1,6 +1,9 @@
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'zig',
 	grammar() {
+		/**
+		 * @param {string} str
+		 */
 		function literal(str) {
 			return function () { return str; };
 		}

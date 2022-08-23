@@ -1,10 +1,27 @@
 /**
- * @typedef LinkedListNode
+ * @typedef LinkedListMiddleNode
  * @property {T} value
- * @property {LinkedListNode<T> | null} prev The previous node.
- * @property {LinkedListNode<T> | null} next The next node.
+ * @property {LinkedListMiddleNode<T> | LinkedListHeadNode<T>} prev
+ * @property {LinkedListMiddleNode<T> | LinkedListTailNode<T>} next
  * @template T
- * @private
+ */
+/**
+ * @typedef LinkedListHeadNode
+ * @property {null} value
+ * @property {null} prev
+ * @property {LinkedListMiddleNode<T> | LinkedListTailNode<T>} next
+ * @template T
+ */
+/**
+ * @typedef LinkedListTailNode
+ * @property {null} value
+ * @property {LinkedListMiddleNode<T> | LinkedListHeadNode<T>} prev
+ * @property {null} next
+ * @template T
+ */
+/**
+ * @typedef {LinkedListHeadNode<T> | LinkedListTailNode<T> | LinkedListMiddleNode<T>} LinkedListNode
+ * @template T
  */
 
 /**
@@ -12,9 +29,9 @@
  */
 export class LinkedList {
 	constructor() {
-		/** @type {LinkedListNode<T>} */
-		let head = { value: null, prev: null, next: null };
-		/** @type {LinkedListNode<T>} */
+		/** @type {LinkedListHeadNode<T>} */
+		let head = { value: null, prev: null, next: /** @type {any} */ (null) };
+		/** @type {LinkedListTailNode<T>} */
 		let tail = { value: null, prev: head, next: null };
 		head.next = tail;
 
@@ -26,9 +43,9 @@ export class LinkedList {
 	/**
 	 * Adds a new node with the given value to the list.
 	 *
-	 * @param {LinkedListNode<T>} node
+	 * @param {LinkedListHeadNode<T> | LinkedListMiddleNode<T>} node
 	 * @param {T} value
-	 * @returns {LinkedListNode<T>} The added node.
+	 * @returns {LinkedListMiddleNode<T>} The added node.
 	 */
 	addAfter(node, value) {
 		// assumes that node != list.tail && values.length >= 0
@@ -45,14 +62,13 @@ export class LinkedList {
 	/**
 	 * Removes `count` nodes after the given node. The given node will not be removed.
 	 *
-	 * @param {LinkedListNode<T>} node
+	 * @param {LinkedListHeadNode<T> | LinkedListMiddleNode<T>} node
 	 * @param {number} count
-	 * @template T
 	 */
 	removeRange(node, count) {
 		let next = node.next;
 		let i = 0;
-		for (; i < count && next !== this.tail; i++) {
+		for (; i < count && next.next !== null; i++) {
 			next = next.next;
 		}
 		node.next = next;
@@ -66,7 +82,7 @@ export class LinkedList {
 	toArray() {
 		let array = [];
 		let node = this.head.next;
-		while (node !== this.tail) {
+		while (node.next !== null) {
 			array.push(node.value);
 			node = node.next;
 		}
