@@ -19,11 +19,11 @@ var _self = (typeof window !== 'undefined')
 var Prism = (function (_self) {
 
 	// Private helper vars
-	var lang = /(?:^|\s)lang(?:uage)?-([\w-]+)(?=\s|$)/i;
-	var uniqueId = 0;
+	let lang = /(?:^|\s)lang(?:uage)?-([\w-]+)(?=\s|$)/i;
+	let uniqueId = 0;
 
 	// The grammar object for plaintext
-	var plainTextGrammar = {};
+	let plainTextGrammar = {};
 
 
 	var _ = {
@@ -138,7 +138,7 @@ var Prism = (function (_self) {
 			clone: function deepClone(o, visited) {
 				visited = visited || {};
 
-				var clone; var id;
+				let clone; let id;
 				switch (_.util.type(o)) {
 					case 'Object':
 						id = _.util.objId(o);
@@ -148,7 +148,7 @@ var Prism = (function (_self) {
 						clone = /** @type {Record<string, any>} */ ({});
 						visited[id] = clone;
 
-						for (var key in o) {
+						for (let key in o) {
 							if (o.hasOwnProperty(key)) {
 								clone[key] = deepClone(o[key], visited);
 							}
@@ -185,7 +185,7 @@ var Prism = (function (_self) {
 			 */
 			getLanguage: function (element) {
 				while (element) {
-					var m = lang.exec(element.className);
+					let m = lang.exec(element.className);
 					if (m) {
 						return m[1].toLowerCase();
 					}
@@ -240,10 +240,10 @@ var Prism = (function (_self) {
 					//    at _.util.currentScript (http://localhost/components/prism-core.js:119:5)
 					//    at Global code (http://localhost/components/prism-core.js:606:1)
 
-					var src = (/at [^(\r\n]*\((.*):[^:]+:[^:]+\)$/i.exec(err.stack) || [])[1];
+					let src = (/at [^(\r\n]*\((.*):[^:]+:[^:]+\)$/i.exec(err.stack) || [])[1];
 					if (src) {
-						var scripts = document.getElementsByTagName('script');
-						for (var i in scripts) {
+						let scripts = document.getElementsByTagName('script');
+						for (let i in scripts) {
 							if (scripts[i].src == src) {
 								return scripts[i];
 							}
@@ -273,10 +273,10 @@ var Prism = (function (_self) {
 			 * @returns {boolean}
 			 */
 			isActive: function (element, className, defaultActivation) {
-				var no = 'no-' + className;
+				let no = 'no-' + className;
 
 				while (element) {
-					var classList = element.classList;
+					let classList = element.classList;
 					if (classList.contains(className)) {
 						return true;
 					}
@@ -334,9 +334,9 @@ var Prism = (function (_self) {
 			 * });
 			 */
 			extend: function (id, redef) {
-				var lang = _.util.clone(_.languages[id]);
+				let lang = _.util.clone(_.languages[id]);
 
-				for (var key in redef) {
+				for (let key in redef) {
 					lang[key] = redef[key];
 				}
 
@@ -420,15 +420,15 @@ var Prism = (function (_self) {
 			 */
 			insertBefore: function (inside, before, insert, root) {
 				root = root || /** @type {any} */ (_.languages);
-				var grammar = root[inside];
+				let grammar = root[inside];
 				/** @type {Grammar} */
-				var ret = {};
+				let ret = {};
 
-				for (var token in grammar) {
+				for (let token in grammar) {
 					if (grammar.hasOwnProperty(token)) {
 
 						if (token == before) {
-							for (var newToken in insert) {
+							for (let newToken in insert) {
 								if (insert.hasOwnProperty(newToken)) {
 									ret[newToken] = insert[newToken];
 								}
@@ -442,7 +442,7 @@ var Prism = (function (_self) {
 					}
 				}
 
-				var old = root[inside];
+				let old = root[inside];
 				root[inside] = ret;
 
 				// Update references in other language definitions
@@ -459,14 +459,14 @@ var Prism = (function (_self) {
 			DFS: function DFS(o, callback, type, visited) {
 				visited = visited || {};
 
-				var objId = _.util.objId;
+				let objId = _.util.objId;
 
-				for (var i in o) {
+				for (let i in o) {
 					if (o.hasOwnProperty(i)) {
 						callback.call(o, i, o[i], type || i);
 
-						var property = o[i];
-						var propertyType = _.util.type(property);
+						let property = o[i];
+						let propertyType = _.util.type(property);
 
 						if (propertyType === 'Object' && !visited[objId(property)]) {
 							visited[objId(property)] = true;
@@ -514,7 +514,7 @@ var Prism = (function (_self) {
 		 * @public
 		 */
 		highlightAllUnder: function (container, async, callback) {
-			var env = {
+			let env = {
 				callback: callback,
 				container: container,
 				selector: 'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'
@@ -561,21 +561,21 @@ var Prism = (function (_self) {
 		 */
 		highlightElement: function (element, async, callback) {
 			// Find language
-			var language = _.util.getLanguage(element);
-			var grammar = _.languages[language];
+			let language = _.util.getLanguage(element);
+			let grammar = _.languages[language];
 
 			// Set language on the element, if not present
 			_.util.setLanguage(element, language);
 
 			// Set language on the parent, for styling
-			var parent = element.parentElement;
+			let parent = element.parentElement;
 			if (parent && parent.nodeName.toLowerCase() === 'pre') {
 				_.util.setLanguage(parent, language);
 			}
 
-			var code = element.textContent;
+			let code = element.textContent;
 
-			var env = {
+			let env = {
 				element: element,
 				language: language,
 				grammar: grammar,
@@ -616,7 +616,7 @@ var Prism = (function (_self) {
 			}
 
 			if (async && _self.Worker) {
-				var worker = new Worker(_.filename);
+				let worker = new Worker(_.filename);
 
 				worker.onmessage = function (evt) {
 					insertHighlightedCode(evt.data);
@@ -653,7 +653,7 @@ var Prism = (function (_self) {
 		 * Prism.highlight('var foo = true;', Prism.languages.javascript, 'javascript');
 		 */
 		highlight: function (text, grammar, language) {
-			var env = {
+			let env = {
 				code: text,
 				grammar: grammar,
 				language: language
@@ -692,16 +692,16 @@ var Prism = (function (_self) {
 		 * });
 		 */
 		tokenize: function (text, grammar) {
-			var rest = grammar.rest;
+			let rest = grammar.rest;
 			if (rest) {
-				for (var token in rest) {
+				for (let token in rest) {
 					grammar[token] = rest[token];
 				}
 
 				delete grammar.rest;
 			}
 
-			var tokenList = new LinkedList();
+			let tokenList = new LinkedList();
 			addAfter(tokenList, tokenList.head, text);
 
 			matchGrammar(text, tokenList, grammar, tokenList.head, 0);
@@ -730,7 +730,7 @@ var Prism = (function (_self) {
 			 * @public
 			 */
 			add: function (name, callback) {
-				var hooks = _.hooks.all;
+				let hooks = _.hooks.all;
 
 				hooks[name] = hooks[name] || [];
 
@@ -747,7 +747,7 @@ var Prism = (function (_self) {
 			 * @public
 			 */
 			run: function (name, env) {
-				var callbacks = _.hooks.all[name];
+				let callbacks = _.hooks.all[name];
 
 				if (!callbacks || !callbacks.length) {
 					return;
@@ -845,14 +845,14 @@ var Prism = (function (_self) {
 			return o;
 		}
 		if (Array.isArray(o)) {
-			var s = '';
+			let s = '';
 			o.forEach(function (e) {
 				s += stringify(e, language);
 			});
 			return s;
 		}
 
-		var env = {
+		let env = {
 			type: o.type,
 			content: stringify(o.content, language),
 			tag: 'span',
@@ -861,7 +861,7 @@ var Prism = (function (_self) {
 			language: language
 		};
 
-		var aliases = o.alias;
+		let aliases = o.alias;
 		if (aliases) {
 			if (Array.isArray(aliases)) {
 				Array.prototype.push.apply(env.classes, aliases);
@@ -872,8 +872,8 @@ var Prism = (function (_self) {
 
 		_.hooks.run('wrap', env);
 
-		var attributes = '';
-		for (var name in env.attributes) {
+		let attributes = '';
+		for (let name in env.attributes) {
 			attributes += ' ' + name + '="' + (env.attributes[name] || '').replace(/"/g, '&quot;') + '"';
 		}
 
@@ -889,10 +889,10 @@ var Prism = (function (_self) {
 	 */
 	function matchPattern(pattern, pos, text, lookbehind) {
 		pattern.lastIndex = pos;
-		var match = pattern.exec(text);
+		let match = pattern.exec(text);
 		if (match && lookbehind && match[1]) {
 			// change the match to remove the text matched by the Prism lookbehind group
-			var lookbehindLength = match[1].length;
+			let lookbehindLength = match[1].length;
 			match.index += lookbehindLength;
 			match[0] = match[0].slice(lookbehindLength);
 		}
@@ -914,36 +914,36 @@ var Prism = (function (_self) {
 	 * @property {number} reach
 	 */
 	function matchGrammar(text, tokenList, grammar, startNode, startPos, rematch) {
-		for (var token in grammar) {
+		for (let token in grammar) {
 			if (!grammar.hasOwnProperty(token) || !grammar[token]) {
 				continue;
 			}
 
-			var patterns = grammar[token];
+			let patterns = grammar[token];
 			patterns = Array.isArray(patterns) ? patterns : [patterns];
 
-			for (var j = 0; j < patterns.length; ++j) {
+			for (let j = 0; j < patterns.length; ++j) {
 				if (rematch && rematch.cause == token + ',' + j) {
 					return;
 				}
 
-				var patternObj = patterns[j];
-				var inside = patternObj.inside;
-				var lookbehind = !!patternObj.lookbehind;
-				var greedy = !!patternObj.greedy;
-				var alias = patternObj.alias;
+				let patternObj = patterns[j];
+				let inside = patternObj.inside;
+				let lookbehind = !!patternObj.lookbehind;
+				let greedy = !!patternObj.greedy;
+				let alias = patternObj.alias;
 
 				if (greedy && !patternObj.pattern.global) {
 					// Without the global flag, lastIndex won't work
-					var flags = patternObj.pattern.toString().match(/[imsuy]*$/)[0];
+					let flags = patternObj.pattern.toString().match(/[imsuy]*$/)[0];
 					patternObj.pattern = RegExp(patternObj.pattern.source, flags + 'g');
 				}
 
 				/** @type {RegExp} */
-				var pattern = patternObj.pattern || patternObj;
+				let pattern = patternObj.pattern || patternObj;
 
 				for ( // iterate the token list and keep track of the current token/string position
-					var currentNode = startNode.next, pos = startPos;
+					let currentNode = startNode.next, pos = startPos;
 					currentNode !== tokenList.tail;
 					pos += currentNode.value.length, currentNode = currentNode.next
 				) {
@@ -952,7 +952,7 @@ var Prism = (function (_self) {
 						break;
 					}
 
-					var str = currentNode.value;
+					let str = currentNode.value;
 
 					if (tokenList.length > text.length) {
 						// Something went terribly wrong, ABORT, ABORT!
@@ -963,7 +963,7 @@ var Prism = (function (_self) {
 						continue;
 					}
 
-					var removeCount = 1; // this is the to parameter of removeBetween
+					let removeCount = 1; // this is the to parameter of removeBetween
 					var match;
 
 					if (greedy) {
@@ -973,8 +973,8 @@ var Prism = (function (_self) {
 						}
 
 						var from = match.index;
-						var to = match.index + match[0].length;
-						var p = pos;
+						let to = match.index + match[0].length;
+						let p = pos;
 
 						// find the node that contains the match
 						p += currentNode.value.length;
@@ -993,7 +993,7 @@ var Prism = (function (_self) {
 
 						// find the last node which is affected by this match
 						for (
-							var k = currentNode;
+							let k = currentNode;
 							k !== tokenList.tail && (p < to || typeof k.value === 'string');
 							k = k.next
 						) {
@@ -1014,16 +1014,16 @@ var Prism = (function (_self) {
 
 					// eslint-disable-next-line no-redeclare
 					var from = match.index;
-					var matchStr = match[0];
-					var before = str.slice(0, from);
-					var after = str.slice(from + matchStr.length);
+					let matchStr = match[0];
+					let before = str.slice(0, from);
+					let after = str.slice(from + matchStr.length);
 
-					var reach = pos + str.length;
+					let reach = pos + str.length;
 					if (rematch && reach > rematch.reach) {
 						rematch.reach = reach;
 					}
 
-					var removeFrom = currentNode.prev;
+					let removeFrom = currentNode.prev;
 
 					if (before) {
 						removeFrom = addAfter(tokenList, removeFrom, before);
@@ -1032,7 +1032,7 @@ var Prism = (function (_self) {
 
 					removeRange(tokenList, removeFrom, removeCount);
 
-					var wrapped = new Token(token, inside ? _.tokenize(matchStr, inside) : matchStr, alias, matchStr);
+					let wrapped = new Token(token, inside ? _.tokenize(matchStr, inside) : matchStr, alias, matchStr);
 					currentNode = addAfter(tokenList, removeFrom, wrapped);
 
 					if (after) {
@@ -1044,7 +1044,7 @@ var Prism = (function (_self) {
 						// this can only happen if the current pattern is greedy
 
 						/** @type {RematchOptions} */
-						var nestedRematch = {
+						let nestedRematch = {
 							cause: token + ',' + j,
 							reach: reach
 						};
@@ -1075,9 +1075,9 @@ var Prism = (function (_self) {
 	 */
 	function LinkedList() {
 		/** @type {LinkedListNode<T>} */
-		var head = { value: null, prev: null, next: null };
+		let head = { value: null, prev: null, next: null };
 		/** @type {LinkedListNode<T>} */
-		var tail = { value: null, prev: head, next: null };
+		let tail = { value: null, prev: head, next: null };
 		head.next = tail;
 
 		/** @type {LinkedListNode<T>} */
@@ -1098,9 +1098,9 @@ var Prism = (function (_self) {
 	 */
 	function addAfter(list, node, value) {
 		// assumes that node != list.tail && values.length >= 0
-		var next = node.next;
+		let next = node.next;
 
-		var newNode = { value: value, prev: node, next: next };
+		let newNode = { value: value, prev: node, next: next };
 		node.next = newNode;
 		next.prev = newNode;
 		list.length++;
@@ -1116,7 +1116,7 @@ var Prism = (function (_self) {
 	 * @template T
 	 */
 	function removeRange(list, node, count) {
-		var next = node.next;
+		let next = node.next;
 		for (var i = 0; i < count && next !== list.tail; i++) {
 			next = next.next;
 		}
@@ -1130,8 +1130,8 @@ var Prism = (function (_self) {
 	 * @template T
 	 */
 	function toArray(list) {
-		var array = [];
-		var node = list.head.next;
+		let array = [];
+		let node = list.head.next;
 		while (node !== list.tail) {
 			array.push(node.value);
 			node = node.next;
@@ -1149,10 +1149,10 @@ var Prism = (function (_self) {
 		if (!_.disableWorkerMessageHandler) {
 			// In worker
 			_self.addEventListener('message', function (evt) {
-				var message = JSON.parse(evt.data);
-				var lang = message.language;
-				var code = message.code;
-				var immediateClose = message.immediateClose;
+				let message = JSON.parse(evt.data);
+				let lang = message.language;
+				let code = message.code;
+				let immediateClose = message.immediateClose;
 
 				_self.postMessage(_.highlight(code, _.languages[lang], lang));
 				if (immediateClose) {
@@ -1165,7 +1165,7 @@ var Prism = (function (_self) {
 	}
 
 	// Get current script and highlight
-	var script = _.util.currentScript();
+	let script = _.util.currentScript();
 
 	if (script) {
 		_.filename = script.src;
@@ -1188,7 +1188,7 @@ var Prism = (function (_self) {
 		// might take longer one animation frame to execute which can create a race condition where only some plugins have
 		// been loaded when Prism.highlightAll() is executed, depending on how fast resources are loaded.
 		// See https://github.com/PrismJS/prism/issues/2102
-		var readyState = document.readyState;
+		let readyState = document.readyState;
 		if (readyState === 'loading' || readyState === 'interactive' && script && script.defer) {
 			document.addEventListener('DOMContentLoaded', highlightAutomaticallyCallback);
 		} else {
