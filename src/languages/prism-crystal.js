@@ -29,7 +29,7 @@ Prism.languages.insertBefore('crystal', 'string-literal', {
 			},
 			'args': {
 				pattern: /\S(?:[\s\S]*\S)?/,
-				inside: Prism.languages.crystal
+				inside: 'crystal'
 			},
 		}
 	},
@@ -39,7 +39,7 @@ Prism.languages.insertBefore('crystal', 'string-literal', {
 			'content': {
 				pattern: /^(\{.)[\s\S]+(?=.\}$)/,
 				lookbehind: true,
-				inside: Prism.languages.crystal
+				inside: 'crystal'
 			},
 			'delimiter': {
 				pattern: /^\{[\{%]|[\}%]\}$/,

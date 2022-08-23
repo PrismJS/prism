@@ -35,7 +35,7 @@ let interpolation = {
 		'content': {
 			pattern: /^(#\{)[\s\S]+(?=\}$)/,
 			lookbehind: true,
-			inside: Prism.languages.ruby
+			inside: 'ruby'
 		},
 		'delimiter': {
 			pattern: /^#\{|\}$/,

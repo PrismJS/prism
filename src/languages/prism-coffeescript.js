@@ -59,7 +59,7 @@ Prism.languages.insertBefore('coffeescript', 'string', {
 			'script': {
 				pattern: /[\s\S]+/,
 				alias: 'language-javascript',
-				inside: Prism.languages.javascript
+				inside: 'javascript'
 			}
 		}
 	},

@@ -87,7 +87,7 @@ Prism.languages.wren['string-literal'] = {
 				'expression': {
 					pattern: /^(%\()[\s\S]+(?=\)$)/,
 					lookbehind: true,
-					inside: Prism.languages.wren
+					inside: 'wren'
 				},
 				'interpolation-punctuation': {
 					pattern: /^%\(|\)$/,

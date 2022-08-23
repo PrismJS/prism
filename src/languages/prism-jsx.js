@@ -32,7 +32,7 @@ Prism.languages.jsx.tag.inside['comment'] = javascript['comment'];
 Prism.languages.insertBefore('inside', 'attr-name', {
 	'spread': {
 		pattern: re(/<SPREAD>/.source),
-		inside: Prism.languages.jsx
+		inside: 'jsx'
 	}
 }, Prism.languages.jsx.tag);
 

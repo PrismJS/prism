@@ -20,7 +20,7 @@ Prism.languages.http = {
 				pattern: /^(\s)(?:https?:\/\/|\/)\S*(?=\s)/,
 				lookbehind: true,
 				alias: 'url',
-				inside: Prism.languages.uri
+				inside: 'uri'
 			},
 			// HTTP Version
 			'http-version': {
@@ -60,19 +60,19 @@ Prism.languages.http = {
 					pattern: headerValueOf(/Content-Security-Policy/.source),
 					lookbehind: true,
 					alias: ['csp', 'languages-csp'],
-					inside: Prism.languages.csp
+					inside: 'csp'
 				},
 				{
 					pattern: headerValueOf(/Public-Key-Pins(?:-Report-Only)?/.source),
 					lookbehind: true,
 					alias: ['hpkp', 'languages-hpkp'],
-					inside: Prism.languages.hpkp
+					inside: 'hpkp'
 				},
 				{
 					pattern: headerValueOf(/Strict-Transport-Security/.source),
 					lookbehind: true,
 					alias: ['hsts', 'languages-hsts'],
-					inside: Prism.languages.hsts
+					inside: 'hsts'
 				},
 				{
 					pattern: headerValueOf(/[^:]+/.source),

@@ -16,7 +16,7 @@ Prism.languages.tap = {
 	'yamlish': {
 		pattern: /(^[ \t]*)---[\s\S]*?[\r\n][ \t]*\.\.\.$/m,
 		lookbehind: true,
-		inside: Prism.languages.yaml,
+		inside: 'yaml',
 		alias: 'language-yaml'
 	}
 };

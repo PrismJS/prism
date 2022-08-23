@@ -52,7 +52,7 @@ Prism.languages['shell-session'] = {
 				pattern: /(^[$#%]\s*)\S[\s\S]*/,
 				lookbehind: true,
 				alias: 'language-bash',
-				inside: Prism.languages.bash
+				inside: 'bash'
 			},
 			'shell-symbol': {
 				pattern: /^[$#%]/,

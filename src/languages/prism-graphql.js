@@ -8,7 +8,7 @@ Prism.languages.graphql = {
 			'language-markdown': {
 				pattern: /(^"(?:"")?)(?!\1)[\s\S]+(?=\1$)/,
 				lookbehind: true,
-				inside: Prism.languages.markdown
+				inside: 'markdown'
 			}
 		}
 	},

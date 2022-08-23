@@ -17,7 +17,7 @@ let IDInside = {
 		pattern: /(^<)[\s\S]+(?=>$)/,
 		lookbehind: true,
 		alias: ['language-markup', 'language-html', 'language-xml'],
-		inside: Prism.languages.markup
+		inside: 'markup'
 	}
 };
 

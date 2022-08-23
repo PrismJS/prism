@@ -21,7 +21,7 @@ Prism.languages.qml = {
 		lookbehind: true,
 		greedy: true,
 		alias: 'language-javascript',
-		inside: Prism.languages.javascript
+		inside: 'javascript'
 	},
 	'class-name': {
 		pattern: /((?:^|[:;])[ \t]*)(?!\d)\w+(?=[ \t]*\{|[ \t]+on\b)/m,
@@ -46,7 +46,7 @@ Prism.languages.qml = {
 		lookbehind: true,
 		greedy: true,
 		alias: 'language-javascript',
-		inside: Prism.languages.javascript
+		inside: 'javascript'
 	},
 	'string': {
 		pattern: /"(?:\\.|[^\\"\r\n])*"/,

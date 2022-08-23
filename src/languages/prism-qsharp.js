@@ -116,7 +116,7 @@ Prism.languages.insertBefore('qsharp', 'string', {
 					'expression': {
 						pattern: /[\s\S]+/,
 						alias: 'language-qsharp',
-						inside: Prism.languages.qsharp
+						inside: 'qsharp'
 					}
 				}
 			},

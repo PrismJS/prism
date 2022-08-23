@@ -21,7 +21,7 @@ Prism.languages.pug = {
 	'multiline-script': {
 		pattern: /(^([\t ]*)script\b.*\.[\t ]*)(?:(?:\r?\n|\r(?!\n))(?:\2[\t ].+|\s*?(?=\r?\n|\r)))+/m,
 		lookbehind: true,
-		inside: Prism.languages.javascript
+		inside: 'javascript'
 	},
 
 	// See at the end of the file for known filters
@@ -44,7 +44,7 @@ Prism.languages.pug = {
 	'markup': {
 		pattern: /(^[\t ]*)<.+/m,
 		lookbehind: true,
-		inside: Prism.languages.markup
+		inside: 'markup'
 	},
 	'doctype': {
 		pattern: /((?:^|\n)[\t ]*)doctype(?: .+)?/,
@@ -101,7 +101,7 @@ Prism.languages.pug = {
 	'script': {
 		pattern: /(^[\t ]*script(?:(?:&[^(]+)?\([^)]+\))*[\t ]).+/m,
 		lookbehind: true,
-		inside: Prism.languages.javascript
+		inside: 'javascript'
 	},
 
 	'plain-text': {
@@ -115,7 +115,7 @@ Prism.languages.pug = {
 			'attributes': [
 				{
 					pattern: /&[^(]+\([^)]+\)/,
-					inside: Prism.languages.javascript
+					inside: 'javascript'
 				},
 				{
 					pattern: /\([^)]+\)/,
@@ -123,7 +123,7 @@ Prism.languages.pug = {
 						'attr-value': {
 							pattern: /(=\s*(?!\s))(?:\{[^}]*\}|[^,)\r\n]+)/,
 							lookbehind: true,
-							inside: Prism.languages.javascript
+							inside: 'javascript'
 						},
 						'attr-name': /[\w-]+(?=\s*!?=|\s*[,)])/,
 						'punctuation': /[!=(),]+/
@@ -139,7 +139,7 @@ Prism.languages.pug = {
 		{
 			pattern: /(^[\t ]*(?:-|!?=)).+/m,
 			lookbehind: true,
-			inside: Prism.languages.javascript
+			inside: 'javascript'
 		}
 	],
 	'punctuation': /[.\-!=|]+/

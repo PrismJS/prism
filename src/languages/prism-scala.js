@@ -36,7 +36,7 @@ Prism.languages.insertBefore('scala', 'triple-quoted-string', {
 					'punctuation': /^\$\{?|\}$/,
 					'expression': {
 						pattern: /[\s\S]+/,
-						inside: Prism.languages.scala
+						inside: 'scala'
 					}
 				}
 			},

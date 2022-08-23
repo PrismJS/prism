@@ -65,7 +65,7 @@ Prism.languages.insertBefore('cpp', 'keyword', {
 			'generic': {
 				pattern: /<[\s\S]+/,
 				alias: 'class-name',
-				inside: Prism.languages.cpp
+				inside: 'cpp'
 			}
 		}
 	}

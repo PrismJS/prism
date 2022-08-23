@@ -14,7 +14,7 @@ Prism.languages.smarty = {
 			'php': {
 				pattern: /[\s\S]+/,
 				alias: 'language-php',
-				inside: Prism.languages.php
+				inside: 'php'
 			}
 		}
 	},

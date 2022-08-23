@@ -33,7 +33,7 @@ Prism.languages.insertBefore('markdown', 'prolog', {
 			'front-matter': {
 				pattern: /\S+(?:\s+\S+)*/,
 				alias: ['yaml', 'language-yaml'],
-				inside: Prism.languages.yaml
+				inside: 'yaml'
 			}
 		}
 	},
@@ -51,7 +51,7 @@ Prism.languages.insertBefore('markdown', 'prolog', {
 				inside: {
 					'table-data': {
 						pattern: RegExp(tableCell),
-						inside: Prism.languages.markdown
+						inside: 'markdown'
 					},
 					'punctuation': /\|/
 				}
@@ -69,7 +69,7 @@ Prism.languages.insertBefore('markdown', 'prolog', {
 					'table-header': {
 						pattern: RegExp(tableCell),
 						alias: 'important',
-						inside: Prism.languages.markdown
+						inside: 'markdown'
 					},
 					'punctuation': /\|/
 				}

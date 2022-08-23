@@ -37,21 +37,21 @@ Prism.languages.stata = {
 		lookbehind: true,
 		greedy: true,
 		alias: 'language-mata',
-		inside: Prism.languages.mata
+		inside: 'mata'
 	},
 	'java': {
 		pattern: /(^[ \t]*java[ \t]*:)[\s\S]+?(?=^end\b)/m,
 		lookbehind: true,
 		greedy: true,
 		alias: 'language-java',
-		inside: Prism.languages.java
+		inside: 'java'
 	},
 	'python': {
 		pattern: /(^[ \t]*python[ \t]*:)[\s\S]+?(?=^end\b)/m,
 		lookbehind: true,
 		greedy: true,
 		alias: 'language-python',
-		inside: Prism.languages.python
+		inside: 'python'
 	},
 
 

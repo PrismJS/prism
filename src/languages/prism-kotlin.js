@@ -28,7 +28,7 @@ let interpolationInside = {
 	},
 	'expression': {
 		pattern: /[\s\S]+/,
-		inside: Prism.languages.kotlin
+		inside: 'kotlin'
 	}
 };
 

@@ -7,7 +7,7 @@ Prism.languages.erb = {
 	'ruby': {
 		pattern: /\s*\S[\s\S]*/,
 		alias: 'language-ruby',
-		inside: Prism.languages.ruby
+		inside: 'ruby'
 	}
 };
 

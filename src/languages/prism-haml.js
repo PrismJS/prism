@@ -19,12 +19,12 @@ Prism.languages.haml = {
 		{
 			pattern: /((?:^|\r?\n|\r)([\t ]*)(?:[~-]|[&!]?=)).*,[\t ]*(?:(?:\r?\n|\r)\2[\t ].*,[\t ]*)*(?:(?:\r?\n|\r)\2[\t ].+)/,
 			lookbehind: true,
-			inside: Prism.languages.ruby
+			inside: 'ruby'
 		},
 		{
 			pattern: /((?:^|\r?\n|\r)([\t ]*)(?:[~-]|[&!]?=)).*\|[\t ]*(?:(?:\r?\n|\r)\2[\t ].*\|[\t ]*)*/,
 			lookbehind: true,
-			inside: Prism.languages.ruby
+			inside: 'ruby'
 		}
 	],
 
@@ -43,7 +43,7 @@ Prism.languages.haml = {
 	'markup': {
 		pattern: /((?:^|\r?\n|\r)[\t ]*)<.+/,
 		lookbehind: true,
-		inside: Prism.languages.markup
+		inside: 'markup'
 	},
 	'doctype': {
 		pattern: /((?:^|\r?\n|\r)[\t ]*)!!!(?: .+)?/,
@@ -60,7 +60,7 @@ Prism.languages.haml = {
 					// Allows for one nested group of braces
 					pattern: /(^|[^#])\{(?:\{[^}]+\}|[^{}])+\}/,
 					lookbehind: true,
-					inside: Prism.languages.ruby
+					inside: 'ruby'
 				},
 				{
 					pattern: /\([^)]+\)/,
@@ -75,7 +75,7 @@ Prism.languages.haml = {
 				},
 				{
 					pattern: /\[[^\]]+\]/,
-					inside: Prism.languages.ruby
+					inside: 'ruby'
 				}
 			],
 			'punctuation': /[<>]/
@@ -84,7 +84,7 @@ Prism.languages.haml = {
 	'code': {
 		pattern: /((?:^|\r?\n|\r)[\t ]*(?:[~-]|[&!]?=)).+/,
 		lookbehind: true,
-		inside: Prism.languages.ruby
+		inside: 'ruby'
 	},
 	// Interpolations in plain text
 	'interpolation': {
@@ -96,7 +96,7 @@ Prism.languages.haml = {
 			},
 			'ruby': {
 				pattern: /[\s\S]+/,
-				inside: Prism.languages.ruby
+				inside: 'ruby'
 			}
 		}
 	},

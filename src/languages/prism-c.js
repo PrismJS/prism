@@ -66,7 +66,7 @@ Prism.languages.insertBefore('c', 'string', {
 			'punctuation': /##|\\(?=[\r\n])/,
 			'expression': {
 				pattern: /\S[\s\S]*/,
-				inside: Prism.languages.c
+				inside: 'c'
 			}
 		}
 	}

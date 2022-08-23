@@ -64,7 +64,7 @@ Prism.languages.insertBefore('fsharp', 'string', {
 			},
 			'annotation-content': {
 				pattern: /[\s\S]+/,
-				inside: Prism.languages.fsharp
+				inside: 'fsharp'
 			}
 		}
 	},

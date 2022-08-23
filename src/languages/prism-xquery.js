@@ -59,7 +59,7 @@ Prism.languages.xquery['tag'].inside['attr-value'].inside['punctuation'] = /^="|
 Prism.languages.xquery['tag'].inside['attr-value'].inside['expression'] = {
 	// Allow for two levels of nesting
 	pattern: /\{(?!\{)(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])+\}/,
-	inside: Prism.languages.xquery,
+	inside: 'xquery',
 	alias: 'language-xquery'
 };
 

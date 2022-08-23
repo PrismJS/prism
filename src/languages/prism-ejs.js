@@ -6,7 +6,7 @@ Prism.languages.ejs = {
 	'comment': /^#[\s\S]*/,
 	'language-javascript': {
 		pattern: /[\s\S]+/,
-		inside: Prism.languages.javascript
+		inside: 'javascript'
 	}
 };
 

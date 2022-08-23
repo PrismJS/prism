@@ -47,7 +47,7 @@ Prism.languages.insertBefore('dart', 'string', {
 					'punctuation': /^\$\{?|\}$/,
 					'expression': {
 						pattern: /[\s\S]+/,
-						inside: Prism.languages.dart
+						inside: 'dart'
 					}
 				}
 			},

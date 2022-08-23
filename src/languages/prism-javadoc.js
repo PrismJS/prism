@@ -45,7 +45,7 @@ Prism.languages.insertBefore('javadoc', 'keyword', {
 					// there can't be any HTML inside of {@code} tags
 					pattern: codeLinePattern,
 					lookbehind: true,
-					inside: Prism.languages.java,
+					inside: 'java',
 					alias: 'language-java'
 				}
 			}
@@ -64,7 +64,7 @@ Prism.languages.insertBefore('javadoc', 'keyword', {
 						'code': {
 							// everything else is Java code
 							pattern: /.+/,
-							inside: Prism.languages.java,
+							inside: 'java',
 							alias: 'language-java'
 						}
 					}

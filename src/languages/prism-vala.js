@@ -75,7 +75,7 @@ Prism.languages.insertBefore('vala', 'keyword', {
 				pattern: /^(\/)[\s\S]+(?=\/[a-z]*$)/,
 				lookbehind: true,
 				alias: 'language-regex',
-				inside: Prism.languages.regex
+				inside: 'regex'
 			},
 			'regex-delimiter': /^\//,
 			'regex-flags': /^[a-z]+$/,

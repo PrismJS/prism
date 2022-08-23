@@ -20,7 +20,7 @@ Prism.languages.apex = {
 		lookbehind: true,
 		greedy: true,
 		alias: 'language-sql',
-		inside: Prism.languages.sql
+		inside: 'sql'
 	},
 
 	'annotation': {

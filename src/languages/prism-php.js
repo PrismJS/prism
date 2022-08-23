@@ -225,7 +225,7 @@ Prism.languages.php = {
 let string_interpolation = {
 	pattern: /\{\$(?:\{(?:\{[^{}]+\}|[^{}]+)\}|[^{}])+\}|(^|[^\\{])\$+(?:\w+(?:\[[^\r\n\[\]]+\]|->\w+)?)/,
 	lookbehind: true,
-	inside: Prism.languages.php
+	inside: 'php'
 };
 
 let string = [

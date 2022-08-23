@@ -78,7 +78,7 @@ Prism.languages.insertBefore('javascript', 'keyword', {
 				pattern: /^(\/)[\s\S]+(?=\/[a-z]*$)/,
 				lookbehind: true,
 				alias: 'language-regex',
-				inside: Prism.languages.regex
+				inside: 'regex'
 			},
 			'regex-delimiter': /^\/|\/$/,
 			'regex-flags': /^[a-z]+$/,
@@ -93,22 +93,22 @@ Prism.languages.insertBefore('javascript', 'keyword', {
 		{
 			pattern: /(function(?:\s+(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*)?\s*\(\s*)(?!\s)(?:[^()\s]|\s+(?![\s)])|\([^()]*\))+(?=\s*\))/,
 			lookbehind: true,
-			inside: Prism.languages.javascript
+			inside: 'javascript'
 		},
 		{
 			pattern: /(^|[^$\w\xA0-\uFFFF])(?!\s)[_$a-z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*=>)/i,
 			lookbehind: true,
-			inside: Prism.languages.javascript
+			inside: 'javascript'
 		},
 		{
 			pattern: /(\(\s*)(?!\s)(?:[^()\s]|\s+(?![\s)])|\([^()]*\))+(?=\s*\)\s*=>)/,
 			lookbehind: true,
-			inside: Prism.languages.javascript
+			inside: 'javascript'
 		},
 		{
 			pattern: /((?:\b|\s|^)(?!(?:as|async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|undefined|var|void|while|with|yield)(?![$\w\xA0-\uFFFF]))(?:(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*\s*)\(\s*|\]\s*\(\s*)(?!\s)(?:[^()\s]|\s+(?![\s)])|\([^()]*\))+(?=\s*\)\s*\{)/,
 			lookbehind: true,
-			inside: Prism.languages.javascript
+			inside: 'javascript'
 		}
 	],
 	'constant': /\b[A-Z](?:[A-Z_]|\dx?)*\b/

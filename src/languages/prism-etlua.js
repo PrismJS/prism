@@ -5,7 +5,7 @@ Prism.languages.etlua = {
 	},
 	'language-lua': {
 		pattern: /[\s\S]+/,
-		inside: Prism.languages.lua
+		inside: 'lua'
 	}
 };
 

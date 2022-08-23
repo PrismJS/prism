@@ -241,7 +241,7 @@ Prism.languages.insertBefore('csharp', 'class-name', {
 				pattern: re(/(^(?!new\s*\()<<0>>\s*)<<1>>/.source, [genericName, nestedRound]),
 				lookbehind: true,
 				greedy: true,
-				inside: Prism.languages.csharp
+				inside: 'csharp'
 			},
 			'keyword': keywords,
 			'class-name': {
@@ -290,7 +290,7 @@ Prism.languages.insertBefore('csharp', 'class-name', {
 			},
 			'attribute-arguments': {
 				pattern: re(/\(<<0>>*\)/.source, [roundExpression]),
-				inside: Prism.languages.csharp
+				inside: 'csharp'
 			},
 			'class-name': {
 				pattern: RegExp(identifier),
@@ -330,7 +330,7 @@ function createInterpolationInside(interpolation, interpolationRound) {
 				'expression': {
 					pattern: /[\s\S]+/,
 					alias: 'language-csharp',
-					inside: Prism.languages.csharp
+					inside: 'csharp'
 				}
 			}
 		},

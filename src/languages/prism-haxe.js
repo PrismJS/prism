@@ -36,7 +36,7 @@ Prism.languages.insertBefore('haxe', 'string', {
 					},
 					'expression': {
 						pattern: /[\s\S]+/,
-						inside: Prism.languages.haxe
+						inside: 'haxe'
 					},
 				}
 			},
@@ -55,7 +55,7 @@ Prism.languages.insertBefore('haxe', 'class-name', {
 				pattern: /^(~\/)[\s\S]+(?=\/$)/,
 				lookbehind: true,
 				alias: 'language-regex',
-				inside: Prism.languages.regex
+				inside: 'regex'
 			},
 			'regex-delimiter': /^~\/|\/$/,
 		}

@@ -112,7 +112,7 @@ let csharpWithHtml = Prism.languages.insertBefore('csharp', 'string', {
 	'html': {
 		pattern: RegExp(tagRegion),
 		greedy: true,
-		inside: Prism.languages.cshtml
+		inside: 'cshtml'
 	},
 }, { csharp: Prism.languages.extend('csharp', {}) });
 

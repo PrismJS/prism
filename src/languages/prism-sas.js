@@ -143,7 +143,7 @@ Prism.languages.sas = {
 			'sql': {
 				pattern: RegExp(/^[ \t]*(?:select|alter\s+table|(?:create|describe|drop)\s+(?:index|table(?:\s+constraints)?|view)|create\s+unique\s+index|insert\s+into|update)(?:<str>|[^;"'])+;/.source.replace(/<str>/g, function () { return stringPattern; }), 'im'),
 				alias: 'language-sql',
-				inside: Prism.languages.sql
+				inside: 'sql'
 			},
 			'global-statements': globalStatements,
 			'sql-statements': {
@@ -167,7 +167,7 @@ Prism.languages.sas = {
 				pattern: RegExp(/(^[ \t]*submit(?:\s+(?:load|norun|parseonly))?)(?:<str>|[^"'])+?(?=endsubmit;)/.source.replace(/<str>/g, function () { return stringPattern; }), 'im'),
 				lookbehind: true,
 				alias: 'language-groovy',
-				inside: Prism.languages.groovy
+				inside: 'groovy'
 			},
 			'keyword': keywords,
 			'submit-statement': submitStatement,
@@ -188,7 +188,7 @@ Prism.languages.sas = {
 				pattern: RegExp(/(^[ \t]*submit(?:\s+(?:load|norun|parseonly))?)(?:<str>|[^"'])+?(?=endsubmit;)/.source.replace(/<str>/g, function () { return stringPattern; }), 'im'),
 				lookbehind: true,
 				alias: 'language-lua',
-				inside: Prism.languages.lua
+				inside: 'lua'
 			},
 			'keyword': keywords,
 			'submit-statement': submitStatement,

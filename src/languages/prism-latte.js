@@ -13,7 +13,7 @@ Prism.languages.latte = {
 	'php': {
 		pattern: /\S(?:[\s\S]*\S)?/,
 		alias: 'language-php',
-		inside: Prism.languages.php
+		inside: 'php'
 	}
 };
 
@@ -38,7 +38,7 @@ Prism.languages.insertBefore('inside', 'attr-value', {
 					],
 					'php': {
 						pattern: /\S(?:[\s\S]*\S)?/,
-						inside: Prism.languages.php
+						inside: 'php'
 					}
 				}
 			},

@@ -56,7 +56,7 @@ Prism.languages.tremor['interpolated-string'] = {
 				'punctuation': /^#\{|\}$/,
 				'expression': {
 					pattern: /[\s\S]+/,
-					inside: Prism.languages.tremor
+					inside: 'tremor'
 				}
 			}
 		},

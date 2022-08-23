@@ -46,7 +46,7 @@ Prism.languages.insertBefore('chaiscript', 'string', {
 					'interpolation-expression': {
 						pattern: /(^\$\{)[\s\S]+(?=\}$)/,
 						lookbehind: true,
-						inside: Prism.languages.chaiscript
+						inside: 'chaiscript'
 					},
 					'interpolation-punctuation': {
 						pattern: /^\$\{|\}$/,
