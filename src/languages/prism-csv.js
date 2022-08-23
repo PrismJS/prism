@@ -1,6 +1,11 @@
-// https://tools.ietf.org/html/rfc4180
+export default /** @type {import("../types").LanguageProto} */ ({
+	id: 'csv',
+	grammar() {
+		// https://tools.ietf.org/html/rfc4180
 
-Prism.languages.csv = {
-	'value': /[^\r\n,"]+|"(?:[^"]|"")*"(?!")/,
-	'punctuation': /,/
-};
+		return {
+			'value': /[^\r\n,"]+|"(?:[^"]|"")*"(?!")/,
+			'punctuation': /,/
+		};
+	}
+});

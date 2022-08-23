@@ -1,30 +1,32 @@
-Prism.languages['linker-script'] = {
-	'comment': {
-		pattern: /(^|\s)\/\*[\s\S]*?(?:$|\*\/)/,
-		lookbehind: true,
-		greedy: true
-	},
-	'identifier': {
-		pattern: /"[^"\r\n]*"/,
-		greedy: true
-	},
+export default /** @type {import("../types").LanguageProto} */ ({
+	id: 'linker-script',
+	alias: 'ld',
+	grammar: {
+		'comment': {
+			pattern: /(^|\s)\/\*[\s\S]*?(?:$|\*\/)/,
+			lookbehind: true,
+			greedy: true
+		},
+		'identifier': {
+			pattern: /"[^"\r\n]*"/,
+			greedy: true
+		},
 
-	'location-counter': {
-		pattern: /\B\.\B/,
-		alias: 'important'
-	},
+		'location-counter': {
+			pattern: /\B\.\B/,
+			alias: 'important'
+		},
 
-	'section': {
-		pattern: /(^|[^\w*])\.\w+\b/,
-		lookbehind: true,
-		alias: 'keyword'
-	},
-	'function': /\b[A-Z][A-Z_]*(?=\s*\()/,
+		'section': {
+			pattern: /(^|[^\w*])\.\w+\b/,
+			lookbehind: true,
+			alias: 'keyword'
+		},
+		'function': /\b[A-Z][A-Z_]*(?=\s*\()/,
 
-	'number': /\b(?:0[xX][a-fA-F0-9]+|\d+)[KM]?\b/,
+		'number': /\b(?:0[xX][a-fA-F0-9]+|\d+)[KM]?\b/,
 
-	'operator': />>=?|<<=?|->|\+\+|--|&&|\|\||::|[?:~]|[-+*/%&|^!=<>]=?/,
-	'punctuation': /[(){},;]/
-};
-
-Prism.languages['ld'] = Prism.languages['linker-script'];
+		'operator': />>=?|<<=?|->|\+\+|--|&&|\|\||::|[?:~]|[-+*/%&|^!=<>]=?/,
+		'punctuation': /[(){},;]/
+	}
+});

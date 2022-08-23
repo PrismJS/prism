@@ -1,69 +1,77 @@
-Prism.languages.velocity = Prism.languages.extend('markup', {});
+import markup from './prism-markup.js';
 
-let velocity = {
-	'variable': {
-		pattern: /(^|[^\\](?:\\\\)*)\$!?(?:[a-z][\w-]*(?:\([^)]*\))?(?:\.[a-z][\w-]*(?:\([^)]*\))?|\[[^\]]+\])*|\{[^}]+\})/i,
-		lookbehind: true,
-		inside: {} // See below
-	},
-	'string': {
-		pattern: /"[^"]*"|'[^']*'/,
-		greedy: true
-	},
-	'number': /\b\d+\b/,
-	'boolean': /\b(?:false|true)\b/,
-	'operator': /[=!<>]=?|[+*/%-]|&&|\|\||\.\.|\b(?:eq|g[et]|l[et]|n(?:e|ot))\b/,
-	'punctuation': /[(){}[\]:,.]/
-};
+export default /** @type {import("../types").LanguageProto} */ ({
+	id: 'velocity',
+	require: markup,
+	grammar({ extend, getLanguage }) {
+		Prism.languages.velocity = extend('markup', {});
 
-velocity.variable.inside = {
-	'string': velocity['string'],
-	'function': {
-		pattern: /([^\w-])[a-z][\w-]*(?=\()/,
-		lookbehind: true
-	},
-	'number': velocity['number'],
-	'boolean': velocity['boolean'],
-	'punctuation': velocity['punctuation']
-};
+		let velocity = {
+			'variable': {
+				pattern: /(^|[^\\](?:\\\\)*)\$!?(?:[a-z][\w-]*(?:\([^)]*\))?(?:\.[a-z][\w-]*(?:\([^)]*\))?|\[[^\]]+\])*|\{[^}]+\})/i,
+				lookbehind: true,
+				inside: {} // See below
+			},
+			'string': {
+				pattern: /"[^"]*"|'[^']*'/,
+				greedy: true
+			},
+			'number': /\b\d+\b/,
+			'boolean': /\b(?:false|true)\b/,
+			'operator': /[=!<>]=?|[+*/%-]|&&|\|\||\.\.|\b(?:eq|g[et]|l[et]|n(?:e|ot))\b/,
+			'punctuation': /[(){}[\]:,.]/
+		};
 
-Prism.languages.insertBefore('velocity', 'comment', {
-	'unparsed': {
-		pattern: /(^|[^\\])#\[\[[\s\S]*?\]\]#/,
-		lookbehind: true,
-		greedy: true,
-		inside: {
-			'punctuation': /^#\[\[|\]\]#$/
-		}
-	},
-	'velocity-comment': [
-		{
-			pattern: /(^|[^\\])#\*[\s\S]*?\*#/,
-			lookbehind: true,
-			greedy: true,
-			alias: 'comment'
-		},
-		{
-			pattern: /(^|[^\\])##.*/,
-			lookbehind: true,
-			greedy: true,
-			alias: 'comment'
-		}
-	],
-	'directive': {
-		pattern: /(^|[^\\](?:\\\\)*)#@?(?:[a-z][\w-]*|\{[a-z][\w-]*\})(?:\s*\((?:[^()]|\([^()]*\))*\))?/i,
-		lookbehind: true,
-		inside: {
-			'keyword': {
-				pattern: /^#@?(?:[a-z][\w-]*|\{[a-z][\w-]*\})|\bin\b/,
+		velocity.variable.inside = {
+			'string': velocity['string'],
+			'function': {
+				pattern: /([^\w-])[a-z][\w-]*(?=\()/,
+				lookbehind: true
+			},
+			'number': velocity['number'],
+			'boolean': velocity['boolean'],
+			'punctuation': velocity['punctuation']
+		};
+
+		Prism.languages.insertBefore('velocity', 'comment', {
+			'unparsed': {
+				pattern: /(^|[^\\])#\[\[[\s\S]*?\]\]#/,
+				lookbehind: true,
+				greedy: true,
 				inside: {
-					'punctuation': /[{}]/
+					'punctuation': /^#\[\[|\]\]#$/
 				}
 			},
-			rest: velocity
-		}
-	},
-	'variable': velocity['variable']
-});
+			'velocity-comment': [
+				{
+					pattern: /(^|[^\\])#\*[\s\S]*?\*#/,
+					lookbehind: true,
+					greedy: true,
+					alias: 'comment'
+				},
+				{
+					pattern: /(^|[^\\])##.*/,
+					lookbehind: true,
+					greedy: true,
+					alias: 'comment'
+				}
+			],
+			'directive': {
+				pattern: /(^|[^\\](?:\\\\)*)#@?(?:[a-z][\w-]*|\{[a-z][\w-]*\})(?:\s*\((?:[^()]|\([^()]*\))*\))?/i,
+				lookbehind: true,
+				inside: {
+					'keyword': {
+						pattern: /^#@?(?:[a-z][\w-]*|\{[a-z][\w-]*\})|\bin\b/,
+						inside: {
+							'punctuation': /[{}]/
+						}
+					},
+					rest: velocity
+				}
+			},
+			'variable': velocity['variable']
+		});
 
-Prism.languages.velocity['tag'].inside['attr-value'].inside.rest = Prism.languages.velocity;
+		Prism.languages.velocity['tag'].inside['attr-value'].inside.rest = Prism.languages.velocity;
+	}
+});

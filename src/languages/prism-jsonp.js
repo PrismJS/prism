@@ -1,7 +1,15 @@
-Prism.languages.jsonp = Prism.languages.extend('json', {
-	'punctuation': /[{}[\]();,.]/
-});
+import json from './prism-json.js';
 
-Prism.languages.insertBefore('jsonp', 'punctuation', {
-	'function': /(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*\()/
+export default /** @type {import("../types").LanguageProto} */ ({
+	id: 'jsonp',
+	require: json,
+	grammar({ extend, getLanguage }) {
+		Prism.languages.jsonp = extend('json', {
+			'punctuation': /[{}[\]();,.]/
+		});
+
+		Prism.languages.insertBefore('jsonp', 'punctuation', {
+			'function': /(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?=\s*\()/
+		});
+	}
 });

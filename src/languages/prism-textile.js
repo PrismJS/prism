@@ -1,283 +1,292 @@
-// We don't allow for pipes inside parentheses
-// to not break table pattern |(. foo |). bar |
-let modifierRegex = /\([^|()\n]+\)|\[[^\]\n]+\]|\{[^}\n]+\}/.source;
-// Opening and closing parentheses which are not a modifier
-// This pattern is necessary to prevent exponential backtracking
-let parenthesesRegex = /\)|\((?![^|()\n]+\))/.source;
-/**
- * @param {string} source
- * @param {string} [flags]
- */
-function withModifier(source, flags) {
-	return RegExp(
-		source
-			.replace(/<MOD>/g, function () { return '(?:' + modifierRegex + ')'; })
-			.replace(/<PAR>/g, function () { return '(?:' + parenthesesRegex + ')'; }),
-		flags || '');
-}
+import markup from './prism-markup.js';
 
-let modifierTokens = {
-	'css': {
-		pattern: /\{[^{}]+\}/,
-		inside: {
-			rest: Prism.languages.css
+export default /** @type {import("../types").LanguageProto} */ ({
+	id: 'textile',
+	require: markup,
+	optional: 'css',
+	grammar({ extend, getLanguage }) {
+		// We don't allow for pipes inside parentheses
+		// to not break table pattern |(. foo |). bar |
+		let modifierRegex = /\([^|()\n]+\)|\[[^\]\n]+\]|\{[^}\n]+\}/.source;
+		// Opening and closing parentheses which are not a modifier
+		// This pattern is necessary to prevent exponential backtracking
+		let parenthesesRegex = /\)|\((?![^|()\n]+\))/.source;
+		/**
+		 * @param {string} source
+		 * @param {string} [flags]
+		 */
+		function withModifier(source, flags) {
+			return RegExp(
+				source
+					.replace(/<MOD>/g, function () { return '(?:' + modifierRegex + ')'; })
+					.replace(/<PAR>/g, function () { return '(?:' + parenthesesRegex + ')'; }),
+				flags || '');
 		}
-	},
-	'class-id': {
-		pattern: /(\()[^()]+(?=\))/,
-		lookbehind: true,
-		alias: 'attr-value'
-	},
-	'lang': {
-		pattern: /(\[)[^\[\]]+(?=\])/,
-		lookbehind: true,
-		alias: 'attr-value'
-	},
-	// Anything else is punctuation (the first pattern is for row/col spans inside tables)
-	'punctuation': /[\\\/]\d+|\S/
-};
 
-
-let textile = Prism.languages.textile = Prism.languages.extend('markup', {
-	'phrase': {
-		pattern: /(^|\r|\n)\S[\s\S]*?(?=$|\r?\n\r?\n|\r\r)/,
-		lookbehind: true,
-		inside: {
-
-			// h1. Header 1
-			'block-tag': {
-				pattern: withModifier(/^[a-z]\w*(?:<MOD>|<PAR>|[<>=])*\./.source),
+		let modifierTokens = {
+			'css': {
+				pattern: /\{[^{}]+\}/,
 				inside: {
-					'modifier': {
-						pattern: withModifier(/(^[a-z]\w*)(?:<MOD>|<PAR>|[<>=])+(?=\.)/.source),
-						lookbehind: true,
-						inside: modifierTokens
-					},
-					'tag': /^[a-z]\w*/,
-					'punctuation': /\.$/
+					rest: Prism.languages.css
 				}
 			},
-
-			// # List item
-			// * List item
-			'list': {
-				pattern: withModifier(/^[*#]+<MOD>*\s+\S.*/.source, 'm'),
-				inside: {
-					'modifier': {
-						pattern: withModifier(/(^[*#]+)<MOD>+/.source),
-						lookbehind: true,
-						inside: modifierTokens
-					},
-					'punctuation': /^[*#]+/
-				}
+			'class-id': {
+				pattern: /(\()[^()]+(?=\))/,
+				lookbehind: true,
+				alias: 'attr-value'
 			},
-
-			// | cell | cell | cell |
-			'table': {
-				// Modifiers can be applied to the row: {color:red}.|1|2|3|
-				// or the cell: |{color:red}.1|2|3|
-				pattern: withModifier(/^(?:(?:<MOD>|<PAR>|[<>=^~])+\.\s*)?(?:\|(?:(?:<MOD>|<PAR>|[<>=^~_]|[\\/]\d+)+\.|(?!(?:<MOD>|<PAR>|[<>=^~_]|[\\/]\d+)+\.))[^|]*)+\|/.source, 'm'),
-				inside: {
-					'modifier': {
-						// Modifiers for rows after the first one are
-						// preceded by a pipe and a line feed
-						pattern: withModifier(/(^|\|(?:\r?\n|\r)?)(?:<MOD>|<PAR>|[<>=^~_]|[\\/]\d+)+(?=\.)/.source),
-						lookbehind: true,
-						inside: modifierTokens
-					},
-					'punctuation': /\||^\./
-				}
+			'lang': {
+				pattern: /(\[)[^\[\]]+(?=\])/,
+				lookbehind: true,
+				alias: 'attr-value'
 			},
+			// Anything else is punctuation (the first pattern is for row/col spans inside tables)
+			'punctuation': /[\\\/]\d+|\S/
+		};
 
-			'inline': {
-				// eslint-disable-next-line regexp/no-super-linear-backtracking
-				pattern: withModifier(/(^|[^a-zA-Z\d])(\*\*|__|\?\?|[*_%@+\-^~])<MOD>*.+?\2(?![a-zA-Z\d])/.source),
+
+		let textile = Prism.languages.textile = extend('markup', {
+			'phrase': {
+				pattern: /(^|\r|\n)\S[\s\S]*?(?=$|\r?\n\r?\n|\r\r)/,
 				lookbehind: true,
 				inside: {
-					// Note: superscripts and subscripts are not handled specifically
 
-					// *bold*, **bold**
-					'bold': {
-						// eslint-disable-next-line regexp/no-super-linear-backtracking
-						pattern: withModifier(/(^(\*\*?)<MOD>*).+?(?=\2)/.source),
-						lookbehind: true
+					// h1. Header 1
+					'block-tag': {
+						pattern: withModifier(/^[a-z]\w*(?:<MOD>|<PAR>|[<>=])*\./.source),
+						inside: {
+							'modifier': {
+								pattern: withModifier(/(^[a-z]\w*)(?:<MOD>|<PAR>|[<>=])+(?=\.)/.source),
+								lookbehind: true,
+								inside: modifierTokens
+							},
+							'tag': /^[a-z]\w*/,
+							'punctuation': /\.$/
+						}
 					},
 
-					// _italic_, __italic__
-					'italic': {
-						// eslint-disable-next-line regexp/no-super-linear-backtracking
-						pattern: withModifier(/(^(__?)<MOD>*).+?(?=\2)/.source),
-						lookbehind: true
+					// # List item
+					// * List item
+					'list': {
+						pattern: withModifier(/^[*#]+<MOD>*\s+\S.*/.source, 'm'),
+						inside: {
+							'modifier': {
+								pattern: withModifier(/(^[*#]+)<MOD>+/.source),
+								lookbehind: true,
+								inside: modifierTokens
+							},
+							'punctuation': /^[*#]+/
+						}
 					},
 
-					// ??cite??
-					'cite': {
+					// | cell | cell | cell |
+					'table': {
+						// Modifiers can be applied to the row: {color:red}.|1|2|3|
+						// or the cell: |{color:red}.1|2|3|
+						pattern: withModifier(/^(?:(?:<MOD>|<PAR>|[<>=^~])+\.\s*)?(?:\|(?:(?:<MOD>|<PAR>|[<>=^~_]|[\\/]\d+)+\.|(?!(?:<MOD>|<PAR>|[<>=^~_]|[\\/]\d+)+\.))[^|]*)+\|/.source, 'm'),
+						inside: {
+							'modifier': {
+								// Modifiers for rows after the first one are
+								// preceded by a pipe and a line feed
+								pattern: withModifier(/(^|\|(?:\r?\n|\r)?)(?:<MOD>|<PAR>|[<>=^~_]|[\\/]\d+)+(?=\.)/.source),
+								lookbehind: true,
+								inside: modifierTokens
+							},
+							'punctuation': /\||^\./
+						}
+					},
+
+					'inline': {
 						// eslint-disable-next-line regexp/no-super-linear-backtracking
-						pattern: withModifier(/(^\?\?<MOD>*).+?(?=\?\?)/.source),
+						pattern: withModifier(/(^|[^a-zA-Z\d])(\*\*|__|\?\?|[*_%@+\-^~])<MOD>*.+?\2(?![a-zA-Z\d])/.source),
 						lookbehind: true,
-						alias: 'string'
+						inside: {
+							// Note: superscripts and subscripts are not handled specifically
+
+							// *bold*, **bold**
+							'bold': {
+								// eslint-disable-next-line regexp/no-super-linear-backtracking
+								pattern: withModifier(/(^(\*\*?)<MOD>*).+?(?=\2)/.source),
+								lookbehind: true
+							},
+
+							// _italic_, __italic__
+							'italic': {
+								// eslint-disable-next-line regexp/no-super-linear-backtracking
+								pattern: withModifier(/(^(__?)<MOD>*).+?(?=\2)/.source),
+								lookbehind: true
+							},
+
+							// ??cite??
+							'cite': {
+								// eslint-disable-next-line regexp/no-super-linear-backtracking
+								pattern: withModifier(/(^\?\?<MOD>*).+?(?=\?\?)/.source),
+								lookbehind: true,
+								alias: 'string'
+							},
+
+							// @code@
+							'code': {
+								// eslint-disable-next-line regexp/no-super-linear-backtracking
+								pattern: withModifier(/(^@<MOD>*).+?(?=@)/.source),
+								lookbehind: true,
+								alias: 'keyword'
+							},
+
+							// +inserted+
+							'inserted': {
+								// eslint-disable-next-line regexp/no-super-linear-backtracking
+								pattern: withModifier(/(^\+<MOD>*).+?(?=\+)/.source),
+								lookbehind: true
+							},
+
+							// -deleted-
+							'deleted': {
+								// eslint-disable-next-line regexp/no-super-linear-backtracking
+								pattern: withModifier(/(^-<MOD>*).+?(?=-)/.source),
+								lookbehind: true
+							},
+
+							// %span%
+							'span': {
+								// eslint-disable-next-line regexp/no-super-linear-backtracking
+								pattern: withModifier(/(^%<MOD>*).+?(?=%)/.source),
+								lookbehind: true
+							},
+
+							'modifier': {
+								pattern: withModifier(/(^\*\*|__|\?\?|[*_%@+\-^~])<MOD>+/.source),
+								lookbehind: true,
+								inside: modifierTokens
+							},
+							'punctuation': /[*_%?@+\-^~]+/
+						}
 					},
 
-					// @code@
-					'code': {
+					// [alias]http://example.com
+					'link-ref': {
+						pattern: /^\[[^\]]+\]\S+$/m,
+						inside: {
+							'string': {
+								pattern: /(^\[)[^\]]+(?=\])/,
+								lookbehind: true
+							},
+							'url': {
+								pattern: /(^\])\S+$/,
+								lookbehind: true
+							},
+							'punctuation': /[\[\]]/
+						}
+					},
+
+					// "text":http://example.com
+					// "text":link-ref
+					'link': {
 						// eslint-disable-next-line regexp/no-super-linear-backtracking
-						pattern: withModifier(/(^@<MOD>*).+?(?=@)/.source),
-						lookbehind: true,
-						alias: 'keyword'
+						pattern: withModifier(/"<MOD>*[^"]+":.+?(?=[^\w/]?(?:\s|$))/.source),
+						inside: {
+							'text': {
+								// eslint-disable-next-line regexp/no-super-linear-backtracking
+								pattern: withModifier(/(^"<MOD>*)[^"]+(?=")/.source),
+								lookbehind: true
+							},
+							'modifier': {
+								pattern: withModifier(/(^")<MOD>+/.source),
+								lookbehind: true,
+								inside: modifierTokens
+							},
+							'url': {
+								pattern: /(:).+/,
+								lookbehind: true
+							},
+							'punctuation': /[":]/
+						}
 					},
 
-					// +inserted+
-					'inserted': {
-						// eslint-disable-next-line regexp/no-super-linear-backtracking
-						pattern: withModifier(/(^\+<MOD>*).+?(?=\+)/.source),
-						lookbehind: true
+					// !image.jpg!
+					// !image.jpg(Title)!:http://example.com
+					'image': {
+						pattern: withModifier(/!(?:<MOD>|<PAR>|[<>=])*(?![<>=])[^!\s()]+(?:\([^)]+\))?!(?::.+?(?=[^\w/]?(?:\s|$)))?/.source),
+						inside: {
+							'source': {
+								pattern: withModifier(/(^!(?:<MOD>|<PAR>|[<>=])*)(?![<>=])[^!\s()]+(?:\([^)]+\))?(?=!)/.source),
+								lookbehind: true,
+								alias: 'url'
+							},
+							'modifier': {
+								pattern: withModifier(/(^!)(?:<MOD>|<PAR>|[<>=])+/.source),
+								lookbehind: true,
+								inside: modifierTokens
+							},
+							'url': {
+								pattern: /(:).+/,
+								lookbehind: true
+							},
+							'punctuation': /[!:]/
+						}
 					},
 
-					// -deleted-
-					'deleted': {
-						// eslint-disable-next-line regexp/no-super-linear-backtracking
-						pattern: withModifier(/(^-<MOD>*).+?(?=-)/.source),
-						lookbehind: true
+					// Footnote[1]
+					'footnote': {
+						pattern: /\b\[\d+\]/,
+						alias: 'comment',
+						inside: {
+							'punctuation': /\[|\]/
+						}
 					},
 
-					// %span%
-					'span': {
-						// eslint-disable-next-line regexp/no-super-linear-backtracking
-						pattern: withModifier(/(^%<MOD>*).+?(?=%)/.source),
-						lookbehind: true
+					// CSS(Cascading Style Sheet)
+					'acronym': {
+						pattern: /\b[A-Z\d]+\([^)]+\)/,
+						inside: {
+							'comment': {
+								pattern: /(\()[^()]+(?=\))/,
+								lookbehind: true
+							},
+							'punctuation': /[()]/
+						}
 					},
 
-					'modifier': {
-						pattern: withModifier(/(^\*\*|__|\?\?|[*_%@+\-^~])<MOD>+/.source),
-						lookbehind: true,
-						inside: modifierTokens
-					},
-					'punctuation': /[*_%?@+\-^~]+/
-				}
-			},
-
-			// [alias]http://example.com
-			'link-ref': {
-				pattern: /^\[[^\]]+\]\S+$/m,
-				inside: {
-					'string': {
-						pattern: /(^\[)[^\]]+(?=\])/,
-						lookbehind: true
-					},
-					'url': {
-						pattern: /(^\])\S+$/,
-						lookbehind: true
-					},
-					'punctuation': /[\[\]]/
-				}
-			},
-
-			// "text":http://example.com
-			// "text":link-ref
-			'link': {
-				// eslint-disable-next-line regexp/no-super-linear-backtracking
-				pattern: withModifier(/"<MOD>*[^"]+":.+?(?=[^\w/]?(?:\s|$))/.source),
-				inside: {
-					'text': {
-						// eslint-disable-next-line regexp/no-super-linear-backtracking
-						pattern: withModifier(/(^"<MOD>*)[^"]+(?=")/.source),
-						lookbehind: true
-					},
-					'modifier': {
-						pattern: withModifier(/(^")<MOD>+/.source),
-						lookbehind: true,
-						inside: modifierTokens
-					},
-					'url': {
-						pattern: /(:).+/,
-						lookbehind: true
-					},
-					'punctuation': /[":]/
-				}
-			},
-
-			// !image.jpg!
-			// !image.jpg(Title)!:http://example.com
-			'image': {
-				pattern: withModifier(/!(?:<MOD>|<PAR>|[<>=])*(?![<>=])[^!\s()]+(?:\([^)]+\))?!(?::.+?(?=[^\w/]?(?:\s|$)))?/.source),
-				inside: {
-					'source': {
-						pattern: withModifier(/(^!(?:<MOD>|<PAR>|[<>=])*)(?![<>=])[^!\s()]+(?:\([^)]+\))?(?=!)/.source),
-						lookbehind: true,
-						alias: 'url'
-					},
-					'modifier': {
-						pattern: withModifier(/(^!)(?:<MOD>|<PAR>|[<>=])+/.source),
-						lookbehind: true,
-						inside: modifierTokens
-					},
-					'url': {
-						pattern: /(:).+/,
-						lookbehind: true
-					},
-					'punctuation': /[!:]/
-				}
-			},
-
-			// Footnote[1]
-			'footnote': {
-				pattern: /\b\[\d+\]/,
-				alias: 'comment',
-				inside: {
-					'punctuation': /\[|\]/
-				}
-			},
-
-			// CSS(Cascading Style Sheet)
-			'acronym': {
-				pattern: /\b[A-Z\d]+\([^)]+\)/,
-				inside: {
-					'comment': {
-						pattern: /(\()[^()]+(?=\))/,
-						lookbehind: true
-					},
-					'punctuation': /[()]/
-				}
-			},
-
-			// Prism(C)
-			'mark': {
-				pattern: /\b\((?:C|R|TM)\)/,
-				alias: 'comment',
-				inside: {
-					'punctuation': /[()]/
+					// Prism(C)
+					'mark': {
+						pattern: /\b\((?:C|R|TM)\)/,
+						alias: 'comment',
+						inside: {
+							'punctuation': /[()]/
+						}
+					}
 				}
 			}
-		}
+		});
+
+		let phraseInside = textile['phrase'].inside;
+		let nestedPatterns = {
+			'inline': phraseInside['inline'],
+			'link': phraseInside['link'],
+			'image': phraseInside['image'],
+			'footnote': phraseInside['footnote'],
+			'acronym': phraseInside['acronym'],
+			'mark': phraseInside['mark']
+		};
+
+		// Only allow alpha-numeric HTML tags, not XML tags
+		textile.tag.pattern = /<\/?(?!\d)[a-z0-9]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/i;
+
+		// Allow some nesting
+		let phraseInlineInside = phraseInside['inline'].inside;
+		phraseInlineInside['bold'].inside = nestedPatterns;
+		phraseInlineInside['italic'].inside = nestedPatterns;
+		phraseInlineInside['inserted'].inside = nestedPatterns;
+		phraseInlineInside['deleted'].inside = nestedPatterns;
+		phraseInlineInside['span'].inside = nestedPatterns;
+
+		// Allow some styles inside table cells
+		let phraseTableInside = phraseInside['table'].inside;
+		phraseTableInside['inline'] = nestedPatterns['inline'];
+		phraseTableInside['link'] = nestedPatterns['link'];
+		phraseTableInside['image'] = nestedPatterns['image'];
+		phraseTableInside['footnote'] = nestedPatterns['footnote'];
+		phraseTableInside['acronym'] = nestedPatterns['acronym'];
+		phraseTableInside['mark'] = nestedPatterns['mark'];
 	}
 });
-
-let phraseInside = textile['phrase'].inside;
-let nestedPatterns = {
-	'inline': phraseInside['inline'],
-	'link': phraseInside['link'],
-	'image': phraseInside['image'],
-	'footnote': phraseInside['footnote'],
-	'acronym': phraseInside['acronym'],
-	'mark': phraseInside['mark']
-};
-
-// Only allow alpha-numeric HTML tags, not XML tags
-textile.tag.pattern = /<\/?(?!\d)[a-z0-9]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/i;
-
-// Allow some nesting
-let phraseInlineInside = phraseInside['inline'].inside;
-phraseInlineInside['bold'].inside = nestedPatterns;
-phraseInlineInside['italic'].inside = nestedPatterns;
-phraseInlineInside['inserted'].inside = nestedPatterns;
-phraseInlineInside['deleted'].inside = nestedPatterns;
-phraseInlineInside['span'].inside = nestedPatterns;
-
-// Allow some styles inside table cells
-let phraseTableInside = phraseInside['table'].inside;
-phraseTableInside['inline'] = nestedPatterns['inline'];
-phraseTableInside['link'] = nestedPatterns['link'];
-phraseTableInside['image'] = nestedPatterns['image'];
-phraseTableInside['footnote'] = nestedPatterns['footnote'];
-phraseTableInside['acronym'] = nestedPatterns['acronym'];
-phraseTableInside['mark'] = nestedPatterns['mark'];
