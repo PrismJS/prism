@@ -39,28 +39,33 @@ function getType(obj) {
 }
 
 /**
+ * @param {any} obj
+ * @returns {obj is import("../types").PlainObject}
+ */
+function isPlainObject(obj) {
+	return getType(obj) === 'Object';
+}
+
+/**
  * @param {Record<string | number, any>} obj
  * @param {(this: any, key: string, value: any, type: string) => void} callback
  * @param {string | null} [type]
- * @param {Record<number, boolean>} [visited]
+ * @param {Set<any>} [visited]
  */
-export function DFS(obj, callback, type, visited) {
-	visited = visited || {};
-
-
+export function DFS(obj, callback, type, visited = new Set()) {
 	for (let i in obj) {
 		if (obj.hasOwnProperty(i)) {
 			callback.call(obj, i, obj[i], type || i);
 
 			let property = obj[i];
-			let propertyType = getType(property);
-
-			if (propertyType === 'Object' && !visited[getObjectId(property)]) {
-				visited[getObjectId(property)] = true;
-				DFS(property, callback, null, visited);
-			} else if (propertyType === 'Array' && !visited[getObjectId(property)]) {
-				visited[getObjectId(property)] = true;
-				DFS(property, callback, i, visited);
+			if (!visited.has(property)) {
+				if (isPlainObject(property)) {
+					visited.add(property);
+					DFS(property, callback, null, visited);
+				} else if (Array.isArray(property)) {
+					visited.add(property);
+					DFS(property, callback, i, visited);
+				}
 			}
 		}
 	}
@@ -72,4 +77,47 @@ export function DFS(obj, callback, type, visited) {
  */
 export function htmlEncode(text) {
 	return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/\u00a0/g, ' ');
+}
+
+/**
+ * Creates a deep clone of the given object.
+ *
+ * The main intended use of this function is to clone language definitions.
+ *
+ * @param {T} o
+ * @param {Map<any, any>} [mapping]
+ * @returns {T}
+ * @template T
+ */
+export function deepClone(o, mapping = new Map()) {
+	const mapped = mapping.get(o);
+	if (mapped) {
+		return mapped;
+	}
+
+	if (isPlainObject(o)) {
+		/** @type {Record<string, unknown>} */
+		const clone = {};
+		mapped.set(o, clone);
+
+		for (let key in o) {
+			if (o.hasOwnProperty(key)) {
+				clone[key] = deepClone(o[key], mapping);
+			}
+		}
+
+		return /** @type {any} */ (clone);
+	} else if (Array.isArray(o)) {
+		/** @type {unknown[]} */
+		const clone = [];
+		mapped.set(o, clone);
+
+		o.forEach(function (v, i) {
+			clone[i] = deepClone(v, mapping);
+		});
+
+		return /** @type {any} */ (clone);
+	} else {
+		return o;
+	}
 }

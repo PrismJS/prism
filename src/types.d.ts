@@ -19,3 +19,7 @@ export interface GrammarToken {
 export type GrammarTokens = Partial<Record<string, RegExp | GrammarToken | (RegExp | GrammarToken)[]>>;
 
 export type Grammar = GrammarTokens & { [rest]?: Grammar | string | null };
+
+export interface PlainObject {
+	[key: string]: unknown;
+}
