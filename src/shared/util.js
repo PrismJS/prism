@@ -1,23 +1,3 @@
-let uniqueId = 0;
-
-/** @type {WeakMap<object, number>} */
-const uniqueIdMap = new WeakMap();
-
-/**
- * Returns a unique number for the given object. Later calls will still return the same number.
- *
- * @param {object} obj
- * @returns {number}
- */
-function getObjectId(obj) {
-	let id = uniqueIdMap.get(obj);
-	if (id === undefined) {
-		id = ++uniqueId;
-		uniqueIdMap.set(obj, id);
-	}
-	return id;
-}
-
 /**
  * Returns the name of the type of the given value.
  *
@@ -50,7 +30,7 @@ function isPlainObject(obj) {
  * @param {Record<string | number, any>} obj
  * @param {(this: any, key: string, value: any, type: string) => void} callback
  * @param {string | null} [type]
- * @param {Set<any>} [visited]
+ * @param {Set<unknown>} [visited]
  */
 export function DFS(obj, callback, type, visited = new Set()) {
 	for (let i in obj) {
