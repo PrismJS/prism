@@ -209,6 +209,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		};
 
 		/* Patterns in command substitution. */
+		/** @type {(keyof typeof bash)[]} */
 		let toBeCopied = [
 			'comment',
 			'function-name',
