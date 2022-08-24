@@ -30,14 +30,14 @@ export type HookEnv<HookName extends string> = HookName extends keyof HookEnvMap
 export type HookCallback<HookName extends string> = (env: HookEnv<HookName>) => void;
 
 export interface BeforeHighlightAllEnv {
-	container: ParentNode;
+	root: ParentNode;
 	selector: string;
-	// callback: (element: Element) => void;
+	callback?: (element: Element) => void;
 }
 export interface BeforeAllElementsHighlightEnv {
-	container: ParentNode;
+	root: ParentNode;
 	selector: string;
-	// callback: (element: Element) => void;
+	callback?: (element: Element) => void;
 	elements: Element[];
 }
 
@@ -58,7 +58,6 @@ export interface CompleteEnv {
 	language: string;
 	grammar: Grammar | undefined;
 	code: string;
-	highlightedCode?: string;
 }
 export interface BeforeInsertEnv {
 	element: Element;

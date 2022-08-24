@@ -116,11 +116,7 @@ module.exports = {
 		}
 	},
 	ignorePatterns: [
-		'*.min.js',
 		'vendor/',
-		'docs/',
-		'components.js',
-		'prism.js',
 		'node_modules'
 	],
 
