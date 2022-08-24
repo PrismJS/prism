@@ -19,7 +19,7 @@ export class Hooks {
 	 * undefined behavior. However, registering a callback again after removing it is fine.
 	 *
 	 * @param {Name} name The name of the hook.
-	 * @param {(env: import("./hooks-env").HookEnv<Name>) => void} callback The callback function which is given environment variables.
+	 * @param {import("./hooks-env").HookCallback<Name>} callback The callback function which is given environment variables.
 	 * @returns {() => void}
 	 * @template {string} Name
 	 * @public

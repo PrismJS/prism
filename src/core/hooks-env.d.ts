@@ -25,7 +25,9 @@ export interface HookEnvMap {
 	'wrap': WrapEnv;
 }
 
-export type HookEnv<Name extends string> = Name extends keyof HookEnvMap ? HookEnvMap[Name] : unknown;
+export type HookEnv<HookName extends string> = HookName extends keyof HookEnvMap ? HookEnvMap[HookName] : unknown;
+
+export type HookCallback<HookName extends string> = (env: HookEnv<HookName>) => void;
 
 export interface BeforeHighlightAllEnv {
 	container: ParentNode;
