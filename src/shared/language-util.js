@@ -1,3 +1,5 @@
+import { deepClone } from './util';
+
 // TODO: Update documentation
 
 /**
@@ -67,4 +69,45 @@ export function insertBefore(grammar, before, insert) {
 			grammar[key] = value;
 		}
 	}
+}
+
+/**
+ * Creates a deep copy of the language with the given id and appends the given tokens.
+ *
+ * If a token in `reDef` also appears in the copied language, then the existing token in the copied language
+ * will be overwritten at its original position.
+ *
+ * ## Best practices
+ *
+ * Since the position of overwriting tokens (token in `reDef` that overwrite tokens in the copied language)
+ * doesn't matter, they can technically be in any order. However, this can be confusing to others that trying to
+ * understand the language definition because, normally, the order of tokens matters in Prism grammars.
+ *
+ * Therefore, it is encouraged to order overwriting tokens according to the positions of the overwritten tokens.
+ * Furthermore, all non-overwriting tokens should be placed after the overwriting ones.
+ *
+ * @param {import("../types").Grammar} grammar The grammar of the language to extend.
+ * @param {string} id The id of the language to extend.
+ * @param {import("../types").Grammar} reDef The new tokens to append.
+ * @returns {import("../types").Grammar} The new language created.
+ * @public
+ * @example
+ * Prism.languages['css-with-colors'] = Prism.languages.extend('css', {
+ *     // Prism.languages.css already has a 'comment' token, so this token will overwrite CSS' 'comment' token
+ *     // at its original position
+ *     'comment': { ... },
+ *     // CSS doesn't have a 'color' token, so this token will be appended
+ *     'color': /\b(?:red|green|blue)\b/
+ * });
+ */
+export function extend(grammar, id, reDef) {
+	// TODO: This doesn't work. Rest symbols are lost and string references (e.g. inside: 'id') still point to the old grammar.
+
+	const lang = deepClone(grammar);
+
+	for (const key in reDef) {
+		lang[key] = reDef[key];
+	}
+
+	return lang;
 }
