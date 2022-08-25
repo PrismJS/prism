@@ -1,3 +1,5 @@
+import { insertBefore } from '../shared/language-util.js';
+import { toArray } from '../shared/util.js';
 import javascript from './prism-javascript.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
@@ -5,37 +7,40 @@ export default /** @type {import("../types").LanguageProto} */ ({
 	require: javascript,
 	optional: 'js-templates',
 	alias: 'ts',
-	grammar({ extend, getLanguage }) {
-		Prism.languages.typescript = extend('javascript', {
+	grammar({ extend }) {
+		/** @type {import('../types').Grammar} */
+		const typeInside = {};
+
+		const typescript = extend('javascript', {
 			'class-name': {
 				pattern: /(\b(?:class|extends|implements|instanceof|interface|new|type)\s+)(?!keyof\b)(?!\s)[_$a-zA-Z\xA0-\uFFFF](?:(?!\s)[$\w\xA0-\uFFFF])*(?:\s*<(?:[^<>]|<(?:[^<>]|<[^<>]*>)*>)*>)?/,
 				lookbehind: true,
 				greedy: true,
-				inside: null // see below
+				inside: typeInside
 			},
 			'builtin': /\b(?:Array|Function|Promise|any|boolean|console|never|number|string|symbol|unknown)\b/,
 		});
 
-		// The keywords TypeScript adds to JavaScript
-		Prism.languages.typescript.keyword.push(
+		typescript.keyword = [
+			...toArray(typescript.keyword),
+
+			// The keywords TypeScript adds to JavaScript
 			/\b(?:abstract|declare|is|keyof|readonly|require)\b/,
 			// keywords that have to be followed by an identifier
 			/\b(?:asserts|infer|interface|module|namespace|type)\b(?=\s*(?:[{_$a-zA-Z\xA0-\uFFFF]|$))/,
 			// This is for `import type *, {}`
 			/\btype\b(?=\s*(?:[\{*]|$))/
-		);
+		];
 
 		// doesn't work with TS because TS is too complex
-		delete Prism.languages.typescript['parameter'];
-		delete Prism.languages.typescript['literal-property'];
+		delete typescript['parameter'];
+		delete typescript['literal-property'];
 
 		// a version of typescript specifically for highlighting types
-		const typeInside = extend('typescript', {});
+		Object.assign(typeInside, typescript);
 		delete typeInside['class-name'];
 
-		Prism.languages.typescript['class-name'].inside = typeInside;
-
-		Prism.languages.insertBefore('typescript', 'function', {
+		insertBefore(typescript, 'function', {
 			'decorator': {
 				pattern: /@[$\w\xA0-\uFFFF]+/,
 				inside: {
@@ -60,5 +65,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				}
 			}
 		});
+
+		return typescript;
 	}
 });
