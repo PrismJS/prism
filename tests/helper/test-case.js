@@ -456,10 +456,7 @@ module.exports = {
 			mainLanguage = languages[languages.length - 1];
 		}
 
-		return {
-			languages: languages,
-			mainLanguage: mainLanguage
-		};
+		return { languages, mainLanguage };
 	},
 };
 

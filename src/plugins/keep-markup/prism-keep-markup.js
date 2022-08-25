@@ -40,7 +40,7 @@
 
 			const o = {
 				// Store original element so we can restore it after highlighting
-				element: element,
+				element,
 				posOpen: pos
 			};
 			data.push(o);
@@ -114,10 +114,7 @@
 
 			// For each tag, we walk the DOM to reinsert it
 			env.keepMarkup.forEach(function (node) {
-				walk(env.element, {
-					node: node,
-					pos: 0
-				});
+				walk(env.element, { node, pos: 0 });
 			});
 			// Store new highlightedCode for later hooks calls
 			env.highlightedCode = env.element.innerHTML;

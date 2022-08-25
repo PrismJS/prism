@@ -97,9 +97,9 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		 */
 		function tokenizeWithHooks(code, grammar, language) {
 			const env = {
-				code: code,
-				grammar: grammar,
-				language: language
+				code,
+				grammar,
+				language
 			};
 			Prism.hooks.run('before-tokenize', env);
 			env.tokens = Prism.tokenize(env.code, env.grammar);

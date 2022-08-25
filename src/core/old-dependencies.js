@@ -428,14 +428,14 @@ const getLoader = (function () {
 
 		/** @type {Loader} */
 		var loader = {
-			getIds: function () {
+			getIds() {
 				const ids = [];
 				loader.load(function (id) {
 					ids.push(id);
 				});
 				return ids;
 			},
-			load: function (loadComponent, chainer) {
+			load(loadComponent, chainer) {
 				return loadComponentsInOrder(dependencyResolver, loadSet, loadComponent, chainer);
 			}
 		};

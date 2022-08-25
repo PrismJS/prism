@@ -17,7 +17,7 @@
 
 		$u.xhr({
 			url: src,
-			callback: function (xhr) {
+			callback(xhr) {
 				try {
 					element[contentProperty] = xhr.responseText;
 
@@ -191,7 +191,7 @@ var setTheme;
 				id: 'theme=' + id,
 				checked: current === id,
 				value: id,
-				onclick: function () {
+				onclick() {
 					setTheme(this.value);
 				}
 			},

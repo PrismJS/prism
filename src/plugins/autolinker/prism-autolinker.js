@@ -12,7 +12,7 @@
 	const candidates = ['comment', 'url', 'attr-value', 'string'];
 
 	Prism.plugins.autolinker = {
-		processGrammar: function (grammar) {
+		processGrammar(grammar) {
 			// Abort if grammar has already been processed
 			if (!grammar || grammar['url-link']) {
 				return;

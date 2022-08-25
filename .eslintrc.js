@@ -20,6 +20,7 @@ module.exports = {
 		'no-multiple-empty-lines': ['warn', { max: 2, maxBOF: 0, maxEOF: 0 }],
 		'no-tabs': ['warn', { allowIndentationTabs: true }],
 		'no-var': 'error',
+		'object-shorthand': ['warn', 'always', { avoidQuotes: true }],
 		'one-var': ['warn', 'never'],
 		'prefer-const': ['warn', { 'destructuring': 'all' }],
 		'quotes': ['warn', 'single', { avoidEscape: true, allowTemplateLiterals: true }],

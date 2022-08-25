@@ -37,7 +37,7 @@
 	const candidates = ['url', 'attr-value', 'string'];
 
 	Prism.plugins.dataURIHighlight = {
-		processGrammar: function (grammar) {
+		processGrammar(grammar) {
 			// Abort if grammar has already been processed
 			if (!grammar || grammar['data-uri']) {
 				return;

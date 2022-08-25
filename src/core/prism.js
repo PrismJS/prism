@@ -33,7 +33,7 @@ export class Prism {
 	 */
 	highlightAll({ root, async, callback } = {}) {
 		const env = /** @type {EnvMap["before-highlightall"] | EnvMap["before-all-elements-highlight"]} */ ({
-			callback: callback,
+			callback,
 			root: root ?? document,
 			selector: 'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'
 		});
@@ -157,8 +157,8 @@ export class Prism {
 		/** @type {EnvMap["before-tokenize"] | EnvMap["after-tokenize"]} */
 		const env = ({
 			code: text,
-			grammar: grammar,
-			language: language
+			grammar,
+			language
 		});
 		this.hooks.run('before-tokenize', env);
 		if (!env.grammar) {
@@ -350,7 +350,7 @@ export class Prism {
 						/** @type {RematchOptions} */
 						const nestedRematch = {
 							cause: token + ',' + j,
-							reach: reach
+							reach
 						};
 						this._matchGrammar(text, tokenList, grammar, currentNode.prev, pos, nestedRematch);
 
@@ -416,7 +416,7 @@ function stringify(o, language, hooks) {
 		tag: 'span',
 		classes: ['token', o.type],
 		attributes: {},
-		language: language
+		language
 	};
 
 	const aliases = o.alias;

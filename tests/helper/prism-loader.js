@@ -95,7 +95,7 @@ module.exports = {
 
 		return {
 			dom,
-			window: /** @type {PrismWindow} */ (window),
+			window,
 			document: window.document,
 			Prism: window.Prism,
 			loadLanguages: load,

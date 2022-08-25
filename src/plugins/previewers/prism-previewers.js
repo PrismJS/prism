@@ -187,7 +187,7 @@
 			}
 		},
 		'angle': {
-			create: function () {
+			create() {
 				new Prism.plugins.Previewer('angle', function (value) {
 					const num = parseFloat(value);
 					let unit = value.match(/[a-z]+$/i);
@@ -266,7 +266,7 @@
 			}
 		},
 		'color': {
-			create: function () {
+			create() {
 				new Prism.plugins.Previewer('color', function (value) {
 					this.style.backgroundColor = '';
 					this.style.backgroundColor = value;
@@ -317,7 +317,7 @@
 			}
 		},
 		'easing': {
-			create: function () {
+			create() {
 				new Prism.plugins.Previewer('easing', function (value) {
 
 					value = {
@@ -402,7 +402,7 @@
 		},
 
 		'time': {
-			create: function () {
+			create() {
 				new Prism.plugins.Previewer('time', function (value) {
 					const num = parseFloat(value);
 					let unit = value.match(/[a-z]+$/i);
@@ -477,10 +477,10 @@
 		top -= documentBounds.top;
 
 		return {
-			top: top,
+			top,
 			right: innerWidth - left - elementBounds.width,
 			bottom: innerHeight - top - elementBounds.height,
-			left: left,
+			left,
 			width: elementBounds.width,
 			height: elementBounds.height
 		};

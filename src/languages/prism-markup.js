@@ -129,7 +129,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 					pattern: RegExp(/(<__[^>]*>)(?:<!\[CDATA\[(?:[^\]]|\](?!\]>))*\]\]>|(?!<!\[CDATA\[)[\s\S])*?(?=<\/__>)/.source.replace(/__/g, function () { return tagName; }), 'i'),
 					lookbehind: true,
 					greedy: true,
-					inside: inside
+					inside
 				};
 
 				Prism.languages.insertBefore('markup', 'cdata', def);
@@ -147,7 +147,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			 * @example
 			 * addAttribute('style', 'css');
 			 */
-			value: function (attrName, lang) {
+			value: (attrName, lang) => {
 				Prism.languages.markup.tag.inside['special-attr'].push({
 					pattern: RegExp(
 						/(^|["'\s])/.source + '(?:' + attrName + ')' + /\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+(?=[\s>]))/.source,

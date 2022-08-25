@@ -72,7 +72,7 @@ async function getCommitInfo(line) {
 
 	const changes = !output ? [] : output.trim().split(/\n/g).map(line => {
 		const [, mode, file] = /(\w)\s+(.+)/.exec(line);
-		return { mode: /** @type {ChangeMode} */ (mode), file };
+		return { mode, file };
 	});
 
 	return { hash, message, changes };

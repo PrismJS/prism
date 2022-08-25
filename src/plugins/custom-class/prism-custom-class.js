@@ -45,7 +45,7 @@
 		 *
 		 * @param {ClassAdder} classAdder
 		 */
-		add: function (classAdder) {
+		add(classAdder) {
 			adder = classAdder;
 		},
 		/**
@@ -55,7 +55,7 @@
 		 *
 		 * @param {Object<string, string> | ClassMapper} classMapper
 		 */
-		map: function map(classMapper) {
+		map(classMapper) {
 			if (typeof classMapper === 'function') {
 				mapper = classMapper;
 			} else {
@@ -69,7 +69,7 @@
 		 *
 		 * @param {string} string
 		 */
-		prefix: function prefix(string) {
+		prefix(string) {
 			prefixString = string || '';
 		},
 		/**
@@ -80,7 +80,7 @@
 		 *
 		 * If the language is unknown, pass `"none"`.
 		 */
-		apply: apply
+		apply
 	};
 
 	Prism.hooks.add('wrap', function (env) {

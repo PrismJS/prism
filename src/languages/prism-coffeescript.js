@@ -84,7 +84,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 					greedy: true,
 					alias: 'string',
 					inside: {
-						interpolation: interpolation
+						'interpolation': interpolation
 					}
 				}
 			]

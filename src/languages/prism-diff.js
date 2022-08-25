@@ -42,7 +42,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 
 			diff[name] = {
 				pattern: RegExp('^(?:[' + prefix + '].*(?:\r\n?|\n|(?![\\s\\S])))+', 'm'),
-				alias: alias,
+				alias,
 				inside: {
 					'line': {
 						pattern: /(.)(?=[\s\S]).*(?:\r\n?|\n)?/,

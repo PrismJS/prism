@@ -316,9 +316,9 @@
 	}
 
 	const config = Prism.plugins.autoloader = {
-		languages_path: languages_path,
+		languages_path,
 		use_minified: true,
-		loadLanguages: loadLanguages
+		loadLanguages
 	};
 
 
@@ -460,8 +460,8 @@
 				};
 			}
 			data.callbacks.push({
-				success: success,
-				error: error
+				success,
+				error
 			});
 
 			if (!force && isLoaded(lang)) {

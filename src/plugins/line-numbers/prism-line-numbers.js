@@ -30,7 +30,7 @@
 		 * @param {number} number line number
 		 * @returns {Element|undefined}
 		 */
-		getLine: function (element, number) {
+		getLine(element, number) {
 			if (element.tagName !== 'PRE' || !element.classList.contains(PLUGIN_NAME)) {
 				return;
 			}
@@ -62,7 +62,7 @@
 		 * @param {HTMLElement} element A `<pre>` element with line numbers.
 		 * @returns {void}
 		 */
-		resize: function (element) {
+		resize(element) {
 			resizeElements([element]);
 		},
 
@@ -120,10 +120,10 @@
 			lineNumberSizer.innerHTML = '';
 
 			return {
-				element: element,
+				element,
 				lines: codeLines,
 				lineHeights: [],
-				oneLinerHeight: oneLinerHeight,
+				oneLinerHeight,
 				sizer: lineNumberSizer,
 			};
 		}).filter(Boolean);

@@ -30,7 +30,7 @@
 	function registerAdapter(adapter, name) {
 		name = name || adapter.name;
 		if (typeof adapter === 'function' && !getAdapter(adapter) && !getAdapter(name)) {
-			adapters.push({ adapter: adapter, name: name });
+			adapters.push({ adapter, name });
 		}
 	}
 	/**
@@ -279,8 +279,8 @@
 		 * displayed error messages.
 		 */
 		timeout: 5000,
-		registerAdapter: registerAdapter,
-		removeAdapter: removeAdapter,
+		registerAdapter,
+		removeAdapter,
 
 		/**
 		 * Highlights all `pre` elements under the given container with a `data-jsonp` attribute by requesting the
@@ -291,7 +291,7 @@
 		 *
 		 * @param {Element | Document} [container=document]
 		 */
-		highlight: function (container) {
+		highlight(container) {
 			const elements = (container || document).querySelectorAll(SELECTOR);
 
 			for (var i = 0, element; (element = elements[i++]);) {

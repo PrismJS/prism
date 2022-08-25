@@ -51,7 +51,7 @@ export class LinkedList {
 		// assumes that node != list.tail && values.length >= 0
 		const next = node.next;
 
-		const newNode = { value: value, prev: node, next: next };
+		const newNode = { value, prev: node, next };
 		node.next = newNode;
 		next.prev = newNode;
 		this.length++;

@@ -142,12 +142,12 @@
 					let text = element.textContent;
 					text = BRACE_ALIAS_MAP[text] || text;
 					if (text === open) {
-						allBraces.push({ index: i, open: true, element: element });
+						allBraces.push({ index: i, open: true, element });
 						element.classList.add(name);
 						element.classList.add(mapClassName('brace-open'));
 						openStack.push(i);
 					} else if (text === close) {
-						allBraces.push({ index: i, open: false, element: element });
+						allBraces.push({ index: i, open: false, element });
 						element.classList.add(name);
 						element.classList.add(mapClassName('brace-close'));
 						if (openStack.length) {

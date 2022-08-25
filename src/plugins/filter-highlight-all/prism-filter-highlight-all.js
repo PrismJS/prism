@@ -25,10 +25,10 @@
 		 *
 		 * @param {(value: { element: HTMLElement, language: string }) => boolean} condition
 		 */
-		add: function (condition) {
+		add(condition) {
 			filters.push(function (element) {
 				return condition({
-					element: element,
+					element,
 					language: Prism.util.getLanguage(element)
 				});
 			});
@@ -40,7 +40,7 @@
 		 *
 		 * @param {string} selector
 		 */
-		addSelector: function (selector) {
+		addSelector(selector) {
 			filters.push(function (element) {
 				return element.matches(selector);
 			});
@@ -54,10 +54,10 @@
 			 *
 			 * @param {(value: { element: HTMLElement, language: string }) => boolean} condition
 			 */
-			add: function (condition) {
+			add(condition) {
 				filters.push(function (element) {
 					return !condition({
-						element: element,
+						element,
 						language: Prism.util.getLanguage(element)
 					});
 				});
@@ -69,7 +69,7 @@
 			 *
 			 * @param {string} selector
 			 */
-			addSelector: function (selector) {
+			addSelector(selector) {
 				filters.push(function (element) {
 					return !element.matches(selector);
 				});

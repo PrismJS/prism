@@ -46,10 +46,10 @@
 	};
 
 	NormalizeWhitespace.prototype = {
-		setDefaults: function (defaults) {
+		setDefaults(defaults) {
 			this.defaults = assign(this.defaults, defaults);
 		},
-		normalize: function (input, settings) {
+		normalize(input, settings) {
 			settings = assign(this.defaults, settings);
 
 			for (const name in settings) {
@@ -66,28 +66,28 @@
 		/*
 		 * Normalization methods
 		 */
-		leftTrim: function (input) {
+		leftTrim(input) {
 			return input.replace(/^\s+/, '');
 		},
-		rightTrim: function (input) {
+		rightTrim(input) {
 			return input.replace(/\s+$/, '');
 		},
-		tabsToSpaces: function (input, spaces) {
+		tabsToSpaces(input, spaces) {
 			spaces = spaces|0 || 4;
 			return input.replace(/\t/g, new Array(++spaces).join(' '));
 		},
-		spacesToTabs: function (input, spaces) {
+		spacesToTabs(input, spaces) {
 			spaces = spaces|0 || 4;
 			return input.replace(RegExp(' {' + spaces + '}', 'g'), '\t');
 		},
-		removeTrailing: function (input) {
+		removeTrailing(input) {
 			return input.replace(/\s*?$/gm, '');
 		},
 		// Support for deprecated plugin remove-initial-line-feed
-		removeInitialLineFeed: function (input) {
+		removeInitialLineFeed(input) {
 			return input.replace(/^(?:\r?\n|\r)/, '');
 		},
-		removeIndent: function (input) {
+		removeIndent(input) {
 			const indents = input.match(/^[^\S\n\r]*(?=\S)/gm);
 
 			if (!indents || !indents[0].length) {
@@ -102,10 +102,10 @@
 
 			return input.replace(RegExp('^' + indents[0], 'gm'), '');
 		},
-		indent: function (input, tabs) {
+		indent(input, tabs) {
 			return input.replace(/^[^\S\n\r]*(?=\S)/gm, new Array(++tabs).join('\t') + '$&');
 		},
-		breakLines: function (input, characters) {
+		breakLines(input, characters) {
 			characters = (characters === true) ? 80 : characters|0 || 80;
 
 			const lines = input.split('\n');

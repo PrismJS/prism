@@ -29,7 +29,7 @@
 				const inside = {};
 				tokens[name] = {
 					pattern: value,
-					inside: inside
+					inside
 				};
 				addInvisibles(inside);
 				break;

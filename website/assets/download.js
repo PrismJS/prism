@@ -14,7 +14,7 @@
 	const treePromise = new Promise(function (resolve) {
 		$u.xhr({
 			url: treeURL,
-			callback: function (xhr) {
+			callback(xhr) {
 				if (xhr.status < 400) {
 					resolve(JSON.parse(xhr.responseText).tree);
 				}
@@ -212,8 +212,8 @@
 							type: all.meta.exclusive ? 'radio' : 'checkbox',
 							name: 'download-' + category,
 							value: id,
-							checked: checked,
-							disabled: disabled,
+							checked,
+							disabled,
 							onclick: (function (id, category, all) {
 								return function () {
 									$$('input[name="' + this.name + '"]').forEach(function (input) {
@@ -351,7 +351,7 @@
 		return new Promise(function (resolve, reject) {
 			$u.xhr({
 				url: filepath,
-				callback: function (xhr) {
+				callback(xhr) {
 					if (xhr.status < 400 && xhr.responseText) {
 						resolve(xhr.responseText);
 					} else {
@@ -482,10 +482,10 @@
 
 							promises.push({
 								contentsPromise: cache[path].contentsPromise,
-								id: id,
-								category: category,
-								path: path,
-								type: type
+								id,
+								category,
+								path,
+								type
 							});
 						}
 					});
@@ -610,7 +610,7 @@
 					f(resolve);
 				});
 			} else {
-				resolve({ code: code, errors: errors });
+				resolve({ code, errors });
 			}
 		};
 

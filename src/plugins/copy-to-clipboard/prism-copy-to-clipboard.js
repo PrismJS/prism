@@ -126,15 +126,15 @@
 		setState('copy');
 
 		registerClipboard(linkCopy, {
-			getText: function () {
+			getText() {
 				return element.textContent;
 			},
-			success: function () {
+			success() {
 				setState('copy-success');
 
 				resetText();
 			},
-			error: function () {
+			error() {
 				setState('copy-error');
 
 				setTimeout(function () {

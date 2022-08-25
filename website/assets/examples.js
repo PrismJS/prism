@@ -10,7 +10,7 @@
 	const treePromise = new Promise(function (resolve) {
 		$u.xhr({
 			url: treeURL,
-			callback: function (xhr) {
+			callback(xhr) {
 				if (xhr.status < 400) {
 					resolve(JSON.parse(xhr.responseText).tree);
 				}
@@ -28,7 +28,7 @@
 		language.examplesPath = languages.meta.examplesPath.replace(/\{id\}/g, id) + '.html';
 
 		return fileExists(language.examplesPath).then(function (exists) {
-			return { id: id, exists: exists };
+			return { id, exists };
 		});
 	})).then(function (values) {
 		values.forEach(function (result) {
@@ -52,7 +52,7 @@
 							value: id,
 							checked: checked && exists,
 							disabled: !exists,
-							onclick: function () {
+							onclick() {
 								$$('input[name="' + this.name + '"]').forEach(function (input) {
 									languages[input.value].enabled = input.checked;
 								});
@@ -98,7 +98,7 @@
 		return new Promise(function (resolve, reject) {
 			$u.xhr({
 				url: filepath,
-				callback: function (xhr) {
+				callback(xhr) {
 					if (xhr.status < 400 && xhr.responseText) {
 						resolve(xhr.responseText);
 					} else {
