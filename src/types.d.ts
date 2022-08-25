@@ -51,7 +51,7 @@ export interface GrammarToken {
 	 * Note: This can cause infinite recursion. Be careful when you embed different languages or even the same language into
 	 * each another.
 	 */
-	inside?: string | Grammar
+	inside?: string | Grammar | null
 	/**
 	 * A property to make the types {@link GrammarToken} and {@link RegExp} non-overlapping.
 	 *
