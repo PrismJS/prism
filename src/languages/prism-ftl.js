@@ -1,18 +1,18 @@
 import { rest } from '../shared/symbols.js';
-import markupTemplating from './prism-markup-templating.js';
+import markupTemplating, { MarkupTemplating } from './prism-markup-templating.js';
+
+// FTL expression with 4 levels of nesting supported
+let FTL_EXPR = /[^<()"']|\((?:<expr>)*\)|<(?!#--)|<#--(?:[^-]|-(?!->))*-->|"(?:[^\\"]|\\.)*"|'(?:[^\\']|\\.)*'/.source;
+for (let i = 0; i < 2; i++) {
+	FTL_EXPR = FTL_EXPR.replace(/<expr>/g, function () { return FTL_EXPR; });
+}
+FTL_EXPR = FTL_EXPR.replace(/<expr>/g, /[^\s\S]/.source);
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'ftl',
 	require: markupTemplating,
-	grammar({ getLanguage }) {
+	grammar() {
 		// https://freemarker.apache.org/docs/dgui_template_exp.html
-
-		// FTL expression with 4 levels of nesting supported
-		let FTL_EXPR = /[^<()"']|\((?:<expr>)*\)|<(?!#--)|<#--(?:[^-]|-(?!->))*-->|"(?:[^\\"]|\\.)*"|'(?:[^\\']|\\.)*'/.source;
-		for (let i = 0; i < 2; i++) {
-			FTL_EXPR = FTL_EXPR.replace(/<expr>/g, function () { return FTL_EXPR; });
-		}
-		FTL_EXPR = FTL_EXPR.replace(/<expr>/g, /[^\s\S]/.source);
 
 		let ftl = {
 			'comment': /<#--[\s\S]*?-->/,
@@ -55,7 +55,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 
 		ftl.string[1].inside.interpolation.inside[rest] = ftl;
 
-		Prism.languages.ftl = {
+		return {
 			'ftl-comment': {
 				// the pattern is shortened to be more efficient
 				pattern: /^<#--[\s\S]*/,
@@ -89,15 +89,10 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				}
 			}
 		};
-
-		Prism.hooks.add('before-tokenize', function (env) {
-			// eslint-disable-next-line regexp/no-useless-lazy
-			let pattern = RegExp(/<#--[\s\S]*?-->|<\/?[#@][a-zA-Z](?:<expr>)*?>|\$\{(?:<expr>)*?\}/.source.replace(/<expr>/g, function () { return FTL_EXPR; }), 'gi');
-			Prism.languages['markup-templating'].buildPlaceholders(env, 'ftl', pattern);
-		});
-
-		Prism.hooks.add('after-tokenize', function (env) {
-			Prism.languages['markup-templating'].tokenizePlaceholders(env, 'ftl');
-		});
+	},
+	effect(Prism) {
+		// eslint-disable-next-line regexp/no-useless-lazy
+		const pattern = RegExp(/<#--[\s\S]*?-->|<\/?[#@][a-zA-Z](?:<expr>)*?>|\$\{(?:<expr>)*?\}/.source.replace(/<expr>/g, function () { return FTL_EXPR; }), 'gi');
+		return new MarkupTemplating(this.id, Prism).addHooks(pattern);
 	}
 });

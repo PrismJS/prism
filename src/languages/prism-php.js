@@ -1,9 +1,11 @@
-import markupTemplating from './prism-markup-templating.js';
+import { addHooks } from '../shared/hooks-util.js';
+import { insertBefore } from '../shared/language-util.js';
+import markupTemplating, { MarkupTemplating } from './prism-markup-templating.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'php',
 	require: markupTemplating,
-	grammar({ getLanguage }) {
+	grammar() {
 		/**
 		 * Original by Aaron Harun: http://aahacreative.com/2012/07/31/php-syntax-highlighting-prism/
 		 * Modified by Miles Johnson: http://milesj.me
@@ -34,7 +36,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		let operator = /<?=>|\?\?=?|\.{3}|\??->|[!=]=?=?|::|\*\*=?|--|\+\+|&&|\|\||<<|>>|[?~]|[/^|%*&<>.+-]=?/;
 		let punctuation = /[{}\[\](),:;]/;
 
-		Prism.languages.php = {
+		const php = {
 			'delimiter': {
 				pattern: /\?>$|^<\?(?:php(?=\s)|=)?/i,
 				alias: 'important'
@@ -284,7 +286,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		];
 
-		Prism.languages.insertBefore('php', 'variable', {
+		insertBefore(php, 'variable', {
 			'string': string,
 			'attribute': {
 				pattern: /#\[(?:[^"'\/#]|\/(?![*/])|\/\/.*$|#(?!\[).*$|\/\*(?:[^*]|\*(?!\/))*\*\/|"(?:\\[\s\S]|[^\\"])*"|'(?:\\[\s\S]|[^\\'])*')+\](?=\s*[a-z$#])/im,
@@ -331,17 +333,23 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			},
 		});
 
-		Prism.hooks.add('before-tokenize', function (env) {
-			if (!/<\?/.test(env.code)) {
-				return;
+		return php;
+	},
+	effect(Prism) {
+		const templating = new MarkupTemplating(this.id, Prism);
+		const phpPattern = /\{\*[\s\S]*?\*\}|\{[^'"\s{}*](?:[^"'/{}]|\/(?![*/])|("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|\/\*(?:[^*]|\*(?!\/))*\*\/)*\}/g;
+
+		return addHooks(Prism.hooks, {
+			'before-tokenize': env => {
+				if (!/<\?/.test(env.code)) {
+					return;
+				}
+
+				templating.buildPlaceholders(env, phpPattern);
+			},
+			'after-tokenize': env => {
+				templating.tokenizePlaceholders(env);
 			}
-
-			let phpPattern = /<\?(?:[^"'/#]|\/(?![*/])|("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|(?:\/\/|#(?!\[))(?:[^?\n\r]|\?(?!>))*(?=$|\?>|[\r\n])|#\[|\/\*(?:[^*]|\*(?!\/))*(?:\*\/|$))*?(?:\?>|$)/g;
-			Prism.languages['markup-templating'].buildPlaceholders(env, 'php', phpPattern);
-		});
-
-		Prism.hooks.add('after-tokenize', function (env) {
-			Prism.languages['markup-templating'].tokenizePlaceholders(env, 'php');
 		});
 	}
 });

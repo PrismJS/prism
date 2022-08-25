@@ -1,13 +1,14 @@
-import markupTemplating from './prism-markup-templating.js';
+import { addHooks } from '../shared/hooks-util.js';
+import markupTemplating, { MarkupTemplating } from './prism-markup-templating.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'soy',
 	require: markupTemplating,
-	grammar({ getLanguage }) {
+	grammar() {
 		let stringPattern = /(["'])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/;
 		let numberPattern = /\b\d+(?:\.\d+)?(?:[eE][+-]?\d+)?\b|\b0x[\dA-F]+\b/;
 
-		Prism.languages.soy = {
+		return {
 			'comment': [
 				/\/\*[\s\S]*?\*\//,
 				{
@@ -68,34 +69,38 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'operator': /\?:?|<=?|>=?|==?|!=|[+*/%-]|\b(?:and|not|or)\b/,
 			'punctuation': /[{}()\[\]|.,:]/
 		};
+	},
+	effect(Prism) {
+		const templating = new MarkupTemplating(this.id, Prism);
 
-		// Tokenize all inline Soy expressions
-		Prism.hooks.add('before-tokenize', function (env) {
-			let soyPattern = /\{\{.+?\}\}|\{.+?\}|\s\/\/.*|\/\*[\s\S]*?\*\//g;
-			let soyLitteralStart = '{literal}';
-			let soyLitteralEnd = '{/literal}';
-			let soyLitteralMode = false;
+		return addHooks(Prism.hooks, {
+			'before-tokenize': (env) => {
+				// Tokenize all inline Soy expressions
+				let soyPattern = /\{\{.+?\}\}|\{.+?\}|\s\/\/.*|\/\*[\s\S]*?\*\//g;
+				let soyLitteralStart = '{literal}';
+				let soyLitteralEnd = '{/literal}';
+				let soyLitteralMode = false;
 
-			Prism.languages['markup-templating'].buildPlaceholders(env, 'soy', soyPattern, function (match) {
-				// Soy tags inside {literal} block are ignored
-				if (match === soyLitteralEnd) {
-					soyLitteralMode = false;
-				}
-
-				if (!soyLitteralMode) {
-					if (match === soyLitteralStart) {
-						soyLitteralMode = true;
+				templating.buildPlaceholders(env, soyPattern, (match) => {
+					// Soy tags inside {literal} block are ignored
+					if (match === soyLitteralEnd) {
+						soyLitteralMode = false;
 					}
 
-					return true;
-				}
-				return false;
-			});
-		});
+					if (!soyLitteralMode) {
+						if (match === soyLitteralStart) {
+							soyLitteralMode = true;
+						}
 
-		// Re-insert the tokens after tokenizing
-		Prism.hooks.add('after-tokenize', function (env) {
-			Prism.languages['markup-templating'].tokenizePlaceholders(env, 'soy');
+						return true;
+					}
+					return false;
+				});
+			},
+			'after-tokenize': (env) => {
+				// Re-insert the tokens after tokenizing
+				templating.tokenizePlaceholders(env);
+			},
 		});
 	}
 });

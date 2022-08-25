@@ -1,32 +1,34 @@
+import { addHooks } from '../shared/hooks-util.js';
+import { extend, insertBefore } from '../shared/language-util.js';
 import clike from './prism-clike.js';
-import markupTemplating from './prism-markup-templating.js';
+import markupTemplating, { MarkupTemplating } from './prism-markup-templating.js';
 import php from './prism-php.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'latte',
 	require: [clike, markupTemplating, php],
-	grammar({ extend, getLanguage }) {
-		Prism.languages.latte = {
-			'comment': /^\{\*[\s\S]*/,
-			'latte-tag': {
-				// https://latte.nette.org/en/tags
-				pattern: /(^\{(?:\/(?=[a-z]))?)(?:[=_]|[a-z]\w*\b(?!\())/i,
-				lookbehind: true,
-				alias: 'important'
-			},
-			'delimiter': {
-				pattern: /^\{\/?|\}$/,
-				alias: 'punctuation'
-			},
-			'php': {
-				pattern: /\S(?:[\s\S]*\S)?/,
-				alias: 'language-php',
-				inside: 'php'
-			}
-		};
-
-		let markupLatte = extend('markup', {});
-		Prism.languages.insertBefore('inside', 'attr-value', {
+	grammar: {
+		'comment': /^\{\*[\s\S]*/,
+		'latte-tag': {
+			// https://latte.nette.org/en/tags
+			pattern: /(^\{(?:\/(?=[a-z]))?)(?:[=_]|[a-z]\w*\b(?!\())/i,
+			lookbehind: true,
+			alias: 'important'
+		},
+		'delimiter': {
+			pattern: /^\{\/?|\}$/,
+			alias: 'punctuation'
+		},
+		'php': {
+			pattern: /\S(?:[\s\S]*\S)?/,
+			alias: 'language-php',
+			inside: 'php'
+		}
+	},
+	effect(Prism) {
+		const markup = Prism.components.getLanguage('markup');
+		const markupLatte = extend(markup, 'markup', {});
+		insertBefore(markupLatte.tag.inside, 'attr-value', {
 			'n-attr': {
 				pattern: /n:[\w-]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+))?/,
 				inside: {
@@ -52,19 +54,19 @@ export default /** @type {import("../types").LanguageProto} */ ({
 					},
 				}
 			},
-		}, markupLatte.tag);
-
-		Prism.hooks.add('before-tokenize', function (env) {
-			if (env.language !== 'latte') {
-				return;
-			}
-			let lattePattern = /\{\*[\s\S]*?\*\}|\{[^'"\s{}*](?:[^"'/{}]|\/(?![*/])|("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|\/\*(?:[^*]|\*(?!\/))*\*\/)*\}/g;
-			Prism.languages['markup-templating'].buildPlaceholders(env, 'latte', lattePattern);
-			env.grammar = markupLatte;
 		});
 
-		Prism.hooks.add('after-tokenize', function (env) {
-			Prism.languages['markup-templating'].tokenizePlaceholders(env, 'latte');
+		const templating = new MarkupTemplating(this.id, Prism);
+		const lattePattern = /\{\*[\s\S]*?\*\}|\{[^'"\s{}*](?:[^"'/{}]|\/(?![*/])|("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|\/\*(?:[^*]|\*(?!\/))*\*\/)*\}/g;
+
+		return addHooks(Prism.hooks, {
+			'before-tokenize': env => {
+				templating.buildPlaceholders(env, lattePattern);
+				env.grammar = markupLatte;
+			},
+			'after-tokenize': env => {
+				templating.tokenizePlaceholders(env);
+			}
 		});
 	}
 });

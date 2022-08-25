@@ -1,31 +1,32 @@
+import { insertBefore } from '../shared/language-util.js';
 import clike from './prism-clike.js';
-import markupTemplating from './prism-markup-templating.js';
+import markupTemplating, { MarkupTemplating } from './prism-markup-templating.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'tt2',
 	require: [clike, markupTemplating],
-	grammar({ extend, getLanguage }) {
-		Prism.languages.tt2 = extend('clike', {
+	grammar({ extend }) {
+		const tt2 = extend('clike', {
 			'comment': /#.*|\[%#[\s\S]*?%\]/,
 			'keyword': /\b(?:BLOCK|CALL|CASE|CATCH|CLEAR|DEBUG|DEFAULT|ELSE|ELSIF|END|FILTER|FINAL|FOREACH|GET|IF|IN|INCLUDE|INSERT|LAST|MACRO|META|NEXT|PERL|PROCESS|RAWPERL|RETURN|SET|STOP|SWITCH|TAGS|THROW|TRY|UNLESS|USE|WHILE|WRAPPER)\b/,
 			'punctuation': /[[\]{},()]/
 		});
 
-		Prism.languages.insertBefore('tt2', 'number', {
+		insertBefore(tt2, 'number', {
 			'operator': /=[>=]?|!=?|<=?|>=?|&&|\|\|?|\b(?:and|not|or)\b/,
 			'variable': {
 				pattern: /\b[a-z]\w*(?:\s*\.\s*(?:\d+|\$?[a-z]\w*))*\b/i
 			}
 		});
 
-		Prism.languages.insertBefore('tt2', 'keyword', {
+		insertBefore(tt2, 'keyword', {
 			'delimiter': {
 				pattern: /^(?:\[%|%%)-?|-?%\]$/,
 				alias: 'punctuation'
 			}
 		});
 
-		Prism.languages.insertBefore('tt2', 'string', {
+		insertBefore(tt2, 'string', {
 			'single-quoted-string': {
 				pattern: /'[^\\']*(?:\\[\s\S][^\\']*)*'/,
 				greedy: true,
@@ -44,15 +45,12 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		});
 
 		// The different types of TT2 strings "replace" the C-like standard string
-		delete Prism.languages.tt2.string;
+		delete tt2.string;
 
-		Prism.hooks.add('before-tokenize', function (env) {
-			let tt2Pattern = /\[%[\s\S]+?%\]/g;
-			Prism.languages['markup-templating'].buildPlaceholders(env, 'tt2', tt2Pattern);
-		});
-
-		Prism.hooks.add('after-tokenize', function (env) {
-			Prism.languages['markup-templating'].tokenizePlaceholders(env, 'tt2');
-		});
+		return tt2;
+	},
+	effect(Prism) {
+		const pattern = /\[%[\s\S]+?%\]/g;
+		return new MarkupTemplating(this.id, Prism).addHooks(pattern);
 	}
 });
