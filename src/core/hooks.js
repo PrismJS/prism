@@ -2,8 +2,9 @@ export class Hooks {
 	constructor() {
 		/**
 		 * @type {Map<string, ((env: any) => void)[]>}
+		 * @private
 		 */
-		this.all = new Map();
+		this._all = new Map();
 	}
 
 	/**
@@ -25,10 +26,10 @@ export class Hooks {
 	 * @public
 	 */
 	add(name, callback) {
-		let hooks = this.all.get(name);
+		let hooks = this._all.get(name);
 		if (hooks === undefined) {
 			hooks = [];
-			this.all.set(name, hooks);
+			this._all.set(name, hooks);
 		}
 		const list = hooks;
 
@@ -53,7 +54,7 @@ export class Hooks {
 	 * @public
 	 */
 	run(name, env) {
-		const callbacks = this.all.get(name);
+		const callbacks = this._all.get(name);
 
 		if (!callbacks || !callbacks.length) {
 			return;
