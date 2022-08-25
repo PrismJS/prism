@@ -5,7 +5,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		// http://avisynth.nl/index.php/The_full_AviSynth_grammar
 
 		function replace(pattern, replacements) {
-			return pattern.replace(/<<(\d+)>>/g, function (m, index) {
+			return pattern.replace(/<<(\d+)>>/g, (m, index) => {
 				return replacements[+index];
 			});
 		}

@@ -16,7 +16,7 @@ describe('Show language', function () {
 		assert.strictEqual(document.querySelector('code').textContent, expectedText);
 	}
 
-	it('should work with comments', function () {
+	it('should work with comments', () => {
 		test('\n<p>Example</p>\n', `<pre class="language-javascript"><code><!--
 <p>Example</p>
 --></code></pre>`);
@@ -26,7 +26,7 @@ describe('Show language', function () {
 --></code></pre>`);
 	});
 
-	it('should work with script tags', function () {
+	it('should work with script tags', () => {
 		test('<p>Example</p>', `<script class="language-javascript" type="text/plain"><p>Example</p></script>`);
 
 		// inherit language

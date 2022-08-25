@@ -5,9 +5,9 @@ const TokenStreamTransformer = require('./helper/token-stream-transformer');
 const TestCase = require('./helper/test-case');
 
 
-describe('The token stream transformer', function () {
+describe('The token stream transformer', () => {
 
-	it('should handle all kinds of simple transformations', function () {
+	it('should handle all kinds of simple transformations', () => {
 		const tokens = [
 			{ type: 'type', content: 'content' },
 			'string'
@@ -22,7 +22,7 @@ describe('The token stream transformer', function () {
 	});
 
 
-	it('should handle nested structures', function () {
+	it('should handle nested structures', () => {
 		const tokens = [
 			{
 				type: 'type',
@@ -49,7 +49,7 @@ describe('The token stream transformer', function () {
 	});
 
 
-	it('should strip empty tokens', function () {
+	it('should strip empty tokens', () => {
 		const tokenStream = [
 			'',
 			'\r\n',
@@ -63,7 +63,7 @@ describe('The token stream transformer', function () {
 	});
 
 
-	it('should strip empty token tree branches', function () {
+	it('should strip empty token tree branches', () => {
 		const tokenStream = [
 			{
 				type: 'type',
@@ -86,7 +86,7 @@ describe('The token stream transformer', function () {
 	});
 
 
-	it('should ignore all properties in tokens except value and content', function () {
+	it('should ignore all properties in tokens except value and content', () => {
 
 		const tokenStream = [
 			{ type: 'type', content: 'content', alias: 'alias' }
@@ -100,9 +100,9 @@ describe('The token stream transformer', function () {
 	});
 });
 
-describe('The language name parsing', function () {
+describe('The language name parsing', () => {
 
-	it('should use the last language as the main language if no language is specified', function () {
+	it('should use the last language as the main language if no language is specified', () => {
 		assert.deepEqual(
 			TestCase.parseLanguageNames('a'),
 			{
@@ -121,7 +121,7 @@ describe('The language name parsing', function () {
 	});
 
 
-	it('should use the specified language as main language', function () {
+	it('should use the specified language as main language', () => {
 		assert.deepEqual(
 			TestCase.parseLanguageNames('a+b!+c'),
 			{
@@ -132,7 +132,7 @@ describe('The language name parsing', function () {
 	});
 
 
-	it('should throw an error if there are multiple main languages', function () {
+	it('should throw an error if there are multiple main languages', () => {
 		assert.throw(
 			() => {
 				TestCase.parseLanguageNames('a+b!+c!');

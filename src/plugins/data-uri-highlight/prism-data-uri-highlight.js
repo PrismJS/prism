@@ -72,7 +72,7 @@
 		}
 	};
 
-	Prism.hooks.add('before-highlight', function (env) {
+	Prism.hooks.add('before-highlight', (env) => {
 		// Prepare the needed grammars for this code block
 		if (dataURI.pattern.test(env.code)) {
 			for (const p in dataURI.inside) {

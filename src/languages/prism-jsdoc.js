@@ -47,7 +47,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			},
 			'class-name': [
 				{
-					pattern: RegExp(/(@(?:augments|class|extends|interface|memberof!?|template|this|typedef)\s+(?:<TYPE>\s+)?)[A-Z]\w*(?:\.[A-Z]\w*)*/.source.replace(/<TYPE>/g, function () { return type; })),
+					pattern: RegExp(/(@(?:augments|class|extends|interface|memberof!?|template|this|typedef)\s+(?:<TYPE>\s+)?)[A-Z]\w*(?:\.[A-Z]\w*)*/.source.replace(/<TYPE>/g, () => type)),
 					lookbehind: true,
 					inside: {
 						'punctuation': /\./

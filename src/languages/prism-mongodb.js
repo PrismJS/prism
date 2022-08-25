@@ -61,7 +61,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'UUID',
 		];
 
-		operators = operators.map(function (operator) {
+		operators = operators.map((operator) => {
 			return operator.replace('$', '\\$');
 		});
 

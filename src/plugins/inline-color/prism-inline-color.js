@@ -47,7 +47,7 @@
 		}
 
 		// output
-		const rgb = channels.slice(0, 3).map(function (x) {
+		const rgb = channels.slice(0, 3).map((x) => {
 			return String(Math.round(x * 255));
 		}).join(',');
 		const alpha = String(Number(channels[3].toFixed(3))); // easy way to round 3 decimal places
@@ -81,7 +81,7 @@
 	];
 
 
-	Prism.hooks.add('wrap', function (env) {
+	Prism.hooks.add('wrap', (env) => {
 		if (env.type === 'color' || env.classes.indexOf('color') >= 0) {
 			const content = env.content;
 

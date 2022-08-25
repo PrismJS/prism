@@ -31,19 +31,19 @@ describe('Keep Markup', function () {
 		assert.equal(highlightInElement(html, language), html);
 	}
 
-	it('should keep <span> markup', function () {
+	it('should keep <span> markup', () => {
 		keepMarkup(`x<span>a</span>y`);
 	});
-	it('should preserve markup order', function () {
+	it('should preserve markup order', () => {
 		keepMarkup(`x<a></a><b></b>y`);
 	});
 
-	it('should keep last markup', function () {
+	it('should keep last markup', () => {
 		keepMarkup(`xy<span>a</span>`);
 		keepMarkup(`xy<a>a</a>`);
 	});
 
-	it('should support double highlighting', function () {
+	it('should support double highlighting', () => {
 		const pre = document.createElement('pre');
 		pre.className = 'language-javascript drop-tokens';
 		pre.innerHTML = '<code>var <mark>a = 42</mark>;</code>';
@@ -62,7 +62,7 @@ describe('Keep Markup', function () {
 		assert.strictEqual(firstPass, secondPass);
 	});
 
-	it('should not clone markup nodes', function () {
+	it('should not clone markup nodes', () => {
 		const pre = document.createElement('pre');
 		pre.className = 'language-javascript drop-tokens';
 		pre.innerHTML = '<code>var <mark>a = <mark>42</mark></mark>;</code>';

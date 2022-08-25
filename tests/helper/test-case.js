@@ -436,7 +436,7 @@ module.exports = {
 		let mainLanguage = null;
 
 		languages = languages.map(
-			function (language) {
+			(language) => {
 				const pos = language.indexOf('!');
 
 				if (-1 < pos) {

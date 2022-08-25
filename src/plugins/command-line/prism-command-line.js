@@ -50,7 +50,7 @@
 	}
 
 
-	Prism.hooks.add('before-highlight', function (env) {
+	Prism.hooks.add('before-highlight', (env) => {
 		const commandLine = getCommandLineInfo(env);
 
 		if (commandLine.complete || !env.code) {
@@ -81,7 +81,7 @@
 		const outputSections = pre.getAttribute('data-output');
 		const outputFilter = pre.getAttribute('data-filter-output');
 		if (outputSections !== null) { // The user specified the output lines. -- cwells
-			outputSections.split(',').forEach(function (section) {
+			outputSections.split(',').forEach((section) => {
 				const range = section.split('-');
 				let outputStart = parseInt(range[0], 10);
 				let outputEnd = range.length === 2 ? parseInt(range[1], 10) : outputStart;
@@ -141,7 +141,7 @@
 		env.code = codeLines.join('\n');
 	});
 
-	Prism.hooks.add('before-insert', function (env) {
+	Prism.hooks.add('before-insert', (env) => {
 		const commandLine = getCommandLineInfo(env);
 
 		if (commandLine.complete) {
@@ -166,7 +166,7 @@
 		env.highlightedCode = codeLines.join('\n');
 	});
 
-	Prism.hooks.add('complete', function (env) {
+	Prism.hooks.add('complete', (env) => {
 		if (!hasCommandLineInfo(env)) {
 			// the previous hooks never ran
 			return;

@@ -121,7 +121,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'namespace': {
 				pattern: RegExp(
 					/(\b(?:exports|import(?:\s+static)?|module|open|opens|package|provides|requires|to|transitive|uses|with)\s+)(?!<keyword>)[a-z]\w*(?:\.[a-z]\w*)*\.?/
-						.source.replace(/<keyword>/g, function () { return keywords.source; })),
+						.source.replace(/<keyword>/g, () => keywords.source)),
 				lookbehind: true,
 				inside: {
 					'punctuation': /\./,

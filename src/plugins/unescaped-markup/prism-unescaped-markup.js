@@ -12,14 +12,14 @@
 
 	Prism.plugins.UnescapedMarkup = true;
 
-	Prism.hooks.add('before-highlightall', function (env) {
+	Prism.hooks.add('before-highlightall', (env) => {
 		env.selector += ', [class*="lang-"] script[type="text/plain"]'
 			+ ', [class*="language-"] script[type="text/plain"]'
 			+ ', script[type="text/plain"][class*="lang-"]'
 			+ ', script[type="text/plain"][class*="language-"]';
 	});
 
-	Prism.hooks.add('before-sanity-check', function (env) {
+	Prism.hooks.add('before-sanity-check', (env) => {
 		/** @type {HTMLElement} */
 		const element = env.element;
 
@@ -35,7 +35,7 @@
 
 			// copy all "data-" attributes
 			const dataset = element.dataset;
-			Object.keys(dataset || {}).forEach(function (key) {
+			Object.keys(dataset || {}).forEach((key) => {
 				if (Object.prototype.hasOwnProperty.call(dataset, key)) {
 					pre.dataset[key] = dataset[key];
 				}

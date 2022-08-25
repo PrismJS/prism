@@ -9,7 +9,7 @@ describe('Custom class', function () {
 	const util = createUtil(window);
 
 
-	it('should set prefix', function () {
+	it('should set prefix', () => {
 		Prism.plugins.customClass.prefix('prism-');
 
 		util.assert.highlight({
@@ -19,7 +19,7 @@ describe('Custom class', function () {
 		});
 	});
 
-	it('should reset prefix', function () {
+	it('should reset prefix', () => {
 		Prism.plugins.customClass.prefix('');
 
 		util.assert.highlight({
@@ -29,8 +29,8 @@ describe('Custom class', function () {
 		});
 	});
 
-	it('should map class names using a function', function () {
-		Prism.plugins.customClass.map(function (cls, language) {
+	it('should map class names using a function', () => {
+		Prism.plugins.customClass.map((cls, language) => {
 			return `${language}-${cls}`;
 		});
 
@@ -41,7 +41,7 @@ describe('Custom class', function () {
 		});
 	});
 
-	it('should map class names using an object', function () {
+	it('should map class names using an object', () => {
 		Prism.plugins.customClass.map({
 			boolean: 'b',
 			keyword: 'kw',
@@ -56,7 +56,7 @@ describe('Custom class', function () {
 		});
 	});
 
-	it('should reset map', function () {
+	it('should reset map', () => {
 		Prism.plugins.customClass.map({});
 
 		util.assert.highlight({

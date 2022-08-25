@@ -7,7 +7,7 @@
 function SortedBNF(grammar) {
 	let key;
 	for (key in grammar) {
-		grammar[key] = grammar[key].replace(/<[\w\s]+>/g, function (key) {
+		grammar[key] = grammar[key].replace(/<[\w\s]+>/g, (key) => {
 			return '(?:' + grammar[key].trim() + ')';
 		});
 	}

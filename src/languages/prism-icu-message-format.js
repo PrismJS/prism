@@ -16,7 +16,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			if (level <= 0) {
 				return /[]/.source;
 			} else {
-				return source.replace(/<SELF>/g, function () { return nested(source, level - 1); });
+				return source.replace(/<SELF>/g, () => nested(source, level - 1));
 			}
 		}
 
@@ -37,7 +37,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 
 		const argumentSource = nested(
 			/\{(?:[^{}']|'(?![{},'])|''|<STR>|<SELF>)*\}/.source
-				.replace(/<STR>/g, function () { return stringPattern.source; }),
+				.replace(/<STR>/g, () => stringPattern.source),
 			8
 		);
 

@@ -21,13 +21,13 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		 * @returns {RegExp}
 		 */
 		function createInline(pattern) {
-			pattern = pattern.replace(/<inner>/g, function () { return inner; });
+			pattern = pattern.replace(/<inner>/g, () => inner);
 			return RegExp(/((?:^|[^\\])(?:\\{2})*)/.source + '(?:' + pattern + ')');
 		}
 
 
 		const tableCell = /(?:\\.|``(?:[^`\r\n]|`(?!`))+``|`[^`\r\n]+`|[^\\|\r\n`])+/.source;
-		const tableRow = /\|?__(?:\|__)+\|?(?:(?:\n|\r\n?)|(?![\s\S]))/.source.replace(/__/g, function () { return tableCell; });
+		const tableRow = /\|?__(?:\|__)+\|?(?:(?:\n|\r\n?)|(?![\s\S]))/.source.replace(/__/g, () => tableCell);
 		const tableLine = /\|?[ \t]*:?-{3,}:?[ \t]*(?:\|[ \t]*:?-{3,}:?[ \t]*)+\|?(?:\n|\r\n?)/.source;
 
 
@@ -257,8 +257,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		});
 
-		['url', 'bold', 'italic', 'strike'].forEach(function (token) {
-			['url', 'bold', 'italic', 'strike', 'code-snippet'].forEach(function (inside) {
+		['url', 'bold', 'italic', 'strike'].forEach((token) => {
+			['url', 'bold', 'italic', 'strike', 'code-snippet'].forEach((inside) => {
 				if (token !== inside) {
 					markdown[token].inside.content.inside[inside] = markdown[inside];
 				}
@@ -322,7 +322,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			return text;
 		}
 
-		Prism.hooks.add('after-tokenize', function (env) {
+		Prism.hooks.add('after-tokenize', (env) => {
 			if (env.language !== 'markdown' && env.language !== 'md') {
 				return;
 			}
@@ -384,7 +384,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			walkTokens(env.tokens);
 		});
 
-		Prism.hooks.add('wrap', function (env) {
+		Prism.hooks.add('wrap', (env) => {
 			if (env.type !== 'code-block') {
 				return;
 			}
@@ -406,7 +406,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 					const id = 'md-' + new Date().valueOf() + '-' + Math.floor(Math.random() * 1e16);
 					env.attributes['id'] = id;
 
-					Prism.plugins.autoloader.loadLanguages(codeLang, function () {
+					Prism.plugins.autoloader.loadLanguages(codeLang, () => {
 						const ele = document.getElementById(id);
 						if (ele) {
 							ele.innerHTML = Prism.highlight(ele.textContent, Prism.languages[codeLang], codeLang);

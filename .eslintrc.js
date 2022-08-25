@@ -22,6 +22,7 @@ module.exports = {
 		'no-var': 'error',
 		'object-shorthand': ['warn', 'always', { avoidQuotes: true }],
 		'one-var': ['warn', 'never'],
+		'prefer-arrow-callback': 'warn',
 		'prefer-const': ['warn', { 'destructuring': 'all' }],
 		'prefer-spread': 'error',
 		'quotes': ['warn', 'single', { avoidEscape: true, allowTemplateLiterals: true }],

@@ -428,8 +428,8 @@
 			}
 		}
 
-		languages.forEach(function (lang) {
-			loadLanguage(lang, successCallback, function () {
+		languages.forEach((lang) => {
+			loadLanguage(lang, successCallback, () => {
 				if (failed) {
 					return;
 				}
@@ -475,11 +475,11 @@
 				data.loading = true;
 				data.error = false;
 
-				addScript(getLanguagePath(lang), function () {
+				addScript(getLanguagePath(lang), () => {
 					data.loading = false;
 					languageCallback(lang, 'success');
 
-				}, function () {
+				}, () => {
 					data.loading = false;
 					data.error = true;
 					languageCallback(lang, 'error');
@@ -514,7 +514,7 @@
 		}
 	}
 
-	Prism.hooks.add('complete', function (env) {
+	Prism.hooks.add('complete', (env) => {
 		const element = env.element;
 		const language = env.language;
 		if (!element || !language || language === ignored_language) {
@@ -532,7 +532,7 @@
 
 		if (!deps.every(isLoaded)) {
 			// the language or some dependencies aren't loaded
-			loadLanguages(deps, function () {
+			loadLanguages(deps, () => {
 				Prism.highlightElement(element);
 			});
 		}

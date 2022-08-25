@@ -9,7 +9,7 @@ describe('Show Invisibles', function () {
 	const util = createUtil(window);
 
 
-	it('should show invisible characters', function () {
+	it('should show invisible characters', () => {
 		util.assert.highlightElement({
 			language: 'javascript',
 			code: `  \t\n\r\n\t\t`,
@@ -17,7 +17,7 @@ describe('Show Invisibles', function () {
 		});
 	});
 
-	it('should show invisible characters inside tokens', function () {
+	it('should show invisible characters inside tokens', () => {
 		util.assert.highlightElement({
 			language: 'javascript',
 			code: `/* \n */`,

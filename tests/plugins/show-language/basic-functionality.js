@@ -16,7 +16,7 @@ describe('Show language', function () {
 		assert.strictEqual(document.querySelector('.toolbar-item > span').textContent, expectedLanguage);
 	}
 
-	it('should work with component titles', function () {
+	it('should work with component titles', () => {
 		// simple title
 		test('JavaScript', `<pre class="language-javascript"><code>foo</code></pre>`);
 		test('Markup', `<pre class="language-markup"><code>foo</code></pre>`);
@@ -29,7 +29,7 @@ describe('Show language', function () {
 		test('SVG', `<pre class="language-svg"><code>foo</code></pre>`);
 	});
 
-	it('should work with custom titles', function () {
+	it('should work with custom titles', () => {
 		test('Foo', `<pre class="language-javascript" data-language="Foo"><code>foo</code></pre>`);
 	});
 

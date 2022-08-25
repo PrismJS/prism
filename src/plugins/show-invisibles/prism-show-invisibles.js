@@ -77,7 +77,7 @@
 		}
 	}
 
-	Prism.hooks.add('before-highlight', function (env) {
+	Prism.hooks.add('before-highlight', (env) => {
 		addInvisibles(env.grammar);
 	});
 }());

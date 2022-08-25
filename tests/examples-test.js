@@ -5,7 +5,7 @@ const { Parser } = require('htmlparser2');
 const { languages } = require('../components.json');
 
 
-describe('Examples', function () {
+describe('Examples', () => {
 
 	const exampleFiles = new Set(fs.readdirSync(__dirname + '/../examples'));
 	const ignore = new Set([
@@ -37,19 +37,19 @@ describe('Examples', function () {
 	const superfluous = [...exampleFiles].filter(f => !validFiles.has(f));
 
 
-	it('- should be available for every language', function () {
+	it('- should be available for every language', () => {
 		assert.isEmpty(missing, 'Following languages do not have an example file in ./examples/\n'
 			+ missing.join('\n'));
 	});
 
-	it('- should only be available for registered languages', function () {
+	it('- should only be available for registered languages', () => {
 		assert.isEmpty(superfluous, 'Following files are not associated with any language\n'
 			+ superfluous.map(f => `./examples/${f}`).join('\n'));
 	});
 
-	describe('Validate HTML templates', function () {
+	describe('Validate HTML templates', () => {
 		for (const file of validFiles) {
-			it('- ./examples/' + file, async function () {
+			it('- ./examples/' + file, async () => {
 				const content = fs.readFileSync(__dirname + '/../examples/' + file, 'utf-8');
 				await validateHTML(content);
 			});

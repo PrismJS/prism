@@ -53,7 +53,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'before-tokenize': env => {
 				let insideRaw = false;
 
-				templating.buildPlaceholders(env, liquidPattern, function (match) {
+				templating.buildPlaceholders(env, liquidPattern, (match) => {
 					const tagMatch = /^\{%-?\s*(\w+)/.exec(match);
 					if (tagMatch) {
 						const tag = tagMatch[1];

@@ -116,12 +116,12 @@
 		let elementCallbacks = callbacks;
 		const order = getOrder(env.element);
 		if (order) {
-			elementCallbacks = order.map(function (key) {
+			elementCallbacks = order.map((key) => {
 				return map[key] || noop;
 			});
 		}
 
-		elementCallbacks.forEach(function (callback) {
+		elementCallbacks.forEach((callback) => {
 			const element = callback(env);
 
 			if (!element) {
@@ -139,7 +139,7 @@
 		wrapper.appendChild(toolbar);
 	};
 
-	registerButton('label', function (env) {
+	registerButton('label', (env) => {
 		const pre = env.element.parentNode;
 		if (!pre || !/pre/i.test(pre.nodeName)) {
 			return;

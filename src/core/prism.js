@@ -403,7 +403,7 @@ function stringify(o, language, hooks) {
 	}
 	if (Array.isArray(o)) {
 		let s = '';
-		o.forEach(function (e) {
+		o.forEach((e) => {
 			s += stringify(e, language, hooks);
 		});
 		return s;

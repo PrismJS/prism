@@ -99,7 +99,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				'|' +
 				// smarty blocks
 				/\{(?:[^{}"']|<str>|\{(?:[^{}"']|<str>|\{(?:[^{}"']|<str>)*\})*\})*\}/.source
-					.replace(/<str>/g, function () { return string.source; }),
+					.replace(/<str>/g, () => string.source),
 			'g'
 		);
 

@@ -156,7 +156,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		}
 
-		Prism.hooks.add('after-tokenize', function (env) {
+		Prism.hooks.add('after-tokenize', (env) => {
 			if (env.language !== 'xquery') {
 				return;
 			}

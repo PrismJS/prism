@@ -42,7 +42,7 @@ module.exports = {
 	createScopedPrismDom(suite, options = {}) {
 		const dom = PrismLoader.createPrismDOM();
 
-		suite.afterAll(function () {
+		suite.afterAll(() => {
 			dom.window.close();
 		});
 

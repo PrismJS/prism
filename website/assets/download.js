@@ -11,7 +11,7 @@
 	const dependencies = {};
 
 	const treeURL = 'https://api.github.com/repos/PrismJS/prism/git/trees/master?recursive=1';
-	const treePromise = new Promise(function (resolve) {
+	const treePromise = new Promise((resolve) => {
 		$u.xhr({
 			url: treeURL,
 			callback(xhr) {
@@ -39,7 +39,7 @@
 
 	const hstr = window.location.hash.match(/(?:languages|plugins)=[-+\w]+|themes=[-\w]+/g);
 	if (hstr) {
-		hstr.forEach(function (str) {
+		hstr.forEach((str) => {
 			const kv = str.split('=', 2);
 			const category = kv[0];
 			const ids = kv[1].split('+');
@@ -114,7 +114,7 @@
 							onclick: (function (category, all) {
 								return function () {
 									const checkAll = this;
-									$$('input[name="download-' + category + '"]').forEach(function (input) {
+									$$('input[name="download-' + category + '"]').forEach((input) => {
 										all[input.value].enabled = input.checked = checkAll.checked;
 									});
 
@@ -169,7 +169,7 @@
 				}
 			};
 
-			info.require.forEach(function (v) {
+			info.require.forEach((v) => {
 				dependencies[v] = (dependencies[v] || []).concat(id);
 			});
 
@@ -216,12 +216,12 @@
 							disabled,
 							onclick: (function (id, category, all) {
 								return function () {
-									$$('input[name="' + this.name + '"]').forEach(function (input) {
+									$$('input[name="' + this.name + '"]').forEach((input) => {
 										all[input.value].enabled = input.checked;
 									});
 
 									if (all[id].require && this.checked) {
-										all[id].require.forEach(function (v) {
+										all[id].require.forEach((v) => {
 											const input = $('label[data-id="' + v + '"] > input');
 											input.checked = true;
 
@@ -230,7 +230,7 @@
 									}
 
 									if (dependencies[id] && !this.checked) { // It’s required by others
-										dependencies[id].forEach(function (dependent) {
+										dependencies[id].forEach((dependent) => {
 											const input = $('label[data-id="' + dependent + '"] > input');
 											input.checked = false;
 
@@ -301,7 +301,7 @@
 		};
 
 	function getFileSize(filepath) {
-		return treePromise.then(function (tree) {
+		return treePromise.then((tree) => {
 			for (let i = 0, l = tree.length; i < l; i++) {
 				if (tree[i].path === filepath) {
 					return tree[i].size;
@@ -322,13 +322,13 @@
 				var distro = all[id].files[minified ? 'minified' : 'dev'];
 				const files = distro.paths;
 
-				files.forEach(function (filepath) {
+				files.forEach((filepath) => {
 					const file = cache[filepath] = cache[filepath] || {};
 
 					if (!file.size) {
 
 						(function (category, id) {
-							getFileSize(filepath).then(function (size) {
+							getFileSize(filepath).then((size) => {
 								if (size) {
 									file.size = size;
 									distro.size += file.size;
@@ -348,7 +348,7 @@
 	getFilesSizes();
 
 	function getFileContents(filepath) {
-		return new Promise(function (resolve, reject) {
+		return new Promise((resolve, reject) => {
 			$u.xhr({
 				url: filepath,
 				callback(xhr) {
@@ -380,7 +380,7 @@
 				if (info.enabled || id == updatedId) {
 					const distro = info.files[minified ? 'minified' : 'dev'];
 
-					distro.paths.forEach(function (path) {
+					distro.paths.forEach((path) => {
 						if (cache[path]) {
 							const file = cache[path];
 
@@ -476,7 +476,7 @@
 						redownload[category] = redownload[category] || [];
 						redownload[category].push(id);
 					}
-					info.files[minified ? 'minified' : 'dev'].paths.forEach(function (path) {
+					info.files[minified ? 'minified' : 'dev'].paths.forEach((path) => {
 						if (cache[path]) {
 							const type = path.match(/\.(\w+)$/)[1];
 
@@ -497,7 +497,7 @@
 		const error = $('#download .error');
 		error.style.display = '';
 
-		Promise.all([buildCode(promises), getVersion()]).then(function (arr) {
+		Promise.all([buildCode(promises), getVersion()]).then((arr) => {
 			const res = arr[0];
 			const version = arr[1];
 			const code = res.code;
@@ -530,7 +530,7 @@
 					newCode.className = codeElement.className;
 					newCode.textContent = text;
 
-					Prism.highlightElement(newCode, true, function () {
+					Prism.highlightElement(newCode, true, () => {
 						pre.replaceChild(newCode, codeElement);
 					});
 
@@ -564,7 +564,7 @@
 		/** @type {Object<string, CodePromiseInfo[]>} */
 		const toSortMap = {};
 
-		promises.forEach(function (p) {
+		promises.forEach((p) => {
 			if (p.category == 'core' || p.category == 'themes') {
 				finalPromises.push(p);
 			} else {
@@ -577,7 +577,7 @@
 		});
 
 		// this assumes that the ids in `toSortMap` are complete under transitive requirements
-		getLoader(components, Object.keys(toSortMap)).getIds().forEach(function (id) {
+		getLoader(components, Object.keys(toSortMap)).getIds().forEach((id) => {
 			if (!toSortMap[id]) {
 				console.error(id + ' not found.');
 			}
@@ -594,12 +594,12 @@
 		var f = function (resolve) {
 			if (i < l) {
 				const p = promises[i];
-				p.contentsPromise.then(function (contents) {
+				p.contentsPromise.then((contents) => {
 					code[p.type] += contents + (p.type === 'js' && !/;\s*$/.test(contents) ? ';' : '') + '\n';
 					i++;
 					f(resolve);
 				});
-				p.contentsPromise['catch'](function () {
+				p.contentsPromise['catch'](() => {
 					errors.push($u.element.create({
 						tag: 'p',
 						prop: {
@@ -621,7 +621,7 @@
 	 * @returns {Promise<string>}
 	 */
 	function getVersion() {
-		return getFileContents('./package.json').then(function (jsonStr) {
+		return getFileContents('./package.json').then((jsonStr) => {
 			return JSON.parse(jsonStr).version;
 		});
 	}

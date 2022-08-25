@@ -8,10 +8,10 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		const spaceAfterBackSlash = /\\[\r\n](?:\s|\\[\r\n]|#.*(?!.))*(?![\s#]|\\[\r\n])/.source;
 		// At least one space, comment, or line break
 		const space = /(?:[ \t]+(?![ \t])(?:<SP_BS>)?|<SP_BS>)/.source
-			.replace(/<SP_BS>/g, function () { return spaceAfterBackSlash; });
+			.replace(/<SP_BS>/g, () => spaceAfterBackSlash);
 
 		const string = /"(?:[^"\\\r\n]|\\(?:\r\n|[\s\S]))*"|'(?:[^'\\\r\n]|\\(?:\r\n|[\s\S]))*'/.source;
-		const option = /--[\w-]+=(?:<STR>|(?!["'])(?:[^\s\\]|\\.)+)/.source.replace(/<STR>/g, function () { return string; });
+		const option = /--[\w-]+=(?:<STR>|(?!["'])(?:[^\s\\]|\\.)+)/.source.replace(/<STR>/g, () => string);
 
 		const stringRule = {
 			pattern: RegExp(string),
@@ -30,8 +30,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		 */
 		function re(source, flags) {
 			source = source
-				.replace(/<OPT>/g, function () { return option; })
-				.replace(/<SP>/g, function () { return space; });
+				.replace(/<OPT>/g, () => option)
+				.replace(/<SP>/g, () => space);
 
 			return RegExp(source, flags);
 		}

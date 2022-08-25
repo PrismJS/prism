@@ -7,7 +7,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		 * @param {string} pattern
 		 */
 		function insertKey(pattern) {
-			return pattern.replace(/__/g, function () { return key; });
+			return pattern.replace(/__/g, () => key);
 		}
 
 		return {

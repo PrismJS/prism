@@ -87,11 +87,11 @@
 		return undefined;
 	}
 
-	Prism.hooks.add('before-highlightall', function (env) {
+	Prism.hooks.add('before-highlightall', (env) => {
 		env.selector += ', ' + SELECTOR;
 	});
 
-	Prism.hooks.add('before-sanity-check', function (env) {
+	Prism.hooks.add('before-sanity-check', (env) => {
 		const pre = /** @type {HTMLPreElement} */ (env.element);
 		if (pre.matches(SELECTOR)) {
 			env.code = ''; // fast-path the whole thing and go to complete
@@ -125,7 +125,7 @@
 			// load file
 			loadFile(
 				src,
-				function (text) {
+				(text) => {
 					// mark as loaded
 					pre.setAttribute(STATUS_ATTR, STATUS_LOADED);
 
@@ -155,7 +155,7 @@
 					code.textContent = text;
 					Prism.highlightElement(code);
 				},
-				function (error) {
+				(error) => {
 					// mark as failed
 					pre.setAttribute(STATUS_ATTR, STATUS_FAILED);
 

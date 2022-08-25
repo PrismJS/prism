@@ -44,11 +44,11 @@
 		}
 	};
 
-	Prism.hooks.add('before-highlight', function (env) {
+	Prism.hooks.add('before-highlight', (env) => {
 		Prism.plugins.autolinker.processGrammar(env.grammar);
 	});
 
-	Prism.hooks.add('wrap', function (env) {
+	Prism.hooks.add('wrap', (env) => {
 		if (/-link$/.test(env.type)) {
 			env.tag = 'a';
 

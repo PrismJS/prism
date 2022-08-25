@@ -4,7 +4,7 @@
 		return;
 	}
 
-	Prism.hooks.add('wrap', function (env) {
+	Prism.hooks.add('wrap', (env) => {
 		if (env.type !== 'keyword') {
 			return;
 		}

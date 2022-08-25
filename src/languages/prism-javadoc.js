@@ -10,7 +10,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		const codeLinePattern = /(^(?:[\t ]*(?:\*\s*)*))[^*\s].*$/m;
 
 		const memberReference = /#\s*\w+(?:\s*\([^()]*\))?/.source;
-		const reference = /(?:\b[a-zA-Z]\w+\s*\.\s*)*\b[A-Z]\w*(?:\s*<mem>)?|<mem>/.source.replace(/<mem>/g, function () { return memberReference; });
+		const reference = /(?:\b[a-zA-Z]\w+\s*\.\s*)*\b[A-Z]\w*(?:\s*<mem>)?|<mem>/.source.replace(/<mem>/g, () => memberReference);
 
 		Prism.languages.javadoc = extend('javadoclike', {});
 		Prism.languages.insertBefore('javadoc', 'keyword', {

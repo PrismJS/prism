@@ -171,7 +171,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			let placeholderCounter = 0;
 			/** @type {Object<string, string>} */
 			const placeholderMap = {};
-			const embeddedCode = _tokens.map(function (token) {
+			const embeddedCode = _tokens.map((token) => {
 				if (typeof token === 'string') {
 					return token;
 				} else {
@@ -266,7 +266,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'jsx': true,
 			'tsx': true,
 		};
-		Prism.hooks.add('after-tokenize', function (env) {
+		Prism.hooks.add('after-tokenize', (env) => {
 			if (!(env.language in supportedLanguages)) {
 				return;
 			}

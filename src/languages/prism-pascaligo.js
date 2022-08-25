@@ -4,7 +4,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		// Pascaligo is a layer 2 smart contract language for the tezos blockchain
 
 		const braces = /\((?:[^()]|\((?:[^()]|\([^()]*\))*\))*\)/.source;
-		const type = /(?:\b\w+(?:<braces>)?|<braces>)/.source.replace(/<braces>/g, function () { return braces; });
+		const type = /(?:\b\w+(?:<braces>)?|<braces>)/.source.replace(/<braces>/g, () => braces);
 
 		/** @type {import("../types").Grammar} */
 		const classNameInside = {};
@@ -17,16 +17,16 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			},
 			'class-name': [
 				{
-					pattern: RegExp(/(\btype\s+\w+\s+is\s+)<type>/.source.replace(/<type>/g, function () { return type; }), 'i'),
+					pattern: RegExp(/(\btype\s+\w+\s+is\s+)<type>/.source.replace(/<type>/g, () => type), 'i'),
 					lookbehind: true,
 					inside: classNameInside
 				},
 				{
-					pattern: RegExp(/<type>(?=\s+is\b)/.source.replace(/<type>/g, function () { return type; }), 'i'),
+					pattern: RegExp(/<type>(?=\s+is\b)/.source.replace(/<type>/g, () => type), 'i'),
 					inside: classNameInside
 				},
 				{
-					pattern: RegExp(/(:\s*)<type>/.source.replace(/<type>/g, function () { return type; })),
+					pattern: RegExp(/(:\s*)<type>/.source.replace(/<type>/g, () => type)),
 					lookbehind: true,
 					inside: classNameInside
 				}

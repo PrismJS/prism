@@ -83,7 +83,7 @@
 		apply
 	};
 
-	Prism.hooks.add('wrap', function (env) {
+	Prism.hooks.add('wrap', (env) => {
 		if (adder) {
 			const result = adder({
 				content: env.content,
@@ -102,7 +102,7 @@
 			return;
 		}
 
-		env.classes = env.classes.map(function (c) {
+		env.classes = env.classes.map((c) => {
 			return apply(c, env.language);
 		});
 	});

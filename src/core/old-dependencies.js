@@ -189,7 +189,7 @@ const getLoader = (function () {
 
 					for (var id in entryMap) {
 						const entry = entryMap[id];
-						forEach(entry && entry.alias, function (alias) {
+						forEach(entry && entry.alias, (alias) => {
 							if (alias in map) {
 								throw new Error(alias + ' cannot be alias for both ' + id + ' and ' + map[alias]);
 							}
@@ -270,7 +270,7 @@ const getLoader = (function () {
 			if (dependsOn.length === 0) {
 				value = loadComponent(id);
 			} else {
-				const depsValue = parallel(dependsOn.map(function (depId) {
+				const depsValue = parallel(dependsOn.map((depId) => {
 					const value = handleId(depId);
 					// none of the dependencies can be ends
 					delete ends[depId];
@@ -278,7 +278,7 @@ const getLoader = (function () {
 				}));
 				if (series) {
 					// the chainer will be responsibly for calling the function calling loadComponent
-					value = series(depsValue, function () { return loadComponent(id); });
+					value = series(depsValue, () => loadComponent(id));
 				} else {
 					// we don't have a chainer, so we call loadComponent ourselves
 					loadComponent(id);
@@ -374,7 +374,7 @@ const getLoader = (function () {
 		load.forEach(addRequirements);
 		function addRequirements(id) {
 			const entry = entryMap[id];
-			forEach(entry && entry.require, function (reqId) {
+			forEach(entry && entry.require, (reqId) => {
 				if (!(reqId in loadedSet)) {
 					loadSet[reqId] = true;
 					addRequirements(reqId);
@@ -401,7 +401,7 @@ const getLoader = (function () {
 			// condition 1)
 			for (const loadId in loadAdditions) {
 				const entry = entryMap[loadId];
-				forEach(entry && entry.modify, function (modId) {
+				forEach(entry && entry.modify, (modId) => {
 					if (modId in loadedSet) {
 						newIds[modId] = true;
 					}
@@ -430,7 +430,7 @@ const getLoader = (function () {
 		var loader = {
 			getIds() {
 				const ids = [];
-				loader.load(function (id) {
+				loader.load((id) => {
 					ids.push(id);
 				});
 				return ids;

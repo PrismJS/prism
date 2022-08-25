@@ -143,8 +143,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		 * This hook is used to validate generic-text tokens for balanced brackets.
 		 * Mark token as bad-line when contains not balanced brackets: {},[]
 		 */
-		return Prism.hooks.add('after-tokenize', function (env) {
-			env.tokens.forEach(function (token) {
+		return Prism.hooks.add('after-tokenize', (env) => {
+			env.tokens.forEach((token) => {
 				if (typeof token !== 'string' && token.type === 'generic-text') {
 					const content = getTextContent(token);
 					if (!isBracketsBalanced(content)) {

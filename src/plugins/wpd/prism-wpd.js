@@ -46,7 +46,7 @@
 
 	let language;
 
-	Prism.hooks.add('wrap', function (env) {
+	Prism.hooks.add('wrap', (env) => {
 		if ((env.type == 'tag-id'
 			|| (env.type == 'property' && env.content.indexOf('-') != 0)
 			|| (env.type == 'rule' && env.content.indexOf('@-') != 0)

@@ -117,7 +117,7 @@ for (const lang in languages) {
 		continue;
 	}
 
-	describe(`Test '${lang}'`, function () {
+	describe(`Test '${lang}'`, () => {
 		const Prism = PrismLoader.createInstance(lang);
 		testLiterals(Prism, lang);
 	});
@@ -144,7 +144,7 @@ for (const lang in languages) {
 			name += ` + modify dependencies '${modify.join("', '")}'`;
 		}
 
-		describe(name, function () {
+		describe(name, () => {
 			const Prism = PrismLoader.createInstance([...optional, ...modify, lang]);
 			testLiterals(Prism, lang);
 		});
@@ -230,7 +230,7 @@ function testLiterals(Prism, lang) {
 		const identifierType = /** @type {keyof IdentifierTestOptions} */ (key);
 		const element = identifiers[identifierType];
 		if (options[identifierType] !== false) {
-			it(`- should not break ${identifierType} identifiers`, function () {
+			it(`- should not break ${identifierType} identifiers`, () => {
 				matchNotBroken(element, identifierType);
 			});
 		}

@@ -15,9 +15,9 @@ function testTokens({ grammar, code, expected }) {
 	assert.deepStrictEqual(simpleTokens, expected);
 }
 
-describe('Greedy matching', function () {
+describe('Greedy matching', () => {
 
-	it('should correctly handle tokens with the same name', function () {
+	it('should correctly handle tokens with the same name', () => {
 		testTokens({
 			grammar: {
 				'comment': [
@@ -36,7 +36,7 @@ describe('Greedy matching', function () {
 		});
 	});
 
-	it('should support patterns with top-level alternatives that do not contain the lookbehind group', function () {
+	it('should support patterns with top-level alternatives that do not contain the lookbehind group', () => {
 		testTokens({
 			grammar: {
 				'a': /'[^']*'/,
@@ -56,7 +56,7 @@ describe('Greedy matching', function () {
 		});
 	});
 
-	it('should correctly rematch tokens', function () {
+	it('should correctly rematch tokens', () => {
 		testTokens({
 			grammar: {
 				'a': {
@@ -85,7 +85,7 @@ describe('Greedy matching', function () {
 		});
 	});
 
-	it('should always match tokens against the whole text', function () {
+	it('should always match tokens against the whole text', () => {
 		// this is to test for a bug where greedy tokens where matched like non-greedy ones if the token stream ended on
 		// a string
 		testTokens({
@@ -105,7 +105,7 @@ describe('Greedy matching', function () {
 		});
 	});
 
-	it('issue3052', function () {
+	it('issue3052', () => {
 		// If a greedy pattern creates an empty token at the end of the string, then this token should be discarded
 		testTokens({
 			grammar: {

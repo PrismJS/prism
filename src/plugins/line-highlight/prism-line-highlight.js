@@ -151,7 +151,7 @@
 			 */
 			const codePreOffset = !codeElement || parentElement == codeElement ? 0 : getContentBoxTopOffset(pre, codeElement);
 
-			ranges.forEach(function (currentRange) {
+			ranges.forEach((currentRange) => {
 				const range = currentRange.split('-');
 
 				const start = +range[0];
@@ -165,7 +165,7 @@
 				/** @type {HTMLElement} */
 				const line = pre.querySelector('.line-highlight[data-range="' + currentRange + '"]') || document.createElement('div');
 
-				mutateActions.push(function () {
+				mutateActions.push(() => {
 					line.setAttribute('aria-hidden', 'true');
 					line.setAttribute('data-range', currentRange);
 					line.className = (classes || '') + ' line-highlight';
@@ -178,19 +178,19 @@
 
 					if (startNode) {
 						const top = startNode.offsetTop + codePreOffset + 'px';
-						mutateActions.push(function () {
+						mutateActions.push(() => {
 							line.style.top = top;
 						});
 					}
 
 					if (endNode) {
 						const height = (endNode.offsetTop - startNode.offsetTop) + endNode.offsetHeight + 'px';
-						mutateActions.push(function () {
+						mutateActions.push(() => {
 							line.style.height = height;
 						});
 					}
 				} else {
-					mutateActions.push(function () {
+					mutateActions.push(() => {
 						line.setAttribute('data-start', String(start));
 
 						if (end > start) {
@@ -203,11 +203,11 @@
 					});
 				}
 
-				mutateActions.push(function () {
+				mutateActions.push(() => {
 					line.style.width = pre.scrollWidth + 'px';
 				});
 
-				mutateActions.push(function () {
+				mutateActions.push(() => {
 					// allow this to play nicely with the line-numbers plugin
 					// need to attack to pre as when line-numbers is enabled, the code tag is relatively which screws up the positioning
 					parentElement.appendChild(line);
@@ -224,7 +224,7 @@
 
 				if (!hasClass(pre, LINKABLE_LINE_NUMBERS_CLASS)) {
 					// add class to pre
-					mutateActions.push(function () {
+					mutateActions.push(() => {
 						pre.classList.add(LINKABLE_LINE_NUMBERS_CLASS);
 					});
 				}
@@ -232,7 +232,7 @@
 				const start = parseInt(pre.getAttribute('data-start') || '1');
 
 				// iterate all line number spans
-				$$('.line-numbers-rows > span', pre).forEach(function (lineSpan, i) {
+				$$('.line-numbers-rows > span', pre).forEach((lineSpan, i) => {
 					const lineNumber = i + start;
 					lineSpan.onclick = function () {
 						const hash = id + '.' + lineNumber;
@@ -240,7 +240,7 @@
 						// this will prevent scrolling since the span is obviously in view
 						scrollIntoView = false;
 						location.hash = hash;
-						setTimeout(function () {
+						setTimeout(() => {
 							scrollIntoView = true;
 						}, 1);
 					};
@@ -258,7 +258,7 @@
 		const hash = location.hash.slice(1);
 
 		// Remove pre-existing temporary lines
-		$$('.temporary.line-highlight').forEach(function (line) {
+		$$('.temporary.line-highlight').forEach((line) => {
 			line.parentNode.removeChild(line);
 		});
 
@@ -289,7 +289,7 @@
 
 	let fakeTimer = 0; // Hack to limit the number of times applyHash() runs
 
-	Prism.hooks.add('before-sanity-check', function (env) {
+	Prism.hooks.add('before-sanity-check', (env) => {
 		const pre = env.element.parentElement;
 		if (!isActiveFor(pre)) {
 			return;
@@ -303,7 +303,7 @@
 		 * tags change the content of the <code> tag.
 		 */
 		let num = 0;
-		$$('.line-highlight', pre).forEach(function (line) {
+		$$('.line-highlight', pre).forEach((line) => {
 			num += line.textContent.length;
 			line.parentNode.removeChild(line);
 		});
@@ -334,10 +334,10 @@
 	});
 
 	window.addEventListener('hashchange', applyHash);
-	window.addEventListener('resize', function () {
+	window.addEventListener('resize', () => {
 		const actions = $$('pre')
 			.filter(isActiveFor)
-			.map(function (pre) {
+			.map((pre) => {
 				return Prism.plugins.lineHighlight.highlightLines(pre);
 			});
 		actions.forEach(callFunction);

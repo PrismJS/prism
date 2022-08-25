@@ -64,7 +64,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		];
 		const inlineLanguageRe = /%< *-\*- *<lang>\d* *-\*-[\s\S]+?%>/.source;
 
-		inlineLanguages.forEach(function (item) {
+		inlineLanguages.forEach((item) => {
 			let alias; let lang;
 			if (typeof item === 'string') {
 				alias = lang = item;

@@ -4,7 +4,7 @@
 		return;
 	}
 
-	Prism.hooks.add('before-sanity-check', function (env) {
+	Prism.hooks.add('before-sanity-check', (env) => {
 		if (env.code) {
 			const pre = env.element.parentNode;
 			const clsReg = /(?:^|\s)keep-initial-line-feed(?:\s|$)/;

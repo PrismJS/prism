@@ -7,7 +7,7 @@
 	const examples = {};
 
 	const treeURL = 'https://api.github.com/repos/PrismJS/prism/git/trees/master?recursive=1';
-	const treePromise = new Promise(function (resolve) {
+	const treePromise = new Promise((resolve) => {
 		$u.xhr({
 			url: treeURL,
 			callback(xhr) {
@@ -20,18 +20,18 @@
 
 	const languages = components.languages;
 
-	Promise.all(Object.keys(languages).filter(function (id) { return id !== 'meta'; }).map(function (id) {
+	Promise.all(Object.keys(languages).filter((id) => id !== 'meta').map((id) => {
 		const language = languages[id];
 
 		language.enabled = language.option === 'default';
 		language.path = languages.meta.path.replace(/\{id\}/g, id) + '.js';
 		language.examplesPath = languages.meta.examplesPath.replace(/\{id\}/g, id) + '.html';
 
-		return fileExists(language.examplesPath).then(function (exists) {
+		return fileExists(language.examplesPath).then((exists) => {
 			return { id, exists };
 		});
-	})).then(function (values) {
-		values.forEach(function (result) {
+	})).then((values) => {
+		values.forEach((result) => {
 			const id = result.id;
 			const exists = result.exists;
 			const language = languages[id];
@@ -53,7 +53,7 @@
 							checked: checked && exists,
 							disabled: !exists,
 							onclick() {
-								$$('input[name="' + this.name + '"]').forEach(function (input) {
+								$$('input[name="' + this.name + '"]').forEach((input) => {
 									languages[input.value].enabled = input.checked;
 								});
 
@@ -78,7 +78,7 @@
 
 
 	function fileExists(filepath) {
-		return treePromise.then(function (tree) {
+		return treePromise.then((tree) => {
 			for (let i = 0, l = tree.length; i < l; i++) {
 				if (tree[i].path === filepath) {
 					return true;
@@ -87,7 +87,7 @@
 
 			// on localhost: The missing example might be for a new language
 			if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
-				return getFileContents(filepath).then(function () { return true; }, function () { return false; });
+				return getFileContents(filepath).then(() => true, () => false);
 			}
 
 			return false;
@@ -95,7 +95,7 @@
 	}
 
 	function getFileContents(filepath) {
-		return new Promise(function (resolve, reject) {
+		return new Promise((resolve, reject) => {
 			$u.xhr({
 				url: filepath,
 				callback(xhr) {
@@ -128,7 +128,7 @@
 
 			header += '<p>To use this language, use one of the following classes:</p>';
 			header += '<ul><li><code class="language-none">"language-' + id + '"</code></li>';
-			alias.forEach(function (alias) {
+			alias.forEach((alias) => {
 				header += '<li><code class="language-none">"language-' + alias + '"</code></li>';
 			});
 			header += '</ul>';
@@ -159,7 +159,7 @@
 			} else {
 				header += ':';
 				header += '<ul>';
-				deps.forEach(function (text) {
+				deps.forEach((text) => {
 					header += '<li>' + text + '.</li>';
 				});
 				header += '</ul>';
@@ -176,7 +176,7 @@
 			if (!language.examplesPromise) {
 				language.examplesPromise = getFileContents(language.examplesPath);
 			}
-			language.examplesPromise.then(function (contents) {
+			language.examplesPromise.then((contents) => {
 				examples[id].innerHTML = buildContentsHeader(id) + contents;
 
 				/** @type {HTMLElement} */
@@ -185,7 +185,7 @@
 
 				// the current language might be an extension of a language
 				// so to be safe, we explicitly add a dependency to the current language
-				$$('pre', container).forEach(/** @param {HTMLElement} pre */function (pre) {
+				$$('pre', container).forEach(/** @param {HTMLElement} pre */(pre) => {
 					let dependencies = (pre.getAttribute('data-dependencies') || '').trim();
 					dependencies = dependencies ? dependencies + ',' + id : id;
 					pre.setAttribute('data-dependencies', dependencies);

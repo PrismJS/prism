@@ -375,7 +375,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			// that's all for now
 		};
 
-		Object.keys(builtins).forEach(function (k) {
+		Object.keys(builtins).forEach((k) => {
 			factor[k].pattern = arrToWordsRegExp(builtins[k]);
 		});
 

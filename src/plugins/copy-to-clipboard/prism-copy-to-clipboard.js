@@ -22,7 +22,7 @@
 	 * @property {(reason: unknown) => void} error
 	 */
 	function registerClipboard(element, copyInfo) {
-		element.addEventListener('click', function () {
+		element.addEventListener('click', () => {
 			copyTextToClipboard(copyInfo);
 		});
 	}
@@ -45,7 +45,7 @@
 
 		try {
 			const successful = document.execCommand('copy');
-			setTimeout(function () {
+			setTimeout(() => {
 				if (successful) {
 					copyInfo.success();
 				} else {
@@ -53,7 +53,7 @@
 				}
 			}, 1);
 		} catch (err) {
-			setTimeout(function () {
+			setTimeout(() => {
 				copyInfo.error(err);
 			}, 1);
 		}
@@ -63,7 +63,7 @@
 	/** @param {CopyInfo} copyInfo */
 	function copyTextToClipboard(copyInfo) {
 		if (navigator.clipboard) {
-			navigator.clipboard.writeText(copyInfo.getText()).then(copyInfo.success, function () {
+			navigator.clipboard.writeText(copyInfo.getText()).then(copyInfo.success, () => {
 				// try the fallback in case `writeText` didn't work
 				fallbackCopyTextToClipboard(copyInfo);
 			});
@@ -112,7 +112,7 @@
 		return settings;
 	}
 
-	Prism.plugins.toolbar.registerButton('copy-to-clipboard', function (env) {
+	Prism.plugins.toolbar.registerButton('copy-to-clipboard', (env) => {
 		const element = env.element;
 
 		const settings = getSettings(element);
@@ -137,7 +137,7 @@
 			error() {
 				setState('copy-error');
 
-				setTimeout(function () {
+				setTimeout(() => {
 					selectElementText(element);
 				}, 1);
 
@@ -148,7 +148,7 @@
 		return linkCopy;
 
 		function resetText() {
-			setTimeout(function () { setState('copy'); }, settings['copy-timeout']);
+			setTimeout(() => { setState('copy'); }, settings['copy-timeout']);
 		}
 
 		/** @param {"copy" | "copy-error" | "copy-success"} state */

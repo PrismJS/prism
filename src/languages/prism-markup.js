@@ -85,7 +85,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			Prism.languages.markup['entity'];
 
 		// Plugin to make entity title show the real entity, idea by Roman Komarov
-		Prism.hooks.add('wrap', function (env) {
+		Prism.hooks.add('wrap', (env) => {
 
 			if (env.type === 'entity') {
 				env.attributes['title'] = env.content.replace(/&amp;/, '&');
@@ -126,7 +126,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 
 				const def = {};
 				def[tagName] = {
-					pattern: RegExp(/(<__[^>]*>)(?:<!\[CDATA\[(?:[^\]]|\](?!\]>))*\]\]>|(?!<!\[CDATA\[)[\s\S])*?(?=<\/__>)/.source.replace(/__/g, function () { return tagName; }), 'i'),
+					pattern: RegExp(/(<__[^>]*>)(?:<!\[CDATA\[(?:[^\]]|\](?!\]>))*\]\]>|(?!<!\[CDATA\[)[\s\S])*?(?=<\/__>)/.source.replace(/__/g, () => tagName), 'i'),
 					lookbehind: true,
 					greedy: true,
 					inside

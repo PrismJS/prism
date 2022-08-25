@@ -23,10 +23,10 @@ for (const lang in languages) {
 		continue;
 	}
 
-	describe(`Testing language aliases of '${lang}'`, function () {
+	describe(`Testing language aliases of '${lang}'`, () => {
 
 		if (languages[lang].aliasTitles) {
-			it('- should have all alias titles registered as alias', function () {
+			it('- should have all alias titles registered as alias', () => {
 				const aliases = new Set(toArray(languages[lang].alias));
 
 				Object.keys(languages[lang].aliasTitles).forEach(id => {
@@ -38,7 +38,7 @@ for (const lang in languages) {
 			});
 		}
 
-		it('- should known all aliases', function () {
+		it('- should known all aliases', () => {
 
 			const loadedLanguages = new Set(Object.keys(PrismLoader.createInstance(lang).languages));
 

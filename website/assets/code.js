@@ -4,13 +4,13 @@
 		return;
 	}
 
-	$$('[data-plugin-header]').forEach(function (element) {
+	$$('[data-plugin-header]').forEach((element) => {
 		const plugin = components.plugins[element.getAttribute('data-plugin-header')];
 		element.innerHTML = '<div class="intro" data-src="assets/templates/header-plugins.html" data-type="text/html"></div>\n'
 	+ '<h2>' + plugin.title + '</h2>\n<p>' + plugin.description + '</p>';
 	});
 
-	$$('[data-src][data-type="text/html"]').forEach(function (element) {
+	$$('[data-src][data-type="text/html"]').forEach((element) => {
 		const src = element.getAttribute('data-src');
 		const html = element.getAttribute('data-type') === 'text/html';
 		const contentProperty = html ? 'innerHTML' : 'textContent';
@@ -23,7 +23,7 @@
 
 					// Run JS
 
-					$$('script', element).forEach(function (script) {
+					$$('script', element).forEach((script) => {
 						const parent = script.parentNode;
 						parent.removeChild(script);
 						document.head.appendChild(script);
@@ -41,7 +41,7 @@
 (function () {
 	const toc = document.createElement('ol');
 
-	$$('body > section > h1').forEach(function (h1) {
+	$$('body > section > h1').forEach((h1) => {
 		const section = h1.parentNode;
 		const text = h1.textContent;
 		let id = h1.id || section.id;
@@ -103,7 +103,7 @@
  * Linkify h2
  */
 (function () {
-	$$('section h2[id]').forEach(function (h2) {
+	$$('section h2[id]').forEach((h2) => {
 		const text = h2.textContent;
 		h2.innerHTML = '';
 

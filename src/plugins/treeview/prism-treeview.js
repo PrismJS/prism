@@ -37,7 +37,7 @@
 		}
 	};
 
-	Prism.hooks.add('wrap', function (env) {
+	Prism.hooks.add('wrap', (env) => {
 		if (env.language === 'treeview' && env.type === 'entry-name') {
 			const classes = env.classes;
 

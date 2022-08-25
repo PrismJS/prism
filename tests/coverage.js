@@ -9,7 +9,7 @@ const components = require('../components.json');
 const ALL_LANGUAGES = [...Object.keys(components.languages).filter(k => k !== 'meta')];
 
 
-describe('Pattern test coverage', function () {
+describe('Pattern test coverage', () => {
 	/**
 	 * @type {Map<string, PatternData>}
 	 * @typedef PatternData
@@ -62,7 +62,7 @@ describe('Pattern test coverage', function () {
 		return Prism;
 	}
 
-	describe('Register all patterns', function () {
+	describe('Register all patterns', () => {
 		it('all', function () {
 			this.slow(10 * 1000);
 			// This will cause ALL regexes of Prism to be registered in the patterns map.
@@ -71,7 +71,7 @@ describe('Pattern test coverage', function () {
 		});
 	});
 
-	describe('Run all language tests', function () {
+	describe('Run all language tests', () => {
 		// define tests for all tests in all languages in the test suite
 		for (const [languageIdentifier, files] of TestDiscovery.loadAllTests()) {
 			it(languageIdentifier, function () {
@@ -94,10 +94,10 @@ describe('Pattern test coverage', function () {
 		}
 	});
 
-	describe('Coverage', function () {
+	describe('Coverage', () => {
 		for (const language of ALL_LANGUAGES) {
-			describe(language, function () {
-				it(`- should cover all patterns`, function () {
+			describe(language, () => {
+				it(`- should cover all patterns`, () => {
 					const untested = getAllOf(language).filter(d => d.matches.length === 0);
 					if (untested.length === 0) {
 						return;
@@ -116,7 +116,7 @@ describe('Pattern test coverage', function () {
 					].join('\n\n'));
 				});
 
-				it(`- should exhaustively cover all keywords in keyword lists`, function () {
+				it(`- should exhaustively cover all keywords in keyword lists`, () => {
 					const problems = [];
 
 					for (const data of getAllOf(language)) {

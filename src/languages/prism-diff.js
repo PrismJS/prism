@@ -29,7 +29,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		};
 
 		// add a token for each prefix
-		Object.keys(PREFIXES).forEach(function (name) {
+		Object.keys(PREFIXES).forEach((name) => {
 			const prefix = PREFIXES[name];
 
 			const alias = [];

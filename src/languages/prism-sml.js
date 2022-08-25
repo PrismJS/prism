@@ -25,12 +25,10 @@ export default /** @type {import("../types").LanguageProto} */ ({
 					// followed by a long identifier.
 					pattern: RegExp(
 						/((?:^|[^:]):\s*)<TERMINAL>(?:\s*(?:(?:\*|->)\s*<TERMINAL>|,\s*<TERMINAL>(?:(?=<NOT-LAST>)|(?!<NOT-LAST>)\s+<LONG-ID>)))*/.source
-							.replace(/<NOT-LAST>/g, function () { return /\s*(?:[*,]|->)/.source; })
-							.replace(/<TERMINAL>/g, function () {
-								return /(?:'[\w']*|<LONG-ID>|\((?:[^()]|\([^()]*\))*\)|\{(?:[^{}]|\{[^{}]*\})*\})(?:\s+<LONG-ID>)*/.source;
-							})
-							.replace(/<LONG-ID>/g, function () { return /(?!<KEYWORD>)[a-z\d_][\w'.]*/.source; })
-							.replace(/<KEYWORD>/g, function () { return keywords.source; }),
+							.replace(/<NOT-LAST>/g, () => /\s*(?:[*,]|->)/.source)
+							.replace(/<TERMINAL>/g, () => /(?:'[\w']*|<LONG-ID>|\((?:[^()]|\([^()]*\))*\)|\{(?:[^{}]|\{[^{}]*\})*\})(?:\s+<LONG-ID>)*/.source)
+							.replace(/<LONG-ID>/g, () => /(?!<KEYWORD>)[a-z\d_][\w'.]*/.source)
+							.replace(/<KEYWORD>/g, () => keywords.source),
 						'i'
 					),
 					lookbehind: true,

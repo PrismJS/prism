@@ -3,7 +3,7 @@ const getLoader = require('../dependencies');
 const components = require('../components.json');
 
 
-describe('Dependency logic', function () {
+describe('Dependency logic', () => {
 
 	/** @type {import("../dependencies").Components} */
 	const components = {
@@ -41,33 +41,33 @@ describe('Dependency logic', function () {
 		return getLoader(components, load, loaded).getIds();
 	}
 
-	describe('Returned ids', function () {
+	describe('Returned ids', () => {
 
-		it('- should load requirements', function () {
+		it('- should load requirements', () => {
 			assert.sameMembers(getIds(['d']), ['a', 'b', 'c', 'd']);
 		});
 
-		it('- should not load already loaded requirements if not necessary', function () {
+		it('- should not load already loaded requirements if not necessary', () => {
 			assert.sameMembers(getIds(['d'], ['a', 'b']), ['c', 'd']);
 		});
 
-		it('- should load already loaded requirements if requested', function () {
+		it('- should load already loaded requirements if requested', () => {
 			assert.sameMembers(getIds(['a', 'd'], ['a', 'b']), ['a', 'c', 'd']);
 		});
 
-		it('- should reload modified components', function () {
+		it('- should reload modified components', () => {
 			assert.sameMembers(getIds(['e'], ['a', 'b', 'c', 'd']), ['a', 'c', 'd', 'e']);
 		});
 
-		it('- should work with empty load', function () {
+		it('- should work with empty load', () => {
 			assert.sameMembers(getIds([], ['a', 'b', 'c', 'd']), []);
 		});
 
-		it('- should return unknown ids as is', function () {
+		it('- should return unknown ids as is', () => {
 			assert.sameMembers(getIds(['c', 'foo'], ['bar']), ['foo', 'c', 'a']);
 		});
 
-		it('- should throw on unknown dependencies', function () {
+		it('- should throw on unknown dependencies', () => {
 			assert.throws(() => {
 				/** @type {import("../dependencies").Components} */
 				const circular = {
@@ -84,43 +84,43 @@ describe('Dependency logic', function () {
 
 	});
 
-	describe('Load order', function () {
+	describe('Load order', () => {
 
 		// Note: The order of a and b isn't defined, so don't add any test with both of them being loaded here
 
-		it('- should load components in the correct order (require)', function () {
+		it('- should load components in the correct order (require)', () => {
 			assert.deepStrictEqual(getIds(['c']), ['a', 'c']);
 		});
 
-		it('- should load components in the correct order (modify)', function () {
+		it('- should load components in the correct order (modify)', () => {
 			assert.deepStrictEqual(getIds(['e', 'a']), ['a', 'e']);
 		});
 
-		it('- should load components in the correct order (optional)', function () {
+		it('- should load components in the correct order (optional)', () => {
 			assert.deepStrictEqual(getIds(['c', 'b'], ['a']), ['b', 'c']);
 		});
 
-		it('- should load components in the correct order (require + optional)', function () {
+		it('- should load components in the correct order (require + optional)', () => {
 			assert.deepStrictEqual(getIds(['d'], ['a']), ['b', 'c', 'd']);
 		});
 
-		it('- should load components in the correct order (require + modify + optional)', function () {
+		it('- should load components in the correct order (require + modify + optional)', () => {
 			assert.deepStrictEqual(getIds(['d', 'e'], ['b']), ['a', 'e', 'c', 'd']);
 		});
 
 	});
 
-	describe('Aliases', function () {
+	describe('Aliases', () => {
 
-		it('- should resolve aliases in the list of components to load', function () {
+		it('- should resolve aliases in the list of components to load', () => {
 			assert.sameMembers(getIds(['xyz']), ['a', 'b', 'c', 'd']);
 		});
 
-		it('- should resolve aliases in the list of loaded components', function () {
+		it('- should resolve aliases in the list of loaded components', () => {
 			assert.sameMembers(getIds(['d'], ['a', 'a2', 'b2']), ['c', 'd']);
 		});
 
-		it('- should throw on duplicate aliases', function () {
+		it('- should throw on duplicate aliases', () => {
 			assert.throws(() => {
 				/** @type {import("../dependencies").Components} */
 				const circular = {
@@ -137,7 +137,7 @@ describe('Dependency logic', function () {
 			});
 		});
 
-		it('- should throw on aliases which are components', function () {
+		it('- should throw on aliases which are components', () => {
 			assert.throws(() => {
 				/** @type {import("../dependencies").Components} */
 				const circular = {
@@ -154,9 +154,9 @@ describe('Dependency logic', function () {
 
 	});
 
-	describe('Circular dependencies', function () {
+	describe('Circular dependencies', () => {
 
-		it('- should throw on circular dependencies', function () {
+		it('- should throw on circular dependencies', () => {
 			assert.throws(() => {
 				/** @type {import("../dependencies").Components} */
 				const circular = {
@@ -175,9 +175,9 @@ describe('Dependency logic', function () {
 
 	});
 
-	describe('Async loading', function () {
+	describe('Async loading', () => {
 
-		it('- should load components in the correct order', async function () {
+		it('- should load components in the correct order', async () => {
 
 			/** @type {import("../dependencies").Components} */
 			const localComponents = {
@@ -244,7 +244,7 @@ describe('Dependency logic', function () {
 
 });
 
-describe('components.json', function () {
+describe('components.json', () => {
 
 	/**
 	 * @param {T | T[] | undefined | null} value
@@ -297,7 +297,7 @@ describe('components.json', function () {
 		'option'
 	];
 
-	it('- should be valid', function () {
+	it('- should be valid', () => {
 		try {
 			const allIds = [];
 			for (const category in components) {
@@ -312,7 +312,7 @@ describe('components.json', function () {
 		}
 	});
 
-	it('- should not have redundant optional dependencies', function () {
+	it('- should not have redundant optional dependencies', () => {
 		forEachEntry((entry, id) => {
 			const optional = new Set(toArray(entry.optional));
 
@@ -329,7 +329,7 @@ describe('components.json', function () {
 		});
 	});
 
-	it('- should have a sorted language list', function () {
+	it('- should have a sorted language list', () => {
 		const ignore = new Set(['meta', 'markup', 'css', 'clike', 'javascript']);
 		/** @type {{ id: string, title: string }[]} */
 		const languages = Object.keys(components.languages).filter(key => !ignore.has(key)).map(key => {
@@ -361,7 +361,7 @@ describe('components.json', function () {
 		assert.sameOrderedMembers(languages, sorted);
 	});
 
-	it('- should not have single-element or empty arrays', function () {
+	it('- should not have single-element or empty arrays', () => {
 		/** @type {keyof import("../dependencies").ComponentEntry} */
 		const properties = ['alias', 'optional', 'require', 'modify'];
 
@@ -386,7 +386,7 @@ describe('components.json', function () {
 		});
 	});
 
-	it('- should only have alias titles for valid aliases', function () {
+	it('- should only have alias titles for valid aliases', () => {
 		forEachEntry((entry, id) => {
 			const title = entry.title;
 			const alias = toArray(entry.alias);
@@ -410,7 +410,7 @@ describe('components.json', function () {
 		});
 	});
 
-	it('- should not have unknown properties', function () {
+	it('- should not have unknown properties', () => {
 		const knownProperties = new Set(entryProperties);
 
 		forEachEntry((entry, id) => {

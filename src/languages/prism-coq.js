@@ -5,7 +5,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 
 		let commentSource = /\(\*(?:[^(*]|\((?!\*)|\*(?!\))|<self>)*\*\)/.source;
 		for (let i = 0; i < 2; i++) {
-			commentSource = commentSource.replace(/<self>/g, function () { return commentSource; });
+			commentSource = commentSource.replace(/<self>/g, () => commentSource);
 		}
 		commentSource = commentSource.replace(/<self>/g, '[]');
 
@@ -19,7 +19,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				{
 					pattern: RegExp(
 						/#\[(?:[^\[\]("]|"(?:[^"]|"")*"(?!")|\((?!\*)|<comment>)*\]/.source
-							.replace(/<comment>/g, function () { return commentSource; })
+							.replace(/<comment>/g, () => commentSource)
 					),
 					greedy: true,
 					alias: 'attr-name',

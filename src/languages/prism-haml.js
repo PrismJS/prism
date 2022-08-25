@@ -132,7 +132,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			let filter = filters[i];
 			filter = typeof filter === 'string' ? { filter, language: filter } : filter;
 			all_filters['filter-' + filter.filter] = {
-				pattern: RegExp(filter_pattern.replace('{{filter_name}}', function () { return filter.filter; })),
+				pattern: RegExp(filter_pattern.replace('{{filter_name}}', () => filter.filter)),
 				lookbehind: true,
 				inside: {
 					'filter-name': {

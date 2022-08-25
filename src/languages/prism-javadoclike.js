@@ -71,8 +71,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				languages = [languages];
 			}
 
-			languages.forEach(function (lang) {
-				docCommentSupport(lang, function (pattern) {
+			languages.forEach((lang) => {
+				docCommentSupport(lang, (pattern) => {
 					if (!pattern.inside) {
 						pattern.inside = {};
 					}

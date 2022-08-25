@@ -35,7 +35,7 @@ function inlineRegexSource() {
 		/\/((?:[^\n\r[\\\/]|\\.|\[(?:[^\n\r\\\]]|\\.)*\])+)\/\s*\.\s*source\b/g,
 		(m, source) => {
 			// escape backslashes
-			source = source.replace(/\\(.)|\[(?:\\s\\S|\\S\\s)\]/g, function (m, g1) {
+			source = source.replace(/\\(.)|\[(?:\\s\\S|\\S\\s)\]/g, (m, g1) => {
 				if (g1) {
 					// characters like /\n/ can just be kept as "\n" instead of being escaped to "\\n"
 					if (/[nrt0/]/.test(g1)) {
@@ -158,7 +158,7 @@ async function languagePlugins() {
 					aliasMap[language.alias] = id;
 					addLanguageTitle(language.alias, title);
 				} else {
-					language.alias.forEach(function (alias) {
+					language.alias.forEach((alias) => {
 						aliasMap[alias] = id;
 						addLanguageTitle(alias, title);
 					});

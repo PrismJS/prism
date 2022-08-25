@@ -26,7 +26,7 @@
 		 * @param {(value: { element: HTMLElement, language: string }) => boolean} condition
 		 */
 		add(condition) {
-			filters.push(function (element) {
+			filters.push((element) => {
 				return condition({
 					element,
 					language: Prism.util.getLanguage(element)
@@ -41,7 +41,7 @@
 		 * @param {string} selector
 		 */
 		addSelector(selector) {
-			filters.push(function (element) {
+			filters.push((element) => {
 				return element.matches(selector);
 			});
 		},
@@ -55,7 +55,7 @@
 			 * @param {(value: { element: HTMLElement, language: string }) => boolean} condition
 			 */
 			add(condition) {
-				filters.push(function (element) {
+				filters.push((element) => {
 					return !condition({
 						element,
 						language: Prism.util.getLanguage(element)
@@ -70,7 +70,7 @@
 			 * @param {string} selector
 			 */
 			addSelector(selector) {
-				filters.push(function (element) {
+				filters.push((element) => {
 					return !element.matches(selector);
 				});
 			},
@@ -88,7 +88,7 @@
 		filterKnown: !!script && script.hasAttribute('data-filter-known')
 	};
 
-	config.add(function filterKnown(env) {
+	config.add((env) => {
 		return !config.filterKnown || typeof Prism.languages[env.language] === 'object';
 	});
 
@@ -120,7 +120,7 @@
 		return true;
 	}
 
-	Prism.hooks.add('before-all-elements-highlight', function (env) {
+	Prism.hooks.add('before-all-elements-highlight', (env) => {
 		env.elements = env.elements.filter(combinedFilter);
 	});
 

@@ -17,8 +17,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		function withModifier(source, flags) {
 			return RegExp(
 				source
-					.replace(/<MOD>/g, function () { return '(?:' + modifierRegex + ')'; })
-					.replace(/<PAR>/g, function () { return '(?:' + parenthesesRegex + ')'; }),
+					.replace(/<MOD>/g, () => '(?:' + modifierRegex + ')')
+					.replace(/<PAR>/g, () => '(?:' + parenthesesRegex + ')'),
 				flags || '');
 		}
 

@@ -39,7 +39,7 @@ for (const lang in languages) {
 		continue;
 	}
 
-	describe(`Patterns of '${lang}'`, function () {
+	describe(`Patterns of '${lang}'`, () => {
 		const Prism = PrismLoader.createInstance(lang);
 		testPatterns(Prism, lang);
 	});
@@ -56,7 +56,7 @@ for (const lang in languages) {
 			name += ` + modify dependencies '${modify.join("', '")}'`;
 		}
 
-		describe(name, function () {
+		describe(name, () => {
 			const Prism = PrismLoader.createInstance([...optional, ...modify, lang]);
 			testPatterns(Prism, lang);
 		});
@@ -208,7 +208,7 @@ function testPatterns(Prism, mainLanguage) {
 	}
 
 
-	it('- should not match the empty string', function () {
+	it('- should not match the empty string', () => {
 		forEachPattern(({ ast, pattern, tokenPath }) => {
 			// test for empty string
 			const empty = RAA.isPotentiallyZeroLength(ast.pattern.alternatives);
@@ -218,7 +218,7 @@ function testPatterns(Prism, mainLanguage) {
 		});
 	});
 
-	it('- should have a capturing group if lookbehind is set to true', function () {
+	it('- should have a capturing group if lookbehind is set to true', () => {
 		forEachPattern(({ ast, tokenPath, lookbehind }) => {
 			if (lookbehind) {
 				let hasCapturingGroup = false;
@@ -234,7 +234,7 @@ function testPatterns(Prism, mainLanguage) {
 		});
 	});
 
-	it('- should not have lookbehind groups that can be preceded by other some characters', function () {
+	it('- should not have lookbehind groups that can be preceded by other some characters', () => {
 		forEachPattern(({ tokenPath, lookbehindGroup }) => {
 			if (lookbehindGroup && !isFirstMatch(lookbehindGroup)) {
 				assert.fail(`${tokenPath}: The lookbehind group ${lookbehindGroup.raw} might be preceded by some characters.\n\n`
@@ -245,7 +245,7 @@ function testPatterns(Prism, mainLanguage) {
 		});
 	});
 
-	it('- should not have lookbehind groups that only have zero-width alternatives', function () {
+	it('- should not have lookbehind groups that only have zero-width alternatives', () => {
 		forEachPattern(({ tokenPath, lookbehindGroup, reportError }) => {
 			if (lookbehindGroup && RAA.isZeroLength(lookbehindGroup)) {
 				const groupContent = lookbehindGroup.raw.substr(1, lookbehindGroup.raw.length - 2);
@@ -257,7 +257,7 @@ function testPatterns(Prism, mainLanguage) {
 		});
 	});
 
-	it('- should not have unused capturing groups', function () {
+	it('- should not have unused capturing groups', () => {
 		forEachPattern(({ ast, tokenPath, lookbehindGroup, reportError }) => {
 			forEachCapturingGroup(ast.pattern, ({ group, number }) => {
 				const isLookbehindGroup = group === lookbehindGroup;
@@ -283,7 +283,7 @@ function testPatterns(Prism, mainLanguage) {
 		});
 	});
 
-	it('- should have nice names and aliases', function () {
+	it('- should have nice names and aliases', () => {
 		const niceName = /^[a-z][a-z\d]*(?:-[a-z\d]+)*$/;
 		function testName(name, desc = 'token name') {
 			if (!niceName.test(name)) {
@@ -316,7 +316,7 @@ function testPatterns(Prism, mainLanguage) {
 		});
 	});
 
-	it('- should not use octal escapes', function () {
+	it('- should not use octal escapes', () => {
 		forEachPattern(({ ast, tokenPath, reportError }) => {
 			visitRegExpAST(ast.pattern, {
 				onCharacterEnter(node) {
@@ -331,7 +331,7 @@ function testPatterns(Prism, mainLanguage) {
 		});
 	});
 
-	it('- should not cause exponential backtracking', function () {
+	it('- should not cause exponential backtracking', () => {
 		replaceRegExpProto(exec => {
 			return function (input) {
 				checkExponentialBacktracking('<Unknown>', this);
@@ -344,7 +344,7 @@ function testPatterns(Prism, mainLanguage) {
 		});
 	});
 
-	it('- should not cause polynomial backtracking', function () {
+	it('- should not cause polynomial backtracking', () => {
 		replaceRegExpProto(exec => {
 			return function (input) {
 				checkPolynomialBacktracking('<Unknown>', this);

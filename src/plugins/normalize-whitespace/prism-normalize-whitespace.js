@@ -18,7 +18,7 @@
 	}
 
 	function toCamelCase(value) {
-		return value.replace(/-(\w)/g, function (match, firstChar) {
+		return value.replace(/-(\w)/g, (match, firstChar) => {
 			return firstChar.toUpperCase();
 		});
 	}
@@ -94,7 +94,7 @@
 				return input;
 			}
 
-			indents.sort(function (a, b) { return a.length - b.length; });
+			indents.sort((a, b) => a.length - b.length);
 
 			if (!indents[0].length) {
 				return input;
@@ -148,7 +148,7 @@
 		'spaces-to-tabs': 4*/
 	});
 
-	Prism.hooks.add('before-sanity-check', function (env) {
+	Prism.hooks.add('before-sanity-check', (env) => {
 		const Normalizer = Prism.plugins.NormalizeWhitespace;
 
 		// Check settings

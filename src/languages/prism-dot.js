@@ -27,11 +27,11 @@ export default /** @type {import("../types").LanguageProto} */ ({
 
 		/**
 		 * @param {string} source
-		 * @param {string} flags
+		 * @param {string} [flags]
 		 * @returns {RegExp}
 		 */
 		function withID(source, flags) {
-			return RegExp(source.replace(/<ID>/g, function () { return ID; }), flags);
+			return RegExp(source.replace(/<ID>/g, () => ID), flags);
 		}
 
 		return {

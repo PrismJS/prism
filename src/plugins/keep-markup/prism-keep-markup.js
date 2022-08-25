@@ -6,7 +6,7 @@
 
 	Prism.plugins.KeepMarkup = true;
 
-	Prism.hooks.add('before-highlight', function (env) {
+	Prism.hooks.add('before-highlight', (env) => {
 		if (!env.element.children.length) {
 			return;
 		}
@@ -67,7 +67,7 @@
 		}
 	});
 
-	Prism.hooks.add('after-highlight', function (env) {
+	Prism.hooks.add('after-highlight', (env) => {
 		if (env.keepMarkup && env.keepMarkup.length) {
 
 			var walk = function (elt, nodeState) {
@@ -113,7 +113,7 @@
 			};
 
 			// For each tag, we walk the DOM to reinsert it
-			env.keepMarkup.forEach(function (node) {
+			env.keepMarkup.forEach((node) => {
 				walk(env.element, { node, pos: 0 });
 			});
 			// Store new highlightedCode for later hooks calls

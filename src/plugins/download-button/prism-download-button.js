@@ -4,7 +4,7 @@
 		return;
 	}
 
-	Prism.plugins.toolbar.registerButton('download-file', function (env) {
+	Prism.plugins.toolbar.registerButton('download-file', (env) => {
 		const pre = env.element.parentNode;
 		if (!pre || !/pre/i.test(pre.nodeName) || !pre.hasAttribute('data-src') || !pre.hasAttribute('data-download-link')) {
 			return;

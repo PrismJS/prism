@@ -85,7 +85,7 @@
 	 * @param {HTMLElement[]} elements
 	 */
 	function resizeElements(elements) {
-		elements = elements.filter(function (e) {
+		elements = elements.filter((e) => {
 			const codeStyles = getStyles(e);
 			const whiteSpace = codeStyles['white-space'];
 			return whiteSpace === 'pre-wrap' || whiteSpace === 'pre-line';
@@ -95,7 +95,7 @@
 			return;
 		}
 
-		const infos = elements.map(function (element) {
+		const infos = elements.map((element) => {
 			const codeElement = element.querySelector('code');
 			const lineNumbersWrapper = element.querySelector('.line-numbers-rows');
 			if (!codeElement || !lineNumbersWrapper) {
@@ -128,14 +128,14 @@
 			};
 		}).filter(Boolean);
 
-		infos.forEach(function (info) {
+		infos.forEach((info) => {
 			const lineNumberSizer = info.sizer;
 			const lines = info.lines;
 			const lineHeights = info.lineHeights;
 			const oneLinerHeight = info.oneLinerHeight;
 
 			lineHeights[lines.length - 1] = undefined;
-			lines.forEach(function (line, index) {
+			lines.forEach((line, index) => {
 				if (line && line.length > 1) {
 					const e = lineNumberSizer.appendChild(document.createElement('span'));
 					e.style.display = 'block';
@@ -146,7 +146,7 @@
 			});
 		});
 
-		infos.forEach(function (info) {
+		infos.forEach((info) => {
 			const lineNumberSizer = info.sizer;
 			const lineHeights = info.lineHeights;
 
@@ -158,14 +158,14 @@
 			}
 		});
 
-		infos.forEach(function (info) {
+		infos.forEach((info) => {
 			const lineNumberSizer = info.sizer;
 			const wrapper = info.element.querySelector('.line-numbers-rows');
 
 			lineNumberSizer.style.display = 'none';
 			lineNumberSizer.innerHTML = '';
 
-			info.lineHeights.forEach(function (height, lineNumber) {
+			info.lineHeights.forEach((height, lineNumber) => {
 				wrapper.children[lineNumber].style.height = height + 'px';
 			});
 		});
@@ -185,7 +185,7 @@
 	}
 
 	let lastWidth = undefined;
-	window.addEventListener('resize', function () {
+	window.addEventListener('resize', () => {
 		if (config.assumeViewportIndependence && lastWidth === window.innerWidth) {
 			return;
 		}
@@ -194,7 +194,7 @@
 		resizeElements(Array.prototype.slice.call(document.querySelectorAll('pre.' + PLUGIN_NAME)));
 	});
 
-	Prism.hooks.add('complete', function (env) {
+	Prism.hooks.add('complete', (env) => {
 		if (!env.code) {
 			return;
 		}
@@ -244,7 +244,7 @@
 		Prism.hooks.run('line-numbers', env);
 	});
 
-	Prism.hooks.add('line-numbers', function (env) {
+	Prism.hooks.add('line-numbers', (env) => {
 		env.plugins = env.plugins || {};
 		env.plugins.lineNumbers = true;
 	});

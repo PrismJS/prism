@@ -69,7 +69,7 @@
 			adapter = getAdapter(adapter);
 		}
 		if (typeof adapter === 'function') {
-			const index = adapters.findIndex(function (item) {
+			const index = adapters.findIndex((item) => {
 				return item.adapter === adapter;
 			});
 			if (index >= 0) {
@@ -78,7 +78,7 @@
 		}
 	}
 
-	registerAdapter(function github(rsp) {
+	registerAdapter((rsp) => {
 		if (rsp && rsp.meta && rsp.data) {
 			if (rsp.meta.status && rsp.meta.status >= 400) {
 				return 'Error: ' + (rsp.data.message || rsp.meta.status);
@@ -90,7 +90,7 @@
 		}
 		return null;
 	}, 'github');
-	registerAdapter(function gist(rsp, el) {
+	registerAdapter((rsp, el) => {
 		if (rsp && rsp.meta && rsp.data && rsp.data.files) {
 			if (rsp.meta.status && rsp.meta.status >= 400) {
 				return 'Error: ' + (rsp.data.message || rsp.meta.status);
@@ -117,7 +117,7 @@
 		}
 		return null;
 	}, 'gist');
-	registerAdapter(function bitbucket(rsp) {
+	registerAdapter((rsp) => {
 		if (rsp && rsp.node && typeof (rsp.data) === 'string') {
 			return rsp.data;
 		}
@@ -150,7 +150,7 @@
 			onError('network');
 		};
 
-		const timeoutId = setTimeout(function () {
+		const timeoutId = setTimeout(() => {
 			cleanup();
 			onError('timeout');
 		}, Prism.plugins.jsonphighlight.timeout);
@@ -188,11 +188,11 @@
 		+ ':not([' + STATUS_ATTR + '="' + STATUS_LOADING + '"])';
 
 
-	Prism.hooks.add('before-highlightall', function (env) {
+	Prism.hooks.add('before-highlightall', (env) => {
 		env.selector += ', ' + SELECTOR;
 	});
 
-	Prism.hooks.add('before-sanity-check', function (env) {
+	Prism.hooks.add('before-sanity-check', (env) => {
 		const pre = /** @type {HTMLPreElement} */ (env.element);
 		if (pre.matches(SELECTOR)) {
 			env.code = ''; // fast-path the whole thing and go to complete
@@ -233,7 +233,7 @@
 			jsonp(
 				src,
 				pre.getAttribute('data-callback'),
-				function (response) {
+				(response) => {
 					// interpret the received data using the adapter(s)
 					let data = null;
 					if (adapter) {
@@ -260,7 +260,7 @@
 						Prism.highlightElement(code);
 					}
 				},
-				function () {
+				() => {
 					// mark as failed
 					pre.setAttribute(STATUS_ATTR, STATUS_FAILED);
 

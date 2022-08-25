@@ -292,7 +292,7 @@
 
 	/* eslint-enable */
 
-	Prism.plugins.toolbar.registerButton('show-language', function (env) {
+	Prism.plugins.toolbar.registerButton('show-language', (env) => {
 		const pre = env.element.parentNode;
 		if (!pre || !/pre/i.test(pre.nodeName)) {
 			return;

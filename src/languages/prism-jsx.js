@@ -19,9 +19,9 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		 */
 		function re(source, flags) {
 			source = source
-				.replace(/<S>/g, function () { return space; })
-				.replace(/<BRACES>/g, function () { return braces; })
-				.replace(/<SPREAD>/g, function () { return spread; });
+				.replace(/<S>/g, () => space)
+				.replace(/<BRACES>/g, () => braces)
+				.replace(/<SPREAD>/g, () => spread);
 			return RegExp(source, flags);
 		}
 
@@ -156,7 +156,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		}
 
-		return Prism.hooks.add('after-tokenize', function (env) {
+		return Prism.hooks.add('after-tokenize', (env) => {
 			if (env.language !== 'jsx' && env.language !== 'tsx') {
 				return;
 			}

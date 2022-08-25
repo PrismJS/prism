@@ -16,7 +16,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				'forstep', 'forsubgroup', 'forvec', 'for', 'iferr', 'if',
 				'local', 'my', 'next', 'return', 'until', 'while'
 			];
-			keywords = keywords.map(function (keyword) {
+			keywords = keywords.map((keyword) => {
 				return keyword.split('').join(' *');
 			}).join('|');
 			return RegExp('\\b(?:' + keywords + ')\\b');

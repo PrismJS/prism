@@ -12,7 +12,7 @@ import clike from './prism-clike.js';
  * @example replace(/a<<0>>a/.source, [/b+/.source]) === /a(?:b+)a/.source
  */
 function replace(pattern, replacements) {
-	return pattern.replace(/<<(\d+)>>/g, function (m, index) {
+	return pattern.replace(/<<(\d+)>>/g, (m, index) => {
 		return '(?:' + replacements[+index] + ')';
 	});
 }
@@ -35,7 +35,7 @@ function re(pattern, replacements, flags) {
  */
 function nested(pattern, depthLog2) {
 	for (let i = 0; i < depthLog2; i++) {
-		pattern = pattern.replace(/<<self>>/g, function () { return '(?:' + pattern + ')'; });
+		pattern = pattern.replace(/<<self>>/g, () => '(?:' + pattern + ')');
 	}
 	return pattern.replace(/<<self>>/g, '[^\\s\\S]');
 }

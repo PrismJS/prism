@@ -331,7 +331,7 @@
 					let p = value.match(/-?(?:\d+(?:\.\d+)?|\.\d+)/g);
 
 					if (p.length === 4) {
-						p = p.map(function (p, i) { return (i % 2 ? 1 - p : p) * 100; });
+						p = p.map((p, i) => (i % 2 ? 1 - p : p) * 100);
 
 						this.querySelector('path').setAttribute('d', 'M0,100 C' + p[0] + ',' + p[1] + ', ' + p[2] + ',' + p[3] + ', 100,0');
 
@@ -515,7 +515,7 @@
 		if (!Array.isArray(supportedLanguages)) {
 			supportedLanguages = [supportedLanguages];
 		}
-		supportedLanguages.forEach(function (lang) {
+		supportedLanguages.forEach((lang) => {
 			if (typeof lang !== 'string') {
 				lang = lang.lang;
 			}
@@ -656,16 +656,16 @@
 		if (Previewer.byLanguages['*']) {
 			previewers = previewers.concat(Previewer.byLanguages['*']);
 		}
-		elt.addEventListener('mouseover', function (e) {
+		elt.addEventListener('mouseover', (e) => {
 			const target = e.target;
-			previewers.forEach(function (previewer) {
+			previewers.forEach((previewer) => {
 				previewer.check(target);
 			});
 		}, false);
 	};
 	Prism.plugins.Previewer = Previewer;
 
-	Prism.hooks.add('before-highlight', function (env) {
+	Prism.hooks.add('before-highlight', (env) => {
 		for (var previewer in previewers) {
 			var languages = previewers[previewer].languages;
 			if (env.language && languages[env.language] && !languages[env.language].initialized) {
@@ -673,7 +673,7 @@
 				if (!Array.isArray(lang)) {
 					lang = [lang];
 				}
-				lang.forEach(function (lang) {
+				lang.forEach((lang) => {
 					let before; let inside; let root; let skip;
 					if (lang === true) {
 						before = 'important';
@@ -699,7 +699,7 @@
 	});
 
 	// Initialize the previewers only when needed
-	Prism.hooks.add('after-highlight', function (env) {
+	Prism.hooks.add('after-highlight', (env) => {
 		if (Previewer.byLanguages['*'] || Previewer.byLanguages[env.language]) {
 			Previewer.initEvents(env.element, env.language);
 		}

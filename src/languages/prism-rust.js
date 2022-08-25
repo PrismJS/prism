@@ -6,9 +6,9 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		let multilineComment = /\/\*(?:[^*/]|\*(?!\/)|\/(?!\*)|<self>)*\*\//.source;
 		for (let i = 0; i < 2; i++) {
 			// support 4 levels of nested comments
-			multilineComment = multilineComment.replace(/<self>/g, function () { return multilineComment; });
+			multilineComment = multilineComment.replace(/<self>/g, () => multilineComment);
 		}
-		multilineComment = multilineComment.replace(/<self>/g, function () { return /[^\s\S]/.source; });
+		multilineComment = multilineComment.replace(/<self>/g, () => /[^\s\S]/.source);
 
 		const string = {
 			pattern: /b?"(?:\\[\s\S]|[^\\"])*"|b?r(#*)"(?:[^"]|"(?!\1))*"\1/,

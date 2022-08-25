@@ -59,7 +59,7 @@
 			return;
 		}
 
-		[this, getPartnerBrace(this)].forEach(function (e) {
+		[this, getPartnerBrace(this)].forEach((e) => {
 			e.classList.add(mapClassName('brace-hover'));
 		});
 	}
@@ -67,7 +67,7 @@
 	 * @this {HTMLElement}
 	 */
 	function leaveBrace() {
-		[this, getPartnerBrace(this)].forEach(function (e) {
+		[this, getPartnerBrace(this)].forEach((e) => {
 			e.classList.remove(mapClassName('brace-hover'));
 		});
 	}
@@ -79,12 +79,12 @@
 			return;
 		}
 
-		[this, getPartnerBrace(this)].forEach(function (e) {
+		[this, getPartnerBrace(this)].forEach((e) => {
 			e.classList.add(mapClassName('brace-selected'));
 		});
 	}
 
-	Prism.hooks.add('complete', function (env) {
+	Prism.hooks.add('complete', (env) => {
 
 		/** @type {HTMLElement} */
 		const code = env.element;
@@ -108,11 +108,11 @@
 
 		if (!pre.__listenerAdded) {
 			// code blocks might be highlighted more than once
-			pre.addEventListener('mousedown', function removeBraceSelected() {
+			pre.addEventListener('mousedown', () => {
 				// the code element might have been replaced
 				const code = pre.querySelector('code');
 				const className = mapClassName('brace-selected');
-				Array.prototype.slice.call(code.querySelectorAll('.' + className)).forEach(function (e) {
+				Array.prototype.slice.call(code.querySelectorAll('.' + className)).forEach((e) => {
 					e.classList.remove(className);
 				});
 			});
@@ -127,7 +127,7 @@
 		/** @type {{ index: number, open: boolean, element: HTMLElement }[]} */
 		const allBraces = [];
 
-		toMatch.forEach(function (open) {
+		toMatch.forEach((open) => {
 			const close = PARTNER[open];
 			const name = mapClassName(NAMES[open]);
 
@@ -157,7 +157,7 @@
 				}
 			}
 
-			pairs.forEach(function (pair) {
+			pairs.forEach((pair) => {
 				const pairId = 'pair-' + (pairIdCounter++) + '-';
 
 				const opening = punctuation[pair[0]];
@@ -166,7 +166,7 @@
 				opening.id = pairId + 'open';
 				closing.id = pairId + 'close';
 
-				[opening, closing].forEach(function (e) {
+				[opening, closing].forEach((e) => {
 					e.addEventListener('mouseenter', hoverBrace);
 					e.addEventListener('mouseleave', leaveBrace);
 					e.addEventListener('click', clickBrace);
@@ -175,8 +175,8 @@
 		});
 
 		let level = 0;
-		allBraces.sort(function (a, b) { return a.index - b.index; });
-		allBraces.forEach(function (brace) {
+		allBraces.sort((a, b) => a.index - b.index);
+		allBraces.forEach((brace) => {
 			if (brace.open) {
 				brace.element.classList.add(mapClassName('brace-level-' + (level % LEVEL_WARP + 1)));
 				level++;

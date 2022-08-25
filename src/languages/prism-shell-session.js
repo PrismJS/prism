@@ -38,7 +38,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 						// shell symbol
 						/[$#%](?=\s)/.source +
 						// bash command
-						/(?:[^\\\r\n \t'"<$]|[ \t](?:(?!#)|#.*$)|\\(?:[^\r]|\r\n?)|\$(?!')|<(?!<)|<<str>>)+/.source.replace(/<<str>>/g, function () { return strings; }),
+						/(?:[^\\\r\n \t'"<$]|[ \t](?:(?!#)|#.*$)|\\(?:[^\r]|\r\n?)|\$(?!')|<(?!<)|<<str>>)+/.source.replace(/<<str>>/g, () => strings),
 					'm'
 				),
 				greedy: true,

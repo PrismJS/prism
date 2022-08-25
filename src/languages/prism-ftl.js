@@ -4,7 +4,7 @@ import markupTemplating, { MarkupTemplating } from './prism-markup-templating.js
 // FTL expression with 4 levels of nesting supported
 let FTL_EXPR = /[^<()"']|\((?:<expr>)*\)|<(?!#--)|<#--(?:[^-]|-(?!->))*-->|"(?:[^\\"]|\\.)*"|'(?:[^\\']|\\.)*'/.source;
 for (let i = 0; i < 2; i++) {
-	FTL_EXPR = FTL_EXPR.replace(/<expr>/g, function () { return FTL_EXPR; });
+	FTL_EXPR = FTL_EXPR.replace(/<expr>/g, () => FTL_EXPR);
 }
 FTL_EXPR = FTL_EXPR.replace(/<expr>/g, /[^\s\S]/.source);
 
@@ -23,11 +23,11 @@ export default /** @type {import("../types").LanguageProto} */ ({
 					greedy: true
 				},
 				{
-					pattern: RegExp(/("|')(?:(?!\1|\$\{)[^\\]|\\.|\$\{(?:(?!\})(?:<expr>))*\})*\1/.source.replace(/<expr>/g, function () { return FTL_EXPR; })),
+					pattern: RegExp(/("|')(?:(?!\1|\$\{)[^\\]|\\.|\$\{(?:(?!\})(?:<expr>))*\})*\1/.source.replace(/<expr>/g, () => FTL_EXPR)),
 					greedy: true,
 					inside: {
 						'interpolation': {
-							pattern: RegExp(/((?:^|[^\\])(?:\\\\)*)\$\{(?:(?!\})(?:<expr>))*\}/.source.replace(/<expr>/g, function () { return FTL_EXPR; })),
+							pattern: RegExp(/((?:^|[^\\])(?:\\\\)*)\$\{(?:(?!\})(?:<expr>))*\}/.source.replace(/<expr>/g, () => FTL_EXPR)),
 							lookbehind: true,
 							inside: {
 								'interpolation-punctuation': {
@@ -92,7 +92,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 	},
 	effect(Prism) {
 		// eslint-disable-next-line regexp/no-useless-lazy
-		const pattern = RegExp(/<#--[\s\S]*?-->|<\/?[#@][a-zA-Z](?:<expr>)*?>|\$\{(?:<expr>)*?\}/.source.replace(/<expr>/g, function () { return FTL_EXPR; }), 'gi');
+		const pattern = RegExp(/<#--[\s\S]*?-->|<\/?[#@][a-zA-Z](?:<expr>)*?>|\$\{(?:<expr>)*?\}/.source.replace(/<expr>/g, () => FTL_EXPR), 'gi');
 		return new MarkupTemplating(this.id, Prism).addHooks(pattern);
 	}
 });

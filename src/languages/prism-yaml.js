@@ -14,7 +14,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			// This is a simplified version that doesn't support "#" and multiline keys
 			// All these long scarry character classes are simplified versions of YAML's characters
 		const plainKey = /(?:[^\s\x00-\x08\x0e-\x1f!"#%&'*,\-:>?@[\]`{|}\x7f-\x84\x86-\x9f\ud800-\udfff\ufffe\uffff]|[?:-]<PLAIN>)(?:[ \t]*(?:(?![#:])<PLAIN>|:<PLAIN>))*/.source
-			.replace(/<PLAIN>/g, function () { return /[^\s\x00-\x08\x0e-\x1f,[\]{}\x7f-\x84\x86-\x9f\ud800-\udfff\ufffe\uffff]/.source; });
+			.replace(/<PLAIN>/g, () => /[^\s\x00-\x08\x0e-\x1f,[\]{}\x7f-\x84\x86-\x9f\ud800-\udfff\ufffe\uffff]/.source);
 		const string = /"(?:[^"\\\r\n]|\\.)*"|'(?:[^'\\\r\n]|\\.)*'/.source;
 
 		/**
@@ -26,22 +26,22 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		function createValuePattern(value, flags) {
 			flags = (flags || '').replace(/m/g, '') + 'm'; // add m flag
 			const pattern = /([:\-,[{]\s*(?:\s<<prop>>[ \t]+)?)(?:<<value>>)(?=[ \t]*(?:$|,|\]|\}|(?:[\r\n]\s*)?#))/.source
-				.replace(/<<prop>>/g, function () { return properties; }).replace(/<<value>>/g, function () { return value; });
+				.replace(/<<prop>>/g, () => properties).replace(/<<value>>/g, () => properties);
 			return RegExp(pattern, flags);
 		}
 
 		return {
 			'scalar': {
 				pattern: RegExp(/([\-:]\s*(?:\s<<prop>>[ \t]+)?[|>])[ \t]*(?:((?:\r?\n|\r)[ \t]+)\S[^\r\n]*(?:\2[^\r\n]+)*)/.source
-					.replace(/<<prop>>/g, function () { return properties; })),
+					.replace(/<<prop>>/g, () => properties)),
 				lookbehind: true,
 				alias: 'string'
 			},
 			'comment': /#.*/,
 			'key': {
 				pattern: RegExp(/((?:^|[:\-,[{\r\n?])[ \t]*(?:<<prop>>[ \t]+)?)<<key>>(?=\s*:\s)/.source
-					.replace(/<<prop>>/g, function () { return properties; })
-					.replace(/<<key>>/g, function () { return '(?:' + plainKey + '|' + string + ')'; })),
+					.replace(/<<prop>>/g, () => properties)
+					.replace(/<<key>>/g, () => '(?:' + plainKey + '|' + string + ')')),
 				lookbehind: true,
 				greedy: true,
 				alias: 'atrule'

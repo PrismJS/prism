@@ -9,7 +9,7 @@ describe('Highlight Keywords', function () {
 	const util = createUtil(window);
 
 
-	it('should highlight keywords', function () {
+	it('should highlight keywords', () => {
 		util.assert.highlightElement({
 			language: 'javascript',
 			code: `import * from ''; const foo;`,

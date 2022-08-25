@@ -92,7 +92,7 @@ export function deepClone(o, mapping = new Map()) {
 		const clone = [];
 		mapped.set(o, clone);
 
-		o.forEach(function (v, i) {
+		o.forEach((v, i) => {
 			clone[i] = deepClone(v, mapping);
 		});
 

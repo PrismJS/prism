@@ -23,7 +23,7 @@ describe('Copy to Clipboard', function () {
 	});
 
 
-	it('should work', function () {
+	it('should work', () => {
 		const clipboard = new DummyClipboard();
 		window.navigator.clipboard = clipboard;
 
@@ -38,7 +38,7 @@ describe('Copy to Clipboard', function () {
 		assert.strictEqual(clipboard.text, 'foo');
 	});
 
-	it('should copy the current text even after the code block changes its text', function () {
+	it('should copy the current text even after the code block changes its text', () => {
 		const clipboard = new DummyClipboard();
 		window.navigator.clipboard = clipboard;
 

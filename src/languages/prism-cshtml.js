@@ -27,7 +27,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		 */
 		function nested(pattern, depthLog2) {
 			for (let i = 0; i < depthLog2; i++) {
-				pattern = pattern.replace(/<self>/g, function () { return '(?:' + pattern + ')'; });
+				pattern = pattern.replace(/<self>/g, () => '(?:' + pattern + ')');
 			}
 			return pattern
 				.replace(/<self>/g, '[^\\s\\S]')
