@@ -2,6 +2,11 @@ import { Hooks } from "./core/hooks";
 import { Prism } from "./core/prism";
 import { rest } from "./shared/symbols";
 
+interface GrammarOptions {
+	readonly getLanguage: (id: string) => Grammar;
+	readonly getOptionalLanguage: (id: string) => Grammar | undefined;
+	readonly extend: (id: string, ref: GrammarTokens) => Grammar
+}
 export interface ComponentProtoBase {
 	id: string;
 	require?: LanguageProto | readonly LanguageProto[];
@@ -10,7 +15,7 @@ export interface ComponentProtoBase {
 	effect?: (Prism: Prism) => () => void;
 }
 export interface LanguageProto extends ComponentProtoBase {
-	grammar: Grammar | ((arg0: { getLanguage: (id: string) => Grammar, extend: (id: string, ref: GrammarTokens) => Grammar }) => Grammar);
+	grammar: Grammar | ((options: GrammarOptions) => Grammar);
 }
 export interface PluginProto extends ComponentProtoBase {
 	plugin: Record<string, any>;

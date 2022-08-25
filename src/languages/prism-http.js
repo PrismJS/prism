@@ -2,7 +2,8 @@ import { insertBefore } from '../shared/language-util';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'http',
-	grammar({ getLanguage }) {
+	optional: 'json',
+	grammar({ getOptionalLanguage }) {
 		/**
 		 * @param {string} name
 		 * @returns {RegExp}
@@ -96,8 +97,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		// Create a mapping of Content-Type headers to language definitions
 		const httpLanguages = {
 			'application/javascript': 'javascript',
-			// TODO: This doesn't work
-			'application/json': getLanguage('json') || 'javascript',
+			'application/json': getOptionalLanguage('json') || 'javascript',
 			'application/xml': 'xml',
 			'text/xml': 'xml',
 			'text/html': 'html',

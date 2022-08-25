@@ -1,7 +1,7 @@
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'log',
 	optional: 'javastacktrace',
-	grammar({ getLanguage }) {
+	grammar({ getOptionalLanguage }) {
 		// This is a language definition for generic log files.
 		// Since there is no one log format, this language definition has to support all formats to some degree.
 		//
@@ -19,7 +19,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				lookbehind: true,
 				greedy: true,
 				alias: ['javastacktrace', 'language-javastacktrace'],
-				inside: getLanguage('javastacktrace') || {
+				inside: getOptionalLanguage('javastacktrace') || {
 					'keyword': /\bat\b/,
 					'function': /[a-z_][\w$]*(?=\()/,
 					'punctuation': /[.:()]/

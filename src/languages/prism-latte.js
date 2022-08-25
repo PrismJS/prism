@@ -1,12 +1,13 @@
 import { addHooks } from '../shared/hooks-util.js';
 import { extend, insertBefore } from '../shared/language-util.js';
 import clike from './prism-clike.js';
+import markup from './prism-markup.js';
 import markupTemplating, { MarkupTemplating } from './prism-markup-templating.js';
 import php from './prism-php.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'latte',
-	require: [clike, markupTemplating, php],
+	require: [clike, markup, markupTemplating, php],
 	grammar: {
 		'comment': /^\{\*[\s\S]*/,
 		'latte-tag': {
