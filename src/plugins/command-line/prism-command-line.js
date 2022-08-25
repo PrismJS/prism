@@ -7,22 +7,6 @@
 	const CLASS_PATTERN = /(?:^|\s)command-line(?:\s|$)/;
 	const PROMPT_CLASS = 'command-line-prompt';
 
-	/** @type {(str: string, prefix: string) => boolean} */
-	const startsWith = ''.startsWith
-		? function (s, p) { return s.startsWith(p); }
-		: function (s, p) { return s.indexOf(p) === 0; };
-
-	// Support for IE11 that has no endsWith()
-	/** @type {(str: string, suffix: string) => boolean} */
-	const endsWith = ''.endsWith
-		? function (str, suffix) {
-			return str.endsWith(suffix);
-		}
-		: function (str, suffix) {
-			const len = str.length;
-			return str.substring(len - suffix.length, len) === suffix;
-		};
-
 	/**
 	 * Returns whether the given hook environment has a command line info object.
 	 *
@@ -105,7 +89,7 @@
 			});
 		} else if (outputFilter) { // Treat lines beginning with this string as output. -- cwells
 			for (let i = 0; i < codeLines.length; i++) {
-				if (startsWith(codeLines[i], outputFilter)) { // This line is output. -- cwells
+				if (codeLines[i].startsWith(outputFilter)) { // This line is output. -- cwells
 					outputLines[i] = codeLines[i].slice(outputFilter.length);
 					codeLines[i] = '';
 				}
@@ -127,12 +111,12 @@
 			}
 
 			// Record the next line as a continuation if this one ends in a continuation str.
-			if (lineContinuationStr && endsWith(line, lineContinuationStr)) {
+			if (lineContinuationStr && line.endsWith(lineContinuationStr)) {
 				continuationLineIndicies.add(j + 1);
 			}
 			// Record this line as a continuation if marked with a continuation prefix
 			// (that we will remove).
-			if (j > 0 && continuationFilter && startsWith(line, continuationFilter)) {
+			if (j > 0 && continuationFilter && line.startsWith(continuationFilter)) {
 				codeLines[j] = line.slice(continuationFilter.length);
 				continuationLineIndicies.add(j);
 			}
