@@ -130,7 +130,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				 */
 
 				const args = [1, 1];
-				args.push.apply(args, tokenizeWithHooks(tokens[1], Prism.languages.javascript, 'javascript'));
+				args.push(...tokenizeWithHooks(tokens[1], Prism.languages.javascript, 'javascript'));
 
 				tokens.splice.apply(tokens, args);
 			}
@@ -228,11 +228,11 @@ export default /** @type {import("../types").LanguageProto} */ ({
 							if (after) {
 								const afterTokens = [after];
 								walkTokens(afterTokens);
-								replacement.push.apply(replacement, afterTokens);
+								replacement.push(...afterTokens);
 							}
 
 							if (typeof token === 'string') {
-								tokens.splice.apply(tokens, [i, 1].concat(replacement));
+								tokens.splice(i, 1, ...replacement);
 								i += replacement.length - 1;
 							} else {
 								token.content = replacement;

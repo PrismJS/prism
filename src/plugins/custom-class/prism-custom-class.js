@@ -92,7 +92,7 @@
 			});
 
 			if (Array.isArray(result)) {
-				env.classes.push.apply(env.classes, result);
+				env.classes.push(...result);
 			} else if (result) {
 				env.classes.push(result);
 			}

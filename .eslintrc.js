@@ -23,6 +23,7 @@ module.exports = {
 		'object-shorthand': ['warn', 'always', { avoidQuotes: true }],
 		'one-var': ['warn', 'never'],
 		'prefer-const': ['warn', { 'destructuring': 'all' }],
+		'prefer-spread': 'error',
 		'quotes': ['warn', 'single', { avoidEscape: true, allowTemplateLiterals: true }],
 		'semi': 'warn',
 		'wrap-iife': 'warn',

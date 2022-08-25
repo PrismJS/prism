@@ -581,7 +581,7 @@
 			if (!toSortMap[id]) {
 				console.error(id + ' not found.');
 			}
-			finalPromises.push.apply(finalPromises, toSortMap[id]);
+			finalPromises.push(...toSortMap[id]);
 		});
 		promises = finalPromises;
 

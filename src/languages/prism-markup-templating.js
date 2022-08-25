@@ -126,7 +126,7 @@ export class MarkupTemplating {
 						}
 						replacement.push(middle);
 						if (after) {
-							replacement.push.apply(replacement, walkTokens([after]));
+							replacement.push(...walkTokens([after]));
 						}
 
 						if (typeof token === 'string') {
