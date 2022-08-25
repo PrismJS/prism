@@ -1,12 +1,21 @@
+import { Hooks } from "./core/hooks";
+import { Prism } from "./core/prism";
 import { rest } from "./shared/symbols";
 
-export interface LanguageProto {
+export interface ComponentProtoBase {
 	id: string;
 	require?: LanguageProto | readonly LanguageProto[];
 	optional?: string | readonly string[];
 	alias?: string | readonly string[];
-	grammar: Grammar | ((arg0: { getLanguage: (id: string) => Grammar, extend: (id: string, ref: GrammarTokens) => Grammar }) => Grammar)
+	effect?: (Prism: Prism) => () => void;
 }
+export interface LanguageProto extends ComponentProtoBase {
+	grammar: Grammar | ((arg0: { getLanguage: (id: string) => Grammar, extend: (id: string, ref: GrammarTokens) => Grammar }) => Grammar);
+}
+export interface PluginProto extends ComponentProtoBase {
+	plugin: Record<string, any>;
+}
+export type ComponentProto = LanguageProto | PluginProto;
 
 /**
  * The expansion of a simple `RegExp` literal to support additional properties.

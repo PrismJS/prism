@@ -3,24 +3,20 @@ import { rest } from '../shared/symbols';
 import { htmlEncode } from '../shared/util';
 import { Hooks } from './hooks';
 import { LinkedList } from './linked-list';
+import { Registry } from './registry';
 import { Token } from './token';
 
 /**
  * @typedef {import("./hooks-env").HookEnvMap} EnvMap
  */
 
+/**
+ * TODO: Add docs
+ */
 export class Prism {
 	constructor() {
 		this.hooks = new Hooks();
-	}
-
-	/**
-	 * @param {string} id
-	 * @returns {import("../types").Grammar | undefined}
-	 */
-	getLanguage(id) {
-		// TODO:
-		return undefined;
+		this.components = new Registry();
 	}
 
 	/**
@@ -36,7 +32,7 @@ export class Prism {
 	 * @param {import("./prism-types").HighlightAllOptions} [options]
 	 */
 	highlightAll({ root, async, callback } = {}) {
-		const env = /** @type {EnvMap["before-highlightall"] & EnvMap["before-all-elements-highlight"]} */ ({
+		const env = /** @type {EnvMap["before-highlightall"] | EnvMap["before-all-elements-highlight"]} */ ({
 			callback: callback,
 			root: root ?? document,
 			selector: 'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'
@@ -74,7 +70,8 @@ export class Prism {
 	highlightElement(element, { async, callback } = {}) {
 		// Find language
 		const language = getLanguage(element);
-		const grammar = this.getLanguage(language);
+		const languageId = this.components.resolveAlias(language);
+		const grammar = this.components.getLanguage(languageId);
 
 		// Set language on the element, if not present
 		setLanguage(element, language);
@@ -154,7 +151,8 @@ export class Prism {
 	 * Prism.highlight('var foo = true;', 'javascript');
 	 */
 	highlight(text, language, options) {
-		const grammar = options?.grammar ?? this.getLanguage(language);
+		const languageId = this.components.resolveAlias(language);
+		const grammar = options?.grammar ?? this.components.getLanguage(languageId);
 
 		/** @type {EnvMap["before-tokenize"] | EnvMap["after-tokenize"]} */
 		const env = ({
@@ -195,9 +193,10 @@ export class Prism {
 	 * });
 	 */
 	tokenize(text, grammar) {
-		let restGrammar = resolve(this, grammar[rest]);
-		if (restGrammar) {
+		let restGrammar = resolve(this.components, grammar[rest]);
+		while (restGrammar) {
 			grammar = { ...grammar, ...restGrammar };
+			restGrammar = resolve(this.components, restGrammar[rest]);
 		}
 
 		/** @type {LinkedList<string | Token>} */
@@ -239,7 +238,7 @@ export class Prism {
 
 				const patternObj = toGrammarToken(patterns[j]);
 				let { pattern, lookbehind = false, greedy = false, alias, inside } = patternObj;
-				const insideGrammar = resolve(this, inside);
+				const insideGrammar = resolve(this.components, inside);
 
 				if (greedy && !pattern.global) {
 					// Without the global flag, lastIndex won't work
@@ -452,14 +451,14 @@ function toGrammarToken(pattern) {
 }
 
 /**
- * @param {Prism} instance
+ * @param {Registry} components
  * @param {import("../types").Grammar | string | null | undefined} reference
  * @returns {import("../types").Grammar | undefined}
  */
-function resolve(instance, reference) {
+function resolve(components, reference) {
 	if (reference) {
 		if (typeof reference === 'string') {
-			return instance.getLanguage(reference);
+			return components.getLanguage(reference);
 		}
 		return reference;
 	}

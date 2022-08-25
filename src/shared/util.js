@@ -101,3 +101,53 @@ export function deepClone(o, mapping = new Map()) {
 		return o;
 	}
 }
+
+/**
+ * Escapes all special regex characters in the given string.
+ *
+ * @param {string} string
+ * @returns {string}
+ */
+export function regexEscape(string) {
+	return string.replace(/([\\[\](){}+*?|^$.])/g, '\\$1');
+}
+
+/**
+ * Converts the given value to an array.
+ *
+ * If the given value is already an error, it will be returned as is.
+ *
+ * @param {T | T[] | undefined | null} value
+ * @returns {T[]}
+ * @template {{}} T
+ */
+export function toArray(value) {
+	if (Array.isArray(value)) {
+		return value;
+	} else if (value == null) {
+		return [];
+	} else {
+		return [value];
+	}
+}
+
+
+/**
+ * Invokes the given callback for all elements of the given value.
+ *
+ * If the given value is an array, the callback will be invokes for all elements. If the given value is `null` or
+ * `undefined`, the callback will not be invoked. In all other cases, the callback will be invoked with the given
+ * value as parameter.
+ *
+ * @param {null | undefined | T | readonly T[]} value
+ * @param {(value: T, index: number) => void} callbackFn
+ * @returns {void}
+ * @template {{}} T
+ */
+export function forEach(value, callbackFn) {
+	if (Array.isArray(value)) {
+		value.forEach(callbackFn);
+	} else if (value != null) {
+		callbackFn(/** @type {T} */(value), 0);
+	}
+}
