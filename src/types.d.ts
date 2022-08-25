@@ -2,7 +2,7 @@ import { Hooks } from "./core/hooks";
 import { Prism } from "./core/prism";
 import { rest } from "./shared/symbols";
 
-interface GrammarOptions {
+export interface GrammarOptions {
 	readonly getLanguage: (id: string) => Grammar;
 	readonly getOptionalLanguage: (id: string) => Grammar | undefined;
 	readonly extend: (id: string, ref: GrammarTokens) => Grammar

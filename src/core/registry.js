@@ -1,3 +1,4 @@
+import { extend } from '../shared/language-util';
 import { forEach } from '../shared/util';
 
 /**
@@ -63,7 +64,50 @@ export class Registry {
 	 * @returns {import("../types").Grammar | undefined}
 	 */
 	getLanguage(id) {
-		// TODO:
-		return undefined;
+		id = this.resolveAlias(id);
+
+		const entry = this.entries.get(id);
+		if (!entry) {
+			return undefined;
+		}
+		if (entry.evaluatedGrammar) {
+			return entry.evaluatedGrammar;
+		}
+
+		if (!('grammar' in entry.proto)) {
+			// languages may require plugins for effects, so we just define that plugins have no grammar
+			return undefined;
+		}
+
+		if (typeof entry.proto.grammar === 'object') {
+			// This is an optimization.
+			// If a grammar is given as an object, then it may depend on other languages by referencing them by id
+			// (using `inside` or `rest`), but we can evaluate those grammars later if needed.
+			entry.evaluatedGrammar = entry.proto.grammar;
+			return entry.evaluatedGrammar;
+		}
+
+		// handle dependencies
+		forEach(entry.proto.require, proto => this.getLanguage(proto.id));
+		forEach(entry.proto.optional, id => this.getLanguage(id));
+
+		/**
+		 * @param {string} id
+		 */
+		const required = (id) => {
+			const grammar = this.getLanguage(id);
+			if (!grammar) {
+				throw new Error(`The language ${id} was not found.`);
+			}
+			return grammar;
+		};
+
+		entry.evaluatedGrammar = entry.proto.grammar({
+			getLanguage: required,
+			getOptionalLanguage: id => this.getLanguage(id),
+			extend: (id, ref) => extend(required(id), id, ref),
+		});
+
+		return entry.evaluatedGrammar;
 	}
 }
