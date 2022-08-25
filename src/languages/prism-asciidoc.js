@@ -4,6 +4,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'asciidoc',
 	alias: 'adoc',
 	grammar() {
+		const placeholder = /** @type {import('../types').GrammarToken["inside"]} */ (null);
+
 		let attributes = {
 			pattern: /(^[ \t]*)\[(?!\[)(?:(["'$`])(?:(?!\2)[^\\]|\\.)*\2|\[(?:[^\[\]\\]|\\.)*\]|[^\[\]\\"'$`]|\\.)*\]/m,
 			lookbehind: true,
@@ -17,8 +19,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				'interpreted': {
 					pattern: /'(?:[^'\\]|\\.)*'/,
 					inside: {
-						'punctuation': /^'|'$/
-						// See rest below
+						'punctuation': /^'|'$/,
+						[rest]: placeholder
 					}
 				},
 				'string': /"(?:[^"\\]|\\.)*"/,
@@ -45,32 +47,32 @@ export default /** @type {import("../types").LanguageProto} */ ({
 					'punctuation': {
 						pattern: /(^|[^\\])[|!]=*/,
 						lookbehind: true
-					}
-					// See rest below
+					},
+					[rest]: placeholder
 				}
 			},
 
 			'passthrough-block': {
 				pattern: /^(\+{4,})$[\s\S]*?^\1$/m,
 				inside: {
-					'punctuation': /^\++|\++$/
-					// See rest below
+					'punctuation': /^\++|\++$/,
+					[rest]: placeholder
 				}
 			},
 			// Literal blocks and listing blocks
 			'literal-block': {
 				pattern: /^(-{4,}|\.{4,})$[\s\S]*?^\1$/m,
 				inside: {
-					'punctuation': /^(?:-+|\.+)|(?:-+|\.+)$/
-					// See rest below
+					'punctuation': /^(?:-+|\.+)|(?:-+|\.+)$/,
+					[rest]: placeholder
 				}
 			},
 			// Sidebar blocks, quote blocks, example blocks and open blocks
 			'other-block': {
 				pattern: /^(--|\*{4,}|_{4,}|={4,})$[\s\S]*?^\1$/m,
 				inside: {
-					'punctuation': /^(?:-+|\*+|_+|=+)|(?:-+|\*+|_+|=+)$/
-					// See rest below
+					'punctuation': /^(?:-+|\*+|_+|=+)|(?:-+|\*+|_+|=+)$/,
+					[rest]: placeholder
 				}
 			},
 
@@ -95,8 +97,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				pattern: /^.+(?:\r?\n|\r)(?:={3,}|-{3,}|~{3,}|\^{3,}|\+{3,})$|^={1,5} .+|^\.(?![\s.]).*/m,
 				alias: 'important',
 				inside: {
-					'punctuation': /^(?:\.|=+)|(?:=+|-+|~+|\^+|\++)$/
-					// See rest below
+					'punctuation': /^(?:\.|=+)|(?:=+|-+|~+|\^+|\++)$/,
+					[rest]: placeholder
 				}
 			},
 			'attribute-entry': {
