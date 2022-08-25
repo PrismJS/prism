@@ -5,9 +5,8 @@ import clike from './prism-clike.js';
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'javascript',
 	require: clike,
-	optional: 'regex',
 	alias: 'js',
-	grammar({ extend, getLanguage }) {
+	grammar({ extend }) {
 		const javascript = extend('clike', {
 			'class-name': [
 				{

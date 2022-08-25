@@ -1,12 +1,12 @@
 import markup from './prism-markup.js';
 import csharp from './prism-csharp.js';
+import { insertBefore } from '../shared/language-util.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'cshtml',
 	require: [markup, csharp],
-	optional: ['css', 'css-extras', 'javascript', 'js-extras'],
 	alias: 'razor',
-	grammar({ extend, getLanguage }) {
+	grammar({ extend }) {
 		// Docs:
 		// https://docs.microsoft.com/en-us/aspnet/core/razor-pages/?view=aspnetcore-5.0&tabs=visual-studio
 		// https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor?view=aspnetcore-5.0
@@ -115,15 +115,16 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		// In the below code, both CSHTML and C#+HTML will be create as separate language definitions that reference each
 		// other. However, only CSHTML will be exported via `Prism.languages`.
 
-		Prism.languages.cshtml = extend('markup', {});
+		const cshtml = extend('markup', {});
 
-		let csharpWithHtml = Prism.languages.insertBefore('csharp', 'string', {
+		const csharpWithHtml = extend('csharp', {});
+		insertBefore(csharpWithHtml, 'string', {
 			'html': {
 				pattern: RegExp(tagRegion),
 				greedy: true,
 				inside: 'cshtml'
 			},
-		}, { csharp: extend('csharp', {}) });
+		});
 
 		let cs = {
 			pattern: /\S[\s\S]*/,
@@ -142,11 +143,12 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		};
 
-		Prism.languages.cshtml.tag.pattern = RegExp(/<\/?/.source + tagContent);
-		Prism.languages.cshtml.tag.inside['attr-value'].pattern = RegExp(/=\s*/.source + tagAttrValue);
-		Prism.languages.insertBefore('inside', 'punctuation', { 'value': inlineValue }, Prism.languages.cshtml.tag.inside['attr-value']);
+		const tag = /** @type {import('../types').GrammarToken} */ (cshtml.tag);
+		tag.pattern = RegExp(/<\/?/.source + tagContent);
+		tag.inside['attr-value'].pattern = RegExp(/=\s*/.source + tagAttrValue);
+		insertBefore(tag.inside['attr-value'].inside, 'punctuation', { 'value': inlineValue });
 
-		Prism.languages.insertBefore('cshtml', 'prolog', {
+		insertBefore(cshtml, 'prolog', {
 			'razor-comment': {
 				pattern: /@\*[\s\S]*?\*@/,
 				greedy: true,
@@ -201,5 +203,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				alias: 'operator'
 			}
 		});
+
+		return cshtml;
 	}
 });

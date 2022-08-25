@@ -5,7 +5,6 @@ import clike from './prism-clike.js';
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'vala',
 	require: clike,
-	optional: 'regex',
 	grammar({ extend }) {
 		const vala = extend('clike', {
 			// Classes copied from prism-csharp

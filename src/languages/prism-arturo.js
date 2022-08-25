@@ -1,6 +1,6 @@
 /**
  * @param {string} lang
- * @param {string} pattern
+ * @param {string} [pattern]
  */
 function createLanguageString(lang, pattern) {
 	return {
@@ -20,7 +20,6 @@ function createLanguageString(lang, pattern) {
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'arturo',
-	optional: ['bash', 'css', 'javascript', 'markup', 'markdown', 'sql'],
 	alias: 'art',
 	grammar: {
 		'comment': {

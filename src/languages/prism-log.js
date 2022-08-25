@@ -7,7 +7,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		//
 		// Based on https://github.com/MTDL9/vim-log-highlighting
 
-		Prism.languages.log = {
+		return {
 			'string': {
 				// Single-quoted strings must not be confused with plain text. E.g. Can't isn't Susan's Chris' toy
 				pattern: /"(?:[^"\\\r\n]|\\.)*"|'(?![st] | \w)(?:[^'\\\r\n]|\\.)*'/,
@@ -19,7 +19,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				lookbehind: true,
 				greedy: true,
 				alias: ['javastacktrace', 'language-javastacktrace'],
-				inside: Prism.languages['javastacktrace'] || {
+				inside: getLanguage('javastacktrace') || {
 					'keyword': /\bat\b/,
 					'function': /[a-z_][\w$]*(?=\()/,
 					'punctuation': /[.:()]/

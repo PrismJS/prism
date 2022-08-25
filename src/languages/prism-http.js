@@ -1,6 +1,7 @@
+import { insertBefore } from '../shared/language-util';
+
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'http',
-	optional: ['csp', 'css', 'hpkp', 'hsts', 'javascript', 'json', 'markup', 'uri'],
 	grammar({ getLanguage }) {
 		/**
 		 * @param {string} name
@@ -10,7 +11,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			return RegExp('(^(?:' + name + '):[ \t]*(?![ \t]))[^]+', 'i');
 		}
 
-		Prism.languages.http = {
+		const http = {
 			'request-line': {
 				pattern: /^(?:CONNECT|DELETE|GET|HEAD|OPTIONS|PATCH|POST|PRI|PUT|SEARCH|TRACE)\s(?:https?:\/\/|\/)\S*\sHTTP\/[\d.]+/m,
 				inside: {
@@ -93,19 +94,20 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		};
 
 		// Create a mapping of Content-Type headers to language definitions
-		let langs = Prism.languages;
-		let httpLanguages = {
-			'application/javascript': langs.javascript,
-			'application/json': langs.json || langs.javascript,
-			'application/xml': langs.xml,
-			'text/xml': langs.xml,
-			'text/html': langs.html,
-			'text/css': langs.css,
-			'text/plain': langs.plain
+		const httpLanguages = {
+			'application/javascript': 'javascript',
+			// TODO: This doesn't work
+			'application/json': getLanguage('json') || 'javascript',
+			'application/xml': 'xml',
+			'text/xml': 'xml',
+			'text/html': 'html',
+			'text/css': 'css',
+			'text/plain': 'plain'
 		};
 
 		// Declare which types can also be suffixes
-		let suffixTypes = {
+		/** @type {Partial<Record<keyof typeof httpLanguages, boolean>>} */
+		const suffixTypes = {
 			'application/json': true,
 			'application/xml': true
 		};
@@ -124,30 +126,29 @@ export default /** @type {import("../types").LanguageProto} */ ({
 
 		// Insert each content type parser that has its associated language
 		// currently loaded.
-		let options;
-		for (let contentType in httpLanguages) {
-			if (httpLanguages[contentType]) {
-				options = options || {};
+		/** @type {import('../types').Grammar} */
+		const options = {};
+		for (let key in httpLanguages) {
+			const contentType = /** @type {keyof typeof httpLanguages} */ (key);
 
-				let pattern = suffixTypes[contentType] ? getSuffixPattern(contentType) : contentType;
-				options[contentType.replace(/\//g, '-')] = {
-					pattern: RegExp(
-						'(' + /content-type:\s*/.source + pattern + /(?:(?:\r\n?|\n)[\w-].*)*(?:\r(?:\n|(?!\n))|\n)/.source + ')' +
+			const pattern = suffixTypes[contentType] ? getSuffixPattern(contentType) : contentType;
+			options[contentType.replace(/\//g, '-')] = {
+				pattern: RegExp(
+					'(' + /content-type:\s*/.source + pattern + /(?:(?:\r\n?|\n)[\w-].*)*(?:\r(?:\n|(?!\n))|\n)/.source + ')' +
 							// This is a little interesting:
 							// The HTTP format spec required 1 empty line before the body to make everything unambiguous.
 							// However, when writing code by hand (e.g. to display on a website) people can forget about this,
 							// so we want to be liberal here. We will allow the empty line to be omitted if the first line of
 							// the body does not start with a [\w-] character (as headers do).
 							/[^ \t\w-][\s\S]*/.source,
-						'i'
-					),
-					lookbehind: true,
-					inside: httpLanguages[contentType]
-				};
-			}
+					'i'
+				),
+				lookbehind: true,
+				inside: httpLanguages[contentType]
+			};
 		}
-		if (options) {
-			Prism.languages.insertBefore('http', 'header', options);
-		}
+		insertBefore(http, 'header', options);
+
+		return http;
 	}
 });
