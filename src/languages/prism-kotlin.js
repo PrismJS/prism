@@ -29,7 +29,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 
 		delete kotlin['class-name'];
 
-		let interpolationInside = {
+		const interpolationInside = {
 			'interpolation-punctuation': {
 				pattern: /^\$\{?|\}$/,
 				alias: 'punctuation'

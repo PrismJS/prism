@@ -9,20 +9,20 @@
 	 *
 	 * @type {string}
 	 */
-	let PLUGIN_NAME = 'line-numbers';
+	const PLUGIN_NAME = 'line-numbers';
 
 	/**
 	 * Regular expression used for determining line breaks
 	 *
 	 * @type {RegExp}
 	 */
-	let NEW_LINE_EXP = /\n(?!$)/g;
+	const NEW_LINE_EXP = /\n(?!$)/g;
 
 
 	/**
 	 * Global exports
 	 */
-	let config = Prism.plugins.lineNumbers = {
+	const config = Prism.plugins.lineNumbers = {
 		/**
 		 * Get node for provided line number
 		 *
@@ -35,12 +35,12 @@
 				return;
 			}
 
-			let lineNumberRows = element.querySelector('.line-numbers-rows');
+			const lineNumberRows = element.querySelector('.line-numbers-rows');
 			if (!lineNumberRows) {
 				return;
 			}
-			let lineNumberStart = parseInt(element.getAttribute('data-start'), 10) || 1;
-			let lineNumberEnd = lineNumberStart + (lineNumberRows.children.length - 1);
+			const lineNumberStart = parseInt(element.getAttribute('data-start'), 10) || 1;
+			const lineNumberEnd = lineNumberStart + (lineNumberRows.children.length - 1);
 
 			if (number < lineNumberStart) {
 				number = lineNumberStart;
@@ -49,7 +49,7 @@
 				number = lineNumberEnd;
 			}
 
-			let lineIndex = number - lineNumberStart;
+			const lineIndex = number - lineNumberStart;
 
 			return lineNumberRows.children[lineIndex];
 		},
@@ -86,8 +86,8 @@
 	 */
 	function resizeElements(elements) {
 		elements = elements.filter(function (e) {
-			let codeStyles = getStyles(e);
-			let whiteSpace = codeStyles['white-space'];
+			const codeStyles = getStyles(e);
+			const whiteSpace = codeStyles['white-space'];
 			return whiteSpace === 'pre-wrap' || whiteSpace === 'pre-line';
 		});
 
@@ -95,16 +95,16 @@
 			return;
 		}
 
-		let infos = elements.map(function (element) {
-			let codeElement = element.querySelector('code');
-			let lineNumbersWrapper = element.querySelector('.line-numbers-rows');
+		const infos = elements.map(function (element) {
+			const codeElement = element.querySelector('code');
+			const lineNumbersWrapper = element.querySelector('.line-numbers-rows');
 			if (!codeElement || !lineNumbersWrapper) {
 				return undefined;
 			}
 
 			/** @type {HTMLElement} */
 			let lineNumberSizer = element.querySelector('.line-numbers-sizer');
-			let codeLines = codeElement.textContent.split(NEW_LINE_EXP);
+			const codeLines = codeElement.textContent.split(NEW_LINE_EXP);
 
 			if (!lineNumberSizer) {
 				lineNumberSizer = document.createElement('span');
@@ -116,7 +116,7 @@
 			lineNumberSizer.innerHTML = '0';
 			lineNumberSizer.style.display = 'block';
 
-			let oneLinerHeight = lineNumberSizer.getBoundingClientRect().height;
+			const oneLinerHeight = lineNumberSizer.getBoundingClientRect().height;
 			lineNumberSizer.innerHTML = '';
 
 			return {
@@ -129,15 +129,15 @@
 		}).filter(Boolean);
 
 		infos.forEach(function (info) {
-			let lineNumberSizer = info.sizer;
-			let lines = info.lines;
-			let lineHeights = info.lineHeights;
-			let oneLinerHeight = info.oneLinerHeight;
+			const lineNumberSizer = info.sizer;
+			const lines = info.lines;
+			const lineHeights = info.lineHeights;
+			const oneLinerHeight = info.oneLinerHeight;
 
 			lineHeights[lines.length - 1] = undefined;
 			lines.forEach(function (line, index) {
 				if (line && line.length > 1) {
-					let e = lineNumberSizer.appendChild(document.createElement('span'));
+					const e = lineNumberSizer.appendChild(document.createElement('span'));
 					e.style.display = 'block';
 					e.textContent = line;
 				} else {
@@ -147,8 +147,8 @@
 		});
 
 		infos.forEach(function (info) {
-			let lineNumberSizer = info.sizer;
-			let lineHeights = info.lineHeights;
+			const lineNumberSizer = info.sizer;
+			const lineHeights = info.lineHeights;
 
 			let childIndex = 0;
 			for (let i = 0; i < lineHeights.length; i++) {
@@ -159,8 +159,8 @@
 		});
 
 		infos.forEach(function (info) {
-			let lineNumberSizer = info.sizer;
-			let wrapper = info.element.querySelector('.line-numbers-rows');
+			const lineNumberSizer = info.sizer;
+			const wrapper = info.element.querySelector('.line-numbers-rows');
 
 			lineNumberSizer.style.display = 'none';
 			lineNumberSizer.innerHTML = '';
@@ -199,8 +199,8 @@
 			return;
 		}
 
-		let code = /** @type {Element} */ (env.element);
-		let pre = /** @type {HTMLElement} */ (code.parentNode);
+		const code = /** @type {Element} */ (env.element);
+		const pre = /** @type {HTMLElement} */ (code.parentNode);
 
 		// works only for <code> wrapped inside <pre> (not inline)
 		if (!pre || !/pre/i.test(pre.nodeName)) {
@@ -222,11 +222,11 @@
 		// Add the class 'line-numbers' to the <pre>
 		pre.classList.add(PLUGIN_NAME);
 
-		let match = env.code.match(NEW_LINE_EXP);
-		let linesNum = match ? match.length + 1 : 1;
+		const match = env.code.match(NEW_LINE_EXP);
+		const linesNum = match ? match.length + 1 : 1;
 		let lineNumbersWrapper;
 
-		let lines = new Array(linesNum + 1).join('<span></span>');
+		const lines = new Array(linesNum + 1).join('<span></span>');
 
 		lineNumbersWrapper = document.createElement('span');
 		lineNumbersWrapper.setAttribute('aria-hidden', 'true');

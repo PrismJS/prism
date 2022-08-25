@@ -1,7 +1,7 @@
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'toml',
 	grammar() {
-		let key = /(?:[\w-]+|'[^'\n\r]*'|"(?:\\.|[^\\"\r\n])*")/.source;
+		const key = /(?:[\w-]+|'[^'\n\r]*'|"(?:\\.|[^\\"\r\n])*")/.source;
 
 		/**
 		 * @param {string} pattern

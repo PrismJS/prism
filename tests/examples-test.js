@@ -147,7 +147,7 @@ function parseHTML(html) {
 			children: []
 		};
 		/** @type {TagNode[]} */
-		let stack = [tree];
+		const stack = [tree];
 
 		const p = new Parser({
 			onerror(err) {

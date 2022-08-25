@@ -2,13 +2,13 @@ export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'robotframework',
 	alias: 'robot',
 	grammar() {
-		let comment = {
+		const comment = {
 			pattern: /(^[ \t]*| {2}|\t)#.*/m,
 			lookbehind: true,
 			greedy: true
 		};
 
-		let variable = {
+		const variable = {
 			pattern: /((?:^|[^\\])(?:\\{2})*)[$@&%]\{(?:[^{}\r\n]|\{[^{}\r\n]*\})*\}/,
 			lookbehind: true,
 			inside: {
@@ -17,7 +17,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		};
 
 		function createSection(name, inside) {
-			let extendecInside = {};
+			const extendecInside = {};
 
 			extendecInside['section-header'] = {
 				pattern: /^ ?\*{3}.+?\*{3}/,
@@ -25,7 +25,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			};
 
 			// copy inside tokens
-			for (let token in inside) {
+			for (const token in inside) {
 				extendecInside[token] = inside[token];
 			}
 
@@ -47,13 +47,13 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		}
 
 
-		let docTag = {
+		const docTag = {
 			pattern: /(\[Documentation\](?: {2}|\t)[ \t]*)(?![ \t]|#)(?:.|(?:\r\n?|\n)[ \t]*\.{3})+/,
 			lookbehind: true,
 			alias: 'string'
 		};
 
-		let testNameLike = {
+		const testNameLike = {
 			pattern: /([\r\n] ?)(?!#)(?:\S(?:[ \t]\S)*)+/,
 			lookbehind: true,
 			alias: 'function',
@@ -62,7 +62,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		};
 
-		let testPropertyLike = {
+		const testPropertyLike = {
 			pattern: /([\r\n](?: {2}|\t)[ \t]*)(?!\[|\.{3}|#)(?:\S(?:[ \t]\S)*)+/,
 			lookbehind: true,
 			inside: {

@@ -13,8 +13,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		 *
 		 * Supports PHP 5.3 - 8.0
 		 */
-		let comment = /\/\*[\s\S]*?\*\/|\/\/.*|#(?!\[).*/;
-		let constant = [
+		const comment = /\/\*[\s\S]*?\*\/|\/\/.*|#(?!\[).*/;
+		const constant = [
 			{
 				pattern: /\b(?:false|true)\b/i,
 				alias: 'boolean'
@@ -32,9 +32,9 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			/\b(?:null)\b/i,
 			/\b[A-Z_][A-Z0-9_]*\b(?!\s*\()/,
 		];
-		let number = /\b0b[01]+(?:_[01]+)*\b|\b0o[0-7]+(?:_[0-7]+)*\b|\b0x[\da-f]+(?:_[\da-f]+)*\b|(?:\b\d+(?:_\d+)*\.?(?:\d+(?:_\d+)*)?|\B\.\d+)(?:e[+-]?\d+)?/i;
-		let operator = /<?=>|\?\?=?|\.{3}|\??->|[!=]=?=?|::|\*\*=?|--|\+\+|&&|\|\||<<|>>|[?~]|[/^|%*&<>.+-]=?/;
-		let punctuation = /[{}\[\](),:;]/;
+		const number = /\b0b[01]+(?:_[01]+)*\b|\b0o[0-7]+(?:_[0-7]+)*\b|\b0x[\da-f]+(?:_[\da-f]+)*\b|(?:\b\d+(?:_\d+)*\.?(?:\d+(?:_\d+)*)?|\B\.\d+)(?:e[+-]?\d+)?/i;
+		const operator = /<?=>|\?\?=?|\.{3}|\??->|[!=]=?=?|::|\*\*=?|--|\+\+|&&|\|\||<<|>>|[?~]|[/^|%*&<>.+-]=?/;
+		const punctuation = /[{}\[\](),:;]/;
 
 		const php = {
 			'delimiter': {
@@ -230,13 +230,13 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'punctuation': punctuation
 		};
 
-		let string_interpolation = {
+		const string_interpolation = {
 			pattern: /\{\$(?:\{(?:\{[^{}]+\}|[^{}]+)\}|[^{}])+\}|(^|[^\\{])\$+(?:\w+(?:\[[^\r\n\[\]]+\]|->\w+)?)/,
 			lookbehind: true,
 			inside: 'php'
 		};
 
-		let string = [
+		const string = [
 			{
 				pattern: /<<<'([^']+)'[\r\n](?:.*[\r\n])*?\1;/,
 				alias: 'nowdoc-string',

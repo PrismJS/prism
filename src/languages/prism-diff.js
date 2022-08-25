@@ -19,7 +19,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		 *
 		 * @type {Object<string, string>}
 		 */
-		let PREFIXES = {
+		const PREFIXES = {
 			'deleted-sign': '-',
 			'deleted-arrow': '<',
 			'inserted-sign': '+',
@@ -30,9 +30,9 @@ export default /** @type {import("../types").LanguageProto} */ ({
 
 		// add a token for each prefix
 		Object.keys(PREFIXES).forEach(function (name) {
-			let prefix = PREFIXES[name];
+			const prefix = PREFIXES[name];
 
-			let alias = [];
+			const alias = [];
 			if (!/^\w+$/.test(name)) { // "deleted-sign" -> "deleted"
 				alias.push(/\w+/.exec(name)[0]);
 			}

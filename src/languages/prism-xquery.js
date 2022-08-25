@@ -81,9 +81,9 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		}
 
 		function walkTokens(tokens) {
-			let openedTags = [];
+			const openedTags = [];
 			for (let i = 0; i < tokens.length; i++) {
-				let token = tokens[i];
+				const token = tokens[i];
 				let notTagNorBrace = false;
 
 				if (typeof token !== 'string') {

@@ -5,7 +5,7 @@
 	}
 
 
-	let invisibles = {
+	const invisibles = {
 		'tab': /\t/,
 		'crlf': /\r\n/,
 		'lf': /\n/,
@@ -21,9 +21,9 @@
 	 * @param {string|number} name The name or index of the token in `tokens`.
 	 */
 	function handleToken(tokens, name) {
-		let value = tokens[name];
+		const value = tokens[name];
 
-		let type = Prism.util.type(value);
+		const type = Prism.util.type(value);
 		switch (type) {
 			case 'RegExp': {
 				const inside = {};
@@ -60,13 +60,13 @@
 		}
 
 		// assign invisibles here to "mark" the grammar in case of self references
-		for (let name in invisibles) {
+		for (const name in invisibles) {
 			if (invisibles.hasOwnProperty(name)) {
 				grammar[name] = invisibles[name];
 			}
 		}
 
-		for (let name in grammar) {
+		for (const name in grammar) {
 			if (grammar.hasOwnProperty(name) && !invisibles[name]) {
 				if (name === 'rest') {
 					addInvisibles(grammar['rest']);

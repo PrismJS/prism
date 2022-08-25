@@ -33,11 +33,11 @@ function isPlainObject(obj) {
  * @param {Set<unknown>} [visited]
  */
 export function DFS(obj, callback, type, visited = new Set()) {
-	for (let i in obj) {
+	for (const i in obj) {
 		if (obj.hasOwnProperty(i)) {
 			callback.call(obj, i, obj[i], type || i);
 
-			let property = obj[i];
+			const property = obj[i];
 			if (!visited.has(property)) {
 				if (isPlainObject(property)) {
 					visited.add(property);
@@ -80,7 +80,7 @@ export function deepClone(o, mapping = new Map()) {
 		const clone = {};
 		mapped.set(o, clone);
 
-		for (let key in o) {
+		for (const key in o) {
 			if (o.hasOwnProperty(key)) {
 				clone[key] = deepClone(o[key], mapping);
 			}

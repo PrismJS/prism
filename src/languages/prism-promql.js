@@ -6,7 +6,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 
 		// PromQL Aggregation Operators
 		// (https://prometheus.io/docs/prometheus/latest/querying/operators/#aggregation-operators)
-		let aggregations = [
+		const aggregations = [
 			'sum',
 			'min',
 			'max',
@@ -23,7 +23,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 
 		// PromQL vector matching + the by and without clauses
 		// (https://prometheus.io/docs/prometheus/latest/querying/operators/#vector-matching)
-		let vectorMatching = [
+		const vectorMatching = [
 			'on',
 			'ignoring',
 			'group_right',
@@ -34,9 +34,9 @@ export default /** @type {import("../types").LanguageProto} */ ({
 
 		// PromQL offset modifier
 		// (https://prometheus.io/docs/prometheus/latest/querying/basics/#offset-modifier)
-		let offsetModifier = ['offset'];
+		const offsetModifier = ['offset'];
 
-		let keywords = aggregations.concat(vectorMatching, offsetModifier);
+		const keywords = aggregations.concat(vectorMatching, offsetModifier);
 
 		return {
 			'comment': {

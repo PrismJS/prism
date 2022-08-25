@@ -4,8 +4,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'qml',
 	require: javascript,
 	grammar() {
-		let jsString = /"(?:\\.|[^\\"\r\n])*"|'(?:\\.|[^\\'\r\n])*'/.source;
-		let jsComment = /\/\/.*(?!.)|\/\*(?:[^*]|\*(?!\/))*\*\//.source;
+		const jsString = /"(?:\\.|[^\\"\r\n])*"|'(?:\\.|[^\\'\r\n])*'/.source;
+		const jsComment = /\/\/.*(?!.)|\/\*(?:[^*]|\*(?!\/))*\*\//.source;
 
 		let jsExpr = /(?:[^\\()[\]{}"'/]|<string>|\/(?![*/])|<comment>|\(<expr>*\)|\[<expr>*\]|\{<expr>*\}|\\[\s\S])/
 			.source.replace(/<string>/g, function () { return jsString; }).replace(/<comment>/g, function () { return jsComment; });

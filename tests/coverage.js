@@ -50,7 +50,7 @@ describe('Pattern test coverage', function () {
 				}
 
 				regex.exec = string => {
-					let match = RegExp.prototype.exec.call(regex, string);
+					const match = RegExp.prototype.exec.call(regex, string);
 					if (match) {
 						data.matches.push(match);
 					}

@@ -154,10 +154,10 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'punctuation': /[.\-!=|]+/
 		};
 
-		let filter_pattern = /(^([\t ]*)):<filter_name>(?:(?:\r?\n|\r(?!\n))(?:\2[\t ].+|\s*?(?=\r?\n|\r)))+/.source;
+		const filter_pattern = /(^([\t ]*)):<filter_name>(?:(?:\r?\n|\r(?!\n))(?:\2[\t ].+|\s*?(?=\r?\n|\r)))+/.source;
 
 		// Non exhaustive list of available filters and associated languages
-		let filters = [
+		const filters = [
 			{ filter: 'atpl', language: 'twig' },
 			{ filter: 'coffee', language: 'coffeescript' },
 			'ejs',
@@ -169,7 +169,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'stylus'
 		];
 		/** @type {import("../types").GrammarTokens} */
-		let all_filters = {};
+		const all_filters = {};
 		for (const filterItem of filters) {
 			const { filter, language } = typeof filterItem === 'string' ? { filter: filterItem, language: filterItem } : filterItem;
 			all_filters['filter-' + filter] = {

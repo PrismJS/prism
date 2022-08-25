@@ -51,7 +51,7 @@ export class MarkupTemplating {
 			return;
 		}
 
-		let tokenStack = env.tokenStack = [];
+		const tokenStack = env.tokenStack = [];
 
 		const hasPlaceholderLike = getPlaceholderPattern(this.language).test(env.code);
 
@@ -92,7 +92,7 @@ export class MarkupTemplating {
 		env.grammar = this.Prism.components.getLanguage(this.language);
 
 		let j = 0;
-		let keys = Object.keys(env.tokenStack);
+		const keys = Object.keys(env.tokenStack);
 
 		/**
 		 * @param {import("../core/token").TokenStream} tokens
@@ -105,22 +105,22 @@ export class MarkupTemplating {
 					break;
 				}
 
-				let token = tokens[i];
+				const token = tokens[i];
 				if (typeof token === 'string' || typeof token.content === 'string') {
-					let k = keys[j];
-					let t = env.tokenStack[k];
-					let s = typeof token === 'string' ? token : /** @type {string} */(token.content);
-					let placeholder = getPlaceholder(this.language, k);
+					const k = keys[j];
+					const t = env.tokenStack[k];
+					const s = typeof token === 'string' ? token : /** @type {string} */(token.content);
+					const placeholder = getPlaceholder(this.language, k);
 
-					let index = s.indexOf(placeholder);
+					const index = s.indexOf(placeholder);
 					if (index > -1) {
 						++j;
 
-						let before = s.substring(0, index);
-						let middle = new Token(this.language, this.Prism.tokenize(t, env.grammar), 'language-' + this.language, t);
-						let after = s.substring(index + placeholder.length);
+						const before = s.substring(0, index);
+						const middle = new Token(this.language, this.Prism.tokenize(t, env.grammar), 'language-' + this.language, t);
+						const after = s.substring(index + placeholder.length);
 
-						let replacement = [];
+						const replacement = [];
 						if (before) {
 							replacement.push(...walkTokens([before]));
 						}

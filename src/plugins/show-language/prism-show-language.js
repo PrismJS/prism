@@ -293,7 +293,7 @@
 	/* eslint-enable */
 
 	Prism.plugins.toolbar.registerButton('show-language', function (env) {
-		let pre = env.element.parentNode;
+		const pre = env.element.parentNode;
 		if (!pre || !/pre/i.test(pre.nodeName)) {
 			return;
 		}
@@ -311,12 +311,12 @@
 			return (id.substring(0, 1).toUpperCase() + id.substring(1)).replace(/s(?=cript)/, 'S');
 		}
 
-		let language = pre.getAttribute('data-language') || Languages[env.language] || guessTitle(env.language);
+		const language = pre.getAttribute('data-language') || Languages[env.language] || guessTitle(env.language);
 
 		if (!language) {
 			return;
 		}
-		let element = document.createElement('span');
+		const element = document.createElement('span');
 		element.textContent = language;
 
 		return element;

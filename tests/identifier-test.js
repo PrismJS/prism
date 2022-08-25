@@ -132,8 +132,8 @@ for (const lang in languages) {
 		}
 	}
 
-	let optional = toArray(languages[lang].optional);
-	let modify = toArray(languages[lang].modify);
+	const optional = toArray(languages[lang].optional);
+	const modify = toArray(languages[lang].modify);
 
 	if (optional.length > 0 || modify.length > 0) {
 		let name = `Test '${lang}'`;

@@ -8,7 +8,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		// CAREFUL!
 		// The following patterns are concatenated, so the group referenced by a back reference is non-obvious!
 
-		let strings = [
+		const strings = [
 			// normal string
 			/"(?:\\[\s\S]|\$\([^)]+\)|\$(?!\()|`[^`]+`|[^"\\`$])*"/.source,
 			/'[^']*'/.source,

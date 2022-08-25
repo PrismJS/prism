@@ -14,7 +14,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 	grammar() {
 		// https://freemarker.apache.org/docs/dgui_template_exp.html
 
-		let ftl = {
+		const ftl = {
 			'comment': /<#--[\s\S]*?-->/,
 			'string': [
 				{

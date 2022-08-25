@@ -4,16 +4,16 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		// https://cuelang.org/docs/references/spec/
 
 		// eslint-disable-next-line regexp/strict
-		let stringEscape = /\\(?:(?!\2)|\2(?:[^()\r\n]|\([^()]*\)))/.source;
+		const stringEscape = /\\(?:(?!\2)|\2(?:[^()\r\n]|\([^()]*\)))/.source;
 		// eslint-disable-next-line regexp/strict
-		let stringTypes = /"""(?:[^\\"]|"(?!""\2)|<esc>)*"""/.source +
+		const stringTypes = /"""(?:[^\\"]|"(?!""\2)|<esc>)*"""/.source +
 				// eslint-disable-next-line regexp/strict
 				'|' + /'''(?:[^\\']|'(?!''\2)|<esc>)*'''/.source +
 				// eslint-disable-next-line regexp/strict
 				'|' + /"(?:[^\\\r\n"]|"(?!\2)|<esc>)*"/.source +
 				// eslint-disable-next-line regexp/strict
 				'|' + /'(?:[^\\\r\n']|'(?!\2)|<esc>)*'/.source;
-		let stringLiteral = '(?:' + stringTypes.replace(/<esc>/g, stringEscape) + ')';
+		const stringLiteral = '(?:' + stringTypes.replace(/<esc>/g, stringEscape) + ')';
 
 		return {
 			'comment': {

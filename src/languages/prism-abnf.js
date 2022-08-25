@@ -1,7 +1,7 @@
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'abnf',
 	grammar() {
-		let coreRules = '(?:ALPHA|BIT|CHAR|CR|CRLF|CTL|DIGIT|DQUOTE|HEXDIG|HTAB|LF|LWSP|OCTET|SP|VCHAR|WSP)';
+		const coreRules = '(?:ALPHA|BIT|CHAR|CR|CRLF|CTL|DIGIT|DQUOTE|HEXDIG|HTAB|LF|LWSP|OCTET|SP|VCHAR|WSP)';
 
 		return {
 			'comment': /;.*/,

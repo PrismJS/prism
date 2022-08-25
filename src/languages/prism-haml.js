@@ -113,10 +113,10 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		};
 
-		let filter_pattern = '((?:^|\\r?\\n|\\r)([\\t ]*)):{{filter_name}}(?:(?:\\r?\\n|\\r)(?:\\2[\\t ].+|\\s*?(?=\\r?\\n|\\r)))+';
+		const filter_pattern = '((?:^|\\r?\\n|\\r)([\\t ]*)):{{filter_name}}(?:(?:\\r?\\n|\\r)(?:\\2[\\t ].+|\\s*?(?=\\r?\\n|\\r)))+';
 
 		// Non exhaustive list of available filters and associated languages
-		let filters = [
+		const filters = [
 			'css',
 			{ filter: 'coffee', language: 'coffeescript' },
 			'erb',
@@ -127,7 +127,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'scss',
 			'textile'
 		];
-		let all_filters = {};
+		const all_filters = {};
 		for (let i = 0, l = filters.length; i < l; i++) {
 			let filter = filters[i];
 			filter = typeof filter === 'string' ? { filter: filter, language: filter } : filter;

@@ -1,25 +1,25 @@
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'regex',
 	grammar() {
-		let specialEscape = {
+		const specialEscape = {
 			pattern: /\\[\\(){}[\]^$+*?|.]/,
 			alias: 'escape'
 		};
-		let escape = /\\(?:x[\da-fA-F]{2}|u[\da-fA-F]{4}|u\{[\da-fA-F]+\}|0[0-7]{0,2}|[123][0-7]{2}|c[a-zA-Z]|.)/;
-		let charSet = {
+		const escape = /\\(?:x[\da-fA-F]{2}|u[\da-fA-F]{4}|u\{[\da-fA-F]+\}|0[0-7]{0,2}|[123][0-7]{2}|c[a-zA-Z]|.)/;
+		const charSet = {
 			pattern: /\.|\\[wsd]|\\p\{[^{}]+\}/i,
 			alias: 'class-name'
 		};
-		let charSetWithoutDot = {
+		const charSetWithoutDot = {
 			pattern: /\\[wsd]|\\p\{[^{}]+\}/i,
 			alias: 'class-name'
 		};
 
-		let rangeChar = '(?:[^\\\\-]|' + escape.source + ')';
-		let range = RegExp(rangeChar + '-' + rangeChar);
+		const rangeChar = '(?:[^\\\\-]|' + escape.source + ')';
+		const range = RegExp(rangeChar + '-' + rangeChar);
 
 		// the name of a capturing group
-		let groupName = {
+		const groupName = {
 			pattern: /(<|')[^<>']+(?=[>']$)/,
 			lookbehind: true,
 			alias: 'variable'

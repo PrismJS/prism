@@ -105,7 +105,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			 * addInlined('style', 'css');
 			 */
 			value: function addInlined(tagName, lang) {
-				let includedCdataInside = {};
+				const includedCdataInside = {};
 				includedCdataInside['language-' + lang] = {
 					pattern: /(^<!\[CDATA\[)[\s\S]+?(?=\]\]>$)/i,
 					lookbehind: true,
@@ -113,7 +113,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				};
 				includedCdataInside['cdata'] = /^<!\[CDATA\[|\]\]>$/i;
 
-				let inside = {
+				const inside = {
 					'included-cdata': {
 						pattern: /<!\[CDATA\[[\s\S]*?\]\]>/i,
 						inside: includedCdataInside
@@ -124,7 +124,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 					inside: Prism.languages[lang]
 				};
 
-				let def = {};
+				const def = {};
 				def[tagName] = {
 					pattern: RegExp(/(<__[^>]*>)(?:<!\[CDATA\[(?:[^\]]|\](?!\]>))*\]\]>|(?!<!\[CDATA\[)[\s\S])*?(?=<\/__>)/.source.replace(/__/g, function () { return tagName; }), 'i'),
 					lookbehind: true,

@@ -8,7 +8,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 	alias: 'md',
 	grammar({ extend }) {
 		// Allow only one line break
-		let inner = /(?:\\.|[^\\\n\r]|(?:\n|\r\n?)(?![\r\n]))/.source;
+		const inner = /(?:\\.|[^\\\n\r]|(?:\n|\r\n?)(?![\r\n]))/.source;
 
 		/**
 		 * This function is intended for the creation of the bold or italic pattern.
@@ -26,9 +26,9 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		}
 
 
-		let tableCell = /(?:\\.|``(?:[^`\r\n]|`(?!`))+``|`[^`\r\n]+`|[^\\|\r\n`])+/.source;
-		let tableRow = /\|?__(?:\|__)+\|?(?:(?:\n|\r\n?)|(?![\s\S]))/.source.replace(/__/g, function () { return tableCell; });
-		let tableLine = /\|?[ \t]*:?-{3,}:?[ \t]*(?:\|[ \t]*:?-{3,}:?[ \t]*)+\|?(?:\n|\r\n?)/.source;
+		const tableCell = /(?:\\.|``(?:[^`\r\n]|`(?!`))+``|`[^`\r\n]+`|[^\\|\r\n`])+/.source;
+		const tableRow = /\|?__(?:\|__)+\|?(?:(?:\n|\r\n?)|(?![\s\S]))/.source.replace(/__/g, function () { return tableCell; });
+		const tableLine = /\|?[ \t]*:?-{3,}:?[ \t]*(?:\|[ \t]*:?-{3,}:?[ \t]*)+\|?(?:\n|\r\n?)/.source;
 
 
 		const markdown = extend('markup', {});
@@ -268,7 +268,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		return markdown;
 	},
 	effect(Prism) {
-		let tagPattern = RegExp(Prism.components.getLanguage('markup').tag.pattern.source, 'gi');
+		const tagPattern = RegExp(Prism.components.getLanguage('markup').tag.pattern.source, 'gi');
 
 		/**
 		 * A list of known entity names.
@@ -278,7 +278,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		 * @see {@link https://github.com/lodash/lodash/blob/2da024c3b4f9947a48517639de7560457cd4ec6c/unescape.js#L2}
 		 * @type {Partial<Record<string, string>>}
 		 */
-		let KNOWN_ENTITY_NAMES = {
+		const KNOWN_ENTITY_NAMES = {
 			'amp': '&',
 			'lt': '<',
 			'gt': '>',
@@ -309,7 +309,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 
 					return String.fromCodePoint(value);
 				} else {
-					let known = KNOWN_ENTITY_NAMES[code];
+					const known = KNOWN_ENTITY_NAMES[code];
 					if (known) {
 						return known;
 					}
@@ -333,7 +333,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				}
 
 				for (let i = 0, l = tokens.length; i < l; i++) {
-					let token = tokens[i];
+					const token = tokens[i];
 
 					if (token.type !== 'code') {
 						walkTokens(token.content);
@@ -354,8 +354,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 					 * ];
 					 */
 
-					let codeLang = token.content[1];
-					let codeBlock = token.content[3];
+					const codeLang = token.content[1];
+					const codeBlock = token.content[3];
 
 					if (codeLang && codeBlock &&
 							codeLang.type === 'code-language' && codeBlock.type === 'code-block' &&
@@ -367,7 +367,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 						let lang = codeLang.content.replace(/\b#/g, 'sharp').replace(/\b\+\+/g, 'pp');
 						// only use the first word
 						lang = (/[a-z][\w-]*/i.exec(lang) || [''])[0].toLowerCase();
-						let alias = 'language-' + lang;
+						const alias = 'language-' + lang;
 
 						// add alias
 						if (!codeBlock.alias) {
@@ -391,23 +391,23 @@ export default /** @type {import("../types").LanguageProto} */ ({
 
 			let codeLang = '';
 			for (let i = 0, l = env.classes.length; i < l; i++) {
-				let cls = env.classes[i];
-				let match = /language-(.+)/.exec(cls);
+				const cls = env.classes[i];
+				const match = /language-(.+)/.exec(cls);
 				if (match) {
 					codeLang = match[1];
 					break;
 				}
 			}
 
-			let grammar = Prism.components.getLanguage(codeLang);
+			const grammar = Prism.components.getLanguage(codeLang);
 
 			if (!grammar) {
 				if (codeLang && codeLang !== 'none' && Prism.plugins.autoloader) {
-					let id = 'md-' + new Date().valueOf() + '-' + Math.floor(Math.random() * 1e16);
+					const id = 'md-' + new Date().valueOf() + '-' + Math.floor(Math.random() * 1e16);
 					env.attributes['id'] = id;
 
 					Prism.plugins.autoloader.loadLanguages(codeLang, function () {
-						let ele = document.getElementById(id);
+						const ele = document.getElementById(id);
 						if (ele) {
 							ele.innerHTML = Prism.highlight(ele.textContent, Prism.languages[codeLang], codeLang);
 						}

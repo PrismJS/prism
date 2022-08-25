@@ -4,7 +4,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'css-extras',
 	require: css,
 	grammar({ getLanguage }) {
-		let string = /("|')(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/;
+		const string = /("|')(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/;
 		let selectorInside;
 
 		Prism.languages.css.selector = {
@@ -79,12 +79,12 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		});
 
-		let unit = {
+		const unit = {
 			pattern: /(\b\d+)(?:%|[a-z]+(?![\w-]))/,
 			lookbehind: true
 		};
 			// 123 -123 .123 -.123 12.3 -12.3
-		let number = {
+		const number = {
 			pattern: /(^|[^\w.-])-?(?:\d+(?:\.\d+)?|\.\d+)/,
 			lookbehind: true
 		};

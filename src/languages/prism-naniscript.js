@@ -7,11 +7,11 @@ import { getTextContent } from '../core/token';
  * @returns {boolean}
  */
 function isBracketsBalanced(input) {
-	let brackets = '[]{}';
-	let stack = [];
+	const brackets = '[]{}';
+	const stack = [];
 	for (let i = 0; i < input.length; i++) {
-		let bracket = input[i];
-		let bracketsIndex = brackets.indexOf(bracket);
+		const bracket = input[i];
+		const bracketsIndex = brackets.indexOf(bracket);
 		if (bracketsIndex !== -1) {
 			if (bracketsIndex % 2 === 0) {
 				stack.push(bracketsIndex + 1);
@@ -27,9 +27,9 @@ export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'naniscript',
 	alias: 'nani',
 	grammar() {
-		let expressionDef = /\{[^\r\n\[\]{}]*\}/;
+		const expressionDef = /\{[^\r\n\[\]{}]*\}/;
 
-		let params = {
+		const params = {
 			'quoted-string': {
 				pattern: /"(?:[^"\\]|\\.)*"/,
 				alias: 'operator'
@@ -146,7 +146,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		return Prism.hooks.add('after-tokenize', function (env) {
 			env.tokens.forEach(function (token) {
 				if (typeof token !== 'string' && token.type === 'generic-text') {
-					let content = getTextContent(token);
+					const content = getTextContent(token);
 					if (!isBracketsBalanced(content)) {
 						token.type = 'bad-line';
 						token.content = content;

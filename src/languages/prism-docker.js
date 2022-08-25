@@ -5,19 +5,19 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		// Many of the following regexes will contain negated lookaheads like `[ \t]+(?![ \t])`. This is a trick to ensure
 		// that quantifiers behave *atomically*. Atomic quantifiers are necessary to prevent exponential backtracking.
 
-		let spaceAfterBackSlash = /\\[\r\n](?:\s|\\[\r\n]|#.*(?!.))*(?![\s#]|\\[\r\n])/.source;
+		const spaceAfterBackSlash = /\\[\r\n](?:\s|\\[\r\n]|#.*(?!.))*(?![\s#]|\\[\r\n])/.source;
 		// At least one space, comment, or line break
-		let space = /(?:[ \t]+(?![ \t])(?:<SP_BS>)?|<SP_BS>)/.source
+		const space = /(?:[ \t]+(?![ \t])(?:<SP_BS>)?|<SP_BS>)/.source
 			.replace(/<SP_BS>/g, function () { return spaceAfterBackSlash; });
 
-		let string = /"(?:[^"\\\r\n]|\\(?:\r\n|[\s\S]))*"|'(?:[^'\\\r\n]|\\(?:\r\n|[\s\S]))*'/.source;
-		let option = /--[\w-]+=(?:<STR>|(?!["'])(?:[^\s\\]|\\.)+)/.source.replace(/<STR>/g, function () { return string; });
+		const string = /"(?:[^"\\\r\n]|\\(?:\r\n|[\s\S]))*"|'(?:[^'\\\r\n]|\\(?:\r\n|[\s\S]))*'/.source;
+		const option = /--[\w-]+=(?:<STR>|(?!["'])(?:[^\s\\]|\\.)+)/.source.replace(/<STR>/g, function () { return string; });
 
-		let stringRule = {
+		const stringRule = {
 			pattern: RegExp(string),
 			greedy: true
 		};
-		let commentRule = {
+		const commentRule = {
 			pattern: /(^[ \t]*)#.*/m,
 			lookbehind: true,
 			greedy: true

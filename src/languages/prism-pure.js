@@ -57,12 +57,12 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'punctuation': /[(){}\[\];,|]/
 		};
 
-		let inlineLanguages = [
+		const inlineLanguages = [
 			'c',
 			{ lang: 'c++', alias: 'cpp' },
 			'fortran'
 		];
-		let inlineLanguageRe = /%< *-\*- *<lang>\d* *-\*-[\s\S]+?%>/.source;
+		const inlineLanguageRe = /%< *-\*- *<lang>\d* *-\*-[\s\S]+?%>/.source;
 
 		inlineLanguages.forEach(function (item) {
 			let alias; let lang;

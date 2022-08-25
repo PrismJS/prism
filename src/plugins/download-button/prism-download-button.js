@@ -5,12 +5,12 @@
 	}
 
 	Prism.plugins.toolbar.registerButton('download-file', function (env) {
-		let pre = env.element.parentNode;
+		const pre = env.element.parentNode;
 		if (!pre || !/pre/i.test(pre.nodeName) || !pre.hasAttribute('data-src') || !pre.hasAttribute('data-download-link')) {
 			return;
 		}
-		let src = pre.getAttribute('data-src');
-		let a = document.createElement('a');
+		const src = pre.getAttribute('data-src');
+		const a = document.createElement('a');
 		a.textContent = pre.getAttribute('data-download-link-label') || 'Download';
 		a.setAttribute('download', '');
 		a.href = src;

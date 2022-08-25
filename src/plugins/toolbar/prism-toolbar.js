@@ -4,9 +4,9 @@
 		return;
 	}
 
-	let callbacks = [];
-	let map = {};
-	let noop = function () {};
+	const callbacks = [];
+	const map = {};
+	const noop = function () {};
 
 	Prism.plugins.toolbar = {};
 
@@ -24,7 +24,7 @@
 	 * @param {string} key
 	 * @param {ButtonOptions|Function} opts
 	 */
-	let registerButton = Prism.plugins.toolbar.registerButton = function (key, opts) {
+	const registerButton = Prism.plugins.toolbar.registerButton = function (key, opts) {
 		let callback;
 
 		if (typeof opts === 'function') {
@@ -90,9 +90,9 @@
 	 *
 	 * @param env
 	 */
-	let hook = Prism.plugins.toolbar.hook = function (env) {
+	const hook = Prism.plugins.toolbar.hook = function (env) {
 		// Check if inline or actual code block (credit to line-numbers plugin)
-		let pre = env.element.parentNode;
+		const pre = env.element.parentNode;
 		if (!pre || !/pre/i.test(pre.nodeName)) {
 			return;
 		}
@@ -103,18 +103,18 @@
 		}
 
 		// Create wrapper for <pre> to prevent scrolling toolbar with content
-		let wrapper = document.createElement('div');
+		const wrapper = document.createElement('div');
 		wrapper.classList.add('code-toolbar');
 		pre.parentNode.insertBefore(wrapper, pre);
 		wrapper.appendChild(pre);
 
 		// Setup the toolbar
-		let toolbar = document.createElement('div');
+		const toolbar = document.createElement('div');
 		toolbar.classList.add('toolbar');
 
 		// order callbacks
 		let elementCallbacks = callbacks;
-		let order = getOrder(env.element);
+		const order = getOrder(env.element);
 		if (order) {
 			elementCallbacks = order.map(function (key) {
 				return map[key] || noop;
@@ -122,13 +122,13 @@
 		}
 
 		elementCallbacks.forEach(function (callback) {
-			let element = callback(env);
+			const element = callback(env);
 
 			if (!element) {
 				return;
 			}
 
-			let item = document.createElement('div');
+			const item = document.createElement('div');
 			item.classList.add('toolbar-item');
 
 			item.appendChild(element);
@@ -140,7 +140,7 @@
 	};
 
 	registerButton('label', function (env) {
-		let pre = env.element.parentNode;
+		const pre = env.element.parentNode;
 		if (!pre || !/pre/i.test(pre.nodeName)) {
 			return;
 		}
@@ -150,7 +150,7 @@
 		}
 
 		let element; let template;
-		let text = pre.getAttribute('data-label');
+		const text = pre.getAttribute('data-label');
 		try {
 			// Any normal text will blow up this selector.
 			template = document.querySelector('template#' + text);

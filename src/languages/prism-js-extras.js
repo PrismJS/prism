@@ -116,10 +116,10 @@ export default /** @type {import("../types").LanguageProto} */ ({
 
 
 		// add 'maybe-class-name' to tokens which might be a class name
-		let maybeClassNameTokens = ['function', 'function-variable', 'method', 'method-variable', 'property-access'];
+		const maybeClassNameTokens = ['function', 'function-variable', 'method', 'method-variable', 'property-access'];
 
 		for (let i = 0; i < maybeClassNameTokens.length; i++) {
-			let token = maybeClassNameTokens[i];
+			const token = maybeClassNameTokens[i];
 			let value = Prism.languages.javascript[token];
 
 			// convert regex to object
@@ -131,7 +131,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 
 			// keep in mind that we don't support arrays
 
-			let inside = value.inside || {};
+			const inside = value.inside || {};
 			value.inside = inside;
 
 			inside['maybe-class-name'] = /^[A-Z][\s\S]*/;

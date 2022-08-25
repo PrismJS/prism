@@ -39,9 +39,9 @@
 
 	Prism.hooks.add('wrap', function (env) {
 		if (env.language === 'treeview' && env.type === 'entry-name') {
-			let classes = env.classes;
+			const classes = env.classes;
 
-			let folderPattern = /(^|[^\\])\/\s*$/;
+			const folderPattern = /(^|[^\\])\/\s*$/;
 			if (folderPattern.test(env.content)) {
 				// folder
 
@@ -54,7 +54,7 @@
 				// remove trailing file marker
 				env.content = env.content.replace(/(^|[^\\])[=*|]\s*$/, '$1');
 
-				let parts = env.content.toLowerCase().replace(/\s+/g, '').split('.');
+				const parts = env.content.toLowerCase().replace(/\s+/g, '').split('.');
 				while (parts.length > 1) {
 					parts.shift();
 					// Ex. 'foo.min.js' would become '<span class="token keyword ext-min-js ext-js">foo.min.js</span>'

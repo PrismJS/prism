@@ -3,17 +3,17 @@ import { rest } from '../shared/symbols';
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'stylus',
 	grammar() {
-		let unit = {
+		const unit = {
 			pattern: /(\b\d+)(?:%|[a-z]+)/,
 			lookbehind: true
 		};
 			// 123 -123 .123 -.123 12.3 -12.3
-		let number = {
+		const number = {
 			pattern: /(^|[^\w.-])-?(?:\d+(?:\.\d+)?|\.\d+)/,
 			lookbehind: true
 		};
 
-		let inside = {
+		const inside = {
 			'comment': {
 				pattern: /(^|[^\\])(?:\/\*[\s\S]*?\*\/|\/\/.*)/,
 				lookbehind: true

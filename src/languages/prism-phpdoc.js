@@ -5,7 +5,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'phpdoc',
 	require: [php, javadoclike],
 	grammar({ extend, getLanguage }) {
-		let typeExpression = /(?:\b[a-zA-Z]\w*|[|\\[\]])+/.source;
+		const typeExpression = /(?:\b[a-zA-Z]\w*|[|\\[\]])+/.source;
 
 		Prism.languages.phpdoc = extend('javadoclike', {
 			'parameter': {

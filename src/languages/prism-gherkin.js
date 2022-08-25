@@ -1,7 +1,7 @@
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'gherkin',
 	grammar() {
-		let tableRow = /(?:\r?\n|\r)[ \t]*\|.+\|(?:(?!\|).)*/.source;
+		const tableRow = /(?:\r?\n|\r)[ \t]*\|.+\|(?:(?!\|).)*/.source;
 
 		return {
 			'pystring': {

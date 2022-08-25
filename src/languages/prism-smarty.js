@@ -89,8 +89,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 	effect(Prism) {
 		const templating = new MarkupTemplating(this.id, Prism);
 
-		let string = /"(?:\\.|[^"\\\r\n])*"|'(?:\\.|[^'\\\r\n])*'/;
-		let smartyPattern = RegExp(
+		const string = /"(?:\\.|[^"\\\r\n])*"|'(?:\\.|[^'\\\r\n])*'/;
+		const smartyPattern = RegExp(
 			// comments
 			/\{\*[\s\S]*?\*\}/.source +
 				'|' +

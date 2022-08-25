@@ -3,7 +3,7 @@ import { rest } from '../shared/symbols';
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'css',
 	grammar({ getLanguage }) {
-		let string = /(?:"(?:\\(?:\r\n|[\s\S])|[^"\\\r\n])*"|'(?:\\(?:\r\n|[\s\S])|[^'\\\r\n])*')/;
+		const string = /(?:"(?:\\(?:\r\n|[\s\S])|[^"\\\r\n])*"|'(?:\\(?:\r\n|[\s\S])|[^'\\\r\n])*')/;
 
 		const css = {
 			'comment': /\/\*[\s\S]*?\*\//,
@@ -56,7 +56,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'punctuation': /[(){};:,]/
 		};
 
-		let markup = Prism.languages.markup;
+		const markup = Prism.languages.markup;
 		if (markup) {
 			markup.tag.addInlined('style', 'css');
 			markup.tag.addAttribute('style', 'css');

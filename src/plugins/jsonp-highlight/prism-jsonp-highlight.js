@@ -16,7 +16,7 @@
 	 *
 	 * @type {Array<{adapter: Adapter, name: string}>}
 	 */
-	let adapters = [];
+	const adapters = [];
 
 	/**
 	 * Adds a new function to the list of adapters.
@@ -69,7 +69,7 @@
 			adapter = getAdapter(adapter);
 		}
 		if (typeof adapter === 'function') {
-			let index = adapters.findIndex(function (item) {
+			const index = adapters.findIndex(function (item) {
 				return item.adapter === adapter;
 			});
 			if (index >= 0) {
@@ -96,13 +96,13 @@
 				return 'Error: ' + (rsp.data.message || rsp.meta.status);
 			}
 
-			let files = rsp.data.files;
+			const files = rsp.data.files;
 			let filename = el.getAttribute('data-filename');
 			if (filename == null) {
 				// Maybe in the future we can somehow render all files
 				// But the standard <script> include for gists does that nicely already,
 				// so that might be getting beyond the scope of this plugin
-				for (let key in files) {
+				for (const key in files) {
 					if (files.hasOwnProperty(key)) {
 						filename = key;
 						break;
@@ -137,20 +137,20 @@
 	 * @returns {void}
 	 */
 	function jsonp(src, callbackParameter, onSuccess, onError) {
-		let callbackName = 'prismjsonp' + jsonpCallbackCounter++;
+		const callbackName = 'prismjsonp' + jsonpCallbackCounter++;
 
-		let uri = document.createElement('a');
+		const uri = document.createElement('a');
 		uri.href = src;
 		uri.href += (uri.search ? '&' : '?') + (callbackParameter || 'callback') + '=' + callbackName;
 
-		let script = document.createElement('script');
+		const script = document.createElement('script');
 		script.src = uri.href;
 		script.onerror = function () {
 			cleanup();
 			onError('network');
 		};
 
-		let timeoutId = setTimeout(function () {
+		const timeoutId = setTimeout(function () {
 			cleanup();
 			onError('timeout');
 		}, Prism.plugins.jsonphighlight.timeout);
@@ -170,21 +170,21 @@
 		document.head.appendChild(script);
 	}
 
-	let LOADING_MESSAGE = 'Loading…';
-	let MISSING_ADAPTER_MESSAGE = function (name) {
+	const LOADING_MESSAGE = 'Loading…';
+	const MISSING_ADAPTER_MESSAGE = function (name) {
 		return '✖ Error: JSONP adapter function "' + name + '" doesn\'t exist';
 	};
-	let TIMEOUT_MESSAGE = function (url) {
+	const TIMEOUT_MESSAGE = function (url) {
 		return '✖ Error: Timeout loading ' + url;
 	};
-	let UNKNOWN_FAILURE_MESSAGE = '✖ Error: Cannot parse response (perhaps you need an adapter function?)';
+	const UNKNOWN_FAILURE_MESSAGE = '✖ Error: Cannot parse response (perhaps you need an adapter function?)';
 
-	let STATUS_ATTR = 'data-jsonp-status';
-	let STATUS_LOADING = 'loading';
-	let STATUS_LOADED = 'loaded';
-	let STATUS_FAILED = 'failed';
+	const STATUS_ATTR = 'data-jsonp-status';
+	const STATUS_LOADING = 'loading';
+	const STATUS_LOADED = 'loaded';
+	const STATUS_FAILED = 'failed';
 
-	let SELECTOR = 'pre[data-jsonp]:not([' + STATUS_ATTR + '="' + STATUS_LOADED + '"])'
+	const SELECTOR = 'pre[data-jsonp]:not([' + STATUS_ATTR + '="' + STATUS_LOADED + '"])'
 		+ ':not([' + STATUS_ATTR + '="' + STATUS_LOADING + '"])';
 
 
@@ -193,7 +193,7 @@
 	});
 
 	Prism.hooks.add('before-sanity-check', function (env) {
-		let pre = /** @type {HTMLPreElement} */ (env.element);
+		const pre = /** @type {HTMLPreElement} */ (env.element);
 		if (pre.matches(SELECTOR)) {
 			env.code = ''; // fast-path the whole thing and go to complete
 
@@ -201,20 +201,20 @@
 			pre.setAttribute(STATUS_ATTR, STATUS_LOADING);
 
 			// add code element with loading message
-			let code = pre.appendChild(document.createElement('CODE'));
+			const code = pre.appendChild(document.createElement('CODE'));
 			code.textContent = LOADING_MESSAGE;
 
 			// set language
-			let language = env.language;
+			const language = env.language;
 			code.className = 'language-' + language;
 
 			// preload the language
-			let autoloader = Prism.plugins.autoloader;
+			const autoloader = Prism.plugins.autoloader;
 			if (autoloader) {
 				autoloader.loadLanguages(language);
 			}
 
-			let adapterName = pre.getAttribute('data-adapter');
+			const adapterName = pre.getAttribute('data-adapter');
 			let adapter = null;
 			if (adapterName) {
 				if (typeof window[adapterName] === 'function') {
@@ -228,7 +228,7 @@
 				}
 			}
 
-			let src = pre.getAttribute('data-jsonp');
+			const src = pre.getAttribute('data-jsonp');
 
 			jsonp(
 				src,
@@ -292,7 +292,7 @@
 		 * @param {Element | Document} [container=document]
 		 */
 		highlight: function (container) {
-			let elements = (container || document).querySelectorAll(SELECTOR);
+			const elements = (container || document).querySelectorAll(SELECTOR);
 
 			for (var i = 0, element; (element = elements[i++]);) {
 				Prism.highlightElement(element);

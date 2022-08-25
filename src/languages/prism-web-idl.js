@@ -2,8 +2,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'web-idl',
 	alias: 'webidl',
 	grammar() {
-		let id = /(?:\B-|\b_|\b)[A-Za-z][\w-]*(?![\w-])/.source;
-		let type =
+		const id = /(?:\B-|\b_|\b)[A-Za-z][\w-]*(?![\w-])/.source;
+		const type =
 				'(?:' +
 				/\b(?:unsigned\s+)?long\s+long(?![\w-])/.source +
 				'|' +
@@ -12,7 +12,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				/(?!(?:unrestricted|unsigned)\b)/.source + id + /(?:\s*<(?:[^<>]|<[^<>]*>)*>)?/.source +
 				')' + /(?:\s*\?)?/.source;
 
-		let typeInside = {};
+		const typeInside = {};
 
 		const webIdl = {
 			'comment': {
@@ -92,7 +92,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'punctuation': /[(){}[\].,;]/
 		};
 
-		for (let key in webIdl) {
+		for (const key in webIdl) {
 			if (key !== 'class-name') {
 				typeInside[key] = webIdl[key];
 			}

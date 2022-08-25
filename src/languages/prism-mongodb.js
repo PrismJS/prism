@@ -46,7 +46,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'$returnKey', '$showDiskLoc', '$natural',
 		];
 
-		let builtinFunctions = [
+		const builtinFunctions = [
 			'ObjectId',
 			'Code',
 			'BinData',
@@ -65,7 +65,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			return operator.replace('$', '\\$');
 		});
 
-		let operatorsSource = '(?:' + operators.join('|') + ')\\b';
+		const operatorsSource = '(?:' + operators.join('|') + ')\\b';
 
 		const mongodb = extend('javascript', {});
 

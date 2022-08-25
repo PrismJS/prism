@@ -5,7 +5,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'gradle',
 	require: clike,
 	grammar({ extend }) {
-		let interpolation = {
+		const interpolation = {
 			pattern: /((?:^|[^\\$])(?:\\{2})*)\$(?:\w+|\{[^{}]*\})/,
 			lookbehind: true,
 			inside: {

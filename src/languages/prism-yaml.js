@@ -4,18 +4,18 @@ export default /** @type {import("../types").LanguageProto} */ ({
 	grammar() {
 		// https://yaml.org/spec/1.2/spec.html#c-ns-anchor-property
 		// https://yaml.org/spec/1.2/spec.html#c-ns-alias-node
-		let anchorOrAlias = /[*&][^\s[\]{},]+/;
+		const anchorOrAlias = /[*&][^\s[\]{},]+/;
 		// https://yaml.org/spec/1.2/spec.html#c-ns-tag-property
-		let tag = /!(?:<[\w\-%#;/?:@&=+$,.!~*'()[\]]+>|(?:[a-zA-Z\d-]*!)?[\w\-%#;/?:@&=+$.~*'()]+)?/;
+		const tag = /!(?:<[\w\-%#;/?:@&=+$,.!~*'()[\]]+>|(?:[a-zA-Z\d-]*!)?[\w\-%#;/?:@&=+$.~*'()]+)?/;
 		// https://yaml.org/spec/1.2/spec.html#c-ns-properties(n,c)
-		let properties = '(?:' + tag.source + '(?:[ \t]+' + anchorOrAlias.source + ')?|'
+		const properties = '(?:' + tag.source + '(?:[ \t]+' + anchorOrAlias.source + ')?|'
 				+ anchorOrAlias.source + '(?:[ \t]+' + tag.source + ')?)';
 			// https://yaml.org/spec/1.2/spec.html#ns-plain(n,c)
 			// This is a simplified version that doesn't support "#" and multiline keys
 			// All these long scarry character classes are simplified versions of YAML's characters
-		let plainKey = /(?:[^\s\x00-\x08\x0e-\x1f!"#%&'*,\-:>?@[\]`{|}\x7f-\x84\x86-\x9f\ud800-\udfff\ufffe\uffff]|[?:-]<PLAIN>)(?:[ \t]*(?:(?![#:])<PLAIN>|:<PLAIN>))*/.source
+		const plainKey = /(?:[^\s\x00-\x08\x0e-\x1f!"#%&'*,\-:>?@[\]`{|}\x7f-\x84\x86-\x9f\ud800-\udfff\ufffe\uffff]|[?:-]<PLAIN>)(?:[ \t]*(?:(?![#:])<PLAIN>|:<PLAIN>))*/.source
 			.replace(/<PLAIN>/g, function () { return /[^\s\x00-\x08\x0e-\x1f,[\]{}\x7f-\x84\x86-\x9f\ud800-\udfff\ufffe\uffff]/.source; });
-		let string = /"(?:[^"\\\r\n]|\\.)*"|'(?:[^'\\\r\n]|\\.)*'/.source;
+		const string = /"(?:[^"\\\r\n]|\\.)*"|'(?:[^'\\\r\n]|\\.)*'/.source;
 
 		/**
 		 *
@@ -25,7 +25,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		 */
 		function createValuePattern(value, flags) {
 			flags = (flags || '').replace(/m/g, '') + 'm'; // add m flag
-			let pattern = /([:\-,[{]\s*(?:\s<<prop>>[ \t]+)?)(?:<<value>>)(?=[ \t]*(?:$|,|\]|\}|(?:[\r\n]\s*)?#))/.source
+			const pattern = /([:\-,[{]\s*(?:\s<<prop>>[ \t]+)?)(?:<<value>>)(?=[ \t]*(?:$|,|\]|\}|(?:[\r\n]\s*)?#))/.source
 				.replace(/<<prop>>/g, function () { return properties; }).replace(/<<value>>/g, function () { return value; });
 			return RegExp(pattern, flags);
 		}

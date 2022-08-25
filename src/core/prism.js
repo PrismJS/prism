@@ -200,7 +200,7 @@ export class Prism {
 		}
 
 		/** @type {LinkedList<string | Token>} */
-		let tokenList = new LinkedList();
+		const tokenList = new LinkedList();
 		tokenList.addAfter(tokenList.head, text);
 
 		this._matchGrammar(text, tokenList, grammar, tokenList.head, 0);
@@ -275,8 +275,8 @@ export class Prism {
 							break;
 						}
 
-						let from = match.index;
-						let to = match.index + match[0].length;
+						const from = match.index;
+						const to = match.index + match[0].length;
 						let p = pos;
 
 						// find the node that contains the match
@@ -317,12 +317,12 @@ export class Prism {
 					}
 
 					// eslint-disable-next-line no-redeclare
-					let from = match.index;
-					let matchStr = match[0];
-					let before = str.slice(0, from);
-					let after = str.slice(from + matchStr.length);
+					const from = match.index;
+					const matchStr = match[0];
+					const before = str.slice(0, from);
+					const after = str.slice(from + matchStr.length);
 
-					let reach = pos + str.length;
+					const reach = pos + str.length;
 					if (rematch && reach > rematch.reach) {
 						rematch.reach = reach;
 					}
@@ -336,7 +336,7 @@ export class Prism {
 
 					tokenList.removeRange(removeFrom, removeCount);
 
-					let wrapped = new Token(token, insideGrammar ? this.tokenize(matchStr, insideGrammar) : matchStr, alias, matchStr);
+					const wrapped = new Token(token, insideGrammar ? this.tokenize(matchStr, insideGrammar) : matchStr, alias, matchStr);
 					currentNode = tokenList.addAfter(removeFrom, wrapped);
 
 					if (after) {
@@ -348,7 +348,7 @@ export class Prism {
 						// this can only happen if the current pattern is greedy
 
 						/** @type {RematchOptions} */
-						let nestedRematch = {
+						const nestedRematch = {
 							cause: token + ',' + j,
 							reach: reach
 						};
@@ -375,10 +375,10 @@ export class Prism {
  */
 function matchPattern(pattern, pos, text, lookbehind) {
 	pattern.lastIndex = pos;
-	let match = pattern.exec(text);
+	const match = pattern.exec(text);
 	if (match && lookbehind && match[1]) {
 		// change the match to remove the text matched by the Prism lookbehind group
-		let lookbehindLength = match[1].length;
+		const lookbehindLength = match[1].length;
 		match.index += lookbehindLength;
 		match[0] = match[0].slice(lookbehindLength);
 	}
@@ -419,7 +419,7 @@ function stringify(o, language, hooks) {
 		language: language
 	};
 
-	let aliases = o.alias;
+	const aliases = o.alias;
 	if (aliases) {
 		if (Array.isArray(aliases)) {
 			env.classes.push(...aliases);
@@ -431,7 +431,7 @@ function stringify(o, language, hooks) {
 	hooks.run('wrap', env);
 
 	let attributes = '';
-	for (let name in env.attributes) {
+	for (const name in env.attributes) {
 		attributes += ' ' + name + '="' + (env.attributes[name] || '').replace(/"/g, '&quot;') + '"';
 	}
 

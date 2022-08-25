@@ -27,7 +27,7 @@ for (const lang in languages) {
 
 		if (languages[lang].aliasTitles) {
 			it('- should have all alias titles registered as alias', function () {
-				let aliases = new Set(toArray(languages[lang].alias));
+				const aliases = new Set(toArray(languages[lang].alias));
 
 				Object.keys(languages[lang].aliasTitles).forEach(id => {
 					if (!aliases.has(id)) {
@@ -40,7 +40,7 @@ for (const lang in languages) {
 
 		it('- should known all aliases', function () {
 
-			let loadedLanguages = new Set(Object.keys(PrismLoader.createInstance(lang).languages));
+			const loadedLanguages = new Set(Object.keys(PrismLoader.createInstance(lang).languages));
 
 			// check that all aliases are defined
 			toArray(languages[lang].alias).forEach(alias => {

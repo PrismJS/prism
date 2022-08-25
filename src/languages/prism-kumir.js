@@ -9,7 +9,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		 *
 		 * @type {string}
 		 */
-		let nonId = /\s\x00-\x1f\x22-\x2f\x3a-\x3f\x5b-\x5e\x60\x7b-\x7e/.source;
+		const nonId = /\s\x00-\x1f\x22-\x2f\x3a-\x3f\x5b-\x5e\x60\x7b-\x7e/.source;
 
 		/**
 		 * Surround a regular expression for IDs with patterns for non-ID sequences.

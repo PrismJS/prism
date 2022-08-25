@@ -14,8 +14,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			return RegExp(replace(pattern, replacements), flags || '');
 		}
 
-		let types = /bool|clip|float|int|string|val/.source;
-		let internals = [
+		const types = /bool|clip|float|int|string|val/.source;
+		const internals = [
 			// bools
 			/is(?:bool|clip|float|int|string)|defined|(?:(?:internal)?function|var)?exists?/.source,
 			// control
@@ -43,7 +43,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			// avsplus
 			/addautoloaddir|on(?:cpu|cuda)|prefetch|setfiltermtmode/.source
 		].join('|');
-		let properties = [
+		const properties = [
 			// content
 			/has(?:audio|video)/.source,
 			// resolution
@@ -57,7 +57,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			// audio
 			/audio(?:bits|channels|duration|length(?:[fs]|hi|lo)?|rate)|isaudio(?:float|int)/.source
 		].join('|');
-		let filters = [
+		const filters = [
 			// source
 			/avi(?:file)?source|directshowsource|image(?:reader|source|sourceanim)|opendmlsource|segmented(?:avisource|directshowsource)|wavsource/.source,
 			// color
@@ -81,7 +81,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			// debug
 			/blackness|blankclip|colorbars(?:hd)?|compare|dumpfiltergraph|echo|histogram|info|messageclip|preroll|setgraphanalysis|show(?:framenumber|smpte|time)|showfiveversions|stack(?:horizontal|vertical)|subtitle|tone|version/.source
 		].join('|');
-		let allinternals = [internals, properties, filters].join('|');
+		const allinternals = [internals, properties, filters].join('|');
 
 		return {
 			'comment': [

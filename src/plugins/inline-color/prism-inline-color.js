@@ -5,10 +5,10 @@
 	}
 
 	// Copied from the markup language definition
-	let HTML_TAG = /<\/?(?!\d)[^\s>\/=$<%]+(?:\s(?:\s*[^\s>\/=]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+(?=[\s>]))|(?=[\s/>])))+)?\s*\/?>/g;
+	const HTML_TAG = /<\/?(?!\d)[^\s>\/=$<%]+(?:\s(?:\s*[^\s>\/=]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+(?=[\s>]))|(?=[\s/>])))+)?\s*\/?>/g;
 
 	// a regex to validate hexadecimal colors
-	let HEX_COLOR = /^#?((?:[\da-f]){3,4}|(?:[\da-f]{2}){3,4})$/i;
+	const HEX_COLOR = /^#?((?:[\da-f]){3,4}|(?:[\da-f]{2}){3,4})$/i;
 
 	/**
 	 * Parses the given hexadecimal representation and returns the parsed RGBA color.
@@ -23,23 +23,23 @@
 	 * @returns {string | undefined}
 	 */
 	function parseHexColor(hex) {
-		let match = HEX_COLOR.exec(hex);
+		const match = HEX_COLOR.exec(hex);
 		if (!match) {
 			return undefined;
 		}
 		hex = match[1]; // removes the leading "#"
 
 		// the width and number of channels
-		let channelWidth = hex.length >= 6 ? 2 : 1;
-		let channelCount = hex.length / channelWidth;
+		const channelWidth = hex.length >= 6 ? 2 : 1;
+		const channelCount = hex.length / channelWidth;
 
 		// the scale used to normalize 4bit and 8bit values
-		let scale = channelWidth == 1 ? 1 / 15 : 1 / 255;
+		const scale = channelWidth == 1 ? 1 / 15 : 1 / 255;
 
 		// normalized RGBA channels
-		let channels = [];
+		const channels = [];
 		for (let i = 0; i < channelCount; i++) {
-			let int = parseInt(hex.substr(i * channelWidth, channelWidth), 16);
+			const int = parseInt(hex.substr(i * channelWidth, channelWidth), 16);
 			channels.push(int * scale);
 		}
 		if (channelCount == 3) {
@@ -47,10 +47,10 @@
 		}
 
 		// output
-		let rgb = channels.slice(0, 3).map(function (x) {
+		const rgb = channels.slice(0, 3).map(function (x) {
 			return String(Math.round(x * 255));
 		}).join(',');
-		let alpha = String(Number(channels[3].toFixed(3))); // easy way to round 3 decimal places
+		const alpha = String(Number(channels[3].toFixed(3))); // easy way to round 3 decimal places
 
 		return 'rgba(' + rgb + ',' + alpha + ')';
 	}
@@ -62,7 +62,7 @@
 	 * @returns {string | undefined}
 	 */
 	function validateColor(color) {
-		let s = new Option().style;
+		const s = new Option().style;
 		s.color = color;
 		return s.color ? color : undefined;
 	}
@@ -75,7 +75,7 @@
 	 *
 	 * @type {((value: string) => (string|undefined))[]}
 	 */
-	let parsers = [
+	const parsers = [
 		parseHexColor,
 		validateColor
 	];
@@ -83,10 +83,10 @@
 
 	Prism.hooks.add('wrap', function (env) {
 		if (env.type === 'color' || env.classes.indexOf('color') >= 0) {
-			let content = env.content;
+			const content = env.content;
 
 			// remove all HTML tags inside
-			let rawText = content.split(HTML_TAG).join('');
+			const rawText = content.split(HTML_TAG).join('');
 
 			let color;
 			for (let i = 0, l = parsers.length; i < l && !color; i++) {
@@ -97,7 +97,7 @@
 				return;
 			}
 
-			let previewElement = '<span class="inline-color-wrapper"><span class="inline-color" style="background-color:' + color + ';"></span></span>';
+			const previewElement = '<span class="inline-color-wrapper"><span class="inline-color" style="background-color:' + color + ';"></span></span>';
 			env.content = previewElement + content;
 		}
 	});

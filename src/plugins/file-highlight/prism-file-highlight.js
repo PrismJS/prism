@@ -9,13 +9,13 @@
 		Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
 	}
 
-	let LOADING_MESSAGE = 'Loading…';
-	let FAILURE_MESSAGE = function (status, message) {
+	const LOADING_MESSAGE = 'Loading…';
+	const FAILURE_MESSAGE = function (status, message) {
 		return '✖ Error ' + status + ' while fetching file: ' + message;
 	};
-	let FAILURE_EMPTY_MESSAGE = '✖ Error: File does not exist or is empty';
+	const FAILURE_EMPTY_MESSAGE = '✖ Error: File does not exist or is empty';
 
-	let EXTENSIONS = {
+	const EXTENSIONS = {
 		'js': 'javascript',
 		'py': 'python',
 		'rb': 'ruby',
@@ -27,12 +27,12 @@
 		'tex': 'latex'
 	};
 
-	let STATUS_ATTR = 'data-src-status';
-	let STATUS_LOADING = 'loading';
-	let STATUS_LOADED = 'loaded';
-	let STATUS_FAILED = 'failed';
+	const STATUS_ATTR = 'data-src-status';
+	const STATUS_LOADING = 'loading';
+	const STATUS_LOADED = 'loaded';
+	const STATUS_FAILED = 'failed';
 
-	let SELECTOR = 'pre[data-src]:not([' + STATUS_ATTR + '="' + STATUS_LOADED + '"])'
+	const SELECTOR = 'pre[data-src]:not([' + STATUS_ATTR + '="' + STATUS_LOADED + '"])'
 		+ ':not([' + STATUS_ATTR + '="' + STATUS_LOADING + '"])';
 
 	/**
@@ -43,7 +43,7 @@
 	 * @param {(reason: string) => void} error
 	 */
 	function loadFile(src, success, error) {
-		let xhr = new XMLHttpRequest();
+		const xhr = new XMLHttpRequest();
 		xhr.open('GET', src, true);
 		xhr.onreadystatechange = function () {
 			if (xhr.readyState == 4) {
@@ -70,11 +70,11 @@
 	 * @returns {[number, number | undefined] | undefined}
 	 */
 	function parseRange(range) {
-		let m = /^\s*(\d+)\s*(?:(,)\s*(?:(\d+)\s*)?)?$/.exec(range || '');
+		const m = /^\s*(\d+)\s*(?:(,)\s*(?:(\d+)\s*)?)?$/.exec(range || '');
 		if (m) {
-			let start = Number(m[1]);
-			let comma = m[2];
-			let end = m[3];
+			const start = Number(m[1]);
+			const comma = m[2];
+			const end = m[3];
 
 			if (!comma) {
 				return [start, start];
@@ -92,23 +92,23 @@
 	});
 
 	Prism.hooks.add('before-sanity-check', function (env) {
-		let pre = /** @type {HTMLPreElement} */ (env.element);
+		const pre = /** @type {HTMLPreElement} */ (env.element);
 		if (pre.matches(SELECTOR)) {
 			env.code = ''; // fast-path the whole thing and go to complete
 
 			pre.setAttribute(STATUS_ATTR, STATUS_LOADING); // mark as loading
 
 			// add code element with loading message
-			let code = pre.appendChild(document.createElement('CODE'));
+			const code = pre.appendChild(document.createElement('CODE'));
 			code.textContent = LOADING_MESSAGE;
 
-			let src = pre.getAttribute('data-src');
+			const src = pre.getAttribute('data-src');
 
 			let language = env.language;
 			if (language === 'none') {
 				// the language might be 'none' because there is no language set;
 				// in this case, we want to use the extension as the language
-				let extension = (/\.(\w+)$/.exec(src) || [, 'none'])[1];
+				const extension = (/\.(\w+)$/.exec(src) || [, 'none'])[1];
 				language = EXTENSIONS[extension] || extension;
 			}
 
@@ -117,7 +117,7 @@
 			Prism.util.setLanguage(pre, language);
 
 			// preload the language
-			let autoloader = Prism.plugins.autoloader;
+			const autoloader = Prism.plugins.autoloader;
 			if (autoloader) {
 				autoloader.loadLanguages(language);
 			}
@@ -130,9 +130,9 @@
 					pre.setAttribute(STATUS_ATTR, STATUS_LOADED);
 
 					// handle data-range
-					let range = parseRange(pre.getAttribute('data-range'));
+					const range = parseRange(pre.getAttribute('data-range'));
 					if (range) {
-						let lines = text.split(/\r\n?|\n/g);
+						const lines = text.split(/\r\n?|\n/g);
 
 						// the range is one-based and inclusive on both ends
 						let start = range[0];
@@ -174,7 +174,7 @@
 		 * @param {ParentNode} [container=document]
 		 */
 		highlight: function highlight(container) {
-			let elements = (container || document).querySelectorAll(SELECTOR);
+			const elements = (container || document).querySelectorAll(SELECTOR);
 
 			for (var i = 0, element; (element = elements[i++]);) {
 				Prism.highlightElement(element);

@@ -12,7 +12,7 @@ export function getLanguage(element) {
 	/** @type {Element | null} */
 	let e = element;
 	for (; e; e = e.parentElement) {
-		let m = lang.exec(e.className);
+		const m = lang.exec(e.className);
 		if (m) {
 			return m[1].toLowerCase();
 		}

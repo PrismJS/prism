@@ -5,7 +5,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		// https://www.graphviz.org/doc/info/lang.html
 
 
-		let ID = '(?:' + [
+		const ID = '(?:' + [
 			// an identifier
 			/[a-zA-Z_\x80-\uFFFF][\w\x80-\uFFFF]*/.source,
 			// a number
@@ -16,7 +16,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			/<(?:[^<>]|(?!<!--)<(?:[^<>"']|"[^"]*"|'[^']*')+>|<!--(?:[^-]|-(?!->))*-->)*>/.source
 		].join('|') + ')';
 
-		let IDInside = {
+		const IDInside = {
 			'markup': {
 				pattern: /(^<)[\s\S]+(?=>$)/,
 				lookbehind: true,

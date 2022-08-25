@@ -9,7 +9,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		let schemeExpression = /\((?:[^();"#\\]|\\[\s\S]|;.*(?!.)|"(?:[^"\\]|\\.)*"|#(?:\{(?:(?!#\})[\s\S])*#\}|[^{])|<expr>)*\)/.source;
 		// allow for up to pow(2, recursivenessLog2) many levels of recursive brace expressions
 		// For some reason, this can't be 4
-		let recursivenessLog2 = 5;
+		const recursivenessLog2 = 5;
 		for (let i = 0; i < recursivenessLog2; i++) {
 			schemeExpression = schemeExpression.replace(/<expr>/g, function () { return schemeExpression; });
 		}

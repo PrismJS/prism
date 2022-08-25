@@ -3,15 +3,15 @@ export default /** @type {import("../types").LanguageProto} */ ({
 	grammar() {
 		// see https://github.com/cooklang/spec/blob/main/EBNF.md
 
-		let single_token_suffix = /(?:(?!\s)[\d$+<=a-zA-Z\x80-\uFFFF])+/.source;
-		let multi_token_infix = /[^{}@#]+/.source;
-		let multi_token_suffix = /\{[^}#@]*\}/.source;
+		const single_token_suffix = /(?:(?!\s)[\d$+<=a-zA-Z\x80-\uFFFF])+/.source;
+		const multi_token_infix = /[^{}@#]+/.source;
+		const multi_token_suffix = /\{[^}#@]*\}/.source;
 
-		let multi_token = multi_token_infix + multi_token_suffix;
+		const multi_token = multi_token_infix + multi_token_suffix;
 
-		let timer_units = /(?:h|hours|hrs|m|min|minutes)/.source;
+		const timer_units = /(?:h|hours|hrs|m|min|minutes)/.source;
 
-		let amount_group_impl = {
+		const amount_group_impl = {
 			pattern: /\{[^{}]*\}/,
 			inside: {
 				'amount': {

@@ -6,8 +6,8 @@
 
 	Prism.hooks.add('before-sanity-check', function (env) {
 		if (env.code) {
-			let pre = env.element.parentNode;
-			let clsReg = /(?:^|\s)keep-initial-line-feed(?:\s|$)/;
+			const pre = env.element.parentNode;
+			const clsReg = /(?:^|\s)keep-initial-line-feed(?:\s|$)/;
 			if (
 				pre && pre.nodeName.toLowerCase() === 'pre' &&
 				// Apply only if nor the <pre> or the <code> have the class

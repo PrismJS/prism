@@ -46,7 +46,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 	alias: ['cs', 'dotnet'],
 	grammar({ extend }) {
 		// https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/
-		let keywordKinds = {
+		const keywordKinds = {
 			// keywords which represent a return or variable type
 			type: 'bool byte char decimal double dynamic float int long object sbyte short string uint ulong ushort var void',
 			// keywords which are used to declare a type
@@ -62,24 +62,24 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		function keywordsToPattern(words) {
 			return '\\b(?:' + words.trim().replace(/ /g, '|') + ')\\b';
 		}
-		let typeDeclarationKeywords = keywordsToPattern(keywordKinds.typeDeclaration);
-		let keywords = RegExp(keywordsToPattern(keywordKinds.type + ' ' + keywordKinds.typeDeclaration + ' ' + keywordKinds.contextual + ' ' + keywordKinds.other));
-		let nonTypeKeywords = keywordsToPattern(keywordKinds.typeDeclaration + ' ' + keywordKinds.contextual + ' ' + keywordKinds.other);
-		let nonContextualKeywords = keywordsToPattern(keywordKinds.type + ' ' + keywordKinds.typeDeclaration + ' ' + keywordKinds.other);
+		const typeDeclarationKeywords = keywordsToPattern(keywordKinds.typeDeclaration);
+		const keywords = RegExp(keywordsToPattern(keywordKinds.type + ' ' + keywordKinds.typeDeclaration + ' ' + keywordKinds.contextual + ' ' + keywordKinds.other));
+		const nonTypeKeywords = keywordsToPattern(keywordKinds.typeDeclaration + ' ' + keywordKinds.contextual + ' ' + keywordKinds.other);
+		const nonContextualKeywords = keywordsToPattern(keywordKinds.type + ' ' + keywordKinds.typeDeclaration + ' ' + keywordKinds.other);
 
 		// types
-		let generic = nested(/<(?:[^<>;=+\-*/%&|^]|<<self>>)*>/.source, 2); // the idea behind the other forbidden characters is to prevent false positives. Same for tupleElement.
-		let nestedRound = nested(/\((?:[^()]|<<self>>)*\)/.source, 2);
-		let name = /@?\b[A-Za-z_]\w*\b/.source;
-		let genericName = replace(/<<0>>(?:\s*<<1>>)?/.source, [name, generic]);
-		let identifier = replace(/(?!<<0>>)<<1>>(?:\s*\.\s*<<1>>)*/.source, [nonTypeKeywords, genericName]);
-		let array = /\[\s*(?:,\s*)*\]/.source;
-		let typeExpressionWithoutTuple = replace(/<<0>>(?:\s*(?:\?\s*)?<<1>>)*(?:\s*\?)?/.source, [identifier, array]);
-		let tupleElement = replace(/[^,()<>[\];=+\-*/%&|^]|<<0>>|<<1>>|<<2>>/.source, [generic, nestedRound, array]);
-		let tuple = replace(/\(<<0>>+(?:,<<0>>+)+\)/.source, [tupleElement]);
-		let typeExpression = replace(/(?:<<0>>|<<1>>)(?:\s*(?:\?\s*)?<<2>>)*(?:\s*\?)?/.source, [tuple, identifier, array]);
+		const generic = nested(/<(?:[^<>;=+\-*/%&|^]|<<self>>)*>/.source, 2); // the idea behind the other forbidden characters is to prevent false positives. Same for tupleElement.
+		const nestedRound = nested(/\((?:[^()]|<<self>>)*\)/.source, 2);
+		const name = /@?\b[A-Za-z_]\w*\b/.source;
+		const genericName = replace(/<<0>>(?:\s*<<1>>)?/.source, [name, generic]);
+		const identifier = replace(/(?!<<0>>)<<1>>(?:\s*\.\s*<<1>>)*/.source, [nonTypeKeywords, genericName]);
+		const array = /\[\s*(?:,\s*)*\]/.source;
+		const typeExpressionWithoutTuple = replace(/<<0>>(?:\s*(?:\?\s*)?<<1>>)*(?:\s*\?)?/.source, [identifier, array]);
+		const tupleElement = replace(/[^,()<>[\];=+\-*/%&|^]|<<0>>|<<1>>|<<2>>/.source, [generic, nestedRound, array]);
+		const tuple = replace(/\(<<0>>+(?:,<<0>>+)+\)/.source, [tupleElement]);
+		const typeExpression = replace(/(?:<<0>>|<<1>>)(?:\s*(?:\?\s*)?<<2>>)*(?:\s*\?)?/.source, [tuple, identifier, array]);
 
-		let typeInside = {
+		const typeInside = {
 			'keyword': keywords,
 			'punctuation': /[<>()?,.:[\]]/
 		};
@@ -87,9 +87,9 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		// strings & characters
 		// https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/lexical-structure#character-literals
 		// https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/lexical-structure#string-literals
-		let character = /'(?:[^\r\n'\\]|\\.|\\[Uux][\da-fA-F]{1,8})'/.source; // simplified pattern
-		let regularString = /"(?:\\.|[^\\"\r\n])*"/.source;
-		let verbatimString = /@"(?:""|\\[\s\S]|[^\\"])*"(?!")/.source;
+		const character = /'(?:[^\r\n'\\]|\\.|\\[Uux][\da-fA-F]{1,8})'/.source; // simplified pattern
+		const regularString = /"(?:\\.|[^\\"\r\n])*"/.source;
+		const verbatimString = /@"(?:""|\\[\s\S]|[^\\"])*"(?!")/.source;
 
 
 		const csharp = extend('clike', {
@@ -276,13 +276,13 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		});
 
 		// attributes
-		let regularStringOrCharacter = regularString + '|' + character;
-		let regularStringCharacterOrComment = replace(/\/(?![*/])|\/\/[^\r\n]*[\r\n]|\/\*(?:[^*]|\*(?!\/))*\*\/|<<0>>/.source, [regularStringOrCharacter]);
-		let roundExpression = nested(replace(/[^"'/()]|<<0>>|\(<<self>>*\)/.source, [regularStringCharacterOrComment]), 2);
+		const regularStringOrCharacter = regularString + '|' + character;
+		const regularStringCharacterOrComment = replace(/\/(?![*/])|\/\/[^\r\n]*[\r\n]|\/\*(?:[^*]|\*(?!\/))*\*\/|<<0>>/.source, [regularStringOrCharacter]);
+		const roundExpression = nested(replace(/[^"'/()]|<<0>>|\(<<self>>*\)/.source, [regularStringCharacterOrComment]), 2);
 
 		// https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/attributes/#attribute-targets
-		let attrTarget = /\b(?:assembly|event|field|method|module|param|property|return|type)\b/.source;
-		let attr = replace(/<<0>>(?:\s*\(<<1>>*\))?/.source, [identifier, roundExpression]);
+		const attrTarget = /\b(?:assembly|event|field|method|module|param|property|return|type)\b/.source;
+		const attr = replace(/<<0>>(?:\s*\(<<1>>*\))?/.source, [identifier, roundExpression]);
 
 		insertBefore(csharp, 'class-name', {
 			'attribute': {
@@ -313,13 +313,13 @@ export default /** @type {import("../types").LanguageProto} */ ({
 
 
 		// string interpolation
-		let formatString = /:[^}\r\n]+/.source;
+		const formatString = /:[^}\r\n]+/.source;
 		// multi line
-		let mInterpolationRound = nested(replace(/[^"'/()]|<<0>>|\(<<self>>*\)/.source, [regularStringCharacterOrComment]), 2);
-		let mInterpolation = replace(/\{(?!\{)(?:(?![}:])<<0>>)*<<1>>?\}/.source, [mInterpolationRound, formatString]);
+		const mInterpolationRound = nested(replace(/[^"'/()]|<<0>>|\(<<self>>*\)/.source, [regularStringCharacterOrComment]), 2);
+		const mInterpolation = replace(/\{(?!\{)(?:(?![}:])<<0>>)*<<1>>?\}/.source, [mInterpolationRound, formatString]);
 		// single line
-		let sInterpolationRound = nested(replace(/[^"'/()]|\/(?!\*)|\/\*(?:[^*]|\*(?!\/))*\*\/|<<0>>|\(<<self>>*\)/.source, [regularStringOrCharacter]), 2);
-		let sInterpolation = replace(/\{(?!\{)(?:(?![}:])<<0>>)*<<1>>?\}/.source, [sInterpolationRound, formatString]);
+		const sInterpolationRound = nested(replace(/[^"'/()]|\/(?!\*)|\/\*(?:[^*]|\*(?!\/))*\*\/|<<0>>|\(<<self>>*\)/.source, [regularStringOrCharacter]), 2);
+		const sInterpolation = replace(/\{(?!\{)(?:(?![}:])<<0>>)*<<1>>?\}/.source, [sInterpolationRound, formatString]);
 
 		function createInterpolationInside(interpolation, interpolationRound) {
 			return {

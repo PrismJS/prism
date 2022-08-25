@@ -80,7 +80,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			/**
 			 * get the graphql token stream that we want to customize
 			 */
-			let validTokens = env.tokens
+			const validTokens = env.tokens
 				.filter(isToken)
 				.filter((token) => token.type !== 'comment' && token.type !== 'scalar');
 
@@ -105,7 +105,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			 */
 			function isTokenType(types, offset = 0) {
 				for (let i = 0; i < types.length; i++) {
-					let token = getToken(i + offset);
+					const token = getToken(i + offset);
 					if (!token || token.type !== types[i]) {
 						return false;
 					}
@@ -128,8 +128,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				let stackHeight = 1;
 
 				for (let i = currentIndex; i < validTokens.length; i++) {
-					let token = validTokens[i];
-					let content = token.content;
+					const token = validTokens[i];
+					const content = token.content;
 
 					if (token.type === 'punctuation' && typeof content === 'string') {
 						if (open.test(content)) {
@@ -165,26 +165,26 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 
 			for (; currentIndex < validTokens.length;) {
-				let startToken = validTokens[currentIndex++];
+				const startToken = validTokens[currentIndex++];
 
 				// add special aliases for mutation tokens
 				if (startToken.type === 'keyword' && startToken.content === 'mutation') {
 					// any array of the names of all input variables (if any)
-					let inputVariables = [];
+					const inputVariables = [];
 
 					if (isTokenType(['definition-mutation', 'punctuation']) && getToken(1).content === '(') {
 						// definition
 
 						currentIndex += 2; // skip 'definition-mutation' and 'punctuation'
 
-						let definitionEnd = findClosingBracket(/^\($/, /^\)$/);
+						const definitionEnd = findClosingBracket(/^\($/, /^\)$/);
 						if (definitionEnd === -1) {
 							continue;
 						}
 
 						// find all input variables
 						for (; currentIndex < definitionEnd; currentIndex++) {
-							let t = getToken(0);
+							const t = getToken(0);
 							if (t.type === 'variable') {
 								addAlias(t, 'variable-input');
 								inputVariables.push(t.content);
@@ -200,14 +200,14 @@ export default /** @type {import("../types").LanguageProto} */ ({
 						addAlias(getToken(0), 'property-mutation');
 
 						if (inputVariables.length > 0) {
-							let mutationEnd = findClosingBracket(/^\{$/, /^\}$/);
+							const mutationEnd = findClosingBracket(/^\{$/, /^\}$/);
 							if (mutationEnd === -1) {
 								continue;
 							}
 
 							// give references to input variables a special alias
 							for (let i = currentIndex; i < mutationEnd; i++) {
-								let varToken = validTokens[i];
+								const varToken = validTokens[i];
 								if (varToken.type === 'variable' && inputVariables.indexOf(varToken.content) >= 0) {
 									addAlias(varToken, 'variable-input');
 								}

@@ -21,6 +21,7 @@ module.exports = {
 		'no-tabs': ['warn', { allowIndentationTabs: true }],
 		'no-var': 'error',
 		'one-var': ['warn', 'never'],
+		'prefer-const': ['warn', { 'destructuring': 'all' }],
 		'quotes': ['warn', 'single', { avoidEscape: true, allowTemplateLiterals: true }],
 		'semi': 'warn',
 		'wrap-iife': 'warn',

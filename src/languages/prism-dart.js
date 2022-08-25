@@ -5,16 +5,16 @@ export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'dart',
 	require: clike,
 	grammar({ extend }) {
-		let keywords = [
+		const keywords = [
 			/\b(?:async|sync|yield)\*/,
 			/\b(?:abstract|assert|async|await|break|case|catch|class|const|continue|covariant|default|deferred|do|dynamic|else|enum|export|extends|extension|external|factory|final|finally|for|get|hide|if|implements|import|in|interface|library|mixin|new|null|on|operator|part|rethrow|return|set|show|static|super|switch|sync|this|throw|try|typedef|var|void|while|with|yield)\b/
 		];
 
 		// Handles named imports, such as http.Client
-		let packagePrefix = /(^|[^\w.])(?:[a-z]\w*\s*\.\s*)*(?:[A-Z]\w*\s*\.\s*)*/.source;
+		const packagePrefix = /(^|[^\w.])(?:[a-z]\w*\s*\.\s*)*(?:[A-Z]\w*\s*\.\s*)*/.source;
 
 		// based on the dart naming conventions
-		let className = {
+		const className = {
 			pattern: RegExp(packagePrefix + /[A-Z](?:[\d_A-Z]*[a-z]\w*)?\b/.source),
 			lookbehind: true,
 			inside: {

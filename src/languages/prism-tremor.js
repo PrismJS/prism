@@ -2,7 +2,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'tremor',
 	alias: ['trickle', 'troy'],
 	grammar() {
-		let interpolationPattern = /#\{(?:[^"{}]|\{[^{}]*\}|"(?:[^"\\\r\n]|\\(?:\r\n|[\s\S]))*")*\}/.source;
+		const interpolationPattern = /#\{(?:[^"{}]|\{[^{}]*\}|"(?:[^"\\\r\n]|\\(?:\r\n|[\s\S]))*")*\}/.source;
 
 		return {
 			'comment': {

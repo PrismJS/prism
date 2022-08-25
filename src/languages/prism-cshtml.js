@@ -12,8 +12,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		// https://docs.microsoft.com/en-us/aspnet/core/mvc/views/razor?view=aspnetcore-5.0
 
 
-		let commentLike = /\/(?![/*])|\/\/.*[\r\n]|\/\*[^*]*(?:\*(?!\/)[^*]*)*\*\//.source;
-		let stringLike =
+		const commentLike = /\/(?![/*])|\/\/.*[\r\n]|\/\*[^*]*(?:\*(?!\/)[^*]*)*\*\//.source;
+		const stringLike =
 				/@(?!")|"(?:[^\r\n\\"]|\\.)*"|@"(?:[^\\"]|""|\\[\s\S])*"(?!")/.source +
 				'|' +
 				/'(?:(?:[^\r\n'\\]|\\.|\\[Uux][\da-fA-F]{1,8})'|(?=[^\\](?!')))/.source;
@@ -35,12 +35,12 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				.replace(/<comment>/g, '(?:' + commentLike + ')');
 		}
 
-		let round = nested(/\((?:[^()'"@/]|<str>|<comment>|<self>)*\)/.source, 2);
-		let square = nested(/\[(?:[^\[\]'"@/]|<str>|<comment>|<self>)*\]/.source, 1);
-		let curly = nested(/\{(?:[^{}'"@/]|<str>|<comment>|<self>)*\}/.source, 2);
-		let angle = nested(/<(?:[^<>'"@/]|<comment>|<self>)*>/.source, 1);
+		const round = nested(/\((?:[^()'"@/]|<str>|<comment>|<self>)*\)/.source, 2);
+		const square = nested(/\[(?:[^\[\]'"@/]|<str>|<comment>|<self>)*\]/.source, 1);
+		const curly = nested(/\{(?:[^{}'"@/]|<str>|<comment>|<self>)*\}/.source, 2);
+		const angle = nested(/<(?:[^<>'"@/]|<comment>|<self>)*>/.source, 1);
 
-		let inlineCs = /@/.source +
+		const inlineCs = /@/.source +
 				/(?:await\b\s*)?/.source +
 				'(?:' + /(?!await\b)\w+\b/.source + '|' + round + ')' +
 				'(?:' + /[?!]?\.\w+\b/.source + '|' + '(?:' + angle + ')?' + round + '|' + square + ')*' +
@@ -58,16 +58,16 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		// To somewhat alleviate the problem a bit, the patterns for characters (e.g. 'a') is very permissive, it also
 		// allows invalid characters to support HTML expressions like this: <p>That's it!</p>.
 
-		let tagAttrInlineCs = /@(?![\w()])/.source + '|' + inlineCs;
-		let tagAttrValue = '(?:' +
+		const tagAttrInlineCs = /@(?![\w()])/.source + '|' + inlineCs;
+		const tagAttrValue = '(?:' +
 				/"[^"@]*"|'[^'@]*'|[^\s'"@>=]+(?=[\s>])/.source +
 				'|' +
 				'["\'][^"\'@]*(?:(?:' + tagAttrInlineCs + ')[^"\'@]*)+["\']' +
 				')';
 
-		let tagAttrs = /(?:\s(?:\s*[^\s>\/=]+(?:\s*=\s*<tagAttrValue>|(?=[\s/>])))+)?/.source.replace(/<tagAttrValue>/, tagAttrValue);
-		let tagContent = /(?!\d)[^\s>\/=$<%]+/.source + tagAttrs + /\s*\/?>/.source;
-		let tagRegion =
+		const tagAttrs = /(?:\s(?:\s*[^\s>\/=]+(?:\s*=\s*<tagAttrValue>|(?=[\s/>])))+)?/.source.replace(/<tagAttrValue>/, tagAttrValue);
+		const tagContent = /(?!\d)[^\s>\/=$<%]+/.source + tagAttrs + /\s*\/?>/.source;
+		const tagRegion =
 				/\B@?/.source +
 				'(?:' +
 				/<([a-zA-Z][\w:]*)/.source + tagAttrs + /\s*>/.source +
@@ -126,13 +126,13 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			},
 		});
 
-		let cs = {
+		const cs = {
 			pattern: /\S[\s\S]*/,
 			alias: 'language-csharp',
 			inside: csharpWithHtml
 		};
 
-		let inlineValue = {
+		const inlineValue = {
 			pattern: RegExp(/(^|[^@])/.source + inlineCs),
 			lookbehind: true,
 			greedy: true,

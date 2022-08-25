@@ -5,15 +5,15 @@
 	}
 
 	$$('[data-plugin-header]').forEach(function (element) {
-		let plugin = components.plugins[element.getAttribute('data-plugin-header')];
+		const plugin = components.plugins[element.getAttribute('data-plugin-header')];
 		element.innerHTML = '<div class="intro" data-src="assets/templates/header-plugins.html" data-type="text/html"></div>\n'
 	+ '<h2>' + plugin.title + '</h2>\n<p>' + plugin.description + '</p>';
 	});
 
 	$$('[data-src][data-type="text/html"]').forEach(function (element) {
-		let src = element.getAttribute('data-src');
-		let html = element.getAttribute('data-type') === 'text/html';
-		let contentProperty = html ? 'innerHTML' : 'textContent';
+		const src = element.getAttribute('data-src');
+		const html = element.getAttribute('data-type') === 'text/html';
+		const contentProperty = html ? 'innerHTML' : 'textContent';
 
 		$u.xhr({
 			url: src,
@@ -24,7 +24,7 @@
 					// Run JS
 
 					$$('script', element).forEach(function (script) {
-						let parent = script.parentNode;
+						const parent = script.parentNode;
 						parent.removeChild(script);
 						document.head.appendChild(script);
 					});
@@ -39,11 +39,11 @@
  * Table of contents
  */
 (function () {
-	let toc = document.createElement('ol');
+	const toc = document.createElement('ol');
 
 	$$('body > section > h1').forEach(function (h1) {
-		let section = h1.parentNode;
-		let text = h1.textContent;
+		const section = h1.parentNode;
+		const text = h1.textContent;
 		let id = h1.id || section.id;
 
 		// Assign id if one does not exist
@@ -104,7 +104,7 @@
  */
 (function () {
 	$$('section h2[id]').forEach(function (h2) {
-		let text = h2.textContent;
+		const text = h2.textContent;
 		h2.innerHTML = '';
 
 		$u.element.create('a', {
@@ -124,13 +124,13 @@
 	}
 
 	if (PrefixFree.functions.indexOf('calc') == -1) {
-		let style = document.createElement('_').style;
+		const style = document.createElement('_').style;
 		style.width = 'calc(1px + 1%)';
 
 		if (!style.width) {
 			// calc not supported
-			let header = $('header');
-			let footer = $('footer');
+			const header = $('header');
+			const footer = $('footer');
 
 			function calculatePadding() {
 				header.style.padding =
@@ -147,7 +147,7 @@
 // so it can be accessed from download.js
 var setTheme;
 (function () {
-	let p = $u.element.create('p', {
+	const p = $u.element.create('p', {
 		properties: {
 			id: 'theme'
 		},
@@ -158,7 +158,7 @@ var setTheme;
 		after: '.intro'
 	});
 
-	let themes = components.themes;
+	const themes = components.themes;
 	let current = (location.search.match(/theme=([\w-]+)/) || [])[1];
 
 	if (!(current in themes)) {
@@ -166,19 +166,19 @@ var setTheme;
 	}
 
 	if (current === undefined) {
-		let stored = localStorage.getItem('theme');
+		const stored = localStorage.getItem('theme');
 
 		current = stored in themes ? stored : 'prism';
 	}
 
 	setTheme = function (id) {
-		let link = $$('link[href^="themes/prism"]')[0];
+		const link = $$('link[href^="themes/prism"]')[0];
 
 		link.href = themes.meta.path.replace(/\{id\}/g, id);
 		localStorage.setItem('theme', id);
 	};
 
-	for (let id in themes) {
+	for (const id in themes) {
 
 		if (id === 'meta') {
 			continue;
@@ -213,14 +213,14 @@ var setTheme;
 (function () {
 
 	function listPlugins(ul) {
-		for (let id in components.plugins) {
+		for (const id in components.plugins) {
 			if (id == 'meta') {
 				continue;
 			}
 
-			let plugin = components.plugins[id];
+			const plugin = components.plugins[id];
 
-			let li = $u.element.create('li', {
+			const li = $u.element.create('li', {
 				contents: [
 					{
 						tag: 'a',
@@ -236,7 +236,7 @@ var setTheme;
 				inside: ul
 			});
 
-			let desc = document.createElement('div');
+			const desc = document.createElement('div');
 			desc.innerHTML = plugin.description;
 			li.appendChild(desc);
 		}

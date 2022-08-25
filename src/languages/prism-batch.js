@@ -1,16 +1,16 @@
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'batch',
 	grammar() {
-		let variable = /%%?[~:\w]+%?|!\S+!/;
-		let parameter = {
+		const variable = /%%?[~:\w]+%?|!\S+!/;
+		const parameter = {
 			pattern: /\/[a-z?]+(?=[ :]|$):?|-[a-z]\b|--[a-z-]+\b/im,
 			alias: 'attr-name',
 			inside: {
 				'punctuation': /:/
 			}
 		};
-		let string = /"(?:[\\"]"|[^"])*"(?!")/;
-		let number = /(?:\b|-)\d+\b/;
+		const string = /"(?:[\\"]"|[^"])*"(?!")/;
+		const number = /(?:\b|-)\d+\b/;
 
 		return {
 			'comment': [

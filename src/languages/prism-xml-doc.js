@@ -18,9 +18,9 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		}
 
-		let tag = Prism.languages.markup.tag;
+		const tag = Prism.languages.markup.tag;
 
-		let slashDocComment = {
+		const slashDocComment = {
 			pattern: /\/\/\/.*/,
 			greedy: true,
 			alias: 'comment',
@@ -28,7 +28,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				'tag': tag
 			}
 		};
-		let tickDocComment = {
+		const tickDocComment = {
 			pattern: /'''.*/,
 			greedy: true,
 			alias: 'comment',

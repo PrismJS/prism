@@ -1,9 +1,9 @@
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'jq',
 	grammar() {
-		let interpolation = /\\\((?:[^()]|\([^()]*\))*\)/.source;
-		let string = RegExp(/(^|[^\\])"(?:[^"\r\n\\]|\\[^\r\n(]|__)*"/.source.replace(/__/g, function () { return interpolation; }));
-		let stringInterpolation = {
+		const interpolation = /\\\((?:[^()]|\([^()]*\))*\)/.source;
+		const string = RegExp(/(^|[^\\])"(?:[^"\r\n\\]|\\[^\r\n(]|__)*"/.source.replace(/__/g, function () { return interpolation; }));
+		const stringInterpolation = {
 			'interpolation': {
 				pattern: RegExp(/((?:^|[^\\])(?:\\{2})*)/.source + interpolation),
 				lookbehind: true,

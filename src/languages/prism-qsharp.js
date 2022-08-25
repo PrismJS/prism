@@ -47,7 +47,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 
 		// https://docs.microsoft.com/en-us/azure/quantum/user-guide/language/typesystem/
 		// https://github.com/microsoft/qsharp-language/tree/main/Specifications/Language/5_Grammar
-		let keywordKinds = {
+		const keywordKinds = {
 			// keywords which represent a return or variable type
 			type: 'Adj BigInt Bool Ctl Double false Int One Pauli PauliI PauliX PauliY PauliZ Qubit Range Result String true Unit Zero',
 			// all other keywords
@@ -57,19 +57,19 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		function keywordsToPattern(words) {
 			return '\\b(?:' + words.trim().replace(/ /g, '|') + ')\\b';
 		}
-		let keywords = RegExp(keywordsToPattern(keywordKinds.type + ' ' + keywordKinds.other));
+		const keywords = RegExp(keywordsToPattern(keywordKinds.type + ' ' + keywordKinds.other));
 
 		// types
-		let identifier = /\b[A-Za-z_]\w*\b/.source;
-		let qualifiedName = replace(/<<0>>(?:\s*\.\s*<<0>>)*/.source, [identifier]);
+		const identifier = /\b[A-Za-z_]\w*\b/.source;
+		const qualifiedName = replace(/<<0>>(?:\s*\.\s*<<0>>)*/.source, [identifier]);
 
-		let typeInside = {
+		const typeInside = {
 			'keyword': keywords,
 			'punctuation': /[<>()?,.:[\]]/
 		};
 
 		// strings
-		let regularString = /"(?:\\.|[^\\"])*"/.source;
+		const regularString = /"(?:\\.|[^\\"])*"/.source;
 
 		const qsharp = extend('clike', {
 			'comment': /\/\/.*/,
@@ -109,7 +109,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		});
 
 		// single line
-		let interpolationExpr = nested(replace(/\{(?:[^"{}]|<<0>>|<<self>>)*\}/.source, [regularString]), 2);
+		const interpolationExpr = nested(replace(/\{(?:[^"{}]|<<0>>|<<self>>)*\}/.source, [regularString]), 2);
 
 		insertBefore(qsharp, 'string', {
 			'interpolation-string': {

@@ -2,16 +2,16 @@ export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'plant-uml',
 	alias: 'plantuml',
 	grammar() {
-		let variable = /\$\w+|%[a-z]+%/;
+		const variable = /\$\w+|%[a-z]+%/;
 
-		let arrowAttr = /\[[^[\]]*\]/.source;
-		let arrowDirection = /(?:[drlu]|do|down|le|left|ri|right|up)/.source;
-		let arrowBody = '(?:-+' + arrowDirection + '-+|\\.+' + arrowDirection + '\\.+|-+(?:' + arrowAttr + '-*)?|' + arrowAttr + '-+|\\.+(?:' + arrowAttr + '\\.*)?|' + arrowAttr + '\\.+)';
-		let arrowLeft = /(?:<{1,2}|\/{1,2}|\\{1,2}|<\||[#*^+}xo])/.source;
-		let arrowRight = /(?:>{1,2}|\/{1,2}|\\{1,2}|\|>|[#*^+{xo])/.source;
-		let arrowPrefix = /[[?]?[ox]?/.source;
-		let arrowSuffix = /[ox]?[\]?]?/.source;
-		let arrow =
+		const arrowAttr = /\[[^[\]]*\]/.source;
+		const arrowDirection = /(?:[drlu]|do|down|le|left|ri|right|up)/.source;
+		const arrowBody = '(?:-+' + arrowDirection + '-+|\\.+' + arrowDirection + '\\.+|-+(?:' + arrowAttr + '-*)?|' + arrowAttr + '-+|\\.+(?:' + arrowAttr + '\\.*)?|' + arrowAttr + '\\.+)';
+		const arrowLeft = /(?:<{1,2}|\/{1,2}|\\{1,2}|<\||[#*^+}xo])/.source;
+		const arrowRight = /(?:>{1,2}|\/{1,2}|\\{1,2}|\|>|[#*^+{xo])/.source;
+		const arrowPrefix = /[[?]?[ox]?/.source;
+		const arrowSuffix = /[ox]?[\]?]?/.source;
+		const arrow =
 				arrowPrefix +
 				'(?:' +
 				arrowBody + arrowRight +

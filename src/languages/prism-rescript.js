@@ -5,7 +5,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'rescript',
 	alias: 'res',
 	grammar() {
-		let rescript = {
+		const rescript = {
 			'comment': {
 				pattern: /\/\/.*|\/\*[\s\S]*?(?:\*\/|$)/,
 				greedy: true

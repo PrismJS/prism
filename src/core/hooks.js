@@ -53,7 +53,7 @@ export class Hooks {
 	 * @public
 	 */
 	run(name, env) {
-		let callbacks = this.all.get(name);
+		const callbacks = this.all.get(name);
 
 		if (!callbacks || !callbacks.length) {
 			return;

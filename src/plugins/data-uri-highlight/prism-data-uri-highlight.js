@@ -4,13 +4,13 @@
 		return;
 	}
 
-	let autoLinkerProcess = function (grammar) {
+	const autoLinkerProcess = function (grammar) {
 		if (Prism.plugins.autolinker) {
 			Prism.plugins.autolinker.processGrammar(grammar);
 		}
 		return grammar;
 	};
-	let dataURI = {
+	const dataURI = {
 		pattern: /(.)\bdata:[^\/]+\/[^,]+,(?:(?!\1)[\s\S]|\\\1)+(?=\1)/,
 		lookbehind: true,
 		inside: {
@@ -34,7 +34,7 @@
 	};
 
 	// Tokens that may contain URLs
-	let candidates = ['url', 'attr-value', 'string'];
+	const candidates = ['url', 'attr-value', 'string'];
 
 	Prism.plugins.dataURIHighlight = {
 		processGrammar: function (grammar) {
@@ -75,10 +75,10 @@
 	Prism.hooks.add('before-highlight', function (env) {
 		// Prepare the needed grammars for this code block
 		if (dataURI.pattern.test(env.code)) {
-			for (let p in dataURI.inside) {
+			for (const p in dataURI.inside) {
 				if (dataURI.inside.hasOwnProperty(p)) {
 					if (!dataURI.inside[p].inside && dataURI.inside[p].pattern.test(env.code)) {
-						let lang = p.match(/^language-(.+)/)[1];
+						const lang = p.match(/^language-(.+)/)[1];
 						if (Prism.languages[lang]) {
 							dataURI.inside[p].inside = {
 								rest: autoLinkerProcess(Prism.languages[lang])

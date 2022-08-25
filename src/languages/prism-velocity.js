@@ -8,7 +8,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 	grammar({ extend }) {
 		const velocity = extend('markup', {});
 
-		let vel = {
+		const vel = {
 			'variable': {
 				pattern: /(^|[^\\](?:\\\\)*)\$!?(?:[a-z][\w-]*(?:\([^)]*\))?(?:\.[a-z][\w-]*(?:\([^)]*\))?|\[[^\]]+\])*|\{[^}]+\})/i,
 				lookbehind: true,

@@ -5,7 +5,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'protobuf',
 	require: clike,
 	grammar({ extend }) {
-		let builtinTypes = /\b(?:bool|bytes|double|s?fixed(?:32|64)|float|[su]?int(?:32|64)|string)\b/;
+		const builtinTypes = /\b(?:bool|bytes|double|s?fixed(?:32|64)|float|[su]?int(?:32|64)|string)\b/;
 
 		const protobuf = extend('clike', {
 			'class-name': [

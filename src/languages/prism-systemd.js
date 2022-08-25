@@ -4,12 +4,12 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		// https://www.freedesktop.org/software/systemd/man/systemd.syntax.html
 
 
-		let comment = {
+		const comment = {
 			pattern: /^[;#].*/m,
 			greedy: true
 		};
 
-		let quotesSource = /"(?:[^\r\n"\\]|\\(?:[^\r]|\r\n?))*"(?!\S)/.source;
+		const quotesSource = /"(?:[^\r\n"\\]|\\(?:[^\r]|\r\n?))*"(?!\S)/.source;
 
 		return {
 			'comment': comment,

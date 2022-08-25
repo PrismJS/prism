@@ -1,14 +1,14 @@
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'factor',
 	grammar() {
-		let comment_inside = {
+		const comment_inside = {
 			'function': /\b(?:BUGS?|FIX(?:MES?)?|NOTES?|TODOS?|XX+|HACKS?|WARN(?:ING)?|\?{2,}|!{2,})\b/
 		};
-		let string_inside = {
+		const string_inside = {
 			'number': /\\[^\s']|%\w/
 		};
 
-		let factor = {
+		const factor = {
 			'comment': [
 				{
 					// ! single-line exclamation point comments with whitespace after/around the !
@@ -346,17 +346,17 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		};
 
-		let escape = function (str) {
+		const escape = function (str) {
 			return (str + '').replace(/([.?*+\^$\[\]\\(){}|\-])/g, '\\$1');
 		};
 
-		let arrToWordsRegExp = function (arr) {
+		const arrToWordsRegExp = function (arr) {
 			return new RegExp(
 				'(^|\\s)(?:' + arr.map(escape).join('|') + ')(?=\\s|$)'
 			);
 		};
 
-		let builtins = {
+		const builtins = {
 			'kernel-builtin': [
 				'or', '2nipd', '4drop', 'tuck', 'wrapper', 'nip', 'wrapper?', 'callstack>array', 'die', 'dupd', 'callstack', 'callstack?', '3dup', 'hashcode', 'pick', '4nip', 'build', '>boolean', 'nipd', 'clone', '5nip', 'eq?', '?', '=', 'swapd', '2over', 'clear', '2dup', 'get-retainstack', 'not', 'tuple?', 'dup', '3nipd', 'call', '-rotd', 'object', 'drop', 'assert=', 'assert?', '-rot', 'execute', 'boa', 'get-callstack', 'curried?', '3drop', 'pickd', 'overd', 'over', 'roll', '3nip', 'swap', 'and', '2nip', 'rotd', 'throw', '(clone)', 'hashcode*', 'spin', 'reach', '4dup', 'equal?', 'get-datastack', 'assert', '2drop', '<wrapper>', 'boolean?', 'identity-hashcode', 'identity-tuple?', 'null', 'composed?', 'new', '5drop', 'rot', '-roll', 'xor', 'identity-tuple', 'boolean'
 			],
@@ -379,7 +379,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			factor[k].pattern = arrToWordsRegExp(builtins[k]);
 		});
 
-		let combinators = [
+		const combinators = [
 			// kernel
 			'2bi', 'while', '2tri', 'bi*', '4dip', 'both?', 'same?', 'tri@', 'curry', 'prepose', '3bi', '?if', 'tri*', '2keep', '3keep', 'curried', '2keepd', 'when', '2bi*', '2tri*', '4keep', 'bi@', 'keepdd', 'do', 'unless*', 'tri-curry', 'if*', 'loop', 'bi-curry*', 'when*', '2bi@', '2tri@', 'with', '2with', 'either?', 'bi', 'until', '3dip', '3curry', 'tri-curry*', 'tri-curry@', 'bi-curry', 'keepd', 'compose', '2dip', 'if', '3tri', 'unless', 'tuple', 'keep', '2curry', 'tri', 'most', 'while*', 'dip', 'composed', 'bi-curry@',
 			// sequences

@@ -4,10 +4,10 @@
 
 (function () {
 
-	let examples = {};
+	const examples = {};
 
-	let treeURL = 'https://api.github.com/repos/PrismJS/prism/git/trees/master?recursive=1';
-	let treePromise = new Promise(function (resolve) {
+	const treeURL = 'https://api.github.com/repos/PrismJS/prism/git/trees/master?recursive=1';
+	const treePromise = new Promise(function (resolve) {
 		$u.xhr({
 			url: treeURL,
 			callback: function (xhr) {
@@ -18,10 +18,10 @@
 		});
 	});
 
-	let languages = components.languages;
+	const languages = components.languages;
 
 	Promise.all(Object.keys(languages).filter(function (id) { return id !== 'meta'; }).map(function (id) {
-		let language = languages[id];
+		const language = languages[id];
 
 		language.enabled = language.option === 'default';
 		language.path = languages.meta.path.replace(/\{id\}/g, id) + '.js';
@@ -32,10 +32,10 @@
 		});
 	})).then(function (values) {
 		values.forEach(function (result) {
-			let id = result.id;
-			let exists = result.exists;
-			let language = languages[id];
-			let checked = language.enabled;
+			const id = result.id;
+			const exists = result.exists;
+			const language = languages[id];
+			const checked = language.enabled;
 
 			$u.element.create('label', {
 				attributes: {
@@ -120,11 +120,11 @@
 			}
 		}
 
-		let language = languages[id];
+		const language = languages[id];
 		let header = '<h1>' + language.title + '</h1>';
 
 		if (language.alias) {
-			let alias = toArray(language.alias);
+			const alias = toArray(language.alias);
 
 			header += '<p>To use this language, use one of the following classes:</p>';
 			header += '<ul><li><code class="language-none">"language-' + id + '"</code></li>';
@@ -140,7 +140,7 @@
 			return '<code class="language-none">' + text + '</code>';
 		}
 
-		let deps = [];
+		const deps = [];
 		if (language.require) {
 			deps.push('requires ' + toArray(language.require).map(wrapCode).join(', '));
 		}
@@ -171,7 +171,7 @@
 	}
 
 	function update(id) {
-		let language = languages[id];
+		const language = languages[id];
 		if (language.enabled) {
 			if (!language.examplesPromise) {
 				language.examplesPromise = getFileContents(language.examplesPath);
@@ -180,7 +180,7 @@
 				examples[id].innerHTML = buildContentsHeader(id) + contents;
 
 				/** @type {HTMLElement} */
-				let container = examples[id];
+				const container = examples[id];
 				container.innerHTML = buildContentsHeader(id) + contents;
 
 				// the current language might be an extension of a language

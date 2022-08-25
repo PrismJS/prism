@@ -3,13 +3,13 @@ export default /** @type {import("../types").LanguageProto} */ ({
 	grammar() {
 		// Pascaligo is a layer 2 smart contract language for the tezos blockchain
 
-		let braces = /\((?:[^()]|\((?:[^()]|\([^()]*\))*\))*\)/.source;
-		let type = /(?:\b\w+(?:<braces>)?|<braces>)/.source.replace(/<braces>/g, function () { return braces; });
+		const braces = /\((?:[^()]|\((?:[^()]|\([^()]*\))*\))*\)/.source;
+		const type = /(?:\b\w+(?:<braces>)?|<braces>)/.source.replace(/<braces>/g, function () { return braces; });
 
 		/** @type {import("../types").Grammar} */
 		const classNameInside = {};
 
-		let pascaligo = {
+		const pascaligo = {
 			'comment': /\(\*[\s\S]+?\*\)|\/\/.*/,
 			'string': {
 				pattern: /(["'`])(?:\\[\s\S]|(?!\1)[^\\])*\1|\^[a-z]/i,

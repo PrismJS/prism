@@ -9,8 +9,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 	require: [markup, javascript],
 	optional: ['jsdoc', 'js-extras', 'js-templates'],
 	grammar({ extend }) {
-		let space = /(?:\s|\/\/.*(?!.)|\/\*(?:[^*]|\*(?!\/))\*\/)/.source;
-		let braces = /(?:\{(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])*\})/.source;
+		const space = /(?:\s|\/\/.*(?!.)|\/\*(?:[^*]|\*(?!\/))\*\/)/.source;
+		const braces = /(?:\{(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])*\})/.source;
 		let spread = /(?:\{<S>*\.{3}(?:[^{}]|<BRACES>)*\})/.source;
 
 		/**
@@ -84,7 +84,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		 * @param {import('../core/token.js').TokenStream} tokens
 		 */
 		function walkTokens(tokens) {
-			let openedTags = [];
+			const openedTags = [];
 			for (let i = 0; i < tokens.length; i++) {
 				const token = tokens[i];
 				const isToken = typeof token !== 'string';

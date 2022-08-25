@@ -29,8 +29,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		delete sass.atrule;
 
 
-		let variable = /\$[-\w]+|#\{\$[-\w]+\}/;
-		let operator = [
+		const variable = /\$[-\w]+|#\{\$[-\w]+\}/;
+		const operator = [
 			/[+*\/%]|[=!]=|<=?|>=?|\b(?:and|not|or)\b/,
 			{
 				pattern: /(\s)-(?=\s)/,

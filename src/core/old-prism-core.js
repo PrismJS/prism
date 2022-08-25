@@ -9,7 +9,7 @@
 const Prism = (function (_self) {
 
 	// The grammar object for plaintext
-	let plainTextGrammar = {};
+	const plainTextGrammar = {};
 
 
 	const _ = {
@@ -57,7 +57,7 @@ const Prism = (function (_self) {
 
 
 	// Get current script and highlight
-	let script = document.currentScript;
+	const script = document.currentScript;
 
 	if (script) {
 		_.filename = script.src;
@@ -80,7 +80,7 @@ const Prism = (function (_self) {
 		// might take longer one animation frame to execute which can create a race condition where only some plugins have
 		// been loaded when Prism.highlightAll() is executed, depending on how fast resources are loaded.
 		// See https://github.com/PrismJS/prism/issues/2102
-		let readyState = document.readyState;
+		const readyState = document.readyState;
 		if (readyState === 'loading' || readyState === 'interactive' && script && script.defer) {
 			document.addEventListener('DOMContentLoaded', highlightAutomaticallyCallback);
 		} else {

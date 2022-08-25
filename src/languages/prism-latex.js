@@ -2,8 +2,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'latex',
 	alias: ['tex', 'context'],
 	grammar() {
-		let funcPattern = /\\(?:[^a-z()[\]]|[a-z*]+)/i;
-		let insideEqu = {
+		const funcPattern = /\\(?:[^a-z()[\]]|[a-z*]+)/i;
+		const insideEqu = {
 			'equation-command': {
 				pattern: funcPattern,
 				alias: 'regex'

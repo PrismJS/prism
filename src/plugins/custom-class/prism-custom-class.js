@@ -85,7 +85,7 @@
 
 	Prism.hooks.add('wrap', function (env) {
 		if (adder) {
-			let result = adder({
+			const result = adder({
 				content: env.content,
 				type: env.type,
 				language: env.language

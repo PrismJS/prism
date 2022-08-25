@@ -289,22 +289,22 @@
 	 * @property {boolean} [loading]
 	 */
 	/** @type {Object<string, LangDataItem>} */
-	let lang_data = {};
+	const lang_data = {};
 
-	let ignored_language = 'none';
+	const ignored_language = 'none';
 	let languages_path = 'components/';
 
-	let script = Prism.util.currentScript();
+	const script = Prism.util.currentScript();
 	if (script) {
-		let autoloaderFile = /\bplugins\/autoloader\/prism-autoloader\.(?:min\.)?js(?:\?[^\r\n/]*)?$/i;
-		let prismFile = /(^|\/)[\w-]+\.(?:min\.)?js(?:\?[^\r\n/]*)?$/i;
+		const autoloaderFile = /\bplugins\/autoloader\/prism-autoloader\.(?:min\.)?js(?:\?[^\r\n/]*)?$/i;
+		const prismFile = /(^|\/)[\w-]+\.(?:min\.)?js(?:\?[^\r\n/]*)?$/i;
 
-		let autoloaderPath = script.getAttribute('data-autoloader-path');
+		const autoloaderPath = script.getAttribute('data-autoloader-path');
 		if (autoloaderPath != null) {
 			// data-autoloader-path is set, so just use it
 			languages_path = autoloaderPath.trim().replace(/\/?$/, '/');
 		} else {
-			let src = script.src;
+			const src = script.src;
 			if (autoloaderFile.test(src)) {
 				// the script is the original autoloader script in the usual Prism project structure
 				languages_path = src.replace(autoloaderFile, 'components/');
@@ -315,7 +315,7 @@
 		}
 	}
 
-	let config = Prism.plugins.autoloader = {
+	const config = Prism.plugins.autoloader = {
 		languages_path: languages_path,
 		use_minified: true,
 		loadLanguages: loadLanguages
@@ -330,7 +330,7 @@
 	 * @param {() => void} [error]
 	 */
 	function addScript(src, success, error) {
-		let s = document.createElement('script');
+		const s = document.createElement('script');
 		s.src = src;
 		s.async = true;
 		s.onload = function () {
@@ -353,7 +353,7 @@
 	function getDependencies(element) {
 		let deps = (element.getAttribute('data-dependencies') || '').trim();
 		if (!deps) {
-			let parent = element.parentElement;
+			const parent = element.parentElement;
 			if (parent && parent.tagName.toLowerCase() === 'pre') {
 				deps = (parent.getAttribute('data-dependencies') || '').trim();
 			}
@@ -381,7 +381,7 @@
 		}
 
 		// this will catch extensions like CSS extras that don't add a grammar to Prism.languages
-		let data = lang_data[lang];
+		const data = lang_data[lang];
 		return data && !data.error && data.loading === false;
 	}
 
@@ -407,7 +407,7 @@
 			languages = [languages];
 		}
 
-		let total = languages.length;
+		const total = languages.length;
 		let completed = 0;
 		let failed = false;
 
@@ -447,7 +447,7 @@
 	 * @param {() => void} [error]
 	 */
 	function loadLanguage(lang, success, error) {
-		let force = lang.indexOf('!') >= 0;
+		const force = lang.indexOf('!') >= 0;
 
 		lang = lang.replace('!', '');
 		lang = lang_aliases[lang] || lang;
@@ -487,7 +487,7 @@
 			}
 		}
 
-		let dependencies = lang_dependencies[lang];
+		const dependencies = lang_dependencies[lang];
 		if (dependencies && dependencies.length) {
 			loadLanguages(dependencies, load, error);
 		} else {
@@ -503,9 +503,9 @@
 	 */
 	function languageCallback(lang, type) {
 		if (lang_data[lang]) {
-			let callbacks = lang_data[lang].callbacks;
+			const callbacks = lang_data[lang].callbacks;
 			for (let i = 0, l = callbacks.length; i < l; i++) {
-				let callback = callbacks[i][type];
+				const callback = callbacks[i][type];
 				if (callback) {
 					setTimeout(callback, 0);
 				}
@@ -515,13 +515,13 @@
 	}
 
 	Prism.hooks.add('complete', function (env) {
-		let element = env.element;
-		let language = env.language;
+		const element = env.element;
+		const language = env.language;
 		if (!element || !language || language === ignored_language) {
 			return;
 		}
 
-		let deps = getDependencies(element);
+		const deps = getDependencies(element);
 		if (/^diff-./i.test(language)) {
 			// the "diff-xxxx" format is used by the Diff Highlight plugin
 			deps.push('diff');

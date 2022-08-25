@@ -7,10 +7,10 @@ export default /** @type {import("../types").LanguageProto} */ ({
 	require: [markup, java, javadoclike],
 	optional: 'scala',
 	grammar({ extend, getLanguage }) {
-		let codeLinePattern = /(^(?:[\t ]*(?:\*\s*)*))[^*\s].*$/m;
+		const codeLinePattern = /(^(?:[\t ]*(?:\*\s*)*))[^*\s].*$/m;
 
-		let memberReference = /#\s*\w+(?:\s*\([^()]*\))?/.source;
-		let reference = /(?:\b[a-zA-Z]\w+\s*\.\s*)*\b[A-Z]\w*(?:\s*<mem>)?|<mem>/.source.replace(/<mem>/g, function () { return memberReference; });
+		const memberReference = /#\s*\w+(?:\s*\([^()]*\))?/.source;
+		const reference = /(?:\b[a-zA-Z]\w+\s*\.\s*)*\b[A-Z]\w*(?:\s*<mem>)?|<mem>/.source.replace(/<mem>/g, function () { return memberReference; });
 
 		Prism.languages.javadoc = extend('javadoclike', {});
 		Prism.languages.insertBefore('javadoc', 'keyword', {

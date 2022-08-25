@@ -7,10 +7,10 @@ export default /** @type {import("../types").LanguageProto} */ ({
 	require: [javascript, javadoclike, typescript],
 	optional: ['actionscript', 'coffeescript'],
 	grammar({ extend, getLanguage }) {
-		let javascript = Prism.languages.javascript;
+		const javascript = Prism.languages.javascript;
 
-		let type = /\{(?:[^{}]|\{(?:[^{}]|\{[^{}]*\})*\})+\}/.source;
-		let parameterPrefix = '(@(?:arg|argument|param|property)\\s+(?:' + type + '\\s+)?)';
+		const type = /\{(?:[^{}]|\{(?:[^{}]|\{[^{}]*\})*\})+\}/.source;
+		const parameterPrefix = '(@(?:arg|argument|param|property)\\s+(?:' + type + '\\s+)?)';
 
 		Prism.languages.jsdoc = extend('javadoclike', {
 			'parameter': {

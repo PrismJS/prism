@@ -54,9 +54,9 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				let insideRaw = false;
 
 				templating.buildPlaceholders(env, liquidPattern, function (match) {
-					let tagMatch = /^\{%-?\s*(\w+)/.exec(match);
+					const tagMatch = /^\{%-?\s*(\w+)/.exec(match);
 					if (tagMatch) {
-						let tag = tagMatch[1];
+						const tag = tagMatch[1];
 						if (tag === 'raw' && !insideRaw) {
 							insideRaw = true;
 							return true;

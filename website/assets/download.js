@@ -4,14 +4,14 @@
 
 (function () {
 
-	let cache = {};
-	let form = $('form');
+	const cache = {};
+	const form = $('form');
 	let minified = true;
 
-	let dependencies = {};
+	const dependencies = {};
 
-	let treeURL = 'https://api.github.com/repos/PrismJS/prism/git/trees/master?recursive=1';
-	let treePromise = new Promise(function (resolve) {
+	const treeURL = 'https://api.github.com/repos/PrismJS/prism/git/trees/master?recursive=1';
+	const treePromise = new Promise(function (resolve) {
 		$u.xhr({
 			url: treeURL,
 			callback: function (xhr) {
@@ -37,20 +37,20 @@
 		}
 	}
 
-	let hstr = window.location.hash.match(/(?:languages|plugins)=[-+\w]+|themes=[-\w]+/g);
+	const hstr = window.location.hash.match(/(?:languages|plugins)=[-+\w]+|themes=[-\w]+/g);
 	if (hstr) {
 		hstr.forEach(function (str) {
-			let kv = str.split('=', 2);
-			let category = kv[0];
-			let ids = kv[1].split('+');
+			const kv = str.split('=', 2);
+			const category = kv[0];
+			const ids = kv[1].split('+');
 			if (category !== 'meta' && category !== 'core' && components[category]) {
-				for (let id in components[category]) {
+				for (const id in components[category]) {
 					if (components[category][id].option) {
 						delete components[category][id].option;
 					}
 				}
 				if (category === 'themes' && ids.length) {
-					let themeInput = $('#theme input[value="' + ids[0] + '"]');
+					const themeInput = $('#theme input[value="' + ids[0] + '"]');
 					if (themeInput) {
 						themeInput.checked = true;
 					}
@@ -77,16 +77,16 @@
 	}
 
 	// Stay compatible with old querystring feature
-	let qstr = window.location.search.match(/(?:languages|plugins)=[-+\w]+|themes=[-\w]+/g);
+	const qstr = window.location.search.match(/(?:languages|plugins)=[-+\w]+|themes=[-\w]+/g);
 	if (qstr && !hstr) {
 		window.location.hash = window.location.search.replace(/^\?/, '');
 		window.location.search = '';
 	}
 
-	let storedTheme = localStorage.getItem('theme');
+	const storedTheme = localStorage.getItem('theme');
 
 	for (var category in components) {
-		let all = components[category];
+		const all = components[category];
 
 		all.meta.section = $u.element.create('section', {
 			className: 'options',
@@ -113,7 +113,7 @@
 							checked: false,
 							onclick: (function (category, all) {
 								return function () {
-									let checkAll = this;
+									const checkAll = this;
 									$$('input[name="download-' + category + '"]').forEach(function (input) {
 										all[input.value].enabled = input.checked = checkAll.checked;
 									});
@@ -135,7 +135,7 @@
 			}
 
 			let checked = false; let disabled = false;
-			let option = all[id].option || all.meta.option;
+			const option = all[id].option || all.meta.option;
 
 			switch (option) {
 				case 'mandatory': disabled = true; // fallthrough
@@ -145,9 +145,9 @@
 				checked = id === storedTheme;
 			}
 
-			let filepath = all.meta.path.replace(/\{id\}/g, id);
+			const filepath = all.meta.path.replace(/\{id\}/g, id);
 
-			let info = all[id] = {
+			const info = all[id] = {
 				title: all[id].title || all[id],
 				aliasTitles: all[id].aliasTitles,
 				noCSS: all[id].noCSS || all.meta.noCSS,
@@ -180,8 +180,8 @@
 
 
 			if ((!all[id].noCSS && !/\.js$/.test(filepath)) || /\.css$/.test(filepath)) {
-				let cssFile = filepath.replace(/(\.css)?$/, '.css');
-				let minCSSFile = cssFile.replace(/(?:\.css)$/, '.min.css');
+				const cssFile = filepath.replace(/(\.css)?$/, '.css');
+				const minCSSFile = cssFile.replace(/(?:\.css)$/, '.min.css');
 
 				info.files.minified.paths.push(minCSSFile);
 				info.files.dev.paths.push(cssFile);
@@ -192,8 +192,8 @@
 					return lang.title;
 				}
 
-				let titles = [lang.title];
-				for (let alias in lang.aliasTitles) {
+				const titles = [lang.title];
+				for (const alias in lang.aliasTitles) {
 					if (lang.aliasTitles.hasOwnProperty(alias)) {
 						titles.push(lang.aliasTitles[alias]);
 					}
@@ -201,7 +201,7 @@
 				return titles.join(' + ');
 			}
 
-			let label = $u.element.create('label', {
+			const label = $u.element.create('label', {
 				attributes: {
 					'data-id': id
 				},
@@ -222,7 +222,7 @@
 
 									if (all[id].require && this.checked) {
 										all[id].require.forEach(function (v) {
-											let input = $('label[data-id="' + v + '"] > input');
+											const input = $('label[data-id="' + v + '"] > input');
 											input.checked = true;
 
 											input.onclick();
@@ -231,7 +231,7 @@
 
 									if (dependencies[id] && !this.checked) { // It’s required by others
 										dependencies[id].forEach(function (dependent) {
-											let input = $('label[data-id="' + dependent + '"] > input');
+											const input = $('label[data-id="' + dependent + '"] > input');
 											input.checked = false;
 
 											input.onclick();
@@ -278,10 +278,10 @@
 			// Add click events on main theme selector too.
 			(function (label) {
 				if (category === 'themes') {
-					let themeInput = $('#theme input[value="' + id + '"]');
-					let input = $('input', label);
+					const themeInput = $('#theme input[value="' + id + '"]');
+					const input = $('input', label);
 					if (themeInput) {
-						let themeInputOnclick = themeInput.onclick;
+						const themeInputOnclick = themeInput.onclick;
 						themeInput.onclick = function () {
 							input.checked = true;
 							input.onclick();
@@ -312,7 +312,7 @@
 
 	function getFilesSizes() {
 		for (var category in components) {
-			let all = components[category];
+			const all = components[category];
 
 			for (var id in all) {
 				if (id === 'meta') {
@@ -320,10 +320,10 @@
 				}
 
 				var distro = all[id].files[minified ? 'minified' : 'dev'];
-				let files = distro.paths;
+				const files = distro.paths;
 
 				files.forEach(function (filepath) {
-					let file = cache[filepath] = cache[filepath] || {};
+					const file = cache[filepath] = cache[filepath] || {};
 
 					if (!file.size) {
 
@@ -368,24 +368,24 @@
 
 	function update(updatedCategory, updatedId) {
 		// Update total size
-		let total = { js: 0, css: 0 }; let updated = { js: 0, css: 0 };
+		const total = { js: 0, css: 0 }; const updated = { js: 0, css: 0 };
 
-		for (let category in components) {
-			let all = components[category];
+		for (const category in components) {
+			const all = components[category];
 			let allChecked = true;
 
 			for (var id in all) {
 				var info = all[id];
 
 				if (info.enabled || id == updatedId) {
-					let distro = info.files[minified ? 'minified' : 'dev'];
+					const distro = info.files[minified ? 'minified' : 'dev'];
 
 					distro.paths.forEach(function (path) {
 						if (cache[path]) {
-							let file = cache[path];
+							const file = cache[path];
 
-							let type = path.match(/\.(\w+)$/)[1];
-							let size = file.size || 0;
+							const type = path.match(/\.(\w+)$/)[1];
+							const size = file.size || 0;
 
 							if (info.enabled) {
 
@@ -408,7 +408,7 @@
 
 				// Select main theme
 				if (category === 'themes' && id === updatedId && info.enabled) {
-					let themeInput = $('#theme input[value="' + updatedId + '"]');
+					const themeInput = $('#theme input[value="' + updatedId + '"]');
 					if (themeInput) {
 						themeInput.checked = true;
 					}
@@ -461,8 +461,8 @@
 
 	function generateCode() {
 		/** @type {CodePromiseInfo[]} */
-		let promises = [];
-		let redownload = {};
+		const promises = [];
+		const redownload = {};
 
 		for (var category in components) {
 			for (var id in components[category]) {
@@ -470,7 +470,7 @@
 					continue;
 				}
 
-				let info = components[category][id];
+				const info = components[category][id];
 				if (info.enabled) {
 					if (category !== 'core') {
 						redownload[category] = redownload[category] || [];
@@ -478,7 +478,7 @@
 					}
 					info.files[minified ? 'minified' : 'dev'].paths.forEach(function (path) {
 						if (cache[path]) {
-							let type = path.match(/\.(\w+)$/)[1];
+							const type = path.match(/\.(\w+)$/)[1];
 
 							promises.push({
 								contentsPromise: cache[path].contentsPromise,
@@ -494,14 +494,14 @@
 		}
 
 		// Hide error message if visible
-		let error = $('#download .error');
+		const error = $('#download .error');
 		error.style.display = '';
 
 		Promise.all([buildCode(promises), getVersion()]).then(function (arr) {
-			let res = arr[0];
-			let version = arr[1];
-			let code = res.code;
-			let errors = res.errors;
+			const res = arr[0];
+			const version = arr[1];
+			const code = res.code;
+			const errors = res.errors;
 
 			if (errors.length) {
 				error.style.display = 'block';
@@ -510,23 +510,23 @@
 			}
 
 			let redownloadUrl = window.location.href.split('#')[0] + '#';
-			for (let category in redownload) {
+			for (const category in redownload) {
 				redownloadUrl += category + '=' + redownload[category].join('+') + '&';
 			}
 			redownloadUrl = redownloadUrl.replace(/&$/, '');
 			window.location.replace(redownloadUrl);
 
-			let versionComment = '/* PrismJS ' + version + '\n' + redownloadUrl + ' */';
+			const versionComment = '/* PrismJS ' + version + '\n' + redownloadUrl + ' */';
 
-			for (let type in code) {
+			for (const type in code) {
 				(function (type) {
-					let text = versionComment + '\n' + code[type];
-					let fileName = 'prism.' + type;
+					const text = versionComment + '\n' + code[type];
+					const fileName = 'prism.' + type;
 
-					let codeElement = $('#download-' + type + ' code');
-					let pre = codeElement.parentElement;
+					const codeElement = $('#download-' + type + ' code');
+					const pre = codeElement.parentElement;
 
-					let newCode = document.createElement('CODE');
+					const newCode = document.createElement('CODE');
 					newCode.className = codeElement.className;
 					newCode.textContent = text;
 
@@ -560,9 +560,9 @@
 		// sort the promises
 
 		/** @type {CodePromiseInfo[]} */
-		let finalPromises = [];
+		const finalPromises = [];
 		/** @type {Object<string, CodePromiseInfo[]>} */
-		let toSortMap = {};
+		const toSortMap = {};
 
 		promises.forEach(function (p) {
 			if (p.category == 'core' || p.category == 'themes') {
@@ -587,13 +587,13 @@
 
 		// build
 		let i = 0;
-		let l = promises.length;
-		let code = { js: '', css: '' };
-		let errors = [];
+		const l = promises.length;
+		const code = { js: '', css: '' };
+		const errors = [];
 
 		var f = function (resolve) {
 			if (i < l) {
-				let p = promises[i];
+				const p = promises[i];
 				p.contentsPromise.then(function (contents) {
 					code[p.type] += contents + (p.type === 'js' && !/;\s*$/.test(contents) ? ';' : '') + '\n';
 					i++;

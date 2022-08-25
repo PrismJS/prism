@@ -30,7 +30,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		delete Prism.languages.typescript['literal-property'];
 
 		// a version of typescript specifically for highlighting types
-		let typeInside = extend('typescript', {});
+		const typeInside = extend('typescript', {});
 		delete typeInside['class-name'];
 
 		Prism.languages.typescript['class-name'].inside = typeInside;

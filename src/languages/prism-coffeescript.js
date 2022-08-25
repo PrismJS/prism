@@ -7,8 +7,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 	alias: 'coffee',
 	grammar({ extend }) {
 		// Ignore comments starting with { to privilege string interpolation highlighting
-		let comment = /#(?!\{).+/;
-		let interpolation = {
+		const comment = /#(?!\{).+/;
+		const interpolation = {
 			pattern: /#\{[^}]+\}/,
 			alias: 'variable'
 		};

@@ -44,8 +44,8 @@ for (const lang in languages) {
 		testPatterns(Prism, lang);
 	});
 
-	let optional = toArray(languages[lang].optional);
-	let modify = toArray(languages[lang].modify);
+	const optional = toArray(languages[lang].optional);
+	const modify = toArray(languages[lang].modify);
 
 	if (optional.length > 0 || modify.length > 0) {
 		let name = `Patterns of '${lang}'`;
@@ -534,7 +534,7 @@ function checkExponentialBacktracking(path, pattern, ast) {
 	 * @returns {NFA}
 	 */
 	function toNFA(element) {
-		let { expression, maxCharacter } = parser.parseElement(element, {
+		const { expression, maxCharacter } = parser.parseElement(element, {
 			maxBackreferenceWords: 1000,
 			backreferences: 'disable'
 		});

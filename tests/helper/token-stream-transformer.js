@@ -434,13 +434,13 @@ function prettyCountTokens(prettyStream, recursive) {
 function prettyGlueTogether(prettyStream, prev, next) {
 	// strings may appear more than once in the stream, so we have to search for tokens.
 	if (typeof prev !== 'string') {
-		let index = prettyStream.indexOf(prev);
+		const index = prettyStream.indexOf(prev);
 		if (index === -1 || prettyStream[index + 1] !== next) {
 			throw new Error('Cannot glue: At least one of the tokens is not part of the given token stream.');
 		}
 		prettyStream.splice(index + 1, 0, new GlueItem());
 	} else {
-		let index = prettyStream.indexOf(next);
+		const index = prettyStream.indexOf(next);
 		if (index === -1 || prettyStream[index - 1] !== prev) {
 			throw new Error('Cannot glue: At least one of the tokens is not part of the given token stream.');
 		}

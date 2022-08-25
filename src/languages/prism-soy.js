@@ -5,8 +5,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'soy',
 	require: markupTemplating,
 	grammar() {
-		let stringPattern = /(["'])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/;
-		let numberPattern = /\b\d+(?:\.\d+)?(?:[eE][+-]?\d+)?\b|\b0x[\dA-F]+\b/;
+		const stringPattern = /(["'])(?:\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/;
+		const numberPattern = /\b\d+(?:\.\d+)?(?:[eE][+-]?\d+)?\b|\b0x[\dA-F]+\b/;
 
 		return {
 			'comment': [
@@ -76,9 +76,9 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		return addHooks(Prism.hooks, {
 			'before-tokenize': (env) => {
 				// Tokenize all inline Soy expressions
-				let soyPattern = /\{\{.+?\}\}|\{.+?\}|\s\/\/.*|\/\*[\s\S]*?\*\//g;
-				let soyLitteralStart = '{literal}';
-				let soyLitteralEnd = '{/literal}';
+				const soyPattern = /\{\{.+?\}\}|\{.+?\}|\s\/\/.*|\/\*[\s\S]*?\*\//g;
+				const soyLitteralStart = '{literal}';
+				const soyLitteralEnd = '{/literal}';
 				let soyLitteralMode = false;
 
 				templating.buildPlaceholders(env, soyPattern, (match) => {

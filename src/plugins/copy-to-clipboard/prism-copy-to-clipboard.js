@@ -31,7 +31,7 @@
 
 	/** @param {CopyInfo} copyInfo */
 	function fallbackCopyTextToClipboard(copyInfo) {
-		let textArea = document.createElement('textarea');
+		const textArea = document.createElement('textarea');
 		textArea.value = copyInfo.getText();
 
 		// Avoid scrolling to bottom
@@ -44,7 +44,7 @@
 		textArea.select();
 
 		try {
-			let successful = document.execCommand('copy');
+			const successful = document.execCommand('copy');
 			setTimeout(function () {
 				if (successful) {
 					copyInfo.success();
@@ -91,16 +91,16 @@
 	 */
 	function getSettings(startElement) {
 		/** @type {Settings} */
-		let settings = {
+		const settings = {
 			'copy': 'Copy',
 			'copy-error': 'Press Ctrl+C to copy',
 			'copy-success': 'Copied!',
 			'copy-timeout': 5000
 		};
 
-		let prefix = 'data-prismjs-';
-		for (let key in settings) {
-			let attr = prefix + key;
+		const prefix = 'data-prismjs-';
+		for (const key in settings) {
+			const attr = prefix + key;
 			let element = startElement;
 			while (element && !element.hasAttribute(attr)) {
 				element = element.parentElement;
@@ -113,14 +113,14 @@
 	}
 
 	Prism.plugins.toolbar.registerButton('copy-to-clipboard', function (env) {
-		let element = env.element;
+		const element = env.element;
 
-		let settings = getSettings(element);
+		const settings = getSettings(element);
 
-		let linkCopy = document.createElement('button');
+		const linkCopy = document.createElement('button');
 		linkCopy.className = 'copy-to-clipboard-button';
 		linkCopy.setAttribute('type', 'button');
-		let linkSpan = document.createElement('span');
+		const linkSpan = document.createElement('span');
 		linkCopy.appendChild(linkSpan);
 
 		setState('copy');

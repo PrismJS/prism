@@ -4,8 +4,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		// https://www.stata.com/manuals/m.pdf
 
 
-		let orgType = /\b(?:(?:col|row)?vector|matrix|scalar)\b/.source;
-		let type = /\bvoid\b|<org>|\b(?:complex|numeric|pointer(?:\s*\([^()]*\))?|real|string|(?:class|struct)\s+\w+|transmorphic)(?:\s*<org>)?/.source
+		const orgType = /\b(?:(?:col|row)?vector|matrix|scalar)\b/.source;
+		const type = /\bvoid\b|<org>|\b(?:complex|numeric|pointer(?:\s*\([^()]*\))?|real|string|(?:class|struct)\s+\w+|transmorphic)(?:\s*<org>)?/.source
 			.replace(/<org>/g, orgType);
 
 		return {

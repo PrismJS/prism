@@ -1,7 +1,7 @@
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'odin',
 	grammar() {
-		let escapes = /\\(?:["'\\abefnrtv]|0[0-7]{2}|U[\dA-Fa-f]{6}|u[\dA-Fa-f]{4}|x[\dA-Fa-f]{2})/;
+		const escapes = /\\(?:["'\\abefnrtv]|0[0-7]{2}|U[\dA-Fa-f]{6}|u[\dA-Fa-f]{4}|x[\dA-Fa-f]{2})/;
 
 		return {
 			/**

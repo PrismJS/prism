@@ -6,7 +6,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 	grammar() {
 		const placeholder = /** @type {import('../types').GrammarToken["inside"]} */ (null);
 
-		let attributes = {
+		const attributes = {
 			pattern: /(^[ \t]*)\[(?!\[)(?:(["'$`])(?:(?!\2)[^\\]|\\.)*\2|\[(?:[^\[\]\\]|\\.)*\]|[^\[\]\\"'$`]|\\.)*\]/m,
 			lookbehind: true,
 			inside: {
@@ -32,7 +32,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		};
 
-		let asciidoc = {
+		const asciidoc = {
 			'comment-block': {
 				pattern: /^(\/{4,})$[\s\S]*?^\1/m,
 				alias: 'comment'
@@ -211,7 +211,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		 */
 		function copyFromAsciiDoc(...keys) {
 			/** @type {import('../types').Grammar} */
-			let o = {};
+			const o = {};
 			for (const key of keys) {
 				o[key] = asciidoc[key];
 			}

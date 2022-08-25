@@ -119,8 +119,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		 * @returns {string}
 		 */
 		function getSuffixPattern(contentType) {
-			let suffix = contentType.replace(/^[a-z]+\//, '');
-			let suffixPattern = '\\w+/(?:[\\w.-]+\\+)+' + suffix + '(?![+\\w.-])';
+			const suffix = contentType.replace(/^[a-z]+\//, '');
+			const suffixPattern = '\\w+/(?:[\\w.-]+\\+)+' + suffix + '(?![+\\w.-])';
 			return '(?:' + contentType + '|' + suffixPattern + ')';
 		}
 
@@ -128,7 +128,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		// currently loaded.
 		/** @type {import('../types').Grammar} */
 		const options = {};
-		for (let key in httpLanguages) {
+		for (const key in httpLanguages) {
 			const contentType = /** @type {keyof typeof httpLanguages} */ (key);
 
 			const pattern = suffixTypes[contentType] ? getSuffixPattern(contentType) : contentType;

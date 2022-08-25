@@ -1,7 +1,7 @@
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'javadoclike',
 	grammar({ getLanguage }) {
-		let javaDocLike = Prism.languages.javadoclike = {
+		const javaDocLike = Prism.languages.javadoclike = {
 			'parameter': {
 				pattern: /(^[\t ]*(?:\/{3}|\*|\/\*\*)\s*@(?:arg|arguments|param)\s+)\w+/m,
 				lookbehind: true
@@ -23,7 +23,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		 * @param {(pattern: {inside: {rest: undefined}}) => void} callback the function called with each doc comment pattern as argument.
 		 */
 		function docCommentSupport(lang, callback) {
-			let tokenName = 'doc-comment';
+			const tokenName = 'doc-comment';
 
 			let grammar = Prism.languages[lang];
 			if (!grammar) {
@@ -33,7 +33,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 
 			if (!token) {
 				// add doc comment: /** */
-				let definition = {};
+				const definition = {};
 				definition[tokenName] = {
 					pattern: /(^|[^\\])\/\*\*[^/][\s\S]*?(?:\*\/|$)/,
 					lookbehind: true,

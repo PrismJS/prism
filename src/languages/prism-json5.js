@@ -4,7 +4,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'json5',
 	require: json,
 	grammar({ extend }) {
-		let string = /("|')(?:\\(?:\r\n?|\n|.)|(?!\1)[^\\\r\n])*\1/;
+		const string = /("|')(?:\\(?:\r\n?|\n|.)|(?!\1)[^\\\r\n])*\1/;
 
 		return extend('json', {
 			'property': [

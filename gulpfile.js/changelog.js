@@ -268,7 +268,7 @@ async function changes() {
 		},
 
 		function changedPlugin(info) {
-			let relevantChanges = info.changes.filter(and(notGenerated, notTests, notExamples, c => !/\.(?:css|html)$/.test(c.file)));
+			const relevantChanges = info.changes.filter(and(notGenerated, notTests, notExamples, c => !/\.(?:css|html)$/.test(c.file)));
 
 			if (relevantChanges.length > 0 &&
 				relevantChanges.every(c => c.mode === 'M' && /^plugins\/.*\.js$/.test(c.file))) {
@@ -302,7 +302,7 @@ async function changes() {
 		},
 
 		function changedInfrastructure(info) {
-			let relevantChanges = info.changes.filter(notGenerated);
+			const relevantChanges = info.changes.filter(notGenerated);
 
 			if (relevantChanges.length > 0 && relevantChanges.every(c => {
 				if (/^(?:gulpfile.js|tests)\//.test(c.file)) {

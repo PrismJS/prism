@@ -20,14 +20,14 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		}
 
-		let stringPattern = /'[{}:=,](?:[^']|'')*'(?!')/;
+		const stringPattern = /'[{}:=,](?:[^']|'')*'(?!')/;
 
-		let escape = {
+		const escape = {
 			pattern: /''/,
 			greedy: true,
 			alias: 'operator'
 		};
-		let string = {
+		const string = {
 			pattern: stringPattern,
 			greedy: true,
 			inside: {
@@ -35,13 +35,13 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		};
 
-		let argumentSource = nested(
+		const argumentSource = nested(
 			/\{(?:[^{}']|'(?![{},'])|''|<STR>|<SELF>)*\}/.source
 				.replace(/<STR>/g, function () { return stringPattern.source; }),
 			8
 		);
 
-		let nestedMessage = {
+		const nestedMessage = {
 			pattern: RegExp(argumentSource),
 			inside: {
 				'message': {
