@@ -1,82 +1,88 @@
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'graphql',
-	grammar() {
-		Prism.languages.graphql = {
-			'comment': /#.*/,
-			'description': {
-				pattern: /(?:"""(?:[^"]|(?!""")")*"""|"(?:\\.|[^\\"\r\n])*")(?=\s*[a-z_])/i,
-				greedy: true,
-				alias: 'string',
-				inside: {
-					'language-markdown': {
-						pattern: /(^"(?:"")?)(?!\1)[\s\S]+(?=\1$)/,
-						lookbehind: true,
-						inside: 'markdown'
-					}
+	grammar: {
+		'comment': /#.*/,
+		'description': {
+			pattern: /(?:"""(?:[^"]|(?!""")")*"""|"(?:\\.|[^\\"\r\n])*")(?=\s*[a-z_])/i,
+			greedy: true,
+			alias: 'string',
+			inside: {
+				'language-markdown': {
+					pattern: /(^"(?:"")?)(?!\1)[\s\S]+(?=\1$)/,
+					lookbehind: true,
+					inside: 'markdown'
 				}
-			},
-			'string': {
-				pattern: /"""(?:[^"]|(?!""")")*"""|"(?:\\.|[^\\"\r\n])*"/,
-				greedy: true
-			},
-			'number': /(?:\B-|\b)\d+(?:\.\d+)?(?:e[+-]?\d+)?\b/i,
-			'boolean': /\b(?:false|true)\b/,
-			'variable': /\$[a-z_]\w*/i,
-			'directive': {
-				pattern: /@[a-z_]\w*/i,
-				alias: 'function'
-			},
-			'attr-name': {
-				pattern: /\b[a-z_]\w*(?=\s*(?:\((?:[^()"]|"(?:\\.|[^\\"\r\n])*")*\))?:)/i,
-				greedy: true
-			},
-			'atom-input': {
-				pattern: /\b[A-Z]\w*Input\b/,
-				alias: 'class-name'
-			},
-			'scalar': /\b(?:Boolean|Float|ID|Int|String)\b/,
-			'constant': /\b[A-Z][A-Z_\d]*\b/,
-			'class-name': {
-				pattern: /(\b(?:enum|implements|interface|on|scalar|type|union)\s+|&\s*|:\s*|\[)[A-Z_]\w*/,
-				lookbehind: true
-			},
-			'fragment': {
-				pattern: /(\bfragment\s+|\.{3}\s*(?!on\b))[a-zA-Z_]\w*/,
-				lookbehind: true,
-				alias: 'function'
-			},
-			'definition-mutation': {
-				pattern: /(\bmutation\s+)[a-zA-Z_]\w*/,
-				lookbehind: true,
-				alias: 'function'
-			},
-			'definition-query': {
-				pattern: /(\bquery\s+)[a-zA-Z_]\w*/,
-				lookbehind: true,
-				alias: 'function'
-			},
-			'keyword': /\b(?:directive|enum|extend|fragment|implements|input|interface|mutation|on|query|repeatable|scalar|schema|subscription|type|union)\b/,
-			'operator': /[!=|&]|\.{3}/,
-			'property-query': /\w+(?=\s*\()/,
-			'object': /\w+(?=\s*\{)/,
-			'punctuation': /[!(){}\[\]:=,]/,
-			'property': /\w+/
-		};
-
-		Prism.hooks.add('after-tokenize', function afterTokenizeGraphql(env) {
+			}
+		},
+		'string': {
+			pattern: /"""(?:[^"]|(?!""")")*"""|"(?:\\.|[^\\"\r\n])*"/,
+			greedy: true
+		},
+		'number': /(?:\B-|\b)\d+(?:\.\d+)?(?:e[+-]?\d+)?\b/i,
+		'boolean': /\b(?:false|true)\b/,
+		'variable': /\$[a-z_]\w*/i,
+		'directive': {
+			pattern: /@[a-z_]\w*/i,
+			alias: 'function'
+		},
+		'attr-name': {
+			pattern: /\b[a-z_]\w*(?=\s*(?:\((?:[^()"]|"(?:\\.|[^\\"\r\n])*")*\))?:)/i,
+			greedy: true
+		},
+		'atom-input': {
+			pattern: /\b[A-Z]\w*Input\b/,
+			alias: 'class-name'
+		},
+		'scalar': /\b(?:Boolean|Float|ID|Int|String)\b/,
+		'constant': /\b[A-Z][A-Z_\d]*\b/,
+		'class-name': {
+			pattern: /(\b(?:enum|implements|interface|on|scalar|type|union)\s+|&\s*|:\s*|\[)[A-Z_]\w*/,
+			lookbehind: true
+		},
+		'fragment': {
+			pattern: /(\bfragment\s+|\.{3}\s*(?!on\b))[a-zA-Z_]\w*/,
+			lookbehind: true,
+			alias: 'function'
+		},
+		'definition-mutation': {
+			pattern: /(\bmutation\s+)[a-zA-Z_]\w*/,
+			lookbehind: true,
+			alias: 'function'
+		},
+		'definition-query': {
+			pattern: /(\bquery\s+)[a-zA-Z_]\w*/,
+			lookbehind: true,
+			alias: 'function'
+		},
+		'keyword': /\b(?:directive|enum|extend|fragment|implements|input|interface|mutation|on|query|repeatable|scalar|schema|subscription|type|union)\b/,
+		'operator': /[!=|&]|\.{3}/,
+		'property-query': /\w+(?=\s*\()/,
+		'object': /\w+(?=\s*\{)/,
+		'punctuation': /[!(){}\[\]:=,]/,
+		'property': /\w+/
+	},
+	effect(Prism) {
+		return Prism.hooks.add('after-tokenize', (env) => {
 			if (env.language !== 'graphql') {
 				return;
 			}
 
+			/** @typedef {import("../core/token").Token} Token */
+
+			/**
+			 * @param {Token | string} token
+			 * @returns {token is Token}
+			 */
+			function isToken(token) {
+				return typeof token !== 'string';
+			}
+
 			/**
 			 * get the graphql token stream that we want to customize
-			 *
-			 * @typedef {InstanceType<import("./prism-core")["Token"]>} Token
-			 * @type {Token[]}
 			 */
-			let validTokens = env.tokens.filter(function (token) {
-				return typeof token !== 'string' && token.type !== 'comment' && token.type !== 'scalar';
-			});
+			let validTokens = env.tokens
+				.filter(isToken)
+				.filter((token) => token.type !== 'comment' && token.type !== 'scalar');
 
 			let currentIndex = 0;
 
@@ -97,8 +103,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			 * @param {number} [offset=0]
 			 * @returns {boolean}
 			 */
-			function isTokenType(types, offset) {
-				offset = offset || 0;
+			function isTokenType(types, offset = 0) {
 				for (let i = 0; i < types.length; i++) {
 					let token = getToken(i + offset);
 					if (!token || token.type !== types[i]) {

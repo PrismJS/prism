@@ -205,37 +205,37 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		// Allow some nesting. There is no recursion though, so cloning should not be needed.
 
 		/**
-		 * @param {string} keys
-		 * @returns
+		 * @param {(keyof typeof asciidoc)[]} keys
 		 */
-		function copyFromAsciiDoc(keys) {
+		function copyFromAsciiDoc(...keys) {
+			/** @type {import('../types').Grammar} */
 			let o = {};
-			for (const key of keys.split(' ')) {
+			for (const key of keys) {
 				o[key] = asciidoc[key];
 			}
 			return o;
 		}
 
-		attributes.inside['interpreted'].inside[rest] = copyFromAsciiDoc('macro inline replacement entity');
+		attributes.inside['interpreted'].inside[rest] = copyFromAsciiDoc('macro', 'inline', 'replacement', 'entity');
 
 		asciidoc['passthrough-block'].inside[rest] = copyFromAsciiDoc('macro');
 
 		asciidoc['literal-block'].inside[rest] = copyFromAsciiDoc('callout');
 
-		asciidoc['table'].inside[rest] = copyFromAsciiDoc('comment-block passthrough-block literal-block other-block list-punctuation indented-block comment title attribute-entry attributes hr page-break admonition list-label callout macro inline replacement entity line-continuation');
+		asciidoc['table'].inside[rest] = copyFromAsciiDoc('comment-block', 'passthrough-block', 'literal-block', 'other-block', 'list-punctuation', 'indented-block', 'comment', 'title', 'attribute-entry', 'attributes', 'hr', 'page-break', 'admonition', 'list-label', 'callout', 'macro', 'inline', 'replacement', 'entity', 'line-continuation');
 
-		asciidoc['other-block'].inside[rest] = copyFromAsciiDoc('table list-punctuation indented-block comment attribute-entry attributes hr page-break admonition list-label macro inline replacement entity line-continuation');
+		asciidoc['other-block'].inside[rest] = copyFromAsciiDoc('table', 'list-punctuation', 'indented-block', 'comment', 'attribute-entry', 'attributes', 'hr', 'page-break', 'admonition', 'list-label', 'macro', 'inline', 'replacement', 'entity', 'line-continuation');
 
-		asciidoc['title'].inside[rest] = copyFromAsciiDoc('macro inline replacement entity');
+		asciidoc['title'].inside[rest] = copyFromAsciiDoc('macro', 'inline', 'replacement', 'entity');
 
-
+		return asciidoc;
+	},
+	effect(Prism) {
 		// Plugin to make entity title show the real entity, idea by Roman Komarov
-		Prism.hooks.add('wrap', function (env) {
+		return Prism.hooks.add('wrap', function (env) {
 			if (env.type === 'entity') {
 				env.attributes['title'] = env.content.replace(/&amp;/, '&');
 			}
 		});
-
-		return asciidoc;
 	}
 });

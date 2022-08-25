@@ -1,13 +1,14 @@
 import markup from './prism-markup.js';
 import javascript from './prism-javascript.js';
+import { getTextContent, Token } from '../core/token.js';
+import { insertBefore } from '../shared/language-util.js';
+import { rest } from '../shared/symbols.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'jsx',
 	require: [markup, javascript],
 	optional: ['jsdoc', 'js-extras', 'js-templates'],
-	grammar({ extend, getLanguage }) {
-		let javascript = Prism.util.clone(Prism.languages.javascript);
-
+	grammar({ extend }) {
 		let space = /(?:\s|\/\/.*(?!.)|\/\*(?:[^*]|\*(?!\/))\*\/)/.source;
 		let braces = /(?:\{(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])*\})/.source;
 		let spread = /(?:\{<S>*\.{3}(?:[^{}]|<BRACES>)*\})/.source;
@@ -27,24 +28,27 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		spread = re(spread).source;
 
 
-		Prism.languages.jsx = extend('markup', javascript);
-		Prism.languages.jsx.tag.pattern = re(
+		const javascript = extend('javascript', {});
+		const jsx = extend('markup', javascript);
+
+		const tag = /** @type {import('../types').GrammarToken & { inside: import('../types').Grammar}} */ (jsx.tag);
+		tag.pattern = re(
 			/<\/?(?:[\w.:-]+(?:<S>+(?:[\w.:$-]+(?:=(?:"(?:\\[\s\S]|[^\\"])*"|'(?:\\[\s\S]|[^\\'])*'|[^\s{'"/>=]+|<BRACES>))?|<SPREAD>))*<S>*\/?)?>/.source
 		);
 
-		Prism.languages.jsx.tag.inside['tag'].pattern = /^<\/?[^\s>\/]*/;
-		Prism.languages.jsx.tag.inside['attr-value'].pattern = /=(?!\{)(?:"(?:\\[\s\S]|[^\\"])*"|'(?:\\[\s\S]|[^\\'])*'|[^\s'">]+)/;
-		Prism.languages.jsx.tag.inside['tag'].inside['class-name'] = /^[A-Z]\w*(?:\.[A-Z]\w*)*$/;
-		Prism.languages.jsx.tag.inside['comment'] = javascript['comment'];
+		tag.inside['tag'].pattern = /^<\/?[^\s>\/]*/;
+		tag.inside['attr-value'].pattern = /=(?!\{)(?:"(?:\\[\s\S]|[^\\"])*"|'(?:\\[\s\S]|[^\\'])*'|[^\s'">]+)/;
+		tag.inside['tag'].inside['class-name'] = /^[A-Z]\w*(?:\.[A-Z]\w*)*$/;
+		tag.inside['comment'] = javascript['comment'];
 
-		Prism.languages.insertBefore('inside', 'attr-name', {
+		insertBefore(tag.inside, 'attr-name', {
 			'spread': {
 				pattern: re(/<SPREAD>/.source),
 				inside: 'jsx'
 			}
-		}, Prism.languages.jsx.tag);
+		});
 
-		Prism.languages.insertBefore('inside', 'special-attr', {
+		insertBefore(tag.inside, 'special-attr', {
 			'script': {
 				// Allow for two levels of nesting
 				pattern: re(/=<BRACES>/.source),
@@ -54,32 +58,39 @@ export default /** @type {import("../types").LanguageProto} */ ({
 						pattern: /^=(?=\{)/,
 						alias: 'punctuation'
 					},
-					rest: Prism.languages.jsx
+					[rest]: 'jsx'
 				},
 			}
-		}, Prism.languages.jsx.tag);
+		});
+
+		return jsx;
+	},
+	effect(Prism) {
 
 		// The following will handle plain text inside tags
-		var stringifyToken = function (token) {
+		/**
+		 * @param {string | Token | import('../core/token.js').TokenStream | undefined} token
+		 * @returns {string}
+		 */
+		function stringifyToken(token) {
 			if (!token) {
 				return '';
+			} else {
+				return getTextContent(token);
 			}
-			if (typeof token === 'string') {
-				return token;
-			}
-			if (typeof token.content === 'string') {
-				return token.content;
-			}
-			return token.content.map(stringifyToken).join('');
-		};
+		}
 
-		var walkTokens = function (tokens) {
+		/**
+		 * @param {import('../core/token.js').TokenStream} tokens
+		 */
+		function walkTokens(tokens) {
 			let openedTags = [];
 			for (let i = 0; i < tokens.length; i++) {
-				let token = tokens[i];
+				const token = tokens[i];
+				const isToken = typeof token !== 'string';
 				let notTagNorBrace = false;
 
-				if (typeof token !== 'string') {
+				if (isToken) {
 					if (token.type === 'tag' && token.content[0] && token.content[0].type === 'tag') {
 						// We found a tag, now find its kind
 
@@ -114,34 +125,38 @@ export default /** @type {import("../types").LanguageProto} */ ({
 						notTagNorBrace = true;
 					}
 				}
-				if (notTagNorBrace || typeof token === 'string') {
+				if (notTagNorBrace || !isToken) {
 					if (openedTags.length > 0 && openedTags[openedTags.length - 1].openedBraces === 0) {
 						// Here we are inside a tag, and not inside a JSX context.
 						// That's plain text: drop any tokens matched.
 						let plainText = stringifyToken(token);
 
 						// And merge text with adjacent text
-						if (i < tokens.length - 1 && (typeof tokens[i + 1] === 'string' || tokens[i + 1].type === 'plain-text')) {
-							plainText += stringifyToken(tokens[i + 1]);
+						/** @type {Token | string | undefined} */
+						const next = tokens[i + 1];
+						if (next && (typeof next === 'string' || next.type === 'plain-text')) {
+							plainText += stringifyToken(next);
 							tokens.splice(i + 1, 1);
 						}
-						if (i > 0 && (typeof tokens[i - 1] === 'string' || tokens[i - 1].type === 'plain-text')) {
-							plainText = stringifyToken(tokens[i - 1]) + plainText;
+						/** @type {Token | string | undefined} */
+						const prev = tokens[i - 1];
+						if (prev && (typeof prev === 'string' || prev.type === 'plain-text')) {
+							plainText = stringifyToken(prev) + plainText;
 							tokens.splice(i - 1, 1);
 							i--;
 						}
 
-						tokens[i] = new Prism.Token('plain-text', plainText, null, plainText);
+						tokens[i] = new Token('plain-text', plainText, undefined, plainText);
 					}
 				}
 
-				if (token.content && typeof token.content !== 'string') {
+				if (isToken && typeof token.content !== 'string') {
 					walkTokens(token.content);
 				}
 			}
-		};
+		}
 
-		Prism.hooks.add('after-tokenize', function (env) {
+		return Prism.hooks.add('after-tokenize', function (env) {
 			if (env.language !== 'jsx' && env.language !== 'tsx') {
 				return;
 			}

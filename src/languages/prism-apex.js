@@ -19,9 +19,11 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'punctuation': /[()\[\]{};,:.<>]/
 		};
 
+		const clike = getLanguage('clike');
+
 		return {
-			'comment': Prism.languages.clike.comment,
-			'string': Prism.languages.clike.string,
+			'comment': clike.comment,
+			'string': clike.string,
 			'sql': {
 				pattern: /((?:[=,({:]|\breturn)\s*)\[[^\[\]]*\]/i,
 				lookbehind: true,

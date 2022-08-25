@@ -1,3 +1,28 @@
+import { getTextContent } from '../core/token';
+
+/** @typedef {import("../core/token").Token} Token */
+
+/**
+ * @param {string} input
+ * @returns {boolean}
+ */
+function isBracketsBalanced(input) {
+	let brackets = '[]{}';
+	let stack = [];
+	for (let i = 0; i < input.length; i++) {
+		let bracket = input[i];
+		let bracketsIndex = brackets.indexOf(bracket);
+		if (bracketsIndex !== -1) {
+			if (bracketsIndex % 2 === 0) {
+				stack.push(bracketsIndex + 1);
+			} else if (stack.pop() !== bracketsIndex) {
+				return false;
+			}
+		}
+	}
+	return stack.length === 0;
+}
+
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'naniscript',
 	alias: 'nani',
@@ -112,18 +137,14 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				}
 			}
 		};
-
-
-		/** @typedef {InstanceType<import("./prism-core")["Token"]>} Token */
-
+	},
+	effect(Prism) {
 		/**
 		 * This hook is used to validate generic-text tokens for balanced brackets.
 		 * Mark token as bad-line when contains not balanced brackets: {},[]
 		 */
-		Prism.hooks.add('after-tokenize', function (env) {
-			/** @type {(Token | string)[]} */
-			let tokens = env.tokens;
-			tokens.forEach(function (token) {
+		return Prism.hooks.add('after-tokenize', function (env) {
+			env.tokens.forEach(function (token) {
 				if (typeof token !== 'string' && token.type === 'generic-text') {
 					let content = getTextContent(token);
 					if (!isBracketsBalanced(content)) {
@@ -133,40 +154,5 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				}
 			});
 		});
-
-		/**
-		 * @param {string} input
-		 * @returns {boolean}
-		 */
-		function isBracketsBalanced(input) {
-			let brackets = '[]{}';
-			let stack = [];
-			for (let i = 0; i < input.length; i++) {
-				let bracket = input[i];
-				let bracketsIndex = brackets.indexOf(bracket);
-				if (bracketsIndex !== -1) {
-					if (bracketsIndex % 2 === 0) {
-						stack.push(bracketsIndex + 1);
-					} else if (stack.pop() !== bracketsIndex) {
-						return false;
-					}
-				}
-			}
-			return stack.length === 0;
-		}
-
-		/**
-		 * @param {string | Token | (string | Token)[]} token
-		 * @returns {string}
-		 */
-		function getTextContent(token) {
-			if (typeof token === 'string') {
-				return token;
-			} else if (Array.isArray(token)) {
-				return token.map(getTextContent).join('');
-			} else {
-				return getTextContent(token.content);
-			}
-		}
 	}
 });

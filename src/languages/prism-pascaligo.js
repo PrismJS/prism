@@ -6,7 +6,10 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		let braces = /\((?:[^()]|\((?:[^()]|\([^()]*\))*\))*\)/.source;
 		let type = /(?:\b\w+(?:<braces>)?|<braces>)/.source.replace(/<braces>/g, function () { return braces; });
 
-		let pascaligo = Prism.languages.pascaligo = {
+		/** @type {import("../types").Grammar} */
+		const classNameInside = {};
+
+		let pascaligo = {
 			'comment': /\(\*[\s\S]+?\*\)|\/\/.*/,
 			'string': {
 				pattern: /(["'`])(?:\\[\s\S]|(?!\1)[^\\])*\1|\^[a-z]/i,
@@ -16,16 +19,16 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				{
 					pattern: RegExp(/(\btype\s+\w+\s+is\s+)<type>/.source.replace(/<type>/g, function () { return type; }), 'i'),
 					lookbehind: true,
-					inside: null // see below
+					inside: classNameInside
 				},
 				{
 					pattern: RegExp(/<type>(?=\s+is\b)/.source.replace(/<type>/g, function () { return type; }), 'i'),
-					inside: null // see below
+					inside: classNameInside
 				},
 				{
 					pattern: RegExp(/(:\s*)<type>/.source.replace(/<type>/g, function () { return type; })),
 					lookbehind: true,
-					inside: null // see below
+					inside: classNameInside
 				}
 			],
 			'keyword': {
@@ -51,13 +54,10 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'punctuation': /\(\.|\.\)|[()\[\]:;,.{}]/
 		};
 
-		let classNameInside = ['comment', 'keyword', 'builtin', 'operator', 'punctuation'].reduce(function (accum, key) {
-			accum[key] = pascaligo[key];
-			return accum;
-		}, {});
+		/** @type {(keyof typeof pascaligo)[]} */
+		const keys = ['comment', 'keyword', 'builtin', 'operator', 'punctuation'];
+		keys.forEach(key => classNameInside[key] = pascaligo[key]);
 
-		pascaligo['class-name'].forEach(function (p) {
-			p.inside = classNameInside;
-		});
+		return pascaligo;
 	}
 });

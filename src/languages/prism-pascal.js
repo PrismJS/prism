@@ -8,7 +8,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			Support inline asm ?
 		*/
 
-		return {
+		const pascal = {
 			'directive': {
 				pattern: /\{\$[\s\S]*?\}/,
 				greedy: true,
@@ -26,7 +26,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				pattern: /(\basm\b)[\s\S]+?(?=\bend\s*[;[])/i,
 				lookbehind: true,
 				greedy: true,
-				inside: null // see below
+				inside: /** @type {import("../types").GrammarToken["inside"]} */ (null) // see below
 			},
 			'keyword': [
 				{
@@ -66,10 +66,12 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'punctuation': /\(\.|\.\)|[()\[\]:;,.]/
 		};
 
-		Prism.languages.pascal.asm.inside = extend('pascal', {
+		pascal.asm.inside = extend('pascal', {
 			'asm': undefined,
 			'keyword': undefined,
 			'operator': undefined
 		});
+
+		return pascal;
 	}
 });

@@ -1,3 +1,4 @@
+import { insertBefore } from '../shared/language-util.js';
 import markup from './prism-markup.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
@@ -5,7 +6,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 	require: markup,
 	optional: 'yaml',
 	alias: 'md',
-	grammar({ extend, getLanguage }) {
+	grammar({ extend }) {
 		// Allow only one line break
 		let inner = /(?:\\.|[^\\\n\r]|(?:\n|\r\n?)(?![\r\n]))/.source;
 
@@ -30,8 +31,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		let tableLine = /\|?[ \t]*:?-{3,}:?[ \t]*(?:\|[ \t]*:?-{3,}:?[ \t]*)+\|?(?:\n|\r\n?)/.source;
 
 
-		Prism.languages.markdown = extend('markup', {});
-		Prism.languages.insertBefore('markdown', 'prolog', {
+		const markdown = extend('markup', {});
+		insertBefore(markdown, 'prolog', {
 			'front-matter-block': {
 				pattern: /(^(?:\s*[\r\n])?)---(?!.)[\s\S]*?[\r\n]---(?!.)/,
 				lookbehind: true,
@@ -259,10 +260,67 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		['url', 'bold', 'italic', 'strike'].forEach(function (token) {
 			['url', 'bold', 'italic', 'strike', 'code-snippet'].forEach(function (inside) {
 				if (token !== inside) {
-					Prism.languages.markdown[token].inside.content.inside[inside] = Prism.languages.markdown[inside];
+					markdown[token].inside.content.inside[inside] = markdown[inside];
 				}
 			});
 		});
+
+		return markdown;
+	},
+	effect(Prism) {
+		let tagPattern = RegExp(Prism.components.getLanguage('markup').tag.pattern.source, 'gi');
+
+		/**
+		 * A list of known entity names.
+		 *
+		 * This will always be incomplete to save space. The current list is the one used by lowdash's unescape function.
+		 *
+		 * @see {@link https://github.com/lodash/lodash/blob/2da024c3b4f9947a48517639de7560457cd4ec6c/unescape.js#L2}
+		 * @type {Partial<Record<string, string>>}
+		 */
+		let KNOWN_ENTITY_NAMES = {
+			'amp': '&',
+			'lt': '<',
+			'gt': '>',
+			'quot': '"',
+		};
+
+		/**
+		 * Returns the text content of a given HTML source code string.
+		 *
+		 * @param {string} html
+		 * @returns {string}
+		 */
+		function textContent(html) {
+			// remove all tags
+			let text = html.replace(tagPattern, '');
+
+			// decode known entities
+			text = text.replace(/&(\w{1,8}|#x?[\da-f]{1,8});/gi, (m, code) => {
+				code = code.toLowerCase();
+
+				if (code[0] === '#') {
+					let value;
+					if (code[1] === 'x') {
+						value = parseInt(code.slice(2), 16);
+					} else {
+						value = Number(code.slice(1));
+					}
+
+					return String.fromCodePoint(value);
+				} else {
+					let known = KNOWN_ENTITY_NAMES[code];
+					if (known) {
+						return known;
+					}
+
+					// unable to decode
+					return m;
+				}
+			});
+
+			return text;
+		}
 
 		Prism.hooks.add('after-tokenize', function (env) {
 			if (env.language !== 'markdown' && env.language !== 'md') {
@@ -283,18 +341,18 @@ export default /** @type {import("../types").LanguageProto} */ ({
 					}
 
 					/*
-						 * Add the correct `language-xxxx` class to this code block. Keep in mind that the `code-language` token
-						 * is optional. But the grammar is defined so that there is only one case we have to handle:
-						 *
-						 * token.content = [
-						 *     <span class="punctuation">```</span>,
-						 *     <span class="code-language">xxxx</span>,
-						 *     '\n', // exactly one new lines (\r or \n or \r\n)
-						 *     <span class="code-block">...</span>,
-						 *     '\n', // exactly one new lines again
-						 *     <span class="punctuation">```</span>
-						 * ];
-						 */
+					 * Add the correct `language-xxxx` class to this code block. Keep in mind that the `code-language` token
+					 * is optional. But the grammar is defined so that there is only one case we have to handle:
+					 *
+					 * token.content = [
+					 *     <span class="punctuation">```</span>,
+					 *     <span class="code-language">xxxx</span>,
+					 *     '\n', // exactly one new lines (\r or \n or \r\n)
+					 *     <span class="code-block">...</span>,
+					 *     '\n', // exactly one new lines again
+					 *     <span class="punctuation">```</span>
+					 * ];
+					 */
 
 					let codeLang = token.content[1];
 					let codeBlock = token.content[3];
@@ -341,7 +399,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				}
 			}
 
-			let grammar = Prism.languages[codeLang];
+			let grammar = Prism.components.getLanguage(codeLang);
 
 			if (!grammar) {
 				if (codeLang && codeLang !== 'none' && Prism.plugins.autoloader) {
@@ -360,60 +418,5 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		});
 
-		let tagPattern = RegExp(Prism.languages.markup.tag.pattern.source, 'gi');
-
-		/**
-		 * A list of known entity names.
-		 *
-		 * This will always be incomplete to save space. The current list is the one used by lowdash's unescape function.
-		 *
-		 * @see {@link https://github.com/lodash/lodash/blob/2da024c3b4f9947a48517639de7560457cd4ec6c/unescape.js#L2}
-		 */
-		let KNOWN_ENTITY_NAMES = {
-			'amp': '&',
-			'lt': '<',
-			'gt': '>',
-			'quot': '"',
-		};
-
-		// IE 11 doesn't support `String.fromCodePoint`
-		let fromCodePoint = String.fromCodePoint || String.fromCharCode;
-
-		/**
-		 * Returns the text content of a given HTML source code string.
-		 *
-		 * @param {string} html
-		 * @returns {string}
-		 */
-		function textContent(html) {
-			// remove all tags
-			let text = html.replace(tagPattern, '');
-
-			// decode known entities
-			text = text.replace(/&(\w{1,8}|#x?[\da-f]{1,8});/gi, function (m, code) {
-				code = code.toLowerCase();
-
-				if (code[0] === '#') {
-					let value;
-					if (code[1] === 'x') {
-						value = parseInt(code.slice(2), 16);
-					} else {
-						value = Number(code.slice(1));
-					}
-
-					return fromCodePoint(value);
-				} else {
-					let known = KNOWN_ENTITY_NAMES[code];
-					if (known) {
-						return known;
-					}
-
-					// unable to decode
-					return m;
-				}
-			});
-
-			return text;
-		}
 	}
 });

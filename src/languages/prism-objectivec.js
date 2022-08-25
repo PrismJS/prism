@@ -4,8 +4,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'objectivec',
 	require: c,
 	alias: 'objc',
-	grammar({ extend, getLanguage }) {
-		Prism.languages.objectivec = extend('c', {
+	grammar({ extend }) {
+		const objectivec = extend('c', {
 			'string': {
 				pattern: /@?"(?:\\(?:\r\n|[\s\S])|[^"\\\r\n])*"/,
 				greedy: true
@@ -14,6 +14,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'operator': /-[->]?|\+\+?|!=?|<<?=?|>>?=?|==?|&&?|\|\|?|[~^%?*\/@]/
 		});
 
-		delete Prism.languages.objectivec['class-name'];
+		delete objectivec['class-name'];
+
+		return objectivec;
 	}
 });

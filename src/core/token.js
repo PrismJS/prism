@@ -55,3 +55,19 @@ export class Token {
  * @typedef {Array<string | Token>} TokenStream
  * @public
  */
+
+/**
+ * Returns the text content of the given token or token stream.
+ *
+ * @param {string | Token | TokenStream} token
+ * @returns {string}
+ */
+export function getTextContent(token) {
+	if (typeof token === 'string') {
+		return token;
+	} else if (Array.isArray(token)) {
+		return token.map(getTextContent).join('');
+	} else {
+		return getTextContent(token.content);
+	}
+}
