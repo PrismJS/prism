@@ -911,7 +911,6 @@
 		},
 		"php-extras": {
 			"title": "PHP Extras",
-			"modify": "php",
 			"owner": "milesj"
 		},
 		"plant-uml": {

@@ -5,7 +5,8 @@ import markupTemplating, { MarkupTemplating } from './prism-markup-templating.js
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'php',
 	require: markupTemplating,
-	grammar() {
+	optional: 'php-extras',
+	grammar({ getOptionalLanguage }) {
 		/**
 		 * Original by Aaron Harun: http://aahacreative.com/2012/07/31/php-syntax-highlighting-prism/
 		 * Modified by Miles Johnson: http://milesj.me
@@ -332,6 +333,11 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				}
 			},
 		});
+
+		const extras = getOptionalLanguage('php-extras');
+		if (extras) {
+			insertBefore(php, 'variable', extras);
+		}
 
 		return php;
 	},
