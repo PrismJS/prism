@@ -906,7 +906,6 @@
 		},
 		"phpdoc": {
 			"title": "PHPDoc",
-			"modify": "php",
 			"owner": "RunDevelopment"
 		},
 		"php-extras": {

@@ -42,6 +42,12 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				pattern: /\?>$|^<\?(?:php(?=\s)|=)?/i,
 				alias: 'important'
 			},
+			'doc-comment': {
+				pattern: /\/\*\*[\s\S]*?\*\//,
+				greedy: true,
+				alias: 'comment',
+				inside: 'php-doc'
+			},
 			'comment': comment,
 			'variable': /\$+(?:\w+\b|(?=\{))/,
 			'package': {
