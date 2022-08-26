@@ -43,8 +43,9 @@ function nested(pattern, depthLog2) {
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'csharp',
 	require: clike,
+	optional: 'xml-doc',
 	alias: ['cs', 'dotnet'],
-	grammar({ extend }) {
+	grammar({ extend, getOptionalLanguage }) {
 		// https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/
 		const keywordKinds = {
 			// keywords which represent a return or variable type
@@ -59,6 +60,9 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		};
 
 		// keywords
+		/**
+		 * @param {string} words
+		 */
 		function keywordsToPattern(words) {
 			return '\\b(?:' + words.trim().replace(/ /g, '|') + ')\\b';
 		}
@@ -321,6 +325,10 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		const sInterpolationRound = nested(replace(/[^"'/()]|\/(?!\*)|\/\*(?:[^*]|\*(?!\/))*\*\/|<<0>>|\(<<self>>*\)/.source, [regularStringOrCharacter]), 2);
 		const sInterpolation = replace(/\{(?!\{)(?:(?![}:])<<0>>)*<<1>>?\}/.source, [sInterpolationRound, formatString]);
 
+		/**
+		 * @param {string} interpolation
+		 * @param {string} interpolationRound
+		 */
 		function createInterpolationInside(interpolation, interpolationRound) {
 			return {
 				'interpolation': {
@@ -365,6 +373,10 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				pattern: RegExp(character),
 				greedy: true
 			}
+		});
+
+		insertBefore(csharp, 'comment', {
+			'doc-comment': getOptionalLanguage('xml-doc')?.slash
 		});
 
 		return csharp;

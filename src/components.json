@@ -1318,7 +1318,6 @@
 		},
 		"xml-doc": {
 			"title": "XML doc (.net)",
-			"modify": ["csharp", "fsharp", "vbnet"],
 			"owner": "RunDevelopment"
 		},
 		"xojo": {

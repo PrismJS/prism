@@ -4,7 +4,8 @@ import clike from './prism-clike.js';
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'fsharp',
 	require: clike,
-	grammar({ extend }) {
+	optional: 'xml-doc',
+	grammar({ extend, getOptionalLanguage }) {
 		const fsharp = extend('clike', {
 			'comment': [
 				{
@@ -80,5 +81,11 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				greedy: true
 			}
 		});
+
+		insertBefore(fsharp, 'comment', {
+			'doc-comment': getOptionalLanguage('xml-doc')?.slash
+		});
+
+		return fsharp;
 	}
 });
