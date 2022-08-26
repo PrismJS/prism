@@ -316,8 +316,11 @@
 		},
 		"css-extras": {
 			"title": "CSS Extras",
-			"modify": "css",
 			"owner": "milesj"
+		},
+		"css-selector": {
+			"title": "CSS Selector",
+			"owner": "RunDevelopment"
 		},
 		"csv": {
 			"title": "CSV",

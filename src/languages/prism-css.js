@@ -1,8 +1,10 @@
+import { insertBefore } from '../shared/language-util';
 import { rest } from '../shared/symbols';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'css',
-	grammar({ getLanguage }) {
+	optional: 'css-extras',
+	grammar({ getOptionalLanguage }) {
 		const string = /(?:"(?:\\(?:\r\n|[\s\S])|[^"\\\r\n])*"|'(?:\\(?:\r\n|[\s\S])|[^'\\\r\n])*')/;
 
 		const css = {
@@ -14,7 +16,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 					'selector-function-argument': {
 						pattern: /(\bselector\s*\(\s*(?![\s)]))(?:[^()\s]|\s+(?![\s)])|\((?:[^()]|\([^()]*\))*\))+(?=\s*\))/,
 						lookbehind: true,
-						alias: 'selector'
+						alias: 'selector',
+						inside: 'css-selector'
 					},
 					'keyword': {
 						pattern: /(^|[^\w-])(?:and|not|only|or)(?![\w-])/,
@@ -38,11 +41,16 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			},
 			'selector': {
 				pattern: RegExp('(^|[{}\\s])[^{}\\s](?:[^{};"\'\\s]|\\s+(?![\\s{])|' + string.source + ')*(?=\\s*\\{)'),
-				lookbehind: true
+				lookbehind: true,
+				inside: 'css-selector'
 			},
 			'string': {
 				pattern: string,
 				greedy: true
+			},
+			'variable': {
+				pattern: /(^|[^-\w\xA0-\uFFFF])--(?!\s)[-_a-z\xA0-\uFFFF](?:(?!\s)[-\w\xA0-\uFFFF])*/i,
+				lookbehind: true
 			},
 			'property': {
 				pattern: /(^|[^-\w\xA0-\uFFFF])(?!\s)[-_a-z\xA0-\uFFFF](?:(?!\s)[-\w\xA0-\uFFFF])*(?=\s*:)/i,
@@ -55,6 +63,11 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			},
 			'punctuation': /[(){};:,]/
 		};
+
+		const extras = getOptionalLanguage('css-extras');
+		if (extras) {
+			insertBefore(css, 'function', extras);
+		}
 
 		const markup = Prism.languages.markup;
 		if (markup) {
