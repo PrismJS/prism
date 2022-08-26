@@ -1,4 +1,5 @@
 import { insertBefore } from '../shared/language-util.js';
+import { toArray } from '../shared/util.js';
 import clike from './prism-clike.js';
 import cpp from './prism-cpp.js';
 
@@ -28,7 +29,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			],
 			'keyword': /\b(?:attr|auto|break|case|catch|class|continue|def|default|else|finally|for|fun|global|if|return|switch|this|try|var|while)\b/,
 			'number': [
-				cpp.number,
+				...toArray(cpp.number),
 				/\b(?:Infinity|NaN)\b/
 			],
 			'operator': />>=?|<<=?|\|\||&&|:[:=]?|--|\+\+|[=!<>+\-*/%|&^]=?|[?~]|`[^`\r\n]{1,4}`/,
@@ -68,5 +69,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				}
 			},
 		});
+
+		return chaiscript;
 	}
 });

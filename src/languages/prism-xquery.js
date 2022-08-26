@@ -1,10 +1,11 @@
+import { getTextContent, Token } from '../core/token.js';
 import markup from './prism-markup.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'xquery',
 	require: markup,
-	grammar({ extend, getLanguage }) {
-		Prism.languages.xquery = extend('markup', {
+	grammar({ extend }) {
+		const xquery = extend('markup', {
 			'xquery-comment': {
 				pattern: /\(:[\s\S]*?:\)/,
 				greedy: true,
@@ -59,40 +60,36 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'punctuation': /[[\](){},;:/]/
 		});
 
-		Prism.languages.xquery.tag.pattern = /<\/?(?!\d)[^\s>\/=$<%]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|\{(?!\{)(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])+\}|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/;
-		Prism.languages.xquery['tag'].inside['attr-value'].pattern = /=(?:("|')(?:\\[\s\S]|\{(?!\{)(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])+\}|(?!\1)[^\\])*\1|[^\s'">=]+)/;
-		Prism.languages.xquery['tag'].inside['attr-value'].inside['punctuation'] = /^="|"$/;
-		Prism.languages.xquery['tag'].inside['attr-value'].inside['expression'] = {
+		xquery.tag.pattern = /<\/?(?!\d)[^\s>\/=$<%]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|\{(?!\{)(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])+\}|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/;
+		xquery['tag'].inside['attr-value'].pattern = /=(?:("|')(?:\\[\s\S]|\{(?!\{)(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])+\}|(?!\1)[^\\])*\1|[^\s'">=]+)/;
+		xquery['tag'].inside['attr-value'].inside['punctuation'] = /^="|"$/;
+		xquery['tag'].inside['attr-value'].inside['expression'] = {
 			// Allow for two levels of nesting
 			pattern: /\{(?!\{)(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])+\}/,
-			inside: 'xquery',
-			alias: 'language-xquery'
+			alias: 'language-xquery',
+			inside: 'xquery'
 		};
 
-		// The following will handle plain text inside tags
-		function stringifyToken(token) {
-			if (typeof token === 'string') {
-				return token;
-			}
-			if (typeof token.content === 'string') {
-				return token.content;
-			}
-			return token.content.map(stringifyToken).join('');
-		}
-
+		return xquery;
+	},
+	effect(Prism) {
+		/**
+		 * @param {import('../core/token.js').TokenStream} tokens
+		 */
 		function walkTokens(tokens) {
 			const openedTags = [];
 			for (let i = 0; i < tokens.length; i++) {
 				const token = tokens[i];
+				const isToken = typeof token !== 'string';
 				let notTagNorBrace = false;
 
-				if (typeof token !== 'string') {
+				if (isToken) {
 					if (token.type === 'tag' && token.content[0] && token.content[0].type === 'tag') {
 						// We found a tag, now find its kind
 
 						if (token.content[0].content[0].content === '</') {
 							// Closing tag
-							if (openedTags.length > 0 && openedTags[openedTags.length - 1].tagName === stringifyToken(token.content[0].content[1])) {
+							if (openedTags.length > 0 && openedTags[openedTags.length - 1].tagName === getTextContent(token.content[0].content[1])) {
 								// Pop matching opening tag
 								openedTags.pop();
 							}
@@ -102,7 +99,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 							} else {
 								// Opening tag
 								openedTags.push({
-									tagName: stringifyToken(token.content[0].content[1]),
+									tagName: getTextContent(token.content[0].content[1]),
 									openedBraces: 0
 								});
 							}
@@ -125,19 +122,21 @@ export default /** @type {import("../types").LanguageProto} */ ({
 						notTagNorBrace = true;
 					}
 				}
-				if (notTagNorBrace || typeof token === 'string') {
+				if (notTagNorBrace || !isToken) {
 					if (openedTags.length > 0 && openedTags[openedTags.length - 1].openedBraces === 0) {
 						// Here we are inside a tag, and not inside an XQuery expression.
 						// That's plain text: drop any tokens matched.
-						let plainText = stringifyToken(token);
+						let plainText = getTextContent(token);
 
 						// And merge text with adjacent text
-						if (i < tokens.length - 1 && (typeof tokens[i + 1] === 'string' || tokens[i + 1].type === 'plain-text')) {
-							plainText += stringifyToken(tokens[i + 1]);
+						const next = tokens[i + 1];
+						if (next && (typeof next === 'string' || next.type === 'plain-text')) {
+							plainText += getTextContent(next);
 							tokens.splice(i + 1, 1);
 						}
-						if (i > 0 && (typeof tokens[i - 1] === 'string' || tokens[i - 1].type === 'plain-text')) {
-							plainText = stringifyToken(tokens[i - 1]) + plainText;
+						const prev = tokens[i - 1];
+						if (prev && (typeof prev === 'string' || prev.type === 'plain-text')) {
+							plainText = getTextContent(prev) + plainText;
 							tokens.splice(i - 1, 1);
 							i--;
 						}
@@ -145,18 +144,18 @@ export default /** @type {import("../types").LanguageProto} */ ({
 						if (/^\s+$/.test(plainText)) {
 							tokens[i] = plainText;
 						} else {
-							tokens[i] = new Prism.Token('plain-text', plainText, null, plainText);
+							tokens[i] = new Token('plain-text', plainText, undefined, plainText);
 						}
 					}
 				}
 
-				if (token.content && typeof token.content !== 'string') {
+				if (isToken && typeof token.content !== 'string') {
 					walkTokens(token.content);
 				}
 			}
 		}
 
-		Prism.hooks.add('after-tokenize', (env) => {
+		return Prism.hooks.add('after-tokenize', (env) => {
 			if (env.language !== 'xquery') {
 				return;
 			}

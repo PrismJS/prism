@@ -15,6 +15,11 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			inside: 'bash'
 		};
 
+		/** @type {import("../types").Grammar} */
+		const commandSubstitutionInside = {
+			'variable': /^\$\(|^`|\)$|`$/
+		};
+
 		const insideString = {
 			'bash': commandAfterHeredoc,
 			'environment': {
@@ -46,9 +51,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				{
 					pattern: /\$\((?:\([^)]+\)|[^()])+\)|`[^`]+`/,
 					greedy: true,
-					inside: {
-						'variable': /^\$\(|^`|\)$|`$/
-					}
+					inside: commandSubstitutionInside
 				},
 				// [2]: Brace expansion
 				{
@@ -227,9 +230,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'punctuation',
 			'number'
 		];
-		const inside = insideString.variable[1].inside;
 		for (let i = 0; i < toBeCopied.length; i++) {
-			inside[toBeCopied[i]] = bash[toBeCopied[i]];
+			commandSubstitutionInside[toBeCopied[i]] = bash[toBeCopied[i]];
 		}
 
 		return bash;

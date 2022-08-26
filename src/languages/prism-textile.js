@@ -41,222 +41,224 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'punctuation': /[\\\/]\d+|\S/
 		};
 
+		const phrase = {
+			pattern: /(^|\r|\n)\S[\s\S]*?(?=$|\r?\n\r?\n|\r\r)/,
+			lookbehind: true,
+			inside: {
 
-		const textile = extend('markup', {
-			'phrase': {
-				pattern: /(^|\r|\n)\S[\s\S]*?(?=$|\r?\n\r?\n|\r\r)/,
-				lookbehind: true,
-				inside: {
+				// h1. Header 1
+				'block-tag': {
+					pattern: withModifier(/^[a-z]\w*(?:<MOD>|<PAR>|[<>=])*\./.source),
+					inside: {
+						'modifier': {
+							pattern: withModifier(/(^[a-z]\w*)(?:<MOD>|<PAR>|[<>=])+(?=\.)/.source),
+							lookbehind: true,
+							inside: modifierTokens
+						},
+						'tag': /^[a-z]\w*/,
+						'punctuation': /\.$/
+					}
+				},
 
-					// h1. Header 1
-					'block-tag': {
-						pattern: withModifier(/^[a-z]\w*(?:<MOD>|<PAR>|[<>=])*\./.source),
-						inside: {
-							'modifier': {
-								pattern: withModifier(/(^[a-z]\w*)(?:<MOD>|<PAR>|[<>=])+(?=\.)/.source),
-								lookbehind: true,
-								inside: modifierTokens
-							},
-							'tag': /^[a-z]\w*/,
-							'punctuation': /\.$/
-						}
-					},
+				// # List item
+				// * List item
+				'list': {
+					pattern: withModifier(/^[*#]+<MOD>*\s+\S.*/.source, 'm'),
+					inside: {
+						'modifier': {
+							pattern: withModifier(/(^[*#]+)<MOD>+/.source),
+							lookbehind: true,
+							inside: modifierTokens
+						},
+						'punctuation': /^[*#]+/
+					}
+				},
 
-					// # List item
-					// * List item
-					'list': {
-						pattern: withModifier(/^[*#]+<MOD>*\s+\S.*/.source, 'm'),
-						inside: {
-							'modifier': {
-								pattern: withModifier(/(^[*#]+)<MOD>+/.source),
-								lookbehind: true,
-								inside: modifierTokens
-							},
-							'punctuation': /^[*#]+/
-						}
-					},
+				// | cell | cell | cell |
+				'table': {
+					// Modifiers can be applied to the row: {color:red}.|1|2|3|
+					// or the cell: |{color:red}.1|2|3|
+					pattern: withModifier(/^(?:(?:<MOD>|<PAR>|[<>=^~])+\.\s*)?(?:\|(?:(?:<MOD>|<PAR>|[<>=^~_]|[\\/]\d+)+\.|(?!(?:<MOD>|<PAR>|[<>=^~_]|[\\/]\d+)+\.))[^|]*)+\|/.source, 'm'),
+					inside: {
+						'modifier': {
+							// Modifiers for rows after the first one are
+							// preceded by a pipe and a line feed
+							pattern: withModifier(/(^|\|(?:\r?\n|\r)?)(?:<MOD>|<PAR>|[<>=^~_]|[\\/]\d+)+(?=\.)/.source),
+							lookbehind: true,
+							inside: modifierTokens
+						},
+						'punctuation': /\||^\./
+					}
+				},
 
-					// | cell | cell | cell |
-					'table': {
-						// Modifiers can be applied to the row: {color:red}.|1|2|3|
-						// or the cell: |{color:red}.1|2|3|
-						pattern: withModifier(/^(?:(?:<MOD>|<PAR>|[<>=^~])+\.\s*)?(?:\|(?:(?:<MOD>|<PAR>|[<>=^~_]|[\\/]\d+)+\.|(?!(?:<MOD>|<PAR>|[<>=^~_]|[\\/]\d+)+\.))[^|]*)+\|/.source, 'm'),
-						inside: {
-							'modifier': {
-								// Modifiers for rows after the first one are
-								// preceded by a pipe and a line feed
-								pattern: withModifier(/(^|\|(?:\r?\n|\r)?)(?:<MOD>|<PAR>|[<>=^~_]|[\\/]\d+)+(?=\.)/.source),
-								lookbehind: true,
-								inside: modifierTokens
-							},
-							'punctuation': /\||^\./
-						}
-					},
+				'inline': {
+					// eslint-disable-next-line regexp/no-super-linear-backtracking
+					pattern: withModifier(/(^|[^a-zA-Z\d])(\*\*|__|\?\?|[*_%@+\-^~])<MOD>*.+?\2(?![a-zA-Z\d])/.source),
+					lookbehind: true,
+					inside: {
+						// Note: superscripts and subscripts are not handled specifically
 
-					'inline': {
-						// eslint-disable-next-line regexp/no-super-linear-backtracking
-						pattern: withModifier(/(^|[^a-zA-Z\d])(\*\*|__|\?\?|[*_%@+\-^~])<MOD>*.+?\2(?![a-zA-Z\d])/.source),
-						lookbehind: true,
-						inside: {
-							// Note: superscripts and subscripts are not handled specifically
+						// *bold*, **bold**
+						'bold': {
+							// eslint-disable-next-line regexp/no-super-linear-backtracking
+							pattern: withModifier(/(^(\*\*?)<MOD>*).+?(?=\2)/.source),
+							lookbehind: true,
+							inside: /** @type {import('../types').GrammarToken["inside"]} */ (null),
+						},
 
-							// *bold*, **bold**
-							'bold': {
-								// eslint-disable-next-line regexp/no-super-linear-backtracking
-								pattern: withModifier(/(^(\*\*?)<MOD>*).+?(?=\2)/.source),
-								lookbehind: true
-							},
+						// _italic_, __italic__
+						'italic': {
+							// eslint-disable-next-line regexp/no-super-linear-backtracking
+							pattern: withModifier(/(^(__?)<MOD>*).+?(?=\2)/.source),
+							lookbehind: true,
+							inside: /** @type {import('../types').GrammarToken["inside"]} */ (null),
+						},
 
-							// _italic_, __italic__
-							'italic': {
-								// eslint-disable-next-line regexp/no-super-linear-backtracking
-								pattern: withModifier(/(^(__?)<MOD>*).+?(?=\2)/.source),
-								lookbehind: true
-							},
+						// ??cite??
+						'cite': {
+							// eslint-disable-next-line regexp/no-super-linear-backtracking
+							pattern: withModifier(/(^\?\?<MOD>*).+?(?=\?\?)/.source),
+							lookbehind: true,
+							alias: 'string'
+						},
 
-							// ??cite??
-							'cite': {
-								// eslint-disable-next-line regexp/no-super-linear-backtracking
-								pattern: withModifier(/(^\?\?<MOD>*).+?(?=\?\?)/.source),
-								lookbehind: true,
-								alias: 'string'
-							},
+						// @code@
+						'code': {
+							// eslint-disable-next-line regexp/no-super-linear-backtracking
+							pattern: withModifier(/(^@<MOD>*).+?(?=@)/.source),
+							lookbehind: true,
+							alias: 'keyword'
+						},
 
-							// @code@
-							'code': {
-								// eslint-disable-next-line regexp/no-super-linear-backtracking
-								pattern: withModifier(/(^@<MOD>*).+?(?=@)/.source),
-								lookbehind: true,
-								alias: 'keyword'
-							},
+						// +inserted+
+						'inserted': {
+							// eslint-disable-next-line regexp/no-super-linear-backtracking
+							pattern: withModifier(/(^\+<MOD>*).+?(?=\+)/.source),
+							lookbehind: true,
+							inside: /** @type {import('../types').GrammarToken["inside"]} */ (null),
+						},
 
-							// +inserted+
-							'inserted': {
-								// eslint-disable-next-line regexp/no-super-linear-backtracking
-								pattern: withModifier(/(^\+<MOD>*).+?(?=\+)/.source),
-								lookbehind: true
-							},
+						// -deleted-
+						'deleted': {
+							// eslint-disable-next-line regexp/no-super-linear-backtracking
+							pattern: withModifier(/(^-<MOD>*).+?(?=-)/.source),
+							lookbehind: true,
+							inside: /** @type {import('../types').GrammarToken["inside"]} */ (null),
+						},
 
-							// -deleted-
-							'deleted': {
-								// eslint-disable-next-line regexp/no-super-linear-backtracking
-								pattern: withModifier(/(^-<MOD>*).+?(?=-)/.source),
-								lookbehind: true
-							},
+						// %span%
+						'span': {
+							// eslint-disable-next-line regexp/no-super-linear-backtracking
+							pattern: withModifier(/(^%<MOD>*).+?(?=%)/.source),
+							lookbehind: true,
+							inside: /** @type {import('../types').GrammarToken["inside"]} */ (null),
+						},
 
-							// %span%
-							'span': {
-								// eslint-disable-next-line regexp/no-super-linear-backtracking
-								pattern: withModifier(/(^%<MOD>*).+?(?=%)/.source),
-								lookbehind: true
-							},
+						'modifier': {
+							pattern: withModifier(/(^\*\*|__|\?\?|[*_%@+\-^~])<MOD>+/.source),
+							lookbehind: true,
+							inside: modifierTokens
+						},
+						'punctuation': /[*_%?@+\-^~]+/
+					}
+				},
 
-							'modifier': {
-								pattern: withModifier(/(^\*\*|__|\?\?|[*_%@+\-^~])<MOD>+/.source),
-								lookbehind: true,
-								inside: modifierTokens
-							},
-							'punctuation': /[*_%?@+\-^~]+/
-						}
-					},
+				// [alias]http://example.com
+				'link-ref': {
+					pattern: /^\[[^\]]+\]\S+$/m,
+					inside: {
+						'string': {
+							pattern: /(^\[)[^\]]+(?=\])/,
+							lookbehind: true
+						},
+						'url': {
+							pattern: /(^\])\S+$/,
+							lookbehind: true
+						},
+						'punctuation': /[\[\]]/
+					}
+				},
 
-					// [alias]http://example.com
-					'link-ref': {
-						pattern: /^\[[^\]]+\]\S+$/m,
-						inside: {
-							'string': {
-								pattern: /(^\[)[^\]]+(?=\])/,
-								lookbehind: true
-							},
-							'url': {
-								pattern: /(^\])\S+$/,
-								lookbehind: true
-							},
-							'punctuation': /[\[\]]/
-						}
-					},
+				// "text":http://example.com
+				// "text":link-ref
+				'link': {
+					// eslint-disable-next-line regexp/no-super-linear-backtracking
+					pattern: withModifier(/"<MOD>*[^"]+":.+?(?=[^\w/]?(?:\s|$))/.source),
+					inside: {
+						'text': {
+							// eslint-disable-next-line regexp/no-super-linear-backtracking
+							pattern: withModifier(/(^"<MOD>*)[^"]+(?=")/.source),
+							lookbehind: true
+						},
+						'modifier': {
+							pattern: withModifier(/(^")<MOD>+/.source),
+							lookbehind: true,
+							inside: modifierTokens
+						},
+						'url': {
+							pattern: /(:).+/,
+							lookbehind: true
+						},
+						'punctuation': /[":]/
+					}
+				},
 
-					// "text":http://example.com
-					// "text":link-ref
-					'link': {
-						// eslint-disable-next-line regexp/no-super-linear-backtracking
-						pattern: withModifier(/"<MOD>*[^"]+":.+?(?=[^\w/]?(?:\s|$))/.source),
-						inside: {
-							'text': {
-								// eslint-disable-next-line regexp/no-super-linear-backtracking
-								pattern: withModifier(/(^"<MOD>*)[^"]+(?=")/.source),
-								lookbehind: true
-							},
-							'modifier': {
-								pattern: withModifier(/(^")<MOD>+/.source),
-								lookbehind: true,
-								inside: modifierTokens
-							},
-							'url': {
-								pattern: /(:).+/,
-								lookbehind: true
-							},
-							'punctuation': /[":]/
-						}
-					},
+				// !image.jpg!
+				// !image.jpg(Title)!:http://example.com
+				'image': {
+					pattern: withModifier(/!(?:<MOD>|<PAR>|[<>=])*(?![<>=])[^!\s()]+(?:\([^)]+\))?!(?::.+?(?=[^\w/]?(?:\s|$)))?/.source),
+					inside: {
+						'source': {
+							pattern: withModifier(/(^!(?:<MOD>|<PAR>|[<>=])*)(?![<>=])[^!\s()]+(?:\([^)]+\))?(?=!)/.source),
+							lookbehind: true,
+							alias: 'url'
+						},
+						'modifier': {
+							pattern: withModifier(/(^!)(?:<MOD>|<PAR>|[<>=])+/.source),
+							lookbehind: true,
+							inside: modifierTokens
+						},
+						'url': {
+							pattern: /(:).+/,
+							lookbehind: true
+						},
+						'punctuation': /[!:]/
+					}
+				},
 
-					// !image.jpg!
-					// !image.jpg(Title)!:http://example.com
-					'image': {
-						pattern: withModifier(/!(?:<MOD>|<PAR>|[<>=])*(?![<>=])[^!\s()]+(?:\([^)]+\))?!(?::.+?(?=[^\w/]?(?:\s|$)))?/.source),
-						inside: {
-							'source': {
-								pattern: withModifier(/(^!(?:<MOD>|<PAR>|[<>=])*)(?![<>=])[^!\s()]+(?:\([^)]+\))?(?=!)/.source),
-								lookbehind: true,
-								alias: 'url'
-							},
-							'modifier': {
-								pattern: withModifier(/(^!)(?:<MOD>|<PAR>|[<>=])+/.source),
-								lookbehind: true,
-								inside: modifierTokens
-							},
-							'url': {
-								pattern: /(:).+/,
-								lookbehind: true
-							},
-							'punctuation': /[!:]/
-						}
-					},
+				// Footnote[1]
+				'footnote': {
+					pattern: /\b\[\d+\]/,
+					alias: 'comment',
+					inside: {
+						'punctuation': /\[|\]/
+					}
+				},
 
-					// Footnote[1]
-					'footnote': {
-						pattern: /\b\[\d+\]/,
-						alias: 'comment',
-						inside: {
-							'punctuation': /\[|\]/
-						}
-					},
+				// CSS(Cascading Style Sheet)
+				'acronym': {
+					pattern: /\b[A-Z\d]+\([^)]+\)/,
+					inside: {
+						'comment': {
+							pattern: /(\()[^()]+(?=\))/,
+							lookbehind: true
+						},
+						'punctuation': /[()]/
+					}
+				},
 
-					// CSS(Cascading Style Sheet)
-					'acronym': {
-						pattern: /\b[A-Z\d]+\([^)]+\)/,
-						inside: {
-							'comment': {
-								pattern: /(\()[^()]+(?=\))/,
-								lookbehind: true
-							},
-							'punctuation': /[()]/
-						}
-					},
-
-					// Prism(C)
-					'mark': {
-						pattern: /\b\((?:C|R|TM)\)/,
-						alias: 'comment',
-						inside: {
-							'punctuation': /[()]/
-						}
+				// Prism(C)
+				'mark': {
+					pattern: /\b\((?:C|R|TM)\)/,
+					alias: 'comment',
+					inside: {
+						'punctuation': /[()]/
 					}
 				}
 			}
-		});
+		};
 
-		const phraseInside = textile['phrase'].inside;
+		const phraseInside = phrase.inside;
 		const nestedPatterns = {
 			'inline': phraseInside['inline'],
 			'link': phraseInside['link'],
@@ -265,9 +267,6 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'acronym': phraseInside['acronym'],
 			'mark': phraseInside['mark']
 		};
-
-		// Only allow alpha-numeric HTML tags, not XML tags
-		textile.tag.pattern = /<\/?(?!\d)[a-z0-9]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/i;
 
 		// Allow some nesting
 		const phraseInlineInside = phraseInside['inline'].inside;
@@ -278,13 +277,15 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		phraseInlineInside['span'].inside = nestedPatterns;
 
 		// Allow some styles inside table cells
-		const phraseTableInside = phraseInside['table'].inside;
-		phraseTableInside['inline'] = nestedPatterns['inline'];
-		phraseTableInside['link'] = nestedPatterns['link'];
-		phraseTableInside['image'] = nestedPatterns['image'];
-		phraseTableInside['footnote'] = nestedPatterns['footnote'];
-		phraseTableInside['acronym'] = nestedPatterns['acronym'];
-		phraseTableInside['mark'] = nestedPatterns['mark'];
+		Object.assign(phraseInside['table'].inside, nestedPatterns);
+
+		const textile = extend('markup', {
+			'phrase': phrase
+		});
+
+		// Only allow alpha-numeric HTML tags, not XML tags
+		const tag = /** @type {import('../types').GrammarToken} */ (textile.tag);
+		tag.pattern = /<\/?(?!\d)[a-z0-9]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/i;
 
 		return textile;
 	}

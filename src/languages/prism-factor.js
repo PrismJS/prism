@@ -1,6 +1,17 @@
+import { regexEscape } from '../shared/util';
+
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'factor',
 	grammar() {
+		/**
+		 * @param {string[]} arr
+		 */
+		function arrToWordsRegExp(arr) {
+			return new RegExp(
+				'(^|\\s)(?:' + arr.map(regexEscape).join('|') + ')(?=\\s|$)'
+			);
+		}
+
 		const comment_inside = {
 			'function': /\b(?:BUGS?|FIX(?:MES?)?|NOTES?|TODOS?|XX+|HACKS?|WARN(?:ING)?|\?{2,}|!{2,})\b/
 		};
@@ -8,12 +19,13 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'number': /\\[^\s']|%\w/
 		};
 
-		const factor = {
+		return {
 			'comment': [
 				{
 					// ! single-line exclamation point comments with whitespace after/around the !
 					pattern: /(^|\s)(?:! .*|!$)/,
 					lookbehind: true,
+					greedy: true,
 					inside: comment_inside
 				},
 
@@ -73,11 +85,11 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				},
 				{
 					/*
-							base prefix floats 0x1.0p3 (8.0) 0b1.010p2 (5.0) 0x1.p1 0b1.11111111p11111...
-							"The normalized hex form ±0x1.MMMMMMMMMMMMM[pP]±EEEE allows any floating-point number to be specified precisely.
-							The values of MMMMMMMMMMMMM and EEEE map directly to the mantissa and exponent fields of the binary IEEE 754 representation."
-							<https://docs.factorcode.org/content/article-syntax-floats.html>
-						*/
+						base prefix floats 0x1.0p3 (8.0) 0b1.010p2 (5.0) 0x1.p1 0b1.11111111p11111...
+						"The normalized hex form ±0x1.MMMMMMMMMMMMM[pP]±EEEE allows any floating-point number to be specified precisely.
+						The values of MMMMMMMMMMMMM and EEEE map directly to the mantissa and exponent fields of the binary IEEE 754 representation."
+						<https://docs.factorcode.org/content/article-syntax-floats.html>
+					*/
 					pattern: /(^|\s)[+-]?0(?:b1\.[01]*|o1\.[0-7]*|d1\.\d*|x1\.[\dA-F]*)p\d+(?=\s|$)/i,
 					lookbehind: true
 				}
@@ -202,25 +214,47 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			],
 
 			'combinators': {
-				pattern: null,
+				pattern: arrToWordsRegExp([
+					// kernel
+					'2bi', 'while', '2tri', 'bi*', '4dip', 'both?', 'same?', 'tri@', 'curry', 'prepose', '3bi', '?if', 'tri*', '2keep', '3keep', 'curried', '2keepd', 'when', '2bi*', '2tri*', '4keep', 'bi@', 'keepdd', 'do', 'unless*', 'tri-curry', 'if*', 'loop', 'bi-curry*', 'when*', '2bi@', '2tri@', 'with', '2with', 'either?', 'bi', 'until', '3dip', '3curry', 'tri-curry*', 'tri-curry@', 'bi-curry', 'keepd', 'compose', '2dip', 'if', '3tri', 'unless', 'tuple', 'keep', '2curry', 'tri', 'most', 'while*', 'dip', 'composed', 'bi-curry@',
+					// sequences
+					'find-last-from', 'trim-head-slice', 'map-as', 'each-from', 'none?', 'trim-tail', 'partition', 'if-empty', 'accumulate*', 'reject!', 'find-from', 'accumulate-as', 'collector-for-as', 'reject', 'map', 'map-sum', 'accumulate!', '2each-from', 'follow', 'supremum-by', 'map!', 'unless-empty', 'collector', 'padding', 'reduce-index', 'replicate-as', 'infimum-by', 'trim-tail-slice', 'count', 'find-index', 'filter', 'accumulate*!', 'reject-as', 'map-integers', 'map-find', 'reduce', 'selector', 'interleave', '2map', 'filter-as', 'binary-reduce', 'map-index-as', 'find', 'produce', 'filter!', 'replicate', 'cartesian-map', 'cartesian-each', 'find-index-from', 'map-find-last', '3map-as', '3map', 'find-last', 'selector-as', '2map-as', '2map-reduce', 'accumulate', 'each', 'each-index', 'accumulate*-as', 'when-empty', 'all?', 'collector-as', 'push-either', 'new-like', 'collector-for', '2selector', 'push-if', '2all?', 'map-reduce', '3each', 'any?', 'trim-slice', '2reduce', 'change-nth', 'produce-as', '2each', 'trim', 'trim-head', 'cartesian-find', 'map-index',
+					// math
+					'if-zero', 'each-integer', 'unless-zero', '(find-integer)', 'when-zero', 'find-last-integer', '(all-integers?)', 'times', '(each-integer)', 'find-integer', 'all-integers?',
+					// math.combinators
+					'unless-negative', 'if-positive', 'when-positive', 'when-negative', 'unless-positive', 'if-negative',
+					// combinators
+					'case', '2cleave', 'cond>quot', 'case>quot', '3cleave', 'wrong-values', 'to-fixed-point', 'alist>quot', 'cond', 'cleave', 'call-effect', 'recursive-hashcode', 'spread', 'deep-spread>quot',
+					// combinators.short-circuit
+					'2||', '0||', 'n||', '0&&', '2&&', '3||', '1||', '1&&', 'n&&', '3&&',
+					// combinators.smart
+					'smart-unless*', 'keep-inputs', 'reduce-outputs', 'smart-when*', 'cleave>array', 'smart-with', 'smart-apply', 'smart-if', 'inputs/outputs', 'output>sequence-n', 'map-outputs', 'map-reduce-outputs', 'dropping', 'output>array', 'smart-map-reduce', 'smart-2map-reduce', 'output>array-n', 'nullary', 'input<sequence', 'append-outputs', 'drop-inputs', 'inputs', 'smart-2reduce', 'drop-outputs', 'smart-reduce', 'preserving', 'smart-when', 'outputs', 'append-outputs-as', 'smart-unless', 'smart-if*', 'sum-outputs', 'input<sequence-unsafe', 'output>sequence',
+					// tafn
+				]),
 				lookbehind: true,
 				alias: 'keyword'
 			},
 
 			'kernel-builtin': {
-				pattern: null,
+				pattern: arrToWordsRegExp([
+					'or', '2nipd', '4drop', 'tuck', 'wrapper', 'nip', 'wrapper?', 'callstack>array', 'die', 'dupd', 'callstack', 'callstack?', '3dup', 'hashcode', 'pick', '4nip', 'build', '>boolean', 'nipd', 'clone', '5nip', 'eq?', '?', '=', 'swapd', '2over', 'clear', '2dup', 'get-retainstack', 'not', 'tuple?', 'dup', '3nipd', 'call', '-rotd', 'object', 'drop', 'assert=', 'assert?', '-rot', 'execute', 'boa', 'get-callstack', 'curried?', '3drop', 'pickd', 'overd', 'over', 'roll', '3nip', 'swap', 'and', '2nip', 'rotd', 'throw', '(clone)', 'hashcode*', 'spin', 'reach', '4dup', 'equal?', 'get-datastack', 'assert', '2drop', '<wrapper>', 'boolean?', 'identity-hashcode', 'identity-tuple?', 'null', 'composed?', 'new', '5drop', 'rot', '-roll', 'xor', 'identity-tuple', 'boolean'
+				]),
 				lookbehind: true,
 				alias: 'variable'
 			},
 
 			'sequences-builtin': {
-				pattern: null,
+				pattern: arrToWordsRegExp([
+					'member-eq?', 'mismatch', 'append', 'assert-sequence=', 'longer', 'repetition', 'clone-like', '3sequence', 'assert-sequence?', 'last-index-from', 'reversed', 'index-from', 'cut*', 'pad-tail', 'join-as', 'remove-eq!', 'concat-as', 'but-last', 'snip', 'nths', 'nth', 'sequence', 'longest', 'slice?', '<slice>', 'remove-nth', 'tail-slice', 'empty?', 'tail*', 'member?', 'virtual-sequence?', 'set-length', 'drop-prefix', 'iota', 'unclip', 'bounds-error?', 'unclip-last-slice', 'non-negative-integer-expected', 'non-negative-integer-expected?', 'midpoint@', 'longer?', '?set-nth', '?first', 'rest-slice', 'prepend-as', 'prepend', 'fourth', 'sift', 'subseq-start', 'new-sequence', '?last', 'like', 'first4', '1sequence', 'reverse', 'slice', 'virtual@', 'repetition?', 'set-last', 'index', '4sequence', 'max-length', 'set-second', 'immutable-sequence', 'first2', 'first3', 'supremum', 'unclip-slice', 'suffix!', 'insert-nth', 'tail', '3append', 'short', 'suffix', 'concat', 'flip', 'immutable?', 'reverse!', '2sequence', 'sum', 'delete-all', 'indices', 'snip-slice', '<iota>', 'check-slice', 'sequence?', 'head', 'append-as', 'halves', 'sequence=', 'collapse-slice', '?second', 'slice-error?', 'product', 'bounds-check?', 'bounds-check', 'immutable', 'virtual-exemplar', 'harvest', 'remove', 'pad-head', 'last', 'set-fourth', 'cartesian-product', 'remove-eq', 'shorten', 'shorter', 'reversed?', 'shorter?', 'shortest', 'head-slice', 'pop*', 'tail-slice*', 'but-last-slice', 'iota?', 'append!', 'cut-slice', 'new-resizable', 'head-slice*', 'sequence-hashcode', 'pop', 'set-nth', '?nth', 'second', 'join', 'immutable-sequence?', '<reversed>', '3append-as', 'virtual-sequence', 'subseq?', 'remove-nth!', 'length', 'last-index', 'lengthen', 'assert-sequence', 'copy', 'move', 'third', 'first', 'tail?', 'set-first', 'prefix', 'bounds-error', '<repetition>', 'exchange', 'surround', 'cut', 'min-length', 'set-third', 'push-all', 'head?', 'subseq-start-from', 'delete-slice', 'rest', 'sum-lengths', 'head*', 'infimum', 'remove!', 'glue', 'slice-error', 'subseq', 'push', 'replace-slice', 'subseq-as', 'unclip-last'
+				]),
 				lookbehind: true,
 				alias: 'variable'
 			},
 
 			'math-builtin': {
-				pattern: null,
+				pattern: arrToWordsRegExp([
+					'number=', 'next-power-of-2', '?1+', 'fp-special?', 'imaginary-part', 'float>bits', 'number?', 'fp-infinity?', 'bignum?', 'fp-snan?', 'denominator', 'gcd', '*', '+', 'fp-bitwise=', '-', 'u>=', '/', '>=', 'bitand', 'power-of-2?', 'log2-expects-positive', 'neg?', '<', 'log2', '>', 'integer?', 'number', 'bits>double', '2/', 'zero?', 'bits>float', 'float?', 'shift', 'ratio?', 'rect>', 'even?', 'ratio', 'fp-sign', 'bitnot', '>fixnum', 'complex?', '/i', 'integer>fixnum', '/f', 'sgn', '>bignum', 'next-float', 'u<', 'u>', 'mod', 'recip', 'rational', '>float', '2^', 'integer', 'fixnum?', 'neg', 'fixnum', 'sq', 'bignum', '>rect', 'bit?', 'fp-qnan?', 'simple-gcd', 'complex', '<fp-nan>', 'real', '>fraction', 'double>bits', 'bitor', 'rem', 'fp-nan-payload', 'real-part', 'log2-expects-positive?', 'prev-float', 'align', 'unordered?', 'float', 'fp-nan?', 'abs', 'bitxor', 'integer>fixnum-strict', 'u<=', 'odd?', '<=', '/mod', '>integer', 'real?', 'rational?', 'numerator'
+				]),
 				lookbehind: true,
 				alias: 'variable'
 			},
@@ -233,7 +267,12 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			},
 
 			'other-builtin-syntax': {
-				pattern: null,
+				pattern: arrToWordsRegExp([
+					// syntax
+					'=======', 'recursive', 'flushable', '>>', '<<<<<<', 'M\\', 'B', 'PRIVATE>', '\\', '======', 'final', 'inline', 'delimiter', 'deprecated', '<PRIVATE', '>>>>>>', '<<<<<<<', 'parse-complex', 'malformed-complex', 'read-only', '>>>>>>>', 'call-next-method', '<<', 'foldable',
+					// literals
+					'$', '$[', '${'
+				]),
 				lookbehind: true,
 				alias: 'operator'
 			},
@@ -345,60 +384,5 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				inside: string_inside
 			}
 		};
-
-		const escape = function (str) {
-			return (str + '').replace(/([.?*+\^$\[\]\\(){}|\-])/g, '\\$1');
-		};
-
-		const arrToWordsRegExp = function (arr) {
-			return new RegExp(
-				'(^|\\s)(?:' + arr.map(escape).join('|') + ')(?=\\s|$)'
-			);
-		};
-
-		const builtins = {
-			'kernel-builtin': [
-				'or', '2nipd', '4drop', 'tuck', 'wrapper', 'nip', 'wrapper?', 'callstack>array', 'die', 'dupd', 'callstack', 'callstack?', '3dup', 'hashcode', 'pick', '4nip', 'build', '>boolean', 'nipd', 'clone', '5nip', 'eq?', '?', '=', 'swapd', '2over', 'clear', '2dup', 'get-retainstack', 'not', 'tuple?', 'dup', '3nipd', 'call', '-rotd', 'object', 'drop', 'assert=', 'assert?', '-rot', 'execute', 'boa', 'get-callstack', 'curried?', '3drop', 'pickd', 'overd', 'over', 'roll', '3nip', 'swap', 'and', '2nip', 'rotd', 'throw', '(clone)', 'hashcode*', 'spin', 'reach', '4dup', 'equal?', 'get-datastack', 'assert', '2drop', '<wrapper>', 'boolean?', 'identity-hashcode', 'identity-tuple?', 'null', 'composed?', 'new', '5drop', 'rot', '-roll', 'xor', 'identity-tuple', 'boolean'
-			],
-			'other-builtin-syntax': [
-				// syntax
-				'=======', 'recursive', 'flushable', '>>', '<<<<<<', 'M\\', 'B', 'PRIVATE>', '\\', '======', 'final', 'inline', 'delimiter', 'deprecated', '<PRIVATE', '>>>>>>', '<<<<<<<', 'parse-complex', 'malformed-complex', 'read-only', '>>>>>>>', 'call-next-method', '<<', 'foldable',
-				// literals
-				'$', '$[', '${'
-			],
-			'sequences-builtin': [
-				'member-eq?', 'mismatch', 'append', 'assert-sequence=', 'longer', 'repetition', 'clone-like', '3sequence', 'assert-sequence?', 'last-index-from', 'reversed', 'index-from', 'cut*', 'pad-tail', 'join-as', 'remove-eq!', 'concat-as', 'but-last', 'snip', 'nths', 'nth', 'sequence', 'longest', 'slice?', '<slice>', 'remove-nth', 'tail-slice', 'empty?', 'tail*', 'member?', 'virtual-sequence?', 'set-length', 'drop-prefix', 'iota', 'unclip', 'bounds-error?', 'unclip-last-slice', 'non-negative-integer-expected', 'non-negative-integer-expected?', 'midpoint@', 'longer?', '?set-nth', '?first', 'rest-slice', 'prepend-as', 'prepend', 'fourth', 'sift', 'subseq-start', 'new-sequence', '?last', 'like', 'first4', '1sequence', 'reverse', 'slice', 'virtual@', 'repetition?', 'set-last', 'index', '4sequence', 'max-length', 'set-second', 'immutable-sequence', 'first2', 'first3', 'supremum', 'unclip-slice', 'suffix!', 'insert-nth', 'tail', '3append', 'short', 'suffix', 'concat', 'flip', 'immutable?', 'reverse!', '2sequence', 'sum', 'delete-all', 'indices', 'snip-slice', '<iota>', 'check-slice', 'sequence?', 'head', 'append-as', 'halves', 'sequence=', 'collapse-slice', '?second', 'slice-error?', 'product', 'bounds-check?', 'bounds-check', 'immutable', 'virtual-exemplar', 'harvest', 'remove', 'pad-head', 'last', 'set-fourth', 'cartesian-product', 'remove-eq', 'shorten', 'shorter', 'reversed?', 'shorter?', 'shortest', 'head-slice', 'pop*', 'tail-slice*', 'but-last-slice', 'iota?', 'append!', 'cut-slice', 'new-resizable', 'head-slice*', 'sequence-hashcode', 'pop', 'set-nth', '?nth', 'second', 'join', 'immutable-sequence?', '<reversed>', '3append-as', 'virtual-sequence', 'subseq?', 'remove-nth!', 'length', 'last-index', 'lengthen', 'assert-sequence', 'copy', 'move', 'third', 'first', 'tail?', 'set-first', 'prefix', 'bounds-error', '<repetition>', 'exchange', 'surround', 'cut', 'min-length', 'set-third', 'push-all', 'head?', 'subseq-start-from', 'delete-slice', 'rest', 'sum-lengths', 'head*', 'infimum', 'remove!', 'glue', 'slice-error', 'subseq', 'push', 'replace-slice', 'subseq-as', 'unclip-last'
-			],
-			'math-builtin': [
-				'number=', 'next-power-of-2', '?1+', 'fp-special?', 'imaginary-part', 'float>bits', 'number?', 'fp-infinity?', 'bignum?', 'fp-snan?', 'denominator', 'gcd', '*', '+', 'fp-bitwise=', '-', 'u>=', '/', '>=', 'bitand', 'power-of-2?', 'log2-expects-positive', 'neg?', '<', 'log2', '>', 'integer?', 'number', 'bits>double', '2/', 'zero?', 'bits>float', 'float?', 'shift', 'ratio?', 'rect>', 'even?', 'ratio', 'fp-sign', 'bitnot', '>fixnum', 'complex?', '/i', 'integer>fixnum', '/f', 'sgn', '>bignum', 'next-float', 'u<', 'u>', 'mod', 'recip', 'rational', '>float', '2^', 'integer', 'fixnum?', 'neg', 'fixnum', 'sq', 'bignum', '>rect', 'bit?', 'fp-qnan?', 'simple-gcd', 'complex', '<fp-nan>', 'real', '>fraction', 'double>bits', 'bitor', 'rem', 'fp-nan-payload', 'real-part', 'log2-expects-positive?', 'prev-float', 'align', 'unordered?', 'float', 'fp-nan?', 'abs', 'bitxor', 'integer>fixnum-strict', 'u<=', 'odd?', '<=', '/mod', '>integer', 'real?', 'rational?', 'numerator'
-			]
-			// that's all for now
-		};
-
-		Object.keys(builtins).forEach((k) => {
-			factor[k].pattern = arrToWordsRegExp(builtins[k]);
-		});
-
-		const combinators = [
-			// kernel
-			'2bi', 'while', '2tri', 'bi*', '4dip', 'both?', 'same?', 'tri@', 'curry', 'prepose', '3bi', '?if', 'tri*', '2keep', '3keep', 'curried', '2keepd', 'when', '2bi*', '2tri*', '4keep', 'bi@', 'keepdd', 'do', 'unless*', 'tri-curry', 'if*', 'loop', 'bi-curry*', 'when*', '2bi@', '2tri@', 'with', '2with', 'either?', 'bi', 'until', '3dip', '3curry', 'tri-curry*', 'tri-curry@', 'bi-curry', 'keepd', 'compose', '2dip', 'if', '3tri', 'unless', 'tuple', 'keep', '2curry', 'tri', 'most', 'while*', 'dip', 'composed', 'bi-curry@',
-			// sequences
-			'find-last-from', 'trim-head-slice', 'map-as', 'each-from', 'none?', 'trim-tail', 'partition', 'if-empty', 'accumulate*', 'reject!', 'find-from', 'accumulate-as', 'collector-for-as', 'reject', 'map', 'map-sum', 'accumulate!', '2each-from', 'follow', 'supremum-by', 'map!', 'unless-empty', 'collector', 'padding', 'reduce-index', 'replicate-as', 'infimum-by', 'trim-tail-slice', 'count', 'find-index', 'filter', 'accumulate*!', 'reject-as', 'map-integers', 'map-find', 'reduce', 'selector', 'interleave', '2map', 'filter-as', 'binary-reduce', 'map-index-as', 'find', 'produce', 'filter!', 'replicate', 'cartesian-map', 'cartesian-each', 'find-index-from', 'map-find-last', '3map-as', '3map', 'find-last', 'selector-as', '2map-as', '2map-reduce', 'accumulate', 'each', 'each-index', 'accumulate*-as', 'when-empty', 'all?', 'collector-as', 'push-either', 'new-like', 'collector-for', '2selector', 'push-if', '2all?', 'map-reduce', '3each', 'any?', 'trim-slice', '2reduce', 'change-nth', 'produce-as', '2each', 'trim', 'trim-head', 'cartesian-find', 'map-index',
-			// math
-			'if-zero', 'each-integer', 'unless-zero', '(find-integer)', 'when-zero', 'find-last-integer', '(all-integers?)', 'times', '(each-integer)', 'find-integer', 'all-integers?',
-			// math.combinators
-			'unless-negative', 'if-positive', 'when-positive', 'when-negative', 'unless-positive', 'if-negative',
-			// combinators
-			'case', '2cleave', 'cond>quot', 'case>quot', '3cleave', 'wrong-values', 'to-fixed-point', 'alist>quot', 'cond', 'cleave', 'call-effect', 'recursive-hashcode', 'spread', 'deep-spread>quot',
-			// combinators.short-circuit
-			'2||', '0||', 'n||', '0&&', '2&&', '3||', '1||', '1&&', 'n&&', '3&&',
-			// combinators.smart
-			'smart-unless*', 'keep-inputs', 'reduce-outputs', 'smart-when*', 'cleave>array', 'smart-with', 'smart-apply', 'smart-if', 'inputs/outputs', 'output>sequence-n', 'map-outputs', 'map-reduce-outputs', 'dropping', 'output>array', 'smart-map-reduce', 'smart-2map-reduce', 'output>array-n', 'nullary', 'input<sequence', 'append-outputs', 'drop-inputs', 'inputs', 'smart-2reduce', 'drop-outputs', 'smart-reduce', 'preserving', 'smart-when', 'outputs', 'append-outputs-as', 'smart-unless', 'smart-if*', 'sum-outputs', 'input<sequence-unsafe', 'output>sequence',
-			// tafn
-		];
-
-		factor.combinators.pattern = arrToWordsRegExp(combinators);
-
-		return factor;
 	}
 });

@@ -1,12 +1,10 @@
-import haskell from './prism-haskell.js';
+import haskell, { infixOperator, asciiOperator } from './prism-haskell.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'purescript',
 	require: haskell,
 	alias: 'purs',
-	grammar({ extend, getLanguage }) {
-		const haskell = getLanguage('haskell');
-
+	grammar({ extend }) {
 		return extend('haskell', {
 			'keyword': /\b(?:ado|case|class|data|derive|do|else|forall|if|in|infixl|infixr|instance|let|module|newtype|of|primitive|then|type|where)\b|∀/,
 
@@ -26,10 +24,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'builtin': /\b(?:absurd|add|ap|append|apply|between|bind|bottom|clamp|compare|comparing|compose|conj|const|degree|discard|disj|div|eq|flap|flip|gcd|identity|ifM|join|lcm|liftA1|liftM1|map|max|mempty|min|mod|mul|negate|not|notEq|one|otherwise|recip|show|sub|top|unit|unless|unlessM|void|when|whenM|zero)\b/,
 
 			'operator': [
-				// Infix operators
-				haskell.operator[0],
-				// ASCII operators
-				haskell.operator[2],
+				infixOperator,
+				asciiOperator,
 				// All UTF16 Unicode operator symbols
 				// This regex is equivalent to /(?=[\x80-\uFFFF])[\p{gc=Math_Symbol}\p{gc=Currency_Symbol}\p{Modifier_Symbol}\p{Other_Symbol}]/u
 				// See https://github.com/PrismJS/prism/issues/3006 for more details.

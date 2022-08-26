@@ -26,7 +26,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		function createValuePattern(value, flags) {
 			flags = (flags || '').replace(/m/g, '') + 'm'; // add m flag
 			const pattern = /([:\-,[{]\s*(?:\s<<prop>>[ \t]+)?)(?:<<value>>)(?=[ \t]*(?:$|,|\]|\}|(?:[\r\n]\s*)?#))/.source
-				.replace(/<<prop>>/g, () => properties).replace(/<<value>>/g, () => properties);
+				.replace(/<<prop>>/g, () => properties).replace(/<<value>>/g, () => value);
 			return RegExp(pattern, flags);
 		}
 

@@ -1,3 +1,19 @@
+/** @package */
+export const infixOperator = {
+	pattern: /`(?:[A-Z][\w']*\.)*[_a-z][\w']*`/,
+	greedy: true
+};
+
+// Most of this is needed because of the meaning of a single '.'.
+// If it stands alone freely, it is the function composition.
+// It may also be a separator between a module name and an identifier => no
+// operator. If it comes together with other special characters it is an
+// operator too.
+//
+// This regex means: /[-!#$%*+=?&@|~.:<>^\\\/]+/ without /\./.
+/** @package */
+export const asciiOperator = /[-!#$%*+=?&@|~:<>^\\\/][-!#$%*+=?&@|~.:<>^\\\/]*|\.[-!#$%*+=?&@|~.:<>^\\\/]+/;
+
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'haskell',
 	alias: 'hs',
@@ -31,24 +47,13 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		// decimal integers and floating point numbers | octal integers | hexadecimal integers
 		'number': /\b(?:\d+(?:\.\d+)?(?:e[+-]?\d+)?|0o[0-7]+|0x[0-9a-f]+)\b/i,
 		'operator': [
-			{
-				// infix operator
-				pattern: /`(?:[A-Z][\w']*\.)*[_a-z][\w']*`/,
-				greedy: true
-			},
+			infixOperator,
 			{
 				// function composition
 				pattern: /(\s)\.(?=\s)/,
 				lookbehind: true
 			},
-			// Most of this is needed because of the meaning of a single '.'.
-			// If it stands alone freely, it is the function composition.
-			// It may also be a separator between a module name and an identifier => no
-			// operator. If it comes together with other special characters it is an
-			// operator too.
-			//
-			// This regex means: /[-!#$%*+=?&@|~.:<>^\\\/]+/ without /\./.
-			/[-!#$%*+=?&@|~:<>^\\\/][-!#$%*+=?&@|~.:<>^\\\/]*|\.[-!#$%*+=?&@|~.:<>^\\\/]+/,
+			asciiOperator
 		],
 		// In Haskell, nearly everything is a variable, do not highlight these.
 		'hvariable': {

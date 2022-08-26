@@ -4,12 +4,21 @@ export default /** @type {import("../types").LanguageProto} */ ({
 	grammar() {
 		// http://avisynth.nl/index.php/The_full_AviSynth_grammar
 
+		/**
+		 * @param {string} pattern
+		 * @param {string[]} replacements
+		 */
 		function replace(pattern, replacements) {
 			return pattern.replace(/<<(\d+)>>/g, (m, index) => {
 				return replacements[+index];
 			});
 		}
 
+		/**
+		 * @param {string} pattern
+		 * @param {string[]} replacements
+		 * @param {string} [flags]
+		 */
 		function re(pattern, replacements, flags) {
 			return RegExp(replace(pattern, replacements), flags || '');
 		}

@@ -1,4 +1,5 @@
 import { insertBefore } from '../shared/language-util.js';
+import { toArray } from '../shared/util.js';
 import clike from './prism-clike.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
@@ -9,10 +10,9 @@ export default /** @type {import("../types").LanguageProto} */ ({
 
 		const squirrel = extend('clike', {
 			'comment': [
-				clike['comment'][0],
+				...toArray(clike['comment']),
 				{
-					pattern: /(^|[^\\:])(?:\/\/|#).*/,
-					lookbehind: true,
+					pattern: /#.*/,
 					greedy: true
 				}
 			],

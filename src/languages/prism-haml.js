@@ -127,12 +127,12 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'scss',
 			'textile'
 		];
+		/** @type {import('../types').Grammar} */
 		const all_filters = {};
-		for (let i = 0, l = filters.length; i < l; i++) {
-			let filter = filters[i];
-			filter = typeof filter === 'string' ? { filter, language: filter } : filter;
-			all_filters['filter-' + filter.filter] = {
-				pattern: RegExp(filter_pattern.replace('{{filter_name}}', () => filter.filter)),
+		for (const f of filters) {
+			const { filter, language } = typeof f === 'string' ? { filter: f, language: f } : f;
+			all_filters['filter-' + filter] = {
+				pattern: RegExp(filter_pattern.replace('{{filter_name}}', () => filter)),
 				lookbehind: true,
 				inside: {
 					'filter-name': {
@@ -141,8 +141,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 					},
 					'text': {
 						pattern: /[\s\S]+/,
-						alias: [filter.language, 'language-' + filter.language],
-						inside: filter.language
+						alias: [language, 'language-' + language],
+						inside: language
 					}
 				}
 			};

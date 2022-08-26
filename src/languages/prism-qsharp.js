@@ -53,7 +53,10 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			// all other keywords
 			other: 'Adjoint adjoint apply as auto body borrow borrowing Controlled controlled distribute elif else fail fixup for function if in internal intrinsic invert is let mutable namespace new newtype open operation repeat return self set until use using while within'
 		};
-			// keywords
+		// keywords
+		/**
+		 * @param {string} words
+		 */
 		function keywordsToPattern(words) {
 			return '\\b(?:' + words.trim().replace(/ /g, '|') + ')\\b';
 		}

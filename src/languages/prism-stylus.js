@@ -26,8 +26,24 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				pattern: /("|')(?:(?!\1)[^\\\r\n]|\\(?:\r\n|[\s\S]))*\1/,
 				greedy: true
 			},
-			'interpolation': null, // See below
-			'func': null, // See below
+			'interpolation': {
+				pattern: /\{[^\r\n}:]+\}/,
+				alias: 'variable',
+				inside: {
+					'delimiter': {
+						pattern: /^\{|\}$/,
+						alias: 'punctuation'
+					},
+					[rest]: /** @type {import('../types').Grammar[rest]} */ (null)
+				}
+			},
+			'func': {
+				pattern: /[\w-]+\([^)]*\).*/,
+				inside: {
+					'function': /^[^(]+/,
+					[rest]: /** @type {import('../types').Grammar[rest]} */ (null)
+				}
+			},
 			'important': /\B!(?:important|optional)\b/i,
 			'keyword': {
 				pattern: /(^|\s+)(?:(?:else|for|if|return|unless)(?=\s|$)|@[\w-]+)/,
@@ -58,24 +74,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'punctuation': /[{}()\[\];:,]/
 		};
 
-		inside['interpolation'] = {
-			pattern: /\{[^\r\n}:]+\}/,
-			alias: 'variable',
-			inside: {
-				'delimiter': {
-					pattern: /^\{|\}$/,
-					alias: 'punctuation'
-				},
-				[rest]: inside
-			}
-		};
-		inside['func'] = {
-			pattern: /[\w-]+\([^)]*\).*/,
-			inside: {
-				'function': /^[^(]+/,
-				[rest]: inside
-			}
-		};
+		inside['interpolation'].inside[rest] = inside;
+		inside['func'].inside[rest] = inside;
 
 		return {
 			'atrule-declaration': {

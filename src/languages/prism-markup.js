@@ -175,6 +175,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		Prism.languages.ssml = Prism.languages.xml;
 		Prism.languages.atom = Prism.languages.xml;
 		Prism.languages.rss = Prism.languages.xml;
+
+		return markup;
 	},
 	effect(Prism) {
 		// Plugin to make entity title show the real entity, idea by Roman Komarov

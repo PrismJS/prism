@@ -48,6 +48,11 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		});
 
+		const genericInside = {
+			'punctuation': /[<>]/,
+			'class-name': /\w+/
+		};
+
 		insertBefore(v, 'operator', {
 			'attribute': {
 				pattern: /(^[\t ]*)\[(?:deprecated|direct_array_access|flag|inline|live|ref_only|typedef|unsafe_fn|windows_stdcall)\]/m,
@@ -60,10 +65,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			},
 			'generic': {
 				pattern: /<\w+>(?=\s*[\)\{])/,
-				inside: {
-					'punctuation': /[<>]/,
-					'class-name': /\w+/
-				}
+				inside: genericInside
 			}
 		});
 
@@ -75,7 +77,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 					'function': /^\w+/,
 					'generic': {
 						pattern: /<\w+>/,
-						inside: v.generic.inside
+						inside: genericInside
 					}
 				}
 			}

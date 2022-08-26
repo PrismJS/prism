@@ -12,6 +12,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				/(?!(?:unrestricted|unsigned)\b)/.source + id + /(?:\s*<(?:[^<>]|<[^<>]*>)*>)?/.source +
 				')' + /(?:\s*\?)?/.source;
 
+		/** @type {import("../types").Grammar} */
 		const typeInside = {};
 
 		const webIdl = {
@@ -92,11 +93,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'punctuation': /[(){}[\].,;]/
 		};
 
-		for (const key in webIdl) {
-			if (key !== 'class-name') {
-				typeInside[key] = webIdl[key];
-			}
-		}
+		Object.assign(typeInside, webIdl);
+		delete typeInside['class-name'];
 
 		return webIdl;
 	}

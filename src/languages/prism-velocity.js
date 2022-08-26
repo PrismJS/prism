@@ -74,7 +74,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'variable': vel['variable']
 		});
 
-		velocity['tag'].inside['attr-value'].inside.rest = velocity;
+		velocity['tag'].inside['attr-value'].inside[rest] = velocity;
 
 		return velocity;
 	}

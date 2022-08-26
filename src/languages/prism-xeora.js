@@ -1,4 +1,3 @@
-import { insertBefore } from '../shared/language-util.js';
 import markup from './prism-markup.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
@@ -6,7 +5,19 @@ export default /** @type {import("../types").LanguageProto} */ ({
 	require: markup,
 	alias: 'xeoracube',
 	grammar({ extend }) {
-		const xeora = extend('markup', {
+		const functionVariable = {
+			pattern: /(?:[,|])@?(?:#+|[-+*~=^])?[\w.]+/,
+			inside: {
+				'punctuation': {
+					pattern: /[,.|]/
+				},
+				'operator': {
+					pattern: /#+|[-+*~=^@]/
+				}
+			}
+		};
+
+		return extend('markup', {
 			'constant': {
 				pattern: /\$(?:DomainContents|PageRenderDuration)\$/,
 				inside: {
@@ -29,17 +40,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'function-inline': {
 				pattern: /\$F:[-\w.]+\?[-\w.]+(?:,(?:(?:@[-#]*\w+\.[\w+.]\.*)*\|)*(?:(?:[\w+]|[-#*.~^]+[\w+]|=\S)(?:[^$=]|=+[^=])*=*|(?:@[-#]*\w+\.[\w+.]\.*)+(?:(?:[\w+]|[-#*~^][-#*.~^]*[\w+]|=\S)(?:[^$=]|=+[^=])*=*)?)?)?\$/,
 				inside: {
-					'variable': {
-						pattern: /(?:[,|])@?(?:#+|[-+*~=^])?[\w.]+/,
-						inside: {
-							'punctuation': {
-								pattern: /[,.|]/
-							},
-							'operator': {
-								pattern: /#+|[-+*~=^@]/
-							}
-						}
-					},
+					'variable': functionVariable,
 					'punctuation': {
 						pattern: /\$\w:|[$:?.,|]/
 					}
@@ -49,6 +50,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'function-block': {
 				pattern: /\$XF:\{[-\w.]+\?[-\w.]+(?:,(?:(?:@[-#]*\w+\.[\w+.]\.*)*\|)*(?:(?:[\w+]|[-#*.~^]+[\w+]|=\S)(?:[^$=]|=+[^=])*=*|(?:@[-#]*\w+\.[\w+.]\.*)+(?:(?:[\w+]|[-#*~^][-#*.~^]*[\w+]|=\S)(?:[^$=]|=+[^=])*=*)?)?)?\}:XF\$/,
 				inside: {
+					'variable': functionVariable,
 					'punctuation': {
 						pattern: /[$:{}?.,|]/
 					}
@@ -111,11 +113,5 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				alias: 'function'
 			}
 		});
-
-		insertBefore(xeora['function-block'].inside, 'punctuation', {
-			'variable': xeora['function-inline'].inside['variable']
-		});
-
-		return xeora;
 	}
 });

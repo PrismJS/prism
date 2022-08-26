@@ -14,6 +14,24 @@ export default /** @type {import("../types").LanguageProto} */ ({
 	grammar() {
 		// https://freemarker.apache.org/docs/dgui_template_exp.html
 
+		const stringInterpolation = {
+			pattern: RegExp(/("|')(?:(?!\1|\$\{)[^\\]|\\.|\$\{(?:(?!\})(?:<expr>))*\})*\1/.source.replace(/<expr>/g, () => FTL_EXPR)),
+			greedy: true,
+			inside: {
+				'interpolation': {
+					pattern: RegExp(/((?:^|[^\\])(?:\\\\)*)\$\{(?:(?!\})(?:<expr>))*\}/.source.replace(/<expr>/g, () => FTL_EXPR)),
+					lookbehind: true,
+					inside: {
+						'interpolation-punctuation': {
+							pattern: /^\$\{|\}$/,
+							alias: 'punctuation'
+						},
+						[rest]: /** @type {import('../types').Grammar[rest]} */ (null) // see below
+					}
+				}
+			}
+		};
+
 		const ftl = {
 			'comment': /<#--[\s\S]*?-->/,
 			'string': [
@@ -22,23 +40,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 					pattern: /\br("|')(?:(?!\1)[^\\]|\\.)*\1/,
 					greedy: true
 				},
-				{
-					pattern: RegExp(/("|')(?:(?!\1|\$\{)[^\\]|\\.|\$\{(?:(?!\})(?:<expr>))*\})*\1/.source.replace(/<expr>/g, () => FTL_EXPR)),
-					greedy: true,
-					inside: {
-						'interpolation': {
-							pattern: RegExp(/((?:^|[^\\])(?:\\\\)*)\$\{(?:(?!\})(?:<expr>))*\}/.source.replace(/<expr>/g, () => FTL_EXPR)),
-							lookbehind: true,
-							inside: {
-								'interpolation-punctuation': {
-									pattern: /^\$\{|\}$/,
-									alias: 'punctuation'
-								},
-								[rest]: null // see below
-							}
-						}
-					}
-				}
+				stringInterpolation
 			],
 			'keyword': /\b(?:as)\b/,
 			'boolean': /\b(?:false|true)\b/,
@@ -53,7 +55,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'punctuation': /[,;.:()[\]{}]/
 		};
 
-		ftl.string[1].inside.interpolation.inside[rest] = ftl;
+		stringInterpolation.inside.interpolation.inside[rest] = ftl;
 
 		return {
 			'ftl-comment': {

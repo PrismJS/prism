@@ -1,4 +1,5 @@
 import { insertBefore } from '../shared/language-util.js';
+import { toArray } from '../shared/util.js';
 import ruby from './prism-ruby.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
@@ -17,7 +18,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'number': /\b(?:0b[01_]*[01]|0o[0-7_]*[0-7]|0x[\da-fA-F_]*[\da-fA-F]|(?:\d(?:[\d_]*\d)?)(?:\.[\d_]*\d)?(?:[eE][+-]?[\d_]*\d)?)(?:_(?:[uif](?:8|16|32|64))?)?\b/,
 			'operator': [
 				/->/,
-				ruby.operator,
+				...toArray(ruby.operator),
 			],
 			'punctuation': /[(){}[\].,;\\]/,
 		});

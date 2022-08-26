@@ -11,6 +11,9 @@ function SortedBNF(grammar) {
 			return '(?:' + grammar[key].trim() + ')';
 		});
 	}
+	if (key === undefined) {
+		throw new Error('Empty grammar');
+	}
 	// return the last item
 	return grammar[key];
 }

@@ -7,6 +7,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 	require: markup,
 	grammar({ extend, getLanguage }) {
 		const markup = getLanguage('markup');
+		const tag = /** @type {import('../types').GrammarToken} */ (markup['tag']);
 
 		const wiki = extend('markup', {
 			'block-comment': {
@@ -72,7 +73,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 						pattern: /\|$/,
 						alias: 'punctuation'
 					},
-					[rest]: markup['tag'].inside
+					[rest]: tag.inside
 				}
 			},
 			'punctuation': /^(?:\{\||\|\}|\|-|[*#:;!|])|\|\||!!/m
@@ -85,7 +86,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				inside: {
 					'tag': {
 						pattern: /<(?:nowiki|pre|source)\b[^>]*>|<\/(?:nowiki|pre|source)>/i,
-						inside: markup['tag'].inside
+						inside: tag.inside
 					}
 				}
 			}

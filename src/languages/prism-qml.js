@@ -8,7 +8,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		const jsComment = /\/\/.*(?!.)|\/\*(?:[^*]|\*(?!\/))*\*\//.source;
 
 		let jsExpr = /(?:[^\\()[\]{}"'/]|<string>|\/(?![*/])|<comment>|\(<expr>*\)|\[<expr>*\]|\{<expr>*\}|\\[\s\S])/
-			.source.replace(/<string>/g, () => jsString).replace(/<comment>/g, () => jsString);
+			.source.replace(/<string>/g, () => jsString).replace(/<comment>/g, () => jsComment);
 
 		// the pattern will blow up, so only a few iterations
 		for (let i = 0; i < 2; i++) {

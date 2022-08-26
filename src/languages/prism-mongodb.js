@@ -79,7 +79,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		});
 
-		mongodb.string.inside = {
+		const string = /** @type {import('../types').GrammarToken} */ (mongodb['string']);
+		string.inside = {
 			url: {
 				// url pattern
 				pattern: /https?:\/\/[-\w@:%.+~#=]{1,256}\.[a-z0-9()]{1,6}\b[-\w()@:%+.~#?&/=]*/i,

@@ -16,33 +16,30 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		};
 
+		/**
+		 * @param {string} name
+		 * @param {import("../types").GrammarTokens} [inside]
+		 */
 		function createSection(name, inside) {
-			const extendecInside = {};
-
-			extendecInside['section-header'] = {
-				pattern: /^ ?\*{3}.+?\*{3}/,
-				alias: 'keyword'
-			};
-
-			// copy inside tokens
-			for (const token in inside) {
-				extendecInside[token] = inside[token];
-			}
-
-			extendecInside['tag'] = {
-				pattern: /([\r\n](?: {2}|\t)[ \t]*)\[[-\w]+\]/,
-				lookbehind: true,
-				inside: {
-					'punctuation': /\[|\]/
-				}
-			};
-			extendecInside['variable'] = variable;
-			extendecInside['comment'] = comment;
-
 			return {
 				pattern: RegExp(/^ ?\*{3}[ \t]*<name>[ \t]*\*{3}(?:.|[\r\n](?!\*{3}))*/.source.replace(/<name>/g, () => name), 'im'),
 				alias: 'section',
-				inside: extendecInside
+				inside: {
+					'section-header': {
+						pattern: /^ ?\*{3}.+?\*{3}/,
+						alias: 'keyword'
+					},
+					...inside,
+					'tag': {
+						pattern: /([\r\n](?: {2}|\t)[ \t]*)\[[-\w]+\]/,
+						lookbehind: true,
+						inside: {
+							'punctuation': /\[|\]/
+						}
+					},
+					'variable': variable,
+					'comment': comment
+				}
 			};
 		}
 
