@@ -52,6 +52,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		});
 
+		delete scala['doc-comment'];
 		delete scala['class-name'];
 		delete scala['function'];
 		delete scala['constant'];

@@ -598,16 +598,10 @@
 		},
 		"javadoc": {
 			"title": "JavaDoc",
-			"modify": "java",
 			"owner": "RunDevelopment"
 		},
 		"javadoclike": {
 			"title": "JavaDoc-like",
-			"modify": [
-				"java",
-				"javascript",
-				"php"
-			],
 			"owner": "RunDevelopment"
 		},
 		"javastacktrace": {

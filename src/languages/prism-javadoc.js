@@ -1,19 +1,22 @@
 import markup from './prism-markup.js';
 import java from './prism-java.js';
 import javadoclike from './prism-javadoclike.js';
+import { insertBefore } from '../shared/language-util.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'javadoc',
 	require: [markup, java, javadoclike],
-	optional: 'scala',
 	grammar({ extend, getLanguage }) {
+		const java = getLanguage('java');
+		const { tag, entity } = getLanguage('markup');
+
 		const codeLinePattern = /(^(?:[\t ]*(?:\*\s*)*))[^*\s].*$/m;
 
 		const memberReference = /#\s*\w+(?:\s*\([^()]*\))?/.source;
 		const reference = /(?:\b[a-zA-Z]\w+\s*\.\s*)*\b[A-Z]\w*(?:\s*<mem>)?|<mem>/.source.replace(/<mem>/g, () => memberReference);
 
-		Prism.languages.javadoc = extend('javadoclike', {});
-		Prism.languages.insertBefore('javadoc', 'keyword', {
+		const javadoc = extend('javadoclike', {});
+		insertBefore(javadoc, 'keyword', {
 			'reference': {
 				pattern: RegExp(/(@(?:exception|link|linkplain|see|throws|value)\s+(?:\*\s*)?)/.source + '(?:' + reference + ')'),
 				lookbehind: true,
@@ -33,7 +36,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 						}
 					},
 					'class-name': /\b[A-Z]\w*/,
-					'keyword': Prism.languages.java.keyword,
+					'keyword': java.keyword,
 					'punctuation': /[#()[\],.]/
 				}
 			},
@@ -68,8 +71,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 							lookbehind: true,
 							inside: {
 								// highlight HTML tags and entities
-								'tag': Prism.languages.markup.tag,
-								'entity': Prism.languages.markup.entity,
+								'tag': tag,
+								'entity': entity,
 								'code': {
 									// everything else is Java code
 									pattern: /.+/,
@@ -81,10 +84,10 @@ export default /** @type {import("../types").LanguageProto} */ ({
 					}
 				}
 			],
-			'tag': Prism.languages.markup.tag,
-			'entity': Prism.languages.markup.entity,
+			'tag': tag,
+			'entity': entity,
 		});
 
-		Prism.languages.javadoclike.addSupport('java', Prism.languages.javadoc);
+		return javadoc;
 	}
 });

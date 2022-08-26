@@ -1,4 +1,5 @@
 import { insertBefore } from '../shared/language-util.js';
+import { toArray } from '../shared/util.js';
 import clike from './prism-clike.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
@@ -52,7 +53,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			],
 			'keyword': keywords,
 			'function': [
-				clike.function,
+				...toArray(clike.function),
 				{
 					pattern: /(::\s*)[a-z_]\w*/,
 					lookbehind: true
@@ -64,6 +65,15 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				lookbehind: true
 			},
 			'constant': /\b[A-Z][A-Z_\d]+\b/
+		});
+
+		insertBefore(java, 'comment', {
+			'doc-comment': {
+				pattern: /\/\*\*[^/][\s\S]*?(?:\*\/|$)/,
+				greedy: true,
+				alias: 'comment',
+				inside: 'javadoc'
+			},
 		});
 
 		insertBefore(java, 'string', {
