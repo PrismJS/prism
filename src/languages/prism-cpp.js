@@ -4,7 +4,8 @@ import c from './prism-c.js';
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'cpp',
 	require: c,
-	grammar({ extend }) {
+	optional: 'opencl-extensions',
+	grammar({ extend, getOptionalLanguage }) {
 		const keyword = /\b(?:alignas|alignof|asm|auto|bool|break|case|catch|char|char16_t|char32_t|char8_t|class|co_await|co_return|co_yield|compl|concept|const|const_cast|consteval|constexpr|constinit|continue|decltype|default|delete|do|double|dynamic_cast|else|enum|explicit|export|extern|final|float|for|friend|goto|if|import|inline|int|int16_t|int32_t|int64_t|int8_t|long|module|mutable|namespace|new|noexcept|nullptr|operator|override|private|protected|public|register|reinterpret_cast|requires|return|short|signed|sizeof|static|static_assert|static_cast|struct|switch|template|this|thread_local|throw|try|typedef|typeid|typename|uint16_t|uint32_t|uint64_t|uint8_t|union|unsigned|using|virtual|void|volatile|wchar_t|while)\b/;
 		const modName = /\b(?!<keyword>)\w+(?:\s*\.\s*\w+)*\b/.source.replace(/<keyword>/g, () => keyword.source);
 
@@ -85,6 +86,18 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		});
 
+		/* OpenCL host API */
+		const extensions = getOptionalLanguage('opencl-extensions');
+		if (extensions) {
+			insertBefore(cpp, 'keyword', extensions);
+		}
+
+		const baseInside = { ...cpp };
+		insertBefore(baseInside, 'double-colon', {
+			// All untokenized words that are not namespaces should be class names
+			'class-name': /\b[a-z_]\w*\b(?!\s*::)/i
+		});
+
 		insertBefore(cpp, 'class-name', {
 			// the base clause is an optional list of parent classes
 			// https://en.cppreference.com/w/cpp/language/class
@@ -92,13 +105,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				pattern: /(\b(?:class|struct)\s+\w+\s*:\s*)[^;{}"'\s]+(?:\s+[^;{}"'\s]+)*(?=\s*[;{])/,
 				lookbehind: true,
 				greedy: true,
-				inside: extend('cpp', {}) // TODO: fix
+				inside: baseInside
 			}
-		});
-
-		insertBefore(cpp['base-clause'].inside, 'double-colon', {
-			// All untokenized words that are not namespaces should be class names
-			'class-name': /\b[a-z_]\w*\b(?!\s*::)/i
 		});
 
 		return cpp;

@@ -851,10 +851,10 @@
 		},
 		"opencl": {
 			"title": "OpenCL",
-			"modify": [
-				"c",
-				"cpp"
-			],
+			"owner": "Milania1"
+		},
+		"opencl-extensions": {
+			"title": "OpenCL Extensions",
 			"owner": "Milania1"
 		},
 		"openqasm": {

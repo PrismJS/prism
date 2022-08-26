@@ -4,7 +4,8 @@ import clike from './prism-clike.js';
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'c',
 	require: clike,
-	grammar({ extend }) {
+	optional: 'opencl-extensions',
+	grammar({ extend, getOptionalLanguage }) {
 		const c = extend('clike', {
 			'comment': {
 				pattern: /\/\/(?:[^\r\n\\]|\\(?:\r\n?|\n|(?![\r\n])))*|\/\*[\s\S]*?(?:\*\/|$)/,
@@ -48,7 +49,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 							pattern: /^(#\s*include\s*)<[^>]+>/,
 							lookbehind: true
 						},
-						c['string']
+						/** @type {import('../types').GrammarToken} */(c['string'])
 					],
 					'char': c['char'],
 					'comment': c['comment'],
@@ -85,6 +86,13 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		});
 
 		delete c['boolean'];
+
+		/* OpenCL host API */
+		const extensions = getOptionalLanguage('opencl-extensions');
+		if (extensions) {
+			insertBefore(c, 'keyword', extensions);
+			delete c['type-opencl-host-cpp'];
+		}
 
 		return c;
 	}
