@@ -1,3 +1,4 @@
+import { getTextContent, Token } from '../core/token.js';
 import javascript from './prism-javascript.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
@@ -9,10 +10,6 @@ export default /** @type {import("../types").LanguageProto} */ ({
 
 		// see the pattern in prism-javascript.js
 		const templateLiteralPattern = templateString.pattern.source;
-		const interpolationObject = templateString.inside['interpolation'];
-		const interpolationPunctuationObject = interpolationObject.inside['interpolation-punctuation'];
-		const interpolationPattern = interpolationObject.pattern.source;
-
 
 		/**
 		 * Creates a new pattern to match a template string with a special tag.
@@ -76,6 +73,14 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		].filter(Boolean);
 
 
+	},
+	effect(Prism) {
+		const templateString = Prism.languages.javascript['template-string'];
+		const interpolationObject = templateString.inside['interpolation'];
+		const interpolationPunctuationObject = interpolationObject.inside['interpolation-punctuation'];
+		const interpolationPattern = interpolationObject.pattern.source;
+
+
 		/**
 		 * Returns a specific placeholder literal for the given language.
 		 *
@@ -91,16 +96,16 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		 * Returns the tokens of `Prism.tokenize` but also runs the `before-tokenize` and `after-tokenize` hooks.
 		 *
 		 * @param {string} code
-		 * @param {any} grammar
+		 * @param {import('../types').Grammar} grammar
 		 * @param {string} language
-		 * @returns {(string|Token)[]}
+		 * @returns {import('../core/token.js').TokenStream}
 		 */
 		function tokenizeWithHooks(code, grammar, language) {
-			const env = {
+			const env = /** @type {import('../core/hooks-env.js').BeforeTokenizeEnv & import('../core/hooks-env.js').AfterTokenizeEnv} */ ({
 				code,
 				grammar,
 				language
-			};
+			});
 			Prism.hooks.run('before-tokenize', env);
 			env.tokens = Prism.tokenize(env.code, env.grammar);
 			Prism.hooks.run('after-tokenize', env);
@@ -117,8 +122,9 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			const tempGrammar = {};
 			tempGrammar['interpolation-punctuation'] = interpolationPunctuationObject;
 
-			/** @type {Array} */
-			const tokens = Prism.tokenize(expression, tempGrammar);
+			const tokens = Prism.tokenize(expression, {
+				'interpolation-punctuation': interpolationPunctuationObject
+			});
 			if (tokens.length === 3) {
 				/**
 				 * The token array will look like this
@@ -129,13 +135,12 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				 * ]
 				 */
 
-				const args = [1, 1];
-				args.push(...tokenizeWithHooks(tokens[1], Prism.languages.javascript, 'javascript'));
+				const code = /** @type {string} */ (tokens[1]);
 
-				tokens.splice.apply(tokens, args);
+				tokens.splice(1, 1, ...tokenizeWithHooks(code, Prism.components.getLanguage('javascript'), 'javascript'));
 			}
 
-			return new Prism.Token('interpolation', tokens, interpolationObject.alias, expression);
+			return new Token('interpolation', tokens, interpolationObject.alias, expression);
 		}
 
 		/**
@@ -151,7 +156,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		 *    tokenized as two tokens by the grammar of the embedded language.
 		 *
 		 * @param {string} code
-		 * @param {object} grammar
+		 * @param {import('../types').Grammar} grammar
 		 * @param {string} language
 		 * @returns {Token}
 		 */
@@ -175,7 +180,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				if (typeof token === 'string') {
 					return token;
 				} else {
-					const interpolationExpression = token.content;
+					const interpolationExpression = /** @type {string} */ (token.content);
 
 					let placeholder;
 					while (code.indexOf(placeholder = getPlaceholder(placeholderCounter++, language)) !== -1) { /* noop */ }
@@ -196,7 +201,6 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			placeholderCounter = 0;
 
 			/**
-			 *
 			 * @param {(Token|string)[]} tokens
 			 * @returns {void}
 			 */
@@ -250,7 +254,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 			walkTokens(embeddedTokens);
 
-			return new Prism.Token(language, embeddedTokens, 'language-' + language, code);
+			return new Token(language, embeddedTokens, 'language-' + language, code);
 		}
 
 		/**
@@ -266,7 +270,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'jsx': true,
 			'tsx': true,
 		};
-		Prism.hooks.add('after-tokenize', (env) => {
+
+		return Prism.hooks.add('after-tokenize', (env) => {
 			if (!(env.language in supportedLanguages)) {
 				return;
 			}
@@ -312,12 +317,15 @@ export default /** @type {import("../types").LanguageProto} */ ({
 						const embedded = content[1];
 						if (content.length === 3 && typeof embedded !== 'string' && embedded.type === 'embedded-code') {
 							// get string content
-							const code = stringContent(embedded);
+							const code = getTextContent(embedded);
 
 							const alias = embedded.alias;
 							const language = Array.isArray(alias) ? alias[0] : alias;
+							if (!language) {
+								continue;
+							}
 
-							const grammar = Prism.languages[language];
+							const grammar = Prism.components.getLanguage(language);
 							if (!grammar) {
 								// the embedded language isn't registered.
 								continue;
@@ -333,22 +341,5 @@ export default /** @type {import("../types").LanguageProto} */ ({
 
 			findTemplateStrings(env.tokens);
 		});
-
-
-		/**
-		 * Returns the string content of a token or token stream.
-		 *
-		 * @param {string | Token | (string | Token)[]} value
-		 * @returns {string}
-		 */
-		function stringContent(value) {
-			if (typeof value === 'string') {
-				return value;
-			} else if (Array.isArray(value)) {
-				return value.map(stringContent).join('');
-			} else {
-				return stringContent(value.content);
-			}
-		}
 	}
 });
