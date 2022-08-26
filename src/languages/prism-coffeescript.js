@@ -96,6 +96,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'property': /(?!\d)\w+(?=\s*:(?!:))/
 		});
 
+		delete coffeescript['doc-comment'];
 		delete coffeescript['template-string'];
 	}
 });

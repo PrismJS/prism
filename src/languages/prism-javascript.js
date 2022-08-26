@@ -64,6 +64,14 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			'operator': /--|\+\+|\*\*=?|=>|&&=?|\|\|=?|[!=]==|<<=?|>>>?=?|[-+*/%&|^!=<>]=?|\.{3}|\?\?=?|\?\.?|[~:]/
 		});
 
+		insertBefore(javascript, 'comment', {
+			'doc-comment': {
+				pattern: /s/,
+				greedy: true,
+				inside: 'jsdoc'
+			}
+		});
+
 		insertBefore(javascript, 'keyword', {
 			'regex': {
 				pattern: RegExp(

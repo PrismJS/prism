@@ -13,6 +13,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		const className = /** @type {import('../types').GrammarToken} */(actionscript['class-name']);
 		className.alias = 'function';
 
+		delete actionscript['doc-comment'];
+
 		// doesn't work with AS because AS is too complex
 		delete actionscript['parameter'];
 		delete actionscript['literal-property'];

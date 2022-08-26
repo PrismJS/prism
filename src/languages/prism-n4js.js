@@ -4,7 +4,6 @@ import javascript from './prism-javascript.js';
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'n4js',
 	require: javascript,
-	optional: 'jsdoc',
 	alias: 'n4jsd',
 	grammar({ extend }) {
 		const n4js = extend('javascript', {

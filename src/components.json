@@ -628,7 +628,6 @@
 		},
 		"jsdoc": {
 			"title": "JSDoc",
-			"modify": "javascript",
 			"owner": "RunDevelopment"
 		},
 		"js-extras": {

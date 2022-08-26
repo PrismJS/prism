@@ -1,18 +1,19 @@
 import javascript from './prism-javascript.js';
 import javadoclike from './prism-javadoclike.js';
 import typescript from './prism-typescript.js';
+import { insertBefore } from '../shared/language-util.js';
 
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'jsdoc',
 	require: [javascript, javadoclike, typescript],
-	optional: ['actionscript', 'coffeescript'],
 	grammar({ extend, getLanguage }) {
-		const javascript = Prism.languages.javascript;
+		const javascript = getLanguage('javascript');
+		const typescript = getLanguage('typescript');
 
 		const type = /\{(?:[^{}]|\{(?:[^{}]|\{[^{}]*\})*\})+\}/.source;
 		const parameterPrefix = '(@(?:arg|argument|param|property)\\s+(?:' + type + '\\s+)?)';
 
-		Prism.languages.jsdoc = extend('javadoclike', {
+		const jsdoc = extend('javadoclike', {
 			'parameter': {
 				// @param {string} foo - foo bar
 				pattern: RegExp(parameterPrefix + /(?:(?!\s)[$\w\xA0-\uFFFF.])+(?=\s|$)/.source),
@@ -23,7 +24,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			}
 		});
 
-		Prism.languages.insertBefore('jsdoc', 'keyword', {
+		insertBefore(jsdoc, 'keyword', {
 			'optional-parameter': {
 				// @param {string} [baz.foo="bar"] foo bar
 				pattern: RegExp(parameterPrefix + /\[(?:(?!\s)[$\w\xA0-\uFFFF.])+(?:=[^[\]]+)?\](?=\s|$)/.source),
@@ -39,8 +40,8 @@ export default /** @type {import("../types").LanguageProto} */ ({
 					'code': {
 						pattern: /(=)[\s\S]*(?=\]$)/,
 						lookbehind: true,
-						inside: javascript,
-						alias: 'language-javascript'
+						alias: 'language-javascript',
+						inside: 'javascript',
 					},
 					'punctuation': /[=[\]]/
 				}
@@ -60,7 +61,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 						'string': javascript.string,
 						'number': javascript.number,
 						'boolean': javascript.boolean,
-						'keyword': Prism.languages.typescript.keyword,
+						'keyword': typescript.keyword,
 						'operator': /=>|\.\.\.|[&|?:*]/,
 						'punctuation': /[.,;=<>{}()[\]]/
 					}
@@ -73,13 +74,13 @@ export default /** @type {import("../types").LanguageProto} */ ({
 					'code': {
 						pattern: /^([\t ]*(?:\*\s*)?)\S.*$/m,
 						lookbehind: true,
-						inside: javascript,
-						alias: 'language-javascript'
+						alias: 'language-javascript',
+						inside: 'javascript',
 					}
 				}
 			}
 		});
 
-		Prism.languages.javadoclike.addSupport('javascript', Prism.languages.jsdoc);
+		return jsdoc;
 	}
 });

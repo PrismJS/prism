@@ -7,7 +7,7 @@ import { rest } from '../shared/symbols.js';
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'jsx',
 	require: [markup, javascript],
-	optional: ['jsdoc', 'js-extras', 'js-templates'],
+	optional: ['js-extras', 'js-templates'],
 	grammar({ extend }) {
 		const space = /(?:\s|\/\/.*(?!.)|\/\*(?:[^*]|\*(?!\/))\*\/)/.source;
 		const braces = /(?:\{(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])*\})/.source;
