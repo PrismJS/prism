@@ -61,8 +61,7 @@
 		},
 		"css": {
 			"title": "CSS",
-			"option": "default",
-			"modify": "markup"
+			"option": "default"
 		},
 		"clike": {
 			"title": "C-like",
@@ -70,7 +69,6 @@
 		},
 		"javascript": {
 			"title": "JavaScript",
-			"modify": "markup",
 			"option": "default"
 		},
 		"abap": {
@@ -83,7 +81,6 @@
 		},
 		"actionscript": {
 			"title": "ActionScript",
-			"modify": "markup",
 			"owner": "Golmote"
 		},
 		"ada": {

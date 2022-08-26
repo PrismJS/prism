@@ -69,12 +69,6 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			insertBefore(css, 'function', extras);
 		}
 
-		const markup = Prism.languages.markup;
-		if (markup) {
-			markup.tag.addInlined('style', 'css');
-			markup.tag.addAttribute('style', 'css');
-		}
-
 		return css;
 	}
 });
