@@ -17,12 +17,14 @@ export class Registry {
 		 * A map from the aliases of components to the id of the component with that alias.
 		 *
 		 * @type {Map<string, string>}
+		 * @private
 		 */
 		this.aliasMap = new Map();
 		/**
 		 * A map from the aliases of components to the id of the component with that alias.
 		 *
 		 * @type {Map<string, Entry>}
+		 * @private
 		 */
 		this.entries = new Map();
 	}
