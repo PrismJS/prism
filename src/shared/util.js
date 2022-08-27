@@ -81,6 +81,15 @@ export function htmlEncode(text) {
 }
 
 /**
+ * A function that does nothing.
+ *
+ * @returns {void}
+ */
+export function noop() {
+	/* do nothing */
+}
+
+/**
  * Creates a deep clone of the given object.
  *
  * The main intended use of this function is to clone language definitions.

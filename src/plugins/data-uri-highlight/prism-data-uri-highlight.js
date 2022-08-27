@@ -1,94 +1,97 @@
-(function () {
+import { noop } from '../../shared/util.js';
 
-	if (typeof Prism === 'undefined') {
-		return;
-	}
-
-	const autoLinkerProcess = function (grammar) {
-		if (Prism.plugins.autolinker) {
-			Prism.plugins.autolinker.processGrammar(grammar);
-		}
-		return grammar;
-	};
-	const dataURI = {
-		pattern: /(.)\bdata:[^\/]+\/[^,]+,(?:(?!\1)[\s\S]|\\\1)+(?=\1)/,
-		lookbehind: true,
-		inside: {
-			'language-css': {
-				pattern: /(data:[^\/]+\/(?:[^+,]+\+)?css,)[\s\S]+/,
-				lookbehind: true
-			},
-			'language-javascript': {
-				pattern: /(data:[^\/]+\/(?:[^+,]+\+)?javascript,)[\s\S]+/,
-				lookbehind: true
-			},
-			'language-json': {
-				pattern: /(data:[^\/]+\/(?:[^+,]+\+)?json,)[\s\S]+/,
-				lookbehind: true
-			},
-			'language-markup': {
-				pattern: /(data:[^\/]+\/(?:[^+,]+\+)?(?:html|xml),)[\s\S]+/,
-				lookbehind: true
+export default /** @type {import("../../types").PluginProto} */ ({
+	id: 'data-uri-highlight',
+	plugin(Prism) {
+		return {}; // TODO:
+	},
+	effect(Prism) {
+		const autoLinkerProcess = function (grammar) {
+			if (Prism.plugins.autolinker) {
+				Prism.plugins.autolinker.processGrammar(grammar);
 			}
-		}
-	};
-
-	// Tokens that may contain URLs
-	const candidates = ['url', 'attr-value', 'string'];
-
-	Prism.plugins.dataURIHighlight = {
-		processGrammar(grammar) {
-			// Abort if grammar has already been processed
-			if (!grammar || grammar['data-uri']) {
-				return;
+			return grammar;
+		};
+		const dataURI = {
+			pattern: /(.)\bdata:[^\/]+\/[^,]+,(?:(?!\1)[\s\S]|\\\1)+(?=\1)/,
+			lookbehind: true,
+			inside: {
+				'language-css': {
+					pattern: /(data:[^\/]+\/(?:[^+,]+\+)?css,)[\s\S]+/,
+					lookbehind: true
+				},
+				'language-javascript': {
+					pattern: /(data:[^\/]+\/(?:[^+,]+\+)?javascript,)[\s\S]+/,
+					lookbehind: true
+				},
+				'language-json': {
+					pattern: /(data:[^\/]+\/(?:[^+,]+\+)?json,)[\s\S]+/,
+					lookbehind: true
+				},
+				'language-markup': {
+					pattern: /(data:[^\/]+\/(?:[^+,]+\+)?(?:html|xml),)[\s\S]+/,
+					lookbehind: true
+				}
 			}
+		};
 
-			Prism.languages.DFS(grammar, function (key, def, type) {
-				if (candidates.indexOf(type) > -1 && !Array.isArray(def)) {
-					if (!def.pattern) {
-						def = this[key] = {
-							pattern: def
-						};
-					}
+		// Tokens that may contain URLs
+		const candidates = ['url', 'attr-value', 'string'];
 
-					def.inside = def.inside || {};
+		Prism.plugins.dataURIHighlight = {
+			processGrammar(grammar) {
+				// Abort if grammar has already been processed
+				if (!grammar || grammar['data-uri']) {
+					return;
+				}
 
-					if (type == 'attr-value') {
-						Prism.languages.insertBefore('inside', def.inside['url-link'] ? 'url-link' : 'punctuation', {
-							'data-uri': dataURI
-						}, def);
-					} else {
-						if (def.inside['url-link']) {
-							Prism.languages.insertBefore('inside', 'url-link', {
+				Prism.languages.DFS(grammar, function (key, def, type) {
+					if (candidates.indexOf(type) > -1 && !Array.isArray(def)) {
+						if (!def.pattern) {
+							def = this[key] = {
+								pattern: def
+							};
+						}
+
+						def.inside = def.inside || {};
+
+						if (type == 'attr-value') {
+							Prism.languages.insertBefore('inside', def.inside['url-link'] ? 'url-link' : 'punctuation', {
 								'data-uri': dataURI
 							}, def);
 						} else {
-							def.inside['data-uri'] = dataURI;
+							if (def.inside['url-link']) {
+								Prism.languages.insertBefore('inside', 'url-link', {
+									'data-uri': dataURI
+								}, def);
+							} else {
+								def.inside['data-uri'] = dataURI;
+							}
 						}
 					}
-				}
-			});
-			grammar['data-uri'] = dataURI;
-		}
-	};
+				});
+				grammar['data-uri'] = dataURI;
+			}
+		};
 
-	Prism.hooks.add('before-highlight', (env) => {
-		// Prepare the needed grammars for this code block
-		if (dataURI.pattern.test(env.code)) {
-			for (const p in dataURI.inside) {
-				if (dataURI.inside.hasOwnProperty(p)) {
-					if (!dataURI.inside[p].inside && dataURI.inside[p].pattern.test(env.code)) {
-						const lang = p.match(/^language-(.+)/)[1];
-						if (Prism.languages[lang]) {
-							dataURI.inside[p].inside = {
-								rest: autoLinkerProcess(Prism.languages[lang])
-							};
+		Prism.hooks.add('before-highlight', (env) => {
+			// Prepare the needed grammars for this code block
+			if (dataURI.pattern.test(env.code)) {
+				for (const p in dataURI.inside) {
+					if (dataURI.inside.hasOwnProperty(p)) {
+						if (!dataURI.inside[p].inside && dataURI.inside[p].pattern.test(env.code)) {
+							const lang = p.match(/^language-(.+)/)[1];
+							if (Prism.languages[lang]) {
+								dataURI.inside[p].inside = {
+									rest: autoLinkerProcess(Prism.languages[lang])
+								};
+							}
 						}
 					}
 				}
 			}
-		}
 
-		Prism.plugins.dataURIHighlight.processGrammar(env.grammar);
-	});
-}());
+			Prism.plugins.dataURIHighlight.processGrammar(env.grammar);
+		});
+	}
+});

@@ -1,110 +1,112 @@
-(function () {
+import { noop } from '../../shared/util.js';
 
-	if (typeof Prism === 'undefined') {
-		return;
-	}
-
-	/**
-	 * @callback ClassMapper
-	 * @param {string} className
-	 * @param {string} language
-	 * @returns {string}
-	 *
-	 * @callback ClassAdder
-	 * @param {ClassAdderEnvironment} env
-	 * @returns {undefined | string | string[]}
-	 *
-	 * @typedef ClassAdderEnvironment
-	 * @property {string} language
-	 * @property {string} type
-	 * @property {string} content
-	 */
-
-	// options
-
-	/** @type {ClassAdder | undefined} */
-	let adder;
-	/** @type {ClassMapper | undefined} */
-	let mapper;
-	/** @type {string} */
-	let prefixString = '';
-
-
-	/**
-	 * @param {string} className
-	 * @param {string} language
-	 */
-	function apply(className, language) {
-		return prefixString + (mapper ? mapper(className, language) : className);
-	}
-
-
-	Prism.plugins.customClass = {
+export default /** @type {import("../../types").PluginProto} */ ({
+	id: 'custom-class',
+	plugin(Prism) {
+		return {}; // TODO:
+	},
+	effect(Prism) {
 		/**
-		 * Sets the function which can be used to add custom aliases to any token.
+		 * @callback ClassMapper
+		 * @param {string} className
+		 * @param {string} language
+		 * @returns {string}
 		 *
-		 * @param {ClassAdder} classAdder
+		 * @callback ClassAdder
+		 * @param {ClassAdderEnvironment} env
+		 * @returns {undefined | string | string[]}
+		 *
+		 * @typedef ClassAdderEnvironment
+		 * @property {string} language
+		 * @property {string} type
+		 * @property {string} content
 		 */
-		add(classAdder) {
-			adder = classAdder;
-		},
+
+		// options
+
+		/** @type {ClassAdder | undefined} */
+		let adder;
+		/** @type {ClassMapper | undefined} */
+		let mapper;
+		/** @type {string} */
+		let prefixString = '';
+
+
 		/**
-		 * Maps all class names using the given object or map function.
-		 *
-		 * This does not affect the prefix.
-		 *
-		 * @param {Object<string, string> | ClassMapper} classMapper
+		 * @param {string} className
+		 * @param {string} language
 		 */
-		map(classMapper) {
-			if (typeof classMapper === 'function') {
-				mapper = classMapper;
-			} else {
-				mapper = function (className) {
-					return classMapper[className] || className;
-				};
+		function apply(className, language) {
+			return prefixString + (mapper ? mapper(className, language) : className);
+		}
+
+
+		Prism.plugins.customClass = {
+			/**
+			 * Sets the function which can be used to add custom aliases to any token.
+			 *
+			 * @param {ClassAdder} classAdder
+			 */
+			add(classAdder) {
+				adder = classAdder;
+			},
+			/**
+			 * Maps all class names using the given object or map function.
+			 *
+			 * This does not affect the prefix.
+			 *
+			 * @param {Object<string, string> | ClassMapper} classMapper
+			 */
+			map(classMapper) {
+				if (typeof classMapper === 'function') {
+					mapper = classMapper;
+				} else {
+					mapper = function (className) {
+						return classMapper[className] || className;
+					};
+				}
+			},
+			/**
+			 * Adds the given prefix to all class names.
+			 *
+			 * @param {string} string
+			 */
+			prefix(string) {
+				prefixString = string || '';
+			},
+			/**
+			 * Applies the current mapping and prefix to the given class name.
+			 *
+			 * @param {string} className A single class name.
+			 * @param {string} language The language of the code that contains this class name.
+			 *
+			 * If the language is unknown, pass `"none"`.
+			 */
+			apply
+		};
+
+		Prism.hooks.add('wrap', (env) => {
+			if (adder) {
+				const result = adder({
+					content: env.content,
+					type: env.type,
+					language: env.language
+				});
+
+				if (Array.isArray(result)) {
+					env.classes.push(...result);
+				} else if (result) {
+					env.classes.push(result);
+				}
 			}
-		},
-		/**
-		 * Adds the given prefix to all class names.
-		 *
-		 * @param {string} string
-		 */
-		prefix(string) {
-			prefixString = string || '';
-		},
-		/**
-		 * Applies the current mapping and prefix to the given class name.
-		 *
-		 * @param {string} className A single class name.
-		 * @param {string} language The language of the code that contains this class name.
-		 *
-		 * If the language is unknown, pass `"none"`.
-		 */
-		apply
-	};
 
-	Prism.hooks.add('wrap', (env) => {
-		if (adder) {
-			const result = adder({
-				content: env.content,
-				type: env.type,
-				language: env.language
+			if (!mapper && !prefixString) {
+				return;
+			}
+
+			env.classes = env.classes.map((c) => {
+				return apply(c, env.language);
 			});
-
-			if (Array.isArray(result)) {
-				env.classes.push(...result);
-			} else if (result) {
-				env.classes.push(result);
-			}
-		}
-
-		if (!mapper && !prefixString) {
-			return;
-		}
-
-		env.classes = env.classes.map((c) => {
-			return apply(c, env.language);
 		});
-	});
-
-}());
+	}
+});

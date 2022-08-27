@@ -18,7 +18,7 @@ export interface LanguageProto extends ComponentProtoBase {
 	grammar: Grammar | ((options: GrammarOptions) => Grammar);
 }
 export interface PluginProto extends ComponentProtoBase {
-	plugin: Record<string, any>;
+	plugin?: (Prism: Prism) => Record<string, any>;
 }
 export type ComponentProto = LanguageProto | PluginProto;
 
