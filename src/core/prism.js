@@ -17,6 +17,10 @@ export class Prism {
 	constructor() {
 		this.hooks = new Hooks();
 		this.components = new Registry();
+		/**
+		 * @type {Partial<Record<string, unknown>>}
+		 */
+		this.plugins = {};
 	}
 
 	/**
