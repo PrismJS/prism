@@ -4,25 +4,9 @@
 		return;
 	}
 
-	const assign = Object.assign || function (obj1, obj2) {
-		for (const name in obj2) {
-			if (obj2.hasOwnProperty(name)) {
-				obj1[name] = obj2[name];
-			}
-		}
-		return obj1;
-	};
-
-	function NormalizeWhitespace(defaults) {
-		this.defaults = assign({}, defaults);
-	}
-
-	function toCamelCase(value) {
-		return value.replace(/-(\w)/g, (match, firstChar) => {
-			return firstChar.toUpperCase();
-		});
-	}
-
+	/**
+	 * @param {string} str
+	 */
 	function tabLen(str) {
 		let res = 0;
 		for (let i = 0; i < str.length; ++i) {
@@ -45,49 +29,46 @@
 		'spaces-to-tabs': 'number',
 	};
 
-	NormalizeWhitespace.prototype = {
-		setDefaults(defaults) {
-			this.defaults = assign(this.defaults, defaults);
-		},
-		normalize(input, settings) {
-			settings = assign(this.defaults, settings);
+	/**
+	 * @typedef {{
+	 *   'break-lines': number,
+	 *   'indent': number,
+	 *   'left-trim': boolean,
+	 *   'remove-indent': boolean,
+	 *   'remove-initial-line-feed': boolean,
+	 *   'remove-trailing': boolean,
+	 *   'right-trim': boolean,
+	 *   'spaces-to-tabs': number,
+	 *   'tabs-to-spaces': number,
+	 * }} NormalizeWhitespaceDefaults
+	 */
 
-			for (const name in settings) {
-				const methodName = toCamelCase(name);
-				if (name !== 'normalize' && methodName !== 'setDefaults' &&
-					settings[name] && this[methodName]) {
-					input = this[methodName].call(this, input, settings[name]);
-				}
-			}
+	/**
+	 * @type {readonly (keyof NormalizeWhitespaceDefaults)[]}
+	 */
+	const normalizationOrder = [
+		'remove-trailing',
+		'remove-indent',
+		'left-trim',
+		'right-trim',
+		'break-lines',
+		'indent',
+		'remove-initial-line-feed',
+		'tabs-to-spaces',
+		'spaces-to-tabs',
+	];
 
-			return input;
-		},
-
-		/*
-		 * Normalization methods
-		 */
-		leftTrim(input) {
-			return input.replace(/^\s+/, '');
-		},
-		rightTrim(input) {
-			return input.replace(/\s+$/, '');
-		},
-		tabsToSpaces(input, spaces) {
-			spaces = spaces|0 || 4;
-			return input.replace(/\t/g, new Array(++spaces).join(' '));
-		},
-		spacesToTabs(input, spaces) {
-			spaces = spaces|0 || 4;
-			return input.replace(RegExp(' {' + spaces + '}', 'g'), '\t');
-		},
-		removeTrailing(input) {
-			return input.replace(/\s*?$/gm, '');
-		},
-		// Support for deprecated plugin remove-initial-line-feed
-		removeInitialLineFeed(input) {
-			return input.replace(/^(?:\r?\n|\r)/, '');
-		},
-		removeIndent(input) {
+	/**
+	 * @type {{ [K in keyof NormalizeWhitespaceDefaults]: (input: string, value: NormalizeWhitespaceDefaults[K]) => string }}
+	 */
+	const normalizationMethods = {
+		'left-trim': (input) => input.replace(/^\s+/, ''),
+		'right-trim': (input) => input.replace(/\s+$/, ''),
+		'tabs-to-spaces': (input, spaces) => input.replace(/\t/g, ' '.repeat(spaces)),
+		'spaces-to-tabs': (input, spaces) => input.replace(RegExp(' {' + spaces + '}', 'g'), '\t'),
+		'remove-trailing': (input) => input.replace(/\s*?$/gm, ''),
+		'remove-initial-line-feed': (input) => input.replace(/^(?:\r?\n|\r)/, ''),
+		'remove-indent': (input) => {
 			const indents = input.match(/^[^\S\n\r]*(?=\S)/gm);
 
 			if (!indents || !indents[0].length) {
@@ -102,12 +83,8 @@
 
 			return input.replace(RegExp('^' + indents[0], 'gm'), '');
 		},
-		indent(input, tabs) {
-			return input.replace(/^[^\S\n\r]*(?=\S)/gm, new Array(++tabs).join('\t') + '$&');
-		},
-		breakLines(input, characters) {
-			characters = (characters === true) ? 80 : characters|0 || 80;
-
+		'indent': (input, tabs) => input.replace(/^[^\S\n\r]*(?=\S)/gm, '\t'.repeat(tabs) + '$&'),
+		'break-lines': (input, characters) => {
 			const lines = input.split('\n');
 			for (let i = 0; i < lines.length; ++i) {
 				if (tabLen(lines[i]) <= characters) {
@@ -130,6 +107,43 @@
 			return lines.join('\n');
 		}
 	};
+
+	class NormalizeWhitespace {
+		/**
+		 * @param {Partial<Readonly<NormalizeWhitespaceDefaults>>} defaults
+		 */
+		constructor(defaults) {
+			/**
+			 * @type {Partial<NormalizeWhitespaceDefaults>}
+			 */
+			this.defaults = { ...defaults };
+		}
+
+		/**
+		 * @param {Partial<Readonly<NormalizeWhitespaceDefaults>>} defaults
+		 */
+		setDefaults(defaults) {
+			Object.assign(this.defaults, defaults);
+		}
+
+		/**
+		 * @param {string} input
+		 * @param {Partial<Readonly<NormalizeWhitespaceDefaults>>} settings
+		 */
+		normalize(input, settings) {
+			settings = { ...this.defaults, ...settings };
+
+			for (const name of normalizationOrder) {
+				const value = settings[name];
+				if (value !== undefined && value !== false) {
+					input = normalizationMethods[name](input, /** @type {never} */ (value));
+				}
+			}
+
+			return input;
+		}
+	}
+
 
 	// Support node modules
 	if (typeof module !== 'undefined' && module.exports) {

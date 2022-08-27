@@ -1,6 +1,6 @@
 (function () {
 
-	if (typeof Prism === 'undefined' || typeof document === 'undefined' || !Function.prototype.bind) {
+	if (typeof Prism === 'undefined' || typeof document === 'undefined') {
 		return;
 	}
 
@@ -490,143 +490,161 @@
 	const ACTIVE_CLASS = 'active';
 	const FLIPPED_CLASS = 'flipped';
 
-	/**
-	 * Previewer constructor
-	 *
-	 * @param {string} type Unique previewer type
-	 * @param {Function} updater Function that will be called on mouseover.
-	 * @param {string[]|string} [supportedLanguages] Aliases of the languages this previewer must be enabled for. Defaults to "*", all languages.
-	 * @param {Function} [initializer] Function that will be called on initialization.
-	 * @class
-	 */
-	var Previewer = function (type, updater, supportedLanguages, initializer) {
-		this._elt = null;
-		this._type = type;
-		this._token = null;
-		this.updater = updater;
-		this._mouseout = this.mouseout.bind(this);
-		this.initializer = initializer;
+	class Previewer {
+		/**
+		 * Previewer constructor
+		 *
+		 * @param {string} type Unique previewer type
+		 * @param {Function} updater Function that will be called on mouseover.
+		 * @param {string[]|string} [supportedLanguages] Aliases of the languages this previewer must be enabled for. Defaults to "*", all languages.
+		 * @param {Function} [initializer] Function that will be called on initialization.
+		 * @class
+		 */
+		constructor(type, updater, supportedLanguages, initializer) {
+			this._elt = null;
+			this._type = type;
+			this._token = null;
+			this.updater = updater;
+			this._mouseout = this.mouseout.bind(this);
+			this.initializer = initializer;
 
-		const self = this;
+			const self = this;
 
-		if (!supportedLanguages) {
-			supportedLanguages = ['*'];
-		}
-		if (!Array.isArray(supportedLanguages)) {
-			supportedLanguages = [supportedLanguages];
-		}
-		supportedLanguages.forEach((lang) => {
-			if (typeof lang !== 'string') {
-				lang = lang.lang;
+			if (!supportedLanguages) {
+				supportedLanguages = ['*'];
 			}
-			if (!Previewer.byLanguages[lang]) {
-				Previewer.byLanguages[lang] = [];
+			if (!Array.isArray(supportedLanguages)) {
+				supportedLanguages = [supportedLanguages];
 			}
-			if (Previewer.byLanguages[lang].indexOf(self) < 0) {
-				Previewer.byLanguages[lang].push(self);
+			supportedLanguages.forEach((lang) => {
+				if (typeof lang !== 'string') {
+					lang = lang.lang;
+				}
+				if (!Previewer.byLanguages[lang]) {
+					Previewer.byLanguages[lang] = [];
+				}
+				if (Previewer.byLanguages[lang].indexOf(self) < 0) {
+					Previewer.byLanguages[lang].push(self);
+				}
+			});
+			Previewer.byType[type] = this;
+		}
+		/**
+		 * Initializes the mouseover event on the code block.
+		 *
+		 * @param {HTMLElement} elt The code block (env.element)
+		 * @param {string} lang The language (env.language)
+		 */
+		static initEvents(elt, lang) {
+			let previewers = [];
+			if (Previewer.byLanguages[lang]) {
+				previewers = previewers.concat(Previewer.byLanguages[lang]);
 			}
-		});
-		Previewer.byType[type] = this;
-	};
-
-	/**
-	 * Creates the HTML element for the previewer.
-	 */
-	Previewer.prototype.init = function () {
-		if (this._elt) {
-			return;
-		}
-		this._elt = document.createElement('div');
-		this._elt.className = 'prism-previewer prism-previewer-' + this._type;
-		document.body.appendChild(this._elt);
-		if (this.initializer) {
-			this.initializer();
-		}
-	};
-
-	/**
-	 * @param {Element} token
-	 * @returns {boolean}
-	 */
-	Previewer.prototype.isDisabled = function (token) {
-		do {
-			if (token.hasAttribute && token.hasAttribute('data-previewers')) {
-				const previewers = token.getAttribute('data-previewers');
-				return (previewers || '').split(/\s+/).indexOf(this._type) === -1;
+			if (Previewer.byLanguages['*']) {
+				previewers = previewers.concat(Previewer.byLanguages['*']);
 			}
-		} while ((token = token.parentNode));
-		return false;
-	};
-
-	/**
-	 * Checks the class name of each hovered element
-	 *
-	 * @param {Element} token
-	 */
-	Previewer.prototype.check = function (token) {
-		if (token.classList.contains(TOKEN_CLASS) && this.isDisabled(token)) {
-			return;
+			elt.addEventListener('mouseover', (e) => {
+				const target = e.target;
+				previewers.forEach((previewer) => {
+					previewer.check(target);
+				});
+			}, false);
 		}
-		do {
-			if (token.classList && token.classList.contains(TOKEN_CLASS) && token.classList.contains(this._type)) {
-				break;
+		/**
+		 * Creates the HTML element for the previewer.
+		 */
+		init() {
+			if (this._elt) {
+				return;
 			}
-		} while ((token = token.parentNode));
-
-		if (token && token !== this._token) {
-			this._token = token;
-			this.show();
-		}
-	};
-
-	/**
-	 * Called on mouseout
-	 */
-	Previewer.prototype.mouseout = function () {
-		this._token.removeEventListener('mouseout', this._mouseout, false);
-		this._token = null;
-		this.hide();
-	};
-
-	/**
-	 * Shows the previewer positioned properly for the current token.
-	 */
-	Previewer.prototype.show = function () {
-		if (!this._elt) {
-			this.init();
-		}
-		if (!this._token) {
-			return;
-		}
-
-		if (this.updater.call(this._elt, this._token.textContent)) {
-			this._token.addEventListener('mouseout', this._mouseout, false);
-
-			const offset = getOffset(this._token);
-			this._elt.classList.add(ACTIVE_CLASS);
-
-			if (offset.top - this._elt.offsetHeight > 0) {
-				this._elt.classList.remove(FLIPPED_CLASS);
-				this._elt.style.top = offset.top + 'px';
-				this._elt.style.bottom = '';
-			} else {
-				this._elt.classList.add(FLIPPED_CLASS);
-				this._elt.style.bottom = offset.bottom + 'px';
-				this._elt.style.top = '';
+			this._elt = document.createElement('div');
+			this._elt.className = 'prism-previewer prism-previewer-' + this._type;
+			document.body.appendChild(this._elt);
+			if (this.initializer) {
+				this.initializer();
 			}
+		}
+		/**
+		 * @param {Element} token
+		 * @returns {boolean}
+		 */
+		isDisabled(token) {
+			do {
+				if (token.hasAttribute && token.hasAttribute('data-previewers')) {
+					const previewers = token.getAttribute('data-previewers');
+					return (previewers || '').split(/\s+/).indexOf(this._type) === -1;
+				}
+			} while ((token = token.parentNode));
+			return false;
+		}
+		/**
+		 * Checks the class name of each hovered element
+		 *
+		 * @param {Element} token
+		 */
+		check(token) {
+			if (token.classList.contains(TOKEN_CLASS) && this.isDisabled(token)) {
+				return;
+			}
+			do {
+				if (token.classList && token.classList.contains(TOKEN_CLASS) && token.classList.contains(this._type)) {
+					break;
+				}
+			} while ((token = token.parentNode));
 
-			this._elt.style.left = offset.left + Math.min(200, offset.width / 2) + 'px';
-		} else {
+			if (token && token !== this._token) {
+				this._token = token;
+				this.show();
+			}
+		}
+		/**
+		 * Called on mouseout
+		 */
+		mouseout() {
+			this._token.removeEventListener('mouseout', this._mouseout, false);
+			this._token = null;
 			this.hide();
 		}
-	};
+		/**
+		 * Shows the previewer positioned properly for the current token.
+		 */
+		show() {
+			if (!this._elt) {
+				this.init();
+			}
+			if (!this._token) {
+				return;
+			}
 
-	/**
-	 * Hides the previewer.
-	 */
-	Previewer.prototype.hide = function () {
-		this._elt.classList.remove(ACTIVE_CLASS);
-	};
+			if (this.updater.call(this._elt, this._token.textContent)) {
+				this._token.addEventListener('mouseout', this._mouseout, false);
+
+				const offset = getOffset(this._token);
+				this._elt.classList.add(ACTIVE_CLASS);
+
+				if (offset.top - this._elt.offsetHeight > 0) {
+					this._elt.classList.remove(FLIPPED_CLASS);
+					this._elt.style.top = offset.top + 'px';
+					this._elt.style.bottom = '';
+				} else {
+					this._elt.classList.add(FLIPPED_CLASS);
+					this._elt.style.bottom = offset.bottom + 'px';
+					this._elt.style.top = '';
+				}
+
+				this._elt.style.left = offset.left + Math.min(200, offset.width / 2) + 'px';
+			} else {
+				this.hide();
+			}
+		}
+		/**
+		 * Hides the previewer.
+		 */
+		hide() {
+			this._elt.classList.remove(ACTIVE_CLASS);
+		}
+	}
+
 
 	/**
 	 * Map of all registered previewers by language
@@ -642,27 +660,6 @@
 	 */
 	Previewer.byType = {};
 
-	/**
-	 * Initializes the mouseover event on the code block.
-	 *
-	 * @param {HTMLElement} elt The code block (env.element)
-	 * @param {string} lang The language (env.language)
-	 */
-	Previewer.initEvents = function (elt, lang) {
-		let previewers = [];
-		if (Previewer.byLanguages[lang]) {
-			previewers = previewers.concat(Previewer.byLanguages[lang]);
-		}
-		if (Previewer.byLanguages['*']) {
-			previewers = previewers.concat(Previewer.byLanguages['*']);
-		}
-		elt.addEventListener('mouseover', (e) => {
-			const target = e.target;
-			previewers.forEach((previewer) => {
-				previewer.check(target);
-			});
-		}, false);
-	};
 	Prism.plugins.Previewer = Previewer;
 
 	Prism.hooks.add('before-highlight', (env) => {

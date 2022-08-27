@@ -20,28 +20,30 @@
 		}
 	}
 
+	/** @type {Set<string>} */
+	const htmlTags = new Set([
+		'a', 'abbr', 'acronym', 'b', 'basefont', 'bdo', 'big', 'blink', 'cite', 'code', 'dfn', 'em', 'kbd', 'i',
+		'rp', 'rt', 'ruby', 's', 'samp', 'small', 'spacer', 'strike', 'strong', 'sub', 'sup', 'time', 'tt', 'u',
+		'var', 'wbr', 'noframes', 'summary', 'command', 'dt', 'dd', 'figure', 'figcaption', 'center', 'section', 'nav',
+		'article', 'aside', 'hgroup', 'header', 'footer', 'address', 'noscript', 'isIndex', 'main', 'mark', 'marquee',
+		'meter', 'menu'
+	]);
+	/** @type {Set<string>} */
+	const svgTags = new Set([
+		'animateColor', 'animateMotion', 'animateTransform', 'glyph', 'feBlend', 'feColorMatrix', 'feComponentTransfer',
+		'feFuncR', 'feFuncG', 'feFuncB', 'feFuncA', 'feComposite', 'feConvolveMatrix', 'feDiffuseLighting', 'feDisplacementMap',
+		'feFlood', 'feGaussianBlur', 'feImage', 'feMerge', 'feMergeNode', 'feMorphology', 'feOffset', 'feSpecularLighting',
+		'feTile', 'feTurbulence', 'feDistantLight', 'fePointLight', 'feSpotLight', 'linearGradient', 'radialGradient', 'altGlyph',
+		'textPath', 'tref', 'altglyph', 'textpath', 'altglyphdef', 'altglyphitem', 'clipPath', 'color-profile', 'cursor',
+		'font-face', 'font-face-format', 'font-face-name', 'font-face-src', 'font-face-uri', 'foreignObject', 'glyphRef',
+		'hkern', 'vkern'
+	]);
+	/** @type {Set<string>} */
+	const mathmlTags = new Set();
+
+
 	if (Prism.languages.markup) {
 		Prism.languages.markup.tag.inside.tag.inside['tag-id'] = /[\w-]+/;
-
-		var Tags = {
-			HTML: {
-				'a': 1, 'abbr': 1, 'acronym': 1, 'b': 1, 'basefont': 1, 'bdo': 1, 'big': 1, 'blink': 1, 'cite': 1, 'code': 1, 'dfn': 1, 'em': 1, 'kbd': 1, 'i': 1,
-				'rp': 1, 'rt': 1, 'ruby': 1, 's': 1, 'samp': 1, 'small': 1, 'spacer': 1, 'strike': 1, 'strong': 1, 'sub': 1, 'sup': 1, 'time': 1, 'tt': 1, 'u': 1,
-				'var': 1, 'wbr': 1, 'noframes': 1, 'summary': 1, 'command': 1, 'dt': 1, 'dd': 1, 'figure': 1, 'figcaption': 1, 'center': 1, 'section': 1, 'nav': 1,
-				'article': 1, 'aside': 1, 'hgroup': 1, 'header': 1, 'footer': 1, 'address': 1, 'noscript': 1, 'isIndex': 1, 'main': 1, 'mark': 1, 'marquee': 1,
-				'meter': 1, 'menu': 1
-			},
-			SVG: {
-				'animateColor': 1, 'animateMotion': 1, 'animateTransform': 1, 'glyph': 1, 'feBlend': 1, 'feColorMatrix': 1, 'feComponentTransfer': 1,
-				'feFuncR': 1, 'feFuncG': 1, 'feFuncB': 1, 'feFuncA': 1, 'feComposite': 1, 'feConvolveMatrix': 1, 'feDiffuseLighting': 1, 'feDisplacementMap': 1,
-				'feFlood': 1, 'feGaussianBlur': 1, 'feImage': 1, 'feMerge': 1, 'feMergeNode': 1, 'feMorphology': 1, 'feOffset': 1, 'feSpecularLighting': 1,
-				'feTile': 1, 'feTurbulence': 1, 'feDistantLight': 1, 'fePointLight': 1, 'feSpotLight': 1, 'linearGradient': 1, 'radialGradient': 1, 'altGlyph': 1,
-				'textPath': 1, 'tref': 1, 'altglyph': 1, 'textpath': 1, 'altglyphdef': 1, 'altglyphitem': 1, 'clipPath': 1, 'color-profile': 1, 'cursor': 1,
-				'font-face': 1, 'font-face-format': 1, 'font-face-name': 1, 'font-face-src': 1, 'font-face-uri': 1, 'foreignObject': 1, 'glyphRef': 1,
-				'hkern': 1, 'vkern': 1
-			},
-			MathML: {}
-		};
 	}
 
 	let language;
@@ -104,49 +106,45 @@
 		}
 	});
 
+	/**
+	 * @param {string} tag
+	 */
 	function getLanguage(tag) {
 		const tagL = tag.toLowerCase();
 
-		if (Tags.HTML[tagL]) {
+		if (htmlTags.has(tagL)) {
 			return 'html';
-		} else if (Tags.SVG[tag]) {
+		} else if (svgTags.has(tag)) {
 			return 'svg';
-		} else if (Tags.MathML[tag]) {
+		} else if (mathmlTags.has(tag)) {
 			return 'mathml';
 		}
 
 		// Not in dictionary, perform check
-		if (Tags.HTML[tagL] !== 0 && typeof document !== 'undefined') {
+
+		if (typeof document !== 'undefined') {
 			const htmlInterface = (document.createElement(tag).toString().match(/\[object HTML(.+)Element\]/) || [])[1];
 
 			if (htmlInterface && htmlInterface != 'Unknown') {
-				Tags.HTML[tagL] = 1;
+				htmlTags.add(tagL);
 				return 'html';
 			}
 		}
 
-		Tags.HTML[tagL] = 0;
-
-		if (Tags.SVG[tag] !== 0 && typeof document !== 'undefined') {
+		if (typeof document !== 'undefined') {
 			const svgInterface = (document.createElementNS('http://www.w3.org/2000/svg', tag).toString().match(/\[object SVG(.+)Element\]/) || [])[1];
 
 			if (svgInterface && svgInterface != 'Unknown') {
-				Tags.SVG[tag] = 1;
+				svgTags.add(tag);
 				return 'svg';
 			}
 		}
 
-		Tags.SVG[tag] = 0;
-
 		// Lame way to detect MathML, but browsers don’t expose interface names there :(
-		if (Tags.MathML[tag] !== 0) {
-			if (tag.indexOf('m') === 0) {
-				Tags.MathML[tag] = 1;
-				return 'mathml';
-			}
+		if (tag.startsWith('m')) {
+			mathmlTags.add(tag);
+			return 'mathml';
 		}
-
-		Tags.MathML[tag] = 0;
 
 		return null;
 	}
