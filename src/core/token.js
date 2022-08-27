@@ -8,7 +8,7 @@ export class Token {
 	 * @param {string} [matchedStr=""] A copy of the full string this token was created from.
 	 * @public
 	 */
-	constructor(type, content, alias, matchedStr) {
+	constructor(type, content, alias, matchedStr = '') {
 		/**
 		 * The type of the token.
 		 *
@@ -36,8 +36,9 @@ export class Token {
 		 * @public
 		 */
 		this.alias = alias;
+
 		// Copy of the full string this token was created from
-		this.length = (matchedStr || '').length | 0;
+		this.length = matchedStr.length;
 	}
 }
 
