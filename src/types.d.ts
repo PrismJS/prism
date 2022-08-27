@@ -1,6 +1,5 @@
-import { Hooks } from "./core/hooks";
-import { Prism } from "./core/prism";
-import { rest } from "./shared/symbols";
+import { Prism } from './core/prism';
+import { rest } from './shared/symbols';
 
 export interface GrammarOptions {
 	readonly getLanguage: (id: string) => Grammar;

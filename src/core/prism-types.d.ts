@@ -1,4 +1,4 @@
-import { Grammar } from "../types";
+import { Grammar } from '../types';
 
 export interface AsyncHighlightingData {
 	language: string;

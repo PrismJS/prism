@@ -1,5 +1,5 @@
-import { Grammar } from "../types";
-import { TokenStream } from "./token";
+import { Grammar } from '../types';
+import { TokenStream } from './token';
 
 /**
  * An interface containing all hooks Prism runs.

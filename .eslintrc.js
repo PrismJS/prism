@@ -126,6 +126,23 @@ module.exports = {
 
 	overrides: [
 		{
+			files: ['*.d.ts'],
+			parser: '@typescript-eslint/parser',
+			parserOptions: {
+				tsconfigRootDir: __dirname,
+				project: ['./tsconfig.json'],
+			},
+			plugins: ['@typescript-eslint'],
+			extends: [
+				'eslint:recommended',
+				'plugin:@typescript-eslint/recommended',
+				'plugin:@typescript-eslint/recommended-requiring-type-checking'
+			],
+			rules: {
+				'no-use-before-define': 'off'
+			}
+		},
+		{
 			// Core
 			files: ['src/core/**/*.js'],
 			env: {

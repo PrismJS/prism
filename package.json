@@ -39,6 +39,8 @@
 	"readmeFilename": "README.md",
 	"devDependencies": {
 		"@types/node-fetch": "^2.5.5",
+		"@typescript-eslint/eslint-plugin": "^5.35.1",
+		"@typescript-eslint/parser": "^5.35.1",
 		"benchmark": "^2.1.4",
 		"chai": "^4.2.0",
 		"danger": "^10.5.0",
