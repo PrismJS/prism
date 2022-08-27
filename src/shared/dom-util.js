@@ -61,3 +61,17 @@ export function setLanguage(element, language) {
 export function isActive(element, className, defaultActivation = false) {
 	return element?.closest(`${className}, no-${className}`)?.classList?.contains(className) ?? defaultActivation;
 }
+
+/**
+ * If the parent element of the given element is a `<pre>` element, then if
+ * will be returned. Otherwise, `undefined` will be returned.
+ *
+ * @param {Element} element
+ * @returns {HTMLPreElement | undefined}
+ */
+export function getParentPre(element) {
+	const pre = element.parentElement;
+	if (pre && /pre/i.test(pre.nodeName)) {
+		return /** @type {HTMLPreElement} */(pre);
+	}
+}

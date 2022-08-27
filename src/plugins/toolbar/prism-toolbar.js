@@ -1,3 +1,4 @@
+import { getParentPre } from '../../shared/dom-util.js';
 import { noop } from '../../shared/util.js';
 
 /**
@@ -102,8 +103,8 @@ export class Toolbar {
 	 */
 	hook = (env) => {
 		// Check if inline or actual code block (credit to line-numbers plugin)
-		const pre = env.element.parentNode;
-		if (!pre || !/pre/i.test(pre.nodeName)) {
+		const pre = getParentPre(env.element);
+		if (!pre) {
 			return;
 		}
 
@@ -155,8 +156,8 @@ export class Toolbar {
 
 /** @type {ButtonFactory} */
 const label = (env) => {
-	const pre = env.element.parentElement;
-	if (!pre || !/pre/i.test(pre.nodeName)) {
+	const pre = getParentPre(env.element);
+	if (!pre) {
 		return;
 	}
 
@@ -197,10 +198,6 @@ export default /** @type {import("../../types").PluginProto} */ ({
 		return toolbar;
 	},
 	effect(Prism) {
-		if (typeof document === 'undefined') {
-			return noop;
-		}
-
 		const toolbar = /** @type {Toolbar} */ (Prism.plugins.toolbar);
 
 		return Prism.hooks.add('complete', toolbar.hook);

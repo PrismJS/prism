@@ -1,3 +1,4 @@
+import { getParentPre } from '../../shared/dom-util.js';
 import { noop } from '../../shared/util.js';
 import toolbar from '../toolbar/prism-toolbar.js';
 
@@ -12,8 +13,8 @@ export default /** @type {import("../../types").PluginProto} */ ({
 		const toolbar = /** @type {import('../toolbar/prism-toolbar.js').Toolbar} */(Prism.plugins.toolbar);
 
 		toolbar.registerButton('download-file', (env) => {
-			const pre = env.element.parentElement;
-			if (!pre || !/pre/i.test(pre.nodeName)) {
+			const pre = getParentPre(env.element);
+			if (!pre) {
 				return;
 			}
 
