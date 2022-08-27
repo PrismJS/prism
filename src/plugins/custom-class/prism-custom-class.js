@@ -15,7 +15,7 @@
  */
 
 
-class CustomClass {
+export class CustomClass {
 	constructor() {
 		/**
 		 * @type {ClassAdder | undefined}

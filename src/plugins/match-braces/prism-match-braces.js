@@ -1,17 +1,14 @@
-import { noop } from '../../shared/util.js';
+import { getParentPre, isActive } from '../../shared/dom-util.js';
 
 export default /** @type {import("../../types").PluginProto} */ ({
 	id: 'match-braces',
-	plugin(Prism) {
-		return {}; // TODO:
-	},
 	effect(Prism) {
-		if (typeof document === 'undefined') {
-			return noop;
-		}
-
+		/**
+		 * @param {string} name
+		 * @returns {string}
+		 */
 		function mapClassName(name) {
-			const customClass = Prism.plugins.customClass;
+			const customClass = /** @type {import('../custom-class/prism-custom-class.js').CustomClass} */ (Prism.plugins.customClass);
 			if (customClass) {
 				return customClass.apply(name, 'none');
 			} else {
@@ -36,6 +33,7 @@ export default /** @type {import("../../types").PluginProto} */ ({
 
 		// A map for brace aliases.
 		// This is useful for when some braces have a prefix/suffix as part of the punctuation token.
+		/** @type {Readonly<Record<string, string>>} */
 		const BRACE_ALIAS_MAP = {
 			'${': '{', // JS template punctuation (e.g. `foo ${bar + 1}`)
 		};
@@ -49,61 +47,80 @@ export default /** @type {import("../../types").PluginProto} */ ({
 		/**
 		 * Returns the brace partner given one brace of a brace pair.
 		 *
-		 * @param {HTMLElement} brace
-		 * @returns {HTMLElement}
+		 * @param {Element} brace
+		 * @returns {Element | null}
 		 */
 		function getPartnerBrace(brace) {
 			const match = BRACE_ID_PATTERN.exec(brace.id);
+			if (!match) {
+				return null;
+			}
 			return document.querySelector('#' + match[1] + (match[2] == 'open' ? 'close' : 'open'));
 		}
 
 		/**
-		 * @this {HTMLElement}
+		 * @this {Element}
 		 */
 		function hoverBrace() {
-			if (!Prism.util.isActive(this, 'brace-hover', true)) {
+			if (!isActive(this, 'brace-hover', true)) {
 				return;
 			}
 
-			[this, getPartnerBrace(this)].forEach((e) => {
+			const partner = getPartnerBrace(this);
+			if (!partner) {
+				return;
+			}
+
+			[this, partner].forEach((e) => {
 				e.classList.add(mapClassName('brace-hover'));
 			});
 		}
 		/**
-		 * @this {HTMLElement}
+		 * @this {Element}
 		 */
 		function leaveBrace() {
-			[this, getPartnerBrace(this)].forEach((e) => {
+			const partner = getPartnerBrace(this);
+			if (!partner) {
+				return;
+			}
+
+			[this, partner].forEach((e) => {
 				e.classList.remove(mapClassName('brace-hover'));
 			});
 		}
 		/**
-		 * @this {HTMLElement}
+		 * @this {Element}
 		 */
 		function clickBrace() {
-			if (!Prism.util.isActive(this, 'brace-select', true)) {
+			if (!isActive(this, 'brace-select', true)) {
 				return;
 			}
 
-			[this, getPartnerBrace(this)].forEach((e) => {
+			const partner = getPartnerBrace(this);
+			if (!partner) {
+				return;
+			}
+
+			[this, partner].forEach((e) => {
 				e.classList.add(mapClassName('brace-selected'));
 			});
 		}
 
-		Prism.hooks.add('complete', (env) => {
+		/** @type {WeakSet<Element>} */
+		const withEventListener = new WeakSet();
 
-			/** @type {HTMLElement} */
+		return Prism.hooks.add('complete', (env) => {
 			const code = env.element;
-			const pre = code.parentElement;
 
-			if (!pre || pre.tagName != 'PRE') {
+			const pre = getParentPre(code);
+			if (!pre) {
 				return;
 			}
 
 			// find the braces to match
-			/** @type {string[]} */
+			/** @type {(keyof PARTNER)[]} */
 			const toMatch = [];
-			if (Prism.util.isActive(code, 'match-braces')) {
+			if (isActive(code, 'match-braces')) {
 				toMatch.push('(', '[', '{');
 			}
 
@@ -112,25 +129,22 @@ export default /** @type {import("../../types").PluginProto} */ ({
 				return;
 			}
 
-			if (!pre.__listenerAdded) {
+			if (!withEventListener.has(pre)) {
 				// code blocks might be highlighted more than once
+				withEventListener.add(pre);
 				pre.addEventListener('mousedown', () => {
 					// the code element might have been replaced
 					const code = pre.querySelector('code');
 					const className = mapClassName('brace-selected');
-					Array.prototype.slice.call(code.querySelectorAll('.' + className)).forEach((e) => {
+					code?.querySelectorAll('.' + className).forEach((e) => {
 						e.classList.remove(className);
 					});
 				});
-				Object.defineProperty(pre, '__listenerAdded', { value: true });
 			}
 
-			/** @type {HTMLSpanElement[]} */
-			const punctuation = Array.prototype.slice.call(
-				code.querySelectorAll('span.' + mapClassName('token') + '.' + mapClassName('punctuation'))
-			);
+			const punctuation = [...code.querySelectorAll('span.' + mapClassName('token') + '.' + mapClassName('punctuation'))];
 
-			/** @type {{ index: number, open: boolean, element: HTMLElement }[]} */
+			/** @type {{ index: number, open: boolean, element: Element }[]} */
 			const allBraces = [];
 
 			toMatch.forEach((open) => {
@@ -145,7 +159,7 @@ export default /** @type {import("../../types").PluginProto} */ ({
 				for (let i = 0; i < punctuation.length; i++) {
 					const element = punctuation[i];
 					if (element.childElementCount == 0) {
-						let text = element.textContent;
+						let text = element.textContent || '';
 						text = BRACE_ALIAS_MAP[text] || text;
 						if (text === open) {
 							allBraces.push({ index: i, open: true, element });
@@ -156,8 +170,9 @@ export default /** @type {import("../../types").PluginProto} */ ({
 							allBraces.push({ index: i, open: false, element });
 							element.classList.add(name);
 							element.classList.add(mapClassName('brace-close'));
-							if (openStack.length) {
-								pairs.push([i, openStack.pop()]);
+							const popped = openStack.pop();
+							if (popped !== undefined) {
+								pairs.push([i, popped]);
 							}
 						}
 					}
