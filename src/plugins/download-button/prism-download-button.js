@@ -1,18 +1,13 @@
 import { getParentPre } from '../../shared/dom-util.js';
-import { noop } from '../../shared/util.js';
 import toolbar from '../toolbar/prism-toolbar.js';
 
 export default /** @type {import("../../types").PluginProto} */ ({
 	id: 'download-button',
 	require: toolbar,
 	effect(Prism) {
-		if (typeof document === 'undefined') {
-			return noop;
-		}
-
 		const toolbar = /** @type {import('../toolbar/prism-toolbar.js').Toolbar} */(Prism.plugins.toolbar);
 
-		toolbar.registerButton('download-file', (env) => {
+		return toolbar.registerButton('download-file', (env) => {
 			const pre = getParentPre(env.element);
 			if (!pre) {
 				return;

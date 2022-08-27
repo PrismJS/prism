@@ -1,4 +1,3 @@
-import { noop } from '../../shared/util.js';
 import toolbar from '../toolbar/prism-toolbar.js';
 
 /**
@@ -131,13 +130,9 @@ export default /** @type {import("../../types").PluginProto} */ ({
 	id: 'copy-to-clipboard',
 	require: toolbar,
 	effect(Prism) {
-		if (typeof document === 'undefined') {
-			return noop;
-		}
-
 		const toolbar = /** @type {import('../toolbar/prism-toolbar.js').Toolbar} */(Prism.plugins.toolbar);
 
-		toolbar.registerButton('copy-to-clipboard', (env) => {
+		return toolbar.registerButton('copy-to-clipboard', (env) => {
 			const element = env.element;
 
 			const settings = getSettings(element);

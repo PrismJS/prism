@@ -51,8 +51,11 @@ export class Toolbar {
 	/**
 	 * Register a button callback with the toolbar.
 	 *
+	 * The returned function will remove the added callback again when called.
+	 *
 	 * @param {string} key
 	 * @param {ButtonOptions | ButtonFactory} opts
+	 * @returns {() => void}
 	 */
 	registerButton(key, opts) {
 		/** @type {ButtonFactory} */
@@ -90,11 +93,19 @@ export class Toolbar {
 
 		if (this.map.has(key)) {
 			console.warn('There is a button with the key "' + key + '" registered already.');
-			return;
+			return noop;
 		}
 
 		this.map.set(key, callback);
 		this.callbacks.push(callback);
+
+		return () => {
+			this.map.delete(key);
+			const index = this.callbacks.indexOf(callback);
+			if (index !== -1) {
+				this.callbacks.splice(index, 1);
+			}
+		};
 	}
 
 	/**
