@@ -83,7 +83,7 @@ export function htmlEncode(text) {
 /**
  * A function that does nothing.
  *
- * @returns {void}
+ * @returns {void & undefined}
  */
 export function noop() {
 	/* do nothing */
