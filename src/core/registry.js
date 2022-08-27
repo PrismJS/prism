@@ -41,6 +41,16 @@ export class Registry {
 	}
 
 	/**
+	 * Returns whether this registry has a component with the given name or alias.
+	 *
+	 * @param {string} name
+	 * @returns {boolean}
+	 */
+	has(name) {
+		return this.entries.has(this.resolveAlias(name));
+	}
+
+	/**
 	 * @param {import('../types').ComponentProto[]} components
 	 */
 	add(...components) {
