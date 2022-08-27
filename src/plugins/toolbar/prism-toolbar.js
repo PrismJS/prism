@@ -33,7 +33,7 @@ function getOrder(element) {
  * @typedef {(env: import('../../core/hooks-env.js').CompleteEnv) => Node | undefined} ButtonFactory
  */
 
-class Toolbar {
+export class Toolbar {
 	constructor() {
 		/**
 		 * @type {ButtonFactory[]}
@@ -53,7 +53,7 @@ class Toolbar {
 	 * @param {string} key
 	 * @param {ButtonOptions | ButtonFactory} opts
 	 */
-	register(key, opts) {
+	registerButton(key, opts) {
 		/** @type {ButtonFactory} */
 		let callback;
 
@@ -193,7 +193,7 @@ export default /** @type {import("../../types").PluginProto} */ ({
 	id: 'toolbar',
 	plugin() {
 		const toolbar = new Toolbar();
-		toolbar.register('label', label);
+		toolbar.registerButton('label', label);
 		return toolbar;
 	},
 	effect(Prism) {
