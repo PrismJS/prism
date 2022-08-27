@@ -1392,12 +1392,6 @@
 			"owner": "vkbansal",
 			"noCSS": true
 		},
-		"remove-initial-line-feed": {
-			"title": "Remove initial line feed",
-			"description": "Removes the initial line feed in code blocks.",
-			"owner": "Golmote",
-			"noCSS": true
-		},
 		"inline-color": {
 			"title": "Inline color",
 			"description": "Adds a small inline preview for colors in style sheets.",
