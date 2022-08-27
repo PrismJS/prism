@@ -1,130 +1,172 @@
-import { noop } from '../../shared/util.js';
+import { isActive } from '../../shared/dom-util';
+import { addHooks } from '../../shared/hooks-util';
+
+/**
+ * @typedef NodeData
+ * @property {Element} element
+ * @property {number} posOpen
+ * @property {number} posClose
+ */
+
+/**
+ * @param {import('../../core/hooks-env').BeforeHighlightEnv} env
+ * @param {NodeData[]} data
+ */
+function setEnvData(env, data) {
+	env.keepMarkup = data;
+}
+/**
+ * @param {import('../../core/hooks-env').AfterHighlightEnv} env
+ * @returns {NodeData[]}
+ */
+function getEnvData(env) {
+	return env.keepMarkup || [];
+}
+
+/**
+ * @param {ChildNode} child
+ * @returns {child is Element}
+ */
+function isElement(child) {
+	return child.nodeType === 1;
+}
+/**
+ * @param {ChildNode} child
+ * @returns {child is Text}
+ */
+function isText(child) {
+	return child.nodeType === 3;
+}
 
 export default /** @type {import("../../types").PluginProto} */ ({
 	id: 'keep-markup',
 	optional: 'normalize-whitespace',
-	plugin(Prism) {
-		return {}; // TODO:
-	},
 	effect(Prism) {
-		// if (typeof document === 'undefined' || !document.createRange) {
-		// 	return;
-		// }
-
-		Prism.plugins.KeepMarkup = true;
-
-		Prism.hooks.add('before-highlight', (env) => {
-			if (!env.element.children.length) {
-				return;
-			}
-
-			if (!Prism.util.isActive(env.element, 'keep-markup', true)) {
-				return;
-			}
-
-			const dropTokens = Prism.util.isActive(env.element, 'drop-tokens', false);
-			/**
-			 * Returns whether the given element should be kept.
-			 *
-			 * @param {HTMLElement} element
-			 * @returns {boolean}
-			 */
-			function shouldKeep(element) {
-				if (dropTokens && element.nodeName.toLowerCase() === 'span' && element.classList.contains('token')) {
-					return false;
-				}
-				return true;
-			}
-
-			let pos = 0;
-			const data = [];
-			function processElement(element) {
-				if (!shouldKeep(element)) {
-					// don't keep this element and just process its children
-					processChildren(element);
+		return addHooks(Prism.hooks, {
+			'before-highlight': (env) => {
+				if (!env.element.children.length) {
 					return;
 				}
 
-				const o = {
-					// Store original element so we can restore it after highlighting
-					element,
-					posOpen: pos
-				};
-				data.push(o);
-
-				processChildren(element);
-
-				o.posClose = pos;
-			}
-			function processChildren(element) {
-				for (let i = 0, l = element.childNodes.length; i < l; i++) {
-					const child = element.childNodes[i];
-					if (child.nodeType === 1) { // element
-						processElement(child);
-					} else if (child.nodeType === 3) { // text
-						pos += child.data.length;
-					}
+				if (!isActive(env.element, 'keep-markup', true)) {
+					return;
 				}
-			}
-			processChildren(env.element);
 
-			if (data.length) {
-				// data is an array of all existing tags
-				env.keepMarkup = data;
-			}
-		});
-
-		Prism.hooks.add('after-highlight', (env) => {
-			if (env.keepMarkup && env.keepMarkup.length) {
-
-				var walk = function (elt, nodeState) {
-					for (let i = 0, l = elt.childNodes.length; i < l; i++) {
-
-						const child = elt.childNodes[i];
-
-						if (child.nodeType === 1) { // element
-							if (!walk(child, nodeState)) {
-								return false;
-							}
-
-						} else if (child.nodeType === 3) { // text
-							if (!nodeState.nodeStart && nodeState.pos + child.data.length > nodeState.node.posOpen) {
-								// We found the start position
-								nodeState.nodeStart = child;
-								nodeState.nodeStartPos = nodeState.node.posOpen - nodeState.pos;
-							}
-							if (nodeState.nodeStart && nodeState.pos + child.data.length >= nodeState.node.posClose) {
-								// We found the end position
-								nodeState.nodeEnd = child;
-								nodeState.nodeEndPos = nodeState.node.posClose - nodeState.pos;
-							}
-
-							nodeState.pos += child.data.length;
-						}
-
-						if (nodeState.nodeStart && nodeState.nodeEnd) {
-							// Select the range and wrap it with the element
-							const range = document.createRange();
-							range.setStart(nodeState.nodeStart, nodeState.nodeStartPos);
-							range.setEnd(nodeState.nodeEnd, nodeState.nodeEndPos);
-							nodeState.node.element.innerHTML = '';
-							nodeState.node.element.appendChild(range.extractContents());
-							range.insertNode(nodeState.node.element);
-							range.detach();
-
-							// Process is over
-							return false;
-						}
+				const dropTokens = isActive(env.element, 'drop-tokens', false);
+				/**
+				 * Returns whether the given element should be kept.
+				 *
+				 * @param {Element} element
+				 * @returns {boolean}
+				 */
+				function shouldKeep(element) {
+					if (dropTokens && element.nodeName.toLowerCase() === 'span' && element.classList.contains('token')) {
+						return false;
 					}
 					return true;
-				};
+				}
 
-				// For each tag, we walk the DOM to reinsert it
-				env.keepMarkup.forEach((node) => {
-					walk(env.element, { node, pos: 0 });
-				});
-				// Store new highlightedCode for later hooks calls
-				env.highlightedCode = env.element.innerHTML;
+				let pos = 0;
+				/** @type {NodeData[]} */
+				const data = [];
+				/**
+				 * @param {Element} element
+				 */
+				function processElement(element) {
+					if (!shouldKeep(element)) {
+						// don't keep this element and just process its children
+						processChildren(element);
+						return;
+					}
+
+					/** @type {NodeData} */
+					const o = {
+						// Store original element so we can restore it after highlighting
+						element,
+						posOpen: pos,
+						posClose: NaN
+					};
+					data.push(o);
+
+					processChildren(element);
+
+					o.posClose = pos;
+				}
+				/**
+				 * @param {Element} element
+				 */
+				function processChildren(element) {
+					for (let i = 0, l = element.childNodes.length; i < l; i++) {
+						const child = element.childNodes[i];
+						if (isElement(child)) {
+							processElement(child);
+						} else if (isText(child)) {
+							pos += child.data.length;
+						}
+					}
+				}
+				processChildren(env.element);
+
+				if (data.length) {
+					// data is an array of all existing tags
+					setEnvData(env, data);
+				}
+			},
+			'after-highlight': (env) => {
+				const data = getEnvData(env);
+				if (data.length) {
+
+					/**
+					 * @param {Element} elt
+					 * @param {{ node: NodeData, pos: number, start?: End, end?: End }} nodeState
+					 * @typedef {[node: Text, pos: number]} End
+					 */
+					const walk = (elt, nodeState) => {
+						for (let i = 0, l = elt.childNodes.length; i < l; i++) {
+
+							const child = elt.childNodes[i];
+
+							if (isElement(child)) {
+								if (!walk(child, nodeState)) {
+									return false;
+								}
+							} else if (isText(child)) {
+								if (!nodeState.start && nodeState.pos + child.data.length > nodeState.node.posOpen) {
+									// We found the start position
+									nodeState.start = [child, nodeState.node.posOpen - nodeState.pos];
+								}
+								if (nodeState.start && nodeState.pos + child.data.length >= nodeState.node.posClose) {
+									// We found the end position
+									nodeState.end = [child, nodeState.node.posClose - nodeState.pos];
+								}
+
+								nodeState.pos += child.data.length;
+							}
+
+							if (nodeState.start && nodeState.end) {
+								// Select the range and wrap it with the element
+								const range = document.createRange();
+								range.setStart(...nodeState.start);
+								range.setEnd(...nodeState.end);
+								nodeState.node.element.innerHTML = '';
+								nodeState.node.element.appendChild(range.extractContents());
+								range.insertNode(nodeState.node.element);
+								range.detach();
+
+								// Process is over
+								return false;
+							}
+						}
+						return true;
+					};
+
+					// For each tag, we walk the DOM to reinsert it
+					data.forEach((node) => {
+						walk(env.element, { node, pos: 0 });
+					});
+					// Store new highlightedCode for later hooks calls
+					env.highlightedCode = env.element.innerHTML;
+				}
 			}
 		});
 	}
