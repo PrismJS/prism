@@ -52,6 +52,27 @@ export function DFS(obj, callback, type, visited = new Set()) {
 }
 
 /**
+ * Returns a function that caches the result of the given supplier.
+ *
+ * @param {() => T} supplier
+ * @returns {() => T}
+ * @template T
+ */
+export function lazy(supplier) {
+	let value = /** @type {T} */ (/** @type {unknown} */ (undefined));
+	let hasValue = false;
+	return () => {
+		if (hasValue) {
+			return value;
+		}
+
+		value = supplier();
+		hasValue = true;
+		return value;
+	};
+}
+
+/**
  * @param {string} text
  * @returns {string}
  */

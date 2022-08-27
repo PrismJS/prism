@@ -1,5 +1,6 @@
 import { addHooks } from '../shared/hooks-util.js';
 import { extend, insertBefore } from '../shared/language-util.js';
+import { lazy } from '../shared/util.js';
 import clike from './prism-clike.js';
 import markup from './prism-markup.js';
 import markupTemplating, { MarkupTemplating } from './prism-markup-templating.js';
@@ -27,34 +28,38 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		}
 	},
 	effect(Prism) {
-		const markup = Prism.components.getLanguage('markup');
-		const markupLatte = extend(markup, 'markup', {});
-		insertBefore(markupLatte.tag.inside, 'attr-value', {
-			'n-attr': {
-				pattern: /n:[\w-]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+))?/,
-				inside: {
-					'attr-name': {
-						pattern: /^[^\s=]+/,
-						alias: 'important'
-					},
-					'attr-value': {
-						pattern: /=[\s\S]+/,
-						inside: {
-							'punctuation': [
-								/^=/,
-								{
-									pattern: /^(\s*)["']|["']$/,
-									lookbehind: true
+		const getMarkupLatte = lazy(() => {
+			const markup = /** @type {import('../types').Grammar} */(Prism.components.getLanguage('markup'));
+			const markupLatte = extend(markup, 'markup', {});
+			const tag = /** @type {import('../types').GrammarToken & { inside: import('../types').Grammar }} */ (markupLatte.tag);
+			insertBefore(tag.inside, 'attr-value', {
+				'n-attr': {
+					pattern: /n:[\w-]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+))?/,
+					inside: {
+						'attr-name': {
+							pattern: /^[^\s=]+/,
+							alias: 'important'
+						},
+						'attr-value': {
+							pattern: /=[\s\S]+/,
+							inside: {
+								'punctuation': [
+									/^=/,
+									{
+										pattern: /^(\s*)["']|["']$/,
+										lookbehind: true
+									}
+								],
+								'php': {
+									pattern: /\S(?:[\s\S]*\S)?/,
+									inside: 'php'
 								}
-							],
-							'php': {
-								pattern: /\S(?:[\s\S]*\S)?/,
-								inside: 'php'
 							}
-						}
-					},
-				}
-			},
+						},
+					}
+				},
+			});
+			return markupLatte;
 		});
 
 		const templating = new MarkupTemplating(this.id, Prism);
@@ -63,7 +68,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		return addHooks(Prism.hooks, {
 			'before-tokenize': env => {
 				templating.buildPlaceholders(env, lattePattern);
-				env.grammar = markupLatte;
+				env.grammar = getMarkupLatte();
 			},
 			'after-tokenize': env => {
 				templating.tokenizePlaceholders(env);

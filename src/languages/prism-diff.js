@@ -1,6 +1,19 @@
+/**
+ * A map from the name of a block to its line prefix.
+ */
+export const PREFIXES = {
+	'deleted-sign': '-',
+	'deleted-arrow': '<',
+	'inserted-sign': '+',
+	'inserted-arrow': '>',
+	'unchanged': ' ',
+	'diff': '!',
+};
+
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'diff',
 	grammar() {
+		/** @type {import("../types").Grammar} */
 		const diff = {
 			'coord': [
 				// Match all kinds of coord lines (prefixed by "+++", "---" or "***").
@@ -14,27 +27,14 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			// deleted, inserted, unchanged, diff
 		};
 
-		/**
-		 * A map from the name of a block to its line prefix.
-		 *
-		 * @type {Object<string, string>}
-		 */
-		const PREFIXES = {
-			'deleted-sign': '-',
-			'deleted-arrow': '<',
-			'inserted-sign': '+',
-			'inserted-arrow': '>',
-			'unchanged': ' ',
-			'diff': '!',
-		};
-
 		// add a token for each prefix
 		Object.keys(PREFIXES).forEach((name) => {
-			const prefix = PREFIXES[name];
+			const prefix = PREFIXES[/** @type {keyof PREFIXES} */ (name)];
 
 			const alias = [];
-			if (!/^\w+$/.test(name)) { // "deleted-sign" -> "deleted"
-				alias.push(/\w+/.exec(name)[0]);
+			const mainName = /\w+/.exec(name)?.[0] || name;
+			if (mainName !== name) { // "deleted-sign" -> "deleted"
+				alias.push(mainName);
 			}
 			if (name === 'diff') {
 				alias.push('bold');
@@ -50,15 +50,10 @@ export default /** @type {import("../types").LanguageProto} */ ({
 					},
 					'prefix': {
 						pattern: /[\s\S]/,
-						alias: /\w+/.exec(name)[0]
+						alias: mainName
 					}
 				}
 			};
-		});
-
-		// make prefixes available to Diff plugin
-		Object.defineProperty(diff, 'PREFIXES', {
-			value: PREFIXES
 		});
 
 		return diff;

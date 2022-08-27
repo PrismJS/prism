@@ -6,20 +6,20 @@ import { insertBefore } from '../shared/language-util.js';
 export default /** @type {import("../types").LanguageProto} */ ({
 	id: 'aspnet',
 	require: [markup, csharp],
-	grammar({ extend, getLanguage }) {
-		const markup = getLanguage('markup');
+	grammar({ extend }) {
+		/** @type {import('../types').Grammar} */
+		const pageDirectiveInside = {
+			'page-directive': {
+				pattern: /<%\s*@\s*(?:Assembly|Control|Implements|Import|Master(?:Type)?|OutputCache|Page|PreviousPageType|Reference|Register)?|%>/i,
+				alias: 'tag'
+			},
+		};
 
 		const aspnet = extend('markup', {
 			'page-directive': {
 				pattern: /<%\s*@.*%>/,
 				alias: 'tag',
-				inside: {
-					'page-directive': {
-						pattern: /<%\s*@\s*(?:Assembly|Control|Implements|Import|Master(?:Type)?|OutputCache|Page|PreviousPageType|Reference|Register)?|%>/i,
-						alias: 'tag'
-					},
-					[rest]: markup.tag.inside
-				}
+				inside: pageDirectiveInside
 			},
 			'directive': {
 				pattern: /<%.*%>/,
@@ -33,11 +33,15 @@ export default /** @type {import("../types").LanguageProto} */ ({
 				}
 			}
 		});
+
+		const tag = /** @type {import('../types').GrammarToken & { inside: { 'attr-value': { inside: import('../types').Grammar } } }} */ (aspnet['tag']);
+		pageDirectiveInside[rest] = tag.inside;
+
 		// Regexp copied from prism-markup, with a negative look-ahead added
-		aspnet.tag.pattern = /<(?!%)\/?[^\s>\/]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/;
+		tag.pattern = /<(?!%)\/?[^\s>\/]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|[^\s'">=]+))?)*\s*\/?>/;
 
 		// match directives of attribute value foo="<% Bar %>"
-		insertBefore(aspnet.tag.inside['attr-value'].inside, 'punctuation', {
+		insertBefore(tag.inside['attr-value'].inside, 'punctuation', {
 			'directive': aspnet['directive']
 		});
 
@@ -49,7 +53,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 		});
 
 		// script runat="server" contains csharp, not javascript
-		insertBefore(aspnet, 'script' in markup ? 'script' : 'tag', {
+		insertBefore(aspnet, 'script' in aspnet ? 'script' : 'tag', {
 			'asp-script': {
 				pattern: /(<script(?=.*runat=['"]?server\b)[^>]*>)[\s\S]*?(?=<\/script>)/i,
 				lookbehind: true,
