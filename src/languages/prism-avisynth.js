@@ -74,9 +74,9 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			// overlay
 			/(?:colorkey|reset)mask|layer|mask(?:hs)?|merge|overlay|subtract/.source,
 			// geometry
-			/addborders|(?:bicubic|bilinear|blackman|gauss|lanczos4|lanczos|point|sinc|spline(?:16|36|64))resize|crop(?:bottom)?|flip(?:horizontal|vertical)|(?:horizontal|vertical)?reduceby2|letterbox|skewrows|turn(?:180|left|right)/.source,
+			/addborders|(?:bicubic|bilinear|blackman|gauss|lanczos|lanczos4|point|sinc|spline(?:16|36|64))resize|crop(?:bottom)?|flip(?:horizontal|vertical)|(?:horizontal|vertical)?reduceby2|letterbox|skewrows|turn(?:180|left|right)/.source,
 			// pixel
-			/blur|fixbrokenchromaupsampling|generalconvolution|(?:spatial|temporal)soften|sharpen/.source,
+			/blur|fixbrokenchromaupsampling|generalconvolution|sharpen|(?:spatial|temporal)soften/.source,
 			// timeline
 			/trim|(?:un)?alignedsplice|(?:assume|assumescaled|change|convert)FPS|(?:delete|duplicate)frame|dissolve|fade(?:in|io|out)[02]?|freezeframe|interleave|loop|reverse|select(?:even|odd|(?:range)?every)/.source,
 			// interlace
@@ -88,7 +88,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 			// export
 			/imagewriter/.source,
 			// debug
-			/blackness|blankclip|colorbars(?:hd)?|compare|dumpfiltergraph|echo|histogram|info|messageclip|preroll|setgraphanalysis|show(?:framenumber|smpte|time)|showfiveversions|stack(?:horizontal|vertical)|subtitle|tone|version/.source
+			/blackness|blankclip|colorbars(?:hd)?|compare|dumpfiltergraph|echo|histogram|info|messageclip|preroll|setgraphanalysis|showfiveversions|show(?:framenumber|smpte|time)|stack(?:horizontal|vertical)|subtitle|tone|version/.source
 		].join('|');
 		const allinternals = [internals, properties, filters].join('|');
 
@@ -149,7 +149,7 @@ export default /** @type {import("../types").LanguageProto} */ ({
 					inside: {
 						'constant': {
 							// These *are* case-sensitive!
-							pattern: /\b(?:DEFAULT_MT_MODE|(?:MAINSCRIPT|PROGRAM|SCRIPT)DIR|(?:MACHINE|USER)_(?:CLASSIC|PLUS)_PLUGINS)\b/
+							pattern: /\b(?:DEFAULT_MT_MODE|(?:MACHINE|USER)_(?:CLASSIC|PLUS)_PLUGINS|(?:MAINSCRIPT|PROGRAM|SCRIPT)DIR)\b/
 						}
 					}
 				}

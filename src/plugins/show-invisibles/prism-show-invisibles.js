@@ -19,7 +19,7 @@ export default /** @type {import("../../types").PluginProto} */ ({
 		/**
 		 * Handles the recursive calling of `addInvisibles` for one token.
 		 *
-		 * @param {Object|Array} tokens The grammar or array which contains the token.
+		 * @param {object | Array} tokens The grammar or array which contains the token.
 		 * @param {string|number} name The name or index of the token in `tokens`.
 		 */
 		function handleToken(tokens, name) {
@@ -54,7 +54,7 @@ export default /** @type {import("../../types").PluginProto} */ ({
 		/**
 		 * Recursively adds patterns to match invisible characters to the given grammar (if not added already).
 		 *
-		 * @param {Object} grammar
+		 * @param {object} grammar
 		 */
 		function addInvisibles(grammar) {
 			if (!grammar || grammar['tab']) {

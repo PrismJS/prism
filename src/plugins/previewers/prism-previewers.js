@@ -32,7 +32,7 @@ export default /** @type {import("../../types").PluginProto} */ ({
 						// Default value for angle
 						let angle = '180deg';
 
-						if (/^(?:-?(?:\d+(?:\.\d+)?|\.\d+)(?:deg|rad)|to\b|top|right|bottom|left)/.test(values[0])) {
+						if (/^(?:-?(?:\d+(?:\.\d+)?|\.\d+)(?:deg|rad)|bottom|left|right|to\b|top)/.test(values[0])) {
 							angle = values.shift();
 							if (angle.indexOf('to ') < 0) {
 								// Angle uses old keywords
