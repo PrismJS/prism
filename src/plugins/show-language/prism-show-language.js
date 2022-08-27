@@ -1,3 +1,4 @@
+import { getParentPre } from '../../shared/dom-util.js';
 import { noop } from '../../shared/util.js';
 import toolbar from '../toolbar/prism-toolbar.js';
 
@@ -297,8 +298,8 @@ export default /** @type {import("../../types").PluginProto} */ ({
 			/* eslint-enable */
 
 		Prism.plugins.toolbar.registerButton('show-language', (env) => {
-			const pre = env.element.parentNode;
-			if (!pre || !/pre/i.test(pre.nodeName)) {
+			const pre = getParentPre(env.element);
+			if (!pre) {
 				return;
 			}
 

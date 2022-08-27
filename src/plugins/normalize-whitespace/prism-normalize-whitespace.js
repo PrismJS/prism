@@ -185,8 +185,8 @@ export default /** @type {import("../../types").PluginProto} */ ({
 			}
 
 			// Normal mode
-			const pre = env.element.parentNode;
-			if (!env.code || !pre || pre.nodeName.toLowerCase() !== 'pre') {
+			const pre = getParentPre(env.element);
+			if (!env.code || !pre) {
 				return;
 			}
 

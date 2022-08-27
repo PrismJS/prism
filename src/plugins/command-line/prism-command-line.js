@@ -1,3 +1,4 @@
+import { getParentPre } from '../../shared/dom-util.js';
 import { noop } from '../../shared/util.js';
 
 export default /** @type {import("../../types").PluginProto} */ ({
@@ -49,8 +50,8 @@ export default /** @type {import("../../types").PluginProto} */ ({
 			}
 
 			// Works only for <code> wrapped inside <pre> (not inline).
-			const pre = env.element.parentElement;
-			if (!pre || !/pre/i.test(pre.nodeName) || // Abort only if neither the <pre> nor the <code> have the class
+			const pre = getParentPre(env.element);
+			if (!pre || // Abort only if neither the <pre> nor the <code> have the class
 					(!CLASS_PATTERN.test(pre.className) && !CLASS_PATTERN.test(env.element.className))) {
 				commandLine.complete = true;
 				return;

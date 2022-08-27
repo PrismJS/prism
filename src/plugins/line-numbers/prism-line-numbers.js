@@ -1,3 +1,4 @@
+import { getParentPre } from '../../shared/dom-util.js';
 import { noop } from '../../shared/util.js';
 
 export default /** @type {import("../../types").PluginProto} */ ({
@@ -206,10 +207,10 @@ export default /** @type {import("../../types").PluginProto} */ ({
 			}
 
 			const code = /** @type {Element} */ (env.element);
-			const pre = /** @type {HTMLElement} */ (code.parentNode);
+			const pre = getParentPre(code);
 
 			// works only for <code> wrapped inside <pre> (not inline)
-			if (!pre || !/pre/i.test(pre.nodeName)) {
+			if (!pre) {
 				return;
 			}
 
