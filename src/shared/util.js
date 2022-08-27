@@ -90,6 +90,15 @@ export function noop() {
 }
 
 /**
+ * @param {T} value
+ * @returns {value is T & {}}
+ * @template T
+ */
+export function isNonNull(value) {
+	return value != null;
+}
+
+/**
  * Creates a deep clone of the given object.
  *
  * The main intended use of this function is to clone language definitions.
