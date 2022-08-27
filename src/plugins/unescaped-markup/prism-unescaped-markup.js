@@ -1,67 +1,52 @@
-import { noop } from '../../shared/util.js';
+import { addHooks } from '../../shared/hooks-util.js';
 
 export default /** @type {import("../../types").PluginProto} */ ({
 	id: 'unescaped-markup',
-	plugin(Prism) {
-		return {}; // TODO:
-	},
 	effect(Prism) {
-		if (typeof document === 'undefined') {
-			return noop;
-		}
+		return addHooks(Prism.hooks, {
+			'before-highlightall': (env) => {
+				env.selector += ', [class*="lang-"] script[type="text/plain"]'
+				+ ', [class*="language-"] script[type="text/plain"]'
+				+ ', script[type="text/plain"][class*="lang-"]'
+				+ ', script[type="text/plain"][class*="language-"]';
+			},
+			'before-sanity-check': (env) => {
+				const element = /** @type {HTMLElement} */ (env.element);
 
-		// https://developer.mozilla.org/en-US/docs/Web/API/Element/matches#Polyfill
-		if (!Element.prototype.matches) {
-			Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
-		}
+				if (element.matches('script[type="text/plain"]')) {
+					// found a <script type="text/plain" ...> element
+					// we convert this element to a regular <pre><code> code block
 
+					const code = document.createElement('code');
+					const pre = document.createElement('pre');
 
-		Prism.plugins.UnescapedMarkup = true;
+					// copy class name
+					pre.className = code.className = element.className;
 
-		Prism.hooks.add('before-highlightall', (env) => {
-			env.selector += ', [class*="lang-"] script[type="text/plain"]'
-					+ ', [class*="language-"] script[type="text/plain"]'
-					+ ', script[type="text/plain"][class*="lang-"]'
-					+ ', script[type="text/plain"][class*="language-"]';
-		});
+					// copy all "data-" attributes
+					const dataset = element.dataset;
+					Object.keys(dataset || {}).forEach((key) => {
+						if (Object.prototype.hasOwnProperty.call(dataset, key)) {
+							pre.dataset[key] = dataset[key];
+						}
+					});
 
-		Prism.hooks.add('before-sanity-check', (env) => {
-			/** @type {HTMLElement} */
-			const element = env.element;
+					code.textContent = env.code = env.code.replace(/&lt;\/script(?:>|&gt;)/gi, '</scri' + 'pt>');
 
-			if (element.matches('script[type="text/plain"]')) {
-				// found a <script type="text/plain" ...> element
-				// we convert this element to a regular <pre><code> code block
+					// change DOM
+					pre.appendChild(code);
+					element.replaceWith(pre);
+					env.element = code;
+					return;
+				}
 
-				const code = document.createElement('code');
-				const pre = document.createElement('pre');
-
-				// copy class name
-				pre.className = code.className = element.className;
-
-				// copy all "data-" attributes
-				const dataset = element.dataset;
-				Object.keys(dataset || {}).forEach((key) => {
-					if (Object.prototype.hasOwnProperty.call(dataset, key)) {
-						pre.dataset[key] = dataset[key];
+				if (!env.code) {
+					// no code
+					const childNodes = element.childNodes;
+					if (childNodes.length === 1 && childNodes[0].nodeName == '#comment') {
+						// the only child is a comment -> use the comment's text
+						element.textContent = env.code = childNodes[0].textContent || '';
 					}
-				});
-
-				code.textContent = env.code = env.code.replace(/&lt;\/script(?:>|&gt;)/gi, '</scri' + 'pt>');
-
-				// change DOM
-				pre.appendChild(code);
-				element.parentNode.replaceChild(pre, element);
-				env.element = code;
-				return;
-			}
-
-			if (!env.code) {
-				// no code
-				const childNodes = element.childNodes;
-				if (childNodes.length === 1 && childNodes[0].nodeName == '#comment') {
-					// the only child is a comment -> use the comment's text
-					element.textContent = env.code = childNodes[0].textContent;
 				}
 			}
 		});
