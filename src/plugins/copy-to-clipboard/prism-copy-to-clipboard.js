@@ -8,7 +8,7 @@ export default /** @type {import("../../types").PluginProto} */ ({
 		return {}; // TODO:
 	},
 	effect(Prism) {
-		if (typeof document === undefined) {
+		if (typeof document === 'undefined') {
 			return noop;
 		}
 		// TODO: Require toolbar
