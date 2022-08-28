@@ -1,7 +1,7 @@
 export default /** @type {import("../types").LanguageProto<'pascal'>} */ ({
 	id: 'pascal',
 	alias: 'objectpascal',
-	grammar({ extend }) {
+	grammar() {
 		// Based on Free Pascal
 
 		/* TODO
@@ -66,11 +66,7 @@ export default /** @type {import("../types").LanguageProto<'pascal'>} */ ({
 			'punctuation': /\(\.|\.\)|[()\[\]:;,.]/
 		};
 
-		pascal.asm.inside = extend('pascal', {
-			'asm': undefined,
-			'keyword': undefined,
-			'operator': undefined
-		});
+		pascal.asm.inside = { ...pascal, 'asm': undefined, 'keyword': undefined, 'operator': undefined };
 
 		return pascal;
 	}
