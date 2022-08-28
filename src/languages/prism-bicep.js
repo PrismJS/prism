@@ -1,6 +1,6 @@
 // based loosely upon: https://github.com/Azure/bicep/blob/main/src/textmate/bicep.tmlanguage
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'bicep'>} */ ({
 	id: 'bicep',
 	grammar: {
 		'comment': [

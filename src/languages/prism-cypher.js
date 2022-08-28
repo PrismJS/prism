@@ -1,4 +1,4 @@
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'cypher'>} */ ({
 	id: 'cypher',
 	grammar: {
 		// https://neo4j.com/docs/cypher-manual/current/syntax/comments/

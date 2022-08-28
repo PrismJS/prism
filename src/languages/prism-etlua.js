@@ -1,7 +1,7 @@
 import lua from './prism-lua.js';
 import markupTemplating, { MarkupTemplating } from './prism-markup-templating.js';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'etlua'>} */ ({
 	id: 'etlua',
 	require: [lua, markupTemplating],
 	grammar: {

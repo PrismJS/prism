@@ -1,4 +1,4 @@
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'yang'>} */ ({
 	id: 'yang',
 	grammar: {
 		// https://tools.ietf.org/html/rfc6020#page-34

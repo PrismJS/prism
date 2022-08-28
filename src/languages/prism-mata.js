@@ -1,4 +1,4 @@
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'mata'>} */ ({
 	id: 'mata',
 	grammar() {
 		// https://www.stata.com/manuals/m.pdf

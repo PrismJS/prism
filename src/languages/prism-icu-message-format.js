@@ -1,6 +1,6 @@
 import { rest } from '../shared/symbols';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'icu-message-format'>} */ ({
 	id: 'icu-message-format',
 	grammar() {
 		// https://unicode-org.github.io/icu/userguide/format_parse/messages/

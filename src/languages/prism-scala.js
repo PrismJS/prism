@@ -1,7 +1,7 @@
 import { insertBefore } from '../shared/language-util.js';
 import java from './prism-java.js';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'scala'>} */ ({
 	id: 'scala',
 	require: java,
 	grammar({ extend }) {

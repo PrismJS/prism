@@ -1,4 +1,4 @@
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'pascaligo'>} */ ({
 	id: 'pascaligo',
 	grammar() {
 		// Pascaligo is a layer 2 smart contract language for the tezos blockchain

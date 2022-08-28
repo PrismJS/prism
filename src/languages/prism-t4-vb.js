@@ -1,7 +1,7 @@
 import { createT4 } from '../shared/languages/t4-templating.js';
 import vbnet from './prism-vbnet.js';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'t4-vb'>} */ ({
 	id: 't4-vb',
 	require: vbnet,
 	grammar() {

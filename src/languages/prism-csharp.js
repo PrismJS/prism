@@ -40,7 +40,7 @@ function nested(pattern, depthLog2) {
 	return pattern.replace(/<<self>>/g, '[^\\s\\S]');
 }
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'csharp'>} */ ({
 	id: 'csharp',
 	require: clike,
 	optional: 'xml-doc',

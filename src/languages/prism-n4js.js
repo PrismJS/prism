@@ -1,7 +1,7 @@
 import { insertBefore } from '../shared/language-util.js';
 import javascript from './prism-javascript.js';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'n4js'>} */ ({
 	id: 'n4js',
 	require: javascript,
 	alias: 'n4jsd',

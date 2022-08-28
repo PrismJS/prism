@@ -1,4 +1,4 @@
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'stan'>} */ ({
 	id: 'stan',
 	grammar() {
 		// https://mc-stan.org/docs/2_28/reference-manual/bnf-grammars.html

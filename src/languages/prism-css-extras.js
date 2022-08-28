@@ -1,6 +1,6 @@
 import cssSelector from './prism-css-selector';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'css-extras'>} */ ({
 	id: 'css-extras',
 	require: cssSelector,
 	grammar() {

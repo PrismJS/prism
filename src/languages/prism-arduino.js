@@ -1,6 +1,6 @@
 import cpp from './prism-cpp.js';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'arduino'>} */ ({
 	id: 'arduino',
 	require: cpp,
 	alias: 'ino',

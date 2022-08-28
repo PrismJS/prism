@@ -1,4 +1,4 @@
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'clojure'>} */ ({
 	id: 'clojure',
 	grammar() {
 		// Copied from https://github.com/jeluard/prism-clojure

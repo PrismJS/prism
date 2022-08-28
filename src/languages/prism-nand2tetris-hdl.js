@@ -1,4 +1,4 @@
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'nand2tetris-hdl'>} */ ({
 	id: 'nand2tetris-hdl',
 	grammar: {
 		'comment': /\/\/.*|\/\*[\s\S]*?(?:\*\/|$)/,

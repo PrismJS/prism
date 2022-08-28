@@ -1,4 +1,4 @@
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'ichigojam'>} */ ({
 	id: 'ichigojam',
 	grammar() {
 		// according to the offical reference (EN)

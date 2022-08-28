@@ -3,7 +3,7 @@ import csharp from './prism-csharp.js';
 import { rest } from '../shared/symbols.js';
 import { insertBefore } from '../shared/language-util.js';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'aspnet'>} */ ({
 	id: 'aspnet',
 	require: [markup, csharp],
 	grammar({ extend }) {

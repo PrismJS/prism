@@ -1,4 +1,4 @@
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'n1ql'>} */ ({
 	id: 'n1ql',
 	grammar() {
 		// https://docs.couchbase.com/server/current/n1ql/n1ql-language-reference/index.html

@@ -1,4 +1,4 @@
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'cue'>} */ ({
 	id: 'cue',
 	grammar() {
 		// https://cuelang.org/docs/references/spec/

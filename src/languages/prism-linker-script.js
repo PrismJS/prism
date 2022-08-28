@@ -1,4 +1,4 @@
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'linker-script'>} */ ({
 	id: 'linker-script',
 	alias: 'ld',
 	grammar: {

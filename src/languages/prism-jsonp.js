@@ -1,7 +1,7 @@
 import { insertBefore } from '../shared/language-util.js';
 import json from './prism-json.js';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'jsonp'>} */ ({
 	id: 'jsonp',
 	require: json,
 	grammar({ extend }) {

@@ -1,4 +1,4 @@
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'autohotkey'>} */ ({
 	id: 'autohotkey',
 	grammar() {
 		// NOTES - follows first-first highlight method, block is locked after highlight, different from SyntaxHl

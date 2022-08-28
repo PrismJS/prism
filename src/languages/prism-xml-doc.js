@@ -1,6 +1,6 @@
 import markup from './prism-markup.js';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'xml-doc'>} */ ({
 	id: 'xml-doc',
 	require: markup,
 	grammar({ getLanguage }) {

@@ -1,4 +1,4 @@
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'smali'>} */ ({
 	id: 'smali',
 	grammar() {
 		// Test files for the parser itself:

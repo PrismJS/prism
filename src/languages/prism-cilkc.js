@@ -1,7 +1,7 @@
 import { insertBefore } from '../shared/language-util.js';
 import c from './prism-c.js';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'cilkc'>} */ ({
 	id: 'cilkc',
 	require: c,
 	alias: 'cilk-c',

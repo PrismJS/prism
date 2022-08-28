@@ -1,4 +1,4 @@
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'gap'>} */ ({
 	id: 'gap',
 	grammar() {
 		// https://www.gap-system.org/Manuals/doc/ref/chap4.html

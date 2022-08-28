@@ -23,7 +23,7 @@ function isBracketsBalanced(input) {
 	return stack.length === 0;
 }
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'naniscript'>} */ ({
 	id: 'naniscript',
 	alias: 'nani',
 	grammar() {

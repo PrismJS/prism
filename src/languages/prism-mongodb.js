@@ -1,7 +1,7 @@
 import { insertBefore } from '../shared/language-util.js';
 import javascript from './prism-javascript.js';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'mongodb'>} */ ({
 	id: 'mongodb',
 	require: javascript,
 	grammar({ extend }) {

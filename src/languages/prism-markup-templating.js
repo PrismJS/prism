@@ -163,7 +163,7 @@ export class MarkupTemplating {
 	}
 }
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'markup-templating'>} */ ({
 	id: 'markup-templating',
 	require: markup,
 	grammar: {}

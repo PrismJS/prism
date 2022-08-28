@@ -1,7 +1,7 @@
 import { insertBefore } from '../shared/language-util.js';
 import ruby from './prism-ruby.js';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'haml'>} */ ({
 	id: 'haml',
 	require: ruby,
 	grammar() {

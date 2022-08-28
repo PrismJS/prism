@@ -2,7 +2,7 @@ import { insertBefore } from '../shared/language-util.js';
 import { rest } from '../shared/symbols.js';
 import markup from './prism-markup.js';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'velocity'>} */ ({
 	id: 'velocity',
 	require: markup,
 	grammar({ extend }) {

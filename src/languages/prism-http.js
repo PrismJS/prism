@@ -1,6 +1,6 @@
 import { insertBefore } from '../shared/language-util';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'http'>} */ ({
 	id: 'http',
 	optional: 'json',
 	grammar({ getOptionalLanguage }) {

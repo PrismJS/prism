@@ -1,4 +1,4 @@
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'systemd'>} */ ({
 	id: 'systemd',
 	grammar() {
 		// https://www.freedesktop.org/software/systemd/man/systemd.syntax.html

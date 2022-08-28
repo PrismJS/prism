@@ -1,4 +1,4 @@
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'asm6502'>} */ ({
 	id: 'asm6502',
 	grammar: {
 		'comment': /;.*/,

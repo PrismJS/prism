@@ -4,7 +4,7 @@ import { getTextContent, Token } from '../core/token.js';
 import { insertBefore } from '../shared/language-util.js';
 import { rest } from '../shared/symbols.js';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'jsx'>} */ ({
 	id: 'jsx',
 	require: [markup, javascript],
 	optional: ['js-extras', 'js-templates'],

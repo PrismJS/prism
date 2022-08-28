@@ -1,4 +1,4 @@
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'solution-file'>} */ ({
 	id: 'solution-file',
 	alias: 'sln',
 	grammar() {

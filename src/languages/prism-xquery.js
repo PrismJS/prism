@@ -1,7 +1,7 @@
 import { getTextContent, Token } from '../core/token.js';
 import markup from './prism-markup.js';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'xquery'>} */ ({
 	id: 'xquery',
 	require: markup,
 	grammar({ extend }) {

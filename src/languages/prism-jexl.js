@@ -1,4 +1,4 @@
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'jexl'>} */ ({
 	id: 'jexl',
 	grammar: {
 		'string': /(["'])(?:\\[\s\S]|(?!\1)[^\\])*\1/,

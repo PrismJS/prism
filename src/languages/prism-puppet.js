@@ -1,6 +1,6 @@
 import { rest } from '../shared/symbols';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'puppet'>} */ ({
 	id: 'puppet',
 	grammar() {
 		const interpolation = [

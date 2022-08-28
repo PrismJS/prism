@@ -1,4 +1,4 @@
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'powershell'>} */ ({
 	id: 'powershell',
 	grammar() {
 		const boolean = /\$(?:false|true)\b/i;

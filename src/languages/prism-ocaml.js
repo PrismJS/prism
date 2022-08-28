@@ -1,4 +1,4 @@
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'ocaml'>} */ ({
 	id: 'ocaml',
 	grammar() {
 		// https://ocaml.org/manual/lex.html

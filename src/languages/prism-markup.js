@@ -78,7 +78,7 @@ function attributeEmbedded(attrName, lang) {
 	};
 }
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'markup'>} */ ({
 	id: 'markup',
 	alias: ['html', 'xml', 'svg', 'mathml', 'ssml', 'atom', 'rss'],
 	grammar({ extend }) {

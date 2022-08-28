@@ -1,6 +1,6 @@
 import clike from './prism-clike.js';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'gml'>} */ ({
 	id: 'gml',
 	require: clike,
 	alias: 'gamemakerlanguage',

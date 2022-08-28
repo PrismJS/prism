@@ -1,7 +1,7 @@
 import { toArray } from '../shared/util.js';
 import c from './prism-c.js';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'hlsl'>} */ ({
 	id: 'hlsl',
 	require: c,
 	grammar({ extend, getLanguage }) {

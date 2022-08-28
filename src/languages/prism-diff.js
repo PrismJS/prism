@@ -10,7 +10,7 @@ export const PREFIXES = {
 	'diff': '!',
 };
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'diff'>} */ ({
 	id: 'diff',
 	grammar() {
 		/** @type {import("../types").Grammar} */

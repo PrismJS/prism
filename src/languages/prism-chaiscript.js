@@ -3,7 +3,7 @@ import { toArray } from '../shared/util.js';
 import clike from './prism-clike.js';
 import cpp from './prism-cpp.js';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'chaiscript'>} */ ({
 	id: 'chaiscript',
 	require: [clike, cpp],
 	grammar({ extend, getLanguage }) {

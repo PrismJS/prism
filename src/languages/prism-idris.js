@@ -1,7 +1,7 @@
 import { insertBefore } from '../shared/language-util.js';
 import haskell from './prism-haskell.js';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'idris'>} */ ({
 	id: 'idris',
 	require: haskell,
 	alias: 'idr',

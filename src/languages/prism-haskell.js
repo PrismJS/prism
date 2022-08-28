@@ -14,7 +14,7 @@ export const infixOperator = {
 /** @package */
 export const asciiOperator = /[-!#$%*+=?&@|~:<>^\\\/][-!#$%*+=?&@|~.:<>^\\\/]*|\.[-!#$%*+=?&@|~.:<>^\\\/]+/;
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'haskell'>} */ ({
 	id: 'haskell',
 	alias: 'hs',
 	grammar: {

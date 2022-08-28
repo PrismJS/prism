@@ -1,6 +1,6 @@
 import { regexEscape } from '../shared/util';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'factor'>} */ ({
 	id: 'factor',
 	grammar() {
 		/**

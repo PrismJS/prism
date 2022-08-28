@@ -1,4 +1,4 @@
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'editorconfig'>} */ ({
 	id: 'editorconfig',
 	grammar: {
 		// https://editorconfig-specification.readthedocs.io

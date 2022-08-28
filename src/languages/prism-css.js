@@ -1,7 +1,7 @@
 import { insertBefore } from '../shared/language-util';
 import { rest } from '../shared/symbols';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'css'>} */ ({
 	id: 'css',
 	optional: 'css-extras',
 	grammar({ getOptionalLanguage }) {

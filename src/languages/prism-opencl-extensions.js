@@ -1,4 +1,4 @@
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'opencl-extensions'>} */ ({
 	id: 'opencl-extensions',
 	grammar: {
 		// Extracted from http://streamcomputing.eu/downloads/?opencl_host.lang (opencl-types and opencl-host)

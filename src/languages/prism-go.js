@@ -1,7 +1,7 @@
 import { insertBefore } from '../shared/language-util.js';
 import clike from './prism-clike.js';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'go'>} */ ({
 	id: 'go',
 	require: clike,
 	grammar({ extend }) {

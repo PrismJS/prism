@@ -1,4 +1,4 @@
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'cooklang'>} */ ({
 	id: 'cooklang',
 	grammar() {
 		// see https://github.com/cooklang/spec/blob/main/EBNF.md

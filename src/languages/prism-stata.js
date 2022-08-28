@@ -2,7 +2,7 @@ import mata from './prism-mata.js';
 import java from './prism-java.js';
 import python from './prism-python.js';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'stata'>} */ ({
 	id: 'stata',
 	require: [mata, java, python],
 	grammar() {

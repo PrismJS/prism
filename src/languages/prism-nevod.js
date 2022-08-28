@@ -1,4 +1,4 @@
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'nevod'>} */ ({
 	id: 'nevod',
 	grammar: {
 		'comment': /\/\/.*|(?:\/\*[\s\S]*?(?:\*\/|$))/,

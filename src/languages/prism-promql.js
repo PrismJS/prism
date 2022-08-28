@@ -1,4 +1,4 @@
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'promql'>} */ ({
 	id: 'promql',
 	grammar() {
 		// Thanks to: https://github.com/prometheus-community/monaco-promql/blob/master/src/promql/promql.ts

@@ -1,7 +1,7 @@
 import javascript from './prism-javascript.js';
 import markupTemplating, { MarkupTemplating } from './prism-markup-templating.js';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'ejs'>} */ ({
 	id: 'ejs',
 	require: [javascript, markupTemplating],
 	alias: 'eta',

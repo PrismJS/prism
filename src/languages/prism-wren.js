@@ -1,6 +1,6 @@
 // https://wren.io/
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'wren'>} */ ({
 	id: 'wren',
 	grammar: {
 		// Multiline comments in Wren can have nested multiline comments

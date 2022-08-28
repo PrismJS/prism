@@ -1,4 +1,4 @@
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'coq'>} */ ({
 	id: 'coq',
 	grammar() {
 		// https://github.com/coq/coq

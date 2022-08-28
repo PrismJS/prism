@@ -1,6 +1,6 @@
 // based on https://github.com/microsoft/AL/blob/master/grammar/alsyntax.tmlanguage
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'al'>} */ ({
 	id: 'al',
 	grammar: {
 		'comment': /\/\/.*|\/\*[\s\S]*?\*\//,

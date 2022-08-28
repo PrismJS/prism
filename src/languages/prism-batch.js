@@ -1,4 +1,4 @@
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'batch'>} */ ({
 	id: 'batch',
 	grammar() {
 		const variable = /%%?[~:\w]+%?|!\S+!/;

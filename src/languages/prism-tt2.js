@@ -2,7 +2,7 @@ import { insertBefore } from '../shared/language-util.js';
 import clike from './prism-clike.js';
 import markupTemplating, { MarkupTemplating } from './prism-markup-templating.js';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'tt2'>} */ ({
 	id: 'tt2',
 	require: [clike, markupTemplating],
 	grammar({ extend }) {

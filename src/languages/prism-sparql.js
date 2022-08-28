@@ -1,7 +1,7 @@
 import { insertBefore } from '../shared/language-util.js';
 import turtle from './prism-turtle.js';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'sparql'>} */ ({
 	id: 'sparql',
 	require: turtle,
 	alias: 'rq',

@@ -1,4 +1,4 @@
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'dns-zone-file'>} */ ({
 	id: 'dns-zone-file',
 	alias: 'dns-zone',
 	grammar: {

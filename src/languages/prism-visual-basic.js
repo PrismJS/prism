@@ -1,4 +1,4 @@
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'visual-basic'>} */ ({
 	id: 'visual-basic',
 	alias: ['vb', 'vba'],
 	grammar: {

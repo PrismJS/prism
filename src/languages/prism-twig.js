@@ -1,6 +1,6 @@
 import markupTemplating, { MarkupTemplating } from './prism-markup-templating.js';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'twig'>} */ ({
 	id: 'twig',
 	require: markupTemplating,
 	grammar: {

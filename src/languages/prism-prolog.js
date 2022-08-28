@@ -1,4 +1,4 @@
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'prolog'>} */ ({
 	id: 'prolog',
 	grammar: {
 		// Syntax depends on the implementation

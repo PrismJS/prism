@@ -1,4 +1,4 @@
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'wolfram'>} */ ({
 	id: 'wolfram',
 	alias: ['mathematica', 'nb', 'wl'],
 	grammar: {

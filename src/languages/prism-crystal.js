@@ -2,7 +2,7 @@ import { insertBefore } from '../shared/language-util.js';
 import { toArray } from '../shared/util.js';
 import ruby from './prism-ruby.js';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'crystal'>} */ ({
 	id: 'crystal',
 	require: ruby,
 	grammar({ extend, getLanguage }) {

@@ -1,6 +1,6 @@
 import { rest } from '../shared/symbols';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'rust'>} */ ({
 	id: 'rust',
 	grammar() {
 		let multilineComment = /\/\*(?:[^*/]|\*(?!\/)|\/(?!\*)|<self>)*\*\//.source;

@@ -2,7 +2,7 @@ import { addHooks } from '../shared/hooks-util.js';
 import { insertBefore } from '../shared/language-util.js';
 import markupTemplating, { MarkupTemplating } from './prism-markup-templating.js';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'php'>} */ ({
 	id: 'php',
 	require: markupTemplating,
 	optional: 'php-extras',

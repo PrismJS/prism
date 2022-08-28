@@ -1,7 +1,7 @@
 // ABNF grammar:
 // https://github.com/dhall-lang/dhall-lang/blob/master/standard/dhall.abnf
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'dhall'>} */ ({
 	id: 'dhall',
 	grammar: {
 		// Multi-line comments can be nested. E.g. {- foo {- bar -} -}

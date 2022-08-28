@@ -1,4 +1,4 @@
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'excel-formula'>} */ ({
 	id: 'excel-formula',
 	alias: ['xlsx', 'xls'],
 	grammar: {

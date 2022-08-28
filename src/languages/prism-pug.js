@@ -3,7 +3,7 @@ import javascript from './prism-javascript.js';
 import { insertBefore } from '../shared/language-util.js';
 import { rest } from '../shared/symbols.js';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'pug'>} */ ({
 	id: 'pug',
 	require: [markup, javascript],
 	grammar() {

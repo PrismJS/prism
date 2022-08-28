@@ -1,4 +1,4 @@
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'antlr4'>} */ ({
 	id: 'antlr4',
 	alias: 'g4',
 	grammar: {

@@ -1,7 +1,7 @@
 import { insertBefore } from '../shared/language-util.js';
 import sql from './prism-sql.js';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'plsql'>} */ ({
 	id: 'plsql',
 	require: sql,
 	grammar({ extend }) {

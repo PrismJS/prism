@@ -2,7 +2,7 @@ import yaml from './prism-yaml.js';
 
 // https://en.wikipedia.org/wiki/Test_Anything_Protocol
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'tap'>} */ ({
 	id: 'tap',
 	require: yaml,
 	grammar: {

@@ -1,4 +1,4 @@
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'pascal'>} */ ({
 	id: 'pascal',
 	alias: 'objectpascal',
 	grammar({ extend }) {

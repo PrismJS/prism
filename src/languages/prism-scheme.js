@@ -18,7 +18,7 @@ function SortedBNF(grammar) {
 	return grammar[key];
 }
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'scheme'>} */ ({
 	id: 'scheme',
 	grammar: {
 		// this supports "normal" single-line comments:

@@ -1,6 +1,6 @@
 // https://go.dev/ref/mod#go-mod-file-module
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'go-module'>} */ ({
 	id: 'go-module',
 	alias: 'go-mod',
 	grammar: {

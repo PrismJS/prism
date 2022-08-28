@@ -1,4 +1,4 @@
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'avro-idl'>} */ ({
 	id: 'avro-idl',
 	alias: 'avdl',
 	grammar() {

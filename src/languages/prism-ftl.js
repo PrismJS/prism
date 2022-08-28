@@ -8,7 +8,7 @@ for (let i = 0; i < 2; i++) {
 }
 FTL_EXPR = FTL_EXPR.replace(/<expr>/g, /[^\s\S]/.source);
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'ftl'>} */ ({
 	id: 'ftl',
 	require: markupTemplating,
 	grammar() {

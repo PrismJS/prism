@@ -2,7 +2,7 @@ import { insertBefore } from '../shared/language-util.js';
 import { rest } from '../shared/symbols.js';
 import clike from './prism-clike.js';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'vala'>} */ ({
 	id: 'vala',
 	require: clike,
 	grammar({ extend }) {

@@ -1,7 +1,7 @@
 import jsx from './prism-jsx.js';
 import typescript from './prism-typescript.js';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'tsx'>} */ ({
 	id: 'tsx',
 	require: [jsx, typescript],
 	grammar({ extend }) {

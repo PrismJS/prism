@@ -3,7 +3,7 @@ import java from './prism-java.js';
 import javadoclike from './prism-javadoclike.js';
 import { insertBefore } from '../shared/language-util.js';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'javadoc'>} */ ({
 	id: 'javadoc',
 	require: [markup, java, javadoclike],
 	grammar({ extend, getLanguage }) {

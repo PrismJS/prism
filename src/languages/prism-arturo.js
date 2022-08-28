@@ -18,7 +18,7 @@ function createLanguageString(lang, pattern) {
 	};
 }
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'arturo'>} */ ({
 	id: 'arturo',
 	alias: 'art',
 	grammar: {

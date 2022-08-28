@@ -1,6 +1,6 @@
 import markup from './prism-markup.js';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'textile'>} */ ({
 	id: 'textile',
 	require: markup,
 	grammar({ extend }) {

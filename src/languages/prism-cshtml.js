@@ -2,7 +2,7 @@ import markup from './prism-markup.js';
 import csharp from './prism-csharp.js';
 import { insertBefore } from '../shared/language-util.js';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'cshtml'>} */ ({
 	id: 'cshtml',
 	require: [markup, csharp],
 	alias: 'razor',

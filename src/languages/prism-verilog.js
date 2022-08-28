@@ -1,4 +1,4 @@
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'verilog'>} */ ({
 	id: 'verilog',
 	grammar: {
 		'comment': {

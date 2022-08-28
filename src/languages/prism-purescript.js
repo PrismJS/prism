@@ -1,6 +1,6 @@
 import haskell, { infixOperator, asciiOperator } from './prism-haskell.js';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'purescript'>} */ ({
 	id: 'purescript',
 	require: haskell,
 	alias: 'purs',

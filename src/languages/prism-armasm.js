@@ -1,4 +1,4 @@
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'armasm'>} */ ({
 	id: 'armasm',
 	alias: 'arm-asm',
 	grammar: {

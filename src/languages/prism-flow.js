@@ -2,7 +2,7 @@ import { insertBefore } from '../shared/language-util.js';
 import { toArray } from '../shared/util.js';
 import javascript from './prism-javascript.js';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'flow'>} */ ({
 	id: 'flow',
 	require: javascript,
 	grammar({ extend, getLanguage }) {

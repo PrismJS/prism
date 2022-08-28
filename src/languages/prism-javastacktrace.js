@@ -1,4 +1,4 @@
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'javastacktrace'>} */ ({
 	id: 'javastacktrace',
 	grammar() {
 		// Specification:

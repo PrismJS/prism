@@ -1,4 +1,4 @@
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'rego'>} */ ({
 	id: 'rego',
 	grammar() {
 		// https://www.openpolicyagent.org/docs/latest/policy-reference/

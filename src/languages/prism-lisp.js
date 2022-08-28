@@ -1,6 +1,6 @@
 import { rest } from '../shared/symbols';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'lisp'>} */ ({
 	id: 'lisp',
 	alias: ['emacs', 'elisp', 'emacs-lisp'],
 	grammar() {

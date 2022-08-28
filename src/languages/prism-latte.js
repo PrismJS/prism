@@ -6,7 +6,7 @@ import markup from './prism-markup.js';
 import markupTemplating, { MarkupTemplating } from './prism-markup-templating.js';
 import php from './prism-php.js';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'latte'>} */ ({
 	id: 'latte',
 	require: [clike, markup, markupTemplating, php],
 	grammar: {

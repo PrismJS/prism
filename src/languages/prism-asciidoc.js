@@ -1,6 +1,6 @@
 import { rest } from '../shared/symbols';
 
-export default /** @type {import("../types").LanguageProto} */ ({
+export default /** @type {import("../types").LanguageProto<'asciidoc'>} */ ({
 	id: 'asciidoc',
 	alias: 'adoc',
 	grammar() {
