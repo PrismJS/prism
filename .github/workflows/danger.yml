@@ -2,9 +2,15 @@ name: Danger
 
 on:
   pull_request_target:
+  
+permissions:
+  contents: read
 
 jobs:
   run:
+
+    permissions:
+      pull-requests: write
 
     runs-on: ubuntu-latest
 
