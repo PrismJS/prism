@@ -120,7 +120,7 @@ export default /** @type {import("../../types").PluginProto<'filter-highlight-al
 		return config;
 	},
 	effect(Prism) {
-		const config = /** @type {FilterHighlightAll} */ (Prism.plugins.filterHighlightAll);
+		const config = Prism.plugins.filterHighlightAll;
 
 		return Prism.hooks.add('before-all-elements-highlight', (env) => {
 			env.elements = env.elements.filter(e => config.everyFilter(e));

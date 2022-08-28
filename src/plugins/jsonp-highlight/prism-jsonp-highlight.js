@@ -246,7 +246,7 @@ export default /** @type {import("../../types").PluginProto<'jsonp-highlight'>} 
 		return config;
 	},
 	effect(Prism) {
-		const config = /** @type {JsonpHighlight} */ (Prism.plugins.jsonpHighlight);
+		const config = Prism.plugins.jsonpHighlight;
 
 
 		const LOADING_MESSAGE = 'Loading…';

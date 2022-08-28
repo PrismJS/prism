@@ -209,8 +209,6 @@ export default /** @type {import("../../types").PluginProto<'toolbar'>} */ ({
 		return toolbar;
 	},
 	effect(Prism) {
-		const toolbar = /** @type {Toolbar} */ (Prism.plugins.toolbar);
-
-		return Prism.hooks.add('complete', toolbar.hook);
+		return Prism.hooks.add('complete', Prism.plugins.toolbar.hook);
 	}
 });

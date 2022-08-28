@@ -82,7 +82,7 @@ export default /** @type {import("../../types").PluginProto<'custom-class'>} */ 
 		return new CustomClass();
 	},
 	effect(Prism) {
-		const customClass = /** @type {CustomClass} */ (Prism.plugins.customClass);
+		const customClass = Prism.plugins.customClass;
 
 		return Prism.hooks.add('wrap', (env) => {
 			if (customClass['adder']) {

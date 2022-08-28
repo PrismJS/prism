@@ -195,11 +195,9 @@ export default /** @type {import("../../types").PluginProto<'line-numbers'>} */ 
 			return noop;
 		}
 
-		const config = /** @type {LineNumbers} */ (Prism.plugins.lineNumbers);
-
 		let lastWidth = NaN;
 		const listener = () => {
-			if (config.assumeViewportIndependence && lastWidth === window.innerWidth) {
+			if (Prism.plugins.lineNumbers.assumeViewportIndependence && lastWidth === window.innerWidth) {
 				return;
 			}
 			lastWidth = window.innerWidth;

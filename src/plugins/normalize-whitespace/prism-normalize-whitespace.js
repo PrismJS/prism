@@ -201,7 +201,7 @@ export default /** @type {import("../../types").PluginProto<'normalize-whitespac
 		});
 	},
 	effect(Prism) {
-		const Normalizer = /** @type {NormalizeWhitespace} */ (Prism.plugins.normalizeWhitespace);
+		const Normalizer = Prism.plugins.normalizeWhitespace;
 
 		return Prism.hooks.add('before-sanity-check', (env) => {
 			const settings = getEnvSettings(env);
