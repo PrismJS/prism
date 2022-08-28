@@ -159,25 +159,6 @@ module.exports = {
 			},
 		},
 		{
-			// Languages and plugins
-			files: [
-				'components/*.js',
-				'plugins/*/prism-*.js'
-			],
-			excludedFiles: 'components/index.js',
-			env: {
-				browser: true,
-				node: true,
-				worker: true
-			},
-			globals: {
-				'Prism': true,
-			},
-			rules: {
-				'no-var': 'off'
-			}
-		},
-		{
 			// The scripts that run on our website
 			files: 'website/assets/*.js',
 			env: {
