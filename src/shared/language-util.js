@@ -60,7 +60,7 @@ export function insertBefore(grammar, before, insert) {
 	for (const [key, value] of grammarEntries) {
 		if (key === before) {
 			for (const insertKey of Object.keys(insert)) {
-				grammar[key] = insert[insertKey];
+				grammar[insertKey] = insert[insertKey];
 			}
 		}
 
