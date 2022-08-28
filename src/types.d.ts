@@ -18,7 +18,7 @@ export interface LanguageProto<Id extends string = string> extends ComponentProt
 	grammar: Grammar | ((options: GrammarOptions) => Grammar);
 }
 export interface PluginProto<Id extends string = string> extends ComponentProtoBase<Id> {
-	plugin?: (Prism: Prism) => Record<string, unknown>;
+	plugin?: (Prism: Prism & { plugins: Record<KebabToCamelCase<Id>, undefined> }) => Record<string, unknown>;
 }
 export type ComponentProto = LanguageProto | PluginProto;
 
