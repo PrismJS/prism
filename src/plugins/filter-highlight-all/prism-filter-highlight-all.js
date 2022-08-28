@@ -4,7 +4,7 @@ import { getLanguage } from '../../shared/dom-util.js';
  * @typedef {(value: { element: Element, language: string }) => boolean} Condition
  */
 
-class FilterHighlightAll {
+export class FilterHighlightAll {
 	constructor() {
 		/**
 		 * @type {Array<(element: Element) => boolean>}

@@ -72,7 +72,7 @@ const SELECTOR = 'pre[data-jsonp]:not([' + STATUS_ATTR + '="' + STATUS_LOADED + 
  * @returns {string | null}
  */
 
-class JsonpHighlight {
+export class JsonpHighlight {
 	/**
 	 * The timeout after which an error message will be displayed.
 	 *

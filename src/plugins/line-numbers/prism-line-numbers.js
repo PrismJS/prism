@@ -128,7 +128,7 @@ function resizeElements(elements) {
 	});
 }
 
-class LineNumbers {
+export class LineNumbers {
 	/**
 	 * Whether the plugin can assume that the units font sizes and margins are not depended on the size of
 	 * the current viewport.

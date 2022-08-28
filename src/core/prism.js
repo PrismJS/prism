@@ -18,7 +18,7 @@ export class Prism {
 		this.hooks = new Hooks();
 		this.components = new Registry(this);
 		/**
-		 * @type {Partial<Record<string, unknown>>}
+		 * @type {Partial<Record<string, unknown> & import('../known-plugins').KnownPlugins>}
 		 */
 		this.plugins = {};
 	}
