@@ -67,7 +67,7 @@ function validateColor(color) {
 	return s.color ? color : undefined;
 }
 
-export default /** @type {import("../../types").PluginProto} */ ({
+export default /** @type {import("../../types").PluginProto<'inline-color'>} */ ({
 	id: 'inline-color',
 	require: cssExtras,
 	effect(Prism) {

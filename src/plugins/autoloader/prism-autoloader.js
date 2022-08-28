@@ -1,7 +1,7 @@
 import { getParentPre } from '../../shared/dom-util.js';
 import { noop } from '../../shared/util.js';
 
-export default /** @type {import("../../types").PluginProto} */ ({
+export default /** @type {import("../../types").PluginProto<'autoloader'>} */ ({
 	id: 'autoloader',
 	plugin(Prism) {
 		return {}; // TODO:

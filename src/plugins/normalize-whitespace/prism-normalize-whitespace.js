@@ -184,7 +184,7 @@ function getEnvSettings(env) {
 	return /** @type {any} */ (env.settings ??= {});
 }
 
-export default /** @type {import("../../types").PluginProto} */ ({
+export default /** @type {import("../../types").PluginProto<'normalize-whitespace'>} */ ({
 	id: 'normalize-whitespace',
 	optional: 'unescaped-markup',
 	plugin() {

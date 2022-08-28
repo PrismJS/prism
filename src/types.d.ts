@@ -6,17 +6,18 @@ export interface GrammarOptions {
 	readonly getOptionalLanguage: (id: string) => Grammar | undefined;
 	readonly extend: (id: string, ref: GrammarTokens) => Grammar
 }
-export interface ComponentProtoBase {
-	id: string;
+export interface ComponentProtoBase<Id extends string = string> {
+	id: Id;
 	require?: LanguageProto | readonly LanguageProto[];
 	optional?: string | readonly string[];
 	alias?: string | readonly string[];
-	effect?: (Prism: Prism) => () => void;
+	// eslint-disable-next-line @typescript-eslint/ban-types
+	effect?: (Prism: Prism & { plugins: Record<KebabToCamelCase<Id>, {}> }) => () => void;
 }
-export interface LanguageProto extends ComponentProtoBase {
+export interface LanguageProto<Id extends string = string> extends ComponentProtoBase<Id> {
 	grammar: Grammar | ((options: GrammarOptions) => Grammar);
 }
-export interface PluginProto extends ComponentProtoBase {
+export interface PluginProto<Id extends string = string> extends ComponentProtoBase<Id> {
 	plugin?: (Prism: Prism) => Record<string, unknown>;
 }
 export type ComponentProto = LanguageProto | PluginProto;

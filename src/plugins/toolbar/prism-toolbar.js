@@ -201,7 +201,7 @@ const label = (env) => {
 	return element;
 };
 
-export default /** @type {import("../../types").PluginProto} */ ({
+export default /** @type {import("../../types").PluginProto<'toolbar'>} */ ({
 	id: 'toolbar',
 	plugin() {
 		const toolbar = new Toolbar();

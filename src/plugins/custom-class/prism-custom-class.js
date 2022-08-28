@@ -76,7 +76,7 @@ export class CustomClass {
 	}
 }
 
-export default /** @type {import("../../types").PluginProto} */ ({
+export default /** @type {import("../../types").PluginProto<'custom-class'>} */ ({
 	id: 'custom-class',
 	plugin() {
 		return new CustomClass();

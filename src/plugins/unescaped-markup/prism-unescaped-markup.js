@@ -1,6 +1,6 @@
 import { addHooks } from '../../shared/hooks-util.js';
 
-export default /** @type {import("../../types").PluginProto} */ ({
+export default /** @type {import("../../types").PluginProto<'unescaped-markup'>} */ ({
 	id: 'unescaped-markup',
 	effect(Prism) {
 		return addHooks(Prism.hooks, {

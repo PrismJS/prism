@@ -38,7 +38,7 @@ function isText(child) {
 	return child.nodeType === 3;
 }
 
-export default /** @type {import("../../types").PluginProto} */ ({
+export default /** @type {import("../../types").PluginProto<'keep-markup'>} */ ({
 	id: 'keep-markup',
 	optional: 'normalize-whitespace',
 	effect(Prism) {

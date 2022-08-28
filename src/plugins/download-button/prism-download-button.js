@@ -1,7 +1,7 @@
 import { getParentPre } from '../../shared/dom-util.js';
 import toolbar from '../toolbar/prism-toolbar.js';
 
-export default /** @type {import("../../types").PluginProto} */ ({
+export default /** @type {import("../../types").PluginProto<'download-button'>} */ ({
 	id: 'download-button',
 	require: toolbar,
 	effect(Prism) {

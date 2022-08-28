@@ -3,7 +3,7 @@ import diff, { PREFIXES } from '../../languages/prism-diff.js';
 import { addHooks } from '../../shared/hooks-util.js';
 import { Token } from '../../core/token.js';
 
-export default /** @type {import("../../types").PluginProto} */ ({
+export default /** @type {import("../../types").PluginProto<'diff-highlight'>} */ ({
 	id: 'diff-highlight',
 	require: diff,
 	effect(Prism) {

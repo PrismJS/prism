@@ -83,7 +83,7 @@ export class FileHighlight {
 	}
 }
 
-export default /** @type {import("../../types").PluginProto} */ ({
+export default /** @type {import("../../types").PluginProto<'file-highlight'>} */ ({
 	id: 'file-highlight',
 	plugin(Prism) {
 		return new FileHighlight(Prism);

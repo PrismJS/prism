@@ -185,7 +185,7 @@ class LineNumbers {
 	}
 }
 
-export default /** @type {import("../../types").PluginProto} */ ({
+export default /** @type {import("../../types").PluginProto<'line-numbers'>} */ ({
 	id: 'line-numbers',
 	plugin() {
 		return new LineNumbers();

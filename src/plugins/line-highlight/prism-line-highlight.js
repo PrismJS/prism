@@ -1,6 +1,6 @@
 import { noop } from '../../shared/util.js';
 
-export default /** @type {import("../../types").PluginProto} */ ({
+export default /** @type {import("../../types").PluginProto<'line-highlight'>} */ ({
 	id: 'line-highlight',
 	plugin(Prism) {
 		return {}; // TODO:

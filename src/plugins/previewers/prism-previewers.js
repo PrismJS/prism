@@ -1,7 +1,7 @@
 import { noop } from '../../shared/util.js';
 import cssExtras from '../css-extras/prism-css-extras.js';
 
-export default /** @type {import("../../types").PluginProto} */ ({
+export default /** @type {import("../../types").PluginProto<'previewers'>} */ ({
 	id: 'previewers',
 	require: cssExtras,
 	plugin(Prism) {

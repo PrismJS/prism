@@ -91,7 +91,7 @@ class FilterHighlightAll {
 	}
 }
 
-export default /** @type {import("../../types").PluginProto} */ ({
+export default /** @type {import("../../types").PluginProto<'filter-highlight-all'>} */ ({
 	id: 'filter-highlight-all',
 	plugin(Prism) {
 		const config = new FilterHighlightAll();

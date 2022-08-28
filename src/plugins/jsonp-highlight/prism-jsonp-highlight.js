@@ -192,7 +192,7 @@ class JsonpHighlight {
 }
 
 
-export default /** @type {import("../../types").PluginProto} */ ({
+export default /** @type {import("../../types").PluginProto<'jsonp-highlight'>} */ ({
 	id: 'jsonp-highlight',
 	plugin(Prism) {
 		const config = new JsonpHighlight(Prism);

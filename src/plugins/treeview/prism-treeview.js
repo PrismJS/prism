@@ -1,6 +1,6 @@
 import { noop } from '../../shared/util.js';
 
-export default /** @type {import("../../types").PluginProto} */ ({
+export default /** @type {import("../../types").PluginProto<'treeview'>} */ ({
 	id: 'treeview',
 	plugin(Prism) {
 		return {}; // TODO:

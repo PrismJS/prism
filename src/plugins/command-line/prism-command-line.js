@@ -32,7 +32,7 @@ function getCommandLineInfo(env) {
 	return vars['command-line'] = vars['command-line'] || {};
 }
 
-export default /** @type {import("../../types").PluginProto} */ ({
+export default /** @type {import("../../types").PluginProto<'command-line'>} */ ({
 	id: 'command-line',
 	effect(Prism) {
 		return addHooks(Prism.hooks, {

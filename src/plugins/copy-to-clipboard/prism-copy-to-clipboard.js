@@ -126,7 +126,7 @@ function getSettings(startElement) {
 	return settings;
 }
 
-export default /** @type {import("../../types").PluginProto} */ ({
+export default /** @type {import("../../types").PluginProto<'copy-to-clipboard'>} */ ({
 	id: 'copy-to-clipboard',
 	require: toolbar,
 	effect(Prism) {

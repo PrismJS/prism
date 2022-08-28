@@ -61,7 +61,7 @@ function getLanguage(tag) {
 	return null;
 }
 
-export default /** @type {import("../../types").PluginProto} */ ({
+export default /** @type {import("../../types").PluginProto<'wpd'>} */ ({
 	id: 'wpd',
 	require: cssSelector,
 	effect(Prism) {

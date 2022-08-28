@@ -1,4 +1,4 @@
-export default /** @type {import("../../types").PluginProto} */ ({
+export default /** @type {import("../../types").PluginProto<'highlight-keywords'>} */ ({
 	id: 'highlight-keywords',
 	effect(Prism) {
 		return Prism.hooks.add('wrap', (env) => {
