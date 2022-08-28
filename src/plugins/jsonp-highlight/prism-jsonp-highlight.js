@@ -291,7 +291,7 @@ export default /** @type {import("../../types").PluginProto<'jsonp-highlight'>} 
 				// preload the language
 				const autoloader = Prism.plugins.autoloader;
 				if (autoloader) {
-					autoloader.loadLanguages(language);
+					autoloader.preloadLanguages(language);
 				}
 
 				const adapterName = pre.getAttribute('data-adapter');

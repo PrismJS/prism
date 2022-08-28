@@ -402,19 +402,20 @@ export default /** @type {import("../types").LanguageProto<'markdown'>} */ ({
 			const grammar = Prism.components.getLanguage(codeLang);
 
 			if (!grammar) {
-				if (codeLang && codeLang !== 'none' && Prism.plugins.autoloader) {
+				if (codeLang && codeLang !== 'none' && Prism.plugins.autoloader && typeof document !== 'undefined') {
 					const id = 'md-' + new Date().valueOf() + '-' + Math.floor(Math.random() * 1e16);
 					env.attributes['id'] = id;
 
-					Prism.plugins.autoloader.loadLanguages(codeLang, () => {
+					Prism.plugins.autoloader.loadLanguages(codeLang).then(() => {
+						// eslint-disable-next-line no-undef
 						const ele = document.getElementById(id);
 						if (ele) {
-							ele.innerHTML = Prism.highlight(ele.textContent, Prism.languages[codeLang], codeLang);
+							ele.innerHTML = Prism.highlight(ele.textContent || '', codeLang);
 						}
 					});
 				}
 			} else {
-				env.content = Prism.highlight(textContent(env.content), grammar, codeLang);
+				env.content = Prism.highlight(textContent(env.content), codeLang, { grammar });
 			}
 		});
 

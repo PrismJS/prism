@@ -155,7 +155,7 @@ export default /** @type {import("../../types").PluginProto<'file-highlight'>} *
 				// preload the language
 				const autoloader = Prism.plugins.autoloader;
 				if (autoloader) {
-					autoloader.loadLanguages(language);
+					autoloader.preloadLanguages(language);
 				}
 
 				// load file
