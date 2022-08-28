@@ -1,4 +1,5 @@
 import { Prism } from './core/prism';
+import { KnownPlugins } from './known-plugins';
 import { rest } from './shared/symbols';
 
 export interface GrammarOptions {
@@ -17,9 +18,10 @@ export interface ComponentProtoBase<Id extends string = string> {
 export interface LanguageProto<Id extends string = string> extends ComponentProtoBase<Id> {
 	grammar: Grammar | ((options: GrammarOptions) => Grammar);
 }
+type PluginType<Name extends string> = Name extends keyof KnownPlugins ? KnownPlugins[Name] : unknown;
 export interface PluginProto<Id extends string = string> extends ComponentProtoBase<Id> {
 	// eslint-disable-next-line @typescript-eslint/ban-types
-	plugin?: (Prism: Prism & { plugins: Record<KebabToCamelCase<Id>, undefined> }) => {};
+	plugin?: (Prism: Prism & { plugins: Record<KebabToCamelCase<Id>, undefined> }) => PluginType<KebabToCamelCase<Id>> & {};
 }
 export type ComponentProto = LanguageProto | PluginProto;
 
