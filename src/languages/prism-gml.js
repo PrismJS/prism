@@ -1,4 +1,4 @@
-import clike from './prism-clike.js';
+import clike from './prism-clike';
 
 export default /** @type {import("../types").LanguageProto<'gml'>} */ ({
 	id: 'gml',

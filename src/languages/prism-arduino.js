@@ -1,4 +1,4 @@
-import cpp from './prism-cpp.js';
+import cpp from './prism-cpp';
 
 export default /** @type {import("../types").LanguageProto<'arduino'>} */ ({
 	id: 'arduino',

@@ -47,6 +47,7 @@
 		"del": "^4.1.1",
 		"docdash": "^1.2.0",
 		"eslint": "^8.23.0",
+		"eslint-plugin-import": "^2.26.0",
 		"eslint-plugin-jsdoc": "^39.3.6",
 		"eslint-plugin-regexp": "^1.9.0",
 		"gulp": "^4.0.2",

@@ -1,4 +1,4 @@
-import { addHooks } from '../../shared/hooks-util.js';
+import { addHooks } from '../../shared/hooks-util';
 
 
 let jsonpCallbackCounter = 0;

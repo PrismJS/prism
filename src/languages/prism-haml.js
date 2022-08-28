@@ -1,5 +1,5 @@
-import { insertBefore } from '../shared/language-util.js';
-import ruby from './prism-ruby.js';
+import { insertBefore } from '../shared/language-util';
+import ruby from './prism-ruby';
 
 export default /** @type {import("../types").LanguageProto<'haml'>} */ ({
 	id: 'haml',

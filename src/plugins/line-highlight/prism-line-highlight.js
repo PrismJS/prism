@@ -1,6 +1,6 @@
-import { isActive } from '../../shared/dom-util.js';
-import { combineCallbacks } from '../../shared/hooks-util.js';
-import { lazy, noop } from '../../shared/util.js';
+import { isActive } from '../../shared/dom-util';
+import { combineCallbacks } from '../../shared/hooks-util';
+import { lazy, noop } from '../../shared/util';
 
 const LINE_NUMBERS_CLASS = 'line-numbers';
 const LINKABLE_LINE_NUMBERS_CLASS = 'linkable-line-numbers';

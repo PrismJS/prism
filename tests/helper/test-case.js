@@ -1,8 +1,8 @@
 'use strict';
 
+const { assert } = require('chai');
 const fs = require('fs');
 const path = require('path');
-const { assert } = require('chai');
 const Prettier = require('prettier');
 const PrismLoader = require('./prism-loader');
 const TokenStreamTransformer = require('./token-stream-transformer');

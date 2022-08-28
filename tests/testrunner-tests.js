@@ -1,8 +1,8 @@
 'use strict';
 
 const { assert } = require('chai');
-const TokenStreamTransformer = require('./helper/token-stream-transformer');
 const TestCase = require('./helper/test-case');
+const TokenStreamTransformer = require('./helper/token-stream-transformer');
 
 
 describe('The token stream transformer', () => {

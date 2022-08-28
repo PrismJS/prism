@@ -1,4 +1,4 @@
-import { noop } from '../../shared/util.js';
+import { noop } from '../../shared/util';
 
 export default /** @type {import("../../types").PluginProto<'treeview'>} */ ({
 	id: 'treeview',

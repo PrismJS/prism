@@ -1,8 +1,8 @@
-import markup from './prism-markup.js';
-import javascript from './prism-javascript.js';
-import { getTextContent, Token } from '../core/token.js';
-import { insertBefore } from '../shared/language-util.js';
-import { rest } from '../shared/symbols.js';
+import { Token, getTextContent } from '../core/token';
+import { insertBefore } from '../shared/language-util';
+import { rest } from '../shared/symbols';
+import javascript from './prism-javascript';
+import markup from './prism-markup';
 
 export default /** @type {import("../types").LanguageProto<'jsx'>} */ ({
 	id: 'jsx',

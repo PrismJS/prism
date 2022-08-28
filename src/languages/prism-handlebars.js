@@ -1,4 +1,4 @@
-import markupTemplating, { MarkupTemplating } from './prism-markup-templating.js';
+import markupTemplating, { MarkupTemplating } from './prism-markup-templating';
 
 export default /** @type {import("../types").LanguageProto<'handlebars'>} */ ({
 	id: 'handlebars',

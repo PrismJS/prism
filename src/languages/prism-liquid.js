@@ -1,5 +1,5 @@
-import { addHooks } from '../shared/hooks-util.js';
-import markupTemplating, { MarkupTemplating } from './prism-markup-templating.js';
+import { addHooks } from '../shared/hooks-util';
+import markupTemplating, { MarkupTemplating } from './prism-markup-templating';
 
 export default /** @type {import("../types").LanguageProto<'liquid'>} */ ({
 	id: 'liquid',

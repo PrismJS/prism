@@ -1,8 +1,8 @@
 'use strict';
 
 const { assert } = require('chai');
-const PrismLoader = require('./helper/prism-loader');
 const { languages } = require('../components.json');
+const PrismLoader = require('./helper/prism-loader');
 const TokenStreamTransformer = require('./helper/token-stream-transformer');
 
 

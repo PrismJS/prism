@@ -1,5 +1,5 @@
-import javascript from './prism-javascript.js';
-import markupTemplating, { MarkupTemplating } from './prism-markup-templating.js';
+import javascript from './prism-javascript';
+import markupTemplating, { MarkupTemplating } from './prism-markup-templating';
 
 export default /** @type {import("../types").LanguageProto<'ejs'>} */ ({
 	id: 'ejs',

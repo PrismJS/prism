@@ -1,5 +1,5 @@
-import { insertBefore } from '../shared/language-util.js';
-import scheme from './prism-scheme.js';
+import { insertBefore } from '../shared/language-util';
+import scheme from './prism-scheme';
 
 export default /** @type {import("../types").LanguageProto<'racket'>} */ ({
 	id: 'racket',

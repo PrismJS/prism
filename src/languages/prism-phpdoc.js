@@ -1,5 +1,5 @@
-import javadoclike from './prism-javadoclike.js';
-import { insertBefore } from '../shared/language-util.js';
+import { insertBefore } from '../shared/language-util';
+import javadoclike from './prism-javadoclike';
 
 export default /** @type {import("../types").LanguageProto<'phpdoc'>} */ ({
 	id: 'phpdoc',

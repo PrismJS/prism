@@ -1,6 +1,6 @@
-import { insertBefore } from '../shared/language-util.js';
-import { rest } from '../shared/symbols.js';
-import c from './prism-c.js';
+import { insertBefore } from '../shared/language-util';
+import { rest } from '../shared/symbols';
+import c from './prism-c';
 
 export default /** @type {import("../types").LanguageProto<'bison'>} */ ({
 	id: 'bison',

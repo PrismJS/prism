@@ -1,5 +1,5 @@
-import { createT4 } from '../shared/languages/t4-templating.js';
-import csharp from './prism-csharp.js';
+import { createT4 } from '../shared/languages/t4-templating';
+import csharp from './prism-csharp';
 
 export default /** @type {import("../types").LanguageProto<'t4-cs'>} */ ({
 	id: 't4-cs',

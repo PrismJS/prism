@@ -2,16 +2,16 @@
 'use strict';
 
 const { assert } = require('chai');
-const PrismLoader = require('./helper/prism-loader');
-const TestDiscovery = require('./helper/test-discovery');
-const TestCase = require('./helper/test-case');
-const { BFS, BFSPathToPrismTokenPath, parseRegex } = require('./helper/util');
-const { languages } = require('../components.json');
-const { visitRegExpAST } = require('regexpp');
 const { transform, combineTransformers, getIntersectionWordSets, JS, Words, NFA, Transformers, isDisjointWith } = require('refa');
+const RAA = require('regexp-ast-analysis');
+const { visitRegExpAST } = require('regexpp');
 const scslre = require('scslre');
 const { argv } = require('yargs');
-const RAA = require('regexp-ast-analysis');
+const { languages } = require('../components.json');
+const PrismLoader = require('./helper/prism-loader');
+const TestCase = require('./helper/test-case');
+const TestDiscovery = require('./helper/test-discovery');
+const { BFS, BFSPathToPrismTokenPath, parseRegex } = require('./helper/util');
 
 /**
  * A map from language id to a list of code snippets in that language.

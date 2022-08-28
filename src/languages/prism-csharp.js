@@ -1,5 +1,5 @@
-import { insertBefore } from '../shared/language-util.js';
-import clike from './prism-clike.js';
+import { insertBefore } from '../shared/language-util';
+import clike from './prism-clike';
 
 /**
  * Replaces all placeholders "<<n>>" of given pattern with the n-th replacement (zero based).

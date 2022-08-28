@@ -1,4 +1,4 @@
-import markup from './prism-markup.js';
+import markup from './prism-markup';
 
 export default /** @type {import("../types").LanguageProto<'xml-doc'>} */ ({
 	id: 'xml-doc',

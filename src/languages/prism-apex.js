@@ -1,5 +1,5 @@
-import clike from './prism-clike.js';
-import sql from './prism-sql.js';
+import clike from './prism-clike';
+import sql from './prism-sql';
 
 export default /** @type {import("../types").LanguageProto<'apex'>} */ ({
 	id: 'apex',

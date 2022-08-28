@@ -1,6 +1,6 @@
-import { getParentPre } from '../../shared/dom-util.js';
-import toolbar from '../toolbar/prism-toolbar.js';
-import { knownTitles } from './title-data.js';
+import { getParentPre } from '../../shared/dom-util';
+import toolbar from '../toolbar/prism-toolbar';
+import { knownTitles } from './title-data';
 
 export default /** @type {import("../../types").PluginProto<'show-language'>} */ ({
 	id: 'show-language',

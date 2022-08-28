@@ -1,7 +1,7 @@
-import { htmlEncode } from '../../shared/util.js';
-import diff, { PREFIXES } from '../../languages/prism-diff.js';
-import { addHooks } from '../../shared/hooks-util.js';
-import { Token } from '../../core/token.js';
+import { Token } from '../../core/token';
+import diff, { PREFIXES } from '../../languages/prism-diff';
+import { addHooks } from '../../shared/hooks-util';
+import { htmlEncode } from '../../shared/util';
 
 export default /** @type {import("../../types").PluginProto<'diff-highlight'>} */ ({
 	id: 'diff-highlight',

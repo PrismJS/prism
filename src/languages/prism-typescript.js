@@ -1,6 +1,6 @@
-import { insertBefore } from '../shared/language-util.js';
-import { toArray } from '../shared/util.js';
-import javascript from './prism-javascript.js';
+import { insertBefore } from '../shared/language-util';
+import { toArray } from '../shared/util';
+import javascript from './prism-javascript';
 
 export default /** @type {import("../types").LanguageProto<'typescript'>} */ ({
 	id: 'typescript',

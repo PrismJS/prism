@@ -1,4 +1,4 @@
-import cssExtras from '../../languages/prism-css-extras.js';
+import cssExtras from '../../languages/prism-css-extras';
 
 // Copied from the markup language definition
 const HTML_TAG = /<\/?(?!\d)[^\s>\/=$<%]+(?:\s(?:\s*[^\s>\/=]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+(?=[\s>]))|(?=[\s/>])))+)?\s*\/?>/g;

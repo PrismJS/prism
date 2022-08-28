@@ -1,5 +1,5 @@
-import { setLanguage } from '../../shared/dom-util.js';
-import { addHooks } from '../../shared/hooks-util.js';
+import { setLanguage } from '../../shared/dom-util';
+import { addHooks } from '../../shared/hooks-util';
 
 /**
  * @param {number} status

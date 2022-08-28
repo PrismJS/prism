@@ -1,5 +1,5 @@
-import { rest } from '../shared/symbols.js';
-import markupTemplating, { MarkupTemplating } from './prism-markup-templating.js';
+import { rest } from '../shared/symbols';
+import markupTemplating, { MarkupTemplating } from './prism-markup-templating';
 
 // FTL expression with 4 levels of nesting supported
 let FTL_EXPR = /[^<()"']|\((?:<expr>)*\)|<(?!#--)|<#--(?:[^-]|-(?!->))*-->|"(?:[^\\"]|\\.)*"|'(?:[^\\']|\\.)*'/.source;

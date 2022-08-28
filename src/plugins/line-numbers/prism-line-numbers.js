@@ -1,6 +1,6 @@
-import { getParentPre, isActive } from '../../shared/dom-util.js';
-import { combineCallbacks } from '../../shared/hooks-util.js';
-import { isNonNull, noop } from '../../shared/util.js';
+import { getParentPre, isActive } from '../../shared/dom-util';
+import { combineCallbacks } from '../../shared/hooks-util';
+import { isNonNull, noop } from '../../shared/util';
 
 /**
  * Plugin name which is used as a class name for <pre> which is activating the plugin

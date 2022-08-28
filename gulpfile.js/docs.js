@@ -1,10 +1,10 @@
 'use strict';
 
-const { src, dest, series } = require('gulp');
-const replace = require('gulp-replace');
-const jsdoc = require('gulp-jsdoc3');
-const pump = require('pump');
 const del = require('del');
+const { src, dest, series } = require('gulp');
+const jsdoc = require('gulp-jsdoc3');
+const replace = require('gulp-replace');
+const pump = require('pump');
 
 const jsDoc = {
 	config: '../.jsdoc.json',

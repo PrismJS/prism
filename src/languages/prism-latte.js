@@ -1,10 +1,10 @@
-import { addHooks } from '../shared/hooks-util.js';
-import { extend, insertBefore } from '../shared/language-util.js';
-import { lazy } from '../shared/util.js';
-import clike from './prism-clike.js';
-import markup from './prism-markup.js';
-import markupTemplating, { MarkupTemplating } from './prism-markup-templating.js';
-import php from './prism-php.js';
+import { addHooks } from '../shared/hooks-util';
+import { extend, insertBefore } from '../shared/language-util';
+import { lazy } from '../shared/util';
+import clike from './prism-clike';
+import markup from './prism-markup';
+import markupTemplating, { MarkupTemplating } from './prism-markup-templating';
+import php from './prism-php';
 
 export default /** @type {import("../types").LanguageProto<'latte'>} */ ({
 	id: 'latte',

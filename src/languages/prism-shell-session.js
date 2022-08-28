@@ -1,4 +1,4 @@
-import bash from './prism-bash.js';
+import bash from './prism-bash';
 
 export default /** @type {import("../types").LanguageProto<'shell-session'>} */ ({
 	id: 'shell-session',

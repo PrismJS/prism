@@ -1,4 +1,4 @@
-import { getParentPre, isActive } from '../../shared/dom-util.js';
+import { getParentPre, isActive } from '../../shared/dom-util';
 
 export default /** @type {import("../../types").PluginProto<'match-braces'>} */ ({
 	id: 'match-braces',

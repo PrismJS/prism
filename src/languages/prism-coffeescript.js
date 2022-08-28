@@ -1,5 +1,5 @@
-import { insertBefore } from '../shared/language-util.js';
-import javascript from './prism-javascript.js';
+import { insertBefore } from '../shared/language-util';
+import javascript from './prism-javascript';
 
 export default /** @type {import("../types").LanguageProto<'coffeescript'>} */ ({
 	id: 'coffeescript',

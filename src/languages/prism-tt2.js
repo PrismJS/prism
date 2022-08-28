@@ -1,6 +1,6 @@
-import { insertBefore } from '../shared/language-util.js';
-import clike from './prism-clike.js';
-import markupTemplating, { MarkupTemplating } from './prism-markup-templating.js';
+import { insertBefore } from '../shared/language-util';
+import clike from './prism-clike';
+import markupTemplating, { MarkupTemplating } from './prism-markup-templating';
 
 export default /** @type {import("../types").LanguageProto<'tt2'>} */ ({
 	id: 'tt2',

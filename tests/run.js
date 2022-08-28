@@ -1,10 +1,10 @@
 // @ts-check
 'use strict';
 
-const TestDiscovery = require('./helper/test-discovery');
-const TestCase = require('./helper/test-case');
 const path = require('path');
 const { argv } = require('yargs');
+const TestCase = require('./helper/test-case');
+const TestDiscovery = require('./helper/test-discovery');
 
 const testSuite =
 	(argv.language)

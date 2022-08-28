@@ -1,7 +1,7 @@
-import markup from './prism-markup.js';
 import { Token } from '../core/token';
+import { combineCallbacks } from '../shared/hooks-util';
 import { regexEscape } from '../shared/util';
-import { combineCallbacks } from '../shared/hooks-util.js';
+import markup from './prism-markup';
 
 /**
  * Returns a regex of all possible placeholders.

@@ -1,5 +1,5 @@
-import { noop } from '../../shared/util.js';
-import cssExtras from '../css-extras/prism-css-extras.js';
+import { noop } from '../../shared/util';
+import cssExtras from '../css-extras/prism-css-extras';
 
 export default /** @type {import("../../types").PluginProto<'previewers'>} */ ({
 	id: 'previewers',

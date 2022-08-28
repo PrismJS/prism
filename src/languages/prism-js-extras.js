@@ -1,4 +1,4 @@
-import javascript from './prism-javascript.js';
+import javascript from './prism-javascript';
 
 export default /** @type {import("../types").LanguageProto<'js-extras'>} */ ({
 	id: 'js-extras',

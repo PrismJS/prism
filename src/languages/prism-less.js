@@ -1,5 +1,5 @@
-import { insertBefore } from '../shared/language-util.js';
-import css from './prism-css.js';
+import { insertBefore } from '../shared/language-util';
+import css from './prism-css';
 
 export default /** @type {import("../types").LanguageProto<'less'>} */ ({
 	id: 'less',

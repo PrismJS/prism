@@ -1,5 +1,5 @@
-const fs = require('fs');
 const { assert } = require('chai');
+const fs = require('fs');
 const { Parser } = require('htmlparser2');
 // use the JSON file because this file is less susceptible to merge conflicts
 const { languages } = require('../components.json');

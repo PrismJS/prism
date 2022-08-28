@@ -1,5 +1,5 @@
-import { insertBefore } from '../shared/language-util.js';
-import cpp from './prism-cpp.js';
+import { insertBefore } from '../shared/language-util';
+import cpp from './prism-cpp';
 
 export default /** @type {import("../types").LanguageProto<'cilkcpp'>} */ ({
 	id: 'cilkcpp',

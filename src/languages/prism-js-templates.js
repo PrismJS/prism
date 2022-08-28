@@ -1,5 +1,5 @@
-import { getTextContent, Token } from '../core/token.js';
-import javascript from './prism-javascript.js';
+import { Token, getTextContent } from '../core/token';
+import javascript from './prism-javascript';
 
 export default /** @type {import("../types").LanguageProto<'js-templates'>} */ ({
 	id: 'js-templates',

@@ -1,5 +1,5 @@
-import { insertBefore } from '../shared/language-util.js';
-import markup from './prism-markup.js';
+import { insertBefore } from '../shared/language-util';
+import markup from './prism-markup';
 
 export default /** @type {import("../types").LanguageProto<'markdown'>} */ ({
 	id: 'markdown',

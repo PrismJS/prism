@@ -1,7 +1,7 @@
 /** @type {import('eslint').Linter.Config} */
 module.exports = {
 	root: true,
-	plugins: ['jsdoc', 'regexp'],
+	plugins: ['import', 'jsdoc', 'regexp'],
 	extends: 'eslint:recommended',
 	env: {
 		es6: true,
@@ -12,6 +12,25 @@ module.exports = {
 	},
 	rules: {
 		'no-use-before-define': ['error', { 'functions': false, 'classes': false }],
+
+		// imports
+		'import/extensions': ['warn', 'never'],
+		'import/order': [
+			'warn',
+			{
+				groups: [
+					['builtin', 'external'],
+					'internal',
+					'parent',
+					'sibling',
+					'index',
+					'object',
+					'type',
+				],
+				alphabetize: { order: 'asc', caseInsensitive: true },
+			},
+		],
+		'sort-imports': ['warn', { ignoreDeclarationSort: true }],
 
 		// stylistic rules
 		'brace-style': ['warn', '1tbs', { allowSingleLine: true }],

@@ -1,4 +1,4 @@
-import json from './prism-json.js';
+import json from './prism-json';
 
 export default /** @type {import("../types").LanguageProto<'json5'>} */ ({
 	id: 'json5',

@@ -1,5 +1,5 @@
-import ruby from './prism-ruby.js';
-import markupTemplating, { MarkupTemplating } from './prism-markup-templating.js';
+import markupTemplating, { MarkupTemplating } from './prism-markup-templating';
+import ruby from './prism-ruby';
 
 export default /** @type {import("../types").LanguageProto<'erb'>} */ ({
 	id: 'erb',

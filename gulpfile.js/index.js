@@ -2,20 +2,20 @@
 
 const { src, dest, series, parallel, watch } = require('gulp');
 
-const rename = require('gulp-rename');
-const terser = require('gulp-terser');
-const header = require('gulp-header');
-const concat = require('gulp-concat');
-const replace = require('gulp-replace');
 const cleanCSS = require('gulp-clean-css');
-const webfont = require('webfont').default;
+const concat = require('gulp-concat');
+const header = require('gulp-header');
+const rename = require('gulp-rename');
+const replace = require('gulp-replace');
+const terser = require('gulp-terser');
 const pump = require('pump');
 const util = require('util');
+const webfont = require('webfont').default;
 const fs = require('fs');
 
-const paths = require('./paths');
 const { changes, linkify } = require('./changelog');
 const { docs } = require('./docs');
+const paths = require('./paths');
 
 
 const componentsPromise = new Promise((resolve, reject) => {

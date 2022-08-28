@@ -1,7 +1,7 @@
-import { insertBefore } from '../shared/language-util.js';
-import { toArray } from '../shared/util.js';
-import clike from './prism-clike.js';
-import cpp from './prism-cpp.js';
+import { insertBefore } from '../shared/language-util';
+import { toArray } from '../shared/util';
+import clike from './prism-clike';
+import cpp from './prism-cpp';
 
 export default /** @type {import("../types").LanguageProto<'chaiscript'>} */ ({
 	id: 'chaiscript',

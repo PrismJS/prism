@@ -1,5 +1,5 @@
-import { insertBefore } from '../shared/language-util.js';
-import clike from './prism-clike.js';
+import { insertBefore } from '../shared/language-util';
+import clike from './prism-clike';
 
 export default /** @type {import("../types").LanguageProto<'firestore-security-rules'>} */ ({
 	id: 'firestore-security-rules',

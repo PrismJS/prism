@@ -1,5 +1,5 @@
-import { getParentPre } from '../../shared/dom-util.js';
-import { noop } from '../../shared/util.js';
+import { getParentPre } from '../../shared/dom-util';
+import { noop } from '../../shared/util';
 
 /**
  * Returns the callback order of the given element.
