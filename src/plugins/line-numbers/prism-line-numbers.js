@@ -146,7 +146,7 @@ export class LineNumbers {
 	 *
 	 * @param {Element} element pre element
 	 * @param {number} number line number
-	 * @returns {Element|undefined}
+	 * @returns {HTMLElement | undefined}
 	 */
 	getLine(element, number) {
 		if (element.tagName !== 'PRE' || !element.classList.contains(PLUGIN_NAME)) {
@@ -169,7 +169,26 @@ export class LineNumbers {
 
 		const lineIndex = number - lineNumberStart;
 
-		return lineNumberRows.children[lineIndex];
+		return /** @type {HTMLElement} */ (lineNumberRows.children[lineIndex]);
+	}
+
+	/**
+	 * Returns the nodes of all line numbers.
+	 *
+	 * @param {Element} element pre element
+	 * @returns {HTMLElement[] | undefined}
+	 */
+	getLines(element) {
+		if (element.tagName !== 'PRE' || !element.classList.contains(PLUGIN_NAME)) {
+			return;
+		}
+
+		const lineNumberRows = getLineNumbersRows(element);
+		if (!lineNumberRows) {
+			return;
+		}
+
+		return /** @type {HTMLElement[]} */ ([...lineNumberRows.children]);
 	}
 
 	/**
@@ -240,12 +259,11 @@ export default /** @type {import("../../types").PluginProto<'line-numbers'>} */ 
 			const match = env.code.match(NEW_LINE_EXP);
 			const linesNum = match ? match.length + 1 : 1;
 
-			const lines = '<span></span>'.repeat(linesNum);
 
 			const lineNumbersWrapper = document.createElement('span');
 			lineNumbersWrapper.setAttribute('aria-hidden', 'true');
 			lineNumbersWrapper.className = 'line-numbers-rows';
-			lineNumbersWrapper.innerHTML = lines;
+			lineNumbersWrapper.innerHTML = '<span></span>'.repeat(linesNum);
 
 			if (pre.hasAttribute('data-start')) {
 				pre.style.counterReset = 'linenumber ' + (parseInt(String(pre.getAttribute('data-start')), 10) - 1);
