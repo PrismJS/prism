@@ -18,7 +18,8 @@ export interface LanguageProto<Id extends string = string> extends ComponentProt
 	grammar: Grammar | ((options: GrammarOptions) => Grammar);
 }
 export interface PluginProto<Id extends string = string> extends ComponentProtoBase<Id> {
-	plugin?: (Prism: Prism & { plugins: Record<KebabToCamelCase<Id>, undefined> }) => Record<string, unknown>;
+	// eslint-disable-next-line @typescript-eslint/ban-types
+	plugin?: (Prism: Prism & { plugins: Record<KebabToCamelCase<Id>, undefined> }) => {};
 }
 export type ComponentProto = LanguageProto | PluginProto;
 
