@@ -77,3 +77,5 @@ export type Grammar = GrammarTokens & GrammarSymbols;
 export interface PlainObject {
 	[key: string]: unknown;
 }
+
+export type KebabToCamelCase<S extends string> = S extends `${infer T}-${infer U}` ? `${T}${Capitalize<KebabToCamelCase<U>>}` : S;

@@ -16,7 +16,7 @@ import { Token } from './token';
 export class Prism {
 	constructor() {
 		this.hooks = new Hooks();
-		this.components = new Registry();
+		this.components = new Registry(this);
 		/**
 		 * @type {Partial<Record<string, unknown>>}
 		 */

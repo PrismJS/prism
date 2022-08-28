@@ -190,3 +190,26 @@ export function forEach(value, callbackFn) {
 		callbackFn(/** @type {T} */(value), 0);
 	}
 }
+
+/**
+ * @param {T} string
+ * @returns {Capitalize<T>}
+ * @template {string} T
+ */
+export function capitalize(string) {
+	// This is the internal implementation of `Capitalize<T>` by TS.
+	// https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html#capitalizestringtype
+	return /** @type {Capitalize<T>} */ (string.charAt(0).toUpperCase() + string.slice(1));
+}
+
+/**
+ * Converts the given kebab case identifier to a camel case identifier.
+ *
+ * @param {T} kebab
+ * @returns {import('../types').KebabToCamelCase<T>}
+ * @template {string} T
+ */
+export function kebabToCamelCase(kebab) {
+	const [first, ...others] = kebab.split(/-/);
+	return /** @type {import('../types').KebabToCamelCase<T>} */(first + others.map(capitalize).join(''));
+}

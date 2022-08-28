@@ -1,5 +1,5 @@
 import { extend } from '../shared/language-util';
-import { forEach } from '../shared/util';
+import { forEach, kebabToCamelCase } from '../shared/util';
 
 /**
  * @typedef Entry
@@ -12,21 +12,30 @@ import { forEach } from '../shared/util';
  * TODO: docs
  */
 export class Registry {
-	constructor() {
+	/**
+	 * A map from the aliases of components to the id of the component with that alias.
+	 *
+	 * @type {Map<string, string>}
+	 * @private
+	 */
+	aliasMap = new Map();
+
+	/**
+	 * A map from the aliases of components to the id of the component with that alias.
+	 *
+	 * @type {Map<string, Entry>}
+	 * @private
+	 */
+	entries = new Map();
+
+	/**
+	 * @param {import('./prism').Prism} Prism
+	 */
+	constructor(Prism) {
 		/**
-		 * A map from the aliases of components to the id of the component with that alias.
-		 *
-		 * @type {Map<string, string>}
 		 * @private
 		 */
-		this.aliasMap = new Map();
-		/**
-		 * A map from the aliases of components to the id of the component with that alias.
-		 *
-		 * @type {Map<string, Entry>}
-		 * @private
-		 */
-		this.entries = new Map();
+		this.Prism = Prism;
 	}
 
 	/**
@@ -54,21 +63,101 @@ export class Registry {
 	 * @param {import('../types').ComponentProto[]} components
 	 */
 	add(...components) {
-		for (const proto of components) {
-			const { id } = proto;
+		/** @type {Set<string>} */
+		const added = new Set();
 
+		/**
+		 * @param {import('../types').ComponentProto} proto
+		 */
+		const register = (proto) => {
+			const { id } = proto;
 			if (this.entries.has(id)) {
-				continue;
+				return;
 			}
 
 			this.entries.set(id, { proto });
+			added.add(id);
 
 			// add aliases
 			forEach(proto.alias, alias => this.aliasMap.set(alias, id));
 
 			// dependencies
+			forEach(proto.require, register);
 
-		}
+			// add plugin namespace
+			if ('plugin' in proto && proto.plugin) {
+				this.Prism.plugins[kebabToCamelCase(id)] = proto.plugin(this.Prism);
+			}
+		};
+		components.forEach(register);
+
+		this.update(added);
+	}
+
+	/**
+	 * @param {ReadonlySet<string>} changed
+	 * @returns {void}
+	 * @private
+	 */
+	update(changed) {
+		/** @type {Map<string, boolean>} */
+		const updateStatus = new Map();
+
+		/**
+		 * @param {string} id
+		 * @returns {boolean}
+		 */
+		const didUpdate = (id) => {
+			let status = updateStatus.get(id);
+			if (status !== undefined) {
+				return status;
+			}
+
+			const entry = this.entries.get(id);
+
+			// eslint-disable-next-line no-use-before-define
+			if (!entry || !shouldRunEffects(entry.proto)) {
+				updateStatus.set(id, status = false);
+				return status;
+			}
+
+			// reset
+			entry.evaluatedGrammar = undefined;
+			if (entry.evaluatedEffect) {
+				entry.evaluatedEffect();
+			}
+
+			// redo effects
+			if (entry.proto.effect) {
+				entry.evaluatedEffect = entry.proto.effect(this.Prism);
+			}
+
+			updateStatus.set(id, status = true);
+			return status;
+		};
+		/**
+		 * @param {import('../types').ComponentProto} proto
+		 * @returns {boolean}
+		 */
+		const shouldRunEffects = (proto) => {
+			/** @type {boolean} */
+			let depsChanged = false;
+
+			forEach(proto.require, ({ id }) => {
+				if (didUpdate(id)) {
+					depsChanged = true;
+				}
+			});
+			forEach(proto.optional, (id) => {
+				if (didUpdate(id)) {
+					depsChanged = true;
+				}
+			});
+
+			return depsChanged || changed.has(proto.id);
+		};
+
+		this.entries.forEach((_, id) => didUpdate(id));
 	}
 
 	/**
