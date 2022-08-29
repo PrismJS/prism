@@ -11,12 +11,10 @@ describe('The token stream transformer', () => {
 			'string'
 		];
 
-		const expected = [
+		assert.deepEqual(simplify(tokens), [
 			['type', 'content'],
 			'string'
-		];
-
-		assert.deepEqual(simplify(tokens), expected);
+		]);
 	});
 
 
@@ -35,15 +33,13 @@ describe('The token stream transformer', () => {
 			}
 		];
 
-		const expected = [
+		assert.deepEqual(simplify(tokens), [
 			['type', [
 				['insideType', [
 					['insideInsideType', 'content']
 				]]
 			]]
-		];
-
-		assert.deepEqual(simplify(tokens), expected);
+		]);
 	});
 
 
@@ -55,9 +51,7 @@ describe('The token stream transformer', () => {
 			' '
 		];
 
-		const expectedSimplified = [];
-
-		assert.deepEqual(simplify(tokenStream), expectedSimplified);
+		assert.deepEqual(simplify(tokenStream), []);
 	});
 
 
@@ -74,13 +68,11 @@ describe('The token stream transformer', () => {
 			''
 		];
 
-		const expectedSimplified = [
+		assert.deepEqual(simplify(tokenStream), [
 			['type', [
 				['nested', []]
 			]]
-		];
-
-		assert.deepEqual(simplify(tokenStream), expectedSimplified);
+		]);
 	});
 
 
@@ -90,11 +82,9 @@ describe('The token stream transformer', () => {
 			{ type: 'type', content: 'content', alias: 'alias' }
 		];
 
-		const expectedSimplified = [
+		assert.deepEqual(simplify(tokenStream), [
 			['type', 'content']
-		];
-
-		assert.deepEqual(simplify(tokenStream), expectedSimplified);
+		]);
 	});
 });
 
