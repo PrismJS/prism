@@ -10,5 +10,5 @@ Hello World!
 		["punctuation", ":"],
 		["header-value", "text/plain"]
 	]],
-	["text-plain", ["\r\nHello World!"]]
+	["text-plain", "\r\nHello World!"]
 ]
