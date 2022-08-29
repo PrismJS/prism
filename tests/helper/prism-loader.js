@@ -45,21 +45,24 @@ export async function createInstance(languages) {
 }
 
 /**
- * @typedef {import("jsdom").DOMWindow & { Prism: Prism }} PrismWindow
- *
+ * @typedef {import("jsdom").DOMWindow & { Prism: Prism & T }} PrismWindow
+ * @template T
+ */
+/**
  * @typedef PrismDOM
  * @property {JSDOM} dom
- * @property {PrismWindow} window
+ * @property {PrismWindow<T>} window
  * @property {Document} document
- * @property {Prism} Prism
+ * @property {Prism & T} Prism
  * @property {(languages: string | string[]) => void} loadLanguages
  * @property {(plugins: string | string[]) => void} loadPlugins
+ * @template T
  */
 
 /**
  * Creates a new JavaScript DOM instance with Prism being loaded.
  *
- * @returns {PrismDOM}
+ * @returns {PrismDOM<{}>}
  */
 export function createPrismDOM() {
 	const dom = new JSDOM(``, {

@@ -31,7 +31,9 @@ describe('Copy to Clipboard', function () {
 		Prism.highlightAll();
 
 		const button = document.querySelector('button');
-		assert.notStrictEqual(button, null);
+		if (!button) {
+			assert.fail('Expected button to be non-null');
+		}
 
 		button.click();
 
@@ -46,7 +48,9 @@ describe('Copy to Clipboard', function () {
 		Prism.highlightAll();
 
 		const button = document.querySelector('button');
-		assert.notStrictEqual(button, null);
+		if (!button) {
+			assert.fail('Expected button to be non-null');
+		}
 
 		button.click();
 

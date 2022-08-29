@@ -316,13 +316,13 @@ class HighlightHTMLRunner {
  * @param {(languages: string[]) => Promise<Prism>} [createInstance]
  */
 export async function runTestCase(languageIdentifier, filePath, updateMode, createInstance = defaultCreateInstance) {
-	let runner;
 	if (/\.html\.test$/i.test(filePath)) {
-		runner = new HighlightHTMLRunner();
+		const runner = new HighlightHTMLRunner();
+		await runTestCaseWithRunner(languageIdentifier, filePath, updateMode, runner, createInstance);
 	} else {
-		runner = new TokenizeJSONRunner();
+		const runner = new TokenizeJSONRunner();
+		await runTestCaseWithRunner(languageIdentifier, filePath, updateMode, runner, createInstance);
 	}
-	await runTestCaseWithRunner(languageIdentifier, filePath, updateMode, runner, createInstance);
 }
 
 /**

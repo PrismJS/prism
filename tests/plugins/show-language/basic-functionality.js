@@ -17,7 +17,7 @@ describe('Show language', function () {
 		document.body.innerHTML = code;
 		Prism.highlightAll();
 
-		assert.strictEqual(document.querySelector('.toolbar-item > span').textContent, expectedLanguage);
+		assert.strictEqual(document.querySelector('.toolbar-item > span')?.textContent, expectedLanguage);
 	}
 
 	it('should work with component titles', () => {

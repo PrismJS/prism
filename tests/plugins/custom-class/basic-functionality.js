@@ -8,9 +8,13 @@ describe('Custom class', function () {
 	});
 	const util = createUtil(window);
 
+	if (!Prism.plugins.customClass) {
+		throw new Error('');
+	}
+
 
 	it('should set prefix', () => {
-		Prism.plugins.customClass.prefix('prism-');
+		Prism.plugins.customClass.prefix = 'prism-';
 
 		util.assert.highlight({
 			language: 'javascript',
@@ -20,7 +24,7 @@ describe('Custom class', function () {
 	});
 
 	it('should reset prefix', () => {
-		Prism.plugins.customClass.prefix('');
+		Prism.plugins.customClass.prefix = '';
 
 		util.assert.highlight({
 			language: 'javascript',

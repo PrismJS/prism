@@ -96,7 +96,7 @@ function testPatterns(Prism, mainLanguage) {
 	 * @property {any} parent
 	 * @property {boolean} lookbehind Whether the first capturing group of the pattern is a Prism lookbehind group.
 	 * @property {CapturingGroup | undefined} lookbehindGroup
-	 * @property {{ key: string, value: any }[]} path
+	 * @property {import('./helper/util').PathItem[]} path
 	 * @property {(message: string) => void} reportError
 	 */
 	function forEachPattern(callback) {
@@ -119,7 +119,7 @@ function testPatterns(Prism, mainLanguage) {
 				const tokenPath = BFSPathToPrismTokenPath(path, rootStr);
 				visited.add(value);
 
-				if (Object.prototype.toString.call(value) == '[object RegExp]') {
+				if (key && Object.prototype.toString.call(value) == '[object RegExp]') {
 					try {
 						let ast;
 						try {
@@ -302,7 +302,9 @@ function testPatterns(Prism, mainLanguage) {
 				offset++;
 			}
 			const patternName = path[path.length - offset].key;
-			testName(patternName);
+			if (patternName) {
+				testName(patternName);
+			}
 
 			// check alias
 			if (name == 'pattern' && 'alias' in parent) {

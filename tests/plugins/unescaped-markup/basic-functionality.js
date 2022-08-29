@@ -17,7 +17,7 @@ describe('Show language', function () {
 		document.body.innerHTML = code;
 		Prism.highlightAll();
 
-		assert.strictEqual(document.querySelector('code').textContent, expectedText);
+		assert.strictEqual(document.querySelector('code')?.textContent, expectedText);
 	}
 
 	it('should work with comments', () => {
