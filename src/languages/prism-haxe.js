@@ -83,5 +83,7 @@ export default /** @type {import("../types").LanguageProto<'haxe'>} */ ({
 				alias: 'important'
 			}
 		});
+
+		return haxe;
 	}
 });

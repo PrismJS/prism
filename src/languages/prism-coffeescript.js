@@ -98,5 +98,7 @@ export default /** @type {import("../types").LanguageProto<'coffeescript'>} */ (
 
 		delete coffeescript['doc-comment'];
 		delete coffeescript['template-string'];
+
+		return coffeescript;
 	}
 });

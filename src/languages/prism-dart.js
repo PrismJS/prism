@@ -82,5 +82,7 @@ export default /** @type {import("../types").LanguageProto<'dart'>} */ ({
 				}
 			},
 		});
+
+		return dart;
 	}
 });

@@ -46,5 +46,7 @@ export default /** @type {import("../types").LanguageProto<'bison'>} */ ({
 				}
 			}
 		});
+
+		return bison;
 	}
 });

@@ -26,5 +26,7 @@ export default /** @type {import("../types").LanguageProto<'actionscript'>} */ (
 				inside: 'markup'
 			}
 		});
+
+		return actionscript;
 	}
 });
