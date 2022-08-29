@@ -1,4 +1,3 @@
-// @ts-check
 'use strict';
 
 const { assert } = require('chai');

@@ -1,5 +1,3 @@
-// @ts-check
-
 import path from 'path';
 import { argv } from 'yargs';
 import * as TestCase from './helper/test-case';

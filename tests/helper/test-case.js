@@ -1,5 +1,3 @@
-// @ts-check
-
 import { assert } from 'chai';
 import fs from 'fs';
 import path from 'path';
