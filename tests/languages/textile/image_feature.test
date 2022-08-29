@@ -53,12 +53,17 @@
 			["source", "bar.jpg"],
 			["punctuation", "!"]
 		]],
+
 		["image", [
 			["punctuation", "!"],
 			["modifier", [
-				["punctuation", "("], ["class-id", "foo"], ["punctuation", ")"],
-				["punctuation", "["], ["lang", "en"], ["punctuation", "]"],
-				["css", ["{border:1px solid #ccc}"]]
+				["punctuation", "("],
+				["class-id", "foo"],
+				["punctuation", ")"],
+				["punctuation", "["],
+				["lang", "en"],
+				["punctuation", "]"],
+				["css", "{border:1px solid #ccc}"]
 			]],
 			["source", "foo.png"],
 			["punctuation", "!"]
