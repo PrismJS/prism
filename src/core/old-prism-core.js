@@ -8,9 +8,6 @@
  */
 const Prism = (function (_self) {
 
-	// The grammar object for plaintext
-	const plainTextGrammar = {};
-
 
 	const _ = {
 		/**
@@ -35,24 +32,6 @@ const Prism = (function (_self) {
 		 * @public
 		 */
 		manual: _self.Prism && _self.Prism.manual,
-		/**
-		 * This namespace contains all currently loaded languages and the some helper functions to create and modify languages.
-		 *
-		 * @namespace
-		 * @memberof Prism
-		 * @public
-		 */
-		languages: {
-			/**
-			 * The grammar for plain, unformatted text.
-			 */
-			plain: plainTextGrammar,
-			plaintext: plainTextGrammar,
-			text: plainTextGrammar,
-			txt: plainTextGrammar,
-		},
-
-		plugins: {},
 	};
 
 

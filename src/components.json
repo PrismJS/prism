@@ -71,6 +71,10 @@
 			"title": "JavaScript",
 			"option": "default"
 		},
+		"plain": {
+			"title": "Plain text",
+			"option": "default"
+		},
 		"abap": {
 			"title": "ABAP",
 			"owner": "dellagustin"
