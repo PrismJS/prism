@@ -1,16 +1,16 @@
-'use strict';
+import { assert } from 'chai';
+import { Prism } from '../../src/core/prism';
+import { tokenize } from '../helper/test-case';
+import { simplify } from '../helper/token-stream-transformer';
 
-const { assert } = require('chai');
-const PrismLoader = require('../helper/prism-loader');
-const TestCase = require('../helper/test-case');
-const TokenStreamTransformer = require('../helper/token-stream-transformer');
-
-
+/**
+ * @param {{ grammar: import('../../src/types').Grammar, code: string, expected: any }} param0
+ */
 function testTokens({ grammar, code, expected }) {
-	const Prism = PrismLoader.createEmptyPrism();
-	Prism.languages.test = grammar;
+	const instance = new Prism();
+	instance.components.add({ id: 'test', grammar });
 
-	const simpleTokens = TokenStreamTransformer.simplify(TestCase.tokenize(Prism, code, 'test'));
+	const simpleTokens = simplify(tokenize(instance, code, 'test'));
 
 	assert.deepStrictEqual(simpleTokens, expected);
 }
