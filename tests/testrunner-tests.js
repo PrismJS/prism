@@ -1,8 +1,6 @@
-'use strict';
-
-const { assert } = require('chai');
-const TestCase = require('./helper/test-case');
-const TokenStreamTransformer = require('./helper/token-stream-transformer');
+import { assert } from 'chai';
+import { parseLanguageNames } from './helper/test-case';
+import { simplify } from './helper/token-stream-transformer';
 
 
 describe('The token stream transformer', () => {
@@ -18,7 +16,7 @@ describe('The token stream transformer', () => {
 			'string'
 		];
 
-		assert.deepEqual(TokenStreamTransformer.simplify(tokens), expected);
+		assert.deepEqual(simplify(tokens), expected);
 	});
 
 
@@ -45,7 +43,7 @@ describe('The token stream transformer', () => {
 			]]
 		];
 
-		assert.deepEqual(TokenStreamTransformer.simplify(tokens), expected);
+		assert.deepEqual(simplify(tokens), expected);
 	});
 
 
@@ -59,7 +57,7 @@ describe('The token stream transformer', () => {
 
 		const expectedSimplified = [];
 
-		assert.deepEqual(TokenStreamTransformer.simplify(tokenStream), expectedSimplified);
+		assert.deepEqual(simplify(tokenStream), expectedSimplified);
 	});
 
 
@@ -82,7 +80,7 @@ describe('The token stream transformer', () => {
 			]]
 		];
 
-		assert.deepEqual(TokenStreamTransformer.simplify(tokenStream), expectedSimplified);
+		assert.deepEqual(simplify(tokenStream), expectedSimplified);
 	});
 
 
@@ -96,7 +94,7 @@ describe('The token stream transformer', () => {
 			['type', 'content']
 		];
 
-		assert.deepEqual(TokenStreamTransformer.simplify(tokenStream), expectedSimplified);
+		assert.deepEqual(simplify(tokenStream), expectedSimplified);
 	});
 });
 
@@ -104,7 +102,7 @@ describe('The language name parsing', () => {
 
 	it('should use the last language as the main language if no language is specified', () => {
 		assert.deepEqual(
-			TestCase.parseLanguageNames('a'),
+			parseLanguageNames('a'),
 			{
 				languages: ['a'],
 				mainLanguage: 'a'
@@ -112,7 +110,7 @@ describe('The language name parsing', () => {
 		);
 
 		assert.deepEqual(
-			TestCase.parseLanguageNames('a+b+c'),
+			parseLanguageNames('a+b+c'),
 			{
 				languages: ['a', 'b', 'c'],
 				mainLanguage: 'c'
@@ -123,7 +121,7 @@ describe('The language name parsing', () => {
 
 	it('should use the specified language as main language', () => {
 		assert.deepEqual(
-			TestCase.parseLanguageNames('a+b!+c'),
+			parseLanguageNames('a+b!+c'),
 			{
 				languages: ['a', 'b', 'c'],
 				mainLanguage: 'b'
@@ -135,7 +133,7 @@ describe('The language name parsing', () => {
 	it('should throw an error if there are multiple main languages', () => {
 		assert.throw(
 			() => {
-				TestCase.parseLanguageNames('a+b!+c!');
+				parseLanguageNames('a+b!+c!');
 			},
 			'There are multiple main languages defined.'
 		);

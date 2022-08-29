@@ -1,22 +1,21 @@
-'use strict';
+// @ts-check
 
-const { assert } = require('chai');
-const fs = require('fs');
-const path = require('path');
-const Prettier = require('prettier');
-const PrismLoader = require('./prism-loader');
-const TokenStreamTransformer = require('./token-stream-transformer');
+import { assert } from 'chai';
+import fs from 'fs';
+import path from 'path';
+import * as Prettier from 'prettier';
+import { createInstance } from './prism-loader';
+import * as TokenStreamTransformer from './token-stream-transformer';
 
 /**
  * @typedef {import("./token-stream-transformer").TokenStream} TokenStream
- * @typedef {import("../../components/prism-core.js")} Prism
+ * @typedef {import("../../src/core/prism").Prism} Prism
  */
 
 /**
  * @param {string[]} languages
- * @returns {Prism}
  */
-const defaultCreateInstance = (languages) => PrismLoader.createInstance(languages);
+const defaultCreateInstance = createInstance;
 
 /**
  * Handles parsing and printing of a test case file.
@@ -34,7 +33,7 @@ const defaultCreateInstance = (languages) => PrismLoader.createInstance(language
  *
  * If the file contains more than three parts, the remaining parts are part of the description.
  */
-class TestCaseFile {
+export class TestCaseFile {
 	/**
 	 * @param {string} code
 	 * @param {string | undefined} [expected]
@@ -239,12 +238,12 @@ class HighlightHTMLRunner {
 		const env = {
 			element: {},
 			language,
-			grammar: Prism.languages[language],
+			grammar: Prism.components.getLanguage(language),
 			code,
 		};
 
 		Prism.hooks.run('before-highlight', env);
-		env.highlightedCode = Prism.highlight(env.code, env.grammar, env.language);
+		env.highlightedCode = Prism.highlight(env.code, env.language, { grammar: env.grammar });
 		Prism.hooks.run('before-insert', env);
 		env.element.innerHTML = env.highlightedCode;
 		Prism.hooks.run('after-highlight', env);
@@ -301,179 +300,150 @@ class HighlightHTMLRunner {
 }
 
 
-module.exports = {
-	TestCaseFile,
+/**
+ * Runs the given test case file and asserts the result
+ *
+ * The passed language identifier can either be a language like "css" or a composed language
+ * identifier like "css+markup". Composed identifiers can be used for testing language inclusion.
+ *
+ * When testing language inclusion, the first given language is the main language which will be passed
+ * to Prism for highlighting ("css+markup" will result in a call to Prism to highlight with the "css" grammar).
+ * But it will be ensured, that the additional passed languages will be loaded too.
+ *
+ * The languages will be loaded in the order they were provided.
+ *
+ * @param {string} languageIdentifier
+ * @param {string} filePath
+ * @param {"none" | "insert" | "update"} updateMode
+ * @param {(languages: string[]) => Promise<Prism>} [createInstance]
+ */
+export async function runTestCase(languageIdentifier, filePath, updateMode, createInstance = defaultCreateInstance) {
+	let runner;
+	if (/\.html\.test$/i.test(filePath)) {
+		runner = new HighlightHTMLRunner();
+	} else {
+		runner = new TokenizeJSONRunner();
+	}
+	await runTestCaseWithRunner(languageIdentifier, filePath, updateMode, runner, createInstance);
+}
 
-	/**
-	 * Runs the given test file and asserts the result.
-	 *
-	 * This function will determine what kind of test files the given file is and call the appropriate method to run the
-	 * test.
-	 *
-	 * @param {RunOptions} options
-	 * @returns {void}
-	 *
-	 * @typedef RunOptions
-	 * @property {string} languageIdentifier
-	 * @property {string} filePath
-	 * @property {"none" | "insert" | "update"} updateMode
-	 * @property {(languages: string[]) => Prism} [createInstance]
-	 */
-	run(options) {
-		if (path.extname(options.filePath) === '.test') {
-			this.runTestCase(options.languageIdentifier, options.filePath, options.updateMode, options.createInstance);
-		} else {
-			this.runTestsWithHooks(options.languageIdentifier, require(options.filePath), options.createInstance);
-		}
-	},
+/**
+ * @param {string} languageIdentifier
+ * @param {string} filePath
+ * @param {"none" | "insert" | "update"} updateMode
+ * @param {Runner<T>} runner
+ * @param {(languages: string[]) => Promise<Prism>} createInstance
+ * @template T
+ */
+export async function runTestCaseWithRunner(languageIdentifier, filePath, updateMode, runner, createInstance) {
+	const testCase = TestCaseFile.readFromFile(filePath);
+	const usedLanguages = parseLanguageNames(languageIdentifier);
 
-	/**
-	 * Runs the given test case file and asserts the result
-	 *
-	 * The passed language identifier can either be a language like "css" or a composed language
-	 * identifier like "css+markup". Composed identifiers can be used for testing language inclusion.
-	 *
-	 * When testing language inclusion, the first given language is the main language which will be passed
-	 * to Prism for highlighting ("css+markup" will result in a call to Prism to highlight with the "css" grammar).
-	 * But it will be ensured, that the additional passed languages will be loaded too.
-	 *
-	 * The languages will be loaded in the order they were provided.
-	 *
-	 * @param {string} languageIdentifier
-	 * @param {string} filePath
-	 * @param {"none" | "insert" | "update"} updateMode
-	 * @param {(languages: string[]) => Prism} [createInstance]
-	 */
-	runTestCase(languageIdentifier, filePath, updateMode, createInstance = defaultCreateInstance) {
-		let runner;
-		if (/\.html\.test$/i.test(filePath)) {
-			runner = new HighlightHTMLRunner();
-		} else {
-			runner = new TokenizeJSONRunner();
-		}
-		this.runTestCaseWithRunner(languageIdentifier, filePath, updateMode, runner, createInstance);
-	},
+	const Prism = await createInstance(usedLanguages.languages);
 
-	/**
-	 * @param {string} languageIdentifier
-	 * @param {string} filePath
-	 * @param {"none" | "insert" | "update"} updateMode
-	 * @param {Runner<T>} runner
-	 * @param {(languages: string[]) => Prism} createInstance
-	 * @template T
-	 */
-	runTestCaseWithRunner(languageIdentifier, filePath, updateMode, runner, createInstance) {
-		const testCase = TestCaseFile.readFromFile(filePath);
-		const usedLanguages = this.parseLanguageNames(languageIdentifier);
+	// the first language is the main language to highlight
+	const actualValue = runner.run(Prism, testCase.code, usedLanguages.mainLanguage);
 
-		const Prism = createInstance(usedLanguages.languages);
+	function updateFile() {
+		// change the file
+		testCase.expected = runner.print(actualValue);
+		testCase.writeToFile(filePath);
+	}
 
-		// the first language is the main language to highlight
-		const actualValue = runner.run(Prism, testCase.code, usedLanguages.mainLanguage);
+	if (!testCase.expected) {
+		// the test case doesn't have an expected value
 
-		function updateFile() {
-			// change the file
-			testCase.expected = runner.print(actualValue);
-			testCase.writeToFile(filePath);
-		}
-
-		if (!testCase.expected) {
-			// the test case doesn't have an expected value
-
-			if (updateMode === 'none') {
-				throw new Error('This test case doesn\'t have an expected token stream.'
+		if (updateMode === 'none') {
+			throw new Error('This test case doesn\'t have an expected token stream.'
 					+ ' Either add the JSON of a token stream or run \`npm run test:languages -- --insert\`'
 					+ ' to automatically add the current token stream.');
-			}
-
-			updateFile();
-		} else {
-			// there is an expected value
-
-			if (runner.isEqual(actualValue, testCase.expected)) {
-				// no difference
-				return;
-			}
-
-			if (updateMode === 'update') {
-				updateFile();
-				return;
-			}
-
-			runner.assertEqual(actualValue, testCase.expected, diffIndex => {
-				const expectedLines = testCase.expected.substr(0, diffIndex).split(/\r\n?|\n/g);
-				const columnNumber = expectedLines.pop().length + 1;
-				const lineNumber = testCase.expectedLineStart + expectedLines.length;
-
-				return testCase.description +
-					`\nThe expected token stream differs from the actual token stream.` +
-					` Either change the ${usedLanguages.mainLanguage} language or update the expected token stream.` +
-					` Run \`npm run test:languages -- --update\` to update all missing or incorrect expected token streams.` +
-					`\n\n\nActual Token Stream:` +
-					`\n-----------------------------------------\n` +
-					runner.print(actualValue) +
-					`\n-----------------------------------------\n` +
-					`File: ${filePath}:${lineNumber}:${columnNumber}\n\n`;
-			});
 		}
-	},
 
-	tokenize,
+		updateFile();
+	} else {
+		// there is an expected value
+
+		if (runner.isEqual(actualValue, testCase.expected)) {
+			// no difference
+			return;
+		}
+
+		if (updateMode === 'update') {
+			updateFile();
+			return;
+		}
+
+		runner.assertEqual(actualValue, testCase.expected, diffIndex => {
+			const expectedLines = testCase.expected.substr(0, diffIndex).split(/\r\n?|\n/g);
+			const columnNumber = expectedLines.pop().length + 1;
+			const lineNumber = testCase.expectedLineStart + expectedLines.length;
+
+			return testCase.description +
+				`\nThe expected token stream differs from the actual token stream.` +
+				` Either change the ${usedLanguages.mainLanguage} language or update the expected token stream.` +
+				` Run \`npm run test:languages -- --update\` to update all missing or incorrect expected token streams.` +
+				`\n\n\nActual Token Stream:` +
+				`\n-----------------------------------------\n` +
+				runner.print(actualValue) +
+				`\n-----------------------------------------\n` +
+				`File: ${filePath}:${lineNumber}:${columnNumber}\n\n`;
+		});
+	}
+}
 
 
-	/**
-	 * Parses the language names and finds the main language.
-	 *
-	 * It is either the last language or the language followed by a exclamation mark “!”.
-	 * There should only be one language with an exclamation mark.
-	 *
-	 * @param {string} languageIdentifier
-	 *
-	 * @returns {{languages: string[], mainLanguage: string}}
-	 */
-	parseLanguageNames(languageIdentifier) {
-		let languages = languageIdentifier.split('+');
-		let mainLanguage = null;
+/**
+ * Parses the language names and finds the main language.
+ *
+ * It is either the last language or the language followed by a exclamation mark “!”.
+ * There should only be one language with an exclamation mark.
+ *
+ * @param {string} languageIdentifier
+ *
+ * @returns {{languages: string[], mainLanguage: string}}
+ */
+export function parseLanguageNames(languageIdentifier) {
+	let languages = languageIdentifier.split('+');
+	let mainLanguage = null;
 
-		languages = languages.map(
-			(language) => {
-				const pos = language.indexOf('!');
+	languages = languages.map(
+		(language) => {
+			const pos = language.indexOf('!');
 
-				if (-1 < pos) {
-					if (mainLanguage) {
-						throw 'There are multiple main languages defined.';
-					}
-
-					mainLanguage = language.replace('!', '');
-					return mainLanguage;
+			if (-1 < pos) {
+				if (mainLanguage) {
+					throw 'There are multiple main languages defined.';
 				}
 
-				return language;
+				mainLanguage = language.replace('!', '');
+				return mainLanguage;
 			}
-		);
 
-		if (!mainLanguage) {
-			mainLanguage = languages[languages.length - 1];
+			return language;
 		}
+	);
 
-		return { languages, mainLanguage };
-	},
-};
+	if (!mainLanguage) {
+		mainLanguage = languages[languages.length - 1];
+	}
+
+	return { languages, mainLanguage };
+}
 
 /**
  * Returns the token stream of the given code highlighted with `language`.
  *
  * The `before-tokenize` and `after-tokenize` hooks will also be executed.
  *
- * @param {import('../../components/prism-core')} Prism The Prism instance which will tokenize `code`.
+ * @param {import('../../src/core/prism').Prism} Prism The Prism instance which will tokenize `code`.
  * @param {string} code The code to tokenize.
  * @param {string} language The language id.
  * @returns {TokenStream}
  */
-function tokenize(Prism, code, language) {
+export function tokenize(Prism, code, language) {
 	const env = {
 		code,
-		grammar: Prism.languages[language],
+		grammar: Prism.components.getLanguage(language),
 		language
 	};
 
