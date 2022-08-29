@@ -1,8 +1,8 @@
 import { createScopedPrismDom, createUtil } from '../../helper/prism-dom-util';
 
 
-describe('Custom class', function () {
-	const { Prism, window } = createScopedPrismDom(this, {
+describe('Custom class', async function () {
+	const { Prism, window } = await createScopedPrismDom(this, {
 		languages: 'javascript',
 		plugins: 'custom-class'
 	});

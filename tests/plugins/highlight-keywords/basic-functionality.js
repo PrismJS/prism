@@ -1,8 +1,8 @@
 import { createScopedPrismDom, createUtil } from '../../helper/prism-dom-util';
 
 
-describe('Highlight Keywords', function () {
-	const { window } = createScopedPrismDom(this, {
+describe('Highlight Keywords', async function () {
+	const { window } = await createScopedPrismDom(this, {
 		languages: 'javascript',
 		plugins: 'highlight-keywords'
 	});

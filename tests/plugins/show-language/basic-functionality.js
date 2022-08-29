@@ -2,8 +2,8 @@ import { assert } from 'chai';
 import { createScopedPrismDom } from '../../helper/prism-dom-util';
 
 
-describe('Show language', function () {
-	const { Prism, document } = createScopedPrismDom(this, {
+describe('Show language', async function () {
+	const { Prism, document } = await createScopedPrismDom(this, {
 		languages: ['markup', 'javascript'],
 		plugins: 'show-language'
 	});

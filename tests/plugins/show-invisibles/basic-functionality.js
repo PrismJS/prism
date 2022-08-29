@@ -1,8 +1,8 @@
 import { createScopedPrismDom, createUtil } from '../../helper/prism-dom-util';
 
 
-describe('Show Invisibles', function () {
-	const { window } = createScopedPrismDom(this, {
+describe('Show Invisibles', async function () {
+	const { window } = await createScopedPrismDom(this, {
 		languages: 'javascript',
 		plugins: 'show-invisibles'
 	});

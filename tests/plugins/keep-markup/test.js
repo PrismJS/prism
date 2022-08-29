@@ -2,8 +2,8 @@ import { assert } from 'chai';
 import { createScopedPrismDom } from '../../helper/prism-dom-util';
 
 
-describe('Keep Markup', function () {
-	const { Prism, document } = createScopedPrismDom(this, {
+describe('Keep Markup', async function () {
+	const { Prism, document } = await createScopedPrismDom(this, {
 		languages: 'javascript',
 		plugins: 'keep-markup'
 	});

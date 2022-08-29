@@ -2,7 +2,7 @@ import { assert } from 'chai';
 import { createPrismDOM } from './prism-loader';
 
 /**
- * @param {import('./prism-loader').PrismWindow} window
+ * @param {import('./prism-loader').PrismWindow<{}>} window
  */
 export function createUtil(window) {
 	const { Prism, document } = window;
@@ -30,10 +30,10 @@ export function createUtil(window) {
  *
  * @param {ReturnType<typeof import('mocha')["suite"]>} suite
  * @param {{ languages?: string | string[]; plugins?: T | T[] }} options
- * @returns {import('./prism-loader').PrismDOM<{ plugins: Record<import('../../src/types').KebabToCamelCase<T>, {}> }>}
+ * @returns {Promise<import('./prism-loader').PrismDOM<{ plugins: Record<import('../../src/types').KebabToCamelCase<T>, {}> }>>}
  * @template {string} T
  */
-export function createScopedPrismDom(suite, options = {}) {
+export async function createScopedPrismDom(suite, options = {}) {
 	const dom = createPrismDOM();
 
 	suite.afterAll(() => {
@@ -41,11 +41,11 @@ export function createScopedPrismDom(suite, options = {}) {
 	});
 
 	if (options.languages) {
-		dom.loadLanguages(options.languages);
+		await dom.loadLanguages(options.languages);
 	}
 	if (options.plugins) {
-		dom.loadPlugins(options.plugins);
+		await dom.loadPlugins(options.plugins);
 	}
 
-	return dom;
+	return /** @type {any} */ (dom);
 }

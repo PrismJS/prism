@@ -16,8 +16,8 @@ class DummyClipboard {
 	}
 }
 
-describe('Copy to Clipboard', function () {
-	const { Prism, document, window } = createScopedPrismDom(this, {
+describe('Copy to Clipboard', async function () {
+	const { Prism, document, window } = await createScopedPrismDom(this, {
 		languages: 'javascript',
 		plugins: 'copy-to-clipboard',
 	});

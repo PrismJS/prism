@@ -20,14 +20,23 @@ export const getLanguageIds = lazy(() => {
 		})
 		.filter(isNonNull);
 });
+export const getPluginIds = lazy(() => {
+	return readdirSync(path.join(SRC_DIR, 'plugins'));
+});
 
 /**
  * @param {string} id
  */
 export async function getComponent(id) {
-	const file = path.join(SRC_DIR, 'languages', `prism-${id}.js`);
-	const exports = await import(file);
-	return /** @type {import('../../src/types').LanguageProto} */ (exports.default);
+	if (getPluginIds().includes(id)) {
+		const file = path.join(SRC_DIR, 'plugins', id, `prism-${id}.js`);
+		const exports = await import(file);
+		return /** @type {import('../../src/types').PluginProto} */ (exports.default);
+	} else {
+		const file = path.join(SRC_DIR, 'languages', `prism-${id}.js`);
+		const exports = await import(file);
+		return /** @type {import('../../src/types').LanguageProto} */ (exports.default);
+	}
 }
 
 /**
@@ -54,8 +63,8 @@ export async function createInstance(languages) {
  * @property {PrismWindow<T>} window
  * @property {Document} document
  * @property {Prism & T} Prism
- * @property {(languages: string | string[]) => void} loadLanguages
- * @property {(plugins: string | string[]) => void} loadPlugins
+ * @property {(languages: string | string[]) => Promise<void>} loadLanguages
+ * @property {(plugins: string | string[]) => Promise<void>} loadPlugins
  * @template T
  */
 
@@ -70,36 +79,23 @@ export function createPrismDOM() {
 	});
 	const window = dom.window;
 
-	window.self = window; // set self for plugins
-	window.eval(loadComponentSource('core'));
-
-	/** The set of loaded languages and plugins */
-	const loaded = new Set();
+	const instance = new Prism();
+	window.Prism = instance;
 
 	/**
 	 * Loads the given languages or plugins.
 	 *
 	 * @param {string | string[]} languagesOrPlugins
 	 */
-	const load = (languagesOrPlugins) => {
-		getLoader(components, toArray(languagesOrPlugins), [...loaded]).load(id => {
-			let source;
-			if (languagesCatalog[id]) {
-				source = loadComponentSource(id);
-			} else if (pluginsCatalog[id]) {
-				source = loadPluginSource(id);
-			} else {
-				throw new Error(`Language or plugin '${id}' not found.`);
-			}
-
-			window.eval(source);
-			loaded.add(id);
-		});
+	const load = async (languagesOrPlugins) => {
+		const protos = await Promise.all(toArray(languagesOrPlugins).map(getComponent));
+		instance.components.add(...protos);
 	};
 
 	return {
 		dom,
-		window,
+		// eslint-disable-next-line object-shorthand
+		window: /** @type {PrismWindow<{}>} */ (window),
 		document: window.document,
 		Prism: window.Prism,
 		loadLanguages: load,
