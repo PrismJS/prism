@@ -1,4 +1,4 @@
-import { deepClone } from './util';
+import { rest } from './symbols';
 
 // TODO: Update documentation
 
@@ -101,13 +101,99 @@ export function insertBefore(grammar, before, insert) {
  * });
  */
 export function extend(grammar, id, reDef) {
-	// TODO: This doesn't work. Rest symbols are lost and string references (e.g. inside: 'id') still point to the old grammar.
-
-	const lang = deepClone(grammar);
+	const lang = cloneGrammar(grammar, id);
 
 	for (const key in reDef) {
 		lang[key] = reDef[key];
 	}
 
 	return lang;
+}
+
+/**
+ *
+ * @param {import('../types').Grammar} grammar
+ * @param {string} id
+ * @returns {import('../types').Grammar}
+ */
+function cloneGrammar(grammar, id) {
+	/** @type {import('../types').Grammar} */
+	const result = {};
+
+	/** @type {Map<import('../types').Grammar, import('../types').Grammar>} */
+	const visited = new Map();
+
+	/**
+	 * @param {import('../types').GrammarToken | RegExp} value
+	 */
+	function cloneToken(value) {
+		if (value.exec) {
+			return value;
+		} else {
+			/** @type {import('../types').GrammarToken} */
+			const copy = { pattern: value.pattern };
+			if (value.lookbehind) {
+				copy.lookbehind = value.lookbehind;
+			}
+			if (value.greedy) {
+				copy.greedy = value.greedy;
+			}
+			if (value.alias) {
+				copy.alias = Array.isArray(value.alias) ? [...value.alias] : value.alias;
+			}
+			if (value.inside) {
+				copy.inside = cloneRef(value.inside);
+			}
+			return copy;
+		}
+	}
+	/**
+	 * @param {import('../types').GrammarTokens[string]} value
+	 */
+	function cloneTokens(value) {
+		if (!value) {
+			return undefined;
+		} else if (Array.isArray(value)) {
+			return value.map(cloneToken);
+		} else {
+			return cloneToken(value);
+		}
+	}
+	/**
+	 * @param {NonNullable<import('../types').Grammar[rest]>} ref
+	 */
+	function cloneRef(ref) {
+		if (ref === id) {
+			// self ref
+			return result;
+		} else if (typeof ref === 'string') {
+			return ref;
+		} else {
+			return clone(ref);
+		}
+	}
+	/**
+	 * @param {import('../types').Grammar} value
+	 */
+	function clone(value) {
+		let mapped = visited.get(value);
+		if (mapped === undefined) {
+			mapped = value === grammar ? result : {};
+			visited.set(value, mapped);
+
+			// tokens
+			for (const [key, tokens] of Object.entries(value)) {
+				mapped[key] = cloneTokens(tokens);
+			}
+
+			// rest
+			const r = value[rest];
+			if (r != null) {
+				mapped[rest] = cloneRef(r);
+			}
+		}
+		return mapped;
+	}
+
+	return clone(grammar);
 }
