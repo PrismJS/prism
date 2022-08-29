@@ -1,0 +1,83 @@
+Buffer
+BufferGL
+BufferRenderGL
+CommandQueue
+Context
+Device
+DeviceCommandQueue
+EnqueueArgs
+Event
+Image
+Image1D
+Image1DArray
+Image1DBuffer
+Image2D
+Image2DArray
+Image2DGL
+Image3D
+Image3DGL
+ImageFormat
+ImageGL
+Kernel
+KernelFunctor
+LocalSpaceArg
+Memory
+NDRange
+Pipe
+Platform
+Program
+Sampler
+SVMAllocator
+SVMTraitAtomic
+SVMTraitCoarse
+SVMTraitFine
+SVMTraitReadOnly
+SVMTraitReadWrite
+SVMTraitWriteOnly
+UserEvent
+
+----------------------------------------------------
+
+[
+	["type-opencl-host-cpp", "Buffer"],
+	["type-opencl-host-cpp", "BufferGL"],
+	["type-opencl-host-cpp", "BufferRenderGL"],
+	["type-opencl-host-cpp", "CommandQueue"],
+	["type-opencl-host-cpp", "Context"],
+	["type-opencl-host-cpp", "Device"],
+	["type-opencl-host-cpp", "DeviceCommandQueue"],
+	["type-opencl-host-cpp", "EnqueueArgs"],
+	["type-opencl-host-cpp", "Event"],
+	["type-opencl-host-cpp", "Image"],
+	["type-opencl-host-cpp", "Image1D"],
+	["type-opencl-host-cpp", "Image1DArray"],
+	["type-opencl-host-cpp", "Image1DBuffer"],
+	["type-opencl-host-cpp", "Image2D"],
+	["type-opencl-host-cpp", "Image2DArray"],
+	["type-opencl-host-cpp", "Image2DGL"],
+	["type-opencl-host-cpp", "Image3D"],
+	["type-opencl-host-cpp", "Image3DGL"],
+	["type-opencl-host-cpp", "ImageFormat"],
+	["type-opencl-host-cpp", "ImageGL"],
+	["type-opencl-host-cpp", "Kernel"],
+	["type-opencl-host-cpp", "KernelFunctor"],
+	["type-opencl-host-cpp", "LocalSpaceArg"],
+	["type-opencl-host-cpp", "Memory"],
+	["type-opencl-host-cpp", "NDRange"],
+	["type-opencl-host-cpp", "Pipe"],
+	["type-opencl-host-cpp", "Platform"],
+	["type-opencl-host-cpp", "Program"],
+	["type-opencl-host-cpp", "Sampler"],
+	["type-opencl-host-cpp", "SVMAllocator"],
+	["type-opencl-host-cpp", "SVMTraitAtomic"],
+	["type-opencl-host-cpp", "SVMTraitCoarse"],
+	["type-opencl-host-cpp", "SVMTraitFine"],
+	["type-opencl-host-cpp", "SVMTraitReadOnly"],
+	["type-opencl-host-cpp", "SVMTraitReadWrite"],
+	["type-opencl-host-cpp", "SVMTraitWriteOnly"],
+	["type-opencl-host-cpp", "UserEvent"]
+]
+
+----------------------------------------------------
+
+Checks for all types in OpenCL host code (C++-API).
