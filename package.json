@@ -42,6 +42,7 @@
 		"@babel/preset-env": "^7.18.10",
 		"@babel/register": "^7.18.9",
 		"@types/chai": "^4.3.3",
+		"@types/jsdom": "^20.0.0",
 		"@types/mocha": "^9.1.1",
 		"@types/node-fetch": "^2.5.5",
 		"@types/prettier": "^2.7.0",
