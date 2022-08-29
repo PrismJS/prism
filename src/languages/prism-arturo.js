@@ -52,7 +52,7 @@ export default /** @type {import("../types").LanguageProto<'arturo'>} */ ({
 		'js-string': createLanguageString('js'),
 		'md-string': createLanguageString('md'),
 		'sql-string': createLanguageString('sql'),
-		'sh-string': createLanguageString('shell', 'sh'),
+		'sh-string': createLanguageString('bash', 'sh'),
 
 		'multistring': {
 			pattern: /».*|\{:[\s\S]*?:\}|\{[\s\S]*?\}|^-{6}$[\s\S]*/m,
