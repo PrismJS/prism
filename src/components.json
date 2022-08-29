@@ -50,9 +50,15 @@
 			"title": "Markup",
 			"aliasTitles": {
 				"html": "HTML",
-				"xml": "XML",
 				"svg": "SVG",
-				"mathml": "MathML",
+				"mathml": "MathML"
+			},
+			"option": "default"
+		},
+		"xml": {
+			"title": "XML",
+			"aliasTitles": {
+				"xml": "XML",
 				"ssml": "SSML",
 				"atom": "Atom",
 				"rss": "RSS"

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE greeting SYSTEM "hello.dtd">
+<!DOCTYPE greeting [
+	<!ELEMENT greeting (#PCDATA)>
+]>
+<!DOCTYPE greeting [
+	<!ELEMENT greeting (#PCDATA)>
+	<!ELEMENT subject (#PCDATA)>
+	<!-- comment ]> -->
+]>
+
+----------------------------------------------------
+
+[
+	["doctype", [
+		["punctuation", "<!"],
+		["doctype-tag", "DOCTYPE"],
+		["name", "html"],
+		["punctuation", ">"]
+	]],
+	["doctype", [
+		["punctuation", "<!"],
+		["doctype-tag", "DOCTYPE"],
+		["name", "HTML"],
+		["name", "PUBLIC"],
+		["string", "\"-//W3C//DTD HTML 4.01//EN\""],
+		["punctuation", ">"]
+	]],
+	["doctype", [
+		["punctuation", "<!"],
+		["doctype-tag", "DOCTYPE"],
+		["name", "html"],
+		["name", "PUBLIC"],
+		["string", "\"-//W3C//DTD XHTML 1.0 Strict//EN\""],
+		["string", "\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\""],
+		["punctuation", ">"]
+	]],
+	["doctype", [
+		["punctuation", "<!"],
+		["doctype-tag", "DOCTYPE"],
+		["name", "greeting"],
+		["name", "SYSTEM"],
+		["string", "\"hello.dtd\""],
+		["punctuation", ">"]
+	]],
+	["doctype", [
+		["punctuation", "<!"],
+		["doctype-tag", "DOCTYPE"],
+		["name", "greeting"],
+		["punctuation", "["],
+		["internal-subset", [
+			["tag", [
+				["tag", [
+					["punctuation", "<"],
+					"!ELEMENT"
+				]],
+				["attr-name", [
+					"greeting"
+				]],
+				["attr-name", [
+					"(#PCDATA)"
+				]],
+				["punctuation", ">"]
+			]]
+		]],
+		["punctuation", "]"],
+		["punctuation", ">"]
+	]],
+	["doctype", [
+		["punctuation", "<!"],
+		["doctype-tag", "DOCTYPE"],
+		["name", "greeting"],
+		["punctuation", "["],
+		["internal-subset", [
+			["tag", [
+				["tag", [
+					["punctuation", "<"],
+					"!ELEMENT"
+				]],
+				["attr-name", [
+					"greeting"
+				]],
+				["attr-name", [
+					"(#PCDATA)"
+				]],
+				["punctuation", ">"]
+			]],
+			["tag", [
+				["tag", [
+					["punctuation", "<"],
+					"!ELEMENT"
+				]],
+				["attr-name", [
+					"subject"
+				]],
+				["attr-name", [
+					"(#PCDATA)"
+				]],
+				["punctuation", ">"]
+			]],
+			["comment", "<!-- comment ]> -->"]
+		]],
+		["punctuation", "]"],
+		["punctuation", ">"]
+	]]
+]
+
+----------------------------------------------------
+
+Checks for different doctypes, single-line and multi-line.

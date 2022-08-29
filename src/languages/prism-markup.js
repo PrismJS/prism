@@ -1,4 +1,5 @@
-import { MARKUP_TAG } from '../shared/languages/patterns';
+import { insertBefore } from '../shared/language-util';
+import xml from './prism-xml';
 
 /**
  * Adds an inlined language to markup.
@@ -82,110 +83,26 @@ function attributeEmbedded(attrName, lang) {
 
 export default /** @type {import("../types").LanguageProto<'markup'>} */ ({
 	id: 'markup',
-	alias: ['html', 'xml', 'svg', 'mathml', 'ssml', 'atom', 'rss'],
+	require: xml,
+	alias: ['html', 'svg', 'mathml'],
 	grammar({ extend }) {
-		const entity = [
-			{
-				pattern: /&[\da-z]{1,8};/i,
-				alias: 'named-entity'
-			},
-			/&#x?[\da-f]{1,8};/i
-		];
+		const markup = extend('xml', {});
 
-		const markup = {
-			'comment': {
-				pattern: /<!--(?:(?!<!--)[\s\S])*?-->/,
-				greedy: true
-			},
-			'prolog': {
-				pattern: /<\?[\s\S]+?\?>/,
-				greedy: true
-			},
-			'doctype': {
-				// https://www.w3.org/TR/xml/#NT-doctypedecl
-				pattern: /<!DOCTYPE(?:[^>"'[\]]|"[^"]*"|'[^']*')+(?:\[(?:[^<"'\]]|"[^"]*"|'[^']*'|<(?!!--)|<!--(?:[^-]|-(?!->))*-->)*\]\s*)?>/i,
-				greedy: true,
-				inside: {
-					'internal-subset': {
-						pattern: /(^[^\[]*\[)[\s\S]+(?=\]>$)/,
-						lookbehind: true,
-						greedy: true,
-						inside: 'markup'
-					},
-					'string': {
-						pattern: /"[^"]*"|'[^']*'/,
-						greedy: true
-					},
-					'punctuation': /^<!|>$|[[\]]/,
-					'doctype-tag': /^DOCTYPE/i,
-					'name': /[^\s<>'"]+/
-				}
-			},
+		insertBefore(markup, 'cdata', {
 			'style': inlineEmbedded('style', 'css'),
 			'script': inlineEmbedded('script', 'javascript'),
-			'cdata': {
-				pattern: /<!\[CDATA\[[\s\S]*?\]\]>/i,
-				greedy: true
-			},
-			'tag': {
-				pattern: MARKUP_TAG,
-				greedy: true,
-				inside: {
-					'tag': {
-						pattern: /^<\/?[^\s>\/]+/,
-						inside: {
-							'punctuation': /^<\/?/,
-							'namespace': /^[^\s>\/:]+:/
-						}
-					},
-					'special-attr': [
-						attributeEmbedded('style', 'css'),
-						// add attribute support for all DOM events.
-						// https://developer.mozilla.org/en-US/docs/Web/Events#Standard_events
-						attributeEmbedded(/on(?:abort|blur|change|click|composition(?:end|start|update)|dblclick|error|focus(?:in|out)?|key(?:down|up)|load|mouse(?:down|enter|leave|move|out|over|up)|reset|resize|scroll|select|slotchange|submit|unload|wheel)/.source, 'javascript'),
-					],
-					'attr-value': {
-						pattern: /=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+)/,
-						inside: {
-							'punctuation': [
-								{
-									pattern: /^=/,
-									alias: 'attr-equals'
-								},
-								{
-									pattern: /^(\s*)["']|["']$/,
-									lookbehind: true
-								}
-							],
-							'entity': entity
-						}
-					},
-					'punctuation': /\/?>/,
-					'attr-name': {
-						pattern: /[^\s>\/]+/,
-						inside: {
-							'namespace': /^[^\s>\/:]+:/
-						}
-					}
+		});
 
-				}
-			},
-			'entity': entity
-		};
-
-		Prism.languages.xml = extend('markup', {});
-		Prism.languages.ssml = Prism.languages.xml;
-		Prism.languages.atom = Prism.languages.xml;
-		Prism.languages.rss = Prism.languages.xml;
+		const tag = /** @type {import('../types').GrammarToken & { inside: import('../types').Grammar }} */ (markup.tag);
+		insertBefore(tag.inside, 'attr-value', {
+			'special-attr': [
+				attributeEmbedded('style', 'css'),
+				// add attribute support for all DOM events.
+				// https://developer.mozilla.org/en-US/docs/Web/Events#Standard_events
+				attributeEmbedded(/on(?:abort|blur|change|click|composition(?:end|start|update)|dblclick|error|focus(?:in|out)?|key(?:down|up)|load|mouse(?:down|enter|leave|move|out|over|up)|reset|resize|scroll|select|slotchange|submit|unload|wheel)/.source, 'javascript'),
+			]
+		});
 
 		return markup;
-	},
-	effect(Prism) {
-		// Plugin to make entity title show the real entity, idea by Roman Komarov
-		return Prism.hooks.add('wrap', (env) => {
-			if (env.type === 'entity') {
-				env.attributes['title'] = env.content.replace(/&amp;/, '&');
-			}
-		});
 	}
 });
