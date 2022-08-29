@@ -152,16 +152,21 @@ export function regexEscape(string) {
 }
 
 /**
+ * @type {(arg: unknown) => arg is readonly any[]}
+ */
+const isReadonlyArray = Array.isArray;
+
+/**
  * Converts the given value to an array.
  *
  * If the given value is already an error, it will be returned as is.
  *
- * @param {T | T[] | undefined | null} value
- * @returns {T[]}
+ * @param {T | readonly T[] | undefined | null} value
+ * @returns {readonly T[]}
  * @template {{}} T
  */
 export function toArray(value) {
-	if (Array.isArray(value)) {
+	if (isReadonlyArray(value)) {
 		return value;
 	} else if (value == null) {
 		return [];

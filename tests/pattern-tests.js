@@ -1,16 +1,14 @@
-'use strict';
-
-const { assert } = require('chai');
-const { transform, combineTransformers, getIntersectionWordSets, JS, Words, NFA, Transformers, isDisjointWith } = require('refa');
-const RAA = require('regexp-ast-analysis');
-const { visitRegExpAST } = require('regexpp');
-const scslre = require('scslre');
-const { argv } = require('yargs');
-const { languages } = require('../components.json');
-const PrismLoader = require('./helper/prism-loader');
-const TestCase = require('./helper/test-case');
-const TestDiscovery = require('./helper/test-discovery');
-const { BFS, BFSPathToPrismTokenPath, parseRegex } = require('./helper/util');
+import { assert } from 'chai';
+import { JS, NFA, Transformers, Words, combineTransformers, getIntersectionWordSets, isDisjointWith, transform } from 'refa';
+import RAA from 'regexp-ast-analysis';
+import { visitRegExpAST } from 'regexpp';
+import scslre from 'scslre';
+import { argv } from 'yargs';
+import { noop, toArray } from '../src/shared/util';
+import { createInstance, getComponent, getLanguageIds } from './helper/prism-loader';
+import { TestCaseFile, parseLanguageNames } from './helper/test-case';
+import { loadAllTests } from './helper/test-discovery';
+import { BFS, BFSPathToPrismTokenPath, parseRegex } from './helper/util';
 
 /**
  * A map from language id to a list of code snippets in that language.
@@ -18,9 +16,9 @@ const { BFS, BFSPathToPrismTokenPath, parseRegex } = require('./helper/util');
  * @type {Map<string, string[]>}
  */
 const testSnippets = new Map();
-const testSuite = TestDiscovery.loadAllTests();
+const testSuite = loadAllTests();
 for (const [languageIdentifier, files] of testSuite) {
-	const lang = TestCase.parseLanguageNames(languageIdentifier).mainLanguage;
+	const lang = parseLanguageNames(languageIdentifier).mainLanguage;
 	let snippets = testSnippets.get(lang);
 	if (snippets === undefined) {
 		snippets = [];
@@ -28,44 +26,38 @@ for (const [languageIdentifier, files] of testSuite) {
 	}
 
 	for (const file of files) {
-		snippets.push(TestCase.TestCaseFile.readFromFile(file).code);
+		snippets.push(TestCaseFile.readFromFile(file).code);
 	}
 }
 
 
-for (const lang in languages) {
-	if (lang === 'meta' || (!!argv.language && lang !== argv.language)) {
+for (const lang of getLanguageIds()) {
+	if (!!argv.language && lang !== argv.language) {
 		continue;
 	}
 
-	describe(`Patterns of '${lang}'`, () => {
-		const Prism = PrismLoader.createInstance(lang);
+	describe(`Patterns of '${lang}'`, async () => {
+		const Prism = await createInstance(lang);
 		testPatterns(Prism, lang);
 	});
 
-	const optional = toArray(languages[lang].optional);
-	const modify = toArray(languages[lang].modify);
+	describe(`Patterns of '${lang}' with optional dependencies`, async () => {
+		const component = await getComponent(lang);
+		const optional = toArray(component.optional);
 
-	if (optional.length > 0 || modify.length > 0) {
-		let name = `Patterns of '${lang}'`;
-		if (optional.length > 0) {
-			name += ` + optional dependencies '${optional.join("', '")}'`;
-		}
-		if (modify.length > 0) {
-			name += ` + modify dependencies '${modify.join("', '")}'`;
-		}
-
-		describe(name, () => {
-			const Prism = PrismLoader.createInstance([...optional, ...modify, lang]);
+		if (optional.length === 0) {
+			it('no optional dependencies', noop);
+		} else {
+			const Prism = await createInstance([lang, ...optional]);
 			testPatterns(Prism, lang);
-		});
-	}
+		}
+	});
 }
 
 /**
  * Tests all patterns in the given Prism instance.
  *
- * @param {any} Prism
+ * @param {import('../src/core/prism').Prism} Prism
  * @param {string} mainLanguage
  *
  * @typedef {import("./helper/util").LiteralAST} LiteralAST
@@ -85,8 +77,7 @@ function testPatterns(Prism, mainLanguage) {
 	 * @returns {string[]}
 	 */
 	function getRelevantLanguages() {
-		return [mainLanguage, ...toArray(languages[mainLanguage].modify)]
-			.filter(lang => lang in Prism.languages);
+		return [mainLanguage];
 	}
 
 	/**
@@ -110,19 +101,20 @@ function testPatterns(Prism, mainLanguage) {
 	 */
 	function forEachPattern(callback) {
 		const visited = new Set();
+		/** @type {(Error | string)[]} */
 		const errors = [];
 
 		/**
-		 * @param {object} root
+		 * @param {import('../src/types').Grammar} grammar
 		 * @param {string} rootStr
 		 */
-		function traverse(root, rootStr) {
-			if (visited.has(root)) {
+		function traverse(grammar, rootStr) {
+			if (visited.has(grammar)) {
 				return;
 			}
-			visited.add(root);
+			visited.add(grammar);
 
-			BFS(root, path => {
+			BFS(grammar, path => {
 				const { key, value } = path[path.length - 1];
 				const tokenPath = BFSPathToPrismTokenPath(path, rootStr);
 				visited.add(value);
@@ -133,7 +125,7 @@ function testPatterns(Prism, mainLanguage) {
 						try {
 							ast = parseRegex(value);
 						} catch (error) {
-							throw new SyntaxError(`Invalid RegExp at ${tokenPath}\n\n${error.message}`);
+							throw new SyntaxError(`Invalid RegExp at ${tokenPath}\n\n${asError(error).message}`);
 						}
 
 						const parent = path.length > 1 ? path[path.length - 2].value : undefined;
@@ -151,36 +143,41 @@ function testPatterns(Prism, mainLanguage) {
 							reportError: message => errors.push(message)
 						});
 					} catch (error) {
-						errors.push(error);
+						errors.push(asError(error));
 					}
 				}
 			});
 		}
 
 		// static analysis
-		traverse(Prism.languages, 'Prism.languages');
+		for (const id of Prism.components['entries'].keys()) {
+			const grammar = Prism.components.getLanguage(id);
+			if (grammar) {
+				traverse(grammar, id);
+			}
+		}
 
 		// dynamic analysis
 		for (const lang of getRelevantLanguages()) {
 			const snippets = testSnippets.get(lang);
-			const grammar = Prism.languages[lang];
+			const grammar = Prism.components.getLanguage(lang);
 
 			const oldTokenize = Prism.tokenize;
-			Prism.tokenize = function (_, grammar) {
-				const result = oldTokenize.apply(this, arguments);
+			Prism.tokenize = function (code, grammar) {
+				const result = oldTokenize.call(this, code, grammar);
 				traverse(grammar, lang + ': <Unknown>');
 				return result;
 			};
 
 			for (const snippet of (snippets || [])) {
-				Prism.highlight(snippet, grammar, lang);
+				Prism.highlight(snippet, lang, { grammar });
 			}
 
 			Prism.tokenize = oldTokenize;
 		}
 
 		if (errors.length > 0) {
-			throw new Error(errors.map(e => String(e.message || e)).join('\n\n'));
+			throw new Error(errors.map(e => typeof e === 'string' ? e : e.message).join('\n\n'));
 		}
 	}
 
@@ -284,6 +281,10 @@ function testPatterns(Prism, mainLanguage) {
 
 	it('- should have nice names and aliases', () => {
 		const niceName = /^[a-z][a-z\d]*(?:-[a-z\d]+)*$/;
+		/**
+		 * @param {string} name
+		 * @param {string} [desc]
+		 */
 		function testName(name, desc = 'token name') {
 			if (!niceName.test(name)) {
 				assert.fail(`The ${desc} '${name}' does not match ${niceName}.\n\n`
@@ -494,13 +495,24 @@ function withResultCache(cacheName, cacheKey, compute) {
 			compute(cacheKey);
 			cached = null;
 		} catch (error) {
-			cached = error;
+			cached = asError(error);
 		}
 		cache.set(cacheKey.raw, cached);
 	}
 
 	if (cached) {
 		throw cached;
+	}
+}
+
+/**
+ * @param {unknown} error
+ */
+function asError(error) {
+	if (error instanceof Error) {
+		return error;
+	} else {
+		return new Error(String(error));
 	}
 }
 
@@ -621,7 +633,11 @@ function checkExponentialBacktracking(path, pattern, ast) {
 				twoStar.quantify(2, Infinity);
 
 				if (!isDisjointWith(nfa, twoStar)) {
-					const word = Words.pickMostReadableWord(firstOf(getIntersectionWordSets(nfa, twoStar)));
+					const exampleWordSet = firstOf(getIntersectionWordSets(nfa, twoStar));
+					if (!exampleWordSet) {
+						return;
+					}
+					const word = Words.pickMostReadableWord(exampleWordSet);
 					const example = Words.fromUnicodeToString(word);
 					assert.fail(`${path}: The quantifier \`${node.raw}\` ambiguous for all words ${JSON.stringify(example)}.repeat(n) for any n>1.`
 						+ ` This will cause exponential backtracking.`
@@ -785,7 +801,7 @@ function indent(str, amount = '    ') {
 }
 
 /**
- * @param {(exec: RegExp["exec"]) => RegExp["exec"]} execSupplier
+ * @param {(exec: RegExp["exec"]) => (this: RegExp, input: string) => RegExpExecArray | null} execSupplier
  * @param {() => void} fn
  */
 function replaceRegExpProto(execSupplier, fn) {
@@ -794,6 +810,9 @@ function replaceRegExpProto(execSupplier, fn) {
 	const newExec = execSupplier(oldExec);
 
 	RegExp.prototype.exec = newExec;
+	/**
+	 * @param {string} input
+	 */
 	RegExp.prototype.test = function (input) {
 		return newExec.call(this, input) !== null;
 	};
@@ -810,20 +829,5 @@ function replaceRegExpProto(execSupplier, fn) {
 
 	if (error) {
 		throw error;
-	}
-}
-
-/**
- * @param {undefined | null | T | T[]} value
- * @returns {T[]}
- * @template T
- */
-function toArray(value) {
-	if (Array.isArray(value)) {
-		return value;
-	} else if (value != null) {
-		return [value];
-	} else {
-		return [];
 	}
 }
