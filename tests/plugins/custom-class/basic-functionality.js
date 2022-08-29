@@ -1,4 +1,4 @@
-const { createUtil, createScopedPrismDom } = require('../../helper/prism-dom-util');
+import { createScopedPrismDom, createUtil } from '../../helper/prism-dom-util';
 
 
 describe('Custom class', function () {

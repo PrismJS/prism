@@ -1,9 +1,7 @@
-'use strict';
-
-const { assert } = require('chai');
-const { languages } = require('../components.json');
-const PrismLoader = require('./helper/prism-loader');
-const TokenStreamTransformer = require('./helper/token-stream-transformer');
+import { assert } from 'chai';
+import { noop, toArray } from '../src/shared/util';
+import { createInstance, getComponent, getLanguageIds } from './helper/prism-loader';
+import { prettyprint } from './helper/token-stream-transformer';
 
 
 // This is where you can exclude a language from the identifier test.
@@ -16,7 +14,7 @@ const TokenStreamTransformer = require('./helper/token-stream-transformer');
 // The actual identifiers for all identifier types are defined in the `identifiers` variable.
 
 /**
- * @type {Partial<Record<keyof import("../components.json")["languages"], IdentifierTestOptions>>}
+ * @type {Partial<Record<string, IdentifierTestOptions>>}
  *
  * @typedef IdentifierTestOptions
  * @property {boolean} [word=true]
@@ -96,59 +94,24 @@ const identifiers = {
 // Below is the implementation of the test.
 // If you only came here to exclude a language, you won't find anything below.
 
-
-/** @type {Record<string, string>} */
-const aliasMap = {};
-for (const name in languages) {
-	const element = languages[name];
-	if (element.alias) {
-		if (Array.isArray(element.alias)) {
-			element.alias.forEach(a => {
-				aliasMap[a] = name;
-			});
-		} else {
-			aliasMap[element.alias] = name;
-		}
-	}
-}
-
-for (const lang in languages) {
-	if (lang === 'meta') {
-		continue;
-	}
-
-	describe(`Test '${lang}'`, () => {
-		const Prism = PrismLoader.createInstance(lang);
+for (const lang in getLanguageIds()) {
+	describe(`Test '${lang}'`, async () => {
+		const Prism = await createInstance(lang);
 		testLiterals(Prism, lang);
 	});
 
-	function toArray(value) {
-		if (Array.isArray(value)) {
-			return value;
-		} else if (value != null) {
-			return [value];
+
+	describe(`Patterns of '${lang}' with optional dependencies`, async () => {
+		const component = await getComponent(lang);
+		const optional = toArray(component.optional);
+
+		if (optional.length === 0) {
+			it('no optional dependencies', noop);
 		} else {
-			return [];
-		}
-	}
-
-	const optional = toArray(languages[lang].optional);
-	const modify = toArray(languages[lang].modify);
-
-	if (optional.length > 0 || modify.length > 0) {
-		let name = `Test '${lang}'`;
-		if (optional.length > 0) {
-			name += ` + optional dependencies '${optional.join("', '")}'`;
-		}
-		if (modify.length > 0) {
-			name += ` + modify dependencies '${modify.join("', '")}'`;
-		}
-
-		describe(name, () => {
-			const Prism = PrismLoader.createInstance([...optional, ...modify, lang]);
+			const Prism = await createInstance([lang, ...optional]);
 			testLiterals(Prism, lang);
-		});
-	}
+		}
+	});
 }
 
 /**
@@ -156,7 +119,7 @@ for (const lang in languages) {
  * @returns {IdentifierTestOptions}
  */
 function getOptions(lang) {
-	return testOptions[aliasMap[lang] || lang] || {};
+	return testOptions[lang] || {};
 }
 
 /**
@@ -180,7 +143,7 @@ function isNotBroken(token) {
 /**
  * Tests all patterns in the given Prism instance.
  *
- * @param {any} Prism
+ * @param {import('../src/core/prism').Prism} Prism
  * @param {string} lang
  */
 function testLiterals(Prism, lang) {
@@ -190,13 +153,13 @@ function testLiterals(Prism, lang) {
 	 * @param {keyof IdentifierTestOptions} identifierType
 	 */
 	function matchNotBroken(identifierElements, identifierType) {
-		for (const name in Prism.languages) {
-			const grammar = Prism.languages[name];
-			if (typeof grammar !== 'object') {
+		for (const id of Prism.components['entries'].keys()) {
+			const grammar = Prism.components.getLanguage(id);
+			if (!grammar) {
 				continue;
 			}
 
-			const options = getOptions(name);
+			const options = getOptions(id);
 			if (options[identifierType] === false) {
 				continue;
 			}
@@ -206,9 +169,9 @@ function testLiterals(Prism, lang) {
 
 				if (!isNotBroken(tokens)) {
 					assert.fail(
-						`${name}: Failed to tokenize the ${identifierType} '${ident}' as one or no token.\n` +
+						`${id}: Failed to tokenize the ${identifierType} '${ident}' as one or no token.\n` +
 						'Actual token stream:\n\n' +
-						TokenStreamTransformer.prettyprint(tokens) +
+						prettyprint(tokens) +
 						'\n\n' +
 						'How to fix this:\n' +
 						'If your language failed any of the identifier tests then some patterns in your language can break identifiers. ' +

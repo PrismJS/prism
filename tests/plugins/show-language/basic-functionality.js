@@ -1,5 +1,5 @@
-const { assert } = require('chai');
-const { createScopedPrismDom } = require('../../helper/prism-dom-util');
+import { assert } from 'chai';
+import { createScopedPrismDom } from '../../helper/prism-dom-util';
 
 
 describe('Show language', function () {
@@ -9,6 +9,10 @@ describe('Show language', function () {
 	});
 
 
+	/**
+	 * @param {string} expectedLanguage
+	 * @param {string} code
+	 */
 	function test(expectedLanguage, code) {
 		document.body.innerHTML = code;
 		Prism.highlightAll();

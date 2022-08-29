@@ -1,17 +1,14 @@
 const { assert } = require('chai');
 const fs = require('fs');
 const { Parser } = require('htmlparser2');
-// use the JSON file because this file is less susceptible to merge conflicts
-const { languages } = require('../components.json');
+const { getLanguageIds } = require('./helper/prism-loader');
 
 
 describe('Examples', () => {
-
-	const exampleFiles = new Set(fs.readdirSync(__dirname + '/../examples'));
+	const exampleFiles = new Set(fs.readdirSync(__dirname + '/../website/examples'));
 	const ignore = new Set([
 		// these are libraries and not languages
 		'markup-templating',
-		't4-templating',
 		// this does alter some languages but it's mainly a library
 		'javadoclike'
 	]);
@@ -19,11 +16,7 @@ describe('Examples', () => {
 
 	/** @type {string[]} */
 	const missing = [];
-	for (const lang in languages) {
-		if (lang === 'meta') {
-			continue;
-		}
-
+	for (const lang in getLanguageIds()) {
 		const file = `prism-${lang}.html`;
 		if (!exampleFiles.has(file)) {
 			if (!ignore.has(lang)) {
@@ -35,7 +28,6 @@ describe('Examples', () => {
 	}
 
 	const superfluous = [...exampleFiles].filter(f => !validFiles.has(f));
-
 
 	it('- should be available for every language', () => {
 		assert.isEmpty(missing, 'Following languages do not have an example file in ./examples/\n'
@@ -55,7 +47,6 @@ describe('Examples', () => {
 			});
 		}
 	});
-
 });
 
 
@@ -100,7 +91,7 @@ async function validateHTML(html) {
 			assert.isEmpty(node.rawText.trim(), 'All non-whitespace text has to be in <p> tags.');
 		} else {
 			// only known tags
-			assert.match(node.tagName, /^(?:h2|h3|ol|p|pre|ul)$/, 'Only some tags are allowed as top level tags.');
+			assert.match(node.tagName ?? '', /^(?:h2|h3|ol|p|pre|ul)$/, 'Only some tags are allowed as top level tags.');
 
 			// <pre> elements must have only one child, a <code> element
 			if (node.tagName === 'pre') {

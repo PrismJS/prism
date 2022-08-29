@@ -1,6 +1,5 @@
-const { assert } = require('chai');
+import { assert } from 'chai';
 const components = require('../components.json');
-const getLoader = require('../dependencies');
 
 
 describe('Dependency logic', () => {

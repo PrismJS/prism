@@ -1,5 +1,5 @@
-const { assert } = require('chai');
-const { createScopedPrismDom } = require('../../helper/prism-dom-util');
+import { assert } from 'chai';
+import { createScopedPrismDom } from '../../helper/prism-dom-util';
 
 
 describe('Keep Markup', function () {

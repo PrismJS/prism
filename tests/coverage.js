@@ -1,13 +1,8 @@
-'use strict';
-
-const { assert } = require('chai');
-const components = require('../components.json');
-const PrismLoader = require('./helper/prism-loader');
-const TestCase = require('./helper/test-case');
-const TestDiscovery = require('./helper/test-discovery');
-const { BFS, BFSPathToPrismTokenPath } = require('./helper/util');
-const ALL_LANGUAGES = [...Object.keys(components.languages).filter(k => k !== 'meta')];
-
+import { assert } from 'chai';
+import * as PrismLoader from './helper/prism-loader';
+import {} from './helper/test-case';
+import { loadAllTests } from './helper/test-discovery';
+import { BFS, BFSPathToPrismTokenPath } from './helper/util';
 
 describe('Pattern test coverage', () => {
 	/**
@@ -22,10 +17,9 @@ describe('Pattern test coverage', () => {
 
 	/**
 	 * @param {string | string[]} languages
-	 * @returns {import("./helper/prism-loader").Prism}
 	 */
-	function createInstance(languages) {
-		const Prism = PrismLoader.createInstance(languages);
+	async function createInstance(languages) {
+		const Prism = await PrismLoader.createInstance(languages);
 
 		BFS(Prism.languages, (path, object) => {
 			const { key, value } = path[path.length - 1];
@@ -67,13 +61,13 @@ describe('Pattern test coverage', () => {
 			this.slow(10 * 1000);
 			// This will cause ALL regexes of Prism to be registered in the patterns map.
 			// (Languages that don't have any tests can't be caught otherwise.)
-			createInstance(ALL_LANGUAGES);
+			createInstance(PrismLoader.getLanguageIds());
 		});
 	});
 
 	describe('Run all language tests', () => {
 		// define tests for all tests in all languages in the test suite
-		for (const [languageIdentifier, files] of TestDiscovery.loadAllTests()) {
+		for (const [languageIdentifier, files] of loadAllTests()) {
 			it(languageIdentifier, function () {
 				this.timeout(10 * 1000);
 
@@ -95,7 +89,7 @@ describe('Pattern test coverage', () => {
 	});
 
 	describe('Coverage', () => {
-		for (const language of ALL_LANGUAGES) {
+		for (const language of PrismLoader.getLanguageIds()) {
 			describe(language, () => {
 				it(`- should cover all patterns`, () => {
 					const untested = getAllOf(language).filter(d => d.matches.length === 0);
