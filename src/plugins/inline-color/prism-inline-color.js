@@ -1,7 +1,7 @@
 import cssExtras from '../../languages/prism-css-extras';
+import { MARKUP_TAG } from '../../shared/languages/patterns';
 
-// Copied from the markup language definition
-const HTML_TAG = /<\/?(?!\d)[^\s>\/=$<%]+(?:\s(?:\s*[^\s>\/=]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+(?=[\s>]))|(?=[\s/>])))+)?\s*\/?>/g;
+const HTML_TAG = RegExp(MARKUP_TAG, 'g');
 
 // a regex to validate hexadecimal colors
 const HEX_COLOR = /^#?((?:[\da-f]){3,4}|(?:[\da-f]{2}){3,4})$/i;

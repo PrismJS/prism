@@ -1,3 +1,5 @@
+import { MARKUP_TAG } from '../shared/languages/patterns';
+
 /**
  * Adds an inlined language to markup.
  *
@@ -126,7 +128,7 @@ export default /** @type {import("../types").LanguageProto<'markup'>} */ ({
 				greedy: true
 			},
 			'tag': {
-				pattern: /<\/?(?!\d)[^\s>\/=$<%]+(?:\s(?:\s*[^\s>\/=]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s'">=]+(?=[\s>]))|(?=[\s/>])))+)?\s*\/?>/,
+				pattern: MARKUP_TAG,
 				greedy: true,
 				inside: {
 					'tag': {

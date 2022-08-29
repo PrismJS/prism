@@ -1,4 +1,5 @@
 import { insertBefore } from '../shared/language-util';
+import { MARKUP_TAG } from '../shared/languages/patterns';
 import markup from './prism-markup';
 
 export default /** @type {import("../types").LanguageProto<'markdown'>} */ ({
@@ -268,7 +269,7 @@ export default /** @type {import("../types").LanguageProto<'markdown'>} */ ({
 		return markdown;
 	},
 	effect(Prism) {
-		const tagPattern = RegExp(Prism.components.getLanguage('markup').tag.pattern.source, 'gi');
+		const tagPattern = RegExp(MARKUP_TAG, 'gi');
 
 		/**
 		 * A list of known entity names.
