@@ -10,15 +10,18 @@ background-color: blue;
 	["punctuation", ":"],
 	" red",
 	["punctuation", ";"],
+
 	["property", "background-color"],
 	["punctuation", ":"],
 	" blue",
 	["punctuation", ";"],
+
 	["property", "-webkit-transform"],
 	["punctuation", ":"],
 	" none",
 	["punctuation", ";"],
-	["property", "--ötökkä"],
+
+	["variable", "--ötökkä"],
 	["punctuation", ":"],
 	" 2",
 	["punctuation", ";"]
