@@ -1,9 +1,9 @@
 import { assert } from 'chai';
 import fs from 'fs';
-import path from 'path';
 import * as Prettier from 'prettier';
 import { createInstance } from './prism-loader';
 import * as TokenStreamTransformer from './token-stream-transformer';
+import { getLeadingSpaces } from './util';
 
 /**
  * @typedef {import("./token-stream-transformer").TokenStream} TokenStream
@@ -125,9 +125,9 @@ export class TestCaseFile {
 		const file = new TestCaseFile(code.trim(), expected.trim(), description.trim());
 		file.eol = /** @type {"\r\n" | "\n"} */ (eol);
 
-		const codeStartSpaces = /^\s*/.exec(code)[0];
-		const expectedStartSpaces = /^\s*/.exec(expected)[0];
-		const descriptionStartSpaces = /^\s*/.exec(description)[0];
+		const codeStartSpaces = getLeadingSpaces(code);
+		const expectedStartSpaces = getLeadingSpaces(expected);
+		const descriptionStartSpaces = getLeadingSpaces(description);
 
 		const codeLineCount = code.split(/\r\n/).length;
 		const expectedLineCount = expected.split(/\r\n/).length;
@@ -218,7 +218,7 @@ class TokenizeJSONRunner {
 		// The index is in the raw expected token stream JSON of the test case.
 		const diffIndex = translateIndexIgnoreSpaces(expected, expectedString, difference);
 
-		assert.deepEqual(simplifiedActual, simplifiedExpected, message(diffIndex));
+		assert.deepEqual(simplifiedActual, simplifiedExpected, message(diffIndex ?? 0));
 	}
 }
 
@@ -402,6 +402,7 @@ export async function runTestCaseWithRunner(languageIdentifier, filePath, update
  */
 export function parseLanguageNames(languageIdentifier) {
 	let languages = languageIdentifier.split('+');
+	/** @type {string | null} */
 	let mainLanguage = null;
 
 	languages = languages.map(

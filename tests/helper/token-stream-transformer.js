@@ -1,3 +1,5 @@
+import { getLeadingSpaces, getTrailingSpaces } from './util';
+
 /**
  * @typedef TokenStreamItem
  * @property {string} type
@@ -5,10 +7,10 @@
  *
  * @typedef {Array<string|TokenStreamItem>} TokenStream
  *
- * @typedef {Array<string | [string, string | Array]>} SimplifiedTokenStream
+ * @typedef {Array<string | [string, string | SimplifiedTokenStream]>} SimplifiedTokenStream
  *
  * @typedef {Array<PrettyTokenStreamItem>} PrettyTokenStream
- * @typedef {string | LineBreakItem | GlueItem | [string, string | Array]} PrettyTokenStreamItem
+ * @typedef {string | LineBreakItem | GlueItem | [string, string | PrettyTokenStream]} PrettyTokenStreamItem
  */
 
 /**
@@ -28,7 +30,7 @@ export function simplify(tokenStream) {
 
 	/**
 	 * @param {string | TokenStreamItem} value
-	 * @returns {string | [string, string | Array]}
+	 * @returns {string | [string, string | SimplifiedTokenStream]}
 	 */
 	function innerSimple(value) {
 		if (typeof value === 'object') {
@@ -89,14 +91,14 @@ function toPrettyTokenStream(tokenStream, level = 0) {
 				}
 			} else {
 				// might start with line breaks
-				const startLineBreaks = countLineBreaks(/^\s*/.exec(token)[0]);
+				const startLineBreaks = countLineBreaks(getLeadingSpaces(token));
 				if (startLineBreaks > 0) {
 					prettyStream.push(new LineBreakItem(startLineBreaks));
 				}
 
 				prettyStream.push(token);
 
-				const endLineBreaks = countLineBreaks(/\s*$/.exec(token)[0]);
+				const endLineBreaks = countLineBreaks(getTrailingSpaces(token));
 				if (endLineBreaks > 0) {
 					prettyStream.push(new LineBreakItem(endLineBreaks));
 				}
@@ -107,7 +109,7 @@ function toPrettyTokenStream(tokenStream, level = 0) {
 	}
 	/**
 	 * @param {TokenStreamItem} value
-	 * @returns {[string, string | Array]}
+	 * @returns {[string, string | PrettyTokenStream]}
 	 */
 	function innerSimple(value) {
 		if (Array.isArray(value.content)) {

@@ -17,17 +17,19 @@ const astCache = new Map();
  * Performs a breadth-first search on the given start element.
  *
  * @param {any} start
- * @param {(path: { key: string, value: any }[], obj: Record<string, any>) => void} callback
+ * @param {(path: PathItem[], obj: Record<string, any>) => void} callback
+ *
+ * @typedef {{ key: string | null, value: any }} PathItem
  */
 export function BFS(start, callback) {
 	const visited = new Set();
-	/** @type {{ key: string, value: any }[][]} */
+	/** @type {PathItem[][]} */
 	let toVisit = [
 		[{ key: null, value: start }]
 	];
 
 	while (toVisit.length > 0) {
-		/** @type {{ key: string, value: any }[][]} */
+		/** @type {PathItem[][]} */
 		const newToVisit = [];
 
 		for (const path of toVisit) {
@@ -58,7 +60,7 @@ export function BFS(start, callback) {
  * Given the `BFS` path given to `BFS` callbacks, this will return the Prism language token path of the current
  * value (e.g. `Prism.languages.xml.tag.pattern`).
  *
- * @param {readonly{ key: string, value: any }[]} path
+ * @param {readonly PathItem[]} path
  * @param {string} [root]
  * @returns {string}
  */
@@ -94,4 +96,17 @@ export function parseRegex(regex) {
 		astCache.set(key, literal);
 	}
 	return literal;
+}
+
+/**
+ * @param {string} string
+ */
+export function getLeadingSpaces(string) {
+	return /^\s*/.exec(string)?.[0] ?? '';
+}
+/**
+ * @param {string} string
+ */
+export function getTrailingSpaces(string) {
+	return /\s*$/.exec(string)?.[0] ?? '';
 }
