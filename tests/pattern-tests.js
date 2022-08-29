@@ -3,8 +3,8 @@ import { JS, NFA, Transformers, Words, combineTransformers, getIntersectionWordS
 import RAA from 'regexp-ast-analysis';
 import { visitRegExpAST } from 'regexpp';
 import scslre from 'scslre';
-import { argv } from 'yargs';
 import { noop, toArray } from '../src/shared/util';
+import * as args from './helper/args';
 import { createInstance, getComponent, getLanguageIds } from './helper/prism-loader';
 import { TestCaseFile, parseLanguageNames } from './helper/test-case';
 import { loadAllTests } from './helper/test-discovery';
@@ -30,9 +30,9 @@ for (const [languageIdentifier, files] of testSuite) {
 	}
 }
 
-
+const argsLanguage = new Set(toArray(args.language));
 for (const lang of getLanguageIds()) {
-	if (!!argv.language && lang !== argv.language) {
+	if (!argsLanguage.has(lang)) {
 		continue;
 	}
 

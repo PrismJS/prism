@@ -1,15 +1,14 @@
 import path from 'path';
-import { argv } from 'yargs';
+import { language, update } from './helper/args';
 import * as TestCase from './helper/test-case';
 import * as TestDiscovery from './helper/test-discovery';
 
 const testSuite =
-	(argv.language)
-		? TestDiscovery.loadSomeTests(argv.language)
+	language
+		? TestDiscovery.loadSomeTests(language)
 		// load complete test suite
 		: TestDiscovery.loadAllTests();
 
-const update = !!argv.update;
 
 // define tests for all tests in all languages in the test suite
 for (const [languageIdentifier, files] of testSuite) {
