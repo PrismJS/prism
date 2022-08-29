@@ -66,7 +66,7 @@ export default /** @type {import("../types").LanguageProto<'javascript'>} */ ({
 
 		insertBefore(javascript, 'comment', {
 			'doc-comment': {
-				pattern: /\/\*\*[^/][\s\S]*?(?:\*\/|$)/,
+				pattern: /\/\*\*(?!\/)[\s\S]*?(?:\*\/|$)/,
 				greedy: true,
 				inside: 'jsdoc'
 			}

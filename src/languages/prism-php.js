@@ -43,7 +43,7 @@ export default /** @type {import("../types").LanguageProto<'php'>} */ ({
 				alias: 'important'
 			},
 			'doc-comment': {
-				pattern: /\/\*\*[\s\S]*?\*\//,
+				pattern: /\/\*\*(?!\/)[\s\S]*?\*\//,
 				greedy: true,
 				alias: 'comment',
 				inside: 'php-doc'
