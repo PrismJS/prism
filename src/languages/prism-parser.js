@@ -74,5 +74,7 @@ export default /** @type {import("../types").LanguageProto<'parser'>} */ ({
 				alias: 'punctuation'
 			}
 		});
+
+		return parser;
 	}
 });
