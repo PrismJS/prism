@@ -22,7 +22,10 @@ export function addHooks(hooks, hooksMap) {
 
 	for (const name in hooksMap) {
 		if (Object.hasOwnProperty.call(hooksMap, name)) {
-			callbacks.push(hooks.add(name, hooksMap[name]));
+			const hook = hooksMap[/** @type {keyof hooksMap} */ (name)];
+			if (hook) {
+				callbacks.push(hooks.add(name, /** @type {any} */ (hook)));
+			}
 		}
 	}
 
