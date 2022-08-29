@@ -38,6 +38,9 @@
 	"license": "MIT",
 	"readmeFilename": "README.md",
 	"devDependencies": {
+		"@babel/core": "^7.18.13",
+		"@babel/preset-env": "^7.18.10",
+		"@babel/register": "^7.18.9",
 		"@types/node-fetch": "^2.5.5",
 		"@typescript-eslint/eslint-plugin": "^5.35.1",
 		"@typescript-eslint/parser": "^5.35.1",
