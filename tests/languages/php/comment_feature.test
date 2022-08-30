@@ -16,7 +16,7 @@ bar */
 	["comment", "/* foo\r\nbar */"],
 	["comment", "/* <me@example.com> */"],
 	["comment", "/**/"],
-	["comment", "/** doc comment */"],
+	["doc-comment", "/** doc comment */"],
 	["comment", "#"],
 	["comment", "# foobar"]
 ]

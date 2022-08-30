@@ -46,7 +46,7 @@ export default /** @type {import("../types").LanguageProto<'php'>} */ ({
 				pattern: /\/\*\*(?!\/)[\s\S]*?\*\//,
 				greedy: true,
 				alias: 'comment',
-				inside: 'php-doc'
+				inside: 'phpdoc'
 			},
 			'comment': comment,
 			'variable': /\$+(?:\w+\b|(?=\{))/,
