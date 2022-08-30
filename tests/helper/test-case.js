@@ -407,9 +407,7 @@ export function parseLanguageNames(languageIdentifier) {
 
 	languages = languages.map(
 		(language) => {
-			const pos = language.indexOf('!');
-
-			if (-1 < pos) {
+			if (language.includes('!')) {
 				if (mainLanguage) {
 					throw 'There are multiple main languages defined.';
 				}

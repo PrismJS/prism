@@ -67,7 +67,7 @@ export function directoryMatches(directory, languages) {
 		languages = [languages];
 	}
 	const dirLanguages = directory.split(/!?\+!?/);
-	return dirLanguages.some(lang => languages.indexOf(lang) >= 0);
+	return dirLanguages.some(lang => languages.includes(lang));
 }
 
 

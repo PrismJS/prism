@@ -148,7 +148,7 @@ async function changes() {
 	function notGenerated(change) {
 		return !change.file.endsWith('.min.js')
 			&& !change.file.startsWith('docs/')
-			&& ['prism.js', 'components.js', 'package-lock.json'].indexOf(change.file) === -1;
+			&& !['prism.js', 'components.js', 'package-lock.json'].includes(change.file);
 	}
 	/** @param {CommitChange} change */
 	function notPartlyGenerated(change) {
@@ -313,7 +313,7 @@ async function changes() {
 					// a .something file
 					return true;
 				}
-				return ['bower.json', 'CNAME', 'composer.json', 'package.json', 'package-lock.json'].indexOf(c.file) >= 0;
+				return ['bower.json', 'CNAME', 'composer.json', 'package.json', 'package-lock.json'].includes(c.file);
 			})) {
 				addEntry('Other >> Infrastructure', info);
 				return true;

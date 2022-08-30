@@ -208,7 +208,7 @@ export default /** @type {import("../types").LanguageProto<'graphql'>} */ ({
 							// give references to input variables a special alias
 							for (let i = currentIndex; i < mutationEnd; i++) {
 								const varToken = validTokens[i];
-								if (varToken.type === 'variable' && inputVariables.indexOf(varToken.content) >= 0) {
+								if (varToken.type === 'variable' && inputVariables.includes(varToken.content)) {
 									addAlias(varToken, 'variable-input');
 								}
 							}

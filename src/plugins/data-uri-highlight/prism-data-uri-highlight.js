@@ -46,7 +46,7 @@ export default /** @type {import("../../types").PluginProto<'data-uri-highlight'
 				}
 
 				Prism.languages.DFS(grammar, function (key, def, type) {
-					if (candidates.indexOf(type) > -1 && !Array.isArray(def)) {
+					if (candidates.includes(type) && !Array.isArray(def)) {
 						if (!def.pattern) {
 							def = this[key] = {
 								pattern: def

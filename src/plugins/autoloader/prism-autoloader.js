@@ -128,7 +128,7 @@ export default /** @type {import("../../types").PluginProto<'autoloader'>} */ ({
 		 * @returns {boolean}
 		 */
 		function isLoaded(lang) {
-			if (lang.indexOf('!') >= 0) {
+			if (lang.includes('!')) {
 				// forced reload
 				return false;
 			}
@@ -207,7 +207,7 @@ export default /** @type {import("../../types").PluginProto<'autoloader'>} */ ({
 		 * @param {() => void} [error]
 		 */
 		function loadLanguage(lang, success, error) {
-			const force = lang.indexOf('!') >= 0;
+			const force = lang.includes('!');
 
 			lang = lang.replace('!', '');
 			lang = lang_aliases[lang] || lang;

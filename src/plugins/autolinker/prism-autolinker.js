@@ -20,7 +20,7 @@ export default /** @type {import("../../types").PluginProto<'autolinker'>} */ ({
 					return;
 				}
 				Prism.languages.DFS(grammar, function (key, def, type) {
-					if (candidates.indexOf(type) > -1 && !Array.isArray(def)) {
+					if (candidates.includes(type) && !Array.isArray(def)) {
 						if (!def.pattern) {
 							def = this[key] = {
 								pattern: def
@@ -56,7 +56,7 @@ export default /** @type {import("../../types").PluginProto<'autolinker'>} */ ({
 
 				let href = env.content;
 
-				if (env.type == 'email-link' && href.indexOf('mailto:') != 0) {
+				if (env.type == 'email-link' && !href.startsWith('mailto:')) {
 					href = 'mailto:' + href;
 				} else if (env.type == 'md-link') {
 					// Markdown

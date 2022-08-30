@@ -73,7 +73,7 @@ export default /** @type {import("../../types").PluginProto<'wpd'>} */ ({
 			let href = 'https://webplatform.github.io/docs/';
 			let content = env.content;
 
-			if (content.indexOf('<') !== -1) {
+			if (content.includes('<')) {
 				return;
 			}
 
