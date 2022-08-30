@@ -10,7 +10,7 @@ import markup from './prism-markup';
  * @returns {RegExp}
  */
 function getPlaceholderPattern(language) {
-	return RegExp(`___${regexEscape(language)}\\d+___`);
+	return RegExp(`___${regexEscape(language.toUpperCase())}\\d+___`);
 }
 
 /**
@@ -63,7 +63,7 @@ export class MarkupTemplating {
 
 			// Check for existing strings
 			if (hasPlaceholderLike) {
-				while (env.code.indexOf(getPlaceholder(this.language, i)) !== -1) {
+				while (env.code.includes(getPlaceholder(this.language, i))) {
 					++i;
 				}
 			}
