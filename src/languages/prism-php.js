@@ -349,7 +349,7 @@ export default /** @type {import("../types").LanguageProto<'php'>} */ ({
 	},
 	effect(Prism) {
 		const templating = new MarkupTemplating(this.id, Prism);
-		const phpPattern = /\{\*[\s\S]*?\*\}|\{[^'"\s{}*](?:[^"'/{}]|\/(?![*/])|("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|\/\*(?:[^*]|\*(?!\/))*\*\/)*\}/g;
+		const phpPattern = /<\?(?:[^"'/#]|\/(?![*/])|("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|(?:\/\/|#(?!\[))(?:[^?\n\r]|\?(?!>))*(?=$|\?>|[\r\n])|#\[|\/\*(?:[^*]|\*(?!\/))*(?:\*\/|$))*?(?:\?>|$)/g;
 
 		return addHooks(Prism.hooks, {
 			'before-tokenize': env => {
