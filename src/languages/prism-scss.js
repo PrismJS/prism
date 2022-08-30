@@ -5,7 +5,6 @@ import css from './prism-css';
 export default /** @type {import("../types").LanguageProto<'scss'>} */ ({
 	id: 'scss',
 	require: css,
-	optional: 'css-extras',
 	grammar({ extend }) {
 		const scss = extend('css', {
 			'comment': {

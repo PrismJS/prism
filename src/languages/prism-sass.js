@@ -4,7 +4,6 @@ import css from './prism-css';
 export default /** @type {import("../types").LanguageProto<'sass'>} */ ({
 	id: 'sass',
 	require: css,
-	optional: 'css-extras',
 	grammar({ extend }) {
 		const sass = extend('css', {
 			// Sass comments don't need to be closed, only indented

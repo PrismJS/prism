@@ -7,7 +7,6 @@ import markup from './prism-markup';
 export default /** @type {import("../types").LanguageProto<'jsx'>} */ ({
 	id: 'jsx',
 	require: [markup, javascript],
-	optional: ['js-extras', 'js-templates'],
 	grammar({ extend }) {
 		const space = /(?:\s|\/\/.*(?!.)|\/\*(?:[^*]|\*(?!\/))\*\/)/.source;
 		const braces = /(?:\{(?:\{(?:\{[^{}]*\}|[^{}])*\}|[^{}])*\})/.source;

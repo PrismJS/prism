@@ -5,7 +5,6 @@ import javascript from './prism-javascript';
 export default /** @type {import("../types").LanguageProto<'typescript'>} */ ({
 	id: 'typescript',
 	require: javascript,
-	optional: 'js-templates',
 	alias: 'ts',
 	grammar({ extend }) {
 		/** @type {import('../types').Grammar} */

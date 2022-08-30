@@ -5,7 +5,6 @@ import markup from './prism-markup';
 export default /** @type {import("../types").LanguageProto<'markdown'>} */ ({
 	id: 'markdown',
 	require: markup,
-	optional: 'yaml',
 	alias: 'md',
 	grammar({ extend }) {
 		// Allow only one line break
