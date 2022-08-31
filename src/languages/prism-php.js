@@ -1,10 +1,11 @@
-import { addHooks } from '../shared/hooks-util';
 import { insertBefore } from '../shared/language-util';
-import markupTemplating, { MarkupTemplating } from './prism-markup-templating';
+import { embeddedIn } from '../shared/languages/templating';
+import { tokenize } from '../shared/symbols';
+import markup from './prism-markup';
 
 export default /** @type {import("../types").LanguageProto<'php'>} */ ({
 	id: 'php',
-	require: markupTemplating,
+	require: markup,
 	optional: 'php-extras',
 	grammar({ getOptionalLanguage }) {
 		/**
@@ -345,23 +346,19 @@ export default /** @type {import("../types").LanguageProto<'php'>} */ ({
 			insertBefore(php, 'variable', extras);
 		}
 
-		return php;
-	},
-	effect(Prism) {
-		const templating = new MarkupTemplating(this.id, Prism);
-		const phpPattern = /<\?(?:[^"'/#]|\/(?![*/])|("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|(?:\/\/|#(?!\[))(?:[^?\n\r]|\?(?!>))*(?=$|\?>|[\r\n])|#\[|\/\*(?:[^*]|\*(?!\/))*(?:\*\/|$))*?(?:\?>|$)/g;
-
-		return addHooks(Prism.hooks, {
-			'before-tokenize': env => {
-				if (!/<\?/.test(env.code)) {
-					return;
+		const embedded = embeddedIn('markup');
+		return {
+			'php': {
+				pattern: /<\?(?:[^"'/#]|\/(?![*/])|("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|(?:\/\/|#(?!\[))(?:[^?\n\r]|\?(?!>))*(?=$|\?>|[\r\n])|#\[|\/\*(?:[^*]|\*(?!\/))*(?:\*\/|$))*?(?:\?>|$)/,
+				inside: php
+			},
+			[tokenize]: (code, grammar, Prism) => {
+				if (!/<\?/.test(code)) {
+					return Prism.tokenize(code, php);
 				}
 
-				templating.buildPlaceholders(env, phpPattern);
-			},
-			'after-tokenize': env => {
-				templating.tokenizePlaceholders(env);
+				return embedded(code, grammar, Prism);
 			}
-		});
+		};
 	}
 });

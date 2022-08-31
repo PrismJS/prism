@@ -1,5 +1,5 @@
 import { getLanguage, setLanguage } from '../shared/dom-util';
-import { rest } from '../shared/symbols';
+import { rest, tokenize } from '../shared/symbols';
 import { htmlEncode } from '../shared/util';
 import { Hooks } from './hooks';
 import { LinkedList } from './linked-list';
@@ -201,6 +201,11 @@ export class Prism {
 		while (restGrammar) {
 			grammar = { ...grammar, ...restGrammar };
 			restGrammar = resolve(this.components, restGrammar[rest]);
+		}
+
+		const customTokenize = grammar[tokenize];
+		if (customTokenize) {
+			return customTokenize(text, grammar, this);
 		}
 
 		/** @type {LinkedList<string | Token>} */

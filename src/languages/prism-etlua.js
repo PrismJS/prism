@@ -1,21 +1,25 @@
+import { embeddedIn } from '../shared/languages/templating';
+import { tokenize } from '../shared/symbols';
 import lua from './prism-lua';
-import markupTemplating, { MarkupTemplating } from './prism-markup-templating';
+import markup from './prism-markup';
 
 export default /** @type {import("../types").LanguageProto<'etlua'>} */ ({
 	id: 'etlua',
-	require: [lua, markupTemplating],
+	require: [lua, markup],
 	grammar: {
-		'delimiter': {
-			pattern: /^<%[-=]?|-?%>$/,
-			alias: 'punctuation'
+		'etlua': {
+			pattern: /<%[\s\S]+?%>/,
+			inside: {
+				'delimiter': {
+					pattern: /^<%[-=]?|-?%>$/,
+					alias: 'punctuation'
+				},
+				'language-lua': {
+					pattern: /[\s\S]+/,
+					inside: 'lua'
+				}
+			}
 		},
-		'language-lua': {
-			pattern: /[\s\S]+/,
-			inside: 'lua'
-		}
-	},
-	effect(Prism) {
-		const pattern = /<%[\s\S]+?%>/g;
-		return new MarkupTemplating(this.id, Prism).addHooks(pattern);
+		[tokenize]: embeddedIn('markup')
 	}
 });
