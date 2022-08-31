@@ -1,4 +1,5 @@
 import { insertBefore } from '../shared/language-util';
+import { JS_TEMPLATE, JS_TEMPLATE_INTERPOLATION } from '../shared/languages/patterns';
 import { rest } from '../shared/symbols';
 import clike from './prism-clike';
 
@@ -142,7 +143,7 @@ export default /** @type {import("../types").LanguageProto<'javascript'>} */ ({
 				alias: 'comment'
 			},
 			'template-string': {
-				pattern: /`(?:\\[\s\S]|\$\{(?:[^{}]|\{(?:[^{}]|\{[^}]*\})*\})+\}|(?!\$\{)[^\\`])*`/,
+				pattern: JS_TEMPLATE,
 				greedy: true,
 				inside: {
 					'template-punctuation': {
@@ -150,7 +151,7 @@ export default /** @type {import("../types").LanguageProto<'javascript'>} */ ({
 						alias: 'string'
 					},
 					'interpolation': {
-						pattern: /((?:^|[^\\])(?:\\{2})*)\$\{(?:[^{}]|\{(?:[^{}]|\{[^}]*\})*\})+\}/,
+						pattern: RegExp(/((?:^|[^\\])(?:\\{2})*)/.source + JS_TEMPLATE_INTERPOLATION.source),
 						lookbehind: true,
 						inside: {
 							'interpolation-punctuation': {
