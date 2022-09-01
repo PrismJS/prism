@@ -1,4 +1,6 @@
 import { getTextContent } from '../core/token';
+import { withoutTokenize } from '../shared/language-util';
+import { tokenize } from '../shared/symbols';
 
 /** @typedef {import("../core/token").Token} Token */
 
@@ -135,24 +137,21 @@ export default /** @type {import("../types").LanguageProto<'naniscript'>} */ ({
 						}
 					},
 				}
+			},
+
+			[tokenize](code, grammar, Prism) {
+				const tokens = Prism.tokenize(code, withoutTokenize(grammar));
+				tokens.forEach((token) => {
+					if (typeof token !== 'string' && token.type === 'generic-text') {
+						const content = getTextContent(token);
+						if (!isBracketsBalanced(content)) {
+							token.type = 'bad-line';
+							token.content = content;
+						}
+					}
+				});
+				return tokens;
 			}
 		};
-	},
-	effect(Prism) {
-		/**
-		 * This hook is used to validate generic-text tokens for balanced brackets.
-		 * Mark token as bad-line when contains not balanced brackets: {},[]
-		 */
-		return Prism.hooks.add('after-tokenize', (env) => {
-			env.tokens.forEach((token) => {
-				if (typeof token !== 'string' && token.type === 'generic-text') {
-					const content = getTextContent(token);
-					if (!isBracketsBalanced(content)) {
-						token.type = 'bad-line';
-						token.content = content;
-					}
-				}
-			});
-		});
 	}
 });
