@@ -149,7 +149,7 @@ export class Registry {
 				}
 			});
 			forEach(proto.optional, (id) => {
-				if (didUpdate(id)) {
+				if (didUpdate(this.resolveAlias(id))) {
 					depsChanged = true;
 				}
 			});
