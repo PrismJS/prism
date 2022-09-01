@@ -1,7 +1,10 @@
 import { assert } from 'chai';
+import { readFileSync } from 'fs';
+import path from 'path';
 import { toArray } from '../src/shared/util';
 import { getComponent, getLanguageIds } from './helper/prism-loader';
-const { languages } = require('./../components.json');
+
+const { languages } = JSON.parse(readFileSync(path.join(__dirname, '../src/components.json'), 'utf-8'));
 
 
 for (const lang of getLanguageIds()) {
