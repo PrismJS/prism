@@ -9,9 +9,23 @@ export function createUtil(window) {
 
 	return {
 		assert: {
+			/**
+			 * @param {{
+			 *   language?: string;
+			 *   code: string;
+			 *   expected: string;
+			 * }} param0
+			 */
 			highlight({ language = 'none', code, expected }) {
-				assert.strictEqual(Prism.highlight(code, Prism.languages[language], language), expected);
+				assert.strictEqual(Prism.highlight(code, language), expected);
 			},
+			/**
+			 * @param {{
+			 *   language?: string;
+			 *   code: string;
+			 *   expected: string;
+			 * }} param0
+			 */
 			highlightElement({ language = 'none', code, expected }) {
 				const element = document.createElement('CODE');
 				element.classList.add('language-' + language);
