@@ -1,11 +1,6 @@
-import { noop } from '../../shared/util';
-
 export default /** @type {import("../../types").PluginProto<'show-invisibles'>} */ ({
 	id: 'show-invisibles',
 	optional: ['autolinker', 'data-uri-highlight'],
-	plugin(Prism) {
-		return {}; // TODO:
-	},
 	effect(Prism) {
 		const invisibles = {
 			'tab': /\t/,
@@ -15,72 +10,43 @@ export default /** @type {import("../../types").PluginProto<'show-invisibles'>} 
 			'space': / /
 		};
 
+		/**
+		 * @param {string} code
+		 */
+		const tokenize = code => {
+			const tokens = Prism.tokenize(code, invisibles);
+			if (tokens.length === 1) {
+				const single = tokens[0];
+				if (typeof single === 'string') {
+					return single;
+				}
+			}
+			return tokens;
+		};
 
 		/**
-		 * Handles the recursive calling of `addInvisibles` for one token.
-		 *
-		 * @param {object | Array} tokens The grammar or array which contains the token.
-		 * @param {string|number} name The name or index of the token in `tokens`.
+		 * @param {import("../../core/token").TokenStream} tokens
 		 */
-		function handleToken(tokens, name) {
-			const value = tokens[name];
+		const walkTokens = (tokens) => {
+			for (let i = 0; i < tokens.length; i++) {
+				const token = tokens[i];
 
-			const type = Prism.util.type(value);
-			switch (type) {
-				case 'RegExp': {
-					const inside = {};
-					tokens[name] = {
-						pattern: value,
-						inside
-					};
-					addInvisibles(inside);
-					break;
-				}
-				case 'Array': {
-					for (let i = 0, l = value.length; i < l; i++) {
-						handleToken(value, i);
+				if (typeof token === 'string') {
+					const result = tokenize(token);
+					if (typeof result !== 'string') {
+						tokens.splice(i, 1, ...result);
+						i += result.length - 1;
 					}
-					break;
-				}
-				default: { // 'Object'
-					// eslint-disable-next-line no-redeclare
-					const inside = value.inside || (value.inside = {});
-					addInvisibles(inside);
-					break;
+				} else if (typeof token.content === 'string') {
+					token.content = tokenize(token.content);
+				} else {
+					walkTokens(token.content);
 				}
 			}
-		}
+		};
 
-		/**
-		 * Recursively adds patterns to match invisible characters to the given grammar (if not added already).
-		 *
-		 * @param {object} grammar
-		 */
-		function addInvisibles(grammar) {
-			if (!grammar || grammar['tab']) {
-				return;
-			}
-
-			// assign invisibles here to "mark" the grammar in case of self references
-			for (const name in invisibles) {
-				if (invisibles.hasOwnProperty(name)) {
-					grammar[name] = invisibles[name];
-				}
-			}
-
-			for (const name in grammar) {
-				if (grammar.hasOwnProperty(name) && !invisibles[name]) {
-					if (name === 'rest') {
-						addInvisibles(grammar['rest']);
-					} else {
-						handleToken(grammar, name);
-					}
-				}
-			}
-		}
-
-		Prism.hooks.add('before-highlight', (env) => {
-			addInvisibles(env.grammar);
+		return Prism.hooks.add('after-tokenize', (env) => {
+			walkTokens(env.tokens);
 		});
 	}
 });
