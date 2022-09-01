@@ -1,0 +1,28 @@
+
+<h2>OpenCL host code</h2>
+<pre class="language-cpp"><code>// OpenCL functions, constants, etc. are also highlighted in OpenCL host code in the c or cpp language
+cl::Event KernelFilterImages::runSingle(const cl::Image2D& imgSrc, SPImage2D& imgDst)
+{
+	const size_t rows = imgSrc.getImageInfo&lt;CL_IMAGE_HEIGHT>();
+	const size_t cols = imgSrc.getImageInfo&lt;CL_IMAGE_WIDTH>();
+
+	ASSERT(rows > 0 && cols > 0, "The image object seems to be invalid, no rows/cols set");
+	ASSERT(imgSrc.getImageInfo&lt;CL_IMAGE_FORMAT>().image_channel_data_type == CL_FLOAT, "Only float type images are supported");
+	ASSERT(imgSrc.getInfo&lt;CL_MEM_FLAGS>() == CL_MEM_READ_ONLY || imgSrc.getInfo&lt;CL_MEM_FLAGS>() == CL_MEM_READ_WRITE, "Can't read the input image");
+
+	imgDst = std::make_shared&lt;cl::Image2D>(*context, CL_MEM_READ_WRITE, cl::ImageFormat(CL_R, CL_FLOAT), cols, rows);
+
+	cl::Kernel kernel(*program, "filter_single");
+	kernel.setArg(0, imgSrc);
+	kernel.setArg(1, *imgDst);
+	kernel.setArg(2, bufferKernel1);
+	kernel.setArg(3, kernel1.rows);
+	kernel.setArg(4, kernel1.rows / 2);
+	kernel.setArg(5, kernel1.cols);
+	kernel.setArg(6, kernel1.cols / 2);
+	kernel.setArg(7, border);
+
+	cl::Event eventFilter;
+	const cl::NDRange global(cols, rows);
+	queue->enqueueNDRangeKernel(kernel, cl::NullRange, global, cl::NullRange, &events, &eventFilter);
+}</code></pre>

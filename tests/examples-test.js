@@ -1,22 +1,24 @@
-const { assert } = require('chai');
-const fs = require('fs');
-const { Parser } = require('htmlparser2');
-const { getLanguageIds } = require('./helper/prism-loader');
+import { assert } from 'chai';
+import { readFileSync, readdirSync } from 'fs';
+import { Parser } from 'htmlparser2';
+import path from 'path';
+import { getLanguageIds } from './helper/prism-loader';
 
+const EXAMPLES_DIR = path.join(__dirname, '/../website/examples');
 
 describe('Examples', () => {
-	const exampleFiles = new Set(fs.readdirSync(__dirname + '/../website/examples'));
+	const exampleFiles = new Set(readdirSync(EXAMPLES_DIR));
 	const ignore = new Set([
-		// these are libraries and not languages
-		'markup-templating',
 		// this does alter some languages but it's mainly a library
-		'javadoclike'
+		'javadoclike',
+		// it's just plain text
+		'plain'
 	]);
 	const validFiles = new Set();
 
 	/** @type {string[]} */
 	const missing = [];
-	for (const lang in getLanguageIds()) {
+	for (const lang of getLanguageIds()) {
 		const file = `prism-${lang}.html`;
 		if (!exampleFiles.has(file)) {
 			if (!ignore.has(lang)) {
@@ -42,7 +44,7 @@ describe('Examples', () => {
 	describe('Validate HTML templates', () => {
 		for (const file of validFiles) {
 			it('- ./examples/' + file, async () => {
-				const content = fs.readFileSync(__dirname + '/../examples/' + file, 'utf-8');
+				const content = readFileSync(path.join(EXAMPLES_DIR, file), 'utf-8');
 				await validateHTML(content);
 			});
 		}
