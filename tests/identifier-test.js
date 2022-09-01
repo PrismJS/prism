@@ -94,7 +94,7 @@ const identifiers = {
 // Below is the implementation of the test.
 // If you only came here to exclude a language, you won't find anything below.
 
-for (const lang in getLanguageIds()) {
+for (const lang of getLanguageIds()) {
 	describe(`Test '${lang}'`, async () => {
 		const Prism = await createInstance(lang);
 		testLiterals(Prism, lang);
