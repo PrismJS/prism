@@ -66,6 +66,7 @@ export async function createInstance(languages) {
  * @property {Prism & T} Prism
  * @property {(languages: string | string[]) => Promise<void>} loadLanguages
  * @property {(plugins: string | string[]) => Promise<void>} loadPlugins
+ * @property {(fn: () => void) => void} withGlobals
  * @template T
  */
 
@@ -84,13 +85,32 @@ export function createPrismDOM() {
 	window.Prism = instance;
 
 	/**
+	 * @param {() => void} fn
+	 */
+	const withGlobals = (fn) => {
+		const g = /** @type {Record<string, unknown>} */ (/** @type {unknown} */ (global));
+		try {
+			g.window = window;
+			g.document = window.document;
+			g.navigator = window.navigator;
+			fn();
+		} finally {
+			g.window = undefined;
+			g.document = undefined;
+			g.navigator = undefined;
+		}
+	};
+
+	/**
 	 * Loads the given languages or plugins.
 	 *
 	 * @param {string | string[]} languagesOrPlugins
 	 */
 	const load = async (languagesOrPlugins) => {
 		const protos = await Promise.all(toArray(languagesOrPlugins).map(getComponent));
-		instance.components.add(...protos);
+		withGlobals(() => {
+			instance.components.add(...protos);
+		});
 	};
 
 	return {
@@ -101,5 +121,6 @@ export function createPrismDOM() {
 		Prism: window.Prism,
 		loadLanguages: load,
 		loadPlugins: load,
+		withGlobals
 	};
 }

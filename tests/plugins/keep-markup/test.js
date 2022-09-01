@@ -1,53 +1,56 @@
 import { assert } from 'chai';
-import { createScopedPrismDom } from '../../helper/prism-dom-util';
+import { createTestSuite } from '../../helper/prism-dom-util';
 
 
-describe('Keep Markup', async function () {
-	const { Prism, document } = await createScopedPrismDom(this, {
+describe('Keep Markup', async () => {
+	const { it } = createTestSuite({
 		languages: 'javascript',
 		plugins: 'keep-markup'
 	});
 
 
 	/**
+	 * @param {import('../../helper/prism-loader').PrismDOM<{}>} dom
 	 * @param {string} html
 	 * @param {string} language
 	 */
-	function highlightInElement(html, language = 'none') {
+	function highlightInElement({ Prism, document }, html, language = 'none') {
 		const pre = document.createElement('pre');
 		pre.className = `language-${language}`;
 		pre.innerHTML = `<code>${html}</code>`;
+		const code = pre.children[0];
 
-		Prism.highlightElement(pre);
+		Prism.highlightElement(code);
 
-		return pre.querySelector('code').innerHTML;
+		return code.innerHTML;
 	}
 
 	/**
+	 * @param {import('../../helper/prism-loader').PrismDOM<{}>} dom
 	 * @param {string} html
 	 * @param {string} language
 	 */
-	function keepMarkup(html, language = 'none') {
-		assert.equal(highlightInElement(html, language), html);
+	function keepMarkup(dom, html, language = 'none') {
+		assert.equal(highlightInElement(dom, html, language), html);
 	}
 
-	it('should keep <span> markup', () => {
-		keepMarkup(`x<span>a</span>y`);
+	it('should keep <span> markup', (dom) => {
+		keepMarkup(dom, `x<span>a</span>y`);
 	});
-	it('should preserve markup order', () => {
-		keepMarkup(`x<a></a><b></b>y`);
-	});
-
-	it('should keep last markup', () => {
-		keepMarkup(`xy<span>a</span>`);
-		keepMarkup(`xy<a>a</a>`);
+	it('should preserve markup order', (dom) => {
+		keepMarkup(dom, `x<a></a><b></b>y`);
 	});
 
-	it('should support double highlighting', () => {
+	it('should keep last markup', (dom) => {
+		keepMarkup(dom, `xy<span>a</span>`);
+		keepMarkup(dom, `xy<a>a</a>`);
+	});
+
+	it('should support double highlighting', ({ Prism, document }) => {
 		const pre = document.createElement('pre');
 		pre.className = 'language-javascript drop-tokens';
 		pre.innerHTML = '<code>var <mark>a = 42</mark>;</code>';
-		const code = pre.childNodes[0];
+		const code = pre.children[0];
 		const initial = code.innerHTML;
 
 		Prism.highlightElement(code);
@@ -62,17 +65,17 @@ describe('Keep Markup', async function () {
 		assert.strictEqual(firstPass, secondPass);
 	});
 
-	it('should not clone markup nodes', () => {
+	it('should not clone markup nodes', ({ Prism, document }) => {
 		const pre = document.createElement('pre');
 		pre.className = 'language-javascript drop-tokens';
 		pre.innerHTML = '<code>var <mark>a = <mark>42</mark></mark>;</code>';
-		const code = pre.childNodes[0];
+		const code = pre.children[0];
 		const firstNodeRefBefore = code.querySelector('mark');
-		const secondNodeRefBefore = firstNodeRefBefore.querySelector('mark');
+		const secondNodeRefBefore = firstNodeRefBefore?.querySelector('mark');
 
 		Prism.highlightElement(code);
 		const firstNodeRefAfter = code.querySelector('mark');
-		const secondNodeRefAfter = firstNodeRefAfter.querySelector('mark');
+		const secondNodeRefAfter = firstNodeRefAfter?.querySelector('mark');
 
 		assert.strictEqual(firstNodeRefBefore, firstNodeRefAfter);
 		assert.strictEqual(secondNodeRefBefore, secondNodeRefAfter);

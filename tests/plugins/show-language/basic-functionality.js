@@ -1,40 +1,41 @@
 import { assert } from 'chai';
-import { createScopedPrismDom } from '../../helper/prism-dom-util';
+import { createTestSuite } from '../../helper/prism-dom-util';
 
 
-describe('Show language', async function () {
-	const { Prism, document } = await createScopedPrismDom(this, {
+describe('Show language', () => {
+	const { it } = createTestSuite({
 		languages: ['markup', 'javascript'],
 		plugins: 'show-language'
 	});
 
 
 	/**
+	 * @param {import('../../helper/prism-loader').PrismDOM<{}>} dom
 	 * @param {string} expectedLanguage
 	 * @param {string} code
 	 */
-	function test(expectedLanguage, code) {
+	function test({ document, Prism }, expectedLanguage, code) {
 		document.body.innerHTML = code;
 		Prism.highlightAll();
 
 		assert.strictEqual(document.querySelector('.toolbar-item > span')?.textContent, expectedLanguage);
 	}
 
-	it('should work with component titles', () => {
+	it('should work with component titles', (dom) => {
 		// simple title
-		test('JavaScript', `<pre class="language-javascript"><code>foo</code></pre>`);
-		test('Markup', `<pre class="language-markup"><code>foo</code></pre>`);
+		test(dom, 'JavaScript', `<pre class="language-javascript"><code>foo</code></pre>`);
+		test(dom, 'Markup', `<pre class="language-markup"><code>foo</code></pre>`);
 
 		// aliases with the same title
-		test('JavaScript', `<pre class="language-js"><code>foo</code></pre>`);
+		test(dom, 'JavaScript', `<pre class="language-js"><code>foo</code></pre>`);
 
 		// aliases with a different title
-		test('HTML', `<pre class="language-html"><code>foo</code></pre>`);
-		test('SVG', `<pre class="language-svg"><code>foo</code></pre>`);
+		test(dom, 'HTML', `<pre class="language-html"><code>foo</code></pre>`);
+		test(dom, 'SVG', `<pre class="language-svg"><code>foo</code></pre>`);
 	});
 
-	it('should work with custom titles', () => {
-		test('Foo', `<pre class="language-javascript" data-language="Foo"><code>foo</code></pre>`);
+	it('should work with custom titles', (dom) => {
+		test(dom, 'Foo', `<pre class="language-javascript" data-language="Foo"><code>foo</code></pre>`);
 	});
 
 });

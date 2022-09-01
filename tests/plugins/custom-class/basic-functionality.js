@@ -1,19 +1,13 @@
-import { createScopedPrismDom, createUtil } from '../../helper/prism-dom-util';
+import { createTestSuite } from '../../helper/prism-dom-util';
 
 
-describe('Custom class', async function () {
-	const { Prism, window } = await createScopedPrismDom(this, {
+describe('Custom class', () => {
+	const { it } = createTestSuite({
 		languages: 'javascript',
 		plugins: 'custom-class'
 	});
-	const util = createUtil(window);
 
-	if (!Prism.plugins.customClass) {
-		throw new Error('');
-	}
-
-
-	it('should set prefix', () => {
+	it('should set prefix', ({ Prism, util }) => {
 		Prism.plugins.customClass.prefix = 'prism-';
 
 		util.assert.highlight({
@@ -23,7 +17,7 @@ describe('Custom class', async function () {
 		});
 	});
 
-	it('should reset prefix', () => {
+	it('should reset prefix', ({ Prism, util }) => {
 		Prism.plugins.customClass.prefix = '';
 
 		util.assert.highlight({
@@ -33,7 +27,7 @@ describe('Custom class', async function () {
 		});
 	});
 
-	it('should map class names using a function', () => {
+	it('should map class names using a function', ({ Prism, util }) => {
 		Prism.plugins.customClass.map((cls, language) => {
 			return `${language}-${cls}`;
 		});
@@ -45,7 +39,7 @@ describe('Custom class', async function () {
 		});
 	});
 
-	it('should map class names using an object', () => {
+	it('should map class names using an object', ({ Prism, util }) => {
 		Prism.plugins.customClass.map({
 			boolean: 'b',
 			keyword: 'kw',
@@ -60,7 +54,7 @@ describe('Custom class', async function () {
 		});
 	});
 
-	it('should reset map', () => {
+	it('should reset map', ({ Prism, util }) => {
 		Prism.plugins.customClass.map({});
 
 		util.assert.highlight({

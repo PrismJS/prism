@@ -1,15 +1,13 @@
-import { createScopedPrismDom, createUtil } from '../../helper/prism-dom-util';
+import { createTestSuite } from '../../helper/prism-dom-util';
 
 
-describe('Highlight Keywords', async function () {
-	const { window } = await createScopedPrismDom(this, {
+describe('Highlight Keywords', () => {
+	const { it } = createTestSuite({
 		languages: 'javascript',
 		plugins: 'highlight-keywords'
 	});
-	const util = createUtil(window);
 
-
-	it('should highlight keywords', () => {
+	it('should highlight keywords', ({ util }) => {
 		util.assert.highlightElement({
 			language: 'javascript',
 			code: `import * from ''; const foo;`,

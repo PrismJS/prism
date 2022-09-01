@@ -40,26 +40,41 @@ export function createUtil(window) {
 }
 
 /**
- * Creates a Prism DOM instance that will be automatically cleaned up after the given test suite finished.
- *
- * @param {ReturnType<typeof import('mocha')["suite"]>} suite
- * @param {{ languages?: string | string[]; plugins?: T | T[] }} options
- * @returns {Promise<import('./prism-loader').PrismDOM<{ plugins: Record<import('../../src/types').KebabToCamelCase<T>, {}> }>>}
+ * @typedef {(
+ *   import('./prism-loader').PrismDOM<{ plugins: Record<import('../../src/types').KebabToCamelCase<T>, {}> }>
+ *   & { util: ReturnType<typeof createUtil> }
+ * )} TestSuiteDom
  * @template {string} T
  */
-export async function createScopedPrismDom(suite, options = {}) {
-	const dom = createPrismDOM();
 
-	suite.afterAll(() => {
-		dom.window.close();
-	});
+/**
+ * @param {{ languages?: string | string[]; plugins?: T | T[] }} options
+ * @returns {{
+ *   it: (title: string, fn: (dom: TestSuiteDom<T>) => void | Promise<void>) => void
+ * }}
+ * @template {string} T
+ */
+export function createTestSuite(options) {
+	return {
+		it: async (title, fn) => {
+			it(title, async () => {
+				const dom = createPrismDOM();
 
-	if (options.languages) {
-		await dom.loadLanguages(options.languages);
-	}
-	if (options.plugins) {
-		await dom.loadPlugins(options.plugins);
-	}
+				try {
+					if (options.languages) {
+						await dom.loadLanguages(options.languages);
+					}
+					if (options.plugins) {
+						await dom.loadPlugins(options.plugins);
+					}
 
-	return /** @type {any} */ (dom);
+					dom.withGlobals(() => {
+						fn(/** @type {any} */({ ...dom, util: createUtil(dom.window) }));
+					});
+				} finally {
+					dom.window.close();
+				}
+			});
+		}
+	};
 }

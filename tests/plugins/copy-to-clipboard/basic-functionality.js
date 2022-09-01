@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import { createScopedPrismDom } from '../../helper/prism-dom-util';
+import { createTestSuite } from '../../helper/prism-dom-util';
 
 
 class DummyClipboard {
@@ -16,14 +16,14 @@ class DummyClipboard {
 	}
 }
 
-describe('Copy to Clipboard', async function () {
-	const { Prism, document, window } = await createScopedPrismDom(this, {
+describe('Copy to Clipboard', () => {
+	const { it } = createTestSuite({
 		languages: 'javascript',
 		plugins: 'copy-to-clipboard',
 	});
 
 
-	it('should work', () => {
+	it('should work', ({ Prism, window, document }) => {
 		const clipboard = new DummyClipboard();
 		window.navigator.clipboard = clipboard;
 
@@ -40,7 +40,7 @@ describe('Copy to Clipboard', async function () {
 		assert.strictEqual(clipboard.text, 'foo');
 	});
 
-	it('should copy the current text even after the code block changes its text', () => {
+	it('should copy the current text even after the code block changes its text', ({ Prism, window, document }) => {
 		const clipboard = new DummyClipboard();
 		window.navigator.clipboard = clipboard;
 
