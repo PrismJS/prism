@@ -1,62 +1,7 @@
 import { getTextContent } from '../core/token';
 import { insertBefore, withoutTokenize } from '../shared/language-util';
-import { MARKUP_TAG } from '../shared/languages/patterns';
 import { tokenize } from '../shared/symbols';
 import markup from './prism-markup';
-
-const tagPattern = RegExp(MARKUP_TAG, 'gi');
-
-/**
- * A list of known entity names.
- *
- * This will always be incomplete to save space. The current list is the one used by lowdash's unescape function.
- *
- * @see {@link https://github.com/lodash/lodash/blob/2da024c3b4f9947a48517639de7560457cd4ec6c/unescape.js#L2}
- * @type {Partial<Record<string, string>>}
- */
-const KNOWN_ENTITY_NAMES = {
-	'amp': '&',
-	'lt': '<',
-	'gt': '>',
-	'quot': '"',
-};
-
-/**
- * Returns the text content of a given HTML source code string.
- *
- * @param {string} html
- * @returns {string}
- */
-function textContent(html) {
-	// remove all tags
-	let text = html.replace(tagPattern, '');
-
-	// decode known entities
-	text = text.replace(/&(\w{1,8}|#x?[\da-f]{1,8});/gi, (m, code) => {
-		code = code.toLowerCase();
-
-		if (code[0] === '#') {
-			let value;
-			if (code[1] === 'x') {
-				value = parseInt(code.slice(2), 16);
-			} else {
-				value = Number(code.slice(1));
-			}
-
-			return String.fromCodePoint(value);
-		} else {
-			const known = KNOWN_ENTITY_NAMES[code];
-			if (known) {
-				return known;
-			}
-
-			// unable to decode
-			return m;
-		}
-	});
-
-	return text;
-}
 
 /**
  * Adds an alias to the given token.
