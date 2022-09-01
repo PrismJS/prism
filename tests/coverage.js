@@ -1,6 +1,6 @@
 import { assert } from 'chai';
 import * as PrismLoader from './helper/prism-loader';
-import {} from './helper/test-case';
+import { runTestCase } from './helper/test-case';
 import { loadAllTests } from './helper/test-discovery';
 import { BFS, BFSPathToPrismTokenPath } from './helper/util';
 
@@ -21,11 +21,13 @@ describe('Pattern test coverage', () => {
 	async function createInstance(languages) {
 		const Prism = await PrismLoader.createInstance(languages);
 
-		BFS(Prism.languages, (path, object) => {
+		const root = Object.fromEntries([...Prism.components['entries'].keys()].map(id => [id, Prism.components.getLanguage(id)]));
+
+		BFS(root, (path, object) => {
 			const { key, value } = path[path.length - 1];
 			const tokenPath = BFSPathToPrismTokenPath(path);
 
-			if (Object.prototype.toString.call(value) == '[object RegExp]') {
+			if (key && Object.prototype.toString.call(value) == '[object RegExp]') {
 				const regex = makeGlobal(value);
 				object[key] = regex;
 
@@ -34,19 +36,19 @@ describe('Pattern test coverage', () => {
 				if (!data) {
 					data = {
 						pattern: regex,
-						language: path[1].key,
-						from: new Set([tokenPath]),
+						language: path[1].key ?? '',
+						from: new Set(),
 						matches: []
 					};
 					patterns.set(patternKey, data);
-				} else {
-					data.from.add(tokenPath);
 				}
+				data.from.add(tokenPath);
+				const { matches } = data;
 
 				regex.exec = string => {
 					const match = RegExp.prototype.exec.call(regex, string);
 					if (match) {
-						data.matches.push(match);
+						matches.push(match);
 					}
 					return match;
 				};
@@ -68,17 +70,12 @@ describe('Pattern test coverage', () => {
 	describe('Run all language tests', () => {
 		// define tests for all tests in all languages in the test suite
 		for (const [languageIdentifier, files] of loadAllTests()) {
-			it(languageIdentifier, function () {
+			it(languageIdentifier, async function () {
 				this.timeout(10 * 1000);
 
 				for (const filePath of files) {
 					try {
-						TestCase.run({
-							languageIdentifier,
-							filePath,
-							updateMode: 'none',
-							createInstance
-						});
+						await runTestCase(languageIdentifier, filePath, 'none', createInstance);
 					} catch (error) {
 						// we don't case about whether the test succeeds,
 						// we just want to gather usage data

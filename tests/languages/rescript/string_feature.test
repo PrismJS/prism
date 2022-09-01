@@ -2,6 +2,12 @@
 "foo\"bar"
 `foo bar`
 
+let greeting = `Hello
+World
+👋
+${name}
+`
+
 ----------------------------------------------------
 
 [
@@ -10,6 +16,21 @@
 	["template-string", [
 		["template-punctuation", "`"],
 		["string", "foo bar"],
+		["template-punctuation", "`"]
+	]],
+
+	["keyword", "let"],
+	" greeting ",
+	["operator", "="],
+	["template-string", [
+		["template-punctuation", "`"],
+		["string", "Hello\r\nWorld\r\n👋\r\n"],
+		["interpolation", [
+			["interpolation-punctuation", "${"],
+			"name",
+			["interpolation-punctuation", "}"]
+		]],
+		["string", "\r\n"],
 		["template-punctuation", "`"]
 	]]
 ]
