@@ -660,7 +660,6 @@
 		},
 		"js-templates": {
 			"title": "JS Templates",
-			"modify": "javascript",
 			"owner": "RunDevelopment"
 		},
 		"julia": {
