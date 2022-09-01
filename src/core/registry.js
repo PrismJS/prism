@@ -103,6 +103,9 @@ export class Registry {
 		/** @type {Map<string, boolean>} */
 		const updateStatus = new Map();
 
+		/** @type {string[]} */
+		const idStack = [];
+
 		/**
 		 * @param {string} id
 		 * @returns {boolean}
@@ -113,12 +116,24 @@ export class Registry {
 				return status;
 			}
 
-			const entry = this.entries.get(id);
+			let entry;
+			try {
+				idStack.push(id);
 
-			// eslint-disable-next-line no-use-before-define
-			if (!entry || !shouldRunEffects(entry.proto)) {
-				updateStatus.set(id, status = false);
-				return status;
+				const circularStart = idStack.indexOf(id);
+				if (circularStart !== idStack.length - 1) {
+					throw new Error(`Circular dependency ${idStack.slice(circularStart).join(' -> ')} not allowed`);
+				}
+
+				entry = this.entries.get(id);
+
+				// eslint-disable-next-line no-use-before-define
+				if (!entry || !shouldRunEffects(entry.proto)) {
+					updateStatus.set(id, status = false);
+					return status;
+				}
+			} finally {
+				idStack.pop();
 			}
 
 			// reset
