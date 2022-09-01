@@ -1,6 +1,5 @@
 import { assert } from 'chai';
 import { Prism } from '../../src/core/prism';
-import { tokenize } from '../helper/test-case';
 import { simplify } from '../helper/token-stream-transformer';
 
 /**
@@ -10,7 +9,7 @@ function testTokens({ grammar, code, expected }) {
 	const instance = new Prism();
 	instance.components.add({ id: 'test', grammar });
 
-	const simpleTokens = simplify(tokenize(instance, code, 'test'));
+	const simpleTokens = simplify(instance.tokenize(code, grammar));
 
 	assert.deepStrictEqual(simpleTokens, expected);
 }

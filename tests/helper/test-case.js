@@ -170,7 +170,8 @@ class TokenizeJSONRunner {
 	 * @returns {TokenStream}
 	 */
 	run(Prism, code, language) {
-		return tokenize(Prism, code, language);
+		const grammar = Prism.components.getLanguage(language);
+		return Prism.tokenize(code, grammar ?? {});
 	}
 	/**
 	 * @param {TokenStream} actual
@@ -233,21 +234,7 @@ class HighlightHTMLRunner {
 	 * @returns {string}
 	 */
 	run(Prism, code, language) {
-		const env = {
-			element: {},
-			language,
-			grammar: Prism.components.getLanguage(language),
-			code,
-		};
-
-		Prism.hooks.run('before-highlight', env);
-		env.highlightedCode = Prism.highlight(env.code, env.language, { grammar: env.grammar });
-		Prism.hooks.run('before-insert', env);
-		env.element.innerHTML = env.highlightedCode;
-		Prism.hooks.run('after-highlight', env);
-		Prism.hooks.run('complete', env);
-
-		return env.highlightedCode;
+		return Prism.highlight(code, language);
 	}
 	/**
 	 * @param {string} actual
@@ -425,30 +412,6 @@ export function parseLanguageNames(languageIdentifier) {
 	}
 
 	return { languages, mainLanguage };
-}
-
-/**
- * Returns the token stream of the given code highlighted with `language`.
- *
- * The `before-tokenize` and `after-tokenize` hooks will also be executed.
- *
- * @param {import('../../src/core/prism').Prism} Prism The Prism instance which will tokenize `code`.
- * @param {string} code The code to tokenize.
- * @param {string} language The language id.
- * @returns {TokenStream}
- */
-export function tokenize(Prism, code, language) {
-	const env = {
-		code,
-		grammar: Prism.components.getLanguage(language),
-		language
-	};
-
-	Prism.hooks.run('before-tokenize', env);
-	env.tokens = Prism.tokenize(env.code, env.grammar);
-	Prism.hooks.run('after-tokenize', env);
-
-	return env.tokens;
 }
 
 /**
