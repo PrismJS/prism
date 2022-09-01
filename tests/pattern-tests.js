@@ -1,8 +1,8 @@
 import { assert } from 'chai';
 import { JS, NFA, Transformers, Words, combineTransformers, getIntersectionWordSets, isDisjointWith, transform } from 'refa';
-import RAA from 'regexp-ast-analysis';
+import * as RAA from 'regexp-ast-analysis';
 import { visitRegExpAST } from 'regexpp';
-import scslre from 'scslre';
+import * as scslre from 'scslre';
 import { noop, toArray } from '../src/shared/util';
 import * as args from './helper/args';
 import { createInstance, getComponent, getLanguageIds } from './helper/prism-loader';
@@ -32,7 +32,7 @@ for (const [languageIdentifier, files] of testSuite) {
 
 const argsLanguage = new Set(toArray(args.language));
 for (const lang of getLanguageIds()) {
-	if (!argsLanguage.has(lang)) {
+	if (argsLanguage.size > 0 && !argsLanguage.has(lang)) {
 		continue;
 	}
 

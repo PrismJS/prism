@@ -1,6 +1,6 @@
 /**
  * @param {string} prefix
- * @param {string} insideLang
+ * @param {string | import("../../types").Grammar} insideLang
  * @returns {import("../../types").GrammarToken}
  */
 function createBlock(prefix, insideLang) {
@@ -15,7 +15,7 @@ function createBlock(prefix, insideLang) {
 			'content': {
 				pattern: /[\s\S]+/,
 				inside: insideLang,
-				alias: 'language-' + insideLang
+				alias: typeof insideLang === 'string' ? 'language-' + insideLang : undefined
 			}
 		}
 	};
