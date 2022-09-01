@@ -1,0 +1,347 @@
+type Human implements Character {
+	id: ID!
+	name: String!
+	friends: [Character]
+	appearsIn: [Episode]!
+	starships: [Starship]
+	totalCredits: Int
+}
+type Droid implements Character {
+	id: ID!
+	name: String!
+	friends: [Character]
+	appearsIn: [Episode]!
+	primaryFunction: String
+}
+
+
+input OrderInput {
+	id: ID!
+	customAttributes: [AttributeInput!]
+	customer: Customer
+	localizationExtensions: [LocalizationExtensionInput!]
+	metafields: [MetafieldInput!]
+	note: String!
+	shippingAddress: MailingAddressInput
+	tags: [String!]
+}
+
+
+query getProductById($id: ID!) {
+	product(id: $id) {
+		title
+		handle
+		createdAt
+	}
+}
+
+
+{
+	orders(id: 4) {
+		edges {
+			node {
+				# Order fields
+				# Query fields
+			}
+			cursor
+		}
+		pageInfo {
+			hasNextPage
+			hasPreviousPage
+		}
+	}
+}
+
+
+mutation orderUpdate($input: OrderInput!) {
+	orderUpdate(input: $input) {
+		order {
+			# Order fields
+		}
+		userErrors {
+			field
+			message
+		}
+	}
+}
+
+
+
+mutation {
+	customerCreate(input: { firstName: "John", lastName: "Tate", email: "john@johns-apparel.com" }) {
+		customer {
+			id
+		}
+	}
+}
+
+
+
+mutation Login($email: String) {
+	login(email: $email)
+}
+
+
+
+mutation BookTrip($id:ID!) {
+	bookTrips(launchIds: [$id]) {
+		success
+		message
+		launches {
+			id
+		}
+	}
+}
+
+----------------------------------------------------
+
+<span class="token keyword">type</span>
+<span class="token class-name">Human</span>
+<span class="token keyword">implements</span>
+<span class="token class-name">Character</span>
+<span class="token punctuation">{</span>
+<span class="token attr-name">id</span>
+<span class="token punctuation">:</span>
+<span class="token scalar">ID</span>
+<span class="token operator">!</span>
+<span class="token attr-name">name</span>
+<span class="token punctuation">:</span>
+<span class="token scalar">String</span>
+<span class="token operator">!</span>
+<span class="token attr-name">friends</span>
+<span class="token punctuation">:</span>
+<span class="token punctuation">[</span>
+<span class="token class-name">Character</span>
+<span class="token punctuation">]</span>
+<span class="token attr-name">appearsIn</span>
+<span class="token punctuation">:</span>
+<span class="token punctuation">[</span>
+<span class="token class-name">Episode</span>
+<span class="token punctuation">]</span>
+<span class="token operator">!</span>
+<span class="token attr-name">starships</span>
+<span class="token punctuation">:</span>
+<span class="token punctuation">[</span>
+<span class="token class-name">Starship</span>
+<span class="token punctuation">]</span>
+<span class="token attr-name">totalCredits</span>
+<span class="token punctuation">:</span>
+<span class="token scalar">Int</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">type</span>
+<span class="token class-name">Droid</span>
+<span class="token keyword">implements</span>
+<span class="token class-name">Character</span>
+<span class="token punctuation">{</span>
+<span class="token attr-name">id</span>
+<span class="token punctuation">:</span>
+<span class="token scalar">ID</span>
+<span class="token operator">!</span>
+<span class="token attr-name">name</span>
+<span class="token punctuation">:</span>
+<span class="token scalar">String</span>
+<span class="token operator">!</span>
+<span class="token attr-name">friends</span>
+<span class="token punctuation">:</span>
+<span class="token punctuation">[</span>
+<span class="token class-name">Character</span>
+<span class="token punctuation">]</span>
+<span class="token attr-name">appearsIn</span>
+<span class="token punctuation">:</span>
+<span class="token punctuation">[</span>
+<span class="token class-name">Episode</span>
+<span class="token punctuation">]</span>
+<span class="token operator">!</span>
+<span class="token attr-name">primaryFunction</span>
+<span class="token punctuation">:</span>
+<span class="token scalar">String</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">input</span>
+<span class="token atom-input class-name">OrderInput</span>
+<span class="token punctuation">{</span>
+<span class="token attr-name">id</span>
+<span class="token punctuation">:</span>
+<span class="token scalar">ID</span>
+<span class="token operator">!</span>
+<span class="token attr-name">customAttributes</span>
+<span class="token punctuation">:</span>
+<span class="token punctuation">[</span>
+<span class="token atom-input class-name">AttributeInput</span>
+<span class="token operator">!</span>
+<span class="token punctuation">]</span>
+<span class="token attr-name">customer</span>
+<span class="token punctuation">:</span>
+<span class="token class-name">Customer</span>
+<span class="token attr-name">localizationExtensions</span>
+<span class="token punctuation">:</span>
+<span class="token punctuation">[</span>
+<span class="token atom-input class-name">LocalizationExtensionInput</span>
+<span class="token operator">!</span>
+<span class="token punctuation">]</span>
+<span class="token attr-name">metafields</span>
+<span class="token punctuation">:</span>
+<span class="token punctuation">[</span>
+<span class="token atom-input class-name">MetafieldInput</span>
+<span class="token operator">!</span>
+<span class="token punctuation">]</span>
+<span class="token attr-name">note</span>
+<span class="token punctuation">:</span>
+<span class="token scalar">String</span>
+<span class="token operator">!</span>
+<span class="token attr-name">shippingAddress</span>
+<span class="token punctuation">:</span>
+<span class="token atom-input class-name">MailingAddressInput</span>
+<span class="token attr-name">tags</span>
+<span class="token punctuation">:</span>
+<span class="token punctuation">[</span>
+<span class="token scalar">String</span>
+<span class="token operator">!</span>
+<span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">query</span>
+<span class="token definition-query function">getProductById</span>
+<span class="token punctuation">(</span>
+<span class="token variable">$id</span>
+<span class="token punctuation">:</span>
+<span class="token scalar">ID</span>
+<span class="token operator">!</span>
+<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+<span class="token property-query">product</span>
+<span class="token punctuation">(</span>
+<span class="token attr-name">id</span>
+<span class="token punctuation">:</span>
+<span class="token variable">$id</span>
+<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+<span class="token property">title</span>
+<span class="token property">handle</span>
+<span class="token property">createdAt</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token punctuation">{</span>
+<span class="token property-query">orders</span>
+<span class="token punctuation">(</span>
+<span class="token attr-name">id</span>
+<span class="token punctuation">:</span>
+<span class="token number">4</span>
+<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+<span class="token object">edges</span>
+<span class="token punctuation">{</span>
+<span class="token object">node</span>
+<span class="token punctuation">{</span>
+<span class="token comment"># Order fields</span>
+<span class="token comment"># Query fields</span>
+<span class="token punctuation">}</span>
+<span class="token property">cursor</span>
+<span class="token punctuation">}</span>
+<span class="token object">pageInfo</span>
+<span class="token punctuation">{</span>
+<span class="token property">hasNextPage</span>
+<span class="token property">hasPreviousPage</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">mutation</span>
+<span class="token definition-mutation function">orderUpdate</span>
+<span class="token punctuation">(</span>
+<span class="token variable variable-input">$input</span>
+<span class="token punctuation">:</span>
+<span class="token atom-input class-name">OrderInput</span>
+<span class="token operator">!</span>
+<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+<span class="token property-query property-mutation">orderUpdate</span>
+<span class="token punctuation">(</span>
+<span class="token attr-name">input</span>
+<span class="token punctuation">:</span>
+<span class="token variable variable-input">$input</span>
+<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+<span class="token object">order</span>
+<span class="token punctuation">{</span>
+<span class="token comment"># Order fields</span>
+<span class="token punctuation">}</span>
+<span class="token object">userErrors</span>
+<span class="token punctuation">{</span>
+<span class="token property">field</span>
+<span class="token property">message</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">mutation</span>
+<span class="token punctuation">{</span>
+<span class="token property-query property-mutation">customerCreate</span>
+<span class="token punctuation">(</span>
+<span class="token attr-name">input</span>
+<span class="token punctuation">:</span>
+<span class="token punctuation">{</span>
+<span class="token attr-name">firstName</span>
+<span class="token punctuation">:</span>
+<span class="token string">"John"</span>
+<span class="token punctuation">,</span>
+<span class="token attr-name">lastName</span>
+<span class="token punctuation">:</span>
+<span class="token string">"Tate"</span>
+<span class="token punctuation">,</span>
+<span class="token attr-name">email</span>
+<span class="token punctuation">:</span>
+<span class="token string">"john@johns-apparel.com"</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+<span class="token object">customer</span>
+<span class="token punctuation">{</span>
+<span class="token property">id</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">mutation</span>
+<span class="token definition-mutation function">Login</span>
+<span class="token punctuation">(</span>
+<span class="token variable variable-input">$email</span>
+<span class="token punctuation">:</span>
+<span class="token scalar">String</span>
+<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+<span class="token property-query property-mutation">login</span>
+<span class="token punctuation">(</span>
+<span class="token attr-name">email</span>
+<span class="token punctuation">:</span>
+<span class="token variable variable-input">$email</span>
+<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">mutation</span>
+<span class="token definition-mutation function">BookTrip</span>
+<span class="token punctuation">(</span>
+<span class="token variable variable-input">$id</span>
+<span class="token punctuation">:</span>
+<span class="token scalar">ID</span>
+<span class="token operator">!</span>
+<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+<span class="token property-query property-mutation">bookTrips</span>
+<span class="token punctuation">(</span>
+<span class="token attr-name">launchIds</span>
+<span class="token punctuation">:</span>
+<span class="token punctuation">[</span>
+<span class="token variable variable-input">$id</span>
+<span class="token punctuation">]</span>
+<span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+<span class="token property">success</span>
+<span class="token property">message</span>
+<span class="token object">launches</span>
+<span class="token punctuation">{</span>
+<span class="token property">id</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
