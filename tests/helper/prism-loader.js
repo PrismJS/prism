@@ -23,6 +23,7 @@ export const getLanguageIds = lazy(() => {
 export const getPluginIds = lazy(() => {
 	return readdirSync(path.join(SRC_DIR, 'plugins'));
 });
+export const getComponentIds = lazy(() => [...getLanguageIds(), ...getPluginIds()]);
 
 /**
  * @param {string} id

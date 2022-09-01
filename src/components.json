@@ -370,8 +370,7 @@
 		},
 		"dns-zone-file": {
 			"title": "DNS zone file",
-			"owner": "RunDevelopment",
-			"alias": "dns-zone"
+			"owner": "RunDevelopment"
 		},
 		"docker": {
 			"title": "Docker",
@@ -573,8 +572,7 @@
 		},
 		"idris": {
 			"title": "Idris",
-			"owner": "KeenS",
-			"require": "haskell"
+			"owner": "KeenS"
 		},
 		"ignore": {
 			"title": ".ignore",
@@ -635,7 +633,6 @@
 		},
 		"js-extras": {
 			"title": "JS Extras",
-			"modify": "javascript",
 			"owner": "RunDevelopment"
 		},
 		"json": {
@@ -778,8 +775,7 @@
 		},
 		"mongodb": {
 			"title": "MongoDB",
-			"owner": "airs0urce",
-			"require": "javascript"
+			"owner": "airs0urce"
 		},
 		"monkey": {
 			"title": "Monkey",
@@ -803,8 +799,7 @@
 		},
 		"naniscript": {
 			"title": "Naninovel Script",
-			"owner": "Elringus",
-			"alias": "nani"
+			"owner": "Elringus"
 		},
 		"nasm": {
 			"title": "NASM",
@@ -995,12 +990,6 @@
 		},
 		"cshtml": {
 			"title": "Razor C#",
-			"optional":[
-				"css",
-				"css-extras",
-				"javascript",
-				"js-extras"
-			],
 			"owner": "RunDevelopment"
 		},
 		"jsx": {
@@ -1008,8 +997,7 @@
 			"owner": "vkbansal"
 		},
 		"tsx": {
-			"title": "React TSX",
-			"require": ["jsx", "typescript"]
+			"title": "React TSX"
 		},
 		"reason": {
 			"title": "Reason",
@@ -1112,8 +1100,7 @@
 		},
 		"sparql": {
 			"title": "SPARQL",
-			"owner": "Triply-Dev",
-			"alias": "rq"
+			"owner": "Triply-Dev"
 		},
 		"splunk-spl": {
 			"title": "Splunk SPL",
@@ -1173,8 +1160,7 @@
 		},
 		"tap": {
 			"title": "TAP",
-			"owner": "isaacs",
-			"require": "yaml"
+			"owner": "isaacs"
 		},
 		"tcl": {
 			"title": "Tcl",
@@ -1352,11 +1338,7 @@
 		},
 		"show-invisibles": {
 			"title": "Show Invisibles",
-			"description": "Show hidden characters such as tabs and line breaks.",
-			"optional": [
-				"autolinker",
-				"data-uri-highlight"
-			]
+			"description": "Show hidden characters such as tabs and line breaks."
 		},
 		"autolinker": {
 			"title": "Autolinker",
@@ -1381,8 +1363,7 @@
 			"title": "Show Language",
 			"description": "Display the highlighted language in code blocks (inline code does not show the label).",
 			"owner": "nauzilus",
-			"noCSS": true,
-			"require": "toolbar"
+			"noCSS": true
 		},
 		"jsonp-highlight": {
 			"title": "JSONP Highlight",
@@ -1399,13 +1380,11 @@
 		"inline-color": {
 			"title": "Inline color",
 			"description": "Adds a small inline preview for colors in style sheets.",
-			"require": "css-extras",
 			"owner": "RunDevelopment"
 		},
 		"previewers": {
 			"title": "Previewers",
 			"description": "Previewers for angles, colors, gradients, easing and time.",
-			"require": "css-extras",
 			"owner": "Golmote"
 		},
 		"autoloader": {
@@ -1418,7 +1397,6 @@
 			"title": "Keep Markup",
 			"description": "Prevents custom markup from being dropped out during highlighting.",
 			"owner": "Golmote",
-			"optional": "normalize-whitespace",
 			"noCSS": true
 		},
 		"command-line": {
@@ -1434,7 +1412,6 @@
 			"title": "Normalize Whitespace",
 			"description": "Supports multiple operations to normalize whitespace in code blocks.",
 			"owner": "zeitgeist87",
-			"optional": "unescaped-markup",
 			"noCSS": true
 		},
 		"data-uri-highlight": {
@@ -1452,14 +1429,12 @@
 			"title": "Copy to Clipboard Button",
 			"description": "Add a button that copies the code block to the clipboard when clicked.",
 			"owner": "mAAdhaTTah",
-			"require": "toolbar",
 			"noCSS": true
 		},
 		"download-button": {
 			"title": "Download Button",
 			"description": "A button in the toolbar of a code block adding a convenient way to download a code file.",
 			"owner": "Golmote",
-			"require": "toolbar",
 			"noCSS": true
 		},
 		"match-braces": {
@@ -1470,8 +1445,7 @@
 		"diff-highlight": {
 			"title": "Diff Highlight",
 			"description": "Highlights the code inside diff blocks.",
-			"owner": "RunDevelopment",
-			"require": "diff"
+			"owner": "RunDevelopment"
 		},
 		"filter-highlight-all": {
 			"title": "Filter highlightAll",
