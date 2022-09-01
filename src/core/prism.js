@@ -197,15 +197,15 @@ export class Prism {
 	 * });
 	 */
 	tokenize(text, grammar) {
+		const customTokenize = grammar[tokenize];
+		if (customTokenize) {
+			return customTokenize(text, grammar, this);
+		}
+
 		let restGrammar = resolve(this.components, grammar[rest]);
 		while (restGrammar) {
 			grammar = { ...grammar, ...restGrammar };
 			restGrammar = resolve(this.components, restGrammar[rest]);
-		}
-
-		const customTokenize = grammar[tokenize];
-		if (customTokenize) {
-			return customTokenize(text, grammar, this);
 		}
 
 		/** @type {LinkedList<string | Token>} */
