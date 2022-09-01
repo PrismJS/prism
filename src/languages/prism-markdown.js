@@ -1,6 +1,79 @@
-import { insertBefore } from '../shared/language-util';
+import { getTextContent } from '../core/token';
+import { insertBefore, withoutTokenize } from '../shared/language-util';
 import { MARKUP_TAG } from '../shared/languages/patterns';
+import { tokenize } from '../shared/symbols';
 import markup from './prism-markup';
+
+const tagPattern = RegExp(MARKUP_TAG, 'gi');
+
+/**
+ * A list of known entity names.
+ *
+ * This will always be incomplete to save space. The current list is the one used by lowdash's unescape function.
+ *
+ * @see {@link https://github.com/lodash/lodash/blob/2da024c3b4f9947a48517639de7560457cd4ec6c/unescape.js#L2}
+ * @type {Partial<Record<string, string>>}
+ */
+const KNOWN_ENTITY_NAMES = {
+	'amp': '&',
+	'lt': '<',
+	'gt': '>',
+	'quot': '"',
+};
+
+/**
+ * Returns the text content of a given HTML source code string.
+ *
+ * @param {string} html
+ * @returns {string}
+ */
+function textContent(html) {
+	// remove all tags
+	let text = html.replace(tagPattern, '');
+
+	// decode known entities
+	text = text.replace(/&(\w{1,8}|#x?[\da-f]{1,8});/gi, (m, code) => {
+		code = code.toLowerCase();
+
+		if (code[0] === '#') {
+			let value;
+			if (code[1] === 'x') {
+				value = parseInt(code.slice(2), 16);
+			} else {
+				value = Number(code.slice(1));
+			}
+
+			return String.fromCodePoint(value);
+		} else {
+			const known = KNOWN_ENTITY_NAMES[code];
+			if (known) {
+				return known;
+			}
+
+			// unable to decode
+			return m;
+		}
+	});
+
+	return text;
+}
+
+/**
+ * Adds an alias to the given token.
+ *
+ * @param {import('../core/token').Token} token
+ * @param {string} alias
+ * @returns {void}
+ */
+function addAlias(token, alias) {
+	let aliases = token.alias;
+	if (!aliases) {
+		token.alias = aliases = [];
+	} else if (!Array.isArray(aliases)) {
+		token.alias = aliases = [aliases];
+	}
+	aliases.push(alias);
+}
 
 export default /** @type {import("../types").LanguageProto<'markdown'>} */ ({
 	id: 'markdown',
@@ -107,7 +180,54 @@ export default /** @type {import("../types").LanguageProto<'markdown'>} */ ({
 							pattern: /^(```).+/,
 							lookbehind: true
 						},
-						'punctuation': /```/
+						'punctuation': /```/,
+						[tokenize](code, grammar, Prism) {
+							const tokens = Prism.tokenize(code, withoutTokenize(grammar));
+
+							/*
+							 * Add the correct `language-xxxx` class to this code block. Keep in mind that the `code-language` token
+							 * is optional. But the grammar is defined so that there is only one case we have to handle:
+							 *
+							 * token.content = [
+							 *     <span class="punctuation">```</span>,
+							 *     <span class="code-language">xxxx</span>,
+							 *     '\n', // exactly one new lines (\r or \n or \r\n)
+							 *     <span class="code-block">...</span>,
+							 *     '\n', // exactly one new lines again
+							 *     <span class="punctuation">```</span>
+							 * ];
+							 */
+
+							const codeLang = tokens[1];
+							const codeBlock = tokens[3];
+
+							if (
+								typeof codeLang === 'object' && typeof codeBlock === 'object' &&
+								codeLang.type === 'code-language' && codeBlock.type === 'code-block'
+							) {
+
+								// this might be a language that Prism does not support
+
+								// do some replacements to support C++, C#, and F#
+								const lang = getTextContent(codeLang.content)
+									.replace(/\b#/g, 'sharp')
+									.replace(/\b\+\+/g, 'pp');
+								// only use the first word
+								const langName = /[a-z][\w-]*/i.exec(lang)?.[0].toLowerCase();
+								if (langName) {
+									addAlias(codeBlock, 'language-' + langName);
+
+									const grammar = Prism.components.getLanguage(lang);
+									if (grammar) {
+										codeBlock.content = Prism.tokenize(getTextContent(codeBlock), grammar);
+									} else {
+										addAlias(codeBlock, 'needs-highlighting');
+									}
+								}
+							}
+
+							return tokens;
+						}
 					}
 				}
 			],
@@ -268,124 +388,8 @@ export default /** @type {import("../types").LanguageProto<'markdown'>} */ ({
 		return markdown;
 	},
 	effect(Prism) {
-		const tagPattern = RegExp(MARKUP_TAG, 'gi');
-
-		/**
-		 * A list of known entity names.
-		 *
-		 * This will always be incomplete to save space. The current list is the one used by lowdash's unescape function.
-		 *
-		 * @see {@link https://github.com/lodash/lodash/blob/2da024c3b4f9947a48517639de7560457cd4ec6c/unescape.js#L2}
-		 * @type {Partial<Record<string, string>>}
-		 */
-		const KNOWN_ENTITY_NAMES = {
-			'amp': '&',
-			'lt': '<',
-			'gt': '>',
-			'quot': '"',
-		};
-
-		/**
-		 * Returns the text content of a given HTML source code string.
-		 *
-		 * @param {string} html
-		 * @returns {string}
-		 */
-		function textContent(html) {
-			// remove all tags
-			let text = html.replace(tagPattern, '');
-
-			// decode known entities
-			text = text.replace(/&(\w{1,8}|#x?[\da-f]{1,8});/gi, (m, code) => {
-				code = code.toLowerCase();
-
-				if (code[0] === '#') {
-					let value;
-					if (code[1] === 'x') {
-						value = parseInt(code.slice(2), 16);
-					} else {
-						value = Number(code.slice(1));
-					}
-
-					return String.fromCodePoint(value);
-				} else {
-					const known = KNOWN_ENTITY_NAMES[code];
-					if (known) {
-						return known;
-					}
-
-					// unable to decode
-					return m;
-				}
-			});
-
-			return text;
-		}
-
-		Prism.hooks.add('after-tokenize', (env) => {
-			if (env.language !== 'markdown' && env.language !== 'md') {
-				return;
-			}
-
-			function walkTokens(tokens) {
-				if (!tokens || typeof tokens === 'string') {
-					return;
-				}
-
-				for (let i = 0, l = tokens.length; i < l; i++) {
-					const token = tokens[i];
-
-					if (token.type !== 'code') {
-						walkTokens(token.content);
-						continue;
-					}
-
-					/*
-					 * Add the correct `language-xxxx` class to this code block. Keep in mind that the `code-language` token
-					 * is optional. But the grammar is defined so that there is only one case we have to handle:
-					 *
-					 * token.content = [
-					 *     <span class="punctuation">```</span>,
-					 *     <span class="code-language">xxxx</span>,
-					 *     '\n', // exactly one new lines (\r or \n or \r\n)
-					 *     <span class="code-block">...</span>,
-					 *     '\n', // exactly one new lines again
-					 *     <span class="punctuation">```</span>
-					 * ];
-					 */
-
-					const codeLang = token.content[1];
-					const codeBlock = token.content[3];
-
-					if (codeLang && codeBlock &&
-							codeLang.type === 'code-language' && codeBlock.type === 'code-block' &&
-							typeof codeLang.content === 'string') {
-
-						// this might be a language that Prism does not support
-
-						// do some replacements to support C++, C#, and F#
-						let lang = codeLang.content.replace(/\b#/g, 'sharp').replace(/\b\+\+/g, 'pp');
-						// only use the first word
-						lang = (/[a-z][\w-]*/i.exec(lang) || [''])[0].toLowerCase();
-						const alias = 'language-' + lang;
-
-						// add alias
-						if (!codeBlock.alias) {
-							codeBlock.alias = [alias];
-						} else if (typeof codeBlock.alias === 'string') {
-							codeBlock.alias = [codeBlock.alias, alias];
-						} else {
-							codeBlock.alias.push(alias);
-						}
-					}
-				}
-			}
-
-			walkTokens(env.tokens);
-		});
-
-		Prism.hooks.add('wrap', (env) => {
-			if (env.type !== 'code-block') {
+		return Prism.hooks.add('wrap', (env) => {
+			if (env.type !== 'code-block' || !env.classes.includes('needs-highlighting')) {
 				return;
 			}
 
@@ -399,23 +403,17 @@ export default /** @type {import("../types").LanguageProto<'markdown'>} */ ({
 				}
 			}
 
-			const grammar = Prism.components.getLanguage(codeLang);
+			if (codeLang && codeLang !== 'none' && Prism.plugins.autoloader && typeof document !== 'undefined') {
+				const id = 'md-' + new Date().valueOf() + '-' + Math.floor(Math.random() * 1e16);
+				env.attributes['id'] = id;
 
-			if (!grammar) {
-				if (codeLang && codeLang !== 'none' && Prism.plugins.autoloader && typeof document !== 'undefined') {
-					const id = 'md-' + new Date().valueOf() + '-' + Math.floor(Math.random() * 1e16);
-					env.attributes['id'] = id;
-
-					Prism.plugins.autoloader.loadLanguages(codeLang).then(() => {
-						// eslint-disable-next-line no-undef
-						const ele = document.getElementById(id);
-						if (ele) {
-							ele.innerHTML = Prism.highlight(ele.textContent || '', codeLang);
-						}
-					});
-				}
-			} else {
-				env.content = Prism.highlight(textContent(env.content), codeLang, { grammar });
+				Prism.plugins.autoloader.loadLanguages(codeLang).then(() => {
+					// eslint-disable-next-line no-undef
+					const ele = document.getElementById(id);
+					if (ele) {
+						ele.innerHTML = Prism.highlight(ele.textContent || '', codeLang);
+					}
+				});
 			}
 		});
 

@@ -42,7 +42,7 @@
 <span class="token code">
 	<span class="token punctuation">```</span>
 	<span class="token code-language">unknownLanguage</span>
-	<span class="token code-block language-unknownlanguage">
+	<span class="token code-block language-unknownlanguage needs-highlighting">
 		&lt;a href="#foo">Click me!&lt;/a> &amp;amp;
 	</span>
 	<span class="token punctuation">```</span>

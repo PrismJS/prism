@@ -19,27 +19,27 @@ plot(pressure)
 <span class="token code">
 	<span class="token punctuation">```</span>
 	<span class="token code-language">js</span>
-	<span class="token code-block language-js">let a = 0;</span>
+	<span class="token code-block language-js needs-highlighting">let a = 0;</span>
 	<span class="token punctuation">```</span>
 </span>
 
 <span class="token code">
 	<span class="token punctuation">```</span>
 	<span class="token code-language">c++</span>
-	<span class="token code-block language-cpp">int a = 0;</span>
+	<span class="token code-block language-cpp needs-highlighting">int a = 0;</span>
 	<span class="token punctuation">```</span>
 </span>
 
 <span class="token code">
 	<span class="token punctuation">```</span>
 	<span class="token code-language">c#</span>
-	<span class="token code-block language-csharp">var a = 0;</span>
+	<span class="token code-block language-csharp needs-highlighting">var a = 0;</span>
 	<span class="token punctuation">```</span>
 </span>
 
 <span class="token code">
 	<span class="token punctuation">```</span>
 	<span class="token code-language">{r pressure, echo=FALSE}</span>
-	<span class="token code-block language-r">plot(pressure)</span>
+	<span class="token code-block language-r needs-highlighting">plot(pressure)</span>
 	<span class="token punctuation">```</span>
 </span>
