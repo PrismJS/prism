@@ -1,4 +1,4 @@
-import { rest } from './symbols';
+import { rest, tokenize } from './symbols';
 
 // TODO: Update documentation
 
@@ -191,9 +191,29 @@ function cloneGrammar(grammar, id) {
 			if (r != null) {
 				mapped[rest] = cloneRef(r);
 			}
+
+			// tokenize
+			const t = value[tokenize];
+			if (t) {
+				mapped[tokenize] = t;
+			}
 		}
 		return mapped;
 	}
 
 	return clone(grammar);
+}
+
+/**
+ * @param {import('../types').Grammar} grammar
+ * @returns {import('../types').Grammar}
+ */
+export function withoutTokenize(grammar) {
+	if (!grammar[tokenize]) {
+		return grammar;
+	}
+
+	const copy = { ...grammar };
+	delete copy[tokenize];
+	return copy;
 }

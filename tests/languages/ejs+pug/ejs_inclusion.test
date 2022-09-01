@@ -7,19 +7,21 @@
 	["filter-ejs", [
 		["filter-name", ":ejs"],
 		["text", [
-			["delimiter", "<%"],
-			["language-javascript", [
-				["keyword", "var"],
-				" foo ",
-				["operator", "="],
-				["string", "''"],
-				["punctuation", ","],
-				" bar ",
-				["operator", "="],
-				["boolean", "false"],
-				["punctuation", ";"]
-			]],
-			["delimiter", "%>"]
+			["ejs", [
+				["delimiter", "<%"],
+				["language-javascript", [
+					["keyword", "var"],
+					" foo ",
+					["operator", "="],
+					["string", "''"],
+					["punctuation", ","],
+					" bar ",
+					["operator", "="],
+					["boolean", "false"],
+					["punctuation", ";"]
+				]],
+				["delimiter", "%>"]
+			]]
 		]]
 	]]
 ]

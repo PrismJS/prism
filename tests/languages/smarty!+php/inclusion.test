@@ -19,27 +19,23 @@
 
 [
 	["smarty", [
-		["embedded-php", [
-			["smarty", [
-				["delimiter", "{"],
-				["keyword", "php"],
-				["delimiter", "}"]
-			]],
-			["php", [
-				["comment", "// including a php script directly from the template."],
+		["delimiter", "{"],
+		["keyword", "php"],
+		["delimiter", "}"]
+	]],
+	["embedded-php", [
+		["comment", "// including a php script directly from the template."],
 
-				["keyword", "include"],
-				["punctuation", "("],
-				["string", "'/path/to/display_weather.php'"],
-				["punctuation", ")"],
-				["punctuation", ";"]
-			]],
-			["smarty", [
-				["delimiter", "{/"],
-				["keyword", "php"],
-				["delimiter", "}"]
-			]]
-		]]
+		["keyword", "include"],
+		["punctuation", "("],
+		["string", "'/path/to/display_weather.php'"],
+		["punctuation", ")"],
+		["punctuation", ";"]
+	]],
+	["smarty", [
+		["delimiter", "{/"],
+		["keyword", "php"],
+		["delimiter", "}"]
 	]],
 
 	["smarty", [
@@ -47,51 +43,47 @@
 	]],
 
 	["smarty", [
-		["embedded-php", [
-			["smarty", [
-				["delimiter", "{"],
-				["keyword", "php"],
-				["delimiter", "}"]
-			]],
-			["php", [
-				["keyword", "global"],
-				["variable", "$foo"],
-				["punctuation", ","],
-				["variable", "$bar"],
-				["punctuation", ";"],
+		["delimiter", "{"],
+		["keyword", "php"],
+		["delimiter", "}"]
+	]],
+	["embedded-php", [
+		["keyword", "global"],
+		["variable", "$foo"],
+		["punctuation", ","],
+		["variable", "$bar"],
+		["punctuation", ";"],
 
-				["keyword", "if"],
-				["punctuation", "("],
-				["variable", "$foo"],
-				["operator", "=="],
-				["variable", "$bar"],
-				["punctuation", ")"],
-				["punctuation", "{"],
+		["keyword", "if"],
+		["punctuation", "("],
+		["variable", "$foo"],
+		["operator", "=="],
+		["variable", "$bar"],
+		["punctuation", ")"],
+		["punctuation", "{"],
 
-				["keyword", "echo"],
-				["string", "'This will be sent to browser'"],
-				["punctuation", ";"],
+		["keyword", "echo"],
+		["string", "'This will be sent to browser'"],
+		["punctuation", ";"],
 
-				["punctuation", "}"],
+		["punctuation", "}"],
 
-				["comment", "// assign a variable to Smarty"],
+		["comment", "// assign a variable to Smarty"],
 
-				["variable", "$this"],
-				["operator", "->"],
-				["function", ["assign"]],
-				["punctuation", "("],
-				["string", "'varX'"],
-				["punctuation", ","],
-				["string", "'Toffee'"],
-				["punctuation", ")"],
-				["punctuation", ";"]
-			]],
-			["smarty", [
-				["delimiter", "{/"],
-				["keyword", "php"],
-				["delimiter", "}"]
-			]]
-		]]
+		["variable", "$this"],
+		["operator", "->"],
+		["function", ["assign"]],
+		["punctuation", "("],
+		["string", "'varX'"],
+		["punctuation", ","],
+		["string", "'Toffee'"],
+		["punctuation", ")"],
+		["punctuation", ";"]
+	]],
+	["smarty", [
+		["delimiter", "{/"],
+		["keyword", "php"],
+		["delimiter", "}"]
 	]],
 
 	["smarty", [

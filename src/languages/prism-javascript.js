@@ -1,13 +1,15 @@
 import { insertBefore } from '../shared/language-util';
 import { JS_TEMPLATE, JS_TEMPLATE_INTERPOLATION } from '../shared/languages/patterns';
 import { rest } from '../shared/symbols';
+import { toArray } from '../shared/util';
 import clike from './prism-clike';
 
 export default /** @type {import("../types").LanguageProto<'javascript'>} */ ({
 	id: 'javascript',
 	require: clike,
+	optional: 'js-templates',
 	alias: 'js',
-	grammar({ extend }) {
+	grammar({ extend, getOptionalLanguage }) {
 		const javascript = extend('clike', {
 			'class-name': [
 				{
@@ -136,34 +138,39 @@ export default /** @type {import("../types").LanguageProto<'javascript'>} */ ({
 			'constant': /\b[A-Z](?:[A-Z_]|\dx?)*\b/
 		});
 
+		const jsTemplates = getOptionalLanguage('js-templates')?.['template-string'];
+
 		insertBefore(javascript, 'string', {
 			'hashbang': {
 				pattern: /^#!.*/,
 				greedy: true,
 				alias: 'comment'
 			},
-			'template-string': {
-				pattern: JS_TEMPLATE,
-				greedy: true,
-				inside: {
-					'template-punctuation': {
-						pattern: /^`|`$/,
-						alias: 'string'
-					},
-					'interpolation': {
-						pattern: RegExp(/((?:^|[^\\])(?:\\{2})*)/.source + JS_TEMPLATE_INTERPOLATION.source),
-						lookbehind: true,
-						inside: {
-							'interpolation-punctuation': {
-								pattern: /^\$\{|\}$/,
-								alias: 'punctuation'
-							},
-							[rest]: javascript
-						}
-					},
-					'string': /[\s\S]+/
+			'template-string': [
+				...toArray(jsTemplates),
+				{
+					pattern: JS_TEMPLATE,
+					greedy: true,
+					inside: {
+						'template-punctuation': {
+							pattern: /^`|`$/,
+							alias: 'string'
+						},
+						'interpolation': {
+							pattern: RegExp(/((?:^|[^\\])(?:\\{2})*)/.source + JS_TEMPLATE_INTERPOLATION.source),
+							lookbehind: true,
+							inside: {
+								'interpolation-punctuation': {
+									pattern: /^\$\{|\}$/,
+									alias: 'punctuation'
+								},
+								[rest]: 'javascript'
+							}
+						},
+						'string': /[\s\S]+/
+					}
 				}
-			},
+			],
 			'string-property': {
 				pattern: /((?:^|[,{])[ \t]*)(["'])(?:\\(?:\r\n|[\s\S])|(?!\2)[^\\\r\n])*\2(?=\s*:)/m,
 				lookbehind: true,

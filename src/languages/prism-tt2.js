@@ -1,10 +1,12 @@
 import { insertBefore } from '../shared/language-util';
+import { embeddedIn } from '../shared/languages/templating';
+import { tokenize } from '../shared/symbols';
 import clike from './prism-clike';
-import markupTemplating, { MarkupTemplating } from './prism-markup-templating';
+import markup from './prism-markup';
 
 export default /** @type {import("../types").LanguageProto<'tt2'>} */ ({
 	id: 'tt2',
-	require: [clike, markupTemplating],
+	require: [clike, markup],
 	grammar({ extend }) {
 		const tt2 = extend('clike', {
 			'comment': /#.*|\[%#[\s\S]*?%\]/,
@@ -47,10 +49,12 @@ export default /** @type {import("../types").LanguageProto<'tt2'>} */ ({
 		// The different types of TT2 strings "replace" the C-like standard string
 		delete tt2.string;
 
-		return tt2;
-	},
-	effect(Prism) {
-		const pattern = /\[%[\s\S]+?%\]/g;
-		return new MarkupTemplating(this.id, Prism).addHooks(pattern);
+		return {
+			'tt2': {
+				pattern: /\[%[\s\S]+?%\]/,
+				inside: tt2
+			},
+			[tokenize]: embeddedIn('markup')
+		};
 	}
 });

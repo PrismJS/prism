@@ -1,23 +1,27 @@
+import { embeddedIn } from '../shared/languages/templating';
+import { tokenize } from '../shared/symbols';
 import javascript from './prism-javascript';
-import markupTemplating, { MarkupTemplating } from './prism-markup-templating';
+import markup from './prism-markup';
 
 export default /** @type {import("../types").LanguageProto<'ejs'>} */ ({
 	id: 'ejs',
-	require: [javascript, markupTemplating],
+	require: [javascript, markup],
 	alias: 'eta',
 	grammar: {
-		'delimiter': {
-			pattern: /^<%[-_=]?|[-_]?%>$/,
-			alias: 'punctuation'
+		'ejs': {
+			pattern: /<%(?!%)[\s\S]+?%>/,
+			inside: {
+				'delimiter': {
+					pattern: /^<%[-_=]?|[-_]?%>$/,
+					alias: 'punctuation'
+				},
+				'comment': /^#[\s\S]*/,
+				'language-javascript': {
+					pattern: /[\s\S]+/,
+					inside: 'javascript'
+				}
+			}
 		},
-		'comment': /^#[\s\S]*/,
-		'language-javascript': {
-			pattern: /[\s\S]+/,
-			inside: 'javascript'
-		}
-	},
-	effect(Prism) {
-		const pattern = /<%(?!%)[\s\S]+?%>/g;
-		return new MarkupTemplating(this.id, Prism).addHooks(pattern);
+		[tokenize]: embeddedIn('markup')
 	}
 });
