@@ -1,3 +1,6 @@
+import { withoutTokenize } from '../shared/language-util';
+import { tokenize } from '../shared/symbols';
+
 export default /** @type {import("../types").LanguageProto<'graphql'>} */ ({
 	id: 'graphql',
 	grammar: {
@@ -59,13 +62,9 @@ export default /** @type {import("../types").LanguageProto<'graphql'>} */ ({
 		'property-query': /\w+(?=\s*\()/,
 		'object': /\w+(?=\s*\{)/,
 		'punctuation': /[!(){}\[\]:=,]/,
-		'property': /\w+/
-	},
-	effect(Prism) {
-		return Prism.hooks.add('after-tokenize', (env) => {
-			if (env.language !== 'graphql') {
-				return;
-			}
+		'property': /\w+/,
+		[tokenize](code, grammar, Prism) {
+			const tokens = Prism.tokenize(code, withoutTokenize(grammar));
 
 			/** @typedef {import("../core/token").Token} Token */
 
@@ -80,7 +79,7 @@ export default /** @type {import("../types").LanguageProto<'graphql'>} */ ({
 			/**
 			 * get the graphql token stream that we want to customize
 			 */
-			const validTokens = env.tokens
+			const validTokens = tokens
 				.filter(isToken)
 				.filter((token) => token.type !== 'comment' && token.type !== 'scalar');
 
@@ -90,7 +89,7 @@ export default /** @type {import("../types").LanguageProto<'graphql'>} */ ({
 			 * Returns whether the token relative to the current index has the given type.
 			 *
 			 * @param {number} offset
-			 * @returns {Token | undefined}
+			 * @returns {Token}
 			 */
 			function getToken(offset) {
 				return validTokens[currentIndex + offset];
@@ -216,6 +215,8 @@ export default /** @type {import("../types").LanguageProto<'graphql'>} */ ({
 					}
 				}
 			}
-		});
+
+			return tokens;
+		}
 	}
 });
