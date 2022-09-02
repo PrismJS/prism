@@ -1,7 +1,7 @@
 'use strict';
 
+const fs = require('fs');
 const { src, dest, series, parallel, watch } = require('gulp');
-
 const cleanCSS = require('gulp-clean-css');
 const concat = require('gulp-concat');
 const header = require('gulp-header');
@@ -11,7 +11,6 @@ const terser = require('gulp-terser');
 const pump = require('pump');
 const util = require('util');
 const webfont = require('webfont').default;
-const fs = require('fs');
 
 const { changes, linkify } = require('./changelog');
 const { docs } = require('./docs');
