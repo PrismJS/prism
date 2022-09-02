@@ -317,7 +317,7 @@ export default /** @type {import("../types").LanguageProto<'markdown'>} */ ({
 	},
 	effect(Prism) {
 		return Prism.hooks.add('wrap', (env) => {
-			if (env.type !== 'code-block' || !env.classes.includes('needs-highlighting')) {
+			if (!Prism.plugins.autoloader || env.type !== 'code-block' || !env.classes.includes('needs-highlighting')) {
 				return;
 			}
 
@@ -331,7 +331,7 @@ export default /** @type {import("../types").LanguageProto<'markdown'>} */ ({
 				}
 			}
 
-			if (codeLang && codeLang !== 'none' && Prism.plugins.autoloader && typeof document !== 'undefined') {
+			if (codeLang && codeLang !== 'none' && typeof document !== 'undefined') {
 				const id = 'md-' + new Date().valueOf() + '-' + Math.floor(Math.random() * 1e16);
 				env.attributes['id'] = id;
 
