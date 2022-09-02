@@ -4,7 +4,6 @@ import css from './prism-css';
 export default /** @type {import("../types").LanguageProto<'less'>} */ ({
 	id: 'less',
 	require: css,
-	optional: 'css-extras',
 	grammar({ extend }) {
 		/* FIXME :
 		 :extend() is not handled specifically : its highlighting is buggy.
