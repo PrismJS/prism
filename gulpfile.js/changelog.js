@@ -108,7 +108,7 @@ const revisionRanges = {
 const strCompare = (a, b) => a.localeCompare(b, 'en');
 
 async function changes() {
-	const { languages, plugins } = require('../components.js');
+	const { languages, plugins } = require('../src/components');
 
 	const infos = await getLog(revisionRanges.nextRelease());
 

@@ -103,7 +103,7 @@ async function runBenchmark(config) {
 	totalSummary.forEach(s => {
 		s.avgRelative = s.relative.reduce((a, c) => a + c, 0) / s.relative.length;
 	});
-	const minAvgRelative = totalSummary.reduce((a, c) => Math.min(a, c.avgRelative), Infinity);
+	const minAvgRelative = totalSummary.reduce((a, c) => Math.min(a, c.avgRelative ?? Infinity), Infinity);
 
 	totalSummary.forEach((s, i) => {
 		const name = candidates[i].name.padEnd(maxCandidateNameLength, ' ');
@@ -116,7 +116,7 @@ async function runBenchmark(config) {
 }
 
 function getConfig() {
-	const base = require('./config.js');
+	const base = require('./config');
 
 	const args = /** @type {Record<string, unknown>} */(argv);
 
@@ -158,8 +158,9 @@ async function getCases(config) {
 	 * @returns {Promise<ReadonlySet<FileInfo>>}
 	 */
 	async function getCaseFiles(id) {
-		if (caseFileCache.has(id)) {
-			return caseFileCache.get(id);
+		const cached = caseFileCache.get(id);
+		if (cached) {
+			return cached;
 		}
 
 		const caseEntry = config.cases[id];
