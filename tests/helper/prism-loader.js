@@ -28,7 +28,7 @@ export const getComponentIds = lazy(() => [...getLanguageIds(), ...getPluginIds(
 /**
  * @param {string} id
  */
-export async function getComponent(id) {
+async function getComponentUncached(id) {
 	if (getPluginIds().includes(id)) {
 		const file = path.join(SRC_DIR, 'plugins', id, `prism-${id}.js`);
 		const exports = await import(file);
@@ -39,6 +39,22 @@ export async function getComponent(id) {
 		return /** @type {import('../../src/types').LanguageProto} */ (exports.default);
 	}
 }
+/** @type {Map<string, Promise<import('../../src/types').ComponentProto>>} */
+const componentCache = new Map();
+/**
+ * @param {string} id
+ */
+export function getComponent(id) {
+	let promise = componentCache.get(id);
+	if (promise === undefined) {
+		promise = getComponentUncached(id);
+		componentCache.set(id, promise);
+	}
+	return promise;
+}
+
+// preload all components
+getComponentIds().forEach(getComponent);
 
 /**
  * Creates a new Prism instance with the given language loaded
