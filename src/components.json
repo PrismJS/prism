@@ -631,10 +631,6 @@
 			"title": "JSDoc",
 			"owner": "RunDevelopment"
 		},
-		"js-extras": {
-			"title": "JS Extras",
-			"owner": "RunDevelopment"
-		},
 		"json": {
 			"title": "JSON",
 			"aliasTitles": {
