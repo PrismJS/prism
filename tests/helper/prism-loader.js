@@ -2,7 +2,7 @@ import { readdirSync } from 'fs';
 import { JSDOM } from 'jsdom';
 import path from 'path';
 import { Prism } from '../../src/core/prism';
-import { isNonNull, lazy, toArray } from '../../src/shared/util';
+import { isNonNull, lazy, noop, toArray } from '../../src/shared/util';
 
 const SRC_DIR = path.join(__dirname, '../../src');
 
@@ -71,6 +71,28 @@ export async function createInstance(languages) {
  */
 
 /**
+ *
+ * @param {Record<string, unknown>} target
+ * @param {Record<string, unknown>} source
+ * @returns {() => void}
+ */
+function overwriteProps(target, source) {
+	/** @type {[string, unknown][]} */
+	const oldProps = [];
+
+	for (const [key, value] of Object.entries(source)) {
+		oldProps.push([key, target[key]]);
+		target[key] = value;
+	}
+
+	return () => {
+		for (const [key, value] of oldProps) {
+			target[key] = value;
+		}
+	};
+}
+
+/**
  * Creates a new JavaScript DOM instance with Prism being loaded.
  *
  * @returns {PrismDOM<{}>}
@@ -78,6 +100,7 @@ export async function createInstance(languages) {
 export function createPrismDOM() {
 	const dom = new JSDOM(``, {
 		runScripts: 'outside-only',
+		url: 'https://example.com/test.html'
 	});
 	const window = dom.window;
 
@@ -89,15 +112,19 @@ export function createPrismDOM() {
 	 */
 	const withGlobals = (fn) => {
 		const g = /** @type {Record<string, unknown>} */ (/** @type {unknown} */ (global));
+		let undo;
 		try {
-			g.window = window;
-			g.document = window.document;
-			g.navigator = window.navigator;
+			undo = overwriteProps(g, {
+				window,
+				document: window.document,
+				navigator: window.navigator,
+				location: window.location,
+				getComputedStyle: window.getComputedStyle,
+				setTimeout: noop
+			});
 			fn();
 		} finally {
-			g.window = undefined;
-			g.document = undefined;
-			g.navigator = undefined;
+			undo?.();
 		}
 	};
 
