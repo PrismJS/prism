@@ -59,7 +59,7 @@ export function setLanguage(element, language) {
  * @returns {boolean}
  */
 export function isActive(element, className, defaultActivation = false) {
-	return element?.closest(`${className}, no-${className}`)?.classList?.contains(className) ?? defaultActivation;
+	return element?.closest(`.${className}, .no-${className}`)?.classList?.contains(className) ?? defaultActivation;
 }
 
 /**
