@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Highlight Keywords should highlight keywords 1`] = `"<span class=\\"token keyword keyword-import\\">import</span> <span class=\\"token operator\\">*</span> <span class=\\"token keyword keyword-from\\">from</span> <span class=\\"token string\\">''</span><span class=\\"token punctuation\\">;</span> <span class=\\"token keyword keyword-const\\">const</span> foo<span class=\\"token punctuation\\">;</span>"`;

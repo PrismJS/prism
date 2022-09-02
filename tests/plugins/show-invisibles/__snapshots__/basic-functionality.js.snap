@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Show Invisibles should show invisible characters 1`] = `
+"<span class=\\"token space\\"> </span><span class=\\"token space\\"> </span><span class=\\"token tab\\">	</span><span class=\\"token lf\\">
+</span><span class=\\"token crlf\\">
+</span><span class=\\"token tab\\">	</span><span class=\\"token tab\\">	</span>"
+`;
+
+exports[`Show Invisibles should show invisible characters inside tokens 1`] = `
+"<span class=\\"token comment\\">/*<span class=\\"token space\\"> </span><span class=\\"token lf\\">
+</span><span class=\\"token space\\"> </span>*/</span>"
+`;

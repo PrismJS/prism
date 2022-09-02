@@ -1,8 +1,13 @@
-import { assert } from 'chai';
 import { createPrismDOM } from './prism-loader';
+import { assertEqual, useSnapshot } from './snapshot';
 
 /**
  * @param {import('./prism-loader').PrismWindow<{}>} window
+ *
+ * @typedef AssertOptions
+ * @property {string} [language]
+ * @property {string} code
+ * @property {string | useSnapshot} [expected]
  */
 export function createUtil(window) {
 	const { Prism, document } = window;
@@ -10,30 +15,41 @@ export function createUtil(window) {
 	return {
 		assert: {
 			/**
-			 * @param {{
-			 *   language?: string;
-			 *   code: string;
-			 *   expected: string;
-			 * }} param0
+			 * @param {AssertOptions} param0
 			 */
-			highlight({ language = 'none', code, expected }) {
-				assert.strictEqual(Prism.highlight(code, language), expected);
+			highlight({ language = 'none', code, expected = useSnapshot }) {
+				assertEqual(Prism.highlight(code, language), expected);
 			},
 			/**
-			 * @param {{
-			 *   language?: string;
-			 *   code: string;
-			 *   expected: string;
-			 * }} param0
+			 * @param {AssertOptions} param0
 			 */
-			highlightElement({ language = 'none', code, expected }) {
-				const element = document.createElement('CODE');
+			highlightElement({ language = 'none', code, expected = useSnapshot }) {
+				const element = document.createElement('code');
 				element.classList.add('language-' + language);
 				element.textContent = code;
 
 				Prism.highlightElement(element);
 
-				assert.strictEqual(element.innerHTML, expected);
+				assertEqual(element.innerHTML, expected);
+			},
+			/**
+			 * @param {AssertOptions & { attributes?: Record<string, string> }} param0
+			 */
+			highlightPreElement({ language = 'none', attributes = {}, code, expected = useSnapshot }) {
+				const preElement = document.createElement('pre');
+				for (const key in attributes) {
+					const value = attributes[key];
+					preElement.setAttribute(key, value);
+				}
+				preElement.classList.add('language-' + language);
+
+				const codeElement = document.createElement('code');
+				codeElement.textContent = code;
+				preElement.appendChild(codeElement);
+
+				Prism.highlightElement(codeElement);
+
+				assertEqual(preElement.outerHTML, expected);
 			}
 		},
 	};
