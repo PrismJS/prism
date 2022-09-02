@@ -35,9 +35,9 @@ function getContentBoxTopOffset(parent, child) {
 	}
 
 	return child.offsetTop
-					+ pxToNumber(childStyle.borderTopWidth)
-					+ pxToNumber(childStyle.paddingTop)
-					- pxToNumber(parentStyle.paddingTop);
+		+ pxToNumber(childStyle.borderTopWidth)
+		+ pxToNumber(childStyle.paddingTop)
+		- pxToNumber(parentStyle.paddingTop);
 }
 
 /**
