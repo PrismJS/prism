@@ -66,13 +66,13 @@ export function createUtil(window) {
 /**
  * @param {{ languages?: string | string[]; plugins?: T | T[] }} options
  * @returns {{
- *   it: (title: string, fn: (dom: TestSuiteDom<T>) => void | Promise<void>) => void
+ *   it: (title: string, fn: (dom: TestSuiteDom<T>) => void) => void
  * }}
  * @template {string} T
  */
 export function createTestSuite(options) {
 	return {
-		it: async (title, fn) => {
+		it: (title, fn) => {
 			it(title, async () => {
 				const dom = createPrismDOM();
 
