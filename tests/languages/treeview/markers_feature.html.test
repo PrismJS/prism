@@ -1,0 +1,31 @@
+directory/
+socket file=
+executable file*
+FIFO|
+
+----------------------------------------------------
+
+<span class="token treeview-part">
+	<span class="token entry-name dir">
+		directory
+		<span class="token directory-marker">/</span>
+	</span>
+</span>
+<span class="token treeview-part">
+	<span class="token entry-name">
+		socket file
+		<span class="token file-marker">=</span>
+	</span>
+</span>
+<span class="token treeview-part">
+	<span class="token entry-name">
+		executable file
+		<span class="token file-marker">*</span>
+	</span>
+</span>
+<span class="token treeview-part">
+	<span class="token entry-name">
+		FIFO
+		<span class="token file-marker">|</span>
+	</span>
+</span>
