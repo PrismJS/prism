@@ -6,7 +6,9 @@ import { getComponent, getComponentIds, getLanguageIds } from './helper/prism-lo
 
 
 describe('Components', () => {
-	it('- should not have redundant optional dependencies', async () => {
+	it('- should not have redundant optional dependencies', async function () {
+		this.timeout(10_000);
+
 		for (const id of getComponentIds()) {
 			const proto = await getComponent(id).catch(noop);
 			const require = new Set(toArray(proto?.require).map(p => p.id));
@@ -20,7 +22,9 @@ describe('Components', () => {
 	});
 
 
-	it('- should have unique aliases', async () => {
+	it('- should have unique aliases', async function () {
+		this.timeout(10_000);
+
 		/** @type {Map<string, string>} */
 		const seen = new Map();
 
