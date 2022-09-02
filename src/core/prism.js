@@ -11,7 +11,10 @@ import { Token } from './token';
  */
 
 /**
- * TODO: Add docs
+ * Prism: Lightweight, robust, elegant syntax highlighting
+ *
+ * @license MIT <https://opensource.org/licenses/MIT>
+ * @author Lea Verou <https://lea.verou.me>
  */
 export class Prism {
 	constructor() {
