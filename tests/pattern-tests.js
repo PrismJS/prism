@@ -3,7 +3,7 @@ import { JS, NFA, Transformers, Words, combineTransformers, getIntersectionWordS
 import * as RAA from 'regexp-ast-analysis';
 import { visitRegExpAST } from 'regexpp';
 import * as scslre from 'scslre';
-import { noop, toArray } from '../src/shared/util';
+import { lazy, toArray } from '../src/shared/util';
 import * as args from './helper/args';
 import { createInstance, getComponent, getLanguageIds } from './helper/prism-loader';
 import { TestCaseFile, parseLanguageNames } from './helper/test-case';
@@ -36,28 +36,28 @@ for (const lang of getLanguageIds()) {
 		continue;
 	}
 
-	describe(`Patterns of '${lang}'`, async () => {
-		const Prism = await createInstance(lang);
-		testPatterns(Prism, lang);
+	describe(`Patterns of '${lang}'`, () => {
+		const create = lazy(() => createInstance(lang));
+		testPatterns(create, lang);
 	});
 
 	describe(`Patterns of '${lang}' with optional dependencies`, async () => {
-		const component = await getComponent(lang);
-		const optional = toArray(component.optional);
-
-		if (optional.length === 0) {
-			it('no optional dependencies', noop);
-		} else {
-			const Prism = await createInstance([lang, ...optional]);
-			testPatterns(Prism, lang);
-		}
+		const create = lazy(async () => {
+			const component = await getComponent(lang);
+			const optional = toArray(component.optional);
+			if (optional.length === 0) {
+				return undefined;
+			}
+			return createInstance([lang, ...optional]);
+		});
+		testPatterns(create, lang);
 	});
 }
 
 /**
  * Tests all patterns in the given Prism instance.
  *
- * @param {import('../src/core/prism').Prism} Prism
+ * @param {() => Promise<import('../src/core/prism').Prism | undefined>} getPrism
  * @param {string} mainLanguage
  *
  * @typedef {import("./helper/util").LiteralAST} LiteralAST
@@ -67,7 +67,7 @@ for (const lang of getLanguageIds()) {
  * @typedef {import("regexpp/ast").LookaroundAssertion} LookaroundAssertion
  * @typedef {import("regexpp/ast").Pattern} Pattern
  */
-function testPatterns(Prism, mainLanguage) {
+function testPatterns(getPrism, mainLanguage) {
 
 	/**
 	 * Returns a list of relevant languages in the Prism instance.
@@ -99,7 +99,7 @@ function testPatterns(Prism, mainLanguage) {
 	 * @property {import('./helper/util').PathItem[]} path
 	 * @property {(message: string) => void} reportError
 	 */
-	function forEachPattern(callback) {
+	async function forEachPattern(callback) {
 		const visited = new Set();
 		/** @type {(Error | string)[]} */
 		const errors = [];
@@ -147,6 +147,11 @@ function testPatterns(Prism, mainLanguage) {
 					}
 				}
 			});
+		}
+
+		const Prism = await getPrism();
+		if (!Prism) {
+			return;
 		}
 
 		// static analysis
@@ -204,8 +209,8 @@ function testPatterns(Prism, mainLanguage) {
 	}
 
 
-	it('- should not match the empty string', () => {
-		forEachPattern(({ ast, pattern, tokenPath }) => {
+	it('- should not match the empty string', async () => {
+		await forEachPattern(({ ast, pattern, tokenPath }) => {
 			// test for empty string
 			const empty = RAA.isPotentiallyZeroLength(ast.pattern.alternatives);
 			assert.isFalse(empty, `${tokenPath}: ${pattern} should not match the empty string.\n\n`
@@ -214,8 +219,8 @@ function testPatterns(Prism, mainLanguage) {
 		});
 	});
 
-	it('- should have a capturing group if lookbehind is set to true', () => {
-		forEachPattern(({ ast, tokenPath, lookbehind }) => {
+	it('- should have a capturing group if lookbehind is set to true', async () => {
+		await forEachPattern(({ ast, tokenPath, lookbehind }) => {
 			if (lookbehind) {
 				let hasCapturingGroup = false;
 				forEachCapturingGroup(ast.pattern, () => { hasCapturingGroup = true; });
@@ -230,8 +235,8 @@ function testPatterns(Prism, mainLanguage) {
 		});
 	});
 
-	it('- should not have lookbehind groups that can be preceded by other some characters', () => {
-		forEachPattern(({ tokenPath, lookbehindGroup }) => {
+	it('- should not have lookbehind groups that can be preceded by other some characters', async () => {
+		await forEachPattern(({ tokenPath, lookbehindGroup }) => {
 			if (lookbehindGroup && !isFirstMatch(lookbehindGroup)) {
 				assert.fail(`${tokenPath}: The lookbehind group ${lookbehindGroup.raw} might be preceded by some characters.\n\n`
 					+ `Prism assumes that the lookbehind group, if captured, is the first thing matched by the regex. `
@@ -241,8 +246,8 @@ function testPatterns(Prism, mainLanguage) {
 		});
 	});
 
-	it('- should not have lookbehind groups that only have zero-width alternatives', () => {
-		forEachPattern(({ tokenPath, lookbehindGroup, reportError }) => {
+	it('- should not have lookbehind groups that only have zero-width alternatives', async () => {
+		await forEachPattern(({ tokenPath, lookbehindGroup, reportError }) => {
 			if (lookbehindGroup && RAA.isZeroLength(lookbehindGroup)) {
 				const groupContent = lookbehindGroup.raw.substr(1, lookbehindGroup.raw.length - 2);
 				const replacement = lookbehindGroup.alternatives.length === 1 ? groupContent : `(?:${groupContent})`;
@@ -253,8 +258,8 @@ function testPatterns(Prism, mainLanguage) {
 		});
 	});
 
-	it('- should not have unused capturing groups', () => {
-		forEachPattern(({ ast, tokenPath, lookbehindGroup, reportError }) => {
+	it('- should not have unused capturing groups', async () => {
+		await forEachPattern(({ ast, tokenPath, lookbehindGroup, reportError }) => {
 			forEachCapturingGroup(ast.pattern, ({ group, number }) => {
 				const isLookbehindGroup = group === lookbehindGroup;
 				if (group.references.length === 0 && !isLookbehindGroup) {
@@ -279,7 +284,7 @@ function testPatterns(Prism, mainLanguage) {
 		});
 	});
 
-	it('- should have nice names and aliases', () => {
+	it('- should have nice names and aliases', async () => {
 		const niceName = /^[a-z][a-z\d]*(?:-[a-z\d]+)*$/;
 		/**
 		 * @param {string} name
@@ -292,7 +297,7 @@ function testPatterns(Prism, mainLanguage) {
 			}
 		}
 
-		forEachPattern(({ name, parent, tokenPath, path }) => {
+		await forEachPattern(({ name, parent, tokenPath, path }) => {
 			// token name
 			let offset = 1;
 			if (name == 'pattern') { // regex can be inside an object
@@ -318,8 +323,8 @@ function testPatterns(Prism, mainLanguage) {
 		});
 	});
 
-	it('- should not use octal escapes', () => {
-		forEachPattern(({ ast, tokenPath, reportError }) => {
+	it('- should not use octal escapes', async () => {
+		await forEachPattern(({ ast, tokenPath, reportError }) => {
 			visitRegExpAST(ast.pattern, {
 				onCharacterEnter(node) {
 					if (/^\\(?:[1-9]|\d{2,})$/.test(node.raw)) {
@@ -333,27 +338,27 @@ function testPatterns(Prism, mainLanguage) {
 		});
 	});
 
-	it('- should not cause exponential backtracking', () => {
-		replaceRegExpProto(exec => {
+	it('- should not cause exponential backtracking', async () => {
+		await replaceRegExpProto(exec => {
 			return function (input) {
 				checkExponentialBacktracking('<Unknown>', this);
 				return exec.call(this, input);
 			};
-		}, () => {
-			forEachPattern(({ pattern, ast, tokenPath }) => {
+		}, async () => {
+			await forEachPattern(({ pattern, ast, tokenPath }) => {
 				checkExponentialBacktracking(tokenPath, pattern, ast);
 			});
 		});
 	});
 
-	it('- should not cause polynomial backtracking', () => {
-		replaceRegExpProto(exec => {
+	it('- should not cause polynomial backtracking', async () => {
+		await replaceRegExpProto(exec => {
 			return function (input) {
 				checkPolynomialBacktracking('<Unknown>', this);
 				return exec.call(this, input);
 			};
-		}, () => {
-			forEachPattern(({ pattern, ast, tokenPath }) => {
+		}, async () => {
+			await forEachPattern(({ pattern, ast, tokenPath }) => {
 				checkPolynomialBacktracking(tokenPath, pattern, ast);
 			});
 		});
@@ -804,9 +809,9 @@ function indent(str, amount = '    ') {
 
 /**
  * @param {(exec: RegExp["exec"]) => (this: RegExp, input: string) => RegExpExecArray | null} execSupplier
- * @param {() => void} fn
+ * @param {() => Promise<void>} fn
  */
-function replaceRegExpProto(execSupplier, fn) {
+async function replaceRegExpProto(execSupplier, fn) {
 	const oldExec = RegExp.prototype.exec;
 	const oldTest = RegExp.prototype.test;
 	const newExec = execSupplier(oldExec);
@@ -821,7 +826,7 @@ function replaceRegExpProto(execSupplier, fn) {
 
 	let error;
 	try {
-		fn();
+		await fn();
 	} catch (e) {
 		error = e;
 	}
