@@ -1,0 +1,213 @@
+root_folder/
+|-- a first folder/
+|   |-- holidays.mov
+|   |-- javascript-file.js
+|   `-- some_picture.jpg
+|-- documents/
+|   |-- spreadsheet.xls
+|   |-- manual.pdf
+|   |-- document.docx
+|   `-- presentation.ppt
+|       `-- test
+|-- empty_folder/
+|-- going deeper/
+|   |-- going deeper/
+|   |   `-- going deeper/
+|   |        `-- going deeper/
+|   |            `-- .secret_file
+|   |-- style.css
+|   `-- index.html
+|-- music and movies/
+|   |-- great-song.mp3
+|   |-- S01E02.new.episode.avi
+|   |-- S01E02.new.episode.nfo
+|   `-- track 1.cda
+|-- .gitignore
+|-- .htaccess
+|-- .npmignore
+|-- archive 1.zip
+|-- archive 2.tar.gz
+|-- logo.svg
+`-- README.md
+
+----------------------------------------------------
+
+<span class="token treeview-part">
+	<span class="token entry-name dir">
+		root_folder
+		<span class="token directory-marker">/</span>
+	</span>
+</span>
+<span class="token treeview-part">
+	<span class="token entry-line line-h">|--</span>
+	<span class="token entry-name dir">
+		a first folder
+		<span class="token directory-marker">/</span>
+	</span>
+</span>
+<span class="token treeview-part">
+	<span class="token entry-line line-v">|</span>
+	<span class="token entry-line line-h">|--</span>
+	<span class="token entry-name ext-mov">holidays.mov</span>
+</span>
+<span class="token treeview-part">
+	<span class="token entry-line line-v">|</span>
+	<span class="token entry-line line-h">|--</span>
+	<span class="token entry-name ext-js">javascript-file.js</span>
+</span>
+<span class="token treeview-part">
+	<span class="token entry-line line-v">|</span>
+	<span class="token entry-line line-v-last">`--</span>
+	<span class="token entry-name ext-jpg">some_picture.jpg</span>
+</span>
+<span class="token treeview-part">
+	<span class="token entry-line line-h">|--</span>
+	<span class="token entry-name dir">
+		documents
+		<span class="token directory-marker">/</span>
+	</span>
+</span>
+<span class="token treeview-part">
+	<span class="token entry-line line-v">|</span>
+	<span class="token entry-line line-h">|--</span>
+	<span class="token entry-name ext-xls">spreadsheet.xls</span>
+</span>
+<span class="token treeview-part">
+	<span class="token entry-line line-v">|</span>
+	<span class="token entry-line line-h">|--</span>
+	<span class="token entry-name ext-pdf">manual.pdf</span>
+</span>
+<span class="token treeview-part">
+	<span class="token entry-line line-v">|</span>
+	<span class="token entry-line line-h">|--</span>
+	<span class="token entry-name ext-docx">document.docx</span>
+</span>
+<span class="token treeview-part">
+	<span class="token entry-line line-v">|</span>
+	<span class="token entry-line line-v-last">`--</span>
+	<span class="token entry-name ext-ppt">presentation.ppt</span>
+</span>
+<span class="token treeview-part">
+	<span class="token entry-line line-v">|</span>
+	<span class="token entry-line line-v-gap"></span>
+	<span class="token entry-line line-v-last">`--</span>
+	<span class="token entry-name">test</span>
+</span>
+<span class="token treeview-part">
+	<span class="token entry-line line-h">|--</span>
+	<span class="token entry-name dir">
+		empty_folder
+		<span class="token directory-marker">/</span>
+	</span>
+</span>
+<span class="token treeview-part">
+	<span class="token entry-line line-h">|--</span>
+	<span class="token entry-name dir">
+		going deeper
+		<span class="token directory-marker">/</span>
+	</span>
+</span>
+<span class="token treeview-part">
+	<span class="token entry-line line-v">|</span>
+	<span class="token entry-line line-h">|--</span>
+	<span class="token entry-name dir">
+		going deeper
+		<span class="token directory-marker">/</span>
+	</span>
+</span>
+<span class="token treeview-part">
+	<span class="token entry-line line-v">|</span>
+	<span class="token entry-line line-v">|</span>
+	<span class="token entry-line line-v-last">`--</span>
+	<span class="token entry-name dir">
+		going deeper
+		<span class="token directory-marker">/</span>
+	</span>
+</span>
+<span class="token treeview-part">
+	<span class="token entry-line line-v">|</span>
+	<span class="token entry-line line-v">|</span>
+	<span class="token entry-line line-v-gap"></span>
+	<span class="token entry-line line-v-last">`--</span>
+	<span class="token entry-name dir">
+		going deeper
+		<span class="token directory-marker">/</span>
+	</span>
+</span>
+<span class="token treeview-part">
+	<span class="token entry-line line-v">|</span>
+	<span class="token entry-line line-v">|</span>
+	<span class="token entry-line line-v-gap"></span>
+	<span class="token entry-line line-v-gap"></span>
+	<span class="token entry-line line-v-last">`--</span>
+	<span class="token entry-name ext-secret_file dotfile">.secret_file</span>
+</span>
+<span class="token treeview-part">
+	<span class="token entry-line line-v">|</span>
+	<span class="token entry-line line-h">|--</span>
+	<span class="token entry-name ext-css">style.css</span>
+</span>
+<span class="token treeview-part">
+	<span class="token entry-line line-v">|</span>
+	<span class="token entry-line line-v-last">`--</span>
+	<span class="token entry-name ext-html">index.html</span>
+</span>
+<span class="token treeview-part">
+	<span class="token entry-line line-h">|--</span>
+	<span class="token entry-name dir">
+		music and movies
+		<span class="token directory-marker">/</span>
+	</span>
+</span>
+<span class="token treeview-part">
+	<span class="token entry-line line-v">|</span>
+	<span class="token entry-line line-h">|--</span>
+	<span class="token entry-name ext-mp3">great-song.mp3</span>
+</span>
+<span class="token treeview-part">
+	<span class="token entry-line line-v">|</span>
+	<span class="token entry-line line-h">|--</span>
+	<span class="token entry-name ext-new-episode-avi ext-episode-avi ext-avi">
+		S01E02.new.episode.avi
+	</span>
+</span>
+<span class="token treeview-part">
+	<span class="token entry-line line-v">|</span>
+	<span class="token entry-line line-h">|--</span>
+	<span class="token entry-name ext-new-episode-nfo ext-episode-nfo ext-nfo">
+		S01E02.new.episode.nfo
+	</span>
+</span>
+<span class="token treeview-part">
+	<span class="token entry-line line-v">|</span>
+	<span class="token entry-line line-v-last">`--</span>
+	<span class="token entry-name ext-cda">track 1.cda</span>
+</span>
+<span class="token treeview-part">
+	<span class="token entry-line line-h">|--</span>
+	<span class="token entry-name ext-gitignore dotfile">.gitignore</span>
+</span>
+<span class="token treeview-part">
+	<span class="token entry-line line-h">|--</span>
+	<span class="token entry-name ext-htaccess dotfile">.htaccess</span>
+</span>
+<span class="token treeview-part">
+	<span class="token entry-line line-h">|--</span>
+	<span class="token entry-name ext-npmignore dotfile">.npmignore</span>
+</span>
+<span class="token treeview-part">
+	<span class="token entry-line line-h">|--</span>
+	<span class="token entry-name ext-zip">archive 1.zip</span>
+</span>
+<span class="token treeview-part">
+	<span class="token entry-line line-h">|--</span>
+	<span class="token entry-name ext-tar-gz ext-gz">archive 2.tar.gz</span>
+</span>
+<span class="token treeview-part">
+	<span class="token entry-line line-h">|--</span>
+	<span class="token entry-name ext-svg">logo.svg</span>
+</span>
+<span class="token treeview-part">
+	<span class="token entry-line line-v-last">`--</span>
+	<span class="token entry-name ext-md">README.md</span>
+</span>

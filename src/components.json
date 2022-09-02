@@ -1178,6 +1178,10 @@
 			"title": "TOML",
 			"owner": "RunDevelopment"
 		},
+		"treeview": {
+			"title": "Treeview",
+			"owner": "Golmote"
+		},
 		"tremor": {
 			"title": "Tremor",
 			"owner": "darach",
@@ -1453,9 +1457,9 @@
 			"owner": "RunDevelopment",
 			"noCSS": true
 		},
-		"treeview": {
-			"title": "Treeview",
-			"description": "A language with special styles to highlight file system tree structures.",
+		"treeview-icons": {
+			"title": "Treeview Icons",
+			"description": "Adds icons and special styles to highlighted file system tree structures.",
 			"owner": "Golmote"
 		}
 	}
