@@ -3,23 +3,6 @@ import { insertBefore, withoutTokenize } from '../shared/language-util';
 import { tokenize } from '../shared/symbols';
 import markup from './prism-markup';
 
-/**
- * Adds an alias to the given token.
- *
- * @param {import('../core/token').Token} token
- * @param {string} alias
- * @returns {void}
- */
-function addAlias(token, alias) {
-	let aliases = token.alias;
-	if (!aliases) {
-		token.alias = aliases = [];
-	} else if (!Array.isArray(aliases)) {
-		token.alias = aliases = [aliases];
-	}
-	aliases.push(alias);
-}
-
 export default /** @type {import("../types").LanguageProto<'markdown'>} */ ({
 	id: 'markdown',
 	require: markup,
@@ -160,13 +143,13 @@ export default /** @type {import("../types").LanguageProto<'markdown'>} */ ({
 								// only use the first word
 								const langName = /[a-z][\w-]*/i.exec(lang)?.[0].toLowerCase();
 								if (langName) {
-									addAlias(codeBlock, 'language-' + langName);
+									codeBlock.addAlias('language-' + langName);
 
 									const grammar = Prism.components.getLanguage(lang);
 									if (grammar) {
 										codeBlock.content = Prism.tokenize(getTextContent(codeBlock), grammar);
 									} else {
-										addAlias(codeBlock, 'needs-highlighting');
+										codeBlock.addAlias('needs-highlighting');
 									}
 								}
 							}

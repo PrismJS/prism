@@ -146,23 +146,6 @@ export default /** @type {import("../types").LanguageProto<'graphql'>} */ ({
 				return -1;
 			}
 
-			/**
-			 * Adds an alias to the given token.
-			 *
-			 * @param {Token} token
-			 * @param {string} alias
-			 * @returns {void}
-			 */
-			function addAlias(token, alias) {
-				let aliases = token.alias;
-				if (!aliases) {
-					token.alias = aliases = [];
-				} else if (!Array.isArray(aliases)) {
-					token.alias = aliases = [aliases];
-				}
-				aliases.push(alias);
-			}
-
 			for (; currentIndex < validTokens.length;) {
 				const startToken = validTokens[currentIndex++];
 
@@ -185,7 +168,7 @@ export default /** @type {import("../types").LanguageProto<'graphql'>} */ ({
 						for (; currentIndex < definitionEnd; currentIndex++) {
 							const t = getToken(0);
 							if (t.type === 'variable') {
-								addAlias(t, 'variable-input');
+								t.addAlias('variable-input');
 								inputVariables.push(t.content);
 							}
 						}
@@ -196,7 +179,7 @@ export default /** @type {import("../types").LanguageProto<'graphql'>} */ ({
 					if (isTokenType(['punctuation', 'property-query']) && getToken(0).content === '{') {
 						currentIndex++; // skip opening bracket
 
-						addAlias(getToken(0), 'property-mutation');
+						getToken(0).addAlias('property-mutation');
 
 						if (inputVariables.length > 0) {
 							const mutationEnd = findClosingBracket(/^\{$/, /^\}$/);
@@ -208,7 +191,7 @@ export default /** @type {import("../types").LanguageProto<'graphql'>} */ ({
 							for (let i = currentIndex; i < mutationEnd; i++) {
 								const varToken = validTokens[i];
 								if (varToken.type === 'variable' && inputVariables.includes(varToken.content)) {
-									addAlias(varToken, 'variable-input');
+									varToken.addAlias('variable-input');
 								}
 							}
 						}

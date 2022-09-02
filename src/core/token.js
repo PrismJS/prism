@@ -40,6 +40,21 @@ export class Token {
 		// Copy of the full string this token was created from
 		this.length = matchedStr.length;
 	}
+
+	/**
+	 * Adds the given alias to the list of aliases of this token.
+	 *
+	 * @param {string} alias
+	 */
+	addAlias(alias) {
+		let aliases = this.alias;
+		if (!aliases) {
+			this.alias = aliases = [];
+		} else if (!Array.isArray(aliases)) {
+			this.alias = aliases = [aliases];
+		}
+		aliases.push(alias);
+	}
 }
 
 /**
