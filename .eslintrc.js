@@ -167,7 +167,13 @@ module.exports = {
 			env: {
 				browser: true,
 				node: true,
-				worker: true,
+			},
+		},
+		{
+			// Browser-specific parts
+			files: ['src/auto-start.js'],
+			env: {
+				browser: true
 			},
 		},
 		{
