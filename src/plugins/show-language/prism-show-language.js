@@ -1,5 +1,5 @@
 import { getParentPre } from '../../shared/dom-util';
-import { knownTitles } from '../../shared/meta/title-data';
+import { getTitle } from '../../shared/meta/title-data';
 import toolbar from '../toolbar/prism-toolbar';
 
 export default /** @type {import("../../types").PluginProto<'show-language'>} */ ({
@@ -14,27 +14,13 @@ export default /** @type {import("../../types").PluginProto<'show-language'>} */
 				return;
 			}
 
-			/**
-			 * Tries to guess the name of a language given its id.
-			 *
-			 * @param {string} id The language id.
-			 * @returns {string}
-			 */
-			function guessTitle(id) {
-				if (!id) {
-					return id;
-				}
-				return (id.substring(0, 1).toUpperCase() + id.substring(1)).replace(/s(?=cript)/, 'S');
-			}
-
-			const language = pre.getAttribute('data-language') || knownTitles[env.language] || guessTitle(env.language);
-
-			if (!language) {
+			const title = pre.getAttribute('data-language') || getTitle(env.language);
+			if (!title) {
 				return;
 			}
-			const element = document.createElement('span');
-			element.textContent = language;
 
+			const element = document.createElement('span');
+			element.textContent = title;
 			return element;
 		});
 	}

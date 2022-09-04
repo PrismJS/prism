@@ -1,5 +1,5 @@
 import { getParentPre } from '../../shared/dom-util';
-import { knownAliases } from '../../shared/meta/alias-data';
+import { resolveAlias } from '../../shared/meta/alias-data';
 import { toArray } from '../../shared/util';
 
 function getDefaultSrcPath() {
@@ -46,7 +46,7 @@ const ignoredLanguages = new Set(['none']);
  */
 function isLoaded(Prism, name) {
 	// resolve alias
-	const id = knownAliases[name] || name;
+	const id = resolveAlias(name);
 	return Prism.components.has(id) || ignoredLanguages.has(id);
 }
 
@@ -76,7 +76,7 @@ export class Autoloader {
 	 */
 	async loadLanguages(languages) {
 		const toLoad = toArray(languages)
-			.map(name => knownAliases[name] || name)
+			.map(resolveAlias)
 			.filter(id => !isLoaded(this.Prism, id));
 
 		await Promise.all(toLoad.map((id) => {

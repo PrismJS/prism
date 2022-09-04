@@ -5,4 +5,12 @@
  *
  * @type {Readonly<Partial<Record<string, string>>>}
  */
-export const knownAliases = /*aliases_placeholder[*/{}/*]*/;
+const knownAliases = /*aliases_placeholder[*/{}/*]*/;
+
+/**
+ * @param {string} name
+ * @returns {string}
+ */
+export function resolveAlias(name) {
+	return knownAliases[name] || name;
+}
