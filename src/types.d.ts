@@ -14,7 +14,7 @@ export interface ComponentProtoBase<Id extends string = string> {
 	optional?: string | readonly string[];
 	alias?: string | readonly string[];
 	// eslint-disable-next-line @typescript-eslint/ban-types
-	effect?: (Prism: Prism & { plugins: Record<KebabToCamelCase<Id>, {}> }) => () => void;
+	effect?: (Prism: Prism & { plugins: Record<KebabToCamelCase<Id>, {}> }) => (() => void);
 }
 export interface LanguageProto<Id extends string = string> extends ComponentProtoBase<Id> {
 	grammar: Grammar | ((options: GrammarOptions) => Grammar);
