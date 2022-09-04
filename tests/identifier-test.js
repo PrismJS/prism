@@ -96,21 +96,19 @@ const identifiers = {
 
 for (const lang of getLanguageIds()) {
 	describe(`Test '${lang}'`, async () => {
-		const Prism = await createInstance(lang);
-		testLiterals(Prism, lang);
+		const getPrism = createInstance(lang);
+		testLiterals(getPrism, lang);
 	});
 
 
 	describe(`Patterns of '${lang}' with optional dependencies`, async () => {
-		const component = await getComponent(lang);
-		const optional = toArray(component.optional);
-
-		if (optional.length === 0) {
-			it('no optional dependencies', noop);
-		} else {
+		const getPrism = async () => {
+			const component = await getComponent(lang);
+			const optional = toArray(component.optional);
 			const Prism = await createInstance([lang, ...optional]);
-			testLiterals(Prism, lang);
-		}
+			return Prism;
+		};
+		testLiterals(getPrism(), lang);
 	});
 }
 
@@ -143,16 +141,17 @@ function isNotBroken(token) {
 /**
  * Tests all patterns in the given Prism instance.
  *
- * @param {import('../src/core/prism').Prism} Prism
+ * @param {Promise<import('../src/core/prism').Prism>} getPrism
  * @param {string} lang
  */
-function testLiterals(Prism, lang) {
+function testLiterals(getPrism, lang) {
 
 	/**
 	 * @param {string[]} identifierElements
 	 * @param {keyof IdentifierTestOptions} identifierType
 	 */
-	function matchNotBroken(identifierElements, identifierType) {
+	async function matchNotBroken(identifierElements, identifierType) {
+		const Prism = await getPrism;
 		for (const id of Prism.components['entries'].keys()) {
 			const grammar = Prism.components.getLanguage(id);
 			if (!grammar) {
@@ -193,8 +192,8 @@ function testLiterals(Prism, lang) {
 		const identifierType = /** @type {keyof IdentifierTestOptions} */ (key);
 		const element = identifiers[identifierType];
 		if (options[identifierType] !== false) {
-			it(`- should not break ${identifierType} identifiers`, () => {
-				matchNotBroken(element, identifierType);
+			it(`- should not break ${identifierType} identifiers`, async () => {
+				await matchNotBroken(element, identifierType);
 			});
 		}
 	}
