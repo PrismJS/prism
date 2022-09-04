@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import { noop, toArray } from '../src/shared/util';
+import { toArray } from '../src/shared/util';
 import { createInstance, getComponent, getLanguageIds } from './helper/prism-loader';
 import { prettyprint } from './helper/token-stream-transformer';
 
