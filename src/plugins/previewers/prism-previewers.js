@@ -1,679 +1,712 @@
-import { noop } from '../../shared/util';
-import cssExtras from '../css-extras/prism-css-extras';
+import cssExtras from '../../languages/prism-css-extras';
+import { forEach } from '../../shared/util';
+
+/**
+ * Returns the absolute X, Y offsets for an element
+ *
+ * @param {Element} element
+ * @returns {{top: number, right: number, bottom: number, left: number, width: number, height: number}}
+ */
+const getOffset = function (element) {
+	const elementBounds = element.getBoundingClientRect();
+	let left = elementBounds.left;
+	let top = elementBounds.top;
+	const documentBounds = document.documentElement.getBoundingClientRect();
+	left -= documentBounds.left;
+	top -= documentBounds.top;
+
+	return {
+		top,
+		right: innerWidth - left - elementBounds.width,
+		bottom: innerHeight - top - elementBounds.height,
+		left,
+		width: elementBounds.width,
+		height: elementBounds.height
+	};
+};
+
+const TOKEN_CLASS = 'token';
+const ACTIVE_CLASS = 'active';
+const FLIPPED_CLASS = 'flipped';
+
+
+class Previewer {
+	/**
+	 * Previewer constructor
+	 *
+	 * @param {string} type Unique previewer type
+	 * @param {(this: HTMLDivElement, value: string) => boolean} updater Function that will be called on mouseover.
+	 * @param {string[] | string} [supportedLanguages] Aliases of the languages this previewer must be enabled for. Defaults to "*", all languages.
+	 * @param {(this: Previewer & { _elt: HTMLDivElement }) => void} [initializer] Function that will be called on initialization.
+	 * @class
+	 */
+	constructor(type, updater, supportedLanguages = '*', initializer) {
+		/**
+		 * @type {HTMLDivElement | null}
+		 */
+		this._elt = null;
+		/**
+		 * @type {string}
+		 * @readonly
+		 */
+		this.type = type;
+		this.supportedLanguages = supportedLanguages;
+		/**
+		 * @type {Element | null}
+		 * @private
+		 */
+		this._token = null;
+		this.updater = updater;
+		this.initializer = initializer;
+	}
+	/**
+	 * Creates the HTML element for the previewer.
+	 *
+	 * @returns {asserts this is Previewer & { _elt: HTMLDivElement }}
+	 */
+	init() {
+		if (this._elt) {
+			return;
+		}
+		this._elt = document.createElement('div');
+		this._elt.className = 'prism-previewer prism-previewer-' + this.type;
+		document.body.appendChild(this._elt);
+		if (this.initializer) {
+			/** @type {Previewer & { _elt: HTMLDivElement }} */ (this).initializer();
+		}
+	}
+	/**
+	 * @param {Element} token
+	 * @returns {boolean}
+	 */
+	isDisabled(token) {
+		const previewers = token.closest('[data-previewers]')?.getAttribute('data-previewers');
+		const parts = (previewers || '').split(/\s+/);
+		return !parts.includes(this.type);
+	}
+	/**
+	 * Checks the class name of each hovered element
+	 *
+	 * @param {Element} token
+	 */
+	tryShow(token) {
+		if (token.classList.contains(TOKEN_CLASS) && this.isDisabled(token)) {
+			return;
+		}
+		const target = token.closest(`.${TOKEN_CLASS}.${this.type}`);
+		if (target && target !== this._token) {
+			this._token = target;
+			this.show();
+		}
+	}
+	/**
+	 * Called on mouseout
+	 *
+	 * @private
+	 */
+	mouseout = () => {
+		this._token?.removeEventListener('mouseout', this.mouseout, false);
+		this._token = null;
+		this.hide();
+	};
+	/**
+	 * Shows the previewer positioned properly for the current token.
+	 */
+	show() {
+		this.init();
+
+		if (!this._token) {
+			return;
+		}
+
+		if (this.updater.call(this._elt, this._token.textContent || '')) {
+			this._token.addEventListener('mouseout', this.mouseout, false);
+
+			const offset = getOffset(this._token);
+			this._elt.classList.add(ACTIVE_CLASS);
+
+			if (offset.top - this._elt.offsetHeight > 0) {
+				this._elt.classList.remove(FLIPPED_CLASS);
+				this._elt.style.top = offset.top + 'px';
+				this._elt.style.bottom = '';
+			} else {
+				this._elt.classList.add(FLIPPED_CLASS);
+				this._elt.style.bottom = offset.bottom + 'px';
+				this._elt.style.top = '';
+			}
+
+			this._elt.style.left = offset.left + Math.min(200, offset.width / 2) + 'px';
+		} else {
+			this.hide();
+		}
+	}
+	/**
+	 * Hides the previewer.
+	 */
+	hide() {
+		this._elt?.classList.remove(ACTIVE_CLASS);
+	}
+}
+
+
+export class PreviewerCollection {
+	/**
+	 * Map of all registered previewers by language.
+	 *
+	 * @type {Map<string, Previewer[]>}
+	 * @readonly
+	 */
+	byLanguages = new Map();
+	/**
+	 * Map of all registered previewers by type
+	 *
+	 * @type {Map<string, Previewer>}
+	 * @readonly
+	 */
+	byType = new Map();
+
+	/**
+	 * @param {Previewer} previewer
+	 */
+	add(previewer) {
+		forEach(previewer.supportedLanguages, (lang) => {
+			let list = this.byLanguages.get(lang);
+			if (list === undefined) {
+				list = [];
+				this.byLanguages.set(lang, list);
+			}
+			if (!list.includes(previewer)) {
+				list.push(previewer);
+			}
+		});
+
+		this.byType.set(previewer.type, previewer);
+	}
+
+	/**
+	 * Initializes the mouseover event on the code block.
+	 *
+	 * @param {Element} elt The code block (`env.element`)
+	 * @param {string} lang The language (`env.language`)
+	 */
+	initEvents(elt, lang) {
+		/** @type {Previewer[]} */
+		const previewers = [];
+		previewers.push(...(this.byLanguages.get(lang) ?? []));
+		previewers.push(...(this.byLanguages.get('*') ?? []));
+		if (previewers.length === 0) {
+			return;
+		}
+		elt.addEventListener('mouseover', (e) => {
+			const target = e.target;
+			if (target) {
+				previewers.forEach((previewer) => {
+					previewer.tryShow(/** @type {Element} */(target));
+				});
+			}
+		}, false);
+	}
+}
+
+// TODO: Filthy hack to be able to load this script
+const Prism = { languages: {} };
+
+const previewers = {
+	// gradient must be defined before color and angle
+	'gradient': {
+		create() {
+
+			/**
+			 * Stores already processed gradients so that we don't
+			 * make the conversion every time the previewer is shown
+			 *
+			 * @type {Record<string, string>}
+			 */
+			const cache = {};
+
+			/**
+			 * Returns a W3C-valid linear gradient
+			 *
+			 * @param {string} prefix Vendor prefix if any ("-moz-", "-webkit-", etc.)
+			 * @param {string} func Gradient function name ("linear-gradient")
+			 * @param {string[]} values Array of the gradient function parameters (["0deg", "red 0%", "blue 100%"])
+			 */
+			function convertToW3CLinearGradient(prefix, func, values) {
+				// Default value for angle
+				let angle = '180deg';
+
+				const first = values[0];
+				if (first && /^(?:-?(?:\d+(?:\.\d+)?|\.\d+)(?:deg|rad)|bottom|left|right|to\b|top)/.test(first)) {
+					angle = first;
+					values.shift();
+					if (!angle.includes('to ')) {
+						// Angle uses old keywords
+						// W3C syntax uses "to" + opposite keywords
+						if (angle.includes('top')) {
+							if (angle.includes('left')) {
+								angle = 'to bottom right';
+							} else if (angle.includes('right')) {
+								angle = 'to bottom left';
+							} else {
+								angle = 'to bottom';
+							}
+						} else if (angle.includes('bottom')) {
+							if (angle.includes('left')) {
+								angle = 'to top right';
+							} else if (angle.includes('right')) {
+								angle = 'to top left';
+							} else {
+								angle = 'to top';
+							}
+						} else if (angle.includes('left')) {
+							angle = 'to right';
+						} else if (angle.includes('right')) {
+							angle = 'to left';
+						} else if (prefix) {
+							// Angle is shifted by 90deg in prefixed gradients
+							if (angle.includes('deg')) {
+								angle = (90 - parseFloat(angle)) + 'deg';
+							} else if (angle.includes('rad')) {
+								angle = (Math.PI / 2 - parseFloat(angle)) + 'rad';
+							}
+						}
+					}
+				}
+
+				return func + '(' + angle + ',' + values.join(',') + ')';
+			}
+
+			/**
+			 * Returns a W3C-valid radial gradient
+			 *
+			 * @param {string} prefix Vendor prefix if any ("-moz-", "-webkit-", etc.)
+			 * @param {string} func Gradient function name ("linear-gradient")
+			 * @param {string[]} values Array of the gradient function parameters (["0deg", "red 0%", "blue 100%"])
+			 */
+			function convertToW3CRadialGradient(prefix, func, values) {
+				if (!values[0].includes('at')) {
+					// Looks like old syntax
+
+					// Default values
+					let position = 'center';
+					let shape = 'ellipse';
+					let size = 'farthest-corner';
+
+					if (/\b(?:bottom|center|left|right|top)\b|^\d+/.test(values[0])) {
+						// Found a position
+						// Remove angle value, if any
+						position = values.shift().replace(/\s*-?\d+(?:deg|rad)\s*/, '');
+					}
+					if (/\b(?:circle|closest|contain|cover|ellipse|farthest)\b/.test(values[0])) {
+						// Found a shape and/or size
+						const shapeSizeParts = values.shift().split(/\s+/);
+						if (shapeSizeParts[0] && (shapeSizeParts[0] === 'circle' || shapeSizeParts[0] === 'ellipse')) {
+							shape = shapeSizeParts.shift();
+						}
+						if (shapeSizeParts[0]) {
+							size = shapeSizeParts.shift();
+						}
+
+						// Old keywords are converted to their synonyms
+						if (size === 'cover') {
+							size = 'farthest-corner';
+						} else if (size === 'contain') {
+							size = 'clothest-side';
+						}
+					}
+
+					return func + '(' + shape + ' ' + size + ' at ' + position + ',' + values.join(',') + ')';
+				}
+				return func + '(' + values.join(',') + ')';
+			}
+
+			/**
+			 * Converts a gradient to a W3C-valid one
+			 * Does not support old webkit syntax (-webkit-gradient(linear...) and -webkit-gradient(radial...))
+			 *
+			 * @param {string} gradient The CSS gradient
+			 */
+			function convertToW3CGradient(gradient) {
+				if (cache[gradient]) {
+					return cache[gradient];
+				}
+
+				const values = gradient.replace(/^(?:\b|\B-[a-z]{1,10}-)(?:repeating-)?(?:linear|radial)-gradient\(|\)$/g, '').split(/\s*,\s*/);
+				const parts = gradient.match(/^(\b|\B-[a-z]{1,10}-)((?:repeating-)?(?:linear|radial)-gradient)/);
+
+				if (!parts) {
+					return cache[gradient] = '';
+				}
+
+				// "", "-moz-", etc.
+				const prefix = parts[1];
+				// "linear-gradient", "radial-gradient", etc.
+				const func = parts[2];
+
+				if (func.includes('linear')) {
+					return cache[gradient] = convertToW3CLinearGradient(prefix, func, values);
+				} else if (func.includes('radial')) {
+					return cache[gradient] = convertToW3CRadialGradient(prefix, func, values);
+				}
+				return cache[gradient] = func + '(' + values.join(',') + ')';
+			}
+
+			return new Previewer('gradient', function (value) {
+				const first = /** @type {HTMLElement | null} */ (this.firstChild);
+				if (!first) {
+					return false;
+				}
+				first.style.backgroundImage = '';
+				first.style.backgroundImage = convertToW3CGradient(value);
+				return !!first.style.backgroundImage;
+			}, '*', function () {
+				this._elt.innerHTML = '<div></div>';
+			});
+		},
+		tokens: {
+			'gradient': {
+				pattern: /(?:\b|\B-[a-z]{1,10}-)(?:repeating-)?(?:linear|radial)-gradient\((?:(?:hsl|rgb)a?\(.+?\)|[^\)])+\)/gi,
+				inside: {
+					'function': /[\w-]+(?=\()/,
+					'punctuation': /[(),]/
+				}
+			}
+		},
+		languages: {
+			'css': true,
+			'less': true,
+			'sass': [
+				{
+					lang: 'sass',
+					before: 'punctuation',
+					inside: 'inside',
+					root: Prism.languages.sass && Prism.languages.sass['variable-line']
+				},
+				{
+					lang: 'sass',
+					before: 'punctuation',
+					inside: 'inside',
+					root: Prism.languages.sass && Prism.languages.sass['property-line']
+				}
+			],
+			'scss': true,
+			'stylus': [
+				{
+					lang: 'stylus',
+					before: 'func',
+					inside: 'rest',
+					root: Prism.languages.stylus && Prism.languages.stylus['property-declaration'].inside
+				},
+				{
+					lang: 'stylus',
+					before: 'func',
+					inside: 'rest',
+					root: Prism.languages.stylus && Prism.languages.stylus['variable-declaration'].inside
+				}
+			]
+		}
+	},
+	'angle': {
+		create() {
+			return new Previewer('angle', function (value) {
+				const num = parseFloat(value);
+				const unit = value.match(/[a-z]+$/i);
+				let max = 1;
+				if (!num || !unit) {
+					return false;
+				}
+
+				switch (unit[0]) {
+					case 'deg':
+						max = 360;
+						break;
+					case 'grad':
+						max = 400;
+						break;
+					case 'rad':
+						max = 2 * Math.PI;
+						break;
+					case 'turn':
+						max = 1;
+				}
+
+				const percentage = (100 * num / max) % 100;
+				this[`${num < 0 ? 'set' : 'remove'}Attribute`]('data-negative', '');
+				const circle = this.querySelector('circle');
+				if (circle) {
+					circle.style.strokeDasharray = Math.abs(percentage) + ',500';
+				}
+				return true;
+			}, '*', function () {
+				this._elt.innerHTML = '<svg viewBox="0 0 64 64">' +
+					'<circle r="16" cy="32" cx="32"></circle>' +
+					'</svg>';
+			});
+		},
+		tokens: {
+			'angle': /(?:\b|\B-|(?=\B\.))(?:\d+(?:\.\d+)?|\.\d+)(?:deg|g?rad|turn)\b/i
+		},
+		languages: {
+			'css': true,
+			'less': true,
+			'markup': {
+				lang: 'markup',
+				before: 'punctuation',
+				inside: 'inside',
+				root: Prism.languages.markup && Prism.languages.markup['tag'].inside['attr-value']
+			},
+			'sass': [
+				{
+					lang: 'sass',
+					inside: 'inside',
+					root: Prism.languages.sass && Prism.languages.sass['property-line']
+				},
+				{
+					lang: 'sass',
+					before: 'operator',
+					inside: 'inside',
+					root: Prism.languages.sass && Prism.languages.sass['variable-line']
+				}
+			],
+			'scss': true,
+			'stylus': [
+				{
+					lang: 'stylus',
+					before: 'func',
+					inside: 'rest',
+					root: Prism.languages.stylus && Prism.languages.stylus['property-declaration'].inside
+				},
+				{
+					lang: 'stylus',
+					before: 'func',
+					inside: 'rest',
+					root: Prism.languages.stylus && Prism.languages.stylus['variable-declaration'].inside
+				}
+			]
+		}
+	},
+	'color': {
+		create() {
+			return new Previewer('color', function (value) {
+				this.style.backgroundColor = '';
+				this.style.backgroundColor = value;
+				return !!this.style.backgroundColor;
+			});
+		},
+		tokens: {
+			'color': [Prism.languages.css['hexcode']].concat(Prism.languages.css['color'])
+		},
+		languages: {
+			// CSS extras is required, so css and scss are not necessary
+			'css': false,
+			'less': true,
+			'markup': {
+				lang: 'markup',
+				before: 'punctuation',
+				inside: 'inside',
+				root: Prism.languages.markup && Prism.languages.markup['tag'].inside['attr-value']
+			},
+			'sass': [
+				{
+					lang: 'sass',
+					before: 'punctuation',
+					inside: 'inside',
+					root: Prism.languages.sass && Prism.languages.sass['variable-line']
+				},
+				{
+					lang: 'sass',
+					inside: 'inside',
+					root: Prism.languages.sass && Prism.languages.sass['property-line']
+				}
+			],
+			'scss': false,
+			'stylus': [
+				{
+					lang: 'stylus',
+					before: 'hexcode',
+					inside: 'rest',
+					root: Prism.languages.stylus && Prism.languages.stylus['property-declaration'].inside
+				},
+				{
+					lang: 'stylus',
+					before: 'hexcode',
+					inside: 'rest',
+					root: Prism.languages.stylus && Prism.languages.stylus['variable-declaration'].inside
+				}
+			]
+		}
+	},
+	'easing': {
+		create() {
+			/** @type {Partial<Record<string, string>>} */
+			const identifierMap = {
+				'linear': '0,0,1,1',
+				'ease': '.25,.1,.25,1',
+				'ease-in': '.42,0,1,1',
+				'ease-out': '0,0,.58,1',
+				'ease-in-out': '.42,0,.58,1'
+			};
+			return new Previewer('easing', function (value) {
+				value = identifierMap[value] || value;
+
+				const p = value.match(/-?(?:\d+(?:\.\d+)?|\.\d+)/g);
+
+				if (p && p.length === 4) {
+					const values = p.map(Number).map((p, i) => (i % 2 ? 1 - p : p) * 100).map(String);
+
+					this.querySelector('path')?.setAttribute('d', 'M0,100 C' + values[0] + ',' + values[1] + ', ' + values[2] + ',' + values[3] + ', 100,0');
+
+					const lines = this.querySelectorAll('line');
+					lines[0].setAttribute('x2', values[0]);
+					lines[0].setAttribute('y2', values[1]);
+					lines[1].setAttribute('x2', values[2]);
+					lines[1].setAttribute('y2', values[3]);
+
+					return true;
+				}
+
+				return false;
+			}, '*', function () {
+				this._elt.innerHTML = '<svg viewBox="-20 -20 140 140" width="100" height="100">' +
+					'<defs>' +
+					'<marker id="prism-previewer-easing-marker" viewBox="0 0 4 4" refX="2" refY="2" markerUnits="strokeWidth">' +
+					'<circle cx="2" cy="2" r="1.5" />' +
+					'</marker>' +
+					'</defs>' +
+					'<path d="M0,100 C20,50, 40,30, 100,0" />' +
+					'<line x1="0" y1="100" x2="20" y2="50" marker-start="url(#prism-previewer-easing-marker)" marker-end="url(#prism-previewer-easing-marker)" />' +
+					'<line x1="100" y1="0" x2="40" y2="30" marker-start="url(#prism-previewer-easing-marker)" marker-end="url(#prism-previewer-easing-marker)" />' +
+					'</svg>';
+			});
+		},
+		tokens: {
+			'easing': {
+				pattern: /\bcubic-bezier\((?:-?(?:\d+(?:\.\d+)?|\.\d+),\s*){3}-?(?:\d+(?:\.\d+)?|\.\d+)\)\B|\b(?:ease(?:-in)?(?:-out)?|linear)(?=\s|[;}]|$)/i,
+				inside: {
+					'function': /[\w-]+(?=\()/,
+					'punctuation': /[(),]/
+				}
+			}
+		},
+		languages: {
+			'css': true,
+			'less': true,
+			'sass': [
+				{
+					lang: 'sass',
+					inside: 'inside',
+					before: 'punctuation',
+					root: Prism.languages.sass && Prism.languages.sass['variable-line']
+				},
+				{
+					lang: 'sass',
+					inside: 'inside',
+					root: Prism.languages.sass && Prism.languages.sass['property-line']
+				}
+			],
+			'scss': true,
+			'stylus': [
+				{
+					lang: 'stylus',
+					before: 'hexcode',
+					inside: 'rest',
+					root: Prism.languages.stylus && Prism.languages.stylus['property-declaration'].inside
+				},
+				{
+					lang: 'stylus',
+					before: 'hexcode',
+					inside: 'rest',
+					root: Prism.languages.stylus && Prism.languages.stylus['variable-declaration'].inside
+				}
+			]
+		}
+	},
+
+	'time': {
+		create() {
+			return new Previewer('time', function (value) {
+				const num = parseFloat(value);
+				const unit = value.match(/[a-z]+$/i);
+				if (!num || !unit) {
+					return false;
+				}
+				const u = unit[0];
+				const circle = this.querySelector('circle');
+				if (circle) {
+					circle.style.animationDuration = 2 * num + u;
+				}
+				return true;
+			}, '*', function () {
+				this._elt.innerHTML = '<svg viewBox="0 0 64 64">' +
+					'<circle r="16" cy="32" cx="32"></circle>' +
+					'</svg>';
+			});
+		},
+		tokens: {
+			'time': /(?:\b|\B-|(?=\B\.))(?:\d+(?:\.\d+)?|\.\d+)m?s\b/i
+		},
+		languages: {
+			'css': true,
+			'less': true,
+			'markup': {
+				lang: 'markup',
+				before: 'punctuation',
+				inside: 'inside',
+				root: Prism.languages.markup && Prism.languages.markup['tag'].inside['attr-value']
+			},
+			'sass': [
+				{
+					lang: 'sass',
+					inside: 'inside',
+					root: Prism.languages.sass && Prism.languages.sass['property-line']
+				},
+				{
+					lang: 'sass',
+					before: 'operator',
+					inside: 'inside',
+					root: Prism.languages.sass && Prism.languages.sass['variable-line']
+				}
+			],
+			'scss': true,
+			'stylus': [
+				{
+					lang: 'stylus',
+					before: 'hexcode',
+					inside: 'rest',
+					root: Prism.languages.stylus && Prism.languages.stylus['property-declaration'].inside
+				},
+				{
+					lang: 'stylus',
+					before: 'hexcode',
+					inside: 'rest',
+					root: Prism.languages.stylus && Prism.languages.stylus['variable-declaration'].inside
+				}
+			]
+		}
+	}
+};
+
 
 export default /** @type {import("../../types").PluginProto<'previewers'>} */ ({
 	id: 'previewers',
 	require: cssExtras,
 	plugin(Prism) {
-		return {}; // TODO:
+		const collection = new PreviewerCollection();
+
+		if (typeof document !== 'undefined') {
+			for (const previewer of Object.values(previewers)) {
+				collection.add(previewer.create());
+			}
+		}
+
+		return collection;
 	},
 	effect(Prism) {
-		if (typeof document === 'undefined') {
-			return noop;
-		}
-
-		const previewers = {
-			// gradient must be defined before color and angle
-			'gradient': {
-				create: (function () {
-
-					// Stores already processed gradients so that we don't
-					// make the conversion every time the previewer is shown
-					const cache = {};
-
-					/**
-					 * Returns a W3C-valid linear gradient
-					 *
-					 * @param {string} prefix Vendor prefix if any ("-moz-", "-webkit-", etc.)
-					 * @param {string} func Gradient function name ("linear-gradient")
-					 * @param {string[]} values Array of the gradient function parameters (["0deg", "red 0%", "blue 100%"])
-					 */
-					const convertToW3CLinearGradient = function (prefix, func, values) {
-						// Default value for angle
-						let angle = '180deg';
-
-						if (/^(?:-?(?:\d+(?:\.\d+)?|\.\d+)(?:deg|rad)|bottom|left|right|to\b|top)/.test(values[0])) {
-							angle = values.shift();
-							if (angle.indexOf('to ') < 0) {
-								// Angle uses old keywords
-								// W3C syntax uses "to" + opposite keywords
-								if (angle.indexOf('top') >= 0) {
-									if (angle.indexOf('left') >= 0) {
-										angle = 'to bottom right';
-									} else if (angle.indexOf('right') >= 0) {
-										angle = 'to bottom left';
-									} else {
-										angle = 'to bottom';
-									}
-								} else if (angle.indexOf('bottom') >= 0) {
-									if (angle.indexOf('left') >= 0) {
-										angle = 'to top right';
-									} else if (angle.indexOf('right') >= 0) {
-										angle = 'to top left';
-									} else {
-										angle = 'to top';
-									}
-								} else if (angle.indexOf('left') >= 0) {
-									angle = 'to right';
-								} else if (angle.indexOf('right') >= 0) {
-									angle = 'to left';
-								} else if (prefix) {
-									// Angle is shifted by 90deg in prefixed gradients
-									if (angle.indexOf('deg') >= 0) {
-										angle = (90 - parseFloat(angle)) + 'deg';
-									} else if (angle.indexOf('rad') >= 0) {
-										angle = (Math.PI / 2 - parseFloat(angle)) + 'rad';
-									}
-								}
-							}
-						}
-
-						return func + '(' + angle + ',' + values.join(',') + ')';
-					};
-
-					/**
-					 * Returns a W3C-valid radial gradient
-					 *
-					 * @param {string} prefix Vendor prefix if any ("-moz-", "-webkit-", etc.)
-					 * @param {string} func Gradient function name ("linear-gradient")
-					 * @param {string[]} values Array of the gradient function parameters (["0deg", "red 0%", "blue 100%"])
-					 */
-					const convertToW3CRadialGradient = function (prefix, func, values) {
-						if (values[0].indexOf('at') < 0) {
-							// Looks like old syntax
-
-							// Default values
-							let position = 'center';
-							let shape = 'ellipse';
-							let size = 'farthest-corner';
-
-							if (/\b(?:bottom|center|left|right|top)\b|^\d+/.test(values[0])) {
-								// Found a position
-								// Remove angle value, if any
-								position = values.shift().replace(/\s*-?\d+(?:deg|rad)\s*/, '');
-							}
-							if (/\b(?:circle|closest|contain|cover|ellipse|farthest)\b/.test(values[0])) {
-								// Found a shape and/or size
-								const shapeSizeParts = values.shift().split(/\s+/);
-								if (shapeSizeParts[0] && (shapeSizeParts[0] === 'circle' || shapeSizeParts[0] === 'ellipse')) {
-									shape = shapeSizeParts.shift();
-								}
-								if (shapeSizeParts[0]) {
-									size = shapeSizeParts.shift();
-								}
-
-								// Old keywords are converted to their synonyms
-								if (size === 'cover') {
-									size = 'farthest-corner';
-								} else if (size === 'contain') {
-									size = 'clothest-side';
-								}
-							}
-
-							return func + '(' + shape + ' ' + size + ' at ' + position + ',' + values.join(',') + ')';
-						}
-						return func + '(' + values.join(',') + ')';
-					};
-
-					/**
-					 * Converts a gradient to a W3C-valid one
-					 * Does not support old webkit syntax (-webkit-gradient(linear...) and -webkit-gradient(radial...))
-					 *
-					 * @param {string} gradient The CSS gradient
-					 */
-					const convertToW3CGradient = function (gradient) {
-						if (cache[gradient]) {
-							return cache[gradient];
-						}
-						const parts = gradient.match(/^(\b|\B-[a-z]{1,10}-)((?:repeating-)?(?:linear|radial)-gradient)/);
-						// "", "-moz-", etc.
-						const prefix = parts && parts[1];
-						// "linear-gradient", "radial-gradient", etc.
-						const func = parts && parts[2];
-
-						const values = gradient.replace(/^(?:\b|\B-[a-z]{1,10}-)(?:repeating-)?(?:linear|radial)-gradient\(|\)$/g, '').split(/\s*,\s*/);
-
-						if (func.indexOf('linear') >= 0) {
-							return cache[gradient] = convertToW3CLinearGradient(prefix, func, values);
-						} else if (func.indexOf('radial') >= 0) {
-							return cache[gradient] = convertToW3CRadialGradient(prefix, func, values);
-						}
-						return cache[gradient] = func + '(' + values.join(',') + ')';
-					};
-
-					return function () {
-						new Prism.plugins.Previewer('gradient', function (value) {
-							this.firstChild.style.backgroundImage = '';
-							this.firstChild.style.backgroundImage = convertToW3CGradient(value);
-							return !!this.firstChild.style.backgroundImage;
-						}, '*', function () {
-							this._elt.innerHTML = '<div></div>';
-						});
-					};
-				}()),
-				tokens: {
-					'gradient': {
-						pattern: /(?:\b|\B-[a-z]{1,10}-)(?:repeating-)?(?:linear|radial)-gradient\((?:(?:hsl|rgb)a?\(.+?\)|[^\)])+\)/gi,
-						inside: {
-							'function': /[\w-]+(?=\()/,
-							'punctuation': /[(),]/
-						}
-					}
-				},
-				languages: {
-					'css': true,
-					'less': true,
-					'sass': [
-						{
-							lang: 'sass',
-							before: 'punctuation',
-							inside: 'inside',
-							root: Prism.languages.sass && Prism.languages.sass['variable-line']
-						},
-						{
-							lang: 'sass',
-							before: 'punctuation',
-							inside: 'inside',
-							root: Prism.languages.sass && Prism.languages.sass['property-line']
-						}
-					],
-					'scss': true,
-					'stylus': [
-						{
-							lang: 'stylus',
-							before: 'func',
-							inside: 'rest',
-							root: Prism.languages.stylus && Prism.languages.stylus['property-declaration'].inside
-						},
-						{
-							lang: 'stylus',
-							before: 'func',
-							inside: 'rest',
-							root: Prism.languages.stylus && Prism.languages.stylus['variable-declaration'].inside
-						}
-					]
-				}
-			},
-			'angle': {
-				create() {
-					new Prism.plugins.Previewer('angle', function (value) {
-						const num = parseFloat(value);
-						let unit = value.match(/[a-z]+$/i);
-						let max; let percentage;
-						if (!num || !unit) {
-							return false;
-						}
-						unit = unit[0];
-
-						switch (unit) {
-							case 'deg':
-								max = 360;
-								break;
-							case 'grad':
-								max = 400;
-								break;
-							case 'rad':
-								max = 2 * Math.PI;
-								break;
-							case 'turn':
-								max = 1;
-						}
-
-						percentage = 100 * num / max;
-						percentage %= 100;
-
-						this[(num < 0 ? 'set' : 'remove') + 'Attribute']('data-negative', '');
-						this.querySelector('circle').style.strokeDasharray = Math.abs(percentage) + ',500';
-						return true;
-					}, '*', function () {
-						this._elt.innerHTML = '<svg viewBox="0 0 64 64">' +
-								'<circle r="16" cy="32" cx="32"></circle>' +
-								'</svg>';
-					});
-				},
-				tokens: {
-					'angle': /(?:\b|\B-|(?=\B\.))(?:\d+(?:\.\d+)?|\.\d+)(?:deg|g?rad|turn)\b/i
-				},
-				languages: {
-					'css': true,
-					'less': true,
-					'markup': {
-						lang: 'markup',
-						before: 'punctuation',
-						inside: 'inside',
-						root: Prism.languages.markup && Prism.languages.markup['tag'].inside['attr-value']
-					},
-					'sass': [
-						{
-							lang: 'sass',
-							inside: 'inside',
-							root: Prism.languages.sass && Prism.languages.sass['property-line']
-						},
-						{
-							lang: 'sass',
-							before: 'operator',
-							inside: 'inside',
-							root: Prism.languages.sass && Prism.languages.sass['variable-line']
-						}
-					],
-					'scss': true,
-					'stylus': [
-						{
-							lang: 'stylus',
-							before: 'func',
-							inside: 'rest',
-							root: Prism.languages.stylus && Prism.languages.stylus['property-declaration'].inside
-						},
-						{
-							lang: 'stylus',
-							before: 'func',
-							inside: 'rest',
-							root: Prism.languages.stylus && Prism.languages.stylus['variable-declaration'].inside
-						}
-					]
-				}
-			},
-			'color': {
-				create() {
-					new Prism.plugins.Previewer('color', function (value) {
-						this.style.backgroundColor = '';
-						this.style.backgroundColor = value;
-						return !!this.style.backgroundColor;
-					});
-				},
-				tokens: {
-					'color': [Prism.languages.css['hexcode']].concat(Prism.languages.css['color'])
-				},
-				languages: {
-					// CSS extras is required, so css and scss are not necessary
-					'css': false,
-					'less': true,
-					'markup': {
-						lang: 'markup',
-						before: 'punctuation',
-						inside: 'inside',
-						root: Prism.languages.markup && Prism.languages.markup['tag'].inside['attr-value']
-					},
-					'sass': [
-						{
-							lang: 'sass',
-							before: 'punctuation',
-							inside: 'inside',
-							root: Prism.languages.sass && Prism.languages.sass['variable-line']
-						},
-						{
-							lang: 'sass',
-							inside: 'inside',
-							root: Prism.languages.sass && Prism.languages.sass['property-line']
-						}
-					],
-					'scss': false,
-					'stylus': [
-						{
-							lang: 'stylus',
-							before: 'hexcode',
-							inside: 'rest',
-							root: Prism.languages.stylus && Prism.languages.stylus['property-declaration'].inside
-						},
-						{
-							lang: 'stylus',
-							before: 'hexcode',
-							inside: 'rest',
-							root: Prism.languages.stylus && Prism.languages.stylus['variable-declaration'].inside
-						}
-					]
-				}
-			},
-			'easing': {
-				create() {
-					new Prism.plugins.Previewer('easing', function (value) {
-
-						value = {
-							'linear': '0,0,1,1',
-							'ease': '.25,.1,.25,1',
-							'ease-in': '.42,0,1,1',
-							'ease-out': '0,0,.58,1',
-							'ease-in-out': '.42,0,.58,1'
-						}[value] || value;
-
-						let p = value.match(/-?(?:\d+(?:\.\d+)?|\.\d+)/g);
-
-						if (p.length === 4) {
-							p = p.map((p, i) => (i % 2 ? 1 - p : p) * 100);
-
-							this.querySelector('path').setAttribute('d', 'M0,100 C' + p[0] + ',' + p[1] + ', ' + p[2] + ',' + p[3] + ', 100,0');
-
-							const lines = this.querySelectorAll('line');
-							lines[0].setAttribute('x2', p[0]);
-							lines[0].setAttribute('y2', p[1]);
-							lines[1].setAttribute('x2', p[2]);
-							lines[1].setAttribute('y2', p[3]);
-
-							return true;
-						}
-
-						return false;
-					}, '*', function () {
-						this._elt.innerHTML = '<svg viewBox="-20 -20 140 140" width="100" height="100">' +
-								'<defs>' +
-								'<marker id="prism-previewer-easing-marker" viewBox="0 0 4 4" refX="2" refY="2" markerUnits="strokeWidth">' +
-								'<circle cx="2" cy="2" r="1.5" />' +
-								'</marker>' +
-								'</defs>' +
-								'<path d="M0,100 C20,50, 40,30, 100,0" />' +
-								'<line x1="0" y1="100" x2="20" y2="50" marker-start="url(#prism-previewer-easing-marker)" marker-end="url(#prism-previewer-easing-marker)" />' +
-								'<line x1="100" y1="0" x2="40" y2="30" marker-start="url(#prism-previewer-easing-marker)" marker-end="url(#prism-previewer-easing-marker)" />' +
-								'</svg>';
-					});
-				},
-				tokens: {
-					'easing': {
-						pattern: /\bcubic-bezier\((?:-?(?:\d+(?:\.\d+)?|\.\d+),\s*){3}-?(?:\d+(?:\.\d+)?|\.\d+)\)\B|\b(?:ease(?:-in)?(?:-out)?|linear)(?=\s|[;}]|$)/i,
-						inside: {
-							'function': /[\w-]+(?=\()/,
-							'punctuation': /[(),]/
-						}
-					}
-				},
-				languages: {
-					'css': true,
-					'less': true,
-					'sass': [
-						{
-							lang: 'sass',
-							inside: 'inside',
-							before: 'punctuation',
-							root: Prism.languages.sass && Prism.languages.sass['variable-line']
-						},
-						{
-							lang: 'sass',
-							inside: 'inside',
-							root: Prism.languages.sass && Prism.languages.sass['property-line']
-						}
-					],
-					'scss': true,
-					'stylus': [
-						{
-							lang: 'stylus',
-							before: 'hexcode',
-							inside: 'rest',
-							root: Prism.languages.stylus && Prism.languages.stylus['property-declaration'].inside
-						},
-						{
-							lang: 'stylus',
-							before: 'hexcode',
-							inside: 'rest',
-							root: Prism.languages.stylus && Prism.languages.stylus['variable-declaration'].inside
-						}
-					]
-				}
-			},
-
-			'time': {
-				create() {
-					new Prism.plugins.Previewer('time', function (value) {
-						const num = parseFloat(value);
-						let unit = value.match(/[a-z]+$/i);
-						if (!num || !unit) {
-							return false;
-						}
-						unit = unit[0];
-						this.querySelector('circle').style.animationDuration = 2 * num + unit;
-						return true;
-					}, '*', function () {
-						this._elt.innerHTML = '<svg viewBox="0 0 64 64">' +
-								'<circle r="16" cy="32" cx="32"></circle>' +
-								'</svg>';
-					});
-				},
-				tokens: {
-					'time': /(?:\b|\B-|(?=\B\.))(?:\d+(?:\.\d+)?|\.\d+)m?s\b/i
-				},
-				languages: {
-					'css': true,
-					'less': true,
-					'markup': {
-						lang: 'markup',
-						before: 'punctuation',
-						inside: 'inside',
-						root: Prism.languages.markup && Prism.languages.markup['tag'].inside['attr-value']
-					},
-					'sass': [
-						{
-							lang: 'sass',
-							inside: 'inside',
-							root: Prism.languages.sass && Prism.languages.sass['property-line']
-						},
-						{
-							lang: 'sass',
-							before: 'operator',
-							inside: 'inside',
-							root: Prism.languages.sass && Prism.languages.sass['variable-line']
-						}
-					],
-					'scss': true,
-					'stylus': [
-						{
-							lang: 'stylus',
-							before: 'hexcode',
-							inside: 'rest',
-							root: Prism.languages.stylus && Prism.languages.stylus['property-declaration'].inside
-						},
-						{
-							lang: 'stylus',
-							before: 'hexcode',
-							inside: 'rest',
-							root: Prism.languages.stylus && Prism.languages.stylus['variable-declaration'].inside
-						}
-					]
-				}
-			}
-		};
-
-		/**
-		 * Returns the absolute X, Y offsets for an element
-		 *
-		 * @param {HTMLElement} element
-		 * @returns {{top: number, right: number, bottom: number, left: number, width: number, height: number}}
-		 */
-		const getOffset = function (element) {
-			const elementBounds = element.getBoundingClientRect();
-			let left = elementBounds.left;
-			let top = elementBounds.top;
-			const documentBounds = document.documentElement.getBoundingClientRect();
-			left -= documentBounds.left;
-			top -= documentBounds.top;
-
-			return {
-				top,
-				right: innerWidth - left - elementBounds.width,
-				bottom: innerHeight - top - elementBounds.height,
-				left,
-				width: elementBounds.width,
-				height: elementBounds.height
-			};
-		};
-
-		const TOKEN_CLASS = 'token';
-		const ACTIVE_CLASS = 'active';
-		const FLIPPED_CLASS = 'flipped';
-
-		class Previewer {
-			/**
-			 * Previewer constructor
-			 *
-			 * @param {string} type Unique previewer type
-			 * @param {Function} updater Function that will be called on mouseover.
-			 * @param {string[]|string} [supportedLanguages] Aliases of the languages this previewer must be enabled for. Defaults to "*", all languages.
-			 * @param {Function} [initializer] Function that will be called on initialization.
-			 * @class
-			 */
-			constructor(type, updater, supportedLanguages, initializer) {
-				this._elt = null;
-				this._type = type;
-				this._token = null;
-				this.updater = updater;
-				this._mouseout = this.mouseout.bind(this);
-				this.initializer = initializer;
-
-				const self = this;
-
-				if (!supportedLanguages) {
-					supportedLanguages = ['*'];
-				}
-				if (!Array.isArray(supportedLanguages)) {
-					supportedLanguages = [supportedLanguages];
-				}
-				supportedLanguages.forEach((lang) => {
-					if (typeof lang !== 'string') {
-						lang = lang.lang;
-					}
-					if (!Previewer.byLanguages[lang]) {
-						Previewer.byLanguages[lang] = [];
-					}
-					if (Previewer.byLanguages[lang].indexOf(self) < 0) {
-						Previewer.byLanguages[lang].push(self);
-					}
-				});
-				Previewer.byType[type] = this;
-			}
-			/**
-			 * Initializes the mouseover event on the code block.
-			 *
-			 * @param {HTMLElement} elt The code block (env.element)
-			 * @param {string} lang The language (env.language)
-			 */
-			static initEvents(elt, lang) {
-				let previewers = [];
-				if (Previewer.byLanguages[lang]) {
-					previewers = previewers.concat(Previewer.byLanguages[lang]);
-				}
-				if (Previewer.byLanguages['*']) {
-					previewers = previewers.concat(Previewer.byLanguages['*']);
-				}
-				elt.addEventListener('mouseover', (e) => {
-					const target = e.target;
-					previewers.forEach((previewer) => {
-						previewer.check(target);
-					});
-				}, false);
-			}
-			/**
-			 * Creates the HTML element for the previewer.
-			 */
-			init() {
-				if (this._elt) {
-					return;
-				}
-				this._elt = document.createElement('div');
-				this._elt.className = 'prism-previewer prism-previewer-' + this._type;
-				document.body.appendChild(this._elt);
-				if (this.initializer) {
-					this.initializer();
-				}
-			}
-			/**
-			 * @param {Element} token
-			 * @returns {boolean}
-			 */
-			isDisabled(token) {
-				do {
-					if (token.hasAttribute && token.hasAttribute('data-previewers')) {
-						const previewers = token.getAttribute('data-previewers');
-						return (previewers || '').split(/\s+/).indexOf(this._type) === -1;
-					}
-				} while ((token = token.parentNode));
-				return false;
-			}
-			/**
-			 * Checks the class name of each hovered element
-			 *
-			 * @param {Element} token
-			 */
-			check(token) {
-				if (token.classList.contains(TOKEN_CLASS) && this.isDisabled(token)) {
-					return;
-				}
-				do {
-					if (token.classList && token.classList.contains(TOKEN_CLASS) && token.classList.contains(this._type)) {
-						break;
-					}
-				} while ((token = token.parentNode));
-
-				if (token && token !== this._token) {
-					this._token = token;
-					this.show();
-				}
-			}
-			/**
-			 * Called on mouseout
-			 */
-			mouseout() {
-				this._token.removeEventListener('mouseout', this._mouseout, false);
-				this._token = null;
-				this.hide();
-			}
-			/**
-			 * Shows the previewer positioned properly for the current token.
-			 */
-			show() {
-				if (!this._elt) {
-					this.init();
-				}
-				if (!this._token) {
-					return;
-				}
-
-				if (this.updater.call(this._elt, this._token.textContent)) {
-					this._token.addEventListener('mouseout', this._mouseout, false);
-
-					const offset = getOffset(this._token);
-					this._elt.classList.add(ACTIVE_CLASS);
-
-					if (offset.top - this._elt.offsetHeight > 0) {
-						this._elt.classList.remove(FLIPPED_CLASS);
-						this._elt.style.top = offset.top + 'px';
-						this._elt.style.bottom = '';
-					} else {
-						this._elt.classList.add(FLIPPED_CLASS);
-						this._elt.style.bottom = offset.bottom + 'px';
-						this._elt.style.top = '';
-					}
-
-					this._elt.style.left = offset.left + Math.min(200, offset.width / 2) + 'px';
-				} else {
-					this.hide();
-				}
-			}
-			/**
-			 * Hides the previewer.
-			 */
-			hide() {
-				this._elt.classList.remove(ACTIVE_CLASS);
-			}
-		}
-
-
-		/**
-		 * Map of all registered previewers by language
-		 *
-		 * @type {{}}
-		 */
-		Previewer.byLanguages = {};
-
-		/**
-		 * Map of all registered previewers by type
-		 *
-		 * @type {{}}
-		 */
-		Previewer.byType = {};
-
-		Prism.plugins.Previewer = Previewer;
 
 		Prism.hooks.add('before-highlight', (env) => {
-			for (var previewer in previewers) {
-				var languages = previewers[previewer].languages;
-				if (env.language && languages[env.language] && !languages[env.language].initialized) {
+			for (const previewer of Object.values(previewers)) {
+				const languages = previewer.languages;
+				if (languages[env.language] && !languages[env.language].initialized) {
 					let lang = languages[env.language];
 					if (!Array.isArray(lang)) {
 						lang = [lang];
@@ -693,7 +726,7 @@ export default /** @type {import("../../types").PluginProto<'previewers'>} */ ({
 						}
 
 						if (!skip && Prism.languages[lang]) {
-							Prism.languages.insertBefore(inside, before, previewers[previewer].tokens, root);
+							Prism.languages.insertBefore(inside, before, previewer.tokens, root);
 							env.grammar = Prism.languages[lang];
 
 							languages[env.language] = { initialized: true };
@@ -703,15 +736,8 @@ export default /** @type {import("../../types").PluginProto<'previewers'>} */ ({
 			}
 		});
 
-		// Initialize the previewers only when needed
 		Prism.hooks.add('after-highlight', (env) => {
-			if (Previewer.byLanguages['*'] || Previewer.byLanguages[env.language]) {
-				Previewer.initEvents(env.element, env.language);
-			}
+			Prism.plugins.previewers.initEvents(env.element, env.language);
 		});
-
-		for (const previewer in previewers) {
-			previewers[previewer].create();
-		}
 	}
 });
