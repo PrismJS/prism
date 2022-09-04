@@ -5,7 +5,7 @@
  *
  * @type {Readonly<Partial<Record<string, string>>>}
  */
-const knownTitles = /*languages_placeholder[*/{}/*]*/;
+export const knownTitles = /*languages_placeholder[*/{}/*]*/;
 
 /**
  * Tries to guess the name of a language given its id.

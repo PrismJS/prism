@@ -1,4 +1,5 @@
 import { assert } from 'chai';
+import { knownTitles } from '../../../src/shared/meta/title-data';
 import { createTestSuite } from '../../helper/prism-dom-util';
 
 
@@ -7,6 +8,11 @@ describe('Show language', () => {
 		languages: ['markup', 'javascript'],
 		plugins: 'show-language'
 	});
+
+	const titles = /** @type {Record<string, string>} */ (knownTitles);
+	titles['js'] = 'JavaScript';
+	titles['html'] = 'HTML';
+	titles['svg'] = 'SVG';
 
 
 	/**
