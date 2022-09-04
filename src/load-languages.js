@@ -1,56 +1,66 @@
-const components = require('../components.js');
-const getLoader = require('../dependencies');
-
+import { resolveAlias } from './shared/meta/alias-data';
+import { knownLanguages } from './shared/meta/all-languages-data';
+import { toArray } from './shared/util';
 
 /**
- * The set of all languages which have been loaded using the below function.
- *
- * @type {Set<string>}
+ * @param {string} dir
+ * @param {string} file
  */
-const loadedLanguages = new Set();
+function pathJoin(dir, file) {
+	return dir.replace(/\/$/, '') + '/' + file;
+}
 
 /**
- * Loads the given languages and adds them to the current Prism instance.
+ * @type {Map<string, Promise<any>>}
+ */
+const importCache = new Map();
+
+/**
+ * @param {string} file
+ * @returns {Promise<T>}
+ * @template T
+ */
+function importFile(file) {
+	let promise = importCache.get(file);
+	if (promise === undefined) {
+		promise = import(file);
+		importCache.set(file, promise);
+	}
+	return promise;
+}
+
+/**
+ * Loads the given languages and adds them to the given Prism instance.
  *
  * If no languages are provided, __all__ Prism languages will be loaded.
  *
- * @param {string|string[]} [languages]
- * @returns {void}
+ * @param {import('./core/prism').Prism} Prism
+ * @param {string | readonly string[]} [languages]
+ * @param {string} [srcPath]
+ * @returns {Promise<void>}
  */
-function loadLanguages(languages) {
-	if (languages === undefined) {
-		languages = Object.keys(components.languages).filter(l => l != 'meta');
-	} else if (!Array.isArray(languages)) {
-		languages = [languages];
-	}
+export async function loadLanguages(Prism, languages = knownLanguages, srcPath = '.') {
+	languages = toArray(languages)
+		.map(resolveAlias)
+		.filter(id => !Prism.components.has(id));
 
-	// the user might have loaded languages via some other way or used `prism.js` which already includes some
-	// we don't need to validate the ids because `getLoader` will ignore invalid ones
-	const loaded = [...loadedLanguages, ...Object.keys(Prism.languages)];
-
-	getLoader(components, languages, loaded).load(lang => {
-		if (!(lang in components.languages)) {
+	await Promise.all(languages.map(async (id) => {
+		try {
+			const path = pathJoin(srcPath, `languages/prism-${id}.js`);
+			const exports = await importFile(path);
+			Prism.components.add(exports.default);
+		} catch (error) {
 			if (!loadLanguages.silent) {
-				console.warn('Language does not exist: ' + lang);
+				// eslint-disable-next-line no-undef
+				console.warn(`Unable to load language ${id}: ${error}`);
 			}
-			return;
 		}
-
-		const pathToLanguage = './prism-' + lang;
-
-		// remove from require cache and from Prism
-		delete require.cache[require.resolve(pathToLanguage)];
-		delete Prism.languages[lang];
-
-		require(pathToLanguage);
-
-		loadedLanguages.add(lang);
-	});
+	}));
 }
 
 /**
  * Set this to `true` to prevent all warning messages `loadLanguages` logs.
+ *
+ * @type {boolean}
  */
 loadLanguages.silent = false;
-
-module.exports = loadLanguages;
