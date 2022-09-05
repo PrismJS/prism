@@ -8,27 +8,23 @@
 ----------------------------------------------------
 
 [
-	["ftl", [
-		["ftl-directive", [
-			["punctuation", "<"],
-			["directive", "@foo"],
-			["content", [
+	["ftl-directive", [
+		["punctuation", "<"],
+		["directive", "@foo"],
+		["content", [
+			["punctuation", "("],
+			["punctuation", ")"],
+			["punctuation", "["],
+			["punctuation", "]"],
+			["punctuation", "{"],
+			["punctuation", "}"],
 
-				["punctuation", "("],
-				["punctuation", ")"],
-				["punctuation", "["],
-				["punctuation", "]"],
-				["punctuation", "{"],
-				["punctuation", "}"],
-
-				["punctuation", ","],
-				["punctuation", ";"],
-				["punctuation", "."],
-				["punctuation", ":"]
-
-			]],
-			["punctuation", "/>"]
-		]]
+			["punctuation", ","],
+			["punctuation", ";"],
+			["punctuation", "."],
+			["punctuation", ":"]
+		]],
+		["punctuation", "/>"]
 	]]
 ]
 

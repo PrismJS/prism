@@ -8,19 +8,15 @@ ${
 ----------------------------------------------------
 
 [
-	["ftl", [
-		["ftl-interpolation", [
-			["punctuation", "${"],
-			["content", [
-
-				["number", "0"],
-				["number", "08"],
-				["number", "0.2"],
-				["number", "1233.42234"]
-
-			]],
-			["punctuation", "}"]
-		]]
+	["ftl-interpolation", [
+		["punctuation", "${"],
+		["content", [
+			["number", "0"],
+			["number", "08"],
+			["number", "0.2"],
+			["number", "1233.42234"]
+		]],
+		["punctuation", "}"]
 	]]
 ]
 

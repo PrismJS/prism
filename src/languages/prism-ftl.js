@@ -59,41 +59,40 @@ export default /** @type {import("../types").LanguageProto<'ftl'>} */ ({
 		stringInterpolation.inside.interpolation.inside[rest] = ftl;
 
 		return {
-			'ftl': {
+			'ftl-comment': {
+				// the pattern is shortened to be more efficient
+				pattern: /<#--[\s\S]*?-->/,
+				greedy: true,
+				alias: 'comment'
+			},
+			'ftl-directive': {
 				// eslint-disable-next-line regexp/no-useless-lazy
-				pattern: RegExp(/<#--[\s\S]*?-->|<\/?[#@][a-zA-Z](?:<expr>)*?>|\$\{(?:<expr>)*?\}/.source.replace(/<expr>/g, () => FTL_EXPR), 'i'),
+				pattern: RegExp(/<\/?[#@][a-zA-Z](?:<expr>)*?>/.source.replace(/<expr>/g, () => FTL_EXPR), 'i'),
+				greedy: true,
 				inside: {
-					'ftl-comment': {
-						// the pattern is shortened to be more efficient
-						pattern: /^<#--[\s\S]*/,
-						alias: 'comment'
+					'directive': {
+						pattern: /(^<\/?)[#@][a-z]\w*/i,
+						lookbehind: true,
+						alias: 'keyword'
 					},
-					'ftl-directive': {
-						pattern: /^<[\s\S]+>$/,
-						inside: {
-							'directive': {
-								pattern: /(^<\/?)[#@][a-z]\w*/i,
-								lookbehind: true,
-								alias: 'keyword'
-							},
-							'punctuation': /^<\/?|\/?>$/,
-							'content': {
-								pattern: /\s*\S[\s\S]*/,
-								alias: 'ftl',
-								inside: ftl
-							}
-						}
-					},
-					'ftl-interpolation': {
-						pattern: /^\$\{[\s\S]*\}$/,
-						inside: {
-							'punctuation': /^\$\{|\}$/,
-							'content': {
-								pattern: /\s*\S[\s\S]*/,
-								alias: 'ftl',
-								inside: ftl
-							}
-						}
+					'punctuation': /^<\/?|\/?>$/,
+					'content': {
+						pattern: /\s*\S[\s\S]*/,
+						alias: 'ftl',
+						inside: ftl
+					}
+				}
+			},
+			'ftl-interpolation': {
+				// eslint-disable-next-line regexp/no-useless-lazy
+				pattern: RegExp(/\$\{(?:<expr>)*?\}/.source.replace(/<expr>/g, () => FTL_EXPR), 'i'),
+				greedy: true,
+				inside: {
+					'punctuation': /^\$\{|\}$/,
+					'content': {
+						pattern: /\s*\S[\s\S]*/,
+						alias: 'ftl',
+						inside: ftl
 					}
 				}
 			},

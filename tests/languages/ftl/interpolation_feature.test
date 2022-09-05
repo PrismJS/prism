@@ -10,33 +10,23 @@ ${ "{}foo${bar}" }
 			["punctuation", "<"],
 			"a"
 		]],
-		["attr-name", [
-			"href"
-		]],
+		["attr-name", ["href"]],
 		["attr-value", [
 			["punctuation", "="],
 			["punctuation", "\""],
-			["ftl", [
-				["ftl-interpolation", [
-					["punctuation", "${"],
-					["content", [
-						"link"
-					]],
-					["punctuation", "}"]
-				]]
+			["ftl-interpolation", [
+				["punctuation", "${"],
+				["content", ["link"]],
+				["punctuation", "}"]
 			]],
 			["punctuation", "\""]
 		]],
 		["punctuation", ">"]
 	]],
-	["ftl", [
-		["ftl-interpolation", [
-			["punctuation", "${"],
-			["content", [
-				"text"
-			]],
-			["punctuation", "}"]
-		]]
+	["ftl-interpolation", [
+		["punctuation", "${"],
+		["content", ["text"]],
+		["punctuation", "}"]
 	]],
 	["tag", [
 		["tag", [
@@ -45,22 +35,21 @@ ${ "{}foo${bar}" }
 		]],
 		["punctuation", ">"]
 	]],
-	["ftl", [
-		["ftl-interpolation", [
-			["punctuation", "${"],
-			["content", [
-				["string", [
-					"\"{}foo",
-					["interpolation", [
-						["interpolation-punctuation", "${"],
-						"bar",
-						["interpolation-punctuation", "}"]
-					]],
-					"\""
-				]]
-			]],
-			["punctuation", "}"]
-		]]
+
+	["ftl-interpolation", [
+		["punctuation", "${"],
+		["content", [
+			["string", [
+				"\"{}foo",
+				["interpolation", [
+					["interpolation-punctuation", "${"],
+					"bar",
+					["interpolation-punctuation", "}"]
+				]],
+				"\""
+			]]
+		]],
+		["punctuation", "}"]
 	]]
 ]
 

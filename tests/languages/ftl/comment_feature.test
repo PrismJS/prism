@@ -14,101 +14,93 @@
 ----------------------------------------------------
 
 [
-	["ftl", [
-		["ftl-comment", "<#-- comment -->"]
+	["ftl-comment", "<#-- comment -->"],
+
+	["ftl-directive", [
+		["punctuation", "<"],
+		["directive", "#assign"],
+		["content", [
+			" x ",
+			["comment", "<#-- A comment -->"],
+			["operator", "="],
+			["number", "123"],
+			["comment", "<#-- A comment -->"]
+		]],
+		["punctuation", ">"]
 	]],
-	["ftl", [
-		["ftl-directive", [
-			["punctuation", "<"],
-			["directive", "#assign"],
-			["content", [
-				" x ",
-				["comment", "<#-- A comment -->"],
-				["operator", "="],
-				["number", "123"],
-				["comment", "<#-- A comment -->"]
-			]],
-			["punctuation", ">"]
-		]]
+
+	["ftl-directive", [
+		["punctuation", "<"],
+		["directive", "#function"],
+		["content", [
+			["function", "f"],
+			["punctuation", "("],
+			"x ",
+			["comment", "<#-- A comment -->"],
+			["punctuation", ","],
+			" y ",
+			["comment", "<#-- A comment -->"],
+			["punctuation", ")"]
+		]],
+		["punctuation", ">"]
 	]],
-	["ftl", [
-		["ftl-directive", [
-			["punctuation", "<"],
-			["directive", "#function"],
-			["content", [
-				["function", "f"],
-				["punctuation", "("],
-				"x ",
-				["comment", "<#-- A comment -->"],
-				["punctuation", ","],
-				" y ",
-				["comment", "<#-- A comment -->"],
-				["punctuation", ")"]
-			]],
-			["punctuation", ">"]
-		]]
+
+	["ftl-directive", [
+		["punctuation", "<"],
+		["directive", "#return"],
+		["content", [
+			["comment", "<#-- A comment -->"],
+			["number", "1"],
+			["comment", "<#-- A comment -->"]
+		]],
+		["punctuation", ">"]
 	]],
-	["ftl", [
-		["ftl-directive", [
-			["punctuation", "<"],
-			["directive", "#return"],
-			["content", [
-				["comment", "<#-- A comment -->"],
-				["number", "1"],
-				["comment", "<#-- A comment -->"]
-			]],
-			["punctuation", ">"]
-		]]
+
+	["ftl-directive", [
+		["punctuation", "</"],
+		["directive", "#function"],
+		["punctuation", ">"]
 	]],
-	["ftl", [
-		["ftl-directive", [
-			["punctuation", "</"],
-			["directive", "#function"],
-			["punctuation", ">"]
-		]]
-	]],
-	["ftl", [
-		["ftl-directive", [
-			["punctuation", "<"],
-			["directive", "#assign"],
-			["content", [
-				" someHash ",
-				["operator", "="],
-				["punctuation", "{"],
-				["string", [
-					"\"foo\""
-				]],
-				["punctuation", ":"],
-				["number", "123"],
-				["punctuation", ","],
-				["comment", "<#-- A comment -->"],
-				["string", [
-					"\"bar\""
-				]],
-				["punctuation", ":"],
-				" x ",
-				["comment", "<#-- A comment -->"],
-				["operator", "+"],
-				["number", "1"],
-				["punctuation", ","],
-				["comment", "<#-- A comment -->"],
-				["string", [
-					"\"baaz\""
-				]],
-				["punctuation", ":"],
-				["function", "f"],
-				["punctuation", "("],
-				["number", "1"],
-				["comment", "<#-- A comment -->"],
-				["punctuation", ","],
-				["number", "2"],
-				["comment", "<#-- A comment -->"],
-				["punctuation", ")"],
-				["punctuation", "}"],
-				["comment", "<#-- A comment -->"]
-			]],
-			["punctuation", ">"]
-		]]
+
+	["ftl-directive", [
+		["punctuation", "<"],
+		["directive", "#assign"],
+		["content", [
+			" someHash ",
+			["operator", "="],
+			["punctuation", "{"],
+
+			["string", ["\"foo\""]],
+			["punctuation", ":"],
+			["number", "123"],
+			["punctuation", ","],
+			["comment", "<#-- A comment -->"],
+
+			["string", ["\"bar\""]],
+			["punctuation", ":"],
+			" x ",
+			["comment", "<#-- A comment -->"],
+			["operator", "+"],
+			["number", "1"],
+			["punctuation", ","],
+
+			["comment", "<#-- A comment -->"],
+
+			["string", ["\"baaz\""]],
+			["punctuation", ":"],
+			["function", "f"],
+			["punctuation", "("],
+			["number", "1"],
+			["comment", "<#-- A comment -->"],
+			["punctuation", ","],
+			["number", "2"],
+			["comment", "<#-- A comment -->"],
+			["punctuation", ")"],
+
+			["punctuation", "}"],
+			["comment", "<#-- A comment -->"]
+		]],
+		["punctuation", ">"]
 	]]
 ]
 

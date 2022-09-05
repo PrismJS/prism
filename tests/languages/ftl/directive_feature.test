@@ -14,84 +14,68 @@
 ----------------------------------------------------
 
 [
-	["ftl", [
-		["ftl-directive", [
-			["punctuation", "<"],
-			["directive", "#import"],
-			["content", [
-				["string", ["\"/libs/commons.ftl\""]],
-				["keyword", "as"],
-				" com"
-			]],
-			["punctuation", ">"]
-		]]
+	["ftl-directive", [
+		["punctuation", "<"],
+		["directive", "#import"],
+		["content", [
+			["string", ["\"/libs/commons.ftl\""]],
+			["keyword", "as"],
+			" com"
+		]],
+		["punctuation", ">"]
 	]],
 
-	["ftl", [
-		["ftl-directive", [
-			["punctuation", "<"],
-			["directive", "#if"],
-			["content", [
-				" a ",
-				["operator", "<"],
-				" b"
-			]],
-			["punctuation", ">"]
-		]]
+	["ftl-directive", [
+		["punctuation", "<"],
+		["directive", "#if"],
+		["content", [
+			" a ",
+			["operator", "<"],
+			" b"
+		]],
+		["punctuation", ">"]
 	]],
 	"\r\n\ta is less than b\r\n",
-	["ftl", [
-		["ftl-directive", [
-			["punctuation", "<"],
-			["directive", "#elseif"],
-			["content", [
-				["punctuation", "("],
-				"a ",
-				["operator", ">"],
-				" b",
-				["punctuation", ")"]
-			]],
-			["punctuation", ">"]
-		]]
+	["ftl-directive", [
+		["punctuation", "<"],
+		["directive", "#elseif"],
+		["content", [
+			["punctuation", "("],
+			"a ",
+			["operator", ">"],
+			" b",
+			["punctuation", ")"]
+		]],
+		["punctuation", ">"]
 	]],
 	"\r\n\ta is greater than b\r\n",
-	["ftl", [
-		["ftl-directive", [
-			["punctuation", "<"],
-			["directive", "#else"],
-			["punctuation", ">"]
-		]]
+	["ftl-directive", [
+		["punctuation", "<"],
+		["directive", "#else"],
+		["punctuation", ">"]
 	]],
 	"\r\n\ta is equal to by\r\n",
-	["ftl", [
-		["ftl-directive", [
-			["punctuation", "</"],
-			["directive", "#if"],
-			["punctuation", ">"]
-		]]
+	["ftl-directive", [
+		["punctuation", "</"],
+		["directive", "#if"],
+		["punctuation", ">"]
 	]],
 
-	["ftl", [
-		["ftl-directive", [
-			["punctuation", "<"],
-			["directive", "@foo"],
-			["punctuation", ">"]
-		]]
+	["ftl-directive", [
+		["punctuation", "<"],
+		["directive", "@foo"],
+		["punctuation", ">"]
 	]],
-	["ftl", [
-		["ftl-directive", [
-			["punctuation", "</"],
-			["directive", "@foo"],
-			["punctuation", ">"]
-		]]
+	["ftl-directive", [
+		["punctuation", "</"],
+		["directive", "@foo"],
+		["punctuation", ">"]
 	]],
 
-	["ftl", [
-		["ftl-directive", [
-			["punctuation", "<"],
-			["directive", "@foo"],
-			["punctuation", "/>"]
-		]]
+	["ftl-directive", [
+		["punctuation", "<"],
+		["directive", "@foo"],
+		["punctuation", "/>"]
 	]]
 ]
 
