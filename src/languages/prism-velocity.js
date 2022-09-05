@@ -74,6 +74,7 @@ export default /** @type {import("../types").LanguageProto<'velocity'>} */ ({
 			'variable': vel['variable']
 		});
 
+		// @ts-ignore
 		velocity['tag'].inside['attr-value'].inside[rest] = velocity;
 
 		return velocity;

@@ -308,6 +308,7 @@ export default /** @type {import("../types").LanguageProto<'markdown'>} */ ({
 		['url', 'bold', 'italic', 'strike'].forEach((token) => {
 			['url', 'bold', 'italic', 'strike', 'code-snippet'].forEach((inside) => {
 				if (token !== inside) {
+					// @ts-ignore
 					markdown[token].inside.content.inside[inside] = markdown[inside];
 				}
 			});

@@ -27,22 +27,25 @@ function walkTokens(tokens) {
 		let notTagNorBrace = false;
 
 		if (isToken) {
-			if (token.type === 'tag' && token.content[0] && token.content[0].type === 'tag') {
+			const nestedTag = token.content[0];
+			if (token.type === 'tag' && typeof nestedTag === 'object' && nestedTag.type === 'tag') {
 				// We found a tag, now find its kind
 
-				if (token.content[0].content[0].content === '</') {
+				const firstNestedChild = nestedTag.content[0];
+				if (typeof firstNestedChild === 'object' && firstNestedChild.content === '</') {
 					// Closing tag
-					if (openedTags.length > 0 && openedTags[openedTags.length - 1].tagName === stringifyToken(token.content[0].content[1])) {
+					if (openedTags.length > 0 && openedTags[openedTags.length - 1].tagName === stringifyToken(nestedTag.content[1])) {
 						// Pop matching opening tag
 						openedTags.pop();
 					}
 				} else {
-					if (token.content[token.content.length - 1].content === '/>') {
+					const lastChild = token.content[token.content.length - 1];
+					if (typeof lastChild === 'object' && lastChild.content === '/>') {
 						// Autoclosed tag, ignore
 					} else {
 						// Opening tag
 						openedTags.push({
-							tagName: stringifyToken(token.content[0].content[1]),
+							tagName: stringifyToken(nestedTag.content[1]),
 							openedBraces: 0
 						});
 					}
@@ -123,8 +126,11 @@ export default /** @type {import("../types").LanguageProto<'jsx'>} */ ({
 			/<\/?(?:[\w.:-]+(?:<S>+(?:[\w.:$-]+(?:=(?:"(?:\\[\s\S]|[^\\"])*"|'(?:\\[\s\S]|[^\\'])*'|[^\s{'"/>=]+|<BRACES>))?|<SPREAD>))*<S>*\/?)?>/.source
 		);
 
+		// @ts-ignore
 		tag.inside['tag'].pattern = /^<\/?[^\s>\/]*/;
+		// @ts-ignore
 		tag.inside['attr-value'].pattern = /=(?!\{)(?:"(?:\\[\s\S]|[^\\"])*"|'(?:\\[\s\S]|[^\\'])*'|[^\s'">]+)/;
+		// @ts-ignore
 		tag.inside['tag'].inside['class-name'] = /^[A-Z]\w*(?:\.[A-Z]\w*)*$/;
 		tag.inside['comment'] = javascript['comment'];
 

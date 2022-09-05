@@ -145,7 +145,9 @@ export default /** @type {import("../types").LanguageProto<'cshtml'>} */ ({
 
 		const tag = /** @type {import('../types').GrammarToken} */ (cshtml.tag);
 		tag.pattern = RegExp(/<\/?/.source + tagContent);
+		// @ts-ignore
 		tag.inside['attr-value'].pattern = RegExp(/=\s*/.source + tagAttrValue);
+		// @ts-ignore
 		insertBefore(tag.inside['attr-value'].inside, 'punctuation', { 'value': inlineValue });
 
 		insertBefore(cshtml, 'prolog', {

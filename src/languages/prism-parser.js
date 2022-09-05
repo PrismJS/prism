@@ -5,6 +5,8 @@ export default /** @type {import("../types").LanguageProto<'parser'>} */ ({
 	id: 'parser',
 	require: markup,
 	grammar({ extend }) {
+		const punctuation = /[\[\](){};]/;
+
 		const parser = extend('markup', {
 			'keyword': {
 				pattern: /(^|[^^])(?:\^(?:case|eval|for|if|switch|throw)\b|@(?:BASE|CLASS|GET(?:_DEFAULT)?|OPTIONS|SET_DEFAULT|USE)\b)/,
@@ -32,7 +34,7 @@ export default /** @type {import("../types").LanguageProto<'parser'>} */ ({
 				pattern: /\^(?:[$^;@()\[\]{}"':]|#[a-f\d]*)/i,
 				alias: 'builtin'
 			},
-			'punctuation': /[\[\](){};]/
+			'punctuation': punctuation
 		});
 
 		insertBefore(parser, 'keyword', {
@@ -58,11 +60,12 @@ export default /** @type {import("../types").LanguageProto<'parser'>} */ ({
 					'number': /\b(?:0x[a-f\d]+|\d+(?:\.\d*)?(?:e[+-]?\d+)?)\b/i,
 					'escape': parser.escape,
 					'operator': /[~+*\/\\%]|!(?:\|\|?|=)?|&&?|\|\|?|==|<[<=]?|>[>=]?|-[fd]?|\b(?:def|eq|ge|gt|in|is|le|lt|ne)\b/,
-					'punctuation': parser.punctuation
+					'punctuation': punctuation
 				}
 			}
 		});
 
+		// @ts-ignore
 		insertBefore(parser['tag'].inside['attr-value'].inside, 'punctuation', {
 			'expression': parser.expression,
 			'keyword': parser.keyword,
@@ -70,7 +73,7 @@ export default /** @type {import("../types").LanguageProto<'parser'>} */ ({
 			'function': parser.function,
 			'escape': parser.escape,
 			'parser-punctuation': {
-				pattern: parser.punctuation,
+				pattern: punctuation,
 				alias: 'punctuation'
 			}
 		});
