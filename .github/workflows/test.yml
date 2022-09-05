@@ -48,18 +48,18 @@ jobs:
   #         git diff-index --cached HEAD --stat --exit-code || \
   #         (echo && echo "The above files changed because the build is not up to date." && echo "Please rebuild Prism." && exit 1)
 
-  # lint:
+  lint:
 
-  #   runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #     - name: Use Node.js 14.x
-  #       uses: actions/setup-node@v3
-  #       with:
-  #         node-version: 14.x
-  #     - run: npm ci
-  #     - run: npm run lint:ci
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14.x
+      - run: npm ci
+      - run: npm run lint:ci
 
   coverage:
 
