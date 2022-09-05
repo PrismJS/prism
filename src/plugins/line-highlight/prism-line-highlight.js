@@ -231,6 +231,7 @@ export class LineHighlight {
 
 export default /** @type {import("../../types").PluginProto<'line-highlight'>} */ ({
 	id: 'line-highlight',
+	optional: 'line-numbers',
 	plugin(Prism) {
 		return new LineHighlight(Prism);
 	},
@@ -341,26 +342,20 @@ export default /** @type {import("../../types").PluginProto<'line-highlight'>} *
 			}
 		});
 
-		const completeHook = Prism.hooks.add('complete', function completeHook(env) {
+		const completeHook = Prism.hooks.add('complete', (env) => {
 			const pre = env.element.parentElement;
 			if (!isActiveFor(pre)) {
 				return;
 			}
 
 			if (fakeTimer !== undefined) {
+				// @ts-ignore
 				clearTimeout(fakeTimer);
 			}
 
-			const hasLineNumbers = Prism.plugins.lineNumbers;
-			const isLineNumbersLoaded = env.plugins && env.plugins.lineNumbers;
-
-			if (hasClass(pre, LINE_NUMBERS_CLASS) && hasLineNumbers && !isLineNumbersLoaded) {
-				Prism.hooks.add('line-numbers', completeHook);
-			} else {
-				const mutateDom = Prism.plugins.lineHighlight.highlightLines(pre);
-				mutateDom();
-				fakeTimer = setTimeout(applyHash, 1);
-			}
+			const mutateDom = Prism.plugins.lineHighlight.highlightLines(pre);
+			mutateDom();
+			fakeTimer = setTimeout(applyHash, 1);
 		});
 
 		return combineCallbacks(removeEventListeners, beforeSanityHook, completeHook);

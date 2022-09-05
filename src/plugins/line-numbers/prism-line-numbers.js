@@ -61,6 +61,7 @@ function resizeElements(elements) {
 
 		/** @type {HTMLElement | null} */
 		let lineNumberSizer = element.querySelector('.line-numbers-sizer');
+		// @ts-ignore
 		const codeLines = codeElement.textContent.split(NEW_LINE_EXP);
 
 		if (!lineNumberSizer) {
@@ -123,6 +124,7 @@ function resizeElements(elements) {
 		lineNumberSizer.innerHTML = '';
 
 		info.lineHeights.forEach((height, lineNumber) => {
+			// @ts-ignore
 			info.wrapper.children[lineNumber].style.height = height + 'px';
 		});
 	});
@@ -272,15 +274,8 @@ export default /** @type {import("../../types").PluginProto<'line-numbers'>} */ 
 			env.element.appendChild(lineNumbersWrapper);
 
 			resizeElements([pre]);
-
-			Prism.hooks.run('line-numbers', env);
 		});
 
-		const lnHook = Prism.hooks.add('line-numbers', (env) => {
-			env.plugins = env.plugins || {};
-			env.plugins.lineNumbers = true;
-		});
-
-		return combineCallbacks(removeListener, completeHook, lnHook);
+		return combineCallbacks(removeListener, completeHook);
 	}
 });
