@@ -690,7 +690,7 @@ const previewers = {
 export default /** @type {import("../../types").PluginProto<'previewers'>} */ ({
 	id: 'previewers',
 	require: cssExtras,
-	plugin(Prism) {
+	plugin() {
 		const collection = new PreviewerCollection();
 
 		if (typeof document !== 'undefined') {
