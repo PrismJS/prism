@@ -3,6 +3,7 @@ node_modules
 .idea/
 .DS_Store
 .eslintcache
+dist/
 
 benchmark/remotes/
 benchmark/downloads/

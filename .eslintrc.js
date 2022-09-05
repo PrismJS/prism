@@ -140,7 +140,8 @@ module.exports = {
 	},
 	ignorePatterns: [
 		'vendor/',
-		'node_modules'
+		'node_modules',
+		'dist/'
 	],
 
 	overrides: [
