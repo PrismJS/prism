@@ -253,7 +253,7 @@ export default /** @type {import("../../types").PluginProto<'normalize-whitespac
 				}
 			}
 
-			if (!env.element.children.length || !Prism.plugins.KeepMarkup) {
+			if (!env.element.children.length || !Prism.components.has('keep-markup')) {
 				env.code = before + env.code + after;
 				env.code = Normalizer.normalize(env.code, settings);
 			} else {
