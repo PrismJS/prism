@@ -174,16 +174,6 @@ export class NormalizeWhitespace {
 	}
 }
 
-/**
- * Returns a settings record for {@link NormalizeWhitespace} from the given env object.
- *
- * @param {import('../../core/hooks-env').BeforeSanityCheckEnv} env
- * @returns {Partial<NormalizeWhitespaceDefaults> & { 'whitespace-normalization'?: boolean }}
- */
-function getEnvSettings(env) {
-	return /** @type {any} */ (env.settings ??= {});
-}
-
 export default /** @type {import("../../types").PluginProto<'normalize-whitespace'>} */ ({
 	id: 'normalize-whitespace',
 	optional: 'unescaped-markup',
@@ -204,10 +194,7 @@ export default /** @type {import("../../types").PluginProto<'normalize-whitespac
 		const Normalizer = Prism.plugins.normalizeWhitespace;
 
 		return Prism.hooks.add('before-sanity-check', (env) => {
-			const settings = getEnvSettings(env);
-
-			// Check settings
-			if (settings['whitespace-normalization'] === false) {
+			if (!env.code) {
 				return;
 			}
 
@@ -217,18 +204,18 @@ export default /** @type {import("../../types").PluginProto<'normalize-whitespac
 			}
 
 			// Simple mode if there is no env.element
-			if ((!env.element || !env.element.parentNode) && env.code) {
-				env.code = Normalizer.normalize(env.code, settings);
+			if (!env.element.parentNode) {
+				env.code = Normalizer.normalize(env.code);
 				return;
 			}
 
 			// Normal mode
 			const pre = getParentPre(env.element);
-			if (!env.code || !pre) {
+			if (!pre) {
 				return;
 			}
 
-			Object.assign(settings, readSetting(pre));
+			const settings = readSetting(pre);
 
 			const children = pre.childNodes;
 			let before = '';
