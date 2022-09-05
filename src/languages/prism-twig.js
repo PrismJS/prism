@@ -6,11 +6,15 @@ export default /** @type {import("../types").LanguageProto<'twig'>} */ ({
 	id: 'twig',
 	require: markup,
 	grammar: {
+		'twig-comment': {
+			pattern: /\{#[\s\S]*?#\}/,
+			greedy: true,
+			alias: 'comment'
+		},
 		'twig': {
 			pattern: /\{(?:#[\s\S]*?#|%[\s\S]*?%|\{[\s\S]*?\})\}/,
+			greedy: true,
 			inside: {
-				'comment': /^\{#[\s\S]*?#\}$/,
-
 				'tag-name': {
 					pattern: /(^\{%-?\s*)\w+/,
 					lookbehind: true,
