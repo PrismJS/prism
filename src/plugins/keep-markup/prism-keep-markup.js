@@ -2,28 +2,6 @@ import { isActive } from '../../shared/dom-util';
 import { addHooks } from '../../shared/hooks-util';
 
 /**
- * @typedef NodeData
- * @property {Element} element
- * @property {number} posOpen
- * @property {number} posClose
- */
-
-/**
- * @param {import('../../core/hooks-env').BeforeHighlightEnv} env
- * @param {NodeData[]} data
- */
-function setEnvData(env, data) {
-	env.keepMarkup = data;
-}
-/**
- * @param {import('../../core/hooks-env').AfterHighlightEnv} env
- * @returns {NodeData[]}
- */
-function getEnvData(env) {
-	return env.keepMarkup || [];
-}
-
-/**
  * @param {ChildNode} child
  * @returns {child is Element}
  */
@@ -37,6 +15,16 @@ function isElement(child) {
 function isText(child) {
 	return child.nodeType === 3;
 }
+
+/**
+ * @type {import('../../core/hook-state').StateKey<NodeData[]>}
+ *
+ * @typedef NodeData
+ * @property {Element} element
+ * @property {number} posOpen
+ * @property {number} posClose
+ */
+const markupData = 'keep-markup data';
 
 export default /** @type {import("../../types").PluginProto<'keep-markup'>} */ ({
 	id: 'keep-markup',
@@ -109,11 +97,11 @@ export default /** @type {import("../../types").PluginProto<'keep-markup'>} */ (
 
 				if (data.length) {
 					// data is an array of all existing tags
-					setEnvData(env, data);
+					env.state.set(markupData, data);
 				}
 			},
 			'after-highlight': (env) => {
-				const data = getEnvData(env);
+				const data = env.state.get(markupData, []);
 				if (data.length) {
 
 					/**

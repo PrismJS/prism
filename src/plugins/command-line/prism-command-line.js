@@ -6,20 +6,7 @@ const CLASS_PATTERN = /(?:^|\s)command-line(?:\s|$)/;
 const PROMPT_CLASS = 'command-line-prompt';
 
 /**
- * Returns whether the given hook environment has a command line info object.
- *
- * @param {any} env
- * @returns {boolean}
- */
-function hasCommandLineInfo(env) {
-	const vars = env.vars = env.vars || {};
-	return 'command-line' in vars;
-}
-/**
- * Returns the command line info object from the given hook environment.
- *
- * @param {any} env
- * @returns {CommandLineInfo}
+ * @type {import('../../core/hook-state').StateKey<CommandLineInfo>}
  *
  * @typedef CommandLineInfo
  * @property {boolean} [complete]
@@ -27,17 +14,14 @@ function hasCommandLineInfo(env) {
  * @property {string[]} [outputLines]
  * @property {Set<number>} [continuationLineIndicies]
  */
-function getCommandLineInfo(env) {
-	const vars = env.vars = env.vars || {};
-	return vars['command-line'] = vars['command-line'] || {};
-}
+const commandLineKey = 'command-line data';
 
 export default /** @type {import("../../types").PluginProto<'command-line'>} */ ({
 	id: 'command-line',
 	effect(Prism) {
 		return addHooks(Prism.hooks, {
 			'before-highlight': (env) => {
-				const commandLine = getCommandLineInfo(env);
+				const commandLine = env.state.get(commandLineKey, {});
 
 				if (commandLine.complete || !env.code) {
 					commandLine.complete = true;
@@ -127,8 +111,7 @@ export default /** @type {import("../../types").PluginProto<'command-line'>} */ 
 				env.code = codeLines.join('\n');
 			},
 			'before-insert': (env) => {
-				const commandLine = getCommandLineInfo(env);
-
+				const commandLine = env.state.get(commandLineKey, {});
 				if (commandLine.complete) {
 					return;
 				}
@@ -151,13 +134,7 @@ export default /** @type {import("../../types").PluginProto<'command-line'>} */ 
 				env.highlightedCode = codeLines.join('\n');
 			},
 			'complete': (env) => {
-				if (!hasCommandLineInfo(env)) {
-				// the previous hooks never ran
-					return;
-				}
-
-				const commandLine = getCommandLineInfo(env);
-
+				const commandLine = env.state.get(commandLineKey, {});
 				if (commandLine.complete) {
 					return;
 				}

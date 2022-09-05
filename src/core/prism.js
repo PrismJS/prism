@@ -1,6 +1,7 @@
 import { getLanguage, setLanguage } from '../shared/dom-util';
 import { rest, tokenize } from '../shared/symbols';
 import { htmlEncode } from '../shared/util';
+import { HookState } from './hook-state';
 import { Hooks } from './hooks';
 import { LinkedList } from './linked-list';
 import { Registry } from './registry';
@@ -42,7 +43,8 @@ export class Prism {
 		const env = /** @type {EnvMap["before-highlightall"] | EnvMap["before-all-elements-highlight"]} */ ({
 			callback,
 			root: root ?? document,
-			selector: 'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'
+			selector: 'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code',
+			state: new HookState()
 		});
 
 		this.hooks.run('before-highlightall', env);
@@ -92,7 +94,13 @@ export class Prism {
 		const code = /** @type {string} */ (element.textContent);
 
 		/** @type {EnvMap["before-sanity-check"]} */
-		const env = { element, language, grammar, code };
+		const env = {
+			element,
+			language,
+			grammar,
+			code,
+			state: new HookState()
+		};
 
 		/** @param {string} highlightedCode */
 		const insertHighlightedCode = (highlightedCode) => {

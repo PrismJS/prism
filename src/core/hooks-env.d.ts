@@ -1,4 +1,5 @@
 import { Grammar } from '../types';
+import { HookState } from './hook-state';
 import { TokenStream } from './token';
 
 /**
@@ -29,44 +30,48 @@ export type HookEnv<HookName extends string> = HookName extends keyof HookEnvMap
 
 export type HookCallback<HookName extends string> = (env: HookEnv<HookName>) => void;
 
-export interface BeforeHighlightAllEnv {
+interface StatefulEnv {
+	readonly state: HookState;
+}
+
+export interface BeforeHighlightAllEnv extends StatefulEnv {
 	root: ParentNode;
 	selector: string;
 	callback?: (element: Element) => void;
 }
-export interface BeforeAllElementsHighlightEnv {
+export interface BeforeAllElementsHighlightEnv extends StatefulEnv {
 	root: ParentNode;
 	selector: string;
 	callback?: (element: Element) => void;
 	elements: Element[];
 }
 
-export interface BeforeSanityCheckEnv {
+export interface BeforeSanityCheckEnv extends StatefulEnv {
 	element: Element;
 	language: string;
 	grammar: Grammar | undefined;
 	code: string;
 }
-export interface BeforeHighlightEnv {
+export interface BeforeHighlightEnv extends StatefulEnv{
 	element: Element;
 	language: string;
 	grammar: Grammar | undefined;
 	code: string;
 }
-export interface CompleteEnv {
+export interface CompleteEnv extends StatefulEnv{
 	element: Element;
 	language: string;
 	grammar: Grammar | undefined;
 	code: string;
 }
-export interface BeforeInsertEnv {
+export interface BeforeInsertEnv extends StatefulEnv{
 	element: Element;
 	language: string;
 	grammar: Grammar | undefined;
 	code: string;
 	highlightedCode: string;
 }
-export interface AfterHighlightEnv {
+export interface AfterHighlightEnv extends StatefulEnv {
 	element: Element;
 	language: string;
 	grammar: Grammar | undefined;
