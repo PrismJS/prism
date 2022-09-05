@@ -6,9 +6,9 @@ bar *}
 ----------------------------------------------------
 
 [
-	["latte", [["comment", "{**}"]]],
-	["latte", [["comment", "{* foo *}"]]],
-	["latte", [["comment", "{* foo\r\nbar *}"]]]
+	["latte-comment", "{**}"],
+	["latte-comment", "{* foo *}"],
+	["latte-comment", "{* foo\r\nbar *}"]
 ]
 
 ----------------------------------------------------

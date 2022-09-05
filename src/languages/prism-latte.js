@@ -39,10 +39,15 @@ export default /** @type {import("../types").LanguageProto<'latte'>} */ ({
 		});
 
 		return {
+			'latte-comment': {
+				pattern: /\{\*[\s\S]*?\*\}/,
+				greedy: true,
+				alias: 'comment'
+			},
 			'latte': {
-				pattern: /\{\*[\s\S]*?\*\}|\{[^'"\s{}*](?:[^"'/{}]|\/(?![*/])|("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|\/\*(?:[^*]|\*(?!\/))*\*\/)*\}/,
+				pattern: /\{[^'"\s{}*](?:[^"'/{}]|\/(?![*/])|("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|\/\*(?:[^*]|\*(?!\/))*\*\/)*\}/,
+				greedy: true,
 				inside: {
-					'comment': /^\{\*[\s\S]*/,
 					'latte-tag': {
 						// https://latte.nette.org/en/tags
 						pattern: /(^\{(?:\/(?=[a-z]))?)(?:[=_]|[a-z]\w*\b(?!\())/i,
