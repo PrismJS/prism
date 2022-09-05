@@ -29,12 +29,8 @@ export function htmlEncode(text) {
 
 /**
  * A function that does nothing.
- *
- * @returns {void & undefined}
  */
-export function noop() {
-	/* do nothing */
-}
+export const noop = /** @type {() => (void & undefined)} */ (() => {});
 
 /**
  * @param {T} value
