@@ -1,0 +1,51 @@
+<% if (user) { %>
+  <h2><%= user.name %></h2>
+<% } %>
+
+----------------------------------------------------
+
+[
+	["ejs", [
+		["delimiter", "<%"],
+		["language-javascript", [
+			["keyword", "if"],
+			["punctuation", "("],
+			"user",
+			["punctuation", ")"],
+			["punctuation", "{"]
+		]],
+		["delimiter", "%>"]
+	]],
+
+	["tag", [
+		["tag", [
+			["punctuation", "<"],
+			"h2"
+		]],
+		["punctuation", ">"]
+	]],
+	["ejs", [
+		["delimiter", "<%="],
+		["language-javascript", [
+			" user",
+			["punctuation", "."],
+			"name "
+		]],
+		["delimiter", "%>"]
+	]],
+	["tag", [
+		["tag", [
+			["punctuation", "</"],
+			"h2"
+		]],
+		["punctuation", ">"]
+	]],
+
+	["ejs", [
+		["delimiter", "<%"],
+		["language-javascript", [
+			["punctuation", "}"]
+		]],
+		["delimiter", "%>"]
+	]]
+]

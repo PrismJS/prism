@@ -8,14 +8,22 @@ export default /** @type {import("../types").LanguageProto<'ejs'>} */ ({
 	require: [javascript, markup],
 	alias: 'eta',
 	grammar: {
+		'ejs-comment': {
+			pattern: /<%#[\s\S]*?%>/,
+			greedy: true
+		},
+		'escape': {
+			pattern: /<%%|%%>/,
+			greedy: true
+		},
 		'ejs': {
-			pattern: /<%(?!%)[\s\S]+?%>/,
+			pattern: /<%(?![%#])[\s\S]*?%>/,
+			greedy: true,
 			inside: {
 				'delimiter': {
 					pattern: /^<%[-_=]?|[-_]?%>$/,
 					alias: 'punctuation'
 				},
-				'comment': /^#[\s\S]*/,
 				'language-javascript': {
 					pattern: /[\s\S]+/,
 					inside: 'javascript'
