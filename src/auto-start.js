@@ -1,7 +1,6 @@
-import { Prism as PrismClass } from './core/prism';
+import Prism from './global';
 import autoloader from './plugins/autoloader/prism-autoloader';
 
-const Prism = new PrismClass();
 Prism.components.add(autoloader);
 
 export const PrismConfig = {
