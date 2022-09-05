@@ -11,7 +11,7 @@ export default /** @type {import("../types").LanguageProto<'erb'>} */ ({
 			pattern: /<%=?(?:[^\r\n]|[\r\n](?!=begin)|[\r\n]=begin\s(?:[^\r\n]|[\r\n](?!=end))*[\r\n]=end)+?%>/,
 			inside: {
 				'delimiter': {
-					pattern: /^(\s*)<%=?|%>(?=\s*$)/,
+					pattern: /^<%=?|%>$/,
 					lookbehind: true,
 					alias: 'punctuation'
 				},
