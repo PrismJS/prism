@@ -12,7 +12,6 @@ export default /** @type {import("../types").LanguageProto<'erb'>} */ ({
 			inside: {
 				'delimiter': {
 					pattern: /^<%=?|%>$/,
-					lookbehind: true,
 					alias: 'punctuation'
 				},
 				'ruby': {
