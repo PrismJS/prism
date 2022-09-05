@@ -3,7 +3,7 @@ import { getParentPre, isActive } from '../../shared/dom-util';
 /**
  * @param {string} str
  */
-function tabLen(str) {
+function tabLength(str) {
 	let res = 0;
 	for (let i = 0; i < str.length; ++i) {
 		if (str.charCodeAt(i) == '\t'.charCodeAt(0)) {
@@ -117,7 +117,7 @@ const normalizationMethods = {
 	'break-lines': (input, characters) => {
 		const lines = input.split('\n');
 		for (let i = 0; i < lines.length; ++i) {
-			if (tabLen(lines[i]) <= characters) {
+			if (tabLength(lines[i]) <= characters) {
 				continue;
 			}
 
@@ -125,7 +125,7 @@ const normalizationMethods = {
 			let len = 0;
 
 			for (let j = 0; j < line.length; ++j) {
-				const tl = tabLen(line[j]);
+				const tl = tabLength(line[j]);
 				len += tl;
 				if (len > characters) {
 					line[j] = '\n' + line[j];
