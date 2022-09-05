@@ -8,21 +8,11 @@ bar *}
 ----------------------------------------------------
 
 [
-	["smarty", [
-		["comment", "{**}"]
-	]],
-	["smarty", [
-		["comment", "{* foo\r\nbar *}"]
-	]],
+	["smarty-comment", "{**}"],
+	["smarty-comment", "{* foo\r\nbar *}"],
 
-	["smarty", [
-		["comment", "{* you cannot nest comments *}"]
-	]],
-
-	["smarty", [
-		["comment", "{* {* foo *}"]
-	]],
-	" *}"
+	["smarty-comment", "{* you cannot nest comments *}"],
+	["smarty-comment", "{* {* foo *}"], " *}"
 ]
 
 ----------------------------------------------------

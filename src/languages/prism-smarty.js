@@ -12,10 +12,6 @@ export default /** @type {import("../types").LanguageProto<'smarty'>} */ ({
 		};
 
 		const smarty = {
-			'comment': {
-				pattern: /^\{\*[\s\S]*?\*\}/,
-				greedy: true
-			},
 			'string': [
 				{
 					pattern: /"(?:\\.|[^"\\\r\n])*"/,
@@ -80,10 +76,6 @@ export default /** @type {import("../types").LanguageProto<'smarty'>} */ ({
 
 		const string = /"(?:\\.|[^"\\\r\n])*"|'(?:\\.|[^'\\\r\n])*'/;
 		const smartyPattern = RegExp(
-			// comments
-			/\{\*[\s\S]*?\*\}/.source +
-			'|' +
-			// smarty blocks
 			/\{(?:[^{}"']|<str>|\{(?:[^{}"']|<str>|\{(?:[^{}"']|<str>)*\})*\})*\}/.source
 				.replace(/<str>/g, () => string.source)
 		);
@@ -100,6 +92,11 @@ export default /** @type {import("../types").LanguageProto<'smarty'>} */ ({
 				greedy: true,
 				alias: ['php', 'language-php'],
 				inside: 'php'
+			},
+			'smarty-comment': {
+				pattern: /\{\*[\s\S]*?\*\}/,
+				greedy: true,
+				alias: 'comment'
 			},
 			'smarty': {
 				pattern: smartyPattern,

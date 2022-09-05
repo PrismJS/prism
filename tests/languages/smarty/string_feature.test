@@ -265,9 +265,7 @@
 	]],
 	"         // plugin result\r\n\r\n",
 
-	["smarty", [
-		["comment", "{* will replace $tpl_name with value *}"]
-	]],
+	["smarty-comment", "{* will replace $tpl_name with value *}"],
 	["smarty", [
 		["delimiter", "{"],
 		["keyword", "include"],
@@ -281,9 +279,7 @@
 		["delimiter", "}"]
 	]],
 
-	["smarty", [
-		["comment", "{* does NOT replace $tpl_name *}"]
-	]],
+	["smarty-comment", "{* does NOT replace $tpl_name *}"],
 
 	["smarty", [
 		["delimiter", "{"],
@@ -295,9 +291,7 @@
 	]],
 	" // vars require double quotes!\r\n\r\n",
 
-	["smarty", [
-		["comment", "{* must have backticks as it contains a dot \".\" *}"]
-	]],
+	["smarty-comment", "{* must have backticks as it contains a dot \".\" *}"],
 	["smarty", [
 		["delimiter", "{"],
 		["keyword", "cycle"],
@@ -321,9 +315,7 @@
 		["delimiter", "}"]
 	]],
 
-	["smarty", [
-		["comment", "{* must have backticks as it contains a dot \".\" *}"]
-	]],
+	["smarty-comment", "{* must have backticks as it contains a dot \".\" *}"],
 	["smarty", [
 		["delimiter", "{"],
 		["keyword", "include"],
@@ -345,9 +337,7 @@
 		["delimiter", "}"]
 	]],
 
-	["smarty", [
-		["comment", "{* can use variable with dot syntax *}"]
-	]],
+	["smarty-comment", "{* can use variable with dot syntax *}"],
 	["smarty", [
 		["delimiter", "{"],
 		["keyword", "include"],

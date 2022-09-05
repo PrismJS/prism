@@ -38,9 +38,7 @@
 		["delimiter", "}"]
 	]],
 
-	["smarty", [
-		["comment", "{* this template includes a {php} block that assign's the variable $varX *}"]
-	]],
+	["smarty-comment", "{* this template includes a {php} block that assign's the variable $varX *}"],
 
 	["smarty", [
 		["delimiter", "{"],
@@ -86,9 +84,7 @@
 		["delimiter", "}"]
 	]],
 
-	["smarty", [
-		["comment", "{* output the variable *}"]
-	]],
+	["smarty-comment", "{* output the variable *}"],
 
 	["tag", [
 		["tag", [

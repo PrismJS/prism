@@ -22,9 +22,7 @@
 		["delimiter", "}"]
 	]],
 
-	["smarty", [
-		["comment", "{* PHP function *}"]
-	]],
+	["smarty-comment", "{* PHP function *}"],
 	["smarty", [
 		["delimiter", "{"],
 		["function", "time"],
