@@ -39,7 +39,9 @@ export class Prism {
 	 *
 	 * @param {import("./prism-types").HighlightAllOptions} [options]
 	 */
-	highlightAll({ root, async, callback } = {}) {
+	highlightAll(options = {}) {
+		const { root, async, callback } = options;
+
 		const env = /** @type {EnvMap["before-highlightall"] | EnvMap["before-all-elements-highlight"]} */ ({
 			callback,
 			root: root ?? document,
@@ -79,7 +81,9 @@ export class Prism {
 	 * It must have a class of `language-xxxx` to be processed, where `xxxx` is a valid language identifier.
 	 * @param {import("./prism-types").HighlightElementOptions} [options]
 	 */
-	highlightElement(element, { async, callback } = {}) {
+	highlightElement(element, options = {}) {
+		const { async, callback } = options;
+
 		// Find language
 		const language = getLanguage(element);
 		const languageId = this.components.resolveAlias(language);
